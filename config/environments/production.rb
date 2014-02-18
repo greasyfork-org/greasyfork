@@ -54,6 +54,14 @@ Greasyfork::Application.configure do
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
+  config.serve_static_assets = false
+
+  config.assets.compress = true
+  config.assets.js_compressor  = :uglifier
+  config.assets.css_compressor = :yui
+  config.assets.compile = false
+  config.assets.digest = true
+
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = "http://assets.example.com"
 
