@@ -1,0 +1,16 @@
+<%=link_to 'Install', script_user_js_path(@script), {:class => 'install-link', 'data-ping-url' => url_for(script_install_ping_path(@script, :authenticity_token => session[:_csrf_token]))}%>
+
+<dl id="script-meta">
+	<dt>Author</dt>
+	<dd><%=link_to @script.user.name, @script.user%></dd>
+	<dt>Created</dt>
+	<dd><%=@script.created_at.strftime('%Y-%m-%d')%></dd>
+	<dt>Updated</dt>
+	<dd><%=@script.updated_at.strftime('%Y-%m-%d')%></dd>
+	<dt>Installs (daily)</dt>
+	<dd><%=@script.daily_installs%></dd>
+	<dt>Installs (total)</dt>
+	<dd><%=@script.total_installs%></dd>
+</dl>
+
+<div id="additional-info"><%=format_user_text(@script.additional_info)%></div>

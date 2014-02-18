@@ -1,0 +1,8 @@
+<ul>
+	<% @scripts.each do |script| %>
+		<li><%=link_to script.name, script%> by <%=link_to script.user.name, script.user%></li>
+	<% end %>
+	<% if user_signed_in? %>
+		<li><%=link_to 'Post a new script', new_script_version_path %></li>
+	<% end %>
+</ul>

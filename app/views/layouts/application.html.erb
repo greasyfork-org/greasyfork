@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Greasyfork</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+	<header id="main-header">
+		<div id="site-name">
+			<h1><%=link_to_unless_current 'Greasy Fork', root_path%></h1>
+			<p class="subtitle">Something clever goes here.</p>
+		</div>
+		<nav>
+			<li><%=link_to('Scripts', scripts_path)%></li>
+			<% if user_signed_in? %>
+				<li><%=link_to(current_user.name, current_user)%></li>
+			<% else %>
+				<li><%=link_to('Sign in', new_user_session_path)%></li>
+			<% end %>
+		</nav>
+	</header>
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<%= content_for?(:content) ? yield(:content) : yield %>
+
+</body>
+</html>

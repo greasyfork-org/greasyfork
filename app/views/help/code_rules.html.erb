@@ -1,0 +1,33 @@
+<p>These are the requirements for scripts posted to Greasy Fork. These are intended to keep Greasy Fork a safe and useful place for user scripts.</p>
+
+<p>This is very much a work in progress. <a href="mailto:jason.barnabe@gmail.com">Contact me</a> if you have any comments or suggestions.</p>
+
+
+<h2>Says what it does</h2>
+
+<p>You must include a description of what your script is supposed to do. Your script may not do things outside of this description.</p>
+
+
+<h2>Obfuscation</h2>
+
+<p>Code posted to this site may not be obfuscated. It's important that users be given the opportunity to inspect and understand your code before installing it.</p>
+
+
+<h2>Licensing and copyright</h2>
+
+<p>Your script must respect others' copyrights. This includes the script itself and any resources (for example images) it uses. If you intend on using someone else's content, abide by their licensing terms or get their permission before doing so.</p>
+
+
+<h2>@require</h2>
+
+<p>To ensure enforcability of all the other rules are followed, @require-ing arbitrary scripts is not allowed. Public, known-good external scripts are acceptable. Below is the list of identified acceptable URL patterns for @require. If you want something added to this list, <a href="mailto:jason.barnabe@gmail.com">send me an e-mail</a>.</p>
+
+<ul>
+<% AllowedRequire.all.each do |ar| %>
+	<li><%=ar.name%>: <code><%=ar.pattern%></code></li>
+<% end %>
+</ul>
+
+<h2>Being a smart-ass</h2>
+
+<p>You're a clever person and you can probably think of ways of circumventing the letter of these rules with your l33t skillz. Please try to abide by the <em>spirit</em> of these rules.</p>

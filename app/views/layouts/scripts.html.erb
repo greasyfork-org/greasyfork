@@ -1,0 +1,29 @@
+<% content_for :content do %>
+	<section id="script-info">
+		<header>
+			<h2><%=@script.name%></h2>
+			<p><%=@script.description%></p>
+			<% if !params[:version].nil? %>
+				<p id="version-note">As of <%=@script.updated_at%>. See <%=link_to 'the latest version', {:version => nil}%>.</p>
+			<% end %>
+		</header>
+		<ul id="script-links">
+			<li<%=current_page?(script_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>>
+				<%= link_to_unless_current 'Info', script_path(@script, :version => params[:version])%>
+			</li>
+			<li<%=current_page?(script_show_code_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>>
+				<%= link_to_unless_current 'Code', script_show_code_path(@script, :version => params[:version])%>
+			</li>
+			<li<%=current_page?(script_script_versions_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>>
+				<%= link_to_unless_current 'Versions', script_script_versions_path(@script, :version => params[:version])%>
+			</li>
+			<% if !current_user.nil? and current_user.id == @script.user_id %>
+				<li<%=current_page?(new_script_script_version_path(@script.id)) ? ' class="current"'.html_safe : ''%>>
+					<%= link_to_unless_current 'Update', new_script_script_version_path(@script.id)%>
+				</li>
+			<% end %>
+		</ul>
+		<%= content_for?(:scripts_content) ? yield(:scripts_content) : yield %>
+	</section>
+<% end %>
+<%= render template: 'layouts/application' %>

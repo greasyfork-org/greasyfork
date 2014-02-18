@@ -1,0 +1,51 @@
+<% if !@results[:new].empty? %>
+	<p>The following scripts were successfully imported:</p>
+	<ul>
+		<% @results[:new].each do |name| %>
+			<li><%=name%></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<% if !@results[:updated].empty? %>
+	<p>The following scripts were successfully updated:</p>
+	<ul>
+		<% @results[:updated].each do |name| %>
+			<li><%=name%></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<% if !@results[:needsdescription].empty? %>
+	<%=form_tag(import_step3_path) do |f|%>
+		<p>The following scripts need a description to be imported:</p>
+		<ul>
+			<% @results[:needsdescription].each do |id, name| %>
+				<li>
+					<%=name%> <input maxlength="500" size="50" name="needsdescription-<%=id%>">
+					<input id="userscripts-<%=id%>" type="hidden" name="userscripts_ids[]" value="<%=id%>">
+					<input type="hidden" name="imported-name-<%=id%>" value="<%=name%>">
+				</li>
+			<% end %>
+		</ul>
+		<%=submit_tag 'Import'%>
+	<% end %>
+<% end %>
+
+<% if !@results[:unchanged].empty? %>
+	<p>The following scripts were already the same on Greasy Fork and userscripts.org:</p>
+	<ul>
+		<% @results[:unchanged].each do |name| %>
+			<li><%=name%></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<% if !@results[:failed].empty? %>
+	<p>The following scripts could not be imported:</p>
+	<ul>
+		<% @results[:failed].each do |name| %>
+			<li><%=name%></li>
+		<% end %>
+	</ul>
+<% end %>

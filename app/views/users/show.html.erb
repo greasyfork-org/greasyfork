@@ -1,0 +1,24 @@
+<h2><%=@user.name%></h2>
+<% if !current_user.nil? and current_user.id == @user.id %>
+	<ul id="user-control-panel">
+		<li><%= link_to 'Post a script', new_script_version_path%></li>
+		<li><%= link_to 'Edit account', edit_user_registration_path%></li>
+		<li><%= link_to 'Import from userscripts.org', import_start_path%></li>
+		<li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete  %></li>
+	</ul>
+<% end %>
+
+<section>
+	<header>
+		<h3>Scripts</h3>
+	</header>
+	<% if @user.scripts.empty? %>
+		<p>No scripts posted.</p>
+	<% else %>
+		<ul>
+			<% @user.scripts.each do |script| %>
+				<li><%=link_to script.name, script%></li>
+			<% end %>
+		</ul>
+	<% end %>
+</section>

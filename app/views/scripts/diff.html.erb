@@ -1,0 +1,11 @@
+<h3>Diff</h3>
+<p>
+	Old: <%=link_to("#{@old_version.updated_at} - #{@old_version.changelog}", script_show_code_path(@script, :version =>  @old_version.id))%><br>
+	New: <%=link_to("#{@new_version.updated_at} - #{@new_version.changelog}", script_show_code_path(@script, :version =>  @new_version.id))%><br>
+</p>
+
+<% if @diff.nil? or @diff.empty? %>
+	<p>No differences found.</p>
+<% else %>
+	<%=@diff%>
+<% end %>
