@@ -120,7 +120,7 @@ private
 	end
 
 	def check_for_url_on_userscripts(url)
-		return :success
+		#return :success
 		content = download(url)
 		return :failure if content.nil?
 		our_url_match = /https?:\/\/greasyfork.org\/users\/([0-9]+)/.match(content)
