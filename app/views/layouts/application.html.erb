@@ -15,11 +15,11 @@
 			<p class="subtitle">Something clever goes here.</p>
 		</div>
 		<nav>
-			<li><%=link_to('Scripts', scripts_path)%></li>
+			<li class="scripts-index-link"><%=link_to('Scripts', scripts_path)%></li>
 			<% if user_signed_in? %>
-				<li><%=link_to(current_user.name, current_user)%></li>
+				<li class="user-profile-link"><%=link_to(current_user.name, current_user)%></li>
 			<% else %>
-				<li><%=link_to('Sign in', new_user_session_path)%></li>
+				<li class="sign-in-link"><%=link_to('Sign in', new_user_session_path)%></li>
 			<% end %>
 		</nav>
 	</header>
