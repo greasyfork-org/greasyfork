@@ -2,6 +2,15 @@ require 'sanitize'
 
 module ApplicationHelper
 
+	def title(page_title)
+		content_for(:title) { page_title }
+	end
+
+	def description(page_description)
+		content_for(:description) { page_description }
+	end
+
+
 	def format_user_text(text)
 		return '' if text.nil?
 		yes_follow = lambda do |env|

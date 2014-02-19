@@ -1,3 +1,6 @@
+<%- title @script.name + ' - Version diff' %>
+<%- description "Differences in #{@script.name} between #{@old_version.updated_at} and #{@new_version.updated_at}" %>
+
 <h3>Diff</h3>
 <p>
 	Old: <%=link_to("#{@old_version.updated_at} - #{@old_version.changelog}", script_show_code_path(@script, :version =>  @old_version.id))%><br>

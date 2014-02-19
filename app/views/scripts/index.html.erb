@@ -1,3 +1,6 @@
+<%- title 'User scripts on Greasy Fork' %>
+<%- description 'List of user scripts available on Greasy Fork' %>
+
 <ul>
 	<% @scripts.each do |script| %>
 		<li><%=link_to script.name, script%> by <%=link_to script.user.name, script.user%></li>

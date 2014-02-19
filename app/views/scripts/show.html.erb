@@ -1,3 +1,6 @@
+<%- title @script.name %>
+<%- description @script.description %>
+
 <%=link_to 'Install', script_user_js_path(@script), {:class => 'install-link', 'data-ping-url' => url_for(script_install_ping_path(@script, :authenticity_token => session[:_csrf_token]))}%>
 
 <dl id="script-meta">

@@ -1,3 +1,6 @@
+<%- title @script.name + ' - Version history' %>
+<%- description 'Version history for ' + @script.name %>
+
 <%=form_tag(script_diff_path(params[:script_id]), {:method => :get}) do %>
 	<ul>
 		<% @script.script_versions.reverse.each do |sv| %>

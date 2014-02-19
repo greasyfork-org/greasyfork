@@ -1,3 +1,6 @@
+<%- title "#{@user.name} profile" %>
+<%- description "Greasy Fork profile for #{@user.name}" %>
+
 <h2><%=@user.name%></h2>
 <% if !current_user.nil? and current_user.id == @user.id %>
 	<ul id="user-control-panel">
