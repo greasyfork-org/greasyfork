@@ -129,6 +129,54 @@ nav li + li {
 	font-size: smaller;
 }
 
+.script-list {
+	list-style-type: none;
+	padding: 0;
+}
+.script-list article {
+	margin-bottom: 1em;
+}
+.script-list article:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+.script-list h2 {
+	margin: 0;
+}
+.script-list p {
+	margin: 0;
+}
+.script-list footer {
+	margin-top: 0.25em;
+}
+.script-list dl {
+	font-size: smaller;
+	-moz-column-count: 2;
+	-webkit-column-count: 2;
+	column-count: 2;
+	-moz-column-gap: 0;
+	-webkit-column-gap: 0;
+	column-gap: 0;
+	max-width: 35em;
+	margin: 0;
+}
+.script-list dt, .script-list dd {
+	margin: 0;
+	padding: 0;
+}
+.script-list dt {
+	clear: left;
+	float: left;
+	width: 8em;
+	font-weight: bold;
+	text-align: right;
+	padding-right: 1em;
+}
+.script-list dd {
+	float: left;
+}
+
 /* activated by js */
 .select-all, .select-none {
 	display: none;

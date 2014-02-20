@@ -1,11 +1,37 @@
 <%- title 'User scripts on Greasy Fork' %>
 <%- description 'List of user scripts available on Greasy Fork' %>
 
-<ul>
-	<% @scripts.each do |script| %>
-		<li><%=link_to script.name, script%> by <%=link_to script.user.name, script.user%></li>
-	<% end %>
-	<% if user_signed_in? %>
-		<li><%=link_to 'Post a new script', new_script_version_path %></li>
-	<% end %>
-</ul>
+<p id="script-list-sort">Sort by:
+	<span class="script-sort-option"><% if params[:sort].nil? %>
+		Daily installs
+	<% else %>
+		<%=link_to 'Daily installs', scripts_path%>
+	<% end %></span>
+	|
+	<span class="script-sort-option"><% if params[:sort] == 'total_installs' %>
+		Total installs
+	<% else %>
+		<%=link_to 'Total installs', scripts_path(:sort => 'total_installs')%>
+	<% end %></span>
+	|
+	<span class="script-sort-option"><% if params[:sort] == 'created' %>
+		Created date
+	<% else %>
+		<%=link_to 'Created date', scripts_path(:sort => 'created')%>
+	<% end %></span>
+	|
+	<span class="script-sort-option"><% if params[:sort] == 'updated' %>
+		Updated date
+	<% else %>
+		<%=link_to 'Updated date', scripts_path(:sort => 'updated')%>
+	<% end %></span>
+</p>
+
+<ol id="browse-script-list" class="script-list">
+	<%= render partial: 'script', collection: @scripts %>
+</ol>
+
+<%= will_paginate @posts %>
+
+<p><%=link_to 'Post a new script', new_script_version_path %></p>
+

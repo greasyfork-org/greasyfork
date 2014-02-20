@@ -1,0 +1,22 @@
+<li data-script-id="<%=script.id%>" data-script-name="<%=script.name%>" data-script-author-id="<%=script.user.id%>" data-script-author-name="<%=script.user.name%>" data-script-daily-installs="<%=script.daily_installs%>" data-script-total-installs="<%=script.total_installs%>" data-script-created-date="<%=script.created_at.strftime('%Y-%m-%d')%>" data-script-updated-date="<%=script.updated_at.strftime('%Y-%m-%d')%>">
+	<article>
+		<header>
+			<h2><%=link_to script.name, script%></h2>
+		</header>
+		<p><%=script.description%></p>
+		<footer>
+			<dl>
+				<dt class="script-list-author">Author</dt>
+				<dd class="script-list-author"><%=link_to script.user.name, script.user%></dd>
+				<dt class="script-list-daily-installs">Daily installs</dt>
+				<dd class="script-list-daily-installs"><%=script.daily_installs%></dd>
+				<dt class="script-list-total-installs">Total installs</dt>
+				<dd class="script-list-total-installs"><%=script.total_installs%></dd>
+				<dt class="script-list-created-date">Created</dt>
+				<dd class="script-list-created-date"><%=script.created_at.strftime('%Y-%m-%d')%></dd>
+				<dt class="script-list-updated-date">Updated</dt>
+				<dd class="script-list-updated-date"><%=script.updated_at.strftime('%Y-%m-%d')%></dd>
+			</dl>
+		</footer>
+	</article>
+</li>

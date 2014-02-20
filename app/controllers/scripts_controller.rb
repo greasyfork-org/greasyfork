@@ -3,7 +3,18 @@ class ScriptsController < ApplicationController
 	layout 'application'
 
 	def index
-		@scripts = Script.all.includes(:user)
+		case params[:sort]
+			when 'total_installs'
+				sort = 'total_installs DESC, id'
+			when 'created'
+				sort = 'created_at DESC, id'
+			when 'updated'
+				sort = 'updated_at DESC, id'
+			else
+				params[:sort] = nil
+				sort = 'daily_installs DESC'
+		end
+		@scripts = Script.includes(:user).order(sort).paginate(:page => params[:page], :per_page => 50)
 	end
 
 	def show
