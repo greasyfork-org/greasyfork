@@ -1,7 +1,10 @@
-<% if !script_version.errors.empty? %>
+<% if !script_version.errors.empty? or !script_version.script.errors.empty? %>
 	<p>There were some problems with what you posted...</p>
 	<ul class="errors">
 		<% script_version.errors.full_messages.each do |m| %>
+			<li><%=m%></li>
+		<% end %>
+		<% script_version.script.errors.full_messages.each do |m| %>
 			<li><%=m%></li>
 		<% end %>
 	</ul>
