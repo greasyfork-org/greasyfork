@@ -23,11 +23,11 @@
 
 <h2>@require</h2>
 
-<p>To ensure enforcability of all the other rules are followed, @require-ing arbitrary scripts is not allowed. Public, known-good external scripts are acceptable. Below is the list of identified acceptable URL patterns for @require. If you want something added to this list, <a href="mailto:jason.barnabe@gmail.com">send me an e-mail</a>.</p>
+<p>To ensure enforcability of all the other rules are followed, @require-ing arbitrary scripts is not allowed. Public, known-good external scripts are acceptable. Below is the list of identified acceptable URLs for @require. If you want something added to this list, <a href="mailto:jason.barnabe@gmail.com">send me an e-mail</a>.</p>
 
 <ul>
 <% AllowedRequire.all.each do |ar| %>
-	<li><%=ar.name%>: <code><%=ar.pattern%></code></li>
+	<li><%=ar.name%></code></li>
 <% end %>
 </ul>
 
