@@ -1,11 +1,24 @@
 <%- title @script.name + ' - Version history' %>
 <%- description 'Version history for ' + @script.name %>
 
+<% 
+show_diff = @script.script_versions.length > 1
+i = 0
+%>
 <%=form_tag(script_diff_path(params[:script_id]), {:method => :get}) do %>
 	<ul>
 		<% @script.script_versions.reverse.each do |sv| %>
-			<li><input required type="radio" name="v1" value="<%=sv.id%>"> <input required type="radio" name="v2" value="<%=sv.id%>"> <%=link_to sv.created_at, script_path(sv.script, :version => sv.id)%> <%=sv.changelog%></li>
+			<li>
+				<% if show_diff %>
+					<input required type="radio" name="v1" value="<%=sv.id%>"<% if i == 0%> checked<%end%>>
+					<input required type="radio" name="v2" value="<%=sv.id%>"<% if i == 1%> checked<%end%>>
+				<% end 
+				i += 1
+				%>
+				<%=link_to sv.created_at, script_path(sv.script, :version => sv.id)%> <%=sv.changelog%></li>
 		<% end %>
 	</ul>
-	<%= submit_tag 'Diff'%>
+	<% if show_diff %>
+		<%= submit_tag 'Diff'%>
+	<% end %>
 <% end %>
