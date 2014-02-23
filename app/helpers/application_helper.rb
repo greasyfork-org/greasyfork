@@ -94,10 +94,16 @@ module ApplicationHelper
 			end
 		end
 
-		config = Sanitize::Config::BASIC.merge({
-			:transformers => [linkify_urls, yes_follow, fix_whitespace]
-		})
-		Sanitize.clean(text, config).html_safe
+		if @@sanitize_config.nil?
+			@@sanitize_config = Sanitize::Config::BASIC.merge({
+				:transformers => [linkify_urls, yes_follow, fix_whitespace]
+			})
+			@@sanitize_config[:elements] = @@sanitize_config[:elements].dup
+			@@sanitize_config[:elements] << 'img'
+			@@sanitize_config[:attributes] = @@sanitize_config[:attributes].merge('img' => ['src', 'alt', 'title'])
+			@@sanitize_config[:protocols] = @@sanitize_config[:protocols].merge('img' => {'src'  => ['https']})
+		end
+		Sanitize.clean(text, @@sanitize_config).html_safe
 	end
 
 private
@@ -130,6 +136,6 @@ private
 		return false
 	end
 
-
+	@@sanitize_config = nil
 
 end
