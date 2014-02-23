@@ -22,6 +22,10 @@ Greasyfork::Application.routes.draw do
 		get 'code(.:format)', :to => 'scripts#show_code', :as =>  'show_code'
 		post 'install-ping', :to => 'scripts#install_ping', :as => 'install_ping'
 		get 'diff', :to => 'scripts#diff', :as => 'diff', :constraints => lambda{ |req| !req.params[:v1].blank? and !req.params[:v2].blank? }
+		collection do
+			get 'by-site(.:format)', :action => 'by_site', :as => 'site_list'
+			get 'by-site/:site(.:format)', :action => 'index', :as => 'by_site', :constraints => {:site => /.*/}
+		end
 		resources :script_versions, :only => [:create, :new, :show, :index], :path => 'versions'
 	end
 	resources :script_versions, :only => [:create, :new]

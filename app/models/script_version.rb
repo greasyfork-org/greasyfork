@@ -1,3 +1,5 @@
+require 'uri'
+
 class ScriptVersion < ActiveRecord::Base
 	belongs_to :script
 
@@ -109,6 +111,66 @@ class ScriptVersion < ActiveRecord::Base
 		return meta_lines.join("\n")
 	end
 
+	def calculate_applies_to_names
+		meta = parse_meta
+		patterns = []
+		meta.each { |k, v| patterns.concat(v) if ['include', 'match'].include?(k) }
+
+		return [] if patterns.empty?
+		return [] if !(patterns & @@applies_to_all_patterns).empty?
+
+		applies_to_names = []
+		patterns.each do |p|
+			# senseless wildcard before protocol
+			m = p.match(/^\*(https?:.*)/i)
+			p = m[1] if !m.nil?
+
+			# protocol wild-cards
+			p.sub!(/^\*:/i, 'http:')
+			p.sub!(/^http\*:/i, 'http:')
+
+			# subdomain wild-cards - http://*.example.com and http://*example.com
+			m = p.match(/^([a-z]+:\/\/)\*\.?([a-z0-9\-]+(?:.[a-z0-9\-]+)+.*)/i)
+			p = m[1] + m[2] if !m.nil?
+
+			# protocol and subdomain wild-cards - *example.com and *.example.com
+			m = p.match(/^\*\.?([a-z0-9\-]+\.[a-z0-9\-]+.*)/i)
+			p = 'http://' + m[1] if !m.nil?
+
+			# protocol and subdomain wild-cards - http*.example.com, http*example.com, http*//example.com
+			m = p.match(/^http\*(?:\/\/)?\.?((?:[a-z0-9\-]+)(?:\.[a-z0-9\-]+)+.*)/i)
+			p = 'http://' + m[1] if !m.nil?
+
+			# tld wildcards - http://example.* - switch to .tld
+			m = p.match(/^([a-z]+:\/\/[a-z0-9\-]+(?:\.[a-z0-9\-]+)*\.)\*(.*)/)
+			p = m[1] + 'tld' + m[2] if !m.nil?
+
+			# grab up to the first *
+			pre_wildcard = p.split('*').first
+			begin
+				uri = URI(pre_wildcard)
+				if uri.host.nil?
+					applies_to_names << p
+				else
+					if uri.host.ends_with?('.tld')
+						@@tld_expansion.each do |tld|
+							applies_to_names << uri.host.sub(/tld$/i, tld)
+						end
+					else
+						applies_to_names << uri.host
+					end
+				end
+			rescue ArgumentError
+				logger.warn "Unrecognized pattern '" + p + "'"
+				applies_to_names << p
+			rescue URI::InvalidURIError
+				logger.warn "Unrecognized pattern '" + p + "'"
+				applies_to_names << p
+			end
+		end
+		return applies_to_names.uniq
+	end
+
 private
 
 	# handled by script
@@ -116,5 +178,9 @@ private
 
 	@@meta_start_comment = '// ==UserScript=='
 	@@meta_end_comment = '// ==/UserScript=='
+
+	@@applies_to_all_patterns = ['http://*', 'https://*', 'http://*/*', 'https://*/*', 'http*://*', 'http*://*/*', '*', '*://*', '*://*/*']
+
+	@@tld_expansion = ['com', 'net', 'org', 'de', 'co.uk']
 
 end

@@ -1,0 +1,10 @@
+<%- title 'User scripts on Greasy Fork grouped by site' %>
+<%- description 'List of user scripts available on Greasy Fork, grouped by the site they apply to' %>
+
+<p>These are the most common sites affected by scripts posted to Greasy Fork.</p>
+
+<ol id="by-site-list">
+	<%@by_sites.each do |by| %>
+		<li><%=link_to by.display_text, by_site_scripts_path(:site => by.display_text)%> (<%=by.script_count%>)</li>
+	<% end %>
+</ol>

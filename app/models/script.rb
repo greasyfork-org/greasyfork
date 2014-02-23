@@ -1,6 +1,7 @@
 class Script < ActiveRecord::Base
 	belongs_to :user
 	has_many :script_versions
+	has_many :script_applies_tos
 
 	validates_presence_of :name, :description, :user_id
 
@@ -18,6 +19,10 @@ class Script < ActiveRecord::Base
 		meta = script_version.parse_meta
 		self.name = meta.has_key?('name') ? meta['name'].first : nil
 		self.description = meta.has_key?('description') ? meta['description'].first : nil
+
+		self.script_applies_tos = script_version.calculate_applies_to_names.map do |name|
+			ScriptAppliesTo.new({:display_text => name})
+		end
 	end
 
 	def self.record_install(id, ip)

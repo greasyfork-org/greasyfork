@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140218044928) do
+ActiveRecord::Schema.define(version: 20140222031705) do
 
   create_table "allowed_requires", force: true do |t|
     t.string   "pattern",    null: false
@@ -42,6 +42,15 @@ ActiveRecord::Schema.define(version: 20140218044928) do
   end
 
   add_index "install_counts", ["script_id", "install_date"], name: "index_install_counts_on_script_id_and_install_date", unique: true, using: :btree
+
+  create_table "script_applies_tos", force: true do |t|
+    t.integer  "script_id",    null: false
+    t.text     "display_text", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "script_applies_tos", ["script_id"], name: "index_script_applies_tos_on_script_id", using: :btree
 
   create_table "script_versions", force: true do |t|
     t.integer  "script_id",                        null: false

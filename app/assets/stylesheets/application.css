@@ -176,6 +176,9 @@ nav li + li {
 .script-list dd {
 	float: left;
 }
+.script-list-current {
+	font-weight: bold;
+}
 
 /* activated by js */
 .select-all, .select-none {
@@ -190,4 +193,9 @@ nav li + li {
 	-moz-column-width: 10em;
 	-webkit-column-width: 10em;
 	column-width: 10em;
+}
+
+#by-site-list {
+	list-style-type: none;
+	padding: 0;	
 }

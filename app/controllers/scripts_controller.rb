@@ -5,16 +5,24 @@ class ScriptsController < ApplicationController
 	def index
 		case params[:sort]
 			when 'total_installs'
-				sort = 'total_installs DESC, id'
+				sort = 'total_installs DESC, scripts.id'
 			when 'created'
-				sort = 'created_at DESC, id'
+				sort = 'scripts.created_at DESC, scripts.id'
 			when 'updated'
-				sort = 'updated_at DESC, id'
+				sort = 'scripts.updated_at DESC, scripts.id'
 			else
 				params[:sort] = nil
 				sort = 'daily_installs DESC'
 		end
 		@scripts = Script.includes(:user).order(sort).paginate(:page => params[:page], :per_page => 50)
+		if !params[:site].nil?
+			@scripts = @scripts.joins(:script_applies_tos).where(['display_text = ?', params[:site]])
+		end
+		@by_sites = get_by_sites
+	end
+
+	def by_site
+		@by_sites = get_by_sites
 	end
 
 	def show
@@ -73,6 +81,12 @@ private
 		script.created_at = script_version.created_at
 		script.updated_at = script_version.updated_at
 		return script
+	end
+
+	def get_by_sites
+		# regexps are eliminated because they're not useful to look at and the link doesn't work anyway (due to
+		# the leading slash?)
+		return ScriptAppliesTo.select('display_text, count(*) script_count').group('display_text').order('script_count DESC, display_text').where('display_text NOT LIKE "/%"')
 	end
 
 end
