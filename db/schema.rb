@@ -11,13 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140222031705) do
+ActiveRecord::Schema.define(version: 20140223211251) do
 
   create_table "allowed_requires", force: true do |t|
-    t.string   "pattern",    null: false
-    t.string   "name",       null: false
+    t.string   "pattern",                null: false
+    t.string   "name",                   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "url",        limit: 500
   end
 
   create_table "daily_install_counts", force: true do |t|
