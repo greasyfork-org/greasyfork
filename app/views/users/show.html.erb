@@ -11,6 +11,10 @@
 	</ul>
 <% end %>
 
+<% if !@user.profile.nil? %>
+	<section id="user-profile"><%=format_user_text(@user.profile)%></section>
+<% end %>
+
 <section>
 	<header>
 		<h3>Scripts</h3>

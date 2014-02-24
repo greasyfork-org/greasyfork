@@ -15,13 +15,16 @@
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
 
-  <div><%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+  <div><%= f.label :profile %> <span class="label-note"><%=link_to '(Some HTML allowed)', help_allowed_markup_path, {:target => 'html_allowed'}%></span><br>
+  <%= f.text_area :profile %></div>
+
+  <div><%= f.label :password %> <span class="label-note">(Leave blank if you don't want to change it)</span><br />
   <%= f.password_field :password, :autocomplete => "off" %></div>
 
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation %></div>
 
-  <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+  <div><%= f.label :current_password %> <span class="label-note">(We need your current password to confirm your changes)</span><br />
   <%= f.password_field :current_password %></div>
 
   <div><%= f.submit "Update" %></div>

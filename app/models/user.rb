@@ -8,4 +8,7 @@ class User < ActiveRecord::Base
 
 	validates_presence_of :name
 	validates_uniqueness_of :name
+	validates_length_of :profile, :maximum => 10000
+
+	strip_attributes
 end

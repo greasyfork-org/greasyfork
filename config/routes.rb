@@ -9,7 +9,7 @@ Greasyfork::Application.routes.draw do
 		only: [:new, :create, :edit, :update],
 		path: 'users',
 		path_names: { new: 'sign_up' },
-		controller: 'devise/registrations',
+		controller: :registrations,
 		as: :user_registration do
 			get :cancel
 		end
