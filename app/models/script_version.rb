@@ -10,7 +10,7 @@ class ScriptVersion < ActiveRecord::Base
 	validates_length_of :changelog, :maximum => 500
 
 	validates_each(:code, :allow_nil => true, :allow_blank => true) do |record, attr, value|
-		meta = record.parse_meta
+		meta = ScriptVersion.parse_meta(value)
 
 		#@@required_meta.each do |rm|
 		#	record.errors.add(attr, "must contain a meta @#{rm}") unless meta.has_key?(rm)
@@ -29,49 +29,31 @@ class ScriptVersion < ActiveRecord::Base
 		end
 	end
 
-	# Returns the meta for this script in a hash of key to array of values
-	def parse_meta
-		meta = {}
-		meta_block = get_meta_block
-		return meta if meta_block.nil?
-		# can these be multiline?
-		meta_block.split("\n").each do |meta_line|
-			meta_match = /\/\/\s+@([a-zA-Z]+)\s+(.*)/.match(meta_line)
-			next if meta_match.nil?
-			key = meta_match[1].strip
-			value = meta_match[2].strip
-			if meta.has_key?(key)
-				meta[key] << value
-			else
-				meta[key] = [value]
-			end
-		end
-		return meta
+	# this requires the script id to be set so may be skipped for new scripts
+	after_create do |record|
+		record.rewritten_code = record.calculate_rewritten_code if record.rewritten_code == 'placeholder'
+		record.save!
 	end
 
-	def get_meta_block
-		start_block = code.index(@@meta_start_comment)
-		return nil if start_block.nil?
-		end_block = code.index(@@meta_end_comment, start_block)
-		return nil if end_block.nil?
-		return code[start_block..end_block+@@meta_end_comment.length]
+	def get_rewritten_meta_block
+		ScriptVersion.get_meta_block(rewritten_code)
 	end
 
 	def calculate_rewritten_code
-		rewritten_meta = inject_meta({:version => version, :updateURL => nil, :installURL => nil, :downloadURL => nil})
+		return 'placeholder' if script.nil? or script.new_record?
+		rewritten_meta = inject_meta({
+			:version => version,
+			:updateURL => Rails.application.routes.url_helpers.script_meta_js_path(:script_id => script.id, :only_path => false),
+			:installURL => nil,
+			:downloadURL => Rails.application.routes.url_helpers.script_user_js_path(:script_id => script.id, :only_path => false),
+			:namespace => Rails.application.routes.url_helpers.script_path(:id => script.id, :only_path => false)
+		})
 		return nil if rewritten_meta.nil?
-		return rewritten_meta + get_code_block
-	end
-
-	def get_code_block
-		meta_start = code.index(@@meta_start_comment)
-		return code if meta_start.nil?
-		meta_end = code.index(@@meta_end_comment, meta_start) + @@meta_end_comment.length
-		return (meta_start == 0 ? '' : code[0..meta_start-1]) + code[meta_end..code.length]
+		return rewritten_meta + ScriptVersion.get_code_block(code)
 	end
 
 	def inject_meta(replacements)
-		meta_block = get_meta_block
+		meta_block = ScriptVersion.get_meta_block(code)
 		return nil if meta_block.nil?
 
 		# handle strings or symbols as the keys
@@ -112,7 +94,7 @@ class ScriptVersion < ActiveRecord::Base
 	end
 
 	def calculate_applies_to_names
-		meta = parse_meta
+		meta = ScriptVersion.parse_meta(code)
 		patterns = []
 		meta.each { |k, v| patterns.concat(v) if ['include', 'match'].include?(k) }
 
@@ -170,6 +152,42 @@ class ScriptVersion < ActiveRecord::Base
 		end
 		return applies_to_names.uniq
 	end
+
+	# Returns the meta for this script in a hash of key to array of values
+	def self.parse_meta(c)
+		meta = {}
+		meta_block = ScriptVersion.get_meta_block(c)
+		return meta if meta_block.nil?
+		# can these be multiline?
+		meta_block.split("\n").each do |meta_line|
+			meta_match = /\/\/\s+@([a-zA-Z]+)\s+(.*)/.match(meta_line)
+			next if meta_match.nil?
+			key = meta_match[1].strip
+			value = meta_match[2].strip
+			if meta.has_key?(key)
+				meta[key] << value
+			else
+				meta[key] = [value]
+			end
+		end
+		return meta
+	end
+
+	def self.get_meta_block(c)
+		start_block = c.index(@@meta_start_comment)
+		return nil if start_block.nil?
+		end_block = c.index(@@meta_end_comment, start_block)
+		return nil if end_block.nil?
+		return c[start_block..end_block+@@meta_end_comment.length]
+	end
+
+	def self.get_code_block(c)
+		meta_start = c.index(@@meta_start_comment)
+		return c if meta_start.nil?
+		meta_end = c.index(@@meta_end_comment, meta_start) + @@meta_end_comment.length
+		return (meta_start == 0 ? '' : c[0..meta_start-1]) + c[meta_end..c.length]
+	end
+
 
 private
 

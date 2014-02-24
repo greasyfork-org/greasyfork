@@ -43,9 +43,8 @@ class ScriptVersionsController < ApplicationController
 			end
 		end
 
-		@script_version.rewritten_code = @script_version.calculate_rewritten_code
-
 		@script_version.script = @script
+		@script_version.rewritten_code = @script_version.calculate_rewritten_code 
 		@script.apply_from_script_version(@script_version)
 
 		# ensure all validations are run - short circuit the OR

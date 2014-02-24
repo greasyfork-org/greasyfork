@@ -19,6 +19,7 @@ Greasyfork::Application.routes.draw do
 
 	resources :scripts, :only => [:index, :show] do
 		get 'code.user.js', :to => 'scripts#user_js', :as =>  'user_js'
+		get 'code.meta.js', :to => 'scripts#meta_js', :as =>  'meta_js'
 		get 'code(.:format)', :to => 'scripts#show_code', :as =>  'show_code'
 		post 'install-ping', :to => 'scripts#install_ping', :as => 'install_ping'
 		get 'diff', :to => 'scripts#diff', :as => 'diff', :constraints => lambda{ |req| !req.params[:v1].blank? and !req.params[:v2].blank? }

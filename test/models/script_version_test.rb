@@ -10,9 +10,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
 // ==/UserScript==
 var foo = "bar";
 END
-		sv = ScriptVersion.new
-		sv.code = js
-		meta_block = sv.get_meta_block
+		meta_block = ScriptVersion.get_meta_block(js)
 		expected_meta = <<END
 // ==UserScript==
 // @name		A Test!
@@ -26,9 +24,8 @@ END
 		js = <<END
 var foo = "bar";
 END
-		sv = ScriptVersion.new
-		sv.code = js
-		assert_nil sv.get_meta_block
+		meta_block = ScriptVersion.get_meta_block(js)
+		assert_nil meta_block
 	end
 
 	test 'parse meta' do
@@ -39,9 +36,7 @@ END
 // ==/UserScript==
 var foo = "bar";
 END
-		sv = ScriptVersion.new
-		sv.code = js
-		meta = sv.parse_meta
+		meta = ScriptVersion.parse_meta(js)
 		assert_not_nil meta
 		assert_equal 1, meta['name'].length
 		assert_equal 'A Test!', meta['name'].first
@@ -53,9 +48,7 @@ END
 		js = <<END
 var foo = "bar";
 END
-		sv = ScriptVersion.new
-		sv.code = js
-		meta = sv.parse_meta
+		meta = ScriptVersion.parse_meta(js)
 		assert_empty meta
 	end
 
@@ -68,9 +61,7 @@ END
 var foo = 'bar';
 foo.baz();
 END
-		sv = ScriptVersion.new
-		sv.code = js
-		assert_equal "\nvar foo = 'bar';\nfoo.baz();\n", sv.get_code_block
+		assert_equal "\nvar foo = 'bar';\nfoo.baz();\n", ScriptVersion.get_code_block(js)
 	end
 
 	test 'get code block meta not at top' do
@@ -82,9 +73,7 @@ var foo = 'bar';
 // ==/UserScript==
 foo.baz();
 END
-		sv = ScriptVersion.new
-		sv.code = js
-		assert_equal "var foo = 'bar';\n\nfoo.baz();\n", sv.get_code_block
+		assert_equal "var foo = 'bar';\n\nfoo.baz();\n", ScriptVersion.get_code_block(js)
 	end
 
 	test 'get code block with no meta' do
@@ -92,9 +81,7 @@ END
 var foo = 'bar';
 foo.baz();
 END
-		sv = ScriptVersion.new
-		sv.code = js
-		assert_equal "var foo = 'bar';\nfoo.baz();\n", sv.get_code_block
+		assert_equal "var foo = 'bar';\nfoo.baz();\n", ScriptVersion.get_code_block(js)
 	end
 
 	test 'inject meta replace' do
@@ -167,9 +154,12 @@ END
 		sv = ScriptVersion.new
 		sv.code = js
 		sv.version = '123'
-		expected_js = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 123\n// ==/UserScript==\nfoo.baz();\n"
-		assert_equal expected_js, sv.calculate_rewritten_code
-	end
+		sv.script = Script.find(1)
+		sv.rewritten_code = sv.calculate_rewritten_code
+		sv.save!
+		expected_js = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 123\n// @updateURL https://greasyfork.local/scripts/1/code.meta.js\n// @downloadURL https://greasyfork.local/scripts/1/code.user.js\n// @namespace https://greasyfork.local/scripts/1\n// ==/UserScript==\nfoo.baz();\n"
+		assert_equal expected_js, sv.rewritten_code
+	end	
 
 	test 'calculate rewritten no meta' do
 		js = <<END
@@ -178,7 +168,7 @@ END
 		sv = ScriptVersion.new
 		sv.code = js
 		sv.version = '123'
-		assert_nil sv.calculate_rewritten_code
+		assert_equal 'placeholder', sv.calculate_rewritten_code
 	end
 
 	test 'validate require disallowed' do

@@ -43,7 +43,12 @@ class ScriptsController < ApplicationController
 
 	def user_js
 		script = Script.find(params[:script_id])
-		render :text => script.script_versions.last.code, :content_type => 'text/javascript'
+		render :text => script.script_versions.last.rewritten_code, :content_type => 'text/javascript'
+	end
+
+	def meta_js
+		script = Script.find(params[:script_id])
+		render :text => script.script_versions.last.get_rewritten_meta_block, :content_type => 'text/javascript'
 	end
 
 	def install_ping

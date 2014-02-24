@@ -28,4 +28,7 @@ Greasyfork::Application.configure do
   config.assets.debug = true
   
   config.action_mailer.default_url_options = { :host => 'greasyfork.local' }
+
+  routes.default_url_options[:host] = 'greasyfork.local'
+  routes.default_url_options[:protocol] = 'http'
 end

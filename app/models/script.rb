@@ -1,7 +1,7 @@
 class Script < ActiveRecord::Base
 	belongs_to :user
 	has_many :script_versions
-	has_many :script_applies_tos
+	has_many :script_applies_tos, :dependent => :delete_all
 
 	validates_presence_of :name, :message => 'is required - specify one with @name'
 	validates_presence_of :description, :message => 'is required - specify one with @description'
@@ -18,7 +18,7 @@ class Script < ActiveRecord::Base
 	def apply_from_script_version(script_version)
 		self.additional_info = script_version.additional_info
 
-		meta = script_version.parse_meta
+		meta = ScriptVersion.parse_meta(script_version.code)
 		self.name = meta.has_key?('name') ? meta['name'].first : nil
 		self.description = meta.has_key?('description') ? meta['description'].first : nil
 

@@ -33,4 +33,7 @@ Greasyfork::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+  
+  routes.default_url_options[:host] = 'greasyfork.local'
+  routes.default_url_options[:protocol] = 'http'
 end
