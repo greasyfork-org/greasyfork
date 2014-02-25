@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140224024436) do
+ActiveRecord::Schema.define(version: 20140224190926) do
 
   create_table "allowed_requires", force: true do |t|
     t.string   "pattern",                null: false
@@ -54,47 +54,50 @@ ActiveRecord::Schema.define(version: 20140224024436) do
   add_index "script_applies_tos", ["script_id"], name: "index_script_applies_tos_on_script_id", using: :btree
 
   create_table "script_versions", force: true do |t|
-    t.integer  "script_id",                        null: false
+    t.integer  "script_id",                                                null: false
     t.text     "changelog"
     t.text     "additional_info"
-    t.text     "version",                          null: false
-    t.text     "code",            limit: 16777215, null: false
-    t.text     "rewritten_code",  limit: 16777215, null: false
+    t.text     "version",                                                  null: false
+    t.text     "code",                   limit: 16777215,                  null: false
+    t.text     "rewritten_code",         limit: 16777215,                  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "additional_info_markup", limit: 10,       default: "html", null: false
   end
 
   add_index "script_versions", ["script_id"], name: "index_script_versions_on_script_id", using: :btree
 
   create_table "scripts", force: true do |t|
-    t.string   "name",            limit: 100,             null: false
-    t.text     "description",                             null: false
+    t.string   "name",                   limit: 100,                  null: false
+    t.text     "description",                                         null: false
     t.text     "additional_info"
-    t.integer  "user_id",                                 null: false
+    t.integer  "user_id",                                             null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "userscripts_id"
-    t.integer  "daily_installs",              default: 0, null: false
-    t.integer  "total_installs",              default: 0, null: false
+    t.integer  "daily_installs",                     default: 0,      null: false
+    t.integer  "total_installs",                     default: 0,      null: false
+    t.string   "additional_info_markup", limit: 10,  default: "html", null: false
   end
 
   add_index "scripts", ["user_id"], name: "index_scripts_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "email",                                default: "", null: false
-    t.string   "encrypted_password",                   default: "", null: false
+    t.string   "email",                                default: "",     null: false
+    t.string   "encrypted_password",                   default: "",     null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                        default: 0,  null: false
+    t.integer  "sign_in_count",                        default: 0,      null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",                   limit: 50,                 null: false
+    t.string   "name",                   limit: 50,                     null: false
     t.string   "profile",                limit: 10000
+    t.string   "profile_markup",         limit: 10,    default: "html", null: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

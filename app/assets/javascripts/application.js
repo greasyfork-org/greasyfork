@@ -47,9 +47,60 @@
 		});
 	}
 
+	// on user input element:
+	// class = previewable
+	// data-markup-option-name = the name of the radio buttons for selecting markup
+	// data-preview-activate-id = the id of the button to activate the preview
+	// data-preview-result-id = the id of the div to place the results
+	function hookUpMarkupPreview() {
+		$(".previewable").each(function(index, previewable) {
+			var previewable = $(this);
+			var markupOptions = $('input:radio[name="' + previewable.attr("data-markup-option-name") + '"]');
+			var result = $("#" + previewable.attr("data-preview-result-id"));
+
+			var button = $("#" + previewable.attr("data-preview-activate-id"));
+			button.show();
+			button.click(function() {
+				var selectedMarkup = $('input:radio[name="' + previewable.attr("data-markup-option-name") + '"]:checked').val();
+				$.ajax({
+					type: "POST",
+					url: "/preview-markup",
+					data: {
+						text: previewable.val(),
+						markup: selectedMarkup
+					},
+					success: function(data) {
+						result.html(data);
+						result.slideDown();
+						// scroll to it if it's not at all visible
+						if (result.offset().top > $(window).scrollTop() + $(window).height()) {
+							$('html, body').animate({
+								scrollTop: result.offset().top
+							}, 2000);
+						}
+					},
+					error: function(data) {
+						alert(data);
+						return false;
+					}
+				})
+				return false;
+			});
+
+			// close when anything changed
+			markupOptions.click(function() {
+				result.slideUp();
+			});
+			previewable.bind('input', function() {
+				result.slideUp();
+			});
+		});
+	}
+
 	function init() {
 		hookUpSelectAllCheckboxes();
 		hookUpInstallPingers();
+		hookUpMarkupPreview();
 	}
 	
 	window.addEventListener("DOMContentLoaded", init);

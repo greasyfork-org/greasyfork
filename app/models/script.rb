@@ -17,6 +17,7 @@ class Script < ActiveRecord::Base
 
 	def apply_from_script_version(script_version)
 		self.additional_info = script_version.additional_info
+		self.additional_info_markup = script_version.additional_info_markup
 
 		meta = ScriptVersion.parse_meta(script_version.code)
 		self.name = meta.has_key?('name') ? meta['name'].first : nil

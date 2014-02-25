@@ -1,4 +1,5 @@
 require 'sanitize'
+require 'redcarpet'
 
 module ApplicationHelper
 
@@ -11,8 +12,14 @@ module ApplicationHelper
 	end
 
 
-	def format_user_text(text)
+	def format_user_text(text, markup_type)
 		return '' if text.nil?
+		return format_user_text_html(text) if markup_type == 'html'
+		return format_user_text_markdown(text) if markup_type == 'markdown'
+		return ''
+	end
+
+	def format_user_text_html(text)
 		yes_follow = lambda do |env|
 			follow_domains = ['mozillazine.org', 'mozilla.org', 'mozilla.com', 'userscripts.org', 'userstyles.org', 'mozdev.org', 'photobucket.com', 'facebook.com', 'chrome.google.com', 'github.com', 'greasyfork.org']
 			return unless env[:node_name] == 'a'
@@ -106,6 +113,10 @@ module ApplicationHelper
 		Sanitize.clean(text, @@sanitize_config).html_safe
 	end
 
+	def format_user_text_markdown(text)
+		@@markdown.render(text).html_safe
+	end
+
 private
 
 	def replace_text_with_link(node, original_text, link_text, url)
@@ -137,5 +148,6 @@ private
 	end
 
 	@@sanitize_config = nil
+	@@markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new({:link_attributes => {:rel => 'nofollow'}, :safe_links_only => true, :no_styles => true, :filter_html => true}), :autolink => true)
 
 end

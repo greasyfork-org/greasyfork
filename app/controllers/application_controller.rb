@@ -11,6 +11,7 @@ protected
 		devise_parameter_sanitizer.for(:sign_up) << :name
 		devise_parameter_sanitizer.for(:account_update) << :name
 		devise_parameter_sanitizer.for(:account_update) << :profile
+		devise_parameter_sanitizer.for(:account_update) << :profile_markup
 	end
 
 	def authorize_by_script_id

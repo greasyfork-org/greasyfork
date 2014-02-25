@@ -17,6 +17,7 @@ class ScriptVersionsController < ApplicationController
 			previous_script = @script.script_versions.last
 			@script_version.code = previous_script.code
 			@script_version.additional_info = previous_script.additional_info
+			@script_version.additional_info_markup = previous_script.additional_info_markup
 			render :layout => 'scripts'
 		else
 			@script_version.script = Script.new
@@ -68,7 +69,7 @@ class ScriptVersionsController < ApplicationController
 private
 
 	def script_version_params
-		params.require(:script_version).permit(:code, :changelog, :additional_info)
+		params.require(:script_version).permit(:code, :changelog, :additional_info, :additional_info_markup)
 	end
 
 end

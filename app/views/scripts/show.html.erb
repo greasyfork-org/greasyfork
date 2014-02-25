@@ -16,4 +16,4 @@
 	<dd class="script-show-updated-date"><%=@script.updated_at.strftime('%Y-%m-%d')%></dd>
 </dl>
 
-<div id="additional-info"><%=format_user_text(@script.additional_info)%></div>
+<div id="additional-info"><%=format_user_text(@script.additional_info, @script.additional_info_markup)%></div>

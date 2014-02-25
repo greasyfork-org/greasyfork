@@ -31,13 +31,15 @@ Greasyfork::Application.routes.draw do
 	end
 	resources :script_versions, :only => [:create, :new]
 	resources :users, :only => :show
-	
+
 	get 'import', :to => 'import#step1', :as => 'import_start'
 	post 'import-step2', :to => 'import#step2', :as => 'import_step2'
 	post 'import-step3', :to => 'import#step3', :as => 'import_step3'
 
 	get 'help/allowed-markup', :to => 'help#allowed_markup', :as => 'help_allowed_markup'
 	get 'help/code-rules', :to => 'help#code_rules', :as => 'help_code_rules'
+
+	post 'preview-markup', :to => 'home#preview_markup', :as => 'preview_markup'
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

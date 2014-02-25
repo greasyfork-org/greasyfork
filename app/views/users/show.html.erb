@@ -12,7 +12,7 @@
 <% end %>
 
 <% if !@user.profile.nil? %>
-	<section id="user-profile"><%=format_user_text(@user.profile)%></section>
+	<section id="user-profile"><%=format_user_text(@user.profile, @user.profile_markup)%></section>
 <% end %>
 
 <section>

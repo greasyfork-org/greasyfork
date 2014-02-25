@@ -116,7 +116,7 @@ nav li + li {
 	width: 100%;
 	height: 20em;
 }
-.form-control input {
+.form-control input:not([type=radio]) {
 	width: 100%;
 }
 .form-control label {
@@ -203,4 +203,13 @@ nav li + li {
 #user_profile {
 	width: 100%;
 	height: 10em;
+}
+
+.preview-button {
+	
+}
+.preview-result {
+	display: none;
+	background-color: #FFA;
+	padding: 0.5em;
 }
