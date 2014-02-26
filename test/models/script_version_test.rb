@@ -157,7 +157,7 @@ END
 		sv.script = Script.find(1)
 		sv.rewritten_code = sv.calculate_rewritten_code
 		sv.save!
-		expected_js = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 123\n// @updateURL https://greasyfork.local/scripts/1/code.meta.js\n// @downloadURL https://greasyfork.local/scripts/1/code.user.js\n// @namespace https://greasyfork.local/scripts/1\n// ==/UserScript==\nfoo.baz();\n"
+		expected_js = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 123\n// @updateURL http://greasyfork.local/scripts/1/code.meta.js\n// @downloadURL http://greasyfork.local/scripts/1/code.user.js\n// @namespace http://greasyfork.local/scripts/1\n// ==/UserScript==\nfoo.baz();\n"
 		assert_equal expected_js, sv.rewritten_code
 	end	
 
