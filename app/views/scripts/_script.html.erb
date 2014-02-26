@@ -13,9 +13,9 @@
 				<dt class="script-list-total-installs">Total installs</dt>
 				<dd class="script-list-total-installs"><%=script.total_installs%></dd>
 				<dt class="script-list-created-date">Created</dt>
-				<dd class="script-list-created-date"><%=script.created_at.strftime('%Y-%m-%d')%></dd>
+				<dd class="script-list-created-date"><%=markup_date(script.created_at)%></dd>
 				<dt class="script-list-updated-date">Updated</dt>
-				<dd class="script-list-updated-date"><%=script.updated_at.strftime('%Y-%m-%d')%></dd>
+				<dd class="script-list-updated-date"><%=markup_date(script.updated_at)%></dd>
 			</dl>
 		</footer>
 	</article>
