@@ -138,6 +138,9 @@ class ScriptVersion < ActiveRecord::Base
 						@@tld_expansion.each do |tld|
 							applies_to_names << uri.host.sub(/tld$/i, tld)
 						end
+					# "example.com."
+					elsif uri.host.ends_with?('.')
+						applies_to_names << uri.host[0, uri.host.length - 1]
 					else
 						applies_to_names << uri.host
 					end

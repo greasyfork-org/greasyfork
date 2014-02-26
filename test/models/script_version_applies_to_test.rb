@@ -95,4 +95,8 @@ class ScriptVersionAppliesToTest < ActiveSupport::TestCase
 		assert_equal ['example.com'], get_applies_to(['*http://example.com'])
 	end
 
+	test 'trailing dot on hostname' do
+		assert_equal ['example.com'], get_applies_to(['*http://example.com.'])
+	end
+
 end
