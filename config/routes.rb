@@ -3,7 +3,7 @@ Greasyfork::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
 	# disable destroying users
-	devise_for :users, skip: :registrations
+	devise_for :users, :skip => :registrations, :controllers => { :sessions => "sessions" }
 		devise_scope :user do
 		resource :registration,
 		only: [:new, :create, :edit, :update],
@@ -14,6 +14,10 @@ Greasyfork::Application.routes.draw do
 			get :cancel
 		end
 	end
+	devise_scope :user do 
+		# a GET path for logging out for use with the forum
+		get '/users/sign_out' => 'sessions#destroy'
+	end
   
 	root :to => "home#index"
 
@@ -21,6 +25,7 @@ Greasyfork::Application.routes.draw do
 		get 'code.user.js', :to => 'scripts#user_js', :as =>  'user_js'
 		get 'code.meta.js', :to => 'scripts#meta_js', :as =>  'meta_js'
 		get 'code(.:format)', :to => 'scripts#show_code', :as =>  'show_code'
+		get 'feedback(.:format)', :to => 'scripts#feedback', :as =>  'feedback'
 		post 'install-ping', :to => 'scripts#install_ping', :as => 'install_ping'
 		get 'diff', :to => 'scripts#diff', :as => 'diff', :constraints => lambda{ |req| !req.params[:v1].blank? and !req.params[:v2].blank? }
 		collection do
@@ -40,6 +45,8 @@ Greasyfork::Application.routes.draw do
 	get 'help/code-rules', :to => 'help#code_rules', :as => 'help_code_rules'
 
 	post 'preview-markup', :to => 'home#preview_markup', :as => 'preview_markup'
+
+	get 'sso', :to => 'home#sso'
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

@@ -41,6 +41,11 @@ class ScriptsController < ApplicationController
 		render :layout => 'scripts'
 	end
 
+	def feedback
+		@script = Script.find(params[:script_id])
+		render :layout => 'scripts'
+	end
+
 	def user_js
 		script = Script.find(params[:script_id])
 		render :text => script.script_versions.last.rewritten_code, :content_type => 'text/javascript'

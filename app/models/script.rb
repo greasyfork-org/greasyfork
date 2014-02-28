@@ -2,6 +2,7 @@ class Script < ActiveRecord::Base
 	belongs_to :user
 	has_many :script_versions
 	has_many :script_applies_tos, :dependent => :delete_all
+	has_many :discussions, -> { readonly.order('DateInserted') }, :class_name => 'ForumDiscussion', :foreign_key => 'ScriptID'
 
 	validates_presence_of :name, :message => 'is required - specify one with @name'
 	validates_presence_of :description, :message => 'is required - specify one with @description'

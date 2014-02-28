@@ -16,6 +16,12 @@
 		</div>
 		<nav>
 			<li class="scripts-index-link"><%=link_to('Scripts', scripts_path)%></li>
+			<% # user signed in to main site, but not to forum?
+			if user_signed_in? and cookies[:Vanilla].nil? %>
+				<li class="forum-link"><%=link_to('Forum', '/forum/entry/jsconnect?client_id=1462516369')%></li>
+			<% else %>
+				<li class="forum-link"><%=link_to('Forum', '/forum/')%></li>
+			<% end %>
 			<% if user_signed_in? %>
 				<li class="user-profile-link"><%=link_to(current_user.name, current_user)%></li>
 			<% else %>
