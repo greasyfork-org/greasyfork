@@ -18,7 +18,7 @@ class ScriptsController < ApplicationController
 		per_page = 50
 		per_page = [params[:per_page].to_i, 200].min if !params[:per_page].nil? and params[:per_page].to_i > 0
 
-		@scripts = Script.includes(:user).order(sort).paginate(:page => params[:page], :per_page => per_page)
+		@scripts = Script.active.includes(:user).order(sort).paginate(:page => params[:page], :per_page => per_page)
 		if !params[:site].nil?
 			@scripts = @scripts.joins(:script_applies_tos).where(['display_text = ?', params[:site]])
 		end
@@ -37,6 +37,10 @@ class ScriptsController < ApplicationController
 			return
 		end
 		render :layout => 'scripts'
+	end
+
+	def under_assessment
+		@scripts = Script.under_assessment
 	end
 
 	def show_code

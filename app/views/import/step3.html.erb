@@ -18,6 +18,25 @@
 	</ul>
 <% end %>
 
+<% if !@results[:new_with_assessment].empty? %>
+	<p>The following scripts were successfully imported, but require an <%=link_to 'assessment'.html_safe, help_code_rules_path(:anchor => 'require'), {:target => 'code_rules'}%> before being made public:</p>
+	<ul>
+		<% @results[:new_with_assessment].each do |name| %>
+			<li><%=name%></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<% if !@results[:updated_with_assessment].empty? %>
+	<p>The following scripts were successfully updated, but require an <%=link_to 'assessment'.html_safe, help_code_rules_path(:anchor => 'require'), {:target => 'code_rules'}%> before being made public:</p>
+	<ul>
+		<% @results[:updated_with_assessment].each do |name| %>
+			<li><%=name%></li>
+		<% end %>
+	</ul>
+<% end %>
+
+
 <% if !@results[:needsdescription].empty? %>
 	<%=form_tag(import_step3_path) do |f|%>
 		<p>The following scripts need a description to be imported:</p>

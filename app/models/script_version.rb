@@ -3,7 +3,7 @@ require 'uri'
 class ScriptVersion < ActiveRecord::Base
 	belongs_to :script
 
-	validates_presence_of :code
+	validates_presence_of :code, :version, :rewritten_code
 
 	validates_length_of :additional_info, :maximum => 10000
 	validates_length_of :code, :maximum => 500000
@@ -16,10 +16,9 @@ class ScriptVersion < ActiveRecord::Base
 		#	record.errors.add(attr, "must contain a meta @#{rm}") unless meta.has_key?(rm)
 		#end
 
-		if meta.has_key?('require')
-			allowed_requires = AllowedRequire.all
-			meta['require'].each do |script_url|
-				record.errors.add(attr, "cannot @require from #{script_url}") if allowed_requires.index { |ar| script_url =~ Regexp.new(ar.pattern) }.nil?
+		if !record.accepted_assessment
+			record.disallowed_requires_used.each do |script_url|
+				record.errors.add(attr, "cannot @require from #{script_url}")
 			end
 		end
 
@@ -177,6 +176,7 @@ class ScriptVersion < ActiveRecord::Base
 	end
 
 	def self.get_meta_block(c)
+		return nil if c.nil?
 		start_block = c.index(@@meta_start_comment)
 		return nil if start_block.nil?
 		end_block = c.index(@@meta_end_comment, start_block)
@@ -191,6 +191,26 @@ class ScriptVersion < ActiveRecord::Base
 		return (meta_start == 0 ? '' : c[0..meta_start-1]) + c[meta_end..c.length]
 	end
 
+	@accepted_assessment = false
+
+	def accepted_assessment
+		return @accepted_assessment
+	end
+
+	def accepted_assessment=(aa)
+		@accepted_assessment = aa
+	end
+
+	def disallowed_requires_used
+		r = []
+		meta = ScriptVersion.parse_meta(code)
+		return r if !meta.has_key?('require')
+		allowed_requires = AllowedRequire.all
+		meta['require'].each do |script_url|
+			r << script_url if allowed_requires.index { |ar| script_url =~ Regexp.new(ar.pattern) }.nil?
+		end
+		return r
+	end
 
 private
 

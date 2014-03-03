@@ -21,9 +21,19 @@
 <p>Your script must respect others' copyrights. This includes the script itself and any resources (for example images) it uses. If you intend on using someone else's content, abide by their licensing terms or get their permission before doing so.</p>
 
 
-<h2>@require</h2>
+<h2 id="require"><code>@require</code></h2>
 
-<p>To ensure enforcability of all the other rules are followed, @require-ing arbitrary scripts is not allowed. Public, known-good external scripts are acceptable. Below is the list of identified acceptable URLs for @require. If you want something added to this list, <a href="mailto:jason.barnabe@gmail.com">send me an e-mail</a>.</p>
+<p><a href="http://wiki.greasespot.net/Metadata_Block#.40require"><code>@require</code></a> is metadata key that lets a script import code from a remote URL. While this is a useful feature for script authors to include external libraries, it also can be used to hide malicious code from people installing the script.</p>
+
+<p>To allow script authors to continue to use <code>@require</code>s while ensuring the safety of script users, Greasy Fork has implemented a whitelist of URL patterns that can be <code>@require</code>d. This whitelist consists of script locations that</p>
+
+<ul>
+	<li>Are public</li>
+	<li>Will not have their contents change frequently</li>
+	<li>Would likely be useful to more than one script author</li>
+</ul>
+
+<p>The current list is:</p>
 
 <ul>
 <% AllowedRequire.all.each do |ar| %>
@@ -36,6 +46,14 @@
 	</li>
 <% end %>
 </ul>
+
+<p>If you post a script that uses a <code>@require</code> outside of these locations, you will be notified when you attempt to save the script. Your script will not be made public on Greasy Fork until this is resolved. You will have two options:</p>
+
+<ol>
+	<li>Modify the script to not use a <code>@require</code> or to use one of the ones listed above.</li>
+	<li>Submit your script for an "assessment" by an admin. The admin will check the contents of your <code>@require</code>s and add them to the whitelist, add them to Greasy-Fork-hosted libraries list, or reject your <code>@require</code>s. You will be notified of the result and your script will be made public on Greasy Fork, if your <code>@require</code>s were accepted.</li>
+</ol>
+
 
 <h2>Being a smart-ass</h2>
 

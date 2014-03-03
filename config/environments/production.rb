@@ -90,4 +90,6 @@ Greasyfork::Application.configure do
 
   routes.default_url_options[:host] = 'greasyfork.org'
   routes.default_url_options[:protocol] = 'https'
+  
+  config.verify_ownership_on_import = true
 end

@@ -31,6 +31,7 @@ Greasyfork::Application.routes.draw do
 		collection do
 			get 'by-site(.:format)', :action => 'by_site', :as => 'site_list'
 			get 'by-site/:site(.:format)', :action => 'index', :as => 'by_site', :constraints => {:site => /.*/}
+			get 'under-assessment(.:format)', :action => 'under_assessment', :as => 'under_assessment'
 		end
 		resources :script_versions, :only => [:create, :new, :show, :index], :path => 'versions'
 	end

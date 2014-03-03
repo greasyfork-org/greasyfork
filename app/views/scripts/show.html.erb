@@ -1,7 +1,13 @@
 <%- title @script.name %>
 <%- description @script.description %>
 
-<%=link_to 'Install', script_user_js_path(@script), {:class => 'install-link', 'data-ping-url' => url_for(script_install_ping_path(@script, :authenticity_token => session[:_csrf_token]))}%>
+<% if @script.active? %>
+	<%=link_to 'Install', script_user_js_path(@script), {:class => 'install-link', 'data-ping-url' => url_for(script_install_ping_path(@script, :authenticity_token => session[:_csrf_token]))}%>
+<% elsif !params[:version].nil? %>
+	<p id="under-review-notice">This version of the script was under review.</p>
+<% else %>
+	<p id="under-review-notice">This script is currently under review.</p>
+<% end %>
 
 <dl id="script-meta">
 	<dt class="script-show-author">Author</dt>

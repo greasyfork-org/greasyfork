@@ -1,16 +1,24 @@
-<% if !script_version.errors.empty? or !script_version.script.errors.empty? %>
-	<p>There were some problems with what you posted...</p>
-	<ul class="errors">
-		<% script_version.errors.full_messages.each do |m| %>
-			<li><%=m%></li>
-		<% end %>
-		<% script_version.script.errors.full_messages.each do |m| %>
-			<li><%=m%></li>
-		<% end %>
-	</ul>
-<% end %>
+<%=form_for(script_version.script.new_record? ? script_version : [script_version.script, script_version]) do |s|%>
+	<% disallowed_requires = script_version.disallowed_requires_used
 
-<%=form_for(script_version.script.new_record? ? script_version : [script_version.script, script_version]) do |s| %>
+	if !script_version.errors.empty? or !script_version.script.errors.empty? or !disallowed_requires.empty? %>
+		<p>There were some problems with what you posted...</p>
+		<ul class="errors">
+			<% script_version.errors.full_messages.each do |m| 
+				# skip @require validation in favour of the next block
+				if !(m.include?('Code cannot @require') and !disallowed_requires.empty?) %>
+					<li><%=m%></li>
+				<% end
+			end
+			script_version.script.errors.full_messages.each do |m| %>
+				<li><%=m%></li>
+			<% end
+			if !disallowed_requires.empty? %>
+				<li>You are using <code>@require</code>s outside of Greasy Fork's whitelist: <%=disallowed_requires.join(', ')%>. Check <label for="script_version_accepted_assessment">this box</label> <%=s.check_box(:accepted_assessment, {}, true, false)%> and save if you would like your <code>@require</code>s assessed by an admin. <%=link_to 'Read Greasy Fork\'s policy on <code>@require</code>.'.html_safe, help_code_rules_path(:anchor => 'require'), {:target => 'code_rules'}%></li>
+			<% end %>
+		</ul>
+	<% end %>
+
 	<div class="form-control">
 		<label for="code">Code</label> <%=link_to '(Read the rules)', help_code_rules_path, {:target => 'code_rules', :class => 'label-note'}%><br>
 		<%=s.text_area(:code)%>

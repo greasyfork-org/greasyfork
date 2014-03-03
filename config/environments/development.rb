@@ -31,4 +31,6 @@ Greasyfork::Application.configure do
 
   routes.default_url_options[:host] = 'greasyfork.local'
   routes.default_url_options[:protocol] = 'http'
+  
+  config.verify_ownership_on_import = false
 end

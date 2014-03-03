@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140228202404) do
+ActiveRecord::Schema.define(version: 20140301023544) do
 
   create_table "GDN_Activity", primary_key: "ActivityID", force: true do |t|
     t.integer  "CommentActivityID"
@@ -489,6 +489,20 @@ ActiveRecord::Schema.define(version: 20140228202404) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "url",        limit: 500
+  end
+
+  create_table "assessment_reasons", force: true do |t|
+    t.string   "name",       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "assessments", force: true do |t|
+    t.integer  "scripts_id",            null: false
+    t.integer  "assessment_reasons_id", null: false
+    t.string   "details"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "daily_install_counts", force: true do |t|

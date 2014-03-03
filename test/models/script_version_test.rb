@@ -201,6 +201,26 @@ END
 		assert script_version.valid?, script_version.errors.full_messages.to_s
 	end
 
+	test 'validate require disallowed accept assessment' do
+		script = get_valid_script
+		script_version = script.script_versions.first
+		script_version.code = <<END
+// ==UserScript==
+// @name		A Test!
+// @description		Unit test.
+// @require		http://example.com
+// ==/UserScript==
+var foo = "bar";
+END
+		script_version.accepted_assessment = true
+		script.apply_from_script_version(script_version)
+		assert script_version.valid?
+		assert_not_empty script.assessments
+		assert script.assessments.first.details == 'http://example.com'
+		assert_not_nil script.assessments.first.assessment_reason
+		assert script.assessments.first.assessment_reason.name == '@require', script.assessments.first.assessment_reason.name
+	end
+
 	test 'validate disallowed code' do
 		script = get_valid_script
 		script_version = script.script_versions.first

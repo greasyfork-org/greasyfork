@@ -63,13 +63,15 @@ class ScriptVersionsController < ApplicationController
 		@script.script_versions << @script_version
 		@script.save!
 
+		flash[:notice] = 'Your script thas been submitted for assessment. Watch for discussions on your script for the result.' if @script_version.accepted_assessment
+
 		redirect_to @script
 	end
 
 private
 
 	def script_version_params
-		params.require(:script_version).permit(:code, :changelog, :additional_info, :additional_info_markup)
+		params.require(:script_version).permit(:code, :changelog, :additional_info, :additional_info_markup, :accepted_assessment)
 	end
 
 end

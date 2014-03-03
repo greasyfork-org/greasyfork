@@ -3,6 +3,10 @@ class Script < ActiveRecord::Base
 	has_many :script_versions
 	has_many :script_applies_tos, :dependent => :delete_all
 	has_many :discussions, -> { readonly.order('DateInserted') }, :class_name => 'ForumDiscussion', :foreign_key => 'ScriptID'
+	has_many :assessments, :dependent => :delete_all
+
+	scope :active, -> {includes(:assessments).where(:assessments => { :id => nil })}
+	scope :under_assessment, -> {joins(:assessments).includes(:user).uniq}
 
 	validates_presence_of :name, :message => 'is required - specify one with @name'
 	validates_presence_of :description, :message => 'is required - specify one with @description'
@@ -27,9 +31,18 @@ class Script < ActiveRecord::Base
 		self.script_applies_tos = script_version.calculate_applies_to_names.map do |name|
 			ScriptAppliesTo.new({:display_text => name})
 		end
+
+		self.assessments = script_version.disallowed_requires_used.map do |script_url|
+			Assessment.new({:assessment_reason => AssessmentReason.first, :details => script_url, :script => self})
+		end
 	end
 
 	def self.record_install(id, ip)
 		Script.connection.execute("INSERT IGNORE INTO daily_install_counts (script_id, ip) VALUES (#{Script.connection.quote_string(id)}, '#{Script.connection.quote_string(ip)}');")
 	end
+
+	def active?
+		assessments.empty?
+	end
+
 end

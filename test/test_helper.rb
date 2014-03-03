@@ -17,6 +17,7 @@ class ActiveSupport::TestCase
 	script_version = ScriptVersion.new
 	script.script_versions << script_version
 	script_version.script = script
+	script_version.version = '123'
 
 	script_version.code = <<END
 // ==UserScript==
@@ -25,6 +26,7 @@ class ActiveSupport::TestCase
 // ==/UserScript==
 var foo = "bar";
 END
+	script_version.rewritten_code = script_version.code
 	script.apply_from_script_version(script_version)
 	script.user = User.find(1)
 	assert (script.valid? and script_version.valid?), (script.errors.full_messages + script_version.errors.full_messages).inspect

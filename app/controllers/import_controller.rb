@@ -45,7 +45,7 @@ class ImportController < ApplicationController
 
 	# validate, then add or update the chosen scripts
 	def step3
-		@results = {:new => [], :updated => [], :unchanged => [], :failed => [], :needsdescription => {}}
+		@results = {:new => [], :new_with_assessment => [], :updated => [], :updated_with_assessment => [], :unchanged => [], :failed => [], :needsdescription => {}}
 		user_session[:imported_scripts].select{|id|params[:userscripts_ids].include?(id.to_s)}.each do |id|
 			name = params["imported-name-#{id}"]
 			code = download("http://userscripts.org/scripts/source/#{id}.user.js")
@@ -76,8 +76,12 @@ class ImportController < ApplicationController
 					next
 				end
 			end
+			# assume they would want the assessment on new if necessary
+			sv.accepted_assessment = true if script_is_new
+			
 			script.apply_from_script_version(sv)
 			script.userscripts_id = id
+
 			if script.description.nil? or script.description.empty?
 				@results[:needsdescription][id] = name
 				next
@@ -92,9 +96,17 @@ class ImportController < ApplicationController
 			script.save!
 			sv.save!
 			if script_is_new
-				@results[:new] << name
+				if script.assessments.empty?
+					@results[:new] << name
+				else
+					@results[:new_with_assessment] << name
+				end
 			else
-				@results[:updated] << name
+				if script.assessments.empty?
+					@results[:updated] << name
+				else
+					@results[:updated_with_assessment] << name
+				end
 			end
 		end
 		# need to keep this for resubmit on step 3 if necessary
@@ -120,7 +132,7 @@ private
 	end
 
 	def check_for_url_on_userscripts(url)
-		#return :success
+		return :success if !Greasyfork::Application.config.verify_ownership_on_import
 		content = download(url)
 		return :failure if content.nil?
 		our_url_match = /https?:\/\/greasyfork.org\/users\/([0-9]+)/.match(content)
