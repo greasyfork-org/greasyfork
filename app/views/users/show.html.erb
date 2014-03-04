@@ -9,6 +9,24 @@
 		<li><%= link_to 'Import from userscripts.org', import_start_path%></li>
 		<li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete  %></li>
 	</ul>
+
+	<% if !@user.scripts.empty? 
+		dosr = @user.discussions_on_scripts_written %>
+		<section id="user-discussions-on-scripts-written">
+			<header>
+				<h3>Discussions on your scripts</h3>
+			</header>
+			<% if dosr.empty? %>
+				<p>(None)</p>
+			<% else %>
+				<ul class="discussion-list">
+					<% dosr.reverse.take(10).each do |d| %>
+						<li><%=link_to d.name, d.url, {:rel => 'nofollow'}%> by <%=link_to d.original_poster.name, user_path(d.original_poster), {:rel => 'nofollow'}%>, last comment <%=markup_date(d.updated)%></li>
+					<% end %>
+				</ul>
+			<% end %>
+		</section>
+	<% end %>
 <% end %>
 
 <% if !@user.profile.nil? %>

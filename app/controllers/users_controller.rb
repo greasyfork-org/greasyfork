@@ -1,7 +1,14 @@
 class UsersController < ApplicationController
 
 	def show
-		@user = User.includes(:scripts).order('scripts.name').find(params[:id])
+		@user = User.order('scripts.name')
+		# current user will display discussions
+		if !current_user.nil? and current_user.id == params[:id].to_i
+			@user = @user.includes(:scripts => :discussions)
+		else
+			@user = @user.includes(:scripts)
+		end
+		@user = @user.find(params[:id])
 	end
 
 end
