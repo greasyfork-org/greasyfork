@@ -77,13 +77,21 @@ nav li + li {
 	list-style-type: none;
 	display: inline;
 }
+#install-area {
+	margin-bottom: 1em;
+	display: inline-block;
+	text-align: center;
+}
 .install-link, .install-link:visited, .install-link:active, .install-link:hover {
 	display: inline-block;
 	background-color: #1A6243;
 	padding: 1em;
 	color: white;
 	text-decoration: none;
-	margin-bottom: 1em;
+}
+.install-help-link {
+	font-size: x-small;
+	vertical-align: top;
 }
 #script-meta {
 	-moz-column-count: 3;

@@ -46,6 +46,7 @@ Greasyfork::Application.routes.draw do
 	get 'help/allowed-markup', :to => 'help#allowed_markup', :as => 'help_allowed_markup'
 	get 'help/code-rules', :to => 'help#code_rules', :as => 'help_code_rules'
 	get 'help/contact', :to => 'help#contact', :as => 'help_contact'
+	get 'help/installing-user-scripts', :to => 'help#installing_user_scripts', :as => 'help_installing_user_scripts'
 
 	post 'preview-markup', :to => 'home#preview_markup', :as => 'preview_markup'
 

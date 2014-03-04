@@ -2,7 +2,9 @@
 <%- description @script.description %>
 
 <% if @script.active? %>
-	<%=link_to 'Install', script_user_js_path(@script), {:class => 'install-link', 'data-ping-url' => url_for(script_install_ping_path(@script, :authenticity_token => session[:_csrf_token]))}%>
+	<div id="install-area">
+		<%=link_to 'Install', script_user_js_path(@script), {:class => 'install-link', 'data-ping-url' => url_for(script_install_ping_path(@script, :authenticity_token => session[:_csrf_token]))}%><br><%=link_to 'How to install', help_installing_user_scripts_path, {:class => 'install-help-link'}%>
+	</div>
 <% elsif !params[:version].nil? %>
 	<p id="under-review-notice">This version of the script was under review.</p>
 <% else %>
