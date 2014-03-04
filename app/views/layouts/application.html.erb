@@ -22,6 +22,7 @@
 			<% else %>
 				<li class="forum-link"><%=link_to('Forum', '/forum/')%></li>
 			<% end %>
+			<li class="help-link"><%=link_to_unless_current('Help', help_path)%></li>
 			<% if user_signed_in? %>
 				<li class="user-profile-link"><%=link_to(current_user.name, current_user)%></li>
 			<% else %>

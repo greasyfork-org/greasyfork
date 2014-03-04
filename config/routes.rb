@@ -42,8 +42,10 @@ Greasyfork::Application.routes.draw do
 	post 'import-step2', :to => 'import#step2', :as => 'import_step2'
 	post 'import-step3', :to => 'import#step3', :as => 'import_step3'
 
+	get 'help', :to => 'help#index', :as => 'help'
 	get 'help/allowed-markup', :to => 'help#allowed_markup', :as => 'help_allowed_markup'
 	get 'help/code-rules', :to => 'help#code_rules', :as => 'help_code_rules'
+	get 'help/contact', :to => 'help#contact', :as => 'help_contact'
 
 	post 'preview-markup', :to => 'home#preview_markup', :as => 'preview_markup'
 
