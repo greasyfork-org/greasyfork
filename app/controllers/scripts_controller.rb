@@ -1,3 +1,5 @@
+require 'coderay'
+
 class ScriptsController < ApplicationController
 	# we'll selectively activate the scripts layout when appropriate
 	layout 'application'

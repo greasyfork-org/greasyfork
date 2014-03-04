@@ -1,3 +1,6 @@
 <%- title @script.name + ' - Source code' %>
 <%- description 'Source code for ' + @script.name %>
-<pre><%=@code%></pre>
+<style>
+<%= CodeRay::Encoders[:html]::CSS.new(:default).stylesheet%>
+</style>
+<%=CodeRay.scan(@code, :js).div({:css => :class, :line_numbers => :table}).html_safe%>
