@@ -78,7 +78,8 @@ class ImportController < ApplicationController
 			end
 			# assume they would want the assessment on new if necessary
 			sv.accepted_assessment = true if script_is_new
-			
+
+			script.code_updated_at = DateTime.now
 			script.apply_from_script_version(sv)
 			script.userscripts_id = id
 
@@ -116,7 +117,7 @@ class ImportController < ApplicationController
 private
 
 	def get_userscripts_id(url)
-		profile_url_match = /^http:\/\/userscripts.org\/users\/([0-9]+)(\/.*)?$/.match(url)
+		profile_url_match = /^https?:\/\/userscripts.org\/users\/([0-9]+)(\/.*)?$/.match(url)
 		return nil if profile_url_match.nil?
 		return profile_url_match[1]
 	end
