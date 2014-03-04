@@ -9,10 +9,10 @@ class ScriptsController < ApplicationController
 			when 'created'
 				sort = 'scripts.created_at DESC, scripts.id'
 			when 'updated'
-				sort = 'scripts.updated_at DESC, scripts.id'
+				sort = 'scripts.code_updated_at DESC, scripts.id'
 			else
 				params[:sort] = nil
-				sort = 'daily_installs DESC'
+				sort = 'daily_installs DESC, scripts.id'
 		end
 
 		per_page = 50
@@ -87,7 +87,8 @@ private
 	def versionned_script(script_id, version_id)
 		return nil if script_id.nil?
 		script_id = script_id.to_i
-		return Script.find(script_id) if version_id.nil?
+		current_script = Script.find(script_id)
+		return current_script if version_id.nil?
 		version_id = version_id.to_i
 		script_version = ScriptVersion.find(version_id)
 		return nil if script_version.nil? or script_version.script_id != script_id
@@ -96,8 +97,10 @@ private
 		script.id = script_id
 		script.updated_at = script_version.updated_at
 		script.user = script_version.script.user
-		script.created_at = script_version.created_at
+		script.created_at = current_script.created_at
 		script.updated_at = script_version.updated_at
+		# this is not necessarily accurate, as the revision the user picked may not have involved a code update
+		script.code_updated_at = script_version.updated_at
 		return script
 	end
 

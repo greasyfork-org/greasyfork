@@ -1,4 +1,4 @@
-<li data-script-id="<%=script.id%>" data-script-name="<%=script.name%>" data-script-author-id="<%=script.user.id%>" data-script-author-name="<%=script.user.name%>" data-script-daily-installs="<%=script.daily_installs%>" data-script-total-installs="<%=script.total_installs%>" data-script-created-date="<%=script.created_at.strftime('%Y-%m-%d')%>" data-script-updated-date="<%=script.updated_at.strftime('%Y-%m-%d')%>">
+<li data-script-id="<%=script.id%>" data-script-name="<%=script.name%>" data-script-author-id="<%=script.user.id%>" data-script-author-name="<%=script.user.name%>" data-script-daily-installs="<%=script.daily_installs%>" data-script-total-installs="<%=script.total_installs%>" data-script-created-date="<%=script.created_at.strftime('%Y-%m-%d')%>" data-script-updated-date="<%=script.code_updated_at.strftime('%Y-%m-%d')%>">
 	<article>
 		<header>
 			<h2><%=link_to script.name, script%></h2>
@@ -15,7 +15,7 @@
 				<dt class="script-list-created-date">Created</dt>
 				<dd class="script-list-created-date"><%=markup_date(script.created_at)%></dd>
 				<dt class="script-list-updated-date">Updated</dt>
-				<dd class="script-list-updated-date"><%=markup_date(script.updated_at)%></dd>
+				<dd class="script-list-updated-date"><%=markup_date(script.code_updated_at)%></dd>
 			</dl>
 		</footer>
 	</article>

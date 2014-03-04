@@ -33,14 +33,16 @@ class ScriptVersionsController < ApplicationController
 			@script = Script.new
 			@script.user = current_user
 			@script_version.version = "1.#{Time.now.utc.strftime('%Y%m%d%H%M%S')}"
+			@script.code_updated_at = Time.now
 		else
 			@script = Script.find(params[:script_id])
 			previous_script_version = @script.script_versions.last
-			# update the version number if the code changed
+			# update the version number and code_updated_at if the code changed
 			if previous_script_version.code == @script_version.code
 				@script_version.version = previous_script_version.version
 			else
 				@script_version.version = "1.#{Time.now.utc.strftime('%Y%m%d%H%M%S')}"
+				@script.code_updated_at = Time.now
 			end
 		end
 

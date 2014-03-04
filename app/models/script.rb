@@ -10,7 +10,7 @@ class Script < ActiveRecord::Base
 
 	validates_presence_of :name, :message => 'is required - specify one with @name'
 	validates_presence_of :description, :message => 'is required - specify one with @description'
-	validates_presence_of :user_id
+	validates_presence_of :user_id, :code_updated_at
 
 	validates_length_of :name, :maximum => 100
 	validates_length_of :description, :maximum => 500

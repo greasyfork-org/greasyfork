@@ -29,6 +29,7 @@ END
 	script_version.rewritten_code = script_version.code
 	script.apply_from_script_version(script_version)
 	script.user = User.find(1)
+	script.code_updated_at = Time.now
 	assert (script.valid? and script_version.valid?), (script.errors.full_messages + script_version.errors.full_messages).inspect
 	return script
   end

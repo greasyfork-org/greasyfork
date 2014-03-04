@@ -19,7 +19,7 @@
 	<dt class="script-show-created-date">Created</dt>
 	<dd class="script-show-created-date"><%=markup_date(@script.created_at)%></dd>
 	<dt class="script-show-updated-date">Updated</dt>
-	<dd class="script-show-updated-date"><%=markup_date(@script.created_at)%></dd>
+	<dd class="script-show-updated-date"><%=markup_date(@script.code_updated_at)%></dd>
 </dl>
 
 <div id="additional-info"><%=format_user_text(@script.additional_info, @script.additional_info_markup)%></div>
