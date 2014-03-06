@@ -11,3 +11,21 @@ two:
   code: MyText
   rewritten_code: MyText
   version: 1
+
+three:
+  script_id: 3
+  code: // ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// ==/UserScript==\nvar foo = 1;
+  rewritten_code: MyText
+  version: 1.1
+
+generated_version:
+  script_id: 4
+  code: // ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// ==/UserScript==\nvar foo = 1;
+  rewritten_code: MyText
+  version: 0.0.1.20140305183916
+
+explicit_version:
+  script_id: 5
+  code: // ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// ==/UserScript==\nvar foo = 1;
+  rewritten_code: MyText
+  version: 1.1

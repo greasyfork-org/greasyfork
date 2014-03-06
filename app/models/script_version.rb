@@ -3,7 +3,8 @@ require 'uri'
 class ScriptVersion < ActiveRecord::Base
 	belongs_to :script
 
-	validates_presence_of :code, :version, :rewritten_code
+	validates_presence_of :code, :rewritten_code
+	validates_presence_of :version, :message => 'meta key must be provided'
 
 	validates_length_of :additional_info, :maximum => 10000
 	validates_length_of :code, :maximum => 500000
@@ -28,10 +29,74 @@ class ScriptVersion < ActiveRecord::Base
 		end
 	end
 
+	# version format
+	validates_each(:version, :allow_nil => true, :allow_blank => true) do |record, attr, value|
+		record.errors.add(attr, "is not in a valid format") if ScriptVersion.split_version(value).nil?
+	end
+
+	# version must be incremented if the code changed
+	validates_each(:code, :allow_nil => true, :allow_blank => true) do |record, attr, value|
+		next if record.version.nil? or record.version_check_override
+
+		# get the most recently saved record
+		previous_script_version = record.script.get_newest_saved_script_version
+
+		# if this is nil, this is a new script with no previous versions
+		next if previous_script_version.nil?
+
+		# version number does not need to be incremented if code is unchanged
+		next if value == previous_script_version.code
+
+		old_version = previous_script_version.version
+		next if ScriptVersion.compare_versions(record.version, old_version) == 1
+
+		record.errors.add(attr, "was changed, but version number (#{old_version}) was not incremented")
+	end
+
 	# this requires the script id to be set so may be skipped for new scripts
 	after_create do |record|
 		record.rewritten_code = record.calculate_rewritten_code if record.rewritten_code == 'placeholder'
 		record.save!
+	end
+
+	attr_reader :accepted_assessment, :version_check_override, :add_missing_version
+	attr_writer :accepted_assessment, :version_check_override, :add_missing_version
+
+	def initialize
+		# Accept assessment of @requires outside the whitelist
+		@accepted_assessment = false
+		# Allow code to be updated without version being upped
+		@version_check_override = false
+		# Set a version by ourselves if not provided
+		@add_missing_version = false
+		super
+	end
+
+	# Try our best to accept the code
+	def do_lenient_saving
+		@accepted_assessment = true
+		@version_check_override = true
+		@add_missing_version = true
+	end
+
+	def calculate_all
+		meta = ScriptVersion.parse_meta(code)
+		if meta.has_key?('version')
+			self.version = meta['version'].first
+		else
+			nssv = script.get_newest_saved_script_version
+			if !nssv.nil? and nssv.code == code
+				# no update, use the last one
+				self.version = nssv.version
+			# generate the version ourselves if the user asked or if the previous one was generated
+			elsif self.add_missing_version or (!nssv.nil? and /^0\.0\.1\.[0-9]{14}$/ =~ nssv.version)
+				# a "low" version based on timestamp so if the author decides to start using versions, they'll beat ours
+				self.version = "0.0.1.#{Time.now.utc.strftime('%Y%m%d%H%M%S')}"
+			else
+				self.version = nil
+			end
+		end
+		self.rewritten_code = calculate_rewritten_code 
 	end
 
 	def get_rewritten_meta_block
@@ -48,9 +113,10 @@ class ScriptVersion < ActiveRecord::Base
 			:namespace => Rails.application.routes.url_helpers.script_path(:id => script.id, :only_path => false)
 		})
 		return nil if rewritten_meta.nil?
-		return rewritten_meta + ScriptVersion.get_code_block(code)
+		return rewritten_meta
 	end
 
+	# Inserts, changes, or deletes meta values in the current code and returns the entire code
 	def inject_meta(replacements)
 		meta_block = ScriptVersion.get_meta_block(code)
 		return nil if meta_block.nil?
@@ -89,7 +155,7 @@ class ScriptVersion < ActiveRecord::Base
 			meta_lines << close_meta
 		end
 
-		return meta_lines.join("\n")
+		return meta_lines.join("\n") + ScriptVersion.get_code_block(code)
 	end
 
 	def calculate_applies_to_names
@@ -191,16 +257,6 @@ class ScriptVersion < ActiveRecord::Base
 		return (meta_start == 0 ? '' : c[0..meta_start-1]) + c[meta_end..c.length]
 	end
 
-	@accepted_assessment = false
-
-	def accepted_assessment
-		return @accepted_assessment
-	end
-
-	def accepted_assessment=(aa)
-		@accepted_assessment = aa
-	end
-
 	def disallowed_requires_used
 		r = []
 		meta = ScriptVersion.parse_meta(code)
@@ -210,6 +266,24 @@ class ScriptVersion < ActiveRecord::Base
 			r << script_url if allowed_requires.index { |ar| script_url =~ Regexp.new(ar.pattern) }.nil?
 		end
 		return r
+	end
+
+	def self.compare_versions(v1, v2)
+		# Differences between our compare and Ruby's
+		# - ours: "A string-part that exists is always less than a string-part that doesn't exist (1.6a is less than 1.6)."
+		# - Ruby: "If the strings are of different lengths, and the strings are equal when compared up to the shortest length, then the longer string is considered greater than the shorter one."
+		sv1 = ScriptVersion.split_version(v1)
+		sv2 = ScriptVersion.split_version(v2)
+		(0..15).each do |i|
+			# Odds are strings
+			if i.odd?
+				return 1 if sv1[i].empty? and !sv2[i].empty?
+				return -1 if !sv1[i].empty? and sv2[i].empty?
+			end
+			r = sv1[i] <=> sv2[i]
+			return r if r != 0
+		end
+		return 0
 	end
 
 private
@@ -223,5 +297,21 @@ private
 	@@applies_to_all_patterns = ['http://*', 'https://*', 'http://*/*', 'https://*/*', 'http*://*', 'http*://*/*', '*', '*://*', '*://*/*']
 
 	@@tld_expansion = ['com', 'net', 'org', 'de', 'co.uk']
+
+	# Returns a 16 element array of version info per https://developer.mozilla.org/en-US/docs/Toolkit_version_format
+	def self.split_version(v)
+		# up to 4 strings separated by dots
+		a = v.split('.')
+		return nil if a.length > 4
+		# missing part counts as 0
+		until a.length == 4
+			a << '0'
+		end
+		return a.map { |p|
+			# each part consists of number, string, number, string, each part optional
+			match_array = /([0-9\-]*)([^0-9\-]*)([0-9\-]*)([^0-9\-]*)/.match(p)
+			[match_array[1].to_i, match_array[2], match_array[3].to_i, match_array[4]]
+		}.flatten
+	end
 
 end

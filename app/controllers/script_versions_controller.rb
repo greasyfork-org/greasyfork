@@ -32,22 +32,12 @@ class ScriptVersionsController < ApplicationController
 		if params[:script_id].nil?
 			@script = Script.new
 			@script.user = current_user
-			@script_version.version = "1.#{Time.now.utc.strftime('%Y%m%d%H%M%S')}"
-			@script.code_updated_at = Time.now
 		else
 			@script = Script.find(params[:script_id])
-			previous_script_version = @script.script_versions.last
-			# update the version number and code_updated_at if the code changed
-			if previous_script_version.code == @script_version.code
-				@script_version.version = previous_script_version.version
-			else
-				@script_version.version = "1.#{Time.now.utc.strftime('%Y%m%d%H%M%S')}"
-				@script.code_updated_at = Time.now
-			end
 		end
 
 		@script_version.script = @script
-		@script_version.rewritten_code = @script_version.calculate_rewritten_code 
+		@script_version.calculate_all
 		@script.apply_from_script_version(@script_version)
 
 		# ensure all validations are run - short circuit the OR
@@ -73,7 +63,7 @@ class ScriptVersionsController < ApplicationController
 private
 
 	def script_version_params
-		params.require(:script_version).permit(:code, :changelog, :additional_info, :additional_info_markup, :accepted_assessment)
+		params.require(:script_version).permit(:code, :changelog, :additional_info, :additional_info_markup, :accepted_assessment, :version_check_override, :add_missing_version)
 	end
 
 end

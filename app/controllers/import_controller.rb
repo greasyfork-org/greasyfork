@@ -60,8 +60,6 @@ class ImportController < ApplicationController
 			if !params["needsdescription-#{id}"].nil? and !params["needsdescription-#{id}"].empty?
 				sv.code = sv.inject_meta(:description => params["needsdescription-#{id}"])
 			end
-			sv.version = "1.#{Time.now.utc.strftime('%Y%m%d%H%M%S')}"
-			sv.rewritten_code = sv.calculate_rewritten_code
 			script = Script.where(['userscripts_id = ?', id]).first
 			script_is_new = script.nil?
 			if script_is_new
@@ -69,19 +67,17 @@ class ImportController < ApplicationController
 				script.user = current_user
 			else
 				sv.changelog = 'Imported from userscripts.org'
-				puts script.script_versions.last.code
-				#raise Diffy::Diff.new(script.script_versions.last.code, sv.code).to_s if script.id == 24
-				if sv.code == script.script_versions.last.code
+				if sv.code == script.get_newest_saved_script_version.code
 					@results[:unchanged] << name
 					next
 				end
 			end
-			# assume they would want the assessment on new if necessary
-			sv.accepted_assessment = true if script_is_new
 
-			script.code_updated_at = DateTime.now
-			script.apply_from_script_version(sv)
 			script.userscripts_id = id
+			sv.script = script
+			sv.do_lenient_saving
+			sv.calculate_all
+			script.apply_from_script_version(sv)
 
 			if script.description.nil? or script.description.empty?
 				@results[:needsdescription][id] = name
@@ -93,7 +89,6 @@ class ImportController < ApplicationController
 				next
 			end
 			script.script_versions << sv
-			sv.script = script
 			script.save!
 			sv.save!
 			if script_is_new

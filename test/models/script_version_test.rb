@@ -95,7 +95,7 @@ END
 		sv = ScriptVersion.new
 		sv.code = js
 		rewritten_js = sv.inject_meta({:name => 'Something else'})
-		expected_js = "// ==UserScript==\n// @name		Something else\n// @description		Unit test.\n// ==/UserScript=="
+		expected_js = "// ==UserScript==\n// @name		Something else\n// @description		Unit test.\n// ==/UserScript==\nfoo.baz();\n"
 		assert_equal expected_js, rewritten_js
 	end
 
@@ -110,7 +110,7 @@ END
 		sv = ScriptVersion.new
 		sv.code = js
 		rewritten_js = sv.inject_meta({:name => nil})
-		expected_js = "// ==UserScript==\n// @description		Unit test.\n// ==/UserScript=="
+		expected_js = "// ==UserScript==\n// @description		Unit test.\n// ==/UserScript==\nfoo.baz();\n"
 		assert_equal expected_js, rewritten_js
 	end
 
@@ -124,7 +124,7 @@ foo.baz();
 END
 		sv = ScriptVersion.new
 		sv.code = js
-		expected_js = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// ==/UserScript=="
+		expected_js = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// ==/UserScript==\nfoo.baz();\n"
 		assert_equal expected_js, sv.inject_meta({:updateUrl => nil})
 	end
 
@@ -139,7 +139,7 @@ END
 		sv = ScriptVersion.new
 		sv.code = js
 		rewritten_js = sv.inject_meta({:updateURL => 'http://example.com'})
-		expected_js = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @updateURL http://example.com\n// ==/UserScript=="
+		expected_js = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @updateURL http://example.com\n// ==/UserScript==\nfoo.baz();\n"
 		assert_equal expected_js, rewritten_js
 	end
 
@@ -232,6 +232,122 @@ END
 function Like(p) {}
 END
 		assert !script_version.valid?
+		assert_equal 1, script_version.errors.to_a.length
+	end
+
+	test 'update code with changing version' do
+		script = Script.find(3)
+		assert script.valid? and script.script_versions.length == 1 and script.script_versions.first.valid?
+		sv = ScriptVersion.new
+		sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.2\n// ==/UserScript==\nvar foo = 2;"
+		sv.script = script
+		sv.calculate_all
+		assert sv.valid?, sv.errors.full_messages.join(' ')
+		assert_equal '1.2', sv.version
+	end
+
+	test 'update code without changing version' do
+		script = Script.find(3)
+		assert script.valid? and script.script_versions.length == 1 and script.script_versions.first.valid?
+		sv = ScriptVersion.new
+		sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// ==/UserScript==\nvar foo = 2;"
+		sv.script = script
+		sv.calculate_all
+		assert !sv.valid?
+		assert_equal 1, sv.errors.to_a.length
+	end
+
+	test 'update code without changing version with override' do
+		script = Script.find(3)
+		assert script.valid? and script.script_versions.length == 1 and script.script_versions.first.valid?
+		sv = ScriptVersion.new
+		sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// ==/UserScript==\nvar foo = 2;"
+		sv.script = script
+		sv.calculate_all
+		sv.version_check_override = true
+		assert sv.valid?, sv.errors.full_messages.join(' ')
+		assert_equal '1.1', sv.version
+	end
+
+	test 'update code without changing version with be_lenient' do
+		script = Script.find(3)
+		assert script.valid? and script.script_versions.length == 1 and script.script_versions.first.valid?
+		sv = ScriptVersion.new
+		sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// ==/UserScript==\nvar foo = 2;"
+		sv.script = script
+		sv.calculate_all
+		sv.do_lenient_saving
+		assert sv.valid?, sv.errors.full_messages.join(' ')
+	end
+
+	test 'missing version' do
+		script = Script.new
+		sv = ScriptVersion.new
+		sv.script = script
+		# valid with the version
+		sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// ==/UserScript==\nvar foo = 2;"
+		sv.calculate_all
+		assert sv.valid?, sv.errors.full_messages.join(' ')
+		# invalid without
+		sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// ==/UserScript==\nvar foo = 2;"
+		sv.calculate_all
+		assert !sv.valid?, sv.errors.full_messages.join(' ')
+	end
+
+	test 'add missing version' do
+		script = Script.new
+		sv = ScriptVersion.new
+		sv.script = script
+		# valid with the version
+		sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// ==/UserScript==\nvar foo = 2;"
+		sv.calculate_all
+		assert sv.valid?, sv.errors.full_messages.join(' ')
+		# invalid without
+		sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// ==/UserScript==\nvar foo = 2;"
+		sv.add_missing_version = true
+		sv.calculate_all
+		assert sv.valid?
+		assert /0\.0\.1\.20/ =~ sv.version
+	end
+
+	test 'bad format version' do
+		script = get_valid_script
+		script_version = script.script_versions.first
+		script_version.code = <<END
+// ==UserScript==
+// @name		A Test!
+// @description		Unit test.
+// @version 1.2.3.4.5
+// ==/UserScript==
+END
+		script_version.calculate_all
+		assert !script_version.valid?
+		assert_equal 1, script_version.errors.to_a.length
+	end
+
+	test 'update code without version previous had generated version' do
+		script = Script.find(4)
+		assert script.valid? and script.script_versions.length == 1 and script.script_versions.first.valid?
+		old_version = script.script_versions.first.version
+		sv = ScriptVersion.new
+		sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// ==/UserScript==\nvar foo = 2;"
+		sv.script = script
+		sv.calculate_all
+		assert sv.valid?, sv.errors.full_messages.join(' ')
+		assert /^0\.0\.1\.[0-9]{14}$/ =~ sv.version
+		assert sv.version != old_version
+	end
+
+	test 'update code without version previous had explicit version' do
+		script = Script.find(5)
+		assert script.valid? and script.script_versions.length == 1 and script.script_versions.first.valid?
+		old_version = script.script_versions.first.version
+		sv = ScriptVersion.new
+		sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// ==/UserScript==\nvar foo = 2;"
+		sv.script = script
+		sv.calculate_all
+		assert !sv.valid?
+		assert_equal 1, sv.errors.to_a.length
 	end
 
 end

@@ -35,6 +35,20 @@ class Script < ActiveRecord::Base
 		self.assessments = script_version.disallowed_requires_used.map do |script_url|
 			Assessment.new({:assessment_reason => AssessmentReason.first, :details => script_url, :script => self})
 		end
+		if new_record? or self.code_updated_at.nil?
+			self.code_updated_at = Time.now
+		else
+			newest_sv = get_newest_saved_script_version
+			self.code_updated_at = Time.now if newest_sv.nil? or newest_sv.code != script_version.code
+		end
+	end
+
+	def get_newest_saved_script_version
+		# get the most recently saved record
+		script_versions.reverse.each do |sv|
+			return sv if !sv.new_record?
+		end
+		return nil
 	end
 
 	def self.record_install(id, ip)

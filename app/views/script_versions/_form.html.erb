@@ -1,20 +1,35 @@
 <%=form_for(script_version.script.new_record? ? script_version : [script_version.script, script_version]) do |s|%>
 	<% disallowed_requires = script_version.disallowed_requires_used
 
-	if !script_version.errors.empty? or !script_version.script.errors.empty? or !disallowed_requires.empty? %>
+	if !script_version.errors.empty? or !script_version.script.errors.empty? %>
 		<p>There were some problems with what you posted...</p>
 		<ul class="errors">
-			<% script_version.errors.full_messages.each do |m| 
-				# skip @require validation in favour of the next block
-				if !(m.include?('Code cannot @require') and !disallowed_requires.empty?) %>
+			<% using_disallowed_require = false
+			version_not_incremented = false
+			version_not_specified = false
+			script_version.errors.full_messages.each do |m| 
+				# skip some validations in favour of below
+				if m.include?('Code cannot @require') and !disallowed_requires.empty?
+					using_disallowed_require = true
+				elsif m.include?('was not incremented')
+					version_not_incremented = true
+				elsif m.include?('Version meta key must be provided')
+					version_not_specified = true
+				else %>
 					<li><%=m%></li>
 				<% end
 			end
 			script_version.script.errors.full_messages.each do |m| %>
 				<li><%=m%></li>
 			<% end
-			if !disallowed_requires.empty? %>
+			if using_disallowed_require %>
 				<li>You are using <code>@require</code>s outside of Greasy Fork's whitelist: <%=disallowed_requires.join(', ')%>. Check <label for="script_version_accepted_assessment">this box</label> <%=s.check_box(:accepted_assessment, {}, true, false)%> and save if you would like your <code>@require</code>s assessed by an admin. <%=link_to 'Read Greasy Fork\'s policy on <code>@require</code>.'.html_safe, help_code_rules_path(:anchor => 'require'), {:target => 'code_rules'}%></li>
+			<% end
+			if version_not_incremented %>
+				<li>You updated the code but didn't increase the <code>@version</code> number. This means anyone who previously installed your script may not get the updated code. <label for="script_version_version_check_override">Save anyway?</label> <%=s.check_box(:version_check_override, {}, true, false)%></li>
+			<% end 
+			if version_not_specified %>
+				<li>You didn't provide a <code>@version</code>. Version meta keys are important because it lets people who install your script receive updates. Specify a version or <label for="script_version_add_missing_version">check this box</label> <%=s.check_box(:add_missing_version, {}, true, false)%> to have the site generate one for you.</li>
 			<% end %>
 		</ul>
 	<% end %>
