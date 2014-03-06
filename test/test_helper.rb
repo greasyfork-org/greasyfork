@@ -23,6 +23,8 @@ class ActiveSupport::TestCase
 // ==UserScript==
 // @name		A Test!
 // @description		Unit test.
+// @namespace http://greasyfork.local/users/1
+// @version 1.0
 // ==/UserScript==
 var foo = "bar";
 END

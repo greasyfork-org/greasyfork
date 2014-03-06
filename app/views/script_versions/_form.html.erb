@@ -7,6 +7,8 @@
 			<% using_disallowed_require = false
 			version_not_incremented = false
 			version_not_specified = false
+			namespace_is_missing = false
+			namespace_changed = false
 			script_version.errors.full_messages.each do |m| 
 				# skip some validations in favour of below
 				if m.include?('Code cannot @require') and !disallowed_requires.empty?
@@ -15,6 +17,10 @@
 					version_not_incremented = true
 				elsif m.include?('Version meta key must be provided')
 					version_not_specified = true
+				elsif m.include?('namespace is missing')
+					namespace_is_missing = true
+				elsif m.include?('namespace has changed')
+					namespace_changed = true
 				else %>
 					<li><%=m%></li>
 				<% end
@@ -30,6 +36,12 @@
 			<% end 
 			if version_not_specified %>
 				<li>You didn't provide a <code>@version</code>. Version meta keys are important because it lets people who install your script receive updates. Specify a version or <label for="script_version_add_missing_version">check this box</label> <%=s.check_box(:add_missing_version, {}, true, false)%> to have the site generate one for you.</li>
+			<% end
+			if namespace_is_missing %>
+				<li>You didn't provide a <code>@namespace</code>. Namespace meta keys are important because it makes a re-install of your script be considered an update. Specify a namespace or <label for="script_version_add_missing_namespace">check this box</label> <%=s.check_box(:add_missing_namespace, {}, true, false)%> to have the site generate one for you.</li>
+			<% end 
+			if namespace_changed %>
+				<li>Your <code>@namespace</code> has changed. A consistent namespace is important for a re-install of your script be considered an update. <label for="script_version_namespace_check_override">Save anyway?</label> <%=s.check_box(:namespace_check_override, {}, true, false)%></li>
 			<% end %>
 		</ul>
 	<% end %>

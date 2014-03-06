@@ -53,14 +53,34 @@ class ScriptVersion < ActiveRecord::Base
 		record.errors.add(attr, "was changed, but version number (#{old_version}) was not incremented")
 	end
 
-	# this requires the script id to be set so may be skipped for new scripts
-	after_create do |record|
-		record.rewritten_code = record.calculate_rewritten_code if record.rewritten_code == 'placeholder'
-		record.save!
+	# namespace is required and shouldn't change
+	validates_each(:code, :allow_nil => true, :allow_blank => true) do |record, attr, value|
+		meta = ScriptVersion.parse_meta(value)
+		# handled elsewhere
+		next if meta.nil?
+		previous_namespace = record.get_meta_from_previous('namespace', true)
+		previous_namespace = (previous_namespace.nil? or previous_namespace.empty?) ? nil : previous_namespace.first
+
+		if meta.has_key?('namespace')
+			next if record.namespace_check_override
+			# didn't have one, now has one: OK
+			next if previous_namespace.nil?
+			# changed?
+			current_namespace = meta['namespace'].first
+			record.errors.add(attr, "namespace has changed from #{current_namespace} to #{previous_namespace}") if current_namespace != previous_namespace
+			next
+		end
+
+		# this setting will ensure one gets added
+		next if record.add_missing_namespace
+
+		# no namespace is an error if the previous didn't have one either. if the previous did, 
+		# in calculate_rewritten_code it'll get applied again
+		record.errors.add(attr, "namespace is missing") if previous_namespace.nil?
 	end
 
-	attr_reader :accepted_assessment, :version_check_override, :add_missing_version
-	attr_writer :accepted_assessment, :version_check_override, :add_missing_version
+
+	attr_accessor :accepted_assessment, :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace
 
 	def initialize
 		# Accept assessment of @requires outside the whitelist
@@ -69,6 +89,10 @@ class ScriptVersion < ActiveRecord::Base
 		@version_check_override = false
 		# Set a version by ourselves if not provided
 		@add_missing_version = false
+		# Allow the namespace to change
+		@namespace_check_override = false
+		# Set a namespace by ourselves if not provided
+		@add_missing_namespace = false
 		super
 	end
 
@@ -77,6 +101,8 @@ class ScriptVersion < ActiveRecord::Base
 		@accepted_assessment = true
 		@version_check_override = true
 		@add_missing_version = true
+		@add_missing_namespace = true
+		@namespace_check_override = true
 	end
 
 	def calculate_all
@@ -104,34 +130,46 @@ class ScriptVersion < ActiveRecord::Base
 	end
 
 	def calculate_rewritten_code
-		return 'placeholder' if script.nil? or script.new_record?
+		add_if_missing = {}
+		backup_namespace = calculate_backup_namespace
+		add_if_missing[:namespace] = backup_namespace if !backup_namespace.nil?
 		rewritten_meta = inject_meta({
 			:version => version,
-			:updateURL => Rails.application.routes.url_helpers.script_meta_js_path(:script_id => script.id, :only_path => false),
+			:updateURL => nil,
 			:installURL => nil,
-			:downloadURL => Rails.application.routes.url_helpers.script_user_js_path(:script_id => script.id, :only_path => false),
-			:namespace => Rails.application.routes.url_helpers.script_path(:id => script.id, :only_path => false)
-		})
+			:downloadURL => nil
+		}, add_if_missing)
 		return nil if rewritten_meta.nil?
 		return rewritten_meta
 	end
 
+	# returns a potential namespace to use if one is not set
+	def calculate_backup_namespace
+		# use the rewritten code as the previous one may have been a backup as well
+		previous_namespace = get_meta_from_previous('namespace', true)
+		return previous_namespace.first unless previous_namespace.nil? or previous_namespace.empty?
+		return nil if !add_missing_namespace
+		return Rails.application.routes.url_helpers.user_path(:id => script.user.id, :only_path => false)
+	end
+
 	# Inserts, changes, or deletes meta values in the current code and returns the entire code
-	def inject_meta(replacements)
+	def inject_meta(replacements, additions_if_missing = {})
 		meta_block = ScriptVersion.get_meta_block(code)
 		return nil if meta_block.nil?
 
 		# handle strings or symbols as the keys
 		replacement_keys = replacements.keys.map{|s|s.to_s}
 		replacements = replacements.with_indifferent_access
-
+		additions_if_missing = additions_if_missing.with_indifferent_access
 		# replace any existing values
 		meta_lines = meta_block.split("\n").map do |meta_line|
-			next meta_line if replacements.empty?
+			# no more modifications needed?
+			next meta_line if replacements.empty? and additions_if_missing.empty?
 			meta_match = /\/\/\s+@([a-zA-Z]+)\s+(.*)/.match(meta_line)
 			next meta_line if meta_match.nil?
 			key = meta_match[1].strip
 			value = meta_match[2].strip
+			additions_if_missing.delete(key)
 			# replace the first one, remove any subsequent ones
 			if replacement_keys.include?(key)
 				if replacements.has_key?(key) and !value.nil?
@@ -147,6 +185,7 @@ class ScriptVersion < ActiveRecord::Base
 		meta_lines.compact!
 
 		# add new values
+		replacements.update(additions_if_missing)
 		if !replacements.empty?
 			# nils here would indicate a removal that wasn't there, so ignore that
 			new_lines = replacements.delete_if{|k,v|v.nil?}.map { |k, v| "// @#{k} #{v}" }
@@ -284,6 +323,14 @@ class ScriptVersion < ActiveRecord::Base
 			return r if r != 0
 		end
 		return 0
+	end
+
+	def get_meta_from_previous(key, use_rewritten = false)
+		previous_script_version = script.get_newest_saved_script_version
+		return nil if previous_script_version.nil?
+		previous_meta = ScriptVersion.parse_meta(use_rewritten ? previous_script_version.rewritten_code : previous_script_version.code)
+		return nil if previous_meta.nil?
+		return previous_meta[key]
 	end
 
 private

@@ -58,7 +58,14 @@ class ScriptsController < ApplicationController
 
 	def user_js
 		script = Script.find(params[:script_id])
-		render :text => script.script_versions.last.rewritten_code, :content_type => 'text/javascript'
+		respond_to do |format|
+			format.any(:html, :all, :js) {
+				render :text => script.get_newest_saved_script_version.rewritten_code, :content_type => 'text/javascript'
+			}
+			format.user_script_meta { 
+				render :text => script.get_newest_saved_script_version.get_rewritten_meta_block, :content_type => 'text/x-userscript-meta'
+			}
+		end
 	end
 
 	def meta_js
