@@ -313,6 +313,7 @@ class ScriptVersion < ActiveRecord::Base
 		# - Ruby: "If the strings are of different lengths, and the strings are equal when compared up to the shortest length, then the longer string is considered greater than the shorter one."
 		sv1 = ScriptVersion.split_version(v1)
 		sv2 = ScriptVersion.split_version(v2)
+		return nil if sv1.nil? or sv2.nil?
 		(0..15).each do |i|
 			# Odds are strings
 			if i.odd?
@@ -348,15 +349,15 @@ private
 	# Returns a 16 element array of version info per https://developer.mozilla.org/en-US/docs/Toolkit_version_format
 	def self.split_version(v)
 		# up to 4 strings separated by dots
-		a = v.split('.')
-		return nil if a.length > 4
+		a = v.split('.', 4)
 		# missing part counts as 0
 		until a.length == 4
 			a << '0'
 		end
 		return a.map { |p|
 			# each part consists of number, string, number, string, each part optional
-			match_array = /([0-9\-]*)([^0-9\-]*)([0-9\-]*)([^0-9\-]*)/.match(p)
+			# string #2 we will assume is no numbers, string #4 will eat whatever's left
+			match_array = /((?:\-?[0-9]+)?)([^0-9\-]*)((?:\-?[0-9]+)?)(.*)/.match(p)
 			[match_array[1].to_i, match_array[2], match_array[3].to_i, match_array[4]]
 		}.flatten
 	end

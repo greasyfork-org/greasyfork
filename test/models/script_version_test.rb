@@ -372,22 +372,6 @@ END
 		assert /0\.0\.1\.20/ =~ sv.version
 	end
 
-	test 'bad format version' do
-		script = get_valid_script
-		script_version = script.script_versions.first
-		script_version.code = <<END
-// ==UserScript==
-// @name		A Test!
-// @description		Unit test.
-// @version 1.2.3.4.5
-// @namespace http://greasyfork.local/users/1
-// ==/UserScript==
-END
-		script_version.calculate_all
-		assert !script_version.valid?
-		assert_equal 1, script_version.errors.to_a.length
-	end
-
 	test 'update code without version previous had generated version' do
 		script = Script.find(4)
 		assert script.valid? and script.script_versions.length == 1 and script.script_versions.first.valid?
