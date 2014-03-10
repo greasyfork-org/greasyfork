@@ -2,7 +2,8 @@
 <%- description "Greasy Fork profile for #{@user.name}" %>
 
 <h2><%=@user.name%></h2>
-<% if !current_user.nil? and current_user.id == @user.id %>
+<% same_user = !current_user.nil? and current_user.id == @user.id
+if same_user %>
 	<ul id="user-control-panel">
 		<li><%= link_to 'Post a script', new_script_version_path%></li>
 		<li><%= link_to 'Edit account', edit_user_registration_path%></li>
@@ -41,7 +42,7 @@
 		<p>No scripts posted.</p>
 	<% else %>
 		<ol id="user-script-list" class="script-list">
-			<%= render partial: 'scripts/script', collection: @user.scripts %>
+			<%= render partial: 'scripts/script', collection: same_user ? @user.scripts.order('name') : @user.scripts.listable.order('name') %>
 		</ol>
 	<% end %>
 </section>
