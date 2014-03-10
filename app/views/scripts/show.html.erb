@@ -1,10 +1,17 @@
 <%- title @script.name %>
 <%- description @script.description %>
 
-<% if @script.active? %>
-	<div id="install-area">
-		<%=link_to 'Install', script_user_js_path(@script), {:class => 'install-link', 'data-ping-url' => url_for(script_install_ping_path(@script, :authenticity_token => session[:_csrf_token]))}%><br><%=link_to 'How to install', help_installing_user_scripts_path, {:class => 'install-help-link'}%>
-	</div>
+<% if @script.active? 
+	case @script.script_type_id
+		when 1, 2 %>
+			<div id="install-area">
+				<%=link_to 'Install', script_user_js_path(@script), {:class => 'install-link', 'data-ping-url' => url_for(script_install_ping_path(@script, :authenticity_token => session[:_csrf_token]))}%><br><%=link_to 'How to install', help_installing_user_scripts_path, {:class => 'install-help-link'}%>
+			</div>
+		<% when 3 %>
+			<p>This script is a library and should not be installed directly.</p>
+		<% when 4 %>
+			<p>This script has been deleted.</p>
+	<% end %>
 <% elsif !params[:version].nil? %>
 	<p id="under-review-notice">This version of the script was under review.</p>
 <% else %>
@@ -14,10 +21,12 @@
 <dl id="script-meta">
 	<dt class="script-show-author">Author</dt>
 	<dd class="script-show-author"><%=link_to @script.user.name, @script.user%></dd>
+	<% if @script.script_type_id != 3 %>
 	<dt class="script-show-daily-installs">Daily installs</dt>
 	<dd class="script-show-daily-installs"><%=@script.daily_installs%></dd>
 	<dt class="script-show-total-installs">Total installs</dt>
 	<dd class="script-show-total-installs"><%=@script.total_installs%></dd>
+	<% end %>
 	<dt class="script-show-created-date">Created</dt>
 	<dd class="script-show-created-date"><%=markup_date(@script.created_at)%></dd>
 	<dt class="script-show-updated-date">Updated</dt>

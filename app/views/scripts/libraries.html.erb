@@ -1,0 +1,16 @@
+<%- title 'Libraries on Greasy Fork' %>
+<%- description 'List of user scripts available on Greasy Fork' %>
+
+<h1>Libraries</h1>
+<p>There are libraries posted by Greasy Fork users that you can @require in your scripts. <%=link_to 'Read Greasy Fork\'s policy on <code>@require</code>.'.html_safe, help_code_rules_path(:anchor => 'require')%></p>
+<% if @scripts.empty? %>
+	<p>No libraries currently posted.</p>
+<% else %>
+	<ul>
+		<% @scripts.each do |script| %>
+			<li>
+				<%=link_to script.name, script %> <%=script.description%>
+			</li>
+		<% end %>
+	</ul>
+<% end %>

@@ -4,13 +4,16 @@ class Script < ActiveRecord::Base
 	has_many :script_applies_tos, :dependent => :delete_all
 	has_many :discussions, -> { readonly.order('DateInserted') }, :class_name => 'ForumDiscussion', :foreign_key => 'ScriptID'
 	has_many :assessments, :dependent => :delete_all
+	belongs_to :script_type
 
 	scope :active, -> {includes(:assessments).where(:assessments => { :id => nil })}
+	scope :listable, -> {active.where(:script_type_id => 1)}
+	scope :libraries, -> {active.where(:script_type_id => 3)}
 	scope :under_assessment, -> {joins(:assessments).includes(:user).uniq}
 
 	validates_presence_of :name, :message => 'is required - specify one with @name'
 	validates_presence_of :description, :message => 'is required - specify one with @description'
-	validates_presence_of :user_id, :code_updated_at
+	validates_presence_of :user_id, :code_updated_at, :script_type
 
 	validates_length_of :name, :maximum => 100
 	validates_length_of :description, :maximum => 500

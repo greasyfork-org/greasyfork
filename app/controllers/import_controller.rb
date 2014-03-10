@@ -65,6 +65,7 @@ class ImportController < ApplicationController
 			if script_is_new
 				script = Script.new
 				script.user = current_user
+				script.script_type_id = 1
 			else
 				sv.changelog = 'Imported from userscripts.org'
 				if sv.code == script.get_newest_saved_script_version.code

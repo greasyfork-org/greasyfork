@@ -127,8 +127,14 @@ nav li + li {
 .form-control input:not([type=radio]) {
 	width: 100%;
 }
+.radio-group input[type=radio] {
+	margin-left: 1em;
+}
 .form-control label {
 	font-weight: bold;
+}
+.form-control label.radio-label {
+	font-weight: normal;
 }
 .field_with_errors textarea {
 	background-color: #FEE;

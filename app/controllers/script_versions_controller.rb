@@ -38,6 +38,7 @@ class ScriptVersionsController < ApplicationController
 
 		@script_version.script = @script
 		@script_version.calculate_all
+		@script.script_type_id = params['script']['script_type_id']
 		@script.apply_from_script_version(@script_version)
 
 		# ensure all validations are run - short circuit the OR

@@ -20,7 +20,7 @@ class ScriptsController < ApplicationController
 		per_page = 50
 		per_page = [params[:per_page].to_i, 200].min if !params[:per_page].nil? and params[:per_page].to_i > 0
 
-		@scripts = Script.active.includes(:user).order(sort).paginate(:page => params[:page], :per_page => per_page)
+		@scripts = Script.listable.includes(:user).order(sort).paginate(:page => params[:page], :per_page => per_page)
 		if !params[:site].nil?
 			@scripts = @scripts.joins(:script_applies_tos).where(['display_text = ?', params[:site]])
 		end
@@ -39,6 +39,10 @@ class ScriptsController < ApplicationController
 			return
 		end
 		render :layout => 'scripts'
+	end
+
+	def libraries
+		@scripts = Script.libraries
 	end
 
 	def under_assessment
@@ -116,7 +120,7 @@ private
 	def get_by_sites
 		# regexps are eliminated because they're not useful to look at and the link doesn't work anyway (due to
 		# the leading slash?)
-		return ScriptAppliesTo.select('display_text, count(*) script_count').group('display_text').order('script_count DESC, display_text').where('display_text NOT LIKE "/%"')
+		return ScriptAppliesTo.joins(:script).select('display_text, count(*) script_count').group('display_text').order('script_count DESC, display_text').where('display_text NOT LIKE "/%" and script_type_id = 1')
 	end
 
 end

@@ -56,6 +56,12 @@
 			<%=s.text_field(:changelog, :maxlength => 500, :size => nil)%>
 		</div>
 	<% end %>
+	<div class="form-control radio-group">
+		<label>Script type</label><br>
+		<% ScriptType.all.each do |st| %>
+			<%=radio_button('script', 'script_type_id', st.id)%> <label class="radio-label" for="script_script_type_id_<%=st.id%>"><%=st.name%> - <%=st.description%></label><br>
+		<% end %>
+	</div>
 	<div class="form-control">
 		<label for="additional-info">Additional info</label>
 		<span class="label-note">
