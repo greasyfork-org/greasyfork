@@ -20,7 +20,9 @@ class ScriptVersionsController < ApplicationController
 			@script_version.additional_info_markup = previous_script.additional_info_markup
 			render :layout => 'scripts'
 		else
-			@script_version.script = Script.new
+			@script = Script.new
+			@script.script_type_id = 1
+			@script_version.script = @script
 		end
 	end
 
