@@ -5,7 +5,7 @@
 	case @script.script_type_id
 		when 1, 2 %>
 			<div id="install-area">
-				<%=link_to 'Install', script_user_js_path(@script), {:class => 'install-link', 'data-ping-url' => url_for(script_install_ping_path(@script, :authenticity_token => session[:_csrf_token]))}%><br><%=link_to 'How to install', help_installing_user_scripts_path, {:class => 'install-help-link'}%>
+				<%=link_to 'Install', script_user_js_path(@script, :version => params[:version]), {:class => 'install-link', 'data-ping-url' => url_for(script_install_ping_path(@script, :authenticity_token => session[:_csrf_token])), 'data-is-previous-version' => !params[:version].nil?}%><br><%=link_to 'How to install', help_installing_user_scripts_path, {:class => 'install-help-link'}%>
 			</div>
 		<% when 3 %>
 			<p>This script is a library and should not be installed directly.</p>

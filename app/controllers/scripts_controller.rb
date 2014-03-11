@@ -32,7 +32,7 @@ class ScriptsController < ApplicationController
 	end
 
 	def show
-		@script = versionned_script(params[:id], params[:version])
+		@script, @script_version = versionned_script(params[:id], params[:version])
 		if @script.nil?
 			# no good
 			render :status => 404
@@ -50,13 +50,23 @@ class ScriptsController < ApplicationController
 	end
 
 	def show_code
-		@script = Script.find(params[:script_id])
-		@code = @script.script_versions.last.code
+		@script, @script_version = versionned_script(params[:script_id], params[:version])
+		if @script.nil?
+			# no good
+			render :status => 404
+			return
+		end
+		@code = @script_version.code
 		render :layout => 'scripts'
 	end
 
 	def feedback
-		@script = Script.find(params[:script_id])
+		@script, @script_version = versionned_script(params[:script_id], params[:version])
+		if @script.nil?
+			# no good
+			render :status => 404
+			return
+		end
 		render :layout => 'scripts'
 	end
 
@@ -96,26 +106,6 @@ class ScriptsController < ApplicationController
 	end
 
 private
-
-	def versionned_script(script_id, version_id)
-		return nil if script_id.nil?
-		script_id = script_id.to_i
-		current_script = Script.find(script_id)
-		return current_script if version_id.nil?
-		version_id = version_id.to_i
-		script_version = ScriptVersion.find(version_id)
-		return nil if script_version.nil? or script_version.script_id != script_id
-		script = Script.new
-		script.apply_from_script_version(script_version)
-		script.id = script_id
-		script.updated_at = script_version.updated_at
-		script.user = script_version.script.user
-		script.created_at = current_script.created_at
-		script.updated_at = script_version.updated_at
-		# this is not necessarily accurate, as the revision the user picked may not have involved a code update
-		script.code_updated_at = script_version.updated_at
-		return script
-	end
 
 	def get_by_sites
 		# regexps are eliminated because they're not useful to look at and the link doesn't work anyway (due to

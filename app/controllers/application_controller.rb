@@ -33,4 +33,24 @@ protected
 		end
 	end
 
+	def versionned_script(script_id, version_id)
+		return nil if script_id.nil?
+		script_id = script_id.to_i
+		current_script = Script.find(script_id)
+		return [current_script, current_script.get_newest_saved_script_version] if version_id.nil?
+		version_id = version_id.to_i
+		script_version = ScriptVersion.find(version_id)
+		return nil if script_version.nil? or script_version.script_id != script_id
+		script = Script.new
+		script.apply_from_script_version(script_version)
+		script.id = script_id
+		script.updated_at = script_version.updated_at
+		script.user = script_version.script.user
+		script.created_at = current_script.created_at
+		script.updated_at = script_version.updated_at
+		# this is not necessarily accurate, as the revision the user picked may not have involved a code update
+		script.code_updated_at = script_version.updated_at
+		return [script, script_version]
+	end
+
 end

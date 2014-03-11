@@ -6,7 +6,7 @@ class ScriptVersionsController < ApplicationController
 	layout 'scripts', only: [:index]
 
 	def index
-		@script = Script.find(params[:script_id], :include => [:script_versions])
+		@script, @script_version = versionned_script(params[:script_id], params[:version])
 	end
 
 	def new
