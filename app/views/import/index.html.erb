@@ -1,0 +1,20 @@
+<%- title 'Import scripts' %>
+
+<p>Greasy Fork can import scripts that already hosted elsewhere. This lets you do things like have your script available for download in multiple places or have it in version control.</p>
+
+<ul>
+	<li><%=link_to 'Import from userscripts.org', import_userscriptsorg_path%></li>
+	<li><%=link_to 'Import from URLs', import_url_path%></li>
+</ul>
+
+<% if !@scripts_by_source.empty? %>
+	<h3>Previously imported scripts</h3>
+	<% @scripts_by_source.each do |script_sync_source, scripts| %>
+		<h4>From <%=script_sync_source.name%></h4>
+		<ul>
+			<% scripts.each do |script| %>
+				<li><%=link_to script.name, script%></li>
+			<% end %>
+		</ul>
+	<% end %>
+<% end %>

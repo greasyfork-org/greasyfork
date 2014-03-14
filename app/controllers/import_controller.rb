@@ -1,157 +1,76 @@
-require 'net/http'
+require 'script_importer/userscriptsorg_importer'
+require 'script_importer/url_importer'
+include ScriptImporter
 
 class ImportController < ApplicationController
 
+	$IMPORTERS = [UserScriptsOrgImporter, UrlImporter]
+
 	before_filter :authenticate_user!
 
-	# instructions and prompts the user for a URL
-	def step1
+	def index
+		@scripts_by_source = Script.where(['user_id = ?', current_user.id]).where('script_sync_source_id is not null').includes([:script_sync_source]).order('scripts.name')
+		@scripts_by_source = @scripts_by_source.group_by{|script| script.script_sync_source}
 	end
 
 	# verifies identify and gets a script list
-	def step2
+	def verify
 		url = params[:url]
-		userscripts_id = get_userscripts_id(url)
-		if userscripts_id.nil?
-			render :text => 'Invalid userscripts.org profile URL.', :layout => true
+		@importer = UserScriptsOrgImporter
+		if @importer.remote_user_identifier(url).nil?
+			render :text => "Invalid #{@importer.import_source_name} profile URL.", :layout => true
 			return
 		end
-		case check_for_url_on_userscripts("http://userscripts.org/users/#{userscripts_id}")
+		case @importer.verify_ownership(url, current_user.id)
 			when :failure
-				render :text => 'userscripts.org profile check failed.', :layout => true
+				render :text => "#{@importer.import_source_name} profile check failed.", :layout => true
 				return
 			when :nourl
-				render :text => 'Greasy Fork URL not found on userscripts.org profile.', :layout => true
+				render :text => "Greasy Fork URL not found on #{@importer.import_source_name} profile.", :layout => true
 				return
 			when :wronguser
-				render :text => 'Greasy Fork URL found on userscripts.org profile, but it wasn\'t yours.', :layout => true
+				render :text => "Greasy Fork URL found on #{@importer.import_source_name} profile, but it wasn\'t yours.", :layout => true
 				return
 		end
-		@new_scripts = get_script_list(userscripts_id)
-		if @new_scripts.empty?
-			render :text => 'No scripts found on userscripts.org.', :layout => true
+		@new_scripts, @existing_scripts = @importer.pull_script_list(url)
+		if @new_scripts.empty? and @existing_scripts.empty?
+			render :text => "No scripts found on #{@importer.import_source_name}", :layout => true
 			return
 		end
-		# check for updates
-		@updated_scripts = {}
-		Script.where(['userscripts_id in (?)', @new_scripts.keys]).each do |script|
-			if @new_scripts.has_key?(script.userscripts_id)
-				@updated_scripts[script.userscripts_id] = @new_scripts.delete(script.userscripts_id)
+	end
+
+	def add
+		importer = $IMPORTERS.select{|i| i.sync_source_id == params[:sync_source_id].to_i}.first
+		@results = {:new => [], :new_with_assessment => [], :failure => [], :needsdescription => [], :existing => []}
+		sync_ids = nil
+		if params[:sync_ids].nil?
+			sync_ids = params[:sync_urls].split("\n")
+		else
+			sync_ids = params[:sync_ids]
+		end
+		sync_ids.each do |sync_id|
+			provided_description = params["needsdescription-#{sync_id}"]
+			result, script, message = importer.generate_script(sync_id, provided_description, current_user)
+			case result
+				when :needsdescription
+					@results[:needsdescription] << script
+				when :failure
+					@results[:failure] << "#{importer.sync_id_to_url(sync_id)} - #{message}"
+				when :success
+					existing_scripts = Script.where(['script_sync_source_id = ? and sync_identifier = ?', importer.sync_source_id, sync_id])
+					if !existing_scripts.empty?
+						@results[:existing] << existing_scripts.first
+					elsif script.save
+						if script.assessments.empty?
+							@results[:new] << script
+						else
+							@results[:new_with_assessment] << script
+						end
+					else
+						@results[:failure] << "Could not save."
+					end
 			end
 		end
-		# save the ids, we will make sure in the next step that they pick one of these
-		user_session[:imported_scripts] = @new_scripts.merge(@updated_scripts).keys
 	end
 
-	# validate, then add or update the chosen scripts
-	def step3
-		@results = {:new => [], :new_with_assessment => [], :updated => [], :updated_with_assessment => [], :unchanged => [], :failed => [], :needsdescription => {}}
-		user_session[:imported_scripts].select{|id|params[:userscripts_ids].include?(id.to_s)}.each do |id|
-			name = params["imported-name-#{id}"]
-			code = download("http://userscripts.org/scripts/source/#{id}.user.js")
-			if code.nil?
-				@results[:failed] << "#{name} - Could not download source."
-				next
-			end
-			code.force_encoding(Encoding::UTF_8)
-			sv = ScriptVersion.new
-			sv.code = code
-			# step 3 lets us resubmit with a description for those that are missing
-			if !params["needsdescription-#{id}"].nil? and !params["needsdescription-#{id}"].empty?
-				sv.code = sv.inject_meta(:description => params["needsdescription-#{id}"])
-			end
-			script = Script.where(['userscripts_id = ?', id]).first
-			script_is_new = script.nil?
-			if script_is_new
-				script = Script.new
-				script.user = current_user
-				script.script_type_id = 1
-			else
-				sv.changelog = 'Imported from userscripts.org'
-				if sv.code == script.get_newest_saved_script_version.code
-					@results[:unchanged] << name
-					next
-				end
-			end
-
-			script.userscripts_id = id
-			sv.script = script
-			sv.do_lenient_saving
-			sv.calculate_all
-			script.apply_from_script_version(sv)
-
-			if script.description.nil? or script.description.empty?
-				@results[:needsdescription][id] = name
-				next
-			end
-			if !script.valid? | !sv.valid?
-				# prefer script_version error messages, but show script error messages if necessary
-				@results[:failed] << "#{name} - #{(sv.errors.full_messages.empty? ? script.errors.full_messages : sv.errors.full_messages).join('. ')}."
-				next
-			end
-			script.script_versions << sv
-			script.save!
-			sv.save!
-			if script_is_new
-				if script.assessments.empty?
-					@results[:new] << name
-				else
-					@results[:new_with_assessment] << name
-				end
-			else
-				if script.assessments.empty?
-					@results[:updated] << name
-				else
-					@results[:updated_with_assessment] << name
-				end
-			end
-		end
-		# need to keep this for resubmit on step 3 if necessary
-		user_session.delete(:imported_scripts) if @results[:needsdescription].empty?
-	end
-
-private
-
-	def get_userscripts_id(url)
-		profile_url_match = /^https?:\/\/userscripts.org\/users\/([0-9]+)(\/.*)?$/.match(url)
-		return nil if profile_url_match.nil?
-		return profile_url_match[1]
-	end
-	
-	def download(url)
-		url = URI.parse(url)
-		req = Net::HTTP::Get.new(url.request_uri)
-		res = Net::HTTP.start(url.host, url.port) {|http|
-		  http.request(req)
-		}
-		return nil if res.code != '200'
-		return res.body
-	end
-
-	def check_for_url_on_userscripts(url)
-		return :success if !Greasyfork::Application.config.verify_ownership_on_import
-		content = download(url)
-		return :failure if content.nil?
-		our_url_match = /https?:\/\/greasyfork.org\/users\/([0-9]+)/.match(content)
-		#our_url_match = /https?:\/\/example.com\/users\/([0-9]+)/.match(content)
-		return :nourl if our_url_match.nil?
-		return current_user.id == our_url_match[1].to_i ? :success : :wronguser
-	end
-
-	def get_script_list(userscripts_id)
-		scripts = {}
-		i = 1
-		# loop through each page of results - 20 is a reasonable limit as the most profilic
-		# author on userscripts has < 1000
-		while i < 20
-			content = download("http://userscripts.org/users/#{userscripts_id}/scripts?page=#{i}")
-			page_scripts = content.scan(/<a href="\/scripts\/show\/([0-9]+)[^>]+>([^<]+)/)
-			return scripts if page_scripts.empty?
-			page_scripts.each do |match|
-				scripts[match[0].to_i] = match[1]
-			end
-			i = i + 1
-		end
-		return scripts
-	end
 end

@@ -1,0 +1,8 @@
+<%- title 'Import from URLs' %>
+
+<%=form_tag(import_add_path) do |f|%>
+	<input type="hidden" name="sync_source_id" value="1">
+	<p>Provide URLs to import from, separated by newlines.</p>
+	<textarea name="sync_urls" cols="50" rows="10" required></textarea><br>
+	<%=submit_tag 'Import'%>
+<% end %>

@@ -1,0 +1,53 @@
+<%- title 'Import results' %>
+
+<% if !@results[:new].empty? %>
+	<p>The following scripts were successfully imported:</p>
+	<ul>
+		<% @results[:new].each do |script| %>
+			<li><%=link_to script.name, script%></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<% if !@results[:new_with_assessment].empty? %>
+	<p>The following scripts were successfully imported, but require an <%=link_to 'assessment'.html_safe, help_code_rules_path(:anchor => 'require'), {:target => 'code_rules'}%> before being made public:</p>
+	<ul>
+		<% @results[:new_with_assessment].each do |name| %>
+			<li><%=name%></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<% if !@results[:needsdescription].empty? %>
+	<%=form_tag(import_add_path) do |f|%>
+		<input type="hidden" name="sync_source_id" value="<%=params[:sync_source_id]%>">
+		<p>The following scripts need a description to be imported:</p>
+		<ul>
+			<% @results[:needsdescription].each do |script| %>
+				<li>
+					<%=script.name%> <input maxlength="500" size="50" name="needsdescription-<%=script.sync_identifier%>">
+					<input id="script-<%=script.sync_identifier%>" type="hidden" name="sync_ids[]" value="<%=script.sync_identifier%>">
+				</li>
+			<% end %>
+		</ul>
+		<%=submit_tag 'Import'%>
+	<% end %>
+<% end %>
+
+<% if !@results[:existing].empty? %>
+	<p>The following scripts had already been imported:</p>
+	<ul>
+		<% @results[:existing].each do |script| %>
+			<li><%=link_to script.name, script%></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<% if !@results[:failure].empty? %>
+	<p>The following scripts could not be imported:</p>
+	<ul>
+		<% @results[:failure].each do |name| %>
+			<li><%=name%></li>
+		<% end %>
+	</ul>
+<% end %>

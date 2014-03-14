@@ -39,9 +39,11 @@ Greasyfork::Application.routes.draw do
 	resources :script_versions, :only => [:create, :new]
 	resources :users, :only => :show
 
-	get 'import', :to => 'import#step1', :as => 'import_start'
-	post 'import-step2', :to => 'import#step2', :as => 'import_step2'
-	post 'import-step3', :to => 'import#step3', :as => 'import_step3'
+	get 'import', :to => 'import#index', :as => 'import_start'
+	get 'import/userscriptsorg', :to => 'import#userscriptsorg', :as => 'import_userscriptsorg'
+	post 'import/verify', :to => 'import#verify', :as => 'import_verify'
+	post 'import/add', :to => 'import#add', :as => 'import_add'
+	get 'import/url', :to => 'import#url', :as => 'import_url'
 
 	get 'help', :to => 'help#index', :as => 'help'
 	get 'help/allowed-markup', :to => 'help#allowed_markup', :as => 'help_allowed_markup'

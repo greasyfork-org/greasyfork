@@ -1,0 +1,32 @@
+<%- title 'Userscripts.org import step 2' %>
+
+<p>userscripts.org account verified. Choose the scripts you would like to import.</p>
+
+<%=form_tag(import_add_path) do |f|%>
+
+	<input type="hidden" name="sync_source_id" value="<%=@importer.sync_source_id%>">
+
+	<% if @new_scripts.empty? %>
+		<p>(None)</p>
+	<% else %>
+		<ul>
+			<% @new_scripts.each do |id, h| %>
+				<li>
+					<input id="script-<%=id%>" type="checkbox" name="sync_ids[]" value="<%=id%>"><label for="script-<%=id%>"><%=h[:name]%></label>
+				</li>
+			<% end %>
+		</ul>
+	<% end %>
+
+	<button class="select-all">Select all</button> <button class="select-none">Select none</button> <%=submit_tag 'Import'%>
+
+<% end %>
+
+<% if !@existing_scripts.empty? %>
+	<p>These scripts have already been imported.</p>
+	<ul>
+		<% @existing_scripts.each do |id, h| %>
+			<li><%=h[:name]%></li>
+		<% end %>
+	</ul>
+<% end %>

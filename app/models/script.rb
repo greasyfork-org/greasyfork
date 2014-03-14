@@ -5,6 +5,7 @@ class Script < ActiveRecord::Base
 	has_many :discussions, -> { readonly.order('DateInserted') }, :class_name => 'ForumDiscussion', :foreign_key => 'ScriptID'
 	has_many :assessments, :dependent => :delete_all
 	belongs_to :script_type
+	belongs_to :script_sync_source
 
 	scope :active, -> {includes(:assessments).where(:assessments => { :id => nil })}
 	scope :listable, -> {active.where(:script_type_id => 1)}

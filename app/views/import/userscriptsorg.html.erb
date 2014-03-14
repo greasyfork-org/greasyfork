@@ -1,8 +1,8 @@
-<%- title 'Userscripts.org import step 1' %>
+<%- title 'Userscripts.org verify account' %>
 
-<p>The import feature lets you automatically copy styles you posted on userscripts.org to Greasy Fork. The first step is to verify that you own a particular account on userscripts.org. To do so:</p>
+<p>You must verify that you own a particular account on userscripts.org. To do so:</p>
 
-<%=form_tag(import_step2_path) do |f|%>
+<%=form_tag(import_verify_path) do |f|%>
 	<ol>
 		<li><a href="http://userscripts.org/login">Sign in to your userscripts.org account.</a></li>
 		<li><a href="http://userscripts.org/home/settings/profile">Edit your bio</a> to include the a link to your Greasy Fork profile, e.g. <code>&lt;a href="<%=user_url(current_user, :only_path => false)%>"&gt;My profile on Greasy Fork&lt;/a&gt;</code></li>
