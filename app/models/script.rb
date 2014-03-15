@@ -6,6 +6,7 @@ class Script < ActiveRecord::Base
 	has_many :assessments, :dependent => :delete_all
 	belongs_to :script_type
 	belongs_to :script_sync_source
+	belongs_to :script_sync_type
 
 	scope :active, -> {includes(:assessments).where(:assessments => { :id => nil })}
 	scope :listable, -> {active.where(:script_type_id => 1)}
@@ -24,11 +25,13 @@ class Script < ActiveRecord::Base
 		record.errors.add(attr, "must not be the same as the name") if value == record.name
 	end
 
+	strip_attributes :only => [:name, :description, :additional_info]
+
 	def apply_from_script_version(script_version)
 		self.additional_info = script_version.additional_info
 		self.additional_info_markup = script_version.additional_info_markup
 
-		meta = ScriptVersion.parse_meta(script_version.code)
+		meta = ScriptVersion.parse_meta(script_version.rewritten_code)
 		self.name = meta.has_key?('name') ? meta['name'].first : nil
 		self.description = meta.has_key?('description') ? meta['description'].first : nil
 

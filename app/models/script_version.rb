@@ -105,7 +105,7 @@ class ScriptVersion < ActiveRecord::Base
 		@namespace_check_override = true
 	end
 
-	def calculate_all
+	def calculate_all(previous_description = nil)
 		meta = ScriptVersion.parse_meta(code)
 		if meta.has_key?('version')
 			self.version = meta['version'].first
@@ -122,17 +122,18 @@ class ScriptVersion < ActiveRecord::Base
 				self.version = nil
 			end
 		end
-		self.rewritten_code = calculate_rewritten_code 
+		self.rewritten_code = calculate_rewritten_code(previous_description)
 	end
 
 	def get_rewritten_meta_block
 		ScriptVersion.get_meta_block(rewritten_code)
 	end
 
-	def calculate_rewritten_code
+	def calculate_rewritten_code(previous_description = nil)
 		add_if_missing = {}
 		backup_namespace = calculate_backup_namespace
 		add_if_missing[:namespace] = backup_namespace if !backup_namespace.nil?
+		add_if_missing[:description] = previous_description if !previous_description.nil?
 		rewritten_meta = inject_meta({
 			:version => version,
 			:updateURL => nil,
@@ -332,6 +333,13 @@ class ScriptVersion < ActiveRecord::Base
 		previous_meta = ScriptVersion.parse_meta(use_rewritten ? previous_script_version.rewritten_code : previous_script_version.code)
 		return nil if previous_meta.nil?
 		return previous_meta[key]
+	end
+
+	# Returns the first meta value matching the passed code, or nil
+	def self.get_first_meta(c, meta_name)
+		meta = ScriptVersion.parse_meta(c)
+		return meta[meta_name].first if meta.has_key?(meta_name)
+		return nil
 	end
 
 private

@@ -57,7 +57,6 @@ module ScriptImporter
 			code.force_encoding(Encoding::UTF_8)
 			sv = ScriptVersion.new
 			sv.code = code
-			sv.code = sv.inject_meta(:description => provided_description) if (!provided_description.nil? and !provided_description.empty?)
 			sv.changelog = "Imported from #{import_source_name}"
 
 			script = Script.new
@@ -67,11 +66,12 @@ module ScriptImporter
 			script.script_sync_type_id = 1
 			script.sync_identifier = sync_id
 			script.last_attempted_sync_date = DateTime.now
+			script.last_successful_sync_date = DateTime.now
 
 			sv.script = script
 			script.script_versions << sv
 			sv.do_lenient_saving
-			sv.calculate_all
+			sv.calculate_all(provided_description)
 			script.apply_from_script_version(sv)
 
 			return [:failure, script, 'Does not appear to be a user script.'] if script.name.nil?

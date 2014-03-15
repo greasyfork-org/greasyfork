@@ -1,8 +1,11 @@
 require 'coderay'
+require 'script_importer/script_syncer'
 
 class ScriptsController < ApplicationController
 	# we'll selectively activate the scripts layout when appropriate
 	layout 'application'
+
+	before_filter :authorize_by_script_id, :only => [:sync, :sync_update]
 
 	def index
 		case params[:sort]
@@ -103,6 +106,28 @@ class ScriptsController < ApplicationController
 		end
 		@diff = Diffy::Diff.new(@old_version.code, @new_version.code).to_s(:html).html_safe
 		render :layout => 'scripts'
+	end
+
+	def sync
+		@script = Script.find(params[:script_id])
+		render :layout => 'scripts'
+	end
+
+	def sync_update
+		script = Script.find(params[:script_id])
+		script.assign_attributes(params.require(:script).permit(:script_sync_type_id, :sync_identifier))
+		script.save!
+		if !params['update-and-sync'].nil?
+			case ScriptImporter::ScriptSyncer.sync(script)
+				when :success
+					flash[:notice] = 'Script successfully synced.'
+				when :unchanged
+					flash[:notice] = 'Script successfully synced, but no changes found.'
+				when :failure
+					flash[:notice] = "Script sync failed - #{script.sync_error}."
+			end
+		end
+		redirect_to script
 	end
 
 private

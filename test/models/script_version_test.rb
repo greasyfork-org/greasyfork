@@ -466,4 +466,41 @@ END
 		assert sv.valid?
 	end
 
+	test 'missing description' do
+		js = <<END
+// ==UserScript==
+// @name		A Test!
+// @namespace		http://example.com/1
+// @version		1
+// ==/UserScript==
+foo.baz();
+END
+		sv = ScriptVersion.new
+		sv.code = js
+		script = Script.new
+		sv.script = script
+		sv.calculate_all(script.description)
+		script.apply_from_script_version(sv)
+		assert script.description.nil?
+		assert !script.valid?
+	end	
+
+	test 'missing description previous had description' do
+		js = <<END
+// ==UserScript==
+// @name		A Test!
+// @namespace		http://example.com/1
+// @version		1
+// ==/UserScript==
+foo.baz();
+END
+		sv = ScriptVersion.new
+		sv.code = js
+		script = Script.find(11)
+		sv.script = script
+		sv.calculate_all(script.description)
+		script.apply_from_script_version(sv)
+		assert_equal 'Unit test.', script.description
+		assert script.valid?
+	end	
 end

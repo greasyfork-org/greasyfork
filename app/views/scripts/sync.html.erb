@@ -1,0 +1,25 @@
+<%=form_for(@script, :url => script_sync_update_path) do |s|%>
+	<% case @script.script_sync_source_id 
+		when 1 %>
+			<p>This script is set up to sync from</p>
+			<%=s.url_field(:sync_identifier)%>
+		<% when 2 %>
+			<p>This script is set up to sync from <a href="http://userscripts.org/scripts/show/<%=@script.sync_identifier%>">an entry on userscripts.org</a>.</p>
+		<% when nil %>
+	<% end 
+	if !@script.script_sync_source_id.nil? %>
+		<div class="radio-group">
+			<%=s.radio_button(:script_sync_type_id, 1)%> <label for="script_script_sync_type_id_1">Manually</label><br>
+			<%=s.radio_button(:script_sync_type_id, 2)%> <label for="script_script_sync_type_id_2">Automatically</label>
+		</div>
+		<% if @script.sync_error.nil? %>
+			<p>Last successful sync was <%=@script.last_successful_sync_date.nil? ? '(unknown)' : markup_date(@script.last_successful_sync_date)%>.</p>
+		<% else %>
+			<p>Last attempted sync was <%=@script.last_attempted_sync_date.nil? ? '(unknown)' : markup_date(@script.last_attempted_sync_date)%>. Result was "<%=@script.sync_error%>". Last successful sync was <%=@script.last_successful_sync_date.nil? ? '(unknown)' : markup_date(@script.last_successful_sync_date)%>.</p>
+		<% end %>
+	<% end %>
+	<p>
+		<input type="submit" name="update-only" value="Update">
+		<input type="submit" name="update-and-sync" value="Update and sync now">
+	</p>
+<% end %>

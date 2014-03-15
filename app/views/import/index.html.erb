@@ -13,7 +13,11 @@
 		<h4>From <%=script_sync_source.name%></h4>
 		<ul>
 			<% scripts.each do |script| %>
-				<li><%=link_to script.name, script%></li>
+				<% if script.sync_error.nil? %>
+					<li class="successful-sync"><%=link_to script.name, script%> - <%=script.script_sync_type.name %> syncing, last synced <%=script.last_successful_sync_date.nil? ? '(unknown)' : markup_date(script.last_successful_sync_date)%></li>
+				<% else %>
+					<li class="failed-sync"><%=link_to script.name, script%> - <%=script.script_sync_type.name %> syncing, last sync attempt <%=script.last_attempted_sync_date.nil? ? '(unknown)' : markup_date(script.last_successful_sync_date)%>, <%=script.sync_error%></li>
+				<% end %>
 			<% end %>
 		</ul>
 	<% end %>

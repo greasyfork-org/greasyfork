@@ -1,3 +1,7 @@
+<% if !script_version.script.script_sync_type_id.nil? %>
+	<p>This script is <%=link_to("set to sync #{script_version.script.script_sync_type_id == 1 ? 'manually' : 'automatically'} from #{script_version.script.script_sync_source_id == 2 ? 'userscripts.org' : script_version.script.sync_identifier}", script_sync_path(script_version.script_id))%>. Any updates you make to the code here will be overwritten when syncing.</p>
+<% end %>
+
 <%=form_for(script_version.script.new_record? ? script_version : [script_version.script, script_version]) do |s|%>
 	<% disallowed_requires = script_version.disallowed_requires_used
 
