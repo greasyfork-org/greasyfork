@@ -115,7 +115,24 @@ class ScriptsController < ApplicationController
 
 	def sync_update
 		script = Script.find(params[:script_id])
+
+		if !params['stop-syncing'].nil?
+			script.script_sync_type_id = nil
+			script.script_sync_source_id = nil
+			script.last_attempted_sync_date = nil
+			script.last_successful_sync_date = nil
+			script.sync_identifier = nil
+			script.sync_error = nil
+			script.save(:validate => false)
+			flash[:notice] = 'Script sync turned off.'
+			redirect_to script
+			return
+		end
+
 		script.assign_attributes(params.require(:script).permit(:script_sync_type_id, :sync_identifier))
+		if script.script_sync_source_id.nil?
+			script.script_sync_source_id = ScriptImporter::ScriptSyncer.get_sync_source_id_for_url(params[:sync_identifier])
+		end
 		script.save!
 		if !params['update-and-sync'].nil?
 			case ScriptImporter::ScriptSyncer.sync(script)

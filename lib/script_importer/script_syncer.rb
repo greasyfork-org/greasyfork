@@ -53,5 +53,9 @@ module ScriptImporter
 			script.sync_error = error
 			script.save(:validate => false)
 		end
+
+		def self.get_sync_source_id_for_url(url)
+			return $IMPORTERS.select{|i| i.can_handle_url(url)}.first.sync_source_id
+		end
 	end
 end

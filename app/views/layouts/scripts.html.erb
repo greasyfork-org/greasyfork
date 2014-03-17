@@ -24,11 +24,9 @@
 				<li<%=current_page?(new_script_script_version_path(@script.id)) ? ' class="current"'.html_safe : ''%>>
 					<%= link_to_unless_current 'Update', new_script_script_version_path(@script.id)%>
 				</li>
-				<% if !@script.script_sync_type_id.nil? %>
-					<li<%=current_page?(script_sync_path(@script.id)) ? ' class="current"'.html_safe : ''%>>
-						<%= link_to_unless_current 'Sync', script_sync_path(@script.id)%>
-					</li>
-				<% end %>
+				<li<%=current_page?(script_sync_path(@script.id)) ? ' class="current"'.html_safe : ''%>>
+					<%= link_to_unless_current 'Sync', script_sync_path(@script.id)%>
+				</li>
 			<% end %>
 		</ul>
 		<%= content_for?(:scripts_content) ? yield(:scripts_content) : yield %>

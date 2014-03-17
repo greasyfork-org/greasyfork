@@ -6,12 +6,17 @@
 		<% when 2 %>
 			<p>This script is set up to sync from <a href="http://userscripts.org/scripts/show/<%=@script.sync_identifier%>">an entry on userscripts.org</a>.</p>
 		<% when nil %>
-	<% end 
-	if !@script.script_sync_source_id.nil? %>
-		<div class="radio-group">
-			<%=s.radio_button(:script_sync_type_id, 1)%> <label for="script_script_sync_type_id_1">Manually</label><br>
-			<%=s.radio_button(:script_sync_type_id, 2)%> <label for="script_script_sync_type_id_2">Automatically</label>
-		</div>
+			<p>Greasy Fork can import scripts that already hosted elsewhere. This lets you do things like have your script available for download in multiple places or have it in version control. To enable syncing for your script, provide a URL: <%=s.url_field(:sync_identifier)%></p>
+	<% end %>
+	<div class="radio-group">
+		<% if @script.script_sync_source_id.nil? 
+			@script.script_sync_type_id = 1 %>
+			Sync the script:<br>
+		<% end %>
+		<%=s.radio_button(:script_sync_type_id, 1)%> <label for="script_script_sync_type_id_1">Manually</label><br>
+		<%=s.radio_button(:script_sync_type_id, 2)%> <label for="script_script_sync_type_id_2">Automatically</label>
+	</div>
+	<% if !@script.script_sync_source_id.nil? %>
 		<% if @script.sync_error.nil? %>
 			<p>Last successful sync was <%=@script.last_successful_sync_date.nil? ? '(unknown)' : markup_date(@script.last_successful_sync_date)%>.</p>
 		<% else %>
@@ -19,7 +24,13 @@
 		<% end %>
 	<% end %>
 	<p>
-		<input type="submit" name="update-only" value="Update">
-		<input type="submit" name="update-and-sync" value="Update and sync now">
+		<% if @script.script_sync_source_id.nil? %>
+			<input type="submit" name="update-and-sync" value="Update and sync now">
+		<% else %>
+			<input type="submit" name="update-only" value="Update">
+			<input type="submit" name="update-and-sync" value="Update and sync now">
+			<input type="submit" name="stop-syncing" value="Turn off syncing for this script">
+		<% end %>
 	</p>
+
 <% end %>
