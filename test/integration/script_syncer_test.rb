@@ -53,4 +53,15 @@ class ScriptSyncerTest < ActiveSupport::TestCase
 		assert_equal 1, script.script_versions.length
 	end
 
+	test 'keep old additional info' do
+		script = Script.find(7)
+		assert_equal 1, script.script_versions.length
+		assert_equal :success, ScriptSyncer.sync(script), script.sync_error
+		assert_equal 2, script.script_versions.length
+		assert_equal 'MyText', script.script_versions.last.additional_info
+		assert_equal 'MyText', script.additional_info
+		assert_equal 'markdown', script.script_versions.last.additional_info_markup
+		assert_equal 'markdown', script.additional_info_markup
+	end
+
 end

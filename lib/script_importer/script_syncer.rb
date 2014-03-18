@@ -14,13 +14,16 @@ module ScriptImporter
 			case status
 				when :success
 					sv = new_script.script_versions.last
-					if sv.code == script.get_newest_saved_script_version.code
+					last_saved_sv = script.get_newest_saved_script_version
+					if sv.code == last_saved_sv.code
 						script.last_attempted_sync_date = DateTime.now
 						script.last_successful_sync_date = script.last_attempted_sync_date
 						script.sync_error = nil
 						script.save(:validate => false)
 						return :unchanged
 					end
+					sv.additional_info = last_saved_sv.additional_info
+					sv.additional_info_markup = last_saved_sv.additional_info_markup
 					sv.script = script
 					sv.do_lenient_saving
 					sv.calculate_all(script.description)
