@@ -5,7 +5,7 @@
 show_diff = @script.script_versions.length > 1
 i = 0
 %>
-<%=form_tag(script_diff_path(params[:script_id]), {:method => :get}) do %>
+<form action="<%=script_diff_path(params[:script_id])%>">
 	<ul>
 		<% @script.script_versions.reverse.each do |sv| %>
 			<li>
@@ -15,10 +15,10 @@ i = 0
 				<% end 
 				i += 1
 				%>
-				<%=link_to sv.created_at, script_path(sv.script, :version => sv.id)%> <%=sv.changelog%></li>
+				<%=link_to sv.version, script_path(sv.script, :version => sv.id)%> <%=sv.changelog%></li>
 		<% end %>
 	</ul>
 	<% if show_diff %>
-		<%= submit_tag 'Diff'%>
+		<%= submit_tag 'Diff', :name => nil%>
 	<% end %>
-<% end %>
+</form>
