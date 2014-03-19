@@ -52,6 +52,10 @@ class ScriptsController < ApplicationController
 		@scripts = Script.under_assessment
 	end
 
+	def reported
+		@scripts = Script.reported
+	end
+
 	def show_code
 		@script, @script_version = versionned_script(params[:script_id], params[:version])
 		if @script.nil?

@@ -12,6 +12,7 @@ class Script < ActiveRecord::Base
 	scope :listable, -> {active.where(:script_type_id => 1)}
 	scope :libraries, -> {active.where(:script_type_id => 3)}
 	scope :under_assessment, -> {joins(:assessments).includes(:user).uniq}
+	scope :reported, -> {joins(:discussions).includes(:user).uniq.where('GDN_Discussion.Rating = 1')}
 
 	validates_presence_of :name, :message => 'is required - specify one with @name'
 	validates_presence_of :description, :message => 'is required - specify one with @description'

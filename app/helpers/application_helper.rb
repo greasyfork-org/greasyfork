@@ -120,6 +120,21 @@ module ApplicationHelper
 		@@markdown.render(text).html_safe
 	end
 
+	def discussion_class(discussion)
+		case discussion.Rating
+			when 0
+				return 'discussion-question'
+			when 1
+				return 'discussion-report'
+			when 2
+				return 'discussion-bad'
+			when 3
+				return 'discussion-ok'
+			when 4
+				return 'discussion-good'
+		end
+	end
+
 private
 
 	def replace_text_with_link(node, original_text, link_text, url)

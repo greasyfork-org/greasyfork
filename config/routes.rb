@@ -34,6 +34,7 @@ Greasyfork::Application.routes.draw do
 			get 'by-site(.:format)', :action => 'by_site', :as => 'site_list'
 			get 'by-site/:site(.:format)', :action => 'index', :as => 'by_site', :constraints => {:site => /.*/}
 			get 'under-assessment(.:format)', :action => 'under_assessment', :as => 'under_assessment'
+			get 'reported(.:format)', :action => 'reported', :as => 'reported'
 			get 'libraries(.:format)', :action => 'libraries', :as => 'libraries'
 		end
 		resources :script_versions, :only => [:create, :new, :show, :index], :path => 'versions'
@@ -51,6 +52,7 @@ Greasyfork::Application.routes.draw do
 	get 'help/allowed-markup', :to => 'help#allowed_markup', :as => 'help_allowed_markup'
 	get 'help/code-rules', :to => 'help#code_rules', :as => 'help_code_rules'
 	get 'help/contact', :to => 'help#contact', :as => 'help_contact'
+	get 'help/credits', :to => 'help#credits', :as => 'help_credits'
 	get 'help/installing-user-scripts', :to => 'help#installing_user_scripts', :as => 'help_installing_user_scripts'
 
 	post 'preview-markup', :to => 'home#preview_markup', :as => 'preview_markup'

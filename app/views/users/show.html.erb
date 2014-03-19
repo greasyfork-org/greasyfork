@@ -22,7 +22,7 @@ if same_user %>
 			<% else %>
 				<ul class="discussion-list">
 					<% dosr.reverse.take(10).each do |d| %>
-						<li><%=link_to d.name, d.url, {:rel => 'nofollow'}%> by <%=link_to d.original_poster.name, user_path(d.original_poster), {:rel => 'nofollow'}%>, last comment <%=markup_date(d.updated)%></li>
+						<li class="<%=discussion_class(d)%>"><%=link_to d.name, d.url, {:rel => 'nofollow'}%> by <%=link_to d.original_poster.name, user_path(d.original_poster), {:rel => 'nofollow'}%>, last comment <%=markup_date(d.updated)%></li>
 					<% end %>
 				</ul>
 			<% end %>

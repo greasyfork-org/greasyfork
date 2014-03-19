@@ -6,7 +6,7 @@
 <% else %>
 	<ul id="discussions">
 		<% @script.discussions.reverse.each do |discussion| %>
-			<li><%=link_to discussion.name, discussion.url, {:rel => 'nofollow'}%> by <%=link_to discussion.original_poster.name, user_path(discussion.original_poster), {:rel => 'nofollow'}%><%if !discussion.created.nil?%>, <%=markup_date(discussion.created)%><% end %></li>
+			<li class="<%=discussion_class(discussion)%>"><%=link_to discussion.name, discussion.url, {:rel => 'nofollow'}%> by <%=link_to discussion.original_poster.name, user_path(discussion.original_poster), {:rel => 'nofollow'}%><%if !discussion.created.nil?%>, <%=markup_date(discussion.created)%><% end %></li>
 		<% end %>
 	</ul>
 
