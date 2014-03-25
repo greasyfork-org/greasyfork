@@ -106,6 +106,7 @@ class ScriptVersion < ActiveRecord::Base
 	end
 
 	def calculate_all(previous_description = nil)
+		normalize_code
 		meta = ScriptVersion.parse_meta(code)
 		if meta.has_key?('version')
 			self.version = meta['version'].first
@@ -259,6 +260,12 @@ class ScriptVersion < ActiveRecord::Base
 			end
 		end
 		return applies_to_names.uniq
+	end
+
+	def normalize_code
+		# use \n for linefeeds
+		code.gsub!("\r\n", "\n")
+		code.gsub!("\r", "\n")
 	end
 
 	# Returns the meta for this script in a hash of key to array of values

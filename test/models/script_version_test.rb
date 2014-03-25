@@ -503,4 +503,14 @@ END
 		assert_equal 'Unit test.', script.description
 		assert script.valid?
 	end	
+
+	test 'linebreak only update code without changing version' do
+		script = Script.find(3)
+		assert script.valid? and script.script_versions.length == 1 and script.script_versions.first.valid?
+		sv = ScriptVersion.new
+		sv.code = script.script_versions.first.code.gsub("\n", "\r\n")
+		sv.script = script
+		sv.calculate_all
+		assert sv.valid?
+	end
 end
