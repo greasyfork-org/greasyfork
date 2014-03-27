@@ -15,7 +15,10 @@ i = 0
 				<% end 
 				i += 1
 				%>
-				<%=link_to sv.version, script_path(sv.script, :version => sv.id)%> <%=sv.changelog%></li>
+				<%=link_to 'v' + sv.version, script_path(sv.script, :version => sv.id)%> 
+				<%=markup_date(sv.created_at)%>
+				<%=sv.changelog%>
+			</li>
 		<% end %>
 	</ul>
 	<% if show_diff %>
