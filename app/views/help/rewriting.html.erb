@@ -1,0 +1,11 @@
+<%- title 'Script rewriting' %>
+<%- description 'A list of ways Greasy Fork may rewrite scripts.' %>
+
+<p>Scripts posted to Greasy Fork may be rewritten in the following ways:</p>
+
+<ul>
+	<li><code>@updateURL</code>, <code>@installURL</code>, and <code>@downloadURL</code> directives will be stripped, if present. The lack of these directives means that any script installed from Greasy Fork will be updated from Greasy Fork.</li>
+	<li><code>@version</code> and <code>@namespace</code> directives will inserted if the script is missing them. These directives are needed for proper updating.</li>
+	<li><code>@description</code> will be inserted if a new version of a script is missing it and a previous version of the script had it.</li>
+	<li>Line breaks will be converted to Unix-style line breaks (\n).</li>
+</ul>
