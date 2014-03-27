@@ -55,6 +55,7 @@ module ScriptImporter
 				return [:failure, nil, "Could not download source. #{ex.message}"]
 			end
 			code.force_encoding(Encoding::UTF_8)
+			return [:failure, nil, "Source contains invalid UTF-8 characters."] if !code.valid_encoding?
 			sv = ScriptVersion.new
 			sv.code = code
 			sv.changelog = "Imported from #{import_source_name}"

@@ -10,7 +10,12 @@ module ScriptImporter
 		def self.sync(script)
 			importer = $IMPORTERS.select{|i| i.sync_source_id == script.script_sync_source_id}.first
 			# pass the description in so we retain it if it's missing
-			status, new_script, message = importer.generate_script(script.sync_identifier, script.description, script.user)
+			begin
+				status, new_script, message = importer.generate_script(script.sync_identifier, script.description, script.user)
+			rescue Exception => ex
+				status = :failure
+				message = ex
+			end
 			case status
 				when :success
 					sv = new_script.script_versions.last
