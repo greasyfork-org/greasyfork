@@ -78,20 +78,20 @@ class ScriptsController < ApplicationController
 	end
 
 	def user_js
-		script = Script.find(params[:script_id])
+		script, script_version = versionned_script(params[:script_id], params[:version])
 		respond_to do |format|
 			format.any(:html, :all, :js) {
-				render :text => script.get_newest_saved_script_version.rewritten_code, :content_type => 'text/javascript'
+				render :text => script_version.rewritten_code, :content_type => 'text/javascript'
 			}
 			format.user_script_meta { 
-				render :text => script.get_newest_saved_script_version.get_rewritten_meta_block, :content_type => 'text/x-userscript-meta'
+				render :text => script_version.get_rewritten_meta_block, :content_type => 'text/x-userscript-meta'
 			}
 		end
 	end
 
 	def meta_js
-		script = Script.find(params[:script_id])
-		render :text => script.script_versions.last.get_rewritten_meta_block, :content_type => 'text/javascript'
+		script, script_version = versionned_script(params[:script_id], params[:version])
+		render :text => script_version.get_rewritten_meta_block, :content_type => 'text/javascript'
 	end
 
 	def install_ping
