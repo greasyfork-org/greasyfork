@@ -1,0 +1,1 @@
+ThinkingSphinx::Connection.persistent = false

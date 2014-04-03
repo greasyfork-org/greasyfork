@@ -2,9 +2,12 @@ module ScriptsHelper
 
 	def script_list_link(label, sort = nil, site = nil)
 		is_link = true
-		if sort == params[:sort] and site == params[:site]
+		is_search = action_name == 'search'
+		if sort == params[:sort] and (is_search or site == params[:site])
 			l = label
 			is_link = false
+		elsif is_search
+			l = link_to label, search_scripts_path(:sort => sort, :q => params[:q])
 		elsif site.nil?
 			l = link_to label, scripts_path(:sort => sort)
 		else

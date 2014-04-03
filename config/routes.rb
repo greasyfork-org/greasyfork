@@ -36,6 +36,7 @@ Greasyfork::Application.routes.draw do
 			get 'under-assessment(.:format)', :action => 'under_assessment', :as => 'under_assessment'
 			get 'reported(.:format)', :action => 'reported', :as => 'reported'
 			get 'libraries(.:format)', :action => 'libraries', :as => 'libraries'
+			get 'search(.:format)', :action => 'search', :as => 'search'
 		end
 		resources :script_versions, :only => [:create, :new, :show, :index], :path => 'versions'
 	end

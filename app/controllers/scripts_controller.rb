@@ -8,22 +8,7 @@ class ScriptsController < ApplicationController
 	before_filter :authorize_by_script_id, :only => [:sync, :sync_update]
 
 	def index
-		case params[:sort]
-			when 'total_installs'
-				sort = 'total_installs DESC, scripts.id'
-			when 'created'
-				sort = 'scripts.created_at DESC, scripts.id'
-			when 'updated'
-				sort = 'scripts.code_updated_at DESC, scripts.id'
-			else
-				params[:sort] = nil
-				sort = 'daily_installs DESC, scripts.id'
-		end
-
-		per_page = 50
-		per_page = [params[:per_page].to_i, 200].min if !params[:per_page].nil? and params[:per_page].to_i > 0
-
-		@scripts = Script.listable.includes(:user).order(sort).paginate(:page => params[:page], :per_page => per_page)
+		@scripts = Script.listable.includes(:user).order(get_sort).paginate(:page => params[:page], :per_page => get_per_page)
 		if !params[:site].nil?
 			@scripts = @scripts.joins(:script_applies_tos).where(['display_text = ?', params[:site]])
 		end
@@ -32,6 +17,24 @@ class ScriptsController < ApplicationController
 
 	def by_site
 		@by_sites = get_by_sites
+	end
+
+	def search
+		if params[:q].nil? or params[:q].empty?
+			redirect_to scripts_path
+			return
+		end
+		begin
+			@scripts = Script.search params[:q], :match_mode => :extended, :page => params[:page],:per_page => get_per_page, :order => get_sort(true), :populate => true
+			# make it run now so we can catch syntax errors
+			@scripts.empty?
+		rescue ThinkingSphinx::SyntaxError => e
+			flash[:alert] = "Invalid search query - '#{params[:q]}'."
+			# back to the main listing
+			redirect_to scripts_path
+			return
+		end
+		render :action => 'index'
 	end
 
 	def show
@@ -157,6 +160,33 @@ private
 		# regexps are eliminated because they're not useful to look at and the link doesn't work anyway (due to
 		# the leading slash?)
 		return ScriptAppliesTo.joins(:script).select('display_text, count(*) script_count').group('display_text').order('script_count DESC, display_text').where('display_text NOT LIKE "/%" and script_type_id = 1')
+	end
+
+	def get_per_page
+		per_page = 50
+		per_page = [params[:per_page].to_i, 200].min if !params[:per_page].nil? and params[:per_page].to_i > 0
+		return per_page
+	end
+
+	def get_sort(for_sphinx = false)
+		# sphinx has these defined as attributes, outside of sphinx they're possibly ambiguous column names
+		column_prefix = for_sphinx ? '' : 'scripts.'
+		case params[:sort]
+			when 'total_installs'
+				return "#{column_prefix}total_installs DESC, #{column_prefix}id"
+			when 'created'
+				return "#{column_prefix}created_at DESC, #{column_prefix}id"
+			when 'updated'
+				return "#{column_prefix}code_updated_at DESC, #{column_prefix}id"
+			when 'daily_installs'
+				return "#{column_prefix}daily_installs DESC, #{column_prefix}id"
+			else
+				params[:sort] = nil
+				if for_sphinx
+					return ''#"myweight DESC, #{column_prefix}id"
+				end
+				return "#{column_prefix}daily_installs DESC, #{column_prefix}id"
+		end
 	end
 
 end
