@@ -77,7 +77,7 @@ var foo = 'bar';
 // ==/UserScript==
 foo.baz();
 END
-		assert_equal "var foo = 'bar';\n\nfoo.baz();\n", ScriptVersion.get_code_block(js)
+		assert_equal "\nvar foo = 'bar';\n\nfoo.baz();\n", ScriptVersion.get_code_block(js)
 	end
 
 	test 'get code block with no meta' do
@@ -221,6 +221,22 @@ END
 		sv.code = js
 		sv.version = '123'
 		assert_nil sv.calculate_rewritten_code
+	end
+
+	test 'calculate rewritten meta not at top' do
+		script = Script.find(12)
+		expected_js = <<END
+// ==UserScript==
+// @name		A Test!
+// @namespace		http://example.com/1
+// @description		Unit test.
+// @version		1
+// ==/UserScript==
+/* License info is here */
+
+foo.baz();
+END
+		assert_equal expected_js, script.script_versions.first.calculate_rewritten_code
 	end
 
 	test 'validate require disallowed' do

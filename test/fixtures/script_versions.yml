@@ -145,3 +145,17 @@ previous_with_description:
     // ==/UserScript==
     foo.baz();
   version: 1
+
+meta_not_at_top:
+  script_id: 12
+  code: |
+    /* License info is here */
+    // ==UserScript==
+    // @name		A Test!
+    // @namespace		http://example.com/1
+    // @description		Unit test.
+    // @version		1
+    // ==/UserScript==
+    foo.baz();
+  rewritten_code: whatevs
+  version: 1

@@ -301,7 +301,8 @@ class ScriptVersion < ActiveRecord::Base
 		meta_start = c.index(@@meta_start_comment)
 		return c if meta_start.nil?
 		meta_end = c.index(@@meta_end_comment, meta_start) + @@meta_end_comment.length
-		return (meta_start == 0 ? '' : c[0..meta_start-1]) + c[meta_end..c.length]
+		# The meta block does not include the final line break on its closing line - that's assigned to the post-meta code block. If there's a pre-meta code block, we need to add a line break before it to prevent the meta closing tag and the first code line from being on the same line.
+		return (meta_start == 0 ? '' : ("\n" + c[0..meta_start-1])) + c[meta_end..c.length]
 	end
 
 	def disallowed_requires_used
