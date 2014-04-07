@@ -9,7 +9,7 @@ Script.find_each do |script|
 	begin
 		script.save(:validate => false)
 		sv.save(:validate => false)
-	rescue ex
+	rescue Exception => ex
 		puts "#{script.id} not saved - #{ex}"
 	else
 		puts "#{script.id} saved"
