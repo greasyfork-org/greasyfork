@@ -6,6 +6,7 @@ class ScriptsController < ApplicationController
 	layout 'application'
 
 	before_filter :authorize_by_script_id, :only => [:sync, :sync_update]
+	skip_before_action :verify_authenticity_token, :only => [:install_ping]
 
 	def index
 		@scripts = Script.listable.includes(:user).order(get_sort).paginate(:page => params[:page], :per_page => get_per_page)
@@ -98,6 +99,11 @@ class ScriptsController < ApplicationController
 	end
 
 	def install_ping
+		# verify for CSRF, but do it in a way that avoids an exception. Prevents monitoring from going nuts.
+		if !verified_request?
+			render :nothing => true, :status => 422
+			return
+		end
 		Script.record_install(params[:script_id], request.remote_ip)
 		render :nothing => true, :status => 204
 	end
