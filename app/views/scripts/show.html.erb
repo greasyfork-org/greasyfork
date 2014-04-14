@@ -8,7 +8,13 @@
 				<%=link_to 'Install', script_user_js_path(@script, :version => params[:version]), {:class => 'install-link', 'data-ping-url' => url_for(script_install_ping_path(@script, :authenticity_token => session[:_csrf_token])), 'data-is-previous-version' => !params[:version].nil?}%><br><%=link_to 'How to install', help_installing_user_scripts_path, {:class => 'install-help-link'}%>
 			</div>
 		<% when 3 %>
-			<p>This script is a library and should not be installed directly.</p>
+			<p>
+				This script should not be not be installed directly. It is a library for other scripts to include the meta directive
+				<% if params[:version].nil? %>
+					<code>// @require <%=script_user_js_path(@script, :version => @script_version.id, :only_path => false)%></code></p>
+				<% else %>
+					<code>// @require <%=script_user_js_path(@script, :version => params[:version], :only_path => false)%></code></p>
+				<% end %>
 		<% when 4 %>
 			<p>This script has been deleted.</p>
 	<% end %>

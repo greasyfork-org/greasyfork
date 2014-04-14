@@ -50,6 +50,8 @@ protected
 		script.updated_at = script_version.updated_at
 		# this is not necessarily accurate, as the revision the user picked may not have involved a code update
 		script.code_updated_at = script_version.updated_at
+		# this is not versionned information
+		script.script_type_id = current_script.script_type_id
 		return [script, script_version]
 	end
 
