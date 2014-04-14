@@ -55,4 +55,18 @@ protected
 		return [script, script_version]
 	end
 
+	def redirect_to_slug(resource, id_param_name)
+		if resource.nil?
+			# no good
+			render :status => 404
+			return
+		end
+		correct_id = resource.to_param
+		if correct_id != params[id_param_name]
+			params[id_param_name] = correct_id
+			redirect_to params, :status => 301
+			return true
+		end
+		return false
+	end
 end

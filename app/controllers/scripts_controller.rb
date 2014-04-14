@@ -2,11 +2,14 @@ require 'coderay'
 require 'script_importer/script_syncer'
 
 class ScriptsController < ApplicationController
-	# we'll selectively activate the scripts layout when appropriate
-	layout 'application'
+	layout 'application', :except => [:show, :show_code, :feedback, :diff, :sync]
 
 	before_filter :authorize_by_script_id, :only => [:sync, :sync_update]
 	skip_before_action :verify_authenticity_token, :only => [:install_ping]
+
+	#########################
+	# Collections
+	#########################
 
 	def index
 		@scripts = Script.listable.includes(:user).order(get_sort).paginate(:page => params[:page], :per_page => get_per_page)
@@ -38,16 +41,6 @@ class ScriptsController < ApplicationController
 		render :action => 'index'
 	end
 
-	def show
-		@script, @script_version = versionned_script(params[:id], params[:version])
-		if @script.nil?
-			# no good
-			render :status => 404
-			return
-		end
-		render :layout => 'scripts'
-	end
-
 	def libraries
 		@scripts = Script.libraries
 	end
@@ -60,25 +53,24 @@ class ScriptsController < ApplicationController
 		@scripts = Script.reported
 	end
 
+	#########################
+	# Single resource
+	#########################
+
+	def show
+		@script, @script_version = versionned_script(params[:id], params[:version])
+		return if redirect_to_slug(@script, :id)
+	end
+
 	def show_code
 		@script, @script_version = versionned_script(params[:script_id], params[:version])
-		if @script.nil?
-			# no good
-			render :status => 404
-			return
-		end
+		return if redirect_to_slug(@script, :script_id)
 		@code = @script_version.code
-		render :layout => 'scripts'
 	end
 
 	def feedback
 		@script, @script_version = versionned_script(params[:script_id], params[:version])
-		if @script.nil?
-			# no good
-			render :status => 404
-			return
-		end
-		render :layout => 'scripts'
+		return if redirect_to_slug(@script, :script_id)
 	end
 
 	def user_js
@@ -110,20 +102,20 @@ class ScriptsController < ApplicationController
 
 	def diff
 		@script = Script.find(params[:script_id])
+		return if redirect_to_slug(@script, :script_id)
 		versions = [params[:v1].to_i, params[:v2].to_i]
 		@old_version = ScriptVersion.find(versions.min)
 		@new_version = ScriptVersion.find(versions.max)
 		if @old_version.nil? or @new_version.nil? or @old_version.script_id != @script.id or @new_version.script_id != @script.id
-			render :text => 'Invalid versions provided.', :status => 400, :layout => 'scripts'
+			render :text => 'Invalid versions provided.', :status => 400, :layout => true
 			return
 		end
 		@diff = Diffy::Diff.new(@old_version.code, @new_version.code).to_s(:html).html_safe
-		render :layout => 'scripts'
 	end
 
 	def sync
 		@script = Script.find(params[:script_id])
-		render :layout => 'scripts'
+		return if redirect_to_slug(@script, :script_id)
 	end
 
 	def sync_update

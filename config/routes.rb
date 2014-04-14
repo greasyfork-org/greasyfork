@@ -22,8 +22,12 @@ Greasyfork::Application.routes.draw do
 	root :to => "home#index"
 
 	resources :scripts, :only => [:index, :show] do
-		get 'code.user.js', :to => 'scripts#user_js', :as =>  'user_js'
-		get 'code.meta.js', :to => 'scripts#meta_js', :as =>  'meta_js'
+		# Deprecated after https://github.com/JasonBarnabe/greasyfork/issues/76
+		get 'code.meta.js', :to => 'scripts#meta_js'
+		get 'code.user.js', :to => 'scripts#user_js'
+
+		get 'code/:name.user.js', :to => 'scripts#user_js', :as =>  'user_js'
+		get 'code/:name.meta.js', :to => 'scripts#meta_js', :as =>  'meta_js'
 		get 'code(.:format)', :to => 'scripts#show_code', :as =>  'show_code'
 		get 'feedback(.:format)', :to => 'scripts#feedback', :as =>  'feedback'
 		get 'sync(.:format)', :to => 'scripts#sync', :as =>  'sync'

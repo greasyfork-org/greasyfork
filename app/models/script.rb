@@ -67,4 +67,29 @@ class Script < ActiveRecord::Base
 		assessments.empty?
 	end
 
+	def slugify(name)
+		# take out swears
+		r = name.downcase.gsub(/motherfucking|motherfucker|fucking|fucker|fucks|fuck|shitty|shits|shit|niggers|nigger|cunts|cunt/, '')
+		# multiple non-alphas into one
+		r.gsub!(/([^[:alnum:]])[^[:alnum:]]+/) {|s| $1}
+		# leading non-alphas
+		r.gsub!(/^[^[:alnum:]]+/, '')
+		# trailing non-alphas
+		r.gsub!(/[^[:alnum:]]+$/, '')
+		# non-alphas into dashes
+		r.gsub!(/[^[:alnum:]]/, '-')
+		# use "script" if we don't have something suitable
+		r = 'script' if r.empty?
+		return r
+	end
+
+	# Full name minus URL-y characters
+	def url_name
+		return name.gsub(/[\?\&\/\#\.]+/, '')
+	end
+
+	def to_param
+		"#{id}-#{slugify(name)}"
+	end
+
 end

@@ -9,6 +9,7 @@ class UsersController < ApplicationController
 			@user = @user.includes(:scripts)
 		end
 		@user = @user.find(params[:id])
+		return if redirect_to_slug(@user, :id)
 	end
 
 end
