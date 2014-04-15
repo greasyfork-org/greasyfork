@@ -32,7 +32,12 @@ class ImportController < ApplicationController
 				render :text => "Greasy Fork URL found on #{@importer.import_source_name} profile, but it wasn\'t yours.", :layout => true
 				return
 		end
-		@new_scripts, @existing_scripts = @importer.pull_script_list(url)
+		begin
+			@new_scripts, @existing_scripts = @importer.pull_script_list(url)
+		rescue OpenURI::HTTPError => ex
+			render :text => "Could not download script list. '#{ex}' accessing #{url}.", :layout => true
+			return
+		end
 		if @new_scripts.empty? and @existing_scripts.empty?
 			render :text => "No scripts found on #{@importer.import_source_name}", :layout => true
 			return
