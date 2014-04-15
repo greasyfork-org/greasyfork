@@ -47,7 +47,7 @@ end
 gem 'devise'
 gem 'therubyracer'
 gem 'mysql2'
-gem 'diffy'
+gem 'diffy', '~> 3.0.4'
 gem 'sanitize'
 gem 'newrelic_rpm'
 gem 'will_paginate'
