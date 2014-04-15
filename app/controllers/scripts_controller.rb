@@ -96,7 +96,8 @@ class ScriptsController < ApplicationController
 			render :nothing => true, :status => 422
 			return
 		end
-		Script.record_install(params[:script_id], request.remote_ip)
+		# strip the slug
+		Script.record_install(params[:script_id].to_i.to_s, request.remote_ip)
 		render :nothing => true, :status => 204
 	end
 
