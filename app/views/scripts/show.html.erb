@@ -11,9 +11,9 @@
 			<p>
 				This script should not be not be installed directly. It is a library for other scripts to include the meta directive
 				<% if params[:version].nil? %>
-					<code>// @require <%=script_user_js_path(@script, :version => @script_version.id, :name => @script.url_name, :only_path => false)%></code></p>
+					<code>// @require <%=script_library_js_path(@script, :version => @script_version.id, :name => @script.url_name, :only_path => false)%></code></p>
 				<% else %>
-					<code>// @require <%=script_user_js_path(@script, :version => params[:version], :name => @script.url_name, :only_path => false)%></code></p>
+					<code>// @require <%=script_library_js_path(@script, :version => params[:version], :name => @script.url_name, :only_path => false)%></code></p>
 				<% end %>
 		<% when 4 %>
 			<p>This script has been deleted.</p>

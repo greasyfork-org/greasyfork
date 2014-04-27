@@ -27,6 +27,7 @@ Greasyfork::Application.routes.draw do
 		get 'code.user.js', :to => 'scripts#user_js'
 
 		get 'code/:name.user.js', :to => 'scripts#user_js', :as =>  'user_js'
+		get 'code/:name.js', :to => 'scripts#user_js', :as =>  'library_js'
 		get 'code/:name.meta.js', :to => 'scripts#meta_js', :as =>  'meta_js'
 		get 'code(.:format)', :to => 'scripts#show_code', :as =>  'show_code'
 		get 'feedback(.:format)', :to => 'scripts#feedback', :as =>  'feedback'
