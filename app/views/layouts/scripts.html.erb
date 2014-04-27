@@ -28,6 +28,13 @@
 					<%= link_to_unless_current 'Sync', script_sync_path(@script.id)%>
 				</li>
 			<% end %>
+			<% if !current_user.nil? and current_user.moderator? %>
+				<% if @script.moderator_deleted %>
+					<%= link_to_unless_current 'Moderator Undelete', script_moderator_delete_path(@script.id)%>
+				<% else %>
+					<%= link_to_unless_current 'Moderator Delete', script_moderator_delete_path(@script.id)%>
+				<% end %>
+			<% end %>
 		</ul>
 		<%= content_for?(:scripts_content) ? yield(:scripts_content) : yield %>
 	</section>

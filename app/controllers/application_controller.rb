@@ -20,6 +20,24 @@ protected
 		render_access_denied if current_user.nil? or (!params[:script_id].nil? and Script.find(params[:script_id]).user_id != current_user.id)
 	end
 
+	def check_for_moderator_deleted(script)
+		render_deleted if !script.nil? and script.moderator_deleted and (current_user.nil? or !current_user.moderator?)
+	end
+
+	def check_for_moderator_deleted_by_id
+		return if params[:id].nil?
+		check_for_moderator_deleted(Script.find(params[:id]))
+	end
+
+	def check_for_moderator_deleted_by_script_id
+		return if params[:script_id].nil?
+		check_for_moderator_deleted(Script.find(params[:script_id]))
+	end
+
+	def render_deleted
+		render :text => 'Script has been deleted.', :status => 410, :layout => 'application'
+	end
+
 	def render_access_denied
 		render :text => 'Access denied.', :status => 403, :layout => true
 	end

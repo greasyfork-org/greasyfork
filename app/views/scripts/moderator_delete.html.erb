@@ -1,0 +1,17 @@
+<% if @script.moderator_deleted %>
+	<%=form_tag(script_moderator_do_undelete_path) do |f|%>
+		<p>
+			<label for="reason">Why are you undeleting this?</label><br>
+			<textarea id="reason" name="reason" rows="5" cols="100" maxlength="500" required></textarea>
+		</p>
+		<input type="submit" value="Undelete">
+	<% end %>
+<% else %>
+	<%=form_tag(script_moderator_do_delete_path) do |f|%>
+		<p>
+			<label for="reason">Why are you deleting this?</label><br>
+			<textarea id="reason" name="reason" rows="5" cols="100" maxlength="500" required></textarea>
+		</p>
+		<input type="submit" value="Delete">
+	<% end %>
+<% end %>

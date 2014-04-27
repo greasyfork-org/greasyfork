@@ -9,7 +9,7 @@ ThinkingSphinx::Index.define :script, :with => :active_record, :delta => Thinkin
 	# attributes
 	has :id, :created_at, :code_updated_at, :total_installs, :daily_installs
 
-	where 'script_type_id = 1'
+	where 'script_type_id = 1 and moderator_deleted = false'
 
 	set_property :field_weights => {
 		:name => 10,

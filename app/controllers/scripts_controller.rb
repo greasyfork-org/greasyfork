@@ -2,9 +2,11 @@ require 'coderay'
 require 'script_importer/script_syncer'
 
 class ScriptsController < ApplicationController
-	layout 'application', :except => [:show, :show_code, :feedback, :diff, :sync]
+	layout 'application', :except => [:show, :show_code, :feedback, :diff, :sync, :moderator_delete]
 
 	before_filter :authorize_by_script_id, :only => [:sync, :sync_update]
+	before_filter :check_for_moderator_deleted_by_id, :only => [:show]
+	before_filter :check_for_moderator_deleted_by_script_id, :except => [:show]
 	skip_before_action :verify_authenticity_token, :only => [:install_ping]
 
 	#########################
@@ -150,6 +152,36 @@ class ScriptsController < ApplicationController
 					flash[:notice] = "Script sync failed - #{script.sync_error}."
 			end
 		end
+		redirect_to script
+	end
+
+	def moderator_delete
+		@script = Script.find(params[:script_id])
+	end
+
+	def moderator_do_delete
+		script = Script.find(params[:script_id])
+		ma = ModeratorAction.new
+		ma.moderator = current_user
+		ma.script = script
+		ma.action = 'Delete'
+		ma.reason = params[:reason]
+		ma.save!
+		script.moderator_deleted = true
+		script.save(:validate => false)
+		redirect_to script
+	end
+
+	def moderator_do_undelete
+		script = Script.find(params[:script_id])
+		ma = ModeratorAction.new
+		ma.moderator = current_user
+		ma.script = script
+		ma.action = 'Undelete'
+		ma.reason = params[:reason]
+		ma.save!
+		script.moderator_deleted = false
+		script.save(:validate => false)
 		redirect_to script
 	end
 

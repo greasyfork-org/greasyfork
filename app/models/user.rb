@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
 	#this results in a cartesian join when included with the scripts relation
 	#has_many :discussions, through: :scripts
 
+	has_and_belongs_to_many :roles
+
 	# Include default devise modules. Others available are:
 	# :confirmable, :lockable, :timeoutable and :omniauthable
 	devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
@@ -37,6 +39,10 @@ class User < ActiveRecord::Base
 
 	def to_param
 		"#{id}-#{slugify(name)}"
+	end
+
+	def moderator?
+		!roles.select { |role| role.name == 'Moderator' }.empty?
 	end
 
 end

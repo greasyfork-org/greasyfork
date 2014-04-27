@@ -2,6 +2,7 @@ class ScriptVersionsController < ApplicationController
 
 	before_filter :authenticate_user!, :except => [:index]
 	before_filter :authorize_by_script_id, :except => [:index]
+	before_filter :check_for_moderator_deleted_by_script_id
 
 	layout 'scripts', only: [:index]
 

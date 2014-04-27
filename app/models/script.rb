@@ -8,7 +8,7 @@ class Script < ActiveRecord::Base
 	belongs_to :script_sync_source
 	belongs_to :script_sync_type
 
-	scope :active, -> {includes(:assessments).where(:assessments => { :id => nil })}
+	scope :active, -> {includes(:assessments).where(:assessments => { :id => nil }).where(:moderator_deleted => false)}
 	scope :listable, -> {active.where(:script_type_id => 1)}
 	scope :libraries, -> {active.where(:script_type_id => 3)}
 	scope :under_assessment, -> {joins(:assessments).includes(:user).uniq}
