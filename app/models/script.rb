@@ -2,7 +2,7 @@ class Script < ActiveRecord::Base
 	belongs_to :user
 	has_many :script_versions
 	has_many :script_applies_tos, :dependent => :delete_all
-	has_many :discussions, -> { readonly.order('DateInserted') }, :class_name => 'ForumDiscussion', :foreign_key => 'ScriptID'
+	has_many :discussions, -> { readonly.order('DateInserted').where('Closed = 0') }, :class_name => 'ForumDiscussion', :foreign_key => 'ScriptID'
 	has_many :assessments, :dependent => :delete_all
 	belongs_to :script_type
 	belongs_to :script_sync_source
