@@ -11,6 +11,20 @@ if same_user %>
 		<li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete  %></li>
 	</ul>
 
+	<% if @user.moderator? %>
+		<section id="moderator-actions">
+			<header>
+				<h3>Moderator actions</h3>
+			</header>
+			<ul>
+				<li><%=link_to "Reported scripts: #{Script.reported.count}", reported_scripts_path%></li>
+				<% if @user.administrator? %>
+					<li><%=link_to "Under assessment: #{Script.under_assessment.count}", under_assessment_scripts_path%></li>
+				<% end %>
+			</ul>
+		</section>
+	<% end %>
+
 	<% if !@user.scripts.empty? 
 		dosr = @user.discussions_on_scripts_written %>
 		<section id="user-discussions-on-scripts-written">

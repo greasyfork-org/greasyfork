@@ -45,4 +45,8 @@ class User < ActiveRecord::Base
 		!roles.select { |role| role.name == 'Moderator' }.empty?
 	end
 
+	def administrator?
+		!roles.select { |role| role.name == 'Moderator' }.empty?
+	end
+
 end
