@@ -124,11 +124,14 @@ nav li + li {
 	clear: left;
 }
 
+.form-control {
+	margin-bottom: 1em;
+}
 .form-control textarea {
 	width: 100%;
 	height: 20em;
 }
-.form-control input:not([type=radio]) {
+.form-control input:not([type=radio]):not([type=file]) {
 	width: 100%;
 }
 .radio-group input[type=radio] {

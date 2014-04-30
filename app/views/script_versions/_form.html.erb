@@ -2,7 +2,7 @@
 	<p>This script is <%=link_to("set to sync #{script_version.script.script_sync_type_id == 1 ? 'manually' : 'automatically'} from #{script_version.script.script_sync_source_id == 2 ? 'userscripts.org' : script_version.script.sync_identifier}", script_sync_path(script_version.script_id))%>. Any updates you make to the code here will be overwritten when syncing.</p>
 <% end %>
 
-<%=form_for(script_version.script.new_record? ? script_version : [script_version.script, script_version]) do |s|%>
+<%=form_for(script_version.script.new_record? ? script_version : [script_version.script, script_version], {:html => {:enctype => 'multipart/form-data'}}) do |s|%>
 	<% disallowed_requires = script_version.disallowed_requires_used
 
 	if !script_version.errors.empty? or !script_version.script.errors.empty? %>
@@ -53,6 +53,7 @@
 	<div class="form-control">
 		<label for="code">Code</label> <%=link_to '(Read the rules)', help_code_rules_path, {:target => 'code_rules', :class => 'label-note'}%><br>
 		<%=s.text_area(:code)%>
+		<div>Or upload: <input type="file" name="code_upload" id="code-upload" accept="text/javascript,application/javascript"></div>
 	</div>
 	<% if !script_version.script.new_record? %>
 		<div class="form-control">

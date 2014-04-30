@@ -41,8 +41,19 @@ class ScriptVersionsController < ApplicationController
 		end
 
 		@script_version.script = @script
-		@script_version.calculate_all
 		@script.script_type_id = params['script']['script_type_id']
+
+		if !params[:code_upload].nil?
+			uploaded_content = params[:code_upload].read
+			if !uploaded_content.force_encoding("UTF-8").valid_encoding?
+				@script_version.errors.add(:code, 'uploaded must be UTF-8 text')
+				render :new
+				return
+			end
+			@script_version.code = uploaded_content
+		end
+
+		@script_version.calculate_all
 		@script.apply_from_script_version(@script_version)
 
 		# ensure all validations are run - short circuit the OR
