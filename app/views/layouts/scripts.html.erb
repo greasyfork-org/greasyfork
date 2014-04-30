@@ -18,7 +18,7 @@
 				<%= link_to_unless_current 'Versions', script_script_versions_path(@script, :version => params[:version])%>
 			</li>
 			<li<%=current_page?(script_feedback_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>>
-				<%= link_to_unless_current 'Feedback', script_feedback_path(@script, :version => params[:version])%>
+				<%= link_to_unless_current "Feedback (#{@script.discussions.count})", script_feedback_path(@script, :version => params[:version])%>
 			</li>
 			<% if !current_user.nil? and current_user.id == @script.user_id %>
 				<li<%=current_page?(new_script_script_version_path(@script.id)) ? ' class="current"'.html_safe : ''%>>
