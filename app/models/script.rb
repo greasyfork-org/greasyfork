@@ -8,11 +8,12 @@ class Script < ActiveRecord::Base
 	belongs_to :script_sync_source
 	belongs_to :script_sync_type
 
-	scope :active, -> {includes(:assessments).where(:assessments => { :id => nil }).where(:moderator_deleted => false)}
+	scope :not_deleted, -> {where(:moderator_deleted => false).where(:script_type_id != 4)}
+	scope :active, -> {not_deleted.includes(:assessments).where(:assessments => { :id => nil })}
 	scope :listable, -> {active.where(:script_type_id => 1)}
 	scope :libraries, -> {active.where(:script_type_id => 3)}
-	scope :under_assessment, -> {joins(:assessments).includes(:user).uniq}
-	scope :reported, -> {joins(:discussions).includes(:user).uniq.where('GDN_Discussion.Rating = 1').where('Closed = 0')}
+	scope :under_assessment, -> {not_deleted.joins(:assessments).includes(:user).uniq}
+	scope :reported, -> {not_deleted.joins(:discussions).includes(:user).uniq.where('GDN_Discussion.Rating = 1').where('Closed = 0')}
 
 	validates_presence_of :name, :message => 'is required - specify one with @name'
 	validates_presence_of :description, :message => 'is required - specify one with @description'
