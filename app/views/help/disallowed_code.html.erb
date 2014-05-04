@@ -1,0 +1,22 @@
+<p>Code patterns that will get blocked automatically. Users posting this will get the message "Name exception (code)".</p>
+
+<p>This is a private list for moderator eyes only, because malicious people could easily craft their scripts to get around these blocks if they knew what they were.</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>Code</th>
+			<th>Pattern</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% DisallowedCode.all.each do |dc| %>
+			<tr>
+				<td><%=dc.ob_code%></td>
+				<td><code><%=dc.pattern%></code></td>
+				<td><%=dc.description%></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

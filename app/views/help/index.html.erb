@@ -19,3 +19,10 @@
 	<li><%=link_to 'Reported scripts', reported_scripts_path%></li>
 	<li><%=link_to 'Moderator log', moderator_actions_path%></li>
 </ul>
+
+<% if !current_user.nil? and current_user.moderator? %>
+	<p>Hey, moderators.</p>
+	<ul>
+		<li><%=link_to 'Disallowed code patterns', help_disallowed_code_path%></li>
+	</ul>
+<% end %>

@@ -20,6 +20,10 @@ protected
 		render_access_denied if current_user.nil? or (!params[:script_id].nil? and Script.find(params[:script_id]).user_id != current_user.id)
 	end
 
+	def authorize_for_moderators_only
+		render_access_denied if current_user.nil? or !current_user.moderator?
+	end
+
 	def check_for_moderator_deleted(script)
 		render_deleted if !script.nil? and script.moderator_deleted and (current_user.nil? or !current_user.moderator?)
 	end

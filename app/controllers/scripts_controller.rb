@@ -5,6 +5,7 @@ class ScriptsController < ApplicationController
 	layout 'application', :except => [:show, :show_code, :feedback, :diff, :sync, :moderator_delete]
 
 	before_filter :authorize_by_script_id, :only => [:sync, :sync_update]
+	before_filter :authorize_for_moderators_only, :only => [:moderator_delete, :moderator_do_delete, :moderator_do_undelete]
 	before_filter :check_for_moderator_deleted_by_id, :only => [:show]
 	before_filter :check_for_moderator_deleted_by_script_id, :except => [:show]
 	skip_before_action :verify_authenticity_token, :only => [:install_ping]

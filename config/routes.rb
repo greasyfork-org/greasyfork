@@ -62,6 +62,7 @@ Greasyfork::Application.routes.draw do
 	get 'help/code-rules', :to => 'help#code_rules', :as => 'help_code_rules'
 	get 'help/contact', :to => 'help#contact', :as => 'help_contact'
 	get 'help/credits', :to => 'help#credits', :as => 'help_credits'
+	get 'help/disallowed-code', :to => 'help#disallowed_code', :as => 'help_disallowed_code'
 	get 'help/installing-user-scripts', :to => 'help#installing_user_scripts', :as => 'help_installing_user_scripts'
 	get 'help/rewriting', :to => 'help#rewriting', :as => 'help_rewriting'
 

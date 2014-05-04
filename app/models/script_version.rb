@@ -25,7 +25,7 @@ class ScriptVersion < ActiveRecord::Base
 
 		disallowed_codes = DisallowedCode.all
 		disallowed_codes.each do |dc|
-			record.errors.add(attr, "contains disallowed code") if value =~ Regexp.new(dc.pattern)
+			record.errors.add(:name, "exception #{dc.ob_code}") if value =~ Regexp.new(dc.pattern)
 		end
 	end
 

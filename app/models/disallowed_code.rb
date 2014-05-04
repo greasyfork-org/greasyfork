@@ -4,4 +4,8 @@ class DisallowedCode < ActiveRecord::Base
 		true
 	end
 
+	def ob_code
+		"403#{'%03i' % id}"
+	end
+
 end
