@@ -29,6 +29,7 @@ module ScriptImporter
 
 		def self.verify_ownership(remote_ownership_url, current_user_id)
 			return :success if !Greasyfork::Application.config.verify_ownership_on_import
+			remote_ownership_url = fix_url(remote_ownership_url)
 			begin
 				content = download(remote_ownership_url)
 			rescue OpenURI::HTTPError => ex
@@ -53,6 +54,10 @@ module ScriptImporter
 				code = download(url)
 			rescue OpenURI::HTTPError => ex
 				return [:failure, nil, "Could not download source. #{ex.message}"]
+			rescue Errno::ETIMEDOUT => ex
+				return [:failure, nil, "Could not download source. #{ex.message}"]
+			rescue Timeout::Error => ex
+				return [:failure, nil, "Could not download source. Download did not complete in allowed time."]
 			end
 			code.force_encoding(Encoding::UTF_8)
 			return [:failure, nil, "Source contains invalid UTF-8 characters."] if !code.valid_encoding?
@@ -87,7 +92,9 @@ module ScriptImporter
 
 		def self.download(url)
 			uri = URI.parse(url)
-			return uri.read({:read_timeout => 10})
+			Timeout::timeout(11){
+				return uri.read({:read_timeout => 10})
+			}
 		end
 
 		def self.separate_new_existing_scripts(scripts)
@@ -97,6 +104,12 @@ module ScriptImporter
 			scripts.each {|k, v| (existing_ids.include?(k) ? existing : new)[k] = v}
 			return [new, existing]
 		end
+
+		# updates the URL to the working version
+		def self.fix_url(u)
+			return u
+		end
+
 
 	end
 end

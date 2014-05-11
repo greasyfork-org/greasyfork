@@ -33,4 +33,5 @@ Greasyfork::Application.configure do
   routes.default_url_options[:protocol] = 'http'
   
   config.verify_ownership_on_import = false
+  config.userscriptsorg_host = 'http://userscripts.org:8080'
 end

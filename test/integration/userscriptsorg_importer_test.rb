@@ -4,6 +4,10 @@ include ScriptImporter
 
 class UserscriptsorgImporterTest < ActiveSupport::TestCase
 
+	test 'remote user identifier' do
+		assert_equal '4630', UserScriptsOrgImporter.remote_user_identifier('http://userscripts.org/users/4630')
+	end
+
 	test 'verify user' do
 		assert_equal :success, UserScriptsOrgImporter.verify_ownership('http://userscripts.org/users/4630', 1)
 	end
@@ -16,9 +20,9 @@ class UserscriptsorgImporterTest < ActiveSupport::TestCase
 		new_scripts, existing_scripts = UserScriptsOrgImporter.pull_script_list('http://userscripts.org/users/4630')
 		assert existing_scripts.empty?
 		assert new_scripts.length > 1
-		assert new_scripts.has_key?(22356)
+		assert new_scripts.has_key?(22356), new_scripts.inspect
 		assert_equal 'Hotmail login fix', new_scripts[22356][:name]
-		assert_equal 'http://userscripts.org/scripts/source/22356.user.js', new_scripts[22356][:url]
+		assert_equal "#{Greasyfork::Application.config.userscriptsorg_host}/scripts/source/22356.user.js", new_scripts[22356][:url]
 	end
 
 	test 'pull script list with existing' do
