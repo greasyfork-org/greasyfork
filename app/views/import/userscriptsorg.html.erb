@@ -4,8 +4,8 @@
 
 <%=form_tag(import_verify_path) do |f|%>
 	<ol>
-		<li><a href="http://userscripts.org/login">Sign in to your userscripts.org account.</a></li>
-		<li><a href="http://userscripts.org/home/settings/profile">Edit your bio</a> to include the a link to your Greasy Fork profile, e.g. <code>&lt;a href="<%=user_url(current_user, :only_path => false)%>"&gt;My profile on Greasy Fork&lt;/a&gt;</code></li>
+		<li><a href="http://userscripts.org:8080/login">Sign in to your userscripts.org account.</a></li>
+		<li><a href="http://userscripts.org:8080/home/settings/profile">Edit your bio</a> to include the a link to your Greasy Fork profile, e.g. <code>&lt;a href="<%=user_url(current_user, :only_path => false)%>"&gt;My profile on Greasy Fork&lt;/a&gt;</code></li>
 		<li>Enter the URL to your userscripts.org profile (where "public profile" links to, for example http://userscripts.org/users/12345): <%=url_field_tag(:url, '', {:size => '50'})%></li>
 		<li><%=submit_tag 'Verify'%></li>
 	</ol>

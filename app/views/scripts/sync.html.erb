@@ -4,7 +4,7 @@
 			<p>This script is set up to sync from</p>
 			<%=s.url_field(:sync_identifier)%>
 		<% when 2 %>
-			<p>This script is set up to sync from <a href="http://userscripts.org/scripts/show/<%=@script.sync_identifier%>">an entry on userscripts.org</a>.</p>
+			<p>This script is set up to sync from <a href="http://userscripts.org:8080/scripts/show/<%=@script.sync_identifier%>">an entry on userscripts.org</a>.</p>
 		<% when nil %>
 			<p>Greasy Fork can import scripts that already hosted elsewhere. This lets you do things like have your script available for download in multiple places or have it in version control. To enable syncing for your script, provide a URL: <%=s.url_field(:sync_identifier)%></p>
 	<% end %>
