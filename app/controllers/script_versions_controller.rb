@@ -71,7 +71,7 @@ class ScriptVersionsController < ApplicationController
 		@script.script_versions << @script_version
 		@script.save!
 
-		flash[:notice] = 'Your script thas been submitted for assessment. Watch for discussions on your script for the result.' if @script_version.accepted_assessment
+		flash[:notice] = 'Your script has been posted, but will not be made public until its external scripts fall within Greasy Fork\'s guidelines.' if @script_version.accepted_assessment
 
 		redirect_to @script
 	end

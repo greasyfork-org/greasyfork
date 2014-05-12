@@ -1,5 +1,5 @@
-<h1>Scripts under assessment</h1>
-<p><%=link_to 'Read Greasy Fork\'s policy on <code>@require</code>.'.html_safe, help_code_rules_path(:anchor => 'require'), {:target => 'code_rules'}%></p>
+<h1>Scripts including disallowed external scripts</h1>
+<p><%=link_to 'Read Greasy Fork\'s policy on external scripts.', help_external_scripts_path%></p>
 <% if @scripts.empty? %>
 	<p>No scripts currently under assessment.</p>
 <% else %>

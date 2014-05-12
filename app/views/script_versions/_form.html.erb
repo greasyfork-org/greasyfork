@@ -33,7 +33,7 @@
 				<li><%=m%></li>
 			<% end
 			if using_disallowed_require %>
-				<li>You are using <code>@require</code>s outside of Greasy Fork's whitelist: <%=disallowed_requires.join(', ')%>. Check <label for="script_version_accepted_assessment">this box</label> <%=s.check_box(:accepted_assessment, {}, true, false)%> and save if you would like your <code>@require</code>s assessed by an admin. <%=link_to 'Read Greasy Fork\'s policy on <code>@require</code>.'.html_safe, help_code_rules_path(:anchor => 'require'), {:target => 'code_rules'}%></li>
+				<li>You are using <code>@require</code>s outside of Greasy Fork's whitelist: <%=disallowed_requires.join(', ')%>. Please read <%=link_to 'Greasy Fork\'s policy on external scripts.', help_external_scripts_path(), {:target => 'code_rules'}%>. You can save your script anyway by checking <label for="script_version_accepted_assessment">this box</label> <%=s.check_box(:accepted_assessment, {}, true, false)%>; however, your script will not be installable by others until the external script issue is resolved.</li>
 			<% end
 			if version_not_incremented %>
 				<li>You updated the code but didn't increase the <code>@version</code> number. This means anyone who previously installed your script may not get the updated code. <label for="script_version_version_check_override">Save anyway?</label> <%=s.check_box(:version_check_override, {}, true, false)%></li>

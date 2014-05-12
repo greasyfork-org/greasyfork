@@ -1,0 +1,38 @@
+<%- title 'Greasy Fork policy on external scripts' %>
+<%- description "Greasy Fork's policy on external scripts included in submitted user scripts, for example with @require." %>
+
+<h1>External scripts</h1>
+
+<p>User scripts have the technical ability to load and execute other scripts. The <a href="http://wiki.greasespot.net/Metadata_Block#.40require"><code>@require</code></a> metadata key is the most straightforward way to accomplish this, but scripts can also, for example, use an XmlHttpRequest to download a script and then inject it into the DOM.</p>
+
+<p>While this is a useful feature and most script authors use this for legitimate purposes, it can also be used maliciously. One of the core principles of Greasy Fork is that the user must be able to inspect the code in a script. External scripts can bypass this principle in a number of ways: they can change without warning or history, they can serve up different code to different people, and they can be used to hide malicious code in the middle of known libraries. Even if someone were to check an external script and determine it to be legitimate, that would be no guarantee that that script always has been or always will be legitimate.</p>
+
+<p>To allow script authors to continue to use external scripts, Greasy Fork has implemented a whitelist of URL patterns that can included with a script. This whitelist consists of script locations that:</p>
+
+<ul>
+	<li>Are public</li>
+	<li>Will not have their contents change frequently</li>
+	<li>Would likely be useful to more than one script author</li>
+</ul>
+
+<p>The current list is:</p>
+
+<ul>
+<% AllowedRequire.all.each do |ar| %>
+	<li>
+		<% if ar.url.nil? %>
+			<%=ar.name%>
+		<% else %>
+			<%=link_to ar.name, ar.url%>
+		<% end %>
+	</li>
+<% end %>
+</ul>
+
+<p>When you post a script that uses a <code>@require</code> outside of these locations, you will be notified when you attempt to save the script. Your script will not be made public on Greasy Fork until this is resolved.</p>
+
+<p>If the script you wish to include is a JavaScript library (for example jQuery or YUI), try to find it on one of the sites listed above. <a href="http://cdnjs.com/">cdnjs</a> and <a href="http://www.jsdelivr.com/">jsDelivr</a> in particular have a wide range of libraries available.</p>
+
+<p>If the script you wish to include is not available on the sites above, <%=link_to 'let us know', help_contact_path()%> and we can find somewhere it is (or host it ourselves!).</p>
+
+<p>If the script you wish to include was written by you, you can submit it as a separate entry on Greasy Fork and choosing the "Library" script type. You will be able to include this posted library in your script.</p>
