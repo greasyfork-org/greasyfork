@@ -43,7 +43,7 @@ protected
 	end
 
 	def render_access_denied
-		render :text => 'Access denied.', :status => 403, :layout => true
+		render :text => 'Access denied.', :status => 403, :layout => 'application'
 	end
 
 	# Devise seems to handle log-in-then-go-to fine for Rails stuff, but not for the forum. This adds support
