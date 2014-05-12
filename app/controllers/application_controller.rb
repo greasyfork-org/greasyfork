@@ -30,12 +30,28 @@ protected
 
 	def check_for_moderator_deleted_by_id
 		return if params[:id].nil?
-		check_for_moderator_deleted(Script.find(params[:id]))
+		begin
+			script = Script.find(params[:id])
+		rescue ActiveRecord::RecordNotFound
+			render_404
+			return
+		end
+		check_for_moderator_deleted(script)
 	end
 
 	def check_for_moderator_deleted_by_script_id
 		return if params[:script_id].nil?
-		check_for_moderator_deleted(Script.find(params[:script_id]))
+		begin
+			script = Script.find(params[:script_id])
+		rescue ActiveRecord::RecordNotFound
+			render_404
+			return
+		end
+		check_for_moderator_deleted(script)
+	end
+
+	def render_404
+		render :text => 'Script does not exist.', :status => 404, :layout => 'application'
 	end
 
 	def render_deleted
