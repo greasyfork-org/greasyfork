@@ -12,7 +12,7 @@
 	<header id="main-header">
 		<div id="site-name">
 			<h1><%=link_to_unless_current 'Greasy Fork', root_path%></h1>
-			<p class="subtitle">Quality user scripts since about a month ago</p>
+			<p class="subtitle"><a href="https://greasyfork.org/forum/discussion/157/greasy-fork-needs-a-logo">A nice logo would look good here.</a></p>
 		</div>
 		<form id="script-search" action="<%=url_for(:controller => :scripts, :action => :search)%>">
 			<input name="q" placeholder="Search" value="<%=params[:q]%>" size="10"><input type="submit" value="→">
