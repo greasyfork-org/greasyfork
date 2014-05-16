@@ -21,82 +21,90 @@ class ScriptVersionAppliesToTest < ActiveSupport::TestCase
 		assert_empty get_applies_to(['http://*', 'http://example.com/*'])
 	end
 
+	test 'includes all only protocol' do
+		assert_empty get_applies_to(['http*'])
+	end
+
 	test 'one specific' do
-		assert_equal ['example.com'], get_applies_to(['http://example.com/*'])
+		assert_equal [['http://example.com/*', 'example.com']], get_applies_to(['http://example.com/*'])
 	end
 
 	test 'two specific' do
-		assert_equal ['example.com', 'anotherexample.com'], get_applies_to(['http://example.com/*', 'http://anotherexample.com/*'])
+		assert_equal [['http://example.com/*', 'example.com'], ['http://anotherexample.com/*', 'anotherexample.com']], get_applies_to(['http://example.com/*', 'http://anotherexample.com/*'])
 	end
 
 	test 'repeated specific' do
-		assert_equal ['example.com'], get_applies_to(['http://example.com/*', 'http://example.com/*'])
+		assert_equal [['http://example.com/*', 'example.com']], get_applies_to(['http://example.com/*', 'http://example.com/*'])
 	end
 
 	test 'overlapping' do
-		assert_equal ['example.com'], get_applies_to(['http://example.com/*', 'http://example.com/foo/*'])
+		assert_equal [['http://example.com/*', 'example.com'], ['http://example.com/foo/*', 'example.com']], get_applies_to(['http://example.com/*', 'http://example.com/foo/*'])
 	end
 
 	test 'wildcard protocol' do
-		assert_equal ['example.com'], get_applies_to(['*://example.com/*'])
+		assert_equal [['*://example.com/*', 'example.com']], get_applies_to(['*://example.com/*'])
 	end
 
 	test 'invalid URL' do
-		assert_equal ['http://?what'], get_applies_to(['http://?what'])
+		assert_equal [['http://?what', nil]], get_applies_to(['http://?what'])
 	end
 
 	test 'URL with no host' do
-		assert_equal ['abc'], get_applies_to(['abc'])
+		assert_equal [['abc', nil]], get_applies_to(['abc'])
 	end
 
 	test 'http or https URL' do
-		assert_equal ['example.com'], get_applies_to(['http*://example.com'])
+		assert_equal [['http*://example.com', 'example.com']], get_applies_to(['http*://example.com'])
 	end
 
 	test 'http or https URL skipping colon' do
-		assert_equal ['example.com'], get_applies_to(['http*//example.com'])
+		assert_equal [['http*//example.com', 'example.com']], get_applies_to(['http*//example.com'])
 	end
 
 	test 'http or https URL skipping all puntucation' do
-		assert_equal ['example.com'], get_applies_to(['http*example.com'])
+		assert_equal [['http*example.com', 'example.com']], get_applies_to(['http*example.com'])
 	end
 
 	test 'wildcard subdomain with dot' do
-		assert_equal ['example.com'], get_applies_to(['http://*.example.com'])
+		assert_equal [['http://*.example.com', 'example.com']], get_applies_to(['http://*.example.com'])
 	end
 
 	test 'wildcard subdomain no dot' do
-		assert_equal ['example.com'], get_applies_to(['http://*example.com'])
+		assert_equal [['http://*example.com', 'example.com']], get_applies_to(['http://*example.com'])
 	end
 
 	test 'wildcard subdomain and protocol' do
-		assert_equal ['example.com'], get_applies_to(['*example.com'])
+		assert_equal [['*example.com', 'example.com']], get_applies_to(['*example.com'])
 	end
 
 	test 'wildcard subdomain and protocol with dot' do
-		assert_equal ['example.com'], get_applies_to(['*.example.com'])
+		assert_equal [['*.example.com', 'example.com']], get_applies_to(['*.example.com'])
 	end
 
 	test 'wildcard subdomain and http or https' do
-		assert_equal ['example.com'], get_applies_to(['http*.example.com'])
+		assert_equal [['http*.example.com', 'example.com']], get_applies_to(['http*.example.com'])
 	end
 
 	test '.tld' do
 		names = get_applies_to(['http://example.tld'])
-		assert names.include?('example.com'), names.inspect
+		assert names.include?(['http://example.tld', 'example.com']), names.inspect
 	end
 
 	test 'wildcard tld' do
 		names = get_applies_to(['http://example.*'])
-		assert names.include?('example.com'), names.inspect
+		assert names.include?(['http://example.*', 'example.com']), names.inspect
 	end
 
 	test 'wildcard before protocol' do
-		assert_equal ['example.com'], get_applies_to(['*http://example.com'])
+		assert_equal [['*http://example.com', 'example.com']], get_applies_to(['*http://example.com'])
 	end
 
 	test 'trailing dot on hostname' do
-		assert_equal ['example.com'], get_applies_to(['*http://example.com.'])
+		assert_equal [['*http://example.com.', 'example.com']], get_applies_to(['*http://example.com.'])
+	end
+
+	test 'multiple wildcards in host' do
+		assert_equal [['http://s*.*.example.*/*', nil]], get_applies_to(['http://s*.*.example.*/*'])
 	end
 
 end

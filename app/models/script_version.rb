@@ -217,8 +217,8 @@ class ScriptVersion < ActiveRecord::Base
 			p = m[1] if !m.nil?
 
 			# protocol wild-cards
-			p.sub!(/^\*:/i, 'http:')
-			p.sub!(/^http\*:/i, 'http:')
+			p = p.sub(/^\*:/i, 'http:')
+			p = p.sub(/^http\*:/i, 'http:')
 
 			# subdomain wild-cards - http://*.example.com and http://*example.com
 			m = p.match(/^([a-z]+:\/\/)\*\.?([a-z0-9\-]+(?:.[a-z0-9\-]+)+.*)/i)
@@ -241,7 +241,10 @@ class ScriptVersion < ActiveRecord::Base
 			begin
 				uri = URI(pre_wildcard)
 				if uri.host.nil?
-					applies_to_names << [original_pattern, p,]
+					applies_to_names << [original_pattern, nil]
+				elsif !uri.host.include?('.')
+					# must have at least one . to be something we'll use
+					applies_to_names << [original_pattern, nil]
 				else
 					if uri.host.ends_with?('.tld')
 						@@tld_expansion.each do |tld|
@@ -361,7 +364,7 @@ private
 	@@meta_start_comment = '// ==UserScript=='
 	@@meta_end_comment = '// ==/UserScript=='
 
-	@@applies_to_all_patterns = ['http://*', 'https://*', 'http://*/*', 'https://*/*', 'http*://*', 'http*://*/*', '*', '*://*', '*://*/*']
+	@@applies_to_all_patterns = ['http://*', 'https://*', 'http://*/*', 'https://*/*', 'http*://*', 'http*://*/*', '*', '*://*', '*://*/*', 'http*']
 
 	@@tld_expansion = ['com', 'net', 'org', 'de', 'co.uk']
 
