@@ -119,45 +119,72 @@ nav li + li {
 
 #install-area {
 	margin-bottom: 1em;
-	display: inline-block;
-	text-align: center;
 }
 .install-link, .install-link:visited, .install-link:active, .install-link:hover {
 	display: inline-block;
 	background-color: #1A6243;
-	padding: 1em;
+	padding: 0.5em 1em;
 	color: white;
 	text-decoration: none;
 }
 .install-help-link {
-	font-size: x-small;
+	font-size: small;
 	vertical-align: top;
 }
 #script-meta {
-	-moz-column-count: 3;
+	display: table;
 }
-#script-meta, #script-meta dt, #script-meta dd {
+#script-meta > * {
+	display: table-cell;
+}
+#script-stats {
+	padding-right: 1em;
+	min-width: 16em;
+}
+#script-stats, #script-stats dt, #script-stats dd, #script-applies-to, #script-applies-to dt, #script-applies-to dd {
+	vertical-align: top;
 	margin: 0;
 	padding: 0;
 }
-#script-meta dt {
+#script-stats dt {
 	clear: left;
 	float: left;
 	width: 8em;
 	font-weight: bold;
 }
-#script-meta dd {
+#script-stats dd {
 	float: left;
 }
-#script-meta:after {
-	content: "";
-	display: table;
-	clear: both;
+#script-stats, #script-applies-to {
+	margin-bottom: 1em;
+}
+#script-applies-to dt {
+	display: inline;
+	font-weight: bold;
+}
+#script-applies-to dt:after {
+	content: ":";
+	display: inline;
+	font-weight: bold;
+}
+#script-applies-to dd {
+	display: inline;
 }
 
-#additional-info {
-	margin-top: 1em;
-	clear: left;
+#additional-info > h3 {
+	margin-bottom: 0;
+	padding-bottom: 0;
+}
+#additional-info > div {
+	margin: 0;
+	padding: 1em;
+	background-color: #F4F4F4;
+}
+#additional-info > div > *:first-child {
+	margin-top: 0;
+}
+#additional-info > div > *:last-child {
+	margin-bottom: 0;
 }
 
 .form-control {

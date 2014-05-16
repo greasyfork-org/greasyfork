@@ -37,8 +37,8 @@ class Script < ActiveRecord::Base
 		self.name = meta.has_key?('name') ? meta['name'].first : nil
 		self.description = meta.has_key?('description') ? meta['description'].first : nil
 
-		self.script_applies_tos = script_version.calculate_applies_to_names.map do |name|
-			ScriptAppliesTo.new({:display_text => name})
+		self.script_applies_tos = script_version.calculate_applies_to_names.map do |pattern, name|
+			ScriptAppliesTo.new({:pattern => pattern, :display_text => name})
 		end
 
 		self.assessments = script_version.disallowed_requires_used.map do |script_url|

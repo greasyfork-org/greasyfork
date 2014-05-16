@@ -199,6 +199,7 @@ class ScriptVersion < ActiveRecord::Base
 		return meta_lines.join("\n") + ScriptVersion.get_code_block(code)
 	end
 
+	# Returns an array of [pattern, display_name]. display_name can be nil.
 	def calculate_applies_to_names
 		meta = ScriptVersion.parse_meta(code)
 		patterns = []
@@ -209,6 +210,8 @@ class ScriptVersion < ActiveRecord::Base
 
 		applies_to_names = []
 		patterns.each do |p|
+			original_pattern = p
+			
 			# senseless wildcard before protocol
 			m = p.match(/^\*(https?:.*)/i)
 			p = m[1] if !m.nil?
@@ -238,25 +241,25 @@ class ScriptVersion < ActiveRecord::Base
 			begin
 				uri = URI(pre_wildcard)
 				if uri.host.nil?
-					applies_to_names << p
+					applies_to_names << [original_pattern, p,]
 				else
 					if uri.host.ends_with?('.tld')
 						@@tld_expansion.each do |tld|
-							applies_to_names << uri.host.sub(/tld$/i, tld)
+							applies_to_names << [original_pattern, uri.host.sub(/tld$/i, tld)]
 						end
 					# "example.com."
 					elsif uri.host.ends_with?('.')
-						applies_to_names << uri.host[0, uri.host.length - 1]
+						applies_to_names << [original_pattern, uri.host[0, uri.host.length - 1]]
 					else
-						applies_to_names << uri.host
+						applies_to_names << [original_pattern, uri.host]
 					end
 				end
 			rescue ArgumentError
 				logger.warn "Unrecognized pattern '" + p + "'"
-				applies_to_names << p
+				applies_to_names << [original_pattern, nil]
 			rescue URI::InvalidURIError
 				logger.warn "Unrecognized pattern '" + p + "'"
-				applies_to_names << p
+				applies_to_names << [original_pattern, nil]
 			end
 		end
 		return applies_to_names.uniq

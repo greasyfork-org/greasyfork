@@ -191,7 +191,7 @@ private
 	def get_by_sites
 		# regexps are eliminated because they're not useful to look at and the link doesn't work anyway (due to
 		# the leading slash?)
-		return ScriptAppliesTo.joins(:script).select('display_text, count(*) script_count').group('display_text').order('script_count DESC, display_text').where('display_text NOT LIKE "/%" and script_type_id = 1')
+		return ScriptAppliesTo.joins(:script).select('display_text, count(distinct scripts.id) script_count').group('display_text').order('script_count DESC, display_text').where('display_text IS NOT NULL and display_text NOT LIKE "/%" and script_type_id = 1')
 	end
 
 	def get_per_page
