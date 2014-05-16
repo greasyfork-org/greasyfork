@@ -63,6 +63,13 @@ nav li + li {
 	margin-left: 0.5em;
 }
 
+#script-content {
+	/* extend the border to the left edge */
+	margin-left: -10px;
+	padding-left: 10px;
+	padding-top: 1em;
+	border-top: 1px solid black;
+}
 #script-info h2 {
 	margin: 0;
 	font-size: 2em;
@@ -74,13 +81,42 @@ nav li + li {
 	font-style: italic;
 	background-color: yellow;
 }
+
 #script-links {
+	list-style: none;
 	padding: 0;
+	margin-bottom: 0;
 }
 #script-links li {
-	list-style-type: none;
-	display: inline;
+	display: inline-block;
+	border: solid;
+	border-width: 1px 1px 0 1px;
+	margin: 0 0.5em 0 0;
 }
+#script-links li > * {
+	padding: 0.25em 1em;
+	display: block;
+}
+#script-links a {
+	text-decoration: none;
+}
+#script-links .current {
+	background: white;
+	/* shift it down 1px to overlap the top border of the next element */
+	position: relative;
+	top: 1px;
+	/* grow in size so the top borders align */
+	padding-top: 1px;
+}
+/* shift the text back up to align with the others */
+#script-links .current > * {
+	position: relative;
+	top: -1px;
+}
+#script-links li:not(.current) {
+	background-color: #EEE;
+}
+
 #install-area {
 	margin-bottom: 1em;
 	display: inline-block;

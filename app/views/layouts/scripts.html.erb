@@ -8,35 +8,21 @@
 			<% end %>
 		</header>
 		<ul id="script-links">
-			<li<%=current_page?(script_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>>
-				<%= link_to_unless_current 'Info', script_path(@script, :version => params[:version])%>
-			</li>
-			<li<%=current_page?(script_show_code_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>>
-				<%= link_to_unless_current 'Code', script_show_code_path(@script, :version => params[:version])%>
-			</li>
-			<li<%=current_page?(script_script_versions_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>>
-				<%= link_to_unless_current 'Versions', script_script_versions_path(@script, :version => params[:version])%>
-			</li>
-			<li<%=current_page?(script_feedback_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>>
-				<%= link_to_unless_current "Feedback (#{@script.discussions.count})", script_feedback_path(@script, :version => params[:version])%>
-			</li>
+			<li<%=current_page?(script_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current '<span>Info</span>'.html_safe, script_path(@script, :version => params[:version])%></li>
+			<li<%=current_page?(script_show_code_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current '<span>Code</span>'.html_safe, script_show_code_path(@script, :version => params[:version])%></li>
+			<li<%=current_page?(script_script_versions_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current '<span>History</span>'.html_safe, script_script_versions_path(@script, :version => params[:version])%></li>
+			<li<%=current_page?(script_feedback_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>Feedback (#{@script.discussions.count})</span>".html_safe, script_feedback_path(@script, :version => params[:version])%></li>
 			<% if !current_user.nil? and current_user.id == @script.user_id %>
-				<li<%=current_page?(new_script_script_version_path(@script.id)) ? ' class="current"'.html_safe : ''%>>
-					<%= link_to_unless_current 'Update', new_script_script_version_path(@script.id)%>
-				</li>
-				<li<%=current_page?(script_sync_path(@script.id)) ? ' class="current"'.html_safe : ''%>>
-					<%= link_to_unless_current 'Sync', script_sync_path(@script.id)%>
-				</li>
+				<li<%=current_page?(new_script_script_version_path(@script.id)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current '<span>Update</span>'.html_safe, new_script_script_version_path(@script.id)%></li>
+				<li<%=current_page?(script_sync_path(@script.id)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current '<span>Sync</span>'.html_safe, script_sync_path(@script.id)%></li>
 			<% end %>
 			<% if !current_user.nil? and current_user.moderator? %>
-				<% if @script.moderator_deleted %>
-					<%= link_to_unless_current 'Moderator Undelete', script_moderator_delete_path(@script.id)%>
-				<% else %>
-					<%= link_to_unless_current 'Moderator Delete', script_moderator_delete_path(@script.id)%>
-				<% end %>
+				<li><%= link_to_unless_current (@script.moderator_deleted ? '<span>Moderator Undelete</span>'.html_safe : '<span>Moderator Delete</span>'.html_safe), script_moderator_delete_path(@script.id)%></li>
 			<% end %>
 		</ul>
-		<%= content_for?(:scripts_content) ? yield(:scripts_content) : yield %>
+		<div id="script-content">
+			<%= content_for?(:scripts_content) ? yield(:scripts_content) : yield %>
+		</div>
 	</section>
 <% end %>
 <%= render template: 'layouts/application' %>
