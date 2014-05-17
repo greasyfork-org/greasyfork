@@ -38,6 +38,18 @@
 		<dd class="script-show-created-date"><%=markup_date(@script.created_at)%></dd>
 		<dt class="script-show-updated-date">Updated</dt>
 		<dd class="script-show-updated-date"><%=markup_date(@script.code_updated_at)%></dd>
+		<dt class="script-show-license">License</dt>
+		<dd class="script-show-license">
+			<%if @script.license.nil?%>
+				<% if @script.license_text.nil?%>
+					<i>N/A</i>
+				<% else %>
+					<%=@script.license_text%>
+				<% end %>
+			<% else %>
+				<%=@script.license.html.html_safe%>
+			<% end %>
+		</dd>
 	</dl>
 	<dl id="script-applies-to">
 		<dt class="script-show-applies-to">Applies to</dt>

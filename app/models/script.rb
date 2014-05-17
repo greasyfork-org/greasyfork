@@ -7,6 +7,7 @@ class Script < ActiveRecord::Base
 	belongs_to :script_type
 	belongs_to :script_sync_source
 	belongs_to :script_sync_type
+	belongs_to :license
 
 	scope :not_deleted, -> {where(:moderator_deleted => false).where(:script_type_id != 4)}
 	scope :active, -> {not_deleted.includes(:assessments).where(:assessments => { :id => nil })}
@@ -52,6 +53,15 @@ class Script < ActiveRecord::Base
 		else
 			newest_sv = get_newest_saved_script_version
 			self.code_updated_at = Time.now if newest_sv.nil? or newest_sv.code != script_version.code
+		end
+
+		self.license_text = meta.has_key?('license') ? meta['license'].first : nil
+		if self.license_text.nil?
+			self.license = nil
+		else
+			self.license = License.order('priority DESC, id').find do |l|
+				self.license_text =~ Regexp.new(l.pattern)
+			end
 		end
 	end
 
