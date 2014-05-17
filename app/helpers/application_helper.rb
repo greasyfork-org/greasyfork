@@ -24,7 +24,7 @@ module ApplicationHelper
 
 	def format_user_text_html(text)
 		yes_follow = lambda do |env|
-			follow_domains = ['mozillazine.org', 'mozilla.org', 'mozilla.com', 'userscripts.org', 'userstyles.org', 'mozdev.org', 'photobucket.com', 'facebook.com', 'chrome.google.com', 'github.com', 'greasyfork.org']
+			follow_domains = ['mozillazine.org', 'mozilla.org', 'mozilla.com', 'userscripts.org', 'userstyles.org', 'mozdev.org', 'photobucket.com', 'facebook.com', 'chrome.google.com', 'github.com', 'greasyfork.org', 'openuserjs.org']
 			return unless env[:node_name] == 'a'
 			node = env[:node]
 			href = nil
@@ -109,7 +109,7 @@ module ApplicationHelper
 				:transformers => [linkify_urls, yes_follow, fix_whitespace]
 			})
 			@@sanitize_config[:elements] = @@sanitize_config[:elements].dup
-			@@sanitize_config[:elements] << 'img'
+			@@sanitize_config[:elements].concat(['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'img'])
 			@@sanitize_config[:attributes] = @@sanitize_config[:attributes].merge('img' => ['src', 'alt', 'title'])
 			@@sanitize_config[:protocols] = @@sanitize_config[:protocols].merge('img' => {'src'  => ['https']})
 		end
