@@ -56,6 +56,9 @@ class ScriptVersionsController < ApplicationController
 		@script_version.calculate_all
 		@script.apply_from_script_version(@script_version)
 
+		# if the script is (being) deleted, don't require a description
+		@script.description = 'Deleted' if @script.deleted? and @script.description.nil?
+
 		# ensure all validations are run - short circuit the OR
 		if !@script.valid? | !@script_version.valid?
 			if @script.new_record?

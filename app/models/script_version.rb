@@ -31,11 +31,17 @@ class ScriptVersion < ActiveRecord::Base
 
 	# version format
 	validates_each(:version, :allow_nil => true, :allow_blank => true) do |record, attr, value|
+		# exempt scripts that are (being) deleted
+		next if !record.script.nil? and record.script.deleted?
+
 		record.errors.add(attr, "is not in a valid format") if ScriptVersion.split_version(value).nil?
 	end
 
 	# version must be incremented if the code changed
 	validates_each(:code, :allow_nil => true, :allow_blank => true) do |record, attr, value|
+		# exempt scripts that are (being) deleted
+		next if !record.script.nil? and record.script.deleted?
+
 		next if record.version.nil? or record.version_check_override
 
 		# get the most recently saved record
@@ -55,6 +61,9 @@ class ScriptVersion < ActiveRecord::Base
 
 	# namespace is required and shouldn't change
 	validates_each(:code, :allow_nil => true, :allow_blank => true) do |record, attr, value|
+		# exempt scripts that are (being) deleted
+		next if !record.script.nil? and record.script.deleted?
+
 		meta = ScriptVersion.parse_meta(value)
 		# handled elsewhere
 		next if meta.nil?

@@ -16,7 +16,7 @@ class Script < ActiveRecord::Base
 	scope :reported, -> {not_deleted.joins(:discussions).includes(:user).uniq.where('GDN_Discussion.Rating = 1').where('Closed = 0')}
 
 	validates_presence_of :name, :message => 'is required - specify one with @name'
-	validates_presence_of :description, :message => 'is required - specify one with @description'
+	validates_presence_of :description, :message => 'is required - specify one with @description', :unless => Proc.new {|r| r.deleted?}
 	validates_presence_of :user_id, :code_updated_at, :script_type
 
 	validates_length_of :name, :maximum => 100
@@ -24,6 +24,9 @@ class Script < ActiveRecord::Base
 	validates_length_of :additional_info, :maximum => 10000
 
 	validates_each(:description, :allow_nil => true, :allow_blank => true) do |record, attr, value|
+		# exempt scripts that are (being) deleted
+		next if record.deleted?
+
 		record.errors.add(attr, "must not be the same as the name") if value == record.name
 	end
 
@@ -93,4 +96,7 @@ class Script < ActiveRecord::Base
 		"#{id}-#{slugify(name)}"
 	end
 
+	def deleted?
+		!script_type_id.nil? && script_type_id == 4
+	end
 end
