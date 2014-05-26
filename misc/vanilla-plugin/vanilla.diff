@@ -1,0 +1,11 @@
+--- library/core/class.controller.php	2014-05-25 13:13:35.510918434 -0500
++++ library/core/class.controller.php	2014-05-25 13:13:40.370918241 -0500
+@@ -1155,7 +1155,7 @@
+ 
+       if (!$Session->CheckPermission($Permission, $FullMatch, $JunctionTable, $JunctionID)) {
+         if (!$Session->IsValid() && $this->DeliveryType() == DELIVERY_TYPE_ALL) {
+-           Redirect('/entry/signin?Target='.urlencode($this->SelfUrl));
++           Redirect('/entry/signin?Target='.urlencode($this->Request->PathAndQuery()));
+         } else {
+            Gdn::Dispatcher()->Dispatch('DefaultPermission');
+            exit();
