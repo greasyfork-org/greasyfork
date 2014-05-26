@@ -31,6 +31,8 @@ class Script < ActiveRecord::Base
 		record.errors.add(attr, "must not be the same as the name") if value == record.name
 	end
 
+	validates_format_of :sync_identifier, :with => URI::regexp(%w(http https)), :message => 'must be an HTTP or HTTPS URL.', :if => Proc.new {|r| r.script_sync_source_id == 1}
+
 	strip_attributes :only => [:name, :description, :additional_info]
 
 	def apply_from_script_version(script_version)

@@ -2,7 +2,7 @@ require 'coderay'
 require 'script_importer/script_syncer'
 
 class ScriptsController < ApplicationController
-	layout 'application', :except => [:show, :show_code, :feedback, :diff, :sync, :moderator_delete]
+	layout 'application', :except => [:show, :show_code, :feedback, :diff, :sync, :sync_update, :moderator_delete]
 
 	before_filter :authorize_by_script_id, :only => [:sync, :sync_update]
 	before_filter :authorize_for_moderators_only, :only => [:moderator_delete, :moderator_do_delete, :moderator_do_undelete]
@@ -123,37 +123,40 @@ class ScriptsController < ApplicationController
 	end
 
 	def sync_update
-		script = Script.find(params[:script_id])
+		@script = Script.find(params[:script_id])
 
 		if !params['stop-syncing'].nil?
-			script.script_sync_type_id = nil
-			script.script_sync_source_id = nil
-			script.last_attempted_sync_date = nil
-			script.last_successful_sync_date = nil
-			script.sync_identifier = nil
-			script.sync_error = nil
-			script.save(:validate => false)
+			@script.script_sync_type_id = nil
+			@script.script_sync_source_id = nil
+			@script.last_attempted_sync_date = nil
+			@script.last_successful_sync_date = nil
+			@script.sync_identifier = nil
+			@script.sync_error = nil
+			@script.save(:validate => false)
 			flash[:notice] = 'Script sync turned off.'
-			redirect_to script
+			redirect_to @script
 			return
 		end
 
-		script.assign_attributes(params.require(:script).permit(:script_sync_type_id, :sync_identifier))
-		if script.script_sync_source_id.nil?
-			script.script_sync_source_id = ScriptImporter::ScriptSyncer.get_sync_source_id_for_url(params[:sync_identifier])
+		@script.assign_attributes(params.require(:script).permit(:script_sync_type_id, :sync_identifier))
+		if @script.script_sync_source_id.nil?
+			@script.script_sync_source_id = ScriptImporter::ScriptSyncer.get_sync_source_id_for_url(params[:sync_identifier])
 		end
-		script.save!
+		if !@script.save
+			render :sync
+			return
+		end
 		if !params['update-and-sync'].nil?
-			case ScriptImporter::ScriptSyncer.sync(script)
+			case ScriptImporter::ScriptSyncer.sync(@script)
 				when :success
 					flash[:notice] = 'Script successfully synced.'
 				when :unchanged
 					flash[:notice] = 'Script successfully synced, but no changes found.'
 				when :failure
-					flash[:notice] = "Script sync failed - #{script.sync_error}."
+					flash[:notice] = "Script sync failed - #{@script.sync_error}."
 			end
 		end
-		redirect_to script
+		redirect_to @script
 	end
 
 	def moderator_delete

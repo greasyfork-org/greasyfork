@@ -1,3 +1,12 @@
+<% if !@script.errors.empty? %>
+	<p>There were some problems with what you posted...</p>
+	<ul class="errors">
+		<% @script.errors.full_messages.each do |m| %>
+			<li><%=m%></li>
+		<% end %>
+	</ul>
+<% end %>
+
 <%=form_for(@script, :url => script_sync_update_path) do |s|%>
 	<% case @script.script_sync_source_id 
 		when 1 %>

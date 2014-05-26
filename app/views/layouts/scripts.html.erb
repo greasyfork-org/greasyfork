@@ -14,10 +14,10 @@
 			<li<%=current_page?(script_feedback_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>Feedback (#{@script.discussions.count})</span>".html_safe, script_feedback_path(@script, :version => params[:version])%></li>
 			<% if !current_user.nil? and current_user.id == @script.user_id %>
 				<li<%=current_page?(new_script_script_version_path(@script.id)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current '<span>Update</span>'.html_safe, new_script_script_version_path(@script.id)%></li>
-				<li<%=current_page?(script_sync_path(@script.id)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current '<span>Sync</span>'.html_safe, script_sync_path(@script.id)%></li>
+				<li<%=current_page?(script_sync_path(@script)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current '<span>Sync</span>'.html_safe, script_sync_path(@script)%></li>
 			<% end %>
 			<% if !current_user.nil? and current_user.moderator? %>
-				<li><%= link_to_unless_current (@script.moderator_deleted ? '<span>Moderator Undelete</span>'.html_safe : '<span>Moderator Delete</span>'.html_safe), script_moderator_delete_path(@script.id)%></li>
+				<li<%=current_page?(script_moderator_delete_path(@script)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current (@script.moderator_deleted ? '<span>Moderator Undelete</span>'.html_safe : '<span>Moderator Delete</span>'.html_safe), script_moderator_delete_path(@script)%></li>
 			<% end %>
 		</ul>
 		<div id="script-content">
