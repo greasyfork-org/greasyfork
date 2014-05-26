@@ -5,7 +5,7 @@
 	case @script.script_type_id
 		when 1, 2 %>
 			<div id="install-area">
-				<%=link_to 'Install this script', params[:version].nil? ? script_user_js_path(@script, :name => @script.url_name) : script_user_js_path(@script, :version => params[:version], :name => @script.url_name) + '&d=.user.js', {:class => 'install-link', 'data-ping-url' => url_for(script_install_ping_path(@script, :authenticity_token => session[:_csrf_token])), 'data-is-previous-version' => !params[:version].nil?}%> <%=link_to 'How to install', help_installing_user_scripts_path, {:class => 'install-help-link'}%>
+				<%=link_to 'Install this script', params[:version].nil? ? script_user_js_path(@script, :name => @script.url_name) : script_user_js_path(@script, :version => params[:version], :name => @script.url_name) + '&d=.user.js', {:class => 'install-link', 'data-ping-url' => url_for(script_install_ping_path(@script, :authenticity_token => session[:_csrf_token])), 'data-is-previous-version' => !params[:version].nil?}%><%=link_to '?', help_installing_user_scripts_path, {:class => 'install-help-link', :title => 'How to install'}%>
 			</div>
 		<% when 3 %>
 			<p>
