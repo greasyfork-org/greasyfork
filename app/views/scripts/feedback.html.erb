@@ -2,7 +2,7 @@
 <%- description 'Feedback on ' + @script.name %>
 
 <% if @script.discussions.empty? %>
-	<p id="no-discussions">No discussions posted yet. <a id="start-discussion" href="/forum/post/discussion?Discussion/ScriptID=<%=@script.id%>" rel="nofollow">Be the first to discuss this script.</a></p>
+	<p id="no-discussions">No discussions posted yet. <a id="start-discussion" href="/forum/post/discussion?script=<%=@script.id%>" rel="nofollow">Be the first to discuss this script.</a></p>
 <% else %>
 	<ul id="discussions">
 		<% @script.discussions.reverse.each do |discussion| %>
@@ -10,5 +10,5 @@
 		<% end %>
 	</ul>
 
-	<p id="no-discussions"><a id="start-discussion" href="/forum/post/discussion?Discussion/ScriptID=<%=@script.id%>" rel="nofollow">Start a new discussion on this script.</a></p>
+	<p id="no-discussions"><a id="start-discussion" href="/forum/post/discussion?script=<%=@script.id%>" rel="nofollow">Start a new discussion on this script.</a></p>
 <% end %>
