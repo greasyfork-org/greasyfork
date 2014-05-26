@@ -4,8 +4,10 @@
 
 <%=form_tag(import_verify_path) do |f|%>
 	<ol>
-		<li><a href="<%=Greasyfork::Application.config.userscriptsorg_host%>/login">Sign in to your userscripts.org account.</a></li>
-		<li><a href="<%=Greasyfork::Application.config.userscriptsorg_host%>/home/settings/profile">Edit your bio</a> to include the a link to your Greasy Fork profile, e.g. <code>&lt;a href="<%=user_url(current_user, :only_path => false)%>"&gt;My profile on Greasy Fork&lt;/a&gt;</code></li>
+		<% if Greasyfork::Application.config.verify_ownership_on_import %>
+			<li><a href="<%=Greasyfork::Application.config.userscriptsorg_host%>/login">Sign in to your userscripts.org account.</a></li>
+			<li><a href="<%=Greasyfork::Application.config.userscriptsorg_host%>/home/settings/profile">Edit your bio</a> to include the a link to your Greasy Fork profile, e.g. <code>&lt;a href="<%=user_url(current_user, :only_path => false)%>"&gt;My profile on Greasy Fork&lt;/a&gt;</code></li>
+		<% end %>
 		<li>Enter the URL to your userscripts.org profile (where "public profile" links to, for example <%=Greasyfork::Application.config.userscriptsorg_host%>/users/12345): <%=url_field_tag(:url, '', {:size => '50'})%></li>
 		<li><%=submit_tag 'Verify'%></li>
 	</ol>
