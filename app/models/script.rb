@@ -22,7 +22,7 @@ class Script < ActiveRecord::Base
 
 	validates_length_of :name, :maximum => 100
 	validates_length_of :description, :maximum => 500
-	validates_length_of :additional_info, :maximum => 10000
+	validates_length_of :additional_info, :maximum => 50000
 
 	validates_each(:description, :allow_nil => true, :allow_blank => true) do |record, attr, value|
 		# exempt scripts that are (being) deleted

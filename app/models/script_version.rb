@@ -6,7 +6,7 @@ class ScriptVersion < ActiveRecord::Base
 	validates_presence_of :code, :rewritten_code
 	validates_presence_of :version, :message => 'meta key must be provided'
 
-	validates_length_of :additional_info, :maximum => 10000
+	validates_length_of :additional_info, :maximum => 50000
 	validates_length_of :code, :maximum => 2000000
 	validates_length_of :changelog, :maximum => 500
 
