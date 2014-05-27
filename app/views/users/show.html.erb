@@ -56,7 +56,7 @@ if same_user %>
 		<p>No scripts posted.</p>
 	<% else %>
 		<ol id="user-script-list" class="script-list">
-			<%= render partial: 'scripts/script', collection: same_user ? @user.scripts.order('name') : @user.scripts.listable.order('name') %>
+			<%= render partial: 'scripts/script', collection: (same_user or (!current_user.nil? and current_user.moderator?)) ? @user.scripts.order('name') : @user.scripts.listable.order('name') %>
 		</ol>
 	<% end %>
 </section>

@@ -15,7 +15,7 @@ class ScriptsController < ApplicationController
 	#########################
 
 	def index
-		@scripts = Script.listable.includes(:user).order(get_sort).paginate(:page => params[:page], :per_page => get_per_page)
+		@scripts = Script.listable.includes([:user, :script_type]).order(get_sort).paginate(:page => params[:page], :per_page => get_per_page)
 		if !params[:site].nil?
 			@scripts = @scripts.joins(:script_applies_tos).where(['display_text = ?', params[:site]])
 		end
@@ -32,7 +32,7 @@ class ScriptsController < ApplicationController
 			return
 		end
 		begin
-			@scripts = Script.search params[:q], :match_mode => :extended, :page => params[:page],:per_page => get_per_page, :order => get_sort(true), :populate => true
+			@scripts = Script.search params[:q], :match_mode => :extended, :page => params[:page], :per_page => get_per_page, :order => get_sort(true), :populate => true, :includes => :script_type
 			# make it run now so we can catch syntax errors
 			@scripts.empty?
 		rescue ThinkingSphinx::SyntaxError => e

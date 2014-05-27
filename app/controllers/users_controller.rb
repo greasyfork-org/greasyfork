@@ -4,9 +4,9 @@ class UsersController < ApplicationController
 		@user = User.order('scripts.name')
 		# current user will display discussions
 		if !current_user.nil? and current_user.id == params[:id].to_i
-			@user = @user.includes(:scripts => :discussions)
+			@user = @user.includes(:scripts => [:discussions, :script_type])
 		else
-			@user = @user.includes(:scripts)
+			@user = @user.includes(:scripts => :script_type)
 		end
 		@user = @user.find(params[:id])
 		return if redirect_to_slug(@user, :id)
