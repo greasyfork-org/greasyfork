@@ -54,7 +54,7 @@ class ScriptVersionsController < ApplicationController
 			@script_version.code = uploaded_content
 		end
 
-		@script_version.calculate_all
+		@script_version.calculate_all(@script.description)
 		@script.apply_from_script_version(@script_version)
 
 		# if the script is (being) deleted, don't require a description
