@@ -6,8 +6,11 @@
 				<% if script.script_type_id != 1 %>
 					<span class="script-type">(<%=script.script_type.short_name.capitalize%>)<span>
 				<% end %>
-				<% if script.moderator_deleted %>
-					<span class="script-type">(Moderator Deleted)<span>
+				<% if script.deleted? %>
+					<span class="script-type">(Deleted)<span>
+				<% end %>
+				<% if script.locked %>
+					<span class="script-type">(Locked)<span>
 				<% end %>
 			</h2>
 		</header>

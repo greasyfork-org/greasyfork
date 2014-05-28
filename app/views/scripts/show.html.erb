@@ -15,9 +15,9 @@
 				<% else %>
 					<code>// @require <%=script_library_js_path(@script, :version => params[:version], :name => @script.url_name, :only_path => false)%></code></p>
 				<% end %>
-		<% when 4 %>
-			<p>This script has been deleted.</p>
 	<% end %>
+<% elsif @script.deleted? %>
+	<p>This script has been deleted.</p>
 <% elsif !params[:version].nil? %>
 	<p id="under-review-notice">This version of the script was under review.</p>
 <% else %>

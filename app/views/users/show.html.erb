@@ -52,11 +52,12 @@ if same_user %>
 	<header>
 		<h3>Scripts</h3>
 	</header>
-	<% if @user.scripts.empty? %>
+	<% script_list = (same_user or (!current_user.nil? and current_user.moderator?)) ? @user.scripts.order('name') : @user.scripts.listable.order('name') %>
+	<% if script_list.empty? %>
 		<p>No scripts posted.</p>
 	<% else %>
 		<ol id="user-script-list" class="script-list">
-			<%= render partial: 'scripts/script', collection: (same_user or (!current_user.nil? and current_user.moderator?)) ? @user.scripts.order('name') : @user.scripts.listable.order('name') %>
+			<%= render partial: 'scripts/script', collection: script_list %>
 		</ol>
 	<% end %>
 </section>

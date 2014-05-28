@@ -20,15 +20,20 @@ protected
 		render_access_denied if current_user.nil? or (!params[:script_id].nil? and Script.find(params[:script_id]).user_id != current_user.id)
 	end
 
+	def authorize_by_script_id_or_moderator
+		return if !current_user.nil? and current_user.moderator?
+		authorize_by_script_id
+	end
+
 	def authorize_for_moderators_only
 		render_access_denied if current_user.nil? or !current_user.moderator?
 	end
 
-	def check_for_moderator_deleted(script)
-		render_deleted if !script.nil? and script.moderator_deleted and (current_user.nil? or !current_user.moderator?)
+	def check_for_deleted(script)
+		render_deleted if !script.nil? and !script.script_delete_type_id.nil? and (current_user.nil? or (current_user != script.user and !current_user.moderator?))
 	end
 
-	def check_for_moderator_deleted_by_id
+	def check_for_deleted_by_id
 		return if params[:id].nil?
 		begin
 			script = Script.find(params[:id])
@@ -36,10 +41,10 @@ protected
 			render_404
 			return
 		end
-		check_for_moderator_deleted(script)
+		check_for_deleted(script)
 	end
 
-	def check_for_moderator_deleted_by_script_id
+	def check_for_deleted_by_script_id
 		return if params[:script_id].nil?
 		begin
 			script = Script.find(params[:script_id])
@@ -47,7 +52,18 @@ protected
 			render_404
 			return
 		end
-		check_for_moderator_deleted(script)
+		check_for_deleted(script)
+	end
+
+	def check_for_locked_by_script_id
+		return if params[:script_id].nil?
+		begin
+			script = Script.find(params[:script_id])
+		rescue ActiveRecord::RecordNotFound
+			render_404
+			return
+		end
+		render_locked if script.locked and (current_user.nil? or !current_user.moderator?)
 	end
 
 	def render_404
@@ -56,6 +72,10 @@ protected
 
 	def render_deleted
 		render :text => 'Script has been deleted.', :status => 410, :layout => 'application'
+	end
+
+	def render_locked
+		render :text => 'Script has been locked.', :status => 403, :layout => 'application'
 	end
 
 	def render_access_denied

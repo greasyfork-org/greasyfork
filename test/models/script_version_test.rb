@@ -529,4 +529,37 @@ END
 		sv.calculate_all
 		assert sv.valid?
 	end
+
+	test 'get blanked code' do
+		js = <<END
+// ==UserScript==
+// @name		A Test!
+// @description		Unit test.
+// @version 2
+// @namespace whatever
+// ==/UserScript==
+var foo = "bar";
+END
+		sv = ScriptVersion.new
+		sv.code = js
+		sv.script = Script.new
+		sv.calculate_all
+		expected_meta = <<END
+// ==UserScript==
+// @name		A Test!
+// @description		This script was deleted from Greasy Fork, and due to its negative effects, it has been automatically removed from your browser.
+// @version 2.0.0.1
+// @namespace whatever
+// ==/UserScript==
+END
+		assert_equal expected_meta, sv.get_blanked_code
+	end
+
+
+	test 'get next version' do
+		assert_equal '1.0.0.1', ScriptVersion.get_next_version('1')
+		assert_equal '1.0.0.2', ScriptVersion.get_next_version('1.0.0.1')
+		assert_equal '1.1.1.2', ScriptVersion.get_next_version('1.1.1.1')
+		assert_equal '1.1.1.1b2a', ScriptVersion.get_next_version('1.1.1.1b1a')
+	end
 end

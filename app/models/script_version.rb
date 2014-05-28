@@ -139,6 +139,12 @@ class ScriptVersion < ActiveRecord::Base
 		ScriptVersion.get_meta_block(rewritten_code)
 	end
 
+	def get_blanked_code
+		c = get_rewritten_meta_block
+		current_version = ScriptVersion.get_first_meta(c, 'version')
+		return ScriptVersion.inject_meta_for_code(c, {:description => 'This script was deleted from Greasy Fork, and due to its negative effects, it has been automatically removed from your browser.', :version => ScriptVersion.get_next_version(current_version)})
+	end
+
 	def calculate_rewritten_code(previous_description = nil)
 		add_if_missing = {}
 		backup_namespace = calculate_backup_namespace
@@ -163,9 +169,13 @@ class ScriptVersion < ActiveRecord::Base
 		return Rails.application.routes.url_helpers.user_path(:id => script.user.id, :only_path => false)
 	end
 
-	# Inserts, changes, or deletes meta values in the current code and returns the entire code
 	def inject_meta(replacements, additions_if_missing = {})
-		meta_block = ScriptVersion.get_meta_block(code)
+		ScriptVersion.inject_meta_for_code(code, replacements, additions_if_missing)
+	end
+
+	# Inserts, changes, or deletes meta values in the current code and returns the entire code
+	def self.inject_meta_for_code(c, replacements, additions_if_missing = {})
+		meta_block = ScriptVersion.get_meta_block(c)
 		return nil if meta_block.nil?
 
 		# handle strings or symbols as the keys
@@ -205,7 +215,7 @@ class ScriptVersion < ActiveRecord::Base
 			meta_lines << close_meta
 		end
 
-		return meta_lines.join("\n") + ScriptVersion.get_code_block(code)
+		return meta_lines.join("\n") + ScriptVersion.get_code_block(c)
 	end
 
 	# Returns an array of [pattern, display_name]. display_name can be nil.
@@ -363,6 +373,26 @@ class ScriptVersion < ActiveRecord::Base
 		meta = ScriptVersion.parse_meta(c)
 		return meta[meta_name].first if meta.has_key?(meta_name)
 		return nil
+	end
+
+	# Increments the passed version
+	def self.get_next_version(v)
+		a = split_version(v)
+		# wipe out zeros
+		[0, 2, 4, 6, 8, 10, 12, 14].each do |i|
+			a[i] = nil if a[i] == 0
+		end
+		# incremement the last numeric value - position 12 if 13 and 14 aren't set, 14 if either is
+		if a[13].empty? and a[14].nil?
+			a[12] = a[12].nil? ? 1 : a[12] + 1
+		else
+			a[14] = a[14].nil? ? 1 : a[14] + 1
+		end
+		p1 = a[0..3].join('')
+		p2 = a[4..7].join('')
+		p3 = a[8..11].join('')
+		p4 = a[12..15].join('')
+		return [p1, p2, p3, p4].map{|p| p.empty? ? '0' : p}.join('.')
 	end
 
 private

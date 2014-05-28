@@ -35,9 +35,10 @@ Greasyfork::Application.routes.draw do
 		patch 'sync_update(.:format)', :to => 'scripts#sync_update', :as =>  'sync_update'
 		post 'install-ping', :to => 'scripts#install_ping', :as => 'install_ping'
 		get 'diff', :to => 'scripts#diff', :as => 'diff', :constraints => lambda{ |req| !req.params[:v1].blank? and !req.params[:v2].blank? }
-		get 'moderator-delete(.:format)', :to => 'scripts#moderator_delete', :as => 'moderator_delete'
-		post 'moderator-delete(.:format)', :to => 'scripts#moderator_do_delete', :as => 'moderator_do_delete'
-		post 'moderator-undelete(.:format)', :to => 'scripts#moderator_do_undelete', :as => 'moderator_do_undelete'
+		get 'delete(.:format)', :to => 'scripts#delete', :as => 'delete'
+		post 'delete(.:format)', :to => 'scripts#do_delete', :as => 'do_delete'
+		get 'undelete(.:format)', :to => 'scripts#undelete', :as => 'undelete'
+		post 'undelete(.:format)', :to => 'scripts#do_undelete', :as => 'do_undelete'
 		collection do
 			get 'by-site(.:format)', :action => 'by_site', :as => 'site_list'
 			get 'by-site/:site(.:format)', :action => 'index', :as => 'by_site', :constraints => {:site => /.*/}

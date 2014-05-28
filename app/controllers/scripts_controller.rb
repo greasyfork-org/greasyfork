@@ -2,12 +2,14 @@ require 'coderay'
 require 'script_importer/script_syncer'
 
 class ScriptsController < ApplicationController
-	layout 'application', :except => [:show, :show_code, :feedback, :diff, :sync, :sync_update, :moderator_delete]
+	layout 'application', :except => [:show, :show_code, :feedback, :diff, :sync, :sync_update, :delete, :undelete]
 
 	before_filter :authorize_by_script_id, :only => [:sync, :sync_update]
-	before_filter :authorize_for_moderators_only, :only => [:moderator_delete, :moderator_do_delete, :moderator_do_undelete]
-	before_filter :check_for_moderator_deleted_by_id, :only => [:show]
-	before_filter :check_for_moderator_deleted_by_script_id, :except => [:show]
+	before_filter :authorize_by_script_id_or_moderator, :only => [:delete, :do_delete, :undelete, :do_undelete]
+	before_filter :check_for_locked_by_script_id, :only => [:sync, :sync_update, :delete, :do_delete, :undelete, :do_undelete]
+	before_filter :check_for_deleted_by_id, :only => [:show]
+	before_filter :check_for_deleted_by_script_id, :only => [:show_code, :feedback, :user_js, :meta_js, :install_ping, :diff]
+
 	skip_before_action :verify_authenticity_token, :only => [:install_ping]
 
 	#########################
@@ -80,17 +82,17 @@ class ScriptsController < ApplicationController
 		script, script_version = versionned_script(params[:script_id], params[:version])
 		respond_to do |format|
 			format.any(:html, :all, :js) {
-				render :text => script_version.rewritten_code, :content_type => 'text/javascript'
+				render :text => script.script_delete_type_id == 2 ? script_version.get_blanked_code : script_version.rewritten_code, :content_type => 'text/javascript'
 			}
 			format.user_script_meta { 
-				render :text => script_version.get_rewritten_meta_block, :content_type => 'text/x-userscript-meta'
+				render :text => script.script_delete_type_id == 2 ? script_version.get_blanked_code : script_version.get_rewritten_meta_block, :content_type => 'text/x-userscript-meta'
 			}
 		end
 	end
 
 	def meta_js
 		script, script_version = versionned_script(params[:script_id], params[:version])
-		render :text => script_version.get_rewritten_meta_block, :content_type => 'text/javascript'
+		render :text => script.script_delete_type_id == 2 ? script_version.get_blanked_code : script_version.get_rewritten_meta_block, :content_type => 'text/x-userscript-meta'
 	end
 
 	def install_ping
@@ -159,32 +161,42 @@ class ScriptsController < ApplicationController
 		redirect_to @script
 	end
 
-	def moderator_delete
+	def delete
 		@script = Script.find(params[:script_id])
 	end
 
-	def moderator_do_delete
+	def undelete
+		@script = Script.find(params[:script_id])
+	end
+
+	def do_delete
 		script = Script.find(params[:script_id])
-		ma = ModeratorAction.new
-		ma.moderator = current_user
-		ma.script = script
-		ma.action = 'Delete'
-		ma.reason = params[:reason]
-		ma.save!
-		script.moderator_deleted = true
+		if current_user.moderator? && current_user != script.user
+			script.locked = params[:locked].nil? ? false : params[:locked]
+			ma = ModeratorAction.new
+			ma.moderator = current_user
+			ma.script = script
+			ma.action = script.locked ? 'Delete and lock' : 'Delete'
+			ma.reason = params[:reason]
+			ma.save!
+		end
+		script.script_delete_type_id = params[:script_delete_type_id]
 		script.save(:validate => false)
 		redirect_to script
 	end
 
-	def moderator_do_undelete
+	def do_undelete
 		script = Script.find(params[:script_id])
-		ma = ModeratorAction.new
-		ma.moderator = current_user
-		ma.script = script
-		ma.action = 'Undelete'
-		ma.reason = params[:reason]
-		ma.save!
-		script.moderator_deleted = false
+		if current_user.moderator? && current_user != script.user
+			ma = ModeratorAction.new
+			ma.moderator = current_user
+			ma.script = script
+			ma.action = 'Undelete'
+			ma.reason = params[:reason]
+			ma.save!
+			script.locked = false
+		end
+		script.script_delete_type_id = nil
 		script.save(:validate => false)
 		redirect_to script
 	end

@@ -1,0 +1,21 @@
+<%- title "Delete #{@script.name}" %>
+
+<% moderator_view = current_user.moderator? && current_user != @script.user %>
+<%=form_tag(script_do_delete_path) do |f|%>
+	<p>
+		<% ScriptDeleteType.all.each do |sdt| %>
+			<input type="radio" required id="script_delete_type_id_<%=sdt.id%>" name="script_delete_type_id" value="<%=sdt.id%>" <%if sdt.id == 2 and moderator_view%>checked<%end%>> <label for="script_delete_type_id_<%=sdt.id%>"><%=sdt.description%></label><br>
+		<% end %>
+	</p>
+	<% if moderator_view %>
+		<p>
+			<label for="reason">Why are you deleting this?</label><br>
+			<textarea id="reason" name="reason" rows="5" cols="100" maxlength="500" required></textarea>
+		</p>
+		<p>
+			<label for="locked">Lock the script to prevent undelete by the author?</label> <input type="checkbox" id="locked" name="locked" value="1" checked>
+		</p>
+	<% end %>
+	<input type="submit" value="Delete">
+<% end %>
+

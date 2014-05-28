@@ -7,9 +7,10 @@ class Script < ActiveRecord::Base
 	belongs_to :script_type
 	belongs_to :script_sync_source
 	belongs_to :script_sync_type
+	belongs_to :script_delete_type
 	belongs_to :license
 
-	scope :not_deleted, -> {where(:moderator_deleted => false).where(:script_type_id != 4)}
+	scope :not_deleted, -> {where('script_delete_type_id is null')}
 	scope :active, -> {not_deleted.includes(:assessments).where(:assessments => { :id => nil })}
 	scope :listable, -> {active.where(:script_type_id => 1)}
 	scope :libraries, -> {active.where(:script_type_id => 3)}
@@ -80,7 +81,7 @@ class Script < ActiveRecord::Base
 	end
 
 	def active?
-		assessments.empty?
+		!deleted? and assessments.empty?
 	end
 
 	def slugify(name)
@@ -109,6 +110,6 @@ class Script < ActiveRecord::Base
 	end
 
 	def deleted?
-		!script_type_id.nil? && script_type_id == 4
+		!script_delete_type.nil?
 	end
 end
