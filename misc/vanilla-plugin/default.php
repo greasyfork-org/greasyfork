@@ -6,6 +6,7 @@ $PluginInfo['GreasyFork'] = array(
    'Description' => 'Greasy Fork customizations',
    'Version' => '1.0',
    'Author' => "Jason Barnabe",
+   'RequiredApplications' => array('Vanilla' => '2.1'),
    'AuthorEmail' => 'jason.barnabe@gmail.com',
    'AuthorUrl' => 'https://greasyfork.org'
 );
