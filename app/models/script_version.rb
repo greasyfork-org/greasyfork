@@ -23,8 +23,7 @@ class ScriptVersion < ActiveRecord::Base
 			end
 		end
 
-		disallowed_codes = DisallowedCode.all
-		disallowed_codes.each do |dc|
+		ScriptVersion.disallowed_codes_used_for_code(value).each do |dc|
 			record.errors.add(:name, "exception #{dc.ob_code}") if value =~ Regexp.new(dc.pattern)
 		end
 	end
@@ -339,6 +338,14 @@ class ScriptVersion < ActiveRecord::Base
 			r << script_url if allowed_requires.index { |ar| script_url =~ Regexp.new(ar.pattern) }.nil?
 		end
 		return r
+	end
+
+	def disallowed_codes_used
+		return ScriptVersion.disallowed_codes_used_for_code(self.code)
+	end
+
+	def self.disallowed_codes_used_for_code(c)
+		return DisallowedCode.all.select { |dc| c =~ Regexp.new(dc.pattern)}
 	end
 
 	def self.compare_versions(v1, v2)
