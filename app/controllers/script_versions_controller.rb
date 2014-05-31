@@ -13,6 +13,7 @@ class ScriptVersionsController < ApplicationController
 	end
 
 	def new
+		@no_bots = true
 		@script_version = ScriptVersion.new
 		if !params[:script_id].nil?
 			@script = Script.find(params[:script_id]) 
@@ -30,7 +31,7 @@ class ScriptVersionsController < ApplicationController
 	end
 
 	def create
-
+		@no_bots = true
 		@script_version = ScriptVersion.new
 		@script_version.assign_attributes(script_version_params)
 

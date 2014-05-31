@@ -15,7 +15,7 @@ i = 0
 				<% end 
 				i += 1
 				%>
-				<%=link_to 'v' + sv.version, script_path(sv.script, :version => sv.id)%> 
+				<%=link_to 'v' + sv.version, script_path(sv.script, :version => sv.id), {:rel => :nofollow}%> 
 				<%=markup_date(sv.created_at)%>
 				<%=sv.changelog%>
 			</li>

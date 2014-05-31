@@ -6,6 +6,9 @@
 	<%= stylesheet_link_tag    "application", media: "all" %>
 	<%= javascript_include_tag "application" %>
 	<%= csrf_meta_tags %>
+	<% if defined?(@no_bots) and @no_bots %>
+		<meta name="robots" content="noindex">
+	<% end %>
 </head>
 <body>
 

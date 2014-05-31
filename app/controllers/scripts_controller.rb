@@ -51,10 +51,12 @@ class ScriptsController < ApplicationController
 	end
 
 	def under_assessment
+		@no_bots = true
 		@scripts = Script.under_assessment
 	end
 
 	def reported
+		@no_bots = true
 		@scripts = Script.reported
 	end
 
@@ -65,17 +67,20 @@ class ScriptsController < ApplicationController
 	def show
 		@script, @script_version = versionned_script(params[:id], params[:version])
 		return if redirect_to_slug(@script, :id)
+		@no_bots = true if !params[:version].nil?
 	end
 
 	def show_code
 		@script, @script_version = versionned_script(params[:script_id], params[:version])
 		return if redirect_to_slug(@script, :script_id)
 		@code = @script_version.rewritten_code
+		@no_bots = true if !params[:version].nil?
 	end
 
 	def feedback
 		@script, @script_version = versionned_script(params[:script_id], params[:version])
 		return if redirect_to_slug(@script, :script_id)
+		@no_bots = true if !params[:version].nil?
 	end
 
 	def user_js
@@ -117,15 +122,18 @@ class ScriptsController < ApplicationController
 			return
 		end
 		@diff = Diffy::Diff.new(@old_version.code, @new_version.code).to_s(:html).html_safe
+		@no_bots = true
 	end
 
 	def sync
 		@script = Script.find(params[:script_id])
 		return if redirect_to_slug(@script, :script_id)
+		@no_bots = true
 	end
 
 	def sync_update
 		@script = Script.find(params[:script_id])
+		@no_bots = true
 
 		if !params['stop-syncing'].nil?
 			@script.script_sync_type_id = nil
@@ -163,14 +171,17 @@ class ScriptsController < ApplicationController
 
 	def delete
 		@script = Script.find(params[:script_id])
+		@no_bots = true
 	end
 
 	def undelete
 		@script = Script.find(params[:script_id])
+		@no_bots = true
 	end
 
 	def do_delete
 		script = Script.find(params[:script_id])
+		@no_bots = true
 		if current_user.moderator? && current_user != script.user
 			script.locked = params[:locked].nil? ? false : params[:locked]
 			ma = ModeratorAction.new
@@ -186,6 +197,7 @@ class ScriptsController < ApplicationController
 	end
 
 	def do_undelete
+		@no_bots = true
 		script = Script.find(params[:script_id])
 		if current_user.moderator? && current_user != script.user
 			ma = ModeratorAction.new
