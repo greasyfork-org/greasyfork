@@ -3,4 +3,9 @@
 <style>
 <%= CodeRay::Encoders[:html]::CSS.new(:default).stylesheet%>
 </style>
-<%=CodeRay.scan(@code, :js).div({:css => :class, :line_numbers => :table}).html_safe%>
+<% if @code.length > 500000 and params[:highlight].nil? %>
+	<p>Code is over 500KB, so syntax highlighting disabled to spare your browser. <%=link_to('Think you can handle it?', {:highlight => 1}, {:rel => :nofollow})%></p>
+	<pre class="CodeRay"><%=@code%></pre>
+<% else %>
+	<%=CodeRay.scan(@code, :js).div({:css => :class, :line_numbers => :table}).html_safe%>
+<% end %>

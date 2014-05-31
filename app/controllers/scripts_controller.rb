@@ -70,7 +70,7 @@ class ScriptsController < ApplicationController
 	def show_code
 		@script, @script_version = versionned_script(params[:script_id], params[:version])
 		return if redirect_to_slug(@script, :script_id)
-		@code = @script_version.code
+		@code = @script_version.rewritten_code
 	end
 
 	def feedback
