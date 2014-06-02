@@ -92,6 +92,11 @@ module ApplicationHelper
 		fix_whitespace = lambda do |env|
 			node = env[:node]
 			return unless node.text?
+			# stupid workaround for https://github.com/JasonBarnabe/greasyfork/issues/138 - give up if the stack is too big
+			if caller.size > 2000
+				node.content = ''
+				return
+			end
 			node.content = node.content.lstrip if node.previous_sibling.nil? or (!node.previous_sibling.description.nil? and node.previous_sibling.description.block?)
 			node.content = node.content.rstrip if node.next_sibling.nil? or (!node.next_sibling.description.nil? and node.next_sibling.description.block?)
 			return if node.text.empty?
