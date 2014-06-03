@@ -34,7 +34,7 @@
 		(0..4).each do |i|
 			dt = @by_sites[i]['display_text']
 			if dt.nil?
-				current_site_is_top = true if dt == '*' %>
+				current_site_is_top = true if params[:site] == '*' %>
 				<%=script_list_link('(All sites)', params[:sort], '*')%>
 			<% else
 				current_site_is_top = true if dt == params[:site] %>
