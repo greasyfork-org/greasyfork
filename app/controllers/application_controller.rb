@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
 
 	before_filter :store_location
 
+	before_filter :banned?
+
 protected
 
 	def configure_permitted_parameters
@@ -126,5 +128,13 @@ protected
 			return true
 		end
 		return false
+	end
+
+	def banned?
+		if current_user.present? && current_user.banned?
+			sign_out current_user
+			flash[:alert] = "This account has been banned."
+			root_path
+		end
 	end
 end

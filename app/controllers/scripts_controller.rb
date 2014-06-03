@@ -175,6 +175,7 @@ class ScriptsController < ApplicationController
 
 	def delete
 		@script = Script.find(params[:script_id])
+		@other_scripts = Script.where(:user => @script.user).where(:locked => false).where(['id != ?', @script.id]).count
 		@no_bots = true
 	end
 
@@ -194,6 +195,16 @@ class ScriptsController < ApplicationController
 			ma.action = script.locked ? 'Delete and lock' : 'Delete'
 			ma.reason = params[:reason]
 			ma.save!
+			if params[:banned]
+				ma_ban = ModeratorAction.new
+				ma_ban.moderator = current_user
+				ma_ban.user = script.user
+				ma_ban.action = 'Ban'
+				ma_ban.reason = params[:reason]
+				ma_ban.save!
+				script.user.banned = true
+				script.user.save!
+			end
 		end
 		script.script_delete_type_id = params[:script_delete_type_id]
 		script.save(:validate => false)
@@ -211,6 +222,16 @@ class ScriptsController < ApplicationController
 			ma.reason = params[:reason]
 			ma.save!
 			script.locked = false
+			if script.user.banned
+				ma_ban = ModeratorAction.new
+				ma_ban.moderator = current_user
+				ma_ban.user = script.user
+				ma_ban.action = 'Unban'
+				ma_ban.reason = params[:reason]
+				ma_ban.save!
+				script.user.banned = false
+				script.user.save!
+			end
 		end
 		script.script_delete_type_id = nil
 		script.save(:validate => false)

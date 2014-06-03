@@ -6,7 +6,7 @@
 		<tr>
 			<th>Date</th>
 			<th>Moderator</th>
-			<th>Script</th>
+			<th>Item</th>
 			<th>Action</th>
 			<th>Reason</th>
 		</tr>
@@ -15,7 +15,10 @@
 		<tr>
 			<td><%=markup_date action.created_at%></td>
 			<td><%=link_to action.moderator.name, action.moderator%></td>
-			<td><%if !action.script.nil?%><%=link_to action.script.name, action.script%><%end%></td>
+			<td>
+				<%if !action.script.nil?%>Script: <%=link_to action.script.name, action.script%><%end%>
+				<%if !action.user.nil?%>User: <%=link_to action.user.name, action.user%><%end%>
+			</td>
 			<td><%=action.action%></td>
 			<td><%=action.reason%></td>
 		</tr>
