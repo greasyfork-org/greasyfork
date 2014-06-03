@@ -19,9 +19,13 @@ class ScriptsController < ApplicationController
 	def index
 		@scripts = Script.listable.includes([:user, :script_type]).order(get_sort).paginate(:page => params[:page], :per_page => get_per_page)
 		if !params[:site].nil?
-			@scripts = @scripts.joins(:script_applies_tos).where(['display_text = ?', params[:site]])
+			if params[:site] == '*'
+				@scripts = @scripts.includes(:script_applies_tos).where('script_applies_tos.id IS NULL')
+			else
+				@scripts = @scripts.joins(:script_applies_tos).where(['display_text = ?', params[:site]])
+			end
 		end
-		@by_sites = get_by_sites
+		@by_sites = get_top_by_sites
 	end
 
 	def by_site
@@ -218,7 +222,30 @@ private
 	def get_by_sites
 		# regexps are eliminated because they're not useful to look at and the link doesn't work anyway (due to
 		# the leading slash?)
-		return ScriptAppliesTo.joins(:script).select('display_text, count(distinct scripts.id) script_count').group('display_text').order('script_count DESC, display_text').where('display_text IS NOT NULL and display_text NOT LIKE "/%" and script_type_id = 1')
+		sql =<<-EOF
+			SELECT display_text, SUM(daily_installs) install_count FROM
+				(SELECT DISTINCT display_text, script_id FROM script_applies_tos) a
+				JOIN scripts s ON script_id = s.id
+			WHERE (display_text IS NULL OR display_text NOT LIKE "/%") and script_type_id = 1 and script_delete_type_id is null
+			GROUP BY display_text
+			ORDER BY display_text
+		EOF
+		return Script.connection.select_all(sql)
+	end
+
+	def get_top_by_sites
+		# regexps are eliminated because they're not useful to look at and the link doesn't work anyway (due to
+		# the leading slash?)
+		sql =<<-EOF
+			SELECT display_text, SUM(daily_installs) install_count FROM
+				(SELECT DISTINCT display_text, script_id FROM script_applies_tos) a
+				JOIN scripts s ON script_id = s.id
+			WHERE (display_text IS NULL OR display_text NOT LIKE "/%") and script_type_id = 1 and script_delete_type_id is null
+			GROUP BY display_text
+			ORDER BY install_count DESC, display_text
+			LIMIT 5
+		EOF
+		return Script.connection.select_all(sql)
 	end
 
 	def get_per_page

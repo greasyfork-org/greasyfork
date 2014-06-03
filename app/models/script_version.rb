@@ -266,13 +266,13 @@ class ScriptVersion < ActiveRecord::Base
 				else
 					if uri.host.ends_with?('.tld')
 						@@tld_expansion.each do |tld|
-							applies_to_names << [original_pattern, uri.host.sub(/tld$/i, tld)]
+							applies_to_names << [original_pattern, ScriptVersion.get_tld_plus_1(uri.host.sub(/tld$/i, tld))]
 						end
 					# "example.com."
 					elsif uri.host.ends_with?('.')
-						applies_to_names << [original_pattern, uri.host[0, uri.host.length - 1]]
+						applies_to_names << [original_pattern, ScriptVersion.get_tld_plus_1(uri.host[0, uri.host.length - 1])]
 					else
-						applies_to_names << [original_pattern, uri.host]
+						applies_to_names << [original_pattern, ScriptVersion.get_tld_plus_1(uri.host)]
 					end
 				end
 			rescue ArgumentError
@@ -284,6 +284,17 @@ class ScriptVersion < ActiveRecord::Base
 			end
 		end
 		return applies_to_names.uniq
+	end
+
+	$dont_strip_tld_sites = ['del.icio.us']
+	$ip_pattern = /^([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}):?[0-9]*$/
+	def self.get_tld_plus_1(domain)
+		return domain if !domain.include?('.')
+		return domain if !$ip_pattern.match(domain).nil?
+		return domain if $dont_strip_tld_sites.include?(domain)
+		return domain if !PublicSuffix.valid?(domain)
+		pd = PublicSuffix.parse(domain)
+		return pd.domain
 	end
 
 	def normalize_code

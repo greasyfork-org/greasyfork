@@ -1,4 +1,7 @@
-<% if !params[:site].nil? and !@scripts.empty? %>
+<% if params[:site] == '*' and !@scripts.empty? %>
+	<%- title "User scripts for all sites on Greasy Fork" %>
+	<%- description "List of user scripts for all sites available on Greasy Fork" %>
+<% elsif !params[:site].nil? and !@scripts.empty? %>
 	<%- title "User scripts for #{params[:site]} on Greasy Fork" %>
 	<%- description "List of user scripts for #{params[:site]} available on Greasy Fork" %>
 <% elsif action_name == 'search' and !params[:q].nil? %>
@@ -28,9 +31,15 @@
 			|
 		</span>
 		<% current_site_is_top = false
-		(0..2).each do |i|
-			current_site_is_top = true if @by_sites[i].display_text == params[:site] %>
-			<%=script_list_link(@by_sites[i].display_text, params[:sort], @by_sites[i].display_text)%>
+		(0..4).each do |i|
+			dt = @by_sites[i]['display_text']
+			if dt.nil?
+				current_site_is_top = true if dt == '*' %>
+				<%=script_list_link('(All sites)', params[:sort], '*')%>
+			<% else
+				current_site_is_top = true if dt == params[:site] %>
+				<%=script_list_link(dt, params[:sort], dt)%>
+			<% end %>
 			|
 		<% end %>
 		<% if !current_site_is_top and !params[:site].nil? and !@scripts.empty? %>

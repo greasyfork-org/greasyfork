@@ -107,4 +107,8 @@ class ScriptVersionAppliesToTest < ActiveSupport::TestCase
 		assert_equal [['http://s*.*.example.*/*', nil]], get_applies_to(['http://s*.*.example.*/*'])
 	end
 
+	test 'subdomain' do
+		assert_equal [['http://www.example.com/*', 'example.com']], get_applies_to(['http://www.example.com/*'])
+	end
+
 end
