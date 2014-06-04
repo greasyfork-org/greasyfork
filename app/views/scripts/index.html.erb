@@ -32,6 +32,7 @@
 		</span>
 		<% current_site_is_top = false
 		(0..4).each do |i|
+			break if @by_sites[i].nil?
 			dt = @by_sites[i]['display_text']
 			if dt.nil?
 				current_site_is_top = true if params[:site] == '*' %>
