@@ -28,7 +28,7 @@
 	<dl id="script-stats">
 		<dt class="script-show-author">Author</dt>
 		<dd class="script-show-author"><%=link_to @script.user.name, @script.user%></dd>
-		<% if @script.script_type_id != 3 %>
+		<% if @script.script_type_id != 3 and params[:version].nil? %>
 		<dt class="script-show-daily-installs">Daily installs</dt>
 		<dd class="script-show-daily-installs"><%=@script.daily_installs%></dd>
 		<dt class="script-show-total-installs">Total installs</dt>
