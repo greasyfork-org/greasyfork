@@ -990,7 +990,7 @@ CREATE TABLE `assessments` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1372 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1256 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1032,7 +1032,7 @@ CREATE TABLE `delayed_jobs` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `delayed_jobs_priority` (`priority`,`run_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=17232 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15269 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1164,7 +1164,21 @@ CREATE TABLE `script_applies_tos` (
   PRIMARY KEY (`id`),
   KEY `index_script_applies_tos_on_script_id` (`script_id`),
   CONSTRAINT `fk_script_applies_tos_script_id` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=133179 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=124241 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `script_codes`
+--
+
+DROP TABLE IF EXISTS `script_codes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `script_codes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` text NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16383 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1256,15 +1270,15 @@ CREATE TABLE `script_versions` (
   `changelog` text COLLATE utf8_unicode_ci,
   `additional_info` text COLLATE utf8_unicode_ci,
   `version` text COLLATE utf8_unicode_ci NOT NULL,
-  `code` mediumtext COLLATE utf8_unicode_ci NOT NULL,
-  `rewritten_code` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `additional_info_markup` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'html',
+  `script_code_id` int(11) NOT NULL,
+  `rewritten_script_code_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `index_script_versions_on_script_id` (`script_id`),
   CONSTRAINT `fk_script_versions_script_id` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5100 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5089 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1347,7 +1361,7 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-06-03 13:15:49
+-- Dump completed on 2014-06-03 21:58:56
 INSERT INTO schema_migrations (version) VALUES ('20140210194333');
 
 INSERT INTO schema_migrations (version) VALUES ('20140210201355');
@@ -1411,3 +1425,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140527025707');
 INSERT INTO schema_migrations (version) VALUES ('20140603174709');
 
 INSERT INTO schema_migrations (version) VALUES ('20140603181415');
+
+INSERT INTO schema_migrations (version) VALUES ('20140603201729');

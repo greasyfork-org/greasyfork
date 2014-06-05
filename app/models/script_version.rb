@@ -2,8 +2,10 @@ require 'uri'
 
 class ScriptVersion < ActiveRecord::Base
 	belongs_to :script
+	belongs_to :script_code, :autosave => true
+	belongs_to :rewritten_script_code, :class_name => 'ScriptCode', :autosave => true
 
-	validates_presence_of :code, :rewritten_code
+	validates_presence_of :code
 	validates_presence_of :version, :message => 'meta key must be provided'
 
 	validates_length_of :additional_info, :maximum => 50000
@@ -87,7 +89,6 @@ class ScriptVersion < ActiveRecord::Base
 		record.errors.add(attr, "namespace is missing") if previous_namespace.nil?
 	end
 
-
 	attr_accessor :accepted_assessment, :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace
 
 	def initialize
@@ -102,6 +103,24 @@ class ScriptVersion < ActiveRecord::Base
 		# Set a namespace by ourselves if not provided
 		@add_missing_namespace = false
 		super
+	end
+
+	def code
+		script_code.nil? ? nil : script_code.code
+	end
+
+	def code=(c)
+		self.script_code = ScriptCode.new if self.script_code.nil?
+		self.script_code.code = c
+	end
+
+	def rewritten_code
+		rewritten_script_code.nil? ? nil : rewritten_script_code.code
+	end
+
+	def rewritten_code=(c)
+		self.rewritten_script_code = ScriptCode.new if self.rewritten_script_code.nil?
+		self.rewritten_script_code.code = c
 	end
 
 	# Try our best to accept the code

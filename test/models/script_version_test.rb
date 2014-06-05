@@ -196,7 +196,7 @@ END
 // @name		A Test!
 // @description		Unit test.
 // @updateURL		http://example.com
-// @namespace		http://example.com/1
+// @namespace		http://greasyfork.local/users/1
 // ==/UserScript==
 foo.baz();
 END
@@ -206,7 +206,7 @@ END
 		sv.script = Script.find(1)
 		sv.rewritten_code = sv.calculate_rewritten_code
 		sv.save!
-		expected_js = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @namespace		http://example.com/1\n// @version 123\n// ==/UserScript==\nfoo.baz();\n"
+		expected_js = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @namespace		http://greasyfork.local/users/1\n// @version 123\n// ==/UserScript==\nfoo.baz();\n"
 		assert_equal expected_js, sv.rewritten_code
 	end	
 

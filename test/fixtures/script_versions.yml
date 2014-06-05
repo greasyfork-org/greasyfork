@@ -1,161 +1,73 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
   script_id: 1
-  code: MyText
-  rewritten_code: MyText
+  script_code_id: 100
+  rewritten_script_code_id: 100
   version: 1
 
 two:
   script_id: 2
-  code: MyText
-  rewritten_code: MyText
+  script_code_id: 100
+  rewritten_script_code_id: 100
   version: 1
 
 three:
   script_id: 3
-  code: |
-    // ==UserScript==
-    // @name		A Test!
-    // @description		Unit test.
-    // @version 1.1
-    // @namespace http://greasyfork.local/users/1
-    // ==/UserScript==
-    var foo = 1;
-  rewritten_code: MyText
+  script_code_id: 1
+  rewritten_script_code_id: 100
   version: 1.1
 
 generated_version:
   script_id: 4
-  code: |
-    // ==UserScript==
-    // @name		A Test!
-    // @description		Unit test.
-    // @namespace http://greasyfork.local/users/1
-    // ==/UserScript==
-    var foo = 1;
-  rewritten_code: MyText
+  script_code_id: 2
+  rewritten_script_code_id: 100
   version: 0.0.1.20140305183916
 
 explicit_version:
   script_id: 5
-  code: |
-    // ==UserScript==
-    // @name		A Test!
-    // @description		Unit test.
-    // @namespace http://greasyfork.local/users/1
-    // ==/UserScript==
-    var foo = 1;
-  rewritten_code: MyText
+  script_code_id: 3
+  rewritten_script_code_id: 100
   version: 1.1
 
 with_namespace:
   script_id: 6
-  code: |
-    // ==UserScript==
-    // @name		A Test!
-    // @description		Unit test.
-    // ==/UserScript==
-    var foo = 1;
-  rewritten_code: |
-    // ==UserScript==
-    // @name		A Test!
-    // @description		Unit test.
-    // @namespace http://example.com
-    // ==/UserScript==
-    var foo = 1;
+  script_code_id: 4
+  rewritten_script_code_id: 5
   version: 1.1
 
 url_sync_script:
   script_id: 7
-  code: |
-    // ==UserScript==
-    // @name		This is something
-    // @description		Unit test.
-    // @namespace http://greasyfork.local/users/1
-    // ==/UserScript==
-    var foo = 2;
-  rewritten_code: MyText
+  script_code_id: 6
+  rewritten_script_code_id: 100
   version: 1.1
   additional_info: MyText
   additional_info_markup: markdown
 
 url_sync_script_unchanged:
   script_id: 8
-  code: |
-    // ==UserScript==
-    // @name		A Test!
-    // @description		Unit test.
-    // @version 1.1
-    // @namespace http://greasyfork.local/users/1
-    // ==/UserScript==
-    var foo = 1;
-  rewritten_code: MyText
+  script_code_id: 7
+  rewritten_script_code_id: 100
   version: 1.1
 
 url_sync_script_no_description:
   script_id: 9
-  code: |
-    // ==UserScript==
-    // @name		A Test!
-    // @description		Unit test.
-    // @version 1.1
-    // @namespace http://greasyfork.local/users/1
-    // ==/UserScript==
-    var foo = 1;
-  rewritten_code: |
-    // ==UserScript==
-    // @name		A Test!
-    // @description		Unit test.
-    // @version 1.1
-    // @namespace http://greasyfork.local/users/1
-    // ==/UserScript==
-    var foo = 1;
+  script_code_id: 8
+  rewritten_script_code_id: 9
   version: 1.1
 
 url_sync_script_invalid:
   script_id: 10
-  code: |
-    // ==UserScript==
-    // @name		A Test!
-    // @description		Unit test.
-    // @version 1.1
-    // @namespace http://greasyfork.local/users/1
-    // ==/UserScript==
-    var foo = 1;
-  rewritten_code: MyText
+  script_code_id: 10
+  rewritten_script_code_id: 100
   version: 1.1
 
 previous_with_description:
   script_id: 11
-  code: |
-    // ==UserScript==
-    // @name		A Test!
-    // @namespace		http://example.com/1
-    // @description		Unit test.
-    // @version		1
-    // ==/UserScript==
-    foo.baz();
-  rewritten_code: |
-    // ==UserScript==
-    // @name		A Test!
-    // @namespace		http://example.com/1
-    // @description		Unit test.
-    // @version		1
-    // ==/UserScript==
-    foo.baz();
+  script_code_id: 11
+  rewritten_script_code_id: 12
   version: 1
 
 meta_not_at_top:
   script_id: 12
-  code: |
-    /* License info is here */
-    // ==UserScript==
-    // @name		A Test!
-    // @namespace		http://example.com/1
-    // @description		Unit test.
-    // @version		1
-    // ==/UserScript==
-    foo.baz();
-  rewritten_code: whatevs
+  script_code_id: 13
+  rewritten_script_code_id: 100
   version: 1
