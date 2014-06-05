@@ -125,7 +125,11 @@ class ScriptsController < ApplicationController
 			render :text => 'Invalid versions provided.', :status => 400, :layout => true
 			return
 		end
-		@diff = Diffy::Diff.new(@old_version.code, @new_version.code).to_s(:html).html_safe
+		@context = 3
+		if !params[:context].nil? and params[:context].to_i.between?(0, 10000)
+			@context = params[:context].to_i
+		end
+		@diff = Diffy::Diff.new(@old_version.code, @new_version.code, :context => @context, :include_plus_and_minus_in_html => true, :include_diff_info => true).to_s(:html).html_safe
 		@no_bots = true
 	end
 
