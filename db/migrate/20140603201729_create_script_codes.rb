@@ -4,6 +4,11 @@ class CreateScriptCodes < ActiveRecord::Migration
 			t.integer :migration_id
 			t.text :code, :length => 2000000, :null => false
 		end
+		# need a bigger column
+		execute <<-SQL
+			ALTER TABLE script_codes
+			MODIFY COLUMN code MEDIUMTEXT NOT NULL
+		SQL
 
 		# code
 		reversible do |dir|
