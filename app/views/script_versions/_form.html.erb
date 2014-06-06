@@ -50,8 +50,11 @@
 		</ul>
 	<% end %>
 
+	<p>
+		Scripts must be <strong>properly described</strong>, cannot be <strong>obfuscated</strong> or <strong>minified</strong>, must respect <strong>copyright</strong>, and are limited in the <strong>external code</strong> used. <%=link_to 'Read the full rules.', help_code_rules_path%>
+	</p>
 	<div class="form-control">
-		<label for="code">Code</label> <%=link_to '(Read the rules)', help_code_rules_path, {:target => 'code_rules', :class => 'label-note'}%><br>
+		<label for="code">Code</label><br>
 		<%=s.text_area(:code)%>
 		<div>Or upload: <input type="file" name="code_upload" id="code-upload" accept="text/javascript,application/javascript"></div>
 	</div>
