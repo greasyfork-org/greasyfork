@@ -61,8 +61,14 @@ class ScriptVersionsController < ApplicationController
 		# if the script is (being) deleted, don't require a description
 		@script.description = 'Deleted' if @script.deleted? and @script.description.nil?
 
-		# ensure all validations are run - short circuit the OR
-		if !@script.valid? | !@script_version.valid?
+		# support preview for JS disabled users
+		if !params[:preview].nil?
+			@preview = view_context.format_user_text(@script_version.additional_info, @script_version.additional_info_markup)
+		end
+
+		# Don't save if this is a preview or if there's something invalid. For non-previews,
+		# ensure all validations are run - short circuit the OR.
+		if !params[:preview].nil? or (!@script.valid? | !@script_version.valid?)
 			if @script.new_record?
 				render :new
 			else
