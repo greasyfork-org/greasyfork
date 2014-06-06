@@ -55,7 +55,7 @@ class ImportController < ApplicationController
 		end
 		sync_ids.each do |sync_id|
 			provided_description = params["needsdescription-#{sync_id}"]
-			result, script, message = importer.generate_script(sync_id, provided_description, current_user)
+			result, script, message = importer.generate_script(sync_id, provided_description, current_user, (params['sync-type'].nil? ? 1 : params['sync-type']))
 			case result
 				when :needsdescription
 					@results[:needsdescription] << script

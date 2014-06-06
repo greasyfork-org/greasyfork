@@ -48,7 +48,7 @@ module ScriptImporter
 		#   - :success
 		# - The script
 		# - An error message
-		def self.generate_script(sync_id, provided_description, user)
+		def self.generate_script(sync_id, provided_description, user, sync_type_id = 1)
 			url = sync_id_to_url(sync_id)
 			begin
 				code = download(url)
@@ -69,7 +69,7 @@ module ScriptImporter
 			script.user = user
 			script.script_type_id = 1
 			script.script_sync_source_id = sync_source_id
-			script.script_sync_type_id = 1
+			script.script_sync_type_id = sync_type_id
 			script.sync_identifier = sync_id
 			script.last_attempted_sync_date = DateTime.now
 			script.last_successful_sync_date = DateTime.now
