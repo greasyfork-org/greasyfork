@@ -11,10 +11,10 @@ class Script < ActiveRecord::Base
 	belongs_to :license
 
 	scope :not_deleted, -> {where('script_delete_type_id is null')}
-	scope :active, -> {not_deleted.includes(:assessments).where(:assessments => { :id => nil })}
+	scope :active, -> {not_deleted.where(:uses_disallowed_external => false)}
 	scope :listable, -> {active.where(:script_type_id => 1)}
 	scope :libraries, -> {active.where(:script_type_id => 3)}
-	scope :under_assessment, -> {not_deleted.joins(:assessments).includes(:user).uniq}
+	scope :under_assessment, -> {not_deleted.where(:uses_disallowed_external => true).includes(:assessments).includes(:user).uniq}
 	scope :reported, -> {not_deleted.joins(:discussions).includes(:user).uniq.where('GDN_Discussion.Rating = 1').where('Closed = 0')}
 
 	validates_presence_of :name, :message => 'is required - specify one with @name'
@@ -53,6 +53,7 @@ class Script < ActiveRecord::Base
 		script_version.disallowed_requires_used.each do |script_url|
 			self.assessments.build({:assessment_reason => AssessmentReason.first, :details => script_url})
 		end
+		self.uses_disallowed_external = !self.assessments.empty?
 
 		if new_record? or self.code_updated_at.nil?
 			self.code_updated_at = Time.now
@@ -84,7 +85,7 @@ class Script < ActiveRecord::Base
 	end
 
 	def active?
-		!deleted? and assessments.empty?
+		!deleted? and !uses_disallowed_external
 	end
 
 	def slugify(name)
