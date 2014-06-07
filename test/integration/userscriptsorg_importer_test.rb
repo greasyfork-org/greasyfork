@@ -5,18 +5,22 @@ include ScriptImporter
 class UserscriptsorgImporterTest < ActiveSupport::TestCase
 
 	test 'remote user identifier' do
+		skip('userscripts.org down')
 		assert_equal '4630', UserScriptsOrgImporter.remote_user_identifier('http://userscripts.org/users/4630')
 	end
 
 	test 'verify user' do
+		skip('userscripts.org down')
 		assert_equal :success, UserScriptsOrgImporter.verify_ownership('http://userscripts.org/users/4630', 1)
 	end
 
 	test 'verify user no url' do
+		skip('userscripts.org down')
 		assert_equal :nourl, UserScriptsOrgImporter.verify_ownership('http://userscripts.org/users/1', 1)
 	end
 
 	test 'pull script list' do
+		skip('userscripts.org down')
 		new_scripts, existing_scripts = UserScriptsOrgImporter.pull_script_list('http://userscripts.org/users/4630')
 		assert existing_scripts.empty?
 		assert new_scripts.length > 1
@@ -26,6 +30,7 @@ class UserscriptsorgImporterTest < ActiveSupport::TestCase
 	end
 
 	test 'pull script list with existing' do
+		skip('userscripts.org down')
 		previous_script = get_valid_script
 		previous_script.script_sync_source_id = '2'
 		previous_script.sync_identifier = '22356'
@@ -37,6 +42,7 @@ class UserscriptsorgImporterTest < ActiveSupport::TestCase
 	end
 
 	test 'generate script' do
+		skip('userscripts.org down')
 		result, script, message = UserScriptsOrgImporter.generate_script('22356', nil, User.find(1))
 		assert_equal :success, result
 		assert_not_nil script
@@ -47,16 +53,19 @@ class UserscriptsorgImporterTest < ActiveSupport::TestCase
 	end
 
 	test 'generate script bad id' do
+		skip('userscripts.org down')
 		result, script, message = UserScriptsOrgImporter.generate_script('31415926', nil, User.find(1))
 		assert_equal :failure, result
 	end
 
 	test 'generate script no description' do
+		skip('userscripts.org down')
 		result, script, message = UserScriptsOrgImporter.generate_script('411774', nil, User.find(1))
 		assert_equal :needsdescription, result
 	end
 
 	test 'generate script no description provided description' do
+		skip('userscripts.org down')
 		description = 'This is the description'
 		result, script, message = UserScriptsOrgImporter.generate_script('411774', description, User.find(1))
 		assert_equal :success, result
@@ -64,6 +73,7 @@ class UserscriptsorgImporterTest < ActiveSupport::TestCase
 	end
 
 	test 'generate script validation fail' do
+		skip('userscripts.org down')
 		result, script, message = UserScriptsOrgImporter.generate_script('411783', nil, User.find(1))
 		assert !script.valid?
 		assert_equal :failure, result
