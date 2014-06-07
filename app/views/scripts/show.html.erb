@@ -53,7 +53,17 @@
 	</dl>
 	<dl id="script-applies-to">
 		<dt class="script-show-applies-to">Applies to</dt>
-		<dd class="script-show-applies-to"><%= (@script.script_applies_tos.empty? ? 'All sites' : @script.script_applies_tos.map{|s|s.display_text.nil? ? "<code>#{h(s.pattern)}</code>".html_safe : s.display_text}.uniq.sort.map{|s| h(s)}.join(', ')).html_safe %></dd>
+		<dd class="script-show-applies-to">
+			<% if @script.script_applies_tos.empty? %>
+				All sites
+			<% else %>
+				<%=
+					(
+					@script.script_applies_tos.select{|s|s.domain}.map{|s|h(s.text)} +
+					@script.script_applies_tos.select{|s|!s.domain}.map{|s| "<code>#{h(s.text)}</code>".html_safe}
+					).join(', ').html_safe%>
+			<% end %>
+		</dd>
 	</dl>
 </div>
 

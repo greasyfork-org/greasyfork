@@ -22,7 +22,7 @@ class ScriptsController < ApplicationController
 			if params[:site] == '*'
 				@scripts = @scripts.includes(:script_applies_tos).where('script_applies_tos.id IS NULL')
 			else
-				@scripts = @scripts.joins(:script_applies_tos).where(['display_text = ?', params[:site]])
+				@scripts = @scripts.joins(:script_applies_tos).where(['text = ?', params[:site]])
 			end
 		end
 		@by_sites = get_top_by_sites
@@ -245,32 +245,56 @@ class ScriptsController < ApplicationController
 private
 
 	def get_by_sites
-		# regexps are eliminated because they're not useful to look at and the link doesn't work anyway (due to
-		# the leading slash?)
 		sql =<<-EOF
-			SELECT display_text, SUM(daily_installs) install_count FROM
-				(SELECT DISTINCT display_text, script_id FROM script_applies_tos) a
-				JOIN scripts s ON script_id = s.id
-			WHERE (display_text IS NULL OR display_text NOT LIKE "/%") and script_type_id = 1 and script_delete_type_id is null
-			GROUP BY display_text
-			ORDER BY display_text
+			SELECT
+				text, SUM(daily_installs) install_count
+			FROM script_applies_tos
+			JOIN scripts s ON script_id = s.id
+			WHERE
+				domain
+				AND script_type_id = 1
+				AND script_delete_type_id IS NULL
+				AND !uses_disallowed_external
+			GROUP BY text
+			ORDER BY text
 		EOF
-		return Script.connection.select_all(sql)
+		# combine with "All sites" number
+		return [{'text' => nil, 'install_count' => get_all_sites_count}] + Script.connection.select_all(sql)
 	end
 
 	def get_top_by_sites
-		# regexps are eliminated because they're not useful to look at and the link doesn't work anyway (due to
-		# the leading slash?)
 		sql =<<-EOF
-			SELECT display_text, SUM(daily_installs) install_count FROM
-				(SELECT DISTINCT display_text, script_id FROM script_applies_tos) a
-				JOIN scripts s ON script_id = s.id
-			WHERE (display_text IS NULL OR display_text NOT LIKE "/%") and script_type_id = 1 and script_delete_type_id is null
-			GROUP BY display_text
-			ORDER BY install_count DESC, display_text
+			SELECT
+				text, SUM(daily_installs) install_count
+			FROM script_applies_tos
+			JOIN scripts s ON script_id = s.id
+			WHERE
+				domain
+				AND script_type_id = 1
+				AND script_delete_type_id IS NULL
+				AND !uses_disallowed_external
+			GROUP BY text
+			ORDER BY install_count DESC, text
 			LIMIT 5
 		EOF
-		return Script.connection.select_all(sql)
+		top_sites = Script.connection.select_all(sql).to_a
+		# combine with "All sites" number
+		top_sites << {'text' => nil, 'install_count' => get_all_sites_count}
+		return top_sites.sort{|a,b| b['install_count'] <=> a['install_count']}.first(5)
+	end
+
+	def get_all_sites_count
+		sql =<<-EOF
+			SELECT
+				sum(daily_installs) install_count
+			FROM scripts
+			WHERE
+				script_type_id = 1
+				AND script_delete_type_id is null
+				AND !uses_disallowed_external
+				AND NOT EXISTS (SELECT * FROM script_applies_tos WHERE script_id = scripts.id)
+		EOF
+		return Script.connection.select_value(sql)
 	end
 
 	def get_per_page

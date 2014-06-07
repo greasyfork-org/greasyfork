@@ -8,7 +8,7 @@
 	max_font_size = 5
 	min_font_size = 0.6
 	@by_sites.each do |by|
-		dt = by['display_text']
+		dt = by['text']
 		font_size = ((max_font_size - min_font_size).to_f * by['install_count'] / max_install_count + min_font_size).round(2) %>
 		<li style="font-size: <%=font_size%>em"><%=link_to dt.nil? ? '(All sites)' : dt, by_site_scripts_path(:site => dt.nil? ? '*' : dt)%></li>
 	<% end %>

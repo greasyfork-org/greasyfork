@@ -1,7 +1,7 @@
 class Script < ActiveRecord::Base
 	belongs_to :user
 	has_many :script_versions
-	has_many :script_applies_tos, :dependent => :delete_all, :autosave => true
+	has_many :script_applies_tos, -> {order(:text)}, :dependent => :delete_all, :autosave => true
 	has_many :discussions, -> { readonly.order('DateInserted').where('Closed = 0') }, :class_name => 'ForumDiscussion', :foreign_key => 'ScriptID'
 	has_many :assessments, :dependent => :delete_all, :autosave => true
 	belongs_to :script_type
@@ -45,8 +45,8 @@ class Script < ActiveRecord::Base
 		self.description = meta.has_key?('description') ? meta['description'].first : nil
 
 		self.script_applies_tos.each {|sat| sat.mark_for_destruction }
-		script_version.calculate_applies_to_names.each do |pattern, name|
-			self.script_applies_tos.build({:pattern => pattern, :display_text => name})
+		script_version.calculate_applies_to_names.each do |text, domain|
+			self.script_applies_tos.build({:text => text, :domain => domain})
 		end
 
 		self.assessments.each {|a| a.mark_for_destruction }

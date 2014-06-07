@@ -278,28 +278,28 @@ class ScriptVersion < ActiveRecord::Base
 			begin
 				uri = URI(pre_wildcard)
 				if uri.host.nil?
-					applies_to_names << [original_pattern, nil]
+					applies_to_names << [original_pattern, false]
 				elsif !uri.host.include?('.')
 					# must have at least one . to be something we'll use
-					applies_to_names << [original_pattern, nil]
+					applies_to_names << [original_pattern, false]
 				else
 					if uri.host.ends_with?('.tld')
 						@@tld_expansion.each do |tld|
-							applies_to_names << [original_pattern, ScriptVersion.get_tld_plus_1(uri.host.sub(/tld$/i, tld))]
+							applies_to_names << [ScriptVersion.get_tld_plus_1(uri.host.sub(/tld$/i, tld)), true]
 						end
 					# "example.com."
 					elsif uri.host.ends_with?('.')
-						applies_to_names << [original_pattern, ScriptVersion.get_tld_plus_1(uri.host[0, uri.host.length - 1])]
+						applies_to_names << [ScriptVersion.get_tld_plus_1(uri.host[0, uri.host.length - 1]), true]
 					else
-						applies_to_names << [original_pattern, ScriptVersion.get_tld_plus_1(uri.host)]
+						applies_to_names << [ScriptVersion.get_tld_plus_1(uri.host), true]
 					end
 				end
 			rescue ArgumentError
 				logger.warn "Unrecognized pattern '" + p + "'"
-				applies_to_names << [original_pattern, nil]
+				applies_to_names << [original_pattern, false]
 			rescue URI::InvalidURIError
 				logger.warn "Unrecognized pattern '" + p + "'"
-				applies_to_names << [original_pattern, nil]
+				applies_to_names << [original_pattern, false]
 			end
 		end
 		return applies_to_names.uniq
