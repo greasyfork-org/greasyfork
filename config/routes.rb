@@ -2,6 +2,8 @@ Greasyfork::Application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+	get 'users/webhook-info', :to => 'users#webhook_info', :as => 'user_webhook_info'
+	post 'users/webhook-info', :to => 'users#webhook_info'
 	# disable destroying users
 	devise_for :users, :skip => :registrations, :controllers => { :sessions => "sessions" }
 		devise_scope :user do
@@ -50,7 +52,9 @@ Greasyfork::Application.routes.draw do
 		resources :script_versions, :only => [:create, :new, :show, :index], :path => 'versions'
 	end
 	resources :script_versions, :only => [:create, :new]
-	resources :users, :only => :show
+	resources :users, :only => :show do
+		post 'webhook'
+	end
 
 	get 'import', :to => 'import#index', :as => 'import_start'
 	get 'import/userscriptsorg', :to => 'import#userscriptsorg', :as => 'import_userscriptsorg'

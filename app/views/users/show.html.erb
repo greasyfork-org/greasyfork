@@ -6,8 +6,9 @@
 if same_user %>
 	<ul id="user-control-panel">
 		<li><%= link_to 'Post a script', new_script_version_path%></li>
-		<li><%= link_to 'Edit account', edit_user_registration_path%></li>
 		<li><%= link_to 'Import scripts', import_start_path%></li>
+		<li><%= link_to 'Set up a GitHub webhook', user_webhook_info_path%></li>
+		<li><%= link_to 'Edit account', edit_user_registration_path%></li>
 		<li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete  %></li>
 	</ul>
 

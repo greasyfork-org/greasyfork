@@ -7,7 +7,7 @@ module ScriptImporter
 		$IMPORTERS = [UserScriptsOrgImporter, UrlImporter, TestImporter]
 
 		# Syncs the script and returns :success, :unchanged, or :failure
-		def self.sync(script)
+		def self.sync(script, changelog = nil)
 			importer = $IMPORTERS.select{|i| i.sync_source_id == script.script_sync_source_id}.first
 			# pass the description in so we retain it if it's missing
 			begin
@@ -29,6 +29,7 @@ module ScriptImporter
 					end
 					sv.additional_info = last_saved_sv.additional_info
 					sv.additional_info_markup = last_saved_sv.additional_info_markup
+					sv.changelog = changelog if !changelog.nil?
 					sv.script = script
 					sv.do_lenient_saving
 					sv.calculate_all(script.description)

@@ -11,19 +11,24 @@
 	<% case @script.script_sync_source_id 
 		when 1 %>
 			<p>This script is set up to sync from</p>
-			<%=s.url_field(:sync_identifier)%>
+			<%=s.url_field(:sync_identifier, :size => 50)%>
 		<% when 2 %>
 			<p>This script is set up to sync from <a href="<%=Greasyfork::Application.config.userscriptsorg_host%>/scripts/show/<%=@script.sync_identifier%>">an entry on userscripts.org</a>.</p>
 		<% when nil %>
-			<p>Greasy Fork can import scripts that already hosted elsewhere. This lets you do things like have your script available for download in multiple places or have it in version control. To enable syncing for your script, provide a URL: <%=s.url_field(:sync_identifier)%></p>
+			<p>Greasy Fork can import scripts that already hosted elsewhere, for example in a version control system (like GitHub), your own server, or another user script hosting site.</p>
+			<p>To enable syncing for your script, provide a URL: <%=s.url_field(:sync_identifier)%></p>
 	<% end %>
 	<div class="radio-group">
 		<% if @script.script_sync_source_id.nil? 
 			@script.script_sync_type_id = 1 %>
 			Sync the script:<br>
 		<% end %>
-		<%=s.radio_button(:script_sync_type_id, 1)%> <label for="script_script_sync_type_id_1">Manually</label><br>
-		<%=s.radio_button(:script_sync_type_id, 2)%> <label for="script_script_sync_type_id_2">Automatically</label>
+		<%=s.radio_button(:script_sync_type_id, 2)%> <label for="script_script_sync_type_id_2">Automatically - periodically check for updates</label><br>
+		<%=s.radio_button(:script_sync_type_id, 1)%> <label for="script_script_sync_type_id_1">Manually - check for updates only when you trigger it</label><br>
+		<% # only allow changing *off* of Webhook - setting it to Webhook is done when a push comes in
+		if @script.script_sync_type_id == 3 %>
+			<%=s.radio_button(:script_sync_type_id, 3)%> <label for="script_script_sync_type_id_3">Webhook - get updates when you push changes to this file on GitHub</label><br>
+		<% end %>
 	</div>
 	<% if !@script.script_sync_source_id.nil? %>
 		<% if @script.sync_error.nil? %>

@@ -1,3 +1,5 @@
+require 'securerandom'
+
 class User < ActiveRecord::Base
 
 	has_many :scripts
@@ -49,4 +51,7 @@ class User < ActiveRecord::Base
 		!roles.select { |role| role.name == 'Moderator' }.empty?
 	end
 
+	def generate_webhook_secret
+		self.webhook_secret = SecureRandom.hex(64)
+	end
 end

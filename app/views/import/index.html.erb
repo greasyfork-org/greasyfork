@@ -1,11 +1,21 @@
 <%- title 'Import scripts' %>
 
-<p>Greasy Fork can import scripts that already hosted elsewhere. This lets you do things like have your script available for download in multiple places or have it in version control.</p>
+<p>Greasy Fork can import scripts that already hosted elsewhere, for example in a version control system (like GitHub), your own server, or another user script hosting site.</p>
 
-<ul>
-	<li><%=link_to 'Import from userscripts.org', import_userscriptsorg_path%></li>
-	<li><%=link_to 'Import from URLs', import_url_path%></li>
-</ul>
+<%=form_tag(import_add_path) do |f|%>
+	<input type="hidden" name="sync_source_id" value="1">
+	<p>
+		<label for="sync-urls">Provide URLs to import from, separated by newlines. These should be URLs to the raw .user.js files.</label><br>
+		<textarea id="sync-urls" name="sync_urls" rows="5" required style="width: 75%"></textarea>
+	</p>
+	<p class="radio-group">
+		After the initial import, the script(s) should be synced:<br>
+		<input name="sync-type" id="sync-type-2" type="radio" checked value="2"><label for="sync-type-2">Automatically - periodically update it from the URL you provided</label><br>
+		<input name="sync-type" id="sync-type-1" type="radio" value="1"><label for="sync-type-1">Manually - only when you trigger it</label>
+	</p>
+	<p>Scripts imported from GitHub can also be set up to sync using a webhook. A webhook will make it so your scripts are immediately updated on Greasy Fork when you push to GitHub. If you want to use a webhook but haven't set it up yet, do the import first, then <%=link_to 'set up the webhook after', user_webhook_info_path%>.</p>
+	<%=submit_tag 'Import'%>
+<% end %>
 
 <% if !@scripts_by_source.empty? %>
 	<h3>Previously imported scripts</h3>
