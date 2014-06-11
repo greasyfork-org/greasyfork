@@ -16,6 +16,14 @@ module ScriptImporter
 				status = :failure
 				message = ex
 			end
+			# libraries can be any old JS
+			if status == :notuserscript
+				if script.library?
+					status = :success
+				else
+					status = :failure
+				end
+			end
 			case status
 				when :success
 					sv = new_script.script_versions.last

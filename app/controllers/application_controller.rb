@@ -102,6 +102,14 @@ protected
 		script_version = ScriptVersion.find(version_id)
 		return nil if script_version.nil? or script_version.script_id != script_id
 		script = Script.new
+
+		# this is not versionned information
+		script.script_type_id = current_script.script_type_id
+
+		# if this is a library, the code might not have name and description
+		script.name = current_script.name
+		script.description = current_script.description
+
 		script.apply_from_script_version(script_version)
 		script.id = script_id
 		script.updated_at = script_version.updated_at
@@ -110,8 +118,6 @@ protected
 		script.updated_at = script_version.updated_at
 		# this is not necessarily accurate, as the revision the user picked may not have involved a code update
 		script.code_updated_at = script_version.updated_at
-		# this is not versionned information
-		script.script_type_id = current_script.script_type_id
 		return [script, script_version]
 	end
 

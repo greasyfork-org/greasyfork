@@ -55,6 +55,14 @@ class ScriptVersionsController < ApplicationController
 			@script_version.code = uploaded_content
 		end
 
+		if @script.library?
+			# accept name and description as params for libraries, as they may not have meta blocks
+			@script.name = params[:name] if !params[:name].nil?
+			@script.description = params[:description] if !params[:description].nil?
+			# automatically add a version for libraries, if missing
+			@script_version.add_missing_version = true if @script.library?
+		end
+
 		@script_version.calculate_all(@script.description)
 		@script.apply_from_script_version(@script_version)
 
@@ -74,6 +82,8 @@ class ScriptVersionsController < ApplicationController
 			else
 				# get the original script for display within the scripts layout
 				@script.reload
+				# but retain the script type!
+				@script.script_type_id = params['script']['script_type_id']
 				render :new, :layout => 'scripts'
 			end
 			return

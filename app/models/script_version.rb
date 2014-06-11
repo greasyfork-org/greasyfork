@@ -6,7 +6,7 @@ class ScriptVersion < ActiveRecord::Base
 	belongs_to :rewritten_script_code, :class_name => 'ScriptCode', :autosave => true
 
 	validates_presence_of :code
-	validates_presence_of :version, :message => 'meta key must be provided'
+	validates_presence_of :version, :message => 'meta key must be provided', :if => Proc.new {|sv| sv.script.nil? || !sv.script.library? }
 
 	validates_length_of :additional_info, :maximum => 50000
 	validates_length_of :code, :maximum => 2000000
@@ -40,8 +40,8 @@ class ScriptVersion < ActiveRecord::Base
 
 	# version must be incremented if the code changed
 	validates_each(:code, :allow_nil => true, :allow_blank => true) do |record, attr, value|
-		# exempt scripts that are (being) deleted
-		next if !record.script.nil? and record.script.deleted?
+		# exempt scripts that are (being) deleted as well as libraries
+		next if !record.script.nil? and (record.script.deleted? or record.script.library?)
 
 		next if record.version.nil? or record.version_check_override
 
@@ -62,8 +62,8 @@ class ScriptVersion < ActiveRecord::Base
 
 	# namespace is required and shouldn't change
 	validates_each(:code, :allow_nil => true, :allow_blank => true) do |record, attr, value|
-		# exempt scripts that are (being) deleted
-		next if !record.script.nil? and record.script.deleted?
+		# exempt scripts that are (being) deleted as well as libraries
+		next if !record.script.nil? and (record.script.deleted? or record.script.library?)
 
 		meta = ScriptVersion.parse_meta(value)
 		# handled elsewhere
@@ -164,6 +164,7 @@ class ScriptVersion < ActiveRecord::Base
 	end
 
 	def calculate_rewritten_code(previous_description = nil)
+		return code if !script.nil? and script.library?
 		add_if_missing = {}
 		backup_namespace = calculate_backup_namespace
 		add_if_missing[:namespace] = backup_namespace if !backup_namespace.nil?

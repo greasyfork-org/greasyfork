@@ -1,3 +1,7 @@
+<p>
+	Scripts must be <strong>properly described</strong>, cannot be <strong>obfuscated</strong> or <strong>minified</strong>, must respect <strong>copyright</strong>, and are limited in the <strong>external code</strong> used. <%=link_to 'Read the full rules.', help_code_rules_path%>
+</p>
+
 <% if !script_version.script.script_sync_type_id.nil? %>
 	<p>This script is <%=link_to("set to sync #{script_version.script.script_sync_type_id == 1 ? 'manually' : 'automatically'} from #{script_version.script.script_sync_source_id == 2 ? 'userscripts.org' : script_version.script.sync_identifier}", script_sync_path(script_version.script_id))%>. Any updates you make to the code here will be overwritten when syncing.</p>
 <% end %>
@@ -50,9 +54,16 @@
 		</ul>
 	<% end %>
 
-	<p>
-		Scripts must be <strong>properly described</strong>, cannot be <strong>obfuscated</strong> or <strong>minified</strong>, must respect <strong>copyright</strong>, and are limited in the <strong>external code</strong> used. <%=link_to 'Read the full rules.', help_code_rules_path%>
-	</p>
+	<% if @script.library? %>
+		<div class="form-control">
+			<label for="library-name">Name</label><br>
+			<input id="library-name" name="name" value="<%=@script.name%>" maxlength="100">
+		</div>
+		<div class="form-control">
+			<label for="library-description">Description</label><br>
+			<input id="library-description" name="description" value="<%=@script.description%>" maxlength="500">
+		</div>
+	<% end %>
 	<div class="form-control">
 		<label for="code">Code</label><br>
 		<%=s.text_area(:code)%>

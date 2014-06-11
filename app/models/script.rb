@@ -17,8 +17,10 @@ class Script < ActiveRecord::Base
 	scope :under_assessment, -> {not_deleted.where(:uses_disallowed_external => true).includes(:assessments).includes(:user).uniq}
 	scope :reported, -> {not_deleted.joins(:discussions).includes(:user).uniq.where('GDN_Discussion.Rating = 1').where('Closed = 0')}
 
-	validates_presence_of :name, :message => 'is required - specify one with @name'
-	validates_presence_of :description, :message => 'is required - specify one with @description', :unless => Proc.new {|r| r.deleted?}
+	validates_presence_of :name, :message => 'is required - specify one with @name', :unless => Proc.new {|s| s.library?}
+	validates_presence_of :name, :message => 'is required', :if => Proc.new {|s| s.library?}
+	validates_presence_of :description, :message => 'is required - specify one with @description', :unless => Proc.new {|r| r.deleted? || r.library?}
+	validates_presence_of :description, :message => 'is required', :unless => Proc.new {|r| r.deleted? || !r.library?}
 	validates_presence_of :user_id, :code_updated_at, :script_type
 
 	validates_length_of :name, :maximum => 100
@@ -40,9 +42,12 @@ class Script < ActiveRecord::Base
 		self.additional_info = script_version.additional_info
 		self.additional_info_markup = script_version.additional_info_markup
 
+		# keep previous name and description for libraries
 		meta = ScriptVersion.parse_meta(script_version.rewritten_code)
-		self.name = meta.has_key?('name') ? meta['name'].first : nil
-		self.description = meta.has_key?('description') ? meta['description'].first : nil
+		meta_name = meta.has_key?('name') ? meta['name'].first : nil
+		self.name = meta_name unless library? and meta_name.nil?
+		meta_description = meta.has_key?('description') ? meta['description'].first : nil
+		self.description = meta_description unless library? and meta_description.nil?
 
 		self.script_applies_tos.each {|sat| sat.mark_for_destruction }
 		script_version.calculate_applies_to_names.each do |text, domain|
@@ -86,6 +91,10 @@ class Script < ActiveRecord::Base
 
 	def active?
 		!deleted? and !uses_disallowed_external
+	end
+
+	def library?
+		script_type_id == 3
 	end
 
 	def slugify(name)

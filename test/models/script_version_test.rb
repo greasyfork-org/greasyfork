@@ -520,6 +520,45 @@ END
 		assert script.valid?
 	end	
 
+	test 'missing name previous had name' do
+		js = <<END
+// ==UserScript==
+// @description		A Test!
+// @namespace		http://example.com/1
+// @version		1
+// ==/UserScript==
+foo.baz();
+END
+		sv = ScriptVersion.new
+		sv.code = js
+		script = Script.find(13)
+		sv.script = script
+		sv.calculate_all(script.description)
+		script.apply_from_script_version(sv)
+		assert_nil script.name
+		assert !script.valid?
+	end	
+
+	test 'library missing name previous had name' do
+		js = <<END
+// ==UserScript==
+// @description		A Test!
+// @namespace		http://example.com/1
+// @version		1
+// ==/UserScript==
+foo.baz();
+END
+		sv = ScriptVersion.new
+		sv.code = js
+		script = Script.find(13)
+		script.script_type_id = 3
+		sv.script = script
+		sv.calculate_all(script.description)
+		script.apply_from_script_version(sv)
+		assert_equal 'MyString', script.name
+		assert script.valid?, script.errors.full_messages
+	end	
+
 	test 'linebreak only update code without changing version' do
 		script = Script.find(3)
 		assert script.valid? and script.script_versions.length == 1 and script.script_versions.first.valid?

@@ -44,6 +44,7 @@ module ScriptImporter
 		# Generates a script list and returns an array:
 		# - Result code:
 		#   - :failure
+		#   - :notuserscript
 		#   - :needsdescription
 		#   - :success
 		# - The script
@@ -80,7 +81,7 @@ module ScriptImporter
 			sv.calculate_all(provided_description)
 			script.apply_from_script_version(sv)
 
-			return [:failure, script, 'Does not appear to be a user script.'] if script.name.nil?
+			return [:notuserscript, script, 'Does not appear to be a user script.'] if script.name.nil?
 
 			return [:needsdescription, script, nil] if (script.description.nil? or script.description.empty?)
 

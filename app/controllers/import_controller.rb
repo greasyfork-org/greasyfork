@@ -59,7 +59,7 @@ class ImportController < ApplicationController
 			case result
 				when :needsdescription
 					@results[:needsdescription] << script
-				when :failure
+				when :failure, :notuserscript
 					@results[:failure] << "#{importer.sync_id_to_url(sync_id)} - #{message}"
 				when :success
 					existing_scripts = Script.where(['script_sync_source_id = ? and sync_identifier = ?', importer.sync_source_id, sync_id])
