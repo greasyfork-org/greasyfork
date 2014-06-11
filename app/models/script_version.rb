@@ -234,7 +234,8 @@ class ScriptVersion < ActiveRecord::Base
 			meta_lines << close_meta
 		end
 
-		return meta_lines.join("\n") + ScriptVersion.get_code_block(c)
+		code_blocks = ScriptVersion.get_code_blocks(c)
+		return code_blocks[0] + meta_lines.join("\n") + code_blocks[1]
 	end
 
 	# Returns an array of [pattern, display_name]. display_name can be nil.
@@ -352,12 +353,12 @@ class ScriptVersion < ActiveRecord::Base
 		return c[start_block..end_block+@@meta_end_comment.length]
 	end
 
-	def self.get_code_block(c)
+	# Returns a two-element array: code before the meta block, code after
+	def self.get_code_blocks(c)
 		meta_start = c.index(@@meta_start_comment)
-		return c if meta_start.nil?
+		return [c, ""] if meta_start.nil?
 		meta_end = c.index(@@meta_end_comment, meta_start) + @@meta_end_comment.length
-		# The meta block does not include the final line break on its closing line - that's assigned to the post-meta code block. If there's a pre-meta code block, we need to add a line break before it to prevent the meta closing tag and the first code line from being on the same line.
-		return (meta_start == 0 ? '' : ("\n" + c[0..meta_start-1])) + c[meta_end..c.length]
+		return [(meta_start == 0 ? '' : c[0..meta_start-1]), c[meta_end..c.length]]
 	end
 
 	def disallowed_requires_used

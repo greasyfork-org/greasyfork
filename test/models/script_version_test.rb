@@ -63,7 +63,7 @@ END
 var foo = 'bar';
 foo.baz();
 END
-		assert_equal "\nvar foo = 'bar';\nfoo.baz();\n", ScriptVersion.get_code_block(js)
+		assert_equal ['', "\nvar foo = 'bar';\nfoo.baz();\n"], ScriptVersion.get_code_blocks(js)
 	end
 
 	test 'get code block meta not at top' do
@@ -77,7 +77,7 @@ var foo = 'bar';
 // ==/UserScript==
 foo.baz();
 END
-		assert_equal "\nvar foo = 'bar';\n\nfoo.baz();\n", ScriptVersion.get_code_block(js)
+		assert_equal ["var foo = 'bar';\n", "\nfoo.baz();\n"], ScriptVersion.get_code_blocks(js)
 	end
 
 	test 'get code block with no meta' do
@@ -85,7 +85,7 @@ END
 var foo = 'bar';
 foo.baz();
 END
-		assert_equal "var foo = 'bar';\nfoo.baz();\n", ScriptVersion.get_code_block(js)
+		assert_equal ["var foo = 'bar';\nfoo.baz();\n", ""], ScriptVersion.get_code_blocks(js)
 	end
 
 	test 'inject meta replace' do
@@ -226,14 +226,13 @@ END
 	test 'calculate rewritten meta not at top' do
 		script = Script.find(12)
 		expected_js = <<END
+/* License info is here */
 // ==UserScript==
 // @name		A Test!
 // @namespace		http://example.com/1
 // @description		Unit test.
 // @version		1
 // ==/UserScript==
-/* License info is here */
-
 foo.baz();
 END
 		assert_equal expected_js, script.script_versions.first.calculate_rewritten_code
