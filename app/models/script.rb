@@ -36,7 +36,7 @@ class Script < ActiveRecord::Base
 
 	validates_format_of :sync_identifier, :with => URI::regexp(%w(http https)), :message => 'must be an HTTP or HTTPS URL.', :if => Proc.new {|r| r.script_sync_source_id == 1}
 
-	strip_attributes :only => [:name, :description, :additional_info]
+	strip_attributes :only => [:name, :description, :additional_info, :sync_identifier]
 
 	def apply_from_script_version(script_version)
 		self.additional_info = script_version.additional_info
