@@ -3,6 +3,7 @@ require 'js_connect'
 class HomeController < ApplicationController
 
 	def index
+		@highlighted_scripts = Script.listable.order('daily_installs DESC').limit(100).sample(10)
 	end
 
 	def preview_markup

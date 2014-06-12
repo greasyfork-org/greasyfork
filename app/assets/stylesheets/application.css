@@ -324,3 +324,23 @@ nav li + li {
 .alert {
 	background-color: yellow;
 }
+
+.front-page-p {
+	margin-bottom: 0;
+}
+.front-page-box {
+	display: inline-block;
+	width: 45%;
+	vertical-align: top;
+	text-align: justify;
+}
+.front-page-box:first-of-type {
+	padding-right: 6%;
+}
+@media (max-width: 600px) {
+	.front-page-box {
+		display: block;
+		width: auto;
+		padding: 0;
+	}
+}
