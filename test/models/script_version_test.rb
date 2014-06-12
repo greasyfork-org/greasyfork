@@ -600,4 +600,35 @@ END
 		assert_equal '1.1.1.2', ScriptVersion.get_next_version('1.1.1.1')
 		assert_equal '1.1.1.1b2a', ScriptVersion.get_next_version('1.1.1.1b1a')
 	end
+
+	test 'minified' do
+		js = <<END
+// ==UserScript==
+// @name Test
+// @description		A Test!
+// @namespace		http://example.com/1
+// @version		1
+// ==/UserScript==
+END
+		sv = ScriptVersion.new
+		sv.code = js
+		script = Script.new
+		script.user = User.first
+		sv.script = script
+		sv.calculate_all(script.description)
+		script.apply_from_script_version(sv)
+		# regular new script...
+		assert sv.valid?, sv.errors.full_messages
+		# now minified
+		sv.code += "function a(){}" * 5000
+		assert !sv.valid?
+		# override
+		sv.minified_confirmation = true
+		assert sv.valid?
+		# now an update
+		sv.minified_confirmation = false
+		script.save
+		assert sv.valid?, sv.errors.full_messages
+	end
+
 end

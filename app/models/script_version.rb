@@ -25,8 +25,15 @@ class ScriptVersion < ActiveRecord::Base
 			end
 		end
 
+		uses_disallowed_code = false
 		ScriptVersion.disallowed_codes_used_for_code(value).each do |dc|
+			uses_disallowed_code = true
 			record.errors.add(:name, "exception #{dc.ob_code}") if value =~ Regexp.new(dc.pattern)
+		end
+
+		# check for minified on new scripts
+		if !uses_disallowed_code and !record.minified_confirmation and (record.script.nil? or record.script.new_record?) and ScriptVersion.code_appears_minified(value)
+			record.errors.add(attr, "appears to be minified")
 		end
 	end
 
@@ -89,7 +96,7 @@ class ScriptVersion < ActiveRecord::Base
 		record.errors.add(attr, "namespace is missing") if previous_namespace.nil?
 	end
 
-	attr_accessor :accepted_assessment, :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace
+	attr_accessor :accepted_assessment, :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation
 
 	def initialize
 		# Accept assessment of @requires outside the whitelist
@@ -102,6 +109,8 @@ class ScriptVersion < ActiveRecord::Base
 		@namespace_check_override = false
 		# Set a namespace by ourselves if not provided
 		@add_missing_namespace = false
+		# Minified warning override
+		@minified_confirmation = false
 		super
 	end
 
@@ -130,6 +139,7 @@ class ScriptVersion < ActiveRecord::Base
 		@add_missing_version = true
 		@add_missing_namespace = true
 		@namespace_check_override = true
+		@minified_confirmation = true
 	end
 
 	def calculate_all(previous_description = nil)
@@ -432,6 +442,14 @@ class ScriptVersion < ActiveRecord::Base
 		p3 = a[8..11].join('')
 		p4 = a[12..15].join('')
 		return [p1, p2, p3, p4].map{|p| p.empty? ? '0' : p}.join('.')
+	end
+
+	def appears_minified
+		ScriptVersion.code_appears_minified(code)
+	end
+
+	def self.code_appears_minified(value)
+		return value.split("\n").any? {|s| s.length > 5000 and s.include?('function') }
 	end
 
 private

@@ -29,6 +29,7 @@ if same_user %>
 			</header>
 			<ul>
 				<li><%=link_to "Reported scripts: #{Script.reported.count}", reported_scripts_path%></li>
+				<li><%=link_to "Possibly minified", minified_scripts_path%></li>
 				<% if @user.administrator? %>
 					<li><%=link_to "Under assessment: #{Script.under_assessment.count}", under_assessment_scripts_path%></li>
 					<li><%=Script.connection.select_value('SELECT COUNT(*) FROM delayed_jobs WHERE last_error IS NULL')%> delayed_jobs pending, <%=Script.connection.select_value('SELECT COUNT(*) FROM delayed_jobs WHERE last_error IS NOT NULL')%> failed.</li>

@@ -17,6 +17,7 @@
 			version_not_specified = false
 			namespace_is_missing = false
 			namespace_changed = false
+			minified_code = false
 			script_version.errors.full_messages.each do |m| 
 				# skip some validations in favour of below
 				if m.include?('Code cannot @require') and !disallowed_requires.empty?
@@ -29,6 +30,8 @@
 					namespace_is_missing = true
 				elsif m.include?('namespace has changed')
 					namespace_changed = true
+				elsif m.include?('appears to be minified')
+					minified_code = true
 				else %>
 					<li><%=m%></li>
 				<% end
@@ -50,6 +53,9 @@
 			<% end 
 			if namespace_changed %>
 				<li>Your <code>@namespace</code> has changed. A consistent namespace is important for a re-install of your script be considered an update. <label for="script_version_namespace_check_override">Save anyway?</label> <%=s.check_box(:namespace_check_override, {}, true, false)%></li>
+			<% end
+			if minified_code %>
+				<li>Your script looks like it might contain minified (compressed) code, which isn't allowed. If you're using a minified library, please instead <code>@require</code> it from <%=link_to "one of these places", help_external_scripts_path()%>. If your code isn't minified, <label for="script_version_minified_confirmation">check this box</label> <%=s.check_box(:minified_confirmation, {}, true, false)%>.</li>
 			<% end %>
 		</ul>
 	<% end %>

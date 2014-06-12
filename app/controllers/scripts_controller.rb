@@ -5,10 +5,10 @@ class ScriptsController < ApplicationController
 	layout 'application', :except => [:show, :show_code, :feedback, :diff, :sync, :sync_update, :delete, :undelete]
 
 	before_filter :authorize_by_script_id, :only => [:sync, :sync_update]
-	before_filter :authorize_by_script_id_or_moderator, :only => [:delete, :do_delete, :undelete, :do_undelete]
 	before_filter :check_for_locked_by_script_id, :only => [:sync, :sync_update, :delete, :do_delete, :undelete, :do_undelete]
 	before_filter :check_for_deleted_by_id, :only => [:show]
 	before_filter :check_for_deleted_by_script_id, :only => [:show_code, :feedback, :user_js, :meta_js, :install_ping, :diff]
+	before_filter :authorize_for_moderators_only, :only => [:minified, :code_search]
 
 	skip_before_action :verify_authenticity_token, :only => [:install_ping]
 
@@ -62,6 +62,33 @@ class ScriptsController < ApplicationController
 	def reported
 		@no_bots = true
 		@scripts = Script.reported
+	end
+
+	def minified
+		@scripts = []
+		Script.order(get_sort).where(:locked => false).each do |script|
+			sv = script.get_newest_saved_script_version
+			@scripts << script if sv.appears_minified
+		end
+		@paginate = false
+		render :action => 'index'
+	end
+
+	def code_search
+		@no_bots = true
+		if params[:c].nil? or params[:c].empty?
+			return
+		end
+
+		# get latest version for each script
+		script_version_ids = Script.connection.select_values("SELECT MAX(id) FROM script_versions GROUP BY script_id")
+
+		# check the code for the search text
+		# using the escape character doesn't seem to work, yet it works from the command line. so choose something unlikely to be used as our escape character
+		script_ids = Script.connection.select_values("SELECT DISTINCT script_id FROM script_versions JOIN script_codes ON rewritten_script_code_id = script_codes.id WHERE script_versions.id IN (#{script_version_ids.join(',')}) AND code LIKE '%#{Script.connection.quote_string(params[:c].gsub('É', 'ÉÉ').gsub('%', 'É%').gsub('_', 'É_'))}%' ESCAPE 'É' LIMIT 100")
+		@scripts = Script.order(get_sort).where(:locked => false).includes([:user, :script_type, :script_delete_type]).where(:id => script_ids)
+		@paginate = false
+		render :action => 'index'
 	end
 
 	#########################

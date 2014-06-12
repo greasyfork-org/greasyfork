@@ -7,6 +7,10 @@
 <% elsif action_name == 'search' and !params[:q].nil? %>
 	<%- title "'#{params[:q]}' user scripts on Greasy Fork" %>
 	<%- description "List of '#{params[:q]}' user scripts available on Greasy Fork" %>
+<% elsif action_name == 'minified' %>
+	<%- title "Potentially minified user scripts on Greasy Fork" %>
+<% elsif action_name == 'code_search' %>
+	<%- title "'#{params[:c]}' user scripts on Greasy Fork" %>
 <% else %>
 	<%- title 'User scripts on Greasy Fork' %>
 	<%- description 'List of user scripts available on Greasy Fork' %>
@@ -59,7 +63,9 @@
 	</ol>
 <% end %>
 
-<%= will_paginate @scripts %>
+<% if !defined?(@paginate) or @paginate %>
+	<%= will_paginate @scripts %>
+<% end %>
 
 <p><%=link_to 'Post a new script', new_script_version_path %></p>
 
