@@ -26,6 +26,8 @@
 
 <div id="script-meta">
 	<dl id="script-stats">
+		<dt class="script-show-version">Version</dt>
+		<dd class="script-show-version"><%=@script_version.version%></dd>
 		<dt class="script-show-author">Author</dt>
 		<dd class="script-show-author"><%=link_to @script.user.name, @script.user%></dd>
 		<% if @script.script_type_id != 3 and params[:version].nil? %>
