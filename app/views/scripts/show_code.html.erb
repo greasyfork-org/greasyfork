@@ -1,7 +1,7 @@
 <%- title @script.name + ' - Source code' %>
 <%- description 'Source code for ' + @script.name %>
 
-<% render "scripts/_install_script" %>
+<% render "scripts/install_script" %>
 
 <style>
 <%= CodeRay::Encoders[:html]::CSS.new(:default).stylesheet%>
