@@ -2,15 +2,25 @@
 <%- description "Greasy Fork profile for #{@user.name}" %>
 
 <h2><%=@user.name%></h2>
+
+<% if !@user.profile.nil? %>
+	<section id="user-profile"><%=format_user_text(@user.profile, @user.profile_markup)%></section>
+<% end %>
+
 <% same_user = !current_user.nil? && current_user.id == @user.id
 if same_user %>
-	<ul id="user-control-panel">
-		<li><%= link_to 'Post a script', new_script_version_path%></li>
-		<li><%= link_to 'Import scripts', import_start_path%></li>
-		<li><%= link_to 'Set up a GitHub webhook', user_webhook_info_path%></li>
-		<li><%= link_to 'Edit account', edit_user_registration_path%></li>
-		<li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete  %></li>
-	</ul>
+	<section id="control-panel">
+		<header>
+			<h3>Control panel</h3>
+		</header>
+		<ul id="user-control-panel">
+			<li><%= link_to 'Post a script', new_script_version_path%></li>
+			<li><%= link_to 'Import scripts', import_start_path%></li>
+			<li><%= link_to 'Set up a GitHub webhook', user_webhook_info_path%></li>
+			<li><%= link_to 'Edit account', edit_user_registration_path%></li>
+			<li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete  %></li>
+		</ul>
+	</section>
 
 	<% if @user.moderator? %>
 		<section id="moderator-actions">
@@ -31,23 +41,24 @@ if same_user %>
 		dosr = @user.discussions_on_scripts_written %>
 		<section id="user-discussions-on-scripts-written">
 			<header>
-				<h3>Discussions on your scripts</h3>
+				<h3>Discussions on your scripts <a href="/forum/discussions/feed.rss?script_author=<%=@user.id%>"><img src="<%=asset_path('feed-icon-14x14.png')%>" alt="RSS Feed" rel="nofollow"></h3>
 			</header>
 			<% if dosr.empty? %>
-				<p>(None)</p>
+				<p>None yet!</p>
 			<% else %>
 				<ul class="discussion-list">
 					<% dosr.reverse.take(10).each do |d| %>
-						<li class="<%=discussion_class(d)%>"><%=link_to d.name, d.url, {:rel => 'nofollow'}%> by <%=link_to d.original_poster.name, user_path(d.original_poster), {:rel => 'nofollow'}%>, last comment <%=markup_date(d.updated)%></li>
+						<li class="<%=discussion_class(d)%>">
+							<%= render :partial => 'forum_discussions/discussion', :locals => {:discussion => d, :show_script => true}%>
+						</li>
+					<% end 
+					if dosr.length > 10 %>
+						<li class="more-discussions"><a href="/forum/?script_author=<%=@user.id%>" rel="nofollow">More discussions</a></li>
 					<% end %>
 				</ul>
 			<% end %>
 		</section>
 	<% end %>
-<% end %>
-
-<% if !@user.profile.nil? %>
-	<section id="user-profile"><%=format_user_text(@user.profile, @user.profile_markup)%></section>
 <% end %>
 
 <section>

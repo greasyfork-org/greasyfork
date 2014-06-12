@@ -1,0 +1,7 @@
+<% if defined?(show_script) and show_script and !discussion.script.nil? %>
+	<%=link_to discussion.script.name, discussion.script%>:
+<% end %>
+<%=link_to discussion.name, discussion.url, {:rel => 'nofollow'}%> by <%=link_to discussion.original_poster.name, user_path(discussion.original_poster), {:rel => 'nofollow'}%><%if !discussion.created.nil?%> <%=markup_date(discussion.created)%><% end
+if !discussion.LastCommentUserID.nil?
+	%>, last comment by <%=link_to discussion.last_commenter.name, user_path(discussion.last_commenter), {:rel => 'nofollow'}%><%if !discussion.updated.nil?%> <%=markup_date(discussion.updated)%><% end %>
+<% end %>

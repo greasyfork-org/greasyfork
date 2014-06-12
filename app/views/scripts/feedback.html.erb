@@ -6,9 +6,10 @@
 <% else %>
 	<ul id="discussions">
 		<% @script.discussions.reverse.each do |discussion| %>
-			<li class="<%=discussion_class(discussion)%>"><%=link_to discussion.name, discussion.url, {:rel => 'nofollow'}%> by <%=link_to discussion.original_poster.name, user_path(discussion.original_poster), {:rel => 'nofollow'}%><%if !discussion.created.nil?%>, <%=markup_date(discussion.created)%><% end %></li>
+			<li class="<%=discussion_class(discussion)%>">
+				<%= render :partial => 'forum_discussions/discussion', :locals => {:discussion => discussion}%>
+			</li>
 		<% end %>
 	</ul>
-
 	<p id="no-discussions"><a id="start-discussion" href="/forum/post/discussion?script=<%=@script.id%>" rel="nofollow">Start a new discussion on this script.</a></p>
 <% end %>

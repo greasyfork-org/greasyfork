@@ -7,6 +7,8 @@ class ForumDiscussion < ActiveRecord::Base
 	ignore_columns :Body
 	
 	belongs_to :original_forum_poster, -> { readonly }, :class_name => 'ForumUser', :foreign_key => 'InsertUserID'
+	belongs_to :last_reply_forum_poster, -> { readonly }, :class_name => 'ForumUser', :foreign_key => 'LastCommentUserID'
+	belongs_to :script, :foreign_key => 'ScriptID'
 
 	def created
 		return self.DateInserted
@@ -23,6 +25,11 @@ class ForumDiscussion < ActiveRecord::Base
 
 	def original_poster
 		return original_forum_poster.user
+	end
+
+	def last_commenter
+		return nil if last_reply_forum_poster.nil?
+		return last_reply_forum_poster.user
 	end
 
 end
