@@ -1,5 +1,30 @@
 <%- title @script.name + ' - Source code' %>
 <%- description 'Source code for ' + @script.name %>
+
+
+<% if @script.active? 
+	case @script.script_type_id
+		when 1, 2 %>
+			<div id="install-area">
+				<%=link_to 'Install this script', params[:version].nil? ? script_user_js_path(@script, :name => @script.url_name) : script_user_js_path(@script, :version => params[:version], :name => @script.url_name) + '&d=.user.js', {:class => 'install-link', 'data-ping-url' => url_for(script_install_ping_path(@script, :authenticity_token => session[:_csrf_token])), 'data-is-previous-version' => !params[:version].nil?}%><%=link_to '?', help_installing_user_scripts_path, {:class => 'install-help-link', :title => 'How to install'}%>
+			</div>
+		<% when 3 %>
+			<p>
+				This script should not be not be installed directly. It is a library for other scripts to include the meta directive
+				<% if params[:version].nil? %>
+					<code>// @require <%=script_library_js_path(@script, :version => @script_version.id, :name => @script.url_name, :only_path => false)%></code></p>
+				<% else %>
+					<code>// @require <%=script_library_js_path(@script, :version => params[:version], :name => @script.url_name, :only_path => false)%></code></p>
+				<% end %>
+	<% end %>
+<% elsif @script.deleted? %>
+	<p>This script has been deleted.</p>
+<% elsif !params[:version].nil? %>
+	<p id="under-review-notice">This version of the script was under review.</p>
+<% else %>
+	<p id="under-review-notice">This script is currently under review.</p>
+<% end %>
+
 <style>
 <%= CodeRay::Encoders[:html]::CSS.new(:default).stylesheet%>
 </style>
