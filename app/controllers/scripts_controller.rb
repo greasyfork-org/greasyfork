@@ -2,7 +2,7 @@ require 'coderay'
 require 'script_importer/script_syncer'
 
 class ScriptsController < ApplicationController
-	layout 'application', :except => [:show, :show_code, :feedback, :diff, :sync, :sync_update, :delete, :undelete]
+	layout 'application', :except => [:show, :show_code, :feedback, :diff, :sync, :sync_update, :delete, :undelete, :stats]
 
 	before_filter :authorize_by_script_id, :only => [:sync, :sync_update]
 	before_filter :check_for_locked_by_script_id, :only => [:sync, :sync_update, :delete, :do_delete, :undelete, :do_undelete]
@@ -267,6 +267,16 @@ class ScriptsController < ApplicationController
 		script.script_delete_type_id = nil
 		script.save(:validate => false)
 		redirect_to script
+	end
+
+	def stats
+		@script, @script_version = versionned_script(params[:script_id], params[:version])
+		install_values = Hash[Script.connection.select_rows("SELECT install_date, installs FROM install_counts where script_id = #{@script.id}")]
+		@install_data = {}
+		(@script.created_at.to_date..Date.today).each do |d|
+			v = install_values[d]
+			@install_data[d] = v.nil? ? 0 : v
+		end
 	end
 
 private

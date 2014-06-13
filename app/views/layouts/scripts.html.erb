@@ -12,6 +12,7 @@
 			<li<%=current_page?(script_show_code_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current '<span>Code</span>'.html_safe, script_show_code_path(@script, :version => params[:version])%></li>
 			<li<%=current_page?(script_script_versions_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current '<span>History</span>'.html_safe, script_script_versions_path(@script, :version => params[:version])%></li>
 			<li<%=current_page?(script_feedback_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>Feedback (#{@script.discussions.count})</span>".html_safe, script_feedback_path(@script, :version => params[:version])%></li>
+			<li<%=current_page?(script_stats_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>Stats</span>".html_safe, script_stats_path(@script, :version => params[:version])%></li>
 			<% if !current_user.nil? and !@script.locked and current_user.id == @script.user_id %>
 				<li<%=current_page?(new_script_script_version_path(@script.id)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current '<span>Update</span>'.html_safe, new_script_script_version_path(@script.id)%></li>
 				<li<%=current_page?(script_sync_path(@script)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current '<span>Sync</span>'.html_safe, script_sync_path(@script)%></li>
