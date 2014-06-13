@@ -272,10 +272,16 @@ class ScriptsController < ApplicationController
 	def stats
 		@script, @script_version = versionned_script(params[:script_id], params[:version])
 		install_values = Hash[Script.connection.select_rows("SELECT install_date, installs FROM install_counts where script_id = #{@script.id}")]
+		daily_install_values = Hash[Script.connection.select_rows("SELECT DATE(install_date), COUNT(*) FROM daily_install_counts where script_id = #{@script.id}")]
 		@install_data = {}
-		(@script.created_at.to_date..Date.today).each do |d|
+		(@script.created_at.to_date..Time.now.utc.to_date).each do |d|
 			v = install_values[d]
-			@install_data[d] = v.nil? ? 0 : v
+			if v.nil?
+				v2 = daily_install_values[d]
+				@install_data[d] = v2.nil? ? 0 : v2
+			else
+				@install_data[d] = v
+			end
 		end
 	end
 

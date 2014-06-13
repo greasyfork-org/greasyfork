@@ -12,11 +12,16 @@ max_labels = 30
 label_skip = max_labels > @install_data.keys.length ? 1 : (@install_data.keys.length / 30)
 
 max_installs = @install_data.values.max
-x = Math.log10(max_installs).floor
-scale_top=(max_installs/(10.0**x)).ceil*10**x
-
-scale_steps = [10,max_installs].min
-scale_step_width = scale_top / scale_steps
+if max_installs > 0
+	x = Math.log10(max_installs).floor
+	scale_top=(max_installs/(10.0**x)).ceil*10**x
+	scale_steps = [10,max_installs].min
+	scale_step_width = scale_top / scale_steps
+else
+	scale_top = 1
+	scale_steps = 1
+	scale_step_width = 1
+end
 
 %>
 <script>
