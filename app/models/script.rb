@@ -55,10 +55,11 @@ class Script < ActiveRecord::Base
 		end
 
 		self.assessments.each {|a| a.mark_for_destruction }
+		self.uses_disallowed_external = false
 		script_version.disallowed_requires_used.each do |script_url|
+			self.uses_disallowed_external = true
 			self.assessments.build({:assessment_reason => AssessmentReason.first, :details => script_url})
 		end
-		self.uses_disallowed_external = !self.assessments.empty?
 
 		if new_record? or self.code_updated_at.nil?
 			self.code_updated_at = Time.now
