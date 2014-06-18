@@ -318,12 +318,12 @@ private
 				AND !uses_disallowed_external
 			GROUP BY text
 			ORDER BY install_count DESC, text
-			LIMIT 5
+			LIMIT 10
 		EOF
 		top_sites = Script.connection.select_all(sql).to_a
 		# combine with "All sites" number
 		top_sites << {'text' => nil, 'install_count' => get_all_sites_count}
-		return top_sites.sort{|a,b| b['install_count'] <=> a['install_count']}.first(5)
+		return top_sites.sort{|a,b| b['install_count'] <=> a['install_count']}.first(10)
 	end
 
 	def get_all_sites_count

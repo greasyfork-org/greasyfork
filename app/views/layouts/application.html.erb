@@ -9,32 +9,39 @@
 	<% if defined?(@no_bots) and @no_bots %>
 		<meta name="robots" content="noindex">
 	<% end %>
+	<link rel="icon" href="<%=asset_path 'blacklogo16.png'%>">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 </head>
 <body>
 
 	<header id="main-header">
 		<div id="site-name">
-			<h1><%=link_to_unless_current 'Greasy Fork', root_path%></h1>
-			<p class="subtitle"><a href="https://greasyfork.org/forum/discussion/157/greasy-fork-needs-a-logo">A nice logo would look good here.</a></p>
+			<%=link_to_unless_current "<img src=\"#{asset_path 'blacklogo96.png'}\" alt=\"\">".html_safe, root_path%>
+			<div id="site-name-text">
+				<h1><%=link_to_unless_current 'Greasy Fork', root_path%></h1>
+				<p class="subtitle">One does not simply grease a fork!</p>
+			</div>
 		</div>
-		<form id="script-search" action="<%=search_scripts_path()%>">
-			<input name="q" placeholder="Search" value="<%=params[:q]%>" size="10"><input type="submit" value="→">
-		</form>
-		<nav>
-			<li class="scripts-index-link"><%=link_to('Scripts', scripts_path)%></li>
-			<% # user signed in to main site, but not to forum?
-			if user_signed_in? and cookies[:Vanilla].nil? %>
-				<li class="forum-link"><%=link_to('Forum', '/forum/entry/jsconnect?client_id=1462516369')%></li>
-			<% else %>
-				<li class="forum-link"><%=link_to('Forum', '/forum/')%></li>
-			<% end %>
-			<li class="help-link"><%=link_to_unless_current('Help', help_path)%></li>
-			<% if user_signed_in? %>
-				<li class="user-profile-link"><%=link_to(current_user.name, current_user)%></li>
-			<% else %>
-				<li class="sign-in-link"><%=link_to('Sign in', new_user_session_path)%></li>
-			<% end %>
-		</nav>
+		<div id="site-nav">
+			<form id="script-search" action="<%=search_scripts_path()%>">
+				<input name="q" placeholder="Search" value="<%=params[:q]%>" size="10"><input type="submit" value="→">
+			</form>
+			<nav>
+				<li class="scripts-index-link"><%=link_to('Scripts', scripts_path)%></li>
+				<% # user signed in to main site, but not to forum?
+				if user_signed_in? and cookies[:Vanilla].nil? %>
+					<li class="forum-link"><%=link_to('Forum', '/forum/entry/jsconnect?client_id=1462516369')%></li>
+				<% else %>
+					<li class="forum-link"><%=link_to('Forum', '/forum/')%></li>
+				<% end %>
+				<li class="help-link"><%=link_to_unless_current('Help', help_path)%></li>
+				<% if user_signed_in? %>
+					<li class="user-profile-link"><%=link_to(current_user.name, current_user)%></li>
+				<% else %>
+					<li class="sign-in-link"><%=link_to('Sign in', new_user_session_path, {:rel => 'nofollow'})%></li>
+				<% end %>
+			</nav>
+		</div>
 	</header>
 
 <% if !notice.nil? %>

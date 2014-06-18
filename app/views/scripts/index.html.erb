@@ -16,44 +16,45 @@
 	<%- description 'List of user scripts available on Greasy Fork' %>
 <% end %>
 
-<p id="script-list-sort">Sort by:
-	<% if action_name == 'search' %>
-		<%=script_list_link('Relevance', nil, params[:site])%> |
-		<%=script_list_link('Daily installs', 'daily_installs', params[:site])%> |
-	<% else %>
-		<%=script_list_link('Daily installs', nil, params[:site])%> |
-	<% end %>
-	<%=script_list_link('Total installs', 'total_installs', params[:site])%> |
-	<%=script_list_link('Created date', 'created', params[:site])%> |
-	<%=script_list_link('Updated date', 'updated', params[:site])%>
-</p>
-
-<% if !@by_sites.nil? %>
-	<p id="script-list-filter">Showing:
-		<span class="script-filter-option">
-			<%=script_list_link('All', params[:sort], nil)%>
-			|
-		</span>
-		<% current_site_is_top = false
-		(0..4).each do |i|
-			break if @by_sites[i].nil?
-			dt = @by_sites[i]['text']
-			if dt.nil?
-				current_site_is_top = true if params[:site] == '*' %>
-				<%=script_list_link('(All sites)', params[:sort], '*')%>
-			<% else
-				current_site_is_top = true if dt == params[:site] %>
-				<%=script_list_link(dt, params[:sort], dt)%>
+<div id="script-list-option-groups">
+	<div id="script-list-sort" class="script-list-option-group">Sorting by:
+		<ul>
+			<% if action_name == 'search' %>
+				<%=script_list_link('Relevance', nil, params[:site])%>
+				<%=script_list_link('Daily installs', 'daily_installs', params[:site])%>
+			<% else %>
+				<%=script_list_link('Daily installs', nil, params[:site])%>
 			<% end %>
-			|
-		<% end %>
-		<% if !current_site_is_top and !params[:site].nil? and !@scripts.empty? %>
-			<%=script_list_link(params[:site], params[:sort], params[:site])%>
-			|
-		<% end %>
-		<%= link_to 'More...', site_list_scripts_path %>
-	</p>
-<% end %>
+			<%=script_list_link('Total installs', 'total_installs', params[:site])%>
+			<%=script_list_link('Created date', 'created', params[:site])%>
+			<%=script_list_link('Updated date', 'updated', params[:site])%>
+		</ul>
+	</div>
+
+	<% if !@by_sites.nil? %>
+		<div id="script-list-filter" class="script-list-option-group">Showing scripts for:
+			<ul>
+				<%=script_list_link('All', params[:sort], nil)%>
+				<% current_site_is_top = false
+				(0..9).each do |i|
+					break if @by_sites[i].nil?
+					dt = @by_sites[i]['text']
+					if dt.nil?
+						current_site_is_top = true if params[:site] == '*' %>
+						<%=script_list_link('(All sites)', params[:sort], '*')%>
+					<% else
+						current_site_is_top = true if dt == params[:site] %>
+						<%=script_list_link(dt, params[:sort], dt)%>
+					<% end %>
+				<% end %>
+				<% if !current_site_is_top and !params[:site].nil? and !@scripts.empty? %>
+					<%=script_list_link(params[:site], params[:sort], params[:site])%>
+				<% end %>
+				<li><%= link_to 'More...', site_list_scripts_path %></li>
+			</ul>
+		</div>
+	<% end %>
+</div>
 
 <% if @scripts.empty? %>
 	<p>No scripts found.</p>

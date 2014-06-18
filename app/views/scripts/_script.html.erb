@@ -1,33 +1,34 @@
 <li data-script-id="<%=script.id%>" data-script-name="<%=script.name%>" data-script-author-id="<%=script.user.id%>" data-script-author-name="<%=script.user.name%>" data-script-daily-installs="<%=script.daily_installs%>" data-script-total-installs="<%=script.total_installs%>" data-script-created-date="<%=script.created_at.strftime('%Y-%m-%d')%>" data-script-updated-date="<%=script.code_updated_at.strftime('%Y-%m-%d')%>" data-script-type="<%=script.script_type.short_name%>">
 	<article>
-		<header>
-			<h2>
-				<%=link_to script.name, script%>
-				<% if script.script_type_id != 1 %>
-					<span class="script-type">(<%=script.script_type.short_name.capitalize%>)</span>
-				<% end %>
-				<% if script.deleted? %>
-					<span class="script-type">(Deleted)</span>
-				<% end %>
-				<% if script.locked %>
-					<span class="script-type">(Locked)</span>
-				<% end %>
-			</h2>
-		</header>
-		<p><%=script.description%></p>
-		<footer>
-			<dl>
-				<dt class="script-list-author">Author</dt>
-				<dd class="script-list-author"><%=link_to script.user.name, script.user%></dd>
-				<dt class="script-list-daily-installs">Daily installs</dt>
-				<dd class="script-list-daily-installs"><%=script.daily_installs%></dd>
-				<dt class="script-list-total-installs">Total installs</dt>
-				<dd class="script-list-total-installs"><%=script.total_installs%></dd>
-				<dt class="script-list-created-date">Created</dt>
-				<dd class="script-list-created-date"><%=markup_date(script.created_at)%></dd>
-				<dt class="script-list-updated-date">Updated</dt>
-				<dd class="script-list-updated-date"><%=markup_date(script.code_updated_at)%></dd>
-			</dl>
-		</footer>
+		<h2>
+			<%=link_to script.name, script%>
+			<% if script.script_type_id != 1 %>
+				<span class="script-type">(<%=script.script_type.short_name.capitalize%>)</span>
+			<% end %>
+			<% if script.deleted? %>
+				<span class="script-type">(Deleted)</span>
+			<% end %>
+			<% if script.locked %>
+				<span class="script-type">(Locked)</span>
+			<% end %>
+			<span class="name-description-separator">
+				-
+			</span>
+			<span class="description">
+				<%=script.description%>
+			</span>
+		</h2>
+		<dl>
+			<dt class="script-list-author">Author</dt>
+			<dd class="script-list-author"><%=link_to script.user.name, script.user%></dd>
+			<dt class="script-list-daily-installs">Daily installs</dt>
+			<dd class="script-list-daily-installs"><%=script.daily_installs%></dd>
+			<dt class="script-list-total-installs">Total installs</dt>
+			<dd class="script-list-total-installs"><%=script.total_installs%></dd>
+			<dt class="script-list-created-date">Created</dt>
+			<dd class="script-list-created-date"><%=markup_date(script.created_at)%></dd>
+			<dt class="script-list-updated-date">Updated</dt>
+			<dd class="script-list-updated-date"><%=markup_date(script.code_updated_at)%></dd>
+		</dl>
 	</article>
 </li>

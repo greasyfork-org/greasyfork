@@ -19,7 +19,7 @@ module ScriptsHelper
 		else
 			l = link_to label, by_site_scripts_path(:sort => sort, :site => site)
 		end
-		return ("<span class=\"script-list-option#{is_link ? '' : ' script-list-current'}\">" + l + '</span>').html_safe
+		return ("<li class=\"script-list-option#{is_link ? '' : ' script-list-current'}\">" + l + '</li>').html_safe
 	end
 
 end
