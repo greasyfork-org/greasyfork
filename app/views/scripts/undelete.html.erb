@@ -7,6 +7,11 @@
 			<label for="reason">Why are you undeleting this?</label><br>
 			<textarea id="reason" name="reason" rows="5" cols="100" maxlength="500" required></textarea>
 		</p>
+		<% if @script.user.banned %>
+			<p>
+				<label for="unbanned">Unban this user?</label> <input type="checkbox" id="unbanned" name="unbanned" value="1">
+			</p>
+		<% end %>
 	<% end %>
 	<input type="submit" value="Undelete">
 <% end %>

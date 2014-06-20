@@ -15,9 +15,13 @@
 		<p>
 			<label for="locked">Lock the script to prevent undelete by the author?</label> <input type="checkbox" id="locked" name="locked" value="1" checked>
 		</p>
-		<p>
-			<label for="banned">Ban this user?</label> <input type="checkbox" id="banned" name="banned" value="1">
-		</p>
+		<% if @script.user.banned %>
+			<p>(User already banned.)</p>
+		<% else %>
+			<p>
+				<label for="banned">Ban this user?</label> <input type="checkbox" id="banned" name="banned" value="1">
+			</p>
+		<% end %>
 		<p>This user has <%=link_to("#{@other_scripts} other non-locked scripts", @script.user)%>.</p>
 	<% end %>
 	<input type="submit" value="Delete">

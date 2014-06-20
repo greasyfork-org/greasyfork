@@ -253,7 +253,7 @@ class ScriptsController < ApplicationController
 			ma.reason = params[:reason]
 			ma.save!
 			script.locked = false
-			if script.user.banned
+			if script.user.banned and params[:unbanned]
 				ma_ban = ModeratorAction.new
 				ma_ban.moderator = current_user
 				ma_ban.user = script.user
