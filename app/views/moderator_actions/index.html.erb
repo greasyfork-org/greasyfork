@@ -1,5 +1,5 @@
 <%-title 'Moderator log' %>
-<%-title 'List of actions taken by moderators' %>
+<%-description 'List of actions taken by moderators' %>
 
 <table>
 	<thead>
@@ -24,3 +24,5 @@
 		</tr>
 	<% end %>
 </table>
+
+<%= will_paginate @actions %>
