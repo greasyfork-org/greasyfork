@@ -1,9 +1,15 @@
 require 'uri'
 
 class ScriptVersion < ActiveRecord::Base
+
+	# this has to be before belongs_to for codes so that it runs before autosave
+	before_save :reuse_script_codes
+
 	belongs_to :script
 	belongs_to :script_code, :autosave => true
 	belongs_to :rewritten_script_code, :class_name => 'ScriptCode', :autosave => true
+
+	strip_attributes :only => [:changelog]
 
 	validates_presence_of :code
 	validates_presence_of :version, :message => 'meta key must be provided', :if => Proc.new {|sv| sv.script.nil? || !sv.script.library? }
@@ -114,12 +120,58 @@ class ScriptVersion < ActiveRecord::Base
 		super
 	end
 
+	# reuse script code objects to save disk space
+	def reuse_script_codes
+
+		code_found = false
+		rewritten_code_found = false
+
+		# check if one of the previous versions had the same code, reuse if so
+		if !self.script.nil?
+			self.script.script_versions.each do |old_sv|
+				# only use older verions for this
+				break if !self.id.nil? and self.id < old_sv.id
+				next if old_sv == self
+				if !code_found
+					if old_sv.code == self.code
+						self.script_code = old_sv.script_code
+						code_found = true
+					elsif old_sv.rewritten_code == self.code
+						self.script_code = old_sv.rewritten_script_code
+						code_found = true
+					end
+				end
+				if !rewritten_code_found
+					if old_sv.rewritten_code == self.rewritten_code
+						self.rewritten_script_code = old_sv.rewritten_script_code
+						rewritten_code_found = true
+					elsif old_sv.code == self.rewritten_code
+						self.rewritten_script_code = old_sv.script_code
+						rewritten_code_found = true
+					end
+				end
+				break if code_found and rewritten_code_found
+			end
+		end
+
+		# if we didn't find a previous version, see if original and rewritten are the same in the current version
+		if !code_found and self.rewritten_code == self.code
+			self.script_code = self.rewritten_script_code
+		elsif !rewritten_code_found and self.rewritten_code == self.code
+			self.rewritten_script_code = self.script_code
+		end
+
+	end
+
 	def code
 		script_code.nil? ? nil : script_code.code
 	end
 
 	def code=(c)
-		self.script_code = ScriptCode.new if self.script_code.nil?
+		# no op if the same
+		return if self.code == c
+		#self.script_code = ScriptCode.new
+		self.build_script_code
 		self.script_code.code = c
 	end
 
@@ -128,7 +180,10 @@ class ScriptVersion < ActiveRecord::Base
 	end
 
 	def rewritten_code=(c)
-		self.rewritten_script_code = ScriptCode.new if self.rewritten_script_code.nil?
+		# no op if the same
+		return if self.rewritten_code == c
+		#self.rewritten_script_code = ScriptCode.new
+		self.build_rewritten_script_code
 		self.rewritten_script_code.code = c
 	end
 

@@ -631,4 +631,164 @@ END
 		assert sv.valid?, sv.errors.full_messages
 	end
 
+	test 'use same script code between code and rewritten' do
+		js = <<END
+// ==UserScript==
+// @name Test
+// @description		A Test!
+// @namespace		http://example.com/1
+// @version		1
+// ==/UserScript==
+END
+		sv = ScriptVersion.new
+		sv.code = js
+		script = Script.new
+		script.user = User.first
+		sv.script = script
+		sv.calculate_all(script.description)
+		script.apply_from_script_version(sv)
+		assert sv.valid?, sv.errors.full_messages
+		script.save
+		sv.save
+		# code and rewritten code should be the same object
+		assert_not_nil sv.script_code_id
+		assert_not_nil sv.rewritten_script_code_id
+		assert_equal sv.code, sv.rewritten_code
+		assert_equal sv.script_code_id, sv.rewritten_script_code_id
+		# change the code, rewritten should stay the same
+		sv.code += "\nvar foo = 'bar';"
+		assert_not_equal sv.code, sv.rewritten_code
+		# ...until we recalculate rewritten, then it should be the same as code again
+		sv.calculate_all(script.description)
+		script.save
+		sv.save
+		assert_equal sv.code, sv.rewritten_code
+		assert_equal sv.script_code_id, sv.rewritten_script_code_id
+		# now test a case where code and rewritten should stay different
+		js = <<END
+// ==UserScript==
+// @name Test
+// @description		A Test!
+// @namespace		http://example.com/1
+// @version		1
+// @downloadURL http://example.com
+// ==/UserScript==
+END
+		sv.code = js
+		assert_not_equal sv.code, sv.rewritten_code
+		sv.calculate_all(script.description)
+		script.save
+		sv.save
+		assert_not_equal sv.code, sv.rewritten_code
+		assert_not_equal sv.script_code_id, sv.rewritten_script_code_id
+	end
+
+	test 'reuse script code when not changed' do
+		js = <<END
+// ==UserScript==
+// @name Test
+// @description		A Test!
+// @namespace		http://example.com/1
+// @version		1
+// ==/UserScript==
+END
+		sv = ScriptVersion.new
+		sv.do_lenient_saving
+		sv.code = js
+		script = Script.new
+		script.user = User.first
+		sv.script = script
+		sv.calculate_all(script.description)
+		script.apply_from_script_version(sv)
+		assert sv.valid?, sv.errors.full_messages
+		script.save!
+		sv.save!
+		previous_script_code_id = sv.script_code_id
+		previous_rewritten_script_code_id = sv.rewritten_script_code_id
+		script.reload
+		assert_not_nil script.get_newest_saved_script_version
+		# a new version with the same code
+		sv = ScriptVersion.new
+		sv.code = js
+		sv.script = script
+		sv.calculate_all(script.description)
+		script.apply_from_script_version(sv)
+		assert sv.valid?, sv.errors.full_messages
+		script.save!
+		sv.save!
+		assert_equal previous_script_code_id, sv.script_code_id
+		assert_equal previous_rewritten_script_code_id, sv.rewritten_script_code_id
+		script.reload
+		# a new version with a different code, but same rewritten code
+		sv = ScriptVersion.new
+		sv.do_lenient_saving
+		js = <<END
+// ==UserScript==
+// @name Test
+// @description		A Test!
+// @namespace		http://example.com/1
+// @version		1
+// @downloadURL http://example.com
+// ==/UserScript==
+END
+		sv.code = js
+		sv.script = script
+		sv.calculate_all(script.description)
+		script.apply_from_script_version(sv)
+		assert sv.valid?, sv.errors.full_messages
+		script.save!
+		sv.save!
+		assert_not_equal previous_script_code_id, sv.script_code_id
+		previous_script_code_id = sv.script_code_id
+		assert_equal previous_rewritten_script_code_id, sv.rewritten_script_code_id
+		script.reload
+		# completely different code, with rewrites
+		sv = ScriptVersion.new
+		sv.do_lenient_saving
+		js = <<END
+// ==UserScript==
+// @name Test
+// @description		A Test!
+// @namespace		http://example.com/1
+// @version		1
+// @downloadURL http://example.com
+// ==/UserScript==
+var foo = "bar";
+END
+		sv.code = js
+		sv.script = script
+		sv.calculate_all(script.description)
+		script.apply_from_script_version(sv)
+		assert sv.valid?, sv.errors.full_messages
+		script.save!
+		sv.save!
+		assert_not_equal previous_script_code_id, sv.script_code_id
+		assert_not_equal previous_rewritten_script_code_id, sv.rewritten_script_code_id
+		previous_script_code_id = sv.script_code_id
+		previous_rewritten_script_code_id = sv.rewritten_script_code_id
+		script.reload
+		# rewritten stays the same, original changes to match
+		sv = ScriptVersion.new
+		sv.do_lenient_saving
+		js = <<END
+// ==UserScript==
+// @name Test
+// @description		A Test!
+// @namespace		http://example.com/1
+// @version		1
+// ==/UserScript==
+var foo = "bar";
+END
+		sv.code = js
+		sv.script = script
+		sv.calculate_all(script.description)
+		script.apply_from_script_version(sv)
+		assert sv.valid?, sv.errors.full_messages
+		script.save!
+		sv.save!
+		assert_not_equal previous_script_code_id, sv.script_code_id
+		assert_equal previous_rewritten_script_code_id, sv.rewritten_script_code_id
+		assert_equal sv.script_code_id, sv.rewritten_script_code_id
+	end
+
 end
