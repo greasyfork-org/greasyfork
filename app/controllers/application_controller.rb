@@ -143,4 +143,22 @@ protected
 			root_path
 		end
 	end
+
+	def default_url_options(options={})
+		# set locale on links, unless we're the default
+		{ :locale => ((I18n.locale == I18n.default_locale) ? nil : I18n.locale) }
+	end
+
+	before_filter :set_locale
+	def set_locale
+		# strip /en/ if set, that's the default
+		if params[:locale] == 'en' and request.get?
+			params[:locale] = nil
+			# only_path - prevent open redirect via "host" parameter
+			redirect_to url_for(params.merge(:only_path => true))
+			return
+		end
+		# set locale based on parameter
+		I18n.locale = params[:locale] || :en
+	end
 end
