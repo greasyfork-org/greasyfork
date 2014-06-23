@@ -2,7 +2,7 @@ Greasyfork::Application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
-	scope "(:locale)", locale: /en|fr|ru|zh\-CN/ do
+	scope "(:locale)", locale: /de|en|fr|ru|zh\-CN/ do
 
 		get 'users/webhook-info', :to => 'users#webhook_info', :as => 'user_webhook_info'
 		post 'users/webhook-info', :to => 'users#webhook_info'
