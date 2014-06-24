@@ -17,6 +17,10 @@ body {
 	letter-spacing: -0.01em;
 	margin-right: 0;
 }
+/* https://bugzilla.mozilla.org/show_bug.cgi?id=1005669 */
+pre {
+	letter-spacing: normal;
+}
 a {
 	color: #670000;
 }
