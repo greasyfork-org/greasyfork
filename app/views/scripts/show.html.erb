@@ -5,46 +5,47 @@
 	case @script.script_type_id
 		when 1, 2 %>
 			<div id="install-area">
-				<%=link_to 'Install this script', params[:version].nil? ? script_user_js_path(@script, :name => @script.url_name) : script_user_js_path(@script, :version => params[:version], :name => @script.url_name) + '&d=.user.js', {:class => 'install-link', 'data-ping-url' => url_for(script_install_ping_path(@script, :authenticity_token => session[:_csrf_token])), 'data-is-previous-version' => !params[:version].nil?}%><%=link_to '?', help_installing_user_scripts_path, {:class => 'install-help-link', :title => 'How to install'}%>
+				<%=link_to t('scripts.install'), params[:version].nil? ? script_user_js_path(@script, :name => @script.url_name) : script_user_js_path(@script, :version => params[:version], :name => @script.url_name) + '&d=.user.js', {:class => 'install-link', 'data-ping-url' => url_for(script_install_ping_path(@script, :authenticity_token => session[:_csrf_token])), 'data-is-previous-version' => !params[:version].nil?}%><%=link_to t('scripts.install_help'), help_installing_user_scripts_path, {:class => 'install-help-link', :title => t('scripts.install_help_title')}%>
 			</div>
 		<% when 3 %>
 			<p>
-				This script should not be not be installed directly. It is a library for other scripts to include the meta directive
-				<% if params[:version].nil? %>
-					<code>// @require <%=script_library_js_path(@script, :version => @script_version.id, :name => @script.url_name, :only_path => false)%></code></p>
-				<% else %>
-					<code>// @require <%=script_library_js_path(@script, :version => params[:version], :name => @script.url_name, :only_path => false)%></code></p>
-				<% end %>
+				<% if params[:version].nil?
+					library_code_snippet = "<code>// @require #{script_library_js_path(@script, :version => @script_version.id, :name => @script.url_name, :only_path => false)}</code>"
+				else
+					library_code_snippet = "<code>// @require #{script_library_js_path(@script, :version => params[:version], :name => @script.url_name, :only_path => false)}</code>"
+				end %>
+				<%=t('scripts.library_instructions_html', :code => library_code_snippet.html_safe)%>
+			</p>
 	<% end %>
 <% elsif @script.deleted? %>
-	<p>This script has been deleted.</p>
+	<p><%=t('scripts.deleted_notice')%></p>
 <% elsif !params[:version].nil? %>
-	<p id="under-review-notice">This version of the script was under review.</p>
+	<p id="under-review-notice"><%=t('scripts.inactive_pending_changes_for_previous_version')%></p>
 <% else %>
-	<p id="under-review-notice">This script is currently under review.</p>
+	<p id="under-review-notice"><%=t('scripts.inactive_pending_changes')%></p>
 <% end %>
 
 <div id="script-meta">
 	<dl id="script-stats">
-		<dt class="script-show-version">Version</dt>
+		<dt class="script-show-version"><%=t('scripts.version_number')%></dt>
 		<dd class="script-show-version"><%=@script_version.version%></dd>
-		<dt class="script-show-author">Author</dt>
+		<dt class="script-show-author"><%=t('scripts.author_name')%></dt>
 		<dd class="script-show-author"><%=link_to @script.user.name, @script.user%></dd>
 		<% if @script.script_type_id != 3 and params[:version].nil? %>
-		<dt class="script-show-daily-installs">Daily installs</dt>
+		<dt class="script-show-daily-installs"><%=t('scripts.daily_installs')%></dt>
 		<dd class="script-show-daily-installs"><%=@script.daily_installs%></dd>
-		<dt class="script-show-total-installs">Total installs</dt>
+		<dt class="script-show-total-installs"><%=t('scripts.total_installs')%></dt>
 		<dd class="script-show-total-installs"><%=@script.total_installs%></dd>
 		<% end %>
-		<dt class="script-show-created-date">Created</dt>
+		<dt class="script-show-created-date"><%=t('scripts.created_date')%></dt>
 		<dd class="script-show-created-date"><%=markup_date(@script.created_at)%></dd>
-		<dt class="script-show-updated-date">Updated</dt>
+		<dt class="script-show-updated-date"><%=t('scripts.updated_date')%></dt>
 		<dd class="script-show-updated-date"><%=markup_date(@script.code_updated_at)%></dd>
-		<dt class="script-show-license">License</dt>
+		<dt class="script-show-license"><%=t('scripts.license')%></dt>
 		<dd class="script-show-license">
 			<%if @script.license.nil?%>
 				<% if @script.license_text.nil?%>
-					<i>N/A</i>
+					<i><%=t('scripts.no_license')%></i>
 				<% else %>
 					<%=@script.license_text%>
 				<% end %>
@@ -54,10 +55,10 @@
 		</dd>
 	</dl>
 	<dl id="script-applies-to">
-		<dt class="script-show-applies-to">Applies to</dt>
+		<dt class="script-show-applies-to"><%=t('scripts.applies_to')%></dt>
 		<dd class="script-show-applies-to">
 			<% if @script.script_applies_tos.empty? %>
-				All sites
+				<%=t('scripts.applies_to_all')%>
 			<% else %>
 				<%=
 					(
@@ -71,7 +72,7 @@
 
 <% if !@script.additional_info.nil? and !@script.additional_info.empty? %>
 	<div id="additional-info">
-		<h3>Author's Description</h3>
+		<h3><%=t('scripts.additional_info')%></h3>
 		<div>
 			<%=format_user_text(@script.additional_info, @script.additional_info_markup)%>
 		</div>

@@ -11,3 +11,65 @@ en:
       sign_in: "Sign in"
       # search placeholder
       search: "Search"
+  helpers:
+    application:
+      # when showing a date newer than a week ago, we show something like "3 days ago". relative_time is the time from https://github.com/svenfuchs/rails-i18n/blob/b80bbdc9f9fa0ada05a7a2c9391a902ffde395d8/rails/rails4/action_view.yml . Search that repo to see what it could be in your language.
+      time_difference: "%{relative_time} ago"
+  scripts:
+    # label for created date of a script
+    created_date: "Created"
+    # label for updated date of a script
+    updated_date: "Updated"
+    # label for total install count of a script
+    total_installs: "Total installs"
+    # label for daily install count of a script
+    daily_installs: "Daily installs"
+    # label for author name of a script
+    author_name: "Author"
+    # label for version number of a script
+    version_number: "Version"
+    # label for the legal license a script is released under (e.g. GPL)
+    license: "License"
+    # what is shown as the license when no license is provided in a script
+    no_license: "N/A"
+    # label for the list of sites or patterns a script applies to
+    applies_to: "Applies to"
+    # what is shown as the applies to when a script applies to all sites
+    applies_to_all: "All sites"
+    # header before the author-provided additional info - should imply that it was the author who wrote this, not the site
+    additional_info: "Author's Description"
+    # link that makes the user install the script
+    install: "Install this script"
+    # text for link that gives information on how to install scripts. should be very short.
+    install_help: "?"
+    # title (tooltip) for link that gives information on how to install scripts
+    install_help_title: "How to install"
+    # instructions on a script library. code will be a <code> element. Don't use punctuation around the code element if possible so that people don't accidentally include that when copying.
+    library_instructions_html: "This script should not be not be installed directly. It is a library for other scripts to include with the meta directive %{code}"
+    # text displayed for deleted scripts
+    deleted_notice: "This script has been deleted."
+    # text displayed for scripts hidden until they follow the rules
+    inactive_pending_changes: "This script is currently inactive because it doesn't align with Greasy Fork's policies."
+    # text displayed for when viewing a previous version of a script that was hidden because it didn't follow the rules
+    inactive_pending_changes_for_previous_version: "This version of this script is inactive because it doesn't align with Greasy Fork's policies."
+    # test displayed when viewing a previous version. date is a date and time (no "ago"), latest_version_link is a link to the newest version whose text is version_notice_latest_version_link
+    version_notice_html: "As of %{date}. See %{latest_version_link}."
+    version_notice_latest_version_link: "the latest version"
+    # link to the script's info page, containing script meta and author's description
+    info_page: "Info"
+    # link to the script's code page
+    code_page: "Code"
+    # link to the script's history page, listing all versions of the code
+    history_page: "History"
+    # link to the script's feedback page, listing discussions on the script. count is the number of discussions
+    feedback_page: "Feedback (%{count})"
+    # link to the script's install statistics page
+    stats_page: "Stats"
+    # link to the page that lets the author update the script
+    update_page: "Update"
+    # link to the page that lets the author set up script syncing from an external URL
+    sync_page: "Sync"
+    # link to the page that lets the author delete a script
+    delete_page: "Delete"
+    # link to the page that lets the author undelete a script
+    undelete_page: "Undelete"

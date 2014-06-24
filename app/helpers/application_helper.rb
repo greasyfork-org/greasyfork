@@ -12,7 +12,8 @@ module ApplicationHelper
 	end
 
 	def markup_date(date)
-		"<time datetime=\"#{date.to_datetime.rfc3339}\">#{date > 1.week.ago ? time_ago_in_words(date).sub(/\A(about |less than )/, '').capitalize + ' ago' : date.strftime('%Y-%m-%d')}</time>".html_safe
+		# Take out "about" and "less than" to make it shorter. Obviously won't work in the other languages.
+		"<time datetime=\"#{date.to_datetime.rfc3339}\">#{date > 1.week.ago ? t('helpers.application.time_difference', :relative_time => time_ago_in_words(date).sub(/\A(about |less than )/, '').capitalize) : date.strftime('%Y-%m-%d')}</time>".html_safe
 	end
 
 	def format_user_text(text, markup_type)

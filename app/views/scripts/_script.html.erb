@@ -19,15 +19,15 @@
 			</span>
 		</h2>
 		<dl>
-			<dt class="script-list-author">Author</dt>
+			<dt class="script-list-author"><%=t('scripts.author_name')%></dt>
 			<dd class="script-list-author"><%=link_to script.user.name, script.user%></dd>
-			<dt class="script-list-daily-installs">Daily installs</dt>
+			<dt class="script-list-daily-installs"><%=t('scripts.daily_installs')%></dt>
 			<dd class="script-list-daily-installs"><%=script.daily_installs%></dd>
-			<dt class="script-list-total-installs">Total installs</dt>
+			<dt class="script-list-total-installs"><%=t('scripts.total_installs')%></dt>
 			<dd class="script-list-total-installs"><%=script.total_installs%></dd>
-			<dt class="script-list-created-date">Created</dt>
+			<dt class="script-list-created-date"><%=t('scripts.created_date')%></dt>
 			<dd class="script-list-created-date"><%=markup_date(script.created_at)%></dd>
-			<dt class="script-list-updated-date">Updated</dt>
+			<dt class="script-list-updated-date"><%=t('scripts.updated_date')%></dt>
 			<dd class="script-list-updated-date"><%=markup_date(script.code_updated_at)%></dd>
 		</dl>
 	</article>
