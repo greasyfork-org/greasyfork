@@ -9,6 +9,7 @@ class ScriptVersionsController < ApplicationController
 
 	def index
 		@script, @script_version = versionned_script(params[:script_id], params[:version])
+		@no_bots = true if !params[:show_all_versions].nil?
 		return if redirect_to_slug(@script, :script_id)
 	end
 
