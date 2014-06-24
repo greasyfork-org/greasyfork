@@ -66,13 +66,17 @@ a:visited {
 	text-shadow: -1px -1px 0px #670000, 1px -1px 0px #670000, -1px 1px 0px #670000, 1px 1px 0px #670000;
 }
 
-#site-nav {
+#site-nav nav, #nav-user-info {
 	text-align: right;
 	position: absolute;
-	bottom: 0;
 	right: 0;
-	margin-bottom: 0.5em;
-	margin-right: 0.5em;
+	margin: 1em 0.5em 0.5em 0;
+}
+#site-nav nav {
+	bottom: 0;
+}
+#nav-user-info {
+	top: 0;
 }
 nav a:hover {
 	color: white;
@@ -87,8 +91,11 @@ nav li {
 nav li + li {
 	margin-left: 0.5em;
 }
-#script-search {
-	margin-bottom: 1em;
+#script-search, #language-selector {
+	display: inline;
+}
+#nav-user-info, #nav-user-info select, #nav-user-info input {
+	font-size: smaller;
 }
 
 #script-content {

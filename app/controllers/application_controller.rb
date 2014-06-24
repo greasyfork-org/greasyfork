@@ -151,12 +151,19 @@ protected
 
 	before_filter :set_locale
 	def set_locale
-		# strip /en/ if set, that's the default
-		if params[:locale] == 'en' and request.get?
-			params[:locale] = nil
-			# only_path - prevent open redirect via "host" parameter
-			redirect_to url_for(params.merge(:only_path => true))
-			return
+		if request.get?
+			# strip /en/ if set, that's the default
+			if params[:locale] == 'en'
+				params[:locale] = nil
+				# only_path - prevent open redirect via "host" parameter
+				redirect_to url_for(params.merge(:only_path => true)), :status => 301
+				return
+			end
+			# redirect if locale is a request param and not part of the url
+			if !request.GET[:locale].nil?
+				redirect_to url_for(params), :status => 301
+				return
+			end
 		end
 		# set locale based on parameter
 		I18n.locale = params[:locale] || :en

@@ -103,10 +103,17 @@
 		});
 	}
 
+	function hookUpLocaleSwitcher() {
+		document.getElementById("language-selector-locale").addEventListener("change", function(event) {
+			location.href = event.target.selectedOptions[0].getAttribute("data-language-url");
+		});
+	}
+
 	function init() {
 		hookUpSelectAllCheckboxes();
 		hookUpInstallPingers();
 		hookUpMarkupPreview();
+		hookUpLocaleSwitcher();
 	}
 	
 	window.addEventListener("DOMContentLoaded", init);

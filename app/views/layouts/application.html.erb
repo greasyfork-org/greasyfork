@@ -11,6 +11,16 @@
 	<% end %>
 	<link rel="icon" href="<%=asset_path 'blacklogo16.png'%>">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<% if request.get?
+		# https://support.google.com/webmasters/answer/189077
+		Rails.configuration.available_locales.each do |code, name|
+			if code == 'en' %>
+				<link rel="alternate" hreflang="<%=code%>" href="<%=url_for(params.except(:locale).merge({:locale => nil, :only_path => false}))%>">
+			<% else %>
+				<link rel="alternate" hreflang="<%=code%>" href="<%=url_for(params.except(:locale).merge({:locale => code, :only_path => false}))%>">
+			<% end
+		end
+	end %>
 </head>
 <body>
 
@@ -23,9 +33,41 @@
 			</div>
 		</div>
 		<div id="site-nav">
-			<form id="script-search" action="<%=search_scripts_path()%>">
-				<input name="q" placeholder="<%=t('.search')%>" value="<%=params[:q]%>" size="10"><input type="submit" value="→">
-			</form>
+			<div id="nav-user-info">
+				<% if user_signed_in? %>
+					<span class="user-profile-link"><%=link_to(current_user.name, current_user)%></span>
+				<% else %>
+					<span class="sign-in-link"><%=link_to(t('.sign_in'), new_user_session_path, {:rel => 'nofollow'})%></span>
+				<% end %>
+				<% if request.get?
+					form_action = url_for(params.except(:locale).merge({:locale => nil}))
+				else
+					form_action = root_path({:locale => nil})
+				end %>
+				<form id="language-selector" action="<%=form_action%>">
+					<select id="language-selector-locale" name="locale">
+						<% Rails.configuration.available_locales.each do |code, name|
+							if request.get?
+								if code == 'en' %>
+									<option data-language-url="<%=url_for(params.except(:locale).merge({:locale => nil}))%>" value="<%=code%>"<%if params[:locale] == code or params[:locale].nil?%> selected<%end%>><%=name%> (<%=code%>)</option>
+								<% else %>
+									<option data-language-url="<%=url_for(params.except(:locale).merge({:locale => code}))%>" value="<%=code%>"<%if params[:locale] == code%> selected<%end%>><%=name%> (<%=code%>)</option>
+								<% end
+							else
+								if code == 'en' %>
+									<option data-language-url="<%=root_path({:locale => nil})%>" value="<%=code%>"<%if params[:locale] == code or params[:locale].nil?%> selected<%end%>><%=name%> (<%=code%>)</option>
+								<% else %>
+									<option data-language-url="<%=root_path({:locale => code})%>" value="<%=code%>"<%if params[:locale] == code%> selected<%end%>><%=name%> (<%=code%>)</option>
+								<% end
+							end
+						end %>
+					</select><input id="language-selector-submit" type="submit" value="→">
+					<script>
+						/* submit is handled by js if enabled */
+						document.getElementById("language-selector-submit").style.display = "none"
+					</script>
+				</form>
+			</div>
 			<nav>
 				<li class="scripts-index-link"><%=link_to(t('.script_list'), scripts_path)%></li>
 				<% # user signed in to main site, but not to forum?
@@ -35,11 +77,11 @@
 					<li class="forum-link"><%=link_to(t('.forum'), '/forum/')%></li>
 				<% end %>
 				<li class="help-link"><%=link_to_unless_current(t('.help'), help_path)%></li>
-				<% if user_signed_in? %>
-					<li class="user-profile-link"><%=link_to(current_user.name, current_user)%></li>
-				<% else %>
-					<li class="sign-in-link"><%=link_to(t('.sign_in'), new_user_session_path, {:rel => 'nofollow'})%></li>
-				<% end %>
+				<li class="nav-search">
+					<form id="script-search" action="<%=search_scripts_path()%>">
+						<input type="search" name="q" placeholder="<%=t('.search')%>" value="<%=params[:q]%>" size="10"><input type="submit" value="→">
+					</form>
+				</li>
 			</nav>
 		</div>
 	</header>
