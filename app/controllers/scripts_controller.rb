@@ -8,7 +8,7 @@ class ScriptsController < ApplicationController
 	before_filter :check_for_locked_by_script_id, :only => [:sync, :sync_update, :delete, :do_delete, :undelete, :do_undelete]
 	before_filter :check_for_deleted_by_id, :only => [:show]
 	before_filter :check_for_deleted_by_script_id, :only => [:show_code, :feedback, :user_js, :meta_js, :install_ping, :diff]
-	before_filter :authorize_for_moderators_only, :only => [:minified, :code_search]
+	before_filter :authorize_for_moderators_only, :only => [:minified]
 
 	skip_before_action :verify_authenticity_token, :only => [:install_ping]
 
