@@ -24,6 +24,7 @@ module Greasyfork
     config.active_record.schema_format = :sql
 
     # locales good enough to link to
-    config.available_locales = {'de' => 'Deutsch', 'en' => 'English', 'nl' => 'Nederlands', 'ru' => 'Русский', 'zh-CN' => '简体中文', 'zh-TW' => '繁體中文'}
+    # names from https://api.drupal.org/api/drupal/includes!iso.inc/function/_locale_get_predefined_list/7
+    config.available_locales = {'de' => 'Deutsch', 'en' => 'English', 'id' => 'Bahasa Indonesia', 'nl' => 'Nederlands', 'ru' => 'Русский', 'zh-CN' => '简体中文', 'zh-TW' => '繁體中文'}
   end
 end
