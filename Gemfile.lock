@@ -1,3 +1,12 @@
+GIT
+  remote: git@github.com:tmaesaka/transifex-ruby.git
+  revision: ceb376e8ecdf11dddce54795ffc1b8158ee6acbb
+  specs:
+    transifex-ruby (0.0.4)
+      faraday (~> 0.8.0)
+      faraday_middleware (~> 0.9.0)
+      hashie (~> 1.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -56,6 +65,11 @@ GEM
     diffy (3.0.5)
     erubis (2.7.0)
     execjs (2.0.2)
+    faraday (0.8.9)
+      multipart-post (~> 1.2.0)
+    faraday_middleware (0.9.1)
+      faraday (>= 0.7.4, < 0.10)
+    hashie (1.2.0)
     hike (1.2.3)
     i18n (0.6.9)
     ignorable (0.2.0)
@@ -79,6 +93,7 @@ GEM
     mini_portile (0.6.0)
     minitest (4.7.5)
     multi_json (1.8.4)
+    multipart-post (1.2.0)
     mysql2 (0.3.15)
     newrelic_rpm (3.7.2.195)
     nokogiri (1.6.2.1)
@@ -195,6 +210,7 @@ DEPENDENCIES
   strip_attributes
   therubyracer
   thinking-sphinx
+  transifex-ruby!
   ts-delayed-delta
   uglifier (>= 1.3.0)
   will-paginate-i18n
