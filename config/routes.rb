@@ -27,17 +27,17 @@ Greasyfork::Application.routes.draw do
 
 		resources :scripts, :only => [:index, :show] do
 			# Deprecated after https://github.com/JasonBarnabe/greasyfork/issues/76
-			get 'code.meta.js', :to => 'scripts#meta_js'
-			get 'code.user.js', :to => 'scripts#user_js'
+			get 'code.meta.js', :to => 'scripts#meta_js', :locale => nil
+			get 'code.user.js', :to => 'scripts#user_js', :locale => nil
 
-			get 'code/:name.user.js', :to => 'scripts#user_js', :as =>  'user_js'
-			get 'code/:name.js', :to => 'scripts#user_js', :as =>  'library_js'
-			get 'code/:name.meta.js', :to => 'scripts#meta_js', :as =>  'meta_js'
+			get 'code/:name.user.js', :to => 'scripts#user_js', :as =>  'user_js', :locale => nil
+			get 'code/:name.js', :to => 'scripts#user_js', :as =>  'library_js', :locale => nil
+			get 'code/:name.meta.js', :to => 'scripts#meta_js', :as =>  'meta_js', :locale => nil
 			get 'code(.:format)', :to => 'scripts#show_code', :as =>  'show_code'
 			get 'feedback(.:format)', :to => 'scripts#feedback', :as =>  'feedback'
 			get 'sync(.:format)', :to => 'scripts#sync', :as =>  'sync'
 			patch 'sync_update(.:format)', :to => 'scripts#sync_update', :as =>  'sync_update'
-			post 'install-ping', :to => 'scripts#install_ping', :as => 'install_ping'
+			post 'install-ping', :to => 'scripts#install_ping', :as => 'install_ping', :locale => nil
 			get 'diff', :to => 'scripts#diff', :as => 'diff', :constraints => lambda{ |req| !req.params[:v1].blank? and !req.params[:v2].blank? }
 			get 'delete(.:format)', :to => 'scripts#delete', :as => 'delete'
 			post 'delete(.:format)', :to => 'scripts#do_delete', :as => 'do_delete'

@@ -48,7 +48,8 @@
 				}
 			}
 			var xhr = new XMLHttpRequest();
-			xhr.open("POST", event.target.getAttribute("data-ping-url"), false);
+			xhr.open("POST", event.target.getAttribute("data-ping-url"), true);
+			xhr.overrideMimeType("text/plain");
 			xhr.send();
 		});
 	}
