@@ -62,11 +62,14 @@ if same_user %>
 	<% end %>
 <% end %>
 
+<% script_list = (same_user or (!current_user.nil? and current_user.moderator?)) ? @user.scripts.order('name') : @user.scripts.listable.order('name')
+# show deletions in a separate section if we're going to show any
+deleted_script_list = script_list.select{|s| s.deleted?}
+script_list = script_list - deleted_script_list %>
 <section>
 	<header>
 		<h3>Scripts</h3>
 	</header>
-	<% script_list = (same_user or (!current_user.nil? and current_user.moderator?)) ? @user.scripts.order('name') : @user.scripts.listable.order('name') %>
 	<% if script_list.empty? %>
 		<p>No scripts posted.</p>
 	<% else %>
@@ -75,3 +78,14 @@ if same_user %>
 		</ol>
 	<% end %>
 </section>
+
+<% if !deleted_script_list.empty? %>
+	<section>
+		<header>
+			<h3>Deleted scripts</h3>
+		</header>
+		<ol id="user-deleted-script-list" class="script-list">
+			<%= render partial: 'scripts/script', collection: deleted_script_list %>
+		</ol>
+	</section>
+<% end %>
