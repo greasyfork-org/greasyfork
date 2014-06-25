@@ -1,13 +1,41 @@
 ru:
   layouts:
     application:
-      # link to the list of scripts
       script_list: "Скрипты"
-      # link to the forum
       forum: "Форум"
-      # link to the help docs
       help: "Помощь"
-      # link to sign in
       sign_in: "Войти"
-      # search placeholder
       search: "Поиск"
+  helpers:
+    application:
+      time_difference: "%{relative_time} назад"
+  scripts:
+    created_date: "Создан"
+    updated_date: "Обновлен"
+    total_installs: "Всего установок"
+    daily_installs: "Ежедневно установок"
+    author_name: "Автор"
+    version_number: "Версия"
+    license: "Лицензия"
+    no_license: "Недоступно"
+    applies_to: "Работает на"
+    applies_to_all: "Все сайты"
+    additional_info: "Авторское Описание"
+    install: "Установить этот скрипт"
+    install_help: "?"
+    install_help_title: "Как устанавливать"
+    library_instructions_html: "Этот скрипт не предназначен для установки как отдельно-работающий. Он является включаемой библиотекой для других скриптов с помощью директивы \"meta\" %{code}"
+    deleted_notice: "Этот скрипт был удалён."
+    inactive_pending_changes: "Этот скрипт был выключен т.к. он противоречит политике GreasyFork."
+    inactive_pending_changes_for_previous_version: "Эта версия скрипта выключена т.к. она противоречит политике GreasyFork."
+    version_notice_html: "На %{date}. Смотрите %{latest_version_link}."
+    version_notice_latest_version_link: "Последняя версия"
+    info_page: "Информация"
+    code_page: "Код"
+    history_page: "История"
+    feedback_page: "Обсуждения (%{count})"
+    stats_page: "Статистика"
+    update_page: "Обновить"
+    sync_page: "Синхронизировать"
+    delete_page: "Удалить"
+    undelete_page: "Разудалить"

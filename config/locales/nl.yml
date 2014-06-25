@@ -1,13 +1,41 @@
 nl:
   layouts:
     application:
-      # link to the list of scripts
       script_list: "Scripten"
-      # link to the forum
       forum: "Forum"
-      # link to the help docs
       help: "Help"
-      # link to sign in
       sign_in: "Inloggen"
-      # search placeholder
       search: "Zoeken"
+  helpers:
+    application:
+      time_difference: "%{relative_time} geleden"
+  scripts:
+    created_date: "Gecreëerd"
+    updated_date: "Bijgewerkt"
+    total_installs: "Totaal installaties"
+    daily_installs: "Dagelijkse installaties"
+    author_name: "Auteur"
+    version_number: "Versie"
+    license: "Licentie"
+    no_license: "N.v.t."
+    applies_to: "Van toepassing op"
+    applies_to_all: "Alle websites"
+    additional_info: "Beschrijving van de auteur"
+    install: "Installeer dit script"
+    install_help: "?"
+    install_help_title: "Hoe te installeren"
+    library_instructions_html: "Dit script moet niet direct worden geïnstalleerd. Het is een bibliotheek voor andere scripts om op te nemen met de meta richtlijn %{code}"
+    deleted_notice: "Dit script is verwijderd."
+    inactive_pending_changes: "Dit script is momenteel inactief omdat het niet op een lijn met het beleid van Greasy Fork is."
+    inactive_pending_changes_for_previous_version: "Deze versie van dit script is momenteel inactief omdat het niet op een lijn met het beleid van Greasy Fork is."
+    version_notice_html: "Per %{date}. Zie %{latest_version_link}."
+    version_notice_latest_version_link: "de laatste versie"
+    info_page: "Informatie"
+    code_page: "Code"
+    history_page: "Geschiedenis"
+    feedback_page: "Feedback (%{count})"
+    stats_page: "Statistieken"
+    update_page: "Bijwerken"
+    sync_page: "Synchroniseren"
+    delete_page: "Verwijderen"
+    undelete_page: "Herstellen"

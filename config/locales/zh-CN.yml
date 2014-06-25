@@ -1,13 +1,41 @@
 zh-CN:
   layouts:
     application:
-      # link to the list of scripts
       script_list: "脚本列表"
-      # link to the forum
       forum: "讨论区"
-      # link to the help docs
       help: "站点帮助"
-      # link to sign in
       sign_in: "登录"
-      # search placeholder
       search: "搜索脚本"
+  helpers:
+    application:
+      time_difference: "%{relative_time} 之前"
+  scripts:
+    created_date: "创建于"
+    updated_date: "最新更新"
+    total_installs: "安装总数"
+    daily_installs: "日安装数"
+    author_name: "作者"
+    version_number: "版本"
+    license: "授权"
+    no_license: "未知"
+    applies_to: "应用于"
+    applies_to_all: "所有站点"
+    additional_info: "脚本描述"
+    install: "安装该脚本"
+    install_help: "?"
+    install_help_title: "如何安装"
+    library_instructions_html: "此脚本非用户脚本；该脚本作为一个“功能扩展脚本”方便其它脚本作者使用其功能：%{code}"
+    deleted_notice: "脚本已删除。"
+    inactive_pending_changes: "该脚本因不符合 Greasy Fork 的相关策略而被禁用。"
+    inactive_pending_changes_for_previous_version: "该版本的脚本因不符合 Greasy Fork 的相关策略而被禁用。"
+    version_notice_html: "目前为 %{date} 提交的版本，查看 %{latest_version_link}。"
+    version_notice_latest_version_link: "最新版本"
+    info_page: "信息"
+    code_page: "代码"
+    history_page: "历史版本"
+    feedback_page: "反馈 (%{count})"
+    stats_page: "安装数据"
+    update_page: "更新脚本"
+    sync_page: "同步脚本"
+    delete_page: "删除"
+    undelete_page: "取消删除"

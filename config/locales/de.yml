@@ -1,13 +1,41 @@
 de:
   layouts:
     application:
-      # link to the list of scripts
       script_list: "Scripte"
-      # link to the forum
       forum: "Forum"
-      # link to the help docs
       help: "Hilfe"
-      # link to sign in
       sign_in: "Einloggen"
-      # search placeholder
       search: "Suchen"
+  helpers:
+    application:
+      time_difference: "vor %{relative_time}"
+  scripts:
+    created_date: "Erstellt am"
+    updated_date: "Letzte Aktualisierung"
+    total_installs: "Installationen gesamt"
+    daily_installs: "Installationen heute"
+    author_name: "Autor"
+    version_number: "Version"
+    license: "Lizenz"
+    no_license: "n/a"
+    applies_to: "Wird angewandt auf"
+    applies_to_all: "Alle Seiten"
+    additional_info: "Beschreibung des Autors"
+    install: "Script installieren"
+    install_help: "?"
+    install_help_title: "Installationsanleitung"
+    library_instructions_html: "Dieses Script sollte nicht direkt installiert werden. Es handelt sich hier um eine Bibliothek für andere Scripte, welche über folgenden Befehl in den Metadaten eines Scripts eingebunden wird %{code}"
+    deleted_notice: "Dieses Script wurde gelöscht."
+    inactive_pending_changes: "Dieses Script ist momentan inaktiv, da es nicht mit den Richtlinien von Greasy Fork übereinstimmt."
+    inactive_pending_changes_for_previous_version: "Diese Version des Scripts ist inaktiv, da sie nicht mit den Richtlinien von Greasy Fork übereinstimmt."
+    version_notice_html: "Version vom %{date}. %{latest_version_link}"
+    version_notice_latest_version_link: "Aktuellste Version"
+    info_page: "Info"
+    code_page: "Quelltext"
+    history_page: "Versionen"
+    feedback_page: "Feedback (%{count})"
+    stats_page: "Statistiken"
+    update_page: "Aktualisieren"
+    sync_page: "Synchronisierung einrichten"
+    delete_page: "Löschen"
+    undelete_page: "Löschung zurücknehmen"
