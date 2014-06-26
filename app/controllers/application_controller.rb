@@ -151,6 +151,10 @@ protected
 
 	before_filter :set_locale
 	def set_locale
+		if params[:locale] == 'help'
+			redirect_to Rails.configuration.help_translate_url
+			return
+		end
 		if request.get?
 			# strip /en/ if set, that's the default
 			if params[:locale] == 'en'
