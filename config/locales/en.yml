@@ -85,6 +85,25 @@ en:
     history_only_code_changes_link: "Show only the versions where the code changed."
     # button that shows changes (a diff) of the selected versions
     diff_button: "Diff"
+    # HTML title of the script source code page
+    code_title: "%{script_name} - Source code"
+    # notice that syntax highlighting is disabled for this script's code to avoid browser hangs. size is something like "500KB"
+    code_highlighting_disabled: "Code is over %{size}, so syntax highlighting has been disabled to spare your browser."
+    # HTML title of the script feedback page
+    feedback_title: "%{script_name} - Feedback"
+    # text to show when no discussions are posted. start_discussion_first_link is a link with the text from feedback_start_first_discussion_link
+    feedback_no_discussions_html: "No discussions posted yet. %{start_first_discussion_link}"
+    feedback_start_first_discussion_link: "Be the first to discuss this script."
+    # link text for starting a new discussion when previous discussions already exist
+    feedback_start_discussion_link: "Start a new discussion on this script."
+    # html title for script stats page
+    stats_title: "%{script_name} - Stats"
+    # heading for daily install stats on stats page
+    stats_daily_installs_heading: "Daily installs"
+    # date column heading for a script's daily install stats table
+    stats_daily_installs_date_column_heading: "Date"
+    # install count column heading for a script's daily install stats table
+    stats_daily_installs_install_count_column_heading: "Installs"
     # html title for script list page when showing scripts that affect all sites
     listing_title_all_sites: "User scripts for all sites on Greasy Fork"
     # html title for script list page when showing scripts for a particular site. 'site' will be in the form 'example.com'
@@ -117,3 +136,13 @@ en:
     listing_filter_by_site_more_sites: "More…"
     # text that shows when no scripts were found with the used parameters
     listing_no_scripts: "No scripts found."
+  forum_discussions:
+    # forum discussion lists with 2 * 2 = 4 options:
+    # 1. with_script: includes the script name, for example for "Discussions on your scripts" on a user's page
+    # 1. no_script: no script name, for example when viewing feedback for the script and the name's already on the page
+    # 2. with_reply: where someone has made a reply to the discussion
+    # 2. no_reply: no replies to the discussion
+    listing_no_script_no_reply_html: "%{discussion_link} by %{original_poster_link} %{original_post_date}"
+    listing_no_script_with_reply_html: "%{discussion_link} by %{original_poster_link} %{original_post_date}, last comment by %{last_commenter_link} %{last_comment_date}"
+    listing_with_script_no_reply_html: "%{script_link}: %{discussion_link} by %{original_poster_link} %{original_post_date}"
+    listing_with_script_with_reply_html: "%{script_link}: %{discussion_link} by %{original_poster_link} %{original_post_date}, last comment by %{last_commenter_link} %{last_comment_date}"

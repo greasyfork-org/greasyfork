@@ -1,7 +1,7 @@
-<%- title @script.name + ' - install stats' %>
+<%- title t('scripts.stats_title', :script_name => @script.name) %>
 <%- description 'Install stats for ' + @script.name %>
 
-<h3>Daily installs</h3>
+<h3><%=t('scripts.stats_daily_installs_heading')%></h3>
 
 <%= javascript_include_tag "Chart" %>
 
@@ -51,8 +51,8 @@ var myNewChart = new Chart(ctx).Bar(data, {barValueSpacing: 0, scaleOverride: tr
 <table>
 	<thead>
 		<tr>
-			<th>Date</th>
-			<th class="numeric">Installs</th>
+			<th><%=t('scripts.stats_daily_installs_date_column_heading')%></th>
+			<th class="numeric"><%=t('scripts.stats_daily_installs_install_count_column_heading')%></th>
 		</tr>
 	</thead>
 	<tbody>
