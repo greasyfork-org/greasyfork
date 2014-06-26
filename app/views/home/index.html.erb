@@ -1,27 +1,27 @@
-<%- title 'Greasy Fork - safe and useful user scripts' %>
+<%- title t('home.title') %>
 <%- description 'Greasy Fork is a free site providing user scripts to improve your web browsing experience.' %>
 
-<p class="front-page-p">Welcome to Greasy Fork, a site for user scripts.</p>
+<p class="front-page-p"><%=t('home.welcome')%></p>
 
 <section class="front-page-box">
-	<h3>What are user scripts?</h3>
+	<h3><%=t('home.explain_user_scripts_heading')%></h3>
 
-	<p>User scripts are pieces of code that add features, remove annoyances, or do other things to the sites you visit. The user scripts on Greasy Fork are free and can be installed with <%=link_to 'free extensions, like Greasemonkey', help_installing_user_scripts_path%>. Greasy Fork has thousands of user scripts written by hundreds of authors, so <%=link_to 'start browsing', scripts_path%> to see what we've got!</p>
+	<p><%=t('home.explain_user_scripts_html', :how_to_install_link => link_to(t('home.explain_user_scripts_how_to_install_link'), help_installing_user_scripts_path).html_safe, :browse_link => link_to(t('home.explain_user_scripts_browse_link'), scripts_path).html_safe)%></p>
 </section>
 
 
 <section class="front-page-box">
-	<h3>I'm a script author, why should I use Greasy Fork?</h3>
+	<h3><%=t('home.greasy_fork_for_authors_heading')%></h3>
 
-	<p>Greasy Fork is aiming to become the premier user script site after the collapse of userscripts.org, with the biggest audience for your scripts. We prioritize quality of the scripts, so we strive to block spam and scam scripts. We offer technology to make managing your scripts easier, for example automatically pulling in changes when you commit to GitHub (or wherever!)</p>
+	<p><%=t('home.greasy_fork_for_authors_html')%></p>
 </section>
 
 <section>
-	<h3>A sample of our scripts</h3>
+	<h3><%=t('home.scripts_sample')%></h3>
 	<ul>
 		<% @highlighted_scripts.each do |script| %>
 			<li><%=link_to script.name, script%> - <%=script.description%></li>
 		<% end %>
-		<li><%=link_to 'More...', scripts_path%></li>
+		<li><%=link_to t('home.scripts_sample_more'), scripts_path%></li>
 	</ul>
 </section>
