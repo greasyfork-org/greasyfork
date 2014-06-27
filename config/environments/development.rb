@@ -26,6 +26,9 @@ Greasyfork::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  config.cache_store = :null_store
+  #config.cache_store = :dalli_store, ['localhost:11211:10'], { :namespace => 'Greasy Fork', :expires_in => 1.hour, :compress => true }
   
   config.action_mailer.default_url_options = { :host => 'greasyfork.local' }
 

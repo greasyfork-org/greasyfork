@@ -288,42 +288,46 @@ class ScriptsController < ApplicationController
 private
 
 	def get_by_sites
-		sql =<<-EOF
-			SELECT
-				text, SUM(daily_installs) install_count
-			FROM script_applies_tos
-			JOIN scripts s ON script_id = s.id
-			WHERE
-				domain
-				AND script_type_id = 1
-				AND script_delete_type_id IS NULL
-				AND !uses_disallowed_external
-			GROUP BY text
-			ORDER BY text
-		EOF
-		# combine with "All sites" number
-		return [{'text' => nil, 'install_count' => get_all_sites_count}] + Script.connection.select_all(sql)
+		return Rails.cache.fetch "scripts/get_by_sites" do
+			sql =<<-EOF
+				SELECT
+					text, SUM(daily_installs) install_count
+				FROM script_applies_tos
+				JOIN scripts s ON script_id = s.id
+				WHERE
+					domain
+					AND script_type_id = 1
+					AND script_delete_type_id IS NULL
+					AND !uses_disallowed_external
+				GROUP BY text
+				ORDER BY text
+			EOF
+			# combine with "All sites" number
+			[{'text' => nil, 'install_count' => get_all_sites_count}] + Script.connection.select_all(sql)
+		end
 	end
 
 	def get_top_by_sites
-		sql =<<-EOF
-			SELECT
-				text, SUM(daily_installs) install_count
-			FROM script_applies_tos
-			JOIN scripts s ON script_id = s.id
-			WHERE
-				domain
-				AND script_type_id = 1
-				AND script_delete_type_id IS NULL
-				AND !uses_disallowed_external
-			GROUP BY text
-			ORDER BY install_count DESC, text
-			LIMIT 10
-		EOF
-		top_sites = Script.connection.select_all(sql).to_a
-		# combine with "All sites" number
-		top_sites << {'text' => nil, 'install_count' => get_all_sites_count}
-		return top_sites.sort{|a,b| b['install_count'] <=> a['install_count']}.first(10)
+		return Rails.cache.fetch "scripts/get_top_by_sites" do
+			sql =<<-EOF
+				SELECT
+					text, SUM(daily_installs) install_count
+				FROM script_applies_tos
+				JOIN scripts s ON script_id = s.id
+				WHERE
+					domain
+					AND script_type_id = 1
+					AND script_delete_type_id IS NULL
+					AND !uses_disallowed_external
+				GROUP BY text
+				ORDER BY install_count DESC, text
+				LIMIT 10
+			EOF
+			top_sites = Script.connection.select_all(sql).to_a
+			# combine with "All sites" number
+			top_sites << {'text' => nil, 'install_count' => get_all_sites_count}
+			top_sites.sort{|a,b| b['install_count'] <=> a['install_count']}.first(10)
+		end
 	end
 
 	def get_all_sites_count

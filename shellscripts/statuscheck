@@ -24,7 +24,7 @@ function checkservice {
 checkservice "mysqld" "mysql"
 checkservice "nginx" "nginx"
 checkservice "searchd" "searchd"
-#checkservice "memcached" "memcached"
+checkservice "memcached" "memcached"
 checkservice "delayed_job" "delayed_job"
 checkservice "php-fpm" "php-fpm"
 
