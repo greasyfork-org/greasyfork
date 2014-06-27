@@ -7,6 +7,12 @@ GIT
       faraday_middleware (~> 0.9.0)
       hashie (~> 1.2.0)
 
+GIT
+  remote: git@github.com:mcasimir/devise-i18n-views.git
+  revision: c24fe6e90f52dcce4705f786cbb99dd98a3ab6f7
+  specs:
+    devise-i18n-views (0.2.8)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -195,6 +201,7 @@ DEPENDENCIES
   delayed_job_active_record
   devise
   devise-i18n
+  devise-i18n-views!
   diffy (~> 3.0.5)
   ignorable
   jbuilder (~> 1.2)

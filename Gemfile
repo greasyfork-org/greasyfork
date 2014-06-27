@@ -47,6 +47,7 @@ end
 
 gem 'devise'
 gem 'devise-i18n'
+gem 'devise-i18n-views', git: 'git@github.com:mcasimir/devise-i18n-views.git'
 gem 'therubyracer'
 gem 'mysql2'
 gem 'diffy', '~> 3.0.5'
