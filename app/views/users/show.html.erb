@@ -1,4 +1,4 @@
-<%- title "#{@user.name} profile" %>
+<%- title @user.name %>
 <%- description "Greasy Fork profile for #{@user.name}" %>
 
 <h2><%=@user.name%></h2>
@@ -11,14 +11,14 @@
 if same_user %>
 	<section id="control-panel">
 		<header>
-			<h3>Control panel</h3>
+			<h3><%=t('users.control_panel')%></h3>
 		</header>
 		<ul id="user-control-panel">
-			<li><%= link_to 'Post a script', new_script_version_path%></li>
-			<li><%= link_to 'Import scripts', import_start_path%></li>
-			<li><%= link_to 'Set up a GitHub webhook', user_webhook_info_path%></li>
-			<li><%= link_to 'Edit account', edit_user_registration_path%></li>
-			<li><%= link_to 'Sign out', destroy_user_session_path, :method => :delete  %></li>
+			<li><%= link_to t('scripts.new'), new_script_version_path%></li>
+			<li><%= link_to t('scripts.import'), import_start_path%></li>
+			<li><%= link_to t('users.set_up_webhook'), user_webhook_info_path%></li>
+			<li><%= link_to t('users.edit'), edit_user_registration_path%></li>
+			<li><%= link_to t('users.sign_out'), destroy_user_session_path, :method => :delete %></li>
 		</ul>
 	</section>
 
@@ -42,10 +42,10 @@ if same_user %>
 		dosr = @user.discussions_on_scripts_written %>
 		<section id="user-discussions-on-scripts-written">
 			<header>
-				<h3>Discussions on your scripts <a href="/forum/discussions/feed.rss?script_author=<%=@user.id%>"><img src="<%=asset_path('feed-icon-14x14.png')%>" alt="RSS Feed" rel="nofollow"></h3>
+				<h3><%=t('users.discussions_on_scripts')%> <a href="/forum/discussions/feed.rss?script_author=<%=@user.id%>"><img src="<%=asset_path('feed-icon-14x14.png')%>" alt="<%=t('users.discussions_on_scripts_feed_alt')%>" rel="nofollow"></h3>
 			</header>
 			<% if dosr.empty? %>
-				<p>None yet!</p>
+				<p><%=t('users.discussions_on_scripts_none')%></p>
 			<% else %>
 				<ul class="discussion-list">
 					<% dosr.reverse.take(10).each do |d| %>
@@ -54,7 +54,7 @@ if same_user %>
 						</li>
 					<% end 
 					if dosr.length > 10 %>
-						<li class="more-discussions"><a href="/forum/?script_author=<%=@user.id%>" rel="nofollow">More discussions</a></li>
+						<li class="more-discussions"><a href="/forum/?script_author=<%=@user.id%>" rel="nofollow"><%=t('users.discussions_on_scripts_more')%></a></li>
 					<% end %>
 				</ul>
 			<% end %>
@@ -68,10 +68,10 @@ deleted_script_list = script_list.select{|s| s.deleted?}
 script_list = script_list - deleted_script_list %>
 <section>
 	<header>
-		<h3>Scripts</h3>
+		<h3><%=t('users.script_list')%></h3>
 	</header>
 	<% if script_list.empty? %>
-		<p>No scripts posted.</p>
+		<p><%=t('users.script_list_none')%></p>
 	<% else %>
 		<ol id="user-script-list" class="script-list">
 			<%= render partial: 'scripts/script', collection: script_list %>
@@ -82,7 +82,7 @@ script_list = script_list - deleted_script_list %>
 <% if !deleted_script_list.empty? %>
 	<section>
 		<header>
-			<h3>Deleted scripts</h3>
+			<h3><%=t('users.deleted_script_list')%></h3>
 		</header>
 		<ol id="user-deleted-script-list" class="script-list">
 			<%= render partial: 'scripts/script', collection: deleted_script_list %>

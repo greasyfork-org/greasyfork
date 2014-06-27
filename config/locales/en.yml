@@ -140,6 +140,10 @@ en:
     listing_filter_by_site_more_sites: "More…"
     # text that shows when no scripts were found with the used parameters
     listing_no_scripts: "No scripts found."
+    # link to start the process of importing (creating from an external place) scripts
+    import: "Import scripts"
+    # link to create a new script
+    new: "Post a script"
   forum_discussions:
     # forum discussion lists with 2 * 2 = 4 options:
     # 1. with_script: includes the script name, for example for "Discussions on your scripts" on a user's page
@@ -172,6 +176,28 @@ en:
   users:
     # Button to preview a user's profile before saving
     preview_profile: "Preview"
+    # heading for the user's control panel, which contains links such as post script and edit account
+    control_panel: "Control panel"
+    # heading for the list of discussions about a user's own scripts
+    discussions_on_scripts: "Discussions on your scripts"
+    # alt text for the RSS feed icon for discussions about a user's own scripts
+    discussions_on_scripts_feed_alt: "RSS Feed"
+    # text to show in the section for discussions about a user's own scripts if there are no discussions yet
+    discussions_on_scripts_none: "None yet!"
+    # link to more discussions on a user's own scripts, as the initial list is limited in number
+    discussions_on_scripts_more: "More discussions…"
+    # heading for the list of scripts on a user's page
+    script_list: "Scripts"
+    # text to show in a user's script section when they have created no scripts
+    script_list_none: "No scripts posted."
+    # heading for the list of a user's deleted scripts (visible to only that user and mods)
+    deleted_script_list: "Deleted scripts"
+    # link to log out
+    sign_out: "Sign out"
+    # link to edit an account
+    edit: "Edit account"
+    # link to docs on how to set up a GitHub webhook for script syncing
+    set_up_webhook: "Set up a GitHub webhook"
   activerecord:
     attributes:
       user:
