@@ -34,6 +34,10 @@ en:
     no_license: "N/A"
     # label for the list of sites or patterns a script applies to
     applies_to: "Applies to"
+    # a title (tooltip) for the links in the "applies to" section going to a list of scripts for that site. count is the number of other scripts, site is the name of the site. add subkeys for your language per http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
+    applies_to_link_title:
+      one: "See %{count} other script for %{site}"
+      other: "See %{count} other scripts for %{site}"
     # what is shown as the applies to when a script applies to all sites
     applies_to_all: "All sites"
     # header before the author-provided additional info - should imply that it was the author who wrote this, not the site

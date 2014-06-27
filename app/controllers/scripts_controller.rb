@@ -99,6 +99,7 @@ class ScriptsController < ApplicationController
 		@script, @script_version = versionned_script(params[:id], params[:version])
 		return if redirect_to_slug(@script, :id)
 		@no_bots = true if !params[:version].nil?
+		@by_sites = get_by_sites
 	end
 
 	def show_code
@@ -287,11 +288,12 @@ class ScriptsController < ApplicationController
 
 private
 
+	# Returns a hash, key: site name, value: hash with keys installs, scripts
 	def get_by_sites
 		return Rails.cache.fetch "scripts/get_by_sites" do
 			sql =<<-EOF
 				SELECT
-					text, SUM(daily_installs) install_count
+					text, SUM(daily_installs) install_count, COUNT(DISTINCT s.id) script_count
 				FROM script_applies_tos
 				JOIN scripts s ON script_id = s.id
 				WHERE
@@ -303,37 +305,21 @@ private
 				ORDER BY text
 			EOF
 			# combine with "All sites" number
-			[{'text' => nil, 'install_count' => get_all_sites_count}] + Script.connection.select_all(sql)
+			a = ([[nil] + get_all_sites_count.values.to_a] + Script.connection.select_rows(sql))
+			Hash[a.map {|key, install_count, script_count| [key, {:installs => install_count.to_i, :scripts => script_count.to_i}]}]
 		end
 	end
 
 	def get_top_by_sites
 		return Rails.cache.fetch "scripts/get_top_by_sites" do
-			sql =<<-EOF
-				SELECT
-					text, SUM(daily_installs) install_count
-				FROM script_applies_tos
-				JOIN scripts s ON script_id = s.id
-				WHERE
-					domain
-					AND script_type_id = 1
-					AND script_delete_type_id IS NULL
-					AND !uses_disallowed_external
-				GROUP BY text
-				ORDER BY install_count DESC, text
-				LIMIT 10
-			EOF
-			top_sites = Script.connection.select_all(sql).to_a
-			# combine with "All sites" number
-			top_sites << {'text' => nil, 'install_count' => get_all_sites_count}
-			top_sites.sort{|a,b| b['install_count'] <=> a['install_count']}.first(10)
+			get_by_sites.sort{|a,b| b[1][:installs] <=> a[1][:installs]}.first(10)
 		end
 	end
 
 	def get_all_sites_count
 		sql =<<-EOF
 			SELECT
-				sum(daily_installs) install_count
+				sum(daily_installs) install_count, count(distinct scripts.id) script_count
 			FROM scripts
 			WHERE
 				script_type_id = 1
@@ -341,7 +327,7 @@ private
 				AND !uses_disallowed_external
 				AND NOT EXISTS (SELECT * FROM script_applies_tos WHERE script_id = scripts.id)
 		EOF
-		return Script.connection.select_value(sql)
+		return Script.connection.select_all(sql).first
 	end
 
 	def get_per_page

@@ -62,7 +62,11 @@
 			<% else %>
 				<%=
 					(
-					@script.script_applies_tos.select{|s|s.domain}.map{|s|h(s.text)} +
+					@script.script_applies_tos.select{|s|s.domain}.map{ |s|
+						script_count = @by_sites[s.text][:scripts]
+						next link_to(h(s.text), by_site_scripts_path(:site => s.text), {:title => t('scripts.applies_to_link_title', {:count => script_count - 1, :site => s.text})}) if script_count > 1
+						next h(s.text)
+					} +
 					@script.script_applies_tos.select{|s|!s.domain}.map{|s| "<code>#{h(s.text)}</code>".html_safe}
 					).join(', ').html_safe%>
 			<% end %>
