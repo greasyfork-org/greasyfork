@@ -22,7 +22,7 @@
 		<span class="label-note">
 			<%=f.radio_button(:profile_markup, 'html')%> <%=link_to 'HTML', help_allowed_markup_path, {:target => 'markup_choice'}%>
 			<%=f.radio_button(:profile_markup, 'markdown')%> <%=link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', {:target => 'markup_choice'}%>
-			<button id="preview-user-profile" class="preview-button">Preview</button>
+			<button id="preview-user-profile" class="preview-button"><%=t('users.preview_profile')%></button>
 		</span>
 		<br>
 		<%= f.text_area :profile, {:class => 'previewable', 'data-preview-activate-id' => 'preview-user-profile', 'data-markup-option-name' => 'user[profile_markup]', 'data-preview-result-id' => 'preview-user-profile-results'} %>
