@@ -1,6 +1,17 @@
 <%- title t('scripts.feedback_title', :script_name => @script.name) %>
 <%- description 'Feedback on ' + @script.name %>
 
+<% if !@script.support_url.nil? %>
+	<p id="support-url">
+		<% if @script.support_url.start_with?('mailto') %>
+			<%=link_to t('scripts.support_email'), @script.support_url, {:rel => :nofollow}%>
+		<% else %>
+			<%=link_to t('scripts.support_site'), @script.support_url, {:rel => :nofollow}%>
+		<% end %>
+	</p>
+<% end %>
+
+<h3>Discussions on Greasy Fork</h3>
 <% if @script.discussions.empty? %>
 	<p id="no-discussions">
 		<%=t('scripts.feedback_no_discussions_html', :start_first_discussion_link => "<a id=\"start-discussion\" href=\"/forum/post/discussion?script=#{@script.id}\" rel=\"nofollow\">#{t('scripts.feedback_start_first_discussion_link')}</a>".html_safe)%>

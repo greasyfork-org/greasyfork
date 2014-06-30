@@ -76,6 +76,12 @@ class Script < ActiveRecord::Base
 				self.license_text =~ Regexp.new(l.pattern)
 			end
 		end
+
+		if meta.has_key?('supportURL')
+			self.support_url = meta['supportURL'].find {|url| url.size <= 500 && URI::regexp(%w(http https mailto)) =~ url}
+		else
+			self.support_url = nil
+		end
 	end
 
 	def get_newest_saved_script_version
