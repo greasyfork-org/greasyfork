@@ -78,7 +78,19 @@ class Script < ActiveRecord::Base
 		end
 
 		if meta.has_key?('supportURL')
-			self.support_url = meta['supportURL'].find {|url| url.size <= 500 && URI::regexp(%w(http https mailto)) =~ url}
+			self.support_url = meta['supportURL'].find {|url|
+				next false if url.size > 500
+				# mailto is always OK
+				next true if URI::regexp(%w(mailto)) =~ url
+				# http(s) is also OK
+				next false unless URI::regexp(%w(http https)) =~ url
+				# avoid self-linking, there's UI on the same page for discussions
+				begin
+					next URI(url).host != 'greasyfork.org'
+				rescue
+					next false
+				end
+			}
 		else
 			self.support_url = nil
 		end
