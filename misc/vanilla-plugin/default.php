@@ -76,4 +76,94 @@ class GreasyForkPlugin extends Gdn_Plugin {
 		}
 		return false;
 	}
+
+	public function PostController_AfterDiscussionSave_Handler(&$Sender){
+		$this->SendNotification($Sender, true);
+	}
+
+	public function PostController_AfterCommentSave_Handler(&$Sender){
+		$this->SendNotification($Sender, false);
+	}
+
+	private function SendNotification($Sender, $IsDiscussion) {
+		$Session = Gdn::Session();
+
+		# don't send on edit
+		if ($IsDiscussion && $Sender->RequestMethod == 'editdiscussion') {
+			return;
+		}
+
+		# discussion info
+		$UserName = $Session->User->Name;
+		$DiscussionID = $Sender->EventArguments['Discussion']->DiscussionID;
+		$DiscussionName = $Sender->EventArguments['Discussion']->Name;
+		$ScriptID = $Sender->EventArguments['Discussion']->ScriptID;
+
+		# no script - do nothing
+		if (!isset($ScriptID) || !is_numeric($ScriptID)) {
+			return;
+		}
+
+		# look up the user we might e-mail
+		$DiscussionModel = new DiscussionModel();
+		$prefix = $DiscussionModel->SQL->Database->DatabasePrefix;
+		$DiscussionModel->SQL->Database->DatabasePrefix = '';
+		$UserInfo = $DiscussionModel->SQL->Select('u.author_email_notification_type_id, u.email, u.name, s.name script_name, u.id, ua.UserID forum_user_id')
+			->From('scripts s')
+			->Join('users u', 's.user_id = u.id')
+			->Join('GDN_UserAuthentication ua', 'ua.ForeignUserKey = u.id')
+			->Where('s.id', $ScriptID)
+			->Get()->NextRow(DATASET_TYPE_ARRAY);
+		$DiscussionModel->SQL->Database->DatabasePrefix = $prefix;
+
+		$NotificationPreference = $UserInfo['author_email_notification_type_id'];
+
+		# no notifications
+		if ($NotificationPreference == 1) {
+			return;
+		}
+
+		# discussions only
+		if ($NotificationPreference == 1 && !$IsDiscussion) {
+			return;
+		}
+
+		# don't self-notify
+		if ($UserInfo['forum_user_id'] == $Session->User->UserID) {
+			return;
+		}
+
+		#$NotificationEmail = $UserInfo['email'];
+		$NotificationEmail = 'jason.barnabe@gmail.com';
+		$NotificationName = $UserInfo['name'];
+		$ScriptName = $UserInfo['script_name'];
+		if ($IsDiscussion) {
+			$ActivityHeadline = $UserName.' started a discussion on '.$ScriptName;
+		} else {
+			$ActivityHeadline = $UserName.' commented on a discussion about '.$ScriptName;
+		}
+		$UserId = $UserInfo['id'];
+		$AccountUrl = 'https://greasyfork.org/users/'.$UserId;
+
+		$Email = new Gdn_Email();
+		$Email->Subject(sprintf(T('[%1$s] %2$s'), Gdn::Config('Garden.Title'), $ActivityHeadline));
+		$Email->To($NotificationEmail, $NotificationName);
+		if ($IsDiscussion) {
+			$Email->Message(sprintf("%s started a discussion '%s' on your script '%s'. Check it out: %s\n\nYou can change your notification settings on your Greasy Fork account page at %s", $UserName, $DiscussionName, $ScriptName, Url('/discussion/'.$DiscussionID.'/'.Gdn_Format::Url($DiscussionName), TRUE), $AccountUrl));
+		} else {
+			$Email->Message(sprintf("%s commented on the discussion '%s' on your script '%s'. Check it out: %s\n\nYou can change your notification settings on your Greasy Fork account page at %s", $UserName, $DiscussionName, $ScriptName, Url('/discussion/'.$DiscussionID.'/'.Gdn_Format::Url($DiscussionName), TRUE), $AccountUrl));
+		}
+
+		#print_r($Email);
+		#die;
+
+		#try {
+			$Email->Send();
+		#} catch (Exception $ex) {
+		#	echo $ex;
+		#	die;
+			// Don't do anything with the exception.
+		#}
+
+	}
 }
