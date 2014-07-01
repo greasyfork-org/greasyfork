@@ -137,8 +137,7 @@ class GreasyForkPlugin extends Gdn_Plugin {
 			return;
 		}
 
-		#$NotificationEmail = $UserInfo['email'];
-		$NotificationEmail = 'jason.barnabe@gmail.com';
+		$NotificationEmail = $UserInfo['email'];
 		$NotificationName = $UserInfo['name'];
 		$ScriptName = $UserInfo['script_name'];
 		if ($IsDiscussion) {

@@ -200,6 +200,15 @@ en:
     edit: "Edit account"
     # link to docs on how to set up a GitHub webhook for script syncing
     set_up_webhook: "Set up a GitHub webhook"
+    author_email_notification_type:
+      # notification option: don't send the user e-mails
+      none: "Don't get emails about discussions on your scripts"
+      # notification option: send e-mails on new discussions but not new posts on existing discussions
+      discussion_only: "Get an email when discussions are posted on your scripts"
+      # notification option: send e-mails on new discussoins and on new posts on existing discussions
+      discussion_and_comment: "Get an email when discussions are posted on your scripts or when those discussions get new comments"
+      # tell the user that the forum can send them other emails that are not controlled by this setting
+      note: "You may receive other emails based on your settings in the forum."
   activerecord:
     attributes:
       user:
@@ -207,3 +216,5 @@ en:
         name: "Name"
         # user field: profile (HTML content describing themselves)
         profile: "Profile"
+        # user field: setting to send e-mails when discussions or comments are posted to a user's scripts. options are under users.author_email_notification_type
+        author_email_notification_type_id: "Script discussion notifications"

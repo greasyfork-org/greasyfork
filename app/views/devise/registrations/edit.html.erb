@@ -29,6 +29,14 @@
 		<div id="preview-user-profile-results" class="preview-result"></div>
 	</div>
 
+	<div>
+		<%= f.label :author_email_notification_type_id %><br>
+		<%= f.radio_button(:author_email_notification_type_id, 1)%> <label for="user_author_email_notification_type_id_1"><%=t('users.author_email_notification_type.none')%></label><br>
+		<%= f.radio_button(:author_email_notification_type_id, 2)%> <label for="user_author_email_notification_type_id_2"><%=t('users.author_email_notification_type.discussion_only')%></label><br>
+		<%= f.radio_button(:author_email_notification_type_id, 3)%> <label for="user_author_email_notification_type_id_3"><%=t('users.author_email_notification_type.discussion_and_comment')%></label><br>
+		<i><%=t('users.author_email_notification_type.note')%></i>
+	</div>
+
   <div><%= f.label :password %> <i>(<%= t('.leave_blank_if_you_don_t_want_to_change_it', :default => "leave blank if you don't want to change it") %>)</i><br />
   <%= f.password_field :password, :autocomplete => "off" %></div>
 

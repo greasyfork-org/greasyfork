@@ -16,6 +16,7 @@ protected
 		devise_parameter_sanitizer.for(:account_update) << :name
 		devise_parameter_sanitizer.for(:account_update) << :profile
 		devise_parameter_sanitizer.for(:account_update) << :profile_markup
+		devise_parameter_sanitizer.for(:account_update) << :author_email_notification_type_id
 	end
 
 	def authorize_by_script_id
