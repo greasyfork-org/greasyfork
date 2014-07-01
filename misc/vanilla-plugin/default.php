@@ -89,7 +89,7 @@ class GreasyForkPlugin extends Gdn_Plugin {
 		$Session = Gdn::Session();
 
 		# don't send on edit
-		if ($IsDiscussion && $Sender->RequestMethod == 'editdiscussion') {
+		if ($Sender->RequestMethod == 'editdiscussion' || $Sender->RequestMethod == 'editcomment') {
 			return;
 		}
 
@@ -118,13 +118,17 @@ class GreasyForkPlugin extends Gdn_Plugin {
 
 		$NotificationPreference = $UserInfo['author_email_notification_type_id'];
 
+		# 1: no notifications
+		# 2: new discussions
+		# 3: new discussions and comments
+
 		# no notifications
 		if ($NotificationPreference == 1) {
 			return;
 		}
 
 		# discussions only
-		if ($NotificationPreference == 1 && !$IsDiscussion) {
+		if ($NotificationPreference == 2 && !$IsDiscussion) {
 			return;
 		}
 
@@ -157,13 +161,12 @@ class GreasyForkPlugin extends Gdn_Plugin {
 		#print_r($Email);
 		#die;
 
-		#try {
+		try {
 			$Email->Send();
-		#} catch (Exception $ex) {
-		#	echo $ex;
-		#	die;
-			// Don't do anything with the exception.
-		#}
+		} catch (Exception $ex) {
+			# report but keep going
+			echo $ex;
+		}
 
 	}
 }
