@@ -123,7 +123,7 @@ class GreasyForkPlugin extends Gdn_Plugin {
 		# 3: new discussions and comments
 
 		# no notifications
-		if ($NotificationPreference == 1) {
+		if ($NotificationPreference != 2 && $NotificationPreference != 3) {
 			return;
 		}
 
