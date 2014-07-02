@@ -106,8 +106,14 @@ zh-CN:
     sign_out: "退出登录"
     edit: "编辑账户信息"
     set_up_webhook: "配置 GitHub 同步更新"
+    author_email_notification_type:
+      none: "当我的脚本有讨论时不要发送邮件"
+      discussion_only: "有关于我的脚本的讨论时用邮件通知我"
+      discussion_and_comment: "当关于我的脚本有讨论或这些讨论有新回复时邮件通知我"
+      note: "根据您在社区的设置，您可能会收到其他邮件"
   activerecord:
     attributes:
       user:
         name: "账户名"
         profile: "个人信息"
+        author_email_notification_type_id: "脚本讨论通知设置"

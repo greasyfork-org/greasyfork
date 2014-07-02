@@ -106,8 +106,14 @@ ja:
     sign_out: "サインアウト"
     edit: "アカウント設定"
     set_up_webhook: "GitHubのWebHookの設定"
+    author_email_notification_type:
+      none: "通知メールを受け取らない"
+      discussion_only: "投稿したスクリプトに関する新しいスレッドが立てられたときに通知メールを受け取る"
+      discussion_and_comment: "投稿したスクリプトに関する新しいスレッドが立てられたとき、およびそのスレッドへの返信が投稿されたときに通知メールを受け取る"
+      note: "フォーラムの通知設定とは連動していません。フォーラム側のユーザー設定によっては、ここで設定していないメールが届くかもしれません。"
   activerecord:
     attributes:
       user:
         name: "名前"
         profile: "自己紹介"
+        author_email_notification_type_id: "フィードバックの通知"

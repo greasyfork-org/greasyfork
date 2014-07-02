@@ -8,7 +8,7 @@ zh-TW:
       search: "搜尋腳本"
   helpers:
     application:
-      time_difference: "%{relative_time} 前"
+      time_difference: "%{relative_time}前"
   scripts:
     created_date: "建立日期"
     updated_date: "更新日期"
@@ -75,8 +75,8 @@ zh-TW:
     listing_no_scripts: "找不到相關腳本 :<"
     import: "匯入腳本"
     new: "發佈腳本"
-    support_site: "訪問作者的支援站點"
-    support_email: "郵件作者獲取支援"
+    support_site: "作者的技術支援網站"
+    support_email: "寄郵件給作者以獲取技術支援"
   forum_discussions:
     listing_no_script_no_reply_html: "%{discussion_link} 由 %{original_poster_link} 發表於 %{original_post_date}"
     listing_no_script_with_reply_html: "%{discussion_link} 由 %{original_poster_link} 發表於 %{original_post_date}，最後回覆由 %{last_commenter_link} 發表於 %{last_comment_date}"
@@ -86,7 +86,7 @@ zh-TW:
     title: "Greasy Fork - 安全又好用的使用者腳本分享站"
     welcome: "歡迎來到 Greasy Fork，這是一個使用者腳本分享站。"
     explain_user_scripts_heading: "使用者腳本是什麼？"
-    explain_user_scripts_html: "使用者腳本是一段用 JavaScript 撰寫的代碼，當使用者瀏覽腳本所指定的網頁時，腳本將根據代碼指令為網頁增強功能、移除煩人的東西，或是進行其他改造。Greasy Fork 上的腳本全部免費，並可藉由 %{how_to_install_link} 來進行安裝。Greasy Fork 目前擁有上百開發者精心打造的成千上萬個使用者腳本，你可以 %{browse_link} 看看我們都有些什麼！"
+    explain_user_scripts_html: "使用者腳本是一段用 JavaScript 撰寫的代碼，當使用者瀏覽腳本所指定的網頁時，腳本將根據代碼指令為網頁增強功能、移除煩人的東西，或是進行其他改造。Greasy Fork 上的腳本全部免費，並可藉由%{how_to_install_link}來進行安裝。Greasy Fork 目前擁有上百開發者精心打造的成千上萬個使用者腳本，你可以%{browse_link}看看我們都有些什麼！"
     explain_user_scripts_how_to_install_link: "免費擴充套件（例如 Greasemonkey）"
     explain_user_scripts_browse_link: "開始瀏覽"
     greasy_fork_for_authors_heading: "我是一名腳本開發者，為什麼我該選擇 Greasy Fork？"
@@ -106,8 +106,14 @@ zh-TW:
     sign_out: "登出"
     edit: "帳號設定"
     set_up_webhook: "GitHub 同步設定"
+    author_email_notification_type:
+      none: "腳本收到評論時請不要寄郵件通知我"
+      discussion_only: "腳本收到評論時請發郵件通知我"
+      discussion_and_comment: "腳本收到評論，或這些評論有新回覆時請發郵件通知我"
+      note: "郵件通知包含您在論壇指定的其它項目。"
   activerecord:
     attributes:
       user:
         name: "帳號"
         profile: "個人資料"
+        author_email_notification_type_id: "腳本討論通知設定"

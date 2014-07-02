@@ -76,6 +76,8 @@ de:
     listing_no_scripts: "Es wurden keine Scripte gefunden."
     import: "Scripte importieren"
     new: "Neues Script erstellen"
+    support_site: "Besuche die Hilfe-Seite des Autors"
+    support_email: "Schreibe dem Autor eine E-Mail für Hilfe"
   forum_discussions:
     listing_no_script_no_reply_html: "%{discussion_link} von %{original_poster_link} gestartet: %{original_post_date}"
     listing_no_script_with_reply_html: "%{discussion_link} von %{original_poster_link} gestartet: %{original_post_date}, letzter Kommentar von %{last_commenter_link} %{last_comment_date}"
@@ -105,8 +107,14 @@ de:
     sign_out: "Ausloggen"
     edit: "Account bearbeiten"
     set_up_webhook: "GitHub webhook einrichten"
+    author_email_notification_type:
+      none: "Keine Benachrichtigungen per E-Mail erhalten"
+      discussion_only: "Benachrichtigung per E-Mail, wenn eine neue Diskussion über eines Deiner Scripte gestartet wird"
+      discussion_and_comment: "Benachrichtigung per E-Mail, wenn eine neue Diskussion über eines Deiner Scripte gestartet wird oder auf eine Diskussion geantwortet wird"
+      note: "Es kann sein, dass du aufgrund deiner Foreneinstellungen weitere E-Mails bekommst."
   activerecord:
     attributes:
       user:
         name: "Anzeigename"
         profile: "Über mich:"
+        author_email_notification_type_id: "Benachrichtigungen für Diskussionen über Scripte"
