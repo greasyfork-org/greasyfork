@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.3'
+gem 'rails', '4.1.4'
 gem 'rails-i18n', '~> 4.0.0'
 
 # Use sqlite3 as the database for Active Record
@@ -60,10 +60,10 @@ gem 'strip_attributes'
 gem 'redcarpet'
 gem 'ignorable'
 gem 'coderay'
-gem 'thinking-sphinx'
-gem 'ts-delayed-delta'
-gem 'delayed_job'
-gem 'delayed_job_active_record'
+gem 'thinking-sphinx', '~> 3.1.1'
+gem 'ts-delayed-delta', '~> 2.0.2'
+gem 'delayed_job', '~> 4.0.2'
+gem 'delayed_job_active_record', '~> 4.0.1'
 gem 'daemons'
 gem 'public_suffix'
 gem 'transifex-ruby', git: 'git@github.com:JasonBarnabe/transifex-ruby.git'

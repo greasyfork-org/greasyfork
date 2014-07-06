@@ -11,6 +11,7 @@ class ScriptsController < ApplicationController
 	before_filter :authorize_for_moderators_only, :only => [:minified]
 
 	skip_before_action :verify_authenticity_token, :only => [:install_ping]
+	protect_from_forgery :except => [:user_js, :meta_js]
 
 	#########################
 	# Collections
