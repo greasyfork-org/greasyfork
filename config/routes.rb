@@ -6,9 +6,14 @@ Greasyfork::Application.routes.draw do
 
 		get 'users/webhook-info', :to => 'users#webhook_info', :as => 'user_webhook_info'
 		post 'users/webhook-info', :to => 'users#webhook_info'
+		get '/users/edit_sign_in' => 'users#edit_sign_in', :as => 'user_edit_sign_in'
+		delete '/users/identities' => 'users#delete_identity', :as => 'user_delete_identity'
+		put '/users/identities' => 'users#update_identity', :as => 'user_update_identity'
+		put '/users/remove_password' => 'users#remove_password', :as => 'user_remove_password'
+		put '/users/update_password' => 'users#update_password', :as => 'user_update_password'
 		# disable destroying users
 		devise_for :users, :skip => :registrations, :controllers => { :sessions => "sessions" }
-			devise_scope :user do
+		devise_scope :user do
 			resource :registration,
 			only: [:new, :create, :edit, :update],
 			path: 'users',
@@ -21,6 +26,12 @@ Greasyfork::Application.routes.draw do
 		devise_scope :user do
 			# a GET path for logging out for use with the forum
 			get '/users/sign_out' => 'sessions#destroy'
+			get '/auth/:provider/callback', to: 'sessions#omniauth_callback', :as => 'omniauth_callback'
+			# BrowserID POSTs
+			post '/auth/:provider/callback', to: 'sessions#omniauth_callback'
+			get '/auth/failure', to: 'sessions#omniauth_failure'
+			get '/auth/failure2', to: 'sessions#omniauth_failure'
+			post '/auth/name_conflict', to: 'sessions#name_conflict'
 		end
 
 		root :to => "home#index"

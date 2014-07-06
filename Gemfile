@@ -68,3 +68,8 @@ gem 'daemons'
 gem 'public_suffix'
 gem 'transifex-ruby', git: 'git@github.com:JasonBarnabe/transifex-ruby.git'
 gem 'dalli'
+
+gem 'omniauth'
+gem 'omniauth-github'
+gem 'omniauth-google-oauth2'
+gem 'omniauth-browserid'

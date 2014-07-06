@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
 	skip_before_action :verify_authenticity_token, :only => [:webhook]
 
-	before_filter :authenticate_user!, :only => [:webhook_info]
+	before_filter :authenticate_user!, :except => [:show]
 
 	HMAC_DIGEST = OpenSSL::Digest::Digest.new('sha1')
 
@@ -92,6 +92,65 @@ class UsersController < ApplicationController
 		end
 
 		render :json => {:affected_scripts => changed_script_urls}
+	end
+
+	def edit_sign_in
+	end
+
+	def update_password
+		current_user.password = params[:password]
+		current_user.password_confirmation = params[:password_confirmation]
+		# prevent empty and invalid passwords
+		if !current_user.valid? or params[:password].nil? or params[:password].empty?
+			current_user.reload
+			render :edit_sign_in
+			return
+		end
+		current_user.save!
+		# password changed, have to sign in again
+		sign_in current_user, :bypass => true
+		flash[:notice] = t('users.password_updated')
+		redirect_to user_edit_sign_in_path
+	end
+
+	def remove_password
+		if current_user.identities.empty?
+			flash[:notice] = t('users.cant_remove_password')
+			redirect_to user_edit_sign_in_path
+			return
+		end
+		current_user.encrypted_password = nil
+		current_user.save!
+		# password changed, have to sign in again
+		sign_in current_user, :bypass => true
+		flash[:notice] = t('users.password_removed')
+		redirect_to user_edit_sign_in_path
+	end
+
+	def update_identity
+		current_user.identities.each do |id|
+			if id.provider == params[:provider]
+				flash[:notice] = t('users.external_sign_in_updated', :provider => Identity.pretty_provider(id.provider))
+				id.syncing = params[:syncing]
+				id.save
+			end
+		end
+		redirect_to user_edit_sign_in_path
+	end
+
+	def delete_identity
+		if current_user.identities.size == 1 and current_user.encrypted_password.nil?
+			flash[:notice] = t('users.cant_remove_sign_in', :provider => Identity.pretty_provider(params[:provider]))
+			redirect_to user_edit_sign_in_path
+			return
+		end
+		current_user.identities.each do |id|
+			if id.provider == params[:provider]
+				flash[:notice] = t('users.external_sign_in_removed', :provider => Identity.pretty_provider(id.provider))
+				id.delete
+			end
+		end
+		redirect_to user_edit_sign_in_path
 	end
 
 end

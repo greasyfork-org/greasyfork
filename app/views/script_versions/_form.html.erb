@@ -10,7 +10,7 @@
 	<% disallowed_requires = script_version.disallowed_requires_used
 
 	if !script_version.errors.empty? or !script_version.script.errors.empty? %>
-		<p>There were some problems with what you posted...</p>
+		<p><%=t('common.error_preamble')%></p>
 		<ul class="errors">
 			<% using_disallowed_require = false
 			version_not_incremented = false

@@ -99,11 +99,29 @@
 		});
 	}
 
+	function hookUpBrowserId() {
+		var browserIdLink = document.querySelector(".browser_id-login");
+		if (browserIdLink) {
+			browserIdLink.addEventListener("click", function(event) {
+				navigator.id.get(function(assertion) {
+					var returnToParam = event.target.hasAttribute("data-return-to") ? ("&origin=" + event.target.getAttribute("data-return-to")) : "";
+					if (assertion) {
+						location.href = "<%=Greasyfork::Application.routes.url_helpers.omniauth_callback_path(:provider => 'browser_id')%>?assertion=" + encodeURIComponent(assertion) + returnToParam;
+					} else {
+						location.href = "<%=Greasyfork::Application.routes.url_helpers.omniauth_callback_path(:provider => 'browser_id')%>?failure=1"+ returnToParam;
+					}
+				});
+				event.preventDefault();
+			});
+		}
+	}
+
 	function init() {
 		hookUpSelectAllCheckboxes();
 		hookUpInstallPingers();
 		hookUpMarkupPreview();
 		hookUpLocaleSwitcher();
+		hookUpBrowserId();
 	}
 	
 	window.addEventListener("DOMContentLoaded", init);

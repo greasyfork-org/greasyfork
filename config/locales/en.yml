@@ -176,6 +176,22 @@ en:
     # final item of sample list of scripts, linking to the full listing page
     scripts_sample_more: "More…"
   users:
+    # heading for signing in with an external service (Google, GitHub, etc.)
+    sign_in_external: "Sign in with an external service"
+    # text before the list of external sign in services
+    sign_in_with: "Sign in with:"
+    # heading for signing in with a password
+    sign_in_password: "Sign in with a password"
+    # when a user attempts to sign in with an external service and a user already exists with the same email, this is the message shown. email: provided e-mail, user_name: existing user's name, provider: what the user tried to sign in with (e.g. GitHub), sign_in_link: a link to the sign in page with text from sign_in_email_used_sign_in_link
+    sign_in_email_used_no_external_services_html: "'%{email}' is already being used by user '%{user_name}'. If this is you and you wish to add additionally sign in with %{provider}, %{sign_in_link} to your account first, then add your %{provider} sign in."
+    # same as above, but when the existing user uses other providers. also includes existing_providers, which is a list of the existing user's sign ins, run through to_sentence (http://apidock.com/rails/Array/to_sentence)
+    sign_in_email_used_with_external_services_html: "'%{email}' is already being used by user '%{user_name}', who signs in with %{existing_providers}. If this is you and you wish to add additionally sign in with %{provider}, %{sign_in_link} to your account first, then add your %{provider} sign in."
+    # sign in link for email_used messages
+    sign_in_email_used_sign_in_link: "sign in"
+    # this shows when signing in for the first time with an external sign in but the name received is already in use. the user is prompted to enter a different name.
+    sign_in_name_used: "The name '%{name}' is already used. Choose a different one."
+    # the button when submitting the name form per above
+    sign_in_name_used_submit: "Submit"
     # Button to preview a user's profile before saving
     preview_profile: "Preview"
     # heading for the user's control panel, which contains links such as post script and edit account
@@ -198,6 +214,58 @@ en:
     sign_out: "Sign out"
     # link to edit an account
     edit: "Edit account"
+    # link to edit how the user signs in
+    edit_sign_in: "Edit sign in methods"
+    # html title for the edit sign in page
+    edit_sign_in_title: "Edit sign in methods"
+    # heading for the password section of the edit sign in methods page
+    edit_sign_in_password: "Password"
+    # informational text telling the user they're not using a password
+    no_password_set_info: "Your account is not configured with a password."
+    # button to set a password when one is not already set
+    set_password: "Set password"
+    # button to set a password when one is already set
+    update_password: "Update password"
+    # error message when the password and the confirmation don't match
+    update_password_no_match: "Passwords don't match."
+    # notice after a password was updated successfully
+    password_updated: "Password updated."
+    # information text saying the user can unset their password and use just external sign ins
+    remove_password_info: "You can remove your password and rely solely on external sign ins."
+    # button to remove the password from the user's account
+    remove_password: "Remove password"
+    # error message to show if the user attempts to remove a password but have no external sign ins. This is normally not possible with the interface.
+    cant_remove_password: "Can't remove password - you'd have no way to sign in!"
+    # error message to show if the user attempts to remove a sign in but has no password or other sign ins. This is normally not possible with the interface. provider is the external site's name, like GitHub or Google
+    cant_remove_sign_in: "Can't remove %{provider} sign in - you'd have no way to sign in!"
+    # notice after a password was removed successfully
+    password_removed: "Password removed."
+    # heading for the external sign ins section of the edit sign in methods page
+    edit_sign_in_external: "External sign ins"
+    # information text about how they can use external sign ins, shown when the user has not set any yet
+    external_sign_in_info_no_sign_ins: "You can use your account on other sites to sign in to Greasy Fork."
+    # information text about how they can use external sign ins, shown when the user already has some set. should describe the concept of syncing, where account details on Greasy Fork will be updated to match the external service on sign in
+    external_sign_in_info_with_sign_ins: "You're currently using the external sign ins listed below. A \"syncing\" sign in means your Greasy Fork info (like user name and email) will be updated to match when you sign in."
+    # notice after a sign in is added. provider is the external site's name, like GitHub or Google
+    external_sign_in_added: "%{provider} sign in added."
+    # notice after a sign in is updated (from syncing to not or opposite). provider is the external site's name, like GitHub or Google
+    external_sign_in_updated: "%{provider} sign in updated."
+    # notice after a sign in is removed. provider is the external site's name, like GitHub or Google
+    external_sign_in_removed: "%{provider} sign in removed."
+    # notice after a sign in fails
+    external_sign_in_failed: "%{provider} sign in failed."
+    # notice after a user tries to add a sign in to their account, but that sign in is already in use by another user
+    external_sign_in_already_used: "Addition of %{provider} sign in failed: that sign in is already being used by user '%{user_name}'."
+    # an indicator beside the sign in provider's name if the user chose to enable syncing
+    syncing_indicator: "(syncing)"
+    # button to set a sign in provider to sync
+    enable_syncing: "Turn on syncing"
+    # button to set a sign in provider to not sync
+    disable_syncing: "Turn off syncing"
+    # button to remove a sign in provider
+    remove_external_sign_in: "Remove"
+    # information text indicating that the list of links below it are for addding an external sign in
+    add_external_sign_in_info: "Add a sign in:"
     # link to docs on how to set up a GitHub webhook for script syncing
     set_up_webhook: "Set up a GitHub webhook"
     author_email_notification_type:
@@ -209,6 +277,9 @@ en:
       discussion_and_comment: "Get an email when discussions are posted on your scripts or when those discussions get new comments"
       # tell the user that the forum can send them other emails that are not controlled by this setting
       note: "You may receive other emails based on your settings in the forum."
+  common:
+    # text to show before listing errors in a submission
+    error_preamble: "There were some problems with what you posted..."
   activerecord:
     attributes:
       user:

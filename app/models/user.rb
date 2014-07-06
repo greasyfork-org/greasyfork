@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 
 	has_and_belongs_to_many :roles
 
+	has_many :identities
+
 	# Include default devise modules. Others available are:
 	# :confirmable, :lockable, :timeoutable and :omniauthable
 	devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
@@ -53,5 +55,19 @@ class User < ActiveRecord::Base
 
 	def generate_webhook_secret
 		self.webhook_secret = SecureRandom.hex(64)
+	end
+
+	def pretty_signin_methods
+		return self.identity_providers_used.map{|p| Identity.pretty_provider(p)}
+	end
+
+	def identity_providers_used
+		return self.identities.map{|i| i.provider}.uniq
+	end
+
+	protected
+
+	def password_required?
+		self.new_record? && self.identities.empty?
 	end
 end
