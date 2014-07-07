@@ -291,7 +291,7 @@ private
 
 	# Returns a hash, key: site name, value: hash with keys installs, scripts
 	def get_by_sites
-		return Rails.cache.fetch "scripts/get_by_sites" do
+		return Rails.cache.fetch("scripts/get_by_sites") do
 			sql =<<-EOF
 				SELECT
 					text, SUM(daily_installs) install_count, COUNT(DISTINCT s.id) script_count
@@ -312,7 +312,7 @@ private
 	end
 
 	def get_top_by_sites
-		return Rails.cache.fetch "scripts/get_top_by_sites" do
+		return Rails.cache.fetch("scripts/get_top_by_sites") do
 			get_by_sites.sort{|a,b| b[1][:installs] <=> a[1][:installs]}.first(10)
 		end
 	end
