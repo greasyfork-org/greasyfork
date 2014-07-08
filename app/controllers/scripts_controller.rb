@@ -105,6 +105,13 @@ class ScriptsController < ApplicationController
 
 	def show_code
 		@script, @script_version = versionned_script(params[:script_id], params[:version])
+
+		# some weird safari client tries to do this
+		if params[:format] == 'meta.js'
+			redirect_to script_meta_js_path(params.merge({:name => @script.name, :format => nil}))
+			return
+		end
+
 		return if redirect_to_slug(@script, :script_id)
 		@code = @script_version.rewritten_code
 		@no_bots = true if !params[:version].nil?
