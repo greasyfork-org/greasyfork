@@ -2,6 +2,8 @@ require 'js_connect'
 
 class HomeController < ApplicationController
 
+	protect_from_forgery :except => [:sso]
+
 	def index
 		@highlighted_scripts = Script.listable.order('daily_installs DESC').limit(100).sample(10)
 	end
@@ -25,7 +27,7 @@ class HomeController < ApplicationController
 		secure = true # this should be true unless you are testing.
 		json = JsConnect.getJsConnectString(user, self.params, client_id, secret, secure)
 
-		render :text => json
+		render :js => json
 	end
 
 end
