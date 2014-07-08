@@ -90,9 +90,9 @@
 	<div class="form-control">
 		<label for="additional-info">Additional info</label>
 		<span class="label-note">
-			Ramble on about your script.
-			<%=s.radio_button(:additional_info_markup, 'html')%> <%=link_to 'HTML', help_allowed_markup_path, {:target => 'markup_choice'}%>
-			<%=s.radio_button(:additional_info_markup, 'markdown')%> <%=link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', {:target => 'markup_choice'}%>
+			Ramble on about your script. <%=link_to t('common.allowed_elements_link'), help_allowed_markup_path, {:target => 'markup_choice'}%>
+			<%=s.radio_button(:additional_info_markup, 'html')%>HTML
+			<%=s.radio_button(:additional_info_markup, 'markdown')%><%=link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', {:target => 'markup_choice'}%>
 			<button name="preview" id="preview-script-additional-info" class="preview-button">Preview</button>
 		</span><br>
 		<%=s.text_area(:additional_info, {:class => 'previewable', 'data-preview-activate-id' => 'preview-script-additional-info', 'data-markup-option-name' => 'script_version[additional_info_markup]', 'data-preview-result-id' => 'preview-script-additional-info-results'})%>

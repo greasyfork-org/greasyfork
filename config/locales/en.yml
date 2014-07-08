@@ -280,6 +280,14 @@ en:
   common:
     # text to show before listing errors in a submission
     error_preamble: "There were some problems with what you posted..."
+    # link to the list of allowed HTML elements and attributes for HTML/Markdown fields
+    allowed_elements_link: "(See allowed code.)"
+    # title of the page showing allowed HTML elements and attributes for HTML/Markdown fields
+    allowed_elements_and_attributes_title: "Allowed elements for HTML content"
+    # text to introduce the list of allowed HTML elements and attributes
+    allowed_elements_intro: "The following elements and attributes are allowed. This applies to both HTML and Markdown (after conversion to HTML)."
+    # additional info for the allowed HTML elements, explaining additional changes made to content
+    allowed_elements_extra_info: "Whitespace will be turned into p or br elements. URLs will automatically be linkified."
   activerecord:
     attributes:
       user:
