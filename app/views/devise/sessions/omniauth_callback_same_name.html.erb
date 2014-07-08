@@ -1,6 +1,11 @@
 <%=form_tag(auth_name_conflict_path, :method => :post) do |f|%>
 
 	<input type="hidden" name="provider" value="<%=@provider%>">
+	<% if !params[:openid_url].nil? %>
+		<input type="hidden" name="openid_url" value="<%=params[:openid_url]%>">
+	<% end %>
+
+
 	<p>
 		<%=t('users.sign_in_name_used', :name => @name)%>
 	</p>

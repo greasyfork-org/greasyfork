@@ -116,12 +116,41 @@
 		}
 	}
 
+	function hookUpOpenId() {
+		var browserIdLink = document.querySelector(".open_id-login");
+		if (browserIdLink) {
+			browserIdLink.addEventListener("click", function(event) {
+				var existingForm = document.getElementById("open_id-onpage-entry");
+				if (existingForm) {
+					existingForm.parentNode.removeChild(existingForm);
+				} else {
+					var form = document.createElement("form");
+					form.id = "open_id-onpage-entry"
+					form.action = event.target.href;
+					form.className = "inline-form";
+					var input = document.createElement("input");
+					input.name = "openid_url";
+					input.type = "url";
+					var submit = document.createElement("input");
+					submit.type = "submit";
+					submit.value = "→";
+					form.appendChild(input);
+					form.appendChild(submit);
+					browserIdLink.parentNode.insertBefore(form, browserIdLink.nextSibling);
+					input.focus();
+				}
+				event.preventDefault();
+			});
+		}
+	}
+
 	function init() {
 		hookUpSelectAllCheckboxes();
 		hookUpInstallPingers();
 		hookUpMarkupPreview();
 		hookUpLocaleSwitcher();
 		hookUpBrowserId();
+		hookUpOpenId();
 	}
 	
 	window.addEventListener("DOMContentLoaded", init);

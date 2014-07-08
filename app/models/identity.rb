@@ -7,6 +7,6 @@ class Identity < ActiveRecord::Base
 	end
 
 	def self.pretty_provider(provider)
-		Rails.application.config.available_auths[provider]
+		Rails.application.config.available_auths[provider.to_s]
 	end
 end

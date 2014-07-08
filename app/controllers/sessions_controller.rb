@@ -37,12 +37,13 @@ class SessionsController < Devise::SessionsController
 			name = session[:chosen_name]
 			session.delete(:chosen_name)
 		else
-		name = o[:info][:nickname] || # GitHub
+		name = o[:info][:nickname] || # GitHub, OpenID
 			(provider == 'browser_id' ? o[:info][:name].split('@').first : nil) || # Persona
 			o[:info][:name] # Google
 		end
 		url = (o[:extra] && o[:extra][:raw_info] && o[:extra][:raw_info][:html_url]) || # GitHub
-			(o[:extra] && o[:extra][:raw_info] && o[:extra][:raw_info][:profile]) # Google
+			(o[:extra] && o[:extra][:raw_info] && o[:extra][:raw_info][:profile]) || # Google
+			(o[:extra] && o[:extra][:response] && o[:extra][:response].identity_url) # OpenID
 
 		# does the identity already exist?
 		identity = Identity.find_by_provider_and_uid(provider, uid)
@@ -121,7 +122,7 @@ class SessionsController < Devise::SessionsController
 
 	def name_conflict
 		session[:chosen_name] = params[:name]
-		redirect_to "/auth/#{params[:provider]}"
+		redirect_to "/auth/#{params[:provider]}" + (params[:openid_url].nil? ? '' : "?openid_url=#{CGI::escape(params[:openid_url])}")
 	end
 
 private
