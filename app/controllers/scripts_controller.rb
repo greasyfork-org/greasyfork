@@ -21,7 +21,7 @@ class ScriptsController < ApplicationController
 		@scripts = Script.listable.includes([:user, :script_type]).order(get_sort).paginate(:page => params[:page], :per_page => get_per_page)
 		if !params[:site].nil?
 			if params[:site] == '*'
-				@scripts = @scripts.includes(:script_applies_tos).where('script_applies_tos.id IS NULL')
+				@scripts = @scripts.includes(:script_applies_tos).references(:script_applies_tos).where('script_applies_tos.id IS NULL')
 			else
 				@scripts = @scripts.joins(:script_applies_tos).where(['text = ?', params[:site]])
 			end
