@@ -105,7 +105,7 @@ class SessionsController < Devise::SessionsController
 		end
 
 		# create a new user
-		user = User.new({:name => name, :email => email, :identities => [Identity.new({:provider => provider, :uid => uid, :syncing => true})]})
+		user = User.new({:name => name, :email => email, :identities => [Identity.new({:provider => provider, :uid => uid, :syncing => true, :url => url})]})
 		if !user.save
 			omniauth_failure
 			return
