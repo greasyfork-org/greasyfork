@@ -188,6 +188,8 @@ en:
     sign_in_email_used_with_external_services_html: "'%{email}' is already being used by user '%{user_name}', who signs in with %{existing_providers}. If this is you and you wish to add additionally sign in with %{provider}, %{sign_in_link} to your account first, then add your %{provider} sign in."
     # sign in link for email_used messages
     sign_in_email_used_sign_in_link: "sign in"
+    # when a user attempts to create an account with an external service, but an email was not provided by that service
+    sign_in_email_missing: "Greasy Fork requires an email to make a new account, but %{provider} didn't provide one for you. You can either update your %{provider} account to have one, then try signing in again, or create a normal email/password account on Greasy Fork, then add your %{provider} account to it."
     # this shows when signing in for the first time with an external sign in but the name received is already in use. the user is prompted to enter a different name.
     sign_in_name_used: "The name '%{name}' is already used. Choose a different one."
     # the button when submitting the name form per above

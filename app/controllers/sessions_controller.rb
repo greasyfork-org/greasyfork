@@ -37,10 +37,13 @@ class SessionsController < Devise::SessionsController
 		provider = o[:provider]
 		uid = o[:uid]
 		email = o[:info][:email]
+		email = nil if email.empty?
 		if session[:chosen_name]
 			# from name conflict
 			name = session[:chosen_name]
 			session.delete(:chosen_name)
+			# don't go to omniauth.origin (the first sign in attempt), go to *its* omniauth.origin
+			request.env['omniauth.origin'] = params[:origin]
 		else
 		name = o[:info][:nickname] || # GitHub
 			(provider == 'browser_id' ? o[:info][:name].split('@').first : nil) || # Persona
@@ -61,9 +64,9 @@ class SessionsController < Devise::SessionsController
 				return
 			end
 			# update the existing user for syncing accounts
-			if identity.syncing and (user.name != name or user.email != email)
+			if identity.syncing and (user.name != name or (user.email != email and !email.nil?))
 				user.name = name
-				user.email = email
+				user.email = email unless email.nil?
 				# if we can't save (name already used?) that's ok, we just won't sync
 				if !user.save
 					user.reload
@@ -92,11 +95,20 @@ class SessionsController < Devise::SessionsController
 		end
 
 		# does another user already have that e-mail?
-		@same_email_user = User.find_by_email(email)
-		if !@same_email_user.nil?
+		if !email.nil?
+			@same_email_user = User.find_by_email(email)
+			if !@same_email_user.nil?
+				@provider = Identity.pretty_provider(provider)
+				@email = email
+				render 'omniauth_callback_same_email'
+				return
+			end
+		end
+
+		# we need to create a user, but the provider didn't provide an email
+		if email.nil?
 			@provider = Identity.pretty_provider(provider)
-			@email = email
-			render 'omniauth_callback_same_email'
+			render 'omniauth_callback_no_email'
 			return
 		end
 
