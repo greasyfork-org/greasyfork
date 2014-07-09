@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
 	skip_before_action :verify_authenticity_token, :only => [:webhook]
 
-	before_filter :authenticate_user!, :except => [:show]
+	before_filter :authenticate_user!, :except => [:show, :webhook]
 
 	HMAC_DIGEST = OpenSSL::Digest::Digest.new('sha1')
 
