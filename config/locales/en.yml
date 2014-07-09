@@ -253,7 +253,7 @@ en:
     # notice after a sign in is removed. provider is the external site's name, like GitHub or Google
     external_sign_in_removed: "%{provider} sign in removed."
     # notice after a sign in fails
-    external_sign_in_failed: "%{provider} sign in failed."
+    external_sign_in_failed: "%{provider} sign in failed: %{error}."
     # notice after a user tries to add a sign in to their account, but that sign in is already in use by another user
     external_sign_in_already_used: "Addition of %{provider} sign in failed: that sign in is already being used by user '%{user_name}'."
     # an indicator beside the sign in provider's name if the user chose to enable syncing

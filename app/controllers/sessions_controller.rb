@@ -22,8 +22,13 @@ class SessionsController < Devise::SessionsController
 
 	def omniauth_callback
 
-		if !params[:failure].nil? or !params[:error].nil?
-			omniauth_failure
+		if !params[:failure].nil?
+			handle_omniauth_failure
+			return
+		end
+
+		if !params[:error].nil?
+			handle_omniauth_failure(params[:error])
 			return
 		end
 
@@ -76,7 +81,7 @@ class SessionsController < Devise::SessionsController
 		if !current_user.nil?
 			identity = Identity.new({:provider => provider, :uid => uid, :syncing => false, :url => url})
 			if !identity.valid?
-				omniauth_failure
+				handle_omniauth_failure(identity.errors.full_messages.join(', '))
 				return
 			end
 			current_user.identities << identity
@@ -107,7 +112,7 @@ class SessionsController < Devise::SessionsController
 		# create a new user
 		user = User.new({:name => name, :email => email, :identities => [Identity.new({:provider => provider, :uid => uid, :syncing => true, :url => url})]})
 		if !user.save
-			omniauth_failure
+			handle_omniauth_failure(user.errors.full_messages.join(', '))
 			return
 		end
 		sign_in user
@@ -115,8 +120,7 @@ class SessionsController < Devise::SessionsController
 	end
 
 	def omniauth_failure
-		flash[:notice] = t('users.external_sign_in_failed', :provider => Identity.pretty_provider(params[:provider] || params[:strategy]))
-		redirect_to clean_redirect_param(:origin) || request.env['omniauth.origin'] || new_user_session_path
+		handle_omniauth_failure(params[:message])
 	end
 
 	def name_conflict
@@ -125,6 +129,11 @@ class SessionsController < Devise::SessionsController
 	end
 
 private
+
+	def handle_omniauth_failure(error = 'unknown')
+		flash[:notice] = t('users.external_sign_in_failed', :provider => Identity.pretty_provider(params[:provider] || params[:strategy]), :error => error)
+		redirect_to clean_redirect_param(:origin) || request.env['omniauth.origin'] || new_user_session_path
+	end
 
 	def clean_redirect_param(param_name)
 		v = params[param_name]
