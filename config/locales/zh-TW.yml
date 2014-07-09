@@ -125,7 +125,7 @@ zh-TW:
     remove_password: "移除密碼"
     cant_remove_password: "無法移除密碼，否則您會沒有任何方式登入！"
     cant_remove_sign_in: "無法移除 %{provider} 登入入口，否則您會沒有任何方式登入！"
-    password_removed: "密碼以移除。"
+    password_removed: "密碼已移除。"
     edit_sign_in_external: "外部帳號登入方式"
     external_sign_in_info_no_sign_ins: "您可以使用其他網站帳號登入 Greasy Fork。"
     external_sign_in_info_with_sign_ins: "您目前可以使用下列的外部登入方式。「同步中」的標示代表您的 Greasy Fork 訊息（像是使用者名稱和電子郵件位址）將在您登入時更新，保持與外部帳號同步。"
@@ -147,6 +147,10 @@ zh-TW:
       note: "郵件通知包含您在論壇指定的其它項目。"
   common:
     error_preamble: "在你發帖時遇到了問題..."
+    allowed_elements_link: "(檢視允許使用的 HTML/Markdown 代碼。)"
+    allowed_elements_and_attributes_title: "允許使用的 HTML 元素"
+    allowed_elements_intro: "下列是允許使用的元素和屬性。它們可用於 HTML 和 Markdown (在轉化為HTML後)。"
+    allowed_elements_extra_info: "空白字元將被轉換為 p 或 br 元素。網址將會自動轉為超連結。"
   activerecord:
     attributes:
       user:

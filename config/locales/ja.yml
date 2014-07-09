@@ -78,10 +78,10 @@ ja:
     support_site: "サポートサイト"
     support_email: "サポートメールアドレス"
   forum_discussions:
-    listing_no_script_no_reply_html: "%{discussion_link}　投稿者：%{original_poster_link} (%{original_post_date})"
-    listing_no_script_with_reply_html: "%{discussion_link}　投稿者：%{original_poster_link} (%{original_post_date})　― 最終コメント投稿者：%{last_commenter_link} (%{last_comment_date})"
-    listing_with_script_no_reply_html: "%{script_link}について｜ %{discussion_link}　投稿者：%{original_poster_link} (%{original_post_date})"
-    listing_with_script_with_reply_html: "%{script_link}について｜ %{discussion_link}　投稿者：%{original_poster_link} (%{original_post_date})　― 最終コメント投稿者：%{last_commenter_link} (%{last_comment_date})"
+    listing_no_script_no_reply_html: "<span style=\"display: inline-block; width: 6em;\">%{original_post_date}</span><b>%{discussion_link}</b> スレッド作成：%{original_poster_link}"
+    listing_no_script_with_reply_html: "<span style=\"display: inline-block; width: 6em;\">%{last_comment_date}</span><b>%{discussion_link}</b> 最終コメント：%{last_commenter_link} (スレッド作成：%{original_poster_link})"
+    listing_with_script_no_reply_html: "<span style=\"display: inline-block; width: 6em;\">%{original_post_date}</span><b>%{discussion_link}</b>　(%{script_link}について)　スレッド作成：%{original_poster_link}"
+    listing_with_script_with_reply_html: "<span style=\"display: inline-block; width: 6em;\">%{last_comment_date}</span><b>%{discussion_link}</b>　(%{script_link}について)　最終コメント：%{last_commenter_link}　(スレッド作成：%{original_poster_link})"
   home:
     title: "Greasy Fork – 便利で安全なユーザースクリプトを"
     welcome: "Greasy Fork はユーザースクリプトの投稿サイトです。"
@@ -147,6 +147,10 @@ ja:
       note: "フォーラムの通知設定とは連動していません。フォーラム側のユーザー設定によっては、ここで設定していないメールが届くかもしれません。"
   common:
     error_preamble: "以下に表示されているエラーを修正し、もう一度送信してください。"
+    allowed_elements_link: "使用可能なタグ"
+    allowed_elements_and_attributes_title: "使用可能なHTMLの要素・属性"
+    allowed_elements_intro: "以下の要素と属性を利用できます。Markdownの場合は、HTMLへの変換後にチェックされます。"
+    allowed_elements_extra_info: "改行は <p> タグや <br> タグに置き換えられます。URLを記述した場合、自動的にリンクが張られます。"
   activerecord:
     attributes:
       user:
