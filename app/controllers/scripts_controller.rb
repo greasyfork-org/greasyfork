@@ -26,6 +26,13 @@ class ScriptsController < ApplicationController
 				@scripts = @scripts.joins(:script_applies_tos).where(['text = ?', params[:site]])
 			end
 		end
+		if !params[:set].nil?
+			@set = ScriptSet.find(params[:set])
+			set_script_ids = Rails.cache.fetch(@set) do
+				@set.scripts.map{|s| s.id}
+			end
+			@scripts = @scripts.where(:id => set_script_ids)
+		end
 		@by_sites = get_top_by_sites
 	end
 

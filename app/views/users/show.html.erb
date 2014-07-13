@@ -15,6 +15,7 @@ if same_user %>
 		</header>
 		<ul id="user-control-panel">
 			<li><%= link_to t('scripts.new'), new_script_version_path%></li>
+			<li><%= link_to 'New script set', new_user_script_set_path(@user)%></li>
 			<li><%= link_to t('scripts.import'), import_start_path%></li>
 			<li><%= link_to t('users.set_up_webhook'), user_webhook_info_path%></li>
 			<li><%= link_to t('users.edit'), edit_user_registration_path%></li>
@@ -90,3 +91,18 @@ script_list = script_list - deleted_script_list %>
 		</ol>
 	</section>
 <% end %>
+
+<section>
+	<header>
+		<h3>Script Sets</h3>
+	</header>
+	<% if @user.script_sets.empty? %>
+		<p>None yet.</p>
+	<% else %>
+		<ol id="user-script-sets">
+			<% @user.script_sets.each do |ss| %>
+				<li><%=ss.name%>: <%=ss.description%> <%=link_to 'View', scripts_path(:set => ss.id)%> <% if same_user %><%=link_to 'Edit', edit_user_script_set_path(@user, ss)%><% end %></li>
+			<% end %>
+		</ol>
+	<% end %>
+</section>

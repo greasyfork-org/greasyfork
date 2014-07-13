@@ -70,6 +70,7 @@ Greasyfork::Application.routes.draw do
 		resources :script_versions, :only => [:create, :new]
 		resources :users, :only => :show do
 			post 'webhook'
+			resources :script_sets, :only => [:create, :new, :edit, :update], :path => 'sets'
 		end
 
 		get 'import', :to => 'import#index', :as => 'import_start'
