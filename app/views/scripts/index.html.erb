@@ -69,7 +69,12 @@
 </div>
 
 <% if defined?(@set) and !@set.nil? %>
-	<h3><%=@set.name%> by <%=link_to @set.user.name, @set.user%> <%=link_to('Edit', edit_user_script_set_path(current_user, @set))%></h3>
+	<h3>
+		<%=@set.name%> by <%=link_to @set.user.name, @set.user%> 
+		<% if user_signed_in? and current_user == @set.user%>
+			<%=link_to('Edit', edit_user_script_set_path(current_user, @set))%>
+		<% end %>
+	</h3>
 	<p><%=@set.description%></p>
 <% end %>
 
