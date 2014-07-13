@@ -37,7 +37,7 @@ class SessionsController < Devise::SessionsController
 		provider = o[:provider]
 		uid = o[:uid]
 		email = o[:info][:email]
-		email = nil if email.empty?
+		email = nil if !email.nil? and email.empty?
 		if session[:chosen_name]
 			# from name conflict
 			name = session[:chosen_name]
