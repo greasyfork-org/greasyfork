@@ -60,7 +60,7 @@ class ScriptSet < ActiveRecord::Base
 			script_inclusions.build({:child => child, :exclusion => exclusion})
 		elsif child.is_a?(String)
 			new_asi = ScriptSetAutomaticSetInclusion.from_param_value(child, exclusion)
-			return if automatic_set_inclusions.any?{|asi| asi.script_set_automatic_type_id == new_asi.script_set_automatic_type_id && (asi.value == new_asi.value || (asi.value.nil? && new_asi.value.nil?))}
+			return if child_automatic_set_inclusions.any?{|asi| asi.script_set_automatic_type_id == new_asi.script_set_automatic_type_id && (asi.value == new_asi.value || (asi.value.nil? && new_asi.value.nil?))}
 			automatic_set_inclusions.build({:script_set_automatic_type_id => new_asi.script_set_automatic_type_id, :value => new_asi.value, :exclusion => new_asi.exclusion})
 		end
 	end

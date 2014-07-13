@@ -28,6 +28,7 @@ class ScriptSetsController < ApplicationController
 
 		# blow away everything, the form will resubmit the info
 		@set.set_inclusions.each{|si| si.mark_for_destruction}
+		@set.automatic_set_inclusions.each{|si| si.mark_for_destruction}
 		@set.script_inclusions.each{|si| si.mark_for_destruction}
 
 		return if handle_update(@set)
