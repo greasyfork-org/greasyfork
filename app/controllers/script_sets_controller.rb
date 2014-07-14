@@ -122,10 +122,14 @@ private
 			set.add_child("1-", false)
 		elsif !params['add-automatic-script-set-2'].nil?
 			set.add_child("2-#{params['add-automatic-script-set-value-2']}", params['add-automatic-script-set-2'] == 'e')
-		elsif !params['add-automatic-script-set-3'].nil?
+		elsif !params['add-automatic-script-set-3'].nil? and !params['add-automatic-script-set-value-3'].nil?  and !params['add-automatic-script-set-value-3'].empty?
 			automatic_script_set_user = parse_user(params['add-automatic-script-set-value-3'])
 			automatic_script_set_user = automatic_script_set_user.nil? ? nil : automatic_script_set_user.id
 			set.add_child("3-#{automatic_script_set_user}", params['add-automatic-script-set-3'] == 'e')
+		elsif !params['add-automatic-script-set-4'].nil?
+			params['add-automatic-script-set-value-4'].each do |l|
+				set.add_child("4-#{l}", params['add-automatic-script-set-4'] == 'e')
+			end
 		end
 
 		# Change the user for whom we're listing the sets
