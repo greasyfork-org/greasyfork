@@ -56,16 +56,22 @@ class ScriptSet < ActiveRecord::Base
 
 	def add_child(child, exclusion = false)
 		if child.is_a?(ScriptSet)
-			return if child_set_inclusions.include?(child) or child_set_exclusions.include?(child)
+			return false if child_set_inclusions.include?(child) or child_set_exclusions.include?(child)
 			set_inclusions.build({:child => child, :exclusion => exclusion})
-		elsif child.is_a?(Script)
-			return if child_script_inclusions.include?(child) or child_script_exclusions.include?(child)
-			script_inclusions.build({:child => child, :exclusion => exclusion})
-		elsif child.is_a?(String)
-			new_asi = ScriptSetAutomaticSetInclusion.from_param_value(child, exclusion)
-			return if child_automatic_set_inclusions.any?{|asi| asi.script_set_automatic_type_id == new_asi.script_set_automatic_type_id && (asi.value == new_asi.value || (asi.value.nil? && new_asi.value.nil?))} or child_automatic_set_exclusions.any?{|asi| asi.script_set_automatic_type_id == new_asi.script_set_automatic_type_id && (asi.value == new_asi.value || (asi.value.nil? && new_asi.value.nil?))}
-			automatic_set_inclusions.build({:script_set_automatic_type_id => new_asi.script_set_automatic_type_id, :value => new_asi.value, :exclusion => new_asi.exclusion})
+			return true
 		end
+		if child.is_a?(Script)
+			return false if child_script_inclusions.include?(child) or child_script_exclusions.include?(child)
+			script_inclusions.build({:child => child, :exclusion => exclusion})
+			return true
+		end
+		return false
+	end
+
+	def add_automatic_child(new_asi)
+		return false if child_automatic_set_inclusions.any?{|asi| asi.script_set_automatic_type_id == new_asi.script_set_automatic_type_id && (asi.value == new_asi.value || (asi.value.nil? && new_asi.value.nil?))} or child_automatic_set_exclusions.any?{|asi| asi.script_set_automatic_type_id == new_asi.script_set_automatic_type_id && (asi.value == new_asi.value || (asi.value.nil? && new_asi.value.nil?))}
+		automatic_set_inclusions.build({:script_set_automatic_type_id => new_asi.script_set_automatic_type_id, :value => new_asi.value, :exclusion => new_asi.exclusion})
+		return true
 	end
 
 end

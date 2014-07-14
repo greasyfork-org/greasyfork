@@ -75,13 +75,15 @@ private
 		if !params['automatic-sets-included'].nil?
 			params['automatic-sets-included'].each do |set_id|
 				next if params['remove-selected-automatic-sets'] == 'i' and !params['remove-automatic-sets-included'].nil? and params['remove-automatic-sets-included'].include?(set_id)
-				set.add_child(set_id, false)
+				ssasi = ScriptSetAutomaticSetInclusion.from_param_value(set_id, false)
+				set.add_automatic_child(ssasi)
 			end
 		end
 		if !params['automatic-sets-excluded'].nil?
 			params['automatic-sets-excluded'].each do |set_id|
 				next if params['remove-selected-automatic-sets'] == 'e' and !params['remove-automatic-sets-excluded'].nil? and params['remove-automatic-sets-excluded'].include?(set_id)
-				set.add_child(set_id, true)
+				ssasi = ScriptSetAutomaticSetInclusion.from_param_value(set_id, true)
+				set.add_automatic_child(ssasi)
 			end
 		end
 
@@ -107,28 +109,34 @@ private
 				if script_id.nil?
 					errors << "Could not parse script '#{CGI::escapeHTML(possible_script)}'"
 				else
-					set.add_child(Script.find(script_id), params['script-action'] == 'e')
+					script = Script.find(script_id)
+					errors << "'#{script.name}' already included." if !set.add_child(script, params['script-action'] == 'e')
 				end
 			end
 		end
 
 		# Add set
 		if !params['set-action'].nil? and !params['add-child-set'].nil?
-			set.add_child(ScriptSet.find(params['add-child-set']), params['set-action'] == 'e')
+			child_set = ScriptSet.find(params['add-child-set'])
+			errors << "'#{child_set.name}' already included." if !set.add_child(child_set, params['set-action'] == 'e')
 		end
 
 		# Add automatic set
 		if !params['add-automatic-script-set-1'].nil?
-			set.add_child("1-", false)
+			ssasi = ScriptSetAutomaticSetInclusion.from_param_value("1-", false)
+			errors << "'#{ssasi.name}' already included." if !set.add_automatic_child(ssasi)
 		elsif !params['add-automatic-script-set-2'].nil?
-			set.add_child("2-#{params['add-automatic-script-set-value-2']}", params['add-automatic-script-set-2'] == 'e')
+			ssasi = ScriptSetAutomaticSetInclusion.from_param_value("2-#{params['add-automatic-script-set-value-2']}", params['add-automatic-script-set-2'] == 'e')
+			errors << "'#{ssasi.name}' already included." if !set.add_automatic_child(ssasi)
 		elsif !params['add-automatic-script-set-3'].nil? and !params['add-automatic-script-set-value-3'].nil?  and !params['add-automatic-script-set-value-3'].empty?
 			automatic_script_set_user = parse_user(params['add-automatic-script-set-value-3'])
 			automatic_script_set_user = automatic_script_set_user.nil? ? nil : automatic_script_set_user.id
-			set.add_child("3-#{automatic_script_set_user}", params['add-automatic-script-set-3'] == 'e')
+			ssasi = ScriptSetAutomaticSetInclusion.from_param_value("3-#{automatic_script_set_user}", params['add-automatic-script-set-3'] == 'e')
+			errors << "'#{ssasi.name}' already included." if !set.add_automatic_child(ssasi)
 		elsif !params['add-automatic-script-set-4'].nil?
 			params['add-automatic-script-set-value-4'].each do |l|
-				set.add_child("4-#{l}", params['add-automatic-script-set-4'] == 'e')
+				ssasi = ScriptSetAutomaticSetInclusion.from_param_value("4-#{l}", params['add-automatic-script-set-4'] == 'e')
+				errors << "'#{ssasi.name}' already included." if !set.add_automatic_child(ssasi)
 			end
 		end
 
