@@ -45,6 +45,7 @@ class ScriptVersionsController < ApplicationController
 
 		@script_version.script = @script
 		@script.script_type_id = params['script']['script_type_id']
+		@script.locale_id = params['script']['locale_id']
 
 		if !params[:code_upload].nil?
 			uploaded_content = params[:code_upload].read
@@ -66,6 +67,10 @@ class ScriptVersionsController < ApplicationController
 
 		@script_version.calculate_all(@script.description)
 		@script.apply_from_script_version(@script_version)
+
+		if @script.locale_id.nil?
+			@script.locale = @script.detect_locale
+		end
 
 		# if the script is (being) deleted, don't require a description
 		@script.description = 'Deleted' if @script.deleted? and @script.description.nil?

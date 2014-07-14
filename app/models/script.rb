@@ -9,6 +9,7 @@ class Script < ActiveRecord::Base
 	belongs_to :script_sync_type
 	belongs_to :script_delete_type
 	belongs_to :license
+	belongs_to :locale
 
 	scope :not_deleted, -> {where('script_delete_type_id is null')}
 	scope :active, -> {not_deleted.where(:uses_disallowed_external => false)}
@@ -147,5 +148,35 @@ class Script < ActiveRecord::Base
 
 	def deleted?
 		!script_delete_type.nil?
+	end
+
+	def detect_locale
+		ft = full_text
+		return if ft.nil?
+		begin
+			dl_lang_code = DetectLanguage.simple_detect(ft)
+		rescue Exception => ex
+			Rails.logger.error "Could not detect language - #{ex}"
+		end
+		return nil if dl_lang_code.nil?
+		locales = Locale.where(:detect_language_code => dl_lang_code)
+		if locales.empty?
+			Rails.logger.error "detect_language gave unrecognized code #{dl_lang_code}"
+			return nil
+		end
+		return locales.first
+	end
+
+private
+
+	# all text content of this script (for language detection)
+	def full_text
+		parts = []
+		parts << name if !name.nil? and !name.empty?
+		parts << description if !description.nil? and !description.empty?
+		additional_text = ApplicationController.helpers.format_user_text_as_plain(additional_info, additional_info_markup)
+		parts << additional_text if !additional_text.nil? and !additional_text.empty?
+		return nil if parts.empty?
+		return parts.join("\n")
 	end
 end

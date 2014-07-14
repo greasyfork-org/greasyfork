@@ -23,6 +23,11 @@ module ApplicationHelper
 		return ''
 	end
 
+	# Returns the plain text representation of the passed markup
+	def format_user_text_as_plain(text, markup_type)
+		Sanitize.clean(format_user_text(text, markup_type))
+	end
+
 	def format_user_text_html(text)
 		Sanitize.clean(text, get_html_sanitize_config).html_safe
 	end

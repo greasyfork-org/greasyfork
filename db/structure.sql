@@ -1047,7 +1047,7 @@ CREATE TABLE `delayed_jobs` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `delayed_jobs_priority` (`priority`,`run_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=47422 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=50116 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1083,7 +1083,7 @@ CREATE TABLE `identities` (
   `syncing` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_identities_on_uid_and_provider` (`uid`,`provider`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1118,6 +1118,25 @@ CREATE TABLE `licenses` (
   `priority` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `locales`
+--
+
+DROP TABLE IF EXISTS `locales`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `locales` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(20) NOT NULL,
+  `rtl` tinyint(1) NOT NULL DEFAULT '0',
+  `detect_language_code` varchar(20) DEFAULT NULL,
+  `english_name` varchar(100) NOT NULL,
+  `native_name` varchar(100) DEFAULT NULL,
+  `ui_available` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=190 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1259,7 +1278,7 @@ CREATE TABLE `script_set_automatic_set_inclusions` (
   PRIMARY KEY (`id`),
   KEY `index_script_set_automatic_set_inclusions_on_parent_id` (`parent_id`),
   KEY `ssasi_script_set_automatic_type_id` (`script_set_automatic_type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1291,7 +1310,7 @@ CREATE TABLE `script_set_script_inclusions` (
   PRIMARY KEY (`id`),
   KEY `index_script_set_script_inclusions_on_parent_id` (`parent_id`),
   KEY `index_script_set_script_inclusions_on_child_id` (`child_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1328,7 +1347,7 @@ CREATE TABLE `script_sets` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_script_sets_on_user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1435,6 +1454,7 @@ CREATE TABLE `scripts` (
   `locked` tinyint(1) NOT NULL DEFAULT '0',
   `uses_disallowed_external` tinyint(1) NOT NULL DEFAULT '1',
   `support_url` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `locale_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_scripts_on_user_id` (`user_id`),
   KEY `index_scripts_on_delta` (`delta`),
@@ -1473,7 +1493,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_users_on_email` (`email`),
   UNIQUE KEY `index_users_on_reset_password_token` (`reset_password_token`)
-) ENGINE=InnoDB AUTO_INCREMENT=3008 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3010 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -1485,7 +1505,7 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-07-10 22:36:43
+-- Dump completed on 2014-07-13 15:22:02
 INSERT INTO schema_migrations (version) VALUES ('20140210194333');
 
 INSERT INTO schema_migrations (version) VALUES ('20140210201355');
@@ -1567,4 +1587,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140630170345');
 INSERT INTO schema_migrations (version) VALUES ('20140701173021');
 
 INSERT INTO schema_migrations (version) VALUES ('20140708163921');
+
+INSERT INTO schema_migrations (version) VALUES ('20140713032842');
 

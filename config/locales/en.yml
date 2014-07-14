@@ -144,8 +144,14 @@ en:
     import: "Import scripts"
     # link to create a new script
     new: "Post a script"
+    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support site
     support_site: "Visit the author's support site."
+    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support email address
     support_email: "E-mail the author for support."
+    # explanation of language chooser when editing script
+    locale_explanation: "Primary language of this entry."
+    # the default value for the locale box, if submitted the site will attempt to detect the language of the entry
+    locale_auto_select: "(Automatically detect)"
   forum_discussions:
     # forum discussion lists with 2 * 2 = 4 options:
     # 1. with_script: includes the script name, for example for "Discussions on your scripts" on a user's page
@@ -299,3 +305,6 @@ en:
         profile: "Profile"
         # user field: setting to send e-mails when discussions or comments are posted to a user's scripts. options are under users.author_email_notification_type
         author_email_notification_type_id: "Script discussion notifications"
+      script:
+        # locale the script is in. see also scripts.locale_explanation
+        locale: "Locale"

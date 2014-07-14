@@ -87,6 +87,20 @@
 			<%=radio_button('script', 'script_type_id', st.id)%> <label class="radio-label" for="script_script_type_id_<%=st.id%>"><%=st.name%> - <%=st.description%></label><br>
 		<% end %>
 	</div>
+	<div class="form-control radio-group">
+		<label><%=t('activerecord.attributes.script.locale')%></label> <span class="label-note"><%=t('scripts.locale_explanation')%></span><br>
+		<select name="script[locale_id]">
+			<option value="" <%if @script.locale_id.nil?%>selected<%end%>><%=t('scripts.locale_auto_select')%></option>
+			<option disabled>---</option>
+			<% Locale.where(:ui_available => true).each do |locale| %>
+				<option value="<%=locale.id%>" <%if @script.locale_id == locale.id%>selected<%end%>><%=locale.display_text%></option>
+			<% end %>
+			<option disabled>---</option>
+			<% Locale.all.each do |locale| %>
+				<option value="<%=locale.id%>"<%if @script.locale_id == locale.id%>selected<%end%>><%=locale.display_text%></option>
+			<% end %>
+		</select>
+	</div>
 	<div class="form-control">
 		<label for="additional-info">Additional info</label>
 		<span class="label-note">
