@@ -64,6 +64,23 @@ if same_user %>
 	<% end %>
 <% end %>
 
+<% if !@user.script_sets.empty? or same_user %>
+	<section>
+		<header>
+			<h3>Script Sets</h3>
+		</header>
+		<% if @user.script_sets.empty? %>
+			<p>None yet.</p>
+		<% else %>
+			<ul id="user-script-sets">
+				<% @user.script_sets.each do |ss| %>
+					<li><%=ss.name%>: <%=ss.description%> <%=link_to 'View scripts', scripts_path(:set => ss.id)%> <% if same_user %><%=link_to 'Edit', edit_user_script_set_path(@user, ss)%><% end %></li>
+				<% end %>
+			</ul>
+		<% end %>
+	</section>
+<% end %>
+
 <% script_list = (same_user or (!current_user.nil? and current_user.moderator?)) ? @user.scripts.order('name') : @user.scripts.listable.order('name')
 # show deletions in a separate section if we're going to show any
 deleted_script_list = script_list.select{|s| s.deleted?}
@@ -91,18 +108,3 @@ script_list = script_list - deleted_script_list %>
 		</ol>
 	</section>
 <% end %>
-
-<section>
-	<header>
-		<h3>Script Sets</h3>
-	</header>
-	<% if @user.script_sets.empty? %>
-		<p>None yet.</p>
-	<% else %>
-		<ol id="user-script-sets">
-			<% @user.script_sets.each do |ss| %>
-				<li><%=ss.name%>: <%=ss.description%> <%=link_to 'View', scripts_path(:set => ss.id)%> <% if same_user %><%=link_to 'Edit', edit_user_script_set_path(@user, ss)%><% end %></li>
-			<% end %>
-		</ol>
-	<% end %>
-</section>
