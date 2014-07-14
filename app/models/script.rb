@@ -17,6 +17,7 @@ class Script < ActiveRecord::Base
 	scope :libraries, -> {active.where(:script_type_id => 3)}
 	scope :under_assessment, -> {not_deleted.where(:uses_disallowed_external => true).includes(:assessments).includes(:user).uniq}
 	scope :reported, -> {not_deleted.joins(:discussions).includes(:user).uniq.where('GDN_Discussion.Rating = 1').where('Closed = 0')}
+	scope :for_all_sites, -> {includes(:script_applies_tos).references(:script_applies_tos).where('script_applies_tos.id IS NULL')}
 
 	validates_presence_of :name, :message => 'is required - specify one with @name', :unless => Proc.new {|s| s.library?}
 	validates_presence_of :name, :message => 'is required', :if => Proc.new {|s| s.library?}

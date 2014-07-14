@@ -23,7 +23,7 @@ class ScriptsController < ApplicationController
 			if params[:site] == '*'
 				@scripts = @scripts.includes(:script_applies_tos).references(:script_applies_tos).where('script_applies_tos.id IS NULL')
 			else
-				@scripts = @scripts.joins(:script_applies_tos).where(['text = ?', params[:site]])
+				@scripts = @scripts.for_all_sites
 			end
 		end
 		if !params[:set].nil?
