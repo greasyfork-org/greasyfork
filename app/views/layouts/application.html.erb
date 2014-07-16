@@ -6,8 +6,8 @@
 	<%= stylesheet_link_tag    "application", media: "all" %>
 	<%= javascript_include_tag "application" %>
 	<%= csrf_meta_tags %>
-	<% if defined?(@no_bots) and @no_bots %>
-		<meta name="robots" content="noindex">
+	<% if defined?(@bots) %>
+		<meta name="robots" content="<%=@bots%>">
 	<% end %>
 	<link rel="icon" href="<%=asset_path 'blacklogo16.png'%>">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
@@ -20,6 +20,11 @@
 				<link rel="alternate" hreflang="<%=code%>" href="<%=url_for(params.except(:locale).merge({:locale => code, :only_path => false}))%>">
 			<% end
 		end
+	end %>
+	<% if defined?(@feeds)
+		@feeds.each do |title, url_params| %>
+			<%=auto_discovery_link_tag(:atom, params.merge(url_params).merge({:only_path => true, :page => nil}), {:title => title})%>
+		<% end
 	end %>
 </head>
 <body>

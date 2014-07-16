@@ -34,6 +34,27 @@ class ScriptsController < ApplicationController
 			@scripts = @scripts.where(:id => set_script_ids)
 		end
 		@by_sites = get_top_by_sites
+		@bots = 'noindex,follow' if !params[:sort].nil?
+		@feeds = {t('scripts.listing_created_feed') => {:sort => 'created'}, t('scripts.listing_updated_feed') => {:sort => 'updated'}}
+
+		if !params[:set].nil?
+			@title = @set.name
+			@description = @set.description
+		elsif params[:site] == '*' and !@scripts.empty?
+			@title = t('scripts.listing_title_all_sites')
+			@description = t('scripts.listing_description_all_sites')
+		elsif !params[:site].nil? and !@scripts.empty?
+			@title = t('scripts.listing_title_for_site', :site => params[:site])
+			@description = t('scripts.listing_description_for_site', :site => params[:site])
+		else
+			@title = t('scripts.listing_title_generic')
+			@description = t('scripts.listing_description_generic')
+		end
+
+		respond_to do |format|
+			format.html
+			format.atom
+		end
 	end
 
 	def by_site
@@ -45,6 +66,7 @@ class ScriptsController < ApplicationController
 			redirect_to scripts_path
 			return
 		end
+		@bots = 'noindex,follow'
 		begin
 			@scripts = Script.search params[:q], :match_mode => :extended, :page => params[:page], :per_page => get_per_page, :order => get_sort(true), :populate => true, :includes => :script_type
 			# make it run now so we can catch syntax errors
@@ -55,6 +77,8 @@ class ScriptsController < ApplicationController
 			redirect_to scripts_path
 			return
 		end
+		@title = t('scripts.listing_title_for_search', :search_string => params[:q])
+		@feeds = {t('scripts.listing_created_feed') => {:sort => 'created'}, t('scripts.listing_updated_feed') => {:sort => 'updated'}}
 		render :action => 'index'
 	end
 
@@ -63,27 +87,29 @@ class ScriptsController < ApplicationController
 	end
 
 	def under_assessment
-		@no_bots = true
+		@bots = 'noindex'
 		@scripts = Script.under_assessment
 	end
 
 	def reported
-		@no_bots = true
+		@bots = 'noindex'
 		@scripts = Script.reported
 	end
 
 	def minified
+		@bots = 'noindex'
 		@scripts = []
 		Script.order(get_sort).where(:locked => false).each do |script|
 			sv = script.get_newest_saved_script_version
 			@scripts << script if sv.appears_minified
 		end
 		@paginate = false
+		@title = "Potentially minified user scripts on Greasy Fork"
 		render :action => 'index'
 	end
 
 	def code_search
-		@no_bots = true
+		@bots = 'noindex,follow'
 		if params[:c].nil? or params[:c].empty?
 			return
 		end
@@ -96,6 +122,7 @@ class ScriptsController < ApplicationController
 		script_ids = Script.connection.select_values("SELECT DISTINCT script_id FROM script_versions JOIN script_codes ON rewritten_script_code_id = script_codes.id WHERE script_versions.id IN (#{script_version_ids.join(',')}) AND code LIKE '%#{Script.connection.quote_string(params[:c].gsub('É', 'ÉÉ').gsub('%', 'É%').gsub('_', 'É_'))}%' ESCAPE 'É' LIMIT 100")
 		@scripts = Script.order(get_sort).where(:locked => false).includes([:user, :script_type, :script_delete_type]).where(:id => script_ids)
 		@paginate = false
+		@title = t('scripts.listing_title_for_code_search', :search_string => params[:c])
 		render :action => 'index'
 	end
 
@@ -106,7 +133,7 @@ class ScriptsController < ApplicationController
 	def show
 		@script, @script_version = versionned_script(params[:id], params[:version])
 		return if redirect_to_slug(@script, :id)
-		@no_bots = true if !params[:version].nil?
+		@bots = 'noindex' if !params[:version].nil?
 		@by_sites = get_by_sites
 	end
 
@@ -121,13 +148,13 @@ class ScriptsController < ApplicationController
 
 		return if redirect_to_slug(@script, :script_id)
 		@code = @script_version.rewritten_code
-		@no_bots = true if !params[:version].nil?
+		@bots = 'noindex' if !params[:version].nil?
 	end
 
 	def feedback
 		@script, @script_version = versionned_script(params[:script_id], params[:version])
 		return if redirect_to_slug(@script, :script_id)
-		@no_bots = true if !params[:version].nil?
+		@bots = 'noindex' if !params[:version].nil?
 	end
 
 	def user_js
@@ -173,18 +200,18 @@ class ScriptsController < ApplicationController
 			@context = params[:context].to_i
 		end
 		@diff = Diffy::Diff.new(@old_version.code, @new_version.code, :context => @context, :include_plus_and_minus_in_html => true, :include_diff_info => true).to_s(:html).html_safe
-		@no_bots = true
+		@bots = 'noindex'
 	end
 
 	def sync
 		@script = Script.find(params[:script_id])
 		return if redirect_to_slug(@script, :script_id)
-		@no_bots = true
+		@bots = 'noindex'
 	end
 
 	def sync_update
 		@script = Script.find(params[:script_id])
-		@no_bots = true
+		@bots = 'noindex'
 
 		if !params['stop-syncing'].nil?
 			@script.script_sync_type_id = nil
@@ -223,17 +250,17 @@ class ScriptsController < ApplicationController
 	def delete
 		@script = Script.find(params[:script_id])
 		@other_scripts = Script.where(:user => @script.user).where(:locked => false).where(['id != ?', @script.id]).count
-		@no_bots = true
+		@bots = 'noindex'
 	end
 
 	def undelete
 		@script = Script.find(params[:script_id])
-		@no_bots = true
+		@bots = 'noindex'
 	end
 
 	def do_delete
 		script = Script.find(params[:script_id])
-		@no_bots = true
+		@bots = 'noindex'
 		if current_user.moderator? && current_user != script.user
 			script.locked = params[:locked].nil? ? false : params[:locked]
 			ma = ModeratorAction.new
@@ -259,7 +286,7 @@ class ScriptsController < ApplicationController
 	end
 
 	def do_undelete
-		@no_bots = true
+		@bots = 'noindex'
 		script = Script.find(params[:script_id])
 		if current_user.moderator? && current_user != script.user
 			ma = ModeratorAction.new

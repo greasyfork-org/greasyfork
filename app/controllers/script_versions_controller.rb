@@ -9,12 +9,12 @@ class ScriptVersionsController < ApplicationController
 
 	def index
 		@script, @script_version = versionned_script(params[:script_id], params[:version])
-		@no_bots = true if !params[:show_all_versions].nil?
+		@bots = 'noindex' if !params[:show_all_versions].nil?
 		return if redirect_to_slug(@script, :script_id)
 	end
 
 	def new
-		@no_bots = true
+		@bots = 'noindex'
 		@script_version = ScriptVersion.new
 		if !params[:script_id].nil?
 			@script = Script.find(params[:script_id]) 
@@ -32,7 +32,7 @@ class ScriptVersionsController < ApplicationController
 	end
 
 	def create
-		@no_bots = true
+		@bots = 'noindex'
 		@script_version = ScriptVersion.new
 		@script_version.assign_attributes(script_version_params)
 

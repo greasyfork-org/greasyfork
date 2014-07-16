@@ -109,15 +109,21 @@ en:
     # install count column heading for a script's daily install stats table
     stats_daily_installs_install_count_column_heading: "Installs"
     # html title for script list page when showing scripts that affect all sites
-    listing_title_all_sites: "User scripts for all sites on Greasy Fork"
+    listing_title_all_sites: "User scripts for all sites"
+    # meta description and feed subtitle when showing scripts that affect all sites
+    listing_description_all_sites: "User scripts that add features and remove bugs on all sites"
     # html title for script list page when showing scripts for a particular site. 'site' will be in the form 'example.com'
-    listing_title_for_site: "User scripts for %{site} on Greasy Fork"
+    listing_title_for_site: "User scripts for %{site}"
+    # meta description and feed subtitle when showing scripts that affect a particular site
+    listing_description_for_site: "User scripts that add features and remove bugs on %{site}"
     # html title for script list page for search results.
-    listing_title_for_search: "'%{search_string}' user scripts on Greasy Fork"
+    listing_title_for_search: "'%{search_string}' user scripts"
     # html title for script list page for code search results.
-    listing_title_for_code_search: "'%{search_string}' user scripts on Greasy Fork"
+    listing_title_for_code_search: "'%{search_string}' user scripts"
     # html title for script list page when no other situation applies
-    listing_title_generic: "User scripts on Greasy Fork"
+    listing_title_generic: "User scripts"
+    # meta description and feed subtitle for script list page when no other situation applies
+    listing_description_generic: "User scripts that add features and remove bugs on the sites you use"
     # label for sorting links on script list page
     listing_sort_label: "Sorting by:"
     # link for relevance (most matching the search terms) sort on a script list
@@ -140,6 +146,10 @@ en:
     listing_filter_by_site_more_sites: "More…"
     # text that shows when no scripts were found with the used parameters
     listing_no_scripts: "No scripts found."
+    # feed title for the listing, ordered by created date
+    listing_created_feed: "New scripts"
+    # feed title for the listing, ordered by updated date
+    listing_updated_feed: "Updated scripts"
     # link to start the process of importing (creating from an external place) scripts
     import: "Import scripts"
     # link to create a new script

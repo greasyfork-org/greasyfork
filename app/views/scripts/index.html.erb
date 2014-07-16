@@ -1,20 +1,5 @@
-<% if params[:site] == '*' and !@scripts.empty? %>
-	<%- title t('scripts.listing_title_all_sites') %>
-	<%- description "List of user scripts for all sites available on Greasy Fork" %>
-<% elsif !params[:site].nil? and !@scripts.empty? %>
-	<%- title t('scripts.listing_title_for_site', :site => params[:site]) %>
-	<%- description "List of user scripts for #{params[:site]} available on Greasy Fork" %>
-<% elsif action_name == 'search' and !params[:q].nil? %>
-	<%- title t('scripts.listing_title_for_search', :search_string => params[:q]) %>
-	<%- description "List of '#{params[:q]}' user scripts available on Greasy Fork" %>
-<% elsif action_name == 'minified' %>
-	<%- title "Potentially minified user scripts on Greasy Fork" %>
-<% elsif action_name == 'code_search' %>
-	<%- title t('scripts.listing_title_for_code_search', :search_string => params[:c]) %>
-<% else %>
-	<%- title t('scripts.listing_title_generic') %>
-	<%- description 'List of user scripts available on Greasy Fork' %>
-<% end %>
+<%- title @title %>
+<%- description @description %>
 
 <div id="script-list-option-groups">
 	<div id="script-list-sort" class="script-list-option-group"><%=t('scripts.listing_sort_label')%>
