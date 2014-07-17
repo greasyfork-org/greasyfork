@@ -42,7 +42,7 @@ if same_user %>
 		dosr = @user.discussions_on_scripts_written %>
 		<section id="user-discussions-on-scripts-written">
 			<header>
-				<h3>Discussions on your scripts <a href="/forum/discussions/feed.rss?script_author=<%=@user.id%>"><img src="<%=asset_path('feed-icon-14x14.png')%>" alt="RSS Feed" rel="nofollow"></h3>
+				<h3>Discussions on your scripts <a href="/forum/discussions/feed.rss?script_author=<%=@user.id%>"><img src="<%=asset_path('feed-icon-14x14.png')%>" alt="RSS Feed" rel="nofollow"></a></h3>
 			</header>
 			<% if dosr.empty? %>
 				<p>None yet!</p>
