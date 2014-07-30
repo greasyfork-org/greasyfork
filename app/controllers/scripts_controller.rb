@@ -137,7 +137,11 @@ class ScriptsController < ApplicationController
 	def show
 		@script, @script_version = versionned_script(params[:id], params[:version])
 		return if redirect_to_slug(@script, :id)
-		@bots = 'noindex' if !params[:version].nil?
+		if !params[:version].nil?
+			@bots = 'noindex'
+		elsif @script.unlisted?
+			@bots = 'noindex,follow'
+		end
 		@by_sites = get_by_sites
 	end
 

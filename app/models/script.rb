@@ -122,6 +122,10 @@ class Script < ActiveRecord::Base
 		active? and script_type_id == 1
 	end
 
+	def unlisted?
+		script_type_id == 2
+	end
+
 	def slugify(name)
 		# take out swears
 		r = name.downcase.gsub(/motherfucking|motherfucker|fucking|fucker|fucks|fuck|shitty|shits|shit|niggers|nigger|cunts|cunt/, '')
