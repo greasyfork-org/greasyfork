@@ -162,6 +162,18 @@ en:
     locale_explanation: "Primary language of this entry."
     # the default value for the locale box, if submitted the site will attempt to detect the language of the entry
     locale_auto_select: "(Automatically detect)"
+    # label which lists the sets this script is in, which is followed by controls to change its inclusions
+    sets_label: "In script sets:"
+    # label for when the script is not in any sets, which is followed by controls to change its inclusions
+    sets_label_no_sets: "Script sets:"
+    # option to remove the script from the set
+    sets_remove_inclusion: "Remove from %{set_name}"
+    # option to remove the script's exclusion from the set
+    sets_remove_exclusion: "Remove exclusion from %{set_name}"
+    # option to add the script from the set
+    sets_add_inclusion: "Add to %{set_name}"
+    # option to exclude the script from the set (when it's been included as part of a sub set)
+    sets_add_exclusion: "Exclude from %{set_name}"
   forum_discussions:
     # forum discussion lists with 2 * 2 = 4 options:
     # 1. with_script: includes the script name, for example for "Discussions on your scripts" on a user's page

@@ -72,6 +72,7 @@ Greasyfork::Application.routes.draw do
 			post 'webhook'
 			resources :script_sets, :only => [:create, :new, :edit, :update], :path => 'sets'
 		end
+		post 'script_sets/add_to_set', :to => 'script_sets#add_to_set', :as => 'add_to_script_set'
 
 		get 'import', :to => 'import#index', :as => 'import_start'
 		get 'import/userscriptsorg', :to => 'import#userscriptsorg', :as => 'import_userscriptsorg'

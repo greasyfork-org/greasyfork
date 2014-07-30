@@ -6,7 +6,59 @@
 		when 1, 2 %>
 			<div id="install-area">
 				<%=link_to t('scripts.install'), params[:version].nil? ? script_user_js_path(@script, :name => @script.url_name) : script_user_js_path(@script, :version => params[:version], :name => @script.url_name) + '&d=.user.js', {:class => 'install-link', 'data-ping-url' => url_for(script_install_ping_path(@script, :authenticity_token => session[:_csrf_token])), 'data-is-previous-version' => !params[:version].nil?, :rel => 'nofollow'}%><%=link_to t('scripts.install_help'), help_installing_user_scripts_path, {:class => 'install-help-link', :title => t('scripts.install_help_title'), :rel => 'nofollow'}%>
+
+				<% if user_signed_in?
+					sets_direct_inclusion = []
+					sets_direct_exclusion = []
+					sets_indirect_inclusion = []
+					sets_not_included = []
+					current_user.script_sets.each do |set|
+						if set.child_script_inclusions.include?(@script)
+							sets_direct_inclusion << set
+							next
+						end
+						if set.child_script_exclusions.include?(@script)
+							sets_direct_exclusion << set
+							next
+						end
+						set_script_ids = Rails.cache.fetch(set) do
+							set.scripts.map{|s| s.id}
+						end
+						if set_script_ids.include?(@script.id)
+							sets_indirect_inclusion << set
+						else
+							sets_not_included << set
+						end
+					end
+					in_sets = sets_direct_inclusion + sets_indirect_inclusion
+					%>
+					<%=form_tag(add_to_script_set_path, {:class => 'script-in-sets'}) do |f| %>
+						<% if in_sets.empty? %>
+							<%=t('scripts.sets_label_no_sets')%>
+						<% else %>
+							<%=t('scripts.sets_label')%>
+							<%=in_sets.map{|s| link_to(s.name, scripts_path(:set => s.id)).html_safe}.join(', ').html_safe%>
+						<% end %>
+						<select name="action-set">
+							<% sets_direct_inclusion.each do |set| %>
+								<option value="ri-<%=set.id%>"><%=t('scripts.sets_remove_inclusion', :set_name => set.name)%></option>
+							<% end
+							sets_direct_exclusion.each do |set| %>
+								<option value="re-<%=set.id%>"><%=t('scripts.sets_remove_exclusion', :set_name => set.name)%></option>
+							<% end
+							sets_indirect_inclusion.each do |set| %>
+								<option value="ae-<%=set.id%>"><%=t('scripts.sets_add_exclusion', :set_name => set.name)%></option>
+							<% end
+							sets_not_included.each do |set| %>
+								<option value="ai-<%=set.id%>"><%=t('scripts.sets_add_inclusion', :set_name => set.name)%></option>
+							<% end %>
+						</select>
+						<input type="hidden" name="script_id" value="<%=@script.id%>">
+						<input type="submit" value="→">
+					<% end %>
+				<% end %>
 			</div>
+
 		<% when 3 %>
 			<p>
 				<% if params[:version].nil?

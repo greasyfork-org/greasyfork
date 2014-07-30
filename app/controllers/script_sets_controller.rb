@@ -35,6 +35,39 @@ class ScriptSetsController < ApplicationController
 		render :action => :edit
 	end
 
+	def add_to_set
+		action, set_id = params['action-set'].split('-')
+		set = ScriptSet.find(set_id)
+		if set.user_id != current_user.id
+			render_access_denied
+			return
+		end
+
+		script = Script.find(params[:script_id])
+
+		r = false
+		case action
+			when 'ai'
+				r = set.add_child(script, false)
+			when 'ae'
+				r = set.add_child(script, true)
+			when 'ri'
+				r = set.remove_child(script)
+			when 're'
+				r = set.remove_child(script)
+		end
+
+		if r
+			if !set.save
+				flash[:notice] = 'Could not save set'
+			end
+		else
+			flash[:notice] = 'Could not add to set.'
+		end
+
+		redirect_to script
+	end
+
 private
 
 	def handle_update(set)
