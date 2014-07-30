@@ -38,8 +38,12 @@ class ScriptsController < ApplicationController
 		@feeds = {t('scripts.listing_created_feed') => {:sort => 'created'}, t('scripts.listing_updated_feed') => {:sort => 'updated'}}
 
 		if !params[:set].nil?
-			@title = @set.name
-			@description = @set.description
+			if @set.favorite
+				@title = t('scripts.listing_title_for_favorites', :set_name => @set.display_name, :user_name => @set.user.name)
+			else
+				@title = @set.display_name
+				@description = @set.description
+			end
 		elsif params[:site] == '*' and !@scripts.empty?
 			@title = t('scripts.listing_title_all_sites')
 			@description = t('scripts.listing_description_all_sites')

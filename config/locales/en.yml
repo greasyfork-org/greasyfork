@@ -122,6 +122,8 @@ en:
     listing_title_for_code_search: "'%{search_string}' user scripts"
     # html title for script list page when no other situation applies
     listing_title_generic: "User scripts"
+    # html title for script list page for a user's favorites. set_name is script_sets.favorites_name
+    listing_title_for_favorites: "%{user_name}'s %{set_name}"
     # meta description and feed subtitle for script list page when no other situation applies
     listing_description_generic: "User scripts that add features and remove bugs on the sites you use"
     # label for sorting links on script list page
@@ -174,6 +176,9 @@ en:
     sets_add_inclusion: "Add to %{set_name}"
     # option to exclude the script from the set (when it's been included as part of a sub set)
     sets_add_exclusion: "Exclude from %{set_name}"
+  script_sets:
+    # name for the favorites set
+    favorites_name: "Favorites"
   forum_discussions:
     # forum discussion lists with 2 * 2 = 4 options:
     # 1. with_script: includes the script name, for example for "Discussions on your scripts" on a user's page

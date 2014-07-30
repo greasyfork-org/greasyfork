@@ -67,6 +67,10 @@ class User < ActiveRecord::Base
 		return self.identities.map{|i| i.provider}.uniq
 	end
 
+	def favorite_script_set
+		return ScriptSet.where(:favorite => true).where(:user_id => id).first
+	end
+
 	protected
 
 	def password_required?

@@ -73,7 +73,13 @@ if same_user %>
 			<p>None yet.</p>
 		<% else %>
 			<ul id="user-script-sets">
-				<% @user.script_sets.each do |ss| %>
+				<% favorites_set = @user.script_sets.find{|ss| ss.favorite}
+				if !favorites_set.nil? %>
+					<li><%=t('script_sets.favorites_name')%> <%=link_to 'View scripts', scripts_path(:set => favorites_set.id)%> <% if same_user %><%=link_to 'Edit', edit_user_script_set_path(@user, favorites_set)%><% end %></li>
+				<% elsif same_user %>
+					<li><%=t('script_sets.favorites_name')%> <%=link_to 'Edit', new_user_script_set_path(@user, :fav =>  1)%></li>
+				<% end
+				@user.script_sets.select{|ss| !ss.favorite}.each do |ss| %>
 					<li><%=ss.name%>: <%=ss.description%> <%=link_to 'View scripts', scripts_path(:set => ss.id)%> <% if same_user %><%=link_to 'Edit', edit_user_script_set_path(@user, ss)%><% end %></li>
 				<% end %>
 			</ul>

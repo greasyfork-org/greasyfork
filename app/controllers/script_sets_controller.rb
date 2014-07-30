@@ -7,6 +7,7 @@ class ScriptSetsController < ApplicationController
 		@user = User.find(params[:user_id])
 		@set = ScriptSet.new
 		@set.user = @user
+		@set.favorite = !params[:fav].nil?
 		@child_set_user = @user
 	end
 
@@ -19,6 +20,14 @@ class ScriptSetsController < ApplicationController
 	def create
 		@set = ScriptSet.new
 		@set.user = User.find(params[:user_id])
+		if params[:favorite]
+			# check to make sure the user doesn't already have a favorite set
+			if !@set.user.favorite_script_set.nil?
+				render :action => :edit
+				return
+			end
+			make_favorite_set(@set)
+		end
 		return if handle_update(@set)
 		render :action => :edit
 	end
@@ -37,10 +46,21 @@ class ScriptSetsController < ApplicationController
 
 	def add_to_set
 		action, set_id = params['action-set'].split('-')
-		set = ScriptSet.find(set_id)
-		if set.user_id != current_user.id
-			render_access_denied
-			return
+		set = nil
+
+		if set_id == 'fav'
+			set = current_user.favorite_script_set
+			if set.nil?
+				set = ScriptSet.new
+				set.user = current_user
+				make_favorite_set(set)
+			end
+		else
+			set = ScriptSet.find(set_id)
+			if set.user_id != current_user.id
+				render_access_denied
+				return
+			end
 		end
 
 		script = Script.find(params[:script_id])
@@ -73,7 +93,10 @@ private
 	def handle_update(set)
 		set.assign_attributes(script_set_params)
 
-		@child_set_user = User.find(params['child-set-user-id'])
+		@child_set_user = nil
+		if !params['child-set-user-id'].nil?
+			@child_set_user = User.find(params['child-set-user-id'])
+		end
 		errors = []
 
 		# Previously added scripts
@@ -174,7 +197,7 @@ private
 		end
 
 		# Change the user for whom we're listing the sets
-		if !params['child-set-user-refresh'].nil?
+		if !params['child-set-user-refresh'].nil? and !@child_set_user.nil?
 			@child_set_user = parse_user(params['child-set-user'])
 
 			if @child_set_user.nil?
@@ -216,7 +239,14 @@ private
 	end
 
 	def script_set_params
-		params.require(:script_set).permit(:name, :description)
+		params.permit(:script_set).permit(:name, :description)
+	end
+
+	def make_favorite_set(set)
+		set.favorite = true
+		# these are not displayed - they are just placeholders
+		set.name = 'Favorite'
+		set.description = 'Favorite scripts'
 	end
 
 end

@@ -15,6 +15,13 @@ class ScriptSet < ActiveRecord::Base
 
 	def scripts(parents = [])
 		r = Set.new
+
+		# favorites can only directly include scripts
+		if favorite
+			r.merge(child_script_inclusions)
+			return r
+		end
+
 		# prevent infinite recursion
 		return r if parents.include?(self)
 		parents = parents.dup
@@ -88,4 +95,15 @@ class ScriptSet < ActiveRecord::Base
 		return true
 	end
 
+	def self.favorites_first(arr)
+		return arr.sort{|a, b|
+			next -1 if a.favorite and !b.favorite
+			next 1 if !a.favorite and b.favorite
+			next a.id <=> b.id
+		}
+	end
+
+	def display_name
+		return favorite ? I18n.t('script_sets.favorites_name') : name
+	end
 end

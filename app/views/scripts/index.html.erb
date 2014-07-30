@@ -44,8 +44,8 @@
 		<div id="script-list-set" class="script-list-option-group">Script set:
 			<ul>
 				<%=script_list_link('All', params[:sort], params[:site], nil)%>
-				<% current_user.script_sets.each do |set| %>
-					<%=script_list_link(set.name, params[:sort], params[:site], set.id)%>
+				<% ScriptSet.favorites_first(current_user.script_sets).each do |set| %>
+					<%=script_list_link(set.display_name, params[:sort], params[:site], set.id)%>
 				<% end %>
 			</ul>
 		</div>
@@ -55,12 +55,14 @@
 
 <% if defined?(@set) and !@set.nil? %>
 	<h3>
-		<%=@set.name%> by <%=link_to @set.user.name, @set.user%> 
+		<%=@set.display_name%> by <%=link_to @set.user.name, @set.user%>
 		<% if user_signed_in? and current_user == @set.user%>
 			<%=link_to('Edit', edit_user_script_set_path(current_user, @set))%>
 		<% end %>
 	</h3>
-	<p><%=@set.description%></p>
+	<% if !@set.favorite %>
+		<p><%=@set.description%></p>
+	<% end %>
 <% end %>
 
 <% if @scripts.empty? %>

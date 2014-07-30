@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.37, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.5.38, for debian-linux-gnu (x86_64)
 --
 -- Host: 127.0.0.1    Database: greasyfork
 -- ------------------------------------------------------
--- Server version	5.5.37-0ubuntu0.14.04.1
+-- Server version	5.5.38-0ubuntu0.14.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -1278,7 +1278,7 @@ CREATE TABLE `script_set_automatic_set_inclusions` (
   PRIMARY KEY (`id`),
   KEY `index_script_set_automatic_set_inclusions_on_parent_id` (`parent_id`),
   KEY `ssasi_script_set_automatic_type_id` (`script_set_automatic_type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1310,7 +1310,7 @@ CREATE TABLE `script_set_script_inclusions` (
   PRIMARY KEY (`id`),
   KEY `index_script_set_script_inclusions_on_parent_id` (`parent_id`),
   KEY `index_script_set_script_inclusions_on_child_id` (`child_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1328,7 +1328,7 @@ CREATE TABLE `script_set_set_inclusions` (
   PRIMARY KEY (`id`),
   KEY `index_script_set_set_inclusions_on_parent_id` (`parent_id`),
   KEY `index_script_set_set_inclusions_on_child_id` (`child_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1345,9 +1345,10 @@ CREATE TABLE `script_sets` (
   `description` text NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
+  `favorite` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `index_script_sets_on_user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1505,7 +1506,7 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-07-14 11:29:29
+-- Dump completed on 2014-07-30 11:22:35
 INSERT INTO schema_migrations (version) VALUES ('20140210194333');
 
 INSERT INTO schema_migrations (version) VALUES ('20140210201355');
@@ -1591,4 +1592,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140708163921');
 INSERT INTO schema_migrations (version) VALUES ('20140713032842');
 
 INSERT INTO schema_migrations (version) VALUES ('20140714161558');
+
+INSERT INTO schema_migrations (version) VALUES ('20140730161636');
 
