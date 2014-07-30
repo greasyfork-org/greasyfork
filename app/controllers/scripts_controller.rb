@@ -398,6 +398,8 @@ private
 				return "#{column_prefix}code_updated_at DESC, #{column_prefix}id"
 			when 'daily_installs'
 				return "#{column_prefix}daily_installs DESC, #{column_prefix}id"
+			when 'fans'
+				return "#{column_prefix}fan_score DESC, #{column_prefix}id"
 			else
 				params[:sort] = nil
 				if for_sphinx
