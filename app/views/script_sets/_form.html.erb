@@ -45,7 +45,10 @@
 		</ul>
 	<% end %>
 
-	<% if !@set.favorite %>
+	<% if @set.favorite %>
+		<%=s.hidden_field(:name)%>
+		<%=s.hidden_field(:description)%>
+	<% else %>
 		<div>
 			<%=s.label(:name)%><br>
 			<%=s.text_field(:name, :maxlength => 100, :size => nil)%>
@@ -254,6 +257,6 @@
 		</div>
 	<% end %>
 
-	<input type="hidden" name="favorite" value="<%=@set.favorite%>">
+	<input type="hidden" name="favorite" value="<%=@set.favorite ? '1' : '0'%>">
 	<button name="save" value="1">Save</button>
 <% end %>

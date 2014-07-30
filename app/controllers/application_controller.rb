@@ -73,8 +73,8 @@ protected
 		render_locked if script.locked and (current_user.nil? or !current_user.moderator?)
 	end
 
-	def render_404
-		render :text => 'Script does not exist.', :status => 404, :layout => 'application'
+	def render_404(message = 'Script does not exist.')
+		render :text => message, :status => 404, :layout => 'application'
 	end
 
 	def render_deleted

@@ -2,6 +2,7 @@ class ScriptSetsController < ApplicationController
 
 	before_filter :authenticate_user!
 	before_filter :authorize_by_user_id
+	before_filter :ensure_set_ownership, :except => [:new, :create, :add_to_set]
 
 	def new
 		@user = User.find(params[:user_id])
@@ -20,16 +21,16 @@ class ScriptSetsController < ApplicationController
 	def create
 		@set = ScriptSet.new
 		@set.user = User.find(params[:user_id])
-		if params[:favorite]
+		if params[:favorite] == '1'
 			# check to make sure the user doesn't already have a favorite set
 			if !@set.user.favorite_script_set.nil?
-				render :action => :edit
+				render :action => :new
 				return
 			end
 			make_favorite_set(@set)
 		end
 		return if handle_update(@set)
-		render :action => :edit
+		render :action => :new
 	end
 
 	def update
@@ -42,6 +43,13 @@ class ScriptSetsController < ApplicationController
 
 		return if handle_update(@set)
 		render :action => :edit
+	end
+
+	def destroy
+		set = ScriptSet.find(params[:id])
+		ScriptSetSetInclusion.destroy_all(:child_id => set.id)
+		set.destroy
+		redirect_to set.user
 	end
 
 	def add_to_set
@@ -91,7 +99,7 @@ class ScriptSetsController < ApplicationController
 private
 
 	def handle_update(set)
-		set.assign_attributes(script_set_params)
+		set.assign_attributes(script_set_params) unless set.favorite
 
 		@child_set_user = nil
 		if !params['child-set-user-id'].nil?
@@ -239,7 +247,7 @@ private
 	end
 
 	def script_set_params
-		params.permit(:script_set).permit(:name, :description)
+		params.require(:script_set).permit(:name, :description)
 	end
 
 	def make_favorite_set(set)
@@ -249,4 +257,9 @@ private
 		set.description = 'Favorite scripts'
 	end
 
+	def ensure_set_ownership
+		set = ScriptSet.find(params[:id])
+		user = User.find(params[:user_id])
+		render_404('Script set does not exist') if set.user != user
+	end
 end
