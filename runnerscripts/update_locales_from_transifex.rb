@@ -11,7 +11,7 @@
 
 require 'transifex'
 
-translations_to_download = ['de', 'id', 'ja', 'nl', 'ru', 'zh-CN', 'zh-TW']
+translations_to_download = ['de', 'fr-CA', 'id', 'ja', 'nl', 'pl', 'ru', 'zh-CN', 'zh-TW']
 project_slug = 'greasy-fork'
 resource_slug = 'enyml-19'
 
