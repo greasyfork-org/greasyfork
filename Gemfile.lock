@@ -7,12 +7,6 @@ GIT
       faraday_middleware (~> 0.9.0)
       hashie (~> 1.2.0)
 
-GIT
-  remote: git@github.com:mcasimir/devise-i18n-views.git
-  revision: 99a73937f7f4ac7ddc13c124eded75db09657770
-  specs:
-    devise-i18n-views (0.2.8)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -71,6 +65,7 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     devise-i18n (0.10.3)
+    devise-i18n-views (0.3.0)
     diffy (3.0.5)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -232,7 +227,7 @@ DEPENDENCIES
   detect_language
   devise
   devise-i18n
-  devise-i18n-views!
+  devise-i18n-views (~> 0.3.0)
   diffy (~> 3.0.5)
   ignorable
   jbuilder (~> 1.2)
