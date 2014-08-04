@@ -29,6 +29,7 @@ class GreasyForkPlugin extends Gdn_Plugin {
 	# Add CSS, JS, and link to main site
 	public function Base_Render_Before($Sender) {
 		$Sender->AddCssFile($this->GetResource('global.css', FALSE, FALSE));
+		$Sender->AddCssFile('https://fonts.googleapis.com/css?family=Open+Sans');
 		$Sender->AddJsFile($this->GetResource('global.js', FALSE, FALSE));
 		if ($Sender->Menu) {
 			$Sender->Menu->AddLink('Greasy Fork', T('Greasy Fork'), 'https://greasyfork.org/', FALSE, array('class' => 'HomeLink'));

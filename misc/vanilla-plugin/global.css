@@ -15,3 +15,46 @@ label[for*="Rating"] {
 .MeBox {
 	margin-top: 0;
 }
+
+/* General theming */
+body, .SiteTitle {
+	font-family: "Open Sans", sans-serif;
+	letter-spacing: -0.01em;
+}
+/* https://bugzilla.mozilla.org/show_bug.cgi?id=1005669 */
+pre {
+	letter-spacing: normal;
+}
+body:not(.Settings) #Head {
+	background-color: #670000;
+	padding-top: 0 !important;
+}
+body:not(.Settings) #Head  * {
+	vertical-align: middle;
+}
+body:not(.Settings) a:not(.Button) {
+	color: #670000;
+}
+body:not(.Settings) .SiteMenu, .SiteSearch {
+	display: block;
+	margin-left: 96px;
+	margin-top: -20px;
+}
+body:not(.Settings) .SiteTitle {
+	display: block;
+	font-size: 72px;
+	margin: 0;
+	margin-top: 0px;
+	letter-spacing: -2px;
+	text-decoration: none;
+	line-height: 1.1em;
+}
+body:not(.Settings) #Head .SiteMenu a {
+	font-weight: normal;
+}
+body:not(.Settings) #Head .SiteTitle, #Head .SiteTitle a {
+	font-weight: 700;
+}
+body.Settings #Head img {
+	display: none;
+}
