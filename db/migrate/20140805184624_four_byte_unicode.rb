@@ -14,6 +14,7 @@ execute('ALTER TABLE GDN_Conversation CONVERT TO CHARACTER SET utf8mb4 COLLATE u
 execute('ALTER TABLE GDN_ConversationMessage CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;')
 execute('ALTER TABLE GDN_Discussion CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;')
 execute('ALTER TABLE GDN_Draft CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;')
+execute('ALTER TABLE GDN_Flag MODIFY COLUMN `ForeignUrl` varchar(150) NOT NULL;')
 execute('ALTER TABLE GDN_Flag CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;')
 execute('ALTER TABLE GDN_Invitation CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;')
 execute('ALTER TABLE GDN_Log CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;')
