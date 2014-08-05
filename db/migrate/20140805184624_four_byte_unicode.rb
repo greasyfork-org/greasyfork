@@ -22,6 +22,7 @@ execute('ALTER TABLE GDN_Media CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_
 execute('ALTER TABLE GDN_Message CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;')
 execute('ALTER TABLE GDN_Permission CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;')
 execute('ALTER TABLE GDN_Photo CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;')
+execute('ALTER TABLE GDN_Regarding MODIFY COLUMN `Type` varchar(150) NOT NULL;')
 execute('ALTER TABLE GDN_Regarding CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;')
 execute('ALTER TABLE GDN_Role CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;')
 execute('ALTER TABLE GDN_Session CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;')
