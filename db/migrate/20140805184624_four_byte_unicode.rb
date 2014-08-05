@@ -68,7 +68,6 @@ execute('ALTER TABLE schema_migrations MODIFY COLUMN `version` varchar(150) NOT 
 execute('ALTER TABLE schema_migrations CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;')
 execute('ALTER TABLE script_applies_tos CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;')
 execute('ALTER TABLE script_codes CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;')
-execute('ALTER TABLE script_delete_type CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;')
 execute('ALTER TABLE script_delete_types CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;')
 execute('ALTER TABLE script_set_automatic_set_inclusions CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;')
 execute('ALTER TABLE script_set_automatic_types CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;')
