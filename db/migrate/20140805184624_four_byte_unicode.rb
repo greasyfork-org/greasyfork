@@ -30,6 +30,7 @@ execute('ALTER TABLE GDN_Spammer CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb
 execute('ALTER TABLE GDN_Tag MODIFY COLUMN `Name` varchar(150) NOT NULL;')
 execute('ALTER TABLE GDN_Tag CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;')
 execute('ALTER TABLE GDN_TagDiscussion CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;')
+execute('ALTER TABLE GDN_User MODIFY COLUMN `Email` varchar(150) NOT NULL;')
 execute('ALTER TABLE GDN_User CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;')
 execute('ALTER TABLE GDN_UserAuthentication MODIFY COLUMN `ForeignUserKey` varchar(150) NOT NULL;')
 execute('ALTER TABLE GDN_UserAuthentication CONVERT TO CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;')
