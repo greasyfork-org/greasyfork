@@ -1,0 +1,22 @@
+<p><%=description.html_safe%></p>
+<% if scripts.empty? %>
+	<p><%=t('script.listing_none')%></p>
+<% else %>
+	<ul>
+		<% scripts.each do |script| %>
+			<li>
+				<% license = nil
+				if script.license.nil?
+					if script.license_text.nil?
+						license = "<i>#{t('scripts.no_license')}</i>".html_safe
+					else
+						license = script.license_text
+					end
+				else
+					license = script.license.html.html_safe
+				end %>
+				<%=t('scripts.derivatives_script_html', {:script_link => link_to(script.name, script), :user_link => link_to(script.user.name, script.user), :license => license})%>
+			</li>
+		<% end %>
+	</ul>
+<% end %>

@@ -55,6 +55,7 @@ Greasyfork::Application.routes.draw do
 			get 'undelete(.:format)', :to => 'scripts#undelete', :as => 'undelete'
 			post 'undelete(.:format)', :to => 'scripts#do_undelete', :as => 'do_undelete'
 			get 'stats(.:format)', :to => 'scripts#stats', :as => 'stats'
+			get 'derivatives', :as => 'derivatives'
 			collection do
 				get 'by-site(.:format)', :action => 'by_site', :as => 'site_list'
 				get 'by-site/:site(.:format)', :action => 'index', :as => 'by_site', :constraints => {:site => /.*/}

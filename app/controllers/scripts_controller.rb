@@ -2,9 +2,10 @@ require 'coderay'
 require 'script_importer/script_syncer'
 
 class ScriptsController < ApplicationController
-	layout 'application', :except => [:show, :show_code, :feedback, :diff, :sync, :sync_update, :delete, :undelete, :stats]
+	layout 'application', :except => [:show, :show_code, :feedback, :diff, :sync, :sync_update, :delete, :undelete, :stats, :derivatives]
 
 	before_filter :authorize_by_script_id, :only => [:sync, :sync_update]
+	before_filter :authorize_by_script_id_or_moderator, :only => [:delete, :do_delete, :undelete, :do_undelete, :derivatives]
 	before_filter :check_for_locked_by_script_id, :only => [:sync, :sync_update, :delete, :do_delete, :undelete, :do_undelete]
 	before_filter :check_for_deleted_by_id, :only => [:show]
 	before_filter :check_for_deleted_by_script_id, :only => [:show_code, :feedback, :user_js, :meta_js, :install_ping, :diff]
@@ -336,6 +337,35 @@ class ScriptsController < ApplicationController
 		end
 	end
 
+	def derivatives
+		@script = Script.find(params[:script_id])
+		@bots = 'noindex'
+
+		similar_names = {}
+		Script.listable.where(['user_id != ?', @script.user_id]).select([:id, :name]).each do |other_script|
+			similar_names[other_script.id] = Levenshtein.normalized_distance(@script.name, other_script.name)
+		end
+		similar_names = similar_names.sort_by{|k, v| v}.take(10)
+		@similar_name_scripts = similar_names.map{|a| Script.includes([:user, :license]).find(a[0])}
+
+		@same_namespaces = []
+		@same_namespaces = Script.listable.where(['user_id != ?', @script.user_id]).where(:namespace => @script.namespace).includes([:user, :license]) if !@script.namespace.nil?
+
+		# disabled - need to find a comparison method with good enough performance
+		if false
+			@similar_codes = []
+			code = @script.get_newest_saved_script_version.code
+			all_code_ids = self.class.get_code_ids
+			#raise all_code_ids.values.take(10).inspect
+			ScriptCode.find(all_code_ids.values.take(10)).each do |sc| #find_each({:batch_size => 10}) do |sc|
+				logger.info sc.id.to_s
+				#@similar_codes[all_code_ids.key(sc.id)] = code.similar(sc.code)
+				@similar_codes[all_code_ids.key(sc.id)] = self.class.find_longest_common_substring(code, sc.code).length
+			end
+			@similar_codes = @similar_codes.sort_by{|k, v| v}.take(10).map{|id| Script.includes([:user, :license]).find(id)}
+		end
+	end
+
 private
 
 	# Returns a hash, key: site name, value: hash with keys installs, scripts
@@ -407,6 +437,36 @@ private
 				end
 				return "#{column_prefix}daily_installs DESC, #{column_prefix}id"
 		end
+	end
+
+	# http://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Longest_common_substring#Ruby
+	def self.find_longest_common_substring(s1, s2)
+		if (s1 == "" || s2 == "")
+			return ""
+		end
+		m = Array.new(s1.length){ [0] * s2.length }
+		longest_length, longest_end_pos = 0,0
+		(0 .. s1.length - 1).each do |x|
+			(0 .. s2.length - 1).each do |y|
+				if s1[x] == s2[y]
+					m[x][y] = 1
+					if (x > 0 && y > 0)
+						m[x][y] += m[x-1][y-1]
+					end
+					if m[x][y] > longest_length
+						longest_length = m[x][y]
+						longest_end_pos = x
+					end
+				end
+			end
+		end
+		return s1[longest_end_pos - longest_length + 1 .. longest_end_pos]
+	end
+
+	def self.get_code_ids
+		newest_sv_ids = Script.connection.select_values('SELECT MAX(id) FROM script_versions GROUP BY script_id')
+		script_to_code_ids = Script.connection.select_rows("SELECT script_id, script_code_id FROM script_versions WHERE ID IN (#{newest_sv_ids.join(',')})")
+		return Hash[*script_to_code_ids.flatten]
 	end
 
 end

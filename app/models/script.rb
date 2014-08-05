@@ -79,6 +79,8 @@ class Script < ActiveRecord::Base
 			end
 		end
 
+		self.namespace = meta.has_key?('namespace') ? meta['namespace'].first : nil
+
 		if meta.has_key?('supportURL')
 			self.support_url = meta['supportURL'].find {|url|
 				next false if url.size > 500

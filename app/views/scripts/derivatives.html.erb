@@ -1,0 +1,7 @@
+<p><%=t('scripts.derivatives_intro')%></p>
+
+<% if !@script.namespace.nil? %>
+	<%=render :partial => 'derivatives_list', :locals => {:description => t('scripts.derivatives_namespace_matches_info_html', :namespace => "@namespace #{@script.namespace}"), :scripts => @same_namespaces} %>
+<% end %>
+
+<%=render :partial => 'derivatives_list', :locals => {:description => t('scripts.derivatives_name_matches_info'), :scripts => @similar_name_scripts} %>
