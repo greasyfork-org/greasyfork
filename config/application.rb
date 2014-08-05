@@ -25,7 +25,7 @@ module Greasyfork
 
     # locales good enough to link to
     # names from https://api.drupal.org/api/drupal/includes!iso.inc/function/_locale_get_predefined_list/7
-    config.available_locales = {'de' => 'Deutsch', 'en' => 'English', 'id' => 'Bahasa Indonesia', 'ja' => '日本語', 'nl' => 'Nederlands', 'pl' => 'Polski', 'ru' => 'Русский', 'zh-CN' => '简体中文', 'zh-TW' => '繁體中文'}
+    config.available_locales = {'de' => 'Deutsch', 'en' => 'English', 'es' => 'Español', 'id' => 'Bahasa Indonesia', 'ja' => '日本語', 'nl' => 'Nederlands', 'pl' => 'Polski', 'ru' => 'Русский', 'zh-CN' => '简体中文', 'zh-TW' => '繁體中文'}
     config.help_translate_url = 'https://github.com/JasonBarnabe/greasyfork/wiki/Translating-Greasy-Fork'
   end
 end
