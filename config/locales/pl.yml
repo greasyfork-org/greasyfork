@@ -59,6 +59,7 @@ pl:
     stats_daily_installs_heading: "Instalacji na dzień"
     stats_daily_installs_date_column_heading: "Data"
     stats_daily_installs_install_count_column_heading: "Instalacji"
+    derivatives_namespace_matches_info_html: "Skrypty opublikowane przez innych używając <code>%{namespace}</code>:"
     derivatives_script_html: "%{script_link} od %{user_link}, licencja: %{license}"
     listing_title_all_sites: "Skrypty użytkownika dla wszystkich stron"
     listing_description_all_sites: "Skrypty użytkownika, które dodają funkcje i usuwają błędy na wszystkich stronach"
@@ -68,6 +69,7 @@ pl:
     listing_title_for_code_search: "'%{search_string}' skryptów użytkownika"
     listing_title_generic: "Skrypty użytkownika"
     listing_title_for_favorites: "%{set_name} użytkownika %{user_name}"
+    listing_description_generic: "Skrypty użytkownika, które dodają funkcje i usuwają błędy na stronach, które odwiedzasz."
     listing_sort_label: "Sortuj według:"
     listing_sort_daily_installs: "Instalacji na dzień"
     listing_sort_total_installs: "Instalacji w sumie"
@@ -104,7 +106,7 @@ pl:
     explain_user_scripts_how_to_install_link: "darmowym rozszerzeniem, takim jak Greasemonkey"
     explain_user_scripts_browse_link: "rozpocznij przeglądanie"
     greasy_fork_for_authors_heading: "Jestem autorem skryptu, dlaczego powinienem używać Greasy Fork?"
-    greasy_fork_for_authors_html: "Greasy Fork ma na celu stać się czołową stroną ze skryptami użytkowników po upadku userscripts.org z największymi odbiorcami twoich skryptów. Naszym priorytetem jest jakość skryptów, dlatego staramy się blokować skrypty zawierające spam i/lub oszustwo. Oferujemy technologię, która daje łatwiejsze zarządzanie twoimi skryptami, na przykład automatyczne łączymy zmiany, gdy komentujesz zmiany na GitHub (lub gdziekolwiek!)."
+    greasy_fork_for_authors_html: "Greasy Fork ma na celu stać się czołową stroną ze skryptami użytkowników po upadku userscripts.org z największymi odbiorcami twoich skryptów. Naszym priorytetem jest jakość skryptów, dlatego staramy się blokować skrypty zawierające spam i/lub oszustwo. Oferujemy technologię, która daje łatwiejsze zarządzanie twoimi skryptami, na przykład automatycznie łączymy zmiany, gdy komentujesz zmiany na GitHub (lub gdziekolwiek!)."
     scripts_sample: "Przykłady naszych skryptów"
     scripts_sample_more: "Więcej..."
   users:
@@ -133,7 +135,9 @@ pl:
     update_password_no_match: "Hasła się nie zgadzają."
     password_updated: "Hasło zaktualizowane."
     remove_password: "Usuń hasło"
+    cant_remove_password: "Nie można usunąć hasła - nie masz innego sposobu na zalogowanie się!"
     password_removed: "Hasło usunięte."
+    edit_sign_in_external: "Zaloguj się z zewnątrz"
     syncing_indicator: "(synchronizowanie)"
     enable_syncing: "Włącz synchronizację"
     disable_syncing: "Wyłącz synchronizację"
@@ -142,6 +146,7 @@ pl:
     author_email_notification_type:
       none: "Nie otrzymuj e-maili o nowych dyskusjach w twoich skryptach"
   common:
+    error_preamble: "Mieliśmy małe problemy z tym, co chciałeś napisać..."
     allowed_elements_link: "(zobacz dozwolony kod)"
     allowed_elements_and_attributes_title: "Dozwolone elementy dla zawartości HTML"
   activerecord:
