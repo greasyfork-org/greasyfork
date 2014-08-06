@@ -277,6 +277,7 @@ class ScriptsController < ApplicationController
 			ma.script = script
 			ma.action = script.locked ? 'Delete and lock' : 'Delete'
 			ma.reason = params[:reason]
+			script.delete_reason = params[:reason]
 			ma.save!
 			if params[:banned]
 				ma_ban = ModeratorAction.new
@@ -317,6 +318,7 @@ class ScriptsController < ApplicationController
 			end
 		end
 		script.script_delete_type_id = nil
+		script.delete_reason = nil
 		script.save(:validate => false)
 		redirect_to script
 	end
