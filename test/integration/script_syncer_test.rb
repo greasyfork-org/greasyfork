@@ -38,7 +38,11 @@ class ScriptSyncerTest < ActiveSupport::TestCase
 		assert_nil script.sync_error
 		assert_equal 'Unit test.', script.description
 		assert_equal 2, script.script_versions.length
-		assert_equal :unchanged, ScriptSyncer.sync(script)
+		old_code = script.script_versions.last.code
+		r = ScriptSyncer.sync(script)
+		new_code = script.script_versions.last.code
+		assert_equal old_code, new_code
+		assert_equal :unchanged, r, r
 		assert_equal 2, script.script_versions.length
 	end
 

@@ -48,7 +48,7 @@ class Script < ActiveRecord::Base
 		meta = ScriptVersion.parse_meta(script_version.rewritten_code)
 		meta_name = meta.has_key?('name') ? meta['name'].first : nil
 		self.name = meta_name unless library? and meta_name.nil?
-		meta_description = meta.has_key?('description') ? meta['description'].first : nil
+		meta_description = script_version.description
 		self.description = meta_description unless library? and meta_description.nil?
 
 		self.script_applies_tos.each {|sat| sat.mark_for_destruction }

@@ -791,4 +791,31 @@ END
 		assert_equal sv.script_code_id, sv.rewritten_script_code_id
 	end
 
+	test 'truncate description' do
+		js = <<END
+// ==UserScript==
+// @name		A Test!
+// @description		123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+// @version 1.0
+// @namespace http://greasyfork.local/users/1
+// ==/UserScript==
+foo.baz();
+END
+		sv = ScriptVersion.new
+		script = Script.new
+		script.user = User.first
+		sv.script = script
+		sv.code = js
+		sv.calculate_all
+		script.apply_from_script_version(sv)
+		assert script.description.length > 500
+		assert !script.valid?
+		assert script.errors.to_a.length == 1, script.errors.full_messages
+		assert script.errors.full_messages.first.include?('Description'), script.errors.full_messages
+		sv.do_lenient_saving
+		sv.calculate_all
+		script.apply_from_script_version(sv)
+		assert script.valid?, script.errors.full_messages
+		assert script.description.length == 500
+	end
 end

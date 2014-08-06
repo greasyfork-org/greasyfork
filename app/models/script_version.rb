@@ -102,7 +102,7 @@ class ScriptVersion < ActiveRecord::Base
 		record.errors.add(attr, "namespace is missing") if previous_namespace.nil?
 	end
 
-	attr_accessor :accepted_assessment, :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation
+	attr_accessor :accepted_assessment, :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation, :description_override, :truncate_description
 
 	def initialize
 		# Accept assessment of @requires outside the whitelist
@@ -117,6 +117,9 @@ class ScriptVersion < ActiveRecord::Base
 		@add_missing_namespace = false
 		# Minified warning override
 		@minified_confirmation = false
+		# Truncate description if it's too long
+		@truncate_description = false
+		@description_override = nil
 		super
 	end
 
@@ -195,6 +198,7 @@ class ScriptVersion < ActiveRecord::Base
 		@add_missing_namespace = true
 		@namespace_check_override = true
 		@minified_confirmation = true
+		@truncate_description = true
 	end
 
 	def calculate_all(previous_description = nil)
@@ -216,6 +220,11 @@ class ScriptVersion < ActiveRecord::Base
 			end
 		end
 		self.rewritten_code = calculate_rewritten_code(previous_description)
+		# truncate description for use by Script, if necessary
+		if @truncate_description
+			d = self.class.get_first_meta(rewritten_code, 'description')
+			@description_override = d[0..499] if !d.nil? and d.length > 500
+		end
 	end
 
 	def get_rewritten_meta_block
@@ -465,6 +474,7 @@ class ScriptVersion < ActiveRecord::Base
 	end
 
 	def get_meta_from_previous(key, use_rewritten = false)
+		return nil if script.nil?
 		previous_script_version = script.get_newest_saved_script_version
 		return nil if previous_script_version.nil?
 		previous_meta = ScriptVersion.parse_meta(use_rewritten ? previous_script_version.rewritten_code : previous_script_version.code)
@@ -505,6 +515,11 @@ class ScriptVersion < ActiveRecord::Base
 
 	def self.code_appears_minified(value)
 		return value.split("\n").any? {|s| s.length > 5000 and s.include?('function') }
+	end
+
+	def description
+		return @description_override if !@description_override.nil?
+		return self.class.get_first_meta(rewritten_code, 'description')
 	end
 
 private
