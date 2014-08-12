@@ -178,6 +178,9 @@ class GreasyForkPlugin extends Gdn_Plugin {
 	}
 
 	private function onMainPage() {
+		if (isset($_REQUEST['script']) || isset($_REQUEST['script_author'])) {
+			return false;
+		}
 		#return false;
 		// i can't find a better way to detect this.
 		foreach (debug_backtrace() as $i) {
