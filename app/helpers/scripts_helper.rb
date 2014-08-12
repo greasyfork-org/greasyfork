@@ -15,7 +15,9 @@ module ScriptsHelper
 		elsif is_code_search
 			l = link_to label, code_search_scripts_path(:sort => sort, :c => params[:c])
 		elsif site.nil?
-			l = link_to label, scripts_path(:sort => sort, :set => set)
+			l = link_to label, {:sort => sort, :set => set, :site => nil}
+		elsif params[:controller] == 'users'
+			l = link_to label, {:sort => sort, :site => site, :set => set}
 		else
 			l = link_to label, by_site_scripts_path(:sort => sort, :site => site, :set => set)
 		end

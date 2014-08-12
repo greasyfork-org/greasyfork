@@ -83,16 +83,20 @@ if same_user %>
 	</section>
 <% end %>
 
-<% script_list = (same_user or (!current_user.nil? and current_user.moderator?)) ? @user.scripts.order('name') : @user.scripts.listable.order('name')
-# show deletions in a separate section if we're going to show any
-deleted_script_list = script_list.select{|s| s.deleted?}
-script_list = script_list - deleted_script_list %>
+<% # show deletions in a separate section if we're going to show any
+deleted_script_list = @scripts.select{|s| s.deleted?}
+script_list = @scripts - deleted_script_list %>
 <section>
+	<% if @user_has_scripts %>
+		<%= render partial: 'scripts/list_options', :locals => {:by_sites => @by_sites, :scripts => script_list}%>
+	<% end %>
 	<header>
 		<h3><%=t('users.script_list')%></h3>
 	</header>
-	<% if script_list.empty? %>
+	<% if !@user_has_scripts %>
 		<p><%=t('users.script_list_none')%></p>
+	<% elsif script_list.empty? %>
+		<p><%=t('users.script_list_none_for_filter')%></p>
 	<% else %>
 		<ol id="user-script-list" class="script-list">
 			<%= render partial: 'scripts/script', collection: script_list %>

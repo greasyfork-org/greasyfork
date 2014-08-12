@@ -1,0 +1,54 @@
+<div id="script-list-option-groups">
+	<div id="script-list-sort" class="script-list-option-group"><%=t('scripts.listing_sort_label')%>
+		<ul>
+			<% if action_name == 'search' %>
+				<%=script_list_link(t('scripts.listing_sort_relevance'), nil, params[:site], params[:set])%>
+				<%=script_list_link(t('scripts.listing_sort_daily_installs'), 'daily_installs', params[:site], params[:set])%>
+			<% else %>
+				<%=script_list_link(t('scripts.listing_sort_daily_installs'), nil, params[:site], params[:set])%>
+			<% end %>
+			<%=script_list_link(t('scripts.listing_sort_total_installs'), 'total_installs', params[:site], params[:set])%>
+			<%=script_list_link(t('scripts.listing_sort_fan_score'), 'fans', params[:site], params[:set])%>
+			<%=script_list_link(t('scripts.listing_sort_created_date'), 'created', params[:site], params[:set])%>
+			<%=script_list_link(t('scripts.listing_sort_updated_date'), 'updated', params[:site], params[:set])%>
+			<%=script_list_link(t('scripts.listing_sort_name'), 'name', params[:site], params[:set])%>
+		</ul>
+	</div>
+
+	<% if !by_sites.nil? %>
+		<div id="script-list-filter" class="script-list-option-group"><%=t('scripts.listing_filter_by_site_label')%>
+			<ul>
+				<%=script_list_link(t('scripts.listing_filter_by_site_disable'), params[:sort], nil, params[:set])%>
+				<% current_site_is_top = false
+				(0..9).each do |i|
+					break if by_sites[i].nil?
+					dt = by_sites[i][0]
+					if dt.nil?
+						current_site_is_top = true if params[:site] == '*' %>
+						<%=script_list_link(t('scripts.listing_filter_by_site_all_sites'), params[:sort], '*', params[:set])%>
+					<% else
+						current_site_is_top = true if dt == params[:site] %>
+						<%=script_list_link(dt, params[:sort], dt, params[:set])%>
+					<% end %>
+				<% end %>
+				<% if !current_site_is_top and !params[:site].nil? and !scripts.empty? %>
+					<%=script_list_link(params[:site], params[:sort], params[:site])%>
+				<% end %>
+				<li><%= link_to t('scripts.listing_filter_by_site_more_sites'), site_list_scripts_path %></li>
+			</ul>
+		</div>
+	<% end %>
+
+	<% if user_signed_in? and !current_user.script_sets.empty? %>
+		<div id="script-list-set" class="script-list-option-group">Script set:
+			<ul>
+				<%=script_list_link('All', params[:sort], params[:site], nil)%>
+				<% ScriptSet.favorites_first(current_user.script_sets).each do |set| %>
+					<%=script_list_link(set.display_name, params[:sort], params[:site], set.id)%>
+				<% end %>
+			</ul>
+		</div>
+
+	<% end %>
+</div>
+

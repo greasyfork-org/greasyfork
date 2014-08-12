@@ -17,6 +17,14 @@ class UsersController < ApplicationController
 			@user = @user.includes(:scripts => :script_type)
 		end
 		@user = @user.find(params[:id])
+		@by_sites = ScriptsController.get_top_by_sites
+
+		@scripts = ((!current_user.nil? && current_user.id == @user.id) or (!current_user.nil? and current_user.moderator?)) ? @user.scripts : @user.scripts.listable
+		@user_has_scripts = !@scripts.empty?
+		@scripts = ScriptsController.apply_filters(@scripts, params)
+
+		@bots = 'noindex,follow' if !params[:sort].nil?
+
 		return if redirect_to_slug(@user, :id)
 	end
 

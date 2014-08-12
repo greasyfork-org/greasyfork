@@ -7,7 +7,9 @@ ThinkingSphinx::Index.define :script, :with => :active_record, :delta => Thinkin
 	indexes user.name, :as => :author
 
 	# attributes
-	has :id, :created_at, :code_updated_at, :total_installs, :daily_installs, :fan_score
+	has :id, :created_at, :code_updated_at, :total_installs, :daily_installs
+	# int is default and unsigned, we deal with negatives
+	has :fan_score, :type => :bigint
 
 	where 'script_type_id = 1 and script_delete_type_id is null and !uses_disallowed_external'
 

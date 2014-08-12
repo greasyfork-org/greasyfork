@@ -19,22 +19,12 @@ class ScriptsController < ApplicationController
 	#########################
 
 	def index
-		@scripts = Script.listable.includes([:user, :script_type]).order(get_sort).paginate(:page => params[:page], :per_page => get_per_page)
-		if !params[:site].nil?
-			if params[:site] == '*'
-				@scripts = @scripts.for_all_sites
-			else
-				@scripts = @scripts.joins(:script_applies_tos).where(['text = ?', params[:site]])
-			end
-		end
+		@scripts = Script.listable.includes([:user, :script_type]).paginate(:page => params[:page], :per_page => get_per_page)
+		@scripts = self.class.apply_filters(@scripts, params)
 		if !params[:set].nil?
 			@set = ScriptSet.find(params[:set])
-			set_script_ids = Rails.cache.fetch(@set) do
-				@set.scripts.map{|s| s.id}
-			end
-			@scripts = @scripts.where(:id => set_script_ids)
 		end
-		@by_sites = get_top_by_sites
+		@by_sites = self.class.get_top_by_sites
 		@bots = 'noindex,follow' if !params[:sort].nil?
 		@feeds = {t('scripts.listing_created_feed') => {:sort => 'created'}, t('scripts.listing_updated_feed') => {:sort => 'updated'}}
 
@@ -63,7 +53,7 @@ class ScriptsController < ApplicationController
 	end
 
 	def by_site
-		@by_sites = get_by_sites
+		@by_sites = self.class.get_by_sites
 	end
 
 	def search
@@ -73,7 +63,7 @@ class ScriptsController < ApplicationController
 		end
 		@bots = 'noindex,follow'
 		begin
-			@scripts = Script.search params[:q], :match_mode => :extended, :page => params[:page], :per_page => get_per_page, :order => get_sort(true), :populate => true, :includes => :script_type
+			@scripts = Script.search params[:q], :match_mode => :extended, :page => params[:page], :per_page => get_per_page, :order => self.class.get_sort(params, true), :populate => true, :includes => :script_type
 			# make it run now so we can catch syntax errors
 			@scripts.empty?
 		rescue ThinkingSphinx::SyntaxError => e
@@ -143,7 +133,7 @@ class ScriptsController < ApplicationController
 		elsif @script.unlisted?
 			@bots = 'noindex,follow'
 		end
-		@by_sites = get_by_sites
+		@by_sites = self.class.get_by_sites
 	end
 
 	def show_code
@@ -368,10 +358,60 @@ class ScriptsController < ApplicationController
 		end
 	end
 
+	def self.get_top_by_sites
+		return Rails.cache.fetch("scripts/get_top_by_sites") do
+			get_by_sites.sort{|a,b| b[1][:installs] <=> a[1][:installs]}.first(10)
+		end
+	end
+
+	def self.apply_filters(scripts, params)
+		scripts = scripts.order(get_sort(params))
+		if !params[:site].nil?
+			if params[:site] == '*'
+				scripts = scripts.for_all_sites
+			else
+				scripts = scripts.joins(:script_applies_tos).where(['text = ?', params[:site]])
+			end
+		end
+		if !params[:set].nil?
+			set = ScriptSet.find(params[:set])
+			set_script_ids = Rails.cache.fetch(set) do
+				set.scripts.map{|s| s.id}
+			end
+			scripts = scripts.where(:id => set_script_ids)
+		end
+		return scripts
+	end
+
 private
 
+	def self.get_sort(params, for_sphinx = false)
+		# sphinx has these defined as attributes, outside of sphinx they're possibly ambiguous column names
+		column_prefix = for_sphinx ? '' : 'scripts.'
+		case params[:sort]
+			when 'total_installs'
+				return "#{column_prefix}total_installs DESC, #{column_prefix}id"
+			when 'created'
+				return "#{column_prefix}created_at DESC, #{column_prefix}id"
+			when 'updated'
+				return "#{column_prefix}code_updated_at DESC, #{column_prefix}id"
+			when 'daily_installs'
+				return "#{column_prefix}daily_installs DESC, #{column_prefix}id"
+			when 'fans'
+				return "#{column_prefix}fan_score DESC, #{column_prefix}id"
+			when 'name'
+				return "#{column_prefix}name ASC, #{column_prefix}id"
+			else
+				params[:sort] = nil
+				if for_sphinx
+					return ''#"myweight DESC, #{column_prefix}id"
+				end
+				return "#{column_prefix}daily_installs DESC, #{column_prefix}id"
+		end
+	end
+
 	# Returns a hash, key: site name, value: hash with keys installs, scripts
-	def get_by_sites
+	def self.get_by_sites
 		return Rails.cache.fetch("scripts/get_by_sites") do
 			sql =<<-EOF
 				SELECT
@@ -392,13 +432,7 @@ private
 		end
 	end
 
-	def get_top_by_sites
-		return Rails.cache.fetch("scripts/get_top_by_sites") do
-			get_by_sites.sort{|a,b| b[1][:installs] <=> a[1][:installs]}.first(10)
-		end
-	end
-
-	def get_all_sites_count
+	def self.get_all_sites_count
 		sql =<<-EOF
 			SELECT
 				sum(daily_installs) install_count, count(distinct scripts.id) script_count
@@ -416,29 +450,6 @@ private
 		per_page = 50
 		per_page = [params[:per_page].to_i, 200].min if !params[:per_page].nil? and params[:per_page].to_i > 0
 		return per_page
-	end
-
-	def get_sort(for_sphinx = false)
-		# sphinx has these defined as attributes, outside of sphinx they're possibly ambiguous column names
-		column_prefix = for_sphinx ? '' : 'scripts.'
-		case params[:sort]
-			when 'total_installs'
-				return "#{column_prefix}total_installs DESC, #{column_prefix}id"
-			when 'created'
-				return "#{column_prefix}created_at DESC, #{column_prefix}id"
-			when 'updated'
-				return "#{column_prefix}code_updated_at DESC, #{column_prefix}id"
-			when 'daily_installs'
-				return "#{column_prefix}daily_installs DESC, #{column_prefix}id"
-			when 'fans'
-				return "#{column_prefix}fan_score DESC, #{column_prefix}id"
-			else
-				params[:sort] = nil
-				if for_sphinx
-					return ''#"myweight DESC, #{column_prefix}id"
-				end
-				return "#{column_prefix}daily_installs DESC, #{column_prefix}id"
-		end
 	end
 
 	# http://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Longest_common_substring#Ruby
