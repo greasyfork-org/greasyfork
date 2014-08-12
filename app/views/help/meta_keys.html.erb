@@ -1,0 +1,39 @@
+<%- title 'Meta keys - Greasy Fork' %>
+<%- description 'List of user script meta keys that mean something to Greasy Fork.' %>
+
+<p>This is a list of <a href="http://wiki.greasespot.net/Metadata_Block">user script meta keys</a> that Greasy Fork will read. Keys outside of this list may be included in scripts, and will be present in the installed script, but have no effect in Greasy Fork's UI.</p>
+
+<dl>
+	<dt>@name</dt>
+	<dd>The name of the script, used as a heading and in links. Required.</dd>
+
+	<dt>@description</dt>
+	<dd>A description of what the script does. Shown as text under the script name. Required.</dd>
+
+	<dt>@namespace</dt>
+	<dd>A combination of @namespace and @name is used by user script managers to see if a script is already installed. Greasy Fork requires this field and will warn if it's changed on update.</dd>
+
+	<dt>@version</dt>
+	<dd>Identifier for a specific version of a script in <a href="https://developer.mozilla.org/en/docs/Toolkit_version_format">Mozilla version format</a>. Version is displayed on a script's info page. Greasy Fork requires this field and will warn if it's decremented or if it's not incremented when the script's code changes.</dd>
+
+	<dt>@include, @exclude, @match</dt>
+	<dd>Describe what pages the script will run on. This list will be processed, displayed on the script's info page, and used to categorize scripts.</dd>
+
+	<dt>@require</dt>
+	<dd>Includes external JavaScript into a script. See <%=link_to 'rules for code including external scripts', help_external_scripts_path%></dd>
+
+	<dt>@updateURL, @installURL, @downloadURL</dt>
+	<dd>Describe how user script managers should get updates. Greasy Fork will strip these keys, which makes any script installed from Greasy Fork only update from Greasy Fork.</dd>
+
+	<dt>@license</dt>
+	<dd>URL for or name of the license that describes how people are allowed to copy or modify a script. Lack of license implies users can install the script for personal use, but may not redistribute it. License is displayed on a script's info page.</dd>
+
+	<dt>@supportURL</dt>
+	<dd>URL for a page where users can get support on a script (e.g. a bug tracker, a forum, an e-mail address). Support URL is displayed on a script's feedback page.</dd>
+
+	<dt>@contributionURL</dt>
+	<dd>URL for a page where users can donate to the author of a script. Contribution URL is displayed on a script's feedback page.</dd>
+
+	<dt>@contributionAmount</dt>
+	<dd>Suggested donation amount, used in conjunction with @contributionURL.</dd>
+</dl>

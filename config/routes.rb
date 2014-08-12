@@ -90,6 +90,7 @@ Greasyfork::Application.routes.draw do
 		get 'help/external-scripts', :to => 'help#external_scripts', :as => 'help_external_scripts'
 		get 'help/installing-user-scripts', :to => 'help#installing_user_scripts', :as => 'help_installing_user_scripts'
 		get 'help/rewriting', :to => 'help#rewriting', :as => 'help_rewriting'
+		get 'help/meta-keys', :to => 'help#meta_keys', :as => 'help_meta_keys'
 
 		post 'preview-markup', :to => 'home#preview_markup', :as => 'preview_markup'
 
