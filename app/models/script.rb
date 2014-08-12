@@ -81,6 +81,11 @@ class Script < ActiveRecord::Base
 
 		self.namespace = meta.has_key?('namespace') ? meta['namespace'].first : nil
 
+		self.contribution_url = !meta.has_key?('contributionURL') ? nil : meta['contributionURL'].find {|url|
+			URI::regexp(%w(http https)) =~ url
+		}
+		self.contribution_amount = (!self.contribution_url.nil? && meta.has_key?('contributionAmount')) ? meta['contributionAmount'].first : nil
+
 		if meta.has_key?('supportURL')
 			self.support_url = meta['supportURL'].find {|url|
 				next false if url.size > 500

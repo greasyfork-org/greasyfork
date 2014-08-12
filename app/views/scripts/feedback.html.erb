@@ -1,6 +1,16 @@
 <%- title t('scripts.feedback_title', :script_name => @script.name) %>
 <%- description 'Feedback on ' + @script.name %>
 
+<% if !@script.contribution_url.nil? %>
+	<p id="contribution">
+		<% if @script.contribution_amount.nil? %>
+			<%=link_to t('scripts.contribution_no_amount', {:author => @script.user.name}), @script.contribution_url, {:rel => 'nofollow'}%>
+		<% else %>
+			<%=link_to t('scripts.contribution_with_amount', {:author => @script.user.name, :amount => @script.contribution_amount}), @script.contribution_url, {:rel => 'nofollow'}%>
+		<% end %>
+	</p>
+<% end %>
+
 <% if !@script.support_url.nil? %>
 	<p id="support-url">
 		<% if @script.support_url.start_with?('mailto') %>
