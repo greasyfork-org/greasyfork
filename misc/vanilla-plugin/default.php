@@ -2,13 +2,13 @@
 
 // Define the plugin:
 $PluginInfo['GreasyFork'] = array(
-   'Name' => 'GreasyFork',
-   'Description' => 'Greasy Fork customizations',
-   'Version' => '1.0',
-   'Author' => "Jason Barnabe",
-   'RequiredApplications' => array('Vanilla' => '2.1'),
-   'AuthorEmail' => 'jason.barnabe@gmail.com',
-   'AuthorUrl' => 'https://greasyfork.org'
+	 'Name' => 'GreasyFork',
+	 'Description' => 'Greasy Fork customizations',
+	 'Version' => '1.0',
+	 'Author' => "Jason Barnabe",
+	 'RequiredApplications' => array('Vanilla' => '2.1'),
+	 'AuthorEmail' => 'jason.barnabe@gmail.com',
+	 'AuthorUrl' => 'https://greasyfork.org'
 );
 
 class GreasyForkPlugin extends Gdn_Plugin {
@@ -34,6 +34,9 @@ class GreasyForkPlugin extends Gdn_Plugin {
 		if ($Sender->Menu) {
 			$Sender->Menu->AddLink('Greasy Fork', T('Greasy Fork'), 'https://greasyfork.org/', FALSE, array('class' => 'HomeLink'));
 			# added to config: $Configuration['Garden']['Menu']['Sort'] = ['Greasy Fork', 'Dashboard', 'Discussions'];
+		}
+		if ($this->onMainPage()) {
+			$this->ShowFilterLinks($Sender);
 		}
 	}
 
@@ -169,4 +172,86 @@ class GreasyForkPlugin extends Gdn_Plugin {
 		}
 
 	}
+
+	private function shouldFilterReviews() {
+		return $this->GetUserMeta(Gdn::Session()->UserID, 'FilterReviews', false, true);
+	}
+
+	private function onMainPage() {
+		#return false;
+		// i can't find a better way to detect this.
+		foreach (debug_backtrace() as $i) {
+			#echo $i['class'].':'.$i['function']."\n";
+			# we don't want to do this for...
+			if ((isset($i['class']) && ($i['class'] == 'BookmarkedModule' // bookmarks in the sidebar
+			|| $i['class'] == 'CategoriesController' // category listings
+			|| $i['class'] == 'ParticipatedPlugin')) // participated
+			|| $i['function'] == 'GetAnnouncements' // announcements
+			|| $i['function'] == 'Bookmarked' // bookmarks listings
+			|| $i['function'] == 'Mine' // my discussions
+			|| $i['function'] == 'ProfileController_Discussions_Create' // profile discussion list
+			) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	// Update the query for the filter
+	public function DiscussionModel_BeforeGet_Handler($Sender) {
+		if ($this->onMainPage() && $this->shouldFilterReviews()) {
+			$prefix = $Sender->SQL->Database->DatabasePrefix;
+			$Sender->SQL->Database->DatabasePrefix = '';
+			$Sender->SQL->Where('d.ScriptID IS NULL');
+			$Sender->SQL->Database->DatabasePrefix = $prefix;
+		}
+	}
+
+	// Update the pager for the filter
+	public function DiscussionsController_BeforeBuildPager_Handler($Sender) {
+		if ($this->onMainPage() && $this->shouldFilterReviews()) {
+			$DiscussionModel = new DiscussionModel();
+			$prefix = $DiscussionModel->SQL->Database->DatabasePrefix;
+			$DiscussionModel->SQL->Database->DatabasePrefix = '';
+			$DiscussionModel->SQL->Select('d.DiscussionID', 'count', 'CountDiscussions')
+				->From('GDN_Discussion d')
+				->Where('d.ScriptID IS NULL');
+			$DiscussionModel->SQL->Database->DatabasePrefix = $prefix;
+			$Row = $DiscussionModel->SQL->Get()->FirstRow();
+			$Sender->SetData('CountDiscussions', $Row->CountDiscussions);
+		}
+	}
+
+	// Update the user's filter setting
+	public function ProfileController_SetReviewFilter_Create($Sender, $Args = array()) {
+		// Check intent
+		if (isset($Args[1]))
+			Gdn::Session()->ValidateTransientKey($Args[1]);
+		else
+			Redirect($_SERVER['HTTP_REFERER']);
+
+		if (isset($Args[0])) {
+			if (CheckPermission('Garden.SignIn.Allow')) {
+				$this->SetUserMeta(Gdn::Session()->UserID, 'FilterReviews', $Args[0] == 'true');
+			}
+		}
+
+		// Back from whence we came
+		Redirect($_SERVER['HTTP_REFERER']);
+	 }
+
+	// UI to update filter setting
+	public function ShowFilterLinks($Sender) {
+		// Not in Dashboard
+		// Block guests until guest sessions are restored
+		if ($Sender->MasterView == 'admin' || !CheckPermission('Garden.SignIn.Allow'))
+			return;
+
+		$FilterOn = $this->shouldFilterReviews();
+		$Url = 'profile/setreviewfilter/'.($FilterOn ? 'false' : 'true').'/'.Gdn::Session()->TransientKey();
+		$Link = Wrap(Anchor(($FilterOn ? 'Show script reviews' : 'Hide script reviews'), $Url), 'span', array('class' => 'ReviewFilterOption'));
+		$FilterLinks = Wrap($Link, 'div', array('class' => 'ReviewFilterOptions'));
+		$Sender->AddAsset('Content', $FilterLinks, 'ReviewFilter');
+	}
+
 }
