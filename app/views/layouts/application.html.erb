@@ -93,10 +93,10 @@
 	</header>
 
 <% if !notice.nil? %>
-	<p class="notice"><%= raw(notice) %></p>
+	<p class="notice"><%=notice%></p>
 <% end %>
 <% if !alert.nil? %>
-	<p class="alert"><%= raw(alert) %></p>
+	<p class="alert"><%=alert%></p>
 <% end %>
 
 <%= content_for?(:content) ? yield(:content) : yield %>
