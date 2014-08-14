@@ -4,6 +4,8 @@ class Script < ActiveRecord::Base
 	has_many :script_applies_tos, -> {order(:text)}, :dependent => :delete_all, :autosave => true
 	has_many :discussions, -> { readonly.order('COALESCE(DateLastComment, DateInserted)').where('Closed = 0') }, :class_name => 'ForumDiscussion', :foreign_key => 'ScriptID'
 	has_many :assessments, :dependent => :delete_all, :autosave => true
+	has_many :cpd_duplication_scripts
+	has_many :cpd_duplications, :through => :cpd_duplication_scripts
 	belongs_to :script_type
 	belongs_to :script_sync_source
 	belongs_to :script_sync_type
@@ -177,6 +179,14 @@ class Script < ActiveRecord::Base
 			return nil
 		end
 		return locales.first
+	end
+
+	def license_display
+		if license.nil?
+			return "<i>#{I18n.t('scripts.no_license')}</i>".html_safe if license_text.nil?
+			return license_text
+		end
+		return license.html.html_safe
 	end
 
 private

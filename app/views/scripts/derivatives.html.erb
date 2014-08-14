@@ -1,4 +1,42 @@
+<%- title t('scripts.derivatives_title', :script_name => @script.name) %>
+<%- description 'Potential derivatives of ' + @script.name %>
+
 <p><%=t('scripts.derivatives_intro')%></p>
+
+<% if !CpdDuplication.first.nil? %>
+	<p><%=t('scripts.derivatives_code_matches_info_html', :last_run => markup_date(CpdDuplication.first.created_at))%></p>
+	<% if @code_duplications.empty? %>
+		<p><%=t('scripts.listing_none')%></p>
+	<% else %>
+		<ul>
+			<% # line number seem to start at 0, so -1 all of them. Additionally, end line numbers can reference the start of the line, so -1 them for that.
+			@code_duplications.each do |cd|
+				source_duplication = cd.cpd_duplication_scripts.find{|cpdds| cpdds.script_id == @script.id} %>
+				<li>
+					<%=link_to t('scripts.script_lines_link', {:script_name => @script.name, :start => source_duplication.line - 1, :end => source_duplication.line + cd.lines - 2}), script_show_code_path(source_duplication.script, :anchor => "n#{source_duplication.line - 1}")%>
+					<ul>
+						<% cd.cpd_duplication_scripts.select{|cpdds| cpdds.script.user_id != @script.user_id && cpdds.script.listable?}.each do |dup| %>
+							<li>
+								<%=t('scripts.derivatives_script_with_code_line_html',  {
+									:script_lines_link => link_to(
+										t('scripts.script_lines_link', {
+											:script_name => dup.script.name,
+											:start => dup.line - 1,
+											:end => dup.line + cd.lines - 2
+										}),
+										script_show_code_path(dup.script, :anchor => "n#{dup.line - 1}")
+									),
+									:license => dup.script.license_display,
+									:user_link => link_to(dup.script.user.name, dup.script.user)
+								})%>
+							</li>
+						<% end %>
+					</ul>
+				</li>
+			<% end %>
+		</ul>
+	<% end %>
+<% end %>
 
 <% if !@script.namespace.nil? %>
 	<%=render :partial => 'derivatives_list', :locals => {:description => t('scripts.derivatives_namespace_matches_info_html', :namespace => "@namespace #{@script.namespace}"), :scripts => @same_namespaces} %>

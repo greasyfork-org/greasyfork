@@ -100,17 +100,7 @@
 		<dt class="script-show-updated-date"><%=t('scripts.updated_date')%></dt>
 		<dd class="script-show-updated-date"><%=markup_date(@script.code_updated_at)%></dd>
 		<dt class="script-show-license"><%=t('scripts.license')%></dt>
-		<dd class="script-show-license">
-			<%if @script.license.nil?%>
-				<% if @script.license_text.nil?%>
-					<i><%=t('scripts.no_license')%></i>
-				<% else %>
-					<%=@script.license_text%>
-				<% end %>
-			<% else %>
-				<%=@script.license.html.html_safe%>
-			<% end %>
-		</dd>
+		<dd class="script-show-license"><%=@script.license_display%></dd>
 	</dl>
 	<dl id="script-applies-to">
 		<dt class="script-show-applies-to"><%=t('scripts.applies_to')%></dt>
