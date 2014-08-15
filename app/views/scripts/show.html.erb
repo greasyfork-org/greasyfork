@@ -108,16 +108,11 @@
 			<% if @script.script_applies_tos.empty? %>
 				<%=t('scripts.applies_to_all')%>
 			<% else %>
-				<%=
-					(
-					@script.script_applies_tos.select{|s|s.domain}.map{ |s|
-						# count of other scripts - take this one out of the count if it's a listable
-						script_count = @by_sites[s.text].nil? ? 0 : (@by_sites[s.text][:scripts] - (@script.listable? ? 1 : 0))
-						next link_to(h(s.text), by_site_scripts_path(:site => s.text), {:title => t('scripts.applies_to_link_title', {:count => script_count, :site => s.text})}) if script_count > 0
-						next h(s.text)
-					} +
-					@script.script_applies_tos.select{|s|!s.domain}.map{|s| "<code>#{h(s.text)}</code>".html_safe}
-					).join(', ').html_safe%>
+				<ul>
+					<% script_applies_to_list_contents(@script, @by_sites).each do |script_applies_to_content| %>
+						<li><%=script_applies_to_content%></li>
+					<% end %>
+				</ul>
 			<% end %>
 		</dd>
 	</dl>

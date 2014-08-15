@@ -213,6 +213,21 @@ nav li + li {
 #script-applies-to dd {
 	display: inline;
 }
+#script-applies-to ul {
+	display: inline;
+	padding-left: 0;
+	list-style: none;
+}
+#script-applies-to li {
+	display: inline;
+}
+#script-applies-to li:after {
+	content: ", ";
+}
+#script-applies-to li:last-child:after {
+	content: "";
+}
+
 
 #additional-info > h3 {
 	margin-bottom: 0;

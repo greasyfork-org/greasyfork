@@ -23,5 +23,35 @@ module ScriptsHelper
 		end
 		return ("<li class=\"script-list-option#{is_link ? '' : ' script-list-current'}\">" + l + '</li>').html_safe
 	end
+	
+	def script_applies_to_list_contents(script, by_sites)
+		sats_with_domains, sats_without_domains = script.script_applies_tos.partition{|sat|sat.domain}
+		(
+		sats_with_domains.map{ |sat|			
+			content_for_script_applies_to_that_has_domain(sat, count_of_other_scripts_with_sat(sat, script, by_sites))
+		} +
+		sats_without_domains.map{ |sat| content_tag(:code, sat.text) }
+		)
+	end
+	
+private
+	
+	def content_for_script_applies_to_that_has_domain(sat, count_of_other_scripts)
+		if count_of_other_scripts > 0
+			title = t('scripts.applies_to_link_title', {:count => count_of_other_scripts, :site => sat.text})
+			link_to(sat.text, by_site_scripts_path(:site => sat.text), {:title => title})
+		else
+			sat.text
+		end
+	end
+	
+	def count_of_other_scripts_with_sat(script_applies_to, script, by_sites)
+		if by_sites[script_applies_to.text].nil?
+			0
+		else
+			# take this one out of the count if it's a listable
+			(by_sites[script_applies_to.text][:scripts] - (script.listable? ? 1 : 0))
+		end
+	end
 
 end
