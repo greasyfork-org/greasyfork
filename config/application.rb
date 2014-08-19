@@ -20,9 +20,9 @@ module Greasyfork
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    config.i18n.enforce_available_locales = false
     config.active_record.schema_format = :sql
 
+    I18n.config.enforce_available_locales = true
     # locales good enough to link to
     # names from https://api.drupal.org/api/drupal/includes!iso.inc/function/_locale_get_predefined_list/7
     config.available_locales = {'de' => 'Deutsch', 'en' => 'English', 'es' => 'Español', 'fr' => 'Français', 'id' => 'Bahasa Indonesia', 'ja' => '日本語', 'nl' => 'Nederlands', 'pl' => 'Polski', 'ru' => 'Русский', 'zh-CN' => '简体中文', 'zh-TW' => '繁體中文'}
