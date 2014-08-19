@@ -35,9 +35,6 @@ class GreasyForkPlugin extends Gdn_Plugin {
 			$Sender->Menu->AddLink('Greasy Fork', T('Greasy Fork'), 'https://greasyfork.org/', FALSE, array('class' => 'HomeLink'));
 			# added to config: $Configuration['Garden']['Menu']['Sort'] = ['Greasy Fork', 'Dashboard', 'Discussions'];
 		}
-		if ($this->onMainPage()) {
-			$this->ShowFilterLinks($Sender);
-		}
 	}
 
 	# Going to render our own category selector
@@ -177,7 +174,7 @@ class GreasyForkPlugin extends Gdn_Plugin {
 		return $this->GetUserMeta(Gdn::Session()->UserID, 'FilterReviews', false, true);
 	}
 
-	private function onMainPage() {
+	private function onMainPage($Sender) {
 		if (isset($_REQUEST['script']) || isset($_REQUEST['script_author'])) {
 			return false;
 		}
@@ -202,7 +199,7 @@ class GreasyForkPlugin extends Gdn_Plugin {
 
 	// Update the query for the filter
 	public function DiscussionModel_BeforeGet_Handler($Sender) {
-		if ($this->onMainPage() && $this->shouldFilterReviews()) {
+		if ($this->onMainPage($Sender) && $this->shouldFilterReviews()) {
 			$prefix = $Sender->SQL->Database->DatabasePrefix;
 			$Sender->SQL->Database->DatabasePrefix = '';
 			$Sender->SQL->Where('d.ScriptID IS NULL');
@@ -212,7 +209,7 @@ class GreasyForkPlugin extends Gdn_Plugin {
 
 	// Update the pager for the filter
 	public function DiscussionsController_BeforeBuildPager_Handler($Sender) {
-		if ($this->onMainPage() && $this->shouldFilterReviews()) {
+		if ($this->onMainPage($Sender) && $this->shouldFilterReviews()) {
 			$DiscussionModel = new DiscussionModel();
 			$prefix = $DiscussionModel->SQL->Database->DatabasePrefix;
 			$DiscussionModel->SQL->Database->DatabasePrefix = '';
@@ -222,6 +219,9 @@ class GreasyForkPlugin extends Gdn_Plugin {
 			$DiscussionModel->SQL->Database->DatabasePrefix = $prefix;
 			$Row = $DiscussionModel->SQL->Get()->FirstRow();
 			$Sender->SetData('CountDiscussions', $Row->CountDiscussions);
+		}
+		if (!isset($_REQUEST['script']) && !isset($_REQUEST['script_author'])) {
+			$this->ShowFilterLinks($Sender);
 		}
 	}
 
@@ -245,11 +245,10 @@ class GreasyForkPlugin extends Gdn_Plugin {
 
 	// UI to update filter setting
 	public function ShowFilterLinks($Sender) {
-		// Not in Dashboard
 		// Block guests until guest sessions are restored
-		if ($Sender->MasterView == 'admin' || !CheckPermission('Garden.SignIn.Allow'))
+		if ($Sender->MasterView == 'admin' || !CheckPermission('Garden.SignIn.Allow')) {
 			return;
-
+		}
 		$FilterOn = $this->shouldFilterReviews();
 		$Url = 'profile/setreviewfilter/'.($FilterOn ? 'false' : 'true').'/'.Gdn::Session()->TransientKey();
 		$Link = Wrap(Anchor(($FilterOn ? 'Show script reviews' : 'Hide script reviews'), $Url), 'span', array('class' => 'ReviewFilterOption'));
