@@ -83,27 +83,27 @@
 
 <div id="script-meta">
 	<dl id="script-stats">
-		<dt class="script-show-version"><%=t('scripts.version_number')%></dt>
-		<dd class="script-show-version"><%=@script_version.version%></dd>
-		<dt class="script-show-author"><%=t('scripts.author_name')%></dt>
-		<dd class="script-show-author"><%=link_to @script.user.name, @script.user%></dd>
+		<dt class="script-show-version"><span><%=t('scripts.version_number')%></span></dt>
+		<dd class="script-show-version"><span><%=@script_version.version%></span></dd>
+		<dt class="script-show-author"><span><%=t('scripts.author_name')%></span></dt>
+		<dd class="script-show-author"><span><%=link_to @script.user.name, @script.user%></span></dd>
 		<% if @script.script_type_id != 3 and params[:version].nil? %>
-		<dt class="script-show-daily-installs"><%=t('scripts.daily_installs')%></dt>
-		<dd class="script-show-daily-installs"><%=@script.daily_installs%></dd>
-		<dt class="script-show-total-installs"><%=t('scripts.total_installs')%></dt>
-		<dd class="script-show-total-installs"><%=@script.total_installs%></dd>
+		<dt class="script-show-daily-installs"><span><%=t('scripts.daily_installs')%></span></dt>
+		<dd class="script-show-daily-installs"><span><%=@script.daily_installs%></span></dd>
+		<dt class="script-show-total-installs"><span><%=t('scripts.total_installs')%></span></dt>
+		<dd class="script-show-total-installs"><span><%=@script.total_installs%></span></dd>
 		<% end %>
-		<dt class="script-list-fan-score"><%=t('scripts.fan_score')%></dt>
-		<dd class="script-list-fan-score"><%=@script.fan_score%></dd>
-		<dt class="script-show-created-date"><%=t('scripts.created_date')%></dt>
-		<dd class="script-show-created-date"><%=markup_date(@script.created_at)%></dd>
-		<dt class="script-show-updated-date"><%=t('scripts.updated_date')%></dt>
-		<dd class="script-show-updated-date"><%=markup_date(@script.code_updated_at)%></dd>
-		<dt class="script-show-license"><%=t('scripts.license')%></dt>
-		<dd class="script-show-license"><%=@script.license_display%></dd>
+		<dt class="script-list-fan-score" title="<%=t('scripts.fan_score_explanation')%>"><span><%=t('scripts.fan_score')%></span></dt>
+		<dd class="script-list-fan-score"><span><%=@script.fan_score%></span></dd>
+		<dt class="script-show-created-date"><span><%=t('scripts.created_date')%></span></dt>
+		<dd class="script-show-created-date"><span><%=markup_date(@script.created_at)%></span></dd>
+		<dt class="script-show-updated-date"><span><%=t('scripts.updated_date')%></span></dt>
+		<dd class="script-show-updated-date"><span><%=markup_date(@script.code_updated_at)%></span></dd>
+		<dt class="script-show-license"><span><%=t('scripts.license')%></span></dt>
+		<dd class="script-show-license"><span><%=@script.license_display%></span></dd>
 	</dl>
 	<dl id="script-applies-to">
-		<dt class="script-show-applies-to"><%=t('scripts.applies_to')%></dt>
+		<dt class="script-show-applies-to"><span><%=t('scripts.applies_to')%></span></dt>
 		<dd class="script-show-applies-to">
 			<% if @script.script_applies_tos.empty? %>
 				<%=t('scripts.applies_to_all')%>

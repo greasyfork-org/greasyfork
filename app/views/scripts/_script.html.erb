@@ -19,18 +19,18 @@
 			</span>
 		</h2>
 		<dl>
-			<dt class="script-list-author"><%=t('scripts.author_name')%></dt>
-			<dd class="script-list-author"><%=link_to script.user.name, script.user%></dd>
-			<dt class="script-list-daily-installs"><%=t('scripts.daily_installs')%></dt>
-			<dd class="script-list-daily-installs"><%=script.daily_installs%></dd>
-			<dt class="script-list-total-installs"><%=t('scripts.total_installs')%></dt>
-			<dd class="script-list-total-installs"><%=script.total_installs%></dd>
-			<dt class="script-list-fan-score"><%=t('scripts.fan_score')%></dt>
-			<dd class="script-list-fan-score"><%=script.fan_score%></dd>
-			<dt class="script-list-created-date"><%=t('scripts.created_date')%></dt>
-			<dd class="script-list-created-date"><%=markup_date(script.created_at)%></dd>
-			<dt class="script-list-updated-date"><%=t('scripts.updated_date')%></dt>
-			<dd class="script-list-updated-date"><%=markup_date(script.code_updated_at)%></dd>
+			<dt class="script-list-author"><span><%=t('scripts.author_name')%></span></dt>
+			<dd class="script-list-author"><span><%=link_to script.user.name, script.user%></span></dd>
+			<dt class="script-list-daily-installs"><span><%=t('scripts.daily_installs')%></span></dt>
+			<dd class="script-list-daily-installs"><span><%=script.daily_installs%></span></dd>
+			<dt class="script-list-total-installs"><span><%=t('scripts.total_installs')%></span></dt>
+			<dd class="script-list-total-installs"><span><%=script.total_installs%></span></dd>
+			<dt class="script-list-fan-score" title="<%=t('scripts.fan_score_explanation')%>"><span><%=t('scripts.fan_score')%></span></dt>
+			<dd class="script-list-fan-score"><span><%=script.fan_score%></span></dd>
+			<dt class="script-list-created-date"><span><%=t('scripts.created_date')%></span></dt>
+			<dd class="script-list-created-date"><span><%=markup_date(script.created_at)%></span></dd>
+			<dt class="script-list-updated-date"><span><%=t('scripts.updated_date')%></span></dt>
+			<dd class="script-list-updated-date"><span><%=markup_date(script.code_updated_at)%></span></dd>
 		</dl>
 	</article>
 </li>
