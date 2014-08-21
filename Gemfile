@@ -45,6 +45,9 @@ end
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+# included by dependency, need a more recent version - https://github.com/JasonBarnabe/greasyfork/issues/245
+gem 'i18n', '>= 0.6.11'
+
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise-i18n-views', '~> 0.3.1'
