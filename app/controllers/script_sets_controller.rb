@@ -93,7 +93,7 @@ class ScriptSetsController < ApplicationController
 			flash[:notice] = 'Could not add to set.'
 		end
 
-		redirect_to script
+		redirect_to clean_redirect_param(:return_to) || script
 	end
 
 private

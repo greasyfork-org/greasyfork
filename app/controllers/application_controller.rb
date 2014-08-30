@@ -92,9 +92,9 @@ protected
 	# Devise seems to handle log-in-then-go-to fine for Rails stuff, but not for the forum. This adds support
 	# via a "return_to" parameter.
 	def store_location
-		# Avoid an open redirect
-		if (params[:controller] == "sessions" or params[:controller] == "registrations") and !params[:return_to].nil? and params[:return_to] =~ /\Ahttps?:\/\/greasyfork\.(org|local)\/.*/
-			session[:user_return_to] = params[:return_to]
+		if (params[:controller] == "sessions" or params[:controller] == "registrations") and !params[:return_to].nil?
+			v = clean_redirect_param(:return_to)
+			session[:user_return_to] = v unless v.nil?
 		end
 	end
 
@@ -176,5 +176,20 @@ protected
 		end
 		# set locale based on parameter
 		I18n.locale = params[:locale] || :en
+	end
+
+	def clean_redirect_param(param_name)
+		v = params[param_name]
+		return nil if v.nil?
+		begin
+			u = URI.parse(v)
+			p = u.path
+			q = u.query
+			f = u.fragment
+			return p + (q.nil? ? '' : "?#{q}") + (f.nil? ? '' : "##{f}")
+		rescue URI::InvalidURIError
+			# forget it...
+		end
+		return nil
 	end
 end

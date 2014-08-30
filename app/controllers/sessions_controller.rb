@@ -147,11 +147,13 @@ private
 		redirect_to clean_redirect_param(:origin) || request.env['omniauth.origin'] || new_user_session_path
 	end
 
+protected
+
 	def clean_redirect_param(param_name)
 		v = params[param_name]
-		return nil if v.nil?
-		return nil if v.include?('failure')
-		return URI.parse(v).path
+		# don't redirect to a failure path
+		return nil if v.nil? or v.include?('failure')
+		return super(param_name)
 	end
 
 end

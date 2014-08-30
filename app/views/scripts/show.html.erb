@@ -108,7 +108,7 @@
 			<% if @script.script_applies_tos.empty? %>
 				<%=t('scripts.applies_to_all')%>
 			<% else %>
-				<ul>
+				<ul class="inline-list">
 					<% script_applies_to_list_contents(@script, @by_sites).each do |script_applies_to_content| %>
 						<li><%=script_applies_to_content%></li>
 					<% end %>

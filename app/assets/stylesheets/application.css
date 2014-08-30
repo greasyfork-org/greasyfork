@@ -213,18 +213,18 @@ nav li + li {
 #script-applies-to dd {
 	display: inline;
 }
-#script-applies-to ul {
+.inline-list {
 	display: inline;
 	padding-left: 0;
 	list-style: none;
 }
-#script-applies-to li {
+.inline-list li {
 	display: inline;
 }
-#script-applies-to li:after {
+.inline-list li:after {
 	content: ", ";
 }
-#script-applies-to li:last-child:after {
+.inline-list li:last-child:after {
 	content: "";
 }
 dt[title] > span {

@@ -6,6 +6,9 @@ class Script < ActiveRecord::Base
 	has_many :assessments, :dependent => :delete_all, :autosave => true
 	has_many :cpd_duplication_scripts
 	has_many :cpd_duplications, :through => :cpd_duplication_scripts
+	has_many :script_set_script_inclusions, :foreign_key => 'child_id'
+	has_many :favorited_in_sets, -> {includes(:user).where('favorite = true')}, :through => :script_set_script_inclusions, :class_name => 'ScriptSet', :source => 'parent'
+	has_many :favoriters, :through => :favorited_in_sets, :class_name => 'User', :source => 'user'
 	belongs_to :script_type
 	belongs_to :script_sync_source
 	belongs_to :script_sync_type
