@@ -12,7 +12,7 @@ class ScriptsController < ApplicationController
 	before_filter :authorize_for_moderators_only, :only => [:minified]
 
 	skip_before_action :verify_authenticity_token, :only => [:install_ping]
-	protect_from_forgery :except => [:user_js, :meta_js]
+	protect_from_forgery :except => [:user_js, :meta_js, :show]
 
 	#########################
 	# Collections
@@ -146,6 +146,9 @@ class ScriptsController < ApplicationController
 				@link_alternates = [
 					{:url => url_for(params.merge({:only_path => true, :format => :json})), :type => 'application/json'}
 				]
+			}
+			format.js {
+				redirect_to @script.code_url
 			}
 			format.json { render :json => @script.as_json(:include => :user) }
 		end
