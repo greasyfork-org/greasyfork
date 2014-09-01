@@ -11,6 +11,9 @@ Greasyfork::Application.routes.draw do
 		put '/users/identities' => 'users#update_identity', :as => 'user_update_identity'
 		put '/users/remove_password' => 'users#remove_password', :as => 'user_remove_password'
 		put '/users/update_password' => 'users#update_password', :as => 'user_update_password'
+
+		get '/external_login', :as => 'external_login', to: 'home#external_login'
+
 		# disable destroying users
 		devise_for :users, :skip => :registrations, :controllers => { :sessions => "sessions" }
 		devise_scope :user do

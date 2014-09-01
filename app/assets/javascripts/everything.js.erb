@@ -105,6 +105,7 @@
 			browserIdLink.addEventListener("click", function(event) {
 				navigator.id.get(function(assertion) {
 					var returnToParam = event.target.hasAttribute("data-return-to") ? ("&origin=" + event.target.getAttribute("data-return-to")) : "";
+					returnToParam += (document.getElementById("remember_me").checked ? "&remember_me=1" : "");
 					if (assertion) {
 						location.href = "<%=Greasyfork::Application.routes.url_helpers.omniauth_callback_path(:provider => 'browser_id')%>?assertion=" + encodeURIComponent(assertion) + returnToParam;
 					} else {

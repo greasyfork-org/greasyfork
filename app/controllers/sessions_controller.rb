@@ -1,4 +1,5 @@
 class SessionsController < Devise::SessionsController
+	include Devise::Controllers::Rememberable
 
 	skip_before_action :verify_authenticity_token, :only => [:omniauth_callback]
 
@@ -73,6 +74,7 @@ class SessionsController < Devise::SessionsController
 				end
 			end
 			sign_in user
+			remember_me user if session[:remember_me] or params[:remember_me]
 			set_flash_message(:notice, :signed_in)
 			redirect_to return_to || after_sign_in_path_for(user)
 			return
@@ -128,6 +130,7 @@ class SessionsController < Devise::SessionsController
 			return
 		end
 		sign_in user
+		remember_me user if session[:remember_me] or params[:remember_me]
 		redirect_to return_to || after_sign_in_path_for(user)
 	end
 

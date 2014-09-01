@@ -7,12 +7,16 @@
 
 <h3><%=t('users.sign_in_external')%></h3>
 
-<p>
-	<%=t('users.sign_in_with')%>
-	<% Rails.application.config.available_auths.keys.each do |provider| %>
-		<%=link_to Identity.pretty_provider(provider), "/auth/#{provider}", {:class => "#{provider}-login"}%>
+<div>
+	<%=form_tag(external_login_path, {:method => :get, :class => 'inline-form'}) do %>
+		<% Rails.application.config.available_auths.keys.each do |provider| %>
+			<button name="provider" class="<%=provider%>-login" value="<%=provider%>"><%=Identity.pretty_provider(provider)%></button>
+		<% end %>
+		<% if devise_mapping.rememberable? -%>
+			<div><%= check_box_tag :remember_me %><%= label_tag :remember_me, t('activerecord.attributes.user.remember_me') %></div>
+		<% end -%>
 	<% end %>
-</p>
+</div>
 
 <h3><%=t('users.sign_in_password')%></h3>
 
@@ -24,7 +28,7 @@
   <%= f.password_field :password %></div>
 
   <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+    <div><%= f.check_box :remember_me %><%= f.label :remember_me %></div>
   <% end -%>
 
   <div><%= f.submit t('.sign_in', :default => "Sign in") %></div>
