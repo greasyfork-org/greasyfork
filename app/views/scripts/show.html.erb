@@ -5,7 +5,7 @@
 	case @script.script_type_id
 		when 1, 2 %>
 			<div id="install-area">
-				<%=link_to t('scripts.install'), params[:version].nil? ? script_user_js_path(@script, :name => @script.url_name) : script_user_js_path(@script, :version => params[:version], :name => @script.url_name) + '&d=.user.js', {:class => 'install-link', 'data-ping-url' => url_for(script_install_ping_path(@script, :authenticity_token => session[:_csrf_token])), 'data-is-previous-version' => !params[:version].nil?, :rel => 'nofollow'}%><%=link_to t('scripts.install_help'), help_installing_user_scripts_path, {:class => 'install-help-link', :title => t('scripts.install_help_title'), :rel => 'nofollow'}%>
+				<%=link_to t('scripts.install'), params[:version].nil? ? script_user_js_path(@script, :name => @script.url_name) : script_user_js_path(@script, :version => params[:version], :name => @script.url_name) + '&d=.user.js', {:class => 'install-link', 'data-ping-url' => script_install_ping_path(@script, :authenticity_token => session[:_csrf_token]), 'data-is-previous-version' => !params[:version].nil?, :rel => 'nofollow'}%><%=link_to t('scripts.install_help'), help_installing_user_scripts_path, {:class => 'install-help-link', :title => t('scripts.install_help_title'), :rel => 'nofollow'}%>
 
 				<% if user_signed_in?
 					sets_direct_inclusion = []

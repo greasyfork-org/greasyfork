@@ -21,34 +21,41 @@ class ScriptsController < ApplicationController
 	def index
 		@scripts = Script.listable.includes([:user, :script_type]).paginate(:page => params[:page], :per_page => get_per_page)
 		@scripts = self.class.apply_filters(@scripts, params)
-		if !params[:set].nil?
-			@set = ScriptSet.find(params[:set])
-		end
-		@by_sites = self.class.get_top_by_sites
-		@bots = 'noindex,follow' if !params[:sort].nil?
-		@feeds = {t('scripts.listing_created_feed') => {:sort => 'created'}, t('scripts.listing_updated_feed') => {:sort => 'updated'}}
-
-		if !params[:set].nil?
-			if @set.favorite
-				@title = t('scripts.listing_title_for_favorites', :set_name => @set.display_name, :user_name => @set.user.name)
-			else
-				@title = @set.display_name
-				@description = @set.description
-			end
-		elsif params[:site] == '*' and !@scripts.empty?
-			@title = t('scripts.listing_title_all_sites')
-			@description = t('scripts.listing_description_all_sites')
-		elsif !params[:site].nil? and !@scripts.empty?
-			@title = t('scripts.listing_title_for_site', :site => params[:site])
-			@description = t('scripts.listing_description_for_site', :site => params[:site])
-		else
-			@title = t('scripts.listing_title_generic')
-			@description = t('scripts.listing_description_generic')
-		end
 
 		respond_to do |format|
-			format.html
+			format.html {
+				if !params[:set].nil?
+					@set = ScriptSet.find(params[:set])
+				end
+				@by_sites = self.class.get_top_by_sites
+
+				@bots = 'noindex,follow' if !params[:sort].nil?
+				@link_alternates = [
+					{:url => url_for(params.merge({:only_path => true, :page => nil, :sort => 'created', :format => :atom})), :type => 'application/atom+xml', :title => t('scripts.listing_created_feed')},
+					{:url => url_for(params.merge({:only_path => true, :page => nil, :sort => 'updated', :format => :atom})), :type => 'application/atom+xml', :title => t('scripts.listing_updated_feed')},
+					{:url => url_for(params.merge({:only_path => true, :format => :json})), :type => 'application/json'}
+				]
+
+				if !params[:set].nil?
+					if @set.favorite
+						@title = t('scripts.listing_title_for_favorites', :set_name => @set.display_name, :user_name => @set.user.name)
+					else
+						@title = @set.display_name
+						@description = @set.description
+					end
+				elsif params[:site] == '*' and !@scripts.empty?
+					@title = t('scripts.listing_title_all_sites')
+					@description = t('scripts.listing_description_all_sites')
+				elsif !params[:site].nil? and !@scripts.empty?
+					@title = t('scripts.listing_title_for_site', :site => params[:site])
+					@description = t('scripts.listing_description_for_site', :site => params[:site])
+				else
+					@title = t('scripts.listing_title_generic')
+					@description = t('scripts.listing_description_generic')
+				end
+			}
 			format.atom
+			format.json { render :json => @scripts.as_json(:include => :user) }
 		end
 	end
 
@@ -128,12 +135,20 @@ class ScriptsController < ApplicationController
 	def show
 		@script, @script_version = versionned_script(params[:id], params[:version])
 		return if redirect_to_slug(@script, :id)
-		if !params[:version].nil?
-			@bots = 'noindex'
-		elsif @script.unlisted?
-			@bots = 'noindex,follow'
+		respond_to do |format|
+			format.html {
+				if !params[:version].nil?
+					@bots = 'noindex'
+				elsif @script.unlisted?
+					@bots = 'noindex,follow'
+				end
+				@by_sites = self.class.get_by_sites
+				@link_alternates = [
+					{:url => url_for(params.merge({:only_path => true, :format => :json})), :type => 'application/json'}
+				]
+			}
+			format.json { render :json => @script.as_json(:include => :user) }
 		end
-		@by_sites = self.class.get_by_sites
 	end
 
 	def show_code

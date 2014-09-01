@@ -17,15 +17,25 @@ class UsersController < ApplicationController
 			@user = @user.includes(:scripts => :script_type)
 		end
 		@user = @user.find(params[:id])
-		@by_sites = ScriptsController.get_top_by_sites
-
-		@scripts = ((!current_user.nil? && current_user.id == @user.id) or (!current_user.nil? and current_user.moderator?)) ? @user.scripts : @user.scripts.listable
-		@user_has_scripts = !@scripts.empty?
-		@scripts = ScriptsController.apply_filters(@scripts, params)
-
-		@bots = 'noindex,follow' if !params[:sort].nil?
 
 		return if redirect_to_slug(@user, :id)
+
+		respond_to do |format|
+			format.html {
+				@by_sites = ScriptsController.get_top_by_sites
+
+				@scripts = ((!current_user.nil? && current_user.id == @user.id) or (!current_user.nil? and current_user.moderator?)) ? @user.scripts : @user.scripts.listable
+				@user_has_scripts = !@scripts.empty?
+				@scripts = ScriptsController.apply_filters(@scripts, params)
+
+				@bots = 'noindex,follow' if !params[:sort].nil?
+
+				@link_alternates = [
+					{:url => url_for(params.merge({:only_path => true, :format => :json})), :type => 'application/json'}
+				]
+			}
+			format.json { render :json => @user.as_json(:include => :listable_scripts) }
+		end
 	end
 
 	def webhook_info

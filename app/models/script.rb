@@ -118,6 +118,10 @@ class Script < ActiveRecord::Base
 		return nil
 	end
 
+	def version
+		get_newest_saved_script_version.version
+	end
+
 	def self.record_install(id, ip)
 		Script.connection.execute("INSERT IGNORE INTO daily_install_counts (script_id, ip) VALUES (#{Script.connection.quote_string(id)}, '#{Script.connection.quote_string(ip)}');")
 	end
@@ -192,7 +196,26 @@ class Script < ActiveRecord::Base
 		return license.html.html_safe
 	end
 
+	def code_url
+		return url_helpers.script_library_js_path(self, :version => get_newest_saved_script_version.id, :name => url_name, :only_path => false) if library?
+		return url_helpers.script_user_js_path(self, :name => url_name, :only_path => false)
+	end
+
+	def serializable_hash(options = nil)
+		super({ only: [:id, :name, :description, :daily_installs, :total_installs, :fan_score, :created_at, :code_updated_at, :namespace, :support_url, :contribution_url, :contribution_amount] }.merge(options || {})).merge({
+			:url => url_helpers.script_path(nil, self, {:only_path => false}),
+			:code_url => code_url,
+			:license => license_text,
+			:version => version,
+			:locale => locale.nil? ? nil : locale.code
+		})
+	end
+
 private
+
+	def url_helpers
+		Rails.application.routes.url_helpers
+	end
 
 	# all text content of this script (for language detection)
 	def full_text

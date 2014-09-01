@@ -23,6 +23,10 @@ class User < ActiveRecord::Base
 
 	strip_attributes
 
+	def listable_scripts
+		scripts.listable
+	end
+
 	def discussions_on_scripts_written
 		scripts.map {|s| s.discussions}.flatten.sort{|a,b| a.updated <=> b.updated }
 	end
@@ -69,6 +73,18 @@ class User < ActiveRecord::Base
 
 	def favorite_script_set
 		return ScriptSet.where(:favorite => true).where(:user_id => id).first
+	end
+
+	def serializable_hash(options = nil)
+		h = super({ only: [:id, :name] }.merge(options || {})).merge({
+			:url => Rails.application.routes.url_helpers.user_path(nil, self, {:only_path => false})
+		})
+		# rename listable_scripts to scripts
+		if !h['listable_scripts'].nil?
+			h['scripts'] = h['listable_scripts']
+			h.delete('listable_scripts')
+		end
+		return h
 	end
 
 	protected

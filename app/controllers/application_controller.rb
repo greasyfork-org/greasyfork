@@ -170,7 +170,7 @@ protected
 			end
 			# redirect if locale is a request param and not part of the url
 			if !request.GET[:locale].nil?
-				redirect_to url_for(params), :status => 301
+				redirect_to url_for(params.merge(:only_path => true)), :status => 301
 				return
 			end
 		end

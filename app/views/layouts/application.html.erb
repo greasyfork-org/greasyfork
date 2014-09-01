@@ -15,15 +15,15 @@
 		# https://support.google.com/webmasters/answer/189077
 		Rails.configuration.available_locales.each do |code, name|
 			if code == 'en' %>
-				<link rel="alternate" hreflang="<%=code%>" href="<%=url_for(params.except(:locale).merge({:locale => nil, :only_path => false}))%>">
+				<link rel="alternate" hreflang="<%=code%>" href="<%=url_for(params.except(:locale).merge({:locale => nil, :only_path => true}))%>">
 			<% else %>
-				<link rel="alternate" hreflang="<%=code%>" href="<%=url_for(params.except(:locale).merge({:locale => code, :only_path => false}))%>">
+				<link rel="alternate" hreflang="<%=code%>" href="<%=url_for(params.except(:locale).merge({:locale => code, :only_path => true}))%>">
 			<% end
 		end
 	end %>
-	<% if defined?(@feeds)
-		@feeds.each do |title, url_params| %>
-			<%=auto_discovery_link_tag(:atom, params.merge(url_params).merge({:only_path => true, :page => nil}), {:title => title})%>
+	<% if defined?(@link_alternates)
+		@link_alternates.each do |la| %>
+			<link rel="alternate" type="<%=la[:type]%>" href="<%=la[:url]%>" <%if !la[:title].nil?%>title="<%=la[:title]%>"<%end%>>
 		<% end
 	end %>
 </head>
@@ -45,24 +45,24 @@
 					<span class="sign-in-link"><%=link_to(t('.sign_in'), new_user_session_path, {:rel => 'nofollow'})%></span>
 				<% end %>
 				<% if request.get?
-					form_action = url_for(params.except(:locale).merge({:locale => nil}))
+					form_action = url_for(params.except(:locale).merge({:locale => nil, :only_path => true}))
 				else
-					form_action = root_path({:locale => nil})
+					form_action = root_path({:locale => nil, :only_path => true})
 				end %>
 				<form id="language-selector" action="<%=form_action%>">
 					<select id="language-selector-locale" name="locale">
 						<% Rails.configuration.available_locales.each do |code, name|
 							if request.get?
 								if code == 'en' %>
-									<option data-language-url="<%=url_for(params.except(:locale).merge({:locale => nil}))%>" value="<%=code%>"<%if params[:locale] == code or params[:locale].nil?%> selected<%end%>><%=name%> (<%=code%>)</option>
+									<option data-language-url="<%=url_for(params.except(:locale).merge({:locale => nil, :only_path => true}))%>" value="<%=code%>"<%if params[:locale] == code or params[:locale].nil?%> selected<%end%>><%=name%> (<%=code%>)</option>
 								<% else %>
-									<option data-language-url="<%=url_for(params.except(:locale).merge({:locale => code}))%>" value="<%=code%>"<%if params[:locale] == code%> selected<%end%>><%=name%> (<%=code%>)</option>
+									<option data-language-url="<%=url_for(params.except(:locale).merge({:locale => code, :only_path => true}))%>" value="<%=code%>"<%if params[:locale] == code%> selected<%end%>><%=name%> (<%=code%>)</option>
 								<% end
 							else
 								if code == 'en' %>
-									<option data-language-url="<%=root_path({:locale => nil})%>" value="<%=code%>"<%if params[:locale] == code or params[:locale].nil?%> selected<%end%>><%=name%> (<%=code%>)</option>
+									<option data-language-url="<%=root_path({:locale => nil, :only_path => true})%>" value="<%=code%>"<%if params[:locale] == code or params[:locale].nil?%> selected<%end%>><%=name%> (<%=code%>)</option>
 								<% else %>
-									<option data-language-url="<%=root_path({:locale => code})%>" value="<%=code%>"<%if params[:locale] == code%> selected<%end%>><%=name%> (<%=code%>)</option>
+									<option data-language-url="<%=root_path({:locale => code, :only_path => true})%>" value="<%=code%>"<%if params[:locale] == code%> selected<%end%>><%=name%> (<%=code%>)</option>
 								<% end
 							end
 						end %>
