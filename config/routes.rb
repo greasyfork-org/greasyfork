@@ -44,6 +44,8 @@ Greasyfork::Application.routes.draw do
 			get 'code/:name.user.js', :to => 'scripts#user_js', :as =>  'user_js', :locale => nil
 			get 'code/:name.js', :to => 'scripts#user_js', :as =>  'library_js', :locale => nil
 			get 'code/:name.meta.js', :to => 'scripts#meta_js', :as =>  'meta_js', :locale => nil
+			# something stupid is requesting this, let's let it have it so we don't see the errors
+			match 'code/:name.meta.js', :to => 'scripts#meta_js', :locale => nil, :via => :options
 			get 'code(.:format)', :to => 'scripts#show_code', :as =>  'show_code', :constraints => {:format => /.*/}
 			get 'feedback(.:format)', :to => 'scripts#feedback', :as =>  'feedback'
 			get 'sync(.:format)', :to => 'scripts#sync', :as =>  'sync'
