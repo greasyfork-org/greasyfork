@@ -143,6 +143,10 @@ module ApplicationHelper
 		return @@markdown_sanitize_config
 	end
 
+	def self_link(name, text)
+		"<span id=\"#{name}\">#{link_to('§', {:anchor => name}, {:class => 'self-link'})} #{text}</span>".html_safe
+	end
+
 private
 
 	@@markdown_sanitize_config = nil
