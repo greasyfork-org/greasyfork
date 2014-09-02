@@ -9,31 +9,33 @@
 		<p><%=t('scripts.listing_none')%></p>
 	<% else %>
 		<ul>
-			<% # line number seem to start at 0, so -1 all of them. Additionally, end line numbers can reference the start of the line, so -1 them for that.
+			<% # line number starts at 0 in CPD but at 1 for us, so +1 to everything
 			@code_duplications.each do |cd|
-				source_duplication = cd.cpd_duplication_scripts.find{|cpdds| cpdds.script_id == @script.id} %>
-				<li>
-					<%=link_to t('scripts.script_lines_link', {:script_name => @script.name, :start => source_duplication.line - 1, :end => source_duplication.line + cd.lines - 2}), script_show_code_path(source_duplication.script, :anchor => "n#{source_duplication.line - 1}")%>
-					<ul>
-						<% cd.cpd_duplication_scripts.select{|cpdds| cpdds.script.user_id != @script.user_id && cpdds.script.listable?}.each do |dup| %>
-							<li>
-								<%=t('scripts.derivatives_script_with_code_line_html',  {
-									:script_lines_link => link_to(
-										t('scripts.script_lines_link', {
-											:script_name => dup.script.name,
-											:start => dup.line - 1,
-											:end => dup.line + cd.lines - 2
-										}),
-										script_show_code_path(dup.script, :anchor => "n#{dup.line - 1}")
-									),
-									:license => dup.script.license_display,
-									:user_link => link_to(dup.script.user.name, dup.script.user)
-								})%>
-							</li>
-						<% end %>
-					</ul>
-				</li>
-			<% end %>
+				source_duplications = cd.cpd_duplication_scripts.select{|cpdds| cpdds.script_id == @script.id}
+				source_duplications.each do |source_duplication| %>
+					<li>
+						<%=link_to t('scripts.script_lines_link', {:script_name => @script.name, :start => source_duplication.line + 1, :end => source_duplication.line + cd.lines + 1}), script_show_code_path(source_duplication.script, :anchor => "n#{source_duplication.line + 1}")%>
+						<ul>
+							<% cd.cpd_duplication_scripts.select{|cpdds| cpdds.script.user_id != @script.user_id && cpdds.script.listable?}.each do |dup| %>
+								<li>
+									<%=t('scripts.derivatives_script_with_code_line_html',  {
+										:script_lines_link => link_to(
+											t('scripts.script_lines_link', {
+												:script_name => dup.script.name,
+												:start => dup.line + 1,
+												:end => dup.line + cd.lines + 1
+											}),
+											script_show_code_path(dup.script, :anchor => "n#{dup.line + 1}")
+										),
+										:license => dup.script.license_display,
+										:user_link => link_to(dup.script.user.name, dup.script.user)
+									})%>
+								</li>
+							<% end %>
+						</ul>
+					</li>
+				<% end
+			end %>
 		</ul>
 	<% end %>
 <% end %>

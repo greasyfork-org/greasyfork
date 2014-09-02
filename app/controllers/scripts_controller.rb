@@ -363,7 +363,7 @@ class ScriptsController < ApplicationController
 		@same_namespaces = Script.listable.where(['user_id != ?', @script.user_id]).where(:namespace => @script.namespace).includes([:user, :license]) if !@script.namespace.nil?
 
 		# only duplications containing listable scripts by others
-		@code_duplications = @script.cpd_duplications.includes(:cpd_duplication_scripts => {:script => :user}).select {|dup| dup.cpd_duplication_scripts.any?{|cpdds| cpdds.script.user_id != @script.user_id && cpdds.script.listable?}}
+		@code_duplications = @script.cpd_duplications.includes(:cpd_duplication_scripts => {:script => :user}).select {|dup| dup.cpd_duplication_scripts.any?{|cpdds| cpdds.script.user_id != @script.user_id && cpdds.script.listable?}}.uniq
 	end
 
 	def self.get_top_by_sites
