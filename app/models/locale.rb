@@ -1,6 +1,7 @@
 class Locale < ActiveRecord::Base
 
 	has_many :scripts
+	has_many :locale_contributors
 
 	scope :with_listable_scripts, -> {joins(:scripts).where(Script.listable.where_values).uniq.order(:code)}
 
