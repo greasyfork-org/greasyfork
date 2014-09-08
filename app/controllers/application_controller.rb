@@ -192,4 +192,9 @@ protected
 		end
 		return nil
 	end
+
+	def clean_json_callback_param
+		return params[:callback] if /\A[a-zA-Z0-9]{1,32}\z/ =~ params[:callback]
+		return 'callback'
+	end
 end

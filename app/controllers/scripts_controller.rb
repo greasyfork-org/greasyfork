@@ -33,7 +33,8 @@ class ScriptsController < ApplicationController
 				@link_alternates = [
 					{:url => url_for(params.merge({:only_path => true, :page => nil, :sort => 'created', :format => :atom})), :type => 'application/atom+xml', :title => t('scripts.listing_created_feed')},
 					{:url => url_for(params.merge({:only_path => true, :page => nil, :sort => 'updated', :format => :atom})), :type => 'application/atom+xml', :title => t('scripts.listing_updated_feed')},
-					{:url => url_for(params.merge({:only_path => true, :format => :json})), :type => 'application/json'}
+					{:url => url_for(params.merge({:only_path => true, :format => :json})), :type => 'application/json'},
+					{:url => url_for(params.merge({:only_path => true, :format => :jsonp, :callback => 'callback'})), :type => 'application/javascript'}
 				]
 
 				if !params[:set].nil?
@@ -56,6 +57,7 @@ class ScriptsController < ApplicationController
 			}
 			format.atom
 			format.json { render :json => @scripts.as_json(:include => :user) }
+			format.jsonp { render :json => @scripts.as_json(:include => :user), :callback => clean_json_callback_param }
 		end
 	end
 
@@ -144,13 +146,15 @@ class ScriptsController < ApplicationController
 				end
 				@by_sites = self.class.get_by_sites
 				@link_alternates = [
-					{:url => url_for(params.merge({:only_path => true, :format => :json})), :type => 'application/json'}
+					{:url => url_for(params.merge({:only_path => true, :format => :json})), :type => 'application/json'},
+					{:url => url_for(params.merge({:only_path => true, :format => :jsonp, :callback => 'callback'})), :type => 'application/javascript'}
 				]
 			}
 			format.js {
 				redirect_to @script.code_url
 			}
 			format.json { render :json => @script.as_json(:include => :user) }
+			format.jsonp { render :json => @script.as_json(:include => :user), :callback => clean_json_callback_param }
 		end
 	end
 

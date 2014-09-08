@@ -29,5 +29,7 @@ module Greasyfork
     config.help_translate_url = 'https://github.com/JasonBarnabe/greasyfork/wiki/Translating-Greasy-Fork'
 
     config.cpd_size_limit = 50.kilobytes
+
+    Mime::Type.register "application/javascript", :jsonp
   end
 end
