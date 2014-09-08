@@ -197,4 +197,5 @@ protected
 		return params[:callback] if /\A[a-zA-Z0-9]{1,32}\z/ =~ params[:callback]
 		return 'callback'
 	end
+
 end

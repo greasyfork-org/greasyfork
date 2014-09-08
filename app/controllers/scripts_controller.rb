@@ -54,6 +54,7 @@ class ScriptsController < ApplicationController
 					@title = t('scripts.listing_title_generic')
 					@description = t('scripts.listing_description_generic')
 				end
+				@canonical_params = [:page, :per_page, :set, :site, :sort]
 			}
 			format.atom
 			format.json { render :json => @scripts.as_json(:include => :user) }
@@ -83,6 +84,7 @@ class ScriptsController < ApplicationController
 		end
 		@title = t('scripts.listing_title_for_search', :search_string => params[:q])
 		@feeds = {t('scripts.listing_created_feed') => {:sort => 'created'}, t('scripts.listing_updated_feed') => {:sort => 'updated'}}
+		@canonical_params = [:q, :page, :per_page, :sort]
 		render :action => 'index'
 	end
 
@@ -127,6 +129,7 @@ class ScriptsController < ApplicationController
 		@scripts = Script.order(self.class.get_sort(params)).where(:locked => false).includes([:user, :script_type, :script_delete_type]).where(:id => script_ids)
 		@paginate = false
 		@title = t('scripts.listing_title_for_code_search', :search_string => params[:c])
+		@canonical_params = [:c, :sort]
 		render :action => 'index'
 	end
 
@@ -149,6 +152,7 @@ class ScriptsController < ApplicationController
 					{:url => url_for(params.merge({:only_path => true, :format => :json})), :type => 'application/json'},
 					{:url => url_for(params.merge({:only_path => true, :format => :jsonp, :callback => 'callback'})), :type => 'application/javascript'}
 				]
+				@canonical_params = [:id, :version]
 			}
 			format.js {
 				redirect_to @script.code_url
@@ -170,12 +174,14 @@ class ScriptsController < ApplicationController
 		return if redirect_to_slug(@script, :script_id)
 		@code = @script_version.rewritten_code
 		@bots = 'noindex' if !params[:version].nil?
+		@canonical_params = [:script_id, :version]
 	end
 
 	def feedback
 		@script, @script_version = versionned_script(params[:script_id], params[:version])
 		return if redirect_to_slug(@script, :script_id)
 		@bots = 'noindex' if !params[:version].nil?
+		@canonical_params = [:script_id, :version]
 	end
 
 	def user_js
@@ -222,6 +228,7 @@ class ScriptsController < ApplicationController
 		end
 		@diff = Diffy::Diff.new(@old_version.code, @new_version.code, :context => @context, :include_plus_and_minus_in_html => true, :include_diff_info => true).to_s(:html).html_safe
 		@bots = 'noindex'
+		@canonical_params = [:script_id, :v1, :v2, :context]
 	end
 
 	def sync
@@ -349,6 +356,7 @@ class ScriptsController < ApplicationController
 				@install_data[d] = v
 			end
 		end
+		@canonical_params = [:script_id, :version]
 	end
 
 	def derivatives
@@ -368,6 +376,8 @@ class ScriptsController < ApplicationController
 
 		# only duplications containing listable scripts by others
 		@code_duplications = @script.cpd_duplications.includes(:cpd_duplication_scripts => {:script => :user}).select {|dup| dup.cpd_duplication_scripts.any?{|cpdds| cpdds.script.user_id != @script.user_id && cpdds.script.listable?}}.uniq
+
+		@canonical_params = [:script_id]
 	end
 
 	def self.get_top_by_sites

@@ -6,11 +6,13 @@ show_diff = @script.script_versions.length > 1
 show_all_versions = !params[:show_all_versions].nil?
 visible_version_index = 0
 svs = @script.script_versions.reverse
-if show_diff and !show_all_versions %>
-	<p><%=t('scripts.history_only_code_changes_info')%> <%=link_to t('scripts.history_all_changes_link'), :show_all_versions => 1%></p>
-<% else %>
-	<p><%=t('scripts.history_all_changes_info')%> <%=link_to t('scripts.history_only_code_changes_link'), :show_all_versions => nil%></p>
-<% end %>
+if show_diff
+	if !show_all_versions %>
+		<p><%=t('scripts.history_only_code_changes_info')%> <%=link_to t('scripts.history_all_changes_link'), :show_all_versions => 1%></p>
+	<% else %>
+		<p><%=t('scripts.history_all_changes_info')%> <%=link_to t('scripts.history_only_code_changes_link'), :show_all_versions => nil%></p>
+	<% end
+end %>
 <form action="<%=script_diff_path(params[:script_id])%>">
 	<ul>
 		<% svs.each_with_index do |sv, i|

@@ -34,6 +34,7 @@ class UsersController < ApplicationController
 					{:url => url_for(params.merge({:only_path => true, :format => :json})), :type => 'application/json'},
 					{:url => url_for(params.merge({:only_path => true, :format => :jsonp, :callback => 'callback'})), :type => 'application/javascript'}
 				]
+				@canonical_params = [:id, :page, :per_page, :set, :site, :sort]
 			}
 			format.json { render :json => @user.as_json(:include => :listable_scripts) }
 			format.jsonp { render :json => @user.as_json(:include => :listable_scripts), :callback => clean_json_callback_param }

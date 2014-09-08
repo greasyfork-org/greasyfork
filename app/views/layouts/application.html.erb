@@ -9,6 +9,7 @@
 	<% if defined?(@bots) %>
 		<meta name="robots" content="<%=@bots%>">
 	<% end %>
+	<link rel="canonical" href="<%=url_for(params.slice(*@canonical_params).merge({:host => 'greasyfork.org', :protocol => 'https'}))%>">
 	<link rel="icon" href="<%=asset_path 'blacklogo16.png'%>">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 	<% if request.get?
