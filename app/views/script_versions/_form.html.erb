@@ -1,92 +1,101 @@
 <p>
-	Scripts must be <strong>properly described</strong>, cannot be <strong>obfuscated</strong> or <strong>minified</strong>, must respect <strong>copyright</strong>, and are limited in the <strong>external code</strong> used. <%=link_to 'Read the full rules.', help_code_rules_path%>
+	<%=t('scripts.rules_summary_html', {:full_rules_link => link_to(t('scripts.rules_summary_link_to_full'), help_code_rules_path)})%>
 </p>
 
-<% if !script_version.script.script_sync_type_id.nil? %>
-	<p>This script is <%=link_to("set to sync #{script_version.script.script_sync_type_id == 1 ? 'manually' : 'automatically'} from #{script_version.script.script_sync_source_id == 2 ? 'userscripts.org' : script_version.script.sync_identifier}", script_sync_path(script_version.script_id))%>. Any updates you make to the code here will be overwritten when syncing.</p>
+<% # ignore userscripts.org sync
+if !script_version.script.script_sync_type_id.nil? and script_version.script.script_sync_source_id != 2 %>
+	<p>
+		<%=t('scripts.syncing_notice_html', {
+			:syncing_notice_sync_type => link_to(
+				t(
+					script_version.script.script_sync_type_id == 1 ? 'scripts.syncing_notice_sync_type_manual' : 'scripts.syncing_notice_sync_type_automatic',
+					{:sync_identifier => script_version.script.sync_identifier}
+				),
+				script_sync_path(script_version.script_id)
+			)
+		})%>
+	</p>
 <% end %>
 
-<%=form_for(script_version.script.new_record? ? script_version : [script_version.script, script_version], {:html => {:enctype => 'multipart/form-data'}}) do |s|%>
-	<% disallowed_requires = script_version.disallowed_requires_used
+<%=form_for(script_version.script.new_record? ? script_version : [script_version.script, script_version], {:html => {:enctype => 'multipart/form-data'}}) do |s| %>
+
+	<% # remember previously chosen overrides
+	[:accepted_assessment, :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation].each do |override|
+		if script_version.send(override) %>
+			<%=s.hidden_field(override)%>
+		<% end
+	end
 
 	if !script_version.errors.empty? or !script_version.script.errors.empty? %>
 		<div class="alert">
 			<p><%=t('common.error_preamble')%></p>
 			<ul class="errors">
-				<% using_disallowed_require = false
-				version_not_incremented = false
-				version_not_specified = false
-				namespace_is_missing = false
-				namespace_changed = false
-				minified_code = false
-				script_version.errors.full_messages.each do |m| 
-					# skip some validations in favour of below
-					if m.include?('Code cannot @require') and !disallowed_requires.empty?
-						using_disallowed_require = true
-					elsif m.include?('was not incremented')
-						version_not_incremented = true
-					elsif m.include?('Version meta key must be provided')
-						version_not_specified = true
-					elsif m.include?('namespace is missing')
-						namespace_is_missing = true
-					elsif m.include?('namespace has changed')
-						namespace_changed = true
-					elsif m.include?('appears to be minified')
-						minified_code = true
-					else %>
-						<li><%=m%></li>
-					<% end
-				end
+				<% script_version.errors.each do |attr, msg|
+					# need custom handling for warnings
+					next if msg.starts_with?('warning-') %>
+					<li><%=script_version.errors.generate_message(attr, msg)%></li>
+				<% end
 				script_version.script.errors.full_messages.each do |m| %>
 					<li><%=m%></li>
 				<% end
-				if using_disallowed_require %>
-					<li>You are using <code>@require</code>s outside of Greasy Fork's whitelist: <%=disallowed_requires.join(', ')%>. Please read <%=link_to 'Greasy Fork\'s policy on external scripts.', help_external_scripts_path(), {:target => 'code_rules'}%>. You can save your script anyway by checking <label for="script_version_accepted_assessment">this box</label> <%=s.check_box(:accepted_assessment, {}, true, false)%>; however, your script will not be installable by others until the external script issue is resolved.</li>
-				<% end
-				if version_not_incremented %>
-					<li>You updated the code but didn't increase the <code>@version</code> number. This means anyone who previously installed your script may not get the updated code. <label for="script_version_version_check_override">Save anyway?</label> <%=s.check_box(:version_check_override, {}, true, false)%></li>
-				<% end 
-				if version_not_specified %>
-					<li>You didn't provide a <code>@version</code>. Version meta keys are important because it lets people who install your script receive updates. Specify a version or <label for="script_version_add_missing_version">check this box</label> <%=s.check_box(:add_missing_version, {}, true, false)%> to have the site generate one for you.</li>
-				<% end
-				if namespace_is_missing %>
-					<li>You didn't provide a <code>@namespace</code>. Namespace meta keys are important because it makes a re-install of your script be considered an update. Specify a namespace or <label for="script_version_add_missing_namespace">check this box</label> <%=s.check_box(:add_missing_namespace, {}, true, false)%> to have the site generate one for you.</li>
-				<% end 
-				if namespace_changed %>
-					<li>Your <code>@namespace</code> has changed. A consistent namespace is important for a re-install of your script be considered an update. <label for="script_version_namespace_check_override">Save anyway?</label> <%=s.check_box(:namespace_check_override, {}, true, false)%></li>
-				<% end
-				if minified_code %>
-					<li>Your script looks like it might contain minified (compressed) code, which isn't allowed. If you're using a minified library, please instead <code>@require</code> it from <%=link_to "one of these places", help_external_scripts_path()%>. If your code isn't minified, <label for="script_version_minified_confirmation">check this box</label> <%=s.check_box(:minified_confirmation, {}, true, false)%>.</li>
-				<% end %>
+				script_version.warnings.each do |w| %>
+					<li><%
+						case w
+							when :uses_disallowed_requires %>
+								<%=t('scripts.warning_uses_disallowed_requires_html', {
+									:requires_used => script_version.disallowed_requires_used.join(', '),
+									:external_script_rules_link => link_to(t('scripts.warning_uses_disallowed_requires_rules_link'), help_external_scripts_path(), {:target => 'code_rules'})
+								})%><br>
+								<label for="script_version_accepted_assessment"><%=t('scripts.override_warning_checkbox_label')%></label> <%=s.check_box(:accepted_assessment, {}, true, false)%>
+							<% when :version_not_incremented %>
+								<%=t('scripts.warning_version_not_incremented_html')%><br>
+								<label for="script_version_version_check_override"><%=t('scripts.override_warning_checkbox_label')%></label> <%=s.check_box(:version_check_override, {}, true, false)%>
+							<% when :version_missing %>
+								<%=t('scripts.warning_version_missing_html')%><br>
+								<label for="script_version_add_missing_version"><%=t('scripts.warning_version_missing_generate_automatically_html')%></label> <%=s.check_box(:add_missing_version, {}, true, false)%>
+							<% when :namespace_missing %>
+								<%=t('scripts.warning_namespace_missing_html')%><br>
+								<label for="script_version_add_missing_namespace"><%=t('scripts.warning_namespace_missing_generate_automatically')%></label> <%=s.check_box(:add_missing_namespace, {}, true, false)%>
+							<% when :namespace_changed %>
+								<%=t('scripts.warning_namespace_changed_html')%><br>
+								<label for="script_version_namespace_check_override"><%=t('scripts.override_warning_checkbox_label')%></label> <%=s.check_box(:namespace_check_override, {}, true, false)%>
+							<% when :potentially_minified %>
+								<%=t('scripts.warning_potentially_minified_html', {:allowed_requires_link => link_to(t('scripts.warning_potentially_minified_allowed_requires_link'), help_external_scripts_path())})%><br>
+								<label for="script_version_minified_confirmation"><%=t('scripts.override_warning_checkbox_label')%></label> <%=s.check_box(:minified_confirmation, {}, true, false)%>
+							<% else
+								raise "Unknown warning #{w}"
+						end %>
+					</li><%
+				end %>
 			</ul>
 		</div>
 	<% end %>
 
 	<% if @script.library? %>
 		<div class="form-control">
-			<label for="library-name">Name</label><br>
+			<label for="library-name"><%=t('activerecord.attributes.script.name')%></label><br>
 			<input id="library-name" name="name" value="<%=@script.name%>" maxlength="100">
 		</div>
 		<div class="form-control">
-			<label for="library-description">Description</label><br>
+			<label for="library-description"><%=t('activerecord.attributes.script.description')%></label><br>
 			<input id="library-description" name="description" value="<%=@script.description%>" maxlength="500">
 		</div>
 	<% end %>
 	<div class="form-control">
-		<label for="code">Code</label><br>
+		<label for="code"><%=t('activerecord.attributes.script.code')%></label><br>
 		<%=s.text_area(:code)%>
-		<div>Or upload: <input type="file" name="code_upload" id="code-upload" accept="text/javascript,application/javascript"></div>
+		<div><%=t('scripts.upload_label')%> <input type="file" name="code_upload" id="code-upload" accept="text/javascript,application/javascript"></div>
 	</div>
 	<% if !script_version.script.new_record? %>
 		<div class="form-control">
-			<label for="changelog">Changelog</label> <span class="label-note">What's changed in this version?</span><br>
+			<label for="changelog"><%=t('activerecord.attributes.script.changelog')%></label> <span class="label-note"><%=t('scripts.changelog_note')%></span><br>
 			<%=s.text_field(:changelog, :maxlength => 500, :size => nil)%>
 		</div>
 	<% end %>
 	<div class="form-control radio-group">
-		<label>Script type</label><br>
+		<label><%=t('activerecord.attributes.script.type')%></label><br>
 		<% ScriptType.all.each do |st| %>
-			<%=radio_button('script', 'script_type_id', st.id)%> <label class="radio-label" for="script_script_type_id_<%=st.id%>"><%=st.name%> - <%=st.description%></label><br>
+			<%=radio_button('script', 'script_type_id', st.id)%> <label class="radio-label" for="script_script_type_id_<%=st.id%>"><%=t("scripts.type_#{st.id}_html")%></label><br>
 		<% end %>
 	</div>
 	<div class="form-control radio-group">
@@ -104,17 +113,17 @@
 		</select>
 	</div>
 	<div class="form-control">
-		<label for="additional-info">Additional info</label>
+		<label for="additional-info"><%=t('activerecord.attributes.script.additional_info')%></label>
 		<span class="label-note">
-			Ramble on about your script. <%=link_to t('common.allowed_elements_link'), help_allowed_markup_path, {:target => 'markup_choice'}%>
+			<%=t('scripts.additional_info_note_html', {:allowed_elements_link => link_to( t('common.allowed_elements_link'), help_allowed_markup_path, {:target => 'markup_choice'})})%>
 			<%=s.radio_button(:additional_info_markup, 'html')%>HTML
 			<%=s.radio_button(:additional_info_markup, 'markdown')%><%=link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', {:target => 'markup_choice'}%>
-			<button name="preview" id="preview-script-additional-info" class="preview-button">Preview</button>
+			<button name="preview" id="preview-script-additional-info" class="preview-button"><%=t('scripts.preview_additional_info')%></button>
 		</span><br>
 		<%=s.text_area(:additional_info, {:class => 'previewable', 'data-preview-activate-id' => 'preview-script-additional-info', 'data-markup-option-name' => 'script_version[additional_info_markup]', 'data-preview-result-id' => 'preview-script-additional-info-results'})%>
 		<div id="preview-script-additional-info-results" class="preview-result" <%if !@preview.nil?%>style="display:block"<%end%>>
 			<%if !@preview.nil?%><%=@preview.html_safe%><%end%>
 		</div>
 	</div>
-	<%=s.submit(script_version.script.new_record? ? 'Post script' : 'Post new version')%>
+	<%=s.submit(script_version.script.new_record? ? t('scripts.post_new_script') : t('scripts.post_updated_script'))%>
 <% end %>

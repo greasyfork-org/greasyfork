@@ -10,10 +10,10 @@
 <% end %>
 
 <% if !@results[:new_with_assessment].empty? %>
-	<p>The following scripts were successfully imported, but require an <%=link_to 'assessment'.html_safe, help_code_rules_path(:anchor => 'require'), {:target => 'code_rules'}%> before being made public:</p>
+	<p>The following scripts were successfully imported, but will not be made public until their <code>@require</code>s align with <%=link_to 'Greasy Fork\'s policies', help_external_scripts_path%>:</p>
 	<ul>
-		<% @results[:new_with_assessment].each do |name| %>
-			<li><%=name%></li>
+		<% @results[:new_with_assessment].each do |script| %>
+			<li><%=link_to script.name, script%></li>
 		<% end %>
 	</ul>
 <% end %>

@@ -24,10 +24,10 @@ class Script < ActiveRecord::Base
 	scope :reported, -> {not_deleted.joins(:discussions).includes(:user).uniq.where('GDN_Discussion.Rating = 1').where('Closed = 0')}
 	scope :for_all_sites, -> {includes(:script_applies_tos).references(:script_applies_tos).where('script_applies_tos.id IS NULL')}
 
-	validates_presence_of :name, :message => 'is required - specify one with @name', :unless => Proc.new {|s| s.library?}
-	validates_presence_of :name, :message => 'is required', :if => Proc.new {|s| s.library?}
-	validates_presence_of :description, :message => 'is required - specify one with @description', :unless => Proc.new {|r| r.deleted? || r.library?}
-	validates_presence_of :description, :message => 'is required', :unless => Proc.new {|r| r.deleted? || !r.library?}
+	validates_presence_of :name, :message => :script_missing_name, :unless => Proc.new {|s| s.library?}
+	validates_presence_of :name, :if => Proc.new {|s| s.library?}
+	validates_presence_of :description, :message => :script_missing_description, :unless => Proc.new {|r| r.deleted? || r.library?}
+	validates_presence_of :description, :unless => Proc.new {|r| r.deleted? || !r.library?}
 	validates_presence_of :user_id, :code_updated_at, :script_type
 
 	validates_length_of :name, :maximum => 100
@@ -38,10 +38,10 @@ class Script < ActiveRecord::Base
 		# exempt scripts that are (being) deleted
 		next if record.deleted?
 
-		record.errors.add(attr, "must not be the same as the name") if value == record.name
+		record.errors.add(attr, :script_name_same_as_description) if value == record.name
 	end
 
-	validates_format_of :sync_identifier, :with => URI::regexp(%w(http https)), :message => 'must be an HTTP or HTTPS URL.', :if => Proc.new {|r| r.script_sync_source_id == 1}
+	validates_format_of :sync_identifier, :with => URI::regexp(%w(http https)), :message => :script_sync_identifier_bad_protocol, :if => Proc.new {|r| r.script_sync_source_id == 1}
 
 	strip_attributes :only => [:name, :description, :additional_info, :sync_identifier]
 

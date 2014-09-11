@@ -12,7 +12,6 @@ class ScriptVersion < ActiveRecord::Base
 	strip_attributes :only => [:changelog]
 
 	validates_presence_of :code
-	validates_presence_of :version, :message => 'meta key must be provided', :if => Proc.new {|sv| sv.script.nil? || !sv.script.library? }
 
 	validates_length_of :additional_info, :maximum => 50000
 	validates_length_of :code, :maximum => 2000000
@@ -21,85 +20,107 @@ class ScriptVersion < ActiveRecord::Base
 	validates_each(:code, :allow_nil => true, :allow_blank => true) do |record, attr, value|
 		meta = ScriptVersion.parse_meta(value)
 
-		#@@required_meta.each do |rm|
-		#	record.errors.add(attr, "must contain a meta @#{rm}") unless meta.has_key?(rm)
-		#end
-
-		if !record.accepted_assessment
-			record.disallowed_requires_used.each do |script_url|
-				record.errors.add(attr, "cannot @require from #{script_url}")
-			end
-		end
-
 		uses_disallowed_code = false
 		ScriptVersion.disallowed_codes_used_for_code(value).each do |dc|
 			uses_disallowed_code = true
 			record.errors.add(:name, "exception #{dc.ob_code}") if value =~ Regexp.new(dc.pattern)
 		end
-
-		# check for minified on new scripts
-		if !uses_disallowed_code and !record.minified_confirmation and (record.script.nil? or record.script.new_record?) and ScriptVersion.code_appears_minified(value)
-			record.errors.add(attr, "appears to be minified")
-		end
 	end
 
-	# version format
-	validates_each(:version, :allow_nil => true, :allow_blank => true) do |record, attr, value|
-		# exempt scripts that are (being) deleted
-		next if !record.script.nil? and record.script.deleted?
-
-		record.errors.add(attr, "is not in a valid format") if ScriptVersion.split_version(value).nil?
+	# Warnings are separated because we need to show custom UI for them (including checkboxes to override)
+	validate do |record|
+		record.warnings.each {|w| record.errors.add(:base, "warning-" + w.to_s)}
 	end
 
-	# version must be incremented if the code changed
-	validates_each(:code, :allow_nil => true, :allow_blank => true) do |record, attr, value|
+	def warnings
+		w = []
+		w << :uses_disallowed_requires if uses_disallowed_requires?
+		w << :version_missing if version_missing?
+		w << :version_not_incremented if version_not_incremented?
+		w << :namespace_missing if namespace_missing?
+		w << :namespace_changed if namespace_changed?
+		w << :potentially_minified if potentially_minified?
+		return w
+	end
+
+	def uses_disallowed_requires?
+		return false if accepted_assessment
+		return !disallowed_requires_used.empty?
+	end
+
+	def version_missing?
+		return false if add_missing_version
+
 		# exempt scripts that are (being) deleted as well as libraries
-		next if !record.script.nil? and (record.script.deleted? or record.script.library?)
+		return false if !script.nil? and (script.deleted? or script.library?)
 
-		next if record.version.nil? or record.version_check_override
-
-		# get the most recently saved record
-		previous_script_version = record.script.get_newest_saved_script_version
-
-		# if this is nil, this is a new script with no previous versions
-		next if previous_script_version.nil?
-
-		# version number does not need to be incremented if code is unchanged
-		next if value == previous_script_version.code
-
-		old_version = previous_script_version.version
-		next if ScriptVersion.compare_versions(record.version, old_version) == 1
-
-		record.errors.add(attr, "was changed, but version number (#{old_version}) was not incremented")
+		return version.nil?
 	end
 
-	# namespace is required and shouldn't change
-	validates_each(:code, :allow_nil => true, :allow_blank => true) do |record, attr, value|
-		# exempt scripts that are (being) deleted as well as libraries
-		next if !record.script.nil? and (record.script.deleted? or record.script.library?)
+	# Version should be incremented when code changes
+	def version_not_incremented?
+		return false if version_check_override
+		return false if version.nil?
 
-		meta = ScriptVersion.parse_meta(value)
+		# exempt scripts that are (being) deleted as well as libraries
+		return false if !script.nil? and (script.deleted? or script.library?)
+
+		# did the code change?
+		previous_script_version = script.get_newest_saved_script_version
+		return false if previous_script_version.nil?
+		return false if code == previous_script_version.code
+
+		return ScriptVersion.compare_versions(version, previous_script_version.version) != 1
+	end
+
+	# namespace is required
+	def namespace_missing?
+		return false if add_missing_namespace
+		# exempt scripts that are (being) deleted as well as libraries
+		return false if !script.nil? and (script.deleted? or script.library?)
+
+		# previous namespace will be used in calculate_rewritten_code if this one doesn't have one
+		previous_namespace = get_meta_from_previous('namespace', true)
+		return false if !previous_namespace.nil? and !previous_namespace.empty?
+
+		meta = ScriptVersion.parse_meta(code)
 		# handled elsewhere
-		next if meta.nil?
-		previous_namespace = record.get_meta_from_previous('namespace', true)
+		return false if meta.nil?
+
+		return !meta.has_key?('namespace')
+	end
+
+	# namespace shouldn't change
+	def namespace_changed?
+		return false if namespace_check_override
+		# exempt scripts that are (being) deleted as well as libraries
+		return false if !script.nil? and (script.deleted? or script.library?)
+
+		meta = ScriptVersion.parse_meta(code)
+		# handled elsewhere
+		return false if meta.nil?
+
+		# handled in namespace_missing?
+		namespaces = meta['namespace']
+		return false if namespaces.nil? or namespaces.empty?
+
+		namespace = namespaces.first
+
+		previous_namespace = get_meta_from_previous('namespace', true)
 		previous_namespace = (previous_namespace.nil? or previous_namespace.empty?) ? nil : previous_namespace.first
 
-		if meta.has_key?('namespace')
-			next if record.namespace_check_override
-			# didn't have one, now has one: OK
-			next if previous_namespace.nil?
-			# changed?
-			current_namespace = meta['namespace'].first
-			record.errors.add(attr, "namespace has changed from #{current_namespace} to #{previous_namespace}") if current_namespace != previous_namespace
-			next
-		end
+		# if there was no previous namespace, then anything new is fine
+		return false if previous_namespace.nil?
 
-		# this setting will ensure one gets added
-		next if record.add_missing_namespace
+		return namespace != previous_namespace
+	end
 
-		# no namespace is an error if the previous didn't have one either. if the previous did, 
-		# in calculate_rewritten_code it'll get applied again
-		record.errors.add(attr, "namespace is missing") if previous_namespace.nil?
+	# things shouldn't be minified
+	def potentially_minified?
+		return false if minified_confirmation or !disallowed_codes_used.empty?
+		# only warn on new
+		return false if script.nil? or !script.new_record?
+		return ScriptVersion.code_appears_minified(code)
 	end
 
 	attr_accessor :accepted_assessment, :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation, :description_override, :truncate_description

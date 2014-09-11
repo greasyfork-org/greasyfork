@@ -218,12 +218,62 @@ en:
     sets_add_inclusion: "Add to %{set_name}"
     # option to exclude the script from the set (when it's been included as part of a sub set)
     sets_add_exclusion: "Exclude from %{set_name}"
+    # summary of greasy fork's rules for posting scripts. full_rules_link is a link to the full rules with text of rules_summary_link_to_full
+    rules_summary_html: "Scripts must be <strong>properly described</strong>, cannot be <strong>obfuscated</strong> or <strong>minified</strong>, must respect <strong>copyright</strong>, and are limited in the <strong>external code</strong> used. %{full_rules_link}"
+    # full rules link text used in the rules summary
+    rules_summary_link_to_full: "Read the full rules."
+    # warning when on the edit screen for a script set up to sync. syncing_notice_sync_type will be a link to the sync screen with text from syncing_notice_sync_type_manual or syncing_notice_sync_type_automatic
+    syncing_notice_html: "This script is %{syncing_notice_sync_type}. Any updates you make to the code here will be overwritten when syncing."
+    # used in syncing_notice_html when a script syncs only when the author requests it
+    syncing_notice_sync_type_manual: "set to sync manually from %{sync_identifier}"
+    # used in syncing_notice_html when a script syncs automatically
+    syncing_notice_sync_type_automatic: "set to sync automatically from %{sync_identifier}"
+    # label for uploading a script under the code textarea
+    upload_label: "Or upload:"
+    # descriptive text for the changelog field
+    changelog_note: "What's changed in this version?"
+    # descriptive text for the additional info field. allowed_elements_link is a link to the list of elements with text from common.allowed_elements_link
+    additional_info_note_html: "Ramble on about your script. %{allowed_elements_link}"
+    # button text for previewing additional info
+    preview_additional_info: "Preview"
+    # button text for submitting a new script
+    post_new_script: "Post script"
+    # button text for submitting an update to an existing script
+    post_updated_script: "Post new version"
+    # label for radio button for public-type user script
+    type_1_html: "Public user script - a user script for all to see and use."
+    # label for radio button for unlisted-type user script
+    type_2_html: "Unlisted user script - a user script for (semi-)private use. Available by direct access, but not linked to from anywhere on Greasy Fork."
+    # label for radio button for library-type script
+    type_3_html: "Library - a script intended to be <code>@require</code>-d from other scripts and not installed directly."
+    # label for checkbox to override script save warnings
+    override_warning_checkbox_label: "Save anyway?"
+    # script warning for using @requires outside the whitelist. requires_used is a comma-separated list of URLs outside the whitelist. external_script_rules_link is a link to the external requires rules, with text of warning_uses_disallowed_requires_rules_link
+    warning_uses_disallowed_requires_html: "You are using <code>@require</code>s outside of Greasy Fork's whitelist: %{requires_used}. Please read %{external_script_rules_link}. Your script will not be installable by others until the external script issue is resolved."
+    # link text used in warning_uses_disallowed_require_html
+    warning_uses_disallowed_requires_rules_link: "Greasy Fork's policy on external scripts"
+    # script warning for not increasing the version number when updating the code
+    warning_version_not_incremented_html: "You updated the code but didn't increase the <code>@version</code> number. Those who previously installed your script may not get the updated code."
+    # script warning for when a version number is not provided
+    warning_version_missing_html: "You didn't specify <code>@version</code>. A <code>@version</code> meta key allows for update checking of your script in user script managers."
+    # label for checkbox for the site to automatically handle version numbers
+    warning_version_missing_generate_automatically_html: "Generate <code>@version</code> automatically?"
+    # script warning for when a namespace is not provided
+    warning_namespace_missing_html: "You didn't specify <code>@namespace</code>. A <code>@namespace</code> meta keys allows users to re-install your script to update it."
+    # label for checkbox for the site to automatically add a namespace
+    warning_namespace_missing_generate_automatically: "Generate a namespace automatically?"
+    # script warning for when a namespace changed on update
+    warning_namespace_changed_html: "Your <code>@namespace</code> has changed. A consistent <code>@namespace</code> allows users to re-install your script to update it."
+    # script warning for when a script's code appears minified. allowed_requires_link is a link to the allowed @require list, with text of warning_potentially_minified_allowed_requires_link
+    warning_potentially_minified_html: "Your script looks like it might contain minified (compressed) code. If you're using a minified library, please instead <code>@require</code> it from %{allowed_requires_link}. Scripts with minified code are subject to removal."
+    # used in warning_potentially_minified_html
+    warning_potentially_minified_allowed_requires_link: "one of these places"
   script_sets:
     # name for the favorites set
     favorites_name: "Favorites"
     # delete button text for a script set
     delete: "Delete script set"
-    # delete confirmation for a scirpt set
+    # delete confirmation for a script set
     delete_confirmation: "Are you sure you want to delete this script set?"
   forum_discussions:
     # forum discussion lists with 2 * 2 = 4 options:
@@ -383,5 +433,27 @@ en:
         # user field: setting to send e-mails when discussions or comments are posted to a user's scripts. options are under users.author_email_notification_type
         author_email_notification_type_id: "Script discussion notifications"
       script:
+        # name of the script
+        name: "Name"
+        # description of the script
+        description: "Description"
         # locale the script is in. see also scripts.locale_explanation
         locale: "Locale"
+        # the JS code of the script
+        code: "Code"
+        # description of changes for an update
+        changelog: "Changelog"
+        # the type of script - public, unlisted, or library
+        type: "Script type"
+        # additional descriptive text outside of @description
+        additional_info: "Additional info"
+  errors:
+    messages:
+      # validation for when a script name is not provided
+      script_missing_name: "is required - specify one with @name"
+      # validation for when a script description is not provided
+      script_missing_description: "is required - specify one with @description"
+      # validation for when a script description is the same as name
+      script_name_same_as_description: "must not be the same as name"
+      # validation for sync URL
+      script_sync_identifier_bad_protocol: "must be an HTTP or HTTPS URL"

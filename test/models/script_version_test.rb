@@ -253,7 +253,7 @@ var foo = "bar";
 END
 		assert !script_version.valid?
 		assert_equal 1, script_version.errors.size
-		assert script_version.errors.full_messages.first.include?('@require'), script_version.errors.full_messages.first
+		assert_equal [:base, 'warning-uses_disallowed_requires'], script_version.errors.first
 	end
 
 	test 'validate require exemption' do
@@ -409,7 +409,7 @@ END
 		sv.script = script
 		sv.calculate_all
 		assert !sv.valid?
-		assert_equal 1, sv.errors.to_a.length
+		assert_equal 1, sv.errors.to_a.length, sv.errors.to_a.inspect
 	end
 
 	test 'missing namespace' do
