@@ -187,6 +187,6 @@ private
 		return !d.nil? && d.block?
 	end
 
-	@@markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new({:link_attributes => {:rel => 'nofollow'}}), :fenced_code_blocks => true)
+	@@markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new({:link_attributes => {:rel => 'nofollow'}}), :fenced_code_blocks => true, :lax_spacing => true)
 
 end
