@@ -33,7 +33,7 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
 				<% script_version.errors.each do |attr, msg|
 					# need custom handling for warnings
 					next if msg.starts_with?('warning-') %>
-					<li><%=script_version.errors.generate_message(attr, msg)%></li>
+					<li><%=attr == :base ? msg : script_version.errors.generate_message(attr, msg)%></li>
 				<% end
 				script_version.script.errors.full_messages.each do |m| %>
 					<li><%=m%></li>

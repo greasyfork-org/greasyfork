@@ -23,7 +23,7 @@ class ScriptVersion < ActiveRecord::Base
 		uses_disallowed_code = false
 		ScriptVersion.disallowed_codes_used_for_code(value).each do |dc|
 			uses_disallowed_code = true
-			record.errors.add(:name, "exception #{dc.ob_code}") if value =~ Regexp.new(dc.pattern)
+			record.errors.add(:base, "Exception #{dc.ob_code}") if value =~ Regexp.new(dc.pattern)
 		end
 	end
 
