@@ -257,16 +257,10 @@ class GreasyForkPlugin extends Gdn_Plugin {
 	}
 
 	public function Gdn_Form_BeforeBodyBox_Handler($Sender) {
-		// Get rid of the hidden input field. The string must be mutable and not replaced for this to work.
-		// This may break after 2.1. Or it may get easier. https://github.com/vanilla/vanilla/pull/2089
-		$FormatIndexStart = strpos($Sender->EventArguments['BodyBox'], "<input type=\"hidden\" id=\"Form_Format\"");
-		$FormatIndexEnd = strpos($Sender->EventArguments['BodyBox'], ">", $FormatIndexStart) + 1;
-		for ($i = $FormatIndexStart; $i < $FormatIndexEnd; $i++) {
-			$Sender->EventArguments['BodyBox'][$i] = ' ';
-		}
-
-		// Add our own, non-hidden format field.
-		echo $Sender->RadioList('Format', array('Html' => 'HTML', 'Markdown' => 'Markdown'), array('Default' => $Sender->GetValue('Format', C('Garden.InputFormatter'))));
+		$FormatRadioList = $Sender->RadioList('Format', array('Html' => 'HTML', 'Markdown' => 'Markdown'), array('Default' => $Sender->GetValue('Format', C('Garden.InputFormatter'))));
+		// Add our radio field and get rid of the hidden input field.
+		// This may break after 2.1. https://github.com/vanilla/vanilla/pull/2089
+		$Sender->EventArguments['BodyBox'] = $FormatRadioList.preg_replace("/<input type=\"hidden\" id=\"Form_Format\".*>/", "", $Sender->EventArguments['BodyBox']);
 	}
 
 }
