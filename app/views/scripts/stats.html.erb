@@ -59,7 +59,7 @@ var myNewChart = new Chart(ctx).Bar(data, {barValueSpacing: 0, scaleOverride: tr
 		<% @install_data.each do |d, i| %>
 			<tr>
 				<td><%=d%></td>
-				<td class="numeric"><%=i%></td>
+				<td class="numeric"><%=number_with_delimiter(i)%></td>
 			</tr>
 		<% end %>
 	</tbody>
