@@ -109,7 +109,7 @@ class GreasyForkPlugin extends Gdn_Plugin {
 		$DiscussionModel = new DiscussionModel();
 		$prefix = $DiscussionModel->SQL->Database->DatabasePrefix;
 		$DiscussionModel->SQL->Database->DatabasePrefix = '';
-		$UserInfo = $DiscussionModel->SQL->Select('u.author_email_notification_type_id, u.email, u.name, s.name script_name, u.id, ua.UserID forum_user_id')
+		$UserInfo = $DiscussionModel->SQL->Select('u.author_email_notification_type_id, u.email, u.name, s.default_name script_name, u.id, ua.UserID forum_user_id')
 			->From('scripts s')
 			->Join('users u', 's.user_id = u.id')
 			->Join('GDN_UserAuthentication ua', 'ua.ForeignUserKey = u.id')
