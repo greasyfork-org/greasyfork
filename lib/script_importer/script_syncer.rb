@@ -35,12 +35,10 @@ module ScriptImporter
 						script.save(:validate => false)
 						return :unchanged
 					end
+
 					#TODO make this syncable and localizable
-					last_saved_sv.localized_attributes.each {|la|
-						sv.localized_attributes.build(
-							{:attribute_key => la.attribute_key, :attribute_value => la.attribute_value, :attribute_default => la.attribute_default, :locale => la.locale, :value_markup => la.value_markup}
-						)
-					}
+					last_saved_sv.localized_attributes.each {|la| sv.build_localized_attribute(la) unless la.attribute_value.blank? }
+
 					sv.changelog = changelog if !changelog.nil?
 					sv.script = script
 					sv.do_lenient_saving
