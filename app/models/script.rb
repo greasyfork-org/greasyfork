@@ -323,7 +323,7 @@ private
 			locale_code = n.split(':', 2).last
 			meta_locale = Locale.where(:code => locale_code).first
 			if meta_locale.nil?
-				Rails.logger.error "Unknown locale code - #{ex}"
+				Rails.logger.error "Unknown locale code - #{locale_code}"
 				next
 			end
 			localized_attributes.build({:attribute_key => attr_name, :attribute_value => v.first, :attribute_default => false, :locale => meta_locale, :value_markup => 'text'})
