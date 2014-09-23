@@ -1,5 +1,10 @@
+require 'localizing_model'
+
 class Script < ActiveRecord::Base
+	include LocalizingModel
+
 	belongs_to :user
+
 	has_many :script_versions
 	has_many :script_applies_tos, -> {order(:text)}, :dependent => :delete_all, :autosave => true
 	has_many :discussions, -> { readonly.order('COALESCE(DateLastComment, DateInserted)').where('Closed = 0') }, :class_name => 'ForumDiscussion', :foreign_key => 'ScriptID'
@@ -9,6 +14,11 @@ class Script < ActiveRecord::Base
 	has_many :script_set_script_inclusions, :foreign_key => 'child_id'
 	has_many :favorited_in_sets, -> {includes(:user).where('favorite = true')}, :through => :script_set_script_inclusions, :class_name => 'ScriptSet', :source => 'parent'
 	has_many :favoriters, :through => :favorited_in_sets, :class_name => 'User', :source => 'user'
+	has_many :localized_attributes, :class_name => 'LocalizedScriptAttribute', :autosave => true
+	has_many :localized_names, -> {where(:attribute_key => 'name')}, :class_name => 'LocalizedScriptAttribute'
+	has_many :localized_descriptions, -> {where(:attribute_key => 'description')}, :class_name => 'LocalizedScriptAttribute'
+	has_many :localized_additional_infos, -> {where(:attribute_key => 'additional_info')}, :class_name => 'LocalizedScriptAttribute'
+
 	belongs_to :script_type
 	belongs_to :script_sync_source
 	belongs_to :script_sync_type
@@ -24,37 +34,84 @@ class Script < ActiveRecord::Base
 	scope :reported, -> {not_deleted.joins(:discussions).includes(:user).uniq.where('GDN_Discussion.Rating = 1').where('Closed = 0')}
 	scope :for_all_sites, -> {includes(:script_applies_tos).references(:script_applies_tos).where('script_applies_tos.id IS NULL')}
 
+	# Must have a default name and description
 	validates_presence_of :name, :message => :script_missing_name, :unless => Proc.new {|s| s.library?}
 	validates_presence_of :name, :if => Proc.new {|s| s.library?}
 	validates_presence_of :description, :message => :script_missing_description, :unless => Proc.new {|r| r.deleted? || r.library?}
 	validates_presence_of :description, :unless => Proc.new {|r| r.deleted? || !r.library?}
-	validates_presence_of :user_id, :code_updated_at, :script_type
 
-	validates_length_of :name, :maximum => 100
-	validates_length_of :description, :maximum => 500
-	validates_length_of :additional_info, :maximum => 50000
-
-	validates_each(:description, :allow_nil => true, :allow_blank => true) do |record, attr, value|
-		# exempt scripts that are (being) deleted
-		next if record.deleted?
-
-		record.errors.add(attr, :script_name_same_as_description) if value == record.name
+	MAX_LENGTHS = {:name => 100, :description => 500, :additional_info => 50000}
+	validates_each *MAX_LENGTHS.keys do |script, attr, nothing|
+		len = MAX_LENGTHS[attr]
+		script.localized_attributes_for(attr)
+			.select{|la| !la.attribute_value.nil?}
+			.select{|la| la.attribute_value.length > len}
+			.each{|la|
+				# use @meta if this came from a meta
+				if [:name, :description].include?(attr) and !script.library?
+					validation_key = la.localized_meta_key
+				else
+					validation_key = attr
+				end
+				script.errors[validation_key] << I18n.t('errors.messages.too_long', {:count => len})}
 	end
+
+	# Every locale that provides a name must have a description that's different than the name
+	validate do |script|
+		localized_names = script.localized_attributes_for('name')
+		localized_descriptions = script.localized_attributes_for('description')
+		localized_names.each {|ln|
+			matching_description = localized_descriptions.select{|ld| ld.locale == ln.locale}.first
+			validation_key = script.library? ? :description : LocalizedScriptAttribute.localized_meta_key(:description, ln.locale, false)
+			if matching_description.nil?
+				script.errors.add(validation_key, I18n.t('errors.messages.blank'))
+			elsif matching_description.attribute_value == ln.attribute_value
+				script.errors.add(validation_key, I18n.t('errors.messages.script_name_same_as_description'))
+			end
+		}
+	end
+
+	# Add localized attribute errors to script
+	validates_each :localized_attributes do |script, attr, children|
+		script.errors[attr].clear
+		children.each do |child|
+			next if child.marked_for_destruction? or child.valid?
+			child.errors.full_messages.each do |msg|
+				script.errors[:base] << msg
+			end
+		end
+    end
+
+	validates_presence_of :user_id, :code_updated_at, :script_type
 
 	validates_format_of :sync_identifier, :with => URI::regexp(%w(http https)), :message => :script_sync_identifier_bad_protocol, :if => Proc.new {|r| r.script_sync_source_id == 1}
 
-	strip_attributes :only => [:name, :description, :additional_info, :sync_identifier]
+	strip_attributes :only => [:sync_identifier]
+
+	before_validation :set_locale
+	def set_locale
+		return if !locale.nil?
+		self.locale = detect_locale 
+		localized_attributes.select{|la| la.locale.nil?}.each{|la| la.locale = self.locale}
+	end
+
+	before_validation :set_default_name
+	def set_default_name
+		self.default_name = default_localized_value_for('name')
+	end
 
 	def apply_from_script_version(script_version)
-		self.additional_info = script_version.additional_info
-		self.additional_info_markup = script_version.additional_info_markup
+		# straight up copy this from the script_version
+		localized_attributes_for('additional_info').each{|la| la.mark_for_destruction}
+		script_version.localized_attributes_for('additional_info').each{|la| build_localized_attribute(la)}
 
-		# keep previous name and description for libraries
 		meta = ScriptVersion.parse_meta(script_version.rewritten_code)
-		meta_name = meta.has_key?('name') ? meta['name'].first : nil
-		self.name = meta_name unless library? and meta_name.nil?
-		meta_description = script_version.description
-		self.description = meta_description unless library? and meta_description.nil?
+
+		['name', 'description'].each{|key| update_localized_attribute(meta, key)}
+
+		if script_version.truncate_description
+			localized_attributes_for('description').select{|la| la.attribute_value.length > MAX_LENGTHS[:description]}.each{|la| la.attribute_value = la.attribute_value[0,MAX_LENGTHS[:description]]}
+		end
 
 		self.script_applies_tos.each {|sat| sat.mark_for_destruction }
 		script_version.calculate_applies_to_names.each do |text, domain|
@@ -142,6 +199,24 @@ class Script < ActiveRecord::Base
 		script_type_id == 2
 	end
 
+	def name(lookup_locale = nil)
+		return localized_value_for('name', lookup_locale)
+	end
+
+	def description(lookup_locale = nil)
+		return localized_value_for('description', lookup_locale)
+	end
+
+	def additional_info(lookup_locale = nil)
+		return localized_value_for('additional_info', lookup_locale)
+	end
+
+	def additional_info_markup(lookup_locale = nil)
+		la = localized_attribute_for('additional_info', lookup_locale)
+		return nil if la.nil?
+		return la.value_markup
+	end
+
 	def slugify(name)
 		# take out swears
 		r = name.downcase.gsub(/motherfucking|motherfucker|fucking|fucker|fucks|fuck|shitty|shits|shit|niggers|nigger|cunts|cunt/, '')
@@ -174,18 +249,22 @@ class Script < ActiveRecord::Base
 	def detect_locale
 		ft = full_text
 		return if ft.nil?
-		begin
-			dl_lang_code = DetectLanguage.simple_detect(ft)
-		rescue Exception => ex
-			Rails.logger.error "Could not detect language - #{ex}"
+		if Greasyfork::Application.config.enable_detect_locale
+			begin
+				dl_lang_code = DetectLanguage.simple_detect(ft)
+			rescue Exception => ex
+				Rails.logger.error "Could not detect language - #{ex}"
+			end
+			if !dl_lang_code.nil?
+				locales = Locale.where(:detect_language_code => dl_lang_code)
+				return locales.first if !locales.empty?
+				Rails.logger.error "detect_language gave unrecognized code #{dl_lang_code}"
+			end
 		end
-		return nil if dl_lang_code.nil?
-		locales = Locale.where(:detect_language_code => dl_lang_code)
-		if locales.empty?
-			Rails.logger.error "detect_language gave unrecognized code #{dl_lang_code}"
-			return nil
-		end
-		return locales.first
+		# assume english
+		english = Locale.where(:code => 'en').first
+		raise "Me fail english? That's unpossible!" if english.nil?
+		return english
 	end
 
 	def license_display
@@ -217,14 +296,39 @@ private
 		Rails.application.routes.url_helpers
 	end
 
-	# all text content of this script (for language detection)
+	# all text content of non-localized attributes for this script (for language detection)
 	def full_text
 		parts = []
 		parts << name if !name.nil? and !name.empty?
 		parts << description if !description.nil? and !description.empty?
-		additional_text = ApplicationController.helpers.format_user_text_as_plain(additional_info, additional_info_markup)
-		parts << additional_text if !additional_text.nil? and !additional_text.empty?
+		la = localized_attributes.select{|la| la.attribute_key == 'additional_info' && la.attribute_default}.first
+		if !la.nil?
+			additional_text = ApplicationController.helpers.format_user_text_as_plain(la.attribute_value, la.value_markup)
+			parts << additional_text if !additional_text.nil? and !additional_text.empty?
+		end
 		return nil if parts.empty?
 		return parts.join("\n")
 	end
+
+	def update_localized_attribute(meta_keys, attr_name)
+		default_value = meta_keys.has_key?(attr_name) ? meta_keys[attr_name].first : nil
+		# for libraries, if there's no default, just leave as is
+		return if library? and default_value.nil?
+
+		localized_attributes_for(attr_name).each {|la| la.mark_for_destruction}
+
+		localized_attributes.build({:attribute_key => attr_name, :attribute_value => default_value, :attribute_default => true, :locale => locale, :value_markup => 'text'}) if !default_value.nil?
+
+		meta_keys.select{|n, v| n.starts_with?(attr_name + ':')}.each{ |n, v|
+			locale_code = n.split(':', 2).last
+			meta_locale = Locale.where(:code => locale_code).first
+			if meta_locale.nil?
+				Rails.logger.error "Unknown locale code - #{ex}"
+				next
+			end
+			localized_attributes.build({:attribute_key => attr_name, :attribute_value => v.first, :attribute_default => false, :locale => meta_locale, :value_markup => 'text'})
+		}
+
+	end
+
 end

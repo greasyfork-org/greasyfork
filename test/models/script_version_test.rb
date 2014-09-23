@@ -496,7 +496,7 @@ END
 		sv.script = script
 		sv.calculate_all(script.description)
 		script.apply_from_script_version(sv)
-		assert script.description.nil?
+		assert_nil script.description
 		assert !script.valid?
 	end	
 
@@ -811,11 +811,11 @@ END
 		assert script.description.length > 500
 		assert !script.valid?
 		assert script.errors.to_a.length == 1, script.errors.full_messages
-		assert script.errors.full_messages.first.include?('Description'), script.errors.full_messages
+		assert script.errors.full_messages.first.include?('@description'), script.errors.full_messages
 		sv.do_lenient_saving
 		sv.calculate_all
 		script.apply_from_script_version(sv)
 		assert script.valid?, script.errors.full_messages
-		assert script.description.length == 500
+		assert_equal 500, script.description.length
 	end
 end

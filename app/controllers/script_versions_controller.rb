@@ -22,8 +22,7 @@ class ScriptVersionsController < ApplicationController
 			@script_version.script = @script
 			previous_script = @script.script_versions.last
 			@script_version.code = previous_script.code
-			@script_version.additional_info = previous_script.additional_info
-			@script_version.additional_info_markup = previous_script.additional_info_markup
+			previous_script.localized_attributes.each{|la| @script_version.build_localized_attribute(la)}
 			render :layout => 'scripts'
 		else
 			@script = Script.new
@@ -48,6 +47,10 @@ class ScriptVersionsController < ApplicationController
 		@script.script_type_id = params['script']['script_type_id']
 		@script.locale_id = params['script']['locale_id']
 
+		# TODO: allow this to be localized
+		@script_version.localized_attributes.each{|la| la.mark_for_destruction}
+		@script_version.localized_attributes.build({:attribute_key => 'additional_info', :attribute_value => params[:script_version][:additional_info], :attribute_default => true, :locale => @script.locale, :value_markup => params[:script_version][:additional_info_markup]}) unless params[:script_version][:additional_info].blank?
+
 		if !params[:code_upload].nil?
 			uploaded_content = params[:code_upload].read
 			if !uploaded_content.force_encoding("UTF-8").valid_encoding?
@@ -60,21 +63,23 @@ class ScriptVersionsController < ApplicationController
 
 		if @script.library?
 			# accept name and description as params for libraries, as they may not have meta blocks
-			@script.name = params[:name] if !params[:name].nil?
-			@script.description = params[:description] if !params[:description].nil?
+			@script.delete_localized_attributes('name')
+			@script.localized_attributes.build({:attribute_key => 'name', :attribute_value => params[:name], :attribute_default => true, :locale => @script.locale, :value_markup => 'text'}) if !params[:name].nil?
+			@script.delete_localized_attributes('description')
+			@script.localized_attributes.build({:attribute_key => 'description', :attribute_value => params[:description], :attribute_default => true, :locale => @script.locale, :value_markup => 'text'}) if !params[:description].nil?
+
 			# automatically add a version for libraries, if missing
-			@script_version.add_missing_version = true if @script.library?
+			@script_version.add_missing_version = true
+		end
+
+		# if the script is (being) deleted, don't require a description
+		if @script.deleted? and @script.description.nil?
+			@script.delete_localized_attributes('description')
+			@script.localized_attributes.build({:attribute_key => 'description', :attribute_value => 'Deleted', :attribute_default => true, :locale => @script.locale, :value_markup => 'text'})
 		end
 
 		@script_version.calculate_all(@script.description)
 		@script.apply_from_script_version(@script_version)
-
-		if @script.locale_id.nil?
-			@script.locale = @script.detect_locale
-		end
-
-		# if the script is (being) deleted, don't require a description
-		@script.description = 'Deleted' if @script.deleted? and @script.description.nil?
 
 		# support preview for JS disabled users
 		if !params[:preview].nil?
@@ -107,7 +112,7 @@ class ScriptVersionsController < ApplicationController
 private
 
 	def script_version_params
-		params.require(:script_version).permit(:code, :changelog, :additional_info, :additional_info_markup, :accepted_assessment, :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation)
+		params.require(:script_version).permit(:code, :changelog, :accepted_assessment, :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation)
 	end
 
 end

@@ -1,5 +1,5 @@
-<%- title t('scripts.history_title', :script_name => @script.name) %>
-<%- description 'Version history for ' + @script.name %>
+<%- title t('scripts.history_title', :script_name => @script.name(I18n.locale)) %>
+<%- description 'Version history for ' + @script.name(I18n.locale) %>
 
 <% 
 show_diff = @script.script_versions.length > 1

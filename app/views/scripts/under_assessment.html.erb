@@ -6,7 +6,7 @@
 	<ul>
 		<% @scripts.each do |script| %>
 			<li>
-				<%=link_to script.name, script %> <%=script.assessments.map{|a| a.assessment_reason.name + ' ' + a.details}.join(', ')%>
+				<%=link_to script.name(I18n.locale), script %> <%=script.assessments.map{|a| a.assessment_reason.name + ' ' + a.details}.join(', ')%>
 			</li>
 		<% end %>
 	</ul>

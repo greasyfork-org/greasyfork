@@ -5,7 +5,7 @@ class HomeController < ApplicationController
 	protect_from_forgery :except => [:sso]
 
 	def index
-		@highlighted_scripts = Script.listable.order('daily_installs DESC').limit(100).sample(10)
+		@highlighted_scripts = Script.listable.includes(:localized_attributes => :locale).order('daily_installs DESC').limit(100).sample(10)
 	end
 
 	def preview_markup

@@ -21,7 +21,7 @@
 									<%=t('scripts.derivatives_script_with_code_line_html',  {
 										:script_lines_link => link_to(
 											t('scripts.script_lines_link', {
-												:script_name => dup.script.name,
+												:script_name => dup.script.name(I18n.locale),
 												:start => dup.line + 1,
 												:end => dup.line + cd.lines + 1
 											}),

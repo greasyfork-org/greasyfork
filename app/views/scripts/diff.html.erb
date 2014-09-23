@@ -1,5 +1,5 @@
-<%- title @script.name + ' - Version diff' %>
-<%- description "Differences in #{@script.name} between #{@old_version.version} and #{@new_version.version}" %>
+<%- title @script.name(I18n.locale) + ' - Version diff' %>
+<%- description "Differences in #{@script.name(I18n.locale)} between #{@old_version.version} and #{@new_version.version}" %>
 
 <h3>Comparing versions</h3>
 <p>

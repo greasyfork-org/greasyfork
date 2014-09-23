@@ -9,7 +9,7 @@ class ImportController < ApplicationController
 	before_filter :authenticate_user!
 
 	def index
-		@scripts_by_source = Script.where(['user_id = ?', current_user.id]).where('script_sync_source_id is not null').includes([:script_sync_source, :script_sync_type]).order('scripts.name')
+		@scripts_by_source = Script.where(['user_id = ?', current_user.id]).where('script_sync_source_id is not null').includes([:script_sync_source, :script_sync_type])
 		@scripts_by_source = @scripts_by_source.group_by{|script| script.script_sync_source}
 	end
 

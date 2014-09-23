@@ -1,5 +1,5 @@
-<%- title t('scripts.feedback_title', :script_name => @script.name) %>
-<%- description 'Feedback on ' + @script.name %>
+<%- title t('scripts.feedback_title', :script_name => @script.name(I18n.locale)) %>
+<%- description 'Feedback on ' + @script.name(I18n.locale) %>
 
 <% if !@script.contribution_url.nil? %>
 	<p id="contribution">

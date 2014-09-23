@@ -37,4 +37,13 @@ Greasyfork::Application.configure do
   
   config.verify_ownership_on_import = false
   config.userscriptsorg_host = 'http://userscripts.org:8080'
+ 
+  config.enable_detect_locale = true
+
+  config.after_initialize do
+    Bullet.enable = false
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.add_footer = true
+  end
 end

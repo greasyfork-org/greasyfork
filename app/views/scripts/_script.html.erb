@@ -1,7 +1,7 @@
-<li data-script-id="<%=script.id%>" data-script-name="<%=script.name%>" data-script-author-id="<%=script.user.id%>" data-script-author-name="<%=script.user.name%>" data-script-daily-installs="<%=script.daily_installs%>" data-script-total-installs="<%=script.total_installs%>" data-script-fan-score="<%=script.fan_score%>" data-script-created-date="<%=script.created_at.strftime('%Y-%m-%d')%>" data-script-updated-date="<%=script.code_updated_at.strftime('%Y-%m-%d')%>" data-script-type="<%=script.script_type.short_name%>">
+<li data-script-id="<%=script.id%>" data-script-name="<%=script.name(I18n.locale)%>" data-script-author-id="<%=script.user.id%>" data-script-author-name="<%=script.user.name%>" data-script-daily-installs="<%=script.daily_installs%>" data-script-total-installs="<%=script.total_installs%>" data-script-fan-score="<%=script.fan_score%>" data-script-created-date="<%=script.created_at.strftime('%Y-%m-%d')%>" data-script-updated-date="<%=script.code_updated_at.strftime('%Y-%m-%d')%>" data-script-type="<%=script.script_type.short_name%>">
 	<article>
 		<h2>
-			<%=link_to script.name, script%>
+			<%=link_to script.name(I18n.locale), script%>
 			<% if script.script_type_id != 1 %>
 				<span class="script-type">(<%=script.script_type.short_name.capitalize%>)</span>
 			<% end %>
@@ -15,7 +15,7 @@
 				-
 			</span>
 			<span class="description">
-				<%=script.description%>
+				<%=script.description(I18n.locale)%>
 			</span>
 		</h2>
 		<dl>

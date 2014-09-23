@@ -1,5 +1,5 @@
-<%- title t('scripts.code_title', :script_name => @script.name) %>
-<%- description 'Source code for ' + @script.name %>
+<%- title t('scripts.code_title', :script_name => @script.name(I18n.locale)) %>
+<%- description 'Source code for ' + @script.name(I18n.locale) %>
 <style>
 <%= CodeRay::Encoders[:html]::CSS.new(:default).stylesheet%>
 </style>

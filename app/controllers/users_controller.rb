@@ -9,12 +9,13 @@ class UsersController < ApplicationController
 	HMAC_DIGEST = OpenSSL::Digest::Digest.new('sha1')
 
 	def show
-		@user = User.order('scripts.name')
+		# TODO sort scripts by name, keeping into account localization
+		@user = User.order('scripts.default_name')
 		# current user will display discussions
 		if !current_user.nil? and current_user.id == params[:id].to_i
-			@user = @user.includes(:scripts => [:discussions, :script_type])
+			@user = @user.includes(:scripts => [:discussions, :script_type, :script_delete_type, :localized_attributes => :locale])
 		else
-			@user = @user.includes(:scripts => :script_type)
+			@user = @user.includes(:scripts => [:script_type, :script_delete_type, :localized_attributes => :locale])
 		end
 		@user = @user.find(params[:id])
 
@@ -24,7 +25,7 @@ class UsersController < ApplicationController
 			format.html {
 				@by_sites = ScriptsController.get_top_by_sites
 
-				@scripts = ((!current_user.nil? && current_user.id == @user.id) or (!current_user.nil? and current_user.moderator?)) ? @user.scripts : @user.scripts.listable
+				@scripts = ((!current_user.nil? && current_user.id == @user.id) or (!current_user.nil? and current_user.moderator?)) ? @user.scripts.order(:id) : @user.scripts.listable
 				@user_has_scripts = !@scripts.empty?
 				@scripts = ScriptsController.apply_filters(@scripts, params)
 

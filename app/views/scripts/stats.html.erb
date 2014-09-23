@@ -1,5 +1,5 @@
-<%- title t('scripts.stats_title', :script_name => @script.name) %>
-<%- description 'Install stats for ' + @script.name %>
+<%- title t('scripts.stats_title', :script_name => @script.name(I18n.locale)) %>
+<%- description 'Install stats for ' + @script.name(I18n.locale) %>
 
 <h3><%=t('scripts.stats_daily_installs_heading')%></h3>
 

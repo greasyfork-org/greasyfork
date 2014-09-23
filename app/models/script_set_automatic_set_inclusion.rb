@@ -25,6 +25,6 @@ class ScriptSetAutomaticSetInclusion < ActiveRecord::Base
 		return Script.listable.joins(:script_applies_tos).where(['text = ?', value]) if script_set_automatic_type.id == 2 and !value.nil? and !value.empty?
 		return Script.listable.for_all_sites if script_set_automatic_type.id == 2
 		return Script.listable.where(:user_id => value) if script_set_automatic_type.id == 3
-		return Script.listable.where(:locale_id => value) if script_set_automatic_type.id == 4
+		return Script.listable.includes(:localized_names).where('localized_script_attributes.locale_id' => value) if script_set_automatic_type.id == 4
 	end
 end

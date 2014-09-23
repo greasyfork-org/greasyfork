@@ -19,7 +19,7 @@ class ScriptsController < ApplicationController
 	#########################
 
 	def index
-		@scripts = Script.listable.includes([:user, :script_type]).paginate(:page => params[:page], :per_page => get_per_page)
+		@scripts = Script.listable.includes({:user => {}, :script_type => {}, :localized_attributes => :locale, :script_delete_type => {}}).paginate(:page => params[:page], :per_page => get_per_page)
 		@scripts = self.class.apply_filters(@scripts, params)
 
 		respond_to do |format|
@@ -73,7 +73,7 @@ class ScriptsController < ApplicationController
 		end
 		@bots = 'noindex,follow'
 		begin
-			@scripts = Script.search params[:q], :match_mode => :extended, :page => params[:page], :per_page => get_per_page, :order => self.class.get_sort(params, true), :populate => true, :includes => :script_type
+			@scripts = Script.search params[:q], :match_mode => :extended, :page => params[:page], :per_page => get_per_page, :order => self.class.get_sort(params, true), :populate => true, :includes => [:script_type, :localized_attributes => :locale]
 			# make it run now so we can catch syntax errors
 			@scripts.empty?
 		rescue ThinkingSphinx::SyntaxError => e
@@ -365,8 +365,11 @@ class ScriptsController < ApplicationController
 		return if redirect_to_slug(@script, :script_id)
 
 		similar_names = {}
-		Script.listable.where(['user_id != ?', @script.user_id]).select([:id, :name]).each do |other_script|
-			similar_names[other_script.id] = Levenshtein.normalized_distance(@script.name, other_script.name)
+		Script.listable.includes(:localized_names).where(['user_id != ?', @script.user_id]).each do |other_script|
+			other_script.localized_names.each do |ln|
+				dist = Levenshtein.normalized_distance(@script.name, ln.attribute_value)
+				similar_names[other_script.id] = dist if similar_names[other_script.id].nil? or dist < similar_names[other_script.id]
+			end
 		end
 		similar_names = similar_names.sort_by{|k, v| v}.take(10)
 		@similar_name_scripts = similar_names.map{|a| Script.includes([:user, :license]).find(a[0])}
@@ -422,7 +425,7 @@ private
 			when 'fans'
 				return "#{column_prefix}fan_score DESC, #{column_prefix}id"
 			when 'name'
-				return "#{column_prefix}name ASC, #{column_prefix}id"
+				return "#{column_prefix}default_name ASC, #{column_prefix}id"
 			else
 				params[:sort] = nil
 				if for_sphinx

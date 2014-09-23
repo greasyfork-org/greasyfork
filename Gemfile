@@ -41,9 +41,6 @@ end
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
 
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-
 # included by dependency, need a more recent version - https://github.com/JasonBarnabe/greasyfork/issues/245
 gem 'i18n', '>= 0.6.11'
 
@@ -77,3 +74,6 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-browserid'
 gem 'detect_language'
 gem 'levenshtein'
+
+gem 'byebug', group: [:development, :test]
+gem 'bullet', :group => :development

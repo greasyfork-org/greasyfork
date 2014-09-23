@@ -1,6 +1,8 @@
 require 'uri'
+require 'localizing_model'
 
 class ScriptVersion < ActiveRecord::Base
+	include LocalizingModel
 
 	# this has to be before belongs_to for codes so that it runs before autosave
 	before_save :reuse_script_codes
@@ -9,11 +11,12 @@ class ScriptVersion < ActiveRecord::Base
 	belongs_to :script_code, :autosave => true
 	belongs_to :rewritten_script_code, :class_name => 'ScriptCode', :autosave => true
 
+	has_many :localized_attributes, :class_name => 'LocalizedScriptVersionAttribute', :autosave => true
+
 	strip_attributes :only => [:changelog]
 
 	validates_presence_of :code
 
-	validates_length_of :additional_info, :maximum => 50000
 	validates_length_of :code, :maximum => 2000000
 	validates_length_of :changelog, :maximum => 500
 
@@ -30,6 +33,21 @@ class ScriptVersion < ActiveRecord::Base
 	# Warnings are separated because we need to show custom UI for them (including checkboxes to override)
 	validate do |record|
 		record.warnings.each {|w| record.errors.add(:base, "warning-" + w.to_s)}
+	end
+
+	validates_each :localized_attributes do |sv, attr, children|
+		sv.errors[attr].clear
+		children.each do |child|
+			next if child.marked_for_destruction? or child.valid?
+			child.errors.full_messages.each do |msg|
+				sv.errors[:base] << msg
+			end
+		end
+    end
+
+	before_save :set_locale
+	def set_locale
+		localized_attributes.select{|la| la.locale.nil?}.each{|la| la.locale = script.locale}
 	end
 
 	def warnings
@@ -123,7 +141,7 @@ class ScriptVersion < ActiveRecord::Base
 		return ScriptVersion.code_appears_minified(code)
 	end
 
-	attr_accessor :accepted_assessment, :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation, :description_override, :truncate_description
+	attr_accessor :accepted_assessment, :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation, :truncate_description
 
 	def initialize
 		# Accept assessment of @requires outside the whitelist
@@ -140,7 +158,6 @@ class ScriptVersion < ActiveRecord::Base
 		@minified_confirmation = false
 		# Truncate description if it's too long
 		@truncate_description = false
-		@description_override = nil
 		super
 	end
 
@@ -241,11 +258,6 @@ class ScriptVersion < ActiveRecord::Base
 			end
 		end
 		self.rewritten_code = calculate_rewritten_code(previous_description)
-		# truncate description for use by Script, if necessary
-		if @truncate_description
-			d = self.class.get_first_meta(rewritten_code, 'description')
-			@description_override = d[0..499] if !d.nil? and d.length > 500
-		end
 	end
 
 	def get_rewritten_meta_block
@@ -426,7 +438,7 @@ class ScriptVersion < ActiveRecord::Base
 		return meta if meta_block.nil?
 		# can these be multiline?
 		meta_block.split("\n").each do |meta_line|
-			meta_match = /\/\/\s+@([a-zA-Z]+)\s+(.*)/.match(meta_line)
+			meta_match = /\/\/\s+@([a-zA-Z\:]+)\s+(.*)/.match(meta_line)
 			next if meta_match.nil?
 			key = meta_match[1].strip
 			value = meta_match[2].strip
@@ -538,9 +550,14 @@ class ScriptVersion < ActiveRecord::Base
 		return value.split("\n").any? {|s| s.length > 5000 and s.include?('function') }
 	end
 
-	def description
-		return @description_override if !@description_override.nil?
-		return self.class.get_first_meta(rewritten_code, 'description')
+	def additional_info
+		return default_localized_value_for('additional_info')
+	end
+
+	def additional_info_markup
+		la = localized_attributes_for('additional_info').select{|la| la.attribute_default}.first
+		return 'html' if la.nil?
+		return la.value_markup
 	end
 
 private

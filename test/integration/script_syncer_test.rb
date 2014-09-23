@@ -60,12 +60,17 @@ class ScriptSyncerTest < ActiveSupport::TestCase
 	test 'keep old additional info' do
 		script = Script.find(7)
 		assert_equal 1, script.script_versions.length
+		assert_equal 'MyText', script.script_versions.last.additional_info
+		assert_equal 'MyText', script.additional_info
+		assert_equal 'markdown', script.script_versions.last.localized_attributes_for('additional_info').first.value_markup
+		assert_equal 'markdown', script.localized_attributes_for('additional_info').last.value_markup
+		# after the sync, the additional info should be unchanged
 		assert_equal :success, ScriptSyncer.sync(script), script.sync_error
 		assert_equal 2, script.script_versions.length
 		assert_equal 'MyText', script.script_versions.last.additional_info
 		assert_equal 'MyText', script.additional_info
-		assert_equal 'markdown', script.script_versions.last.additional_info_markup
-		assert_equal 'markdown', script.additional_info_markup
+		assert_equal 'markdown', script.script_versions.last.localized_attributes_for('additional_info').first.value_markup
+		assert_equal 'markdown', script.localized_attributes_for('additional_info').last.value_markup
 	end
 
 end

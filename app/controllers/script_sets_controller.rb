@@ -174,7 +174,7 @@ private
 					errors << "Could not parse script '#{CGI::escapeHTML(possible_script)}'"
 				else
 					script = Script.find(script_id)
-					errors << "'#{script.name}' already included." if !set.add_child(script, params['script-action'] == 'e')
+					errors << "'#{script.name(I18n.locale)}' already included." if !set.add_child(script, params['script-action'] == 'e')
 				end
 			end
 		end

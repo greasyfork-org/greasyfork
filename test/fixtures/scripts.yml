@@ -1,60 +1,43 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
   id: 1
-  name: MyString
-  description: MyText
-  additional_info: MyText
   user_id: 1
+  default_name: A Test!
   code_updated_at: 2014-01-01
 
 two:
   id: 2
-  name: MyString
-  description: MyText
-  additional_info: MyText
   user_id: 1
+  default_name: A Test!
   code_updated_at: 2014-01-01
 
 three:
   id: 3
-  name: MyString
-  description: MyText
-  additional_info: MyText
   user_id: 1
+  default_name: A Test!
   code_updated_at: 2014-01-01
 
 script_with_generated_version:
   id: 4
-  name: MyString
-  description: MyText
-  additional_info: MyText
   user_id: 1
+  default_name: A Test!
   code_updated_at: 2014-01-01
 
 script_with_explicit_version:
   id: 5
-  name: MyString
-  description: MyText
-  additional_info: MyText
   user_id: 1
+  default_name: A Test!
   code_updated_at: 2014-01-01
 
 with_namespace:
   id: 6
-  name: MyString
-  description: MyText
-  additional_info: MyText
   user_id: 1
+  default_name: A Test!
   code_updated_at: 2014-01-01
 
 url_sync_script:
   id: 7
-  name: MyString
-  description: MyText
-  additional_info: MyText
-  additional_info_markup: markdown
   user_id: 1
+  default_name: A Test!
   code_updated_at: 2000-01-01
   script_sync_source_id: 100
   last_attempted_sync_date: 2000-01-01
@@ -70,10 +53,8 @@ url_sync_script:
 
 url_sync_script_unchanged:
   id: 8
-  name: MyString
-  description: MyText
-  additional_info: MyText
   user_id: 1
+  default_name: A Test!
   code_updated_at: 2000-01-01
   script_sync_source_id: 100
   last_attempted_sync_date: 2000-01-01
@@ -89,10 +70,8 @@ url_sync_script_unchanged:
 
 url_sync_script_new_has_no_description:
   id: 9
-  name: MyString
-  description: Unit test.
-  additional_info: MyText
   user_id: 1
+  default_name: A Test!
   code_updated_at: 2000-01-01
   script_sync_source_id: 100
   last_attempted_sync_date: 2000-01-01
@@ -107,10 +86,8 @@ url_sync_script_new_has_no_description:
 
 url_sync_script_invalid:
   id: 10
-  name: MyString
-  description: Unit test.
-  additional_info: MyText
   user_id: 1
+  default_name: A Test!
   code_updated_at: 2000-01-01
   script_sync_source_id: 100
   last_attempted_sync_date: 2000-01-01
@@ -122,24 +99,18 @@ url_sync_script_invalid:
 
 previous_with_description:
   id: 11
-  name: MyString
-  description: Unit test.
-  additional_info: MyText
   user_id: 1
+  default_name: A Test!
   code_updated_at: 2000-01-01
 
 meta_not_at_top:
   id: 12
-  name: MyString
-  description: Unit test.
-  additional_info: MyText
   user_id: 1
+  default_name: A Test!
   code_updated_at: 2000-01-01
 
 previous_with_name_and_description:
   id: 13
-  name: MyString
-  description: Unit test.
-  additional_info: MyText
   user_id: 1
+  default_name: A Test!
   code_updated_at: 2000-01-01

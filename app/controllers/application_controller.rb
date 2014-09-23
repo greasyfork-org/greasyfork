@@ -101,7 +101,7 @@ protected
 	def versionned_script(script_id, version_id)
 		return nil if script_id.nil?
 		script_id = script_id.to_i
-		current_script = Script.includes([:user, :license]).find(script_id)
+		current_script = Script.includes({:user => {}, :license => {}, :localized_attributes => :locale}).find(script_id)
 		return [current_script, current_script.get_newest_saved_script_version] if version_id.nil?
 		version_id = version_id.to_i
 		script_version = ScriptVersion.find(version_id)
@@ -110,10 +110,9 @@ protected
 
 		# this is not versionned information
 		script.script_type_id = current_script.script_type_id
+		script.locale = current_script.locale
 
-		# if this is a library, the code might not have name and description
-		script.name = current_script.name
-		script.description = current_script.description
+		current_script.localized_attributes.each{|la| script.build_localized_attribute(la)}
 
 		script.apply_from_script_version(script_version)
 		script.id = script_id
