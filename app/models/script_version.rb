@@ -438,7 +438,7 @@ class ScriptVersion < ActiveRecord::Base
 		return meta if meta_block.nil?
 		# can these be multiline?
 		meta_block.split("\n").each do |meta_line|
-			meta_match = /\/\/\s+@([a-zA-Z\:]+)\s+(.*)/.match(meta_line)
+			meta_match = /\/\/\s+@([a-zA-Z\:\-]+)\s+(.*)/.match(meta_line)
 			next if meta_match.nil?
 			key = meta_match[1].strip
 			value = meta_match[2].strip
