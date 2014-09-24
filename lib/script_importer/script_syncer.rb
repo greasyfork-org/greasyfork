@@ -3,6 +3,8 @@ require 'script_importer/url_importer'
 require 'script_importer/test_importer'
 
 module ScriptImporter
+	include ActionView::Helpers::TextHelper
+
 	class ScriptSyncer
 		$IMPORTERS = [UserScriptsOrgImporter, UrlImporter, TestImporter]
 
@@ -39,7 +41,7 @@ module ScriptImporter
 					#TODO make this syncable and localizable
 					last_saved_sv.localized_attributes.each {|la| sv.build_localized_attribute(la) unless la.attribute_value.blank? }
 
-					sv.changelog = changelog if !changelog.nil?
+					sv.changelog = truncate(changelog, {:length => 500}) if !changelog.nil?
 					sv.script = script
 					sv.do_lenient_saving
 					sv.calculate_all(script.description)
