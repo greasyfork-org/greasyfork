@@ -3,9 +3,6 @@ require 'active_support/concern'
 module LocalizingModel
 	extend ActiveSupport::Concern
 
-	included do
-	end
-
 	def default_localized_value_for(attr_name)
 		la = default_localized_attribute_for(attr_name)
 		return nil if la.nil?

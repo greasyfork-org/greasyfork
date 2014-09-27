@@ -118,11 +118,12 @@
 	</dl>
 </div>
 
-<% if !@script.additional_info.nil? and !@script.additional_info.empty? %>
+<% localized_additional_info = @script.localized_attribute_for('additional_info', I18n.locale)
+if !localized_additional_info.nil? %>
 	<div id="additional-info">
 		<h3><%=t('scripts.additional_info')%></h3>
 		<div>
-			<%=format_user_text(@script.additional_info, @script.additional_info_markup)%>
+			<%=format_user_text(localized_additional_info.attribute_value, localized_additional_info.value_markup)%>
 		</div>
 	</div>
 <% end %>

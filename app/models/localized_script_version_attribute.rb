@@ -5,4 +5,6 @@ class LocalizedScriptVersionAttribute < ActiveRecord::Base
 
 	strip_attributes :only => [:attribute_key, :attribute_value]
 
+	validates_presence_of :attribute_key, :attribute_value, :locale, :value_markup
+
 end

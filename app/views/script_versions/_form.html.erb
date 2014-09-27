@@ -30,13 +30,17 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
 		<div class="alert">
 			<p><%=t('common.error_preamble')%></p>
 			<ul class="errors">
-				<% script_version.errors.each do |attr, msg|
+				<% displayed_errors = []
+				script_version.errors.each do |attr, msg|
 					# need custom handling for warnings
-					next if msg.starts_with?('warning-') %>
-					<li><%=attr == :base ? msg : script_version.errors.generate_message(attr, msg)%></li>
-				<% end
-				script_version.script.errors.full_messages.each do |m| %>
-					<li><%=m%></li>
+					next if msg.starts_with?('warning-')
+					displayed_errors << ((attr == :base || msg.is_a?(String)) ? msg : script_version.errors.generate_message(attr, msg))
+				end
+				script_version.script.errors.full_messages.each do |m|
+					displayed_errors << m
+				end
+				displayed_errors.uniq.each do |err| %>
+					<li><%=err%></li>
 				<% end
 				script_version.warnings.each do |w| %>
 					<li><%
@@ -55,7 +59,7 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
 								<label for="script_version_add_missing_version"><%=t('scripts.warning_version_missing_generate_automatically_html')%></label> <%=s.check_box(:add_missing_version, {}, true, false)%>
 							<% when :namespace_missing %>
 								<%=t('scripts.warning_namespace_missing_html')%><br>
-								<label for="script_version_add_missing_namespace"><%=t('scripts.warning_namespace_missing_generate_automatically')%></label> <%=s.check_box(:add_missing_namespace, {}, true, false)%>
+								<label for="script_version_add_missing_namespace"><%=t('scripts.warning_namespace_missing_generate_automatically_html')%></label> <%=s.check_box(:add_missing_namespace, {}, true, false)%>
 							<% when :namespace_changed %>
 								<%=t('scripts.warning_namespace_changed_html')%><br>
 								<label for="script_version_namespace_check_override"><%=t('scripts.override_warning_checkbox_label')%></label> <%=s.check_box(:namespace_check_override, {}, true, false)%>
@@ -99,7 +103,7 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
 		<% end %>
 	</div>
 	<div class="form-control radio-group">
-		<label><%=t('activerecord.attributes.script.locale')%></label> <span class="label-note"><%=t('scripts.locale_explanation')%></span><br>
+		<label><%=t('activerecord.attributes.script.locale')%></label> <span class="label-note"><%=t('scripts.locale_explanation_html')%></span><br>
 		<select name="script[locale_id]">
 			<option value="" <%if @script.locale_id.nil?%>selected<%end%>><%=t('scripts.locale_auto_select')%></option>
 			<option disabled>---</option>
@@ -112,18 +116,21 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
 			<% end %>
 		</select>
 	</div>
-	<div class="form-control">
-		<label for="additional-info"><%=t('activerecord.attributes.script.additional_info')%></label>
-		<span class="label-note">
-			<%=t('scripts.additional_info_note_html', {:allowed_elements_link => link_to( t('common.allowed_elements_link'), help_allowed_markup_path, {:target => 'markup_choice'})})%>
-			<%=s.radio_button(:additional_info_markup, 'html')%>HTML
-			<%=s.radio_button(:additional_info_markup, 'markdown')%><%=link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', {:target => 'markup_choice'}%>
-			<button name="preview" id="preview-script-additional-info" class="preview-button"><%=t('scripts.preview_additional_info')%></button>
-		</span><br>
-		<%=s.text_area(:additional_info, {:class => 'previewable', 'data-preview-activate-id' => 'preview-script-additional-info', 'data-markup-option-name' => 'script_version[additional_info_markup]', 'data-preview-result-id' => 'preview-script-additional-info-results'})%>
-		<div id="preview-script-additional-info-results" class="preview-result" <%if !@preview.nil?%>style="display:block"<%end%>>
-			<%if !@preview.nil?%><%=@preview.html_safe%><%end%>
-		</div>
+
+	<% # default first
+	script_version.localized_attributes_for('additional_info').sort{|a,b|
+		next -1 if a.attribute_default && !b.attribute_default
+		next 1 if !a.attribute_default && b.attribute_default
+		next 0
+	}.each_with_index do |la, index| %>
+		<%=render :partial => 'additional_info', :locals => {:la => la, :index => index}%>
+	<% end %>
+
+	<div>
+		<button id="add-additional-info" name="add-additional-info" value="1" type="submit"><%=t('scripts.additional_info_add_localized')%></button>
 	</div>
-	<%=s.submit(script_version.script.new_record? ? t('scripts.post_new_script') : t('scripts.post_updated_script'))%>
+
+	<p>
+		<%=s.submit(script_version.script.new_record? ? t('scripts.post_new_script') : t('scripts.post_updated_script'))%>
+	</p>
 <% end %>

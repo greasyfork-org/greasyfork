@@ -71,16 +71,16 @@ class Script < ActiveRecord::Base
 		}
 	end
 
-	# Add localized attribute errors to script
-	validates_each :localized_attributes do |script, attr, children|
-		script.errors[attr].clear
+	validates_each :localized_attributes do |s, attr, children|
+		s.errors[attr].clear
 		children.each do |child|
+			child.errors.keys.each{|key| s.errors[attr.to_s + '.' + key.to_s].clear}
 			next if child.marked_for_destruction? or child.valid?
-			child.errors.full_messages.each do |msg|
-				script.errors[:base] << msg
+			child.errors.each do |child_attr, msg|
+				s.errors[:base] << I18n.t("activerecord.attributes.script." + child.attribute_key) + " - " + I18n.t("activerecord.attributes.script." + child_attr.to_s, :default => child_attr.to_s) + " " + msg
 			end
 		end
-    end
+	end
 
 	validates_presence_of :user_id, :code_updated_at, :script_type
 

@@ -23,11 +23,13 @@ class ScriptVersionsController < ApplicationController
 			previous_script = @script.script_versions.last
 			@script_version.code = previous_script.code
 			previous_script.localized_attributes.each{|la| @script_version.build_localized_attribute(la)}
+			ensure_default_additional_info(@script_version)
 			render :layout => 'scripts'
 		else
 			@script = Script.new
 			@script.script_type_id = 1
 			@script_version.script = @script
+			ensure_default_additional_info(@script_version)
 		end
 	end
 
@@ -47,9 +49,17 @@ class ScriptVersionsController < ApplicationController
 		@script.script_type_id = params['script']['script_type_id']
 		@script.locale_id = params['script']['locale_id']
 
-		# TODO: allow this to be localized
+		save_record = params[:preview].nil? && params['add-additional-info'].nil?
+
+		# Additional info - if we're saving, don't construct blank ones
 		@script_version.localized_attributes.each{|la| la.mark_for_destruction}
-		@script_version.localized_attributes.build({:attribute_key => 'additional_info', :attribute_value => params[:script_version][:additional_info], :attribute_default => true, :locale => @script.locale, :value_markup => params[:script_version][:additional_info_markup]}) unless params[:script_version][:additional_info].blank?
+		params['script_version']['additional_info'].each do |index, additional_info_params|
+			locale_id = additional_info_params['locale'] || @script.locale_id
+			attribute_value = additional_info_params['attribute_value']
+			attribute_default = additional_info_params['attribute_default'] == 'true'
+			value_markup = additional_info_params['value_markup']
+			@script_version.localized_attributes.build({:attribute_key => 'additional_info', :attribute_value => attribute_value, :attribute_default => attribute_default, :locale_id => locale_id, :value_markup => value_markup}) unless (save_record && attribute_value.blank?)
+		end
 
 		if !params[:code_upload].nil?
 			uploaded_content = params[:code_upload].read
@@ -86,9 +96,15 @@ class ScriptVersionsController < ApplicationController
 			@preview = view_context.format_user_text(@script_version.additional_info, @script_version.additional_info_markup)
 		end
 
-		# Don't save if this is a preview or if there's something invalid. For non-previews,
-		# ensure all validations are run - short circuit the OR.
-		if !params[:preview].nil? or (!@script.valid? | !@script_version.valid?)
+		if !params['add-additional-info'].nil?
+			@script_version.localized_attributes.build({:attribute_key => 'additional_info', :attribute_default => false})
+		end
+
+		# Don't save if this is a preview or if there's something invalid.
+		# If we're attempting to save, ensure all validations are run - short circuit the OR.
+		if !save_record or (!@script.valid? | !@script_version.valid?)
+			ensure_default_additional_info(@script_version)
+
 			if @script.new_record?
 				render :new
 			else
@@ -109,10 +125,20 @@ class ScriptVersionsController < ApplicationController
 		redirect_to @script
 	end
 
+	def additional_info_form
+		render :partial => 'additional_info', :locals => {:la => LocalizedScriptVersionAttribute.new({:attribute_default => false}), :index => params[:index].to_i}
+	end
+
 private
 
 	def script_version_params
 		params.require(:script_version).permit(:code, :changelog, :accepted_assessment, :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation)
+	end
+
+	def ensure_default_additional_info(sv)
+		if !sv.localized_attributes_for('additional_info').any?{|la| la.attribute_default}
+			sv.localized_attributes.build({:attribute_key => 'additional_info', :attribute_default => true})
+		end
 	end
 
 end

@@ -203,7 +203,7 @@ en:
     # link to a site where the user can donate to the author, when the author provided a suggested donation amount
     contribution_with_amount: "Thank %{author} by making a donation. Suggested donation is %{amount}."
     # explanation of language chooser when editing script
-    locale_explanation: "Primary language of this entry."
+    locale_explanation_html: "Should match the language of <code>@name</code>, <code>@description</code>, and the first additional info."
     # the default value for the locale box, if submitted the site will attempt to detect the language of the entry
     locale_auto_select: "(Automatically detect)"
     # label which lists the sets this script is in, which is followed by controls to change its inclusions
@@ -261,13 +261,21 @@ en:
     # script warning for when a namespace is not provided
     warning_namespace_missing_html: "You didn't specify <code>@namespace</code>. A <code>@namespace</code> meta keys allows users to re-install your script to update it."
     # label for checkbox for the site to automatically add a namespace
-    warning_namespace_missing_generate_automatically: "Generate a <code>@namespace</code> automatically?"
+    warning_namespace_missing_generate_automatically_html: "Generate a <code>@namespace</code> automatically?"
     # script warning for when a namespace changed on update
     warning_namespace_changed_html: "Your <code>@namespace</code> has changed. A consistent <code>@namespace</code> allows users to re-install your script to update it."
     # script warning for when a script's code appears minified. allowed_requires_link is a link to the allowed @require list, with text of warning_potentially_minified_allowed_requires_link
     warning_potentially_minified_html: "Your script looks like it might contain minified (compressed) code. If you're using a minified library, please instead <code>@require</code> it from %{allowed_requires_link}. Scripts with minified code are subject to removal."
     # used in warning_potentially_minified_html
     warning_potentially_minified_allowed_requires_link: "one of these places"
+    # default option for the locale of a localized additional info
+    additional_info_locale_prompt: "(Choose a locale)"
+    # text for the button to add another additional info section for a different language
+    additional_info_add_localized: "Add a localized additional info"
+    # validation when more than one additional info is specified for a locale. "locale_code" is the locale code (e.g. "en") that has more than one additional info
+    additional_info_locale_repeated: "Provide only one additional info for the '%{locale_code}' locale."
+    # validation when an additional info in a locale is provided but no name was provided in that locale. "locale_code" is the locale code (e.g. "en") that is missing a name
+    localized_additional_info_with_no_name: "Additional info was specified for the '%{locale_code}' locale, but no @name:%{locale_code} was provided."
   script_sets:
     # name for the favorites set
     favorites_name: "Favorites"

@@ -1,0 +1,35 @@
+<%
+# Locals to pass in:
+#  - la: localized_attribute for the additional info
+#  - index: index of the additional info (to avoid duplicate names and IDs)
+%>
+<div class="form-control">
+	<label>
+		<%=t('activerecord.attributes.script.additional_info')%>
+		<input type="hidden" name="script_version[additional_info][<%=index%>][attribute_default]" value="<%=la.attribute_default%>">
+		<% if !la.attribute_default %>
+			<select name="script_version[additional_info][<%=index%>][locale]">
+				<option value="" <%if la.locale_id.nil?%>selected<%end%>><%=t('scripts.additional_info_locale_prompt')%></option>
+				<% Locale.where(:ui_available => true).each do |locale| %>
+					<option value="<%=locale.id%>" <%if la.locale_id == locale.id%>selected<%end%>><%=locale.display_text%></option>
+				<% end %>
+				<option disabled>---</option>
+				<% Locale.all.each do |locale| %>
+					<option value="<%=locale.id%>"<%if la.locale_id == locale.id%>selected<%end%>><%=locale.display_text%></option>
+				<% end %>
+			</select>
+		<% end %>
+	</label>
+	<span class="label-note">
+		<% if la.attribute_default %>
+			<%=t('scripts.additional_info_note_html', {:allowed_elements_link => link_to( t('common.allowed_elements_link'), help_allowed_markup_path, {:target => 'markup_choice'})})%>
+		<% end %>
+		<%=radio_button_tag("script_version[additional_info][#{index}][value_markup]", 'html', la.value_markup == 'html' || la.value_markup.nil?)%>HTML
+		<%=radio_button_tag("script_version[additional_info][#{index}][value_markup]", 'markdown', la.value_markup == 'markdown')%><%=link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', {:target => 'markup_choice'}%>
+		<button name="preview" id="preview-script-additional-info-<%=index%>" class="preview-button"><%=t('scripts.preview_additional_info')%></button>
+	</span><br>
+	<%=text_area_tag("script_version[additional_info][#{index}][attribute_value]", la.attribute_value, {:id => "script-version-additional-info-#{index}", :class => 'previewable', 'data-preview-activate-id' => "preview-script-additional-info-#{index}", 'data-markup-option-name' => "script_version[additional_info][#{index}][value_markup]", 'data-preview-result-id' => "preview-script-additional-info-results-#{index}"})%>
+	<div id="preview-script-additional-info-results-<%=index%>" class="preview-result" <%if !@preview.nil?%>style="display:block"<%end%>>
+		<%if !@preview.nil?%><%=@preview.html_safe%><%end%>
+	</div>
+</div>

@@ -35,15 +35,33 @@ class ScriptVersion < ActiveRecord::Base
 		record.warnings.each {|w| record.errors.add(:base, "warning-" + w.to_s)}
 	end
 
-	validates_each :localized_attributes do |sv, attr, children|
-		sv.errors[attr].clear
+	validates_each :localized_attributes do |s, attr, children|
+		s.errors[attr].clear
 		children.each do |child|
+			child.errors.keys.each{|key| s.errors[attr.to_s + '.' + key.to_s].clear}
 			next if child.marked_for_destruction? or child.valid?
-			child.errors.full_messages.each do |msg|
-				sv.errors[:base] << msg
+			child.errors.each do |child_attr, msg|
+				s.errors[:base] << I18n.t("activerecord.attributes.script." + child.attribute_key) + " - " + I18n.t("activerecord.attributes.script." + child_attr.to_s, :default => child_attr.to_s) + " " + msg
 			end
 		end
-    end
+	end
+
+	# Multiple additional infos in the same locale
+	validate do |record|
+		# The default will get set to the script's locale
+		additional_info_locales = localized_attributes_for('additional_info').map{|la|(la.locale.nil? && la.attribute_default) ? script.locale : la.locale}.select{|l| !l.nil?}
+		duplicated_locales = additional_info_locales.select{|l| additional_info_locales.count(l) > 1 }.uniq
+		duplicated_locales.each {|l| record.errors[:base] << I18n.t("scripts.additional_info_locale_repeated", {:locale_code => l.code})}
+	end
+
+	# Additional info where no @name for that locale exists. This is OK if the script locale matches, though.
+	validate do |record|
+		additional_info_locales = localized_attributes_for('additional_info').select{|la|!la.attribute_default}.map{|la|la.locale.nil? ? script.locale : la.locale}.select{|l| !l.nil?}.uniq
+		meta_keys = ScriptVersion.parse_meta(code)
+		additional_info_locales.each{|l|
+			record.errors[:base] << I18n.t('scripts.localized_additional_info_with_no_name', {:locale_code => l.code}) if !meta_keys.include?('name:' + l.code) and l != script.locale
+		}
+	end
 
 	before_save :set_locale
 	def set_locale

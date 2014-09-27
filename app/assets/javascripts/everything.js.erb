@@ -47,44 +47,82 @@
 		$(".previewable").each(function(index, previewable) {
 			var previewable = $(this);
 			var markupOptions = $('input:radio[name="' + previewable.attr("data-markup-option-name") + '"]');
-			var result = $("#" + previewable.attr("data-preview-result-id"));
-
 			var button = $("#" + previewable.attr("data-preview-activate-id"));
+
 			button.show();
-			button.click(function() {
-				var selectedMarkup = $('input:radio[name="' + previewable.attr("data-markup-option-name") + '"]:checked').val();
-				$.ajax({
-					type: "POST",
-					url: "/preview-markup",
-					data: {
-						text: previewable.val(),
-						markup: selectedMarkup
-					},
-					success: function(data) {
-						result.html(data);
-						result.slideDown();
-						// scroll to it if it's not at all visible
-						if (result.offset().top > $(window).scrollTop() + $(window).height()) {
-							$('html, body').animate({
-								scrollTop: result.offset().top
-							}, 2000);
-						}
-					},
-					error: function(data) {
-						alert(data);
-						return false;
-					}
-				})
-				return false;
-			});
+
+			// This function will get called when new additional infos are added. To prevent multiple calls on existing ones, unbind and then rebind.
+
+			button.unbind("click", handlePreviewClick);
+			button.click(handlePreviewClick);
 
 			// close when anything changed
-			markupOptions.click(function() {
-				result.slideUp();
-			});
-			previewable.bind('input', function() {
-				result.slideUp();
-			});
+			markupOptions.unbind("click", handlePreviewInput);
+			markupOptions.click(handlePreviewInput);
+			previewable.unbind('input', handlePreviewInput);
+			previewable.bind('input', handlePreviewInput);
+		});
+	}
+
+	function handlePreviewClick(event) {
+		var previewable = $(event.target).parents(".form-control").first().find(".previewable");
+		var markupOptions = $('input:radio[name="' + previewable.attr("data-markup-option-name") + '"]');
+		var result = $("#" + previewable.attr("data-preview-result-id"));
+
+		var selectedMarkup = $('input:radio[name="' + previewable.attr("data-markup-option-name") + '"]:checked').val();
+		$.ajax({
+			type: "POST",
+			url: "/preview-markup",
+			data: {
+				text: previewable.val(),
+				markup: selectedMarkup
+			},
+			success: function(data) {
+				result.html(data);
+				result.slideDown();
+				// scroll to it if it's not at all visible
+				if (result.offset().top > $(window).scrollTop() + $(window).height()) {
+					$('html, body').animate({
+						scrollTop: result.offset().top
+					}, 2000);
+				}
+			},
+			error: function(data) {
+				alert(data);
+				return false;
+			}
+		})
+		return false;
+	}
+
+	function handlePreviewInput(event) {
+		var result = $(event.target).parents(".form-control").first().find(".preview-result");
+		result.slideUp();
+	}
+
+	function hookUpAddLocalizedAdditionalInfo() {
+		var button = document.getElementById("add-additional-info");
+		if (!button) {
+			return;
+		}
+		button.addEventListener("click", function(event) {
+			// Get the next index to use
+			var additionalInfos = document.querySelectorAll("textarea[name*='additional_info']");
+			var lastAdditionalInfoNameParts = additionalInfos[additionalInfos.length - 1].id.split("-")
+			var index = parseInt(lastAdditionalInfoNameParts[lastAdditionalInfoNameParts.length - 1], 10) + 1;
+
+			var xhr = new XMLHttpRequest();
+			xhr.overrideMimeType("text/html");
+			xhr.open("get", "<%=Greasyfork::Application.routes.url_helpers.script_version_additional_info_form_path%>" + "?index=" + index);
+			xhr.onload = function() {
+				var frag = document.createElement("div");
+				frag.innerHTML = this.responseText;
+				button.parentNode.parentNode.insertBefore(frag.firstChild, button.parentNode);
+				// Make the preview button work
+				hookUpMarkupPreview();
+			};
+			xhr.send();
+			event.preventDefault();
 		});
 	}
 
@@ -123,6 +161,7 @@
 		hookUpMarkupPreview();
 		hookUpLocaleSwitcher();
 		hookUpBrowserId();
+		hookUpAddLocalizedAdditionalInfo();
 	}
 	
 	window.addEventListener("DOMContentLoaded", init);

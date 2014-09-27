@@ -61,4 +61,71 @@ EOF
 		assert_equal ["can't be blank"], script.errors['@description:fr']
 	end
 
+	test 'repeated locale additional info' do
+		script = get_valid_script
+		sv = ScriptVersion.new
+		sv.script = script
+		sv.code = <<EOF
+// ==UserScript==
+// @name		A Test!
+// @name:fr		Un test!
+// @description		Unit test
+// @description:fr	Test d'unit
+// @namespace http://greasyfork.local/users/1
+// @version 1.0
+// ==/UserScript==
+var foo = "bar";
+EOF
+		sv.localized_attributes.build({:attribute_key => 'additional_info', :attribute_value => 'Additional info in French', :attribute_default => false, :locale => Locale.where(:code => 'fr').first, :value_markup => 'html'})
+		sv.calculate_all
+		assert sv.valid?, sv.errors.full_messages.inspect
+		sv.localized_attributes.build({:attribute_key => 'additional_info', :attribute_value => 'Additional info in French', :attribute_default => false, :locale => Locale.where(:code => 'fr').first, :value_markup => 'html'})
+		assert !sv.valid?
+		assert_equal 1, sv.errors.full_messages.length
+		assert sv.errors.full_messages.first.include?('Provide only one')
+	end
+
+	test 'additional info locale without name' do
+		script = get_valid_script
+		sv = ScriptVersion.new
+		sv.script = script
+		sv.code = <<EOF
+// ==UserScript==
+// @name		A Test!
+// @name:fr		Un test!
+// @description		Unit test
+// @description:fr	Test d'unit
+// @namespace http://greasyfork.local/users/1
+// @version 1.0
+// ==/UserScript==
+var foo = "bar";
+EOF
+		sv.localized_attributes.build({:attribute_key => 'additional_info', :attribute_value => 'Additional info in Spanish', :attribute_default => false, :locale => Locale.where(:code => 'es').first, :value_markup => 'html'})
+		sv.calculate_all
+		assert !sv.valid?
+		assert_equal 1, sv.errors.full_messages.length
+		assert sv.errors.full_messages.first.include?('was specified for the \'es\' locale'), sv.errors.full_messages.first
+	end
+
+	test 'additional info locale without name but script locale matches' do
+		script = get_valid_script
+		script.locale = Locale.where(:code => 'es').first
+		sv = ScriptVersion.new
+		sv.script = script
+		sv.code = <<EOF
+// ==UserScript==
+// @name		A Test!
+// @name:fr		Un test!
+// @description		Unit test
+// @description:fr	Test d'unit
+// @namespace http://greasyfork.local/users/1
+// @version 1.0
+// ==/UserScript==
+var foo = "bar";
+EOF
+		sv.localized_attributes.build({:attribute_key => 'additional_info', :attribute_value => 'Additional info in Spanish', :attribute_default => false, :locale => Locale.where(:code => 'es').first, :value_markup => 'html'})
+		sv.calculate_all
+		assert sv.valid?
+	end
+
 end
