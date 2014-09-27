@@ -7,11 +7,17 @@
 	<dt><%=self_link('meta-name', '@name')%></dt>
 	<dd>The name of the script, used as a heading and in links. Required.</dd>
 
+	<dt><%=self_link('meta-name-localized', '@name:XX-YY')%></dt>
+	<dd>The name of the script in a specific locale, where XX is an <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php">ISO 639-1 2-letter code</a> and YY is an optional <a href="https://www.iso.org/obp/ui/#search">ISO 3166 country code</a>. Overrides <code>@name</code> when the user is browsing in a matching locale.</dd>
+
 	<dt><%=self_link('meta-description', '@description')%></dt>
 	<dd>A description of what the script does. Shown as text under the script name. Required.</dd>
 
+	<dt><%=self_link('meta-name-description', '@description:XX-YY')%></dt>
+	<dd>The description of the script in a specific locale, where XX is an <a href="http://www.loc.gov/standards/iso639-2/php/code_list.php">ISO 639-1 2-letter code</a> and YY is an optional <a href="https://www.iso.org/obp/ui/#search">ISO 3166 country code</a>. Overrides <code>@description</code> when the user is browsing in a matching locale.
+
 	<dt><%=self_link('meta-namespace', '@namespace')%></dt>
-	<dd>A combination of @namespace and @name is used by user script managers to see if a script is already installed. Greasy Fork requires this field and will warn if it's changed on update.</dd>
+	<dd>A combination of <code>@namespace</code> and <code>@name</code> is used by user script managers to see if a script is already installed. Greasy Fork requires this field and will warn if it's changed on update.</dd>
 
 	<dt><%=self_link('meta-version', '@version')%></dt>
 	<dd>Identifier for a specific version of a script in <a href="https://developer.mozilla.org/en/docs/Toolkit_version_format">Mozilla version format</a>. Version is displayed on a script's info page. Greasy Fork requires this field and will warn if it's decremented or if it's not incremented when the script's code changes.</dd>
@@ -35,5 +41,5 @@
 	<dd>URL for a page where users can donate to the author of a script. Contribution URL is displayed on a script's feedback page.</dd>
 
 	<dt><%=self_link('meta-contributionAmount', '@contributionAmount')%></dt>
-	<dd>Suggested donation amount, used in conjunction with @contributionURL.</dd>
+	<dd>Suggested donation amount, used in conjunction with <code>@contributionURL</code>.</dd>
 </dl>
