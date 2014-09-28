@@ -72,3 +72,32 @@ body .Pager .Highlight {
 .ReviewFilterOptions {
 	text-align: right;
 }
+
+/* Tables in posts */
+.Message table {
+   border-collapse: separate;
+   border-spacing: 4px;
+   margin: 1em -4px; /* -4px neutralizes the border-spacing on the outer borders */;
+}
+.Message th, .Message td {
+   padding: 2px 1em;
+}
+.Message th {
+   background-color: rgba(103,0,0,0.2);
+   font-weight: bold;
+   font-size: 105%;
+   padding-top: 0.5em;
+   padding-bottom: 0.5em;
+}
+.Message th:nth-child(odd) {
+   background-color: rgba(103,0,0,0.15);
+}
+.Message tr:nth-child(even) td {
+   background-color: rgba(0,0,0,0.05);
+}
+.Message tr:nth-child(even) td:nth-child(even) {
+   background-color: rgba(50,0,0,0.08);
+}
+.Message tr:nth-child(odd) td:nth-child(even) {
+   background-color: rgba(255,0,0,0.03);
+}
