@@ -25,7 +25,7 @@ class UsersController < ApplicationController
 			format.html {
 				@by_sites = ScriptsController.get_top_by_sites
 
-				@scripts = ((!current_user.nil? && current_user.id == @user.id) or (!current_user.nil? and current_user.moderator?)) ? @user.scripts.order(:id) : @user.scripts.listable
+				@scripts = ((!current_user.nil? && current_user.id == @user.id) or (!current_user.nil? and current_user.moderator?)) ? @user.scripts : @user.scripts.listable
 				@user_has_scripts = !@scripts.empty?
 				@scripts = ScriptsController.apply_filters(@scripts, params)
 
