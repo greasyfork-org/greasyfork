@@ -104,6 +104,7 @@ zh-CN:
     support_email: "给作者发邮件来获取帮助。"
     contribution_no_amount: "捐赠以感谢 %{author}。"
     contribution_with_amount: "捐赠以感谢 %{author}，建议捐赠 %{amount}。"
+    locale_explanation_html: "应当与<code>@name</code>的语言，<code>@description</code>和第一个附加信息匹配"
     locale_auto_select: "(自动检测)"
     sets_label: "位于脚本收藏集:"
     sets_label_no_sets: "脚本收藏集:"
@@ -136,6 +137,10 @@ zh-CN:
     warning_namespace_changed_html: "您的命名空间 <code>@namespace</code> 发生了改变。改变 <code>@namespace</code> 后脚本管理器会将更新作为新脚本安装。"
     warning_potentially_minified_html: "您的脚本看上去像压缩 (最小化) 后的版本。如果您引用了最小化后的第三方库，请使用 <code>@require</code> 引用 %{allowed_requires_link} 里面的相应库。压缩后的脚本不被该站允许且会被管理员移除。"
     warning_potentially_minified_allowed_requires_link: "在这些地方"
+    additional_info_locale_prompt: "(选择一种语言)"
+    additional_info_add_localized: "添加已翻译的附加信息"
+    additional_info_locale_repeated: "对语言'%{locale_code}'只能提供一个附加信息"
+    localized_additional_info_with_no_name: "附加信息是针对语言'%{locale_code}'的，但没有提供@name:%{locale_code}"
   script_sets:
     favorites_name: "收藏"
     delete: "删除脚本收藏集"
