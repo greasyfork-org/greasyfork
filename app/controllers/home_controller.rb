@@ -9,7 +9,17 @@ class HomeController < ApplicationController
 	end
 
 	def preview_markup
-		render :text => view_context.format_user_text(params[:text], params[:markup])
+		if params[:url]
+			begin
+				text = ScriptImporter::BaseScriptImporter.download(params[:text])
+			rescue ArgumentError => ex
+				render :text => ex
+				return
+			end
+		else
+			text = params[:text]
+		end
+		render :text => view_context.format_user_text(text, params[:markup])
 	end
 
 	def sso
@@ -35,4 +45,5 @@ class HomeController < ApplicationController
 		session[:remember_me] = params[:remember_me]
 		redirect_to "/auth/#{params[:provider]}/"
 	end
+
 end

@@ -68,14 +68,16 @@
 		var previewable = $(event.target).parents(".form-control").first().find(".previewable");
 		var markupOptions = $('input:radio[name="' + previewable.attr("data-markup-option-name") + '"]');
 		var result = $("#" + previewable.attr("data-preview-result-id"));
-
+		var url = previewable.attr("data-preview-source") == "url";
 		var selectedMarkup = $('input:radio[name="' + previewable.attr("data-markup-option-name") + '"]:checked').val();
+
 		$.ajax({
 			type: "POST",
 			url: "/preview-markup",
 			data: {
 				text: previewable.val(),
-				markup: selectedMarkup
+				markup: selectedMarkup,
+				url: url
 			},
 			success: function(data) {
 				result.html(data);
@@ -87,9 +89,15 @@
 					}, 2000);
 				}
 			},
-			error: function(data) {
-				alert(data);
-				return false;
+			error: function(xhr, textStatus, errorThrown) {
+				result.html(textStatus + " " + errorThrown);
+				result.slideDown();
+				// scroll to it if it's not at all visible
+				if (result.offset().top > $(window).scrollTop() + $(window).height()) {
+					$('html, body').animate({
+						scrollTop: result.offset().top
+					}, 2000);
+				}
 			}
 		})
 		return false;
@@ -118,6 +126,32 @@
 				var frag = document.createElement("div");
 				frag.innerHTML = this.responseText;
 				button.parentNode.parentNode.insertBefore(frag.firstChild, button.parentNode);
+				// Make the preview button work
+				hookUpMarkupPreview();
+			};
+			xhr.send();
+			event.preventDefault();
+		});
+	}
+
+	function hookUpAddSyncedLocalizedAdditionalInfo() {
+		var button = document.getElementById("add-synced-additional-info");
+		if (!button) {
+			return;
+		}
+		button.addEventListener("click", function(event) {
+			// Get the next index to use
+			var additionalInfos = document.querySelectorAll("input[type='url'][name*='additional_info_sync']");
+			var lastAdditionalInfoNameParts = additionalInfos[additionalInfos.length - 1].id.split("-")
+			var index = parseInt(lastAdditionalInfoNameParts[lastAdditionalInfoNameParts.length - 1], 10) + 1;
+
+			var xhr = new XMLHttpRequest();
+			xhr.overrideMimeType("text/html");
+			xhr.open("get", "<%=Greasyfork::Application.routes.url_helpers.script_sync_additional_info_form_path%>" + "?index=" + index);
+			xhr.onload = function() {
+				var frag = document.createElement("div");
+				frag.innerHTML = this.responseText;
+				button.parentNode.parentNode.insertBefore(frag.children[0], button.parentNode);
 				// Make the preview button work
 				hookUpMarkupPreview();
 			};
@@ -162,6 +196,7 @@
 		hookUpLocaleSwitcher();
 		hookUpBrowserId();
 		hookUpAddLocalizedAdditionalInfo();
+		hookUpAddSyncedLocalizedAdditionalInfo();
 	}
 	
 	window.addEventListener("DOMContentLoaded", init);

@@ -56,9 +56,14 @@ module LocalizingModel
 		return active_localized_attributes.map{|la| la.locale}.uniq
 	end
 
-	# Builds a localized attribute on this record based on the passed localized attribute
+	# Builds a localized attribute on this record based on the passed localized attribute and return it
 	def build_localized_attribute(other_la)
-		localized_attributes.build({:attribute_key => other_la.attribute_key, :attribute_value => other_la.attribute_value, :attribute_default => other_la.attribute_default, :locale => other_la.locale, :value_markup => other_la.value_markup})
+		la = localized_attributes.build({:attribute_key => other_la.attribute_key, :attribute_value => other_la.attribute_value, :attribute_default => other_la.attribute_default, :locale => other_la.locale, :value_markup => other_la.value_markup})
+		if la.respond_to?(:sync_identifier) && other_la.respond_to?(:sync_identifier)
+			la.sync_identifier = other_la.sync_identifier
+			la.sync_source_id = other_la.sync_source_id
+		end
+		return la
 	end
 
 	def delete_localized_attributes(key)

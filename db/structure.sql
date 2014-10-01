@@ -1204,6 +1204,8 @@ CREATE TABLE `localized_script_attributes` (
   `value_markup` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `attribute_value` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `attribute_default` tinyint(1) NOT NULL,
+  `sync_identifier` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sync_source_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_localized_script_attributes_on_script_id` (`script_id`),
   KEY `index_localized_script_attributes_on_locale_id` (`locale_id`)
@@ -1584,7 +1586,7 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-09-29 16:02:02
+-- Dump completed on 2014-09-30 20:59:23
 INSERT INTO schema_migrations (version) VALUES ('20140210194333');
 
 INSERT INTO schema_migrations (version) VALUES ('20140210201355');
@@ -1698,4 +1700,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140919234605');
 INSERT INTO schema_migrations (version) VALUES ('20140923191610');
 
 INSERT INTO schema_migrations (version) VALUES ('20140929194450');
+
+INSERT INTO schema_migrations (version) VALUES ('20140930020648');
 

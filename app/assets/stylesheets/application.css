@@ -255,7 +255,7 @@ dt[title] > span {
 	width: 100%;
 	height: 20em;
 }
-.form-control input:not([type=radio]):not([type=file]) {
+.form-control input:not([type=radio]):not([type=file]):not([size]) {
 	width: 100%;
 }
 .radio-group input[type=radio] {
@@ -453,4 +453,8 @@ a.self-link, a.self-link:visited {
 	text-decoration: none;
 	color: black;
 	opacity: 0.2;
+}
+
+.indented {
+	padding-left: 1em;
 }

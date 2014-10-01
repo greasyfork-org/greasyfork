@@ -6,14 +6,13 @@ module ScriptImporter
 	include ActionView::Helpers::TextHelper
 
 	class ScriptSyncer
-		$IMPORTERS = [UserScriptsOrgImporter, UrlImporter, TestImporter]
 
 		# Syncs the script and returns :success, :unchanged, or :failure
 		def self.sync(script, changelog = nil)
-			importer = $IMPORTERS.select{|i| i.sync_source_id == script.script_sync_source_id}.first
+			importer = get_importer_for_sync_source_id(script.script_sync_source_id)
 			# pass the description in so we retain it if it's missing
 			begin
-				status, new_script, message = importer.generate_script(script.sync_identifier, script.description, script.user)
+				status, new_script, message = importer.generate_script(script.sync_identifier, script.description, script.user, 1, script.localized_attributes_for('additional_info'))
 			rescue Exception => ex
 				status = :failure
 				message = ex
@@ -30,16 +29,13 @@ module ScriptImporter
 				when :success
 					sv = new_script.script_versions.last
 					last_saved_sv = script.get_newest_saved_script_version
-					if sv.code == last_saved_sv.code
+					if sv.code == last_saved_sv.code && synced_additional_infos_equal(script, sv)
 						script.last_attempted_sync_date = DateTime.now
 						script.last_successful_sync_date = script.last_attempted_sync_date
 						script.sync_error = nil
 						script.save(:validate => false)
 						return :unchanged
 					end
-
-					#TODO make this syncable and localizable
-					last_saved_sv.localized_attributes.each {|la| sv.build_localized_attribute(la) unless la.attribute_value.blank? }
 
 					sv.changelog = truncate(changelog, {:length => 500}) if !changelog.nil?
 					sv.script = script
@@ -76,7 +72,26 @@ module ScriptImporter
 		end
 
 		def self.get_sync_source_id_for_url(url)
-			return $IMPORTERS.select{|i| i.can_handle_url(url)}.first.sync_source_id
+			return $IMPORTERS.find{|i| i.can_handle_url(url)}.sync_source_id
+		end
+
+		$IMPORTERS = [UserScriptsOrgImporter, UrlImporter, TestImporter]
+		def self.get_importer_for_sync_source_id(id)
+			return $IMPORTERS.find{|i| i.sync_source_id == id}
+		end
+
+	private
+
+		# For the synced additional infos in the script, is anything we got in the new version different?
+		def self.synced_additional_infos_equal(script, new_sv)
+			script_synced_ais = script.localized_attributes_for('additional_info').select{|la| !la.sync_identifier.nil?}
+			new_ais = new_sv.localized_attributes_for('additional_info')
+			return script_synced_ais.all?{|la|
+				matching_svla = new_ais.find{|svla| svla.locale_id == la.locale_id} 
+				# if it's not found, it may have failed - that doesn't count as being different
+				next true if matching_svla.nil?
+				next matching_svla.attribute_value == la.attribute_value
+			}
 		end
 	end
 end

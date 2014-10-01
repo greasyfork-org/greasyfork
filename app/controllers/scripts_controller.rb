@@ -14,6 +14,9 @@ class ScriptsController < ApplicationController
 	skip_before_action :verify_authenticity_token, :only => [:install_ping]
 	protect_from_forgery :except => [:user_js, :meta_js, :show]
 
+	# The value a syncing additional info will have after syncing is added but before the first sync succeeds
+	ADDITIONAL_INFO_SYNC_PLACEHOLDER = '(Awaiting sync)'
+
 	#########################
 	# Collections
 	#########################
@@ -237,6 +240,8 @@ class ScriptsController < ApplicationController
 	def sync
 		@script = Script.find(params[:script_id])
 		return if redirect_to_slug(@script, :script_id)
+		@script.script_sync_type_id = 1 if @script.script_sync_source_id.nil?
+		@script.localized_attributes.build({:attribute_key => 'additional_info', :attribute_default => true}) if @script.localized_attributes_for('additional_info').empty?
 		@bots = 'noindex'
 	end
 
@@ -251,6 +256,10 @@ class ScriptsController < ApplicationController
 			@script.last_successful_sync_date = nil
 			@script.sync_identifier = nil
 			@script.sync_error = nil
+			@script.localized_attributes_for('additional_info').each {|la|
+				la.sync_source_id = nil
+				la.sync_identifier = nil
+			}
 			@script.save(:validate => false)
 			flash[:notice] = 'Script sync turned off.'
 			redirect_to @script
@@ -261,7 +270,59 @@ class ScriptsController < ApplicationController
 		if @script.script_sync_source_id.nil?
 			@script.script_sync_source_id = ScriptImporter::ScriptSyncer.get_sync_source_id_for_url(params[:sync_identifier])
 		end
-		if !@script.save
+
+		# additional info syncs. and new ones and update existing ones to add/update sync_identifiers
+		current_additional_infos = @script.localized_attributes_for('additional_info')
+		# keep track of the ones we see - ones we don't will be unsynced or deleted
+		unused_additional_infos = current_additional_infos.dup
+		params['additional_info_sync'].each do |index, sync_params|
+			# if it's blank it will be ignored (if new) or no longer synced (if existing)
+			form_is_blank = (sync_params['attribute_default'] != 'true' && sync_params['locale'].nil?) || sync_params['sync_identifier'].blank?
+			existing = current_additional_infos.find{|la| (la.attribute_default && sync_params['attribute_default'] == 'true') || la.locale_id == sync_params['locale'].to_i}
+			if existing.nil?
+				next if form_is_blank
+				attribute_default = (sync_params['attribute_default'] == 'true')
+				@script.localized_attributes.build(:attribute_key => 'additional_info', :sync_identifier => sync_params['sync_identifier'], :value_markup => sync_params['value_markup'], :sync_source_id => 1, :locale_id => attribute_default ? @script.locale_id : sync_params['locale'], :attribute_value => ADDITIONAL_INFO_SYNC_PLACEHOLDER, :attribute_default => attribute_default)
+			else
+				if !form_is_blank
+					unused_additional_infos.delete(existing)
+					existing.sync_identifier = sync_params['sync_identifier']
+					existing.sync_source_id = 1
+					existing.value_markup = sync_params['value_markup']
+				end
+			end
+		end
+		unused_additional_infos.each do |la|
+			# Keep the existing if it had anything but the placeholder
+			if la.attribute_value == ADDITIONAL_INFO_SYNC_PLACEHOLDER
+				la.mark_for_destruction
+			else
+				la.sync_identifier = nil
+				la.sync_source_id = nil
+			end
+		end
+
+		save_record = params[:preview].nil? && params['add-synced-additional-info'].nil?
+
+		# preview for people with JS disabled
+		if !params[:preview].nil?
+			@preview = {}
+			preview_params = params['additional_info_sync'][params[:preview]]
+			begin
+				text = ScriptImporter::BaseScriptImporter.download(preview_params[:sync_identifier])
+				@preview[params[:preview].to_i] = view_context.format_user_text(text, preview_params[:value_markup])
+			rescue ArgumentError => ex
+				@preview[params[:preview].to_i] = ex.to_s
+			end
+		end
+
+		# add sync localized additional info for people with JS disabled
+		if !params['add-synced-additional-info'].nil?
+			@script.localized_attributes.build({:attribute_key => 'additional_info', :attribute_default => false})
+		end
+
+		if !save_record || !@script.save
+			ensure_default_additional_info(@script)
 			render :sync
 			return
 		end
@@ -409,6 +470,10 @@ class ScriptsController < ApplicationController
 			scripts = scripts.where(:id => set_script_ids)
 		end
 		return scripts
+	end
+
+	def sync_additional_info_form
+		render :partial => 'sync_additional_info', :locals => {:la => LocalizedScriptAttribute.new({:attribute_default => false}), :index => params[:index].to_i}
 	end
 
 private

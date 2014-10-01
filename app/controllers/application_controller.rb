@@ -196,4 +196,10 @@ protected
 		return 'callback'
 	end
 
+	def ensure_default_additional_info(s)
+		if !s.localized_attributes_for('additional_info').any?{|la| la.attribute_default}
+			s.localized_attributes.build({:attribute_key => 'additional_info', :attribute_default => true})
+		end
+	end
+
 end

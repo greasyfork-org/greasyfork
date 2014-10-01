@@ -101,9 +101,21 @@ class Script < ActiveRecord::Base
 	end
 
 	def apply_from_script_version(script_version)
-		# straight up copy this from the script_version
-		localized_attributes_for('additional_info').each{|la| la.mark_for_destruction}
-		script_version.localized_attributes_for('additional_info').each{|la| build_localized_attribute(la)}
+		# copy this from the script_version, but retain syncing.
+		# delete the additional infos that don't sync - we will completely rebuild those
+		original_script_las = localized_attributes_for('additional_info')
+		original_script_las.select{|la| la.sync_source_id.nil?}.each{|la| la.mark_for_destruction}
+		# create new additional infos, and set their syncing info based on the script's previous syncing info
+		script_version.localized_attributes_for('additional_info').each{|la|
+			script_la = build_localized_attribute(la)
+			matching_osla = original_script_las.find{|osla| osla.locale_id == script_la.locale_id}
+			if !matching_osla.nil?
+				script_la.sync_source_id = matching_osla.sync_source_id
+				script_la.sync_identifier = matching_osla.sync_identifier
+				# the syncing is retained, ok to delete the old object
+				matching_osla.mark_for_destruction
+			end
+		}
 
 		meta = ScriptVersion.parse_meta(script_version.rewritten_code)
 

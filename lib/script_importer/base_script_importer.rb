@@ -49,7 +49,7 @@ module ScriptImporter
 		#   - :success
 		# - The script
 		# - An error message
-		def self.generate_script(sync_id, provided_description, user, sync_type_id = 1)
+		def self.generate_script(sync_id, provided_description, user, sync_type_id = 1, localized_attribute_syncs = {})
 			url = sync_id_to_url(sync_id)
 			begin
 				code = download(url)
@@ -75,6 +75,19 @@ module ScriptImporter
 			script.last_attempted_sync_date = DateTime.now
 			script.last_successful_sync_date = DateTime.now
 
+			# now get the additional infos
+			localized_attribute_syncs.each do |la|
+				new_la = sv.build_localized_attribute(la)
+				next if la.sync_identifier.nil? || la.sync_source_id.nil?
+				begin
+					ai = ScriptSyncer.get_importer_for_sync_source_id(la.sync_source_id).download(la.sync_identifier)
+					new_la.attribute_value = ai
+				rescue => ex
+					# if something fails here, we'll just ignore.
+					next
+				end
+			end
+
 			sv.script = script
 			script.script_versions << sv
 			sv.do_lenient_saving
@@ -92,6 +105,7 @@ module ScriptImporter
 		end
 
 		def self.download(url)
+			raise ArgumentError.new('URL must be http or https') unless url =~ URI::regexp(%w(http https))
 			uri = URI.parse(url)
 			Timeout::timeout(11){
 				return uri.read({:read_timeout => 10})

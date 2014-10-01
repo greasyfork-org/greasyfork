@@ -818,4 +818,29 @@ END
 		assert script.valid?, script.errors.full_messages
 		assert_equal 500, script.description.length
 	end
+
+	test 'update retain additional info sync' do
+		script = Script.find(14)
+		assert script.valid?, script.errors.full_messages
+		assert_equal 1, script.script_versions.length
+		assert script.script_versions.first.valid?, script.script_versions.first.errors.full_messages
+		assert script.localized_attributes_for('additional_info').all?{|la| !la.sync_identifier.nil? && !la.sync_source_id.nil?}, script.localized_attributes_for('additional_info').inspect
+
+		sv = ScriptVersion.new
+		sv.script = script
+		sv.code = script.script_versions.first.code
+		sv.rewritten_code = script.script_versions.first.rewritten_code
+		sv.localized_attributes.build({:attribute_key => 'additional_info', :attribute_value => 'New', :attribute_default => true, :locale => script.locale, :value_markup => 'html'})
+		sv.localized_attributes.build({:attribute_key => 'additional_info', :attribute_value => 'Nouveau', :attribute_default => true, :locale => Locale.where(:code => 'fr').first, :value_markup => 'html'})
+		sv.calculate_all
+		assert sv.valid?, sv.errors.full_messages
+		script.apply_from_script_version(sv)
+		assert script.valid?, script.errors.full_messages
+
+		assert_equal 2, script.localized_attributes_for('additional_info').length, script.localized_attributes_for('additional_info')
+		# new values should be applied...
+		assert ['New', 'Nouveau'].all?{|ai| script.localized_attributes_for('additional_info').any?{|la| la.attribute_value == ai}}, script.localized_attributes_for('additional_info').inspect
+		# but sync stuff should be retained!
+		assert script.localized_attributes_for('additional_info').all?{|la| !la.sync_identifier.nil? && !la.sync_source_id.nil?}, script.localized_attributes_for('additional_info').inspect
+	end
 end

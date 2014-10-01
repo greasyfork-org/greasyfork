@@ -39,6 +39,7 @@ Greasyfork::Application.routes.draw do
 
 		root :to => "home#index"
 
+		get 'scripts/sync_additional_info_form', :to => 'scripts#sync_additional_info_form', :as => 'script_sync_additional_info_form'
 		resources :scripts, :only => [:index, :show] do
 			# Deprecated after https://github.com/JasonBarnabe/greasyfork/issues/76
 			get 'code.meta.js', :to => 'scripts#meta_js', :locale => nil

@@ -86,4 +86,76 @@ class ScriptSyncerTest < ActiveSupport::TestCase
 		assert_equal 2, script.script_versions.length
 	end
 
+	test 'additional info sync' do
+		script = Script.find(14)
+		assert script.valid?, script.errors.full_messages
+		assert_equal 1, script.script_versions.length
+		assert script.script_versions.first.valid?, script.script_versions.first.errors.full_messages
+		assert_equal 2, script.localized_attributes_for('additional_info').length, script.localized_attributes_for('additional_info')
+		assert script.localized_attributes_for('additional_info').all?{|la| !la.sync_identifier.nil? && !la.sync_source_id.nil?}, script.localized_attributes_for('additional_info').inspect
+
+		assert_equal :success, ScriptSyncer.sync(script), script.sync_error
+
+		assert_equal 2, script.script_versions.length
+
+		en_ai = script.localized_attributes_for('additional_info').find{|la| la.locale == Locale.where(:code => 'en').first}
+		assert_not_nil en_ai
+		assert_equal 'MyNewText', en_ai.attribute_value
+		assert_not_nil en_ai.sync_source_id
+		assert_not_nil en_ai.sync_identifier
+
+		fr_ai = script.localized_attributes_for('additional_info').find{|la| la.locale == Locale.where(:code => 'fr').first}
+		assert_not_nil fr_ai
+		assert_equal 'MonNouveauTexte', fr_ai.attribute_value
+		assert_not_nil fr_ai.sync_source_id
+		assert_not_nil fr_ai.sync_identifier
+	end
+
+	test 'additional info sync retain unsynced' do
+		script = Script.find(14)
+		assert script.valid?, script.errors.full_messages
+		assert_equal 1, script.script_versions.length
+		assert script.script_versions.first.valid?, script.script_versions.first.errors.full_messages
+		assert_equal 2, script.localized_attributes_for('additional_info').length, script.localized_attributes_for('additional_info')
+		assert script.localized_attributes_for('additional_info').all?{|la| !la.sync_identifier.nil? && !la.sync_source_id.nil?}, script.localized_attributes_for('additional_info').inspect
+
+		# take off syncing from the french one
+		french_la = script.localized_attributes_for('additional_info').find{|la| la.locale == Locale.where(:code => 'fr').first}
+		french_la.sync_identifier = nil
+		french_la.sync_source_id = nil
+
+		assert_equal :success, ScriptSyncer.sync(script), script.sync_error
+
+		assert_equal 2, script.script_versions.length
+
+		# english should be updated
+		en_ai = script.localized_attributes_for('additional_info').find{|la| la.locale == Locale.where(:code => 'en').first}
+		assert_not_nil en_ai
+		assert_equal 'MyNewText', en_ai.attribute_value
+		assert_not_nil en_ai.sync_source_id
+		assert_not_nil en_ai.sync_identifier
+
+		# french should still be there and unchanged
+		fr_ai = script.localized_attributes_for('additional_info').find{|la| la.locale == Locale.where(:code => 'fr').first}
+		assert_not_nil fr_ai
+		assert_equal 'MonTexte', fr_ai.attribute_value
+		assert_nil fr_ai.sync_source_id
+		assert_nil fr_ai.sync_identifier
+	end
+
+	test 'additional info change only is success' do
+		script = Script.find(14)
+		assert script.valid?, script.errors.full_messages
+		assert_equal 1, script.script_versions.length
+		assert script.script_versions.first.valid?, script.script_versions.first.errors.full_messages
+		assert_equal 2, script.localized_attributes_for('additional_info').length, script.localized_attributes_for('additional_info')
+		assert script.localized_attributes_for('additional_info').all?{|la| !la.sync_identifier.nil? && !la.sync_source_id.nil?}, script.localized_attributes_for('additional_info').inspect
+
+		# ensure the code won't change on sync
+		script.sync_identifier = script.script_versions.first.code
+
+		assert_equal :success, ScriptSyncer.sync(script), script.sync_error
+	end
+
+
 end

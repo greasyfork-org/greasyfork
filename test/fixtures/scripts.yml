@@ -114,3 +114,20 @@ previous_with_name_and_description:
   user_id: 1
   default_name: A Test!
   code_updated_at: 2000-01-01
+
+synced_and_localized:
+  id: 14
+  user_id: 1
+  default_name: A Test!
+  code_updated_at: 2000-01-01
+  script_sync_source_id: 100
+  sync_identifier: |
+    // ==UserScript==
+    // @name		A Test!
+    // @name:fr		Un test!
+    // @namespace		http://example.com/1
+    // @description		Unit test.
+    // @description:fr		Test d'unit.
+    // @version		1
+    // ==/UserScript==
+    foo.baz();

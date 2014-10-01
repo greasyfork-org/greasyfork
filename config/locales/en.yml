@@ -276,6 +276,36 @@ en:
     additional_info_locale_repeated: "Provide only one additional info for the '%{locale_code}' locale."
     # validation when an additional info in a locale is provided but no name was provided in that locale. "locale_code" is the locale code (e.g. "en") that is missing a name
     localized_additional_info_with_no_name: "Additional info was specified for the '%{locale_code}' locale, but no @name:%{locale_code} was provided."
+    # text to edit a code syncing URL. field is the text field to enter the url.
+    code_syncing_from_url_html: "This script's code is set up to sync from: %{field}"
+    # text to add a code syncing URL. field is the text field to enter the url.
+    provide_code_syncing_from_url_html: "Greasy Fork can import scripts that already hosted elsewhere, for example in a version control system (like GitHub), your own server, or another user script hosting site. To enable syncing for your script, provide a URL: %{field}"
+    # text before the sync type options
+    sync_type_intro: "The script will be synced:"
+    # label for radio button for manual syncing
+    sync_type_1: "Manually - it will be checked for updates only when you trigger it"
+    # label for radio button for automatic syncing
+    sync_type_2: "Automatically - it will be periodically checked for updates"
+    # label for radio button for webhook syncing
+    sync_type_3: "By webhook - it will be updated when you push changes to this file on GitHub"
+    # text when the last attempted sync failed. date is the date of the error run through markup_date. error is the technical error.
+    sync_failed_info_html: "Last attempted sync was %{date}, which resulted in %{error}."
+    # text indicating the date of the last successful sync. date is the date of the sync run through markup_date
+    sync_success_info_html: "Last successful sync was %{date}."
+    # text if the sync never succeeded
+    sync_never_succeeded: "Sync never completed successfully."
+    # button to update sync settings and run sync immediately
+    update_and_sync: "Update and sync now"
+    # button to update sync settings but not sync immediately
+    update_no_sync: "Update"
+    # button to disable syncing of the script
+    turn_off_syncing: "Turn off syncing for this script"
+    # label for syncing the default additional info
+    additional_info_default_sync_html: "Default additional info (language matches <code>@name</code>)"
+    # label for syncing localized additional infos
+    additional_info_localized_sync_html: "For locale (matches <code>@name:XX</code>)"
+    # HTML placeholder for sync fields
+    sync_url_placeholder: "(URL)"
   script_sets:
     # name for the favorites set
     favorites_name: "Favorites"

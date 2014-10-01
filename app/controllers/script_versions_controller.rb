@@ -135,10 +135,4 @@ private
 		params.require(:script_version).permit(:code, :changelog, :accepted_assessment, :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation)
 	end
 
-	def ensure_default_additional_info(sv)
-		if !sv.localized_attributes_for('additional_info').any?{|la| la.attribute_default}
-			sv.localized_attributes.build({:attribute_key => 'additional_info', :attribute_default => true})
-		end
-	end
-
 end
