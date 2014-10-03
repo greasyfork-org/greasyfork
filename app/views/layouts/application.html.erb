@@ -43,7 +43,7 @@
 				<% if user_signed_in? %>
 					<span class="user-profile-link"><%=link_to(current_user.name, current_user)%></span>
 				<% else %>
-					<span class="sign-in-link"><%=link_to(t('.sign_in'), new_user_session_path, {:rel => 'nofollow'})%></span>
+					<span class="sign-in-link"><%=link_to(t('.sign_in'), new_user_session_path(request.get? ? {:return_to => request.fullpath} : {}), {:rel => 'nofollow'})%></span>
 				<% end %>
 				<% if request.get?
 					form_action = url_for(params.except(:locale).merge({:locale => nil, :only_path => true}))
