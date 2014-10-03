@@ -223,8 +223,16 @@ class ScriptsController < ApplicationController
 			render :nothing => true, :status => 422
 			return
 		end
+		# ditto above, but for IP spoofing
+		ip = nil
+		begin
+			ip = request.remote_ip
+		rescue ActionDispatch::RemoteIp::IpSpoofAttackError => ex
+			render :nothing => true, :status => 422
+			return
+		end
 		# strip the slug
-		Script.record_install(params[:script_id].to_i.to_s, request.remote_ip)
+		Script.record_install(params[:script_id].to_i.to_s, ip)
 		render :nothing => true, :status => 204
 	end
 
