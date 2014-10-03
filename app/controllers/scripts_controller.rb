@@ -12,7 +12,7 @@ class ScriptsController < ApplicationController
 	before_filter :authorize_for_moderators_only, :only => [:minified]
 
 	skip_before_action :verify_authenticity_token, :only => [:install_ping]
-	protect_from_forgery :except => [:user_js, :meta_js, :show]
+	protect_from_forgery :except => [:user_js, :meta_js, :show, :show_code]
 
 	# The value a syncing additional info will have after syncing is added but before the first sync succeeds
 	ADDITIONAL_INFO_SYNC_PLACEHOLDER = '(Awaiting sync)'
@@ -178,9 +178,19 @@ class ScriptsController < ApplicationController
 		end
 
 		return if redirect_to_slug(@script, :script_id)
-		@code = @script_version.rewritten_code
-		@bots = 'noindex' if !params[:version].nil?
-		@canonical_params = [:script_id, :version]
+		respond_to do |format|
+			format.html {
+				@code = @script_version.rewritten_code
+				@bots = 'noindex' if !params[:version].nil?
+				@canonical_params = [:script_id, :version]
+			}
+			format.js {
+				redirect_to @script.code_url
+			}
+			format.user_script_meta {
+				redirect_to script_meta_js_path(params.merge({:script_id => params[:id], :name => @script.name, :format => nil}))
+			}
+		end
 	end
 
 	def feedback
