@@ -20,7 +20,7 @@
 	<h3><%=t('home.scripts_sample')%></h3>
 	<ul>
 		<% @highlighted_scripts.each do |script| %>
-			<li><%=link_to script.name(I18n.locale), script%> - <%=script.description%></li>
+			<li><%=link_to script.name(I18n.locale), script%> - <%=script.description(I18n.locale)%></li>
 		<% end %>
 		<li><%=link_to t('home.scripts_sample_more'), scripts_path%></li>
 	</ul>
