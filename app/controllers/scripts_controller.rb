@@ -557,12 +557,6 @@ private
 		return Script.connection.select_all(sql).first
 	end
 
-	def get_per_page
-		per_page = 50
-		per_page = [params[:per_page].to_i, 200].min if !params[:per_page].nil? and params[:per_page].to_i > 0
-		return per_page
-	end
-
 	def self.get_code_ids
 		newest_sv_ids = Script.connection.select_values('SELECT MAX(id) FROM script_versions GROUP BY script_id')
 		script_to_code_ids = Script.connection.select_rows("SELECT script_id, script_code_id FROM script_versions WHERE ID IN (#{newest_sv_ids.join(',')})")

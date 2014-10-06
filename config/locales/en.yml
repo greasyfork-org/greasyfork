@@ -450,6 +450,18 @@ en:
       discussion_and_comment: "Get an email when discussions are posted on your scripts or when those discussions get new comments"
       # tell the user that the forum can send them other emails that are not controlled by this setting
       note: "You may receive other emails based on your settings in the forum."
+    # display of a single user when displaying a list of users. user_link is a link to the user's page with text of the user name, count is the number of public scripts authored
+    list_display_html:
+      one: "%{user_link} - %{count} script"
+      other: "%{user_link} - %{count} scripts"
+    # sort link for sorting users by number of scripts they've posted
+    listing_number_of_scripts: "Number of scripts"
+    # sort link for sorting users by the creation date of their scripts
+    listing_new_scripts: "New scripts"
+    # sort link for sorting users by the updated date of their scripts
+    listing_updated_scripts: "Updated scripts"
+    # sort link for sorting users by when they signed up
+    listing_registration_date: "Registration date"
   common:
     # text to show before listing errors in a submission
     error_preamble: "There were some problems with what you posted..."

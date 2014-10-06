@@ -21,7 +21,7 @@ module ScriptsHelper
 		else
 			l = link_to label, by_site_scripts_path(:sort => sort, :site => site, :set => set)
 		end
-		return ("<li class=\"script-list-option#{is_link ? '' : ' script-list-current'}\">" + l + '</li>').html_safe
+		return ("<li class=\"list-option#{is_link ? '' : ' list-current'}\">" + l + '</li>').html_safe
 	end
 
 	def script_applies_to_list_contents(script, by_sites)

@@ -3,6 +3,13 @@ require 'securerandom'
 class User < ActiveRecord::Base
 
 	has_many :scripts
+	has_many :listable_scripts, -> {
+		# copy from Script.listable. Is this the most elegant way to do this?
+		o = nil
+		Script.listable.where_values.each{|wv| o = o.nil? ? where(wv) : o.where(wv)}
+		o
+	}, :class_name => 'Script'
+
 	#this results in a cartesian join when included with the scripts relation
 	#has_many :discussions, through: :scripts
 
@@ -22,10 +29,6 @@ class User < ActiveRecord::Base
 	validates_inclusion_of :profile_markup, :in => ['html', 'markdown']
 
 	strip_attributes
-
-	def listable_scripts
-		scripts.listable
-	end
 
 	def discussions_on_scripts_written
 		scripts.map {|s| s.discussions}.flatten.sort{|a,b| a.updated <=> b.updated }

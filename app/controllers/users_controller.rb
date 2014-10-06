@@ -4,9 +4,13 @@ class UsersController < ApplicationController
 
 	skip_before_action :verify_authenticity_token, :only => [:webhook]
 
-	before_filter :authenticate_user!, :except => [:show, :webhook]
+	before_filter :authenticate_user!, :except => [:show, :webhook, :index]
 
 	HMAC_DIGEST = OpenSSL::Digest::Digest.new('sha1')
+
+	def index
+		@users = User.includes(:listable_scripts).references(:scripts).group('users.id').order(self.class.get_sort(params)).paginate(:page => params[:page], :per_page => get_per_page)
+	end
 
 	def show
 		# TODO sort scripts by name, keeping into account localization
@@ -173,6 +177,30 @@ class UsersController < ApplicationController
 			end
 		end
 		redirect_to user_edit_sign_in_path
+	end
+
+private
+
+	def self.get_sort(params)
+		case params[:sort]
+			when 'scripts'
+				return "count(scripts.id) DESC, users.id"
+			when 'total_installs'
+				return "sum(scripts.total_installs) DESC, users.id"
+			when 'created_script'
+				return "max(scripts.created_at) DESC, users.id"
+			when 'updated_script'
+				return "max(scripts.code_updated_at) DESC, users.id"
+			when 'daily_installs'
+				return "sum(scripts.daily_installs) DESC, users.id"
+			when 'fans'
+				return "sum(scripts.fan_score) DESC, users.id"
+			when 'name'
+				return "users.name ASC, users.id"
+			else
+				params[:sort] = nil
+				return "users.created_at DESC, users.id"
+		end
 	end
 
 end

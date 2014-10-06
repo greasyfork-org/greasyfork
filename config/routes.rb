@@ -4,7 +4,8 @@ Greasyfork::Application.routes.draw do
 
 	scope "(:locale)", locale: /de|en|es|fr|fr\-CA|id|it|ja|nl|pl|pt-BR|ru|zh\-CN|zh\-TW/ do
 
-		get 'users/webhook-info', :to => 'users#webhook_info', :as => 'user_webhook_info'
+		get '/users', :to => 'users#index', :as => 'users'
+		get '/users/webhook-info', :to => 'users#webhook_info', :as => 'user_webhook_info'
 		post 'users/webhook-info', :to => 'users#webhook_info'
 		get '/users/edit_sign_in' => 'users#edit_sign_in', :as => 'user_edit_sign_in'
 		delete '/users/identities' => 'users#delete_identity', :as => 'user_delete_identity'

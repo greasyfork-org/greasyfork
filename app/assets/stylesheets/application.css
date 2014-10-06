@@ -274,7 +274,7 @@ dt[title] > span {
 	font-size: smaller;
 }
 
-.script-list {
+.script-list, .user-list {
 	list-style-type: none;
 	padding: 0;
 }
@@ -317,7 +317,7 @@ dt[title] > span {
 .script-list dd {
 	float: left;
 }
-.script-list-current {
+.list-current {
 	font-weight: bold;
 }
 .script-list .name-description-separator, .script-list .description {
@@ -414,19 +414,19 @@ td.numeric, th.numeric {
 	text-align: right;
 }
 
-#script-list-option-groups {
+.list-option-groups {
 	margin-top: 1em;
 	float: right;
 	width: 15em;
 	font-size: smaller;
 }
-.script-list-option-group {
+.list-option-group {
 	background-color: #FFE6E6;
 	padding: 0.5em;
 	margin-bottom: 0.5em;
 	border-radius: 5px 0 0 5px;
 }
-.script-list-option-group ul {
+.list-option-group ul {
 	margin: 0;
 	padding-left: 20px;
 }

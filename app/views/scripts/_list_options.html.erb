@@ -1,5 +1,5 @@
-<div id="script-list-option-groups">
-	<div id="script-list-sort" class="script-list-option-group"><%=t('scripts.listing_sort_label')%>
+<div id="script-list-option-groups" class="list-option-groups">
+	<div id="script-list-sort" class="list-option-group"><%=t('scripts.listing_sort_label')%>
 		<ul>
 			<% if action_name == 'search' %>
 				<%=script_list_link(t('scripts.listing_sort_relevance'), nil, params[:site], params[:set])%>
@@ -16,7 +16,7 @@
 	</div>
 
 	<% if !by_sites.nil? %>
-		<div id="script-list-filter" class="script-list-option-group"><%=t('scripts.listing_filter_by_site_label')%>
+		<div id="script-list-filter" class="list-option-group"><%=t('scripts.listing_filter_by_site_label')%>
 			<ul>
 				<%=script_list_link(t('scripts.listing_filter_by_site_disable'), params[:sort], nil, params[:set])%>
 				<% current_site_is_top = false
@@ -40,7 +40,7 @@
 	<% end %>
 
 	<% if user_signed_in? and !current_user.script_sets.empty? %>
-		<div id="script-list-set" class="script-list-option-group">Script set:
+		<div id="script-list-set" class="list-option-group">Script set:
 			<ul>
 				<%=script_list_link('All', params[:sort], params[:site], nil)%>
 				<% ScriptSet.favorites_first(current_user.script_sets).each do |set| %>

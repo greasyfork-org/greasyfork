@@ -202,4 +202,10 @@ protected
 		end
 	end
 
+	def get_per_page
+		per_page = 50
+		per_page = [params[:per_page].to_i, 200].min if !params[:per_page].nil? and params[:per_page].to_i > 0
+		return per_page
+	end
+
 end
