@@ -188,7 +188,7 @@ class ScriptsController < ApplicationController
 				redirect_to @script.code_url
 			}
 			format.user_script_meta {
-				redirect_to script_meta_js_path(params.merge({:script_id => params[:id], :name => @script.name, :format => nil}))
+				redirect_to script_meta_js_path(params.merge({:script_id => params[:script_id], :name => @script.name, :format => nil}))
 			}
 		end
 	end
