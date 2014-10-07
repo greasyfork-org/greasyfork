@@ -133,7 +133,11 @@ protected
 		end
 		correct_id = resource.to_param
 		if correct_id != params[id_param_name]
-			redirect_to({id_param_name => correct_id, :format => params[:format]}, :status => 301)
+			url_params = {id_param_name => correct_id}
+			retain_params = [:format]
+			retain_params << :callback if params[:format] == 'jsonp'
+			retain_params.each{|param_name| url_params[param_name] = params[param_name]}
+			redirect_to(url_params, :status => 301)
 			return true
 		end
 		return false
