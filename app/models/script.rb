@@ -293,8 +293,9 @@ class Script < ActiveRecord::Base
 	end
 
 	def serializable_hash(options = nil)
-		super({ only: [:id, :description, :daily_installs, :total_installs, :fan_score, :created_at, :code_updated_at, :namespace, :support_url, :contribution_url, :contribution_amount] }.merge(options || {})).merge({
+		super({ only: [:id, :daily_installs, :total_installs, :fan_score, :created_at, :code_updated_at, :namespace, :support_url, :contribution_url, :contribution_amount] }.merge(options || {})).merge({
 			:name => default_name,
+			:description => default_localized_value_for('description'),
 			:url => url_helpers.script_path(nil, self, {:only_path => false}),
 			:code_url => code_url,
 			:license => license_text,
