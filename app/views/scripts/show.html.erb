@@ -1,5 +1,5 @@
 <%- title @script.name(I18n.locale) %>
-<%- description @script.description %>
+<%- description @script.description(I18n.locale) %>
 
 <% if @script.active? 
 	case @script.script_type_id
