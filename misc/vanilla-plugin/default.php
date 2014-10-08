@@ -2,13 +2,14 @@
 
 // Define the plugin:
 $PluginInfo['GreasyFork'] = array(
-	 'Name' => 'GreasyFork',
-	 'Description' => 'Greasy Fork customizations',
-	 'Version' => '1.0',
-	 'Author' => "Jason Barnabe",
-	 'RequiredApplications' => array('Vanilla' => '2.1'),
-	 'AuthorEmail' => 'jason.barnabe@gmail.com',
-	 'AuthorUrl' => 'https://greasyfork.org'
+	'Name' => 'GreasyFork',
+	'Description' => 'Greasy Fork customizations',
+	'Version' => '1.0',
+	'Author' => "Jason Barnabe",
+	'RequiredApplications' => array('Vanilla' => '2.1'),
+	'AuthorEmail' => 'jason.barnabe@gmail.com',
+	'AuthorUrl' => 'https://greasyfork.org',
+	'MobileFriendly' => TRUE
 );
 
 class GreasyForkPlugin extends Gdn_Plugin {
