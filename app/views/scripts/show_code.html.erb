@@ -1,8 +1,8 @@
 <%- title t('scripts.code_title', :script_name => @script.name(I18n.locale)) %>
 <%- description 'Source code for ' + @script.name(I18n.locale) %>
-<style>
-<%= CodeRay::Encoders[:html]::CSS.new(:default).stylesheet%>
-</style>
+
+<%= stylesheet_link_tag "coderay", media: "all" %>
+
 <% if @highlighted_code.nil?
 	if !SyntaxHighlightedCode.can_highlight?(@code) %>
 		<p><%=t('scripts.code_highlighting_disabled', :size => number_to_human_size(Rails.configuration.syntax_highlighting_limit))%></p>

@@ -62,7 +62,7 @@ Greasyfork::Application.configure do
   config.assets.css_compressor = :yui
   config.assets.compile = false
   config.assets.digest = true
-  config.assets.precompile += ['Chart.js']
+  config.assets.precompile += ['Chart.js', 'coderay.css']
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = "http://assets.example.com"
