@@ -19,6 +19,8 @@ class Script < ActiveRecord::Base
 	has_many :localized_descriptions, -> {where(:attribute_key => 'description')}, :class_name => 'LocalizedScriptAttribute'
 	has_many :localized_additional_infos, -> {where(:attribute_key => 'additional_info')}, :class_name => 'LocalizedScriptAttribute'
 
+	has_one :syntax_highlighted_code
+
 	belongs_to :script_type
 	belongs_to :script_sync_source
 	belongs_to :script_sync_type
@@ -98,6 +100,18 @@ class Script < ActiveRecord::Base
 	before_validation :set_default_name
 	def set_default_name
 		self.default_name = default_localized_value_for('name')
+	end
+
+	after_save :update_syntax_highlighted_code
+	def update_syntax_highlighted_code
+		html = SyntaxHighlightedCode.highlight(get_newest_saved_script_version.rewritten_code)
+		if html.nil?
+			syntax_highlighted_code.delete if !syntax_highlighted_code.nil?
+		else
+			build_syntax_highlighted_code if syntax_highlighted_code.nil?
+			syntax_highlighted_code.html = html
+			syntax_highlighted_code.save
+		end
 	end
 
 	def apply_from_script_version(script_version)

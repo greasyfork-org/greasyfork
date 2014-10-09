@@ -1,4 +1,3 @@
-require 'coderay'
 require 'script_importer/script_syncer'
 
 class ScriptsController < ApplicationController
@@ -180,8 +179,21 @@ class ScriptsController < ApplicationController
 		return if redirect_to_slug(@script, :script_id)
 		respond_to do |format|
 			format.html {
-				@code = @script_version.rewritten_code
-				@bots = 'noindex' if !params[:version].nil?
+				@highlighted_code = nil
+				if params[:version].nil?
+					if !@script.syntax_highlighted_code.nil?
+						@highlighted_code = @script.syntax_highlighted_code.html
+					end
+				else
+					@bots = 'noindex'
+				end
+				# Generate on the fly
+				if @highlighted_code.nil?
+					@highlighted_code = SyntaxHighlightedCode.highlight(@script_version.rewritten_code)
+				end
+				if @highlighted_code.nil?
+					@code = @script_version.rewritten_code
+				end
 				@canonical_params = [:script_id, :version]
 			}
 			format.js {
