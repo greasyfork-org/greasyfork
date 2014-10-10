@@ -28,7 +28,7 @@ module Greasyfork
     config.available_locales = {'de' => 'Deutsch', 'en' => 'English', 'es' => 'Español', 'fr' => 'Français', 'id' => 'Bahasa Indonesia', 'ja' => '日本語', 'nl' => 'Nederlands', 'pl' => 'Polski', 'pt-BR' => 'Português do Brasil', 'ru' => 'Русский', 'zh-CN' => '简体中文', 'zh-TW' => '繁體中文'}
     config.help_translate_url = 'https://github.com/JasonBarnabe/greasyfork/wiki/Translating-Greasy-Fork'
 
-    config.cpd_size_limit = 50.kilobytes
+    config.cpd_size_limit = 40.kilobytes
 
     config.syntax_highlighting_limit = 500.kilobytes
 
