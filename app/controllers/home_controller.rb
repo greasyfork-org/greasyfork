@@ -12,7 +12,7 @@ class HomeController < ApplicationController
 	end
 
 	def preview_markup
-		if params[:url]
+		if params[:url] == 'true'
 			begin
 				text = ScriptImporter::BaseScriptImporter.download(params[:text])
 			rescue ArgumentError => ex
