@@ -49,6 +49,10 @@ class HomeController < ApplicationController
 		redirect_to "/auth/#{params[:provider]}/"
 	end
 
+	def routing_error
+		render :status => 404
+	end
+
 private
 
 	TOP_SCRIPTS_PERCENTAGE = 0.1

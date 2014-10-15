@@ -104,7 +104,10 @@ Greasyfork::Application.routes.draw do
 
 		resources :moderator_actions, :only => [:index]
 
+		match '*path', :to => 'home#routing_error', :via => [:get, :post]
 	end
 
 	get 'sso', :to => 'home#sso'
+
+	match '*path', :to => 'home#routing_error', :via => [:get, :post]
 end
