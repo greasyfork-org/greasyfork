@@ -2,6 +2,8 @@ Greasyfork::Application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+	get 'sso', :to => 'home#sso'
+
 	scope "(:locale)", locale: /de|en|es|fr|fr\-CA|id|it|ja|nl|pl|pt-BR|ru|zh\-CN|zh\-TW/ do
 
 		get '/users', :to => 'users#index', :as => 'users'
@@ -106,8 +108,6 @@ Greasyfork::Application.routes.draw do
 
 		match '*path', :to => 'home#routing_error', :via => [:get, :post]
 	end
-
-	get 'sso', :to => 'home#sso'
 
 	match '*path', :to => 'home#routing_error', :via => [:get, :post]
 end
