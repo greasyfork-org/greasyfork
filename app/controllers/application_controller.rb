@@ -260,6 +260,7 @@ protected
 
 	# Returns an array of locales for the passed Accept-Language value
 	def self.parse_accept_language(v)
+		return [] if v.nil?
 		return v.split(',').map{|r|
 			# make sure the region is uppercase
 			locale_parts = r.split(';').first.strip.split('-', 2)
