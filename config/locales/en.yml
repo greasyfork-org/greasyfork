@@ -462,6 +462,8 @@ en:
     listing_updated_scripts: "Updated scripts"
     # sort link for sorting users by when they signed up
     listing_registration_date: "Registration date"
+    # default option for the user's preferred locale
+    locale_prompt: "(Choose a locale)"
   common:
     # text to show before listing errors in a submission
     error_preamble: "There were some problems with what you posted..."
@@ -476,6 +478,8 @@ en:
     not_found_text: "404 - page not found."
     not_found_title: "404 - Page Not Found"
     not_found_link_home: "Go home."
+    # shown on the first page a user sees if, based on the user's Accept-Language header, we think we have a better locale than what the first page shows. "locale_name" is the name of the locale in that language (matching the name in the locale drop down)
+    suggest_locale: "Greasy Fork is available in %{locale_name}."
   activerecord:
     attributes:
       user:
@@ -483,6 +487,8 @@ en:
         name: "Name"
         # user field: profile (HTML content describing themselves)
         profile: "Profile"
+        # user field: locale
+        locale: "Preferred locale"
         # user field: setting to send e-mails when discussions or comments are posted to a user's scripts. options are under users.author_email_notification_type
         author_email_notification_type_id: "Script discussion notifications"
       script:

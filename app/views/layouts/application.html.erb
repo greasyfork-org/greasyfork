@@ -12,16 +12,15 @@
 	<link rel="canonical" href="<%=url_for(params.slice(*@canonical_params).merge({:host => 'greasyfork.org', :protocol => 'https'}))%>">
 	<link rel="icon" href="<%=asset_path 'blacklogo16.png'%>">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
 	<% if request.get?
-		# https://support.google.com/webmasters/answer/189077
-		Rails.configuration.available_locales.each do |code, name|
-			if code == 'en' %>
-				<link rel="alternate" hreflang="<%=code%>" href="<%=url_for(params.except(:locale).merge({:locale => nil, :only_path => true}))%>">
-			<% else %>
-				<link rel="alternate" hreflang="<%=code%>" href="<%=url_for(params.except(:locale).merge({:locale => code, :only_path => true}))%>">
-			<% end
-		end
+		# https://support.google.com/webmasters/answer/189077 %>
+		<link rel="alternate" hreflang="x-default" href="<%=url_for(params.except(:locale).merge({:locale => nil, :only_path => true}))%>">
+		<% Rails.configuration.available_locales.each do |code, name| %>
+			<link rel="alternate" hreflang="<%=code%>" href="<%=url_for(params.except(:locale).merge({:locale => code, :only_path => true}))%>">
+		<% end
 	end %>
+
 	<% if defined?(@link_alternates)
 		@link_alternates.each do |la| %>
 			<link rel="alternate" type="<%=la[:type]%>" href="<%=la[:url]%>" <%if !la[:title].nil?%>title="<%=la[:title]%>"<%end%>>
@@ -53,19 +52,11 @@
 				<form id="language-selector" action="<%=form_action%>">
 					<select id="language-selector-locale" name="locale">
 						<% Rails.configuration.available_locales.each do |code, name|
-							if request.get?
-								if code == 'en' %>
-									<option data-language-url="<%=url_for(params.except(:locale).merge({:locale => nil, :only_path => true}))%>" value="<%=code%>"<%if params[:locale] == code or params[:locale].nil?%> selected<%end%>><%=name%> (<%=code%>)</option>
-								<% else %>
-									<option data-language-url="<%=url_for(params.except(:locale).merge({:locale => code, :only_path => true}))%>" value="<%=code%>"<%if params[:locale] == code%> selected<%end%>><%=name%> (<%=code%>)</option>
-								<% end
-							else
-								if code == 'en' %>
-									<option data-language-url="<%=root_path({:locale => nil, :only_path => true})%>" value="<%=code%>"<%if params[:locale] == code or params[:locale].nil?%> selected<%end%>><%=name%> (<%=code%>)</option>
-								<% else %>
-									<option data-language-url="<%=root_path({:locale => code, :only_path => true})%>" value="<%=code%>"<%if params[:locale] == code%> selected<%end%>><%=name%> (<%=code%>)</option>
-								<% end
-							end
+							if request.get? %>
+								<option data-language-url="<%=url_for(params.except(:locale).merge({:locale => code, :only_path => true}))%>" value="<%=code%>"<%if params[:locale] == code%> selected<%end%>><%=name%> (<%=code%>)</option>
+							<% else %>
+								<option data-language-url="<%=root_path({:locale => code, :only_path => true})%>" value="<%=code%>"<%if params[:locale] == code%> selected<%end%>><%=name%> (<%=code%>)</option>
+							<% end
 						end %>
 						<option value="help">Help us translate!</option>
 					</select><input id="language-selector-submit" type="submit" value="→">

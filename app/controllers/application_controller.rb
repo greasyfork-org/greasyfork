@@ -16,6 +16,7 @@ protected
 		devise_parameter_sanitizer.for(:account_update) << :name
 		devise_parameter_sanitizer.for(:account_update) << :profile
 		devise_parameter_sanitizer.for(:account_update) << :profile_markup
+		devise_parameter_sanitizer.for(:account_update) << :locale_id
 		devise_parameter_sanitizer.for(:account_update) << :author_email_notification_type_id
 	end
 
@@ -154,31 +155,47 @@ protected
 
 	def default_url_options(options={})
 		# set locale on links, unless we're the default
-		{ :locale => ((I18n.locale == I18n.default_locale) ? nil : I18n.locale) }
+		{ :locale => I18n.locale }
 	end
 
 	before_filter :set_locale
 	def set_locale
+		# User chose "Help us translate" in the locale picker
 		if params[:locale] == 'help'
 			redirect_to Rails.configuration.help_translate_url
 			return
 		end
-		if request.get?
-			# strip /en/ if set, that's the default
-			if params[:locale] == 'en'
-				params[:locale] = nil
-				# only_path - prevent open redirect via "host" parameter
-				redirect_to url_for(params.merge(:only_path => true)), :status => 301
-				return
+
+		# Locale is properly set
+		if !params[:locale].nil?
+			# Suggest a different locale if we think there's a better one. Only do it once per session.
+			if current_user.nil? && cookies[:locale_suggested].nil?
+				cookies[:locale_suggested] = true
+				top, preferred = ApplicationController.detect_locale(current_user, request.headers['Accept-Language'])
+				if top.code != params[:locale]
+					flash.now[:notice] = "<b>#{view_context.link_to(t('common.suggest_locale', :locale => top.code, :locale_name => (top.native_name || top.english_name)), {:locale => top.code})}</b>".html_safe
+				end
 			end
-			# redirect if locale is a request param and not part of the url
-			if !request.GET[:locale].nil?
-				redirect_to url_for(params.merge(:only_path => true)), :status => 301
-				return
-			end
+			I18n.locale = params[:locale]
+			return
 		end
-		# set locale based on parameter
-		I18n.locale = params[:locale] || :en
+
+		# Don't want to redirect on POSTs and stuff, even if they're missing a locale
+		if !request.get?
+			I18n.locale = :en
+			return
+		end
+
+		# Redirect if locale is a request param and not part of the url
+		if !request.GET[:locale].nil?
+			redirect_to url_for(params.merge(:only_path => true)), :status => 301
+			return
+		end
+
+		# Detect language
+		top, preferred = ApplicationController.detect_locale(current_user, request.headers['Accept-Language'])
+		flash[:notice] = "<b>Greasy Fork is not available in #{preferred.english_name}. <a href=\"#{Rails.configuration.help_translate_url}\" target=\"_new\">You can change that.</a></b>".html_safe if !preferred.nil?
+		redirect_to :locale => top.code
 	end
 
 	def clean_redirect_param(param_name)
@@ -211,6 +228,44 @@ protected
 		per_page = 50
 		per_page = [params[:per_page].to_i, 200].min if !params[:per_page].nil? and params[:per_page].to_i > 0
 		return per_page
+	end
+
+	# Determines a locale to use based on user preference and Accept_Language header.
+	# Returns an array consisting of:
+	#   The top locale we can display.
+	#   A locale the user would prefer more, but we don't support (can be nil)
+	def self.detect_locale(current_user, accept_language)
+		lookup_locales = nil
+		if !current_user.nil? && !current_user.locale.nil?
+			lookup_locales = [current_user.locale.code]
+		else
+			lookup_locales = parse_accept_language(accept_language)
+		end
+		top_displayable_locale = nil
+		top_undisplayable_locale = nil
+		lookup_locales.each do |locale_code|
+			locales = Locale.matching_locales(locale_code)
+			locales.each do |l|
+				if l.ui_available
+					top_displayable_locale = l
+					break
+				end
+				top_undisplayable_locale = l if top_undisplayable_locale.nil?
+			end
+			break if !top_displayable_locale.nil?
+		end
+		top_displayable_locale = Locale.where(:code => 'en').first if top_displayable_locale.nil?
+		return [top_displayable_locale, top_undisplayable_locale]
+	end
+
+	# Returns an array of locales for the passed Accept-Language value
+	def self.parse_accept_language(v)
+		return v.split(',').map{|r|
+			# make sure the region is uppercase
+			locale_parts = r.split(';').first.strip.split('-', 2)
+			locale_parts[1].upcase! if locale_parts.length > 1
+			next locale_parts.join('-')
+		}
 	end
 
 end

@@ -19,6 +19,8 @@ class User < ActiveRecord::Base
 
 	has_many :script_sets
 
+	belongs_to :locale
+
 	# Include default devise modules. Others available are:
 	# :confirmable, :lockable, :timeoutable and :omniauthable
 	devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
@@ -88,6 +90,13 @@ class User < ActiveRecord::Base
 			h.delete('listable_scripts')
 		end
 		return h
+	end
+
+	# Returns the user's preferred locale code, if we have that locale available, otherwise nil.
+	def available_locale_code
+		return nil if locale.nil?
+		return nil if !locale.ui_available
+		return locale.code
 	end
 
 	protected

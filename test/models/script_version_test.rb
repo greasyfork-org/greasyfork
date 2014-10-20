@@ -615,6 +615,7 @@ END
 		script = Script.new
 		script.user = User.first
 		sv.script = script
+		script.script_versions << sv
 		sv.calculate_all(script.description)
 		script.apply_from_script_version(sv)
 		# regular new script...
@@ -628,7 +629,7 @@ END
 		# now an update
 		sv.minified_confirmation = false
 		script.save
-		assert sv.valid?, sv.errors.full_messages
+		assert !sv.valid?
 	end
 
 	test 'use same script code between code and rewritten' do
@@ -644,6 +645,7 @@ END
 		sv.code = js
 		script = Script.new
 		script.user = User.first
+		script.script_versions << sv
 		sv.script = script
 		sv.calculate_all(script.description)
 		script.apply_from_script_version(sv)
@@ -698,6 +700,7 @@ END
 		script = Script.new
 		script.user = User.first
 		sv.script = script
+		script.script_versions << sv
 		sv.calculate_all(script.description)
 		script.apply_from_script_version(sv)
 		assert sv.valid?, sv.errors.full_messages

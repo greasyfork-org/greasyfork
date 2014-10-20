@@ -31,6 +31,20 @@
 	</div>
 
 	<div>
+		<label><%=t('activerecord.attributes.user.locale')%></label><br>
+		<select name="user[locale_id]">
+			<option value="" <%if @user.locale_id.nil?%>selected<%end%>><%=t('users.locale_prompt')%></option>
+			<% Locale.where(:ui_available => true).each do |locale| %>
+				<option value="<%=locale.id%>" <%if @user.locale_id == locale.id%>selected<%end%>><%=locale.display_text%></option>
+			<% end %>
+			<option disabled>---</option>
+			<% Locale.all.each do |locale| %>
+				<option value="<%=locale.id%>"<%if @user.locale_id == locale.id%>selected<%end%>><%=locale.display_text%></option>
+			<% end %>
+		</select>
+	</div>
+
+	<div>
 		<%= f.label :author_email_notification_type_id %><br>
 		<%= f.radio_button(:author_email_notification_type_id, 1)%> <label for="user_author_email_notification_type_id_1"><%=t('users.author_email_notification_type.none')%></label><br>
 		<%= f.radio_button(:author_email_notification_type_id, 2)%> <label for="user_author_email_notification_type_id_2"><%=t('users.author_email_notification_type.discussion_only')%></label><br>
