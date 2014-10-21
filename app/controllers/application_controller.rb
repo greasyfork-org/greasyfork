@@ -181,7 +181,7 @@ protected
 		end
 
 		# Don't want to redirect on POSTs and stuff, even if they're missing a locale
-		if !request.get?
+		if !request.get? or ['omniauth_callback', 'omniauth_failure'].include?(params[:action])
 			I18n.locale = :en
 			return
 		end
