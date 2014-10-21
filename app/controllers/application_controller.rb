@@ -195,7 +195,7 @@ protected
 		# Detect language
 		top, preferred = ApplicationController.detect_locale(current_user, request.headers['Accept-Language'])
 		flash[:notice] = "<b>Greasy Fork is not available in #{preferred.english_name}. <a href=\"#{Rails.configuration.help_translate_url}\" target=\"_new\">You can change that.</a></b>".html_safe if !preferred.nil?
-		redirect_to :locale => top.code
+		redirect_to url_for(params.merge(:only_path => true, :locale => top.code)), :status => 302
 	end
 
 	def clean_redirect_param(param_name)
