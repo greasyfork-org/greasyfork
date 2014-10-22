@@ -1,4 +1,5 @@
 require 'script_importer/script_syncer'
+require 'csv'
 
 class ScriptsController < ApplicationController
 	layout 'application', :except => [:show, :show_code, :feedback, :diff, :sync, :sync_update, :delete, :undelete, :stats, :derivatives]
@@ -220,6 +221,7 @@ class ScriptsController < ApplicationController
 			}
 			format.user_script_meta { 
 				render :text => script.script_delete_type_id == 2 ? script_version.get_blanked_code : script_version.get_rewritten_meta_block, :content_type => 'text/x-userscript-meta'
+				ScriptsController.record_update_check(request, params)
 			}
 		end
 	end
@@ -227,6 +229,7 @@ class ScriptsController < ApplicationController
 	def meta_js
 		script, script_version = versionned_script(params[:script_id], params[:version])
 		render :text => script.script_delete_type_id == 2 ? script_version.get_blanked_code : script_version.get_rewritten_meta_block, :content_type => 'text/x-userscript-meta'
+		ScriptsController.record_update_check(request, params)
 	end
 
 	def install_ping
@@ -235,16 +238,12 @@ class ScriptsController < ApplicationController
 			render :nothing => true, :status => 422
 			return
 		end
-		# ditto above, but for IP spoofing
-		ip = nil
-		begin
-			ip = request.remote_ip
-		rescue ActionDispatch::RemoteIp::IpSpoofAttackError => ex
+		ip, script_id = ScriptsController.per_user_stat_params(request, params)
+		if ip.nil? || script_id.nil?
 			render :nothing => true, :status => 422
 			return
 		end
-		# strip the slug
-		Script.record_install(params[:script_id].to_i.to_s, ip)
+		Script.record_install(script_id, ip)
 		render :nothing => true, :status => 204
 	end
 
@@ -438,19 +437,38 @@ class ScriptsController < ApplicationController
 
 	def stats
 		@script, @script_version = versionned_script(params[:script_id], params[:version])
+		return if redirect_to_slug(@script, :script_id)
 		install_values = Hash[Script.connection.select_rows("SELECT install_date, installs FROM install_counts where script_id = #{@script.id}")]
 		daily_install_values = Hash[Script.connection.select_rows("SELECT DATE(install_date) d, COUNT(*) FROM daily_install_counts where script_id = #{@script.id} GROUP BY d")]
-		@install_data = {}
+		update_check_values = Hash[Script.connection.select_rows("SELECT update_check_date, update_checks FROM update_check_counts where script_id = #{@script.id}")]
+		daily_update_check_values = Hash[Script.connection.select_rows("SELECT DATE(update_check_date) d, COUNT(*) FROM daily_update_check_counts where script_id = #{@script.id} GROUP BY d")]
+		@stats = {}
+		update_check_start_date = Date.parse('2014-10-22')
 		(@script.created_at.to_date..Time.now.utc.to_date).each do |d|
-			v = install_values[d]
-			if v.nil?
-				v2 = daily_install_values[d]
-				@install_data[d] = v2.nil? ? 0 : v2
-			else
-				@install_data[d] = v
-			end
+			stat = {}
+			stat[:installs] = install_values[d] || daily_install_values[d] || 0
+			# this stat not available before that date
+			stat[:update_checks] = d >= update_check_start_date ? (update_check_values[d] || daily_update_check_values[d] || 0) : nil
+			@stats[d] = stat
 		end
-		@canonical_params = [:script_id, :version]
+		respond_to do |format|
+			format.html {
+				@canonical_params = [:script_id, :version]
+			}
+			format.csv {
+				data = CSV.generate do |csv|
+					csv << ['Date', 'Installs', 'Update checks']
+					@stats.each do |d, stat|
+						csv << [d, stat.values].flatten
+					end
+				end
+				render :plain => data
+				response.content_type = 'text/csv'
+			}
+			format.json {
+				render :json => @stats
+			}
+		end
 	end
 
 	def derivatives
@@ -573,6 +591,26 @@ private
 		newest_sv_ids = Script.connection.select_values('SELECT MAX(id) FROM script_versions GROUP BY script_id')
 		script_to_code_ids = Script.connection.select_rows("SELECT script_id, script_code_id FROM script_versions WHERE ID IN (#{newest_sv_ids.join(',')})")
 		return Hash[*script_to_code_ids.flatten]
+	end
+
+	# Returns IP and script ID. They will be nil if not valid.
+	def self.per_user_stat_params(r, p)
+		# Get IP in a way that avoids an exception. Prevents monitoring from going nuts.
+		ip = nil
+		begin
+			ip = r.remote_ip
+		rescue ActionDispatch::RemoteIp::IpSpoofAttackError => ex
+			# do nothing, ip remains nil
+		end
+		# strip the slug
+		script_id = p[:script_id].to_i.to_s
+		return [ip, script_id]
+	end
+
+	def self.record_update_check(r, p)
+		ip, script_id = per_user_stat_params(r, p)
+		return if ip.nil? || script_id.nil?
+		Script.record_update_check(script_id, ip)
 	end
 
 end

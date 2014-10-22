@@ -423,6 +423,13 @@ dt[title] > span {
 	width: 100%;
 	height: 400px;
 }
+.stats-table {
+	border-collapse: collapse;
+}
+.stats-table th, .stats-table td {
+	border: 1px solid gray;
+	padding: 0 0.5em;
+}
 td.numeric, th.numeric {
 	text-align: right;
 }

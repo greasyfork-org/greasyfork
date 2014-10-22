@@ -209,6 +209,10 @@ class Script < ActiveRecord::Base
 		Script.connection.execute("INSERT IGNORE INTO daily_install_counts (script_id, ip) VALUES (#{Script.connection.quote_string(id)}, '#{Script.connection.quote_string(ip)}');")
 	end
 
+	def self.record_update_check(id, ip)
+		Script.connection.execute("INSERT IGNORE INTO daily_update_check_counts (script_id, ip) VALUES (#{Script.connection.quote_string(id)}, '#{Script.connection.quote_string(ip)}');")
+	end
+
 	def active?
 		!deleted? and !uses_disallowed_external
 	end
