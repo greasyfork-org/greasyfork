@@ -237,6 +237,7 @@ zh-CN:
     listing_new_scripts: "新脚本"
     listing_updated_scripts: "更新过的脚本"
     listing_registration_date: "注册时间"
+    locale_prompt: "(选择一种语言)"
   common:
     error_preamble: "很抱歉，您提交的内容有点问题…"
     allowed_elements_link: "(查看允许使用的代码)"
@@ -246,11 +247,13 @@ zh-CN:
     not_found_text: "404 - 页面未找到"
     not_found_title: "404 - 页面未找到"
     not_found_link_home: "返回首页"
+    suggest_locale: "Greasy Fork有%{locale_name}语言可用"
   activerecord:
     attributes:
       user:
         name: "账户名"
         profile: "个人信息"
+        locale: "首选语言"
         author_email_notification_type_id: "当脚本有新的讨论时…"
       script:
         name: "名称"
