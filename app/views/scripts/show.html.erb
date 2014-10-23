@@ -56,6 +56,7 @@
 							ScriptSet.favorites_first(sets_not_included).each do |set| %>
 								<option value="ai-<%=set.id%>"><%=t('scripts.sets_add_inclusion', :set_name => set.display_name)%></option>
 							<% end %>
+							<option value="ai-new"><%=t('scripts.sets_add_to_new')%></option>
 						</select>
 						<input type="hidden" name="script_id" value="<%=@script.id%>">
 						<input type="submit" value="→">

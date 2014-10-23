@@ -9,6 +9,7 @@ class ScriptSetsController < ApplicationController
 		@set = ScriptSet.new
 		@set.user = @user
 		@set.favorite = !params[:fav].nil?
+		@set.add_child(Script.find(params[:script_id]), false) if !params[:script_id].nil?
 		@child_set_user = @user
 	end
 
@@ -63,6 +64,9 @@ class ScriptSetsController < ApplicationController
 				set.user = current_user
 				make_favorite_set(set)
 			end
+		elsif set_id == 'new'
+			redirect_to new_user_script_set_path(current_user, :script_id => params[:script_id])
+			return
 		else
 			set = ScriptSet.find(set_id)
 			if set.user_id != current_user.id
