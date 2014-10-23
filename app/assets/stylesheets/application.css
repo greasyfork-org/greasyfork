@@ -192,6 +192,7 @@ nav li + li {
 }
 #script-meta > * {
 	display: table-cell;
+	margin-bottom: 1em;
 }
 #script-stats, #script-stats dt, #script-stats dd, #script-applies-to, #script-applies-to dt, #script-applies-to dd {
 	vertical-align: top;
@@ -210,9 +211,6 @@ nav li + li {
 }
 #script-stats dd {
 	float: left;
-}
-#script-stats, #script-applies-to {
-	margin-bottom: 1em;
 }
 #script-applies-to dt {
 	display: inline;
@@ -477,4 +475,14 @@ a.self-link, a.self-link:visited {
 
 .indented {
 	padding-left: 1em;
+}
+
+.expander {
+	background-color: white;
+	cursor: pointer;
+	padding: 2px 5px;
+	color: #670000;
+	border-radius: 3px;
+	background-color: #FFE6E6;
+	text-decoration: underline;
 }

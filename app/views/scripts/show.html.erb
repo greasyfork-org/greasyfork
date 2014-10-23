@@ -103,20 +103,22 @@
 		<dt class="script-show-license"><span><%=t('scripts.license')%></span></dt>
 		<dd class="script-show-license"><span><%=@script.license_display%></span></dd>
 	</dl>
-	<dl id="script-applies-to">
-		<dt class="script-show-applies-to"><span><%=t('scripts.applies_to')%></span></dt>
-		<dd class="script-show-applies-to">
-			<% if @script.script_applies_tos.empty? %>
-				<%=t('scripts.applies_to_all')%>
-			<% else %>
-				<ul class="inline-list">
-					<% script_applies_to_list_contents(@script, @by_sites).each do |script_applies_to_content| %>
-						<li><%=script_applies_to_content%></li>
-					<% end %>
-				</ul>
-			<% end %>
-		</dd>
-	</dl>
+	<div>
+		<dl id="script-applies-to" data-show-more-text="<%=t('common.expander_show_more')%>" data-show-less-text="<%=t('common.expander_show_less')%>">
+			<dt class="script-show-applies-to"><span><%=t('scripts.applies_to')%></span></dt>
+			<dd class="script-show-applies-to">
+				<% if @script.script_applies_tos.empty? %>
+					<%=t('scripts.applies_to_all')%>
+				<% else %>
+					<ul class="inline-list">
+						<% script_applies_to_list_contents(@script, @by_sites).each do |script_applies_to_content| %>
+							<li><%=script_applies_to_content%></li>
+						<% end %>
+					</ul>
+				<% end %>
+			</dd>
+		</dl>
+	</div>
 </div>
 
 <% localized_additional_info = @script.localized_attribute_for('additional_info', I18n.locale)
