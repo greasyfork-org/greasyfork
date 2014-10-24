@@ -81,6 +81,8 @@ module ScriptImporter
 				next if la.sync_identifier.nil? || la.sync_source_id.nil?
 				begin
 					ai = ScriptSyncer.get_importer_for_sync_source_id(la.sync_source_id).download(la.sync_identifier)
+					absolute_ai = absolutize_references(ai, la.sync_identifier)
+					ai = absolute_ai unless absolute_ai.nil?
 					new_la.attribute_value = ai
 				rescue => ex
 					# if something fails here, we'll just ignore.
@@ -125,6 +127,23 @@ module ScriptImporter
 			return u
 		end
 
+		def self.absolutize_references(html, base)
+			changed = false
+			base_url = URI.parse(base)
+			tags = {'img' => 'src', 'a' => 'href'}
+			doc = Nokogiri::HTML::fragment(html)
+			doc.search(tags.keys.join(',')).each do |node|
+				url_param = tags[node.name]
+				url_text = node[url_param]
+				new_url = base_url.merge(url_text)
+				if url_text != new_url.to_s
+					changed = true
+					node[url_param] = new_url
+				end
+			end
+			return nil if !changed
+			return doc.to_html
+		end
 
 	end
 end

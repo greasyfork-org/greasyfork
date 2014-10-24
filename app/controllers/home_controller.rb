@@ -15,6 +15,8 @@ class HomeController < ApplicationController
 		if params[:url] == 'true'
 			begin
 				text = ScriptImporter::BaseScriptImporter.download(params[:text])
+				absolute_text = ScriptImporter::BaseScriptImporter.absolutize_references(text, params[:text])
+				text = absolute_text if !absolute_text.nil?
 			rescue ArgumentError => ex
 				render :text => ex
 				return
