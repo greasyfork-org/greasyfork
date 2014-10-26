@@ -443,7 +443,7 @@ class ScriptsController < ApplicationController
 		update_check_values = Hash[Script.connection.select_rows("SELECT update_check_date, update_checks FROM update_check_counts where script_id = #{@script.id}")]
 		daily_update_check_values = Hash[Script.connection.select_rows("SELECT DATE(update_check_date) d, COUNT(*) FROM daily_update_check_counts where script_id = #{@script.id} GROUP BY d")]
 		@stats = {}
-		update_check_start_date = Date.parse('2014-10-22')
+		update_check_start_date = Date.parse('2014-10-23')
 		(@script.created_at.to_date..Time.now.utc.to_date).each do |d|
 			stat = {}
 			stat[:installs] = install_values[d] || daily_install_values[d] || 0
