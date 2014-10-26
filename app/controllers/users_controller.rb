@@ -80,7 +80,7 @@ class UsersController < ApplicationController
 		base_paths = [
 			params[:repository][:url] + '/raw/' + params[:ref].split('/').last + '/', 'https://raw.githubusercontent.com/' + params[:repository][:url].split('/')[3..4].join('/') + '/' + params[:ref].split('/').last + '/'
 		]
-		logger.error(base_paths.inspect)
+
 		changed_urls = {}
 		params[:commits].each do |c|
 			# there's also "added" and "deleted", but I don't think there's a case for syncing when those happen
@@ -98,23 +98,19 @@ class UsersController < ApplicationController
 			end
 		end
 
-		changed_script_urls = []
-		if !changed_urls.empty?
-			# find the scripts syncing from those URLs
-			scripts = Script.not_deleted.where(:user_id => user.id).where(:sync_identifier => changed_urls.keys).includes(:script_sync_type)
+		scripts_and_messages = self.class.get_synced_scripts(user, changed_urls)
 
-			# trigger sync on each
-			scripts.each do |s|
-				changed_script_urls << script_url(s, :only_path => false)
-				# update sync type to webhook, now that we know this script is affected by it
-				if s.script_sync_type_id != 3
-					s.script_sync_type_id = 3
-					s.save(:validate => false)
-				end
-				# sync
-				# GitHub's raw server caches things for up to 5 minutes. We also want to let the webhook request complete asynchronously anyway.
-				ScriptImporter::ScriptSyncer.delay(run_at: 5.minutes.from_now).sync(s, 'Synced from GitHub - ' + changed_urls[s.sync_identifier].join(' '))
+		changed_script_urls = []
+		scripts_and_messages.each do |s, messages|
+			changed_script_urls << script_url(s, :only_path => false)
+			# update sync type to webhook, now that we know this script is affected by it
+			if s.script_sync_type_id != 3
+				s.script_sync_type_id = 3
+				s.save(:validate => false)
 			end
+
+			# GitHub's raw server caches things for up to 5 minutes. We also want to let the webhook request complete asynchronously anyway.
+			ScriptImporter::ScriptSyncer.delay(run_at: 5.minutes.from_now).sync(s, 'Synced from GitHub - ' + messages.join(' '))
 		end
 
 		render :json => {:affected_scripts => changed_script_urls}
@@ -203,4 +199,37 @@ private
 		end
 	end
 
+	# Returns a Hash of Script to array of commit messages. Parameters:
+	#   user - user to limit the script search to
+	#   urls_and_messages - a map of URL for the modified files to array of commit messages
+	def self.get_synced_scripts(user, urls_and_messages)
+		scripts_and_messages = {}
+		return scripts_and_messages if urls_and_messages.nil? or urls_and_messages.empty?
+
+		# find the scripts syncing from those URLs for code
+		scripts = Script.not_deleted.where(:user_id => user.id).where(:sync_identifier => urls_and_messages.keys).to_a
+
+		# find the scripts syncing from those URLs for additional info
+		additional_info_script_ids = Script.not_deleted.where(:user_id => user.id).where(['localized_script_attributes.sync_identifier in (?)', urls_and_messages.keys]).includes(:localized_attributes).references(:localized_script_attributes).ids
+		scripts.concat(Script.find(additional_info_script_ids).to_a)
+		scripts.uniq!
+
+		# relate each script to the commit messages
+		scripts.each do |s|
+			messages = []
+
+			# sync for code
+			code_messages = urls_and_messages[s.sync_identifier]
+			messages.concat(code_messages) unless code_messages.nil?
+
+			# sync for localized attributes
+			s.localized_attributes.select{|la| !la.sync_identifier.nil?}.map{|la| la.sync_identifier}.uniq.each do |sync_identifier|
+				messages.concat(urls_and_messages[sync_identifier]) if !urls_and_messages[sync_identifier].nil?
+			end
+
+			scripts_and_messages[s] = messages.uniq
+		end
+
+		return scripts_and_messages
+	end
 end
