@@ -67,7 +67,7 @@ gem 'delayed_job', '~> 4.0.2'
 gem 'delayed_job_active_record', '~> 4.0.1'
 gem 'daemons'
 gem 'public_suffix'
-gem 'transifex-ruby', git: 'git@github.com:JasonBarnabe/transifex-ruby.git'
+gem 'transifex-ruby', git: 'git@github.com:tmaesaka/transifex-ruby.git'
 gem 'dalli'
 
 gem 'omniauth'

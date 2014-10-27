@@ -39,6 +39,7 @@ Greasyfork::Application.configure do
   config.userscriptsorg_host = 'http://userscripts.org:8080'
  
   config.enable_detect_locale = true
+  config.download_locale_files = true
 
   config.after_initialize do
     Bullet.enable = false

@@ -97,4 +97,5 @@ Greasyfork::Application.configure do
   config.userscriptsorg_host = 'http://userscripts.org:8080'
 
   config.enable_detect_locale = false
+  config.download_locale_files = false
 end
