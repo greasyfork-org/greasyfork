@@ -168,6 +168,7 @@ protected
 
 		# Locale is properly set
 		if !params[:locale].nil?
+			I18n.locale = params[:locale]
 			if cookies[:locale_messaged].nil?
 				# Only hassle the user about locales once per session.
 				cookies[:locale_messaged] = true
@@ -185,7 +186,6 @@ protected
 					end
 				end
 			end
-			I18n.locale = params[:locale]
 			return
 		end
 
