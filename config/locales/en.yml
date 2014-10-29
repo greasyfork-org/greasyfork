@@ -212,6 +212,10 @@ en:
     contribution_no_amount: "Thank %{author} by making a donation."
     # link to a site where the user can donate to the author, when the author provided a suggested donation amount
     contribution_with_amount: "Thank %{author} by making a donation. Suggested donation is %{amount}."
+    # text for donating to the author via bitcoin, when the author didn't provide a suggested donation amount
+    contribution_bitcoin_no_amount_html: "Thank %{author} by making a Bitcoin donation to %{address}."
+    # text for donating to the author via bitcoin, when the author provided a suggested donation amount
+    contribution_bitcoin_with_amount_html: "Thank %{author} by making a Bitcoin donation to %{address}. Suggested donation is %{amount}."
     # explanation of language chooser when editing script
     locale_explanation_html: "Should match the language of <code>@name</code>, <code>@description</code>, and the first additional info."
     # the default value for the locale box, if submitted the site will attempt to detect the language of the entry

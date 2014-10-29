@@ -38,7 +38,7 @@
 	<dd>URL for a page where users can get support on a script (e.g. a bug tracker, a forum, an e-mail address). Support URL is displayed on a script's feedback page.</dd>
 
 	<dt><%=self_link('meta-contributionURL', '@contributionURL')%></dt>
-	<dd>URL for a page where users can donate to the author of a script. Contribution URL is displayed on a script's feedback page.</dd>
+	<dd>URL for a page where users can donate to the author of a script. Contribution URL is displayed on a script's feedback page. URLs can be http, https, or Bitcoin protocols. To link to a PayPal donation page, use a URL in the format <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a>, replacing the sample e-mail address with your own.</dd>
 
 	<dt><%=self_link('meta-contributionAmount', '@contributionAmount')%></dt>
 	<dd>Suggested donation amount, used in conjunction with <code>@contributionURL</code>.</dd>
