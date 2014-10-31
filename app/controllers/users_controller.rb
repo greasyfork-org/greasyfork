@@ -14,14 +14,14 @@ class UsersController < ApplicationController
 
 	def show
 		# TODO sort scripts by name, keeping into account localization
-		@user = User.order('scripts.default_name')
+		user = User.order('scripts.default_name')
 		# current user will display discussions
 		if !current_user.nil? and current_user.id == params[:id].to_i
-			@user = @user.includes(:scripts => [:discussions, :script_type, :script_delete_type, :localized_attributes => :locale])
+			user = user.includes(:scripts => [:discussions, :script_type, :script_delete_type, :localized_attributes => :locale])
 		else
-			@user = @user.includes(:scripts => [:script_type, :script_delete_type, :localized_attributes => :locale])
+			user = user.includes(:scripts => [:script_type, :script_delete_type, :localized_attributes => :locale])
 		end
-		@user = @user.find(params[:id])
+		@user = user.find(params[:id])
 
 		return if redirect_to_slug(@user, :id)
 

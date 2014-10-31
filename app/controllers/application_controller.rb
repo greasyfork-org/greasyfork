@@ -9,6 +9,18 @@ class ApplicationController < ActionController::Base
 
 	before_filter :banned?
 
+	rescue_from ActiveRecord::RecordNotFound, :with => :routing_error
+	def routing_error
+		respond_to do |format|
+			format.html {
+				render 'home/routing_error', :status => 404
+			}
+			format.all {
+				render :nothing => true, :status => 404, :content_type => 'text/html'
+			}
+		end
+	end
+
 protected
 
 	def configure_permitted_parameters
@@ -161,6 +173,9 @@ protected
 
 	before_filter :set_locale
 	def set_locale
+		# Don't redirect if it's going to be an error page
+		return if action_name == 'routing_error'
+
 		# User chose "Help us translate" in the locale picker
 		if params[:locale] == 'help'
 			redirect_to Rails.configuration.help_translate_url

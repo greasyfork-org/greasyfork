@@ -51,17 +51,6 @@ class HomeController < ApplicationController
 		redirect_to "/auth/#{params[:provider]}/"
 	end
 
-	def routing_error
-		respond_to do |format|
-			format.html {
-				render :status => 404
-			}
-			format.all {
-				render :nothing => true, :status => 404, :content_type => 'text/html'
-			}
-		end
-	end
-
 private
 
 	TOP_SCRIPTS_PERCENTAGE = 0.1
