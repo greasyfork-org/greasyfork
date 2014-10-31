@@ -480,6 +480,8 @@ en:
     listing_registration_date: "Registration date"
     # default option for the user's preferred locale
     locale_prompt: "(Choose a locale)"
+    # text describing what the show ads checkbox does
+    show_ads_description: "Support Greasy Fork by allowing it to show you ads"
   common:
     # text to show before listing errors in a submission
     error_preamble: "There were some problems with what you posted..."
@@ -502,6 +504,8 @@ en:
     expander_show_more: "Show more"
     # text for a button that contracts a block of text
     expander_show_less: "Show less"
+    # note denoting what are ads
+    advertisement_note: Advertisement
   activerecord:
     attributes:
       user:
@@ -513,6 +517,8 @@ en:
         locale: "Preferred locale"
         # user field: setting to send e-mails when discussions or comments are posted to a user's scripts. options are under users.author_email_notification_type
         author_email_notification_type_id: "Script discussion notifications"
+        # user field: show ads
+        show_ads: "Show ads"
       script:
         # name of the script
         name: "Name"

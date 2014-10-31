@@ -52,6 +52,11 @@
 		<i><%=t('users.author_email_notification_type.note')%></i>
 	</div>
 
+	<div>
+		<%= f.label :show_ads %><br>
+		<%= f.check_box(:show_ads)%><label for="user_show_ads"><%=t('users.show_ads_description')%></label>
+	</div>
+
   <div><%= f.submit t('.update', :default => "Update") %></div>
 <% end %>
 

@@ -18,6 +18,7 @@ protected
 		devise_parameter_sanitizer.for(:account_update) << :profile_markup
 		devise_parameter_sanitizer.for(:account_update) << :locale_id
 		devise_parameter_sanitizer.for(:account_update) << :author_email_notification_type_id
+		devise_parameter_sanitizer.for(:account_update) << :show_ads
 	end
 
 	def authorize_by_script_id
@@ -237,6 +238,15 @@ protected
 		per_page = 50
 		per_page = [params[:per_page].to_i, 200].min if !params[:per_page].nil? and params[:per_page].to_i > 0
 		return per_page
+	end
+
+	before_filter :choose_ad_method
+	def choose_ad_method
+		@ad_method = params[:ad]
+		return if !@ad_method.nil?
+		return if !current_user.nil? && !current_user.show_ads
+		return if controller_name != 'styles' and action_name != 'show'
+		@ad_method = ['xo', 'pw', 'vr'].sample
 	end
 
 	# Determines a locale to use based on user preference and Accept_Language header.
