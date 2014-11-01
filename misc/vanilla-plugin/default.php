@@ -257,11 +257,4 @@ class GreasyForkPlugin extends Gdn_Plugin {
 		$Sender->AddAsset('Content', $FilterLinks, 'ReviewFilter');
 	}
 
-	public function Gdn_Form_BeforeBodyBox_Handler($Sender) {
-		$FormatRadioList = $Sender->RadioList('Format', array('Html' => 'HTML', 'Markdown' => 'Markdown'), array('Default' => $Sender->GetValue('Format', C('Garden.InputFormatter'))));
-		// Add our radio field and get rid of the hidden input field.
-		// This may break after 2.1. https://github.com/vanilla/vanilla/pull/2089
-		$Sender->EventArguments['BodyBox'] = $FormatRadioList.preg_replace("/<input type=\"hidden\" id=\"Form_Format\".*>/", "", $Sender->EventArguments['BodyBox']);
-	}
-
 }
