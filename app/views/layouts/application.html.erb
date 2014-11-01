@@ -92,9 +92,9 @@
 				<li class="scripts-index-link"><%=link_to(t('.script_list'), scripts_path)%></li>
 				<% # user signed in to main site, but not to forum?
 				if user_signed_in? and cookies[:Vanilla].nil? %>
-					<li class="forum-link"><%=link_to(t('.forum'), '/forum/entry/jsconnect?client_id=1462516369')%></li>
+					<li class="forum-link"><%=link_to(t('.forum'), "#{forum_path}entry/jsconnect?client_id=1462516369")%></li>
 				<% else %>
-					<li class="forum-link"><%=link_to(t('.forum'), '/forum/')%></li>
+					<li class="forum-link"><%=link_to(t('.forum'), forum_path)%></li>
 				<% end %>
 				<li class="help-link"><%=link_to_unless_current(t('.help'), help_path)%></li>
 				<li class="nav-search">

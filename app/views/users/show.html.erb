@@ -45,7 +45,7 @@ if same_user %>
 		dosr = @user.discussions_on_scripts_written %>
 		<section id="user-discussions-on-scripts-written">
 			<header>
-				<h3><%=t('users.discussions_on_scripts')%> <a href="/forum/discussions/feed.rss?script_author=<%=@user.id%>"><img src="<%=asset_path('feed-icon-14x14.png')%>" alt="<%=t('users.discussions_on_scripts_feed_alt')%>" rel="nofollow"></a></h3>
+				<h3><%=t('users.discussions_on_scripts')%> <a href="<%=forum_path%>discussions/feed.rss?script_author=<%=@user.id%>"><img src="<%=asset_path('feed-icon-14x14.png')%>" alt="<%=t('users.discussions_on_scripts_feed_alt')%>" rel="nofollow"></a></h3>
 			</header>
 			<% if dosr.empty? %>
 				<p><%=t('users.discussions_on_scripts_none')%></p>
@@ -57,7 +57,7 @@ if same_user %>
 						</li>
 					<% end 
 					if dosr.length > 10 %>
-						<li class="more-discussions"><a href="/forum/?script_author=<%=@user.id%>" rel="nofollow"><%=t('users.discussions_on_scripts_more')%></a></li>
+						<li class="more-discussions"><a href="<%=forum_path%>?script_author=<%=@user.id%>" rel="nofollow"><%=t('users.discussions_on_scripts_more')%></a></li>
 					<% end %>
 				</ul>
 			<% end %>

@@ -20,7 +20,7 @@ class ForumDiscussion < ActiveRecord::Base
 	end
 
 	def url
-		"/forum/discussion/#{self.DiscussionID}/x"
+		"#{ApplicationController.helpers.forum_path}discussion/#{self.DiscussionID}/x"
 	end
 
 	def original_poster
