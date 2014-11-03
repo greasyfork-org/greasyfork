@@ -32,10 +32,6 @@ class GreasyForkPlugin extends Gdn_Plugin {
 		$Sender->AddCssFile($this->GetResource('global.css', FALSE, FALSE));
 		$Sender->AddCssFile('https://fonts.googleapis.com/css?family=Open+Sans');
 		$Sender->AddJsFile($this->GetResource('global.js', FALSE, FALSE));
-		if ($Sender->Menu) {
-			$Sender->Menu->AddLink('Greasy Fork', T('Greasy Fork'), 'https://greasyfork.org/', FALSE, array('class' => 'HomeLink'));
-			# added to config: $Configuration['Garden']['Menu']['Sort'] = ['Greasy Fork', 'Dashboard', 'Discussions'];
-		}
 	}
 
 	# Going to render our own category selector
@@ -252,7 +248,7 @@ class GreasyForkPlugin extends Gdn_Plugin {
 		}
 		$FilterOn = $this->shouldFilterReviews();
 		$Url = 'profile/setreviewfilter/'.($FilterOn ? 'false' : 'true').'/'.Gdn::Session()->TransientKey();
-		$Link = Wrap(Anchor(($FilterOn ? 'Show script reviews' : 'Hide script reviews'), $Url), 'span', array('class' => 'ReviewFilterOption'));
+		$Link = Wrap(Anchor(($FilterOn ? 'Show script discussions' : 'Hide script discussions'), $Url), 'span', array('class' => 'ReviewFilterOption'));
 		$FilterLinks = Wrap($Link, 'div', array('class' => 'ReviewFilterOptions'));
 		$Sender->AddAsset('Content', $FilterLinks, 'ReviewFilter');
 	}

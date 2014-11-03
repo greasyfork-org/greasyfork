@@ -3,107 +3,17 @@
 	float: left;
 	margin-right: 5px;
 }
-/* Form rating options */
-label[for*="Rating"] {
-	display: block !important;
-}
-/* Breadcrumbs are dumb when you have a sidebar */
-.Breadcrumbs {
-	display: none;
-}
-/* Align to top with Breadcrumbs gone */
-.MeBox {
-	margin-top: 0;
-}
-/* Options (gear) always visible */
-.Item .OptionsTitle {
-   visibility: visible;
-}
-
-/* General theming */
-body, .SiteTitle {
-	font-family: "Open Sans", sans-serif;
-	letter-spacing: -0.01em;
-}
-/* https://bugzilla.mozilla.org/show_bug.cgi?id=1005669 */
-pre {
-	letter-spacing: normal;
-}
-body:not(.Settings) #Head {
-	background-color: #670000;
-	padding-top: 0 !important;
-}
-body:not(.Settings) #Head  * {
-	vertical-align: middle;
-}
-body:not(.Settings) a:not(.Button) {
-	color: #670000;
-}
-body:not(.Settings) .SiteMenu, .SiteSearch {
-	display: block;
-	margin-left: 96px;
-	margin-top: -20px;
-}
-body:not(.Settings) .SiteTitle {
-	display: block;
-	font-size: 72px;
-	margin: 0;
-	margin-top: 0px;
-	letter-spacing: -2px;
-	text-decoration: none;
-	line-height: 1.1em;
-}
-body:not(.Settings) #Head .SiteMenu a {
-	font-weight: normal;
-}
-body:not(.Settings) #Head .SiteTitle, #Head .SiteTitle a {
-	font-weight: 700;
-}
-body.Settings #Head img {
-	display: none;
-}
-body .Pager {
-	font-weight: normal;
-}
-body .Pager .Highlight {
-	font-weight: bold;
-}
-
-.ReviewFilterOptions {
-	text-align: right;
-}
-
-/* Tables in posts */
-.Message table {
-   border-collapse: separate;
-   border-spacing: 4px;
-   margin: 1em -4px; /* -4px neutralizes the border-spacing on the outer borders */;
-}
-.Message th, .Message td {
-   padding: 2px 1em;
-}
-.Message th {
-   background-color: rgba(103,0,0,0.2);
-   font-weight: bold;
-   font-size: 105%;
-   padding-top: 0.5em;
-   padding-bottom: 0.5em;
-}
-.Message th:nth-child(odd) {
-   background-color: rgba(103,0,0,0.15);
-}
-.Message tr:nth-child(even) td {
-   background-color: rgba(0,0,0,0.05);
-}
-.Message tr:nth-child(even) td:nth-child(even) {
-   background-color: rgba(50,0,0,0.08);
-}
-.Message tr:nth-child(odd) td:nth-child(even) {
-   background-color: rgba(255,0,0,0.03);
-}
-
 /* Override mobile theme */
 .rating-image {
 	height: 16px !important;
 	width: 16px !important;
+}
+
+/* Form rating options */
+label[for*="Rating"] {
+	display: block !important;
+}
+
+.ReviewFilterOptions {
+	text-align: right;
 }

@@ -13,9 +13,11 @@
  */
 
 body {
+	margin: 0;
+}
+body, select, input {
 	font-family: "Open Sans", sans-serif;
 	letter-spacing: -0.01em;
-	margin-right: 0;
 }
 /* https://bugzilla.mozilla.org/show_bug.cgi?id=1005669 */
 pre {
@@ -43,14 +45,19 @@ a:visited {
 
 #main-header {
 	background-color: #670000;
-	padding: 1em 0.5em 0.5em 1em;
-	margin-left: -1em;
-	margin-top: -1em;
+	padding: 0.25em 0;
+}
+.width-constraint {
+	margin: auto;
+	max-width: 960px;
+}
+#main-header .width-constraint {
+	padding: 0 0 0.25em 0;
+	/* enable absolute positioning for children */
 	position: relative;
 }
 #site-name img {
 	vertical-align: bottom;
-	
 }
 #site-name-text {
 	display: inline-block;
@@ -83,7 +90,6 @@ a:visited {
 	text-align: right;
 	position: absolute;
 	right: 0;
-	margin: 1em 0.5em 0.5em 0;
 }
 #site-nav nav {
 	bottom: 0;
