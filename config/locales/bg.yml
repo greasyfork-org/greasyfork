@@ -110,6 +110,8 @@ bg:
     support_email: "Изпратете e-mail на автора за поддръжка."
     contribution_no_amount: "Благодарете на %{author}, като направите дарение."
     contribution_with_amount: "Благодарете на %{author}, като направите дарение. Препоръчваната сума е %{amount}."
+    contribution_bitcoin_no_amount_html: "Благодарим на %{author} за направеното Bitcoin дарение на %{address}."
+    contribution_bitcoin_with_amount_html: "Благодарим на %{author} за направеното Bitcoin дарение на %{address}. Препоръчваната сума е %{amount}."
     locale_explanation_html: "Трябва да съвпадат езиците на <code>@name</code>, <code>@description</code>, и първата допълнителна информация."
     locale_auto_select: "(Автоматично открито)"
     sets_label: "В групи:"
@@ -246,6 +248,7 @@ bg:
     listing_updated_scripts: "Обновени скриптове"
     listing_registration_date: "Дата на регистрация"
     locale_prompt: "(Изберете локализация)"
+    show_ads_description: "Подкрепете Greasy Fork, като разрешите да се появяват рекламите."
   common:
     error_preamble: "Има някои проблеми с това, което публикувате..."
     allowed_elements_link: "(Вижте разрешения код.)"
@@ -259,6 +262,7 @@ bg:
     incomplete_locale: "Преводът на Greasy Fork на %{locale_name} е завършен само %{percent}. Ти можеш да промениш това."
     expander_show_more: "Покажи повече"
     expander_show_less: "Покажи по-малко"
+    advertisement_note: Реклама
   activerecord:
     attributes:
       user:
@@ -266,6 +270,7 @@ bg:
         profile: "Профил"
         locale: "Предпочитана локализация"
         author_email_notification_type_id: "Известия при обсъждане на скриптовете"
+        show_ads: "Покажи рекламите"
       script:
         name: "Име"
         description: "Описание"

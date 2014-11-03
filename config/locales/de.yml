@@ -110,6 +110,8 @@ de:
     support_email: "Dem Autor eine E-Mail schreiben, um Unterstützung zu erhalten."
     contribution_no_amount: "Bedanken Sie sich mit einer Spende bei %{author}."
     contribution_with_amount: "Bedanken Sie sich mit einer Spende bei %{author}. Die vorgeschlagene Spendensumme beträgt %{amount}."
+    contribution_bitcoin_no_amount_html: "Bedanken Sie sich bei %{author} mit einer Bitcoin Spende an %{address}."
+    contribution_bitcoin_with_amount_html: "Bedanken Sie sich bei %{author} mit einer Bitcoin Spende an %{address}. Die vorgeschlagene Spendensumme beträgt %{amount}."
     locale_explanation_html: "Sollte der Sprache von <code>@name</code>, <code>@description</code> und der ersten zusätzlichen Informationen entsprechen."
     locale_auto_select: "(Automatisch bestimmen)"
     sets_label: "In Skriptlisten:"
@@ -246,6 +248,7 @@ de:
     listing_updated_scripts: "Aktualisierte Skripte"
     listing_registration_date: "Datum der Registrierung"
     locale_prompt: "(Sprache wählen)"
+    show_ads_description: "Unterstützen Sie Greasy Fork, indem sie die Anzeige von Werbung erlauben"
   common:
     error_preamble: "Es gab einige Probleme mit dem was Sie eingegeben haben …"
     allowed_elements_link: "(Erlaubte Elemente anzeigen.)"
@@ -259,6 +262,7 @@ de:
     incomplete_locale: "Die Übersetzung von Greasy Fork auf %{locale_name} ist nur zu %{percent} vollständig. Sie können das ändern."
     expander_show_more: "Mehr anzeigen"
     expander_show_less: "Weniger anzeigen"
+    advertisement_note: Werbung
   activerecord:
     attributes:
       user:
@@ -266,6 +270,7 @@ de:
         profile: "Profil"
         locale: "Bevorzugte Sprache"
         author_email_notification_type_id: "Benachrichtigungen über Skriptdiskussionen"
+        show_ads: "Werbung anzeigen"
       script:
         name: "Name"
         description: "Beschreibung"
