@@ -16,7 +16,11 @@ project_slug = 'greasy-fork'
 transifex = Transifex::Client.new
 project = transifex.project(project_slug)
 rails_resource = project.resource('enyml-19')
+
 vanilla_resource = project.resource('defaultphp')
+vanilla_locale_maps = {
+  'zh_CN' => 'zh',
+}
 
 LocaleContributor.delete_all
 
@@ -36,6 +40,9 @@ project.languages.each do |language|
 		c.sub!(code, code_with_hyphens) if code != code_with_hyphens
 		File.open("config/locales/#{code_with_hyphens}.yml", 'w') { |file| file.write(c) }
 
-		File.open("misc/vanilla-plugin/locale/#{code}.php", 'w') { |file| file.write(vanilla_resource.translation(code).content) }
+		vanilla_filename = vanilla_locale_maps[code]
+		vanilla_filename = code if vanilla_filename.nil?
+
+		File.open("misc/vanilla-plugin/locale/#{vanilla_filename}.php", 'w') { |file| file.write(vanilla_resource.translation(code).content) }
 	end
 end
