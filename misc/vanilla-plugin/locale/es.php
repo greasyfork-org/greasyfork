@@ -17,4 +17,19 @@ $Definition['RatingBad'] = 'Malo - el script no funciona';
 $Definition['RatingOK'] = 'OK - el script funciona, pero tiene problemas significativos';
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'Bien - el script funciona bien';
-
+// Category name
+$Definition['Site Feedback'] = 'Site Feedback';
+// Category description for Site Feedback
+$Definition['Bug reports, feature requests, and other stuff about Greasy Fork itself.'] = 'Bug reports, feature requests, and other stuff about Greasy Fork itself.';
+// Category name
+$Definition['Development'] = 'Development';
+// Category description for Development
+$Definition['Technical talk about user script development.'] = 'Technical talk about user script development.';
+// Category name
+$Definition['Script Creation Requests'] = 'Script Creation Requests';
+// Category description for Script Creation Requests
+$Definition['Request someone write a script for you.'] = 'Request someone write a script for you.';
+// Category name
+$Definition['Script Discussions'] = 'Script Discussions';
+// Category description for Script Discussions
+$Definition['Discussion on scripts posted to Greasy Fork.'] = 'Discussion on scripts posted to Greasy Fork.';

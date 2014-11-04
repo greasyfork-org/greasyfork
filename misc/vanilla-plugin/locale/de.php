@@ -8,7 +8,7 @@ $Definition['on scripts by %s'] = 'über Skripte von %s';
  **/
 $Definition['RatingLabel'] = 'Wie würden Sie dieses Skript bewerten?';
 # Label for the radio button for not rating a script
-$Definition['RatingNone'] = 'Keine Bewertung - nur eine Frage, Kommentar, Funktionsanfrage oder Fehlerbericht';
+$Definition['RatingNone'] = 'Keine Bewertung - nur eine Frage, Kommentar, Funktionsanfrage oder Fehlermeldung';
 ## Label for the radio button for reporting a script
 $Definition['RatingReport'] = 'Skript an Moderatoren melden - Schadprogramm, Malware, gestohlener Code oder andere schlechte Dinge, die eine Überprüfung benötigen';
 /** Label for the radio button for rating a script "Bad" */
@@ -17,4 +17,19 @@ $Definition['RatingBad'] = 'Schlecht - Skript funktioniert nicht';
 $Definition['RatingOK'] = 'OK - Skript funktioniert, hat aber bedeutende Probleme';
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'Gut - Skript funktioniert gut';
-
+// Category name
+$Definition['Site Feedback'] = 'Rückmeldungen zur Seite';
+// Category description for Site Feedback
+$Definition['Bug reports, feature requests, and other stuff about Greasy Fork itself.'] = 'Fehlermeldungen, Funktionsanfragen und andere Dinge über Greasy Fork selbst.';
+// Category name
+$Definition['Development'] = 'Entwicklung';
+// Category description for Development
+$Definition['Technical talk about user script development.'] = 'Technische Unterhaltungen über die Benutzerskript Entwicklung.';
+// Category name
+$Definition['Script Creation Requests'] = 'Skript Anfragen';
+// Category description for Script Creation Requests
+$Definition['Request someone write a script for you.'] = 'Frage jemanden, ein Skript für dich zu schreiben.';
+// Category name
+$Definition['Script Discussions'] = 'Skript Diskussionen';
+// Category description for Script Discussions
+$Definition['Discussion on scripts posted to Greasy Fork.'] = 'Diskussionen über Skripte, welche auf Greasy Fork hochgeladen wurden.';

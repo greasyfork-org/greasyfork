@@ -17,4 +17,19 @@ $Definition['RatingBad'] = 'Лош - скриптът не работи.';
 $Definition['RatingOK'] = 'ОК - скриптът работи, но има значителни проблеми';
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'Добър - скриптът работи добре';
-
+// Category name
+$Definition['Site Feedback'] = 'Отзиви за сайта.';
+// Category description for Site Feedback
+$Definition['Bug reports, feature requests, and other stuff about Greasy Fork itself.'] = 'Доклади за бъгове, заявки и други неща за самия сайт на Greasy Fork. ';
+// Category name
+$Definition['Development'] = 'Разработка';
+// Category description for Development
+$Definition['Technical talk about user script development.'] = 'Технически дискусии относно разработката на скриптове.';
+// Category name
+$Definition['Script Creation Requests'] = 'Заявки за създаване на скриптове';
+// Category description for Script Creation Requests
+$Definition['Request someone write a script for you.'] = 'Поискайте някой да напише скрипт за вас.';
+// Category name
+$Definition['Script Discussions'] = 'Обсъждане на скриптове';
+// Category description for Script Discussions
+$Definition['Discussion on scripts posted to Greasy Fork.'] = 'Обсъждане на публикуваните на Greasy Fork скриптове.';
