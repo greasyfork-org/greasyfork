@@ -51,7 +51,7 @@ CREATE TABLE `GDN_Activity` (
   KEY `IX_Activity_Recent` (`NotifyUserID`,`DateUpdated`),
   KEY `IX_Activity_Feed` (`NotifyUserID`,`ActivityUserID`,`DateUpdated`),
   KEY `IX_Activity_DateUpdated` (`DateUpdated`)
-) ENGINE=InnoDB AUTO_INCREMENT=7750 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7752 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -199,7 +199,7 @@ CREATE TABLE `GDN_Comment` (
   KEY `IX_Comment_1` (`DiscussionID`,`DateInserted`),
   KEY `IX_Comment_DateInserted` (`DateInserted`),
   FULLTEXT KEY `TX_Comment` (`Body`)
-) ENGINE=MyISAM AUTO_INCREMENT=6561 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6563 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -405,7 +405,7 @@ CREATE TABLE `GDN_Log` (
   KEY `IX_Log_RecordIPAddress` (`RecordIPAddress`),
   KEY `IX_Log_ParentRecordID` (`ParentRecordID`),
   KEY `FK_Log_CategoryID` (`CategoryID`)
-) ENGINE=InnoDB AUTO_INCREMENT=1498 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1509 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -506,6 +506,7 @@ CREATE TABLE `GDN_Permission` (
   `Vanilla.Approval.Require` tinyint(4) NOT NULL DEFAULT '0',
   `Vanilla.Comments.Me` tinyint(4) NOT NULL DEFAULT '0',
   `Plugins.Flagging.Notify` tinyint(4) NOT NULL DEFAULT '0',
+  `Plugins.Pockets.Manage` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`PermissionID`),
   KEY `FK_Permission_RoleID` (`RoleID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -526,6 +527,33 @@ CREATE TABLE `GDN_Photo` (
   PRIMARY KEY (`PhotoID`),
   KEY `FK_Photo_InsertUserID` (`InsertUserID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `GDN_Pocket`
+--
+
+DROP TABLE IF EXISTS `GDN_Pocket`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `GDN_Pocket` (
+  `PocketID` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Page` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Location` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `Sort` smallint(6) NOT NULL,
+  `Repeat` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  `Body` text COLLATE utf8_unicode_ci NOT NULL,
+  `Format` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `Condition` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Disabled` smallint(6) NOT NULL DEFAULT '0',
+  `Attributes` text COLLATE utf8_unicode_ci,
+  `MobileOnly` tinyint(4) NOT NULL DEFAULT '0',
+  `MobileNever` tinyint(4) NOT NULL DEFAULT '0',
+  `EmbeddedNever` tinyint(4) NOT NULL DEFAULT '0',
+  `ShowInDashboard` tinyint(4) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`PocketID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1073,7 +1101,7 @@ CREATE TABLE `daily_update_check_counts` (
   `update_check_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_daily_update_check_counts_on_script_id_and_ip` (`script_id`,`ip`)
-) ENGINE=InnoDB AUTO_INCREMENT=2217811 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2217818 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1184,7 +1212,7 @@ CREATE TABLE `locale_contributors` (
   `transifex_user_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `index_locale_contributors_on_locale_id` (`locale_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=213 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=413 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1639,7 +1667,7 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-10-29 18:09:48
+-- Dump completed on 2014-11-03 21:51:32
 INSERT INTO schema_migrations (version) VALUES ('20140210194333');
 
 INSERT INTO schema_migrations (version) VALUES ('20140210201355');
@@ -1771,4 +1799,6 @@ INSERT INTO schema_migrations (version) VALUES ('20141027032358');
 INSERT INTO schema_migrations (version) VALUES ('20141028182853');
 
 INSERT INTO schema_migrations (version) VALUES ('20141029230333');
+
+INSERT INTO schema_migrations (version) VALUES ('20141104035027');
 
