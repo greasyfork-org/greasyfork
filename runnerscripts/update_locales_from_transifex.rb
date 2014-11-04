@@ -12,11 +12,11 @@
 require 'transifex'
 
 project_slug = 'greasy-fork'
-resource_slug = 'enyml-19'
 
 transifex = Transifex::Client.new
 project = transifex.project(project_slug)
-resource = project.resource(resource_slug)
+rails_resource = project.resource('enyml-19')
+vanilla_resource = project.resource('defaultphp')
 
 LocaleContributor.delete_all
 
@@ -28,12 +28,14 @@ project.languages.each do |language|
 	(language.coordinators + language.reviewers + language.translators).each do |contributor|
 		LocaleContributor.create({:locale => locale, :transifex_user_name => contributor})
 	end
-	locale.percent_complete = resource.stats(code).completed.to_i
+	locale.percent_complete = rails_resource.stats(code).completed.to_i
 	locale.save!
 	if Greasyfork::Application.config.download_locale_files
-		c = resource.translation(code).content
+		c = rails_resource.translation(code).content
 		# transifex likes underscores in locale names, we like hyphens
 		c.sub!(code, code_with_hyphens) if code != code_with_hyphens
 		File.open("config/locales/#{code_with_hyphens}.yml", 'w') { |file| file.write(c) }
+
+		File.open("misc/vanilla-plugin/locale/#{code}.php", 'w') { |file| file.write(vanilla_resource.translation(code).content) }
 	end
 end
