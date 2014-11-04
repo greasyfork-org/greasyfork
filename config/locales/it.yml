@@ -1,29 +1,39 @@
 it:
   layouts:
     application:
-      script_list: "Scripts"
+      script_list: "Script"
       forum: "Forum"
       help: "Aiuto"
       sign_in: "Entra"
       search: "Cerca"
+  helpers:
+    application:
+      time_difference: "%{relative_time} fa"
   scripts:
     created_date: "Creato"
     updated_date: "Aggiornato"
     total_installs: "Installazioni totali"
     daily_installs: "Installazioni giornaliere"
+    fan_score: "Punteggio"
+    fan_score_explanation: "Basato su recensioni e valutazioni"
     author_name: "Autore"
     version_number: "Versione"
     license: "Lincenza"
     no_license: "N/A"
     applies_to: "Applica a"
+    applies_to_link_title:
+      one: "Vedi %{count} altro script da %{site}"
+      other: "Vedi %{count} altri script da %{site}"
     applies_to_all: "Tutti i siti"
     additional_info: "Descrizione dell'autore"
     install: "Installa questo script"
     install_help: "?"
     install_help_title: "Come installare"
+    library_instructions_html: "Questo script non dovrebbe essere installato direttamente. E' una libreria per altri script da includere con la chiave %{code}"
     deleted_notice: "Questo script è stato rimosso"
     inactive_pending_changes: "Questo script è inattivo perchè non è conforme con la politica di Greasy Fork"
     inactive_pending_changes_for_previous_version: "Questo script è inattivo perchè non è conforme con la politica di Greasy Fork"
+    version_notice_html: "Versione in data %{date}. Vedi la nuova versione %{latest_version_link}."
     version_notice_latest_version_link: "l'ultima versione"
     info_page: "Informazioni"
     code_page: "Codice"
