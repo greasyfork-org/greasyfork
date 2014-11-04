@@ -29,7 +29,9 @@
 						<option value="en" {if $locale == 'en'}selected{/if}>English (en)</option>
 						<option value="es" {if $locale == 'es'}selected{/if}>Español (es)</option>
 						<option value="fr" {if $locale == 'fr'}selected{/if}>Français (fr)</option>
+						<option value="fr-CA" {if $locale == 'fr-CA'}selected{/if}>Français canadien (fr-CA)</option>
 						<option value="id" {if $locale == 'id'}selected{/if}>Bahasa Indonesia (id)</option>
+						<option value="it" {if $locale == 'it'}selected{/if}>Italiano (it)</option>
 						<option value="ja" {if $locale == 'ja'}selected{/if}>日本語 (ja)</option>
 						<option value="nl" {if $locale == 'nl'}selected{/if}>Nederlands (nl)</option>
 						<option value="pl" {if $locale == 'pl'}selected{/if}>Polski (pl)</option>
