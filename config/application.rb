@@ -25,7 +25,7 @@ module Greasyfork
     I18n.config.enforce_available_locales = true
     # locales good enough to link to
     # names from https://api.drupal.org/api/drupal/includes!iso.inc/function/_locale_get_predefined_list/7
-    config.available_locales = {'bg' => 'Български', 'de' => 'Deutsch', 'en' => 'English', 'es' => 'Español', 'fr' => 'Français', 'fr-CA' => 'Français canadien', 'id' => 'Bahasa Indonesia', 'it' => 'Italiano', 'ja' => '日本語', 'nl' => 'Nederlands', 'pl' => 'Polski', 'pt-BR' => 'Português do Brasil', 'ru' => 'Русский', 'zh-CN' => '简体中文', 'zh-TW' => '繁體中文'}
+    config.available_locales = {'bg' => 'Български', 'de' => 'Deutsch', 'en' => 'English', 'es' => 'Español', 'fr' => 'Français', 'fr-CA' => 'Français canadien', 'id' => 'Bahasa Indonesia', 'it' => 'Italiano', 'ja' => '日本語', 'nl' => 'Nederlands', 'pl' => 'Polski', 'pt-BR' => 'Português do Brasil', 'ru' => 'Русский', 'vi' => 'Tiếng Việt', 'zh-CN' => '简体中文', 'zh-TW' => '繁體中文'}
     config.help_translate_url = 'https://github.com/JasonBarnabe/greasyfork/wiki/Translating-Greasy-Fork'
 
     config.cpd_size_limit = 40.kilobytes

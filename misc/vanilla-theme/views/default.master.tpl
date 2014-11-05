@@ -37,6 +37,7 @@
 						<option value="pl" {if $locale == 'pl'}selected{/if}>Polski (pl)</option>
 						<option value="pt-BR" {if $locale == 'pt-BR'}selected{/if}>Português do Brasil (pt-BR)</option>
 						<option value="ru" {if $locale == 'ru'}selected{/if}>Русский (ru)</option>
+						<option value="vi" {if $locale == 'vi'}selected{/if}>Tiếng Việt (vi)</option>
 						<option value="zh-CN" {if $locale == 'zh-CN'}selected{/if}>简体中文 (zh-CN)</option>
 						<option value="zh-TW" {if $locale == 'zh-TW'}selected{/if}>繁體中文 (zh-TW)</option>
 						<option value="help">Help us translate!</option>
