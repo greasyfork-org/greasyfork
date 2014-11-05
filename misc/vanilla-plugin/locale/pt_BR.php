@@ -30,6 +30,10 @@ $Definition['Script Creation Requests'] = 'Pedidos de Criação de Script';
 // Category description for Script Creation Requests
 $Definition['Request someone write a script for you.'] = 'Peça a alguém para escrever um script para você.';
 // Category name
-$Definition['Script Discussions'] = 'Script Discussions';
+$Definition['Script Discussions'] = 'Discussões sobre scripts';
 // Category description for Script Discussions
-$Definition['Discussion on scripts posted to Greasy Fork.'] = 'Discussion on scripts posted to Greasy Fork.';
+$Definition['Discussion on scripts posted to Greasy Fork.'] = 'Discussões sobre scripts postados no Greasy Fork.';
+// Link on Recent Discussions to hide script discussions
+$Definition['Turn on filter'] = 'Hide script discussions';
+// Link on Recent Discussions to show script discussions
+$Definition['Turn off filter'] = 'Show script discussions';

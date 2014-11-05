@@ -33,3 +33,7 @@ $Definition['Request someone write a script for you.'] = 'Поискайте н�
 $Definition['Script Discussions'] = 'Обсъждане на скриптове';
 // Category description for Script Discussions
 $Definition['Discussion on scripts posted to Greasy Fork.'] = 'Обсъждане на публикуваните на Greasy Fork скриптове.';
+// Link on Recent Discussions to hide script discussions
+$Definition['Turn on filter'] = 'Hide script discussions';
+// Link on Recent Discussions to show script discussions
+$Definition['Turn off filter'] = 'Show script discussions';

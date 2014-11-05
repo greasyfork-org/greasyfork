@@ -24,12 +24,16 @@ $Definition['Bug reports, feature requests, and other stuff about Greasy Fork it
 // Category name
 $Definition['Development'] = 'Entwicklung';
 // Category description for Development
-$Definition['Technical talk about user script development.'] = 'Technische Unterhaltungen über die Benutzerskript Entwicklung.';
+$Definition['Technical talk about user script development.'] = 'Technische Unterhaltungen über die Benutzerskriptentwicklung.';
 // Category name
-$Definition['Script Creation Requests'] = 'Skript Anfragen';
+$Definition['Script Creation Requests'] = 'Skriptanfragen';
 // Category description for Script Creation Requests
 $Definition['Request someone write a script for you.'] = 'Frage jemanden, ein Skript für dich zu schreiben.';
 // Category name
-$Definition['Script Discussions'] = 'Skript Diskussionen';
+$Definition['Script Discussions'] = 'Skriptdiskussionen';
 // Category description for Script Discussions
 $Definition['Discussion on scripts posted to Greasy Fork.'] = 'Diskussionen über Skripte, welche auf Greasy Fork hochgeladen wurden.';
+// Link on Recent Discussions to hide script discussions
+$Definition['Turn on filter'] = 'Hide script discussions';
+// Link on Recent Discussions to show script discussions
+$Definition['Turn off filter'] = 'Show script discussions';

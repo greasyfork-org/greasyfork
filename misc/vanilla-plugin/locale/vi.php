@@ -1,12 +1,12 @@
 <?php
 /* Label for inputting a script ID when creating/editing a discussion */
-$Definition['Item ID:'] = 'Script ID:';
+$Definition['Item ID:'] = 'ID Script:';
 // Appended to "Discussions" when viewing a list of discussions on scripts by a user. %s is the user name.
 $Definition['on scripts by %s'] = 'on scripts by %s';
 /*
  *  Label for the radio buttons for rating a script
  **/
-$Definition['RatingLabel'] = 'How would you rate this script?';
+$Definition['RatingLabel'] = 'Đánh giá của bạn về script này?';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = 'No rating - just a question, comment, feature request, or bug report';
 ## Label for the radio button for reporting a script
@@ -33,3 +33,7 @@ $Definition['Request someone write a script for you.'] = 'Request someone write 
 $Definition['Script Discussions'] = 'Script Discussions';
 // Category description for Script Discussions
 $Definition['Discussion on scripts posted to Greasy Fork.'] = 'Discussion on scripts posted to Greasy Fork.';
+// Link on Recent Discussions to hide script discussions
+$Definition['Turn on filter'] = 'Hide script discussions';
+// Link on Recent Discussions to show script discussions
+$Definition['Turn off filter'] = 'Show script discussions';

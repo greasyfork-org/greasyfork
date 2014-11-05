@@ -18,18 +18,22 @@ $Definition['RatingOK'] = '还好 - 脚本起作用，但有显著的问题';
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = '不错 - 脚本运行良好';
 // Category name
-$Definition['Site Feedback'] = 'Site Feedback';
+$Definition['Site Feedback'] = '网站反馈';
 // Category description for Site Feedback
-$Definition['Bug reports, feature requests, and other stuff about Greasy Fork itself.'] = 'Bug reports, feature requests, and other stuff about Greasy Fork itself.';
+$Definition['Bug reports, feature requests, and other stuff about Greasy Fork itself.'] = '有关 Greasy Fork 本身的故障报告、功能需求等事务。';
 // Category name
-$Definition['Development'] = 'Development';
+$Definition['Development'] = '开发';
 // Category description for Development
-$Definition['Technical talk about user script development.'] = 'Technical talk about user script development.';
+$Definition['Technical talk about user script development.'] = '有关用户脚本开发的技术讨论。';
 // Category name
-$Definition['Script Creation Requests'] = 'Script Creation Requests';
+$Definition['Script Creation Requests'] = '脚本创建请求';
 // Category description for Script Creation Requests
-$Definition['Request someone write a script for you.'] = 'Request someone write a script for you.';
+$Definition['Request someone write a script for you.'] = '请求别人为您写一个脚本。';
 // Category name
-$Definition['Script Discussions'] = 'Script Discussions';
+$Definition['Script Discussions'] = '脚本讨论';
 // Category description for Script Discussions
-$Definition['Discussion on scripts posted to Greasy Fork.'] = 'Discussion on scripts posted to Greasy Fork.';
+$Definition['Discussion on scripts posted to Greasy Fork.'] = '发布到 Greasy Fork 脚本上的讨论。';
+// Link on Recent Discussions to hide script discussions
+$Definition['Turn on filter'] = 'Hide script discussions';
+// Link on Recent Discussions to show script discussions
+$Definition['Turn off filter'] = 'Show script discussions';
