@@ -24,7 +24,7 @@ class GreasyForkPlugin extends Gdn_Plugin {
 			->Where('u.UserID', $Sender->User->UserID);
 
 		$Row = $UserModel->SQL->Get()->FirstRow();
-		echo '<dt><a href="/users/'.$Row->MainUserID.'">Greasy Fork Profile</a></dt><dd></dd>';
+		echo '<dt><a href="/users/'.$Row->MainUserID.'">'.T('Greasy Fork Profile').'</a></dt><dd></dd>';
 	}
 
 	# Add CSS, JS, and link to main site
