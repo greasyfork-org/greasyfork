@@ -22,7 +22,7 @@ $Definition['Site Feedback'] = '网站反馈';
 // Category description for Site Feedback
 $Definition['Bug reports, feature requests, and other stuff about Greasy Fork itself.'] = '有关 Greasy Fork 本身的故障报告、功能需求等事务。';
 // Category name
-$Definition['Development'] = '开发';
+$Definition['Development'] = '脚本开发';
 // Category description for Development
 $Definition['Technical talk about user script development.'] = '有关用户脚本开发的技术讨论。';
 // Category name
@@ -34,6 +34,8 @@ $Definition['Script Discussions'] = '脚本讨论';
 // Category description for Script Discussions
 $Definition['Discussion on scripts posted to Greasy Fork.'] = '发布到 Greasy Fork 脚本上的讨论。';
 // Link on Recent Discussions to hide script discussions
-$Definition['Turn on filter'] = 'Hide script discussions';
+$Definition['Turn on filter'] = '隐藏脚本讨论';
 // Link on Recent Discussions to show script discussions
-$Definition['Turn off filter'] = 'Show script discussions';
+$Definition['Turn off filter'] = '显示脚本讨论';
+// Link on forum profile pointing to main site profile
+$Definition['Greasy Fork Profile'] = 'Greasy Fork个人资料';

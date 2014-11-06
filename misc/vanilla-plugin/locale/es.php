@@ -37,3 +37,5 @@ $Definition['Discussion on scripts posted to Greasy Fork.'] = 'Debate sobre los 
 $Definition['Turn on filter'] = 'Hide script discussions';
 // Link on Recent Discussions to show script discussions
 $Definition['Turn off filter'] = 'Show script discussions';
+// Link on forum profile pointing to main site profile
+$Definition['Greasy Fork Profile'] = 'Greasy Fork Profile';
