@@ -34,8 +34,8 @@ $Definition['Script Discussions'] = 'Skriptdiskussionen';
 // Category description for Script Discussions
 $Definition['Discussion on scripts posted to Greasy Fork.'] = 'Diskussionen über Skripte, welche auf Greasy Fork hochgeladen wurden.';
 // Link on Recent Discussions to hide script discussions
-$Definition['Turn on filter'] = 'Hide script discussions';
+$Definition['Turn on filter'] = 'Skriptdiskussionen ausblenden';
 // Link on Recent Discussions to show script discussions
-$Definition['Turn off filter'] = 'Show script discussions';
+$Definition['Turn off filter'] = 'Skriptdiskussionnen anzeigen';
 // Link on forum profile pointing to main site profile
-$Definition['Greasy Fork Profile'] = 'Greasy Fork Profile';
+$Definition['Greasy Fork Profile'] = 'Greasy Fork Profil';
