@@ -61,12 +61,12 @@
             <div class="SiteSearch">{searchbox}</div>
             -->
             <ul class="SiteMenu">
-				<li class="scripts-index-link"><a href="/{$smarty.get.locale|default:'en'}/scripts/">Scripts</a></li>
-				<li class="forum-link"><a href="/{$smarty.get.locale|default:'en'}/forum/">Forum</a></li>
-				<li class="help-link"><a href="/{$smarty.get.locale|default:'en'}/help/">Help</a></li>
+				<li class="scripts-index-link"><a href="/{$smarty.get.locale|default:'en'}/scripts/">{t c="layouts.application.script_list" d="Scripts"}</a></li>
+				<li class="forum-link"><a href="/{$smarty.get.locale|default:'en'}/forum/">{t c="layouts.application.forum" d="Forum"}</a></li>
+				<li class="help-link"><a href="/{$smarty.get.locale|default:'en'}/help/">{t c="layouts.application.help" d="Help"}</a></li>
 				<li class="nav-search">
 					<form id="script-search" action="/{$smarty.get.locale|default:'en'}/scripts/search">
-						<input type="search" name="q" placeholder="Search" size="10"><input type="submit" value="→">
+						<input type="search" name="q" placeholder="{t c="layouts.application.search" d="Search"}" size="10"><input type="submit" value="→">
 					</form>
 				</li>
             </ul>
