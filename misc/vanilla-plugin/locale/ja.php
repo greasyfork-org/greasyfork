@@ -1,41 +1,41 @@
 <?php
 /* Label for inputting a script ID when creating/editing a discussion */
-$Definition['Item ID:'] = 'Script ID:';
+$Definition['Item ID:'] = 'スクリプトID：';
 // Appended to "Discussions" when viewing a list of discussions on scripts by a user. %s is the user name.
-$Definition['on scripts by %s'] = 'on scripts by %s';
+$Definition['on scripts by %s'] = '(%s のスクリプトに関するもの)';
 /*
  *  Label for the radio buttons for rating a script
  **/
-$Definition['RatingLabel'] = 'How would you rate this script?';
+$Definition['RatingLabel'] = '評価：';
 # Label for the radio button for not rating a script
-$Definition['RatingNone'] = 'No rating - just a question, comment, feature request, or bug report';
+$Definition['RatingNone'] = '無評価 – 質問、コメント、機能の要望やバグ報告のみ';
 ## Label for the radio button for reporting a script
-$Definition['RatingReport'] = 'Report script to moderators - malware, stolen code, or other bad things requiring review';
+$Definition['RatingReport'] = 'モデレーターに報告 – マルウェア、盗作、他の報告すべき不正行為など';
 /** Label for the radio button for rating a script "Bad" */
-$Definition['RatingBad'] = 'Bad - script doesn\'t work';
+$Definition['RatingBad'] = '不可 – スクリプトが動かない';
 /** Label for the radio button for rating a script "OK" **/
-$Definition['RatingOK'] = 'OK - script works, but has significant issues';
+$Definition['RatingOK'] = '可 – スクリプトは動くが、大きな問題がある';
 // Label for the radio button for rating a script "Good"
-$Definition['RatingGood'] = 'Good - script works well';
+$Definition['RatingGood'] = '良 – スクリプトは良好に動作する';
 // Category name
-$Definition['Site Feedback'] = 'Site Feedback';
+$Definition['Site Feedback'] = 'サイトのフィードバック';
 // Category description for Site Feedback
-$Definition['Bug reports, feature requests, and other stuff about Greasy Fork itself.'] = 'Bug reports, feature requests, and other stuff about Greasy Fork itself.';
+$Definition['Bug reports, feature requests, and other stuff about Greasy Fork itself.'] = 'Greasy Fork 自体に関するバグ報告や機能の要望。';
 // Category name
-$Definition['Development'] = 'Development';
+$Definition['Development'] = 'スクリプトの開発';
 // Category description for Development
-$Definition['Technical talk about user script development.'] = 'Technical talk about user script development.';
+$Definition['Technical talk about user script development.'] = 'ユーザースクリプトの開発に関する技術的な話題。';
 // Category name
-$Definition['Script Creation Requests'] = 'Script Creation Requests';
+$Definition['Script Creation Requests'] = 'スクリプト作成のリクエスト';
 // Category description for Script Creation Requests
-$Definition['Request someone write a script for you.'] = 'Request someone write a script for you.';
+$Definition['Request someone write a script for you.'] = '新しいユーザースクリプトのリクエスト。';
 // Category name
-$Definition['Script Discussions'] = 'Script Discussions';
+$Definition['Script Discussions'] = 'スクリプトのフィードバック';
 // Category description for Script Discussions
-$Definition['Discussion on scripts posted to Greasy Fork.'] = 'Discussion on scripts posted to Greasy Fork.';
+$Definition['Discussion on scripts posted to Greasy Fork.'] = 'Greasy Fork に投稿されたスクリプトについてのスレッド。';
 // Link on Recent Discussions to hide script discussions
-$Definition['Turn on filter'] = 'Hide script discussions';
+$Definition['Turn on filter'] = 'スクリプトのフィードバックを隠す';
 // Link on Recent Discussions to show script discussions
-$Definition['Turn off filter'] = 'Show script discussions';
+$Definition['Turn off filter'] = 'スクリプトのフィードバックを表示する';
 // Link on forum profile pointing to main site profile
-$Definition['Greasy Fork Profile'] = 'Greasy Fork Profile';
+$Definition['Greasy Fork Profile'] = 'Greasy Fork のプロフィール';
