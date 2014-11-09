@@ -9,7 +9,7 @@
 	<% if defined?(@bots) %>
 		<meta name="robots" content="<%=@bots%>">
 	<% end %>
-	<link rel="canonical" href="<%=url_for(params.slice(*@canonical_params).merge({:host => 'greasyfork.org', :protocol => 'https'}))%>">
+	<link rel="canonical" href="<%=url_for(params.slice(*@canonical_params).merge({:host => 'greasyfork.org', :protocol => 'https', :locale_override => nil}))%>">
 	<link rel="icon" href="<%=asset_path 'blacklogo16.png'%>">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
@@ -73,12 +73,14 @@
 						form_action = root_path({:locale => nil, :only_path => true})
 					end %>
 					<form id="language-selector" action="<%=form_action%>">
+						<% user_with_locale = !current_user.nil? && !current_user.locale.nil?
+						locale_with_override_param = user_with_locale ? '1' : nil %>
 						<select id="language-selector-locale" name="locale">
 							<% Rails.configuration.available_locales.each do |code, name|
 								if request.get? %>
-									<option data-language-url="<%=url_for(params.except(:locale).merge({:locale => code, :only_path => true}))%>" value="<%=code%>"<%if params[:locale] == code%> selected<%end%>><%=name%> (<%=code%>)</option>
+									<option data-language-url="<%=url_for(params.except(:locale).merge({:locale => code, :only_path => true, :locale_override => locale_with_override_param}))%>" value="<%=code%>"<%if params[:locale] == code%> selected<%end%>><%=name%> (<%=code%>)</option>
 								<% else %>
-									<option data-language-url="<%=root_path({:locale => code, :only_path => true})%>" value="<%=code%>"<%if params[:locale] == code%> selected<%end%>><%=name%> (<%=code%>)</option>
+									<option data-language-url="<%=root_path({:locale => code, :only_path => true, :locale_override => locale_with_override_param})%>" value="<%=code%>"<%if params[:locale] == code%> selected<%end%>><%=name%> (<%=code%>)</option>
 								<% end
 							end %>
 							<option value="help">Help us translate!</option>
@@ -87,6 +89,9 @@
 							/* submit is handled by js if enabled */
 							document.getElementById("language-selector-submit").style.display = "none"
 						</script>
+						<% if user_with_locale %>
+							<input type="hidden" name="locale_override" value="1">
+						<% end %>
 					</form>
 				</div>
 				<nav>

@@ -167,8 +167,9 @@ protected
 	end
 
 	def default_url_options(options={})
-		# set locale on links, unless we're the default
-		{ :locale => I18n.locale }
+		h = { :locale => I18n.locale }
+		h[:locale_override] = params[:locale_override] unless params[:locale_override].nil?
+		return h
 	end
 
 	before_filter :set_locale
@@ -179,6 +180,24 @@ protected
 		# User chose "Help us translate" in the locale picker
 		if params[:locale] == 'help'
 			redirect_to Rails.configuration.help_translate_url
+			return
+		end
+
+		# Don't want to redirect on POSTs and API stuff, even if they're missing a locale
+		if !request.get? or ['omniauth_callback', 'omniauth_failure', 'sso', 'webhook', 'user_js', 'meta_js'].include?(params[:action])
+			I18n.locale = params[:locale] || :en
+			return
+		end
+
+		# Redirect a logged-in user to their preferred locale
+		if !current_user.nil? && !current_user.locale.nil? && params[:locale] != current_user.locale.code && (params[:locale_override].nil? || params[:locale].nil?)
+			redirect_to url_for(params.merge(:only_path => true, :locale => current_user.locale.code, :locale_override => nil)), :status => 302
+			return
+		end
+
+		# Redirect if locale is a request param and not part of the url
+		if !request.GET[:locale].nil?
+			redirect_to url_for(params.merge(:only_path => true)), :status => 301
 			return
 		end
 
@@ -202,18 +221,6 @@ protected
 					end
 				end
 			end
-			return
-		end
-
-		# Don't want to redirect on POSTs and API stuff, even if they're missing a locale
-		if !request.get? or ['omniauth_callback', 'omniauth_failure', 'sso', 'webhook', 'user_js', 'meta_js'].include?(params[:action])
-			I18n.locale = :en
-			return
-		end
-
-		# Redirect if locale is a request param and not part of the url
-		if !request.GET[:locale].nil?
-			redirect_to url_for(params.merge(:only_path => true)), :status => 301
 			return
 		end
 
