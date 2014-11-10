@@ -494,11 +494,27 @@ a.self-link, a.self-link:visited {
 }
 
 #script-show-info-ad {
-	width: 728px;
+	width: 732px;
+	box-sizing: border-box;
 	margin-bottom: 5px;
 }
 .ad-note {
 	font-size: x-small;
-	text-align: right;
 	line-height: 1em;
+	max-width: -webkit-max-content;
+	max-width: -moz-max-content;
+	max-width: max-content;
+	border-top: 2px solid #E7CF87;
+	border-left: 2px solid #E7CF87;
+	border-right: 2px solid #E7CF87;
+	padding: 0 0.5em;
+}
+.ad-note, .ad-content {
+	background-color: #E7CF87;
+}
+.ad-content {
+	border: 2px solid #E7CF87;
+}
+.ad-content > * {
+	vertical-align: bottom;
 }

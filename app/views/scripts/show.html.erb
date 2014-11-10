@@ -84,31 +84,31 @@
 
 <% if !@ad_method.nil? %>
 	<div class="ad" id="script-show-info-ad">
-		<% case @ad_method
-			when 'xo' %>
-				<script type="text/javascript">
-				ad_idzone = "1168022";
-				ad_width = "728";
-				ad_height = "90";
-				</script>
-				<script type="text/javascript" src="https://ads.exoclick.com/ads.js"></script>
-				<noscript><a href="http://main.exoclick.com/img-click.php?idzone=1168022" target="_blank"><img src="https://syndication.exoclick.com/ads-iframe-display.php?idzone=1168022&output=img&type=728x90" width="728" height="90"></a></noscript>
-				<div class="ad-note"><%=t('common.advertisement_note')%> (XO)</div>
-			<% when 'pw' %>
-				<!-- Project Wonderful Ad Box Code -->
-				<div id="pw_adbox_74788_5_0"></div>
-				<script type="text/javascript"></script>
-				<noscript><map name="admap74788" id="admap74788"><area href="http://www.projectwonderful.com/out_nojs.php?r=0&c=0&id=74788&type=5" shape="rect" coords="0,0,728,90" title="" alt="" target="_blank" /></map>
-				<table cellpadding="0" cellspacing="0" style="width:728px;border-style:none;background-color:#ffffff;"><tr><td><img src="http://www.projectwonderful.com/nojs.php?id=74788&type=5" style="width:728px;height:90px;border-style:none;" usemap="#admap74788" alt="" /></td></tr><tr><td style="background-color:#ffffff;" colspan="1"><center><a style="font-size:10px;color:#0000ff;text-decoration:none;line-height:1.2;font-weight:bold;font-family:Tahoma, verdana,arial,helvetica,sans-serif;text-transform: none;letter-spacing:normal;text-shadow:none;white-space:normal;word-spacing:normal;" href="http://www.projectwonderful.com/advertisehere.php?id=74788&type=5" target="_blank">Ads by Project Wonderful!  Your ad here, right now: $0</a></center></td></tr></table>
-				</noscript>
-				<!-- End Project Wonderful Ad Box Code -->
-				<div class="ad-note"><%=t('common.advertisement_note')%> (PW)</div>
-			<% when 'vr' %>
-				<!-- Begin Adversal 728x90 - greasyfork.org Code -->
-				<SCRIPT SRC="https://ib.adnxs.com/ttj?id=3815628&size=728x90&promo_sizes=468x60,320x50,300x50,216x36" TYPE="text/javascript"></SCRIPT>
-				<!-- End Adversal 728x90 - greasyfork.org Code -->
-				<div class="ad-note"><%=t('common.advertisement_note')%> (VR)</div>
-		<% end  %>
+		<div class="ad-note"><%=t('common.advertisement_note')%> (<%=@ad_method.upcase%>)</div>
+		<div class="ad-content">
+			<% case @ad_method
+				when 'xo' %>
+					<script type="text/javascript">
+					ad_idzone = "1168022";
+					ad_width = "728";
+					ad_height = "90";
+					</script>
+					<script type="text/javascript" src="https://ads.exoclick.com/ads.js"></script>
+					<noscript><a href="http://main.exoclick.com/img-click.php?idzone=1168022" target="_blank"><img src="https://syndication.exoclick.com/ads-iframe-display.php?idzone=1168022&output=img&type=728x90" width="728" height="90"></a></noscript>
+				<% when 'pw' %>
+					<!-- Project Wonderful Ad Box Code -->
+					<div id="pw_adbox_74788_5_0"></div>
+					<script type="text/javascript"></script>
+					<noscript><map name="admap74788" id="admap74788"><area href="http://www.projectwonderful.com/out_nojs.php?r=0&c=0&id=74788&type=5" shape="rect" coords="0,0,728,90" title="" alt="" target="_blank" /></map>
+					<table cellpadding="0" cellspacing="0" style="width:728px;border-style:none;background-color:#ffffff;"><tr><td><img src="http://www.projectwonderful.com/nojs.php?id=74788&type=5" style="width:728px;height:90px;border-style:none;" usemap="#admap74788" alt="" /></td></tr><tr><td style="background-color:#ffffff;" colspan="1"><center><a style="font-size:10px;color:#0000ff;text-decoration:none;line-height:1.2;font-weight:bold;font-family:Tahoma, verdana,arial,helvetica,sans-serif;text-transform: none;letter-spacing:normal;text-shadow:none;white-space:normal;word-spacing:normal;" href="http://www.projectwonderful.com/advertisehere.php?id=74788&type=5" target="_blank">Ads by Project Wonderful!  Your ad here, right now: $0</a></center></td></tr></table>
+					</noscript>
+					<!-- End Project Wonderful Ad Box Code -->
+				<% when 'vr' %>
+					<!-- Begin Adversal 728x90 - greasyfork.org Code -->
+					<SCRIPT SRC="https://ib.adnxs.com/ttj?id=3815628&size=728x90&promo_sizes=468x60,320x50,300x50,216x36" TYPE="text/javascript"></SCRIPT>
+					<!-- End Adversal 728x90 - greasyfork.org Code -->
+			<% end  %>
+		</div>
 	</div>
 <% end %>
 
