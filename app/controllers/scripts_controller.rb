@@ -502,7 +502,6 @@ class ScriptsController < ApplicationController
 	end
 
 	def self.apply_filters(scripts, params)
-		scripts = scripts.order(get_sort(params))
 		if !params[:site].nil?
 			if params[:site] == '*'
 				scripts = scripts.for_all_sites
@@ -517,6 +516,7 @@ class ScriptsController < ApplicationController
 			end
 			scripts = scripts.where(:id => set_script_ids)
 		end
+		scripts = scripts.order(get_sort(params, false, set))
 		return scripts
 	end
 
@@ -526,10 +526,11 @@ class ScriptsController < ApplicationController
 
 private
 
-	def self.get_sort(params, for_sphinx = false)
+	def self.get_sort(params, for_sphinx = false, set = nil)
 		# sphinx has these defined as attributes, outside of sphinx they're possibly ambiguous column names
 		column_prefix = for_sphinx ? '' : 'scripts.'
-		case params[:sort]
+		sort = params[:sort] || (!set.nil? ? set.default_sort : nil)
+		case sort
 			when 'total_installs'
 				return "#{column_prefix}total_installs DESC, #{column_prefix}id"
 			when 'created'

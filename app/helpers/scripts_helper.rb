@@ -1,25 +1,28 @@
 module ScriptsHelper
 
-	def script_list_link(label, sort = nil, site = nil, set = nil)
+	def script_list_link(label, sort = nil, site = nil, set = nil, current_set = nil)
 		is_link = true
 		is_search = action_name == 'search'
 		is_minified = action_name == 'minified'
 		is_code_search = action_name == 'code_search'
-		if sort == params[:sort] and (is_search or site == params[:site]) and ((set.nil? and params[:set].nil?) or set.to_s == params[:set])
+		# sets can have a different default
+		sort_param_to_use = (!current_set.nil? && sort == current_set.default_sort) ? nil : sort
+		# if everything in the current page is the same as what we would link too, don't link!
+		if sort_param_to_use == params[:sort] and (is_search or site == params[:site]) and ((set.nil? and params[:set].nil?) or set.to_s == params[:set])
 			l = label
 			is_link = false
 		elsif is_search
-			l = link_to label, search_scripts_path(:sort => sort, :q => params[:q], :set => set)
+			l = link_to label, search_scripts_path(:sort => sort_param_to_use, :q => params[:q], :set => set)
 		elsif is_minified
-			l = link_to label, minified_scripts_path(:sort => sort)
+			l = link_to label, minified_scripts_path(:sort => sort_param_to_use)
 		elsif is_code_search
-			l = link_to label, code_search_scripts_path(:sort => sort, :c => params[:c])
+			l = link_to label, code_search_scripts_path(:sort => sort_param_to_use, :c => params[:c])
 		elsif site.nil?
-			l = link_to label, {:sort => sort, :set => set, :site => nil}
+			l = link_to label, {:sort => sort_param_to_use, :set => set, :site => nil}
 		elsif params[:controller] == 'users'
-			l = link_to label, {:sort => sort, :site => site, :set => set}
+			l = link_to label, {:sort => sort_param_to_use, :site => site, :set => set}
 		else
-			l = link_to label, by_site_scripts_path(:sort => sort, :site => site, :set => set)
+			l = link_to label, by_site_scripts_path(:sort => sort_param_to_use, :site => site, :set => set)
 		end
 		return ("<li class=\"list-option#{is_link ? '' : ' list-current'}\">" + l + '</li>').html_safe
 	end

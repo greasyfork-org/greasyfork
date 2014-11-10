@@ -58,6 +58,19 @@
 			<%=s.label(:description)%><br>
 			<%=s.text_area(:description, :maxlength => 500, :size => nil)%>
 		</div>
+
+		<div>
+			<%=s.label(:default_sort)%><br>
+			<%=s.select(:default_sort, [
+				[t('script_sets.site_default_sort'), nil],
+				[t('scripts.listing_sort_daily_installs'), 'daily_installs'],
+				[t('scripts.listing_sort_total_installs'), 'total_installs'],
+				[t('scripts.listing_sort_fan_score'), 'fans'],
+				[t('scripts.listing_sort_created_date'), 'created'],
+				[t('scripts.listing_sort_updated_date'), 'updated'],
+				[t('scripts.listing_sort_name'), 'name']
+			])%>
+		</div>
 	<% end %>
 
 	<div>
