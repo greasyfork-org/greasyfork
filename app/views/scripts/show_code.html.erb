@@ -3,6 +3,8 @@
 
 <%= stylesheet_link_tag "coderay", media: "all" %>
 
+<%=render :partial => 'install', :locals => {:script => @script}%>
+
 <% if @highlighted_code.nil?
 	if !SyntaxHighlightedCode.can_highlight?(@code) %>
 		<p><%=t('scripts.code_highlighting_disabled', :size => number_to_human_size(Rails.configuration.syntax_highlighting_limit))%></p>
