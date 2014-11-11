@@ -11,6 +11,12 @@ INSERT IGNORE INTO fan_score (script_id, fan_id, score) SELECT ScriptID, Foreign
 # remove narcissists
 DELETE fan_score.* FROM fan_score JOIN scripts ON scripts.id = script_id WHERE fan_id = user_id;
 
+# Set good/bad counts for display
+UPDATE scripts SET good_ratings = 0, ok_ratings = 0, bad_ratings = 0;
+UPDATE scripts JOIN (SELECT script_id, COUNT(*) c FROM fan_score WHERE score = 1 GROUP BY script_id) a ON a.script_id = scripts.id SET good_ratings = a.c;
+UPDATE scripts JOIN (SELECT script_id, COUNT(*) c FROM fan_score WHERE score = 0 GROUP BY script_id) a ON a.script_id = scripts.id SET ok_ratings = a.c;
+UPDATE scripts JOIN (SELECT script_id, COUNT(*) c FROM fan_score WHERE score = -1 GROUP BY script_id) a ON a.script_id = scripts.id SET bad_ratings = a.c;
+
 # Aggregate the numbers. OK counts as 0.5 good, 0.5 bad
 CREATE TEMPORARY TABLE fan_aggregate (script_id INT NOT NULL, positive DECIMAL(6,1) NOT NULL DEFAULT 0, negative DECIMAL(6,1) NOT NULL DEFAULT 0, UNIQUE script (script_id));
 INSERT INTO fan_aggregate (script_id, positive, negative) SELECT script_id, SUM(IF(score = 1, 1, IF(score = 0, 0.5, 0))), SUM(IF(score = -1, 1, IF(score = 0, 0.5, 0))) FROM fan_score GROUP BY script_id;

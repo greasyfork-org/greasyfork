@@ -1179,7 +1179,7 @@ CREATE TABLE `install_counts` (
   `installs` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_install_counts_on_script_id_and_install_date` (`script_id`,`install_date`)
-) ENGINE=InnoDB AUTO_INCREMENT=164410 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=166457 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1212,7 +1212,7 @@ CREATE TABLE `locale_contributors` (
   `transifex_user_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `index_locale_contributors_on_locale_id` (`locale_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1069 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1109 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1403,7 +1403,7 @@ CREATE TABLE `script_set_automatic_set_inclusions` (
   PRIMARY KEY (`id`),
   KEY `index_script_set_automatic_set_inclusions_on_parent_id` (`parent_id`),
   KEY `ssasi_script_set_automatic_type_id` (`script_set_automatic_type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1401 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1411 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1435,7 +1435,7 @@ CREATE TABLE `script_set_script_inclusions` (
   PRIMARY KEY (`id`),
   KEY `index_script_set_script_inclusions_on_parent_id` (`parent_id`),
   KEY `index_script_set_script_inclusions_on_child_id` (`child_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5199 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5204 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1582,6 +1582,9 @@ CREATE TABLE `scripts` (
   `contribution_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `contribution_amount` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `default_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `good_ratings` int(11) DEFAULT '0',
+  `ok_ratings` int(11) DEFAULT '0',
+  `bad_ratings` int(11) DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `index_scripts_on_user_id` (`user_id`),
   KEY `index_scripts_on_delta` (`delta`),
@@ -1620,7 +1623,7 @@ CREATE TABLE `update_check_counts` (
   `update_checks` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_update_check_counts_on_script_id_and_update_check_date` (`script_id`,`update_check_date`)
-) ENGINE=InnoDB AUTO_INCREMENT=17388 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25579 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1668,7 +1671,7 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-10 15:55:57
+-- Dump completed on 2014-11-10 18:42:09
 INSERT INTO schema_migrations (version) VALUES ('20140210194333');
 
 INSERT INTO schema_migrations (version) VALUES ('20140210201355');
@@ -1806,4 +1809,6 @@ INSERT INTO schema_migrations (version) VALUES ('20141104035027');
 INSERT INTO schema_migrations (version) VALUES ('20141105153539');
 
 INSERT INTO schema_migrations (version) VALUES ('20141110212050');
+
+INSERT INTO schema_migrations (version) VALUES ('20141111001158');
 
