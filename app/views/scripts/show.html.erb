@@ -1,7 +1,7 @@
 <%- title @script.name(I18n.locale) %>
 <%- description @script.description(I18n.locale) %>
 
-<%=render :partial => 'install', :locals => {:script => @script}%>
+<%=render :partial => 'install', :locals => {:script => @script, :script_version => @script_version}%>
 
 <% if !@ad_method.nil? %>
 	<div class="ad" id="script-show-info-ad">

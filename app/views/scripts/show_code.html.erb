@@ -3,7 +3,7 @@
 
 <%= stylesheet_link_tag "coderay", media: "all" %>
 
-<%=render :partial => 'install', :locals => {:script => @script}%>
+<%=render :partial => 'install', :locals => {:script => @script, :script_version => @script_version}%>
 
 <div id="code-container" class="max-screen-height">
 	<% if @highlighted_code.nil?
