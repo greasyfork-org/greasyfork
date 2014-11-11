@@ -82,6 +82,8 @@ Greasyfork::Application.routes.draw do
 		resources :users, :only => :show do
 			post 'webhook'
 			resources :script_sets, :only => [:create, :new, :edit, :update, :destroy], :path => 'sets'
+			get 'ban', :to => 'users#ban', :as => 'ban'
+			post 'ban', :to => 'users#do_ban', :as => 'do_ban'
 		end
 		post 'script_sets/add_to_set', :to => 'script_sets#add_to_set', :as => 'add_to_script_set'
 

@@ -99,6 +99,10 @@ class User < ActiveRecord::Base
 		return locale.code
 	end
 
+	def non_locked_scripts
+		return scripts.select{|s| !s.locked}
+	end
+
 	protected
 
 	def password_required?

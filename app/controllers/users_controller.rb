@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 	skip_before_action :verify_authenticity_token, :only => [:webhook]
 
 	before_filter :authenticate_user!, :except => [:show, :webhook, :index]
+	before_filter :authorize_for_moderators_only, :only => [:ban, :do_ban]
 
 	HMAC_DIGEST = OpenSSL::Digest::Digest.new('sha1')
 
@@ -173,6 +174,37 @@ class UsersController < ApplicationController
 			end
 		end
 		redirect_to user_edit_sign_in_path
+	end
+
+	def ban
+		@user = User.find(params[:user_id])
+	end
+
+	def do_ban
+		user = User.find(params[:user_id])
+		ma_ban = ModeratorAction.new
+		ma_ban.moderator = current_user
+		ma_ban.user = user
+		ma_ban.action = 'Ban'
+		ma_ban.reason = params[:reason]
+		ma_ban.save!
+		user.banned = true
+		user.save!
+		if !params[:script_delete_type_id].blank?
+			user.non_locked_scripts.each do |s|
+				s.delete_reason = params[:reason]
+				s.locked = true
+				s.script_delete_type_id = params[:script_delete_type_id]
+				s.save(:validate => false)
+				ma_delete = ModeratorAction.new
+				ma_delete.moderator = current_user
+				ma_delete.script = s
+				ma_delete.action = 'Delete'
+				ma_delete.reason = params[:reason]
+				ma_delete.save!
+			end
+		end
+		redirect_to user
 	end
 
 private

@@ -1,0 +1,26 @@
+<%=form_tag(user_do_ban_path) do |f|%>
+	<% if @user.banned %>
+		<p>(User already banned.)</p>
+	<% else %>
+		<p>
+			<label for="reason">Why are you banning <%=@user.name%>?</label><br>
+			<textarea id="reason" name="reason" rows="5" cols="100" maxlength="500" required></textarea>
+		</p>
+		<% if !@user.non_locked_scripts.empty? %>
+			<p><%=@user.name%> has <%=@user.non_locked_scripts.count%> non-locked scripts:</p>
+			<ul>
+				<%@user.non_locked_scripts.each do |script| %>
+					<li><%=link_to script.name(I18n.locale), script%></li>
+				<% end %>
+			</ul>
+			<p>
+				<input type="radio" required id="script_delete_type_id_0" name="script_delete_type_id" value="" checked> <label for="script_delete_type_id_0">Don't delete</label><br>
+				<% ScriptDeleteType.all.each do |sdt| %>
+					<input type="radio" required id="script_delete_type_id_<%=sdt.id%>" name="script_delete_type_id" value="<%=sdt.id%>"> <label for="script_delete_type_id_<%=sdt.id%>">Delete. <%=sdt.description%></label><br>
+				<% end %>
+			</p>
+		<% end %>
+		<input type="submit" value="Ban">
+	<% end %>
+<% end %>
+

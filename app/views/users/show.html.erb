@@ -65,6 +65,17 @@ if same_user %>
 	<% end %>
 <% end %>
 
+<% if !current_user.nil? && current_user.moderator? && !@user.moderator? %>
+	<section id="moderator-user-control-panel">
+		<header>
+			<h3>Moderator control panel</h3>
+		</header>
+		<ul id="user-control-panel">
+			<li><%= link_to 'Ban', user_ban_path(@user)%></li>
+		</ul>
+	</section>
+<% end %>
+
 <% if !@user.script_sets.empty? or same_user %>
 	<section>
 		<header>
