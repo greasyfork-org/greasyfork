@@ -32,10 +32,10 @@ $Definition['Request someone write a script for you.'] = 'Вы можете по
 // Category name
 $Definition['Script Discussions'] = 'Обсуждение скриптов';
 // Category description for Script Discussions
-$Definition['Discussion on scripts posted to Greasy Fork.'] = 'Обсуждение работы скриптов, размещенных на Greasy Fork.';
+$Definition['Discussion on scripts posted to Greasy Fork.'] = 'Обсуждение скриптов, размещенных на Greasy Fork.';
 // Link on Recent Discussions to hide script discussions
-$Definition['Turn on filter'] = 'Hide script discussions';
+$Definition['Turn on filter'] = 'Скрыть обсуждения скрипта';
 // Link on Recent Discussions to show script discussions
-$Definition['Turn off filter'] = 'Show script discussions';
+$Definition['Turn off filter'] = 'Показать обсуждения скрипта';
 // Link on forum profile pointing to main site profile
-$Definition['Greasy Fork Profile'] = 'Greasy Fork Profile';
+$Definition['Greasy Fork Profile'] = 'Профиль Greasy Fork';

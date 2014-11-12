@@ -1,7 +1,7 @@
 ja:
   layouts:
     application:
-      script_list: "スクリプト一覧"
+      script_list: "スクリプト"
       forum: "フォーラム"
       help: "ヘルプ"
       sign_in: "ログイン"
@@ -14,6 +14,7 @@ ja:
     updated_date: "更新"
     total_installs: "インストール"
     daily_installs: "1日のインストール"
+    ratings: "評価"
     author_name: "作者"
     version_number: "バージョン"
     license: "ライセンス"
@@ -69,7 +70,7 @@ ja:
     stats_download_raw_data_html: "すべてのデータをダウンロードする： %{links}"
     stats_no_data: "(データなし)"
     derivatives_title: "%{script_name} に似ているスクリプト"
-    derivatives_intro: "以下のスクリプトは、あなたのスクリプトを基にしている可能性があります (あるいはその逆)。あなたのコードに対する不正利用行為を発見した場合は、不正利用しているスクリプトのフィードバックに、新しいスレッドを立てて通報してください (投稿の際に「モデレーターに報告」を選択)。"
+    derivatives_intro: "以下のスクリプトは、あなたのスクリプトを基にしている可能性があります (あるいはその逆)。あなたのコードに対する不正利用行為を発見した場合は、不正利用しているスクリプトのフィードバックに、新しいスレッドを立てて「モデレーターに報告」してください。"
     derivatives_code_matches_info_html: "他のユーザーが投稿したスクリプトで、共通するコードを%{match_size}文字以上含むもの (%{max_size}以下のスクリプトに対して%{last_run}に確認)："
     derivatives_namespace_matches_info_html: "他のユーザーが投稿したスクリプトで <code>%{namespace}</code> を使用しているもの："
     derivatives_name_matches_info: "他のユーザーが投稿したスクリプトでスクリプト名が似ているもの："
@@ -89,6 +90,7 @@ ja:
     listing_sort_relevance: "関連度"
     listing_sort_daily_installs: "1日のインストール数"
     listing_sort_total_installs: "インストール数"
+    listing_sort_ratings: "評価"
     listing_sort_created_date: "作成日"
     listing_sort_updated_date: "更新日"
     listing_sort_name: "名前"
@@ -165,6 +167,7 @@ ja:
     favorites_name: "お気に入り"
     delete: "Script Set を削除"
     delete_confirmation: "この Script Set を削除してもよろしいですか？"
+    site_default_sort: "(サイトの既定)"
   forum_discussions:
     listing_no_script_no_reply_html: "<span style=\"display: inline-block; width: 6em;\">%{original_post_date}</span><b>%{discussion_link}</b>　スレッド作成：%{original_poster_link}"
     listing_no_script_with_reply_html: "<span style=\"display: inline-block; width: 6em;\">%{last_comment_date}</span><b>%{discussion_link}</b>　最終コメント：%{last_commenter_link}　(スレッド作成：%{original_poster_link})"
