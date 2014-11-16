@@ -7,6 +7,8 @@ $Definition['on scripts by %s'] = 'on scripts by %s';
  *  Label for the radio buttons for rating a script
  **/
 $Definition['RatingLabel'] = 'Đánh giá của bạn về script này?';
+# Label for the radio buttons for updating a rating on a script
+$Definition['RatingUpdateLabel'] = 'Update your rating:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = 'No rating - just a question, comment, feature request, or bug report';
 ## Label for the radio button for reporting a script

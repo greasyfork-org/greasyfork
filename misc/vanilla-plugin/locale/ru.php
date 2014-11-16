@@ -7,6 +7,8 @@ $Definition['on scripts by %s'] = 'скриптов автора %s';
  *  Label for the radio buttons for rating a script
  **/
 $Definition['RatingLabel'] = 'Как бы вы оценили этот скрипт?';
+# Label for the radio buttons for updating a rating on a script
+$Definition['RatingUpdateLabel'] = 'Update your rating:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = 'Не хочу оценивать - хочу задать вопрос, оставить комментарий, сообщить об ошибке, запросить добавление новых функций';
 ## Label for the radio button for reporting a script

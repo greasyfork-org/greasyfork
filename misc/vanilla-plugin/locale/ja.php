@@ -7,6 +7,8 @@ $Definition['on scripts by %s'] = '(%s のスクリプトに関するもの)';
  *  Label for the radio buttons for rating a script
  **/
 $Definition['RatingLabel'] = '評価：';
+# Label for the radio buttons for updating a rating on a script
+$Definition['RatingUpdateLabel'] = 'Update your rating:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = '無評価 – 質問、コメント、機能の要望やバグ報告のみ';
 ## Label for the radio button for reporting a script

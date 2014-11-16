@@ -1,16 +1,18 @@
 <?php
 /* Label for inputting a script ID when creating/editing a discussion */
-$Definition['Item ID:'] = 'Script ID:';
+$Definition['Item ID:'] = 'ID do Script:';
 // Appended to "Discussions" when viewing a list of discussions on scripts by a user. %s is the user name.
 $Definition['on scripts by %s'] = 'nos scripts por %s';
 /*
  *  Label for the radio buttons for rating a script
  **/
 $Definition['RatingLabel'] = 'Como você avalia este script?';
+# Label for the radio buttons for updating a rating on a script
+$Definition['RatingUpdateLabel'] = 'Atualize sua avaliação:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = 'Sem avaliação - apenas uma pergunta, comentário, pedido ou reportar um erro';
 ## Label for the radio button for reporting a script
-$Definition['RatingReport'] = 'Reportar script aos moderadores - malware, código roubado ou outras coisas erradas que requerem revisão';
+$Definition['RatingReport'] = 'Relatar script aos moderadores - malware, código roubado ou outras coisas erradas que precisam revisão';
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = 'Erro - script não funciona';
 /** Label for the radio button for rating a script "OK" **/
@@ -34,8 +36,8 @@ $Definition['Script Discussions'] = 'Discussões sobre scripts';
 // Category description for Script Discussions
 $Definition['Discussion on scripts posted to Greasy Fork.'] = 'Discussões sobre scripts postados no Greasy Fork.';
 // Link on Recent Discussions to hide script discussions
-$Definition['Turn on filter'] = 'Hide script discussions';
+$Definition['Turn on filter'] = 'Esconder discussões de scripts';
 // Link on Recent Discussions to show script discussions
-$Definition['Turn off filter'] = 'Show script discussions';
+$Definition['Turn off filter'] = 'Exibir discussões sobre scripts';
 // Link on forum profile pointing to main site profile
-$Definition['Greasy Fork Profile'] = 'Greasy Fork Profile';
+$Definition['Greasy Fork Profile'] = 'Perfil do Greasy Fork';
