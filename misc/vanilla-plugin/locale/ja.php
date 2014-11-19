@@ -12,7 +12,7 @@ $Definition['RatingUpdateLabel'] = 'Update your rating:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = '無評価 – 質問、コメント、機能の要望やバグ報告のみ';
 ## Label for the radio button for reporting a script
-$Definition['RatingReport'] = 'モデレーターに報告 – マルウェア、盗作、他の報告すべき不正行為など';
+$Definition['RatingReport'] = 'Report script to moderators for removal - malware, stolen code, etc.';
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = '不可 – スクリプトが動かない';
 /** Label for the radio button for rating a script "OK" **/

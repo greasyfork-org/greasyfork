@@ -12,7 +12,7 @@ $Definition['RatingUpdateLabel'] = 'Обновете рейтинга';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = 'Без оценка - просто въпрос, коментар, заявка или доклад за бъг. ';
 ## Label for the radio button for reporting a script
-$Definition['RatingReport'] = 'Докладвай скрипта на модераторите - зловреден или откраднат код, или други лоши неща, изискващи преглед.';
+$Definition['RatingReport'] = 'Докладвай скрипта на модераторите за премахване - зловреден или откраднат код, или друго.';
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = 'Лош - скриптът не работи.';
 /** Label for the radio button for rating a script "OK" **/

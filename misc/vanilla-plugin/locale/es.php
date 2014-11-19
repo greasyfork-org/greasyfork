@@ -12,7 +12,7 @@ $Definition['RatingUpdateLabel'] = 'Update your rating:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = 'Ninguna opinión - sólo una pregunta, comentario, solicitud de función, o informe de error';
 ## Label for the radio button for reporting a script
-$Definition['RatingReport'] = 'Reportar script a los moderadores - malware, código robado, u otras cosas malas que requieren revisión';
+$Definition['RatingReport'] = 'Report script to moderators for removal - malware, stolen code, etc.';
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = 'Malo - el script no funciona';
 /** Label for the radio button for rating a script "OK" **/
