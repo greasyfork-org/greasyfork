@@ -57,9 +57,6 @@
 					{/literal}
 				</li>
 			</ul>
-            <!--
-            <div class="SiteSearch">{searchbox}</div>
-            -->
             <ul class="SiteMenu">
 				<li class="scripts-index-link"><a href="/{$smarty.get.locale|default:'en'}/scripts/">{t c="layouts.application.script_list" d="Scripts"}</a></li>
 				<li class="forum-link"><a href="/{$smarty.get.locale|default:'en'}/forum/">{t c="layouts.application.forum" d="Forum"}</a></li>
@@ -77,6 +74,7 @@
             <div class="Column PanelColumn" id="Panel">
                {module name="MeModule"}
                {asset name="Panel"}
+               <div class="SiteSearch">{searchbox}</div>
             </div>
             <div class="Column ContentColumn" id="Content">{asset name="Content"}</div>
          </div>
