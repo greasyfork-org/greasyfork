@@ -14,6 +14,7 @@ fr:
     updated_date: "Mis à jour"
     total_installs: "Installations (total)"
     daily_installs: "Installations (jour)"
+    ratings: "Notes"
     author_name: "Auteur"
     version_number: "Version"
     license: "Licence"
@@ -90,6 +91,7 @@ fr:
     listing_sort_relevance: "Pertinence"
     listing_sort_daily_installs: "Installations (jour)"
     listing_sort_total_installs: "Installations (total)"
+    listing_sort_ratings: "Notes"
     listing_sort_created_date: "Date de création"
     listing_sort_updated_date: "Date de mise à jour"
     listing_sort_name: "Nom"
@@ -107,6 +109,8 @@ fr:
     support_email: "Contacter l'auteur pour obtenir du support."
     contribution_no_amount: "Remercier %{author} en faisant un don."
     contribution_with_amount: "Remercier %{author} en faisant un don. Le don suggéré est de %{amount}"
+    contribution_bitcoin_no_amount_html: "Remercier %{author} en faisant une donation Bitcoin à %{address}."
+    contribution_bitcoin_with_amount_html: "Remercier %{author} en faisant une donation Bitcoin à %{address}. Montant suggéré : %{amount}."
     locale_explanation_html: "Doit correspondre à la langue de <code>@name</code>, <code>@description</code>, et la première information additionnelle."
     locale_auto_select: "(Détecter automatiquement)"
     sets_label: "Dans les jeux de scripts :"
@@ -164,6 +168,7 @@ fr:
     favorites_name: "Favoris"
     delete: "Supprimer ce jeu de scripts"
     delete_confirmation: "Êtes-vous sûr de vouloir supprimer ce jeu de scripts ?"
+    site_default_sort: "(Par défaut)"
   forum_discussions:
     listing_no_script_no_reply_html: "%{discussion_link} par %{original_poster_link} le %{original_post_date}"
     listing_no_script_with_reply_html: "%{discussion_link} par %{original_poster_link} le %{original_post_date}, dernier commentaire par  %{last_commenter_link} %{last_comment_date}"
@@ -243,6 +248,7 @@ fr:
     listing_updated_scripts: "Scripts mis à jour"
     listing_registration_date: "Date d'inscription"
     locale_prompt: "(Choisissez une région)"
+    show_ads_description: "Aider Greasy Fork en l'autorisant à afficher des publicités"
   common:
     error_preamble: "Il y a des erreurs dans ce que vous avez posté..."
     allowed_elements_link: "(Voir les balises autorisées.)"
@@ -256,6 +262,7 @@ fr:
     incomplete_locale: "La traduction en %{locale_name} de Greasy Fork n'est complète qu'à %{percent}. Vous pouvez l'améliorer."
     expander_show_more: "Voir plus"
     expander_show_less: "Voir moins"
+    advertisement_note: Publicité
   activerecord:
     attributes:
       user:
@@ -263,6 +270,7 @@ fr:
         profile: "Description"
         locale: "Région préférée"
         author_email_notification_type_id: "Notifications de discussion sur vos scripts"
+        show_ads: "Afficher les publicités"
       script:
         name: "Nom"
         description: "Description"

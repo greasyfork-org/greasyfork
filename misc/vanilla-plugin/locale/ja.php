@@ -1,6 +1,6 @@
 <?php
 /* Label for inputting a script ID when creating/editing a discussion */
-$Definition['Item ID:'] = 'スクリプトID：';
+$Definition['Item ID:'] = 'スクリプトID:';
 // Appended to "Discussions" when viewing a list of discussions on scripts by a user. %s is the user name.
 $Definition['on scripts by %s'] = '(%s のスクリプトに関するもの)';
 /*
@@ -8,11 +8,11 @@ $Definition['on scripts by %s'] = '(%s のスクリプトに関するもの)';
  **/
 $Definition['RatingLabel'] = '評価：';
 # Label for the radio buttons for updating a rating on a script
-$Definition['RatingUpdateLabel'] = 'Update your rating:';
+$Definition['RatingUpdateLabel'] = '評価を更新する:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = '無評価 – 質問、コメント、機能の要望やバグ報告のみ';
 ## Label for the radio button for reporting a script
-$Definition['RatingReport'] = 'Report script to moderators for removal - malware, stolen code, etc.';
+$Definition['RatingReport'] = 'スクリプトの削除をモデレーターに申請 – マルウェア、盗作など';
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = '不可 – スクリプトが動かない';
 /** Label for the radio button for rating a script "OK" **/
