@@ -51,7 +51,7 @@ CREATE TABLE `GDN_Activity` (
   KEY `IX_Activity_Recent` (`NotifyUserID`,`DateUpdated`),
   KEY `IX_Activity_Feed` (`NotifyUserID`,`ActivityUserID`,`DateUpdated`),
   KEY `IX_Activity_DateUpdated` (`DateUpdated`)
-) ENGINE=InnoDB AUTO_INCREMENT=7755 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7760 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -199,7 +199,7 @@ CREATE TABLE `GDN_Comment` (
   KEY `IX_Comment_1` (`DiscussionID`,`DateInserted`),
   KEY `IX_Comment_DateInserted` (`DateInserted`),
   FULLTEXT KEY `TX_Comment` (`Body`)
-) ENGINE=MyISAM AUTO_INCREMENT=6567 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6607 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -300,7 +300,7 @@ CREATE TABLE `GDN_Discussion` (
   KEY `IX_Discussion_DateInserted` (`DateInserted`),
   KEY `IX_Discussion_CategoryPages` (`CategoryID`,`DateLastComment`),
   FULLTEXT KEY `TX_Discussion` (`Name`,`Body`)
-) ENGINE=MyISAM AUTO_INCREMENT=1982 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=1987 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1084,7 +1084,7 @@ CREATE TABLE `daily_install_counts` (
   `install_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_daily_install_counts_on_script_id_and_ip` (`script_id`,`ip`)
-) ENGINE=InnoDB AUTO_INCREMENT=905144 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=905145 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1101,7 +1101,7 @@ CREATE TABLE `daily_update_check_counts` (
   `update_check_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_daily_update_check_counts_on_script_id_and_ip` (`script_id`,`ip`)
-) ENGINE=InnoDB AUTO_INCREMENT=2217817 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1126,7 +1126,7 @@ CREATE TABLE `delayed_jobs` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `delayed_jobs_priority` (`priority`,`run_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1179,7 +1179,7 @@ CREATE TABLE `install_counts` (
   `installs` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_install_counts_on_script_id_and_install_date` (`script_id`,`install_date`)
-) ENGINE=InnoDB AUTO_INCREMENT=166457 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=166265 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1212,7 +1212,7 @@ CREATE TABLE `locale_contributors` (
   `transifex_user_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `index_locale_contributors_on_locale_id` (`locale_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1109 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1402 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1295,7 +1295,7 @@ CREATE TABLE `moderator_actions` (
   `reason` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=379 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=441 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1623,7 +1623,7 @@ CREATE TABLE `update_check_counts` (
   `update_checks` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_update_check_counts_on_script_id_and_update_check_date` (`script_id`,`update_check_date`)
-) ENGINE=InnoDB AUTO_INCREMENT=25579 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23723 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1671,7 +1671,7 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-11-10 18:42:09
+-- Dump completed on 2014-11-24 15:15:41
 INSERT INTO schema_migrations (version) VALUES ('20140210194333');
 
 INSERT INTO schema_migrations (version) VALUES ('20140210201355');
@@ -1811,4 +1811,6 @@ INSERT INTO schema_migrations (version) VALUES ('20141105153539');
 INSERT INTO schema_migrations (version) VALUES ('20141110212050');
 
 INSERT INTO schema_migrations (version) VALUES ('20141111001158');
+
+INSERT INTO schema_migrations (version) VALUES ('20141124211518');
 
