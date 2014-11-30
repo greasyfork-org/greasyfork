@@ -268,7 +268,7 @@ protected
 		return if !@ad_method.nil?
 		return if !current_user.nil? && !current_user.show_ads
 		return if controller_name != 'styles' and action_name != 'show'
-		@ad_method = ['xo', 'pw', 'vr'].sample
+		@ad_method = ['xo', 'pw'].sample
 	end
 
 	# Determines a locale to use based on user preference and Accept_Language header.
