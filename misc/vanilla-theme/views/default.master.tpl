@@ -24,6 +24,7 @@
 				{/if}
 				<li>
 					<select id="language-selector-locale" name="locale">
+						<option value="ar" {if $locale == 'ar'}selected{/if}>العَرَبِيةُ (ar)</option>
 						<option value="bg" {if $locale == 'bg'}selected{/if}>Български (bg)</option>
 						<option value="de" {if $locale == 'de'}selected{/if}>Deutsch (de)</option>
 						<option value="en" {if $locale == 'en'}selected{/if}>English (en)</option>
@@ -38,6 +39,7 @@
 						<option value="pt-BR" {if $locale == 'pt-BR'}selected{/if}>Português do Brasil (pt-BR)</option>
 						<option value="ru" {if $locale == 'ru'}selected{/if}>Русский (ru)</option>
 						<option value="tr" {if $locale == 'tr'}selected{/if}>Türkçe (tr)</option>
+						<option value="uk" {if $locale == 'uk'}selected{/if}>Українська (uk)</option>
 						<option value="vi" {if $locale == 'vi'}selected{/if}>Tiếng Việt (vi)</option>
 						<option value="zh-CN" {if $locale == 'zh-CN'}selected{/if}>简体中文 (zh-CN)</option>
 						<option value="zh-TW" {if $locale == 'zh-TW'}selected{/if}>繁體中文 (zh-TW)</option>
