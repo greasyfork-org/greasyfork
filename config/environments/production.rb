@@ -98,4 +98,6 @@ Greasyfork::Application.configure do
 
   config.enable_detect_locale = false
   config.download_locale_files = false
+
+  config.log_cache_misses = true
 end

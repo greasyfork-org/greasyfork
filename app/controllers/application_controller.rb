@@ -310,4 +310,21 @@ protected
 		}
 	end
 
+	def self.cache_with_log(key)
+		Rails.cache.fetch(key) do
+			Rails.logger.warn("Cache miss - #{key}") if Greasyfork::Application.config.log_cache_misses
+			o = yield
+			Rails.logger.warn("Cache stored - #{key}") if Greasyfork::Application.config.log_cache_misses
+			next o
+		end
+	end
+
+	def cache_with_log(key)
+		self.class.cache_with_log(key) do
+			yield
+		end
+	end
+
+	helper_method :cache_with_log
+
 end

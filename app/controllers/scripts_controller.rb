@@ -496,7 +496,7 @@ class ScriptsController < ApplicationController
 	end
 
 	def self.get_top_by_sites
-		return Rails.cache.fetch("scripts/get_top_by_sites") do
+		return cache_with_log("scripts/get_top_by_sites") do
 			get_by_sites.sort{|a,b| b[1][:installs] <=> a[1][:installs]}.first(10)
 		end
 	end
@@ -511,7 +511,7 @@ class ScriptsController < ApplicationController
 		end
 		if !params[:set].nil?
 			set = ScriptSet.find(params[:set])
-			set_script_ids = Rails.cache.fetch(set) do
+			set_script_ids = cache_with_log(set) do
 				set.scripts.map{|s| s.id}
 			end
 			scripts = scripts.where(:id => set_script_ids)
@@ -554,7 +554,7 @@ private
 
 	# Returns a hash, key: site name, value: hash with keys installs, scripts
 	def self.get_by_sites
-		return Rails.cache.fetch("scripts/get_by_sites") do
+		return cache_with_log("scripts/get_by_sites") do
 			sql =<<-EOF
 				SELECT
 					text, SUM(daily_installs) install_count, COUNT(DISTINCT s.id) script_count

@@ -5,7 +5,7 @@ class HomeController < ApplicationController
 	protect_from_forgery :except => [:sso]
 
 	def index
-		highlighted_scripts_ids = Rails.cache.fetch("scripts/highlighted/" + I18n.locale.to_s) do
+		highlighted_scripts_ids = cache_with_log("scripts/highlighted/" + I18n.locale.to_s) do
 			highlighted_script_ids_for_locale(I18n.locale)
 		end
 		@highlighted_scripts = Script.includes(:localized_attributes => :locale).find(highlighted_scripts_ids.to_a)

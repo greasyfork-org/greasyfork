@@ -41,6 +41,8 @@ Greasyfork::Application.configure do
   config.enable_detect_locale = true
   config.download_locale_files = true
 
+  config.log_cache_misses = true
+
   config.after_initialize do
     Bullet.enable = false
     Bullet.bullet_logger = true
