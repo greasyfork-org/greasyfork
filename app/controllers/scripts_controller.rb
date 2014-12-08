@@ -568,8 +568,13 @@ private
 				GROUP BY text
 				ORDER BY text
 			EOF
+			Rails.logger.warn("Loading by_sites") if Greasyfork::Application.config.log_cache_misses
+			by_sites = Script.connection.select_rows(sql)
+			Rails.logger.warn("Loading all_sites") if Greasyfork::Application.config.log_cache_misses
+			all_sites = get_all_sites_count.values.to_a
+			Rails.logger.warn("Combining by_sites and all_sites") if Greasyfork::Application.config.log_cache_misses
 			# combine with "All sites" number
-			a = ([[nil] + get_all_sites_count.values.to_a] + Script.connection.select_rows(sql))
+			a = ([[nil] + all_sites] + by_sites)
 			Hash[a.map {|key, install_count, script_count| [key, {:installs => install_count.to_i, :scripts => script_count.to_i}]}]
 		end
 	end
