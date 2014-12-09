@@ -553,8 +553,8 @@ private
 	end
 
 	# Returns a hash, key: site name, value: hash with keys installs, scripts
-	def self.get_by_sites
-		return cache_with_log("scripts/get_by_sites") do
+	def self.get_by_sites(cache_options = {})
+		return cache_with_log("scripts/get_by_sites", cache_options) do
 			sql =<<-EOF
 				SELECT
 					text, SUM(daily_installs) install_count, COUNT(DISTINCT s.id) script_count
