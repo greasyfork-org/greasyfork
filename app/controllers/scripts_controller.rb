@@ -557,7 +557,7 @@ private
 		return cache_with_log("scripts/get_by_sites", cache_options) do
 			sql =<<-EOF
 				SELECT
-					text, SUM(daily_installs) install_count, COUNT(DISTINCT s.id) script_count
+					text, SUM(daily_installs) install_count, COUNT(s.id) script_count
 				FROM script_applies_tos
 				JOIN scripts s ON script_id = s.id
 				WHERE
