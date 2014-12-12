@@ -26,6 +26,7 @@
 					<select id="language-selector-locale" name="locale">
 						<option value="ar" {if $locale == 'ar'}selected{/if}>العَرَبِيةُ (ar)</option>
 						<option value="bg" {if $locale == 'bg'}selected{/if}>Български (bg)</option>
+						<option value="cs" {if $locale == 'cs'}selected{/if}>Čeština (cs)</option>
 						<option value="de" {if $locale == 'de'}selected{/if}>Deutsch (de)</option>
 						<option value="en" {if $locale == 'en'}selected{/if}>English (en)</option>
 						<option value="es" {if $locale == 'es'}selected{/if}>Español (es)</option>
