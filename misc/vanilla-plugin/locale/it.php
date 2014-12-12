@@ -6,38 +6,38 @@ $Definition['on scripts by %s'] = 'on scripts by %s';
 /*
  *  Label for the radio buttons for rating a script
  **/
-$Definition['RatingLabel'] = 'How would you rate this script?';
+$Definition['RatingLabel'] = 'Come valuti questo script?';
 # Label for the radio buttons for updating a rating on a script
-$Definition['RatingUpdateLabel'] = 'Update your rating:';
+$Definition['RatingUpdateLabel'] = 'Aggiorna il tuo voto:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = 'No rating - just a question, comment, feature request, or bug report';
 ## Label for the radio button for reporting a script
-$Definition['RatingReport'] = 'Report script to moderators for removal - malware, stolen code, etc.';
+$Definition['RatingReport'] = 'Segnala lo script ai moderatori per rimuoverlo - malware, codice rubato, ecc.';
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = 'Bad - script doesn\'t work';
 /** Label for the radio button for rating a script "OK" **/
-$Definition['RatingOK'] = 'OK - script works, but has significant issues';
+$Definition['RatingOK'] = 'OK - lo script funziona ma ha problemi significanti';
 // Label for the radio button for rating a script "Good"
-$Definition['RatingGood'] = 'Good - script works well';
+$Definition['RatingGood'] = 'Buono - lo script funziona bene';
 // Category name
 $Definition['Site Feedback'] = 'Site Feedback';
 // Category description for Site Feedback
-$Definition['Bug reports, feature requests, and other stuff about Greasy Fork itself.'] = 'Bug reports, feature requests, and other stuff about Greasy Fork itself.';
+$Definition['Bug reports, feature requests, and other stuff about Greasy Fork itself.'] = 'Segnalazioni di bug, richieste di funzionalità, e altre cose riguardo Greasy Fork.';
 // Category name
-$Definition['Development'] = 'Development';
+$Definition['Development'] = 'Sviluppo';
 // Category description for Development
-$Definition['Technical talk about user script development.'] = 'Technical talk about user script development.';
+$Definition['Technical talk about user script development.'] = 'Discorsi tecnici sullo sviluppo dello script.';
 // Category name
-$Definition['Script Creation Requests'] = 'Script Creation Requests';
+$Definition['Script Creation Requests'] = 'Richiesta creazione script';
 // Category description for Script Creation Requests
-$Definition['Request someone write a script for you.'] = 'Request someone write a script for you.';
+$Definition['Request someone write a script for you.'] = 'Richiedi a qualcuno di creare uno script per te.';
 // Category name
-$Definition['Script Discussions'] = 'Script Discussions';
+$Definition['Script Discussions'] = 'Discussioni dello script';
 // Category description for Script Discussions
-$Definition['Discussion on scripts posted to Greasy Fork.'] = 'Discussion on scripts posted to Greasy Fork.';
+$Definition['Discussion on scripts posted to Greasy Fork.'] = 'Discussioni su questi script postati da Greasy Fork';
 // Link on Recent Discussions to hide script discussions
-$Definition['Turn on filter'] = 'Hide script discussions';
+$Definition['Turn on filter'] = 'Nascondi le discussioni dello script';
 // Link on Recent Discussions to show script discussions
-$Definition['Turn off filter'] = 'Show script discussions';
+$Definition['Turn off filter'] = 'Mostra discussioni dello script';
 // Link on forum profile pointing to main site profile
-$Definition['Greasy Fork Profile'] = 'Greasy Fork Profile';
+$Definition['Greasy Fork Profile'] = 'Profilo Greasy Fork';
