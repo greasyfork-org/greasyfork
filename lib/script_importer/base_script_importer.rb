@@ -59,6 +59,8 @@ module ScriptImporter
 				return [:failure, nil, "Could not download source. #{ex.message}"]
 			rescue Timeout::Error => ex
 				return [:failure, nil, "Could not download source. Download did not complete in allowed time."]
+			rescue => ex
+				return [:failure, nil, "Could not download source. #{ex.message}"]
 			end
 			code.force_encoding(Encoding::UTF_8)
 			return [:failure, nil, "Source contains invalid UTF-8 characters."] if !code.valid_encoding?
