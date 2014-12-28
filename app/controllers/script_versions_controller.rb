@@ -23,13 +23,13 @@ class ScriptVersionsController < ApplicationController
 			previous_script = @script.script_versions.last
 			@script_version.code = previous_script.code
 			previous_script.localized_attributes.each{|la| @script_version.build_localized_attribute(la)}
-			ensure_default_additional_info(@script_version)
+			ensure_default_additional_info(@script_version, current_user.preferred_markup)
 			render :layout => 'scripts'
 		else
 			@script = Script.new
 			@script.script_type_id = 1
 			@script_version.script = @script
-			ensure_default_additional_info(@script_version)
+			ensure_default_additional_info(@script_version, current_user.preferred_markup)
 		end
 	end
 
@@ -103,7 +103,7 @@ class ScriptVersionsController < ApplicationController
 		# Don't save if this is a preview or if there's something invalid.
 		# If we're attempting to save, ensure all validations are run - short circuit the OR.
 		if !save_record or (!@script.valid? | !@script_version.valid?)
-			ensure_default_additional_info(@script_version)
+			ensure_default_additional_info(@script_version, current_user.preferred_markup)
 
 			if @script.new_record?
 				render :new
@@ -126,7 +126,7 @@ class ScriptVersionsController < ApplicationController
 	end
 
 	def additional_info_form
-		render :partial => 'additional_info', :locals => {:la => LocalizedScriptVersionAttribute.new({:attribute_default => false}), :index => params[:index].to_i}
+		render :partial => 'additional_info', :locals => {:la => LocalizedScriptVersionAttribute.new({:attribute_default => false, :value_markup => current_user.preferred_markup}), :index => params[:index].to_i}
 	end
 
 private

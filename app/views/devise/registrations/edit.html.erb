@@ -44,6 +44,16 @@
 		</select>
 	</div>
 
+	<div class="form-control">
+		<%= f.label :preferred_markup %>
+		<span class="label-note">
+			<%=t('users.preferred_markup_description')%>
+		</span><br>
+		<%=f.radio_button(:preferred_markup, 'html')%>HTML<br>
+		<%=f.radio_button(:preferred_markup, 'markdown')%><%=link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', {:target => 'markup_choice'}%>
+	</div>
+
+
 	<div>
 		<%= f.label :author_email_notification_type_id %><br>
 		<%= f.radio_button(:author_email_notification_type_id, 1)%> <label for="user_author_email_notification_type_id_1"><%=t('users.author_email_notification_type.none')%></label><br>

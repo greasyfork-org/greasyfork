@@ -351,7 +351,7 @@ class ScriptsController < ApplicationController
 		end
 
 		if !save_record || !@script.save
-			ensure_default_additional_info(@script)
+			ensure_default_additional_info(@script, current_user.preferred_markup)
 			render :sync
 			return
 		end

@@ -28,6 +28,7 @@ protected
 		devise_parameter_sanitizer.for(:account_update) << :name
 		devise_parameter_sanitizer.for(:account_update) << :profile
 		devise_parameter_sanitizer.for(:account_update) << :profile_markup
+		devise_parameter_sanitizer.for(:account_update) << :preferred_markup
 		devise_parameter_sanitizer.for(:account_update) << :locale_id
 		devise_parameter_sanitizer.for(:account_update) << :author_email_notification_type_id
 		devise_parameter_sanitizer.for(:account_update) << :show_ads
@@ -250,9 +251,9 @@ protected
 		return 'callback'
 	end
 
-	def ensure_default_additional_info(s)
+	def ensure_default_additional_info(s, default_markup = 'html')
 		if !s.localized_attributes_for('additional_info').any?{|la| la.attribute_default}
-			s.localized_attributes.build({:attribute_key => 'additional_info', :attribute_default => true})
+			s.localized_attributes.build({:attribute_key => 'additional_info', :attribute_default => true, :value_markup => default_markup})
 		end
 	end
 
