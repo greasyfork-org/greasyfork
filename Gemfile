@@ -79,3 +79,7 @@ gem 'levenshtein'
 
 gem 'byebug', group: [:development, :test]
 gem 'bullet', :group => :development
+
+group :profile do
+  gem 'ruby-prof'
+end
