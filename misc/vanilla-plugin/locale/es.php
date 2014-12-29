@@ -8,11 +8,11 @@ $Definition['on scripts by %s'] = 'en scripts de %s';
  **/
 $Definition['RatingLabel'] = '¿Cómo calificaría este script?';
 # Label for the radio buttons for updating a rating on a script
-$Definition['RatingUpdateLabel'] = 'Update your rating:';
+$Definition['RatingUpdateLabel'] = 'Actualice su calificación:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = 'Ninguna opinión - sólo una pregunta, comentario, solicitud de función, o informe de error';
 ## Label for the radio button for reporting a script
-$Definition['RatingReport'] = 'Report script to moderators for removal - malware, stolen code, etc.';
+$Definition['RatingReport'] = 'Reportar script a los moderadores para su eliminación - malware, código robado, etc.';
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = 'Malo - el script no funciona';
 /** Label for the radio button for rating a script "OK" **/
@@ -36,8 +36,8 @@ $Definition['Script Discussions'] = 'Debates sobre los Scripts';
 // Category description for Script Discussions
 $Definition['Discussion on scripts posted to Greasy Fork.'] = 'Debate sobre los scripts publicados en Greasy Fork.';
 // Link on Recent Discussions to hide script discussions
-$Definition['Turn on filter'] = 'Hide script discussions';
+$Definition['Turn on filter'] = 'Ocultar debates de scripts';
 // Link on Recent Discussions to show script discussions
-$Definition['Turn off filter'] = 'Show script discussions';
+$Definition['Turn off filter'] = 'Mostrar debates de scripts';
 // Link on forum profile pointing to main site profile
-$Definition['Greasy Fork Profile'] = 'Greasy Fork Profile';
+$Definition['Greasy Fork Profile'] = 'Perfil de Greasy Fork';
