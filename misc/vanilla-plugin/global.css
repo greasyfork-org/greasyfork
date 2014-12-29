@@ -13,3 +13,9 @@
 label[for*="Rating"] {
 	display: block !important;
 }
+
+/* https://github.com/vanilla/vanilla/pull/2369 */
+.TextBoxWrapper input[type=radio] {
+	width: auto;
+	display: inline;
+}
