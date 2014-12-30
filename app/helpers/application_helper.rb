@@ -161,8 +161,9 @@ module ApplicationHelper
 
 	# Translates an array of keys and returns a hash.
 	def translate_keys(keys)
-		values = I18n.t(keys)
-		return Hash[keys.zip(values)]
+		h = {}
+		keys.each{|k| h[k] = I18n.t(k)}
+		return h
 	end
 
 private
