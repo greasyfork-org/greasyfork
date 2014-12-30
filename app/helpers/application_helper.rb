@@ -11,10 +11,15 @@ module ApplicationHelper
 		content_for(:description) { page_description }
 	end
 
+	# Per-request cache
+	def relative_time_cutoff
+		@relative_time_cutoff ||= 1.week.ago
+	end
+
 	def markup_date(date)
 		return '?' if date.nil?
 		# Take out "about" and "less than" to make it shorter. Obviously won't work in the other languages.
-		"<time datetime=\"#{date.to_datetime.rfc3339}\">#{date > 1.week.ago ? t('helpers.application.time_difference', :relative_time => time_ago_in_words(date).sub(/\A(about |less than )/, '').capitalize) : date.strftime('%Y-%m-%d')}</time>".html_safe
+		"<time datetime=\"#{date.to_datetime.rfc3339}\">#{date > relative_time_cutoff ? t('helpers.application.time_difference', :relative_time => time_ago_in_words(date).sub(/\A(about |less than )/, '').capitalize) : date.strftime('%Y-%m-%d')}</time>".html_safe
 	end
 
 	def format_user_text(text, markup_type)
@@ -152,6 +157,12 @@ module ApplicationHelper
 
 	def forum_path
 		return "/#{I18n.locale}/forum/"
+	end
+
+	# Translates an array of keys and returns a hash.
+	def translate_keys(keys)
+		values = I18n.t(keys)
+		return Hash[keys.zip(values)]
 	end
 
 private

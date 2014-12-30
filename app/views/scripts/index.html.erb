@@ -19,7 +19,7 @@
 	<p><%=t('scripts.listing_no_scripts')%></p>
 <% else %>
 	<ol id="browse-script-list" class="script-list">
-		<%= render partial: 'script', collection: @scripts %>
+		<%= render partial: 'script', collection: @scripts, locals: {:translation_cache => translate_keys(['scripts.author_name', 'scripts.daily_installs', 'scripts.total_installs', 'scripts.ratings', 'scripts.created_date', 'scripts.updated_date']) } %>
 	</ol>
 <% end %>
 
