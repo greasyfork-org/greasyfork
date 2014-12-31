@@ -28,6 +28,7 @@
 						<option value="bg" {if $locale == 'bg'}selected{/if}>Български (bg)</option>
 						<option value="cs" {if $locale == 'cs'}selected{/if}>Čeština (cs)</option>
 						<option value="de" {if $locale == 'de'}selected{/if}>Deutsch (de)</option>
+						<option value="el" {if $locale == 'el'}selected{/if}>Ελληνικά (el)</option>
 						<option value="en" {if $locale == 'en'}selected{/if}>English (en)</option>
 						<option value="es" {if $locale == 'es'}selected{/if}>Español (es)</option>
 						<option value="fr" {if $locale == 'fr'}selected{/if}>Français (fr)</option>
