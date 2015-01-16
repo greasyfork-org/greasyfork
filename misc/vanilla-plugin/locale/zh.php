@@ -19,22 +19,22 @@ $Definition['RatingBad'] = '不好 - 脚本不起作用';
 $Definition['RatingOK'] = '还好 - 脚本起作用，但有显著的问题';
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = '不错 - 脚本运行良好';
-// Category name
-$Definition['Site Feedback'] = '网站反馈';
+// Category name for Site Feedback
+$Definition['Categories.general.Name'] = '网站反馈';
 // Category description for Site Feedback
-$Definition['Bug reports, feature requests, and other stuff about Greasy Fork itself.'] = '有关 Greasy Fork 本身的故障报告、功能需求等事务。';
-// Category name
-$Definition['Development'] = '脚本开发';
+$Definition['Categories.general.Description'] = '有关 Greasy Fork 本身的故障报告、功能需求等事务。';
+// Category name for Development
+$Definition['Categories.script-development.Name'] = '脚本开发';
 // Category description for Development
-$Definition['Technical talk about user script development.'] = '有关用户脚本开发的技术讨论。';
-// Category name
-$Definition['Script Creation Requests'] = '脚本创建请求';
+$Definition['Categories.script-development.Description'] = '有关用户脚本开发的技术讨论。';
+// Category name for Script Creation Requests
+$Definition['Categories.script-requests.Name'] = '脚本创建请求';
 // Category description for Script Creation Requests
-$Definition['Request someone write a script for you.'] = '请求别人为您写一个脚本。';
-// Category name
-$Definition['Script Discussions'] = '脚本讨论';
+$Definition['Categories.script-requests.Description'] = '请求别人为您写一个脚本。';
+// Category name for Script Discussions
+$Definition['Categories.script-discussions.Name'] = '脚本讨论';
 // Category description for Script Discussions
-$Definition['Discussion on scripts posted to Greasy Fork.'] = '发布到 Greasy Fork 脚本上的讨论。';
+$Definition['Categories.script-discussions.Description'] = '发布到 Greasy Fork 脚本上的讨论。';
 // Link on Recent Discussions to hide script discussions
 $Definition['Turn on filter'] = '隐藏脚本讨论';
 // Link on Recent Discussions to show script discussions

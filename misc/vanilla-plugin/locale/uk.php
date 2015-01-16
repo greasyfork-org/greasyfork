@@ -19,22 +19,22 @@ $Definition['RatingBad'] = 'Погано - скрипт не працює';
 $Definition['RatingOK'] = 'Нормально - скрипт працює, але має значні недоліки';
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'Добре - скрипт працює добре';
-// Category name
-$Definition['Site Feedback'] = 'Відгуки що до сайту';
+// Category name for Site Feedback
+$Definition['Categories.general.Name'] = 'Відгуки що до сайту';
 // Category description for Site Feedback
-$Definition['Bug reports, feature requests, and other stuff about Greasy Fork itself.'] = 'Bug reports, feature requests, and other stuff about Greasy Fork itself.';
-// Category name
-$Definition['Development'] = 'Розробка';
+$Definition['Categories.general.Description'] = 'Bug reports, feature requests, and other stuff about Greasy Fork itself.';
+// Category name for Development
+$Definition['Categories.script-development.Name'] = 'Розробка';
 // Category description for Development
-$Definition['Technical talk about user script development.'] = 'Технічні розмови про створення скриптів';
-// Category name
-$Definition['Script Creation Requests'] = 'Прохання створення скриптів';
+$Definition['Categories.script-development.Description'] = 'Технічні розмови про створення скриптів';
+// Category name for Script Creation Requests
+$Definition['Categories.script-requests.Name'] = 'Прохання створення скриптів';
 // Category description for Script Creation Requests
-$Definition['Request someone write a script for you.'] = 'Попросити когось написати для Вас скрипт';
-// Category name
-$Definition['Script Discussions'] = 'Обговорення скриптів';
+$Definition['Categories.script-requests.Description'] = 'Попросити когось написати для Вас скрипт';
+// Category name for Script Discussions
+$Definition['Categories.script-discussions.Name'] = 'Обговорення скриптів';
 // Category description for Script Discussions
-$Definition['Discussion on scripts posted to Greasy Fork.'] = 'Обговорення скриптів доданих до Greasy Fork\'у';
+$Definition['Categories.script-discussions.Description'] = 'Обговорення скриптів доданих до Greasy Fork\'у';
 // Link on Recent Discussions to hide script discussions
 $Definition['Turn on filter'] = 'Приховати обговорення скрипту';
 // Link on Recent Discussions to show script discussions

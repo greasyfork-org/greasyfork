@@ -19,22 +19,22 @@ $Definition['RatingBad'] = 'Buruk - naskah tidak bekerja';
 $Definition['RatingOK'] = 'OK - naskah bekerja, tapi memiliki masalah signifikan';
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'Bagus - naskah bekerja dengan baik';
-// Category name
-$Definition['Site Feedback'] = 'Umpan Balik Situs';
+// Category name for Site Feedback
+$Definition['Categories.general.Name'] = 'Umpan Balik Situs';
 // Category description for Site Feedback
-$Definition['Bug reports, feature requests, and other stuff about Greasy Fork itself.'] = 'Laporan bug, permintaan fitur, dan hal lain mengenai Greasy Fork itu sendiri.';
-// Category name
-$Definition['Development'] = 'Pengembangan';
+$Definition['Categories.general.Description'] = 'Laporan bug, permintaan fitur, dan hal lain mengenai Greasy Fork itu sendiri.';
+// Category name for Development
+$Definition['Categories.script-development.Name'] = 'Pengembangan';
 // Category description for Development
-$Definition['Technical talk about user script development.'] = 'Pembicaraan teknis mengenai pengembangan naskah pengguna.';
-// Category name
-$Definition['Script Creation Requests'] = 'Permintaan Pembuatan Naskah';
+$Definition['Categories.script-development.Description'] = 'Pembicaraan teknis mengenai pengembangan naskah pengguna.';
+// Category name for Script Creation Requests
+$Definition['Categories.script-requests.Name'] = 'Permintaan Pembuatan Naskah';
 // Category description for Script Creation Requests
-$Definition['Request someone write a script for you.'] = 'Minta seseorang menuliskan naskah untukmu.';
-// Category name
-$Definition['Script Discussions'] = 'Diskusi Naskah';
+$Definition['Categories.script-requests.Description'] = 'Minta seseorang menuliskan naskah untukmu.';
+// Category name for Script Discussions
+$Definition['Categories.script-discussions.Name'] = 'Diskusi Naskah';
 // Category description for Script Discussions
-$Definition['Discussion on scripts posted to Greasy Fork.'] = 'Diskusi pada naskah yang diposting ke Greasy Fork.';
+$Definition['Categories.script-discussions.Description'] = 'Diskusi pada naskah yang diposting ke Greasy Fork.';
 // Link on Recent Discussions to hide script discussions
 $Definition['Turn on filter'] = 'Sembunyikan diskusi naskah';
 // Link on Recent Discussions to show script discussions

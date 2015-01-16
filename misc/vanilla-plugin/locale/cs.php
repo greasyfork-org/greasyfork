@@ -19,22 +19,22 @@ $Definition['RatingBad'] = 'Špatné - skript nefunguje';
 $Definition['RatingOK'] = 'V pořádku - skript funguje, ale má závažné nedostatky';
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'Dobré - skript funguje správně';
-// Category name
-$Definition['Site Feedback'] = 'Zpětná vazba Greasy Fork';
+// Category name for Site Feedback
+$Definition['Categories.general.Name'] = 'Zpětná vazba Greasy Fork';
 // Category description for Site Feedback
-$Definition['Bug reports, feature requests, and other stuff about Greasy Fork itself.'] = 'Hlášení chyb, požadavek na funkcionalitu a ostatní záležitosti ohledně Greasy Fork.';
-// Category name
-$Definition['Development'] = 'Vývoj';
+$Definition['Categories.general.Description'] = 'Hlášení chyb, požadavek na funkcionalitu a ostatní záležitosti ohledně Greasy Fork.';
+// Category name for Development
+$Definition['Categories.script-development.Name'] = 'Vývoj';
 // Category description for Development
-$Definition['Technical talk about user script development.'] = 'Technická debata o vývoji uživatelských skriptů.';
-// Category name
-$Definition['Script Creation Requests'] = 'Požadavek na vytvoření skriptu';
+$Definition['Categories.script-development.Description'] = 'Technická debata o vývoji uživatelských skriptů.';
+// Category name for Script Creation Requests
+$Definition['Categories.script-requests.Name'] = 'Požadavek na vytvoření skriptu';
 // Category description for Script Creation Requests
-$Definition['Request someone write a script for you.'] = 'Požádejte někoho, aby pro vás napsal skript.';
-// Category name
-$Definition['Script Discussions'] = 'Diskuse o skriptech';
+$Definition['Categories.script-requests.Description'] = 'Požádejte někoho, aby pro vás napsal skript.';
+// Category name for Script Discussions
+$Definition['Categories.script-discussions.Name'] = 'Diskuse o skriptech';
 // Category description for Script Discussions
-$Definition['Discussion on scripts posted to Greasy Fork.'] = 'Diskuse o skriptech nahraných na Greasy Fork.';
+$Definition['Categories.script-discussions.Description'] = 'Diskuse o skriptech nahraných na Greasy Fork.';
 // Link on Recent Discussions to hide script discussions
 $Definition['Turn on filter'] = 'Skrýt diskuse o skriptech';
 // Link on Recent Discussions to show script discussions

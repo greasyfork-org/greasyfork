@@ -19,22 +19,22 @@ $Definition['RatingBad'] = 'سيء - البرنامج النصي لا يعمل';
 $Definition['RatingOK'] = 'لا بأس - البرنامج النصي يعمل، ولكن فيه مشاكل كبيرة';
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'جيدة - البرنامج النصي يعمل بشكل جيد';
-// Category name
-$Definition['Site Feedback'] = 'ردود الفعل عن الموقع';
+// Category name for Site Feedback
+$Definition['Categories.general.Name'] = 'ردود الفعل عن الموقع';
 // Category description for Site Feedback
-$Definition['Bug reports, feature requests, and other stuff about Greasy Fork itself.'] = 'إبلاغ عن خطأ، طلب ميزة وأشياء أخرى عن Greasy Fork نفسه.';
-// Category name
-$Definition['Development'] = 'التطوير';
+$Definition['Categories.general.Description'] = 'إبلاغ عن خطأ، طلب ميزة وأشياء أخرى عن Greasy Fork نفسه.';
+// Category name for Development
+$Definition['Categories.script-development.Name'] = 'التطوير';
 // Category description for Development
-$Definition['Technical talk about user script development.'] = 'حديث فني حول تطوير البرامج النصية.';
-// Category name
-$Definition['Script Creation Requests'] = 'طلب إنشاء برنامج نصي';
+$Definition['Categories.script-development.Description'] = 'حديث فني حول تطوير البرامج النصية.';
+// Category name for Script Creation Requests
+$Definition['Categories.script-requests.Name'] = 'طلب إنشاء برنامج نصي';
 // Category description for Script Creation Requests
-$Definition['Request someone write a script for you.'] = 'طلب من شخص ما كتابة برنامج نصي لك.';
-// Category name
-$Definition['Script Discussions'] = 'مناقشات البرامج النصية';
+$Definition['Categories.script-requests.Description'] = 'طلب من شخص ما كتابة برنامج نصي لك.';
+// Category name for Script Discussions
+$Definition['Categories.script-discussions.Name'] = 'مناقشات البرامج النصية';
 // Category description for Script Discussions
-$Definition['Discussion on scripts posted to Greasy Fork.'] = 'نقاش حول البرامج النصية التي أضيفت إلى Greasy Fork';
+$Definition['Categories.script-discussions.Description'] = 'نقاش حول البرامج النصية التي أضيفت إلى Greasy Fork';
 // Link on Recent Discussions to hide script discussions
 $Definition['Turn on filter'] = 'إخفاء النقاشات';
 // Link on Recent Discussions to show script discussions

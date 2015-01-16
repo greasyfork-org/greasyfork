@@ -19,22 +19,22 @@ $Definition['RatingBad'] = 'Κακό - ο κώδικας δεν λειτουργ
 $Definition['RatingOK'] = 'Εντάξει - ο κώδικας λειτουργεί, αλλά έχει σημαντικά θέματα';
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'Καλό - ο κώδικας λειτουργεί καλά';
-// Category name
-$Definition['Site Feedback'] = 'Ανατροφοδότηση Ιστοσελίδας';
+// Category name for Site Feedback
+$Definition['Categories.general.Name'] = 'Ανατροφοδότηση Ιστοσελίδας';
 // Category description for Site Feedback
-$Definition['Bug reports, feature requests, and other stuff about Greasy Fork itself.'] = 'Αναφορές σφάλματος, αιτήματα για χαρακτηριστικά και άλλα πράγματα αποκλειστικά για το Greasy Fork.';
-// Category name
-$Definition['Development'] = 'Ανάπτυξη';
+$Definition['Categories.general.Description'] = 'Αναφορές σφάλματος, αιτήματα για χαρακτηριστικά και άλλα πράγματα αποκλειστικά για το Greasy Fork.';
+// Category name for Development
+$Definition['Categories.script-development.Name'] = 'Ανάπτυξη';
 // Category description for Development
-$Definition['Technical talk about user script development.'] = 'Τεχνική συζήτηση για την ανάπτυξη κώδικα χρηστών.';
-// Category name
-$Definition['Script Creation Requests'] = 'Αιτήματα Δημιουργίας Κώδικα';
+$Definition['Categories.script-development.Description'] = 'Τεχνική συζήτηση για την ανάπτυξη κώδικα χρηστών.';
+// Category name for Script Creation Requests
+$Definition['Categories.script-requests.Name'] = 'Αιτήματα Δημιουργίας Κώδικα';
 // Category description for Script Creation Requests
-$Definition['Request someone write a script for you.'] = 'Ζητήστε από κάποιον να γράψει κώδικα για εσάς.';
-// Category name
-$Definition['Script Discussions'] = 'Συζητήσεις Κώδικα';
+$Definition['Categories.script-requests.Description'] = 'Ζητήστε από κάποιον να γράψει κώδικα για εσάς.';
+// Category name for Script Discussions
+$Definition['Categories.script-discussions.Name'] = 'Συζητήσεις Κώδικα';
 // Category description for Script Discussions
-$Definition['Discussion on scripts posted to Greasy Fork.'] = 'Συζήτηση για κώδικες που δημοσιεύτηκαν στο Greasy Fork.';
+$Definition['Categories.script-discussions.Description'] = 'Συζήτηση για κώδικες που δημοσιεύτηκαν στο Greasy Fork.';
 // Link on Recent Discussions to hide script discussions
 $Definition['Turn on filter'] = 'Απόκρυψη συζητήσεων κώδικα';
 // Link on Recent Discussions to show script discussions
