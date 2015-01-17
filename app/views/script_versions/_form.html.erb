@@ -33,8 +33,6 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
 				<% displayed_errors = []
 				script_version.screenshots.each do |screenshot|
 					screenshot.errors.each do |attr, msg|
-						# This seems to be duplicating the messages
-						next if attr.to_s == 'screenshot'
 						displayed_errors << attr.to_s.humanize + ' ' + msg
 					end
 				end
