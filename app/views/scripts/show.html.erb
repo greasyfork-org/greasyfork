@@ -73,11 +73,20 @@
 </div>
 
 <% localized_additional_info = @script.localized_attribute_for('additional_info', I18n.locale)
-if !localized_additional_info.nil? %>
+if !localized_additional_info.nil? || !@script_version.screenshots.empty? %>
 	<div id="additional-info">
 		<h3><%=t('scripts.additional_info')%></h3>
-		<div>
-			<%=format_user_text(localized_additional_info.attribute_value, localized_additional_info.value_markup)%>
-		</div>
+		<% if !localized_additional_info.nil? %>
+			<div class="script-author-description">
+				<%=format_user_text(localized_additional_info.attribute_value, localized_additional_info.value_markup)%>
+			</div>
+		<% end %>
+		<% if !@script_version.screenshots.empty? %>
+			<div class="script-screenshots">
+				<% @script_version.screenshots.each do |screenshot| %>
+					<a href="<%=screenshot.screenshot.url%>" class="fancybox" rel="fancybox-screenshots"><%= image_tag screenshot.screenshot.url(:thumb) %>
+				<% end %>
+			</div>
+		<% end %>
 	</div>
 <% end %>

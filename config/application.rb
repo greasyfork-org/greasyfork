@@ -32,6 +32,9 @@ module Greasyfork
 
     config.syntax_highlighting_limit = 500.kilobytes
 
+    config.screenshot_max_count = 5
+    config.screenshot_max_size = 200.kilobytes
+
     Mime::Type.register "application/javascript", :jsonp
   end
 end

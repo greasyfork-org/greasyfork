@@ -12,6 +12,7 @@ class ScriptVersion < ActiveRecord::Base
 	belongs_to :rewritten_script_code, :class_name => 'ScriptCode', :autosave => true
 
 	has_many :localized_attributes, :class_name => 'LocalizedScriptVersionAttribute', :autosave => true
+	has_and_belongs_to_many :screenshots, :autosave => true
 
 	strip_attributes :only => [:changelog]
 
@@ -19,6 +20,11 @@ class ScriptVersion < ActiveRecord::Base
 
 	validates_length_of :code, :maximum => 2000000
 	validates_length_of :changelog, :maximum => 500
+
+	validate :number_of_screenshots
+	def number_of_screenshots
+		errors.add(:base, I18n.t('errors.messages.script_too_many_screenshots', :number => Rails.configuration.screenshot_max_count)) if screenshots.length > Rails.configuration.screenshot_max_count
+	end
 
 	validates_each(:code, :allow_nil => true, :allow_blank => true) do |record, attr, value|
 		meta = ScriptVersion.parse_meta(value)

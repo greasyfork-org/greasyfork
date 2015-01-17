@@ -76,6 +76,8 @@ gem 'omniauth-google-oauth2'
 gem 'omniauth-browserid'
 gem 'detect_language'
 gem 'levenshtein'
+gem "paperclip", "~> 4.2"
+gem 'fancybox2-rails', '~> 0.2.8'
 
 gem 'byebug', group: [:development, :test]
 gem 'bullet', :group => :development

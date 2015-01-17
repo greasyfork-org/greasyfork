@@ -24,12 +24,14 @@ class ScriptVersionsController < ApplicationController
 			@script_version.code = previous_script.code
 			previous_script.localized_attributes.each{|la| @script_version.build_localized_attribute(la)}
 			ensure_default_additional_info(@script_version, current_user.preferred_markup)
+			@current_screenshots = previous_script.screenshots
 			render :layout => 'scripts'
 		else
 			@script = Script.new
 			@script.script_type_id = 1
 			@script_version.script = @script
 			ensure_default_additional_info(@script_version, current_user.preferred_markup)
+			@current_screenshots = []
 		end
 	end
 
@@ -100,9 +102,26 @@ class ScriptVersionsController < ApplicationController
 			@script_version.localized_attributes.build({:attribute_key => 'additional_info', :attribute_default => false})
 		end
 
+		# Existing screenshots
+		if !@script.script_versions.last.nil?
+			@script.script_versions.last.screenshots.each do |screenshot|
+				@script_version.screenshots << screenshot unless params["remove-screenshot-#{screenshot.id}"]
+			end
+		end
+		# New screenshots
+		if !params[:screenshots].nil?
+			params[:screenshots].each do |screenshot_param|
+				@script_version.screenshots.build(:screenshot => screenshot_param)
+			end
+		end
+
 		# Don't save if this is a preview or if there's something invalid.
 		# If we're attempting to save, ensure all validations are run - short circuit the OR.
 		if !save_record or (!@script.valid? | !@script_version.valid?)
+
+			# Unfortunately, we can't retain what the user picked for screenshots
+			@current_screenshots = @script.get_newest_saved_script_version.screenshots
+
 			ensure_default_additional_info(@script_version, current_user.preferred_markup)
 
 			if @script.new_record?

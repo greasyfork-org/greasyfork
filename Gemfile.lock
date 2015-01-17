@@ -53,6 +53,10 @@ GEM
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
       slop (~> 3.6)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.5)
+      climate_control (>= 0.0.3, < 1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -82,6 +86,8 @@ GEM
     diffy (3.0.6)
     erubis (2.7.0)
     execjs (2.2.1)
+    fancybox2-rails (0.2.8)
+      railties (>= 3.1.0, < 5.0)
     faraday (0.8.9)
       multipart-post (~> 1.2.0)
     faraday_middleware (0.9.1)
@@ -144,6 +150,11 @@ GEM
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
     orm_adapter (0.5.0)
+    paperclip (4.2.1)
+      activemodel (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      cocaine (~> 0.5.3)
+      mime-types
     public_suffix (1.4.6)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -244,6 +255,7 @@ DEPENDENCIES
   devise-i18n
   devise-i18n-views (~> 0.3.3)
   diffy (~> 3.0.5)
+  fancybox2-rails (~> 0.2.8)
   i18n (>= 0.6.11)
   ignorable
   jbuilder (~> 1.2)
@@ -255,6 +267,7 @@ DEPENDENCIES
   omniauth-browserid
   omniauth-github
   omniauth-google-oauth2
+  paperclip (~> 4.2)
   public_suffix
   rails (= 4.1.6)
   rails-i18n (~> 4.0.0)

@@ -243,6 +243,10 @@
 		}
 	}
 
+	function hookUpFancyBox() {
+		$("a.fancybox").fancybox({closeClick: true});
+	}
+
 	function init() {
 		hookUpSelectAllCheckboxes();
 		hookUpInstallPingers();
@@ -253,6 +257,7 @@
 		hookUpAddSyncedLocalizedAdditionalInfo();
 		hookUpExpandableText();
 		restyleScreenMaxHeight();
+		hookUpFancyBox();
 	}
 	
 	window.addEventListener("DOMContentLoaded", init);
