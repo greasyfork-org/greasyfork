@@ -270,8 +270,11 @@ dt[title] > span {
 .script-author-description > *:last-child {
 	margin-bottom: 0;
 }
-.script-screenshots > * {
+.script-screenshots * {
 	vertical-align: middle;
+}
+.script-screenshots a {
+	text-decoration: none;
 }
 
 .form-control {
