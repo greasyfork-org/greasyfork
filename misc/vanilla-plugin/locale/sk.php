@@ -1,24 +1,24 @@
 <?php
 /* Label for inputting a script ID when creating/editing a discussion */
-$Definition['Item ID:'] = 'معرف البرنامج النصي:';
+$Definition['Item ID:'] = 'Script ID:';
 // Appended to "Discussions" when viewing a list of discussions on scripts by a user. %s is the user name.
-$Definition['on scripts by %s'] = 'حول البرامج النصية بواسطة %s';
+$Definition['on scripts by %s'] = 'on scripts by %s';
 /*
  *  Label for the radio buttons for rating a script
  **/
-$Definition['RatingLabel'] = 'كيف تقيم هذا البرنامج النصي؟';
+$Definition['RatingLabel'] = 'How would you rate this script?';
 # Label for the radio buttons for updating a rating on a script
-$Definition['RatingUpdateLabel'] = 'تحديث تقييمك:';
+$Definition['RatingUpdateLabel'] = 'Update your rating:';
 # Label for the radio button for not rating a script
-$Definition['RatingNone'] = 'لا يوجد تقييم - مجرد سؤال، تعليق، طلب ميزة، أو تقرير أخطاء';
+$Definition['RatingNone'] = 'No rating - just a question, comment, feature request, or bug report';
 ## Label for the radio button for reporting a script
-$Definition['RatingReport'] = 'إبلاغ المشرفين لإزالة البرنامج النصي - البرمجيات الخبيثة، كود مسروق، الخ';
+$Definition['RatingReport'] = 'Report script to moderators for removal - malware, stolen code, etc.';
 /** Label for the radio button for rating a script "Bad" */
-$Definition['RatingBad'] = 'سيء - البرنامج النصي لا يعمل';
+$Definition['RatingBad'] = 'Bad - script doesn\'t work';
 /** Label for the radio button for rating a script "OK" **/
-$Definition['RatingOK'] = 'لا بأس - البرنامج النصي يعمل، ولكن فيه مشاكل كبيرة';
+$Definition['RatingOK'] = 'OK - script works, but has significant issues';
 // Label for the radio button for rating a script "Good"
-$Definition['RatingGood'] = 'جيدة - البرنامج النصي يعمل بشكل جيد';
+$Definition['RatingGood'] = 'Good - script works well';
 // Category name for Site Feedback
 $Definition['Categories.general.Name'] = 'Site Feedback';
 // Category description for Site Feedback
@@ -36,8 +36,8 @@ $Definition['Categories.script-discussions.Name'] = 'Script Discussions';
 // Category description for Script Discussions
 $Definition['Categories.script-discussions.Description'] = 'Discussion on scripts posted to Greasy Fork.';
 // Link on Recent Discussions to hide script discussions
-$Definition['Turn on filter'] = 'إخفاء النقاشات';
+$Definition['Turn on filter'] = 'Hide script discussions';
 // Link on Recent Discussions to show script discussions
-$Definition['Turn off filter'] = 'إظهار النقاشات';
+$Definition['Turn off filter'] = 'Show script discussions';
 // Link on forum profile pointing to main site profile
-$Definition['Greasy Fork Profile'] = 'Greasy Fork الملف الشخصي';
+$Definition['Greasy Fork Profile'] = 'Greasy Fork Profile';

@@ -20,21 +20,21 @@ $Definition['RatingOK'] = 'Tamam - script çalışıyor, ama önemli sorunları 
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'Güzel - script güzel çalışıyor';
 // Category name for Site Feedback
-$Definition['Categories.general.Name'] = 'Site Geribeslemesi';
+$Definition['Categories.general.Name'] = 'Site geribildirimi';
 // Category description for Site Feedback
-$Definition['Categories.general.Description'] = 'Bug raporları, özellik isteği ve Greasy Fork hakkında diğer şeyler.';
+$Definition['Categories.general.Description'] = 'Bug bildirimi, özellik isteği, ve Greasy Fork\'un kendisi hakkında diğer şeyler.';
 // Category name for Development
 $Definition['Categories.script-development.Name'] = 'Geliştirme';
 // Category description for Development
-$Definition['Categories.script-development.Description'] = 'Script geliştirmesi için üyelerle tekniksel konuş.';
+$Definition['Categories.script-development.Description'] = 'Kullanıcı scriptlerinin geliştirilmesi hakkında teknik konuşma';
 // Category name for Script Creation Requests
-$Definition['Categories.script-requests.Name'] = 'Script Oluşturma İsteği';
+$Definition['Categories.script-requests.Name'] = 'Script Oluşturma İstekleri';
 // Category description for Script Creation Requests
-$Definition['Categories.script-requests.Description'] = 'Birisinden sizin için script yazmasıın isteyin.';
+$Definition['Categories.script-requests.Description'] = 'Birinin sizin için Script yazmasını isteyin.';
 // Category name for Script Discussions
-$Definition['Categories.script-discussions.Name'] = 'Tartırşma Başlat';
+$Definition['Categories.script-discussions.Name'] = 'Script tartışmaları';
 // Category description for Script Discussions
-$Definition['Categories.script-discussions.Description'] = 'Script tartışmasını Greasy Fork yayınlamış. ';
+$Definition['Categories.script-discussions.Description'] = 'Greasy Fork\'ta paylaşılan scriptlerin üzerine tartışmalar';
 // Link on Recent Discussions to hide script discussions
 $Definition['Turn on filter'] = 'Script tartışmalarını gizle';
 // Link on Recent Discussions to show script discussions

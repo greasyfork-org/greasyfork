@@ -6,19 +6,19 @@ $Definition['on scripts by %s'] = '来自 %s 的评价';
 /*
  *  Label for the radio buttons for rating a script
  **/
-$Definition['RatingLabel'] = '您想怎么评价这个脚本？';
+$Definition['RatingLabel'] = '您想如何评价这个脚本？';
 # Label for the radio buttons for updating a rating on a script
-$Definition['RatingUpdateLabel'] = '更新您的评价：';
+$Definition['RatingUpdateLabel'] = '更新您的评分：';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = '无评分 - 只是一个询问、评论、功能要求或错误报告';
 ## Label for the radio button for reporting a script
-$Definition['RatingReport'] = '向管理员举报脚本来移除它 - 恶意代码，抄袭代码，等等。';
+$Definition['RatingReport'] = '向管理员举报来要求移除脚本 - 恶意代码、代码抄袭等等。';
 /** Label for the radio button for rating a script "Bad" */
-$Definition['RatingBad'] = '不好 - 脚本不起作用';
+$Definition['RatingBad'] = '差评 - 脚本失效、用不了';
 /** Label for the radio button for rating a script "OK" **/
-$Definition['RatingOK'] = '还好 - 脚本起作用，但有显著的问题';
+$Definition['RatingOK'] = '一般 - 脚本游泳，但还有一些问题';
 // Label for the radio button for rating a script "Good"
-$Definition['RatingGood'] = '不错 - 脚本运行良好';
+$Definition['RatingGood'] = '好评 - 一切运行良好';
 // Category name for Site Feedback
 $Definition['Categories.general.Name'] = '网站反馈';
 // Category description for Site Feedback
@@ -34,10 +34,10 @@ $Definition['Categories.script-requests.Description'] = '请求别人为您写�
 // Category name for Script Discussions
 $Definition['Categories.script-discussions.Name'] = '脚本讨论';
 // Category description for Script Discussions
-$Definition['Categories.script-discussions.Description'] = '发布到 Greasy Fork 脚本上的讨论。';
+$Definition['Categories.script-discussions.Description'] = '讨论已发布到 Greasy Fork 上的脚本。';
 // Link on Recent Discussions to hide script discussions
 $Definition['Turn on filter'] = '隐藏脚本讨论';
 // Link on Recent Discussions to show script discussions
 $Definition['Turn off filter'] = '显示脚本讨论';
 // Link on forum profile pointing to main site profile
-$Definition['Greasy Fork Profile'] = 'Greasy Fork个人资料';
+$Definition['Greasy Fork Profile'] = 'Greasy Fork 个人资料';

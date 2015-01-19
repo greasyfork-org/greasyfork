@@ -20,21 +20,21 @@ $Definition['RatingOK'] = 'OK - naskah bekerja, tapi memiliki masalah signifikan
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'Bagus - naskah bekerja dengan baik';
 // Category name for Site Feedback
-$Definition['Categories.general.Name'] = 'Umpan Balik Situs';
+$Definition['Categories.general.Name'] = 'Site Feedback';
 // Category description for Site Feedback
-$Definition['Categories.general.Description'] = 'Laporan bug, permintaan fitur, dan hal lain mengenai Greasy Fork itu sendiri.';
+$Definition['Categories.general.Description'] = 'Bug reports, feature requests, and other stuff about Greasy Fork itself.';
 // Category name for Development
-$Definition['Categories.script-development.Name'] = 'Pengembangan';
+$Definition['Categories.script-development.Name'] = 'Development';
 // Category description for Development
-$Definition['Categories.script-development.Description'] = 'Pembicaraan teknis mengenai pengembangan naskah pengguna.';
+$Definition['Categories.script-development.Description'] = 'Technical talk about user script development.';
 // Category name for Script Creation Requests
-$Definition['Categories.script-requests.Name'] = 'Permintaan Pembuatan Naskah';
+$Definition['Categories.script-requests.Name'] = 'Script Creation Requests';
 // Category description for Script Creation Requests
-$Definition['Categories.script-requests.Description'] = 'Minta seseorang menuliskan naskah untukmu.';
+$Definition['Categories.script-requests.Description'] = 'Request someone write a script for you.';
 // Category name for Script Discussions
-$Definition['Categories.script-discussions.Name'] = 'Diskusi Naskah';
+$Definition['Categories.script-discussions.Name'] = 'Script Discussions';
 // Category description for Script Discussions
-$Definition['Categories.script-discussions.Description'] = 'Diskusi pada naskah yang diposting ke Greasy Fork.';
+$Definition['Categories.script-discussions.Description'] = 'Discussion on scripts posted to Greasy Fork.';
 // Link on Recent Discussions to hide script discussions
 $Definition['Turn on filter'] = 'Sembunyikan diskusi naskah';
 // Link on Recent Discussions to show script discussions

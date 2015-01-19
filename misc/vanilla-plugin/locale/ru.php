@@ -20,21 +20,21 @@ $Definition['RatingOK'] = 'Неважный - скрипт работает, н�
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'Хороший - скрипт работает как нужно';
 // Category name for Site Feedback
-$Definition['Categories.general.Name'] = 'Работа сайта';
+$Definition['Categories.general.Name'] = 'Обратная связь';
 // Category description for Site Feedback
-$Definition['Categories.general.Description'] = 'Обсуждение работы сайта Greasy Fork.';
+$Definition['Categories.general.Description'] = 'Найденные ошибки, предложения и другое касательно самого сайта Greasy Fork';
 // Category name for Development
-$Definition['Categories.script-development.Name'] = 'Разработка скриптов';
+$Definition['Categories.script-development.Name'] = 'Разработка';
 // Category description for Development
-$Definition['Categories.script-development.Description'] = 'Всё о разработке пользовательских скриптов.';
+$Definition['Categories.script-development.Description'] = 'Технические обсуждения разработки скриптов.';
 // Category name for Script Creation Requests
-$Definition['Categories.script-requests.Name'] = 'Хотелки';
+$Definition['Categories.script-requests.Name'] = 'Запросы на создание скриптов';
 // Category description for Script Creation Requests
-$Definition['Categories.script-requests.Description'] = 'Вы можете попросить создать для вас скрипт.';
+$Definition['Categories.script-requests.Description'] = 'Попросите кого-нибудь написать для вас скрипт.';
 // Category name for Script Discussions
-$Definition['Categories.script-discussions.Name'] = 'Обсуждение скриптов';
+$Definition['Categories.script-discussions.Name'] = 'Обсуждения скриптов';
 // Category description for Script Discussions
-$Definition['Categories.script-discussions.Description'] = 'Обсуждение скриптов, размещенных на Greasy Fork.';
+$Definition['Categories.script-discussions.Description'] = 'Обсуждения скриптов в Greasy Fork';
 // Link on Recent Discussions to hide script discussions
 $Definition['Turn on filter'] = 'Скрыть обсуждения скрипта';
 // Link on Recent Discussions to show script discussions

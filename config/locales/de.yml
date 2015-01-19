@@ -109,8 +109,8 @@ de:
     support_email: "Dem Autor eine E-Mail schreiben, um Unterstützung zu erhalten."
     contribution_no_amount: "Bedanken Sie sich mit einer Spende bei %{author}."
     contribution_with_amount: "Bedanken Sie sich mit einer Spende bei %{author}. Die vorgeschlagene Spendensumme beträgt %{amount}."
-    contribution_bitcoin_no_amount_html: "Bedanken Sie sich bei %{author} mit einer Bitcoin Spende an %{address}."
-    contribution_bitcoin_with_amount_html: "Bedanken Sie sich bei %{author} mit einer Bitcoin Spende an %{address}. Die vorgeschlagene Spendensumme beträgt %{amount}."
+    contribution_bitcoin_no_amount_html: "Bedanken Sie sich bei %{author} mit einer Bitcoin-Spende an %{address}."
+    contribution_bitcoin_with_amount_html: "Bedanken Sie sich bei %{author} mit einer Bitcoin-Spende an %{address}. Die vorgeschlagene Spendensumme beträgt %{amount}."
     locale_explanation_html: "Sollte der Sprache von <code>@name</code>, <code>@description</code> und der ersten zusätzlichen Informationen entsprechen."
     locale_auto_select: "(Automatisch bestimmen)"
     sets_label: "In Skriptlisten:"
@@ -147,8 +147,8 @@ de:
     warning_potentially_minified_allowed_requires_link: "einer dieser Seiten"
     additional_info_locale_prompt: "(Wählen Sie eine Sprache)"
     additional_info_add_localized: "Lokalisierte zusätzliche Informationen hinzufügen"
-    additional_info_locale_repeated: "Zusätzliche Informationen für Sprache '%{locale_code}' nur ein mal hinzufügen"
-    localized_additional_info_with_no_name: "Zusätzliche Informationen sind für Sprache '%{locale_code}' angegebene, @name:%{locale_code} wird aber nciht bereitgestellt."
+    additional_info_locale_repeated: "Zusätzliche Informationen für Sprache »%{locale_code}« nur einmal hinzufügen"
+    localized_additional_info_with_no_name: "Zusätzliche Informationen sind für Sprache »%{locale_code}« angegeben, @name:%{locale_code} wird aber nicht bereitgestellt."
     code_syncing_from_url_html: "Der Quelltext des Skripts ist eingestellt für Synchronisation von: %{field}"
     provide_code_syncing_from_url_html: "Greasy Fork kann Skripte importieren, welche schon an anderer Stelle gespeichert sind, wie beispielsweise in einer Versionskontrolle (wie GitHub), Ihrem eigenen Server oder einer anderen Benutzerskript Seite. Geben Sie bitte eine Internetadresse an, um die Synchronisierung für Ihr Skript einzurichten: %{field}"
     sync_type_intro: "Das Skript wird synchronisiert:"
@@ -164,6 +164,9 @@ de:
     additional_info_default_sync_html: "Standard zusätzliche Informationen (Sprache entsprichte <code>@name</code>)"
     additional_info_localized_sync_html: "Für Sprache (entspricht <code>@name:XX</code>)"
     sync_url_placeholder: "(Internetadresse)"
+    screenshots_explanation: "Maximal %{number} PNG, GIF oder JPEG Bilder erlaubt, jedes kleiner als %{size}."
+    screenshots_add: "Hinzufügen:"
+    screenshots_remove: "Entfernen"
   script_sets:
     favorites_name: "Favoriten"
     delete: "Skriptliste löschen"
@@ -248,8 +251,8 @@ de:
     listing_updated_scripts: "Aktualisierte Skripte"
     listing_registration_date: "Datum der Registrierung"
     locale_prompt: "(Sprache wählen)"
-    show_ads_description: "Unterstützen Sie Greasy Fork, indem sie die Anzeige von Werbung erlauben"
-    preferred_markup_description: Wird bei neuen Skripte und Beiträge verwendet
+    show_ads_description: "Unterstützen Sie Greasy Fork, indem Sie das Anzeigen von Werbung erlauben"
+    preferred_markup_description: Wird bei neuen Skripten und Beiträgen verwendet
   common:
     error_preamble: "Es gab einige Probleme mit dem was Sie eingegeben haben …"
     allowed_elements_link: "(Erlaubte Elemente anzeigen.)"
@@ -281,9 +284,11 @@ de:
         changelog: "Änderungsprotokoll"
         type: "Skriptart"
         additional_info: "Zusätzliche Informationen"
+        screenshots: "Screenshots"
   errors:
     messages:
       script_missing_name: "wird benötigt - bitte einen Namen mit @name angeben"
       script_missing_description: "wird benötigt - bitte eine Beschreibung mit @description angeben,"
       script_name_same_as_description: "darf nicht gleich dem Namen sein"
-      script_sync_identifier_bad_protocol: "muss ein HTTP oder HTTPS Link sein"
+      script_sync_identifier_bad_protocol: "muss eine HTTP- oder HTTPS-Adresse sein"
+      script_too_many_screenshots: "Zu viele Screenshots eingebunden - maximal %{number} möglich"

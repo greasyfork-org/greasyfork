@@ -20,21 +20,21 @@ $Definition['RatingOK'] = 'OK - script làm việc, nhưng có vấn đề quan 
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'Tốt - script hoạt động tốt';
 // Category name for Site Feedback
-$Definition['Categories.general.Name'] = 'Phản hồi địa chỉ';
+$Definition['Categories.general.Name'] = 'Site Feedback';
 // Category description for Site Feedback
-$Definition['Categories.general.Description'] = 'Báo cáo lỗi, yêu cầu tính năng, và các công cụ khác về Greasy Fork.';
+$Definition['Categories.general.Description'] = 'Bug reports, feature requests, and other stuff about Greasy Fork itself.';
 // Category name for Development
-$Definition['Categories.script-development.Name'] = 'Phát triển';
+$Definition['Categories.script-development.Name'] = 'Development';
 // Category description for Development
-$Definition['Categories.script-development.Description'] = 'Nói chuyện về kỹ thuật phát triển sử dụng script.';
+$Definition['Categories.script-development.Description'] = 'Technical talk about user script development.';
 // Category name for Script Creation Requests
-$Definition['Categories.script-requests.Name'] = 'Yêu cầu sự sáng tạo script';
+$Definition['Categories.script-requests.Name'] = 'Script Creation Requests';
 // Category description for Script Creation Requests
-$Definition['Categories.script-requests.Description'] = 'Yêu cầu một người nào đó viết một script cho bạn.';
+$Definition['Categories.script-requests.Description'] = 'Request someone write a script for you.';
 // Category name for Script Discussions
-$Definition['Categories.script-discussions.Name'] = 'Thảo luận Script';
+$Definition['Categories.script-discussions.Name'] = 'Script Discussions';
 // Category description for Script Discussions
-$Definition['Categories.script-discussions.Description'] = 'Thảo luận về script được đưa lên Greasy Fork.';
+$Definition['Categories.script-discussions.Description'] = 'Discussion on scripts posted to Greasy Fork.';
 // Link on Recent Discussions to hide script discussions
 $Definition['Turn on filter'] = 'Ẩn thảo luận về script';
 // Link on Recent Discussions to show script discussions

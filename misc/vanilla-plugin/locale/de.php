@@ -28,9 +28,9 @@ $Definition['Categories.script-development.Name'] = 'Entwicklung';
 // Category description for Development
 $Definition['Categories.script-development.Description'] = 'Technische Unterhaltungen über die Benutzerskriptentwicklung.';
 // Category name for Script Creation Requests
-$Definition['Categories.script-requests.Name'] = 'Skriptanfragen';
+$Definition['Categories.script-requests.Name'] = 'Skriptentwicklungsanfragen';
 // Category description for Script Creation Requests
-$Definition['Categories.script-requests.Description'] = 'Frage jemanden, ein Skript für dich zu schreiben.';
+$Definition['Categories.script-requests.Description'] = 'Jemanden fragen, ob er/sie ein Skript für Sie schreibt.';
 // Category name for Script Discussions
 $Definition['Categories.script-discussions.Name'] = 'Skriptdiskussionen';
 // Category description for Script Discussions
@@ -40,4 +40,4 @@ $Definition['Turn on filter'] = 'Skriptdiskussionen ausblenden';
 // Link on Recent Discussions to show script discussions
 $Definition['Turn off filter'] = 'Skriptdiskussionen anzeigen';
 // Link on forum profile pointing to main site profile
-$Definition['Greasy Fork Profile'] = 'Greasy Fork Profil';
+$Definition['Greasy Fork Profile'] = 'Greasy-Fork-Profil';
