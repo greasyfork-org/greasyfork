@@ -264,12 +264,13 @@ protected
 	end
 
 	before_filter :choose_ad_method
+	RANDOM_OPTIONS = ['xo', 'pw']
 	def choose_ad_method
-		@ad_method = params[:ad]
+		@ad_method = RANDOM_OPTIONS.include?(params[:ad]) ? params[:ad] : nil
 		return if !@ad_method.nil?
 		return if !current_user.nil? && !current_user.show_ads
 		return if controller_name != 'styles' and action_name != 'show'
-		@ad_method = ['xo', 'pw'].sample
+		@ad_method = RANDOM_OPTIONS.sample
 	end
 
 	# Determines a locale to use based on user preference and Accept_Language header.
