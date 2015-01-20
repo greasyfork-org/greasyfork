@@ -120,7 +120,8 @@ class ScriptVersionsController < ApplicationController
 		if !save_record or (!@script.valid? | !@script_version.valid?)
 
 			# Unfortunately, we can't retain what the user picked for screenshots
-			@current_screenshots = @script.get_newest_saved_script_version.screenshots
+			nssv = @script.get_newest_saved_script_version
+			@current_screenshots = nssv.nil? ? [] : nssv.screenshots
 
 			ensure_default_additional_info(@script_version, current_user.preferred_markup)
 
