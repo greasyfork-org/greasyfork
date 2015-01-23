@@ -89,7 +89,7 @@ class UsersController < ApplicationController
 			if !c[:modified].nil?
 				c[:modified].each do |m|
 					base_paths.each do |bp|
-						url = bp + m
+						url = bp + self.class.urlify_webhook_path_segment(m)
 						if !changed_urls.has_key?(url)
 							changed_urls[url] = []
 						end
@@ -263,5 +263,10 @@ private
 		end
 
 		return scripts_and_messages
+	end
+
+	# Turns a path segment from a webhook request to a URL segment
+	def self.urlify_webhook_path_segment(path)
+		return path.gsub(' ', '%20')
 	end
 end
