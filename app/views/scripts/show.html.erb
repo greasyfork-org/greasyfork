@@ -94,7 +94,7 @@ if !localized_additional_info.nil? || !@script_version.screenshots.empty? %>
 		<% if !@script_version.screenshots.empty? %>
 			<div class="script-screenshots">
 				<% @script_version.screenshots.each do |screenshot| %>
-					<a href="<%=screenshot.screenshot.url%>" class="fancybox" rel="fancybox-screenshots"><%= image_tag screenshot.screenshot.url(:thumb) %></a>
+					<a href="<%=screenshot.screenshot.url%>" class="fancybox" rel="fancybox-screenshots" <%if !screenshot.caption.nil?%>title="<%=screenshot.caption%>"<%end%>><%= image_tag screenshot.screenshot.url(:thumb) %></a>
 				<% end %>
 			</div>
 		<% end %>

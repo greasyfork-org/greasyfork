@@ -104,14 +104,15 @@ class ScriptVersionsController < ApplicationController
 
 		# Existing screenshots
 		if !@script.script_versions.last.nil?
-			@script.script_versions.last.screenshots.each do |screenshot|
+			@script.script_versions.last.screenshots.each_with_index do |screenshot, i|
+				screenshot.caption = params['edit-screenshot-captions'][i]
 				@script_version.screenshots << screenshot unless params["remove-screenshot-#{screenshot.id}"]
 			end
 		end
 		# New screenshots
 		if !params[:screenshots].nil?
-			params[:screenshots].each do |screenshot_param|
-				@script_version.screenshots.build(:screenshot => screenshot_param)
+			params[:screenshots].each_with_index do |screenshot_param, i|
+				@script_version.screenshots.build(:screenshot => screenshot_param, :caption => params['screenshot-captions'][i])
 			end
 		end
 
@@ -138,6 +139,7 @@ class ScriptVersionsController < ApplicationController
 		end
 
 		@script.script_versions << @script_version
+		@script_version.save!
 		@script.save!
 
 		flash[:notice] = 'Your script has been posted, but will not be made public until its external scripts fall within Greasy Fork\'s guidelines.' if @script_version.accepted_assessment

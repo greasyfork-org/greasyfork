@@ -1104,7 +1104,7 @@ CREATE TABLE `daily_update_check_counts` (
   `update_check_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_daily_update_check_counts_on_script_id_and_ip` (`script_id`,`ip`)
-) ENGINE=InnoDB AUTO_INCREMENT=26897462 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=26897465 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1129,7 +1129,7 @@ CREATE TABLE `delayed_jobs` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `delayed_jobs_priority` (`priority`,`run_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=50156 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=50185 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1215,7 +1215,7 @@ CREATE TABLE `locale_contributors` (
   `transifex_user_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `index_locale_contributors_on_locale_id` (`locale_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=922 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=984 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1356,6 +1356,7 @@ CREATE TABLE `screenshots` (
   `screenshot_content_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `screenshot_file_size` int(11) DEFAULT NULL,
   `screenshot_updated_at` datetime DEFAULT NULL,
+  `caption` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1712,7 +1713,7 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-01-26 18:18:12
+-- Dump completed on 2015-01-30 23:28:42
 INSERT INTO schema_migrations (version) VALUES ('20140210194333');
 
 INSERT INTO schema_migrations (version) VALUES ('20140210201355');
@@ -1870,4 +1871,6 @@ INSERT INTO schema_migrations (version) VALUES ('20141231212718');
 INSERT INTO schema_migrations (version) VALUES ('20150119041433');
 
 INSERT INTO schema_migrations (version) VALUES ('20150127001642');
+
+INSERT INTO schema_migrations (version) VALUES ('20150131052722');
 

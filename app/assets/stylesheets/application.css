@@ -305,8 +305,14 @@ dt[title] > span {
 .screenshots-controls > *:not(label) {
 	padding-left: 1em;
 }
+.add-screenshot-control, .screenshot-control {
+	clear: left;
+}
 .screenshot-control > * {
 	vertical-align: middle;
+}
+.screenshot-control a {
+	float: left;
 }
 
 .script-list, .user-list {
