@@ -326,6 +326,8 @@ en:
     screenshots_add: "Add:"
     # label for checkbox to remove a screenshot
     screenshots_remove: "Remove"
+    # explains what a replacement script when deleting is
+    replacement_script_explanation: "(Optional) Choose another script that replaces this script. Users will be updated to and redirected to this script. Enter the replacement script's URL:"
   script_sets:
     # name for the favorites set
     favorites_name: "Favorites"
@@ -546,6 +548,8 @@ en:
         additional_info: "Additional info"
         # screenshots attached to the script
         screenshots: "Screenshots"
+        # when deleting, which script to redirect to
+        replaced_by_script_id: "Replacement script"
   errors:
     messages:
       # validation for when a script name is not provided
@@ -558,3 +562,8 @@ en:
       script_sync_identifier_bad_protocol: "must be an HTTP or HTTPS URL"
       # validation for number of screenshots
       script_too_many_screenshots: "Too many screenshots included - maximum is %{number}"
+      # validation for "deleted and replaced by" when the user says the script is replaced by itself
+      cannot_be_self_reference: "can't be the same script"
+      # validation for "deleted and replaced by" when the user says the script is replaced by a deleted script
+      cannot_be_deleted_reference: "can't be a deleted script"
+      must_be_greasy_fork_script: "must be the URL for a script on Greasy Fork"

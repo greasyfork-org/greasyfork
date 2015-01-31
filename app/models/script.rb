@@ -27,6 +27,7 @@ class Script < ActiveRecord::Base
 	belongs_to :script_delete_type
 	belongs_to :license
 	belongs_to :locale
+	belongs_to :replaced_by_script, :class_name => 'Script'
 
 	scope :not_deleted, -> {where('script_delete_type_id is null')}
 	scope :active, -> {not_deleted.where(:uses_disallowed_external => false)}

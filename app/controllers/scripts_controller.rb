@@ -2,13 +2,13 @@ require 'script_importer/script_syncer'
 require 'csv'
 
 class ScriptsController < ApplicationController
-	layout 'application', :except => [:show, :show_code, :feedback, :diff, :sync, :sync_update, :delete, :undelete, :stats, :derivatives]
+	layout 'application', :except => [:show, :show_code, :feedback, :diff, :sync, :sync_update, :delete, :do_delete, :undelete, :stats, :derivatives]
 
 	before_filter :authorize_by_script_id, :only => [:sync, :sync_update]
 	before_filter :authorize_by_script_id_or_moderator, :only => [:delete, :do_delete, :undelete, :do_undelete, :derivatives]
 	before_filter :check_for_locked_by_script_id, :only => [:sync, :sync_update, :delete, :do_delete, :undelete, :do_undelete]
 	before_filter :check_for_deleted_by_id, :only => [:show]
-	before_filter :check_for_deleted_by_script_id, :only => [:show_code, :feedback, :user_js, :meta_js, :install_ping, :diff]
+	before_filter :check_for_deleted_by_script_id, :only => [:show_code, :feedback, :install_ping, :diff]
 	before_filter :authorize_for_moderators_only, :only => [:minified]
 
 	skip_before_action :verify_authenticity_token, :only => [:install_ping]
@@ -216,6 +216,10 @@ class ScriptsController < ApplicationController
 
 	def user_js
 		script, script_version = versionned_script(params[:script_id], params[:version])
+		if !script.replaced_by_script_id.nil? && script.script_delete_type_id == 1
+			redirect_to :script_id => script.replaced_by_script_id, :status => 301
+			return
+		end
 		respond_to do |format|
 			format.any(:html, :all, :js) {
 				render :text => script.script_delete_type_id == 2 ? script_version.get_blanked_code : script_version.rewritten_code, :content_type => 'text/javascript'
@@ -229,6 +233,10 @@ class ScriptsController < ApplicationController
 
 	def meta_js
 		script, script_version = versionned_script(params[:script_id], params[:version])
+		if !script.replaced_by_script_id.nil? && script.script_delete_type_id == 1
+			redirect_to :script_id => script.replaced_by_script_id, :status => 301
+			return
+		end
 		render :text => script.script_delete_type_id == 2 ? script_version.get_blanked_code : script_version.get_rewritten_meta_block, :content_type => 'text/x-userscript-meta'
 		ScriptsController.record_update_check(request, params)
 	end
@@ -381,31 +389,77 @@ class ScriptsController < ApplicationController
 	end
 
 	def do_delete
-		script = Script.find(params[:script_id])
-		@bots = 'noindex'
-		if current_user.moderator? && current_user != script.user
-			script.locked = params[:locked].nil? ? false : params[:locked]
+		# Grab those vars...
+		delete
+
+		# Handle replaced by
+		if !params[:replaced_by_script_id].nil? && !params[:replaced_by_script_id].blank?
+			replaced_by = nil
+			script_id = nil
+			# Is it an ID?
+			if params[:replaced_by_script_id].to_i != 0
+				script_id = params[:replaced_by_script_id].to_i
+			# A non-GF URL?
+			elsif !params[:replaced_by_script_id].start_with?('https://greasyfork.org/')
+				@script.errors.add(:replaced_by_script_id, :must_be_greasy_fork_script)
+				render :delete
+				return
+			# A GF URL?
+			else
+				url_match = /\/scripts\/([0-9]+)(\-|$)/.match(params[:replaced_by_script_id])
+				if url_match.nil?
+					@script.errors.add(:replaced_by_script_id, :must_be_greasy_fork_script)
+					render :delete
+					return
+				end
+				script_id = url_match[1]
+			end
+
+			# Validate it's a good replacement
+			begin
+				replaced_by = Script.find(script_id)
+			rescue ActiveRecord::RecordNotFound
+				@script.errors.add(:replaced_by_script_id, :not_found)
+				render :delete
+				return
+			end
+
+			if @script.id == replaced_by.id
+				@script.errors.add(:replaced_by_script_id, :cannot_be_self_reference)
+				render :delete
+				return
+			end
+			if !replaced_by.script_delete_type_id.nil?
+				@script.errors.add(:replaced_by_script_id, :cannot_be_deleted_reference)
+				render :delete
+				return
+			end
+			@script.replaced_by_script = replaced_by
+		end
+
+		if current_user.moderator? && current_user != @script.user
+			@script.locked = params[:locked].nil? ? false : params[:locked]
 			ma = ModeratorAction.new
 			ma.moderator = current_user
-			ma.script = script
-			ma.action = script.locked ? 'Delete and lock' : 'Delete'
+			ma.script = @script
+			ma.action = @script.locked ? 'Delete and lock' : 'Delete'
 			ma.reason = params[:reason]
-			script.delete_reason = params[:reason]
+			@script.delete_reason = params[:reason]
 			ma.save!
 			if params[:banned]
 				ma_ban = ModeratorAction.new
 				ma_ban.moderator = current_user
-				ma_ban.user = script.user
+				ma_ban.user = @script.user
 				ma_ban.action = 'Ban'
 				ma_ban.reason = params[:reason]
 				ma_ban.save!
-				script.user.banned = true
-				script.user.save!
+				@script.user.banned = true
+				@script.user.save!
 			end
 		end
-		script.script_delete_type_id = params[:script_delete_type_id]
-		script.save(:validate => false)
-		redirect_to script
+		@script.script_delete_type_id = params[:script_delete_type_id]
+		@script.save(:validate => false)
+		redirect_to @script
 	end
 
 	def do_undelete
@@ -431,6 +485,7 @@ class ScriptsController < ApplicationController
 			end
 		end
 		script.script_delete_type_id = nil
+		script.replaced_by_script_id = nil
 		script.delete_reason = nil
 		script.save(:validate => false)
 		redirect_to script

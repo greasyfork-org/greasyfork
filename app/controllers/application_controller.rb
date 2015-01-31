@@ -52,7 +52,19 @@ protected
 	end
 
 	def check_for_deleted(script)
-		render_deleted if !script.nil? and !script.script_delete_type_id.nil? and (current_user.nil? or (current_user != script.user and !current_user.moderator?))
+		if !script.nil? && (current_user.nil? || (current_user != script.user && !current_user.moderator?))
+			if !script.script_delete_type_id.nil?
+				if !script.replaced_by_script_id.nil?
+					if params.include?(:script_id)
+						redirect_to :script_id => script.replaced_by_script_id, :status => 301
+					else
+						redirect_to :id => script.replaced_by_script_id, :status => 301
+					end
+				else
+					render_deleted
+				end
+			end
+		end
 	end
 
 	def check_for_deleted_by_id
