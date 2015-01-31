@@ -276,7 +276,7 @@ protected
 	end
 
 	before_filter :choose_ad_method
-	RANDOM_OPTIONS = ['xo', 'pw']
+	RANDOM_OPTIONS = ['pw']
 	def choose_ad_method
 		@ad_method = RANDOM_OPTIONS.include?(params[:ad]) ? params[:ad] : nil
 		return if !@ad_method.nil?
