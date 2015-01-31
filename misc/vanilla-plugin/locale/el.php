@@ -20,21 +20,21 @@ $Definition['RatingOK'] = 'Εντάξει - ο κώδικας λειτουργε
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'Καλό - ο κώδικας λειτουργεί καλά';
 // Category name for Site Feedback
-$Definition['Categories.general.Name'] = 'Site Feedback';
+$Definition['Categories.general.Name'] = 'Σχόλια για τον ιστότοπο';
 // Category description for Site Feedback
-$Definition['Categories.general.Description'] = 'Bug reports, feature requests, and other stuff about Greasy Fork itself.';
+$Definition['Categories.general.Description'] = 'Αναφορές σφάλματος, αιτήματα χαρακτηριστικών και άλλα σχετικά με το ίδιο το Greasy Fork.';
 // Category name for Development
-$Definition['Categories.script-development.Name'] = 'Development';
+$Definition['Categories.script-development.Name'] = 'Ανάπτυξη';
 // Category description for Development
-$Definition['Categories.script-development.Description'] = 'Technical talk about user script development.';
+$Definition['Categories.script-development.Description'] = 'Τεχνική συζήτηση γύρω από την ανάπτυξη κώδικα χρήστη.';
 // Category name for Script Creation Requests
-$Definition['Categories.script-requests.Name'] = 'Script Creation Requests';
+$Definition['Categories.script-requests.Name'] = 'Αιτήσεις Δημιουργίας Κώδικα';
 // Category description for Script Creation Requests
-$Definition['Categories.script-requests.Description'] = 'Request someone write a script for you.';
+$Definition['Categories.script-requests.Description'] = 'Αιτηθείτε τη δημιουργία κώδικα από κάποιον για εσάς.';
 // Category name for Script Discussions
-$Definition['Categories.script-discussions.Name'] = 'Script Discussions';
+$Definition['Categories.script-discussions.Name'] = 'Συζητήσεις κώδικα';
 // Category description for Script Discussions
-$Definition['Categories.script-discussions.Description'] = 'Discussion on scripts posted to Greasy Fork.';
+$Definition['Categories.script-discussions.Description'] = 'Συζήτηση για κώδικες που έχουν αναρτηθεί στο Greasy Fork.';
 // Link on Recent Discussions to hide script discussions
 $Definition['Turn on filter'] = 'Απόκρυψη συζητήσεων κώδικα';
 // Link on Recent Discussions to show script discussions
