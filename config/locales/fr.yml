@@ -164,6 +164,9 @@ fr:
     additional_info_default_sync_html: "Information additionnelle par défaut (langue correspondant à <code>@name</code>)"
     additional_info_localized_sync_html: "Régional (correspond à <code>@name:XX</code>)"
     sync_url_placeholder: "(URL)"
+    screenshots_explanation: "Au maximum %{number} images PNG, GIF, ou JPEG, de taille inférieure à %{size} chacune."
+    screenshots_add: "Ajouter :"
+    screenshots_remove: "Supprimer :"
   script_sets:
     favorites_name: "Favoris"
     delete: "Supprimer ce jeu de scripts"
@@ -281,9 +284,11 @@ fr:
         changelog: "Notes de version"
         type: "Type de script"
         additional_info: "Informations supplémentaires"
+        screenshots: "Captures d'écran"
   errors:
     messages:
       script_missing_name: "est nécessaire - spécifiez-le avec @name"
       script_missing_description: "est nécessaire - spécifiez-le avec @description"
       script_name_same_as_description: "doit être différent du nom"
       script_sync_identifier_bad_protocol: "doit être une URL HTTP ou HTTPS"
+      script_too_many_screenshots: "Trop de captures d'écran : le maximum est %{number}"

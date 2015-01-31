@@ -86,6 +86,7 @@ pl:
     listing_sort_relevance: "Trafność"
     listing_sort_daily_installs: "Instalacji na dzień"
     listing_sort_total_installs: "Instalacji w sumie"
+    listing_sort_ratings: "Oceny"
     listing_sort_created_date: "Data utworzenia"
     listing_sort_updated_date: "Data zakutalizowania"
     listing_sort_name: "Nazwa"
@@ -110,9 +111,13 @@ pl:
     sets_remove_exclusion: "Usuń wykluczenie dla %{set_name}"
     sets_add_inclusion: "Dodaj do %{set_name}"
     sets_add_exclusion: "Wyklucz dla %{set_name}"
+    upload_label: "Lub wyślij:"
     preview_additional_info: "Podgląd"
+    post_new_script: "Dodaj skrypt"
+    post_updated_script: "Dodaj nową wersję"
     override_warning_checkbox_label: "Zapisać mimo tego?"
     warning_uses_disallowed_requires_rules_link: "Polityka Greasy Fork odnośnie zewnętrznych skryptów"
+    warning_potentially_minified_allowed_requires_link: "jedno z tych miejsc"
     additional_info_locale_prompt: "(wybierz język)"
     additional_info_add_localized: "Dodaj dodatkową zlokalizowaną informację"
     sync_type_intro: "Ten skrypt będzie synchronizowany:"
@@ -124,6 +129,8 @@ pl:
     update_no_sync: "Zaktualizuj"
     turn_off_syncing: "Wyłącz synchronizację dla tego skryptu"
     sync_url_placeholder: "(adres URL)"
+    screenshots_add: "Dodaj:"
+    screenshots_remove: "Usuń"
   script_sets:
     favorites_name: "Ulubione"
     delete: "Usuń kolekcję skryptów"
@@ -179,6 +186,7 @@ pl:
     set_up_webhook: "Skonfiguruj webhook GitHuba"
     author_email_notification_type:
       none: "Nie otrzymuj e-maili o nowych dyskusjach w Twoich skryptach"
+    listing_new_scripts: "Nowe skrypty"
   common:
     error_preamble: "Mieliśmy małe problemy z tym, co chciałeś napisać..."
     allowed_elements_link: "(zobacz dozwolony kod)"
@@ -186,12 +194,16 @@ pl:
     not_found_text: "404 - Nie znaleziono strony."
     not_found_title: "404 - Nie znaleziono strony"
     not_found_link_home: "Wróć do strony głównej."
+    expander_show_more: "Rozwiń"
+    expander_show_less: "Zwiń"
+    advertisement_note: Ogłoszenie
   activerecord:
     attributes:
       user:
         name: "Imię"
         profile: "Profil"
         author_email_notification_type_id: "Powiadomienia o dyskusjach skryptu"
+        show_ads: "Pokaż reklamy"
       script:
         name: "Nazwa"
         description: "Opis"
@@ -200,6 +212,7 @@ pl:
         changelog: "Lista zmian"
         type: "Typ skryptu"
         additional_info: "Dodatkowe informacje"
+        screenshots: "Zrzuty ekranu"
   errors:
     messages:
       script_missing_name: "jest wymagana - wybierz jedną z @name"

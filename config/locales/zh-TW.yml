@@ -163,14 +163,14 @@ zh-TW:
     additional_info_default_sync_html: "「其他資訊」預設值 (應與 <code>@name</code> 使用同種語言)"
     additional_info_localized_sync_html: "當地語系化 (應與 <code>@name:XX</code> 使用同種語言)"
     sync_url_placeholder: "(網址)"
-    screenshots_explanation: "您可以上載 %{number} 張不大於 %{size} 的格式為 PNG、GIF 或 JPEG 的貼圖"
+    screenshots_explanation: "您可以上傳 %{number} 張不大於 %{size} 的格式為 PNG、GIF 或 JPEG 的預覽圖"
     screenshots_add: "新增："
     screenshots_remove: "移除"
   script_sets:
     favorites_name: "我的最愛"
     delete: "刪除腳本收藏集"
     delete_confirmation: "您確定要刪除這個腳本收藏集嗎？"
-    site_default_sort: "(站點默認)"
+    site_default_sort: "(預設值)"
   forum_discussions:
     listing_no_script_no_reply_html: "%{discussion_link} 由 %{original_poster_link} 發表於 %{original_post_date}"
     listing_no_script_with_reply_html: "%{discussion_link} 由 %{original_poster_link} 發表於 %{original_post_date}，最後回覆由 %{last_commenter_link} 發表於 %{last_comment_date}"
@@ -250,7 +250,7 @@ zh-TW:
     listing_registration_date: "註冊日期"
     locale_prompt: "(語言選擇)"
     show_ads_description: "顯示廣告以支援 Greasy Fork 的網站經營"
-    preferred_markup_description: 該設定將會應用到新的腳本以及新的發言。
+    preferred_markup_description: 該設定將會套用到新的腳本以及新的發言。
   common:
     error_preamble: "您所發表的帖子內容有點問題..."
     allowed_elements_link: "(檢視允許使用的 HTML/Markdown 代碼。)"
@@ -273,7 +273,7 @@ zh-TW:
         locale: "慣用語言"
         author_email_notification_type_id: "腳本討論通知設定"
         show_ads: "顯示廣告"
-        preferred_markup: "默認文章格式"
+        preferred_markup: "預設文章格式"
       script:
         name: "名稱"
         description: "描述"
@@ -282,11 +282,11 @@ zh-TW:
         changelog: "更新紀錄"
         type: "腳本類型"
         additional_info: "其他資訊"
-        screenshots: "抓圖"
+        screenshots: "擷圖"
   errors:
     messages:
       script_missing_name: "必填 - 請透過 <code>@name</code> 指定。"
       script_missing_description: "必填 - 請透過 <code>@description</code> 指定。"
       script_name_same_as_description: "不能與名稱相同"
       script_sync_identifier_bad_protocol: "必須為 HTTP 或 HTTPS URL"
-      script_too_many_screenshots: "上載的抓圖過多 - 您最多只能上傳 %{number} 張抓圖"
+      script_too_many_screenshots: "上傳的擷圖過多 - 您最多只能上傳 %{number} 張擷圖"
