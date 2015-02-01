@@ -588,4 +588,7 @@ en:
       cannot_be_self_reference: "can't be the same script"
       # validation for "deleted and replaced by" when the user says the script is replaced by a deleted script
       cannot_be_deleted_reference: "can't be a deleted script"
+      # validation for "deleted and replaced by" when the user provides a non-Greasy Fork URL
       must_be_greasy_fork_script: "must be the URL for a script on Greasy Fork"
+      # validation when the user uploads code that's not UTF-8 text
+      script_update_not_utf8: "uploaded must be UTF-8 text"

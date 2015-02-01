@@ -66,7 +66,12 @@ class ScriptVersionsController < ApplicationController
 		if !params[:code_upload].nil?
 			uploaded_content = params[:code_upload].read
 			if !uploaded_content.force_encoding("UTF-8").valid_encoding?
-				@script_version.errors.add(:code, 'uploaded must be UTF-8 text')
+				@script_version.script.errors.add(:code, I18n.t('errors.messages.script_update_not_utf8'))
+
+				# Unfortunately, we can't retain what the user picked for screenshots
+				nssv = @script.get_newest_saved_script_version
+				@current_screenshots = nssv.nil? ? [] : nssv.screenshots
+
 				render :new
 				return
 			end
