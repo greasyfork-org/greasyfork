@@ -117,6 +117,13 @@ class ScriptVersionsController < ApplicationController
 		# New screenshots
 		if !params[:screenshots].nil?
 			params[:screenshots].each_with_index do |screenshot_param, i|
+				# Try to handle really long file names
+				if screenshot_param.original_filename.length > 50
+					filename_parts = screenshot_param.original_filename.split('.', 2)
+					filename = filename_parts.first[0..50]
+					filename += '.' + filename_parts[1] if filename_parts.length > 1
+					screenshot_param.original_filename = filename
+				end
 				@script_version.screenshots.build(:screenshot => screenshot_param, :caption => params['screenshot-captions'][i])
 			end
 		end
