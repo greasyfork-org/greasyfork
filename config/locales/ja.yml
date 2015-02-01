@@ -166,6 +166,7 @@ ja:
     screenshots_explanation: "最大 %{number} 枚までの PNG、GIF、JPEG 画像、各画像は %{size} 未満。"
     screenshots_add: "追加:"
     screenshots_remove: "削除"
+    replacement_script_explanation: "(任意) このスクリプトを置き換える別のスクリプト (代替スクリプト) を指定できます。各ページは代替スクリプトのページへリダイレクトされ、このスクリプトの更新時には代替スクリプトへ置き換えられます。代替スクリプトの URL を入力してください:"
   script_sets:
     favorites_name: "お気に入り"
     delete: "Script Set を削除"
@@ -283,10 +284,14 @@ ja:
         type: "スクリプトの種類"
         additional_info: "追加情報"
         screenshots: "スクリーンショット"
+        replaced_by_script_id: "代替スクリプト"
   errors:
     messages:
       script_missing_name: "は必須です – @name メタキーで指定"
       script_missing_description: "は必須です – @description メタキーで指定"
-      script_name_same_as_description: "がスクリプト名に一致しています"
+      script_name_same_as_description: " が @name に一致しています"
       script_sync_identifier_bad_protocol: "には HTTP か HTTPS のURLを指定してください"
       script_too_many_screenshots: "スクリーンショットが多過ぎます – 最大 %{number} 枚まで"
+      cannot_be_self_reference: "を同じスクリプトにすることはできません"
+      cannot_be_deleted_reference: "に削除されたスクリプトを指定することはできません"
+      must_be_greasy_fork_script: "は Greasy Fork 上のスクリプトの URL にする必要があります"
