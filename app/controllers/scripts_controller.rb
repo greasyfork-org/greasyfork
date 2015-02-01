@@ -270,9 +270,11 @@ class ScriptsController < ApplicationController
 		if !params[:context].nil? and params[:context].to_i.between?(0, 10000)
 			@context = params[:context].to_i
 		end
-		@diff = Diffy::Diff.new(@old_version.code, @new_version.code, :context => @context, :include_plus_and_minus_in_html => true, :include_diff_info => true).to_s(:html).html_safe
+		diff_options = ["-U #{@context}"]
+		diff_options << "-w" if !params[:w].nil? && params[:w] == '1'
+		@diff = Diffy::Diff.new(@old_version.code, @new_version.code, :include_plus_and_minus_in_html => true, :include_diff_info => true, :diff => diff_options).to_s(:html).html_safe
 		@bots = 'noindex'
-		@canonical_params = [:script_id, :v1, :v2, :context]
+		@canonical_params = [:script_id, :v1, :v2, :context, :w]
 	end
 
 	def sync
