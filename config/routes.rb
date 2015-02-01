@@ -67,7 +67,8 @@ Greasyfork::Application.routes.draw do
 			get 'derivatives', :as => 'derivatives'
 			collection do
 				get 'by-site(.:format)', :action => 'by_site', :as => 'site_list'
-				get 'by-site/:site(.:format)', :action => 'index', :as => 'by_site', :constraints => {:site => /.*/}
+				# :site can contain a dot, make sure site doesn't eat format or vice versa
+				get 'by-site/:site(.:format)', :action => 'index', :as => 'by_site', :constraints => {:site => /.*?/, :format => /|html|atom|json|jsonp/}
 				get 'under-assessment(.:format)', :action => 'under_assessment', :as => 'under_assessment'
 				get 'reported(.:format)', :action => 'reported', :as => 'reported'
 				get 'libraries(.:format)', :action => 'libraries', :as => 'libraries'
