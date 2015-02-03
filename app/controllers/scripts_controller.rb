@@ -216,6 +216,10 @@ class ScriptsController < ApplicationController
 
 	def user_js
 		script, script_version = versionned_script(params[:script_id], params[:version])
+		if script.nil?
+			render :nothing => true, :status => 404
+			return
+		end
 		if !script.replaced_by_script_id.nil? && script.script_delete_type_id == 1
 			redirect_to :script_id => script.replaced_by_script_id, :status => 301
 			return
@@ -233,6 +237,10 @@ class ScriptsController < ApplicationController
 
 	def meta_js
 		script, script_version = versionned_script(params[:script_id], params[:version])
+		if script.nil?
+			render :nothing => true, :status => 404
+			return
+		end
 		if !script.replaced_by_script_id.nil? && script.script_delete_type_id == 1
 			redirect_to :script_id => script.replaced_by_script_id, :status => 301
 			return
