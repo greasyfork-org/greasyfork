@@ -169,6 +169,16 @@ cs:
     screenshots_add: "Přidat:"
     screenshots_remove: "Odebrat"
     replacement_script_explanation: "(Volitelné) Vyberte jiný skript, který nahrazuje tento skript. Uživatelé budou při aktualizaci přesměrováni na nový skript. Zadejte URL náhradního skriptu:"
+    diff_title: "%{script} - Rozdíl verzí"
+    diff_old_version: "Stará:"
+    diff_new_version: "Nová:"
+    diff_lines_of_context: "Řádky kontextu:"
+    diff_ignore_whitespace: "Ignorovat změny počtu mezer"
+    diff_refresh: "Obnovit výpis"
+    diff_no_change: "Nenalezeny rozdíly."
+    good_rating_explanation: "Počet lidí, kteří dali hodnocení \"Výborný\" nebo si skript přidali do oblíbených."
+    ok_rating_explanation: "Počet lidí, kteří dali hodnocení \"OK\"."
+    bad_rating_explanation: "Počet lidí, kteří dali hodnocení \"Špatný\"."
   script_sets:
     favorites_name: "Oblíbené"
     delete: "Smazat sadu skriptů"
@@ -288,6 +298,7 @@ cs:
         type: "Typ skriptu"
         additional_info: "Doplňující popis"
         screenshots: "Snímky obrazovky"
+        screenshot_caption: "Titulek"
         replaced_by_script_id: "Náhradní skript"
   errors:
     messages:
@@ -299,3 +310,4 @@ cs:
       cannot_be_self_reference: "nemůže nahrazovat sám sebe"
       cannot_be_deleted_reference: "nemůže být smazaný skript"
       must_be_greasy_fork_script: "musí být umístěn na Greasy Fork"
+      script_update_not_utf8: "nahraný text musí mít kódování UTF-8"
