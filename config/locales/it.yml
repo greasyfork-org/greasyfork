@@ -43,12 +43,14 @@ it:
     update_page: "Aggiorna"
     sync_page: "Sincronizza"
     delete_page: "Elimina"
+    undelete_page: "Ripristina script"
     history_title: "%{script_name} - Cambiamenti versioni"
     history_only_code_changes_info: "queste sono le versioni di questo script in cui il codice è stato aggiornato"
     history_all_changes_link: "Mostra tutte le versioni"
     history_all_changes_info: "Queste sono tutte le versioni dello script"
     history_only_code_changes_link: "Mostra solo le versioni in cui è cambiato il codice"
     code_title: "%{script_name} - Codice sorgente"
+    code_highlighting_disabled: "il codice è oltre %{size}, quindi la sintassi non sarà evidenziata per risparmiare le risorse del browser."
     feedback_title: "%{script_name} - Feedback"
     feedback_no_discussions_html: "Ancora nessuna discussione %{start_first_discussion_link}"
     feedback_start_first_discussion_link: "Discuti per primo questo script"
@@ -108,6 +110,7 @@ it:
     sets_remove_exclusion: "Rimuovi esclusione da %{set_name}"
     sets_add_inclusion: "Aggiungi a %{set_name}"
     sets_add_exclusion: "Escludi da %{set_name}"
+    sets_add_to_new: "Aggiungi a nuovo set"
     rules_summary_html: "Lo script deve essere <strong>properly descritto </strong>, non può essere <strong>offuscato</strong> o <strong>minified</strong>, deve rispettare il <strong>copyright</strong>, e sono limitati nel  <strong>codice esterno</strong> usato. %{full_rules_link}"
     rules_summary_link_to_full: "Leggi le regole."
     syncing_notice_html: "Questo script è %{syncing_notice_sync_type}. Ogni aggiornamento che fai al codice verrà sovrascritto quando sincronizzerai."
@@ -161,9 +164,20 @@ it:
     remove_external_sign_in: "Rimuovi"
   common:
     error_preamble: "Ci sono problemi con quel che hai postato..."
+    not_found_text: "404 - pagina non trovata."
+    not_found_title: "404 - Pagina Non Trovata."
+    not_found_link_home: "Vai alla home."
+    expander_show_more: "Mostra di più"
+    expander_show_less: "Mostra meno"
   activerecord:
     attributes:
       user:
         name: "Nome"
         profile: "Profilo"
         author_email_notification_type_id: "Notifiche discussioni degli script"
+        show_ads: "Mostra ads"
+      script:
+        name: "Nome"
+        code: "Codice"
+        additional_info: "Informazioni aggiuntive"
+        screenshots: "Screenshots"
