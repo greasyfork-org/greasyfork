@@ -247,6 +247,48 @@
 		$("a.fancybox").fancybox({closeClick: true});
 	}
 
+	function hookUpSourceEditor() {
+		aceEditor = null;
+
+		// Switching between editor and textarea
+		$('input.enable-source-editor').change(function(e) {
+			var textboxId = e.target.getAttribute("data-related-editor");
+			var textbox = document.getElementById(textboxId);
+			if (e.target.checked) {
+				textbox.style.display = "none";
+				var div = document.createElement("div");
+				div.id = "ace-editor";
+				div.appendChild(document.createTextNode(textbox.value));
+				textbox.parentNode.insertBefore(div, textbox.nextSibling);
+				aceEditor = ace.edit("ace-editor");
+				aceEditor.getSession().setMode("ace/mode/javascript");
+			} else {
+				var editorElement = document.getElementById("ace-editor");
+				if (editorElement) {
+					textbox.value = aceEditor.getSession().getValue();
+					textbox.style.display = "block";
+					editorElement.parentNode.removeChild(editorElement);
+					aceEditor.destroy();
+					aceEditor = null;
+				}
+			}
+		});
+
+		// Submitting form - set the textarea to the editor's value
+		$('input.enable-source-editor').parents('form').submit(function(e) {
+			var editorElement = document.getElementById("ace-editor");
+			if (editorElement) {
+				var textboxId = $('input.enable-source-editor').attr("data-related-editor")
+				var textbox = document.getElementById(textboxId);
+				textbox.value = aceEditor.getSession().getValue();
+			}
+		})
+
+		// Page load
+		$('input.enable-source-editor').parents('.label-note').css('display', 'inline');
+		$('input.enable-source-editor').change();
+	}
+
 	function init() {
 		hookUpSelectAllCheckboxes();
 		hookUpInstallPingers();
@@ -258,6 +300,7 @@
 		hookUpExpandableText();
 		restyleScreenMaxHeight();
 		hookUpFancyBox();
+		hookUpSourceEditor();
 	}
 	
 	window.addEventListener("DOMContentLoaded", init);

@@ -280,9 +280,16 @@ dt[title] > span {
 .form-control {
 	margin-bottom: 1em;
 }
-.form-control textarea {
+.form-control textarea, #ace-editor {
 	width: 100%;
 	height: 20em;
+	box-sizing: border-box;
+	margin-top: 1px;
+	margin-bottom: 1px;
+}
+#ace-editor {
+	border: 1px solid #BBB;
+	border-style: inset;
 }
 .form-control input:not([type=radio]):not([type=file]):not([type=checkbox]):not([size]) {
 	width: 100%;

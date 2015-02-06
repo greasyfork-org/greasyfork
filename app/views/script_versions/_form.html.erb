@@ -1,3 +1,5 @@
+<script src="//cdn.jsdelivr.net/ace/1.1.8/min/ace.js"></script>
+
 <p>
 	<%=t('scripts.rules_summary_html', {:full_rules_link => link_to(t('scripts.rules_summary_link_to_full'), help_code_rules_path)})%>
 </p>
@@ -91,7 +93,7 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
 		</div>
 	<% end %>
 	<div class="form-control">
-		<label for="code"><%=t('activerecord.attributes.script.code')%></label><br>
+		<label for="code"><%=t('activerecord.attributes.script.code')%></label> <span class="label-note" style="display: none"><input type="checkbox" id="enable-source-editor-code" name="enable-source-editor-code" <%if params['enable-source-editor-code']%>checked<%end%> class="enable-source-editor" data-related-editor="script_version_code"><label for="enable-source-editor-code" class="checkbox-label">Enable source editor</label></span><br>
 		<%=s.text_area(:code)%>
 		<div><%=t('scripts.upload_label')%> <input type="file" name="code_upload" id="code-upload" accept="text/javascript,application/javascript"></div>
 	</div>
