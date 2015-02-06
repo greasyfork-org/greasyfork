@@ -73,6 +73,12 @@ class UsersController < ApplicationController
 
 		if request.headers['X-GitHub-Event'] != 'push'
 			render :nothing => true, :status => 406
+			return
+		end
+
+		if params[:commits].nil?
+			render :json => {:message => 'No commits found in this push.'}
+			return
 		end
 
 		# construct the raw URLs from the provided info. raw URLs are in the format:
