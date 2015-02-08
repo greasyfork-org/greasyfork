@@ -20,21 +20,21 @@ $Definition['RatingOK'] = 'OK - el script funciona, pero tiene problemas signifi
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'Bien - el script funciona bien';
 // Category name for Site Feedback
-$Definition['Categories.general.Name'] = 'Site Feedback';
+$Definition['Categories.general.Name'] = 'Comentarios del Sitio';
 // Category description for Site Feedback
-$Definition['Categories.general.Description'] = 'Bug reports, feature requests, and other stuff about Greasy Fork itself.';
+$Definition['Categories.general.Description'] = 'Informes de errores, peticiones de características, y otras cosas sobre Greasy Fork en sí mismo.';
 // Category name for Development
-$Definition['Categories.script-development.Name'] = 'Development';
+$Definition['Categories.script-development.Name'] = 'Desarrollo';
 // Category description for Development
-$Definition['Categories.script-development.Description'] = 'Technical talk about user script development.';
+$Definition['Categories.script-development.Description'] = 'Charla técnica sobre el desarrollo de scripts de usuario.';
 // Category name for Script Creation Requests
-$Definition['Categories.script-requests.Name'] = 'Script Creation Requests';
+$Definition['Categories.script-requests.Name'] = 'Peticiones de Creación de Scripts';
 // Category description for Script Creation Requests
-$Definition['Categories.script-requests.Description'] = 'Request someone write a script for you.';
+$Definition['Categories.script-requests.Description'] = 'Solicite a alguien que escriba un script para usted.';
 // Category name for Script Discussions
-$Definition['Categories.script-discussions.Name'] = 'Script Discussions';
+$Definition['Categories.script-discussions.Name'] = 'Discusiones de Scripts';
 // Category description for Script Discussions
-$Definition['Categories.script-discussions.Description'] = 'Discussion on scripts posted to Greasy Fork.';
+$Definition['Categories.script-discussions.Description'] = 'Discusiones sobre scripts publicados en Greasy Fork.';
 // Link on Recent Discussions to hide script discussions
 $Definition['Turn on filter'] = 'Ocultar debates de scripts';
 // Link on Recent Discussions to show script discussions
