@@ -48,7 +48,7 @@ gem 'i18n', '>= 0.6.11'
 
 gem 'devise'
 gem 'devise-i18n'
-gem 'devise-i18n-views', '~> 0.3.3'
+gem 'devise-i18n-views', '~> 0.3.4'
 gem 'therubyracer'
 gem 'mysql2'
 gem 'diffy', '~> 3.0.5'
