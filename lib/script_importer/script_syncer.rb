@@ -3,7 +3,6 @@ require 'script_importer/url_importer'
 require 'script_importer/test_importer'
 
 module ScriptImporter
-	include ActionView::Helpers::TextHelper
 
 	class ScriptSyncer
 
@@ -37,7 +36,7 @@ module ScriptImporter
 						return :unchanged
 					end
 
-					sv.changelog = truncate(changelog, {:length => 500}) if !changelog.nil?
+					sv.changelog = changelog.truncate(500) if !changelog.nil?
 					sv.script = script
 					sv.do_lenient_saving
 					sv.calculate_all(script.description)
@@ -93,5 +92,6 @@ module ScriptImporter
 				next matching_svla.attribute_value == la.attribute_value
 			}
 		end
+
 	end
 end

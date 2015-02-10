@@ -117,7 +117,7 @@ class UsersController < ApplicationController
 			end
 
 			# GitHub's raw server caches things for up to 5 minutes. We also want to let the webhook request complete asynchronously anyway.
-			ScriptImporter::ScriptSyncer.delay(run_at: 5.minutes.from_now).sync(s, 'Synced from GitHub - ' + messages.join(' '))
+			ScriptImporter::ScriptSyncer.delay(run_at: 5.minutes.from_now).sync(s, 'Synced from GitHub - ' + messages.join(' - '))
 		end
 
 		render :json => {:affected_scripts => changed_script_urls}
