@@ -169,6 +169,7 @@ class Script < ActiveRecord::Base
 		end
 
 		self.namespace = meta.has_key?('namespace') ? meta['namespace'].first : nil
+		self.version = meta.has_key?('version') ? meta['version'].first : nil
 
 		self.contribution_url = !meta.has_key?('contributionURL') ? nil : meta['contributionURL'].find {|url|
 			URI::regexp(%w(http https bitcoin)) =~ url
