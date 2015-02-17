@@ -1,0 +1,55 @@
+.social_share_privacy_area li .switch {
+	background-image: url(<%=asset_path('jquery-socialshareprivacy/socialshareprivacy_on_off.png')%>);
+}
+.social_share_privacy_area li .help_info.icon {
+	background-image: url(<%=asset_path('jquery-socialshareprivacy/socialshareprivacy_info.png')%>);
+}
+.social_share_privacy_area li.settings_info .settings_info_menu .settings {
+	background-image: url(<%=asset_path('jquery-socialshareprivacy/settings.png')%>);
+}
+/*
+.social_share_privacy_area.line li {
+	float: none;
+	display: block;
+}
+.social_share_privacy_area.line .reddit iframe {
+	height: 20px;
+}
+.info + .dummy_btn {
+	padding-left: 23px !important;
+}
+*/
+
+/* Show all in a row */
+.social_share_privacy_area.box {
+	width: auto;
+}
+.social_share_privacy_area.box li {
+	display: inline-block;
+	vertical-align: top;
+}
+/* Space them out */
+.social_share_privacy_area.box li div, .social_share_privacy_area.box li .switch {
+	margin-right: 10px;
+}
+/* Make those that don't have the switch line up with the rest. */
+.box .info + .dummy_btn {
+	margin-top: 21px;
+}
+/* Shrink the settings box */
+.social_share_privacy_area li.settings_info .settings_info_menu form fieldset input {
+	margin-top: 0;
+	margin-bottom: 0;
+	vertical-align: middle;
+}
+.social_share_privacy_area li.settings_info .settings_info_menu form fieldset label {
+	line-height: normal;
+	vertical-align: baseline;
+}
+.social_share_privacy_area li.settings_info .settings_info_menu form fieldset legend {
+	width: auto;
+}
+/* Give the settings box room */
+#share {
+	margin-bottom: 90px;
+}

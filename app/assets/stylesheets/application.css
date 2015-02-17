@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require fancybox
+ *= require ../../../vendor/assets/stylesheets/jquery.socialshareprivacy.min.css
  *= require_tree .
  */
 
@@ -252,7 +253,7 @@ dt[title] > span {
 
 #additional-info {
 }
-#additional-info > h3 {
+#additional-info > h3, #share > h3 {
 	margin-bottom: 0;
 	padding-bottom: 0;
 }
@@ -575,4 +576,12 @@ a.self-link, a.self-link:visited {
 }
 .ad-content > * {
 	vertical-align: bottom;
+}
+
+.social_share_privacy_area.box li.settings_info {
+	/* Shrink a bit */
+	height: 20px;
+	width: 135px;
+	/* Show on separate line */
+	display: block;
 }
