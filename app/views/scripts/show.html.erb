@@ -112,7 +112,7 @@ if !localized_additional_info.nil? || !@script_version.screenshots.empty? %>
 			for (var i in $.fn.socialSharePrivacy.settings.services) {
 				$.fn.socialSharePrivacy.settings.services[i].status = false;
 			};
-			<% social_services = ['buffer', 'delicious', 'facebook', 'gplus', 'hackernews', 'mail', 'reddit', 'stumbleupon', 'tumblr', 'twitter']
+			<% social_services = ['delicious', 'facebook', 'gplus', 'hackernews', 'mail', 'reddit', 'stumbleupon', 'tumblr', 'twitter']
 			social_services.each do |service|
 				images = {dummy_line_img: "dummy_#{service}.png", dummy_box_img: "dummy_box_#{service}.png", line_img: "#{service}.png", box_img: "box_#{service}.png"}
 				images.each do |name, path| %>
