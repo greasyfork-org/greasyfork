@@ -32,6 +32,7 @@ protected
 		devise_parameter_sanitizer.for(:account_update) << :locale_id
 		devise_parameter_sanitizer.for(:account_update) << :author_email_notification_type_id
 		devise_parameter_sanitizer.for(:account_update) << :show_ads
+		devise_parameter_sanitizer.for(:account_update) << :flattr_username
 	end
 
 	def authorize_by_script_id

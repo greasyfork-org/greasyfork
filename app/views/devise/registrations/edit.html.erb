@@ -67,6 +67,13 @@
 		<%= f.check_box(:show_ads)%><label for="user_show_ads"><%=t('users.show_ads_description')%></label>
 	</div>
 
+	<div>
+		<%= f.label :flattr_username %>
+		<span class="label-note"><%=t('users.flattr_username_description_html')%></span>
+		<br>
+		<%= f.text_field(:flattr_username)%>
+	</div>
+
   <div><%= f.submit t('.update', :default => "Update") %></div>
 <% end %>
 

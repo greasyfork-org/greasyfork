@@ -113,6 +113,8 @@ if !localized_additional_info.nil? || !@script_version.screenshots.empty? %>
 				$.fn.socialSharePrivacy.settings.services[i].status = false;
 			};
 			<% social_services = ['delicious', 'facebook', 'gplus', 'hackernews', 'mail', 'reddit', 'stumbleupon', 'tumblr', 'twitter']
+			social_services << 'flattr' if !@script.user.flattr_username.nil?
+			social_services.sort!
 			social_services.each do |service|
 				images = {dummy_line_img: "dummy_#{service}.png", dummy_box_img: "dummy_box_#{service}.png", line_img: "#{service}.png", box_img: "box_#{service}.png"}
 				images.each do |name, path| %>
@@ -123,8 +125,12 @@ if !localized_additional_info.nil? || !@script_version.screenshots.empty? %>
 						} else {
 							$.fn.socialSharePrivacy.settings.services['<%=service%>']['<%=name%>'] = '<%=asset_path("jquery-socialshareprivacy/#{path}")%>';
 						}
-					}
-				<% end %>
+					}<%
+					if service == 'flattr' %>
+						$.fn.socialSharePrivacy.settings.services['<%=service%>'].uid = '<%=j(@script.user.flattr_username)%>';
+						$.fn.socialSharePrivacy.settings.services['<%=service%>'].category = 'software';
+					<% end
+				end %>
 				$.fn.socialSharePrivacy.settings.services['<%=service%>'].status = true;
 			<% end %>
 			var socialButtons = $("#social-buttons");

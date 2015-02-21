@@ -513,7 +513,9 @@ en:
     # text describing what the show ads checkbox does
     show_ads_description: "Support Greasy Fork by allowing it to show you ads"
     # text describing what the preferred markup setting does
-    preferred_markup_description: Will be used for new scripts and posts.
+    preferred_markup_description: "Will be used for new scripts and posts."
+    # text describing what the flattr username setting does
+    flattr_username_description_html: "Users of your scripts will be asked to donate to your account on <a href=\"https://flattr.com\">Flattr</a>."
   common:
     # text to show before listing errors in a submission
     error_preamble: "There were some problems with what you posted..."
@@ -555,6 +557,8 @@ en:
         show_ads: "Show ads"
         # user field: preferred markup (html or markdown)
         preferred_markup: "Preferred markup"
+        # user field: user name on Flattr
+        flattr_username: "Flattr username"
       script:
         # name of the script
         name: "Name"
