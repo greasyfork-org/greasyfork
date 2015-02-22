@@ -8,7 +8,7 @@ ThinkingSphinx::Index.define :script, :with => :active_record, :delta => Thinkin
 	indexes user.name, :as => :author
 
 	# attributes
-	has :id, :created_at, :code_updated_at, :total_installs, :daily_installs, :default_name
+	has :created_at, :code_updated_at, :total_installs, :daily_installs, :default_name
 	# int is default and unsigned, we deal with negatives
 	has :fan_score, :type => :bigint
 

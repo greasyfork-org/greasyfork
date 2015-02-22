@@ -76,7 +76,10 @@ class ScriptsController < ApplicationController
 		end
 		@bots = 'noindex,follow'
 		begin
-			@scripts = Script.search params[:q], :match_mode => :extended, :page => params[:page], :per_page => get_per_page, :order => self.class.get_sort(params, true), :populate => true, :includes => [:script_type, :localized_attributes => :locale]
+			# :ranker => "expr('top(user_weight)')" means that it will be sorted on the top ranking match rather than
+			# an aggregate of all matches. In other words, something matching on "name" will be tied with everything
+			# else matching on "name".
+			@scripts = Script.search params[:q], :match_mode => :extended, :page => params[:page], :per_page => get_per_page, :order => self.class.get_sort(params, true), :populate => true, :includes => [:script_type, :localized_attributes => :locale], :select => '*, weight() myweight', :ranker => "expr('top(user_weight)')"
 			# make it run now so we can catch syntax errors
 			@scripts.empty?
 		rescue ThinkingSphinx::SyntaxError => e
@@ -612,7 +615,7 @@ private
 			else
 				params[:sort] = nil
 				if for_sphinx
-					return ''#"myweight DESC, #{column_prefix}id"
+					return "myweight DESC, #{column_prefix}daily_installs DESC, #{column_prefix}id"
 				end
 				return "#{column_prefix}daily_installs DESC, #{column_prefix}id"
 		end
