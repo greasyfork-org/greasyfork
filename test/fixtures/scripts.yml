@@ -3,36 +3,42 @@ one:
   user_id: 1
   default_name: A Test!
   code_updated_at: 2014-01-01
+  version: 1
 
 two:
   id: 2
   user_id: 1
   default_name: A Test!
   code_updated_at: 2014-01-01
+  version: 1
 
 three:
   id: 3
   user_id: 1
   default_name: A Test!
   code_updated_at: 2014-01-01
+  version: 1
 
 script_with_generated_version:
   id: 4
   user_id: 1
   default_name: A Test!
   code_updated_at: 2014-01-01
+  version: 1
 
 script_with_explicit_version:
   id: 5
   user_id: 1
   default_name: A Test!
   code_updated_at: 2014-01-01
+  version: 1
 
 with_namespace:
   id: 6
   user_id: 1
   default_name: A Test!
   code_updated_at: 2014-01-01
+  version: 1
 
 url_sync_script:
   id: 7
@@ -50,6 +56,7 @@ url_sync_script:
     // @namespace http://greasyfork.local/users/1
     // ==/UserScript==
     var foo = 1;
+  version: 1
 
 url_sync_script_unchanged:
   id: 8
@@ -67,6 +74,7 @@ url_sync_script_unchanged:
     // @namespace http://greasyfork.local/users/1
     // ==/UserScript==
     var foo = 1;
+  version: 1
 
 url_sync_script_new_has_no_description:
   id: 9
@@ -83,6 +91,7 @@ url_sync_script_new_has_no_description:
     // @namespace http://greasyfork.local/users/1
     // ==/UserScript==
     var foo = 1;
+  version: 1
 
 url_sync_script_invalid:
   id: 10
@@ -96,24 +105,28 @@ url_sync_script_invalid:
     // ==UserScript==
     // ==/UserScript==
     var foo = 1;
+  version: 1
 
 previous_with_description:
   id: 11
   user_id: 1
   default_name: A Test!
   code_updated_at: 2000-01-01
+  version: 1
 
 meta_not_at_top:
   id: 12
   user_id: 1
   default_name: A Test!
   code_updated_at: 2000-01-01
+  version: 1
 
 previous_with_name_and_description:
   id: 13
   user_id: 1
   default_name: A Test!
   code_updated_at: 2000-01-01
+  version: 1
 
 synced_and_localized:
   id: 14
@@ -131,6 +144,7 @@ synced_and_localized:
     // @version		1
     // ==/UserScript==
     foo.baz();
+  version: 1
 
 http_sync:
   id: 15
@@ -139,9 +153,11 @@ http_sync:
   code_updated_at: 2000-01-01
   script_sync_source_id: 1
   sync_identifier: http://www.example.com/sync
+  version: 1
 
 http_ai_sync:
   id: 16
   user_id: 1
   default_name: A Test!
   code_updated_at: 2000-01-01
+  version: 1
