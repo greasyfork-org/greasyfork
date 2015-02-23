@@ -575,6 +575,8 @@ END
 // @description		Unit test.
 // @version 2
 // @namespace whatever
+// @require http://www.example.com/script.js
+// @require http://www.example.com/script2.js
 // ==/UserScript==
 var foo = "bar";
 END

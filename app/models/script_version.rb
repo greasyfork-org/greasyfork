@@ -291,7 +291,7 @@ class ScriptVersion < ActiveRecord::Base
 	def get_blanked_code
 		c = get_rewritten_meta_block
 		current_version = ScriptVersion.get_first_meta(c, 'version')
-		return ScriptVersion.inject_meta_for_code(c, {:description => 'This script was deleted from Greasy Fork, and due to its negative effects, it has been automatically removed from your browser.', :version => ScriptVersion.get_next_version(current_version)})
+		return ScriptVersion.inject_meta_for_code(c, {:description => 'This script was deleted from Greasy Fork, and due to its negative effects, it has been automatically removed from your browser.', :version => ScriptVersion.get_next_version(current_version), :require => nil})
 	end
 
 	def calculate_rewritten_code(previous_description = nil)
@@ -334,8 +334,6 @@ class ScriptVersion < ActiveRecord::Base
 		additions_if_missing = additions_if_missing.with_indifferent_access
 		# replace any existing values
 		meta_lines = meta_block.split("\n").map do |meta_line|
-			# no more modifications needed?
-			next meta_line if replacements.empty? and additions_if_missing.empty?
 			meta_match = /\/\/\s+@([a-zA-Z]+)\s+(.*)/.match(meta_line)
 			next meta_line if meta_match.nil?
 			key = meta_match[1].strip
