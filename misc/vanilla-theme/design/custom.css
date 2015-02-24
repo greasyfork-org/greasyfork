@@ -16,6 +16,12 @@ body, .SiteTitle, select, input {
 pre {
 	letter-spacing: normal;
 }
+code {
+	white-space: pre-wrap;
+}
+pre code {
+	white-space: pre;
+}
 body:not(.Settings) #Head {
 	background-color: #670000;
 	padding-top: 0 !important;
