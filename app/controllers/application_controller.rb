@@ -203,8 +203,8 @@ protected
 			return
 		end
 
-		# Redirect a logged-in user to their preferred locale
-		if !current_user.nil? && !current_user.locale.nil? && params[:locale] != current_user.locale.code && (params[:locale_override].nil? || params[:locale].nil?)
+		# Redirect a logged-in user to their preferred locale, if it's available
+		if !current_user.nil? && !current_user.locale.nil? && current_user.locale.ui_available && params[:locale] != current_user.locale.code && (params[:locale_override].nil? || params[:locale].nil?)
 			redirect_to url_for(params.merge(:only_path => true, :locale => current_user.locale.code, :locale_override => nil)), :status => 302
 			return
 		end
