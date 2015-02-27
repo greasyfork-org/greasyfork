@@ -20,21 +20,21 @@ $Definition['RatingOK'] = 'لا بأس - البرنامج النصي يعمل، 
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'جيدة - البرنامج النصي يعمل بشكل جيد';
 // Category name for Site Feedback
-$Definition['Categories.general.Name'] = 'Site Feedback';
+$Definition['Categories.general.Name'] = 'اقتراحات الموقع';
 // Category description for Site Feedback
-$Definition['Categories.general.Description'] = 'Bug reports, feature requests, and other stuff about Greasy Fork itself.';
+$Definition['Categories.general.Description'] = 'Greasy Fork التقارير، طلبات الميزات، وغيرها من الاشياء حول';
 // Category name for Development
-$Definition['Categories.script-development.Name'] = 'Development';
+$Definition['Categories.script-development.Name'] = 'التطوير';
 // Category description for Development
-$Definition['Categories.script-development.Description'] = 'Technical talk about user script development.';
+$Definition['Categories.script-development.Description'] = 'حديث تقني حول تطوير البرمج النصية.';
 // Category name for Script Creation Requests
-$Definition['Categories.script-requests.Name'] = 'Script Creation Requests';
+$Definition['Categories.script-requests.Name'] = 'طلب إنشاء برنامج نص';
 // Category description for Script Creation Requests
-$Definition['Categories.script-requests.Description'] = 'Request someone write a script for you.';
+$Definition['Categories.script-requests.Description'] = 'أطلب من شخص أن يكتب برنامج نصي لك';
 // Category name for Script Discussions
-$Definition['Categories.script-discussions.Name'] = 'Script Discussions';
+$Definition['Categories.script-discussions.Name'] = 'نقاشات البرامج النصية';
 // Category description for Script Discussions
-$Definition['Categories.script-discussions.Description'] = 'Discussion on scripts posted to Greasy Fork.';
+$Definition['Categories.script-discussions.Description'] = 'Greasy Fork نقاش حول البرامج النصية التي في الموقع';
 // Link on Recent Discussions to hide script discussions
 $Definition['Turn on filter'] = 'إخفاء النقاشات';
 // Link on Recent Discussions to show script discussions
