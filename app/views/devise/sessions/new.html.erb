@@ -8,13 +8,17 @@
 <h3><%=t('users.sign_in_external')%></h3>
 
 <div>
-	<%=form_tag(external_login_path, {:method => :get, :class => 'inline-form'}) do %>
-		<% Rails.application.config.available_auths.keys.each do |provider| %>
-			<button name="provider" class="<%=provider%>-login" value="<%=provider%>"><%=Identity.pretty_provider(provider)%></button>
+	<% if Rails.application.config.available_auths.empty? %>
+		<p>(No external providers configured.)</p>
+	<% else %>
+		<%=form_tag(external_login_path, {:method => :get, :class => 'inline-form'}) do %>
+			<% Rails.application.config.available_auths.keys.each do |provider| %>
+				<button name="provider" class="<%=provider%>-login" value="<%=provider%>"><%=Identity.pretty_provider(provider)%></button>
+			<% end %>
+			<% if devise_mapping.rememberable? -%>
+				<div><%= check_box_tag :remember_me %><%= label_tag :remember_me, t('activerecord.attributes.user.remember_me') %></div>
+			<% end -%>
 		<% end %>
-		<% if devise_mapping.rememberable? -%>
-			<div><%= check_box_tag :remember_me %><%= label_tag :remember_me, t('activerecord.attributes.user.remember_me') %></div>
-		<% end -%>
 	<% end %>
 </div>
 

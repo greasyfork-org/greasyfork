@@ -36,5 +36,9 @@ module Greasyfork
     config.screenshot_max_size = 200.kilobytes
 
     Mime::Type.register "application/javascript", :jsonp
+
+    # Overridden in config/initializers/omniauth.rb
+    config.available_auths = {}
+
   end
 end
