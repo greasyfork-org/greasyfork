@@ -161,3 +161,21 @@ http_ai_sync:
   default_name: A Test!
   code_updated_at: 2000-01-01
   version: 1
+
+url_sync_script_with_screenshots:
+  id: 17
+  user_id: 1
+  default_name: A Test!
+  code_updated_at: 2000-01-01
+  script_sync_source_id: 100
+  last_attempted_sync_date: 2000-01-01
+  last_successful_sync_date: 2000-01-01
+  sync_identifier: |
+    // ==UserScript==
+    // @name		A Test!
+    // @description		Unit test.
+    // @version 1.1
+    // @namespace http://greasyfork.local/users/1
+    // ==/UserScript==
+    var foo = 1;
+  version: 1

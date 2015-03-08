@@ -157,5 +157,14 @@ class ScriptSyncerTest < ActiveSupport::TestCase
 		assert_equal :success, ScriptSyncer.sync(script), script.sync_error
 	end
 
+	test 'keep screenshots' do
+		script = Script.find(17)
+		assert_equal 1, script.script_versions.length
+		assert_equal 1, script.script_versions.first.screenshots.length
+		assert_equal :success, ScriptSyncer.sync(script)
+		assert_equal 2, script.script_versions.length
+		assert_equal 1, script.script_versions.first.screenshots.length
+		assert_equal 1, script.script_versions.last.screenshots.length
+	end
 
 end

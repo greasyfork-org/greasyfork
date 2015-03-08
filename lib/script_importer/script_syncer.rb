@@ -38,6 +38,8 @@ module ScriptImporter
 
 					sv.changelog = changelog.truncate(500) if !changelog.nil?
 					sv.script = script
+					# Retain existing screenshots
+					sv.screenshots = last_saved_sv.screenshots
 					sv.do_lenient_saving
 					sv.calculate_all(script.description)
 					script.apply_from_script_version(sv)
