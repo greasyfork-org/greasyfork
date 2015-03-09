@@ -10,17 +10,6 @@
 /* General theming */
 body, .SiteTitle, select, input {
 	font-family: "Open Sans", sans-serif;
-	letter-spacing: -0.01em;
-}
-/* https://bugzilla.mozilla.org/show_bug.cgi?id=1005669 */
-pre {
-	letter-spacing: normal;
-}
-code {
-	white-space: pre-wrap;
-}
-pre code {
-	white-space: pre;
 }
 body:not(.Settings) #Head {
 	background-color: #670000;
@@ -135,4 +124,28 @@ body .Pager .Highlight {
 }
 .Message tr:nth-child(odd) td:nth-child(even) {
    background-color: rgba(255,0,0,0.03);
+}
+
+code {
+	white-space: pre-wrap;
+	border: 1px solid #eec;
+	font-size: 110%;
+	padding: 3px 8px;
+	background: #FDFCE4;
+}
+pre code {
+	white-space: pre;
+}
+.Message pre {
+	background: #EEEDD3;
+	padding: 0;
+}
+.Message pre ol {
+	background: #FDFCE4;
+	padding: 8px;
+}
+.Message pre li {
+	margin: 0;
+	line-height: 1.2;
+	background: transparent;
 }

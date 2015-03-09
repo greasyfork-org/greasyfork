@@ -19,25 +19,8 @@ body {
 }
 body, select, input {
 	font-family: "Open Sans", sans-serif;
-	letter-spacing: -0.01em;
 }
-/* https://bugzilla.mozilla.org/show_bug.cgi?id=1005669 */
-pre {
-	letter-spacing: normal;
-}
-pre, code {
-	background-color: #FF9;
-	border: 1px solid #EEC;
-	border-radius: 2px;
-	background: none repeat scroll 0% 0% #FF9;
-	padding: 4px 8px;
-}
-/* Undo the above */
-.CodeRay pre, pre code {
-	border: 0;
-	padding: 0;
-	background: none;
-}
+
 a {
 	color: #670000;
 }
@@ -586,11 +569,29 @@ a.self-link, a.self-link:visited {
 	display: block;
 }
 
-/* Otherwise tall characters can make these not align */
-.CodeRay .line-numbers {
-	line-height: 1em;
+pre, code, #code-container {
+	background: #FDFCE4;
+	border: 1px solid #EEC;
+	border-radius: 2px;
 }
-.CodeRay .code {
+pre.CodeRay, table.CodeRay, .CodeRay pre {
+	background: none;
+	border: 0;
+	padding: 0;
+	margin: 0;
+}
+/* Non-syntax highlighted block */
+pre.CodeRay {
+	padding: 4px 8px;
+}
+.CodeRay .line-numbers pre, .CodeRay .line-numbers pre a {
+	background-color: transparent !important;
+}
+.CodeRay .line-numbers {
+	background-color: #EEEDD3 !important;
+}
+.CodeRay .line-numbers, .CodeRay .code {
+	/* Otherwise tall characters can make these not align */
 	line-height: 1em;
 }
 .CodeRay {
