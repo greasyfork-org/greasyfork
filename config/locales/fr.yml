@@ -126,6 +126,7 @@ fr:
     syncing_notice_sync_type_manual: "configuré pour se synchroniser manuellement depuis %{sync_identifier}"
     syncing_notice_sync_type_automatic: "configuré pour se synchroniser automatiquement depuis %{sync_identifier}"
     upload_label: "Ou envoyer :"
+    enable_source_code_editor_label: "Activer l'éditeur de code source avec coloration syntaxique"
     changelog_note: "Qu'est-ce qui a changé dans cette version ?"
     additional_info_note_html: "Blablatez à propos de votre script. %{allowed_elements_link}"
     preview_additional_info: "Prévisualiser"
@@ -167,7 +168,14 @@ fr:
     screenshots_explanation: "Au maximum %{number} images PNG, GIF, ou JPEG, de taille inférieure à %{size} chacune."
     screenshots_add: "Ajouter :"
     screenshots_remove: "Supprimer :"
+    diff_title: "%{script} -  Delta entre versions"
+    diff_old_version: "Vieux:"
+    diff_new_version: "Nouveau:"
     diff_refresh: "Actualiser"
+    diff_no_change: "Pas de différence trouvée."
+    good_rating_explanation: "Nombre de personnes l'ayant jugé-e Bon-ne ou ajouté-e aux favoris"
+    ok_rating_explanation: "Nombre de personnes l'ayant jugé-e OK."
+    bad_rating_explanation: "Nombre de personnes l'ayant jugé-e Mauvais-e."
   script_sets:
     favorites_name: "Favoris"
     delete: "Supprimer ce jeu de scripts"
@@ -254,6 +262,7 @@ fr:
     locale_prompt: "(Choisissez une région)"
     show_ads_description: "Aider Greasy Fork en l'autorisant à afficher des publicités"
     preferred_markup_description: "Sera utilisé pour les nouveaux script et posts."
+    flattr_username_description_html: "On demandera aux utilisateurs de vos scripts de faire un don sur votre compte <a href=\"https://flattr.com\">Flattr</a>."
   common:
     error_preamble: "Il y a des erreurs dans ce que vous avez posté..."
     allowed_elements_link: "(Voir les balises autorisées.)"
@@ -268,6 +277,7 @@ fr:
     expander_show_more: "Voir plus"
     expander_show_less: "Voir moins"
     advertisement_note: Publicité
+    share: Partager
   activerecord:
     attributes:
       user:
@@ -277,6 +287,7 @@ fr:
         author_email_notification_type_id: "Notifications de discussion sur vos scripts"
         show_ads: "Afficher les publicités"
         preferred_markup: "Mise en forme préférée"
+        flattr_username: "Nom d'utilisateur Flattr"
       script:
         name: "Nom"
         description: "Description"
@@ -287,6 +298,7 @@ fr:
         additional_info: "Informations supplémentaires"
         screenshots: "Captures d'écran"
         screenshot_caption: "Légende"
+        replaced_by_script_id: "Script de remplacement"
   errors:
     messages:
       script_missing_name: "est nécessaire - spécifiez-le avec @name"
@@ -294,3 +306,7 @@ fr:
       script_name_same_as_description: "doit être différent du nom"
       script_sync_identifier_bad_protocol: "doit être une URL HTTP ou HTTPS"
       script_too_many_screenshots: "Trop de captures d'écran : le maximum est %{number}"
+      cannot_be_self_reference: "ne peut pas être le même script"
+      cannot_be_deleted_reference: "ne peut pas être un script effacé"
+      must_be_greasy_fork_script: "doit être l'URL d'un script Greasy Fork"
+      script_update_not_utf8: "téléchargé sur le serveur doit être du texte encodé en UTF-8"
