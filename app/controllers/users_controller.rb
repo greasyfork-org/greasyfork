@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 	before_filter :authenticate_user!, :except => [:show, :webhook, :index]
 	before_filter :authorize_for_moderators_only, :only => [:ban, :do_ban]
 
-	HMAC_DIGEST = OpenSSL::Digest::Digest.new('sha1')
+	HMAC_DIGEST = OpenSSL::Digest.new('sha1')
 
 	def index
 		@users = User.includes(:listable_scripts).references(:scripts).group('users.id').order(self.class.get_sort(params)).paginate(:page => params[:page], :per_page => get_per_page)
