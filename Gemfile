@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.1.3'
 
-gem 'rails', '4.1.6'
+gem 'rails', '~> 4.2.0'
 gem 'rails-i18n', '~> 4.0.0'
 
 # Use sqlite3 as the database for Active Record
@@ -46,7 +46,7 @@ end
 # included by dependency, need a more recent version - https://github.com/JasonBarnabe/greasyfork/issues/245
 gem 'i18n', '>= 0.6.11'
 
-gem 'devise'
+gem 'devise', '~> 3.4.0'
 gem 'devise-i18n'
 gem 'devise-i18n-views', '~> 0.3.4'
 gem 'therubyracer'
@@ -63,8 +63,8 @@ gem 'ignorable'
 gem 'coderay', git: 'git@github.com:JasonBarnabe/coderay.git', branch: 'js-ident-unicode'
 gem 'thinking-sphinx', '~> 3.1.3'
 gem 'ts-delayed-delta', '~> 2.0.2'
-gem 'delayed_job', '~> 4.0.2'
-gem 'delayed_job_active_record', '~> 4.0.1'
+gem 'delayed_job', '~> 4.0.6'
+gem 'delayed_job_active_record', '~> 4.0.3'
 gem 'daemons'
 gem 'public_suffix'
 gem 'transifex-ruby', git: 'git@github.com:tmaesaka/transifex-ruby.git'

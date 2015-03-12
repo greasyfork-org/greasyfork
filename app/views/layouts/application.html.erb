@@ -73,7 +73,7 @@
 					<% if request.get?
 						form_action = url_for(params.except(:locale).merge({:locale => nil, :only_path => true}))
 					else
-						form_action = root_path({:locale => nil, :only_path => true})
+						form_action = root_path({:locale => nil})
 					end %>
 					<form id="language-selector" action="<%=form_action%>">
 						<% user_with_locale = !current_user.nil? && !current_user.locale.nil?
