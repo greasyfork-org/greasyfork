@@ -42,4 +42,5 @@ Greasyfork::Application.configure do
 
   config.enable_detect_locale = false
   config.download_locale_files = false
+  config.active_support.test_order = :random
 end
