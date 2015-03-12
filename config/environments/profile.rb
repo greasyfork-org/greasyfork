@@ -20,7 +20,7 @@ Greasyfork::Application.configure do
   # config.action_dispatch.rack_cache = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
-  config.serve_static_assets = false
+  config.serve_static_files = false
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -54,8 +54,6 @@ Greasyfork::Application.configure do
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
   config.cache_store = :dalli_store, ['localhost:11211:10'], { :namespace => 'Greasy Fork', :expires_in => 2.hours, :compress => true }
-
-  config.serve_static_assets = false
 
   config.assets.compress = true
   config.assets.js_compressor  = :uglifier
