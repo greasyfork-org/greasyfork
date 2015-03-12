@@ -3,12 +3,7 @@ require 'securerandom'
 class User < ActiveRecord::Base
 
 	has_many :scripts
-	has_many :listable_scripts, -> {
-		# copy from Script.listable. Is this the most elegant way to do this?
-		o = nil
-		Script.listable.where_values.each{|wv| o = o.nil? ? where(wv) : o.where(wv)}
-		o
-	}, :class_name => 'Script'
+	has_many :listable_scripts, -> { listable }, :class_name => 'Script'
 
 	#this results in a cartesian join when included with the scripts relation
 	#has_many :discussions, through: :scripts
