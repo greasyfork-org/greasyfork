@@ -1,4 +1,5 @@
 require 'securerandom'
+require 'devise'
 
 class User < ActiveRecord::Base
 
