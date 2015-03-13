@@ -5,6 +5,6 @@ env:
   - DB=mysql
 before_script:
   - cp test/travisconfig/database.yml config/database.yml
-  - cp test/travisconfig/secrets.rb config/initializers/secrets.rb
+  - cp test/travisconfig/secrets.yml config/initializers/secrets.yml
   - mysql -e 'create database greasyforktest'
   - mysql greasyforktest < db/structure.sql
