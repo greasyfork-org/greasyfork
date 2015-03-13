@@ -9,5 +9,5 @@ script:
   - bundle exec rake
 before_script:
   - cp test/travisconfig/database.yml config/database.yml
-  - cp test/travisconfig/devise.rb config/initializers/devise.rb
+  - cp test/travisconfig/devise_secret.rb config/initializers/devise_secret.rb
   - mysql -e 'create database greasyforktest'
