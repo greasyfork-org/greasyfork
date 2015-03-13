@@ -6,6 +6,8 @@ Post in the [Greasy Forum](https://greasyfork.org/forum/) for help with Greasy F
 
 ## Contributing
 
+[![Build Status](https://travis-ci.org/JasonBarnabe/greasyfork.svg?branch=master)](https://travis-ci.org/JasonBarnabe/greasyfork)
+
 Greasy Fork welcomes contributions. Learn about [running Greasy Fork locally](https://github.com/JasonBarnabe/greasyfork/wiki/Running-Greasy-Fork-locally) and [contributing code](https://github.com/JasonBarnabe/greasyfork/wiki/Contributing-code).
 
 ## Donations
