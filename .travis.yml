@@ -3,11 +3,8 @@ rvm:
   - 2.1.3
 env:
   - DB=mysql
-script:
-  - RAILS_ENV=test bundle exec rake db:migrate --trace
-  - bundle exec rake db:test:prepare
-  - bundle exec rake
 before_script:
   - cp test/travisconfig/database.yml config/database.yml
   - cp test/travisconfig/devise_secret.rb config/initializers/devise_secret.rb
   - mysql -e 'create database greasyforktest'
+  - mysql greasyforktest < db/structure.sql
