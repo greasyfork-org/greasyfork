@@ -167,7 +167,9 @@ class ScriptsController < ApplicationController
 			format.json { render :json => @script.as_json(:include => :user) }
 			format.jsonp { render :json => @script.as_json(:include => :user), :callback => clean_json_callback_param }
 			format.user_script_meta {
-				redirect_to script_meta_js_path(params.merge({:script_id => params[:id], :name => @script.name, :format => nil}))
+				route_params = {:script_id => params[:id], :name => @script.name, :format => nil}
+				route_params[:version] = params[:version] if !params[:version].nil?
+				redirect_to script_meta_js_path(route_params)
 			}
 		end
 	end
