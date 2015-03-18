@@ -129,7 +129,7 @@ protected
 	def versionned_script(script_id, version_id)
 		return nil if script_id.nil?
 		script_id = script_id.to_i
-		current_script = Script.includes({:user => {}, :license => {}, :localized_attributes => :locale}).find(script_id)
+		current_script = Script.includes({:user => {}, :license => {}, :localized_attributes => :locale, :compatibilities => :browser}).find(script_id)
 		return [current_script, current_script.get_newest_saved_script_version] if version_id.nil?
 		version_id = version_id.to_i
 		script_version = ScriptVersion.find(version_id)

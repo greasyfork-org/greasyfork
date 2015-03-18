@@ -18,6 +18,7 @@ class Script < ActiveRecord::Base
 	has_many :localized_names, -> {where(:attribute_key => 'name')}, :class_name => 'LocalizedScriptAttribute'
 	has_many :localized_descriptions, -> {where(:attribute_key => 'description')}, :class_name => 'LocalizedScriptAttribute'
 	has_many :localized_additional_infos, -> {where(:attribute_key => 'additional_info')}, :class_name => 'LocalizedScriptAttribute'
+	has_many :compatibilities, :autosave => true
 
 	has_one :syntax_highlighted_code
 
@@ -192,6 +193,21 @@ class Script < ActiveRecord::Base
 			}
 		else
 			self.support_url = nil
+		end
+
+		self.compatibilities.each{|c| c.mark_for_destruction}
+		['compatible', 'incompatible'].each do |key|
+			next if !meta.has_key?(key)
+			compatible = key == 'compatible'
+			meta[key].each do |line|
+				browser_match = /\A([a-z]+).*/i.match(line)
+				next if browser_match.nil?
+				browser = Browser.where(code: browser_match[1].downcase).first
+				next if browser.nil?
+				comments_split = line.split(' ', 2)
+				comments = comments_split.length == 2 ? comments_split[1] : nil
+				compatibilities.build(compatible: compatible, browser: browser, comments: comments)
+			end
 		end
 	end
 

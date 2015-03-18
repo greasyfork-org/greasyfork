@@ -63,6 +63,30 @@
 		<dd class="script-show-updated-date"><span><%=markup_date(@script.code_updated_at)%></span></dd>
 		<dt class="script-show-license"><span><%=t('scripts.license')%></span></dt>
 		<dd class="script-show-license"><span><%=@script.license_display%></span></dd>
+		<% if !@script.compatibilities.empty? %>
+			<dt class="script-show-compatibility"><span><%=t('scripts.compatibility')%></span></dt>
+			<dd class="script-show-compatibility"><span>
+				<% Browser.all.each do |b|
+					b_compatibilities = @script.compatibilities.select{|c| c.browser == b}
+					if b_compatibilities.empty?
+						status = 'unknown'
+					elsif b_compatibilities.all?{|c| c.compatible}
+						status = 'compatible'
+					elsif b_compatibilities.all?{|c| !c.compatible}
+						status = 'incompatible'
+					else
+						# a mixture
+						status = 'unknown'
+					end
+					# show icons for compatible and incompatible
+					if status == 'incompatible' %>
+						<img src="<%=asset_path "browsericons/#{b.code}-incompatible.png"%>" alt="<%=t('scripts.incompatible_with_browser', browser: b.name)%>" title="<%=b_compatibilities.map{|c|c.comments}.join("\n")%>">
+					<% elsif status == 'compatible' %>
+						<img src="<%=asset_path "browsericons/#{b.code}.png"%>" alt="<%=t('scripts.compatible_with_browser', browser: b.name)%>" title="<%=b_compatibilities.map{|c|c.comments}.join("\n")%>">
+					<% end %>
+				<% end %>
+			</span></dd>
+		<% end %>
 	</dl>
 	<div>
 		<dl id="script-applies-to" data-show-more-text="<%=t('common.expander_show_more')%>" data-show-less-text="<%=t('common.expander_show_less')%>">

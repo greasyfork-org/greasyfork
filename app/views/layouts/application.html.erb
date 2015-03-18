@@ -83,7 +83,7 @@
 								if request.get? %>
 									<option data-language-url="<%=url_for(params.except(:locale).merge({:locale => code, :only_path => true, :locale_override => locale_with_override_param}))%>" value="<%=code%>"<%if params[:locale] == code%> selected<%end%>><%=name%> (<%=code%>)</option>
 								<% else %>
-									<option data-language-url="<%=root_path({:locale => code, :only_path => true, :locale_override => locale_with_override_param})%>" value="<%=code%>"<%if params[:locale] == code%> selected<%end%>><%=name%> (<%=code%>)</option>
+									<option data-language-url="<%=root_path({:locale => code, :locale_override => locale_with_override_param})%>" value="<%=code%>"<%if params[:locale] == code%> selected<%end%>><%=name%> (<%=code%>)</option>
 								<% end
 							end %>
 							<option value="help">Help us translate!</option>
