@@ -18,7 +18,7 @@ $Definition['RatingBad'] = 'Buruk - skrip tidak bekerja';
 /** Label for the radio button for rating a script "OK" **/
 $Definition['RatingOK'] = 'OK - skrip bekerja, tapi memiliki masalah yang signifikan';
 // Label for the radio button for rating a script "Good"
-$Definition['RatingGood'] = 'Bagus - skrip bekerja dengan baik';
+$Definition['RatingGood'] = 'Baik - skrip bekerja dengan baik';
 // Category name for Site Feedback
 $Definition['Categories.general.Name'] = 'Umpan Balik Situs';
 // Category description for Site Feedback
