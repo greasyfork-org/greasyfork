@@ -520,6 +520,44 @@ en:
     preferred_markup_description: "Will be used for new scripts and posts."
     # text describing what the flattr username setting does
     flattr_username_description_html: "Users of your scripts will be asked to donate to your account on <a href=\"https://flattr.com\">Flattr</a>."
+  help:
+    meta_keys:
+      # title of the help document describing script meta keys (e.g. @name).
+      title: "Meta keys"
+      # introductory paragraph. If the URL has a localized version, use that.
+      intro_html: "This is a list of <a href=\"http://wiki.greasespot.net/Metadata_Block\">user script meta keys</a> that Greasy Fork will read. Keys outside of this list may be included in scripts, and will be present in the installed script, but have no effect in Greasy Fork's UI."
+      # description of @name
+      name: "The name of the script, used as a heading and in links. Required."
+      # description of @name:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
+      name_localized_html: "The name of the script in a specific locale, where XX is an <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-letter code</a> and YY is an optional <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 country code</a>. Overrides <code>@name</code> when the user is browsing in a matching locale."
+      # description of @description
+      description: "A description of what the script does. Shown as text under the script name. Required."
+      # description of @description:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
+      description_localized_html: "The description of the script in a specific locale, where XX is an <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-letter code</a> and YY is an optional <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 country code</a>. Overrides <code>@description</code> when the user is browsing in a matching locale."
+      # description of @namespace. Do not translate content inside <code>.
+      namespace_html: "A combination of <code>@namespace</code> and <code>@name</code> is used by user script managers to see if a script is already installed. Greasy Fork requires this field and will warn if it's changed on update."
+      # description of @description:XX-YY. developer.mozilla.org may have localized content; use it if available.
+      version_html: "Identifier for a specific version of a script in <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">Mozilla version format</a>. Version is displayed on a script's info page. Greasy Fork requires this field and will warn if it's decremented or if it's not incremented when the script's code changes."
+      # description of @include
+      include: "Describe what pages the script will run on. This list will be processed, displayed on the script's info page, and used to categorize scripts."
+      # description of @require. %{external_script_link} is a link to the document describing allowed external scripts and has a link of key "require_external_script_link_text"
+      require_html: "Includes external JavaScript into a script. See %{external_script_link}."
+      # used in required_html
+      require_external_script_link_text: "rules for code including external scripts"
+      # description of @updateURL
+      updateURL: "Describe how user script managers should get updates. Greasy Fork will strip these keys, which makes any script installed from Greasy Fork only update from Greasy Fork."
+      # description of @license
+      license: "URL for or name of the license that describes how people are allowed to copy or modify a script. Lack of license implies users can install the script for personal use, but may not redistribute it. License is displayed on a script's info page."
+      # description of @supportURL
+      supportURL: "URL for a page where users can get support on a script (e.g. a bug tracker, a forum, an e-mail address). Support URL is displayed on a script's feedback page."
+      # description of @contributionURL. You can replace the sample "business" and "item_name" parameters in the URLs with localized versions.
+      contributionURL_html: "URL for a page where users can donate to the author of a script. Contribution URL is displayed on a script's feedback page. URLs can be http, https, or Bitcoin protocols. To link to a PayPal donation page, use a URL in the format <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a>, replacing the sample e-mail address with your own."
+      # description of @contributionAmount. Do not translate content inside <code>.
+      contributionAmount_html: "Suggested donation amount, used in conjunction with <code>@contributionURL</code>."
+      # description of @compatible. %{browsers} is a comma-separated list of browser codes. You can translate "Must disable pop-up blocker", but do not translate "@compatible firefox". 
+      compatible_html: "Flags this script as compatible with a browser. Compatibility information will be shown on a script's page. Comments on compatibility can be included in the format <code>@compatible firefox Must disable pop-up blocker</code>. Recognized browsers are: %{browsers}."
+      # description of @incompatible. %{browsers} is a comma-separated list of browser codes. You can translate "Broken since Firefox 23", but do not translate "@compatible firefox". 
+      incompatible_html: "Flags this script as incompatible with a browser. Compatibility information will be shown on a script's page. Optional comments on compatibility can be included in the format <code>@incompatible firefox Broken since Firefox 23</code>. Recognized browsers are: %{browsers}."
   common:
     # text to show before listing errors in a submission
     error_preamble: "There were some problems with what you posted..."
