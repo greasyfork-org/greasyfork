@@ -1,5 +1,5 @@
 <?php
-$Definition['layouts.application.script_list'] = 'Scripts';
-$Definition['layouts.application.forum'] = 'Forum';
-$Definition['layouts.application.help'] = 'Help';
-$Definition['layouts.application.search'] = 'Search';
+$Definition['layouts.application.script_list'] = 'Скрипти';
+$Definition['layouts.application.forum'] = 'Форум';
+$Definition['layouts.application.help'] = 'Допомога';
+$Definition['layouts.application.search'] = 'Пошук';

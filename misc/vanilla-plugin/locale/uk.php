@@ -2,7 +2,7 @@
 /* Label for inputting a script ID when creating/editing a discussion */
 $Definition['Item ID:'] = 'ІД скрипта:';
 // Appended to "Discussions" when viewing a list of discussions on scripts by a user. %s is the user name.
-$Definition['on scripts by %s'] = 'on scripts by %s';
+$Definition['on scripts by %s'] = 'в скриптах %s';
 /*
  *  Label for the radio buttons for rating a script
  **/
@@ -20,21 +20,21 @@ $Definition['RatingOK'] = 'Нормально - скрипт працює, ал�
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'Добре - скрипт працює добре';
 // Category name for Site Feedback
-$Definition['Categories.general.Name'] = 'Site Feedback';
+$Definition['Categories.general.Name'] = 'Відгуки щодо сайту';
 // Category description for Site Feedback
-$Definition['Categories.general.Description'] = 'Bug reports, feature requests, and other stuff about Greasy Fork itself.';
+$Definition['Categories.general.Description'] = 'Звіти про помилки, прохання про зміни та інші речі пов\'язані з Greasy Fork.';
 // Category name for Development
-$Definition['Categories.script-development.Name'] = 'Development';
+$Definition['Categories.script-development.Name'] = 'Розробка';
 // Category description for Development
-$Definition['Categories.script-development.Description'] = 'Technical talk about user script development.';
+$Definition['Categories.script-development.Description'] = 'Технічні розмови про створення скриптів.';
 // Category name for Script Creation Requests
-$Definition['Categories.script-requests.Name'] = 'Script Creation Requests';
+$Definition['Categories.script-requests.Name'] = 'Запити на створення скриптів';
 // Category description for Script Creation Requests
-$Definition['Categories.script-requests.Description'] = 'Request someone write a script for you.';
+$Definition['Categories.script-requests.Description'] = 'Попросити когось написати скрипт для Вас.';
 // Category name for Script Discussions
-$Definition['Categories.script-discussions.Name'] = 'Script Discussions';
+$Definition['Categories.script-discussions.Name'] = 'Обговорення Скриптів';
 // Category description for Script Discussions
-$Definition['Categories.script-discussions.Description'] = 'Discussion on scripts posted to Greasy Fork.';
+$Definition['Categories.script-discussions.Description'] = 'Обговорення скриптів доданих до Greasy Fork\'у';
 // Link on Recent Discussions to hide script discussions
 $Definition['Turn on filter'] = 'Приховати обговорення скрипту';
 // Link on Recent Discussions to show script discussions

@@ -19,6 +19,9 @@ ar:
     version_number: "الإصدار"
     license: "الترخيص"
     no_license: "لا يوجد"
+    compatibility: "التوافق"
+    compatible_with_browser: "متوافق مع %{browser}"
+    incompatible_with_browser: "غير متوافق مع %{browser}"
     applies_to: "ينطبق على"
     applies_to_all: "جميع المواقع"
     additional_info: "وصف المؤلف"
@@ -35,6 +38,7 @@ ar:
     history_page: "التاريخ"
     feedback_page: "ردود الفعل (%{count})"
     stats_page: "إحصائيات"
+    derivatives_page: "المشتقات"
     update_page: "تحديث"
     sync_page: "مزامنة"
     delete_page: "حذف"
@@ -58,11 +62,14 @@ ar:
     feedback_sign_in_to_favorite: "قم بتسجيل الدخول لإضافته إلى المفضلة."
     stats_title: "%{script_name} - إحصائيات"
     stats_daily_installs_heading: "التثبيت اليومي"
+    stats_daily_update_checks_heading: "التـأكد من التحديث اليومي"
     stats_daily_installs_date_column_heading: "التاريخ"
     stats_daily_installs_install_count_column_heading: "التثبيتات"
+    stats_daily_installs_update_check_count_column_heading: "التـأكد من التحديث"
     stats_raw_data_header: "البيانات الخام"
     stats_download_raw_data_html: "تنزيل كل البيانات كـ: %{links}"
     stats_no_data: "لا يوجد"
+    derivatives_title: "%{script_name} - المشتقات"
     derivatives_intro: "ربما تستند هذه البرامج النصية على برنامجك الخاص (أو أن برنامجك النصي يستند عليها).  إذا وجدت استخدام غير مصرح به للكود الخاص بك، قم بالإبلاغ خلال بدء مناقشة جديدة على ذلك."
     derivatives_code_matches_info_html: "برامج نصية وضعها آخرون تحوي كوداً يحتوي على الأقل %{match_size} حرفاً مشتركاً مع الكود الخاص بك. هذه الفحص يتم على البرامج النصية الأقل حجماً من %{max_size} وتم تشغيل آخر مرة %{last_run}."
     derivatives_namespace_matches_info_html: "برامج نصية وضعها آخرون تستخدم <code>%{namespace}</code>:"
@@ -102,6 +109,7 @@ ar:
     contribution_bitcoin_no_amount_html: "شكر %{author} بالتبرع عن طريق بيتكوين إلى %{address}."
     contribution_bitcoin_with_amount_html: "شكر %{author} عن طريق التبرع بـ بتكوين إلى %{address}. المقدار المقترح هو %{amount}."
     locale_auto_select: "(كشف تلقائي)"
+    sets_label: "في مجموعة البرامج النصية:"
     sets_label_no_sets: "مجموعات البرامج النصية"
     sets_remove_inclusion: "إزالة من %{set_name}"
     sets_add_inclusion: "إضافة إلى %{set_name}"
@@ -230,6 +238,7 @@ ar:
     expander_show_more: "عرض المزيد"
     expander_show_less: "عرض أقل"
     advertisement_note: الإعلانات
+    share: مشاركة
   activerecord:
     attributes:
       user:
@@ -246,9 +255,17 @@ ar:
         changelog: "سجل التغييرات"
         type: "نوع البرنامج النصي"
         additional_info: "معلومات إضافية"
+        screenshots: "لقطات الشاشة"
+        screenshot_caption: "تعليق"
+        replaced_by_script_id: "البرنامج النصي للاستبدال"
   errors:
     messages:
       script_missing_name: "مطلوب - حدد واحد بـ @name"
       script_missing_description: "مطلوب - حدد واحد بـ @description"
       script_name_same_as_description: "يجب ألا يكون نفس الاسم"
       script_sync_identifier_bad_protocol: "يجب أن يكون رابط HTTP أو HTTPS"
+      script_too_many_screenshots: "كثير من لقطات الشاشة - الحد الأقصى هو %{number}"
+      cannot_be_self_reference: "لا يمكن أن يكون نفس البرنامج النصي"
+      cannot_be_deleted_reference: "لا يمكن أن يكون برنامج نصي محذوف"
+      must_be_greasy_fork_script: "يجب أن يكون الرابط لبرنامج نصي على Greasy Fork"
+      script_update_not_utf8: "المرفوع يجب أن يكون نص UTF-8"
