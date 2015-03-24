@@ -33,12 +33,7 @@ class ScriptsController < ApplicationController
 				@by_sites = self.class.get_top_by_sites
 
 				@bots = 'noindex,follow' if !params[:sort].nil?
-				@link_alternates = [
-					{:url => url_for(params.merge({:only_path => true, :page => nil, :sort => 'created', :format => :atom})), :type => 'application/atom+xml', :title => t('scripts.listing_created_feed')},
-					{:url => url_for(params.merge({:only_path => true, :page => nil, :sort => 'updated', :format => :atom})), :type => 'application/atom+xml', :title => t('scripts.listing_updated_feed')},
-					{:url => url_for(params.merge({:only_path => true, :format => :json})), :type => 'application/json'},
-					{:url => url_for(params.merge({:only_path => true, :format => :jsonp, :callback => 'callback'})), :type => 'application/javascript'}
-				]
+				@link_alternates = get_listing_link_alternatives
 
 				if !params[:set].nil?
 					if @set.favorite
@@ -60,8 +55,12 @@ class ScriptsController < ApplicationController
 				@canonical_params = [:page, :per_page, :set, :site, :sort]
 			}
 			format.atom
-			format.json { render :json => @scripts.as_json(:include => :user) }
-			format.jsonp { render :json => @scripts.as_json(:include => :user), :callback => clean_json_callback_param }
+			format.json {
+				render :json => params[:meta] == '1' ? {count: @scripts.count} : @scripts.as_json(:include => :user)
+			}
+			format.jsonp {
+				render :json => params[:meta] == '1' ? {count: @scripts.count} : @scripts.as_json(:include => :user), :callback => clean_json_callback_param
+			}
 		end
 	end
 
@@ -74,7 +73,7 @@ class ScriptsController < ApplicationController
 			redirect_to scripts_path
 			return
 		end
-		@bots = 'noindex,follow'
+
 		begin
 			# :ranker => "expr('top(user_weight)')" means that it will be sorted on the top ranking match rather than
 			# an aggregate of all matches. In other words, something matching on "name" will be tied with everything
@@ -88,10 +87,26 @@ class ScriptsController < ApplicationController
 			redirect_to scripts_path
 			return
 		end
-		@title = t('scripts.listing_title_for_search', :search_string => params[:q])
-		@feeds = {t('scripts.listing_created_feed') => {:sort => 'created'}, t('scripts.listing_updated_feed') => {:sort => 'updated'}}
-		@canonical_params = [:q, :page, :per_page, :sort]
-		render :action => 'index'
+
+		respond_to do |format|
+			format.html {
+				@bots = 'noindex,follow'
+				@title = t('scripts.listing_title_for_search', :search_string => params[:q])
+				@feeds = {t('scripts.listing_created_feed') => {:sort => 'created'}, t('scripts.listing_updated_feed') => {:sort => 'updated'}}
+				@canonical_params = [:q, :page, :per_page, :sort]
+				@link_alternates = get_listing_link_alternatives
+				render :action => 'index'
+			}
+			format.atom {
+				render :action => 'index'
+			}
+			format.json {
+				render :json => params[:meta] == '1' ? {count: @scripts.count} : @scripts.as_json(:include => :user)
+			}
+			format.jsonp {
+				render :json => params[:meta] == '1' ? {count: @scripts.count} : @scripts.as_json(:include => :user), :callback => clean_json_callback_param
+			}
+		end
 	end
 
 	def libraries
@@ -688,6 +703,17 @@ private
 		ip, script_id = per_user_stat_params(r, p)
 		return if ip.nil? || script_id.nil?
 		Script.record_update_check(script_id, ip)
+	end
+
+	def get_listing_link_alternatives
+		[
+			{:url => url_for(params.merge({:only_path => true, :page => nil, :sort => 'created', :format => :atom})), :type => 'application/atom+xml', :title => t('scripts.listing_created_feed')},
+			{:url => url_for(params.merge({:only_path => true, :page => nil, :sort => 'updated', :format => :atom})), :type => 'application/atom+xml', :title => t('scripts.listing_updated_feed')},
+			{:url => url_for(params.merge({:only_path => true, :format => :json})), :type => 'application/json'},
+			{:url => url_for(params.merge({:only_path => true, :format => :jsonp, :callback => 'callback'})), :type => 'application/javascript'},
+			{:url => url_for(params.merge({:only_path => true, :format => :json, :meta => '1'})), :type => 'application/json'},
+			{:url => url_for(params.merge({:only_path => true, :format => :jsonp, :meta => '1', :callback => 'callback'})), :type => 'application/javascript'}
+		]
 	end
 
 end

@@ -79,7 +79,7 @@ class User < ActiveRecord::Base
 
 	def serializable_hash(options = nil)
 		h = super({ only: [:id, :name] }.merge(options || {})).merge({
-			:url => Rails.application.routes.url_helpers.user_path(nil, self, {:only_path => false})
+			:url => Rails.application.routes.url_helpers.user_url(nil, self)
 		})
 		# rename listable_scripts to scripts
 		if !h['listable_scripts'].nil?

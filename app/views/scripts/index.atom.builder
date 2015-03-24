@@ -17,7 +17,7 @@ atom_feed(:root_url => url_for(params.except(:format).merge(:host => request.hos
 
 			entry.author do |author|
 				author.name(script.user.name)
-				author.uri(user_path(script.user, :only_path => false))
+				author.uri(user_url(script.user))
 			end
 		end
 	end

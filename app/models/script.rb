@@ -324,15 +324,15 @@ class Script < ActiveRecord::Base
 	end
 
 	def code_url
-		return url_helpers.script_library_js_path(self, :version => get_newest_saved_script_version.id, :name => url_name, :only_path => false) if library?
-		return url_helpers.script_user_js_path(self, :name => url_name, :only_path => false)
+		return url_helpers.script_library_js_url(self, :version => get_newest_saved_script_version.id, :name => url_name) if library?
+		return url_helpers.script_user_js_url(self, :name => url_name)
 	end
 
 	def serializable_hash(options = nil)
 		super({ only: [:id, :daily_installs, :total_installs, :fan_score, :good_ratings, :ok_ratings, :bad_ratings, :created_at, :code_updated_at, :namespace, :support_url, :contribution_url, :contribution_amount] }.merge(options || {})).merge({
 			:name => default_name,
 			:description => default_localized_value_for('description'),
-			:url => url_helpers.script_path(nil, self, {:only_path => false}),
+			:url => url_helpers.script_url(nil, self),
 			:code_url => code_url,
 			:license => license_text,
 			:version => version,
