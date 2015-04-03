@@ -19,6 +19,9 @@ es:
     version_number: "Versión"
     license: "Licencia"
     no_license: "N/D"
+    compatibility: "Compatibilidad"
+    compatible_with_browser: "Compatible con %{browser}"
+    incompatible_with_browser: "Incompatible con %{browser}"
     applies_to: "Funciona en"
     applies_to_link_title:
       one: "Ver %{count} script más para %{site}"
@@ -265,6 +268,11 @@ es:
     locale_prompt: "(Elija una localización)"
     show_ads_description: "Apoye a Greasy Fork permitiendo que le muestre anuncios"
     preferred_markup_description: "Se usarán en nuevos scripts y publicaciones."
+    flattr_username_description_html: "A los usuarios de tus scripts se les pedirá donar a tu cuenta en <a href=\"https://flattr.com\">Flattr</a>."
+  help:
+    meta_keys:
+      require_html: "Incluye JavaScript externo en un script. Ver %{external_script_link}"
+      require_external_script_link_text: "reglas para código que incluye scripts externos"
   common:
     error_preamble: "Hubo algunos problemas a la hora de procesar su envío..."
     allowed_elements_link: "(Ver codigo permitido.)"
@@ -279,6 +287,7 @@ es:
     expander_show_more: "Mostrar más"
     expander_show_less: "Mostrar menos"
     advertisement_note: Anuncio
+    share: Compartir
   activerecord:
     attributes:
       user:
@@ -288,6 +297,7 @@ es:
         author_email_notification_type_id: "Notificaciones sobre debates en scripts"
         show_ads: "Mostrar anuncios"
         preferred_markup: "Marcado preferido"
+        flattr_username: "Nombre de usuario en Flattr"
       script:
         name: "Nombre"
         description: "Descripción"

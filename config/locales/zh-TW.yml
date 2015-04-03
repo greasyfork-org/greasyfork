@@ -19,6 +19,9 @@ zh-TW:
     version_number: "版本"
     license: "授權條款"
     no_license: "未知"
+    compatibility: "相容性"
+    compatible_with_browser: "相容於 %{browser}"
+    incompatible_with_browser: "不相容於 %{browser}"
     applies_to: "腳本執行於"
     applies_to_link_title:
       other: "瀏覽其他 %{count} 個執行於 %{site} 的腳本"
@@ -125,6 +128,7 @@ zh-TW:
     syncing_notice_sync_type_manual: "設定為從 %{sync_identifier} 手動同步"
     syncing_notice_sync_type_automatic: "設定為從 %{sync_identifier} 自動同步"
     upload_label: "或上傳："
+    enable_source_code_editor_label: "啟用具有語法色彩標示的原始碼編輯器"
     changelog_note: "該版本的更新内容："
     additional_info_note_html: "介紹或說明您的腳本。 %{allowed_elements_link}"
     preview_additional_info: "預覽"
@@ -166,12 +170,12 @@ zh-TW:
     screenshots_explanation: "您可以上傳 %{number} 張不大於 %{size} 的格式為 PNG、GIF 或 JPEG 的預覽圖"
     screenshots_add: "新增："
     screenshots_remove: "移除"
-    replacement_script_explanation: "(可選) 您可以選擇一個腳本來替換當前的腳本。當您的用戶檢查更新時，他們將會被重定向至新的腳本。請輸入替換用腳本地址："
+    replacement_script_explanation: "(可選) 您可以選擇另一個腳本來取代目前的腳本。當您的用戶檢查更新時，他們將會被重新導向到新的腳本。請輸入替代腳本網址："
     diff_title: "%{script} - 版本差異"
     diff_old_version: "之前:"
     diff_new_version: "之後:"
     diff_lines_of_context: "上下文行數:"
-    diff_ignore_whitespace: "忽視空白字符變化"
+    diff_ignore_whitespace: "忽視空白字元的變更"
     diff_refresh: "重新載入"
     diff_no_change: "未發現變化"
     good_rating_explanation: "給予好評或加入我的最愛的用戶數目"
@@ -262,6 +266,20 @@ zh-TW:
     locale_prompt: "(語言選擇)"
     show_ads_description: "顯示廣告以支援 Greasy Fork 的網站經營"
     preferred_markup_description: "該設定將會套用到新的腳本以及新的發言。"
+    flattr_username_description_html: "您的腳本的使用者將被詢問是否要向您的 <ahref=\"https://flattr.com\">Flattr</a> 帳號捐贈。"
+  help:
+    meta_keys:
+      title: "Meta keys"
+      name: "腳本名稱，用來作為標題與鏈結中使用，必填。"
+      name_localized_html: "此腳本在不同語系中的名稱，XX 是 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 的兩字母代碼</a> ，YY 則是非必要的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 國家代碼</a>。當使用者在符合的語系中瀏覽時就會蓋過 <code>@name</code> 顯示。"
+      description: "必須在腳本名稱下方以文字說明腳本內容。"
+      description_localized_html: "此腳本在不同語系中的描述，XX 是 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 的兩字母代碼</a> ，YY 則是非必要的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 國家代碼</a>。當使用者在符合的語系中瀏覽時就會蓋過 <code>@description</code> 顯示。"
+      namespace_html: "使用者腳本管理器將會透過 <code>@namespace</code> 與 <code>@name</code> 的組合來判斷是否已安裝該腳本。Greasy Fork 要求必填此欄位，若於更新時修改了此欄位也會警告您。"
+      include: "描述這份腳本會在那些網頁之行。此清單將被處理並顯示於腳本的資訊頁面，並用來分類腳本。"
+      require_html: "在腳本中引入的外部 JavaScript，請參考 %{external_script_link}。"
+      require_external_script_link_text: "外部腳本的使用規範"
+      contributionURL_html: "腳本作者的捐贈網址。捐贈網址會顯示在腳本的反饋頁。網址可以是 http、https 或者比特幣協議網址。例如：要連結到 PayPal 捐贈頁面，可使用 <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a> 的格式，請用您自己的電子郵件位址替代前述範例的位址。"
+      contributionAmount_html: "建議的捐款金額，與 <code>@contributionURL</code> 一起使用。"
   common:
     error_preamble: "您所發表的帖子內容有點問題..."
     allowed_elements_link: "(檢視允許使用的 HTML/Markdown 代碼。)"
@@ -276,6 +294,7 @@ zh-TW:
     expander_show_more: "顯示更多"
     expander_show_less: "折疊"
     advertisement_note: 廣告
+    share: 分享
   activerecord:
     attributes:
       user:
@@ -285,6 +304,7 @@ zh-TW:
         author_email_notification_type_id: "腳本討論通知設定"
         show_ads: "顯示廣告"
         preferred_markup: "預設文章格式"
+        flattr_username: "Flattr 的使用者名稱"
       script:
         name: "名稱"
         description: "描述"
@@ -295,7 +315,7 @@ zh-TW:
         additional_info: "其他資訊"
         screenshots: "擷圖"
         screenshot_caption: "標題"
-        replaced_by_script_id: "替換用腳本"
+        replaced_by_script_id: "替代腳本"
   errors:
     messages:
       script_missing_name: "必填 - 請透過 <code>@name</code> 指定。"
@@ -305,4 +325,5 @@ zh-TW:
       script_too_many_screenshots: "上傳的擷圖過多 - 您最多只能上傳 %{number} 張擷圖"
       cannot_be_self_reference: "不能為相同腳本"
       cannot_be_deleted_reference: "不能為已刪除腳本"
-      must_be_greasy_fork_script: "必須為當前站點的腳本"
+      must_be_greasy_fork_script: "必須為本站的腳本"
+      script_update_not_utf8: "上傳之腳本的編碼格式須為 UTF-8"

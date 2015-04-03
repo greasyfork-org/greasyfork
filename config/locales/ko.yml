@@ -19,6 +19,9 @@ ko:
     version_number: "버전"
     license: "라이센스"
     no_license: "없음"
+    compatibility: "호환성"
+    compatible_with_browser: "%{browser}와 호환됨."
+    incompatible_with_browser: "%{browser}와 호환되지 않음."
     applies_to: "적용되는 사이트"
     applies_to_link_title:
       other: "%{site}에 적용되는 %{count}개의 다른 스크립트도 확인해보세요"
@@ -196,7 +199,7 @@ ko:
     explain_user_scripts_how_to_install_link: "Greasemonkey와 같은 무료 확장 프로그램"
     explain_user_scripts_browse_link: "살펴보고"
     greasy_fork_for_authors_heading: "저는 스크립트 개발자입니다, 왜 Greasy Fork를 사용해야 합니까?"
-    greasy_fork_for_authors_html: "Gresay Fork는 userscripts.org의 폐쇄 이후로 여러명의 사용자들과 함께 하는 최고의 유저스크립트 사이트를 목표로 하였습니다. 우리는 스크립트는 퀼리티를 우선시하여, 스팸 및 신용 사기 스크립트를 막기 위해 노력하고 있습니다. 우리는 당신의 스크립트를 쉽게 관리할 수 있게 하는 기술을 제공합니다. 예시로 당신이 GitHub(또는 다른곳)으로 커밋할때  자동으로 변경사항을 가져옵니다."
+    greasy_fork_for_authors_html: "Gresay Fork는 userscripts.org의 폐쇄 이후로 여러명의 사용자들과 함께 하는 최고의 유저스크립트 사이트를 목표로 하였습니다. 우리는 스크립트의 퀼리티를 우선시하여, 스팸 및 신용 사기 스크립트를 막기 위해 노력하고 있습니다. 우리는 당신의 스크립트를 쉽게 관리할 수 있게 하는 기술을 제공합니다. 예시로 당신이 GitHub(또는 다른곳)으로 커밋할때  자동으로 변경사항을 가져옵니다."
     scripts_sample: "스크립트 샘플"
     scripts_sample_more: "더 보기..."
   users:
@@ -264,6 +267,14 @@ ko:
     show_ads_description: "광고 차단을 해제해 Greasy Fork를 지원해주세요"
     preferred_markup_description: "다음에 보는 스크립트와 게시물에 적용됩니다"
     flattr_username_description_html: "유저들에게 <a href=\"https://flattr.com\">Flattr</a> 계정으로 기부할 것을 요청할 것입니다."
+  help:
+    meta_keys:
+      title: "메타 키"
+      intro_html: "Greasy Fork에서 읽는 <a href=\"http://wiki.greasespot.net/Metadata_Block\">유저 스크립트 메타블럭</a>들입니다. 이 중에 없는 블럭은 스크립트내에 포함되나 Greasy Fork의 UI에 아무런 영향도 주지 않습니다."
+      name: "스크립트의 이름, 제목 링크 내에서 사용됩니다. 필수."
+      name_localized_html: "지정된 로케일에서의 스크립트 이름. XX는 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-letter code</a>에서, YY는 필수적이지 않은 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 country code</a>입니다. 일치하는 로케일내에서 유저가 탐색할때 <code>@name</code>는 무시됩니다."
+      description: "스크립트가 뭐 하는지에 대한 설명. 스크립트 이름 아래에서 텍스트로 보여집니다. 필수."
+      require_external_script_link_text: "외부 스크립트를 포함하는 코드에 대한 규칙"
   common:
     error_preamble: "당신이 올린 거에 몇몇 문제들이 있습니다...."
     allowed_elements_link: "(허용된 코드 보기)"

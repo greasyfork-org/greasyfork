@@ -271,6 +271,15 @@ cs:
     show_ads_description: "Podpořte Greasy Fork povolením zobrazení reklam"
     preferred_markup_description: "Bude použito pro nové skripty a komentáře."
     flattr_username_description_html: "Uživatelé vačeho skriptu budou požádáni o příspěvek na <a href=\"https://flattr.com\">Flattr</a>."
+  help:
+    meta_keys:
+      name: "Název skriptu, používaný v záhlaví a odkazech. Povinná položka."
+      description: "Popis funkce skriptu. Zobrazuje se pod názvem skriptu. Povinná položka"
+      include: "Uveďte stránky, na kterých skript poběží. Seznam bude zpracován, zobrazen na stránce skriptu a bude použit pro kategorizaci skriptu."
+      require_html: "Skript obsahuje externí JavaScript. Více viz %{external_script_link}."
+      require_external_script_link_text: "pravidla pro kód obsahující externí skripty"
+      compatible_html: "Označit skript jako kompatibilní s browserem. Informace o kompatibilitě bude zobrazena na stránce skriptu. Komentáře ke kompatibilitě mohou být uvedeny ve formátu <code>@compatible firefox Must disable pop-up blocker</code>. Rozpoznané browsery: %{browsers}."
+      incompatible_html: "Označit skript jako nekompatibilní s browserem. Informace o kompatibilitě bude zobrazena na stránce skriptu. Komentáře ke kompatibilitě mohou být uvedeny ve formátu <code>@incompatible firefox Broken since Firefox 23</code>. Rozpoznané browsery: %{browsers}."
   common:
     error_preamble: "S vloženým obsahem není vše v pořádku..."
     allowed_elements_link: "(Zobrazit povolené elementy.)"
