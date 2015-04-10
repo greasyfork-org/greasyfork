@@ -8,15 +8,15 @@ $Definition['on scripts by %s'] = '於 %s 的腳本';
  **/
 $Definition['RatingLabel'] = '您會如何評價該腳本?';
 # Label for the radio buttons for updating a rating on a script
-$Definition['RatingUpdateLabel'] = '更新您的評分：';
+$Definition['RatingUpdateLabel'] = '更新您的評價：';
 # Label for the radio button for not rating a script
-$Definition['RatingNone'] = '無評分 - 只是詢問、評論、功能請求、或錯誤報告';
+$Definition['RatingNone'] = '無評價 - 只是詢問、評論、功能請求、或錯誤報告';
 ## Label for the radio button for reporting a script
 $Definition['RatingReport'] = '舉報該腳本並通知管理員移除 - 惡意代碼或抄襲代碼等情形。';
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = '差評 - 腳本用不了或已經失效';
 /** Label for the radio button for rating a script "OK" **/
-$Definition['RatingOK'] = '一般 - 能用，但是有一些問題';
+$Definition['RatingOK'] = '普評 - 能用，但是有一些問題';
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = '好評 - 腳本效果拔群';
 // Category name for Site Feedback

@@ -16,7 +16,7 @@ $Definition['RatingReport'] = '向管理员举报来要求移除脚本 - 恶意�
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = '差评 - 脚本失效、用不了';
 /** Label for the radio button for rating a script "OK" **/
-$Definition['RatingOK'] = '一般 - 脚本游泳，但还有一些问题';
+$Definition['RatingOK'] = '一般 - 脚本有用，但还有一些问题';
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = '好评 - 一切运行良好';
 // Category name for Site Feedback
