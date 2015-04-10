@@ -64,9 +64,9 @@
 		<% when 3 %>
 			<p>
 				<% if params[:version].nil?
-					library_code_snippet = "<code>// @require #{script_library_js_path(script, :version => script_version.id, :name => script.url_name, :only_path => false, :locale_override => nil)}</code>"
+					library_code_snippet = "<code>// @require #{script_library_js_url(script, :version => script_version.id, :name => script.url_name, :locale_override => nil)}</code>"
 				else
-					library_code_snippet = "<code>// @require #{script_library_js_path(script, :version => params[:version], :name => script.url_name, :only_path => false, :locale_override => nil)}</code>"
+					library_code_snippet = "<code>// @require #{script_library_js_url(script, :version => params[:version], :name => script.url_name, :locale_override => nil)}</code>"
 				end %>
 				<%=t('scripts.library_instructions_html', :code => library_code_snippet.html_safe)%>
 			</p>

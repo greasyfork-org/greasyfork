@@ -170,7 +170,7 @@ class Script < ActiveRecord::Base
 		end
 
 		self.namespace = meta.has_key?('namespace') ? meta['namespace'].first : nil
-		self.version = meta.has_key?('version') ? meta['version'].first : nil
+		self.version = script_version.version
 
 		self.contribution_url = !meta.has_key?('contributionURL') ? nil : meta['contributionURL'].find {|url|
 			URI::regexp(%w(http https bitcoin)) =~ url
@@ -217,10 +217,6 @@ class Script < ActiveRecord::Base
 			return sv if !sv.new_record?
 		end
 		return nil
-	end
-
-	def version
-		get_newest_saved_script_version.version
 	end
 
 	def self.record_install(id, ip)
