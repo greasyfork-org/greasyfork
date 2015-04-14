@@ -21,6 +21,7 @@ fr:
     no_license: "N/A"
     compatibility: "compatibilité"
     compatible_with_browser: "Compatible avec %[browser]"
+    incompatible_with_browser: "Incompatible avec %{browser}"
     applies_to: "S'applique à"
     applies_to_link_title:
       one: "Voir %{count} autre script pour %{site}"
@@ -268,6 +269,13 @@ fr:
     show_ads_description: "Aider Greasy Fork en l'autorisant à afficher des publicités"
     preferred_markup_description: "Sera utilisé pour les nouveaux script et posts."
     flattr_username_description_html: "On demandera aux utilisateurs de vos scripts de faire un don sur votre compte <a href=\"https://flattr.com\">Flattr</a>."
+  help:
+    meta_keys:
+      name: "Le nom du script, utilisé comme entête et dans les liens. Requis."
+      description: "Une description de ce que le script fait. Affiché sous forme de texte sous le nom du script. Requis."
+      include: "Décris sur quelles pages le script va s'exécuter. Cette liste sera traitée, affichée sur la page d'information du script, et utilisée pour catégoriser les scripts."
+      require_html: "Inclus du JavaScript externe dans un script. Voir %{external_script_link}."
+      require_external_script_link_text: "Règles pour les codes incluant des scripts externes."
   common:
     error_preamble: "Il y a des erreurs dans ce que vous avez posté..."
     allowed_elements_link: "(Voir les balises autorisées.)"
