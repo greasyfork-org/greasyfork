@@ -14,6 +14,9 @@ if show_diff
 	<% end
 end %>
 <form action="<%=script_diff_path(params[:script_id])%>">
+	<% if show_diff %>
+		<%= submit_tag t('scripts.diff_button'), :name => nil%>
+	<% end %>
 	<ul>
 		<% svs.each_with_index do |sv, i|
 			show_version = show_all_versions || ((i + 1 >= svs.length) || sv.rewritten_script_code_id != svs[i + 1].rewritten_script_code_id)
