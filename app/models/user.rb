@@ -27,6 +27,12 @@ class User < ActiveRecord::Base
 	validates_inclusion_of :profile_markup, :in => ['html', 'markdown']
 	validates_inclusion_of :preferred_markup, :in => ['html', 'markdown']
 
+	# Devise runs this when password_required?, and we override that so
+	# that users don't have to deal with passwords all the time. Add it
+	# back when Devise won't run it and the user is actually setting the
+	# password.
+	validates_confirmation_of :password, if: Proc.new{|u| !u.password_required? && !u.password.nil?}
+
 	strip_attributes
 
 	def discussions_on_scripts_written
