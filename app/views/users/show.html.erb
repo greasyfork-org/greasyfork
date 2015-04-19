@@ -105,9 +105,13 @@ script_list = @scripts - deleted_script_list %>
 	<header>
 		<h3><%=t('users.script_list')%></h3>
 	</header>
-	<% if !@user_has_scripts %>
-		<p><%=t('users.script_list_none')%></p>
-	<% elsif script_list.empty? %>
+	<% if !@user_has_scripts
+		if same_user %>
+			<p><%=t('users.script_list_none_same_user_html', script_list_none_same_user_info_link: link_to(t('users.script_list_none_same_user_info_link_text'), help_writing_user_scripts_path))%></p>
+		<% else %>
+			<p><%=t('users.script_list_none')%></p>
+		<% end
+	elsif script_list.empty? %>
 		<p><%=t('users.script_list_none_for_filter')%></p>
 	<% else %>
 		<ol id="user-script-list" class="script-list">

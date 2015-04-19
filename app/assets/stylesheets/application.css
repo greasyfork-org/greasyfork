@@ -360,6 +360,18 @@ dt[title] > span {
 .script-list .name-description-separator, .script-list .description {
 	font-weight: normal;
 }
+.script-list + .pagination {
+	font-size: 18px;
+	display: inline-block;
+	background-color: #FFE6E6;
+	padding: 0.5em;
+	margin-bottom: 0.5em;
+	border-radius: 5px;
+}
+.pagination .current {
+	font-style: normal;
+	font-weight: bold;
+}
 
 .good-rating-count, .ok-rating-count, .bad-rating-count {
 	display: inline-block;

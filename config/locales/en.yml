@@ -354,6 +354,12 @@ en:
     ok_rating_explanation: "Number of people who rated it OK."
     # tooltip for bad rating number - "Bad" should match the word used in RatingGood in the PHP localization
     bad_rating_explanation: "Number of people who rated it Bad."
+    # link at the bottom of the scripts list suggesting people post a script or learn how. post_a_script_link is a link with text post_a_script_link_text that goes to the new script form. learn_to_write_scripts_link is a link with text learn_to_write_scripts_link_text that goes to the help document for writing scrupts
+    write_your_own_html: "%{post_a_script_link} (or %{learn_to_write_scripts_link})"
+    # link text for the new script form, used in write_your_own_html
+    post_a_script_link_text: "Post a script you've written"
+    # link text for the writing a user script help doc, used in write_your_own_html
+    learn_to_write_scripts_link_text: "learn how to write one"
   script_sets:
     # name for the favorites set
     favorites_name: "Favorites"
@@ -431,6 +437,10 @@ en:
     script_list_none: "No scripts posted."
     # text to show in a user's script section when they have created scripts, but they are not shown due to the filters active
     script_list_none_for_filter: "No scripts for the current filters."
+    # text to show in a user's own script section when they have created no scripts. script_list_none_same_user_info_link is a link to a tutorial with text of script_list_none_same_user_info_link_text
+    script_list_none_same_user_html: "You haven't written any scripts. %{script_list_none_same_user_info_link}"
+    # text used for link in script_list_none_same_user_html
+    script_list_none_same_user_info_link_text: "Would you like to learn how?"
     # heading for the list of a user's deleted scripts (visible to only that user and mods)
     deleted_script_list: "Deleted scripts"
     # link to log out
@@ -523,7 +533,7 @@ en:
   help:
     meta_keys:
       # title of the help document describing script meta keys (e.g. @name).
-      title: "Meta keys"
+      title: "Script meta keys read by Greasy Fork"
       # introductory paragraph. If the URL has a localized version, use that.
       intro_html: "This is a list of <a href=\"http://wiki.greasespot.net/Metadata_Block\">user script meta keys</a> that Greasy Fork will read. Keys outside of this list may be included in scripts, and will be present in the installed script, but have no effect in Greasy Fork's UI."
       # description of @name
@@ -558,6 +568,20 @@ en:
       compatible_html: "Flags this script as compatible with a browser. Compatibility information will be shown on a script's page. Comments on compatibility can be included in the format <code>@compatible firefox Must disable pop-up blocker</code>. Recognized browsers are: %{browsers}."
       # description of @incompatible. %{browsers} is a comma-separated list of browser codes. You can translate "Broken since Firefox 23", but do not translate "@compatible firefox". 
       incompatible_html: "Flags this script as incompatible with a browser. Compatibility information will be shown on a script's page. Optional comments on compatibility can be included in the format <code>@incompatible firefox Broken since Firefox 23</code>. Recognized browsers are: %{browsers}."
+    writing_user_scripts:
+      # title for Writing user scripts help page
+      title: "How to write user scripts"
+      # content of the page. The link to greasespot can be updated to a better resource if one is available in your language. code_rules_link and meta_keys_link are links to those help pages, with text of those page's titles. ask_in_forum_link is a link to the forum with text of ask_in_forum_link_text. user_page_link is a link to the user's page if the user is signed in, or plain text if they're not; in either case, the text is user_page_link_text. post_new_script_link is a link to the new script page, with text of post_new_script_link_text
+      content_html: "<p>Writing user scripts requires knowledge of JavaScript. The <a href=\"http://wiki.greasespot.net/Tutorials\">tutorials on the GreaseSpot Wiki</a> should give you a running start on JavaScript both in general and as it relates to user scripts. Inspecting others' scripts can be helpful. You may be interested in %{code_rules_link} and %{meta_keys_link}. If you want help developing your script, feel free to %{ask_in_forum_link}.</p><p>To post on Greasy Fork, you will need to create an account. From your %{user_page_link}, follow the link to %{post_new_script_link}.</p>"
+      # link text used in content_html
+      ask_in_forum_link_text: 'ask in the forum'
+      # link text used in content_html
+      user_page_link_text: 'user page'
+      # link text used in content_html
+      post_new_script_link_text: 'post a new script'
+    code_rules:
+      # title for the rules page
+      title: "Greasy Fork's rules for posted scripts"
   common:
     # text to show before listing errors in a submission
     error_preamble: "There were some problems with what you posted..."

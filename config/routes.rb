@@ -102,6 +102,7 @@ Greasyfork::Application.routes.draw do
 		get 'help/disallowed-code', :to => 'help#disallowed_code', :as => 'help_disallowed_code'
 		get 'help/external-scripts', :to => 'help#external_scripts', :as => 'help_external_scripts'
 		get 'help/installing-user-scripts', :to => 'help#installing_user_scripts', :as => 'help_installing_user_scripts'
+		get 'help/writing-user-scripts', :to => 'help#writing_user_scripts', :as => 'help_writing_user_scripts'
 		get 'help/rewriting', :to => 'help#rewriting', :as => 'help_rewriting'
 		get 'help/meta-keys', :to => 'help#meta_keys', :as => 'help_meta_keys'
 		get 'help/privacy', :to => 'help#privacy', :as => 'help_privacy'
