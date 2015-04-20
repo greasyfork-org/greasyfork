@@ -52,7 +52,7 @@ bg:
     history_all_changes_link: "Покажи всички версии."
     history_all_changes_info: "Това са всички версии на скрипта."
     history_only_code_changes_link: "Покажи само тези версии, където кодът е променен."
-    diff_button: "Разлики"
+    diff_button: "Diff на избраните версии"
     code_title: "%{script_name} - Изходен код"
     code_highlighting_disabled: "Кодът е над %{size}, така че оцветяването му беше забранено, за да се намали натоварването на браузъра."
     feedback_title: "%{script_name} - Отзиви"
@@ -182,6 +182,9 @@ bg:
     good_rating_explanation: "Брой потребители, които са гласували Добър или са го добавили в Любими."
     ok_rating_explanation: "Брой потребители, гласували с ОК."
     bad_rating_explanation: "Брой потребители, гласували с Лош."
+    write_your_own_html: "%{post_a_script_link} (или %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "Публикувайте написан от вас скрипт"
+    learn_to_write_scripts_link_text: "научете как да напишете"
   script_sets:
     favorites_name: "Любими"
     delete: "Изтриване на група скриптове"
@@ -223,6 +226,8 @@ bg:
     script_list: "Скриптове"
     script_list_none: "Няма публикувани скриптове."
     script_list_none_for_filter: "Няма скриптове според избраните филтри."
+    script_list_none_same_user_html: "Нямате нито един написан скрипт. %{script_list_none_same_user_info_link}"
+    script_list_none_same_user_info_link_text: "Искате ли да научите как?"
     deleted_script_list: "Изтрити скриптове"
     sign_out: "Изход"
     edit: "Промяна на профила"
@@ -271,7 +276,7 @@ bg:
     flattr_username_description_html: "Потребителите на вашия скрипт ще бъдат запитани за дарение към сметката ви на <a href=\"https://flattr.com\">Flattr</a>."
   help:
     meta_keys:
-      title: "Мета данни"
+      title: "Meta keys, четени от Greasy Fork"
       intro_html: "Това е списък с <a href=\"http://wiki.greasespot.net/Metadata_Block\">user script мета данни</a>, които Greasy Fork ще прочете. Данните, които не са включени в този списък, могат да са включени в, и ще се ползват в инсталираните скриптове, но няма да имат ефект върху интерфейса на Greasy Fork's."
       name: "Името на скрипта, използвано като заглавие и връзки. Задължително."
       name_localized_html: "Името на скрипта в специфична локализация, където XX е <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 двубуквен код</a>, а YY е незадължителен <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 код за държавата</a>. Когато потребителят браузва в съответната локализация, презаписва <code>@name</code>."
@@ -289,6 +294,14 @@ bg:
       contributionAmount_html: "Препоръчана сума за дарение, използвана заедно с <code>@contributionURL</code>."
       compatible_html: "Маркира този скрипт като съвместим с браузър. Информацията за съвместимост ще се показва на страницата на скрипта. Коментарите могат да бъдат вмъкнати във формата <code>@compatible firefox Must disable pop-up blocker</code>. Разпознатите браузъри са: %{browsers}."
       incompatible_html: "Маркира този скрипт като несъвместим с браузър. Информацията за съвместимост ще се показва на страницата на скрипта. Незадължителни коментари могат да бъдат вмъкнати във формата <code>@incompatible firefox Broken since Firefox 23</code>. Разпознатите браузъри са: %{browsers}."
+    writing_user_scripts:
+      title: "Как да пишем потребителски скриптове"
+      content_html: "<p>Писането на user scripts изисква познаването на JavaScript. <a href=\"http://wiki.greasespot.net/Tutorials\">Ръководствата в GreaseSpot Wiki</a> ще ви дадат начален тласък за JavaScript като цяло, и каква е връзката му с потребителски скриптове. Ще ви бъде от полза и разглеждането на скриптовете от другите автори. Може да ви е интересно %{code_rules_link} и %{meta_keys_link}. Ако се нуждаете от помощ за разработката на вашия скрипт, не се притеснявайте да %{ask_in_forum_link}.</p><p>За да публикувате на Greasy Fork, трябва да си направите профил. От вашата %{user_page_link}, последвайте връзката %{post_new_script_link}.</p>"
+      ask_in_forum_link_text: 'попитате във форума'
+      user_page_link_text: 'потребителска страница'
+      post_new_script_link_text: 'публикувате нов скрипт'
+    code_rules:
+      title: "Правила на Greasy Fork за публикуване на скриптове"
   common:
     error_preamble: "Има някои проблеми с това, което публикувате..."
     allowed_elements_link: "(Вижте разрешения код.)"

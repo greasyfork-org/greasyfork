@@ -181,6 +181,9 @@ zh-CN:
     good_rating_explanation: "标记好评或加入收藏的总人数。"
     ok_rating_explanation: "评级为一般的人数。"
     bad_rating_explanation: "评级为差评的人数。"
+    write_your_own_html: "%{post_a_script_link} (或 %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "发布您编写的脚本"
+    learn_to_write_scripts_link_text: "了解如何编写脚本"
   script_sets:
     favorites_name: "收藏"
     delete: "删除脚本收藏集"
@@ -222,6 +225,8 @@ zh-CN:
     script_list: "脚本列表"
     script_list_none: "尚未发布过脚本。"
     script_list_none_for_filter: "没有匹配当前搜索条件的脚本。"
+    script_list_none_same_user_html: "您还没编写任何脚本。%{script_list_none_same_user_info_link}"
+    script_list_none_same_user_info_link_text: "想了解如何编写吗？"
     deleted_script_list: "已删除脚本"
     sign_out: "登出"
     edit: "编辑账户信息"
@@ -269,7 +274,7 @@ zh-CN:
     flattr_username_description_html: "您的脚本的用户将被询问是否要向您的 <a href=\"https://flattr.com\">Flattr</a> 账户捐款。"
   help:
     meta_keys:
-      title: "元键值"
+      title: "Greasy Fork 要读取的脚本元键值"
       intro_html: "这里有 Greasy Fork 将读取的<a href=\"http://wiki.greasespot.net/Metadata_Block\">用户脚本元键值</a>的一个列表。此列表以外的元键值可以写在脚本中，并且将存在于安装的脚本中，但不会对 Greasy Fork 的用户界面产生影响。"
       name: "脚本的名称，用于标题和链接。必填。"
       name_localized_html: "脚本在特定语言区域的名称，这个 XX 是 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 双字母代码</a>，YY 是可选的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 国家及地区代码</a>。匹配该代码的用户浏览时将得到覆盖的 <code>@name</code>。"
@@ -287,6 +292,14 @@ zh-CN:
       contributionAmount_html: "建议捐赠金额，配合 <code>@contributionURL</code> 使用。"
       compatible_html: "标记此脚本与某个浏览器兼容。兼容性信息将显示在脚本的页面上。兼容性上的注释可以以 <code>@compatible firefox Must disable pop-up blocker</code> 这样的格式。可识别的浏览器有: %{browsers}。"
       incompatible_html: "标记此脚本与某个浏览器不兼容。兼容性信息将显示在脚本的页面上。兼容性上可选添加的注释可以以 <code>@incompatible firefox Broken since Firefox 23</code> 这样的格式。可识别的浏览器有: %{browsers}。"
+    writing_user_scripts:
+      title: "如何编写用户脚本"
+      content_html: "<p>编写用户脚本需要 JavaScript 的基本知识。<a href=\"http://wiki.greasespot.net/Tutorials\">GreaseSpot Wiki 上的教程</a>应该能带您开始了解 JavaScript 常规脚本和用户脚本。翻查和阅读其他人的脚本将是有益的。您可能对 %{code_rules_link} 和 %{meta_keys_link} 感兴趣。如果您在开发脚本时遇到困难，欢迎%{ask_in_forum_link}。</p><p>若要在 Greasy Fork 上发布，您需要创建一个账户。在您的%{user_page_link}，点击%{post_new_script_link}链接。</p>"
+      ask_in_forum_link_text: '在论坛中询问'
+      user_page_link_text: '用户页面'
+      post_new_script_link_text: '发布新脚本'
+    code_rules:
+      title: "Greasy Fork 有关发布脚本的规则"
   common:
     error_preamble: "很抱歉，您提交的内容有点问题…"
     allowed_elements_link: "(查看允许使用的代码)"

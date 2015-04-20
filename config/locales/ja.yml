@@ -181,6 +181,9 @@ ja:
     good_rating_explanation: "「良」と評価した人とお気に入りに登録した人の数"
     ok_rating_explanation: "「可」と評価した人数"
     bad_rating_explanation: "「不可」と評価した人数"
+    write_your_own_html: "%{post_a_script_link} (または %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "スクリプトを投稿する"
+    learn_to_write_scripts_link_text: "スクリプトの書き方を見る"
   script_sets:
     favorites_name: "お気に入り"
     delete: "Script Set を削除"
@@ -222,6 +225,8 @@ ja:
     script_list: "スクリプト一覧"
     script_list_none: "また投稿していません。"
     script_list_none_for_filter: "指定した条件に一致するスクリプトはありません。"
+    script_list_none_same_user_html: "まだスクリプトを書いていません。%{script_list_none_same_user_info_link}"
+    script_list_none_same_user_info_link_text: "スクリプトの書き方を見てみますか？"
     deleted_script_list: "削除したスクリプト"
     sign_out: "ログアウト"
     edit: "アカウント設定"
@@ -269,7 +274,7 @@ ja:
     flattr_username_description_html: "<a href=\"https://flattr.com\">Flattr</a> のアカウント宛てに、スクリプトの利用者から寄付を募ります。"
   help:
     meta_keys:
-      title: "メタキー"
+      title: "Greasy Fork が読み込むスクリプト・メタキー"
       intro_html: "Greasy Fork が読み込む<a href=\"http://wiki.greasespot.net/Metadata_Block\">ユーザースクリプトのメタキー</a>の一覧です。以下の一覧にないキーをスクリプトに含めることも可能で、そのキーはインストールされたスクリプト中にも含まれることになりますが、Greasy Fork の UI (表示) には影響しません。"
       name: "見出しやリンクとして使用されるスクリプトの名前。必須。"
       name_localized_html: "特定のロケールにおけるスクリプトの名前で、XX は<a href=\"https://ja.wikipedia.org/wiki/ISO_639-1\">ISO 639-1の2文字コード</a>、任意指定の YY は<a href=\"https://ja.wikipedia.org/wiki/ISO_3166-1\">ISO 3166-1の国名コード</a>。ユーザーが対応するロケールで閲覧しているときに、<code>@name</code> を上書きします。"
@@ -287,6 +292,14 @@ ja:
       contributionAmount_html: "提示する寄付金額。<code>@contributionURL</code> と共に使用します。"
       compatible_html: "スクリプトがどのブラウザと互換性があるか。互換性はスクリプトの情報ページに表示されます。<code>@compatible firefox ポップアップブロックの無効化が必須</code> のような形式で、互換性に関するコメントを含めることもできます。認識されるブラウザ: %{browsers}"
       incompatible_html: "スクリプトがどのブラウザと互換性がないか。互換性はスクリプトの情報ページに表示されます。<code>@incompatible firefox Firefox 23 以降で動作しない</code> のような形式で、互換性に関するコメントを含めることもできます。認識されるブラウザ: %{browsers}"
+    writing_user_scripts:
+      title: "ユーザースクリプトの書き方"
+      content_html: "<p>ユーザースクリプトを書くには、JavaScript の知識が必要です。<a href=\"http://wiki.greasespot.net/Tutorials\">GreaseSpot Wiki のチュートリアルリンク</a> は、一般的な JavaScript とユーザースクリプト関連の両方を勉強し始めたいときに便利です。他の人のスクリプトコードを見てみるのも良いでしょう。興味があれば、%{code_rules_link} や %{meta_keys_link} も参考にしてください。スクリプトの開発にあたって助けが必要であれば、お気軽に %{ask_in_forum_link}。</p><p>Greasy Fork で投稿するには、アカウントの作成が必要です。自分の %{user_page_link} に %{post_new_script_link} へのリンクがあります。</p>"
+      ask_in_forum_link_text: '掲示板でおたずねください。'
+      user_page_link_text: 'ユーザーページ'
+      post_new_script_link_text: 'スクリプトの投稿'
+    code_rules:
+      title: "投稿されたスクリプトに関する Greasy Fork のルール"
   common:
     error_preamble: "以下に表示されているエラーを修正し、もう一度送信してください。"
     allowed_elements_link: "使用可能なタグ"

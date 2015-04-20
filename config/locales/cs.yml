@@ -53,7 +53,7 @@ cs:
     history_all_changes_link: "Zobrazit všechny verze."
     history_all_changes_info: "Seznam všech verzí skriptu."
     history_only_code_changes_link: "Zobrazit pouze verze, při kterých došlo ke změně v kódu."
-    diff_button: "Rozdíl"
+    diff_button: "Porovnat vybrané verze"
     code_title: "%{script_name} - Zdrojový kód"
     code_highlighting_disabled: "Kód je větší než %{size}, zvýraznění syntaxe bylo proto vypnuto z důvodu optimalizace výkonu prohlížeče."
     feedback_title: "%{script_name} - Zpětná vazba"
@@ -183,6 +183,9 @@ cs:
     good_rating_explanation: "Počet lidí, kteří dali hodnocení \"Výborný\" nebo si skript přidali do oblíbených."
     ok_rating_explanation: "Počet lidí, kteří dali hodnocení \"OK\"."
     bad_rating_explanation: "Počet lidí, kteří dali hodnocení \"Špatný\"."
+    write_your_own_html: "%{post_a_script_link} (nebo %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "Vložit vámi napsaný skript"
+    learn_to_write_scripts_link_text: "naučit se napsat skript"
   script_sets:
     favorites_name: "Oblíbené"
     delete: "Smazat sadu skriptů"
@@ -224,6 +227,8 @@ cs:
     script_list: "Skripty"
     script_list_none: "Žádné uložené skripty."
     script_list_none_for_filter: "Žádný skript neodpovídá nastaveným filtrům."
+    script_list_none_same_user_html: "Dosud jste nenapsali žádný skipt. %{script_list_none_same_user_info_link}"
+    script_list_none_same_user_info_link_text: "Chcete se naučit jak na to?"
     deleted_script_list: "Smazané skripty"
     sign_out: "Odhlásit se"
     edit: "Změny účtu"
@@ -273,7 +278,6 @@ cs:
     flattr_username_description_html: "Uživatelé vačeho skriptu budou požádáni o příspěvek na <a href=\"https://flattr.com\">Flattr</a>."
   help:
     meta_keys:
-      title: "Meta klíče"
       intro_html: "Toto je seznam <a href=\"http://wiki.greasespot.net/Metadata_Block\">meta klíčů uživatelského skriptu</a>, které Greasy Fork rozpozná. Klíče mimo tento seznam mohou být obsaženy ve skriptu, budou v instalovaném skriptu přítomny, ale nebudou mít efekt v uživatelském rozhraní Greasy Fork."
       name: "Název skriptu, používaný v záhlaví a odkazech. Povinná položka."
       description: "Popis funkce skriptu. Zobrazuje se pod názvem skriptu. Povinná položka"
@@ -283,6 +287,8 @@ cs:
       contributionAmount_html: "Navrhovaná výše příspěvku, použito ve spojení s <code>@contributionURL</code>."
       compatible_html: "Označit skript jako kompatibilní s browserem. Informace o kompatibilitě bude zobrazena na stránce skriptu. Komentáře ke kompatibilitě mohou být uvedeny ve formátu <code>@compatible firefox Must disable pop-up blocker</code>. Rozpoznané browsery: %{browsers}."
       incompatible_html: "Označit skript jako nekompatibilní s browserem. Informace o kompatibilitě bude zobrazena na stránce skriptu. Komentáře ke kompatibilitě mohou být uvedeny ve formátu <code>@incompatible firefox Broken since Firefox 23</code>. Rozpoznané browsery: %{browsers}."
+    writing_user_scripts:
+      title: "Jak psát uživatelské skripty"
   common:
     error_preamble: "S vloženým obsahem není vše v pořádku..."
     allowed_elements_link: "(Zobrazit povolené elementy.)"

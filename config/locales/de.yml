@@ -52,11 +52,11 @@ de:
     history_all_changes_link: "Alle Versionen anzeigen."
     history_all_changes_info: "Dieses sind alle Versionen des Skriptes."
     history_only_code_changes_link: "Nur Versionen anzeigen, bei denen sich der Quelltext geändert hat."
-    diff_button: "Vergleichen"
+    diff_button: "Ausgewählte Versionen vergleichen"
     code_title: "%{script_name} - Quelltext"
     code_highlighting_disabled: "Der Quelltext ist über %{size} groß. Deshalb wurde die Syntaxhervorhebung deaktiviert, um den Browser zu schonen."
     feedback_title: "%{script_name} - Rückmeldung"
-    feedback_no_discussions_html: "Es gibt bisher keine Diskussionen. %{start_first_discussion_link}"
+    feedback_no_discussions_html: "Es sind bisher keine Diskussionen veröffentlicht. %{start_first_discussion_link}"
     feedback_start_first_discussion_link: "Die erste Diskussion über dieses Skript starten."
     feedback_start_discussion_link: "Eine weitere Diskussion über dieses Skript starten."
     feedback_discussions_heading: "Diskussionen im Greasy Forum"
@@ -75,9 +75,9 @@ de:
     stats_no_data: "n/a"
     derivatives_title: "%{script_name} - Derivate"
     derivatives_intro: "Diese Skripte könnten auf Ihren Skripten basieren (oder Ihre Skripte auf diesen). Falls Sie eine nicht genehmigte Nutzung ihres Quelltextes feststellen, können Sie das Skript melden, indem Sie eine neue Diskussion darüber starten."
-    derivatives_code_matches_info_html: "Skripte von anderen, welche Quelltext beinhalten der in mindestens %{match_size} Zeichen mit Ihrem Skript übereinstimmt. Diese Prüfung wird nur für Skripte mit weniger als %{max_size} ausgeführt. Der Zeitpunkt der letzten Ausführung war %{last_run}."
-    derivatives_namespace_matches_info_html: "Von anderen hochgeladene Skripte, welche <code>%{namespace}</code> verwenden:"
-    derivatives_name_matches_info: "Von anderen hochgeladene Skripte, welche sehr ähnliche Namen zu Ihren Skripten verwenden:"
+    derivatives_code_matches_info_html: "Von anderen veröffentlichte Skripte, welche Quelltext beinhalten der in mindestens %{match_size} Zeichen mit Ihrem Skript übereinstimmt. Diese Prüfung wird nur für Skripte mit weniger als %{max_size} ausgeführt. Der Zeitpunkt der letzten Ausführung war %{last_run}."
+    derivatives_namespace_matches_info_html: "Von anderen veröffentlichte Skripte, welche <code>%{namespace}</code> verwenden:"
+    derivatives_name_matches_info: "Von anderen veröffentlichte Skripte, welche sehr ähnliche Namen zu Ihren Skripten verwenden:"
     derivatives_script_html: "%{script_link} von %{user_link}, Lizenz: %{license}"
     derivatives_script_with_code_line_html: "%{script_lines_link} von %{user_link}; Lizenz: %{license}"
     script_lines_link: "%{script_name}, Zeilen %{start} bis %{end}"
@@ -182,6 +182,9 @@ de:
     good_rating_explanation: "Anzahl an Nutzern, die es mit »Gut« bewertet oder ihren Favoriten hinzugefügt haben."
     ok_rating_explanation: "Anzahl an Nutzern, die es mit »OK« bewertet haben."
     bad_rating_explanation: "Anzahl an Nutzern, die es mit »Schlecht« bewertet haben."
+    write_your_own_html: "%{post_a_script_link} (oder %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "Veröffentlichen Sie ein Skript, welches Sie geschrieben haben"
+    learn_to_write_scripts_link_text: "lerne eines zu schreiben"
   script_sets:
     favorites_name: "Favoriten"
     delete: "Skriptliste löschen"
@@ -223,6 +226,8 @@ de:
     script_list: "Skripte"
     script_list_none: "Bisher keine Skripte veröffentlicht."
     script_list_none_for_filter: "Keine Skripte für die aktuellen Filtereinstellungen."
+    script_list_none_same_user_html: "Sie haben bisher keine Skripte geschrieben. %{script_list_none_same_user_info_link}"
+    script_list_none_same_user_info_link_text: "Möchten Sie lernen, wie dies geht?"
     deleted_script_list: "Gelöschte Skripte"
     sign_out: "Abmelden"
     edit: "Konto bearbeiten"
@@ -271,7 +276,7 @@ de:
     flattr_username_description_html: "Benutzer Ihres Skriptes werden gebeten, auf Ihr <a href=\"https://flattr.com\">Flattr-Konto</a> zu spenden."
   help:
     meta_keys:
-      title: "Meta-Keys"
+      title: "Von Greasy Fork gelesene Skript Meta-Keys"
       intro_html: "Das ist eine Liste von <a href=\"http://wiki.greasespot.net/Metadata_Block\">Benutzerskript-Meta-Keys</a>, welche Greasy Fork ausliest. Nicht in dieser Liste aufgeführte Keys sind im installierten Skript vorhanden, haben aber keine Auswirkungen in der Benutzerobefläche von Greasy Fork."
       name: "Der Name des Skriptes; genutzt als Überschrift und in Verknüpfungen. Erforderlich."
       name_localized_html: "Der Name des Skriptes in einer bestimmten Sprache, wobei XX ein <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-Buchstaben-Kürzel</a> und YY ein optionales <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 Länderkürzel</a> ist. Überschreibt <code>@name</code> wenn der Nutzer die passende Sprache verwendet."
@@ -287,8 +292,16 @@ de:
       supportURL: "Internetadresse zu einer Seite, auf der Benutzer Hilfe zu einem Skript erhalten können (z.B. ein Bug-Tracker, ein Forum, eine E-Mail-Adresse). Die Hilfeadresse wird auf der Rückmeldeseite eines Skriptes angezeigt."
       contributionURL_html: "Internetadresse zu einer Seite, auf der Benutzer an den Autor eines Skriptes spenden können. Die Spendenseite wird auf der Rückmeldeseite eines Skriptes angezeigt. Die Internetadresse kann http, https oder ein Bitcoin-Protokoll sein. Um eine PayPal-Spendenseite zu verknüpfen, nutzen Sie eine Internetadresse im Format <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a>, bei der Sie die Beispiel-E-Mail-Adresse durch Ihre eigene ersetzen."
       contributionAmount_html: "Vorgeschlagener Spendenbetrag; genutzt in Verbindung mit <code>@contributionURL</code>."
-      compatible_html: "Markiert das Skript als kompatibel mit einem Browser. Kompatibilitätsinformtionen werden auf der Seite eines Skripte angezeigt. Kommentare zu der Kompatibilität können im Format <code>@compatible firefox Popup-Blocker muss deaktiviert werden</code> eingebunden werden. Erkannte Browser sind: %{browsers}"
-      incompatible_html: "Markiert das Skript als inkompatibel mit einem Browser. Kompatibilitätsinformtionen werden auf der Seite eines Skripte angezeigt. Optionale Kommentare zu der Kompatibilität können im Format <code>@incompatible firefox Kaputt seit Firefox 23</code> eingebunden werden. Erkannte Browser sind: %{browsers}"
+      compatible_html: "Markiert das Skript als kompatibel mit einem Browser. Kompatibilitätsinformationen werden auf der Seite eines Skriptes angezeigt. Kommentare zu der Kompatibilität können im Format <code>@compatible firefox Popup-Blocker muss deaktiviert werden</code> eingebunden werden. Erkannte Browser sind: %{browsers}"
+      incompatible_html: "Markiert das Skript als inkompatibel mit einem Browser. Kompatibilitätsinformationen werden auf der Seite eines Skriptes angezeigt. Optionale Kommentare zu der Kompatibilität können im Format <code>@incompatible firefox Kaputt seit Firefox 23</code> eingebunden werden. Erkannte Browser sind: %{browsers}"
+    writing_user_scripts:
+      title: "Wie Benutzerskripte geschrieben werden"
+      content_html: "<p>Benutzerskripte schreiben erfordert die Kenntnis von JavaScript. Die <a href=\"http://wiki.greasespot.net/Tutorials\">Übungen im GreaseSpot Wiki</a> helfen Ihnen beim Start mit JavaScript, sowohl im allgemeinen als auch im Bezug auf Benutzerskripte. Andere Skripte anzuschauen kann hilfreich sein. Sie dürften auch an %{code_rules_link} und %{meta_keys_link} interessiert sein. Wenn Sie Hilfe beim entwickeln Ihres Skriptes benötigen, dann können Sie gerne %{ask_in_forum_link}.</p><p>Um auf Greasy Fork zu veröffentlichen, benötigen Sie ein Konto. Dann folgen Sie von Ihrer %{user_page_link} aus dem Link, um %{post_new_script_link}.</p>"
+      ask_in_forum_link_text: 'im Forum nachfragen'
+      user_page_link_text: 'Benutzerseite'
+      post_new_script_link_text: 'ein neues Skript zu veröffentlichen'
+    code_rules:
+      title: "Greasy Forks Regeln für veröffentlichte Skripte"
   common:
     error_preamble: "Es gab einige Probleme mit dem was Sie eingegeben haben …"
     allowed_elements_link: "(Erlaubte Elemente anzeigen.)"

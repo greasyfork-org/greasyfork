@@ -53,7 +53,7 @@ ru:
     history_all_changes_link: "Показать все версии."
     history_all_changes_info: "Ниже показаны все версии этого скрипта."
     history_only_code_changes_link: "Показать только версии, в которых изменялся код."
-    diff_button: "Показать различия в коде"
+    diff_button: "Изменения между выбранными версиями"
     code_title: "%{script_name} - Исходный код"
     code_highlighting_disabled: "Код больше %{size}, так что подсветка синтаксиса была выключена ради блага вашего же браузера."
     feedback_title: "%{script_name} - Обсуждения"
@@ -183,6 +183,9 @@ ru:
     good_rating_explanation: "Число людей, давших оценку «хорошо» или добавивших скрипт в избранное."
     ok_rating_explanation: "Число людей, давших оценку «нормально»."
     bad_rating_explanation: "Число людей, давших оценку «плохо»."
+    write_your_own_html: "%{post_a_script_link} (или %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "Опубликовать ваш скрипт"
+    learn_to_write_scripts_link_text: "изучить как написать скрипт"
   script_sets:
     favorites_name: "Избранное"
     delete: "Удалить список скриптов"
@@ -224,6 +227,8 @@ ru:
     script_list: "Скрипты"
     script_list_none: "Нет опубликованных скриптов."
     script_list_none_for_filter: "Нет скриптов под заданными фильтрами."
+    script_list_none_same_user_html: "Вы не написали ни одного скрипта. %{script_list_none_same_user_info_link}"
+    script_list_none_same_user_info_link_text: "Узнать как?"
     deleted_script_list: "Удалённые скрипты"
     sign_out: "Выход"
     edit: "Изменить учетную запись"
@@ -273,7 +278,7 @@ ru:
     flattr_username_description_html: "Предлагать пользователям ваших скриптов сделать пожертвование на ваш аккаунт <a href=\"https://flattr.com\">Flattr</a>."
   help:
     meta_keys:
-      title: "Мета ключи"
+      title: "Мета-ключи скрипты от Greasy Fork"
       intro_html: "Список <a href=\"http://wiki.greasespot.net/Metadata_Block\">мета-ключей в userscript</a>, анализируемых Greasy Fork. Кроме перечисленных, можно использовать любые другие ключи, они сохранятся в неизменном виде при установке скрипта, но не возымеют эффекта на интерфейс в Greasy Fork."
       name: "Название скрипты, используется в заголовках и ссылках. Необходимо."
       name_localized_html: "Имя скрипта на указанном языке XX, это <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">двухбуквенный код ISO 639-1</a>, а YY это необязательный <a href=\"https://www.iso.org/obp/ui/#search\">код страны по ISO 3166</a>. Используется вместо <code>@name</code> для показа пользователям, просматривающим сайт на данном языке."
@@ -291,6 +296,14 @@ ru:
       contributionAmount_html: "Предлагаемая сумма пожертвования, используется вместе с <code>@contributionURL</code>."
       compatible_html: "Отмечает этот скрипт как совместимый с браузером. Информация о совместимости будет показана на странице скрипты. Комментарии по совместимости могут быть включены в формате <code>@compatible комментарии</code>. Распознанные браузеры: %{browsers}."
       incompatible_html: "Указывает на несовместимость скрипта с данным браузером. Эта информация отображается на странице описания скрипта. Можно указывать комментарий в формате <code>@incompatible firefox Не работает с Firefox 23 и новее</code>. Список распознаваемых браузеров: %{browsers}."
+    writing_user_scripts:
+      title: "Как писать юзер-скрипты"
+      content_html: "<p>Написание пользовательского скрипта требует знания JavaScript. <a href=\"http://wiki.greasespot.net/Tutorials\">Руководства в GreaseSpot Wiki</a> даст вам быстрый старт по языку JavaScript  и его применения в пользовательских скриптах. Изучение чужие пользовательских скриптов может быть полезно. Вы можете быть заинтересованы в %{code_rules_link} и %{meta_keys_link}. Если вы хотите помочь разрабатывать скрипт, направляйтесь на %{ask_in_forum_link}.</p><p>Чтоб писать на Greasy Fork, вам нужно будет создать аккаунт. С вашей %{user_page_link}, последуйте по ссылке %{post_new_script_link}.</p>"
+      ask_in_forum_link_text: 'спросить на форуме'
+      user_page_link_text: 'пользовательская страница'
+      post_new_script_link_text: 'опубликовать новый скрипт'
+    code_rules:
+      title: "Правила Greasy Fork для опубликования скриптов"
   common:
     error_preamble: "Обнаружены проблемы в отправленном вами тексте..."
     allowed_elements_link: "(См. разрешенные теги)"

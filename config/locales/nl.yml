@@ -52,7 +52,7 @@ nl:
     history_all_changes_link: "Alle versies weergeven."
     history_all_changes_info: "Dit zijn alle versies van het script."
     history_only_code_changes_link: "Alleen de versies weergeven waarvan de code gewijzigd is."
-    diff_button: "Verschil"
+    diff_button: "Verschil tussen de geselecteerde versies"
     code_title: "%{script_name} - Broncode"
     code_highlighting_disabled: "Omdat de code meer dan %{size} is is syntax-markering uitgeschakeld om uw webbrowser te sparen."
     feedback_title: "%{script_name} - Feedback"
@@ -182,6 +182,9 @@ nl:
     good_rating_explanation: "Het aantal mensen dat het gewaardeerd heeft als zijnde Goed of gemarkeerd heeft als favoriet."
     ok_rating_explanation: "Het aantal mensen dat het gewaardeerd heeft als zijnde Matig."
     bad_rating_explanation: "Het aantal mensen dat het gewaardeerd heeft als zijnde Slecht."
+    write_your_own_html: "%{post_a_script_link} (of %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "Publiceer een door u geschreven script"
+    learn_to_write_scripts_link_text: "leer hoe u een script schrijft"
   script_sets:
     favorites_name: "Favorieten"
     delete: "Scriptgroep verwijderen"
@@ -223,6 +226,8 @@ nl:
     script_list: "Scripts"
     script_list_none: "Geen scripts geplaatst."
     script_list_none_for_filter: "Geen scripts middels de huidig ingstelde filters."
+    script_list_none_same_user_html: "U heeft geen scripts geschreven. %{script_list_none_same_user_info_link}"
+    script_list_none_same_user_info_link_text: "Wilt u leren hoe u scripts schrijft?"
     deleted_script_list: "Verwijderde scripts"
     sign_out: "Uitloggen"
     edit: "Account bewerken"
@@ -271,11 +276,32 @@ nl:
     flattr_username_description_html: "Gebruikers van uw scripts zal worden gevraagd om te doneren aan uw account op <a href=\"https://flattr.com\">Flattr</a>."
   help:
     meta_keys:
-      title: "Metatoetsen"
+      title: "Metatoetsen van scripts gelezen door Greasy Fork"
+      intro_html: "Dit is een lijst met <a href=\"http://wiki.greasespot.net/Metadata_Block\">metatoetsen van gebruikersscripts</a> die Greasy Fork zal lezen. Toetsen die niet op deze lijst staan kunnen in scripts staan en zullen worden gepresenteerd in het geïnstalleerde script maar zullen geen effect hebben binnen Greasy Fork zelf."
       name: "De naam van het script die zal worden gebruikt in de banier en in links. Vereist."
+      name_localized_html: "De naam van het script in een specifieke taal waar XX een <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-opmaakcode</a> is en YY een optioneel <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166-landnummer</a> is. Dit overschrijft <code>@name</code> zodra de gebruiker navigeert in een overeenkomende taal."
       description: "Een beschrijving van wat het script doet. Dit wordt weergegeven als tekst onder de scriptnaam. Vereist."
+      description_localized_html: "De beschrijving van het script in een specifieke taal waar XX een <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-opmaakcode</a> is en YY een optioneel <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166-landnummer</a> is. Dit overschrijft <code>@description</code> zodra de gebruiker navigeert in een overeenkomende taal."
+      namespace_html: "Een combinatie van <code>@namespace</code> en <code>@name</code> wordt gebruikt door gebruikersscriptsbeheerders om vast te stellen of een script reeds geïnstalleerd is. Greasy Fork stelt dit veld als vereiste en zal een waarschuwing geven wanneer het wordt gewijzigd bij een bijwerking."
+      version_html: "Identificeerder voor een specifieke versie van een script in de <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">Mozilla-versie-opmaak</a>. De versie zal worden weergegeven op de informatiepagina van een script. Greasy Fork stelt dit veld als vereiste en zal waarschuwen als het gedevalueerd of niet gevalueerd wordt wanneer de code van het script wijzigt."
+      include: "Beschrijf op welke pagina's dit script zal draaien. Deze lijst zal worden verwerkt en weergegeven op de informatiepagina van het script en zal tevens worden gebruikt voor het categoriseren van scripts."
       require_html: "Dit sluit externe JavaScript in een script in. Zie %{external_script_link}."
       require_external_script_link_text: "de regels voor de code inclusief externe scripts"
+      updateURL: "Beschrijf hoe gebruikersscriptbeheerders bijwerkingen moeten verkrijgen. Greasy Fork zal deze sleutels schrappen zodat elk met Greasy Fork geïnstalleerd script alleen kan worden bijgewerkt vanuit Greasy Fork."
+      license: "URL of naam van de licentie die beschrijft of mensen een script mogen kopiëren of bewerken. Het ontbreken van een licentie wekt de indruk dat gebruikers het script persoonlijk mogen installeren maar niet mogen verspreiden. De licentie zal worden weergegeven op de informatiepagina van een script."
+      supportURL: "URL van de pagina waar gebruikers ondersteuning kunnen krijgen op een script (bijv. een bugtracker, forum of e-mailadres). De ondersteunings-URL zal worden weergegeven op de feedbackpagina van een script."
+      contributionURL_html: "URL van de pagina waar gebruikers een donatie kunnen doen aan de auteur van een script. De donatie-URL zal worden weergegeven op de feedbackpagina van een script. URL's kunnen http-, https- of Bitcoin- protocollen zijn. Om een URL te plaatsen van een PayPal-donatiepagina moet hem plaatsen in de opmaak <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a> waarbij u het voorbeeld-e-mailadres vervangt door uw eigen."
+      contributionAmount_html: "De aangeraden hoogte van een donatie. Deze wordt tezamen gebruikt met <code>@contributionURL</code>."
+      compatible_html: "Dit markeert het script als zijnde compatibel met een browser. Comptabiliteitsinformatie zal worden weergegeven op de pagina van een script. Commentaren aangaande de comptabiliteit kunnen worden ingevoegd in de opmaak <code>@compatible firefox Pop-up-blokkeerder moet worden uitgeschakeld</code>. De erkende browsers zijn: %{browsers}"
+      incompatible_html: "Dit markeert het script als zijnde compatibel met een browser. Comptabiliteitsinformatie zal worden weergegeven op de pagina van een script. Commentaren aangaande de comptabiliteit kunnen worden ingevoegd in de opmaak <code>@incompatible firefox Niet-werkend sinds Firefox 23</code>. De erkende browsers zijn: %{browsers}"
+    writing_user_scripts:
+      title: "Hoe schrijf ik gebruikersscripts?"
+      content_html: "<p>Het schrijven van gebruikersscripts vereist kennis van JavaScript. De <a href=\"http://wiki.greasespot.net/Tutorials\">handleidingen op de GreaseSpot-wiki</a> kunnen u op weg helpen met JavaScript, zowel in het algemeen als voor het schrijven van gebruikersscripts. Het kan ook helpen om scripts van anderen in te kijken. Wellicht bent u geïnteresseerd in %{code_rules_link} en %{meta_keys_link}. Als u hulp wilt bij het schrijven van uw script, vraag dan gerust om hulp: %{ask_in_forum_link}.</p><p>Om uw script te publiceren op Greasy Fork moet u een account creëren. Vanuit %uw {user_page_link}, kunt u de link volgen naar %{post_new_script_link}.</p>"
+      ask_in_forum_link_text: 'vraag het op het forum'
+      user_page_link_text: 'gebruikerspagina'
+      post_new_script_link_text: 'publiceer een nieuw script'
+    code_rules:
+      title: "Greasy Fork's regels voor gepubliceerde scripts"
   common:
     error_preamble: "Er zijn enkele problemen met wat u trachtte te plaatsen..."
     allowed_elements_link: "(Zie de toegestane code.)"
