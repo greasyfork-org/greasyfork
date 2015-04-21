@@ -8,7 +8,16 @@ de:
       search: "Suchen"
   helpers:
     application:
-      time_difference: "vor %{relative_time}"
+      time_ago:
+        minutes:
+          one: "Vor %{count} Minute"
+          other: "Vor %{count} Minuten"
+        hours:
+          one: "Vor %{count} Stunde"
+          other: "Vor %{count} Stunden"
+        days:
+          one: "Vor %{count} Tag"
+          other: "Vor %{count} Tagen"
   scripts:
     created_date: "Erstellt am"
     updated_date: "Letzte Aktualisierung"

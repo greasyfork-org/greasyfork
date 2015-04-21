@@ -8,7 +8,19 @@ uk:
       search: "Пошук"
   helpers:
     application:
-      time_difference: "%{relative_time} тому"
+      time_ago:
+        minutes:
+          one: "%{count} хвилину тому"
+          few: "%{count} хвилини тому"
+          other: "%{count} хвилин тому"
+        hours:
+          one: "%{count} годину тому"
+          few: "%{count} години тому"
+          other: "%{count} годин тому"
+        days:
+          one: "%{count} день тому"
+          few: "%{count} дні тому"
+          other: "%{count} днів тому"
   scripts:
     created_date: "Створено"
     updated_date: "Оновлено"
@@ -53,6 +65,7 @@ uk:
     history_all_changes_link: "Показати всі версії."
     history_all_changes_info: "Це всі версії цього скрипту."
     history_only_code_changes_link: "Показати тільки версії, де присутні зміни в коді."
+    diff_button: "Порівняти обрані версії"
     code_title: "%{script_name} - Початковий код"
     code_highlighting_disabled: "Об'єм коду більший за %{size}, тому, для збереження вашого браузеру, було вимкнуте підсвічування синтаксису."
     feedback_title: "%{script_name} - Відгуки"
@@ -182,6 +195,11 @@ uk:
     good_rating_explanation: "Кількість людей, які оцінили його як Хороший, чи додали в улюблені."
     ok_rating_explanation: "Кількість людей, які оцінили його як Непоганий."
     bad_rating_explanation: "Кількість людей, які оцінили його як Поганий."
+    write_your_own_html: "%{post_a_script_link} (або %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "Опублікуйте свій скрипт"
+    learn_to_write_scripts_link_text: "дізнайтесь як його створити"
+    feedback_suggestion_html: "Після встановлення цього сценарію, ви можете %{feedback_link}."
+    feedback_link_text: "задати питання, оцінити, або поскаржитись"
   script_sets:
     favorites_name: "Улюблені"
     delete: "Видалити цей набір скриптів"
@@ -223,6 +241,8 @@ uk:
     script_list: "Скрипти"
     script_list_none: "Жоден скрипт ще не опубліковано."
     script_list_none_for_filter: "За даним фільтром скриптів не знайдено."
+    script_list_none_same_user_html: "Ви ще не створили жодного скрипту. %{script_list_none_same_user_info_link}"
+    script_list_none_same_user_info_link_text: "Хочете дізнатись як?"
     deleted_script_list: "Видалені скрипти"
     sign_out: "Вийти"
     edit: "Змінити обліковий запис"
@@ -272,6 +292,7 @@ uk:
     flattr_username_description_html: "Користувачі ваших сценаріїв буде запропоновано пожертвувати на ваш рахунок в <a href=\"https://flattr.com\">Flattr</a>."
   help:
     meta_keys:
+      title: "Мета ключі які розпізнає Greasy Fork"
       intro_html: "Це <a href=\"http://wiki.greasespot.net/Metadata_Block\">список мета полів</a>, які Greasy Fork буде читати в скриптах користувачів. Значення поза цим списком можуть бути включені в сценарії, і будуть присутні у встановленому скрипті, але не мають ніякого ефекту в інтерфейсі Greasy Fork'у."
       name: "Назва скрипту, яка використовується в якості заголовка та в посиланнях. Обов'язкове поле."
       name_localized_html: "Ім'я скрипта в певній мові, де XX <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-х літерний код</a>, а YY додатковий <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 код країни</a>. Заміняє <code>@name</code>, коли користувач перемикає на відповідну мову."
@@ -289,6 +310,14 @@ uk:
       contributionAmount_html: "Пропонована кількість пожертви, використовується в поєднанні з <code>@contributionURL</code>."
       compatible_html: "Позначити цей скрипт як сумісний з браузером. Інформація про сумісність буде показана на сторінці скрипту. Додаткові коментарі про сумісності, можуть бути включені у форматі <code>@compatible firefox Must disable pop-up blocker</code>. Відомі браузери: %{browsers}."
       incompatible_html: "Позначити цей скрипт як несумісний з браузером. Інформація про сумісність буде показана на сторінці скрипта. Додаткові коментарі про сумісності, можуть бути включені у форматі <code>@incompatible firefox Broken since Firefox 23</code>. Відомі браузери: %{browsers}."
+    writing_user_scripts:
+      title: "Як писати користувацькі скрипти"
+      content_html: "<p>Написання користувацьких скриптів вимагає знання JavaScript. \n<a href=\"http://wiki.greasespot.net/Tutorials\">Статті з GreaseSpot Wiki</a> повинні дати вам початковий поштовх як в цілому, так і як він деталях до написання користувацьких скриптів на JavaScript. Перевірка чужих скриптів може бути корисною. Вас також може зацікавити %{code_rules_link} та %{meta_keys_link}. Якщо вам потрібна допомога з написання скрипту, не соромтесь і %{ask_in_forum_link}.</p><p>Щоб публікувати на Greasy Fork, вам потрібно зареєструватись. Тоді з вашої %{user_page_link}, перейдіть по посиланню по %{post_new_script_link}.</p>"
+      ask_in_forum_link_text: 'задайте питання на форумі'
+      user_page_link_text: 'сторінки користувача'
+      post_new_script_link_text: 'публікації нового скрипту'
+    code_rules:
+      title: "правила для публікації скриптів на Greasy Fork"
   common:
     error_preamble: "Були деякі проблеми з тим, що ви публікуєте..."
     allowed_elements_link: "(Переглянути дозволений код.)"

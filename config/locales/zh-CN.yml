@@ -8,7 +8,13 @@ zh-CN:
       search: "搜索脚本"
   helpers:
     application:
-      time_difference: "%{relative_time}前"
+      time_ago:
+        minutes:
+          other: "%{count} 分钟前"
+        hours:
+          other: "%{count} 小时前"
+        days:
+          other: "%{count} 天前"
   scripts:
     created_date: "创建日期"
     updated_date: "最近更新"
@@ -348,4 +354,4 @@ zh-CN:
       cannot_be_self_reference: "不能是同一个脚本"
       cannot_be_deleted_reference: "不能是已删除的脚本"
       must_be_greasy_fork_script: "网址必须是 Greasy Fork 上的一个脚本"
-      script_update_not_utf8: "上传的代码必须是UTF-8编码"
+      script_update_not_utf8: "上传的内容必须是 UTF-8 编码"

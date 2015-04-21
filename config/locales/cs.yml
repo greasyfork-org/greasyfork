@@ -8,7 +8,19 @@ cs:
       search: "Hledání"
   helpers:
     application:
-      time_difference: "před %{relative_time}"
+      time_ago:
+        minutes:
+          one: "před %{count} minutou"
+          few: "před %{count} minutami"
+          other: "před %{count} minutami"
+        hours:
+          one: "před %{count} hodinou"
+          few: "před %{count} hodinami"
+          other: "před %{count} hodinami"
+        days:
+          one: "před %{count} dnem"
+          few: "před %{count} dny"
+          other: "před %{count} dny"
   scripts:
     created_date: "Vytvořeno"
     updated_date: "Aktualizováno"
@@ -186,6 +198,8 @@ cs:
     write_your_own_html: "%{post_a_script_link} (nebo %{learn_to_write_scripts_link})"
     post_a_script_link_text: "Vložit vámi napsaný skript"
     learn_to_write_scripts_link_text: "naučit se napsat skript"
+    feedback_suggestion_html: "Po vyzkoušení tohoto skriptu můžete %{feedback_link}."
+    feedback_link_text: "zaslat dotaz, recenzi nebo ohlásit porušení pravidel"
   script_sets:
     favorites_name: "Oblíbené"
     delete: "Smazat sadu skriptů"
@@ -278,6 +292,7 @@ cs:
     flattr_username_description_html: "Uživatelé vačeho skriptu budou požádáni o příspěvek na <a href=\"https://flattr.com\">Flattr</a>."
   help:
     meta_keys:
+      title: "Meta klíče zpracované Greasy Forkem"
       intro_html: "Toto je seznam <a href=\"http://wiki.greasespot.net/Metadata_Block\">meta klíčů uživatelského skriptu</a>, které Greasy Fork rozpozná. Klíče mimo tento seznam mohou být obsaženy ve skriptu, budou v instalovaném skriptu přítomny, ale nebudou mít efekt v uživatelském rozhraní Greasy Fork."
       name: "Název skriptu, používaný v záhlaví a odkazech. Povinná položka."
       description: "Popis funkce skriptu. Zobrazuje se pod názvem skriptu. Povinná položka"

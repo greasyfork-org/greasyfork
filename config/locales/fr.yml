@@ -8,7 +8,16 @@ fr:
       search: "Rechercher"
   helpers:
     application:
-      time_difference: "il y a %{relative_time}"
+      time_ago:
+        minutes:
+          one: "il y a %{count} minute"
+          other: "il y a %{count} minutes"
+        hours:
+          one: "il y a %{count} heure"
+          other: "il y a %{count} heures"
+        days:
+          one: "il y a %{count} jour"
+          other: "il y a %{count} jours"
   scripts:
     created_date: "Créé"
     updated_date: "Mis à jour"
@@ -52,6 +61,7 @@ fr:
     history_all_changes_link: "Voir toutes les versions."
     history_all_changes_info: "Voici toutes les versions de ce script."
     history_only_code_changes_link: "Voir uniquement les versions où le code a été modifié."
+    diff_button: "Voir les différences entre les versions sélectionnées"
     code_title: "%{script_name} - Code source"
     code_highlighting_disabled: "Le code fait plus de %{size}, la coloration syntaxique a donc été désactivée pour alléger la charge du navigateur."
     feedback_title: "%{script_name} - Commentaires"
@@ -181,6 +191,11 @@ fr:
     good_rating_explanation: "Nombre de personnes l'ayant jugé-e Bon-ne ou ajouté-e aux favoris"
     ok_rating_explanation: "Nombre de personnes l'ayant jugé-e OK."
     bad_rating_explanation: "Nombre de personnes l'ayant jugé-e Mauvais-e."
+    write_your_own_html: "%{post_a_script_link} (ou %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "Soumettez votre script"
+    learn_to_write_scripts_link_text: "Apprenez à scripter"
+    feedback_suggestion_html: "Après avoir essayé ce script, vous pouvez %{feedback_link}."
+    feedback_link_text: "poser une question, rédiger une critique ou un rapport"
   script_sets:
     favorites_name: "Favoris"
     delete: "Supprimer ce jeu de scripts"
@@ -222,6 +237,8 @@ fr:
     script_list: "Scripts"
     script_list_none: "Aucun script posté."
     script_list_none_for_filter: "Aucun script pour les filtres actuels."
+    script_list_none_same_user_html: "Vous n'avez créé aucun script. %{script_list_none_same_user_info_link}"
+    script_list_none_same_user_info_link_text: "Voudriez-vous apprendre à le faire ?"
     deleted_script_list: "Scripts supprimés"
     sign_out: "Se déconnecter"
     edit: "Modifier mon compte"
@@ -270,11 +287,21 @@ fr:
     flattr_username_description_html: "On demandera aux utilisateurs de vos scripts de faire un don sur votre compte <a href=\"https://flattr.com\">Flattr</a>."
   help:
     meta_keys:
+      title: "Raccourcis claviers utilisés par Greasy Fork"
+      intro_html: "Voici une liste de <a href=\"http://wiki.greasespot.net/Metadata_Block\">raccourcis clavier</a> que Greasy Fork peut utiliser. Les touche non citées dans cette liste peuvent être utilisées dans de nouveaux scripts, elles seront alors exploitables dans le script installé, mais n'auront aucun effet sur l'interace de Greasy Fork."
       name: "Le nom du script, utilisé comme entête et dans les liens. Requis."
       description: "Une description de ce que le script fait. Affiché sous forme de texte sous le nom du script. Requis."
       include: "Décris sur quelles pages le script va s'exécuter. Cette liste sera traitée, affichée sur la page d'information du script, et utilisée pour catégoriser les scripts."
       require_html: "Inclus du JavaScript externe dans un script. Voir %{external_script_link}."
       require_external_script_link_text: "Règles pour les codes incluant des scripts externes."
+    writing_user_scripts:
+      title: "Comment rédiger vos scripts"
+      content_html: "<p>Rédiger des scripts scripts demande des connaissances en JavaScript. Les <a href=\"http://wiki.greasespot.net/Tutorials\">tutoriels du Wiki de GreaseSpot</a> devraient vous aider à débuter en JavaScript, pour un usage  général comme pour la rédaction de scripts personnels. Examiner le code des scripts écrits par d'autres peut également vous aider. Vous serez peut-être intéressé par les règles de codage %{code_rules_link} et les raccourcis %{meta_keys_link}. Si vous avez besoin d'aide, n'hésitez pas à la demander sur le forum %{ask_in_forum_link}.</p><p>Afin de poster sur le forum de Greasy Fork, vous devrez préalablement vous y inscrire. Depuis votre compte %{user_page_link}, cliquez sur le lien %{post_new_script_link}.</p>"
+      ask_in_forum_link_text: 'en parler sur le forum'
+      user_page_link_text: 'page personnelle'
+      post_new_script_link_text: 'soumettre un nouveau script'
+    code_rules:
+      title: "Les règles à respecter lors de la soumission d'un script"
   common:
     error_preamble: "Il y a des erreurs dans ce que vous avez posté..."
     allowed_elements_link: "(Voir les balises autorisées.)"

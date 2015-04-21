@@ -8,7 +8,13 @@ ja:
       search: "検索"
   helpers:
     application:
-      time_difference: "%{relative_time}前"
+      time_ago:
+        minutes:
+          other: "%{count}分前"
+        hours:
+          other: "%{count}時間前"
+        days:
+          other: "%{count}日前"
   scripts:
     created_date: "作成"
     updated_date: "更新"
