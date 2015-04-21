@@ -52,6 +52,7 @@ el:
     history_all_changes_link: "Προβολή όλων των εκδόσεων."
     history_all_changes_info: "Αυτές είναι όλες οι εκδόσεις αυτού του κώδικα."
     history_only_code_changes_link: "Προβολή μόνο των εκδόσεων όπου άλλαξε ο κώδικας."
+    diff_button: "Διαφορές μεταξύ επιλεγμένων εκδόσεων"
     code_title: "%{script_name} - Κώδικας προέλευσης"
     code_highlighting_disabled: "Ο κώδικας είναι πάνω από %{size}, για αυτό ο χρωματισμός του κώδικα απενεργοποιήθηκε για τη διασφάλιση του φυλλομετρητή σας."
     feedback_title: "%{script_name} - Συζήτηση"
@@ -181,6 +182,11 @@ el:
     good_rating_explanation: "Αριθμός ατόμων που το βαθμολόγησαν Καλό ή το πρόσθεσαν στα Αγαπημένα."
     ok_rating_explanation: "Αριθμός ατόμων που το βαθμολόγησαν ως Εντάξει."
     bad_rating_explanation: "Αριθμός ατόμων που το βαθμολόγησαν ως Κακό."
+    write_your_own_html: "%{post_a_script_link} (ή %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "Δημοσιεύστε έναν κώδικα που έχετε γράψει"
+    learn_to_write_scripts_link_text: "μάθετε πως να γράψετε έναν"
+    feedback_suggestion_html: "Αφού δοκιμάσετε αυτόν τον κώδικα, μπορείτε να %{feedback_link}."
+    feedback_link_text: "κάνετε μια ερώτηση για αυτόν, να γράψετε μια επισκόπηση ή να γράψετε μια αναφορά."
   script_sets:
     favorites_name: "Αγαπημένα"
     delete: "Διαγραφή συνόλου κώδικα"
@@ -222,6 +228,8 @@ el:
     script_list: "Κώδικες"
     script_list_none: "Κανένας δημοσιευμένος κώδικας."
     script_list_none_for_filter: "Κανένας κώδικας για τα τρέχοντα φίλτρα."
+    script_list_none_same_user_html: "Δεν έχετε γράψει κανένα κώδικα. %{script_list_none_same_user_info_link}"
+    script_list_none_same_user_info_link_text: "Θα θέλατε να μάθετε πως;"
     deleted_script_list: "Διεγραμμένοι κώδικες"
     sign_out: "Αποσύνδεση"
     edit: "Επεξεργασία λογαριασμού"
@@ -270,6 +278,7 @@ el:
     flattr_username_description_html: "Οι χρήστες των κωδικών σας θα ερωτηθούν για προσφορά δωρεάς στο λογαριασμό σας στο <a href=\"https://flattr.com\">Flattr</a>."
   help:
     meta_keys:
+      title: "Τα μετα-κλειδιά του κώδικα που διαβάζει το Greasy Fork"
       intro_html: "Αυτή είναι μια λίστα με τα <a href=\"http://wiki.greasespot.net/Metadata_Block\">μετακλειδιά των κωδίκων χρήστη</a> που το Greasy Fork θα διαβάζει. Τα κλειδιά εκτός αυτής της λίστας μπορούν να περιλαμβάνονται στους κώδικες και θα είναι παρόντα στον εγκατεστημένο κώδικα, αλλά δεν θα έχουν καμιά επίδραση στο περιβάλλον του Greasy Fork."
       name: "Το όνομα του κώδικα, χρησιμοποιείται ως κεφαλίδα και στους συνδέσμους. Απαιτείται."
       name_localized_html: "Το όνομα του κώδικα σε συγκεκριμένη γλώσσα, όπου XX είναι ο <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">κωδικός ISO 639-1 2</a> και YY είναι ένας προαιρετικός <a href=\"https://www.iso.org/obp/ui/#search\">κωδικός χώρας ISO 3166</a>. Αντικαθιστά το <code>@name</code> όταν ο χρήστης πλοηγείται με τη γλώσσα που ταιριάζει."
@@ -287,6 +296,14 @@ el:
       contributionAmount_html: "Προτεινόμενο ποσό δωρεάς, χρησιμοποιείται σε συνδυασμό με το <code>@contributionURL</code>."
       compatible_html: "Επισημαίνει αυτόν τον κώδικα ως συμβατό με έναν φυλλομετρητή. Οι πληροφορίες συμβατότητας θα εμφανίζονται στη σελίδα του κώδικα. Τα σχόλια για τη συμβατότητα μπορούν να περιληφθούν με τη μορφή <code>@compatible firefox Πρέπει να απενεργοποιηθεί το μπλοκάρισμα αναδυόμενων παραθύρων</code>. Αναγνωρισμένοι φυλλομετρητές είναι: %{browsers}."
       incompatible_html: "Επισημαίνει αυτόν τον κώδικα ως μη συμβατό με έναν φυλλομετρητή. Οι πληροφορίες συμβατότητας θα εμφανίζονται στη σελίδα του κώδικα. Προαιρετικά σχόλια στη συμβατότητα μπορούν να συμπεριληφθούν στη μορφή <code>@incompatible firefox Δεν λειτουργεί μέχρι τον Firefox 23</code>. Αναγνωρισμένοι φυλλομετρητές είναι: %{browsers}."
+    writing_user_scripts:
+      title: "Πως να γράψετε κώδικες χρηστών"
+      content_html: "<p>Η δημιουργία κωδικών χρήστη απαιτεί γνώση JavaScript. Τα <a href=\"http://wiki.greasespot.net/Tutorials\">μαθήματα του GreaseSpot Wiki</a> μπορούν να σας δώσουν ένα έναυσμα στην JavaScript τόσο γενικά όσο και σε ότι αφορά τους κώδικες χρηστών. Η παρακουλούθηση άλλων κωδικών μπορεί να σας είναι χρήσιμο. Μπορεί να ενδιαφέρεστε για τους %{code_rules_link} και τα %{meta_keys_link}. Αν θέλετε βοήθεια για να αναπτύξετε τον κώδικά σας, μην διστάσετε να %{ask_in_forum_link}.</p><p>Για να δημοσιεύσετε στο Greasy Fork, θα χρειαστείτε έναν λογαριασμό. Από τη %{user_page_link}, μεταβείτε στον σύνδεσμο της %{post_new_script_link}.</p>"
+      ask_in_forum_link_text: 'ρωτήσετε στη δημόσια συζήτηση'
+      user_page_link_text: 'σελίδα χρήστη'
+      post_new_script_link_text: 'δημοσίευσης νέου κώδικα'
+    code_rules:
+      title: "Κανόνες του Greasy Fork για δημοσιευμένους κώδικες"
   common:
     error_preamble: "Υπήρξαν κάποια προβλήματα με αυτά που δημοσιεύσατε..."
     allowed_elements_link: "(Δείτε τον επιτρεπτόμενο κώδικα.)"
