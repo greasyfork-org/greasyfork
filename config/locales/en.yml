@@ -13,8 +13,19 @@ en:
       search: "Search"
   helpers:
     application:
-      # when showing a date newer than a week ago, we show something like "3 days ago". relative_time is the time from https://github.com/svenfuchs/rails-i18n/blob/b80bbdc9f9fa0ada05a7a2c9391a902ffde395d8/rails/rails4/action_view.yml . Search that repo to see what it could be in your language.
-      time_difference: "%{relative_time} ago"
+      time_ago:
+        # used for displaying a time (e.g. last update) when it's less than an hour ago
+        minutes:
+          one: "%{count} minute ago"
+          other: "%{count} minutes ago"
+        # used for displaying a time (e.g. last update) when it's less than a day ago
+        hours:
+          one: "%{count} hour ago"
+          other: "%{count} hours ago"
+        # used for displaying a time (e.g. last update) when it's less than a week ago
+        days:
+          one: "%{count} day ago"
+          other: "%{count} days ago"
   scripts:
     # label for created date of a script
     created_date: "Created"

@@ -19,7 +19,14 @@ module ApplicationHelper
 	def markup_date(date)
 		return '?' if date.nil?
 		# Take out "about" and "less than" to make it shorter. Obviously won't work in the other languages.
-		"<time datetime=\"#{date.to_datetime.rfc3339}\">#{date > relative_time_cutoff ? t('helpers.application.time_difference', :relative_time => time_ago_in_words(date).sub(/\A(about |less than )/, '').capitalize) : date.strftime('%Y-%m-%d')}</time>".html_safe
+		"<time datetime=\"#{date.to_datetime.rfc3339}\">#{date > relative_time_cutoff ? relative_time(date) : date.strftime('%Y-%m-%d')}</time>".html_safe
+	end
+
+	def relative_time(date)
+		diff_in_minutes = ((Time.now - date) / 60.0).round
+		return I18n.translate('helpers.application.time_ago.minutes', count: diff_in_minutes) if diff_in_minutes < 60
+		return I18n.translate('helpers.application.time_ago.hours', count: (diff_in_minutes / 60.0).round) if diff_in_minutes < 1440
+		return I18n.translate('helpers.application.time_ago.days', count: (diff_in_minutes / 1440.0).round)
 	end
 
 	def format_user_text(text, markup_type)
