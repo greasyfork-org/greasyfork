@@ -1,11 +1,12 @@
 class ScriptVersionsController < ApplicationController
 
 	before_filter :authenticate_user!, :except => [:index]
-	before_filter :authorize_by_script_id, :except => [:index]
+	before_filter :authorize_by_script_id, :except => [:index, :delete, :do_delete]
 	before_filter :check_for_deleted_by_script_id
 	before_filter :check_for_locked_by_script_id, :except => [:index]
+	before_filter :authorize_for_moderators_only, :only => [:delete, :do_delete]
 
-	layout 'scripts', only: [:index]
+	layout 'scripts', only: [:index, :delete, :do_delete]
 
 	def index
 		@script, @script_version = versionned_script(params[:script_id], params[:version])
@@ -161,6 +162,39 @@ class ScriptVersionsController < ApplicationController
 
 	def additional_info_form
 		render :partial => 'additional_info', :locals => {:la => LocalizedScriptVersionAttribute.new({:attribute_default => false, :value_markup => current_user.preferred_markup}), :index => params[:index].to_i}
+	end
+
+	def delete
+		@script_version = ScriptVersion.find(params[:script_version_id])
+		@script = @script_version.script
+		@bots = 'noindex'
+	end
+
+	def do_delete
+		# Grab those vars...
+		delete
+
+		if @script_version.script.script_versions.count == 1
+			@script_version.errors.add(:script, 'would have no versions')
+			render :delete
+			return
+		end
+
+		ma = ModeratorAction.new
+		ma.moderator = current_user
+		ma.script = @script
+		ma.action = "Delete version #{@script_version.version}, ID #{@script_version.id}"
+		ma.reason = params[:reason]
+		ma.save!
+
+		@script_version.destroy
+		# That might have been the latest version, recalculate
+		@script.apply_from_script_version(@script.get_newest_saved_script_version)
+		@script.save!
+
+		flash[:notice] = 'Version deleted.'
+
+		redirect_to @script
 	end
 
 private

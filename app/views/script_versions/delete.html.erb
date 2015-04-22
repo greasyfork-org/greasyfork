@@ -1,0 +1,24 @@
+<%- title "Delete v#{@script_version.version} of #{@script_version.script.name}" %>
+
+<%=form_tag(script_script_version_do_delete_path) do |f|%>
+
+	<% if !@script_version.errors.empty? %>
+		<div class="alert">
+			<p><%=t('common.error_preamble')%></p>
+			<ul class="errors">
+				<% @script_version.errors.full_messages.each do |e| %>
+					<li><%=e%></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<p>You're about to permanently delete version <b><%=@script_version.version%></b> of <b><%=@script_version.script.name%></b>.</p>
+
+	<p>
+		<label for="reason">Why are you deleting this? (Don't be specific if it's a sensitive reason, like that version had a password in it.)</label><br>
+		<textarea id="reason" name="reason" rows="5" cols="100" maxlength="500" required></textarea>
+	</p>
+	<input type="submit" value="Delete">
+<% end %>
+
