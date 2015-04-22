@@ -6,6 +6,15 @@ id:
       help: "Bantuan"
       sign_in: "Masuk"
       search: "Cari"
+  helpers:
+    application:
+      time_ago:
+        minutes:
+          other: "%{count} menit yang lalu"
+        hours:
+          other: "%{count} jam yang lalu"
+        days:
+          other: "%{count} hari yang lalu"
   scripts:
     created_date: "Dibuat"
     updated_date: "Diperbarui"
@@ -127,6 +136,7 @@ id:
     upload_label: "Atau unggah:"
     enable_source_code_editor_label: "Aktifkan fungsi sorot sintaksis penyunting sumber"
     changelog_note: "Apa yang berubah pada versi ini?"
+    additional_info_note_html: "Jelaskan tentang kegunaan skrip anda. %{allowed_elements_link}"
     preview_additional_info: "Pratinjau"
     post_new_script: "Kirimkan skrip"
     post_updated_script: "Kirimkan versi baru"
@@ -274,9 +284,18 @@ id:
       title: "Kunci meta skrip dibaca oleh Greasy Fork"
       intro_html: "Berikut adalah daftar <a href=\"http://wiki.greasespot.net/Metadata_Block\">kunci meta skrip</a> yang Greasy Fork akan baca. Kunci di luar daftar ini boleh disertakan dalam skrip, dan akan tersedia dalam skrip yang terpasang, tetapi tidak akan memiliki pengaruh pada UI Greasy Fork."
       name: "Nama skrip, digunakan sebagai tajuk dan dalam tautan. Diwajibkan."
+      name_localized_html: "Nama skrip dalam lokal yang spesifik dimana XX adalah <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">kode 2-huruf ISO 639-1</a> dan YY adalah opsional <a href=\"https://www.iso.org/obp/ui/#search\">kode negara ISO 3166</a>. Akan menimpa <code>@name</code> ketika pengguna menjelajah dengan lokal yang sama."
       description: "Deskripsi tentang kegunaan skrip. Ditampilkan sebagai teks di bawah nama skrip. Diwajibkan."
+      description_localized_html: "Deskripsi skrip dalam lokal yang spesifik, dimana XX adalah <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">kode 2-huruf ISO 639-1</a> dan YY adalah opsional <a href=\"https://www.iso.org/obp/ui/#search\">kode negara ISO 3166</a>. Akan menimpa <code>@description</code> ketika pengguna menjelajah dengan lokal yang sama."
+      version_html: "Identifikasi untuk versi spesifik dari skrip dalam <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">format versi Mozilla</a>. Versi akan ditampilkan di laman info skrip. Greasy Fork membutuhkan ruas ini dan akan mengingatkan jika versi tidak berkurang atau bertambah ketika kode skrip berubah."
+      include: "Jelaskan di laman apa skrip akan bekerja. Daftar ini akan diproses, ditampilkan di laman info skrip, dan akan digunakan untuk mengelompokkan skrip."
       require_html: "Sertakan JavaScript eksternal ke dalam skrip. Lihat %{external_script_link}."
       require_external_script_link_text: "aturan untuk kode termasuk skrip eksternal"
+      updateURL: "Jelaskan bagaimana pengelola skrip mendapatkan pembaruan. Greasy Fork akan mengabaikan kunci ini, yang membuat skrip yang dipasang dari Greasy Fork hanya diperbarui dari Greasy Fork."
+      license: "URL atau nama lisensi yang menjelaskan tentang bagaimana orang lain mendapatkan izin untuk menyalin atau mengubah skrip tersebut. Tidak ada lisensi akan membuat orang lain dapat memasang skrip untuk penggunaan pribadi, tapi mungkin tidak menyebarluaskannya. Lisensi akan ditampilkan di laman info skrip."
+      supportURL: "URL laman dimana pengguna dapat mendapatkan dukungan untuk skrip (mis, pelacakan bug, forum, alamat surel). URL dukungan akan ditampilkan di laman umpan balik skrip."
+      contributionURL_html: "URL laman dimana pengguna dapat memberikan donasi untuk penulis skrip. URL Kontribusi ditampilkan di laman umpan balik skrip. URL dalam format http, https, atau protokol Bitcoin. Untuk menautkan ke laman donasi PayPal, gunakan URL dalam format <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a>, ganti contoh surel dengan surel anda sendiri."
+      contributionAmount_html: "Besar donasi yang dianjurkan, digunakan berkaitan dengan <code>@contributionURL</code>."
     writing_user_scripts:
       title: "Bagaimana cara menulis skrip pengguna"
       ask_in_forum_link_text: 'tanyakan di forum'
