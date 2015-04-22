@@ -11,13 +11,13 @@ de:
       time_ago:
         minutes:
           one: "Vor %{count} Minute"
-          other: "Vor %{count} Minuten"
+          other: "vor %{count} Minuten"
         hours:
           one: "Vor %{count} Stunde"
-          other: "Vor %{count} Stunden"
+          other: "vor %{count} Stunden"
         days:
           one: "Vor %{count} Tag"
-          other: "Vor %{count} Tagen"
+          other: "vor %{count} Tagen"
   scripts:
     created_date: "Erstellt am"
     updated_date: "Letzte Aktualisierung"
@@ -169,12 +169,12 @@ de:
     sync_type_2: "Automatisch - es wird automatisch auf Aktualisierungen geprüft"
     sync_type_3: "Durch einen Web-Hook - es wird aktualisiert, wenn Sie Änderungen dieser Datei auf GitHub stellen"
     sync_failed_info_html: "Letzter Synchronisierungsversuch: %{date}, Fehler: %{error}."
-    sync_success_info_html: "Letzte erfolgreiche Synchronisierung: %{date}."
+    sync_success_info_html: "Letzte erfolgreiche Synchronisierung vor %{date}."
     sync_never_succeeded: "Die Synchronisierung wurde bisher nicht erfolgreich abgeschlossen."
     update_and_sync: "Jetzt aktualisieren und synchronisieren"
     update_no_sync: "Aktualisieren"
     turn_off_syncing: "Synchronisierung für dieses Skript abschalten"
-    additional_info_default_sync_html: "Standardmäßige zusätzliche Informationen (Sprache entsprichte <code>@name</code>)"
+    additional_info_default_sync_html: "Standardmäßige zusätzliche Informationen (Sprache entspricht <code>@name</code>)"
     additional_info_localized_sync_html: "Für Sprache (entspricht <code>@name:XX</code>)"
     sync_url_placeholder: "(Internetadresse)"
     screenshots_explanation: "Maximal %{number} PNG, GIF oder JPEG Bilder erlaubt, jedes kleiner als %{size}."

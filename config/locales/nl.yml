@@ -6,6 +6,18 @@ nl:
       help: "Hulp"
       sign_in: "Inloggen"
       search: "Zoeken"
+  helpers:
+    application:
+      time_ago:
+        minutes:
+          one: "%{count} minuut geleden"
+          other: "%{count} minuten geleden"
+        hours:
+          one: "%{count} uur geleden"
+          other: "%{count} uur geleden"
+        days:
+          one: "%{count} dag geleden"
+          other: "%{count} dagen geleden"
   scripts:
     created_date: "Gecreëerd"
     updated_date: "Bijgewerkt"
