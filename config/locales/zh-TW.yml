@@ -6,6 +6,15 @@ zh-TW:
       help: "說明文件"
       sign_in: "登入"
       search: "搜尋腳本"
+  helpers:
+    application:
+      time_ago:
+        minutes:
+          other: "%{count} 分鐘前"
+        hours:
+          other: "%{count} 小時前"
+        days:
+          other: "%{count} 天前"
   scripts:
     created_date: "建立日期"
     updated_date: "更新日期"
@@ -48,6 +57,7 @@ zh-TW:
     history_all_changes_link: "顯示所有版本。"
     history_all_changes_info: "這裡顯示腳本的所有版本。"
     history_only_code_changes_link: "只顯示彼此間有代碼差異的版本。"
+    diff_button: "檢視版本差異"
     code_title: "%{script_name} - 原始程式碼"
     code_highlighting_disabled: "程式碼大小超過 %{size}，因此已停用語法色彩標示以防您的瀏覽器當機。"
     feedback_title: "%{script_name} - 反饋"
@@ -177,6 +187,11 @@ zh-TW:
     good_rating_explanation: "給予好評或加入我的最愛的使用者數目"
     ok_rating_explanation: "給予普評的使用者數目"
     bad_rating_explanation: "給予差評的使用者數目"
+    write_your_own_html: "%{post_a_script_link}（或是 %{learn_to_write_scripts_link}）"
+    post_a_script_link_text: "新增一個你寫的腳本"
+    learn_to_write_scripts_link_text: "學習如何建立一個"
+    feedback_suggestion_html: "嘗試過這個腳本之後，你可以 %{feedback_link}。"
+    feedback_link_text: "發表問題、評論、或檢舉"
   script_sets:
     favorites_name: "我的最愛"
     delete: "刪除腳本收藏集"
@@ -218,6 +233,8 @@ zh-TW:
     script_list: "腳本列表"
     script_list_none: "尚未發佈過腳本。"
     script_list_none_for_filter: "不存在適用於目前篩選條件的腳本。"
+    script_list_none_same_user_html: "你還沒撰寫任何腳本。%{script_list_none_same_user_info_link}"
+    script_list_none_same_user_info_link_text: "想要現在學習嗎？"
     deleted_script_list: "已刪除的腳本"
     sign_out: "登出"
     edit: "帳號設定"
@@ -265,6 +282,7 @@ zh-TW:
     flattr_username_description_html: "您的腳本的使用者將被詢問是否要向您的 <ahref=\"https://flattr.com\">Flattr</a> 帳號捐贈。"
   help:
     meta_keys:
+      title: "Greasy Fork 讀取的 meta keys"
       intro_html: "這是 Greasy Fork 會讀取的 <a href=\"http://wiki.greasespot.net/Metadata_Block\">使用者腳本 meta keys</a> 的清單。腳本中可以有不在此清單中的 key，也會存在使用者安裝的腳本中，但不會對 Greasy Fork 的介面有任何效果。"
       name: "腳本名稱，用來作為標題與連結中使用，必填。"
       name_localized_html: "此腳本在不同語系中的名稱，XX 是 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 的兩字母代碼</a> ，YY 則是非必要的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 國家代碼</a>。當使用者在符合的語系中瀏覽時就會蓋過 <code>@name</code> 顯示。"
@@ -282,6 +300,14 @@ zh-TW:
       contributionAmount_html: "建議的捐贈金額，與 <code>@contributionURL</code> 一起使用。"
       compatible_html: "標示此腳本與哪些瀏覽器相容。相容性資訊將會顯示在腳本的頁面。可使用例如：<code>@compatible firefox 必須停用彈出型視窗封鎖器</code> 的格式來記錄關於相容性的其他資訊。可使用的瀏覽器有：%{browsers}。"
       incompatible_html: "標示此腳本與哪些瀏覽器不相容。相容性資訊將會顯示在腳本的頁面。可使用例如：<code>@incompatible firefox 從 Firefox 23 起失效</code> 的格式來記錄關於相容性的其他資訊。可使用的瀏覽器有：%{browsers}。"
+    writing_user_scripts:
+      title: "如何撰寫腳本"
+      content_html: "<p>撰寫使用者腳本需要 JavaScript 相關知識。<a href=\"http://wiki.greasespot.net/Tutorials\">GreaseSpot 維基上的教學</a> 是個不錯的開端學習 JavaScript 和使用者腳本。察看別人的腳本也很有幫助。你或許對於 %{code_rules_link} 和 %{meta_keys_link} 有興趣。如果需要開發腳本上的幫助，隨時 %{ask_in_forum_link}。</p><p>若要新增腳本至 Greasy Fork，需要申請一個帳號。進入你的 %{user_page_link}，點選 %{post_new_script_link} 連結</p>"
+      ask_in_forum_link_text: '在論壇中發問'
+      user_page_link_text: '使用者頁面'
+      post_new_script_link_text: '新增腳本'
+    code_rules:
+      title: "Greasy Fork 的腳本規定"
   common:
     error_preamble: "您所發表的帖子內容有點問題..."
     allowed_elements_link: "(檢視允許使用的 HTML/Markdown 代碼。)"
