@@ -6,6 +6,18 @@ es:
       help: "Ayuda"
       sign_in: "Iniciar sesión"
       search: "Buscar"
+  helpers:
+    application:
+      time_ago:
+        minutes:
+          one: "hace un minuto"
+          other: "hace %{count} minutos"
+        hours:
+          one: "hace una hora"
+          other: "hace %{count} horas"
+        days:
+          one: "hace un día"
+          other: "hace %{count} días"
   scripts:
     created_date: "Creado"
     updated_date: "Actualizado"
@@ -49,6 +61,7 @@ es:
     history_all_changes_link: "Ver todas las versiones."
     history_all_changes_info: "Aquí están todas las versiones de este script."
     history_only_code_changes_link: "Mostrar únicamente las versiones en las que hubo cambios de código."
+    diff_button: "Comparar versiones seleccionadas"
     code_title: "%{script_name} - Código fuente"
     code_highlighting_disabled: "El código ocupa más de %{size}, por lo que el resaltado de sintaxis se ha desactivado para evitar problemas de rendimiento en tu navegador."
     feedback_title: "%{script_name} - Comentarios"
@@ -106,10 +119,10 @@ es:
     new: "Publicar un script"
     support_site: "Visitar el sitio de soporte del autor."
     support_email: "Enviar e-mail al autor en busca de soporte."
-    contribution_no_amount: "De las gracias a %{author} haciendo una donación."
-    contribution_with_amount: "Da las gracias a %{author} haciendo una donación. La donación recomendada es %{amount}."
-    contribution_bitcoin_no_amount_html: "De las gracias a %{author} haciendo una donación en Bitcoin a %{address}."
-    contribution_bitcoin_with_amount_html: "De las gracias a %{author} haciendo una donación en Bitcoin a %{address}. La donación recomendada es %{amount}."
+    contribution_no_amount: "Agradece a %{author} haciendo una donación."
+    contribution_with_amount: "Agradece a %{author} haciendo una donación. La donación recomendada es %{amount}."
+    contribution_bitcoin_no_amount_html: "Agradece a %{author} haciendo una donación en Bitcoin a %{address}."
+    contribution_bitcoin_with_amount_html: "Agradece a %{author} haciendo una donación en Bitcoin a %{address}. La donación recomendada es %{amount}."
     locale_explanation_html: "Debe coincidir con el idioma de <code>@name</code>, <code>@description</code>, y la primera información adicional."
     locale_auto_select: "(Detectar automáticamente)"
     sets_label: "En los sets de scripts:"
@@ -178,6 +191,11 @@ es:
     good_rating_explanation: "Número de personas que lo calificaron como Bueno o lo añadieron a sus favoritos."
     ok_rating_explanation: "Número de personas que lo calificaron como OK."
     bad_rating_explanation: "Número de personas que lo calificaron como Malo."
+    write_your_own_html: "%{post_a_script_link} (o %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "Publica tu propio script"
+    learn_to_write_scripts_link_text: "aprende a escribir uno"
+    feedback_suggestion_html: "Tras probar el script puedes %{feedback_link}."
+    feedback_link_text: "preguntar sobre él, opinar, valorándolo con una crítica, o informar de uso inadecuado a los moderadores."
   script_sets:
     favorites_name: "Favoritos"
     delete: "Borrar set de scripts"
@@ -219,6 +237,8 @@ es:
     script_list: "Scripts"
     script_list_none: "No hay scripts publicados."
     script_list_none_for_filter: "No hay scripts que coincidan con los filtros actuales."
+    script_list_none_same_user_html: "Todavía no has escrito ningún script. %{script_list_none_same_user_info_link}"
+    script_list_none_same_user_info_link_text: "¿Te gustaría aprender a hacerlos?"
     deleted_script_list: "Scripts borrados"
     sign_out: "Desconectar"
     edit: "Editar cuenta"
@@ -267,8 +287,20 @@ es:
     flattr_username_description_html: "A los usuarios de tus scripts se les pedirá donar a tu cuenta en <a href=\"https://flattr.com\">Flattr</a>."
   help:
     meta_keys:
+      title: "Claves de metadatos de scripts leídas por Greasy Fork"
+      name: "El nombre del script, que se utiliza en encabezados y enlaces. Necesario."
+      description: "Una descripción de lo que hace el script. Se muestra como texto bajo el nombre del mismo. Necesario."
+      include: "Describe en qué páginas funcionará el script. La lista será visible en su página de información y se usará para categorizar los scripts."
       require_html: "Incluye JavaScript externo en un script. Ver %{external_script_link}"
       require_external_script_link_text: "reglas para código que incluye scripts externos"
+      contributionAmount_html: "Cantidad a donar recomendada, utilizada junto con <code>@contributionURL</code>."
+    writing_user_scripts:
+      title: "Cómo escribir scripts de usuario"
+      ask_in_forum_link_text: 'preguntar en el foro'
+      user_page_link_text: 'página de usuario'
+      post_new_script_link_text: 'publicar un nuevo script'
+    code_rules:
+      title: "Reglas de Greasy Fork para scripts publicados"
   common:
     error_preamble: "Hubo algunos problemas a la hora de procesar su envío..."
     allowed_elements_link: "(Ver codigo permitido.)"
