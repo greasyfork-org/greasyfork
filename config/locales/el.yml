@@ -6,6 +6,18 @@ el:
       help: "Βοήθεια"
       sign_in: "Σύνδεση"
       search: "Αναζήτηση"
+  helpers:
+    application:
+      time_ago:
+        minutes:
+          one: "%{count} λεπτό πριν"
+          other: "%{count} λεπτά πριν"
+        hours:
+          one: "%{count} ώρα πριν"
+          other: "%{count} ώρες πριν"
+        days:
+          one: "%{count} ημέρα πριν"
+          other: "%{count} ημέρες πριν"
   scripts:
     created_date: "Δημιουργήθηκε την"
     updated_date: "Ενημερώθηκε την"
