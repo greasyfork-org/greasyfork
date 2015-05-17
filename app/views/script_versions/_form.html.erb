@@ -112,6 +112,13 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
 		<% end %>
 	</div>
 	<div class="form-control radio-group">
+		<label><%=t('activerecord.attributes.script.approve_redistribution')%></label><br>
+		<%=t('scripts.approve_redistribution_explanation')%><br>
+		<%= radio_button('script', :approve_redistribution, nil)%> <label for="script_approve_redistribution" class="radio-label"><%=t('scripts.approve_redistribution_use_user_setting', user_setting: script_version.script.user.approve_redistribution.nil? ? t('scripts.approve_redistribution_use_user_setting_not_set') : t("users.approve_redistribution_#{script_version.script.user.approve_redistribution}"))%></label><br>
+		<%= radio_button('script', :approve_redistribution, true)%> <label for="script_approve_redistribution_true" class="radio-label"><%=t('scripts.approve_redistribution_true')%></label><br>
+		<%= radio_button('script', :approve_redistribution, false)%> <label for="script_approve_redistribution_false" class="radio-label"><%=t('scripts.approve_redistribution_false')%></label>
+	</div>
+	<div class="form-control radio-group">
 		<label><%=t('activerecord.attributes.script.locale')%></label> <span class="label-note"><%=t('scripts.locale_explanation_html')%></span><br>
 		<select name="script[locale_id]">
 			<option value="" <%if @script.locale_id.nil?%>selected<%end%>><%=t('scripts.locale_auto_select')%></option>

@@ -51,6 +51,8 @@ class ScriptVersionsController < ApplicationController
 		@script_version.script = @script
 		@script.script_type_id = params['script']['script_type_id']
 		@script.locale_id = params['script']['locale_id']
+		# a bit of weirdness because one of the radio buttons maps to nil
+		@script.approve_redistribution = params['script']['approve_redistribution'] == 'on' ? nil : params['script']['approve_redistribution']
 
 		save_record = params[:preview].nil? && params['add-additional-info'].nil?
 

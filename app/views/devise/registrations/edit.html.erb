@@ -74,6 +74,13 @@
 		<%= f.text_field(:flattr_username)%>
 	</div>
 
+	<div>
+		<%= f.label :approve_redistribution %><br>
+		<%=t('users.approve_redistribution_explanation')%><br>
+		<%= f.radio_button(:approve_redistribution, true)%> <label for="user_approve_redistribution_true"><%=t('users.approve_redistribution_true')%></label><br>
+		<%= f.radio_button(:approve_redistribution, false)%> <label for="user_approve_redistribution_false"><%=t('users.approve_redistribution_false')%></label>
+	</div>
+
   <div><%= f.submit t('.update', :default => "Update") %></div>
 <% end %>
 

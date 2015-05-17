@@ -33,6 +33,7 @@ protected
 		devise_parameter_sanitizer.for(:account_update) << :author_email_notification_type_id
 		devise_parameter_sanitizer.for(:account_update) << :show_ads
 		devise_parameter_sanitizer.for(:account_update) << :flattr_username
+		devise_parameter_sanitizer.for(:account_update) << :approve_redistribution
 	end
 
 	def authorize_by_script_id

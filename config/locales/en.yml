@@ -375,6 +375,16 @@ en:
     feedback_suggestion_html: "After trying this script, you can %{feedback_link}."
     # link text used in feedback_suggestion_html
     feedback_link_text: "ask a question about it, review it, or report it"
+    # explanation of the approve redistribution option on the script edit page
+    approve_redistribution_explanation: "Greasy Fork can tell other sites that you allow them to repost your script. This may or may not be already permitted by the license you choose for your script."
+    # option for approve redistribution on a script where the value is based on the account default. user_setting can be approve_redistribution_use_user_setting_not_set if the account doesn't have it set, or it can be users.approve_redistribution_true or users.approve_redistribution_false
+    approve_redistribution_use_user_setting: "Use my account default (%{user_setting})"
+    # used with approve_redistribution_use_user_setting when the setting is not set on the account
+    approve_redistribution_use_user_setting_not_set: "not set"
+    # option for approve redistribution on a script for when they approve
+    approve_redistribution_true: "I'm OK with my script being reposted elsewhere"
+    # option for approve redistribution on a script for when they don't approve
+    approve_redistribution_false: "I don't want my script being reposted elsewhere"
   script_sets:
     # name for the favorites set
     favorites_name: "Favorites"
@@ -545,6 +555,12 @@ en:
     preferred_markup_description: "Will be used for new scripts and posts."
     # text describing what the flattr username setting does
     flattr_username_description_html: "Users of your scripts will be asked to donate to your account on <a href=\"https://flattr.com\">Flattr</a>."
+    # explanation of the approve redistribution option on the user edit page
+    approve_redistribution_explanation: "Greasy Fork can tell other sites that you allow them to repost your script. This may or may not be already permitted by the license you choose for your scripts. You may override this preference on each individual script."
+    # option for approve redistribution on a user for when they approve
+    approve_redistribution_true: "I'm OK with my scripts being reposted elsewhere"
+    # option for approve redistribution on a user for when they don't approve
+    approve_redistribution_false: "I don't want my scripts being reposted elsewhere"
   help:
     meta_keys:
       # title of the help document describing script meta keys (e.g. @name).
@@ -661,6 +677,8 @@ en:
         screenshot_caption: "Caption"
         # when deleting, which script to redirect to
         replaced_by_script_id: "Replacement script"
+        # whether the user is OK with their script being posted elsewhere
+        approve_redistribution: "Redistribution"
   errors:
     messages:
       # validation for when a script name is not provided
