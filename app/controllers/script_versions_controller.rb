@@ -30,6 +30,7 @@ class ScriptVersionsController < ApplicationController
 		else
 			@script = Script.new
 			@script.script_type_id = 1
+			@script.user = current_user
 			@script_version.script = @script
 			ensure_default_additional_info(@script_version, current_user.preferred_markup)
 			@current_screenshots = []
