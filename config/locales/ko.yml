@@ -6,13 +6,22 @@ ko:
       help: "도움말"
       sign_in: "로그인"
       search: "검색"
+  helpers:
+    application:
+      time_ago:
+        minutes:
+          other: "%{count} 분 전"
+        hours:
+          other: "%{count} 시간 전"
+        days:
+          other: "%{count} 일 전"
   scripts:
     created_date: "생성"
     updated_date: "갱신"
     total_installs: "총 설치수"
     daily_installs: "일일 설치수"
     ratings: "평점"
-    author_name: "개발자"
+    author_name: "작성자"
     version_number: "버전"
     license: "라이센스"
     no_license: "없음"
@@ -24,13 +33,13 @@ ko:
       other: "%{site}에 적용되는 %{count}개의 다른 스크립트도 확인해보세요"
     applies_to_all: "모든 사이트"
     additional_info: "개발자의 소개"
-    install: "이 스크립트 설치"
-    install_help: "어떻게?"
+    install: "해당 스크립트 설치"
+    install_help: "?"
     install_help_title: "스크립트 설치방법"
     library_instructions_html: "이 스크립트는 직접 설치해서 쓰는 게 아닙니다. 다른 스크립트가 메타 명령 %{code}로 포함하여 쓰는 라이브러리입니다."
-    deleted_notice: "이 스크립트는 삭제되었습니다."
-    inactive_pending_changes: "이 스크립트는 현재 비활성화되었습니다. 왜나하면 Greasy Fork의 정책과 맞지 않기 때문입니다."
-    inactive_pending_changes_for_previous_version: "이 스크립트의 이 버전은 비활성화되었습니다. 왜나하면 Greasy Fork의 정책과 맞지 않기 때문입니다."
+    deleted_notice: "해당 스크립트는 삭제되었습니다."
+    inactive_pending_changes: "Greasy Fork의 정책과 맞지 않기에 해당 스크립트는 비활성화되었습니다."
+    inactive_pending_changes_for_previous_version: "Greasy Fork의 정책과 맞지 않기에 해당 버젼의 스크립트는 비활성화되었습니다."
     version_notice_html: "%{date} 일자. %{latest_version_link} 확인 바람."
     version_notice_latest_version_link: "최신 버전"
     info_page: "정보"
@@ -48,15 +57,16 @@ ko:
     history_all_changes_link: "모든 버전 보기"
     history_all_changes_info: "이 스크립트의 모든 버전들입니다."
     history_only_code_changes_link: "코드가 바뀐 버전들만 보기"
+    diff_button: "선택된 다른 버전"
     code_title: "%{script_name} - 소스 코드"
     code_highlighting_disabled: "코드 용량이 %{size}를 넘었으므로, 브라우저 렉을 방지하기 위해 구문 강조 기능이 비활성화되었습니다."
     feedback_title: "%{script_name} - 피드백"
     feedback_no_discussions_html: "아무 의논도 없습니다. %{start_first_discussion_link}"
-    feedback_start_first_discussion_link: "이 스크립트에 대해 먼저 의논해보세요."
-    feedback_start_discussion_link: "이 스크립트에 대해 새로운 의논을 시작해보세요."
+    feedback_start_first_discussion_link: "해당 스크립트에 대해 먼저 의논해보세요."
+    feedback_start_discussion_link: "해당 스크립트에 대해 새로운 의논을 시작해보세요."
     feedback_discussions_heading: "Greasy 포럼에 있는 의논"
     feedback_favoriters_heading: "줄겨찾기한 사람들"
-    feedback_favoriters_user_list_intro: "이 스크립트를 줄겨찾기한 사람들:"
+    feedback_favoriters_user_list_intro: "해당 스크립트를 줄겨찾기한 사람들:"
     feedback_no_favoriters: "아무도 이 스크립트를 즐겨 찾지 않습니다."
     feedback_sign_in_to_favorite: "줄겨 찾고 싶다면 로그인하세요."
     stats_title: "%{script_name} - 통계"
@@ -69,7 +79,7 @@ ko:
     stats_download_raw_data_html: "모든 데이터 다운로드: %{links}"
     stats_no_data: "통계 사용불가"
     derivatives_title: "%{script_name} - 파생"
-    derivatives_intro: "이 스크립트는 아마 당신의 스크립트에 기반한 것 일수도 있습니다. (또는 당신이 이들의 것에 기반한 것 일수도 있음) 만약 허가받지 않고 당신의 코드를 사용한 것을 발견했다면, 새로운 의논을 시작하여 스크립트를 보고하세요."
+    derivatives_intro: "해당 스크립트는 아마 당신의 스크립트에 기반한 것 일수도 있습니다. (또는 당신이 이들의 것에 기반한 것 일수도 있음) 만약 허가받지 않고 당신의 코드를 사용한 것을 발견했다면, 새로운 의논을 시작하여 스크립트를 보고하세요."
     derivatives_code_matches_info_html: "당신의 코드 %{match_size}자 이상을 포함한 스크립트들입니다. 이 체크는 %{max_size}이하의 스크립트들에서 실행되며 최근에 %{last_run}에 실행되었습니다."
     derivatives_namespace_matches_info_html: "<code>%{namespace}</code>를 올린 다른 스크립트:"
     derivatives_name_matches_info: "가장 비슷한 이름을 가진 스크립트:"
@@ -148,7 +158,7 @@ ko:
     additional_info_add_localized: "현지화된 추가 정보 추가"
     additional_info_locale_repeated: "'%{locale_code}'에서 추가 정보 하나만 제공하세요."
     localized_additional_info_with_no_name: "'%{locale_code}'의 추가 정보는 명시되었으나, @name:%{locale_code} 는 제공되지 않았습니다."
-    code_syncing_from_url_html: "이 스크립트의 코드와 동기화되는 곳: %{field}"
+    code_syncing_from_url_html: "해당 스크립트의 코드와 동기화되는 곳: %{field}"
     provide_code_syncing_from_url_html: "Gresay Fork는 버전 관리 시스템 (GitHub 같은 거), 당신의 개인 서버, 또는 또 다른 유저스크립트 호스팅 사이트와 같은 다른 곳 에서 이미 호스팅하고 잇는 스크립트를 불러 올 수 있습니다. 동기화를 설정하려면 URL을 입력하세요: %{field}"
     sync_type_intro: "동기화될 스크립트:"
     sync_type_1: "수동 - 당신이 직접 트리거할때만 업데이트를 확인합니다."
@@ -177,6 +187,11 @@ ko:
     good_rating_explanation: "좋다고 평가하거나 즐겨찾기한 사람들의 수"
     ok_rating_explanation: "OK로 평가한 사람들의 수"
     bad_rating_explanation: "나쁘다고 평가한 사람들 수"
+    write_your_own_html: "%{post_a_script_link} (또는 %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "작성한 스크립트를 업로드"
+    learn_to_write_scripts_link_text: "작성 방법 배우기"
+    feedback_suggestion_html: "해당 스크립트를 써보시고 피드백을 남길 수 있습니다. 링크: %{feedback_link}."
+    feedback_link_text: "해당 스크립트에 대해 질문, 리뷰, 신고할 수 있습니다."
   script_sets:
     favorites_name: "즐겨찾기"
     delete: "스크립트 모음 삭제"
@@ -218,6 +233,8 @@ ko:
     script_list: "스크립트"
     script_list_none: "게시한 스크립트 없음."
     script_list_none_for_filter: "현 필터를 만족하는 스크립트 없음."
+    script_list_none_same_user_html: "작성하신 스크립트가 없습니다. %{script_list_none_same_user_info_link}"
+    script_list_none_same_user_info_link_text: "어떻게 하는지 배우시겠습니까?"
     deleted_script_list: "삭제된 스크립트"
     sign_out: "로그아웃"
     edit: "계정 편집"
@@ -265,6 +282,7 @@ ko:
     flattr_username_description_html: "유저들에게 <a href=\"https://flattr.com\">Flattr</a> 계정으로 기부할 것을 요청할 것입니다."
   help:
     meta_keys:
+      title: "스크립트 메타 키는 Greasy Fork 에 의해 읽힙니다."
       intro_html: "Greasy Fork에서 읽는 <a href=\"http://wiki.greasespot.net/Metadata_Block\">유저 스크립트 메타블럭</a>들입니다. 이 중에 없는 블럭은 스크립트내에 포함되나 Greasy Fork의 UI에 아무런 영향도 주지 않습니다."
       name: "스크립트의 이름, 제목 링크 내에서 사용됩니다. 필수."
       name_localized_html: "지정된 로케일에서의 스크립트 이름. XX는 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-letter code</a>에서, YY는 필수적이지 않은 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 country code</a>입니다. 일치하는 로케일내에서 유저가 탐색할때 <code>@name</code>는 무시됩니다."
@@ -282,6 +300,14 @@ ko:
       contributionAmount_html: "추천하는 기부금 가격입니다, <code>@contributionURL</code>과 결합하여 사용합니다."
       compatible_html: "이 스크립트가 어느 브라우저랑 호환됨을 표시합니다. 호환성 정보는 스크립트 페이지에 표시됩니다. 호환성에 관한 주석은 <code>@copmatible firefox 팝업 차단을 반드시 해제해야 함</code>의 형식에 맞춰 포함 될 수 있습니다. 인식되는 브라우저들은 다음과 같습니다: %{browsers}."
       incompatible_html: "이 스크립트가 어느 브라우저랑 호환되지 않음을 표시합니다. 호환성 정보는 스크립트 페이지에 표시됩니다. 선택적으로, <code>@incompatible firefox 23 버전부터 작동 안됨</code>의 형식에 맞추어 호환성에 대한 주석을 포함할 수 있습니다. 인식되는 브라우저들은 다음과 같습니다: @{browsers}."
+    writing_user_scripts:
+      title: "유저 스크립트 작성 방법"
+      content_html: "<p>유저 스크립트 작성에는 자바 스크립트 지식이 필요합니다. GreaseSpot 위키에 있는 <a href=\"http://wiki.greasespot.net/Tutorials\">튜토리얼</a>은 기초적인 자바 스크립트 지식과 유저 스크립트 연관성을 통해 도움을 받으실 수 있습니다. %{code_rules_link} 와 %{meta_keys_link} 을 참고하시는 것도 좋습니다. 스크립트 개발에 도움을 받고 싶으시면 %{ask_in_forum_link}.</p><p> Greasy Fork 에 게시물을 작성하시려면 회원가입을 하셔야합니다. %{user_page_link} 에서 %{post_new_script_link} 을 통해 작성하실 수 있습니다.</p>\n\n\n You may be interested in %{code_rules_link} and . If you want help developing your script, feel free to %{ask_in_forum_link}.</p><p>To post on Greasy Fork, you will need to create an account. From your %{user_page_link}, follow the link to %{post_new_script_link}.</p>"
+      ask_in_forum_link_text: '포럼에 질문하기'
+      user_page_link_text: '유저 페이지'
+      post_new_script_link_text: '새로운 스크립트 게시'
+    code_rules:
+      title: "외부 스크립트에 관한 Gresay Fork 정책"
   common:
     error_preamble: "당신이 올린 거에 몇몇 문제들이 있습니다...."
     allowed_elements_link: "(허용된 코드 보기)"

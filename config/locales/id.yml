@@ -180,6 +180,7 @@ id:
     diff_title: "%{script} - Perbedaan versi"
     diff_old_version: "Lama:"
     diff_new_version: "Baru:"
+    diff_lines_of_context: "Baris konteks:"
     diff_ignore_whitespace: "Abaikan perubahan whitespace"
     diff_refresh: "Segarkan"
     diff_no_change: "Perbedaan tidak ditemukan."
@@ -287,6 +288,7 @@ id:
       name_localized_html: "Nama skrip dalam lokal yang spesifik dimana XX adalah <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">kode 2-huruf ISO 639-1</a> dan YY adalah opsional <a href=\"https://www.iso.org/obp/ui/#search\">kode negara ISO 3166</a>. Akan menimpa <code>@name</code> ketika pengguna menjelajah dengan lokal yang sama."
       description: "Deskripsi tentang kegunaan skrip. Ditampilkan sebagai teks di bawah nama skrip. Diwajibkan."
       description_localized_html: "Deskripsi skrip dalam lokal yang spesifik, dimana XX adalah <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">kode 2-huruf ISO 639-1</a> dan YY adalah opsional <a href=\"https://www.iso.org/obp/ui/#search\">kode negara ISO 3166</a>. Akan menimpa <code>@description</code> ketika pengguna menjelajah dengan lokal yang sama."
+      namespace_html: "Kombinasi dari <code>@namespace</code> dan <code>@name</code> digunakan oleh pengelola skrip untuk memastikan apakah skrip telah dipasang. Greasy Fork memerlukan ruas ini dan akan memperingatkan jika berubah ketika pembaruan."
       version_html: "Identifikasi untuk versi spesifik dari skrip dalam <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">format versi Mozilla</a>. Versi akan ditampilkan di laman info skrip. Greasy Fork membutuhkan ruas ini dan akan mengingatkan jika versi tidak berkurang atau bertambah ketika kode skrip berubah."
       include: "Jelaskan di laman apa skrip akan bekerja. Daftar ini akan diproses, ditampilkan di laman info skrip, dan akan digunakan untuk mengelompokkan skrip."
       require_html: "Sertakan JavaScript eksternal ke dalam skrip. Lihat %{external_script_link}."
@@ -296,8 +298,11 @@ id:
       supportURL: "URL laman dimana pengguna dapat mendapatkan dukungan untuk skrip (mis, pelacakan bug, forum, alamat surel). URL dukungan akan ditampilkan di laman umpan balik skrip."
       contributionURL_html: "URL laman dimana pengguna dapat memberikan donasi untuk penulis skrip. URL Kontribusi ditampilkan di laman umpan balik skrip. URL dalam format http, https, atau protokol Bitcoin. Untuk menautkan ke laman donasi PayPal, gunakan URL dalam format <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a>, ganti contoh surel dengan surel anda sendiri."
       contributionAmount_html: "Besar donasi yang dianjurkan, digunakan berkaitan dengan <code>@contributionURL</code>."
+      compatible_html: "Tandai skrip ini kompatibel dengan sebuah peramban. Informasi kompatibilitas akan ditampilkan di halaman skrip. Komentar kompatibilitas dapat disertakan dalam format <code>@compatible firefox Harus menonaktifkan pemblokir jendela munculan</code>. Peramban yang didukung adalah: %{browsers}."
+      incompatible_html: "Tandai skrip ini tidak kompatibel dengan sebuah peramban. Informasi kompatibilitas akan ditampilkan di halaman skrip. Komentar opsional kompatibilitas dapat disertakan dalam format <code>@incompatible firefox Rusak sejak Firefox 23</code>. Peramban yang terdampak adalah: %{browsers}."
     writing_user_scripts:
       title: "Bagaimana cara menulis skrip pengguna"
+      content_html: "<p>Menulis skrip membutuhkan pengetahuan tentang JavaScript. <a href=\"http://wiki.greasespot.net/Tutorials\">Tutorial di wiki GreaseSpot</a> akan memberi anda langkah awal JavaScript baik secara umum dan kaitannya dengan skrip pengguna. Memeriksa skrip pengguna lain dapat sangat membantu. Anda mungkin tertarik dengan %{code_rules_link} dan %{meta_keys_link}. Jika anda ingin bantuan membuat skrip, kunjungi %{ask_in_forum_link}.</p><p>Untuk mengirim ke Greasy Fork, anda perlu membuat akun. Dari %{user_page_link} anda, ikuti tautan ke %{post_new_script_link}.</p>"
       ask_in_forum_link_text: 'tanyakan di forum'
       user_page_link_text: 'laman pengguna'
       post_new_script_link_text: 'kirim skrip baru'
