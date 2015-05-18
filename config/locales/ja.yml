@@ -192,6 +192,13 @@ ja:
     learn_to_write_scripts_link_text: "スクリプトの書き方を見る"
     feedback_suggestion_html: "このスクリプトを使ってみて、%{feedback_link} をすることできます。"
     feedback_link_text: "質問、レビュー、問題の報告"
+    approve_redistribution_explanation: "Greasy Fork では、他のサイトへスクリプトを転載しても良いか示すことができます。スクリプトのライセンスによって、すでにこれを許可、あるいは不許可としているかもしれません。"
+    approve_redistribution_use_user_setting: "アカウントの既定を使用 (%{user_setting})"
+    approve_redistribution_use_user_setting_not_set: "未設定"
+    approve_redistribution_true: "スクリプトを他の場所に転載されても良い"
+    approve_redistribution_false: "スクリプトを他の場所に転載されたくない"
+    redistributable_title: "再配布可能なユーザースクリプト"
+    redistributable_page_description: "これらは、他の場所への投稿を作者が明示的に許可したスクリプトです。スクリプトの再配布について追加の条件が課されている場合があるので、詳細は各スクリプトのライセンスを確認してください。"
   script_sets:
     favorites_name: "お気に入り"
     delete: "Script Set を削除"
@@ -280,6 +287,9 @@ ja:
     show_ads_description: "広告の表示を許可して Greasy Fork を支援する"
     preferred_markup_description: "新しいスクリプトの投稿時、およびフィードバックなどの書き込み時に反映されます。"
     flattr_username_description_html: "<a href=\"https://flattr.com\">Flattr</a> のアカウント宛てに、スクリプトの利用者から寄付を募ります。"
+    approve_redistribution_explanation: "Greasy Fork では、他のサイトへスクリプトを転載しても良いか示すことができます。スクリプトのライセンスによって、すでにこれを許可、あるいは不許可としているかもしれません。この設定は、それぞれのスクリプトごとに上書きすることもできます。"
+    approve_redistribution_true: "スクリプトを他の場所に転載されても良い"
+    approve_redistribution_false: "スクリプトを他の場所に転載されたくない"
   help:
     meta_keys:
       title: "Greasy Fork が読み込むスクリプト・メタキー"
@@ -308,6 +318,12 @@ ja:
       post_new_script_link_text: 'スクリプトの投稿'
     code_rules:
       title: "投稿されたスクリプトに関する Greasy Fork のルール"
+    credits:
+      title: "クレジット"
+      authors_credit: "Greasy Fork は、スクリプトを開発し投稿している製作者なしには成り立ちません。"
+      developers_credit: "Greasy Fork 自体は、バグ報告や改善提案をしたすべての人の助けを借り、%{developers_link:こちらの人たち}によって開発されています。 "
+      translators_credit: "Greasy Fork は、%{translators_link:Transifex の Greasy Translation Force} によって翻訳されました:"
+      icons_credit: "レッドのアイコンは、%{vistastylebase} の %{iconsland} によるものです。ブラウザのアイコンは %{browserlogos} からのものです。"
   common:
     error_preamble: "以下に表示されているエラーを修正し、もう一度送信してください。"
     allowed_elements_link: "使用可能なタグ"
@@ -344,6 +360,7 @@ ja:
         screenshots: "スクリーンショット"
         screenshot_caption: "キャプション"
         replaced_by_script_id: "代替スクリプト"
+        approve_redistribution: "再配布"
   errors:
     messages:
       script_missing_name: "は必須です – @name メタキーで指定"

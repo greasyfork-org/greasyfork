@@ -192,6 +192,13 @@ zh-TW:
     learn_to_write_scripts_link_text: "學習如何建立一個"
     feedback_suggestion_html: "嘗試過這個腳本之後，你可以 %{feedback_link}。"
     feedback_link_text: "發表問題、評論、或檢舉"
+    approve_redistribution_explanation: "Greasy Fork 可以告訴其它網站，是否允許你的腳本被轉貼。即使這沒有包括在你所選擇的授權條款中。"
+    approve_redistribution_use_user_setting: "使用帳戶預設值（%{user_setting}）"
+    approve_redistribution_use_user_setting_not_set: "還未設定"
+    approve_redistribution_true: "我 允許 此腳本可以被其它網站轉貼"
+    approve_redistribution_false: "我 不要 其它網站轉貼我的腳本"
+    redistributable_title: "允許轉貼的腳本"
+    redistributable_page_description: "這些腳本的作者明確許可、同意你將腳本轉貼到其它網站。有些腳本或許會有額外關於轉貼的限制，詳細規定請參考各腳本的授權條款。"
   script_sets:
     favorites_name: "我的最愛"
     delete: "刪除腳本收藏集"
@@ -280,6 +287,9 @@ zh-TW:
     show_ads_description: "顯示廣告以支援 Greasy Fork 的網站經營"
     preferred_markup_description: "該設定將會套用到新的腳本以及新的發言。"
     flattr_username_description_html: "您的腳本的使用者將被詢問是否要向您的 <ahref=\"https://flattr.com\">Flattr</a> 帳號捐贈。"
+    approve_redistribution_explanation: "Greasy Fork 可以告訴其它網站，是否允許你的腳本被轉貼。即使這沒有包括在你所選擇的授權條款中。你可以在各別腳本設定中覆蓋此項目。"
+    approve_redistribution_true: "我 允許 此腳本可以被其它網站轉貼"
+    approve_redistribution_false: "我 不要 其它網站轉貼我的腳本"
   help:
     meta_keys:
       title: "Greasy Fork 讀取的 meta keys"
@@ -308,6 +318,12 @@ zh-TW:
       post_new_script_link_text: '新增腳本'
     code_rules:
       title: "Greasy Fork 的腳本規定"
+    credits:
+      title: "榮譽"
+      authors_credit: "貢獻腳本的作者，Greasy Fork 不能沒有他們。"
+      developers_credit: "Greasy Fork 網站是由 %{developers_link:這些開發者}，與那些回報錯誤、提供建議的使用者所建立。"
+      translators_credit: "Greasy Fork 的翻譯來自 %{translators_link:Greasy Translation Force @ Transifex}︰"
+      icons_credit: "討論區的圖示來自 %{vistastylebase} @ %{iconsland}。瀏覽器的圖示來自 %{browserlogos}。"
   common:
     error_preamble: "您所發表的帖子內容有點問題..."
     allowed_elements_link: "(檢視允許使用的 HTML/Markdown 代碼。)"
@@ -344,6 +360,7 @@ zh-TW:
         screenshots: "擷圖"
         screenshot_caption: "標題"
         replaced_by_script_id: "替代腳本"
+        approve_redistribution: "轉載"
   errors:
     messages:
       script_missing_name: "必填 - 請透過 <code>@name</code> 指定。"

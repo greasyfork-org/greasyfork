@@ -10,7 +10,7 @@ $Definition['RatingLabel'] = 'Bagaimana anda menilai skrip ini?';
 # Label for the radio buttons for updating a rating on a script
 $Definition['RatingUpdateLabel'] = 'Perbarui nilai anda:';
 # Label for the radio button for not rating a script
-$Definition['RatingNone'] = 'Tanpa penilaian - hanya pertanyaan, komentar, permintaan fitur, atau laporan bug';
+$Definition['RatingNone'] = 'Tanpa penilaian - hanya pertanyaan, komentar, permintaan fitur, atau laporan kutu';
 ## Label for the radio button for reporting a script
 $Definition['RatingReport'] = 'Laporkan skrip ke moderator untuk dihapus - malware, pencurian kode, dll.';
 /** Label for the radio button for rating a script "Bad" */
@@ -20,9 +20,9 @@ $Definition['RatingOK'] = 'OK - skrip bekerja, tapi memiliki masalah yang signif
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'Baik - skrip bekerja dengan baik';
 // Category name for Site Feedback
-$Definition['Categories.general.Name'] = 'Umpan Balik Situs';
+$Definition['Categories.general.Name'] = 'Umpanbalik Situs';
 // Category description for Site Feedback
-$Definition['Categories.general.Description'] = 'Laporan bug, permintaan fitur, dan hal lain mengenai Greasy Fork itu sendiri.';
+$Definition['Categories.general.Description'] = 'Laporan kutu, permintaan fitur, dan hal lain mengenai Greasy Fork itu sendiri.';
 // Category name for Development
 $Definition['Categories.script-development.Name'] = 'Pengembangan';
 // Category description for Development
@@ -30,11 +30,11 @@ $Definition['Categories.script-development.Description'] = 'Pembicaraan teknis m
 // Category name for Script Creation Requests
 $Definition['Categories.script-requests.Name'] = 'Permintaan Pembuatan Skrip';
 // Category description for Script Creation Requests
-$Definition['Categories.script-requests.Description'] = 'Minta seseorang menuliskan sebuah skrip untukmu.';
+$Definition['Categories.script-requests.Description'] = 'Minta seseorang menuliskan sebuah skrip untuk anda.';
 // Category name for Script Discussions
 $Definition['Categories.script-discussions.Name'] = 'Diskusi Skrip';
 // Category description for Script Discussions
-$Definition['Categories.script-discussions.Description'] = 'Diskusi pada skrip yang diposting ke Greasy Fork.';
+$Definition['Categories.script-discussions.Description'] = 'Diskusi pada skrip yang dikirim ke Greasy Fork.';
 // Link on Recent Discussions to hide script discussions
 $Definition['Turn on filter'] = 'Sembunyikan diskusi skrip';
 // Link on Recent Discussions to show script discussions

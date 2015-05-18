@@ -200,6 +200,11 @@ cs:
     learn_to_write_scripts_link_text: "naučit se napsat skript"
     feedback_suggestion_html: "Po vyzkoušení tohoto skriptu můžete %{feedback_link}."
     feedback_link_text: "zaslat dotaz, recenzi nebo ohlásit porušení pravidel"
+    approve_redistribution_use_user_setting: "Použít výchozí hodnotu (%{user_setting})"
+    approve_redistribution_use_user_setting_not_set: "nenastaveno"
+    approve_redistribution_true: "Nevadí mi, pokud můj skript bude vystaven v jiných knihovnách"
+    approve_redistribution_false: "Nesouhlasím s vystavením mého skriptu v jiných knihovnách"
+    redistributable_title: "Skripty s povoleným šířením"
   script_sets:
     favorites_name: "Oblíbené"
     delete: "Smazat sadu skriptů"
@@ -290,6 +295,8 @@ cs:
     show_ads_description: "Podpořte Greasy Fork povolením zobrazení reklam"
     preferred_markup_description: "Bude použito pro nové skripty a komentáře."
     flattr_username_description_html: "Uživatelé vačeho skriptu budou požádáni o příspěvek na <a href=\"https://flattr.com\">Flattr</a>."
+    approve_redistribution_true: "Nevadí mi, pokud mé skripty budou vystaveny v jiných knihovnách"
+    approve_redistribution_false: "Nesouhlasím s vystavením mých skriptů v jiných knihovnách"
   help:
     meta_keys:
       title: "Meta klíče zpracované Greasy Forkem"
@@ -304,6 +311,17 @@ cs:
       incompatible_html: "Označit skript jako nekompatibilní s browserem. Informace o kompatibilitě bude zobrazena na stránce skriptu. Komentáře ke kompatibilitě mohou být uvedeny ve formátu <code>@incompatible firefox Broken since Firefox 23</code>. Rozpoznané browsery: %{browsers}."
     writing_user_scripts:
       title: "Jak psát uživatelské skripty"
+      content_html: "<p>Tvorba uživatelských skriptů vyžaduje znalost JavaScriptu. <a href=\"http://wiki.greasespot.net/Tutorials\">Ukázky na GreaseSpot Wiki</a> by vám mohly pomoci s úvodem do JavaScriptu a tvorby uživatelských skriptů. Rovněž může být vhodné studium skriptů ostatních autorů. Doporučujeme přečíst si %{code_rules_link} a %{meta_keys_link}. Pokud potřebujete pomoc s vytvořením skriptu. %{ask_in_forum_link}.</p><p>Pro vložení skriptu do Greasy Fork potřebujete uživatelský účet. Na své %{user_page_link} naleznete odkaz pro %{post_new_script_link}.</p>"
+      ask_in_forum_link_text: 'položte dotaz na fóru'
+      user_page_link_text: 'uživatelské stránce'
+      post_new_script_link_text: 'vytvoření nového skriptu'
+    code_rules:
+      title: "Pravidla Greasy Fork pro skripty"
+    credits:
+      title: "Autoři"
+      authors_credit: "Greasy Fork by nemohl existovat bez autorů, kteří pracují na skriptech."
+      developers_credit: "Samotný Greasy Fork je budován %{developers_link:těmito lidmi} společně s pomocí ostatních, kdo hlásí chyby nebo zasílají náměty na vylepšení."
+      translators_credit: "Greasy Fork je překládán %{translators_link:předkladatelskou skupinou Greasy Translation Force na Transifexu}:"
   common:
     error_preamble: "S vloženým obsahem není vše v pořádku..."
     allowed_elements_link: "(Zobrazit povolené elementy.)"

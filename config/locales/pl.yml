@@ -6,6 +6,17 @@ pl:
       help: "Pomoc"
       sign_in: "Zaloguj się"
       search: "Szukaj"
+  helpers:
+    application:
+      time_ago:
+        minutes:
+          one: "%{count} minutę temu"
+          few: "%{count} minut temu"
+          other: "%{count} minuty temu"
+        hours:
+          one: "%{count} godzinę temu"
+          few: "%{count} godzin temu"
+          other: "%{count} godziny temu"
   scripts:
     created_date: "Utworzono"
     updated_date: "Zaktualizowano"
@@ -50,6 +61,7 @@ pl:
     history_all_changes_link: "Pokaż wszystkie wersje."
     history_all_changes_info: "To są wszystkie wersje tego skryptu."
     history_only_code_changes_link: "Pokaż tylko te wersje, gdzie kod został zmieniony."
+    diff_button: "Porównaj wybrane wersje"
     code_title: "%{script_name} - kod źródłowy"
     code_highlighting_disabled: "Kod ma ponad %{size}, dlatego wyróżnianie składni zostało wyłączone, aby oszczędzić twoją przeglądarkę."
     feedback_title: "%{script_name} - opinia"
@@ -110,6 +122,7 @@ pl:
     contribution_no_amount: "Podziękuj %{author} wykonując dotację."
     contribution_with_amount: "Podziękuj %{author} wykonując dotację. Proponowana dotacja wynosi %{amount}."
     contribution_bitcoin_no_amount_html: "Podziękuj %{author} poprzez Bitcony na %{address}"
+    contribution_bitcoin_with_amount_html: "Podziękuj %{author} wykonując dotację w Bitcoinach na %{address}. Sugerowana darowizna to %{amount}."
     locale_auto_select: "(wykryj automatycznie)"
     sets_label: "W kolekcjach skryptów:"
     sets_label_no_sets: "Kolekcje skryptów:"
@@ -147,8 +160,12 @@ pl:
     diff_title: "%{script} - Różnice"
     diff_old_version: "Stary:"
     diff_new_version: "Nowy:"
+    diff_ignore_whitespace: "Ignoruj zmiany w białych znakach"
     diff_refresh: "Odśwież"
     diff_no_change: "Brak zmian"
+    good_rating_explanation: "Liczba osób, które oceniły jako Dobry lub dodały do ulubionych."
+    post_a_script_link_text: "Opublikuj swój skrypt"
+    learn_to_write_scripts_link_text: "dowiedz się, jak napisać skrypt"
   script_sets:
     favorites_name: "Ulubione"
     delete: "Usuń kolekcję skryptów"
@@ -183,6 +200,8 @@ pl:
     script_list: "Skrypty"
     script_list_none: "Brak opublikowanych skryptów."
     script_list_none_for_filter: "Brak skryptów dla obecnych filtrów wyszukiwania."
+    script_list_none_same_user_html: "Nie napisałeś jeszcze żadnych skryptów. %{script_list_none_same_user_info_link}"
+    script_list_none_same_user_info_link_text: "Chcesz się dowiedzieć jak?"
     deleted_script_list: "Usunięte skrypty"
     sign_out: "Wyloguj się"
     edit: "Edytuj konto"
@@ -205,11 +224,27 @@ pl:
     set_up_webhook: "Skonfiguruj webhook GitHuba"
     author_email_notification_type:
       none: "Nie otrzymuj e-maili o nowych dyskusjach w Twoich skryptach"
+      discussion_only: "Otrzymuj maile o nowych dyskusjach na temat twoich skryptów"
     listing_number_of_scripts: "Liczba skryptów"
     listing_new_scripts: "Nowe skrypty"
     listing_updated_scripts: "Zaktualizowanych skryptów"
     listing_registration_date: "Data rejestracji"
+    locale_prompt: "(Wybierz język)"
     show_ads_description: "Wspomóż Greasy Fork poprzez wyświetlanie reklam"
+    approve_redistribution_true: "Zgadzam się na publikację moich skryptów w innych miejscach"
+    approve_redistribution_false: "Nie chcę, aby moje skrypty były publikowane w innym miejscu"
+  help:
+    meta_keys:
+      description: "Opis funkcji skryptu.  Wyświetlany jako tekst pod nazwą skryptu. Wymagane."
+    writing_user_scripts:
+      title: "Jak pisać skrypty"
+      ask_in_forum_link_text: 'zapytaj na forum'
+      user_page_link_text: 'strona użytkownika'
+      post_new_script_link_text: 'Opublikuj nowy skrypt'
+    code_rules:
+      title: "Zasady publikacji skryptów na Gresy Fork"
+    credits:
+      translators_credit: "Greasy Fork został przetłumaczony przez %{translators_link:the Greasy Translation Force on Transifex}:"
   common:
     error_preamble: "Mieliśmy małe problemy z tym, co chciałeś napisać..."
     allowed_elements_link: "(zobacz dozwolony kod)"
@@ -217,6 +252,8 @@ pl:
     not_found_text: "404 - Nie znaleziono strony."
     not_found_title: "404 - Nie znaleziono strony"
     not_found_link_home: "Wróć do strony głównej."
+    suggest_locale: "Greasy Fork dostępny jest w %{locale_name}."
+    incomplete_locale: "Tłumaczenie Greasy Fork na język %{locale_name} jest ukończone tylko w %{percent}. Możesz to zmienić."
     expander_show_more: "Rozwiń"
     expander_show_less: "Zwiń"
     advertisement_note: Ogłoszenie
