@@ -1,10 +1,10 @@
-<%- title 'Credits - Greasy Fork' %>
+<%- title t('help.credits.title') %>
 
-<p>Greasy Fork would not be possible without the authors who contribute scripts.</p>
+<p><%=t('help.credits.authors_credit')%></p>
 
-<p>Greasy Fork itself is built by <a href="https://github.com/JasonBarnabe/greasyfork/graphs/contributors">these people</a> with the help of all those who report bugs and suggest improvements.</p>
+<p><%=it('help.credits.developers_credit', developers_link: 'https://github.com/JasonBarnabe/greasyfork/graphs/contributors')%></p>
 
-<p>Greasy Fork was translated by <a href="https://www.transifex.com/organization/greasy-fork/team/21359/">the Greasy Translation Force on Transifex</a>:</p>
+<p><%=it('help.credits.translators_credit', translators_link: 'https://www.transifex.com/organization/greasy-fork/team/21359/')%></p>
 
 <ul>
 	<% Locale.where(:ui_available => true).joins(:locale_contributors).order(:code).uniq.each do |locale| %>
@@ -12,4 +12,4 @@
 	<% end %>
 </ul>
 
-<p>Discussion icons are from <a href="https://www.iconfinder.com/search/?q=iconset:softwaredemo">"Vista Style Base Software"</a> by <a href="http://www.icons-land.com/">Icons Land</a>. Browser icons are from <a href="https://github.com/alrra/browser-logos/">alrra/browser-logos</a>.</p>
+<p><%=it('help.credits.icons_credit', vistastylebase: link_to('Vista Style Base Software', 'https://www.iconfinder.com/search/?q=iconset:softwaredemo'), iconsland: link_to('Icons Land', 'http://www.icons-land.com/'), browserlogos: link_to('alrra/browser-logos', 'https://github.com/alrra/browser-logos/'))%></p>

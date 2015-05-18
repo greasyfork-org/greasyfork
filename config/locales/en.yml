@@ -613,6 +613,17 @@ en:
     code_rules:
       # title for the rules page
       title: "Greasy Fork's rules for posted scripts"
+    credits:
+      # title for the credits page
+      title: "Credits"
+      # give credit to authors
+      authors_credit: "Greasy Fork would not be possible without the authors who contribute scripts."
+      # give credit to developers. link goes to github.
+      developers_credit: "Greasy Fork itself is built by %{developers_link:these people} with the help of all those who report bugs and suggest improvements."
+      # give credit to translators. link to goes to transifex. after this text, there's a list of languages and the contributors to each.
+      translators_credit: "Greasy Fork was translated by %{translators_link:the Greasy Translation Force on Transifex}:"
+      # give credit to icon makers. all links are proper names so are not translated.
+      icons_credit: "Discussion icons are from %{vistastylebase} by %{iconsland}. Browser icons are from %{browserlogos}."
   common:
     # text to show before listing errors in a submission
     error_preamble: "There were some problems with what you posted..."
