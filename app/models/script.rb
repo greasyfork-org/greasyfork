@@ -143,8 +143,8 @@ class Script < ActiveRecord::Base
 		end
 
 		self.script_applies_tos.each {|sat| sat.mark_for_destruction }
-		script_version.calculate_applies_to_names.each do |text, domain|
-			self.script_applies_tos.build({:text => text, :domain => domain})
+		script_version.calculate_applies_to_names.each do |at|
+			self.script_applies_tos.build({text: at[:text], domain: at[:domain], tld_extra: at[:tld_extra]})
 		end
 
 		self.assessments.each {|a| a.mark_for_destruction }

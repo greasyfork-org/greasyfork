@@ -643,6 +643,7 @@ private
 					AND script_type_id = 1
 					AND script_delete_type_id IS NULL
 					AND !uses_disallowed_external
+					AND !tld_extra
 				GROUP BY text
 				ORDER BY text
 			EOF

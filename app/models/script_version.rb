@@ -367,7 +367,10 @@ class ScriptVersion < ActiveRecord::Base
 		return code_blocks[0] + meta_lines.join("\n") + code_blocks[1]
 	end
 
-	# Returns an array of [pattern, display_name]. display_name can be nil.
+	# Returns an object with:
+	# - :text
+	# - :domain - boolean - is text a domain?
+	# - :tld_extra - boolean - is this extra entries added because of .tld?
 	def calculate_applies_to_names
 		meta = ScriptVersion.parse_meta(code)
 		patterns = []
@@ -409,28 +412,28 @@ class ScriptVersion < ActiveRecord::Base
 			begin
 				uri = URI(pre_wildcard)
 				if uri.host.nil?
-					applies_to_names << [original_pattern, false]
+					applies_to_names << {text: original_pattern, domain: false, tld_extra: false}
 				elsif !uri.host.include?('.')
 					# must have at least one . to be something we'll use
-					applies_to_names << [original_pattern, false]
+					applies_to_names << {text: original_pattern, domain: false, tld_extra: false}
 				else
 					if uri.host.ends_with?('.tld')
-						@@tld_expansion.each do |tld|
-							applies_to_names << [ScriptVersion.get_tld_plus_1(uri.host.sub(/tld$/i, tld)), true]
+						@@tld_expansion.each_with_index do |tld, i|
+							applies_to_names << {text: ScriptVersion.get_tld_plus_1(uri.host.sub(/tld$/i, tld)), domain: true, tld_extra: i != 0}
 						end
 					# "example.com."
 					elsif uri.host.ends_with?('.')
-						applies_to_names << [ScriptVersion.get_tld_plus_1(uri.host[0, uri.host.length - 1]), true]
+						applies_to_names << {text: ScriptVersion.get_tld_plus_1(uri.host[0, uri.host.length - 1]), domain: true, tld_extra: false}
 					else
-						applies_to_names << [ScriptVersion.get_tld_plus_1(uri.host), true]
+						applies_to_names << {text: ScriptVersion.get_tld_plus_1(uri.host), domain: true, tld_extra: false}
 					end
 				end
 			rescue ArgumentError
 				logger.warn "Unrecognized pattern '" + p + "'"
-				applies_to_names << [original_pattern, false]
+				applies_to_names << {text: original_pattern, domain: false, tld_extra: false}
 			rescue URI::InvalidURIError
 				logger.warn "Unrecognized pattern '" + p + "'"
-				applies_to_names << [original_pattern, false]
+				applies_to_names << {text: original_pattern, domain: false, tld_extra: false}
 			end
 		end
 		return applies_to_names.uniq
