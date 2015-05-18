@@ -41,7 +41,8 @@
 		</div>
 	<% end %>
 
-	<% if user_signed_in? and !current_user.script_sets.empty? %>
+	<% # This doesn't work for search
+	if action_name != 'search' && user_signed_in? && !current_user.script_sets.empty? %>
 		<div id="script-list-set" class="list-option-group">Script set:
 			<ul>
 				<%=script_list_link('All', params[:sort], params[:site], nil, @set)%>

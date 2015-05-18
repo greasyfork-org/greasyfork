@@ -75,6 +75,7 @@ Greasyfork::Application.routes.draw do
 				get 'search(.:format)', :action => 'search', :as => 'search'
 				get 'minified(.:format)', :action => 'minified', :as => 'minified'
 				get 'code-search(.:format)', :action => 'code_search', :as => 'code_search'
+				get 'redistributable(.:format)', :action => 'redistributable', :as => 'redistributable'
 			end
 			resources :script_versions, :only => [:create, :new, :show, :index], :path => 'versions' do
 				get 'delete(.:format)', :to => 'script_versions#delete', :as => 'delete'

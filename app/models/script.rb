@@ -37,6 +37,7 @@ class Script < ActiveRecord::Base
 	scope :under_assessment, -> {not_deleted.where(:uses_disallowed_external => true).includes(:assessments).includes(:user).uniq}
 	scope :reported, -> {not_deleted.joins(:discussions).includes(:user).uniq.where('GDN_Discussion.Rating = 1').where('Closed = 0')}
 	scope :for_all_sites, -> {includes(:script_applies_tos).references(:script_applies_tos).where('script_applies_tos.id IS NULL')}
+	scope :redistributable, -> {listable.includes(:user).references([:scripts, :users]).where('scripts.approve_redistribution OR (scripts.approve_redistribution IS NULL AND users.approve_redistribution)')}
 
 	# Must have a default name and description
 	validates_presence_of :name, :message => :script_missing_name, :unless => Proc.new {|s| s.library?}
@@ -243,6 +244,10 @@ class Script < ActiveRecord::Base
 		script_type_id == 2
 	end
 
+	def redistributable?
+		approve_redistribution.nil? ? user.approve_redistribution == true : approve_redistribution
+	end
+
 	def name(lookup_locale = nil)
 		return localized_value_for('name', lookup_locale)
 	end
@@ -326,13 +331,14 @@ class Script < ActiveRecord::Base
 
 	def serializable_hash(options = nil)
 		super({ only: [:id, :daily_installs, :total_installs, :fan_score, :good_ratings, :ok_ratings, :bad_ratings, :created_at, :code_updated_at, :namespace, :support_url, :contribution_url, :contribution_amount] }.merge(options || {})).merge({
-			:name => default_name,
-			:description => default_localized_value_for('description'),
-			:url => url_helpers.script_url(nil, self),
-			:code_url => code_url,
-			:license => license_text,
-			:version => version,
-			:locale => locale.nil? ? nil : locale.code
+			name: default_name,
+			description: default_localized_value_for('description'),
+			url: url_helpers.script_url(nil, self),
+			code_url: code_url,
+			license: license_text,
+			version: version,
+			locale: locale.nil? ? nil : locale.code,
+			redistributable: redistributable?
 		})
 	end
 

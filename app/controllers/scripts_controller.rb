@@ -69,7 +69,7 @@ class ScriptsController < ApplicationController
 	end
 
 	def search
-		if params[:q].nil? or params[:q].empty?
+		if params[:q].nil? || params[:q].empty?
 			redirect_to scripts_path
 			return
 		end
@@ -88,25 +88,10 @@ class ScriptsController < ApplicationController
 			return
 		end
 
-		respond_to do |format|
-			format.html {
-				@bots = 'noindex,follow'
-				@title = t('scripts.listing_title_for_search', :search_string => params[:q])
-				@feeds = {t('scripts.listing_created_feed') => {:sort => 'created'}, t('scripts.listing_updated_feed') => {:sort => 'updated'}}
-				@canonical_params = [:q, :page, :per_page, :sort]
-				@link_alternates = get_listing_link_alternatives
-				render :action => 'index'
-			}
-			format.atom {
-				render :action => 'index'
-			}
-			format.json {
-				render :json => params[:meta] == '1' ? {count: @scripts.count} : @scripts.as_json(:include => :user)
-			}
-			format.jsonp {
-				render :json => params[:meta] == '1' ? {count: @scripts.count} : @scripts.as_json(:include => :user), :callback => clean_json_callback_param
-			}
-		end
+		@bots = 'noindex,follow'
+		@title = t('scripts.listing_title_for_search', :search_string => params[:q])
+		# filters and such have been handled above
+		render_script_list(@scripts, {skip_filters: true})
 	end
 
 	def libraries
@@ -133,6 +118,13 @@ class ScriptsController < ApplicationController
 		@paginate = false
 		@title = "Potentially minified user scripts on Greasy Fork"
 		render :action => 'index'
+	end
+
+	def redistributable
+		@title = t('scripts.redistributable_title')
+		@page_description = t('scripts.redistributable_page_description')
+		@bots = 'noindex,follow'
+		render_script_list(Script.redistributable)
 	end
 
 	def code_search
@@ -714,6 +706,32 @@ private
 			{:url => url_for(params.merge({:only_path => true, :format => :json, :meta => '1'})), :type => 'application/json'},
 			{:url => url_for(params.merge({:only_path => true, :format => :jsonp, :meta => '1', :callback => 'callback'})), :type => 'application/javascript'}
 		]
+	end
+
+	def render_script_list(scripts, options = {})
+		@scripts = scripts
+		if !(options && options[:skip_filters])
+			@scripts = @scripts.paginate(page: params[:page], per_page: get_per_page)
+			@scripts = self.class.apply_filters(@scripts, params)
+		end
+
+		respond_to do |format|
+			format.html {
+				@feeds = {t('scripts.listing_created_feed') => {sort: 'created'}, t('scripts.listing_updated_feed') => {sort: 'updated'}}
+				@canonical_params = [:q, :page, :per_page, :sort]
+				@link_alternates = get_listing_link_alternatives
+				render :index
+			}
+			format.atom {
+				render :index
+			}
+			format.json {
+				render json: params[:meta] == '1' ? {count: @scripts.count} : @scripts.as_json(include: :user)
+			}
+			format.jsonp {
+				render json: params[:meta] == '1' ? {count: @scripts.count} : @scripts.as_json(include: :user), callback: clean_json_callback_param
+			}
+		end
 	end
 
 end
