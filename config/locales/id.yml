@@ -192,6 +192,13 @@ id:
     learn_to_write_scripts_link_text: "pelajari bagaimana cara membuatnya"
     feedback_suggestion_html: "Setelah mencoba skrip ini, anda bisa %{feedback_link}."
     feedback_link_text: "berikan pertanyaan, ulasan, atau lapor perihal skrip tersebut"
+    approve_redistribution_explanation: "Greasy Fork dapat memberi tahu situs lain jika anda mengizinkan mereka mengirim ulang skrip anda. Hal ini mungkin atau mungkin tidak telah diatur dalam lisensi yang anda pilih untuk skrip anda. "
+    approve_redistribution_use_user_setting: "Gunakan bawaan akun saya (%{user_setting})"
+    approve_redistribution_use_user_setting_not_set: "tidak ditetapkan"
+    approve_redistribution_true: "Saya OK skrip saya dikirim ulang ke situs lain"
+    approve_redistribution_false: "Saya tidak ingin skrip saya dikirim ulang ke situs lain"
+    redistributable_title: "Skrip yang dapat disebarluaskan"
+    redistributable_page_description: "Penulis skrip ini telah secara jelas menyatakan bahwa mereka mengizinkan skrip mereka dikirim ulang ke situs lain. Skrip ini mungkin masih memiliki ketentuan lain perihal penyebarluasan, periksa lisensi masing-masing skrip untuk informasi lebih detil."
   script_sets:
     favorites_name: "Favorit"
     delete: "Hapus set skrip"
@@ -280,6 +287,9 @@ id:
     show_ads_description: "Dukung Greasy Fork dengan mengizinkannya menampilkan iklan"
     preferred_markup_description: "Akan digunakan untuk skrip dan tulisan baru"
     flattr_username_description_html: "Pengguna skrip anda akan diminta untuk menyumbang ke akun anda di <a href=\"https://flattr.com\">Flattr</a>."
+    approve_redistribution_explanation: "Greasy Fork dapat memberi tahu situs lain jika anda mengizinkan mereka mengirim ulang skrip anda. Hal ini mungkin atau mungkin tidak telah diatur dalam lisensi yang anda pilih untuk skrip anda. Anda dapat menimpa preferensi ini pada masing-masing skrip."
+    approve_redistribution_true: "Saya OK skrip saya dikirim ulang ke situs lain"
+    approve_redistribution_false: "Saya tidak ingin skrip saya dikirim ulang ke situs lain"
   help:
     meta_keys:
       title: "Kunci meta skrip dibaca oleh Greasy Fork"
@@ -308,6 +318,12 @@ id:
       post_new_script_link_text: 'kirim skrip baru'
     code_rules:
       title: "Aturan Greasy Fork untuk skrip yang dikirim"
+    credits:
+      title: "Kredit"
+      authors_credit: "Greasy Fork tidak mungkin terwujud tanpa adanya kontribusi dari para penulis skrip."
+      developers_credit: "Greasy Fork sendiri dibangun dan dikembangkan oleh %{developers_link:orang ini} dengan bantuan semua orang yang mengirimkan laporan kutu dan saran-saran perbaikan."
+      translators_credit: "Greasy Fork diterjemahkan oleh %{translators_link:Pasukan Transliterasi Greasy di Transifex}:"
+      icons_credit: "Ikon diskusi dari %{vistastylebase} oleh %{iconsland}. Ikon peramban dari %{browserlogos}."
   common:
     error_preamble: "Ada beberapa masalah dengan apa yang anda kirimkan..."
     allowed_elements_link: "(Lihat kode yang diizinkan.)"
@@ -344,6 +360,7 @@ id:
         screenshots: "Tangkapan layar"
         screenshot_caption: "Keterangan"
         replaced_by_script_id: "Skrip pengganti"
+        approve_redistribution: "Penyebarluasan"
   errors:
     messages:
       script_missing_name: "dibutuhkan - tetapkan satu dengan @name"
