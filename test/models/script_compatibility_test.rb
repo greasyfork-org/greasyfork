@@ -45,7 +45,7 @@ var foo = 2;
 		EOF
 		sv.calculate_all
 		script.apply_from_script_version(sv)
-		assert_equal 2, script.compatibilities.length
+		assert_equal 2, script.compatibilities.length, script.compatibilities.inspect
 		fx = script.compatibilities[0]
 		ch = script.compatibilities[1]
 		assert_equal true, fx.compatible

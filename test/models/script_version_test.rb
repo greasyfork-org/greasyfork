@@ -652,39 +652,53 @@ END
 		sv.calculate_all(script.description)
 		script.apply_from_script_version(sv)
 		assert sv.valid?, sv.errors.full_messages
-		script.save
-		sv.save
+		script.save!
+		sv.save!
 		# code and rewritten code should be the same object
 		assert_not_nil sv.script_code_id
 		assert_not_nil sv.rewritten_script_code_id
 		assert_equal sv.code, sv.rewritten_code
 		assert_equal sv.script_code_id, sv.rewritten_script_code_id
-		# change the code, rewritten should stay the same
-		sv.code += "\nvar foo = 'bar';"
-		assert_not_equal sv.code, sv.rewritten_code
-		# ...until we recalculate rewritten, then it should be the same as code again
-		sv.calculate_all(script.description)
-		script.save
-		sv.save
-		assert_equal sv.code, sv.rewritten_code
-		assert_equal sv.script_code_id, sv.rewritten_script_code_id
+		# new version, code changed, code and rewritten should have the same ids
+		sv_new = ScriptVersion.new
+		sv_new.script = script
+		js = <<END
+// ==UserScript==
+// @name Test
+// @description		A Test!
+// @namespace		http://example.com/1
+// @version		2
+// ==/UserScript==
+var foo = 'bar';
+END
+		sv_new.code = js
+		assert_not_equal sv_new.code, sv_new.rewritten_code
+		sv_new.calculate_all(script.description)
+		assert_equal sv_new.code, sv_new.rewritten_code
+		script.save!
+		sv_new.save!
+		assert_equal sv_new.code, sv_new.rewritten_code
+		assert_equal sv_new.script_code_id, sv_new.rewritten_script_code_id
+		assert_not_equal sv_new.script_code_id, sv.rewritten_script_code_id
 		# now test a case where code and rewritten should stay different
 		js = <<END
 // ==UserScript==
 // @name Test
 // @description		A Test!
 // @namespace		http://example.com/1
-// @version		1
+// @version		3
 // @downloadURL http://example.com
 // ==/UserScript==
 END
-		sv.code = js
-		assert_not_equal sv.code, sv.rewritten_code
-		sv.calculate_all(script.description)
-		script.save
-		sv.save
-		assert_not_equal sv.code, sv.rewritten_code
-		assert_not_equal sv.script_code_id, sv.rewritten_script_code_id
+		sv_new_2 = ScriptVersion.new
+		sv_new_2.script = script
+		sv_new_2.code = js
+		assert_not_equal sv_new_2.code, sv_new_2.rewritten_code
+		sv_new_2.calculate_all(script.description)
+		script.save!
+		sv_new_2.save!
+		assert_not_equal sv_new_2.code, sv_new_2.rewritten_code
+		assert_not_equal sv_new_2.script_code_id, sv_new_2.rewritten_script_code_id
 	end
 
 	test 'reuse script code when not changed' do

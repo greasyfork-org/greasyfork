@@ -118,21 +118,23 @@ class Script < ActiveRecord::Base
 	end
 
 	def apply_from_script_version(script_version)
-		# copy this from the script_version, but retain syncing.
-		# delete the additional infos that don't sync - we will completely rebuild those
-		original_script_las = localized_attributes_for('additional_info')
-		original_script_las.select{|la| la.sync_source_id.nil?}.each{|la| la.mark_for_destruction}
-		# create new additional infos, and set their syncing info based on the script's previous syncing info
+		# Copy additional_info from script versions. Retain syncing info.
+		original_script_las = localized_attributes_for('additional_info').to_a
+		# Try to retain the records - search by locale
 		script_version.localized_attributes_for('additional_info').each{|la|
-			script_la = build_localized_attribute(la)
-			matching_osla = original_script_las.find{|osla| osla.locale_id == script_la.locale_id}
-			if !matching_osla.nil?
-				script_la.sync_source_id = matching_osla.sync_source_id
-				script_la.sync_identifier = matching_osla.sync_identifier
-				# the syncing is retained, ok to delete the old object
-				matching_osla.mark_for_destruction
+			matching_osla = original_script_las.find{|osla| osla.locale_id == la.locale_id}
+			if matching_osla.nil?
+				# New
+				matching_osla = build_localized_attribute(la)
+			else
+				matching_osla.value_markup = la.value_markup
+				matching_osla.attribute_value = la.attribute_value
+				# We've found this one, don't search for it any more.
+				original_script_las.delete(matching_osla)
 			end
 		}
+		# Delete any that are gone
+		original_script_las.each(&:mark_for_destruction)
 
 		meta = ScriptVersion.parse_meta(script_version.rewritten_code)
 
@@ -142,17 +144,9 @@ class Script < ActiveRecord::Base
 			localized_attributes_for('description').select{|la| la.attribute_value.length > MAX_LENGTHS[:description]}.each{|la| la.attribute_value = la.attribute_value[0,MAX_LENGTHS[:description]]}
 		end
 
-		self.script_applies_tos.each {|sat| sat.mark_for_destruction }
-		script_version.calculate_applies_to_names.each do |at|
-			self.script_applies_tos.build({text: at[:text], domain: at[:domain], tld_extra: at[:tld_extra]})
-		end
-
-		self.assessments.each {|a| a.mark_for_destruction }
-		self.uses_disallowed_external = false
-		script_version.disallowed_requires_used.each do |script_url|
-			self.uses_disallowed_external = true
-			self.assessments.build({:assessment_reason => AssessmentReason.first, :details => script_url})
-		end
+		update_children(:script_applies_tos, script_version.calculate_applies_to_names)
+		update_children(:assessments, script_version.disallowed_requires_used.map{|script_url| {:assessment_reason => AssessmentReason.first, :details => script_url}})
+		self.uses_disallowed_external = assessments.any?{|a| !a.marked_for_destruction?}
 
 		if new_record? or self.code_updated_at.nil?
 			self.code_updated_at = Time.now
@@ -196,7 +190,7 @@ class Script < ActiveRecord::Base
 			self.support_url = nil
 		end
 
-		self.compatibilities.each{|c| c.mark_for_destruction}
+		new_compatibility_data = []
 		['compatible', 'incompatible'].each do |key|
 			next if !meta.has_key?(key)
 			compatible = key == 'compatible'
@@ -207,9 +201,10 @@ class Script < ActiveRecord::Base
 				next if browser.nil?
 				comments_split = line.split(' ', 2)
 				comments = comments_split.length == 2 ? comments_split[1] : nil
-				compatibilities.build(compatible: compatible, browser: browser, comments: comments)
+				new_compatibility_data << {compatible: compatible, browser: browser, comments: comments}
 			end
 		end
+		update_children(:compatibilities, new_compatibility_data)
 	end
 
 	def get_newest_saved_script_version
@@ -365,11 +360,19 @@ private
 	def update_localized_attribute(meta_keys, attr_name)
 		default_value = meta_keys.has_key?(attr_name) ? meta_keys[attr_name].first : nil
 		# for libraries, if there's no default, just leave as is
-		return if library? and default_value.nil?
+		return if library? && default_value.nil?
 
-		localized_attributes_for(attr_name).each {|la| la.mark_for_destruction}
+		existing_localized_attributes = localized_attributes_for(attr_name)
 
-		localized_attributes.build({:attribute_key => attr_name, :attribute_value => default_value, :attribute_default => true, :locale => locale, :value_markup => 'text'}) if !default_value.nil?
+		if !default_value.nil?
+			default_la = existing_localized_attributes.find{|la| la.locale == locale && la.attribute_key == attr_name && la.attribute_default}
+			if default_la.nil?
+				default_la = localized_attributes.build({attribute_key: attr_name, attribute_default: true, locale: locale})
+			else
+				existing_localized_attributes.delete(default_la)
+			end
+			default_la.assign_attributes({attribute_value: default_value, value_markup: 'text'})
+		end
 
 		meta_keys.select{|n, v| n.starts_with?(attr_name + ':')}.each{ |n, v|
 			locale_code = n.split(':', 2).last
@@ -378,9 +381,34 @@ private
 				Rails.logger.error "Unknown locale code - #{locale_code}"
 				next
 			end
-			localized_attributes.build({:attribute_key => attr_name, :attribute_value => v.first, :attribute_default => false, :locale => meta_locale, :value_markup => 'text'})
+			matching_la = existing_localized_attributes.find{|la| la.locale == meta_locale && la.attribute_key == attr_name}
+			if matching_la.nil?
+				matching_la = localized_attributes.build({attribute_key: attr_name, locale: meta_locale})
+			else
+				existing_localized_attributes.delete(matching_la)
+			end
+			matching_la.assign_attributes({attribute_value: v.first, attribute_default: false, value_markup: 'text'})
 		}
 
+		existing_localized_attributes.each(&:mark_for_destruction)
 	end
 
+	def update_children(child_name, new_data)
+		existing_children = send(child_name).to_a
+		new_data.each {|new_hash|
+			# See if a record like that already exists.
+			matching_existing = existing_children.find{|child|
+				new_hash.keys.all?{|k| new_hash[k] == child.send(k)}
+			}
+			# Leave it alone, remove it from the search array, and move on
+			if !matching_existing.nil?
+				existing_children.delete(matching_existing)
+				next
+			end
+			# Make a new one
+			send(child_name).build(new_hash)
+		}
+		# Anything left in the search array, mark for destruction
+		existing_children.each(&:mark_for_destruction)
+	end
 end

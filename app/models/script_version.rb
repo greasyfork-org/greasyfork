@@ -5,7 +5,7 @@ class ScriptVersion < ActiveRecord::Base
 	include LocalizingModel
 
 	# this has to be before belongs_to for codes so that it runs before autosave
-	before_save :reuse_script_codes
+	before_create :reuse_script_codes
 
 	belongs_to :script
 	belongs_to :script_code, :autosave => true
@@ -194,7 +194,7 @@ class ScriptVersion < ActiveRecord::Base
 		# check if one of the previous versions had the same code, reuse if so
 		if !self.script.nil?
 			self.script.script_versions.each do |old_sv|
-				# only use older verions for this
+				# only use older versions for this
 				break if !self.id.nil? and self.id < old_sv.id
 				next if old_sv == self
 				if !code_found
