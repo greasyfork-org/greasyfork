@@ -220,8 +220,8 @@ es:
     explain_user_scripts_html: "Los scripts de usuario son pequeñas porciones de código que añaden funcionalidad, eliminan molestias y en general mejoran las páginas que visitas. Los scripts de usuario alojados en Greasy Fork son gratuitos y se pueden instalar con %{how_to_install_link}. Greasy Fork aloja miles de scripts de usuario escritos por cientos de autores. %{browse_link} para ver lo que tenemos."
     explain_user_scripts_how_to_install_link: "extensiones gratuitas, como Greasemonkey"
     explain_user_scripts_browse_link: "Empieza a explorar"
-    greasy_fork_for_authors_heading: "Soy autor de scripts, ¿por qué debería usar Greasy Fork?"
-    greasy_fork_for_authors_html: "Greasy Fork pretende convertirse en el sitio de referencia de scripts de usuario tras la caída de userscripts.org, proporcionando la mayor audiencia para tus scripts. Damos prioridad a los contenidos de calidad, esforzándonos en bloquear el spam, las estafas y engaños varios. Usamos técnicas avanzadas para facilitar la gestión de tus scripts, como por ejemplo, propagar los cambios desde tu repositorio en GitHub (¡o donde sea!)"
+    greasy_fork_for_authors_heading: "Hago scripts, ¿por qué debería usar Greasy Fork?"
+    greasy_fork_for_authors_html: "Greasy Fork pretende convertirse en el sitio de referencia de scripts de usuario tras la caída de userscripts.org, proporcionándote la mayor audiencia posible. Damos prioridad a los contenidos de calidad, esforzándonos en bloquear el spam, las estafas y engaños varios. Usamos técnicas avanzadas para facilitar la gestión de tus scripts, como por ejemplo, propagar los cambios desde tu repositorio en GitHub (¡o donde sea!)"
     scripts_sample: "He aquí una pequeña muestra de nuestros scripts:"
     scripts_sample_more: "Más…"
   users:
@@ -298,10 +298,10 @@ es:
   help:
     meta_keys:
       title: "Claves de metadatos de scripts leídas por Greasy Fork"
-      intro_html: "Esta es una lista con las<a href=\"http://wiki.greasespot.net/Metadata_Block\">claves de metadatos utilizables en los scripts de usuario</a> que Greasy Fork admite. Claves que no aparezcan en la lista pueden incluirse en los scripts y de hecho aparecerán en la versión instalable, pero no tendrán ningún efecto en la interfaz de Greasy Fork."
-      name: "El nombre del script, que se utiliza en encabezados y enlaces. Necesario."
+      intro_html: "Esta es una lista con las <a href=\"http://wiki.greasespot.net/Metadata_Block\">claves de metadatos utilizables en los scripts de usuario</a> que Greasy Fork admite. Puedes incluir en los scripts claves sin listar, y de hecho aparecerán en la versión instalable que reciban tus usuarios, pero no tendrán ningún efecto en la interfaz de Greasy Fork."
+      name: "El nombre del script, que se utiliza en encabezados y enlaces. Obligatorio."
       name_localized_html: "El nombre del script en otro idioma, donde XX es un <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">código de dos letras ISO 639-1</a> e YY es un <a href=\"https://www.iso.org/obp/ui/#search\">código de pais ISO 3166</a> totalmente opcional. Esta clave tiene precedencia sobre <code>@name</code> cuando el usuario está viendo la página en ese idioma."
-      description: "Una descripción de lo que hace el script. Se muestra como texto bajo el nombre del mismo. Necesario."
+      description: "Una descripción de lo que hace el script. Se muestra como texto bajo el nombre del mismo. Obligatorio."
       description_localized_html: "La descripción del script en otro idioma, donde XX es un <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">código de dos letras ISO 639-1</a> e YY es un <a href=\"https://www.iso.org/obp/ui/#search\">código de pais ISO 3166</a> totalmente opcional. Esta clave tiene precedencia sobre <code>@description</code> cuando el usuario está viendo la página en ese idioma."
       namespace_html: "Los gestores de scripts utilizan la combinación entre <code>@namespace</code> y <code>@name</code> para ver si el script ya está instalado. Este campo es obligatorio para Greasy Fork y te avisaremos si cambia durante alguna actualización."
       version_html: "Identificador para una versión específica de un script en <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">el formato de versionado de Mozilla</a>. La versión se muestra en una página de información del script. Greasy Fork necesita este campo y te avisará si lo cambias a una versión menor o si directamente no lo actualizas cuando cambias el código del script."
@@ -310,14 +310,14 @@ es:
       require_external_script_link_text: "reglas para código que incluye scripts externos"
       updateURL: "Describe desde dónde los gestores de scripts deberían conseguir las actualizaciones. Greasy Fork quitará este tipo de claves para hacer que cualquier script instalado desde Greasy Fork se actualice única y exclusivamente desde aquí, Greasy Fork."
       license: "Nombre de la licencia, o dirección URL apuntando al texto, que describe la forma en la que se permite copiar o modificar un script. La ausencia de una licencia implica que los usuario pueden instalar el script para uso personal pero no pueden redistribuirlo. La licencia aparece en la página de información del script."
-      supportURL: "Dirección URL de una página gestionada por el autor en la que los usuarios puedan recibir asistencia (por ejemplo, un sitio de notificación de fallos («bugtracker» en inglés), un foro, una dirección de correo electrónico). La dirección de asistencia que escribas aparecerá en la página de opiniones y comentarios."
+      supportURL: "Dirección URL de una página gestionada por el autor en la que los usuarios puedan recibir asistencia (por ejemplo, un sitio de notificación de fallos —«bugtracker» en inglés—, un foro, una dirección de correo electrónico). La dirección de asistencia que escribas aparecerá en la página de opiniones y comentarios."
       contributionURL_html: "Dirección URL apuntando a una página donde los usuarios pueden donar al autor del script. La dirección aparece en la página de comentarios y opiniones. Las URLs pueden ser http, https, o protocolos tipo Bitcoin. Para enlazar a una página de donación de PayPal utiliza una dirección con el formato <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=tu.correo.aquí@ejemplo.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=tu.correo.aquí@ejemplo.com&item_name=Greasy+Fork+donation+/+Donación+en+Greasy Fork</a>, reemplazando la dirección de correo electrónico de ejemplo con la tuya de Paypal."
       contributionAmount_html: "Cantidad a donar recomendada, utilizada junto con <code>@contributionURL</code>."
       compatible_html: "Marca este script como compatible con un navegador. La información de compatibilidad se mostrará en otra página del script. Es posible incluir comentarios adicionales usando el formato <code>@compatible firefox Se debe desactivar el bloqueador de ventanas emergentes</code>. Los navegadores reconocidos son: %{browsers}."
       incompatible_html: "Marca este script como incompatible con un navegador. La información de compatibilidad se mostrará en otra página del script. Es posible incluir comentarios adicionales usando el formato <code>@incompatible firefox Dejó de funcionar en Firefox 23</code>. Los navegadores reconocidos son: %{browsers}."
     writing_user_scripts:
       title: "Cómo escribir scripts de usuario"
-      content_html: "<p>Para escribir scripts de usuario es necesario saber JavaScript. Los <a href=\"http://wiki.greasespot.net/Tutorials\">tutoriales en GreaseSpot Wiki</a> deberían ser un buen punto de partida de como funciona JavaScript en general y como se entremezcla con la temática de los scripts de usuario en particular. Ver el código de los demás, inspeccionando como funcionan por dentro sus scripts puede ser educativo y divertido. Puede que te interesen las %{code_rules_link} y las %{meta_keys_link}. Si necesitas ayuda creando tu script puedes %{ask_in_forum_link}.</p><p>Para publicarlo en Greasy Fork necesitarás tener una cuenta. Una vez estés en tu %{user_page_link} sigue el enlace llamado «%{post_new_script_link}», y listo.</p>"
+      content_html: "<p>Para escribir scripts de usuario es necesario saber JavaScript. Los <a href=\"http://wiki.greasespot.net/Tutorials\">tutoriales en GreaseSpot Wiki</a> deberían ser un buen punto de partida para ver como funciona JavaScript en general y como se entremezcla con la temática de los scripts de usuario en particular. Ver el código de los demás, inspeccionando como funcionan por dentro sus scripts, puede ser educativo y divertido. Puede que te interesen las %{code_rules_link} y las %{meta_keys_link}. Si necesitas ayuda creando tu script puedes %{ask_in_forum_link}.</p><p>Para publicarlo en Greasy Fork necesitarás tener una cuenta. Una vez estés en tu %{user_page_link} sigue el enlace llamado «%{post_new_script_link}», y listo.</p>"
       ask_in_forum_link_text: 'preguntar en el foro'
       user_page_link_text: 'página de usuario'
       post_new_script_link_text: 'publicar un nuevo script'
@@ -368,8 +368,8 @@ es:
         approve_redistribution: "Redistribución"
   errors:
     messages:
-      script_missing_name: "necesario - especifica uno con @name"
-      script_missing_description: "necesario - especifica uno con @description"
+      script_missing_name: "obligatorio - especifica uno con @name"
+      script_missing_description: "obligatorio - especifica uno con @description"
       script_name_same_as_description: "no debe ser igual al nombre"
       script_sync_identifier_bad_protocol: "debe ser una dirección URL HTTP o HTTPS"
       script_too_many_screenshots: "Has incluido demasiadas capturas de pantalla. Sólo puedes poner %{number}"

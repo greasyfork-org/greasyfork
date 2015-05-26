@@ -196,6 +196,13 @@ bg:
     learn_to_write_scripts_link_text: "научете как да напишете"
     feedback_suggestion_html: "След като пробвате скрипта, можете да %{feedback_link}."
     feedback_link_text: "зададете въпрос, напишете ревю, или да го докладвате"
+    approve_redistribution_explanation: "Greasy Fork може да съобщи на другите сайтове дали е позволено да разпространяват вашия скрипт. Това вече може да е разрешено според лиценза за скрипта."
+    approve_redistribution_use_user_setting: "Използвайте настройките в акаунта (%{user_setting})"
+    approve_redistribution_use_user_setting_not_set: "ненастроено"
+    approve_redistribution_true: "Съгласен съм моят скрипт да бъде разпространяван другаде."
+    approve_redistribution_false: "Не желая моят скрипт да бъде разпространяван другаде."
+    redistributable_title: "Разпространими потребителски скриптове"
+    redistributable_page_description: "Авторите на тези скриптове изрично са удостоверили, че разрешават разпространението им другаде. Скриптовете може да имат допълнителни условия за разпространение; прегледайте всеки един лиценз за подробности."
   script_sets:
     favorites_name: "Любими"
     delete: "Изтриване на група скриптове"
@@ -285,6 +292,9 @@ bg:
     show_ads_description: "Подкрепете Greasy Fork, като разрешите да се появяват рекламите."
     preferred_markup_description: "Ще се използва за нови скриптове и публикации."
     flattr_username_description_html: "Потребителите на вашия скрипт ще бъдат запитани за дарение към сметката ви на <a href=\"https://flattr.com\">Flattr</a>."
+    approve_redistribution_explanation: "Greasy Fork може да съобщи на другите сайтове, че вие позволявате да разпространяват вашия скрипт. Това вече може да е или не е разрешено според лиценза за скрипта. Можете да конкретизирате настройката за всеки един скрипт."
+    approve_redistribution_true: "Съгласен съм моите скриптове да бъде разпространявани другаде."
+    approve_redistribution_false: "Не желая моят скрипт да бъде разпространяван другаде."
   help:
     meta_keys:
       title: "Meta keys, четени от Greasy Fork"
@@ -313,6 +323,12 @@ bg:
       post_new_script_link_text: 'публикувате нов скрипт'
     code_rules:
       title: "Правила на Greasy Fork за публикуване на скриптове"
+    credits:
+      title: "Кредити"
+      authors_credit: "Greasy Fork нямаше да съществува без авторите, които допринасят със скриптовете си."
+      developers_credit: "Greasy Fork е създаден от %{developers_link:these people} с помощта на всички, които докладват бъгове и препоръчват подобрения."
+      translators_credit: "Greasy Fork беше преведен с помощта на %{translators_link:the Greasy Translation Force on Transifex}:"
+      icons_credit: "Иконите за дискусиите са от %{vistastylebase} от %{iconsland}. Иконите за браузъра са от %{browserlogos}."
   common:
     error_preamble: "Има някои проблеми с това, което публикувате..."
     allowed_elements_link: "(Вижте разрешения код.)"
@@ -349,6 +365,7 @@ bg:
         screenshots: "Снимки"
         screenshot_caption: "Описание"
         replaced_by_script_id: "Заменящ скрипт"
+        approve_redistribution: "Разпространение"
   errors:
     messages:
       script_missing_name: "е задължително - укажете с @name"

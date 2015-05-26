@@ -30,7 +30,7 @@ $Definition['Categories.script-development.Description'] = 'Technische Unterhalt
 // Category name for Script Creation Requests
 $Definition['Categories.script-requests.Name'] = 'Skriptentwicklungsanfragen';
 // Category description for Script Creation Requests
-$Definition['Categories.script-requests.Description'] = 'Jemanden fragen, ob er/sie ein Skript für Dich schreibt.';
+$Definition['Categories.script-requests.Description'] = 'Jemanden anfragen um ein Skript für Dich zu schreiben.';
 // Category name for Script Discussions
 $Definition['Categories.script-discussions.Name'] = 'Skriptdiskussionen';
 // Category description for Script Discussions

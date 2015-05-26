@@ -192,6 +192,12 @@ vi:
     learn_to_write_scripts_link_text: "Học cách để viết một cái"
     feedback_suggestion_html: "Sau khi thử dùng script này bạn có thể %{feedback_link}."
     feedback_link_text: "Hỏi một câu hỏi về nó, đánh giá nó, hoặc báo cáo nó"
+    approve_redistribution_explanation: "Greasy Fork có thể nói với các trang web khác răng bạn cho phép họ đăng lại script của bạn. Điều này có thể hoặc không được phép bởi thông tin bản quyền bạn chọn cho script của mình"
+    approve_redistribution_use_user_setting: "Sử dụng tài khoản mặc định  (%{user_setting})"
+    approve_redistribution_use_user_setting_not_set: "chưa được đặt"
+    approve_redistribution_true: "Tôi thoải mái khi script của tôi bị đăng lại ở nơi khác"
+    approve_redistribution_false: "Tôi không muốn scripts của tôi bị đăng lại ở nơi khác"
+    redistributable_title: "Tái phân phối các user scripts"
   script_sets:
     favorites_name: "Mục ưa thích"
     delete: "Xóa bộ script"
@@ -280,6 +286,8 @@ vi:
     show_ads_description: "Ủng hộ Greasy Fork bằng cách cho phép nó hiển thị quảng cáo"
     preferred_markup_description: "Sẽ được sử dụng cho các script và bài viết mới."
     flattr_username_description_html: "Người dùng script của bạn sẽ được yêu cầu đóng góp vào tài khoản <a href=\"https://flattr.com\">Flattr</a> của bạn"
+    approve_redistribution_true: "Tôi thoải mái khi script của tôi bị đăng lại ở nơi khác"
+    approve_redistribution_false: "Tôi không muốn scripts của tôi bị đăng lại ở nơi khác"
   help:
     meta_keys:
       title: "Thẻ mô tả Scripts đọc bởi Greasy Fork"
@@ -308,6 +316,10 @@ vi:
       post_new_script_link_text: 'Đăng script mới'
     code_rules:
       title: "Quy định của Greasy Fork cho script đã đăng"
+    credits:
+      title: "Cảm ơn tới"
+      translators_credit: "Greasy Fork đã được dịch bởi %{translators_link:the Greasy Translation Force on Transifex}:"
+      icons_credit: "Các biểu tượng tranh luận từ %{vistastylebase} bởi %{iconsland}. Các biểu tượng trình duyệt từ %{browserlogos}."
   common:
     error_preamble: "Có vài trục trặc với cái bạn vừa đăng.."
     allowed_elements_link: "(Xem mã cho phép.)"
@@ -344,6 +356,7 @@ vi:
         screenshots: "Ảnh chụp nhanh"
         screenshot_caption: "Chú thích"
         replaced_by_script_id: "Script thay thế"
+        approve_redistribution: "Tái phân phối"
   errors:
     messages:
       script_missing_name: "là cần thiết - xác định rõ bằng @tên"
