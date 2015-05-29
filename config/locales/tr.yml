@@ -198,6 +198,7 @@ tr:
     feedback_link_text: "bunun hakkında bir soru sor, görüş bildir ya da raporla"
     approve_redistribution_use_user_setting: "Benim varsayılan hesabımı kullan (%{user_setting})"
     approve_redistribution_use_user_setting_not_set: "ayarsız"
+    approve_redistribution_true: "Scriptim başka yerlerde paylaşılabilir, benim için bir sakıncası yok"
     approve_redistribution_false: "Scriptimin hiç bir yerde yeniden gönderilmesini istemiyorum."
     redistributable_title: "Yeniden dağıtılabilir kullanıcı scriptleri"
   script_sets:
@@ -241,6 +242,8 @@ tr:
     script_list: "Scriptler"
     script_list_none: "Script gönderilmemiş."
     script_list_none_for_filter: "Mevcut filitreler için script yok."
+    script_list_none_same_user_html: "Sen herhangi bir script yazmamışsın. %{script_list_none_same_user_info_link}"
+    script_list_none_same_user_info_link_text: "Nasıl olduğunu öğrenmek ister misin?"
     deleted_script_list: "Silinmiş scriptler"
     sign_out: "Oturumu kapat"
     edit: "Hesap düzenleme"
@@ -287,11 +290,20 @@ tr:
     show_ads_description: "Greasy Fork'u reklamların görünmelerine izin vererek destekleyin"
     preferred_markup_description: "Yeni scriptler ve gönderiler için kullanılacak."
     flattr_username_description_html: "Scriptlerinizin üyelerinden hesabınıza <a href=\"https://flattr.com\">Flattr</a> üzerinden bağış yapılması istenecektir."
+    approve_redistribution_true: "Scriptimin başka yerlerde gönderilmesinin benim için bir sakıncası yok"
+    approve_redistribution_false: "Scriptimin başka yerlerde gönderilmesini istemiyorum"
   help:
     meta_keys:
       title: "Script meta anahtarları Greasy Fork tarafından okundu"
       name: "Scriptin ismi, başlıkta ve linklerde kullanılacak. Gerekli."
       description: "Script ne işe yarıyor açıklaması. Başlık altında gösterilecektir. Gerekli."
+    writing_user_scripts:
+      title: "Nasıl kullanıcı scripti yazarım"
+      ask_in_forum_link_text: 'forumda sor'
+      user_page_link_text: 'kullanıcı sayfası'
+      post_new_script_link_text: 'yeni script gönder'
+    credits:
+      title: "Künye"
   common:
     error_preamble: "Ne gönderdiğinizde bazı sorunlar oldu.."
     allowed_elements_link: "(İzin verilen kodları gör.)"
@@ -328,6 +340,7 @@ tr:
         screenshots: "Ekran görüntüleri"
         screenshot_caption: "Başlık"
         replaced_by_script_id: "Değiştirilmiş script"
+        approve_redistribution: "Yeniden dağıtım"
   errors:
     messages:
       script_missing_name: "Gerekli - Bir @name belirle"
