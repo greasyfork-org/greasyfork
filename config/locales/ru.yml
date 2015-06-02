@@ -6,6 +6,24 @@ ru:
       help: "Помощь"
       sign_in: "Войти"
       search: "Поиск"
+  helpers:
+    application:
+      time_ago:
+        minutes:
+          one: "%{count} минуту назад"
+          few: "%{count} минуты назад"
+          many: "%{count} минут назад"
+          other: "%{count} минут назад"
+        hours:
+          one: "%{count} час назад"
+          few: "%{count} часа назад"
+          many: "%{count} часов назад"
+          other: "%{count} часов назад"
+        days:
+          one: "%{count} день назад"
+          few: "%{count} дня назад"
+          many: "%{count} дней назад"
+          other: "%{count} дней назад"
   scripts:
     created_date: "Создан"
     updated_date: "Обновлён"
@@ -188,8 +206,11 @@ ru:
     feedback_link_text: "задайте вопрос о скрипте, оцените его, или пожалуйтесь на него."
     approve_redistribution_explanation: "Greasy Fork может помочь в распространении вашего скрипта путем репостов на других сайтах. Но Вам решать, предоставлять лицензию или нет."
     approve_redistribution_use_user_setting: "Использовать мой аккаунт по умолчанию (%{user_setting})"
+    approve_redistribution_use_user_setting_not_set: "не указано"
     approve_redistribution_true: "Я согласен с размещением моего скрипта на других сайтах"
     approve_redistribution_false: "Я не согласен с размещением моего скрипта на других сайтах"
+    redistributable_title: "Скрипты, разрешенные к переразмещению"
+    redistributable_page_description: "Авторы этих скриптов дали свое принципиальное согласие на размещение данных скриптов в других местах. Тем не менее проверьте лицензию каждого скрипта на наличие дополнительных условий переразмещения."
   script_sets:
     favorites_name: "Избранное"
     delete: "Удалить список скриптов"
@@ -281,6 +302,8 @@ ru:
     show_ads_description: "Поддержать Greasy Fork, разрешив показывать рекламу на сайте."
     preferred_markup_description: "Будет использована для новых скриптов и постов."
     flattr_username_description_html: "Предлагать пользователям ваших скриптов сделать пожертвование на ваш аккаунт <a href=\"https://flattr.com\">Flattr</a>."
+    approve_redistribution_explanation: "Сообщать сайтам, опрашивающим Greasy Fork, можно ли им размещать у себя ваш скрипт. Условия переразмещения, возможно, уже определены лицензией вашего скрипта. Данная настройка позволяет переопределить это разрешение для каждого скрипта индивидуально."
+    approve_redistribution_true: "Я разрешаю выкладывать мои скрипты и в других местах."
     approve_redistribution_false: "Я не хочу, чтобы мои скрипты размещались на других сайтах"
   help:
     meta_keys:
@@ -311,7 +334,11 @@ ru:
     code_rules:
       title: "Правила Greasy Fork для опубликования скриптов"
     credits:
+      title: "Благодарности"
       authors_credit: "Проект Greasy Fork не существовал бы без авторов, которые создают скрипты"
+      developers_credit: "Движок сайта Greasy Fork создан %{developers_link:вот этими людьми} при участии всех тех, кто сообщал об ошибках и предлагал улучшения."
+      translators_credit: "Перевод Greasy Fork выполнен командой %{translators_link:Greasy Translation Force на Transifex}:"
+      icons_credit: "Пиктограммы форума из %{vistastylebase} от %{iconsland}. Пиктограммы браузеров из %{browserlogos}."
   common:
     error_preamble: "Обнаружены проблемы в отправленном вами тексте..."
     allowed_elements_link: "(См. разрешенные теги)"
@@ -348,6 +375,7 @@ ru:
         screenshots: "Скриншоты"
         screenshot_caption: "Подпись"
         replaced_by_script_id: "Скрипт на замену"
+        approve_redistribution: "Переразмещение"
   errors:
     messages:
       script_missing_name: "требуется - укажите @name"
