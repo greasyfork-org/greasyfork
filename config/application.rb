@@ -28,7 +28,7 @@ module Greasyfork
     config.available_locales = {'ar' => 'العَرَبِيةُ', 'bg' => 'Български', 'cs' => 'Čeština', 'de' => 'Deutsch', 'el' => 'Ελληνικά', 'en' => 'English', 'es' => 'Español', 'fi' => 'Suomi', 'fr' => 'Français', 'fr-CA' => 'Français canadien', 'id' => 'Bahasa Indonesia', 'it' => 'Italiano', 'ja' => '日本語', 'nb' => 'Bokmål',  'nl' => 'Nederlands', 'pl' => 'Polski', 'pt-BR' => 'Português do Brasil', 'ru' => 'Русский', 'tr' => 'Türkçe', 'uk' => 'Українська', 'vi' => 'Tiếng Việt', 'zh-CN' => '简体中文', 'zh-TW' => '繁體中文'}
     config.help_translate_url = 'https://github.com/JasonBarnabe/greasyfork/wiki/Translating-Greasy-Fork'
 
-    config.cpd_size_limit = 40.kilobytes
+    config.cpd_size_limit = 100.kilobytes
 
     config.syntax_highlighting_limit = 500.kilobytes
 
