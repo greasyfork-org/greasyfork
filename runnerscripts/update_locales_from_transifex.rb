@@ -39,6 +39,10 @@ project.languages.each do |language|
 	code_with_hyphens = code.sub('_', '-')
 	puts "Getting locale #{code_with_hyphens}"
 	locale = Locale.where(:code => code_with_hyphens).first
+	if locale.nil?
+		puts "Unknown locale #{code_with_hyphens}, skipping"
+		next
+	end
 	(language.coordinators + language.reviewers + language.translators).each do |contributor|
 		LocaleContributor.create({:locale => locale, :transifex_user_name => contributor})
 	end
