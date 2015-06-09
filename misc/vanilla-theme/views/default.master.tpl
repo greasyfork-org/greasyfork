@@ -41,7 +41,9 @@
 						<option value="nl" {if $locale == 'nl'}selected{/if}>Nederlands (nl)</option>
 						<option value="pl" {if $locale == 'pl'}selected{/if}>Polski (pl)</option>
 						<option value="pt-BR" {if $locale == 'pt-BR'}selected{/if}>Português do Brasil (pt-BR)</option>
+						<option value="ro" {if $locale == 'ro'}selected{/if}>Română (ro)</option>
 						<option value="ru" {if $locale == 'ru'}selected{/if}>Русский (ru)</option>
+						<option value="sv" {if $locale == 'sv'}selected{/if}>Svenska (sv)</option>
 						<option value="tr" {if $locale == 'tr'}selected{/if}>Türkçe (tr)</option>
 						<option value="uk" {if $locale == 'uk'}selected{/if}>Українська (uk)</option>
 						<option value="vi" {if $locale == 'vi'}selected{/if}>Tiếng Việt (vi)</option>

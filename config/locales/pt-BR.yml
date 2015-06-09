@@ -6,6 +6,18 @@ pt-BR:
       help: "Ajuda"
       sign_in: "Entrar"
       search: "Buscar"
+  helpers:
+    application:
+      time_ago:
+        minutes:
+          one: "%{count} minuto atrás"
+          other: "%{count} minutos atrás"
+        hours:
+          one: "%{count} hora atrás"
+          other: "%{count} horas atrás"
+        days:
+          one: "%{count} dia atrás"
+          other: "%{count} dias atrás"
   scripts:
     created_date: "Criado"
     updated_date: "Atualizado"
@@ -49,6 +61,7 @@ pt-BR:
     history_all_changes_link: "Mostar todas versões."
     history_all_changes_info: "Estas são todas as versões deste script."
     history_only_code_changes_link: "Mostar somente as versões nas quais os códigos foram mudados."
+    diff_button: "Versões Diff selecionadas"
     code_title: "%{script_name} - Código Fonte"
     code_highlighting_disabled: "O código tem acima de %{size}, por isso o realce da sintaxe foi desabilitado para evitar travamentos."
     feedback_title: "%{script_name} - Comentário"
@@ -178,6 +191,7 @@ pt-BR:
     good_rating_explanation: "Número de pessoas que votaram como Bom ou adicionaram aos favoritos."
     ok_rating_explanation: "Número de pessoas que votaram como OK."
     bad_rating_explanation: "Número de pessoas que votaram como Ruim."
+    write_your_own_html: "%{post_a_script_link} (ou %{learn_to_write_scripts_link})"
   script_sets:
     favorites_name: "Favoritos"
     delete: "Apagar conjunto de script"

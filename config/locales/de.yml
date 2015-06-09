@@ -10,13 +10,13 @@ de:
     application:
       time_ago:
         minutes:
-          one: "Vor %{count} Minute"
+          one: "vor %{count} Minute"
           other: "vor %{count} Minuten"
         hours:
-          one: "Vor %{count} Stunde"
+          one: "vor %{count} Stunde"
           other: "vor %{count} Stunden"
         days:
-          one: "Vor %{count} Tag"
+          one: "vor %{count} Tag"
           other: "vor %{count} Tagen"
   scripts:
     created_date: "Erstellt am"
@@ -132,7 +132,7 @@ de:
     sets_add_inclusion: "Zu %{set_name} hinzufügen"
     sets_add_exclusion: "Aus %{set_name} ausschließen"
     sets_add_to_new: "Zu neuer Liste hinzufügen"
-    rules_summary_html: "Skripte müssen <strong>beschrieben werden</strong>, dürfen nicht <strong>verschlüsselt</strong> oder <strong>verkleinert</strong> sein, müssen das <strong>Urheberrecht</strong> beachten, und sind in den von <strong>extern eingebundenen Quelltexten</strong> beschränkt. %{full_rules_link}"
+    rules_summary_html: "Skripte müssen <strong>beschrieben werden</strong>, dürfen nicht <strong>verschlüsselt</strong> oder <strong>verkleinert</strong> sein, müssen das <strong>Urheberrecht</strong> beachten und sind in den von <strong>extern eingebundenen Quelltexten</strong> beschränkt. %{full_rules_link}"
     rules_summary_link_to_full: "Bitte die vollständigen Regeln lesen."
     syncing_notice_html: "Dieses Skript ist %{syncing_notice_sync_type}. Jegliche Aktualisierungen, die Sie am Quelltext hier vornehmen, werden durch eine Synchronisation überschrieben."
     syncing_notice_sync_type_manual: "auf manuelle Synchronisation eingestellt, von %{sync_identifier}"
@@ -169,7 +169,7 @@ de:
     sync_type_2: "Automatisch - es wird automatisch auf Aktualisierungen geprüft"
     sync_type_3: "Durch einen Web-Hook - es wird aktualisiert, wenn Sie Änderungen dieser Datei auf GitHub stellen"
     sync_failed_info_html: "Letzter Synchronisierungsversuch: %{date}, Fehler: %{error}."
-    sync_success_info_html: "Letzte erfolgreiche Synchronisierung %{date}."
+    sync_success_info_html: "Letzte erfolgreiche Synchronisierung: %{date}."
     sync_never_succeeded: "Die Synchronisierung wurde bisher nicht erfolgreich abgeschlossen."
     update_and_sync: "Jetzt aktualisieren und synchronisieren"
     update_no_sync: "Aktualisieren"
@@ -196,7 +196,7 @@ de:
     learn_to_write_scripts_link_text: "lernen Sie eines zu schreiben"
     feedback_suggestion_html: "Nachdem Sie dieses Skript ausprobiert haben, können Sie %{feedback_link}."
     feedback_link_text: "eine Frage dazu stellen, es bewerten oder melden"
-    approve_redistribution_explanation: "Greasy Fork kann anderen Internetseiten mitteilen, dass Sie Ihnen die Veröffentlichung Ihres Skripts erlauben. Das kann durch die Lizenz, welche für das Skript gewählt wurde, bereits erlaubt sein."
+    approve_redistribution_explanation: "Greasy Fork kann anderen Internetseiten mitteilen, dass Sie Ihnen die Veröffentlichung Ihres Skriptes erlauben. Das kann durch die Lizenz, welche für das Skript gewählt wurde, bereits erlaubt sein."
     approve_redistribution_use_user_setting: "Meine Kontovorgabe benutzen (%{user_setting})"
     approve_redistribution_use_user_setting_not_set: "Nicht festgelegt"
     approve_redistribution_true: "Mein Skript darf anderswo veröffentlicht werden"
