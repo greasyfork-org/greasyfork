@@ -6,6 +6,17 @@ ro:
       help: "Ajutor"
       sign_in: "Logare"
       search: "Căutare"
+  helpers:
+    application:
+      time_ago:
+        minutes:
+          one: "%{count} minut în urmă"
+          few: "%{count} minute în urmă"
+          other: "%{count} de minute în urmă"
+        hours:
+          one: "%{count} oră în urmă"
+          few: "%{count} ore în urmă"
+          other: "%{count} de ore în urmă"
   scripts:
     created_date: "Creat"
     author_name: "Autor"
@@ -16,13 +27,43 @@ ro:
     install: "Instalează acest script"
     install_help: "?"
     code_page: "Cod"
+    stats_page: "Statistici"
+    update_page: "Update"
+    delete_page: "Șterge"
+    undelete_page: "Restaurează"
+    stats_daily_installs_install_count_column_heading: "Instalări"
+    stats_no_data: "N/A"
+    listing_sort_label: "Sortare după:"
     listing_sort_relevance: "Relevanță"
+    listing_sort_name: "Nume"
+    listing_filter_by_site_disable: "Toate"
     listing_created_feed: "Scripturi noi"
+    import: "Importă scripturi"
+    new: "Postează un script"
     preview_additional_info: "Previzualizare"
+    post_new_script: "Postează scriptul"
+    post_updated_script: "Postează o versiune nouă"
+    update_no_sync: "Update"
+    sync_url_placeholder: "(URL)"
+    screenshots_add: "Adaugă:"
+    screenshots_remove: "Șterge"
+  script_sets:
+    favorites_name: "Favorite"
   users:
+    preview_profile: "Previzualizare"
     script_list: "Scripturi"
+    deleted_script_list: "Scripturi șterse"
+    edit_sign_in_password: "Parolă"
+    update_password: "Actualizează parola"
+    syncing_indicator: "(sincronizare)"
+    remove_external_sign_in: "Șterge"
+    listing_number_of_scripts: "Numărul scripturilor"
   activerecord:
     attributes:
+      user:
+        name: "Nume"
+        profile: "Profil"
       script:
+        name: "Nume"
         description: "Descriere"
         code: "Cod"
