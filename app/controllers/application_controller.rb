@@ -189,9 +189,6 @@ protected
 
 	before_filter :set_locale
 	def set_locale
-		# Don't redirect if it's going to be an error page
-		return if action_name == 'routing_error'
-
 		# User chose "Help us translate" in the locale picker
 		if params[:locale] == 'help'
 			redirect_to Rails.configuration.help_translate_url
@@ -199,8 +196,9 @@ protected
 		end
 
 		# Don't want to redirect on POSTs and API stuff, even if they're missing a locale
-		if !(request.get? || request.head?) || ['omniauth_callback', 'omniauth_failure', 'sso', 'webhook', 'user_js', 'meta_js'].include?(params[:action])
-			I18n.locale = params[:locale] || :en
+		if !(request.get? || request.head?) || ['omniauth_callback', 'omniauth_failure', 'sso', 'webhook', 'user_js', 'meta_js'].include?(params[:action]) || action_name == 'routing_error'
+			params[:locale] = params[:locale] || 'en'
+			I18n.locale = params[:locale]
 			return
 		end
 
