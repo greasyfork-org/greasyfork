@@ -45,6 +45,10 @@ class ScriptVersionAppliesToTest < ActiveSupport::TestCase
 		assert_equal [{text: 'example.com', domain: true, tld_extra: false}], get_applies_to(['*://example.com/*'])
 	end
 
+	test 'wildcard protocol no colon' do
+		assert_equal [{text: 'example.com', domain: true, tld_extra: false}], get_applies_to(['*//example.com/*'])
+	end
+
 	test 'invalid URL' do
 		assert_equal [{text: 'http://?what', domain: false, tld_extra: false}], get_applies_to(['http://?what'])
 	end

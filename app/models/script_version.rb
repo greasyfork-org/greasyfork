@@ -389,6 +389,7 @@ class ScriptVersion < ActiveRecord::Base
 
 			# protocol wild-cards
 			p = p.sub(/^\*:/i, 'http:')
+			p = p.sub(/^\*\/\//i, 'http://')
 			p = p.sub(/^http\*:/i, 'http:')
 
 			# subdomain wild-cards - http://*.example.com and http://*example.com
