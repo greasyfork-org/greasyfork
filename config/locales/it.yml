@@ -6,6 +6,18 @@ it:
       help: "Aiuto"
       sign_in: "Entra"
       search: "Cerca"
+  helpers:
+    application:
+      time_ago:
+        minutes:
+          one: "%{count} minuto fa"
+          other: "%{count} minuti fa"
+        hours:
+          one: "%{count} ora fa"
+          other: "%{count} ore fa"
+        days:
+          one: "%{count} giorno fa"
+          other: "%{count} giorni fa"
   scripts:
     created_date: "Creato"
     updated_date: "Aggiornato"
@@ -16,6 +28,9 @@ it:
     version_number: "Versione"
     license: "Lincenza"
     no_license: "N/A"
+    compatibility: "Compatibilità"
+    compatible_with_browser: "Compatibile con %{browser}"
+    incompatible_with_browser: "Incompatibile con %{browser}"
     applies_to: "Applica a"
     applies_to_link_title:
       one: "Vedi %{count} altro script da %{site}"
@@ -46,6 +61,7 @@ it:
     history_all_changes_link: "Mostra tutte le versioni"
     history_all_changes_info: "Queste sono tutte le versioni dello script"
     history_only_code_changes_link: "Mostra solo le versioni in cui è cambiato il codice"
+    diff_button: "Confronta le versioni selezionat"
     code_title: "%{script_name} - Codice sorgente"
     code_highlighting_disabled: "il codice è oltre %{size}, quindi la sintassi non sarà evidenziata per risparmiare le risorse del browser."
     feedback_title: "%{script_name} - Feedback"
@@ -107,6 +123,7 @@ it:
     contribution_bitcoin_no_amount_html: "Ringrazia %{author} donando bitcoin a %{address}."
     contribution_bitcoin_with_amount_html: "Ringrazia %{author} donando bitcoin a %{address}. La donazione consigliata è di %{amount}."
     locale_auto_select: "(Individuare automaticamente)"
+    sets_label_no_sets: "Gruppi di script:"
     sets_remove_inclusion: "Rimuovi da %{set_name}"
     sets_remove_exclusion: "Rimuovi esclusione da %{set_name}"
     sets_add_inclusion: "Aggiungi a %{set_name}"
@@ -118,11 +135,15 @@ it:
     syncing_notice_sync_type_manual: "impostato a sincronia manuale da %{sync_identifier}"
     syncing_notice_sync_type_automatic: "impostato a sincronia automatica da %{sync_identifier}"
     upload_label: "O carica:"
+    enable_source_code_editor_label: "Abilita l'evidenziatore della sintassi nell'editor"
     changelog_note: "Cos'è cambiato in questa versione?"
+    additional_info_note_html: "Raccontaci del tuo script. %{allowed_elements_link}"
     preview_additional_info: "Anteprima"
     post_new_script: "Posta uno script"
     post_updated_script: "Posta la nuova versione"
     type_1_html: "Pubblica lo script - script che tutti posso vedere e usare"
+    type_2_html: "Script utente non indicizzato - script utente per uso (semi-)privato. Disponibile attraverso un accesso diretto, ma non linkato all'interno di Greasy Fork."
+    type_3_html: "Libreria - uno script creato con lo scopo di essere usato con il tag <code>@require</code> da altri script e non per essere installato drettamente."
     override_warning_checkbox_label: "Salvare comunque?"
     warning_uses_disallowed_requires_rules_link: "Politica di Greasy Fork sui script esterni"
     warning_version_missing_generate_automatically_html: "Generare <code>@version</code> automaticamente?"
@@ -131,6 +152,7 @@ it:
     warning_potentially_minified_allowed_requires_link: "uno di questi campi"
     additional_info_locale_prompt: "(Seleziona luogo)"
     additional_info_add_localized: "Aggiungi informazione aggiuntiva sul luogo"
+    code_syncing_from_url_html: "Il codice dello script è impostato per sincronizzarsi da: %{field}"
     sync_type_intro: "Lo script verrà sincronizzato: "
     sync_type_1: "Manuale - verrà selezionato per gli aggiornamenti solo quanto tu darai il via"
     sync_type_2: "Automatico - verrà selezionato periodicamente per gli aggiornamenti"
@@ -141,6 +163,7 @@ it:
     update_no_sync: "Aggiorna"
     turn_off_syncing: "Disattiva sincronizzazione di questo script"
     sync_url_placeholder: "(URL)"
+    screenshots_explanation: "Massimo %{number} immagini PNG, GIF, o JPEG, più piccole di %{size} ciascuna."
     screenshots_add: "Aggiungi:"
     screenshots_remove: "Rimuovi"
     diff_old_version: "Precedente:"
@@ -151,9 +174,20 @@ it:
     good_rating_explanation: "Numero di persone che lo hanno giudicato Buono o che lo hanno aggiunto ai preferiti."
     ok_rating_explanation: "Numero di persone che lo hanno giudicato OK."
     bad_rating_explanation: "Numero di persone che lo hanno giudicato Cattivo."
+    write_your_own_html: "%{post_a_script_link} (oppure %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "Posta uno script creato da te"
+    learn_to_write_scripts_link_text: "impara come scriverne uno"
+    feedback_suggestion_html: "Dopo aver provato lo script, puoi inviare un %{feedback_link}"
+    feedback_link_text: "fai una domanda, recensisci lo script, oppure reportalo"
+    approve_redistribution_use_user_setting: "Usa le impostazioni di default del mio account (%{user_setting})"
+    approve_redistribution_use_user_setting_not_set: "non impostato"
+    approve_redistribution_true: "I miei script possono essere postati altrove"
+    approve_redistribution_false: "Non voglio che i miei script vengano postati altrove"
+    redistributable_title: "Script utente ridistribuibile"
   script_sets:
     favorites_name: "Preferiti"
     delete_confirmation: "Sei sicuro di voler eliminare questo set di script?"
+    site_default_sort: "(Sito di default)"
   home:
     title: "Greasy Fork - sicuro ed utile user scripts"
     welcome: "Benvenuto a Greasy Fork, un sito per gli user script"
@@ -167,6 +201,7 @@ it:
     scripts_sample_more: "Altro..."
   users:
     sign_in_title: "Entra in Greasy Fork"
+    sign_in_description: "Registrandoti a Greasy Fork potrai postare script e commentare script caricati da altri utenti. Non è necessario essere registrati per visualizzare o installare gli script."
     sign_in_external: "Entra con un altro servizio esterno"
     sign_in_password: "Entra con una password"
     sign_in_email_used_sign_in_link: "entra"
@@ -181,6 +216,8 @@ it:
     script_list: "Scripts"
     script_list_none: "Nessuno script postato"
     script_list_none_for_filter: "Nessuno script corrisponde al filtro corrente."
+    script_list_none_same_user_html: "Non scritto nessuno script ancora.\n%{script_list_none_same_user_info_link}"
+    script_list_none_same_user_info_link_text: "Voui sapere come?"
     deleted_script_list: "Scripts eliminati"
     sign_out: "Esci"
     edit: "Modifica profilo"
@@ -192,6 +229,7 @@ it:
     update_password: "Aggiorna password"
     update_password_no_match: "Le password non corrispondono"
     password_updated: "Password aggiornata"
+    remove_password_info: "Puoi rimuovere la password e utilizzare ugualmente metodi di login esterni."
     remove_password: "Rimuovi password"
     cant_remove_password: "Non puoi rimuovere la password - non avresti modi per accedere!"
     password_removed: "Password rimossa"
@@ -202,16 +240,47 @@ it:
     disable_syncing: "Disattiva sincronizzazione"
     remove_external_sign_in: "Rimuovi"
     author_email_notification_type:
+      none: "Non ricevere email riguardanti le discussioni sui tuoi script"
       discussion_only: "Ricevi un'e-mail quando ci sono delle nuove discussioni sui tuoi script."
       discussion_and_comment: "Ricevi un'e-mail quando ci sono delle nuove discussioni sui tuoi script o quando queste discussioni ricevono nuovi commenti"
+      note: "Potresti ricevere altre email secondo le impostazioni del forum."
+    list_display_html:
+      one: "%{user_link} - %{count} script"
+      other: "%{user_link} - %{count} script"
     listing_number_of_scripts: "Numero di scripts"
     listing_new_scripts: "Nuovi script"
     listing_updated_scripts: "Script aggiornati"
     listing_registration_date: "Data di registrazione"
     show_ads_description: "Supporta Greasy Fork dando il permesso di mostrare le pubblicità"
     preferred_markup_description: "Verrà usato per i nuovi script ed i nuovi post"
+    approve_redistribution_explanation: "Greasy Fork può comunicare ad altri siti che autorizzi la pubblicazione dei tuoi script su portali esterni. L'autorizzazione potrebbe essere già concessa dal tipo di licenza scelta al momento della pubblicazione dello script. Puoi cambiare questa preferenza per ciascuno degli script pubblicati."
+    approve_redistribution_true: "I miei script possono essere postati altrove"
+    approve_redistribution_false: "Non voglio che i miei script vengano postati altrove"
+  help:
+    meta_keys:
+      description: "Breve descrizione dello script. Mostrata come testo semplice sotto il nome dello script. Richiesto."
+      include: "Descrivi le pagine in cui verra utilizzato lo script. La lista verrà processata, mostrata tra le informazioni nella pagina dello script, ed infine utilizzata per categorizzare gli script."
+      require_html: "Include codice JavaScript esterno allo script. Guarda %{external_script_link}."
+      require_external_script_link_text: "regole per codice contenente script esterni"
+      contributionAmount_html: "Importo suggerito per le donazioni, usato in concomitanza con il tag <code>@contributionURL</code>."
+    writing_user_scripts:
+      title: "Come scrivere script utente"
+      ask_in_forum_link_text: 'chiedi nel forum'
+      user_page_link_text: 'pagina utente'
+      post_new_script_link_text: 'posta un nuovo script'
+    code_rules:
+      title: "Le regole di Greasy Fork per gli script postati"
+    credits:
+      title: "Crediti"
+      authors_credit: "Greasy Fork non sarebbe nulla senza gli utenti che contribuiscono condividendo i loro script."
+      developers_credit: "Greasy Fork esiste grazie a %{developers_link:queste persone} le quali con l'aiuto di tutti quelli che segnalano bug e suggeriscono miglioramenti rendono Greasy Fork unico."
+      translators_credit: "Greasy Fork è stato tradotto da %{translators_link:Greasy Translation Force su Transifex}:"
   common:
     error_preamble: "Ci sono problemi con quel che hai postato..."
+    allowed_elements_link: "(Controlla codice permesso.)"
+    allowed_elements_and_attributes_title: "Elementi permessi per contenuti HTML"
+    allowed_elements_intro: "I seguenti elementi e attributi sono permessi. Si applica sia a HTML che a Markdown (dopo la conversione in HTML)."
+    allowed_elements_extra_info: "Gli spazi bianchi verrano convertiti in elementi p o br. Gli URL verranno trasformati in link automaticamente."
     not_found_text: "404 - pagina non trovata."
     not_found_title: "404 - Pagina Non Trovata."
     not_found_link_home: "Vai alla home."
@@ -219,6 +288,7 @@ it:
     incomplete_locale: "Greasy Fork's è tradotto in %{locale_name} solo al %{percent}. Tu puoi dare una mano."
     expander_show_more: "Mostra di più"
     expander_show_less: "Mostra meno"
+    advertisement_note: Pubblicità
     share: Condividi
   activerecord:
     attributes:
@@ -227,6 +297,8 @@ it:
         profile: "Profilo"
         author_email_notification_type_id: "Notifiche discussioni degli script"
         show_ads: "Mostra ads"
+        preferred_markup: "Markup preferito"
+        flattr_username: "Username di Flattr"
       script:
         name: "Nome"
         description: "Descrizione"
@@ -235,10 +307,17 @@ it:
         type: "Tipo di script"
         additional_info: "Informazioni aggiuntive"
         screenshots: "Screenshots"
+        screenshot_caption: "Didascalia"
+        replaced_by_script_id: "Script sostitutivo"
+        approve_redistribution: "Redistribuzione"
   errors:
     messages:
+      script_missing_name: "è richiesto - specificane uno con @name"
+      script_missing_description: "è richiesto - specificane uno usando @description"
       script_name_same_as_description: "non può essere uguale al nome"
       script_sync_identifier_bad_protocol: "deve essere un URL HTTP o HTTPS"
       script_too_many_screenshots: "Troppe schermate incluse - il numero massimo è %{number}"
       cannot_be_self_reference: "non può essere lo stesso script"
       cannot_be_deleted_reference: "non può essere uno script cancellato"
+      must_be_greasy_fork_script: "deve essere l'URL dello script su Greasy Fork"
+      script_update_not_utf8: "il testo caricato deve rispettare lo standard UTF-8 "

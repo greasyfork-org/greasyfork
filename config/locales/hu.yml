@@ -65,13 +65,16 @@ hu:
     feedback_start_first_discussion_link: "Legyél az első, aki hozzászól."
     feedback_start_discussion_link: "Új vita indítása a szkripttel kapcsolatban"
     feedback_discussions_heading: "Viták a Greasy Fórumon"
+    feedback_favoriters_heading: "Kedvelők / Kedvelői"
     feedback_favoriters_user_list_intro: "Ezt a szkriptet a kedvencek közé rakta:"
     feedback_no_favoriters: "Ez a szkript még senkinek sem a kedvence."
     feedback_sign_in_to_favorite: "Jelentkezz be, hogy kedvencekhez adhasd."
     stats_title: "%{script_name} - Statisztikák"
     stats_daily_installs_heading: "Napi telepítések"
+    stats_daily_update_checks_heading: "Napi frissítések keresése"
     stats_daily_installs_date_column_heading: "Dátum"
     stats_daily_installs_install_count_column_heading: "Telepítések száma"
+    stats_daily_installs_update_check_count_column_heading: "Frissítés keresése"
     stats_raw_data_header: "Nyers adat"
     stats_download_raw_data_html: "MInden adat letöltése mink: %{links}"
     stats_no_data: "Ismeretlen"
@@ -87,6 +90,7 @@ hu:
     listing_sort_created_date: "Létrehozva"
     listing_sort_updated_date: "Frissítve"
     listing_sort_name: "Név"
+    listing_filter_by_site_label: "Ezekhez tartozó szkriptek mutatása"
     listing_filter_by_site_disable: "Összes"
     listing_filter_by_site_all_sites: "(Minden oldal)"
     listing_filter_by_site_more_sites: "Több..."
@@ -103,7 +107,9 @@ hu:
     contribution_bitcoin_no_amount_html: "Köszönd meg %{author} fejlesztőnek Bitcoin adományozásával a %{address} címre."
     contribution_bitcoin_with_amount_html: "Köszönd meg %{author} fejlesztőnek Bitcoin adományozásával a %{address} címre. Javasolt Bitcoin: %{amount}."
     locale_auto_select: "(Automatikus felismerés)"
+    rules_summary_link_to_full: "Olvassa el a szabályokat."
     upload_label: "Vagy töltsd fel:"
+    enable_source_code_editor_label: "Syntax kijelölő engedélyezése"
     changelog_note: "Mi változott ebben a verzióban?"
     preview_additional_info: "Előnézet"
     post_new_script: "Szkript feltöltése"
@@ -151,8 +157,25 @@ hu:
     listing_registration_date: "Regisztáció dátuma"
     locale_prompt: "(Válasszon helyszínt)"
   common:
+    allowed_elements_and_attributes_title: "Engedélyezett elemek HTML tartalomhoz"
+    not_found_text: "404 - a lap nem található."
+    not_found_title: "404 - A lap nem található"
+    expander_show_more: "Több"
+    expander_show_less: "Kevesebb"
     advertisement_note: Hirdetés
+    share: Megosztás
   activerecord:
     attributes:
       user:
         name: "Név"
+      script:
+        changelog: "Változások"
+        type: "Szkript típusa"
+        screenshots: "Képernyőfelvételek"
+        screenshot_caption: "Felirat"
+        replaced_by_script_id: "Helyettesítő szkript"
+  errors:
+    messages:
+      script_missing_name: "szükséges - adjon meg egyet ezzel @name"
+      script_name_same_as_description: "Nem lehet azonos a névvel"
+      script_too_many_screenshots: "Túl sok képernyőfelvételt tartalmaz - a maximum %{number}"

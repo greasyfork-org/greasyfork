@@ -28,13 +28,13 @@ $Definition['Categories.script-development.Name'] = 'Fejlesztés';
 // Category description for Development
 $Definition['Categories.script-development.Description'] = 'Technical talk about user script development.';
 // Category name for Script Creation Requests
-$Definition['Categories.script-requests.Name'] = 'Script Creation Requests';
+$Definition['Categories.script-requests.Name'] = 'Szkript Kérése';
 // Category description for Script Creation Requests
 $Definition['Categories.script-requests.Description'] = 'Kérj meg valakit, hogy írjon neked egy szkriptet.';
 // Category name for Script Discussions
 $Definition['Categories.script-discussions.Name'] = 'Szkript megbeszélések';
 // Category description for Script Discussions
-$Definition['Categories.script-discussions.Description'] = 'Discussion on scripts posted to Greasy Fork.';
+$Definition['Categories.script-discussions.Description'] = 'Vita a szkripteről, amik a Greasy Forkon vannak';
 // Link on Recent Discussions to hide script discussions
 $Definition['Turn on filter'] = 'Szkript vita elrejtése';
 // Link on Recent Discussions to show script discussions

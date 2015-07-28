@@ -6,6 +6,18 @@ fi:
       help: "Ohje"
       sign_in: "Kirjaudu sisään"
       search: "Haku"
+  helpers:
+    application:
+      time_ago:
+        minutes:
+          one: "%{count} minuutti sitten"
+          other: "%{count} minuuttia sitten"
+        hours:
+          one: "%{count} tunti sitten"
+          other: "%{count} tuntia sitten"
+        days:
+          one: "%{count} päivä sitten"
+          other: "%{count} päivää sitten"
   scripts:
     created_date: "Luotu"
     updated_date: "Päivitetty"
@@ -16,6 +28,9 @@ fi:
     version_number: "Versio"
     license: "Lisenssi"
     no_license: "N/A"
+    compatibility: "Yhteensopivuus"
+    compatible_with_browser: "Yhteensopiva selaimen %{browser} kanssa"
+    incompatible_with_browser: "Epäyhteensopiva selaimen %{browser} kanssa"
     applies_to: "Käytössä"
     applies_to_link_title:
       one: "Katso %{count} muu skripti sivustolle %{site}"
@@ -46,6 +61,7 @@ fi:
     history_all_changes_link: "Näytä kaikki versiot."
     history_all_changes_info: "Tässä ovat skriptin kaikki versiot."
     history_only_code_changes_link: "Näytä vain versiot, joissa koodi muuttui."
+    diff_button: "Vertaa valittuja versioita"
     code_title: "%{script_name} - Lähdekoodi"
     code_highlighting_disabled: "Lähdekoodin koko on yli %{size}, joten syntaksin korostus on poistettu käytöstä selaimesi säästämiseksi."
     feedback_title: "%{script_name} - Palaute"
@@ -175,6 +191,18 @@ fi:
     good_rating_explanation: "Ihmiset, jotka arvostelivat sen \"Hyvä\" tai lisäsivät sen suosikkeihin."
     ok_rating_explanation: "Ihmiset, jotka arvostelivat sen \"OK\"."
     bad_rating_explanation: "Ihmiset, jotka arvostelivat sen \"Huono\"."
+    write_your_own_html: "%{post_a_script_link} (tai %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "Lähetä tekemäsi skripti"
+    learn_to_write_scripts_link_text: "opi tekemään sellainen"
+    feedback_suggestion_html: "Kokeiltuasi tätä skriptiä voit %{feedback_link}."
+    feedback_link_text: "kysyä kysymyksen siitä, arvioida sen tai ilmoittaa väärinkäytöksestä"
+    approve_redistribution_explanation: "Greasy Fork voi kertoa muille sivustoille, että sallit niiden jakavan skriptiäsi. Skriptillesi valitsemasi lisenssi voi jo sallia tai kieltää tämän."
+    approve_redistribution_use_user_setting: "Käytä tilin oletusarvoa (%{user_setting})"
+    approve_redistribution_use_user_setting_not_set: "ei asetettu"
+    approve_redistribution_true: "Skriptiäni saa jakaa muualla"
+    approve_redistribution_false: "Skriptiäni ei saa jakaa muualla"
+    redistributable_title: "Uudelleen jaettavat skriptit"
+    redistributable_page_description: "Näiden skriptien tekijät ovat erikseen ilmoittaneet sallivansa skriptiensä jakamisen muualla. Skriptien uudelleenjakamiseen saattaa silti kohdistua lisäehtoja; tarkista lisätiedot kunkin skriptin lisenssistä."
   script_sets:
     favorites_name: "Suosikit"
     delete: "Poista skriptijoukko"
@@ -216,6 +244,8 @@ fi:
     script_list: "Skriptit"
     script_list_none: "Ei lähetettyjä skriptejä."
     script_list_none_for_filter: "Ei skriptejä nykyisillä suodattimilla."
+    script_list_none_same_user_html: "Et ole tehnyt skriptejä. %{script_list_none_same_user_info_link}"
+    script_list_none_same_user_info_link_text: "Haluaisitko oppia tekemään?"
     deleted_script_list: "Poistetut skriptit"
     sign_out: "Kirjaudu ulos"
     edit: "Muokkaa tiliä"
@@ -262,6 +292,43 @@ fi:
     show_ads_description: "Tue Greasy Forkia antamalla sen näyttää mainoksia"
     preferred_markup_description: "Käytetään uusiin skripteihin ja viesteihin."
     flattr_username_description_html: "Skriptiesi käyttäjiä pyydetään lahjoittamaan tilillesi <a href=\"https://flattr.com\">Flattrissa</a>."
+    approve_redistribution_explanation: "Greasy Fork voi kertoa muille sivustoille, että sallit niiden jakavan skriptiäsi. Skriptillesi valitsemasi lisenssi voi jo sallia tai kieltää tämän. Voit muuttaa tätä asetusta skriptikohtaisesti."
+    approve_redistribution_true: "Skriptiäni saa jakaa muualla"
+    approve_redistribution_false: "Skriptiäni ei saa jakaa muualla"
+  help:
+    meta_keys:
+      title: "Greasy Forkin lukemat metatiedot skripteissä"
+      intro_html: "Tämä on lista <a href=\"http://wiki.greasespot.net/Metadata_Block\">metatiedoista</a>, jotka Greasy Fork lukee. Skriptit voivat sisältää listaan kuulumattomia metatietoja, mutta ne eivät vaikuta Greasy Forkin tietoihin."
+      name: "Skriptin nimi, jota käytetään otsikkona ja linkeissä. Pakollinen."
+      name_localized_html: "Skriptin nimi tietyssä lokalisaatiossa, missä XX on <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">2-kirjaiminen ISO 639-1 -koodi</a> ja YY on vapaaehtoinen <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 -maakoodi</a>. Korvaa <code>@name</code>:n, kun käyttäjä käyttää vastaavaa lokalisaatiota."
+      description: "Kuvaus skriptin toiminnasta. Näytetään tekstinä skriptin nimen alla. Pakollinen."
+      description_localized_html: "Skriptin kuvaus tietyssä lokalisaatiossa, missä XX on <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">2-kirjaiminen ISO 639-1 -koodi</a> ja YY on vapaaehtoinen <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 -maakoodi</a>. Korvaa <code>@description</code>:n, kun käyttäjä käyttää vastaavaa lokalisaatiota."
+      namespace_html: "Skriptien hallintaohjelmat käyttävät <code>@namespace</code>:n ja <code>@name</code>:n yhdistelmää havaitakseen, onko skripti jo asennettu. Greasy Fork vaatii tämän kentän ja varoittaa, jos sitä muutetaan päivityksen yhteydessä."
+      version_html: "Skriptin tietyn version tunniste <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">Mozillan versioformaatissa</a>. Versio näytetään skriptin tietosivulla. Greasy Fork vaatii tämän kentän ja varoittaa, jos sitä pienennetään tai ei muuteta, kun skriptin koodi muuttuu."
+      include: "Määrittää sivut, joilla skripti ajetaan. Tämä lista prosessoidaan ja näytetään skriptin tietosivulla ja sitä käytetään skriptien ryhmittelyyn."
+      require_html: "Sisällyttää ulkoista JavaScript-koodia skriptiin. Katso %{external_script_link}."
+      require_external_script_link_text: "ulkoisen koodin sisällyttämistä koskevat säännöt"
+      updateURL: "Määrittää osoitteen, josta skriptien hallintaohjelmat hakevat päivityksiä. Greasy Fork poistaa nämä tiedot, jolloin Greasy Forkista asennetut skriptit päivittyvät vain Greasy Forkin kautta."
+      license: "URL-osoite tai nimi lisenssille, joka määrää, miten skriptiä saa kopioida tai muokata. Lisenssin puuttuminen tarkoittaa, että skriptin saa asentaa henkilökohtaiseen käyttöön, mutta sitä ei saa uudelleenlevittää. Lisenssi näytetään skriptin tietosivulla."
+      supportURL: "URL-osoite sivulle, jolta käyttäjät voivat saada tukea skriptille (esim. bugilistaus, foorumi, sähköpostiosoite). Tukiosoite näytetään skriptin tietosivulla."
+      contributionURL_html: "URL-osoite sivulle, jolla käyttäjät voivat tehdä lahjoituksia skriptin tekijälle. Avustus-URL näytetään skriptin tietosivulla. URL-osoitteet voivat käyttää http-, https-, tai Bitcoin-protokollaa. Linkittääksesi PayPal-lahjoitussivulle, käytä URL-osoitetta, joka on muotoa <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=sahkopostiosoitteesi@esimerkki.com&item_name=Greasy+Fork+-lahjoitus\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=sahkopostiosoitteesi@esimerkki.com&item_name=Greasy+Fork+-lahjoitus</a>, ja korvata esimerkkisähköpostiosoitteen omallasi."
+      contributionAmount_html: "Ehdotettu lahjoituksen suuruus, käytetään yhdessä <code>@contributionURL</code>:n kanssa."
+      compatible_html: "Merkitsee skriptin yhteensopivaksi selaimen kanssa. Yhteensopivuustiedot näytetään skriptin sivulla. Kommentteja yhteensopivuudesta voi lisätä muodossa <code>@compatible firefox Ponnahdusikkunoiden esto tulee poistaa käytöstä</code>. Tunnistetut selaimet: %{browsers}."
+      incompatible_html: "Merkitsee skriptin epäyhteensopivaksi selaimen kanssa. Yhteensopivuustiedot näytetään skriptin sivulla. Kommentteja yhteensopivuudesta voi lisätä muodossa <code>@compatible firefox Toimimaton Firefox 23:sta alkaen</code>. Tunnistetut selaimet: %{browsers}."
+    writing_user_scripts:
+      title: "Miten kirjoittaa skriptejä"
+      content_html: "<p>Skriptien kirjoittaminen vaatii JavaScriptin tuntemusta. <a href=\"http://wiki.greasespot.net/Tutorials\">GreaseSpot Wikin tutoriaalien</a> pitäisi auttaa sinut alkuun sekä JavaScriptin yleisessä käytössä että skriptien kirjoittamisessa. Muiden skriptien tutkiminen voi olla hyödyllistä. Saatat ehkä haluta lukea %{code_rules_link} ja %{meta_keys_link}. Jos haluat apua skriptin tekemiseen, %{ask_in_forum_link}.</p><p>Lähettääksesi skriptejä Greasy Forkiin, sinun täytyy luoda tunnus. Seuraa linkkiä %{user_page_link} %{post_new_script_link}.</p>"
+      ask_in_forum_link_text: 'kysy vain foorumilla'
+      user_page_link_text: 'käyttäjäsivultasi'
+      post_new_script_link_text: 'lähettämään uusi skripti'
+    code_rules:
+      title: "Greasy Forkin skriptejä koskevat säännöt"
+    credits:
+      title: "Tekijät"
+      authors_credit: "Greasy Forkin olemassaolo ei olisi mahdollista ilman skriptien tekijöitä."
+      developers_credit: "Greasy Forkin itse ovat rakentaneet %{developers_link:nämä henkilöt}, apunaan kaikki bugeista ilmoittavat ja parannuksia ehdottavat."
+      translators_credit: "Greasy Forkin on kääntänyt %{translators_link:Greasy Translation Force Transifexissa}:"
+      icons_credit: "Keskusteluikonit ovat lähteestä %{vistastylebase}, ja ne on tehnyt %{iconsland}. Selainikonit ovat lähteestä %{browserlogos}."
   common:
     error_preamble: "Lähettämissäsi tiedoissa oli ongelmia..."
     allowed_elements_link: "(Katso sallittu koodi.)"
@@ -298,6 +365,7 @@ fi:
         screenshots: "Kuvakaappaukset"
         screenshot_caption: "Kuvateksti"
         replaced_by_script_id: "Korvaava skripti"
+        approve_redistribution: "Uudelleenlevitys"
   errors:
     messages:
       script_missing_name: "pakollinen - määritä @name:lla"

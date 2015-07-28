@@ -9,6 +9,12 @@ sv:
   helpers:
     application:
       time_ago:
+        minutes:
+          one: "%{count} minut sedan"
+          other: "%{count} minuter sedan"
+        hours:
+          one: "%{count} timme sedan"
+          other: "%{count} timmar sedan"
         days:
           one: "%{count} dagar sedan"
           other: "%{count} dagar sedan"
@@ -21,16 +27,29 @@ sv:
     version_number: "Version"
     license: "Licens"
     no_license: "N/A"
+    compatibility: "Kompatibilitet"
+    compatible_with_browser: "Kompatibel med %{browser}"
+    incompatible_with_browser: "Inkompatibel med %{browser}"
+    applies_to: "Gäller för"
+    applies_to_link_title:
+      one: "Se %{count} andra skript för %{site}"
+      other: "Se %{count} andra skript för %{site}"
     install: "Installera detta skript"
     install_help: "?"
     install_help_title: "Hur man installerar"
+    library_instructions_html: "Detta skript bör inte installeras direkt. Det är ett bibliotek för andra skript att inkludera med meta-direktivet %{code}"
     deleted_notice: "Detta skript har blivit raderat"
+    inactive_pending_changes: "Detta skript är för närvarande inaktivt eftersom det inte är i enlighet med Greasy Forks policyer."
+    inactive_pending_changes_for_previous_version: "Den här versionen av det här skriptet är inaktiv eftersom den inte är i enlighet med Greasy Forks policyer."
     version_notice_latest_version_link: "den senaste versionen"
     info_page: "Info"
     code_page: "Kod"
     history_page: "Historik"
     update_page: "Uppdatera"
     delete_page: "Radera"
+    undelete_page: "Återställ"
+    history_title: "%{script_name} - Versionshistorik"
+    history_only_code_changes_info: "Dessa är versionerna av skriptet där koden uppdaterades."
     history_all_changes_link: "Visa alla versioner."
     feedback_favoriters_heading: "Favoriter"
     stats_daily_installs_heading: "Dagliga installationer"

@@ -34,7 +34,7 @@ $Definition['Categories.script-requests.Description'] = 'Request someone write a
 // Category name for Script Discussions
 $Definition['Categories.script-discussions.Name'] = 'Skript-diskussioner';
 // Category description for Script Discussions
-$Definition['Categories.script-discussions.Description'] = 'Discussion on scripts posted to Greasy Fork.';
+$Definition['Categories.script-discussions.Description'] = 'Diskussion till skript på greasyfork';
 // Link on Recent Discussions to hide script discussions
 $Definition['Turn on filter'] = 'Göm skript-diskussion';
 // Link on Recent Discussions to show script discussions

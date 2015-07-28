@@ -192,6 +192,12 @@ ko:
     learn_to_write_scripts_link_text: "작성 방법 배우기"
     feedback_suggestion_html: "해당 스크립트를 써보시고 피드백을 남길 수 있습니다. 링크: %{feedback_link}."
     feedback_link_text: "해당 스크립트에 대해 질문, 리뷰, 신고할 수 있습니다."
+    approve_redistribution_explanation: "다른 사이트에서 당신의 스크립트를 재배포 할 수 있는 지 말할 수 있으며, 라이선스에 의해 이미 허용되거나 허용되지 않을 수도 있습니다."
+    approve_redistribution_use_user_setting: "내 계정의 기본값으로 (${user_setting})"
+    approve_redistribution_use_user_setting_not_set: "설정되지 않음"
+    approve_redistribution_true: "제 스크립트가 다른 곳에서 재배포되도 상관 없습니다."
+    approve_redistribution_false: "제 스크립트가 다른곳에서 재배포되는 것을 원치 않습니다."
+    redistributable_title: "재배포가능한 유저스크립트"
   script_sets:
     favorites_name: "즐겨찾기"
     delete: "스크립트 모음 삭제"
@@ -280,6 +286,9 @@ ko:
     show_ads_description: "광고 차단을 해제해 Greasy Fork를 지원해주세요"
     preferred_markup_description: "다음에 보는 스크립트와 게시물에 적용됩니다"
     flattr_username_description_html: "유저들에게 <a href=\"https://flattr.com\">Flattr</a> 계정으로 기부할 것을 요청할 것입니다."
+    approve_redistribution_explanation: "다른 사이트에서 당신의 스크립트를 재배포 할 수 있는 지 말할 수 있으며, 라이선스에 의해 이미 허용되거나 허용되지 않을 수도 있으며 각각의 스크립트의 설정을 무시할 수 있습니다."
+    approve_redistribution_true: "제 스크립트들이 다른 곳에서 재배포되도 상관 없습니다."
+    approve_redistribution_false: "제 스크립트들이 다른곳에서 재배포되는 것을 원치 않습니다."
   help:
     meta_keys:
       title: "스크립트 메타 키는 Greasy Fork 에 의해 읽힙니다."
@@ -308,6 +317,11 @@ ko:
       post_new_script_link_text: '새로운 스크립트 게시'
     code_rules:
       title: "외부 스크립트에 관한 Gresay Fork 정책"
+    credits:
+      title: "제작자"
+      developers_credit: "Greasy Fork는 %{developers_link:이 사람들}이 제안하시고 버그를 신고해주신 분들의 도움과 함께 만들었습니다."
+      translators_credit: "Greasy Fork는 %{translators_link:Transifex에서 Greasy 번역 팀}이 번역하였습니다."
+      icons_credit: "토론 아이콘은 %{iconsland}의 %{vistastylebase}에서 가져왔습니다. 브라우저 아이콘들은 %{browserlogos}에서 가져왔습니다."
   common:
     error_preamble: "당신이 올린 거에 몇몇 문제들이 있습니다...."
     allowed_elements_link: "(허용된 코드 보기)"
@@ -344,6 +358,7 @@ ko:
         screenshots: "스크린샷"
         screenshot_caption: "설명"
         replaced_by_script_id: "대체 스크립트"
+        approve_redistribution: "재배포"
   errors:
     messages:
       script_missing_name: "필요함 - @name으로 지정하세요."

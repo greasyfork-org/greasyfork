@@ -196,8 +196,13 @@ fr:
     learn_to_write_scripts_link_text: "Apprenez à scripter"
     feedback_suggestion_html: "Après avoir essayé ce script, vous pouvez %{feedback_link}."
     feedback_link_text: "poser une question, rédiger une critique ou un rapport"
+    approve_redistribution_explanation: "Greasy Fork peut informer d'autres sites que vous les autorisez à republier votre script. Cela peut ou peut ne pas être déjà permis par la licence que vous choisissez pour votre script."
+    approve_redistribution_use_user_setting: "Utiliser la valeur par défaut de mon compte (%{user_setting})"
+    approve_redistribution_use_user_setting_not_set: "non renseigné"
     approve_redistribution_true: "Je suis d'accord pour que mon script soit publié autre part"
     approve_redistribution_false: "Je ne veux pas que mon script soit publié autre part"
+    redistributable_title: "Les scripts utilisateurs redistribuables"
+    redistributable_page_description: "Les auteurs de ces scripts ont explicitement indiqué qu'ils acceptent que leurs scripts soient publiés ailleurs."
   script_sets:
     favorites_name: "Favoris"
     delete: "Supprimer ce jeu de scripts"
@@ -287,6 +292,9 @@ fr:
     show_ads_description: "Aider Greasy Fork en l'autorisant à afficher des publicités"
     preferred_markup_description: "Sera utilisé pour les nouveaux script et posts."
     flattr_username_description_html: "On demandera aux utilisateurs de vos scripts de faire un don sur votre compte <a href=\"https://flattr.com\">Flattr</a>."
+    approve_redistribution_explanation: "Greasy Fork peut informer d'autres sites que vous les autorisez à republier votre script. Cela peut ou peut ne pas être déjà permis par la licence que vous choisissez pour votre script. Vous pouvez redéfinir cette préférence sur chaque script particulier."
+    approve_redistribution_true: "Je suis d'accord pour que mes scripts soient republiés ailleurs"
+    approve_redistribution_false: "Je ne veux pas que mes scripts soient republiés ailleurs"
   help:
     meta_keys:
       title: "Raccourcis claviers utilisés par Greasy Fork"
@@ -301,6 +309,8 @@ fr:
       license: "URL ou nom d'une licence décrivant les conditions autorisées de copie de modification du script. L'absence de licence implique que l'utilisateur peut installer le script pour son usage personnel, mais n'est pas autorisé à le redistribuer. La licence est affichée sur la page d'information du script."
       supportURL: "URL de la page ou l'utilisateur peut obtenir du support pour un script (un bug tracker, un forum, une adresse e-mail). L'URL de support est affichée sur la page de retour d'expérience du script."
       contributionAmount_html: "Montant suggéré de don, utilisé en conjonction avec <code>@contributionURL</code>."
+      compatible_html: "Marquer ce script comme compatible avec un navigateur. L'information de la compatibilité va être affichée sur la page du script. Les commentaires sur la compatibilité peuvent être inclus dans le format <code>@compatible firefox Bloqueur de pub doit être désactivé</code>. Les navigateurs reconnus sont : %{browsers}."
+      incompatible_html: "Marquer ce script comme incompatible avec un navigateur. L'information de la compatibilité va être affichée sur la page du script. Les commentaires sur la compatibilité peuvent être inclus dans le format <code>@incompatible firefox depuis Firefox 23</code>. Les navigateurs reconnus sont : %{browsers}."
     writing_user_scripts:
       title: "Comment rédiger vos scripts"
       content_html: "<p>Rédiger des scripts scripts demande des connaissances en JavaScript. Les <a href=\"http://wiki.greasespot.net/Tutorials\">tutoriels du Wiki de GreaseSpot</a> devraient vous aider à débuter en JavaScript, pour un usage  général comme pour la rédaction de scripts personnels. Examiner le code des scripts écrits par d'autres peut également vous aider. Vous serez peut-être intéressé par les règles de codage %{code_rules_link} et les raccourcis %{meta_keys_link}. Si vous avez besoin d'aide, n'hésitez pas à la demander sur le forum %{ask_in_forum_link}.</p><p>Afin de poster sur le forum de Greasy Fork, vous devrez préalablement vous y inscrire. Depuis votre compte %{user_page_link}, cliquez sur le lien %{post_new_script_link}.</p>"
@@ -311,7 +321,10 @@ fr:
       title: "Les règles à respecter lors de la soumission d'un script"
     credits:
       title: "Crédits"
+      authors_credit: "Greasy Fork ne serait pas possible sans les auteurs de scripts qui contribuent."
+      developers_credit: "Greasy Fork lui-même est réalisé par %{developers_link:these people} avec l'aide de tous ceux qui signalent des bugs et qui proposent des améliorations."
       translators_credit: "Greasy Fork a été traduit par %{translators_link:the Greasy Translation Force on Transifex}:"
+      icons_credit: "Les icônes de discussion proviennent de %{vistastylebase} par %{iconsland}. Les icônes de navigateur viennent de %{browserlogos}."
   common:
     error_preamble: "Il y a des erreurs dans ce que vous avez posté..."
     allowed_elements_link: "(Voir les balises autorisées.)"
@@ -348,6 +361,7 @@ fr:
         screenshots: "Captures d'écran"
         screenshot_caption: "Légende"
         replaced_by_script_id: "Script de remplacement"
+        approve_redistribution: "Redistribution"
   errors:
     messages:
       script_missing_name: "est nécessaire - spécifiez-le avec @name"
