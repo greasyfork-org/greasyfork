@@ -12,3 +12,6 @@ pl:
           many: "%{count} godziny temu"
         days:
           many: "%{count} dni temu"
+  users:
+    list_display_html:
+      many: "%{user_link} -- %{count} skrypty"
