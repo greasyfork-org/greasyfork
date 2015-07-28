@@ -437,6 +437,9 @@ class ScriptVersion < ActiveRecord::Base
 				applies_to_names << {text: original_pattern, domain: false, tld_extra: false}
 			end
 		end
+		# If there's a tld_extra and a not-tld_extra for the same text, remove the tld_extra
+		applies_to_names.delete_if{|h1| h1[:tld_extra] && applies_to_names.any?{|h2| !h2[:tld_extra] && h1[:text] == h2[:text]}}
+		# Then make sure we're unique
 		return applies_to_names.uniq
 	end
 

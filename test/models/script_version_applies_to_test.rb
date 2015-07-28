@@ -119,4 +119,8 @@ class ScriptVersionAppliesToTest < ActiveSupport::TestCase
 		assert_equal [{text: 'example.com', domain: true, tld_extra: false}, {text: 'example.net', domain: true, tld_extra: true}, {text: 'example.org', domain: true, tld_extra: true}, {text: 'example.de', domain: true, tld_extra: true}, {text: 'example.co.uk', domain: true, tld_extra: true}], get_applies_to(['http://www.example.tld/*'])
 	end
 
+	test 'tld plus not tld' do
+		assert_equal [{text: 'example.com', domain: true, tld_extra: false}, {text: 'example.net', domain: true, tld_extra: true}, {text: 'example.de', domain: true, tld_extra: true}, {text: 'example.co.uk', domain: true, tld_extra: true}, {text: 'example.org', domain: true, tld_extra: false}], get_applies_to(['http://example.tld/*',  'http://example.org/*'])
+	end
+
 end
