@@ -241,7 +241,7 @@
 					<% current_locale = nil
 					current_locale = Locale.where(:code => params[:locale]).first if !params[:locale].nil?
 					current_locale = Locale.where(:code => 'en').first if current_locale.nil? %>
-					<%=select_tag('add-automatic-script-set-value-4', options_from_collection_for_select(Locale.with_listable_scripts, "id", "display_text", current_locale.id), {:id => 'add-automatic-script-set-value-4', :multiple => true})%> <button name="add-automatic-script-set-4" value="i">Include</button> <button name="add-automatic-script-set-4" value="e">Exclude</button>
+					<%=select_tag('add-automatic-script-set-value-4', options_from_collection_for_select(Locale.with_listable_scripts(script_subset), "id", "display_text", current_locale.id), {:id => 'add-automatic-script-set-value-4', :multiple => true})%> <button name="add-automatic-script-set-4" value="i">Include</button> <button name="add-automatic-script-set-4" value="e">Exclude</button>
 				</div>
 			</div>
 			<% @set.child_automatic_set_inclusions.each do |set| %>
@@ -254,12 +254,12 @@
 
 		<div>
 			<h3>Calculated script list</h3>
-			<% script_count = @set.scripts.count
+			<% script_count = @set.scripts(script_subset).count
 			if script_count == 0 %>
 				(None)
 			<% else %>
 				<ul>
-					<% @set.scripts.take(100).each do |script| %>
+					<% @set.scripts(script_subset).take(100).each do |script| %>
 						<li><%=link_to script.name(I18n.locale), script%></li>
 					<% end
 					if script_count > 100 %>

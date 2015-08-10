@@ -22,8 +22,8 @@ class ScriptsController < ApplicationController
 	#########################
 
 	def index
-		@scripts = Script.listable.includes({:user => {}, :script_type => {}, :localized_attributes => :locale, :script_delete_type => {}}).paginate(:page => params[:page], :per_page => get_per_page)
-		@scripts = self.class.apply_filters(@scripts, params)
+		@scripts = Script.listable(script_subset).includes({:user => {}, :script_type => {}, :localized_attributes => :locale, :script_delete_type => {}}).paginate(:page => params[:page], :per_page => get_per_page)
+		@scripts = self.class.apply_filters(@scripts, params, script_subset)
 
 		respond_to do |format|
 			format.html {
@@ -74,11 +74,20 @@ class ScriptsController < ApplicationController
 			return
 		end
 
+		with = case script_subset
+			when :greasyfork
+				{sensitive: false}
+			when :sleazyfork
+				{sensitive: true}
+			else
+				{}
+		end
+
 		begin
 			# :ranker => "expr('top(user_weight)')" means that it will be sorted on the top ranking match rather than
 			# an aggregate of all matches. In other words, something matching on "name" will be tied with everything
 			# else matching on "name".
-			@scripts = Script.search params[:q], :match_mode => :extended, :page => params[:page], :per_page => get_per_page, :order => self.class.get_sort(params, true), :populate => true, :includes => [:script_type, :localized_attributes => :locale], :select => '*, weight() myweight', :ranker => "expr('top(user_weight)')"
+			@scripts = Script.search params[:q], match_mode: :extended, with: with, page: params[:page], per_page: get_per_page, order: self.class.get_sort(params, true), populate: true, includes: [:script_type, localized_attributes: :locale], select: '*, weight() myweight', ranker: "expr('top(user_weight)')"
 			# make it run now so we can catch syntax errors
 			@scripts.empty?
 		rescue ThinkingSphinx::SyntaxError => e
@@ -95,7 +104,7 @@ class ScriptsController < ApplicationController
 	end
 
 	def libraries
-		@scripts = Script.libraries
+		@scripts = Script.libraries(script_subset)
 	end
 
 	def under_assessment
@@ -124,7 +133,7 @@ class ScriptsController < ApplicationController
 		@title = t('scripts.redistributable_title')
 		@page_description = t('scripts.redistributable_page_description')
 		@bots = 'noindex,follow'
-		render_script_list(Script.redistributable)
+		render_script_list(Script.redistributable(script_subset))
 	end
 
 	def code_search
@@ -555,7 +564,7 @@ class ScriptsController < ApplicationController
 		return if redirect_to_slug(@script, :script_id)
 
 		similar_names = {}
-		Script.listable.includes(:localized_names).where(['user_id != ?', @script.user_id]).each do |other_script|
+		Script.listable(script_subset).includes(:localized_names).where(['user_id != ?', @script.user_id]).each do |other_script|
 			other_script.localized_names.each do |ln|
 				dist = Levenshtein.normalized_distance(@script.name, ln.attribute_value)
 				similar_names[other_script.id] = dist if similar_names[other_script.id].nil? or dist < similar_names[other_script.id]
@@ -565,7 +574,7 @@ class ScriptsController < ApplicationController
 		@similar_name_scripts = similar_names.map{|a| Script.includes([:user, :license]).find(a[0])}
 
 		@same_namespaces = []
-		@same_namespaces = Script.listable.where(['user_id != ?', @script.user_id]).where(:namespace => @script.namespace).includes([:user, :license]) if !@script.namespace.nil?
+		@same_namespaces = Script.listable(script_subset).where(['user_id != ?', @script.user_id]).where(:namespace => @script.namespace).includes([:user, :license]) if !@script.namespace.nil?
 
 		# only duplications containing listable scripts by others
 		@code_duplications = @script.cpd_duplications.includes(:cpd_duplication_scripts => {:script => :user}).select {|dup| dup.cpd_duplication_scripts.any?{|cpdds| cpdds.script.user_id != @script.user_id && cpdds.script.listable?}}.uniq
@@ -579,7 +588,7 @@ class ScriptsController < ApplicationController
 		end
 	end
 
-	def self.apply_filters(scripts, params)
+	def self.apply_filters(scripts, params, script_subset)
 		if !params[:site].nil?
 			if params[:site] == '*'
 				scripts = scripts.for_all_sites
@@ -589,8 +598,8 @@ class ScriptsController < ApplicationController
 		end
 		if !params[:set].nil?
 			set = ScriptSet.find(params[:set])
-			set_script_ids = cache_with_log(set) do
-				set.scripts.map{|s| s.id}
+			set_script_ids = cache_with_log([set, script_subset]) do
+				set.scripts(script_subset).map{|s| s.id}
 			end
 			scripts = scripts.where(:id => set_script_ids)
 		end
@@ -713,7 +722,7 @@ private
 		@scripts = scripts
 		if !(options && options[:skip_filters])
 			@scripts = @scripts.paginate(page: params[:page], per_page: get_per_page)
-			@scripts = self.class.apply_filters(@scripts, params)
+			@scripts = self.class.apply_filters(@scripts, params, script_subset)
 		end
 
 		respond_to do |format|

@@ -68,6 +68,11 @@
 	</div>
 
 	<div>
+		<%= f.label :show_sensitive %><br>
+		<%= f.check_box(:show_sensitive)%><label for="user_show_sensitive"><%=t('users.show_sensitive_description')%></label>
+	</div>
+
+	<div>
 		<%= f.label :flattr_username %>
 		<span class="label-note"><%=t('users.flattr_username_description_html')%></span>
 		<br>

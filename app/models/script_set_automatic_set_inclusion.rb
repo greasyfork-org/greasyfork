@@ -20,11 +20,11 @@ class ScriptSetAutomaticSetInclusion < ActiveRecord::Base
 		return ScriptSetAutomaticSetInclusion.new({:script_set_automatic_type_id => parts[0], :value => parts[1], :exclusion => exclusion})
 	end
 
-	def scripts
-		return Script.listable if script_set_automatic_type.id == 1
-		return Script.listable.joins(:script_applies_tos).where(['text = ?', value]) if script_set_automatic_type.id == 2 and !value.nil? and !value.empty?
-		return Script.listable.for_all_sites if script_set_automatic_type.id == 2
-		return Script.listable.where(:user_id => value) if script_set_automatic_type.id == 3
-		return Script.listable.includes(:localized_names).where('localized_script_attributes.locale_id' => value) if script_set_automatic_type.id == 4
+	def scripts(script_subset)
+		return Script.listable(script_subset) if script_set_automatic_type.id == 1
+		return Script.listable(script_subset).joins(:script_applies_tos).where(['text = ?', value]) if script_set_automatic_type.id == 2 and !value.nil? and !value.empty?
+		return Script.listable(script_subset).for_all_sites if script_set_automatic_type.id == 2
+		return Script.listable(script_subset).where(:user_id => value) if script_set_automatic_type.id == 3
+		return Script.listable(script_subset).includes(:localized_names).where('localized_script_attributes.locale_id' => value) if script_set_automatic_type.id == 4
 	end
 end

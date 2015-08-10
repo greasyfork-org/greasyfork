@@ -389,6 +389,16 @@ en:
     redistributable_title: "Redistributable user scripts"
     # text on redistributable scripts page explaining what it is
     redistributable_page_description: "The authors of these scripts have explicitly indicated they approve of them being posted elsewhere. These scripts may still be subject to additional terms regarding redistribution; check each script's license for details."
+    # heading for section relating to adult content when posting new script or script version
+    adult_content: "Adult content"
+    # label for checkbox letting authors report their script as containing adult content
+    adult_content_self_report: "This script contains adult content or is for a site that contains adult content."
+    # text describing how adult content is handled on Greasy Fork, shown when posting a new version of a script not flagged as having adult content
+    adult_content_self_report_explanation: "Greasy Fork allows scripts with adult content, but they must be marked as such so that users can choose whether they see it."
+    # label for checkbox letting authors report their script as not containing adult content
+    not_adult_content_self_report_html: "This script does <strong>not</strong> contain adult content and is <strong>not</strong> for a site that contains adult content."
+    # text describing how adult content is handled on Greasy Fork, shown when posting a new version of a script flagged as having adult content
+    not_adult_content_self_report_explanation: "Greasy Fork allows scripts with adult content, but they must be marked as such so that users can choose whether they see it. Your script has been marked as having adult content. You can report that it doesn't; this will be reviewed by a moderator."
   script_sets:
     # name for the favorites set
     favorites_name: "Favorites"
@@ -555,6 +565,8 @@ en:
     locale_prompt: "(Choose a locale)"
     # text describing what the show ads checkbox does
     show_ads_description: "Support Greasy Fork by allowing it to show you ads"
+    # text describing what the show sensitive checkbox does
+    show_sensitive_description: "Show scripts with adult content"
     # text describing what the preferred markup setting does
     preferred_markup_description: "Will be used for new scripts and posts."
     # text describing what the flattr username setting does
@@ -667,6 +679,8 @@ en:
         author_email_notification_type_id: "Script discussion notifications"
         # user field: show ads
         show_ads: "Show ads"
+        # user field: show sensitive
+        show_sensitive: "Adult content"
         # user field: preferred markup (html or markdown)
         preferred_markup: "Preferred markup"
         # user field: user name on Flattr

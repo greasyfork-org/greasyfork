@@ -54,6 +54,12 @@ class ScriptVersionsController < ApplicationController
 		@script.locale_id = params['script']['locale_id']
 		# a bit of weirdness because one of the radio buttons maps to nil
 		@script.approve_redistribution = params['script']['approve_redistribution'] == 'on' ? nil : params['script']['approve_redistribution']
+		@script.adult_content_self_report = params['script']['adult_content_self_report']
+		if params['script']['not_adult_content_self_report'] == '1'
+			@script.not_adult_content_self_report_date = Time.now
+		else
+			@script.not_adult_content_self_report_date = nil
+		end
 
 		save_record = params[:preview].nil? && params['add-additional-info'].nil?
 

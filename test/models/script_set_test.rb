@@ -6,7 +6,7 @@ class ScriptSetTest < ActiveSupport::TestCase
 		set = ScriptSet.new
 		script = Script.new
 		set.add_child(script)
-		assert_equal [script], set.scripts.to_a
+		assert_equal [script], set.scripts(:all).to_a
 	end
 
 	test 'nested include' do
@@ -15,7 +15,7 @@ class ScriptSetTest < ActiveSupport::TestCase
 		script = Script.new
 		set1.add_child(set2)
 		set2.add_child(script)
-		assert_equal [script], set1.scripts.to_a
+		assert_equal [script], set1.scripts(:all).to_a
 	end
 
 	test 'same script included twice' do
@@ -25,7 +25,7 @@ class ScriptSetTest < ActiveSupport::TestCase
 		set1.add_child(set2)
 		set1.add_child(script)
 		set2.add_child(script)
-		assert_equal [script], set1.scripts.to_a
+		assert_equal [script], set1.scripts(:all).to_a
 	end
 
 	test 'excluded script' do
@@ -37,7 +37,7 @@ class ScriptSetTest < ActiveSupport::TestCase
 		set1.add_child(script1, true)
 		set2.add_child(script1)
 		set2.add_child(script2)
-		assert_equal [script2], set1.scripts.to_a
+		assert_equal [script2], set1.scripts(:all).to_a
 	end
 
 	test 'excluded group' do
@@ -53,7 +53,7 @@ class ScriptSetTest < ActiveSupport::TestCase
 		set2.add_child(script2)
 		set3.add_child(script2)
 		set3.add_child(script3)
-		assert_equal [script1], set1.scripts.to_a
+		assert_equal [script1], set1.scripts(:all).to_a
 	end
 
 	test 'recursive' do
@@ -63,7 +63,7 @@ class ScriptSetTest < ActiveSupport::TestCase
 		set1.add_child(set2)
 		set1.add_child(script)
 		set2.add_child(set1)
-		assert_equal [script], set1.scripts.to_a
+		assert_equal [script], set1.scripts(:all).to_a
 	end
 
 end

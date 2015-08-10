@@ -18,8 +18,8 @@
 							sets_direct_exclusion << set
 							next
 						end
-						set_script_ids = cache_with_log(set) do
-							set.scripts.map{|s| s.id}
+						set_script_ids = cache_with_log([set, script_subset]) do
+							set.scripts(script_subset).map{|s| s.id}
 						end
 						if set_script_ids.include?(script.id)
 							sets_indirect_inclusion << set

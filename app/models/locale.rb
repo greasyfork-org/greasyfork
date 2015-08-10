@@ -3,7 +3,7 @@ class Locale < ActiveRecord::Base
 	has_many :scripts
 	has_many :locale_contributors
 
-	scope :with_listable_scripts, -> {joins(:scripts).where(Script.listable.where_values).uniq.order(:code)}
+	scope :with_listable_scripts, ->(script_subset) {joins(:scripts).where(Script.listable(script_subset).where_values).uniq.order(:code)}
 
 	def display_text
 		"#{native_name.nil? ? english_name : native_name} (#{code})"

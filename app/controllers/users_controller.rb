@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 	HMAC_DIGEST = OpenSSL::Digest.new('sha1')
 
 	def index
-		@users = User.includes(:listable_scripts).references(:scripts).group('users.id').order(self.class.get_sort(params)).paginate(:page => params[:page], :per_page => get_per_page)
+		@users = User.includes("#{script_subset}_listable_scripts".to_sym).references(:scripts).group('users.id').order(self.class.get_sort(params)).paginate(page: params[:page], per_page: get_per_page)
 	end
 
 	def show
@@ -30,9 +30,9 @@ class UsersController < ApplicationController
 			format.html {
 				@by_sites = ScriptsController.get_top_by_sites
 
-				@scripts = ((!current_user.nil? && current_user.id == @user.id) or (!current_user.nil? and current_user.moderator?)) ? @user.scripts : @user.scripts.listable
+				@scripts = ((!current_user.nil? && current_user.id == @user.id) or (!current_user.nil? and current_user.moderator?)) ? @user.scripts : @user.scripts.listable(script_subset)
 				@user_has_scripts = !@scripts.empty?
-				@scripts = ScriptsController.apply_filters(@scripts, params)
+				@scripts = ScriptsController.apply_filters(@scripts, params, script_subset)
 
 				@bots = 'noindex,follow' if !params[:sort].nil?
 

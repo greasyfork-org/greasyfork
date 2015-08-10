@@ -13,7 +13,8 @@ class ScriptSet < ActiveRecord::Base
 
 	strip_attributes
 
-	def scripts(parents = [])
+	# Parents is used to prevent infinite recursion.
+	def scripts(script_subset, parents = [])
 		r = Set.new
 
 		# favorites can only directly include scripts
@@ -27,11 +28,11 @@ class ScriptSet < ActiveRecord::Base
 		parents = parents.dup
 		parents << self
 
-		child_set_inclusions.map{|set| set.scripts(parents)}.each{|s| r.merge(s)}
-		child_automatic_set_inclusions.map{|set| set.scripts}.each{|s| r.merge(s)}
+		child_set_inclusions.map{|set| set.scripts(script_subset, parents)}.each{|s| r.merge(s)}
+		child_automatic_set_inclusions.map{|set| set.scripts(script_subset)}.each{|s| r.merge(s)}
 		r.merge(child_script_inclusions)
-		child_set_exclusions.map{|set| set.scripts(parents)}.each{|s| r.subtract(s)}
-		child_automatic_set_exclusions.map{|set| set.scripts}.each{|s| r.subtract(s)}
+		child_set_exclusions.map{|set| set.scripts(script_subset, parents)}.each{|s| r.subtract(s)}
+		child_automatic_set_exclusions.map{|set| set.scripts(script_subset)}.each{|s| r.subtract(s)}
 		r.subtract(child_script_exclusions)
 
 		return r

@@ -30,14 +30,28 @@ class Script < ActiveRecord::Base
 	belongs_to :locale
 	belongs_to :replaced_by_script, :class_name => 'Script'
 
+	attr_accessor :adult_content_self_report, :not_adult_content_self_report
+
 	scope :not_deleted, -> {where('script_delete_type_id is null')}
-	scope :active, -> {not_deleted.where(:uses_disallowed_external => false)}
-	scope :listable, -> {active.where(:script_type_id => 1)}
-	scope :libraries, -> {active.where(:script_type_id => 3)}
+	scope :active, ->(script_subset) {
+		f = not_deleted.where(:uses_disallowed_external => false)
+		case script_subset
+			when :greasyfork
+				f = f.where(sensitive: false)
+			when :sleazyfork
+				f = f.where(sensitive: true)
+			when :all
+			else
+				raise ArgumentError.new("Invalid argument #{script_subset}")
+		end
+		f
+	}
+	scope :listable, ->(script_subset) {active(script_subset).where(:script_type_id => 1)}
+	scope :libraries, ->(script_subset) {active(script_subset).where(:script_type_id => 3)}
 	scope :under_assessment, -> {not_deleted.where(:uses_disallowed_external => true).includes(:assessments).includes(:user).uniq}
 	scope :reported, -> {not_deleted.joins(:discussions).includes(:user).uniq.where('GDN_Discussion.Rating = 1').where('Closed = 0')}
 	scope :for_all_sites, -> {includes(:script_applies_tos).references(:script_applies_tos).where('script_applies_tos.id IS NULL')}
-	scope :redistributable, -> {listable.includes(:user).references([:scripts, :users]).where('scripts.approve_redistribution OR (scripts.approve_redistribution IS NULL AND users.approve_redistribution)')}
+	scope :redistributable, ->(script_subset) {listable(script_subset).includes(:user).references([:scripts, :users]).where('scripts.approve_redistribution OR (scripts.approve_redistribution IS NULL AND users.approve_redistribution)')}
 
 	# Must have a default name and description
 	validates_presence_of :name, :message => :script_missing_name, :unless => Proc.new {|s| s.library?}
@@ -98,11 +112,19 @@ class Script < ActiveRecord::Base
 		return if !locale.nil?
 		self.locale = detect_locale 
 		localized_attributes.select{|la| la.locale.nil?}.each{|la| la.locale = self.locale}
+		true
 	end
 
 	before_validation :set_default_name
 	def set_default_name
 		self.default_name = default_localized_value_for('name')
+		true
+	end
+
+	before_validation :set_sensitive_flag
+	def set_sensitive_flag
+		self.sensitive ||= self.adult_content_self_report || SensitiveSite.where(domain: script_applies_tos.select(&:domain).map(&:text)).any?
+		true
 	end
 
 	after_save :update_syntax_highlighted_code
@@ -410,5 +432,9 @@ private
 		}
 		# Anything left in the search array, mark for destruction
 		existing_children.each(&:mark_for_destruction)
+	end
+
+	def self.subsets
+		[:greasyfork, :sleazyfork, :all]
 	end
 end

@@ -118,6 +118,21 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
 		<%= radio_button('script', :approve_redistribution, true)%> <label for="script_approve_redistribution_true" class="radio-label"><%=t('scripts.approve_redistribution_true')%></label><br>
 		<%= radio_button('script', :approve_redistribution, false)%> <label for="script_approve_redistribution_false" class="radio-label"><%=t('scripts.approve_redistribution_false')%></label>
 	</div>
+	<% if !script_version.script.sensitive || script_version.script.adult_content_self_report %>
+		<div class="form-control radio-group">
+			<label><%=t('scripts.adult_content')%></label><br>
+			<%=t('scripts.adult_content_self_report_explanation')%><br>
+			<%= check_box('script', :adult_content_self_report) %>
+			<label for="script_adult_content_self_report" class="radio-label"><%=t('scripts.adult_content_self_report')%></label>
+		</div>
+	<% else %>
+		<div class="form-control radio-group">
+			<label><%=t('scripts.adult_content')%></label><br>
+			<%=t('scripts.not_adult_content_self_report_explanation')%><br>
+			<%= check_box('script', :not_adult_content_self_report, checked: @script.not_adult_content_self_report_date.present?) %>
+			<label for="script_not_adult_content_self_report_date" class="radio-label"><%=t('scripts.not_adult_content_self_report_html')%></label>
+		</div>
+	<% end %>
 	<div class="form-control radio-group">
 		<label><%=t('activerecord.attributes.script.locale')%></label> <span class="label-note"><%=t('scripts.locale_explanation_html')%></span><br>
 		<select name="script[locale_id]">
