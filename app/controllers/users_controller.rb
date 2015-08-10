@@ -42,8 +42,8 @@ class UsersController < ApplicationController
 				]
 				@canonical_params = [:id, :page, :per_page, :set, :site, :sort]
 			}
-			format.json { render :json => @user.as_json(:include => :listable_scripts) }
-			format.jsonp { render :json => @user.as_json(:include => :listable_scripts), :callback => clean_json_callback_param }
+			format.json { render :json => @user.as_json(include: :all_listable_scripts) }
+			format.jsonp { render :json => @user.as_json(include: :all_listable_scripts), :callback => clean_json_callback_param }
 		end
 	end
 
