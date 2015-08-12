@@ -89,6 +89,10 @@ class ScriptVersionAppliesToTest < ActiveSupport::TestCase
 		assert_equal [{text: 'example.com', domain: true, tld_extra: false}], get_applies_to(['http*.example.com'])
 	end
 
+	test 'wildcard subdomain without slashes' do
+		assert_equal [{text: 'example.com', domain: true, tld_extra: false}], get_applies_to(['http:*example.com'])
+	end
+
 	test '.tld' do
 		names = get_applies_to(['http://example.tld'])
 		assert names.include?({text: 'example.com', domain: true, tld_extra: false}), names.inspect

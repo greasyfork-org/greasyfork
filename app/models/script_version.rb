@@ -382,7 +382,7 @@ class ScriptVersion < ActiveRecord::Base
 		applies_to_names = []
 		patterns.each do |p|
 			original_pattern = p
-			
+
 			# senseless wildcard before protocol
 			m = p.match(/^\*(https?:.*)/i)
 			p = m[1] if !m.nil?
@@ -391,6 +391,9 @@ class ScriptVersion < ActiveRecord::Base
 			p = p.sub(/^\*:/i, 'http:')
 			p = p.sub(/^\*\/\//i, 'http://')
 			p = p.sub(/^http\*:/i, 'http:')
+
+			# skipping the protocol slashes
+			p = p.sub(/^(https?):([^\/])/i, '\1://\2')
 
 			# subdomain wild-cards - http://*.example.com and http://*example.com
 			m = p.match(/^([a-z]+:\/\/)\*\.?([a-z0-9\-]+(?:.[a-z0-9\-]+)+.*)/i)
