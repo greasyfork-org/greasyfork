@@ -30,7 +30,7 @@ class ScriptsController < ApplicationController
 				if !params[:set].nil?
 					@set = ScriptSet.find(params[:set])
 				end
-				@by_sites = self.class.get_top_by_sites
+				@by_sites = self.class.get_top_by_sites(script_subset)
 
 				@bots = 'noindex,follow' if !params[:sort].nil?
 				@link_alternates = get_listing_link_alternatives
@@ -65,7 +65,7 @@ class ScriptsController < ApplicationController
 	end
 
 	def by_site
-		@by_sites = self.class.get_by_sites
+		@by_sites = self.class.get_by_sites(script_subset)
 	end
 
 	def search
@@ -169,7 +169,7 @@ class ScriptsController < ApplicationController
 				elsif @script.unlisted?
 					@bots = 'noindex,follow'
 				end
-				@by_sites = self.class.get_by_sites
+				@by_sites = self.class.get_by_sites(script_subset)
 				@link_alternates = [
 					{:url => url_for(params.merge({:only_path => true, :format => :json})), :type => 'application/json'},
 					{:url => url_for(params.merge({:only_path => true, :format => :jsonp, :callback => 'callback'})), :type => 'application/javascript'}
@@ -582,9 +582,9 @@ class ScriptsController < ApplicationController
 		@canonical_params = [:script_id]
 	end
 
-	def self.get_top_by_sites
-		return cache_with_log("scripts/get_top_by_sites") do
-			get_by_sites.sort{|a,b| b[1][:installs] <=> a[1][:installs]}.first(10)
+	def self.get_top_by_sites(script_subset)
+		return cache_with_log("scripts/get_top_by_sites/#{script_subset}") do
+			get_by_sites(script_subset).sort{|a,b| b[1][:installs] <=> a[1][:installs]}.first(10)
 		end
 	end
 
@@ -640,8 +640,16 @@ private
 	end
 
 	# Returns a hash, key: site name, value: hash with keys installs, scripts
-	def self.get_by_sites(cache_options = {})
-		return cache_with_log("scripts/get_by_sites", cache_options) do
+	def self.get_by_sites(script_subset, cache_options = {})
+		return cache_with_log("scripts/get_by_sites#{script_subset}", cache_options) do
+			subset_clause = case script_subset
+				when :greasyfork
+					"AND `sensitive` = false"
+				when :sleazyfork
+					"AND `sensitive` = true"
+				else
+					""
+			end
 			sql =<<-EOF
 				SELECT
 					text, SUM(daily_installs) install_count, COUNT(s.id) script_count
@@ -653,6 +661,7 @@ private
 					AND script_delete_type_id IS NULL
 					AND !uses_disallowed_external
 					AND !tld_extra
+					#{subset_clause}
 				GROUP BY text
 				ORDER BY text
 			EOF

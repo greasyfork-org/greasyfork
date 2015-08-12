@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
 		respond_to do |format|
 			format.html {
-				@by_sites = ScriptsController.get_top_by_sites
+				@by_sites = ScriptsController.get_top_by_sites(script_subset)
 
 				@scripts = ((!current_user.nil? && current_user.id == @user.id) or (!current_user.nil? and current_user.moderator?)) ? @user.scripts : @user.scripts.listable(script_subset)
 				@user_has_scripts = !@scripts.empty?
