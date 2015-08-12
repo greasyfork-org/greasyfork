@@ -199,6 +199,11 @@ ja:
     approve_redistribution_false: "スクリプトを他の場所に転載されたくない"
     redistributable_title: "再配布可能なユーザースクリプト"
     redistributable_page_description: "これらは、他の場所への投稿を作者が明示的に許可したスクリプトです。スクリプトの再配布について追加の条件が課されている場合があるので、詳細は各スクリプトのライセンスを確認してください。"
+    adult_content: "アダルトコンテンツ"
+    adult_content_self_report: "このスクリプトはアダルトコンテンツを含んでいます。または、アダルトコンテンツを含むサイト向けのスクリプトです。"
+    adult_content_self_report_explanation: "Greasy Fork はアダルトコンテンツに関するスクリプトを許容しますが、該当するスクリプトにはその旨をマークしなければなりません。これは、ユーザーがそのようなスクリプトを表示するかどうか選択できるようにするためです。"
+    not_adult_content_self_report_html: "このスクリプトはアダルトコンテンツを<strong>含んでいません</strong>。なおかつ、アダルトコンテンツを含むサイト向けのスクリプト<strong>でもありません</strong>。"
+    not_adult_content_self_report_explanation: "Greasy Fork はアダルトコンテンツに関するスクリプトを許容しますが、該当するスクリプトにはその旨をマークしなければなりません。これは、ユーザーがそのようなスクリプトを表示するかどうか選択できるようにするためです。このスクリプトはアダルトコンテンツを含むスクリプトとしてマークされています。あなたはアダルトコンテンツがスクリプトに含まれていないことを報告することができ、この報告はモデレーターによって審査されます。"
   script_sets:
     favorites_name: "お気に入り"
     delete: "Script Set を削除"
@@ -285,6 +290,7 @@ ja:
     listing_registration_date: "登録日"
     locale_prompt: "(ロケールを選んでください)"
     show_ads_description: "広告の表示を許可して Greasy Fork を支援する"
+    show_sensitive_description: "アダルトコンテンツに関するスクリプトを表示する"
     preferred_markup_description: "新しいスクリプトの投稿時、およびフィードバックなどの書き込み時に反映されます。"
     flattr_username_description_html: "<a href=\"https://flattr.com\">Flattr</a> のアカウント宛てに、スクリプトの利用者から寄付を募ります。"
     approve_redistribution_explanation: "Greasy Fork では、他のサイトへスクリプトを転載しても良いか示すことができます。スクリプトのライセンスによって、すでにこれを許可、あるいは不許可としているかもしれません。この設定は、それぞれのスクリプトごとに上書きすることもできます。"
@@ -347,6 +353,7 @@ ja:
         locale: "ロケールの初期設定"
         author_email_notification_type_id: "フィードバックの通知"
         show_ads: "広告の表示"
+        show_sensitive: "アダルトコンテンツ"
         preferred_markup: "マークアップの初期設定"
         flattr_username: "Flattr Username"
       script:
