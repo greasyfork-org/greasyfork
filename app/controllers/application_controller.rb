@@ -225,13 +225,13 @@ protected
 				if current_user.nil?
 					top, preferred = ApplicationController.detect_locale(current_user, request.headers['Accept-Language'])
 					if top.code != params[:locale]
-						flash.now[:notice] = "<b>#{view_context.link_to(t('common.suggest_locale', :locale => top.code, :locale_name => (top.native_name || top.english_name)), {:locale => top.code})}</b>".html_safe
+						flash.now[:notice] = "<b>#{view_context.link_to(t('common.suggest_locale', locale: top.code, locale_name: (top.native_name || top.english_name), site_name: site_name), {:locale => top.code})}</b>".html_safe
 					end
 				end
 				if flash.now[:notice].nil?
 					locale = Locale.where(:code => params[:locale]).first
 					if !locale.nil? && locale.percent_complete <= 95
-						flash.now[:notice] = "<b><a href=\"#{Rails.configuration.help_translate_url}\" target=\"_new\">#{t('common.incomplete_locale', :locale_name => (locale.native_name || locale.english_name), :percent => view_context.number_to_percentage(locale.percent_complete, precision: 0))}</a></b>".html_safe
+						flash.now[:notice] = "<b><a href=\"#{Rails.configuration.help_translate_url}\" target=\"_new\">#{t('common.incomplete_locale', locale_name: (locale.native_name || locale.english_name), percent: view_context.number_to_percentage(locale.percent_complete, precision: 0), site_name: site_name)}</a></b>".html_safe
 					end
 				end
 			end
