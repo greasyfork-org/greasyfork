@@ -17,10 +17,10 @@
 	<dd><%=t('help.meta_keys.description_localized_html')%></dd>
 
 	<dt><%=self_link('meta-namespace', '<code>@namespace</code>')%></dt>
-	<dd><%=t('help.meta_keys.namespace_html')%></dd>
+	<dd><%=t('help.meta_keys.namespace_html', site_name: site_name)%></dd>
 
 	<dt><%=self_link('meta-version', '<code>@version</code>')%></dt>
-	<dd><%=t('help.meta_keys.version_html')%></dd>
+	<dd><%=t('help.meta_keys.version_html', site_name: site_name)%></dd>
 
 	<dt><%=self_link('meta-include', '<code>@include</code>, <code>@exclude</code>, <code>@match</code>')%></dt>
 	<dd><%=t('help.meta_keys.include')%></dd>
@@ -29,7 +29,7 @@
 	<dd><%=t('help.meta_keys.require_html', external_script_link: link_to(t('help.meta_keys.require_external_script_link_text'), help_external_scripts_path))%></dd>
 
 	<dt><%=self_link('meta-updateURL', '<code>@updateURL</code>, <code>@installURL</code>, <code>@downloadURL</code>')%></dt>
-	<dd><%=t('help.meta_keys.updateURL')%></dd>
+	<dd><%=t('help.meta_keys.updateURL', site_name: site_name)%></dd>
 
 	<dt><%=self_link('meta-license', '<code>@license</code>')%></dt>
 	<dd><%=t('help.meta_keys.license')%></dd>
