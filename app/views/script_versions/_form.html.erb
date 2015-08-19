@@ -56,8 +56,9 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
 						case w
 							when :uses_disallowed_requires %>
 								<%=t('scripts.warning_uses_disallowed_requires_html', {
-									:requires_used => script_version.disallowed_requires_used.join(', '),
-									:external_script_rules_link => link_to(t('scripts.warning_uses_disallowed_requires_rules_link'), help_external_scripts_path(), {:target => 'code_rules'})
+									requires_used: script_version.disallowed_requires_used.join(', '),
+									external_script_rules_link: link_to(t('scripts.warning_uses_disallowed_requires_rules_link', site_name: site_name), help_external_scripts_path(), {:target => 'code_rules'}),
+									site_name: site_name
 								})%><br>
 								<label for="script_version_accepted_assessment"><%=t('scripts.override_warning_checkbox_label')%></label> <%=s.check_box(:accepted_assessment, {}, true, false)%>
 							<% when :version_not_incremented %>
@@ -108,12 +109,12 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
 	<div class="form-control radio-group">
 		<label><%=t('activerecord.attributes.script.type')%></label><br>
 		<% ScriptType.all.each do |st| %>
-			<%=radio_button('script', 'script_type_id', st.id)%> <label class="radio-label" for="script_script_type_id_<%=st.id%>"><%=t("scripts.type_#{st.id}_html")%></label><br>
+			<%=radio_button('script', 'script_type_id', st.id)%> <label class="radio-label" for="script_script_type_id_<%=st.id%>"><%=t("scripts.type_#{st.id}_html", site_name: site_name)%></label><br>
 		<% end %>
 	</div>
 	<div class="form-control radio-group">
 		<label><%=t('activerecord.attributes.script.approve_redistribution')%></label><br>
-		<%=t('scripts.approve_redistribution_explanation')%><br>
+		<%=t('scripts.approve_redistribution_explanation', site_name: site_name)%><br>
 		<%= radio_button('script', :approve_redistribution, nil)%> <label for="script_approve_redistribution" class="radio-label"><%=t('scripts.approve_redistribution_use_user_setting', user_setting: script_version.script.user.approve_redistribution.nil? ? t('scripts.approve_redistribution_use_user_setting_not_set') : t("users.approve_redistribution_#{script_version.script.user.approve_redistribution}"))%></label><br>
 		<%= radio_button('script', :approve_redistribution, true)%> <label for="script_approve_redistribution_true" class="radio-label"><%=t('scripts.approve_redistribution_true')%></label><br>
 		<%= radio_button('script', :approve_redistribution, false)%> <label for="script_approve_redistribution_false" class="radio-label"><%=t('scripts.approve_redistribution_false')%></label>
@@ -121,14 +122,14 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
 	<% if !script_version.script.sensitive || script_version.script.adult_content_self_report %>
 		<div class="form-control radio-group">
 			<label><%=t('scripts.adult_content')%></label><br>
-			<%=t('scripts.adult_content_self_report_explanation')%><br>
+			<%=t('scripts.adult_content_self_report_explanation', site_name: site_name)%><br>
 			<%= check_box('script', :adult_content_self_report) %>
 			<label for="script_adult_content_self_report" class="radio-label"><%=t('scripts.adult_content_self_report')%></label>
 		</div>
 	<% else %>
 		<div class="form-control radio-group">
 			<label><%=t('scripts.adult_content')%></label><br>
-			<%=t('scripts.not_adult_content_self_report_explanation')%><br>
+			<%=t('scripts.not_adult_content_self_report_explanation', site_name: site_name)%><br>
 			<%= check_box('script', :not_adult_content_self_report, checked: @script.not_adult_content_self_report_date.present?) %>
 			<label for="script_not_adult_content_self_report_date" class="radio-label"><%=t('scripts.not_adult_content_self_report_html')%></label>
 		</div>

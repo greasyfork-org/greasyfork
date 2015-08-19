@@ -279,6 +279,7 @@ protected
 	before_filter :choose_ad_method
 	RANDOM_OPTIONS = ['pw']
 	def choose_ad_method
+		return if sleazy?
 		@ad_method = RANDOM_OPTIONS.include?(params[:ad]) ? params[:ad] : nil
 		return if !@ad_method.nil?
 		return if !current_user.nil? && !current_user.show_ads
@@ -344,12 +345,16 @@ protected
 		['sleazyfork.org', 'sleazyfork.local'].include?(request.domain)
 	end
 
+	def site_name
+		sleazy? ? 'Sleazy Fork' : 'Greasy Fork'
+	end
+
 	def script_subset
 		return :sleazyfork if sleazy?
 		return :all if !user_signed_in?
 		return current_user.show_sensitive ? :all : :greasyfork
 	end
 
-	helper_method :cache_with_log, :sleazy?, :script_subset
+	helper_method :cache_with_log, :sleazy?, :script_subset, :site_name
 
 end

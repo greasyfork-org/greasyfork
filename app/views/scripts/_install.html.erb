@@ -74,8 +74,8 @@
 <% elsif script.deleted? %>
 	<p><%=t('scripts.deleted_notice')%>	<% if !script.delete_reason.nil? %><%=script.delete_reason%><%end%></p>
 <% elsif !params[:version].nil? %>
-	<p id="under-review-notice"><%=t('scripts.inactive_pending_changes_for_previous_version')%></p>
+	<p id="under-review-notice"><%=t('scripts.inactive_pending_changes_for_previous_version', site_name: site_name)%></p>
 <% else %>
-	<p id="under-review-notice"><%=t('scripts.inactive_pending_changes')%></p>
+	<p id="under-review-notice"><%=t('scripts.inactive_pending_changes', site_name: site_name)%></p>
 <% end %>
 

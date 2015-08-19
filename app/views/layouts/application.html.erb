@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title><%= content_for?(:title) ? content_for(:title) : "Greasy Fork" %></title>
+	<title><%= content_for?(:title) ? content_for(:title) : site_name %></title>
 	<% if content_for?(:description) %><meta name="description" value="<%=content_for(:description)%>"><% end %>
 	<%= stylesheet_link_tag    "application", media: "all" %>
 	<%= javascript_include_tag "application" %>
@@ -58,8 +58,12 @@
 			<div id="site-name">
 				<%=link_to_unless_current "<img src=\"#{asset_path 'blacklogo96.png'}\" alt=\"\">".html_safe, root_path%>
 				<div id="site-name-text">
-					<h1><%=link_to_unless_current 'Greasy Fork', root_path%></h1>
-					<p class="subtitle">Neither greasy nor a fork.</p>
+						<h1><%=link_to_unless_current site_name, root_path%></h1>
+					<% if sleazy? %>
+						<p class="subtitle">Easy sleazy greasy.</p>
+					<% else %>
+						<p class="subtitle">Now with cleaner grease!</p>
+					<% end %>
 				</div>
 			</div>
 			<div id="site-nav">

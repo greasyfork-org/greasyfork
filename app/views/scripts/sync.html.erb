@@ -18,7 +18,7 @@
 			</p>
 		<% when nil %>
 			<p>
-				<%=t('scripts.provide_code_syncing_from_url_html', :field => s.url_field(:sync_identifier, :size => 50, :placeholder => t('scripts.sync_url_placeholder')))%>
+				<%=t('scripts.provide_code_syncing_from_url_html', field: s.url_field(:sync_identifier, size: 50, placeholder: t('scripts.sync_url_placeholder')), site_name: site_name)%>
 			</p>
 	<% end %>
 

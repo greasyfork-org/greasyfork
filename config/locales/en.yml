@@ -70,9 +70,9 @@ en:
     # text displayed for deleted scripts
     deleted_notice: "This script has been deleted."
     # text displayed for scripts hidden until they follow the rules
-    inactive_pending_changes: "This script is currently inactive because it doesn't align with Greasy Fork's policies."
+    inactive_pending_changes: "This script is currently inactive because it doesn't align with %{site_name}'s policies."
     # text displayed for when viewing a previous version of a script that was hidden because it didn't follow the rules
-    inactive_pending_changes_for_previous_version: "This version of this script is inactive because it doesn't align with Greasy Fork's policies."
+    inactive_pending_changes_for_previous_version: "This version of this script is inactive because it doesn't align with %{site_name}'s policies."
     # test displayed when viewing a previous version. date is a date and time (no "ago"), latest_version_link is a link to the newest version whose text is version_notice_latest_version_link
     version_notice_html: "As of %{date}. See %{latest_version_link}."
     version_notice_latest_version_link: "the latest version"
@@ -203,7 +203,7 @@ en:
     listing_filter_by_site_disable: "All"
     # link for filtering script list by scripts that affect all sites
     listing_filter_by_site_all_sites: "(All sites)"
-    # link to see a full list of sites that scripts on greasy fork affect
+    # link to see a full list of sites that scripts on %{site_name} affect
     listing_filter_by_site_more_sites: "More…"
     # text that shows when no scripts were found with the used parameters
     listing_no_scripts: "No scripts found."
@@ -247,7 +247,7 @@ en:
     sets_add_exclusion: "Exclude from %{set_name}"
     # option to add the script to a new set
     sets_add_to_new: "Add to new set"
-    # summary of greasy fork's rules for posting scripts. full_rules_link is a link to the full rules with text of rules_summary_link_to_full
+    # summary of %{site_name}'s rules for posting scripts. full_rules_link is a link to the full rules with text of rules_summary_link_to_full
     rules_summary_html: "Scripts must be <strong>properly described</strong>, cannot be <strong>obfuscated</strong> or <strong>minified</strong>, must respect <strong>copyright</strong>, and are limited in the <strong>external code</strong> used. %{full_rules_link}"
     # full rules link text used in the rules summary
     rules_summary_link_to_full: "Read the full rules."
@@ -274,15 +274,15 @@ en:
     # label for radio button for public-type user script
     type_1_html: "Public user script - a user script for all to see and use."
     # label for radio button for unlisted-type user script
-    type_2_html: "Unlisted user script - a user script for (semi-)private use. Available by direct access, but not linked to from anywhere on Greasy Fork."
+    type_2_html: "Unlisted user script - a user script for (semi-)private use. Available by direct access, but not linked to from anywhere on %{site_name}."
     # label for radio button for library-type script
     type_3_html: "Library - a script intended to be <code>@require</code>-d from other scripts and not installed directly."
     # label for checkbox to override script save warnings
     override_warning_checkbox_label: "Save anyway?"
     # script warning for using @requires outside the whitelist. requires_used is a comma-separated list of URLs outside the whitelist. external_script_rules_link is a link to the external requires rules, with text of warning_uses_disallowed_requires_rules_link
-    warning_uses_disallowed_requires_html: "You are using <code>@require</code>s outside of Greasy Fork's whitelist: %{requires_used}. Please read %{external_script_rules_link}. Your script will not be installable by others until the external script issue is resolved."
+    warning_uses_disallowed_requires_html: "You are using <code>@require</code>s outside of %{site_name}'s whitelist: %{requires_used}. Please read %{external_script_rules_link}. Your script will not be installable by others until the external script issue is resolved."
     # link text used in warning_uses_disallowed_require_html
-    warning_uses_disallowed_requires_rules_link: "Greasy Fork's policy on external scripts"
+    warning_uses_disallowed_requires_rules_link: "%{site_name}'s policy on external scripts"
     # script warning for not increasing the version number when updating the code
     warning_version_not_incremented_html: "You updated the code but didn't increase the <code>@version</code> number. Those who previously installed your script may not get the updated code."
     # script warning for when a version number is not provided
@@ -310,7 +310,7 @@ en:
     # text to edit a code syncing URL. field is the text field to enter the url.
     code_syncing_from_url_html: "This script's code is set up to sync from: %{field}"
     # text to add a code syncing URL. field is the text field to enter the url.
-    provide_code_syncing_from_url_html: "Greasy Fork can import scripts that already hosted elsewhere, for example in a version control system (like GitHub), your own server, or another user script hosting site. To enable syncing for your script, provide a URL: %{field}"
+    provide_code_syncing_from_url_html: "%{site_name} can import scripts that already hosted elsewhere, for example in a version control system (like GitHub), your own server, or another user script hosting site. To enable syncing for your script, provide a URL: %{field}"
     # text before the sync type options
     sync_type_intro: "The script will be synced:"
     # label for radio button for manual syncing
@@ -376,7 +376,7 @@ en:
     # link text used in feedback_suggestion_html
     feedback_link_text: "ask a question about it, review it, or report it"
     # explanation of the approve redistribution option on the script edit page
-    approve_redistribution_explanation: "Greasy Fork can tell other sites that you allow them to repost your script. This may or may not be already permitted by the license you choose for your script."
+    approve_redistribution_explanation: "%{site_name} can tell other sites that you allow them to repost your script. This may or may not be already permitted by the license you choose for your script."
     # option for approve redistribution on a script where the value is based on the account default. user_setting can be approve_redistribution_use_user_setting_not_set if the account doesn't have it set, or it can be users.approve_redistribution_true or users.approve_redistribution_false
     approve_redistribution_use_user_setting: "Use my account default (%{user_setting})"
     # used with approve_redistribution_use_user_setting when the setting is not set on the account
@@ -393,12 +393,12 @@ en:
     adult_content: "Adult content"
     # label for checkbox letting authors report their script as containing adult content
     adult_content_self_report: "This script contains adult content or is for a site that contains adult content."
-    # text describing how adult content is handled on Greasy Fork, shown when posting a new version of a script not flagged as having adult content
-    adult_content_self_report_explanation: "Greasy Fork allows scripts with adult content, but they must be marked as such so that users can choose whether they see it."
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script not flagged as having adult content
+    adult_content_self_report_explanation: "%{site_name} allows scripts with adult content, but they must be marked as such so that users can choose whether they see it."
     # label for checkbox letting authors report their script as not containing adult content
     not_adult_content_self_report_html: "This script does <strong>not</strong> contain adult content and is <strong>not</strong> for a site that contains adult content."
-    # text describing how adult content is handled on Greasy Fork, shown when posting a new version of a script flagged as having adult content
-    not_adult_content_self_report_explanation: "Greasy Fork allows scripts with adult content, but they must be marked as such so that users can choose whether they see it. Your script has been marked as having adult content. You can report that it doesn't; this will be reviewed by a moderator."
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content
+    not_adult_content_self_report_explanation: "%{site_name} allows scripts with adult content, but they must be marked as such so that users can choose whether they see it. Your script has been marked as having adult content. You can report that it doesn't; this will be reviewed by a moderator."
   script_sets:
     # name for the favorites set
     favorites_name: "Favorites"
@@ -419,29 +419,29 @@ en:
     listing_with_script_no_reply_html: "%{script_link}: %{discussion_link} by %{original_poster_link} %{original_post_date}"
     listing_with_script_with_reply_html: "%{script_link}: %{discussion_link} by %{original_poster_link} %{original_post_date}, last comment by %{last_commenter_link} %{last_comment_date}"
   home:
-    # html title of the home page. do not translate "Greasy Fork".
-    title: "Greasy Fork - safe and useful user scripts"
-    # text at the top of the homepage. do not translate "Greasy Fork".
-    welcome: "Welcome to Greasy Fork, a site for user scripts."
+    # html title of the home page. do not translate "%{site_name}".
+    title: "%{site_name} - safe and useful user scripts"
+    # text at the top of the homepage. do not translate "%{site_name}".
+    welcome: "Welcome to %{site_name}, a site for user scripts."
     # heading for the paragraph explaining what user scripts are
     explain_user_scripts_heading: "What are user scripts?"
-    # text explaining what user scripts are. how_to_install_link goes to a document explaining how to install user scripts with text from explain_user_scripts_how_to_install_link. browse_link goes to the main script list with text from explain_user_scripts_browse_link. do not translate "Greasy Fork"
-    explain_user_scripts_html: "User scripts are pieces of code that add features, remove annoyances, or do other things to the sites you visit. The user scripts on Greasy Fork are free and can be installed with %{how_to_install_link}. Greasy Fork has thousands of user scripts written by hundreds of authors, so %{browse_link} to see what we've got!"
+    # text explaining what user scripts are. how_to_install_link goes to a document explaining how to install user scripts with text from explain_user_scripts_how_to_install_link. browse_link goes to the main script list with text from explain_user_scripts_browse_link. do not translate "%{site_name}"
+    explain_user_scripts_html: "User scripts are pieces of code that add features, remove annoyances, or do other things to the sites you visit. The user scripts on %{site_name} are free and can be installed with %{how_to_install_link}. %{site_name} has thousands of user scripts written by hundreds of authors, so %{browse_link} to see what we've got!"
     explain_user_scripts_how_to_install_link: "free extensions, like Greasemonkey"
     explain_user_scripts_browse_link: "start browsing"
-    # heading for the paragraph explaining why authors should use greasy fork. do not translate "Greasy Fork"
-    greasy_fork_for_authors_heading: "I'm a script author, why should I use Greasy Fork?"
-    # text explaining why authors should use greasy fork. do not translate "Greasy Fork"
-    greasy_fork_for_authors_html: "Greasy Fork is aiming to become the premier user script site after the collapse of userscripts.org, with the biggest audience for your scripts. We prioritize quality of the scripts, so we strive to block spam and scam scripts. We offer technology to make managing your scripts easier, for example automatically pulling in changes when you commit to GitHub (or wherever!)"
+    # heading for the paragraph explaining why authors should use %{site_name}. do not translate "%{site_name}"
+    greasy_fork_for_authors_heading: "I'm a script author, why should I use %{site_name}?"
+    # text explaining why authors should use %{site_name}. do not translate "%{site_name}"
+    greasy_fork_for_authors_html: "%{site_name} is aiming to become the premier user script site after the collapse of userscripts.org, with the biggest audience for your scripts. We prioritize quality of the scripts, so we strive to block spam and scam scripts. We offer technology to make managing your scripts easier, for example automatically pulling in changes when you commit to GitHub (or wherever!)"
     # heading for the sample list of scripts
     scripts_sample: "A sample of our scripts"
     # final item of sample list of scripts, linking to the full listing page
     scripts_sample_more: "More…"
   users:
     # html title for the sign in page
-    sign_in_title: "Sign in to Greasy Fork"
+    sign_in_title: "Sign in to %{site_name}"
     # what signing in lets people od
-    sign_in_description: "Signing in to Greasy Fork lets you post scripts and feedback on others' scripts. You do not need to sign in to browse or install scripts."
+    sign_in_description: "Signing in to %{site_name} lets you post scripts and feedback on others' scripts. You do not need to sign in to browse or install scripts."
     # heading for signing in with an external service (Google, GitHub, etc.)
     sign_in_external: "Sign in with an external service"
     # heading for signing in with a password
@@ -453,7 +453,7 @@ en:
     # sign in link for email_used messages
     sign_in_email_used_sign_in_link: "sign in"
     # when a user attempts to create an account with an external service, but an email was not provided by that service
-    sign_in_email_missing: "Greasy Fork requires an email to make a new account, but %{provider} didn't provide one for you. You can either update your %{provider} account to have one, then try signing in again, or create a normal email/password account on Greasy Fork, then add your %{provider} account to it."
+    sign_in_email_missing: "%{site_name} requires an email to make a new account, but %{provider} didn't provide one for you. You can either update your %{provider} account to have one, then try signing in again, or create a normal email/password account on %{site_name}, then add your %{provider} account to it."
     # this shows when signing in for the first time with an external sign in but the name received is already in use. the user is prompted to enter a different name.
     sign_in_name_used: "The name '%{name}' is already used. Choose a different one."
     # the button when submitting the name form per above
@@ -515,9 +515,9 @@ en:
     # heading for the external sign ins section of the edit sign in methods page
     edit_sign_in_external: "External sign ins"
     # information text about how they can use external sign ins, shown when the user has not set any yet
-    external_sign_in_info_no_sign_ins: "You can use your account on other sites to sign in to Greasy Fork."
-    # information text about how they can use external sign ins, shown when the user already has some set. should describe the concept of syncing, where account details on Greasy Fork will be updated to match the external service on sign in
-    external_sign_in_info_with_sign_ins: "You're currently using the external sign ins listed below. A \"syncing\" sign in means your Greasy Fork info (like user name and email) will be updated to match when you sign in."
+    external_sign_in_info_no_sign_ins: "You can use your account on other sites to sign in to %{site_name}."
+    # information text about how they can use external sign ins, shown when the user already has some set. should describe the concept of syncing, where account details on %{site_name} will be updated to match the external service on sign in
+    external_sign_in_info_with_sign_ins: "You're currently using the external sign ins listed below. A \"syncing\" sign in means your %{site_name} info (like user name and email) will be updated to match when you sign in."
     # notice after a sign in is added. provider is the external site's name, like GitHub or Google
     external_sign_in_added: "%{provider} sign in added."
     # notice after a sign in is updated (from syncing to not or opposite). provider is the external site's name, like GitHub or Google
@@ -564,7 +564,7 @@ en:
     # default option for the user's preferred locale
     locale_prompt: "(Choose a locale)"
     # text describing what the show ads checkbox does
-    show_ads_description: "Support Greasy Fork by allowing it to show you ads"
+    show_ads_description: "Support %{site_name} by allowing it to show you ads"
     # text describing what the show sensitive checkbox does
     show_sensitive_description: "Show scripts with adult content"
     # text describing what the preferred markup setting does
@@ -572,7 +572,7 @@ en:
     # text describing what the flattr username setting does
     flattr_username_description_html: "Users of your scripts will be asked to donate to your account on <a href=\"https://flattr.com\">Flattr</a>."
     # explanation of the approve redistribution option on the user edit page
-    approve_redistribution_explanation: "Greasy Fork can tell other sites that you allow them to repost your script. This may or may not be already permitted by the license you choose for your scripts. You may override this preference on each individual script."
+    approve_redistribution_explanation: "%{site_name} can tell other sites that you allow them to repost your script. This may or may not be already permitted by the license you choose for your scripts. You may override this preference on each individual script."
     # option for approve redistribution on a user for when they approve
     approve_redistribution_true: "I'm OK with my scripts being reposted elsewhere"
     # option for approve redistribution on a user for when they don't approve
@@ -580,9 +580,9 @@ en:
   help:
     meta_keys:
       # title of the help document describing script meta keys (e.g. @name).
-      title: "Script meta keys read by Greasy Fork"
+      title: "Script meta keys read by %{site_name}"
       # introductory paragraph. If the URL has a localized version, use that.
-      intro_html: "This is a list of <a href=\"http://wiki.greasespot.net/Metadata_Block\">user script meta keys</a> that Greasy Fork will read. Keys outside of this list may be included in scripts, and will be present in the installed script, but have no effect in Greasy Fork's UI."
+      intro_html: "This is a list of <a href=\"http://wiki.greasespot.net/Metadata_Block\">user script meta keys</a> that %{site_name} will read. Keys outside of this list may be included in scripts, and will be present in the installed script, but have no effect in %{site_name}'s UI."
       # description of @name
       name: "The name of the script, used as a heading and in links. Required."
       # description of @name:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
@@ -592,9 +592,9 @@ en:
       # description of @description:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
       description_localized_html: "The description of the script in a specific locale, where XX is an <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-letter code</a> and YY is an optional <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 country code</a>. Overrides <code>@description</code> when the user is browsing in a matching locale."
       # description of @namespace. Do not translate content inside <code>.
-      namespace_html: "A combination of <code>@namespace</code> and <code>@name</code> is used by user script managers to see if a script is already installed. Greasy Fork requires this field and will warn if it's changed on update."
+      namespace_html: "A combination of <code>@namespace</code> and <code>@name</code> is used by user script managers to see if a script is already installed. %{site_name} requires this field and will warn if it's changed on update."
       # description of @description:XX-YY. developer.mozilla.org may have localized content; use it if available.
-      version_html: "Identifier for a specific version of a script in <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">Mozilla version format</a>. Version is displayed on a script's info page. Greasy Fork requires this field and will warn if it's decremented or if it's not incremented when the script's code changes."
+      version_html: "Identifier for a specific version of a script in <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">Mozilla version format</a>. Version is displayed on a script's info page. %{site_name} requires this field and will warn if it's decremented or if it's not incremented when the script's code changes."
       # description of @include
       include: "Describe what pages the script will run on. This list will be processed, displayed on the script's info page, and used to categorize scripts."
       # description of @require. %{external_script_link} is a link to the document describing allowed external scripts and has a link of key "require_external_script_link_text"
@@ -602,7 +602,7 @@ en:
       # used in required_html
       require_external_script_link_text: "rules for code including external scripts"
       # description of @updateURL
-      updateURL: "Describe how user script managers should get updates. Greasy Fork will strip these keys, which makes any script installed from Greasy Fork only update from Greasy Fork."
+      updateURL: "Describe how user script managers should get updates. %{site_name} will strip these keys, which makes any script installed from %{site_name} only update from %{site_name}."
       # description of @license
       license: "URL for or name of the license that describes how people are allowed to copy or modify a script. Lack of license implies users can install the script for personal use, but may not redistribute it. License is displayed on a script's info page."
       # description of @supportURL
@@ -619,7 +619,7 @@ en:
       # title for Writing user scripts help page
       title: "How to write user scripts"
       # content of the page. The link to greasespot can be updated to a better resource if one is available in your language. code_rules_link and meta_keys_link are links to those help pages, with text of those page's titles. ask_in_forum_link is a link to the forum with text of ask_in_forum_link_text. user_page_link is a link to the user's page if the user is signed in, or plain text if they're not; in either case, the text is user_page_link_text. post_new_script_link is a link to the new script page, with text of post_new_script_link_text
-      content_html: "<p>Writing user scripts requires knowledge of JavaScript. The <a href=\"http://wiki.greasespot.net/Tutorials\">tutorials on the GreaseSpot Wiki</a> should give you a running start on JavaScript both in general and as it relates to user scripts. Inspecting others' scripts can be helpful. You may be interested in %{code_rules_link} and %{meta_keys_link}. If you want help developing your script, feel free to %{ask_in_forum_link}.</p><p>To post on Greasy Fork, you will need to create an account. From your %{user_page_link}, follow the link to %{post_new_script_link}.</p>"
+      content_html: "<p>Writing user scripts requires knowledge of JavaScript. The <a href=\"http://wiki.greasespot.net/Tutorials\">tutorials on the GreaseSpot Wiki</a> should give you a running start on JavaScript both in general and as it relates to user scripts. Inspecting others' scripts can be helpful. You may be interested in %{code_rules_link} and %{meta_keys_link}. If you want help developing your script, feel free to %{ask_in_forum_link}.</p><p>To post on %{site_name}, you will need to create an account. From your %{user_page_link}, follow the link to %{post_new_script_link}.</p>"
       # link text used in content_html
       ask_in_forum_link_text: 'ask in the forum'
       # link text used in content_html
@@ -628,16 +628,16 @@ en:
       post_new_script_link_text: 'post a new script'
     code_rules:
       # title for the rules page
-      title: "Greasy Fork's rules for posted scripts"
+      title: "%{site_name}'s rules for posted scripts"
     credits:
       # title for the credits page
       title: "Credits"
       # give credit to authors
-      authors_credit: "Greasy Fork would not be possible without the authors who contribute scripts."
+      authors_credit: "%{site_name} would not be possible without the authors who contribute scripts."
       # give credit to developers. link goes to github.
-      developers_credit: "Greasy Fork itself is built by %{developers_link:these people} with the help of all those who report bugs and suggest improvements."
+      developers_credit: "%{site_name} itself is built by %{developers_link:these people} with the help of all those who report bugs and suggest improvements."
       # give credit to translators. link to goes to transifex. after this text, there's a list of languages and the contributors to each.
-      translators_credit: "Greasy Fork was translated by %{translators_link:the Greasy Translation Force on Transifex}:"
+      translators_credit: "%{site_name} was translated by %{translators_link:the Greasy Translation Force on Transifex}:"
       # give credit to icon makers. all links are proper names so are not translated.
       icons_credit: "Discussion icons are from %{vistastylebase} by %{iconsland}. Browser icons are from %{browserlogos}."
   common:
@@ -655,9 +655,9 @@ en:
     not_found_title: "404 - Page Not Found"
     not_found_link_home: "Go home."
     # shown on the first page a user sees if, based on the user's Accept-Language header, we think we have a better locale than what the first page shows. "locale_name" is the name of the locale in that language (matching the name in the locale drop down)
-    suggest_locale: "Greasy Fork is available in %{locale_name}."
+    suggest_locale: "%{site_name} is available in %{locale_name}."
     # shown on the first page a users sees if the locale they're on is less than a certain amount translated. links to the docs on how to help with localization
-    incomplete_locale: "Greasy Fork's %{locale_name} translation is only %{percent} complete. You can change that."
+    incomplete_locale: "%{site_name}'s %{locale_name} translation is only %{percent} complete. You can change that."
     # text for a button that expands a block of text
     expander_show_more: "Show more"
     # text for a button that contracts a block of text
@@ -724,7 +724,7 @@ en:
       cannot_be_self_reference: "can't be the same script"
       # validation for "deleted and replaced by" when the user says the script is replaced by a deleted script
       cannot_be_deleted_reference: "can't be a deleted script"
-      # validation for "deleted and replaced by" when the user provides a non-Greasy Fork URL
-      must_be_greasy_fork_script: "must be the URL for a script on Greasy Fork"
+      # validation for "deleted and replaced by" when the user provides a non-%{site_name} URL
+      must_be_greasy_fork_script: "must be the URL for a script on %{site_name}"
       # validation when the user uploads code that's not UTF-8 text
       script_update_not_utf8: "uploaded must be UTF-8 text"

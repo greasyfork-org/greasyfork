@@ -1,19 +1,19 @@
-<%- title t('home.title') %>
-<%- description 'Greasy Fork is a free site providing user scripts to improve your web browsing experience.' %>
+<%- title t('home.title', site_name: site_name) %>
+<%- description "#{site_name} is a free site providing user scripts to improve your web browsing experience." %>
 
-<p class="front-page-p"><%=t('home.welcome')%></p>
+<p class="front-page-p"><%=t('home.welcome', site_name: site_name)%></p>
 
 <section class="front-page-box">
 	<h3><%=t('home.explain_user_scripts_heading')%></h3>
 
-	<p><%=t('home.explain_user_scripts_html', :how_to_install_link => link_to(t('home.explain_user_scripts_how_to_install_link'), help_installing_user_scripts_path).html_safe, :browse_link => link_to(t('home.explain_user_scripts_browse_link'), scripts_path).html_safe)%></p>
+	<p><%=t('home.explain_user_scripts_html', how_to_install_link: link_to(t('home.explain_user_scripts_how_to_install_link'), help_installing_user_scripts_path).html_safe, browse_link: link_to(t('home.explain_user_scripts_browse_link'), scripts_path).html_safe, site_name: site_name)%></p>
 </section>
 
 
 <section class="front-page-box">
-	<h3><%=t('home.greasy_fork_for_authors_heading')%></h3>
+	<h3><%=t('home.greasy_fork_for_authors_heading', site_name: site_name)%></h3>
 
-	<p><%=t('home.greasy_fork_for_authors_html')%></p>
+	<p><%=t('home.greasy_fork_for_authors_html', site_name: site_name)%></p>
 </section>
 
 <section>
