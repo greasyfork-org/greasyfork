@@ -1,9 +1,9 @@
-<%- title t('users.sign_in_title') %>
+<%- title t('users.sign_in_title', site_name: site_name) %>
 <%- description 'Sign in page for Greasy Fork accounts.' %>
 
 <script src="https://login.persona.org/include.js" type="text/javascript"></script>
 
-<p><%=t('users.sign_in_description')%></p>
+<p><%=t('users.sign_in_description', site_name: site_name)%></p>
 
 <h3><%=t('users.sign_in_external')%></h3>
 
