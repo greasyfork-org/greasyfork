@@ -6,9 +6,9 @@ $Definition['on scripts by %s'] = 'pada skrip oleh %s';
 /*
  *  Label for the radio buttons for rating a script
  **/
-$Definition['RatingLabel'] = 'Bagaimana anda menilai skrip ini?';
+$Definition['RatingLabel'] = 'Bagaimana Anda menilai skrip ini?';
 # Label for the radio buttons for updating a rating on a script
-$Definition['RatingUpdateLabel'] = 'Perbarui nilai anda:';
+$Definition['RatingUpdateLabel'] = 'Perbarui nilai Anda:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = 'Tanpa penilaian - hanya pertanyaan, komentar, permintaan fitur, atau laporan kutu';
 ## Label for the radio button for reporting a script
@@ -30,7 +30,7 @@ $Definition['Categories.script-development.Description'] = 'Pembicaraan teknis m
 // Category name for Script Creation Requests
 $Definition['Categories.script-requests.Name'] = 'Permintaan Pembuatan Skrip';
 // Category description for Script Creation Requests
-$Definition['Categories.script-requests.Description'] = 'Minta seseorang menuliskan sebuah skrip untuk anda.';
+$Definition['Categories.script-requests.Description'] = 'Minta seseorang menuliskan sebuah skrip untuk Anda.';
 // Category name for Script Discussions
 $Definition['Categories.script-discussions.Name'] = 'Diskusi Skrip';
 // Category description for Script Discussions
