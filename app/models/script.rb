@@ -50,6 +50,7 @@ class Script < ActiveRecord::Base
 	scope :libraries, ->(script_subset) {active(script_subset).where(:script_type_id => 3)}
 	scope :under_assessment, -> {not_deleted.where(:uses_disallowed_external => true).includes(:assessments).includes(:user).uniq}
 	scope :reported, -> {not_deleted.joins(:discussions).includes(:user).uniq.where('GDN_Discussion.Rating = 1').where('Closed = 0')}
+	scope :reported_not_adult, -> {not_deleted.includes(:user).where('not_adult_content_self_report_date IS NOT NULL')}
 	scope :for_all_sites, -> {includes(:script_applies_tos).references(:script_applies_tos).where('script_applies_tos.id IS NULL')}
 	scope :redistributable, ->(script_subset) {listable(script_subset).includes(:user).references([:scripts, :users]).where('scripts.approve_redistribution OR (scripts.approve_redistribution IS NULL AND users.approve_redistribution)')}
 
@@ -123,8 +124,16 @@ class Script < ActiveRecord::Base
 
 	before_validation :set_sensitive_flag
 	def set_sensitive_flag
-		self.sensitive ||= self.adult_content_self_report || SensitiveSite.where(domain: script_applies_tos.select(&:domain).map(&:text)).any?
+		self.sensitive ||= (adult_content_self_report || for_sensitive_site?)
 		true
+	end
+
+	def matching_sensitive_sites
+		SensitiveSite.where(domain: script_applies_tos.select(&:domain).map(&:text))
+	end
+
+	def for_sensitive_site?
+		return matching_sensitive_sites.any?
 	end
 
 	after_save :update_syntax_highlighted_code

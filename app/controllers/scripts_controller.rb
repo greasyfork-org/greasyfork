@@ -2,14 +2,14 @@ require 'script_importer/script_syncer'
 require 'csv'
 
 class ScriptsController < ApplicationController
-	layout 'application', :except => [:show, :show_code, :feedback, :diff, :sync, :sync_update, :delete, :do_delete, :undelete, :stats, :derivatives]
+	layout 'application', :except => [:show, :show_code, :feedback, :diff, :sync, :sync_update, :delete, :do_delete, :undelete, :stats, :derivatives, :mark, :do_mark]
 
 	before_filter :authorize_by_script_id, :only => [:sync, :sync_update]
 	before_filter :authorize_by_script_id_or_moderator, :only => [:delete, :do_delete, :undelete, :do_undelete, :derivatives]
 	before_filter :check_for_locked_by_script_id, :only => [:sync, :sync_update, :delete, :do_delete, :undelete, :do_undelete]
 	before_filter :check_for_deleted_by_id, :only => [:show]
 	before_filter :check_for_deleted_by_script_id, :only => [:show_code, :feedback, :install_ping, :diff]
-	before_filter :authorize_for_moderators_only, :only => [:minified]
+	before_filter :authorize_for_moderators_only, :only => [:minified, :mark, :do_mark, :reported_not_adult]
 
 	skip_before_action :verify_authenticity_token, :only => [:install_ping]
 	protect_from_forgery :except => [:user_js, :meta_js, :show, :show_code]
@@ -115,6 +115,12 @@ class ScriptsController < ApplicationController
 	def reported
 		@bots = 'noindex'
 		@scripts = Script.reported
+	end
+
+	def reported_not_adult
+		@bots = 'noindex'
+		@scripts = Script.reported_not_adult
+		render :reported
 	end
 
 	def minified
@@ -520,6 +526,42 @@ class ScriptsController < ApplicationController
 		script.delete_reason = nil
 		script.save(:validate => false)
 		redirect_to script
+	end
+
+	def mark
+		@script = Script.find(params[:script_id])
+		@bots = 'noindex'
+	end
+
+	def do_mark
+		@script = Script.find(params[:script_id])
+		@bots = 'noindex'
+
+		ma = ModeratorAction.new
+		ma.moderator = current_user
+		ma.script = @script
+		ma.reason = params[:reason]
+
+		case params[:mark]
+			when 'adult'
+				@script.sensitive = true
+				ma.action = 'Mark as adult content'
+			when 'not_adult'
+				@script.sensitive = false
+				@script.not_adult_content_self_report_date = nil
+				ma.action = 'Mark as not adult content'
+			when 'clear_not_adult'
+				@script.not_adult_content_self_report_date = nil
+			else
+				render text: "Can't do that!", status: 406
+				return
+		end
+
+		ma.save! if !ma.action.nil?
+
+		@script.save!
+		flash[:notice] = 'Script updated.'
+		redirect_to @script
 	end
 
 	def stats

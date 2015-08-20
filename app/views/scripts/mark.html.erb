@@ -1,0 +1,43 @@
+<h3>Adult Content</h3>
+
+<% if @script.sensitive
+	sensitive_sites = @script.matching_sensitive_sites.to_a
+	if sensitive_sites.any? %>
+		<p>
+			This script is marked as adult content because it's for <%=sensitive_sites.map(&:domain).to_sentence%>.
+			<% if @script.not_adult_content_self_report_date.present? %>
+				The author requested it not be marked as adult content on <%=@script.not_adult_content_self_report_date%>, but we can't do that!
+				<%=form_tag(action: :mark, mark: 'clear_not_adult') do %>
+					<input type="submit" value="Clear report">
+				<% end %>
+			<% end %>
+		</p>
+	<% else %>
+		<p>
+			This script was marked as adult content by the author or a mod.
+			<% if @script.not_adult_content_self_report_date.nil? %>
+				<%=form_tag(action: :mark, mark: 'not_adult') do %>
+					<textarea name="reason" cols="100" rows="5" maxlength="500" required placeholder="Reason"></textarea><br>
+					<input type="submit" value="Mark as not adult">
+				<% end %>
+			<% else %>
+				The author requested it not be marked as adult content on <%=@script.not_adult_content_self_report_date%>.
+				<%=form_tag(action: :mark, mark: 'not_adult') do %>
+					<textarea name="reason" cols="100" rows="5" maxlength="500" required placeholder="Reason"></textarea><br>
+					<input type="submit" value="Mark as not adult">
+				<% end %><br>
+				<%=form_tag(action: :mark, mark: 'clear_not_adult') do %>
+					<input type="submit" value="Clear report">
+				<% end %>
+			<% end %>
+		</p>
+	<% end %>
+<% else %>
+	<p>
+		This script is not marked as adult content.
+		<%=form_tag(action: :mark, mark: 'adult') do %>
+			<textarea name="reason" cols="100" rows="5" maxlength="500" required placeholder="Reason"></textarea><br>
+			<input type="submit" value="Mark as adult">
+		<% end %>
+	</p>
+<% end %>

@@ -63,6 +63,8 @@ Greasyfork::Application.routes.draw do
 			post 'delete(.:format)', :to => 'scripts#do_delete', :as => 'do_delete'
 			get 'undelete(.:format)', :to => 'scripts#undelete', :as => 'undelete'
 			post 'undelete(.:format)', :to => 'scripts#do_undelete', :as => 'do_undelete'
+			get 'mark(.:format)', :to => 'scripts#mark', :as => 'mark'
+			post 'mark(.:format)', :to => 'scripts#do_mark', :as => 'do_mark'
 			get 'stats(.:format)', :to => 'scripts#stats', :as => 'stats'
 			get 'derivatives', :as => 'derivatives'
 			collection do
@@ -71,6 +73,7 @@ Greasyfork::Application.routes.draw do
 				get 'by-site/:site(.:format)', :action => 'index', :as => 'by_site', :constraints => {:site => /.*?/, :format => /|html|atom|json|jsonp/}
 				get 'under-assessment(.:format)', :action => 'under_assessment', :as => 'under_assessment'
 				get 'reported(.:format)', :action => 'reported', :as => 'reported'
+				get 'reported_not_adult(.:format)', :action => 'reported_not_adult', :as => 'reported_not_adult'
 				get 'libraries(.:format)', :action => 'libraries', :as => 'libraries'
 				get 'search(.:format)', :action => 'search', :as => 'search'
 				get 'minified(.:format)', :action => 'minified', :as => 'minified'
