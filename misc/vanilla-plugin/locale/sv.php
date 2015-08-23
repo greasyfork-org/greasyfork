@@ -2,7 +2,7 @@
 /* Label for inputting a script ID when creating/editing a discussion */
 $Definition['Item ID:'] = 'Skript-ID:';
 // Appended to "Discussions" when viewing a list of discussions on scripts by a user. %s is the user name.
-$Definition['on scripts by %s'] = 'on scripts by %s';
+$Definition['on scripts by %s'] = 'skript skrivna av %s';
 /*
  *  Label for the radio buttons for rating a script
  **/
@@ -28,9 +28,9 @@ $Definition['Categories.script-development.Name'] = 'Utveckling';
 // Category description for Development
 $Definition['Categories.script-development.Description'] = 'Tekniskt prat om användarskripts-utveckling.';
 // Category name for Script Creation Requests
-$Definition['Categories.script-requests.Name'] = 'Script Creation Requests';
+$Definition['Categories.script-requests.Name'] = 'Förfrågningar om att skapa skript';
 // Category description for Script Creation Requests
-$Definition['Categories.script-requests.Description'] = 'Request someone write a script for you.';
+$Definition['Categories.script-requests.Description'] = 'Förfråga någon att skapa ett skript åt dig';
 // Category name for Script Discussions
 $Definition['Categories.script-discussions.Name'] = 'Skript-diskussioner';
 // Category description for Script Discussions
