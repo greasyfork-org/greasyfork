@@ -1,10 +1,10 @@
 <%- title t('help.credits.title') %>
 
-<p><%=t('help.credits.authors_credit')%></p>
+<p><%=t('help.credits.authors_credit', site_name: site_name)%></p>
 
-<p><%=it('help.credits.developers_credit', developers_link: 'https://github.com/JasonBarnabe/greasyfork/graphs/contributors')%></p>
+<p><%=it('help.credits.developers_credit', developers_link: 'https://github.com/JasonBarnabe/greasyfork/graphs/contributors', site_name: site_name)%></p>
 
-<p><%=it('help.credits.translators_credit', translators_link: 'https://www.transifex.com/organization/greasy-fork/team/21359/')%></p>
+<p><%=it('help.credits.translators_credit', translators_link: 'https://www.transifex.com/organization/greasy-fork/team/21359/', site_name: site_name)%></p>
 
 <ul>
 	<% Locale.where(:ui_available => true).joins(:locale_contributors).order(:code).uniq.each do |locale| %>
