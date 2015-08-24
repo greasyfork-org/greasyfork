@@ -1,19 +1,18 @@
-<%- title t('home.title', site_name: site_name) %>
+<%- title t(sleazy? ? 'home.sleazy_title' : 'home.title', site_name: site_name) %>
 <%- description "#{site_name} is a free site providing user scripts to improve your web browsing experience." %>
 
-<p class="front-page-p"><%=t('home.welcome', site_name: site_name)%></p>
+<p class="front-page-p"><%=t(sleazy? ? 'home.sleazy_welcome' : 'home.welcome', site_name: site_name)%></p>
 
 <section class="front-page-box">
 	<h3><%=t('home.explain_user_scripts_heading')%></h3>
 
-	<p><%=t('home.explain_user_scripts_html', how_to_install_link: link_to(t('home.explain_user_scripts_how_to_install_link'), help_installing_user_scripts_path).html_safe, browse_link: link_to(t('home.explain_user_scripts_browse_link'), scripts_path).html_safe, site_name: site_name)%></p>
+	<p><%=t('home.explain_user_scripts_html', site_name: site_name)%></p>
 </section>
 
-
 <section class="front-page-box">
-	<h3><%=t('home.greasy_fork_for_authors_heading', site_name: site_name)%></h3>
+	<h3><%=t('home.how_to_install_user_scripts_heading', site_name: site_name)%></h3>
 
-	<p><%=t('home.greasy_fork_for_authors_html', site_name: site_name)%></p>
+	<p><%=it('home.how_to_install_user_scripts_html', site_name: site_name, gm_link: 'https://addons.mozilla.org/firefox/addon/greasemonkey/', tm_link: 'https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo', other_managers_link: help_installing_user_scripts_path)%></p>
 </section>
 
 <section>
