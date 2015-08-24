@@ -351,7 +351,7 @@ protected
 
 	def script_subset
 		return :sleazyfork if sleazy?
-		return :all if !user_signed_in?
+		return :greasyfork if !user_signed_in?
 		return current_user.show_sensitive ? :all : :greasyfork
 	end
 
