@@ -355,6 +355,14 @@ protected
 		return current_user.show_sensitive ? :all : :greasyfork
 	end
 
+	def handle_wrong_site(script)
+		if !script.sensitive && sleazy?
+			render_404
+			return true
+		end
+		return false
+	end
+
 	helper_method :cache_with_log, :sleazy?, :script_subset, :site_name
 
 end

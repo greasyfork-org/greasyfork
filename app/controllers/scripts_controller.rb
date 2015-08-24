@@ -167,7 +167,10 @@ class ScriptsController < ApplicationController
 
 	def show
 		@script, @script_version = versionned_script(params[:id], params[:version])
+
+		return if handle_wrong_site(@script)
 		return if redirect_to_slug(@script, :id)
+
 		respond_to do |format|
 			format.html {
 				if !params[:version].nil?
@@ -205,7 +208,9 @@ class ScriptsController < ApplicationController
 			return
 		end
 
+		return if handle_wrong_site(@script)
 		return if redirect_to_slug(@script, :script_id)
+
 		respond_to do |format|
 			format.html {
 				@highlighted_code = nil
@@ -236,7 +241,10 @@ class ScriptsController < ApplicationController
 
 	def feedback
 		@script, @script_version = versionned_script(params[:script_id], params[:version])
+
+		return if handle_wrong_site(@script)
 		return if redirect_to_slug(@script, :script_id)
+
 		@bots = 'noindex' if !params[:version].nil?
 		@canonical_params = [:script_id, :version]
 	end
@@ -293,7 +301,10 @@ class ScriptsController < ApplicationController
 
 	def diff
 		@script = Script.find(params[:script_id])
+
+		return if handle_wrong_site(@script)
 		return if redirect_to_slug(@script, :script_id)
+
 		versions = [params[:v1].to_i, params[:v2].to_i]
 		@old_version = ScriptVersion.find(versions.min)
 		@new_version = ScriptVersion.find(versions.max)
@@ -566,7 +577,10 @@ class ScriptsController < ApplicationController
 
 	def stats
 		@script, @script_version = versionned_script(params[:script_id], params[:version])
+
+		return if handle_wrong_site(@script)
 		return if redirect_to_slug(@script, :script_id)
+
 		install_values = Hash[Script.connection.select_rows("SELECT install_date, installs FROM install_counts where script_id = #{@script.id}")]
 		daily_install_values = Hash[Script.connection.select_rows("SELECT DATE(install_date) d, COUNT(*) FROM daily_install_counts where script_id = #{@script.id} GROUP BY d")]
 		update_check_values = Hash[Script.connection.select_rows("SELECT update_check_date, update_checks FROM update_check_counts where script_id = #{@script.id}")]
