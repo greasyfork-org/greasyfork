@@ -127,4 +127,40 @@ class ScriptVersionAppliesToTest < ActiveSupport::TestCase
 		assert_equal [{text: 'example.com', domain: true, tld_extra: false}, {text: 'example.net', domain: true, tld_extra: true}, {text: 'example.de', domain: true, tld_extra: true}, {text: 'example.co.uk', domain: true, tld_extra: true}, {text: 'example.org', domain: true, tld_extra: false}], get_applies_to(['http://example.tld/*',  'http://example.org/*'])
 	end
 
+	test 'simple regexp' do
+		assert_equal [{text: 'example.com', domain: true, tld_extra: false}], get_applies_to(['/http://www.example.com/.+/'])
+	end
+
+	test 'regexp with escaped slashes' do
+		assert_equal [{text: 'example.com', domain: true, tld_extra: false}], get_applies_to(['/http:\/\/www.example.com\/.+/'])
+	end
+
+	test 'regexp with https?' do
+		assert_equal [{text: 'example.com', domain: true, tld_extra: false}], get_applies_to(['/https?://www.example.com/.+/'])
+	end
+
+	test 'regexp with https*' do
+		assert_equal [{text: 'example.com', domain: true, tld_extra: false}], get_applies_to(['/https*://www.example.com/.+/'])
+	end
+
+	test 'non-domain regexp?' do
+		assert_equal [{text: '/a/', domain: false, tld_extra: false}], get_applies_to(['/a/'])
+	end
+
+	test 'regexp with start of line' do
+		assert_equal [{text: 'example.com', domain: true, tld_extra: false}], get_applies_to(['/^http://www.example.com/.+/'])
+	end
+
+	test 'regexp with wildcard subdomain of line' do
+		assert_equal [{text: 'example.com', domain: true, tld_extra: false}], get_applies_to(['/http://.*example.com/.+/'])
+	end
+
+	test 'regexp with escaped periods' do
+		assert_equal [{text: 'example.com', domain: true, tld_extra: false}], get_applies_to(['/^https://www\.example\.com/search/'])
+	end
+
+	test 'regexp with optional groups' do
+		assert_equal [{text: 'example.com', domain: true, tld_extra: false}], get_applies_to(['/http://(www\.)?example.com//'])
+	end
+
 end

@@ -383,36 +383,75 @@ class ScriptVersion < ActiveRecord::Base
 		patterns.each do |p|
 			original_pattern = p
 
-			# senseless wildcard before protocol
-			m = p.match(/^\*(https?:.*)/i)
-			p = m[1] if !m.nil?
+			# regexp - starts and ends with /
+			if p.match(/^\/.*\/$/).present?
 
-			# protocol wild-cards
-			p = p.sub(/^\*:/i, 'http:')
-			p = p.sub(/^\*\/\//i, 'http://')
-			p = p.sub(/^http\*:/i, 'http:')
+				# unescape slashes, then grab between the first slash (start of regexp) and the fourth (after domain)
+				slash_parts = p.gsub(/\\\//, '/').split("/")
 
-			# skipping the protocol slashes
-			p = p.sub(/^(https?):([^\/])/i, '\1://\2')
+				if slash_parts.length < 4
+					# not a full url regexp
+					pre_wildcard = nil
+				else
+					pre_wildcard = slash_parts[1..3].join("/")
 
-			# subdomain wild-cards - http://*.example.com and http://*example.com
-			m = p.match(/^([a-z]+:\/\/)\*\.?([a-z0-9\-]+(?:.[a-z0-9\-]+)+.*)/i)
-			p = m[1] + m[2] if !m.nil?
+					# get rid of escape sequences
+					pre_wildcard.gsub!(/\\(.)/, '\1')
 
-			# protocol and subdomain wild-cards - *example.com and *.example.com
-			m = p.match(/^\*\.?([a-z0-9\-]+\.[a-z0-9\-]+.*)/i)
-			p = 'http://' + m[1] if !m.nil?
+					# start of string
+					pre_wildcard.gsub!(/^\^/, '')
 
-			# protocol and subdomain wild-cards - http*.example.com, http*example.com, http*//example.com
-			m = p.match(/^http\*(?:\/\/)?\.?((?:[a-z0-9\-]+)(?:\.[a-z0-9\-]+)+.*)/i)
-			p = 'http://' + m[1] if !m.nil?
+					# https?:
+					pre_wildcard.gsub!(/^https\?:/, 'http:')
 
-			# tld wildcards - http://example.* - switch to .tld
-			m = p.match(/^([a-z]+:\/\/[a-z0-9\-]+(?:\.[a-z0-9\-]+)*\.)\*(.*)/)
-			p = m[1] + 'tld' + m[2] if !m.nil?
+					# https*:
+					pre_wildcard.gsub!(/^https\*:/, 'http:')
 
-			# grab up to the first *
-			pre_wildcard = p.split('*').first
+					# wildcarded subdomain ://.*
+					pre_wildcard.gsub!(/:\/\/\.\*/, '://')
+
+					# remove optional groups
+					pre_wildcard.gsub!(/\([^\)]+\)[\?\*]/, '')
+
+					# if there's weird characters left, it's no good
+					pre_wildcard = nil if /[\[\]\*\{\}\^\+\?]/.match(pre_wildcard).present?
+				end
+
+			else
+
+				# senseless wildcard before protocol
+				m = p.match(/^\*(https?:.*)/i)
+				p = m[1] if !m.nil?
+
+				# protocol wild-cards
+				p = p.sub(/^\*:/i, 'http:')
+				p = p.sub(/^\*\/\//i, 'http://')
+				p = p.sub(/^http\*:/i, 'http:')
+
+				# skipping the protocol slashes
+				p = p.sub(/^(https?):([^\/])/i, '\1://\2')
+
+				# subdomain wild-cards - http://*.example.com and http://*example.com
+				m = p.match(/^([a-z]+:\/\/)\*\.?([a-z0-9\-]+(?:.[a-z0-9\-]+)+.*)/i)
+				p = m[1] + m[2] if !m.nil?
+
+				# protocol and subdomain wild-cards - *example.com and *.example.com
+				m = p.match(/^\*\.?([a-z0-9\-]+\.[a-z0-9\-]+.*)/i)
+				p = 'http://' + m[1] if !m.nil?
+
+				# protocol and subdomain wild-cards - http*.example.com, http*example.com, http*//example.com
+				m = p.match(/^http\*(?:\/\/)?\.?((?:[a-z0-9\-]+)(?:\.[a-z0-9\-]+)+.*)/i)
+				p = 'http://' + m[1] if !m.nil?
+
+				# tld wildcards - http://example.* - switch to .tld
+				m = p.match(/^([a-z]+:\/\/[a-z0-9\-]+(?:\.[a-z0-9\-]+)*\.)\*(.*)/)
+				p = m[1] + 'tld' + m[2] if !m.nil?
+
+				# grab up to the first *
+				pre_wildcard = p.split('*').first
+
+			end
+
 			begin
 				uri = URI(pre_wildcard)
 				if uri.host.nil?
