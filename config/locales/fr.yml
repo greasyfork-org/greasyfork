@@ -182,8 +182,8 @@ fr:
     screenshots_remove: "Supprimer :"
     replacement_script_explanation: "(Optionnel) Choisissez un script qui remplacera ce script. Les mises à jours et les utilisateurs seront redirigés vers ce script. Spécifiez l'URL du script de remplacement :"
     diff_title: "%{script} -  Delta entre versions"
-    diff_old_version: "Vieux:"
-    diff_new_version: "Nouveau:"
+    diff_old_version: "Vieux :"
+    diff_new_version: "Nouveau :"
     diff_lines_of_context: "Lignes de contexte :"
     diff_ignore_whitespace: "Ignorer les modifications de caractères blancs."
     diff_refresh: "Actualiser"
@@ -203,6 +203,9 @@ fr:
     approve_redistribution_false: "Je ne veux pas que mon script soit publié autre part"
     redistributable_title: "Les scripts utilisateurs redistribuables"
     redistributable_page_description: "Les auteurs de ces scripts ont explicitement indiqué qu'ils acceptent que leurs scripts soient publiés ailleurs."
+    adult_content: "Contenu adulte"
+    adult_content_self_report: "Ce script contient du contenu pour adultes ou est  pour un site qui contient du contenu pour adultes."
+    adult_content_self_report_explanation: "% {site_name} autorise les scripts avec du contenu adulte, mais ils doivent être identifiés comme tels pour permettre aux utilisateurs de choisir si il le voit."
   script_sets:
     favorites_name: "Favoris"
     delete: "Supprimer ce jeu de scripts"
@@ -216,7 +219,10 @@ fr:
   home:
     title: "%{site_name} - scripts utilisateurs sûrs et utiles"
     welcome: "Bienvenue sur %{site_name}, un site pour les scripts utilisateurs."
+    sleazy_title: "%{site_name} - scripts utilisateurs sûrs et utiles pour les sites avec du contenu adulte"
+    sleazy_welcome: "Bienvenue sur %{site_name}, un site pour les scripts utilisateurs pour les sites avec du contenu adulte."
     explain_user_scripts_heading: "Que sont les scripts utilisateurs ?"
+    how_to_install_user_scripts_heading: "Comment installer un script utilisateurs ?"
     scripts_sample: "Quelques exemples de scripts"
     scripts_sample_more: "Plus de scripts..."
   users:
@@ -343,6 +349,7 @@ fr:
         locale: "Région préférée"
         author_email_notification_type_id: "Notifications de discussion sur vos scripts"
         show_ads: "Afficher les publicités"
+        show_sensitive: "Contenu adulte"
         preferred_markup: "Mise en forme préférée"
         flattr_username: "Nom d'utilisateur Flattr"
       script:

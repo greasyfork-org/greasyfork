@@ -201,6 +201,10 @@ pt-BR:
     approve_redistribution_true: "Estou OK com meus scripts sendo repostados em outro lugar"
     approve_redistribution_false: "Eu não quero meus scripts sendo repostados em outro lugar"
     redistributable_title: "Scripts de usuário redistribuível"
+    adult_content: "Conteúdo adulto"
+    adult_content_self_report: "Este script contém conteúdo adulto ou foi feito para um site que contém conteúdo adulto."
+    adult_content_self_report_explanation: "%{site_name} permite scripts com conteúdo adulto, mas eles devem ser marcados como tal, para que os usuários possam escolher se querem vê-los."
+    not_adult_content_self_report_html: "Este script <strong>não</strong> contém conteúdo adulto e <strong>não</strong> foi feito para um site que contém conteúdo adulto."
   script_sets:
     favorites_name: "Favoritos"
     delete: "Apagar conjunto de script"
@@ -214,7 +218,10 @@ pt-BR:
   home:
     title: "%{site_name}s - Scrips seguros e úteis"
     welcome: "Bem-vindo ao %{site_name}, um site de scripts de usuários"
+    sleazy_title: "%{site_name} - Scripts de usuários  com conteúdo adulto seguros e úteis"
+    sleazy_welcome: "Bem vindo ao %{site_name}, um site de scripts de usuário para adultos"
     explain_user_scripts_heading: "O que são scripts de usuários?"
+    how_to_install_user_scripts_heading: "Como eu instalo scripts de usuário?"
     scripts_sample: "Um exemplo de nossos scripts"
     scripts_sample_more: "Mais..."
   users:
@@ -283,6 +290,7 @@ pt-BR:
     listing_registration_date: "Data de registro"
     locale_prompt: "(Escolha um local)"
     show_ads_description: "Ajude o %{site_name} ao permitir a exibição de anúncios"
+    show_sensitive_description: "Mostrar scripts com conteúdo adulto"
     preferred_markup_description: "Será usado para novos scripts e postagens."
     approve_redistribution_true: "Estou OK com meus scripts sendo repostados em outro lugar"
     approve_redistribution_false: "Eu não quero meus scripts sendo repostados em outro lugar"
@@ -328,6 +336,7 @@ pt-BR:
         locale: "Idioma preferido"
         author_email_notification_type_id: "Notificações de comentários no script"
         show_ads: "Mostrar anúncios"
+        show_sensitive: "Conteúdo adulto"
         preferred_markup: "Marcação preferencial"
         flattr_username: "Usuário do Flattr"
       script:
