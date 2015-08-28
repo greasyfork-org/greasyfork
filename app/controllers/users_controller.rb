@@ -1,4 +1,5 @@
 require 'script_importer/script_syncer'
+require 'uri'
 
 class UsersController < ApplicationController
 
@@ -273,6 +274,7 @@ private
 
 	# Turns a path segment from a webhook request to a URL segment
 	def self.urlify_webhook_path_segment(path)
-		return path.gsub(' ', '%20')
+		return URI.escape(path, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
 	end
+
 end
