@@ -198,6 +198,10 @@ vi:
     approve_redistribution_true: "Tôi thoải mái khi script của tôi bị đăng lại ở nơi khác"
     approve_redistribution_false: "Tôi không muốn scripts của tôi bị đăng lại ở nơi khác"
     redistributable_title: "Tái phân phối các user scripts"
+    adult_content: "Nội dung người lớn"
+    adult_content_self_report: "Script này chứa nội dung người lớn hoặc được dành cho trang có nội dung người lớn"
+    adult_content_self_report_explanation: "%{site_name}  cho phép script với nội dung người lớn, nhưng họ phải đánh dấu để người dùng lựa chọn có thấy nó hay không"
+    not_adult_content_self_report_html: "Scripnt này <strong>không</strong> chứa nội dung người lớn và <strong>không</strong> dành cho trang có nội dung người lớn"
   script_sets:
     favorites_name: "Mục ưa thích"
     delete: "Xóa bộ script"
@@ -211,7 +215,10 @@ vi:
   home:
     title: "%{site_name} - những user script an toàn và hữu dụng"
     welcome: "Chào mừng đến %{site_name}, trang web về các user script."
+    sleazy_title: "%{site_name} - Những script dành cho người lớn an toàn và hữu ích"
+    sleazy_welcome: "Chào mừng tới %{site_name}, một trang web dành cho những user script \"người lớn\""
     explain_user_scripts_heading: "Các user script là gì?"
+    how_to_install_user_scripts_heading: "Làm sao để cài đặt các user script?"
     scripts_sample: "Một mẫu ví dụ trong những script của chúng tôi"
     scripts_sample_more: "Thêm nữa.."
   users:
@@ -313,6 +320,7 @@ vi:
       title: "Quy định của %{site_name} cho script đã đăng"
     credits:
       title: "Cảm ơn tới"
+      developers_credit: "%{site_name} được tự xây dựng bởi %{developers_link:these people} với sự giúp đỡ của những người báo lỗi và góp ý."
       translators_credit: "%{site_name} đã được dịch bởi %{translators_link:the Greasy Translation Force on Transifex}:"
       icons_credit: "Các biểu tượng tranh luận từ %{vistastylebase} bởi %{iconsland}. Các biểu tượng trình duyệt từ %{browserlogos}."
   common:
@@ -338,6 +346,7 @@ vi:
         locale: "ngôn ngữ ưa thích"
         author_email_notification_type_id: "Thông báo về thảo luận script"
         show_ads: "Hiện quảng cáo"
+        show_sensitive: "Nội dung người lớn"
         preferred_markup: "Đánh dấu ưa thích"
         flattr_username: "Tài khoản Flattr"
       script:
