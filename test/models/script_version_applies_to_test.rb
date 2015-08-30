@@ -103,6 +103,11 @@ class ScriptVersionAppliesToTest < ActiveSupport::TestCase
 		assert names.include?({text: 'example.com', domain: true, tld_extra: false}), names.inspect
 	end
 
+	test 'wildcard in ip' do
+		names = get_applies_to(['http://1.2.3.*'])
+		assert names.include?({text: 'http://1.2.3.*', domain: false, tld_extra: false}), names.inspect
+	end
+
 	test 'wildcard before protocol' do
 		assert_equal [{text: 'example.com', domain: true, tld_extra: false}], get_applies_to(['*http://example.com'])
 	end

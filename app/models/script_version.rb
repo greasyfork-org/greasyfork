@@ -443,21 +443,23 @@ class ScriptVersion < ActiveRecord::Base
 				m = p.match(/^http\*(?:\/\/)?\.?((?:[a-z0-9\-]+)(?:\.[a-z0-9\-]+)+.*)/i)
 				p = 'http://' + m[1] if !m.nil?
 
-				# tld wildcards - http://example.* - switch to .tld
-				m = p.match(/^([a-z]+:\/\/[a-z0-9\-]+(?:\.[a-z0-9\-]+)*\.)\*(.*)/)
-				p = m[1] + 'tld' + m[2] if !m.nil?
-
-				# grab up to the first *
-				pre_wildcard = p.split('*').first
-
+				# tld wildcards - http://example.* - switch to .tld. don't switch if it's an ip address, though
+				m = p.match(/^([a-z]+:\/\/([a-z0-9\-]+(?:\.[a-z0-9\-]+)*\.))\*(.*)/)
+				if !m.nil? && m[2].match(/\A([0-9]+\.){2,}\z/).nil?
+					p = m[1] + 'tld' + m[3]
+					# grab up to the first *
+					pre_wildcard = p.split('*').first
+				else
+					pre_wildcard = p
+				end
 			end
 
 			begin
 				uri = URI(pre_wildcard)
 				if uri.host.nil?
 					applies_to_names << {text: original_pattern, domain: false, tld_extra: false}
-				elsif !uri.host.include?('.')
-					# must have at least one . to be something we'll use
+				elsif !uri.host.include?('.') || uri.host.include?('*')
+					# ensure the host is something sane
 					applies_to_names << {text: original_pattern, domain: false, tld_extra: false}
 				else
 					if uri.host.ends_with?('.tld')
