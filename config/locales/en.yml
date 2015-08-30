@@ -580,6 +580,21 @@ en:
     # option for approve redistribution on a user for when they don't approve
     approve_redistribution_false: "I don't want my scripts being reposted elsewhere"
   help:
+    installing_user_scripts:
+      # title of the help document describing how to install user scripts
+      title: "How to install user scripts"
+      # text explaining that the user needs to install an extension to use user scripts
+      intro: "To use user scripts, you will typically need to install a browser extension."
+      # options for installing user scripts on firefox
+      firefox: "Firefox and related browsers: %{gm_link:Greasemonkey}."
+      # options for installing user scripts on chrome
+      chrome: "Google Chrome, Chromium, and related browsers: %{tm_link:Tampermonkey}."
+      # options for installing user scripts on opera 15 plus
+      opera_15_plus: "Opera (version 15 and later): %{tm_link:Tampermonkey} or %{vm_link:Violentmonkey}."
+      # options for installing user scripts on opera 12
+      opera_12: "Opera version 12 and earlier %{opera_doc_link:supports user scripts natively}. %{vm_link:Violentmonkey} provides a friendlier UI and better compatibility."
+      # how to install scripts once you have the proper extension
+      installing_scripts: "Once user scripts are enabled in your browser, browse to a script on Greasy Fork and click the green \"Install\" button."
     meta_keys:
       # title of the help document describing script meta keys (e.g. @name).
       title: "Script meta keys read by %{site_name}"
@@ -642,6 +657,8 @@ en:
       translators_credit: "%{site_name} was translated by %{translators_link:the Greasy Translation Force on Transifex}:"
       # give credit to icon makers. all links are proper names so are not translated.
       icons_credit: "Discussion icons are from %{vistastylebase} by %{iconsland}. Browser icons are from %{browserlogos}."
+    # link to greasemonkey docs
+    help_with_greasymonkey: "Help with Greasemonkey"
   common:
     # text to show before listing errors in a submission
     error_preamble: "There were some problems with what you posted..."
