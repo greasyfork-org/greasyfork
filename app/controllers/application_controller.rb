@@ -360,6 +360,10 @@ protected
 			render_404
 			return true
 		end
+		if script.sensitive && script_subset == :greasyfork
+			redirect_to url_for(params.merge(host: 'sleazyfork.org')), status: 301
+			return
+		end
 		return false
 	end
 
