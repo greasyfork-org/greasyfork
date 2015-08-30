@@ -274,7 +274,8 @@ private
 
 	# Turns a path segment from a webhook request to a URL segment
 	def self.urlify_webhook_path_segment(path)
-		return URI.escape(path, Regexp.new("[^#{URI::PATTERN::UNRESERVED}]"))
+		re = Regexp.new("[^#{URI::PATTERN::UNRESERVED}]")
+		return path.split('/').map{|part| URI.escape(part, re)}.join('/')
 	end
 
 end
