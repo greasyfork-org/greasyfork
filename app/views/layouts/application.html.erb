@@ -30,6 +30,12 @@
 		<% end
 	end %>
 
+	<% if sleazy? %>
+		<link rel="search" href="/sleazyforkopensearch.xml" type="application/opensearchdescription+xml" title="Sleazy Fork search">
+	<% else %>
+		<link rel="search" href="/greasyforkopensearch.xml" type="application/opensearchdescription+xml" title="Greasy Fork search">
+	<% end %>
+
 </head>
 <body>
 
