@@ -5,22 +5,22 @@ class Script < ActiveRecord::Base
 
 	belongs_to :user
 
-	has_many :script_versions
-	has_many :script_applies_tos, -> {order(:text)}, :dependent => :delete_all, :autosave => true
+	has_many :script_versions, dependent: :destroy
+	has_many :script_applies_tos, -> {order(:text)}, dependent: :destroy, autosave: true
 	has_many :discussions, -> { readonly.order('COALESCE(DateLastComment, DateInserted)').where('Closed = 0') }, :class_name => 'ForumDiscussion', :foreign_key => 'ScriptID'
-	has_many :assessments, :dependent => :delete_all, :autosave => true
-	has_many :cpd_duplication_scripts
+	has_many :assessments, dependent: :destroy, autosave: true
+	has_many :cpd_duplication_scripts, dependent: :destroy
 	has_many :cpd_duplications, :through => :cpd_duplication_scripts
-	has_many :script_set_script_inclusions, :foreign_key => 'child_id'
+	has_many :script_set_script_inclusions, foreign_key: 'child_id', dependent: :destroy
 	has_many :favorited_in_sets, -> {includes(:user).where('favorite = true')}, :through => :script_set_script_inclusions, :class_name => 'ScriptSet', :source => 'parent'
 	has_many :favoriters, :through => :favorited_in_sets, :class_name => 'User', :source => 'user'
-	has_many :localized_attributes, :class_name => 'LocalizedScriptAttribute', :autosave => true
+	has_many :localized_attributes, class_name: 'LocalizedScriptAttribute', autosave: true, dependent: :destroy
 	has_many :localized_names, -> {where(:attribute_key => 'name')}, :class_name => 'LocalizedScriptAttribute'
 	has_many :localized_descriptions, -> {where(:attribute_key => 'description')}, :class_name => 'LocalizedScriptAttribute'
 	has_many :localized_additional_infos, -> {where(:attribute_key => 'additional_info')}, :class_name => 'LocalizedScriptAttribute'
-	has_many :compatibilities, :autosave => true
+	has_many :compatibilities, autosave: true, dependent: :destroy
 
-	has_one :syntax_highlighted_code
+	has_one :syntax_highlighted_code, dependent: :destroy
 
 	belongs_to :script_type
 	belongs_to :script_sync_source
@@ -145,6 +145,12 @@ class Script < ActiveRecord::Base
 			build_syntax_highlighted_code if syntax_highlighted_code.nil?
 			syntax_highlighted_code.html = html
 			syntax_highlighted_code.save
+		end
+	end
+
+	before_destroy do |script|
+		["install_counts", "daily_install_counts", "update_check_counts", "daily_update_check_counts"].each do |table|
+			script.class.connection.execute "DELETE FROM #{table} WHERE script_id = #{script.id}"
 		end
 	end
 

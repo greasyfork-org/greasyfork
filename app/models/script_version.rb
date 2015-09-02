@@ -11,8 +11,8 @@ class ScriptVersion < ActiveRecord::Base
 	belongs_to :script_code, :autosave => true
 	belongs_to :rewritten_script_code, :class_name => 'ScriptCode', :autosave => true
 
-	has_many :localized_attributes, :class_name => 'LocalizedScriptVersionAttribute', :autosave => true
-	has_and_belongs_to_many :screenshots, :autosave => true
+	has_many :localized_attributes, class_name: 'LocalizedScriptVersionAttribute', autosave: true, dependent: :destroy
+	has_and_belongs_to_many :screenshots, autosave: true, dependent: :destroy
 
 	strip_attributes :only => [:changelog]
 
