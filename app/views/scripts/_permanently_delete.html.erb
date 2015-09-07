@@ -1,0 +1,19 @@
+<h3><%=t('scripts.delete_permanently_heading')%></h3>
+
+<p><%=t('scripts.delete_permanently_explanation')%></p>
+
+<% if script.permanent_deletion_request_date.nil? %>
+
+	<%=form_tag(action: 'request_permanent_deletion') do %>
+		<input type="submit" data-confirm="<%=t('scripts.delete_permanently_confirm')%>" value="<%=t('scripts.delete_permanently_submit')%>">
+	<% end %>
+
+<% else %>
+
+	<p><%=t('scripts.delete_permanently_already_requested', datetime: script.permanent_deletion_request_date)%></p>
+
+	<%=form_tag(action: 'unrequest_permanent_deletion') do %>
+		<input type="submit" value="<%=t('scripts.cancel_delete_permanently_submit')%>">
+	<% end %>
+
+<% end %>

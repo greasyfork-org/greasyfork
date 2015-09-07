@@ -26,13 +26,9 @@
 			<% if user_is_mod %>
 				<li<%=current_page?(script_mark_path(@script.id)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>Mark</span>".html_safe, script_mark_path(@script.id)%></li>
 			<% end %>
-			<% if (same_user and !@script.locked) or user_is_mod
-				if @script.deleted? %>
-					<li<%=current_page?(script_undelete_path(@script)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.undelete_page')}</span>".html_safe, script_undelete_path(@script)%></li>
-				<% else %>
-					<li<%=current_page?(script_delete_path(@script)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.delete_page')}</span>".html_safe, script_delete_path(@script)%></li>
-				<% end
-			end %>
+			<% if (same_user and !@script.locked) or user_is_mod %>
+				<li<%=current_page?(script_delete_path(@script)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.delete_page')}</span>".html_safe, script_delete_path(@script)%></li>
+			<% end %>
 		</ul>
 		<div id="script-content">
 			<%= content_for?(:scripts_content) ? yield(:scripts_content) : yield %>

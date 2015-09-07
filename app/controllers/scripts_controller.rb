@@ -2,14 +2,14 @@ require 'script_importer/script_syncer'
 require 'csv'
 
 class ScriptsController < ApplicationController
-	layout 'application', :except => [:show, :show_code, :feedback, :diff, :sync, :sync_update, :delete, :do_delete, :undelete, :stats, :derivatives, :mark, :do_mark]
+	layout 'application', :except => [:show, :show_code, :feedback, :diff, :sync, :sync_update, :delete, :do_delete, :stats, :derivatives, :mark, :do_mark]
 
-	before_filter :authorize_by_script_id, :only => [:sync, :sync_update]
+	before_filter :authorize_by_script_id, :only => [:sync, :sync_update, :request_permanent_deletion, :unrequest_permanent_deletion]
 	before_filter :authorize_by_script_id_or_moderator, :only => [:delete, :do_delete, :undelete, :do_undelete, :derivatives]
-	before_filter :check_for_locked_by_script_id, :only => [:sync, :sync_update, :delete, :do_delete, :undelete, :do_undelete]
+	before_filter :check_for_locked_by_script_id, :only => [:sync, :sync_update, :delete, :do_delete, :undelete, :do_undelete, :request_permanent_deletion, :unrequest_permanent_deletion]
 	before_filter :check_for_deleted_by_id, :only => [:show]
 	before_filter :check_for_deleted_by_script_id, :only => [:show_code, :feedback, :install_ping, :diff]
-	before_filter :authorize_for_moderators_only, :only => [:minified, :mark, :do_mark, :reported_not_adult]
+	before_filter :authorize_for_moderators_only, :only => [:minified, :mark, :do_mark, :reported_not_adult, :do_permanent_deletion, :reject_permanent_deletion, :requested_permanent_deletion]
 
 	skip_before_action :verify_authenticity_token, :only => [:install_ping]
 	protect_from_forgery :except => [:user_js, :meta_js, :show, :show_code]
@@ -120,6 +120,12 @@ class ScriptsController < ApplicationController
 	def reported_not_adult
 		@bots = 'noindex'
 		@scripts = Script.reported_not_adult
+		render :reported
+	end
+
+	def requested_permanent_deletion
+		@bots = 'noindex'
+		@scripts = Script.requested_permanent_deletion
 		render :reported
 	end
 
@@ -427,12 +433,9 @@ class ScriptsController < ApplicationController
 
 	def delete
 		@script = Script.find(params[:script_id])
-		@other_scripts = Script.where(:user => @script.user).where(:locked => false).where(['id != ?', @script.id]).count
-		@bots = 'noindex'
-	end
-
-	def undelete
-		@script = Script.find(params[:script_id])
+		if !@script.deleted?
+			@other_scripts = Script.where(:user => @script.user).where(:locked => false).where(['id != ?', @script.id]).count
+		end
 		@bots = 'noindex'
 	end
 
@@ -536,6 +539,53 @@ class ScriptsController < ApplicationController
 		script.replaced_by_script_id = nil
 		script.delete_reason = nil
 		script.save(:validate => false)
+		redirect_to script
+	end
+
+	def request_permanent_deletion
+		script = Script.find(params[:script_id])
+		script.permanent_deletion_request_date = DateTime.now
+		script.save(validate: false)
+		flash[:notice] = I18n.t('scripts.delete_permanently_notice')
+		redirect_to script
+	end
+
+	def unrequest_permanent_deletion
+		script = Script.find(params[:script_id])
+		script.permanent_deletion_request_date = nil
+		script.save(validate: false)
+		flash[:notice] = I18n.t('scripts.cancel_delete_permanently_notice')
+		redirect_to script
+	end
+
+	def do_permanent_deletion
+		script = Script.find(params[:script_id])
+		Script.transaction do
+			script.destroy!
+			ma = ModeratorAction.new
+			ma.moderator = current_user
+			ma.script = script
+			ma.action = 'Permanent deletion'
+			ma.reason = 'Author request'
+			ma.save!
+		end
+		flash[:notice] = 'Script permanently deleted.'
+		redirect_to root_path
+	end
+
+	def reject_permanent_deletion
+		script = Script.find(params[:script_id])
+		Script.transaction do
+			ma = ModeratorAction.new
+			ma.moderator = current_user
+			ma.script = script
+			ma.action = 'Permanent deletion denied'
+			ma.reason = params[:reason]
+			ma.save!
+			script.permanent_deletion_request_date = nil
+			script.save(validate: false)
+		end
+		flash[:notice] = 'Permanent deletion request rejected.'
 		redirect_to script
 	end
 
