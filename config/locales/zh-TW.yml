@@ -217,7 +217,12 @@ zh-TW:
   home:
     title: "%{site_name} - 安全又好用的使用者腳本分享站"
     welcome: "歡迎來到 %{site_name}，這是一個使用者腳本分享站。"
+    sleazy_title: "%{site_name} - 安全又好用的成人使用者腳本分享站"
+    sleazy_welcome: "歡迎來到 %{site_name}，這是一個成人使用者腳本分享站。"
     explain_user_scripts_heading: "使用者腳本是什麼？"
+    explain_user_scripts_html: "使用者腳本讓您控制您的瀏覽體驗。當您安裝後，腳本將自動為網頁增強功能、使用簡易或移除煩人的東西。在 %{site_name} 上的腳本均由其它使用者編寫并与這個世界分析。他們可以免費、簡單的使用。"
+    how_to_install_user_scripts_heading: "我應該如何安裝使用者腳本？"
+    how_to_install_user_scripts_html: "首先，您需要安裝一個使用者腳本管理器。對 Firefox 瀏覽器來說，最好的選擇是 %{gm_link:Greasemonkey}；對 Chrome 瀏覽器則是 %{tm_link:Tampermonkey}；當然，也有%{other_managers_link:其它的選擇} 。當您安裝了使用者腳本管理之後，您可以在 %{site_name} 尋找您喜歡的腳本冰點擊綠色的「安裝」按鈕。腳本安裝完畢后將在您訪問網站的時候自動啓用。"
     scripts_sample: "腳本實例"
     scripts_sample_more: "更多…"
   users:
@@ -292,6 +297,14 @@ zh-TW:
     approve_redistribution_true: "我 允許 此腳本可以被其它網站轉貼"
     approve_redistribution_false: "我 不要 其它網站轉貼我的腳本"
   help:
+    installing_user_scripts:
+      title: "如何安裝使用者腳本"
+      intro: "要使用使用者腳本，您通常需要安裝一個瀏覽器擴展。"
+      firefox: "Firefox 或相關瀏覽器：%{gm_link:Greasemonkey}。"
+      chrome: "Google Chrome、Chromium 或相關瀏覽器：%{tm_link:Tampermonkey}。"
+      opera_15_plus: "Opera (版本 15 及以後)：%{tm_link:Tampermonkey} 或 %{vm_link:Violentmonkey}。"
+      opera_12: "Opera 版本 12 以及之前的版本 %{opera_doc_link:原生支援使用者腳本}。當然，您也可以使用 %{vm_link:Violentmonkey}  擴展用於提供更好用的界面以及增強的兼容性。"
+      installing_scripts: "當使用者腳本在您的瀏覽器啓用後，瀏覽到一個 Greasy Fork 的腳本并單擊綠色的「安裝」按鈕。"
     meta_keys:
       title: "%{site_name} 讀取的 meta keys"
       intro_html: "這是 %{site_name} 會讀取的 <a href=\"http://wiki.greasespot.net/Metadata_Block\">使用者腳本 meta keys</a> 的清單。腳本中可以有不在此清單中的 key，也會存在使用者安裝的腳本中，但不會對 %{site_name} 的介面有任何效果。"
@@ -325,6 +338,7 @@ zh-TW:
       developers_credit: "%{site_name} 網站是由 %{developers_link:這些開發者}，與那些回報錯誤、提供建議的使用者所建立。"
       translators_credit: "%{site_name} 的翻譯來自 %{translators_link:Greasy Translation Force @ Transifex}︰"
       icons_credit: "討論區的圖示來自 %{vistastylebase} @ %{iconsland}。瀏覽器的圖示來自 %{browserlogos}。"
+    help_with_greasymonkey: "Greasemonkey 使用幫助"
   common:
     error_preamble: "您所發表的帖子內容有點問題..."
     allowed_elements_link: "(檢視允許使用的 HTML/Markdown 代碼。)"

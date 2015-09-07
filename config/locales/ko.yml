@@ -86,10 +86,10 @@ ko:
     derivatives_script_html: "%{user_link}가 만든 %{script_link}, 라이센스: %{license}"
     derivatives_script_with_code_line_html: "%{user_link}의 %{script_lines_link}, 라이센스: %{license}"
     script_lines_link: "%{script_name}, %{start}번째 줄에서 %{end}번째 줄까지"
-    listing_title_all_sites: "모든 사이트에 적용되는 유저 스크립트"
-    listing_description_all_sites: "모든 사이트에서 기능을 추가하고 버그를 제거하는 유저 스크립트"
+    listing_title_all_sites: "모든 사이트에 적용되는 유저스크립트"
+    listing_description_all_sites: "모든 사이트에서 기능을 추가하고 버그를 제거하는 유저스크립트"
     listing_title_for_site: "%{site}에 적용되는 유저스크립트"
-    listing_description_for_site: "%{site}에서 기능을 추가하고 버그를 제거하는 유저 스크립트"
+    listing_description_for_site: "%{site}에서 기능을 추가하고 버그를 제거하는 유저스크립트"
     listing_title_for_search: "'%{search_string}' 유저스크립트"
     listing_title_for_code_search: "'%{search_string}' 유저스크립트"
     listing_title_generic: "유저스크립트"
@@ -140,8 +140,8 @@ ko:
     preview_additional_info: "미리보기"
     post_new_script: "스크립트 게시"
     post_updated_script: "새 버전 게시"
-    type_1_html: "공개된 유저스크립트 - 모두가 사용할 수 있고 모두에게 공개된 유저 스크립트"
-    type_2_html: "목록에 표시되지 않는 유저 스크립트 - (半-)사적으로 사용하는 유저스크립트, 직접 접근으로 사용가능하나, %{site_name} 어디에도 링크가 없음. "
+    type_1_html: "공개된 유저스크립트 - 모두가 사용할 수 있고 모두에게 공개된 유저스크립트"
+    type_2_html: "목록에 표시되지 않는 유저스크립트 - (半-)사적으로 사용하는 유저스크립트, 직접 접근으로 사용가능하나, %{site_name} 어디에도 링크가 없음. "
     type_3_html: "라이브러리 - 다른 스크립트에서 <code>@require</code>로 사용하고 직접 설치되지 않는 스크립트"
     override_warning_checkbox_label: "그래도 저장할까요?"
     warning_uses_disallowed_requires_html: "당신은 <code>@require</code> 블럭으로 %{site_name} 화이트리스트 (%{requires_used}) 밖의 스크립트를 사용하고 있습니다. 이 외부 스크립트 문제가 해결될때까지 설치가 불가능합니다."
@@ -198,6 +198,12 @@ ko:
     approve_redistribution_true: "제 스크립트가 다른 곳에서 재배포되도 상관 없습니다."
     approve_redistribution_false: "제 스크립트가 다른곳에서 재배포되는 것을 원치 않습니다."
     redistributable_title: "재배포가능한 유저스크립트"
+    redistributable_page_description: "이 스크립트의 제작분들이 다른 곳에 게시하는 것을 명확하게 허가했습니다. 하지만 그렇다고 이 스크립트를 재배포할 시 문제가 아예 나타나지 않는 건 아니니 각각 스크립트의 라이선스를 자세히 확인해보세요."
+    adult_content: "성인물"
+    adult_content_self_report: "이 스크립트는 성인물을 포함하거나 성인 사이트에서 동작합니다."
+    adult_content_self_report_explanation: "%{site_name}는 성인물이 포함된 스크립트를 허용하나,  사용자들이 스스로 선택할 수 있도록 성인물이 포함되거나 성인 사이트에서 동작함을 표시해야 합니다."
+    not_adult_content_self_report_html: "이 스크립트는 성인물을 포함하지 <strong>않으며</strong> 성인 사이트에서 동작하지 <strong>않습니다.</strong>"
+    not_adult_content_self_report_explanation: "%{site_name}는 성인물이 포함된 스크립트를 허용하나,  사용자들이 스스로 선택할 수 있도록 성인물이 포함되거나 성인 사이트에서 동작함을 표시해야 합니다. 이 스크립트가 성인물을 포함한다고 표시했으며, 만약 아니라면 포함하지 아니한다고 보고한 후 운영자의 검토를 기다릴 수 있습니다."
   script_sets:
     favorites_name: "즐겨찾기"
     delete: "스크립트 모음 삭제"
@@ -211,7 +217,12 @@ ko:
   home:
     title: "%{site_name} - 안전하고 유용한 유저스크립트"
     welcome: "유저스크립트 사이트 %{site_name}에 오신걸 환영합니다."
+    sleazy_title: "%{site_name} - 인잔하고 유용한 성인용 유저스크립트"
+    sleazy_welcome: "성인용 유저스크립트 사이트, %{site_name}에 오신 것을 환영합니다"
     explain_user_scripts_heading: "유저스크립트가 무엇인가요?"
+    explain_user_scripts_html: "유저스크립트를 사용하면 자신의 경험을 새로운 경험으로 바꿀 수 있습니다. 설치됬을 때,  유저스크립트는 자동으로 사이트에서 짜쯩나는 걸 제거하거나, 사용을 쉽게 하거나, 기능을 추가하여 사이트에 방문할 때의 경험을 더 나아지게 합니다. %{site_name}에 있는 유저스크립트들은 다른 사용자에 의해 작성되고 전세계에 공유되고 있습니다. 설치하는 데에는 한푼의 돈도 들지 않으며 사용도 매우 간편합니다."
+    how_to_install_user_scripts_heading: "어떻게 유저스크립트를 설치하나요?"
+    how_to_install_user_scripts_html: "유저스크립트를 사용하려면, 먼저 유저 스크립트 관리자를 설치해야 합니다. 파이어폭스는 %{gm_link:Greasemonkey}가 권장되고 크롬에서는 %{tm_link:Tampermonkey}가 권장됩니다. %{other_managers_link:물론 여기에 있는 게 다는 아니며 다른 관리자 프로그램도 존재합니다.} 유저 스크립트 관리자를 설치했다면, %{site_name}에서 좋아하는 스크립트를 찾고 초록색의 설치 버튼을 누르세요. 그러면 스크립트가 설치되고 그 스크립트가 작동하는 사이트에 방문할때 동작할 것입니다."
     scripts_sample: "스크립트 샘플"
     scripts_sample_more: "더 보기..."
   users:
@@ -279,15 +290,24 @@ ko:
     listing_registration_date: "등록 일자"
     locale_prompt: "(지역이나 언어 선택)"
     show_ads_description: "광고 차단을 해제해 %{site_name}를 지원해주세요"
+    show_sensitive_description: "성인물이 포함된 유저스크립트 표시"
     preferred_markup_description: "다음에 보는 스크립트와 게시물에 적용됩니다"
     flattr_username_description_html: "유저들에게 <a href=\"https://flattr.com\">Flattr</a> 계정으로 기부할 것을 요청할 것입니다."
     approve_redistribution_explanation: "다른 사이트에서 당신의 스크립트를 재배포 할 수 있는 지 말할 수 있으며, 라이선스에 의해 이미 허용되거나 허용되지 않을 수도 있으며 각각의 스크립트의 설정을 무시할 수 있습니다."
     approve_redistribution_true: "제 스크립트들이 다른 곳에서 재배포되도 상관 없습니다."
     approve_redistribution_false: "제 스크립트들이 다른곳에서 재배포되는 것을 원치 않습니다."
   help:
+    installing_user_scripts:
+      title: "유저스크립트를 설치하는 방법"
+      intro: "일반적인 경우, 유저스크립트를 사용하려면 브라우저 확장 프로그램을 설치해야 합니다."
+      firefox: "파이어폭스 혹은 관련된 브라우저: %{gm_link:Greasemonkey}"
+      chrome: "구글 크롬, 크로미엄, 그리고 관련된 브라우저: %{tm_link:Tampermonkey}"
+      opera_15_plus: "오페라 (버전 15이상): %{tm_link:Tampermonkey} 또는 %{vm_link:Violentmonkey}"
+      opera_12: "12이하 버전의 오페라는 %{opera_doc_link:유저스크립트가 기본적으로 지원합니다.} 더 나아진 호환성과 더 친숙해진 UI를 원한다면 %{vm_link:Violentmonkey}를 사용하세요."
+      installing_scripts: "브라우저에서 유저스크립트가 활성화되면, Greasy Fork에서 유저스크립트를 찾은 후 초록색의 \"설치\" 버튼을 누르세요."
     meta_keys:
       title: "스크립트 메타 키는 %{site_name} 에 의해 읽힙니다."
-      intro_html: "%{site_name}에서 읽는 <a href=\"http://wiki.greasespot.net/Metadata_Block\">유저 스크립트 메타블럭</a>들입니다. 이 중에 없는 블럭은 스크립트내에 포함되나 %{site_name}의 UI에 아무런 영향도 주지 않습니다."
+      intro_html: "%{site_name}에서 읽는 <a href=\"http://wiki.greasespot.net/Metadata_Block\">유저스크립트 메타블럭</a>들입니다. 이 중에 없는 블럭은 스크립트내에 포함되나 %{site_name}의 UI에 아무런 영향도 주지 않습니다."
       name: "스크립트의 이름, 제목 링크 내에서 사용됩니다. 필수."
       name_localized_html: "지정된 로케일에서의 스크립트 이름. XX는 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-letter code</a>에서, YY는 필수적이지 않은 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 country code</a>입니다. 일치하는 로케일내에서 유저가 탐색할때 <code>@name</code>는 무시됩니다."
       description: "스크립트가 뭐 하는지에 대한 설명. 스크립트 이름 아래에서 텍스트로 보여집니다. 필수."
@@ -305,8 +325,8 @@ ko:
       compatible_html: "이 스크립트가 어느 브라우저랑 호환됨을 표시합니다. 호환성 정보는 스크립트 페이지에 표시됩니다. 호환성에 관한 주석은 <code>@copmatible firefox 팝업 차단을 반드시 해제해야 함</code>의 형식에 맞춰 포함 될 수 있습니다. 인식되는 브라우저들은 다음과 같습니다: %{browsers}."
       incompatible_html: "이 스크립트가 어느 브라우저랑 호환되지 않음을 표시합니다. 호환성 정보는 스크립트 페이지에 표시됩니다. 선택적으로, <code>@incompatible firefox 23 버전부터 작동 안됨</code>의 형식에 맞추어 호환성에 대한 주석을 포함할 수 있습니다. 인식되는 브라우저들은 다음과 같습니다: @{browsers}."
     writing_user_scripts:
-      title: "유저 스크립트 작성 방법"
-      content_html: "<p>유저 스크립트 작성에는 자바 스크립트 지식이 필요합니다. GreaseSpot 위키에 있는 <a href=\"http://wiki.greasespot.net/Tutorials\">튜토리얼</a>은 기초적인 자바 스크립트 지식과 유저 스크립트 연관성을 통해 도움을 받으실 수 있습니다. %{code_rules_link} 와 %{meta_keys_link} 을 참고하시는 것도 좋습니다. 스크립트 개발에 도움을 받고 싶으시면 %{ask_in_forum_link}.</p><p> %{site_name} 에 게시물을 작성하시려면 회원가입을 하셔야합니다. %{user_page_link} 에서 %{post_new_script_link} 을 통해 작성하실 수 있습니다.</p>\n\n\n You may be interested in %{code_rules_link} and . If you want help developing your script, feel free to %{ask_in_forum_link}.</p><p>To post on %{site_name}, you will need to create an account. From your %{user_page_link}, follow the link to %{post_new_script_link}.</p>"
+      title: "유저스크립트 작성 방법"
+      content_html: "<p>유저스크립트 작성에는 자바 스크립트 지식이 필요합니다. GreaseSpot 위키에 있는 <a href=\"http://wiki.greasespot.net/Tutorials\">튜토리얼</a>에서 기초적인 자바 스크립트 지식과 유저 스크립트 연관성을 통해 도움을 받으실 수 있습니다. %{code_rules_link} 와 %{meta_keys_link} 을 참고하시는 것도 좋습니다. 스크립트 개발에 도움을 받고 싶으시면 %{ask_in_forum_link}.</p><p> %{site_name} 에 게시물을 작성해보세요. 게시물을 작성하시려면 계정이 필요합니다. 그리고 준비가 되셨다면 당신의 %{user_page_link}에서, %{post_new_script_link}로 들어가보세요.</p>"
       ask_in_forum_link_text: '포럼에 질문하기'
       user_page_link_text: '유저 페이지'
       post_new_script_link_text: '새로운 스크립트 게시'
@@ -314,9 +334,11 @@ ko:
       title: "외부 스크립트에 관한 Gresay Fork 정책"
     credits:
       title: "제작자"
+      authors_credit: "만약 스크립트를 기여해주는 개발자분들이 없어진다면, %{site_name}는 사라질 겁니다."
       developers_credit: "%{site_name}는 %{developers_link:이 사람들}이 제안하시고 버그를 신고해주신 분들의 도움과 함께 만들었습니다."
       translators_credit: "%{site_name}는 %{translators_link:Transifex에서 Greasy 번역 팀}이 번역하였습니다."
       icons_credit: "토론 아이콘은 %{iconsland}의 %{vistastylebase}에서 가져왔습니다. 브라우저 아이콘들은 %{browserlogos}에서 가져왔습니다."
+    help_with_greasymonkey: "Greasemonkey 도움말"
   common:
     error_preamble: "당신이 올린 거에 몇몇 문제들이 있습니다...."
     allowed_elements_link: "(허용된 코드 보기)"
@@ -340,6 +362,7 @@ ko:
         locale: "우선되는 로케일"
         author_email_notification_type_id: "스크립트 의논 알림"
         show_ads: "광고 보기"
+        show_sensitive: "성인물"
         preferred_markup: "우선되는 마크업"
         flattr_username: "Flattr 유저이름"
       script:

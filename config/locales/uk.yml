@@ -307,6 +307,14 @@ uk:
     approve_redistribution_true: "Я Погоджуюсь на пере-опублікування мого скрипту в інших джерелах"
     approve_redistribution_false: "Я Не Погоджуюсь на пере-опублікування мого скрипту без мого відому"
   help:
+    installing_user_scripts:
+      title: "Як встановити скрипти користувачів"
+      intro: "Щоб використовувати скрипти користувачів, вам як правило, необхідно встановити розширення для браузера."
+      firefox: "Firefox і похідні браузери: %{gm_link:Greasemonkey}."
+      chrome: "Google Chrome, Chromium, і похідні браузери: %{tm_link:Tampermonkey}."
+      opera_15_plus: "Opera (версія 15+): %{tm_link:Tampermonkey} або %{vm_link:Violentmonkey}."
+      opera_12: "Opera версія 12 і нижче %{opera_doc_link:початково підтримує скрипти користувачів}. %{vm_link:Violentmonkey} забезпечує дружній інтерфейс для користувача і кращу сумісності."
+      installing_scripts: "Після того, як у вашому браузері буде встановлено фунціонал підтримки скриптів користувачів, знайдіть потрібний вам скрипт на Greasy Fork і натисніть зелену кнопку \"Встановити\"."
     meta_keys:
       title: "Мета ключі які розпізнає %{site_name}"
       intro_html: "Це <a href=\"http://wiki.greasespot.net/Metadata_Block\">список мета полів</a>, які %{site_name} буде читати в скриптах користувачів. Значення поза цим списком можуть бути включені в сценарії, і будуть присутні у встановленому скрипті, але не мають ніякого ефекту в інтерфейсі %{site_name}'у."
@@ -340,6 +348,7 @@ uk:
       developers_credit: "%{site_name} був побудований завдяки %{developers_link:цим людям}, а також всім, хто повідомляє про помилки та вносить пропозиції щодо покращення роботи ресурсу."
       translators_credit: "%{site_name} був перекладений зусиллями %{translators_link:перекладачів Greasy Translation Force на Transifex'і}:"
       icons_credit: "Іконки обговорення взяті з %{vistastylebase} від %{iconsland}. Іконки браузерів взяті з %{browserlogos}."
+    help_with_greasymonkey: "Допомога з Greasemonkey"
   common:
     error_preamble: "Були деякі проблеми з тим, що ви публікуєте..."
     allowed_elements_link: "(Переглянути дозволений код.)"

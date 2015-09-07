@@ -216,11 +216,13 @@ id:
     listing_with_script_with_reply_html: "%{script_link}: %{discussion_link} oleh %{original_poster_link} %{original_post_date}, komentar terakhir oleh %{last_commenter_link} %{last_comment_date}"
   home:
     title: "%{site_name} - skrip yang aman dan berguna"
-    welcome: "Selamat datang di %{site_name}, sebuah situs untuk skrip pengguna."
+    welcome: "Selamat datang di %{site_name}, situs untuk semua skrip."
     sleazy_title: "%{site_name} - skrip konten dewasa yang aman dan berguna"
-    sleazy_welcome: "Selamat datang di %{site_name}, sebuah situs untuk skrip pengguna konten dewasa."
+    sleazy_welcome: "Selamat datang di %{site_name}, situs untuk skrip konten dewasa."
     explain_user_scripts_heading: "Apakah itu skrip pengguna?"
-    how_to_install_user_scripts_heading: "Bagaimana cara memasang skrip pengguna?"
+    explain_user_scripts_html: "Skrip membantu Anda mengontrol pengalaman menjelajah internet. Sekali dipasang, mereka secara otomatis membuat situs yang Anda kunjungi lebih baik dengan menambahkan fitur, membuat situs lebih mudah digunakan, atau menyingkirkan hal-hal yang mengganggu. Skrip pada situs %{site_name} dibuat oleh pengguna lainnya dan dikirimkan untuk dibagikan ke seluruh dunia. Mereka gratisdan bebas untuk dipasang dan mudah digunakan."
+    how_to_install_user_scripts_heading: "Bagaimana cara memasang skrip?"
+    how_to_install_user_scripts_html: "Untuk menggunakan skrip, pertama Anda harus memasang pengelola skrip. Untuk Firefox, pilihan terbaik adalah %{gm_link:Greasemonkey}. Untuk Chrome: %{tm_link:Tampermonkey}. %{other_managers_link:Pilihan lainnya tersedia.} Setelah Anda memasang pengelola skrip, temukan skrip yang Anda inginkan di %{site_name} dan klik tombol pasang hijau. Skrip akan terpasang dan akan berjalan pada situs yang inginkan."
     scripts_sample: "Contoh skrip kami"
     scripts_sample_more: "Lebih banyak..."
   users:
@@ -295,6 +297,14 @@ id:
     approve_redistribution_true: "Saya OK skrip saya dikirim ulang ke situs lain"
     approve_redistribution_false: "Saya tidak ingin skrip saya dikirim ulang ke situs lain"
   help:
+    installing_user_scripts:
+      title: "Bagaimana cara memasang skrip"
+      intro: "Untuk menggunakan skrip, Anda perlu untuk memasang ekstensi/pengaya peramban."
+      firefox: "Firefox dan peramban serupa: %{gm_link:Greasemonkey}."
+      chrome: "Google Chrome, Chromium, dan peramban serupa: %{tm_link:Tampermonkey}."
+      opera_15_plus: "Opera (versi 15 dan lebih tinggi): %{tm_link:Tampermonkey} atau %{vm_link:Violentmonkey}."
+      opera_12: "Opera versi 12 dan sebelumnya %{opera_doc_link:mendukung skrip secara bawaan}. %{vm_link:Violentmonkey} menyediakan UI yang sederhana dan kompatibilitas yang lebih baik."
+      installing_scripts: "Setelah skrip diaktifkan di peramban Anda, jelajahi skrip-skrip di Greasy Fork dan klik tombol \"Pasang\" berwarna hijau."
     meta_keys:
       title: "Kunci meta skrip dibaca oleh %{site_name}"
       intro_html: "Berikut adalah daftar <a href=\"http://wiki.greasespot.net/Metadata_Block\">kunci meta skrip</a> yang %{site_name} akan baca. Kunci di luar daftar ini boleh disertakan dalam skrip, dan akan tersedia dalam skrip yang terpasang, tetapi tidak akan memiliki pengaruh pada UI %{site_name}."
@@ -315,8 +325,8 @@ id:
       compatible_html: "Tandai skrip ini kompatibel dengan sebuah peramban. Informasi kompatibilitas akan ditampilkan di halaman skrip. Komentar kompatibilitas dapat disertakan dalam format <code>@compatible firefox Harus menonaktifkan pemblokir jendela muncul</code>. Peramban yang didukung adalah: %{browsers}."
       incompatible_html: "Tandai skrip ini tidak kompatibel dengan sebuah peramban. Informasi kompatibilitas akan ditampilkan di halaman skrip. Komentar opsional kompatibilitas dapat disertakan dalam format <code>@incompatible firefox Rusak sejak Firefox 23</code>. Peramban yang terdampak adalah: %{browsers}."
     writing_user_scripts:
-      title: "Bagaimana cara menulis skrip pengguna"
-      content_html: "<p>Menulis skrip membutuhkan pengetahuan tentang JavaScript. <a href=\"http://wiki.greasespot.net/Tutorials\">Tutorial di wiki GreaseSpot</a> akan memberi anda langkah awal JavaScript baik secara umum dan kaitannya dengan skrip pengguna. Memeriksa skrip pengguna lain dapat sangat membantu. Anda mungkin tertarik dengan %{code_rules_link} dan %{meta_keys_link}. Jika anda ingin bantuan membuat skrip, kunjungi %{ask_in_forum_link}.</p><p>Untuk mengirim ke %{site_name}, anda perlu membuat akun. Dari %{user_page_link} anda, ikuti tautan ke %{post_new_script_link}.</p>"
+      title: "Bagaimana cara menulis skrip"
+      content_html: "<p>Menulis skrip membutuhkan pengetahuan tentang JavaScript. <a href=\"http://wiki.greasespot.net/Tutorials\">Tutorial di wiki GreaseSpot</a> akan memberi anda langkah awal JavaScript baik secara umum dan kaitannya dengan skrip. Memeriksa skrip lain dapat sangat membantu. Anda mungkin tertarik dengan %{code_rules_link} dan %{meta_keys_link}. Jika anda ingin bantuan membuat skrip, kunjungi %{ask_in_forum_link}.</p><p>Untuk mengirim ke %{site_name}, anda perlu membuat akun. Dari %{user_page_link} anda, ikuti tautan ke %{post_new_script_link}.</p>"
       ask_in_forum_link_text: 'tanyakan di forum'
       user_page_link_text: 'halaman pengguna'
       post_new_script_link_text: 'kirim skrip baru'
@@ -328,6 +338,7 @@ id:
       developers_credit: "%{site_name} sendiri dibangun dan dikembangkan oleh %{developers_link:orang ini} dengan bantuan semua orang yang mengirimkan laporan kutu dan saran-saran perbaikan."
       translators_credit: "%{site_name} diterjemahkan oleh %{translators_link:Pasukan Transliterasi Greasy di Transifex}:"
       icons_credit: "Ikon diskusi dari %{vistastylebase} oleh %{iconsland}. Ikon peramban dari %{browserlogos}."
+    help_with_greasymonkey: "Bantuan Greasemonkey"
   common:
     error_preamble: "Ada beberapa masalah dengan apa yang anda kirimkan..."
     allowed_elements_link: "(Lihat kode yang diizinkan.)"

@@ -297,6 +297,13 @@ ja:
     approve_redistribution_true: "スクリプトを他の場所に転載されても良い"
     approve_redistribution_false: "スクリプトを他の場所に転載されたくない"
   help:
+    installing_user_scripts:
+      title: "ユーザースクリプトのインストール方法"
+      intro: "ユーザースクリプトを利用するには、通常はブラウザ拡張のインストールが必要です。"
+      firefox: "Firefox 系のブラウザ: %{gm_link:Greasemonkey}"
+      chrome: "Google Chrome、Chromium 系のブラウザ: %{tm_link:Tampermonkey}"
+      opera_15_plus: "Opera (バージョン 15 以降): %{tm_link:Tampermonkey} または %{vm_link:Violentmonkey}"
+      installing_scripts: "ブラウザでユーザースクリプトが使えるようになったら、Greasy Fork で公開されているスクリプトのページを開き、緑色のインストールボタンをクリックします。"
     meta_keys:
       title: "%{site_name} が読み込むスクリプト・メタキー"
       intro_html: "%{site_name} が読み込む<a href=\"http://wiki.greasespot.net/Metadata_Block\">ユーザースクリプトのメタキー</a>の一覧です。以下の一覧にないキーをスクリプトに含めることも可能で、そのキーはインストールされたスクリプト中にも含まれることになりますが、%{site_name} の UI (表示) には影響しません。"
@@ -330,6 +337,7 @@ ja:
       developers_credit: "%{site_name} 自体は、バグ報告や改善提案をしたすべての人の助けを借り、%{developers_link:こちらの人たち}によって開発されています。 "
       translators_credit: "%{site_name} は、%{translators_link:Transifex の Greasy Translation Force} によって翻訳されました:"
       icons_credit: "スレッドのアイコンは、%{vistastylebase} の %{iconsland} によるものです。ブラウザのアイコンは %{browserlogos} からのものです。"
+    help_with_greasymonkey: "Greasemonkey のヘルプ"
   common:
     error_preamble: "以下に表示されているエラーを修正し、もう一度送信してください。"
     allowed_elements_link: "使用可能なタグ"

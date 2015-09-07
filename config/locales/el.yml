@@ -302,6 +302,14 @@ el:
     approve_redistribution_true: "Συμφωνώ με την επαναδημοσίευση του κώδικά μου αλλού"
     approve_redistribution_false: "Δεν συμφωνώ ο κώδικάς μου να επαναδημοσιεύεται αλλού"
   help:
+    installing_user_scripts:
+      title: "Πως να εγκαταστήσετε κώδικες χρηστών"
+      intro: "Για να χρησιμοποιήσετε κώδικες χρηστών, τυπικά θα χρειαστείτε να εγκαταστήσετε μια επέκταση φυλλομετρητή."
+      firefox: "Firefox και σχετικοί φυλλομετρητές: %{gm_link:Greasemonkey}."
+      chrome: "Google Chrome, Chromium, και σχετικοί φυλλομετρητές: %{tm_link:Tampermonkey}."
+      opera_15_plus: "Opera (έκδοση 15 και νεότερη): %{tm_link:Tampermonkey} ή %{vm_link:Violentmonkey}."
+      opera_12: "Ο Opera έκδοσης 12 και νεότερης %{opera_doc_link:υποστηρίζει εγγενώς κώδικες χρηστών}. Το %{vm_link:Violentmonkey} παρέχει ένα φιλικό περιβάλλον χρήστη και καλύτερη συμβατότητα."
+      installing_scripts: "Μόλις οι κώδικες χρηστών είναι ενεργοποιημένοι στο φυλλομετρητή σας, αναζητήστε έναν κώδικα στο Greasy Fork και πατήστε το πράσινο κουμπί «Εγκατάσταση»."
     meta_keys:
       title: "Τα μετα-κλειδιά του κώδικα που διαβάζει το %{site_name}"
       intro_html: "Αυτή είναι μια λίστα με τα <a href=\"http://wiki.greasespot.net/Metadata_Block\">μετακλειδιά των κωδίκων χρήστη</a> που το %{site_name} θα διαβάζει. Τα κλειδιά εκτός αυτής της λίστας μπορούν να περιλαμβάνονται στους κώδικες και θα είναι παρόντα στον εγκατεστημένο κώδικα, αλλά δεν θα έχουν καμιά επίδραση στο περιβάλλον του %{site_name}."
@@ -335,6 +343,7 @@ el:
       developers_credit: "Το %{site_name} είναι φτιαγμένο από %{developers_link:these people} με την βοήθεια όλων αυτών που αναφέρουν σφάλματα και προτείνουν βελτιώσεις."
       translators_credit: "To %{site_name} έχει μεταφραστεί από τη %{translators_link:the Greasy Translation Force on Transifex}:"
       icons_credit: "Τα εικονίδια συζήτησης είναι από %{vistastylebase} από το %{iconsland}. Τα εικονίδια του φυλλομετρητή είναι από το %{browserlogos}."
+    help_with_greasymonkey: "Βοήθεια για το Greasemonkey"
   common:
     error_preamble: "Υπήρξαν κάποια προβλήματα με αυτά που δημοσιεύσατε..."
     allowed_elements_link: "(Δείτε τον επιτρεπτόμενο κώδικα.)"

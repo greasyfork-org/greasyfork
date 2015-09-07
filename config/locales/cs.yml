@@ -225,7 +225,12 @@ cs:
   home:
     title: "%{site_name} - bezpečné a užitečné uživatelské skripty"
     welcome: "Vítejte na %{site_name}, úložišti pro uživatelské skripty."
+    sleazy_title: "%{site_name} - bezpečné a užitečné uživatelské skripty pro dospělé"
+    sleazy_welcome: "Vítejte na %{site_name}, úložišti pro uživatelské skripty pro dospělé."
     explain_user_scripts_heading: "Co jsou uživatelské skripty?"
+    explain_user_scripts_html: "Uživatelské skripty vám umožňují mít kontrolou nad prohlížením webu. Jakmile se nainstalují, automaticky vylepšují navštívené stránky přidáváním funkcí, zjednodušním ovládání nebo vynecháním obtěžujících částí. Uživatelské skripty na %{site_name} byly napsány jinými uživateli a poskytnuty ke sdílení celému světu. Jsou zdarma k instalaci a snadno se používají."
+    how_to_install_user_scripts_heading: "Jak nainstaluji uživatelské skripty?"
+    how_to_install_user_scripts_html: "Chcete-li používat uživatelské skripty, musíte nejprve nainstalovat správce skriptů. Pro Firefox je nejlepší volbou je %{gm_link: Greasemonkey}. Pro Chrome: %{tm_link: Tampermonkey}. %{other_managers_link:Další možnosti.} Poté, co jste nainstalovali správce skriptů, najděte požadovaný skript na %{site_name} a klikněte na zelené tlačítko Instalovat. Skript je pak instalován a při návštěvě předmětné stránky se spustí."
     scripts_sample: "Ukázka našich skriptů"
     scripts_sample_more: "Více..."
   users:
@@ -302,6 +307,14 @@ cs:
     approve_redistribution_true: "Nevadí mi, pokud mé skripty budou vystaveny v jiných knihovnách"
     approve_redistribution_false: "Nesouhlasím s vystavením mých skriptů v jiných knihovnách"
   help:
+    installing_user_scripts:
+      title: "Jak nainstalovat uživatelské skripty"
+      intro: "Abyste mohli používat uživatelské skripty, je třeba nainstalovat rozšíření prohlížeče."
+      firefox: "Firefox a související: %{gm_link:Greasemonkey}."
+      chrome: "Google Chrome, Chromium a související: %{tm_link:Tampermonkey}."
+      opera_15_plus: "Opera (verze 15 a pozdější): %{tm_link:Tampermonkey} nebo %{vm_link:Violentmonkey}."
+      opera_12: "Opera verze 12 a dřívější %{opera_doc_link:supports user scripts natively}. %{vm_link:Violentmonkey} poskytuje přívětivější rozhraní a lepší kompatibilitu."
+      installing_scripts: "Jakmile jsou v prohlížeči povoleny uživatelské skripty, vyhledejte skript na Greasy Fork a klikněte na zelené tlačítko \"Instalovat\"."
     meta_keys:
       title: "Meta klíče zpracované %{site_name}em"
       intro_html: "Toto je seznam <a href=\"http://wiki.greasespot.net/Metadata_Block\">meta klíčů uživatelského skriptu</a>, které %{site_name} rozpozná. Klíče mimo tento seznam mohou být obsaženy ve skriptu, budou v instalovaném skriptu přítomny, ale nebudou mít efekt v uživatelském rozhraní %{site_name}."
@@ -330,6 +343,7 @@ cs:
       developers_credit: "Samotný %{site_name} je budován %{developers_link:těmito lidmi} společně s pomocí ostatních, kdo hlásí chyby nebo zasílají náměty na vylepšení."
       translators_credit: "%{site_name} je překládán %{translators_link:předkladatelskou skupinou Greasy Translation Force na Transifexu}:"
       icons_credit: "Ikony diskuse jsou z %{vistastylebase} od %{iconsland}. Ikony prohlížečů jsou z %{browserlogos}."
+    help_with_greasymonkey: "Pomoc s Greasymonkey"
   common:
     error_preamble: "S vloženým obsahem není vše v pořádku..."
     allowed_elements_link: "(Zobrazit povolené elementy.)"

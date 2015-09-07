@@ -187,7 +187,7 @@ zh-CN:
     good_rating_explanation: "好评或收藏的人数。"
     ok_rating_explanation: "评级为一般的人数。"
     bad_rating_explanation: "评级为差评的人数。"
-    write_your_own_html: "%{post_a_script_link} (或 %{learn_to_write_scripts_link})"
+    write_your_own_html: "%{post_a_script_link}（%{learn_to_write_scripts_link}）"
     post_a_script_link_text: "发布您编写的脚本"
     learn_to_write_scripts_link_text: "了解如何编写脚本"
     feedback_suggestion_html: "试用之后，您可以%{feedback_link}。"
@@ -297,6 +297,14 @@ zh-CN:
     approve_redistribution_true: "我允许这个脚本被他人二次分发"
     approve_redistribution_false: "我不希望我的脚本被他人二次分发"
   help:
+    installing_user_scripts:
+      title: "如何安装用户脚本"
+      intro: "要使用用户脚本，您通常需要安装一个浏览器扩展。"
+      firefox: "Firefox 及相关的浏览器：%{gm_link:Greasemonkey}。"
+      chrome: "Google Chrome、Chromium 及相关的浏览器：%{tm_link:Tampermonkey}。"
+      opera_15_plus: "Opera (版本 15 及更晚)：%{tm_link:Tampermonkey} 或者 %{vm_link:Violentmonkey}。"
+      opera_12: "Opera 版本 12 及更早%{opera_doc_link:原生支持用户脚本}。但 %{vm_link:Violentmonkey} 能提供更友好的界面和更好的兼容性。"
+      installing_scripts: "在用户脚本已在您的浏览器中启用后，浏览 Greasy Fork 上的一个脚本，并点击绿色的“安装”按钮吧。"
     meta_keys:
       title: "%{site_name} 要读取的脚本元键值"
       intro_html: "这里有 %{site_name} 将读取的 <a href=\"http://wiki.greasespot.net/Metadata_Block\">用户脚本属性值</a>的一个列表。不在此列表的属性也可以写在脚本中，用户安装的脚本将包含这些属性值但是并不会对网站界面产生更变。"
@@ -330,6 +338,7 @@ zh-CN:
       developers_credit: "%{site_name} 由这些%{developers_link: 开发人员}以及诸位所提交的错误报告与修改建议共同开发而成。"
       translators_credit: "%{site_name} 的翻译由 %{translators_link: Transifex 上的「Greasy 翻译小队」制作}，参与翻译的人员名单如下："
       icons_credit: "讨论区图标取自 %{iconsland} 设计的 %{vistastylebase}，浏览器图标来自 %{browserlogos}。"
+    help_with_greasymonkey: "Greasemonkey 的相关帮助"
   common:
     error_preamble: "很抱歉，您提交的内容有点问题…"
     allowed_elements_link: "(查看允许使用的代码)"

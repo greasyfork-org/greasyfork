@@ -26,7 +26,7 @@ $Definition['Categories.general.Description'] = 'Laporan kutu, permintaan fitur,
 // Category name for Development
 $Definition['Categories.script-development.Name'] = 'Pengembangan';
 // Category description for Development
-$Definition['Categories.script-development.Description'] = 'Pembicaraan teknis mengenai pengembangan skrip pengguna.';
+$Definition['Categories.script-development.Description'] = 'Pembicaraan teknis mengenai pengembangan skrip.';
 // Category name for Script Creation Requests
 $Definition['Categories.script-requests.Name'] = 'Permintaan Pembuatan Skrip';
 // Category description for Script Creation Requests

@@ -232,6 +232,7 @@ ru:
     sleazy_title: "%{site_name} - безопасные и полезные юзерскрипты для взрослых"
     sleazy_welcome: "Добро пожаловать %{site_name}, сайт для взрослых юзерскриптов."
     explain_user_scripts_heading: "Что такое пользовательские скрипты?"
+    how_to_install_user_scripts_heading: "Как мне устанавливать пользовательские скрипты?"
     scripts_sample: "Пример наших скриптов"
     scripts_sample_more: "Ещё..."
   users:
@@ -309,6 +310,12 @@ ru:
     approve_redistribution_true: "Я разрешаю выкладывать мои скрипты и в других местах."
     approve_redistribution_false: "Я не хочу, чтобы мои скрипты размещались на других сайтах"
   help:
+    installing_user_scripts:
+      title: "Как устанавливать пользовательские скрипты"
+      intro: "Что бы использовать пользовательские скрипты, вы обычно должно установить расширение для браузера."
+      firefox: "Firefox и похожие браузеры: %{gm_link:Greasemonkey}."
+      chrome: "Google Chrome, Chromium и похожие браузеры: %{tm_link:Tampermonkey}."
+      opera_15_plus: "Opera (версия 15+): %{tm_link:Tampermonkey} или %{vm_link:Violentmonkey}."
     meta_keys:
       title: "Мета-ключи скрипты от %{site_name}"
       intro_html: "Список <a href=\"http://wiki.greasespot.net/Metadata_Block\">мета-ключей в userscript</a>, анализируемых %{site_name}. Кроме перечисленных, можно использовать любые другие ключи, они сохранятся в неизменном виде при установке скрипта, но не возымеют эффекта на интерфейс в %{site_name}."
@@ -342,6 +349,7 @@ ru:
       developers_credit: "Движок сайта %{site_name} создан %{developers_link:вот этими людьми} при участии всех тех, кто сообщал об ошибках и предлагал улучшения."
       translators_credit: "Перевод %{site_name} выполнен командой %{translators_link:Greasy Translation Force на Transifex}:"
       icons_credit: "Пиктограммы форума из %{vistastylebase} от %{iconsland}. Пиктограммы браузеров из %{browserlogos}."
+    help_with_greasymonkey: "Помощь Greasemonkey"
   common:
     error_preamble: "Обнаружены проблемы в отправленном вами тексте..."
     allowed_elements_link: "(См. разрешенные теги)"
