@@ -190,7 +190,7 @@ class ScriptsController < ApplicationController
 					{:url => url_for(params.merge({:only_path => true, :format => :jsonp, :callback => 'callback'})), :type => 'application/javascript'}
 				]
 				@canonical_params = [:id, :version]
-				@ad_method = @script.ad_method if !@script.ad_method.nil? && @script.ad_method != 'ga'
+				@ad_method = @script.ad_method unless @script.ad_method.nil?
 			}
 			format.js {
 				redirect_to @script.code_url
