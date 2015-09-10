@@ -276,15 +276,14 @@ protected
 		return per_page
 	end
 
-	before_filter :choose_ad_method
 	RANDOM_OPTIONS = ['pw']
-	def choose_ad_method
-		return if sleazy?
-		@ad_method = RANDOM_OPTIONS.include?(params[:ad]) ? params[:ad] : nil
-		return if !@ad_method.nil?
-		return if !current_user.nil? && !current_user.show_ads
-		return if controller_name != 'styles' and action_name != 'show'
-		@ad_method = RANDOM_OPTIONS.sample
+	def choose_ad_method(script)
+		return nil if sleazy?
+		return nil if script && script.sensitive
+		return nil if !current_user.nil? && !current_user.show_ads
+		return script.ad_method if script.ad_method
+		return params[:ad] if RANDOM_OPTIONS.include?(params[:ad])
+		return RANDOM_OPTIONS.sample
 	end
 
 	# Determines a locale to use based on user preference and Accept_Language header.
