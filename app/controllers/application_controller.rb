@@ -104,7 +104,8 @@ protected
 	end
 
 	def render_404(message = 'Script does not exist.')
-		render :text => message, :status => 404, :layout => 'application'
+		@text = message
+		render 'home/error', status: 404, layout: 'application'
 	end
 
 	def render_deleted
@@ -356,11 +357,12 @@ protected
 
 	def handle_wrong_site(script)
 		if !script.sensitive && sleazy?
-			render_404
+			render_404 I18n.t('scripts.non_adult_content_on_sleazy')
 			return true
 		end
 		if script.sensitive && script_subset == :greasyfork
-			render_404
+			message = current_user.nil? ? view_context.it('scripts.adult_content_on_greasy_logged_in_error', login_link: new_user_session_path) : view_context.it('scripts.adult_content_on_greasy_not_logged_in_error', edit_account_link: edit_user_registration_path)
+			render_404 message
 			return true
 		end
 		return false
