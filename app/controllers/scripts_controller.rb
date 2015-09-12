@@ -174,11 +174,12 @@ class ScriptsController < ApplicationController
 	def show
 		@script, @script_version = versionned_script(params[:id], params[:version])
 
-		return if handle_wrong_site(@script)
-		return if redirect_to_slug(@script, :id)
-
 		respond_to do |format|
 			format.html {
+
+				return if handle_wrong_site(@script)
+				return if redirect_to_slug(@script, :id)
+
 				if !params[:version].nil?
 					@bots = 'noindex'
 				elsif @script.unlisted?
