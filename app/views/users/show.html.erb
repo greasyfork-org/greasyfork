@@ -132,3 +132,7 @@ script_list = @scripts - deleted_script_list %>
 		</ol>
 	</section>
 <% end %>
+
+<% if @other_site_scripts > 0 %>
+	<p><%=link_to(t('users.greasy_fork_scripts_link', user_name: @user.name, count: @other_site_scripts), user_url(@user, host: 'greasyfork.org'))%></p>
+<% end %>

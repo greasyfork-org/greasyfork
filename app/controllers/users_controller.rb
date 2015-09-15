@@ -34,6 +34,7 @@ class UsersController < ApplicationController
 				@scripts = ((!current_user.nil? && current_user.id == @user.id) or (!current_user.nil? and current_user.moderator?)) ? @user.scripts : @user.scripts.listable(script_subset)
 				@user_has_scripts = !@scripts.empty?
 				@scripts = ScriptsController.apply_filters(@scripts, params, script_subset)
+				@other_site_scripts = script_subset == :sleazyfork ? @user.scripts.listable(:greasyfork).count : 0
 
 				@bots = 'noindex,follow' if !params[:sort].nil?
 
