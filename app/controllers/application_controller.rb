@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 	def routing_error
 		respond_to do |format|
 			format.html {
-				render 'home/routing_error', :status => 404
+				render 'home/routing_error', status: 404, layout: 'application'
 			}
 			format.all {
 				render :nothing => true, :status => 404, :content_type => 'text/html'
