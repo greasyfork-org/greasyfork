@@ -164,8 +164,6 @@ class ScriptVersionsController < ApplicationController
 		@script_version.save!
 		@script.save!
 
-		flash[:notice] = 'Your script has been posted, but will not be made public until its external scripts fall within Greasy Fork\'s guidelines.' if @script_version.accepted_assessment
-
 		redirect_to @script
 	end
 
@@ -209,7 +207,7 @@ class ScriptVersionsController < ApplicationController
 private
 
 	def script_version_params
-		params.require(:script_version).permit(:code, :changelog, :accepted_assessment, :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation)
+		params.require(:script_version).permit(:code, :changelog, :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation)
 	end
 
 end

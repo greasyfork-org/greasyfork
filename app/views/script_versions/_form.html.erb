@@ -24,7 +24,7 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
 <%=form_for(script_version.script.new_record? ? script_version : [script_version.script, script_version], {:html => {:enctype => 'multipart/form-data'}}) do |s| %>
 
 	<% # remember previously chosen overrides
-	[:accepted_assessment, :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation].each do |override|
+	[:version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation].each do |override|
 		if script_version.send(override) %>
 			<%=s.hidden_field(override)%>
 		<% end
@@ -43,7 +43,13 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
 				script_version.errors.each do |attr, msg|
 					# need custom handling for warnings
 					next if msg.starts_with?('warning-') || attr.to_s.include?('screenshot')
-					displayed_errors << ((attr == :base || msg.is_a?(String)) ? msg : script_version.errors.generate_message(attr, msg))
+					if attr == :base
+						displayed_errors << msg
+					elsif msg.is_a?(String)
+						displayed_errors << "#{attr.to_s.capitalize} #{msg}"
+					else
+						displayed_errors << script_version.errors.generate_message(attr, msg)
+					end
 				end
 				script_version.script.errors.full_messages.each do |m|
 					displayed_errors << m
@@ -54,14 +60,7 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
 				script_version.warnings.each do |w| %>
 					<li><%
 						case w
-							when :uses_disallowed_requires %>
-								<%=t('scripts.warning_uses_disallowed_requires_html', {
-									requires_used: script_version.disallowed_requires_used.join(', '),
-									external_script_rules_link: link_to(t('scripts.warning_uses_disallowed_requires_rules_link', site_name: site_name), help_external_scripts_path(), {:target => 'code_rules'}),
-									site_name: site_name
-								})%><br>
-								<label for="script_version_accepted_assessment"><%=t('scripts.override_warning_checkbox_label')%></label> <%=s.check_box(:accepted_assessment, {}, true, false)%>
-							<% when :version_not_incremented %>
+							when :version_not_incremented %>
 								<%=t('scripts.warning_version_not_incremented_html')%><br>
 								<label for="script_version_version_check_override"><%=t('scripts.override_warning_checkbox_label')%></label> <%=s.check_box(:version_check_override, {}, true, false)%>
 							<% when :version_missing %>

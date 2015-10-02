@@ -46,7 +46,7 @@ class ImportController < ApplicationController
 
 	def add
 		importer = $IMPORTERS.select{|i| i.sync_source_id == params[:sync_source_id].to_i}.first
-		@results = {:new => [], :new_with_assessment => [], :failure => [], :needsdescription => [], :existing => []}
+		@results = {:new => [], :failure => [], :needsdescription => [], :existing => []}
 		sync_ids = nil
 		if params[:sync_ids].nil?
 			sync_ids = params[:sync_urls].split("\n")
@@ -66,11 +66,7 @@ class ImportController < ApplicationController
 					if !existing_scripts.empty?
 						@results[:existing] << existing_scripts.first
 					elsif script.save
-						if script.assessments.empty?
-							@results[:new] << script
-						else
-							@results[:new_with_assessment] << script
-						end
+						@results[:new] << script
 					else
 						@results[:failure] << "Could not save."
 					end

@@ -253,7 +253,7 @@ var foo = "bar";
 END
 		assert !script_version.valid?
 		assert_equal 1, script_version.errors.size
-		assert_equal [:base, 'warning-uses_disallowed_requires'], script_version.errors.first
+		assert_equal [:code, 'uses an unapproved external script: @require http://example.com'], script_version.errors.first
 	end
 
 	test 'validate require exemption' do
@@ -270,28 +270,6 @@ END
 var foo = "bar";
 END
 		assert script_version.valid?, script_version.errors.full_messages.to_s
-	end
-
-	test 'validate require disallowed accept assessment' do
-		script = get_valid_script
-		script_version = script.script_versions.first
-		script_version.code = <<END
-// ==UserScript==
-// @name		A Test!
-// @description		Unit test.
-// @require		http://example.com
-// @version 1.0
-// @namespace http://greasyfork.local/users/1
-// ==/UserScript==
-var foo = "bar";
-END
-		script_version.accepted_assessment = true
-		script.apply_from_script_version(script_version)
-		assert script_version.valid?
-		assert_not_empty script.assessments
-		assert script.assessments.first.details == 'http://example.com'
-		assert_not_nil script.assessments.first.assessment_reason
-		assert script.assessments.first.assessment_reason.name == '@require', script.assessments.first.assessment_reason.name
 	end
 
 	test 'validate disallowed code' do

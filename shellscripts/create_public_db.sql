@@ -4,10 +4,6 @@ DROP TABLE IF EXISTS greasyfork_public.allowed_requires;
 CREATE TABLE greasyfork_public.allowed_requires LIKE greasyfork.allowed_requires;
 INSERT INTO greasyfork_public.allowed_requires SELECT * FROM greasyfork.allowed_requires;
 
-DROP TABLE IF EXISTS greasyfork_public.assessment_reasons;
-CREATE TABLE greasyfork_public.assessment_reasons LIKE greasyfork.assessment_reasons;
-INSERT INTO greasyfork_public.assessment_reasons SELECT * FROM greasyfork.assessment_reasons;
-
 DROP TABLE IF EXISTS greasyfork_public.author_email_notification_types;
 CREATE TABLE greasyfork_public.author_email_notification_types LIKE greasyfork.author_email_notification_types;
 INSERT INTO greasyfork_public.author_email_notification_types SELECT * FROM greasyfork.author_email_notification_types;
@@ -66,7 +62,7 @@ INSERT INTO greasyfork_public.roles_users SELECT * FROM greasyfork.roles_users;
 
 DROP TABLE IF EXISTS greasyfork_public.scripts;
 CREATE TABLE greasyfork_public.scripts LIKE greasyfork.scripts;
-INSERT INTO greasyfork_public.scripts (id, user_id, created_at, updated_at, daily_installs, total_installs, code_updated_at, script_type_id, license_text, license_id, uses_disallowed_external, support_url, locale_id, fan_score, namespace, contribution_url, contribution_amount, default_name, good_ratings, ok_ratings, bad_ratings, version) SELECT scripts.id, scripts.user_id, scripts.created_at, scripts.updated_at, scripts.daily_installs, scripts.total_installs, scripts.code_updated_at, scripts.script_type_id, scripts.license_text, scripts.license_id, scripts.uses_disallowed_external, scripts.support_url, scripts.locale_id, scripts.fan_score, scripts.namespace, scripts.contribution_url, scripts.contribution_amount, scripts.default_name, scripts.good_ratings, scripts.ok_ratings, scripts.bad_ratings, scripts.version FROM greasyfork.scripts JOIN greasyfork.users ON user_id = users.id WHERE (scripts.approve_redistribution OR (scripts.approve_redistribution IS NULL AND users.approve_redistribution)) AND script_delete_type_id IS NULL;
+INSERT INTO greasyfork_public.scripts (id, user_id, created_at, updated_at, daily_installs, total_installs, code_updated_at, script_type_id, license_text, license_id, support_url, locale_id, fan_score, namespace, contribution_url, contribution_amount, default_name, good_ratings, ok_ratings, bad_ratings, version) SELECT scripts.id, scripts.user_id, scripts.created_at, scripts.updated_at, scripts.daily_installs, scripts.total_installs, scripts.code_updated_at, scripts.script_type_id, scripts.license_text, scripts.license_id, scripts.support_url, scripts.locale_id, scripts.fan_score, scripts.namespace, scripts.contribution_url, scripts.contribution_amount, scripts.default_name, scripts.good_ratings, scripts.ok_ratings, scripts.bad_ratings, scripts.version FROM greasyfork.scripts JOIN greasyfork.users ON user_id = users.id WHERE (scripts.approve_redistribution OR (scripts.approve_redistribution IS NULL AND users.approve_redistribution)) AND script_delete_type_id IS NULL;
 
 DROP TABLE IF EXISTS greasyfork_public.compatibilities;
 CREATE TABLE greasyfork_public.compatibilities LIKE greasyfork.compatibilities;

@@ -103,7 +103,7 @@ module ScriptImporter
 			return [:needsdescription, script, nil] if (script.description.nil? or script.description.empty?)
 
 			# prefer script_version error messages, but show script error messages if necessary
-			return [:failure, script, (sv.errors.full_messages.empty? ? script.errors.full_messages : sv.errors.full_messages).join('. ') + "."] if (!script.valid? | !sv.valid?)
+			return [:failure, script, (sv.errors.full_messages.empty? ? script.errors.full_messages : sv.errors.full_messages).join(', ')] if (!script.valid? | !sv.valid?)
 
 			return [:success, script, nil]
 		end

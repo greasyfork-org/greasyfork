@@ -301,10 +301,6 @@ en:
     type_3_html: "Library - a script intended to be <code>@require</code>-d from other scripts and not installed directly."
     # label for checkbox to override script save warnings
     override_warning_checkbox_label: "Save anyway?"
-    # script warning for using @requires outside the whitelist. requires_used is a comma-separated list of URLs outside the whitelist. external_script_rules_link is a link to the external requires rules, with text of warning_uses_disallowed_requires_rules_link
-    warning_uses_disallowed_requires_html: "You are using <code>@require</code>s outside of %{site_name}'s whitelist: %{requires_used}. Please read %{external_script_rules_link}. Your script will not be installable by others until the external script issue is resolved."
-    # link text used in warning_uses_disallowed_require_html
-    warning_uses_disallowed_requires_rules_link: "%{site_name}'s policy on external scripts"
     # script warning for not increasing the version number when updating the code
     warning_version_not_incremented_html: "You updated the code but didn't increase the <code>@version</code> number. Those who previously installed your script may not get the updated code."
     # script warning for when a version number is not provided
@@ -789,3 +785,5 @@ en:
       must_be_greasy_fork_script: "must be the URL for a script on %{site_name}"
       # validation when the user uploads code that's not UTF-8 text
       script_update_not_utf8: "uploaded must be UTF-8 text"
+      # validation when user uploads code that contains a disallowed @require
+      script_disallowed_require: "uses an unapproved external script: %{code}"

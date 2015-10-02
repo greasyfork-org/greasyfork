@@ -12,7 +12,7 @@ ThinkingSphinx::Index.define :script, :with => :active_record, :delta => Thinkin
 	# int is default and unsigned, we deal with negatives
 	has :fan_score, :type => :bigint
 
-	where 'script_type_id = 1 and script_delete_type_id is null and !uses_disallowed_external'
+	where 'script_type_id = 1 and script_delete_type_id is null'
 
 	set_property :field_weights => {
 		:name => 10,

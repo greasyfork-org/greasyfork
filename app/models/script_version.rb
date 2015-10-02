@@ -29,11 +29,13 @@ class ScriptVersion < ActiveRecord::Base
 	validates_each(:code, :allow_nil => true, :allow_blank => true) do |record, attr, value|
 		meta = ScriptVersion.parse_meta(value)
 
-		uses_disallowed_code = false
 		ScriptVersion.disallowed_codes_used_for_code(value).each do |dc|
-			uses_disallowed_code = true
 			record.errors.add(:base, "Exception #{dc.ob_code}") if value =~ Regexp.new(dc.pattern)
 		end
+	end
+
+	validate do |record|
+		record.disallowed_requires_used.each {|w| record.errors.add(:code, I18n.t('errors.messages.script_disallowed_require', code: "@require #{w}"))}
 	end
 
 	# Warnings are separated because we need to show custom UI for them (including checkboxes to override)
@@ -76,18 +78,12 @@ class ScriptVersion < ActiveRecord::Base
 
 	def warnings
 		w = []
-		w << :uses_disallowed_requires if uses_disallowed_requires?
 		w << :version_missing if version_missing?
 		w << :version_not_incremented if version_not_incremented?
 		w << :namespace_missing if namespace_missing?
 		w << :namespace_changed if namespace_changed?
 		w << :potentially_minified if potentially_minified?
 		return w
-	end
-
-	def uses_disallowed_requires?
-		return false if accepted_assessment
-		return !disallowed_requires_used.empty?
 	end
 
 	def version_missing?
@@ -165,11 +161,9 @@ class ScriptVersion < ActiveRecord::Base
 		return ScriptVersion.code_appears_minified(code)
 	end
 
-	attr_accessor :accepted_assessment, :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation, :truncate_description
+	attr_accessor :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation, :truncate_description
 
 	def initialize
-		# Accept assessment of @requires outside the whitelist
-		@accepted_assessment = false
 		# Allow code to be updated without version being upped
 		@version_check_override = false
 		# Set a version by ourselves if not provided
@@ -254,7 +248,6 @@ class ScriptVersion < ActiveRecord::Base
 
 	# Try our best to accept the code
 	def do_lenient_saving
-		@accepted_assessment = true
 		@version_check_override = true
 		@add_missing_version = true
 		@add_missing_namespace = true

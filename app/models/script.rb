@@ -8,7 +8,6 @@ class Script < ActiveRecord::Base
 	has_many :script_versions, dependent: :destroy
 	has_many :script_applies_tos, -> {order(:text)}, dependent: :destroy, autosave: true
 	has_many :discussions, -> { readonly.order('COALESCE(DateLastComment, DateInserted)').where('Closed = 0') }, :class_name => 'ForumDiscussion', :foreign_key => 'ScriptID'
-	has_many :assessments, dependent: :destroy, autosave: true
 	has_many :cpd_duplication_scripts, dependent: :destroy
 	has_many :cpd_duplications, :through => :cpd_duplication_scripts
 	has_many :script_set_script_inclusions, foreign_key: 'child_id', dependent: :destroy
@@ -34,7 +33,7 @@ class Script < ActiveRecord::Base
 
 	scope :not_deleted, -> {where('script_delete_type_id is null')}
 	scope :active, ->(script_subset) {
-		f = not_deleted.where(:uses_disallowed_external => false)
+		f = not_deleted
 		case script_subset
 			when :greasyfork
 				f = f.where(sensitive: false)
@@ -48,7 +47,6 @@ class Script < ActiveRecord::Base
 	}
 	scope :listable, ->(script_subset) {active(script_subset).where(:script_type_id => 1)}
 	scope :libraries, ->(script_subset) {active(script_subset).where(:script_type_id => 3)}
-	scope :under_assessment, -> {not_deleted.where(:uses_disallowed_external => true).includes(:assessments).includes(:user).uniq}
 	scope :reported, -> {not_deleted.joins(:discussions).includes(:user).uniq.where('GDN_Discussion.Rating = 1').where('Closed = 0')}
 	scope :reported_not_adult, -> {not_deleted.includes(:user).where('not_adult_content_self_report_date IS NOT NULL')}
 	scope :requested_permanent_deletion, -> {where('permanent_deletion_request_date is not null')}
@@ -183,8 +181,6 @@ class Script < ActiveRecord::Base
 		end
 
 		update_children(:script_applies_tos, script_version.calculate_applies_to_names)
-		update_children(:assessments, script_version.disallowed_requires_used.map{|script_url| {:assessment_reason => AssessmentReason.first, :details => script_url}})
-		self.uses_disallowed_external = assessments.any?{|a| !a.marked_for_destruction?}
 
 		if new_record? or self.code_updated_at.nil?
 			self.code_updated_at = Time.now
@@ -262,7 +258,7 @@ class Script < ActiveRecord::Base
 	end
 
 	def active?
-		!deleted? and !uses_disallowed_external
+		!deleted?
 	end
 
 	def library?
