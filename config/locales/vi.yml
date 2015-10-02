@@ -51,6 +51,12 @@ vi:
     update_page: "Cập nhật"
     sync_page: "Đồng bộ hoá"
     delete_page: "Xóa"
+    delete_explanation: "Xóa script của bạn làm cho nó không thể truy cập với bất cứ ai trừ bạn và điều hành viên Greasy Fork. Bạn có thể lấy lại bất cứ lúc nào."
+    delete_update_behaviour: "Bạn muốn xảy ra với những người sử dụng cài đặt trước đó script của bạn?"
+    delete_update_behaviour_1: "Họ sẽ giữ nó như nó được."
+    delete_update_behaviour_2: "Họ sẽ được cập nhật vào trong một script trống. Điều này là phù hợp khi script có một tác động tiêu cực trên các trang web nó chạy trên."
+    delete_permanently_confirm: "Bạn có chắc chắn muốn xóa vĩnh viễn script của bạn? Hành động này không thể được hoàn tác!"
+    delete_permanently_submit: "Xin xóa vĩnh viễn"
     history_title: "%{script_name} - Lược sử Phiên bản"
     history_only_code_changes_info: "Đây là phiên bản của script này, nơi mã nguồn đã được cập nhật."
     history_all_changes_link: "Hiện tất cả các phiên bản."
@@ -201,6 +207,12 @@ vi:
     adult_content_self_report: "Script này chứa nội dung người lớn hoặc được dành cho trang có nội dung người lớn"
     adult_content_self_report_explanation: "%{site_name}  cho phép script với nội dung người lớn, nhưng họ phải đánh dấu để người dùng lựa chọn có thấy nó hay không"
     not_adult_content_self_report_html: "Scripnt này <strong>không</strong> chứa nội dung người lớn và <strong>không</strong> dành cho trang có nội dung người lớn"
+    non_adult_content_on_sleazy: "Script không có sẵn trên trang web này."
+    adult_marker: "(Dành cho người lớn)"
+    deleted_marker: "(Đã xóa)"
+    locked_marker: "(Đã khóa)"
+    unlisted_marker: "(Chưa xem)"
+    library_marker: "(Thư Viện)"
   script_sets:
     favorites_name: "Mục ưa thích"
     delete: "Xóa bộ script"
@@ -290,6 +302,8 @@ vi:
     approve_redistribution_true: "Tôi thoải mái khi script của tôi bị đăng lại ở nơi khác"
     approve_redistribution_false: "Tôi không muốn scripts của tôi bị đăng lại ở nơi khác"
   help:
+    installing_user_scripts:
+      title: "Làm sao để cài đặt các user script?"
     meta_keys:
       title: "Thẻ mô tả Scripts đọc bởi %{site_name}"
       intro_html: "Đây là danh sách của %{script_list_none_same_user_info_link} <a href=\"http://wiki.greasespot.net/Metadata_Block\">Các thẻ mô tả user script/a> mà %{site_name} sẽ đọc. Khóa mô tả nằm ngoài danh sách có thể liệt kê trong các script, và sẽ có mặt trong script đã cài đặt, nhưng sẽ không hiển thị trên giao diện %{site_name}."
@@ -322,6 +336,7 @@ vi:
       developers_credit: "%{site_name} được tự xây dựng bởi %{developers_link:these people} với sự giúp đỡ của những người báo lỗi và góp ý."
       translators_credit: "%{site_name} đã được dịch bởi %{translators_link:the Greasy Translation Force on Transifex}:"
       icons_credit: "Các biểu tượng tranh luận từ %{vistastylebase} bởi %{iconsland}. Các biểu tượng trình duyệt từ %{browserlogos}."
+    help_with_greasymonkey: "Trợ giúp với Greasemonkey"
   common:
     error_preamble: "Có vài trục trặc với cái bạn vừa đăng.."
     allowed_elements_link: "(Xem mã cho phép.)"
