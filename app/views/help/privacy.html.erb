@@ -1,37 +1,3 @@
-<%- title 'Privacy policy' %>
+<%- title t('help.privacy_policy.title') %>
 
-<p>This page describes how Greasy Fork will record or track users. If you have any concerns, please e-mail <a href="mailto:jason.barnabe@gmail.com">jason.barnabe@gmail.com</a>.</p>
-
-
-<h2>Server logs</h2>
-
-<p>Greasy Fork logs all requests in a typical server log fashion. Information logged includes pages visited, IP address, and user agent string. These logs are for debugging and server analysis. The data is retained for one week. This data is not shared or made publicly available.</p>
-
-
-<h2>Script statistics</h2>
-
-<p>For the purposes of generating statistics, Greasy Fork records install and update requests with IP address information. This information is retained for one day, and then is aggregated to no longer include the IP address. The IP-address-specific data is not shared or made publicly available, but the aggregated data is.</p>
-
-
-<h2>Cookies (when not logged in)</h2>
-
-<p>Greasy Fork may set temporary session cookies to allow for some site features. These cookies are not set to persist and may cleared when the browser is closed (depending on browser settings).</p>
-
-
-<h2>User accounts</h2>
-
-<p>Greasy Fork requires users to create an account to post scripts, take part in discussions, and access some other site features. When creating an account, information such as IP address, e-mail address, and user agent may be permanently stored. Some of this information may be made visible to other users.</p>
-
-<p>Actions performed when logged in, for example posting scripts and comments, will be made viewable to other users.</p>
-
-<p>If the "Remember me" option is checked when logging in to an account, Greasy Fork will set a persistent cookie to retain login state.</p>
-
-
-<h2>Scripts posted on Greasy Fork</h2>
-
-<p>Greasy Fork contains user-generated content, and scripts posted may be able to track users if they install that script.</p>
-
-
-<h2>Third party libraries</h2>
-
-<p>Greasy Fork may include third party code to collect statistics or display advertisements on the site. These libraries may include tracking logic.</p>
+<%=it('help.privacy_policy.content_html', admin_email_link: 'mailto:jason.barnabe@gmail.com', site_name: site_name)%>
