@@ -104,8 +104,15 @@ protected
 	end
 
 	def render_404(message = 'Script does not exist.')
-		@text = message
-		render 'home/error', status: 404, layout: 'application'
+		respond_to do |format|
+			format.html {
+				@text = message
+				render 'home/error', status: 404, layout: 'application'
+			}
+			format.all {
+				render nothing: true, status: 404
+			}
+		end
 	end
 
 	def render_deleted
