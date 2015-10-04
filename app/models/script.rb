@@ -367,7 +367,8 @@ class Script < ActiveRecord::Base
 			license: license_text,
 			version: version,
 			locale: locale.nil? ? nil : locale.code,
-			redistributable: redistributable?
+			redistributable: redistributable?,
+			deleted: deleted?
 		})
 	end
 

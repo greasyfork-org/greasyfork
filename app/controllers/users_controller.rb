@@ -27,11 +27,13 @@ class UsersController < ApplicationController
 
 		return if redirect_to_slug(@user, :id)
 
+		@same_user = !current_user.nil? && current_user.id == @user.id
+
 		respond_to do |format|
 			format.html {
 				@by_sites = ScriptsController.get_top_by_sites(script_subset)
 
-				@scripts = ((!current_user.nil? && current_user.id == @user.id) or (!current_user.nil? and current_user.moderator?)) ? @user.scripts : @user.scripts.listable(script_subset)
+				@scripts = (same_user || (!current_user.nil? && current_user.moderator?)) ? @user.scripts : @user.scripts.listable(script_subset)
 				@user_has_scripts = !@scripts.empty?
 				@scripts = ScriptsController.apply_filters(@scripts, params, script_subset)
 				@other_site_scripts = script_subset == :sleazyfork ? @user.scripts.listable(:greasyfork).count : 0
@@ -44,8 +46,8 @@ class UsersController < ApplicationController
 				]
 				@canonical_params = [:id, :page, :per_page, :set, :site, :sort]
 			}
-			format.json { render :json => @user.as_json(include: :all_listable_scripts) }
-			format.jsonp { render :json => @user.as_json(include: :all_listable_scripts), :callback => clean_json_callback_param }
+			format.json { render :json => @user.as_json(include: @same_user ? :scripts : :all_listable_scripts) }
+			format.jsonp { render :json => @user.as_json(include: @same_user ? :scripts : :all_listable_scripts), :callback => clean_json_callback_param }
 		end
 	end
 
