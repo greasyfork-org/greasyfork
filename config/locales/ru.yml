@@ -369,6 +369,12 @@ ru:
       post_new_script_link_text: 'опубликовать новый скрипт'
     code_rules:
       title: "Правила %{site_name} для опубликования скриптов"
+      adult_content_rule_html: "<li>Скрипты включающие материал для взрослых или работающие на таких сайтах должны иметь соответствующую отметку об этом, это позволит пользователям выбирать то какие скрипты она хотят видеть</li>"
+    external_scripts:
+      title: "Политика %{site_name} по поводу внешних скриптов"
+    script_rewriting:
+      title: "Как %{site_name} будет переписывать опубликованные скрипты"
+    site_feedback_link: "Отправить отчет об ошибке или пожелание для самого %{site_name} "
     credits:
       title: "Благодарности"
       authors_credit: "Проект %{site_name} не существовал бы без авторов, которые создают скрипты"
@@ -376,6 +382,10 @@ ru:
       translators_credit: "Перевод %{site_name} выполнен командой %{translators_link:Greasy Translation Force на Transifex}:"
       icons_credit: "Пиктограммы форума из %{vistastylebase} от %{iconsland}. Пиктограммы браузеров из %{browserlogos}."
     help_with_greasymonkey: "Помощь Greasemonkey"
+    contact:
+      title: "Выйти на контакт с кем-нибудь"
+    privacy_policy:
+      title: "Политика приватности"
   common:
     error_preamble: "Обнаружены проблемы в отправленном вами тексте..."
     allowed_elements_link: "(См. разрешенные теги)"
@@ -425,3 +435,4 @@ ru:
       cannot_be_deleted_reference: "не может быть удалённый скрипт"
       must_be_greasy_fork_script: "должен быть URL скрипта на Grease Fork"
       script_update_not_utf8: "загружаемый текст должен быть в UTF-8 кодировке"
+      script_disallowed_require: "использует непроверенный внешний скрипт: %{code}"
