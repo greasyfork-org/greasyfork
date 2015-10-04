@@ -7,8 +7,7 @@
 	<section id="user-profile"><%=format_user_text(@user.profile, @user.profile_markup)%></section>
 <% end %>
 
-<% same_user = !current_user.nil? && current_user.id == @user.id
-if same_user %>
+<% if @same_user %>
 	<section id="control-panel">
 		<header>
 			<h3><%=t('users.control_panel')%></h3>
@@ -77,7 +76,7 @@ if same_user %>
 	</section>
 <% end %>
 
-<% if !@user.script_sets.empty? or same_user %>
+<% if !@user.script_sets.empty? or @same_user %>
 	<section>
 		<header>
 			<h3>Script Sets</h3>
@@ -85,12 +84,12 @@ if same_user %>
 		<ul id="user-script-sets">
 			<% favorites_set = @user.script_sets.find{|ss| ss.favorite}
 			if !favorites_set.nil? %>
-				<li><%=t('script_sets.favorites_name')%> <%=link_to 'View scripts', scripts_path(:set => favorites_set.id)%> <% if same_user %><%=link_to 'Edit', edit_user_script_set_path(@user, favorites_set)%><% end %></li>
-			<% elsif same_user %>
+				<li><%=t('script_sets.favorites_name')%> <%=link_to 'View scripts', scripts_path(:set => favorites_set.id)%> <% if @same_user %><%=link_to 'Edit', edit_user_script_set_path(@user, favorites_set)%><% end %></li>
+			<% elsif @same_user %>
 				<li><%=t('script_sets.favorites_name')%> <%=link_to 'Edit', new_user_script_set_path(@user, :fav =>  1)%></li>
 			<% end
 			@user.script_sets.select{|ss| !ss.favorite}.each do |ss| %>
-				<li><%=ss.name%>: <%=ss.description%> <%=link_to 'View scripts', scripts_path(:set => ss.id)%> <% if same_user %><%=link_to 'Edit', edit_user_script_set_path(@user, ss)%><% end %></li>
+				<li><%=ss.name%>: <%=ss.description%> <%=link_to 'View scripts', scripts_path(:set => ss.id)%> <% if @same_user %><%=link_to 'Edit', edit_user_script_set_path(@user, ss)%><% end %></li>
 			<% end %>
 		</ul>
 	</section>
@@ -107,7 +106,7 @@ script_list = @scripts - deleted_script_list %>
 		<h3><%=t('users.script_list')%></h3>
 	</header>
 	<% if !@user_has_scripts
-		if same_user %>
+		if @same_user %>
 			<p><%=t('users.script_list_none_same_user_html', script_list_none_same_user_info_link: link_to(t('users.script_list_none_same_user_info_link_text'), help_writing_user_scripts_path))%></p>
 		<% else %>
 			<p><%=t('users.script_list_none')%></p>
