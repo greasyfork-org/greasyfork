@@ -122,6 +122,8 @@ Greasyfork::Application.routes.draw do
 
 		resources :moderator_actions, :only => [:index]
 
+		get 'opensearch.xml', to: 'opensearch#description', as: 'opensearch_description'
+
 		match '*path', :to => 'home#routing_error', :via => [:get, :post]
 	end
 

@@ -30,11 +30,7 @@
 		<% end
 	end %>
 
-	<% if sleazy? %>
-		<link rel="search" href="/sleazyforkopensearch.xml" type="application/opensearchdescription+xml" title="Sleazy Fork search">
-	<% else %>
-		<link rel="search" href="/greasyforkopensearch.xml" type="application/opensearchdescription+xml" title="Greasy Fork search">
-	<% end %>
+	<link rel="search" href="<%=opensearch_description_path%>" type="application/opensearchdescription+xml" title="<%=t('opensearch.short_name', site_name: site_name, default: t('opensearch.short_name', site_name: site_name, locale: 'en'))%>" hreflang="<%=I18n.locale%>">
 
 </head>
 <body>
