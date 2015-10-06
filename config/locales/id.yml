@@ -351,6 +351,12 @@ id:
       post_new_script_link_text: 'kirim skrip baru'
     code_rules:
       title: "Aturan %{site_name} untuk skrip yang dikirim"
+      adult_content_rule_html: "<li>Skrip yang menyertakan konten dewasa atau untuk situs yang memuat konten dewasa harus ditandai sedemikian rupa untuk memberi pilihan kepada pengguna apakah ingin melihatnya atau tidak.</li>"
+    external_scripts:
+      title: "Kebijakan %{site_name} pada skrip eksternal"
+    script_rewriting:
+      title: "Bagaimana %{site_name} akan menulis ulang skrip yang dikirimkan"
+    site_feedback_link: "Laporkan masalah atau kirimkan ide untuk %{site_name}"
     credits:
       title: "Kredit"
       authors_credit: "%{site_name} tidak mungkin terwujud tanpa adanya kontribusi dari para penulis skrip."
@@ -358,6 +364,10 @@ id:
       translators_credit: "%{site_name} diterjemahkan oleh %{translators_link:Pasukan Transliterasi Greasy di Transifex}:"
       icons_credit: "Ikon diskusi dari %{vistastylebase} oleh %{iconsland}. Ikon peramban dari %{browserlogos}."
     help_with_greasymonkey: "Bantuan Greasemonkey"
+    contact:
+      title: "Hubungi seseorang"
+    privacy_policy:
+      title: "Kebijakan privasi"
   common:
     error_preamble: "Ada beberapa masalah dengan apa yang anda kirimkan..."
     allowed_elements_link: "(Lihat kode yang diizinkan.)"
@@ -407,3 +417,9 @@ id:
       cannot_be_deleted_reference: "tidak boleh skrip yang telah dihapus"
       must_be_greasy_fork_script: "harus URL untuk skrip di %{site_name}"
       script_update_not_utf8: "pengunggahan harus format teks UTF-8"
+      script_disallowed_require: "menggunakan skrip eksternal yang tidak disetujui: %{code}"
+  opensearch:
+    short_name: "Pencarian %{site_name}"
+    description: "Cari skrip di %{site_name}."
+    long_name: "Pencarian skrip %{site_name}"
+    attribution: "Hak cipta dari pengembang skrip, lihat masing-masing skrip untuk lisensi"

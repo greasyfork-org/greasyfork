@@ -217,6 +217,14 @@ es:
     adult_content_self_report_explanation: "%{site_name} permite scripts con contenido para adultos, pero deben estar marcados de tal manera que los usuarios pueden elegir si quieren verlo o no."
     not_adult_content_self_report_html: "Este script <strong>no</strong> tiene contenido para adultos ni <strong>tampoco</strong> es para una web con contenido para adultos."
     not_adult_content_self_report_explanation: "%{site_name} permite scripts con contenido para adultos, pero deben estar marcados de tal manera que los usuarios pueden elegir si quieren verlo o no. Tu script ha sido marcado como que tiene contenido para adultos. Si no es así, puedes reportarlo y será revisado por un moderador."
+    adult_content_on_greasy_logged_in_error: "Este script ya no está disponible en este sitio con su %{edit_account_link:configuración de cuenta de Greasy Fork} actual."
+    adult_content_on_greasy_not_logged_in_error: "Este script ya no está disponible en este sitio. %{login_link:Inicie sesión} y compruebe la configuración de su cuenta de Greasy Fork."
+    non_adult_content_on_sleazy: "Este script ya no está disponible en este sitio."
+    adult_marker: "(Adulto)"
+    deleted_marker: "(Borrado)"
+    locked_marker: "(Bloqueado)"
+    unlisted_marker: "(No listado)"
+    library_marker: "(Librería)"
   script_sets:
     favorites_name: "Favoritos"
     delete: "Borrar grupo de scripts"
@@ -310,6 +318,9 @@ es:
     approve_redistribution_explanation: "%{site_name} puede notificar a otros sitios que les dejas listar tu script. Es posible que la licencia que elijas para cada uno de ellos ya lo permita en sus términos, o no. También puedes establecer esta opción de forma individual para cada script si prefieres un control más exhaustivo."
     approve_redistribution_true: "Me parece bien que otros copien mi script en otros sitios"
     approve_redistribution_false: "No quiero que mi script aparezca en otros sitios"
+    greasy_fork_scripts_link:
+      one: "%{user_name} también tiene %{count} script en Greasy Fork."
+      other: "%{user_name} también tiene %{count} scripts en Greasy Fork."
   help:
     installing_user_scripts:
       title: "Aprender a instalar scripts de usuario"
@@ -346,13 +357,96 @@ es:
       post_new_script_link_text: 'publicar un nuevo script'
     code_rules:
       title: "Reglas de %{site_name} para scripts publicados"
+      content_html: >
+        <p>Estos son los requerimientos para scripts publicados en %{site_name}. Están
+        pensados para seguir manteniendo %{site_name} como un lugar seguro y útil
+        para scripts de usuario. Cualquier script que caiga fuera de estos requerimientos
+        puede ser borrado por los moderadores de %{site_name}.</p> <ul>
+          <li>Los scripts deben incluir una descripción de lo que hacen, y no pueden
+        hacer cosas no razonables al margen de la descripción. Los usuarios deben
+        saber lo que hará un script antes de instalarlo.</li>
+          <li>El código publicado en este sitio no debe estar ofuscado o minado. A
+        los usuarios se les debe dar la oportunidad de inspeccionar y comprender un
+        script antes de instalarlo.</li>
+          <li>Las librerías que use un script deben ser requeridas ( <code>@require</code>
+        ), a menos que haya una razón técnica válida para no hacerlo así. En caso
+        de que una librería esté incrustada, debe incluir información del origen de
+        la librería (ej. un comentario indicando la URL y/o nombre y versión).
+          <li>Su script debe respetar el copyright de otros. Esto incluye al propio
+        script y cualquier recurso (por ejemplo las imágenes) que utilice. Si pretende
+        usar el contenido de algún otro, acate los términos de su licencia u obtenga
+        su permiso antes de hacerlo.</li>
+          <li>%{external_scripts_link:El uso de JavaScript externo está limitado.}</li>
+          %{adult_content_requirement}
+        </ul> <p>Si observa que un script cae fuera de estos parámetros, por favor,
+        informe de ellos yendo al enlace de Opiniones para ese script, iniciando una
+        discusión, y eligiendo la opción "Informar del script".</p> <p>Si no está
+        de acuerdo con cualquiera de estos términos, ¡%{contact_link:hablemos sobre
+        ello}!</p>
+      adult_content_rule_html: "<li>Los scripts que incluyen contenido adulto o son para sitios con contenido adulto deben marcarse como tales para permitir a otros usuarios la opción elegir o no verlos.</li>"
+    external_scripts:
+      title: "Política de %{site_name} sobre scripts externos"
+      content_html: >
+        <p>Los scripts tienen la capacidad técnica de cargar y ejecutar otros scripts.
+        La clave de metadatos %{require_doc_link:<code>@require</code>} es la forma
+        más directa de lograr esto, pero los scripts también pueden, por ejemplo,
+        usar una XmlHttpRequest para descargar un script y luego inyectarlo en el
+        DOM.</p> <p>Aunque esta es una característica útil y la mayoría de autores
+        de scripts usan esto para propósitos legítimos, también puede usarse maliciosamente.
+        Uno de los principios básicos de %{site_name} es que el usuario tiene que
+        poder inspeccionar el código en un script. Los scripts externos pueden sortear
+        este principio de varias maneras: pueden cambiar sin advertencia o sin dejar
+        huella en el historial, pueden proporcionar diferente código a personas distintas,
+        y pueden usarse para ocultar código malicioso en medio de librerías conocidas.
+        Incluso si alguien fuera a comprobar un script externo y determinara que es
+        legítimo, eso no sería garantía de que ese script siempre ha sido o siempre
+        será legítimo.</p> <p>Para permitir a los autores de scripts continuar el
+        uso de scripts externos, %{site_name} ha implementado una lista blanca de
+        patrones de URL que pueden incluirse con un script. Esta lista blanca consiste
+        en ubicaciones de scripts que:</p> <ul>
+          <li>Son públicas</li>
+          <li>Sus contenidos no se cambiarán frecuentemente</li>
+          <li>Probablemente serían útiles para más de un autor de scripts</li>
+        </ul> <p>La lista actual es:</p> %{allowed_require_list} <p>Si trata de publicar
+        un script que use un <code>@require</code> fuera de estas ubicaciones, no
+        podrá guardar su script.</p> <p>Si el script que desea incluir es una librería
+        JavaScript (por ejemplo JQuery o YUI), trate de encontrarla en uno de los
+        sitios listados arriba. %{cdnjs_link:cdnjs} y %{jsdelivr_link:jsDelivr} en
+        particular tienen un amplio rango de librerías disponibles.</p> <p>Si el script
+        que desea incluir no está disponible en los sitios de arriba, %{contact_link:háganoslo
+        saber} y podremos encontrar algún otro sitio en el que esté (¡o alojarla nosotros
+        mismos).</p> <p>Si el script que desea incluir fue escrito por usted, puede
+        ofrecerlo como una entrada separada en %{site_name} y elegir el tipo de script
+        "Librería". Podrá incluir esta librería publicada en su script.</p>
+    script_rewriting:
+      title: "Cómo reescribirá %{site_name} los scripts publicados"
+      content_html: >
+        <p>Los scripts publicados en %{site_name} se reescribirán de las siguientes
+        maneras:</p> <ul>
+          <li>Se les despojará de las directivas <code>@updateURL</code>, <code>@installURL</code>,
+        y <code>@downloadURL</code> si están presentes. La ausencia de estas directivas
+        significa que cualquier script instalado desde %{site_name} se actualizará
+        desde %{site_name}.</li>
+          <li>Las directivas <code>@version</code> y <code>@namespace</code> serán
+        insertadas si el script carece de ellas. Estas directivas son necesarias para
+        una adecuada actualización.</li>
+          <li>Se insertará <code>@description</code> si una versión nueva de un script
+        carece de ella y una versión previa del script la tenía.</li>
+          <li>Los saltos de línea se convertirán en saltos de línea de estilo-Unix
+        (\n).</li>
+        </ul>
+    site_feedback_link: "Informe del problema o publique una idea para el propio %{site_name}"
     credits:
       title: "Créditos"
-      authors_credit: "%{site_name} no sería posible sin los autores que amablemente contribuyen sus scripts."
-      developers_credit: "%{site_name} como plataforma ha sido desarrollada por %{developers_link:esta gente} con la inestimable ayuda de todos aquellos que notifican problemas y sugieren mejoras."
-      translators_credit: "%{site_name} ha sido traducido por la %{translators_link: la trabajadora Greasy-tradu-tropa en Transifex}:"
+      authors_credit: "%{site_name} no sería posible sin los autores que aportan scripts."
+      developers_credit: "El propio %{site_name} está desarrollado por %{developers_link:estas personas} con la ayuda de todos aquellos que notifican fallos y sugieren mejoras."
+      translators_credit: "%{site_name} ha sido traducido por la %{translators_link: Tropa de Traducción Greasy en Transifex}:"
       icons_credit: "Los iconos del foro son de %{vistastylebase}, y fueron creados por %{iconsland}. Los iconos de los navegadores son de %{browserlogos}."
     help_with_greasymonkey: "Ayuda con Greasemonkey"
+    contact:
+      title: "Contacte con alguien"
+    privacy_policy:
+      title: "Política de privacidad"
   common:
     error_preamble: "Hubo algunos problemas a la hora de procesar su envío..."
     allowed_elements_link: "(Ver codigo permitido.)"
@@ -363,7 +457,7 @@ es:
     not_found_title: "404 - Página no encontrada"
     not_found_link_home: "Ir a la página principal."
     suggest_locale: "%{site_name} está disponible en %{locale_name}."
-    incomplete_locale: "La traducción de %{site_name} a %{locale_name} está al %{percent}. Si sabes idiomas puedes ayudarnos."
+    incomplete_locale: "La traducción de %{site_name} al %{locale_name} está al %{percent}. Puede cambiar eso."
     expander_show_more: "Mostrar más"
     expander_show_less: "Mostrar menos"
     advertisement_note: Anuncio
@@ -402,3 +496,9 @@ es:
       cannot_be_deleted_reference: "no puede ser un script eliminado"
       must_be_greasy_fork_script: "debe ser la dirección URL de un script en %{site_name}"
       script_update_not_utf8: "debe ser texto en formato UTF-8"
+      script_disallowed_require: "usa un script externo no aprobado: %{code}"
+  opensearch:
+    short_name: "Búsqueda en %{site_name}"
+    description: "Busca scripts de usuario en %{site_name}."
+    long_name: "Búsqueda de scripts de usuario en %{site_name}"
+    attribution: "Copyright de los autores de los scripts, vea cada script individual para licencias"

@@ -351,6 +351,44 @@ zh-CN:
       post_new_script_link_text: '发布新脚本'
     code_rules:
       title: "%{site_name} 有关发布脚本的规则"
+      content_html: >
+        <p>以下是发布脚本到 %{site_name} 的要求。这是为了保证 %{site_name} 是一个安全且有用的用户脚本之地。任何违背下列要求的脚本可能被
+        %{site_name} 管理员删除。</p> <ul>
+          <li>脚本必须包含一个描述，讲清它将做什么，并且不应该做描述以外的事情。用户必须在安装前知道脚本将会做什么。</li>
+          <li>发布在本网站上的脚本不得经过混淆或压缩。用户必须有机会在安装之前检查和了解脚本的细节。</li>
+          <li>脚本应该使用 <code>@require</code>-d 来引用“库”脚本，除非存在有效的技术原因阻止这样做。在包含一个内联形式的库时，它必须包含注明库的源代码的信息（例如一个注释来注明
+        URL 及/或名称和版本）。</li>
+          <li>您的脚本必须尊重他人的版权。这包括脚本本身和它是使用的任何资源（例如图像）。如果你打算使用别人的内容，遵守他们的授权条款，或者在此之前取得他们的许可。</li>
+          <li>%{external_scripts_link:使用外部 JavaScript 是受限制的。}</li>
+          %{adult_content_requirement}
+        </ul> <p>如果您发现了越过上述内容的脚本，请使用脚本页面的“反馈”链接报告它。</p> <p>如果您对上述任何一点存有异议，%{contact_link:跟我们聊聊吧}！</p>
+      adult_content_rule_html: "<li>包含成人内容或者目标网站是成人内容的脚本必须被标记，以允许其他用户根据选项决定是否要看到它们。</li>"
+    external_scripts:
+      title: "%{site_name} 对外部脚本的政策"
+      content_html: >
+        <p>用户脚本有技术能力来加载和执行其他脚本。这个 %{require_doc_link:<code>@require</code>} 元数据键值是最直接的方法来做到这一点，但脚本也可以做到，比如使用一个
+        XmlHttpRequest 来下载一个脚本并将其注入 DOM。</p> <p>虽然这是一个很有用的功能，并且大多数脚本作者将其用在合法目的，但它也可以被恶意使用。%{site_name}
+        的一项核心原则就是，用户必须能够检查脚本中的代码。外部脚本可能用多种方法绕过这一原则：它们可以没有任何警告或历史记录的悄悄改变，它们可以对不同的人采用不同的代码，它们还可以在知名的库之中插入恶意的代码。即便某个人检查了外部脚本并且确定它是合法的，也并不能保证该脚本是一直并且永远合法的。</p>
+        <p>为了允许脚本作者继续使用外部脚本，%{site_name} 已经实施了一个 URL 形式的白名单，里面涵盖的内容可以包含在脚本中。该白名单包含的脚本位置应该是：</p>
+        <ul>
+          <li>公开的</li>
+          <li>内容不会经常改变的</li>
+          <li>有多名脚本作者认为有用的</li>
+        </ul> <p>目前的名单为：</p> %{allowed_require_list} <p>如果您尝试发布的一个脚本使用 <code>@require</code>
+        引用了此名单之外的脚本，您无法在此保存您的脚本。</p> <p>如果您想包含的脚本是一个 JavaScript 库（例如 jQuery 或者 YUI），尝试在上面列出的网站中找到它。%{cdnjs_link:cdnjs}
+        和 %{jsdelivr_link:jsDelivr} 涵盖了广泛的可用库。</p> <p>如果您想包含的脚本在上面的网站上均不存在，%{contact_link:告知我们}，我们可以找找别的地方是否有它（乃至我们自己托管）。</p>
+        <p>如果您想包含的脚本是你自己写的，你可以在 %{site_name} 上将它提交为一个单独的项目，并选择“库”作为它的脚本类型。然后你就可以在你的脚本中引入已发布的库了。</p>
+    script_rewriting:
+      title: "%{site_name} 将如何改写已发布的脚本"
+      content_html: >
+        <p>发布到 %{site_name} 的脚本将自动依照下列方法修改：</p> <ul>
+          <li><code>@updateURL</code>、<code>@installURL</code> 和 <code>@downloadURL</code>
+        指令将被剥离（如果存在）。缺少这些指令意味着任何从 %{site_name} 安装的脚本仍将从 %{site_name} 更新。</li>
+          <li><code>@version</code> 和 <code>@namespace</code> 指令将被插入（如果脚本未提供它们）。这些指令对于正确更新是必要的。</li>
+          <li><code>@description</code> 将被插入，如果脚本的新版本未提供并且旧版本曾经提供。</li>
+          <li>换行符将被转换为 Unix 样式的换行符 (\n)。</li>
+        </ul>
+    site_feedback_link: "报告或发布有关 %{site_name} 本身的问题或想法"
     credits:
       title: "致谢名单"
       authors_credit: "%{site_name} 这个网站的成功离不开各位脚本作者。"
@@ -358,6 +396,27 @@ zh-CN:
       translators_credit: "%{site_name} 的翻译由 %{translators_link: Transifex 上的「Greasy 翻译小队」制作}，参与翻译的人员名单如下："
       icons_credit: "讨论区图标取自 %{iconsland} 设计的 %{vistastylebase}，浏览器图标来自 %{browserlogos}。"
     help_with_greasymonkey: "Greasemonkey 的相关帮助"
+    contact:
+      title: "联系某人"
+      content_html: >
+        <p>有多种方式讨论 %{site_name} 本身以及在它上面的事物</p> <p>你对发布在本网站上的一个特定脚本有问题或者意见？如果是的，点击脚本页面的反馈选项卡进行反馈。脚本作者将在他们的账户页面获得讨论的通知。</p>
+        <p>如果你对 %{site_name} 本身或者脚本的开发有任何问题或意见，或者希望有人能做出你想要的脚本，%{forum_link:在该论坛中发帖}
+        可以将你的讨论展示给最多的访客。</p> <p>有对 %{site_name} 本身的 bug 报告或者已经成型的想法？（不特定于<em>发布在</em>
+        %{site_name} 上的某个脚本）%{github_link:在 GitHub 页面发布它。}</p> <p>有一个私人的问题或者意见（只想给管理员看）？%{admin_email_link:发送电子邮件}。</p>
+    privacy_policy:
+      title: "隐私政策"
+      content_html: >
+        <p>本页面描述了 %{site_name} 如何记录和跟踪用户信息。如果您有任何顾虑，%{admin_email_link:给管理员发邮件}。</p>
+        <h2>服务器日志</h2> <p>%{site_name} 会使用典型的服务器日志方式记录所有请求。记录的信息包括：被访问的页面，IP 地址，以及
+        User Agent 字符串。这些日志用于调试和服务器分析目的。此数据将保留一周。此数据不会被分享或公开。</p> <h2>脚本的统计数据</h2>
+        <p>为了生成统计数据，%{site_name} 会记录带有 IP 地址信息的安装和更新请求。此信息保留一天，然后汇总为不包含 IP 地址的数据。特定
+        IP 地址的数据不会被分享或公开提供，但汇总数据会。</p> <h2>Cookie (未登录时)</h2> <p>%{site_name} 可能设置临时会话
+        Cookie 以实现某些网站功能。这些 Cookie 不设置为持久，并且可能在浏览器关闭时被清除（取决于浏览器设置）。</p> <h2>用户账户</h2>
+        <p>%{site_name} 需要用户创建一个账户以发布脚本、参与讨论和访问某些网站功能。在创建一个账户时，诸如 IP 地址、电子邮件地址，以及用户代理（User
+        Agent）的信息可能被永久存储。其中某些信息可能对其他用户可见。</p> <p>在登录时执行的操作，例如发布脚本或者评论，将可能对其他用户可见。</p>
+        <p>如果登录时选中了“记住我”的选项，%{site_name} 将设置一个持久的 Cookie 以保持登录状态。</p> <h2>发布在 %{site_name}
+        的脚本</h2> <p>%{site_name} 包含用户生成的内容，安装已发布的脚本有可能遇到被跟踪的情况。</p> <h2>第三方库</h2>
+        <p>%{site_name} 可能包含第三方代码以收集统计数据或者在网站上显示广告。这些库可能存在跟踪逻辑。</p>
   common:
     error_preamble: "很抱歉，您提交的内容有点问题…"
     allowed_elements_link: "(查看允许使用的代码)"
@@ -407,3 +466,9 @@ zh-CN:
       cannot_be_deleted_reference: "不能是已删除的脚本"
       must_be_greasy_fork_script: "网址必须是 %{site_name} 上的一个脚本"
       script_update_not_utf8: "文本必须为 UTF-8 编码"
+      script_disallowed_require: "使用了一个未经批准的外部脚本：%{code}"
+  opensearch:
+    short_name: "%{site_name} 搜索"
+    description: "搜索 %{site_name} 上的用户脚本。"
+    long_name: "%{site_name} 用户脚本搜索"
+    attribution: "脚本作者保留所有权利，详见各脚本许可协议"
