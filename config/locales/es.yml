@@ -387,37 +387,37 @@ es:
     external_scripts:
       title: "Política de %{site_name} sobre scripts externos"
       content_html: >
-        <p>Los scripts tienen la capacidad técnica de cargar y ejecutar otros scripts.
-        La clave de metadatos %{require_doc_link:<code>@require</code>} es la forma
-        más directa de lograr esto, pero los scripts también pueden, por ejemplo,
-        usar una XmlHttpRequest para descargar un script y luego inyectarlo en el
-        DOM.</p> <p>Aunque esta es una característica útil y la mayoría de autores
-        de scripts usan esto para propósitos legítimos, también puede usarse maliciosamente.
-        Uno de los principios básicos de %{site_name} es que el usuario tiene que
-        poder inspeccionar el código en un script. Los scripts externos pueden sortear
-        este principio de varias maneras: pueden cambiar sin advertencia o sin dejar
-        huella en el historial, pueden proporcionar diferente código a personas distintas,
-        y pueden usarse para ocultar código malicioso en medio de librerías conocidas.
-        Incluso si alguien fuera a comprobar un script externo y determinara que es
-        legítimo, eso no sería garantía de que ese script siempre ha sido o siempre
-        será legítimo.</p> <p>Para permitir a los autores de scripts continuar el
-        uso de scripts externos, %{site_name} ha implementado una lista blanca de
-        patrones de URL que pueden incluirse con un script. Esta lista blanca consiste
-        en ubicaciones de scripts que:</p> <ul>
+        <p>Los scripts de usuario tienen la capacidad técnica de cargar y ejecutar
+        otros scripts. La clave de metadatos %{require_doc_link:<code>@require</code>}
+        es la forma más directa de lograr esto, pero los scripts también pueden, por
+        ejemplo, usar una petición XmlHttpRequest para descargar un script y luego
+        inyectarlo en el DOM.</p> <p>Aunque esta es una característica útil y la mayoría
+        de los autores de scripts la usan para propósitos legítimos, también se puede
+        usar de forma maliciosa. Uno de los principios centrales de %{site_name} es
+        que el usuario debe poder inspeccionar el código en un script. Los scripts
+        externos pueden evitar este principio de distintas maneras: pueden cambiar
+        sin avisar o sin dejar rastro en el historial, pueden servir código diferente
+        a personas distintas, y se pueden usar para ocultar código malicioso en medio
+        de librerías conocidas. Incluso si alguien fuera a comprobar un script externo
+        para determinar si es legítimo, eso no sería garantía de que el script siempre
+        ha sido o siempre será legítimo.</p> <p>Para permitir que los autores de scripts
+        continúen usando scripts externos, %{site_name} ha implementado una lista
+        blanca de patrones de URL que se pueden incluir con un script. Esta lista
+        blanca consiste en ubicaciones de scripts que:</p> <ul>
           <li>Son públicas</li>
-          <li>Sus contenidos no se cambiarán frecuentemente</li>
-          <li>Probablemente serían útiles para más de un autor de scripts</li>
+          <li>Sus contenidos no van a cambiar frecuentemente</li>
+          <li>Probablemente serán útiles para más de un autor de scripts</li>
         </ul> <p>La lista actual es:</p> %{allowed_require_list} <p>Si trata de publicar
         un script que use un <code>@require</code> fuera de estas ubicaciones, no
         podrá guardar su script.</p> <p>Si el script que desea incluir es una librería
         JavaScript (por ejemplo JQuery o YUI), trate de encontrarla en uno de los
-        sitios listados arriba. %{cdnjs_link:cdnjs} y %{jsdelivr_link:jsDelivr} en
-        particular tienen un amplio rango de librerías disponibles.</p> <p>Si el script
-        que desea incluir no está disponible en los sitios de arriba, %{contact_link:háganoslo
-        saber} y podremos encontrar algún otro sitio en el que esté (¡o alojarla nosotros
-        mismos).</p> <p>Si el script que desea incluir fue escrito por usted, puede
-        ofrecerlo como una entrada separada en %{site_name} y elegir el tipo de script
-        "Librería". Podrá incluir esta librería publicada en su script.</p>
+        sitios listados arriba. En particular %{cdnjs_link:cdnjs} y %{jsdelivr_link:jsDelivr}
+        tienen un amplio rango de librerías disponibles.</p> <p>Si el script que desea
+        incluir no está disponible en los sitios de arriba, %{contact_link:háganoslo
+        saber} y podremos encontrar algún otro sitio en el que esté (¡o alojarlo nosotros
+        mismos!).</p> <p>Si el script que desea incluir fue escrito por usted, puede
+        ofrecerlo como una entrada aparte en %{site_name}, y eligiendo el tipo de
+        script "Librería", podrá incluir en su script esta librería publicada.</p>
     script_rewriting:
       title: "Cómo reescribirá %{site_name} los scripts publicados"
       content_html: >
@@ -445,8 +445,55 @@ es:
     help_with_greasymonkey: "Ayuda con Greasemonkey"
     contact:
       title: "Contacte con alguien"
+      content_html: >
+        <p>Hay varias maneras de hablar acerca de %{site_name} y las cosas en este.</p>
+        <p>¿Tiene una pregunta o comentario acerca de un script específico publicado
+        en el sitio? Si es así, publique una discusión desde el enlace de la pestaña
+        Comentarios y Opiniones en esa página del script. Los autores de scripts reciben
+        una notificación en la página de su cuenta de cualquier discusión sobre sus
+        scripts.</p> <p>¿Tiene alguna pregunta o comentario acerca del propio %{site_name}
+        o sobre el desarrollo de scripts, o quiere que alguien le haga un script?
+        %{forum_link:Publicar en el foro} le daría la más amplia audiencia para su
+        discusión.</p> <p>¿Tiene algún informe de fallo o alguna idea bien formada
+        para el propio %{site_name} (no para un script específico <em>publicado en</em>
+        %{site_name})? %{github_link:Publíquelo en la página de GitHub.}</p> <p>¿Tiene
+        alguna pregunta o comentario privado que desea que sólo vea el administrador?
+        %{admin_email_link:Envíe un correo electrónico.}</p>
     privacy_policy:
       title: "Política de privacidad"
+      content_html: >
+        <p>Esta página describe cómo %{site_name} registrará o rastreará a los usuarios.
+        Si tiene alguna preocupación, %{admin_email_link:envíe un correo electrónico
+        al administrador}.</p> <h2>Registros (logs) del servidor</h2> <p>%{site_name}
+        registra todas las peticiones en la típica de registro del servidor. La información
+        registrada incluye páginas visitadas, direcciones IP, y la cadena de agente
+        de usuario. Estos registros son para depuración y análisis del servidor. Los
+        datos se retienen durante una semana. Estos datos no se comparten ni se hacen
+        públicamente disponibles.</p> <h2>Estadísticas del script</h2> <p>Para los
+        propósitos de generar estadísticas, %{site_name} registra peticiones de instalación
+        y actualización con la información de dirección IP. Esta información se retiene
+        durante un día, y luego se agrega para ya no incluir más la dirección IP.
+        Los datos específicos de dirección IP no se comparten ni se hacen públicamente
+        disponibles, pero con los datos agregados sí se hace.</p> <h2>Cookies (cuando
+        no tenga sesión iniciada)</h2> <p>%{site_name} puede establecer cookies temporales
+        de sesión para permitir algunas características del sitio. Estas cookies no
+        están configuradas para persistir y se pueden limpiar cuando el navegador
+        se cierre (dependiendo del la configuración del navegador).</p> <h2>Cuentas
+        de usuario</h2> <p>%{site_name} requiere que los usuarios creen una cuenta
+        para publicar scripts, tomar parte en discusiones, y acceder a algunas otras
+        características del sitio. Al crear una cuenta, información como la dirección
+        IP, dirección de correo electrónico, y agente del usuario, se pueden almacenar
+        permanentemente. Parte de esta información puede hacerse visible para otros
+        usuarios.</p> <p>Las acciones realizadas con sesión iniciada, por ejemplo
+        publicar scripts y comentarios, se harán visibles para otros usuarios.</p>
+        <p>Si la opción "Recordarme" está marcada al iniciar sesión en una cuenta,
+        %{site_name} establecerá una cookie para retener el estado de sesión iniciada.</p>
+        <h2>Scripts publicados en %{site_name}</h2> <p>%{site_name} contiene contenido
+        generado por el usuario, y los scripts publicados puede que sean capaces de
+        rastrear usuarios si estos instalan ese script.</p> <h2>Librerías de terceros</h2>
+        <p>%{site_name} puede incluir código de terceros para recopilar estadísticas
+        o mostrar publicidad en el sitio. Estas librerías pueden que incluyan algún
+        mecanismo de rastreo.</p>
   common:
     error_preamble: "Hubo algunos problemas a la hora de procesar su envío..."
     allowed_elements_link: "(Ver codigo permitido.)"
