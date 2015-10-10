@@ -170,6 +170,7 @@ protected
 			script_version = script_version.find(version_id)
 		else
 			script_version = script_version.references(:script_versions).order('script_versions.id DESC').first
+			raise ActiveRecord::RecordNotFound if script_version.nil?
 		end
 		return [script_version.script, script_version]
 	end
