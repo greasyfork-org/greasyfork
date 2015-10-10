@@ -163,6 +163,17 @@ protected
 		return [script, script_version]
 	end
 
+	# versionned_script loads a bunch of stuff we may not care about
+	def minimal_versionned_script(script_id, version_id)
+		script_version = ScriptVersion.includes(:script).where(script_id: script_id)
+		if params[:version]
+			script_version = script_version.find(version_id)
+		else
+			script_version = script_version.references(:script_versions).order('script_versions.id DESC').first
+		end
+		return [script_version.script, script_version]
+	end
+
 	def redirect_to_slug(resource, id_param_name)
 		if resource.nil?
 			# no good

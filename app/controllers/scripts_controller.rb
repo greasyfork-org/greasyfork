@@ -236,7 +236,7 @@ class ScriptsController < ApplicationController
 				redirect_to @script.code_url
 			}
 			format.user_script_meta {
-				redirect_to script_meta_js_path(params.merge({:script_id => params[:script_id], :name => @script.name, :format => nil}))
+				render_meta_js(@script, @script_version)
 			}
 		end
 	end
@@ -252,45 +252,22 @@ class ScriptsController < ApplicationController
 	end
 
 	def user_js
-		script, script_version = versionned_script(params[:script_id], params[:version])
-		if script.nil?
-			render :nothing => true, :status => 404
-			return
-		end
-		if !script.replaced_by_script_id.nil? && script.script_delete_type_id == 1
-			redirect_to :script_id => script.replaced_by_script_id, :status => 301
-			return
-		end
+		script, script_version = minimal_versionned_script(params[:script_id], params[:version])
+		return if handle_replaced_script(script)
 		respond_to do |format|
 			format.any(:html, :all, :js) {
 				render :text => script.script_delete_type_id == 2 ? script_version.get_blanked_code : script_version.rewritten_code, :content_type => 'text/javascript'
 			}
 			format.user_script_meta { 
-				render :text => script.script_delete_type_id == 2 ? script_version.get_blanked_code : script_version.get_rewritten_meta_block, :content_type => 'text/x-userscript-meta'
-				ScriptsController.record_update_check(request, params)
+				render_meta_js(script, script_version)
 			}
 		end
 	end
 
 	def meta_js
-		# versionned_script loads a bunch of stuff we don't care about, do it ourselves
-		script_version = ScriptVersion.includes(:script).where(script_id: params[:script_id])
-		if params[:version]
-			script_version = script_version.find(params[:version])
-		else
-			script_version = script_version.references(:script_versions).order('script_versions.id DESC').first
-		end
-		script = script_version.script
-
-		if !script.replaced_by_script_id.nil? && script.script_delete_type_id == 1
-			redirect_to :script_id => script.replaced_by_script_id, :status => 301
-			return
-		end
-		cached_meta_js = cache_with_log("scripts/meta_js/#{script.cache_key}/#{params[:version]}") do
-			script.script_delete_type_id == 2 ? script_version.get_blanked_code : script_version.get_rewritten_meta_block
-		end
-		render text: cached_meta_js, content_type: 'text/x-userscript-meta'
-		ScriptsController.record_update_check(request, params)
+		script, script_version = minimal_versionned_script(params[:script_id], params[:version])
+		return if handle_replaced_script(script)
+		render_meta_js(script, script_version)
 	end
 
 	def install_ping
@@ -860,4 +837,19 @@ private
 		end
 	end
 
+	def render_meta_js(script, script_version)
+		cached_meta_js = cache_with_log("scripts/meta_js/#{script.cache_key}/#{script_version.id}") do
+			script.script_delete_type_id == 2 ? script_version.get_blanked_code : script_version.get_rewritten_meta_block
+		end
+		render text: cached_meta_js, content_type: 'text/x-userscript-meta'
+		ScriptsController.record_update_check(request, params)
+	end
+
+	def handle_replaced_script(script)
+		if !script.replaced_by_script_id.nil? && script.script_delete_type_id == 1
+			redirect_to(script_id: script.replaced_by_script_id, status: 301)
+			return true
+		end
+		return false
+	end
 end
