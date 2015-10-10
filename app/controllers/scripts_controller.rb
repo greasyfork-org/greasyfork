@@ -273,11 +273,15 @@ class ScriptsController < ApplicationController
 	end
 
 	def meta_js
-		script, script_version = versionned_script(params[:script_id], params[:version])
-		if script.nil?
-			render :nothing => true, :status => 404
-			return
+		# versionned_script loads a bunch of stuff we don't care about, do it ourselves
+		script_version = ScriptVersion.includes(:script).where(script_id: params[:script_id])
+		if params[:version]
+			script_version = script_version.find(params[:version])
+		else
+			script_version = script_version.references(:script_versions).order('script_versions.id DESC').first
 		end
+		script = script_version.script
+
 		if !script.replaced_by_script_id.nil? && script.script_delete_type_id == 1
 			redirect_to :script_id => script.replaced_by_script_id, :status => 301
 			return
