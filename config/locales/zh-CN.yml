@@ -374,10 +374,10 @@ zh-CN:
           <li>公开的</li>
           <li>内容不会经常改变的</li>
           <li>有多名脚本作者认为有用的</li>
-        </ul> <p>目前的名单为：</p> %{allowed_require_list} <p>如果您尝试发布的一个脚本使用 <code>@require</code>
-        引用了此名单之外的脚本，您无法在此保存您的脚本。</p> <p>如果您想包含的脚本是一个 JavaScript 库（例如 jQuery 或者 YUI），尝试在上面列出的网站中找到它。%{cdnjs_link:cdnjs}
-        和 %{jsdelivr_link:jsDelivr} 涵盖了广泛的可用库。</p> <p>如果您想包含的脚本在上面的网站上均不存在，%{contact_link:告知我们}，我们可以找找别的地方是否有它（乃至我们自己托管）。</p>
-        <p>如果您想包含的脚本是你自己写的，你可以在 %{site_name} 上将它提交为一个单独的项目，并选择“库”作为它的脚本类型。然后你就可以在你的脚本中引入已发布的库了。</p>
+        </ul> <p>目前的名单为：</p> %{allowed_require_list} <p>如果您尝试发布的一个脚本使用 <code>@require</code>引用了此名单之外的脚本，您无法在此保存您的脚本。</p>
+        <p>如果您想包含的脚本是一个 JavaScript 库（例如 jQuery 或者 YUI），尝试在上面列出的网站中找到它。%{cdnjs_link:cdnjs}和
+        %{jsdelivr_link:jsDelivr} 涵盖了广泛的可用库。</p> <p>如果您想包含的脚本在上面的网站上均不存在，%{contact_link:告知我们}，我们可以找找别的地方是否有它（乃至我们自己托管）。</p>
+        <p>如果您想包含的脚本是你自己写的，你可以在 %{site_name} 上将它提交为一个单独的项目，选择“库”作为它的脚本类型。然后你就可以在你的脚本中引入已发布的库了。</p>
     script_rewriting:
       title: "%{site_name} 将如何改写已发布的脚本"
       content_html: >

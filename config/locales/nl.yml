@@ -55,6 +55,18 @@ nl:
     update_page: "Bijwerken"
     sync_page: "Synchroniseren"
     delete_page: "Verwijderen"
+    delete_explanation: "Het verwijderen van je script maakt het onbeschikbaar voor iedereen, behalve jou en de Greasy Fork moderators. Je kunt je script altijd weer beschikbaar maken."
+    delete_update_behaviour: "Wat wil je dat er gebeurt met mensen die je script eerder hebben geïnstalleerd?"
+    delete_update_behaviour_1: "Ze houden het zoals het is."
+    delete_update_behaviour_2: "Ze worden geupdate naar een leeg script. Dit is geschikt wanneer het script een negatief effect heeft op de site waar hij voor wordt gebruikt."
+    delete_permanently_heading: "Permanent verwijderen"
+    delete_permanently_explanation: "Permanent verwijderen van je script zal "
+    delete_permanently_confirm: "Weet je zeker dat je je script wilt verwijderen? Dit kan niet teruggedraaid worden!"
+    delete_permanently_submit: "Vraag verwijdering aan"
+    delete_permanently_notice: "Aanvraag voor verwijdering is waargenomen en zal worden behandeld door een moderator."
+    delete_permanently_already_requested: "Je vroeg verwijdering aan op %{datetime}."
+    cancel_delete_permanently_submit: "Annuleer verwijderingsverzoek"
+    cancel_delete_permanently_notice: "Je aanvraag voor permanente verwijdering is geannuleerd."
     history_title: "%{script_name} - Versiegeschiedenis"
     history_only_code_changes_info: "Dit zijn versies van het script waarin de code is bijgewerkt."
     history_all_changes_link: "Alle versies weergeven."
@@ -205,6 +217,14 @@ nl:
     adult_content_self_report_explanation: "%{site_name} staat scripts met inhoud voor volwassenen toe mits deze als dusdanig gemarkeerd zijn zodat gebruikers zelf kunnen kiezen of ze dit willen zien of niet."
     not_adult_content_self_report_html: "Dit script bevat <strong>geen</strong> inhoud voor volwassenen en is ook <strong>niet</strong> bestemd voor een website met inhoud voor volwassenen."
     not_adult_content_self_report_explanation: "%{site_name} staat scripts met inhoud voor volwassenen toe mits deze als dusdanig gemarkeerd zijn zodat gebruikers zelf kunnen kiezen of ze dit willen zien of niet. Uw script is gemarkeerd als zijnde 'inhoud voor volwassenen'. U kunt ervoor kiezen om het te rapporteren omdat dit onjuist is; dit zal worden nagekeken door een moderator."
+    adult_content_on_greasy_logged_in_error: "Dit script is niet langer anoniem beschikbaar op deze site, met je huidige %{edit_account_link:Greasy Fork account instellingen}."
+    adult_content_on_greasy_not_logged_in_error: "Dit script is niet langer anoniem verkrijgbaar op deze site. %{login_link:Log in} en controleer je Greasy Fork account instellingen."
+    non_adult_content_on_sleazy: "Dit script is niet beschikbaar op deze site."
+    adult_marker: "(Volwassen)"
+    deleted_marker: "(Verwijderd)"
+    locked_marker: "(Beveiligd)"
+    unlisted_marker: "()"
+    library_marker: "(Bibliotheek)"
   script_sets:
     favorites_name: "Favorieten"
     delete: "Scriptgroep verwijderen"
@@ -218,7 +238,12 @@ nl:
   home:
     title: "%{site_name} - veilige en nuttige gebruikersscripts"
     welcome: "Welkom bij %{site_name}, een site voor gebruikersscripts."
+    sleazy_title: "%{site_name} - veilige en nuttige gebruikersscripts"
+    sleazy_welcome: "Welkom bij %{site_name}, een site voor volwassen gebruikersscripts."
     explain_user_scripts_heading: "Wat zijn gebruikersscripts?"
+    explain_user_scripts_html: "Gebruikersscripts stellen je in staat je browser naar je eigen wensen aan te passen. Wanneer je ze hebt geïnstalleerd, maken ze sites die je bezoekt automatisch beter, door aanvullende mogelijkheden, makkelijker gebruik of vervelende eigenschappen kunnen worden verwijderd. De gebruikersscripts op %{site_name} zijn geschreven door andere gebruikers, en geplaatst om te delen met de rest van de wereld. Ze zijn gratis om te installeren, en makkelijk in gebruik."
+    how_to_install_user_scripts_heading: "Hoe installeer ik gebruikersscripts?"
+    how_to_install_user_scripts_html: "Om gebruikersscripts te kunnen gebruiken, moet je eerst een gebruikersscriptmanager installeren. Voor Firefox is de beste keus %{gm_link:Greasemonkey}. Voor Chrome %{tm_link:Tampermonkey}. %{other_managers_link:Er zijn ook andere opties}. Wanneer je een gebruikersscriptmanager hebt geïnstalleerd, zoek je een script op %{site_name} en klik je op de groene Installeer-knop. Het script is dan geïnstalleerd en wordt uitgevoerd wanneer je de site bezoekt waar het script voor geschreven is."
     scripts_sample: "Een voorbeeldlijst van onze scripts"
     scripts_sample_more: "Meer..."
   users:
@@ -294,6 +319,14 @@ nl:
     approve_redistribution_true: "Ik sta toe dat mijn scripts elders herplaatst worden"
     approve_redistribution_false: "Ik sta niet toe dat mijn scripts elders herplaatst worden"
   help:
+    installing_user_scripts:
+      title: "Hoe installeer je gebruikersscripts."
+      intro: "Om gebruikersscripts te kunnen gebruiken, moet je een browser extensie installeren."
+      firefox: "Firefox en gerelateerde browsers: %{gm_link:Greasemonkey}."
+      chrome: "Google Chrome, Chromium en gerelateerde browsers: %{tm_link:Tampermonkey}."
+      opera_15_plus: "Opera (versie 15 en nieuwer): %{tm_link:Tampermonkey} of %{vm_link:Violentmonkey}."
+      opera_12: "Opera versie 12 en ouder %{opera_doc_link:ondersteund gebruikersscripts standaard}. %{vm_link:Violentmonkey} biedt een gebruiksvriendelijkere interface en een betere compatibiliteit. "
+      installing_scripts: "Wanneer gebruikersscripts zijn ingeschakeld in je browser, navigeer naar een script op Greasy Fork en klik op de groene \"Installeer\" knop."
     meta_keys:
       title: "Metatoetsen van scripts gelezen door %{site_name}"
       intro_html: "Dit is een lijst met <a href=\"http://wiki.greasespot.net/Metadata_Block\">metatoetsen van gebruikersscripts</a> die %{site_name} zal lezen. Toetsen die niet op deze lijst staan kunnen in scripts staan en zullen worden gepresenteerd in het geïnstalleerde script maar zullen geen effect hebben binnen %{site_name} zelf."
@@ -321,12 +354,29 @@ nl:
       post_new_script_link_text: 'publiceer een nieuw script'
     code_rules:
       title: "%{site_name}'s regels voor gepubliceerde scripts"
+      adult_content_rule_html: "<li>Scripts die volwassen inhoud bevatten, of die zijn geschreven voor sites die volwassen inhoud bevatten, moeten worden gemarkeerd als zijnde volwassen, om andere gebruikers toe te staan ze te kunnen zien.</li>"
+    external_scripts:
+      title: "%{site_name}'s beleid voor externe scripts."
+    script_rewriting:
+      title: "Hoe %{site_name} geplaatste scripts herschrijft"
+    site_feedback_link: "Meld probleem of plaats idee voor %{site_name} zelf"
     credits:
       title: "Bedankt aan"
       authors_credit: "%{site_name} zou niet bestaan zonder de auteurs die hun scripts hebben  geplaatst."
       developers_credit: "%{site_name} is gecreëerd door %{developers_link:deze personen} met behulp van alle personen die bugs hebben gerapporteerd en ideeën hebben geplaatst."
       translators_credit: "%{site_name} is vertaald door %{translators_link:de Greasy Vertalingsunie op Transifex):"
       icons_credit: "De discussiepictogrammen zijn afkomstig van {%iconsland} op %{vistastylebase}. De browserpictogrammen zijn afkomstig van %{browserlogos}."
+    help_with_greasymonkey: "Help met Greasemonkey"
+    contact:
+      title: "Neem contact met iemand op"
+      content_html: >
+        <p>Er zijn veel manieren om te praten over %{site_name} en haar inhoud.</p>
+
+        <p>Heb je een vraag of opmerking over een specifiek script, geplaatst op de
+        site? In dat geval, plaats die dan via het Feedback tab op de pagina van het
+        betreffende script.>/p>
+    privacy_policy:
+      title: "Privacy beleid"
   common:
     error_preamble: "Er zijn enkele problemen met wat u trachtte te plaatsen..."
     allowed_elements_link: "(Zie de toegestane code.)"
@@ -376,3 +426,9 @@ nl:
       cannot_be_deleted_reference: "kan geen verwijderd script zijn"
       must_be_greasy_fork_script: "moet een URL zijn van een script op %{site_name}"
       script_update_not_utf8: "upload moet UTF-8-tekst bevatten"
+      script_disallowed_require: "gebruikt een nog niet goedgekeurd extern script %{code}"
+  opensearch:
+    short_name: "Zoeken op %{site_name}"
+    description: "Zoek naar gebruikersscripts op %{site_name}."
+    long_name: "%{site_name} gebruikersscripts zoeken"
+    attribution: "Auteursrecht van de scripts, zie elk individueel script voor licentie"
