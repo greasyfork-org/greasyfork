@@ -282,7 +282,10 @@ class ScriptsController < ApplicationController
 			redirect_to :script_id => script.replaced_by_script_id, :status => 301
 			return
 		end
-		render :text => script.script_delete_type_id == 2 ? script_version.get_blanked_code : script_version.get_rewritten_meta_block, :content_type => 'text/x-userscript-meta'
+		cached_meta_js = cache_with_log("scripts/meta_js/#{script.cache_key}/#{params[:version]}") do
+			script.script_delete_type_id == 2 ? script_version.get_blanked_code : script_version.get_rewritten_meta_block
+		end
+		render text: cached_meta_js, content_type: 'text/x-userscript-meta'
 		ScriptsController.record_update_check(request, params)
 	end
 
