@@ -46,9 +46,9 @@ end
 # included by dependency, need a more recent version - https://github.com/JasonBarnabe/greasyfork/issues/245
 gem 'i18n', '>= 0.6.11'
 
-gem 'devise', '~> 3.4.0'
+gem 'devise', '~> 3.5.0'
 gem 'devise-i18n'
-gem 'devise-i18n-views', '~> 0.3.4'
+gem 'devise-i18n-views'
 gem 'therubyracer'
 gem 'mysql2'
 gem 'diffy', '~> 3.0.5'
