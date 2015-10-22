@@ -2,7 +2,7 @@
 /* Label for inputting a script ID when creating/editing a discussion */
 $Definition['Item ID:'] = 'Szkript azonosító:';
 // Appended to "Discussions" when viewing a list of discussions on scripts by a user. %s is the user name.
-$Definition['on scripts by %s'] = 'on scripts by %s';
+$Definition['on scripts by %s'] = 'szkriptekről tőle: %s';
 /*
  *  Label for the radio buttons for rating a script
  **/
@@ -26,7 +26,7 @@ $Definition['Categories.general.Description'] = 'Hibajelentések, feature kéré
 // Category name for Development
 $Definition['Categories.script-development.Name'] = 'Fejlesztés';
 // Category description for Development
-$Definition['Categories.script-development.Description'] = 'Technical talk about user script development.';
+$Definition['Categories.script-development.Description'] = 'Technikai beszélgetés a felhasználói szkript fejlesztésről.';
 // Category name for Script Creation Requests
 $Definition['Categories.script-requests.Name'] = 'Szkript Kérése';
 // Category description for Script Creation Requests
