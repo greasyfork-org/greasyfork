@@ -54,7 +54,7 @@ class Script < ActiveRecord::Base
 	scope :redistributable, ->(script_subset) {listable(script_subset).includes(:user).references([:scripts, :users]).where('scripts.approve_redistribution OR (scripts.approve_redistribution IS NULL AND users.approve_redistribution)')}
 
 	# Must have a default name and description
-	validates_presence_of :name, :message => :script_missing_name, :unless => Proc.new {|s| s.library?}
+	validates_presence_of :default_name, :message => :script_missing_name, :unless => Proc.new {|s| s.library?}
 	validates_presence_of :name, :if => Proc.new {|s| s.library?}
 	validates_presence_of :description, :message => :script_missing_description, :unless => Proc.new {|r| r.deleted? || r.library?}
 	validates_presence_of :description, :unless => Proc.new {|r| r.deleted? || !r.library?}
