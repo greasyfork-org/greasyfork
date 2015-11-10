@@ -3,15 +3,19 @@
 	float: left;
 	margin-right: 5px;
 }
+/* Override mobile theme */
+.rating-image {
+	height: 16px !important;
+	width: 16px !important;
+}
+
 /* Form rating options */
 label[for*="Rating"] {
 	display: block !important;
 }
-/* Breadcrumbs are dumb when you have a sidebar */
-.Breadcrumbs {
-	display: none;
-}
-/* Align to top with Breadcrumbs gone */
-.MeBox {
-	margin-top: 0;
+
+/* https://github.com/vanilla/vanilla/pull/2369 */
+.TextBoxWrapper input[type=radio] {
+	width: auto;
+	display: inline;
 }

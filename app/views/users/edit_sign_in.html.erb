@@ -1,0 +1,89 @@
+<%- title t('users.edit_sign_in_title') %>
+
+<script src="https://login.persona.org/include.js" type="text/javascript"></script>
+
+<h3><%=t('users.edit_sign_in_password')%></h3>
+
+<% if !current_user.errors.empty? %>
+	<%=t('common.error_preamble')%>
+	<ul>
+		<% current_user.errors.full_messages.each do |msg| %>
+			<li><%=msg%></li>
+		<% end %>
+	</ul>
+<% end %>
+
+<% if current_user.encrypted_password.nil? %>
+	<p><%=t('users.no_password_set_info')%></p>
+<% end %>
+
+<%=form_tag(user_update_password_path, :method => :put) do |f|%>
+
+	<div><%= label_tag t('activerecord.attributes.user.password') %><br>
+	<%= password_field_tag :password, nil, :autocomplete => "off", :required => true %></div>
+
+	<% # this is provided in an updated devise-i18n-views %>
+	<div><%= label_tag t('activerecord.attributes.user.password_confirmation', :default => 'Password confirmation') %><br />
+	<%= password_field_tag :password_confirmation, nil, :required => true %></div>
+
+	<% if current_user.encrypted_password.nil? %>
+		<div><%= submit_tag t('users.set_password') %></div>
+	<% else %>
+		<div><%= submit_tag t('users.update_password') %></div>
+	<% end %>
+<% end %>
+
+<% if !current_user.encrypted_password.nil? and !current_user.identities.empty? %>
+	<%=form_tag(user_remove_password_path, :method => :put, :class => 'inline-form') do |f|%>
+		<p><%=t('users.remove_password_info')%> <input type="submit" value="<%=t('users.remove_password')%>"></p>
+	<% end %>
+<% end %>
+
+<h3><%=t('users.edit_sign_in_external')%></h3>
+
+<% if current_user.identities.empty? %>
+	<p><%=t('users.external_sign_in_info_no_sign_ins')%></p>
+<% else %>
+	<p><%=t('users.external_sign_in_info_with_sign_ins')%></p>
+	<ul>
+		<% current_user.identities.each do |id| %>
+			<li>
+				<% if !id.url.nil? %>
+					<%=link_to id.pretty_provider, id.url%>
+				<% else %>
+					<%=id.pretty_provider%>
+				<% end %>
+				<% if id.syncing %>
+					<%=t('users.syncing_indicator')%>
+					<%=form_tag(user_update_identity_path, :method => :put, :class => 'inline-form') do |f|%>
+						<input type="hidden" name="provider" value="<%=id.provider%>">
+						<input type="hidden" name="syncing" value="0">
+						<input type="Submit" value="<%=t('users.disable_syncing')%>">
+					<% end %>
+				<% else %>
+					<%=form_tag(user_update_identity_path, :method => :put, :class => 'inline-form') do |f|%>
+						<input type="hidden" name="provider" value="<%=id.provider%>">
+						<input type="hidden" name="syncing" value="1">
+						<input type="Submit" value="<%=t('users.enable_syncing')%>">
+					<% end %>
+				<% end %>
+				<% if current_user.identities.size > 1 or !current_user.encrypted_password.nil? %>
+					<%=form_tag(user_delete_identity_path, :method => :delete, :class => 'inline-form') do |f|%>
+						<input type="hidden" name="provider" value="<%=id.provider%>">
+						<input type="Submit" value="<%=t('users.remove_external_sign_in')%>">
+					<% end %>
+				<% end %>
+			</li>
+		<% end %>
+	</ul>
+<% end %>
+
+<% available_providers = (Rails.application.config.available_auths.keys - current_user.identity_providers_used) %>
+<% if !available_providers.empty? %>
+	<p><%=t('users.add_external_sign_in_info')%></p>
+	<ul>
+		<% available_providers.each do |provider| %>
+			<li><%=link_to Identity.pretty_provider(provider), "/auth/#{provider}", {:class => "#{provider}-login", 'data-return-to' => url_for()}%></li>
+		<% end %>
+	</ul>
+<% end %>

@@ -1,23 +1,874 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  layouts:
+    application:
+      # link to the list of scripts
+      script_list: "Scripts"
+      # link to the forum
+      forum: "Forum"
+      # link to the help docs
+      help: "Help"
+      # link to sign in
+      sign_in: "Sign in"
+      # search placeholder
+      search: "Search"
+  helpers:
+    application:
+      time_ago:
+        # used for displaying a time (e.g. last update) when it's less than an hour ago
+        minutes:
+          one: "%{count} minute ago"
+          other: "%{count} minutes ago"
+        # used for displaying a time (e.g. last update) when it's less than a day ago
+        hours:
+          one: "%{count} hour ago"
+          other: "%{count} hours ago"
+        # used for displaying a time (e.g. last update) when it's less than a week ago
+        days:
+          one: "%{count} day ago"
+          other: "%{count} days ago"
+  scripts:
+    # label for created date of a script
+    created_date: "Created"
+    # label for updated date of a script
+    updated_date: "Updated"
+    # label for total install count of a script
+    total_installs: "Total installs"
+    # label for daily install count of a script
+    daily_installs: "Daily installs"
+    # label for the ratings of a script
+    ratings: "Ratings"
+    # label for author name of a script
+    author_name: "Author"
+    # label for version number of a script
+    version_number: "Version"
+    # label for the legal license a script is released under (e.g. GPL)
+    license: "License"
+    # what is shown as the license when no license is provided in a script
+    no_license: "N/A"
+    # label for the browser compatibility for a script
+    compatibility: "Compatibility"
+    compatible_with_browser: "Compatible with %{browser}"
+    incompatible_with_browser: "Incompatible with %{browser}"
+    # label for the list of sites or patterns a script applies to
+    applies_to: "Applies to"
+    # a title (tooltip) for the links in the "applies to" section going to a list of scripts for that site. count is the number of other scripts, site is the name of the site. add subkeys for your language per http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
+    applies_to_link_title:
+      one: "See %{count} other script for %{site}"
+      other: "See %{count} other scripts for %{site}"
+    # what is shown as the applies to when a script applies to all sites
+    applies_to_all: "All sites"
+    # header before the author-provided additional info - should imply that it was the author who wrote this, not the site
+    additional_info: "Author's Description"
+    # link that makes the user install the script
+    install: "Install this script"
+    # text for link that gives information on how to install scripts. should be very short.
+    install_help: "?"
+    # title (tooltip) for link that gives information on how to install scripts
+    install_help_title: "How to install"
+    # instructions on a script library. code will be a <code> element. Don't use punctuation around the code element if possible so that people don't accidentally include that when copying.
+    library_instructions_html: "This script should not be not be installed directly. It is a library for other scripts to include with the meta directive %{code}"
+    # text displayed for deleted scripts
+    deleted_notice: "This script has been deleted."
+    # text displayed for scripts hidden until they follow the rules
+    inactive_pending_changes: "This script is currently inactive because it doesn't align with %{site_name}'s policies."
+    # text displayed for when viewing a previous version of a script that was hidden because it didn't follow the rules
+    inactive_pending_changes_for_previous_version: "This version of this script is inactive because it doesn't align with %{site_name}'s policies."
+    # test displayed when viewing a previous version. date is a date and time (no "ago"), latest_version_link is a link to the newest version whose text is version_notice_latest_version_link
+    version_notice_html: "As of %{date}. See %{latest_version_link}."
+    version_notice_latest_version_link: "the latest version"
+    # link to the script's info page, containing script meta and author's description
+    info_page: "Info"
+    # link to the script's code page
+    code_page: "Code"
+    # link to the script's history page, listing all versions of the code
+    history_page: "History"
+    # link to the script's feedback page, listing discussions on the script. count is the number of discussions
+    feedback_page: "Feedback (%{count})"
+    # link to the script's install statistics page
+    stats_page: "Stats"
+    # link to the script's derivatives page, which shows similar scripts
+    derivatives_page: "Derivatives"
+    # link to the page that lets the author update the script
+    update_page: "Update"
+    # link to the page that lets the author set up script syncing from an external URL
+    sync_page: "Sync"
+    # link to the page that lets the author delete a script
+    delete_page: "Delete"
+    # explanation of what deleting does
+    delete_explanation: "Deleting your script makes it inaccessible to anyone but you and Greasy Fork moderators. You can undelete at any time."
+    # intro text to radio options for choosing update behaviour after deletion
+    delete_update_behaviour: "What would you like to happen to users who previously installed your script?"
+    # label for the option allowing users to retain the script after delete
+    delete_update_behaviour_1: "They will keep it as it is."
+    # label for the option where users get a blanked script after delete 
+    delete_update_behaviour_2: "They will be updated to a blank script. This is suitable when the script has a negative effect on the sites it runs on."
+    # heading for permanent deletion section
+    delete_permanently_heading: "Permanent deletion"
+    # explanation of permanent deletion
+    delete_permanently_explanation: "Permanently deleting your script will delete it and all associated records, with the exception of forum discussions and the log of moderator actions. Permanent deletion is permanent; it can't be undone, even by moderators."
+    # confirmation on pressing the permanent deletion button
+    delete_permanently_confirm: "Are you sure you want to permanently delete your script? This action cannot be undone!"
+    # text for the permanent deletion button
+    delete_permanently_submit: "Request permanent deletion"
+    # notice after requesting permanent deletion
+    delete_permanently_notice: "Request for permanent deletion has been recorded and will be reviewed by a moderator."
+    # text on the delete page after permanently deletion was requested
+    delete_permanently_already_requested: "You requested permanent deletion at %{datetime}."
+    # text for cancelling a permanent deletion request
+    cancel_delete_permanently_submit: "Cancel permanent deletion request"
+    # notice after cancelling a permanent deletion request
+    cancel_delete_permanently_notice: "Your request for permanent deletion has been cancelled."
+    # HTML title for the history page for a script
+    history_title: "%{script_name} - Version history"
+    # text explaining that we're only showing versions where the code changed
+    history_only_code_changes_info: "These are versions of this script where the code was updated."
+    # link to the list of all versions
+    history_all_changes_link: "Show all versions."
+    # text explaining that we're showing all versions
+    history_all_changes_info: "These are all versions of this script."
+    # link to the list of version where the code changed
+    history_only_code_changes_link: "Show only the versions where the code changed."
+    # button that shows changes (a diff) of the selected versions
+    diff_button: "Diff selected versions"
+    # HTML title of the script source code page
+    code_title: "%{script_name} - Source code"
+    # notice that syntax highlighting is disabled for this script's code to avoid browser hangs. size is something like "500KB"
+    code_highlighting_disabled: "Code is over %{size}, so syntax highlighting has been disabled to spare your browser."
+    # HTML title of the script feedback page
+    feedback_title: "%{script_name} - Feedback"
+    # text to show when no discussions are posted. start_discussion_first_link is a link with the text from feedback_start_first_discussion_link
+    feedback_no_discussions_html: "No discussions posted yet. %{start_first_discussion_link}"
+    feedback_start_first_discussion_link: "Be the first to discuss this script."
+    # link text for starting a new discussion when previous discussions already exist
+    feedback_start_discussion_link: "Start a new discussion on this script."
+    # heading for list of discussions on this script
+    feedback_discussions_heading: "Discussions on Greasy Forum"
+    # heading for list of people who favorited this script
+    feedback_favoriters_heading: "Favoriters"
+    # text before a comma separated list of users who favorited the script
+    feedback_favoriters_user_list_intro: "This script has been favorited by:"
+    # text when no one has favorited a script
+    feedback_no_favoriters: "This script has not yet been favorited by anyone."
+    # link to get the user to sign in to add the script to their favorites
+    feedback_sign_in_to_favorite: "Sign in to add to favorites."
+    # html title for script stats page
+    stats_title: "%{script_name} - Stats"
+    # heading for daily install stats on stats page
+    stats_daily_installs_heading: "Daily installs"
+    # heading for daily update check stats on stats page
+    stats_daily_update_checks_heading: "Daily update checks"
+    # date column heading for a script's daily install stats table
+    stats_daily_installs_date_column_heading: "Date"
+    # install count column heading for a script's stats table
+    stats_daily_installs_install_count_column_heading: "Installs"
+    # update check count column heading for a script's stats table
+    stats_daily_installs_update_check_count_column_heading: "Update checks"
+    # header for the raw data table for stats
+    stats_raw_data_header: "Raw data"
+    # text before links to download raw stats data. links will be space separated links to the format name (e.g. CSV and JSON)
+    stats_download_raw_data_html: "Download all data as: %{links}"
+    # text to show when a stat is not available
+    stats_no_data: "N/A"
+    # HTML title for derivatives page
+    derivatives_title: "%{script_name} - Derivatives"
+    # text explaining the derivatives page and what to do if the user finds unauthorized copies
+    derivatives_intro: "These scripts may be based on yours (or yours may be based on them). If you find an unauthorized use of your code, report the script by starting a new discussion on it."
+    # info on the list of derivative code matches. last_run is a date run through the "time ago" process. max_size is the maximum size of script this process will check and is run through number_to_human_size, for example "50 KB". match_size is the minimum length of code that can be counted as a duplicate
+    derivatives_code_matches_info_html: "Scripts posted by others that include code at least %{match_size} characters in common with your script. This check is run only on scripts less than %{max_size} and was last run %{last_run}."
+    # info on the list of derivative namespace matches. namespace is a user script meta line, like "@namespace http://example.com"
+    derivatives_namespace_matches_info_html: "Scripts posted by others using <code>%{namespace}</code>:"
+    # info on the list of derivative name matches
+    derivatives_name_matches_info: "Scripts posted by others with the most similar names to yours:"
+    # format for scripts listed on the derivatives page. script_link is a link to the derivative's page, user_link is a link to the user who created the derivative, license is text, link to the license, or scripts.no_license
+    derivatives_script_html: "%{script_link} by %{user_link}, license: %{license}"
+    # format for scripts listed on the derivatives page when referencing particular lines in the script. script_lines_link is a link to the derivative's code page with an fragment going to the particular line number, user_link is a link to the user who created the derivative, license is text, link to the license, or scripts.no_license
+    derivatives_script_with_code_line_html: "%{script_lines_link} by %{user_link}, license: %{license}"
+    # link text to a particular script's code, referencing particular lines
+    script_lines_link: "%{script_name}, lines %{start} to %{end}"
+    # html title for script list page when showing scripts that affect all sites
+    listing_title_all_sites: "User scripts for all sites"
+    # meta description and feed subtitle when showing scripts that affect all sites
+    listing_description_all_sites: "User scripts that add features and remove bugs on all sites"
+    # html title for script list page when showing scripts for a particular site. 'site' will be in the form 'example.com'
+    listing_title_for_site: "User scripts for %{site}"
+    # meta description and feed subtitle when showing scripts that affect a particular site
+    listing_description_for_site: "User scripts that add features and remove bugs on %{site}"
+    # html title for script list page for search results.
+    listing_title_for_search: "'%{search_string}' user scripts"
+    # html title for script list page for code search results.
+    listing_title_for_code_search: "'%{search_string}' user scripts"
+    # html title for script list page when no other situation applies
+    listing_title_generic: "User scripts"
+    # html title for script list page for a user's favorites. set_name is script_sets.favorites_name
+    listing_title_for_favorites: "%{user_name}'s %{set_name}"
+    # meta description and feed subtitle for script list page when no other situation applies
+    listing_description_generic: "User scripts that add features and remove bugs on the sites you use"
+    # label for sorting links on script list page
+    listing_sort_label: "Sorting by:"
+    # link for relevance (most matching the search terms) sort on a script list
+    listing_sort_relevance: "Relevance"
+    # link for daily install sort on a script list
+    listing_sort_daily_installs: "Daily installs"
+    # link for daily install sort on a script list
+    listing_sort_total_installs: "Total installs"
+    # link for rating sort on a script list
+    listing_sort_ratings: "Ratings"
+    # link for created date sort on a script list
+    listing_sort_created_date: "Created date"
+    # link for updated date sort on a script list
+    listing_sort_updated_date: "Updated date"
+    # link for name sort on a script list
+    listing_sort_name: "Name"
+    # label for filtering by-site links on script list page
+    listing_filter_by_site_label: "Showing scripts for:"
+    # link for turning off by-site filtering on script list page
+    listing_filter_by_site_disable: "All"
+    # link for filtering script list by scripts that affect all sites
+    listing_filter_by_site_all_sites: "(All sites)"
+    # link to see a full list of sites that scripts on %{site_name} affect
+    listing_filter_by_site_more_sites: "More…"
+    # text that shows when no scripts were found with the used parameters
+    listing_no_scripts: "No scripts found."
+    # feed title for the listing, ordered by created date
+    listing_created_feed: "New scripts"
+    # feed title for the listing, ordered by updated date
+    listing_updated_feed: "Updated scripts"
+    # when a list has nothing to show
+    listing_none: "(None)"
+    # link to start the process of importing (creating from an external place) scripts
+    import: "Import scripts"
+    # link to create a new script
+    new: "Post a script"
+    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support site
+    support_site: "Visit the author's support site."
+    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support email address
+    support_email: "E-mail the author for support."
+    # link to a site where the user can donate to the author, when the author didn't provide a suggested donation amount
+    contribution_no_amount: "Thank %{author} by making a donation."
+    # link to a site where the user can donate to the author, when the author provided a suggested donation amount
+    contribution_with_amount: "Thank %{author} by making a donation. Suggested donation is %{amount}."
+    # text for donating to the author via bitcoin, when the author didn't provide a suggested donation amount
+    contribution_bitcoin_no_amount_html: "Thank %{author} by making a Bitcoin donation to %{address}."
+    # text for donating to the author via bitcoin, when the author provided a suggested donation amount
+    contribution_bitcoin_with_amount_html: "Thank %{author} by making a Bitcoin donation to %{address}. Suggested donation is %{amount}."
+    # explanation of language chooser when editing script
+    locale_explanation_html: "Should match the language of <code>@name</code>, <code>@description</code>, and the first additional info."
+    # the default value for the locale box, if submitted the site will attempt to detect the language of the entry
+    locale_auto_select: "(Automatically detect)"
+    # label which lists the sets this script is in, which is followed by controls to change its inclusions
+    sets_label: "In script sets:"
+    # label for when the script is not in any sets, which is followed by controls to change its inclusions
+    sets_label_no_sets: "Script sets:"
+    # option to remove the script from the set
+    sets_remove_inclusion: "Remove from %{set_name}"
+    # option to remove the script's exclusion from the set
+    sets_remove_exclusion: "Remove exclusion from %{set_name}"
+    # option to add the script to the set
+    sets_add_inclusion: "Add to %{set_name}"
+    # option to exclude the script from the set (when it's been included as part of a sub set)
+    sets_add_exclusion: "Exclude from %{set_name}"
+    # option to add the script to a new set
+    sets_add_to_new: "Add to new set"
+    # summary of %{site_name}'s rules for posting scripts. full_rules_link is a link to the full rules with text of rules_summary_link_to_full
+    rules_summary_html: "Scripts must be <strong>properly described</strong>, cannot be <strong>obfuscated</strong> or <strong>minified</strong>, must respect <strong>copyright</strong>, and are limited in the <strong>external code</strong> used. %{full_rules_link}"
+    # full rules link text used in the rules summary
+    rules_summary_link_to_full: "Read the full rules."
+    # warning when on the edit screen for a script set up to sync. syncing_notice_sync_type will be a link to the sync screen with text from syncing_notice_sync_type_manual or syncing_notice_sync_type_automatic
+    syncing_notice_html: "This script is %{syncing_notice_sync_type}. Any updates you make to the code here will be overwritten when syncing."
+    # used in syncing_notice_html when a script syncs only when the author requests it
+    syncing_notice_sync_type_manual: "set to sync manually from %{sync_identifier}"
+    # used in syncing_notice_html when a script syncs automatically
+    syncing_notice_sync_type_automatic: "set to sync automatically from %{sync_identifier}"
+    # label for uploading a script under the code textarea
+    upload_label: "Or upload:"
+    # label for checkbox to enable or disable syntax highlighting code editor
+    enable_source_code_editor_label: "Enable syntax-highlighting source editor"
+    # descriptive text for the changelog field
+    changelog_note: "What's changed in this version?"
+    # descriptive text for the additional info field. allowed_elements_link is a link to the list of elements with text from common.allowed_elements_link
+    additional_info_note_html: "Ramble on about your script. %{allowed_elements_link}"
+    # button text for previewing additional info
+    preview_additional_info: "Preview"
+    # button text for submitting a new script
+    post_new_script: "Post script"
+    # button text for submitting an update to an existing script
+    post_updated_script: "Post new version"
+    # label for radio button for public-type user script
+    type_1_html: "Public user script - a user script for all to see and use."
+    # label for radio button for unlisted-type user script
+    type_2_html: "Unlisted user script - a user script for (semi-)private use. Available by direct access, but not linked to from anywhere on %{site_name}."
+    # label for radio button for library-type script
+    type_3_html: "Library - a script intended to be <code>@require</code>-d from other scripts and not installed directly."
+    # label for checkbox to override script save warnings
+    override_warning_checkbox_label: "Save anyway?"
+    # script warning for not increasing the version number when updating the code
+    warning_version_not_incremented_html: "You updated the code but didn't increase the <code>@version</code> number. Those who previously installed your script may not get the updated code."
+    # script warning for when a version number is not provided
+    warning_version_missing_html: "You didn't specify <code>@version</code>. A <code>@version</code> meta key allows for update checking of your script in user script managers."
+    # label for checkbox for the site to automatically handle version numbers
+    warning_version_missing_generate_automatically_html: "Generate <code>@version</code> automatically?"
+    # script warning for when a namespace is not provided
+    warning_namespace_missing_html: "You didn't specify <code>@namespace</code>. A <code>@namespace</code> meta keys allows users to re-install your script to update it."
+    # label for checkbox for the site to automatically add a namespace
+    warning_namespace_missing_generate_automatically_html: "Generate a <code>@namespace</code> automatically?"
+    # script warning for when a namespace changed on update
+    warning_namespace_changed_html: "Your <code>@namespace</code> has changed. A consistent <code>@namespace</code> allows users to re-install your script to update it."
+    # script warning for when a script's code appears minified. allowed_requires_link is a link to the allowed @require list, with text of warning_potentially_minified_allowed_requires_link
+    warning_potentially_minified_html: "Your script looks like it might contain minified (compressed) code. If you're using a minified library, please instead <code>@require</code> it from %{allowed_requires_link}. Scripts with minified code are subject to removal."
+    # used in warning_potentially_minified_html
+    warning_potentially_minified_allowed_requires_link: "one of these places"
+    # default option for the locale of a localized additional info
+    additional_info_locale_prompt: "(Choose a locale)"
+    # text for the button to add another additional info section for a different language
+    additional_info_add_localized: "Add a localized additional info"
+    # validation when more than one additional info is specified for a locale. "locale_code" is the locale code (e.g. "en") that has more than one additional info
+    additional_info_locale_repeated: "Provide only one additional info for the '%{locale_code}' locale."
+    # validation when an additional info in a locale is provided but no name was provided in that locale. "locale_code" is the locale code (e.g. "en") that is missing a name
+    localized_additional_info_with_no_name: "Additional info was specified for the '%{locale_code}' locale, but no @name:%{locale_code} was provided."
+    # text to edit a code syncing URL. field is the text field to enter the url.
+    code_syncing_from_url_html: "This script's code is set up to sync from: %{field}"
+    # text to add a code syncing URL. field is the text field to enter the url.
+    provide_code_syncing_from_url_html: "%{site_name} can import scripts that already hosted elsewhere, for example in a version control system (like GitHub), your own server, or another user script hosting site. To enable syncing for your script, provide a URL: %{field}"
+    # text before the sync type options
+    sync_type_intro: "The script will be synced:"
+    # label for radio button for manual syncing
+    sync_type_1: "Manually - it will be checked for updates only when you trigger it"
+    # label for radio button for automatic syncing
+    sync_type_2: "Automatically - it will be periodically checked for updates"
+    # label for radio button for webhook syncing
+    sync_type_3: "By webhook - it will be updated when you push changes to this file on GitHub"
+    # text when the last attempted sync failed. date is the date of the error run through markup_date. error is the technical error.
+    sync_failed_info_html: "Last attempted sync was %{date}, which resulted in %{error}."
+    # text indicating the date of the last successful sync. date is the date of the sync run through markup_date
+    sync_success_info_html: "Last successful sync was %{date}."
+    # text if the sync never succeeded
+    sync_never_succeeded: "Sync never completed successfully."
+    # button to update sync settings and run sync immediately
+    update_and_sync: "Update and sync now"
+    # button to update sync settings but not sync immediately
+    update_no_sync: "Update"
+    # button to disable syncing of the script
+    turn_off_syncing: "Turn off syncing for this script"
+    # label for syncing the default additional info
+    additional_info_default_sync_html: "Default additional info (language matches <code>@name</code>)"
+    # label for syncing localized additional infos
+    additional_info_localized_sync_html: "For locale (matches <code>@name:XX</code>)"
+    # HTML placeholder for sync fields
+    sync_url_placeholder: "(URL)"
+    # requirements for posting screenshots. number is the maximum number of screenshots, size is the maximum size (like 200KB)
+    screenshots_explanation: "Maximum of %{number} PNG, GIF, or JPEG images, smaller than %{size} each."
+    # label for adding a new screenshot
+    screenshots_add: "Add:"
+    # label for checkbox to remove a screenshot
+    screenshots_remove: "Remove"
+    # explains what a replacement script when deleting is
+    replacement_script_explanation: "(Optional) Choose another script that replaces this script. Users will be updated to and redirected to this script. Enter the replacement script's URL:"
+    # title for diff page
+    diff_title: "%{script} - Version diff"
+    # label for older version being diffed
+    diff_old_version: "Old:"
+    # label for newer version being diffed
+    diff_new_version: "New:"
+    # label for input for lines to show around each change when doing a diff
+    diff_lines_of_context: "Lines of context:"
+    # label for checkbox on whether to ignore whitespace changes
+    diff_ignore_whitespace: "Ignore whitespace changes"
+    # button to refresh diff after changing diff options
+    diff_refresh: "Refresh"
+    # text shown when compared versions are the same
+    diff_no_change: "No differences found."
+    # tooltip for good rating number - "Good" should match the word used in RatingGood in the PHP localization
+    good_rating_explanation: "Number of people who rated it Good or added it to favorites."
+    # tooltip for ok rating number - "OK" should match the word used in RatingGood in the PHP localization
+    ok_rating_explanation: "Number of people who rated it OK."
+    # tooltip for bad rating number - "Bad" should match the word used in RatingGood in the PHP localization
+    bad_rating_explanation: "Number of people who rated it Bad."
+    # link at the bottom of the scripts list suggesting people post a script or learn how. post_a_script_link is a link with text post_a_script_link_text that goes to the new script form. learn_to_write_scripts_link is a link with text learn_to_write_scripts_link_text that goes to the help document for writing scrupts
+    write_your_own_html: "%{post_a_script_link} (or %{learn_to_write_scripts_link})"
+    # link text for the new script form, used in write_your_own_html
+    post_a_script_link_text: "Post a script you've written"
+    # link text for the writing a user script help doc, used in write_your_own_html
+    learn_to_write_scripts_link_text: "learn how to write one"
+    # a suggestion below the install button that users provide feedback. feedback_link is a link to starting a new discussion on the script, with text of feedback_link_text
+    feedback_suggestion_html: "After trying this script, you can %{feedback_link}."
+    # link text used in feedback_suggestion_html
+    feedback_link_text: "ask a question about it, review it, or report it"
+    # explanation of the approve redistribution option on the script edit page
+    approve_redistribution_explanation: "%{site_name} can tell other sites that you allow them to repost your script. This may or may not be already permitted by the license you choose for your script."
+    # option for approve redistribution on a script where the value is based on the account default. user_setting can be approve_redistribution_use_user_setting_not_set if the account doesn't have it set, or it can be users.approve_redistribution_true or users.approve_redistribution_false
+    approve_redistribution_use_user_setting: "Use my account default (%{user_setting})"
+    # used with approve_redistribution_use_user_setting when the setting is not set on the account
+    approve_redistribution_use_user_setting_not_set: "not set"
+    # option for approve redistribution on a script for when they approve
+    approve_redistribution_true: "I'm OK with my script being reposted elsewhere"
+    # option for approve redistribution on a script for when they don't approve
+    approve_redistribution_false: "I don't want my script being reposted elsewhere"
+    # title for list of scripts where the author opted in for redistribution
+    redistributable_title: "Redistributable user scripts"
+    # text on redistributable scripts page explaining what it is
+    redistributable_page_description: "The authors of these scripts have explicitly indicated they approve of them being posted elsewhere. These scripts may still be subject to additional terms regarding redistribution; check each script's license for details."
+    # heading for section relating to adult content when posting new script or script version
+    adult_content: "Adult content"
+    # label for checkbox letting authors report their script as containing adult content
+    adult_content_self_report: "This script contains adult content or is for a site that contains adult content."
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script not flagged as having adult content
+    adult_content_self_report_explanation: "%{site_name} allows scripts with adult content, but they must be marked as such so that users can choose whether they see it."
+    # label for checkbox letting authors report their script as not containing adult content
+    not_adult_content_self_report_html: "This script does <strong>not</strong> contain adult content and is <strong>not</strong> for a site that contains adult content."
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content
+    not_adult_content_self_report_explanation: "%{site_name} allows scripts with adult content, but they must be marked as such so that users can choose whether they see it. Your script has been marked as having adult content. You can report that it doesn't; this will be reviewed by a moderator."
+    # the error you see when accessing a adult content script when logged in with the adult content setting off
+    adult_content_on_greasy_logged_in_error: "This script is no longer available on this site with your current %{edit_account_link:Greasy Fork account settings}."
+    # the error you see when accessing a adult content script when not logged in
+    adult_content_on_greasy_not_logged_in_error: "This script is no longer anonymously available on this site. %{login_link:Log in} and check your Greasy Fork account settings."
+    # the error you see when access a non-adult content script on sleazy fork
+    non_adult_content_on_sleazy: "This script is not available on this site."
+    # marker after script name shown to authors indicating their adult scripts
+    adult_marker: "(Adult)"
+    # marker after script name if it's deleted
+    deleted_marker: "(Deleted)"
+    # marker after script name if it's locked
+    locked_marker: "(Locked)"
+    # marker after script name if it's unlisted
+    unlisted_marker: "(Unlisted)"
+    # marker after script name if it's a library
+    library_marker: "(Library)"
+  script_sets:
+    # name for the favorites set
+    favorites_name: "Favorites"
+    # delete button text for a script set
+    delete: "Delete script set"
+    # delete confirmation for a script set
+    delete_confirmation: "Are you sure you want to delete this script set?"
+    # option for choosing to sort the set by the default sort the site uses
+    site_default_sort: "(Site default)"
+  forum_discussions:
+    # forum discussion lists with 2 * 2 = 4 options:
+    # 1. with_script: includes the script name, for example for "Discussions on your scripts" on a user's page
+    # 1. no_script: no script name, for example when viewing feedback for the script and the name's already on the page
+    # 2. with_reply: where someone has made a reply to the discussion
+    # 2. no_reply: no replies to the discussion
+    listing_no_script_no_reply_html: "%{discussion_link} by %{original_poster_link} %{original_post_date}"
+    listing_no_script_with_reply_html: "%{discussion_link} by %{original_poster_link} %{original_post_date}, last comment by %{last_commenter_link} %{last_comment_date}"
+    listing_with_script_no_reply_html: "%{script_link}: %{discussion_link} by %{original_poster_link} %{original_post_date}"
+    listing_with_script_with_reply_html: "%{script_link}: %{discussion_link} by %{original_poster_link} %{original_post_date}, last comment by %{last_commenter_link} %{last_comment_date}"
+  home:
+    # html title of the homepage
+    title: "%{site_name} - safe and useful user scripts"
+    # text at the top of the homepage.
+    welcome: "Welcome to %{site_name}, a site for user scripts."
+    # html title of the sleazy fork homepage
+    sleazy_title: "%{site_name} - safe and useful adult user scripts"
+    # text at the top of the sleazy fork homepage.
+    sleazy_welcome: "Welcome to %{site_name}, a site for adult user scripts."
+    # heading for the paragraph explaining what user scripts are
+    explain_user_scripts_heading: "What are user scripts?"
+    # text explaining what user scripts are.
+    explain_user_scripts_html: "User scripts put you in control of your browsing experience. Once installed, they automatically make the sites you visit better by adding features, making them easier to use, or taking out the annoying bits. The user scripts on %{site_name} were written by other users and posted to share with the world. They're free to install and easy to use."
+    # heading for the paragraph explaining how to install user scripts
+    how_to_install_user_scripts_heading: "How do I install user scripts?"
+    # text explaining how to install user scripts. gm_link and tm_link go to the addon install pages. other_managers_link goes to the installing user scripts help page
+    how_to_install_user_scripts_html: "To use user scripts you need to first install a user script manager. For Firefox, the best choice is %{gm_link:Greasemonkey}. For Chrome: %{tm_link:Tampermonkey}. %{other_managers_link:Other options exist.} Once you've installed a user script manager, find a script you like on %{site_name} and click the green Install button. The script is then installed and will run you visit a site it applies to."
+    # heading for the sample list of scripts
+    scripts_sample: "A sample of our scripts"
+    # final item of sample list of scripts, linking to the full listing page
+    scripts_sample_more: "More…"
+  users:
+    # html title for the sign in page
+    sign_in_title: "Sign in to %{site_name}"
+    # what signing in lets people od
+    sign_in_description: "Signing in to %{site_name} lets you post scripts and feedback on others' scripts. You do not need to sign in to browse or install scripts."
+    # heading for signing in with an external service (Google, GitHub, etc.)
+    sign_in_external: "Sign in with an external service"
+    # heading for signing in with a password
+    sign_in_password: "Sign in with a password"
+    # when a user attempts to sign in with an external service and a user already exists with the same email, this is the message shown. email: provided e-mail, user_name: existing user's name, provider: what the user tried to sign in with (e.g. GitHub), sign_in_link: a link to the sign in page with text from sign_in_email_used_sign_in_link
+    sign_in_email_used_no_external_services_html: "'%{email}' is already being used by user '%{user_name}'. If this is you and you wish to add additionally sign in with %{provider}, %{sign_in_link} to your account first, then add your %{provider} sign in."
+    # same as above, but when the existing user uses other providers. also includes existing_providers, which is a list of the existing user's sign ins, run through to_sentence (http://apidock.com/rails/Array/to_sentence)
+    sign_in_email_used_with_external_services_html: "'%{email}' is already being used by user '%{user_name}', who signs in with %{existing_providers}. If this is you and you wish to add additionally sign in with %{provider}, %{sign_in_link} to your account first, then add your %{provider} sign in."
+    # sign in link for email_used messages
+    sign_in_email_used_sign_in_link: "sign in"
+    # when a user attempts to create an account with an external service, but an email was not provided by that service
+    sign_in_email_missing: "%{site_name} requires an email to make a new account, but %{provider} didn't provide one for you. You can either update your %{provider} account to have one, then try signing in again, or create a normal email/password account on %{site_name}, then add your %{provider} account to it."
+    # this shows when signing in for the first time with an external sign in but the name received is already in use. the user is prompted to enter a different name.
+    sign_in_name_used: "The name '%{name}' is already used. Choose a different one."
+    # the button when submitting the name form per above
+    sign_in_name_used_submit: "Submit"
+    # Button to preview a user's profile before saving
+    preview_profile: "Preview"
+    # heading for the user's control panel, which contains links such as post script and edit account
+    control_panel: "Control panel"
+    # heading for the list of discussions about a user's own scripts
+    discussions_on_scripts: "Discussions on your scripts"
+    # alt text for the RSS feed icon for discussions about a user's own scripts
+    discussions_on_scripts_feed_alt: "RSS Feed"
+    # text to show in the section for discussions about a user's own scripts if there are no discussions yet
+    discussions_on_scripts_none: "None yet!"
+    # link to more discussions on a user's own scripts, as the initial list is limited in number
+    discussions_on_scripts_more: "More discussions…"
+    # heading for the list of scripts on a user's page
+    script_list: "Scripts"
+    # text to show in a user's script section when they have created no scripts
+    script_list_none: "No scripts posted."
+    # text to show in a user's script section when they have created scripts, but they are not shown due to the filters active
+    script_list_none_for_filter: "No scripts for the current filters."
+    # text to show in a user's own script section when they have created no scripts. script_list_none_same_user_info_link is a link to a tutorial with text of script_list_none_same_user_info_link_text
+    script_list_none_same_user_html: "You haven't written any scripts. %{script_list_none_same_user_info_link}"
+    # text used for link in script_list_none_same_user_html
+    script_list_none_same_user_info_link_text: "Would you like to learn how?"
+    # heading for the list of a user's deleted scripts (visible to only that user and mods)
+    deleted_script_list: "Deleted scripts"
+    # link to log out
+    sign_out: "Sign out"
+    # link to edit an account
+    edit: "Edit account"
+    # link to edit how the user signs in
+    edit_sign_in: "Edit sign in methods"
+    # html title for the edit sign in page
+    edit_sign_in_title: "Edit sign in methods"
+    # heading for the password section of the edit sign in methods page
+    edit_sign_in_password: "Password"
+    # informational text telling the user they're not using a password
+    no_password_set_info: "Your account is not configured with a password."
+    # button to set a password when one is not already set
+    set_password: "Set password"
+    # button to set a password when one is already set
+    update_password: "Update password"
+    # error message when the password and the confirmation don't match
+    update_password_no_match: "Passwords don't match."
+    # notice after a password was updated successfully
+    password_updated: "Password updated."
+    # information text saying the user can unset their password and use just external sign ins
+    remove_password_info: "You can remove your password and rely solely on external sign ins."
+    # button to remove the password from the user's account
+    remove_password: "Remove password"
+    # error message to show if the user attempts to remove a password but have no external sign ins. This is normally not possible with the interface.
+    cant_remove_password: "Can't remove password - you'd have no way to sign in!"
+    # error message to show if the user attempts to remove a sign in but has no password or other sign ins. This is normally not possible with the interface. provider is the external site's name, like GitHub or Google
+    cant_remove_sign_in: "Can't remove %{provider} sign in - you'd have no way to sign in!"
+    # notice after a password was removed successfully
+    password_removed: "Password removed."
+    # heading for the external sign ins section of the edit sign in methods page
+    edit_sign_in_external: "External sign ins"
+    # information text about how they can use external sign ins, shown when the user has not set any yet
+    external_sign_in_info_no_sign_ins: "You can use your account on other sites to sign in to %{site_name}."
+    # information text about how they can use external sign ins, shown when the user already has some set. should describe the concept of syncing, where account details on %{site_name} will be updated to match the external service on sign in
+    external_sign_in_info_with_sign_ins: "You're currently using the external sign ins listed below. A \"syncing\" sign in means your %{site_name} info (like user name and email) will be updated to match when you sign in."
+    # notice after a sign in is added. provider is the external site's name, like GitHub or Google
+    external_sign_in_added: "%{provider} sign in added."
+    # notice after a sign in is updated (from syncing to not or opposite). provider is the external site's name, like GitHub or Google
+    external_sign_in_updated: "%{provider} sign in updated."
+    # notice after a sign in is removed. provider is the external site's name, like GitHub or Google
+    external_sign_in_removed: "%{provider} sign in removed."
+    # notice after a sign in fails
+    external_sign_in_failed: "%{provider} sign in failed: %{error}."
+    # notice after a user tries to add a sign in to their account, but that sign in is already in use by another user
+    external_sign_in_already_used: "Addition of %{provider} sign in failed: that sign in is already being used by user '%{user_name}'."
+    # an indicator beside the sign in provider's name if the user chose to enable syncing
+    syncing_indicator: "(syncing)"
+    # button to set a sign in provider to sync
+    enable_syncing: "Turn on syncing"
+    # button to set a sign in provider to not sync
+    disable_syncing: "Turn off syncing"
+    # button to remove a sign in provider
+    remove_external_sign_in: "Remove"
+    # information text indicating that the list of links below it are for addding an external sign in
+    add_external_sign_in_info: "Add a sign in:"
+    # link to docs on how to set up a GitHub webhook for script syncing
+    set_up_webhook: "Set up a GitHub webhook"
+    author_email_notification_type:
+      # notification option: don't send the user e-mails
+      none: "Don't get emails about discussions on your scripts"
+      # notification option: send e-mails on new discussions but not new posts on existing discussions
+      discussion_only: "Get an email when discussions are posted on your scripts"
+      # notification option: send e-mails on new discussoins and on new posts on existing discussions
+      discussion_and_comment: "Get an email when discussions are posted on your scripts or when those discussions get new comments"
+      # tell the user that the forum can send them other emails that are not controlled by this setting
+      note: "You may receive other emails based on your settings in the forum."
+    # display of a single user when displaying a list of users. user_link is a link to the user's page with text of the user name, count is the number of public scripts authored
+    list_display_html:
+      one: "%{user_link} - %{count} script"
+      other: "%{user_link} - %{count} scripts"
+    # sort link for sorting users by number of scripts they've posted
+    listing_number_of_scripts: "Number of scripts"
+    # sort link for sorting users by the creation date of their scripts
+    listing_new_scripts: "New scripts"
+    # sort link for sorting users by the updated date of their scripts
+    listing_updated_scripts: "Updated scripts"
+    # sort link for sorting users by when they signed up
+    listing_registration_date: "Registration date"
+    # default option for the user's preferred locale
+    locale_prompt: "(Choose a locale)"
+    # text describing what the show ads checkbox does
+    show_ads_description: "Support %{site_name} by allowing it to show you ads"
+    # text describing what the show sensitive checkbox does
+    show_sensitive_description: "Show scripts with adult content"
+    # text describing what the preferred markup setting does
+    preferred_markup_description: "Will be used for new scripts and posts."
+    # text describing what the flattr username setting does
+    flattr_username_description_html: "Users of your scripts will be asked to donate to your account on <a href=\"https://flattr.com\">Flattr</a>."
+    # explanation of the approve redistribution option on the user edit page
+    approve_redistribution_explanation: "%{site_name} can tell other sites that you allow them to repost your script. This may or may not be already permitted by the license you choose for your scripts. You may override this preference on each individual script."
+    # option for approve redistribution on a user for when they approve
+    approve_redistribution_true: "I'm OK with my scripts being reposted elsewhere"
+    # option for approve redistribution on a user for when they don't approve
+    approve_redistribution_false: "I don't want my scripts being reposted elsewhere"
+    # link from sleazy fork to greasy fork on user page
+    greasy_fork_scripts_link:
+      one: "%{user_name} also has %{count} script on Greasy Fork."
+      other: "%{user_name} also has %{count} scripts on Greasy Fork."
+  help:
+    installing_user_scripts:
+      # title of the help document describing how to install user scripts
+      title: "How to install user scripts"
+      # text explaining that the user needs to install an extension to use user scripts
+      intro: "To use user scripts, you will typically need to install a browser extension."
+      # options for installing user scripts on firefox
+      firefox: "Firefox and related browsers: %{gm_link:Greasemonkey}."
+      # options for installing user scripts on chrome
+      chrome: "Google Chrome, Chromium, and related browsers: %{tm_link:Tampermonkey}."
+      # options for installing user scripts on opera 15 plus
+      opera_15_plus: "Opera (version 15 and later): %{tm_link:Tampermonkey} or %{vm_link:Violentmonkey}."
+      # options for installing user scripts on opera 12
+      opera_12: "Opera version 12 and earlier %{opera_doc_link:supports user scripts natively}. %{vm_link:Violentmonkey} provides a friendlier UI and better compatibility."
+      # how to install scripts once you have the proper extension
+      installing_scripts: "Once user scripts are enabled in your browser, browse to a script on Greasy Fork and click the green \"Install\" button."
+    meta_keys:
+      # title of the help document describing script meta keys (e.g. @name).
+      title: "Script meta keys read by %{site_name}"
+      # introductory paragraph. If the URL has a localized version, use that.
+      intro_html: "This is a list of <a href=\"http://wiki.greasespot.net/Metadata_Block\">user script meta keys</a> that %{site_name} will read. Keys outside of this list may be included in scripts, and will be present in the installed script, but have no effect in %{site_name}'s UI."
+      # description of @name
+      name: "The name of the script, used as a heading and in links. Required."
+      # description of @name:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
+      name_localized_html: "The name of the script in a specific locale, where XX is an <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-letter code</a> and YY is an optional <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 country code</a>. Overrides <code>@name</code> when the user is browsing in a matching locale."
+      # description of @description
+      description: "A description of what the script does. Shown as text under the script name. Required."
+      # description of @description:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
+      description_localized_html: "The description of the script in a specific locale, where XX is an <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-letter code</a> and YY is an optional <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 country code</a>. Overrides <code>@description</code> when the user is browsing in a matching locale."
+      # description of @namespace. Do not translate content inside <code>.
+      namespace_html: "A combination of <code>@namespace</code> and <code>@name</code> is used by user script managers to see if a script is already installed. %{site_name} requires this field and will warn if it's changed on update."
+      # description of @description:XX-YY. developer.mozilla.org may have localized content; use it if available.
+      version_html: "Identifier for a specific version of a script in <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">Mozilla version format</a>. Version is displayed on a script's info page. %{site_name} requires this field and will warn if it's decremented or if it's not incremented when the script's code changes."
+      # description of @include
+      include: "Describe what pages the script will run on. This list will be processed, displayed on the script's info page, and used to categorize scripts."
+      # description of @require. %{external_script_link} is a link to the document describing allowed external scripts and has a link of key "require_external_script_link_text"
+      require_html: "Includes external JavaScript into a script. See %{external_script_link}."
+      # used in required_html
+      require_external_script_link_text: "rules for code including external scripts"
+      # description of @updateURL
+      updateURL: "Describe how user script managers should get updates. %{site_name} will strip these keys, which makes any script installed from %{site_name} only update from %{site_name}."
+      # description of @license
+      license: "URL for or name of the license that describes how people are allowed to copy or modify a script. Lack of license implies users can install the script for personal use, but may not redistribute it. License is displayed on a script's info page."
+      # description of @supportURL
+      supportURL: "URL for a page where users can get support on a script (e.g. a bug tracker, a forum, an e-mail address). Support URL is displayed on a script's feedback page."
+      # description of @contributionURL. You can replace the sample "business" and "item_name" parameters in the URLs with localized versions.
+      contributionURL_html: "URL for a page where users can donate to the author of a script. Contribution URL is displayed on a script's feedback page. URLs can be http, https, or Bitcoin protocols. To link to a PayPal donation page, use a URL in the format <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a>, replacing the sample e-mail address with your own."
+      # description of @contributionAmount. Do not translate content inside <code>.
+      contributionAmount_html: "Suggested donation amount, used in conjunction with <code>@contributionURL</code>."
+      # description of @compatible. %{browsers} is a comma-separated list of browser codes. You can translate "Must disable pop-up blocker", but do not translate "@compatible firefox". 
+      compatible_html: "Flags this script as compatible with a browser. Compatibility information will be shown on a script's page. Comments on compatibility can be included in the format <code>@compatible firefox Must disable pop-up blocker</code>. Recognized browsers are: %{browsers}."
+      # description of @incompatible. %{browsers} is a comma-separated list of browser codes. You can translate "Broken since Firefox 23", but do not translate "@compatible firefox". 
+      incompatible_html: "Flags this script as incompatible with a browser. Compatibility information will be shown on a script's page. Optional comments on compatibility can be included in the format <code>@incompatible firefox Broken since Firefox 23</code>. Recognized browsers are: %{browsers}."
+    writing_user_scripts:
+      # title for Writing user scripts help page
+      title: "How to write user scripts"
+      # content of the page. The link to greasespot can be updated to a better resource if one is available in your language. code_rules_link and meta_keys_link are links to those help pages, with text of those page's titles. ask_in_forum_link is a link to the forum with text of ask_in_forum_link_text. user_page_link is a link to the user's page if the user is signed in, or plain text if they're not; in either case, the text is user_page_link_text. post_new_script_link is a link to the new script page, with text of post_new_script_link_text
+      content_html: "<p>Writing user scripts requires knowledge of JavaScript. The <a href=\"http://wiki.greasespot.net/Tutorials\">tutorials on the GreaseSpot Wiki</a> should give you a running start on JavaScript both in general and as it relates to user scripts. Inspecting others' scripts can be helpful. You may be interested in %{code_rules_link} and %{meta_keys_link}. If you want help developing your script, feel free to %{ask_in_forum_link}.</p><p>To post on %{site_name}, you will need to create an account. From your %{user_page_link}, follow the link to %{post_new_script_link}.</p>"
+      # link text used in content_html
+      ask_in_forum_link_text: 'ask in the forum'
+      # link text used in content_html
+      user_page_link_text: 'user page'
+      # link text used in content_html
+      post_new_script_link_text: 'post a new script'
+    code_rules:
+      # title for the rules page
+      title: "%{site_name}'s rules for posted scripts"
+      # content of the rules page.
+      content_html: >
+        <p>These are the requirements for scripts posted to %{site_name}. These are intended to keep %{site_name} a safe and useful place for user scripts. Any script falling outside these requirements may be deleted by %{site_name} moderators.</p>
+        <ul>
+          <li>Scripts must include a description of what they do and may not do things unreasonably outside of this description. Users must know what a script will do before installing it.</li>
+          <li>Code posted to this site must not be obfuscated or minified. Users must be given the opportunity to inspect and understand a script before installing it.</li>
+          <li>Libraries that a script uses should be <code>@require</code>-d, unless there's a valid technical reason not to do so. In the case that a library is included inline, it must include information as to the source of the library (e.g. a comment indicating URL and/or name and version).</li>
+          <li>Your script must respect others' copyrights. This includes the script itself and any resources (for example images) it uses. If you intend on using someone else's content, abide by their licensing terms or get their permission before doing so.</li>
+          <li>%{external_scripts_link:Use of external JavaScript is limited.}</li>
+          %{adult_content_requirement}
+        </ul>
+        <p>If you notice a script that falls outside of these parameters, please report it by going to the Feedback link for that script, starting a discussion, and choosing the "Report script" option.</p>
+        <p>If you disagree with any of this, %{contact_link:let's talk about it}!</p>
+      # optional part of the rules page content for sites that disallow adult content
+      adult_content_rule_html: "<li>Scripts that include adult content or are for sites with adult content must be marked as such to allow other users the option of whether to see them.</li>"
+    external_scripts:
+      # title of the external script rules page
+      title: "%{site_name}'s policy on external scripts"
+      # content of the external script rules page
+      content_html: >
+        <p>User scripts have the technical ability to load and execute other scripts. The %{require_doc_link:<code>@require</code>} metadata key is the most straightforward way to accomplish this, but scripts can also, for example, use an XmlHttpRequest to download a script and then inject it into the DOM.</p>
+        <p>While this is a useful feature and most script authors use this for legitimate purposes, it can also be used maliciously. One of the core principles of %{site_name} is that the user must be able to inspect the code in a script. External scripts can bypass this principle in a number of ways: they can change without warning or history, they can serve up different code to different people, and they can be used to hide malicious code in the middle of known libraries. Even if someone were to check an external script and determine it to be legitimate, that would be no guarantee that that script always has been or always will be legitimate.</p>
+        <p>To allow script authors to continue to use external scripts, %{site_name} has implemented a whitelist of URL patterns that can be included with a script. This whitelist consists of script locations that:</p>
+        <ul>
+          <li>Are public</li>
+          <li>Will not have their contents change frequently</li>
+          <li>Would likely be useful to more than one script author</li>
+        </ul>
+        <p>The current list is:</p>
+        %{allowed_require_list}
+        <p>If you try to post a script that uses a <code>@require</code> outside of these locations, you will not be able to save your script.</p>
+        <p>If the script you wish to include is a JavaScript library (for example jQuery or YUI), try to find it on one of the sites listed above. %{cdnjs_link:cdnjs} and %{jsdelivr_link:jsDelivr} in particular have a wide range of libraries available.</p>
+        <p>If the script you wish to include is not available on the sites above, %{contact_link:let us know} and we can find somewhere it is (or host it ourselves!).</p>
+        <p>If the script you wish to include was written by you, you can submit it as a separate entry on %{site_name} by choosing the "Library" script type. You will then be able to include this posted library in your script.</p>
+    script_rewriting:
+      # title of the rewriting page
+      title: "How %{site_name} will rewrite posted scripts"
+      # content of the rewriting page
+      content_html: >
+        <p>Scripts posted to %{site_name} will be rewritten in the following ways:</p>
+        <ul>
+          <li><code>@updateURL</code>, <code>@installURL</code>, and <code>@downloadURL</code> directives will be stripped, if present. The lack of these directives means that any script installed from %{site_name} will be updated from %{site_name}.</li>
+          <li><code>@version</code> and <code>@namespace</code> directives will be inserted if the script is missing them. These directives are needed for proper updating.</li>
+          <li><code>@description</code> will be inserted if a new version of a script is missing it and a previous version of the script had it.</li>
+          <li>Line breaks will be converted to Unix-style line breaks (\n).</li>
+        </ul>
+    # link to github
+    site_feedback_link: "Report issue or post idea for %{site_name} itself"
+    credits:
+      # title for the credits page
+      title: "Credits"
+      # give credit to authors
+      authors_credit: "%{site_name} would not be possible without the authors who contribute scripts."
+      # give credit to developers. link goes to github.
+      developers_credit: "%{site_name} itself is built by %{developers_link:these people} with the help of all those who report bugs and suggest improvements."
+      # give credit to translators. link to goes to transifex. after this text, there's a list of languages and the contributors to each.
+      translators_credit: "%{site_name} was translated by %{translators_link:the Greasy Translation Force on Transifex}:"
+      # give credit to icon makers. all links are proper names so are not translated.
+      icons_credit: "Discussion icons are from %{vistastylebase} by %{iconsland}. Browser icons are from %{browserlogos}."
+    # link to greasemonkey docs
+    help_with_greasymonkey: "Help with Greasemonkey"
+    contact:
+      # title of contact page
+      title: "Contact someone"
+      # content of contact page
+      content_html: >
+        <p>There are a number of ways to talk about %{site_name} and the things on it.</p>
+        <p>Do you have a question or comment about a specific script posted on the site? If so, post a discussion from the link on the Feedback tab on that script's page. Script authors get notification on their account page of any discussions on their scripts.</p>
+        <p>Do you have a question or comment on %{site_name} itself or on script development, or do you want someone to make you a script? %{forum_link:Posting in the forum} would give you the widest audience for your discussion.</p>
+        <p>Do you have a bug report or fully-formed idea for %{site_name} itself (and not a specific script <em>posted on</em> %{site_name})? %{github_link:Post it on the GitHub page.}</p>
+        <p>Do you have a private question or comment you would like only the admin to see? %{admin_email_link:Send an e-mail.}</p>
+    privacy_policy:
+      title: "Privacy policy"
+      content_html: >
+        <p>This page describes how %{site_name} will record or track users. If you have any concerns, %{admin_email_link:e-mail the admin}.</p>
+        <h2>Server logs</h2>
+        <p>%{site_name} logs all requests in a typical server log fashion. Information logged includes pages visited, IP address, and user agent string. These logs are for debugging and server analysis. The data is retained for one week. This data is not shared or made publicly available.</p>
+        <h2>Script statistics</h2>
+        <p>For the purposes of generating statistics, %{site_name} records install and update requests with IP address information. This information is retained for one day, and then is aggregated to no longer include the IP address. The IP-address-specific data is not shared or made publicly available, but the aggregated data is.</p>
+        <h2>Cookies (when not logged in)</h2>
+        <p>%{site_name} may set temporary session cookies to allow for some site features. These cookies are not set to persist and may cleared when the browser is closed (depending on browser settings).</p>
+        <h2>User accounts</h2>
+        <p>%{site_name} requires users to create an account to post scripts, take part in discussions, and access some other site features. When creating an account, information such as IP address, e-mail address, and user agent may be permanently stored. Some of this information may be made visible to other users.</p>
+        <p>Actions performed when logged in, for example posting scripts and comments, will be made viewable to other users.</p>
+        <p>If the "Remember me" option is checked when logging in to an account, %{site_name} will set a persistent cookie to retain login state.</p>
+        <h2>Scripts posted on %{site_name}</h2>
+        <p>%{site_name} contains user-generated content, and scripts posted may be able to track users if they install that script.</p>
+        <h2>Third party libraries</h2>
+        <p>%{site_name} may include third party code to collect statistics or display advertisements on the site. These libraries may include tracking logic.</p>
+  common:
+    # text to show before listing errors in a submission
+    error_preamble: "There were some problems with what you posted..."
+    # link to the list of allowed HTML elements and attributes for HTML/Markdown fields
+    allowed_elements_link: "(See allowed code.)"
+    # title of the page showing allowed HTML elements and attributes for HTML/Markdown fields
+    allowed_elements_and_attributes_title: "Allowed elements for HTML content"
+    # text to introduce the list of allowed HTML elements and attributes
+    allowed_elements_intro: "The following elements and attributes are allowed. This applies to both HTML and Markdown (after conversion to HTML)."
+    # additional info for the allowed HTML elements, explaining additional changes made to content
+    allowed_elements_extra_info: "Whitespace will be turned into p or br elements. URLs will automatically be linkified."
+    not_found_text: "404 - page not found."
+    not_found_title: "404 - Page Not Found"
+    not_found_link_home: "Go home."
+    # shown on the first page a user sees if, based on the user's Accept-Language header, we think we have a better locale than what the first page shows. "locale_name" is the name of the locale in that language (matching the name in the locale drop down)
+    suggest_locale: "%{site_name} is available in %{locale_name}."
+    # shown on the first page a users sees if the locale they're on is less than a certain amount translated. links to the docs on how to help with localization
+    incomplete_locale: "%{site_name}'s %{locale_name} translation is only %{percent} complete. You can change that."
+    # text for a button that expands a block of text
+    expander_show_more: "Show more"
+    # text for a button that contracts a block of text
+    expander_show_less: "Show less"
+    # note denoting what are ads
+    advertisement_note: Advertisement
+    # heading for share section (facebook and twitter and such buttons)
+    share: Share
+  activerecord:
+    attributes:
+      user:
+        # user field: display name
+        name: "Name"
+        # user field: profile (HTML content describing themselves)
+        profile: "Profile"
+        # user field: locale
+        locale: "Preferred locale"
+        # user field: setting to send e-mails when discussions or comments are posted to a user's scripts. options are under users.author_email_notification_type
+        author_email_notification_type_id: "Script discussion notifications"
+        # user field: show ads
+        show_ads: "Show ads"
+        # user field: show sensitive
+        show_sensitive: "Adult content"
+        # user field: preferred markup (html or markdown)
+        preferred_markup: "Preferred markup"
+        # user field: user name on Flattr
+        flattr_username: "Flattr username"
+      script:
+        # name of the script
+        name: "Name"
+        # description of the script
+        description: "Description"
+        # locale the script is in. see also scripts.locale_explanation
+        locale: "Locale"
+        # the JS code of the script
+        code: "Code"
+        # description of changes for an update
+        changelog: "Changelog"
+        # the type of script - public, unlisted, or library
+        type: "Script type"
+        # additional descriptive text outside of @description
+        additional_info: "Additional info"
+        # screenshots attached to the script
+        screenshots: "Screenshots"
+        # text that goes with a screenshot
+        screenshot_caption: "Caption"
+        # when deleting, which script to redirect to
+        replaced_by_script_id: "Replacement script"
+        # whether the user is OK with their script being posted elsewhere
+        approve_redistribution: "Redistribution"
+  errors:
+    messages:
+      # validation for when a script name is not provided
+      script_missing_name: "is required - specify one with @name"
+      # validation for when a script description is not provided
+      script_missing_description: "is required - specify one with @description"
+      # validation for when a script description is the same as name
+      script_name_same_as_description: "must not be the same as name"
+      # validation for sync URL
+      script_sync_identifier_bad_protocol: "must be an HTTP or HTTPS URL"
+      # validation for number of screenshots
+      script_too_many_screenshots: "Too many screenshots included - maximum is %{number}"
+      # validation for "deleted and replaced by" when the user says the script is replaced by itself
+      cannot_be_self_reference: "can't be the same script"
+      # validation for "deleted and replaced by" when the user says the script is replaced by a deleted script
+      cannot_be_deleted_reference: "can't be a deleted script"
+      # validation for "deleted and replaced by" when the user provides a non-%{site_name} URL
+      must_be_greasy_fork_script: "must be the URL for a script on %{site_name}"
+      # validation when the user uploads code that's not UTF-8 text
+      script_update_not_utf8: "uploaded must be UTF-8 text"
+      # validation when user uploads code that contains a disallowed @require
+      script_disallowed_require: "uses an unapproved external script: %{code}"
+  opensearch:
+    # short name for opensearch.xml
+    short_name: "%{site_name} search"
+    # description for opensearch.xml
+    description: "Search for user scripts on %{site_name}."
+    # long name for opensearch.xml
+    long_name: "%{site_name} user script search"
+    # attribution for opensearch.xml
+    attribution: "Copyright the authors of the scripts, see each individual script for licensing"

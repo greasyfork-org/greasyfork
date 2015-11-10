@@ -1,20 +1,20 @@
-<%- title @script.name + ' - Version diff' %>
-<%- description "Differences in #{@script.name} between #{@old_version.version} and #{@new_version.version}" %>
+<%- title t('scripts.diff_title', script: @script.name(I18n.locale)) %>
+<%- description "Differences in #{@script.name(I18n.locale)} between #{@old_version.version} and #{@new_version.version}" %>
 
-<h3>Comparing versions</h3>
 <p>
-	Old: <%=link_to('v' + @old_version.version, script_show_code_path(@script, :version =>  @old_version.id))%> <%=markup_date(@old_version.created_at)%> <%=@old_version.changelog%><br>
-	New: <%=link_to('v' + @new_version.version, script_show_code_path(@script, :version =>  @new_version.id))%> <%=markup_date(@new_version.created_at)%> <%=@new_version.changelog%><br>
+	<%=t('scripts.diff_old_version')%> <%=link_to('v' + @old_version.version, script_show_code_path(@script, :version =>  @old_version.id))%> <%=markup_date(@old_version.created_at)%> <%=@old_version.changelog%><br>
+	<%=t('scripts.diff_new_version')%> <%=link_to('v' + @new_version.version, script_show_code_path(@script, :version =>  @new_version.id))%> <%=markup_date(@new_version.created_at)%> <%=@new_version.changelog%><br>
 	<form>
 		<input type="hidden" name="v1" value="<%=params[:v1]%>">
 		<input type="hidden" name="v2" value="<%=params[:v2]%>">
-		<label for="context">Lines of context:</label> <input type="number" min="0" max="10000" size="5" name="context" required value="<%=@context%>">
-		<input type="submit" value="Refresh">
+		<label for="context"><%=t('scripts.diff_lines_of_context')%></label> <input type="number" min="0" max="10000" size="5" name="context" required value="<%=@context%>">
+		<input id="ignore-whitespace" type="checkbox" name="w" value="1" <%if params[:w] == '1'%>checked<%end%>><label for="ignore-whitespace"><%=t('scripts.diff_ignore_whitespace')%></label>
+		<input type="submit" value="<%=t('scripts.diff_refresh')%>">
 	</form>
 </p>
 
 <% if @diff.nil? or @diff.empty? %>
-	<p>No differences found.</p>
+	<p><%=t('scripts.diff_no_change')%></p>
 <% else %>
 	<%=@diff%>
 <% end %>

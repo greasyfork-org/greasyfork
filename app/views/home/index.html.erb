@@ -1,38 +1,26 @@
-<%- title 'Greasy Fork - safe and useful user scripts' %>
-<%- description 'Greasy Fork is a free site providing user scripts to improve your web browsing experience.' %>
+<%- title t(sleazy? ? 'home.sleazy_title' : 'home.title', site_name: site_name) %>
+<%- description "#{site_name} is a free site providing user scripts to improve your web browsing experience." %>
 
-<p>Welcome to Greasy Fork, a site for user scripts. Read below for information, or just <%=link_to 'get at the scripts', scripts_path%>.</p>
+<p class="front-page-p"><%=t(sleazy? ? 'home.sleazy_welcome' : 'home.welcome', site_name: site_name)%></p>
 
+<section class="front-page-box">
+	<h3><%=t('home.explain_user_scripts_heading')%></h3>
 
-<h3>Why another user scripts site?</h3>
+	<p><%=t('home.explain_user_scripts_html', site_name: site_name)%></p>
+</section>
 
-<p><a href="http://userscripts.org">userscripts.org</a> is the most popular user scripts site out there; however, it's been deteriorating due to neglect by the owner. Malware user scripts are all over the place, the forums are filled with spam, key site features have stopped working. I and others have tried to contact the owner to see what's going on and to offer to help, but there has been no response. Greasy Fork is here to provide an alternative.</p>
+<section class="front-page-box">
+	<h3><%=t('home.how_to_install_user_scripts_heading', site_name: site_name)%></h3>
 
+	<p><%=it('home.how_to_install_user_scripts_html', site_name: site_name, gm_link: 'https://addons.mozilla.org/firefox/addon/greasemonkey/', tm_link: 'https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo', other_managers_link: help_installing_user_scripts_path)%></p>
+</section>
 
-<h3>How is Greasy Fork going to be different?</h3>
-
-<p>First of all, I will be an active administrator. I've been running <a href="http://userstyles.org">userstyles.org</a> since 2006. I haven't been perfect, but I'm still around and improving the site.</p>
-
-<p>My vision for Greasy Fork is as follows:</p>
-
-<ul>
-	<li>For script users, it's a place to find safe, high-quality user scripts. Malware is unacceptable; the worst case scenario for a user should be a script that doesn't work.</li>
-	<li>For script authors, it's a place to share their user scripts and be provided with useful tools for and interesting information about them. Authors are the most important part of the community.</li>
-	<li>It's a place where the technology of the site does the boring work (for example, blocking spam) as much as possible by itself, leaving the community to do interesting things.</li>
-	<li><a href="https://github.com/JasonBarnabe/greasyfork">It's an open source site</a> that welcomes contributions and feedback.</li>
-</ul>
-
-
-<h3>But you don't have feature X, Y, or Z.</h3>
-
-<p>Yet. Many things are planned for the site, and it's only been up since February. <a href="/forum/">Let us know</a> what's important to you.</p>
-
-
-<h3>Who are you?</h3>
-
-<p>My name is Jason Barnabe. I've been running <a href="http://userstyles.org">userstyles.org</a> since 2006. User styles and user scripts have many things in common, so I think my experience will help me grow this site.</p>
-
-
-<h3>Where can we talk about this?</h3>
-
-<p>Greasy Fork has a <a href="/forum/">forum</a> and it's on <a href="https://github.com/JasonBarnabe/greasyfork">GitHub</a>. You can also <a href="mailto:jason.barnabe@gmail.com">e-mail me</a>.</p>
+<section>
+	<h3><%=t('home.scripts_sample')%></h3>
+	<ul>
+		<% @highlighted_scripts.each do |script| %>
+			<li><%=link_to script.name(I18n.locale), script%> - <%=script.description(I18n.locale)%></li>
+		<% end %>
+		<li><%=link_to t('home.scripts_sample_more'), scripts_path%></li>
+	</ul>
+</section>

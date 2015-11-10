@@ -1,0 +1,53 @@
+<%- title t('help.meta_keys.title', site_name: site_name) %>
+<%- description 'List of user script meta keys that mean something to Greasy Fork.' %>
+
+<p><%=t('help.meta_keys.intro_html', site_name: site_name)%></p>
+
+<dl>
+	<dt><%=self_link('meta-name', '<code>@name</code>')%></dt>
+	<dd><%=t('help.meta_keys.name')%></dd>
+
+	<dt><%=self_link('meta-name-localized', '<code>@name:XX-YY</code>')%></dt>
+	<dd><%=t('help.meta_keys.name_localized_html')%></dd>
+
+	<dt><%=self_link('meta-description', '<code>@description</code>')%></dt>
+	<dd><%=t('help.meta_keys.description')%></dd>
+
+	<dt><%=self_link('meta-name-description', '<code>@description:XX-YY</code>')%></dt>
+	<dd><%=t('help.meta_keys.description_localized_html')%></dd>
+
+	<dt><%=self_link('meta-namespace', '<code>@namespace</code>')%></dt>
+	<dd><%=t('help.meta_keys.namespace_html', site_name: site_name)%></dd>
+
+	<dt><%=self_link('meta-version', '<code>@version</code>')%></dt>
+	<dd><%=t('help.meta_keys.version_html', site_name: site_name)%></dd>
+
+	<dt><%=self_link('meta-include', '<code>@include</code>, <code>@exclude</code>, <code>@match</code>')%></dt>
+	<dd><%=t('help.meta_keys.include')%></dd>
+
+	<dt><%=self_link('meta-require', '<code>@require</code>')%></dt>
+	<dd><%=t('help.meta_keys.require_html', external_script_link: link_to(t('help.meta_keys.require_external_script_link_text'), help_external_scripts_path))%></dd>
+
+	<dt><%=self_link('meta-updateURL', '<code>@updateURL</code>, <code>@installURL</code>, <code>@downloadURL</code>')%></dt>
+	<dd><%=t('help.meta_keys.updateURL', site_name: site_name)%></dd>
+
+	<dt><%=self_link('meta-license', '<code>@license</code>')%></dt>
+	<dd><%=t('help.meta_keys.license')%></dd>
+
+	<dt><%=self_link('meta-supportURL', '<code>@supportURL</code>')%></dt>
+	<dd><%=t('help.meta_keys.supportURL')%></dd>
+
+	<dt><%=self_link('meta-contributionURL', '<code>@contributionURL</code>')%></dt>
+	<dd><%=t('help.meta_keys.contributionURL_html')%></dd>
+
+	<dt><%=self_link('meta-contributionAmount', '<code>@contributionAmount</code>')%></dt>
+	<dd><%=t('help.meta_keys.contributionAmount_html')%></dd>
+
+	<% browsers = Browser.select(:code).all.map{|b|"<code>#{b.code}</code>"}.join(', ').html_safe %>
+	<dt><%=self_link('meta-compatible', '<code>@compatible</code>')%></dt>
+	<dd><%=t('help.meta_keys.compatible_html', browsers: browsers)%></dd>
+
+	<dt><%=self_link('meta-incompatible', '<code>@incompatible</code>')%></dt>
+	<dd><%=t('help.meta_keys.incompatible_html', browsers: browsers)%></dd>
+
+</dl>

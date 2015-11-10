@@ -1,77 +1,172 @@
-<%- title @script.name %>
-<%- description @script.description %>
+<%- title @script.name(I18n.locale) %>
+<%- description @script.description(I18n.locale) %>
 
-<% if @script.active? 
-	case @script.script_type_id
-		when 1, 2 %>
-			<div id="install-area">
-				<%=link_to 'Install this script', params[:version].nil? ? script_user_js_path(@script, :name => @script.url_name) : script_user_js_path(@script, :version => params[:version], :name => @script.url_name) + '&d=.user.js', {:class => 'install-link', 'data-ping-url' => url_for(script_install_ping_path(@script, :authenticity_token => session[:_csrf_token])), 'data-is-previous-version' => !params[:version].nil?}%><%=link_to '?', help_installing_user_scripts_path, {:class => 'install-help-link', :title => 'How to install'}%>
-			</div>
-		<% when 3 %>
-			<p>
-				This script should not be not be installed directly. It is a library for other scripts to include the meta directive
-				<% if params[:version].nil? %>
-					<code>// @require <%=script_library_js_path(@script, :version => @script_version.id, :name => @script.url_name, :only_path => false)%></code></p>
-				<% else %>
-					<code>// @require <%=script_library_js_path(@script, :version => params[:version], :name => @script.url_name, :only_path => false)%></code></p>
-				<% end %>
-	<% end %>
-<% elsif @script.deleted? %>
-	<p>This script has been deleted.</p>
-<% elsif !params[:version].nil? %>
-	<p id="under-review-notice">This version of the script was under review.</p>
-<% else %>
-	<p id="under-review-notice">This script is currently under review.</p>
+<%=render :partial => 'install', :locals => {:script => @script, :script_version => @script_version}%>
+
+<div id="script-feedback-suggestion">
+	<%=t('scripts.feedback_suggestion_html', feedback_link: link_to(t('scripts.feedback_link_text'), "#{forum_path}post/discussion?script=#{@script.id}", rel: :nofollow))%>
+</div>
+
+<% if !@ad_method.nil? %>
+	<div class="ad" id="script-show-info-ad">
+		<div class="ad-note"><%=t('common.advertisement_note')%> (<%=@ad_method.upcase%>)</div>
+		<div class="ad-content">
+			<% case @ad_method
+				when 'xo' %>
+					<script type="text/javascript">
+					ad_idzone = "1168022";
+					ad_width = "728";
+					ad_height = "90";
+					</script>
+					<script type="text/javascript" src="https://ads.exoclick.com/ads.js"></script>
+					<noscript><a href="http://main.exoclick.com/img-click.php?idzone=1168022" target="_blank"><img src="https://syndication.exoclick.com/ads-iframe-display.php?idzone=1168022&output=img&type=728x90" width="728" height="90"></a></noscript>
+				<% when 'pw' %>
+					<!-- Project Wonderful Ad Box Code -->
+					<div id="pw_adbox_74788_5_0"></div>
+					<script type="text/javascript"></script>
+					<noscript><map name="admap74788" id="admap74788"><area href="https://www.projectwonderful.com/out_nojs.php?r=0&c=0&id=74788&type=5" shape="rect" coords="0,0,728,90" title="" alt="" target="_blank" /></map>
+					<table cellpadding="0" cellspacing="0" style="width:728px;border-style:none;background-color:#ffffff;"><tr><td><img src="https://www.projectwonderful.com/nojs.php?id=74788&type=5" style="width:728px;height:90px;border-style:none;" usemap="#admap74788" alt="" /></td></tr><tr><td style="background-color:#ffffff;" colspan="1"><center><a style="font-size:10px;color:#0000ff;text-decoration:none;line-height:1.2;font-weight:bold;font-family:Tahoma, verdana,arial,helvetica,sans-serif;text-transform: none;letter-spacing:normal;text-shadow:none;white-space:normal;word-spacing:normal;" href="https://www.projectwonderful.com/advertisehere.php?id=74788&type=5" target="_blank">Ads by Project Wonderful!  Your ad here, right now: $0</a></center></td></tr></table>
+					</noscript>
+					<!-- End Project Wonderful Ad Box Code -->
+				<% when 'vr' %>
+					<!-- Begin Adversal 728x90 - greasyfork.org Code -->
+					<SCRIPT SRC="https://ib.adnxs.com/ttj?id=3815628&size=728x90&promo_sizes=468x60,320x50,300x50,216x36" TYPE="text/javascript"></SCRIPT>
+					<!-- End Adversal 728x90 - greasyfork.org Code -->
+				<% when 'ga' %>
+					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+					<!-- Greasy Fork script page -->
+					<ins class="adsbygoogle"
+						 style="display:inline-block;width:728px;height:90px"
+						 data-ad-client="ca-pub-2247465624637408"
+						 data-ad-slot="6837500514"></ins>
+					<script>
+					(adsbygoogle = window.adsbygoogle || []).push({});
+					</script>
+			<% end  %>
+		</div>
+	</div>
 <% end %>
 
 <div id="script-meta">
 	<dl id="script-stats">
-		<dt class="script-show-author">Author</dt>
-		<dd class="script-show-author"><%=link_to @script.user.name, @script.user%></dd>
+		<dt class="script-show-version"><span><%=t('scripts.version_number')%></span></dt>
+		<dd class="script-show-version"><span><%=@script_version.version%></span></dd>
+		<dt class="script-show-author"><span><%=t('scripts.author_name')%></span></dt>
+		<dd class="script-show-author"><span><%=link_to @script.user.name, @script.user%></span></dd>
 		<% if @script.script_type_id != 3 and params[:version].nil? %>
-		<dt class="script-show-daily-installs">Daily installs</dt>
-		<dd class="script-show-daily-installs"><%=@script.daily_installs%></dd>
-		<dt class="script-show-total-installs">Total installs</dt>
-		<dd class="script-show-total-installs"><%=@script.total_installs%></dd>
+		<dt class="script-show-daily-installs"><span><%=t('scripts.daily_installs')%></span></dt>
+		<dd class="script-show-daily-installs"><span><%=number_with_delimiter(@script.daily_installs)%></span></dd>
+		<dt class="script-show-total-installs"><span><%=t('scripts.total_installs')%></span></dt>
+		<dd class="script-show-total-installs"><span><%=number_with_delimiter(@script.total_installs)%></span></dd>
 		<% end %>
-		<dt class="script-show-created-date">Created</dt>
-		<dd class="script-show-created-date"><%=markup_date(@script.created_at)%></dd>
-		<dt class="script-show-updated-date">Updated</dt>
-		<dd class="script-show-updated-date"><%=markup_date(@script.code_updated_at)%></dd>
-		<dt class="script-show-license">License</dt>
-		<dd class="script-show-license">
-			<%if @script.license.nil?%>
-				<% if @script.license_text.nil?%>
-					<i>N/A</i>
-				<% else %>
-					<%=@script.license_text%>
+		<dt class="script-list-ratings"><span><%=t('scripts.ratings')%></span></dt>
+		<dd class="script-list-ratings"><span><%=render :partial => 'ratings', :locals => {:script => @script}%></span></dd>
+		<dt class="script-show-created-date"><span><%=t('scripts.created_date')%></span></dt>
+		<dd class="script-show-created-date"><span><%=markup_date(@script.created_at)%></span></dd>
+		<dt class="script-show-updated-date"><span><%=t('scripts.updated_date')%></span></dt>
+		<dd class="script-show-updated-date"><span><%=markup_date(@script.code_updated_at)%></span></dd>
+		<dt class="script-show-license"><span><%=t('scripts.license')%></span></dt>
+		<dd class="script-show-license"><span><%=@script.license_display%></span></dd>
+		<% if !@script.compatibilities.empty? %>
+			<dt class="script-show-compatibility"><span><%=t('scripts.compatibility')%></span></dt>
+			<dd class="script-show-compatibility"><span>
+				<% Browser.all.each do |b|
+					b_compatibilities = @script.compatibilities.select{|c| c.browser == b}
+					if b_compatibilities.empty?
+						status = 'unknown'
+					elsif b_compatibilities.all?{|c| c.compatible}
+						status = 'compatible'
+					elsif b_compatibilities.all?{|c| !c.compatible}
+						status = 'incompatible'
+					else
+						# a mixture
+						status = 'unknown'
+					end
+					# show icons for compatible and incompatible
+					if status == 'incompatible' %>
+						<img src="<%=asset_path "browsericons/#{b.code}-incompatible.png"%>" alt="<%=t('scripts.incompatible_with_browser', browser: b.name)%>" title="<%=b_compatibilities.map{|c|c.comments}.join("\n")%>">
+					<% elsif status == 'compatible' %>
+						<img src="<%=asset_path "browsericons/#{b.code}.png"%>" alt="<%=t('scripts.compatible_with_browser', browser: b.name)%>" title="<%=b_compatibilities.map{|c|c.comments}.join("\n")%>">
+					<% end %>
 				<% end %>
-			<% else %>
-				<%=@script.license.html.html_safe%>
-			<% end %>
-		</dd>
+			</span></dd>
+		<% end %>
 	</dl>
-	<dl id="script-applies-to">
-		<dt class="script-show-applies-to">Applies to</dt>
-		<dd class="script-show-applies-to">
-			<% if @script.script_applies_tos.empty? %>
-				All sites
-			<% else %>
-				<%=
-					(
-					@script.script_applies_tos.select{|s|s.domain}.map{|s|h(s.text)} +
-					@script.script_applies_tos.select{|s|!s.domain}.map{|s| "<code>#{h(s.text)}</code>".html_safe}
-					).join(', ').html_safe%>
-			<% end %>
-		</dd>
-	</dl>
+	<div>
+		<dl id="script-applies-to" data-show-more-text="<%=t('common.expander_show_more')%>" data-show-less-text="<%=t('common.expander_show_less')%>">
+			<dt class="script-show-applies-to"><span><%=t('scripts.applies_to')%></span></dt>
+			<dd class="script-show-applies-to">
+				<% if @script.script_applies_tos.empty? %>
+					<%=t('scripts.applies_to_all')%>
+				<% else %>
+					<ul class="inline-list">
+						<% script_applies_to_list_contents(@script, @by_sites).each do |script_applies_to_content| %>
+							<li><%=script_applies_to_content%></li>
+						<% end %>
+					</ul>
+				<% end %>
+			</dd>
+		</dl>
+	</div>
 </div>
 
-<% if !@script.additional_info.nil? and !@script.additional_info.empty? %>
+<% localized_additional_info = @script.localized_attribute_for('additional_info', I18n.locale)
+if !localized_additional_info.nil? || !@script_version.screenshots.empty? %>
 	<div id="additional-info">
-		<h3>Author's Description</h3>
-		<div>
-			<%=format_user_text(@script.additional_info, @script.additional_info_markup)%>
-		</div>
+		<h3><%=t('scripts.additional_info')%></h3>
+		<% if !localized_additional_info.nil? %>
+			<div class="script-author-description">
+				<%=format_user_text(localized_additional_info.attribute_value, localized_additional_info.value_markup)%>
+			</div>
+		<% end %>
+		<% if !@script_version.screenshots.empty? %>
+			<div class="script-screenshots">
+				<% @script_version.screenshots.each do |screenshot| %>
+					<a href="<%=screenshot.screenshot.url%>" class="fancybox" rel="fancybox-screenshots" <%if !screenshot.caption.nil?%>title="<%=screenshot.caption%>"<%end%>><%= image_tag screenshot.screenshot.url(:thumb) %></a>
+				<% end %>
+			</div>
+		<% end %>
 	</div>
+<% end %>
+
+<% if @script.script_type_id != 2 %>
+	<div id="share">
+		<h3><%=t('common.share')%></h3>
+		<div id="social-buttons" lang="<%=params[:locale].sub('-', '_')%>"></div>
+	</div>
+
+	<script>
+		window.addEventListener("DOMContentLoaded", function() {
+			for (var i in $.fn.socialSharePrivacy.settings.services) {
+				$.fn.socialSharePrivacy.settings.services[i].status = false;
+			};
+			<% social_services = ['delicious', 'facebook', 'gplus', 'hackernews', 'mail', 'reddit', 'stumbleupon', 'tumblr', 'twitter']
+			social_services << 'flattr' if !@script.user.flattr_username.nil?
+			social_services.sort!
+			social_services.each do |service|
+				images = {dummy_line_img: "dummy_#{service}.png", dummy_box_img: "dummy_box_#{service}.png", line_img: "#{service}.png", box_img: "box_#{service}.png"}
+				images.each do |name, path| %>
+					if ($.fn.socialSharePrivacy.settings.services['<%=service%>']['<%=name%>']) {
+						<%# Check to see if it's a localized image %>
+						if ($.fn.socialSharePrivacy.settings.services['<%=service%>']['<%=name%>'].split('/').length == 3) {
+							$.fn.socialSharePrivacy.settings.services['<%=service%>']['<%=name%>'] = '<%=asset_path("jquery-socialshareprivacy/#{social_share_locale}/#{path}")%>';
+						} else {
+							$.fn.socialSharePrivacy.settings.services['<%=service%>']['<%=name%>'] = '<%=asset_path("jquery-socialshareprivacy/#{path}")%>';
+						}
+					}<%
+					if service == 'flattr' %>
+						$.fn.socialSharePrivacy.settings.services['<%=service%>'].uid = '<%=j(@script.user.flattr_username)%>';
+						$.fn.socialSharePrivacy.settings.services['<%=service%>'].category = 'software';
+					<% end
+				end %>
+				$.fn.socialSharePrivacy.settings.services['<%=service%>'].status = true;
+			<% end %>
+			var socialButtons = $("#social-buttons");
+			socialButtons.on("socialshareprivacy:create", function() {
+				$(".social_share_privacy_area li:first-child").before($(".settings_info"));
+			});
+			socialButtons.socialSharePrivacy({css_path: null, layout: 'box', description: $('#script-description').val()});
+		});
+	</script>
+
 <% end %>

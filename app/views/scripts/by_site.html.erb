@@ -4,12 +4,12 @@
 <p>These are the sites affected by the scripts on Greasy Fork. Larger size means more popular scripts.</p>
 
 <ol id="by-site-list">
-	<% max_install_count = @by_sites.map{|bs|bs['install_count']}.max
+	<% max_install_count = @by_sites.values.map{|v| v[:installs]}.max
 	max_font_size = 5
 	min_font_size = 0.6
-	@by_sites.each do |by|
-		dt = by['text']
-		font_size = ((max_font_size - min_font_size).to_f * by['install_count'] / max_install_count + min_font_size).round(2) %>
-		<li style="font-size: <%=font_size%>em"><%=link_to dt.nil? ? '(All sites)' : dt, by_site_scripts_path(:site => dt.nil? ? '*' : dt)%></li>
+	@by_sites.each do |dt, values|
+		install_count = values[:installs]
+		font_size = ((max_font_size - min_font_size).to_f * install_count / max_install_count + min_font_size).round(2) %>
+		<li style="font-size: <%=font_size%>em"><%=link_to dt.nil? ? t('scripts.listing_filter_by_site_all_sites') : dt, by_site_scripts_path(:site => dt.nil? ? '*' : dt)%></li>
 	<% end %>
 </ol>

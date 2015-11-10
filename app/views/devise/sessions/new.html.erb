@@ -1,20 +1,41 @@
-<%- title 'Sign in' %>
+<%- title t('users.sign_in_title', site_name: site_name) %>
 <%- description 'Sign in page for Greasy Fork accounts.' %>
 
-<h2>Sign in</h2>
+<script src="https://login.persona.org/include.js" type="text/javascript"></script>
+
+<p><%=t('users.sign_in_description', site_name: site_name)%></p>
+
+<h3><%=t('users.sign_in_external')%></h3>
+
+<div>
+	<% if Rails.application.config.available_auths.empty? %>
+		<p>(No external providers configured.)</p>
+	<% else %>
+		<%=form_tag(external_login_path, {:method => :get, :class => 'inline-form'}) do %>
+			<% Rails.application.config.available_auths.keys.each do |provider| %>
+				<button name="provider" class="<%=provider%>-login" value="<%=provider%>"><%=Identity.pretty_provider(provider)%></button>
+			<% end %>
+			<% if devise_mapping.rememberable? -%>
+				<div><%= check_box_tag :remember_me %><%= label_tag :remember_me, t('activerecord.attributes.user.remember_me') %></div>
+			<% end -%>
+		<% end %>
+	<% end %>
+</div>
+
+<h3><%=t('users.sign_in_password')%></h3>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+  <%= f.email_field :email %></div>
 
   <div><%= f.label :password %><br />
   <%= f.password_field :password %></div>
 
   <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+    <div><%= f.check_box :remember_me %><%= f.label :remember_me %></div>
   <% end -%>
 
-  <div><%= f.submit "Sign in" %></div>
+  <div><%= f.submit t('.sign_in', :default => "Sign in") %></div>
 <% end %>
 
 <%= render "devise/shared/links" %>

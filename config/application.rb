@@ -20,7 +20,27 @@ module Greasyfork
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    config.i18n.enforce_available_locales = false
     config.active_record.schema_format = :sql
+
+    I18n.config.enforce_available_locales = true
+    # locales good enough to link to
+    # names from https://api.drupal.org/api/drupal/includes!iso.inc/function/_locale_get_predefined_list/7
+    config.available_locales = {'ar' => 'العَرَبِيةُ', 'bg' => 'Български', 'cs' => 'Čeština', 'de' => 'Deutsch', 'el' => 'Ελληνικά', 'en' => 'English', 'es' => 'Español', 'fi' => 'Suomi', 'fr' => 'Français', 'fr-CA' => 'Français canadien', 'id' => 'Bahasa Indonesia', 'it' => 'Italiano', 'ja' => '日本語', 'nb' => 'Bokmål',  'nl' => 'Nederlands', 'pl' => 'Polski', 'pt-BR' => 'Português do Brasil', 'ro' => 'Română', 'ru' => 'Русский', 'sv' => 'Svenska', 'tr' => 'Türkçe', 'uk' => 'Українська', 'vi' => 'Tiếng Việt', 'zh-CN' => '简体中文', 'zh-TW' => '繁體中文'}
+    config.help_translate_url = 'https://github.com/JasonBarnabe/greasyfork/wiki/Translating-Greasy-Fork'
+
+    config.cpd_size_limit = 100.kilobytes
+
+    config.syntax_highlighting_limit = 500.kilobytes
+
+    config.screenshot_max_count = 5
+    config.screenshot_max_size = 200.kilobytes
+
+    Mime::Type.register "application/javascript", :jsonp
+
+    # Overridden in config/initializers/omniauth.rb
+    config.available_auths = {}
+
+    config.active_job.queue_adapter = :delayed_job
+    config.active_record.raise_in_transactional_callbacks = true
   end
 end

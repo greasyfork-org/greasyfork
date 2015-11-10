@@ -11,13 +11,16 @@ Greasyfork::Application.configure do
 
   # Show full error reports and disable caching.
   config.consider_all_requests_local       = true
-  config.action_controller.perform_caching = false
+  config.action_controller.perform_caching = true
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
   # Print deprecation notices to the Rails logger.
-  config.active_support.deprecation = :log
+  #config.active_support.deprecation = :log
+  config.active_support.deprecation = Proc.new { |message, callstack|
+    raise NameError, message, callstack
+  }
 
   # Raise an error on page load if there are pending migrations
   config.active_record.migration_error = :page_load
@@ -26,6 +29,9 @@ Greasyfork::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  config.cache_store = :null_store
+  #config.cache_store = :dalli_store, ['localhost:11211:10'], { :namespace => 'Greasy Fork', :expires_in => 1.hour, :compress => true }
   
   config.action_mailer.default_url_options = { :host => 'greasyfork.local' }
 
@@ -34,4 +40,16 @@ Greasyfork::Application.configure do
   
   config.verify_ownership_on_import = false
   config.userscriptsorg_host = 'http://userscripts.org:8080'
+ 
+  config.enable_detect_locale = true
+  config.download_locale_files = true
+
+  config.log_cache_misses = true
+
+  config.after_initialize do
+    Bullet.enable = false
+    Bullet.bullet_logger = true
+    Bullet.console = true
+    Bullet.add_footer = true
+  end
 end

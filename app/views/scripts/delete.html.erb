@@ -1,25 +1,106 @@
 <%- title "Delete #{@script.name}" %>
 
 <% moderator_view = current_user.moderator? && current_user != @script.user %>
-<%=form_tag(script_do_delete_path) do |f|%>
-	<p>
-		<% ScriptDeleteType.all.each do |sdt| %>
-			<input type="radio" required id="script_delete_type_id_<%=sdt.id%>" name="script_delete_type_id" value="<%=sdt.id%>" <%if sdt.id == 2 and moderator_view%>checked<%end%>> <label for="script_delete_type_id_<%=sdt.id%>"><%=sdt.description%></label><br>
+
+<% if @script.deleted? %>
+
+	<%=form_tag(script_do_undelete_path) do |f|%>
+		<% if moderator_view %>
+			<p>
+				<label for="reason">Why are you undeleting this?</label><br>
+				<textarea id="reason" name="reason" rows="5" cols="100" maxlength="500" required></textarea>
+			</p>
+			<% if @script.user.banned %>
+				<p>
+					<label for="unbanned">Unban this user?</label> <input type="checkbox" id="unbanned" name="unbanned" value="1">
+				</p>
+			<% end %>
 		<% end %>
-	</p>
-	<% if moderator_view %>
-		<p>
-			<label for="reason">Why are you deleting this?</label><br>
-			<textarea id="reason" name="reason" rows="5" cols="100" maxlength="500" required></textarea>
-		</p>
-		<p>
-			<label for="locked">Lock the script to prevent undelete by the author?</label> <input type="checkbox" id="locked" name="locked" value="1" checked>
-		</p>
-		<p>
-			<label for="banned">Ban this user?</label> <input type="checkbox" id="banned" name="banned" value="1">
-		</p>
-		<p>This user has <%=link_to("#{@other_scripts} other non-locked scripts", @script.user)%>.</p>
+		<input type="submit" value="Undelete">
 	<% end %>
-	<input type="submit" value="Delete">
+
+	<% if !moderator_view %>
+		<%= render partial: 'permanently_delete', locals: {script: @script} %>
+	<% end %>
+
+<% else %>
+
+	<%=form_tag(script_do_delete_path) do |f|%>
+
+		<% if !@script.errors.empty? %>
+			<div class="alert">
+				<p><%=t('common.error_preamble')%></p>
+				<ul class="errors">
+					<% @script.errors.full_messages.each do |e| %>
+						<li><%=e%></li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
+
+		<p><%=t('scripts.delete_explanation')%></p>
+
+		<p>
+		<%=t('scripts.delete_update_behaviour')%><br>
+			<% ScriptDeleteType.all.each do |sdt|
+				if params[:script_delete_type_id].nil?
+					selected = sdt.id == 2 && moderator_view
+				else
+					selected = params[:script_delete_type_id] == sdt.id.to_s
+				end %>
+				<input type="radio" required id="script_delete_type_id_<%=sdt.id%>" name="script_delete_type_id" value="<%=sdt.id%>" <%if selected%>checked<%end%>> <label for="script_delete_type_id_<%=sdt.id%>"><%=t("scripts.delete_update_behaviour_#{sdt.id}")%></label><br>
+			<% end %>
+		</p>
+		<p>
+			<label for="replaced_by_script_id"><%=t('scripts.replacement_script_explanation')%></label>
+			<input id="replaced_by_script_id" name="replaced_by_script_id" value="<%=params[:replaced_by_script_id] || @script.replaced_by_script_id%>">
+		</p>
+		<% if moderator_view %>
+			<p>
+				<label for="reason">Why are you deleting this?</label><br>
+				<textarea id="reason" name="reason" rows="5" cols="100" maxlength="500" required></textarea>
+			</p>
+			<p>
+				<label for="locked">Lock the script to prevent undelete by the author?</label> <input type="checkbox" id="locked" name="locked" value="1" checked>
+			</p>
+			<% if @script.user.banned %>
+				<p>(User already banned.)</p>
+			<% else %>
+				<p>
+					<label for="banned">Ban this user?</label> <input type="checkbox" id="banned" name="banned" value="1">
+				</p>
+			<% end %>
+			<p>This user has <%=link_to("#{@other_scripts} other non-locked scripts", @script.user)%>.</p>
+		<% end %>
+		<input type="submit" value="Delete">
+	<% end %>
+
+	<% if !moderator_view %>
+		<%= render partial: 'permanently_delete', locals: {script: @script} %>
+	<% end %>
+
 <% end %>
 
+<% if moderator_view && !@script.permanent_deletion_request_date.nil? %>
+
+	<h3>Permanent deletion</h3>
+
+	<p>The author requested this script be permanently deleted at <%=@script.permanent_deletion_request_date%>. Verify that this script does not contain malware, as permanently deleting would not allow us to blank it out for those who already installed it.</p>
+
+	<%=form_tag(action: 'do_permanent_deletion') do %>
+		<p>
+			<input type="submit" value="Permanently delete script">
+		</p>
+	<% end %>
+
+	<p>or...</p>
+
+	<%=form_tag(action: 'reject_permanent_deletion') do %>
+		<p>
+			<label for="reject_permanent_deletion_reason">Why are you rejecting the request to permanently delete?</label><br>
+			<textarea id="reject_permanent_deletion_reason" name="reason" rows="5" cols="100" maxlength="500" required></textarea>
+			<input type="submit" value="Reject permanent deletion request">
+		</p>
+	<% end %>
+
+<% end %>

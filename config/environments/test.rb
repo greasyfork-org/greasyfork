@@ -13,7 +13,7 @@ Greasyfork::Application.configure do
   config.eager_load = false
 
   # Configure static asset server for tests with Cache-Control for performance.
-  config.serve_static_assets  = true
+  config.serve_static_files  = true
   config.static_cache_control = "public, max-age=3600"
 
   # Show full error reports and disable caching.
@@ -39,4 +39,8 @@ Greasyfork::Application.configure do
 
   config.verify_ownership_on_import = true
   config.userscriptsorg_host = 'http://userscripts.org:8080'
+
+  config.enable_detect_locale = false
+  config.download_locale_files = false
+  config.active_support.test_order = :random
 end

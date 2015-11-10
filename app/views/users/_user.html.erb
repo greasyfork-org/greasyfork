@@ -1,0 +1,1 @@
+<li><%=t('users.list_display_html', {:user_link => link_to(user.name, user), :count => user.send("#{script_subset}_listable_scripts").count})%></li>

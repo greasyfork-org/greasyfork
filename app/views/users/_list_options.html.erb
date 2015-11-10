@@ -1,0 +1,15 @@
+<div id="user-list-option-groups" class="list-option-groups">
+	<div id="user-list-sort" class="list-option-group"><%=t('scripts.listing_sort_label')%>
+		<ul>
+			<%=user_list_link(t('users.listing_registration_date'), nil)%>
+			<%=user_list_link(t('scripts.listing_sort_name'), 'name')%>
+			<%=user_list_link(t('scripts.listing_sort_daily_installs'), 'daily_installs')%>
+			<%=user_list_link(t('scripts.listing_sort_total_installs'), 'total_installs')%>
+			<%=user_list_link(t('scripts.listing_sort_ratings'), 'ratings')%>
+			<%=user_list_link(t('users.listing_number_of_scripts'), 'scripts')%>
+			<%=user_list_link(t('users.listing_new_scripts'), 'created_script')%>
+			<%=user_list_link(t('users.listing_updated_scripts'), 'updated_script')%>
+		</ul>
+	</div>
+</div>
+

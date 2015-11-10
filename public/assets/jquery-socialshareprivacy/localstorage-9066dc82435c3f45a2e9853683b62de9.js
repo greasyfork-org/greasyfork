@@ -1,0 +1,1 @@
+!function(e){"use strict";e.extend(e.fn.socialSharePrivacy.settings,{perma_option:!0,set_perma_option:function(e){localStorage.setItem("socialSharePrivacy_"+e,"perma_on")},del_perma_option:function(e){localStorage.removeItem("socialSharePrivacy_"+e)},get_perma_options:null,get_perma_option:function(e){return"perma_on"===localStorage.getItem("socialSharePrivacy_"+e)}})}(jQuery);

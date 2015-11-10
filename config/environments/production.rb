@@ -20,7 +20,7 @@ Greasyfork::Application.configure do
   # config.action_dispatch.rack_cache = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
-  config.serve_static_assets = false
+  config.serve_static_files = false
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -43,7 +43,7 @@ Greasyfork::Application.configure do
   # config.force_ssl = true
 
   # Set to :debug to see everything in the log.
-  config.log_level = :info
+  config.log_level = :warn
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
@@ -53,14 +53,14 @@ Greasyfork::Application.configure do
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
-
-  config.serve_static_assets = false
+  config.cache_store = :dalli_store, ['localhost:11211:10'], { :namespace => 'Greasy Fork', :expires_in => 2.hours, :compress => true }
 
   config.assets.compress = true
   config.assets.js_compressor  = :uglifier
   config.assets.css_compressor = :yui
   config.assets.compile = false
   config.assets.digest = true
+  config.assets.precompile << Proc.new { |path,fn| fn.starts_with?(Rails.root.join('vendor').to_s)}
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = "http://assets.example.com"
@@ -93,4 +93,9 @@ Greasyfork::Application.configure do
   
   config.verify_ownership_on_import = false
   config.userscriptsorg_host = 'http://userscripts.org:8080'
+
+  config.enable_detect_locale = false
+  config.download_locale_files = false
+
+  config.log_cache_misses = true
 end

@@ -1,0 +1,22 @@
+<% 
+t_params = {
+	:discussion_link => link_to(discussion.name, discussion.url).html_safe,
+	:original_poster_link => link_to(discussion.original_poster.name, user_path(discussion.original_poster)).html_safe,
+	:original_post_date => discussion.created.nil? ? '?' : markup_date(discussion.created).html_safe
+}
+
+show_script = defined?(show_script) && show_script && !discussion.script.nil? 
+t_params[:script_link] = link_to discussion.script.name(I18n.locale), discussion.script if show_script
+
+show_reply = !discussion.LastCommentUserID.nil?
+if show_reply
+	t_params[:last_commenter_link] = link_to(discussion.last_commenter.name, user_path(discussion.last_commenter)).html_safe
+	t_params[:last_comment_date] = discussion.updated.nil? ? '?' : markup_date(discussion.updated).html_safe
+end
+
+if show_script
+	t_key = show_reply ? 'forum_discussions.listing_with_script_with_reply_html' : 'forum_discussions.listing_with_script_no_reply_html'
+else
+	t_key = show_reply ? 'forum_discussions.listing_no_script_with_reply_html' : 'forum_discussions.listing_no_script_no_reply_html'
+end %>
+<%=t(t_key, t_params)%>

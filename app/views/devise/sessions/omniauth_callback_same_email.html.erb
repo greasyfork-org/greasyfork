@@ -1,0 +1,7 @@
+<p>
+	<% if @same_email_user.identities.empty? %>
+		<%=t('users.sign_in_email_used_no_external_services_html', {:email => @email, :user_name => @same_email_user.name, :provider => @provider, :sign_in_link => link_to(t('users.sign_in_email_used_sign_in_link'), new_user_session_path)})%>
+	<% else %>
+		<%=t('users.sign_in_email_used_with_external_services_html', {:email => @email, :user_name => @same_email_user.name, :provider => @provider, :existing_providers => @same_email_user.pretty_signin_methods.to_sentence, :sign_in_link => link_to(t('users.sign_in_email_used_sign_in_link'), new_user_session_path)})%>
+	<% end %>
+</p>

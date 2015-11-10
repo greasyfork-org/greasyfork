@@ -1,0 +1,13 @@
+<%=form_tag(auth_name_conflict_path, :method => :post) do |f|%>
+
+	<input type="hidden" name="provider" value="<%=@provider%>">
+	<input type="hidden" name="origin" value="<%=request.env['omniauth.origin']%>">
+	<p>
+		<%=t('users.sign_in_name_used', :name => @name)%>
+	</p>
+
+	<p>
+		<input required name="name"><input type="submit" value="<%=t('users.sign_in_name_used_submit')%>">
+	</p>
+
+<% end %>

@@ -1,0 +1,10 @@
+<% title t('help.writing_user_scripts.title') %>
+
+<%=t('help.writing_user_scripts.content_html',
+	code_rules_link: link_to(t('help.code_rules.title', site_name: site_name), help_code_rules_path),
+	meta_keys_link: link_to(t('help.meta_keys.title', site_name: site_name), help_meta_keys_path),
+	ask_in_forum_link: link_to(t('help.writing_user_scripts.ask_in_forum_link_text'), forum_path),
+	user_page_link: current_user.nil? ? t('help.writing_user_scripts.user_page_link_text') : link_to(t('help.writing_user_scripts.user_page_link_text'), current_user),
+	post_new_script_link: link_to(t('help.writing_user_scripts.post_new_script_link_text'), new_script_version_path),
+	site_name: site_name
+)%>

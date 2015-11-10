@@ -1,0 +1,317 @@
+(function() {
+
+	function hookUpSelectAllCheckboxes() {
+		function updateAllCheckboxSelection(selection) {
+			var checkboxes = document.querySelectorAll("input[type='checkbox']");
+			for (var i = 0; i < checkboxes.length; i++) {
+				checkboxes[i].checked = selection;
+			}
+		}
+		var selectAll = document.querySelector(".select-all");
+		if (selectAll) {
+			selectAll.addEventListener("click", function(event) { updateAllCheckboxSelection(true); event.preventDefault();});
+			selectAll.style.display = "inline";
+		}
+		var selectNone = document.querySelector(".select-none");
+		if (selectNone) {
+			selectNone.addEventListener("click", function(event) { updateAllCheckboxSelection(false); event.preventDefault();});
+			selectNone.style.display = "inline";
+		}
+	}
+
+	function hookUpInstallPingers() {
+		var installLink = document.querySelector(".install-link");
+		if (!installLink) {
+			return;
+		}
+		installLink.addEventListener("click", function(event) {
+			if (installLink.getAttribute("data-is-previous-version") == "true") {
+				if (!confirm("This is not the latest version of this script. If you install it, you will never be updated to a newer version. Install anyway?")) {
+					event.preventDefault();
+					return;
+				}
+			}
+			var xhr = new XMLHttpRequest();
+			xhr.open("POST", event.target.getAttribute("data-ping-url"), true);
+			xhr.overrideMimeType("text/plain");
+			xhr.send();
+		});
+	}
+
+	// on user input element:
+	// class = previewable
+	// data-markup-option-name = the name of the radio buttons for selecting markup
+	// data-preview-activate-id = the id of the button to activate the preview
+	// data-preview-result-id = the id of the div to place the results
+	function hookUpMarkupPreview() {
+		$(".previewable").each(function(index, previewable) {
+			var previewable = $(this);
+			var markupOptions = $('input:radio[name="' + previewable.attr("data-markup-option-name") + '"]');
+			var button = $("#" + previewable.attr("data-preview-activate-id"));
+
+			button.show();
+
+			// This function will get called when new additional infos are added. To prevent multiple calls on existing ones, unbind and then rebind.
+
+			button.unbind("click", handlePreviewClick);
+			button.click(handlePreviewClick);
+
+			// close when anything changed
+			markupOptions.unbind("click", handlePreviewInput);
+			markupOptions.click(handlePreviewInput);
+			previewable.unbind('input', handlePreviewInput);
+			previewable.bind('input', handlePreviewInput);
+		});
+	}
+
+	function handlePreviewClick(event) {
+		var previewable = $(event.target).parents(".form-control").first().find(".previewable");
+		var markupOptions = $('input:radio[name="' + previewable.attr("data-markup-option-name") + '"]');
+		var result = $("#" + previewable.attr("data-preview-result-id"));
+		var url = previewable.attr("data-preview-source") == "url";
+		var selectedMarkup = $('input:radio[name="' + previewable.attr("data-markup-option-name") + '"]:checked').val();
+
+		$.ajax({
+			type: "POST",
+			url: "/preview-markup",
+			data: {
+				text: previewable.val(),
+				markup: selectedMarkup,
+				url: url
+			},
+			success: function(data) {
+				result.html(data);
+				result.slideDown();
+				// scroll to it if it's not at all visible
+				if (result.offset().top > $(window).scrollTop() + $(window).height()) {
+					$('html, body').animate({
+						scrollTop: result.offset().top
+					}, 2000);
+				}
+			},
+			error: function(xhr, textStatus, errorThrown) {
+				result.html(textStatus + " " + errorThrown);
+				result.slideDown();
+				// scroll to it if it's not at all visible
+				if (result.offset().top > $(window).scrollTop() + $(window).height()) {
+					$('html, body').animate({
+						scrollTop: result.offset().top
+					}, 2000);
+				}
+			}
+		})
+		return false;
+	}
+
+	function handlePreviewInput(event) {
+		var result = $(event.target).parents(".form-control").first().find(".preview-result");
+		result.slideUp();
+	}
+
+	function hookUpAddLocalizedAdditionalInfo() {
+		var button = document.getElementById("add-additional-info");
+		if (!button) {
+			return;
+		}
+		button.addEventListener("click", function(event) {
+			// Get the next index to use
+			var additionalInfos = document.querySelectorAll("textarea[name*='additional_info']");
+			var lastAdditionalInfoNameParts = additionalInfos[additionalInfos.length - 1].id.split("-")
+			var index = parseInt(lastAdditionalInfoNameParts[lastAdditionalInfoNameParts.length - 1], 10) + 1;
+
+			var xhr = new XMLHttpRequest();
+			xhr.overrideMimeType("text/html");
+			xhr.open("get", "<%=Greasyfork::Application.routes.url_helpers.script_version_additional_info_form_path%>" + "?index=" + index);
+			xhr.onload = function() {
+				var frag = document.createElement("div");
+				frag.innerHTML = this.responseText;
+				button.parentNode.parentNode.insertBefore(frag.firstChild, button.parentNode);
+				// Make the preview button work
+				hookUpMarkupPreview();
+			};
+			xhr.send();
+			event.preventDefault();
+		});
+	}
+
+	function hookUpAddSyncedLocalizedAdditionalInfo() {
+		var button = document.getElementById("add-synced-additional-info");
+		if (!button) {
+			return;
+		}
+		button.addEventListener("click", function(event) {
+			// Get the next index to use
+			var additionalInfos = document.querySelectorAll("input[type='url'][name*='additional_info_sync']");
+			var lastAdditionalInfoNameParts = additionalInfos[additionalInfos.length - 1].id.split("-")
+			var index = parseInt(lastAdditionalInfoNameParts[lastAdditionalInfoNameParts.length - 1], 10) + 1;
+
+			var xhr = new XMLHttpRequest();
+			xhr.overrideMimeType("text/html");
+			xhr.open("get", "<%=Greasyfork::Application.routes.url_helpers.script_sync_additional_info_form_path%>" + "?index=" + index);
+			xhr.onload = function() {
+				var frag = document.createElement("div");
+				frag.innerHTML = this.responseText;
+				button.parentNode.parentNode.insertBefore(frag.children[0], button.parentNode);
+				// Make the preview button work
+				hookUpMarkupPreview();
+			};
+			xhr.send();
+			event.preventDefault();
+		});
+	}
+
+	function hookUpLocaleSwitcher() {
+		document.getElementById("language-selector-locale").addEventListener("change", function(event) {
+			var selectedOption = event.target.selectedOptions[0];
+			if (selectedOption.value == "help") {
+				location.href = "<%=Rails.configuration.help_translate_url%>";
+			} else {
+				location.href = selectedOption.getAttribute("data-language-url");
+			}
+		});
+	}
+
+	function hookUpBrowserId() {
+		var browserIdLink = document.querySelector(".browser_id-login");
+		if (browserIdLink) {
+			browserIdLink.addEventListener("click", function(event) {
+				navigator.id.get(function(assertion) {
+					var returnToParam = event.target.hasAttribute("data-return-to") ? ("&origin=" + event.target.getAttribute("data-return-to")) : "";
+					var rememberMeField = document.getElementById("remember_me");
+					if (rememberMeField && rememberMeField.checked) {
+						returnToParam += "&remember_me=1";
+					}
+					if (assertion) {
+						location.href = "<%=Greasyfork::Application.routes.url_helpers.omniauth_callback_path(:provider => 'browser_id')%>?assertion=" + encodeURIComponent(assertion) + returnToParam;
+					} else {
+						location.href = "<%=Greasyfork::Application.routes.url_helpers.omniauth_callback_path(:provider => 'browser_id')%>?failure=1"+ returnToParam;
+					}
+				});
+				event.preventDefault();
+			});
+		}
+	}
+
+	function hookUpExpandableText() {
+		var expandable = document.getElementById("script-applies-to");
+		if (!expandable) {
+			return;
+		}
+		// Use a multiple of line height to prevent partially displayed lines
+		var height = parseInt(getComputedStyle(expandable).height, 10);
+		var lineHeight = parseInt(getComputedStyle(expandable).lineHeight, 10);
+		// Matching the number of metas on the other side
+		var lines = 8;
+		var maxAllowedHeight = lineHeight * lines
+		if (height <= maxAllowedHeight) {
+			return;
+		}
+
+		expandable.style.overflow = "hidden";
+		expandable.parentNode.style.position = "relative";
+
+		function toggle(andScroll) {
+			if (expandable.style.height == "auto" || expandable.style.height == "") {
+				expandable.style.height = maxAllowedHeight + "px";
+				span.removeChild(span.firstChild);
+				span.appendChild(document.createTextNode(expandable.getAttribute("data-show-more-text")))
+				if (andScroll) {
+					setTimeout(function() {expandable.scrollIntoView()}, 10);
+				}
+			} else {
+				expandable.style.height = "auto";
+				span.removeChild(span.firstChild);
+				span.appendChild(document.createTextNode(expandable.getAttribute("data-show-less-text")));
+			}
+		}
+
+		var span = document.createElement("span");
+		span.className = "expander";
+		span.style.position = "absolute";
+		span.style.right = "0";
+		span.style.marginTop = "-" + lineHeight + "px";
+		span.appendChild(document.createTextNode(expandable.getAttribute("data-show-more-text")));
+		span.addEventListener("click", function(){toggle(true)});
+		expandable.parentNode.appendChild(span);
+		toggle(false);
+	}
+
+	function restyleScreenMaxHeight() {
+		if (!window.innerHeight) {
+			return;
+		}
+		var es = document.querySelectorAll(".max-screen-height")
+		for (var i = 0; i < es.length; i++) {
+			es[i].style.overflow = "auto";
+			es[i].style.maxHeight = window.innerHeight + "px";
+			es[i].style.maxWidth = "100%";
+		}
+	}
+
+	function hookUpFancyBox() {
+		$("a.fancybox").fancybox({closeClick: true});
+	}
+
+	function hookUpSourceEditor() {
+		aceEditor = null;
+
+		// Switching between editor and textarea
+		$('input.enable-source-editor').change(function(e) {
+			var textboxId = e.target.getAttribute("data-related-editor");
+			var textbox = document.getElementById(textboxId);
+			if (e.target.checked) {
+				textbox.style.display = "none";
+				var div = document.createElement("div");
+				div.id = "ace-editor";
+				div.appendChild(document.createTextNode(textbox.value));
+				div.style.height = getComputedStyle(textbox).height;
+				textbox.parentNode.insertBefore(div, textbox.nextSibling);
+				aceEditor = ace.edit("ace-editor");
+				aceEditor.getSession().setMode("ace/mode/javascript");
+				$('#ace-editor').resizable({
+					resize: function(event, ui) { aceEditor.resize(false); }
+				});
+			} else {
+				var editorElement = document.getElementById("ace-editor");
+				if (editorElement) {
+					textbox.value = aceEditor.getSession().getValue();
+					textbox.style.display = "block";
+					textbox.style.height = getComputedStyle(editorElement).height;
+					editorElement.parentNode.removeChild(editorElement);
+					aceEditor.destroy();
+					aceEditor = null;
+				}
+			}
+		});
+
+		// Submitting form - set the textarea to the editor's value
+		$('input.enable-source-editor').parents('form').submit(function(e) {
+			var editorElement = document.getElementById("ace-editor");
+			if (editorElement) {
+				var textboxId = $('input.enable-source-editor').attr("data-related-editor")
+				var textbox = document.getElementById(textboxId);
+				textbox.value = aceEditor.getSession().getValue();
+			}
+		})
+
+		// Page load
+		$('input.enable-source-editor').parents('.label-note').css('display', 'inline');
+		$('input.enable-source-editor').change();
+	}
+
+	function init() {
+		hookUpSelectAllCheckboxes();
+		hookUpInstallPingers();
+		hookUpMarkupPreview();
+		hookUpLocaleSwitcher();
+		hookUpBrowserId();
+		hookUpAddLocalizedAdditionalInfo();
+		hookUpAddSyncedLocalizedAdditionalInfo();
+		hookUpExpandableText();
+		restyleScreenMaxHeight();
+		hookUpFancyBox();
+		hookUpSourceEditor();
+	}
+	
+	window.addEventListener("DOMContentLoaded", init);
+})();

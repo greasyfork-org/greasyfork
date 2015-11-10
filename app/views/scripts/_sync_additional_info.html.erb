@@ -1,0 +1,36 @@
+<%
+# Renders an additional info syncing line
+# Locals:
+#   la - a LocalizedScriptAttribute
+#   index - the index of the attribute (to maintain unique ids and names)
+#   preview - initial preview text
+
+preview = nil if !defined?(preview)
+%>
+
+<div class="form-control">
+	<input type="hidden" name="additional_info_sync[<%=index%>][attribute_default]" value="<%=la.attribute_default%>">
+	<% if la.attribute_default %>
+		<%=t('scripts.additional_info_default_sync_html')%>
+	<% else %>
+		<%=t('scripts.additional_info_localized_sync_html')%>
+		<select name="additional_info_sync[<%=index%>][locale]">
+			<option value="" <%if la.locale_id.nil?%>selected<%end%>><%=t('scripts.additional_info_locale_prompt')%></option>
+			<% Locale.where(:ui_available => true).each do |locale| %>
+				<option value="<%=locale.id%>" <%if la.locale_id == locale.id%>selected<%end%>><%=locale.display_text%></option>
+			<% end %>
+			<option disabled>---</option>
+			<% Locale.all.each do |locale| %>
+				<option value="<%=locale.id%>"<%if la.locale_id == locale.id%>selected<%end%>><%=locale.display_text%></option>
+			<% end %>
+		</select>
+	<% end %>
+	<br>
+	<%=url_field_tag("additional_info_sync[#{index}][sync_identifier]", la.sync_identifier, {:id => "script-version-additional-info-#{index}", :class => 'previewable', :size => 50, 'data-preview-activate-id' => "preview-sync-additional-info-#{index}", 'data-markup-option-name' => "additional_info_sync[#{index}][value_markup]", 'data-preview-result-id' => "preview-sync-additional-info-results-#{index}", 'data-preview-source' => 'url', :placeholder => t('scripts.sync_url_placeholder')})%>
+	<%=radio_button_tag("additional_info_sync[#{index}][value_markup]", 'html', la.value_markup == 'html' || la.value_markup.nil?)%>HTML
+	<%=radio_button_tag("additional_info_sync[#{index}][value_markup]", 'markdown', la.value_markup == 'markdown')%><%=link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', {:target => 'markup_choice'}%>
+	<button name="preview" id="preview-sync-additional-info-<%=index%>" class="preview-button" value="<%=index%>"><%=t('scripts.preview_additional_info')%></button>
+	<div id="preview-sync-additional-info-results-<%=index%>" class="preview-result" <%if !preview.nil?%>style="display:block"<%end%>>
+		<%if !preview.nil?%><%=preview.html_safe%><%end%>
+	</div>
+</div>

@@ -44,11 +44,12 @@ module ScriptImporter
 		# Generates a script list and returns an array:
 		# - Result code:
 		#   - :failure
+		#   - :notuserscript
 		#   - :needsdescription
 		#   - :success
 		# - The script
 		# - An error message
-		def self.generate_script(sync_id, provided_description, user, sync_type_id = 1)
+		def self.generate_script(sync_id, provided_description, user, sync_type_id = 1, localized_attribute_syncs = {})
 			url = sync_id_to_url(sync_id)
 			begin
 				code = download(url)
@@ -58,6 +59,8 @@ module ScriptImporter
 				return [:failure, nil, "Could not download source. #{ex.message}"]
 			rescue Timeout::Error => ex
 				return [:failure, nil, "Could not download source. Download did not complete in allowed time."]
+			rescue => ex
+				return [:failure, nil, "Could not download source. #{ex.message}"]
 			end
 			code.force_encoding(Encoding::UTF_8)
 			return [:failure, nil, "Source contains invalid UTF-8 characters."] if !code.valid_encoding?
@@ -74,23 +77,39 @@ module ScriptImporter
 			script.last_attempted_sync_date = DateTime.now
 			script.last_successful_sync_date = DateTime.now
 
+			# now get the additional infos
+			localized_attribute_syncs.each do |la|
+				new_la = sv.build_localized_attribute(la)
+				next if la.sync_identifier.nil? || la.sync_source_id.nil?
+				begin
+					ai = ScriptSyncer.get_importer_for_sync_source_id(la.sync_source_id).download(la.sync_identifier)
+					absolute_ai = absolutize_references(ai, la.sync_identifier)
+					ai = absolute_ai unless absolute_ai.nil?
+					new_la.attribute_value = ai
+				rescue => ex
+					# if something fails here, we'll just ignore.
+					next
+				end
+			end
+
 			sv.script = script
 			script.script_versions << sv
 			sv.do_lenient_saving
 			sv.calculate_all(provided_description)
 			script.apply_from_script_version(sv)
 
-			return [:failure, script, 'Does not appear to be a user script.'] if script.name.nil?
+			return [:notuserscript, script, 'Does not appear to be a user script.'] if script.name.nil?
 
 			return [:needsdescription, script, nil] if (script.description.nil? or script.description.empty?)
 
 			# prefer script_version error messages, but show script error messages if necessary
-			return [:failure, script, (sv.errors.full_messages.empty? ? script.errors.full_messages : sv.errors.full_messages).join('. ') + "."] if (!script.valid? | !sv.valid?)
+			return [:failure, script, (sv.errors.full_messages.empty? ? script.errors.full_messages : sv.errors.full_messages).join(', ')] if (!script.valid? | !sv.valid?)
 
 			return [:success, script, nil]
 		end
 
 		def self.download(url)
+			raise ArgumentError.new('URL must be http or https') unless url =~ URI::regexp(%w(http https))
 			uri = URI.parse(url)
 			Timeout::timeout(11){
 				return uri.read({:read_timeout => 10})
@@ -110,6 +129,23 @@ module ScriptImporter
 			return u
 		end
 
+		def self.absolutize_references(html, base)
+			changed = false
+			base_url = URI.parse(base)
+			tags = {'img' => 'src', 'a' => 'href'}
+			doc = Nokogiri::HTML::fragment(html)
+			doc.search(tags.keys.join(',')).each do |node|
+				url_param = tags[node.name]
+				url_text = node[url_param]
+				new_url = base_url.merge(url_text)
+				if url_text != new_url.to_s
+					changed = true
+					node[url_param] = new_url
+				end
+			end
+			return nil if !changed
+			return doc.to_html
+		end
 
 	end
 end

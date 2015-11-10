@@ -1,15 +1,18 @@
 ThinkingSphinx::Index.define :script, :with => :active_record, :delta => ThinkingSphinx::Deltas::DelayedDelta do
 
 	# fields
-	indexes name, :sortable => true
-	indexes description
-	indexes additional_info
+	indexes localized_names.attribute_value, :as => 'name'
+	indexes localized_descriptions.attribute_value, :as => 'description'
+	indexes localized_additional_infos.attribute_value, :as => 'additional_info'
+
 	indexes user.name, :as => :author
 
 	# attributes
-	has :id, :created_at, :code_updated_at, :total_installs, :daily_installs
+	has :created_at, :code_updated_at, :total_installs, :daily_installs, :default_name, :sensitive
+	# int is default and unsigned, we deal with negatives
+	has :fan_score, :type => :bigint
 
-	where 'script_type_id = 1 and script_delete_type_id is null and !uses_disallowed_external'
+	where 'script_type_id = 1 and script_delete_type_id is null'
 
 	set_property :field_weights => {
 		:name => 10,

@@ -1,0 +1,507 @@
+zh-TW:
+  layouts:
+    application:
+      script_list: "腳本列表"
+      forum: "論壇"
+      help: "說明文件"
+      sign_in: "登入"
+      search: "搜尋腳本"
+  helpers:
+    application:
+      time_ago:
+        minutes:
+          other: "%{count} 分鐘前"
+        hours:
+          other: "%{count} 小時前"
+        days:
+          other: "%{count} 天前"
+  scripts:
+    created_date: "建立日期"
+    updated_date: "更新日期"
+    total_installs: "安裝總數"
+    daily_installs: "今日安裝"
+    ratings: "評價"
+    author_name: "作者"
+    version_number: "版本"
+    license: "授權條款"
+    no_license: "未知"
+    compatibility: "相容性"
+    compatible_with_browser: "相容於 %{browser}"
+    incompatible_with_browser: "不相容於 %{browser}"
+    applies_to: "腳本執行於"
+    applies_to_link_title:
+      other: "瀏覽其他 %{count} 個執行於 %{site} 的腳本"
+    applies_to_all: "所有網站"
+    additional_info: "腳本說明"
+    install: "安裝腳本"
+    install_help: "?"
+    install_help_title: "如何安裝"
+    library_instructions_html: "此腳本不應該直接安裝，它是一個供其他腳本使用的函式庫。欲使用本函式庫，請在腳本 metadata 寫上： %{code}"
+    deleted_notice: "此腳本已被刪除。"
+    inactive_pending_changes: "該腳本因不符合 %{site_name} 相關規定而被停用。"
+    inactive_pending_changes_for_previous_version: "該腳本的此一版本因不符合 %{site_name} 相關規定而被停用。"
+    version_notice_html: "目前為 %{date} 提交的版本，檢視 %{latest_version_link}。"
+    version_notice_latest_version_link: "最新版本"
+    info_page: "資訊"
+    code_page: "代碼"
+    history_page: "歷史"
+    feedback_page: "反饋 (%{count})"
+    stats_page: "統計"
+    derivatives_page: "衍生"
+    update_page: "更新"
+    sync_page: "同步"
+    delete_page: "刪除"
+    delete_explanation: "刪除腳本將導致腳本只能被您以及管理員查看。你可以在任何時間取消刪除腳本這個操作。"
+    delete_update_behaviour: "您希望如何處理之前安裝了這個腳本的用戶？"
+    delete_update_behaviour_1: "保留當前版本。"
+    delete_update_behaviour_2: "更新到一個空白腳本。該項適用於當腳本對網站產生負面影響時。"
+    delete_permanently_heading: "永久刪除"
+    delete_permanently_explanation: "永久刪除將刪除該腳本以及討論區、管理員操作之外的所有記錄。永久刪除不可反悔，即使是管理員也不得還原腳本。"
+    delete_permanently_confirm: "你確認永久刪除這個腳本嗎？這個操作不可還原。"
+    delete_permanently_submit: "請求永久刪除"
+    delete_permanently_notice: "永久刪除請求已記錄，請等候管理員審覈通過。"
+    delete_permanently_already_requested: "您在 %{datetime} 請求了永久刪除。"
+    cancel_delete_permanently_submit: "取消永久刪除請求"
+    cancel_delete_permanently_notice: "您請求的永久刪除已取消。"
+    history_title: "%{script_name} - 版本歷史"
+    history_only_code_changes_info: "這裡只顯示彼此間有代碼差異的版本。"
+    history_all_changes_link: "顯示所有版本。"
+    history_all_changes_info: "這裡顯示腳本的所有版本。"
+    history_only_code_changes_link: "只顯示彼此間有代碼差異的版本。"
+    diff_button: "檢視版本差異"
+    code_title: "%{script_name} - 原始程式碼"
+    code_highlighting_disabled: "程式碼大小超過 %{size}，因此已停用語法色彩標示以防您的瀏覽器當機。"
+    feedback_title: "%{script_name} - 反饋"
+    feedback_no_discussions_html: "尚無相關討論，%{start_first_discussion_link}"
+    feedback_start_first_discussion_link: "成為第一個討論該腳本的人吧。"
+    feedback_start_discussion_link: "發佈一個新的討論主題"
+    feedback_discussions_heading: "論壇上相關的討論主題"
+    feedback_favoriters_heading: "粉絲"
+    feedback_favoriters_user_list_intro: "這個腳本的粉絲："
+    feedback_no_favoriters: "暫時沒有人收藏這個腳本 :<"
+    feedback_sign_in_to_favorite: "登入後即可將此腳本新增至我的最愛。"
+    stats_title: "%{script_name} - 統計"
+    stats_daily_installs_heading: "每日安裝數"
+    stats_daily_update_checks_heading: "每日更新檢查"
+    stats_daily_installs_date_column_heading: "日期"
+    stats_daily_installs_install_count_column_heading: "安裝數"
+    stats_daily_installs_update_check_count_column_heading: "檢查更新"
+    stats_raw_data_header: "原始資料"
+    stats_download_raw_data_html: "統計資料下載: %{links}"
+    stats_no_data: "無"
+    derivatives_title: "%{script_name} - 衍生腳本"
+    derivatives_intro: "這些腳本可能衍生自您的腳本（或您的腳本可能衍生於他們的腳本）。如果您發現了未經授權使用您代碼的情況，請對其發起討論來檢舉該腳本。"
+    derivatives_code_matches_info_html: "下列由他人發佈的腳本包含至少 %{match_size} 字元的代碼與您的腳本代碼相同。這個監視系統僅檢查小於 %{max_size} 的腳本，並且上次執行在%{last_run}。"
+    derivatives_namespace_matches_info_html: "下列由他人發佈的腳本使用了 <code>%{namespace}</code>："
+    derivatives_name_matches_info: "下列由他人發佈的腳本和您的腳本有著相似名稱："
+    derivatives_script_html: "%{script_link} ，作者： %{user_link} ，授權條款： %{license}"
+    derivatives_script_with_code_line_html: "%{script_lines_link}，作者： %{user_link} ，授權條款： %{license}"
+    script_lines_link: "%{script_name}，第 %{start} 至 %{end} 行"
+    listing_title_all_sites: "執行於所有網站的使用者腳本"
+    listing_description_all_sites: "對所有網站新增功能或解決 bug 的使用者腳本"
+    listing_title_for_site: "執行於 %{site} 的使用者腳本"
+    listing_description_for_site: "對 %{site} 新增功能或解決 bug 的使用者腳本"
+    listing_title_for_search: "「%{search_string}」相關腳本的搜尋結果"
+    listing_title_for_code_search: "「%{search_string}」相關腳本的搜尋結果"
+    listing_title_generic: "使用者腳本"
+    listing_title_for_favorites: "%{user_name} 的 %{set_name}"
+    listing_description_generic: "對您所使用的網站新增功能或解決 bug 的使用者腳本"
+    listing_sort_label: "排序："
+    listing_sort_relevance: "相關性"
+    listing_sort_daily_installs: "今日安裝"
+    listing_sort_total_installs: "安裝總數"
+    listing_sort_ratings: "評價"
+    listing_sort_created_date: "建立日期"
+    listing_sort_updated_date: "更新日期"
+    listing_sort_name: "腳本名稱"
+    listing_filter_by_site_label: "依網站篩選："
+    listing_filter_by_site_disable: "所有腳本"
+    listing_filter_by_site_all_sites: "(全域執行)"
+    listing_filter_by_site_more_sites: "更多…"
+    listing_no_scripts: "找不到相關腳本 :<"
+    listing_created_feed: "新出爐的腳本"
+    listing_updated_feed: "最近更新的腳本"
+    listing_none: "(無)"
+    import: "匯入腳本"
+    new: "發佈腳本"
+    support_site: "作者的技術支援網站"
+    support_email: "寄郵件給作者以獲取技術支援"
+    contribution_no_amount: "透過捐贈感謝 %{author}。"
+    contribution_with_amount: "透過捐贈感謝 %{author}。建議捐贈 %{amount}。"
+    contribution_bitcoin_no_amount_html: "捐贈比特幣到 %{address} 來感謝 %{author}。"
+    contribution_bitcoin_with_amount_html: "捐贈比特幣到 %{address} 來感謝 %{author}。建議捐贈 %{amount}。"
+    locale_explanation_html: "請選擇與 <code>@name</code>、<code>@description</code> 及第一個「其他資訊」欄位同種語言。"
+    locale_auto_select: "(自動偵測)"
+    sets_label: "已收藏於:"
+    sets_label_no_sets: "腳本收藏"
+    sets_remove_inclusion: "從 %{set_name} 中移除"
+    sets_remove_exclusion: "不從 %{set_name} 中移除"
+    sets_add_inclusion: "新增至 %{set_name}"
+    sets_add_exclusion: "從 %{set_name} 中移除"
+    sets_add_to_new: "加入至 新的收藏集"
+    rules_summary_html: "腳本必須<strong>準確描述</strong>其功能，並且不得<strong>混淆</strong>或<strong>壓縮</strong>，必須尊重<strong>智慧財產權</strong>，以及不得使用白名單之外的<strong>外部腳本</strong>。%{full_rules_link}"
+    rules_summary_link_to_full: "參閲完整規定"
+    syncing_notice_html: "腳本同步狀態為 %{syncing_notice_sync_type}。您在此所作的任何更新，在下次同步時將會被覆寫。"
+    syncing_notice_sync_type_manual: "設定為從 %{sync_identifier} 手動同步"
+    syncing_notice_sync_type_automatic: "設定為從 %{sync_identifier} 自動同步"
+    upload_label: "或上傳："
+    enable_source_code_editor_label: "啟用具有語法色彩標示的原始碼編輯器"
+    changelog_note: "該版本的更新内容："
+    additional_info_note_html: "介紹或說明您的腳本。 %{allowed_elements_link}"
+    preview_additional_info: "預覽"
+    post_new_script: "發佈腳本"
+    post_updated_script: "發佈新版本"
+    type_1_html: "公開的使用者腳本 - 所有人都能瀏覽與使用。"
+    type_2_html: "不在列表中的使用者腳本 - 用於 (半)私有 使用。本站不會有任何站内連結連向此類腳本，但可直接鍵入網址來瀏覽。"
+    type_3_html: "函式庫 - 使用者不應直接安裝此類腳本。開發者可在其他腳本使用 <code>@require</code> 來引用函式庫。"
+    override_warning_checkbox_label: "是否強制儲存？"
+    warning_version_not_incremented_html: "您更新了腳本代碼但未增加 <code>@version</code> 版本號。之前安裝了您的腳本的使用者可能無法自動更新至最新版。"
+    warning_version_missing_html: "您未透過 <code>@version</code> 指定版本號。提供版本號能讓使用者腳本管理器檢查腳本更新。"
+    warning_version_missing_generate_automatically_html: "自動生成 <code>@version</code> 版本號嗎？"
+    warning_namespace_missing_html: "您未透過 <code>@namespace</code> 指定命名空間。命名空間的作用是避免命名衝突，以及當腳本更新或再次安裝時能正確識別。"
+    warning_namespace_missing_generate_automatically_html: "自動生成 <code>@namespace</code> 命名空間嗎?"
+    warning_namespace_changed_html: "您已變更 <code>@namespace</code> 。不同的 <code>@namespace</code> 會讓使用者腳本管理器識別為不同腳本，下次使用者更新時，新版本會被識別為新腳本安裝而與舊版本共存。"
+    warning_potentially_minified_html: "您的腳本看起來好像包含壓縮過的代碼。如果您使用了壓縮過的函式庫，請改爲透過 <code>@require</code> 引用 %{allowed_requires_link} 所提供的腳本。包含了壓縮代碼的腳本將會被刪除。"
+    warning_potentially_minified_allowed_requires_link: "這些網站"
+    additional_info_locale_prompt: "(語言選擇)"
+    additional_info_add_localized: "新增別的語言的「其他資訊」欄位"
+    additional_info_locale_repeated: "對於 '%{locale_code}' 語言，請勿提供多個其他資訊。"
+    localized_additional_info_with_no_name: "您為 '%{locale_code}' 提供了其他資訊，但是腳本沒有指定 <code>@name:%{locale_code}</code>。"
+    code_syncing_from_url_html: "此腳本代碼已設定同步自：%{field}"
+    provide_code_syncing_from_url_html: "%{site_name} 可以匯入您在其他網站託管的腳本，例如版本控制系統 (如 GitHub)、您自己的伺服器、或其他使用者腳本託管網站。要使用該功能，請提供一個網址：%{field}"
+    sync_type_intro: "此腳本將會被同步："
+    sync_type_1: "手動 - 只在您選擇更新腳本時才會觸發同步。"
+    sync_type_2: "自動 - 腳本每隔一段時間檢查更新。"
+    sync_type_3: "使用 Webhook - 當您在 Github 更新後，立即自動同步至此。"
+    sync_failed_info_html: "上次嘗試同步於 %{date}，發生了錯誤：%{error}。"
+    sync_success_info_html: "上次成功同步於 %{date}。"
+    sync_never_succeeded: "從未成功同步過。"
+    update_and_sync: "更新設定並同步腳本"
+    update_no_sync: "更新設定"
+    turn_off_syncing: "停用腳本同步功能"
+    additional_info_default_sync_html: "「其他資訊」預設值 (應與 <code>@name</code> 使用同種語言)"
+    additional_info_localized_sync_html: "當地語系化 (應與 <code>@name:XX</code> 使用同種語言)"
+    sync_url_placeholder: "(網址)"
+    screenshots_explanation: "您可以上傳 %{number} 張不大於 %{size} 的格式為 PNG、GIF 或 JPEG 的預覽圖"
+    screenshots_add: "新增："
+    screenshots_remove: "移除"
+    replacement_script_explanation: "(可選) 您可以選擇另一個腳本來取代目前的腳本。此腳本的使用者檢查更新時，他們將會被重新導向到新的腳本。請輸入替代腳本網址："
+    diff_title: "%{script} - 版本差異"
+    diff_old_version: "之前:"
+    diff_new_version: "之後:"
+    diff_lines_of_context: "上下文行數:"
+    diff_ignore_whitespace: "忽視空白字元的變更"
+    diff_refresh: "重新載入"
+    diff_no_change: "未發現差異。"
+    good_rating_explanation: "給予好評或加入我的最愛的使用者數目"
+    ok_rating_explanation: "給予普評的使用者數目"
+    bad_rating_explanation: "給予差評的使用者數目"
+    write_your_own_html: "%{post_a_script_link}（或是 %{learn_to_write_scripts_link}）"
+    post_a_script_link_text: "新增一個你寫的腳本"
+    learn_to_write_scripts_link_text: "學習如何建立一個"
+    feedback_suggestion_html: "嘗試過這個腳本之後，你可以 %{feedback_link}。"
+    feedback_link_text: "發表問題、評論、或檢舉"
+    approve_redistribution_explanation: "%{site_name} 可以告訴其它網站，是否允許你的腳本被轉貼。即使這沒有包括在你所選擇的授權條款中。"
+    approve_redistribution_use_user_setting: "使用帳戶預設值（%{user_setting}）"
+    approve_redistribution_use_user_setting_not_set: "還未設定"
+    approve_redistribution_true: "我 允許 此腳本可以被其它網站轉貼"
+    approve_redistribution_false: "我 不要 其它網站轉貼我的腳本"
+    redistributable_title: "允許轉貼的腳本"
+    redistributable_page_description: "這些腳本的作者明確許可、同意你將腳本轉貼到其它網站。有些腳本或許會有額外關於轉貼的限制，詳細規定請參考各腳本的授權條款。"
+    adult_content: "成人內容"
+    adult_content_self_report: "這個腳本含有成人內容，或者它作用於含有成人內容的站點。"
+    adult_content_self_report_explanation: "%{site_name} 允許腳本含有成人內容，但是他們必須被標記；這樣用戶可以選擇是否顯示這類信息。"
+    not_adult_content_self_report_html: "這個腳本 <strong>不包含</strong> 成人內容且 <strong>不作用於</strong> 包含成人內容的站點。"
+    not_adult_content_self_report_explanation: "%{site_name} 允許腳本含有成人內容，但是他們必須被標記；這樣用戶可以選擇是否顯示這類信息。這個腳本被自動標記為含有成人內容。您可以請求取消這個標記，該請求將由管理員進行審查。"
+    adult_content_on_greasy_logged_in_error: "這個腳本對您當前的 %{edit_account_link:Greasy Fork 賬戶設定} 不合適。"
+    adult_content_on_greasy_not_logged_in_error: "這個腳本不對遊客開發。請%{login_link:登錄}并確認您的 Greasy Fork 賬戶設定。"
+    non_adult_content_on_sleazy: "這個腳本在這個網站上不可用。"
+    adult_marker: "(成人)"
+    deleted_marker: "(已移除)"
+    locked_marker: "(已鎖定)"
+    unlisted_marker: "(不公開)"
+    library_marker: "(函式庫)"
+  script_sets:
+    favorites_name: "我的最愛"
+    delete: "刪除腳本收藏集"
+    delete_confirmation: "您確定要刪除這個腳本收藏集嗎？"
+    site_default_sort: "(預設值)"
+  forum_discussions:
+    listing_no_script_no_reply_html: "%{discussion_link} 由 %{original_poster_link} 發表於 %{original_post_date}"
+    listing_no_script_with_reply_html: "%{discussion_link} 由 %{original_poster_link} 發表於 %{original_post_date}，最後回覆由 %{last_commenter_link} 發表於 %{last_comment_date}"
+    listing_with_script_no_reply_html: "%{script_link}: %{discussion_link} 由 %{original_poster_link} 發表於 %{original_post_date}"
+    listing_with_script_with_reply_html: "%{script_link}: %{discussion_link} 由 %{original_poster_link} 發表於 %{original_post_date}，最後回覆由 %{last_commenter_link} 發表於 %{last_comment_date}"
+  home:
+    title: "%{site_name} - 安全又好用的使用者腳本分享站"
+    welcome: "歡迎來到 %{site_name}，這是一個使用者腳本分享站。"
+    sleazy_title: "%{site_name} - 安全又好用的成人使用者腳本分享站"
+    sleazy_welcome: "歡迎來到 %{site_name}，這是一個成人使用者腳本分享站。"
+    explain_user_scripts_heading: "使用者腳本是什麼？"
+    explain_user_scripts_html: "使用者腳本讓您控制您的瀏覽體驗。當您安裝後，腳本將自動為網頁增強功能、使用簡易或移除煩人的東西。在 %{site_name} 上的腳本均由其它使用者編寫并与這個世界分析。他們可以免費、簡單的使用。"
+    how_to_install_user_scripts_heading: "我應該如何安裝使用者腳本？"
+    how_to_install_user_scripts_html: "首先，您需要安裝一個使用者腳本管理器。對 Firefox 瀏覽器來說，最好的選擇是 %{gm_link:Greasemonkey}；對 Chrome 瀏覽器則是 %{tm_link:Tampermonkey}；當然，也有%{other_managers_link:其它的選擇} 。當您安裝了使用者腳本管理之後，您可以在 %{site_name} 尋找您喜歡的腳本冰點擊綠色的「安裝」按鈕。腳本安裝完畢后將在您訪問網站的時候自動啓用。"
+    scripts_sample: "腳本實例"
+    scripts_sample_more: "更多…"
+  users:
+    sign_in_title: "登入  %{site_name}"
+    sign_in_description: "登入 %{site_name} 可以讓您發佈腳本，以及反饋其他人的腳本。如果您只想瀏覽或安裝腳本，則無需登入。"
+    sign_in_external: "透過外部帳號登入"
+    sign_in_password: "使用本站帳密登入"
+    sign_in_email_used_no_external_services_html: "「%{email}」已被使用者 「%{user_name}」註冊。如果這個帳號是你的並且您想增加 %{provider} 為可選擇的登入入口，請先以本站帳密%{sign_in_link}本站，本站會將 %{provider} 登入入口對應到您的帳號。"
+    sign_in_email_used_with_external_services_html: "「%{email}」已被使用者 「%{user_name}」註冊，該帳號也透過 %{existing_providers} 登入。如果這個帳號是你的並且您想增加 %{provider} 為可選擇的登入入口，請先以本站帳密%{sign_in_link}本站，本站會將 %{provider} 登入入口對應到您的帳號。"
+    sign_in_email_used_sign_in_link: "登入"
+    sign_in_email_missing: "%{site_name} 需要一個電子郵件位址才可以建立帳號，但是 %{provider} 並未提供。您可以更新您的 %{provider} 帳號來提供電子郵件位址，然後再次嘗試登入，或者在 %{site_name} 上建立一個 電郵/密碼 登入方式的帳號，然後再新增 %{provider} 登入入口至您的帳號。"
+    sign_in_name_used: "使用者名稱「%{name}」已被使用，請選擇一個不同的名字。"
+    sign_in_name_used_submit: "送出"
+    preview_profile: "預覽"
+    control_panel: "控制台"
+    discussions_on_scripts: "您的腳本討論帖"
+    discussions_on_scripts_feed_alt: "RSS 訂閲"
+    discussions_on_scripts_none: "目前沒有使用者討論您的腳本！"
+    discussions_on_scripts_more: "更多討論…"
+    script_list: "腳本列表"
+    script_list_none: "尚未發佈過腳本。"
+    script_list_none_for_filter: "不存在適用於目前篩選條件的腳本。"
+    script_list_none_same_user_html: "你還沒撰寫任何腳本。%{script_list_none_same_user_info_link}"
+    script_list_none_same_user_info_link_text: "想要現在學習嗎？"
+    deleted_script_list: "已刪除的腳本"
+    sign_out: "登出"
+    edit: "帳號設定"
+    edit_sign_in: "登入方式設定"
+    edit_sign_in_title: "登入方式設定"
+    edit_sign_in_password: "密碼"
+    no_password_set_info: "您的帳號沒有設定密碼。"
+    set_password: "設定密碼"
+    update_password: "更新密碼"
+    update_password_no_match: "兩次輸入的密碼不同。"
+    password_updated: "密碼已更新。"
+    remove_password_info: "您可以移除密碼並只依賴外部帳號登入。"
+    remove_password: "移除密碼"
+    cant_remove_password: "無法移除密碼，否則您會沒有任何方式登入！"
+    cant_remove_sign_in: "無法移除 %{provider} 登入入口，否則您會沒有任何方式登入！"
+    password_removed: "密碼已移除。"
+    edit_sign_in_external: "外部帳號登入方式"
+    external_sign_in_info_no_sign_ins: "您可以使用其他網站帳號登入 %{site_name}。"
+    external_sign_in_info_with_sign_ins: "您目前可以使用下列的外部登入方式。「同步中」的標示代表您的 %{site_name} 訊息（像是使用者名稱和電子郵件位址）將在您登入時更新，保持與外部帳號同步。"
+    external_sign_in_added: "已新增 %{provider} 登入方式。"
+    external_sign_in_updated: "已更新 %{provider} 登入方式。"
+    external_sign_in_removed: "已移除 %{provider} 登入方式。"
+    external_sign_in_failed: "%{provider} 登入失敗：%{error}."
+    external_sign_in_already_used: "新增 %{provider} 登入方式失敗：該登入方式已被使用者「%{user_name}」使用。"
+    syncing_indicator: "(同步中)"
+    enable_syncing: "保持同步"
+    disable_syncing: "取消同步"
+    remove_external_sign_in: "移除"
+    add_external_sign_in_info: "新增登入方式："
+    set_up_webhook: "GitHub 同步設定"
+    author_email_notification_type:
+      none: "腳本收到評論時請不要寄郵件通知我"
+      discussion_only: "腳本收到評論時請發郵件通知我"
+      discussion_and_comment: "腳本收到評論，或這些評論有新回覆時請發郵件通知我"
+      note: "郵件通知包含您在論壇指定的其它項目。"
+    list_display_html:
+      other: "%{user_link} - %{count} 個腳本"
+    listing_number_of_scripts: "腳本數目"
+    listing_new_scripts: "最近發佈腳本時間"
+    listing_updated_scripts: "最近更新腳本時間"
+    listing_registration_date: "註冊日期"
+    locale_prompt: "(語言選擇)"
+    show_ads_description: "顯示廣告以支援 %{site_name} 的網站經營"
+    show_sensitive_description: "顯示含有成人內容的腳本"
+    preferred_markup_description: "該設定將會套用到新的腳本以及新的發言。"
+    flattr_username_description_html: "您的腳本的使用者將被詢問是否要向您的 <ahref=\"https://flattr.com\">Flattr</a> 帳號捐贈。"
+    approve_redistribution_explanation: "%{site_name} 可以告訴其它網站，是否允許你的腳本被轉貼。即使這沒有包括在你所選擇的授權條款中。你可以在各別腳本設定中覆蓋此項目。"
+    approve_redistribution_true: "我 允許 此腳本可以被其它網站轉貼"
+    approve_redistribution_false: "我 不要 其它網站轉貼我的腳本"
+    greasy_fork_scripts_link:
+      other: "%{user_name} 也有 %{count} 個腳本在 Greasy Fork 上。"
+  help:
+    installing_user_scripts:
+      title: "如何安裝使用者腳本"
+      intro: "要使用使用者腳本，您通常需要安裝一個瀏覽器擴展。"
+      firefox: "Firefox 或相關瀏覽器：%{gm_link:Greasemonkey}。"
+      chrome: "Google Chrome、Chromium 或相關瀏覽器：%{tm_link:Tampermonkey}。"
+      opera_15_plus: "Opera (版本 15 及以後)：%{tm_link:Tampermonkey} 或 %{vm_link:Violentmonkey}。"
+      opera_12: "Opera 版本 12 以及之前的版本 %{opera_doc_link:原生支援使用者腳本}。當然，您也可以使用 %{vm_link:Violentmonkey}  擴展用於提供更好用的界面以及增強的兼容性。"
+      installing_scripts: "當使用者腳本在您的瀏覽器啓用後，瀏覽到一個 Greasy Fork 的腳本并單擊綠色的「安裝」按鈕。"
+    meta_keys:
+      title: "%{site_name} 讀取的 meta keys"
+      intro_html: "這是 %{site_name} 會讀取的 <a href=\"http://wiki.greasespot.net/Metadata_Block\">使用者腳本 meta keys</a> 的清單。腳本中可以有不在此清單中的 key，也會存在使用者安裝的腳本中，但不會對 %{site_name} 的介面有任何效果。"
+      name: "腳本名稱，用來作為標題與連結中使用，必填。"
+      name_localized_html: "此腳本在不同語系中的名稱，XX 是 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 的兩字母代碼</a> ，YY 則是非必要的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 國家代碼</a>。當使用者在符合的語系中瀏覽時就會蓋過 <code>@name</code> 顯示。"
+      description: "必須在腳本名稱下方以文字說明腳本內容。"
+      description_localized_html: "此腳本在不同語系中的描述，XX 是 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 的兩字母代碼</a> ，YY 則是非必要的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 國家代碼</a>。當使用者在符合的語系中瀏覽時就會蓋過 <code>@description</code> 顯示。"
+      namespace_html: "使用者腳本管理器將會透過 <code>@namespace</code> 與 <code>@name</code> 的組合來判斷是否已安裝該腳本。%{site_name} 要求必填此欄位，若於更新時修改了此欄位也會警告您。"
+      version_html: "使用 <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">Mozilla 版本格式</a> 的腳本版本號。版本號將顯示於腳本的資訊頁中，%{site_name} 需要此欄位，並會在數值變小時，或是程式碼變動後版本號卻沒有增加時警告您。"
+      include: "描述此腳本會在哪些網頁執行。此清單將被處理並顯示於腳本的資訊頁，並用來分類腳本。"
+      require_html: "在腳本中引入的外部 JavaScript，請參考 %{external_script_link}。"
+      require_external_script_link_text: "外部腳本的使用規範"
+      updateURL: "描述使用者腳本管理器要從何取得更新。%{site_name} 將會移除這些更新網址，目的是讓從 %{site_name} 安裝的腳本只能由 %{site_name} 更新。"
+      license: "授權條款的名稱或是網址，用來描述其他人是否可以複製或修改此腳本。若缺少授權條款，就代表使用者可安裝腳本作為個人使用，但不得再次進行散佈。腳本的資訊頁將會顯示使用的授權條款。"
+      supportURL: "使用者能取得腳本的技術支援之處（例如：臭蟲追蹤系統、討論區、電子郵件信箱等等）。技術支援網址將會顯示在腳本的反饋頁。"
+      contributionURL_html: "腳本作者的捐贈網址。捐贈網址會顯示在腳本的反饋頁。網址可以是 http、https 或者比特幣協議網址。例如：要連結到 PayPal 捐贈頁面，可使用 <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a> 的格式，請用您自己的電子郵件位址替代前述範例的位址。"
+      contributionAmount_html: "建議的捐贈金額，與 <code>@contributionURL</code> 一起使用。"
+      compatible_html: "標示此腳本與哪些瀏覽器相容。相容性資訊將會顯示在腳本的頁面。可使用例如：<code>@compatible firefox 必須停用彈出型視窗封鎖器</code> 的格式來記錄關於相容性的其他資訊。可使用的瀏覽器有：%{browsers}。"
+      incompatible_html: "標示此腳本與哪些瀏覽器不相容。相容性資訊將會顯示在腳本的頁面。可使用例如：<code>@incompatible firefox 從 Firefox 23 起失效</code> 的格式來記錄關於相容性的其他資訊。可使用的瀏覽器有：%{browsers}。"
+    writing_user_scripts:
+      title: "如何撰寫腳本"
+      content_html: "<p>撰寫使用者腳本需要 JavaScript 相關知識。<a href=\"http://wiki.greasespot.net/Tutorials\">GreaseSpot 維基上的教學</a> 是個不錯的開端學習 JavaScript 和使用者腳本。察看別人的腳本也很有幫助。你或許對於 %{code_rules_link} 和 %{meta_keys_link} 有興趣。如果需要開發腳本上的幫助，隨時 %{ask_in_forum_link}。</p><p>若要新增腳本至 %{site_name}，需要申請一個帳號。進入你的 %{user_page_link}，點選 %{post_new_script_link} 連結</p>"
+      ask_in_forum_link_text: '在論壇中發問'
+      user_page_link_text: '使用者頁面'
+      post_new_script_link_text: '新增腳本'
+    code_rules:
+      title: "%{site_name} 的腳本規定"
+      content_html: "<p>這些對於所有 %{site_name} 上腳本的要求，是為了保持 %{site_name} 腳本的安全與可用性。任何不尊守這些規則的腳本，則可能會被 %{site_name} 管理員刪除。</p>\n<ul>\n  <li>使用者腳本必須包含一份說明，說明腳本會做些什麼，並且不應該有其它未註明、不合理的行為。使用者在安裝腳本前必須知道腳本會做什麼事情。</li>\n  <li>放在此網站上的程式碼不得被壓縮或混淆，使用者有在安裝腳本前有權利去研究並瞭解該腳本。</li>\n  <li>腳本所用到的函式庫應該使用 <code>@require</code> 來引入，除非有技術性的理由無法這麼做。若將函式庫直接內嵌於腳本內，必須註明函式庫的原始碼來自何處（如︰在註解內標示網址、函式庫名稱與版本）。</li>\n  <li>腳本必須尊重他人的版權，包括腳本本身與其它所用到的資源（如︰圖示）。如果你要使用其它人的作品，請遵守他們的許可說明或先向作者取得授權。</li>\n\
+        \  <li>%{external_scripts_link:限制可使用的第三方 JavaScript}</li>\n  %{adult_content_requirement}\n</ul> \n<p>如果發現有腳本違反上述規則，請向管理員回報︰點選該腳本的反饋頁面，發起一個新討論主題，並點選「舉報」選項。</p>\n<p>如果你不認同上述內容， %{contact_link:歡迎一起討論} ！</p>\n"
+      adult_content_rule_html: "<li>腳本若是包含成人內容、或執行的網站中有成人內容，作者應將其標示正確讓使用者去選擇是否要顯示它們。</li>"
+    external_scripts:
+      title: "%{site_name} 對於外部程式碼的政策"
+      content_html: >
+        <p>用戶腳本可以從技術層面上載入並執行其它的腳本。元屬性 %{require_doc_link:<code>@require</code>} 是最簡單的一個方法，但是腳本也可以使用其它方法如
+        XmlHttpRequest 下載一個腳本並插入到 DOM（頁面元素）。</p>
+
+        <p>因爲其靈活性而被很多作者用於合法用途，但是也可以被它人用於插入惡意代碼。%{site_name} 的核心定位之一則是用戶必須能查詢腳本中的代碼。比如說：他們可以隨時更改遠端伺服器上的內容而不提醒用戶或保存歷史記錄，可以針對性的部署不同的代碼給不同的用戶，也可以在腳本函式庫中間插入一小段的惡意代碼避免發現。即使有人檢查過代碼的合法性，也不能保證這個遠端數據在未來也是安全的。</p>
+
+        <p>爲了允許腳本作者繼續使用外部腳本，%{site_name} 引入了一個允許被引入的外部腳本列表。這些站點要求：</p>
+
+        <ul>
+          <li>公開透明</li>
+          <li>不經常更改內容</li>
+          <li>能應用到多個用戶腳本</li>
+        </ul>
+
+        <p>當前允許的地址列表是：</p>
+
+        %{allowed_require_list}
+
+        <p>如果您嘗試提交一個包含 <code>@require</code> 白名單之外的引用，您將不能保存您的腳本。</p>
+
+        <p>如果您希望引入一個第三方函式庫 (例如 jQuery 或 YUI)，請嘗試在上述白名單站點尋找。%{cdnjs_link:cdnjs} 以及
+        %{jsdelivr_link:jsDelivr} 包含了大量的第三方函式庫可供您使用。</p>
+
+        <p>如果您希望使用的腳本不存在於上述站點，您可以 %{contact_link:告知我們}，讓我們告訴您在哪尋找 (或者我們可以自己託管!)。</p>
+
+        <p>如果您希望引入的腳本是您自己編寫的，您可以在 %{site_name} 提交，提交時選中「函式庫」類型即可。然後您就可以引入到您的腳本了。</p>
+    script_rewriting:
+      title: "%{site_name} 會如何改寫發表的腳本"
+      content_html: >
+        <p>使用者腳本在發表到 %{site_name} 上，會依以下的方法改寫︰</p>
+
+        <ul>
+          <li><code>@updateURL</code>、<code>@installURL</code>、和 <code>@downloadURL</code>
+        會被移除。省略這三個標示，表示所有安裝自 %{site_name} 的腳本也會從 %{site_name} 取得更新。</li>
+          <li>假如腳本沒有包含 <code>@version</code> 和 <code>@namespace</code> 的話，會自動加入。這些資訊在更新腳本時會被用來。</li>
+          <li>若缺少 <code>@description</code> 但上個版本中有的話，會延用上個版本的說明。</li>
+          <li>換行會被轉換成 Linux 模式（\n）。</li>
+        </ul>
+    site_feedback_link: "回報關於 %{site_name} 的問題或想法。"
+    credits:
+      title: "榮譽"
+      authors_credit: "貢獻腳本的作者，%{site_name} 不能沒有他們。"
+      developers_credit: "%{site_name} 網站是由 %{developers_link:這些開發者}，與那些回報錯誤、提供建議的使用者所建立。"
+      translators_credit: "%{site_name} 的翻譯來自 %{translators_link:Greasy Translation Force @ Transifex}︰"
+      icons_credit: "討論區的圖示來自 %{vistastylebase} @ %{iconsland}。瀏覽器的圖示來自 %{browserlogos}。"
+    help_with_greasymonkey: "Greasemonkey 使用幫助"
+    contact:
+      title: "聯繫某人"
+      content_html: >
+        <p>有許多方法可以討論 %{site_name} 和其上面的東西。</p>
+
+        <p>你有關於某個腳本的問題或留言嗎？若有，可以從腳本的反饋頁面發起一個新討論。腳本作者會收到關於他所擁有腳本的討論通知。</p>
+
+        <p>你有關於 %{site_name} 本身的問題或留言，或有腳本開發的問題，或希望有人能幫你寫一個腳本嗎？%{forum_link:在論壇上}
+        有最廣大的支援。</p>
+
+        <p>你發現了一個 bug 或有完整構思的點子能幫助 %{site_name} 本身（不是對於 <em>%{site_name} 上的腳本</em>）嗎？%{github_link:把它發表在
+        Github 上。}</p>
+
+        <p>你有私人的問題或留言只想讓站長知道？%{admin_email_link:寄封 e-mail。}</p>
+    privacy_policy:
+      title: "隱私政策"
+      content_html: >
+        <p>這個頁面說明 %{site_name} 會如何記錄或追蹤使用者。如果你有任何疑慮，%{admin_email_link:發封 e-mail 給站長}。</p>
+
+        <h2>主機日誌</h2>
+
+        <p>%{site_name} 會以典型的格式記錄所有連線，包括瀏覽的頁面、IP 位址、和 user agent 字串，這些日誌是用來除錯和分析伺服器的。資料會保留一周，這些資料並不會被分享或公開。</p>
+
+        <h2>腳本統計</h2>
+
+        <p>為了建立統計資料，%{site_name} 會記錄安裝和更新的 requests 包括 IP 位址。這些資料會保留一天，之後會合計成不含 IP
+        位址的統計資料。和 IP 位址有關的資料不會被分享或公開，但統計的資料是公開的。</p>
+
+        <h2>Cookies（未登入時）</h2>
+
+        <p>%{site_name} 會設置暫存的 session 來使用網站的各種功能。這些 cookies 是暫時性的並且會在瀏覽器關閉時清除（根據瀏覽器的設定）。</p>
+
+        <h2>使用者帳號</h2>
+
+        <p>%{site_name} 要求使用者建立一個帳號以張貼腳本、參與討論、和使用一些其它網站功能。當建立帳號時，IP 位址、e-mail、和 user
+        agent 會被永久儲存，部份資訊是其它使用者可見的。</p>
+
+        <p>登入後的動作，如發表腳本和留言，對於其它使用者是可見的。</p>
+
+        <p>如果登入時有勾選「記住我」選項，%{site_name} 會設置一個持久性的 cookie 來保持登入狀態。</p>
+
+        <h2>張貼在 %{site_name} 的腳本</h2>
+
+        <p>%{site_name} 包含使用者生成的內容，並且腳本在安裝後有能力追蹤使用者。</p>
+
+        <h2>第三方函式庫</h2>
+
+        <p>%{site_name} 使用第三方的程式碼來收集統計資料或放置廣告，這些函式庫可能會追蹤使用者。</p>
+  common:
+    error_preamble: "您所發表的帖子內容有點問題..."
+    allowed_elements_link: "(檢視允許使用的 HTML/Markdown 代碼。)"
+    allowed_elements_and_attributes_title: "允許使用的 HTML 元素"
+    allowed_elements_intro: "下列是允許使用的元素和屬性。它們可用於 HTML 和 Markdown (在轉化為HTML後)。"
+    allowed_elements_extra_info: "空白字元將被轉換為 p 或 br 元素。網址將會自動轉為超連結。"
+    not_found_text: "404 - 該網頁不存在。"
+    not_found_title: "404 - 該網頁不存在。"
+    not_found_link_home: "回到首頁。"
+    suggest_locale: "%{site_name} 有%{locale_name}介面可瀏覽。"
+    incomplete_locale: "%{site_name} 的%{locale_name}翻譯進度只有 %{percent}。您可以參與翻譯。"
+    expander_show_more: "顯示更多"
+    expander_show_less: "折疊"
+    advertisement_note: 廣告
+    share: 分享
+  activerecord:
+    attributes:
+      user:
+        name: "使用者名稱"
+        profile: "個人資料"
+        locale: "慣用語言"
+        author_email_notification_type_id: "腳本討論通知設定"
+        show_ads: "顯示廣告"
+        show_sensitive: "成人內容"
+        preferred_markup: "預設文章格式"
+        flattr_username: "Flattr 的使用者名稱"
+      script:
+        name: "名稱"
+        description: "描述"
+        locale: "語言設定"
+        code: "代碼"
+        changelog: "更新紀錄"
+        type: "腳本類型"
+        additional_info: "其他資訊"
+        screenshots: "擷圖"
+        screenshot_caption: "標題"
+        replaced_by_script_id: "替代腳本"
+        approve_redistribution: "轉載"
+  errors:
+    messages:
+      script_missing_name: "必填 - 請透過 <code>@name</code> 指定。"
+      script_missing_description: "必填 - 請透過 <code>@description</code> 指定。"
+      script_name_same_as_description: "不能與名稱相同"
+      script_sync_identifier_bad_protocol: "必須為 HTTP 或 HTTPS URL"
+      script_too_many_screenshots: "上傳的擷圖過多 - 您最多只能上傳 %{number} 張擷圖"
+      cannot_be_self_reference: "不能為相同腳本"
+      cannot_be_deleted_reference: "不能為已刪除腳本"
+      must_be_greasy_fork_script: "必須為本站的腳本"
+      script_update_not_utf8: "上傳之腳本的編碼格式須為 UTF-8"
+      script_disallowed_require: "使用了未經批準的外部腳本: %{code}"
+  opensearch:
+    short_name: "%{site_name} 搜尋"
+    description: "在 %{site_name} 上尋找腳本。"
+    long_name: "%{site_name} 腳本搜尋"
+    attribution: "用戶腳本版權屬於其作者，請在單獨的用戶腳本頁面查詢相關授權"

@@ -2,13 +2,14 @@
 
 // Define the plugin:
 $PluginInfo['GreasyFork'] = array(
-   'Name' => 'GreasyFork',
-   'Description' => 'Greasy Fork customizations',
-   'Version' => '1.0',
-   'Author' => "Jason Barnabe",
-   'RequiredApplications' => array('Vanilla' => '2.1'),
-   'AuthorEmail' => 'jason.barnabe@gmail.com',
-   'AuthorUrl' => 'https://greasyfork.org'
+	'Name' => 'GreasyFork',
+	'Description' => 'Greasy Fork customizations',
+	'Version' => '1.0',
+	'Author' => "Jason Barnabe",
+	'RequiredApplications' => array('Vanilla' => '2.1'),
+	'AuthorEmail' => 'jason.barnabe@gmail.com',
+	'AuthorUrl' => 'https://greasyfork.org',
+	'MobileFriendly' => TRUE
 );
 
 class GreasyForkPlugin extends Gdn_Plugin {
@@ -23,17 +24,14 @@ class GreasyForkPlugin extends Gdn_Plugin {
 			->Where('u.UserID', $Sender->User->UserID);
 
 		$Row = $UserModel->SQL->Get()->FirstRow();
-		echo '<dt><a href="/users/'.$Row->MainUserID.'">Greasy Fork Profile</a></dt><dd></dd>';
+		echo '<dt><a href="/users/'.$Row->MainUserID.'">'.T('Greasy Fork Profile').'</a></dt><dd></dd>';
 	}
 
 	# Add CSS, JS, and link to main site
 	public function Base_Render_Before($Sender) {
 		$Sender->AddCssFile($this->GetResource('global.css', FALSE, FALSE));
+		$Sender->AddCssFile('https://fonts.googleapis.com/css?family=Open+Sans');
 		$Sender->AddJsFile($this->GetResource('global.js', FALSE, FALSE));
-		if ($Sender->Menu) {
-			$Sender->Menu->AddLink('Greasy Fork', T('Greasy Fork'), 'https://greasyfork.org/', FALSE, array('class' => 'HomeLink'));
-			# added to config: $Configuration['Garden']['Menu']['Sort'] = ['Greasy Fork', 'Dashboard', 'Discussions'];
-		}
 	}
 
 	# Going to render our own category selector
@@ -76,4 +74,97 @@ class GreasyForkPlugin extends Gdn_Plugin {
 		}
 		return false;
 	}
+
+	public function PostController_AfterDiscussionSave_Handler(&$Sender){
+		$this->SendNotification($Sender, true);
+	}
+
+	public function PostController_AfterCommentSave_Handler(&$Sender){
+		$this->SendNotification($Sender, false);
+	}
+
+	private function SendNotification($Sender, $IsDiscussion) {
+		$Session = Gdn::Session();
+
+		# don't send on edit
+		if ($Sender->RequestMethod == 'editdiscussion' || $Sender->RequestMethod == 'editcomment') {
+			return;
+		}
+
+		# discussion info
+		$UserName = $Session->User->Name;
+		$DiscussionID = $Sender->EventArguments['Discussion']->DiscussionID;
+		$DiscussionName = $Sender->EventArguments['Discussion']->Name;
+		$ScriptID = $Sender->EventArguments['Discussion']->ScriptID;
+
+		# no script - do nothing
+		if (!isset($ScriptID) || !is_numeric($ScriptID)) {
+			return;
+		}
+
+		# look up the user we might e-mail
+		$DiscussionModel = new DiscussionModel();
+		$prefix = $DiscussionModel->SQL->Database->DatabasePrefix;
+		$DiscussionModel->SQL->Database->DatabasePrefix = '';
+		$UserInfo = $DiscussionModel->SQL->Select('u.author_email_notification_type_id, u.email, u.name, s.default_name script_name, u.id, ua.UserID forum_user_id')
+			->From('scripts s')
+			->Join('users u', 's.user_id = u.id')
+			->Join('GDN_UserAuthentication ua', 'ua.ForeignUserKey = u.id')
+			->Where('s.id', $ScriptID)
+			->Get()->NextRow(DATASET_TYPE_ARRAY);
+		$DiscussionModel->SQL->Database->DatabasePrefix = $prefix;
+
+		$NotificationPreference = $UserInfo['author_email_notification_type_id'];
+
+		# 1: no notifications
+		# 2: new discussions
+		# 3: new discussions and comments
+
+		# no notifications
+		if ($NotificationPreference != 2 && $NotificationPreference != 3) {
+			return;
+		}
+
+		# discussions only
+		if ($NotificationPreference == 2 && !$IsDiscussion) {
+			return;
+		}
+
+		# don't self-notify
+		if ($UserInfo['forum_user_id'] == $Session->User->UserID) {
+			return;
+		}
+
+		$NotificationEmail = $UserInfo['email'];
+		$NotificationName = $UserInfo['name'];
+		$ScriptName = $UserInfo['script_name'];
+		if ($IsDiscussion) {
+			$ActivityHeadline = $UserName.' started a discussion on '.$ScriptName;
+		} else {
+			$ActivityHeadline = $UserName.' commented on a discussion about '.$ScriptName;
+		}
+		$UserId = $UserInfo['id'];
+		$AccountUrl = 'https://greasyfork.org/users/'.$UserId;
+
+		$Email = new Gdn_Email();
+		$Email->Subject(sprintf(T('[%1$s] %2$s'), Gdn::Config('Garden.Title'), $ActivityHeadline));
+		$Email->To($NotificationEmail, $NotificationName);
+		if ($IsDiscussion) {
+			$Email->Message(sprintf("%s started a discussion '%s' on your script '%s'. Check it out: %s\n\nYou can change your notification settings on your Greasy Fork account page at %s", $UserName, $DiscussionName, $ScriptName, Url('/discussion/'.$DiscussionID.'/'.Gdn_Format::Url($DiscussionName), TRUE), $AccountUrl));
+		} else {
+			$Email->Message(sprintf("%s commented on the discussion '%s' on your script '%s'. Check it out: %s\n\nYou can change your notification settings on your Greasy Fork account page at %s", $UserName, $DiscussionName, $ScriptName, Url('/discussion/'.$DiscussionID.'/'.Gdn_Format::Url($DiscussionName), TRUE), $AccountUrl));
+		}
+
+		#print_r($Email);
+		#die;
+
+		try {
+			$Email->Send();
+		} catch (Exception $ex) {
+			# report but keep going
+			echo $ex;
+		}
+
+	}
+
 }

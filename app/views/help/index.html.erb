@@ -1,25 +1,29 @@
-<%- title 'Help' %>
-<%- description 'Help with Greasy Fork.' %>
+<%- title t('layouts.application.help') %>
 
 <ul>
-	<li><%=link_to 'How to install user scripts', help_installing_user_scripts_path%></li>
-	<li><%=link_to 'Help with Greasemonkey', 'http://wiki.greasespot.net/Troubleshooting_(Users)'%></li>
-	<li><%=link_to 'Rules for code posted on Greasy Fork', help_code_rules_path%></li>
-	<li><%=link_to 'Rules for code including external scripts', help_external_scripts_path%></li>
-	<li><%=link_to 'Allowed markup for posting on Greasy Fork', help_allowed_markup_path%></li>
-	<li><%=link_to 'How Greasy Fork will rewrite posted scripts', help_rewriting_path%></li>
-	<li><%=link_to 'Report issue or post idea for Greasy Fork itself', 'https://github.com/JasonBarnabe/greasyfork/issues'%></li>
-	<li><%=link_to 'Contact someone', help_contact_path%></li>
-	<li><%=link_to 'Credits', help_credits_path%></li>
+	<li><%=link_to t('help.installing_user_scripts.title'), help_installing_user_scripts_path%></li>
+	<li><%=link_to t('help.writing_user_scripts.title'), help_writing_user_scripts_path%></li>
+	<li><%=link_to t('help.help_with_greasymonkey')%></li>
+	<li><%=link_to t('help.meta_keys.title', site_name: site_name), help_meta_keys_path%></li>
+	<li><%=link_to t('help.code_rules.title', site_name: site_name), help_code_rules_path%></li>
+	<li><%=link_to t('help.external_scripts.title', site_name: site_name), help_external_scripts_path%></li>
+	<li><%=link_to t('common.allowed_elements_and_attributes_title', site_name: site_name), help_allowed_markup_path%></li>
+	<li><%=link_to t('help.script_rewriting.title', site_name: site_name), help_rewriting_path%></li>
+	<li><%=link_to t('help.site_feedback_link'), 'https://github.com/JasonBarnabe/greasyfork/issues'%></li>
+	<li><%=link_to t('help.contact.title'), help_contact_path%></li>
+	<li><%=link_to t('help.credits.title'), help_credits_path%></li>
+	<li><%=link_to t('help.privacy_policy.title'), help_privacy_path%></li>
 </ul>
 
 <p>And, not really help topics, but because I have nowhere else to post these...</p>
 
 <ul>
+	<li><%=link_to 'User list', users_path%></li>
 	<li><%=link_to 'Libraries', libraries_scripts_path%></li>
-	<li><%=link_to 'Scripts including disallowed external scripts', under_assessment_scripts_path%></li>
+	<li><%=link_to t('scripts.redistributable_title'), redistributable_scripts_path%></li>
 	<li><%=link_to 'Reported scripts', reported_scripts_path%></li>
 	<li><%=link_to 'Moderator log', moderator_actions_path%></li>
+	<li><%=link_to 'Code search', code_search_scripts_path%></li>
 </ul>
 
 <% if !current_user.nil? and current_user.moderator? %>
@@ -28,3 +32,5 @@
 		<li><%=link_to 'Disallowed code patterns', help_disallowed_code_path%></li>
 	</ul>
 <% end %>
+
+<p>Greasy Fork is open source (GPLv3 licensed). You can <a href="https://github.com/JasonBarnabe/greasyfork">view its source on GitHub</a>.</p>

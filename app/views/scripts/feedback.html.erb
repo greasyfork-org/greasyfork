@@ -1,14 +1,78 @@
-<%- title @script.name + ' - Feedback' %>
-<%- description 'Feedback on ' + @script.name %>
+<%- title t('scripts.feedback_title', :script_name => @script.name(I18n.locale)) %>
+<%- description 'Feedback on ' + @script.name(I18n.locale) %>
 
+<% if !@script.contribution_url.nil?
+	is_bitcoin = @script.contribution_url.starts_with?('bitcoin:') %>
+	<p id="contribution">
+		<% if @script.contribution_amount.nil? %>
+			<% if is_bitcoin %>
+				<%=t('scripts.contribution_bitcoin_no_amount_html', {:author => @script.user.name, :address => link_to(@script.contribution_url.sub('bitcoin:', ''), @script.contribution_url, {:rel => 'nofollow'})})%>
+			<% else %>
+				<%=link_to t('scripts.contribution_no_amount', {:author => @script.user.name}), @script.contribution_url, {:rel => 'nofollow'}%>
+			<% end %>
+		<% else %>
+			<% if is_bitcoin %>
+				<%=t('scripts.contribution_bitcoin_with_amount_html', {:author => @script.user.name, :amount => @script.contribution_amount, :address => link_to(@script.contribution_url.sub('bitcoin:', ''), @script.contribution_url, {:rel => 'nofollow'})})%>
+			<% else %>
+				<%=link_to t('scripts.contribution_with_amount', {:author => @script.user.name, :amount => @script.contribution_amount}), @script.contribution_url, {:rel => 'nofollow'}%>
+			<% end %>
+		<% end %>
+	</p>
+<% end %>
+
+<% if !@script.support_url.nil? %>
+	<p id="support-url">
+		<% if @script.support_url.start_with?('mailto') %>
+			<%=link_to t('scripts.support_email'), @script.support_url, {:rel => :nofollow}%>
+		<% else %>
+			<%=link_to t('scripts.support_site'), @script.support_url, {:rel => :nofollow}%>
+		<% end %>
+	</p>
+<% end %>
+
+<h3><%=t('scripts.feedback_discussions_heading')%></h3>
+<% #if we're showing a lot of them, have a link on top too
+if @script.discussions.length > 10 %>
+	<p><a id="start-discussion-top" href="<%=forum_path%>post/discussion?script=<%=@script.id%>" rel="nofollow"><%=t('scripts.feedback_start_discussion_link')%></a></p>
+<% end %>
 <% if @script.discussions.empty? %>
-	<p id="no-discussions">No discussions posted yet. <a id="start-discussion" href="/forum/post/discussion?script=<%=@script.id%>" rel="nofollow">Be the first to discuss this script.</a></p>
+	<p id="no-discussions">
+		<%=t('scripts.feedback_no_discussions_html', :start_first_discussion_link => "<a id=\"start-discussion\" href=\"#{forum_path}post/discussion?script=#{@script.id}\" rel=\"nofollow\">#{t('scripts.feedback_start_first_discussion_link')}</a>".html_safe)%>
+	</p>
 <% else %>
 	<ul id="discussions">
 		<% @script.discussions.reverse.each do |discussion| %>
-			<li class="<%=discussion_class(discussion)%>"><%=link_to discussion.name, discussion.url, {:rel => 'nofollow'}%> by <%=link_to discussion.original_poster.name, user_path(discussion.original_poster), {:rel => 'nofollow'}%><%if !discussion.created.nil?%>, <%=markup_date(discussion.created)%><% end %></li>
+			<li class="<%=discussion_class(discussion)%>">
+				<%= render :partial => 'forum_discussions/discussion', :locals => {:discussion => discussion}%>
+			</li>
 		<% end %>
 	</ul>
-
-	<p id="no-discussions"><a id="start-discussion" href="/forum/post/discussion?script=<%=@script.id%>" rel="nofollow">Start a new discussion on this script.</a></p>
+	<p><a id="start-discussion-bottom" href="<%=forum_path%>post/discussion?script=<%=@script.id%>" rel="nofollow"><%=t('scripts.feedback_start_discussion_link')%></a></p>
 <% end %>
+
+<h3 id="feedback-favoriters"><%=t('scripts.feedback_favoriters_heading')%></h3>
+<div>
+	<% if @script.favoriters.empty? %>
+		<%=t('scripts.feedback_no_favoriters')%>
+	<% else %>
+		<%=t('scripts.feedback_favoriters_user_list_intro')%>
+		<ul class="inline-list"><% @script.favoriters.each do |user| %><li><%=link_to user.name, user%></li><% end %></ul>.
+	<% end %>
+</div>
+<p>
+	<% if user_signed_in? %>
+		<%=form_tag(add_to_script_set_path) do |f| %>
+			<input type="hidden" name="script_id" value="<%=@script.id%>">
+			<input type="hidden" name="return_to" value="<%=url_for(:anchor => 'feedback-favoriters')%>">
+			<% if @script.favoriters.find{|f| f.id == current_user.id}.nil? %>
+				<input type="hidden" name="action-set" value="ai-fav">
+				<input type="submit" value="<%=t('scripts.sets_add_inclusion', :set_name => t('script_sets.favorites_name'))%>">
+			<% else %>
+				<input type="hidden" name="action-set" value="ri-fav">
+				<input type="submit" value="<%=t('scripts.sets_remove_inclusion', :set_name => t('script_sets.favorites_name'))%>">
+			<% end %>
+		<% end %>
+	<% else %>
+		<%=link_to(t('scripts.feedback_sign_in_to_favorite'), new_user_session_path(:return_to => url_for(:anchor => 'feedback-favoriters')), {:rel => :nofollow})%>
+	<% end %>
+</p>

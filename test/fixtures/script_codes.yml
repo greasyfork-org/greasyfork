@@ -94,7 +94,7 @@ eight:
 
 nine:
   id: 9
-  code: |
+  code: |-
     // ==UserScript==
     // @name		A Test!
     // @description		Unit test.
@@ -144,6 +144,19 @@ thirteen:
     // @name		A Test!
     // @namespace		http://example.com/1
     // @description		Unit test.
+    // @version		1
+    // ==/UserScript==
+    foo.baz();
+
+fourteen:
+  id: 14
+  code: |
+    // ==UserScript==
+    // @name		A Test!
+    // @name:fr		Un test!
+    // @namespace		http://example.com/1
+    // @description		Unit test.
+    // @description:fr		Test d'unit.
     // @version		1
     // ==/UserScript==
     foo.baz();

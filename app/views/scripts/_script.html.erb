@@ -1,33 +1,46 @@
-<li data-script-id="<%=script.id%>" data-script-name="<%=script.name%>" data-script-author-id="<%=script.user.id%>" data-script-author-name="<%=script.user.name%>" data-script-daily-installs="<%=script.daily_installs%>" data-script-total-installs="<%=script.total_installs%>" data-script-created-date="<%=script.created_at.strftime('%Y-%m-%d')%>" data-script-updated-date="<%=script.code_updated_at.strftime('%Y-%m-%d')%>" data-script-type="<%=script.script_type.short_name%>">
+<%
+translation_cache = {} if !defined?(translation_cache) || translation_cache.nil?
+show_author_details = defined?(show_author_details) && show_author_details
+%>
+<li data-script-id="<%=script.id%>" data-script-name="<%=script.name(I18n.locale)%>" data-script-author-id="<%=script.user.id%>" data-script-author-name="<%=script.user.name%>" data-script-daily-installs="<%=script.daily_installs%>" data-script-total-installs="<%=script.total_installs%>" data-script-rating-score="<%=script.fan_score%>" data-script-created-date="<%=script.created_at.strftime('%Y-%m-%d')%>" data-script-updated-date="<%=script.code_updated_at.strftime('%Y-%m-%d')%>" data-script-type="<%=script.script_type.short_name%>" data-script-version="<%=script.version%>" data-sensitive="<%=script.sensitive%>">
 	<article>
-		<header>
-			<h2>
-				<%=link_to script.name, script%>
-				<% if script.script_type_id != 1 %>
-					<span class="script-type">(<%=script.script_type.short_name.capitalize%>)<span>
-				<% end %>
-				<% if script.deleted? %>
-					<span class="script-type">(Deleted)<span>
-				<% end %>
-				<% if script.locked %>
-					<span class="script-type">(Locked)<span>
-				<% end %>
-			</h2>
-		</header>
-		<p><%=script.description%></p>
-		<footer>
-			<dl>
-				<dt class="script-list-author">Author</dt>
-				<dd class="script-list-author"><%=link_to script.user.name, script.user%></dd>
-				<dt class="script-list-daily-installs">Daily installs</dt>
-				<dd class="script-list-daily-installs"><%=script.daily_installs%></dd>
-				<dt class="script-list-total-installs">Total installs</dt>
-				<dd class="script-list-total-installs"><%=script.total_installs%></dd>
-				<dt class="script-list-created-date">Created</dt>
-				<dd class="script-list-created-date"><%=markup_date(script.created_at)%></dd>
-				<dt class="script-list-updated-date">Updated</dt>
-				<dd class="script-list-updated-date"><%=markup_date(script.code_updated_at)%></dd>
-			</dl>
-		</footer>
+		<h2>
+			<%=link_to script.name(I18n.locale), script_path(script)%>
+			<% if show_author_details && script.user == current_user && script.sensitive %>
+				<span class="script-type"><%=translation_cache['scripts.adult_marker'] || t('scripts.adult_marker')%></span>
+			<% end %>
+			<% case script.script_type_id
+				when 2 %>
+					<span class="script-type"><%=translation_cache['scripts.unlisted_marker'] || t('scripts.unlisted_marker')%></span>
+				<% when 3 %>
+					<span class="script-type"><%=translation_cache['scripts.library_marker'] || t('scripts.library_marker')%></span>
+			<% end %>
+			<% if script.deleted? %>
+				<span class="script-type"><%=translation_cache['scripts.deleted_marker'] || t('scripts.deleted_marker')%></span>
+			<% end %>
+			<% if script.locked %>
+				<span class="script-type"><%=translation_cache['scripts.locked_marker'] || t('scripts.locked_marker')%></span>
+			<% end %>
+			<span class="name-description-separator">
+				-
+			</span>
+			<span class="description">
+				<%=script.description(I18n.locale)%>
+			</span>
+		</h2>
+		<dl>
+			<dt class="script-list-author"><span><%=translation_cache['scripts.author_name'] || t('scripts.author_name')%></span></dt>
+			<dd class="script-list-author"><span><%=link_to script.user.name, user_path(script.user)%></span></dd>
+			<dt class="script-list-daily-installs"><span><%=translation_cache['scripts.daily_installs'] || t('scripts.daily_installs')%></span></dt>
+			<dd class="script-list-daily-installs"><span><%=number_with_delimiter(script.daily_installs)%></span></dd>
+			<dt class="script-list-total-installs"><span><%=translation_cache['scripts.total_installs'] || t('scripts.total_installs')%></span></dt>
+			<dd class="script-list-total-installs"><span><%=number_with_delimiter(script.total_installs)%></span></dd>
+			<dt class="script-list-ratings"><span><%=translation_cache['scripts.ratings'] || t('scripts.ratings')%></span></dt>
+			<dd class="script-list-ratings" data-rating-score="<%=script.fan_score%>"><span><%=render :partial => 'scripts/ratings', :locals => {:script => script}%></span></dd>
+			<dt class="script-list-created-date"><span><%=translation_cache['scripts.created_date'] || t('scripts.created_date')%></span></dt>
+			<dd class="script-list-created-date"><span><%=markup_date(script.created_at)%></span></dd>
+			<dt class="script-list-updated-date"><span><%=translation_cache['scripts.updated_date'] || t('scripts.updated_date')%></span></dt>
+			<dd class="script-list-updated-date"><span><%=markup_date(script.code_updated_at)%></span></dd>
+		</dl>
 	</article>
 </li>

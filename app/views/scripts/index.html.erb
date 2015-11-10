@@ -1,65 +1,34 @@
-<% if params[:site] == '*' and !@scripts.empty? %>
-	<%- title "User scripts for all sites on Greasy Fork" %>
-	<%- description "List of user scripts for all sites available on Greasy Fork" %>
-<% elsif !params[:site].nil? and !@scripts.empty? %>
-	<%- title "User scripts for #{params[:site]} on Greasy Fork" %>
-	<%- description "List of user scripts for #{params[:site]} available on Greasy Fork" %>
-<% elsif action_name == 'search' and !params[:q].nil? %>
-	<%- title "'#{params[:q]}' user scripts on Greasy Fork" %>
-	<%- description "List of '#{params[:q]}' user scripts available on Greasy Fork" %>
-<% else %>
-	<%- title 'User scripts on Greasy Fork' %>
-	<%- description 'List of user scripts available on Greasy Fork' %>
+<%- title @title %>
+<%- description @description %>
+
+<%= render partial: 'list_options', :locals => {:by_sites => @by_sites, :scripts => @scripts}%>
+
+<% if defined?(@set) and !@set.nil? %>
+	<h3>
+		<%=@set.display_name%> by <%=link_to @set.user.name, @set.user%>
+		<% if user_signed_in? and current_user == @set.user%>
+			<%=link_to('Edit', edit_user_script_set_path(current_user, @set))%>
+		<% end %>
+	</h3>
+	<% if !@set.favorite %>
+		<p><%=@set.description%></p>
+	<% end %>
 <% end %>
 
-<p id="script-list-sort">Sort by:
-	<% if action_name == 'search' %>
-		<%=script_list_link('Relevance', nil, params[:site])%> |
-		<%=script_list_link('Daily installs', 'daily_installs', params[:site])%> |
-	<% else %>
-		<%=script_list_link('Daily installs', nil, params[:site])%> |
-	<% end %>
-	<%=script_list_link('Total installs', 'total_installs', params[:site])%> |
-	<%=script_list_link('Created date', 'created', params[:site])%> |
-	<%=script_list_link('Updated date', 'updated', params[:site])%>
-</p>
-
-<% if !@by_sites.nil? %>
-	<p id="script-list-filter">Showing:
-		<span class="script-filter-option">
-			<%=script_list_link('All', params[:sort], nil)%>
-			|
-		</span>
-		<% current_site_is_top = false
-		(0..4).each do |i|
-			break if @by_sites[i].nil?
-			dt = @by_sites[i]['text']
-			if dt.nil?
-				current_site_is_top = true if params[:site] == '*' %>
-				<%=script_list_link('(All sites)', params[:sort], '*')%>
-			<% else
-				current_site_is_top = true if dt == params[:site] %>
-				<%=script_list_link(dt, params[:sort], dt)%>
-			<% end %>
-			|
-		<% end %>
-		<% if !current_site_is_top and !params[:site].nil? and !@scripts.empty? %>
-			<%=script_list_link(params[:site], params[:sort], params[:site])%>
-			|
-		<% end %>
-		<%= link_to 'More...', site_list_scripts_path %>
-	</p>
+<% if defined?(@page_description) %>
+	<p><%=@page_description%></p>
 <% end %>
 
 <% if @scripts.empty? %>
-	<p>No scripts found.</p>
+	<p><%=t('scripts.listing_no_scripts')%></p>
 <% else %>
 	<ol id="browse-script-list" class="script-list">
-		<%= render partial: 'script', collection: @scripts %>
+		<%= render partial: 'script', collection: @scripts, locals: {:translation_cache => translate_keys(['scripts.author_name', 'scripts.daily_installs', 'scripts.total_installs', 'scripts.ratings', 'scripts.created_date', 'scripts.updated_date']) } %>
 	</ol>
 <% end %>
 
-<%= will_paginate @scripts %>
+<% if !defined?(@paginate) or @paginate %>
+	<%= will_paginate @scripts %>
+<% end %>
 
-<p><%=link_to 'Post a new script', new_script_version_path %></p>
-
+<p><%=t('scripts.write_your_own_html', post_a_script_link: link_to(t('scripts.post_a_script_link_text'), new_script_version_path), learn_to_write_scripts_link: link_to(t('scripts.learn_to_write_scripts_link_text'), help_writing_user_scripts_path)) %></p>

@@ -1,0 +1,7 @@
+<%= render 'form' %>
+
+<%=form_tag([@set.user, @set], :confirm => 'Sure?', :method => :delete, :data => {:confirm => t('script_sets.delete_confirmation')}) do%>
+	<p>
+		<input type="submit" value="<%=t('script_sets.delete')%>">
+	</p>
+<% end %>

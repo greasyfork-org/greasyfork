@@ -1,61 +1,161 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title><%= content_for?(:title) ? content_for(:title) : "Greasy Fork" %></title>
+	<title><%= content_for?(:title) ? content_for(:title) : site_name %></title>
 	<% if content_for?(:description) %><meta name="description" value="<%=content_for(:description)%>"><% end %>
 	<%= stylesheet_link_tag    "application", media: "all" %>
 	<%= javascript_include_tag "application" %>
-	<%= csrf_meta_tags %>
-	<% if defined?(@no_bots) and @no_bots %>
-		<meta name="robots" content="noindex">
+	<% if !social_share_locale.nil? %>
+		<%= javascript_include_tag "jquery-socialshareprivacy/jquery.socialshareprivacy.min.#{social_share_locale}.js" %>
 	<% end %>
+	<%= csrf_meta_tags %>
+	<% if defined?(@bots) %>
+		<meta name="robots" content="<%=@bots%>">
+	<% end %>
+	<link rel="canonical" href="<%=url_for(params.slice(*@canonical_params).merge({:host => 'greasyfork.org', :protocol => 'https', :locale_override => nil}))%>">
+	<link rel="icon" href="<%=asset_path 'blacklogo16.png'%>">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+
+	<% if request.get?
+		# https://support.google.com/webmasters/answer/189077 %>
+		<link rel="alternate" hreflang="x-default" href="<%=url_for(params.except(:locale).merge({:locale => nil, :only_path => true}))%>">
+		<% Rails.configuration.available_locales.each do |code, name| %>
+			<link rel="alternate" hreflang="<%=code%>" href="<%=url_for(params.except(:locale).merge({:locale => code, :only_path => true}))%>">
+		<% end
+	end %>
+
+	<% if defined?(@link_alternates)
+		@link_alternates.each do |la| %>
+			<link rel="alternate" type="<%=la[:type]%>" href="<%=la[:url]%>" <%if !la[:title].nil?%>title="<%=la[:title]%>"<%end%>>
+		<% end
+	end %>
+
+	<link rel="search" href="<%=opensearch_description_path%>" type="application/opensearchdescription+xml" title="<%=t('opensearch.short_name', site_name: site_name, default: t('opensearch.short_name', site_name: site_name, locale: 'en'))%>" hreflang="<%=I18n.locale%>">
+
 </head>
 <body>
 
+	<% if @ad_method == 'pw' %>
+		<!-- Project Wonderful Ad Box Loader -->
+		<script type="text/javascript">
+		   (function(){function pw_load(){
+			  if(arguments.callee.z)return;else arguments.callee.z=true;
+			  var d=document;var s=d.createElement('script');
+			  var x=d.getElementsByTagName('script')[0];
+			  s.type='text/javascript';s.async=true;
+			  s.src='//www.projectwonderful.com/pwa.js';
+			  x.parentNode.insertBefore(s,x);}
+		   if (window.attachEvent){
+			window.attachEvent('DOMContentLoaded',pw_load);
+			window.attachEvent('onload',pw_load);}
+		   else{
+			window.addEventListener('DOMContentLoaded',pw_load,false);
+			window.addEventListener('load',pw_load,false);}})();
+		</script>
+		<!-- End Project Wonderful Ad Box Loader -->
+	<% end %>
+
 	<header id="main-header">
-		<div id="site-name">
-			<h1><%=link_to_unless_current 'Greasy Fork', root_path%></h1>
-			<p class="subtitle"><a href="https://greasyfork.org/forum/discussion/157/greasy-fork-needs-a-logo">A nice logo would look good here.</a></p>
+		<div class="width-constraint">
+			<div id="site-name">
+				<%=link_to_unless_current "<img src=\"#{asset_path 'blacklogo96.png'}\" alt=\"\">".html_safe, root_path%>
+				<div id="site-name-text">
+						<h1><%=link_to_unless_current site_name, root_path%></h1>
+					<% if sleazy? %>
+						<p class="subtitle">Easy sleazy greasy.</p>
+					<% else %>
+						<p class="subtitle">Now with cleaner grease!</p>
+					<% end %>
+				</div>
+			</div>
+			<div id="site-nav">
+				<div id="nav-user-info">
+					<% if user_signed_in? %>
+						<span class="user-profile-link"><%=link_to(current_user.name, current_user)%></span>
+						<span class="sign-out-link">[ <%= link_to t('users.sign_out'), destroy_user_session_path, :method => :delete %> ]</span>
+					<% else %>
+						<span class="sign-in-link"><%=link_to(t('.sign_in'), new_user_session_path(request.get? ? {:return_to => request.fullpath} : {}), {:rel => 'nofollow'})%></span>
+					<% end %>
+					<% if request.get?
+						form_action = url_for(params.except(:locale).merge({:locale => nil, :only_path => true}))
+					else
+						form_action = root_path({:locale => nil})
+					end %>
+					<form id="language-selector" action="<%=form_action%>">
+						<% user_with_locale = !current_user.nil? && !current_user.locale.nil?
+						locale_with_override_param = user_with_locale ? '1' : nil %>
+						<select id="language-selector-locale" name="locale">
+							<% Rails.configuration.available_locales.each do |code, name|
+								if request.get? %>
+									<option data-language-url="<%=url_for(params.except(:locale).merge({:locale => code, :only_path => true, :locale_override => locale_with_override_param}))%>" value="<%=code%>"<%if params[:locale] == code%> selected<%end%>><%=name%> (<%=code%>)</option>
+								<% else %>
+									<option data-language-url="<%=root_path({:locale => code, :locale_override => locale_with_override_param})%>" value="<%=code%>"<%if params[:locale] == code%> selected<%end%>><%=name%> (<%=code%>)</option>
+								<% end
+							end %>
+							<option value="help">Help us translate!</option>
+						</select><input id="language-selector-submit" type="submit" value="→">
+						<script>
+							/* submit is handled by js if enabled */
+							document.getElementById("language-selector-submit").style.display = "none"
+						</script>
+						<% if user_with_locale %>
+							<input type="hidden" name="locale_override" value="1">
+						<% end %>
+					</form>
+				</div>
+				<nav>
+					<li class="scripts-index-link"><%=link_to(t('.script_list'), scripts_path)%></li>
+					<% # user signed in to main site, but not to forum?
+					if user_signed_in? and cookies[:Vanilla].nil? %>
+						<li class="forum-link"><%=link_to(t('.forum'), "#{forum_path}entry/jsconnect?client_id=1462516369")%></li>
+					<% else %>
+						<li class="forum-link"><%=link_to(t('.forum'), forum_path)%></li>
+					<% end %>
+					<li class="help-link"><%=link_to_unless_current(t('.help'), help_path)%></li>
+					<li class="nav-search">
+						<form id="script-search" action="<%=search_scripts_path()%>">
+							<input type="search" name="q" placeholder="<%=t('.search')%>" value="<%=params[:q]%>" size="10"><input type="submit" value="→">
+						</form>
+					</li>
+				</nav>
+			</div>
 		</div>
-		<form id="script-search" action="<%=search_scripts_path()%>">
-			<input name="q" placeholder="Search" value="<%=params[:q]%>" size="10"><input type="submit" value="→">
-		</form>
-		<nav>
-			<li class="scripts-index-link"><%=link_to('Scripts', scripts_path)%></li>
-			<% # user signed in to main site, but not to forum?
-			if user_signed_in? and cookies[:Vanilla].nil? %>
-				<li class="forum-link"><%=link_to('Forum', '/forum/entry/jsconnect?client_id=1462516369')%></li>
-			<% else %>
-				<li class="forum-link"><%=link_to('Forum', '/forum/')%></li>
-			<% end %>
-			<li class="help-link"><%=link_to_unless_current('Help', help_path)%></li>
-			<% if user_signed_in? %>
-				<li class="user-profile-link"><%=link_to(current_user.name, current_user)%></li>
-			<% else %>
-				<li class="sign-in-link"><%=link_to('Sign in', new_user_session_path)%></li>
-			<% end %>
-		</nav>
 	</header>
 
-<% if !notice.nil? %>
-	<p class="notice"><%= notice %></p>
-<% end %>
-<% if !alert.nil? %>
-	<p class="alert"><%= alert %></p>
-<% end %>
+	<div class="width-constraint">
+		<% if !notice.nil? %>
+			<p class="notice"><%=notice%></p>
+		<% end %>
+		<% if !alert.nil? %>
+			<p class="alert"><%=alert%></p>
+		<% end %>
 
-<%= content_for?(:content) ? yield(:content) : yield %>
+		<%= content_for?(:content) ? yield(:content) : yield %>
+	</div>
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	<% if sleazy? %>
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-48197018-1', 'greasyfork.org');
-  ga('send', 'pageview');
+			ga('create', 'UA-48197018-2', 'auto');
+			ga('send', 'pageview');
 
-</script>
+		</script>
+	<% else %>
+		<script>
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+			ga('create', 'UA-48197018-1', 'greasyfork.org');
+			ga('send', 'pageview');
+
+		</script>
+	<% end %>
 
 </body>
 </html>

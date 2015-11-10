@@ -1,18 +1,22 @@
-<%- title 'Allowed markup' %>
+<%- title t('common.allowed_elements_and_attributes_title') %>
 <%- description 'Elements and attributes allowed when posting to Greasy Fork.' %>
 
-<p>The following elements and attributes are allowed:</p>
+<p><%=t('common.allowed_elements_intro')%></p>
 
 <ul id="help-allowed-elements">
+	<li>* (name, title)</li>
 	<li>a (href)</li>
-	<li>abbr (title)</li>
+	<li>abbr</li>
 	<li>b</li>
 	<li>blockquote (cite)</li>
 	<li>br</li>
+	<li>center</li>
 	<li>cite</li>
 	<li>code</li>
 	<li>dd</li>
-	<li>dfn (title)</li>
+	<li>del</li>
+	<li>dfn</li>
+	<li>div</li>
 	<li>dl</li>
 	<li>dt</li>
 	<li>em</li>
@@ -22,8 +26,10 @@
 	<li>h4</li>
 	<li>h5</li>
 	<li>h6</li>
+	<li>hr</li>
 	<li>i</li>
-	<li>img (alt, src (https), title)</li>
+	<li>ins</li>
+	<li>img (alt, height, src (https), width)</li>
 	<li>kbd</li>
 	<li>li</li>
 	<li>mark</li>
@@ -31,11 +37,23 @@
 	<li>p</li>
 	<li>pre</li>
 	<li>q (cite)</li>
+	<li>rp</li>
+	<li>rt</li>
+	<li>ruby</li>
 	<li>s</li>
 	<li>samp</li>
 	<li>small</li>
+	<li>span</li>
 	<li>strike</li>
 	<li>strong</li>
+	<li>tt</li>
+	<li>table</li>
+	<li>tbody</li>
+	<li>tfoot</li>
+	<li>thead</li>
+	<li>td</li>
+	<li>th</li>
+	<li>tr</li>
 	<li>sub</li>
 	<li>sup</li>
 	<li>time (datetime, pubdate)</li>
@@ -44,4 +62,4 @@
 	<li>var</li>
 </ul>
 
-<p>Whitespace will be turned into p or br elements. URLs will automatically be linkified.</p>
+<p><%=t('common.allowed_elements_extra_info')%></p>

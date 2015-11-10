@@ -9,7 +9,7 @@ class ImportController < ApplicationController
 	before_filter :authenticate_user!
 
 	def index
-		@scripts_by_source = Script.where(['user_id = ?', current_user.id]).where('script_sync_source_id is not null').includes([:script_sync_source, :script_sync_type]).order('scripts.name')
+		@scripts_by_source = Script.where(['user_id = ?', current_user.id]).where('script_sync_source_id is not null').includes([:script_sync_source, :script_sync_type])
 		@scripts_by_source = @scripts_by_source.group_by{|script| script.script_sync_source}
 	end
 
@@ -46,7 +46,7 @@ class ImportController < ApplicationController
 
 	def add
 		importer = $IMPORTERS.select{|i| i.sync_source_id == params[:sync_source_id].to_i}.first
-		@results = {:new => [], :new_with_assessment => [], :failure => [], :needsdescription => [], :existing => []}
+		@results = {:new => [], :failure => [], :needsdescription => [], :existing => []}
 		sync_ids = nil
 		if params[:sync_ids].nil?
 			sync_ids = params[:sync_urls].split("\n")
@@ -59,18 +59,14 @@ class ImportController < ApplicationController
 			case result
 				when :needsdescription
 					@results[:needsdescription] << script
-				when :failure
+				when :failure, :notuserscript
 					@results[:failure] << "#{importer.sync_id_to_url(sync_id)} - #{message}"
 				when :success
 					existing_scripts = Script.where(['script_sync_source_id = ? and sync_identifier = ?', importer.sync_source_id, sync_id])
 					if !existing_scripts.empty?
 						@results[:existing] << existing_scripts.first
 					elsif script.save
-						if script.assessments.empty?
-							@results[:new] << script
-						else
-							@results[:new_with_assessment] << script
-						end
+						@results[:new] << script
 					else
 						@results[:failure] << "Could not save."
 					end

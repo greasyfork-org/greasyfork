@@ -1,0 +1,47 @@
+<%- title t('scripts.derivatives_title', :script_name => @script.name) %>
+<%- description 'Potential derivatives of ' + @script.name %>
+
+<p><%=t('scripts.derivatives_intro')%></p>
+
+<% if !CpdDuplication.first.nil? %>
+	<p><%=t('scripts.derivatives_code_matches_info_html', {:last_run => markup_date(CpdDuplication.first.created_at), :max_size => number_to_human_size(Rails.configuration.cpd_size_limit), :match_size => 100})%></p>
+	<% if @code_duplications.empty? %>
+		<p><%=t('scripts.listing_none')%></p>
+	<% else %>
+		<ul>
+			<% # line number starts at 0 in CPD but at 1 for us, so +1 to everything
+			@code_duplications.each do |cd|
+				source_duplications = cd.cpd_duplication_scripts.select{|cpdds| cpdds.script_id == @script.id}
+				source_duplications.each do |source_duplication| %>
+					<li>
+						<%=link_to t('scripts.script_lines_link', {:script_name => @script.name, :start => source_duplication.line + 1, :end => source_duplication.line + cd.lines + 1}), script_show_code_path(source_duplication.script, :anchor => "n#{source_duplication.line + 1}")%>
+						<ul>
+							<% cd.cpd_duplication_scripts.select{|cpdds| cpdds.script.user_id != @script.user_id && cpdds.script.listable?}.each do |dup| %>
+								<li>
+									<%=t('scripts.derivatives_script_with_code_line_html',  {
+										:script_lines_link => link_to(
+											t('scripts.script_lines_link', {
+												:script_name => dup.script.name(I18n.locale),
+												:start => dup.line + 1,
+												:end => dup.line + cd.lines + 1
+											}),
+											script_show_code_path(dup.script, :anchor => "n#{dup.line + 1}")
+										),
+										:license => dup.script.license_display,
+										:user_link => link_to(dup.script.user.name, dup.script.user)
+									})%>
+								</li>
+							<% end %>
+						</ul>
+					</li>
+				<% end
+			end %>
+		</ul>
+	<% end %>
+<% end %>
+
+<% if !@script.namespace.nil? %>
+	<%=render :partial => 'derivatives_list', :locals => {:description => t('scripts.derivatives_namespace_matches_info_html', :namespace => "@namespace #{@script.namespace}"), :scripts => @same_namespaces} %>
+<% end %>
+
+<%=render :partial => 'derivatives_list', :locals => {:description => t('scripts.derivatives_name_matches_info'), :scripts => @similar_name_scripts} %>

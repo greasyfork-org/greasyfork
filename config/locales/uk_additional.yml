@@ -1,0 +1,19 @@
+# Missing plural form that Transifex doesn't ask for
+uk:
+  helpers:
+    application:
+      time_ago:
+        minutes:
+          many: "%{count} хвилин тому"
+        hours:
+          many: "%{count} годин тому"
+        days:
+          many: "%{count} днів тому"
+  scripts:
+    applies_to_link_title:
+      many: "Подивіть ще %{count} скриптів для %{site}"
+  users:
+    list_display_html:
+      many: "%{user_link} - %{count} скриптів"
+    greasy_fork_scripts_link:
+      many: "%{user_name} також має %{count} скриптів на Greasy Fork'у."

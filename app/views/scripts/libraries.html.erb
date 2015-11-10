@@ -9,7 +9,7 @@
 	<ul>
 		<% @scripts.each do |script| %>
 			<li>
-				<%=link_to script.name, script %> <%=script.description%>
+				<%=link_to script.name(I18n.locale), script %> <%=script.description%>
 			</li>
 		<% end %>
 	</ul>

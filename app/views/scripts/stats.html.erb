@@ -1,0 +1,84 @@
+<%- title t('scripts.stats_title', :script_name => @script.name(I18n.locale)) %>
+<%- description 'Install stats for ' + @script.name(I18n.locale) %>
+
+<%= javascript_include_tag "Chart" %>
+
+<%
+max_labels = 30
+label_skip = max_labels > @stats.keys.length ? 1 : (@stats.keys.length / 30)
+
+[:installs, :update_checks].each do |data_key|
+
+	if data_key == :installs
+		container_id = 'install-stats-chart-container'
+		heading_key = 'scripts.stats_daily_installs_heading'
+	else
+		container_id = 'update-check-stats-chart-container'
+		heading_key = 'scripts.stats_daily_update_checks_heading'
+	end %>
+
+	<h3><%=t(heading_key)%></h3>
+	<div id="<%=container_id%>"></div>
+
+	<%
+	data = @stats.map{|k, v| [k, v[data_key]]}.to_h
+
+	max_installs = data.values.select{|v| !v.nil?}.max
+	if max_installs > 0
+		x = Math.log10(max_installs).floor
+		scale_top=(max_installs/(10.0**x)).ceil*10**x
+		scale_steps = [10,max_installs].min
+		scale_step_width = scale_top / scale_steps
+	else
+		scale_top = 1
+		scale_steps = 1
+		scale_step_width = 1
+	end
+
+	%>
+	<script>
+	var data = {
+		labels: [<%=data.keys.each_with_index.map{ |d, i|
+				'"' + ((i % label_skip == 0) ? escape_javascript(d.to_s): '') + '"'
+			}.join(',').html_safe%>
+		],
+		datasets: [{
+				fillColor : "rgba(220,220,220,0.5)",
+				strokeColor : "rgba(220,220,220,1)",
+				data: [<%=data.values.join(',')%>]
+		}]
+	}
+
+	var container = document.getElementById("<%=container_id%>");
+	var canvas = document.createElement("canvas")
+	canvas.id = "<%=container_id%>-canvas";
+	canvas.width = parseInt(getComputedStyle(container).width.replace("px", ""), 10) - 5;
+	canvas.height = 400;
+	container.appendChild(canvas)
+
+	var ctx = canvas.getContext("2d");
+	var myNewChart = new Chart(ctx).Bar(data, {barValueSpacing: 0, scaleOverride: true, scaleStartValue: 0, scaleSteps: <%=scale_steps%>, scaleStepWidth: <%=scale_step_width%>});
+	</script>
+<% end %>
+
+<h3><%=t('scripts.stats_raw_data_header')%></h3>
+<table class="stats-table">
+	<thead>
+		<tr>
+			<th><%=t('scripts.stats_daily_installs_date_column_heading')%></th>
+			<th class="numeric"><%=t('scripts.stats_daily_installs_install_count_column_heading')%></th>
+			<th class="numeric"><%=t('scripts.stats_daily_installs_update_check_count_column_heading')%></th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @stats.to_a.reverse.take(30).to_h.each do |d, i| %>
+			<tr>
+				<th><%=d%></th>
+				<td class="numeric"><%=number_with_delimiter(i[:installs])%></td>
+				<td class="numeric"><%=i[:update_checks].nil? ? t('scripts.stats_no_data') : number_with_delimiter(i[:update_checks])%></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+<% links = [:json, :csv].map{|f| link_to f.to_s.upcase, {:format => f} } %>
+<%=t('scripts.stats_download_raw_data_html', :links => links.join(' ').html_safe)%>

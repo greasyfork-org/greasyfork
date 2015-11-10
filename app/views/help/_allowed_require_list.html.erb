@@ -1,0 +1,11 @@
+<ul>
+	<% AllowedRequire.all.each do |ar| %>
+		<li>
+			<% if ar.url.nil? %>
+				<%=ar.name%>
+			<% else %>
+				<%=link_to ar.name, ar.url%>
+			<% end %>
+		</li>
+	<% end %>
+</ul>

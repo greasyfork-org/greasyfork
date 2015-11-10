@@ -1,0 +1,480 @@
+ja:
+  layouts:
+    application:
+      script_list: "スクリプト"
+      forum: "掲示板"
+      help: "ヘルプ"
+      sign_in: "ログイン"
+      search: "検索"
+  helpers:
+    application:
+      time_ago:
+        minutes:
+          other: "%{count}分前"
+        hours:
+          other: "%{count}時間前"
+        days:
+          other: "%{count}日前"
+  scripts:
+    created_date: "作成"
+    updated_date: "更新"
+    total_installs: "インストール"
+    daily_installs: "1日のインストール"
+    ratings: "評価"
+    author_name: "作者"
+    version_number: "バージョン"
+    license: "ライセンス"
+    no_license: "不明"
+    compatibility: "互換性"
+    compatible_with_browser: "%{browser} と互換性があります"
+    incompatible_with_browser: "%{browser} との互換性はありません"
+    applies_to: "実行するページ"
+    applies_to_link_title:
+      other: "%{site} で実行されるスクリプト一覧 (%{count}件)"
+    applies_to_all: "すべてのサイト"
+    additional_info: "スクリプト作者による説明"
+    install: "スクリプトをインストール"
+    install_help: "?"
+    install_help_title: "インストール方法"
+    library_instructions_html: "このスクリプトは単体で利用できません。右のようなメタデータを含むスクリプトから、ライブラリとして読み込まれます: %{code}"
+    deleted_notice: "このスクリプトは削除されました。"
+    inactive_pending_changes: "このスクリプトは %{site_name} のポリシーに準拠していないため、現在無効化されています。"
+    inactive_pending_changes_for_previous_version: "このバージョンは %{site_name} のポリシーに準拠していないため、無効化されています。"
+    version_notice_html: "%{date} 時点のページです。%{latest_version_link}を参照してください。"
+    version_notice_latest_version_link: "最新バージョン"
+    info_page: "情報"
+    code_page: "コード"
+    history_page: "履歴"
+    feedback_page: "フィードバック (%{count})"
+    stats_page: "統計"
+    derivatives_page: "派生"
+    update_page: "更新"
+    sync_page: "同期"
+    delete_page: "削除"
+    delete_explanation: "スクリプトを削除すると、自分とモデレーター以外からはアクセスできなくなります。スクリプトの削除はいつでも取り消すことができます。"
+    delete_update_behaviour: "削除する前にスクリプトをインストールしたユーザーについては、どのように対応しますか？"
+    delete_update_behaviour_1: "スクリプトがインストールされたままにします。"
+    delete_update_behaviour_2: "インストールされているスクリプトを更新して空のスクリプトにします。実行されるサイトにスクリプトが悪影響をおよぼす場合は、こちらが適切です。"
+    delete_permanently_heading: "永久的な削除"
+    delete_permanently_explanation: "スクリプトの永久的な削除を実行すると、掲示板のスレッドとモデレーターの対処ログを除いて、関連するすべての記録が削除されます。永久的な削除は永久であり、モデレーターでも元に戻すことはできません。"
+    delete_permanently_confirm: "本当にスクリプトを永久的に削除してもよろしいですか？ この操作は取り消すことができません！"
+    delete_permanently_submit: "永久的な削除を申請する"
+    delete_permanently_notice: "永久的な削除の申請が記録されました。申請はモデレーターによって審査されます。"
+    delete_permanently_already_requested: "%{datetime} に永久的な削除が申請されました。"
+    cancel_delete_permanently_submit: "永久的な削除の申請を取り消す"
+    cancel_delete_permanently_notice: "永久的な削除の申請が取り消されました。"
+    history_title: "%{script_name} のバージョン履歴"
+    history_only_code_changes_info: "コードが変更されたバージョンのみを表示しています。"
+    history_all_changes_link: "すべてのバージョンを表示"
+    history_all_changes_info: "すべてのバージョンを表示しています。"
+    history_only_code_changes_link: "コードが変更されたバージョンのみを表示"
+    diff_button: "選択したバージョン同士を比較"
+    code_title: "%{script_name} のソースコード"
+    code_highlighting_disabled: "ソースコードが %{size} を超えています。ブラウザのフリーズを防ぐため、シンタックスハイライトは無効化されています。"
+    feedback_title: "%{script_name} のフィードバック"
+    feedback_no_discussions_html: "まだスレッドはありません。%{start_first_discussion_link}"
+    feedback_start_first_discussion_link: "このスクリプトについて最初のスレッドを立てる。"
+    feedback_start_discussion_link: "このスクリプトについて新しいスレッドを立てる。"
+    feedback_discussions_heading: "掲示板のスレッド"
+    feedback_favoriters_heading: "お気に入り"
+    feedback_favoriters_user_list_intro: " "
+    feedback_no_favoriters: "まだ登録はありません。"
+    feedback_sign_in_to_favorite: "ログインしてお気に入りに追加する。"
+    stats_title: "%{script_name} のインストール数の統計"
+    stats_daily_installs_heading: "1日ごとのインストール数"
+    stats_daily_update_checks_heading: "1日ごとのアップデート確認件数"
+    stats_daily_installs_date_column_heading: "日付け"
+    stats_daily_installs_install_count_column_heading: "インストール"
+    stats_daily_installs_update_check_count_column_heading: "アップデート確認"
+    stats_raw_data_header: "生データ"
+    stats_download_raw_data_html: "すべてのデータをダウンロードする: %{links}"
+    stats_no_data: "(データなし)"
+    derivatives_title: "%{script_name} に似ているスクリプト"
+    derivatives_intro: "以下のスクリプトは、あなたのスクリプトを基にしている可能性があります (あるいはその逆)。あなたのコードに対する不正利用行為を発見した場合は、不正利用しているスクリプトのフィードバックに新しいスレッドを立て、モデレーターに報告してください。"
+    derivatives_code_matches_info_html: "他のユーザーが投稿したスクリプトで、共通するコードを%{match_size}文字以上含むもの (%{max_size}以下のスクリプトに対して%{last_run}に確認):"
+    derivatives_namespace_matches_info_html: "他のユーザーが投稿したスクリプトで <code>%{namespace}</code> を使用しているもの:"
+    derivatives_name_matches_info: "他のユーザーが投稿したスクリプトでスクリプト名が似ているもの:"
+    derivatives_script_html: "%{script_link} (作者: %{user_link})　ライセンス: %{license}"
+    derivatives_script_with_code_line_html: "%{script_lines_link} (作者: %{user_link})　ライセンス: %{license}"
+    script_lines_link: "%{script_name} の%{start}〜%{end}行目"
+    listing_title_all_sites: "すべてのサイトで実行されるユーザースクリプト"
+    listing_description_all_sites: "すべてのサイトに機能を追加し、バグを取り除くユーザースクリプト"
+    listing_title_for_site: "%{site} で実行されるユーザースクリプト"
+    listing_description_for_site: "%{site} に機能を追加し、バグを取り除くユーザースクリプト"
+    listing_title_for_search: "「%{search_string}」の検索結果"
+    listing_title_for_code_search: "「%{search_string}」のソースコード検索結果"
+    listing_title_generic: "ユーザースクリプト一覧"
+    listing_title_for_favorites: "%{user_name} の%{set_name}"
+    listing_description_generic: "サイトに機能を追加し、バグを取り除くユーザースクリプト"
+    listing_sort_label: "並べ替え:"
+    listing_sort_relevance: "関連度"
+    listing_sort_daily_installs: "1日のインストール数"
+    listing_sort_total_installs: "インストール数"
+    listing_sort_ratings: "評価"
+    listing_sort_created_date: "作成日"
+    listing_sort_updated_date: "更新日"
+    listing_sort_name: "名前"
+    listing_filter_by_site_label: "実行されるページ:"
+    listing_filter_by_site_disable: "すべてのスクリプト"
+    listing_filter_by_site_all_sites: "(すべてのサイト)"
+    listing_filter_by_site_more_sites: "さらに表示 ▸"
+    listing_no_scripts: "スクリプトが見つかりませんでした。"
+    listing_created_feed: "新しいスクリプト"
+    listing_updated_feed: "更新されたスクリプト"
+    listing_none: "(なし)"
+    import: "スクリプトのインポート"
+    new: "スクリプトの投稿"
+    support_site: "サポートサイト"
+    support_email: "サポートメールアドレス"
+    contribution_no_amount: "%{author} は寄付を募っています。"
+    contribution_with_amount: "%{author} は寄付を募っています。 (%{amount})"
+    contribution_bitcoin_no_amount_html: "%{author} はビットコインの寄付 (%{address}) を募っています。"
+    contribution_bitcoin_with_amount_html: "%{author} はビットコインの寄付 (%{address}) を募っています。 (%{amount})"
+    locale_explanation_html: "<code>@name</code>・<code>@description</code>・最初の追加情報の言語。"
+    locale_auto_select: "(自動選択)"
+    sets_label: "登録中:"
+    sets_label_no_sets: "Script Sets:"
+    sets_remove_inclusion: "%{set_name} から削除"
+    sets_remove_exclusion: "%{set_name} の除外リストから削除"
+    sets_add_inclusion: "%{set_name} に追加"
+    sets_add_exclusion: "%{set_name} から除外"
+    sets_add_to_new: "新しい Script Set に追加"
+    rules_summary_html: "スクリプトは<strong>難読化</strong>や<strong>圧縮 (minify)</strong> をせず<strong>正しく記述</strong>し、<strong>著作権</strong>を守るように心がけてください。また、<strong>外部スクリプト</strong>の読み込みには制限があります。%{full_rules_link}"
+    rules_summary_link_to_full: "すべてのルールを読む。"
+    syncing_notice_html: "このスクリプトは%{syncing_notice_sync_type}になっています。ここでコードに加えた変更点は、同期の際に上書きされます。"
+    syncing_notice_sync_type_manual: "手動で %{sync_identifier} と同期する設定"
+    syncing_notice_sync_type_automatic: "自動で %{sync_identifier} と同期する設定"
+    upload_label: "更新したスクリプトをアップロード:"
+    enable_source_code_editor_label: "ソースエディタを有効にしてシンタックスハイライトする"
+    changelog_note: "バージョン履歴ページに表示する変更点。"
+    additional_info_note_html: "スクリプトに関する説明など。%{allowed_elements_link}"
+    preview_additional_info: "プレビュー"
+    post_new_script: "スクリプトを投稿"
+    post_updated_script: "スクリプトを更新"
+    type_1_html: "公開スクリプト – 誰でも閲覧・利用できるユーザースクリプト。"
+    type_2_html: "限定公開スクリプト – 半プライベートなユーザースクリプト。URLを知っていればアクセス可能ですが、%{site_name} のどこからもリンクされません。"
+    type_3_html: "ライブラリ – <code>@require</code> によって他のスクリプトから読み込まれるスクリプト。インストールボタンは表示されません。"
+    override_warning_checkbox_label: "強制的に保存しますか？"
+    warning_version_not_incremented_html: "コードが更新されていますが、<code>@version</code> の値が大きくなっていません。すでにスクリプトをインストールしている人が、更新されたコードを取得できない可能性があります。"
+    warning_version_missing_html: "スクリプトのメタデータに <code>@version</code> が含まれていません。<code>@version</code> メタキーを記述することで、ユーザースクリプトマネージャーからスクリプトの更新を確認できるようになります。"
+    warning_version_missing_generate_automatically_html: "<code>@version</code> を自動的に生成しますか？"
+    warning_namespace_missing_html: "スクリプトのメタデータに <code>@namespace</code> が含まれていません。<code>@namespace</code> メタキーを記述することで、再インストールによってスクリプトを更新できるようになります。"
+    warning_namespace_missing_generate_automatically_html: "<code>@namespace</code> を自動的に生成しますか？"
+    warning_namespace_changed_html: "<code>@namespace</code> が変更されています。一貫性のある <code>@namespace</code> を記述することで、再インストールによってスクリプトを更新できるようになります。"
+    warning_potentially_minified_html: "圧縮 (minify) されたコードが含まれている可能性があります。圧縮されたライブラリを使用している場合は、ライブラリのコードを貼り付ける代わりに、%{allowed_requires_link} で許可されたURLから <code>@require</code> メタキーで読み込んでください。圧縮されたスクリプトは削除対象です。"
+    warning_potentially_minified_allowed_requires_link: "外部スクリプトにおける%{site_name}のポリシー"
+    additional_info_locale_prompt: "(ロケールを選択してください)"
+    additional_info_add_localized: "ローカライズした (他国語に翻訳した) 追加情報を書く"
+    additional_info_locale_repeated: "ロケール「%{locale_code}」の追加情報が複数あります。"
+    localized_additional_info_with_no_name: "ロケール「%{locale_code}」の追加情報を設定する場合、スクリプトのメタデータに @name:%{locale_code} (ローカライズしたスクリプト名) が必要です。"
+    code_syncing_from_url_html: "このスクリプトは次のURLと同期するように設定されています: %{field}"
+    provide_code_syncing_from_url_html: "%{site_name} は、GitHub のようなバージョン管理システム、自分のサーバー、他のユーザースクリプト公開サイトなどで公開しているスクリプトをインポートすることができます。URL を設定して、スクリプトの同期を有効化します: %{field}"
+    sync_type_intro: "スクリプトの同期方法:"
+    sync_type_1: "手動 – 自分で同期ボタンを押したときにのみ更新がチェックされます"
+    sync_type_2: "自動 – 定期的に更新がチェックされます"
+    sync_type_3: "WebHook – GitHub でこのファイルの変更を push したときに更新されます"
+    sync_failed_info_html: "%{date} に同期に失敗しました。結果: %{error}"
+    sync_success_info_html: "%{date} に同期に成功しました。"
+    sync_never_succeeded: "まだ一度も同期に成功していません。"
+    update_and_sync: "設定を更新して同期"
+    update_no_sync: "設定を更新"
+    turn_off_syncing: "同期を解除"
+    additional_info_default_sync_html: "既定の追加情報 (スクリプトのメタデータの <code>@name</code> と同じ言語)"
+    additional_info_localized_sync_html: "ローカライズした (他国語に翻訳した) 追加情報 (<code>@name:XX</code> と同じ言語)"
+    sync_url_placeholder: "(URL)"
+    screenshots_explanation: "最大 %{number} 枚までの PNG、GIF、JPEG 画像、各画像は %{size} 未満。"
+    screenshots_add: "追加:"
+    screenshots_remove: "削除"
+    replacement_script_explanation: "(任意) このスクリプトを置き換える別のスクリプト (代替スクリプト) を指定できます。各ページは代替スクリプトのページへリダイレクトされ、このスクリプトの更新時には代替スクリプトへ置き換えられます。代替スクリプトの URL を入力してください:"
+    diff_title: "%{script} のバージョン差分"
+    diff_old_version: "旧:"
+    diff_new_version: "新:"
+    diff_lines_of_context: "前後の行数:"
+    diff_ignore_whitespace: "空白のみの変更を無視"
+    diff_refresh: "再表示"
+    diff_no_change: "差異はありません。"
+    good_rating_explanation: "「良」と評価した人とお気に入りに登録した人の数"
+    ok_rating_explanation: "「可」と評価した人数"
+    bad_rating_explanation: "「不可」と評価した人数"
+    write_your_own_html: "%{post_a_script_link} (または %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "スクリプトを投稿する"
+    learn_to_write_scripts_link_text: "スクリプトの書き方を見る"
+    feedback_suggestion_html: "このスクリプトを使ってみて、%{feedback_link} をすることできます。"
+    feedback_link_text: "質問、レビュー、問題の報告"
+    approve_redistribution_explanation: "%{site_name} では、他のサイトへスクリプトを転載しても良いか示すことができます。スクリプトのライセンスによって、すでにこれを許可、あるいは不許可としているかもしれません。"
+    approve_redistribution_use_user_setting: "アカウントの既定を使用 (%{user_setting})"
+    approve_redistribution_use_user_setting_not_set: "未設定"
+    approve_redistribution_true: "スクリプトを他の場所に転載されても良い"
+    approve_redistribution_false: "スクリプトを他の場所に転載されたくない"
+    redistributable_title: "再配布可能なユーザースクリプト"
+    redistributable_page_description: "これらは、他の場所への投稿を作者が明示的に許可したスクリプトです。スクリプトの再配布について追加の条件が課されている場合があるので、詳細は各スクリプトのライセンスを確認してください。"
+    adult_content: "アダルトコンテンツ"
+    adult_content_self_report: "このスクリプトはアダルトコンテンツを含んでいます。または、アダルトコンテンツを含むサイト向けのスクリプトです。"
+    adult_content_self_report_explanation: "%{site_name} はアダルトコンテンツに関するスクリプトを許容しますが、該当するスクリプトにはその旨をマークしなければなりません。これは、ユーザーがそのようなスクリプトを表示するかどうか選択できるようにするためです。"
+    not_adult_content_self_report_html: "このスクリプトはアダルトコンテンツを<strong>含んでいません</strong>。なおかつ、アダルトコンテンツを含むサイト向けのスクリプト<strong>でもありません</strong>。"
+    not_adult_content_self_report_explanation: "%{site_name} はアダルトコンテンツに関するスクリプトを許容しますが、該当するスクリプトにはその旨をマークしなければなりません。これは、ユーザーがそのようなスクリプトを表示するかどうか選択できるようにするためです。このスクリプトはアダルトコンテンツを含むスクリプトとしてマークされています。あなたはアダルトコンテンツがスクリプトに含まれていないことを報告することができ、この報告はモデレーターによって審査されます。"
+    adult_content_on_greasy_logged_in_error: "%{edit_account_link:Greasy Fork のアカウント設定} で許可しない限り、このスクリプトを当サイトから利用することはできなくなりました。"
+    adult_content_on_greasy_not_logged_in_error: "ログインしていない場合、このスクリプトを当サイトから利用することはできなくなりました。%{login_link:ログイン} 後、Greasy Fork のアカウント設定をご確認ください。"
+    non_adult_content_on_sleazy: "このスクリプトを当サイトから利用することはできません。"
+    adult_marker: "(アダルト)"
+    deleted_marker: "(削除済み)"
+    locked_marker: "(ロック済み)"
+    unlisted_marker: "(限定公開)"
+    library_marker: "(ライブラリ)"
+  script_sets:
+    favorites_name: "お気に入り"
+    delete: "Script Set を削除"
+    delete_confirmation: "この Script Set を削除してもよろしいですか？"
+    site_default_sort: "(サイトの既定)"
+  forum_discussions:
+    listing_no_script_no_reply_html: "<span style=\"display: inline-block; width: 6em;\">%{original_post_date}</span><b>%{discussion_link}</b>　スレッド作成: %{original_poster_link}"
+    listing_no_script_with_reply_html: "<span style=\"display: inline-block; width: 6em;\">%{last_comment_date}</span><b>%{discussion_link}</b>　最終コメント: %{last_commenter_link}　(スレッド作成: %{original_poster_link})"
+    listing_with_script_no_reply_html: "<span style=\"display: inline-block; width: 6em;\">%{original_post_date}</span><b>%{discussion_link}</b>　(%{script_link}について)　スレッド作成: %{original_poster_link}"
+    listing_with_script_with_reply_html: "<span style=\"display: inline-block; width: 6em;\">%{last_comment_date}</span><b>%{discussion_link}</b>　(%{script_link}について)　最終コメント: %{last_commenter_link}　(スレッド作成: %{original_poster_link})"
+  home:
+    title: "%{site_name} – 便利で安全なユーザースクリプトを"
+    welcome: "%{site_name} はユーザースクリプトの投稿サイトです。"
+    sleazy_title: "%{site_name} – 便利で安全なアダルトユーザースクリプトを"
+    sleazy_welcome: "%{site_name} はアダルトユーザースクリプトの投稿サイトです。"
+    explain_user_scripts_heading: "ユーザースクリプトについて"
+    explain_user_scripts_html: "ユーザースクリプトは、Web ページを見たり使ったりするときの主導権をあなたに与えます。スクリプトをインストールすれば、ページの機能を使いやすくしたり、新たな機能を追加したり、迷惑なものを取り除いたりして、訪れたサイトをより便利にカスタマイズすることができます。%{site_name} では、ユーザーが開発・投稿したスクリプトを公開しています。これらのスクリプトは自由にインストールでき、使うのも簡単です。"
+    how_to_install_user_scripts_heading: "ユーザースクリプトをインストールするには？"
+    how_to_install_user_scripts_html: "ユーザースクリプトを利用するには、まずユーザースクリプトマネージャーをインストールする必要があります。Firefox の場合は %{gm_link:Greasemonkey} が適しています。Chrome の場合は %{tm_link:Tampermonkey} を。%{other_managers_link:他の選択肢もあります。} ユーザースクリプトマネージャーがインストールできたら、%{site_name} で好きなスクリプトを見つけて緑色のインストールボタンを押します。スクリプトがインストールされ、実行対象のページで動作するようになります。"
+    scripts_sample: "公開されているスクリプト"
+    scripts_sample_more: "さらに表示 ▸"
+  users:
+    sign_in_title: "%{site_name} にログイン"
+    sign_in_description: "%{site_name} にログインすると、スクリプトやフィードバックが投稿できるようになります。スクリプトを探したりインストールしたりするだけなら、ログインする必要はありません。"
+    sign_in_external: "ソーシャルアカウントでログイン"
+    sign_in_password: "または"
+    sign_in_email_used_no_external_services_html: "&lt;%{email}&gt; は、すでに %{site_name} のアカウント「%{user_name}」で利用されています。%{provider} のアカウントによる認証を有効にするには、まず%{sign_in_link}してください。"
+    sign_in_email_used_with_external_services_html: "&lt;%{email}&gt; は、すでに %{site_name} のアカウント「%{user_name}」で利用されています (%{existing_providers} のアカウントによる認証)。%{provider} のアカウントによる認証を有効にするには、まず%{sign_in_link}してください。"
+    sign_in_email_used_sign_in_link: "%{site_name} にログイン"
+    sign_in_email_missing: "%{site_name} にアカウントを作成するにはメールアドレスが必要ですが、%{provider} からはメールアドレスを取得できませんでした。%{provider} のアカウントにメールアドレスを追加してから、もう一度ログインしてみてください。Email と Password で %{site_name} にアカウント登録してから、%{provider} による認証を追加することもできます。"
+    sign_in_name_used: "「%{name}」という名前はすでに利用されています。別の名前を入力してください。"
+    sign_in_name_used_submit: "登録"
+    preview_profile: "プレビュー"
+    control_panel: "設定"
+    discussions_on_scripts: "フィードバック一覧"
+    discussions_on_scripts_feed_alt: "フィード"
+    discussions_on_scripts_none: "まだ投稿はありません。"
+    discussions_on_scripts_more: "さらに表示 ▸"
+    script_list: "スクリプト一覧"
+    script_list_none: "また投稿していません。"
+    script_list_none_for_filter: "指定した条件に一致するスクリプトはありません。"
+    script_list_none_same_user_html: "まだスクリプトを書いていません。%{script_list_none_same_user_info_link}"
+    script_list_none_same_user_info_link_text: "スクリプトの書き方を見てみますか？"
+    deleted_script_list: "削除したスクリプト"
+    sign_out: "ログアウト"
+    edit: "アカウント設定"
+    edit_sign_in: "ログイン方法の設定"
+    edit_sign_in_title: "ログインに利用するアカウントの設定"
+    edit_sign_in_password: "パスワードの設定"
+    no_password_set_info: "パスワードを設定すると、メールアドレスとここで設定したパスワードでログインできるようになります。"
+    set_password: "設定"
+    update_password: "更新"
+    update_password_no_match: "「Password」と「Password confirmation」が一致しません。"
+    password_updated: "パスワードを更新しました。"
+    remove_password_info: "ここで設定したパスワードを削除して、%{site_name} へのログインをソーシャルアカウントに依存することもできます。"
+    remove_password: "パスワードを削除"
+    cant_remove_password: "パスワードを削除する前に、ソーシャルアカウントでログインできるようにしてください。"
+    cant_remove_sign_in: "%{provider} との連携を解除する前に、パスワードを設定するか他のソーシャルアカウントでログインできるようにしてください。"
+    password_removed: "パスワードを削除しました。"
+    edit_sign_in_external: "ソーシャルアカウントによる認証"
+    external_sign_in_info_no_sign_ins: "ソーシャルアカウントを利用して %{site_name} にログインすることができます。"
+    external_sign_in_info_with_sign_ins: "現在、以下のサービスのアカウントと連携しています。【同期中】のアカウントでログインすると、%{site_name} のアカウント情報 (ユーザー名やEmail) が同期中のアカウントと同じものに更新されます。"
+    external_sign_in_added: "%{provider} との連携を追加しました。"
+    external_sign_in_updated: "%{provider} の同期設定を更新しました。"
+    external_sign_in_removed: "%{provider} との連携を解除しました。"
+    external_sign_in_failed: "%{provider} にログインできませんでした: %{error}"
+    external_sign_in_already_used: "追加しようとした %{provider} のアカウントは、すでに %{site_name} のアカウント「%{user_name}」と連携しています。"
+    syncing_indicator: "【同期中】"
+    enable_syncing: "同期する"
+    disable_syncing: "同期を解除する"
+    remove_external_sign_in: "連携を解除する"
+    add_external_sign_in_info: "以下のサービスのアカウントを使ってログインできるようにする:"
+    set_up_webhook: "GitHubのWebHookの設定"
+    author_email_notification_type:
+      none: "通知メールを受け取らない"
+      discussion_only: "投稿したスクリプトに関する新しいスレッドが立てられたときに通知メールを受け取る"
+      discussion_and_comment: "投稿したスクリプトに関する新しいスレッドが立てられたとき、およびそのスレッドへの返信が投稿されたときに通知メールを受け取る"
+      note: "掲示板の通知設定とは連動していません。掲示板側のユーザー設定によっては、ここで設定していないメールが届くかもしれません。"
+    list_display_html:
+      other: "%{user_link} – %{count}個のスクリプト"
+    listing_number_of_scripts: "スクリプト数"
+    listing_new_scripts: "スクリプトの作成日"
+    listing_updated_scripts: "スクリプトの更新日"
+    listing_registration_date: "登録日"
+    locale_prompt: "(ロケールを選んでください)"
+    show_ads_description: "広告の表示を許可して %{site_name} を支援する"
+    show_sensitive_description: "アダルトコンテンツに関するスクリプトを表示する"
+    preferred_markup_description: "新しいスクリプトの投稿時、およびフィードバックなどの書き込み時に反映されます。"
+    flattr_username_description_html: "<a href=\"https://flattr.com\">Flattr</a> のアカウント宛てに、スクリプトの利用者から寄付を募ります。"
+    approve_redistribution_explanation: "%{site_name} では、他のサイトへスクリプトを転載しても良いか示すことができます。スクリプトのライセンスによって、すでにこれを許可、あるいは不許可としているかもしれません。この設定は、それぞれのスクリプトごとに上書きすることもできます。"
+    approve_redistribution_true: "スクリプトを他の場所に転載されても良い"
+    approve_redistribution_false: "スクリプトを他の場所に転載されたくない"
+    greasy_fork_scripts_link:
+      other: "%{user_name} さんは Greasy Fork にも%{count}個のスクリプトを投稿しています。"
+  help:
+    installing_user_scripts:
+      title: "ユーザースクリプトのインストール方法"
+      intro: "ユーザースクリプトを利用するには、通常はブラウザ拡張のインストールが必要です。"
+      firefox: "Firefox 系のブラウザ: %{gm_link:Greasemonkey}"
+      chrome: "Google Chrome、Chromium 系のブラウザ: %{tm_link:Tampermonkey}"
+      opera_15_plus: "Opera (バージョン 15 以降): %{tm_link:Tampermonkey} または %{vm_link:Violentmonkey}"
+      installing_scripts: "ブラウザでユーザースクリプトが使えるようになったら、Greasy Fork で公開されているスクリプトのページを開き、緑色のインストールボタンをクリックします。"
+    meta_keys:
+      title: "%{site_name} が読み込むスクリプト・メタキー"
+      intro_html: "%{site_name} が読み込む<a href=\"http://wiki.greasespot.net/Metadata_Block\">ユーザースクリプトのメタキー</a>の一覧です。以下の一覧にないキーをスクリプトに含めることも可能で、そのキーはインストールされたスクリプト中にも含まれることになりますが、%{site_name} の UI (表示) には影響しません。"
+      name: "見出しやリンクとして使用されるスクリプトの名前。必須。"
+      name_localized_html: "特定のロケールにおけるスクリプトの名前で、XX は<a href=\"https://ja.wikipedia.org/wiki/ISO_639-1\">ISO 639-1の2文字コード</a>、任意指定の YY は<a href=\"https://ja.wikipedia.org/wiki/ISO_3166-1\">ISO 3166-1の国名コード</a>。ユーザーが対応するロケールで閲覧しているときに、<code>@name</code> を上書きします。"
+      description: "スクリプトがなにをするのかについての説明。スクリプト名の下にテキストとして表示。必須。"
+      description_localized_html: "特定のロケールにおけるスクリプトの説明で、XX は<a href=\"https://ja.wikipedia.org/wiki/ISO_639-1\">ISO 639-1の2文字コード</a>、任意指定の YY は<a href=\"https://ja.wikipedia.org/wiki/ISO_3166-1\">ISO 3166-1の国名コード</a>。ユーザーが対応するロケールで閲覧しているときに、<code>@description</code> を上書きします。"
+      namespace_html: "ユーザースクリプトマネージャーは、<code>@namespace</code> と <code>@name</code> の組み合わせで、スクリプトがすでにインストールされているか否かを判断します。%{site_name} ではこのキーを必須としており、スクリプト更新時に変更された場合は警告を表示します。"
+      version_html: "<a href=\"https://developer.mozilla.org/docs/Toolkit_version_format\">Mozillaのバージョン書式</a>で記述された、スクリプトの特定バージョンを表す識別子。バージョンはスクリプトの情報ページに表示されます。%{site_name} ではこのキーを必須としており、スクリプトコードの変更時に下がっている、または上がっていない場合は警告を表示します。"
+      include: "スクリプトが動作するページを記述。ページのリストは整理された上で、スクリプトの情報ページに表示され、スクリプトの分類に使用されます。"
+      require_html: "スクリプトへの外部 JavaScript の読み込み。%{external_script_link}を参照してください。"
+      require_external_script_link_text: "外部スクリプトにおける%{site_name}のポリシー"
+      updateURL: "ユーザースクリプトマネージャが更新を取得する方法の記述。%{site_name} はこれらのキーを取り除き、%{site_name}　からインストールされたすべてのスクリプトが　%{site_name}　から更新されるようにします。"
+      license: "スクリプトのコピーや変更の許諾について記述されたライセンスの URL、名前。ライセンスの欠如は、私的使用目的でスクリプトがインストールできることを意味しますが、再配布することはできません。ライセンスはスクリプトの情報ページに表示されます。"
+      supportURL: "ユーザーがスクリプトのサポートを受けることができるページの URL (例: バグトラッカー、フォーラム、電子メールアドレス)。サポート URL はスクリプトのフィードバックページに表示されます。"
+      contributionURL_html: "ユーザーがスクリプト作者に寄付することができるページの URL。貢献 URL はスクリプトのフィードバックページに表示されます。http、https、bitcoin スキームの URL が指定可能です。PayPal の寄付ページにリンクするには、<a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=your.email.here%40example.com&amp;item_name=Greasy+Fork+%E5%AF%84%E4%BB%98\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=your.email.here%40example.com&amp;item_name=Greasy+Fork+%E5%AF%84%E4%BB%98</a> のような形式の URL を使用し、サンプルのメールアドレスを自分のものに置き換えます。"
+      contributionAmount_html: "提示する寄付金額。<code>@contributionURL</code> と共に使用します。"
+      compatible_html: "スクリプトがどのブラウザと互換性があるか。互換性はスクリプトの情報ページに表示されます。<code>@compatible firefox ポップアップブロックの無効化が必須</code> のような形式で、互換性に関するコメントを含めることもできます。認識されるブラウザ: %{browsers}"
+      incompatible_html: "スクリプトがどのブラウザと互換性がないか。互換性はスクリプトの情報ページに表示されます。<code>@incompatible firefox Firefox 23 以降で動作しない</code> のような形式で、互換性に関するコメントを含めることもできます。認識されるブラウザ: %{browsers}"
+    writing_user_scripts:
+      title: "ユーザースクリプトの書き方"
+      content_html: "<p>ユーザースクリプトを書くには、JavaScript の知識が必要です。<a href=\"http://wiki.greasespot.net/Tutorials\">GreaseSpot Wiki のチュートリアルリンク</a> は、一般的な JavaScript とユーザースクリプト関連の両方を勉強し始めたいときに便利です。他の人のスクリプトコードを見てみるのも良いでしょう。興味があれば、%{code_rules_link} や %{meta_keys_link} も参考にしてください。スクリプトの開発にあたって助けが必要であれば、お気軽に %{ask_in_forum_link}。</p><p>%{site_name} で投稿するには、アカウントの作成が必要です。自分の %{user_page_link} に %{post_new_script_link} へのリンクがあります。</p>"
+      ask_in_forum_link_text: '掲示板でおたずねください'
+      user_page_link_text: 'ユーザーページ'
+      post_new_script_link_text: 'スクリプトの投稿'
+    code_rules:
+      title: "投稿されたスクリプトに関する %{site_name} のルール"
+      content_html: >
+        <p>以下は %{site_name} に投稿されたスクリプトに課せられる要件です。これらは %{site_name} を、ユーザースクリプトのための便利で安全な場所とするために規定されています。要件に違反しているスクリプトは、%{site_name}
+        のモデレーターによって削除されます。</p> <ul>
+          <li>スクリプトにはそれが何を行うかについての説明が含まれなければならず、スクリプトはその説明にそぐわない不正な動作をしてはいけません。スクリプトがインストールされる前に、それが何を行うかについてユーザーが知っている必要があります。</li>
+          <li>当サイトに投稿されるコードについて、難読化や圧縮 (minify) を禁止します。スクリプトを精査し理解する機会を、インストール前の段階でユーザーに与えておく必要があります。</li>
+          <li>スクリプトが使用するライブラリは、これを行わない正当な技術的理由がある場合を除いて、<code>@require</code> によって読み込まれるべきです。ライブラリをインラインで含む場合、そのライブラリのソースに関する情報が含まれている必要があります
+        (例えば URL、または名前やバージョンが記述されたコメント)。</li>
+          <li>スクリプトは他の著作権を尊重しなければなりません。これには、スクリプト自身やスクリプトから利用されるあらゆるリソース (画像など) が含まれます。他者のコンテンツを使用する意図があれば、そのライセンス条項を遵守するか、使用する前に許可をとってください。</li>
+          <li>%{external_scripts_link:外部の JavaScript の利用には制限があります。}</li>
+          %{adult_content_requirement}
+        </ul> <p>これらの制限に違反するスクリプトに気づいた場合は、そのスクリプトのフィードバックで新しいスレッドを立てて、「スクリプトの削除をモデレーターに申請」を選択し報告してください。</p>
+        <p>以上の要件のいずれかに同意できないものがある場合は、%{contact_link:それについて話し合いましょう}!</p>
+      adult_content_rule_html: "<li>アダルトコンテンツを含むスクリプト、またはアダルトコンテンツを含むサイト向けのスクリプトは、その旨をマークしなければなりません。これは、そのようなスクリプトを表示するか否かの選択肢を、ユーザーが利用できるようにするためです。</li>"
+    external_scripts:
+      title: "外部スクリプトにおける %{site_name} のポリシー"
+      content_html: >
+        <p>ユーザースクリプトは、他のスクリプトを読み込み実行することができます。もっとも素直なやり方は %{require_doc_link:<code>@require</code>}
+        メタデータ・キーを利用することですが、XMLHttpRequest でスクリプトをダウンロードし、DOM に差し込むといったような方法でも実現可能です。</p>
+        <p>これは便利な機能であり、ほとんどのスクリプト作者は正当な目的のために使用していますが、その一方で悪用することも可能な技術です。%{site_name}
+        の基本原則の一つとして、ユーザーがスクリプトのコードを検査できるようにしておかなくてはならない、というものがあります。外部スクリプトは、複数の方法でこの原則を回避し得ます——警告や履歴を残さずにコードを変更したり、ユーザー毎に異なるコードを提供したり、既知のライブラリの中に悪意のあるコードを隠したりといったことが可能です。たとえだれかが外部スクリプトを確認し正当なものだと判断しても、これまで安全であった、またはこれからも安全であると保障することはできません。</p>
+        <p>スクリプト作者が外部スクリプトを使用し続けることを可能にするため、%{site_name} はスクリプトが読み込むことができる URL パターンのホワイトリストを実装しました。このホワイトリストは、次の条件を満たすスクリプト置き場で構成されています。</p>
+        <ul>
+          <li>公開されている</li>
+          <li>内容が頻繁に変更されない</li>
+          <li>複数のスクリプト作者にとって有用であると考えられる</li>
+        </ul> <p>現在のリストは以下のとおりです。</p> %{allowed_require_list} <p><code>@require</code>
+        でホワイトリストに含まれない URL を指定したスクリプトを投稿しようとしても、保存することはできません。</p> <p>読み込ませたいスクリプトが
+        JavaScript ライブラリ (jQuery や YUI など) である場合は、上記のサイトからそれを捜してみてください。特に %{cdnjs_link:cdnjs}
+        と %{jsdelivr_link:jsDelivr} は、広い範囲のライブラリを保持しています。</p> <p>読み込ませたいスクリプトが上記のサイトから利用できないなら、%{contact_link:連絡を取ってもらえれば}、私たちはそれを見つけることができます
+        (またはそのスクリプトを私たちがホストします!)。</p> <p>読み込ませたいスクリプトが自分自身で書いたものならば、スクリプトの種類で「ライブラリ」を選択して
+        %{site_name} に投稿することができます。投稿したライブラリは、他のスクリプトから読み込むことができるようになります。</p>
+    script_rewriting:
+      title: "%{site_name} は投稿されたスクリプトをどのように書き直すか"
+      content_html: >
+        <p>%{site_name} に投稿されたスクリプトは、以下のように書き直されます。</p> <ul>
+          <li><code>@updateURL</code>、<code>@installURL</code>、<code>@downloadURL</code>
+        ディレクティブは取り除かれます。これらのディレクティブが欠けているということは、%{site_name} からインストールされたスクリプトが %{site_name}
+        からアップデートされるということです。</li>
+          <li><code>@version</code>、<code>@namespace</code> ディレクティブを書き忘れている場合は、そのディレクティブを補います。これらのディレクティブは、スクリプトの更新を正常に行うために必要とされます。</li>
+          <li><code>@description</code> ディレクティブをスクリプトの新しいバージョンで書き忘れており、以前のバージョンには存在していた場合、これを補います。</li>
+          <li>改行は Unix スタイルの改行 (\n) に変換されます。</li>
+        </ul>
+    site_feedback_link: "%{site_name} 自体について問題の報告やアイデアの投稿をする"
+    credits:
+      title: "クレジット"
+      authors_credit: "%{site_name} は、スクリプトを開発し投稿している製作者なしには成り立ちません。"
+      developers_credit: "%{site_name} 自体は、バグ報告や改善提案をしたすべての人の助けを借り、%{developers_link:こちらの人たち}によって開発されています。 "
+      translators_credit: "%{site_name} は、%{translators_link:Transifex の Greasy Translation Force} によって翻訳されました:"
+      icons_credit: "スレッドのアイコンは、%{vistastylebase} の %{iconsland} によるものです。ブラウザのアイコンは %{browserlogos} からのものです。"
+    help_with_greasymonkey: "Greasemonkey のヘルプ"
+    contact:
+      title: "連絡を行う"
+      content_html: >
+        <p>%{site_name} や %{site_name} 上の事柄について話し合う方法はいくつかあります。</p> <p>サイトに投稿された特定のスクリプトについて、質問やコメントがありますか?
+        その場合は、スクリプトページのフィードバックタブのリンクから話題を投稿してください。スクリプトの作者は、投稿したスクリプトに関する話題の通知をアカウントページから受け取ります。</p>
+        <p>%{site_name} 自体やスクリプトの開発について質問やコメントがありますか? またはだれかにスクリプトを作ってもらいたいですか? %{forum_link:掲示板への投稿}
+        が、その話題について閲覧者を集めるのに最適でしょう。</p> <p>%{site_name} 自体についての (%{site_name} に投稿された特定のスクリプトについてではなく)
+        不具合報告、または完成された形のアイデアがある場合は、%{github_link:GitHub のページ上でそれを投稿してください。}</p> <p>管理者だけが読めるようにしたい質問やコメントがある場合は、%{admin_email_link:メールを送ってください。}</p>
+    privacy_policy:
+      title: "プライバシーポリシー"
+      content_html: >
+        <p>このページでは、%{site_name} がどのようにユーザーを記録し追跡 (トラッキング) しているかについて説明しています。何らかの懸念があれば、%{admin_email_link:管理者にメールでご連絡ください}。</p>
+        <h2>サーバーログ</h2> <p>一般的なサーバーログのように、%{site_name} はすべての要求 (リクエスト) を記録します。記録される情報には、ページの訪問、IP
+        アドレス、UA (ユーザーエージェント) 文字列が含まれます。これらのログは、デバッグとサーバー分析に利用されます。データは1週間保持されます。このデータは共有も公開もされていません。</p>
+        <h2>スクリプト統計</h2> <p>統計を生成する目的で、%{site_name} はインストール、アップデート要求を IP アドレス情報とともに記録します。この情報は1日保持され、経過後は集計に
+        IP アドレスの記録は含まれなくなります。IP アドレス固有のデータは共有も公開もされていませんが、集計データは公開されます。</p> <h2>Cookie
+        (ログイン前)</h2> <p>いくつかのサイトの機能を有効にするため、%{site_name} は一時的にセッション Cookie を設定する場合があります。これらの
+        Cookie は永続的に設定されていないため、ブラウザの終了時に消去されます (ブラウザの設定に依存)。</p> <h2>ユーザーアカウント</h2>
+        <p>%{site_name} において、スクリプトの投稿、掲示板への参加、その他いくつかのサイトの機能へのアクセスを行うには、アカウントの作成が必要です。アカウントを作成する場合、IPアドレス、メールアドレス、UA
+        などの情報は、永久的に保管され得ます。この情報の一部は、他のユーザーに公開されることがあります。</p> <p>ログイン中に行った行動、たとえばスクリプトやコメントの投稿は、他のユーザーによる閲覧が可能となります。</p>
+        <p>アカウントへログイン時に「ログインを記憶」オプションにチェックを入れた場合、%{site_name} はログイン状態を保持するために永続的な
+        Cookie を設定します。</p> <h2>%{site_name} に投稿されたスクリプト</h2> <p>%{site_name} はユーザーが作成したコンテンツを含んでおり、投稿されたスクリプトをインストールした場合、そのスクリプトによってユーザーの追跡が可能となる場合があります。</p>
+        <h2>サードパーティーライブラリ</h2> <p>%{site_name} は、サイト上での統計や広告の表示を行うために、サードパーティーのコードを含んでいる場合があります。これらのライブラリは、追跡を行うロジックを含んでいるかもしれません。</p>
+  common:
+    error_preamble: "以下に表示されているエラーを修正し、もう一度送信してください。"
+    allowed_elements_link: "使用可能なタグ"
+    allowed_elements_and_attributes_title: "使用可能なHTMLの要素・属性"
+    allowed_elements_intro: "以下の要素と属性を利用できます。Markdownの場合は、HTMLへの変換後にチェックされます。"
+    allowed_elements_extra_info: "改行は <p> タグや <br> タグに置き換えられます。URLを記述した場合、自動的にリンクが張られます。"
+    not_found_text: "404エラー: ページは見つかりませんでした。"
+    not_found_title: "404 – ページ未検出"
+    not_found_link_home: "トップページに戻る。"
+    suggest_locale: "%{site_name} は %{locale_name} で閲覧できます。"
+    incomplete_locale: "%{site_name} の %{locale_name} への翻訳は %{percent} しか完了していません。この状況は改善することができます。"
+    expander_show_more: "さらに表示"
+    expander_show_less: "隠す"
+    advertisement_note: 広告
+    share: 共有
+  activerecord:
+    attributes:
+      user:
+        name: "名前"
+        profile: "自己紹介"
+        locale: "ロケールの初期設定"
+        author_email_notification_type_id: "フィードバックの通知"
+        show_ads: "広告の表示"
+        show_sensitive: "アダルトコンテンツ"
+        preferred_markup: "マークアップの初期設定"
+        flattr_username: "Flattr Username"
+      script:
+        name: "スクリプト名"
+        description: "説明"
+        locale: "ロケール (言語・地域)"
+        code: "コード"
+        changelog: "更新履歴"
+        type: "スクリプトの種類"
+        additional_info: "追加情報"
+        screenshots: "スクリーンショット"
+        screenshot_caption: "キャプション"
+        replaced_by_script_id: "代替スクリプト"
+        approve_redistribution: "再配布"
+  errors:
+    messages:
+      script_missing_name: "は必須です – @name メタキーで指定"
+      script_missing_description: "は必須です – @description メタキーで指定"
+      script_name_same_as_description: " が @name に一致しています"
+      script_sync_identifier_bad_protocol: "には HTTP か HTTPS のURLを指定してください"
+      script_too_many_screenshots: "スクリーンショットが多過ぎます – 最大 %{number} 枚まで"
+      cannot_be_self_reference: "を同じスクリプトにすることはできません"
+      cannot_be_deleted_reference: "に削除されたスクリプトを指定することはできません"
+      must_be_greasy_fork_script: "は %{site_name} 上のスクリプトの URL にする必要があります"
+      script_update_not_utf8: " (アップロード) は UTF-8 のテキスト形式にする必要があります"
+      script_disallowed_require: "で許可されていない外部スクリプトが使用されています: %{code}"
+  opensearch:
+    short_name: "%{site_name}"
+    description: "%{site_name} 上のユーザースクリプトを検索します。"
+    long_name: "%{site_name} ユーザースクリプト検索"
+    attribution: "スクリプト作者の著作権について、ライセンスはそれぞれのスクリプトを参照してください"

@@ -1,28 +1,34 @@
 <% content_for :content do %>
 	<section id="script-info">
 		<header>
-			<h2><%=@script.name%></h2>
-			<p><%=@script.description%></p>
-			<% if !params[:version].nil? %>
-				<p id="version-note">As of <%=@script.updated_at%>. See <%=link_to 'the latest version', {:version => nil}%>.</p>
+			<h2><%=@script.name(I18n.locale)%></h2>
+			<p id="script-description"><%=@script.description(I18n.locale)%></p>
+			<% if !params[:version].nil?
+				latest_version_link = link_to t('scripts.version_notice_latest_version_link'), {:version => nil}%>
+				<p id="version-note"><%=t('scripts.version_notice_html', :date => @script.updated_at, :latest_version_link => latest_version_link.html_safe)%></p>
 			<% end %>
 		</header>
 		<ul id="script-links">
-			<li<%=current_page?(script_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current '<span>Info</span>'.html_safe, script_path(@script, :version => params[:version])%></li>
-			<li<%=current_page?(script_show_code_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current '<span>Code</span>'.html_safe, script_show_code_path(@script, :version => params[:version])%></li>
-			<li<%=current_page?(script_script_versions_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current '<span>History</span>'.html_safe, script_script_versions_path(@script, :version => params[:version])%></li>
-			<li<%=current_page?(script_feedback_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>Feedback (#{@script.discussions.count})</span>".html_safe, script_feedback_path(@script, :version => params[:version])%></li>
-			<% if !current_user.nil? and !@script.locked and current_user.id == @script.user_id %>
-				<li<%=current_page?(new_script_script_version_path(@script.id)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current '<span>Update</span>'.html_safe, new_script_script_version_path(@script.id)%></li>
-				<li<%=current_page?(script_sync_path(@script)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current '<span>Sync</span>'.html_safe, script_sync_path(@script)%></li>
+			<li<%=current_page?(script_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.info_page')}</span>".html_safe, script_path(@script, :version => params[:version])%></li>
+			<li<%=current_page?(script_show_code_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.code_page')}</span>".html_safe, script_show_code_path(@script, :version => params[:version])%></li>
+			<li<%=current_page?(script_script_versions_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.history_page')}</span>".html_safe, script_script_versions_path(@script, :version => params[:version])%></li>
+			<li<%=current_page?(script_feedback_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.feedback_page', :count => @script.discussions.count)}</span>".html_safe, script_feedback_path(@script, :version => params[:version])%></li>
+			<li<%=current_page?(script_stats_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.stats_page')}</span>".html_safe, script_stats_path(@script, :version => params[:version])%></li>
+			<% same_user = !current_user.nil? && current_user.id == @script.user_id
+			user_is_mod = !current_user.nil? && current_user.moderator? %>
+			<% if (same_user and !@script.locked) or user_is_mod %>
+				<li<%=current_page?(script_derivatives_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.derivatives_page')}</span>".html_safe, script_derivatives_path(@script, :version => params[:version])%></li>
 			<% end %>
-			<% if !current_user.nil? and ((current_user.id == @script.user_id and !@script.locked) or current_user.moderator?) 
-				if @script.deleted? %>
-					<li<%=current_page?(script_undelete_path(@script)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current '<span>Undelete</span>'.html_safe, script_undelete_path(@script)%></li>
-				<% else %>
-					<li<%=current_page?(script_delete_path(@script)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current '<span>Delete</span>'.html_safe, script_delete_path(@script)%></li>
-				<% end
-			end %>
+			<% if same_user and !@script.locked %>
+				<li<%=current_page?(new_script_script_version_path(@script.id)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.update_page')}</span>".html_safe, new_script_script_version_path(@script.id)%></li>
+				<li<%=current_page?(script_sync_path(@script)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.sync_page')}</span>".html_safe, script_sync_path(@script)%></li>
+			<% end %>
+			<% if user_is_mod %>
+				<li<%=current_page?(script_mark_path(@script.id)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>Mark</span>".html_safe, script_mark_path(@script.id)%></li>
+			<% end %>
+			<% if (same_user and !@script.locked) or user_is_mod %>
+				<li<%=current_page?(script_delete_path(@script)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.delete_page')}</span>".html_safe, script_delete_path(@script)%></li>
+			<% end %>
 		</ul>
 		<div id="script-content">
 			<%= content_for?(:scripts_content) ? yield(:scripts_content) : yield %>

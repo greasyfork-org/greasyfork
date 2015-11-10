@@ -1,99 +1,169 @@
 require 'uri'
+require 'localizing_model'
 
 class ScriptVersion < ActiveRecord::Base
+	include LocalizingModel
+
+	# this has to be before belongs_to for codes so that it runs before autosave
+	before_create :reuse_script_codes
+
 	belongs_to :script
 	belongs_to :script_code, :autosave => true
 	belongs_to :rewritten_script_code, :class_name => 'ScriptCode', :autosave => true
 
-	validates_presence_of :code
-	validates_presence_of :version, :message => 'meta key must be provided'
+	has_many :localized_attributes, class_name: 'LocalizedScriptVersionAttribute', autosave: true, dependent: :destroy
+	has_and_belongs_to_many :screenshots, autosave: true, dependent: :destroy
 
-	validates_length_of :additional_info, :maximum => 50000
+	strip_attributes :only => [:changelog]
+
+	validates_presence_of :code
+
 	validates_length_of :code, :maximum => 2000000
 	validates_length_of :changelog, :maximum => 500
 
+	validate :number_of_screenshots
+	def number_of_screenshots
+		errors.add(:base, I18n.t('errors.messages.script_too_many_screenshots', :number => Rails.configuration.screenshot_max_count)) if screenshots.length > Rails.configuration.screenshot_max_count
+	end
+
 	validates_each(:code, :allow_nil => true, :allow_blank => true) do |record, attr, value|
 		meta = ScriptVersion.parse_meta(value)
-
-		#@@required_meta.each do |rm|
-		#	record.errors.add(attr, "must contain a meta @#{rm}") unless meta.has_key?(rm)
-		#end
-
-		if !record.accepted_assessment
-			record.disallowed_requires_used.each do |script_url|
-				record.errors.add(attr, "cannot @require from #{script_url}")
-			end
-		end
 
 		ScriptVersion.disallowed_codes_used_for_code(value).each do |dc|
-			record.errors.add(:name, "exception #{dc.ob_code}") if value =~ Regexp.new(dc.pattern)
+			record.errors.add(:base, "Exception #{dc.ob_code}") if value =~ Regexp.new(dc.pattern)
 		end
 	end
 
-	# version format
-	validates_each(:version, :allow_nil => true, :allow_blank => true) do |record, attr, value|
-		# exempt scripts that are (being) deleted
-		next if !record.script.nil? and record.script.deleted?
-
-		record.errors.add(attr, "is not in a valid format") if ScriptVersion.split_version(value).nil?
+	validate do |record|
+		record.disallowed_requires_used.each {|w| record.errors.add(:code, I18n.t('errors.messages.script_disallowed_require', code: "@require #{w}"))}
 	end
 
-	# version must be incremented if the code changed
-	validates_each(:code, :allow_nil => true, :allow_blank => true) do |record, attr, value|
-		# exempt scripts that are (being) deleted
-		next if !record.script.nil? and record.script.deleted?
-
-		next if record.version.nil? or record.version_check_override
-
-		# get the most recently saved record
-		previous_script_version = record.script.get_newest_saved_script_version
-
-		# if this is nil, this is a new script with no previous versions
-		next if previous_script_version.nil?
-
-		# version number does not need to be incremented if code is unchanged
-		next if value == previous_script_version.code
-
-		old_version = previous_script_version.version
-		next if ScriptVersion.compare_versions(record.version, old_version) == 1
-
-		record.errors.add(attr, "was changed, but version number (#{old_version}) was not incremented")
+	# Warnings are separated because we need to show custom UI for them (including checkboxes to override)
+	validate do |record|
+		record.warnings.each {|w| record.errors.add(:base, "warning-" + w.to_s)}
 	end
 
-	# namespace is required and shouldn't change
-	validates_each(:code, :allow_nil => true, :allow_blank => true) do |record, attr, value|
-		# exempt scripts that are (being) deleted
-		next if !record.script.nil? and record.script.deleted?
+	validates_each :localized_attributes do |s, attr, children|
+		s.errors[attr].clear
+		children.each do |child|
+			child.errors.keys.each{|key| s.errors[attr.to_s + '.' + key.to_s].clear}
+			next if child.marked_for_destruction? or child.valid?
+			child.errors.each do |child_attr, msg|
+				s.errors[:base] << I18n.t("activerecord.attributes.script." + child.attribute_key) + " - " + I18n.t("activerecord.attributes.script." + child_attr.to_s, :default => child_attr.to_s) + " " + msg
+			end
+		end
+	end
 
-		meta = ScriptVersion.parse_meta(value)
+	# Multiple additional infos in the same locale
+	validate do |record|
+		# The default will get set to the script's locale
+		additional_info_locales = localized_attributes_for('additional_info').map{|la|(la.locale.nil? && la.attribute_default) ? script.locale : la.locale}.select{|l| !l.nil?}
+		duplicated_locales = additional_info_locales.select{|l| additional_info_locales.count(l) > 1 }.uniq
+		duplicated_locales.each {|l| record.errors[:base] << I18n.t("scripts.additional_info_locale_repeated", {:locale_code => l.code})}
+	end
+
+	# Additional info where no @name for that locale exists. This is OK if the script locale matches, though.
+	validate do |record|
+		additional_info_locales = localized_attributes_for('additional_info').select{|la|!la.attribute_default}.map{|la|la.locale.nil? ? script.locale : la.locale}.select{|l| !l.nil?}.uniq
+		meta_keys = ScriptVersion.parse_meta(code)
+		additional_info_locales.each{|l|
+			record.errors[:base] << I18n.t('scripts.localized_additional_info_with_no_name', {:locale_code => l.code}) if !meta_keys.include?('name:' + l.code) and l != script.locale
+		}
+	end
+
+	before_save :set_locale
+	def set_locale
+		localized_attributes.select{|la| la.locale.nil?}.each{|la| la.locale = script.locale}
+	end
+
+	def warnings
+		w = []
+		w << :version_missing if version_missing?
+		w << :version_not_incremented if version_not_incremented?
+		w << :namespace_missing if namespace_missing?
+		w << :namespace_changed if namespace_changed?
+		w << :potentially_minified if potentially_minified?
+		return w
+	end
+
+	def version_missing?
+		return false if add_missing_version
+
+		# exempt scripts that are (being) deleted as well as libraries
+		return false if !script.nil? and (script.deleted? or script.library?)
+
+		return version.nil?
+	end
+
+	# Version should be incremented when code changes
+	def version_not_incremented?
+		return false if version_check_override
+		return false if version.nil?
+
+		# exempt scripts that are (being) deleted as well as libraries
+		return false if !script.nil? and (script.deleted? or script.library?)
+
+		# did the code change?
+		previous_script_version = script.get_newest_saved_script_version
+		return false if previous_script_version.nil?
+		return false if code == previous_script_version.code
+
+		return ScriptVersion.compare_versions(version, previous_script_version.version) != 1
+	end
+
+	# namespace is required
+	def namespace_missing?
+		return false if add_missing_namespace
+		# exempt scripts that are (being) deleted as well as libraries
+		return false if !script.nil? and (script.deleted? or script.library?)
+
+		# previous namespace will be used in calculate_rewritten_code if this one doesn't have one
+		previous_namespace = get_meta_from_previous('namespace', true)
+		return false if !previous_namespace.nil? and !previous_namespace.empty?
+
+		meta = ScriptVersion.parse_meta(code)
 		# handled elsewhere
-		next if meta.nil?
-		previous_namespace = record.get_meta_from_previous('namespace', true)
+		return false if meta.nil?
+
+		return !meta.has_key?('namespace')
+	end
+
+	# namespace shouldn't change
+	def namespace_changed?
+		return false if namespace_check_override
+		# exempt scripts that are (being) deleted as well as libraries
+		return false if !script.nil? and (script.deleted? or script.library?)
+
+		meta = ScriptVersion.parse_meta(code)
+		# handled elsewhere
+		return false if meta.nil?
+
+		# handled in namespace_missing?
+		namespaces = meta['namespace']
+		return false if namespaces.nil? or namespaces.empty?
+
+		namespace = namespaces.first
+
+		previous_namespace = get_meta_from_previous('namespace', true)
 		previous_namespace = (previous_namespace.nil? or previous_namespace.empty?) ? nil : previous_namespace.first
 
-		if meta.has_key?('namespace')
-			next if record.namespace_check_override
-			# didn't have one, now has one: OK
-			next if previous_namespace.nil?
-			# changed?
-			current_namespace = meta['namespace'].first
-			record.errors.add(attr, "namespace has changed from #{current_namespace} to #{previous_namespace}") if current_namespace != previous_namespace
-			next
-		end
+		# if there was no previous namespace, then anything new is fine
+		return false if previous_namespace.nil?
 
-		# this setting will ensure one gets added
-		next if record.add_missing_namespace
-
-		# no namespace is an error if the previous didn't have one either. if the previous did, 
-		# in calculate_rewritten_code it'll get applied again
-		record.errors.add(attr, "namespace is missing") if previous_namespace.nil?
+		return namespace != previous_namespace
 	end
 
-	attr_accessor :accepted_assessment, :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace
+	# things shouldn't be minified
+	def potentially_minified?
+		return false if minified_confirmation or !disallowed_codes_used.empty?
+		# only warn on new
+		return false if script.nil? or !script.new_record?
+		return ScriptVersion.code_appears_minified(code)
+	end
+
+	attr_accessor :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation, :truncate_description
 
 	def initialize
-		# Accept assessment of @requires outside the whitelist
-		@accepted_assessment = false
 		# Allow code to be updated without version being upped
 		@version_check_override = false
 		# Set a version by ourselves if not provided
@@ -102,7 +172,54 @@ class ScriptVersion < ActiveRecord::Base
 		@namespace_check_override = false
 		# Set a namespace by ourselves if not provided
 		@add_missing_namespace = false
+		# Minified warning override
+		@minified_confirmation = false
+		# Truncate description if it's too long
+		@truncate_description = false
 		super
+	end
+
+	# reuse script code objects to save disk space
+	def reuse_script_codes
+
+		code_found = false
+		rewritten_code_found = false
+
+		# check if one of the previous versions had the same code, reuse if so
+		if !self.script.nil?
+			self.script.script_versions.each do |old_sv|
+				# only use older versions for this
+				break if !self.id.nil? and self.id < old_sv.id
+				next if old_sv == self
+				if !code_found
+					if old_sv.code == self.code
+						self.script_code = old_sv.script_code
+						code_found = true
+					elsif old_sv.rewritten_code == self.code
+						self.script_code = old_sv.rewritten_script_code
+						code_found = true
+					end
+				end
+				if !rewritten_code_found
+					if old_sv.rewritten_code == self.rewritten_code
+						self.rewritten_script_code = old_sv.rewritten_script_code
+						rewritten_code_found = true
+					elsif old_sv.code == self.rewritten_code
+						self.rewritten_script_code = old_sv.script_code
+						rewritten_code_found = true
+					end
+				end
+				break if code_found and rewritten_code_found
+			end
+		end
+
+		# if we didn't find a previous version, see if original and rewritten are the same in the current version
+		if !code_found and self.rewritten_code == self.code
+			self.script_code = self.rewritten_script_code
+		elsif !rewritten_code_found and self.rewritten_code == self.code
+			self.rewritten_script_code = self.script_code
+		end
+
 	end
 
 	def code
@@ -110,7 +227,10 @@ class ScriptVersion < ActiveRecord::Base
 	end
 
 	def code=(c)
-		self.script_code = ScriptCode.new if self.script_code.nil?
+		# no op if the same
+		return if self.code == c
+		#self.script_code = ScriptCode.new
+		self.build_script_code
 		self.script_code.code = c
 	end
 
@@ -119,17 +239,21 @@ class ScriptVersion < ActiveRecord::Base
 	end
 
 	def rewritten_code=(c)
-		self.rewritten_script_code = ScriptCode.new if self.rewritten_script_code.nil?
+		# no op if the same
+		return if self.rewritten_code == c
+		#self.rewritten_script_code = ScriptCode.new
+		self.build_rewritten_script_code
 		self.rewritten_script_code.code = c
 	end
 
 	# Try our best to accept the code
 	def do_lenient_saving
-		@accepted_assessment = true
 		@version_check_override = true
 		@add_missing_version = true
 		@add_missing_namespace = true
 		@namespace_check_override = true
+		@minified_confirmation = true
+		@truncate_description = true
 	end
 
 	def calculate_all(previous_description = nil)
@@ -160,10 +284,11 @@ class ScriptVersion < ActiveRecord::Base
 	def get_blanked_code
 		c = get_rewritten_meta_block
 		current_version = ScriptVersion.get_first_meta(c, 'version')
-		return ScriptVersion.inject_meta_for_code(c, {:description => 'This script was deleted from Greasy Fork, and due to its negative effects, it has been automatically removed from your browser.', :version => ScriptVersion.get_next_version(current_version)})
+		return ScriptVersion.inject_meta_for_code(c, {:description => 'This script was deleted from Greasy Fork, and due to its negative effects, it has been automatically removed from your browser.', :version => ScriptVersion.get_next_version(current_version), :require => nil})
 	end
 
 	def calculate_rewritten_code(previous_description = nil)
+		return code if !script.nil? and script.library?
 		add_if_missing = {}
 		backup_namespace = calculate_backup_namespace
 		add_if_missing[:namespace] = backup_namespace if !backup_namespace.nil?
@@ -184,7 +309,7 @@ class ScriptVersion < ActiveRecord::Base
 		previous_namespace = get_meta_from_previous('namespace', true)
 		return previous_namespace.first unless previous_namespace.nil? or previous_namespace.empty?
 		return nil if !add_missing_namespace
-		return Rails.application.routes.url_helpers.user_path(:id => script.user.id, :only_path => false)
+		return Rails.application.routes.url_helpers.user_url(:id => script.user.id)
 	end
 
 	def inject_meta(replacements, additions_if_missing = {})
@@ -202,8 +327,6 @@ class ScriptVersion < ActiveRecord::Base
 		additions_if_missing = additions_if_missing.with_indifferent_access
 		# replace any existing values
 		meta_lines = meta_block.split("\n").map do |meta_line|
-			# no more modifications needed?
-			next meta_line if replacements.empty? and additions_if_missing.empty?
 			meta_match = /\/\/\s+@([a-zA-Z]+)\s+(.*)/.match(meta_line)
 			next meta_line if meta_match.nil?
 			key = meta_match[1].strip
@@ -233,10 +356,14 @@ class ScriptVersion < ActiveRecord::Base
 			meta_lines << close_meta
 		end
 
-		return meta_lines.join("\n") + ScriptVersion.get_code_block(c)
+		code_blocks = ScriptVersion.get_code_blocks(c)
+		return code_blocks[0] + meta_lines.join("\n") + code_blocks[1]
 	end
 
-	# Returns an array of [pattern, display_name]. display_name can be nil.
+	# Returns an object with:
+	# - :text
+	# - :domain - boolean - is text a domain?
+	# - :tld_extra - boolean - is this extra entries added because of .tld?
 	def calculate_applies_to_names
 		meta = ScriptVersion.parse_meta(code)
 		patterns = []
@@ -248,60 +375,108 @@ class ScriptVersion < ActiveRecord::Base
 		applies_to_names = []
 		patterns.each do |p|
 			original_pattern = p
-			
-			# senseless wildcard before protocol
-			m = p.match(/^\*(https?:.*)/i)
-			p = m[1] if !m.nil?
 
-			# protocol wild-cards
-			p = p.sub(/^\*:/i, 'http:')
-			p = p.sub(/^http\*:/i, 'http:')
+			# regexp - starts and ends with /
+			if p.match(/^\/.*\/$/).present?
 
-			# subdomain wild-cards - http://*.example.com and http://*example.com
-			m = p.match(/^([a-z]+:\/\/)\*\.?([a-z0-9\-]+(?:.[a-z0-9\-]+)+.*)/i)
-			p = m[1] + m[2] if !m.nil?
+				# unescape slashes, then grab between the first slash (start of regexp) and the fourth (after domain)
+				slash_parts = p.gsub(/\\\//, '/').split("/")
 
-			# protocol and subdomain wild-cards - *example.com and *.example.com
-			m = p.match(/^\*\.?([a-z0-9\-]+\.[a-z0-9\-]+.*)/i)
-			p = 'http://' + m[1] if !m.nil?
+				if slash_parts.length < 4
+					# not a full url regexp
+					pre_wildcard = nil
+				else
+					pre_wildcard = slash_parts[1..3].join("/")
 
-			# protocol and subdomain wild-cards - http*.example.com, http*example.com, http*//example.com
-			m = p.match(/^http\*(?:\/\/)?\.?((?:[a-z0-9\-]+)(?:\.[a-z0-9\-]+)+.*)/i)
-			p = 'http://' + m[1] if !m.nil?
+					# get rid of escape sequences
+					pre_wildcard.gsub!(/\\(.)/, '\1')
 
-			# tld wildcards - http://example.* - switch to .tld
-			m = p.match(/^([a-z]+:\/\/[a-z0-9\-]+(?:\.[a-z0-9\-]+)*\.)\*(.*)/)
-			p = m[1] + 'tld' + m[2] if !m.nil?
+					# start of string
+					pre_wildcard.gsub!(/^\^/, '')
 
-			# grab up to the first *
-			pre_wildcard = p.split('*').first
+					# https?:
+					pre_wildcard.gsub!(/^https\?:/, 'http:')
+
+					# https*:
+					pre_wildcard.gsub!(/^https\*:/, 'http:')
+
+					# wildcarded subdomain ://.*
+					pre_wildcard.gsub!(/:\/\/\.\*/, '://')
+
+					# remove optional groups
+					pre_wildcard.gsub!(/\([^\)]+\)[\?\*]/, '')
+
+					# if there's weird characters left, it's no good
+					pre_wildcard = nil if /[\[\]\*\{\}\^\+\?]/.match(pre_wildcard).present?
+				end
+
+			else
+
+				# senseless wildcard before protocol
+				m = p.match(/^\*(https?:.*)/i)
+				p = m[1] if !m.nil?
+
+				# protocol wild-cards
+				p = p.sub(/^\*:/i, 'http:')
+				p = p.sub(/^\*\/\//i, 'http://')
+				p = p.sub(/^http\*:/i, 'http:')
+
+				# skipping the protocol slashes
+				p = p.sub(/^(https?):([^\/])/i, '\1://\2')
+
+				# subdomain wild-cards - http://*.example.com and http://*example.com
+				m = p.match(/^([a-z]+:\/\/)\*\.?([a-z0-9\-]+(?:.[a-z0-9\-]+)+.*)/i)
+				p = m[1] + m[2] if !m.nil?
+
+				# protocol and subdomain wild-cards - *example.com and *.example.com
+				m = p.match(/^\*\.?([a-z0-9\-]+\.[a-z0-9\-]+.*)/i)
+				p = 'http://' + m[1] if !m.nil?
+
+				# protocol and subdomain wild-cards - http*.example.com, http*example.com, http*//example.com
+				m = p.match(/^http\*(?:\/\/)?\.?((?:[a-z0-9\-]+)(?:\.[a-z0-9\-]+)+.*)/i)
+				p = 'http://' + m[1] if !m.nil?
+
+				# tld wildcards - http://example.* - switch to .tld. don't switch if it's an ip address, though
+				m = p.match(/^([a-z]+:\/\/([a-z0-9\-]+(?:\.[a-z0-9\-]+)*\.))\*(.*)/)
+				if !m.nil? && m[2].match(/\A([0-9]+\.){2,}\z/).nil?
+					p = m[1] + 'tld' + m[3]
+					# grab up to the first *
+					pre_wildcard = p.split('*').first
+				else
+					pre_wildcard = p
+				end
+			end
+
 			begin
 				uri = URI(pre_wildcard)
 				if uri.host.nil?
-					applies_to_names << [original_pattern, false]
-				elsif !uri.host.include?('.')
-					# must have at least one . to be something we'll use
-					applies_to_names << [original_pattern, false]
+					applies_to_names << {text: original_pattern, domain: false, tld_extra: false}
+				elsif !uri.host.include?('.') || uri.host.include?('*')
+					# ensure the host is something sane
+					applies_to_names << {text: original_pattern, domain: false, tld_extra: false}
 				else
 					if uri.host.ends_with?('.tld')
-						@@tld_expansion.each do |tld|
-							applies_to_names << [ScriptVersion.get_tld_plus_1(uri.host.sub(/tld$/i, tld)), true]
+						@@tld_expansion.each_with_index do |tld, i|
+							applies_to_names << {text: ScriptVersion.get_tld_plus_1(uri.host.sub(/tld$/i, tld)), domain: true, tld_extra: i != 0}
 						end
 					# "example.com."
 					elsif uri.host.ends_with?('.')
-						applies_to_names << [ScriptVersion.get_tld_plus_1(uri.host[0, uri.host.length - 1]), true]
+						applies_to_names << {text: ScriptVersion.get_tld_plus_1(uri.host[0, uri.host.length - 1]), domain: true, tld_extra: false}
 					else
-						applies_to_names << [ScriptVersion.get_tld_plus_1(uri.host), true]
+						applies_to_names << {text: ScriptVersion.get_tld_plus_1(uri.host), domain: true, tld_extra: false}
 					end
 				end
 			rescue ArgumentError
 				logger.warn "Unrecognized pattern '" + p + "'"
-				applies_to_names << [original_pattern, false]
+				applies_to_names << {text: original_pattern, domain: false, tld_extra: false}
 			rescue URI::InvalidURIError
 				logger.warn "Unrecognized pattern '" + p + "'"
-				applies_to_names << [original_pattern, false]
+				applies_to_names << {text: original_pattern, domain: false, tld_extra: false}
 			end
 		end
+		# If there's a tld_extra and a not-tld_extra for the same text, remove the tld_extra
+		applies_to_names.delete_if{|h1| h1[:tld_extra] && applies_to_names.any?{|h2| !h2[:tld_extra] && h1[:text] == h2[:text]}}
+		# Then make sure we're unique
 		return applies_to_names.uniq
 	end
 
@@ -329,7 +504,7 @@ class ScriptVersion < ActiveRecord::Base
 		return meta if meta_block.nil?
 		# can these be multiline?
 		meta_block.split("\n").each do |meta_line|
-			meta_match = /\/\/\s+@([a-zA-Z]+)\s+(.*)/.match(meta_line)
+			meta_match = /\/\/\s+@([a-zA-Z\:\-]+)\s+(.*)/.match(meta_line)
 			next if meta_match.nil?
 			key = meta_match[1].strip
 			value = meta_match[2].strip
@@ -351,12 +526,12 @@ class ScriptVersion < ActiveRecord::Base
 		return c[start_block..end_block+@@meta_end_comment.length]
 	end
 
-	def self.get_code_block(c)
+	# Returns a two-element array: code before the meta block, code after
+	def self.get_code_blocks(c)
 		meta_start = c.index(@@meta_start_comment)
-		return c if meta_start.nil?
+		return [c, ""] if meta_start.nil?
 		meta_end = c.index(@@meta_end_comment, meta_start) + @@meta_end_comment.length
-		# The meta block does not include the final line break on its closing line - that's assigned to the post-meta code block. If there's a pre-meta code block, we need to add a line break before it to prevent the meta closing tag and the first code line from being on the same line.
-		return (meta_start == 0 ? '' : ("\n" + c[0..meta_start-1])) + c[meta_end..c.length]
+		return [(meta_start == 0 ? '' : c[0..meta_start-1]), c[meta_end..c.length]]
 	end
 
 	def disallowed_requires_used
@@ -398,6 +573,7 @@ class ScriptVersion < ActiveRecord::Base
 	end
 
 	def get_meta_from_previous(key, use_rewritten = false)
+		return nil if script.nil?
 		previous_script_version = script.get_newest_saved_script_version
 		return nil if previous_script_version.nil?
 		previous_meta = ScriptVersion.parse_meta(use_rewritten ? previous_script_version.rewritten_code : previous_script_version.code)
@@ -430,6 +606,24 @@ class ScriptVersion < ActiveRecord::Base
 		p3 = a[8..11].join('')
 		p4 = a[12..15].join('')
 		return [p1, p2, p3, p4].map{|p| p.empty? ? '0' : p}.join('.')
+	end
+
+	def appears_minified
+		ScriptVersion.code_appears_minified(code)
+	end
+
+	def self.code_appears_minified(value)
+		return value.split("\n").any? {|s| s.length > 5000 and s.include?('function') }
+	end
+
+	def additional_info
+		return default_localized_value_for('additional_info')
+	end
+
+	def additional_info_markup
+		la = localized_attributes_for('additional_info').select{|la| la.attribute_default}.first
+		return 'html' if la.nil?
+		return la.value_markup
 	end
 
 private

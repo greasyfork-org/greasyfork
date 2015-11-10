@@ -1,50 +1,100 @@
-<%- title "Edit profile" %>
+<%- title t('.title', :resource => resource_class.model_name.human , :default => "Edit #{resource_name.to_s.humanize}") %>
 
-<h2>Edit <%= resource.name %></h2>
+<h2><%= t('.title', :resource => resource_class.model_name.human , :default => "Edit #{resource_name.to_s.humanize}") %></h2>
 
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
 
   <div><%= f.label :name %><br />
-  <%= f.text_field :name, :autofocus => true %></div>
+  <%= f.text_field :name %></div>
 
   <div><%= f.label :email %><br />
   <%= f.email_field :email %></div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+  <%- if devise_mapping.confirmable? && resource.pending_reconfirmation? -%>
+    <p>
+      <%= t('.currently_waiting_confirmation_for_email', :email => resource.unconfirmed_email, :default => "Currently waiting confirmation for: %{email}") %>
+    </p>
+  <%- end -%>
 
-	<div>
+	<div class="form-control">
 		<%= f.label :profile %>
 		<span class="label-note">
-			<%=f.radio_button(:profile_markup, 'html')%> <%=link_to 'HTML', help_allowed_markup_path, {:target => 'markup_choice'}%>
-			<%=f.radio_button(:profile_markup, 'markdown')%> <%=link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', {:target => 'markup_choice'}%>
-			<button id="preview-user-profile" class="preview-button">Preview</button>
+			<%=link_to t('common.allowed_elements_link'), help_allowed_markup_path, {:target => 'markup_choice'}%>
+			<%=f.radio_button(:profile_markup, 'html')%>HTML
+			<%=f.radio_button(:profile_markup, 'markdown')%><%=link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', {:target => 'markup_choice'}%>
+			<button id="preview-user-profile" class="preview-button"><%=t('users.preview_profile')%></button>
 		</span>
 		<br>
 		<%= f.text_area :profile, {:class => 'previewable', 'data-preview-activate-id' => 'preview-user-profile', 'data-markup-option-name' => 'user[profile_markup]', 'data-preview-result-id' => 'preview-user-profile-results'} %>
 		<div id="preview-user-profile-results" class="preview-result"></div>
 	</div>
 
-  <div><%= f.label :password %> <span class="label-note">(Leave blank if you don't want to change it)</span><br />
-  <%= f.password_field :password, :autocomplete => "off" %></div>
+	<div>
+		<label><%=t('activerecord.attributes.user.locale')%></label><br>
+		<select name="user[locale_id]">
+			<option value="" <%if @user.locale_id.nil?%>selected<%end%>><%=t('users.locale_prompt')%></option>
+			<% Locale.where(:ui_available => true).each do |locale| %>
+				<option value="<%=locale.id%>" <%if @user.locale_id == locale.id%>selected<%end%>><%=locale.display_text%></option>
+			<% end %>
+			<option disabled>---</option>
+			<% Locale.all.each do |locale| %>
+				<option value="<%=locale.id%>"<%if @user.locale_id == locale.id%>selected<%end%>><%=locale.display_text%></option>
+			<% end %>
+		</select>
+	</div>
 
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
+	<div class="form-control">
+		<%= f.label :preferred_markup %>
+		<span class="label-note">
+			<%=t('users.preferred_markup_description')%>
+		</span><br>
+		<%=f.radio_button(:preferred_markup, 'html')%>HTML<br>
+		<%=f.radio_button(:preferred_markup, 'markdown')%><%=link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', {:target => 'markup_choice'}%>
+	</div>
 
-  <div><%= f.label :current_password %> <span class="label-note">(We need your current password to confirm your changes)</span><br />
-  <%= f.password_field :current_password %></div>
 
-  <div><%= f.submit "Update" %></div>
+	<div>
+		<%= f.label :author_email_notification_type_id %><br>
+		<%= f.radio_button(:author_email_notification_type_id, 1)%> <label for="user_author_email_notification_type_id_1"><%=t('users.author_email_notification_type.none')%></label><br>
+		<%= f.radio_button(:author_email_notification_type_id, 2)%> <label for="user_author_email_notification_type_id_2"><%=t('users.author_email_notification_type.discussion_only')%></label><br>
+		<%= f.radio_button(:author_email_notification_type_id, 3)%> <label for="user_author_email_notification_type_id_3"><%=t('users.author_email_notification_type.discussion_and_comment')%></label><br>
+		<i><%=t('users.author_email_notification_type.note')%></i>
+	</div>
+
+	<div>
+		<%= f.label :show_ads %><br>
+		<%= f.check_box(:show_ads)%><label for="user_show_ads"><%=t('users.show_ads_description', site_name: site_name)%></label>
+	</div>
+
+	<div>
+		<%= f.label :show_sensitive %><br>
+		<%= f.check_box(:show_sensitive)%><label for="user_show_sensitive"><%=t('users.show_sensitive_description')%></label>
+	</div>
+
+	<div>
+		<%= f.label :flattr_username %>
+		<span class="label-note"><%=t('users.flattr_username_description_html')%></span>
+		<br>
+		<%= f.text_field(:flattr_username)%>
+	</div>
+
+	<div>
+		<%= f.label :approve_redistribution %><br>
+		<%=t('users.approve_redistribution_explanation', site_name: site_name)%><br>
+		<%= f.radio_button(:approve_redistribution, true)%> <label for="user_approve_redistribution_true"><%=t('users.approve_redistribution_true')%></label><br>
+		<%= f.radio_button(:approve_redistribution, false)%> <label for="user_approve_redistribution_false"><%=t('users.approve_redistribution_false')%></label>
+	</div>
+
+  <div><%= f.submit t('.update', :default => "Update") %></div>
 <% end %>
 
 <% if false 
 # disabled here and in routing
 %>
-	<h3>Cancel my account</h3>
+	<h3><%= t('.cancel_my_account', :default => 'Cancel my account') %></h3>
 
-	<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %></p>
+	<p><%= t('.unhappy', :default => 'Unhappy') %>? <%= link_to t('.cancel_my_account', :default => "Cancel my account"), registration_path(resource_name), :data => { :confirm => t('.are_you_sure', :default => "Are you sure?") }, :method => :delete %>.</p>
 <% end %>
 
-<%= link_to "Back", :back %>
+<%= link_to t('devise.shared.links.back', :default => "Back"), :back %>

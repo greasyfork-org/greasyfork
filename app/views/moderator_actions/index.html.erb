@@ -1,5 +1,5 @@
 <%-title 'Moderator log' %>
-<%-title 'List of actions taken by moderators' %>
+<%-description 'List of actions taken by moderators' %>
 
 <table>
 	<thead>
@@ -16,7 +16,11 @@
 			<td><%=markup_date action.created_at%></td>
 			<td><%=link_to action.moderator.name, action.moderator%></td>
 			<td>
-				<%if !action.script.nil?%>Script: <%=link_to action.script.name, action.script%><%end%>
+				<% if !action.script.nil? %>
+					Script: <%=link_to action.script.name(I18n.locale), action.script%>
+				<% elsif !action.script_id.nil? %>
+					(Deleted script <%=action.script_id%>)
+				<%end%>
 				<%if !action.user.nil?%>User: <%=link_to action.user.name, action.user%><%end%>
 			</td>
 			<td><%=action.action%></td>
@@ -24,3 +28,5 @@
 		</tr>
 	<% end %>
 </table>
+
+<%= will_paginate @actions %>
