@@ -363,6 +363,11 @@ uk:
       post_new_script_link_text: 'публікації нового скрипту'
     code_rules:
       title: "правила для публікації скриптів на %{site_name}"
+    external_scripts:
+      title: "Політика %{site_name}'у щодо зовнішніх сценаріїв"
+    script_rewriting:
+      title: "Як %{site_name} буде переписувати опубліковані скрипти"
+    site_feedback_link: "Повідомити про Проблему або Побажання на %{site_name}"
     credits:
       title: "Подяка"
       authors_credit: "%{site_name} не було б можливим без авторів, які вносять вклад в розвиток цього ресурсу написанням скриптів."
@@ -370,6 +375,10 @@ uk:
       translators_credit: "%{site_name} був перекладений зусиллями %{translators_link:перекладачів Greasy Translation Force на Transifex'і}:"
       icons_credit: "Іконки обговорення взяті з %{vistastylebase} від %{iconsland}. Іконки браузерів взяті з %{browserlogos}."
     help_with_greasymonkey: "Допомога з Greasemonkey"
+    contact:
+      title: "Сконтактуватись з кимось"
+    privacy_policy:
+      title: "Політика приватності"
   common:
     error_preamble: "Були деякі проблеми з тим, що ви публікуєте..."
     allowed_elements_link: "(Переглянути дозволений код.)"
@@ -419,3 +428,7 @@ uk:
       cannot_be_deleted_reference: "не може бути видаленим скриптом"
       must_be_greasy_fork_script: "повинно бути посиланням на скрипт в %{site_name}"
       script_update_not_utf8: "завантажений текст повинен бути UTF-8"
+  opensearch:
+    short_name: "%{site_name} пошук"
+    description: "Шукати користувацькі скрипти на %{site_name}."
+    long_name: "%{site_name} пошук скриптів користувачів"

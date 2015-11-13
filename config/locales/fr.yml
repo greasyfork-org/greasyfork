@@ -220,6 +220,11 @@ fr:
     adult_content_on_greasy_logged_in_error: "Ce script n'est plus disponible sur ce site avec vos %{edit_account_link:paramètres de compte Greasy Fork} actuels."
     adult_content_on_greasy_not_logged_in_error: "Ce script n'est plus disponible anonymement sur ce site. %{login_link:Connectez-vous} et vérifiez vos paramètres de compte Greasy Fork."
     non_adult_content_on_sleazy: "Ce script n'est pas disponible sur ce site."
+    adult_marker: "(Adulte)"
+    deleted_marker: "(Supprimé)"
+    locked_marker: "(Verouillé)"
+    unlisted_marker: "(Non-listé)"
+    library_marker: "(Bibliothèque)"
   script_sets:
     favorites_name: "Favoris"
     delete: "Supprimer ce jeu de scripts"
@@ -359,6 +364,10 @@ fr:
       translators_credit: "%{site_name} a été traduit par %{translators_link:the Greasy Translation Force on Transifex}:"
       icons_credit: "Les icônes de discussion proviennent de %{vistastylebase} par %{iconsland}. Les icônes de navigateur viennent de %{browserlogos}."
     help_with_greasymonkey: "Aide avec Greasemonkey"
+    contact:
+      title: "Contactez une personne"
+    privacy_policy:
+      title: "Politique de confidentialité"
   common:
     error_preamble: "Il y a des erreurs dans ce que vous avez posté..."
     allowed_elements_link: "(Voir les balises autorisées.)"
@@ -408,3 +417,9 @@ fr:
       cannot_be_deleted_reference: "ne peut pas être un script effacé"
       must_be_greasy_fork_script: "doit être l'URL d'un script %{site_name}"
       script_update_not_utf8: "téléchargé sur le serveur doit être du texte encodé en UTF-8"
+      script_disallowed_require: "utilise un script externe non approuvé: %{code}"
+  opensearch:
+    short_name: "%{site_name} recherche"
+    description: "Recherche de scripts utilisateur sur %{site_name}."
+    long_name: "%{site_name} recherche de script utilisateur"
+    attribution: "Copyright des auteurs des scripts, voir chaque script individuel pour les licences"
