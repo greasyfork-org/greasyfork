@@ -524,6 +524,12 @@ class ScriptsController < ApplicationController
 
 	def request_permanent_deletion
 		script = Script.find(params[:script_id])
+		if script.immediate_deletion_allowed?
+			script.destroy!
+			flash[:notice] = I18n.t('scripts.delete_permanently_notice_immediate')
+			redirect_to root_path
+			return
+		end
 		script.permanent_deletion_request_date = DateTime.now
 		script.save(validate: false)
 		flash[:notice] = I18n.t('scripts.delete_permanently_notice')
@@ -549,7 +555,7 @@ class ScriptsController < ApplicationController
 			ma.reason = 'Author request'
 			ma.save!
 		end
-		flash[:notice] = 'Script permanently deleted.'
+		flash[:notice] = I18n.t('scripts.delete_permanently_notice_immediate')
 		redirect_to root_path
 	end
 

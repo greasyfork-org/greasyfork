@@ -372,6 +372,10 @@ class Script < ActiveRecord::Base
 		})
 	end
 
+	def immediate_deletion_allowed?
+		return created_at > 7.days.ago && total_installs < 25
+	end
+
 private
 
 	def url_helpers
@@ -450,4 +454,5 @@ private
 	def self.subsets
 		[:greasyfork, :sleazyfork, :all]
 	end
+
 end

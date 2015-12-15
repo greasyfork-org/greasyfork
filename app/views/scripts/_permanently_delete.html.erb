@@ -4,8 +4,19 @@
 
 <% if script.permanent_deletion_request_date.nil? %>
 
-	<%=form_tag(action: 'request_permanent_deletion') do %>
-		<input type="submit" data-confirm="<%=t('scripts.delete_permanently_confirm')%>" value="<%=t('scripts.delete_permanently_submit')%>">
+	<% if script.immediate_deletion_allowed? %>
+
+		<%=form_tag(action: 'request_permanent_deletion') do %>
+			<input type="submit" data-confirm="<%=t('scripts.delete_permanently_confirm')%>" value="<%=t('scripts.delete_permanently_immediate_submit')%>">
+		<% end %>
+
+	<% else %>
+
+		<p><%=t('scripts.delete_permanently_request_explanation')%></p>
+		<%=form_tag(action: 'request_permanent_deletion') do %>
+			<input type="submit" data-confirm="<%=t('scripts.delete_permanently_confirm')%>" value="<%=t('scripts.delete_permanently_submit')%>">
+		<% end %>
+
 	<% end %>
 
 <% else %>
