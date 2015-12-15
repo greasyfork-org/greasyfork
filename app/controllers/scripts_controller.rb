@@ -518,6 +518,7 @@ class ScriptsController < ApplicationController
 		script.script_delete_type_id = nil
 		script.replaced_by_script_id = nil
 		script.delete_reason = nil
+		script.permanent_deletion_request_date = nil
 		script.save(:validate => false)
 		redirect_to script
 	end
