@@ -209,6 +209,9 @@ pl:
     adult_content_self_report: "Ten skrypt zawiera treści dla dorosłych lub został stworzony dla strony zawierającej treści dla dorosłych."
     adult_content_self_report_explanation: "%{site_name} zezwala na skrypty zawierające treści dla dorosłych, ale musi to być odpowiednio oznakowane, aby użytkownicy mogli zdecydować czy chcą to zobaczyć."
     not_adult_content_self_report_html: "Ten skrypt <strong>nie</strong> zawiera treści dla dorosłych i  <strong>nie</strong> jest przeznaczony dla strony zawierającej treści dla dorosłych."
+    non_adult_content_on_sleazy: "Ten skrypt nie jest dostępny na tej stronie"
+    deleted_marker: "(Usunięty)"
+    locked_marker: "(Zablokowany)"
   script_sets:
     favorites_name: "Ulubione"
     delete: "Usuń kolekcję skryptów"
@@ -220,6 +223,7 @@ pl:
     title: "%{site_name} — bezpieczne i użyteczne skrypty użytkownika"
     welcome: "Witaj na %{site_name}, stronie ze skryptami użytkownika."
     explain_user_scripts_heading: "Co to są skrypty użytkownika?"
+    how_to_install_user_scripts_heading: "Jak zainstalować skrypty użytkownika?"
     scripts_sample: "Nasze przykładowe skrypty"
     scripts_sample_more: "Więcej..."
   users:
@@ -287,12 +291,19 @@ pl:
     listing_registration_date: "Data rejestracji"
     locale_prompt: "(wybierz język)"
     show_ads_description: "Wspomóż %{site_name} poprzez zezwolenie na wyświetlanie reklam"
+    show_sensitive_description: "Pokaż skrypty z treścią dla dorosłych"
     preferred_markup_description: "Zostanie użyte dla nowych skryptów i postów."
     flattr_username_description_html: "Użytkownicy Twoich skryptów będą pytani o dotację do Twojego konta na <a href=\"https://flattr.com\">Flattr</a>."
     approve_redistribution_explanation: "%{site_name} może 'powiedzieć' innym stronom, że zezwalasz na nich publikację Twojego skryptu. To może być lub nie być dozwolone ze względu na licencję wybraną dla Twoich skryptów. Możesz nadpisać tę preferencję do danego skryptu indywidualnie."
     approve_redistribution_true: "Zgadzam się, aby moje skrypty były publikowane w innych miejscach"
     approve_redistribution_false: "Nie zgadzam się, aby moje skrypty były publikowane w innych miejscach"
   help:
+    installing_user_scripts:
+      title: "Jak zainstalować skrypty użytkownika"
+      intro: "Aby korzystać ze skryptów użytkownika, zwykle trzeba zainstalować rozszerzenie do przeglądarki."
+      firefox: "Firefox i pokrewne przeglądarki: %{gm_link:Greasemonkey}."
+      chrome: "Google Chrome, Chromium i pokrewne przeglądarki:%{tm_link:Tampermonkey}."
+      opera_15_plus: "Opera (wersja 15 i nowsze): %{tm_link:Tampermonkey} lub %{vm_link:Violentmonkey}."
     meta_keys:
       title: "kluczami meta skryptu czytanymi przez %{site_name}"
       name: "(wymagane) Nazwa skryptu, która jest używana jako nagłówek i w linkach."
@@ -315,6 +326,7 @@ pl:
       developers_credit: "%{site_name} sam w sobie został stworzony przez %{developers_link:tych ludzi} razem z pomocą tych, którzy zgłaszali błędy i sugerowali poprawki."
       translators_credit: "%{site_name} został przetłumaczony przez %{translators_link:zespół tłumaczy %{site_name}a na Transifeksie}:"
       icons_credit: "Ikony dyskusji są pochodzą od %{vistastylebase} przez %{iconsland}. Ikony przeglądarek pochodzą od %{browserlogos}."
+    help_with_greasymonkey: "Pomoc z Greasemonkey"
   common:
     error_preamble: "Mieliśmy małe problemy z tym, co chciałeś napisać..."
     allowed_elements_link: "(zobacz dozwolony kod)"
