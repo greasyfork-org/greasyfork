@@ -1,5 +1,5 @@
 applies_tos = {}
-Script.includes([:script_applies_tos, :assessments]).find_each do |script|
+Script.includes(:script_applies_tos).find_each do |script|
 	sv = script.get_newest_saved_script_version
 	sv.do_lenient_saving
 	sv.calculate_all(script.description)
