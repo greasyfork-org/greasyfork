@@ -65,10 +65,13 @@ cs:
     delete_update_behaviour_2: "Aktualizovat na prázdný skript. Tato volba je vhodná v případě, že skript měl negativní efekt při prohlížení předmětných stránek."
     delete_permanently_heading: "Trvalé smazání"
     delete_permanently_explanation: "Trvalé smazání skriptu vede k jeho odstranění a smazání souvisejících záznamů s výjimkou diskuse na fóru a logu moderátorských akcí. Trvalé smazání je nevratné; skript nelze obnovit ani za pomoci moderátorů."
+    delete_permanently_request_explanation: "Trvalé smazání skriptu musí být potvrzeno moderátorem."
     delete_permanently_confirm: "Jste si jisti, že chcete skript trvale smazat? Operaci nelze vrátit!"
     delete_permanently_submit: "Vyžádat trvalé smazání"
+    delete_permanently_immediate_submit: "Trvale smazat"
     delete_permanently_notice: "Požadavek na trvalé smazání byl zaznamenán a bude nyní posouzen moderátorem."
     delete_permanently_already_requested: "Žádost o trvalé smazání byla zaslána %{datetime}."
+    delete_permanently_notice_immediate: "Skript byl trvale smazán."
     cancel_delete_permanently_submit: "Stornovat požadavek na trvalé smazání"
     cancel_delete_permanently_notice: "Požadavek na trvalé smazání byl stornován."
     history_title: "%{script_name} - Historie verzí"
@@ -358,6 +361,8 @@ cs:
       post_new_script_link_text: 'vytvoření nového skriptu'
     code_rules:
       title: "Pravidla %{site_name} pro skripty"
+    external_scripts:
+      title: "Pravidla %{site_name} o používání externích skriptů"
     credits:
       title: "Autoři"
       authors_credit: "%{site_name} by nemohl existovat bez autorů, kteří pracují na skriptech."
@@ -414,3 +419,4 @@ cs:
       cannot_be_deleted_reference: "nemůže být smazaný skript"
       must_be_greasy_fork_script: "musí být umístěn na %{site_name}"
       script_update_not_utf8: "nahraný text musí mít kódování UTF-8"
+      script_disallowed_require: "využívá neschválený externí skript: %{code}"

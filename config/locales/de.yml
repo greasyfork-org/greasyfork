@@ -61,10 +61,13 @@ de:
     delete_update_behaviour_2: "Ihre Version wird mit einem leeren Skript aktualisiert. Dies ist anzuraten, wenn das Skript auf den Seiten, auf denen es ausgeführt wird, negative Auswirkungen hat."
     delete_permanently_heading: "Endgültige Löschung"
     delete_permanently_explanation: "Das endgültige Löschen eines Skripts löscht das Skript selbst und alle damit verbundenen Daten, mit Ausnahme von Forendiskussionen und Einträgen im Moderatorenlogbuch. Die endgültige Löschung ist endgültig; sie kann nicht Rückgängig gemacht werden, auch nicht von Moderatoren."
+    delete_permanently_request_explanation: "Die endgültige Löschung dieses Skriptes kann erst nach der Prüfung durch einen Moderator abgeschlossen werden."
     delete_permanently_confirm: "Skript wirklich endgültig löschen? Diese Aktion kann nicht rückgängig gemacht werden!"
     delete_permanently_submit: "Endgültige Löschung beantragen"
+    delete_permanently_immediate_submit: "Endgültig löschen"
     delete_permanently_notice: "Der Antrag auf endgültige Löschung wurde empfangen und wird von einem Moderator geprüft."
     delete_permanently_already_requested: "Endgültige Löschung wurde am %{datetime} beantragt."
+    delete_permanently_notice_immediate: "Skript endgültig gelöscht."
     cancel_delete_permanently_submit: "Antrag auf endgültige Löschung zurücknehmen"
     cancel_delete_permanently_notice: "Der Antrag auf endgültige Löschung wurde zurückgenommen."
     history_title: "%{script_name} - Versionsverlauf"
@@ -216,8 +219,8 @@ de:
     adult_content_self_report: "Dieses Skript enthält Inhalte für Erwachsene oder ist für eine Seite die Inhalte für Erwachsene enthält."
     adult_content_self_report_explanation: "%{site_name} erlaubt Skripte mit nicht-jugendfreien Inhalten. Diese müssen jedoch entsprechend gekennzeichnet sein, damit Nutzer entscheiden können ob sie diese Inhalte sehen möchten."
     not_adult_content_self_report_html: "Dieses Skript enthält <strong>keine</strong> nicht-jugendfreien Inhalte und es ist <strong>nicht</strong> für eine Seite die nicht-jugendfreie Inhalte enthält."
-    not_adult_content_self_report_explanation: "%{site_name} erlaubt Skripte mit nicht-jugendfreien Inhalten. Diese müssen jedoch entsprechend gekennzeichnet sein, damit Nutzer entscheiden können ob sie diese Inhalte sehen möchten. Ihr Skript wurde als nicht-jugendfrei gekennzeichnet. Sie können erklären dass es dies nicht ist. Ihre Erklärung wird von einem Moderator begutachtet."
-    adult_content_on_greasy_logged_in_error: "Dieses Skript ist nicht länger auf dieser Seite mit Ihren derzeitigen %{edit_account_link:Greasy Fork Kontoeinstellungen} verfügbar."
+    not_adult_content_self_report_explanation: "%{site_name} erlaubt Skripte mit nicht-jugendfreien Inhalten. Diese müssen jedoch entsprechend gekennzeichnet sein, damit Nutzer entscheiden können ob sie diese Inhalte sehen möchten. Ihr Skript wurde als nicht-jugendfrei gekennzeichnet. Sie können erklären dass es dies nicht ist. Ihre Erklärung wird von einem Moderator überprüft."
+    adult_content_on_greasy_logged_in_error: "Dieses Skript ist mit Ihren derzeitigen %{edit_account_link:Greasy Fork Kontoeinstellungen} nicht länger auf dieser Seite verfügbar."
     adult_content_on_greasy_not_logged_in_error: "Dieses Skript ist auf dieser Seite nicht länger anonym verfügbar.  %{login_link:Loggen Sie sich ein} und prüfen Sie Ihre Greasy Fork Kontoeinstellungen."
     non_adult_content_on_sleazy: "Dieses Skript ist nicht auf dieser Webseite verfügbar."
     adult_marker: "(Nicht Jugendfrei)"
@@ -238,6 +241,8 @@ de:
   home:
     title: "%{site_name} - sichere und hilfreiche Benutzerskripte"
     welcome: "Herzlich Willkommen auf %{site_name}, einer Seite für Benutzerskripte"
+    sleazy_title: "%{site_name} - sichere und hilfreiche nicht-jugendfreie Benutzerskripte"
+    sleazy_welcome: "Herzlich Willkommen auf %{site_name}, einer Seite für nicht-jugendfreie Benutzerskripte"
     explain_user_scripts_heading: "Was sind Benutzerskripte?"
     explain_user_scripts_html: "Benutzerskripte erlauben die vollständige Kontrolle des Interneterlebnisses. Einmal installiert werten sie automatisch die besuchten Seiten auf, indem sie diesen Funktionen hinzufügen, deren Verwendung vereinfachen oder störende Kleinigkeiten entfernen. Die Benutzerskripte auf %{site_name} wurden von anderen Benutzern geschrieben und veröffentlicht um sie mit der ganzen Welt zu teilen. Sie sind frei verwendbar und einfach zu benutzen."
     how_to_install_user_scripts_heading: "Wie installiert man Benutzerskripte?"
@@ -316,6 +321,9 @@ de:
     approve_redistribution_explanation: "%{site_name} kann anderen Internetseiten mitteilen, dass Sie ihnen die Veröffentlichung Ihrer Skripte ausdrücklich erlauben. Das kann durch die Lizenzen, welche für die Skripte gewählt wurden, bereits erlaubt sein. Die Einstellung kann für jedes Skript einzeln überschrieben werden."
     approve_redistribution_true: "Meine Skripte dürfen anderswo veröffentlicht werden"
     approve_redistribution_false: "Ich möchte nicht, dass meine Skripte anderswo veröffentlicht werden"
+    greasy_fork_scripts_link:
+      one: "%{user_name} hat auch %{count} Skript auf Greasy Fork."
+      other: "%{user_name} hat auch %{count} Skripte auf Greasy Fork."
   help:
     installing_user_scripts:
       title: "Wie installiert man Benutzerskripte?"
@@ -352,6 +360,31 @@ de:
       post_new_script_link_text: 'ein neues Skript zu veröffentlichen'
     code_rules:
       title: "%{site_name}s Regeln für veröffentlichte Skripte"
+      adult_content_rule_html: "<li>Skripte, welche nicht-jugendfreie Inhalte enthalten oder für Seiten mit nicht-jugendfreien Inhalten gemacht sind, müssen als solche gekennzeichnet werden, um anderen Nutzern die Wahlmöglichkeit zu geben ob sie diese sehen möchten.</li>"
+    external_scripts:
+      title: "%{site_name}s Richtlinie für externe Skripte"
+    script_rewriting:
+      title: "Wie %{site_name} veröffentlichte Skripte umschreibt"
+      content_html: >
+        <p>Skripte, welche auf %{site_name} veröffentlicht werden, werden wie folgt
+        umgeschrieben:</p><ul>
+
+        <li>Die Anweisungen <code>@updateURL</code>, <code>@installURL</code> und
+        <code>@downloadURL</code> werden entfernt, falls vorhanden. Das Fehlen dieser
+        Anweisungen bedeutet, dass jedes Skript, was von %{site_name} installiert
+        wurde auch Updates von %{site_name}erhält.</li>
+
+        <li>Die Anweisungen <code>@version</code> und <code>@namespace</code> werden
+        eingefügt, falls sie im Skript fehlen. Diese Anweisungen sind für korrekte
+        Updates notwendig.</li>
+
+        <li><code>@description</code> wird eingefügt, falls es in einer neuen Skriptversion
+        fehlt, aber eine vorherige Version des Skriptes es hatte.</li>
+
+        <li>Zeilenumbrüche werden in Unix-Style Zeilenumbrüche umgewandelt (\n).</li>
+
+        </ul>
+    site_feedback_link: "Melde ein Problem oder veröffentliche eine Idee für %{site_name} selbst"
     credits:
       title: "Mitwirkende"
       authors_credit: "Das Bestehen von %{site_name} wäre ohne die Ersteller der hochgeladenen Skripte nicht möglich."
