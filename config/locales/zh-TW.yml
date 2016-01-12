@@ -57,10 +57,13 @@ zh-TW:
     delete_update_behaviour_2: "更新到一個空白腳本。該項適用於當腳本對網站產生負面影響時。"
     delete_permanently_heading: "永久刪除"
     delete_permanently_explanation: "永久刪除將刪除該腳本以及討論區、管理員操作之外的所有記錄。永久刪除不可反悔，即使是管理員也不得還原腳本。"
+    delete_permanently_request_explanation: "必須等管理員審核過後才能成功永久刪除"
     delete_permanently_confirm: "你確認永久刪除這個腳本嗎？這個操作不可還原。"
     delete_permanently_submit: "請求永久刪除"
-    delete_permanently_notice: "永久刪除請求已記錄，請等候管理員審覈通過。"
+    delete_permanently_immediate_submit: "永久刪除"
+    delete_permanently_notice: "永久刪除請求已記錄，請等候管理員審核通過。"
     delete_permanently_already_requested: "您在 %{datetime} 請求了永久刪除。"
+    delete_permanently_notice_immediate: "腳本已被永久刪除"
     cancel_delete_permanently_submit: "取消永久刪除請求"
     cancel_delete_permanently_notice: "您請求的永久刪除已取消。"
     history_title: "%{script_name} - 版本歷史"
@@ -214,7 +217,7 @@ zh-TW:
     not_adult_content_self_report_html: "這個腳本 <strong>不包含</strong> 成人內容且 <strong>不作用於</strong> 包含成人內容的站點。"
     not_adult_content_self_report_explanation: "%{site_name} 允許腳本含有成人內容，但是他們必須被標記；這樣用戶可以選擇是否顯示這類信息。這個腳本被自動標記為含有成人內容。您可以請求取消這個標記，該請求將由管理員進行審查。"
     adult_content_on_greasy_logged_in_error: "這個腳本對您當前的 %{edit_account_link:Greasy Fork 賬戶設定} 不合適。"
-    adult_content_on_greasy_not_logged_in_error: "這個腳本不對遊客開發。請%{login_link:登錄}并確認您的 Greasy Fork 賬戶設定。"
+    adult_content_on_greasy_not_logged_in_error: "這個腳本不對遊客開放。請 %{login_link:登入} 並確認您的 Greasy Fork 帳戶設定。"
     non_adult_content_on_sleazy: "這個腳本在這個網站上不可用。"
     adult_marker: "(成人)"
     deleted_marker: "(已移除)"
@@ -237,14 +240,14 @@ zh-TW:
     sleazy_title: "%{site_name} - 安全又好用的成人使用者腳本分享站"
     sleazy_welcome: "歡迎來到 %{site_name}，這是一個成人使用者腳本分享站。"
     explain_user_scripts_heading: "使用者腳本是什麼？"
-    explain_user_scripts_html: "使用者腳本讓您控制您的瀏覽體驗。當您安裝後，腳本將自動為網頁增強功能、使用簡易或移除煩人的東西。在 %{site_name} 上的腳本均由其它使用者編寫并与這個世界分析。他們可以免費、簡單的使用。"
+    explain_user_scripts_html: "使用者腳本讓您控制您的瀏覽體驗。當您安裝後，使用者腳本可以為網頁增加功能、簡化使用方法、或移除煩人的東西。在 %{site_name} 上的腳本都是由其它使用者撰寫、和全世界分享的。所有的腳本都是免費安裝，而且容易使用。"
     how_to_install_user_scripts_heading: "我應該如何安裝使用者腳本？"
-    how_to_install_user_scripts_html: "首先，您需要安裝一個使用者腳本管理器。對 Firefox 瀏覽器來說，最好的選擇是 %{gm_link:Greasemonkey}；對 Chrome 瀏覽器則是 %{tm_link:Tampermonkey}；當然，也有%{other_managers_link:其它的選擇} 。當您安裝了使用者腳本管理之後，您可以在 %{site_name} 尋找您喜歡的腳本冰點擊綠色的「安裝」按鈕。腳本安裝完畢后將在您訪問網站的時候自動啓用。"
+    how_to_install_user_scripts_html: "首先，您需要安裝一個使用者腳本管理器。對 Firefox 瀏覽器來說，最好的選擇是 %{gm_link:Greasemonkey}；對 Chrome 瀏覽器則是 %{tm_link:Tampermonkey}；當然，也有%{other_managers_link:其它的選擇} 。當您安裝了使用者腳本管理之後，您可以在 %{site_name} 尋找您喜歡的腳本，並點擊綠色的「安裝」按鈕。腳本安裝完畢後，會在訪問網站的時候自動啓用。"
     scripts_sample: "腳本實例"
     scripts_sample_more: "更多…"
   users:
     sign_in_title: "登入  %{site_name}"
-    sign_in_description: "登入 %{site_name} 可以讓您發佈腳本，以及反饋其他人的腳本。如果您只想瀏覽或安裝腳本，則無需登入。"
+    sign_in_description: "登入 %{site_name} 可以讓您發佈腳本，以及對其他人的腳本發表評價。如果您只想瀏覽或安裝腳本，則無需登入。"
     sign_in_external: "透過外部帳號登入"
     sign_in_password: "使用本站帳密登入"
     sign_in_email_used_no_external_services_html: "「%{email}」已被使用者 「%{user_name}」註冊。如果這個帳號是你的並且您想增加 %{provider} 為可選擇的登入入口，請先以本站帳密%{sign_in_link}本站，本站會將 %{provider} 登入入口對應到您的帳號。"
@@ -318,12 +321,12 @@ zh-TW:
   help:
     installing_user_scripts:
       title: "如何安裝使用者腳本"
-      intro: "要使用使用者腳本，您通常需要安裝一個瀏覽器擴展。"
+      intro: "要使用使用者腳本，您通常需要安裝一個瀏覽器擴充套件。"
       firefox: "Firefox 或相關瀏覽器：%{gm_link:Greasemonkey}。"
       chrome: "Google Chrome、Chromium 或相關瀏覽器：%{tm_link:Tampermonkey}。"
       opera_15_plus: "Opera (版本 15 及以後)：%{tm_link:Tampermonkey} 或 %{vm_link:Violentmonkey}。"
-      opera_12: "Opera 版本 12 以及之前的版本 %{opera_doc_link:原生支援使用者腳本}。當然，您也可以使用 %{vm_link:Violentmonkey}  擴展用於提供更好用的界面以及增強的兼容性。"
-      installing_scripts: "當使用者腳本在您的瀏覽器啓用後，瀏覽到一個 Greasy Fork 的腳本并單擊綠色的「安裝」按鈕。"
+      opera_12: "Opera 版本 12 以及之前的版本 %{opera_doc_link:原生支援使用者腳本}。當然，您也可以使用 %{vm_link:Violentmonkey}  擴充套件，它提供了親切的界面以及更好的兼容性。"
+      installing_scripts: "確定使用者腳本是啟用狀態後，進入 Greasy Fork 的腳本頁面並點擊綠色的「安裝」按鈕。"
     meta_keys:
       title: "%{site_name} 讀取的 meta keys"
       intro_html: "這是 %{site_name} 會讀取的 <a href=\"http://wiki.greasespot.net/Metadata_Block\">使用者腳本 meta keys</a> 的清單。腳本中可以有不在此清單中的 key，也會存在使用者安裝的腳本中，但不會對 %{site_name} 的介面有任何效果。"
@@ -357,31 +360,31 @@ zh-TW:
     external_scripts:
       title: "%{site_name} 對於外部程式碼的政策"
       content_html: >
-        <p>用戶腳本可以從技術層面上載入並執行其它的腳本。元屬性 %{require_doc_link:<code>@require</code>} 是最簡單的一個方法，但是腳本也可以使用其它方法如
+        <p>使用者腳本技術上有載入並執行其它腳本的能力。%{require_doc_link:<code>@require</code>} 是最簡單的一個方法，但是也可以使用其它方法如
         XmlHttpRequest 下載一個腳本並插入到 DOM（頁面元素）。</p>
 
-        <p>因爲其靈活性而被很多作者用於合法用途，但是也可以被它人用於插入惡意代碼。%{site_name} 的核心定位之一則是用戶必須能查詢腳本中的代碼。比如說：他們可以隨時更改遠端伺服器上的內容而不提醒用戶或保存歷史記錄，可以針對性的部署不同的代碼給不同的用戶，也可以在腳本函式庫中間插入一小段的惡意代碼避免發現。即使有人檢查過代碼的合法性，也不能保證這個遠端數據在未來也是安全的。</p>
+        <p>這是個很有用的功能，且大多數的作者皆將它用於合法用途，但它也可以用來插入惡意代碼。%{site_name} 的核心準則之一——用戶必須能查詢腳本中的代碼。外部腳本可以用不同方法繞過這個規則，比如說：它們可以隨時變更而不留下歷史紀錄、它們可以針對性地提供不同的代碼給不同的人、也可以在正常的函式庫中間插入一小段的惡意代碼以避免發現。即使有人檢查過代碼的合法性，也不能保證這個腳本在這之前或未來也是安全的。</p>
 
-        <p>爲了允許腳本作者繼續使用外部腳本，%{site_name} 引入了一個允許被引入的外部腳本列表。這些站點要求：</p>
+        <p>為了允許腳本作者繼續使用外部腳本，%{site_name} 使用了一個允許被引入的外部腳本列表。這些網站必須：</p>
 
         <ul>
           <li>公開透明</li>
           <li>不經常更改內容</li>
-          <li>能應用到多個用戶腳本</li>
+          <li>能用於多個使用者腳本</li>
         </ul>
 
-        <p>當前允許的地址列表是：</p>
+        <p>當前允許的網址列表是：</p>
 
         %{allowed_require_list}
 
-        <p>如果您嘗試提交一個包含 <code>@require</code> 白名單之外的引用，您將不能保存您的腳本。</p>
+        <p>如果您嘗試發佈一個腳本，它 <code>@require</code> 了白名單之外的外部腳本，您將不能保存您的腳本。</p>
 
-        <p>如果您希望引入一個第三方函式庫 (例如 jQuery 或 YUI)，請嘗試在上述白名單站點尋找。%{cdnjs_link:cdnjs} 以及
+        <p>如果您希望引入一個第三方函式庫 (例如 jQuery 或 YUI)，請嘗試在上述白名單網站尋找。%{cdnjs_link:cdnjs} 以及
         %{jsdelivr_link:jsDelivr} 包含了大量的第三方函式庫可供您使用。</p>
 
-        <p>如果您希望使用的腳本不存在於上述站點，您可以 %{contact_link:告知我們}，讓我們告訴您在哪尋找 (或者我們可以自己託管!)。</p>
+        <p>如果您希望使用的腳本不存在於上述網站，您可以 %{contact_link:告知我們}，讓我們告訴您在哪尋找 (或者我們可以自己託管!)。</p>
 
-        <p>如果您希望引入的腳本是您自己編寫的，您可以在 %{site_name} 提交，提交時選中「函式庫」類型即可。然後您就可以引入到您的腳本了。</p>
+        <p>如果您希望引入的腳本是您自己編寫的，您可以在 %{site_name} 發表，發表時選「函式庫」類型即可。然後您就可以引入到您的腳本了。</p>
     script_rewriting:
       title: "%{site_name} 會如何改寫發表的腳本"
       content_html: >
@@ -484,7 +487,7 @@ zh-TW:
         changelog: "更新紀錄"
         type: "腳本類型"
         additional_info: "其他資訊"
-        screenshots: "擷圖"
+        screenshots: "截圖"
         screenshot_caption: "標題"
         replaced_by_script_id: "替代腳本"
         approve_redistribution: "轉載"
@@ -494,7 +497,7 @@ zh-TW:
       script_missing_description: "必填 - 請透過 <code>@description</code> 指定。"
       script_name_same_as_description: "不能與名稱相同"
       script_sync_identifier_bad_protocol: "必須為 HTTP 或 HTTPS URL"
-      script_too_many_screenshots: "上傳的擷圖過多 - 您最多只能上傳 %{number} 張擷圖"
+      script_too_many_screenshots: "上傳的截圖過多 - 您最多只能上傳 %{number} 張截圖"
       cannot_be_self_reference: "不能為相同腳本"
       cannot_be_deleted_reference: "不能為已刪除腳本"
       must_be_greasy_fork_script: "必須為本站的腳本"
@@ -504,4 +507,4 @@ zh-TW:
     short_name: "%{site_name} 搜尋"
     description: "在 %{site_name} 上尋找腳本。"
     long_name: "%{site_name} 腳本搜尋"
-    attribution: "用戶腳本版權屬於其作者，請在單獨的用戶腳本頁面查詢相關授權"
+    attribution: "版權屬於腳本作者，請在各腳本的頁面查詢相關授權"

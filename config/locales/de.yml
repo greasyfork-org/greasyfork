@@ -360,9 +360,85 @@ de:
       post_new_script_link_text: 'ein neues Skript zu veröffentlichen'
     code_rules:
       title: "%{site_name}s Regeln für veröffentlichte Skripte"
+      content_html: >
+        <p>Dies sind die Bedingungen für Skripte, welche auf %{site_name} veröffentlicht
+        werden. Sie haben zum Ziel %{site_name} als einen sicheren und nützlichen
+        Ort für Benutzerskripte beizubehalten. Jedes Skript, welches diese Regeln
+        nicht einhält, kann von den %{site_name} Moderatoren gelöscht werden.</p>
+        <ul>
+
+        <li>Skrtipe müssen eine Beschreibung beinhalten, was sie machen und dürfen
+        nichts unverhältnismäßig außerhalb dieser Beschreibung machen. Benutzer müssen
+        wissen, was ein Skript macht, bevor sie es installieren.</li>
+
+        <li>Quelltext, welcher auf dieser Seite veröffentlicht wird, darf nicht verschleieert
+        oder minimiert sein. Benutzern muss die Möglichkeit gegeben sein ein Skript
+        zu inspizieren und zu verstehen, bevor sie es installieren.</li>
+
+        <li>Bibliotheken, welche ein Skript verwendet, sollten per <code>@require</code>
+        eingebunden werden, so lange es keinen validen technischen Grund dafür gibt,
+        dies nicht zu tun. Im Falle einer direkten Einbindung einer Bibliothek muss
+        die Information über die Quelle der Bibliothek angegeben werden (z.B. ein
+        Kommentar welcher die URL und/oder den Namen und die Version beinhaltet).</li>
+
+        <li>Ihr Skript muss das Urheberrecht anderer achten. Dies beinhaltet sowohl
+        das Skript selbst, als auch jegliche Quellen (wie beispielsweise Bilder),
+        die es verwendet. Falls Sie beabsichtigen Inhalte von jemand anderem zu verwenden,
+        befolgen Sie deren Lizenzbestimmungen oder holen Sie sich deren Erlaubnis
+        ein, bevor Sie dies tun.</li>
+
+        <li>%{external_scripts_link:Die Verwendung externer Skripte ist eingeschränkt.}</li>
+
+        %{adult_content_requirement}
+
+        </ul> <p>Falls Sie ein Skript bemerken, welches sich nciht an diese Vorgaben
+        hält, dann melden Sie dieses bitte, indem Sie den Rückmelden Link für dieses
+        Skript besuchen, dort eine neue Diskussion starten und die "Skript melden"
+        Option whälen.</p> <p>Falls Sie mit einer dieser Vorgaben nciht einverstanden
+        sind, %{contact_link: dann lassen Sie uns darüber reden}!</p>
       adult_content_rule_html: "<li>Skripte, welche nicht-jugendfreie Inhalte enthalten oder für Seiten mit nicht-jugendfreien Inhalten gemacht sind, müssen als solche gekennzeichnet werden, um anderen Nutzern die Wahlmöglichkeit zu geben ob sie diese sehen möchten.</li>"
     external_scripts:
       title: "%{site_name}s Richtlinie für externe Skripte"
+      content_html: >
+        <p>Benutzerskripte haben die technische Möglichkeit andere Skripte zu laden
+        und auszuführen. Der %{require_doc_link:<code>@require</code>} Meta-Key ist
+        der einfachste Weg, dies zu erreichen, aber Skripte können beispielsweise
+        auch einen XmlHttpRequest nutzen, um ein anderes Skript herunterzuladen und
+        in den DOM einzufügen.</p> <p>Während dies eine nützliche Funktion ist und
+        die meisten Skriptautoren diese für seriöse Zwecke nutzen, kann sie aber auch
+        schadhaaft genutzt werden. Eines der Kernprinzipien von %{site_name} ist es,
+        dass Nutzer in der Lage sein müssen den Code eines Skriptes zu inspizieren.
+        Externe Skripte können dieses Prinzip auf verschiedene Arten umgehen: sie
+        können sich ohne Warnung oder Historie ändern, sie können verschiedenen Quelltext
+        an verschiedene Personen ausliefern und sie können genutzt werden, um schadhaften
+        Quellcode inmitten von bekannten Bibliotheken zu verstecken. Selbst wenn jemand
+        eine externes Skript überprüfen würde und es als seriös einstuft, wäre dies
+        keine Garantie, dass das Skript auch schon immer sriös war oder sein wird.</p>
+        <p>Um Skriptautoren die Nutzung externer Skripte weiterhin zu erlauben, hat
+        %{site_name} eine Positivliste von URL-Mustern eingebaut, welche in einem
+        Skript eingebunden werden dürfen. Diese Positivliste besteht aus Skriptorten
+        welche:</p> <ul>
+
+        <li>öffentlich sind</li>
+
+        <li>ihre Inhalte nicht laufend ändern</li>
+
+        <li>für mehr als einen Skriptautoren nützlich sind</li>
+
+        </ul> <p>Die aktuelle Liste besteht aus:</p> %{allowed_require_list} <p>Falls
+        Sie versuchen ein Skript zu erstellen, welches ein <code>@require</code> außerhalb
+        dieser Orte beinhaltet, sind Sie nicht in der Lage Ihr Skript zu speichern.</p>
+        <p>Falls das Skript, welches sie einbinden möchten eine Java Script Bibliothek
+        ist (beispielsweise JQuery oder YUI), dann versuchen Sie bitte diese auf einer
+        der oben aufgeführten Seiten zu finden. Insbesondere %{cdnjs_link:cdnjs} und
+        %{jsdelivr_link:jsDelivr} stellen eine große Zahl an Bibliotheken bereit.</p>
+        <p>Falls das Skript, welches Sie verwenden möchten, nicht auf einer der oben
+        aufgeführten Seiten zu finden ist, dann %{contact_link:informieren Sie uns
+        darüber} und wir können eine Seite finden, auf der es zu finden ist (oder
+        es selbst speichern!).</p> <p>Falls das Skript, welches Sie einbinden möchten
+        auch von Ihnen geschrieben wurde, dann können Sie es als eigenes Skript auf
+        %{site_name} übermitteln indem sie den "Bibliothek" Skripttyp verwenden. Sie
+        sind dann in der Lage diese Bibliothek auch in Ihrem Skript zu verwenden.</p>
     script_rewriting:
       title: "Wie %{site_name} veröffentlichte Skripte umschreibt"
       content_html: >
@@ -394,8 +470,57 @@ de:
     help_with_greasymonkey: "Hilfe mit Greasemonkey"
     contact:
       title: "Jemanden kontaktieren"
+      content_html: >
+        <p>Es gibt verschiende Möglichkeiten, um über %{site_name} und die Inhalte
+        darauf zu sprechen.</p> <p>Haben Sie eine Frage oder einen Kommentar zu einem
+        bestimmten auf der Seite veröffentlichten Skript? Falls dies der Fall ist,
+        dann erstellen Sie eine Diskussion über die Verknüpfung auf der Rückmeldungsregisterkarte
+        auf der Skriptseite. Skriptautoren erhalten eine Benachrichtigung auf ihrer
+        Kontoseite für alle Diskussionen über ihre Skripte.</p> <p>Haben Sie eine
+        Frage oder einen Kommentar zu %{site_name} selbst oder Skriptentwicklung oder
+        möchten Sie jemanden fragen ob er ein Skript für Sie erstellt? %{forum_link:Einen
+        Beitrag im Forum erstellen} würde Ihenen die größte Zuhörerschaft für Ihre
+        Diskussion geben.</p> <p>Haben Sie eine Fehlermeldung oder eine ausgearbeitete
+        Idee für %{site_name} selbst (<em>nicht</em> ein bestimmtest auf %{site_name}
+        <em>veröffentlichtes Skript</em>)? %{github_link:Veröffentlichen Sie diese
+        auf der GitHub Seite.}</p> <p>Haben Sie eine private Frage oder einen privaten
+        Kommentar, den nur der Administrator sehen soll?  %{admin_email_link:Schreiben
+        Sie eine E-Mail.}</p>
     privacy_policy:
       title: "Datenschutz"
+      content_html: >
+        <p>Diese Seite beschreibt, wie %{site_name} Daten von Nutzern sammelt oder
+        diese verfolgt. Falls Sie Bedenken deswegen haben, dann %{admin_email_link:schreiben
+        Sie dem Administrator eine E-Mail}.</p> <h2>Serverprotokolle</h2> <p>%{site_name}
+        protokolliert alle Anfragen in einer für Serverprotokolle typischen Art und
+        Weise. Die protokollierte Information beinhaltet die besuchten Seiten, IP-Adressen
+        und den User-Agent-String. Diese Protokolle werden für die Fehlersuche und
+        Serveranalyse genutzt. Die Daten werden eine Woche lang aufgehoben. Die Daten
+        werden nicht geteilt oder veröffentlicht.</p> <h2>Skriptstatistiken</h2> <p>Zum
+        Zweck der Statistikerstellung zeichnet %{site_name} installationen und Updateanfragen
+        mit IP-Adressinformation auf. Diese information wird für einen Tag gespeichert
+        und wird dann aggregiert, sodass die IP-Adressen nicht mehr länger beinhaltet
+        sind. Die IP-Adresse spezifischen Daten werden nicht geteilt oder veröffentlicht,
+        die aggregierten Daten werden dies jedoch.</p> <h2>Cookies (wenn nicht angemeldet)</h2>
+        <p>%{site_name} kann temporäre Sitzungscookies setzen um manche Seitenfunktionen
+        zu ermöglichen. Diese Cookies sind nicht eingestellt dauerhaft zu existieren
+        und können gelöscht werden, wenn der Browser geschlossen wird (abhängig von
+        den Brwosereinstellungen).</p> <h2>Benutzerkonten</h2> <p>%{site_name} erfordert
+        es vom Benutzer ein Konto zu erstellen, um Skripte zu veröffentlichen, an
+        Diskussionen teilzunehmen und manche andere Seitenfunktionen zu nutzen. Wenn
+        ein neues Konto erstellt wird, dann werden Informationen wie IP-Adresse, E-Mail-Adresse
+        und User-Agent dauerhaft gepeichert. Manche dieser Informationen können anderen
+        Benutzern sichtbar gemacht werden.</p> <p>Handlungen, welche durchgeführt
+        werden, während der Benutzer eingeloggt ist, beispielsweise das Veröffentlichen
+        von Skripten und Kommentaren, werden anderen Benutzern sichtbar gemacht.</p>
+        <p>Falls die "Angemeldet bleiben" Option ausgewählt wird, wenn eine Anmeldung
+        in ein Konto erfolgt, setzt %{site_name} ein dauerhaftes Cookie um die Anmeldung
+        aufrecht zu erhalten.</p> <h2>Auf  %{site_name} veröffentlichte Skripte</h2>
+        <p>%{site_name} enhält durch Benutzer erstellte Inhalte und Skripte, welche
+        veröffentlich wurden, könnten in der Lage sein ihre Benutzer zu verfolgen.</p>
+        <h2>Bibliotheken Dritter</h2> <p>%{site_name} kann fremden Quellcode beinhalten,
+        um Statistiken zu erstellen oder Werbung auf der Seite anzuzeigen. Diese Bibliotheken
+        könnten Logik zur Verfolgung beinhalten.</p>
   common:
     error_preamble: "Es gab einige Probleme mit dem was Sie eingegeben haben …"
     allowed_elements_link: "(Erlaubte Elemente anzeigen.)"

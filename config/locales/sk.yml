@@ -1,1 +1,71 @@
-sk: {}
+sk:
+  layouts:
+    application:
+      script_list: "Skripty"
+      forum: "Fórum"
+      help: "Pomocník"
+      sign_in: "Prihlásiť sa"
+      search: "Hľadať"
+  helpers:
+    application:
+      time_ago:
+        minutes:
+          one: "pred %{count} minútou"
+          few: "pred %{count} minútami"
+          other: "pred %{count} minútami"
+        hours:
+          one: "pred %{count} hodinou"
+          few: "pred %{count} hodinami"
+          other: "pred %{count} hodinami"
+        days:
+          one: "pred %{count} dňom"
+          few: "pred %{count} dňami"
+          other: "pred %{count} dňami"
+  scripts:
+    created_date: "Vytvorené"
+    updated_date: "Akutalizované"
+    total_installs: "Celkove inštalácií"
+    daily_installs: "Denne inštalácií"
+    ratings: "Hodnotenie"
+    author_name: "Autor"
+    version_number: "Verzia"
+    license: "Licencia"
+    no_license: "neuvedené"
+    compatibility: "Kompatibilita"
+    compatible_with_browser: "Kompatibilné s %{browser}"
+    incompatible_with_browser: "Nekompatibilný s %{browser}"
+    applies_to: "Spustiť na"
+    applies_to_link_title:
+      one: "Zobraziť %{count} ďalší skript pre %{site}"
+      few: "Zobraziť %{count} ďalšie skripty pre %{site}"
+      other: "Zobraziť %{count} ďalších skriptov pre %{site}"
+    applies_to_all: "Všetkých stránkach"
+    additional_info: "Autorov popis"
+    install: "Nainštalovať tento skript"
+    install_help: "?"
+    install_help_title: "Ako nainštalovať"
+    library_instructions_html: "Tento skript by nemal byť nainštalovaný priamo. Je to knižnica pre ďalšie skripty, ktorú by mali používať cez meta príkaz  %{code}"
+    deleted_notice: "Tento skript bol odstránený."
+    inactive_pending_changes: "Tento skript je momentálne neaktívny, pretože nie je v súlade s pravidlami %{site_name}."
+    inactive_pending_changes_for_previous_version: "Táto verzia skriptu je momentálne neaktívna, pretože nie je v súlade s pravidlami %{site_name}."
+    version_notice_html: "Verzia zo dňa %{date}. Pozri %{latest_version_link}."
+    version_notice_latest_version_link: "najnovšiu verziu"
+    info_page: "Info"
+    code_page: "Kód"
+    history_page: "História"
+    feedback_page: "Spätná väzba (%{count})"
+    stats_page: "Štatistika"
+    derivatives_page: "Odvodené skripty"
+    update_page: "Aktualizácia"
+    stats_daily_installs_heading: "Denne inštalácií"
+    stats_no_data: "neuvedené"
+    listing_sort_daily_installs: "Denne inštalácií"
+    listing_sort_total_installs: "Celkove inštalácií"
+    listing_sort_ratings: "Hodnotenie"
+    update_no_sync: "Aktualizácia"
+  users:
+    script_list: "Skripty"
+  activerecord:
+    attributes:
+      script:
+        code: "Kód"
