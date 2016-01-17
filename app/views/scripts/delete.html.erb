@@ -75,7 +75,7 @@
 		<input type="submit" value="Delete">
 	<% end %>
 
-	<% if !moderator_view %>
+	<% if !moderator_view && !@script.locked %>
 		<%= render partial: 'permanently_delete', locals: {script: @script} %>
 	<% end %>
 

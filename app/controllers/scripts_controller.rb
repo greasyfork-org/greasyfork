@@ -488,6 +488,7 @@ class ScriptsController < ApplicationController
 				@script.user.save!
 			end
 		end
+		@script.permanent_deletion_request_date = nil if @script.locked
 		@script.script_delete_type_id = params[:script_delete_type_id]
 		@script.save(:validate => false)
 		redirect_to @script
@@ -525,6 +526,11 @@ class ScriptsController < ApplicationController
 
 	def request_permanent_deletion
 		script = Script.find(params[:script_id])
+		if script.locked
+			flash[:notice] = I18n.t('scripts.delete_permanently_rejected_locked')
+			redirect_to root_path
+			return
+		end
 		if script.immediate_deletion_allowed?
 			script.destroy!
 			flash[:notice] = I18n.t('scripts.delete_permanently_notice_immediate')
