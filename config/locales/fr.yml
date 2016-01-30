@@ -61,12 +61,16 @@ fr:
     delete_update_behaviour_2: "Ils seront mis à jour vers un script vierge. Cela convient quand le script a un effet négatif sur les sites où il est exécuté."
     delete_permanently_heading: "Suppression définitive"
     delete_permanently_explanation: "Supprimer définitivement votre script va supprimer votre script et tous les enregistrements associés, à l'exception du forum de discussions et du journal d'action modérateur.  La suppression définitive est définitive; elle ne peut pas être annulée, même pas les modérateurs."
+    delete_permanently_request_explanation: "La suppression permanente de ce script ne peut être réalisée qu'après vérification par les modérateurs."
     delete_permanently_confirm: "Êtes-vous sûr de vouloir supprimer définitivement votre script ? Cette action ne peut pas être annulée!"
     delete_permanently_submit: "Demande de suppression définitive"
+    delete_permanently_immediate_submit: "Supprimer de façon permanente"
     delete_permanently_notice: "Votre demande de suppression définitive a bien été enregistré et sera revue par un modérateur."
     delete_permanently_already_requested: "Vous avez demandé une suppression définitive à %{datetime}."
+    delete_permanently_notice_immediate: "Script supprimé de façon permanente."
     cancel_delete_permanently_submit: "Demande d'annulation de suppression définitive."
     cancel_delete_permanently_notice: "Votre demande de suppression définitive a été annulé."
+    delete_permanently_rejected_locked: "Ce script est verrouillé et ne peut être supprimé de façon permanente"
     history_title: "%{script_name} - Historique des versions"
     history_only_code_changes_info: "Voici les versions de ce script où le code a été modifié."
     history_all_changes_link: "Voir toutes les versions."
@@ -357,8 +361,12 @@ fr:
       post_new_script_link_text: 'soumettre un nouveau script'
     code_rules:
       title: "Les règles à respecter lors de la soumission d'un script"
+      adult_content_rule_html: "<li>Les scripts, qui incluent du contenu adulte ou qui sont pour des sites avec contenu adulte, doivent être marqués comme tels pour laisser aux autres utilisateurs le choix de les voir ou non.</li>"
     external_scripts:
       title: "Politique de %{site_name} concernant les scripts externes"
+    script_rewriting:
+      title: "Comment %{site_name} va récrire les scripts postés"
+    site_feedback_link: "Signaler un problème ou suggérer une idée pour %{site_name} lui-même"
     credits:
       title: "Crédits"
       authors_credit: "%{site_name} ne serait pas possible sans les auteurs de scripts qui contribuent."

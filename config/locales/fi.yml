@@ -55,6 +55,22 @@ fi:
     update_page: "Päivitä"
     sync_page: "Synkronoi"
     delete_page: "Poista"
+    delete_explanation: "Skriptin poistaminen estää pääsyn siihen kaikilta paitsi sinulta ja Greasy Forkin moderaattoreilta. Voit kumota poiston koska tahansa."
+    delete_update_behaviour: "Mitä haluat tapahtuvan käyttäjille, jotka ovat aikaisemmin asentaneet skriptisi?"
+    delete_update_behaviour_1: "Skripti jää heille muuttumattomana."
+    delete_update_behaviour_2: "Heille päivitetään tyhjä skripti. Tämä on sopivaa, kun skriptillä on negatiivinen vaikutus sivustoihin, joilla se suoritetaan."
+    delete_permanently_heading: "Pysyvä poisto"
+    delete_permanently_explanation: "Skriptin poistaminen pysyvästi poistaa sen ja kaikki siihen liittyvät tiedot, poislukien foorumikeskustelut ja moderaattoritoimintojen lokin. Pysyvä poisto on pysyvä; edes moderaattorit eivät voi kumota sitä."
+    delete_permanently_request_explanation: "Tämän skriptin pysyvä poistaminen voidaan suorittaa vasta moderaattorin tarkistuksen jälkeen."
+    delete_permanently_confirm: "Haluatko varmasti poistaa skriptisi pysyvästi? Tätä ei voi kumota!"
+    delete_permanently_submit: "Pyydä pysyvää poistoa"
+    delete_permanently_immediate_submit: "Poista pysyvästi"
+    delete_permanently_notice: "Pyyntö pysyvästä poistosta on tallennettu ja moderaattori tulee tarkistamaan sen."
+    delete_permanently_already_requested: "Pyysit pysyvää poistoa %{datetime}."
+    delete_permanently_notice_immediate: "Skripti poistettu pysyvästi."
+    cancel_delete_permanently_submit: "Peruuta pyyntö pysyvästä poistosta"
+    cancel_delete_permanently_notice: "Pyyntösi pysyvästä poistosta on peruttu."
+    delete_permanently_rejected_locked: "Tämä skripti on lukittu eikä sitä voida poistaa pysyvästi."
     history_title: "%{script_name} - Versiohistoria"
     history_only_code_changes_info: "Tästä skriptistä on versioita, joissa koodia päivitettiin."
     history_all_changes_link: "Näytä kaikki versiot."
@@ -200,6 +216,19 @@ fi:
     approve_redistribution_false: "Skriptiäni ei saa jakaa muualla"
     redistributable_title: "Uudelleen jaettavat skriptit"
     redistributable_page_description: "Näiden skriptien tekijät ovat erikseen ilmoittaneet sallivansa skriptiensä jakamisen muualla. Skriptien uudelleenjakamiseen saattaa silti kohdistua lisäehtoja; tarkista lisätiedot kunkin skriptin lisenssistä."
+    adult_content: "Aikuisille suunnattu sisältö"
+    adult_content_self_report: "Tämä skripti sisältää aikuisille suunnattua sisältöä tai on aikuissisältöä sisältävää sivustoa varten."
+    adult_content_self_report_explanation: "%{site_name} sallii skriptit, joissa on aikuisille suunnattua sisältöä, mutta ne täytyy merkitä sellaisiksi, jotta käyttäjät voivat valita näkevätkö sisällön."
+    not_adult_content_self_report_html: "Tämä skripti <strong>ei</strong> sisällä aikuisille suunnattua sisältöä ja <strong>ei</strong> ole aikuissisältöä sisältävää sivustoa varten."
+    not_adult_content_self_report_explanation: "%{site_name} sallii skriptit, joissa on aikuisille suunnattua sisältöä, mutta ne täytyy merkitä sellaisiksi, jotta käyttäjät voivat valita näkevätkö sisällön. Skriptisi on merkitty aikuisille suunnattua sisältöä sisältäväksi. Voit ilmoittaa, ettei näin ole; moderaattori tulee tarkistamaan asian."
+    adult_content_on_greasy_logged_in_error: "Tämä skripti ei ole enää saatavilla tällä sivustolla %{edit_account_link:Greasy Fork -tilisi nykyisillä asetuksilla}."
+    adult_content_on_greasy_not_logged_in_error: "Tämä skripti ei ole enää saatavilla anonyymisti tällä sivustolla. %{login_link:Kirjaudu sisään} ja tarkista Greasy Fork -tilisi asetukset."
+    non_adult_content_on_sleazy: "Tämä skripti ei ole saatavilla tällä sivustolla."
+    adult_marker: "(Aikuissisältö)"
+    deleted_marker: "(Poistettu)"
+    locked_marker: "(Lukittu)"
+    unlisted_marker: "(Piilotettu)"
+    library_marker: "(Kirjasto)"
   script_sets:
     favorites_name: "Suosikit"
     delete: "Poista skriptijoukko"
@@ -212,8 +241,13 @@ fi:
     listing_with_script_with_reply_html: "%{script_link}: %{discussion_link} (aloittanut %{original_poster_link} %{original_post_date}), viimeisin kommentti: %{last_commenter_link} %{last_comment_date}"
   home:
     title: "%{site_name} - turvallisia ja hyödyllisiä userscriptejä"
-    welcome: "Tervetuloa %{site_name} -userscriptsivustolle."
+    welcome: "Tervetuloa %{site_name}in, sivustolle userscriptejä varten."
+    sleazy_title: "%{site_name} - turvallisia ja hyödyllisiä aikuisten userscriptejä"
+    sleazy_welcome: "Tervetuloa %{site_name}in, sivustolle aikusten userscriptejä varten."
     explain_user_scripts_heading: "Mitä ovat userscriptit?"
+    explain_user_scripts_html: "Userscriptit antavat sinun hallita selauskokemustasi. Asennuksen jälkeen ne parantavat automaattisesti vierailemiasi sivustoja lisäämällä ominaisuuksia, tekemällä sivuista helppokäyttöisempiä tai poistamalla ärsyttäviä osia. %{site_name}in userscriptit ovat muiden käyttäjien kirjoittamia ja julkaisemia. Ne ovat ilmaisia asentaa ja helppoja käyttää."
+    how_to_install_user_scripts_heading: "Miten asennan userscriptejä?"
+    how_to_install_user_scripts_html: "Käyttääksesi userscriptejä sinun täytyy ensin asentaa userscriptien hallintaohjelma. Firefoxille paras valinta on %{gm_link:Greasemonkey}. Chromelle: %{tm_link:Tampermonkey}. %{other_managers_link:Muitakin vaihtoehtoja on.} Kun olet asentanut hallintaohjelman, etsi haluamasi skripti %{site_name}ista ja klikkaa vihreää Asenna-nappia. Skripti asennetaan ja suoritetaan, kun käyt sivustolla, jolla sitä käytetään."
     scripts_sample: "Esimerkkejä skripteistämme"
     scripts_sample_more: "Lisää..."
   users:
@@ -282,12 +316,24 @@ fi:
     listing_registration_date: "Rekisteröitymispäivä"
     locale_prompt: "(Valitse lokalisaatio)"
     show_ads_description: "Tue %{site_name}ia antamalla sen näyttää mainoksia"
+    show_sensitive_description: "Näytä aikuisille suunnattua sisältöä sisältävät skriptit"
     preferred_markup_description: "Käytetään uusiin skripteihin ja viesteihin."
     flattr_username_description_html: "Skriptiesi käyttäjiä pyydetään lahjoittamaan tilillesi <a href=\"https://flattr.com\">Flattrissa</a>."
     approve_redistribution_explanation: "%{site_name} voi kertoa muille sivustoille, että sallit niiden jakavan skriptiäsi. Skriptillesi valitsemasi lisenssi voi jo sallia tai kieltää tämän. Voit muuttaa tätä asetusta skriptikohtaisesti."
     approve_redistribution_true: "Skriptiäni saa jakaa muualla"
     approve_redistribution_false: "Skriptiäni ei saa jakaa muualla"
+    greasy_fork_scripts_link:
+      one: "Käyttäjällä %{user_name} on myös %{count} skripti Greasy Forkissa."
+      other: "Käyttäjällä %{user_name} on myös %{count} skriptiä Greasy Forkissa."
   help:
+    installing_user_scripts:
+      title: "Kuinka asentaa userscriptejä"
+      intro: "Käyttääksesi userscriptejä sinun täytyy yleensä asentaa selaimeesi lisäosa."
+      firefox: "Firefox ja siihen liittyvät selaimet: %{gm_link:Greasemonkey}."
+      chrome: "Google Chrome, Chromium ja niihin liittyvät selaimet: %{tm_link:Tampermonkey}."
+      opera_15_plus: "Opera (versio 15 tai uudempi): %{tm_link:Tampermonkey} tai %{vm_link:Violentmonkey}."
+      opera_12: "Operan versio 12 ja aiemmat %{opera_doc_link:tukevat userscriptejä natiivisti}. %{vm_link:Violentmonkey} tarjoaa ystävällisemmän UI:n ja paremman yhteensopivuuden."
+      installing_scripts: "Kun userscriptit on kytketty päälle selaimessasi, etsi skripti Greasy Forkista ja klikkaa vihreää \"Asenna\" -nappia."
     meta_keys:
       title: "%{site_name}in lukemat metatiedot skripteissä"
       intro_html: "Tämä on lista <a href=\"http://wiki.greasespot.net/Metadata_Block\">metatiedoista</a>, jotka %{site_name} lukee. Skriptit voivat sisältää listaan kuulumattomia metatietoja, mutta ne eivät vaikuta %{site_name}in tietoihin."
@@ -315,12 +361,132 @@ fi:
       post_new_script_link_text: 'lähettämään uusi skripti'
     code_rules:
       title: "%{site_name}in skriptejä koskevat säännöt"
+      content_html: >
+        <p>Nämä ovat %{site_name}iin lähetettyjen skriptien vaatimukset. Niiden tarkoitus
+        on säilyttää %{site_name} turvallisena ja hyödyllisenä paikkana userscripteille.
+        Skripti, joka ei täytä vaatimuksia, voidaan poistaa %{site_name}in moderaattorien
+        toimesta.</p> <ul>
+          <li>Skriptien täytyy sisältää kuvaus siitä, mitä ne tekevät ja ne eivät
+        saa tehdä selvästi tämän kuvauksen ulkopuolisia asioita. Käyttäjien täytyy
+        tietää mitä skripti tekee ennen sen asentamista.</li>
+          <li>Tälle sivustolle lähetetty koodin ei saa olla obfuskoitua tai minifioitua.
+        Käyttäjille täytyy antaa mahdollisuus tutkia ja ymmärtää skripti ennen sen
+        asentamista.</li>
+          <li>Skriptin käyttämät kirjastot pitäisi <code>@require</code>-ttaa, ellei
+        ole hyvää teknistä syytä olla tekemättä niin. Jos kirjasto on sisällytetty
+        koodiin, sen tulee sisältää tieto kirjaston lähteestä (esim. kommentti, joka
+        kertoo kirjaston URLin tai nimen ja version).</li>
+          <li>Skriptisi täytyy kunnioittaa muiden tekijänoikeutta. Tämä koskee skriptiä
+        itseään ja sen käyttämiä resursseja (kuten kuvia). Jos aiot käyttää muiden
+        sisältöä, noudata heidän lisenssiehtojaan tai hanki heiltä lupa ennen kuin
+        teet sen.</li>
+          <li>%{external_scripts_link:Ulkoisen JavaScriptin käyttöä on rajoitettu.}</li>
+          %{adult_content_requirement}
+        </ul> <p>Jos huomaat skriptin, joka ei täytä näitä vaatimuksia, ilmoitathan
+        siitä menemällä skriptin Palaute-osioon, aloittamalla keskustelun, ja valitsemalla
+        "Ilmoita skriptistä" -valinnan.</p> <p>Jos olet jostain tästä eri mieltä,
+        %{contact_link:keskustellaan asiasta!}!</p>
+      adult_content_rule_html: "<li>Aikuisille suunnattua sisältöä sisältävät skriptit tai aikuissisältöä sisältäville sivustoille tarkoitetut skriptit täytyy merkitä sellaisiksi, jotta muut käyttäjät voivat valita, näkevätkö ne.</li>"
+    external_scripts:
+      title: "%{site_name}in käytäntö ulkoisista skripteistä"
+      content_html: >
+        <p>Userscripteillä on tekninen kyky ladata ja suorittaa muita skriptejä. User
+        scripts have the technical ability to load and execute other scripts. %{require_doc_link:<code>@require</code>}
+        -metadata-avain on yksinkertaisin tapa tehdä tämä, mutta skriptit voivat myös
+        esimerkiksi käyttää XmlHttpRequestia ladatakseen skriptin ja sitten lisätä
+        sen DOMiin.</p> <p>Vaikka tämä on hyödyllinen ominaisuus ja useimmat skriptien
+        tekijät käyttävät sitä hyvään tarkoitukseen, sitä voidaan myös käyttää haitallisesti.
+        Yksi %{site_name}in pääperiaatteista on, että käyttäjän täytyy voida tutkia
+        skriptin koodia. Ulkoiset skriptit voivat ohittaa tämän periaatteen monella
+        tavalla: ne voivat muuttua ilman varoitusta tai historiaa, ne voivat jaella
+        eri koodia eri ihmisille, ja niitä voidaan käyttää haitallisen koodin piilottamiseen
+        keskelle tunnettuja kirjastoja. Vaikka joku tarkistaisi ulkoisen skriptin
+        ja toteaisi sen hyväntahtoiseksi, se ei takaisi, että skripti olisi aina ollut
+        tai tulisi aina olemaan hyväntahtoinen.</p> <p>Salliakseen skriptien tekijöiden
+        jatkaa ulkoisten skriptien käyttöä %{site_name} on toteuttanut listan sallituista
+        URL-rakenteista, jotka voidaan sisällyttää skriptiin. Tällä listalla on sijainteja,
+        jotka:</p> <ul>
+          <li>Ovat julkisia</li>
+          <li>Eivät muutu usein</li>
+          <li>Ovat todennäköisesti hyödyllisiä useammalle kuin yhdelle skriptin tekijälle</li>
+        </ul> <p>Tämänhetkinen lista on:</p> %{allowed_require_list} <p>Jos yrität
+        lähettää skriptin, joka sisältää näiden sijaintien ulkopuolella olevan <code>@require</code>:n,
+        et voi tallentaa skriptiäsi.</p> <p>Jos skripti, jonka haluat sisällyttää,
+        on JavaScript-kirjasto (kuten jQuery tai YUI), yritä löytää sen jostain yllä
+        olevista sivustoista. Erityisesti %{cdnjs_link:cdnjs} and %{jsdelivr_link:jsDelivr}
+        tarjoavat laajan valikoiman kirjastoja.</p> <p>Jos skripti, jonka haluat sisällyttää,
+        ei ole saatavilla yllä olevilla sivustoilla,  %{contact_link:kerro siitä meille}
+        ja voimme etsiä sen jostain (tai jaella sitä itse!).</p> <p>Jos skripti, jonka
+        haluat sisällyttää, on itse kirjoittamasi, voit lähettää sen erikseen %{site_name}in
+        valitsemalla skriptityypin "Kirjasto". Tämän jälkeen voit sisällyttää lähettämäsi
+        kirjaston skriptiisi.</p>
+    script_rewriting:
+      title: "Miten %{site_name} uudelleenkirjoittaa lähetetyt skriptit"
+      content_html: >
+        <p>%{site_name}in lähetetyt skriptit kirjoitetaan uudelleen seuraavilla tavoilla:</p>
+        <ul>
+          <li><code>@updateURL</code>, <code>@installURL</code>, ja <code>@downloadURL</code>
+        -direktiivit poistetaan. Näiden direktiivien puute tarkoittaa, että kaikki
+        %{site_name}ista asennetut skriptit päivitetään %{site_name}ista.</li>
+          <li><code>@version</code> ja <code>@namespace</code> -direktiivit lisätään,
+        jos ne puuttuvat skriptistä. Näitä direktiivejä tarvitaan kunnollista päivittämistä
+        varten.</li>
+          <li><code>@description</code> lisätään, jos se puuttuu skriptin uudesta
+        versiosta ja aiemmassa versiossa oli sellainen.</li>
+          <li>Rivinvaihdot muutetaan Unix-rivinvaihdoiksi (\n).</li>
+        </ul>
+    site_feedback_link: "Ilmoita ongelmasta tai kerro idea %{site_name}ista itsestään"
     credits:
       title: "Tekijät"
       authors_credit: "%{site_name}in olemassaolo ei olisi mahdollista ilman skriptien tekijöitä."
       developers_credit: "%{site_name}in itse ovat rakentaneet %{developers_link:nämä henkilöt}, apunaan kaikki bugeista ilmoittavat ja parannuksia ehdottavat."
       translators_credit: "%{site_name}in on kääntänyt %{translators_link:Greasy Translation Force Transifexissa}:"
       icons_credit: "Keskusteluikonit ovat lähteestä %{vistastylebase}, ja ne on tehnyt %{iconsland}. Selainikonit ovat lähteestä %{browserlogos}."
+    help_with_greasymonkey: "Ohjeet Greasemonkeylle"
+    contact:
+      title: "Ota yhteyttä johonkuhun"
+      content_html: >
+        <p>On muutama tapa keskustella %{site_name}ista ja siellä olevista asioista.</p>
+        <p>Onko sinulla kysymys tai kommentti tietystä skriptistä sivustolla? Jos
+        on, luo keskustelu tuon skriptin sivun Palaute-osioista. Skriptien tekijät
+        saavat tilisivulleen ilmoituksen skripteistään käydyistä keskusteluista.</p>
+        <p>Onko sinulla kysymys tai kommentti %{site_name}ista itsestään tai skriptien
+        kehittämisestä, tai haluaisitko, että joku tekee skriptin sinulle? %{forum_link:Foorumille
+        postaaminen} antaisi sinulle laajimman yleisön keskustelullesi.</p> <p>Onko
+        sinulla bugiraportti tai valmis idea %{site_name}ista itsestään (ja ei tietystä
+        %{site_name}in <em>lähetetystä</em> skriptistä)? %{github_link:Lähetä se GitHub-sivulle.}</p>
+        <p>Onko sinulla yksityinen kysymys tai kommentti, jonka haluaisit vain ylläpitäjän
+        näkevän? %{admin_email_link:Lähetä sähköposti.}</p>
+    privacy_policy:
+      title: "Tietosuoja"
+      content_html: >
+        <p>Tämä sivu kertoo, miten %{site_name} tallentaa käyttäjätietoja tai seuraa
+        käyttäjiä. Jos sinulla on huolenaiheita, %{admin_email_link:lähetä ylläpitäjälle
+        sähköpostia}.</p> <h2>Palvelimen lokit</h2> <p>%{site_name} tallentaa kaikki
+        pyynnöt tyypillisen palvelinlokin tapaan. Tallennettu tieto sisältää vieraillut
+        sivut, IP-osoitteen ja user agent -merkkijonon. Nämä lokit ovat vianetsintää
+        ja palvelimen analysointia varten. Data säilytetään viikon ajan. Tätä dataa
+        ei jaeta tai julkaista.</p> <h2>Skriptien tilastot</h2> <p>%{site_name} tallentaa
+        kaikki asennus- ja päivityspyynnöt IP-osoitteiden kera tilastojen generoimista
+        varten. Tiedot säilytetään päivän ajan, minkä jälkeen ne kerätään ja IP-osoitteet
+        poistetaan. IP-osoitetitoja ei jaeta tai julkaista, mutta muut kerätyt tiedot
+        julkaistaan.</p> <h2>Evästeet (kun ei sisäänkirjautuneena)</h2> <p>%{site_name}
+        voi asettaa tilapäisiä istuntoevästeitä mahdollistaakseen jotkin sivuston
+        ominaisuudet. Näitä evästeitä ei aseteta säilymään ja ne voivat poistua, kun
+        selain suljetaan (riippuen selaimen asetuksista).</p> <h2>Käyttäjätilit</h2>
+        <p>%{site_name} vaatii käyttäjiä luomaan tilin skriptien lähettämistä, keskusteluihin
+        osallistumista ja joidenkin muiden sivuston ominaisuuksien käyttöä varten.
+        Tunnusta luodessa tietoja kuten IP-osoite, sähköpostiosoite ja user agent
+        -merkkijono voidaan tallentaa pysyvästi. Joitakin näistä tiedoista voidaan
+        näyttää muille käyttäjille.</p> <p>Sisäänkirjautuneena suoritetut toiminnot,
+        kuten skriptien ja kommenttien lähettäminen, näytetään muille käyttäjille.</p>
+        <p>Jos "Muista minut" -valinta on päällä sisäänkirjauduttaessa, %{site_name}
+        asettaa pysyvän evästeen säilyttämään sisäänkirjautumistiedot.</p> <h2>%{site_name}iin
+        lähetetyt skriptit</h2> <p>%{site_name} sisältää käyttäjien luomaa sisältöä,
+        ja lähetetyt skriptit saattavat seurata käyttäjää, jos ne asennetaan.</p>
+        <h2>Kolmannen osapuolen kirjastot</h2> <p>%{site_name} voi sisällyttää kolmannen
+        osapuolen koodia kerätäkseen tilastoja tai näyttääkseen mainoksia sivustolla.
+        Nämä kirjastot saattavat sisältää seurantalogiikkaa.</p>
   common:
     error_preamble: "Lähettämissäsi tiedoissa oli ongelmia..."
     allowed_elements_link: "(Katso sallittu koodi.)"
@@ -331,7 +497,7 @@ fi:
     not_found_title: "404 - Sivua ei löydy"
     not_found_link_home: "Mene kotiin."
     suggest_locale: "%{site_name} on saatavilla kielellä %{locale_name}."
-    incomplete_locale: "%{site_name}in %{locale_name}-käännös on vain %{percent} valmis. Voit muuttaa sen."
+    incomplete_locale: "%{site_name}in käännös kielelle %{locale_name} on vain %{percent} valmis. Voit muuttaa asian."
     expander_show_more: "Näytä lisää"
     expander_show_less: "Näytä vähemmän"
     advertisement_note: Mainos
@@ -344,6 +510,7 @@ fi:
         locale: "Lokalisaatio"
         author_email_notification_type_id: "Ilmoitukset skriptikeskusteluista"
         show_ads: "Näytä mainokset"
+        show_sensitive: "Aikuisille suunnattu sisältö"
         preferred_markup: "Merkkaustapa"
         flattr_username: "Flattr-käyttäjänimi"
       script:
@@ -369,3 +536,9 @@ fi:
       cannot_be_deleted_reference: "ei voi olla poistettu skripti"
       must_be_greasy_fork_script: "täytyy olla %{site_name}issa olevan skriptin URL"
       script_update_not_utf8: "ladatun tiedoston täytyy olla UTF-8-tekstiä"
+      script_disallowed_require: "käyttää hyväksymätöntä ulkoista skriptiä: %{code}"
+  opensearch:
+    short_name: "%{site_name} -haku"
+    description: "Etsi userscriptejä %{site_name}ista."
+    long_name: "%{site_name} -userscripthaku"
+    attribution: "Copyright skriptien tekijöillä, katso lisenssiehdot kunkin skriptin tiedoista"

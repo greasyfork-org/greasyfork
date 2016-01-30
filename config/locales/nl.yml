@@ -70,6 +70,7 @@ nl:
     delete_permanently_notice_immediate: "Het script is permanent verwijderd."
     cancel_delete_permanently_submit: "Annuleer verwijderingsverzoek"
     cancel_delete_permanently_notice: "Je aanvraag voor permanente verwijdering is geannuleerd."
+    delete_permanently_rejected_locked: "Dit script is vergrendeld en kan daarom niet permanent worden verwijderd."
     history_title: "%{script_name} - Versiegeschiedenis"
     history_only_code_changes_info: "Dit zijn versies van het script waarin de code is bijgewerkt."
     history_all_changes_link: "Alle versies weergeven."
@@ -365,6 +366,21 @@ nl:
       title: "%{site_name}'s beleid voor externe scripts."
     script_rewriting:
       title: "Hoe %{site_name} geplaatste scripts herschrijft"
+      content_html: >
+        <p>Scripts die geplaatst zijn op %{site_name} zullen worden herschreven op
+        de volgende manieren:</p> <ul>
+          <li><code>@updateURL</code>, <code>@installURL</code>, en <code>@downloadURL</code>
+        verwijzingen zullen, indien aanwezig, worden geschrapt. Door het ontbreken
+        van deze verwijzingen zullen scripts die geïnstalleerd zijn van %{site_name}
+        bijgewerkt worden van %{site_name}.</li>
+          <li><code>@version</code> en <code>@namespace</code> verwijzingen zullen,
+        indien deze ontbreken, worden ingevoegd. Deze verwijzingen zijn benodigd voor
+        het correct bijwerken.</li>
+          <li><code>@description</code> zal worden ingevoegd wanneer dit in een nieuwe
+        versie van een script ontbreekt i.t.t. de vorige versie.</li>
+          <li>Regelafbrekingen zullen worden geconverteerd naar regelafbrekingen in
+        de Unix-stijl (\n).</li>
+        </ul>
     site_feedback_link: "Meld probleem of plaats idee voor %{site_name} zelf"
     credits:
       title: "Bedankt aan"
