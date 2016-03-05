@@ -168,4 +168,8 @@ class ScriptVersionAppliesToTest < ActiveSupport::TestCase
 		assert_equal [{text: 'example.com', domain: true, tld_extra: false}], get_applies_to(['/http://(www\.)?example.com//'])
 	end
 
+	test 'regexp non-optional path group' do
+		assert_equal [{text: 'example.com', domain: true, tld_extra: false}], get_applies_to(['/http:\/\/example.com(\/|\/foo)/'])
+	end
+
 end
