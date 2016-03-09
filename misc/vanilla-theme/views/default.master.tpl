@@ -34,15 +34,18 @@
 						<option value="fi" {if $locale == 'fi'}selected{/if}>Suomi (fi)</option>
 						<option value="fr" {if $locale == 'fr'}selected{/if}>Français (fr)</option>
 						<option value="fr-CA" {if $locale == 'fr-CA'}selected{/if}>Français canadien (fr-CA)</option>
+						<option value="hu" {if $locale == 'hu'}selected{/if}>Magyar (hu)</option>
 						<option value="id" {if $locale == 'id'}selected{/if}>Bahasa Indonesia (id)</option>
 						<option value="it" {if $locale == 'it'}selected{/if}>Italiano (it)</option>
 						<option value="ja" {if $locale == 'ja'}selected{/if}>日本語 (ja)</option>
+						<option value="ko" {if $locale == 'ko'}selected{/if}>한국어 (ko)</option>
 						<option value="nb" {if $locale == 'nb'}selected{/if}>Bokmål (nb)</option>
 						<option value="nl" {if $locale == 'nl'}selected{/if}>Nederlands (nl)</option>
 						<option value="pl" {if $locale == 'pl'}selected{/if}>Polski (pl)</option>
 						<option value="pt-BR" {if $locale == 'pt-BR'}selected{/if}>Português do Brasil (pt-BR)</option>
 						<option value="ro" {if $locale == 'ro'}selected{/if}>Română (ro)</option>
 						<option value="ru" {if $locale == 'ru'}selected{/if}>Русский (ru)</option>
+						<option value="sk" {if $locale == 'sk'}selected{/if}>Slovenčina (sk)</option>
 						<option value="sv" {if $locale == 'sv'}selected{/if}>Svenska (sv)</option>
 						<option value="tr" {if $locale == 'tr'}selected{/if}>Türkçe (tr)</option>
 						<option value="uk" {if $locale == 'uk'}selected{/if}>Українська (uk)</option>
