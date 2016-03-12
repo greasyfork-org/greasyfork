@@ -217,6 +217,7 @@ tr:
     redistributable_title: "Yeniden dağıtılabilir kullanıcı scriptleri"
     adult_content: "Yetişkin içerik"
     adult_content_self_report: "Bu script içinde yetişkin içerikleri barındırıyor veya yetişkin içerik barındıran bir site için hazırlanmış."
+    adult_content_self_report_explanation: "%{site_name} yetişkin içerikli siteleri kabul eder. Ancak bu scriptler yetişkin içerikli olarak işaretlenmelidir. Böylece kullanıcılar ne göreceklerini seçebilirler."
     not_adult_content_self_report_html: "Bu script içinde yetişkin içerikleri  <strong>barındırmıyor</strong> veya yetişkin içerik barındıran bir site için <strong>hazırlanmamış.</strong>"
     adult_content_on_greasy_logged_in_error: "Bu script artık sizin geçerli %{edit_account_link:Greasy Fork account settings} üyeliğiniz için kullanılabilir değil."
     non_adult_content_on_sleazy: "Bu script bu sitede mevcut değil."
@@ -319,10 +320,12 @@ tr:
     installing_user_scripts:
       title: "Kullanıcı scriptleri nasıl yüklenir?"
       intro: "Kullanıcı scriptlerini kullanabilmek için browser uzantısını kurmanız gerekir."
+      installing_scripts: "Kullanıcı scriptlerini sayfanızda aktif etmek için Greasy Fork taki script sayfasına gidin ve yeşil \"Yükle\" butonuna basın."
     meta_keys:
       title: "Script meta anahtarları %{site_name} tarafından okundu"
       name: "Scriptin ismi, başlıkta ve linklerde kullanılacak. Gerekli."
       description: "Script ne işe yarıyor açıklaması. Başlık altında gösterilecektir. Gerekli."
+      include: "Scriptin hangi sayfalarda çalışacağını tanımlayın. Bu liste işlenip scriptin bilgi sayfasında görüntülenecek ve scriptleri kategorize etmekte kullanılacaktır."
       require_html: "Kodlar harici Java kodları içermektedir. Bakınız %{external_script_link}."
       require_external_script_link_text: "kod kuralları harici komut içermektedir"
     writing_user_scripts:
@@ -332,14 +335,47 @@ tr:
       post_new_script_link_text: 'yeni script gönder'
     code_rules:
       title: "Gönderilmiş scriptler için %{site_name}'un kuralları"
+      adult_content_rule_html: "<li>Yetişkin içerik barındıran scriptler bu şekilde işaretlenmelidir. Böylece kullancılar ne göreceklerini seçebilirler.</li>"
     site_feedback_link: "%{site_name} için bir sorun bildir veya birşetler söyle"
     credits:
       title: "Künye"
       authors_credit: "%{site_name} kod destekçileri olmadan var olamazdı."
+      developers_credit: "%{site_name} scripti %{developers_link:these people}  tarafından bütün hata raporu gönderenm ve önerilen veren insanların yardımıyla yazılmıştır."
       translators_credit: "Grasy Fork, %{translators_link:Transifex çeviri sayfasından}: çevrilmiştr."
       icons_credit: "Tartışma ikonları %{iconsland} tarafından yapılmıştır ve %{vistastylebase}'da bulunmaktadır. Tarayıcı ikonları %{browserlogos}'da bulunmaktadır."
     contact:
       title: "Birileriyle iletişime geçin"
+    privacy_policy:
+      title: "Gizlilik sözleşmesi"
+      content_html: >
+        <p>Bu sayfa %{site_name} scriptinin nasıl kullanıcı kaydettiğini veya takip
+        ettiğini açıklar. Bu konuyla ilgili şüpheleriniz için, %{admin_email_link:e-mail
+        the admin} adresine mail atınız.</p>
+
+        <h2>Server logs</h2> <p>%{site_name} logs all requests in a typical server
+        log fashion. Information logged includes pages visited, IP address, and user
+        agent string. These logs are for debugging and server analysis. The data is
+        retained for one week. This data is not shared or made publicly available.</p>
+        <h2>Script statistics</h2> <p>For the purposes of generating statistics, %{site_name}
+        records install and update requests with IP address information. This information
+        is retained for one day, and then is aggregated to no longer include the IP
+        address. The IP-address-specific data is not shared or made publicly available,
+        but the aggregated data is.</p> <h2>Cookies (when not logged in)</h2> <p>%{site_name}
+        may set temporary session cookies to allow for some site features. These cookies
+        are not set to persist and may cleared when the browser is closed (depending
+        on browser settings).</p> <h2>User accounts</h2> <p>%{site_name} requires
+        users to create an account to post scripts, take part in discussions, and
+        access some other site features. When creating an account, information such
+        as IP address, e-mail address, and user agent may be permanently stored. Some
+        of this information may be made visible to other users.</p> <p>Actions performed
+        when logged in, for example posting scripts and comments, will be made viewable
+        to other users.</p> <p>If the "Remember me" option is checked when logging
+        in to an account, %{site_name} will set a persistent cookie to retain login
+        state.</p> <h2>Scripts posted on %{site_name}</h2> <p>%{site_name} contains
+        user-generated content, and scripts posted may be able to track users if they
+        install that script.</p> <h2>Third party libraries</h2> <p>%{site_name} may
+        include third party code to collect statistics or display advertisements on
+        the site. These libraries may include tracking logic.</p>
   common:
     error_preamble: "Ne gönderdiğinizde bazı sorunlar oldu.."
     allowed_elements_link: "(İzin verilen kodları gör.)"
