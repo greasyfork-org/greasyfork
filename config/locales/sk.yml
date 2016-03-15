@@ -24,7 +24,7 @@ sk:
   scripts:
     created_date: "Vytvorené"
     updated_date: "Akutalizované"
-    total_installs: "Celkove inštalácií"
+    total_installs: "Celkový počet inštalácií"
     daily_installs: "Denne inštalácií"
     ratings: "Hodnotenie"
     author_name: "Autor"
@@ -282,7 +282,7 @@ sk:
     edit_sign_in: "Zmeniť spôsob prihlasovania"
     edit_sign_in_title: "Zmeniť spôsob prihlasovania"
     edit_sign_in_password: "Heslo"
-    no_password_set_info: "Váš účet nie je nakonfigurované s heslom."
+    no_password_set_info: "Váš účet nepoužíva heslo."
     set_password: "Nastaviť helso"
     update_password: "Aktualizovať heslo"
     update_password_no_match: "Heslá sa nezhodujú."
@@ -291,16 +291,16 @@ sk:
     remove_password: "Odstrániť heslo"
     cant_remove_password: "Heslo nemôžete odstrániť - nemáte nastavené žiadne alternatívne prihlasovanie!"
     cant_remove_sign_in: "Nemôžete odstrániť prihlasovanie cez %{provider} - nemáte nastavené žiadne alternatívne prihlasovanie!"
-    password_removed: "Heslo bolo vymazané."
+    password_removed: "Heslo bolo odstránené."
     edit_sign_in_external: "Externé prihlasovanie"
-    external_sign_in_info_no_sign_ins: "Na prihlásenie sa na %{site_name} môžete použiť vaš účet na iných stránkach."
+    external_sign_in_info_no_sign_ins: "Na prihlásenie sa na %{site_name} môžete použiť váš účet na iných stránkach."
     external_sign_in_info_with_sign_ins: "Momentálne používate tieto externé účty na prihlásenie. Možnosť \"synchronizovať\" znamená, že sa pri prihlásení na %{site_name} aktualizujú údaje (ako je meno a email)."
     external_sign_in_added: "Pridané prihlásenie cez %{provider}."
     external_sign_in_updated: "Prihlásenie cez %{provider} bolo aktualizované."
-    external_sign_in_removed: "Prihlásenie cez %{provider} bolo odstránené"
+    external_sign_in_removed: "Prihlásenie cez %{provider} bolo odstránené."
     external_sign_in_failed: "Prihlásenie cez %{provider} zlyhalo: %{error}."
-    external_sign_in_already_used: "Ďalšie prihlásenie cez %{provider} zlyhalo: to znamená, že už ho používa iný užívateľ '%{user_name}'."
-    syncing_indicator: "(synchronizvať)"
+    external_sign_in_already_used: "Pridanie prihlásenia cez %{provider} zlyhalo: to znamená, že už ho používa iný užívateľ '%{user_name}'."
+    syncing_indicator: "(synchronizácia)"
     enable_syncing: "Zapnúť synchronizáciu"
     disable_syncing: "Vypnúť synchronizáciu"
     remove_external_sign_in: "Odstrániť"
@@ -326,7 +326,7 @@ sk:
     flattr_username_description_html: "Užívatelia vašich skriptov budú požiadaní o príspevok na <a href=\"https://flattr.com\">Flattr</a>."
     approve_redistribution_explanation: "%{site_name} môže oznámiť iným stránkam, že váš skript môžu prevziať. To môže, ale nemusí byť povolené v licencii pre váš skript. Toto nastavenie môžete zmeniť pre každý skript zvlášť."
     approve_redistribution_true: "Nevadí mi, že môj skript bude umiestnený niekde inde"
-    approve_redistribution_false: "Nechcem, aby môj skript bol umiestnený niekde inde"
+    approve_redistribution_false: "Nechcem, aby môj skript bol umiestňovaný niekde inde"
     greasy_fork_scripts_link:
       one: "%{user_name} má tiež %{count} skript na Greasy Fork."
       few: "%{user_name} má tiež %{count} skripty na Greasy Fork."
@@ -337,32 +337,32 @@ sk:
       intro: "Na používanie užívateľských skriptov zvyčajne potrebujete nainštalovať rozšírenie prehliadača."
       firefox: "Firefox a príbuzné prehliadače: %{gm_link:Greasemonkey}."
       chrome: "Google Chrome, Chromium, a príbuzné prehliadače : %{tm_link:Tampermonkey}."
-      opera_15_plus: "Opera (verzia 15 novšia): %{tm_link:Tampermonkey} alebo %{vm_link:Violentmonkey}."
-      opera_12: "Opera verzia 12 staťšia %{opera_doc_link:supports user scripts natively}. %{vm_link:Violentmonkey} poskytuje prijateľnejšie UI a lepšiu kompatibilitu."
+      opera_15_plus: "Opera (verzia 15 a novšie): %{tm_link:Tampermonkey} alebo %{vm_link:Violentmonkey}."
+      opera_12: "Opera verzia 12 a staršie %{opera_doc_link:podporuje užívateľské skripty natívne}. %{vm_link:Violentmonkey} poskytuje prijateľnejšie UI a lepšiu kompatibilitu."
       installing_scripts: "Akonáhle sú skripty v prehliadači povolené, vyhľadajte skript na Greasy Fork a kliknite na zelené tlačidlo \"Inštalovať\"."
     meta_keys:
       title: "Metakľúče skriptu spracované %{site_name}"
       intro_html: "Toto je zoznam <a href=\"http://wiki.greasespot.net/Metadata_Block\">metaľkúčov užívateľského skriptu</a>, ktoré %{site_name} rozpozná. Kľúče mimo tohto zoznamu môžu byť zahrnuté v skriptoch a budú v nainštalovanom skripte prítomné, ale nebudú mať efekt na UI %{site_name}."
       name: "Názov skriptu, použité ako nadpis a v odkazoch. Povinné."
       name_localized_html: "Názov skriptu v konkrétnom jazyku, kde XX je <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-znakový kód</a> a YY je voliteľný <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 kód krajiny</a>. Ignoruje<code>@name</code> ak užívateľ prehliada vo vybranom jazyku."
-      description: "Popis funkcie skriptu. Zobrazuje sa ako text pod názvom skriptu. Potrebné."
+      description: "Popis funkcie skriptu. Zobrazuje sa ako text pod názvom skriptu. Povinné."
       description_localized_html: "Popis skriptu vo vybranom jazyku, kde XX je <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-znakový kód</a> a YY je voliteľný <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 kód krajiny</a>. Ignoruje <code>@description</code> ak užívateľ prehliada vo vybranom jazyku."
-      namespace_html: "Kombinácia <code>@namespace</code> a <code>@name</code> sa používa správcami skriptov na to, aby zisitli, či je už skript nainštalovaný. %{site_name} vyžaduje toto pole a upozorní ak sa zmení na aktualizáciu."
-      version_html: "Identifikátor pre konkrétnu verziu skriptu vo  <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">formáte Mozilla version</a>. Verzia sa zobrazí na stránke skriptu. %{site_name} vyžaduje toto pole a upozorní, ak sa zníži alebo ak sa nezvýši pri zmene kódu skriptu."
+      namespace_html: "Kombinácia <code>@namespace</code> a <code>@name</code> sa používa správcami skriptov na to, aby zistili, či je už skript nainštalovaný. %{site_name} vyžaduje toto pole a upozorní ak sa zmení po aktualizácii."
+      version_html: "Identifikátor pre konkrétnu verziu skriptu vo <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">formáte Mozilla version format</a>. Verzia sa zobrazí na stránke skriptu. %{site_name} vyžaduje toto pole a upozorní, ak sa zníži alebo ak sa nezvýši pri zmene kódu skriptu."
       include: "Vypíšte stránky, na ktorých skript pobeží. Tento zoznam bude spracovaný, zobrazený na stránke skriptu a použitý na kategorizovanie skriptu."
       require_html: "Skript obsahuje externý JavaScript. Pozri %{external_script_link}."
       require_external_script_link_text: "pravidlá pre kód obsahujúci externé skripty"
-      updateURL: "Popis ako správcovia užívateľských skriptov môžu získať aktualizácie. %{site_name} vymaže tieto kľúče, všetky skripty z  %{site_name} musia byť aktualizované cez %{site_name}."
+      updateURL: "Popis ako správcovia užívateľských skriptov môžu získať aktualizácie. %{site_name} vymaže tieto kľúče, všetky skripty z %{site_name} musia byť aktualizované cez %{site_name}."
       license: "Adresa stránky alebo názov licencie, ktorá popisuje, či užívatelia môžu skript kopírovať alebo upravovať. Neuvedenie licencie znamená, že užívatelia si skript môžu nainštalovať pre osobné použitie, ale nemôžu ho šíriť ďalej. Licencia je uvedená na stránke skriptu."
       supportURL: "Adresa stránky, kde užívatelia môžu podporiť vývoj skriptu (napr. bug tracker, fórum, emailová adresa). URL adresa pre podporu je uvedená na stránke spätnej väzby skriptu."
-      contributionURL_html: "URL adresa, kde užívatelia môžu finančne podporiť autora skriptu. URL adresa pre prispievateľov je uvedená na stránke spätnej väzby skriptu. Adresy môžu používať  http, https, alebo BItcoin protokoly. Pre odkaz na stránku podpory PayPal, použite adresu vo formáte <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a>, nahraďte ukážkovú emailovú adresu vašou."
+      contributionURL_html: "URL adresa, kde užívatelia môžu finančne podporiť autora skriptu. URL adresa pre prispievateľov je uvedená na stránke spätnej väzby skriptu. Adresy môžu používať  http, https, alebo BItcoin protokoly. Pre odkaz na stránku podpory PayPal, použite adresu vo formáte <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+podpora\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=vas.email@priklad.com&item_name=Greasy+Fork+podpora</a>, nahraďte ukážkovú emailovú adresu vašou."
       contributionAmount_html: "Navrhnutá suma dotácie, spojená v súvislosti s <code>@contributionURL</code>."
-      compatible_html: "Označte tento skript ako kompatibilný s webovým prehliadačom. Informácie o kompatibilite budú zobrazené na stránke skriptu. Komentáre ohľadom kompatibility môžu byť zahrnuté vo formáte <code>@compatible firefox Must disable pop-up blocker</code>. Overené prehliadače: %{browsers}."
-      incompatible_html: "Označte tento skript ako nekompatibilný s webovým prehliadačom. Informácie o kompatibilite budú zobrazené na stránke skriptu. Voliteľné komentáre ohľadom kompatiblity môžu byť zahrnuté vo formáte <code>@incompatible firefox Broken since Firefox 23</code> Overené prehliadače: %{browsers}."
+      compatible_html: "Označte tento skript ako kompatibilný s webovým prehliadačom. Informácie o kompatibilite budú zobrazené na stránke skriptu. Komentáre ohľadom kompatibility môžu byť zahrnuté vo formáte <code>@compatible firefox Musíte zakázať blokovanie nevyžiadaných vyskakovacích okien</code>. Overené prehliadače: %{browsers}."
+      incompatible_html: "Označte tento skript ako nekompatibilný s webovým prehliadačom. Informácie o kompatibilite budú zobrazené na stránke skriptu. Voliteľné komentáre ohľadom kompatiblity môžu byť zahrnuté vo formáte <code>@incompatible firefox Nefunguje od Firefox 23</code>. Overené prehliadače: %{browsers}."
     writing_user_scripts:
-      title: "Ako napísať užívateľský skrpt"
-      content_html: "<p>Napísanie užívateľského skriptu vyžaduje znalosť JavaScriptu. <a href=\"http://wiki.greasespot.net/Tutorials\">Tutoriály na GreaseSpot Wiki</a> by vám mali pomôcť so úvodom do JavaScriptu a tvorbou užívateľských skriptov. Prezeranie ďalších skriptov vám môže tiež pomôcť. Možno vás bude zaujímať %{code_rules_link} a %{meta_keys_link}. Ak chcete pomôcť s vývojom vašeho skriptu, neváhajte %{ask_in_forum_link}.</p><p>Pre odoslanie skriptu na %{site_name}, si potrebujete vytvoriť účet. Na svojej %{user_page_link}, nájdete odkaz na %{post_new_script_link}.</p>"
-      ask_in_forum_link_text: 'opýtať sa na fóre'
+      title: "Ako napísať užívateľský skript"
+      content_html: "<p>Napísanie užívateľského skriptu vyžaduje znalosť JavaScriptu. <a href=\"http://wiki.greasespot.net/Tutorials\">Tutoriály na GreaseSpot Wiki</a> by vám mali pomôcť so úvodom do JavaScriptu a tvorbou užívateľských skriptov. Prezeranie ďalších skriptov vám môže tiež pomôcť. Možno vás bude zaujímať %{code_rules_link} a %{meta_keys_link}. Ak chcete pomôcť s vývojom vašeho skriptu, neváhajte sa %{ask_in_forum_link}.</p><p>Pre odoslanie skriptu na %{site_name}, si potrebujete vytvoriť účet. Na svojej %{user_page_link}, nájdete odkaz na %{post_new_script_link}.</p>"
+      ask_in_forum_link_text: 'opýtať na fóre'
       user_page_link_text: 'stránke užívateľa'
       post_new_script_link_text: 'poslať nový skript'
     code_rules:
@@ -377,7 +377,7 @@ sk:
         robí predtým, ako ho nainštalujú.</li>
           <li>Kód odoslaný na túto stránku nemôže byť obfuskovaný alebo minifikovaný.
         Užívatelia musia mať možnosť skontrolovať a pochopiť skript pred jeho inštaláciou.</li>
-          <li>Knižnice, ktorú sú použité v skripte by mali byť vyžiadané cez <code>@require</code>,
+          <li>Knižnice, ktoré sú použité v skripte by mali byť vyžiadané cez <code>@require</code>,
         iba ak by bol technický dôvod tak neurobiť. V prípade, že knižnica je prilinkovaná
         inline, musia byť priložené informácie o zdrojovej knižnici (napr. zakomentovaná
         URL a/alebo názov a verzia).</li>
@@ -428,7 +428,7 @@ sk:
         na %{site_name} vybraním typu skriptu "Knižnica". Potom budete môcť priložiť
         túto knižnicu do vášho skriptu.</p>
     script_rewriting:
-      title: "Ako budú prepísané skripty odoslané na%{site_name}"
+      title: "Ako budú prepísané skripty odoslané na %{site_name}"
       content_html: >
         <p>Skripty poslané na %{site_name} budú prepísané nasledujúcimi spôsobmi:</p>
         <ul>
@@ -443,25 +443,25 @@ sk:
         </ul>
     site_feedback_link: "Nahlásenie problému alebo pridanie nápadu pre %{site_name}"
     credits:
-      title: "Autori"
-      authors_credit: "%{site_name} by nemohol exisotvať bez autorov, ktorí pracujú na skriptoch."
-      developers_credit: "Samotný %{site_name} je budovaný %{developers_link:týmito ľuďmi} spolu s pomocou  všetkých, ktorí nahlasujú chyby a zasielajú námety na vylepšenie."
+      title: "Poďakovanie"
+      authors_credit: "%{site_name} by nemohol existovať bez autorov, ktorí pracujú na skriptoch."
+      developers_credit: "Samotný %{site_name} je zostavený %{developers_link:týmito ľuďmi} spolu s pomocou  všetkých, ktorí nahlasujú chyby a zasielajú námety na vylepšenie."
       translators_credit: "%{site_name} je preložený %{translators_link:prekladateľmi Greasy Translation Force na Transifexe}:"
       icons_credit: "Ikony diskusie sú z %{vistastylebase} od %{iconsland}. Ikony prehliadačov sú z %{browserlogos}."
     help_with_greasymonkey: "Pomoc s Greasemonkey"
     contact:
-      title: "Kontaktovať niekoho"
+      title: "Kontakty"
       content_html: >
-        <p>Existuje viacero spôsobov ako hovoriť o %{site_name} a jeho obsahu.</p>
+        <p>Existuje viacero spôsobov ako sa rozprávať o %{site_name} a jeho obsahu.</p>
         <p>Máte otázku alebo komentár ku konkrétnemu skriptu na stránke? Ak áno, použite
         diskusiu cez záložku z odkazu na spätnú väzbu na stránke skriptu. Autori skriptu
         dostanú notifikáciu na ich účet stránky alebo v diskusii k ich skriptu.</p>
         <p>Máte otázku alebo komentár k stránke %{site_name} alebo k vývoju skriptu,
         alebo chcete niekoho požiadať o vytvorenie skriptu? %{forum_link:Príspevok
         vo fóre} ti poskytuje najširšie publikum na diskusiu.</p> <p>Chcete nahlásiť
-        chybu alebo skvelý nápad pre %{site_name} (a nie konkrétny skript <em>pridaný
+        chybu alebo máte skvelý nápad pre %{site_name} (a nie konkrétny skript <em>pridaný
         na</em> %{site_name})? %{github_link:Pridajte ich na stránku GitHub.}</p>
-        <p>Máte súkromnú otázku alebo komentár, ktorý by mal vidieť iba administrátor?
+        <p>Máte súkromnú otázku alebo komentár, ktoré by mal vidieť iba administrátor?
         %{admin_email_link:Poslať email.}</p>
     privacy_policy:
       title: "Zásady ochrany osobných údajov"
@@ -486,25 +486,25 @@ sk:
         užívateľského účtu na pridávanie skriptov, zúčastňovaní sa na diskusii a na
         prístup k niektorým funkciám stránky. Pri vytváraní účtu, informácie ako sú
         IP adresy, emailové adresy a identifikátor prehliadača môžu byť trvalo uložené.
-        Niektoré z týchto informácií môžu byť viditeľné iným užívateľom.</p> <p>Akcie
-        vykonávané pri prihlásení, napríklad pridávanie skriptov a komentárov, budú
-        viditeľné ostatným užívateľom.</p> <p>Ak možnosť "Zapamätať si ma" je vybraná
-        pri prihlasovaní účtu, %{site_name} nastaví trvalé cookie na udržanie prihlásenia.</p>
-        <h2>Skripty pridané na %{site_name}</h2> <p>%{site_name} obsahujú užívateľsky
-        generovaný obsah, a tieto skripty môžu sledovať užívateľov, ktorí si skript
-        nainštalovali.</p> <h2>Knižnice tretích strán</h2> <p>%{site_name} môžu obsahovať
-        kód tretích strán za účelom štatistiky alebo zobrazenia reklamy na stránke.
-        Tieto knižnice môžu obsahovať sledovaciu logiku.</p>
+        Niektoré z týchto informácií môžu byť viditeľné pre iných užívateľom.</p>
+        <p>Akcie vykonávané po prihlásení, napríklad pridávanie skriptov a komentárov,
+        budú viditeľné ostatným užívateľom.</p> <p>Ak možnosť "Zapamätať si ma" je
+        vybraná pri prihlasovaní účtu, %{site_name} nastaví trvalé cookie na udržanie
+        prihlásenia.</p> <h2>Skripty pridané na %{site_name}</h2> <p>%{site_name}
+        obsahujú užívateľsky generovaný obsah, a tieto skripty môžu sledovať užívateľov,
+        ktorí si skript nainštalovali.</p> <h2>Knižnice tretích strán</h2> <p>%{site_name}
+        môžu obsahovať kód tretích strán za účelom štatistiky alebo zobrazenia reklamy
+        na stránke. Tieto knižnice môžu obsahovať sledovaciu logiku.</p>
   common:
     error_preamble: "Boli zistené problémy s tým, čo ste poslali."
     allowed_elements_link: "(Pozri zoznam povolených značiek.)"
-    allowed_elements_and_attributes_title: "Povolené elementy pre HTML obah"
+    allowed_elements_and_attributes_title: "Povolené elementy pre HTML obsah"
     allowed_elements_intro: "Nasledujúce elementy a atribúty sú povolené. To platí pre HTML aj Markdown (po konverzii na HTML)."
     allowed_elements_extra_info: "Prázdne znaky budú nahradené P alebo BR elementami. URL adresy budú automaticky klikateľné."
     not_found_text: "404 - stránka nenájdená."
     not_found_title: "404 - stránka nenájdená"
-    not_found_link_home: "Prejsť domov."
-    suggest_locale: "%{site_name} je dostupná na %{locale_name}."
+    not_found_link_home: "Prejsť na hlavnú stránku."
+    suggest_locale: "%{site_name} je dostupná v %{locale_name}."
     incomplete_locale: "%{site_name} je preložená do %{locale_name} na %{percent}. Môžete to zmeniť."
     expander_show_more: "Zobraziť viac"
     expander_show_less: "Zobraziť menej"
@@ -513,7 +513,7 @@ sk:
   activerecord:
     attributes:
       user:
-        name: "Názov"
+        name: "Meno"
         profile: "Profil"
         locale: "Preferovaný jazyk"
         author_email_notification_type_id: "Notifikácie na diskusiu k skriptu"
@@ -535,18 +535,18 @@ sk:
         approve_redistribution: "Redistribúcia"
   errors:
     messages:
-      script_missing_name: "potrebné - vyberte s @name"
-      script_missing_description: "potrebné - vyberte s @description"
-      script_name_same_as_description: "nesmie byť rovnaké ako názov skriptu"
+      script_missing_name: "potrebné - uveďte v @name"
+      script_missing_description: "potrebné - uveďte v @description"
+      script_name_same_as_description: "nesmie byť rovnaký ako názov skriptu"
       script_sync_identifier_bad_protocol: "musí to byť HTTP alebo HTTPS"
-      script_too_many_screenshots: "Priveľa ukázok - maximuj je %{number}"
+      script_too_many_screenshots: "Priveľa ukážok - maximum je %{number}"
       cannot_be_self_reference: "nemôže nahradiť sám seba"
       cannot_be_deleted_reference: "nemôže byť nahradený odstráneným skriptom"
       must_be_greasy_fork_script: "musí to byť URL skriptu na %{site_name}"
-      script_update_not_utf8: "kód nie je v UTF-8"
+      script_update_not_utf8: "kód nie je v UTF-8 text"
       script_disallowed_require: "používa neschválených externý skript:% {code}"
   opensearch:
-    short_name: "hľadanie %{site_name}"
+    short_name: "hľadať %{site_name}"
     description: "Hľadanie skriptov na %{site_name}."
     long_name: "Hľadanie skriptov na %{site_name}"
     attribution: "Autorské práva autorov skriptov nájdete na jednotlivých stránkach skriptov"
