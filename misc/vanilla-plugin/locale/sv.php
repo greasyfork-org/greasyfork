@@ -30,7 +30,7 @@ $Definition['Categories.script-development.Description'] = 'Tekniskt prat om anv
 // Category name for Script Creation Requests
 $Definition['Categories.script-requests.Name'] = 'Förfrågningar om att skapa skript';
 // Category description for Script Creation Requests
-$Definition['Categories.script-requests.Description'] = 'Förfråga någon att skapa ett skript åt dig';
+$Definition['Categories.script-requests.Description'] = 'Begär någon att skriva ett skript åt dig.';
 // Category name for Script Discussions
 $Definition['Categories.script-discussions.Name'] = 'Skript-diskussioner';
 // Category description for Script Discussions

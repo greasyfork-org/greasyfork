@@ -61,12 +61,16 @@ it:
     delete_update_behaviour_2: "Verranno aggiornati ad uno script vuoto. Questo avviene quando lo script ha un effetto negativo sul sito su cui sta girando."
     delete_permanently_heading: "Eliminazione permanente"
     delete_permanently_explanation: "Cancellando definitivamente il tuo script cancellerà esso ed i relativi records, ad eccezione delle discussione del forum e dei log delle azioni dei moderatori. Una cancellazione permanente è permanente; Non può essere annullata, anche dagli stessi moderatori."
+    delete_permanently_request_explanation: "La cancellazione permanente di questo script può essere completata solo dopo l'esaminazione dei moderatori."
     delete_permanently_confirm: "Sei sicuro di voler eliminare definitivamente il tuo script? Questa azione non può essere annullata!"
     delete_permanently_submit: "Richiesta di cancellazione permanente"
+    delete_permanently_immediate_submit: "Elimina permanentemente"
     delete_permanently_notice: "La richiesta di cancellazione permanente è stata registrata e verrà esaminata da un moderatore."
     delete_permanently_already_requested: "Hai richiesto la cancellazione permanente alle %{datetime}."
+    delete_permanently_notice_immediate: "Script eliminato permanentemente."
     cancel_delete_permanently_submit: "Annullare la richiesta di cancellazione permanente"
     cancel_delete_permanently_notice: "La richiesta per la cancellazione definitiva è stata annullata."
+    delete_permanently_rejected_locked: "Questo script è bloccato e non può essere eliminato permanentemente"
     history_title: "%{script_name} - Cambiamenti versioni"
     history_only_code_changes_info: "queste sono le versioni di questo script in cui il codice è stato aggiornato"
     history_all_changes_link: "Mostra tutte le versioni"
@@ -159,6 +163,7 @@ it:
     type_2_html: "Script utente non indicizzato - script utente per uso (semi-)privato. Disponibile attraverso un accesso diretto, ma non linkato all'interno di %{site_name}."
     type_3_html: "Libreria - uno script creato con lo scopo di essere usato con il tag <code>@require</code> da altri script e non per essere installato drettamente."
     override_warning_checkbox_label: "Salvare comunque?"
+    warning_version_not_incremented_html: "Hai modificato il codice ma non hai incrementato il numero di <code>@version</code>. Coloro che hanno installato precedentemente il tuo script potrebbero non ricevere il codice aggiornato."
     warning_version_missing_generate_automatically_html: "Generare <code>@version</code> automaticamente?"
     warning_namespace_missing_html: "Non hai specificato nessun <code>@namespace</code>. Un meta tag <code>@namespace</code> permette all'utente di re-installare il tuo script per aggiornarlo."
     warning_namespace_missing_generate_automatically_html: "Generare <code>@namespace</code> automaticamente?"
@@ -210,6 +215,11 @@ it:
     adult_content: "Contenuto per adulti"
     adult_content_self_report: "Questo sito contiene contenuto per adulti o è per un sito che contiene contenuto per adulti."
     non_adult_content_on_sleazy: "Questo script non è disponibile su questo sito."
+    adult_marker: "(Adulti)"
+    deleted_marker: "(Eliminato)"
+    locked_marker: "(Bloccato)"
+    unlisted_marker: "(Non elencato)"
+    library_marker: "(Libreria)"
   script_sets:
     favorites_name: "Preferiti"
     delete: "Elimina set script"
@@ -282,7 +292,10 @@ it:
     approve_redistribution_true: "I miei script possono essere postati altrove"
     approve_redistribution_false: "Non voglio che i miei script vengano postati altrove"
   help:
+    installing_user_scripts:
+      title: "Come installare gli user script"
     meta_keys:
+      name: "Il nome dello script, utilizzato nel titolo e nei link. Richiesto."
       description: "Breve descrizione dello script. Mostrata come testo semplice sotto il nome dello script. Richiesto."
       include: "Descrivi le pagine in cui verra utilizzato lo script. La lista verrà processata, mostrata tra le informazioni nella pagina dello script, ed infine utilizzata per categorizzare gli script."
       require_html: "Include codice JavaScript esterno allo script. Guarda %{external_script_link}."
@@ -295,6 +308,7 @@ it:
       post_new_script_link_text: 'posta un nuovo script'
     code_rules:
       title: "Le regole di %{site_name} per gli script postati"
+      adult_content_rule_html: "<li>Script che includono contenuti per adulti o sono per siti con contenuti per adulti devono essere contrassegnati come tali per dare agli altri utenti l'opzione di vederli oppure no.</li>"
     credits:
       title: "Crediti"
       authors_credit: "%{site_name} non sarebbe nulla senza gli utenti che contribuiscono condividendo i loro script."
@@ -320,13 +334,16 @@ it:
       user:
         name: "Nome"
         profile: "Profilo"
+        locale: "Lingua preferita"
         author_email_notification_type_id: "Notifiche discussioni degli script"
         show_ads: "Mostra ads"
+        show_sensitive: "Contenuto per adulti"
         preferred_markup: "Markup preferito"
         flattr_username: "Username di Flattr"
       script:
         name: "Nome"
         description: "Descrizione"
+        locale: "Lingua"
         code: "Codice"
         changelog: "Registro dei cambiamenti "
         type: "Tipo di script"
@@ -346,3 +363,4 @@ it:
       cannot_be_deleted_reference: "non può essere uno script cancellato"
       must_be_greasy_fork_script: "deve essere l'URL dello script su %{site_name}"
       script_update_not_utf8: "il testo caricato deve rispettare lo standard UTF-8 "
+      script_disallowed_require: "utilizza uno script esterno non ammesso: %{code}"
