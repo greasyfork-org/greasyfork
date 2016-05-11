@@ -2,7 +2,7 @@
 /* Label for inputting a script ID when creating/editing a discussion */
 $Definition['Item ID:'] = 'Script ID:';
 // Appended to "Discussions" when viewing a list of discussions on scripts by a user. %s is the user name.
-$Definition['on scripts by %s'] = 'sullo script da %s';
+$Definition['on scripts by %s'] = 'sugli script di %s';
 /*
  *  Label for the radio buttons for rating a script
  **/
@@ -22,11 +22,11 @@ $Definition['RatingGood'] = 'Buono - lo script funziona bene';
 // Category name for Site Feedback
 $Definition['Categories.general.Name'] = 'Valutazione del sito';
 // Category description for Site Feedback
-$Definition['Categories.general.Description'] = 'Segnalazione bug, richiesta funzionalità, e altre informazioni rigurdanti Greasy Fork.';
+$Definition['Categories.general.Description'] = 'Segnalazione bug, richiesta funzionalità, e altre informazioni riguardanti Greasy Fork.';
 // Category name for Development
 $Definition['Categories.script-development.Name'] = 'Sviluppo';
 // Category description for Development
-$Definition['Categories.script-development.Description'] = 'Discussioni tecnice riguardanti lo sviluppo dello script.';
+$Definition['Categories.script-development.Description'] = 'Discussioni tecniche sullo sviluppo degli script utente.';
 // Category name for Script Creation Requests
 $Definition['Categories.script-requests.Name'] = 'Richieste creazioni script';
 // Category description for Script Creation Requests
@@ -34,7 +34,7 @@ $Definition['Categories.script-requests.Description'] = 'Chiedi a qualcuno di sc
 // Category name for Script Discussions
 $Definition['Categories.script-discussions.Name'] = 'Discussioni script';
 // Category description for Script Discussions
-$Definition['Categories.script-discussions.Description'] = 'Discuti sugli script pubblicati su Greasy Fork.';
+$Definition['Categories.script-discussions.Description'] = 'Discussioni su script postati su Greasy Fork.';
 // Link on Recent Discussions to hide script discussions
 $Definition['Turn on filter'] = 'Nascondi le discussioni dello script';
 // Link on Recent Discussions to show script discussions
