@@ -1,8 +1,8 @@
 <?php
 /* Label for inputting a script ID when creating/editing a discussion */
-$Definition['Item ID:'] = 'Script ID';
+$Definition['Item ID:'] = 'Script ID:';
 // Appended to "Discussions" when viewing a list of discussions on scripts by a user. %s is the user name.
-$Definition['on scripts by %s'] = 'on scripts by %s';
+$Definition['on scripts by %s'] = 'på scripts af %s';
 /*
  *  Label for the radio buttons for rating a script
  **/
