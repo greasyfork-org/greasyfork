@@ -71,7 +71,7 @@ gem 'dalli'
 
 gem 'omniauth'
 gem 'omniauth-github'
-gem 'omniauth-google-oauth2'
+gem 'omniauth-google-oauth2', '>= 0.4.1'
 gem 'omniauth-browserid'
 gem 'detect_language'
 gem 'levenshtein'

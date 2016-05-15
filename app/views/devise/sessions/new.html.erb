@@ -12,9 +12,20 @@
 		<p>(No external providers configured.)</p>
 	<% else %>
 		<%=form_tag(external_login_path, {:method => :get, :class => 'inline-form'}) do %>
-			<% Rails.application.config.available_auths.keys.each do |provider| %>
-				<button name="provider" class="<%=provider%>-login" value="<%=provider%>"><%=Identity.pretty_provider(provider)%></button>
-			<% end %>
+			<div>
+				<% Rails.application.config.available_auths.keys.reverse.each do |provider| %>
+					<span class="external-login-container">
+						<button name="provider" class="external-login <%=provider%>-login" value="<%=provider%>">
+							<%=t('users.sign_in_with', provider: Identity.pretty_provider(provider)) %>
+						</button>
+						<% if provider == 'browser_id'
+							shutdown_date = Date.new(2016, 11, 30)%>
+							<a href="https://wiki.mozilla.org/Identity/Persona_Shutdown_Guidelines_for_Reliers"><%=t('users.sign_in_shutting_down', date: l(shutdown_date, format: :short))%></a>
+						<% end %>
+					</span>
+				<% end %>
+			</div>
+
 			<% if devise_mapping.rememberable? -%>
 				<div><%= check_box_tag :remember_me %><%= label_tag :remember_me, t('activerecord.attributes.user.remember_me') %></div>
 			<% end -%>
