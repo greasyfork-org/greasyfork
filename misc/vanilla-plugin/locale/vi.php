@@ -1,14 +1,14 @@
 <?php
 /* Label for inputting a script ID when creating/editing a discussion */
-$Definition['Item ID:'] = 'ID Script:';
+$Definition['Item ID:'] = 'Mã Script:';
 // Appended to "Discussions" when viewing a list of discussions on scripts by a user. %s is the user name.
-$Definition['on scripts by %s'] = 'trên script của %s';
+$Definition['on scripts by %s'] = 'Script Của %s';
 /*
  *  Label for the radio buttons for rating a script
  **/
-$Definition['RatingLabel'] = 'Đánh giá của bạn về script này?';
+$Definition['RatingLabel'] = 'Đánh gia của bạn về script?';
 # Label for the radio buttons for updating a rating on a script
-$Definition['RatingUpdateLabel'] = 'Cập nhật đánh giá của bạn:';
+$Definition['RatingUpdateLabel'] = 'Cập nhật đánh giá:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = 'Không đánh giá - chỉ là một câu hỏi, bình luận, yêu cầu tính năng, hoặc báo cáo lỗi';
 ## Label for the radio button for reporting a script
