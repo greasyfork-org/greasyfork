@@ -9,7 +9,7 @@
 
 <% if !@ad_method.nil? %>
 	<div class="ad" id="script-show-info-ad">
-		<div class="ad-note"><%=t('common.advertisement_note')%> (<%=@ad_method.upcase%>)</div>
+		<div class="ad-note" data-ad-method="<%=@ad_method.upcase%>"><%=t('common.advertisement_note')%></div>
 		<div class="ad-content">
 			<% case @ad_method
 				when 'xo' %>
