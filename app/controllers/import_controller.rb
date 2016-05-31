@@ -49,7 +49,7 @@ class ImportController < ApplicationController
 		@results = {:new => [], :failure => [], :needsdescription => [], :existing => []}
 		sync_ids = nil
 		if params[:sync_ids].nil?
-			sync_ids = params[:sync_urls].split("\n")
+			sync_ids = params[:sync_urls].split(/[\n\r]+/)
 		else
 			sync_ids = params[:sync_ids]
 		end
