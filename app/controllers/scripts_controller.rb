@@ -344,33 +344,35 @@ class ScriptsController < ApplicationController
 		end
 
 		# additional info syncs. and new ones and update existing ones to add/update sync_identifiers
-		current_additional_infos = @script.localized_attributes_for('additional_info')
-		# keep track of the ones we see - ones we don't will be unsynced or deleted
-		unused_additional_infos = current_additional_infos.dup
-		params['additional_info_sync'].each do |index, sync_params|
-			# if it's blank it will be ignored (if new) or no longer synced (if existing)
-			form_is_blank = (sync_params['attribute_default'] != 'true' && sync_params['locale'].nil?) || sync_params['sync_identifier'].blank?
-			existing = current_additional_infos.find{|la| (la.attribute_default && sync_params['attribute_default'] == 'true') || la.locale_id == sync_params['locale'].to_i}
-			if existing.nil?
-				next if form_is_blank
-				attribute_default = (sync_params['attribute_default'] == 'true')
-				@script.localized_attributes.build(:attribute_key => 'additional_info', :sync_identifier => sync_params['sync_identifier'], :value_markup => sync_params['value_markup'], :sync_source_id => 1, :locale_id => attribute_default ? @script.locale_id : sync_params['locale'], :attribute_value => ADDITIONAL_INFO_SYNC_PLACEHOLDER, :attribute_default => attribute_default)
-			else
-				if !form_is_blank
-					unused_additional_infos.delete(existing)
-					existing.sync_identifier = sync_params['sync_identifier']
-					existing.sync_source_id = 1
-					existing.value_markup = sync_params['value_markup']
+		if params['additional_info_sync']
+			current_additional_infos = @script.localized_attributes_for('additional_info')
+			# keep track of the ones we see - ones we don't will be unsynced or deleted
+			unused_additional_infos = current_additional_infos.dup
+			params['additional_info_sync'].each do |index, sync_params|
+				# if it's blank it will be ignored (if new) or no longer synced (if existing)
+				form_is_blank = (sync_params['attribute_default'] != 'true' && sync_params['locale'].nil?) || sync_params['sync_identifier'].blank?
+				existing = current_additional_infos.find{|la| (la.attribute_default && sync_params['attribute_default'] == 'true') || la.locale_id == sync_params['locale'].to_i}
+				if existing.nil?
+					next if form_is_blank
+					attribute_default = (sync_params['attribute_default'] == 'true')
+					@script.localized_attributes.build(:attribute_key => 'additional_info', :sync_identifier => sync_params['sync_identifier'], :value_markup => sync_params['value_markup'], :sync_source_id => 1, :locale_id => attribute_default ? @script.locale_id : sync_params['locale'], :attribute_value => ADDITIONAL_INFO_SYNC_PLACEHOLDER, :attribute_default => attribute_default)
+				else
+					if !form_is_blank
+						unused_additional_infos.delete(existing)
+						existing.sync_identifier = sync_params['sync_identifier']
+						existing.sync_source_id = 1
+						existing.value_markup = sync_params['value_markup']
+					end
 				end
 			end
-		end
-		unused_additional_infos.each do |la|
-			# Keep the existing if it had anything but the placeholder
-			if la.attribute_value == ADDITIONAL_INFO_SYNC_PLACEHOLDER
-				la.mark_for_destruction
-			else
-				la.sync_identifier = nil
-				la.sync_source_id = nil
+			unused_additional_infos.each do |la|
+				# Keep the existing if it had anything but the placeholder
+				if la.attribute_value == ADDITIONAL_INFO_SYNC_PLACEHOLDER
+					la.mark_for_destruction
+				else
+					la.sync_identifier = nil
+					la.sync_source_id = nil
+				end
 			end
 		end
 
