@@ -47,7 +47,7 @@ end
 gem 'i18n', '>= 0.6.11'
 
 gem 'devise', '~> 3.5.0'
-gem 'devise-i18n', '~> 1.0.0'
+gem 'devise-i18n', git: 'https://github.com/tigrish/devise-i18n'
 gem 'therubyracer'
 gem 'mysql2'
 gem 'diffy', '~> 3.0.5'
