@@ -8,9 +8,9 @@ $Definition['on scripts by %s'] = 'szkriptekről tőle: %s';
  **/
 $Definition['RatingLabel'] = 'Hogyan értékelné ezt a szkriptet?';
 # Label for the radio buttons for updating a rating on a script
-$Definition['RatingUpdateLabel'] = 'Frissítse az értékelését';
+$Definition['RatingUpdateLabel'] = 'Frissítse az értékelését:';
 # Label for the radio button for not rating a script
-$Definition['RatingNone'] = 'Nincs értékelés - csak kérdés, komment, feature kérése vagy hiba jelentése';
+$Definition['RatingNone'] = 'Nincs értékelés - csak kérdés, komment, funkció kérése vagy hiba jelentése';
 ## Label for the radio button for reporting a script
 $Definition['RatingReport'] = 'Szkript jelentése moderátoroknak eltávolításhoz - malware, lopott kód, stb.';
 /** Label for the radio button for rating a script "Bad" */
@@ -30,11 +30,11 @@ $Definition['Categories.script-development.Description'] = 'Technikai beszélget
 // Category name for Script Creation Requests
 $Definition['Categories.script-requests.Name'] = 'Szkript Kérése';
 // Category description for Script Creation Requests
-$Definition['Categories.script-requests.Description'] = 'Kérj meg valakit, hogy írjon neked egy szkriptet.';
+$Definition['Categories.script-requests.Description'] = 'Kérjen meg valakit, hogy írjon egy szkriptet.';
 // Category name for Script Discussions
 $Definition['Categories.script-discussions.Name'] = 'Szkript megbeszélések';
 // Category description for Script Discussions
-$Definition['Categories.script-discussions.Description'] = 'Vita a szkripteről, amik a Greasy Forkon vannak';
+$Definition['Categories.script-discussions.Description'] = 'Vita a szkriptekről, amik a Greasy Forkon vannak';
 // Link on Recent Discussions to hide script discussions
 $Definition['Turn on filter'] = 'Szkript vita elrejtése';
 // Link on Recent Discussions to show script discussions

@@ -14,7 +14,7 @@ $Definition['RatingNone'] = 'Nessuna valutazione - Solo domande, commenti, richi
 ## Label for the radio button for reporting a script
 $Definition['RatingReport'] = 'Segnala lo script ai moderatori per rimuoverlo - malware, codice rubato, ecc.';
 /** Label for the radio button for rating a script "Bad" */
-$Definition['RatingBad'] = 'Pessimo - Lo script non funziona.';
+$Definition['RatingBad'] = 'Pessimo - lo script non funziona';
 /** Label for the radio button for rating a script "OK" **/
 $Definition['RatingOK'] = 'OK - lo script funziona ma ha problemi significanti';
 // Label for the radio button for rating a script "Good"
