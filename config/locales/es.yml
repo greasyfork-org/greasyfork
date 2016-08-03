@@ -364,82 +364,84 @@ es:
     code_rules:
       title: "Reglas de %{site_name} para scripts publicados"
       content_html: >
-        <p>A continuación se enumeran los requisitos necesarios para que un script
-        aparezca en %{site_name}. Su objetivo es que hagan de %{site_name} un sitio
-        fiable y útil. Los moderadores se ocuparán de borrar cualquier script que
-        no cumpla los requisitos de %{site_name}.</p> <ul>
-          <li>Los scripts deben incluir una descripción de lo que hacen y adecuarse
-        a la funcionalidad descrita en la misma. Los usuarios deben saber lo que hará
-        un script antes de instalarlo.</li>
-          <li>El código publicado en este sitio no debe de estar ofuscado o compactado.
-        A los usuarios se les debe dar la oportunidad de inspeccionar y comprender
-        un script antes de instalarlo.</li>
-          <li>Cualquier biblioteca externa debe cargarse con ( <code>@require</code>
-        ), a menos que haya una razón técnica para no hacerlo. En caso de incrustar
-        una biblioteca de terceros en el script debes incluir información básica sobre
-        su origen (un comentario indicando la dirección URL original, nombre y, si
-        es posible, versión).
-          <li>Respetar los derechos de autor es importante. El código es primordial,
-        pero los recursos (como imágenes y estilos) que utilices también lo son. Para
-        usar el trabajo de otros respeta sus términos de licencia y pide permiso al
-        autor según sea necesario.</li>
-          <li>%{external_scripts_link:Se limita el uso y abuso de JavaScript externo.}</li>
-          %{adult_content_requirement}
-        </ul> <p>Si descubres una violación de las reglas puedes informar a los moderadores
-        utilizando la pestaña de «Opiniones» del script en cuestión, iniciando una
-        conversación, y eligiendo la opción «Informar del script».</p> <p>Si no estás
-        de acuerdo con algún apartado de esta lista no te preocupes, %{contact_link:podemos
-        discutirlo}.</p>
+          <p>A continuación se enumeran los requisitos necesarios para que un script
+          aparezca en %{site_name}. Su objetivo es que hagan de %{site_name} un sitio
+          fiable y útil. Los moderadores se ocuparán de borrar cualquier script que
+          no cumpla los requisitos de %{site_name}.</p> <ul>
+            <li>Los scripts deben incluir una descripción de lo que hacen y adecuarse
+          a la funcionalidad descrita en la misma. Los usuarios deben saber lo que
+          hará un script antes de instalarlo.</li>
+            <li>El código publicado en este sitio no debe de estar ofuscado o compactado.
+          A los usuarios se les debe dar la oportunidad de inspeccionar y comprender
+          un script antes de instalarlo.</li>
+            <li>Cualquier biblioteca externa debe cargarse con ( <code>@require</code>
+          ), a menos que haya una razón técnica para no hacerlo. En caso de incrustar
+          una biblioteca de terceros en el script debes incluir información básica
+          sobre su origen (un comentario indicando la dirección URL original, nombre
+          y, si es posible, versión).
+            <li>Respetar los derechos de autor es importante. El código es primordial,
+          pero los recursos (como imágenes y estilos) que utilices también lo son.
+          Para usar el trabajo de otros respeta sus términos de licencia y pide permiso
+          al autor según sea necesario.</li>
+            <li>%{external_scripts_link:Se limita el uso y abuso de JavaScript externo.}</li>
+            %{adult_content_requirement}
+          </ul> <p>Si descubres una violación de las reglas puedes informar a los
+          moderadores utilizando la pestaña de «Opiniones» del script en cuestión,
+          iniciando una conversación, y eligiendo la opción «Informar del script».</p>
+          <p>Si no estás de acuerdo con algún apartado de esta lista no te preocupes,
+          %{contact_link:podemos discutirlo}.</p>
       adult_content_rule_html: "<li>Los scripts con contenido para adultos (o que funcionen en sitios con este tipo de contenido restringido) deben marcarse para que los usuarios puedan decidir si quieren verlos o no.</li>"
     external_scripts:
       title: "Política de %{site_name} sobre scripts externos"
       content_html: >
-        <p>Los scripts de usuario tienen la capacidad técnica de cargar y ejecutar
-        otros scripts. La clave de metadatos %{require_doc_link:<code>@require</code>}
-        es la forma más directa de realizar esto, pero, por ejemplo, los scripts también
-        pueden usar una XmlHttpRequest para descargar un script y luego inyectarlo
-        en el DOM.</p> <p>Aunque esto es una característica útil, y la mayoría de
-        los autores de scripts la usan para propósitos legítimos, también se puede
-        usar de forma maliciosa. Uno de principios centrales de %{site_name} es que
-        el usuario tiene que poder inspeccionar el código en un script. Los scripts
-        externos pueden evitar este principio de distintas maneras: pueden cambiar
-        sin advertir o sin dejar rastro en el historial, pueden proporcionar distinto
-        código a diferentes personas, y pueden usarse para ocultar código malicioso
-        en medio de librerías conocidas. Incluso si alguien fuera a comprobar un script
-        externo y determinar si es o no legítimo, eso no sería garantía de que ese
-        script siempre haya sido o siempre será legítimo.</p> <p>Para permitir que
-        los autores de scripts continúen usando script externos, %{site_name} ha implementado
-        una lista blanca de patrones de URLs que se pueden incluir con un script.
-        Esta lista blanca consiste en ubicaciones de scripts que:</p> <ul>
-          <li>Sean públicas</li>
-          <li>Sus contenidos no vayan a cambiar con frecuencia</li>
-          <li>Probablemente sean útiles para más de un autor de scripts</li>
-        </ul> <p>La lista actual es:</p> %{allowed_require_list} <p>Si trata de publicar
-        un script que use un <code>@require</code> fuera de estas ubicaciones, no
-        podrá guardar su script.</p> <p>Si el script que desea incluir es una librería
-        JavaScript (por ejemplo jQuery o YUI), trate de encontrarla en uno de los
-        sitios listados arriba. En particular %{cdnjs_link:cdnjs} y {jsdelivr_link:jsDelivr}
-        tienen un amplio rango de librerías disponibles.</p> <p>Si el script que desea
-        incluir no está disponible en los sitios anteriores, %{contact_link:háganoslo
-        saber} y podremos encontrarlo en algún lugar en el que esté (¡o alojarlo nosotros
-        mismos!).</p> <p>Si el script que desea incluir fue escrito por usted, puede
-        ofrecerlo como una entrada aparte en %{site_name} seleccionando el tipo de
-        script "Librería". Entonces podrá incluir esta librería publicada en su script.</p>
+          <p>Los scripts de usuario tienen la capacidad técnica de cargar y ejecutar
+          otros scripts. La clave de metadatos %{require_doc_link:<code>@require</code>}
+          es la forma más directa de realizar esto, pero, por ejemplo, los scripts
+          también pueden usar una XmlHttpRequest para descargar un script y luego
+          inyectarlo en el DOM.</p> <p>Aunque esto es una característica útil, y la
+          mayoría de los autores de scripts la usan para propósitos legítimos, también
+          se puede usar de forma maliciosa. Uno de principios centrales de %{site_name}
+          es que el usuario tiene que poder inspeccionar el código en un script. Los
+          scripts externos pueden evitar este principio de distintas maneras: pueden
+          cambiar sin advertir o sin dejar rastro en el historial, pueden proporcionar
+          distinto código a diferentes personas, y pueden usarse para ocultar código
+          malicioso en medio de librerías conocidas. Incluso si alguien fuera a comprobar
+          un script externo y determinar si es o no legítimo, eso no sería garantía
+          de que ese script siempre haya sido o siempre será legítimo.</p> <p>Para
+          permitir que los autores de scripts continúen usando script externos, %{site_name}
+          ha implementado una lista blanca de patrones de URLs que se pueden incluir
+          con un script. Esta lista blanca consiste en ubicaciones de scripts que:</p>
+          <ul>
+            <li>Sean públicas</li>
+            <li>Sus contenidos no vayan a cambiar con frecuencia</li>
+            <li>Probablemente sean útiles para más de un autor de scripts</li>
+          </ul> <p>La lista actual es:</p> %{allowed_require_list} <p>Si trata de
+          publicar un script que use un <code>@require</code> fuera de estas ubicaciones,
+          no podrá guardar su script.</p> <p>Si el script que desea incluir es una
+          librería JavaScript (por ejemplo jQuery o YUI), trate de encontrarla en
+          uno de los sitios listados arriba. En particular %{cdnjs_link:cdnjs} y {jsdelivr_link:jsDelivr}
+          tienen un amplio rango de librerías disponibles.</p> <p>Si el script que
+          desea incluir no está disponible en los sitios anteriores, %{contact_link:háganoslo
+          saber} y podremos encontrarlo en algún lugar en el que esté (¡o alojarlo
+          nosotros mismos!).</p> <p>Si el script que desea incluir fue escrito por
+          usted, puede ofrecerlo como una entrada aparte en %{site_name} seleccionando
+          el tipo de script "Librería". Entonces podrá incluir esta librería publicada
+          en su script.</p>
     script_rewriting:
       title: "Cómo afectará %{site_name} a los scripts publicados"
       content_html: >
-        <p>A los scripts publicados en %{site_name} se les hará los siguientes cambios:</p>
-        <ul>
-          <li>Se les despojará de cualquier directiva <code>@updateURL</code>, <code>@installURL</code>,
-        y <code>@downloadURL</code>. Al no tener estas directivas se podrán actualizar
-        sólo desde la ubicación original.</li>
-          <li>Las directivas <code>@version</code> y <code>@namespace</code> se insertarán
-        si no están presentes. Estas directivas son necesarias para que los usuarios
-        puedan actualizar.</li>
-          <li>Si por error en alguna versión posterior falta <code>@description</code>
-        se insertará con la descripción del perfil.</li>
-          <li>Los saltos de línea se convertirán a formato Unix (\n).</li>
-        </ul>
+          <p>A los scripts publicados en %{site_name} se les hará los siguientes cambios:</p>
+          <ul>
+            <li>Se les despojará de cualquier directiva <code>@updateURL</code>, <code>@installURL</code>,
+          y <code>@downloadURL</code>. Al no tener estas directivas se podrán actualizar
+          sólo desde la ubicación original.</li>
+            <li>Las directivas <code>@version</code> y <code>@namespace</code> se
+          insertarán si no están presentes. Estas directivas son necesarias para que
+          los usuarios puedan actualizar.</li>
+            <li>Si por error en alguna versión posterior falta <code>@description</code>
+          se insertará con la descripción del perfil.</li>
+            <li>Los saltos de línea se convertirán a formato Unix (\n).</li>
+          </ul>
     site_feedback_link: "Infórmanos de algún problema o danos ideas que tengas sobre %{site_name}"
     credits:
       title: "Créditos"
@@ -451,55 +453,55 @@ es:
     contact:
       title: "Contactar con alguien"
       content_html: >
-        <p>Si quieres hablar con alguien sobre la forma y el fondo de %{site_name}
-        tienes varias alternativas.</p> <p>¿Tienes dudas o sugerencias sobre un script
-        específico publicado aquí? Si es así, abre una conversación utilizando la
-        pestaña de «comentarios y opiniones» que encontrarás en cada perfil. Los autores
-        reciben una notificación de cualquier comentario sobre sus creaciones.</p>
-        <p>¿Tienes dudas, comentarios o sugerencias acerca del propio %{site_name}
-        o sobre el desarrollo de scripts en general, o quieres que alguien te haga
-        uno? %{forum_link:Puedes abrir un hilo en nuestro foro} para darle más repercusión
-        a la conversación.</p> <p>¿Has detectado algún fallo o pensado alguna sugerencia
-        interesante para el propio %{site_name} (no para un script específico <em>publicado</em>
-        aquí)? %{github_link:Abre una incidencia en nuestro repositorio de GitHub
-        (en inglés).}</p> <p>¿Tienes alguna duda o comentario privado que sólo quieras
-        compartir con el administrador? %{admin_email_link:Puedes enviarle un correo
-        electrónico.}</p>
+          <p>Si quieres hablar con alguien sobre la forma y el fondo de %{site_name}
+          tienes varias alternativas.</p> <p>¿Tienes dudas o sugerencias sobre un
+          script específico publicado aquí? Si es así, abre una conversación utilizando
+          la pestaña de «comentarios y opiniones» que encontrarás en cada perfil.
+          Los autores reciben una notificación de cualquier comentario sobre sus creaciones.</p>
+          <p>¿Tienes dudas, comentarios o sugerencias acerca del propio %{site_name}
+          o sobre el desarrollo de scripts en general, o quieres que alguien te haga
+          uno? %{forum_link:Puedes abrir un hilo en nuestro foro} para darle más repercusión
+          a la conversación.</p> <p>¿Has detectado algún fallo o pensado alguna sugerencia
+          interesante para el propio %{site_name} (no para un script específico <em>publicado</em>
+          aquí)? %{github_link:Abre una incidencia en nuestro repositorio de GitHub
+          (en inglés).}</p> <p>¿Tienes alguna duda o comentario privado que sólo quieras
+          compartir con el administrador? %{admin_email_link:Puedes enviarle un correo
+          electrónico.}</p>
     privacy_policy:
       title: "Política de privacidad"
       content_html: >
-        <p>Esta página describe la forma en la que %{site_name} registrará o rastreará
-        a los usuarios. Si hay algo que le preocupe %{admin_email_link:escriba un
-        correo electrónico al administrador}.</p> <h2>Registros (logs) del servidor</h2>
-        <p>%{site_name} registra todas las peticiones al estilo típico de un log de
-        servidor. La información registrada incluye páginas visitadas, direcciones
-        IP, y la cadena de agente del usuario. Estos registros son para depuración
-        y análisis del servidor. Los datos se conservan durante una semana. No se
-        comparten ni se hacen públicos.</p> <h2>Estadísticas del script</h2> <p>Con
-        el propósito de generar estadísticas, %{site_name} registra peticiones de
-        instalación y actualización junto a la información de la dirección IP. Esta
-        información se retiene durante un día, y luego se agrega para ya no incluir
-        más la dirección IP. Los datos de dirección IP específicos no se comparten
-        ni se hacen públicos, pero con los datos agregados sí se hace.</p> <h2>Cookies
-        (cuando no tenga sesión iniciada)</h2> <p>%{site_name} puede establecer cookies
-        temporales de sesión para permitir el uso de algunas características del sitio.
-        Estas cookies no están configuradas para ser duraderas y pueden ser limpiadas
-        cuando el navegador se cierre (dependiendo de la configuración del navegador).</p>
-        <h2>Cuentas de usuario</h2> <p>%{site_name} requiere que los usuarios creen
-        una cuenta para publicar scripts, tomar parte en conversaciones, y acceder
-        a otras características del sitio. Al crear una cuenta, datos como la dirección
-        IP, dirección de correo electrónico, y el agente del usuario, se pueden almacenar
-        permanentemente. Parte de esta información puede hacerse visible para otros
-        usuarios.</p> <p>Las acciones realizadas con la sesión iniciada, como por
-        ejemplo, publicar scripts y comentarios, se harán visibles para otros usuarios.</p>
-        <p>Si la opción "Recordarme" está marcada al iniciar sesión en una cuenta,
-        %{site_name} establecerá una cookie para retener el estado de sesión iniciada.</p>
-        <h2>Scripts publicados en %{site_name}</h2> <p>%{site_name} almacena contenido
-        generado por el usuario, y los scripts publicados podrían ser capaces de rastrear
-        usuarios si estos instalan ese script.</p> <h2>Librerías de terceros</h2>
-        <p>%{site_name} puede incluir código de terceros para recopilar estadísticas
-        o mostrar publicidad en el sitio. Estas librerías puede que incluyan algún
-        mecanismo de rastreo.</p>
+          <p>Esta página describe la forma en la que %{site_name} registrará o rastreará
+          a los usuarios. Si hay algo que le preocupe %{admin_email_link:escriba un
+          correo electrónico al administrador}.</p> <h2>Registros (logs) del servidor</h2>
+          <p>%{site_name} registra todas las peticiones al estilo típico de un log
+          de servidor. La información registrada incluye páginas visitadas, direcciones
+          IP, y la cadena de agente del usuario. Estos registros son para depuración
+          y análisis del servidor. Los datos se conservan durante una semana. No se
+          comparten ni se hacen públicos.</p> <h2>Estadísticas del script</h2> <p>Con
+          el propósito de generar estadísticas, %{site_name} registra peticiones de
+          instalación y actualización junto a la información de la dirección IP. Esta
+          información se retiene durante un día, y luego se agrega para ya no incluir
+          más la dirección IP. Los datos de dirección IP específicos no se comparten
+          ni se hacen públicos, pero con los datos agregados sí se hace.</p> <h2>Cookies
+          (cuando no tenga sesión iniciada)</h2> <p>%{site_name} puede establecer
+          cookies temporales de sesión para permitir el uso de algunas características
+          del sitio. Estas cookies no están configuradas para ser duraderas y pueden
+          ser limpiadas cuando el navegador se cierre (dependiendo de la configuración
+          del navegador).</p> <h2>Cuentas de usuario</h2> <p>%{site_name} requiere
+          que los usuarios creen una cuenta para publicar scripts, tomar parte en
+          conversaciones, y acceder a otras características del sitio. Al crear una
+          cuenta, datos como la dirección IP, dirección de correo electrónico, y el
+          agente del usuario, se pueden almacenar permanentemente. Parte de esta información
+          puede hacerse visible para otros usuarios.</p> <p>Las acciones realizadas
+          con la sesión iniciada, como por ejemplo, publicar scripts y comentarios,
+          se harán visibles para otros usuarios.</p> <p>Si la opción "Recordarme"
+          está marcada al iniciar sesión en una cuenta, %{site_name} establecerá una
+          cookie para retener el estado de sesión iniciada.</p> <h2>Scripts publicados
+          en %{site_name}</h2> <p>%{site_name} almacena contenido generado por el
+          usuario, y los scripts publicados podrían ser capaces de rastrear usuarios
+          si estos instalan ese script.</p> <h2>Librerías de terceros</h2> <p>%{site_name}
+          puede incluir código de terceros para recopilar estadísticas o mostrar publicidad
+          en el sitio. Estas librerías puede que incluyan algún mecanismo de rastreo.</p>
   common:
     error_preamble: "Hemos tenido problemas al procesar el envío..."
     allowed_elements_link: "(Ver código permitido)"

@@ -362,79 +362,81 @@ fi:
     code_rules:
       title: "%{site_name}in skriptejä koskevat säännöt"
       content_html: >
-        <p>Nämä ovat %{site_name}iin lähetettyjen skriptien vaatimukset. Niiden tarkoitus
-        on säilyttää %{site_name} turvallisena ja hyödyllisenä paikkana userscripteille.
-        Skripti, joka ei täytä vaatimuksia, voidaan poistaa %{site_name}in moderaattorien
-        toimesta.</p> <ul>
-          <li>Skriptien täytyy sisältää kuvaus siitä, mitä ne tekevät ja ne eivät
-        saa tehdä selvästi tämän kuvauksen ulkopuolisia asioita. Käyttäjien täytyy
-        tietää mitä skripti tekee ennen sen asentamista.</li>
-          <li>Tälle sivustolle lähetetty koodin ei saa olla obfuskoitua tai minifioitua.
-        Käyttäjille täytyy antaa mahdollisuus tutkia ja ymmärtää skripti ennen sen
-        asentamista.</li>
-          <li>Skriptin käyttämät kirjastot pitäisi <code>@require</code>-ttaa, ellei
-        ole hyvää teknistä syytä olla tekemättä niin. Jos kirjasto on sisällytetty
-        koodiin, sen tulee sisältää tieto kirjaston lähteestä (esim. kommentti, joka
-        kertoo kirjaston URLin tai nimen ja version).</li>
-          <li>Skriptisi täytyy kunnioittaa muiden tekijänoikeutta. Tämä koskee skriptiä
-        itseään ja sen käyttämiä resursseja (kuten kuvia). Jos aiot käyttää muiden
-        sisältöä, noudata heidän lisenssiehtojaan tai hanki heiltä lupa ennen kuin
-        teet sen.</li>
-          <li>%{external_scripts_link:Ulkoisen JavaScriptin käyttöä on rajoitettu.}</li>
-          %{adult_content_requirement}
-        </ul> <p>Jos huomaat skriptin, joka ei täytä näitä vaatimuksia, ilmoitathan
-        siitä menemällä skriptin Palaute-osioon, aloittamalla keskustelun, ja valitsemalla
-        "Ilmoita skriptistä" -valinnan.</p> <p>Jos olet jostain tästä eri mieltä,
-        %{contact_link:keskustellaan asiasta!}!</p>
+          <p>Nämä ovat %{site_name}iin lähetettyjen skriptien vaatimukset. Niiden
+          tarkoitus on säilyttää %{site_name} turvallisena ja hyödyllisenä paikkana
+          userscripteille. Skripti, joka ei täytä vaatimuksia, voidaan poistaa %{site_name}in
+          moderaattorien toimesta.</p> <ul>
+            <li>Skriptien täytyy sisältää kuvaus siitä, mitä ne tekevät ja ne eivät
+          saa tehdä selvästi tämän kuvauksen ulkopuolisia asioita. Käyttäjien täytyy
+          tietää mitä skripti tekee ennen sen asentamista.</li>
+            <li>Tälle sivustolle lähetetty koodin ei saa olla obfuskoitua tai minifioitua.
+          Käyttäjille täytyy antaa mahdollisuus tutkia ja ymmärtää skripti ennen sen
+          asentamista.</li>
+            <li>Skriptin käyttämät kirjastot pitäisi <code>@require</code>-ttaa, ellei
+          ole hyvää teknistä syytä olla tekemättä niin. Jos kirjasto on sisällytetty
+          koodiin, sen tulee sisältää tieto kirjaston lähteestä (esim. kommentti,
+          joka kertoo kirjaston URLin tai nimen ja version).</li>
+            <li>Skriptisi täytyy kunnioittaa muiden tekijänoikeutta. Tämä koskee skriptiä
+          itseään ja sen käyttämiä resursseja (kuten kuvia). Jos aiot käyttää muiden
+          sisältöä, noudata heidän lisenssiehtojaan tai hanki heiltä lupa ennen kuin
+          teet sen.</li>
+            <li>%{external_scripts_link:Ulkoisen JavaScriptin käyttöä on rajoitettu.}</li>
+            %{adult_content_requirement}
+          </ul> <p>Jos huomaat skriptin, joka ei täytä näitä vaatimuksia, ilmoitathan
+          siitä menemällä skriptin Palaute-osioon, aloittamalla keskustelun, ja valitsemalla
+          "Ilmoita skriptistä" -valinnan.</p> <p>Jos olet jostain tästä eri mieltä,
+          %{contact_link:keskustellaan asiasta!}!</p>
       adult_content_rule_html: "<li>Aikuisille suunnattua sisältöä sisältävät skriptit tai aikuissisältöä sisältäville sivustoille tarkoitetut skriptit täytyy merkitä sellaisiksi, jotta muut käyttäjät voivat valita, näkevätkö ne.</li>"
     external_scripts:
       title: "%{site_name}in käytäntö ulkoisista skripteistä"
       content_html: >
-        <p>Userscripteillä on tekninen kyky ladata ja suorittaa muita skriptejä. User
-        scripts have the technical ability to load and execute other scripts. %{require_doc_link:<code>@require</code>}
-        -metadata-avain on yksinkertaisin tapa tehdä tämä, mutta skriptit voivat myös
-        esimerkiksi käyttää XmlHttpRequestia ladatakseen skriptin ja sitten lisätä
-        sen DOMiin.</p> <p>Vaikka tämä on hyödyllinen ominaisuus ja useimmat skriptien
-        tekijät käyttävät sitä hyvään tarkoitukseen, sitä voidaan myös käyttää haitallisesti.
-        Yksi %{site_name}in pääperiaatteista on, että käyttäjän täytyy voida tutkia
-        skriptin koodia. Ulkoiset skriptit voivat ohittaa tämän periaatteen monella
-        tavalla: ne voivat muuttua ilman varoitusta tai historiaa, ne voivat jaella
-        eri koodia eri ihmisille, ja niitä voidaan käyttää haitallisen koodin piilottamiseen
-        keskelle tunnettuja kirjastoja. Vaikka joku tarkistaisi ulkoisen skriptin
-        ja toteaisi sen hyväntahtoiseksi, se ei takaisi, että skripti olisi aina ollut
-        tai tulisi aina olemaan hyväntahtoinen.</p> <p>Salliakseen skriptien tekijöiden
-        jatkaa ulkoisten skriptien käyttöä %{site_name} on toteuttanut listan sallituista
-        URL-rakenteista, jotka voidaan sisällyttää skriptiin. Tällä listalla on sijainteja,
-        jotka:</p> <ul>
-          <li>Ovat julkisia</li>
-          <li>Eivät muutu usein</li>
-          <li>Ovat todennäköisesti hyödyllisiä useammalle kuin yhdelle skriptin tekijälle</li>
-        </ul> <p>Tämänhetkinen lista on:</p> %{allowed_require_list} <p>Jos yrität
-        lähettää skriptin, joka sisältää näiden sijaintien ulkopuolella olevan <code>@require</code>:n,
-        et voi tallentaa skriptiäsi.</p> <p>Jos skripti, jonka haluat sisällyttää,
-        on JavaScript-kirjasto (kuten jQuery tai YUI), yritä löytää sen jostain yllä
-        olevista sivustoista. Erityisesti %{cdnjs_link:cdnjs} and %{jsdelivr_link:jsDelivr}
-        tarjoavat laajan valikoiman kirjastoja.</p> <p>Jos skripti, jonka haluat sisällyttää,
-        ei ole saatavilla yllä olevilla sivustoilla,  %{contact_link:kerro siitä meille}
-        ja voimme etsiä sen jostain (tai jaella sitä itse!).</p> <p>Jos skripti, jonka
-        haluat sisällyttää, on itse kirjoittamasi, voit lähettää sen erikseen %{site_name}in
-        valitsemalla skriptityypin "Kirjasto". Tämän jälkeen voit sisällyttää lähettämäsi
-        kirjaston skriptiisi.</p>
+          <p>Userscripteillä on tekninen kyky ladata ja suorittaa muita skriptejä.
+          User scripts have the technical ability to load and execute other scripts.
+          %{require_doc_link:<code>@require</code>} -metadata-avain on yksinkertaisin
+          tapa tehdä tämä, mutta skriptit voivat myös esimerkiksi käyttää XmlHttpRequestia
+          ladatakseen skriptin ja sitten lisätä sen DOMiin.</p> <p>Vaikka tämä on
+          hyödyllinen ominaisuus ja useimmat skriptien tekijät käyttävät sitä hyvään
+          tarkoitukseen, sitä voidaan myös käyttää haitallisesti. Yksi %{site_name}in
+          pääperiaatteista on, että käyttäjän täytyy voida tutkia skriptin koodia.
+          Ulkoiset skriptit voivat ohittaa tämän periaatteen monella tavalla: ne voivat
+          muuttua ilman varoitusta tai historiaa, ne voivat jaella eri koodia eri
+          ihmisille, ja niitä voidaan käyttää haitallisen koodin piilottamiseen keskelle
+          tunnettuja kirjastoja. Vaikka joku tarkistaisi ulkoisen skriptin ja toteaisi
+          sen hyväntahtoiseksi, se ei takaisi, että skripti olisi aina ollut tai tulisi
+          aina olemaan hyväntahtoinen.</p> <p>Salliakseen skriptien tekijöiden jatkaa
+          ulkoisten skriptien käyttöä %{site_name} on toteuttanut listan sallituista
+          URL-rakenteista, jotka voidaan sisällyttää skriptiin. Tällä listalla on
+          sijainteja, jotka:</p> <ul>
+            <li>Ovat julkisia</li>
+            <li>Eivät muutu usein</li>
+            <li>Ovat todennäköisesti hyödyllisiä useammalle kuin yhdelle skriptin
+          tekijälle</li>
+          </ul> <p>Tämänhetkinen lista on:</p> %{allowed_require_list} <p>Jos yrität
+          lähettää skriptin, joka sisältää näiden sijaintien ulkopuolella olevan <code>@require</code>:n,
+          et voi tallentaa skriptiäsi.</p> <p>Jos skripti, jonka haluat sisällyttää,
+          on JavaScript-kirjasto (kuten jQuery tai YUI), yritä löytää sen jostain
+          yllä olevista sivustoista. Erityisesti %{cdnjs_link:cdnjs} and %{jsdelivr_link:jsDelivr}
+          tarjoavat laajan valikoiman kirjastoja.</p> <p>Jos skripti, jonka haluat
+          sisällyttää, ei ole saatavilla yllä olevilla sivustoilla,  %{contact_link:kerro
+          siitä meille} ja voimme etsiä sen jostain (tai jaella sitä itse!).</p> <p>Jos
+          skripti, jonka haluat sisällyttää, on itse kirjoittamasi, voit lähettää
+          sen erikseen %{site_name}in valitsemalla skriptityypin "Kirjasto". Tämän
+          jälkeen voit sisällyttää lähettämäsi kirjaston skriptiisi.</p>
     script_rewriting:
       title: "Miten %{site_name} uudelleenkirjoittaa lähetetyt skriptit"
       content_html: >
-        <p>%{site_name}in lähetetyt skriptit kirjoitetaan uudelleen seuraavilla tavoilla:</p>
-        <ul>
-          <li><code>@updateURL</code>, <code>@installURL</code>, ja <code>@downloadURL</code>
-        -direktiivit poistetaan. Näiden direktiivien puute tarkoittaa, että kaikki
-        %{site_name}ista asennetut skriptit päivitetään %{site_name}ista.</li>
-          <li><code>@version</code> ja <code>@namespace</code> -direktiivit lisätään,
-        jos ne puuttuvat skriptistä. Näitä direktiivejä tarvitaan kunnollista päivittämistä
-        varten.</li>
-          <li><code>@description</code> lisätään, jos se puuttuu skriptin uudesta
-        versiosta ja aiemmassa versiossa oli sellainen.</li>
-          <li>Rivinvaihdot muutetaan Unix-rivinvaihdoiksi (\n).</li>
-        </ul>
+          <p>%{site_name}in lähetetyt skriptit kirjoitetaan uudelleen seuraavilla
+          tavoilla:</p> <ul>
+            <li><code>@updateURL</code>, <code>@installURL</code>, ja <code>@downloadURL</code>
+          -direktiivit poistetaan. Näiden direktiivien puute tarkoittaa, että kaikki
+          %{site_name}ista asennetut skriptit päivitetään %{site_name}ista.</li>
+            <li><code>@version</code> ja <code>@namespace</code> -direktiivit lisätään,
+          jos ne puuttuvat skriptistä. Näitä direktiivejä tarvitaan kunnollista päivittämistä
+          varten.</li>
+            <li><code>@description</code> lisätään, jos se puuttuu skriptin uudesta
+          versiosta ja aiemmassa versiossa oli sellainen.</li>
+            <li>Rivinvaihdot muutetaan Unix-rivinvaihdoiksi (\n).</li>
+          </ul>
     site_feedback_link: "Ilmoita ongelmasta tai kerro idea %{site_name}ista itsestään"
     credits:
       title: "Tekijät"
@@ -446,47 +448,47 @@ fi:
     contact:
       title: "Ota yhteyttä johonkuhun"
       content_html: >
-        <p>On muutama tapa keskustella %{site_name}ista ja siellä olevista asioista.</p>
-        <p>Onko sinulla kysymys tai kommentti tietystä skriptistä sivustolla? Jos
-        on, luo keskustelu tuon skriptin sivun Palaute-osioista. Skriptien tekijät
-        saavat tilisivulleen ilmoituksen skripteistään käydyistä keskusteluista.</p>
-        <p>Onko sinulla kysymys tai kommentti %{site_name}ista itsestään tai skriptien
-        kehittämisestä, tai haluaisitko, että joku tekee skriptin sinulle? %{forum_link:Foorumille
-        postaaminen} antaisi sinulle laajimman yleisön keskustelullesi.</p> <p>Onko
-        sinulla bugiraportti tai valmis idea %{site_name}ista itsestään (ja ei tietystä
-        %{site_name}in <em>lähetetystä</em> skriptistä)? %{github_link:Lähetä se GitHub-sivulle.}</p>
-        <p>Onko sinulla yksityinen kysymys tai kommentti, jonka haluaisit vain ylläpitäjän
-        näkevän? %{admin_email_link:Lähetä sähköposti.}</p>
+          <p>On muutama tapa keskustella %{site_name}ista ja siellä olevista asioista.</p>
+          <p>Onko sinulla kysymys tai kommentti tietystä skriptistä sivustolla? Jos
+          on, luo keskustelu tuon skriptin sivun Palaute-osioista. Skriptien tekijät
+          saavat tilisivulleen ilmoituksen skripteistään käydyistä keskusteluista.</p>
+          <p>Onko sinulla kysymys tai kommentti %{site_name}ista itsestään tai skriptien
+          kehittämisestä, tai haluaisitko, että joku tekee skriptin sinulle? %{forum_link:Foorumille
+          postaaminen} antaisi sinulle laajimman yleisön keskustelullesi.</p> <p>Onko
+          sinulla bugiraportti tai valmis idea %{site_name}ista itsestään (ja ei tietystä
+          %{site_name}in <em>lähetetystä</em> skriptistä)? %{github_link:Lähetä se
+          GitHub-sivulle.}</p> <p>Onko sinulla yksityinen kysymys tai kommentti, jonka
+          haluaisit vain ylläpitäjän näkevän? %{admin_email_link:Lähetä sähköposti.}</p>
     privacy_policy:
       title: "Tietosuoja"
       content_html: >
-        <p>Tämä sivu kertoo, miten %{site_name} tallentaa käyttäjätietoja tai seuraa
-        käyttäjiä. Jos sinulla on huolenaiheita, %{admin_email_link:lähetä ylläpitäjälle
-        sähköpostia}.</p> <h2>Palvelimen lokit</h2> <p>%{site_name} tallentaa kaikki
-        pyynnöt tyypillisen palvelinlokin tapaan. Tallennettu tieto sisältää vieraillut
-        sivut, IP-osoitteen ja user agent -merkkijonon. Nämä lokit ovat vianetsintää
-        ja palvelimen analysointia varten. Data säilytetään viikon ajan. Tätä dataa
-        ei jaeta tai julkaista.</p> <h2>Skriptien tilastot</h2> <p>%{site_name} tallentaa
-        kaikki asennus- ja päivityspyynnöt IP-osoitteiden kera tilastojen generoimista
-        varten. Tiedot säilytetään päivän ajan, minkä jälkeen ne kerätään ja IP-osoitteet
-        poistetaan. IP-osoitetitoja ei jaeta tai julkaista, mutta muut kerätyt tiedot
-        julkaistaan.</p> <h2>Evästeet (kun ei sisäänkirjautuneena)</h2> <p>%{site_name}
-        voi asettaa tilapäisiä istuntoevästeitä mahdollistaakseen jotkin sivuston
-        ominaisuudet. Näitä evästeitä ei aseteta säilymään ja ne voivat poistua, kun
-        selain suljetaan (riippuen selaimen asetuksista).</p> <h2>Käyttäjätilit</h2>
-        <p>%{site_name} vaatii käyttäjiä luomaan tilin skriptien lähettämistä, keskusteluihin
-        osallistumista ja joidenkin muiden sivuston ominaisuuksien käyttöä varten.
-        Tunnusta luodessa tietoja kuten IP-osoite, sähköpostiosoite ja user agent
-        -merkkijono voidaan tallentaa pysyvästi. Joitakin näistä tiedoista voidaan
-        näyttää muille käyttäjille.</p> <p>Sisäänkirjautuneena suoritetut toiminnot,
-        kuten skriptien ja kommenttien lähettäminen, näytetään muille käyttäjille.</p>
-        <p>Jos "Muista minut" -valinta on päällä sisäänkirjauduttaessa, %{site_name}
-        asettaa pysyvän evästeen säilyttämään sisäänkirjautumistiedot.</p> <h2>%{site_name}iin
-        lähetetyt skriptit</h2> <p>%{site_name} sisältää käyttäjien luomaa sisältöä,
-        ja lähetetyt skriptit saattavat seurata käyttäjää, jos ne asennetaan.</p>
-        <h2>Kolmannen osapuolen kirjastot</h2> <p>%{site_name} voi sisällyttää kolmannen
-        osapuolen koodia kerätäkseen tilastoja tai näyttääkseen mainoksia sivustolla.
-        Nämä kirjastot saattavat sisältää seurantalogiikkaa.</p>
+          <p>Tämä sivu kertoo, miten %{site_name} tallentaa käyttäjätietoja tai seuraa
+          käyttäjiä. Jos sinulla on huolenaiheita, %{admin_email_link:lähetä ylläpitäjälle
+          sähköpostia}.</p> <h2>Palvelimen lokit</h2> <p>%{site_name} tallentaa kaikki
+          pyynnöt tyypillisen palvelinlokin tapaan. Tallennettu tieto sisältää vieraillut
+          sivut, IP-osoitteen ja user agent -merkkijonon. Nämä lokit ovat vianetsintää
+          ja palvelimen analysointia varten. Data säilytetään viikon ajan. Tätä dataa
+          ei jaeta tai julkaista.</p> <h2>Skriptien tilastot</h2> <p>%{site_name}
+          tallentaa kaikki asennus- ja päivityspyynnöt IP-osoitteiden kera tilastojen
+          generoimista varten. Tiedot säilytetään päivän ajan, minkä jälkeen ne kerätään
+          ja IP-osoitteet poistetaan. IP-osoitetitoja ei jaeta tai julkaista, mutta
+          muut kerätyt tiedot julkaistaan.</p> <h2>Evästeet (kun ei sisäänkirjautuneena)</h2>
+          <p>%{site_name} voi asettaa tilapäisiä istuntoevästeitä mahdollistaakseen
+          jotkin sivuston ominaisuudet. Näitä evästeitä ei aseteta säilymään ja ne
+          voivat poistua, kun selain suljetaan (riippuen selaimen asetuksista).</p>
+          <h2>Käyttäjätilit</h2> <p>%{site_name} vaatii käyttäjiä luomaan tilin skriptien
+          lähettämistä, keskusteluihin osallistumista ja joidenkin muiden sivuston
+          ominaisuuksien käyttöä varten. Tunnusta luodessa tietoja kuten IP-osoite,
+          sähköpostiosoite ja user agent -merkkijono voidaan tallentaa pysyvästi.
+          Joitakin näistä tiedoista voidaan näyttää muille käyttäjille.</p> <p>Sisäänkirjautuneena
+          suoritetut toiminnot, kuten skriptien ja kommenttien lähettäminen, näytetään
+          muille käyttäjille.</p> <p>Jos "Muista minut" -valinta on päällä sisäänkirjauduttaessa,
+          %{site_name} asettaa pysyvän evästeen säilyttämään sisäänkirjautumistiedot.</p>
+          <h2>%{site_name}iin lähetetyt skriptit</h2> <p>%{site_name} sisältää käyttäjien
+          luomaa sisältöä, ja lähetetyt skriptit saattavat seurata käyttäjää, jos
+          ne asennetaan.</p> <h2>Kolmannen osapuolen kirjastot</h2> <p>%{site_name}
+          voi sisällyttää kolmannen osapuolen koodia kerätäkseen tilastoja tai näyttääkseen
+          mainoksia sivustolla. Nämä kirjastot saattavat sisältää seurantalogiikkaa.</p>
   common:
     error_preamble: "Lähettämissäsi tiedoissa oli ongelmia..."
     allowed_elements_link: "(Katso sallittu koodi.)"

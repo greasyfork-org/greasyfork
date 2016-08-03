@@ -363,26 +363,55 @@ nl:
       post_new_script_link_text: 'publiceer een nieuw script'
     code_rules:
       title: "%{site_name}'s regels voor gepubliceerde scripts"
+      content_html: >
+          <p>Dit zijn de vereisten voor het publiceren van scripts op %{site_name}.
+          Deze zijn bedoeld voor het behoud van het veilig en bruikbaar houden van
+          gebruikersscripts op %{site_name}. Elk script dat niet voldoet aan de vereisten
+          kan verwijderd worden door de moderators van %{site_name}.</p> <ul>
+            <li>Scripts moeten een omschrijving bevatten waarin wordt uitgelegd wat
+          ze doen en mogen geen dingen doen die niet worden vermeld in de omschrijving.
+          Gebruikers moeten op de hoogte worden gebracht van wat een script zal doen
+          voordat ze het installeren.</li>
+            <li>Op deze website gepubliceerde code mag geen verwarring veroorzaken
+          of worden ingekort. Gebruikers moeten de mogelijkheid hebben om het script
+          te kunnen nakijken en begrijpen wat het doet voordat ze het installeren.</li>
+            <li>Bibliotheken die door een script worden gebruikt moeten <code>@require</code>-d
+          bevatten, tenzij er een geldige technische reden voor is om dat niet te
+          doen. Als een biblioteek inline is opgenomen, moet het informatie bevatten
+          over de bron van de bibliotheek (bijv. een comment met een URL-verwijzing
+          en/of de naam en versie).</li>
+            <li>Uw schript moet andermans copyrights respecteren. Dit is vereist voor
+          het script zelf, maar ook voor andere gebruikte bronnen (bijv. afbeeldingen).
+          Als u van plan bent om andermans werk te gebruiken, zorg er dan voor dat
+          u voldoet aan de licentievoorwaarden of vraag om toestemming.</li>
+            <li>%{external_scripts_link:Het gebruik van externe JavaScript is bewust
+          beperkt.}</li>
+            %{adult_content_requirement}
+          </ul> <p>Als u bemerkt dat een script niet voldoet aan deze parameters,
+          rapporteer het dan middels de Feedback-link van dat script. U begint dan
+          een discussie waar u kiest voor de optie "Script rapporteren".</p> <p>Als
+          u het niet eens bent met dit alles, %{contact_link:laten we er dan over
+          in gesprek gaan}!</p>
       adult_content_rule_html: "<li>Scripts die volwassen inhoud bevatten, of die zijn geschreven voor sites die volwassen inhoud bevatten, moeten worden gemarkeerd als zijnde volwassen, om andere gebruikers toe te staan ze te kunnen zien.</li>"
     external_scripts:
       title: "%{site_name}'s beleid voor externe scripts."
     script_rewriting:
       title: "Hoe %{site_name} geplaatste scripts herschrijft"
       content_html: >
-        <p>Scripts die geplaatst zijn op %{site_name} zullen worden herschreven op
-        de volgende manieren:</p> <ul>
-          <li><code>@updateURL</code>, <code>@installURL</code>, en <code>@downloadURL</code>
-        verwijzingen zullen, indien aanwezig, worden geschrapt. Door het ontbreken
-        van deze verwijzingen zullen scripts die geïnstalleerd zijn van %{site_name}
-        bijgewerkt worden van %{site_name}.</li>
-          <li><code>@version</code> en <code>@namespace</code> verwijzingen zullen,
-        indien deze ontbreken, worden ingevoegd. Deze verwijzingen zijn benodigd voor
-        het correct bijwerken.</li>
-          <li><code>@description</code> zal worden ingevoegd wanneer dit in een nieuwe
-        versie van een script ontbreekt i.t.t. de vorige versie.</li>
-          <li>Regelafbrekingen zullen worden geconverteerd naar regelafbrekingen in
-        de Unix-stijl (\n).</li>
-        </ul>
+          <p>Scripts die geplaatst zijn op %{site_name} zullen worden herschreven
+          op de volgende manieren:</p> <ul>
+            <li><code>@updateURL</code>, <code>@installURL</code>, en <code>@downloadURL</code>
+          verwijzingen zullen, indien aanwezig, worden geschrapt. Door het ontbreken
+          van deze verwijzingen zullen scripts die geïnstalleerd zijn van %{site_name}
+          bijgewerkt worden van %{site_name}.</li>
+            <li><code>@version</code> en <code>@namespace</code> verwijzingen zullen,
+          indien deze ontbreken, worden ingevoegd. Deze verwijzingen zijn benodigd
+          voor het correct bijwerken.</li>
+            <li><code>@description</code> zal worden ingevoegd wanneer dit in een
+          nieuwe versie van een script ontbreekt i.t.t. de vorige versie.</li>
+            <li>Regelafbrekingen zullen worden geconverteerd naar regelafbrekingen
+          in de Unix-stijl (\n).</li>
+          </ul>
     site_feedback_link: "Meld probleem of plaats idee voor %{site_name} zelf"
     credits:
       title: "Bedankt aan"
@@ -394,11 +423,11 @@ nl:
     contact:
       title: "Neem contact met iemand op"
       content_html: >
-        <p>Er zijn veel manieren om te praten over %{site_name} en haar inhoud.</p>
+          <p>Er zijn veel manieren om te praten over %{site_name} en haar inhoud.</p>
 
-        <p>Heb je een vraag of opmerking over een specifiek script, geplaatst op de
-        site? In dat geval, plaats die dan via het Feedback tab op de pagina van het
-        betreffende script.>/p>
+          <p>Heb je een vraag of opmerking over een specifiek script, geplaatst op
+          de site? In dat geval, plaats die dan via het Feedback tab op de pagina
+          van het betreffende script.>/p>
     privacy_policy:
       title: "Privacy beleid"
   common:

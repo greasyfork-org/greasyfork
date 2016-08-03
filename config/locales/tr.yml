@@ -250,6 +250,7 @@ tr:
     sign_in_title: "%{site_name}'ta oturum aç"
     sign_in_description: "Daha fazla..Daha fazla..%{site_name}'ta oturum aç%{site_name}'ta oturum aç%{site_name}'da scriptlerini göndermek ya da başa scriptlere geribesleme yapmak için oturum açılır. Script bulmak ya da kurmak için oturum açmana gerek yok."
     sign_in_external: "Dış servisler ile oturum aç"
+    sign_in_with: "%{provider} ile giriş yap"
     sign_in_password: "Şifren ile oturum aç"
     sign_in_email_used_no_external_services_html: "'%{email}' zaten kullanılıyor '%{user_name}' kullanıcısı tarafından. Eğer bu sen isen ve %{provider} ile ek bir oturum açmak istersen, %{sign_in_link} hesabınıza girerek, kendinize %{provider} oturum açma yöntemini ekleyin."
     sign_in_email_used_with_external_services_html: "'%{email}' zaten kullanılıyor '%{user_name}' kullanıcısı tarafından, %{existing_providers} ile. Eğer bu sen isen ve %{provider} ile ek bir oturum açmak istersen, %{sign_in_link} hesabınıza girerek, kendinize %{provider} oturum açma yöntemini ekleyin."
@@ -358,34 +359,35 @@ tr:
     privacy_policy:
       title: "Gizlilik sözleşmesi"
       content_html: >
-        <p>Bu sayfa %{site_name} scriptinin nasıl kullanıcı kaydettiğini veya takip
-        ettiğini açıklar. Bu konuyla ilgili şüpheleriniz için, %{admin_email_link:e-mail
-        the admin} adresine mail atınız.</p>
+          <p>Bu sayfa %{site_name} scriptinin nasıl kullanıcı kaydettiğini veya takip
+          ettiğini açıklar. Bu konuyla ilgili şüpheleriniz için, %{admin_email_link:e-mail
+          the admin} adresine mail atınız.</p>
 
-        <h2>Server logs</h2> <p>%{site_name} logs all requests in a typical server
-        log fashion. Information logged includes pages visited, IP address, and user
-        agent string. These logs are for debugging and server analysis. The data is
-        retained for one week. This data is not shared or made publicly available.</p>
-        <h2>Script statistics</h2> <p>For the purposes of generating statistics, %{site_name}
-        records install and update requests with IP address information. This information
-        is retained for one day, and then is aggregated to no longer include the IP
-        address. The IP-address-specific data is not shared or made publicly available,
-        but the aggregated data is.</p> <h2>Cookies (when not logged in)</h2> <p>%{site_name}
-        may set temporary session cookies to allow for some site features. These cookies
-        are not set to persist and may cleared when the browser is closed (depending
-        on browser settings).</p> <h2>User accounts</h2> <p>%{site_name} requires
-        users to create an account to post scripts, take part in discussions, and
-        access some other site features. When creating an account, information such
-        as IP address, e-mail address, and user agent may be permanently stored. Some
-        of this information may be made visible to other users.</p> <p>Actions performed
-        when logged in, for example posting scripts and comments, will be made viewable
-        to other users.</p> <p>If the "Remember me" option is checked when logging
-        in to an account, %{site_name} will set a persistent cookie to retain login
-        state.</p> <h2>Scripts posted on %{site_name}</h2> <p>%{site_name} contains
-        user-generated content, and scripts posted may be able to track users if they
-        install that script.</p> <h2>Third party libraries</h2> <p>%{site_name} may
-        include third party code to collect statistics or display advertisements on
-        the site. These libraries may include tracking logic.</p>
+          <h2>Server logs</h2> <p>%{site_name} logs all requests in a typical server
+          log fashion. Information logged includes pages visited, IP address, and
+          user agent string. These logs are for debugging and server analysis. The
+          data is retained for one week. This data is not shared or made publicly
+          available.</p> <h2>Script statistics</h2> <p>For the purposes of generating
+          statistics, %{site_name} records install and update requests with IP address
+          information. This information is retained for one day, and then is aggregated
+          to no longer include the IP address. The IP-address-specific data is not
+          shared or made publicly available, but the aggregated data is.</p> <h2>Cookies
+          (when not logged in)</h2> <p>%{site_name} may set temporary session cookies
+          to allow for some site features. These cookies are not set to persist and
+          may cleared when the browser is closed (depending on browser settings).</p>
+          <h2>User accounts</h2> <p>%{site_name} requires users to create an account
+          to post scripts, take part in discussions, and access some other site features.
+          When creating an account, information such as IP address, e-mail address,
+          and user agent may be permanently stored. Some of this information may be
+          made visible to other users.</p> <p>Actions performed when logged in, for
+          example posting scripts and comments, will be made viewable to other users.</p>
+          <p>If the "Remember me" option is checked when logging in to an account,
+          %{site_name} will set a persistent cookie to retain login state.</p> <h2>Scripts
+          posted on %{site_name}</h2> <p>%{site_name} contains user-generated content,
+          and scripts posted may be able to track users if they install that script.</p>
+          <h2>Third party libraries</h2> <p>%{site_name} may include third party code
+          to collect statistics or display advertisements on the site. These libraries
+          may include tracking logic.</p>
   common:
     error_preamble: "Ne gönderdiğinizde bazı sorunlar oldu.."
     allowed_elements_link: "(İzin verilen kodları gör.)"

@@ -370,79 +370,80 @@ sk:
     code_rules:
       title: "Pravidlá pre poslané skripty na %{site_name}"
       content_html: >
-        <p>Toto sú požiadavky pre posielanie skriptov na %{site_name}. Slúžia nato,
-        aby %{site_name} zostalo bezpečným a užitočným miestom pre užívateľské skripty
-        . Každý skript, ktorý nedodržuje tieto pravidlá, bude odstránený moderátormi
-        %{site_name}.</p> <ul>
-          <li>Skripty musia obsahovať popis toho, čo skript robí a nemal by robiť
-        to, čo nie je uvedené v popise skriptu. Užívatelia musia vedieť, čo skript
-        robí predtým, ako ho nainštalujú.</li>
-          <li>Kód odoslaný na túto stránku nemôže byť obfuskovaný alebo minifikovaný.
-        Užívatelia musia mať možnosť skontrolovať a pochopiť skript pred jeho inštaláciou.</li>
-          <li>Knižnice, ktoré sú použité v skripte by mali byť vyžiadané cez <code>@require</code>,
-        iba ak by bol technický dôvod tak neurobiť. V prípade, že knižnica je prilinkovaná
-        inline, musia byť priložené informácie o zdrojovej knižnici (napr. zakomentovaná
-        URL a/alebo názov a verzia).</li>
-          <li>Váš skript musí rešpektovať ostatné autorské práva. To zahŕňa skript
-        samotný a každý zdroj (napríklad obrázky), ktorý používa. Ak máte v úmysle
-        používať obsah niekoho iného, riaďte sa jeho licenčnými podmienkami alebo
-        ešte predtým získajte jeho súhlas.</li>
-          <li>%{external_scripts_link:Použitie externého JavaScriptu je obmedzené.}</li>
-          %{adult_content_requirement}
-        </ul> <p>Ak nájdete skript, ktorý nespĺňa tieto parametre, nahláste ho, prosím,
-        cez odkaz Spätnej odozvy pre tento skript, založte diskusiu a vyberte možnosť
-        "Nahlásiť skript".</p> <p>Ak s niečim nesúhlasíte, %{contact_link:pohovorme
-        si o tom}!</p>
+          <p>Toto sú požiadavky pre posielanie skriptov na %{site_name}. Slúžia nato,
+          aby %{site_name} zostalo bezpečným a užitočným miestom pre užívateľské skripty
+          . Každý skript, ktorý nedodržuje tieto pravidlá, bude odstránený moderátormi
+          %{site_name}.</p> <ul>
+            <li>Skripty musia obsahovať popis toho, čo skript robí a nemal by robiť
+          to, čo nie je uvedené v popise skriptu. Užívatelia musia vedieť, čo skript
+          robí predtým, ako ho nainštalujú.</li>
+            <li>Kód odoslaný na túto stránku nemôže byť obfuskovaný alebo minifikovaný.
+          Užívatelia musia mať možnosť skontrolovať a pochopiť skript pred jeho inštaláciou.</li>
+            <li>Knižnice, ktoré sú použité v skripte by mali byť vyžiadané cez <code>@require</code>,
+          iba ak by bol technický dôvod tak neurobiť. V prípade, že knižnica je prilinkovaná
+          inline, musia byť priložené informácie o zdrojovej knižnici (napr. zakomentovaná
+          URL a/alebo názov a verzia).</li>
+            <li>Váš skript musí rešpektovať ostatné autorské práva. To zahŕňa skript
+          samotný a každý zdroj (napríklad obrázky), ktorý používa. Ak máte v úmysle
+          používať obsah niekoho iného, riaďte sa jeho licenčnými podmienkami alebo
+          ešte predtým získajte jeho súhlas.</li>
+            <li>%{external_scripts_link:Použitie externého JavaScriptu je obmedzené.}</li>
+            %{adult_content_requirement}
+          </ul> <p>Ak nájdete skript, ktorý nespĺňa tieto parametre, nahláste ho,
+          prosím, cez odkaz Spätnej odozvy pre tento skript, založte diskusiu a vyberte
+          možnosť "Nahlásiť skript".</p> <p>Ak s niečim nesúhlasíte, %{contact_link:pohovorme
+          si o tom}!</p>
       adult_content_rule_html: "<li>Skripty, ktoré majú obsah pre dospelých alebo stránky s obsahom pre dospelých musia byť takto označené a umožniť užívateľom, či ich chcú vidieť.</li>"
     external_scripts:
       title: "Zásady %{site_name} používania externých skritpov"
       content_html: >
-        <p>Užívateľské skripty majú schopnosť načítať a vykonať ďalšie skripty. %{require_doc_link:<code>@require</code>}
-        Kľúč metadát je najjednoduchší spôsob, ako to dosiahnuť, ale skripty tiež
-        môžu, napríklad, použiť XmlHttpRequest pre stiahnutie skriptu a vložiť do
-        DOM.</p> <p>Ak keď je to užitočná vlastnosť a väčšina autorov skriptov ju
-        používa na legitímne účely, ale tiež môže byť zneužitá na podvod. Jedným zo
-        základných princípov %{site_name} je, že užívateľ musí mať možnosť skontrolovať
-        kód v skripte. Externé skripty môžu obchádzať tento princíp niekoľkým spôsobmi:
-        môžu zmeniť históriu bez upozornenia, vykonávať rôzny kód pre rôznych užívateľov
-        a môžu byť použité na skrytie podvodného kódu vo vnútri známych knižníc. Aj
-        keď niekto skontroluje externý skript a prehlási ho za legitímny, to nie je
-        garancia, že skript bude vždy legitímny.</p> <p>Ak chcete umožniť autorom
-        skriptov, aby aj naďalej používali externé skripty, %{site_name} môže implementovať
-        zoznam vzorov povolených URL, ktoré môžu byť priložené k skriptu. Tento zoznam
-        obsahuje umiestenia, ktoré:</p> <ul>
+          <p>Užívateľské skripty majú schopnosť načítať a vykonať ďalšie skripty.
+          %{require_doc_link:<code>@require</code>} Kľúč metadát je najjednoduchší
+          spôsob, ako to dosiahnuť, ale skripty tiež môžu, napríklad, použiť XmlHttpRequest
+          pre stiahnutie skriptu a vložiť do DOM.</p> <p>Ak keď je to užitočná vlastnosť
+          a väčšina autorov skriptov ju používa na legitímne účely, ale tiež môže
+          byť zneužitá na podvod. Jedným zo základných princípov %{site_name} je,
+          že užívateľ musí mať možnosť skontrolovať kód v skripte. Externé skripty
+          môžu obchádzať tento princíp niekoľkým spôsobmi: môžu zmeniť históriu bez
+          upozornenia, vykonávať rôzny kód pre rôznych užívateľov a môžu byť použité
+          na skrytie podvodného kódu vo vnútri známych knižníc. Aj keď niekto skontroluje
+          externý skript a prehlási ho za legitímny, to nie je garancia, že skript
+          bude vždy legitímny.</p> <p>Ak chcete umožniť autorom skriptov, aby aj naďalej
+          používali externé skripty, %{site_name} môže implementovať zoznam vzorov
+          povolených URL, ktoré môžu byť priložené k skriptu. Tento zoznam obsahuje
+          umiestenia, ktoré:</p> <ul>
 
-        <li>Sú verejné</li>
+          <li>Sú verejné</li>
 
-        <li>Ich obsah sa často nemení</li>
+          <li>Ich obsah sa často nemení</li>
 
-        <li>Môže ich využiť viacero autorov</li>
+          <li>Môže ich využiť viacero autorov</li>
 
-        </ul> <p>Aktuálny zoznam je:</p> %{allowed_require_list} <p>Ak sa pokúsite
-        pridať skript, ktorý používa <code>@require</code> mimo týchto umiestnení,
-        nebudete môcť skript uložiť.</p> <p>Ak skript, ktorý chcete priložiť je JavaScriptová
-        knižnica (napríklad  jQuery alebo YUI), skúste ju nájsť na jednom z umiestnení
-        uvedených vyššie. %{cdnjs_link:cdnjs} a %{jsdelivr_link:jsDelivr} majú k dispozícii
-        obzvlášť širokú škálu knižníc.</p> <p>Ak skript, ktorý chcete priložiť sa
-        nenachádza na vyššie uvedenom zozname, %{contact_link:dajte nám vedieť} a
-        môžeme ho niekde nájsť (alebo umiestniť na našom serveri!).</p> <p>Ak skript,
-        ktorý chcete priložiť ste napísali Vy, môžete ho poslať ako samostatnú položku
-        na %{site_name} vybraním typu skriptu "Knižnica". Potom budete môcť priložiť
-        túto knižnicu do vášho skriptu.</p>
+          </ul> <p>Aktuálny zoznam je:</p> %{allowed_require_list} <p>Ak sa pokúsite
+          pridať skript, ktorý používa <code>@require</code> mimo týchto umiestnení,
+          nebudete môcť skript uložiť.</p> <p>Ak skript, ktorý chcete priložiť je
+          JavaScriptová knižnica (napríklad  jQuery alebo YUI), skúste ju nájsť na
+          jednom z umiestnení uvedených vyššie. %{cdnjs_link:cdnjs} a %{jsdelivr_link:jsDelivr}
+          majú k dispozícii obzvlášť širokú škálu knižníc.</p> <p>Ak skript, ktorý
+          chcete priložiť sa nenachádza na vyššie uvedenom zozname, %{contact_link:dajte
+          nám vedieť} a môžeme ho niekde nájsť (alebo umiestniť na našom serveri!).</p>
+          <p>Ak skript, ktorý chcete priložiť ste napísali Vy, môžete ho poslať ako
+          samostatnú položku na %{site_name} vybraním typu skriptu "Knižnica". Potom
+          budete môcť priložiť túto knižnicu do vášho skriptu.</p>
     script_rewriting:
       title: "Ako budú prepísané skripty odoslané na %{site_name}"
       content_html: >
-        <p>Skripty poslané na %{site_name} budú prepísané nasledujúcimi spôsobmi:</p>
-        <ul>
-          <li><code>@updateURL</code>, <code>@installURL</code>, a <code>@downloadURL</code>
-        direktívy budú odstránené, ak existujú. Neprítomnosť týchto direktív znamená,
-        že každý skript z %{site_name} bude aktualizovaný z %{site_name}.</li>
-          <li><code>@version</code> a <code>@namespace</code> direktívy budú vložené
-        dp skriptu, ak tam chýbajú. Tieto direktívy sú potrebné pre správnu aktualizáciu.</li>
-          <li><code>@description</code> bude vložená, ak nová verzia skriptu chýba,
-        alebo ak ju predchádzajúca verzia obsahovala.</li>
-          <li>Zalomenie riadkov bude prevedené na zalomenie Unix-style (\n).</li>
-        </ul>
+          <p>Skripty poslané na %{site_name} budú prepísané nasledujúcimi spôsobmi:</p>
+          <ul>
+            <li><code>@updateURL</code>, <code>@installURL</code>, a <code>@downloadURL</code>
+          direktívy budú odstránené, ak existujú. Neprítomnosť týchto direktív znamená,
+          že každý skript z %{site_name} bude aktualizovaný z %{site_name}.</li>
+            <li><code>@version</code> a <code>@namespace</code> direktívy budú vložené
+          dp skriptu, ak tam chýbajú. Tieto direktívy sú potrebné pre správnu aktualizáciu.</li>
+            <li><code>@description</code> bude vložená, ak nová verzia skriptu chýba,
+          alebo ak ju predchádzajúca verzia obsahovala.</li>
+            <li>Zalomenie riadkov bude prevedené na zalomenie Unix-style (\n).</li>
+          </ul>
     site_feedback_link: "Nahlásenie problému alebo pridanie nápadu pre %{site_name}"
     credits:
       title: "Poďakovanie"
@@ -454,49 +455,49 @@ sk:
     contact:
       title: "Kontakty"
       content_html: >
-        <p>Existuje viacero spôsobov ako sa rozprávať o %{site_name} a jeho obsahu.</p>
-        <p>Máte otázku alebo komentár ku konkrétnemu skriptu na stránke? Ak áno, použite
-        diskusiu cez záložku z odkazu na spätnú väzbu na stránke skriptu. Autori skriptu
-        dostanú notifikáciu na ich účet stránky alebo v diskusii k ich skriptu.</p>
-        <p>Máte otázku alebo komentár k stránke %{site_name} alebo k vývoju skriptu,
-        alebo chcete niekoho požiadať o vytvorenie skriptu? %{forum_link:Príspevok
-        vo fóre} ti poskytuje najširšie publikum na diskusiu.</p> <p>Chcete nahlásiť
-        chybu alebo máte skvelý nápad pre %{site_name} (a nie konkrétny skript <em>pridaný
-        na</em> %{site_name})? %{github_link:Pridajte ich na stránku GitHub.}</p>
-        <p>Máte súkromnú otázku alebo komentár, ktoré by mal vidieť iba administrátor?
-        %{admin_email_link:Poslať email.}</p>
+          <p>Existuje viacero spôsobov ako sa rozprávať o %{site_name} a jeho obsahu.</p>
+          <p>Máte otázku alebo komentár ku konkrétnemu skriptu na stránke? Ak áno,
+          použite diskusiu cez záložku z odkazu na spätnú väzbu na stránke skriptu.
+          Autori skriptu dostanú notifikáciu na ich účet stránky alebo v diskusii
+          k ich skriptu.</p> <p>Máte otázku alebo komentár k stránke %{site_name}
+          alebo k vývoju skriptu, alebo chcete niekoho požiadať o vytvorenie skriptu?
+          %{forum_link:Príspevok vo fóre} ti poskytuje najširšie publikum na diskusiu.</p>
+          <p>Chcete nahlásiť chybu alebo máte skvelý nápad pre %{site_name} (a nie
+          konkrétny skript <em>pridaný na</em> %{site_name})? %{github_link:Pridajte
+          ich na stránku GitHub.}</p> <p>Máte súkromnú otázku alebo komentár, ktoré
+          by mal vidieť iba administrátor? %{admin_email_link:Poslať email.}</p>
     privacy_policy:
       title: "Zásady ochrany osobných údajov"
       content_html: >
-        <p>Táto stránka popisuje ako %{site_name} zaznamenáva alebo sleduje užívateľov.
-        Ak máte akékoľvek obavy, %{admin_email_link:napíšte administrátorovi}.</p>
-        <h2>Záznamy servera</h2> <p>%{site_name} zaznamenáva všetky požiadavky v typickom
-        tvare protokolov servera. Zaznamenané informácie obsahujú navštívené stránky,
-        IP adresu a identifikátor prehliadača. Tieto záznamy slúžia na ladenie a analýzu
-        servera. Dáta sú uchovávané po dobu jedného týždňa. Tieto dáta nie sú zdieľané
-        ani sprístupnené verejnosti.</p> <h2>Štatistiky skriptov</h2> <p>Na účely
-        generovania štatistík, %{site_name} zaznamenáva inštalačné a aktualizačné
-        požiadavky s informáciou o IP adrese. Tieto informácie sú uchovávané po dobu
-        jedného dňa, a potom sú zhromaždené bez uvedenia IP adresy. Špecifické dáta
-        o IP adrese nie sú zdieľané alebo sprístupnené verejnosti , ale zhromaždené
-        dáta áno
+          <p>Táto stránka popisuje ako %{site_name} zaznamenáva alebo sleduje užívateľov.
+          Ak máte akékoľvek obavy, %{admin_email_link:napíšte administrátorovi}.</p>
+          <h2>Záznamy servera</h2> <p>%{site_name} zaznamenáva všetky požiadavky v
+          typickom tvare protokolov servera. Zaznamenané informácie obsahujú navštívené
+          stránky, IP adresu a identifikátor prehliadača. Tieto záznamy slúžia na
+          ladenie a analýzu servera. Dáta sú uchovávané po dobu jedného týždňa. Tieto
+          dáta nie sú zdieľané ani sprístupnené verejnosti.</p> <h2>Štatistiky skriptov</h2>
+          <p>Na účely generovania štatistík, %{site_name} zaznamenáva inštalačné a
+          aktualizačné požiadavky s informáciou o IP adrese. Tieto informácie sú uchovávané
+          po dobu jedného dňa, a potom sú zhromaždené bez uvedenia IP adresy. Špecifické
+          dáta o IP adrese nie sú zdieľané alebo sprístupnené verejnosti , ale zhromaždené
+          dáta áno
 
-        .</p> <h2>Cookies (bez prihlásenia)</h2> <p>%{site_name} môže nastaviť dočasnú
-        reláciu cookies na povolenie niektorých funkcií stránky. Tieto cookies nie
-        sú trvalé a môžu byť vymazané po ukončení prehliadača (v závislosti na nastavení
-        prehliadača).</p> <h2>Užívateľské účty</h2> <p>%{site_name} vyžaduje vytvorenie
-        užívateľského účtu na pridávanie skriptov, zúčastňovaní sa na diskusii a na
-        prístup k niektorým funkciám stránky. Pri vytváraní účtu, informácie ako sú
-        IP adresy, emailové adresy a identifikátor prehliadača môžu byť trvalo uložené.
-        Niektoré z týchto informácií môžu byť viditeľné pre iných užívateľom.</p>
-        <p>Akcie vykonávané po prihlásení, napríklad pridávanie skriptov a komentárov,
-        budú viditeľné ostatným užívateľom.</p> <p>Ak možnosť "Zapamätať si ma" je
-        vybraná pri prihlasovaní účtu, %{site_name} nastaví trvalé cookie na udržanie
-        prihlásenia.</p> <h2>Skripty pridané na %{site_name}</h2> <p>%{site_name}
-        obsahujú užívateľsky generovaný obsah, a tieto skripty môžu sledovať užívateľov,
-        ktorí si skript nainštalovali.</p> <h2>Knižnice tretích strán</h2> <p>%{site_name}
-        môžu obsahovať kód tretích strán za účelom štatistiky alebo zobrazenia reklamy
-        na stránke. Tieto knižnice môžu obsahovať sledovaciu logiku.</p>
+          .</p> <h2>Cookies (bez prihlásenia)</h2> <p>%{site_name} môže nastaviť dočasnú
+          reláciu cookies na povolenie niektorých funkcií stránky. Tieto cookies nie
+          sú trvalé a môžu byť vymazané po ukončení prehliadača (v závislosti na nastavení
+          prehliadača).</p> <h2>Užívateľské účty</h2> <p>%{site_name} vyžaduje vytvorenie
+          užívateľského účtu na pridávanie skriptov, zúčastňovaní sa na diskusii a
+          na prístup k niektorým funkciám stránky. Pri vytváraní účtu, informácie
+          ako sú IP adresy, emailové adresy a identifikátor prehliadača môžu byť trvalo
+          uložené. Niektoré z týchto informácií môžu byť viditeľné pre iných užívateľom.</p>
+          <p>Akcie vykonávané po prihlásení, napríklad pridávanie skriptov a komentárov,
+          budú viditeľné ostatným užívateľom.</p> <p>Ak možnosť "Zapamätať si ma"
+          je vybraná pri prihlasovaní účtu, %{site_name} nastaví trvalé cookie na
+          udržanie prihlásenia.</p> <h2>Skripty pridané na %{site_name}</h2> <p>%{site_name}
+          obsahujú užívateľsky generovaný obsah, a tieto skripty môžu sledovať užívateľov,
+          ktorí si skript nainštalovali.</p> <h2>Knižnice tretích strán</h2> <p>%{site_name}
+          môžu obsahovať kód tretích strán za účelom štatistiky alebo zobrazenia reklamy
+          na stránke. Tieto knižnice môžu obsahovať sledovaciu logiku.</p>
   common:
     error_preamble: "Boli zistené problémy s tým, čo ste poslali."
     allowed_elements_link: "(Pozri zoznam povolených značiek.)"
