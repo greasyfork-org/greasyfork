@@ -740,7 +740,7 @@ en:
           <li><code>@updateURL</code>, <code>@installURL</code>, and <code>@downloadURL</code> directives will be stripped, if present. The lack of these directives means that any script installed from %{site_name} will be updated from %{site_name}.</li>
           <li><code>@version</code> and <code>@namespace</code> directives will be inserted if the script is missing them. These directives are needed for proper updating.</li>
           <li><code>@description</code> will be inserted if a new version of a script is missing it and a previous version of the script had it.</li>
-          <li>Line breaks will be converted to Unix-style line breaks (\n).</li>
+          <li>CRLF and CR line breaks will be converted to standard/Unix-style line breaks.</li>
         </ul>
     # link to github
     site_feedback_link: "Report issue or post idea for %{site_name} itself"
