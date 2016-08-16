@@ -391,14 +391,12 @@ zh-TW:
     script_rewriting:
       title: "%{site_name} 會如何改寫發表的腳本"
       content_html: >
-          <p>使用者腳本在發表到 %{site_name} 上，會依以下的方法改寫︰</p>
-
-          <ul>
-            <li><code>@updateURL</code>、<code>@installURL</code>、和 <code>@downloadURL</code>
-          會被移除。省略這三個標示，表示所有安裝自 %{site_name} 的腳本也會從 %{site_name} 取得更新。</li>
-            <li>假如腳本沒有包含 <code>@version</code> 和 <code>@namespace</code> 的話，會自動加入。這些資訊在更新腳本時會被用來。</li>
-            <li>若缺少 <code>@description</code> 但上個版本中有的話，會延用上個版本的說明。</li>
-            <li>換行會被轉換成 Linux 模式（\n）。</li>
+          <p>上傳至 %{site_name} 的腳本會以下列的方法改寫︰</p> <ul>
+            <li><code>@updateURL</code> 、 <code>@installURL</code> 、和 <code>@downloadURL</code>
+          會被移除。當這些宣告不存在時，任何從 %{site_name} 安裝的腳本都會從 %{site_name} 接受更新。</li>
+            <li>若不存在 <code>@version</code> 和 <code>@namespace</code>，會被自動加上以維持正確的更新功能。</li>
+            <li>若不存在 <code>@description</code>，會以前一個版本中的代替。</li>
+            <li>CRLF 和 CR 換行會被轉換成標準、Unix-style 換行。</li>
           </ul>
     site_feedback_link: "回報關於 %{site_name} 的問題或想法。"
     credits:

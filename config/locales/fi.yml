@@ -424,19 +424,6 @@ fi:
           jälkeen voit sisällyttää lähettämäsi kirjaston skriptiisi.</p>
     script_rewriting:
       title: "Miten %{site_name} uudelleenkirjoittaa lähetetyt skriptit"
-      content_html: >
-          <p>%{site_name}in lähetetyt skriptit kirjoitetaan uudelleen seuraavilla
-          tavoilla:</p> <ul>
-            <li><code>@updateURL</code>, <code>@installURL</code>, ja <code>@downloadURL</code>
-          -direktiivit poistetaan. Näiden direktiivien puute tarkoittaa, että kaikki
-          %{site_name}ista asennetut skriptit päivitetään %{site_name}ista.</li>
-            <li><code>@version</code> ja <code>@namespace</code> -direktiivit lisätään,
-          jos ne puuttuvat skriptistä. Näitä direktiivejä tarvitaan kunnollista päivittämistä
-          varten.</li>
-            <li><code>@description</code> lisätään, jos se puuttuu skriptin uudesta
-          versiosta ja aiemmassa versiossa oli sellainen.</li>
-            <li>Rivinvaihdot muutetaan Unix-rivinvaihdoiksi (\n).</li>
-          </ul>
     site_feedback_link: "Ilmoita ongelmasta tai kerro idea %{site_name}ista itsestään"
     credits:
       title: "Tekijät"

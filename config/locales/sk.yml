@@ -433,16 +433,16 @@ sk:
     script_rewriting:
       title: "Ako budú prepísané skripty odoslané na %{site_name}"
       content_html: >
-          <p>Skripty poslané na %{site_name} budú prepísané nasledujúcimi spôsobmi:</p>
+          <p>Skripty poslané na %{site_name} budú prepísané nasledovným spôsobom:</p>
           <ul>
             <li><code>@updateURL</code>, <code>@installURL</code>, a <code>@downloadURL</code>
-          direktívy budú odstránené, ak existujú. Neprítomnosť týchto direktív znamená,
-          že každý skript z %{site_name} bude aktualizovaný z %{site_name}.</li>
-            <li><code>@version</code> a <code>@namespace</code> direktívy budú vložené
-          dp skriptu, ak tam chýbajú. Tieto direktívy sú potrebné pre správnu aktualizáciu.</li>
-            <li><code>@description</code> bude vložená, ak nová verzia skriptu chýba,
-          alebo ak ju predchádzajúca verzia obsahovala.</li>
-            <li>Zalomenie riadkov bude prevedené na zalomenie Unix-style (\n).</li>
+          tieto príkazy budú odstránené, ak existujú. Absencia týchto príkazov bude
+          znamenať, že skript nainštalovaný z %{site_name} bude aktualizovaný z %{site_name}.</li>
+            <li><code>@version</code> a <code>@namespace</code> tieto príkazy budú
+          vložené do skriptu, ak chýbajú. Tieto skripty sú potrebné pre správnu aktualizáciu.</li>
+            <li><code>@description</code> tento príkaz bude vložený, ak nová verzia
+          skriptu chýba a predchádzajúca verzia ju mala.</li>
+            <li>Zalomenie riadkov CRLF a CR bude prevedené na štandardný štýl Unixu.</li>
           </ul>
     site_feedback_link: "Nahlásenie problému alebo pridanie nápadu pre %{site_name}"
     credits:

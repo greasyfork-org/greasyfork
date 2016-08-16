@@ -57,8 +57,10 @@ vi:
     delete_update_behaviour_2: "Họ sẽ được cập nhật vào trong một script trống. Điều này là phù hợp khi script có một tác động tiêu cực trên các trang web nó chạy trên."
     delete_permanently_heading: "Xóa vĩnh viễn"
     delete_permanently_explanation: "Xóa vĩnh viễn script sẽ gỡ nó cùng toàn bộ những bản ghi liên quan, ngoại trừ bài thảo luận trên diễn đàn và bản ghi hoạt động của quản trị viên. Lưu ý rằng thao tác này không thể phục hồi, ngay cả bởi quản trị viên."
+    delete_permanently_request_explanation: "Xóa vĩnh viễn script này chỉ có thể được hoàn thành sau khi xét duyệt bơi điều hành viên."
     delete_permanently_confirm: "Bạn có chắc chắn muốn xóa vĩnh viễn script của bạn? Hành động này không thể được hoàn tác!"
     delete_permanently_submit: "Xin xóa vĩnh viễn"
+    delete_permanently_immediate_submit: "Xóa vĩnh viễn"
     delete_permanently_notice: "Yêu cầu xóa vĩnh viễn đã được lưu lại để xem xét bởi quản trị viên."
     delete_permanently_already_requested: "Bạn đã yêu cầu xóa vĩnh viễn vào %{datetime}."
     delete_permanently_notice_immediate: "Script đã bị xóa vĩnh viễn."
@@ -249,6 +251,7 @@ vi:
     sign_in_description: "Đăng nhập vào %{site_name} để bạn có thể đăng script và gửi phản hồi trên script của những người khác. Bạn không cần đăng nhập để duyệt hoặc cài đặt script."
     sign_in_external: "Đăng nhập bằng một dịch vụ ngoài"
     sign_in_with: "Đăng nhập với %{provider}"
+    sign_in_shutting_down: "(Đang tắt %{date})"
     sign_in_password: "Đăng nhập với một mật khẩu"
     sign_in_email_used_no_external_services_html: "'%{email}' đã được tài khoản '%{user_name}' sử dụng. Nếu đó là bạn và bạn muốn thêm đăng nhập với %{provider}, %{sign_in_link} vào tài khoản của bạn trước, sau đó thêm đăng nhập với %{provider}."
     sign_in_email_used_with_external_services_html: "%{email}' đã được tài khoản '%{user_name}' sử dụng, ai đó đã đăng nhập với %{existing_providers}. Nếu đó là bạn và bạn muốn thêm đăng nhập với %{provider}, %{sign_in_link} vào tài khoản của bạn trước, sau đó thêm đăng nhập với %{provider}."
@@ -357,12 +360,19 @@ vi:
       adult_content_rule_html: "<li>Scripts có nội dung nhạy cảm hoặc được áp dụng với những trang có nội dung nhạy cảm phải được đánh dấu để người dùng lựa chọn có xem nó hay không.</li>"
     external_scripts:
       title: "Điều khoản của %{site_name}' về script mở rộng"
+    script_rewriting:
+      title: "Làm thế nào %{site_name} sẽ viết lại các script đã đăng"
+    site_feedback_link: "Báo cáo vấn đề hoặc ý tưởng bài viết cho chính %{site_name}"
     credits:
       title: "Cảm ơn tới"
       developers_credit: "%{site_name} được tự xây dựng bởi %{developers_link:these people} với sự giúp đỡ của những người báo lỗi và góp ý."
       translators_credit: "%{site_name} đã được dịch bởi %{translators_link:the Greasy Translation Force on Transifex}:"
       icons_credit: "Các biểu tượng tranh luận từ %{vistastylebase} bởi %{iconsland}. Các biểu tượng trình duyệt từ %{browserlogos}."
     help_with_greasymonkey: "Trợ giúp với Greasemonkey"
+    contact:
+      title: "Liên hệ một ai đó"
+    privacy_policy:
+      title: "Chính sách bảo mật"
   common:
     error_preamble: "Có vài trục trặc với cái bạn vừa đăng.."
     allowed_elements_link: "(Xem mã cho phép.)"
@@ -412,3 +422,7 @@ vi:
       cannot_be_deleted_reference: "không thể là script đã bị xóa"
       must_be_greasy_fork_script: "phải là URL cho một script trên %{site_name}"
       script_update_not_utf8: "văn bản upload phải có định dạng UTF-8"
+  opensearch:
+    short_name: "%{site_name} tìm kiếm"
+    description: "Tìm kiếm cho các script người dùng trên %{site_name}."
+    long_name: "%{site_name} tìm kiếm script người dùng"

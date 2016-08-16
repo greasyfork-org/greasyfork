@@ -445,25 +445,6 @@ de:
           zu verwenden.</p>
     script_rewriting:
       title: "Wie %{site_name} veröffentlichte Skripte umschreibt"
-      content_html: >
-          <p>Skripte, welche auf %{site_name} veröffentlicht werden, werden wie folgt
-          umgeschrieben:</p><ul>
-
-          <li>Die Anweisungen <code>@updateURL</code>, <code>@installURL</code> und
-          <code>@downloadURL</code> werden entfernt, falls vorhanden. Das Fehlen dieser
-          Anweisungen bedeutet, dass jedes Skript, was von %{site_name} installiert
-          wurde auch Updates von %{site_name} erhält.</li>
-
-          <li>Die Anweisungen <code>@version</code> und <code>@namespace</code> werden
-          eingefügt, falls sie im Skript fehlen. Diese Anweisungen sind für korrekte
-          Updates notwendig.</li>
-
-          <li><code>@description</code> wird eingefügt, falls es in einer neuen Skriptversion
-          fehlt, aber eine vorherige Version des Skriptes es hatte.</li>
-
-          <li>Zeilenumbrüche werden in Unix-Style Zeilenumbrüche umgewandelt (\n).</li>
-
-          </ul>
     site_feedback_link: "Melde ein Problem oder veröffentliche eine Idee für %{site_name} selbst"
     credits:
       title: "Mitwirkende"

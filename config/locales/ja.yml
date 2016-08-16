@@ -148,7 +148,7 @@ ja:
     syncing_notice_html: "このスクリプトは%{syncing_notice_sync_type}になっています。ここでコードに加えた変更点は、同期の際に上書きされます。"
     syncing_notice_sync_type_manual: "手動で %{sync_identifier} と同期する設定"
     syncing_notice_sync_type_automatic: "自動で %{sync_identifier} と同期する設定"
-    upload_label: "更新したスクリプトをアップロード:"
+    upload_label: "スクリプトをアップロード:"
     enable_source_code_editor_label: "ソースエディタを有効にしてシンタックスハイライトする"
     changelog_note: "バージョン履歴ページに表示する変更点。"
     additional_info_note_html: "スクリプトに関する説明など。%{allowed_elements_link}"
@@ -397,7 +397,7 @@ ja:
           からアップデートされるということです。</li>
             <li><code>@version</code>、<code>@namespace</code> ディレクティブを書き忘れている場合は、そのディレクティブを補います。これらのディレクティブは、スクリプトの更新を正常に行うために必要とされます。</li>
             <li><code>@description</code> ディレクティブをスクリプトの新しいバージョンで書き忘れており、以前のバージョンには存在していた場合、これを補います。</li>
-            <li>改行は Unix スタイルの改行 (\n) に変換されます。</li>
+            <li>改行コード CRLF、および CR は、標準の改行 (Unix スタイルの改行) に変換されます。</li>
           </ul>
     site_feedback_link: "%{site_name} 自体について問題の報告やアイデアの投稿をする"
     credits:

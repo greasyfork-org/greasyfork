@@ -386,14 +386,6 @@ zh-CN:
           <p>如果您想包含的脚本是你自己写的，你可以在 %{site_name} 上将它提交为一个单独的项目，选择“库”作为它的脚本类型。然后你就可以在你的脚本中引入已发布的库了。</p>
     script_rewriting:
       title: "%{site_name} 将如何改写已发布的脚本"
-      content_html: >
-          <p>发布到 %{site_name} 的脚本将自动依照下列方法修改：</p> <ul>
-            <li><code>@updateURL</code>、<code>@installURL</code> 和 <code>@downloadURL</code>
-          指令将被剥离（如果存在）。缺少这些指令意味着任何从 %{site_name} 安装的脚本仍将从 %{site_name} 更新。</li>
-            <li><code>@version</code> 和 <code>@namespace</code> 指令将被插入（如果脚本未提供它们）。这些指令对于正确更新是必要的。</li>
-            <li><code>@description</code> 将被插入，如果脚本的新版本未提供并且旧版本曾经提供。</li>
-            <li>换行符将被转换为 Unix 样式的换行符 (\n)。</li>
-          </ul>
     site_feedback_link: "报告或发布有关 %{site_name} 本身的问题或想法"
     credits:
       title: "致谢名单"
