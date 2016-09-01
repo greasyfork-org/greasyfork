@@ -9,10 +9,9 @@ class SessionsController < Devise::SessionsController
 			sign_out resource
 			flash.delete(:notice) # get rid of "Signed in successfully."
 			flash[:alert] = "This account has been banned."
-			root_path
-		else
-			super
+			return root_path
 		end
+		return super(resource)
 	end
 
 	# delete Vanilla cookies too

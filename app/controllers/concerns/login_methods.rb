@@ -6,7 +6,7 @@ module LoginMethods
 	extend ActiveSupport::Concern
 
 	included do
-		before_filter :store_location
+		prepend_before_filter :store_location
 	end
 
 	def store_location
