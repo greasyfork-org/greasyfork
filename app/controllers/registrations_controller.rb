@@ -1,5 +1,6 @@
 # per https://github.com/plataformatec/devise/wiki/How-To:-Customize-the-redirect-after-a-user-edits-their-profile
 class RegistrationsController < Devise::RegistrationsController
+	include LoginMethods
 
 	# https://github.com/plataformatec/devise/wiki/How-To%3a-Allow-users-to-edit-their-account-without-providing-a-password
 	def update

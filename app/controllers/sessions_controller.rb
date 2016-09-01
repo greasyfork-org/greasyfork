@@ -1,5 +1,6 @@
 class SessionsController < Devise::SessionsController
 	include Devise::Controllers::Rememberable
+	include LoginMethods
 
 	skip_before_action :verify_authenticity_token, :only => [:omniauth_callback]
 

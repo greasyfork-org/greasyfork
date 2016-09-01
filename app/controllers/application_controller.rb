@@ -5,8 +5,6 @@ class ApplicationController < ActionController::Base
 
 	before_filter :configure_permitted_parameters, if: :devise_controller?
 
-	before_filter :store_location
-
 	before_filter :banned?
 
 	rescue_from ActiveRecord::RecordNotFound, :with => :routing_error
@@ -125,15 +123,6 @@ protected
 
 	def render_access_denied
 		render :text => 'Access denied.', :status => 403, :layout => 'application'
-	end
-
-	# Devise seems to handle log-in-then-go-to fine for Rails stuff, but not for the forum. This adds support
-	# via a "return_to" parameter.
-	def store_location
-		if (params[:controller] == "sessions" or params[:controller] == "registrations") and !params[:return_to].nil?
-			v = clean_redirect_param(:return_to)
-			session[:user_return_to] = v unless v.nil?
-		end
 	end
 
 	def versionned_script(script_id, version_id)
