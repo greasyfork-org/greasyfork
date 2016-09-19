@@ -4,7 +4,7 @@ ro:
       script_list: "Scripturi"
       forum: "Forum"
       help: "Ajutor"
-      sign_in: "Logare"
+      sign_in: "Autentificare"
       search: "Căutare"
   helpers:
     application:
@@ -103,6 +103,7 @@ ro:
     stats_no_data: "N/A"
     derivatives_title: "%{script_name} - Derivate"
     derivatives_intro: "Aceste script-uri pot fi bazate pe al tau (sau al tau se poate baza pe unul). Dacă găsiți o utilizare neautorizată a codului, raport script-ul prin a incepe o noua discutie."
+    derivatives_name_matches_info: "Scripturi postate de alții cu cele mai similare denumiri cu cele alor tale:"
     derivatives_script_html: "%{script_link} de %{user_link}, licență: %{license}"
     derivatives_script_with_code_line_html: "%{script_lines_link} de %{user_link}, licență: %{license}"
     script_lines_link: "%{script_name}, liniile %{start} - %{end}"
@@ -165,6 +166,10 @@ ro:
     post_a_script_link_text: "Publică scriptul pe care l-ai scris"
     learn_to_write_scripts_link_text: "învață a scrie unul"
     adult_content: "Conținut pentru adulți"
+    adult_marker: "(Adult)"
+    deleted_marker: "(Șters)"
+    locked_marker: "(Închis)"
+    unlisted_marker: "(Nelistat)"
   script_sets:
     favorites_name: "Favorite"
     delete: "Șterge set de scripturi"
@@ -179,6 +184,7 @@ ro:
   users:
     sign_in_title: "Autentificare în %{site_name}"
     sign_in_external: "Autentificare printr-un serviciu extern"
+    sign_in_with: "Autentifică-te cu %{provider}"
     sign_in_password: "Autentificare prin parolă"
     sign_in_email_used_sign_in_link: "logare"
     sign_in_name_used_submit: "Trimite"
@@ -189,7 +195,10 @@ ro:
     deleted_script_list: "Scripturi șterse"
     sign_out: "Închide sesiunea"
     edit: "Editează preferințe"
+    edit_sign_in: "Modifică metodele de autentificare"
+    edit_sign_in_title: "Modifică metodele de autentificare"
     edit_sign_in_password: "Parolă"
+    no_password_set_info: "Contul dvs. nu are setată o parolă."
     set_password: "Setează parola"
     update_password: "Actualizează parola"
     update_password_no_match: "Parola nu coincide."
@@ -226,6 +235,8 @@ ro:
       user_page_link_text: 'pagina de utilizator'
       post_new_script_link_text: 'postează un script nou'
     help_with_greasymonkey: "Ajutor Greasemonkey"
+    contact:
+      title: "Contactează pe cineva"
   common:
     allowed_elements_and_attributes_title: "Elements permise pentru conținut HTML"
     suggest_locale: "%{site_name} este disponibil în %{locale_name}."
@@ -254,4 +265,8 @@ ro:
         screenshots: "Capturi de ecran"
   errors:
     messages:
+      script_name_same_as_description: "Nu trebuie să fie același cu numele"
+      script_sync_identifier_bad_protocol: "Trebuie să fie un URL HTTP sau HTTPS"
       script_too_many_screenshots: "Prea multe screenshot-uri incluse - maximum permis este de %{number}"
+      cannot_be_self_reference: "Nu poate fi același script"
+      cannot_be_deleted_reference: "Nu poate fi un script șters"

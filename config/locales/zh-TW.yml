@@ -357,8 +357,29 @@ zh-TW:
       post_new_script_link_text: '新增腳本'
     code_rules:
       title: "%{site_name} 的腳本規定"
-      content_html: "<p>這些對於所有 %{site_name} 上腳本的要求，是為了保持 %{site_name} 腳本的安全與可用性。任何不尊守這些規則的腳本，則可能會被 %{site_name} 管理員刪除。</p>\n<ul>\n  <li>使用者腳本必須包含一份說明，說明腳本會做些什麼，並且不應該有其它未註明、不合理的行為。使用者在安裝腳本前必須知道腳本會做什麼事情。</li>\n  <li>放在此網站上的程式碼不得被壓縮或混淆，使用者有在安裝腳本前有權利去研究並瞭解該腳本。</li>\n  <li>腳本所用到的函式庫應該使用 <code>@require</code> 來引入，除非有技術性的理由無法這麼做。若將函式庫直接內嵌於腳本內，必須註明函式庫的原始碼來自何處（如︰在註解內標示網址、函式庫名稱與版本）。</li>\n  <li>腳本必須尊重他人的版權，包括腳本本身與其它所用到的資源（如︰圖示）。如果你要使用其它人的作品，請遵守他們的許可說明或先向作者取得授權。</li>\n\
-        \  <li>%{external_scripts_link:限制可使用的第三方 JavaScript}</li>\n  %{adult_content_requirement}\n</ul> \n<p>如果發現有腳本違反上述規則，請向管理員回報︰點選該腳本的反饋頁面，發起一個新討論主題，並點選「舉報」選項。</p>\n<p>如果你不認同上述內容， %{contact_link:歡迎一起討論} ！</p>\n"
+      content_html: >
+          <p>這些對於所有 %{site_name} 上腳本的要求，是為了保持 %{site_name} 腳本的安全與可用性。任何不尊守這些規則的腳本，則可能會被
+          %{site_name} 管理員刪除。</p>
+
+          <ul>
+
+          <li>使用者腳本必須包含一份說明，說明腳本會做些什麼，並且不應該有其它未註明、不合理的行為。使用者在安裝腳本前必須知道腳本會做什麼事情。</li>
+
+          <li>放在此網站上的程式碼不得被壓縮或混淆，使用者有在安裝腳本前有權利去研究並瞭解該腳本。</li>
+
+          <li>腳本所用到的函式庫應該使用 <code>@require</code> 來引入，除非有技術性的理由無法這麼做。若將函式庫直接內嵌於腳本內，必須註明函式庫的原始碼來自何處（如︰在註解內標示網址、函式庫名稱與版本）。</li>
+
+          <li>腳本必須尊重他人的版權，包括腳本本身與其它所用到的資源（如︰圖示）。如果你要使用其它人的作品，請遵守他們的許可說明或先向作者取得授權。</li>
+
+          <li>%{external_scripts_link:限制可使用的第三方 JavaScript}</li>
+
+          %{adult_content_requirement}
+
+          </ul>
+
+          <p>如果發現有腳本違反上述規則，請向管理員回報︰點選該腳本的反饋頁面，發起一個新討論主題，並點選「舉報」選項。</p>
+
+          <p>如果你不認同上述內容， %{contact_link:歡迎一起討論} ！</p>
       adult_content_rule_html: "<li>腳本若是包含成人內容、或執行的網站中有成人內容，作者應將其標示正確讓使用者去選擇是否要顯示它們。</li>"
     external_scripts:
       title: "%{site_name} 對於外部程式碼的政策"
@@ -371,9 +392,13 @@ zh-TW:
           <p>為了允許腳本作者繼續使用外部腳本，%{site_name} 使用了一個允許被引入的外部腳本列表。這些網站必須：</p>
 
           <ul>
-            <li>公開透明</li>
-            <li>不經常更改內容</li>
-            <li>能用於多個使用者腳本</li>
+
+          <li>公開透明</li>
+
+          <li>不經常更改內容</li>
+
+          <li>能用於多個使用者腳本</li>
+
           </ul>
 
           <p>當前允許的網址列表是：</p>
@@ -392,11 +417,16 @@ zh-TW:
       title: "%{site_name} 會如何改寫發表的腳本"
       content_html: >
           <p>上傳至 %{site_name} 的腳本會以下列的方法改寫︰</p> <ul>
-            <li><code>@updateURL</code> 、 <code>@installURL</code> 、和 <code>@downloadURL</code>
+
+          <li><code>@updateURL</code> 、 <code>@installURL</code> 、和 <code>@downloadURL</code>
           會被移除。當這些宣告不存在時，任何從 %{site_name} 安裝的腳本都會從 %{site_name} 接受更新。</li>
-            <li>若不存在 <code>@version</code> 和 <code>@namespace</code>，會被自動加上以維持正確的更新功能。</li>
-            <li>若不存在 <code>@description</code>，會以前一個版本中的代替。</li>
-            <li>CRLF 和 CR 換行會被轉換成標準、Unix-style 換行。</li>
+
+          <li>若不存在 <code>@version</code> 和 <code>@namespace</code>，會被自動加上以維持正確的更新功能。</li>
+
+          <li>若不存在 <code>@description</code>，會以前一個版本中的代替。</li>
+
+          <li>CRLF 和 CR 換行會被轉換成標準、Unix-style 換行。</li>
+
           </ul>
     site_feedback_link: "回報關於 %{site_name} 的問題或想法。"
     credits:

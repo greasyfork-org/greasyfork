@@ -366,22 +366,29 @@ fi:
           tarkoitus on säilyttää %{site_name} turvallisena ja hyödyllisenä paikkana
           userscripteille. Skripti, joka ei täytä vaatimuksia, voidaan poistaa %{site_name}in
           moderaattorien toimesta.</p> <ul>
-            <li>Skriptien täytyy sisältää kuvaus siitä, mitä ne tekevät ja ne eivät
+
+          <li>Skriptien täytyy sisältää kuvaus siitä, mitä ne tekevät ja ne eivät
           saa tehdä selvästi tämän kuvauksen ulkopuolisia asioita. Käyttäjien täytyy
           tietää mitä skripti tekee ennen sen asentamista.</li>
-            <li>Tälle sivustolle lähetetty koodin ei saa olla obfuskoitua tai minifioitua.
+
+          <li>Tälle sivustolle lähetetty koodin ei saa olla obfuskoitua tai minifioitua.
           Käyttäjille täytyy antaa mahdollisuus tutkia ja ymmärtää skripti ennen sen
           asentamista.</li>
-            <li>Skriptin käyttämät kirjastot pitäisi <code>@require</code>-ttaa, ellei
+
+          <li>Skriptin käyttämät kirjastot pitäisi <code>@require</code>-ttaa, ellei
           ole hyvää teknistä syytä olla tekemättä niin. Jos kirjasto on sisällytetty
           koodiin, sen tulee sisältää tieto kirjaston lähteestä (esim. kommentti,
           joka kertoo kirjaston URLin tai nimen ja version).</li>
-            <li>Skriptisi täytyy kunnioittaa muiden tekijänoikeutta. Tämä koskee skriptiä
+
+          <li>Skriptisi täytyy kunnioittaa muiden tekijänoikeutta. Tämä koskee skriptiä
           itseään ja sen käyttämiä resursseja (kuten kuvia). Jos aiot käyttää muiden
           sisältöä, noudata heidän lisenssiehtojaan tai hanki heiltä lupa ennen kuin
           teet sen.</li>
-            <li>%{external_scripts_link:Ulkoisen JavaScriptin käyttöä on rajoitettu.}</li>
-            %{adult_content_requirement}
+
+          <li>%{external_scripts_link:Ulkoisen JavaScriptin käyttöä on rajoitettu.}</li>
+
+          %{adult_content_requirement}
+
           </ul> <p>Jos huomaat skriptin, joka ei täytä näitä vaatimuksia, ilmoitathan
           siitä menemällä skriptin Palaute-osioon, aloittamalla keskustelun, ja valitsemalla
           "Ilmoita skriptistä" -valinnan.</p> <p>Jos olet jostain tästä eri mieltä,
@@ -407,10 +414,13 @@ fi:
           ulkoisten skriptien käyttöä %{site_name} on toteuttanut listan sallituista
           URL-rakenteista, jotka voidaan sisällyttää skriptiin. Tällä listalla on
           sijainteja, jotka:</p> <ul>
-            <li>Ovat julkisia</li>
-            <li>Eivät muutu usein</li>
-            <li>Ovat todennäköisesti hyödyllisiä useammalle kuin yhdelle skriptin
-          tekijälle</li>
+
+          <li>Ovat julkisia</li>
+
+          <li>Eivät muutu usein</li>
+
+          <li>Ovat todennäköisesti hyödyllisiä useammalle kuin yhdelle skriptin tekijälle</li>
+
           </ul> <p>Tämänhetkinen lista on:</p> %{allowed_require_list} <p>Jos yrität
           lähettää skriptin, joka sisältää näiden sijaintien ulkopuolella olevan <code>@require</code>:n,
           et voi tallentaa skriptiäsi.</p> <p>Jos skripti, jonka haluat sisällyttää,

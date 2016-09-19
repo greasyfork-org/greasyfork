@@ -32,12 +32,12 @@ $Definition['Categories.script-requests.Name'] = 'Cereri de creare a scripturilo
 // Category description for Script Creation Requests
 $Definition['Categories.script-requests.Description'] = 'Cere cuiva să-ți scrie un script.';
 // Category name for Script Discussions
-$Definition['Categories.script-discussions.Name'] = 'Discuții script';
+$Definition['Categories.script-discussions.Name'] = 'Discuții referitoare la scripturi';
 // Category description for Script Discussions
-$Definition['Categories.script-discussions.Description'] = 'Discuții referitoare la script postate pe Greasy Fork.';
+$Definition['Categories.script-discussions.Description'] = 'Discuții referitoare la scripturi postate pe Greasy Fork.';
 // Link on Recent Discussions to hide script discussions
-$Definition['Turn on filter'] = 'Ascunde discuțiile referitoare la script';
+$Definition['Turn on filter'] = 'Ascunde discuțiile referitoare la scripturi';
 // Link on Recent Discussions to show script discussions
-$Definition['Turn off filter'] = 'Arată discuțiile referitoare la script';
+$Definition['Turn off filter'] = 'Arată discuțiile referitoare la scripturi';
 // Link on forum profile pointing to main site profile
 $Definition['Greasy Fork Profile'] = 'Profil Greasy Fork';

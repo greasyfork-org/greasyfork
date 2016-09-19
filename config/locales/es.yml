@@ -368,23 +368,30 @@ es:
           aparezca en %{site_name}. Su objetivo es que hagan de %{site_name} un sitio
           fiable y útil. Los moderadores se ocuparán de borrar cualquier script que
           no cumpla los requisitos de %{site_name}.</p> <ul>
-            <li>Los scripts deben incluir una descripción de lo que hacen y adecuarse
+
+          <li>Los scripts deben incluir una descripción de lo que hacen y adecuarse
           a la funcionalidad descrita en la misma. Los usuarios deben saber lo que
           hará un script antes de instalarlo.</li>
-            <li>El código publicado en este sitio no debe de estar ofuscado o compactado.
+
+          <li>El código publicado en este sitio no debe de estar ofuscado o compactado.
           A los usuarios se les debe dar la oportunidad de inspeccionar y comprender
           un script antes de instalarlo.</li>
-            <li>Cualquier biblioteca externa debe cargarse con ( <code>@require</code>
+
+          <li>Cualquier biblioteca externa debe cargarse con ( <code>@require</code>
           ), a menos que haya una razón técnica para no hacerlo. En caso de incrustar
           una biblioteca de terceros en el script debes incluir información básica
           sobre su origen (un comentario indicando la dirección URL original, nombre
           y, si es posible, versión).
-            <li>Respetar los derechos de autor es importante. El código es primordial,
+
+          <li>Respetar los derechos de autor es importante. El código es primordial,
           pero los recursos (como imágenes y estilos) que utilices también lo son.
           Para usar el trabajo de otros respeta sus términos de licencia y pide permiso
           al autor según sea necesario.</li>
-            <li>%{external_scripts_link:Se limita el uso y abuso de JavaScript externo.}</li>
-            %{adult_content_requirement}
+
+          <li>%{external_scripts_link:Se limita el uso y abuso de JavaScript externo.}</li>
+
+          %{adult_content_requirement}
+
           </ul> <p>Si descubres una violación de las reglas puedes informar a los
           moderadores utilizando la pestaña de «Opiniones» del script en cuestión,
           iniciando una conversación, y eligiendo la opción «Informar del script».</p>
@@ -412,9 +419,13 @@ es:
           ha implementado una lista blanca de patrones de URLs que se pueden incluir
           con un script. Esta lista blanca consiste en ubicaciones de scripts que:</p>
           <ul>
-            <li>Sean públicas</li>
-            <li>Sus contenidos no vayan a cambiar con frecuencia</li>
-            <li>Probablemente sean útiles para más de un autor de scripts</li>
+
+          <li>Sean públicas</li>
+
+          <li>Sus contenidos no vayan a cambiar con frecuencia</li>
+
+          <li>Probablemente sean útiles para más de un autor de scripts</li>
+
           </ul> <p>La lista actual es:</p> %{allowed_require_list} <p>Si trata de
           publicar un script que use un <code>@require</code> fuera de estas ubicaciones,
           no podrá guardar su script.</p> <p>Si el script que desea incluir es una
@@ -432,15 +443,20 @@ es:
       content_html: >
           <p>A los scripts publicados en %{site_name} se les hará los siguientes cambios:</p>
           <ul>
-            <li>Se les despojará de cualquier directiva <code>@updateURL</code>, <code>@installURL</code>,
+
+          <li>Se les despojará de cualquier directiva <code>@updateURL</code>, <code>@installURL</code>,
           y <code>@downloadURL</code>. Al no tener estas directivas se podrán actualizar
           sólo desde %{site_name}.</li>
-            <li>Las directivas <code>@version</code> y <code>@namespace</code> se
-          insertarán si no están presentes. Estas directivas son necesarias para que
-          los usuarios puedan actualizar.</li>
-            <li>Si por error en alguna versión posterior falta <code>@description</code>
+
+          <li>Las directivas <code>@version</code> y <code>@namespace</code> se insertarán
+          si no están presentes. Estas directivas son necesarias para que los usuarios
+          puedan actualizar.</li>
+
+          <li>Si por error en alguna versión posterior falta <code>@description</code>
           se insertará con la descripción del perfil.</li>
-            <li>Los saltos de línea se convertirán a formato Unix (\n).</li>
+
+          <li>Los saltos de línea se convertirán a formato Unix (\n).</li>
+
           </ul>
     site_feedback_link: "Infórmanos de algún problema o danos ideas que tengas sobre %{site_name}"
     credits:

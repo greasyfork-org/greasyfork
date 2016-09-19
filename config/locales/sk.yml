@@ -374,21 +374,28 @@ sk:
           aby %{site_name} zostalo bezpečným a užitočným miestom pre užívateľské skripty
           . Každý skript, ktorý nedodržuje tieto pravidlá, bude odstránený moderátormi
           %{site_name}.</p> <ul>
-            <li>Skripty musia obsahovať popis toho, čo skript robí a nemal by robiť
+
+          <li>Skripty musia obsahovať popis toho, čo skript robí a nemal by robiť
           to, čo nie je uvedené v popise skriptu. Užívatelia musia vedieť, čo skript
           robí predtým, ako ho nainštalujú.</li>
-            <li>Kód odoslaný na túto stránku nemôže byť obfuskovaný alebo minifikovaný.
+
+          <li>Kód odoslaný na túto stránku nemôže byť obfuskovaný alebo minifikovaný.
           Užívatelia musia mať možnosť skontrolovať a pochopiť skript pred jeho inštaláciou.</li>
-            <li>Knižnice, ktoré sú použité v skripte by mali byť vyžiadané cez <code>@require</code>,
+
+          <li>Knižnice, ktoré sú použité v skripte by mali byť vyžiadané cez <code>@require</code>,
           iba ak by bol technický dôvod tak neurobiť. V prípade, že knižnica je prilinkovaná
           inline, musia byť priložené informácie o zdrojovej knižnici (napr. zakomentovaná
           URL a/alebo názov a verzia).</li>
-            <li>Váš skript musí rešpektovať ostatné autorské práva. To zahŕňa skript
+
+          <li>Váš skript musí rešpektovať ostatné autorské práva. To zahŕňa skript
           samotný a každý zdroj (napríklad obrázky), ktorý používa. Ak máte v úmysle
           používať obsah niekoho iného, riaďte sa jeho licenčnými podmienkami alebo
           ešte predtým získajte jeho súhlas.</li>
-            <li>%{external_scripts_link:Použitie externého JavaScriptu je obmedzené.}</li>
-            %{adult_content_requirement}
+
+          <li>%{external_scripts_link:Použitie externého JavaScriptu je obmedzené.}</li>
+
+          %{adult_content_requirement}
+
           </ul> <p>Ak nájdete skript, ktorý nespĺňa tieto parametre, nahláste ho,
           prosím, cez odkaz Spätnej odozvy pre tento skript, založte diskusiu a vyberte
           možnosť "Nahlásiť skript".</p> <p>Ak s niečim nesúhlasíte, %{contact_link:pohovorme
@@ -435,14 +442,19 @@ sk:
       content_html: >
           <p>Skripty poslané na %{site_name} budú prepísané nasledovným spôsobom:</p>
           <ul>
-            <li><code>@updateURL</code>, <code>@installURL</code>, a <code>@downloadURL</code>
+
+          <li><code>@updateURL</code>, <code>@installURL</code>, a <code>@downloadURL</code>
           tieto príkazy budú odstránené, ak existujú. Absencia týchto príkazov bude
           znamenať, že skript nainštalovaný z %{site_name} bude aktualizovaný z %{site_name}.</li>
-            <li><code>@version</code> a <code>@namespace</code> tieto príkazy budú
-          vložené do skriptu, ak chýbajú. Tieto skripty sú potrebné pre správnu aktualizáciu.</li>
-            <li><code>@description</code> tento príkaz bude vložený, ak nová verzia
+
+          <li><code>@version</code> a <code>@namespace</code> tieto príkazy budú vložené
+          do skriptu, ak chýbajú. Tieto skripty sú potrebné pre správnu aktualizáciu.</li>
+
+          <li><code>@description</code> tento príkaz bude vložený, ak nová verzia
           skriptu chýba a predchádzajúca verzia ju mala.</li>
-            <li>Zalomenie riadkov CRLF a CR bude prevedené na štandardný štýl Unixu.</li>
+
+          <li>Zalomenie riadkov CRLF a CR bude prevedené na štandardný štýl Unixu.</li>
+
           </ul>
     site_feedback_link: "Nahlásenie problému alebo pridanie nápadu pre %{site_name}"
     credits:
