@@ -1,6 +1,6 @@
 <% 
 t_params = {
-	:discussion_link => link_to(discussion.name, discussion.url).html_safe,
+	:discussion_link => link_to(discussion.unescaped_name, discussion.url).html_safe,
 	:original_poster_link => link_to(discussion.original_poster.name, user_path(discussion.original_poster)).html_safe,
 	:original_post_date => discussion.created.nil? ? '?' : markup_date(discussion.created).html_safe
 }

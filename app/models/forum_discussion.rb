@@ -10,6 +10,11 @@ class ForumDiscussion < ActiveRecord::Base
 	belongs_to :last_reply_forum_poster, -> { readonly }, :class_name => 'ForumUser', :foreign_key => 'LastCommentUserID'
 	belongs_to :script, :foreign_key => 'ScriptID'
 
+	def unescaped_name
+		# Vanilla stored this as escaped. We are going to unescape on output anyway.
+		return CGI.unescapeHTML(name)
+	end
+
 	def created
 		return self.DateInserted
 	end
