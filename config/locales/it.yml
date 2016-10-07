@@ -105,7 +105,7 @@ it:
     derivatives_script_html: "%{script_link} di %{user_link}, licenza: %{license}"
     derivatives_script_with_code_line_html: "%{script_lines_link} di %{user_link}, licenza: %{license}"
     script_lines_link: "%{script_name}, linee da %{start} a %{end}"
-    listing_title_all_sites: "User script per tutti i siti"
+    listing_title_all_sites: "Script utente per tutti i siti"
     listing_description_all_sites: "Script che aggiungono funzioni e rimuovono bug in tutti i siti"
     listing_title_for_site: "Script per %{site}"
     listing_description_for_site: "Script che aggiungono funzioni e rimuovono errori in %{site}"
@@ -342,22 +342,122 @@ it:
       name: "Il nome dello script, utilizzato nel titolo e nei link. Richiesto."
       name_localized_html: "Il nome dello script con le specifiche locali, dove XX è un <a href=\"http://www.tizianabottone.com/traduzione/iso-639-1/\">codice ISO 639-1 di due lettere</a> e YY è un opzionale <a href=\"https://it.wikipedia.org/wiki/ISO_3166-1_alpha-2\">codice nazionale ISO 3166</a>. Sostituisci <code>@name</code> quando l'utente sta navigando in uno standard locale."
       description: "Breve descrizione dello script. Mostrata come testo semplice sotto il nome dello script. Richiesto."
+      description_localized_html: "La descrizione dello script in una lingua specifica, dove XX è un <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">codice a due lettere ISO 639-1</a> e YY è un <a href=\"https://www.iso.org/obp/ui/#search\">codice Paese ISO 3166</a> facoltativo. Ha la precedenza su <code>@description</code> quando l'utente sfoglia il sito nella lingua corrispondente."
+      namespace_html: "I gestori script utente utilizzano una combinazione di <code>@namespace</code> e <code>@name</code> per controllare se uno script è già installato. %{site_name} richiede questo campo ed emetterà un avviso se viene modificato durante un aggiornamento."
+      version_html: "Identificatore per una versione specifica di uno script nel <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">formato versione di Mozilla</a>. La versione viene visualizzata nella pagina delle informazioni dello script. %{site_name} richiede questo campo ed emetterà un avviso se viene decrementato o se non viene incrementato ogniqualvolta il codice dello script venga modificato."
       include: "Descrivi le pagine in cui verra utilizzato lo script. La lista verrà processata, mostrata tra le informazioni nella pagina dello script, ed infine utilizzata per categorizzare gli script."
       require_html: "Include codice JavaScript esterno allo script. Guarda %{external_script_link}."
       require_external_script_link_text: "regole per codice contenente script esterni"
+      updateURL: "Descrive come i gestori script utente debbano ottenere gli aggiornamenti. %{site_name} rimuoverà queste chiavi, il che farà sì che ogni script installato da %{site_name} riceva gli aggiornamenti solo da %{site_name}."
+      license: "URL che punta a o nome della licenza che descrive come sia consentito copiare o modificare uno script. La mancanza di una licenza implica che gli utenti possano installare lo script per uso personale, ma non possano redistribuirlo. La licenza viene visualizzata nella pagina delle informazioni dello script."
+      supportURL: "URL che punta a una pagina dove gli utenti possano ottenere supporto per uno script (ad es. un bug tracker, un forum, un indirizzo e-mail). L'URL di supporto viene visualizzato nella pagina dei feedback dello script."
+      contributionURL_html: "URL che punta a una pagina dove gli utenti possano fare una donazione all'autore dello script. L'URL può avere come protocollo HTTP, HTTPS o Bitcoin. Per inserire un collegamento a una pagina per le donazioni di PayPal, utilizza un URL nel formato <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Donazione+Greasy+Fork\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Donazione+Greasy+Fork</a>, sostituendo l'indirizzo e-mail di esempio con il tuo."
       contributionAmount_html: "Importo suggerito per le donazioni, usato in concomitanza con il tag <code>@contributionURL</code>."
+      compatible_html: "Contrassegna questo script come compatibile con un browser. Le informazioni sulla compatibilità saranno visualizzate nella pagina dello script. I commenti sulla compatibilità possono essere inclusi nel formato <code>@compatible firefox Deve essere disabilitato il blocco pop-up</code>. I browser riconosciuti sono: %{browsers}."
+      incompatible_html: "Contrassegna questo script come non compatibile con un browser. Le informazioni sulla compatibilità saranno visualizzate nella pagina dello script. I commenti (facoltativi) sulla compatibilità possono essere inclusi nel formato <code>@incompatible firefox Non funziona con Firefox 23 e successivi</code>. I browser riconosciuti sono: %{browsers}."
     writing_user_scripts:
       title: "Come scrivere script utente"
+      content_html: "<p>Scrivere script utente richiede la conoscenza di JavaScript. I <a href=\"http://wiki.greasespot.net/Tutorials\">tutorial sul wiki GreaseSpot</a> dovrebbero avvantaggiarti sia per quanto riguarda JavaScript in generale, sia per gli aspetti correlati agli script utente. Esaminare gli script di altri potrebbe aiutarti. Potresti voler consultare %{code_rules_link} e %{meta_keys_link}. Se hai bisogno di aiuto per lo sviluppo del tuo script, sentiti libero di %{ask_in_forum_link}.</p><p>Per inviare un post a %{site_name} dovrai creare un account. Dalla tua %{user_page_link} segui il collegamento a %{post_new_script_link}.</p>"
       ask_in_forum_link_text: 'chiedi nel forum'
       user_page_link_text: 'pagina utente'
       post_new_script_link_text: 'posta un nuovo script'
     code_rules:
       title: "Le regole di %{site_name} per gli script postati"
+      content_html: >
+          <p>Questi sono i requisiti per gli script inviati a %{site_name}. Essi sono
+          volti a mantenere %{site_name} un posto sicuro e utile per gli script utente.
+          Ogni script che non rispetti questi requisiti potrebbe essere eliminato
+          dai moderatori di %{site_name}.</p> <ul>
+
+          <li>Gli script devono includere una descrizione di ciò che fanno e non possono
+          compiere azioni che non ricadano ragionevolmente in tale descrizione. Gli
+          utenti devono sapere cosa farà uno script prima di installarlo.</li>
+
+          <li>Il codice caricato su questo sito non può essere offuscato o minificato.
+          Agli utenti deve essere data l'opportunità di esaminare e comprendere cosa
+          fa uno script prima di installarlo.</li>
+
+          <li>Le librerie utilizzate da uno script dovrebbero essere incluse con <code>@require</code>,
+          a meno che non vi sia un motivo tecnico valido per non farlo. Nel caso in
+          cui una libreria sia inclusa inline, essa deve includere informazioni relative
+          all'origine della libreria (ad es. un commento che indichi l'URL e/o il
+          nome e la versione).</li>
+
+          <li>Il tuo script deve rispettare i copyright di terzi. Ciò include lo script
+          in sé e tutte le risorse (ad esempio, immagini) che utilizza. Se intendi
+          utilizzare i contenuti di altri, rispetta le loro condizioni di licenza
+          oppure ottieni il loro permesso prima di farlo.</li>
+
+          <li>%{external_scripts_link:L'utilizzo di JavaScript esterni è limitato.}</li>
+
+          %{adult_content_requirement}
+
+          </ul> <p>Se noti uno script che non ricade in questi parametri, segnalalo
+          utilizzando il collegamento Feedback per tale script, iniziando una discussione
+          e scegliendo l'opzione "Segnala script".</p> <p>Se non sei d'accordo con
+          uno di questi punti, %{contact_link:parliamone}!</p>
       adult_content_rule_html: "<li>Script che includono contenuti per adulti o sono per siti con contenuti per adulti devono essere contrassegnati come tali per dare agli altri utenti l'opzione di vederli oppure no.</li>"
     external_scripts:
       title: "Politiche di %{site_name} per gli script esterni"
+      content_html: >
+          <p>Gli script utente hanno la capacità tecnica di caricare ed eseguire altri
+          script. La chiave %{require_doc_link:<code>@require</code>} dei metadati
+          è il modo più semplice per fare ciò, ma gli script possono anche, ad esempio,
+          utilizzare una XmlHttpRequest per scaricare uno script e iniettarlo nel
+          DOM.</p> <p>Benché questa sia una funzionalità utile e molti autori di script
+          la utilizzino per scopi leciti, essa può anche essere utilizzata per scopi
+          malevoli. Uno dei principi fondamentali di %{site_name} è che l'utente debba
+          essere in grado di esaminare il codice di uno script. Gli script esterni
+          possono aggirare questo principio in molti modi: possono essere modificati
+          senza alcun preavviso e senza che siano mantenute le versioni precedenti,
+          possono offrire codice differente a persone differenti e possono essere
+          utilizzati per nascondere codice malevolo all'interno di librerie note.
+          Anche se qualcuno controllasse uno script esterno e ne determinasse la legittimità,
+          ciò non sarebbe una garanzia del fatto che tale script sia sempre stato
+          o sarà sempre legittimo.</p> <p>Per consentire agli autori di script di
+          continuare a utilizzare script esterni, %{site_name} ha implementato una
+          lista bianca di pattern URL che possono essere inclusi in uno script. Questa
+          lista bianca consiste di indirizzi:</p> <ul>
+
+          <li>che sono pubblici</li>
+
+          <li>il cui contenuto non venga modificato di frequente</li>
+
+          <li>potrebbero probabilmente essere utili a più di un autore di script</li>
+
+          </ul> <p>L'elenco attuale è:</p> %{allowed_require_list} <p>Se tenti di
+          inviare uno script che utilizza un <code>@require</code> non appartenente
+          a tali indirizzi, non sarai in grado di salvare il tuo script.</p> <p>Se
+          lo script che vuoi includere è una libreria JavaScript (ad esempio jQuery
+          o YUI), prova a cercarlo su uno dei siti elencati sopra. In particolare,
+          %{cdnjs_link:cdnjs} e %{jsdelivr_link:jsDelivr} offrono un'ampia scelta
+          di librerie.</p> <p>Se lo script che vuoi includere non è disponibile sui
+          siti di cui sopra, %{contact_link:faccelo sapere} in modo che possiamo cercarlo
+          (oppure ospitarlo noi!).</p> <p>Se lo script che vuoi includere è stato
+          scritto da te, puoi inviarlo separatamente su %{site_name} scegliendo il
+          tipo di script "Libreria". Sarai quindi in grado di includere questa libreria
+          caricata nel tuo script.</p>
     script_rewriting:
       title: "Come %{site_name} riscriverà gli script postati"
+      content_html: >
+          <p>Gli script caricati a %{site_name} saranno riscritti come segue:</p>
+          <ul>
+
+          <li>Le direttive <code>@updateURL</code>, <code>@installURL</code> e <code>@downloadURL</code>
+          saranno rimosse, se presenti. L'assenza di tali direttive significa che
+          ogni script installato da %{site_name} riceverà gli aggiornamenti da %{site_name}.</li>
+
+          <li>Le direttive <code>@version</code> e <code>@namespace</code> saranno
+          inserite se non presenti nello script. Tali direttive sono necessarie per
+          il corretto funzionamento degli aggiornamenti.</li>
+
+          <li><code>@description</code> sarà inserita se una versione più recente
+          dello script non la include e una versione precedente dello script la aveva.</li>
+
+          <li>Le terminazioni di riga CRLF e CR saranno convertite in terminazioni
+          di riga standard/in stile Unix.</li>
+
+          </ul>
     site_feedback_link: "Riporta un problema o invia un'idea per %{site_name}"
     credits:
       title: "Crediti"
@@ -368,6 +468,20 @@ it:
     help_with_greasymonkey: "Aiuto con Greasemonkey"
     contact:
       title: "Contatta qualcuno"
+      content_html: >
+          <p>Ci sono molti modi di discutere di %{site_name} e di ciò che vi è contenuto.</p>
+          <p>Hai una domanda o un commento su uno specifico script caricato sul sito?
+          Se è così, inizia una discussione dal collegamento nella scheda Feedback
+          nella pagina di quello script. Gli autori degli script ricevono una notifica
+          nella loro pagina dell'account per ogni discussione relativa ai loro script.</p>
+          <p>Hai una domanda o un commento su %{site_name} in sé o sullo sviluppo
+          degli script, o vorresti che qualcuno ti creasse uno script? %{forum_link:Inviare
+          un post al forum} farà sì che esso abbia l'attenzione del maggior numero
+          di persone possibile.</p> <p>Vuoi segnalare un bug o hai un'idea completamente
+          specificata per %{site_name} in sé (e non per uno specifico script <em>caricato
+          su</em> %{site_name})? %{github_link:Inviali alla pagina GitHub.}</p> <p>Hai
+          una domanda privata o un commento che vorresti fosse visto solo dall'amministratore?
+          %{admin_email_link:Invia un'e-mail.}</p>
     privacy_policy:
       title: "Politica sulla privacy"
   common:

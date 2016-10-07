@@ -137,6 +137,7 @@ sv:
     contribution_with_amount: "Tacka %{author} genom en donation. Den föreslagna donationen är %{amount}."
     contribution_bitcoin_no_amount_html: "Tacka %{author} genom en Bitcoin-donation till %{address}."
     contribution_bitcoin_with_amount_html: "Tacka %{author} genom en Bitcoin-donation till %{address}. Den föreslagna donationen är %{amount}."
+    locale_explanation_html: "Borde matcha språket av <code>@name</code>, <code>@description</code>, och första ytterligare information."
     locale_auto_select: "(Upptäcker automatiskt)"
     sets_label: "I skript set:"
     sets_label_no_sets: "Skriptet:"
@@ -145,6 +146,7 @@ sv:
     sets_add_inclusion: "Lägg till %{set_name}"
     sets_add_exclusion: "Uteslut från %{set_name}"
     sets_add_to_new: "Lägg till ny uppsättning"
+    rules_summary_html: "Skriptet måste vara <strong> korrekt beskrivet </strong>, kan inte vara <strong>förvrängd</strong> eller <strong>minified</strong>, måste respektera <strong> upphovsrätten </strong>, \noch är begränsade i <strong>extern kod</strong> använd. %{full_rules_link}"
     rules_summary_link_to_full: "Läs alla regler"
     syncing_notice_html: "Detta skript är %{syncing_notice_sync_type}. Alla ändringar du gör i koden här kommer överskrivas vid synkning."
     syncing_notice_sync_type_manual: "Ställ in att synka manuellt från %{sync_identifier}"
@@ -158,15 +160,21 @@ sv:
     post_updated_script: "Lägg ut en ny version"
     type_1_html: "Öppet användarskript - ett användarskript öppet för alla att se och använda."
     type_2_html: "Olistat användarskript - ett användarskript för (semi-)privat användning. Tillgänglig via direkt åtkomst, men inte länkad till från någonstans på %{site_name}."
+    type_3_html: "Bibliotek- ett skript avsedd att vara <code>@require</code>-d \nfrån andra skript och inte installeras direkt."
     override_warning_checkbox_label: "Spara iallafall"
+    warning_version_not_incremented_html: "Du uppdaterade koden men inte öka <code>@version</code> numret. De som tidigare installerat skriptet kan inte få den uppdaterade koden."
+    warning_version_missing_html: "Du har inte specificerat  <code>@version</code>. A <code>@version</code> meta nyckel tillåter uppdatering kontroll av ditt skript i användare script chefer."
     warning_version_missing_generate_automatically_html: "Generera <code>@version</code> automatiskt?"
+    warning_namespace_missing_html: "Du har inte specificerat <code>@namespace</code>. A <code>@namespace</code> metanyckel tillåter användare att om installera skriptet för att uppdatera den."
     warning_namespace_missing_generate_automatically_html: "Generera <code>@namespace</code> automatiskt?"
+    warning_namespace_changed_html: "Din <code>@namespace</code> har förändrats. En konsekvent <code>@namespace</code> tillåter användare att ominstallera skriptet för att uppdatera den."
     warning_potentially_minified_allowed_requires_link: "en av dessa platser"
     additional_info_locale_prompt: "(Välj ett språk)"
     additional_info_add_localized: "Lägg till en språkanpassad beskrivning"
     additional_info_locale_repeated: "Lägg endast till en beskrivning för språket '%{locale_code}'."
     localized_additional_info_with_no_name: "En ytterligare beskrivning var specificerad för språkvarianten '%{locale_code}', men inget @name:%{locale_code} tillhandahölls."
     code_syncing_from_url_html: "Detta skriptets kod är inställt på att synka från: %{field}"
+    provide_code_syncing_from_url_html: "%{site_name} kan importera skript som redan värd någon annanstans, till exempel i ett versionshanteringssystem (som GitHub), din egen server, eller en annan användar skript webbsida.till att aktivera synkronisering för dina skript, tillhandahålla en webbadress: %{field}"
     sync_type_intro: "Skriptet kommer synkas:"
     sync_type_1: "Manuellt - det kommer att letas efter uppdateringar endast när du vill det"
     sync_type_2: "Automatiskt - det kommer att letas efter uppdateringar periodiskt"
@@ -205,9 +213,11 @@ sv:
     approve_redistribution_true: "Jag är OK med att mitt skript får bli uppladdat på andra ställen"
     approve_redistribution_false: "Jag vill inte att mitt skript får bli uppladdat på andra ställen"
     redistributable_title: "Distribuerbara användarskript"
+    redistributable_page_description: "Författarna av dessa skript har uttryckligen angivit att de godkänner att andra får lägga ut det på annat ställe. Dessa skript kan fortfarande vara föremål för ytterligare villkor avseende omfördelning; kontrollera varje script licens för mer information."
     adult_content: "Vuxeninnehåll"
     adult_content_self_report: "Detta skript innehåller vuxet innehåll eller är till för en sida med vuxet innehåll."
     adult_content_self_report_explanation: "%{site_name} tillåter skript med vuxet innehåll, men dom måste bli markerade som så, så att användare kan välja vare sig dom vill se det eller inte."
+    not_adult_content_self_report_html: "Detta skript innehåller <strong>inte </strong> sexuellt innehåll och är <strong>inte</strong> för en webbplats som innehåller pornografiskt innehåll."
     not_adult_content_self_report_explanation: "%{site_name} tillåter skript med vuxet innehåll, men dom måste bli markerade som så, så att användare kan välja vare sig dom vill se det eller inte. Ditt skript har blivit markerat för vuxeninnehåll. Du kan rapportera det för att vara felaktigt; vilket i så fall kommer granskas av en moderator."
     adult_content_on_greasy_logged_in_error: "Detta skript är inte längre tillgängligt på denna sidan med dina nuvarande %{edit_account_link:Greasy Fork account settings}."
     adult_content_on_greasy_not_logged_in_error: "Detta skript är inte längre anonymt tillgängligt på denna sidan. %{login_link:Log in} och kontrollera dina Greasy Fork kontoinställningar."
@@ -233,16 +243,22 @@ sv:
     sleazy_title: "%{site_name} - säkra och praktiska vuxenanvändarskript"
     sleazy_welcome: "Välkommen till %{site_name}, en sida för vuxenanvändarskript."
     explain_user_scripts_heading: "Vad är användar skripts?"
+    explain_user_scripts_html: "Användar skript sätta dig i kontroll över din webbupplevelse . när skriptet är installerat, de automatiskt gör de webbplatser du besöker bättre genom att lägga till funktioner, vilket gör dem lättare att använda, eller ta ut irriterande bitar. Användaren skript på %{site_name} skrivna av andra användare och skrivit att dela med världen. De är gratis att installera och lätt att använda."
     how_to_install_user_scripts_heading: "Hur installerar jag användarskript?"
+    how_to_install_user_scripts_html: "För att använda Skripts måste du först installera en userscript manager. För Firefox, är det bästa valet %{gm_link:Greasemonkey}. för Chrome: %{tm_link:Tampermonkey}. %{other_managers_link:Andra alternativ finns.} När du har installerat en userscript manager, hitta ett skript du vill på %{site_name} och klicka på den gröna installations knappen. \nSkriptet installeras sedan och kommer att köras på webbplatser det gäller."
     scripts_sample: "Ett prov av våra skript"
     scripts_sample_more: "Mer..."
   users:
     sign_in_title: "Logga in på %{site_name}"
     sign_in_description: "Att logga in på %{site_name} låter dig publicera skript och recensera andras skript. Du behöver inte logga in för att bläddra eller installera skript."
     sign_in_external: "Logga in via en extern tjänst"
+    sign_in_with: "Logga in med %{provider}"
+    sign_in_shutting_down: "(Stänger ner %{date})"
     sign_in_password: "Logga in med lösenord"
     sign_in_email_used_no_external_services_html: "'%{email}' används redan av användaren '%{user_name}'. Om det är du och du fortfarande vill logga in vid %{provider}, %{sign_in_link} på ditt konto först och lägg sedan till %{provider}-inloggningen."
+    sign_in_email_used_with_external_services_html: "'%{email}' används redan av användare'%{user_name}', som loggar in med  %{existing_providers}. Om det är du och du vill lägga till ytterligare logga in med %{provider}, %{sign_in_link} på ditt konto först och sedan lägga till din %{provider} inloggning."
     sign_in_email_used_sign_in_link: "logga in"
+    sign_in_email_missing: "%{site_name} kräver ett e-post för att göra ett nytt konto, men%{provider} inte försedde dig med en . Du kan antingen uppdatera%{provider} konto för att ha en, sedan försöka logga in igen, eller skapa en normal e-post / lösenord konto på %{site_name}, sedan lägga till din %{provider} konto till det."
     sign_in_name_used: "Namnet '%{name}' används redan. Välj ett annat."
     sign_in_name_used_submit: "Skicka"
     preview_profile: "Förhandsvisning"
@@ -274,10 +290,12 @@ sv:
     password_removed: "Lösenord borttaget."
     edit_sign_in_external: "Externa inloggningar"
     external_sign_in_info_no_sign_ins: "Du kan använda ditt konto på externa sidor för att logga in på %{site_name}."
+    external_sign_in_info_with_sign_ins: "Du använder för närvarande de yttre tecken ins som anges nedan. \nEn \"synkronisering\" logga in innebär att din %{site_name} info (som användarnamn och e-post) kommer att uppdateras för att matcha när du loggar in."
     external_sign_in_added: "%{provider}-inloggning tillagd."
     external_sign_in_updated: "%{provider}-inloggning uppdaterad."
     external_sign_in_removed: "%{provider}-inloggning borttagen."
     external_sign_in_failed: "%{provider}-inloggning misslyckad: %{error}."
+    external_sign_in_already_used: "Addition av %{provider} inloggning misslyckades: inloggning redan används av användaren '%{user_name}'."
     syncing_indicator: "(synkar)"
     enable_syncing: "Sätt på synkning"
     disable_syncing: "Stäng av synkning"
@@ -300,6 +318,7 @@ sv:
     show_ads_description: "Stöd %{site_name} genom att låta den visa annonser"
     show_sensitive_description: "Visa skript med vuxeninnehåll"
     preferred_markup_description: "Kommer att användas för nya skript och inlägg."
+    flattr_username_description_html: "Användare av dina skript kommer att uppmanas att donera till ditt konto på <a href=\"https://flattr.com\">Flattr</a>."
     approve_redistribution_true: "Jag är OK med att mitt skript får bli uppladdat på andra ställen"
     approve_redistribution_false: "Jag vill inte att mitt skript får bli uppladdat på andra ställen"
     greasy_fork_scripts_link:
@@ -319,6 +338,7 @@ sv:
       description: "En beskrivning av vad skriptet gör. Visas som text under skriptets namn. Krävs."
       require_html: "Inkludera externa JavaScript-skript i ett skript. Se %{external_script_link}."
       require_external_script_link_text: "regler för kod som inkluderar externa skript"
+      contributionAmount_html: "Föreslagen donation belopp, som används tillsammans med <code>@contributionURL</code>."
     writing_user_scripts:
       title: "Hur man skriver användarskript"
       ask_in_forum_link_text: 'fråga i forumet'
@@ -326,13 +346,39 @@ sv:
       post_new_script_link_text: 'publicera ett nytt skript'
     code_rules:
       title: "%{site_name}s regler för publicerade skript"
+      adult_content_rule_html: "<li>Skript som innehåller barnförbjudet innehåll eller är för webbplatser med pornografiskt innehåll måste märkas som sådana för att tillåta andra användare möjlighet att välja om dom vill se dem.</li>"
     external_scripts:
       title: "%{site_name}s integritetspolicy om externa skript"
     script_rewriting:
       title: "Hur %{site_name} kommer skriva om publicerade skript"
+      content_html: >+
+          <p>Skript som läggs upp till %{site_name} kommer att skrivas om på följande
+          sätt:</p> <ul>
+
+          <li><code>@updateURL</code>, <code>@installURL</code>, och <code>@downloadURL</code>
+          direktiven kommer att demonteras, om de är närvarande. Bristen på dessa
+          direktiv innebär att alla skript installerade från %{site_name} kommer att
+          uppdateras från %{site_name}.</li>
+
+          <li><code>@version</code> och <code>@namespace</code> direktiven kommer
+          att införas om skriptet saknas dem. Dessa direktiv behövs för ordentlig
+          uppdatering.</li>
+
+          <li><code>@description</code> kommer att införas om en ny version av ett
+          skript saknas det och en tidigare version av skriptet hade det.</li>
+
+          <li>CRLF och CR radbrytningar kommer att konverteras till vanliga / Unix-stil
+          radbrytningar.</li>
+
+          </ul>
+
     site_feedback_link: "Rapportera ett problem eller dela med dig av idéer för själva %{site_name}"
     credits:
       title: "Medverkande"
+      authors_credit: "%{site_name} skulle inte vara möjligt utan författarna som bidragit skript."
+      developers_credit: "%{site_name} är byggt av %{developers_link:these people} med hjälp av alla de personer som rapporterar fel och föreslå förbättringar."
+      translators_credit: "%{site_name} vart översatt av %{translators_link:the Greasy Translation Force on Transifex}:"
+      icons_credit: "Diskussions ikoner är från %{vistastylebase} av %{iconsland}.\nWebbläsare ikoner är från %{browserlogos}."
     help_with_greasymonkey: "Hjälp med Greasemonkey"
     contact:
       title: "Kontakta någon"
@@ -342,9 +388,13 @@ sv:
     error_preamble: "Det var några problem med vad du la upp..."
     allowed_elements_link: "(Se tillåten kod.)"
     allowed_elements_and_attributes_title: "Tillåtna element för HTML-innehåll"
+    allowed_elements_intro: "Följande element och attribut är tillåtna. Detta gäller både HTML och Markdown (efter omvandling till HTML)."
+    allowed_elements_extra_info: "Blanktecken kommer att förvandlas till p eller BR element. Webbadresser kommer automatiskt bli linkified."
     not_found_text: "404 - Sidan kunde ej hittas."
     not_found_title: "404 - Sidan kunde ej hittas"
     not_found_link_home: "Gå hem."
+    suggest_locale: "%{site_name} är tillgänglig i %{locale_name}."
+    incomplete_locale: "%{site_name}'s %{locale_name} translationen är bara %{percent} färdigt. Du kan ändra på det."
     expander_show_more: "Visa mer"
     expander_show_less: "Visa mindre"
     advertisement_note: Annons
@@ -358,6 +408,7 @@ sv:
         author_email_notification_type_id: "Skriptdiskussionsnotifikationer"
         show_ads: "Visa annonser"
         show_sensitive: "Vuxeninnehål"
+        preferred_markup: "föredragna märkning"
         flattr_username: "Flattr användarnamn"
       script:
         name: "Namn"
@@ -370,6 +421,7 @@ sv:
         screenshots: "Skärmdumpar"
         screenshot_caption: "Rubrik"
         replaced_by_script_id: "Ersättningsskript"
+        approve_redistribution: "Omfördelning"
   errors:
     messages:
       script_missing_name: "krävs - specificera med @name"
