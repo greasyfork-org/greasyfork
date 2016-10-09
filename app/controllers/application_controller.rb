@@ -147,6 +147,7 @@ protected
 		script.user = script_version.script.user
 		script.created_at = current_script.created_at
 		script.updated_at = script_version.updated_at
+		script.set_default_name
 		# this is not necessarily accurate, as the revision the user picked may not have involved a code update
 		script.code_updated_at = script_version.updated_at
 		return [script, script_version]

@@ -65,6 +65,12 @@ en:
     install_help: "?"
     # title (tooltip) for link that gives information on how to install scripts
     install_help_title: "How to install"
+    # link that makes the user update the script
+    update: "Update to version %{version}"
+    # link that makes the user downgrade the script
+    downgrade: "Downgrade to version %{version}"
+    # link that makes the user reinstall the script
+    reinstall: "Reinstall version %{version}"
     # instructions on a script library. code will be a <code> element. Don't use punctuation around the code element if possible so that people don't accidentally include that when copying.
     library_instructions_html: "This script should not be not be installed directly. It is a library for other scripts to include with the meta directive %{code}"
     # text displayed for deleted scripts
