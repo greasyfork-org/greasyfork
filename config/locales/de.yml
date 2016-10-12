@@ -40,6 +40,9 @@ de:
     install: "Skript installieren"
     install_help: "?"
     install_help_title: "Installationsanleitung"
+    update: "Auf Version %{version} aktualisieren"
+    downgrade: "Auf Version %{version} zurückstufen"
+    reinstall: "Version %{version} erneut installieren"
     library_instructions_html: "Dieses Skript sollte nicht direkt installiert werden. Es handelt sich hier um eine Bibliothek für andere Skripte, welche über folgenden Befehl in den Metadaten eines Skriptes eingebunden wird %{code}"
     deleted_notice: "Dieses Skript wurde gelöscht."
     inactive_pending_changes: "Dieses Skript ist momentan inaktiv, da es nicht mit den Richtlinien von %{site_name} übereinstimmt."
@@ -445,6 +448,26 @@ de:
           zu verwenden.</p>
     script_rewriting:
       title: "Wie %{site_name} veröffentlichte Skripte umschreibt"
+      content_html: >
+          <p>Skripte, welche auf %{site_name} veröffentlicht werden, werden wie folgt
+          umgeschrieben:</p><ul>
+
+          <li>Die Anweisungen <code>@updateURL</code>, <code>@installURL</code> und
+          <code>@downloadURL</code> werden entfernt, falls vorhanden. Das Fehlen dieser
+          Anweisungen bedeutet, dass jedes Skript, was von %{site_name} installiert
+          wurde auch Updates von %{site_name} erhält.</li>
+
+          <li>Die Anweisungen <code>@version</code> und <code>@namespace</code> werden
+          eingefügt, falls sie im Skript fehlen. Diese Anweisungen sind für korrekte
+          Updates notwendig.</li>
+
+          <li><code>@description</code> wird eingefügt, falls sie in einer neuen Skriptversion
+          fehlt, aber eine vorherige Version des Skriptes sie hatte.</li>
+
+          <li>CRLF und CR Zeilenumbrüche werden in Standard/ Unix-Style Zeilenumbrüche
+          umgewandelt.</li>
+
+          </ul>
     site_feedback_link: "Melde ein Problem oder veröffentliche eine Idee für %{site_name} selbst"
     credits:
       title: "Mitwirkende"
