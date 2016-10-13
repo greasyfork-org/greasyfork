@@ -373,7 +373,9 @@ class Script < ActiveRecord::Base
 	end
 
 	def immediate_deletion_allowed?
-		return (created_at > 14.days.ago && total_installs < 50) || (created_at > 60.days.ago && total_installs < 25)
+		return true if total_installs <= 50
+		# Less than 5 installs per day on average
+		return total_installs <= (Date.today - created_at.to_date).to_i * 5
 	end
 
 private
