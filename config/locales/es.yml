@@ -102,7 +102,9 @@ es:
     stats_no_data: "N/D"
     derivatives_title: "%{script_name} - Derivados"
     derivatives_intro: "Estos scripts pueden basarse en el tuyo (o viceversa). Si detectas un uso no autorizado de tu código, denuncia el script creando un nueva conversación en su perfil."
-    derivatives_code_matches_info_html: "Scripts escritos por otros que incluyen código con al menos %{match_size} caracteres en común con tu script. Esta comprobación se ejecuta sólo en los scripts de menos de %{max_size} y se ejecutó por última vez %{last_run}."
+    derivatives_code_matches_info_html:
+      one: "Scripts escritos por otros que incluyen código con al menos %{match_size} línea en común con tu script. Esta comprobación se ejecuta sólo en los scripts de menos de %{max_size} y se ejecutó por última vez el %{last_run}."
+      other: "Scripts escritos por otros que incluyen código con al menos %{match_size} líneas en común con tu script. Esta comprobación se ejecuta sólo en los scripts de menos de %{max_size} y se ejecutó por última vez el %{last_run}."
     derivatives_namespace_matches_info_html: "Scripts publicados por otros usando <code>%{namespace}</code>:"
     derivatives_name_matches_info: "Scripts publicados por otros con los nombres más similares al suyo:"
     derivatives_script_html: "%{script_link} por %{user_link}, licencia: %{license}"

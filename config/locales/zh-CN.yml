@@ -98,7 +98,8 @@ zh-CN:
     stats_no_data: "不可用"
     derivatives_title: "%{script_name} - 类似脚本"
     derivatives_intro: "这些脚本可能是基于您的 (或您基于他们的) 脚本修改而来。如果您发现了未经授权使用您的代码的情况，请新建一个讨论贴以通知管理员。"
-    derivatives_code_matches_info_html: "其它人发的脚本与您的脚本有至少 %{match_size} 个相同的字符。此检查仅在脚本小于 %{max_size} 时运行，上次扫描时间为 %{last_run}。"
+    derivatives_code_matches_info_html:
+      other: "您的脚本与其他人发布的脚本有至少 %{match_size} 行相同。此检查仅在脚本不小于 %{max_size} 时运行，上次扫描时间为 %{last_run}。"
     derivatives_namespace_matches_info_html: "其他人使用 <code>%{namespace}</code> 发布的脚本："
     derivatives_name_matches_info: "他人发布的和您的脚本有最相似名称的脚本："
     derivatives_script_html: "%{user_link} 发布的 %{script_link}，许可协议：%{license}"
