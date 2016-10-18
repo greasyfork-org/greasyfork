@@ -41,6 +41,9 @@ module Greasyfork
     config.available_auths = {}
 
     config.active_job.queue_adapter = :delayed_job
-    config.active_record.raise_in_transactional_callbacks = true
+    
+    config.active_record.belongs_to_required_by_default = true
+    config.action_controller.per_form_csrf_tokens = true
+    config.action_controller.forgery_protection_origin_check = true
   end
 end

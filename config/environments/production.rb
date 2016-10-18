@@ -20,7 +20,7 @@ Greasyfork::Application.configure do
   # config.action_dispatch.rack_cache = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this).
-  config.serve_static_files = false
+  config.public_file_server.enabled = false
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -60,7 +60,6 @@ Greasyfork::Application.configure do
   config.assets.css_compressor = :yui
   config.assets.compile = false
   config.assets.digest = true
-  config.assets.precompile << Proc.new { |path,fn| fn.starts_with?(Rails.root.join('vendor').to_s)}
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = "http://assets.example.com"

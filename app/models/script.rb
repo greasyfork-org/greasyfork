@@ -22,12 +22,12 @@ class Script < ActiveRecord::Base
 	has_one :syntax_highlighted_code, dependent: :destroy
 
 	belongs_to :script_type
-	belongs_to :script_sync_source
-	belongs_to :script_sync_type
-	belongs_to :script_delete_type
-	belongs_to :license
+	belongs_to :script_sync_source, optional: true
+	belongs_to :script_sync_type, optional: true
+	belongs_to :script_delete_type, optional: true
+	belongs_to :license, optional: true
 	belongs_to :locale
-	belongs_to :replaced_by_script, :class_name => 'Script'
+	belongs_to :replaced_by_script, class_name: 'Script', optional: true
 
 	attr_accessor :adult_content_self_report, :not_adult_content_self_report
 
@@ -47,7 +47,7 @@ class Script < ActiveRecord::Base
 	}
 	scope :listable, ->(script_subset) {active(script_subset).where(:script_type_id => 1)}
 	scope :libraries, ->(script_subset) {active(script_subset).where(:script_type_id => 3)}
-	scope :reported, -> {not_deleted.joins(:discussions).includes(:user).uniq.where('GDN_Discussion.Rating = 1').where('Closed = 0')}
+	scope :reported, -> {not_deleted.joins(:discussions).includes(:user).distinct.where('GDN_Discussion.Rating = 1').where('Closed = 0')}
 	scope :reported_not_adult, -> {not_deleted.includes(:user).where('not_adult_content_self_report_date IS NOT NULL')}
 	scope :requested_permanent_deletion, -> {where('permanent_deletion_request_date is not null')}
 	scope :for_all_sites, -> {includes(:script_applies_tos).references(:script_applies_tos).where('script_applies_tos.id IS NULL')}

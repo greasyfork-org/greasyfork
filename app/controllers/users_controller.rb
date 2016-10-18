@@ -5,8 +5,8 @@ class UsersController < ApplicationController
 
 	skip_before_action :verify_authenticity_token, :only => [:webhook]
 
-	before_filter :authenticate_user!, :except => [:show, :webhook, :index]
-	before_filter :authorize_for_moderators_only, :only => [:ban, :do_ban]
+	before_action :authenticate_user!, :except => [:show, :webhook, :index]
+	before_action :authorize_for_moderators_only, :only => [:ban, :do_ban]
 
 	HMAC_DIGEST = OpenSSL::Digest.new('sha1')
 
@@ -41,8 +41,8 @@ class UsersController < ApplicationController
 				@bots = 'noindex,follow' if !params[:sort].nil?
 
 				@link_alternates = [
-					{:url => url_for(params.merge({:only_path => true, :format => :json})), :type => 'application/json'},
-					{:url => url_for(params.merge({:only_path => true, :format => :jsonp, :callback => 'callback'})), :type => 'application/javascript'}
+					{:url => current_path_with_params(format: :json), :type => 'application/json'},
+					{:url => current_path_with_params(format: :jsonp, callback: 'callback'), :type => 'application/javascript'}
 				]
 				@canonical_params = [:id, :page, :per_page, :set, :site, :sort]
 			}

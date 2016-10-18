@@ -1,4 +1,4 @@
-class Screenshot < ActiveRecord::Base
+class Screenshot < ApplicationRecord
 
 	has_and_belongs_to_many :script_versions
 

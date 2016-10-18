@@ -161,7 +161,6 @@ module ApplicationHelper
 		"<span id=\"#{name}\">#{link_to('§', {:anchor => name}, {:class => 'self-link'})} #{text}</span>".html_safe
 	end
 
-
 	def forum_path
 		return "/#{I18n.locale}/forum/"
 	end
@@ -178,6 +177,16 @@ module ApplicationHelper
 		return 'pt' if I18n.locale.to_s == 'pt-BR'
 		return 'fr' if I18n.locale.to_s == 'fr-CA'
 		return nil
+	end
+
+	def current_url_with_params(p={})
+		r = params.except(:only_path, :protocol, :host, :subdomain, :domain, :tld_length, :subdomain, :port, :anchor, :trailing_slash, :script_name, :controller, :action, :format).merge(p)
+		r.permit!
+		return url_for(r)
+	end
+
+	def current_path_with_params(p={})
+		return url_for(current_url_with_params(p.merge(only_path: true)))
 	end
 
 private

@@ -1,9 +1,9 @@
-class Locale < ActiveRecord::Base
+class Locale < ApplicationRecord
 
 	has_many :scripts
 	has_many :locale_contributors
 
-	scope :with_listable_scripts, ->(script_subset) {joins(:scripts).where(Script.listable(script_subset).where_values).uniq.order(:code)}
+	scope :with_listable_scripts, ->(script_subset) {joins(:scripts).where(Script.listable(script_subset).where_values).distinct.order(:code)}
 
 	def display_text
 		"#{native_name.nil? ? english_name : native_name} (#{code})"

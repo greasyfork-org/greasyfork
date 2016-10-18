@@ -1,2 +1,2 @@
-class ScriptSetAutomaticType < ActiveRecord::Base
+class ScriptSetAutomaticType < ApplicationRecord
 end

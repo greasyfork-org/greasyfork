@@ -1,11 +1,10 @@
 class ApplicationController < ActionController::Base
-	# Prevent CSRF attacks by raising an exception.
-	# For APIs, you may want to use :null_session instead.
 	protect_from_forgery with: :exception
 
-	before_filter :configure_permitted_parameters, if: :devise_controller?
+	before_action :configure_permitted_parameters, if: :devise_controller?
+	before_action :banned?
 
-	before_filter :banned?
+	include ApplicationHelper
 
 	rescue_from ActiveRecord::RecordNotFound, :with => :routing_error
 	def routing_error
@@ -14,7 +13,7 @@ class ApplicationController < ActionController::Base
 				render 'home/routing_error', status: 404, layout: 'application'
 			}
 			format.all {
-				render :nothing => true, :status => 404, :content_type => 'text/html'
+				head 404, content_type: 'text/html'
 			}
 		end
 	end
@@ -22,17 +21,8 @@ class ApplicationController < ActionController::Base
 protected
 
 	def configure_permitted_parameters
-		devise_parameter_sanitizer.for(:sign_up) << :name
-		devise_parameter_sanitizer.for(:account_update) << :name
-		devise_parameter_sanitizer.for(:account_update) << :profile
-		devise_parameter_sanitizer.for(:account_update) << :profile_markup
-		devise_parameter_sanitizer.for(:account_update) << :preferred_markup
-		devise_parameter_sanitizer.for(:account_update) << :locale_id
-		devise_parameter_sanitizer.for(:account_update) << :author_email_notification_type_id
-		devise_parameter_sanitizer.for(:account_update) << :show_ads
-		devise_parameter_sanitizer.for(:account_update) << :show_sensitive
-		devise_parameter_sanitizer.for(:account_update) << :flattr_username
-		devise_parameter_sanitizer.for(:account_update) << :approve_redistribution
+		devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+		devise_parameter_sanitizer.permit(:account_update, keys: [:name, :profile, :profile_markup, :preferred_markup, :locale_id, :author_email_notification_type_id, :show_ads, :show_sensitive, :flattr_username, :approve_redistribution])
 	end
 
 	def authorize_by_script_id
@@ -198,7 +188,7 @@ protected
 		return h
 	end
 
-	before_filter :set_locale
+	before_action :set_locale
 	def set_locale
 		# User chose "Help us translate" in the locale picker
 		if params[:locale] == 'help'
@@ -215,13 +205,13 @@ protected
 
 		# Redirect a logged-in user to their preferred locale, if it's available
 		if !current_user.nil? && !current_user.locale.nil? && current_user.locale.ui_available && params[:locale] != current_user.locale.code && (params[:locale_override].nil? || params[:locale].nil?)
-			redirect_to url_for(params.merge(:only_path => true, :locale => current_user.locale.code, :locale_override => nil)), :status => 302
+			redirect_to current_path_with_params(locale: current_user.locale.code, locale_override: nil), :status => 302
 			return
 		end
 
 		# Redirect if locale is a request param and not part of the url
 		if !request.GET[:locale].nil?
-			redirect_to url_for(params.merge(:only_path => true)), :status => 301
+			redirect_to current_path_with_params, :status => 301
 			return
 		end
 
@@ -251,7 +241,7 @@ protected
 		# Detect language
 		top, preferred = ApplicationController.detect_locale(current_user, request.headers['Accept-Language'])
 		flash[:notice] = "<b>Greasy Fork is not available in #{preferred.english_name}. <a href=\"#{Rails.configuration.help_translate_url}\" target=\"_new\">You can change that.</a></b>".html_safe if !preferred.nil?
-		redirect_to url_for(params.merge(:only_path => true, :locale => top.code)), :status => 302
+		redirect_to current_path_with_params(locale: top.code), :status => 302
 	end
 
 	def clean_redirect_param(param_name)
