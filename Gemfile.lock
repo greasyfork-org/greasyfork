@@ -6,12 +6,6 @@ GIT
     coderay (1.1.1.rc1)
 
 GIT
-  remote: https://github.com/tigrish/devise-i18n
-  revision: 4c948deffbe5a356617435bf8eb0c258a04ee8da
-  specs:
-    devise-i18n (1.1.0)
-
-GIT
   remote: https://github.com/tmaesaka/transifex-ruby.git
   revision: a5994ab559c90f4e419eeff287a5beac0e5fa81f
   specs:
@@ -92,6 +86,7 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    devise-i18n (1.1.1)
     diffy (3.0.7)
     erubis (2.7.0)
     execjs (2.6.0)
@@ -281,7 +276,7 @@ DEPENDENCIES
   delayed_job_active_record (~> 4.0.3)
   detect_language
   devise (~> 3.5.0)
-  devise-i18n!
+  devise-i18n (>= 1.1.1)
   diffy (~> 3.0.5)
   fancybox2-rails (~> 0.2.8)
   i18n (>= 0.6.11)
