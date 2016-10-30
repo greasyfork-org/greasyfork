@@ -18,6 +18,11 @@ class ApplicationController < ActionController::Base
 		end
 	end
 
+	rescue_from ActionController::UnknownFormat, with: :unknown_format
+	def unknown_format
+		head 406, content_type: 'text/plain'
+	end
+
 protected
 
 	def configure_permitted_parameters
