@@ -447,7 +447,8 @@ private
 				next
 			end
 			# Make a new one
-			send(child_name).build(new_hash)
+			# Specify script again - https://github.com/rails/rails/issues/26817
+			send(child_name).build(new_hash.merge(script: self))
 		}
 		# Anything left in the search array, mark for destruction
 		existing_children.each(&:mark_for_destruction)
