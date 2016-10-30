@@ -1,2 +1,2 @@
-class License < ActiveRecord::Base
+class License < ApplicationRecord
 end

@@ -1,4 +1,4 @@
-class ForumDiscussion < ActiveRecord::Base
+class ForumDiscussion < ApplicationRecord
 	self.table_name = 'GDN_Discussion'
 	self.primary_key = 'DiscussionID'
 	alias_attribute 'name', 'Name'

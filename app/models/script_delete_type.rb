@@ -1,2 +1,2 @@
-class ScriptDeleteType < ActiveRecord::Base
+class ScriptDeleteType < ApplicationRecord
 end

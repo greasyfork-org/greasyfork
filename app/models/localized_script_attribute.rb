@@ -1,4 +1,4 @@
-class LocalizedScriptAttribute < ActiveRecord::Base
+class LocalizedScriptAttribute < ApplicationRecord
 
 	belongs_to :script
 	belongs_to :locale

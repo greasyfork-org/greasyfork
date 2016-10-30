@@ -1,4 +1,4 @@
-class DisallowedCode < ActiveRecord::Base
+class DisallowedCode < ApplicationRecord
 
 	def readonly?
 		true

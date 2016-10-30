@@ -1,6 +1,6 @@
 require 'coderay'
 
-class SyntaxHighlightedCode < ActiveRecord::Base
+class SyntaxHighlightedCode < ApplicationRecord
 
 	belongs_to :script
 
