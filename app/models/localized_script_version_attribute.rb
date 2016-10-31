@@ -1,4 +1,4 @@
-class LocalizedScriptVersionAttribute < ActiveRecord::Base
+class LocalizedScriptVersionAttribute < ApplicationRecord
 
 	belongs_to :script_version
 	belongs_to :locale

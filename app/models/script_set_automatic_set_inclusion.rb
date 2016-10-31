@@ -1,4 +1,4 @@
-class ScriptSetAutomaticSetInclusion < ActiveRecord::Base
+class ScriptSetAutomaticSetInclusion < ApplicationRecord
 
 	belongs_to :parent, :class_name => 'ScriptSet', :touch => true
 	belongs_to :script_set_automatic_type
