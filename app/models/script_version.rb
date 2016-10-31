@@ -1,7 +1,7 @@
 require 'uri'
 require 'localizing_model'
 
-class ScriptVersion < ActiveRecord::Base
+class ScriptVersion < ApplicationRecord
 	include LocalizingModel
 
 	# this has to be before belongs_to for codes so that it runs before autosave
@@ -540,7 +540,7 @@ class ScriptVersion < ActiveRecord::Base
 		return r if !meta.has_key?('require')
 		allowed_requires = AllowedRequire.all
 		meta['require'].each do |script_url|
-			r << script_url if allowed_requires.index { |ar| script_url =~ Regexp.new(ar.pattern) }.nil?
+			r << script_url if allowed_requires.none?{ |ar| script_url =~ Regexp.new(ar.pattern) }
 		end
 		return r
 	end

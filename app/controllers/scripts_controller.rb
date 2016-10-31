@@ -4,12 +4,12 @@ require 'csv'
 class ScriptsController < ApplicationController
 	layout 'application', :except => [:show, :show_code, :feedback, :diff, :sync, :sync_update, :delete, :do_delete, :stats, :derivatives, :mark, :do_mark]
 
-	before_filter :authorize_by_script_id, :only => [:sync, :sync_update, :request_permanent_deletion, :unrequest_permanent_deletion]
-	before_filter :authorize_by_script_id_or_moderator, :only => [:delete, :do_delete, :undelete, :do_undelete, :derivatives]
-	before_filter :check_for_locked_by_script_id, :only => [:sync, :sync_update, :delete, :do_delete, :undelete, :do_undelete, :request_permanent_deletion, :unrequest_permanent_deletion]
-	before_filter :check_for_deleted_by_id, :only => [:show]
-	before_filter :check_for_deleted_by_script_id, :only => [:show_code, :feedback, :install_ping, :diff]
-	before_filter :authorize_for_moderators_only, :only => [:minified, :mark, :do_mark, :reported_not_adult, :do_permanent_deletion, :reject_permanent_deletion, :requested_permanent_deletion]
+	before_action :authorize_by_script_id, :only => [:sync, :sync_update, :request_permanent_deletion, :unrequest_permanent_deletion]
+	before_action :authorize_by_script_id_or_moderator, :only => [:delete, :do_delete, :undelete, :do_undelete, :derivatives]
+	before_action :check_for_locked_by_script_id, :only => [:sync, :sync_update, :delete, :do_delete, :undelete, :do_undelete, :request_permanent_deletion, :unrequest_permanent_deletion]
+	before_action :check_for_deleted_by_id, :only => [:show]
+	before_action :check_for_deleted_by_script_id, :only => [:show_code, :feedback, :install_ping, :diff]
+	before_action :authorize_for_moderators_only, :only => [:minified, :mark, :do_mark, :reported_not_adult, :do_permanent_deletion, :reject_permanent_deletion, :requested_permanent_deletion]
 
 	skip_before_action :verify_authenticity_token, :only => [:install_ping]
 	protect_from_forgery :except => [:user_js, :meta_js, :show, :show_code]
@@ -182,8 +182,8 @@ class ScriptsController < ApplicationController
 				end
 				@by_sites = self.class.get_by_sites(script_subset)
 				@link_alternates = [
-					{:url => url_for(params.merge({:only_path => true, :format => :json})), :type => 'application/json'},
-					{:url => url_for(params.merge({:only_path => true, :format => :jsonp, :callback => 'callback'})), :type => 'application/javascript'}
+					{:url => current_path_with_params(format: :json), :type => 'application/json'},
+					{:url => current_path_with_params(format: :jsonp, callback: 'callback'), :type => 'application/javascript'}
 				]
 				@canonical_params = [:id, :version]
 				@ad_method = choose_ad_method(@script)
@@ -817,12 +817,12 @@ private
 
 	def get_listing_link_alternatives
 		[
-			{:url => url_for(params.merge({:only_path => true, :page => nil, :sort => 'created', :format => :atom})), :type => 'application/atom+xml', :title => t('scripts.listing_created_feed')},
-			{:url => url_for(params.merge({:only_path => true, :page => nil, :sort => 'updated', :format => :atom})), :type => 'application/atom+xml', :title => t('scripts.listing_updated_feed')},
-			{:url => url_for(params.merge({:only_path => true, :format => :json})), :type => 'application/json'},
-			{:url => url_for(params.merge({:only_path => true, :format => :jsonp, :callback => 'callback'})), :type => 'application/javascript'},
-			{:url => url_for(params.merge({:only_path => true, :format => :json, :meta => '1'})), :type => 'application/json'},
-			{:url => url_for(params.merge({:only_path => true, :format => :jsonp, :meta => '1', :callback => 'callback'})), :type => 'application/javascript'}
+			{:url => current_path_with_params(page: nil, sort: 'created', format: :atom), :type => 'application/atom+xml', :title => t('scripts.listing_created_feed')},
+			{:url => current_path_with_params(page: nil, sort: 'updated', format: :atom), :type => 'application/atom+xml', :title => t('scripts.listing_updated_feed')},
+			{:url => current_path_with_params(format: :json), :type => 'application/json'},
+			{:url => current_path_with_params(format: :jsonp, callback: 'callback'), :type => 'application/javascript'},
+			{:url => current_path_with_params(format: :json, meta: '1'), :type => 'application/json'},
+			{:url => current_path_with_params(format: :jsonp, meta:'1', callback: 'callback'), :type => 'application/javascript'}
 		]
 	end
 

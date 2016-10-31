@@ -1,2 +1,2 @@
-class Browser < ActiveRecord::Base
+class Browser < ApplicationRecord
 end

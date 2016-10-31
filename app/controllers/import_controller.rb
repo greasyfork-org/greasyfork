@@ -6,7 +6,7 @@ class ImportController < ApplicationController
 
 	$IMPORTERS = [UserScriptsOrgImporter, UrlImporter]
 
-	before_filter :authenticate_user!
+	before_action :authenticate_user!
 
 	def index
 		@scripts_by_source = Script.where(['user_id = ?', current_user.id]).where('script_sync_source_id is not null').includes([:script_sync_source, :script_sync_type])
