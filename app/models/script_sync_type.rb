@@ -1,2 +1,2 @@
-class ScriptSyncType < ActiveRecord::Base
+class ScriptSyncType < ApplicationRecord
 end

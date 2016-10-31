@@ -1,7 +1,7 @@
 require 'securerandom'
 require 'devise'
 
-class User < ActiveRecord::Base
+class User < ApplicationRecord
 
 	has_many :scripts
 	# Gotta to it this way because you can't pass a parameter to a has_many, and we need it has_many
@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 
 	has_many :script_sets
 
-	belongs_to :locale
+	belongs_to :locale, optional: true
 
 	# Include default devise modules. Others available are:
 	# :confirmable, :lockable, :timeoutable and :omniauthable

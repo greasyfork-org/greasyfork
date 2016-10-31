@@ -87,9 +87,9 @@ module ApplicationHelper
 		if @@markdown_sanitize_config.nil?
 			@@markdown_sanitize_config = Sanitize::Config::BASIC.dup
 			@@markdown_sanitize_config[:elements] = @@markdown_sanitize_config[:elements].dup
-			@@markdown_sanitize_config[:elements].concat(['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'img', 'hr', 'del', 'ins', 'table', 'tr', 'th', 'td', 'thead', 'tbody', 'tfoot', 'span', 'div', 'tt', 'center', 'ruby', 'rt', 'rp'])
-			@@markdown_sanitize_config[:attributes] = @@markdown_sanitize_config[:attributes].merge('img' => ['src', 'alt', 'height', 'width'], :all => ['title', 'name'])
-			@@markdown_sanitize_config[:protocols] = @@markdown_sanitize_config[:protocols].merge('img' => {'src'  => ['https']})
+			@@markdown_sanitize_config[:elements].concat(['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'img', 'hr', 'del', 'ins', 'table', 'tr', 'th', 'td', 'thead', 'tbody', 'tfoot', 'span', 'div', 'tt', 'center', 'ruby', 'rt', 'rp', 'video'])
+			@@markdown_sanitize_config[:attributes] = @@markdown_sanitize_config[:attributes].merge('img' => ['src', 'alt', 'height', 'width'], 'video' => ['src', 'poster', 'height', 'width'], :all => ['title', 'name'])
+			@@markdown_sanitize_config[:protocols] = @@markdown_sanitize_config[:protocols].merge('img' => {'src'  => ['https']}, 'video' => {'src'  => ['https']})
 			@@markdown_sanitize_config[:remove_contents] = ['script', 'style']
 
 			yes_follow = lambda do |env|
@@ -161,7 +161,6 @@ module ApplicationHelper
 		"<span id=\"#{name}\">#{link_to('§', {:anchor => name}, {:class => 'self-link'})} #{text}</span>".html_safe
 	end
 
-
 	def forum_path
 		return "/#{I18n.locale}/forum/"
 	end
@@ -178,6 +177,16 @@ module ApplicationHelper
 		return 'pt' if I18n.locale.to_s == 'pt-BR'
 		return 'fr' if I18n.locale.to_s == 'fr-CA'
 		return nil
+	end
+
+	def current_url_with_params(p={})
+		r = params.except(:only_path, :protocol, :host, :subdomain, :domain, :tld_length, :subdomain, :port, :anchor, :trailing_slash, :script_name, :controller, :action, :format).merge(p)
+		r.permit!
+		return url_for(r)
+	end
+
+	def current_path_with_params(p={})
+		return url_for(current_url_with_params(p.merge(only_path: true)))
 	end
 
 private

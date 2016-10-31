@@ -7,7 +7,7 @@
 <p><%=it('help.credits.translators_credit', translators_link: 'https://www.transifex.com/organization/greasy-fork/team/21359/', site_name: site_name)%></p>
 
 <ul>
-	<% Locale.where(:ui_available => true).joins(:locale_contributors).order(:code).uniq.each do |locale| %>
+	<% Locale.where(:ui_available => true).joins(:locale_contributors).order(:code).distinct.each do |locale| %>
 		<li><%=locale.native_name%> (<%=locale.code%>): <%=locale.locale_contributors.map{|lc| lc.transifex_user_name}.join(', ')%></li>
 	<% end %>
 </ul>

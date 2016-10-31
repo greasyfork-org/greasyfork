@@ -1,2 +1,2 @@
-class ScriptType < ActiveRecord::Base
+class ScriptType < ApplicationRecord
 end

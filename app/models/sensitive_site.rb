@@ -1,2 +1,2 @@
-class SensitiveSite < ActiveRecord::Base
+class SensitiveSite < ApplicationRecord
 end

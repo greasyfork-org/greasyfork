@@ -1,8 +1,8 @@
 class ScriptSetsController < ApplicationController
 
-	before_filter :authenticate_user!
-	before_filter :authorize_by_user_id
-	before_filter :ensure_set_ownership, :except => [:new, :create, :add_to_set]
+	before_action :authenticate_user!
+	before_action :authorize_by_user_id
+	before_action :ensure_set_ownership, :except => [:new, :create, :add_to_set]
 
 	def new
 		@user = User.find(params[:user_id])
