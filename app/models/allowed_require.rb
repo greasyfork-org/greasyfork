@@ -1,4 +1,4 @@
-class AllowedRequire < ActiveRecord::Base
+class AllowedRequire < ApplicationRecord
 
 	def readonly?
 		true

@@ -1,4 +1,4 @@
-class ScriptSet < ActiveRecord::Base
+class ScriptSet < ApplicationRecord
 
 	belongs_to :user
 	has_many :set_inclusions, :class_name => 'ScriptSetSetInclusion', :foreign_key => :parent_id, :autosave => true

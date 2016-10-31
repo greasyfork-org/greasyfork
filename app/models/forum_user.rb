@@ -1,4 +1,4 @@
-class ForumUser < ActiveRecord::Base
+class ForumUser < ApplicationRecord
 	self.table_name = 'GDN_User'
 	self.primary_key = 'UserID'
 	

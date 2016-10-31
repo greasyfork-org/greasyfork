@@ -12,15 +12,15 @@
 	<% if defined?(@bots) %>
 		<meta name="robots" content="<%=@bots%>">
 	<% end %>
-	<link rel="canonical" href="<%=url_for(params.slice(*@canonical_params).merge({:host => 'greasyfork.org', :protocol => 'https', :locale_override => nil}))%>">
+	<link rel="canonical" href="<%=url_for(params.permit(*@canonical_params).merge(only_path: false))%>">
 	<link rel="icon" href="<%=asset_path 'blacklogo16.png'%>">
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
 	<% if request.get?
 		# https://support.google.com/webmasters/answer/189077 %>
-		<link rel="alternate" hreflang="x-default" href="<%=url_for(params.except(:locale).merge({:locale => nil, :only_path => true}))%>">
+		<link rel="alternate" hreflang="x-default" href="<%=current_path_with_params(locale: nil)%>">
 		<% Rails.configuration.available_locales.each do |code, name| %>
-			<link rel="alternate" hreflang="<%=code%>" href="<%=url_for(params.except(:locale).merge({:locale => code, :only_path => true}))%>">
+			<link rel="alternate" hreflang="<%=code%>" href="<%=current_path_with_params(locale: code)%>">
 		<% end
 	end %>
 
@@ -77,7 +77,7 @@
 						<span class="sign-in-link"><%=link_to(t('.sign_in'), new_user_session_path(request.get? ? {:return_to => request.fullpath} : {}), {:rel => 'nofollow'})%></span>
 					<% end %>
 					<% if request.get?
-						form_action = url_for(params.except(:locale).merge({:locale => nil, :only_path => true}))
+						form_action = current_path_with_params(locale: nil)
 					else
 						form_action = root_path({:locale => nil})
 					end %>
@@ -87,7 +87,7 @@
 						<select id="language-selector-locale" name="locale">
 							<% Rails.configuration.available_locales.each do |code, name|
 								if request.get? %>
-									<option data-language-url="<%=url_for(params.except(:locale).merge({:locale => code, :only_path => true, :locale_override => locale_with_override_param}))%>" value="<%=code%>"<%if params[:locale] == code%> selected<%end%>><%=name%> (<%=code%>)</option>
+									<option data-language-url="<%=current_path_with_params(locale: code, locale_override: locale_with_override_param)%>" value="<%=code%>"<%if params[:locale] == code%> selected<%end%>><%=name%> (<%=code%>)</option>
 								<% else %>
 									<option data-language-url="<%=root_path({:locale => code, :locale_override => locale_with_override_param})%>" value="<%=code%>"<%if params[:locale] == code%> selected<%end%>><%=name%> (<%=code%>)</option>
 								<% end

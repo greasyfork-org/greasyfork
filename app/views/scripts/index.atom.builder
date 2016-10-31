@@ -1,4 +1,4 @@
-atom_feed(:root_url => url_for(params.except(:format).merge(:host => request.host))) do |feed|
+atom_feed(:root_url => current_path_with_params(host: request.host)) do |feed|
 	feed.title(@title)
 	feed.subtitle(@description)
 	feed.updated(@scripts[0].code_updated_at) if @scripts.length > 0
