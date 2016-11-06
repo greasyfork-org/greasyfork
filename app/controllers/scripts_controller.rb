@@ -434,7 +434,7 @@ class ScriptsController < ApplicationController
 				script_id = params[:replaced_by_script_id].to_i
 			# A non-GF URL?
 			elsif !params[:replaced_by_script_id].start_with?('https://greasyfork.org/')
-				@script.errors.add(:replaced_by_script_id, :must_be_greasy_fork_script)
+				@script.errors.add(:replaced_by_script_id, I18n.t('errors.messages.must_be_greasy_fork_script', site_name: site_name))
 				render :delete
 				return
 			# A GF URL?
