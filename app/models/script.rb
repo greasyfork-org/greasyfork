@@ -105,6 +105,8 @@ class Script < ActiveRecord::Base
 
 	validates_format_of :sync_identifier, :with => URI::regexp(%w(http https)), :message => :script_sync_identifier_bad_protocol, :if => Proc.new {|r| r.script_sync_source_id == 1}
 
+	validates_length_of :sync_identifier, maximum: 500
+
 	strip_attributes :only => [:sync_identifier]
 
 	before_validation :set_locale
