@@ -4,23 +4,26 @@
 <%= javascript_include_tag "Chart" %>
 
 <%
-max_labels = 30
-label_skip = max_labels > @stats.keys.length ? 1 : (@stats.keys.length / 30)
+[:installs, :weekly_installs, :update_checks].each do |data_key|
 
-[:installs, :update_checks].each do |data_key|
-
-	if data_key == :installs
-		container_id = 'install-stats-chart-container'
-		heading_key = 'scripts.stats_daily_installs_heading'
-	else
-		container_id = 'update-check-stats-chart-container'
-		heading_key = 'scripts.stats_daily_update_checks_heading'
+	case data_key
+		when :installs
+			container_id = 'install-stats-chart-container'
+			heading_key = 'scripts.stats_daily_installs_heading'
+		when :weekly_installs
+			container_id = 'weekly-install-stats-chart-container'
+			heading_key = 'scripts.stats_weekly_installs_heading'
+		when :update_checks
+			container_id = 'update-check-stats-chart-container'
+			heading_key = 'scripts.stats_daily_update_checks_heading'
 	end %>
 
 	<h3><%=t(heading_key)%></h3>
 	<div id="<%=container_id%>"></div>
 
-	<%	data = @stats.map{|k, v| [k, v[data_key]]}.to_h
+	<%
+	data = @stats.map{|k, v| [k, v[data_key == :weekly_installs ? :installs : data_key]]}.to_h
+	data = data.group_by{|k, v| k.beginning_of_week}.map{|k, vs| [k, vs.sum{|v| v.last || 0}]}.to_h if data_key == :weekly_installs
 	%>
 	<script>
 	var data = {
