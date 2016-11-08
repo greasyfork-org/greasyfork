@@ -18,7 +18,7 @@
 <p>To set up the webhook on GitHub's side, access to your GitHub repository and go to Settings, Webhooks &amp; Services, Add webhook, then enter the data below. You can set up multiple repositories with the same info.</p>
 <dl>
 	<dt>Payload URL</dt>
-	<dd><%=user_path(@user, :only_path => false)%>/webhook</dd>
+	<dd><%=user_webhook_url(@user)%></dd>
 	<dt>Content type</dt>
 	<dd>application/json</dd>
 	<dt>Secret</dt>
