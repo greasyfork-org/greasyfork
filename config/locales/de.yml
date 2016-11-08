@@ -93,6 +93,7 @@ de:
     feedback_sign_in_to_favorite: "Anmelden, um es zu den Favoriten hinzuzufügen."
     stats_title: "%{script_name} - Statistiken"
     stats_daily_installs_heading: "Installationen pro Tag"
+    stats_weekly_installs_heading: "Wöchentliche Installationen"
     stats_daily_update_checks_heading: "Tägliche Aktualisierungsprüfungen"
     stats_daily_installs_date_column_heading: "Datum"
     stats_daily_installs_install_count_column_heading: "Installationen"
@@ -457,16 +458,16 @@ de:
           <li>Die Anweisungen <code>@updateURL</code>, <code>@installURL</code> und
           <code>@downloadURL</code> werden entfernt, falls vorhanden. Das Fehlen dieser
           Anweisungen bedeutet, dass jedes Skript, was von %{site_name} installiert
-          wurde auch Updates von %{site_name} erhält.</li>
+          wurde auch Aktualisierungen von %{site_name} erhält.</li>
 
           <li>Die Anweisungen <code>@version</code> und <code>@namespace</code> werden
-          eingefügt, falls sie im Skript fehlen. Diese Anweisungen sind für korrekte
-          Updates notwendig.</li>
+          eingefügt, falls sie im Skript fehlen. Diese Anweisungen werden fürs ordnungsgemäß
+          Aktualisieren benötigt.</li>
 
           <li><code>@description</code> wird eingefügt, falls sie in einer neuen Skriptversion
           fehlt, aber eine vorherige Version des Skriptes sie hatte.</li>
 
-          <li>CRLF und CR Zeilenumbrüche werden in Standard/ Unix-Style Zeilenumbrüche
+          <li>CRLF- und CR-Zeilenumbrüche werden in Standard-/ Unix-Stilzeilenumbrüche
           umgewandelt.</li>
 
           </ul>
