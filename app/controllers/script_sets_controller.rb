@@ -48,7 +48,7 @@ class ScriptSetsController < ApplicationController
 
 	def destroy
 		set = ScriptSet.find(params[:id])
-		ScriptSetSetInclusion.destroy_all(:child_id => set.id)
+		ScriptSetSetInclusion.where(child_id: set.id).destroy_all
 		set.destroy
 		redirect_to set.user
 	end

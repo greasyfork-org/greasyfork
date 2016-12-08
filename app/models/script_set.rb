@@ -65,12 +65,14 @@ class ScriptSet < ApplicationRecord
 	def add_child(child, exclusion = false)
 		if child.is_a?(ScriptSet)
 			return false if child_set_inclusions.include?(child) or child_set_exclusions.include?(child)
-			set_inclusions.build({:child => child, :exclusion => exclusion})
+			# Include parent due to https://github.com/rails/rails/issues/26817
+			set_inclusions.build(parent: self, child: child, exclusion: exclusion)
 			return true
 		end
 		if child.is_a?(Script)
 			return false if child_script_inclusions.include?(child) or child_script_exclusions.include?(child)
-			script_inclusions.build({:child => child, :exclusion => exclusion})
+			# Include parent due to https://github.com/rails/rails/issues/26817
+			script_inclusions.build(parent: self, child: child, exclusion: exclusion)
 			return true
 		end
 		return false
