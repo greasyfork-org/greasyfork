@@ -37,6 +37,7 @@ gem 'levenshtein'
 gem "paperclip"
 gem 'fancybox2-rails'
 gem 'it'
+gem 'rb-readline'
 
 gem 'byebug', group: [:development, :test]
 gem 'bullet', :group => :development
