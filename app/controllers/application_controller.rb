@@ -202,7 +202,10 @@ protected
 		end
 
 		# Don't want to redirect on POSTs and API stuff, even if they're missing a locale
-		if !(request.get? || request.head?) || ['omniauth_callback', 'omniauth_failure', 'sso', 'webhook', 'user_js', 'meta_js'].include?(params[:action]) || action_name == 'routing_error'
+		if !(request.get? || request.head?) ||
+				['omniauth_callback', 'omniauth_failure', 'sso', 'webhook', 'user_js', 'meta_js'].include?(params[:action]) ||
+				action_name == 'routing_error' ||
+				['js', 'json', 'jsonp'].include?(params[:format])
 			params[:locale] = params[:locale] || 'en'
 			I18n.locale = params[:locale]
 			return
