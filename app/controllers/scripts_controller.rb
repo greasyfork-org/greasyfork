@@ -256,7 +256,7 @@ class ScriptsController < ApplicationController
 		return if handle_replaced_script(script)
 		respond_to do |format|
 			format.any(:html, :all, :js) {
-				render :text => script.script_delete_type_id == 2 ? script_version.get_blanked_code : script_version.rewritten_code, :content_type => 'text/javascript'
+				render body: script.script_delete_type_id == 2 ? script_version.get_blanked_code : script_version.rewritten_code, content_type: 'text/javascript'
 			}
 			format.user_script_meta { 
 				render_meta_js(script, script_version)
@@ -295,7 +295,8 @@ class ScriptsController < ApplicationController
 		@old_version = ScriptVersion.find(versions.min)
 		@new_version = ScriptVersion.find(versions.max)
 		if @old_version.nil? or @new_version.nil? or @old_version.script_id != @script.id or @new_version.script_id != @script.id
-			render :text => 'Invalid versions provided.', :status => 400, :layout => true
+			@text = 'Invalid versions provided.'
+			render 'home/error', status: 400, layout: 'application'
 			return
 		end
 		@context = 3
@@ -609,7 +610,8 @@ class ScriptsController < ApplicationController
 			when 'clear_not_adult'
 				@script.not_adult_content_self_report_date = nil
 			else
-				render text: "Can't do that!", status: 406
+				@text = "Can't do that!"
+				render 'home/error', status: 406, layout: 'application'
 				return
 		end
 
@@ -856,7 +858,7 @@ private
 		cached_meta_js = cache_with_log("scripts/meta_js/#{script.cache_key}/#{script_version.id}") do
 			script.script_delete_type_id == 2 ? script_version.get_blanked_code : script_version.get_rewritten_meta_block
 		end
-		render text: cached_meta_js, content_type: 'text/x-userscript-meta'
+		render body: cached_meta_js, content_type: 'text/x-userscript-meta'
 		ScriptsController.record_update_check(request, params)
 	end
 

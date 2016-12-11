@@ -18,28 +18,34 @@ class ImportController < ApplicationController
 		url = params[:url]
 		@importer = UserScriptsOrgImporter
 		if @importer.remote_user_identifier(url).nil?
-			render :text => "Invalid #{@importer.import_source_name} profile URL.", :layout => true
+			@text = "Invalid #{@importer.import_source_name} profile URL."
+			render 'home/error', layout: 'application'
 			return
 		end
 		case @importer.verify_ownership(url, current_user.id)
 			when :failure
-				render :text => "#{@importer.import_source_name} profile check failed.", :layout => true
+				@text = "#{@importer.import_source_name} profile check failed."
+				render 'home/error', layout: 'application'
 				return
 			when :nourl
-				render :text => "Greasy Fork URL not found on #{@importer.import_source_name} profile.", :layout => true
+				@text = "Greasy Fork URL not found on #{@importer.import_source_name} profile."
+				render 'home/error', layout: 'application'
 				return
 			when :wronguser
-				render :text => "Greasy Fork URL found on #{@importer.import_source_name} profile, but it wasn\'t yours.", :layout => true
+				@text = "Greasy Fork URL found on #{@importer.import_source_name} profile, but it wasn't yours."
+				render 'home/error', layout: 'application'
 				return
 		end
 		begin
 			@new_scripts, @existing_scripts = @importer.pull_script_list(url)
 		rescue OpenURI::HTTPError => ex
-			render :text => "Could not download script list. '#{ex}' accessing #{url}.", :layout => true
+			@text = "Could not download script list. '#{ex}' accessing #{url}."
+			render 'home/error', status: 500, layout: 'application'
 			return
 		end
 		if @new_scripts.empty? and @existing_scripts.empty?
-			render :text => "No scripts found on #{@importer.import_source_name}", :layout => true
+			@text = "No scripts found on #{@importer.import_source_name}"
+			render 'home/error', layout: 'application'
 			return
 		end
 	end

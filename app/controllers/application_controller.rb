@@ -109,15 +109,18 @@ protected
 	end
 
 	def render_deleted
-		render :text => 'Script has been deleted.', :status => 410, :layout => 'application'
+		@text = 'Script has been deleted.'
+		render 'home/error', status: 403, layout: 'application'
 	end
 
 	def render_locked
-		render :text => 'Script has been locked.', :status => 403, :layout => 'application'
+		@text = 'Script has been locked.'
+		render 'home/error', status: 403, layout: 'application'
 	end
 
 	def render_access_denied
-		render :text => 'Access denied.', :status => 403, :layout => 'application'
+		@text = 'Access denied.'
+		render 'home/error', status: 403, layout: 'application'
 	end
 
 	def versionned_script(script_id, version_id)

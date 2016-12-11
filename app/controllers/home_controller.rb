@@ -18,13 +18,14 @@ class HomeController < ApplicationController
 				absolute_text = ScriptImporter::BaseScriptImporter.absolutize_references(text, params[:text])
 				text = absolute_text if !absolute_text.nil?
 			rescue ArgumentError => ex
-				render :text => ex
+				@text = ex
+				render 'home/error'
 				return
 			end
 		else
 			text = params[:text]
 		end
-		render :text => view_context.format_user_text(text, params[:markup])
+		render html: view_context.format_user_text(text, params[:markup])
 	end
 
 	def sso
