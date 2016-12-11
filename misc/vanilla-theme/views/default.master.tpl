@@ -35,6 +35,7 @@
 						<option value="fi" {if $locale == 'fi'}selected{/if}>Suomi (fi)</option>
 						<option value="fr" {if $locale == 'fr'}selected{/if}>Français (fr)</option>
 						<option value="fr-CA" {if $locale == 'fr-CA'}selected{/if}>Français canadien (fr-CA)</option>
+						<option value="he" {if $locale == 'he'}selected{/if}>עברית (he)</option>
 						<option value="hu" {if $locale == 'hu'}selected{/if}>Magyar (hu)</option>
 						<option value="id" {if $locale == 'id'}selected{/if}>Bahasa Indonesia (id)</option>
 						<option value="it" {if $locale == 'it'}selected{/if}>Italiano (it)</option>
