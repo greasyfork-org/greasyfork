@@ -14,6 +14,30 @@ label[for*="Rating"] {
 	display: block !important;
 }
 
+label[for*="Rating"] > * {
+	display: inline-block;
+}
+
+.DiscussionForm .PostOptions label[for*="Rating"] {
+	padding-top: 3px;
+}
+
+.DiscussionForm .PostOptions label[for*="Rating"] input {
+	margin-top: 0;
+}
+
+.DiscussionForm .PostOptions label[for*="Rating"] * {
+	vertical-align: top;
+}
+
+.DiscussionForm .PostOptions label[for*="Rating"] li {
+	display: list-item;
+}
+
+.DiscussionForm .PostOptions label[for*="Rating"] ul {
+	list-style: inside;
+}
+
 /* https://github.com/vanilla/vanilla/pull/2369 */
 .TextBoxWrapper input[type=radio] {
 	width: auto;
