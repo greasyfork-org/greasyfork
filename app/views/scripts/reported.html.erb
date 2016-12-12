@@ -2,6 +2,6 @@
 	<p>No scripts found.</p>
 <% else %>
 	<ol id="browse-script-list" class="script-list">
-		<%= render partial: 'script', collection: @scripts %>
+		<%= render partial: 'script', collection: @scripts, locals: { show_report_thread: true } %>
 	</ol>
 <% end %>
