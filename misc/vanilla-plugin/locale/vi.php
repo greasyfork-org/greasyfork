@@ -12,7 +12,7 @@ $Definition['RatingUpdateLabel'] = 'Cập nhật đánh giá:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = 'Không đánh giá - chỉ là một câu hỏi, bình luận, yêu cầu tính năng, hoặc báo cáo lỗi';
 ## Label for the radio button for reporting a script
-$Definition['RatingReport'] = 'Báo cáo script để điều hành để loại bỏ - phần mềm độc hại, mã bị đánh cắp, vv';
+$Definition['RatingReport'] = '<div class="report">Report script to moderators for removal, for example:<ul><li>Malware - describe which portion of the code is malicious</li><li>Licensing/copyright - describe and link to the original source of the code and provide any other evidence</li></ul></div>';
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = 'Tồi tệ - script không làm việc';
 /** Label for the radio button for rating a script "OK" **/

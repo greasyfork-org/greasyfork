@@ -12,7 +12,7 @@ $Definition['RatingUpdateLabel'] = 'Opdater din anmeldelse:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = 'Ikke en anmeldelse -  bare et spørgsmål, kommentar, funktion anmodning, eller fejl report';
 ## Label for the radio button for reporting a script
-$Definition['RatingReport'] = 'Reporter script til moderators for fjernelse - malware, stjålet script, osv.';
+$Definition['RatingReport'] = '<div class="report">Report script to moderators for removal, for example:<ul><li>Malware - describe which portion of the code is malicious</li><li>Licensing/copyright - describe and link to the original source of the code and provide any other evidence</li></ul></div>';
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = 'Dårligt - script virker ikke';
 /** Label for the radio button for rating a script "OK" **/

@@ -12,7 +12,7 @@ $Definition['RatingUpdateLabel'] = 'Uw waardering bijwerken:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = 'Geen waardering - gewoon een vraag, commentaar, functie-aanvraag of bugrapport';
 ## Label for the radio button for reporting a script
-$Definition['RatingReport'] = 'Rapporteer script voor verwijdering aan de moderators - malware, gestolen code, etc.';
+$Definition['RatingReport'] = '<div class="report">Report script to moderators for removal, for example:<ul><li>Malware - describe which portion of the code is malicious</li><li>Licensing/copyright - describe and link to the original source of the code and provide any other evidence</li></ul></div>';
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = 'Slecht - script werkt niet';
 /** Label for the radio button for rating a script "OK" **/

@@ -12,7 +12,7 @@ $Definition['RatingUpdateLabel'] = '更新您的評價：';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = '無評價 - 只是詢問、評論、功能請求、或錯誤報告';
 ## Label for the radio button for reporting a script
-$Definition['RatingReport'] = '舉報該腳本並通知管理員移除 - 惡意代碼或抄襲代碼等情形。';
+$Definition['RatingReport'] = '<div class="report">將腳本回報管理員並移除，例如︰<ul><li>惡意軟體 — 描述哪部份的程式碼是有問題的</li><li>版權 — 描述並附上原作腳本的連結，提供抄襲的證據</li></ul></div>';
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = '差評 - 腳本用不了或已經失效';
 /** Label for the radio button for rating a script "OK" **/
