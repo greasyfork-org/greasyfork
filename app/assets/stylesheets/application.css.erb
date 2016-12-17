@@ -16,6 +16,7 @@
 
 body {
 	margin: 0;
+	background-color: #F6F6F6;
 }
 body, select, input {
 	font-family: "Open Sans", sans-serif;
@@ -30,12 +31,14 @@ a:visited {
 
 #main-header {
 	background-color: #670000;
+	background-image: linear-gradient(#670000, #990000);
 	padding: 0.25em 0;
 }
 .width-constraint {
 	margin: auto;
 	max-width: 960px;
 }
+
 #main-header .width-constraint {
 	padding: 0 0 0.25em 0;
 	/* enable absolute positioning for children */
@@ -98,17 +101,25 @@ nav li + li {
 #script-search, #language-selector {
 	display: inline;
 }
-#nav-user-info, #nav-user-info select, #nav-user-info input {
-	font-size: smaller;
+#nav-user-info {
+	font-size: small;
+}
+#nav-user-info select, #nav-user-info input {
+	font-size: 11px;
+}
+
+#script-info {
+	padding: 0 1em 1em;
+	border: 1px solid #BBBBBB;
+	border-radius: 5px;
+	clear: left;
+	background-color: white;
+	margin: 1em 0;
+	box-shadow: 0 0 5px #DDDDDD;
 }
 
 #script-content {
-	/* extend the border to the left edge */
-	margin-left: -10px;
-	padding-left: 10px;
-	padding-right: 10px;
-	padding-top: 1em;
-	border-top: 1px solid black;
+	margin-top: 1.5em;
 }
 #script-content > *:first-child {
 	margin-top: 0;
@@ -117,12 +128,14 @@ nav li + li {
 	margin: 0.25em 0 0 0;
 	font-size: 2em;
 }
-#script-info header p {
+#script-description {
 	margin: 0;
 }
 #version-note {
 	font-style: italic;
-	background-color: yellow;
+	background-color: #FFFF99;
+	border: 2px dotted #CC9999;
+	padding: 0.5em;
 }
 #script-feedback-suggestion {
 	margin: 0.75em 0;
@@ -130,37 +143,32 @@ nav li + li {
 
 #script-links {
 	list-style: none;
-	padding: 0;
-	margin-bottom: 0;
+	padding: 0 1em;
+	margin: 0 -1em 0;
 }
 #script-links li {
 	display: inline-block;
-	border: solid;
-	border-width: 1px 1px 0 1px;
-	margin: 0 0.2em 0 0;
+	margin: 0 -4px 0 0;
 }
 #script-links li > * {
-	padding: 0.25em 0.5em;
+	padding: 0.25em .5em .5em;
 	display: block;
 }
 #script-links a {
 	text-decoration: none;
 }
 #script-links .current {
-	background: white;
-	/* shift it down 1px to overlap the top border of the next element */
+	background: rgba(0, 0, 0, 0.03);
 	position: relative;
-	top: 1px;
-	/* grow in size so the top borders align */
-	padding-top: 1px;
+	top: -4px;
+	font-weight: bold;
+	border-top: 7px solid #990000;
+	box-shadow: inset 1px 0 rgba(0, 0, 0, 0.1), inset -1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px rgba(0, 0, 0, 0.1);
 }
 /* shift the text back up to align with the others */
 #script-links .current > * {
 	position: relative;
-	top: -1px;
-}
-#script-links li:not(.current) {
-	background-color: #EEE;
+	top: 4px;
 }
 
 #install-area {
@@ -183,10 +191,13 @@ nav li + li {
 }
 #script-meta {
 	display: table;
+	font-size: small;
 }
 #script-meta > * {
-	display: table-cell;
 	margin-bottom: 1em;
+}
+#script-meta > dl dd {
+	max-width: 50%;
 }
 #script-stats, #script-stats dt, #script-stats dd, #script-applies-to, #script-applies-to dt, #script-applies-to dd {
 	vertical-align: top;
@@ -196,27 +207,25 @@ nav li + li {
 #script-stats {
 	padding-right: 1em;
 	min-width: 18em;
+	-moz-column-count: 2;
+	-webkit-column-count: 2;
+	column-count: 2;
+	-moz-column-gap: 1;
+	-webkit-column-gap: 1;
+	column-gap: 1;
 }
-#script-stats dt {
+#script-stats dt, #script-meta dt {
 	clear: left;
 	float: left;
 	width: 12em;
 	font-weight: bold;
 }
-#script-stats dd {
+#script-stats dd, #script-meta dd{
 	float: left;
+	min-width: 12em;
 }
-#script-applies-to dt {
-	display: inline;
-	font-weight: bold;
-}
-#script-applies-to dt:after {
+#script-applies-to dt:after, #script-meta dt:after {
 	content: ":";
-	display: inline;
-	font-weight: bold;
-}
-#script-applies-to dd {
-	display: inline;
 }
 .inline-list {
 	display: inline;
@@ -237,16 +246,11 @@ dt[title] > span {
 }
 
 
-#additional-info {
-}
-#additional-info > h3, #share > h3 {
-	margin-bottom: 0;
-	padding-bottom: 0;
-}
 #additional-info > div {
-	margin: 0;
+	margin: 1em 0;
 	padding: 1em;
-	background-color: #FFE6E6;
+	border: 1px solid #E6DDD6;
+	background-color: #F2E5E5;
 }
 #additional-info > div:not(:first-of-type) {
 	padding-top: 0.5em;
@@ -317,9 +321,22 @@ dt[title] > span {
 .script-list, .user-list {
 	list-style-type: none;
 	padding: 0;
+	box-shadow: 0 0 5px #DDDDDD;
+	background-color: white;
+	border: 1px solid #BBBBBB;
+	border-radius: 5px;
+	box-sizing: border-box;
 }
-.script-list article {
-	margin-bottom: 1em;
+.user-list {
+	padding: 1em;
+	margin: 1em 0;
+}
+.list-option-groups ~ ol {
+	width: calc(960px - 14em);
+}
+.script-list li {
+	border-bottom: 1px solid #DDDDDD;
+	padding: 1em;
 }
 .script-list h2 {
 	margin: 0;
@@ -346,13 +363,18 @@ dt[title] > span {
 	margin: 0;
 	padding: 0;
 }
+.script-list dd {
+	color: #666;
+}
+.script-list dt::after {
+	content: ": ";
+}
 .script-list dt {
 	clear: left;
 	float: left;
 	width: 12em;
-	font-weight: bold;
-	text-align: right;
 	padding-right: 1em;
+	padding-left: 1em;
 }
 .script-list dd {
 	float: left;
@@ -360,15 +382,24 @@ dt[title] > span {
 .list-current {
 	font-weight: bold;
 }
-.script-list .name-description-separator, .script-list .description {
+.script-list h2 {
 	font-weight: normal;
 }
-.script-list + .pagination {
+.script-list .description {
+	font-weight: normal;
+	display: block;
+	margin: .5em 0;
+	font-size: smaller;
+}
+.script-list .name-description-separator {
+	display: none;
+}
+.script-list + .pagination, .user-list + .pagination {
 	font-size: 18px;
 	display: inline-block;
-	background-color: #FFE6E6;
+	background-color: #F2E5E5;
 	padding: 0.5em;
-	margin-bottom: 0.5em;
+	margin-bottom: 1em;
 	border-radius: 5px;
 }
 .pagination .current {
@@ -381,16 +412,25 @@ dt[title] > span {
 	min-width: 1em;
 	text-align: center;
 	padding: 0 0.25em;
+	border: 1px solid #DDDDDD;
 	border-radius: 10px;
 }
 .good-rating-count {
-	background-color: rgba(0, 255, 0, 0.1);
+	background-color: rgba(51, 155, 51, 0.1);
+	border-color: rgba(51, 155, 51, 0.3);
+	color: #1E971E;
+	color: rgba(51, 155, 51, 1);
 }
 .ok-rating-count {
-	background-color: rgba(255, 255, 0, 0.2);
+	background-color: rgba(155, 155, 0, 0.1);
+	border-color: rgba(155, 155, 0, 0.3);
+	color: #a80;
+	color: rgba(155, 155, 0, 1);
 }
 .bad-rating-count {
-	background-color: rgba(255, 0, 0, 0.1);
+	background-color: rgba(155, 51, 51, 0.1);
+	border-color: rgba(155, 51, 51, 0.3);
+	color: rgba(155, 51, 51, 1);
 }
 
 
@@ -429,7 +469,8 @@ dt[title] > span {
 }
 /* View */
 #user-profile {
-	background-color: #FFE6E6;
+	border: 1px solid #E6DDD6;
+	background-color: #F2E5E5;
 	padding: 1em;
 }
 
@@ -463,7 +504,10 @@ dt[title] > span {
 }
 
 .alert {
-	background-color: yellow;
+	font-style: italic;
+	background-color: #FFFF99;
+	border: 2px dotted #CC9999;
+	padding: 0.5em;
 }
 
 .front-page-p {
@@ -506,16 +550,35 @@ td.numeric, th.numeric {
 	float: right;
 	width: 15em;
 	font-size: smaller;
+	margin-left: 2em;
 }
 .list-option-group {
-	background-color: #FFE6E6;
-	padding: 0.5em;
-	margin-bottom: 0.5em;
-	border-radius: 5px 0 0 5px;
+	margin-bottom: 1em;
 }
 .list-option-group ul {
-	margin: 0;
-	padding-left: 20px;
+	margin: .5em 0 0;
+	list-style-type: none;
+	padding: 1em 0;
+	box-shadow: 0 0 5px #DDDDDD;
+	border: 1px solid #BBBBBB;
+	border-radius: 5px;
+	background-color: white;
+}
+.list-option-group a {
+	padding: .35em 1em;
+	display: block;
+}
+.list-option-group a:hover {
+	background: linear-gradient(white, #F6F6F6);
+	text-decoration: none;
+	box-shadow: inset 0 -1px #DDDDDD, inset 0 1px #EEEEEE;
+}
+.list-option-group .list-current {
+	border-left: 7px solid #800;
+	box-shadow: inset 0 1px rgba(0, 0, 0, 0.1), inset 0 -1px rgba(0, 0, 0, 0.1);
+	margin: .25em 0 .25em -4px;
+	padding: .4em 1em .4em calc(1em - 3px);
+	background: linear-gradient(white, #EEEEEE);
 }
 
 .translation_missing {
@@ -534,7 +597,7 @@ td.numeric, th.numeric {
 }
 
 :target {
-	background-color: #FFE6E6;
+	background-color: #F2E5E5;
 }
 a.self-link, a.self-link:visited {
 	text-decoration: none;
@@ -547,19 +610,18 @@ a.self-link, a.self-link:visited {
 }
 
 .expander {
-	background-color: white;
 	cursor: pointer;
 	padding: 2px 5px;
 	color: #670000;
 	border-radius: 3px;
-	background-color: #FFE6E6;
+	background-color: #F2E5E5;
 	text-decoration: underline;
 }
 
 #script-show-info-ad {
 	width: 732px;
 	box-sizing: border-box;
-	margin-bottom: 5px;
+	margin: 1.5em auto;
 }
 .ad-note {
 	font-size: x-small;
@@ -591,9 +653,9 @@ a.self-link, a.self-link:visited {
 }
 
 pre, code, #code-container {
-	background: #FDFCE4;
-	border: 1px solid #EEC;
 	border-radius: 2px;
+	border: 1px solid #E6DDD6;
+	background-color: #F2E5E5;
 }
 pre.CodeRay, table.CodeRay, .CodeRay pre {
 	background: none;
@@ -609,7 +671,7 @@ pre.CodeRay {
 	background-color: transparent !important;
 }
 .CodeRay .line-numbers {
-	background-color: #EEEDD3 !important;
+	background-color: #E6DDDD !important;
 }
 .CodeRay .line-numbers, .CodeRay .code {
 	/* Otherwise tall characters can make these not align */

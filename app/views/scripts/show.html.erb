@@ -49,8 +49,6 @@
 
 <div id="script-meta">
 	<dl id="script-stats">
-		<dt class="script-show-version"><span><%=t('scripts.version_number')%></span></dt>
-		<dd class="script-show-version"><span><%=@script_version.version%></span></dd>
 		<dt class="script-show-author"><span><%=t('scripts.author_name')%></span></dt>
 		<dd class="script-show-author"><span><%=link_to @script.user.name, @script.user%></span></dd>
 		<% if @script.script_type_id != 3 and params[:version].nil? %>
@@ -61,12 +59,12 @@
 		<% end %>
 		<dt class="script-list-ratings"><span><%=t('scripts.ratings')%></span></dt>
 		<dd class="script-list-ratings"><span><%=render :partial => 'ratings', :locals => {:script => @script}%></span></dd>
+		<dt class="script-show-version"><span><%=t('scripts.version_number')%></span></dt>
+		<dd class="script-show-version"><span><%=@script_version.version%></span></dd>
 		<dt class="script-show-created-date"><span><%=t('scripts.created_date')%></span></dt>
 		<dd class="script-show-created-date"><span><%=markup_date(@script.created_at)%></span></dd>
 		<dt class="script-show-updated-date"><span><%=t('scripts.updated_date')%></span></dt>
 		<dd class="script-show-updated-date"><span><%=markup_date(@script.code_updated_at)%></span></dd>
-		<dt class="script-show-license"><span><%=t('scripts.license')%></span></dt>
-		<dd class="script-show-license"><span><%=@script.license_display%></span></dd>
 		<% if !@script.compatibilities.empty? %>
 			<dt class="script-show-compatibility"><span><%=t('scripts.compatibility')%></span></dt>
 			<dd class="script-show-compatibility"><span>
@@ -91,6 +89,8 @@
 				<% end %>
 			</span></dd>
 		<% end %>
+		<dt class="script-show-license"><span><%=t('scripts.license')%></span></dt>
+		<dd class="script-show-license"><span><%=@script.license_display%></span></dd>
 	</dl>
 	<div>
 		<dl id="script-applies-to" data-show-more-text="<%=t('common.expander_show_more')%>" data-show-less-text="<%=t('common.expander_show_less')%>">
