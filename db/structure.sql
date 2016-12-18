@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 5.7.16, for Linux (x86_64)
 --
--- Host: localhost    Database: greasyforktest
+-- Host: localhost    Database: greasyfork
 -- ------------------------------------------------------
 -- Server version	5.7.16-0ubuntu0.16.04.1
 
@@ -29,21 +29,21 @@ CREATE TABLE `GDN_Activity` (
   `NotifyUserID` int(11) NOT NULL DEFAULT '0',
   `ActivityUserID` int(11) DEFAULT NULL,
   `RegardingUserID` int(11) DEFAULT NULL,
-  `Photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `HeadlineFormat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Story` mediumtext COLLATE utf8mb4_unicode_ci,
-  `Format` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Route` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `RecordType` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Photo` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `HeadlineFormat` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Story` text COLLATE utf8_unicode_ci,
+  `Format` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Route` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `RecordType` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `RecordID` int(11) DEFAULT NULL,
   `CountComments` int(11) NOT NULL DEFAULT '0',
   `InsertUserID` int(11) DEFAULT NULL,
   `DateInserted` datetime NOT NULL,
-  `InsertIPAddress` varchar(39) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `InsertIPAddress` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   `DateUpdated` datetime NOT NULL,
   `Notified` tinyint(4) NOT NULL DEFAULT '0',
   `Emailed` tinyint(4) NOT NULL DEFAULT '0',
-  `Data` mediumtext COLLATE utf8mb4_unicode_ci,
+  `Data` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`ActivityID`),
   KEY `FK_Activity_CommentActivityID` (`CommentActivityID`),
   KEY `FK_Activity_InsertUserID` (`InsertUserID`),
@@ -51,7 +51,7 @@ CREATE TABLE `GDN_Activity` (
   KEY `IX_Activity_Recent` (`NotifyUserID`,`DateUpdated`),
   KEY `IX_Activity_Feed` (`NotifyUserID`,`ActivityUserID`,`DateUpdated`),
   KEY `IX_Activity_DateUpdated` (`DateUpdated`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27608 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,14 +64,14 @@ DROP TABLE IF EXISTS `GDN_ActivityComment`;
 CREATE TABLE `GDN_ActivityComment` (
   `ActivityCommentID` int(11) NOT NULL AUTO_INCREMENT,
   `ActivityID` int(11) NOT NULL,
-  `Body` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Format` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Body` text COLLATE utf8_unicode_ci NOT NULL,
+  `Format` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `InsertUserID` int(11) NOT NULL,
   `DateInserted` datetime NOT NULL,
-  `InsertIPAddress` varchar(39) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `InsertIPAddress` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`ActivityCommentID`),
   KEY `FK_ActivityComment_ActivityID` (`ActivityID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -83,16 +83,16 @@ DROP TABLE IF EXISTS `GDN_ActivityType`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `GDN_ActivityType` (
   `ActivityTypeID` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `AllowComments` tinyint(4) NOT NULL DEFAULT '0',
   `ShowIcon` tinyint(4) NOT NULL DEFAULT '0',
-  `ProfileHeadline` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `FullHeadline` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `RouteCode` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `ProfileHeadline` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `FullHeadline` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `RouteCode` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Notify` tinyint(4) NOT NULL DEFAULT '0',
   `Public` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`ActivityTypeID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,11 +103,40 @@ DROP TABLE IF EXISTS `GDN_AnalyticsLocal`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `GDN_AnalyticsLocal` (
-  `TimeSlot` varchar(8) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `TimeSlot` varchar(8) COLLATE utf8_unicode_ci NOT NULL,
   `Views` int(11) DEFAULT NULL,
   `EmbedViews` int(11) DEFAULT NULL,
   UNIQUE KEY `UX_AnalyticsLocal` (`TimeSlot`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `GDN_Attachment`
+--
+
+DROP TABLE IF EXISTS `GDN_Attachment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `GDN_Attachment` (
+  `AttachmentID` int(11) NOT NULL AUTO_INCREMENT,
+  `Type` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `ForeignID` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `ForeignUserID` int(11) NOT NULL,
+  `Source` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `SourceID` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `SourceURL` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Attributes` text COLLATE utf8_unicode_ci,
+  `DateInserted` datetime NOT NULL,
+  `InsertUserID` int(11) NOT NULL,
+  `InsertIPAddress` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `DateUpdated` datetime DEFAULT NULL,
+  `UpdateUserID` int(11) DEFAULT NULL,
+  `UpdateIPAddress` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`AttachmentID`),
+  KEY `IX_Attachment_ForeignID` (`ForeignID`),
+  KEY `FK_Attachment_ForeignUserID` (`ForeignUserID`),
+  KEY `FK_Attachment_InsertUserID` (`InsertUserID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,20 +148,20 @@ DROP TABLE IF EXISTS `GDN_Ban`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `GDN_Ban` (
   `BanID` int(11) NOT NULL AUTO_INCREMENT,
-  `BanType` enum('IPAddress','Name','Email') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `BanValue` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Notes` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `BanType` enum('IPAddress','Name','Email') COLLATE utf8_unicode_ci NOT NULL,
+  `BanValue` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `Notes` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `CountUsers` int(10) unsigned NOT NULL DEFAULT '0',
   `CountBlockedRegistrations` int(10) unsigned NOT NULL DEFAULT '0',
   `InsertUserID` int(11) NOT NULL,
   `DateInserted` datetime NOT NULL,
-  `InsertIPAddress` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `InsertIPAddress` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   `UpdateUserID` int(11) DEFAULT NULL,
   `DateUpdated` datetime DEFAULT NULL,
-  `UpdateIPAddress` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `UpdateIPAddress` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`BanID`),
   UNIQUE KEY `UX_Ban` (`BanType`,`BanValue`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -153,15 +182,16 @@ CREATE TABLE `GDN_Category` (
   `DateMarkedRead` datetime DEFAULT NULL,
   `AllowDiscussions` tinyint(4) NOT NULL DEFAULT '1',
   `Archived` tinyint(4) NOT NULL DEFAULT '0',
-  `Name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `UrlCode` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Description` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `UrlCode` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Description` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Sort` int(11) DEFAULT NULL,
-  `CssClass` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `CssClass` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Photo` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `PermissionCategoryID` int(11) NOT NULL DEFAULT '-1',
+  `PointsCategoryID` int(11) NOT NULL DEFAULT '0',
   `HideAllDiscussions` tinyint(4) NOT NULL DEFAULT '0',
-  `DisplayAs` enum('Categories','Discussions','Default') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Default',
+  `DisplayAs` enum('Categories','Discussions','Heading','Default') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Default',
   `InsertUserID` int(11) NOT NULL,
   `UpdateUserID` int(11) DEFAULT NULL,
   `DateInserted` datetime NOT NULL,
@@ -169,10 +199,12 @@ CREATE TABLE `GDN_Category` (
   `LastCommentID` int(11) DEFAULT NULL,
   `LastDiscussionID` int(11) DEFAULT NULL,
   `LastDateInserted` datetime DEFAULT NULL,
+  `AllowedDiscussionTypes` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `DefaultDiscussionType` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
   `AllowFileUploads` tinyint(4) NOT NULL DEFAULT '1',
   PRIMARY KEY (`CategoryID`),
   KEY `FK_Category_InsertUserID` (`InsertUserID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -188,22 +220,22 @@ CREATE TABLE `GDN_Comment` (
   `InsertUserID` int(11) DEFAULT NULL,
   `UpdateUserID` int(11) DEFAULT NULL,
   `DeleteUserID` int(11) DEFAULT NULL,
-  `Body` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Format` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Body` text COLLATE utf8_unicode_ci NOT NULL,
+  `Format` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `DateInserted` datetime DEFAULT NULL,
   `DateDeleted` datetime DEFAULT NULL,
   `DateUpdated` datetime DEFAULT NULL,
-  `InsertIPAddress` varchar(39) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `UpdateIPAddress` varchar(39) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `InsertIPAddress` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `UpdateIPAddress` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Flag` tinyint(4) NOT NULL DEFAULT '0',
   `Score` float DEFAULT NULL,
-  `Attributes` mediumtext COLLATE utf8mb4_unicode_ci,
+  `Attributes` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`CommentID`),
   KEY `FK_Comment_InsertUserID` (`InsertUserID`),
   KEY `IX_Comment_1` (`DiscussionID`,`DateInserted`),
   KEY `IX_Comment_DateInserted` (`DateInserted`),
   FULLTEXT KEY `TX_Comment` (`Body`)
-) ENGINE=MyISAM AUTO_INCREMENT=17255 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=27629 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -215,16 +247,19 @@ DROP TABLE IF EXISTS `GDN_Conversation`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `GDN_Conversation` (
   `ConversationID` int(11) NOT NULL AUTO_INCREMENT,
-  `Subject` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Contributors` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Type` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ForeignID` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Subject` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Contributors` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `FirstMessageID` int(11) DEFAULT NULL,
   `InsertUserID` int(11) NOT NULL,
   `DateInserted` datetime DEFAULT NULL,
-  `InsertIPAddress` varchar(39) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `UpdateUserID` int(11) DEFAULT NULL,
-  `DateUpdated` datetime DEFAULT NULL,
-  `UpdateIPAddress` varchar(39) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `InsertIPAddress` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `UpdateUserID` int(11) NOT NULL,
+  `DateUpdated` datetime NOT NULL,
+  `UpdateIPAddress` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   `CountMessages` int(11) NOT NULL DEFAULT '0',
+  `CountParticipants` int(11) NOT NULL DEFAULT '0',
   `LastMessageID` int(11) DEFAULT NULL,
   `RegardingID` int(11) DEFAULT NULL,
   PRIMARY KEY (`ConversationID`),
@@ -232,8 +267,9 @@ CREATE TABLE `GDN_Conversation` (
   KEY `FK_Conversation_InsertUserID` (`InsertUserID`),
   KEY `FK_Conversation_DateInserted` (`DateInserted`),
   KEY `FK_Conversation_UpdateUserID` (`UpdateUserID`),
-  KEY `IX_Conversation_RegardingID` (`RegardingID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  KEY `IX_Conversation_RegardingID` (`RegardingID`),
+  KEY `IX_Conversation_Type` (`Type`)
+) ENGINE=InnoDB AUTO_INCREMENT=539 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -246,15 +282,15 @@ DROP TABLE IF EXISTS `GDN_ConversationMessage`;
 CREATE TABLE `GDN_ConversationMessage` (
   `MessageID` int(11) NOT NULL AUTO_INCREMENT,
   `ConversationID` int(11) NOT NULL,
-  `Body` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Format` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Body` text COLLATE utf8_unicode_ci NOT NULL,
+  `Format` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `InsertUserID` int(11) DEFAULT NULL,
   `DateInserted` datetime NOT NULL,
-  `InsertIPAddress` varchar(39) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `InsertIPAddress` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`MessageID`),
   KEY `FK_ConversationMessage_ConversationID` (`ConversationID`),
   KEY `FK_ConversationMessage_InsertUserID` (`InsertUserID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2505 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -266,17 +302,17 @@ DROP TABLE IF EXISTS `GDN_Discussion`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `GDN_Discussion` (
   `DiscussionID` int(11) NOT NULL AUTO_INCREMENT,
-  `Type` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ForeignID` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Type` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ForeignID` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
   `CategoryID` int(11) NOT NULL,
   `InsertUserID` int(11) NOT NULL,
   `UpdateUserID` int(11) DEFAULT NULL,
   `FirstCommentID` int(11) DEFAULT NULL,
   `LastCommentID` int(11) DEFAULT NULL,
-  `Name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Body` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Format` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Tags` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `Body` text COLLATE utf8_unicode_ci NOT NULL,
+  `Format` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Tags` text COLLATE utf8_unicode_ci,
   `CountComments` int(11) NOT NULL DEFAULT '0',
   `CountBookmarks` int(11) DEFAULT NULL,
   `CountViews` int(11) NOT NULL DEFAULT '1',
@@ -285,12 +321,12 @@ CREATE TABLE `GDN_Discussion` (
   `Sink` tinyint(4) NOT NULL DEFAULT '0',
   `DateInserted` datetime NOT NULL,
   `DateUpdated` datetime DEFAULT NULL,
-  `InsertIPAddress` varchar(39) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `UpdateIPAddress` varchar(39) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `InsertIPAddress` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `UpdateIPAddress` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   `DateLastComment` datetime DEFAULT NULL,
   `LastCommentUserID` int(11) DEFAULT NULL,
   `Score` float DEFAULT NULL,
-  `Attributes` mediumtext COLLATE utf8mb4_unicode_ci,
+  `Attributes` text COLLATE utf8_unicode_ci,
   `RegardingID` int(11) DEFAULT NULL,
   `ScriptID` int(11) DEFAULT NULL,
   `Rating` int(11) NOT NULL DEFAULT '0',
@@ -303,8 +339,9 @@ CREATE TABLE `GDN_Discussion` (
   KEY `IX_Discussion_RegardingID` (`RegardingID`),
   KEY `IX_Discussion_DateInserted` (`DateInserted`),
   KEY `IX_Discussion_CategoryPages` (`CategoryID`,`DateLastComment`),
+  KEY `IX_Discussion_CategoryInserted` (`CategoryID`,`DateInserted`),
   FULLTEXT KEY `TX_Discussion` (`Name`,`Body`)
-) ENGINE=MyISAM AUTO_INCREMENT=6150 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=12400 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -320,20 +357,20 @@ CREATE TABLE `GDN_Draft` (
   `CategoryID` int(11) DEFAULT NULL,
   `InsertUserID` int(11) NOT NULL,
   `UpdateUserID` int(11) NOT NULL,
-  `Name` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Tags` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Name` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Tags` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Closed` tinyint(4) NOT NULL DEFAULT '0',
   `Announce` tinyint(4) NOT NULL DEFAULT '0',
   `Sink` tinyint(4) NOT NULL DEFAULT '0',
-  `Body` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Format` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Body` text COLLATE utf8_unicode_ci NOT NULL,
+  `Format` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `DateInserted` datetime NOT NULL,
   `DateUpdated` datetime DEFAULT NULL,
   PRIMARY KEY (`DraftID`),
   KEY `FK_Draft_DiscussionID` (`DiscussionID`),
   KEY `FK_Draft_CategoryID` (`CategoryID`),
   KEY `FK_Draft_InsertUserID` (`InsertUserID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28475 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -346,17 +383,17 @@ DROP TABLE IF EXISTS `GDN_Flag`;
 CREATE TABLE `GDN_Flag` (
   `DiscussionID` int(11) DEFAULT NULL,
   `InsertUserID` int(11) NOT NULL,
-  `InsertName` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `InsertName` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `AuthorID` int(11) NOT NULL,
-  `AuthorName` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ForeignURL` varchar(150) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `AuthorName` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `ForeignURL` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `ForeignID` int(11) NOT NULL,
-  `ForeignType` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Comment` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ForeignType` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `Comment` text COLLATE utf8_unicode_ci NOT NULL,
   `DateInserted` datetime NOT NULL,
   KEY `FK_Flag_InsertUserID` (`InsertUserID`),
   KEY `FK_Flag_ForeignURL` (`ForeignURL`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -368,14 +405,20 @@ DROP TABLE IF EXISTS `GDN_Invitation`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `GDN_Invitation` (
   `InvitationID` int(11) NOT NULL AUTO_INCREMENT,
-  `Email` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Code` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `Name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `RoleIDs` text COLLATE utf8_unicode_ci,
+  `Code` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `InsertUserID` int(11) DEFAULT NULL,
   `DateInserted` datetime NOT NULL,
   `AcceptedUserID` int(11) DEFAULT NULL,
+  `DateExpires` datetime DEFAULT NULL,
   PRIMARY KEY (`InvitationID`),
-  KEY `FK_Invitation_InsertUserID` (`InsertUserID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  UNIQUE KEY `UX_Invitation_code` (`Code`),
+  KEY `FK_Invitation_InsertUserID` (`InsertUserID`),
+  KEY `IX_Invitation_Email` (`Email`),
+  KEY `IX_Invitation_userdate` (`InsertUserID`,`DateInserted`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -387,29 +430,32 @@ DROP TABLE IF EXISTS `GDN_Log`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `GDN_Log` (
   `LogID` int(11) NOT NULL AUTO_INCREMENT,
-  `Operation` enum('Delete','Edit','Spam','Moderate','Pending','Ban','Error') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `RecordType` enum('Discussion','Comment','User','Registration','Activity','ActivityComment','Configuration','Group') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Operation` enum('Delete','Edit','Spam','Moderate','Pending','Ban','Error') COLLATE utf8_unicode_ci NOT NULL,
+  `RecordType` enum('Discussion','Comment','User','Registration','Activity','ActivityComment','Configuration','Group') COLLATE utf8_unicode_ci NOT NULL,
   `TransactionLogID` int(11) DEFAULT NULL,
   `RecordID` int(11) DEFAULT NULL,
   `RecordUserID` int(11) DEFAULT NULL,
   `RecordDate` datetime NOT NULL,
-  `RecordIPAddress` varchar(39) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `RecordIPAddress` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   `InsertUserID` int(11) NOT NULL,
   `DateInserted` datetime NOT NULL,
-  `InsertIPAddress` varchar(39) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `OtherUserIDs` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `InsertIPAddress` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `OtherUserIDs` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `DateUpdated` datetime DEFAULT NULL,
   `ParentRecordID` int(11) DEFAULT NULL,
   `CategoryID` int(11) DEFAULT NULL,
-  `Data` longtext COLLATE utf8mb4_unicode_ci,
+  `Data` mediumtext COLLATE utf8_unicode_ci,
   `CountGroup` int(11) DEFAULT NULL,
   PRIMARY KEY (`LogID`),
   KEY `IX_Log_RecordType` (`RecordType`),
   KEY `IX_Log_RecordID` (`RecordID`),
   KEY `IX_Log_RecordIPAddress` (`RecordIPAddress`),
   KEY `IX_Log_ParentRecordID` (`ParentRecordID`),
-  KEY `FK_Log_CategoryID` (`CategoryID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  KEY `FK_Log_CategoryID` (`CategoryID`),
+  KEY `IX_Log_Operation` (`Operation`),
+  KEY `IX_Log_RecordUserID` (`RecordUserID`),
+  KEY `IX_Log_DateInserted` (`DateInserted`)
+) ENGINE=InnoDB AUTO_INCREMENT=6356 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -421,22 +467,23 @@ DROP TABLE IF EXISTS `GDN_Media`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `GDN_Media` (
   `MediaID` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Type` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Type` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `Size` int(11) NOT NULL,
   `ImageWidth` smallint(5) unsigned DEFAULT NULL,
   `ImageHeight` smallint(5) unsigned DEFAULT NULL,
   `ThumbWidth` smallint(5) unsigned DEFAULT NULL,
   `ThumbHeight` smallint(5) unsigned DEFAULT NULL,
-  `ThumbPath` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `StorageMethod` varchar(24) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'local',
-  `Path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ThumbPath` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `StorageMethod` varchar(24) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'local',
+  `Path` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `InsertUserID` int(11) NOT NULL,
   `DateInserted` datetime NOT NULL,
   `ForeignID` int(11) DEFAULT NULL,
-  `ForeignTable` varchar(24) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`MediaID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `ForeignTable` varchar(24) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`MediaID`),
+  KEY `IX_Media_Foreign` (`ForeignID`,`ForeignTable`)
+) ENGINE=InnoDB AUTO_INCREMENT=1984 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -448,18 +495,20 @@ DROP TABLE IF EXISTS `GDN_Message`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `GDN_Message` (
   `MessageID` int(11) NOT NULL AUTO_INCREMENT,
-  `Content` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Format` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Content` text COLLATE utf8_unicode_ci NOT NULL,
+  `Format` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `AllowDismiss` tinyint(4) NOT NULL DEFAULT '1',
   `Enabled` tinyint(4) NOT NULL DEFAULT '1',
-  `Application` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Controller` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Method` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `AssetTarget` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `CssClass` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Application` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Controller` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Method` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `CategoryID` int(11) DEFAULT NULL,
+  `IncludeSubcategories` tinyint(4) NOT NULL DEFAULT '0',
+  `AssetTarget` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `CssClass` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Sort` int(11) DEFAULT NULL,
   PRIMARY KEY (`MessageID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -472,12 +521,11 @@ DROP TABLE IF EXISTS `GDN_Permission`;
 CREATE TABLE `GDN_Permission` (
   `PermissionID` int(11) NOT NULL AUTO_INCREMENT,
   `RoleID` int(11) NOT NULL DEFAULT '0',
-  `JunctionTable` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `JunctionColumn` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `JunctionTable` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `JunctionColumn` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `JunctionID` int(11) DEFAULT NULL,
   `Garden.Settings.Manage` tinyint(4) NOT NULL DEFAULT '0',
   `Garden.Settings.View` tinyint(4) NOT NULL DEFAULT '0',
-  `Garden.Messages.Manage` tinyint(4) NOT NULL DEFAULT '0',
   `Garden.SignIn.Allow` tinyint(4) NOT NULL DEFAULT '0',
   `Garden.Applicants.Manage` tinyint(4) NOT NULL DEFAULT '0',
   `Garden.Users.Add` tinyint(4) NOT NULL DEFAULT '0',
@@ -492,6 +540,7 @@ CREATE TABLE `GDN_Permission` (
   `Garden.Curation.Manage` tinyint(4) NOT NULL DEFAULT '0',
   `Garden.PersonalInfo.View` tinyint(4) NOT NULL DEFAULT '0',
   `Garden.AdvancedNotifications.Allow` tinyint(4) NOT NULL DEFAULT '0',
+  `Garden.Community.Manage` tinyint(4) NOT NULL DEFAULT '0',
   `Conversations.Moderation.Manage` tinyint(4) NOT NULL DEFAULT '0',
   `Conversations.Conversations.Add` tinyint(4) NOT NULL DEFAULT '0',
   `Vanilla.Discussions.View` tinyint(4) NOT NULL DEFAULT '0',
@@ -512,7 +561,7 @@ CREATE TABLE `GDN_Permission` (
   `Plugins.Flagging.Notify` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`PermissionID`),
   KEY `FK_Permission_RoleID` (`RoleID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -541,20 +590,20 @@ DROP TABLE IF EXISTS `GDN_Regarding`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `GDN_Regarding` (
   `RegardingID` int(11) NOT NULL AUTO_INCREMENT,
-  `Type` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Type` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `InsertUserID` int(11) NOT NULL,
   `DateInserted` datetime NOT NULL,
-  `ForeignType` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ForeignType` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
   `ForeignID` int(11) NOT NULL,
-  `OriginalContent` mediumtext COLLATE utf8mb4_unicode_ci,
-  `ParentType` varchar(32) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `OriginalContent` text COLLATE utf8_unicode_ci,
+  `ParentType` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
   `ParentID` int(11) DEFAULT NULL,
-  `ForeignURL` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Comment` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ForeignURL` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Comment` text COLLATE utf8_unicode_ci NOT NULL,
   `Reports` int(11) DEFAULT NULL,
   PRIMARY KEY (`RegardingID`),
   KEY `FK_Regarding_Type` (`Type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -566,13 +615,15 @@ DROP TABLE IF EXISTS `GDN_Role`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `GDN_Role` (
   `RoleID` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Description` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `Description` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Type` enum('guest','unconfirmed','applicant','member','moderator','administrator') COLLATE utf8_unicode_ci DEFAULT NULL,
   `Sort` int(11) DEFAULT NULL,
   `Deletable` tinyint(4) NOT NULL DEFAULT '1',
   `CanSession` tinyint(4) NOT NULL DEFAULT '1',
+  `PersonalInfo` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`RoleID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -583,14 +634,14 @@ DROP TABLE IF EXISTS `GDN_Session`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `GDN_Session` (
-  `SessionID` char(32) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `SessionID` char(32) COLLATE utf8_unicode_ci NOT NULL,
   `UserID` int(11) NOT NULL DEFAULT '0',
   `DateInserted` datetime NOT NULL,
   `DateUpdated` datetime NOT NULL,
-  `TransientKey` varchar(12) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Attributes` mediumtext COLLATE utf8mb4_unicode_ci,
+  `TransientKey` varchar(12) COLLATE utf8_unicode_ci NOT NULL,
+  `Attributes` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`SessionID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -617,8 +668,10 @@ DROP TABLE IF EXISTS `GDN_Tag`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `GDN_Tag` (
   `TagID` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Type` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `FullName` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `Type` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `ParentTagID` int(11) DEFAULT NULL,
   `InsertUserID` int(11) DEFAULT NULL,
   `DateInserted` datetime NOT NULL,
   `CategoryID` int(11) NOT NULL DEFAULT '-1',
@@ -626,8 +679,10 @@ CREATE TABLE `GDN_Tag` (
   PRIMARY KEY (`TagID`),
   UNIQUE KEY `UX_Tag` (`Name`,`CategoryID`),
   KEY `IX_Tag_Type` (`Type`),
-  KEY `FK_Tag_InsertUserID` (`InsertUserID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  KEY `FK_Tag_InsertUserID` (`InsertUserID`),
+  KEY `IX_Tag_FullName` (`FullName`),
+  KEY `FK_Tag_ParentTagID` (`ParentTagID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -656,37 +711,38 @@ DROP TABLE IF EXISTS `GDN_User`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `GDN_User` (
   `UserID` int(11) NOT NULL AUTO_INCREMENT,
-  `Name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `Password` varbinary(100) NOT NULL,
-  `HashMethod` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Title` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Location` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `About` mediumtext COLLATE utf8mb4_unicode_ci,
-  `Email` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `HashMethod` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Photo` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Title` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Location` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `About` text COLLATE utf8_unicode_ci,
+  `Email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `ShowEmail` tinyint(4) NOT NULL DEFAULT '0',
-  `Gender` enum('u','m','f') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'u',
+  `Gender` enum('u','m','f') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'u',
   `CountVisits` int(11) NOT NULL DEFAULT '0',
   `CountInvitations` int(11) NOT NULL DEFAULT '0',
   `CountNotifications` int(11) DEFAULT NULL,
   `InviteUserID` int(11) DEFAULT NULL,
-  `DiscoveryText` mediumtext COLLATE utf8mb4_unicode_ci,
-  `Preferences` mediumtext COLLATE utf8mb4_unicode_ci,
-  `Permissions` mediumtext COLLATE utf8mb4_unicode_ci,
-  `Attributes` mediumtext COLLATE utf8mb4_unicode_ci,
+  `DiscoveryText` text COLLATE utf8_unicode_ci,
+  `Preferences` text COLLATE utf8_unicode_ci,
+  `Permissions` text COLLATE utf8_unicode_ci,
+  `Attributes` text COLLATE utf8_unicode_ci,
   `DateSetInvitations` datetime DEFAULT NULL,
   `DateOfBirth` datetime DEFAULT NULL,
   `DateFirstVisit` datetime DEFAULT NULL,
   `DateLastActive` datetime DEFAULT NULL,
-  `LastIPAddress` varchar(39) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `AllIPAddresses` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `LastIPAddress` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `AllIPAddresses` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `DateInserted` datetime NOT NULL,
-  `InsertIPAddress` varchar(39) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `InsertIPAddress` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   `DateUpdated` datetime DEFAULT NULL,
-  `UpdateIPAddress` varchar(39) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `UpdateIPAddress` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   `HourOffset` int(11) NOT NULL DEFAULT '0',
   `Score` float DEFAULT NULL,
   `Admin` tinyint(4) NOT NULL DEFAULT '0',
+  `Confirmed` tinyint(4) NOT NULL DEFAULT '1',
   `Verified` tinyint(4) NOT NULL DEFAULT '0',
   `Banned` tinyint(4) NOT NULL DEFAULT '0',
   `Deleted` tinyint(4) NOT NULL DEFAULT '0',
@@ -702,7 +758,7 @@ CREATE TABLE `GDN_User` (
   KEY `IX_User_Email` (`Email`),
   KEY `IX_User_DateLastActive` (`DateLastActive`),
   KEY `IX_User_DateInserted` (`DateInserted`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17883 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -713,12 +769,12 @@ DROP TABLE IF EXISTS `GDN_UserAuthentication`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `GDN_UserAuthentication` (
-  `ForeignUserKey` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ProviderKey` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ForeignUserKey` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `ProviderKey` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
   `UserID` int(11) NOT NULL,
   PRIMARY KEY (`ForeignUserKey`,`ProviderKey`),
   KEY `FK_UserAuthentication_UserID` (`UserID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -729,11 +785,11 @@ DROP TABLE IF EXISTS `GDN_UserAuthenticationNonce`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `GDN_UserAuthenticationNonce` (
-  `Nonce` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Token` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Nonce` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `Token` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
   `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Nonce`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -744,22 +800,23 @@ DROP TABLE IF EXISTS `GDN_UserAuthenticationProvider`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `GDN_UserAuthenticationProvider` (
-  `AuthenticationKey` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `AuthenticationSchemeAlias` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Name` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `URL` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `AssociationSecret` mediumtext COLLATE utf8mb4_unicode_ci,
-  `AssociationHashMethod` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `AuthenticateUrl` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `RegisterUrl` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `SignInUrl` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `SignOutUrl` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `PasswordUrl` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `ProfileUrl` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `Attributes` mediumtext COLLATE utf8mb4_unicode_ci,
+  `AuthenticationKey` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `AuthenticationSchemeAlias` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `Name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `URL` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `AssociationSecret` text COLLATE utf8_unicode_ci,
+  `AssociationHashMethod` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `AuthenticateUrl` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `RegisterUrl` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `SignInUrl` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `SignOutUrl` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `PasswordUrl` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ProfileUrl` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Attributes` text COLLATE utf8_unicode_ci,
+  `Active` tinyint(4) NOT NULL DEFAULT '1',
   `IsDefault` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`AuthenticationKey`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -770,16 +827,16 @@ DROP TABLE IF EXISTS `GDN_UserAuthenticationToken`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `GDN_UserAuthenticationToken` (
-  `Token` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ProviderKey` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `ForeignUserKey` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `TokenSecret` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `TokenType` enum('request','access') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Token` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  `ProviderKey` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `ForeignUserKey` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `TokenSecret` varchar(64) COLLATE utf8_unicode_ci NOT NULL,
+  `TokenType` enum('request','access') COLLATE utf8_unicode_ci NOT NULL,
   `Authorized` tinyint(4) NOT NULL,
   `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `Lifetime` int(11) NOT NULL,
   PRIMARY KEY (`Token`,`ProviderKey`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -853,6 +910,7 @@ CREATE TABLE `GDN_UserDiscussion` (
   `DateLastViewed` datetime DEFAULT NULL,
   `Dismissed` tinyint(4) NOT NULL DEFAULT '0',
   `Bookmarked` tinyint(4) NOT NULL DEFAULT '0',
+  `Participated` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`UserID`,`DiscussionID`),
   KEY `FK_UserDiscussion_DiscussionID` (`DiscussionID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -873,11 +931,11 @@ CREATE TABLE `GDN_UserMerge` (
   `InsertUserID` int(11) NOT NULL,
   `DateUpdated` datetime DEFAULT NULL,
   `UpdateUserID` int(11) DEFAULT NULL,
-  `Attributes` mediumtext COLLATE utf8mb4_unicode_ci,
+  `Attributes` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`MergeID`),
   KEY `FK_UserMerge_OldUserID` (`OldUserID`),
   KEY `FK_UserMerge_NewUserID` (`NewUserID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -889,13 +947,13 @@ DROP TABLE IF EXISTS `GDN_UserMergeItem`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `GDN_UserMergeItem` (
   `MergeID` int(11) NOT NULL,
-  `Table` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Column` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Table` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `Column` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `RecordID` int(11) NOT NULL,
   `OldUserID` int(11) NOT NULL,
   `NewUserID` int(11) NOT NULL,
   KEY `FK_UserMergeItem_MergeID` (`MergeID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -907,11 +965,11 @@ DROP TABLE IF EXISTS `GDN_UserMeta`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `GDN_UserMeta` (
   `UserID` int(11) NOT NULL,
-  `Name` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `Value` mediumtext COLLATE utf8mb4_unicode_ci,
+  `Name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `Value` text COLLATE utf8_unicode_ci,
   PRIMARY KEY (`UserID`,`Name`),
   KEY `IX_UserMeta_Name` (`Name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -922,13 +980,14 @@ DROP TABLE IF EXISTS `GDN_UserPoints`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `GDN_UserPoints` (
-  `SlotType` enum('d','w','m','y','a') COLLATE utf8mb4_unicode_ci NOT NULL,
+  `SlotType` enum('d','w','m','y','a') COLLATE utf8_unicode_ci NOT NULL,
   `TimeSlot` datetime NOT NULL,
-  `Source` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Total',
+  `Source` varchar(10) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'Total',
+  `CategoryID` int(11) NOT NULL DEFAULT '0',
   `UserID` int(11) NOT NULL,
   `Points` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`SlotType`,`TimeSlot`,`Source`,`UserID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  PRIMARY KEY (`SlotType`,`TimeSlot`,`Source`,`CategoryID`,`UserID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -941,7 +1000,8 @@ DROP TABLE IF EXISTS `GDN_UserRole`;
 CREATE TABLE `GDN_UserRole` (
   `UserID` int(11) NOT NULL,
   `RoleID` int(11) NOT NULL,
-  PRIMARY KEY (`UserID`,`RoleID`)
+  PRIMARY KEY (`UserID`,`RoleID`),
+  KEY `IX_UserRole_RoleID` (`RoleID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -960,7 +1020,7 @@ CREATE TABLE `allowed_requires` (
   `updated_at` datetime DEFAULT NULL,
   `url` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=980190963 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -971,12 +1031,12 @@ DROP TABLE IF EXISTS `ar_internal_metadata`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `ar_internal_metadata` (
-  `key` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `value` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `key` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `value` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL,
   PRIMARY KEY (`key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -991,7 +1051,7 @@ CREATE TABLE `author_email_notification_types` (
   `name` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1006,7 +1066,7 @@ CREATE TABLE `browsers` (
   `code` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1027,7 +1087,7 @@ CREATE TABLE `compatibilities` (
   KEY `fk_rails_d7eb310317` (`browser_id`),
   CONSTRAINT `fk_rails_94fd31c3c7` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_rails_d7eb310317` FOREIGN KEY (`browser_id`) REFERENCES `browsers` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=839 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1045,7 +1105,7 @@ CREATE TABLE `cpd_duplication_scripts` (
   PRIMARY KEY (`id`),
   KEY `index_cpd_duplication_scripts_on_cpd_duplication_id` (`cpd_duplication_id`),
   KEY `index_cpd_duplication_scripts_on_script_id` (`script_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3564059 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1061,7 +1121,7 @@ CREATE TABLE `cpd_duplications` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=976800 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1078,7 +1138,7 @@ CREATE TABLE `daily_install_counts` (
   `install_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_daily_install_counts_on_script_id_and_ip` (`script_id`,`ip`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10463096 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1095,7 +1155,7 @@ CREATE TABLE `daily_update_check_counts` (
   `update_check_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_daily_update_check_counts_on_script_id_and_ip` (`script_id`,`ip`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=644036004 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1120,7 +1180,7 @@ CREATE TABLE `delayed_jobs` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `delayed_jobs_priority` (`priority`,`run_at`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=876024 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1137,7 +1197,7 @@ CREATE TABLE `disallowed_codes` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=980190963 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1156,7 +1216,7 @@ CREATE TABLE `identities` (
   `syncing` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_identities_on_uid_and_provider` (`uid`,`provider`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21065 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1173,7 +1233,7 @@ CREATE TABLE `install_counts` (
   `installs` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_install_counts_on_script_id_and_install_date` (`script_id`,`install_date`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1884748 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1190,7 +1250,7 @@ CREATE TABLE `licenses` (
   `html` varchar(1000) COLLATE utf8mb4_unicode_ci NOT NULL,
   `priority` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1206,7 +1266,7 @@ CREATE TABLE `locale_contributors` (
   `transifex_user_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `index_locale_contributors_on_locale_id` (`locale_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13864 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1226,7 +1286,7 @@ CREATE TABLE `locales` (
   `ui_available` tinyint(1) NOT NULL DEFAULT '0',
   `percent_complete` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=191 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1249,7 +1309,7 @@ CREATE TABLE `localized_script_attributes` (
   PRIMARY KEY (`id`),
   KEY `index_localized_script_attributes_on_script_id` (`script_id`),
   KEY `index_localized_script_attributes_on_locale_id` (`locale_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1053189660 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=206831 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1271,7 +1331,7 @@ CREATE TABLE `localized_script_version_attributes` (
   KEY `index_localized_script_version_attributes_on_script_version_id` (`script_version_id`),
   KEY `index_localized_script_version_attributes_on_locale_id` (`locale_id`),
   CONSTRAINT `fk_rails_5dffd65780` FOREIGN KEY (`script_version_id`) REFERENCES `script_versions` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=948006831 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=87042 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1290,7 +1350,7 @@ CREATE TABLE `moderator_actions` (
   `reason` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2401 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1304,7 +1364,7 @@ CREATE TABLE `roles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1350,7 +1410,7 @@ CREATE TABLE `screenshots` (
   `screenshot_updated_at` datetime DEFAULT NULL,
   `caption` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5664 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1368,7 +1428,7 @@ CREATE TABLE `screenshots_script_versions` (
   KEY `index_screenshots_script_versions_on_screenshot_id` (`screenshot_id`),
   KEY `index_screenshots_script_versions_on_script_version_id` (`script_version_id`),
   CONSTRAINT `fk_rails_9fecbc9bb1` FOREIGN KEY (`script_version_id`) REFERENCES `script_versions` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13253 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=44171 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1387,7 +1447,7 @@ CREATE TABLE `script_applies_tos` (
   PRIMARY KEY (`id`),
   KEY `index_script_applies_tos_on_script_id` (`script_id`),
   CONSTRAINT `fk_script_applies_tos_script_id` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=544216 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1401,7 +1461,7 @@ CREATE TABLE `script_codes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED;
+) ENGINE=InnoDB AUTO_INCREMENT=277865 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1416,7 +1476,7 @@ CREATE TABLE `script_delete_types` (
   `name` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1435,7 +1495,7 @@ CREATE TABLE `script_set_automatic_set_inclusions` (
   PRIMARY KEY (`id`),
   KEY `index_script_set_automatic_set_inclusions_on_parent_id` (`parent_id`),
   KEY `ssasi_script_set_automatic_type_id` (`script_set_automatic_type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3587 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1449,7 +1509,7 @@ CREATE TABLE `script_set_automatic_types` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1467,7 +1527,7 @@ CREATE TABLE `script_set_script_inclusions` (
   PRIMARY KEY (`id`),
   KEY `index_script_set_script_inclusions_on_parent_id` (`parent_id`),
   KEY `index_script_set_script_inclusions_on_child_id` (`child_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=69471 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1485,7 +1545,7 @@ CREATE TABLE `script_set_set_inclusions` (
   PRIMARY KEY (`id`),
   KEY `index_script_set_set_inclusions_on_parent_id` (`parent_id`),
   KEY `index_script_set_set_inclusions_on_child_id` (`child_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1506,7 +1566,7 @@ CREATE TABLE `script_sets` (
   `default_sort` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_script_sets_on_user_id` (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10479 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1521,7 +1581,7 @@ CREATE TABLE `script_sync_sources` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1536,7 +1596,7 @@ CREATE TABLE `script_sync_types` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1574,7 +1634,7 @@ CREATE TABLE `script_versions` (
   PRIMARY KEY (`id`),
   KEY `index_script_versions_on_script_id` (`script_id`),
   CONSTRAINT `fk_script_versions_script_id` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=155295 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1629,7 +1689,7 @@ CREATE TABLE `scripts` (
   KEY `index_scripts_on_script_delete_type_id` (`script_delete_type_id`),
   KEY `index_scripts_on_script_type_id` (`script_type_id`),
   CONSTRAINT `fk_scripts_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24453 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1644,7 +1704,7 @@ CREATE TABLE `sensitive_sites` (
   `domain` varchar(150) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_sensitive_sites_on_domain` (`domain`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=310 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1660,7 +1720,7 @@ CREATE TABLE `syntax_highlighted_codes` (
   `html` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `index_syntax_highlighted_codes_on_script_id` (`script_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24247 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1677,7 +1737,7 @@ CREATE TABLE `update_check_counts` (
   `update_checks` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_update_check_counts_on_script_id_and_update_check_date` (`script_id`,`update_check_date`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7483080 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1717,11 +1777,11 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_users_on_email` (`email`),
   UNIQUE KEY `index_users_on_reset_password_token` (`reset_password_token`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=76918 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping routines for database 'greasyforktest'
+-- Dumping routines for database 'greasyfork'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -1733,7 +1793,7 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-11 16:51:20
-INSERT INTO schema_migrations (version) VALUES ('20140210194333'), ('20140210201355'), ('20140210210818'), ('20140212200545'), ('20140213030915'), ('20140213154328'), ('20140218015725'), ('20140218035558'), ('20140218044928'), ('20140222031705'), ('20140223211028'), ('20140223211251'), ('20140224024436'), ('20140224190926'), ('20140228202404'), ('20140301023544'), ('20140303205828'), ('20140309034738'), ('20140312161418'), ('20140403164807'), ('20140403165132'), ('20140427175448'), ('20140427181626'), ('20140427190525'), ('20140516191703'), ('20140517030310'), ('20140517030415'), ('20140517032450'), ('20140527020017'), ('20140527025707'), ('20140603174709'), ('20140603181415'), ('20140603201729'), ('20140606195925'), ('20140607025106'), ('20140607211930'), ('20140609024421'), ('20140630020229'), ('20140630170345'), ('20140701173021'), ('20140708163921'), ('20140713032842'), ('20140714161558'), ('20140730161636'), ('20140730210516'), ('20140804220508'), ('20140805184624'), ('20140806021501'), ('20140812164821'), ('20140813034638'), ('20140902024802'), ('20140902025842'), ('20140903045757'), ('20140915144425'), ('20140919234605'), ('20140923191610'), ('20140929194450'), ('20140930020648'), ('20141009170654'), ('20141010195747'), ('20141022153200'), ('20141022182214'), ('20141023152338'), ('20141027032358'), ('20141028182853'), ('20141029230333'), ('20141104035027'), ('20141105153539'), ('20141110212050'), ('20141111001158'), ('20141124211518'), ('20141130174613'), ('20141212034724'), ('20141228021319'), ('20141229190455'), ('20141231195332'), ('20141231212718'), ('20150119041433'), ('20150127001642'), ('20150131052722'), ('20150211170950'), ('20150221013413'), ('20150307234007'), ('20150316170754'), ('20150422175935'), ('20150506143413'), ('20150517190053'), ('20150518042510'), ('20150609015435'), ('20150729023212'), ('20150805015952'), ('20150810231014'), ('20150906031141'), ('20150910005124'), ('20150929023046'), ('20161106004629');
+-- Dump completed on 2016-12-18 14:34:13
+INSERT INTO schema_migrations (version) VALUES ('20140210194333'), ('20140210201355'), ('20140210210818'), ('20140212200545'), ('20140213030915'), ('20140213154328'), ('20140218015725'), ('20140218035558'), ('20140218044928'), ('20140222031705'), ('20140223211028'), ('20140223211251'), ('20140224024436'), ('20140224190926'), ('20140228202404'), ('20140301023544'), ('20140303205828'), ('20140309034738'), ('20140312161418'), ('20140403164807'), ('20140403165132'), ('20140427175448'), ('20140427181626'), ('20140427190525'), ('20140516191703'), ('20140517030310'), ('20140517030415'), ('20140517032450'), ('20140527020017'), ('20140527025707'), ('20140603174709'), ('20140603181415'), ('20140603201729'), ('20140606195925'), ('20140607025106'), ('20140607211930'), ('20140609024421'), ('20140630020229'), ('20140630170345'), ('20140701173021'), ('20140708163921'), ('20140713032842'), ('20140714161558'), ('20140730161636'), ('20140730210516'), ('20140804220508'), ('20140805184624'), ('20140806021501'), ('20140812164821'), ('20140813034638'), ('20140902024802'), ('20140902025842'), ('20140903045757'), ('20140915144425'), ('20140919234605'), ('20140923191610'), ('20140929194450'), ('20140930020648'), ('20141009170654'), ('20141010195747'), ('20141022153200'), ('20141022182214'), ('20141023152338'), ('20141027032358'), ('20141028182853'), ('20141029230333'), ('20141104035027'), ('20141105153539'), ('20141110212050'), ('20141111001158'), ('20141124211518'), ('20141130174613'), ('20141212034724'), ('20141228021319'), ('20141229190455'), ('20141231195332'), ('20141231212718'), ('20150119041433'), ('20150127001642'), ('20150131052722'), ('20150211170950'), ('20150221013413'), ('20150307234007'), ('20150316170754'), ('20150422175935'), ('20150506143413'), ('20150517190053'), ('20150518042510'), ('20150609015435'), ('20150729023212'), ('20150805015952'), ('20150810231014'), ('20150906031141'), ('20150910005124'), ('20150929023046'), ('20161106004629'), ('20161218203329');
 
 
