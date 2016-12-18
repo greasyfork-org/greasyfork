@@ -18,10 +18,6 @@
 						<button name="provider" class="external-login <%=provider%>-login" value="<%=provider%>">
 							<%=t('users.sign_in_with', provider: Identity.pretty_provider(provider)) %>
 						</button>
-						<% if provider == 'browser_id'
-							shutdown_date = Date.new(2016, 11, 30)%>
-							<a href="https://wiki.mozilla.org/Identity/Persona_Shutdown_Guidelines_for_Reliers"><%=t('users.sign_in_shutting_down', date: l(shutdown_date, format: :short))%></a>
-						<% end %>
 					</span>
 				<% end %>
 			</div>
