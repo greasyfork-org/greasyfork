@@ -64,6 +64,8 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
+    airbrussh (1.1.1)
+      sshkit (>= 1.6.1, != 1.7.0)
     arel (7.1.4)
     bcrypt (3.1.11)
     builder (3.2.2)
@@ -71,6 +73,24 @@ GEM
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.10.0)
     byebug (9.0.6)
+    capistrano (3.7.1)
+      airbrussh (>= 1.0.0)
+      capistrano-harrow
+      i18n
+      rake (>= 10.0.0)
+      sshkit (>= 1.9.0)
+    capistrano-bundler (1.2.0)
+      capistrano (~> 3.1)
+      sshkit (~> 1.2)
+    capistrano-harrow (0.5.3)
+    capistrano-passenger (0.2.0)
+      capistrano (~> 3.0)
+    capistrano-rails (1.2.0)
+      capistrano (~> 3.1)
+      capistrano-bundler (~> 1.1)
+    capistrano-rvm (0.1.2)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.8)
@@ -135,6 +155,9 @@ GEM
     multi_xml (0.5.5)
     multipart-post (1.2.0)
     mysql2 (0.4.5)
+    net-scp (1.2.1)
+      net-ssh (>= 2.6.5)
+    net-ssh (3.2.0)
     newrelic_rpm (3.17.0.325)
     nio4r (1.2.1)
     nokogiri (1.6.8.1)
@@ -221,6 +244,9 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    sshkit (1.11.5)
+      net-scp (>= 1.1.2)
+      net-ssh (>= 2.8.0)
     strip_attributes (1.8.0)
       activemodel (>= 3.0, < 6.0)
     therubyracer (0.12.2)
@@ -255,6 +281,11 @@ PLATFORMS
 DEPENDENCIES
   bullet
   byebug
+  capistrano (~> 3.7)
+  capistrano-bundler (~> 1.2)
+  capistrano-passenger
+  capistrano-rails (~> 1.2)
+  capistrano-rvm
   coderay!
   daemons
   dalli

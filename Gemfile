@@ -40,7 +40,15 @@ gem 'it'
 gem 'rb-readline'
 
 gem 'byebug', group: [:development, :test]
-gem 'bullet', :group => :development
+
+group :development do
+  gem 'bullet'
+  gem 'capistrano', "~> 3.7"
+  gem 'capistrano-rails', "~> 1.2"
+  gem 'capistrano-passenger'
+  gem 'capistrano-bundler', '~> 1.2'
+  gem 'capistrano-rvm'
+end
 
 group :profile do
   gem 'ruby-prof'
