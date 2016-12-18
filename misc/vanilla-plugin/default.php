@@ -137,16 +137,16 @@ class GreasyForkPlugin extends Gdn_Plugin {
 		$NotificationEmail = $UserInfo['email'];
 		$NotificationName = $UserInfo['name'];
 		$ScriptName = $UserInfo['script_name'];
-		if ($IsDiscussion) {
-			$ActivityHeadline = $UserName.' started a discussion on '.$ScriptName;
-		} else {
-			$ActivityHeadline = $UserName.' commented on a discussion about '.$ScriptName;
-		}
+		$ActivityHeadline = $DiscussionName.' - '.$ScriptName;
 		$UserId = $UserInfo['id'];
 		$AccountUrl = 'https://greasyfork.org/users/'.$UserId;
 
 		$Email = new Gdn_Email();
-		$Email->Subject(sprintf(T('[%1$s] %2$s'), Gdn::Config('Garden.Title'), $ActivityHeadline));
+		if ($IsDiscussion) {
+			$Email->Subject(sprintf(T('[%1$s] %2$s'), Gdn::Config('Garden.Title'), $ActivityHeadline));
+		} else {
+			$Email->Subject(sprintf(T('Re: [%1$s] %2$s'), Gdn::Config('Garden.Title'), $ActivityHeadline));
+		}
 		$Email->To($NotificationEmail, $NotificationName);
 		if ($IsDiscussion) {
 			$Email->Message(sprintf("%s started a discussion '%s' on your script '%s'. Check it out: %s\n\nYou can change your notification settings on your Greasy Fork account page at %s", $UserName, $DiscussionName, $ScriptName, Url('/discussion/'.$DiscussionID.'/'.Gdn_Format::Url($DiscussionName), TRUE), $AccountUrl));
@@ -154,6 +154,7 @@ class GreasyForkPlugin extends Gdn_Plugin {
 			$Email->Message(sprintf("%s commented on the discussion '%s' on your script '%s'. Check it out: %s\n\nYou can change your notification settings on your Greasy Fork account page at %s", $UserName, $DiscussionName, $ScriptName, Url('/discussion/'.$DiscussionID.'/'.Gdn_Format::Url($DiscussionName), TRUE), $AccountUrl));
 		}
 
+		# For development
 		#print_r($Email);
 		#die;
 
