@@ -14,6 +14,11 @@
  *= require_tree .
  */
 
+/* Prevent shifting on pages that don't need scrolling */
+html {
+  overflow-y: scroll;
+}
+
 body {
 	margin: 0;
 	background-color: #F6F6F6;
@@ -109,7 +114,6 @@ nav li + li {
 }
 
 #script-info {
-	padding: 0 1em 1em;
 	border: 1px solid #BBBBBB;
 	border-radius: 5px;
 	clear: left;
@@ -318,14 +322,21 @@ dt[title] > span {
 	text-align: center;
 }
 
-.script-list, .user-list {
-	list-style-type: none;
+#script-info, .user-list, .text-content {
+	padding: 0 1em 1em;
+}
+.script-list {
 	padding: 0;
+}
+
+.script-list, .user-list, .text-content {
+	list-style-type: none;
 	box-shadow: 0 0 5px #DDDDDD;
 	background-color: white;
 	border: 1px solid #BBBBBB;
 	border-radius: 5px;
 	box-sizing: border-box;
+	margin-top: 14px;
 }
 .user-list {
 	padding: 1em;

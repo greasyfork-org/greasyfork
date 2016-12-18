@@ -3,6 +3,8 @@ require 'csv'
 
 class ScriptsController < ApplicationController
 	layout 'application', :except => [:show, :show_code, :feedback, :diff, :sync, :sync_update, :delete, :do_delete, :stats, :derivatives, :mark, :do_mark]
+	layout 'list', :only => [:index]
+
 
 	before_action :authorize_by_script_id, :only => [:sync, :sync_update, :request_permanent_deletion, :unrequest_permanent_deletion]
 	before_action :authorize_by_script_id_or_moderator, :only => [:delete, :do_delete, :undelete, :do_undelete, :derivatives]
