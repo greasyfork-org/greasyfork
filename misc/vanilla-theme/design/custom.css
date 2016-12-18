@@ -11,9 +11,14 @@
 body, .SiteTitle, select, input {
 	font-family: "Open Sans", sans-serif;
 }
+body:not(.Settings) {
+	margin: 0;
+	background-color: #F6F6F6;
+}
 body:not(.Settings) #Head {
 	background-color: #670000;
-	padding-top: 0 !important;
+	background-image: linear-gradient(#670000, #990000);
+	padding: 0.25em 0;
 }
 body:not(.Settings) a:not(.Button) {
 	color: #670000;
@@ -44,7 +49,7 @@ body .Pager .Highlight {
 	bottom: 0;
 }
 .SiteMenu a {
-	font-size: 16px;
+	font-size: 14px;
 	padding: 0;
 }
 .SiteMenu li + li {
@@ -66,7 +71,7 @@ body .Pager .Highlight {
 	display: none;
 }
 #language-selector-locale {
-	font-size: smaller;
+	font-size: 11px;
 	padding: 0;
 }
 #site-name {
@@ -95,6 +100,21 @@ body .Pager .Highlight {
 	font-size: 11.2px;
 	/* in case it overlaps the y in Greasy */
 	text-shadow: -1px -1px 0px #670000, 1px -1px 0px #670000, -1px 1px 0px #670000, 1px 1px 0px #670000;
+}
+
+#Body {
+	box-shadow: 0 0 5px #DDDDDD;
+	background-color: white;
+	border: 1px solid #BBBBBB;
+	border-radius: 5px;
+	box-sizing: border-box;
+	margin: auto;
+	margin-top: 14px;
+	max-width: 960px;
+	padding: 14px 1em 1em;
+}
+#Body .Row {
+	width: 934px;
 }
 
 /* Tables in posts */

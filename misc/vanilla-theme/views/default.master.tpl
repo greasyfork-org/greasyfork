@@ -12,7 +12,7 @@
 				<a href="/{$locale}/">{logo}</a>
 				<div id="site-name-text">
 					<h1><a href="/{$locale}/">Greasy Fork</a></h1>
-					<p class="subtitle">Neither greasy nor a fork.</p>
+					<p class="subtitle">Shined up real nice.</p>
 				</div>
 			</div>
 			<ul id="nav-user-info">
