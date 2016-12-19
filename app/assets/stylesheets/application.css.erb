@@ -174,9 +174,23 @@ nav li + li {
 	position: relative;
 	top: 4px;
 }
+#script-links a:hover {
+	background: rgba(0, 0, 0, 0.03);
+	position: relative;
+	top: -4px;
+	box-shadow: inset 1px 0 rgba(0, 0, 0, 0.1), inset -1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px rgba(0, 0, 0, 0.1);
+	padding-top: 8px;
+}
+#script-links a:hover span {
+	position: relative;
+	top: 4px;
+}
 
 #install-area {
 	margin-bottom: 1em;
+}
+#install-area a:hover {
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 }
 .install-link, .install-link:visited, .install-link:active, .install-link:hover, .install-help-link {
 	display: inline-block;
@@ -214,9 +228,9 @@ nav li + li {
 	-moz-column-count: 2;
 	-webkit-column-count: 2;
 	column-count: 2;
-	-moz-column-gap: 1;
-	-webkit-column-gap: 1;
-	column-gap: 1;
+	-moz-column-gap: 1em;
+	-webkit-column-gap: 1em;
+	column-gap: 1em;
 }
 #script-stats dt, #script-meta dt {
 	clear: left;
@@ -405,17 +419,34 @@ dt[title] > span {
 .script-list .name-description-separator {
 	display: none;
 }
-.script-list + .pagination, .user-list + .pagination {
+.pagination, .script-list + .pagination, .user-list + .pagination {
 	font-size: 18px;
+	display: block;
+	background-color: transparent;
+	padding: 0;
+	margin: 0;
+	border-radius: 5px;
+}
+.pagination > *, .script-list + .pagination > *, .user-list + .pagination > * {
 	display: inline-block;
 	background-color: #F2E5E5;
 	padding: 0.5em;
 	margin-bottom: 1em;
 	border-radius: 5px;
+	text-decoration: none;
+}
+.pagination .disabled {
+	display: none;
 }
 .pagination .current {
 	font-style: normal;
 	font-weight: bold;
+}
+.pagination .current, .pagination .gap {
+	background-color: transparent;
+}
+.pagination > a:hover {
+	background-color: #e2c5c5;
 }
 
 .good-rating-count, .ok-rating-count, .bad-rating-count {
@@ -516,8 +547,15 @@ dt[title] > span {
 
 .alert {
 	font-style: italic;
-	background-color: #FFFF99;
-	border: 2px dotted #CC9999;
+	background-color: #FFFFCC;
+	border: none;
+ 	border-left: 6px solid #FFEB3B;
+	padding: 0.5em;
+}
+.notice {
+	background-color: #D9EDF7;
+	border: none;
+	border-left: 6px solid #31708F;
 	padding: 0.5em;
 }
 
