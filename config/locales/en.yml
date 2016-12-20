@@ -452,6 +452,8 @@ en:
     # marker after script name if it's a library
     library_marker: "(Library)"
   script_sets:
+    # description of script sets on edit page
+    description: "Script sets let you create a customized list of scripts to browse Greasy Fork with. You can add scripts to your set by including individual scripts, other users' sets, or automatically generated sets. You can also exclude scripts from your set with the same methods."
     # name for the favorites set
     favorites_name: "Favorites"
     # delete button text for a script set
@@ -460,6 +462,67 @@ en:
     delete_confirmation: "Are you sure you want to delete this script set?"
     # option for choosing to sort the set by the default sort the site uses
     site_default_sort: "(Site default)"
+    edit_scripts:
+      heading: "Scripts"
+      description: "Include or exclude individual scripts in your script set."
+      included: "Included"
+      included_none: "(None)"
+      remove_included: "Remove selected"
+      excluded: "Excluded"
+      excluded_none: "(None)"
+      remove_excluded: "Remove selected"
+      add_label: "Add scripts (URLs or IDs, separated by whitespace)"
+      add_include: "Include"
+      add_exclude: "Exclude"
+    edit_sets:
+      heading: "Script sets"
+      description: "Include or exclude other script sets in your script set."
+      included: "Included"
+      included_none: "(None)"
+      remove_included: "Remove selected"
+      excluded: "Excluded"
+      excluded_none: "(None)"
+      remove_excluded: "Remove selected"
+      add_label: "Add scripts (URLs or IDs, separated by whitespace)"
+      add_include: "Include"
+      add_exclude: "Exclude"
+      user_label: "List script sets belonging to user (URL, ID, or name)"
+      user_no_sets: "(User has no sets)"
+      user_no_other_sets: "(User has no other sets)"
+    edit_auto_sets:
+      heading: "Automatic script sets"
+      description: "Include or exclude an automatically generated list of scripts in your script set."
+      included: "Included"
+      included_none: "(None)"
+      remove_included: "Remove selected"
+      excluded: "Excluded"
+      excluded_none: "(None)"
+      all_scripts_label: "All scripts"
+      all_scripts_include: "Include"
+      for_sites_label: "Scripts for site (e.g. example.com, leave blank for \"All sites\")"
+      for_sites_include: "Include"
+      for_sites_exclude: "Exclude"
+      for_user_label: "Scripts by user (URL, ID, or name)"
+      for_user_include: "Include"
+      for_user_exclude: "Exclude"
+      for_language_label: "Scripts in language"
+      for_language_include: "Include"
+      for_language_exclude: "Exclude"
+    calculated_list: "Calculated script list"
+    calculated_list_none: "(None)"
+    calculated_list_more:
+      one: "And %{count} more…"
+      other: "And %{count} more…"
+    already_included: "'%{name}' already included."
+    could_not_parse_script: "Could not parse script '%{value}'"
+    save: "Save"
+    saved: "Script set saved."
+    auto_set_types:
+      all_scripts: "All scripts"
+      site: "Scripts for %{site}"
+      all_sites: "All sites"
+      user: "Scripts by user %{user}"
+      locale: "Scripts in %{locale_name}"
   forum_discussions:
     # forum discussion lists with 2 * 2 = 4 options:
     # 1. with_script: includes the script name, for example for "Discussions on your scripts" on a user's page
@@ -863,6 +926,13 @@ en:
         replaced_by_script_id: "Replacement script"
         # whether the user is OK with their script being posted elsewhere
         approve_redistribution: "Redistribution"
+      script_set:
+        # name of the script set
+        name: "Name"
+        # description of the script set
+        description: "Description"
+        # default sort of the script set
+        default_sort: "Default sort"
   errors:
     messages:
       # validation for when a script name is not provided

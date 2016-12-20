@@ -175,10 +175,10 @@ private
 				end
 
 				if script_id.nil?
-					errors << "Could not parse script '#{CGI::escapeHTML(possible_script)}'"
+					errors << I18n.t('script_sets.could_not_parse_script', value: possible_script)
 				else
 					script = Script.find(script_id)
-					errors << "'#{script.name(I18n.locale)}' already included." if !set.add_child(script, params['script-action'] == 'e')
+					errors << I18n.t('script_sets.already_included', name: script.name(I18n.locale)) if !set.add_child(script, params['script-action'] == 'e')
 				end
 			end
 		end
@@ -186,25 +186,25 @@ private
 		# Add set
 		if !params['set-action'].nil? and !params['add-child-set'].nil?
 			child_set = ScriptSet.find(params['add-child-set'])
-			errors << "'#{child_set.name}' already included." if !set.add_child(child_set, params['set-action'] == 'e')
+			errors << I18n.t('script_sets.already_included', name: child_set.name) if !set.add_child(child_set, params['set-action'] == 'e')
 		end
 
 		# Add automatic set
 		if !params['add-automatic-script-set-1'].nil?
 			ssasi = ScriptSetAutomaticSetInclusion.from_param_value("1-", false)
-			errors << "'#{ssasi.name}' already included." if !set.add_automatic_child(ssasi)
+			errors << I18n.t('script_sets.already_included', name: I18n.t(*ssasi.i18n_params)) if !set.add_automatic_child(ssasi)
 		elsif !params['add-automatic-script-set-2'].nil?
 			ssasi = ScriptSetAutomaticSetInclusion.from_param_value("2-#{params['add-automatic-script-set-value-2']}", params['add-automatic-script-set-2'] == 'e')
-			errors << "'#{ssasi.name}' already included." if !set.add_automatic_child(ssasi)
+			errors << I18n.t('script_sets.already_included', name: I18n.t(*ssasi.i18n_params)) if !set.add_automatic_child(ssasi)
 		elsif !params['add-automatic-script-set-3'].nil? and !params['add-automatic-script-set-value-3'].nil?  and !params['add-automatic-script-set-value-3'].empty?
 			automatic_script_set_user = parse_user(params['add-automatic-script-set-value-3'])
 			automatic_script_set_user = automatic_script_set_user.nil? ? nil : automatic_script_set_user.id
 			ssasi = ScriptSetAutomaticSetInclusion.from_param_value("3-#{automatic_script_set_user}", params['add-automatic-script-set-3'] == 'e')
-			errors << "'#{ssasi.name}' already included." if !set.add_automatic_child(ssasi)
+			errors << I18n.t('script_sets.already_included', name: I18n.t(*ssasi.i18n_params)) if !set.add_automatic_child(ssasi)
 		elsif !params['add-automatic-script-set-4'].nil?
 			params['add-automatic-script-set-value-4'].each do |l|
 				ssasi = ScriptSetAutomaticSetInclusion.from_param_value("4-#{l}", params['add-automatic-script-set-4'] == 'e')
-				errors << "'#{ssasi.name}' already included." if !set.add_automatic_child(ssasi)
+				errors << I18n.t('script_sets.already_included', name: I18n.t(*ssasi.i18n_params)) if !set.add_automatic_child(ssasi)
 			end
 		end
 
@@ -227,7 +227,7 @@ private
 		if set.errors.empty? and params[:save] == '1'
 			set.save
 			redirect_to set.user
-			flash[:notice] = 'Script set saved.'
+			flash[:notice] = I18n.t("script_sets.saved")
 			return true
 		end
 
