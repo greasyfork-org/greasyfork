@@ -140,7 +140,7 @@ body .Pager .Highlight {
 	padding: .35em 1em;
 	display: block;
 }
-#Panel .FilterMenu a:hover, #Panel .PanelCategories a:hover {
+#Panel .FilterMenu a:hover, #Panel .PanelCategories a:hover, #Panel .FilterMenu a:focus, #Panel .PanelCategories a:focus {
 	background: linear-gradient(white, #F6F6F6);
 	text-decoration: none;
 	box-shadow: inset 0 -1px #DDDDDD, inset 0 1px #EEEEEE;
@@ -245,7 +245,7 @@ pre code {
 	border-radius: 5px;
 	text-decoration: none;
 }
-.RecentDiscussionFilter a:hover {
+.RecentDiscussionFilter a:hover, .RecentDiscussionFilter a:focus {
 	background-color: #e2c5c5;
 }
 .Pager > * {
@@ -263,7 +263,7 @@ pre code {
 	display: inline-block;
 	background-color: transparent;
 }
-.Pager > a:hover {
+.Pager > a:hover, .Pager > a:focus {
 	background-color: #e2c5c5;
 }
 .Pager, .Category-script-discussions{
