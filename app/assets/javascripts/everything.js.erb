@@ -299,6 +299,17 @@
 		$('input.enable-source-editor').change();
 	}
 
+	// Add data-submit-anchor to make a form submit to an anchor of your choosing.
+	function hookUpSubmitAnchor() {
+		$("[data-submit-anchor]").click(function(e) {
+			var form = $(this).closest("form");
+			if (form == null) {
+				return;
+			}
+			form.attr("action", form.attr("action").split("#")[0] + "#" + $(this).data("submit-anchor"));
+		});
+	}
+
 	function init() {
 		hookUpSelectAllCheckboxes();
 		hookUpInstallPingers();
@@ -311,6 +322,7 @@
 		restyleScreenMaxHeight();
 		hookUpFancyBox();
 		hookUpSourceEditor();
+		hookUpSubmitAnchor();
 	}
 	
 	window.addEventListener("DOMContentLoaded", init);

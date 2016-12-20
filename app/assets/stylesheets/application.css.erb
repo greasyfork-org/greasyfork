@@ -174,14 +174,14 @@ nav li + li {
 	position: relative;
 	top: 4px;
 }
-#script-links a:hover {
+#script-links a:hover, #script-links a:focus {
 	background: rgba(0, 0, 0, 0.03);
 	position: relative;
 	top: -4px;
 	box-shadow: inset 1px 0 rgba(0, 0, 0, 0.1), inset -1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px rgba(0, 0, 0, 0.1);
 	padding-top: 8px;
 }
-#script-links a:hover span {
+#script-links a:hover span, #script-links a:focus span {
 	position: relative;
 	top: 4px;
 }
@@ -189,7 +189,7 @@ nav li + li {
 #install-area {
 	margin-bottom: 1em;
 }
-#install-area a:hover {
+#install-area a:hover, #install-area a:focus {
 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 }
 .install-link, .install-link:visited, .install-link:active, .install-link:hover, .install-help-link {
@@ -303,7 +303,8 @@ dt[title] > span {
 	border: 1px solid #BBB;
 	border-style: inset;
 }
-.form-control input:not([type=radio]):not([type=file]):not([type=checkbox]):not([size]) {
+.form-control input:not([type=radio]):not([type=file]):not([type=checkbox]):not([type=search]):not([size]) {
+	box-sizing: border-box;
 	width: 100%;
 }
 .radio-group input[type=radio] {
@@ -445,7 +446,7 @@ dt[title] > span {
 .pagination .current, .pagination .gap {
 	background-color: transparent;
 }
-.pagination > a:hover {
+.pagination > a:hover, .pagination > a:focus {
 	background-color: #e2c5c5;
 }
 
@@ -617,7 +618,7 @@ td.numeric, th.numeric {
 	padding: .35em 1em;
 	display: block;
 }
-.list-option-group a:hover {
+.list-option-group a:hover, .list-option-group a:focus {
 	background: linear-gradient(white, #F6F6F6);
 	text-decoration: none;
 	box-shadow: inset 0 -1px #DDDDDD, inset 0 1px #EEEEEE;
