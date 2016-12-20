@@ -303,7 +303,8 @@ dt[title] > span {
 	border: 1px solid #BBB;
 	border-style: inset;
 }
-.form-control input:not([type=radio]):not([type=file]):not([type=checkbox]):not([size]) {
+.form-control input:not([type=radio]):not([type=file]):not([type=checkbox]):not([type=search]):not([size]) {
+	box-sizing: border-box;
 	width: 100%;
 }
 .radio-group input[type=radio] {

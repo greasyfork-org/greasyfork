@@ -1,83 +1,58 @@
-<style>
-	form > div {
-		margin-bottom: 1em;
-	}
-	.selection-box {
-		display: inline-block;
-		vertical-align: top;
-		min-width: 20%;
-	}
-	.selection-box select {
-		width: 100%;
-	}
-	textarea {
-		width: 95%;
-		height: 5em;
-	}
-	h3 {
-		margin-bottom: 0;
-		margin-top: 2em;
-	}
-	.add-automatic-script-set > div {
-		margin-left: 1em;
-	}
-	.add-automatic-script-set-4 > * {
-		vertical-align: top;
-	}
-</style>
-
 <% if !@set.favorite %>
 	<p>
-		Script sets let you create your own lists of scripts and browse through them with the Greasy Fork's sorting, filtering, and searching options. There are three item types you can include in your script sets: individual scripts, other script sets created by you or other users, and script sets created automatically by the site. For each type, you can choose to include it (the scripts will appear in your script set) or exclude it (the scripts will be removed from your script set if something else included it).</p>
+		Script sets let you create a customized list of scripts to browse Greasy Fork with. You can add scripts to your set by including individual scripts, other users' sets, or automatically generated sets. You can also exclude scripts from your set with the same methods.</p>
 	</p>
 <% else %>
 	<p>Favorite scripts</p>
 <% end %>
 
-<%=form_for([@set.user, @set]) do |s|%>
+<%=form_for([@set.user, @set], html: {class: 'change-script-set'}) do |s|%>
 
-	<% if !@set.errors.empty? %>
-		<p><%=t('common.error_preamble')%></p>
-		<ul class="errors">
-			<% @set.errors.full_messages.each do |m| %>
-				<li><%=m%></li>
-			<% end %>
-		</ul>
-	<% end %>
+	<section>
+		<% if !@set.errors.empty? %>
+			<p><%=t('common.error_preamble')%></p>
+			<ul class="errors">
+				<% @set.errors.full_messages.each do |m| %>
+					<li><%=m%></li>
+				<% end %>
+			</ul>
+		<% end %>
 
-	<% if @set.favorite %>
-		<%=s.hidden_field(:name)%>
-		<%=s.hidden_field(:description)%>
-	<% else %>
-		<div>
-			<%=s.label(:name)%><br>
-			<%=s.text_field(:name, :maxlength => 100, :size => nil)%>
-		</div>
+		<% if @set.favorite %>
+			<%=s.hidden_field(:name)%>
+			<%=s.hidden_field(:description)%>
+		<% else %>
+			<div class="form-control">
+				<%=s.label(:name)%><br>
+				<%=s.text_field(:name, :maxlength => 100, :size => nil)%>
+			</div>
 
-		<div>
-			<%=s.label(:description)%><br>
-			<%=s.text_area(:description, :maxlength => 500, :size => nil)%>
-		</div>
+			<div class="form-control">
+				<%=s.label(:description)%><br>
+				<%=s.text_area(:description, :maxlength => 500, :size => nil)%>
+			</div>
 
-		<div>
-			<%=s.label(:default_sort)%><br>
-			<%=s.select(:default_sort, [
-				[t('script_sets.site_default_sort'), nil],
-				[t('scripts.listing_sort_daily_installs'), 'daily_installs'],
-				[t('scripts.listing_sort_total_installs'), 'total_installs'],
-				[t('scripts.listing_sort_ratings'), 'ratings'],
-				[t('scripts.listing_sort_created_date'), 'created'],
-				[t('scripts.listing_sort_updated_date'), 'updated'],
-				[t('scripts.listing_sort_name'), 'name']
-			])%>
-		</div>
-	<% end %>
+			<div class="form-control">
+				<%=s.label(:default_sort)%><br>
+				<%=s.select(:default_sort, [
+					[t('script_sets.site_default_sort'), nil],
+					[t('scripts.listing_sort_daily_installs'), 'daily_installs'],
+					[t('scripts.listing_sort_total_installs'), 'total_installs'],
+					[t('scripts.listing_sort_ratings'), 'ratings'],
+					[t('scripts.listing_sort_created_date'), 'created'],
+					[t('scripts.listing_sort_updated_date'), 'updated'],
+					[t('scripts.listing_sort_name'), 'name']
+				])%>
+			</div>
+		<% end %>
+	</section>
 
-	<div>
+	<section id="script-set-scripts">
 		<% if !@set.favorite %>
 			<h3>Scripts</h3>
+			<p>Include or exclude individual scripts in your script set.</p>
 		<% end %>
-		<div class="selection-box">
+		<div class="selection-box form-control">
 			<% if !@set.favorite %>
 				<label for="remove-scripts-included">Included</label><br>
 			<% end %>
@@ -91,11 +66,11 @@
 						<option value="<%=script.id%>"><%=script.name(I18n.locale)%></option>
 					<% end %>
 				</select><br>
-				<button name="remove-selected-scripts" value="i">Remove selected</button>
+				<button name="remove-selected-scripts" value="i" data-submit-anchor="script-set-scripts">Remove selected</button>
 			<% end %>
 		</div>
 		<% if !@set.favorite %>
-			<div class="selection-box">
+			<div class="selection-box form-control">
 				<label for="remove-scripts-excluded">Excluded</label><br>
 				<% if @set.child_script_exclusions.empty? %>
 					<select disabled multiple size="10">
@@ -107,16 +82,16 @@
 							<option value="<%=script.id%>"><%=script.name(I18n.locale)%></option>
 						<% end %>
 					</select><br>
-					<button name="remove-selected-scripts" value="e">Remove selected</button>
+					<button name="remove-selected-scripts" value="e" data-submit-anchor="script-set-scripts">Remove selected</button>
 				<% end %>
 			</div>
 		<% end %>
-		<div>
+		<div class="form-control">
 			<label for="add-script">Add scripts (URLs or IDs, separated by whitespace)</label><br>
 			<textarea id="add-script" name="add-script"></textarea><br>
-			<button name="script-action" value="i">Include</button>
+			<button name="script-action" value="i" data-submit-anchor="script-set-scripts">Include</button>
 			<% if !@set.favorite %>
-				<button name="script-action" value="e">Exclude</button>
+				<button name="script-action" value="e" data-submit-anchor="script-set-scripts">Exclude</button>
 			<% end %>
 		</div>
 		<% @set.child_script_inclusions.each do |script| %>
@@ -127,12 +102,13 @@
 				<input type="hidden" name="scripts-excluded[]" value="<%=script.id%>">
 			<% end %>
 		<% end %>
-	</div>
+	</section>
 
 	<% if !@set.favorite %>
-		<div>
+		<section id="script-set-script-sets">
 			<h3>Script sets</h3>
-			<div class="selection-box">
+			<p>Include or exclude other script sets in your script set.</p>
+			<div class="selection-box form-control">
 				<label for="remove-sets-included">Included</label><br>
 				<% if @set.child_set_inclusions.empty? %>
 					<select disabled multiple size="10">
@@ -144,10 +120,10 @@
 							<option value="<%=set.id%>"><%=set.name%></option>
 						<% end %>
 					</select><br>
-					<button name="remove-selected-sets" value="i">Remove selected</button>
+					<button name="remove-selected-sets" value="i" data-submit-anchor="script-set-script-sets">Remove selected</button>
 				<% end %>
 			</div>
-			<div class="selection-box">
+			<div class="selection-box form-control">
 				<label for="remove-sets-included">Excluded</label><br>
 				<% if @set.child_set_exclusions.empty? %>
 					<select disabled multiple size="10">
@@ -159,28 +135,37 @@
 							<option value="<%=set.id%>"><%=set.name%></option>
 						<% end %>
 					</select><br>
-					<button name="remove-selected-sets" value="e">Remove selected</button>
+					<button name="remove-selected-sets" value="e" data-submit-anchor="script-set-script-sets">Remove selected</button>
 				<% end %>
 			</div>
 			<div>
-				<label>Add script set</label><br>
-				<input type="hidden" name="child-set-user-id" value="<%=@child_set_user.id%>">
-				<label for="child-set-user">User (URL, ID, or name)</label> <input id="child-set-user" name="child-set-user" value="<%=@child_set_user.name%>">
-				<button name="child-set-user-refresh" value="1">→</button>
-				<% available_child_sets = @child_set_user.script_sets.select{|ss| ss != @set && !@set.child_set_inclusions.include?(ss) && !@set.child_set_exclusions.include?(ss)}
-				if @child_set_user.script_sets.empty? %>
-					(User has no sets)
-				<% elsif available_child_sets.empty? %>
-					(User has no other sets)
-				<% else %>
-					<select name="add-child-set">
-						<% available_child_sets.each do |ss| %>
-							<option value="<%=ss.id%>"><%=ss.name%></option>
-						<% end %>
-					</select>
-					<button name="set-action" value="i">Include</button>
-					<button name="set-action" value="e">Exclude</button>
-				<% end %>
+				<div id="add-script-set" class="add-script-set form-control">
+					<input type="hidden" name="child-set-user-id" value="<%=@child_set_user.id%>">
+					<label for="child-set-user">
+						List script sets belonging to user (URL, ID, or name):
+					</label>
+					<input id="child-set-user" type="search" name="child-set-user" value="<%=@child_set_user.name%>">
+					<button name="child-set-user-refresh" value="1" data-submit-anchor="add-script-set">→</button>
+					<% available_child_sets = @child_set_user.script_sets.select{|ss| ss != @set && !@set.child_set_inclusions.include?(ss) && !@set.child_set_exclusions.include?(ss)}
+					if @child_set_user.script_sets.empty? %>
+						<div>
+							(User has no sets)
+						</div>
+					<% elsif available_child_sets.empty? %>
+						<div>
+							(User has no other sets)
+						</div>
+					<% else %>
+						<label for="add-child-set">Add script set</label>
+						<select id="add-child-set" name="add-child-set">
+							<% available_child_sets.each do |ss| %>
+								<option value="<%=ss.id%>"><%=ss.name%></option>
+							<% end %>
+						</select>
+						<button name="set-action" value="i" data-submit-anchor="script-set-script-sets">Include</button>
+						<button name="set-action" value="e" data-submit-anchor="script-set-script-sets">Exclude</button>
+					<% end %>
+				</div>
 			</div>
 			<% @set.child_set_inclusions.each do |set| %>
 				<input type="hidden" name="sets-included[]" value="<%=set.id%>">
@@ -188,10 +173,11 @@
 			<% @set.child_set_exclusions.each do |set| %>
 				<input type="hidden" name="sets-excluded[]" value="<%=set.id%>">
 			<% end %>
-		</div>
+		</section>
 
-		<div>
+		<section id="script-set-auto-script-sets">
 			<h3>Automatic script sets</h3>
+			<p>Include or exclude an automatically generated list of scripts in your script set.</p>
 			<div class="selection-box">
 				<label for="remove-sets-included">Included</label><br>
 				<% if @set.child_automatic_set_inclusions.empty? %>
@@ -204,7 +190,7 @@
 							<option value="<%=set.param_value%>"><%=set.name%></option>
 						<% end %>
 					</select><br>
-					<button name="remove-selected-automatic-sets" value="i">Remove selected</button>
+					<button name="remove-selected-automatic-sets" value="i" data-submit-anchor="script-set-auto-script-sets">Remove selected</button>
 				<% end %>
 			</div>
 			<div class="selection-box">
@@ -219,29 +205,29 @@
 							<option value="<%=set.param_value%>"><%=set.name%></option>
 						<% end %>
 					</select><br>
-					<button name="remove-selected-automatic-sets" value="e">Remove selected</button>
+					<button name="remove-selected-automatic-sets" value="e" data-submit-anchor="script-set-auto-script-sets">Remove selected</button>
 				<% end %>
 			</div>
 			<div class="add-automatic-script-set">
-				<label>Add automatic script set</label><br>
-				<div>
-					All scripts:
-					<button name="add-automatic-script-set-1" value="i">Include</button>
+				<div class="form-control">
+					<label for="add-automatic-script-set-1">All scripts</label>
+					<br>
+					<button id="add-automatic-script-set-1" name="add-automatic-script-set-1" value="i" data-submit-anchor="script-set-auto-script-sets">Include</button>
 				</div>
-				<div>
-					<label for="add-automatic-script-set-value-2">Scripts for site (e.g. example.com, leave blank for "All sites"):</label>
-					<input id="add-automatic-script-set-value-2" name="add-automatic-script-set-value-2"> <button name="add-automatic-script-set-2" value="i">Include</button> <button name="add-automatic-script-set-2" value="e">Exclude</button>
+				<div class="form-control">
+					<label for="add-automatic-script-set-value-2">Scripts for site (e.g. example.com, leave blank for "All sites")</label>
+					<input id="add-automatic-script-set-value-2" name="add-automatic-script-set-value-2" data-submit-anchor="script-set-auto-script-sets"> <button name="add-automatic-script-set-2" value="i">Include</button> <button name="add-automatic-script-set-2" value="e" data-submit-anchor="script-set-auto-script-sets">Exclude</button>
 				</div>
-				<div>
-					<label for="add-automatic-script-set-value-3">Scripts by user (URL, ID, or name):</label>
-					<input id="add-automatic-script-set-value-3" name="add-automatic-script-set-value-3"> <button name="add-automatic-script-set-3" value="i">Include</button> <button name="add-automatic-script-set-3" value="e">Exclude</button>
+				<div class="form-control">
+					<label for="add-automatic-script-set-value-3">Scripts by user (URL, ID, or name)</label>
+					<input id="add-automatic-script-set-value-3" name="add-automatic-script-set-value-3"> <button name="add-automatic-script-set-3" value="i" data-submit-anchor="script-set-auto-script-sets">Include</button> <button name="add-automatic-script-set-3" value="e" data-submit-anchor="script-set-auto-script-sets">Exclude</button>
 				</div>
-				<div class="add-automatic-script-set-4">
-					<label for="add-automatic-script-set-value-4">Scripts in language:</label>
+				<div class="form-control add-automatic-script-set-4">
+					<label for="add-automatic-script-set-value-4">Scripts in language</label>
 					<% current_locale = nil
 					current_locale = Locale.where(:code => params[:locale]).first if !params[:locale].nil?
 					current_locale = Locale.where(:code => 'en').first if current_locale.nil? %>
-					<%=select_tag('add-automatic-script-set-value-4', options_from_collection_for_select(Locale.with_listable_scripts(script_subset), "id", "display_text", current_locale.id), {:id => 'add-automatic-script-set-value-4', :multiple => true})%> <button name="add-automatic-script-set-4" value="i">Include</button> <button name="add-automatic-script-set-4" value="e">Exclude</button>
+					<%=select_tag('add-automatic-script-set-value-4', options_from_collection_for_select(Locale.with_listable_scripts(script_subset), "id", "display_text", current_locale.id), {:id => 'add-automatic-script-set-value-4', :multiple => true})%> <button name="add-automatic-script-set-4" value="i" data-submit-anchor="script-set-auto-script-sets">Include</button> <button name="add-automatic-script-set-4" value="e" data-submit-anchor="script-set-auto-script-sets">Exclude</button>
 				</div>
 			</div>
 			<% @set.child_automatic_set_inclusions.each do |set| %>
@@ -250,9 +236,9 @@
 			<% @set.child_automatic_set_exclusions.each do |set| %>
 				<input type="hidden" name="automatic-sets-excluded[]" value="<%=set.param_value%>">
 			<% end %>
-		</div>
+		</section>
 
-		<div>
+		<section>
 			<h3>Calculated script list</h3>
 			<% script_count = @set.scripts(script_subset).count
 			if script_count == 0 %>
@@ -267,7 +253,7 @@
 					<% end %>
 				</ul>
 			<% end %>
-		</div>
+		</section>
 	<% end %>
 
 	<input type="hidden" name="favorite" value="<%=@set.favorite ? '1' : '0'%>">

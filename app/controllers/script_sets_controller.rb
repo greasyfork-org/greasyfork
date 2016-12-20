@@ -218,7 +218,8 @@ private
 			end
 		end
 
-		set.valid?
+		set.valid? if params[:save] == '1'
+
 		errors.each do |err|
 			set.errors.add(:base, err)
 		end
@@ -226,6 +227,7 @@ private
 		if set.errors.empty? and params[:save] == '1'
 			set.save
 			redirect_to set.user
+			flash[:notice] = 'Script set saved.'
 			return true
 		end
 
