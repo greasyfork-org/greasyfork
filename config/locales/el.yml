@@ -261,7 +261,6 @@ el:
     sign_in_description: "Η σύνδεσή σας στο %{site_name} σας επιτρέπει να δημοσιεύετε κώδικες και να δίνετε τα σχόλιά σας σε κώδικες άλλων. Δεν χρειάζεται να συνδεθείτε για αναζήτηση ή εγκατάσταση κωδίκων."
     sign_in_external: "Συνδεθείτε με μια εξωτερική υπηρεσία"
     sign_in_with: "Συνδεθείτε με το %{provider}"
-    sign_in_shutting_down: "(Τερματισμός στις %{date})"
     sign_in_password: "Συνδεθείτε με έναν κωδικό πρόσβασης"
     sign_in_email_used_no_external_services_html: "Η ηλεκτρονική διεύθυνση «%{email}» χρησιμοποιείται ήδη από το χρήστη «%{user_name}». Αν αυτός/ή είστε εσείς και θέλετε να προσθέσετε τη σύνδεση με τον πάροχο %{provider}, %{sign_in_link} πρώτα στο λογαριασμό σας, μετά προσθέστε τη σύνδεση του παρόχου %{provider}."
     sign_in_email_used_with_external_services_html: "Η ηλεκτρονική διεύθυνση «%{email}» χρησιμοποιείται ήδη από το χρήστη «%{user_name}», που συνδέεται με τους παρόχους %{existing_providers}. Αν αυτός/ή είστε εσείς και θέλετε να προσθέσετε τη σύνδεση με τον πάροχο %{provider}, %{sign_in_link} πρώτα στο λογαριασμό σας, μετά προσθέστε τη σύνδεση του παρόχου %{provider}."
@@ -338,7 +337,10 @@ el:
       title: "Πως να εγκαταστήσετε κώδικες χρηστών"
       intro: "Για να χρησιμοποιήσετε κώδικες χρηστών, τυπικά θα χρειαστείτε να εγκαταστήσετε μια επέκταση φυλλομετρητή."
       firefox: "Firefox και σχετικοί φυλλομετρητές: %{gm_link:Greasemonkey}."
+      chrome: "Google Chrome, Chromium, και σχετικούς φυλλομετρητές: %{tm_link:Tampermonkey} ή %{vm_link:Violentmonkey}."
       opera_15_plus: "Opera (έκδοση 15 και νεότερη): %{tm_link:Tampermonkey} ή %{vm_link:Violentmonkey}."
+      opera_12: "Έκδοση Opera 12 ή νεότερα: %{vm_link:Violentmonkey} (φιλικότερο UI και καλύτερη συμβατότητα από %{opera_doc_link:native support})."
+      maxthon: "Maxthon: %{vm_link:Violentmonkey}."
       installing_scripts: "Μόλις οι κώδικες χρηστών είναι ενεργοποιημένοι στο φυλλομετρητή σας, αναζητήστε έναν κώδικα στο Greasy Fork και πατήστε το πράσινο κουμπί «Εγκατάσταση»."
     meta_keys:
       title: "Τα μετα-κλειδιά του κώδικα που διαβάζει το %{site_name}"
