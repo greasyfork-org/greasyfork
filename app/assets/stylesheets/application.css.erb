@@ -396,14 +396,18 @@ dt[title] > span {
 	color: #666;
 }
 .script-list dt::after {
-	content: ": ";
+	content: "";
 }
 .script-list dt {
 	clear: left;
 	float: left;
-	width: 12em;
+	width: 10em;
 	padding-right: 1em;
 	padding-left: 1em;
+}
+.script-list dl dt span {
+	float: right;
+	font-weight: bold;
 }
 .script-list dd {
 	float: left;
@@ -412,7 +416,7 @@ dt[title] > span {
 	font-weight: bold;
 }
 .script-list h2 {
-	font-weight: normal;
+	font-weight: bold;
 }
 .script-list .description {
 	font-weight: normal;
@@ -422,6 +426,11 @@ dt[title] > span {
 }
 .script-list .name-description-separator {
 	display: none;
+}
+#script-description,
+.script-list h2 > a,
+.script-list .description {
+	word-wrap: break-word;
 }
 .pagination, .script-list + .pagination, .user-list + .pagination {
 	font-size: 18px;
