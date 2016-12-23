@@ -48,6 +48,7 @@ group :development do
   gem 'capistrano-passenger'
   gem 'capistrano-bundler', '~> 1.2'
   gem 'capistrano-rvm'
+  gem 'capistrano3-delayed-job', '~> 1.0'
 end
 
 group :profile do

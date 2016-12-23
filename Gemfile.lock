@@ -91,6 +91,8 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    capistrano3-delayed-job (1.7.2)
+      capistrano (~> 3.0, >= 3.0.0)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.8)
@@ -286,6 +288,7 @@ DEPENDENCIES
   capistrano-passenger
   capistrano-rails (~> 1.2)
   capistrano-rvm
+  capistrano3-delayed-job (~> 1.0)
   coderay!
   daemons
   dalli
