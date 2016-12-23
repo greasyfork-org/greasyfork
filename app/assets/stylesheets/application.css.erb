@@ -351,7 +351,7 @@ dt[title] > span {
 	border: 1px solid #BBBBBB;
 	border-radius: 5px;
 	box-sizing: border-box;
-	margin-top: 14px;
+	margin: 14px 0;
 }
 .user-list {
 	padding: 1em;
@@ -359,6 +359,9 @@ dt[title] > span {
 }
 .list-option-groups ~ ol {
 	width: calc(960px - 14em);
+}
+.text-content .list-option-groups ~ ol {
+	width: calc(960px - 16em);
 }
 .script-list li {
 	border-bottom: 1px solid #DDDDDD;
@@ -393,14 +396,18 @@ dt[title] > span {
 	color: #666;
 }
 .script-list dt::after {
-	content: ": ";
+	content: "";
 }
 .script-list dt {
 	clear: left;
 	float: left;
-	width: 12em;
+	width: 10em;
 	padding-right: 1em;
 	padding-left: 1em;
+}
+.script-list dl dt span {
+	float: right;
+	font-weight: bold;
 }
 .script-list dd {
 	float: left;
@@ -409,7 +416,7 @@ dt[title] > span {
 	font-weight: bold;
 }
 .script-list h2 {
-	font-weight: normal;
+	font-weight: bold;
 }
 .script-list .description {
 	font-weight: normal;
@@ -419,6 +426,11 @@ dt[title] > span {
 }
 .script-list .name-description-separator {
 	display: none;
+}
+#script-description,
+.script-list h2 > a,
+.script-list .description {
+	word-wrap: break-word;
 }
 .pagination, .script-list + .pagination, .user-list + .pagination {
 	font-size: 18px;
@@ -432,7 +444,6 @@ dt[title] > span {
 	display: inline-block;
 	background-color: #F2E5E5;
 	padding: 0.5em;
-	margin-bottom: 1em;
 	border-radius: 5px;
 	text-decoration: none;
 }
@@ -762,4 +773,94 @@ pre.CodeRay {
 }
 .browser_id-login {
 	background-image: url('<%=asset_path 'persona.png'%>');
+}
+
+/* sign_up, sign_in and password/new */
+body .width-constraint > .text-content > h2,
+body .width-constraint > .text-content > h3 {
+	text-align: center;
+}
+form.inline-form {
+	position: relative;
+	display: block;
+	margin: 0 auto;
+	padding: 1em;
+	background-color: #fff;
+	border: 1px solid #d8dee2;
+	border-radius: 5px;
+	text-align: center;
+}
+form.new_user {
+	position: relative;
+	width: 340px;
+	margin: 0 auto;
+	padding: 1em;
+	background-color: #fff;
+	border: 1px solid #d8dee2;
+	border-radius: 5px;
+	text-align: left;
+}
+form.new_user label {
+	display: block;
+	font-size: small;
+}
+form.new_user br {
+	display: none;
+}
+form.new_user input[type="text"],
+form.new_user input[type="email"],
+form.new_user input[type="password"] {
+	display: block;
+	width: 100%;
+	min-height: 34px;
+	box-sizing: border-box;
+	margin-top: 0.2em;
+	margin-bottom: 0.5em;
+	padding: 6px 8px;
+	font-size: 14px;
+	line-height: 20px;
+	vertical-align: middle;
+	color: #333;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	outline: none;
+	box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+form input[type="checkbox"],
+form input[type="checkbox"] + label {
+	display: inline-block;
+	font-size: small;
+}
+form.new_user input[type="submit"] {
+	display: block;
+	width: 100%;
+	min-height: 34px;
+	box-sizing: border-box;
+	margin: 0.5em 0 0 0;
+	padding: 6px 8px;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 20px;
+	text-align: center;
+	vertical-align: middle;
+	color: #fff;
+	background-color: #670000;
+	background-image: linear-gradient(#990000, #670000);
+	border: 1px solid #ddd;
+	border-radius: 3px;
+}
+form.new_user ~ br {
+	display: none
+}
+form.new_user ~ a {
+	width: 340px;
+	display: block;
+	margin: 0 auto 2em;
+	font-size: small;
+}
+form.new_user + a {
+	width: 340px;
+	display: block;
+	margin: 0 auto;
 }
