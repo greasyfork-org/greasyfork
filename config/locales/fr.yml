@@ -240,6 +240,20 @@ fr:
     delete: "Supprimer ce jeu de scripts"
     delete_confirmation: "Êtes-vous sûr de vouloir supprimer ce jeu de scripts ?"
     site_default_sort: "(Par défaut)"
+    edit_scripts:
+      heading: "Scripts"
+      included_none: "(Aucun)"
+      excluded_none: "(Aucun)"
+    edit_sets:
+      heading: "Jeux de scripts"
+      included_none: "(Aucun)"
+      excluded_none: "(Aucun)"
+    edit_auto_sets:
+      included_none: "(Aucun)"
+      excluded_none: "(Aucun)"
+    calculated_list_none: "(Aucun)"
+    auto_set_types:
+      site: "Scripts pour %{site}"
   forum_discussions:
     listing_no_script_no_reply_html: "%{discussion_link} par %{original_poster_link} le %{original_post_date}"
     listing_no_script_with_reply_html: "%{discussion_link} par %{original_poster_link} le %{original_post_date}, dernier commentaire par  %{last_commenter_link} %{last_comment_date}"
@@ -422,6 +436,9 @@ fr:
         screenshot_caption: "Légende"
         replaced_by_script_id: "Script de remplacement"
         approve_redistribution: "Redistribution"
+      script_set:
+        name: "Nom"
+        description: "Description"
   errors:
     messages:
       script_missing_name: "est nécessaire - spécifiez-le avec @name"

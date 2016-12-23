@@ -48,6 +48,9 @@ ru:
     install: "Установить этот скрипт"
     install_help: "?"
     install_help_title: "Как устанавливать"
+    update: "Обновить до версии %{version}"
+    downgrade: "Откатить до версии %{version}"
+    reinstall: "Переустановить версию %{version}"
     library_instructions_html: "Этот скрипт недоступен для установки пользователем. Он является библиотекой, которая подключается к другим скриптам мета-ключом %{code}"
     deleted_notice: "Этот скрипт был удалён."
     inactive_pending_changes: "Этот скрипт был выключен, т.к. он нарушает правила %{site_name}."
@@ -98,6 +101,7 @@ ru:
     feedback_sign_in_to_favorite: "Войдите, чтобы добавить в избранное."
     stats_title: "%{script_name} - Статистика"
     stats_daily_installs_heading: "Ежедневно установок"
+    stats_weekly_installs_heading: "Еженедельно установок"
     stats_daily_update_checks_heading: "Ежедневно проверок обновления"
     stats_daily_installs_date_column_heading: "Дата"
     stats_daily_installs_install_count_column_heading: "Установок"
@@ -107,6 +111,11 @@ ru:
     stats_no_data: "Недоступно"
     derivatives_title: "%{script_name} - Похожие скрипты"
     derivatives_intro: "Эти скрипты могут быть основаны на вашем (или наоборот). Если код используется без вашего разрешения, сообщите об этом, создав обсуждение скрипта."
+    derivatives_code_matches_info_html:
+      one: "Опубликованные другими людьми скрипты, код которых содержит не менее %{match_size} такой же строки, как и в вашем скрипте. Проверяются скрипты, размер которых не превышает %{max_size}. Последний раз проверка проводилась %{last_run}."
+      few: "Опубликованные другими людьми скрипты, код которых содержит не менее %{match_size} таких же строк, как и в вашем скрипте. Проверяются скрипты, размер которых не превышает %{max_size}. Последний раз проверка проводилась %{last_run}."
+      many: "Опубликованные другими людьми скрипты, код которых содержит не менее %{match_size} таких же строк, как и в вашем скрипте. Проверяются скрипты, размер которых не превышает %{max_size}. Последний раз проверка проводилась %{last_run}."
+      other: "Опубликованные другими людьми скрипты, код которых содержит не менее %{match_size} таких же строк, как и в вашем скрипте. Проверяются скрипты, размер которых не превышает %{max_size}. Последний раз проверка проводилась %{last_run}."
     derivatives_namespace_matches_info_html: "Скрипты с одинаковым <code>%{namespace}</code>:"
     derivatives_name_matches_info: "Скрипты с похожими именами."
     derivatives_script_html: "%{script_link} от %{user_link}, лицензия: %{license}"
@@ -237,10 +246,74 @@ ru:
     unlisted_marker: "(Приватный)"
     library_marker: "(Библиотека)"
   script_sets:
+    description: "Списки скриптов позволяют вам объединять произвольные скрипты в группы для более удобного их просмотра на сайте Greasy Fork. Вы можете добавлять в списки отдельные скрипты, другие списки, или автоматически создаваемые списки."
     favorites_name: "Избранное"
     delete: "Удалить список скриптов"
     delete_confirmation: "Вы уверены, что хотите удалить список?"
     site_default_sort: "(По умолчанию)"
+    edit_scripts:
+      heading: "Скрипты"
+      description: "Включите в список или исключите из списка скрипты."
+      included: "Включено"
+      included_none: "(пусто)"
+      remove_included: "Удалить выделенное"
+      excluded: "Исключено"
+      excluded_none: "(пусто)"
+      remove_excluded: "Удалить выделенное"
+      add_label: "Добавить скрипты (адреса или числовые идентификаторы, разделенные пробелами)"
+      add_include: "Включить"
+      add_exclude: "Исключить"
+    edit_sets:
+      heading: "Списки скриптов"
+      description: "Добавьте в список или исключите из списка другие списки скриптов."
+      included: "Добавлено"
+      included_none: "(пусто)"
+      remove_included: "Удалить выделенное"
+      excluded: "Исключено"
+      excluded_none: "(пусто)"
+      remove_excluded: "Удалить выделенное"
+      add_label: "Добавить скрипты (адреса или числовые идентификаторы, разделенные пробелами)"
+      add_include: "Включить"
+      add_exclude: "Исключить"
+      user_label: "Показать списки скриптов, принадлежащие указанному пользователю (адрес, числовой идентификатор, или имя пользователя)"
+      user_no_sets: "(У пользователя нет ни одного списка скриптов)"
+      user_no_other_sets: "(У пользователя больше не осталось списков скриптов)"
+    edit_auto_sets:
+      heading: "Автоматически создаваемые списки"
+      description: "Добавьте в список или исключите из списка автоматически создаваемые списки скриптов."
+      included: "Включено"
+      included_none: "(пусто)"
+      remove_included: "Удалить выделенное"
+      excluded: "Исключено"
+      excluded_none: "(пусто)"
+      all_scripts_label: "Все скрипты"
+      all_scripts_include: "Включить"
+      for_sites_label: "Скрипты для сайта (например example.com; ничего не указывайте для выбора всех сайтов)"
+      for_sites_include: "Включить"
+      for_sites_exclude: "Исключить"
+      for_user_label: "Скрипты пользователя (адрес, числовой идентификатор, или имя пользователя)"
+      for_user_include: "Включить"
+      for_user_exclude: "Исключить"
+      for_language_label: "Скрипты на языке"
+      for_language_include: "Включить"
+      for_language_exclude: "Исключить"
+    calculated_list: "В список попадут следующие скрипты"
+    calculated_list_none: "(пусто)"
+    calculated_list_more:
+      one: "Еще %{count}…"
+      few: "Еще %{count}…"
+      many: "Еще %{count}…"
+      other: "Еще %{count}…"
+    already_included: "'%{name}' уже включено."
+    could_not_parse_script: "Не могу разобрать скрипт '%{value}'"
+    save: "Сохранить"
+    saved: "Список скриптов сохранён."
+    auto_set_types:
+      all_scripts: "Все скрипты"
+      site: "Скрипты для %{site}"
+      all_sites: "Всех сайтов"
+      user: "Скрипты пользователя %{user}"
+      locale: "Скрипты на языке %{locale_name}"
   forum_discussions:
     listing_no_script_no_reply_html: "%{discussion_link} от %{original_poster_link} %{original_post_date}"
     listing_no_script_with_reply_html: "%{discussion_link} от %{original_poster_link} %{original_post_date}, последний ответ от %{last_commenter_link} %{last_comment_date}"
@@ -342,7 +415,10 @@ ru:
       title: "Как устанавливать пользовательские скрипты"
       intro: "Чтобы начать пользоваться скриптами, нужно установить в браузер специальное расширение."
       firefox: "Firefox и похожие браузеры: %{gm_link:Greasemonkey}."
+      chrome: "Google Chrome, Chromium, и похожие браузеры: %{tm_link:Tampermonkey} or %{vm_link:Violentmonkey}."
       opera_15_plus: "Opera (версия 15+): %{tm_link:Tampermonkey} или %{vm_link:Violentmonkey}."
+      opera_12: "Opera до версии 12 включительно: %{vm_link:Violentmonkey} (более удобный и совместимый чем %{opera_doc_link:встроенная в браузер поддержка пользовательских скриптов})."
+      maxthon: "Maxthon: %{vm_link:Violentmonkey}."
       installing_scripts: "Когда пользовательские скрипты включены в вашем бразуера, вы можете их устанавливать просто нажав кнопку \"Установить\" на сайте Greasy Fork"
     meta_keys:
       title: "Мета-ключи для %{site_name}"
@@ -376,6 +452,23 @@ ru:
       title: "Политика %{site_name} по поводу внешних скриптов"
     script_rewriting:
       title: "Как %{site_name} будет переписывать опубликованные скрипты"
+      content_html: >
+          <p>Скрипты, размещенные на сайте %{site_name}, будут изменены в следующих
+          случаях:</p> <ul>
+
+          <li>Директивы <code>@updateURL</code>, <code>@installURL</code>, и <code>@downloadURL</code>
+          будут удалены. Отсутствие этих директив означает, что все скрипты, установленные
+          с сайта %{site_name}, и обновляться будут с сайта %{site_name}.</li>
+
+          <li>Будут добавлены отсутствующие директивы <code>@version</code> и <code>@namespace</code>.
+          Эти директивы необходимы для работы автообновления скриптов.</li>
+
+          <li>Отсутствующая директива <code>@description</code> будет скопирована
+          из предыдущей версии (если она там есть).</li>
+
+          <li>Переводы строк CRLF и CR будут преобразованы в LF (так называемый Unix-вариант).</li>
+
+          </ul>
     site_feedback_link: "Отправить отчет об ошибке или пожелание для самого %{site_name} "
     credits:
       title: "Благодарности"
@@ -426,6 +519,10 @@ ru:
         screenshot_caption: "Подпись"
         replaced_by_script_id: "Скрипт на замену"
         approve_redistribution: "Переразмещение"
+      script_set:
+        name: "Имя"
+        description: "Описание"
+        default_sort: "Сортировка"
   errors:
     messages:
       script_missing_name: "требуется - укажите @name"
