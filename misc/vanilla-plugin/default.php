@@ -29,8 +29,8 @@ class GreasyForkPlugin extends Gdn_Plugin {
 
 	# Add CSS, JS, and link to main site
 	public function Base_Render_Before($Sender) {
-		$Sender->AddCssFile($this->GetResource('global.css', FALSE, FALSE));
-		$Sender->AddCssFile('https://fonts.googleapis.com/css?family=Open+Sans');
+		$Sender->addCssFile('global.css', 'plugins/greasyfork');
+		$Sender->addCssFile('https://fonts.googleapis.com/css?family=Open+Sans');
 	}
 
 	# Going to render our own category selector
