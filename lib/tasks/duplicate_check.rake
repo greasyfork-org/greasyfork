@@ -31,12 +31,15 @@ namespace :duplicate_check do
 
 			results = YAML.load_file(RESULTS_FILE)
 			results['simian']['checks'].first['sets'].each do |set|
-				c = CpdDuplication.new(lines: set['lineCount'])
-				set['blocks'].each do |d|
-					script_id = d['sourceFile'].split('/').last.split('.').first
-					c.cpd_duplication_scripts << CpdDuplicationScript.new(line: d['startLineNumber'], script_id: script_id)
+				scripts_and_line_numbers = set['blocks'].map{|d| [d['sourceFile'].split('/').last.split('.').first, d['startLineNumber']]}.reject{|script_id, line_number| Script.where(id: script_id).none? }
+				# There has to be 2 for this to work, check again in case some where deleted and eliminated above.
+				if scripts_and_line_numbers.length >= 2
+					c = CpdDuplication.new(lines: set['lineCount'])
+					scripts_and_line_numbers.each do |script_id, line_number|
+						c.cpd_duplication_scripts << CpdDuplicationScript.new(line: line_number, script_id: script_id)
+					end
+					c.save!
 				end
-				c.save!
 			end
 		end
 	end
