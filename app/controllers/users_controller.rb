@@ -11,7 +11,9 @@ class UsersController < ApplicationController
 	HMAC_DIGEST = OpenSSL::Digest.new('sha1')
 
 	def index
-		@users = User.includes("#{script_subset}_listable_scripts".to_sym).references(:scripts).group('users.id').order(self.class.get_sort(params)).paginate(page: params[:page], per_page: get_per_page)
+		@users = self.class.apply_sort(User, sort: params[:sort], script_subset: script_subset).paginate(page: params[:page], per_page: get_per_page).load
+		@user_script_counts = Script.listable(script_subset).where(user_id: @users.map(&:id)).group(:user_id).count
+		render layout: 'base'
 	end
 
 	def show
@@ -45,6 +47,8 @@ class UsersController < ApplicationController
 					{:url => current_path_with_params(format: :jsonp, callback: 'callback'), :type => 'application/javascript'}
 				]
 				@canonical_params = [:id, :page, :per_page, :set, :site, :sort]
+
+				render layout: 'base'
 			}
 			format.json { render :json => @user.as_json(include: @same_user ? :scripts : :all_listable_scripts) }
 			format.jsonp { render :json => @user.as_json(include: @same_user ? :scripts : :all_listable_scripts), :callback => clean_json_callback_param }
@@ -219,26 +223,27 @@ class UsersController < ApplicationController
 
 private
 
-	def self.get_sort(params)
-		case params[:sort]
+	def self.apply_sort(finder, script_subset:, sort:)
+		return finder.order({created_at: :desc}, :id) if sort.nil?
+		return finder.order(:name, :id) if sort == 'name'
+		finder = finder.joins("#{script_subset}_listable_scripts".to_sym).group('users.id')
+		case sort
 			when 'scripts'
-				return "count(scripts.id) DESC, users.id"
+				return finder.order('count(scripts.id) DESC, users.id')
 			when 'total_installs'
-				return "sum(scripts.total_installs) DESC, users.id"
+				return finder.order('sum(scripts.total_installs) DESC, users.id')
 			when 'created_script'
-				return "max(scripts.created_at) DESC, users.id"
+				return finder.order('max(scripts.created_at) DESC, users.id')
 			when 'updated_script'
-				return "max(scripts.code_updated_at) DESC, users.id"
+				return finder.order('max(scripts.code_updated_at) DESC, users.id')
 			when 'daily_installs'
-				return "sum(scripts.daily_installs) DESC, users.id"
+				return finder.order('sum(scripts.daily_installs) DESC, users.id')
 			when 'fans'
-				return "sum(scripts.fan_score) DESC, users.id"
-			when 'name'
-				return "users.name ASC, users.id"
-			else
-				params[:sort] = nil
-				return "users.created_at DESC, users.id"
+				return finder.order('sum(scripts.fan_score) DESC, users.id')
+			when 'ratings'
+				return finder.order('sum(scripts.good_ratings + scripts.ok_ratings + scripts.bad_ratings) DESC, users.id')
 		end
+		
 	end
 
 	# Returns a Hash of Script to array of commit messages. Parameters:

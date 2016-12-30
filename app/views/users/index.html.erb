@@ -7,7 +7,7 @@
 	<p>No users!</p>
 <% else %>
 	<ol id="browse-user-list" class="user-list">
-		<%= render partial: 'user', collection: @users %>
+		<%= render partial: 'user', collection: @users, locals: {script_counts: @user_script_counts} %>
 	</ol>
 <% end %>
 

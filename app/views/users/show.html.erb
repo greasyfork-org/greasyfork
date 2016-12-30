@@ -1,97 +1,101 @@
 <%- title @user.name %>
 <%- description "Greasy Fork profile for #{@user.name}" %>
 
-<h2><%=@user.name%></h2>
+<section class="text-content">
+	<h2><%=@user.name%></h2>
 
-<% if !@user.profile.nil? %>
-	<section id="user-profile"><%=format_user_text(@user.profile, @user.profile_markup)%></section>
-<% end %>
+	<% if !@user.profile.nil? %>
+		<section id="user-profile"><%=format_user_text(@user.profile, @user.profile_markup)%></section>
+	<% end %>
 
-<% if @same_user %>
-	<section id="control-panel">
-		<header>
-			<h3><%=t('users.control_panel')%></h3>
-		</header>
-		<ul id="user-control-panel">
-			<li><%= link_to t('scripts.new'), new_script_version_path%></li>
-			<li><%= link_to 'New script set', new_user_script_set_path(@user)%></li>
-			<li><%= link_to t('scripts.import'), import_start_path%></li>
-			<li><%= link_to t('users.set_up_webhook'), user_webhook_info_path%></li>
-			<li><%= link_to t('users.edit'), edit_user_registration_path%></li>
-			<li><%= link_to t('users.edit_sign_in'), user_edit_sign_in_path%></li>
-			<li><%= link_to t('users.sign_out'), destroy_user_session_path, :method => :delete %></li>
-		</ul>
-	</section>
-
-	<% if @user.moderator? %>
-		<section id="moderator-actions">
+	<% if @same_user %>
+		<section id="control-panel">
 			<header>
-				<h3>Moderator actions</h3>
+				<h3><%=t('users.control_panel')%></h3>
 			</header>
-			<ul>
-				<li><%=link_to "Reported scripts: #{Script.reported.count}", reported_scripts_path%></li>
-				<li><%=link_to "Possibly minified", minified_scripts_path%></li>
-				<li><%=link_to "Reported as not adult content: #{Script.reported_not_adult.count}", reported_not_adult_scripts_path%></li>
-				<li><%=link_to "Requested permanent deletion: #{Script.requested_permanent_deletion.count}", requested_permanent_deletion_scripts_path%></li>
-				<% if @user.administrator? %>
-					<li><%=Script.connection.select_value('SELECT COUNT(*) FROM delayed_jobs WHERE last_error IS NULL')%> delayed_jobs pending, <%=Script.connection.select_value('SELECT COUNT(*) FROM delayed_jobs WHERE last_error IS NOT NULL')%> failed.</li>
-					<li>Last duplicate check: <%=CpdDuplication.first.nil? ? 'never' : markup_date(CpdDuplication.first.created_at)%></li>
+			<ul id="user-control-panel">
+				<li><%= link_to t('scripts.new'), new_script_version_path%></li>
+				<li><%= link_to 'New script set', new_user_script_set_path(@user)%></li>
+				<li><%= link_to t('scripts.import'), import_start_path%></li>
+				<li><%= link_to t('users.set_up_webhook'), user_webhook_info_path%></li>
+				<li><%= link_to t('users.edit'), edit_user_registration_path%></li>
+				<li><%= link_to t('users.edit_sign_in'), user_edit_sign_in_path%></li>
+				<li><%= link_to t('users.sign_out'), destroy_user_session_path, :method => :delete %></li>
+			</ul>
+		</section>
+
+		<% if @user.moderator? %>
+			<section id="moderator-actions">
+				<header>
+					<h3>Moderator actions</h3>
+				</header>
+				<ul>
+					<li><%=link_to "Reported scripts: #{Script.reported.count}", reported_scripts_path%></li>
+					<li><%=link_to "Possibly minified", minified_scripts_path%></li>
+					<li><%=link_to "Reported as not adult content: #{Script.reported_not_adult.count}", reported_not_adult_scripts_path%></li>
+					<li><%=link_to "Requested permanent deletion: #{Script.requested_permanent_deletion.count}", requested_permanent_deletion_scripts_path%></li>
+					<% if @user.administrator? %>
+						<li><%=Script.connection.select_value('SELECT COUNT(*) FROM delayed_jobs WHERE last_error IS NULL')%> delayed_jobs pending, <%=Script.connection.select_value('SELECT COUNT(*) FROM delayed_jobs WHERE last_error IS NOT NULL')%> failed.</li>
+						<li>Last duplicate check: <%=CpdDuplication.first.nil? ? 'never' : markup_date(CpdDuplication.first.created_at)%></li>
+					<% end %>
+				</ul>
+			</section>
+		<% end %>
+
+		<% if !@user.scripts.empty? 
+			dosr = @user.discussions_on_scripts_written %>
+			<section id="user-discussions-on-scripts-written">
+				<header>
+					<h3><%=t('users.discussions_on_scripts')%> <a href="<%=forum_path%>discussions/feed.rss?script_author=<%=@user.id%>"><img src="<%=asset_path('feed-icon-14x14.png')%>" alt="<%=t('users.discussions_on_scripts_feed_alt')%>" rel="nofollow"></a></h3>
+				</header>
+				<% if dosr.empty? %>
+					<p><%=t('users.discussions_on_scripts_none')%></p>
+				<% else %>
+					<ul class="discussion-list">
+						<% dosr.reverse.take(10).each do |d| %>
+							<li class="<%=discussion_class(d)%>">
+								<%= render :partial => 'forum_discussions/discussion', :locals => {:discussion => d, :show_script => true}%>
+							</li>
+						<% end 
+						if dosr.length > 10 %>
+							<li class="more-discussions"><a href="<%=forum_path%>?script_author=<%=@user.id%>" rel="nofollow"><%=t('users.discussions_on_scripts_more')%></a></li>
+						<% end %>
+					</ul>
 				<% end %>
+			</section>
+		<% end %>
+	<% end %>
+
+	<% if !current_user.nil? && current_user.moderator? && !@user.moderator? %>
+		<section id="moderator-user-control-panel">
+			<header>
+				<h3>Moderator control panel</h3>
+			</header>
+			<ul id="user-control-panel">
+				<li><%= link_to 'Ban', user_ban_path(@user)%></li>
 			</ul>
 		</section>
 	<% end %>
-
-	<% if !@user.scripts.empty? 
-		dosr = @user.discussions_on_scripts_written %>
-		<section id="user-discussions-on-scripts-written">
-			<header>
-				<h3><%=t('users.discussions_on_scripts')%> <a href="<%=forum_path%>discussions/feed.rss?script_author=<%=@user.id%>"><img src="<%=asset_path('feed-icon-14x14.png')%>" alt="<%=t('users.discussions_on_scripts_feed_alt')%>" rel="nofollow"></a></h3>
-			</header>
-			<% if dosr.empty? %>
-				<p><%=t('users.discussions_on_scripts_none')%></p>
-			<% else %>
-				<ul class="discussion-list">
-					<% dosr.reverse.take(10).each do |d| %>
-						<li class="<%=discussion_class(d)%>">
-							<%= render :partial => 'forum_discussions/discussion', :locals => {:discussion => d, :show_script => true}%>
-						</li>
-					<% end 
-					if dosr.length > 10 %>
-						<li class="more-discussions"><a href="<%=forum_path%>?script_author=<%=@user.id%>" rel="nofollow"><%=t('users.discussions_on_scripts_more')%></a></li>
-					<% end %>
-				</ul>
-			<% end %>
-		</section>
-	<% end %>
-<% end %>
-
-<% if !current_user.nil? && current_user.moderator? && !@user.moderator? %>
-	<section id="moderator-user-control-panel">
-		<header>
-			<h3>Moderator control panel</h3>
-		</header>
-		<ul id="user-control-panel">
-			<li><%= link_to 'Ban', user_ban_path(@user)%></li>
-		</ul>
-	</section>
-<% end %>
+</section>
 
 <% if !@user.script_sets.empty? or @same_user %>
 	<section>
 		<header>
 			<h3>Script Sets</h3>
 		</header>
-		<ul id="user-script-sets">
-			<% favorites_set = @user.script_sets.find{|ss| ss.favorite}
-			if !favorites_set.nil? %>
-				<li><%=t('script_sets.favorites_name')%> <%=link_to 'View scripts', scripts_path(:set => favorites_set.id)%> <% if @same_user %><%=link_to 'Edit', edit_user_script_set_path(@user, favorites_set)%><% end %></li>
-			<% elsif @same_user %>
-				<li><%=t('script_sets.favorites_name')%> <%=link_to 'Edit', new_user_script_set_path(@user, :fav =>  1)%></li>
-			<% end
-			@user.script_sets.select{|ss| !ss.favorite}.each do |ss| %>
-				<li><%=ss.name%>: <%=ss.description%> <%=link_to 'View scripts', scripts_path(:set => ss.id)%> <% if @same_user %><%=link_to 'Edit', edit_user_script_set_path(@user, ss)%><% end %></li>
-			<% end %>
-		</ul>
+		<section class="text-content">
+			<ul id="user-script-sets">
+				<% favorites_set = @user.script_sets.find{|ss| ss.favorite}
+				if !favorites_set.nil? %>
+					<li><%=t('script_sets.favorites_name')%> <%=link_to 'View scripts', scripts_path(:set => favorites_set.id)%> <% if @same_user %><%=link_to 'Edit', edit_user_script_set_path(@user, favorites_set)%><% end %></li>
+				<% elsif @same_user %>
+					<li><%=t('script_sets.favorites_name')%> <%=link_to 'Edit', new_user_script_set_path(@user, :fav =>  1)%></li>
+				<% end
+				@user.script_sets.select{|ss| !ss.favorite}.each do |ss| %>
+					<li><%=ss.name%>: <%=ss.description%> <%=link_to 'View scripts', scripts_path(:set => ss.id)%> <% if @same_user %><%=link_to 'Edit', edit_user_script_set_path(@user, ss)%><% end %></li>
+				<% end %>
+			</ul>
+		</section>
 	</section>
 <% end %>
 
