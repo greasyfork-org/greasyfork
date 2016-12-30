@@ -36,6 +36,9 @@ vi:
     install: "Cài đặt script này"
     install_help: "?"
     install_help_title: "Làm thế nào để cài đặt"
+    update: "Cập nhật lên phiên bản %{version}"
+    downgrade: "Hạ xuống phiên bản %{version}"
+    reinstall: "Cài đặt lại phiên bản %{version}"
     library_instructions_html: "Script này sẽ không được không được cài đặt trực tiếp. Nó là một thư viện cho các script khác để bao gồm các chỉ thị meta\n%{code}"
     deleted_notice: "Script này đã bị xóa."
     inactive_pending_changes: "Script này hiện không hoạt động bởi vì nó không phù hợp với chính sách của %{site_name}."
@@ -86,6 +89,7 @@ vi:
     feedback_sign_in_to_favorite: "Đăng nhập để thêm vào mục yêu thích."
     stats_title: "%{script_name} - Thống kê"
     stats_daily_installs_heading: "Cài đặt hàng ngày"
+    stats_weekly_installs_heading: "Cài đặt hàng tuần"
     stats_daily_update_checks_heading: "Kiểm tra cập nhật hàng ngày"
     stats_daily_installs_date_column_heading: "Ngày"
     stats_daily_installs_install_count_column_heading: "Cài đặt"
@@ -229,6 +233,23 @@ vi:
     delete: "Xóa bộ script"
     delete_confirmation: "Bạn có chắc rằng bạn muốn xóa bộ script này?"
     site_default_sort: "(Trang mặc định)"
+    edit_scripts:
+      heading: "Những Script"
+      included: "Đã bao gồm"
+      included_none: "(Không chọn)"
+      remove_included: "Xóa lựa chọn"
+      excluded: "Đã loại trừ"
+      excluded_none: "(Không chọn)"
+      remove_excluded: "Xóa lựa chọn"
+      add_label: "Thêm script (URL hoặc ID cách nhau bởi dấu cách)"
+      add_include: "Bao gồm"
+      add_exclude: "Loại trừ"
+    edit_sets:
+      included: "Đã bao gồm"
+      included_none: "(Không chọn)"
+      remove_included: "Xóa lựa chọn"
+      excluded: "Đã loại trừ"
+      excluded_none: "(Không chọn)"
   forum_discussions:
     listing_no_script_no_reply_html: "%{discussion_link} bởi %{original_poster_link} %{original_post_date}"
     listing_no_script_with_reply_html: "%{discussion_link} bởi %{original_poster_link} %{original_post_date}, bình luận cuối bởi %{last_commenter_link} %{last_comment_date}"
@@ -406,6 +427,10 @@ vi:
         screenshot_caption: "Chú thích"
         replaced_by_script_id: "Script thay thế"
         approve_redistribution: "Tái phân phối"
+      script_set:
+        name: "Tên"
+        description: "Mô tả"
+        default_sort: "Sắp xếp mặc định"
   errors:
     messages:
       script_missing_name: "là cần thiết - xác định rõ bằng @tên"
