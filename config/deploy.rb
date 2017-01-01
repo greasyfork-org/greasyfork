@@ -4,7 +4,7 @@ lock "3.7.1"
 set :application, "greasyfork"
 set :repo_url, "https://github.com/JasonBarnabe/greasyfork.git"
 set :deploy_to, "/home/www/greasyfork"
-set :rvm_ruby_version, '2.3.3@greasyfork'
+set :rvm_ruby_version, '2.3.3'
 
 append :linked_files, 'config/database.yml', 'config/newrelic.yml', 'config/production.sphinx.conf', 'config/secrets.yml',  'config/initializers/vanilla.rb', 'config/initializers/transifex.rb', 'config/initializers/omniauth.rb', 'config/initializers/detect_language.rb', 'bin/java', 'bin/simian.jar'
 
