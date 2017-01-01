@@ -52,6 +52,9 @@ class HomeController < ApplicationController
 		redirect_to "/auth/#{params[:provider]}/"
 	end
 
+	def search
+	end
+
 private
 
 	TOP_SCRIPTS_PERCENTAGE = 0.1

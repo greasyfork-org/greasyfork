@@ -156,6 +156,7 @@ class ScriptsController < ApplicationController
 	def code_search
 		@bots = 'noindex,follow'
 		if params[:c].nil? or params[:c].empty?
+			redirect_to search_path(anchor: 'code-search'), status: 301
 			return
 		end
 

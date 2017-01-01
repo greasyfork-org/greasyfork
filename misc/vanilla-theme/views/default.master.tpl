@@ -77,7 +77,7 @@
 				<li class="help-link"><a href="/{$smarty.get.locale|default:'en'}/help/">{t c="layouts.application.help" d="Help"}</a></li>
 				<li class="nav-search">
 					<form id="script-search" action="/{$smarty.get.locale|default:'en'}/scripts/search">
-						<input type="search" name="q" placeholder="{t c="layouts.application.search" d="Search"}" size="10"><input type="submit" value="→">
+						<input type="search" name="q"><input class="search-submit" type="submit" value="🔎">
 					</form>
 				</li>
             </ul>

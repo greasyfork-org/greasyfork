@@ -23,7 +23,7 @@
 	<li><%=link_to t('scripts.redistributable_title'), redistributable_scripts_path%></li>
 	<li><%=link_to 'Reported scripts', reported_scripts_path%></li>
 	<li><%=link_to 'Moderator log', moderator_actions_path%></li>
-	<li><%=link_to 'Code search', code_search_scripts_path%></li>
+	<li><%=link_to 'Advanced search', search_path%></li>
 </ul>
 
 <% if !current_user.nil? and current_user.moderator? %>

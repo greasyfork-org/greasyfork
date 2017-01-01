@@ -1,6 +1,4 @@
 Greasyfork::Application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
 
 	get 'sso', :to => 'home#sso'
 
@@ -118,6 +116,7 @@ Greasyfork::Application.routes.draw do
 		get 'help/privacy', :to => 'help#privacy', :as => 'help_privacy'
 
 		post 'preview-markup', :to => 'home#preview_markup', :as => 'preview_markup'
+		get 'search', to: 'home#search'
 
 		resources :moderator_actions, :only => [:index]
 

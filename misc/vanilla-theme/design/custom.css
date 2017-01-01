@@ -279,3 +279,26 @@ pre code {
 #PagerBefore {
 	display: none;
 }
+.nav-search #script-search {
+	position: relative;
+	vertical-align: middle;
+}
+.nav-search #script-search input[type=search] {
+	padding-right: 20px;
+	width: 175px;
+}
+.nav-search #script-search input[type=submit] {
+	position: absolute;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	right: 0;
+	top: 0;
+	border: 0;
+	padding-left: 0;
+	padding-right: 6px;
+	margin-left: 0;
+	margin-right: 0;
+	background: none;
+	opacity: 0.5;
+	box-sizing: border-box;
+}
