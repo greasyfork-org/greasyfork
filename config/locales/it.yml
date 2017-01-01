@@ -236,6 +236,7 @@ it:
     unlisted_marker: "(Non elencato)"
     library_marker: "(Libreria)"
   script_sets:
+    description: "Gli insiemi di script ti permettono di creare una lista personalizzata di script con cui navigare su Greasy Fork. Puoi aggiungere script al tuo insieme includendo script individuali, insiemi di altri utenti, o insiemi generati automaticamente. Puoi inoltre escludere degli script dal tuo insieme con gli stessi metodi."
     favorites_name: "Preferiti"
     delete: "Elimina set script"
     delete_confirmation: "Sei sicuro di voler eliminare questo set di script?"
@@ -267,6 +268,40 @@ it:
       user_label: "Elenco set di script appartenenti all'utente (URL, ID o nome)"
       user_no_sets: "(L'utente non ha set)"
       user_no_other_sets: "(L'utente non ha altri set)"
+    edit_auto_sets:
+      heading: "Insiemi di script automatici"
+      description: "Includi o escludi una lista di script generata automaticamente nel tuo insieme di script."
+      included: "Incluso"
+      included_none: "(Nessuno)"
+      remove_included: "Rimuovi i selezionati"
+      excluded: "Escluso"
+      excluded_none: "(Nessuno)"
+      all_scripts_label: "Tutti gli script"
+      all_scripts_include: "Includi"
+      for_sites_label: "Script per il sito (ad es. example.com, lasciare vuoto per \"Tutti i siti\")"
+      for_sites_include: "Includi"
+      for_sites_exclude: "Escludi"
+      for_user_label: "Script dell'utente (URL, ID o nome)"
+      for_user_include: "Includi"
+      for_user_exclude: "Escludi"
+      for_language_label: "Script nella lingua"
+      for_language_include: "Includi"
+      for_language_exclude: "Escludi"
+    calculated_list: "Lista di script calcolata"
+    calculated_list_none: "(Nessuno)"
+    calculated_list_more:
+      one: "E %{count} altro..."
+      other: "E %{count} altri..."
+    already_included: "'%{name}' già incluso."
+    could_not_parse_script: "Non è stato possibile interpretare lo script '%{value}'"
+    save: "Salva"
+    saved: "Insieme di script salvato."
+    auto_set_types:
+      all_scripts: "Tutti gli script"
+      site: "Script per %{site}"
+      all_sites: "Tutti i siti"
+      user: "Script dell'utente %{user}"
+      locale: "Script in %{locale_name}"
   forum_discussions:
     listing_no_script_no_reply_html: "%{discussion_link} da %{original_poster_link} %{original_post_date}"
     listing_no_script_with_reply_html: "%{discussion_link} da %{original_poster_link} %{original_post_date}, ultimo commento di %{last_commenter_link} %{last_comment_date}"
@@ -364,7 +399,10 @@ it:
       title: "Come installare gli user script"
       intro: "Per usare gli user script, generalmente bisogna installare un'estensione nel browser."
       firefox: "Firefox e browser correlati: %{gm_link:Greasemonkey}."
+      chrome: "Google Chrome, Chromium, e browser attinenti: %{tm_link:Tampermonkey} o %{vm_link:Violentmonkey}."
       opera_15_plus: "Opera (versione 15 e successive): %{tm_link:Tampermonkey} oppure %{vm_link:Violentmonkey}."
+      opera_12: "Opera versione 12 e precedenti: %{vm_link:Violentmonkey} (interfaccia grafica più amichevole e migliore compatibilità rispetto al %{opera_doc_link:supporto nativo})."
+      maxthon: "Maxthon: %{vm_link:Violentmonkey}."
       installing_scripts: "Una volta che gli user script sono abilitati nel browser, selezionare uno script su Greasy Fork e cliccare sul tasto verde \"Install\"."
     meta_keys:
       title: "Meta key dello script lette da %{site_name}"
@@ -514,6 +552,39 @@ it:
           %{admin_email_link:Invia un'e-mail.}</p>
     privacy_policy:
       title: "Politica sulla privacy"
+      content_html: >
+          <p>Questa pagina descrive come %{site_name} registrerà o traccerà gli utenti.
+          Se hai dei dubbi, %{admin_email_link:invia un'email all'amministratore}.</p>
+          <h2>Log dei server</h2> <p>%{site_name} registra tutte le richieste in una
+          modalità tipica dei log dei server. Le informazioni registrate includono
+          le pagine viste, gli indirizzi IP, e la user agent string. Questi log vengono
+          utilizzati per il debugging e l'analisi del server. I dati vengono conservati
+          per una settimana. I dati non vengono condivisi o resi pubblici.</p> <h2>Statistiche
+          degli script</h2> <p>Allo scopo di generare delle statistiche, %{site_name}
+          registra le richieste di installazione e aggiornamento con associato l'indirizzo
+          IP. Questa informazione viene conservata per un giorno e viene quindi aggregata
+          in modo da non includere più l'indirizzo IP. Il dato relativo all'indirizzo
+          IP non viene condiviso o reso pubblico, ma il dato aggregato sì.</p> <h2>Cookie
+          (quando non è stato effettuato l'accesso)</h2> <p>%{site_name} può impostare
+          dei cookie di sessione temporanei per consentire il funzionamento di alcune
+          funzionalità del sito. Questi cookie non sono persistenti e possono essere
+          cancellati quando viene chiuso il browser (dipende dalle impostazioni del
+          browser).</p> <h2>Account utente</h2> <p>%{site_name} richiede agli utenti
+          di creare un account per postare gli script, partecipare alle discussioni
+          e accedere ad alcune ulteriori funzionalità del sito. Quando si crea un
+          account, informazioni come l'indirizzo IP, l'indirizzo e-mail, e lo user
+          agent possono essere memorizzate in modo permanente. Alcune di queste informazioni
+          possono essere rese visibili ad altri utenti.</p> <p>Le azioni effettuate
+          quando è stato eseguito l'accesso, per esempio la pubblicazione di script
+          e commenti, saranno rese visibili ad altri utenti.</p> <p>Se l'opzione "Ricordami"
+          è selezionata quando si accede ad un account, %{site_name} imposterà un
+          cookie persistente per mantenere l'accesso al sito.</p> <h2>Script pubblicati
+          su %{site_name}</h2> <p>%{site_name} include contenuti generati dagli utenti
+          e gli script postati potrebbero essere in grado di tracciare gli utenti
+          che li installano.</p> <h2>Librerie di terze parti</h2> <p>%{site_name}
+          può includere codice di terze parti per raccogliere statistiche o mostrare
+          pubblicità sul sito. Queste librerie potrebbero includere meccanismi di
+          tracciamento.</p>
   common:
     error_preamble: "Ci sono alcuni problemi con quello che hai postato..."
     allowed_elements_link: "(Controlla codice permesso.)"
@@ -552,6 +623,10 @@ it:
         screenshot_caption: "Didascalia"
         replaced_by_script_id: "Script sostitutivo"
         approve_redistribution: "Redistribuzione"
+      script_set:
+        name: "Nome"
+        description: "Descrizione"
+        default_sort: "Ordinamento predefinito"
   errors:
     messages:
       script_missing_name: "è richiesto - specificane uno con @name"
