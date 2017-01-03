@@ -11,8 +11,15 @@ class UsersController < ApplicationController
 	HMAC_DIGEST = OpenSSL::Digest.new('sha1')
 
 	def index
-		@users = self.class.apply_sort(User, sort: params[:sort], script_subset: script_subset).paginate(page: params[:page], per_page: get_per_page).load
+		@users = User
+		@users = @users.where(['name like ?', "%#{params[:q]}%"]) if params[:q].present?
+		@users = self.class.apply_sort(@users, sort: params[:sort], script_subset: script_subset).paginate(page: params[:page], per_page: get_per_page).load
 		@user_script_counts = Script.listable(script_subset).where(user_id: @users.map(&:id)).group(:user_id).count
+
+		@bots = 'noindex,follow' if !params[:sort].nil? || !params[:q].nil?
+		@title = t('users.listing_title')
+		@canonical_params = [:page, :per_page, :sort, :q]
+
 		render layout: 'base'
 	end
 

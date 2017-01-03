@@ -864,15 +864,21 @@ form.new_user + a {
 	display: block;
 	margin: 0 auto;
 }
-.nav-search #script-search {
+.nav-search #script-search, .sidebar-search {
 	position: relative;
 	vertical-align: middle;
 }
-.nav-search #script-search input[type=search] {
+.nav-search #script-search input[type=search], .sidebar-search input[type=search] {
 	padding-right: 20px;
+}
+.nav-search #script-search input[type=search] {
 	width: 175px;
 }
-.nav-search #script-search input[type=submit] {
+.sidebar-search input[type=search] {
+	width: 100%;
+	margin: 0 0 1em 0;
+}
+.nav-search #script-search input[type=submit], .sidebar-search input[type=submit] {
 	position: absolute;
 	-moz-appearance: none;
 	-webkit-appearance: none;

@@ -1,4 +1,10 @@
 <div id="user-list-option-groups" class="list-option-groups">
+
+	<%= form_tag(users_path, class: 'sidebar-search', method: :get) do %>
+		<input type="hidden" name="sort" value="<%=params[:sort]%>">
+		<input id="user-search-field" type="search" name="q" value="<%=params[:q]%>" placeholder="<%=t('users.search_placeholder')%>"><input class="search-submit" type="submit" value="🔎">
+	<% end %>
+
 	<div id="user-list-sort" class="list-option-group"><%=t('scripts.listing_sort_label')%>
 		<ul>
 			<%=user_list_link(t('users.listing_registration_date'), nil)%>
@@ -11,5 +17,5 @@
 			<%=user_list_link(t('users.listing_updated_scripts'), 'updated_script')%>
 		</ul>
 	</div>
-</div>
 
+</div>
