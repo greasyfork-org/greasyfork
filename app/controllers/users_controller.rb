@@ -231,7 +231,7 @@ class UsersController < ApplicationController
 private
 
 	def self.apply_sort(finder, script_subset:, sort:)
-		return finder.order({created_at: :desc}, :id) if sort.nil?
+		return finder.order({created_at: :desc}, :id) if sort.empty?
 		return finder.order(:name, :id) if sort == 'name'
 		finder = finder.joins("#{script_subset}_listable_scripts".to_sym).group('users.id')
 		case sort
@@ -250,7 +250,7 @@ private
 			when 'ratings'
 				return finder.order('sum(scripts.good_ratings + scripts.ok_ratings + scripts.bad_ratings) DESC, users.id')
 		end
-		
+		return finder.order({created_at: :desc}, :id)
 	end
 
 	# Returns a Hash of Script to array of commit messages. Parameters:
