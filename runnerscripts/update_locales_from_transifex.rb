@@ -64,7 +64,7 @@ project.languages.each do |language|
 		translated_content = YAML.load(c)[code_with_hyphens]
 		File.open("misc/vanilla-theme/locale/#{vanilla_filename}.php", 'w') { |file|
 			file.write("<?php\n")
-			['layouts.application.script_list', 'layouts.application.forum', 'layouts.application.help', 'layouts.application.search'].each do |k|
+			['layouts.application.script_list', 'layouts.application.forum', 'layouts.application.help'].each do |k|
 				v = lookup_value(translated_content, k)
 				v = lookup_value(english_content, k) if v.nil?
 				raise "not found #{k}" if v.nil?

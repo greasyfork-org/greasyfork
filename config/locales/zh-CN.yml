@@ -5,7 +5,6 @@ zh-CN:
       forum: "论坛"
       help: "站点帮助"
       sign_in: "登录"
-      search: "搜索脚本"
   helpers:
     application:
       time_ago:
@@ -505,6 +504,16 @@ zh-CN:
           <p>如果登录时选中了“记住我”的选项，%{site_name} 将设置一个持久的 Cookie 以保持登录状态。</p> <h2>发布在 %{site_name}
           的脚本</h2> <p>%{site_name} 包含用户生成的内容，安装已发布的脚本有可能遇到被跟踪的情况。</p> <h2>第三方库</h2>
           <p>%{site_name} 可能包含第三方代码以收集统计数据或者在网站上显示广告。这些库可能存在跟踪逻辑。</p>
+  search:
+    script_search:
+      title: "脚本搜索"
+      description: "搜索脚本。搜索脚本名称、描述、额外说明和作者名称。%{sphinx_link:Sphinx 扩展查询语法}。"
+    code_search:
+      title: "代码搜索"
+      description: "搜索脚本代码。此功能不区分大小写，不支持通配符，搜索纯文本。"
+    forum_search:
+      title: "论坛搜索"
+      description: "搜索论坛上的讨论和评价。%{fulltext_link:MySQL 自然语言搜索}。"
   common:
     error_preamble: "很抱歉，您提交的内容有点问题…"
     allowed_elements_link: "(查看允许使用的代码)"

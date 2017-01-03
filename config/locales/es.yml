@@ -5,7 +5,6 @@ es:
       forum: "Foro"
       help: "Ayuda"
       sign_in: "Iniciar sesión"
-      search: "Buscar"
   helpers:
     application:
       time_ago:
@@ -586,6 +585,16 @@ es:
           si estos instalan ese script.</p> <h2>Librerías de terceros</h2> <p>%{site_name}
           puede incluir código de terceros para recopilar estadísticas o mostrar publicidad
           en el sitio. Estas librerías puede que incluyan algún mecanismo de rastreo.</p>
+  search:
+    script_search:
+      title: "Buscar scripts"
+      description: "Busca scripts. Por concordancia con nombres, descripciones, información adicional y nombres de autor. %{sphinx_link:Sintaxis de búsqueda expandida de Sphinx.}"
+    code_search:
+      title: "Buscar código"
+      description: "Busca código de script. No distingue entre mayúsculas y minúsculas, exclusivamente en texto plano sin valores de reemplazo."
+    forum_search:
+      title: "Buscar en el foro"
+      description: "Busca conversaciones y opiniones en el foro. %{fulltext_link:Búsqueda de lenguaje natural de MySQL.}"
   common:
     error_preamble: "Hemos tenido problemas al procesar el envío..."
     allowed_elements_link: "(Ver código permitido)"

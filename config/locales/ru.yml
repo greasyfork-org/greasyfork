@@ -5,7 +5,6 @@ ru:
       forum: "Форум"
       help: "Помощь"
       sign_in: "Войти"
-      search: "Поиск"
   helpers:
     application:
       time_ago:
@@ -481,6 +480,16 @@ ru:
       title: "Выйти на контакт с кем-нибудь"
     privacy_policy:
       title: "Политика приватности"
+  search:
+    script_search:
+      title: "Поиск скрипта"
+      description: "Искать в названии скрипта, кратком и полном описаниях, авторах. %{sphinx_link:Как составить поисковый запрос Sphinx.}"
+    code_search:
+      title: "Поиск кода"
+      description: "Поиск кода скрипта, без учёта регистра, без использования символов подстановки."
+    forum_search:
+      title: "Поиск на форуме"
+      description: "Искать в обсуждениях скрипта. %{fulltext_link:Как составить поисковый запрос MySQL.}"
   common:
     error_preamble: "Обнаружены проблемы в отправленном вами тексте..."
     allowed_elements_link: "(См. разрешенные теги)"
