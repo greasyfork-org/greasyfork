@@ -282,7 +282,11 @@ class ScriptVersion < ApplicationRecord
 	end
 
 	def get_blanked_code
-		c = get_rewritten_meta_block
+		ScriptVersion.get_blanked_code(rewritten_code)
+	end
+
+	def self.get_blanked_code(rewritten_code)
+		c = ScriptVersion.get_meta_block(rewritten_code)
 		current_version = ScriptVersion.get_first_meta(c, 'version')
 		return ScriptVersion.inject_meta_for_code(c, {:description => 'This script was deleted from Greasy Fork, and due to its negative effects, it has been automatically removed from your browser.', :version => ScriptVersion.get_next_version(current_version), :require => nil})
 	end

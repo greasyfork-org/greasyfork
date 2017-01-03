@@ -263,22 +263,68 @@ class ScriptsController < ApplicationController
 	end
 
 	def user_js
-		script, script_version = minimal_versionned_script(params[:script_id], params[:version])
-		return if handle_replaced_script(script)
 		respond_to do |format|
 			format.any(:html, :all, :js) {
+				script, script_version = minimal_versionned_script(params[:script_id], params[:version])
+				return if handle_replaced_script(script)
 				render body: script.script_delete_type_id == 2 ? script_version.get_blanked_code : script_version.rewritten_code, content_type: 'text/javascript'
 			}
 			format.user_script_meta { 
-				render_meta_js(script, script_version)
+				meta_js
 			}
 		end
 	end
 
 	def meta_js
-		script, script_version = minimal_versionned_script(params[:script_id], params[:version])
-		return if handle_replaced_script(script)
-		render_meta_js(script, script_version)
+		script_id = params[:script_id].to_i
+		script_version_id = (params[:version] || 0).to_i
+
+		# Bypass ActiveRecord for performance
+		if script_version_id > 0
+			sql = <<-EOF
+				SELECT
+					script_versions.id script_version_id,
+					script_delete_type_id,
+					scripts.replaced_by_script_id,
+					script_codes.code
+				FROM scripts
+				JOIN script_versions on script_versions.script_id = scripts.id
+				JOIN script_codes on script_versions.rewritten_script_code_id = script_codes.id
+				WHERE
+					scripts.id = #{Script.connection.quote(script_id)}
+					AND script_versions.id = #{Script.connection.quote(script_version_id)}
+				LIMIT 1
+			EOF
+		else
+			sql = <<-EOF
+				SELECT
+					script_versions.id script_version_id,
+					script_delete_type_id,
+					scripts.replaced_by_script_id,
+					script_codes.code
+				FROM scripts
+				JOIN script_versions on script_versions.script_id = scripts.id
+				JOIN script_codes on script_versions.rewritten_script_code_id = script_codes.id
+				WHERE
+					scripts.id = #{Script.connection.quote(script_id)}
+				ORDER BY script_versions.id DESC
+				LIMIT 1
+			EOF
+		end
+		script_info = Script.connection.select_one(sql)
+		raise ActiveRecord::RecordNotFound if script_info.nil?
+
+		if !script_info['replaced_by_script_id'].nil? && script_info['script_delete_type_id'] == 1
+			redirect_to(script_id: script_info['replaced_by_script_id'], status: 301)
+			return
+		end
+
+		cached_meta_js = cache_with_log("scripts/meta_js/#{script_info['script_version_id']}") do
+			script_info['script_delete_type_id'] == 2 ? ScriptVersion.get_blanked_code(script_info['code']) : ScriptVersion.get_meta_block(script_info['code'])
+		end
+		render body: cached_meta_js, content_type: 'text/x-userscript-meta'
+
+		ScriptsController.record_update_check(request, params)
 	end
 
 	def install_ping
@@ -863,14 +909,6 @@ private
 				render json: params[:meta] == '1' ? {count: @scripts.count} : @scripts.as_json(include: :user), callback: clean_json_callback_param
 			}
 		end
-	end
-
-	def render_meta_js(script, script_version)
-		cached_meta_js = cache_with_log("scripts/meta_js/#{script.cache_key}/#{script_version.id}") do
-			script.script_delete_type_id == 2 ? script_version.get_blanked_code : script_version.get_rewritten_meta_block
-		end
-		render body: cached_meta_js, content_type: 'text/x-userscript-meta'
-		ScriptsController.record_update_check(request, params)
 	end
 
 	def handle_replaced_script(script)
