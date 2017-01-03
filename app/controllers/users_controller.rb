@@ -231,7 +231,7 @@ class UsersController < ApplicationController
 private
 
 	def self.apply_sort(finder, script_subset:, sort:)
-		return finder.order({created_at: :desc}, :id) if sort.empty?
+		return finder.order({created_at: :desc}, :id) if sort.blank?
 		return finder.order(:name, :id) if sort == 'name'
 		finder = finder.joins("#{script_subset}_listable_scripts".to_sym).group('users.id')
 		case sort

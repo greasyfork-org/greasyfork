@@ -2,7 +2,7 @@ module UsersHelper
 
 	def user_list_link(label, sort = nil)
 		is_link = false
-		if sort != params[:sort]
+		if (sort.nil? && !params[:sort].blank?) || (sort.present? && sort != params[:sort])
 			is_link = true
 			opts = {sort: sort}
 			opts[:q] = params[:q] if params[:q].present?
