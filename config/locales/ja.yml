@@ -374,6 +374,8 @@ ja:
     listing_new_scripts: "スクリプトの作成日"
     listing_updated_scripts: "スクリプトの更新日"
     listing_registration_date: "登録日"
+    listing_title: "ユーザー一覧"
+    search_placeholder: "ユーザーを検索"
     locale_prompt: "(ロケールを選んでください)"
     show_ads_description: "広告の表示を許可して %{site_name} を支援する"
     show_sensitive_description: "アダルトコンテンツに関するスクリプトを表示する"
@@ -510,6 +512,19 @@ ja:
           <p>アカウントへログイン時に「ログインを記憶」オプションにチェックを入れた場合、%{site_name} はログイン状態を保持するために永続的な
           Cookie を設定します。</p> <h2>%{site_name} に投稿されたスクリプト</h2> <p>%{site_name} はユーザーが作成したコンテンツを含んでおり、投稿されたスクリプトをインストールした場合、そのスクリプトによってユーザーの追跡が可能となる場合があります。</p>
           <h2>サードパーティーライブラリ</h2> <p>%{site_name} は、サイト上での統計や広告の表示を行うために、サードパーティーのコードを含んでいる場合があります。これらのライブラリは、追跡を行うロジックを含んでいるかもしれません。</p>
+  search:
+    script_search:
+      title: "スクリプトの検索"
+      description: "スクリプト名、説明、追加情報、作者名からスクリプトを検索します。 (%{sphinx_link:Sphinxの拡張クエリ構文}を参照)"
+    code_search:
+      title: "コードの検索"
+      description: "スクリプトのコードを検索します。大文字と小文字は区別しません。 (ワイルドカードは使用不可)"
+    forum_search:
+      title: "掲示板の検索"
+      description: "掲示板のスレッドを検索します。 (%{fulltext_link:MySQLの自然言語全文検索}を参照)"
+    user_search:
+      title: "ユーザーの検索"
+      description: "ユーザー名からユーザーを検索します (部分一致)。"
   common:
     error_preamble: "以下に表示されているエラーを修正し、もう一度送信してください。"
     allowed_elements_link: "使用可能なタグ"

@@ -389,6 +389,8 @@ sk:
     listing_new_scripts: "Nové skripty"
     listing_updated_scripts: "Aktualizované skripty"
     listing_registration_date: "Dátum registrácie"
+    listing_title: "Užívatelia"
+    search_placeholder: "Hľadať užívateľov"
     locale_prompt: "(Vyberte jazyk)"
     show_ads_description: "Podporiť %{site_name} povolením zobrazovania reklamy"
     show_sensitive_description: "Zobraziť skripty s obsahom pre dospelých"
@@ -579,6 +581,19 @@ sk:
           ktorí si skript nainštalovali.</p> <h2>Knižnice tretích strán</h2> <p>%{site_name}
           môžu obsahovať kód tretích strán za účelom štatistiky alebo zobrazenia reklamy
           na stránke. Tieto knižnice môžu obsahovať sledovaciu logiku.</p>
+  search:
+    script_search:
+      title: "Hľadať skript"
+      description: "Hľadať skripty. Prehľadáva názvy skriptov, popisy, doplňujúce informácie a mená autorov. %{sphinx_link:Rozšírená dopytovacia syntax Sphinx.}"
+    code_search:
+      title: "Hľadať kód"
+      description: "Hľadať kód skriptu. Hľadanie obyčajného textu, nerozlišuje veľkosť písma, nepoužíva zástupné znaky."
+    forum_search:
+      title: "Hľadať fórum"
+      description: "Prehľadáva diskusie a hodnotenia vo fóre. %{fulltext_link:Prirodzené hľdanie jazyka MySQL.}"
+    user_search:
+      title: "Hľadanie užívateľov"
+      description: "Hľadať užívateľov podľa mena. Obyčajný text AKO hľadanie."
   common:
     error_preamble: "Boli zistené problémy s tým, čo ste poslali."
     allowed_elements_link: "(Pozri zoznam povolených značiek.)"
