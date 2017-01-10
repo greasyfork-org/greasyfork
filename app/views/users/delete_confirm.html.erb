@@ -1,0 +1,11 @@
+<% if @error %>
+	<p><%=@error%></p>
+<% else %>
+	<%= form_tag user_delete_complete_path do %>
+		<p>
+			<input type="hidden" name="key" value="<%=params[:key]%>">
+			<input type="submit" name="confirm" value="Confirm Deletion">
+			<input type="submit" name="cancel" value="Cancel Deletion">
+		</p>
+	<% end %>
+<% end %>

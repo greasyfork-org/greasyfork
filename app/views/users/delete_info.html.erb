@@ -1,0 +1,41 @@
+<% if @user.can_be_deleted? %>
+
+	<% script_count = @user.scripts.count %>
+	<% script_set_count = @user.script_sets.count %>
+	
+	<p>Deleting your Greasy Fork account '<%=@user.name%>' will have the following effects:</p>
+	
+	<ul>
+		<% if @user.encrypted_password.present? %>
+			<li>You will no longer be able to sign in with your password.</li>
+		<% end
+		if @user.identities.any? %>
+			<li>Signing in via <%=@user.identities.map(&:pretty_provider).compact.uniq.to_sentence%> will result in a new account.</li>
+		<% end
+		if script_count > 0 %>
+			<li>Your <%=script_count%> <%='script'.pluralize(script_count)%> will be deleted.</li>
+		<% end
+		if script_set_count > 0 %>
+			<li>Your <%=script_set_count%> <%='script set'.pluralize(script_count)%> will be deleted.</li>
+		<% end
+		if @user.forum_user.present? %>
+			<li>Your contributions to the forum will remain, but the associated user will be renamed "Deleted User <%=@user.id%>".</li>
+		<% end %>
+	</ul>
+	
+	<p>Before deleting your account, Greasy Fork will send an email to <%=@user.email%> to confirm your request.</p>
+	
+	<%= form_tag(user_delete_start_path) do %>
+		<input type="submit" value="Delete account">
+	<% end %>
+
+<% else %>
+
+	<p>Before deleting your account, you must request permanent deletion of the following scripts:</p>
+
+	<ul>
+		<% @user.scripts.reject(&:immediate_deletion_allowed?).each do |script| %>
+			<li><%=link_to script.default_name, script%></li>
+		<% end %>
+	</ul>
+<% end %>

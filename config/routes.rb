@@ -12,6 +12,10 @@ Greasyfork::Application.routes.draw do
 		put '/users/identities' => 'users#update_identity', :as => 'user_update_identity'
 		put '/users/remove_password' => 'users#remove_password', :as => 'user_remove_password'
 		put '/users/update_password' => 'users#update_password', :as => 'user_update_password'
+		get '/users/delete_info' => 'users#delete_info', :as => 'user_delete_info'
+    post '/users/delete_start' => 'users#delete_start', :as => 'user_delete_start'
+    get '/users/delete_confirm' => 'users#delete_confirm', :as => 'user_delete_confirm'
+    post '/users/delete_complete' => 'users#delete_complete', :as => 'user_delete_complete'
 
 		get '/external_login', :as => 'external_login', to: 'home#external_login'
 

@@ -1,5 +1,6 @@
 require 'script_importer/script_syncer'
 require 'uri'
+require 'securerandom'
 
 class UsersController < ApplicationController
 
@@ -227,6 +228,47 @@ class UsersController < ApplicationController
 		end
 		redirect_to user
 	end
+	
+	def delete_info
+	  @user = current_user
+	  @bots = 'noindex'
+	end
+	
+	def delete_start
+	  @user = current_user
+	  @user.delete_confirmation_key = SecureRandom.hex
+	  @user.delete_confirmation_expiry = 1.day.from_now
+	  @user.save(validate: false)
+	  UserMailer.delete_confirm(@user).deliver_now
+	  flash[:notice] = 'Deletion confirmation email has been sent.'
+	  redirect_to @user
+	end
+
+  def delete_confirm
+    @user = current_user
+    if params[:key].blank? || @user.delete_confirmation_key.blank? || params[:key] != @user.delete_confirmation_key
+      @error = 'Could not delete user - keys do not match.'
+    elsif @user.delete_confirmation_expiry.nil? || DateTime.now > @user.delete_confirmation_expiry
+      @error = 'Could not delete user - request expired.'
+    end
+  end
+
+  def delete_complete
+    @user = current_user
+    if params[:cancel].present?
+      @user.update_attributes(delete_confirmation_key: nil, delete_confirmation_expiry: nil)
+      flash[:notice] = 'Deletion cancelled.'
+    elsif params[:key].blank? || @user.delete_confirmation_key.blank? || params[:key] != @user.delete_confirmation_key
+      flash[:alert] = 'Could not delete user - keys do not match.'
+    elsif @user.delete_confirmation_expiry.nil? || DateTime.now > @user.delete_confirmation_expiry
+      flash[:alert] = 'Could not delete user - request expired.'
+    else
+      @user.destroy!
+      sign_out @user
+      flash[:alert] = 'Your account has been deleted.'
+    end
+    redirect_to root_path
+  end
 
 private
 

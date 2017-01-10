@@ -7,4 +7,9 @@ class ForumUser < ApplicationRecord
 	def user
 		return users.first
 	end
+	
+	# This is a read-only model, so do this in SQL.
+	def rename_on_delete!
+	  self.class.connection.execute "UPDATE GDN_User SET Name = 'Deleted user #{user.id}' WHERE UserID = #{id}"
+	end
 end

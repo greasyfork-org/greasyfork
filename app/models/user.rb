@@ -3,7 +3,7 @@ require 'devise'
 
 class User < ApplicationRecord
 
-	has_many :scripts
+	has_many :scripts, dependent: :destroy
 	# Gotta to it this way because you can't pass a parameter to a has_many, and we need it has_many
 	# to do eager loading.
 	Script.subsets.each do |subset|
@@ -13,13 +13,24 @@ class User < ApplicationRecord
 	#this results in a cartesian join when included with the scripts relation
 	#has_many :discussions, through: :scripts
 
-	has_and_belongs_to_many :roles
+	has_and_belongs_to_many :roles, dependent: :destroy
 
-	has_many :identities
+	has_many :identities, dependent: :destroy
 
-	has_many :script_sets
+	has_many :script_sets, dependent: :destroy
 
 	belongs_to :locale, optional: true
+	
+  has_and_belongs_to_many :forum_users, -> { readonly }, :foreign_key => 'ForeignUserKey', :association_foreign_key => 'UserID', :join_table => 'GDN_UserAuthentication'
+  
+  def forum_user
+    return forum_users.first
+  end
+  
+  before_destroy do
+    throw(:abort) if !can_be_deleted?
+    forum_user.rename_on_delete! if forum_user.present?
+  end
 
 	# Include default devise modules. Others available are:
 	# :confirmable, :lockable, :timeoutable and :omniauthable
@@ -108,6 +119,10 @@ class User < ApplicationRecord
 
 	def non_locked_scripts
 		return scripts.select{|s| !s.locked}
+	end
+	
+	def can_be_deleted?
+	  return scripts.all(&:immediate_deletion_allowed?)
 	end
 
 	protected
