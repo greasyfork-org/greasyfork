@@ -1,6 +1,6 @@
 <?php
 /* Label for inputting a script ID when creating/editing a discussion */
-$Definition['Item ID:'] = 'זיהוי תסריט';
+$Definition['Item ID:'] = 'מזהה סקריפט';
 // Appended to "Discussions" when viewing a list of discussions on scripts by a user. %s is the user name.
 $Definition['on scripts by %s'] = '%s צופה בסקריפט';
 /*
@@ -12,7 +12,7 @@ $Definition['RatingUpdateLabel'] = 'עדכן את הדירוג';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = 'ללא דירוג- רק שאלה, הערה, בקשה להוספת פיצ\'ר או דיווח על תקלה';
 ## Label for the radio button for reporting a script
-$Definition['RatingReport'] = '<div class="report">Report script to moderators for removal, for example:<ul><li>Malware - describe which portion of the code is malicious</li><li>Licensing/copyright - describe and link to the original source of the code and provide any other evidence</li></ul></div>';
+$Definition['RatingReport'] = '<div class="report"> דווח על הסקריפט למנהלים להסרתו, לדוגמא: <ul><li> תוכנה זדונית - לתאר איזה חלק בקוד הוא זדוני </li><li> רישוי / זכויות יוצרים - תאר ותן קישור למקור המקורי של הקוד ותספק ראיות אחרות </li></ul></div>';
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = 'לא טוב- הסקריפט אינו עובד';
 /** Label for the radio button for rating a script "OK" **/

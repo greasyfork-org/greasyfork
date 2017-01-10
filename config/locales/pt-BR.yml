@@ -382,6 +382,8 @@ pt-BR:
     listing_new_scripts: "Novos scripts"
     listing_updated_scripts: "Scripts atualizados"
     listing_registration_date: "Data de registro"
+    listing_title: "Usuários"
+    search_placeholder: "Buscar usuários"
     locale_prompt: "(Escolha um local)"
     show_ads_description: "Ajude o %{site_name} ao permitir a exibição de anúncios"
     show_sensitive_description: "Mostrar scripts com conteúdo adulto"
@@ -581,6 +583,19 @@ pt-BR:
           <h2>Bibliotecas de terceiros</h2> <p>O %{site_name} pode incluir código
           de terceiros para coletar estatísticas ou exibir publicidade no site. Essas
           bibliotecas podem incluir lógicas de rastreamento.</p>
+  search:
+    script_search:
+      title: "Pesquisa de Script"
+      description: "Perquisar scripts. Busca nomes de scripts, descrições, informações adicionais, e nomes dos autores. %{sphinx_link:Sphinx extended query syntax.}"
+    code_search:
+      title: "Pesquisa de Código"
+      description: "Pesquisar código de script. Não diferencia maiúsculas e minúsculas e busca texto sem aceitar coringas."
+    forum_search:
+      title: "Pesquisa de Fórum"
+      description: "Pesquisar discussões e análises no forum. %{fulltext_link:MySQL natural language search.}"
+    user_search:
+      title: "Pesquisa de Usuário"
+      description: "Pesquisar usuários pelo nome. Busca texto usando LIKE."
   common:
     error_preamble: "Houve alguns problemas com o que você postou..."
     allowed_elements_link: "(Veja código permitido.)"

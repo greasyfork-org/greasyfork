@@ -235,24 +235,69 @@ fr:
     unlisted_marker: "(Non-listé)"
     library_marker: "(Bibliothèque)"
   script_sets:
+    description: "Les jeux de scripts vous permettent de créer une liste personnalisée de scripts pour naviguer avec sur Greasy Fork. Vous pouvez ajouter des scripts à votre jeu en incluant des scripts individuels, des jeux d'autres utilisateurs ou des jeux générés automatiquement. Vous pouvez également exclure les scripts de votre jeu avec les mêmes méthodes."
     favorites_name: "Favoris"
     delete: "Supprimer ce jeu de scripts"
     delete_confirmation: "Êtes-vous sûr de vouloir supprimer ce jeu de scripts ?"
     site_default_sort: "(Par défaut)"
     edit_scripts:
       heading: "Scripts"
+      description: "Inclure ou exclure les jeux de script individuels dans votre jeu de script."
+      included: "Inclus"
       included_none: "(Aucun)"
+      remove_included: "Supprimer la sélection"
+      excluded: "Exclus"
       excluded_none: "(Aucun)"
+      remove_excluded: "Supprimer la sélection"
+      add_label: "Ajouter des scripts (URLs ou IDs, séparés par un espace)"
+      add_include: "Inclure"
+      add_exclude: "Exclure"
     edit_sets:
       heading: "Jeux de scripts"
+      description: "Inclure ou exclure les autres jeux de script dans votre jeu de script."
+      included: "Inclus"
       included_none: "(Aucun)"
+      remove_included: "Supprimer la sélection"
+      excluded: "Exclus"
       excluded_none: "(Aucun)"
+      remove_excluded: "Supprimer la sélection"
+      add_label: "Ajouter des scripts (URLs ou IDs, séparés par un espace)"
+      add_include: "Inclure"
+      add_exclude: "Exclure"
+      user_label: "Liste des jeux de scripts appartenant à l'utilisateur (URL, ID ou nom)"
+      user_no_sets: "(L'utilisateur n'a pas de jeux)"
+      user_no_other_sets: "(L'utilisateur n'a pas d'autres jeux)"
     edit_auto_sets:
+      heading: "Jeux de script automatiques"
+      description: "Inclure ou exclure une liste générée automatiquement de scripts dans votre jeu de script."
+      included: "Inclus"
       included_none: "(Aucun)"
+      remove_included: "Supprimer la sélection"
+      excluded: "Exclus"
       excluded_none: "(Aucun)"
+      all_scripts_label: "Tous les scripts"
+      all_scripts_include: "Inclure"
+      for_sites_label: "Scripts pour site (ex. exemple.com, laisser vide pour \"Tous les sites\")"
+      for_sites_include: "Inclure"
+      for_sites_exclude: "Exclure"
+      for_user_label: "Scripts par utilisateur (URL, ID ou nom)"
+      for_user_include: "Inclure"
+      for_user_exclude: "Exclure"
+      for_language_label: "Scripts dans la langue"
+      for_language_include: "Inclure"
+      for_language_exclude: "Exclure"
+    calculated_list: "Liste des scripts calculés"
     calculated_list_none: "(Aucun)"
+    already_included: "'%{name}' déjà inclus."
+    could_not_parse_script: "Impossible d'analyser le script '% {value}'"
+    save: "Sauver"
+    saved: "Jeu de script sauvé"
     auto_set_types:
+      all_scripts: "Tous les scripts"
       site: "Scripts pour %{site}"
+      all_sites: "Tous les sites"
+      user: "Scripts par utilisateur %{user}"
+      locale: "Scripts en %{locale_name}."
   forum_discussions:
     listing_no_script_no_reply_html: "%{discussion_link} par %{original_poster_link} le %{original_post_date}"
     listing_no_script_with_reply_html: "%{discussion_link} par %{original_poster_link} le %{original_post_date}, dernier commentaire par  %{last_commenter_link} %{last_comment_date}"
@@ -334,6 +379,8 @@ fr:
     listing_new_scripts: "Nouveaux scripts"
     listing_updated_scripts: "Scripts mis à jour"
     listing_registration_date: "Date d'inscription"
+    listing_title: "Utilisateurs"
+    search_placeholder: "Rechercher des utilisateurs"
     locale_prompt: "(Choisissez une région)"
     show_ads_description: "Aider %{site_name} en l'autorisant à afficher des publicités"
     show_sensitive_description: "Afficher les scripts avec du contenu adulte"
@@ -352,6 +399,8 @@ fr:
       firefox: "Firefox et navigateurs semblables : %{gm_link:Greasemonkey}."
       chrome: "Google Chrome, Chromium et navigateurs semblables : %{tm_link:Tampermonkey} ou %{vm_link:Violentmonkey}."
       opera_15_plus: "Opera ( version 15 et supérieure ) : %{tm_link:Tampermonkey} ou %{vm_link:Violentmonkey}."
+      opera_12: "Opera version 12 et antérieures: %{vm_link:Violentmonkey} (Interface plus conviviale et une meilleure compatibilité que %{opera_doc_link:native support})."
+      maxthon: "Maxthon: %{vm_link:Violentmonkey}."
       installing_scripts: "Une fois que les scripts utilisateurs sont activés dans votre navigateur, naviguez vers un script sur Greasy Fork et cliquez sur le bouton vert \"Installer ce script\"."
     meta_keys:
       title: "Métadonnées utilisées par %{site_name}"
@@ -380,6 +429,43 @@ fr:
       post_new_script_link_text: 'soumettre un nouveau script'
     code_rules:
       title: "Les règles à respecter lors de la soumission d'un script"
+      content_html: >
+          <p> Ce sont les exigences pour les scripts publiés sur %{site_name}. Ils
+          sont destinés à garder %{site_name} un lieu sûr et utile pour les scripts
+          utilisateur. Tout script qui ne respecte pas ces exigences peut être supprimé
+          par les modérateurs de %{site_name}. </p> <ul>
+
+          <li> Les scripts doivent inclure une description de ce qu'ils font et peuvent
+          ne pas faire des choses déraisonnablement en dehors de cette description.
+          Les utilisateurs doivent savoir ce que fera un script avant de l'installer.
+          </li>
+
+          <li> Le code affiché sur ce site ne doit pas être occulté ou minifié. Les
+          utilisateurs doivent avoir la possibilité d'inspecter et de comprendre un
+          script avant de l'installer. </li>
+
+          <li> Les bibliothèques utilisées par un script doivent être <code> @require
+          </code> -d, à moins qu'il n'y ait une raison technique valable de ne pas
+          le faire. Dans le cas où une bibliothèque est incluse en ligne, elle doit
+          inclure des informations sur la source de la bibliothèque (par exemple un
+          commentaire indiquant l'URL et/ou le nom et la version). </li>
+
+          <li> Votre script doit respecter les droits d'auteur des autres. Cela inclut
+          le script lui-même et toutes les ressources (par exemple les images) qu'il
+          utilise. Si vous avez l'intention d'utiliser le contenu de quelqu'un d'autre,
+          respectez les conditions de licence ou obtenez leur autorisation avant de
+          le faire. </li>
+
+          <li>%{external_scripts_link: l'utilisation de JavaScript externe est limitée.}
+          </li>
+
+          %{Adult_content_requirement}
+
+          </ul><p> Si vous remarquez un script qui ne relève pas de ces paramètres,
+          veuillez le signaler en allant sur le lien Feedback pour ce script, en lançant
+          une discussion et en choisissant l'option "Rapporter le script". </p><p>
+          Si vous n'êtes pas d'accord avec tout cela,% {contact_link:let'stalk about
+          it}!</p>
       adult_content_rule_html: "<li>Les scripts, qui incluent du contenu adulte ou qui sont pour des sites avec contenu adulte, doivent être marqués comme tels pour laisser aux autres utilisateurs le choix de les voir ou non.</li>"
     external_scripts:
       title: "Politique de %{site_name} concernant les scripts externes"
@@ -397,6 +483,19 @@ fr:
       title: "Contactez une personne"
     privacy_policy:
       title: "Politique de confidentialité"
+  search:
+    script_search:
+      title: "Recherche de script"
+      description: "Recherche de scripts. Recherche des noms de script, des descriptions, des infos supplémentaires et des noms d'auteur. %{sphinx_link:Sphinx extended query syntax.}"
+    code_search:
+      title: "Recherche de code"
+      description: "Rechercher le code de script. Il s'agit d'une case-insensible, la recherche en texte brut sans caractères génériques."
+    forum_search:
+      title: "Recherche de forum"
+      description: "Rechercher des discussions et des commentaires sur le forum. %{fulltext_link:MySQL natural language search.}"
+    user_search:
+      title: "Recherche d'utilisateur"
+      description: "Rechercher des utilisateurs par nom. Recherche simple LIKE."
   common:
     error_preamble: "Il y a des erreurs dans ce que vous avez posté..."
     allowed_elements_link: "(Voir les balises autorisées.)"

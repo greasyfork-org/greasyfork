@@ -5,6 +5,18 @@ he:
       forum: "פורום"
       help: "עזרה"
       sign_in: "התחבר"
+  helpers:
+    application:
+      time_ago:
+        minutes:
+          one: "לפני %{count} דקות"
+          other: "לפני %{count} דקות"
+        hours:
+          one: "לפני %{count} דקות"
+          other: "לפני %{count} שעות"
+        days:
+          one: "לפני %{count} ימים"
+          other: "לפני %{count} דקות"
   scripts:
     created_date: "נוצר"
     updated_date: "עודכן"
@@ -19,6 +31,9 @@ he:
     compatible_with_browser: "תאימות ל%{browser}"
     incompatible_with_browser: "ללא תאימות ל%{browser}"
     applies_to: "חל על"
+    applies_to_link_title:
+      one: "ראה  %{count} סקריפטים אחרים בשביל %{site}"
+      other: "ראה  %{count} סקריפטים אחרים בשביל %{site}"
     applies_to_all: "כל האתרים"
     additional_info: "תיאור היוצר"
     install: "התקן את הסקריפט"
@@ -45,17 +60,26 @@ he:
     delete_explanation: "מחיקת הסקריפט שלך תהפוך אותו לבלתי זמין לכולם, למעט לך ולמנהלי גריזי פורק. אתה יכול לבטל את המחיקה בכל עת."
     delete_update_behaviour: "מה תרצה שיקרה למשתמשים שכבר התקינו את הסקריפט שלך?"
     delete_update_behaviour_1: "הם ישתמשו בו כפי שהם משתמשים כיום"
+    delete_update_behaviour_2: "הם יועדכנו לסקריפט ריק. זה מתאים כאשר לסקריפט יש השפעה שלילית על האתר עליו הוא פועל."
+    delete_permanently_heading: "מחיקה לצמיתות"
+    delete_permanently_confirm: "האם אתה בטוח שהינך רוצה למחוק לצמיתות את הסקריפט שלך? הפעולה הזו לא תוכל להתבטל!"
+    delete_permanently_submit: "בקשת מחיקה לצמיתות"
+    delete_permanently_immediate_submit: "למחוק לצמיתות"
     delete_permanently_notice_immediate: "הסקריפט נמחק לצמיתות"
     cancel_delete_permanently_submit: "בטל בקשה למחיקה לצמיתות"
     cancel_delete_permanently_notice: "בקשתך למחיקה לצמיתות בוטלה"
+    delete_permanently_rejected_locked: "סקריפט זה נעול ואינו ניתן למחיקה לצמיתות"
     history_all_changes_link: "הצג את כל הגרסאות"
     history_all_changes_info: "אלה כל הגרסאות של הסקריפט"
     history_only_code_changes_link: "הראה רק גרסאות בהן בוצע שינוי קוד"
+    feedback_title: "%{script_name} - משוב"
+    feedback_no_discussions_html: "אין דיונים שפורסמו עדיין. %{start_first_discussion_link}"
     feedback_start_first_discussion_link: "היה הראשון לדון בסקריפט זה"
     feedback_start_discussion_link: "התחל דיון חדש לגבי הסקריפט הזה"
     feedback_discussions_heading: "דיונים בגריזי פורק"
     feedback_favoriters_heading: "מועדפים"
     feedback_favoriters_user_list_intro: "סקריפט זה סומן כמועדף ע\"י:"
+    feedback_no_favoriters: "הסקריפט טרם הוגדר כמועדף על ידי מישהו."
     feedback_sign_in_to_favorite: "התחבר ע\"מ להוסיף מועדפים"
     stats_daily_installs_heading: "התקנות יומיות"
     stats_weekly_installs_heading: "התקנות שבועיות"
@@ -83,6 +107,7 @@ he:
     listing_none: "(אין)"
     import: "ייבא סקריפט"
     new: "העלה סקריפט"
+    support_site: "בקר באתר התמיכה של היוצר"
     support_email: "שלח דוא\"ל ליוצר לשם תמיכה"
     contribution_no_amount: "הודה ל%{author} באמצעות תרומה"
     sets_add_to_new: "הוסף סט חדש"
