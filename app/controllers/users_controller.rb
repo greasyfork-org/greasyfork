@@ -153,7 +153,7 @@ class UsersController < ApplicationController
 		end
 		current_user.save!
 		# password changed, have to sign in again
-		sign_in current_user, :bypass => true
+		bypass_sign_in(current_user)
 		flash[:notice] = t('users.password_updated')
 		redirect_to user_edit_sign_in_path
 	end

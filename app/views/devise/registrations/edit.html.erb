@@ -5,8 +5,18 @@
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :name %><br />
-  <%= f.text_field :name %></div>
+	<% syncing_identities = current_user.identities.select(&:syncing)
+	if syncing_identities.any? %>
+		<p>
+			<%=it('users.update_sync_warning', providers: syncing_identities.map(&:pretty_provider).to_sentence, edit_sign_in_link: user_edit_sign_in_path, count: syncing_identities.count)%>
+		</p>
+	<% end %>
+
+	<div class="form-control">
+		<%= f.label :name %>
+		<br>
+		<%= f.text_field :name, size: 50, maxlength: 50, required: :required %>
+	</div>
 
   <div><%= f.label :email %><br />
   <%= f.email_field :email %></div>

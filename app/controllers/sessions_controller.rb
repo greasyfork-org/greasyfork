@@ -124,13 +124,16 @@ class SessionsController < Devise::SessionsController
 		end
 
 		# create a new user
-		user = User.new({:name => name, :email => email, :identities => [Identity.new({:provider => provider, :uid => uid, :syncing => true, :url => url})]})
+		identity = Identity.new(provider: provider, uid: uid, syncing: true, url: url)
+		user = User.new(name: name, email: email, identities: [identity])
+		identity.user = user
 		if !user.save
 			handle_omniauth_failure(user.errors.full_messages.join(', '))
 			return
 		end
 		sign_in user
 		remember_me user if session[:remember_me] or params[:remember_me]
+		flash[:notice] = t('users.external_sign_in_confirmation', site_name: site_name, provider: identity.pretty_provider, username: user.name)
 		redirect_to return_to || after_sign_in_path_for(user)
 	end
 

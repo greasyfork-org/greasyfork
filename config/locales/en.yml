@@ -645,6 +645,8 @@ en:
     external_sign_in_failed: "%{provider} sign in failed: %{error}."
     # notice after a user tries to add a sign in to their account, but that sign in is already in use by another user
     external_sign_in_already_used: "Addition of %{provider} sign in failed: that sign in is already being used by user '%{user_name}'."
+    # notice after successfully creating a new user based on external login
+    external_sign_in_confirmation: "A new %{site_name} account has been created based on your %{provider} account details. Your public user name is %{username}."
     # an indicator beside the sign in provider's name if the user chose to enable syncing
     syncing_indicator: "(syncing)"
     # button to set a sign in provider to sync
@@ -702,6 +704,10 @@ en:
     greasy_fork_scripts_link:
       one: "%{user_name} also has %{count} script on Greasy Fork."
       other: "%{user_name} also has %{count} scripts on Greasy Fork."
+    # displays when the user is editing their account but syncing is on
+    update_sync_warning:
+      one: "Your user name and email are set to be synced when you log in with %{providers}. %{edit_sign_in_link:Edit your sign in methods to remove syncing} if you want to permanently set a custom user name or email."
+      other: "Your user name and email are set to be synced when you log in with %{providers}. %{edit_sign_in_link:Edit your sign in methods to remove syncing} if you want to permanently set a custom user name or email."
   help:
     installing_user_scripts:
       # title of the help document describing how to install user scripts
