@@ -15,4 +15,5 @@
 //= require fancybox
 //= require jquery-socialshareprivacy/jquery.socialshareprivacy.min.js
 //= require jquery-socialshareprivacy/localstorage.js
-//= require_tree .
+//= require everything
+//= require versioncheck
