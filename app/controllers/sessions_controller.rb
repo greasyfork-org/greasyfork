@@ -84,7 +84,7 @@ class SessionsController < Devise::SessionsController
 
 		# user already logged in - add identity to their account
 		if !current_user.nil?
-			identity = Identity.new({:provider => provider, :uid => uid, :syncing => false, :url => url})
+			identity = Identity.new(provider: provider, uid: uid, syncing: false, url: url, user: current_user)
 			if !identity.valid?
 				handle_omniauth_failure(identity.errors.full_messages.join(', '))
 				return
