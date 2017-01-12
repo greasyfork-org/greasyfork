@@ -765,14 +765,11 @@ pre.CodeRay {
 .external-login-container:not(:last-child) {
 	margin-right: 5px;
 }
-.github-login {
+.external-login-container .github-login {
 	background-image: url('<%=asset_path 'github-32.png'%>');
 }
-.google_oauth2-login {
+.external-login-container .google_oauth2-login {
 	background-image: url('<%=asset_path 'google-32.png'%>');
-}
-.browser_id-login {
-	background-image: url('<%=asset_path 'persona.png'%>');
 }
 
 /* sign_up, sign_in and password/new */
@@ -780,7 +777,7 @@ body .width-constraint > .text-content > h2,
 body .width-constraint > .text-content > h3 {
 	text-align: center;
 }
-form.inline-form {
+form.external-login-form {
 	position: relative;
 	display: block;
 	margin: 0 auto;

@@ -11,7 +11,7 @@
 	<% if Rails.application.config.available_auths.empty? %>
 		<p>(No external providers configured.)</p>
 	<% else %>
-		<%=form_tag(external_login_path, {:method => :get, :class => 'inline-form'}) do %>
+		<%=form_tag(external_login_path, {:method => :get, :class => 'inline-form external-login-form'}) do %>
 			<div>
 				<% Rails.application.config.available_auths.keys.reverse.each do |provider| %>
 					<span class="external-login-container">

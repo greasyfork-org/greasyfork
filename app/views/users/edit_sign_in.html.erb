@@ -42,9 +42,9 @@
 <h3><%=t('users.edit_sign_in_external')%></h3>
 
 <% if current_user.identities.empty? %>
-	<p><%=t('users.external_sign_in_info_no_sign_ins')%></p>
+	<p><%=t('users.external_sign_in_info_no_sign_ins', site_name: site_name)%></p>
 <% else %>
-	<p><%=t('users.external_sign_in_info_with_sign_ins')%></p>
+	<p><%=t('users.external_sign_in_info_with_sign_ins', site_name: site_name)%></p>
 	<ul>
 		<% current_user.identities.each do |id| %>
 			<li>
