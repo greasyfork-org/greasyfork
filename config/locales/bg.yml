@@ -382,6 +382,8 @@ bg:
     listing_new_scripts: "Нови скриптове"
     listing_updated_scripts: "Обновени скриптове"
     listing_registration_date: "Дата на регистрация"
+    listing_title: "Потребители"
+    search_placeholder: "Търсене по потребители"
     locale_prompt: "(Изберете локализация)"
     show_ads_description: "Подкрепете %{site_name}, като разрешите да се появяват рекламите."
     show_sensitive_description: "Покажи скриптове със съдържание за възрастни"
@@ -572,6 +574,19 @@ bg:
           ги потребители.</p> <h2>Библиотеки от трети лица</h2> <p>%{site_name} може
           да съдържа код от трети лица, за да показва рекламите на сайта. Тези библиотеки
           могат да съдържат проследяващи функции.</p>
+  search:
+    script_search:
+      title: "Търсене по скриптове"
+      description: "Търсене за скриптове. Търси в имената на скриптовете, описанията, допълнителна информация и имената на авторите.  %{sphinx_link:Sphinx extended query syntax.}"
+    code_search:
+      title: "Търсене по код"
+      description: "Претърсва скриптовия код. Регистърът няма значение, чист текст и без маски."
+    forum_search:
+      title: "Търсене по форума"
+      description: "Търсене във форума за дискусии и отзиви. %{fulltext_link:MySQL natural language search.}"
+    user_search:
+      title: "Търсене по потребители"
+      description: "Търсене на потребители по име. Обикновено текстово LIKE търсене."
   common:
     error_preamble: "Има някои проблеми с това, което публикувате..."
     allowed_elements_link: "(Вижте разрешения код.)"
