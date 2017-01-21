@@ -364,6 +364,7 @@ de:
     external_sign_in_removed: "%{provider}-Anmeldung wurde entfernt."
     external_sign_in_failed: "%{provider}-Anmeldung ist fehlgeschlagen: %{error}."
     external_sign_in_already_used: "Das Hinzufügen des Anmeldens mit %{provider} ist fehlgeschlagen, da diese Anmeldedaten schon von »%{user_name}« verwendet werden."
+    external_sign_in_confirmation: "Ein neues %{site_name}-Konto wurde erstellt, basierend auf Ihren %{provider}-Kontodaten. Ihr öffentlicher Benutzername ist %{username}."
     syncing_indicator: "(synchronisierend)"
     enable_syncing: "Synchronisieren aktivieren"
     disable_syncing: "Synchronisieren deaktivieren"
@@ -395,6 +396,9 @@ de:
     greasy_fork_scripts_link:
       one: "%{user_name} hat auch %{count} Skript auf Greasy Fork."
       other: "%{user_name} hat auch %{count} Skripte auf Greasy Fork."
+    update_sync_warning:
+      one: "Ihr Benutzername und E-Mail sind auf Synchronisierung eingestellt, wenn Sie sich mit %{providers} anmelden. %{edit_sign_in_link:Bearbeiten Sie Ihre Anmeldearten, um die Synchronisierung zu beenden}, falls Sie einen endgültigen Benutzernamen oder E-Mail setzen möchten."
+      other: "Ihr Benutzername und E-Mail sind auf Synchronisierung eingestellt, wenn Sie sich mit %{providers} anmelden. %{edit_sign_in_link:Bearbeiten Sie Ihre Anmeldearten, um die Synchronisierung zu beenden}, falls Sie einen endgültigen Benutzernamen oder E-Mail setzen möchten."
   help:
     installing_user_scripts:
       title: "Wie installiert man Benutzerskripte?"
@@ -599,12 +603,16 @@ de:
   search:
     script_search:
       title: "Skriptsuche"
+      description: "Suche nach Skripten. Durchsucht Skriptnamen, Beschreibungen, zusätzliche Informationen und Autorennamen. %{sphinx_link:Sphinx erweiterte Anfragesyntax.}"
     code_search:
       title: "Codesuche"
+      description: "Suche nach Skript-Quelltext. Dies ist eine von Groß-/Kleinschreibung unabhängige Klartextsuche ohne Stellvertretersymbole."
     forum_search:
       title: "Forumsuche"
+      description: "Suchen nach Diskussionen und Bewertungen im Forum. %{fulltext_link:MySQL natural language Suche.}"
     user_search:
       title: "Benutzersuche"
+      description: "Suchen nach Benutzern über den Namen. Volltext LIKE Suche."
   common:
     error_preamble: "Es gab einige Probleme mit dem was Sie eingegeben haben …"
     allowed_elements_link: "(Erlaubte Elemente anzeigen.)"

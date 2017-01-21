@@ -370,6 +370,7 @@ sk:
     external_sign_in_removed: "Prihlásenie cez %{provider} bolo odstránené."
     external_sign_in_failed: "Prihlásenie cez %{provider} zlyhalo: %{error}."
     external_sign_in_already_used: "Pridanie prihlásenia cez %{provider} zlyhalo: to znamená, že už ho používa iný užívateľ '%{user_name}'."
+    external_sign_in_confirmation: "Nový účet na %{site_name} bol vytvorený na základe detailov z %{provider}. Vaše verejné užívateľské meno je %{username}."
     syncing_indicator: "(synchronizácia)"
     enable_syncing: "Zapnúť synchronizáciu"
     disable_syncing: "Vypnúť synchronizáciu"
@@ -403,6 +404,10 @@ sk:
       one: "%{user_name} má tiež %{count} skript na Greasy Fork."
       few: "%{user_name} má tiež %{count} skripty na Greasy Fork."
       other: "%{user_name} má tiež %{count} skriptov na Greasy Fork."
+    update_sync_warning:
+      one: "Vaše užívateľské meno a email sú nastavené na synchronizáciu po prihlásení sa na %{providers}. %{edit_sign_in_link:Upravte spôsob prihlasovania pre odstránenie synchronizácie} ak chcete natrvalo zmeniť užívateľské meno alebo email."
+      few: "Vaše užívateľské meno a email sú nastavené na synchronizáciu po prihlásení sa na %{providers}. %{edit_sign_in_link:Upravte spôsob prihlasovania pre odstránenie synchronizácie} ak chcete natrvalo zmeniť užívateľské meno alebo email."
+      other: "Vaše užívateľské meno a email sú nastavené na synchronizáciu po prihlásení sa na %{providers}. %{edit_sign_in_link:Upravte spôsob prihlasovania pre odstránenie synchronizácie} ak chcete natrvalo zmeniť užívateľské meno alebo email."
   help:
     installing_user_scripts:
       title: "Ako nainštalovať užívateľské skripty"

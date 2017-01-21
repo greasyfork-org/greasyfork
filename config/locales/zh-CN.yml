@@ -358,6 +358,7 @@ zh-CN:
     external_sign_in_removed: "已移除 %{provider} 账户绑定。"
     external_sign_in_failed: "%{provider} 登录失败：%{error}。"
     external_sign_in_already_used: "增加 %{provider} 账户失败：该登录信息已被用户“%{user_name}”使用。"
+    external_sign_in_confirmation: "一个新 %{site_name} 账号已基于您的 %{provider} 账号信息创建。您的公开用户名为 %{username}。"
     syncing_indicator: "(同步中)"
     enable_syncing: "开启同步"
     disable_syncing: "关闭同步"
@@ -387,6 +388,8 @@ zh-CN:
     approve_redistribution_false: "我不希望我的脚本被他人二次分发"
     greasy_fork_scripts_link:
       other: "%{user_name} 还有 %{count} 个脚本在 Greasy Fork 上。"
+    update_sync_warning:
+      other: "您的用户名和电子邮件地址已设为在您用 %{providers} 登录时同步。如果您想永久设置自定义用户名或电子邮件地址，%{edit_sign_in_link:编辑您的登录方法以去除同步}。"
   help:
     installing_user_scripts:
       title: "如何安装用户脚本"

@@ -357,6 +357,7 @@ ja:
     external_sign_in_removed: "%{provider} との連携を解除しました。"
     external_sign_in_failed: "%{provider} にログインできませんでした: %{error}"
     external_sign_in_already_used: "追加しようとした %{provider} のアカウントは、すでに %{site_name} のアカウント「%{user_name}」と連携しています。"
+    external_sign_in_confirmation: "%{provider} アカウントの情報をもとに、新しい %{site_name} アカウントが作成されました。公開ユーザー名は「%{username}」です。"
     syncing_indicator: "【同期中】"
     enable_syncing: "同期する"
     disable_syncing: "同期を解除する"
@@ -386,6 +387,8 @@ ja:
     approve_redistribution_false: "スクリプトを他の場所に転載されたくない"
     greasy_fork_scripts_link:
       other: "%{user_name} さんは Greasy Fork にも%{count}個のスクリプトを投稿しています。"
+    update_sync_warning:
+      other: "ユーザー名とメールアドレスは、%{providers} と同期中 (ログイン時に更新) です。このページで設定したユーザー名やメールアドレスを使い続けるには、%{edit_sign_in_link:ログインに利用するアカウントの設定}から同期を解除してください。"
   help:
     installing_user_scripts:
       title: "ユーザースクリプトのインストール方法"

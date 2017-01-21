@@ -291,6 +291,15 @@ el:
       one: "Και %{count} περισσότερα…"
       other: "Και %{count} περισσότερα…"
     already_included: "Το «%{name}» υπάρχει ήδη."
+    could_not_parse_script: "Αδύνατη η προώθηση του κώδικα «%{value}»"
+    save: "Αποθήκευση"
+    saved: "Το σύνολο κώδικα αποθηκεύτηκε."
+    auto_set_types:
+      all_scripts: "Όλοι οι κώδικες"
+      site: "Κώδικες για τον ιστοχώρο %{site}"
+      all_sites: "Όλοι οι ιστοχώροι"
+      user: "Κώδικες ανά χρήστη %{user}"
+      locale: "Κώδικες στα %{locale_name}"
   forum_discussions:
     listing_no_script_no_reply_html: "%{discussion_link} από %{original_poster_link} %{original_post_date}"
     listing_no_script_with_reply_html: "%{discussion_link} από %{original_poster_link} %{original_post_date}, τελευταίο σχόλιο από %{last_commenter_link} %{last_comment_date}"
@@ -354,6 +363,7 @@ el:
     external_sign_in_removed: "Η σύνδεση παρόχου %{provider} απομακρύνθηκε."
     external_sign_in_failed: "Η σύνδεση παρόχου %{provider} απέτυχε: %{error}."
     external_sign_in_already_used: "Η προσθήκη της σύνδεσης παρόχου %{provider} απέτυχε: αυτή η σύνδεση χρησιμοποιείται ήδη από το χρήστη «%{user_name}»."
+    external_sign_in_confirmation: "Ένας νέος λογαριασμός %{site_name} έχει δημιουργηθεί με βάση τις λεπτομέρειες λογαριασμού σας %{provider}. Το δημόσιο όνομά σας είναι %{username}."
     syncing_indicator: "(σε συγχρονισμό)"
     enable_syncing: "Ενεργοποίηση συγχρονισμού"
     disable_syncing: "Απενεργοποίηση συγχρονισμού"
@@ -372,6 +382,8 @@ el:
     listing_new_scripts: "Νέοι κώδικες"
     listing_updated_scripts: "Ενημερωμένοι κώδικες"
     listing_registration_date: "Ημερομηνία εγγραφής"
+    listing_title: "Χρήστες"
+    search_placeholder: "Αναζήτηση χρηστών"
     locale_prompt: "(Επιλογή γλώσσας)"
     show_ads_description: "Υποστηρίξτε το %{site_name} επιτρέποντάς του να σας δείχνει διαφημίσεις"
     show_sensitive_description: "Προβολή κωδικών με περιεχόμενο για ενήλικες"
@@ -471,6 +483,18 @@ el:
       title: "Επικοινωνήστε με κάποιον"
     privacy_policy:
       title: "Πολιτική ιδιωτικού απορρήτου"
+  search:
+    script_search:
+      title: "Αναζήτηση κώδικα"
+    code_search:
+      title: "Αναζήτηση κωδικού"
+      description: "Αναζήτηση κωδικού κώδικα. Δεν γίνεται έλεγχος πεζών-κεφαλαίων, αναζήτηση απλού κειμένου χωρίς χαρακτήρες μπαλαντέρ."
+    forum_search:
+      title: "Αναζήτηση Συζήτησης"
+      description: "Αναζήτηση συζητήσεων και ανασκοπήσεων στη δημόσια συζήτηση. %{fulltext_link:Αναζήτηση φυσικής γλώσσας MySQL.}"
+    user_search:
+      title: "Αναζήτηση χρήστη"
+      description: "Αναζήτηση για χρήστες κατά όνομα. Αναζήτηση απλού κειμένου με την εντολή LIKE."
   common:
     error_preamble: "Υπήρξαν κάποια προβλήματα με αυτά που δημοσιεύσατε..."
     allowed_elements_link: "(Δείτε τον επιτρεπτόμενο κώδικα.)"
@@ -509,6 +533,10 @@ el:
         screenshot_caption: "Λεζάντα"
         replaced_by_script_id: "Κώδικας αντικατάστασης"
         approve_redistribution: "Αναδιανομή"
+      script_set:
+        name: "Όνομα"
+        description: "Περιγραφή"
+        default_sort: "Προεπιλεγμένη ταξινόμηση"
   errors:
     messages:
       script_missing_name: "απαιτείται - ορίστε ένα με την ετικέτα @name"

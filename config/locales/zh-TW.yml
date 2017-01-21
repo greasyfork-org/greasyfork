@@ -358,6 +358,7 @@ zh-TW:
     external_sign_in_removed: "已移除 %{provider} 登入方式。"
     external_sign_in_failed: "%{provider} 登入失敗：%{error}."
     external_sign_in_already_used: "新增 %{provider} 登入方式失敗：該登入方式已被使用者「%{user_name}」使用。"
+    external_sign_in_confirmation: "已根據 %{provider} 帳號資料建立一個新的 %{site_name} 帳號。使用者名稱為 %{username}。"
     syncing_indicator: "(同步中)"
     enable_syncing: "保持同步"
     disable_syncing: "取消同步"
@@ -387,6 +388,8 @@ zh-TW:
     approve_redistribution_false: "我 不要 其它網站轉貼我的腳本"
     greasy_fork_scripts_link:
       other: "%{user_name} 也有 %{count} 個腳本在 Greasy Fork 上。"
+    update_sync_warning:
+      other: "以 %{providers} 登入時，你的使用者名稱和 email 會和源帳號同步。若想自訂一個永久的使用者名稱或 email，請 %{edit_sign_in_link:修改登入資料並取消同步}。"
   help:
     installing_user_scripts:
       title: "如何安裝使用者腳本"

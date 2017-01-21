@@ -35,6 +35,9 @@ ko:
     install: "해당 스크립트 설치"
     install_help: "?"
     install_help_title: "스크립트 설치방법"
+    update: "%{version}으로 업데이트"
+    downgrade: "%{version} 버전으로 다운그레이드"
+    reinstall: "%{version} 버전 재설치"
     library_instructions_html: "이 스크립트는 직접 설치해서 쓰는 게 아닙니다. 다른 스크립트가 메타 명령 %{code}로 포함하여 쓰는 라이브러리입니다."
     deleted_notice: "해당 스크립트는 삭제되었습니다."
     inactive_pending_changes: "%{site_name}의 정책과 맞지 않기에 해당 스크립트는 비활성화되었습니다."
@@ -57,10 +60,13 @@ ko:
     delete_permanently_explanation: "스크립트의 영구 삭제는 포럼 토론과 관리 기록을 제외하고 그것과 그와 관련된 모든 기록을 지울 것입니다. 영구 삭제는 영구적이며, 관리자조차 복구할 수 없습니다."
     delete_permanently_confirm: "당신의 스크립트를 영구적으로 삭제하시겠습니까?  이 행동은 취소할 수 없습니다!"
     delete_permanently_submit: "영구 삭제 요청"
+    delete_permanently_immediate_submit: "영구 삭제"
     delete_permanently_notice: "영구 삭제 요청은 관리자에 의해 기록되고 검토될 것입니다."
     delete_permanently_already_requested: "당신은 %{datetime}에 영구 삭제를 요청하였습니다."
+    delete_permanently_notice_immediate: "스크립트 영구 삭제"
     cancel_delete_permanently_submit: "영구 삭제 요청 취소"
     cancel_delete_permanently_notice: "당신의 영구 삭제 요청은 취소되었습니다."
+    delete_permanently_rejected_locked: "이 스크립트는 잠겨있으므로 영구 삭제 할 수 없습니다"
     history_title: "%{script_name} - 버전 기록"
     history_only_code_changes_info: "코드가 바뀐 버전들입니다."
     history_all_changes_link: "모든 버전 보기"
@@ -218,6 +224,18 @@ ko:
     delete: "스크립트 모음 삭제"
     delete_confirmation: "정말로 이 스크립트 모음을 삭제하시겠습니까?"
     site_default_sort: "(사이트 기본값)"
+    edit_sets:
+      remove_included: "선택된 항목 삭제"
+      remove_excluded: "선택된 항목 삭제"
+      add_label: "스크립트 추가 (공백으로 구분된 URL 혹은 ID 목록)"
+    edit_auto_sets:
+      remove_included: "선택된 항목 삭제"
+    already_included: "\"%{name}\"은 이미 포함되어있습니다."
+    could_not_parse_script: "스크립트 '%{value}'를 분석할 수 없습니다"
+    save: "저장"
+    auto_set_types:
+      all_scripts: "모든 스크립트"
+      all_sites: "모든 사이트"
   forum_discussions:
     listing_no_script_no_reply_html: "%{discussion_link}, %{original_post_date}에 %{original_poster_link}이 올림."
     listing_no_script_with_reply_html: "%{discussion_link}, %{original_post_date}에 %{original_poster_link}가 올림. %{last_comment_date}에 %{last_commenter_link}가 마지막 댓글 씀."
@@ -346,6 +364,17 @@ ko:
       translators_credit: "%{site_name}는 %{translators_link:Transifex에서 Greasy 번역 팀}이 번역하였습니다."
       icons_credit: "토론 아이콘은 %{iconsland}의 %{vistastylebase}에서 가져왔습니다. 브라우저 아이콘들은 %{browserlogos}에서 가져왔습니다."
     help_with_greasymonkey: "Greasemonkey 도움말"
+    privacy_policy:
+      title: "개인정보보호정책"
+  search:
+    script_search:
+      title: "스크립트 검색"
+    code_search:
+      title: "코드 검색"
+    forum_search:
+      title: "포럼 검색"
+    user_search:
+      title: "사용자 검색"
   common:
     error_preamble: "당신이 올린 거에 몇몇 문제들이 있습니다...."
     allowed_elements_link: "(허용된 코드 보기)"
@@ -384,6 +413,10 @@ ko:
         screenshot_caption: "설명"
         replaced_by_script_id: "대체 스크립트"
         approve_redistribution: "재배포"
+      script_set:
+        name: "이름"
+        description: "설명"
+        default_sort: "기본 정렬"
   errors:
     messages:
       script_missing_name: "필요함 - @name으로 지정하세요."
@@ -395,3 +428,6 @@ ko:
       cannot_be_deleted_reference: "삭제된 스크립트는 불가"
       must_be_greasy_fork_script: "반드시 %{site_name}에 있는 스크립트 URL이어야 함"
       script_update_not_utf8: "업로드된 건 반드시 UTF-8 텍스트여야함."
+  opensearch:
+    short_name: "%{site_name} 검색"
+    attribution: "저작권은 스크립트의 저자에게 있으며 라이센스는 각 스크립트를 확인하세요"

@@ -364,6 +364,7 @@ es:
     external_sign_in_removed: "Se ha quitado el inicio de sesión con %{provider}."
     external_sign_in_failed: "No se ha podido iniciar sesión con %{provider}: %{error}."
     external_sign_in_already_used: "No se ha podido añadir %{provider} porque el usuario «%{user_name}» ya está usando esa cuenta."
+    external_sign_in_confirmation: "Se ha creado una nueva cuenta de %{site_name} basada en los detalles de la cuenta de su %{provider}. Su nombre público de usuario es %{username}."
     syncing_indicator: "(sincronizando)"
     enable_syncing: "Activar sincronización"
     disable_syncing: "Desactivar sincronización"
@@ -395,6 +396,9 @@ es:
     greasy_fork_scripts_link:
       one: "%{user_name} también tiene %{count} script en Greasy Fork."
       other: "%{user_name} también tiene %{count} scripts en Greasy Fork."
+    update_sync_warning:
+      one: "Su nombre de usuario y correo electrónico están configurados para sincronizarse cuando inicie sesión con %{providers}. %{edit_sign_in_link:Edite sus métodos de inicio de sesión para eliminar el sincronizado} si quiere establecer un nombre de usuario o correo electrónico personalizado de forma permanente."
+      other: "Su nombre de usuario y correo electrónico están configurados para sincronizarse cuando inicie sesión con %{providers}. %{edit_sign_in_link:Edite sus métodos de inicio de sesión para eliminar el sincronizado} si quiere establecer un nombre de usuario o correo electrónico personalizado de forma permanente."
   help:
     installing_user_scripts:
       title: "Aprender a instalar scripts de usuario"
