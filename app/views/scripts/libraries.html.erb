@@ -1,16 +1,22 @@
 <%- title 'Libraries on Greasy Fork' %>
 <%- description 'List of user-submitted libraries available on Greasy Fork' %>
 
-<h1>Libraries</h1>
-<p>There are libraries posted by Greasy Fork users that you can @require in your scripts. For other kinds of libraries you can @require, <%=link_to 'read Greasy Fork\'s policy on <code>@require</code>.'.html_safe, help_code_rules_path(:anchor => 'require')%></p>
+<%= render partial: 'list_options', locals: {scripts: @scripts, include_script_sets: false}%>
+
+<h3>Libraries</h3>
+
+<p>There are libraries posted by Greasy Fork users that you can <code>@require</code> in your scripts. For other kinds of libraries you can <code>@require</code>, <%=link_to 'read Greasy Fork\'s policy on <code>@require</code>.'.html_safe, help_code_rules_path(:anchor => 'require')%></p>
+
 <% if @scripts.empty? %>
-	<p>No libraries currently posted.</p>
+	<p><%=t('scripts.listing_no_scripts')%></p>
 <% else %>
-	<ul>
-		<% @scripts.each do |script| %>
-			<li>
-				<%=link_to script.name(I18n.locale), script %> <%=script.description%>
-			</li>
-		<% end %>
-	</ul>
+	<ol id="browse-script-list" class="script-list">
+		<%= render partial: 'script', collection: @scripts, locals: {:translation_cache => translate_keys(['scripts.author_name', 'scripts.daily_installs', 'scripts.total_installs', 'scripts.ratings', 'scripts.created_date', 'scripts.updated_date']) } %>
+	</ol>
 <% end %>
+
+<% if !defined?(@paginate) or @paginate %>
+	<%= will_paginate @scripts %>
+<% end %>
+
+<p><%=t('scripts.write_your_own_html', post_a_script_link: link_to(t('scripts.post_a_script_link_text'), new_script_version_path), learn_to_write_scripts_link: link_to(t('scripts.learn_to_write_scripts_link_text'), help_writing_user_scripts_path)) %></p>

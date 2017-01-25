@@ -1,14 +1,13 @@
 module ScriptsHelper
 
-	def script_list_link(label, sort = nil, site = nil, set = nil, current_set = nil)
+	def script_list_link(label, sort: nil, site: nil, set: nil, default_sort: nil)
 		is_link = true
 		is_search = action_name == 'search'
 		is_minified = action_name == 'minified'
 		is_code_search = action_name == 'code_search'
 		# sets can have a different default
-		sort_param_to_use = (!current_set.nil? && sort == current_set.default_sort) ? nil : sort
-		# if everything in the current page is the same as what we would link too, don't link!
-		if sort_param_to_use == params[:sort] and (is_search or site == params[:site]) and ((set.nil? and params[:set].nil?) or set.to_s == params[:set])
+		sort_param_to_use = (sort == default_sort) ? nil : sort
+		if sort == params[:sort] && site == params[:site] && set == params[:set]
 			l = label
 			is_link = false
 		elsif is_search

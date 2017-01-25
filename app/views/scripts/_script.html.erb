@@ -32,12 +32,14 @@ show_report_thread = defined?(show_report_thread) && show_report_thread
 		<dl>
 			<dt class="script-list-author"><span><%=translation_cache['scripts.author_name'] || t('scripts.author_name')%></span></dt>
 			<dd class="script-list-author"><span><%=link_to script.user.name, user_path(script.user)%></span></dd>
-			<dt class="script-list-daily-installs"><span><%=translation_cache['scripts.daily_installs'] || t('scripts.daily_installs')%></span></dt>
-			<dd class="script-list-daily-installs"><span><%=number_with_delimiter(script.daily_installs)%></span></dd>
-			<dt class="script-list-total-installs"><span><%=translation_cache['scripts.total_installs'] || t('scripts.total_installs')%></span></dt>
-			<dd class="script-list-total-installs"><span><%=number_with_delimiter(script.total_installs)%></span></dd>
-			<dt class="script-list-ratings"><span><%=translation_cache['scripts.ratings'] || t('scripts.ratings')%></span></dt>
-			<dd class="script-list-ratings" data-rating-score="<%=script.fan_score%>"><span><%=render :partial => 'scripts/ratings', :locals => {:script => script}%></span></dd>
+			<% if !script.library? %>
+				<dt class="script-list-daily-installs"><span><%=translation_cache['scripts.daily_installs'] || t('scripts.daily_installs')%></span></dt>
+				<dd class="script-list-daily-installs"><span><%=number_with_delimiter(script.daily_installs)%></span></dd>
+				<dt class="script-list-total-installs"><span><%=translation_cache['scripts.total_installs'] || t('scripts.total_installs')%></span></dt>
+				<dd class="script-list-total-installs"><span><%=number_with_delimiter(script.total_installs)%></span></dd>
+				<dt class="script-list-ratings"><span><%=translation_cache['scripts.ratings'] || t('scripts.ratings')%></span></dt>
+				<dd class="script-list-ratings" data-rating-score="<%=script.fan_score%>"><span><%=render :partial => 'scripts/ratings', :locals => {:script => script}%></span></dd>
+			<% end %>
 			<dt class="script-list-created-date"><span><%=translation_cache['scripts.created_date'] || t('scripts.created_date')%></span></dt>
 			<dd class="script-list-created-date"><span><%=markup_date(script.created_at)%></span></dd>
 			<dt class="script-list-updated-date"><span><%=translation_cache['scripts.updated_date'] || t('scripts.updated_date')%></span></dt>

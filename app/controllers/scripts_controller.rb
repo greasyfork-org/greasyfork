@@ -109,12 +109,15 @@ class ScriptsController < ApplicationController
 
 		@bots = 'noindex,follow'
 		@title = t('scripts.listing_title_for_search', :search_string => params[:q])
+		@sort_options = ['relevance', 'daily_installs', 'total_installs', 'ratings', 'created', 'updated', 'name']
 		# filters and such have been handled above
 		render_script_list(@scripts, {skip_filters: true})
 	end
 
 	def libraries
-		@scripts = Script.libraries(script_subset)
+		params[:sort] = 'created' if params[:sort].nil?
+		@scripts = Script.libraries(script_subset).paginate(page: params[:page], per_page: get_per_page)
+		@scripts = self.class.apply_filters(@scripts, params, script_subset)
 	end
 
 	def reported
@@ -143,6 +146,7 @@ class ScriptsController < ApplicationController
 		end
 		@paginate = false
 		@title = "Potentially minified user scripts on Greasy Fork"
+		@include_script_sets = false
 		render :action => 'index'
 	end
 
@@ -170,6 +174,7 @@ class ScriptsController < ApplicationController
 		@paginate = false
 		@title = t('scripts.listing_title_for_code_search', :search_string => params[:c])
 		@canonical_params = [:c, :sort]
+		@include_script_sets = false
 		render :action => 'index'
 	end
 
