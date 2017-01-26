@@ -449,6 +449,10 @@ en:
     unlisted_marker: "(Unlisted)"
     # marker after script name if it's a library
     library_marker: "(Library)"
+    # title for libraries listing page
+    libraries_title: "Libraries"
+    # description for libraries listing page
+    libraries_description_html: "There are libraries posted by %{site_name} users that you can <code>@require</code> in your scripts. For other kinds of libraries you can <code>@require</code>, read %{policy_link:%{site_name}'s policy on <code>@require</code>}."
   script_sets:
     # description of script sets on edit page
     description: "Script sets let you create a customized list of scripts to browse Greasy Fork with. You can add scripts to your set by including individual scripts, other users' sets, or automatically generated sets. You can also exclude scripts from your set with the same methods."
@@ -870,6 +874,9 @@ en:
     script_search:
       title: "Script Search"
       description: "Search for scripts. Searches script names, descriptions, additional infos, and author names. %{sphinx_link:Sphinx extended query syntax.}"
+    library_search:
+      title: "Library Search"
+      description: "Search for libraries. Searches library names, descriptions, additional infos, and author names. %{sphinx_link:Sphinx extended query syntax.}"
     code_search:
       title: "Code Search"
       description: "Search script code. This is a case-insensitive, plain-text search with no wildcards."

@@ -8,11 +8,11 @@ ThinkingSphinx::Index.define :script, :with => :active_record, :delta => Thinkin
 	indexes user.name, :as => :author
 
 	# attributes
-	has :created_at, :code_updated_at, :total_installs, :daily_installs, :default_name, :sensitive
+	has :created_at, :code_updated_at, :total_installs, :daily_installs, :default_name, :sensitive, :script_type_id
 	# int is default and unsigned, we deal with negatives
 	has :fan_score, :type => :bigint
 
-	where 'script_type_id = 1 and script_delete_type_id is null'
+	where 'script_type_id IN (1,3) and script_delete_type_id is null'
 
 	set_property :field_weights => {
 		:name => 10,

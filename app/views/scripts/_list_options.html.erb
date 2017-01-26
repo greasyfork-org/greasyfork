@@ -1,12 +1,23 @@
 <%
 include_script_sets = true if !defined?(include_script_sets) || include_script_sets.nil?
 by_sites = nil if !defined?(by_sites)
+include_search = false if !defined?(include_search) || include_search.nil?
 sort_options = ['daily_installs', 'total_installs', 'ratings', 'created', 'updated', 'name'] if !defined?(sort_options) || sort_options.nil?
 default_sort = @set&.default_sort || sort_options.first
 current_options = {sort: params[:sort], site: params[:site], set: params[:set], default_sort: default_sort}
 %>
 
 <div id="script-list-option-groups" class="list-option-groups">
+
+	<% if include_search %>
+		<form class="sidebar-search">
+			<% [:sort, :site, :set].each do |p| %>
+				<% if params[p] %><input type="hidden" name="<%=p%>" value="<%=params[p]%>"><% end %>
+			<% end %>
+			<input type="search" name="q" value="<%=params[:q]%>"><input class="search-submit" type="submit" value="🔎">
+		</form>
+	<% end %>
+
 	<div id="script-list-sort" class="list-option-group"><%=t('scripts.listing_sort_label')%>
 		<ul>
 			<% sort_options.each do |sort_option| %>

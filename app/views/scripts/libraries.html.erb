@@ -1,11 +1,11 @@
-<%- title 'Libraries on Greasy Fork' %>
+<%- title t('scripts.libraries_title') %>
 <%- description 'List of user-submitted libraries available on Greasy Fork' %>
 
-<%= render partial: 'list_options', locals: {scripts: @scripts, include_script_sets: false, sort_options: ['created', 'updated', 'name']}%>
+<%= render partial: 'list_options', locals: {scripts: @scripts, include_script_sets: false, include_search: true, sort_options: ['created', 'updated', 'name']}%>
 
-<h3>Libraries</h3>
+<h3><%=t('scripts.libraries_title')%></h3>
 
-<p>There are libraries posted by Greasy Fork users that you can <code>@require</code> in your scripts. For other kinds of libraries you can <code>@require</code>, <%=link_to 'read Greasy Fork\'s policy on <code>@require</code>.'.html_safe, help_code_rules_path(:anchor => 'require')%></p>
+<p><%=it('scripts.libraries_description_html', policy_link: help_code_rules_path(anchor: 'require'), site_name: site_name)%></p>
 
 <% if @scripts.empty? %>
 	<p><%=t('scripts.listing_no_scripts')%></p>

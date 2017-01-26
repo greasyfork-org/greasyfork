@@ -92,12 +92,24 @@ class ScriptsController < ApplicationController
 			else
 				{}
 		end
+		with = with.merge(script_type_id: 1)
 
 		begin
 			# :ranker => "expr('top(user_weight)')" means that it will be sorted on the top ranking match rather than
 			# an aggregate of all matches. In other words, something matching on "name" will be tied with everything
 			# else matching on "name".
-			@scripts = Script.search params[:q], match_mode: :extended, with: with, page: params[:page], per_page: get_per_page, order: self.class.get_sort(params, true), populate: true, includes: [:script_type, localized_attributes: :locale], select: '*, weight() myweight', ranker: "expr('top(user_weight)')"
+			@scripts = Script.search(
+				params[:q],
+				match_mode: :extended,
+				with: with,
+				page: params[:page],
+				per_page: get_per_page,
+				order: self.class.get_sort(params, true),
+				populate: true,
+				sql: {include: [:script_type, {localized_attributes: :locale}, :user]},
+				select: '*, weight() myweight',
+				ranker: "expr('top(user_weight)')"
+			)
 			# make it run now so we can catch syntax errors
 			@scripts.empty?
 		rescue ThinkingSphinx::SyntaxError => e
@@ -115,8 +127,40 @@ class ScriptsController < ApplicationController
 	end
 
 	def libraries
-		@scripts = Script.libraries(script_subset).paginate(page: params[:page], per_page: get_per_page)
-		@scripts = self.class.apply_filters(@scripts, params, script_subset, default_sort: 'created')
+		with = case script_subset
+			when :greasyfork
+				{sensitive: false}
+			when :sleazyfork
+				{sensitive: true}
+			else
+				{}
+		end
+		with = with.merge(script_type_id: 3)
+
+		begin
+			# :ranker => "expr('top(user_weight)')" means that it will be sorted on the top ranking match rather than
+			# an aggregate of all matches. In other words, something matching on "name" will be tied with everything
+			# else matching on "name".
+			@scripts = Script.search(
+				params[:q],
+				match_mode: :extended,
+				with: with,
+				page: params[:page],
+				per_page: get_per_page,
+				order: self.class.get_sort(params, true, nil, default_sort: 'created'),
+				populate: true,
+				sql: {include: [:script_type, {localized_attributes: :locale}, :user]},
+				select: '*, weight() myweight',
+				ranker: "expr('top(user_weight)')"
+			)
+			# make it run now so we can catch syntax errors
+			@scripts.empty?
+		rescue ThinkingSphinx::SyntaxError => e
+			flash[:alert] = "Invalid search query - '#{params[:q]}'."
+			# back to the main listing
+			redirect_to scripts_path
+			return
+		end
 	end
 
 	def reported

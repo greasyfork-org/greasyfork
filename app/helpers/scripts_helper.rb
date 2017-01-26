@@ -5,6 +5,7 @@ module ScriptsHelper
 		is_search = action_name == 'search'
 		is_minified = action_name == 'minified'
 		is_code_search = action_name == 'code_search'
+		is_libraries = action_name == 'libraries'
 		# sets can have a different default
 		sort_param_to_use = (sort == default_sort) ? nil : sort
 		if sort == params[:sort] && site == params[:site] && set == params[:set]
@@ -12,6 +13,8 @@ module ScriptsHelper
 			is_link = false
 		elsif is_search
 			l = link_to label, search_scripts_path(:sort => sort_param_to_use, :q => params[:q], :set => set)
+		elsif is_libraries
+			l = link_to label, libraries_scripts_path(:sort => sort_param_to_use, :q => params[:q], :set => set)
 		elsif is_minified
 			l = link_to label, minified_scripts_path(:sort => sort_param_to_use)
 		elsif is_code_search
