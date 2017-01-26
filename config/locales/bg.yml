@@ -364,6 +364,7 @@ bg:
     external_sign_in_removed: "Премахнат вход чрез %{provider}."
     external_sign_in_failed: "Влизането чрез %{provider} неуспешно: %{error}."
     external_sign_in_already_used: "Добавянето на вход чрез %{provider} е неуспешно: вече се използва от потребител '%{user_name}'."
+    external_sign_in_confirmation: "Беше създаден нов %{site_name} акаунт, базиран на детайлите от %{provider}. Вашето публично потребителско име е %{username}."
     syncing_indicator: "(синхронизация)"
     enable_syncing: "Включване на синхронизацията"
     disable_syncing: "Изключване синхронизацията"
@@ -395,6 +396,9 @@ bg:
     greasy_fork_scripts_link:
       one: "%{user_name} има %{count} скрипта на Greasy Fork."
       other: "%{user_name} има %{count} скрипта на Greasy Fork."
+    update_sync_warning:
+      one: "Вашето потребителско име и email са настроени да се синхронизират, когато влизате чрез %{providers}. %{edit_sign_in_link:Edit your sign in methods to remove syncing} Ако желаете да създадете постоянно потребителско име или email."
+      other: "Вашето потребителско име и email са настроени да се синхронизират, когато влизате чрез %{providers}. %{edit_sign_in_link:Edit your sign in methods to remove syncing} Ако желаете да създадете постоянно потребителско име или email."
   help:
     installing_user_scripts:
       title: "Как да инсталираме потребителски скриптове"
