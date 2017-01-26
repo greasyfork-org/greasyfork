@@ -115,9 +115,8 @@ class ScriptsController < ApplicationController
 	end
 
 	def libraries
-		params[:sort] = 'created' if params[:sort].nil?
 		@scripts = Script.libraries(script_subset).paginate(page: params[:page], per_page: get_per_page)
-		@scripts = self.class.apply_filters(@scripts, params, script_subset)
+		@scripts = self.class.apply_filters(@scripts, params, script_subset, default_sort: 'created')
 	end
 
 	def reported
@@ -753,7 +752,7 @@ class ScriptsController < ApplicationController
 		end
 	end
 
-	def self.apply_filters(scripts, params, script_subset)
+	def self.apply_filters(scripts, params, script_subset, default_sort: nil)
 		if !params[:site].nil?
 			if params[:site] == '*'
 				scripts = scripts.for_all_sites
@@ -768,7 +767,7 @@ class ScriptsController < ApplicationController
 			end
 			scripts = scripts.where(:id => set_script_ids)
 		end
-		scripts = scripts.order(get_sort(params, false, set))
+		scripts = scripts.order(get_sort(params, false, set, default_sort: default_sort))
 		return scripts
 	end
 
@@ -778,10 +777,10 @@ class ScriptsController < ApplicationController
 
 private
 
-	def self.get_sort(params, for_sphinx = false, set = nil)
+	def self.get_sort(params, for_sphinx = false, set = nil, default_sort: nil)
 		# sphinx has these defined as attributes, outside of sphinx they're possibly ambiguous column names
 		column_prefix = for_sphinx ? '' : 'scripts.'
-		sort = params[:sort] || (!set.nil? ? set.default_sort : nil)
+		sort = params[:sort] || (!set.nil? ? set.default_sort : nil) || default_sort
 		case sort
 			when 'total_installs'
 				return "#{column_prefix}total_installs DESC, #{column_prefix}id"

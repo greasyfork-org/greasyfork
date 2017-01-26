@@ -1,7 +1,7 @@
 <%- title 'Libraries on Greasy Fork' %>
 <%- description 'List of user-submitted libraries available on Greasy Fork' %>
 
-<%= render partial: 'list_options', locals: {scripts: @scripts, include_script_sets: false}%>
+<%= render partial: 'list_options', locals: {scripts: @scripts, include_script_sets: false, sort_options: ['created', 'updated', 'name']}%>
 
 <h3>Libraries</h3>
 
