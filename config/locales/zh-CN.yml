@@ -229,6 +229,8 @@ zh-CN:
     locked_marker: "(已锁定)"
     unlisted_marker: "(未公开)"
     library_marker: "(库)"
+    libraries_title: "库"
+    libraries_description_html: "这些是 %{site_name} 用户发布的库，您可以在您的脚本中 <code>@require</code> 它们。对于其他可以 <code>@require</code> 的库，参见 %{policy_link:%{site_name} 对 <code>@require</code> 的政策}。"
   script_sets:
     description: "脚本收藏集有助于您创建一个自定义的使用 Greasy Fork 浏览的脚本列表。您可以包含单个脚本，以及其他用户或自动生成的脚本收藏集。您也可以用相同的方法排除特定脚本。"
     favorites_name: "收藏"
@@ -513,6 +515,9 @@ zh-CN:
     script_search:
       title: "脚本搜索"
       description: "搜索脚本。搜索脚本名称、描述、额外说明和作者名称。%{sphinx_link:Sphinx 扩展查询语法}。"
+    library_search:
+      title: "库搜索"
+      description: "搜索库。搜索库名称、描述、额外说明和作者名称。%{sphinx_link:Sphinx 扩展查询语法}。"
     code_search:
       title: "代码搜索"
       description: "搜索脚本代码。此功能不区分大小写，不支持通配符，搜索纯文本。"

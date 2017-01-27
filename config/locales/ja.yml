@@ -229,6 +229,8 @@ ja:
     locked_marker: "(ロック済み)"
     unlisted_marker: "(限定公開)"
     library_marker: "(ライブラリ)"
+    libraries_title: "ライブラリ一覧"
+    libraries_description_html: "これらは %{site_name} のユーザーが投稿したライブラリで、ユーザースクリプトの <code>@require</code> で読み込めます。<code>@require</code> で利用可能な他のライブラリについては、%{policy_link:<code>@require</code> における %{site_name} のポリシー} を参照してください。"
   script_sets:
     description: "「スクリプトセット」とは、Greasy Fork に投稿されているスクリプトのマイリストです。個々のスクリプトの追加だけでなく、他のスクリプトセットをリストに登録して一つのスクリプトセットとして表示することもでき、サイトやユーザーを指定した自動生成も可能です。また、同じようにして除外リストへの登録も行えます。"
     favorites_name: "お気に入り"
@@ -519,6 +521,9 @@ ja:
     script_search:
       title: "スクリプトの検索"
       description: "スクリプト名、説明、追加情報、作者名からスクリプトを検索します。 (%{sphinx_link:Sphinxの拡張クエリ構文}を参照)"
+    library_search:
+      title: "ライブラリの検索"
+      description: "ライブラリ名、説明、追加情報、作者名からライブラリを検索します。 (%{sphinx_link:Sphinxの拡張クエリ構文}を参照)"
     code_search:
       title: "コードの検索"
       description: "スクリプトのコードを検索します。大文字と小文字は区別しません。 (ワイルドカードは使用不可)"
