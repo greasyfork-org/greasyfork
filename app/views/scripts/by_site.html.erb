@@ -1,7 +1,13 @@
-<%- title 'User scripts on Greasy Fork grouped by site' %>
+<%- title t('scripts.by_site_list_title', site_name: site_name) %>
 <%- description 'List of user scripts available on Greasy Fork, grouped by the site they apply to' %>
 
-<p>These are the sites affected by the scripts on Greasy Fork. Larger size means more popular scripts.</p>
+<p><%=t('scripts.by_site_list_description')%></p>
+
+<form>
+	<label for="filter-by-sites"><%=t('scripts.by_site_list_filter')%></label>
+	<input name="q" type="search" value="<%=params[:q]%>">
+	<input class="search-submit" type="submit" value="🔎">
+</form>
 
 <ol id="by-site-list">
 	<% max_install_count = @by_sites.values.map{|v| v[:installs]}.max

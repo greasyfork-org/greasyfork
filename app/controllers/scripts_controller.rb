@@ -76,6 +76,8 @@ class ScriptsController < ApplicationController
 
 	def by_site
 		@by_sites = self.class.get_by_sites(script_subset)
+		@by_sites = @by_sites.select{|k, v| k.present? && k.include?(params[:q])} if params[:q].present?
+		@by_sites = Hash[@by_sites.max_by(200) {|k,v| v[:installs] }.sort_by{|k,v| k || ''}]
 	end
 
 	def search
@@ -966,4 +968,5 @@ private
 		end
 		return false
 	end
+
 end
