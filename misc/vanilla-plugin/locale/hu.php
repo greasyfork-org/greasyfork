@@ -12,7 +12,7 @@ $Definition['RatingUpdateLabel'] = 'Frissítse az értékelését:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = 'Nincs értékelés - csak kérdés, komment, funkció kérése vagy hiba jelentése';
 ## Label for the radio button for reporting a script
-$Definition['RatingReport'] = '<div class="report">Report script to moderators for removal, for example:<ul><li>Malware - describe which portion of the code is malicious</li><li>Licensing/copyright - describe and link to the original source of the code and provide any other evidence</li></ul></div>';
+$Definition['RatingReport'] = '<div class="report">Szkript jelentése a moderátoroknak visszavonásra, Például:<ul><li>Malware - Jelezve, hogy a kód melyik része kártékony</li><li>Licensz/copyright - Jelezve és hivatkozva az eredeti kód forrását vagy más egyéb bizonyítékot.</li></ul></div>';
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = 'Rossz - a szkript nem működik';
 /** Label for the radio button for rating a script "OK" **/
