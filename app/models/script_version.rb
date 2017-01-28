@@ -76,6 +76,12 @@ class ScriptVersion < ApplicationRecord
 		localized_attributes.select{|la| la.locale.nil?}.each{|la| la.locale = script.locale}
 	end
 
+	# Delete the code if not in use by another version.
+	after_destroy do
+		script_code.destroy! if script_code.present? && ScriptVersion.where(['script_code_id = ? or rewritten_script_code_id = ?', script_code_id, script_code_id]).where.not(id: id).none?
+		rewritten_script_code.destroy! if rewritten_script_code.present? && ScriptVersion.where(['script_code_id = ? or rewritten_script_code_id = ?', rewritten_script_code_id, rewritten_script_code_id]).where.not(id: id).none?
+	end
+
 	def warnings
 		w = []
 		w << :version_missing if version_missing?
