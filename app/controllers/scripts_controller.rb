@@ -18,7 +18,7 @@ class ScriptsController < ApplicationController
 	before_action :authorize_by_script_id_or_moderator, :only => [:delete, :do_delete, :undelete, :do_undelete, :derivatives]
 	before_action :check_for_locked_by_script_id, :only => [:sync, :sync_update, :delete, :do_delete, :undelete, :do_undelete, :request_permanent_deletion, :unrequest_permanent_deletion]
 	before_action :check_for_deleted_by_id, :only => [:show]
-	before_action :check_for_deleted_by_script_id, :only => [:show_code, :feedback, :install_ping, :diff]
+	before_action :check_for_deleted_by_script_id, :only => [:show_code, :feedback, :install_ping, :diff, :stats]
 	before_action :authorize_for_moderators_only, :only => [:minified, :mark, :do_mark, :reported_not_adult, :do_permanent_deletion, :reject_permanent_deletion, :requested_permanent_deletion]
 
 	skip_before_action :verify_authenticity_token, :only => [:install_ping]
