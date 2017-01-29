@@ -229,6 +229,11 @@ zh-TW:
     locked_marker: "(已鎖定)"
     unlisted_marker: "(不公開)"
     library_marker: "(函式庫)"
+    libraries_title: "函式庫"
+    libraries_description_html: "你可以在你的腳本中 <code>@require</code> 許多由 %{site_name} 使用者建立的函式庫。對於其它網站的 <code>@require</code> 函式庫，請參考 %{policy_link:%{site_name} 對於 <code>@require</code> 的規範}。"
+    by_site_list_title: "%{site_name} 上的腳本，以網站分類"
+    by_site_list_description: "這些是目前最受歡迎的腳本所支援的網站。越大的字體代表越多人使用。"
+    by_site_list_filter: "以網站名稱篩選︰"
   script_sets:
     description: "腳本收藏集讓你自訂一個腳本列表。你可以把單獨的腳本、其它使用者的收藏集、或自動產生的收藏集，加入包含列表。排除列表也是同樣的方式。"
     favorites_name: "我的最愛"
@@ -559,6 +564,9 @@ zh-TW:
     script_search:
       title: "腳本搜尋"
       description: "搜尋腳本。搜尋腳本名稱、描述、其它資訊、以及作者。%{sphinx_link:Sphinx 延伸查詢語法}"
+    library_search:
+      title: "函式庫搜尋"
+      description: "搜尋函式庫。搜尋函式庫名稱、描述、其它資訊、以及作者名稱。%{sphinx_link:Sphinx 延伸查詢語法}"
     code_search:
       title: "程式碼搜尋"
       description: "搜尋腳本代碼。區分大小寫的純文字搜尋，不支持萬用字元。"

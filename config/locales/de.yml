@@ -234,6 +234,11 @@ de:
     locked_marker: "(Gesperrt)"
     unlisted_marker: "(Ungelistet)"
     library_marker: "(Bibliothek)"
+    libraries_title: "Bibliotheken"
+    libraries_description_html: "Dies sind durch %{site_name} Bentuzer erstellte Bibliotheken, welche Sie in Ihren Skripten mit <code>@require</code> einbinden können. Für andere arten von Bibliotheken, welche Sie per <code>@require</code> einbinden können, lesen Sie bitte %{policy_link:%{site_name}s Richtlinien für <code>@require</code>}."
+    by_site_list_title: "Benutzerscripte auf %{site_name}, gruppiert per Seite"
+    by_site_list_description: "Dies sind die Seiten, welche durch die beliebtesten Benutzerskripte geändert werden. Größere Schriftgröße bedeutet beliebtere Benutzerskripte."
+    by_site_list_filter: "Nach Seitennamen filtern:"
   script_sets:
     description: "Mit Skriptsammlungen können individuelle Listen von Skripten angelegt werden, um Greasy Fork zu durchstöbern. Sie können Ihrer Sammlung einzelne Skripte, die Skripte anderer Nutzer und automatisch erzeugte Listen hinzufügen. Auf dem selben Weg können Sie auch Skripte aus Ihrer Sammlung entfernen."
     favorites_name: "Favoriten"
@@ -604,6 +609,9 @@ de:
     script_search:
       title: "Skriptsuche"
       description: "Suche nach Skripten. Durchsucht Skriptnamen, Beschreibungen, zusätzliche Informationen und Autorennamen. %{sphinx_link:Sphinx erweiterte Anfragesyntax.}"
+    library_search:
+      title: "Bibliothekssuche"
+      description: "Suche nach Bibliotheken. Durchsucht Skriptnamen, Beschreibungen, zusätzliche Informationen und Autorennamen. %{sphinx_link:Sphinx erweiterte Anfragesyntax.}"
     code_search:
       title: "Codesuche"
       description: "Suche nach Skript-Quelltext. Dies ist eine von Groß-/Kleinschreibung unabhängige Klartextsuche ohne Stellvertretersymbole."
