@@ -4,8 +4,9 @@ require 'localizing_model'
 class ScriptVersion < ApplicationRecord
 	include LocalizingModel
 
-	# this has to be before belongs_to for codes so that it runs before autosave
-	before_create :reuse_script_codes
+	# This needs to be before_save to run before the autosave callbacks.
+	# It will actually only do anything when new_record?.
+	before_save :reuse_script_codes
 
 	belongs_to :script
 	belongs_to :script_code, :autosave => true
@@ -187,6 +188,7 @@ class ScriptVersion < ApplicationRecord
 
 	# reuse script code objects to save disk space
 	def reuse_script_codes
+		return if !new_record?
 
 		code_found = false
 		rewritten_code_found = false
