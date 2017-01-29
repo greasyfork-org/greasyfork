@@ -8,7 +8,7 @@ t_params = {
 show_script = defined?(show_script) && show_script && !discussion.script.nil? 
 t_params[:script_link] = link_to discussion.script.name(I18n.locale), discussion.script if show_script
 
-show_reply = !discussion.LastCommentUserID.nil?
+show_reply = !discussion.LastCommentUserID.nil? && discussion.last_commenter.present?
 if show_reply
 	t_params[:last_commenter_link] = link_to(discussion.last_commenter.name, user_path(discussion.last_commenter)).html_safe
 	t_params[:last_comment_date] = discussion.updated.nil? ? '?' : markup_date(discussion.updated).html_safe
