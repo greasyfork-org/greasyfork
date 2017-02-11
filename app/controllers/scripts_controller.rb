@@ -217,7 +217,8 @@ class ScriptsController < ApplicationController
 		# check the code for the search text
 		# using the escape character doesn't seem to work, yet it works from the command line. so choose something unlikely to be used as our escape character
 		script_ids = Script.connection.select_values("SELECT DISTINCT script_id FROM script_versions JOIN script_codes ON rewritten_script_code_id = script_codes.id WHERE script_versions.id IN (#{script_version_ids.join(',')}) AND code LIKE '%#{Script.connection.quote_string(params[:c].gsub('É', 'ÉÉ').gsub('%', 'É%').gsub('_', 'É_'))}%' ESCAPE 'É' LIMIT 100")
-		@scripts = Script.order(self.class.get_sort(params)).where(:locked => false).includes([:user, :script_type, :script_delete_type]).where(:id => script_ids)
+		@scripts = Script.order(self.class.get_sort(params)).includes([:user, :script_type, :script_delete_type]).where(:id => script_ids)
+		@scripts = @scripts.listable(script_subset) if !current_user&.moderator?
 		@paginate = false
 		@title = t('scripts.listing_title_for_code_search', :search_string => params[:c])
 		@canonical_params = [:c, :sort]
