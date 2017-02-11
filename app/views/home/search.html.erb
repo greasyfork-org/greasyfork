@@ -1,4 +1,4 @@
-<%= form_tag(search_scripts_path, id: 'script-search', method: :get) do %>
+<%= form_tag(scripts_path, id: 'script-search', method: :get) do %>
 	<h3><%=t('search.script_search.title')%></h3>
 	<p><%=it('search.script_search.description', sphinx_link: 'http://sphinxsearch.com/docs/current/extended-syntax.html')%></p>
 	<input type="search" name="q"><input class="search-submit" type="submit" value="🔎">

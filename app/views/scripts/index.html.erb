@@ -1,6 +1,6 @@
 <%- title @title %>
 <%- description @description %>
-<%= render partial: 'list_options', locals: {by_sites: @by_sites, scripts: @scripts, sort_options: @sort_options, include_script_sets: @include_script_sets.nil? ? true : @include_script_sets}%>
+<%= render partial: 'list_options', locals: {by_sites: @by_sites, scripts: @scripts, sort_options: @sort_options, include_script_sets: @include_script_sets.nil? ? true : @include_script_sets, include_search: true}%>
 
 <% if defined?(@set) and !@set.nil? %>
 	<h3>

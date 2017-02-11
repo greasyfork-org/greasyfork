@@ -32,8 +32,47 @@ class ScriptsController < ApplicationController
 	#########################
 
 	def index
-		@scripts = Script.listable(script_subset).includes({:user => {}, :script_type => {}, :localized_attributes => :locale, :script_delete_type => {}}).paginate(:page => params[:page], :per_page => get_per_page)
-		@scripts = self.class.apply_filters(@scripts, params, script_subset)
+		is_search = params[:q].present?
+
+		# Search can't do script sets, otherwise we'd use it for everything.
+		if is_search
+			begin
+				with = case script_subset
+					when :greasyfork
+						{sensitive: false}
+					when :sleazyfork
+						{sensitive: true}
+					else
+						{}
+				end
+				with = with.merge(script_type_id: 1)
+				# :ranker => "expr('top(user_weight)')" means that it will be sorted on the top ranking match rather than
+				# an aggregate of all matches. In other words, something matching on "name" will be tied with everything
+				# else matching on "name".
+				@scripts = Script.search(
+					params[:q],
+					match_mode: :extended,
+					with: with,
+					page: params[:page],
+					per_page: get_per_page,
+					order: self.class.get_sort(params, true),
+					populate: true,
+					sql: {include: [:script_type, {localized_attributes: :locale}, :user]},
+					select: '*, weight() myweight',
+					ranker: "expr('top(user_weight)')"
+				)
+				# make it run now so we can catch syntax errors
+				@scripts.empty?
+			rescue ThinkingSphinx::SyntaxError => e
+				flash[:alert] = "Invalid search query - '#{params[:q]}'."
+				# back to the main listing
+				redirect_to scripts_path
+				return
+			end
+		else
+			@scripts = Script.listable(script_subset).includes({:user => {}, :script_type => {}, :localized_attributes => :locale, :script_delete_type => {}}).paginate(:page => params[:page], :per_page => get_per_page)
+			@scripts = self.class.apply_filters(@scripts, params, script_subset)
+		end
 
 		respond_to do |format|
 			format.html {
@@ -42,11 +81,13 @@ class ScriptsController < ApplicationController
 				end
 				@by_sites = self.class.get_top_by_sites(script_subset)
 
-				@bots = 'noindex,follow' if !params[:sort].nil?
+				@sort_options = ['relevance', 'daily_installs', 'total_installs', 'ratings', 'created', 'updated', 'name'] if is_search
 				@link_alternates = get_listing_link_alternatives
 
 				if !params[:set].nil?
-					if @set.favorite
+					if is_search
+						@title = t('scripts.listing_title_for_search', :search_string => params[:q])
+					elsif @set.favorite
 						@title = t('scripts.listing_title_for_favorites', :set_name => @set.display_name, :user_name => @set.user.name)
 					else
 						@title = @set.display_name
@@ -62,7 +103,12 @@ class ScriptsController < ApplicationController
 					@title = t('scripts.listing_title_generic')
 					@description = t('scripts.listing_description_generic')
 				end
-				@canonical_params = [:page, :per_page, :set, :site, :sort]
+				@canonical_params = [:page, :per_page, :site, :sort]
+				if is_search
+					@canonical_params << :q
+				else
+					@canonical_params << :set
+				end
 			}
 			format.atom
 			format.json {
@@ -81,51 +127,7 @@ class ScriptsController < ApplicationController
 	end
 
 	def search
-		if params[:q].nil? || params[:q].empty?
-			redirect_to scripts_path
-			return
-		end
-
-		with = case script_subset
-			when :greasyfork
-				{sensitive: false}
-			when :sleazyfork
-				{sensitive: true}
-			else
-				{}
-		end
-		with = with.merge(script_type_id: 1)
-
-		begin
-			# :ranker => "expr('top(user_weight)')" means that it will be sorted on the top ranking match rather than
-			# an aggregate of all matches. In other words, something matching on "name" will be tied with everything
-			# else matching on "name".
-			@scripts = Script.search(
-				params[:q],
-				match_mode: :extended,
-				with: with,
-				page: params[:page],
-				per_page: get_per_page,
-				order: self.class.get_sort(params, true),
-				populate: true,
-				sql: {include: [:script_type, {localized_attributes: :locale}, :user]},
-				select: '*, weight() myweight',
-				ranker: "expr('top(user_weight)')"
-			)
-			# make it run now so we can catch syntax errors
-			@scripts.empty?
-		rescue ThinkingSphinx::SyntaxError => e
-			flash[:alert] = "Invalid search query - '#{params[:q]}'."
-			# back to the main listing
-			redirect_to scripts_path
-			return
-		end
-
-		@bots = 'noindex,follow'
-		@title = t('scripts.listing_title_for_search', :search_string => params[:q])
-		@sort_options = ['relevance', 'daily_installs', 'total_installs', 'ratings', 'created', 'updated', 'name']
-		# filters and such have been handled above
-		render_script_list(@scripts, {skip_filters: true})
+		redirect_to params.permit(:page, :per_page, :site, :sort, :q).merge(action: :index), status: 301
 	end
 
 	def libraries

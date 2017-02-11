@@ -115,8 +115,8 @@
 					<% end %>
 					<li class="help-link"><%=link_to_unless_current(t('layouts.application.help'), help_path)%></li>
 					<li class="nav-search">
-						<form id="script-search" action="<%=search_scripts_path()%>">
-							<input type="search" name="q" value="<%=controller.is_a?(ScriptsController) ? params[:q] : ''%>"><input class="search-submit" type="submit" value="🔎">
+						<form id="script-search" action="<%=scripts_path()%>">
+							<input type="search" name="q"><input class="search-submit" type="submit" value="🔎">
 						</form>
 					</li>
 				</nav>
