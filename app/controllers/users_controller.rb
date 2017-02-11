@@ -43,7 +43,7 @@ class UsersController < ApplicationController
 			format.html {
 				@by_sites = ScriptsController.get_top_by_sites(script_subset)
 
-				@scripts = (@same_user || (!current_user.nil? && current_user.moderator?)) ? @user.scripts : @user.scripts.listable(script_subset)
+				@scripts = (@same_user || (!current_user.nil? && current_user.moderator?)) ? @user.scripts : @user.scripts.listable_including_libraries(script_subset)
 				@user_has_scripts = !@scripts.empty?
 				@scripts = ScriptsController.apply_filters(@scripts, params, script_subset)
 				@other_site_scripts = script_subset == :sleazyfork ? @user.scripts.listable(:greasyfork).count : 0

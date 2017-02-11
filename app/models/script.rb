@@ -47,6 +47,7 @@ class Script < ActiveRecord::Base
 	}
 	scope :listable, ->(script_subset) {active(script_subset).where(:script_type_id => 1)}
 	scope :libraries, ->(script_subset) {active(script_subset).where(:script_type_id => 3)}
+	scope :listable_including_libraries, ->(script_subset) {active(script_subset).where(script_type_id: [1,3])}
 	scope :reported, -> {not_deleted.joins(:discussions).includes(:user).distinct.where('GDN_Discussion.Rating = 1').where('Closed = 0')}
 	scope :reported_not_adult, -> {not_deleted.includes(:user).where('not_adult_content_self_report_date IS NOT NULL')}
 	scope :requested_permanent_deletion, -> {where('permanent_deletion_request_date is not null')}
