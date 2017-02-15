@@ -11,14 +11,17 @@ pl:
         minutes:
           one: "%{count} minutę temu"
           few: "%{count} minut temu"
+          many: "%{count} minuty temu"
           other: "%{count} minuty temu"
         hours:
           one: "%{count} godzinę temu"
           few: "%{count} godzin temu"
+          many: "%{count} godziny temu"
           other: "%{count} godziny temu"
         days:
           one: "wczoraj"
           few: "%{count} dni temu"
+          many: "%{count} dni temu"
           other: "%{count} dni temu"
   scripts:
     created_date: "Utworzono"
@@ -37,6 +40,7 @@ pl:
     applies_to_link_title:
       one: "Zobacz %{count} inny skrypt dla %{site}"
       few: "Zobacz %{count} innych skryptów dla %{site}"
+      many: "Zobacz %{count} inne skrypty dla %{site}"
       other: "Zobacz %{count} inne skrypty dla %{site}"
     applies_to_all: "Wszystkie strony"
     additional_info: "Opis autora"
@@ -328,6 +332,7 @@ pl:
     list_display_html:
       one: "%{user_link} — %{count} skrypt"
       few: "%{user_link} — %{count} skryptów"
+      many: "%{user_link} — %{count} skrypty"
       other: "%{user_link} — %{count} skrypty"
     listing_number_of_scripts: "Liczba skryptów"
     listing_new_scripts: "Nowe skrypty"
@@ -344,6 +349,7 @@ pl:
     greasy_fork_scripts_link:
       one: "%{user_name} ma %{count} skrypt na Greasy Fork."
       few: "%{user_name} ma %{count} skryptów na Greasy Fork."
+      many: "%{user_name} ma %{count} skryptów na Greasy Fork."
       other: "%{user_name} ma %{count} skryptów na Greasy Fork."
   help:
     installing_user_scripts:
