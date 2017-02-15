@@ -571,25 +571,6 @@ dt[title] > span {
 	padding: 0.5em;
 }
 
-.front-page-p {
-	margin-bottom: 0;
-}
-.front-page-box {
-	display: inline-block;
-	width: 45%;
-	vertical-align: top;
-	text-align: justify;
-}
-.front-page-box:first-of-type {
-	padding-right: 6%;
-}
-@media (max-width: 600px) {
-	.front-page-box {
-		display: block;
-		width: auto;
-		padding: 0;
-	}
-}
 
 #install-stats-chart {
 	width: 100%;
@@ -861,11 +842,11 @@ form.new_user + a {
 	display: block;
 	margin: 0 auto;
 }
-.nav-search #script-search, .sidebar-search {
+.nav-search #script-search, .sidebar-search, .home-search {
 	position: relative;
 	vertical-align: middle;
 }
-.nav-search #script-search input[type=search], .sidebar-search input[type=search] {
+.nav-search #script-search input[type=search], .sidebar-search input[type=search], .home-search input[type=search] {
 	padding-right: 20px;
 }
 .nav-search #script-search input[type=search] {
@@ -875,7 +856,7 @@ form.new_user + a {
 	width: 100%;
 	margin: 0 0 1em 0;
 }
-.nav-search #script-search input[type=submit], .sidebar-search input[type=submit] {
+.nav-search #script-search input[type=submit], .sidebar-search input[type=submit], .home-search input[type=submit] {
 	position: absolute;
 	-moz-appearance: none;
 	-webkit-appearance: none;
@@ -888,4 +869,14 @@ form.new_user + a {
 	margin-right: 0;
 	background: none;
 	opacity: 0.5;
+}
+
+figure {
+	padding: 5px;
+	border: 1px solid #BBBBBB;
+	border-radius: 5px;
+}
+figcaption {
+	font-size: smaller;
+	text-align: center;
 }

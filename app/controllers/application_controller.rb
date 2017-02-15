@@ -288,14 +288,16 @@ protected
 	end
 
 	RANDOM_OPTIONS = ['pw']
-	def choose_ad_method(script)
+	def choose_ad_method(script=nil)
 		return nil if sleazy?
-		return nil if script && script.sensitive
-		return nil if !current_user.nil? && !current_user.show_ads
+		return nil if script&.sensitive
+		return nil if !current_user&.show_ads
+		return 'ga' if script.nil?
 		return script.ad_method if script.ad_method
 		return params[:ad] if RANDOM_OPTIONS.include?(params[:ad])
 		return RANDOM_OPTIONS.sample
 	end
+	helper_method :choose_ad_method
 
 	# Determines a locale to use based on user preference and Accept_Language header.
 	# Returns an array consisting of:

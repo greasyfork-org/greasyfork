@@ -231,4 +231,33 @@ private
 
 	@@markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new({:link_attributes => {:rel => 'nofollow'}}), :fenced_code_blocks => true, :lax_spacing => true)
 
+	TOP_SCRIPTS_PERCENTAGE = 0.1
+	TOP_SCRIPTS_COUNT = 5
+
+	# Sample from the top scripts.
+	def highlighted_script_ids_for_locale(locale_code)
+		# Use scripts in the passed locale first.
+		locale_scripts = Script.listable(script_subset).joins(:localized_attributes => :locale).references([:localized_attributes, :locale]).where('localized_script_attributes.attribute_key' => 'name').where('locales.code' => I18n.locale).select(:id)
+		locale_script_count = locale_scripts.count
+		locale_scripts_listed = [(locale_script_count * TOP_SCRIPTS_PERCENTAGE).to_i, TOP_SCRIPTS_COUNT].min
+		highlighted_scripts = Set.new + locale_scripts.order('daily_installs DESC').limit((locale_script_count * TOP_SCRIPTS_PERCENTAGE).to_i).sample(locale_scripts_listed).map{|s| s.id}
+
+		# If we don't have enough, use scripts that aren't in the passed locale.
+		if highlighted_scripts.length < TOP_SCRIPTS_COUNT
+			total_script_count = Script.listable(script_subset).count
+			Script.listable(script_subset).order('daily_installs DESC').limit((total_script_count * TOP_SCRIPTS_PERCENTAGE).to_i).select(:id).map{|s| s.id}.shuffle.each do |id|
+				highlighted_scripts << id
+				break if highlighted_scripts.length >= TOP_SCRIPTS_COUNT
+			end
+		end
+
+		return highlighted_scripts.to_a.shuffle
+	end
+
+	def highlighted_scripts
+		highlighted_scripts_ids = cache_with_log("scripts/highlighted/#{script_subset}/#{I18n.locale.to_s}") do
+			highlighted_script_ids_for_locale(I18n.locale)
+		end
+		@highlighted_scripts = Script.includes(:localized_attributes => :locale).find(highlighted_scripts_ids.to_a)
+	end
 end

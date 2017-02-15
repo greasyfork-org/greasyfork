@@ -1,26 +1,20 @@
 <%- title t(sleazy? ? 'home.sleazy_title' : 'home.title', site_name: site_name) %>
 <%- description "#{site_name} is a free site providing user scripts to improve your web browsing experience." %>
 
-<p class="front-page-p"><%=t(sleazy? ? 'home.sleazy_welcome' : 'home.welcome', site_name: site_name)%></p>
+<h2><%=t(sleazy? ? 'home.sleazy_welcome' : 'home.welcome', site_name: site_name)%></h2>
 
-<section class="front-page-box">
-	<h3><%=t('home.explain_user_scripts_heading')%></h3>
-
-	<p><%=t('home.explain_user_scripts_html', site_name: site_name)%></p>
-</section>
-
-<section class="front-page-box">
-	<h3><%=t('home.how_to_install_user_scripts_heading', site_name: site_name)%></h3>
-
-	<p><%=it('home.how_to_install_user_scripts_html', site_name: site_name, gm_link: 'https://addons.mozilla.org/firefox/addon/greasemonkey/', tm_link: 'https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo', other_managers_link: help_installing_user_scripts_path)%></p>
-</section>
-
-<section>
-	<h3><%=t('home.scripts_sample')%></h3>
-	<ul>
-		<% @highlighted_scripts.each do |script| %>
-			<li><%=link_to script.name(I18n.locale), script%> - <%=script.description(I18n.locale)%></li>
+<div id="home-script-nav">
+	<%= form_tag(scripts_path, class: 'home-search') do %>
+		<input type="search" placeholder="Search for user scripts">
+		<input type="submit" value="🔎" class="search-submit" >
+	<% end %>
+	<div id="home-top-sites">
+		Scripts for:
+		<% ScriptsController.get_top_by_sites(script_subset).map(&:first).compact.first(5).each do |site| %>
+			<%= link_to(site, by_site_scripts_path(site: site)) %>
 		<% end %>
-		<li><%=link_to t('home.scripts_sample_more'), scripts_path%></li>
-	</ul>
-</section>
+		<%= link_to t('scripts.listing_filter_by_site_more_sites'), site_list_scripts_path %>
+	</div>
+</div>
+
+<%= render partial: 'help/installing' %>

@@ -555,14 +555,41 @@ en:
     explain_user_scripts_heading: "What are user scripts?"
     # text explaining what user scripts are.
     explain_user_scripts_html: "User scripts put you in control of your browsing experience. Once installed, they automatically make the sites you visit better by adding features, making them easier to use, or taking out the annoying bits. The user scripts on %{site_name} were written by other users and posted to share with the world. They're free to install and easy to use."
-    # heading for the paragraph explaining how to install user scripts
-    how_to_install_user_scripts_heading: "How do I install user scripts?"
-    # text explaining how to install user scripts. gm_link and tm_link go to the addon install pages. other_managers_link goes to the installing user scripts help page
-    how_to_install_user_scripts_html: "To use user scripts you need to first install a user script manager. For Firefox, the best choice is %{gm_link:Greasemonkey}. For Chrome: %{tm_link:Tampermonkey}. %{other_managers_link:Other options exist.} Once you've installed a user script manager, find a script you like on %{site_name} and click the green Install button. The script is then installed and will run you visit a site it applies to."
-    # heading for the sample list of scripts
-    scripts_sample: "A sample of our scripts"
-    # final item of sample list of scripts, linking to the full listing page
-    scripts_sample_more: "More…"
+    # header for step 1 - how to install a user script manager
+    installing_step1_header: "Step 1: install a user script manager"
+    # caption in step 1 - screenshot of tampermonkey on chrome
+    installing_step1_caption: "Tampermonkey on Chrome"
+    # text for step 1, listing options for user script managers based on browsers
+    installing_step1_description_html: >
+      <p>To use user scripts you need to first install a user script manager. Which user script manager you can use depends on which browser you use.</p>
+      
+      <ul>
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> or %{chrome_violentmonkey_link:Violent monkey}</li>
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey} or %{firefox_tampermonkey_link:Tampermonkey}</li>
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey}</li>
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+        <li>Qupzilla: (no additional software required)</li>
+      </ul>
+    # header for step 2 - how to install a user script
+    installing_step2_header: "Step 2: install a user script"
+    # caption for step 2 - showing the install button for user scripts
+    installing_step2_caption: "A user script's install button"
+    # text for step 2 - describing how to find and install user scripts
+    installing_step2_description_html: >
+      <p>%{browse_link:Browse this site} to find a user script you want to try. Here is a sample of the most popular scripts:</p>
+      
+      %{highlighted_scripts_list}
+      
+      <p>Once you've found a user script, click the green install button on the user script's page, and your user script manager will ask you to confirm the install.</p>
+    # header for step 3 - how to use a user script
+    installing_step3_header: "Step 3: use the user script"
+    # description for step 3, describing browsing to the site and having the user script apply
+    installing_step3_description_html: >
+      <p>Go to the site the user script affects. It should automatically do its thing. After trying out the user script for a while, go back to where you installed the user script and leave some feedback for the user script's author.</p>
   users:
     # html title for the sign in page
     sign_in_title: "Sign in to %{site_name}"
@@ -720,23 +747,6 @@ en:
       one: "Your user name and email are set to be synced when you log in with %{providers}. %{edit_sign_in_link:Edit your sign in methods to remove syncing} if you want to permanently set a custom user name or email."
       other: "Your user name and email are set to be synced when you log in with %{providers}. %{edit_sign_in_link:Edit your sign in methods to remove syncing} if you want to permanently set a custom user name or email."
   help:
-    installing_user_scripts:
-      # title of the help document describing how to install user scripts
-      title: "How to install user scripts"
-      # text explaining that the user needs to install an extension to use user scripts
-      intro: "To use user scripts, you will typically need to install a browser extension."
-      # options for installing user scripts on firefox
-      firefox: "Firefox and related browsers: %{gm_link:Greasemonkey}."
-      # options for installing user scripts on chrome
-      chrome: "Google Chrome, Chromium, and related browsers: %{tm_link:Tampermonkey} or %{vm_link:Violentmonkey}."
-      # options for installing user scripts on opera 15 plus
-      opera_15_plus: "Opera (version 15 and later): %{tm_link:Tampermonkey} or %{vm_link:Violentmonkey}."
-      # options for installing user scripts on opera 12
-      opera_12: "Opera version 12 and earlier: %{vm_link:Violentmonkey} (friendlier UI and better compatibility than %{opera_doc_link:native support})."
-      # options for installing user scripts on Maxthon
-      maxthon: "Maxthon: %{vm_link:Violentmonkey}."
-      # how to install scripts once you have the proper extension
-      installing_scripts: "Once user scripts are enabled in your browser, browse to a script on Greasy Fork and click the green \"Install\" button."
     meta_keys:
       # title of the help document describing script meta keys (e.g. @name).
       title: "Script meta keys read by %{site_name}"

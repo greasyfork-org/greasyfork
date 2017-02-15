@@ -1,0 +1,42 @@
+#home-script-nav {
+	max-width: 700px;
+	margin: 0 auto;
+	padding-bottom: 20px;
+	border-bottom: 1px solid #BBBBBB;
+	margin-bottom: 15px;
+}
+.home-search input {
+	font-size: large;
+}
+.home-search input[type=search]{
+	width: 100%;
+}
+#home-top-sites {
+	white-space: nowrap;
+	overflow: hidden;
+	margin-top: 5px;
+}
+#home-top-sites a {
+	margin: 0 5px;
+}
+#home-step-1, #home-step-2, #home-step-3 {
+	/* So they expand to fit the floats */
+	overflow: auto;
+}
+#home-step-1 figure {
+	float: right;
+	max-width: 50%;
+	margin-right: 0;
+	margin-top: 0;
+}
+#home-step-2 figure {
+	float: left;
+	max-width: 50%;
+	margin-left: 0;
+	margin-top: 0;
+}
+#home-step-2 li {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
