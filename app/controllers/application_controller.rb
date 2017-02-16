@@ -292,9 +292,9 @@ protected
 		return nil if sleazy?
 		return nil if script&.sensitive
 		return nil if current_user && !current_user.show_ads
+		return params[:ad] if RANDOM_OPTIONS.include?(params[:ad])
 		return 'ga' if script.nil?
 		return script.ad_method if script.ad_method
-		return params[:ad] if RANDOM_OPTIONS.include?(params[:ad])
 		return RANDOM_OPTIONS.sample
 	end
 	helper_method :choose_ad_method
