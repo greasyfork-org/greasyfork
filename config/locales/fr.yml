@@ -310,10 +310,6 @@ fr:
     sleazy_welcome: "Bienvenue sur %{site_name}, un site pour les scripts utilisateurs pour les sites avec du contenu adulte."
     explain_user_scripts_heading: "Que sont les scripts utilisateurs ?"
     explain_user_scripts_html: "Les scripts utilisateurs vous permettent d'être le maître de votre expérience de navigation. Une fois installés, ils améliorent automatiquement les sites que vous visitez en ajoutant des fonctionnalités, qui permettent de faciliter leur utilisation, ou en supprimant les éléments ennuyeux. Les scripts utilisateurs sur %{site_name} sont écrits par d'autres utilisateurs et postés pour être partagés avec tout le monde. Ils sont installables gratuitement et sont faciles à utiliser."
-    how_to_install_user_scripts_heading: "Comment installer un script utilisateurs ?"
-    how_to_install_user_scripts_html: "Pour utiliser les scripts utilisateurs, vous avez besoin d'installer en premier un gestionnaire de scripts utilisateurs. Pour Firefox, le meilleur choix est %{gm_link:Greasemonkey}. Pour Chrome : %{tm_link:Tampermonkey}. %{other_managers_link:D'autres gestionnaires existent.} Une fois que vous avez installé un gestionnaire de scripts utilisateurs, trouvez un script que vous aimez sur %{site_name} et cliquez sur le bouton vert \"Installer ce script\". Le script est alors installé et s'exécutera à la visite d'un site où il s'applique."
-    scripts_sample: "Quelques exemples de scripts"
-    scripts_sample_more: "Plus de scripts..."
   users:
     sign_in_title: "S'identifier sur %{site_name}"
     sign_in_description: "S'identifier sur %{site_name} vous permet de poster des scripts et des commentaires sur d'autres scripts. Vous n'avez pas besoin d'être identifié pour parcourir ou installer les scripts."
@@ -393,15 +389,6 @@ fr:
       one: "%{user_name} a aussi %{count} script sur Greasy Fork."
       other: "%{user_name} a aussi %{count} scripts sur Greasy Fork."
   help:
-    installing_user_scripts:
-      title: "Comment installer des scripts utlisateurs"
-      intro: "Pour utiliser des scripts utilisateur , vous aurez besoin d'installer une extension sur votre navigateur. "
-      firefox: "Firefox et navigateurs semblables : %{gm_link:Greasemonkey}."
-      chrome: "Google Chrome, Chromium et navigateurs semblables : %{tm_link:Tampermonkey} ou %{vm_link:Violentmonkey}."
-      opera_15_plus: "Opera ( version 15 et supérieure ) : %{tm_link:Tampermonkey} ou %{vm_link:Violentmonkey}."
-      opera_12: "Opera version 12 et antérieures: %{vm_link:Violentmonkey} (Interface plus conviviale et une meilleure compatibilité que %{opera_doc_link:native support})."
-      maxthon: "Maxthon: %{vm_link:Violentmonkey}."
-      installing_scripts: "Une fois que les scripts utilisateurs sont activés dans votre navigateur, naviguez vers un script sur Greasy Fork et cliquez sur le bouton vert \"Installer ce script\"."
     meta_keys:
       title: "Métadonnées utilisées par %{site_name}"
       intro_html: "Voici une liste de <a href=\"http://wiki.greasespot.net/Metadata_Block\">métadonnées</a> que %{site_name} peut utiliser. Les entrées non citées dans cette liste peuvent être utilisées dans de nouveaux scripts. Elles seront alors exploitables dans le script installé, mais n'auront aucun effet sur l'interace de %{site_name}."

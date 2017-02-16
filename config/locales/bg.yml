@@ -313,10 +313,6 @@ bg:
     sleazy_welcome: "Добре дошли на %{site_name}, сайт за потребителски скриптове за възрастни."
     explain_user_scripts_heading: "Какво са потребителските скриптове?"
     explain_user_scripts_html: "Потребителските скриптове ви позволяват да контролирате сърфирането в мрежата. Веднъж инсталирани те автоматично правят посещаваните сайтове по-добри, добавяйки екстри, правейки ги по-лесни за употреба, или премахвайки досадни неща. Потребителските скриптове за %{site_name} са написани от други потребители и публикувани за споделяне с целия свят. Те се инсталират безплатно и са лесни за употреба."
-    how_to_install_user_scripts_heading: "Как да инсталирам потребителски скриптове"
-    how_to_install_user_scripts_html: "За да използвате тези скриптове първо трябва да инсталирате скриптов мениджър. За Firefox най-добрият избор е %{gm_link:Greasemonkey}. За Chrome: %{tm_link:Tampermonkey}. %{other_managers_link:Other options exist.} След като инсталирате скриптовия мениджър, потърсете скриптове за %{site_name} и щракнете на зеления бутон за инсталация. Скриптът вече е инсталиран и ще се стартира когато посетите сайта, за който е предназначен."
-    scripts_sample: "Част от нашите скриптове"
-    scripts_sample_more: "Още..."
   users:
     sign_in_title: "Влизане в %{site_name}"
     sign_in_description: "Входът в %{site_name} позволява качването на скриптове и отзиви за скриптове от други автори. За да преглеждане и инсталиране на скриптове, не е нужен вход."
@@ -400,15 +396,6 @@ bg:
       one: "Вашето потребителско име и email са настроени да се синхронизират, когато влизате чрез %{providers}. %{edit_sign_in_link:Edit your sign in methods to remove syncing} Ако желаете да създадете постоянно потребителско име или email."
       other: "Вашето потребителско име и email са настроени да се синхронизират, когато влизате чрез %{providers}. %{edit_sign_in_link:Edit your sign in methods to remove syncing} Ако желаете да създадете постоянно потребителско име или email."
   help:
-    installing_user_scripts:
-      title: "Как да инсталираме потребителски скриптове"
-      intro: "За да използвате потребителски скриптове, трябва да инсталирате разширение за браузъра."
-      firefox: "Firefox и подобни браузъри: %{gm_link:Greasemonkey}."
-      chrome: "Google Chrome, Chromium и производни браузъри: %{tm_link:Tampermonkey} или %{vm_link:Violentmonkey}."
-      opera_15_plus: "Opera (версия 15 и по-нова): %{tm_link:Tampermonkey} или %{vm_link:Violentmonkey}."
-      opera_12: "Opera версия 12 и по-стара: %{vm_link:Violentmonkey} (по-удобен UI и по-добра съвместимост отколкото %{opera_doc_link:native support})."
-      maxthon: "Maxthon: %{vm_link:Violentmonkey}."
-      installing_scripts: "След като потребителските скриптове вече са разрешени в браузъра ви, прегледайте скриптовете на Greasy Fork и щракнете на зеления бутон \"Install\"."
     meta_keys:
       title: "Meta keys, четени от %{site_name}"
       intro_html: "Това е списък с <a href=\"http://wiki.greasespot.net/Metadata_Block\">user script мета данни</a>, които %{site_name} ще прочете. Данните, които не са включени в този списък, могат да са включени в, и ще се ползват в инсталираните скриптове, но няма да имат ефект върху интерфейса на %{site_name}'s."

@@ -313,10 +313,44 @@ zh-CN:
     sleazy_welcome: "欢迎来到 %{site_name}，这里是一个提供成人用户脚本的网站。"
     explain_user_scripts_heading: "用户脚本是什么？"
     explain_user_scripts_html: "用户脚本为您增强对浏览体验的控制权。在安装之后，它们可自动为您访问的网站添加功能，或使其更加易用、更加清新。在 %{site_name} 上的用户脚本是由其他用户编写并向全世界发表的，您可以免费和轻松地安装。"
-    how_to_install_user_scripts_heading: "如何安装用户脚本？"
-    how_to_install_user_scripts_html: "为了使用用户脚本，您首先需要安装一个用户脚本管理器。比如 Firefox，最佳选择是 %{gm_link:Greasemonkey}。对于 Chrome 则是：%{tm_link:Tampermonkey}。%{other_managers_link:其他选择参见这里。}在您安装好一个用户脚本管理器之后，在 %{site_name} 上面找一个您喜欢的脚本，点击绿色的安装按钮。在脚本安装之后，它就会在您访问的它适用的网站上运行了。"
-    scripts_sample: "脚本示例"
-    scripts_sample_more: "更多…"
+    installing_step1_header: "第一步：安装一个用户脚本管理器"
+    installing_step1_caption: "Chrome 上的 Tampermonkey"
+    installing_step1_description_html: >
+        <p>要使用用户脚本，您首先需要安装一个用户脚本管理器。根据您使用的浏览器不同，可用的用户脚本管理器也有所不同。</p>
+
+        <ul>
+
+        <li>Chrome：%{chrome_tampermonkey_link:Tampermonkey}</a> 或 %{chrome_violentmonkey_link:Violent
+        monkey}</li>
+
+        <li>Firefox：%{firefox_greasemonkey_link:Greasemonkey} 或 %{firefox_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Safari：%{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Microsoft Edge：%{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera：%{opera_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Maxthon：%{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin：%{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC：%{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla：（不需要额外软件）</li>
+
+        </ul>
+    installing_step2_header: "第二步：安装一个用户脚本"
+    installing_step2_caption: "用户脚本的安装按钮"
+    installing_step2_description_html: >
+        <p>%{browse_link:浏览此网站} 查找您想尝试的用户脚本。最流行的用户脚本有：</p>
+
+        %{highlighted_scripts_list}
+
+        <p>在您找到想要的用户脚本后，点击用户脚本页面上绿色的安装按钮，您的用户脚本管理器将询问您是否安装。</p>
+    installing_step3_header: "第三步：使用用户脚本"
+    installing_step3_description_html: >
+        <p>转至用户脚本适用的网站。它应该已自动启动和生效。在试用用户脚本后，您可以返回用户脚本页面，给用户脚本的作者留下反馈。</p>
   users:
     sign_in_title: "登录 %{site_name}"
     sign_in_description: "登录到 %{site_name} 可以让您发布脚本以及反馈其他作者的脚本。如果您只是翻阅或安装脚本，登录并不是必须的。"
@@ -397,15 +431,6 @@ zh-CN:
     update_sync_warning:
       other: "您的用户名和电子邮件地址已设为在您用 %{providers} 登录时同步。如果您想永久设置自定义用户名或电子邮件地址，%{edit_sign_in_link:编辑您的登录方法以去除同步}。"
   help:
-    installing_user_scripts:
-      title: "如何安装用户脚本"
-      intro: "要使用用户脚本，您通常需要安装一个浏览器扩展。"
-      firefox: "Firefox 及相关的浏览器：%{gm_link:Greasemonkey}。"
-      chrome: "Google Chrome、Chromium 及相关浏览器：%{tm_link:Tampermonkey} 或 %{vm_link:Violentmonkey}。"
-      opera_15_plus: "Opera (版本 15 及更晚)：%{tm_link:Tampermonkey} 或者 %{vm_link:Violentmonkey}。"
-      opera_12: "Opera 12 及更早版本：%{vm_link:Violentmonkey}（比%{opera_doc_link:原生支持}有更好的界面和兼容性）。"
-      maxthon: "傲游浏览器：%{vm_link:Violentmonkey}。"
-      installing_scripts: "在用户脚本扩展已在您的浏览器中启用后，浏览 Greasy Fork 上的一个脚本，并点击绿色的“安装”按钮吧。"
     meta_keys:
       title: "%{site_name} 要读取的脚本元键值"
       intro_html: "这里有 %{site_name} 将读取的 <a href=\"http://wiki.greasespot.net/Metadata_Block\">用户脚本属性值</a>的一个列表。不在此列表的属性也可以写在脚本中，用户安装的脚本将包含这些属性值但是并不会对网站界面产生更变。"

@@ -312,10 +312,6 @@ zh-TW:
     sleazy_welcome: "歡迎來到 %{site_name}，這是一個成人使用者腳本分享站。"
     explain_user_scripts_heading: "使用者腳本是什麼？"
     explain_user_scripts_html: "使用者腳本讓您控制您的瀏覽體驗。當您安裝後，使用者腳本可以為網頁增加功能、簡化使用方法、或移除煩人的東西。在 %{site_name} 上的腳本都是由其它使用者撰寫、和全世界分享的。所有的腳本都是免費安裝，而且容易使用。"
-    how_to_install_user_scripts_heading: "我應該如何安裝使用者腳本？"
-    how_to_install_user_scripts_html: "首先，您需要安裝一個使用者腳本管理器。對 Firefox 瀏覽器來說，最好的選擇是 %{gm_link:Greasemonkey}；對 Chrome 瀏覽器則是 %{tm_link:Tampermonkey}；當然，也有%{other_managers_link:其它的選擇} 。當您安裝了使用者腳本管理之後，您可以在 %{site_name} 尋找您喜歡的腳本，並點擊綠色的「安裝」按鈕。腳本安裝完畢後，會在訪問網站的時候自動啓用。"
-    scripts_sample: "腳本實例"
-    scripts_sample_more: "更多…"
   users:
     sign_in_title: "登入  %{site_name}"
     sign_in_description: "登入 %{site_name} 可以讓您發佈腳本，以及對其他人的腳本發表評價。如果您只想瀏覽或安裝腳本，則無需登入。"
@@ -396,15 +392,6 @@ zh-TW:
     update_sync_warning:
       other: "以 %{providers} 登入時，你的使用者名稱和 email 會和源帳號同步。若想自訂一個永久的使用者名稱或 email，請 %{edit_sign_in_link:修改登入資料並取消同步}。"
   help:
-    installing_user_scripts:
-      title: "如何安裝使用者腳本"
-      intro: "要使用使用者腳本，您通常需要安裝一個瀏覽器擴充套件。"
-      firefox: "Firefox 或相關瀏覽器：%{gm_link:Greasemonkey}。"
-      chrome: "Google 瀏覽器、Chromium、和其相關的瀏覽器︰ %{tm_link:Tampermonkey} 或 %{vm_link:Violentmonkey}。"
-      opera_15_plus: "Opera (版本 15 及以後)：%{tm_link:Tampermonkey} 或 %{vm_link:Violentmonkey}。"
-      opera_12: "版本 12 之前的 Opera 瀏覽器︰ %{vm_link:Violentmonkey} （相對於 %{opera_doc_link:native support} ，擁用較好的介面和兼容性）。"
-      maxthon: "Maxthon︰ %{vm_link:Violentmonkey}。"
-      installing_scripts: "確定使用者腳本是啟用狀態後，進入 Greasy Fork 的腳本頁面並點擊綠色的「安裝」按鈕。"
     meta_keys:
       title: "%{site_name} 讀取的 meta keys"
       intro_html: "這是 %{site_name} 會讀取的 <a href=\"http://wiki.greasespot.net/Metadata_Block\">使用者腳本 meta keys</a> 的清單。腳本中可以有不在此清單中的 key，也會存在使用者安裝的腳本中，但不會對 %{site_name} 的介面有任何效果。"

@@ -319,10 +319,52 @@ es:
     sleazy_welcome: "Bienvenido a %{site_name}, un sitio con scripts de usuario para adultos."
     explain_user_scripts_heading: "¿Qué son los scripts de usuario?"
     explain_user_scripts_html: "Los scripts de usuario son pequeñas porciones de código que añaden funcionalidad, eliminan molestias y en general mejoran las páginas que visitas. Los scripts de usuario alojados en %{site_name} son gratuitos y creados por una comunidad global de usuarios. %{site_name} aloja miles de scripts de usuario escritos por cientos de autores."
-    how_to_install_user_scripts_heading: "¿Cómo puedo instalar scripts de usuario?"
-    how_to_install_user_scripts_html: "Para utilizar scripts de usuario es necesario instalar una extensión. En el caso de Firefox lo normal es utilizar %{gm_link:Greasemonkey}, y para Chrome está %{tm_link:Tampermonkey}, %{other_managers_link:aunque existen otras opciones}. ¿Ya lo has hecho? Explora %{site_name} hasta encontrar algo que te guste, haz clic en el correspondiente botón verde y el script se instalará en un momento, funcionando únicamente en los sitios marcados."
-    scripts_sample: "He aquí una pequeña muestra de nuestros scripts:"
-    scripts_sample_more: "Más…"
+    installing_step1_header: "Paso 1: Instale un administrador de scripts de usuario"
+    installing_step1_caption: "Tampermonkey en Chrome"
+    installing_step1_description_html: >
+        <p>Para usar scripts de usuario primero tiene que instalar un administrador
+        de scripts de usuario. Qué administrador de scripts de usuario pueda usar
+        depende de qué navegador use.</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> o %{chrome_violentmonkey_link:Violent
+        monkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey} o %{firefox_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla: (no se requiere software adicional)</li>
+
+        </ul>
+    installing_step2_header: "Paso2: Instale un script de usuario"
+    installing_step2_caption: "Botón de instalación de un script de usuario"
+    installing_step2_description_html: >
+        <p>%{browse_link:Explore este sitio} para encontrar un script de usuario que
+        quiera probar. Aquí tiene una muestra de los scripts más populares:</p>
+
+        %{highlighted_scripts_list}
+
+        <p>Una vez haya encontrado un script de usuario, haga clic en el botón verde
+        de instalación en la página del script de usuario, y su administrador de scripts
+        de usuario le pedirá que confirme la instalación.</p>
+    installing_step3_header: "Paso 3: Utilice el script de usuario"
+    installing_step3_description_html: >
+        <p>Vaya al sitio al que afecta el script de usuario, y este automáticamente
+        debería realizar su trabajo. Tras probar el script de usuario durante un rato,
+        vuelva al lugar desde donde instaló el script y deje algún comentario para
+        el autor.</p>
   users:
     sign_in_title: "Inicia sesión en %{site_name}"
     sign_in_description: "Iniciar sesión en %{site_name} te permite publicar scripts y comentar en los scripts de otros.  Aunque no necesitas iniciar sesión para buscar o instalar scripts."
@@ -406,15 +448,6 @@ es:
       one: "Su nombre de usuario y correo electrónico están configurados para sincronizarse cuando inicie sesión con %{providers}. %{edit_sign_in_link:Edite sus métodos de inicio de sesión para eliminar el sincronizado} si quiere establecer un nombre de usuario o correo electrónico personalizado de forma permanente."
       other: "Su nombre de usuario y correo electrónico están configurados para sincronizarse cuando inicie sesión con %{providers}. %{edit_sign_in_link:Edite sus métodos de inicio de sesión para eliminar el sincronizado} si quiere establecer un nombre de usuario o correo electrónico personalizado de forma permanente."
   help:
-    installing_user_scripts:
-      title: "Aprender a instalar scripts de usuario"
-      intro: "Lo más normal a la hora de utilizar scripts de usuario es gestionarlos mediante la instalación de una cómoda extensión para tu navegador de Internet."
-      firefox: "En el caso de Firefox y derivados: %{gm_link:Greasemonkey}."
-      chrome: "Para Google Chrome, Chromium y demás: %{tm_link:Tampermonkey} o %{vm_link:Violentmonkey}."
-      opera_15_plus: "Opera (versión 15 o superior): %{tm_link:Tampermonkey} ó %{vm_link:Violentmonkey}."
-      opera_12: "Opera 12 y sus predecesores %{opera_doc_link:soportan scripts de usuario de forma nativa}. Aunque %{vm_link:Violentmonkey} proporciona una interfaz de usuario más amigable y cierto grado de compatibilidad adicional con las últimas características añadidas."
-      maxthon: "Maxthon: %{vm_link:Violentmonkey}."
-      installing_scripts: "Una vez hayas instalado la extensión correspondiente en tu navegador ya puedes buscar scripts en Greasy Fork e instalarlos haciendo clic en el correspondiente botón verde."
     meta_keys:
       title: "Claves de metadatos de scripts leídas por %{site_name}"
       intro_html: "Esta es una lista con las <a href=\"http://wiki.greasespot.net/Metadata_Block\">claves de metadatos utilizables en los scripts de usuario</a> que %{site_name} admite. Puedes incluir en los scripts claves sin listar, y de hecho aparecerán en la versión instalable que reciban tus usuarios, pero no tendrán ningún efecto en la interfaz de %{site_name}."

@@ -262,6 +262,7 @@ ja:
       excluded: "除外リスト"
       excluded_none: "(未設定)"
       remove_excluded: "選択したスクリプトセットをリストから外す"
+      add_label: "リストに入れるスクリプト (空白・改行区切りの URL または ID)"
       add_include: "追加リストへ登録する"
       add_exclude: "除外リストへ登録する"
       user_label: "指定したユーザー (URL、ID または 名前) のスクリプトセットを一覧表示する"
@@ -312,10 +313,44 @@ ja:
     sleazy_welcome: "%{site_name} はアダルトユーザースクリプトの投稿サイトです。"
     explain_user_scripts_heading: "ユーザースクリプトについて"
     explain_user_scripts_html: "ユーザースクリプトは、Web ページを見たり使ったりするときの主導権をあなたに与えます。スクリプトをインストールすれば、ページの機能を使いやすくしたり、新たな機能を追加したり、迷惑なものを取り除いたりして、訪れたサイトをより便利にカスタマイズすることができます。%{site_name} では、ユーザーが開発・投稿したスクリプトを公開しています。これらのスクリプトは自由にインストールでき、使うのも簡単です。"
-    how_to_install_user_scripts_heading: "ユーザースクリプトをインストールするには？"
-    how_to_install_user_scripts_html: "ユーザースクリプトを利用するには、まずユーザースクリプトマネージャーをインストールする必要があります。Firefox の場合は %{gm_link:Greasemonkey} が適しています。Chrome の場合は %{tm_link:Tampermonkey} を。%{other_managers_link:他の選択肢もあります。} ユーザースクリプトマネージャーがインストールできたら、%{site_name} で好きなスクリプトを見つけて緑色のインストールボタンを押します。スクリプトがインストールされ、実行対象のページで動作するようになります。"
-    scripts_sample: "公開されているスクリプト"
-    scripts_sample_more: "さらに表示 ▸"
+    installing_step1_header: "(1) ユーザースクリプトマネージャーをインストール"
+    installing_step1_caption: "Tampermonkey (Chrome 版)"
+    installing_step1_description_html: >
+        <p>ユーザースクリプトを利用するには、まずユーザースクリプトマネージャーをインストールする必要があります。使用可能なユーザースクリプトマネージャーは、ブラウザにより異なります。</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> または %{chrome_violentmonkey_link:Violent
+        monkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey} または %{firefox_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla: (追加のソフトウェアは不要)</li>
+
+        </ul>
+    installing_step2_header: "(2) スクリプトをインストール"
+    installing_step2_caption: "ユーザースクリプトのインストールボタン"
+    installing_step2_description_html: >
+        <p>%{browse_link:当サイトから}使いたいユーザースクリプトを探します。以下は人気のスクリプトの一例です。</p>
+
+        %{highlighted_scripts_list}
+
+        <p>スクリプトページにある緑色のインストールボタンをクリックすると、スクリプトをインストールするか確認するダイアログなどが、ユーザースクリプトマネージャーより表示されます。</p>
+    installing_step3_header: "(3) ユーザースクリプトを使う"
+    installing_step3_description_html: >
+        <p>これで、スクリプトは実行対象のページで動作するようになります。スクリプトを試したあと、インストールしたページに戻り、作者宛てにフィードバックを投稿することもできます。</p>
   users:
     sign_in_title: "%{site_name} にログイン"
     sign_in_description: "%{site_name} にログインすると、スクリプトやフィードバックが投稿できるようになります。スクリプトを探したりインストールしたりするだけなら、ログインする必要はありません。"
@@ -396,14 +431,6 @@ ja:
     update_sync_warning:
       other: "ユーザー名とメールアドレスは、%{providers} と同期中 (ログイン時に更新) です。このページで設定したユーザー名やメールアドレスを使い続けるには、%{edit_sign_in_link:ログインに利用するアカウントの設定}から同期を解除してください。"
   help:
-    installing_user_scripts:
-      title: "ユーザースクリプトのインストール方法"
-      intro: "ユーザースクリプトを利用するには、通常はブラウザ拡張のインストールが必要です。"
-      firefox: "Firefox 系のブラウザ: %{gm_link:Greasemonkey}"
-      chrome: "Google Chrome、Chromium 系のブラウザ: %{tm_link:Tampermonkey} または %{vm_link:Violentmonkey}"
-      opera_15_plus: "Opera (バージョン 15 以降): %{tm_link:Tampermonkey} または %{vm_link:Violentmonkey}"
-      maxthon: "Maxthon: %{vm_link:Violentmonkey}"
-      installing_scripts: "ブラウザでユーザースクリプトが使えるようになったら、Greasy Fork で公開されているスクリプトのページを開き、緑色のインストールボタンをクリックします。"
     meta_keys:
       title: "%{site_name} が読み込むスクリプト・メタキー"
       intro_html: "%{site_name} が読み込む<a href=\"http://wiki.greasespot.net/Metadata_Block\">ユーザースクリプトのメタキー</a>の一覧です。以下の一覧にないキーをスクリプトに含めることも可能で、そのキーはインストールされたスクリプト中にも含まれることになりますが、%{site_name} の UI (表示) には影響しません。"

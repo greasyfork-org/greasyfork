@@ -313,10 +313,6 @@ it:
     sleazy_welcome: "Benvenuto su %{site_name}, un sito per gli user script adulti."
     explain_user_scripts_heading: "Cosa sono gli user script?"
     explain_user_scripts_html: "Gli scripts ti mettono al comando della tua esperienza di navigazione.Appena saranno installati, aggiungeranno funzionalità ai siti che navighi, li renderanno più semplici da usare,oppure rimuoveranno cose che non ti piacciono.Gli scripts su %{site_name} sono stati scritti da altri utenti e pubblicati per essere condivisi con tutti.Sono gratuiti e facili da usare."
-    how_to_install_user_scripts_heading: "Come faccio a installare gli script utente?"
-    how_to_install_user_scripts_html: "Per usare gli scripts devi prima installare un gestore di questi ultimi.Per Firefox la migliore scelta è %{gm_link:Greasemonkey}.Per Chrome: %{tm_link:Tampermonkey}. %{other_managers_link:Per altre opzioni.}\nAppena avrai installato un gestore di scripts,trova uno script che ti piace su  %{site_name} e clicca sul bottone verde con scritto installa. Lo script sarà installato e comicerà a funzionare appena navigherai sul sito dove è stato applicato."
-    scripts_sample: "Un esempio di nostri scripts"
-    scripts_sample_more: "Altro..."
   users:
     sign_in_title: "Entra in %{site_name}"
     sign_in_description: "Registrandoti a %{site_name} potrai postare script e commentare script caricati da altri utenti. Non è necessario essere registrati per visualizzare o installare gli script."
@@ -394,15 +390,6 @@ it:
       one: "%{user_name} ha altri %{count} script su Greasy Fork."
       other: "%{user_name} also has %{count} scripts on Greasy Fork."
   help:
-    installing_user_scripts:
-      title: "Come installare gli user script"
-      intro: "Per usare gli user script, generalmente bisogna installare un'estensione nel browser."
-      firefox: "Firefox e browser correlati: %{gm_link:Greasemonkey}."
-      chrome: "Google Chrome, Chromium, e browser attinenti: %{tm_link:Tampermonkey} o %{vm_link:Violentmonkey}."
-      opera_15_plus: "Opera (versione 15 e successive): %{tm_link:Tampermonkey} oppure %{vm_link:Violentmonkey}."
-      opera_12: "Opera versione 12 e precedenti: %{vm_link:Violentmonkey} (interfaccia grafica più amichevole e migliore compatibilità rispetto al %{opera_doc_link:supporto nativo})."
-      maxthon: "Maxthon: %{vm_link:Violentmonkey}."
-      installing_scripts: "Una volta che gli user script sono abilitati nel browser, selezionare uno script su Greasy Fork e cliccare sul tasto verde \"Install\"."
     meta_keys:
       title: "Meta key dello script lette da %{site_name}"
       intro_html: "Questa è una lista di <a href=\"http://wiki.greasespot.net/Metadata_Block\">meta key degli user script</a> che %{site_name} può leggere. Le meta key al di fuori di questa lista possono essere incluse nello script, ma non hanno effetto sull'interfaccia utente di %{site_name}."

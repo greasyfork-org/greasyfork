@@ -318,11 +318,51 @@ pt-BR:
     sleazy_title: "%{site_name} - Scripts de usuários  com conteúdo adulto seguros e úteis"
     sleazy_welcome: "Bem vindo ao %{site_name}, um site de scripts de usuário para adultos"
     explain_user_scripts_heading: "O que são scripts de usuários?"
-    explain_user_scripts_html: "Scripts de usuários te poem no controle da sua experiência de navegação. Uma vez instalados, eles automaticamente fazem os sites que você visita melhores, adicionando funções, deixando-os mais fáceis de usar, ou retirando os bits que lhe incomodam. Os scripts no %{site_name} foram escritos por outros usuários e postados para serem compartilhados com o mundo. Eles são gratuitos e fáceis de usar."
-    how_to_install_user_scripts_heading: "Como eu instalo scripts de usuário?"
-    how_to_install_user_scripts_html: "Para usar os scripts de usuários você precisa primeiro instalar um gerenciador de scripts. Para o Firefox, a melhor escolha é o %{gm_link:Greasemonkey}. Para o Chrome: %{tm_link:Tampermonkey}. %{other_managers_link:Other options exist.} Depois de você instalar o gerenciador de scripts, procure um script que você gosta no %{site_name} e clique no botão de instalação verde. O script então é instalado e irá rodar quando você acessar o site que ele se aplica."
-    scripts_sample: "Um exemplo de nossos scripts"
-    scripts_sample_more: "Mais..."
+    explain_user_scripts_html: "Scripts de usuários te colocam no controle da sua experiência de navegação. Uma vez instalados, eles automaticamente fazem os sites que você visita melhores, adicionando funções, deixando-os mais fáceis de usar, ou retirando aquelas partes que te incomodam. Os scripts no %{site_name} foram escritos por outros usuários e postados para serem compartilhados com o mundo. Eles são gratuitos e fáceis de usar."
+    installing_step1_header: "Passo 1: instalar um gerenciador de scripts de usuários"
+    installing_step1_caption: "Tampermonkey para o Chrome"
+    installing_step1_description_html: >
+        <p>Para usar scripts de usuários você precisa primeiro instalar um gerenciador
+        de scripts, que dependerá de qual navegador você estiver utilizando.</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> ou %{chrome_violentmonkey_link:Violent
+        monkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey} ou %{firefox_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla: (no additional software required)</li>
+
+        </ul>
+    installing_step2_header: "Passo 2: instalar um scripts de usuário"
+    installing_step2_caption: "Um botão de instalação de um script de usuário"
+    installing_step2_description_html: >
+        <p>%{browse_link:Navegue neste site} para encontrar scripts que você deseja
+        testar. Aqui está uma mostra dos scripts mais populares:</p>
+
+        %{highlighted_scripts_list}
+
+        <p>Uma vez que tenha encontrado um script, clique no botão de instalação verde
+        na página do script, e seu gerenciador de scripts de usuários solicitará uma
+        confirmação de instalação.</p>
+    installing_step3_header: "Passo 3: use seu script de usuário"
+    installing_step3_description_html: >
+        <p>Acesse o site afetado pelo script. Ele deve funcionar automaticamente.
+        Após usar o script por um tempo, volte na página onde você instalou o script
+        e avalie-o ou deixe algum comentário para o autor do script.</p>
   users:
     sign_in_title: "Entrar no %{site_name}"
     sign_in_description: "Ao se registrar no %{site_name} você poderá postar seus scripts e dar a sua opnião sobre outros. Você não precisa se registrar para procurar ou instalar scripts."
@@ -406,15 +446,6 @@ pt-BR:
       one: "Seu nome de usuário e email estão configurados para serem sincronizados quando você efetuar o login com %{providers}. %{edit_sign_in_link:Altere seus métodos de login para remover esta sincronização} caso deseje definir permanentemente um nome de usuário ou email personalizados."
       other: "Seu nome de usuário e email estão configurados para serem sincronizados quando você efetuar o login com %{providers}. %{edit_sign_in_link:Altere seus métodos de login para remover esta sincronização} caso deseje definir permanentemente um nome de usuário ou email personalizados."
   help:
-    installing_user_scripts:
-      title: "Como instalar scripts de usuário"
-      intro: "Para usar scripts de usuário, geralmente é necessário instalar uma extensão no navegador."
-      firefox: "Firefox e navegadores relacionados: %{gm_link:Greasemonkey}."
-      chrome: "Google Chrome, Chromium, e navegadores relacionados: %{tm_link:Tampermonkey} ou %{vm_link:Violentmonkey}."
-      opera_15_plus: "Opera (15 ou superior): %{tm_link:Tampermonkey} ou %{vm_link:Violentmonkey}."
-      opera_12: "Opera versão 12 ou anteriores: %{vm_link:Violentmonkey} (interface mais amigável e melhor compatibilidade que o %{opera_doc_link:suporte nativo})."
-      maxthon: "Maxthon: %{vm_link:Violentmonkey}."
-      installing_scripts: "Uma vez que um gerenciador de scripts foi habilitado no seu navegador, procure um script no Grease Fork e clique no botão verde de instalação."
     meta_keys:
       title: "Chaves de metadados de scripts lidas pelo %{site_name}"
       intro_html: "Esta é uma lista de <a href=\"http://wiki.greasespot.net/Metadata_Block\">meta chaves de scripts de usuário</a> que %{site_name} irá ler. Chaves fora desta lista podem ser incluídas nos scripts, e serão apresentados no script instalado, mas não surtirão efeito na UI de %{site_name}."
