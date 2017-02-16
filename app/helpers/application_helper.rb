@@ -249,7 +249,7 @@ private
 		# If we don't have enough, use scripts that aren't in the passed locale.
 		if highlighted_scripts.length < TOP_SCRIPTS_COUNT
 			total_script_count = highlightable_scripts.count
-			highlighted_scripts.order('daily_installs DESC').limit((total_script_count * TOP_SCRIPTS_PERCENTAGE).to_i).select(:id).map{|s| s.id}.shuffle.each do |id|
+			highlightable_scripts.order('daily_installs DESC').limit((total_script_count * TOP_SCRIPTS_PERCENTAGE).to_i).select(:id).map{|s| s.id}.shuffle.each do |id|
 				highlighted_scripts << id
 				break if highlighted_scripts.length >= TOP_SCRIPTS_COUNT
 			end
