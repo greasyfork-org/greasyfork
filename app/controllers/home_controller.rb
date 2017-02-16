@@ -4,6 +4,10 @@ class HomeController < ApplicationController
 
 	protect_from_forgery :except => [:sso]
 
+	def index
+		@ad_method = choose_ad_method
+	end
+
 	def preview_markup
 		if params[:url] == 'true'
 			begin
