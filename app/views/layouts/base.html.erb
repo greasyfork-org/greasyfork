@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%=params[:locale]%>">
 <head>
 	<title><%= content_for?(:title) ? content_for(:title) : site_name %></title>
 	<% if content_for?(:description) %><meta name="description" value="<%=content_for(:description)%>"><% end %>
