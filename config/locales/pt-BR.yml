@@ -344,14 +344,14 @@ pt-BR:
 
         <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
 
-        <li>Qupzilla: (no additional software required)</li>
+        <li>Qupzilla: (não requer nenhum software adicional)</li>
 
         </ul>
-    installing_step2_header: "Passo 2: instalar um scripts de usuário"
+    installing_step2_header: "Passo 2: instalar um script de usuário"
     installing_step2_caption: "Um botão de instalação de um script de usuário"
     installing_step2_description_html: >
         <p>%{browse_link:Navegue neste site} para encontrar scripts que você deseja
-        testar. Aqui está uma mostra dos scripts mais populares:</p>
+        testar. Aqui está uma amostra dos scripts mais populares:</p>
 
         %{highlighted_scripts_list}
 
@@ -362,7 +362,7 @@ pt-BR:
     installing_step3_description_html: >
         <p>Acesse o site afetado pelo script. Ele deve funcionar automaticamente.
         Após usar o script por um tempo, volte na página onde você instalou o script
-        e avalie-o ou deixe algum comentário para o autor do script.</p>
+        e avalie-o ou deixe algum comentário para o autor.</p>
   users:
     sign_in_title: "Entrar no %{site_name}"
     sign_in_description: "Ao se registrar no %{site_name} você poderá postar seus scripts e dar a sua opnião sobre outros. Você não precisa se registrar para procurar ou instalar scripts."
@@ -446,6 +446,8 @@ pt-BR:
       one: "Seu nome de usuário e email estão configurados para serem sincronizados quando você efetuar o login com %{providers}. %{edit_sign_in_link:Altere seus métodos de login para remover esta sincronização} caso deseje definir permanentemente um nome de usuário ou email personalizados."
       other: "Seu nome de usuário e email estão configurados para serem sincronizados quando você efetuar o login com %{providers}. %{edit_sign_in_link:Altere seus métodos de login para remover esta sincronização} caso deseje definir permanentemente um nome de usuário ou email personalizados."
   help:
+    installing_user_scripts:
+      title: 'Como instalar scripts de usuários'
     meta_keys:
       title: "Chaves de metadados de scripts lidas pelo %{site_name}"
       intro_html: "Esta é uma lista de <a href=\"http://wiki.greasespot.net/Metadata_Block\">meta chaves de scripts de usuário</a> que %{site_name} irá ler. Chaves fora desta lista podem ser incluídas nos scripts, e serão apresentados no script instalado, mas não surtirão efeito na UI de %{site_name}."

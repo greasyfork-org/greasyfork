@@ -242,7 +242,7 @@ sk:
     libraries_title: "Knižnice"
     libraries_description_html: "Niektoré knižnice užívateľov %{site_name} môžete <code>@require</code> vo vašich skriptoch. Pre ostatné typy knižníc môžete <code>@require</code>, prečítajte si  zásady používania %{policy_link:%{site_name} na <code>@require</code>}."
     by_site_list_title: "Užívateľské skripty na %{site_name} zoskupené podľa stránky"
-    by_site_list_description: "Toto sú stránky najviac ovplyvnené najpopulárnejšími užívateľskými skriptami. Väčšie písmo znamená popuplárnejšie užívateľské skripty."
+    by_site_list_description: "Toto sú stránky najviac ovplyvnené najobľúbenejšími užívateľskými skriptami. Väčšie písmo znamená obľúbenejšie užívateľské skripty."
     by_site_list_filter: "Filtrovať podľa názvu stránky:"
     search_placeholder: "Hľadať skripty"
   script_sets:
@@ -325,6 +325,52 @@ sk:
     sleazy_welcome: "Vitajte na %{site_name}, stránke pre užívateľské skripty pre dospelých."
     explain_user_scripts_heading: "Čo sú to užívateľské skripty?"
     explain_user_scripts_html: "Užívateľské skripty vám dávajú kontrolu nad vašim webovým prehliadačom. Akonáhle sa nainštalujú, automaticky vylepšujú stránky, ktoré navštevujete a pridávajú im funkcie, zjednodušujú ich ovládanie alebo odstraňujú zbytočné prvky. Užívateľské skripty na %{site_name} boli napísané ďalšími užívateľmi a odoslané na zdieľanie pre celý svet. Sú zadarmo a ich inštalácia a používanie je jednoduché."
+    installing_step1_header: "1. krok: nainštalovať správcu užívateľských skriptov"
+    installing_step1_caption: "Tampermonkey pre Chrome"
+    installing_step1_description_html: >
+        <p>Pre používanie užívateľských skriptov musíte mať nainštalovaného správcu
+        užívateľských skriptov. Správcu užívateľských skriptov, ktorého môžete použiť
+        závisí od prehliadača, ktorý používate.</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> or %{chrome_violentmonkey_link:Violent
+        monkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey} or %{firefox_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla: (netreba ďalší softvér)</li>
+
+        </ul>
+    installing_step2_header: "2. krok: nainštalovať užívateľský skript"
+    installing_step2_caption: "Tlačidlo pre naištalovanie užívateľského skriptu"
+    installing_step2_description_html: >
+        <p>%{browse_link:Prehliadať túto stránku} pre nájdenie užívateľského skriptu,
+        ktorý chcete vyskúšať. Tu sú ukážky najobľúbenejších skriptov:</p>
+
+        %{highlighted_scripts_list}
+
+        <p>Potom, čo nájdete užívateľský skript, kliknite na zelené inštalačné tlačidlo
+        na stránke s užívateľským skriptom a váš správca užívateľských skriptov vás
+        požiada o inštaláciu .</p>
+    installing_step3_header: "3. krok: použite užívateľského skritpu"
+    installing_step3_description_html: >
+        <p>Prejdite na stránku, ktorú skript ovplyvňuje. Skript by mal automaticky
+        urobiť to, čo má. Po nejakom čase skúšania skriptu sa vráťte na stránku, kde
+        ste skript inštalovali a zanechajte nejakú spätnú odozvu pre autora užívateľského
+        skriptu.</p>
   users:
     sign_in_title: "Prihlásiť sa na %{site_name}"
     sign_in_description: "Prihlásiť sa na %{site_name} vám umožní pridávať skripty a zanechať spätnú väzbu na ďalšie skripty. Nie je potrebné byť prihlásený na prehliadanie a inštalovanie skriptov."

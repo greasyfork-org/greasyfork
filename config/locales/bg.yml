@@ -234,6 +234,12 @@ bg:
     locked_marker: "(Заключен)"
     unlisted_marker: "(Не се показва)"
     library_marker: "(Библиотека)"
+    libraries_title: "Библиотеки"
+    libraries_description_html: "На %{site_name} има публикувани от потребители библиотеки, които можете да <code>@require</code> във вашите скриптове. За другите видове библиотеки, които можете да <code>@require</code>, прочетете политиката %{policy_link:%{site_name} за <code>@require</code>}."
+    by_site_list_title: "Потребителски скриптове за %{site_name}, групирани по сайт"
+    by_site_list_description: "Това са сайтовете, за които има популярни скриптове. По-голям шрифт означава по-популярни потребителски скриптове."
+    by_site_list_filter: "Филтър по име на сайта:"
+    search_placeholder: "Търсене на скриптове"
   script_sets:
     description: "Групите позволяват да създадете подбран списък от скриптове, с които да разглеждате Greasy Fork. Можете да добавяте към групата индивидуални скриптове, групи на други потребители или автоматично генерирани групи. С помощта на същите методи можете да изключвате скриптове от вашата група."
     favorites_name: "Любими"
@@ -313,6 +319,49 @@ bg:
     sleazy_welcome: "Добре дошли на %{site_name}, сайт за потребителски скриптове за възрастни."
     explain_user_scripts_heading: "Какво са потребителските скриптове?"
     explain_user_scripts_html: "Потребителските скриптове ви позволяват да контролирате сърфирането в мрежата. Веднъж инсталирани те автоматично правят посещаваните сайтове по-добри, добавяйки екстри, правейки ги по-лесни за употреба, или премахвайки досадни неща. Потребителските скриптове за %{site_name} са написани от други потребители и публикувани за споделяне с целия свят. Те се инсталират безплатно и са лесни за употреба."
+    installing_step1_header: "Стъпка 1: инсталирайте скриптов мениджър"
+    installing_step1_caption: "Tampermonkey за Chrome"
+    installing_step1_description_html: >
+        <p>За да използвате потребителски скриптове, първо трябва да инсталирате скриптов
+        мениджър. Кой ще използвате, зависи от това, с какъв браузър работите.</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> или %{chrome_violentmonkey_link:Violent
+        monkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey} или %{firefox_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla: (no additional software required)</li>
+
+        </ul>
+    installing_step2_header: "Стъпка 2: инсталирайте потребителски скрипт"
+    installing_step2_caption: "Бутон за инсталиране на скрипта"
+    installing_step2_description_html: >
+        <p>%{browse_link:Browse this site} за да откриете потребителски скрипт, който
+        искате да пробвате. Например, ето няколко от най-популярните скриптове:</p>
+
+        %{highlighted_scripts_list}
+
+        <p>След като намерите скрипта, от страницата му натиснете зеления бутон за
+        инсталиране и вашият скриптов мениджър ще поиска разрешение за инсталиране.</p>
+    installing_step3_header: "Стъпка 3: използвайте скрипта"
+    installing_step3_description_html: >
+        <p>Отидете на сайта, за който е предназначен потребителския скрипт. Той автоматично
+        би трябвало да си свърши работата. След като видите действията му, върнете
+        се на страницата му и оставете някакъв отзив за автора.</p>
   users:
     sign_in_title: "Влизане в %{site_name}"
     sign_in_description: "Входът в %{site_name} позволява качването на скриптове и отзиви за скриптове от други автори. За да преглеждане и инсталиране на скриптове, не е нужен вход."
@@ -396,6 +445,8 @@ bg:
       one: "Вашето потребителско име и email са настроени да се синхронизират, когато влизате чрез %{providers}. %{edit_sign_in_link:Edit your sign in methods to remove syncing} Ако желаете да създадете постоянно потребителско име или email."
       other: "Вашето потребителско име и email са настроени да се синхронизират, когато влизате чрез %{providers}. %{edit_sign_in_link:Edit your sign in methods to remove syncing} Ако желаете да създадете постоянно потребителско име или email."
   help:
+    installing_user_scripts:
+      title: 'Как да инсталираме потребителските скриптове'
     meta_keys:
       title: "Meta keys, четени от %{site_name}"
       intro_html: "Това е списък с <a href=\"http://wiki.greasespot.net/Metadata_Block\">user script мета данни</a>, които %{site_name} ще прочете. Данните, които не са включени в този списък, могат да са включени в, и ще се ползват в инсталираните скриптове, но няма да имат ефект върху интерфейса на %{site_name}'s."
@@ -569,6 +620,9 @@ bg:
     script_search:
       title: "Търсене по скриптове"
       description: "Търсене за скриптове. Търси в имената на скриптовете, описанията, допълнителна информация и имената на авторите.  %{sphinx_link:Sphinx extended query syntax.}"
+    library_search:
+      title: "Търсене на библиотека"
+      description: "Търсене на библиотеки. Търси в имена, описания, допълнителна информация и имена на автора. %{sphinx_link:Sphinx extended query syntax.}"
     code_search:
       title: "Търсене по код"
       description: "Претърсва скриптовия код. Регистърът няма значение, чист текст и без маски."

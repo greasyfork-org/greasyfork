@@ -234,6 +234,7 @@ zh-TW:
     by_site_list_title: "%{site_name} 上的腳本，以網站分類"
     by_site_list_description: "這些是目前最受歡迎的腳本所支援的網站。越大的字體代表越多人使用。"
     by_site_list_filter: "以網站名稱篩選︰"
+    search_placeholder: "搜尋腳本"
   script_sets:
     description: "腳本收藏集讓你自訂一個腳本列表。你可以把單獨的腳本、其它使用者的收藏集、或自動產生的收藏集，加入包含列表。排除列表也是同樣的方式。"
     favorites_name: "我的最愛"
@@ -312,6 +313,44 @@ zh-TW:
     sleazy_welcome: "歡迎來到 %{site_name}，這是一個成人使用者腳本分享站。"
     explain_user_scripts_heading: "使用者腳本是什麼？"
     explain_user_scripts_html: "使用者腳本讓您控制您的瀏覽體驗。當您安裝後，使用者腳本可以為網頁增加功能、簡化使用方法、或移除煩人的東西。在 %{site_name} 上的腳本都是由其它使用者撰寫、和全世界分享的。所有的腳本都是免費安裝，而且容易使用。"
+    installing_step1_header: "第 1 步：安裝一個用戶腳本管理器"
+    installing_step1_caption: "Chrome 下使用 TamerMonkey 的截圖"
+    installing_step1_description_html: >
+        <p>要啟用“使用者腳本”，您需要先通過“使用者腳本管理器”來安裝它。您可以根據瀏覽器選擇適用的用戶腳本管理器擴充套件。</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> or %{chrome_violentmonkey_link:Violent
+        monkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey} or %{firefox_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla: (無需額外擴充套件)</li>
+
+        </ul>
+    installing_step2_header: "第 2 步：安裝一個使用者腳本"
+    installing_step2_caption: "使用者腳本的安裝按鈕"
+    installing_step2_description_html: >
+        <p>%{browse_link:打開索引}來尋找您想嘗試的使用者腳本吧。下方列舉了部分最熱門的腳本：</p>
+
+        %{highlighted_scripts_list}
+
+        <p>當您找到心儀的使用者腳本後，按下腳本頁面綠色的安裝按鈕，然後您的使用者腳本管理器將向您確認安裝。</p>
+    installing_step3_header: "第 3 步：體驗使用者腳本"
+    installing_step3_description_html: >
+        <p>跳轉到使用者脚本支援的網站，此時使用者腳本應正常工作。當您體驗使用者腳本一段時間後，您還可以回到安裝頁面並給作者留下反饋。</p>
   users:
     sign_in_title: "登入  %{site_name}"
     sign_in_description: "登入 %{site_name} 可以讓您發佈腳本，以及對其他人的腳本發表評價。如果您只想瀏覽或安裝腳本，則無需登入。"
@@ -392,6 +431,8 @@ zh-TW:
     update_sync_warning:
       other: "以 %{providers} 登入時，你的使用者名稱和 email 會和源帳號同步。若想自訂一個永久的使用者名稱或 email，請 %{edit_sign_in_link:修改登入資料並取消同步}。"
   help:
+    installing_user_scripts:
+      title: '如何安裝使用者腳本'
     meta_keys:
       title: "%{site_name} 讀取的 meta keys"
       intro_html: "這是 %{site_name} 會讀取的 <a href=\"http://wiki.greasespot.net/Metadata_Block\">使用者腳本 meta keys</a> 的清單。腳本中可以有不在此清單中的 key，也會存在使用者安裝的腳本中，但不會對 %{site_name} 的介面有任何效果。"

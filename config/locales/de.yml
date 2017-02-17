@@ -236,9 +236,10 @@ de:
     library_marker: "(Bibliothek)"
     libraries_title: "Bibliotheken"
     libraries_description_html: "Dies sind durch %{site_name} Bentuzer erstellte Bibliotheken, welche Sie in Ihren Skripten mit <code>@require</code> einbinden können. Für andere arten von Bibliotheken, welche Sie per <code>@require</code> einbinden können, lesen Sie bitte %{policy_link:%{site_name}s Richtlinien für <code>@require</code>}."
-    by_site_list_title: "Benutzerscripte auf %{site_name}, gruppiert per Seite"
+    by_site_list_title: "Benutzerscripte für %{site_name}, gruppiert per Seite"
     by_site_list_description: "Dies sind die Seiten, welche durch die beliebtesten Benutzerskripte geändert werden. Größere Schriftgröße bedeutet beliebtere Benutzerskripte."
     by_site_list_filter: "Nach Seitennamen filtern:"
+    search_placeholder: "Skripte suchen"
   script_sets:
     description: "Mit Skriptsammlungen können individuelle Listen von Skripten angelegt werden, um Greasy Fork zu durchstöbern. Sie können Ihrer Sammlung einzelne Skripte, die Skripte anderer Nutzer und automatisch erzeugte Listen hinzufügen. Auf dem selben Weg können Sie auch Skripte aus Ihrer Sammlung entfernen."
     favorites_name: "Favoriten"
@@ -251,24 +252,24 @@ de:
       included: "Enthalten"
       included_none: "(Keine)"
       remove_included: "Ausgewählte entfernen"
-      excluded: "Entfernt"
+      excluded: "Ausgeschlossen"
       excluded_none: "(Keine)"
       remove_excluded: "Ausgewählte entfernen"
       add_label: "Skripte hinzufügen (URLs oder IDs, getrennt durch Leerzeichen)"
       add_include: "Hinzufügen"
-      add_exclude: "Entfernen"
+      add_exclude: "Ausschließen"
     edit_sets:
       heading: "Skriptsammlungen"
       description: "Andere Skripte in Ihrer Skriptsammlung hinzufügen oder entfernen."
       included: "Enthalten"
       included_none: "(Keine)"
       remove_included: "Ausgewählte entfernen"
-      excluded: "Entfernt"
+      excluded: "Ausgeschlossen"
       excluded_none: "(Keine)"
       remove_excluded: "Ausgewählte entfernen"
       add_label: "Skripte hinzufügen (URLs oder IDs, getrennt durch Leerzeichen)"
       add_include: "Hinzufügen"
-      add_exclude: "Entfernen"
+      add_exclude: "Ausschließen"
       user_label: "Skriptsammlungen des Nutzers (URL, ID oder Name) anzeigen"
       user_no_sets: "(Nutzer hat keine Sammlungen)"
       user_no_other_sets: "(Nutzer hat keine weiteren Sammlungen)"
@@ -278,19 +279,19 @@ de:
       included: "Enthalten"
       included_none: "(Keine)"
       remove_included: "Ausgewählte entfernen"
-      excluded: "Entfernt"
+      excluded: "Ausgeschlossen"
       excluded_none: "(Keine)"
       all_scripts_label: "Alle Skripte"
       all_scripts_include: "Hinzufügen"
       for_sites_label: "Skripte für Seite (z.B. example.com, freilassen für \"Alle Seiten\")"
       for_sites_include: "Hinzufügen"
-      for_sites_exclude: "Entfernen"
+      for_sites_exclude: "Ausschließen"
       for_user_label: "Skripte des Nutzers (URL, ID oder Name)"
       for_user_include: "Hinzufügen"
-      for_user_exclude: "Entfernen"
+      for_user_exclude: "Ausschließen"
       for_language_label: "Skripte in der Sprache"
       for_language_include: "Hinzufügen"
-      for_language_exclude: "Entfernen"
+      for_language_exclude: "Ausschließen"
     calculated_list: "Berechnete Skriptliste"
     calculated_list_none: "(Keine)"
     calculated_list_more:
@@ -318,6 +319,53 @@ de:
     sleazy_welcome: "Herzlich Willkommen auf %{site_name}, einer Seite für nicht-jugendfreie Benutzerskripte"
     explain_user_scripts_heading: "Was sind Benutzerskripte?"
     explain_user_scripts_html: "Benutzerskripte erlauben die vollständige Kontrolle des Interneterlebnisses. Einmal installiert werten sie automatisch die besuchten Seiten auf, indem sie diesen Funktionen hinzufügen, deren Verwendung vereinfachen oder störende Kleinigkeiten entfernen. Die Benutzerskripte auf %{site_name} wurden von anderen Benutzern geschrieben und veröffentlicht um sie mit der ganzen Welt zu teilen. Sie sind frei verwendbar und einfach zu benutzen."
+    installing_step1_header: "Schritt 1: Eine Benutzerskriptverwaltung installieren"
+    installing_step1_caption: "Tampermonkey in Chrome"
+    installing_step1_description_html: >
+        <p>Um Benutzerskripte zu verwenden, müssen Sie zuerst eine Benutzerskriptverwaltung
+        installieren. Welche Benutzerskriptverwaltung Sie verwenden können, hängt
+        von dem Browser ab, den Sie verwenden.</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> oder %{chrome_violentmonkey_link:Violent
+        monkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey} oder %{firefox_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla: (keine zusätzliche Software vonnöten)</li>
+
+        </ul>
+    installing_step2_header: "Schritt 2: Ein Benutzerskript installieren"
+    installing_step2_caption: "Der Installationsknopf eines Benutzerskripts"
+    installing_step2_description_html: >
+        <p>%{browse_link:Stöbern Sie auf dieser Seite} um ein Benutzerskript zu finden,
+        welches Sie ausprobieren möchten. Hier ist ein Beispiel unserer beliebtesten
+        Skripte:</p>
+
+        %{highlighted_scripts_list}
+
+        <p>Sobald Sie ein Benutzerskript gefunden haben, klicken Sie auf den grünen
+        Installationsknopf auf der Benutzerskriptseite Ihre Benutzerskriptverwaltung
+        wird sie nach einer Bestätigung der Installation fragen.</p>
+    installing_step3_header: "Schritt 3: Das Skript nutzen"
+    installing_step3_description_html: >
+        <p>Gehe Sie zur Seite, die durch das Benutzerskript geändert wird. Es sollte
+        die Änderungen automatisch vornehmen. Nachdem Sie das Benutzerskript einige
+        Zeit ausprobiert haben, kkehren Sie bitte dahin zurück, von wo Sie das Benutzerskript
+        installiert haben und geben dem Benutzerskriptautor Rückmeldung.</p>
   users:
     sign_in_title: "Bei %{site_name} anmelden"
     sign_in_description: "Wenn Sie sich bei %{site_name} anmelden, können Sie Skripte veröffentlichen und Rückmeldungen zu anderen Skripten schreiben. Sie müssen sich nicht anmelden, um die Skripte zu durchsuchen oder zu installieren."
@@ -401,6 +449,8 @@ de:
       one: "Ihr Benutzername und E-Mail sind auf Synchronisierung eingestellt, wenn Sie sich mit %{providers} anmelden. %{edit_sign_in_link:Bearbeiten Sie Ihre Anmeldearten, um die Synchronisierung zu beenden}, falls Sie einen endgültigen Benutzernamen oder E-Mail setzen möchten."
       other: "Ihr Benutzername und E-Mail sind auf Synchronisierung eingestellt, wenn Sie sich mit %{providers} anmelden. %{edit_sign_in_link:Bearbeiten Sie Ihre Anmeldearten, um die Synchronisierung zu beenden}, falls Sie einen endgültigen Benutzernamen oder E-Mail setzen möchten."
   help:
+    installing_user_scripts:
+      title: 'Wie installiert man Benutzerskripte?'
     meta_keys:
       title: "Von %{site_name} gelesene Skript-Meta-Keys"
       intro_html: "Das ist eine Liste von <a href=\"http://wiki.greasespot.net/Metadata_Block\">Benutzerskript-Meta-Keys</a>, welche %{site_name} ausliest. Nicht in dieser Liste aufgeführte Keys sind im installierten Skript vorhanden, haben aber keine Auswirkungen in der Benutzerobefläche von %{site_name}."
@@ -600,7 +650,7 @@ de:
       title: "Bibliothekssuche"
       description: "Suche nach Bibliotheken. Durchsucht Skriptnamen, Beschreibungen, zusätzliche Informationen und Autorennamen. %{sphinx_link:Sphinx erweiterte Anfragesyntax.}"
     code_search:
-      title: "Codesuche"
+      title: "Quelltextsuche"
       description: "Suche nach Skript-Quelltext. Dies ist eine von Groß-/Kleinschreibung unabhängige Klartextsuche ohne Stellvertretersymbole."
     forum_search:
       title: "Forumsuche"
