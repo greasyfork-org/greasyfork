@@ -114,10 +114,14 @@
 						<li class="forum-link"><%=link_to(t('layouts.application.forum'), forum_path)%></li>
 					<% end %>
 					<li class="help-link"><%=link_to_unless_current(t('layouts.application.help'), help_path)%></li>
-					<li class="nav-search">
-						<form id="script-search" action="<%=scripts_path()%>">
-							<input type="search" name="q"><input class="search-submit" type="submit" value="🔎">
-						</form>
+					<li class="with-submenu">
+						<a href="#" onclick="return false"><%=t('layouts.application.submenu')%></a>
+						<nav>
+							<li><%=link_to t('layouts.application.advanced_search'), search_path%></li>
+							<li><%=link_to t('layouts.application.user_list'), users_path%></li>
+							<li><%=link_to t('layouts.application.libraries'), libraries_scripts_path%></li>
+							<li><%=link_to t('layouts.application.moderator_log'), moderator_actions_path%></li>
+						</nav>
 					</li>
 				</nav>
 			</div>

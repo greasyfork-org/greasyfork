@@ -85,28 +85,28 @@ a:visited {
 	text-shadow: -1px -1px 0px #670000, 1px -1px 0px #670000, -1px 1px 0px #670000, 1px 1px 0px #670000;
 }
 
-#site-nav nav, #nav-user-info {
+#site-nav > nav, #nav-user-info {
 	text-align: right;
 	position: absolute;
 	right: 0;
 }
-#site-nav nav {
+#site-nav > nav {
 	bottom: 0;
 }
 #nav-user-info {
 	top: 0;
 }
-nav a:hover {
+#site-nav > nav a:hover {
 	color: white;
 }
-nav {
+#site-nav > nav {
 	padding: 0;
 }
-nav li {
+#site-nav > nav > li {
 	list-style-type: none;
-	display: inline;
+	display: inline-block;
 }
-nav li + li {
+#site-nav > nav > li + li {
 	margin-left: 0.5em;
 }
 #script-search, #language-selector {
@@ -118,6 +118,40 @@ nav li + li {
 #nav-user-info select, #nav-user-info input {
 	font-size: 11px;
 }
+
+nav nav {
+	position: absolute;
+	right: 0;
+	background-color: #990000;
+	min-width: 100%;
+	display: none;
+	padding: 5px 0;
+	z-index: 10;
+}
+nav nav li {
+	white-space: nowrap;
+	margin: 0;
+}
+nav nav li a {
+	display: block;
+	padding: 5px 15px;
+}
+nav a:hover + nav, nav nav:hover, nav a:focus + nav {
+	display: block;
+}
+.with-submenu {
+	/* Enable positioning for the submenu */
+	position: relative;
+	padding-right: 15px;
+}
+nav .with-submenu > a::after {
+	content: ' ▾';
+}
+/*
+nav .with-submenu:hover > a::after, nav .with-submenu > a:focus::after {
+	content: ' ▴';
+}
+*/
 
 #script-info {
 	border: 1px solid #BBBBBB;
@@ -848,21 +882,18 @@ form.new_user + a {
 	display: block;
 	margin: 0 auto;
 }
-.nav-search #script-search, .sidebar-search, .home-search {
+.sidebar-search, .home-search {
 	position: relative;
 	vertical-align: middle;
 }
-.nav-search #script-search input[type=search], .sidebar-search input[type=search], .home-search input[type=search] {
+.sidebar-search input[type=search], .home-search input[type=search] {
 	padding-right: 20px;
-}
-.nav-search #script-search input[type=search] {
-	width: 175px;
 }
 .sidebar-search input[type=search] {
 	width: 100%;
 	margin: 0 0 1em 0;
 }
-.nav-search #script-search input[type=submit], .sidebar-search input[type=submit], .home-search input[type=submit] {
+.sidebar-search input[type=submit], .home-search input[type=submit] {
 	position: absolute;
 	-moz-appearance: none;
 	-webkit-appearance: none;
