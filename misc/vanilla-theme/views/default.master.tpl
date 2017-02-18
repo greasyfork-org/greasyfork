@@ -75,10 +75,14 @@
 				<li class="scripts-index-link"><a href="/{$smarty.get.locale|default:'en'}/scripts/">{t c="layouts.application.script_list" d="Scripts"}</a></li>
 				<li class="forum-link"><a href="/{$smarty.get.locale|default:'en'}/forum/">{t c="layouts.application.forum" d="Forum"}</a></li>
 				<li class="help-link"><a href="/{$smarty.get.locale|default:'en'}/help/">{t c="layouts.application.help" d="Help"}</a></li>
-				<li class="nav-search">
-					<form id="script-search" action="/{$smarty.get.locale|default:'en'}/scripts/search">
-						<input type="search" name="q"><input class="search-submit" type="submit" value="🔎">
-					</form>
+				<li class="with-submenu">
+					<a href="#" onclick="return false">{t c="layouts.application.submenu" d="More"}</a>
+					<nav>
+						<li><a href="/{$smarty.get.locale|default:'en'}/search/">{t c="layouts.application.advanced_search" d="Advanced search"}</a></li>
+						<li><a href="/{$smarty.get.locale|default:'en'}/users/">{t c="layouts.application.user_list" d="User list"}</a></li>
+						<li><a href="/{$smarty.get.locale|default:'en'}/scripts/libraries/">{t c="layouts.application.libraries" d="Libraries"}</a></li>
+						<li><a href="/{$smarty.get.locale|default:'en'}/moderator_actions/">{t c="layouts.application.moderator_log" d="Moderator log"}</a></li>
+					</nav>
 				</li>
             </ul>
          </div>

@@ -52,7 +52,10 @@ body .Pager .Highlight {
 	font-size: 14px;
 	padding: 0;
 }
-.SiteMenu li + li {
+.SiteMenu > li {
+	display: inline-block;
+}
+.SiteMenu > li + li {
 	margin-left: 0.5em;
 }
 #script-search {
@@ -101,6 +104,44 @@ body .Pager .Highlight {
 	/* in case it overlaps the y in Greasy */
 	text-shadow: -1px -1px 0px #670000, 1px -1px 0px #670000, -1px 1px 0px #670000, 1px 1px 0px #670000;
 }
+
+.SiteMenu nav {
+	position: absolute;
+	right: 0;
+	background-color: #990000;
+	min-width: 100%;
+	display: none;
+	padding: 5px 0;
+	z-index: 10;
+	margin-top: -5px;
+	text-align: right;
+}
+.SiteMenu nav li {
+	white-space: nowrap;
+	margin: 0;
+}
+.SiteMenu nav li a {
+	display: block;
+	padding: 5px 15px;
+}
+.SiteMenu a:hover + nav, .SiteMenu nav:hover, .SiteMenu a:focus + nav {
+	display: block;
+}
+.with-submenu {
+	/* Enable positioning for the submenu */
+	position: relative;
+	padding-right: 15px;
+}
+.SiteMenu .with-submenu > a::after {
+	content: ' ▾';
+}
+/*
+nav .with-submenu:hover > a::after, nav .with-submenu > a:focus::after {
+	content: ' ▴';
+}
+*/
+
+
 
 #Body {
 	box-sizing: border-box;
