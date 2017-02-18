@@ -4,8 +4,8 @@
 <h2><%=t(sleazy? ? 'home.sleazy_welcome' : 'home.welcome', site_name: site_name)%></h2>
 
 <div id="home-script-nav">
-	<%= form_tag(scripts_path, class: 'home-search') do %>
-		<input type="search" placeholder="Search for user scripts">
+	<%= form_tag(scripts_path, class: 'home-search', method: :get) do %>
+		<input type="search" name="q" placeholder="Search for user scripts">
 		<input type="submit" value="🔎" class="search-submit" >
 	<% end %>
 	<div id="home-top-sites">
