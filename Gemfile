@@ -38,6 +38,7 @@ gem 'fancybox2-rails'
 gem 'it'
 gem 'rb-readline'
 gem 'ace-rails-ap'
+gem 'hashie', '3.4.6' # https://github.com/omniauth/omniauth/issues/886#issuecomment-280789894
 
 gem 'byebug', group: [:development, :test]
 
