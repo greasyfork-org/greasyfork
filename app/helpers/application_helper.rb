@@ -243,8 +243,14 @@ private
 		locale_scripts = highlightable_scripts.joins(:localized_attributes => :locale).references([:localized_attributes, :locale]).where('localized_script_attributes.attribute_key' => 'name').where('locales.code' => I18n.locale)
 		locale_scripts = locale_scripts.select(:id)
 		locale_script_count = locale_scripts.count
-		locale_scripts_listed = [(locale_script_count * TOP_SCRIPTS_PERCENTAGE).to_i, TOP_SCRIPTS_COUNT].min
-		highlighted_scripts = Set.new + locale_scripts.order('daily_installs DESC').limit((locale_script_count * TOP_SCRIPTS_PERCENTAGE).to_i).sample(locale_scripts_listed).map{|s| s.id}
+		top_percentage_count = (locale_script_count * TOP_SCRIPTS_PERCENTAGE).to_i
+		# If there are enough from the top percentage, then sample from that.
+		if top_percentage_count > TOP_SCRIPTS_COUNT
+			highlighted_scripts = Set.new + locale_scripts.order('daily_installs DESC').limit(top_percentage_count).sample(TOP_SCRIPTS_COUNT).map{|s| s.id}
+		else
+			# Otherwise, sample from all scripts in this locale.
+			highlighted_scripts = Set.new + locale_scripts.sample(TOP_SCRIPTS_COUNT).map{|s| s.id}
+		end
 
 		# If we don't have enough, use scripts that aren't in the passed locale.
 		if highlighted_scripts.length < TOP_SCRIPTS_COUNT
