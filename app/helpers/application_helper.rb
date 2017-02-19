@@ -245,7 +245,7 @@ private
 		locale_script_count = locale_scripts.count
 		top_percentage_count = (locale_script_count * TOP_SCRIPTS_PERCENTAGE).to_i
 		# If there are enough from the top percentage, then sample from that.
-		if top_percentage_count > TOP_SCRIPTS_COUNT
+		if top_percentage_count >= TOP_SCRIPTS_COUNT
 			highlighted_scripts = Set.new + locale_scripts.order('daily_installs DESC').limit(top_percentage_count).sample(TOP_SCRIPTS_COUNT).map{|s| s.id}
 		else
 			# Otherwise, sample from all scripts in this locale.
