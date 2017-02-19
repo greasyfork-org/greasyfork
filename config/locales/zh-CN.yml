@@ -5,6 +5,11 @@ zh-CN:
       forum: "论坛"
       help: "站点帮助"
       sign_in: "登录"
+      submenu: "更多"
+      advanced_search: "高级搜索"
+      user_list: "用户列表"
+      libraries: "库"
+      moderator_log: "管理日志"
   helpers:
     application:
       time_ago:
@@ -450,8 +455,8 @@ zh-CN:
       supportURL: "用户可获得该脚本技术支持的链接地址 (如：错误反馈系统、论坛、电子邮件)，该链接将显示在脚本的反馈页面。"
       contributionURL_html: "用于捐赠脚本作者的链接，该链接将显示在脚本的反馈页面。网址可以为 http、https 或比特币协议的网址。如果您需要链接到贝宝捐赠页面，请使用例如 <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a> 这样的格式，替换为您自己的邮箱即可。"
       contributionAmount_html: "建议捐赠金额，请配合 <code>@contributionURL</code> 使用。"
-      compatible_html: "标记此脚本与某个浏览器兼容，兼容性信息将显示在脚本的简介页面上。您也可以添加额外的兼容数据，如 <code>@compatible firefox Must disable pop-up blocker</code> 这样的格式。目前能被网站识别的浏览器为：%{browsers}。"
-      incompatible_html: "标记此脚本与某个浏览器不兼容，兼容性信息将显示在脚本的简介页面上。您也可以添加额外的兼容数据，如 <code>@incompatible firefox Broken since Firefox 23</code> 这样的格式。目前能被网站识别的浏览器为：%{browsers}。"
+      compatible_html: "标记此脚本与某个浏览器兼容，兼容性信息将显示在脚本的简介页面上。您也可以添加额外的兼容说明，如 <code>@compatible firefox 火狐上必须关闭广告过滤器</code> 这样的格式。目前能被网站识别的浏览器名称有：%{browsers}。"
+      incompatible_html: "标记此脚本与某个浏览器不兼容，兼容性信息将显示在脚本的简介页面上。您也可以添加额外的兼容说明，如 <code>@incompatible firefox 自火狐 23 开始不兼容</code> 这样的写法。目前能被网站识别的浏览器名称有：%{browsers}。"
     writing_user_scripts:
       title: "如何编写用户脚本"
       content_html: "<p>编写用户脚本需要基础的 JavaScript 知识。<a href=\"http://wiki.greasespot.net/Tutorials\">GreaseSpot 百科上的教程</a>应该能让您开始了解如何编写一个通常脚本以及用户脚本。观摩、阅读前人编写的脚本可对您有所启发，您可能同样对 %{code_rules_link} 以及 %{meta_keys_link} 感兴趣。如果您希望得到帮助，您可以在 %{ask_in_forum_link}。</p>\n<p>在 %{site_name} 提交脚本，您需要建立一个账户，然后从您的 %{user_page_link}，选择 %{post_new_script_link} 即可发表新的脚本。</p>"
@@ -478,7 +483,7 @@ zh-CN:
           %{adult_content_requirement}
 
           </ul> <p>如果您发现了越过上述内容的脚本，请使用脚本页面的“反馈”链接报告它。</p> <p>如果您对上述任何一点存有异议，%{contact_link:跟我们聊聊吧}！</p>
-      adult_content_rule_html: "<li>包含成人内容或者目标网站是成人内容的脚本必须被标记，以允许其他用户根据选项决定是否要看到它们。</li>"
+      adult_content_rule_html: "<li>包含成人内容，或脚本目标网站是成人内容的话则必须被正确记录，以允许其他用户根据选项来决定是否要看到它们。</li>"
     external_scripts:
       title: "%{site_name} 对外部脚本的政策"
       content_html: >
@@ -501,19 +506,19 @@ zh-CN:
     script_rewriting:
       title: "%{site_name} 将如何改写已发布的脚本"
       content_html: >
-          <p>发布到 %{site_name} 的脚本将按下列规则重写：</p> <ul>
+          <p>发布到 %{site_name} 的脚本将会被系统根据下述规则重写部分字段，如：</p> <ul>
 
           <li><code>@updateURL</code>、<code>@installURL</code> 和 <code>@downloadURL</code>
-          指令将被剥离（如有提供）。任何从 %{site_name} 安装的脚本将通过 %{site_name} 更新。</li>
+          元信息将被删除（如有提供）。任何从 %{site_name} 安装的脚本将通过 %{site_name} 更新。</li>
 
-          <li><code>@version</code> 和 <code>@namespace</code> 指令将被插入，如果脚本未提供。这些指令需要被适当更新。</li>
+          <li>若未提供，<code>@version</code> 和 <code>@namespace</code> 的元信息将被插入到脚本这些指令需要被适当更新。</li>
 
-          <li><code>@description</code> 将被插入，如果在脚本的新版本中缺失，而脚本的以前版本中存在。</li>
+          <li>若新版本缺失 <code>@description</code> 元信息，系统将寻找旧版本的对应信息并插入到最新的版本。</li>
 
           <li>CRLF 和 CR 换行符将被转换为标准的 Unix 样式换行符。</li>
 
           </ul>
-    site_feedback_link: "报告或发布有关 %{site_name} 本身的问题或想法"
+    site_feedback_link: "报告问题或发帖吐槽 %{site_name} 这个网站"
     credits:
       title: "致谢名单"
       authors_credit: "%{site_name} 这个网站的成功离不开各位脚本作者。"
@@ -531,9 +536,9 @@ zh-CN:
     privacy_policy:
       title: "隐私政策"
       content_html: >
-          <p>本页面描述了 %{site_name} 如何记录和跟踪用户信息。如果您有任何顾虑，%{admin_email_link:给管理员发邮件}。</p>
+          <p>本页面描述了 %{site_name} 如何记录和跟踪用户信息。如果您有任何顾虑，请 %{admin_email_link:发邮件至管理员}。</p>
           <h2>服务器日志</h2> <p>%{site_name} 会使用典型的服务器日志方式记录所有请求。记录的信息包括：被访问的页面，IP 地址，以及
-          User Agent 字符串。这些日志用于调试和服务器分析目的。此数据将保留一周。此数据不会被分享或公开。</p> <h2>脚本的统计数据</h2>
+          User Agent 字段。这些日志用于调试和服务器分析目的。此数据将保留一周。此数据不会被分享或公开。</p> <h2>脚本的统计数据</h2>
           <p>为了生成统计数据，%{site_name} 会记录带有 IP 地址信息的安装和更新请求。此信息保留一天，然后汇总为不包含 IP 地址的数据。特定
           IP 地址的数据不会被分享或公开提供，但汇总数据会。</p> <h2>Cookie (未登录时)</h2> <p>%{site_name} 可能设置临时会话
           Cookie 以实现某些网站功能。这些 Cookie 不设置为持久，并且可能在浏览器关闭时被清除（取决于浏览器设置）。</p> <h2>用户账户</h2>
@@ -545,19 +550,19 @@ zh-CN:
   search:
     script_search:
       title: "脚本搜索"
-      description: "搜索脚本。搜索脚本名称、描述、额外说明和作者名称。%{sphinx_link:Sphinx 扩展查询语法}。"
+      description: "搜索脚本。搜索脚本的名称、描述、额外说明和作者名称。详细请参考 %{sphinx_link:Sphinx 扩展查询语法}。"
     library_search:
       title: "库搜索"
-      description: "搜索库。搜索库名称、描述、额外说明和作者名称。%{sphinx_link:Sphinx 扩展查询语法}。"
+      description: "搜索库。搜索库的名称、描述、额外说明和作者名称。详细请参考 %{sphinx_link:Sphinx 扩展查询语法}。"
     code_search:
       title: "代码搜索"
       description: "搜索脚本代码。此功能不区分大小写，不支持通配符，搜索纯文本。"
     forum_search:
       title: "论坛搜索"
-      description: "搜索论坛上的讨论和评价。%{fulltext_link:MySQL 自然语言搜索}。"
+      description: "搜索论坛上的讨论和评测。详细请参考 %{fulltext_link:MySQL 自然语言搜索}。"
     user_search:
       title: "用户搜索"
-      description: "按名称搜索用户。纯文本 LIKE 搜索。"
+      description: "按名称搜索用户。纯文本 LIKE 语法搜索。"
   common:
     error_preamble: "很抱歉，您提交的内容有点问题…"
     allowed_elements_link: "(查看允许使用的代码)"
@@ -567,8 +572,8 @@ zh-CN:
     not_found_text: "404 - 页面未找到"
     not_found_title: "404 - 页面未找到"
     not_found_link_home: "返回首页"
-    suggest_locale: "%{site_name} 有 %{locale_name} 可用。"
-    incomplete_locale: "%{site_name} 的 %{locale_name} 翻译完成度只有 %{percent}。您可以改变现状。"
+    suggest_locale: "%{site_name} 还支持 %{locale_name} 语言。"
+    incomplete_locale: "%{site_name} 的 %{locale_name} 翻译完成度只有 %{percent}。您可以帮助改变现状。"
     expander_show_more: "显示更多"
     expander_show_less: "显示更少"
     advertisement_note: 广告
