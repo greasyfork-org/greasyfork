@@ -5,6 +5,11 @@ it:
       forum: "Forum"
       help: "Aiuto"
       sign_in: "Entra"
+      submenu: "Altro"
+      advanced_search: "Ricerca avanzata"
+      user_list: "Lista utente"
+      libraries: "Librerie"
+      moderator_log: "Log moderatore"
   helpers:
     application:
       time_ago:
@@ -61,7 +66,7 @@ it:
     delete_update_behaviour: "Cosa vuoi che accada agli utenti che hanno precedentemente installato il tuo script?"
     delete_update_behaviour_1: "Lo manterranno così com'è."
     delete_update_behaviour_2: "Sarà loro offerto un aggiornamento a uno script vuoto. Quest'opzione è adatta al caso in cui lo script abbia un effetto negativo sui siti su cui viene eseguito."
-    delete_permanently_heading: "Eliminazione permanente"
+    delete_permanently_heading: "Elimina definitivamente"
     delete_permanently_explanation: "L'eliminazione permanente del tuo script cancellerà quest'ultimo e tutti i record associati, ad eccezione delle discussioni del forum e dei log delle azioni dei moderatori. Un'eliminazione permanente è definitiva; non può essere annullata nemmeno dai moderatori."
     delete_permanently_request_explanation: "L'eliminazione permanente di questo script può essere portata a termine solo dopo un esame da parte dei moderatori."
     delete_permanently_confirm: "Sei sicuro di voler eliminare definitivamente il tuo script? Questa azione non può essere annullata!"
@@ -234,6 +239,7 @@ it:
     locked_marker: "(Bloccato)"
     unlisted_marker: "(Non elencato)"
     library_marker: "(Libreria)"
+    libraries_title: "Librerie"
   script_sets:
     description: "Gli insiemi di script ti permettono di creare una lista personalizzata di script con cui navigare su Greasy Fork. Puoi aggiungere script al tuo insieme includendo script individuali, insiemi di altri utenti, o insiemi generati automaticamente. Puoi inoltre escludere degli script dal tuo insieme con gli stessi metodi."
     favorites_name: "Preferiti"
@@ -313,6 +319,10 @@ it:
     sleazy_welcome: "Benvenuto su %{site_name}, un sito per gli user script adulti."
     explain_user_scripts_heading: "Cosa sono gli user script?"
     explain_user_scripts_html: "Gli scripts ti mettono al comando della tua esperienza di navigazione.Appena saranno installati, aggiungeranno funzionalità ai siti che navighi, li renderanno più semplici da usare,oppure rimuoveranno cose che non ti piacciono.Gli scripts su %{site_name} sono stati scritti da altri utenti e pubblicati per essere condivisi con tutti.Sono gratuiti e facili da usare."
+    installing_step1_header: "Step 1: installa un gestore di script utente"
+    installing_step1_caption: "Tampermonkey su Chrome"
+    installing_step2_header: "Step 2: installa uno script utente"
+    installing_step3_header: "Step 3: usa lo script utente"
   users:
     sign_in_title: "Entra in %{site_name}"
     sign_in_description: "Registrandoti a %{site_name} potrai postare script e commentare script caricati da altri utenti. Non è necessario essere registrati per visualizzare o installare gli script."
@@ -360,6 +370,7 @@ it:
     external_sign_in_removed: "Autenticazione %{provider} rimossa."
     external_sign_in_failed: "Autenticazione %{provider} fallita: %{error}."
     external_sign_in_already_used: "Aggiunta dell'autenticazione %{provider} fallita: questa autenticazione è già utilizzata dall'utente '%{user_name}'."
+    external_sign_in_confirmation: "E' stato creato un nuovo account su %{site_name} basato sui tuoi %{provider} dettagli dell'account.\nIl tuo nome utente pubblico è %{username}"
     syncing_indicator: "(sincronizzando)"
     enable_syncing: "Attiva sincronizzazione"
     disable_syncing: "Disattiva sincronizzazione"
@@ -378,6 +389,8 @@ it:
     listing_new_scripts: "Nuovi script"
     listing_updated_scripts: "Script aggiornati"
     listing_registration_date: "Data di registrazione"
+    listing_title: "Utenti"
+    search_placeholder: "Cerca utenti"
     locale_prompt: "(Scegli un luogo)"
     show_ads_description: "Supporta %{site_name} dando il permesso di mostrare le pubblicità"
     show_sensitive_description: "Mostra script con contenuti per adulti"
@@ -390,6 +403,8 @@ it:
       one: "%{user_name} ha altri %{count} script su Greasy Fork."
       other: "%{user_name} also has %{count} scripts on Greasy Fork."
   help:
+    installing_user_scripts:
+      title: 'Come installare gli script'
     meta_keys:
       title: "Meta key dello script lette da %{site_name}"
       intro_html: "Questa è una lista di <a href=\"http://wiki.greasespot.net/Metadata_Block\">meta key degli user script</a> che %{site_name} può leggere. Le meta key al di fuori di questa lista possono essere incluse nello script, ma non hanno effetto sull'interfaccia utente di %{site_name}."
@@ -417,39 +432,6 @@ it:
       post_new_script_link_text: 'posta un nuovo script'
     code_rules:
       title: "Le regole di %{site_name} per gli script postati"
-      content_html: >
-          <p>Questi sono i requisiti per gli script inviati a %{site_name}. Essi sono
-          volti a mantenere %{site_name} un posto sicuro e utile per gli script utente.
-          Ogni script che non rispetti questi requisiti potrebbe essere eliminato
-          dai moderatori di %{site_name}.</p> <ul>
-
-          <li>Gli script devono includere una descrizione di ciò che fanno e non possono
-          compiere azioni che non ricadano ragionevolmente in tale descrizione. Gli
-          utenti devono sapere cosa farà uno script prima di installarlo.</li>
-
-          <li>Il codice caricato su questo sito non può essere offuscato o minificato.
-          Agli utenti deve essere data l'opportunità di esaminare e comprendere cosa
-          fa uno script prima di installarlo.</li>
-
-          <li>Le librerie utilizzate da uno script dovrebbero essere incluse con <code>@require</code>,
-          a meno che non vi sia un motivo tecnico valido per non farlo. Nel caso in
-          cui una libreria sia inclusa inline, essa deve includere informazioni relative
-          all'origine della libreria (ad es. un commento che indichi l'URL e/o il
-          nome e la versione).</li>
-
-          <li>Il tuo script deve rispettare i copyright di terzi. Ciò include lo script
-          in sé e tutte le risorse (ad esempio, immagini) che utilizza. Se intendi
-          utilizzare i contenuti di altri, rispetta le loro condizioni di licenza
-          oppure ottieni il loro permesso prima di farlo.</li>
-
-          <li>%{external_scripts_link:L'utilizzo di JavaScript esterni è limitato.}</li>
-
-          %{adult_content_requirement}
-
-          </ul> <p>Se noti uno script che non ricade in questi parametri, segnalalo
-          utilizzando il collegamento Feedback per tale script, iniziando una discussione
-          e scegliendo l'opzione "Segnala script".</p> <p>Se non sei d'accordo con
-          uno di questi punti, %{contact_link:parliamone}!</p>
       adult_content_rule_html: "<li>Script che includono contenuti per adulti o sono per siti con contenuti per adulti devono essere contrassegnati come tali per dare agli altri utenti l'opzione di vederli oppure no.</li>"
     external_scripts:
       title: "Politiche di %{site_name} per gli script esterni"
@@ -571,6 +553,20 @@ it:
           può includere codice di terze parti per raccogliere statistiche o mostrare
           pubblicità sul sito. Queste librerie potrebbero includere meccanismi di
           tracciamento.</p>
+  search:
+    script_search:
+      title: "Cerca script"
+      description: "Cerca gli script. Cerca i nomi, le descrizioni, gli autori e le informazioni aggiuntive degli script. %{sphinx_link:Sphinx extended query syntax.}"
+    library_search:
+      description: "Cerca nelle librerie. Cerca i nomi delle librerie, descrizioni, informazioni aggiuntive e nomi degli autori. %{sphinx_link:Sphinx extended query syntax.}"
+    code_search:
+      title: "Cerca codice"
+    forum_search:
+      title: "Cerca nel forum"
+      description: "Cerca discussioni e recensioni nel forum. %{fulltext_link:MySQL natural language search.}"
+    user_search:
+      title: "Cerca utente"
+      description: "Cerca gli utenti dal nome. Solo testo come una ricerca normale."
   common:
     error_preamble: "Ci sono alcuni problemi con quello che hai postato..."
     allowed_elements_link: "(Controlla codice permesso.)"

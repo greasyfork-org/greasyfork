@@ -347,38 +347,6 @@ fi:
       post_new_script_link_text: 'lähettämään uusi skripti'
     code_rules:
       title: "%{site_name}in skriptejä koskevat säännöt"
-      content_html: >
-          <p>Nämä ovat %{site_name}iin lähetettyjen skriptien vaatimukset. Niiden
-          tarkoitus on säilyttää %{site_name} turvallisena ja hyödyllisenä paikkana
-          userscripteille. Skripti, joka ei täytä vaatimuksia, voidaan poistaa %{site_name}in
-          moderaattorien toimesta.</p> <ul>
-
-          <li>Skriptien täytyy sisältää kuvaus siitä, mitä ne tekevät ja ne eivät
-          saa tehdä selvästi tämän kuvauksen ulkopuolisia asioita. Käyttäjien täytyy
-          tietää mitä skripti tekee ennen sen asentamista.</li>
-
-          <li>Tälle sivustolle lähetetty koodin ei saa olla obfuskoitua tai minifioitua.
-          Käyttäjille täytyy antaa mahdollisuus tutkia ja ymmärtää skripti ennen sen
-          asentamista.</li>
-
-          <li>Skriptin käyttämät kirjastot pitäisi <code>@require</code>-ttaa, ellei
-          ole hyvää teknistä syytä olla tekemättä niin. Jos kirjasto on sisällytetty
-          koodiin, sen tulee sisältää tieto kirjaston lähteestä (esim. kommentti,
-          joka kertoo kirjaston URLin tai nimen ja version).</li>
-
-          <li>Skriptisi täytyy kunnioittaa muiden tekijänoikeutta. Tämä koskee skriptiä
-          itseään ja sen käyttämiä resursseja (kuten kuvia). Jos aiot käyttää muiden
-          sisältöä, noudata heidän lisenssiehtojaan tai hanki heiltä lupa ennen kuin
-          teet sen.</li>
-
-          <li>%{external_scripts_link:Ulkoisen JavaScriptin käyttöä on rajoitettu.}</li>
-
-          %{adult_content_requirement}
-
-          </ul> <p>Jos huomaat skriptin, joka ei täytä näitä vaatimuksia, ilmoitathan
-          siitä menemällä skriptin Palaute-osioon, aloittamalla keskustelun, ja valitsemalla
-          "Ilmoita skriptistä" -valinnan.</p> <p>Jos olet jostain tästä eri mieltä,
-          %{contact_link:keskustellaan asiasta!}!</p>
       adult_content_rule_html: "<li>Aikuisille suunnattua sisältöä sisältävät skriptit tai aikuissisältöä sisältäville sivustoille tarkoitetut skriptit täytyy merkitä sellaisiksi, jotta muut käyttäjät voivat valita, näkevätkö ne.</li>"
     external_scripts:
       title: "%{site_name}in käytäntö ulkoisista skripteistä"

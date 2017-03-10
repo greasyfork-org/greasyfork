@@ -5,6 +5,11 @@ pl:
       forum: "Forum"
       help: "Pomoc"
       sign_in: "Zaloguj się"
+      submenu: "Więcej"
+      advanced_search: "Wyszukiwanie zaawansowane"
+      user_list: "Lista użytkowników"
+      libraries: "Biblioteki"
+      moderator_log: "Log moderatora"
   helpers:
     application:
       time_ago:
@@ -100,6 +105,7 @@ pl:
     feedback_sign_in_to_favorite: "Zaloguj się, by dodać ten skrypt do ulubionych."
     stats_title: "%{script_name} — statystyki"
     stats_daily_installs_heading: "Dziennych instalacji"
+    stats_weekly_installs_heading: "Tygodniowe instalacje"
     stats_daily_update_checks_heading: "Dziennych aktualizacji"
     stats_daily_installs_date_column_heading: "Data"
     stats_daily_installs_install_count_column_heading: "Instalacji"
@@ -238,6 +244,9 @@ pl:
     locked_marker: "(Zablokowany)"
     unlisted_marker: "(Niewymieniony)"
     library_marker: "(Biblioteka)"
+    libraries_title: "Biblioteki"
+    by_site_list_filter: "Filtruj według nazwy strony:"
+    search_placeholder: "Szukaj skryptów"
   script_sets:
     favorites_name: "Ulubione"
     delete: "Usuń kolekcję skryptów"
@@ -255,6 +264,14 @@ pl:
       add_exclude: "Usuń"
     edit_sets:
       heading: "Kolekcje skryptów"
+      remove_included: "Usuń zaznaczone"
+      remove_excluded: "Usuń zaznaczone"
+    edit_auto_sets:
+      remove_included: "Usuń zaznaczone"
+    save: "Zapisz"
+    auto_set_types:
+      all_scripts: "Wszystkie skrypty"
+      all_sites: "Wszystkie strony"
   forum_discussions:
     listing_no_script_no_reply_html: "%{discussion_link} przez %{original_poster_link} %{original_post_date}"
     listing_no_script_with_reply_html: "%{discussion_link} przez %{original_poster_link} %{original_post_date}, ostatni komentarz przez %{last_commenter_link} %{last_comment_date}"
@@ -267,6 +284,49 @@ pl:
     sleazy_welcome: "Witaj na %{site_name}, stronie ze skryptami dla dorosłego użytkownika."
     explain_user_scripts_heading: "Co to są skrypty użytkownika?"
     explain_user_scripts_html: "Skrypty użytkownika dają możliwość kontrolowania przeglądanych stron. Po zainstalowaniu automatycznie dodają nowe możliwości, ułatwiają nam korzystanie lub usuwają niechciane treści ze stron, które odwiedzasz. Skrypty użytkownika na %{site_name} były pisane przez innych użytkowników i zostały udostępnione. Są darmowe i łatwe w użyciu."
+    installing_step1_header: "Krok 1: zainstaluj menadżera skryptów"
+    installing_step1_caption: "Tampermonkey na Chrome"
+    installing_step1_description_html: >
+        <p>Aby używać skryptów, musisz najpierw zainstalować menadżera skryptów. To
+        jaki menadżer skryptów możesz używać, zależy od używanej przeglądarki.</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> lub %{chrome_violentmonkey_link:Violent
+        monkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey} lub %{firefox_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla: (nie jest wymagane dodatkowe oprogramowanie)</li>
+
+        </ul>
+    installing_step2_header: "Krok 2: zainstaluj skrypt"
+    installing_step2_caption: "Przycisk 'zainstaluj skrypt'"
+    installing_step2_description_html: >
+        <p>%{browse_link:Przeglądaj tę witrynę}, by znaleźć skrypt, których chcesz
+        wypróbować. Oto przykłady najbardziej popularnych skryptów:</p>
+
+        %{highlighted_scripts_list}
+
+        <p>Jak już znajdziesz skrypt, to wciśnij zielony przycisk na stronie skryptu,
+        a twój menadżer skryptów poprosi ciebie o potwierdzenie zainstalowania.</p>
+    installing_step3_header: "Krok 3: używaj skryptu."
+    installing_step3_description_html: >
+        <p>Przejdź do strony, którą obejmuje skrypt. Powinien automatycznie zrobić
+        to co ma zrobić. Po wypróbowaniu skryptu przez chwilę, wróć z powrotem tam
+        gdzie zainstalowałeś skrypt i zostaw pewne informacje zwrotne dla autora skryptu.</p>
   users:
     sign_in_title: "Zaloguj się na %{site_name}"
     sign_in_description: "Zarejestrowanie się na %{site_name} umożliwi Ci publikowanie skryptów i opinii w innych skryptach. Nie musisz logować się, aby przeszukiwać lub instalować skrypty."
@@ -334,6 +394,7 @@ pl:
     listing_new_scripts: "Nowe skrypty"
     listing_updated_scripts: "Zaktualizowanych skryptów"
     listing_registration_date: "Data rejestracji"
+    listing_title: "Użytkownicy"
     locale_prompt: "(wybierz język)"
     show_ads_description: "Wspomóż %{site_name} poprzez zezwolenie na wyświetlanie reklam"
     show_sensitive_description: "Pokaż skrypty z treścią dla dorosłych"
@@ -348,6 +409,8 @@ pl:
       many: "%{user_name} ma %{count} skryptów na Greasy Fork."
       other: "%{user_name} ma %{count} skryptów na Greasy Fork."
   help:
+    installing_user_scripts:
+      title: 'Jak zainstalować skrypty'
     meta_keys:
       title: "kluczami meta skryptu czytanymi przez %{site_name}"
       name: "(wymagane) Nazwa skryptu, która jest używana jako nagłówek i w linkach."
@@ -412,6 +475,9 @@ pl:
         screenshot_caption: "Podpis"
         replaced_by_script_id: "Skrypt zastępczy"
         approve_redistribution: "Ponowna dystrybucja"
+      script_set:
+        name: "Nazwa"
+        description: "Opis"
   errors:
     messages:
       script_missing_name: "jest wymagana - wybierz jedną z dostępnych jako „@name”"

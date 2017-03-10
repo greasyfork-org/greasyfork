@@ -5,6 +5,11 @@ nl:
       forum: "Forum"
       help: "Hulp"
       sign_in: "Inloggen"
+      submenu: "Meer"
+      advanced_search: "Geavanceerd zoeken"
+      user_list: "Gebruikerslijst"
+      libraries: "Bibliotheken"
+      moderator_log: "Moderator log"
   helpers:
     application:
       time_ago:
@@ -39,6 +44,9 @@ nl:
     install: "Installeer dit script"
     install_help: "?"
     install_help_title: "Hoe installeer ik dit?"
+    update: "Update naar versie %{version}"
+    downgrade: "Downgrade naar versie %{version}"
+    reinstall: "Herinstalleer versie %{version}"
     library_instructions_html: "Dit script moet niet direct worden geïnstalleerd. Het is een bibliotheek voor andere scripts om op te nemen met de meta-richtlijn %{code}"
     deleted_notice: "Dit script is verwijderd."
     inactive_pending_changes: "Dit script is momenteel op non-actief gezet omdat het in strijd is met %{site_name}'s beleid."
@@ -89,6 +97,7 @@ nl:
     feedback_sign_in_to_favorite: "Log in om dit script te markeren als favoriet."
     stats_title: "%{script_name} - Statistieken"
     stats_daily_installs_heading: "Dagelijks aantal installaties"
+    stats_weekly_installs_heading: "Wekelijkse installaties"
     stats_daily_update_checks_heading: "Dagelijks aantal bijwerkcontroles"
     stats_daily_installs_date_column_heading: "Datum"
     stats_daily_installs_install_count_column_heading: "Aantal installaties"
@@ -98,6 +107,9 @@ nl:
     stats_no_data: "N.v.t."
     derivatives_title: "%{script_name} - Afgeleiden"
     derivatives_intro: "Deze scripts kunnen gebaseerd zijn op die van u (of die van u gebaseerd op anderen). Als u onbevoegd gebruik van uw code vindt, kunt u dit melden door een discussie te beginnen."
+    derivatives_code_matches_info_html:
+      one: "Scripts geplaatst door anderen die op zijn minst %{match_size} regels overeenkomen met jouw script. Deze controle wordt alleen uitgevoerd op scripts kleiner dan %{max_size} regels en is voor het laatst uitgevoerd op %{last_run}."
+      other: "Scripts geplaatst door anderen met code waarvan ten minste %{match_size} regels overeenkomen met jouw script. Deze controle wordt alleen uitgevoerd op scripts met minder dan %{max_size} regels en is voor het laatst uitgevoerd op %{last_run}."
     derivatives_namespace_matches_info_html: "Scripts geplaatst door anderen gebruiken <code>%{namespace}</code>:"
     derivatives_name_matches_info: "Scripts geplaatst door anderen met de meeste soortgelijke namen met die van u:"
     derivatives_script_html: "%{script_link} door %{user_link}, licentie: %{license}"
@@ -227,11 +239,79 @@ nl:
     locked_marker: "(Beveiligd)"
     unlisted_marker: "()"
     library_marker: "(Bibliotheek)"
+    libraries_title: "Bibliotheken"
+    libraries_description_html: "Er zijn bibliotheken geplaatst door %{site_name} gebruikers die je kunt <code>@require</code> in je scripts. Voor andere soorten bibliotheken kun je <code>@require</code>, lees %{policy_link:%{site_name}'s beleid op <code>@require</code>}."
+    by_site_list_title: "Gebruikersscripts voor %{site_name}, gegroepeerd op site"
+    by_site_list_description: "Dit zijn de sites beïnvloed door de most populaire gebruikersscripts. Groter lettertype betekent populairder gebruikersscript."
+    by_site_list_filter: "Filter op site naam:"
+    search_placeholder: "Zoek scripts"
   script_sets:
+    description: "Script-sets stellen je in staat om een gepersonaliseerde lijst met scripts met Greasy Fork door te bladeren. Je kunt scripts toevoegen aan je set door individuele scripts op te nemen, sets van andere gebruikers of automatisch gegenereerde sets. Je kunt ook scripts uit je set verwijderen met dezelfde methode."
     favorites_name: "Favorieten"
     delete: "Scriptgroep verwijderen"
     delete_confirmation: "Weet u zeker dat u deze scriptgroep wilt verwijderen?"
     site_default_sort: "(Websitestandaard)"
+    edit_scripts:
+      heading: "Scripts"
+      description: "Neem op of verwijder individuele scripts in je script-set."
+      included: "Opgenomen"
+      included_none: "(Geen)"
+      remove_included: "Verwijder geselecteerde"
+      excluded: "Uitgesloten"
+      excluded_none: "(Geen)"
+      remove_excluded: "Verwijder geselecteerde"
+      add_label: "Voeg scripts toe (URL's of ID's, gescheiden door witruimte)"
+      add_include: "Neem op"
+      add_exclude: "Sluit uit"
+    edit_sets:
+      heading: "Script-set"
+      description: "Neem op of verwijder individuele scripts in je script-set."
+      included: "Opgenomen"
+      included_none: "(Geen)"
+      remove_included: "Verwijder geselecteerde"
+      excluded: "Uitgesloten"
+      excluded_none: "(Geen)"
+      remove_excluded: "Verwijder geselecteerde"
+      add_label: "Voeg scripts toe (URL's of ID's, gescheiden door witruimte)"
+      add_include: "Neem op"
+      add_exclude: "Sluit uit"
+      user_label: "Som script-sets die bij een gebruiker horen op (URL, ID of naam)"
+      user_no_sets: "(Gebruiker heeft geen sets)"
+      user_no_other_sets: "(Gebruiker heeft geen andere sets)"
+    edit_auto_sets:
+      heading: "Automatische script-sets"
+      description: "Voeg toe of verwijder een automatisch gegenereerde lijst van scripts in je script-set."
+      included: "Opgenomen"
+      included_none: "(Geen)"
+      remove_included: "Verwijder geselecteerde"
+      excluded: "Uitgesloten"
+      excluded_none: "(Geen)"
+      all_scripts_label: "Alle scripts"
+      all_scripts_include: "Neem op"
+      for_sites_label: "Scripts voor site (bijv. voorbeeld.nl, laat leeg voor 'Alle sites')"
+      for_sites_include: "Neem op"
+      for_sites_exclude: "Sluit uit"
+      for_user_label: "Scripts door gebruiker (URL, ID of naam)"
+      for_user_include: "Neem op"
+      for_user_exclude: "Sluit uit"
+      for_language_label: "Scripts in taal"
+      for_language_include: "Neem op"
+      for_language_exclude: "Sluit uit"
+    calculated_list: "Berekende scriptlijst"
+    calculated_list_none: "(Geen)"
+    calculated_list_more:
+      one: "En %{count} meer…"
+      other: "En %{count} meer…"
+    already_included: "'%{name}' is al opgenomen."
+    could_not_parse_script: "Kan script '%{value}' niet parseren"
+    save: "Opslaan"
+    saved: "Script-set opgeslagen."
+    auto_set_types:
+      all_scripts: "Alle scripts"
+      site: "Scripts voor %{site}"
+      all_sites: "Alle sites"
+      user: "Scripts door gebruiker %{user}"
+      locale: "Scripts in het %{locale_name}"
   forum_discussions:
     listing_no_script_no_reply_html: "%{discussion_link} door %{original_poster_link} %{original_post_date}"
     listing_no_script_with_reply_html: "%{discussion_link} door %{original_poster_link} %{original_post_date}, nieuwste commentaar door %{last_commenter_link} %{last_comment_date}"
@@ -244,6 +324,52 @@ nl:
     sleazy_welcome: "Welkom bij %{site_name}, een site voor volwassen gebruikersscripts."
     explain_user_scripts_heading: "Wat zijn gebruikersscripts?"
     explain_user_scripts_html: "Gebruikersscripts stellen je in staat je browser naar je eigen wensen aan te passen. Wanneer je ze hebt geïnstalleerd, maken ze sites die je bezoekt automatisch beter, door aanvullende mogelijkheden, makkelijker gebruik of vervelende eigenschappen kunnen worden verwijderd. De gebruikersscripts op %{site_name} zijn geschreven door andere gebruikers, en geplaatst om te delen met de rest van de wereld. Ze zijn gratis om te installeren, en makkelijk in gebruik."
+    installing_step1_header: "Stap 1: Installeer een gebruikersscriptmanager"
+    installing_step1_caption: "Tampermonkey voor Chrome"
+    installing_step1_description_html: >
+        <p>Om gebruikersscripts te kunnen gebruiken moet je eerst een scriptmanager
+        installeren. Welke scriptmanager je kunt gebruiken hangt af van welke browser
+        je gebruikt.</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> or %{chrome_violentmonkey_link:Violent
+        monkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey} or %{firefox_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla: (geen additionele software vereist)</li>
+
+        </ul>
+    installing_step2_header: "Stap 2: Installeer een gebruikersscript"
+    installing_step2_caption: "Een gebruikersscript-installeer knop"
+    installing_step2_description_html: >
+        <p>%{browse_link:Bezoek deze site} om een script te vinden die je wilt proberen.
+        Hier is een voorbeeld van de meest populaire scripts:</p>
+
+        %{highlighted_scripts_list}
+
+        <p>Wanneer je een script hebt gevonden, klik je op de groene 'Installeer'-knop
+        op de gebruikersscript pagina en de scriptmanager zal je vragen om de installatie
+        te bevestigen.</p>
+    installing_step3_header: "Stap 3: gebruik het script"
+    installing_step3_description_html: >
+        <p>Ga naar de site die het script beïnvloed. Het script zou vanzelf z'n ding
+        moeten doen. Na het uitproberen van het script ga je terug naar waar je het
+        script hebt geïnstalleerd en kun je wat feedback achterlaten voor de auteur
+        van het script.</p>
   users:
     sign_in_title: "Inloggen op %{site_name}"
     sign_in_description: "Wanneer u inlogt op %{site_name} kunt u scripts plaatsen en feedback geven op andermans scripts. U hoeft niet in te loggen om door scripts te bladeren en/of scripts te installeren."
@@ -291,6 +417,7 @@ nl:
     external_sign_in_removed: "%{provider}-inlogdienst is verwijderd."
     external_sign_in_failed: "Inloggen middels %{provider} is mislukt: %{error}."
     external_sign_in_already_used: "Het toevoegen van de %{provider}-inlogdienst is mislukt: deze inlogdienst wordt al gebruikt door gebruiker '%{user_name}'."
+    external_sign_in_confirmation: "Er is een nieuw %{site_name} account gemaakt gebaseerd op jouw %{provider} accountgegevens. Je openbare gebruikersnaam is %{username}."
     syncing_indicator: "(synchroniseren)"
     enable_syncing: "Synchroniseren inschakelen"
     disable_syncing: "Synchroniseren uitschakelen"
@@ -309,6 +436,8 @@ nl:
     listing_new_scripts: "Nieuwe scripts"
     listing_updated_scripts: "Bijgewerkte scripts"
     listing_registration_date: "Registratiedatum"
+    listing_title: "Gebruikers"
+    search_placeholder: "Zoek gebruikers"
     locale_prompt: "(Kies een taal0"
     show_ads_description: "Ondersteun %{site_name} door toe te staan dat advertenties worden weergegeven"
     show_sensitive_description: "Scipts weergeven met inhoud voor volwassenen"
@@ -320,7 +449,12 @@ nl:
     greasy_fork_scripts_link:
       one: "%{user_name} heeft ook %{count} script op Greasy Fork."
       other: "%{user_name} heeft ook %{count} scripts op Greasy Fork."
+    update_sync_warning:
+      one: "Je gebruikersnaam en email zijn ingesteld om te worden gesynchroniseerd met %{providers}. %{edit_sign_in_link:Wijzig je login-methodes om synchronisatie uit te schakelen} als je een permanente gebruikersnaam of email in wilt stellen."
+      other: "Je gebruikersnaam en email zijn ingesteld om wanneer je inlogt te worden gesynchroniseerd met %{providers}. %{edit_sign_in_link:Wijzig je login-methodes om synchronisatie uit te schakelen} als je een permanente gebruikersnaam of email in wilt stellen."
   help:
+    installing_user_scripts:
+      title: 'Hoe je gebruikersscripts installeert'
     meta_keys:
       title: "Metatoetsen van scripts gelezen door %{site_name}"
       intro_html: "Dit is een lijst met <a href=\"http://wiki.greasespot.net/Metadata_Block\">metatoetsen van gebruikersscripts</a> die %{site_name} zal lezen. Toetsen die niet op deze lijst staan kunnen in scripts staan en zullen worden gepresenteerd in het geïnstalleerde script maar zullen geen effect hebben binnen %{site_name} zelf."
@@ -349,46 +483,104 @@ nl:
     code_rules:
       title: "%{site_name}'s regels voor gepubliceerde scripts"
       content_html: >
-          <p>Dit zijn de vereisten voor het publiceren van scripts op %{site_name}.
-          Deze zijn bedoeld voor het behoud van het veilig en bruikbaar houden van
-          gebruikersscripts op %{site_name}. Elk script dat niet voldoet aan de vereisten
-          kan verwijderd worden door de moderators van %{site_name}.</p> <ul>
+          <p>Dit zijn de vereisten voor scripts geplaatst op %{site_name}. Deze zijn
+          bedoeld om van %{site_name} een veilige en handige plaats voor gebruikersscripts
+          te maken.. Elk script dat niet aan deze eisen voldoet kan worden verwijderd
+          door moderators van %{site_name}.</p> <ul>
 
-          <li>Scripts moeten een omschrijving bevatten waarin wordt uitgelegd wat
-          ze doen en mogen geen dingen doen die niet worden vermeld in de omschrijving.
-          Gebruikers moeten op de hoogte worden gebracht van wat een script zal doen
-          voordat ze het installeren.</li>
+          <li>Scripts moeten een beschrijving bevatten van wat ze doen en mogen geen
+          onnodige dingen buiten de beschrijving doen. Gebruikers moeten weten wat
+          een script zal doen voor dat ze het installeren. Scripts die tracking of
+          advertenties bevatten moeten dit expliciet vermelden in de beschrijving.</li>
 
-          <li>Op deze website gepubliceerde code mag geen verwarring veroorzaken of
-          worden ingekort. Gebruikers moeten de mogelijkheid hebben om het script
-          te kunnen nakijken en begrijpen wat het doet voordat ze het installeren.</li>
+          <li>Code geplaatst op deze site mag niet worden verborgen of ingekort. Gebruikers
+          moet de kans worden gegeven om een script te bestuderen en te begrijpen
+          voor ze het installeren.</li>
 
-          <li>Bibliotheken die door een script worden gebruikt moeten <code>@require</code>-d
-          bevatten, tenzij er een geldige technische reden voor is om dat niet te
-          doen. Als een biblioteek inline is opgenomen, moet het informatie bevatten
-          over de bron van de bibliotheek (bijv. een comment met een URL-verwijzing
-          en/of de naam en versie).</li>
+          <li>Bibliotheken die een script gebruikt moeten worden <code>@require</code>-d,
+          behalve als er een geldige technische reden is om dat niet te doen. In het
+          geval dat een bibliotheek inline is opgenomen moet het informatie bevatten
+          omtrent de bron van herkomst van de bibliotheek (bijv. een comment met een
+          URL en/of de naam en versie).</li>
 
-          <li>Uw schript moet andermans copyrights respecteren. Dit is vereist voor
-          het script zelf, maar ook voor andere gebruikte bronnen (bijv. afbeeldingen).
-          Als u van plan bent om andermans werk te gebruiken, zorg er dan voor dat
-          u voldoet aan de licentievoorwaarden of vraag om toestemming.</li>
+          <li>Je script moet copyright van anderen respecteren. Dit omvat het script
+          zelf en alle bronnen (bijv. afbeeldingen) die het gebruikt. Wanneer je van
+          plan bent om andermans werk te gebruiken, houdt je dan aan de licentiebepalingen
+          of vraag (en krijg) toestemming om dit te doen.</li>
 
-          <li>%{external_scripts_link:Het gebruik van externe JavaScript is bewust
-          beperkt.}</li>
+          <li>%{external_scripts_link:Gebruik van externe JavaScript is beperkt.}</li>
 
           %{adult_content_requirement}
 
-          </ul> <p>Als u bemerkt dat een script niet voldoet aan deze parameters,
-          rapporteer het dan middels de Feedback-link van dat script. U begint dan
-          een discussie waar u kiest voor de optie "Script rapporteren".</p> <p>Als
-          u het niet eens bent met dit alles, %{contact_link:laten we er dan over
-          in gesprek gaan}!</p>
+          </ul> <p>Wanneer je een script opmerkt dat niet aan deze vereisten voldoet,
+          verzoeken we je het script te rapporteren door naar de Feedback-link van
+          het script te gaan, een gesprek te starten, en voor de 'Rapporteer script'
+          optie te kiezen.</p> <p>Als je het niet eens bent met een van deze voorwaarden,
+          %{contact_link: laten we er dan over praten}!</p>
       adult_content_rule_html: "<li>Scripts die volwassen inhoud bevatten, of die zijn geschreven voor sites die volwassen inhoud bevatten, moeten worden gemarkeerd als zijnde volwassen, om andere gebruikers toe te staan ze te kunnen zien.</li>"
     external_scripts:
       title: "%{site_name}'s beleid voor externe scripts."
+      content_html: >
+          <p>Gebruikersscripts hebben de technische mogelijkheden om andere scripts
+          te laden en uit te voeren. De %{require_doc_link:<code>@require</code>}
+          metadata sleutel is de meest gangbare manier om dit te bereiken, maar scripts
+          kunnen ook bijvoorbeeld een XmlHttpRequest gebruiken om een script te downloaden
+          en die dan direct te implementeren in de DOM.</p> <p>Hoewel dit een handige
+          functie is en de meeste scriptauteurs dit gebruiken voor legitieme doeleinden,
+          kan het ook gebruikt worden voor kwaadwillige doeleinden. Een van de basisprincipes
+          van %{site_name} is  dat de gebruiker de code van een script moet kunnen
+          inspecteren. Externe scripts kunnen dit principe omzeilen op de volgende
+          manieren: ze kunnen zonder waarschuwing of geschiedenis veranderen, ze kunnen
+          verschillende code serveren aan verschillende mensen en ze kunnen gebruikt
+          worden om kwaadwillende code te verbergen in het midden van bekende bibliotheken.
+          Zelfs wanneer iemand aangeeft een extern script gecontroleerd te hebben
+          is dat geen garantie dat dat script altijd legitiem is geweest en zal zijn.</p>
+          <p>Om scriptauteurs de mogelijkheid te geven om door te gaan met het gebruik
+          van externe scripts heeft %{site_name} een whitelist geïmplementeerd van
+          URL-patronen die kunnen worden gebruikt in een script. Deze whitelist bestaat
+          uit scriptlocaties die:</p> <ul>
+
+          <li>Openbaar zijn</li>
+
+          <li>Hun inhoud niet vaak aanpassen</li>
+
+          <li>Waarschijnlijk nuttig zullen zijn voor meer dan één scriptauteur.</li>
+
+          </ul> <p>De huidige lijst is:</p> %{allowed_require_list} <p>Wanneer je
+          probeert een script te plaatsen dat een <code>@require</code> buiten deze
+          locaties heeft zul je niet in staat zijn je script op te slaan.</p> <p>Als
+          het script dat je wenst te gebruiken een JavaScript bibliotheek is (bijv.
+          jQuery of YUI) probeer die dan te vinden op één van bovengenoemde websites.
+          %{cdnjs_link:cdnjs} en %{jsdelivr_link:jsDelivr} in het bijzonder hebben
+          een breed scala aan bibliotheken beschikbaar.</p> <p>Als het script dat
+          je wenst te gebruiken niet beschikbaar is op één van deze bovengenoemde
+          sites, %{contact_link:laat het ons dan weten} en we kunnen het vinden waar
+          het is (of het zelf hosten!).</p> <p>Als het script dat je wenst te gebruiken
+          door jou geschreven is, dan kun je het indienen als een afzonderlijke inschrijving
+          op %{site_name} door te kiezen voor het "Bibliotheek" script type. Dan zul
+          je in staat zijn het geplaatste script te gebruiken in je script.</p>
     script_rewriting:
       title: "Hoe %{site_name} geplaatste scripts herschrijft"
+      content_html: >
+          <p>Scripts geplaatst op %{site_name} zullen worden herschreven worden op
+          de volgende manieren:</p> <ul>
+
+          <li><code>@updateURL</code>, <code>@installURL</code>, en <code>@downloadURL</code>
+          richtlijnen zullen worden gestript wanneer ze aanwezig zijn. Het gebrek
+          aan deze richtlijnen betekent dat elk script geïnstalleerd van %{site_name}
+          geupdate zal worden op %{site_name}.</li>
+
+          <li><code>@version</code> en <code>@namespace</code> richtlijnen zullen
+          worden ingevoegd wanneer het script ze mist. Deze richtlijnen zijn nodig
+          voor adequate bijwerking.</li>
+
+          <li><code>@description</code> zal worden ingevoegd als een nieuwe versie
+          van een script het niet heeft en een vorige versie van het script het had.</li>
+
+          <li>CRLF en CR regeleinden zullen worden geconverteerd naar standaard Unix-achtige
+          regeleinden.</li>
+
+          </ul>
     site_feedback_link: "Meld probleem of plaats idee voor %{site_name} zelf"
     credits:
       title: "Bedankt aan"
@@ -407,6 +599,54 @@ nl:
           van het betreffende script.>/p>
     privacy_policy:
       title: "Privacy beleid"
+      content_html: >
+          <p>Deze pagina beschrijft hoe %{site_name} gebruikers bijhoudt of volgt.
+          Als je enig bezwaar hebt %{admin_email_link:email de administrator}.</p><h2>Server
+          logs</h2> <p>%{site_name} logt alle aanvragen in een typische server log
+          stijl. Informatie die wordt bijgehouden omvat bezochte pagina's, IP-adressen
+          en de useragent regel. Deze logs zijn bestemt voor debugging en serveranalyses.
+          De data wordt een week bewaard. Deze data wordt niet gedeeld of openbaar
+          gemaakt.</p> <h2>Script statistieken</h2> <p>Ten behoeve van het genereren
+          van statistieken houdt %{site_name} data bij van installatie en update verzoeken,
+          met IP-adres informatie. Deze informatie wordt bewaard voor één dag en dan
+          wordt het samengevoegd om het IP-adres niet meer op te nemen. De IP-adres-specifieke
+          gegevens worden niet gedeeld of openbaar gemaakt, maar de samengevoegde
+          gegevens wel.</p> <h2>Cookies (wanneer niet ingelogd)</h2> <p>%{site_name}
+          kan tijdelijke sessie-cookies toestaan voor bepaalde functies van de site.
+          Deze cookies worden niet ingesteld om te blijven bestaan en kunnen gewist
+          worden wanneer de browser wordt gesloten (afhankelijk van de browserinstellingen).</p>
+          <h2>Gebruikersaccounts</h2> <p>%{site_name} verplicht gebruikers tot het
+          maken van een account om scripts te kunnen plaatsen, deel te namen aan discussies
+          en voor toegang tot sommige andere functies van de site. Bij het aanmaken
+          van een account, kan informatie zoals het IP-adres, emailadres, en useragent
+          permanent worden opgeslagen. Een deel van deze informatie kan zichtbaar
+          worden gemaakt voor andere gebruikers.</p> <p>Acties die worden uitgevoerd
+          wanneer men ingelogd is, bijvoorbeeld het plaatsen van scripts en reacties,
+          zullen zichtbaar worden gemaakt voor andere gebruikers.</p> <p>Als de "Onthoud
+          mij" optie is ingeschakeld bij het aanmelden bij een account, zal %{site_name}
+          een blijvende cookie aanmaken om automatisch in te loggen.</p> <h2>Scripts
+          geplaatst op %{site_name}</h2> <p>%{site_name} bevat user-generated content,
+          en geplaatste scripts kunnen in staat zijn om gebruikers bij te houden wanneer
+          ze het betreffende script installeren.</p> <h2>Bibliotheken van derden</h2>
+          <p>%{site_name} kan code van derden bevatten om statistieken te verzamelen
+          of om advertenties weer te geven op de site. Deze bibliotheken kunnen tracking-logica
+          bevatten.</p>
+  search:
+    script_search:
+      title: "Zoek scripts"
+      description: "Zoek naar scripts. Zoekt naar scriptnamen, beschrijvingen, extra informatie en auteursnamen. %{sphinx_link:Sphinx extended query syntax.}"
+    library_search:
+      title: "Zoek bibliotheken"
+      description: "Zoek naar bibliotheken. Zoekt naar bibliotheeknamen, beschrijvingen, extra informatie en auteursnamen. %{sphinx_link:Sphinx extended query syntax.}"
+    code_search:
+      title: "Zoeken naar code"
+      description: "Zoekt naar scriptcode. Dit is een hoofdlettergevoelige, platte tekst zoekmachine zonder jokertekens."
+    forum_search:
+      title: "Zoek forums"
+      description: "Zoekt naar discussies en recensies in het forum. %{fulltext_link:MySQL natural language search.}"
+    user_search:
+      title: "Zoek gebruikers"
+      description: "Zoekt gebruikers op naam. Platte tekst LIKE zoeken."
   common:
     error_preamble: "Er zijn enkele problemen met wat u trachtte te plaatsen..."
     allowed_elements_link: "(Zie de toegestane code.)"
@@ -445,6 +685,10 @@ nl:
         screenshot_caption: "Bijschrift"
         replaced_by_script_id: "Vervangscript"
         approve_redistribution: "Herplaatsingen"
+      script_set:
+        name: "Naam"
+        description: "Beschrijving"
+        default_sort: "Standaard sortering"
   errors:
     messages:
       script_missing_name: "is vereist - specificeer er één met @name"

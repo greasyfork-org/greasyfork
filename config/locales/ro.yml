@@ -5,6 +5,11 @@ ro:
       forum: "Forum"
       help: "Ajutor"
       sign_in: "Autentificare"
+      submenu: "Mai mult"
+      advanced_search: "Căutare avansată"
+      user_list: "Lista utilizatorilor"
+      libraries: "Biblioteci"
+      moderator_log: "Jurnalul moderatorului"
   helpers:
     application:
       time_ago:
@@ -43,6 +48,9 @@ ro:
     install: "Instalează acest script"
     install_help: "?"
     install_help_title: "Cum se instalează"
+    update: "Actualizează la versiunea %{version}"
+    downgrade: "Reîntoarce versiunea %{version}"
+    reinstall: "Reinstalează versiunea %{version}"
     library_instructions_html: "Acest script nu ar trebui instalat direct. Aceasta este o bibliotecă pentru alte scripturi care este inclusă prin directiva meta a %{code}"
     deleted_notice: "Acest script a fost șters."
     inactive_pending_changes: "Acest script este deocamdată inactiv deoarece nu este conform cu termenii impuși de %{site_name}."
@@ -93,6 +101,7 @@ ro:
     feedback_sign_in_to_favorite: "Logheaza-te pentru a adauga la favorite."
     stats_title: "%{script_name} - Statistici"
     stats_daily_installs_heading: "Instalări zilnice"
+    stats_weekly_installs_heading: "Instalări săptămânale"
     stats_daily_update_checks_heading: "Verificare actualizări zilnice"
     stats_daily_installs_date_column_heading: "Data"
     stats_daily_installs_install_count_column_heading: "Instalări"
@@ -169,15 +178,56 @@ ro:
     deleted_marker: "(Șters)"
     locked_marker: "(Închis)"
     unlisted_marker: "(Nelistat)"
+    library_marker: "(Bibliotecă)"
+    libraries_title: "Biblioteci"
+    search_placeholder: "Caută script-uri"
   script_sets:
     favorites_name: "Favorite"
     delete: "Șterge set de scripturi"
     delete_confirmation: "Sunteți sigur că doriți să ștergeți acest set de scripturi?"
     site_default_sort: "(implicit)"
+    edit_scripts:
+      heading: "Script-uri"
+      description: "Includeți sau excludeți script-uri individuale în setul dvs. de script-uri."
+      included: "Incluse"
+      excluded: "Excluse"
+      add_include: "Include"
+      add_exclude: "Exclude"
+    edit_sets:
+      included: "Incluse"
+      excluded: "Excluse"
+      excluded_none: "(Niciunul)"
+      remove_excluded: "Șterge selectate"
+      add_include: "Include"
+      add_exclude: "Exclude"
+    edit_auto_sets:
+      included: "Incluse"
+      included_none: "(Niciunul)"
+      remove_included: "Șterge selectate"
+      excluded: "Excluse"
+      excluded_none: "(Niciunul)"
+      all_scripts_label: "Toate script-urile"
+      all_scripts_include: "Include"
+      for_sites_include: "Include"
+      for_sites_exclude: "Exclude"
+      for_user_include: "Include"
+      for_user_exclude: "Exclude"
+      for_language_label: "Script-uri în limba"
+      for_language_include: "Include"
+      for_language_exclude: "Exclude"
+    calculated_list_none: "(Niciunul)"
+    save: "Salvează"
+    auto_set_types:
+      all_scripts: "Toate script-urile"
+      site: "Script-uri pentru %{site}"
+      all_sites: "Toate site-urile"
+      user: "Script-uri ale lui %{user}"
+      locale: "Script-uri în %{locale_name}"
   home:
     welcome: "Bun venit pe %{site_name}, un site pentru scripturi de utilizator."
     sleazy_welcome: "Bun venit pe %{site_name}, un site pentru scripturi de adulți."
     explain_user_scripts_heading: "Ce este un user script?"
+    installing_step1_caption: "Tampermonkey pentru Chrome"
   users:
     sign_in_title: "Autentificare în %{site_name}"
     sign_in_external: "Autentificare printr-un serviciu extern"
@@ -188,6 +238,8 @@ ro:
     preview_profile: "Previzualizare"
     control_panel: "Panou de control"
     discussions_on_scripts_feed_alt: "Flux RSS"
+    discussions_on_scripts_none: "Niciunul încă!"
+    discussions_on_scripts_more: "Mai multe discuții..."
     script_list: "Scripturi"
     deleted_script_list: "Scripturi șterse"
     sign_out: "Închide sesiunea"
@@ -214,11 +266,19 @@ ro:
     listing_new_scripts: "Scripturi noi"
     listing_updated_scripts: "Scripturi actualizate"
     listing_registration_date: "Data înregistrării"
+    listing_title: "Utilizatori"
+    search_placeholder: "Caută utilizatori"
     locale_prompt: "(Alege o limbă)"
     show_sensitive_description: "Arată scripturi cu conținut pentru adulți"
     approve_redistribution_true: "E în regulă ca scripturile mele să fie repostate în alte locuri"
     approve_redistribution_false: "Nu vreau ca scripturile mele să fie repostate în altă parte"
+    greasy_fork_scripts_link:
+      one: "%{user_name} mai are de asemenea un %{count} script pe Greasy Fork."
+      few: "%{user_name} mai are de asemenea %{count} script-uri pe Greasy Fork."
+      other: "%{user_name} mai are de asemenea %{count} de script-uri pe Greasy Fork."
   help:
+    installing_user_scripts:
+      title: 'Cum se instalează script-urile'
     meta_keys:
       require_html: "Include JavaScript extern în script. Vezi %{external_script_link}."
     writing_user_scripts:
@@ -229,7 +289,22 @@ ro:
     help_with_greasymonkey: "Ajutor Greasemonkey"
     contact:
       title: "Contactează pe cineva"
+    privacy_policy:
+      title: "Politica de confidențialitate"
+  search:
+    script_search:
+      title: "Căutare script-uri"
+    library_search:
+      title: "Căutare bibilioteci"
+    code_search:
+      title: "Căutare cod"
+    forum_search:
+      title: "Căutare pe forum"
+    user_search:
+      title: "Caută utilizatori"
+      description: "Caută utilizatori după nume."
   common:
+    allowed_elements_link: "(Vezi codul permis.)"
     allowed_elements_and_attributes_title: "Elements permise pentru conținut HTML"
     suggest_locale: "%{site_name} este disponibil în %{locale_name}."
     incomplete_locale: "Traducerea în %{locale_name} pentru %{site_name} este completă doar la %{percent}. Puteți contribui."

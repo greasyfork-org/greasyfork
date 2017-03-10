@@ -478,42 +478,6 @@ de:
       post_new_script_link_text: 'ein neues Skript zu veröffentlichen'
     code_rules:
       title: "%{site_name}s Regeln für veröffentlichte Skripte"
-      content_html: >
-          <p>Dies sind die Bedingungen für Skripte, welche auf %{site_name} veröffentlicht
-          werden. Sie haben zum Ziel %{site_name} als einen sicheren und nützlichen
-          Ort für Benutzerskripte beizubehalten. Jedes Skript, welches diese Regeln
-          nicht einhält, kann von den %{site_name} Moderatoren gelöscht werden.</p>
-          <ul>
-
-          <li>Skripte müssen eine Beschreibung beinhalten, was sie machen und dürfen
-          nichts unverhältnismäßig außerhalb dieser Beschreibung machen. Benutzer
-          müssen wissen, was ein Skript macht, bevor sie es installieren.</li>
-
-          <li>Quelltext, welcher auf dieser Seite veröffentlicht wird, darf nicht
-          verschleieert oder minimiert sein. Benutzern muss die Möglichkeit gegeben
-          sein ein Skript zu inspizieren und zu verstehen, bevor sie es installieren.</li>
-
-          <li>Bibliotheken, welche ein Skript verwendet, sollten per <code>@require</code>
-          eingebunden werden, so lange es keinen validen technischen Grund dafür gibt,
-          dies nicht zu tun. Im Falle einer direkten Einbindung einer Bibliothek muss
-          die Information über die Quelle der Bibliothek angegeben werden (z.B. ein
-          Kommentar welcher die URL und/oder den Namen und die Version beinhaltet).</li>
-
-          <li>Ihr Skript muss das Urheberrecht anderer achten. Dies beinhaltet sowohl
-          das Skript selbst, als auch jegliche Quellen (wie beispielsweise Bilder),
-          die es verwendet. Falls Sie beabsichtigen Inhalte von jemand anderem zu
-          verwenden, befolgen Sie deren Lizenzbestimmungen oder holen Sie sich deren
-          Erlaubnis ein, bevor Sie dies tun.</li>
-
-          <li>%{external_scripts_link:Die Verwendung externer Skripte ist eingeschränkt.}</li>
-
-          %{adult_content_requirement}
-
-          </ul> <p>Falls Sie ein Skript bemerken, welches sich nicht an diese Vorgaben
-          hält, dann melden Sie dieses bitte, indem Sie den Rückmelden Link für dieses
-          Skript besuchen, dort eine neue Diskussion starten und die "Skript melden"
-          Option whälen.</p> <p>Falls Sie mit einer dieser Vorgaben nicht einverstanden
-          sind, %{contact_link: dann lassen Sie uns darüber reden}!</p>
       adult_content_rule_html: "<li>Skripte, welche nicht-jugendfreie Inhalte enthalten oder für Seiten mit nicht-jugendfreien Inhalten gemacht sind, müssen als solche gekennzeichnet werden, um anderen Nutzern die Wahlmöglichkeit zu geben ob sie diese sehen möchten.</li>"
     external_scripts:
       title: "%{site_name}s Richtlinie für externe Skripte"

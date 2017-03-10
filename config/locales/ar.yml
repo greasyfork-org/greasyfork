@@ -5,6 +5,11 @@ ar:
       forum: "المنتدى"
       help: "المساعدة"
       sign_in: "تسجيل دخول"
+      submenu: "أكثر"
+      advanced_search: "بحث متقدم"
+      user_list: "قائمة المستخدمين"
+      libraries: "المكتبات"
+      moderator_log: "سجل المشرف"
   helpers:
     application:
       time_ago:
@@ -254,11 +259,83 @@ ar:
     locked_marker: "(مقفل)"
     unlisted_marker: "(غير مدرج)"
     library_marker: "(المكتبة)"
+    libraries_title: "المكتبات"
+    libraries_description_html: "هناك مكتبات تم وضعها بواسطة مستخدمي %{site_name} يمكنك <code>@require</code> في برنامجك النصي. لأنواع المكتبات الأخرى يمكنك <code>@require</code>, اقرأ سياسة %{policy_link:%{site_name} حول <code>@require</code>}."
+    by_site_list_title: "برامج نصية لـ %{site_name} مجمعة حسب الموقع"
+    by_site_list_description: "هذه هي المواقع المتأثرة من البرامج النصية الأكثر شعبية. حجم خط أكبر يدل على البرامج النصية الأكثر شعبية."
+    by_site_list_filter: "تصفية حسب اسم الموقع:"
+    search_placeholder: "بحث في البرامج النصية"
   script_sets:
+    description: "مجموعات البرامج النصية تسمح لك بإنشاء قائمة برامج نصية مخصصة لتصفح النصية بها. يمكنك إضافة البرنامج النصية إلى مجموعة عن طريق إضافتها منفردة أو من مجموعات المستخدمين  الآخرين أو تلقائيا. يمكنك أيضا استثناء برامج نصية من مجموعتك بنفس الأساليب."
     favorites_name: "المفضلة"
     delete: "حذف مجموعة البرامج النصية"
     delete_confirmation: "هل أنت متأكد أنك تريد حذف مجموعة البرامج النصية هذه؟"
     site_default_sort: "(افتراضي الموقع)"
+    edit_scripts:
+      heading: "البرامج النصية"
+      description: "تضمين أو استثناء  برامج نصية منفردة من مجموعة البرامج النصية الخاصة بك."
+      included: "مضمن"
+      included_none: "(لا يوجد)"
+      remove_included: "حذف المحدد"
+      excluded: "مستثنى"
+      excluded_none: "(لا يوجد)"
+      remove_excluded: "حذف المحدد"
+      add_label: "إضافة برامج نصية (روابط، معرفات، مفصولة بمسافة)"
+      add_include: "تضمين"
+      add_exclude: "استثناء"
+    edit_sets:
+      heading: "مجموعات البرامج النصية"
+      description: "تضمين أو استثناء  مجموعات برامج نصية في مجموعة البرامج النصية الخاصة بك."
+      included: "مضمن"
+      included_none: "(لا يوجد)"
+      remove_included: "حذف المحدد"
+      excluded: "مستثنى"
+      excluded_none: "(لا يوجد)"
+      remove_excluded: "حذف المحدد"
+      add_label: "إضافة برامج نصية (روابط، معرفات، مفصولة بمسافة)"
+      add_include: "تضمين"
+      add_exclude: "استثناء"
+      user_label: "إظهار مجموعات البرامج النصية لمستخدم  (روابط، معرفات، أو الاسم)"
+      user_no_sets: "(ليس لدى المستخدم مجموعات)"
+      user_no_other_sets: "( ليس لدى المستخدم مجموعات أخرى)"
+    edit_auto_sets:
+      heading: "مجموعات برامج نصية تلقائية"
+      description: "تضمين أو استثناء  مجموعات منشأة تلقائيا في مجموعة البرامج النصية الخاصة بك."
+      included: "مضمن"
+      included_none: "(لا يوجد)"
+      remove_included: "حذف المحدد"
+      excluded: "مستثنى"
+      excluded_none: "(لا يوجد)"
+      all_scripts_label: "كل البرامج النصية "
+      all_scripts_include: "تضمين"
+      for_sites_label: "برامج نصية لموقع (مثال example.com، اتركه فارغا من أجل \"كل المواقع\")"
+      for_sites_include: "تضمين"
+      for_sites_exclude: "استثناء"
+      for_user_label: "مجموعات البرامج النصية حسب المستخدم  (روابط، معرفات، أو الاسم)"
+      for_user_include: "تضمين"
+      for_user_exclude: "استثناء"
+      for_language_label: "برامج نصية باللغة"
+      for_language_include: "تضمين"
+      for_language_exclude: "استثناء"
+    calculated_list: "قوائم البرامج النصية المحسوبة"
+    calculated_list_none: "(لا يوجد)"
+    calculated_list_more:
+      zero: "و%{count} أكثر..."
+      one: "و%{count} أكثر..."
+      two: "و%{count} أكثر..."
+      few: "و%{count} أكثر..."
+      many: "و%{count} أكثر..."
+      other: "و%{count} أكثر..."
+    already_included: "'%{name}' مثبت بالفعل."
+    could_not_parse_script: "لا يمكن تحليل البرنامج النصي '%{value}'"
+    save: "حفظ"
+    saved: "تم حفظ قائمة البرامج النصية "
+    auto_set_types:
+      all_scripts: "كل البرامج النصية "
+      site: "برامج نصية لـ %{site}"
+      all_sites: "جميع المواقع"
+      user: "برامج نصية حسب المستخدم %{user}"
+      locale: "برامج نصية باللغة %{locale_name}"
   forum_discussions:
     listing_no_script_no_reply_html: "%{discussion_link} بواسطة %{original_poster_link} %{original_post_date}"
     listing_no_script_with_reply_html: "%{discussion_link} بواسطة %{original_poster_link} %{original_post_date}, آخر تعليق بواسطة %{last_commenter_link} %{last_comment_date}"
@@ -271,6 +348,48 @@ ar:
     sleazy_welcome: "مرحبا لك في %{site_name}، وهو موقع للبرامج النصية ذات محتوى للبالغين."
     explain_user_scripts_heading: "ما هي البرامج النصية ؟"
     explain_user_scripts_html: "البرامج النصية تتيح لك التحكم بتجربة التصفح الخاص بك. بمجرد تركيبها، سوف تجعل المواقع التي تزورها أفضل من خلال إضافة ميزات، مما يجعلها أسهل للاستخدام، أو تزيل الأشياء تلقائيا. تم كتابة البرامج النصية على %{site_name} من قبل المستخدمين الآخرين ونشرت لمشاركتها مع العالم. إنها مجانية للتثبيت وسهلة الاستخدام."
+    installing_step1_header: "الخطوة 1: قم بتثبيت برنامج إدارة البرامج النصية"
+    installing_step1_caption: "Tampermonkey على Chrome"
+    installing_step1_description_html: >
+        <p>لاستخدام البرامج النصية عليك أولا تثبيت برنامج لإدارة البرامج النصية. أي
+        واحد منها يحدده المتصفح الذي تستخدمه.</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> or %{chrome_violentmonkey_link:Violent
+        monkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey} or %{firefox_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla: (لا حاجة لبرنامج)</li>
+
+        </ul>
+    installing_step2_header: "خطوة 2: قم بتثبيت برنامج نصي"
+    installing_step2_caption: "زر تثبيت برنامج نصي"
+    installing_step2_description_html: >
+        <p>%{browse_link:تصفح هذا الموقع} لإيجاد برنامج نصي تريد تجربته. هنا عينة
+        من البرامج النصية المحبوبة:</p>
+
+        %{highlighted_scripts_list}
+
+        <p>بمجرد العثور على برنامج نصي اضغط زر التثبيت الأخضر وسوف يطلب منك مدير البرامج
+        النصية تأكيد التثبيت.</p>
+    installing_step3_header: "خطوة 3: استخدم البرنامج النصي"
+    installing_step3_description_html: >
+        <p>اذهب إلى الموقع الذي يؤثر عليه البرنامج النصي. وسوف يقوم البرنامج النصي
+        بالعمل. بعد تجربتك للبرنامج النصي عد إلى صفحته وأخبر المؤلف بملاحظاتك.</p>
   users:
     sign_in_title: "تسجيل دخول إلى جريسي فورك"
     sign_in_description: "تسجيل الدخول في %{site_name} يتيح لك إضافة البرامج النصية وردود الفعل على البرامج النصية للآخرين.  لكنك لا تحتاج لتسجيل الدخول لتصفح أو تثبيت البرامج النصية."
@@ -318,6 +437,7 @@ ar:
     external_sign_in_removed: "%{provider} تم حذف تسجيل الدخول هذا."
     external_sign_in_failed: "%{provider} فشل تسجيل الدخول: %{error}."
     external_sign_in_already_used: "إضافة تسجيل دخول عبر %{provider} فشل: يتم بالفعل استخدام هذا الدخول من قبل المستخدم '%{user_name}'."
+    external_sign_in_confirmation: "حساب %{site_name} تم إنشاؤه بناء على تفاصيل حسابك في  %{provider}. اسم المستخدم الخاص بك هو %{username}."
     syncing_indicator: "(المزامنة)"
     enable_syncing: "تشغيل المزامنة"
     disable_syncing: "إيقاف المزامنة"
@@ -340,6 +460,8 @@ ar:
     listing_new_scripts: "البرامج النصية الجديدة"
     listing_updated_scripts: "البرامج النصية المحدثة"
     listing_registration_date: "تاريخ التسجيل"
+    listing_title: "المستخدمون"
+    search_placeholder: "بحث المستخدمين"
     locale_prompt: "(اختر اللغة المحلية)"
     show_ads_description: "دعم %{site_name} عن طريق السماح له بعرض الإعلانات"
     show_sensitive_description: "إظهار البرامج النصية ذات محتوى للبالغين"
@@ -355,7 +477,16 @@ ar:
       few: "%{user_name} لديه أيضا %{count} برامج نصية على Greasy Fork."
       many: "%{user_name} لديه أيضا %{count} برنامج نصي على Greasy Fork."
       other: "%{user_name} لديه أيضا %{count} برنامج نصي على Greasy Fork."
+    update_sync_warning:
+      zero: "تم إعداد اسم المستخدم والبريد الإلكتروني الخاصين بك للمزامنة عند دخولك بواسطة %{providers}. %{edit_sign_in_link:عدل طرق تسجيل الدخول لحذف المزامنة} إذا كنت تريد وضع اسم مستخدم أو بريد مخصص بشكل دائم."
+      one: "تم إعداد اسم المستخدم والبريد الإلكتروني الخاصين بك للمزامنة عند دخولك بواسطة %{providers}. %{edit_sign_in_link:عدل طرق تسجيل الدخول لحذف المزامنة} إذا كنت تريد وضع اسم مستخدم أو بريد مخصص بشكل دائم."
+      two: "تم إعداد اسم المستخدم والبريد الإلكتروني الخاصين بك للمزامنة عند دخولك بواسطة %{providers}. %{edit_sign_in_link:عدل طرق تسجيل الدخول لحذف المزامنة} إذا كنت تريد وضع اسم مستخدم أو بريد مخصص بشكل دائم."
+      few: "تم إعداد اسم المستخدم والبريد الإلكتروني الخاصين بك للمزامنة عند دخولك بواسطة %{providers}. %{edit_sign_in_link:عدل طرق تسجيل الدخول لحذف المزامنة} إذا كنت تريد وضع اسم مستخدم أو بريد مخصص بشكل دائم."
+      many: "تم إعداد اسم المستخدم والبريد الإلكتروني الخاصين بك للمزامنة عند دخولك بواسطة %{providers}. %{edit_sign_in_link:عدل طرق تسجيل الدخول لحذف المزامنة} إذا كنت تريد وضع اسم مستخدم أو بريد مخصص بشكل دائم."
+      other: "تم إعداد اسم المستخدم والبريد الإلكتروني الخاصين بك للمزامنة عند دخولك بواسطة %{providers}. %{edit_sign_in_link:عدل طرق تسجيل الدخول لحذف المزامنة} إذا كنت تريد وضع اسم مستخدم أو بريد مخصص بشكل دائم."
   help:
+    installing_user_scripts:
+      title: 'كيفية تثبيت البرامج النصية'
     meta_keys:
       title: "مفاتيح ميتا للبرامج النصية تقرأ بواسطة %{site_name}"
       intro_html: "هذه قائمة <a href=\"http://wiki.greasespot.net/Metadata_Block\"> مفاتيح ميتا</a> يستطيع %{site_name} قرائتها، المفاتيح الني خارج القائمة يمكن تضمينها في البرنامج النصي وستكون موجودة لكن ليس لها تأثير على واجهة %{site_name}'."
@@ -383,34 +514,6 @@ ar:
       post_new_script_link_text: 'أضف برنامج نصي جديد'
     code_rules:
       title: "قواعد %{site_name} من أجل إضافة برامج نصية"
-      content_html: >
-          <p>هذه متطلبات إضافة برنامج نصي إلى %{site_name}. هدفها الحفاظ على %{site_name}
-          مكان آمن ومفيد للبرامج النصية. أي برنامج نصي لا يحقق الشروك سيتم حذفه من
-          قبل مشرفي %{site_name}.</p> <ul>
-
-          <li>يجب أن تتضمن البرامج النصية وصفا لما تفعله. يجب على المستخدمين أن يعرفوا
-          ماذا سيفعل البرنامج النصي قبل تثبيته.</li>
-
-          <li>الكود المرسل للموقع يجب أن لا يكون غامضا أو مصغرا. يجب أن تعطى للمستخدمين
-          الفرصة لفحص وفهم البرنامج النصي قبل تثبيته.</li>
-
-          <li>المكتبات التي يحتاجها البرنامج النصي يجب أن توع هكذا <code>@require</code>,
-          إلا اذا كان هناك سبب تقني لعدم القيام بذلك. في حال تم تضمين مكتبة، يجب أن
-          تتضمن معلومات عن مصدر المكتبة (مثل وصلة أو تعليق أو اسم وإصدار).</li>
-
-          <li>البرنامج النصي الخاص بك يجب أن يحترم حقوق الملكية الفكرية للآخرين. ويشمل
-          هذا البرنامج النصي نفسه وأية موارد (على سبيل المثال الصور) التي يستخدمها.
-          إذا كنت تنوي على استخدام محتوى شخص آخر، التزم بشروط الترخيص أو احصل على
-          إذنهم قبل القيام بذلك.</li>
-
-          <li>%{external_scripts_link:استخدام محدود لجافاسكربت الخارجية.}</li>
-
-          %{adult_content_requirement}
-
-          </ul> <p>إذا لاحظت برنامج نصي يقع خارج هذه المعايير، يرجى الإبلاغ عنه عن
-          طريق الذهاب إلى وصلة الملاحظات لهذا البرنامج النصي، وابدأ المناقشة، واختر
-          خيار "إبلاغ عن برنامج نصي".</p> <p>إذا كنت غير موافق على أي من هذا %{contact_link:لنتحدث
-          عنه}!</p>
       adult_content_rule_html: "<li>البرامج النصية التي تتضمن محتوى للبالغين أو هي لمواقع ذات محتوى البالغين يجب أن يتم وضع علامة تدل على ذلك للسماح للمستخدمين الآخرين باختيار رؤيتها.</li>"
     external_scripts:
       title: "سياسة %{site_name} حول البرامج النصية الخارجية"
@@ -516,6 +619,18 @@ ar:
           والبرامج النصية المنشورة قد تكون قادرة على تعقب المستخدمين إذا تم تثبيتها.</p>
           <h2>مكتبات الطرف الثالث</h2> <p>%{site_name} يمكن أن يشمل كود طرف ثالث لجمع
           إحصاءات أو عرض الإعلانات على الموقع. ويمكن أن تشمل هذه المكتبات منطق تتبع.</p>
+  search:
+    script_search:
+      title: "بحث البرامج النصية "
+    library_search:
+      title: "بحث المكتبات "
+    code_search:
+      title: "بحث الكود المصدري"
+      description: "بحث في الكود المصدري لبرنامج نصي. يتم البحث بتجاهل حالة الأحرف وبنص مباشر."
+    forum_search:
+      title: "بحث في المنتدى"
+    user_search:
+      title: "بحث عن مستخدم"
   common:
     error_preamble: "هناك بعض المشاكل مع ما قمت بنشره ..."
     allowed_elements_link: "(مشاهدة الكود المسموح به)"
@@ -554,6 +669,10 @@ ar:
         screenshot_caption: "تعليق"
         replaced_by_script_id: "البرنامج النصي للاستبدال"
         approve_redistribution: "إعادة التوزيع"
+      script_set:
+        name: "الاسم"
+        description: "الوصف"
+        default_sort: "الفرز الافتراضي "
   errors:
     messages:
       script_missing_name: "مطلوب - حدد واحد بـ @name"

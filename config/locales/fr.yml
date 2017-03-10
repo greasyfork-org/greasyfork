@@ -5,6 +5,11 @@ fr:
       forum: "Forum"
       help: "Aide"
       sign_in: "s'identifier"
+      submenu: "Plus"
+      advanced_search: "Recherche avancée"
+      user_list: "Liste d'utilisateurs"
+      libraries: "Bibliothèques"
+      moderator_log: "Log modérateur"
   helpers:
     application:
       time_ago:
@@ -234,6 +239,11 @@ fr:
     locked_marker: "(Verouillé)"
     unlisted_marker: "(Non-listé)"
     library_marker: "(Bibliothèque)"
+    libraries_title: "Bibliothèques"
+    libraries_description_html: "Il y a des librairies postées par l'utilisateur %{site_name} que vous pouvez <code>@require</code> dans vos scripts. Pour les autres genres de librairies vous pouvez <code>@require</code>, lire les règles  de %{policy_link:%{site_name} sur <code>@require</code>}."
+    by_site_list_description: "Ce sont les sites affectés par les scripts utilisateur les plus populaires. Une plus grande taille de police signifie des scripts utilisateur plus populaires."
+    by_site_list_filter: "Filtrer par nom de site :"
+    search_placeholder: "Recherche de scripts"
   script_sets:
     description: "Les jeux de scripts vous permettent de créer une liste personnalisée de scripts pour naviguer avec sur Greasy Fork. Vous pouvez ajouter des scripts à votre jeu en incluant des scripts individuels, des jeux d'autres utilisateurs ou des jeux générés automatiquement. Vous pouvez également exclure les scripts de votre jeu avec les mêmes méthodes."
     favorites_name: "Favoris"
@@ -288,6 +298,9 @@ fr:
       for_language_exclude: "Exclure"
     calculated_list: "Liste des scripts calculés"
     calculated_list_none: "(Aucun)"
+    calculated_list_more:
+      one: "Et %{count} de plus"
+      other: "Et %{count} de plus"
     already_included: "'%{name}' déjà inclus."
     could_not_parse_script: "Impossible d'analyser le script '% {value}'"
     save: "Sauver"
@@ -310,6 +323,52 @@ fr:
     sleazy_welcome: "Bienvenue sur %{site_name}, un site pour les scripts utilisateurs pour les sites avec du contenu adulte."
     explain_user_scripts_heading: "Que sont les scripts utilisateurs ?"
     explain_user_scripts_html: "Les scripts utilisateurs vous permettent d'être le maître de votre expérience de navigation. Une fois installés, ils améliorent automatiquement les sites que vous visitez en ajoutant des fonctionnalités, qui permettent de faciliter leur utilisation, ou en supprimant les éléments ennuyeux. Les scripts utilisateurs sur %{site_name} sont écrits par d'autres utilisateurs et postés pour être partagés avec tout le monde. Ils sont installables gratuitement et sont faciles à utiliser."
+    installing_step1_header: "Étape 1: installer un gestionnaire de script utilisateur"
+    installing_step1_caption: "Tampermonkey sur Chrome"
+    installing_step1_description_html: >
+        <p>Pour utiliser des scripts utilisateurs, vous devez d'abord installer un
+        gestionnaire de scripts utilisateurs . Le gestionnaire à choisir dépend du
+        navigateur que vous utilisez</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> ou %{chrome_violentmonkey_link:Violent
+        monkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey} ou %{firefox_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla: (no additional software required)</li>
+
+        </ul>
+    installing_step2_header: "Étape 2: installer un script utilisateur"
+    installing_step2_caption: "Un bouton d'installation d'un script utilisateur"
+    installing_step2_description_html: >
+        <p>%{browse_link:Regarder ce site} pour trouver un script utilisateur que
+        vous voulez essayer . Voici un example des scripts les plus populaires:</p>
+
+        %{highlighted_scripts_list}
+
+        <p>Une fois que vous avez trouvé un script utilisateur, cliquer sur le bouton
+        d'installation vert sur la page du script, et votre gestionnaire de script
+        va vous demandez une confirmation d'installation</p>
+    installing_step3_header: "Étape 3: utilise le script utilisateur"
+    installing_step3_description_html: >
+        <p>Aller sur le site que le script utilisateur modifie. Il devrait faire son
+        travail automatiquement. Après avoir essayer le script utilisateur pendant
+        un moment, revenez là où vous l'avez téléchargé, et laissez quelques commentaires
+        pour le l'auteur du script</p>
   users:
     sign_in_title: "S'identifier sur %{site_name}"
     sign_in_description: "S'identifier sur %{site_name} vous permet de poster des scripts et des commentaires sur d'autres scripts. Vous n'avez pas besoin d'être identifié pour parcourir ou installer les scripts."
@@ -357,6 +416,7 @@ fr:
     external_sign_in_removed: "Identification via %{provider} supprimée."
     external_sign_in_failed: "L'identification via %{provider} a échoué : %{error}."
     external_sign_in_already_used: "L'ajout de l'identification via %{provider} a échoué : cette identification est déjà utilisée par '%{user_name}'."
+    external_sign_in_confirmation: "Un nouveau compte %{site_name} a été créé à partir des détails de votre compte %{provider}. Votre nom d'utilisateur public est %{username}."
     syncing_indicator: "(synchronisation)"
     enable_syncing: "Activer la synchronisation"
     disable_syncing: "Désactiver la synchronisation"
@@ -388,7 +448,12 @@ fr:
     greasy_fork_scripts_link:
       one: "%{user_name} a aussi %{count} script sur Greasy Fork."
       other: "%{user_name} a aussi %{count} scripts sur Greasy Fork."
+    update_sync_warning:
+      one: "Votre nom d'utilisateur et courriel sont configurés pour être synchronisés lorsque vous vous connectez avec %{providers}. %{edit_sign_in_link:Editer votre méthode de connexion pour supprimer la synchonisation} si vous voulez définir de façon permanente un nom d'utilisateur personnalisé ou un courriel."
+      other: "Votre nom d'utilisateur et courriel sont configurés pour être synchronisés lorsque vous vous connectez avec %{providers}. %{edit_sign_in_link:Editer votre méthode de connexion pour supprimer la synchonisation} si vous voulez définir de façon permanente un nom d'utilisateur personnalisé ou un courriel."
   help:
+    installing_user_scripts:
+      title: 'Comment installer des scripts utilisateurs'
     meta_keys:
       title: "Métadonnées utilisées par %{site_name}"
       intro_html: "Voici une liste de <a href=\"http://wiki.greasespot.net/Metadata_Block\">métadonnées</a> que %{site_name} peut utiliser. Les entrées non citées dans cette liste peuvent être utilisées dans de nouveaux scripts. Elles seront alors exploitables dans le script installé, mais n'auront aucun effet sur l'interace de %{site_name}."
@@ -416,43 +481,6 @@ fr:
       post_new_script_link_text: 'soumettre un nouveau script'
     code_rules:
       title: "Les règles à respecter lors de la soumission d'un script"
-      content_html: >
-          <p> Ce sont les exigences pour les scripts publiés sur %{site_name}. Ils
-          sont destinés à garder %{site_name} un lieu sûr et utile pour les scripts
-          utilisateur. Tout script qui ne respecte pas ces exigences peut être supprimé
-          par les modérateurs de %{site_name}. </p> <ul>
-
-          <li> Les scripts doivent inclure une description de ce qu'ils font et peuvent
-          ne pas faire des choses déraisonnablement en dehors de cette description.
-          Les utilisateurs doivent savoir ce que fera un script avant de l'installer.
-          </li>
-
-          <li> Le code affiché sur ce site ne doit pas être occulté ou minifié. Les
-          utilisateurs doivent avoir la possibilité d'inspecter et de comprendre un
-          script avant de l'installer. </li>
-
-          <li> Les bibliothèques utilisées par un script doivent être <code> @require
-          </code> -d, à moins qu'il n'y ait une raison technique valable de ne pas
-          le faire. Dans le cas où une bibliothèque est incluse en ligne, elle doit
-          inclure des informations sur la source de la bibliothèque (par exemple un
-          commentaire indiquant l'URL et/ou le nom et la version). </li>
-
-          <li> Votre script doit respecter les droits d'auteur des autres. Cela inclut
-          le script lui-même et toutes les ressources (par exemple les images) qu'il
-          utilise. Si vous avez l'intention d'utiliser le contenu de quelqu'un d'autre,
-          respectez les conditions de licence ou obtenez leur autorisation avant de
-          le faire. </li>
-
-          <li>%{external_scripts_link: l'utilisation de JavaScript externe est limitée.}
-          </li>
-
-          %{Adult_content_requirement}
-
-          </ul><p> Si vous remarquez un script qui ne relève pas de ces paramètres,
-          veuillez le signaler en allant sur le lien Feedback pour ce script, en lançant
-          une discussion et en choisissant l'option "Rapporter le script". </p><p>
-          Si vous n'êtes pas d'accord avec tout cela,% {contact_link:let'stalk about
-          it}!</p>
       adult_content_rule_html: "<li>Les scripts, qui incluent du contenu adulte ou qui sont pour des sites avec contenu adulte, doivent être marqués comme tels pour laisser aux autres utilisateurs le choix de les voir ou non.</li>"
     external_scripts:
       title: "Politique de %{site_name} concernant les scripts externes"
@@ -474,6 +502,8 @@ fr:
     script_search:
       title: "Recherche de script"
       description: "Recherche de scripts. Recherche des noms de script, des descriptions, des infos supplémentaires et des noms d'auteur. %{sphinx_link:Sphinx extended query syntax.}"
+    library_search:
+      title: "Recherche dans la bibliothèque"
     code_search:
       title: "Recherche de code"
       description: "Rechercher le code de script. Il s'agit d'une case-insensible, la recherche en texte brut sans caractères génériques."
