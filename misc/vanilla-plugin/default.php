@@ -174,7 +174,8 @@ class GreasyForkPlugin extends Gdn_Plugin {
 			if (
 				preg_match('/university/i', $Sender->EventArguments['Data']['Name']) ||
 				preg_match('/857767150/', $Sender->EventArguments['Data']['Name']) ||
-				preg_match('/30735980750/', $Sender->EventArguments['Data']['Name'])
+				preg_match('/30735980750/', $Sender->EventArguments['Data']['Name']) ||
+				preg_match('/963983514/', $Sender->EventArguments['Data']['Name'])
 			) {
 				$Sender->EventArguments['IsSpam'] = true;
 			}
