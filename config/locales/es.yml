@@ -242,7 +242,7 @@ es:
     libraries_title: "Bibliotecas"
     libraries_description_html: "Se trata de bibliotecas subidas por otros usuarios de %{site_name} que puedes utilizar en tus propios scripts mediante <code>@require</code>. Si quieres saber más sobre qué tipo de bibliotecas puedes depender al utilizar <code>@require</code>, léete %{policy_link:la política de %{site_name} de uso de <code>@require</code>}."
     by_site_list_title: "Scripts de usuario para %{site_name} agrupados por sitio."
-    by_site_list_description: "Estos son los sitios afectados por los scripts de usuario más populares. Un tamaño de fuente más grande significa scripts de usuario más populares."
+    by_site_list_description: "Estos son los sitios en los que se ejecutan los scripts de usuario más populares. Cuanto más grande sea el texto mayor es su popularidad."
     by_site_list_filter: "Filtrar por nombre del sitio:"
     search_placeholder: "Buscar scripts"
   script_sets:
@@ -324,12 +324,11 @@ es:
     sleazy_welcome: "Bienvenido a %{site_name}, un sitio con scripts de usuario para adultos."
     explain_user_scripts_heading: "¿Qué son los scripts de usuario?"
     explain_user_scripts_html: "Los scripts de usuario son pequeñas porciones de código que añaden funcionalidad, eliminan molestias y en general mejoran las páginas que visitas. Los scripts de usuario alojados en %{site_name} son gratuitos y creados por una comunidad global de usuarios. %{site_name} aloja miles de scripts de usuario escritos por cientos de autores."
-    installing_step1_header: "Paso 1: Instale un administrador de scripts de usuario"
+    installing_step1_header: "1º paso: Instala un administrador de scripts de usuario"
     installing_step1_caption: "Tampermonkey en Chrome"
     installing_step1_description_html: >
-        <p>Para usar scripts de usuario primero tiene que instalar un administrador
-        de scripts de usuario. Qué administrador de scripts de usuario pueda usar
-        depende de qué navegador use.</p>
+        <p>Para añadir scripts de usuario primero tienes que instalar un administrador
+        de scripts. La opción a elegir depende del navegador que utilices:</p>
 
         <ul>
 
@@ -350,25 +349,26 @@ es:
 
         <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
 
-        <li>Qupzilla: (no se requiere software adicional)</li>
+        <li>Qupzilla: (no es necesario instalar nada)</li>
 
         </ul>
-    installing_step2_header: "Paso2: Instale un script de usuario"
+    installing_step2_header: "2º paso: Elige e instala un script"
     installing_step2_caption: "Botón de instalación de un script de usuario"
     installing_step2_description_html: >
-        <p>%{browse_link:Explore este sitio} para encontrar un script de usuario que
-        quiera probar. Aquí tiene una muestra de los scripts más populares:</p>
+        <p>%{browse_link:Busca entre los scripts alojados en el sitio} hasta encontrar
+        uno que te guste. Si no se te ocurre nada aquí te hemos dejado una pequeña
+        muestra de los scripts más populares:</p>
 
         %{highlighted_scripts_list}
 
-        <p>Una vez haya encontrado un script de usuario, haga clic en el botón verde
-        de instalación en la página del script de usuario, y su administrador de scripts
-        de usuario le pedirá que confirme la instalación.</p>
-    installing_step3_header: "Paso 3: Utilice el script de usuario"
+        <p>Una vez hayas encontrado lo que buscas haz clic sobre el correspondiente
+        botón verde, el administrador de scripts de usuario pedirá que confirmes la
+        instalación.</p>
+    installing_step3_header: "3º paso: Prueba el script"
     installing_step3_description_html: >
-        <p>Vaya al sitio al que afecta el script de usuario, y este automáticamente
-        debería realizar su trabajo. Tras probar el script durante un rato, vuelva
-        al lugar desde donde lo instaló y deje algún comentario para el autor.</p>
+        <p>Visita el sitio en el que funciona el script, debería empezar a funcionar
+        por su cuenta. Tras probar el script puedes dar tu opinión en la página de
+        instalación, dejando comentarios útiles para el autor.</p>
   users:
     sign_in_title: "Inicia sesión en %{site_name}"
     sign_in_description: "Iniciar sesión en %{site_name} te permite publicar scripts y comentar en los scripts de otros.  Aunque no necesitas iniciar sesión para buscar o instalar scripts."
@@ -416,7 +416,7 @@ es:
     external_sign_in_removed: "Se ha quitado el inicio de sesión con %{provider}."
     external_sign_in_failed: "No se ha podido iniciar sesión con %{provider}: %{error}."
     external_sign_in_already_used: "No se ha podido añadir %{provider} porque el usuario «%{user_name}» ya está usando esa cuenta."
-    external_sign_in_confirmation: "Se ha creado una nueva cuenta de %{site_name} basada en los detalles de la cuenta de su %{provider}. Su nombre público de usuario es %{username}."
+    external_sign_in_confirmation: "Se ha creado una nueva cuenta de %{site_name} basada en los detalles de la cuenta de %{provider}. Tu nombre público de usuario es %{username}."
     syncing_indicator: "(sincronizando)"
     enable_syncing: "Activar sincronización"
     disable_syncing: "Desactivar sincronización"
@@ -450,7 +450,7 @@ es:
       other: "%{user_name} también tiene %{count} scripts en Greasy Fork."
     update_sync_warning:
       one: "Su nombre de usuario y correo electrónico están configurados para sincronizarse cuando inicie sesión con %{providers}. %{edit_sign_in_link:Edite sus métodos de inicio de sesión para eliminar el sincronizado} si quiere establecer un nombre de usuario o correo electrónico personalizado de forma permanente."
-      other: "Su nombre de usuario y correo electrónico están configurados para sincronizarse cuando inicie sesión con %{providers}. %{edit_sign_in_link:Edite sus métodos de inicio de sesión para eliminar el sincronizado} si quiere establecer un nombre de usuario o correo electrónico personalizado de forma permanente."
+      other: "Tu nombre de usuario y correo electrónico están configurados para sincronizarse cuando inicies sesión con %{providers}. %{edit_sign_in_link:Edita tus métodos de inicio de sesión para eliminar la sincronía} si quieres utilizar un nombre de usuario o correo electrónico personalizado de forma permanente."
   help:
     installing_user_scripts:
       title: 'Aprender a instalar scripts de usuario'

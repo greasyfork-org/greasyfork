@@ -5,6 +5,11 @@ tr:
       forum: "Forum"
       help: "Yardım"
       sign_in: "Oturum aç"
+      submenu: "Daha fazla.."
+      advanced_search: "Gelişmiş arama"
+      user_list: "Kullanıcı listesi"
+      libraries: "Kütüphaneler"
+      moderator_log: "Denetleyici günlüğü"
   helpers:
     application:
       time_ago:
@@ -234,6 +239,7 @@ tr:
     libraries_title: "Kütüphaneler"
     by_site_list_description: "Bunlar, en popüler kullanıcıların ürettiği scriptlerinden etkilenen sitelerdir. Büyük yazı tipi boyutu daha popüler kullanıcı yapımı script anlamına gelir."
     by_site_list_filter: "Site ismine göre filtrele:"
+    search_placeholder: "Arama scriptleri"
   script_sets:
     favorites_name: "Favoriler"
     delete: "Script setini sil"
@@ -311,6 +317,10 @@ tr:
     sleazy_welcome: "%{site_name}'e hoşgeldiniz, yetişkin kullanıcı scriptleri için bir site."
     explain_user_scripts_heading: "Kullanıcı scriptleri nedir?"
     explain_user_scripts_html: "Kullanıcı scriptleri göz atma deneyiminizi kontrol etmenizi sağlar. Yüklendikten sonra, özellikler ekleyerek, onları daha kolay kullanmanızı sağlayarak veya rahatsız edici bitleri çıkartarak ziyaret ettiğiniz siteleri otomatik olarak daha iyi hale getirirler. %{site_name} alanındaki kullanıcı scriptler diğer kullanıcılar tarafından yazılmış ve dünyayla paylaşımda bulunmak için gönderilmiştir. Kurulumu kolay ve kullanımı kolaydır."
+    installing_step1_header: "Adım 1: Bir kullanıcı script yöneticisi kur"
+    installing_step1_caption: "Chrome için Tampermonkey "
+    installing_step2_header: "Adım 2: Bir kullanıcı skripti kur"
+    installing_step3_header: "Adım 3: Kullanıcı scripti kullan"
   users:
     sign_in_title: "%{site_name}'ta oturum aç"
     sign_in_description: "Daha fazla..Daha fazla..%{site_name}'ta oturum aç%{site_name}'ta oturum aç%{site_name}'da scriptlerini göndermek ya da başa scriptlere geribesleme yapmak için oturum açılır. Script bulmak ya da kurmak için oturum açmana gerek yok."
@@ -390,6 +400,8 @@ tr:
       one: "%{user_name}'nin ayrıca Greasy Fork'da %{count} scripti var."
       other: "%{user_name}'nin ayrıca Greasy Fork'da %{count} scripti var."
   help:
+    installing_user_scripts:
+      title: 'Kullanıcı scriptleri nasıl yüklenir?'
     meta_keys:
       title: "Script meta anahtarları %{site_name} tarafından okundu"
       name: "Scriptin ismi, başlıkta ve linklerde kullanılacak. Gerekli."
@@ -449,6 +461,17 @@ tr:
           <h2>Third party libraries</h2> <p>%{site_name} may include third party code
           to collect statistics or display advertisements on the site. These libraries
           may include tracking logic.</p>
+  search:
+    script_search:
+      title: "Script Ara"
+    library_search:
+      title: "Kütüphane Ara"
+    code_search:
+      title: "Kod Ara"
+    forum_search:
+      title: "Forum Araması"
+    user_search:
+      title: "Kullanıcı araması"
   common:
     error_preamble: "Ne gönderdiğinizde bazı sorunlar oldu.."
     allowed_elements_link: "(İzin verilen kodları gör.)"
@@ -487,6 +510,10 @@ tr:
         screenshot_caption: "Başlık"
         replaced_by_script_id: "Değiştirilmiş script"
         approve_redistribution: "Yeniden dağıtım"
+      script_set:
+        name: "İsim"
+        description: "Açıklama"
+        default_sort: "Varsayılan sıralama"
   errors:
     messages:
       script_missing_name: "Gerekli - Bir @name belirle"
