@@ -2,7 +2,7 @@ Greasyfork::Application.routes.draw do
 
 	get 'sso', :to => 'home#sso'
 
-	scope "(:locale)", locale: /ar|bg|cs|da|de|el|en|es|fi|fr|fr\-CA|he|hu|id|it|ja|ko|nb|nl|pl|pt\-BR|ro|ru|sk|sv|tr|uk|vi|zh\-CN|zh\-TW/ do
+	scope "(:locale)", locale: /ar|bg|cs|da|de|el|en|es|fi|fr|fr\-CA|he|hu|id|it|ja|ko|nb|nl|pl|pt\-BR|ro|ru|sk|sv|th|tr|uk|vi|zh\-CN|zh\-TW/ do
 
 		get '/users', :to => 'users#index', :as => 'users'
 		get '/users/webhook-info', :to => 'users#webhook_info', :as => 'user_webhook_info'

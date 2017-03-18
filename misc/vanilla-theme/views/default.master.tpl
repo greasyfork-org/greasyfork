@@ -49,6 +49,7 @@
 						<option value="ru" {if $locale == 'ru'}selected{/if}>Русский (ru)</option>
 						<option value="sk" {if $locale == 'sk'}selected{/if}>Slovenčina (sk)</option>
 						<option value="sv" {if $locale == 'sv'}selected{/if}>Svenska (sv)</option>
+						<option value="th" {if $locale == 'th'}selected{/if}>ภาษาไทย (th)</option>
 						<option value="tr" {if $locale == 'tr'}selected{/if}>Türkçe (tr)</option>
 						<option value="uk" {if $locale == 'uk'}selected{/if}>Українська (uk)</option>
 						<option value="vi" {if $locale == 'vi'}selected{/if}>Tiếng Việt (vi)</option>
