@@ -68,7 +68,7 @@ project.languages.each do |language|
 				v = lookup_value(translated_content, k)
 				v = lookup_value(english_content, k) if v.nil?
 				raise "not found #{k}" if v.nil?
-				file.write("$Definition['#{k}'] = '#{v}';\n")
+				file.write("$Definition['#{k}'] = '#{v.gsub(/'/, "\\\\\'")}';\n")
 			end
 		}
 	end
