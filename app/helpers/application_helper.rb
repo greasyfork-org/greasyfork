@@ -91,6 +91,7 @@ module ApplicationHelper
 			@@markdown_sanitize_config[:attributes] = @@markdown_sanitize_config[:attributes].merge('img' => ['src', 'alt', 'height', 'width'], 'video' => ['src', 'poster', 'height', 'width'], 'details' => ['open'], :all => ['title', 'name'])
 			@@markdown_sanitize_config[:protocols] = @@markdown_sanitize_config[:protocols].merge('img' => {'src'  => ['https']}, 'video' => {'src'  => ['https']})
 			@@markdown_sanitize_config[:remove_contents] = ['script', 'style']
+			@@markdown_sanitize_config[:add_attributes] = {'video' => {'controls' => 'controls'}}
 
 			yes_follow = lambda do |env|
 				follow_domains = ['mozillazine.org', 'mozilla.org', 'mozilla.com', 'userscripts.org', 'userstyles.org', 'mozdev.org', 'photobucket.com', 'facebook.com', 'chrome.google.com', 'github.com', 'greasyfork.org', 'openuserjs.org']
