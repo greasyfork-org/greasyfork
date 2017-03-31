@@ -5,11 +5,11 @@
 
 <div id="home-script-nav">
 	<%= form_tag(scripts_path, class: 'home-search', method: :get) do %>
-		<input type="search" name="q" placeholder="Search for user scripts">
+		<input type="search" name="q" placeholder="<%=t('home.search_placeholder')%>">
 		<input type="submit" value="🔎" class="search-submit" >
 	<% end %>
 	<div id="home-top-sites">
-		Scripts for:
+		<%=t('home.scripts_for_label')%>
 		<% ScriptsController.get_top_by_sites(script_subset).map(&:first).compact.first(5).each do |site| %>
 			<%= link_to(site, by_site_scripts_path(site: site)) %>
 		<% end %>
