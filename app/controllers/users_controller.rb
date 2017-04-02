@@ -1,6 +1,7 @@
 require 'script_importer/script_syncer'
 require 'uri'
 require 'securerandom'
+require 'git'
 
 class UsersController < ApplicationController
 
@@ -97,46 +98,83 @@ class UsersController < ApplicationController
 			return
 		end
 
-		# construct the raw URLs from the provided info. raw URLs are in the format:
-		# (repository url)/raw/(branch)/(path) OR
-		# https://raw.githubusercontent.com/(user)/(repo)/(branch)/(path)
-		base_paths = [
-			params[:repository][:url] + '/raw/' + params[:ref].split('/').last + '/', 'https://raw.githubusercontent.com/' + params[:repository][:url].split('/')[3..4].join('/') + '/' + params[:ref].split('/').last + '/'
-		]
-
-		changed_urls = {}
+		# Get a list of changed files and the commit info that goes with them.
+		# We will keep all commit messages but only the most recent commit.
+		changed_files = {}
 		params[:commits].each do |c|
-			# there's also "added" and "deleted", but I don't think there's a case for syncing when those happen
-			# rails seems to set modified to nil instead of empty
 			if !c[:modified].nil?
 				c[:modified].each do |m|
-					base_paths.each do |bp|
-						url = bp + self.class.urlify_webhook_path_segment(m)
-						if !changed_urls.has_key?(url)
-							changed_urls[url] = []
-						end
-						changed_urls[url] << c[:message]
-					end
+					changed_files[m] ||= {}
+					changed_files[m][:commit] = c[:id]
+					(changed_files[m][:messages] ||= []) << c[:message]
 				end
 			end
 		end
 
-		scripts_and_messages = self.class.get_synced_scripts(user, changed_urls)
+		# construct the raw URLs from the provided info. raw URLs are in the format:
+		# (repository url)/raw/(branch)/(path) OR
+		# https://raw.githubusercontent.com/(user)/(repo)/(branch)/(path)
+		# This will be used to find the related scripts.
+		base_paths = [
+			params[:repository][:url] + '/raw/' + params[:ref].split('/').last + '/', 'https://raw.githubusercontent.com/' + params[:repository][:url].split('/')[3..4].join('/') + '/' + params[:ref].split('/').last + '/'
+		]
 
-		changed_script_urls = []
-		scripts_and_messages.each do |s, messages|
-			changed_script_urls << script_url(s, :only_path => false)
-			# update sync type to webhook, now that we know this script is affected by it
-			if s.script_sync_type_id != 3
-				s.script_sync_type_id = 3
-				s.save(:validate => false)
+		# Associate scripts to each file.
+		changed_files.each do |filename, info|
+			urls = base_paths.map do |bp|
+				bp + self.class.urlify_webhook_path_segment(filename)
 			end
+			# Scripts syncing code to this file
+			info[:scripts] = user.scripts.not_deleted.where(sync_identifier: urls)
 
-			# GitHub's raw server caches things for up to 5 minutes. We also want to let the webhook request complete asynchronously anyway.
-			ScriptImporter::ScriptSyncer.delay(run_at: 5.minutes.from_now).sync(s, 'Synced from GitHub - ' + messages.join(' - '))
+			# Scripts syncing additional info to this file
+			info[:script_attributes] = LocalizedScriptAttribute.where(sync_identifier: urls).joins(:script).where(scripts: {user_id: user.id})
 		end
 
-		render :json => {:affected_scripts => changed_script_urls}
+		# Forget about any files that changed but are not related to scripts or attributes.
+		changed_files = changed_files.select{|filename, info| info[:scripts].any? || info[:script_attributes].any?}
+
+		if changed_files.empty?
+			render :json => {:affected_scripts => []} 
+			return
+		end
+
+		# Get the contents of the files.
+		Git.get_contents(params[:repository][:git_url], Hash[changed_files.map{|filename, info| [filename, info[:commit]]}]) do |file_path, commit, content|
+			changed_files[file_path][:content] = content
+		end
+
+		# Apply the new contents to the DB.
+
+		updated_scripts = []
+		update_failed_scripts = []
+
+		changed_files.each do |filename, info|
+			contents = info[:content]
+			info[:scripts].each do |script|
+				# update sync type to webhook, now that we know this script is affected by it
+				script.script_sync_type_id = 3
+				sv = script.script_versions.build(code: contents, changelog: info[:messages].join(', '))
+				sv.do_lenient_saving
+				sv.calculate_all(script.description)
+				script.apply_from_script_version(sv)
+				if script.save
+					updated_scripts << script
+				else
+					update_failed_scripts << script
+				end
+			end
+			info[:script_attributes].each do |script_attribute|
+				script_attribute.attribute_value = contents
+				if script_attribute.save
+					updated_scripts << script_attribute.script
+				else
+					update_failed_scripts << script_attribute.script
+				end
+			end
+		end
+
+		render json: {updated_scripts: updated_scripts, updated_failed: update_failed_scripts}
 	end
 
 	def edit_sign_in
@@ -293,40 +331,6 @@ private
 				return finder.order('sum(scripts.good_ratings + scripts.ok_ratings + scripts.bad_ratings) DESC, users.id')
 		end
 		return finder.order({created_at: :desc}, :id)
-	end
-
-	# Returns a Hash of Script to array of commit messages. Parameters:
-	#   user - user to limit the script search to
-	#   urls_and_messages - a map of URL for the modified files to array of commit messages
-	def self.get_synced_scripts(user, urls_and_messages)
-		scripts_and_messages = {}
-		return scripts_and_messages if urls_and_messages.nil? or urls_and_messages.empty?
-
-		# find the scripts syncing from those URLs for code
-		scripts = Script.not_deleted.where(:user_id => user.id).where(:sync_identifier => urls_and_messages.keys).to_a
-
-		# find the scripts syncing from those URLs for additional info
-		additional_info_script_ids = Script.not_deleted.where(:user_id => user.id).where(['localized_script_attributes.sync_identifier in (?)', urls_and_messages.keys]).includes(:localized_attributes).references(:localized_script_attributes).ids
-		scripts.concat(Script.find(additional_info_script_ids).to_a)
-		scripts.uniq!
-
-		# relate each script to the commit messages
-		scripts.each do |s|
-			messages = []
-
-			# sync for code
-			code_messages = urls_and_messages[s.sync_identifier]
-			messages.concat(code_messages) unless code_messages.nil?
-
-			# sync for localized attributes
-			s.localized_attributes.select{|la| !la.sync_identifier.nil?}.map{|la| la.sync_identifier}.uniq.each do |sync_identifier|
-				messages.concat(urls_and_messages[sync_identifier]) if !urls_and_messages[sync_identifier].nil?
-			end
-
-			scripts_and_messages[s] = messages.uniq
-		end
-
-		return scripts_and_messages
 	end
 
 	# Turns a path segment from a webhook request to a URL segment

@@ -170,7 +170,7 @@ class ScriptVersion < ApplicationRecord
 
 	attr_accessor :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation, :truncate_description
 
-	def initialize
+	def initialize(*args)
 		# Allow code to be updated without version being upped
 		@version_check_override = false
 		# Set a version by ourselves if not provided
@@ -183,7 +183,7 @@ class ScriptVersion < ApplicationRecord
 		@minified_confirmation = false
 		# Truncate description if it's too long
 		@truncate_description = false
-		super
+		super(*args)
 	end
 
 	# reuse script code objects to save disk space
