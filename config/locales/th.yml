@@ -201,7 +201,7 @@ th:
     diff_old_version: "เก่า:"
     diff_new_version: "ใหม่:"
     diff_lines_of_context: "บรรทัดของบริบท:"
-    diff_ignore_whitespace: "ละเว้นการเปลี่ยนแปลงช่องว่าง"
+    diff_ignore_whitespace: "ละเว้นการเปลี่ยนแปลงพื้นที่ว่าง"
     diff_refresh: "รีเฟรช"
     diff_no_change: "ไม่พบความแตกต่าง"
     good_rating_explanation: "จำนวนผู้คนที่ให้คะแนนดีหรือเพิ่มเป็นชื่นชอบ"
@@ -219,6 +219,8 @@ th:
     redistributable_title: "การอนุญาตเผยแพร่สคริปต์ผู้ใช้ใหม่"
     adult_content: "เนื้อหาสำหรับผู้ใหญ่"
     adult_content_self_report: "สคริปต์นี้มีเนื้อหาสำหรับผู้ใหญ่หรือมีไว้สำหรับไซต์ที่มีเนื้อหาสำหรับผู้ใหญ่"
+    not_adult_content_self_report_html: "สคริปต์นี้ <strong>ไม่มี</strong> เนื้อหาสำหรับผู้ใหญ่ และ <strong>ไม่ได้</strong> มีไว้สำหรับไซต์ที่มีเนื้อหาสำหรับผู้ใหญ่"
+    adult_content_on_greasy_not_logged_in_error: "สคริปต์นี้ไม่พร้อมใช้งานแบบไม่ระบุตัวตนบนไซต์นี้อีกต่อไปแล้ว %{login_link:เข้าสู่ระบบ} และตรวจสอบการตั้งค่าบัญชี Greasy Fork ของคุณ"
     non_adult_content_on_sleazy: "สคริปต์นี้ไม่พร้้อมใช้งานบนไซต์นี้"
     adult_marker: "(สำหรับผู้ใหญ่)"
     deleted_marker: "(ลบแล้ว)"
@@ -226,6 +228,8 @@ th:
     unlisted_marker: "(ไม่อยู่ในรายการ)"
     library_marker: "(คลัง)"
     libraries_title: "คลัง"
+    by_site_list_title: "สคริปต์ผู้ใช้บน %{site_name} จัดกลุ่มตามไซต์"
+    by_site_list_description: "ไซต์เหล่านี้เป็นไซต์ที่สคริปต์ผู้ใช้เป็นที่นิยมมากที่สุด ยิ่งขนาดตัวอักษรที่ใหญ่หมายความว่าสคริปต์ผู้ใช้ยิ่งเป็นที่นิยม"
     by_site_list_filter: "กรองตามชื่อไซต์:"
     search_placeholder: "ค้นหาสคริปต์"
   script_sets:
@@ -235,25 +239,37 @@ th:
     site_default_sort: "(ค่าเริ่มต้นของไซต์)"
     edit_scripts:
       heading: "สคริปต์"
-      included: "รวมแล้ว"
-      included_none: "(ไม่มี)"
-      excluded: "ยกเว้นแล้ว"
-      excluded_none: "(ไม่มี)"
-      add_include: "รวม"
-      add_exclude: "ยกเว้น"
-    edit_sets:
       description: "รวมหรือยกเว้นชุดสคริปต์อื่นในชุดสคริปต์ของคุณ"
       included: "รวมแล้ว"
       included_none: "(ไม่มี)"
+      remove_included: "ลบที่เลือก"
       excluded: "ยกเว้นแล้ว"
       excluded_none: "(ไม่มี)"
+      remove_excluded: "ลบที่เลือก"
+      add_label: "เพิ่มสคริปต์ (URL หรือไอดี  แยกได้ด้วยพื้นที่ว่าง)"
       add_include: "รวม"
       add_exclude: "ยกเว้น"
+    edit_sets:
+      heading: "ชุดสคริปต์"
+      description: "รวมหรือยกเว้นชุดสคริปต์อื่นในชุดสคริปต์ของคุณ"
+      included: "รวมแล้ว"
+      included_none: "(ไม่มี)"
+      remove_included: "ลบที่เลือก"
+      excluded: "ยกเว้นแล้ว"
+      excluded_none: "(ไม่มี)"
+      remove_excluded: "ลบที่เลือก"
+      add_label: "เพิ่มสคริปต์ (URL หรือไอดี  แยกได้ด้วยพื้นที่ว่าง)"
+      add_include: "รวม"
+      add_exclude: "ยกเว้น"
+      user_label: "รายชื่อชุดสคริปต์ที่เป็นของผู้ใช้ (URL, ไอดี หรือชื่อ)"
+      user_no_sets: "(ผู้ใช้ไม่มีชุด)"
+      user_no_other_sets: "(ผู้ใช้ไม่มีชุดอื่น)"
     edit_auto_sets:
+      heading: "ชุดสคริปต์อัตโนมัติ"
       description: "รวมหรือยกเว้นรายชื่อสคริปต์ที่ถูกสร้างโดยอัตโนมัติในชุดสคริปต์ของคุณ"
       included: "รวมแล้ว"
       included_none: "(ไม่มี)"
-      remove_included: "ลบที่เลือกแล้ว"
+      remove_included: "ลบที่เลือก"
       excluded: "ยกเว้นแล้ว"
       excluded_none: "(ไม่มี)"
       all_scripts_label: "สคริปต์ทั้งหมด"
@@ -291,11 +307,48 @@ th:
     welcome: "ยินดีต้อนรับสู่ %{site_name} ไซต์สำหรับสคริปต์ผู้ใช้"
     sleazy_title: "%{site_name} - สคริปต์ผู้ใช้สำหรับผู้ใหญ่ที่ปลอดภัยแและเป็นประโยชน์"
     sleazy_welcome: "ยินดีต้อนรับสู่ %{site_name} ไซต์สำหรับสคริปต์ผู้ใช้สำหรับผู้ใหญ่"
+    search_placeholder: "ค้นหาสคริปต์ผู้ใช้"
+    scripts_for_label: "สคริปต์สำหรับ:"
     explain_user_scripts_heading: "สคริปต์ผู้ใช้คืออะไร?"
+    explain_user_scripts_html: "สคริปต์ผู้ใช้จะทำให้คุณควบคุมประสบการณ์การเปิดหาของคุณ เมื่อติดตั้งแล้ว สคริปต์จะทำให้ไซต์ที่คุณเยี่ยมชมดีขึ้นกว่าเดิมโดยอัตโนมัติได้โดยเพิ่มคุณสมบัติ ทำให้ใช้งานง่ายขึ้น หรือกำจัดสิ่งที่น่ารำคาญออก สคริปต์ผู้ใช้บน %{site_name} ถูกเขียนโดนผู้ใช้อื่นและถูกโพสต์เพื่อแบ่งปันกันทั่วโลก ซึ่งสามารถติดตั้งได้ฟรีและใช้งานง่าย"
     installing_step1_header: "ขั้นตอนที่ 1: ติดตั้งเครื่องมือจัดการสคริปต์ผู้ใช้"
     installing_step1_caption: "Tampermonkey บน Chrome"
+    installing_step1_description_html: >
+        <p>เพื่อที่จะใช้งานสคริปต์ผู้ใช้ คุณต้องติดตั้งเครื่องมือจัดการสคริปต์ผู้ใช้ก่อน
+        เครื่องมือจัดการสคิรปต์ผู้ใช้ที่คุณใช้งานได้จะขึ้นอยู่กับเบราว์เซอร์ที่คุณใช้งาน/p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> หรือ %{chrome_violentmonkey_link:Violent
+        monkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey} หรือ %{firefox_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla: (ไม่ต้องใช้ซอฟต์แวร์เพิ่มเติม)</li>
+
+        </ul>
     installing_step2_header: "ขั้นตอนที่ 2: ติดตั้งสคริปต์ผู้ใช้"
     installing_step2_caption: "ปุ่มติดตั้งของสคริปต์ผู้ใช้"
+    installing_step2_description_html: >
+        <p>%{browse_link:เปิดหาไซต์นี้} เพื่อค้นหาสคริปต์ผู้่ใช้ที่คุณต้องการลองใช้งาน
+        นี่คือตัวอย่างสคริปต์ที่เป็นที่นิยมมากที่สุด:</p>
+
+        %{highlighted_scripts_list}
+
+        <p>เมื่อคุณพบสคริปต์ผู้ใช้แล้ว คลิกปุ่มติดตั้งสีเขียวบนหน้าของสคริปต์ผู้ใช้
+        และเครื่องมือจัดการสคริปต์ผู้ใช้ของคุณจะขอให้คุณยืนยันเพื่อติดตั้ง</p>
     installing_step3_header: "ขั้นตอนที่ 3: ใช้งานสคริปต์ผู้ใช้"
   users:
     sign_in_title: "เข้าสู่ระบบไปยัง %{site_name}"
@@ -359,6 +412,14 @@ th:
     listing_title: "ผู้ใช้"
     search_placeholder: "ค้นหาผู้ใช้"
     locale_prompt: "(เลือกภาษา)"
+    show_ads_description: "สนับสนุน %{site_name} โดยปิดการซ่อนโฆษณา"
+    show_sensitive_description: "แสดงสคริปต์ที่มีเนื้อหาสำหรับผู้ใหญ่"
+    preferred_markup_description: "จะถูกใช้สำหรับสคริปต์และโพสต์ใหม่"
+    flattr_username_description_html: "ผู้ใช้ของสคิรปต์ของคุณจะถูกชวนให้บริจาคไปยังบัญชี <a href=\"https://flattr.com\">Flattr</a> ของคุณ "
+    approve_redistribution_true: "ฉันอนุญาตให้สคริปต์ของฉันถูกโพสต์ใหม่ในที่อื่น ๆ ได้"
+    approve_redistribution_false: "ฉันไม่ต้องการให้สคริปต์ของฉันถูกโพสต์ใหม่ในที่อื่น ๆ"
+    greasy_fork_scripts_link:
+      other: "%{user_name} ก็มี %{count} สคริปต์บน Greasy Fork"
   help:
     installing_user_scripts:
       title: 'วิธีติดตั้งสคริปต์ผู้ใช้'
@@ -368,6 +429,7 @@ th:
       description: "คำอธิบายของสิ่งที่สคริปต์ทำ โดยแสดงเป็นข้อความใต้ชื่อสคริปต์ ซึ่งจำเป็นต้องมี"
       require_html: "รวม JavaScript ลงในสคริปต์ ดูที่ %{external_script_link}"
       require_external_script_link_text: "กฎสำหรับโค้ดที่มีสคริปต์ภายนอก"
+      contributionAmount_html: "จำนวนการบริจาคที่แนะนำ ใช้ร่วมกับ<code>@contributionURL</code>"
     writing_user_scripts:
       title: "วิธีเขียนสคริปต์ผู้ใช้"
       ask_in_forum_link_text: 'ถามในฟอรัม'
@@ -393,19 +455,25 @@ th:
   search:
     script_search:
       title: "การค้นหาสคริปต์"
+      description: "ค้นหาสคริปต์ ค้นหาชื่อสคริปต์ คำอธิบาย ข้อมูลเพิ่มเติม และชื่อผู้เขียน  %{sphinx_link:โครงสร้างไวยากรณ์คิวรี่แบบขยาย Sphinx}"
     library_search:
       title: "การค้นหาคลัง"
+      description: "ค้นหาคลัง ค้นหาชื่อคลัง คำอธิบาย ข้อมูลเพิ่มเติม และชื่อผู้เขียน  %{sphinx_link:โครงสร้างไวยากรณ์คิวรี่แบบขยาย Sphinx}"
     code_search:
       title: "การค้นหาโค้ด"
+      description: "ค้นหาโค้ดสคริปต์ ไม่ไวต่ออักษรใหญ่เล็ก ค้นหาด้วยข้อความธรรมดาโดยไร้อักขระตัวแทน"
     forum_search:
       title: "การค้นหาฟอรัม"
+      description: "ค้นหาการสนทนาและคำวิจารณ์ในฟอรัม %{fulltext_link:ค้นหาด้วยภาษาธรรมชาติ MySQL}"
     user_search:
       title: "การค้นหาผู้ใช้"
+      description: "ค้นหาผู้ใช้ด้วยชื่อ ค้นหาด้วยข้อความธรรมดา"
   common:
+    error_preamble: "ตรวจพบปัญหาบางอย่างเกี่ยวกับสิ่งที่คุณโพสต์..."
     allowed_elements_link: "(ดูโค้ดที่อนุญาต)"
     allowed_elements_and_attributes_title: "องค์ประกอบที่อนุญาตสำหรับเนื้อหา HTML"
     allowed_elements_intro: "องค์ประกอบและแอตทริบิวต์ต่อไปนี้ได้รับอนุญาต นี่จะปรับใช้กับทั้ง HTML และ Markdown (หลังจากการแปลงเป็น HTML)"
-    allowed_elements_extra_info: "ช่องว่างจะถูกเปลี่ยนเป็นองค์ประกอบ p หรือ br โดย URL จะถูกแสดงเป็นลิงก์โดยอัตโนมัติ"
+    allowed_elements_extra_info: "พื้นที่ว่างจะถูกเปลี่ยนเป็นองค์ประกอบ p หรือ br โดย URL จะถูกแสดงเป็นลิงก์โดยอัตโนมัติ"
     not_found_text: "404 - ไม่พบหน้า"
     not_found_title: "404 - ไม่พบหน้า"
     not_found_link_home: "ไปหน้าหลัก"
