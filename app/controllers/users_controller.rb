@@ -155,6 +155,14 @@ class UsersController < ApplicationController
 				# update sync type to webhook, now that we know this script is affected by it
 				script.script_sync_type_id = 3
 				sv = script.script_versions.build(code: contents, changelog: info[:messages].join(', '))
+
+				# Copy previous additional infos and screenshots
+				last_saved_sv = script.get_newest_saved_script_version
+				script.localized_attributes_for('additional_info').each do |la|
+					sv.build_localized_attribute(la)
+				end
+				sv.screenshots = last_saved_sv.screenshots
+
 				sv.do_lenient_saving
 				sv.calculate_all(script.description)
 				script.apply_from_script_version(sv)
