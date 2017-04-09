@@ -16,7 +16,7 @@ $Definition['RatingReport'] = '<div class="report">รายงานสคร�
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = 'แย่ - สคริปต์ไม่ทำงาน';
 /** Label for the radio button for rating a script "OK" **/
-$Definition['RatingOK'] = 'พอใช้ - สคริปต์ทำงานได้ แต่มีปัญหาใหญ่ ๆ';
+$Definition['RatingOK'] = 'พอใช้ - สคริปต์ทำงานได้ แต่มีปัญหาสำคัญ';
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'ดี - สคริปต์ทำงานได้ดีมาก';
 // Category name for Site Feedback
@@ -32,12 +32,12 @@ $Definition['Categories.script-requests.Name'] = 'คำขอสร้างส
 // Category description for Script Creation Requests
 $Definition['Categories.script-requests.Description'] = 'ขอให้ใครสักคนเขียนสคริปต์ให้กับคุณ';
 // Category name for Script Discussions
-$Definition['Categories.script-discussions.Name'] = 'การสนทนาสคริปต์';
+$Definition['Categories.script-discussions.Name'] = 'กระทู้สคริปต์';
 // Category description for Script Discussions
-$Definition['Categories.script-discussions.Description'] = 'การสนทนาสคริปต์ที่ถูกโพสต์ไปยัง Greasy Fork';
+$Definition['Categories.script-discussions.Description'] = 'กระทู้สคริปต์ถูกโพสต์ไปยัง Greasy Fork แล้ว';
 // Link on Recent Discussions to hide script discussions
-$Definition['Turn on filter'] = 'ซ่อนการสนทนาสคริปต์';
+$Definition['Turn on filter'] = 'ซ่อนกระทู้สคริปต์';
 // Link on Recent Discussions to show script discussions
-$Definition['Turn off filter'] = 'แสดงการสนทนาสคริปต์';
+$Definition['Turn off filter'] = 'แสดงกระทู้สคริปต์';
 // Link on forum profile pointing to main site profile
 $Definition['Greasy Fork Profile'] = 'โปรไฟล์ Greasy Fork';

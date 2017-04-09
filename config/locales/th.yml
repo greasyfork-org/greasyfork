@@ -22,8 +22,8 @@ th:
   scripts:
     created_date: "สร้างเมื่อ"
     updated_date: "อัปเดตเมื่อ"
-    total_installs: "จำนวนการติดตั้งทั้งหมด"
-    daily_installs: "จำนวนการติดตั้งประจำวัน"
+    total_installs: "จำนวนติดตั้งทั้งหมด"
+    daily_installs: "จำนวนติดตั้งประจำวัน"
     ratings: "คะแนน"
     author_name: "ผู้เขียน"
     version_number: "เวอร์ชัน"
@@ -63,7 +63,7 @@ th:
     delete_update_behaviour_1: "ให้พวกเขาเก็บไว้ตามเดิม"
     delete_update_behaviour_2: "อัปเดตสคริปต์ให้ว่างเปล่าให้กับพวกเขา นี่เป็นวิธีที่เหมาะสมเมื่อสคริปต์มีผลเสียบนไซต์ที่สคริปต์ทำงาน"
     delete_permanently_heading: "การลบถาวร"
-    delete_permanently_explanation: "การลบสคริปต์ของคุณอย่างถาวรจะลบมันและบันทึกที่เกี่ยวข้องทั้งหมด ยกเว้นการสนทนาบนฟอรัมและบันทึกการดำเนินการของผู้ดูแล การลบถาวรเป็นการถาวร ซึ่งไม่สามารถถูกย้อนกลับได้ แม้โดยผู้ดูแล"
+    delete_permanently_explanation: "การลบสคริปต์ของคุณอย่างถาวรจะลบมันและบันทึกที่เกี่ยวข้องทั้งหมด ยกเว้นกระทู้บนฟอรัมและบันทึกการดำเนินการของผู้ดูแล การลบถาวรเป็นการถาวร ซึ่งไม่สามารถถูกย้อนกลับได้ แม้โดยผู้ดูแล"
     delete_permanently_request_explanation: "การลบถาวรของสคริปต์นี้สามารถเสร็จสมบูรณ์ได้หลังจากถูกตรวจสอบโดยผู้ดูแลแล้วเท่านั้น"
     delete_permanently_confirm: "คุณแน่ใจหรือไม่ว่าคุณต้องการจะลบสคริปต์ของคุณอย่างถาวร? การดำเนินการนี้ไม่สามารถย้อนกลับได้"
     delete_permanently_submit: "ร้องขอการลบถาวร"
@@ -83,10 +83,10 @@ th:
     code_title: "%{script_name} - ซอร์ซโค้ด"
     code_highlighting_disabled: "โค้ดมีขนาดใหญ่กว่า %{size} ดังนั้นการไฮไลต์โครงสร้างไวยากรณ์จึงได้ถูกปิดการใช้งานเพื่อสงวนเบราว์เซอร์ของคุณ"
     feedback_title: "%{script_name} - ขอเสนอแนะ"
-    feedback_no_discussions_html: "ยังไม่มีโพสต์การสนทนา %{start_first_discussion_link}"
+    feedback_no_discussions_html: "ยังไม่มีกระทู้ที่ถูกโพสต์ %{start_first_discussion_link}"
     feedback_start_first_discussion_link: "เป็นคนแรกที่สนทนาเกี่ยวกับสคริปต์นี้"
-    feedback_start_discussion_link: "เริ่มการสนทนาใหม่บนสคริปต์นี้"
-    feedback_discussions_heading: "การสนทนาบนฟอรัม Greasy"
+    feedback_start_discussion_link: "สร้างกระทู้ใหม่เกี่ยวสคริปต์นี้"
+    feedback_discussions_heading: "กระทู้บนฟอรัม Greasy"
     feedback_favoriters_heading: "ผู้ชื่นชอบ"
     feedback_favoriters_user_list_intro: "สคริปต์นี้ถูกชื่นชอบโดย:"
     feedback_no_favoriters: "สคริปต์นี้ยังไม่ได้ถูกชื่นชอบโดยใครเลย"
@@ -102,7 +102,7 @@ th:
     stats_download_raw_data_html: "ดาวโหลดข้อมูลทั้งหมดแบบ: %{links}"
     stats_no_data: "ไม่มี"
     derivatives_title: "%{script_name} - คล้ายคลึง"
-    derivatives_intro: "สคริปต์เหล่านี้อาจอิงจากของคุณ (หรือคุณอาจอิงจากของพวกเขา) หากคุณพบการใช้งานโค้ดของคุณที่ไม่ได้รับอนุญาต รายงานสคริปต์นั้นโดยเริ่มการสนทนาใหม่"
+    derivatives_intro: "สคริปต์เหล่านี้อาจอิงจากของคุณ (หรือคุณอาจอิงจากของพวกเขา) หากคุณพบการใช้งานโค้ดของคุณที่ไม่ได้รับอนุญาต รายงานสคริปต์นั้นโดยเริ่มกระทู้ใหม่"
     derivatives_code_matches_info_html:
       other: "สคริปต์ที่ถูกโพสต์โดยคนอื่นที่มีโค้ดอย่างน้อย %{match_size} บรรทัดที่เหมือนกับสคริปต์ของคุณ การตรวจสอบนี้ทำงานกับเฉพาะสคริปต์ที่มีขนาดน้อยกว่า %{max_size} และทำงานครั้งล่าสุดเมื่อ %{last_run}"
     derivatives_namespace_matches_info_html: "สคริปต์ที่ถูกโพสต์โดยคนอื่นโดยใช้ <code>%{namespace}</code>:"
@@ -121,8 +121,8 @@ th:
     listing_description_generic: "สคริปต์ผู้ใช้ที่เพิ่มคุณสมบัติและลบจุดบกพร่องต่าง ๆ บนไซต์ที่คุณใช้งาน"
     listing_sort_label: "จัดเรียงตาม:"
     listing_sort_relevance: "ความเกี่ยวข้อง"
-    listing_sort_daily_installs: "จำนวนการติดตั้งประจำวัน"
-    listing_sort_total_installs: "จำนวนการติดตั้งทั้งหมด"
+    listing_sort_daily_installs: "จำนวนติดตั้งประจำวัน"
+    listing_sort_total_installs: "จำนวนติดตั้งทั้งหมด"
     listing_sort_ratings: "คะแนน"
     listing_sort_created: "วันที่สร้าง"
     listing_sort_updated: "วันที่อัปเดต"
@@ -315,7 +315,7 @@ th:
     installing_step1_caption: "Tampermonkey บน Chrome"
     installing_step1_description_html: >
         <p>เพื่อที่จะใช้งานสคริปต์ผู้ใช้ คุณต้องติดตั้งเครื่องมือจัดการสคริปต์ผู้ใช้ก่อน
-        เครื่องมือจัดการสคิรปต์ผู้ใช้ที่คุณใช้งานได้จะขึ้นอยู่กับเบราว์เซอร์ที่คุณใช้งาน/p>
+        เครื่องมือจัดการสคิรปต์ผู้ใช้ที่คุณใช้งานได้จะขึ้นอยู่กับเบราว์เซอร์ที่คุณใช้งาน</p>
 
         <ul>
 
@@ -350,6 +350,9 @@ th:
         <p>เมื่อคุณพบสคริปต์ผู้ใช้แล้ว คลิกปุ่มติดตั้งสีเขียวบนหน้าของสคริปต์ผู้ใช้
         และเครื่องมือจัดการสคริปต์ผู้ใช้ของคุณจะขอให้คุณยืนยันเพื่อติดตั้ง</p>
     installing_step3_header: "ขั้นตอนที่ 3: ใช้งานสคริปต์ผู้ใช้"
+    installing_step3_description_html: >
+        <p>ไปยังไซต์ที่สคริปต์ผู้ใช้มีผล ซึ่งสคริตป์จะทำงานโดยอัตโนมัติ หลังจากลองใช้งานสคริปต์ผู้ใช้ไปสักพัก
+        กลับไปยังหน้าที่คุณได้ติดตั้งสคริปต์ผู้ใช้และให้ข้อเสนอแนะสำหรับผู้เขียนสคริปต์ผู้ใช้นั้น</p>
   users:
     sign_in_title: "เข้าสู่ระบบไปยัง %{site_name}"
     sign_in_external: "เข้าสู่ระบบด้วยบริการภายนอก"
@@ -360,10 +363,10 @@ th:
     sign_in_name_used_submit: "ส่ง"
     preview_profile: "ตัวอย่าง"
     control_panel: "แผงควบคุม"
-    discussions_on_scripts: "การสนทนาเกี่ยวกับสคริปต์ของคุณ"
+    discussions_on_scripts: "กระทู้เกี่ยวกับสคริปต์ของคุณ"
     discussions_on_scripts_feed_alt: "ฟีด RSS"
     discussions_on_scripts_none: "ไม่มีเลย!"
-    discussions_on_scripts_more: "การสนทนาเพิ่มเติม..."
+    discussions_on_scripts_more: "กระทู้เพิ่มเติม..."
     script_list: "สคริปต์"
     script_list_none: "ไม่มีสคริปต์ที่ถูกโพสต์"
     script_list_none_for_filter: "ไม่มีสคริปต์สำหรับตัวกรองปัจจุุบัน"
@@ -399,9 +402,9 @@ th:
     add_external_sign_in_info: "เพิ่มการเข้าสู่ระบบ:"
     set_up_webhook: "ตั้งค่าเว็บฮุก GitHub"
     author_email_notification_type:
-      none: "ไม่รับอีเมลเกี่ยวกับการสนทนาบนสคริปต์ของคุณ"
+      none: "ไม่รับอีเมลเกี่ยวกับกระทู้ของสคริปต์ของคุณ"
       discussion_only: "รับอีเมลเมื่อสนทนาถูกโพสต์ลงบนสคริปต์ของคุณ"
-      discussion_and_comment: "รับอีเมลเมื่อสนทนาถูกโพสต์ลงบนสคริปต์ของคุณ หรือเมื่อการสนทนานั้นมีความเห็นใหม่"
+      discussion_and_comment: "รับอีเมลเมื่อสนทนาถูกโพสต์ลงบนสคริปต์ของคุณ หรือเมื่อกระทู้นั้นมีความเห็นใหม่"
       note: "คุณสามารถรับอีเมลอื่น ๆ ได้ตามการตั้งค่าของคุณในฟอรัม"
     list_display_html:
       other: "%{user_link} - %{count} สคริปต์"
@@ -446,7 +449,7 @@ th:
       title: "เครดิต"
       authors_credit: "%{site_name} จะไม่สามารถเกิดขึ้นได้ หากไม่มีผู้เขียนที่ร่วมสนับสนุนสคริปต์"
       translators_credit: "%{site_name} ถูกแปลโดย %{translators_link:กลุ่มแปลภาษา Greasy บน Transifex}:"
-      icons_credit: "ไอคอนการสนทนามาจาก %{vistastylebase} โดย %{iconsland} ไอคอนเบราว์เซอร์มาจาก %{browserlogos}"
+      icons_credit: "ไอคอนกระทู้มาจาก %{vistastylebase} โดย %{iconsland} ไอคอนเบราว์เซอร์มาจาก %{browserlogos}"
     help_with_greasymonkey: "ความช่วยเหลือกับ Greasemonkey"
     contact:
       title: "ติดต่อใครสักคน"
@@ -464,7 +467,7 @@ th:
       description: "ค้นหาโค้ดสคริปต์ ไม่ไวต่ออักษรใหญ่เล็ก ค้นหาด้วยข้อความธรรมดาโดยไร้อักขระตัวแทน"
     forum_search:
       title: "การค้นหาฟอรัม"
-      description: "ค้นหาการสนทนาและคำวิจารณ์ในฟอรัม %{fulltext_link:ค้นหาด้วยภาษาธรรมชาติ MySQL}"
+      description: "ค้นหากระทู้และคำวิจารณ์ในฟอรัม %{fulltext_link:ค้นหาด้วยภาษาธรรมชาติ MySQL}"
     user_search:
       title: "การค้นหาผู้ใช้"
       description: "ค้นหาผู้ใช้ด้วยชื่อ ค้นหาด้วยข้อความธรรมดา"
@@ -489,7 +492,7 @@ th:
         name: "ชื่อ"
         profile: "โปรไฟล์"
         locale: "ภาษาที่ต้องการ"
-        author_email_notification_type_id: "การแจ้งเตือนการสนทนาสคริปต์"
+        author_email_notification_type_id: "การแจ้งเตือนกระทู้สคริปต์"
         show_ads: "แสดงโฆษณา"
         show_sensitive: "เนื้อหาสำหรับผู้ใหญ่"
         preferred_markup: "Markup ที่ต้องการ"
