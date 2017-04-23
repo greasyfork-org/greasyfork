@@ -78,8 +78,8 @@ class UsersController < ApplicationController
 
 		# using the secret, see if this is good
 		body = request.body.read
-		if user.webhook_secret.nil? or request.headers['X-Hub-Signature'] != ('sha1=' + OpenSSL::HMAC.hexdigest(HMAC_DIGEST, user.webhook_secret, body))
-			render :nothing => true, :status => 403
+		if user.webhook_secret.nil? || request.headers['X-Hub-Signature'] != ('sha1=' + OpenSSL::HMAC.hexdigest(HMAC_DIGEST, user.webhook_secret, body))
+			head 403
 			return
 		end
 
@@ -89,7 +89,7 @@ class UsersController < ApplicationController
 		end
 
 		if request.headers['X-GitHub-Event'] != 'push'
-			render :nothing => true, :status => 406
+			head 406
 			return
 		end
 
