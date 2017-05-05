@@ -5,6 +5,11 @@ cs:
       forum: "Fórum"
       help: "Nápověda"
       sign_in: "Přihlásit se"
+      submenu: "Více"
+      advanced_search: "Pokročilé hledání"
+      user_list: "Seznam uživatelů"
+      libraries: "Knihovny"
+      moderator_log: "Záznamy moderátora"
   helpers:
     application:
       time_ago:
@@ -43,6 +48,9 @@ cs:
     install: "Nainstalovat skript"
     install_help: "?"
     install_help_title: "Jak nainstalovat"
+    update: "Aktualizovat na verzi %{version}"
+    downgrade: "Návrat k verzi %{version}"
+    reinstall: "Přeinstalovat verzi %{version}"
     library_instructions_html: "Tento skript by neměl být instalován přímo. Jedná se o knihovnu, kterou by měly jiné skripty využívat pomocí meta příkazu %{code}"
     deleted_notice: "Tento skript byl smazán."
     inactive_pending_changes: "Tento skript není momentálně dostupný z důvodu rozporu s pravidly %{site_name}."
@@ -93,6 +101,7 @@ cs:
     feedback_sign_in_to_favorite: "Pro označení jako oblíbený se musíte přihlásit."
     stats_title: "%{script_name} - Statistiky"
     stats_daily_installs_heading: "Denně instalací"
+    stats_weekly_installs_heading: "Instalací týdně"
     stats_daily_update_checks_heading: "Denně kontrol aktualizací"
     stats_daily_installs_date_column_heading: "Datum"
     stats_daily_installs_install_count_column_heading: "Instalace"
@@ -231,11 +240,45 @@ cs:
     locked_marker: "(Uzamčený)"
     unlisted_marker: "(Neveřejný)"
     library_marker: "(Knihovna)"
+    libraries_title: "Knihovny"
+    by_site_list_filter: "Řadit podle názvu stránky"
+    search_placeholder: "Hledat skripty"
   script_sets:
     favorites_name: "Oblíbené"
     delete: "Smazat sadu skriptů"
     delete_confirmation: "Jste si jist, že chcete smazat tuto sadu skriptů?"
     site_default_sort: "(Výchozí)"
+    edit_scripts:
+      heading: "Skripty"
+      included_none: "(Žádný)"
+      remove_included: "Smazat vybrané"
+      excluded: "Vynechané"
+      excluded_none: "(Žádný)"
+      remove_excluded: "Smazat vybrané"
+      add_label: "Přidat skripty (URL nebo ID, oddělené mezerou)"
+      add_include: "Zahrnout"
+      add_exclude: "Vynechat"
+    edit_sets:
+      included_none: "(Žádný)"
+      remove_included: "Smazat vybrané"
+      excluded_none: "(Žádný)"
+      remove_excluded: "Smazat vybrané"
+      add_include: "Zahrnout"
+      add_exclude: "Vynechat"
+    edit_auto_sets:
+      included_none: "(Žádný)"
+      remove_included: "Smazat vybrané"
+      excluded_none: "(Žádný)"
+      all_scripts_label: "Všechny skripty"
+      for_user_include: "Zahrnout"
+      for_user_exclude: "Vynechat"
+      for_language_include: "Zahrnout"
+      for_language_exclude: "Vynechat"
+    save: "Uložit"
+    auto_set_types:
+      all_scripts: "Všechny skripty"
+      site: "Skripty pro %{site}"
+      all_sites: "Všechny stránky"
   forum_discussions:
     listing_no_script_no_reply_html: "%{discussion_link} od uživatele %{original_poster_link} %{original_post_date}"
     listing_no_script_with_reply_html: "%{discussion_link} od uživatele %{original_poster_link} %{original_post_date}, poslední komentář od uživatele %{last_commenter_link} %{last_comment_date}"
@@ -246,8 +289,13 @@ cs:
     welcome: "Vítejte na %{site_name}, úložišti pro uživatelské skripty."
     sleazy_title: "%{site_name} - bezpečné a užitečné uživatelské skripty pro dospělé"
     sleazy_welcome: "Vítejte na %{site_name}, úložišti pro uživatelské skripty pro dospělé."
+    scripts_for_label: "Skripty pro:"
     explain_user_scripts_heading: "Co jsou uživatelské skripty?"
     explain_user_scripts_html: "Uživatelské skripty vám umožňují mít kontrolou nad prohlížením webu. Jakmile se nainstalují, automaticky vylepšují navštívené stránky přidáváním funkcí, zjednodušním ovládání nebo vynecháním obtěžujících částí. Uživatelské skripty na %{site_name} byly napsány jinými uživateli a poskytnuty ke sdílení celému světu. Jsou zdarma k instalaci a snadno se používají."
+    installing_step1_header: "Krok 1: nainstalujte manažer skriptů"
+    installing_step1_caption: "Tampermonkey pro Chrome"
+    installing_step2_header: "Krok 2: nainstalujte uživatelký skript"
+    installing_step3_header: "Krok 3: použijte uživatelský skript"
   users:
     sign_in_title: "Přihlásit se do %{site_name}"
     sign_in_description: "Přihlášení do %{site_name} vám umožní vytvářet skripty a vkládat komentáře ke skriptům ostatních autorů. Není třeba se přihlašovat pro procházení nebo instalaci skriptů."
@@ -314,6 +362,8 @@ cs:
     listing_new_scripts: "Nové skripty"
     listing_updated_scripts: "Aktualizované skripty"
     listing_registration_date: "Datum registrace"
+    listing_title: "Uživatelé"
+    search_placeholder: "Hledat uživatelé"
     locale_prompt: "(Vybrat jazyk)"
     show_ads_description: "Podpořte %{site_name} povolením zobrazení reklam"
     show_sensitive_description: "Zobrazovat skripty s obsahem pro dospělé"
@@ -327,6 +377,8 @@ cs:
       few: "%{user_name} má %{count} další skripty na Greasy Fork."
       other: "%{user_name} má %{count} dalších skriptů na Greasy Fork."
   help:
+    installing_user_scripts:
+      title: 'Jak nainstalovat uživatelsé skripty'
     meta_keys:
       title: "Meta klíče zpracované %{site_name}em"
       intro_html: "Toto je seznam <a href=\"http://wiki.greasespot.net/Metadata_Block\">meta klíčů uživatelského skriptu</a>, které %{site_name} rozpozná. Klíče mimo tento seznam mohou být obsaženy ve skriptu, budou v instalovaném skriptu přítomny, ale nebudou mít efekt v uživatelském rozhraní %{site_name}."
@@ -400,6 +452,9 @@ cs:
         screenshot_caption: "Titulek"
         replaced_by_script_id: "Náhradní skript"
         approve_redistribution: "Redistribuce"
+      script_set:
+        name: "Název"
+        description: "Popis"
   errors:
     messages:
       script_missing_name: "je vyžadováno - použijte parametr @name"

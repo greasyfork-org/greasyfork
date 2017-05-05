@@ -162,7 +162,7 @@ pl:
     sets_add_inclusion: "Dodaj do kolekcji %{set_name}"
     sets_add_exclusion: "Wyłącznie z kolekcji %{set_name}"
     sets_add_to_new: "Dodaj do nowego zestawu"
-    rules_summary_html: "Skrypty muszą być <strong>poprawnie opisane</strong>, nie mogą być <strong>zamaskowane</strong>, muszą przestrzegać <strong>prawo autorskie</strong> i są ograniczone w wykorzystywaniu <strong>zewnętrznego kodu</strong>. %{full_rules_link}"
+    rules_summary_html: "Skrypty muszą być <strong>poprawnie opisane</strong>, nie mogą być <strong>skomplikowane</strong>, muszą przestrzegać <strong>prawa autorskiego</strong> i być ograniczone w wykorzystywaniu <strong>zewnętrznego kodu</strong>. %{full_rules_link}"
     rules_summary_link_to_full: "Przeczytaj pełny regulamin."
     syncing_notice_html: "Ten skrypt jest %{syncing_notice_sync_type}. Jakiekolwiek aktualizacje, których dokonujesz tutaj w kodzie będą nadpisane podczas synchronizacji."
     syncing_notice_sync_type_manual: "ustawiony do ręcznej synchronizacji z %{sync_identifier}"
@@ -245,33 +245,75 @@ pl:
     unlisted_marker: "(Niewymieniony)"
     library_marker: "(Biblioteka)"
     libraries_title: "Biblioteki"
+    libraries_description_html: "Biblioteki udostępnione przez użytkowników %{site_name}, które możesz <code>@require</code> w swoich skryptach. Dla innego typu bibliotek, które możesz\n<code>@require</code>, przeczytaj politykę %{policy_link:%{site_name}'s policy on <code>@require</code>}."
+    by_site_list_title: "Skrypty użytkownika dla %{site_name} pogrupowane według strony"
+    by_site_list_description: "Witryny wykorzystujące najbardziej popularne skrypty użytkowników. Większa czcionka oznacza bardziej popularne skrypty użytkowników."
     by_site_list_filter: "Filtruj według nazwy strony:"
     search_placeholder: "Szukaj skryptów"
   script_sets:
+    description: "Zestawy skryptów umożliwiają Ci stworzenie zmodyfikowanej listy skryptów do przeglądania Greasy Fork'a. Możesz dodać skrypty do Twojego zestawu poprzez dołączanie pojedynczych skryptów, zestawów innych użytkowników lub automatycznie generowanych zestawów. Możesz także usunąć skrypty z Twojego zestawów w taki sam sposób."
     favorites_name: "Ulubione"
     delete: "Usuń kolekcję skryptów"
     delete_confirmation: "Czy na pewno chcesz usunąć tą kolekcję skryptów?"
     site_default_sort: "(domyślne dla strony)"
     edit_scripts:
       heading: "Skrypty"
+      description: "Dołącz lub usuń pojedyncze skrypty w Twoim zestawie."
       included: "Dołączone"
       included_none: "(brak)"
       remove_included: "Usuń zaznaczone"
       excluded: "Usunięte"
       excluded_none: "(brak)"
       remove_excluded: "Usuń zaznaczone"
+      add_label: "Dodaj skrypty (adresy URL lub ID oddzielone spacją)"
       add_include: "Dołącz"
       add_exclude: "Usuń"
     edit_sets:
       heading: "Kolekcje skryptów"
+      description: "Dołącz lub usuń inne zestawy skryptów w Twoim zestawie."
+      included: "Dołączone"
+      included_none: "(brak)"
       remove_included: "Usuń zaznaczone"
+      excluded: "Usunięte"
+      excluded_none: "(brak)"
       remove_excluded: "Usuń zaznaczone"
+      add_label: "Dodaj skrypty (adresy URL i ID, oddzielone spacją)"
+      add_include: "Dołącz"
+      add_exclude: "Usuń"
+      user_label: "Lista zestawów skryptów należących do użytkownika (URL,ID oraz nazwa)"
+      user_no_sets: "(Użytkownik nie posiada zestawów)"
+      user_no_other_sets: "(Użytkownik nie posiada innych zestawów)"
     edit_auto_sets:
+      heading: "Automatyczne zestawy skryptów"
+      description: "Dołącz lub usuń automatycznie generowaną listę w Twoim zestawie skryptów."
+      included: "Dołączone"
+      included_none: "(brak)"
       remove_included: "Usuń zaznaczone"
+      excluded: "Usunięte"
+      excluded_none: "(brak)"
+      all_scripts_label: "Wszystkie skrypty"
+      all_scripts_include: "Dołącz"
+      for_sites_label: "Skrypty dla strony (np. example.com, zostaw puste dla \"Wszystkie strony\")"
+      for_sites_include: "Dołącz"
+      for_sites_exclude: "Usuń"
+      for_user_label: "Skrypty dodane przez użytkownika (URL,ID oraz nazwa)"
+      for_user_include: "Dołącz"
+      for_user_exclude: "Usuń"
+      for_language_label: "Skrypty w języku"
+      for_language_include: "Dołącz"
+      for_language_exclude: "Usuń"
+    calculated_list: "Obliczona lista skryptów"
+    calculated_list_none: "(brak)"
+    already_included: "'%{name}' już dołączone."
+    could_not_parse_script: "Nie można przeparsować skryptu '%{value}'"
     save: "Zapisz"
+    saved: "Zestaw skryptów zapisany."
     auto_set_types:
       all_scripts: "Wszystkie skrypty"
+      site: "Skrypty dla %{site}"
       all_sites: "Wszystkie strony"
+      user: "Skrypty użytkownika %{user}"
+      locale: "Skrypty w %{locale_name}"
   forum_discussions:
     listing_no_script_no_reply_html: "%{discussion_link} przez %{original_poster_link} %{original_post_date}"
     listing_no_script_with_reply_html: "%{discussion_link} przez %{original_poster_link} %{original_post_date}, ostatni komentarz przez %{last_commenter_link} %{last_comment_date}"
@@ -282,6 +324,8 @@ pl:
     welcome: "Witaj na %{site_name}, stronie ze skryptami użytkownika."
     sleazy_title: "%{site_name} - bezpieczne i użyteczne skrypty dorosłego użytkownika"
     sleazy_welcome: "Witaj na %{site_name}, stronie ze skryptami dla dorosłego użytkownika."
+    search_placeholder: "Szukaj skryptów użytkowników"
+    scripts_for_label: "Skrypty dla:"
     explain_user_scripts_heading: "Co to są skrypty użytkownika?"
     explain_user_scripts_html: "Skrypty użytkownika dają możliwość kontrolowania przeglądanych stron. Po zainstalowaniu automatycznie dodają nowe możliwości, ułatwiają nam korzystanie lub usuwają niechciane treści ze stron, które odwiedzasz. Skrypty użytkownika na %{site_name} były pisane przez innych użytkowników i zostały udostępnione. Są darmowe i łatwe w użyciu."
     installing_step1_header: "Krok 1: zainstaluj menadżera skryptów"
@@ -374,6 +418,7 @@ pl:
     external_sign_in_removed: "Logowanie za pomocą serwisu %{provider} zostało usunięte."
     external_sign_in_failed: "Logowanie za pomocą serwisu %{provider} nie powiodło się: %{error}."
     external_sign_in_already_used: "Dodanie logowania za pomocą serwisu %{provider} nie powiodło się: ta metoda jest już używana przez użytkownika '%{user_name}'."
+    external_sign_in_confirmation: "Nowe %{site_name} konto zostało utworzone na podstawie Twoich %{provider} szczegółów konta. Twoja publiczna nazwa użytkownika to %{username}."
     syncing_indicator: "(synchronizowanie)"
     enable_syncing: "Włącz synchronizację"
     disable_syncing: "Wyłącz synchronizację"
@@ -414,13 +459,23 @@ pl:
       title: 'Jak zainstalować skrypty'
     meta_keys:
       title: "kluczami meta skryptu czytanymi przez %{site_name}"
+      intro_html: "Tutaj <a href=\"http://wiki.greasespot.net/Metadata_Block\">\n Lista kluczy meta skryptów użytkowników </a> znajduje się lista, którą %{site_name} będzie odczytywała. Klucze spoza tej listy mogą być dołączone w skryptach i będą obecne w zainstalowanym skrypcie, ale nie będą miały wpływu na %{site_name} wygląd strony."
       name: "(wymagane) Nazwa skryptu, która jest używana jako nagłówek i w linkach."
+      name_localized_html: "Nazwa skryptu w specyficznym języku, gdzie XX oznacza <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\"> Kod dwuliterowy ISO 639-1 </a> i YY które jest opcjonalne <a href=\"https://www.iso.org/obp/ui/#search\"> Kod kraju ISO 3166 </a>.  Zastępuje <code>@name</code> kiedy użytkownik przegląda z wybranym językiem."
       description: "Opis funkcji skryptu.  Wyświetlany jako tekst pod nazwą skryptu. Wymagane."
+      description_localized_html: "Opis w specyficznym języku, gdzie XX oznacza <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\"> Kod dwuliterowy ISO 639-1 </a> i YY które jest opcjonalne <a href=\"https://www.iso.org/obp/ui/#search\"> Kod kraju ISO 3166 </a>.  Zastępuje <code>@name</code> kiedy użytkownik przegląda z wybranym językiem."
+      namespace_html: "Kombinacja <code>@namespace</code> i <code>@name</code> jest używana przez menedżerów skryptów użytkownika aby sprawdzić czy skrypt został już zainstalowany. %{site_name} wymaga tego pola i będzie ostrzegać jeżeli zostanie zmienione przy aktualizacji."
+      version_html: "Identyfikator dla specyficznej wersji skryptu <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">Format wersji Mozilli</a>. Wersja jest wyświetlana na stronie informacyjnej skryptu. %{site_name} wymaga tego pola i będzie ostrzegać jeżeli zostanie zmniejszone lub nie zostanie powiększone po zmianach w kodzie skryptu."
+      include: "Opisuje które strony skrypt uruchomi. Ta lista będzie wykorzystana i wyświetlana na stronie informacyjnej skryptu oraz będzie używana dla kategoryzowania skryptów."
       require_html: "Zawiera zewnętrzny JavaScript w skrypcie. Zobacz %{external_script_link}."
       require_external_script_link_text: "zasady dla kodu zawierającego zewnętrzne skrypty"
       updateURL: "Opisz, jak menedżerzy skryptu użytkownika powinny otrzymywać aktualizacje. %{site_name} usunie te klucze, które zrobią z dowolnego skryptu zainstalowanego z %{site_name} tylko aktualizację z %{site_name}."
+      license: "Adres URL dla lub nazwa licencji która opisuje w jaki sposób społeczność jest uprawniona do kopii lub modyfikacji skryptu. Brak licencji oznacza, iż użytkownicy mogą instalować skrypt dla użytku osobistego, lecz nie mogą go udostępniać. Licencja jest wyświetlana na stronie informacyjnej skryptu."
+      supportURL: "Adres URL dla strony gdzie użytkownik może otrzymać pomoc dotyczącą skryptu (np. śledzenie błędów, forum lub adres e-mail). Adres URL wsparcia jest wyświetlany na stronie informacji zwrotnej skryptu."
       contributionURL_html: "Adres URL dla strony, gdzie użytkownicy mogą przekazać dotację autorowi skryptu. Adres URL wkładu jest pokazywany na stronie opinii danego skryptu. Protokołem adresu URL może być HTTP, HTTPS lub protokoły Bitcoina. Aby podać link to strony dotacji na PayPalu, użyj adresu URL w formacie <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Twój_adres_poczty_elektronicznej&item_name=Dotacja+Greasy+Fork</a>, zastępujące przykładowy adres poczty elektronicznej na Twój własny."
+      contributionAmount_html: "Sugerowana kwota dotacji, używana wraz z <code>@contributionURL</code>."
       compatible_html: "Flagi ten skrypt jako kompatybilny z przeglądarką. Informacje o zgodności zostaną pokazane na stronie danego skryptu. Uwagi dotyczące zgodności mogą zostać włączone w formacie <code> @compatible Firefox musi wyłączyć wyskakujących okienek </ code>. Uznane przeglądarkami są: %{browsers}."
+      incompatible_html: "Oznacz ten skrypt jako niezgodny z przeglądarką.\nInformacje o kompatybilności zostaną wyświetlone na stronie skryptu. Opcjonalne komentarze dotyczące kompatybilności zostaną dołączone w formacie <code>@incompatible firefox Niezgodne od Firefox'a w wersji 23</code>. Zgodne z: %{browsers}"
     writing_user_scripts:
       title: "Jak pisać skrypty użytkownika"
       content_html: "<p>Pisanie skryptów użytkownika wymaga znajomości JavaScriptu. <a href=\"http://wiki.greasespot.net/Tutorials\">Poradniki na Wiki GreaseSpot</a> powinny Ci dać rozbieg na JavaScript zarówno ogólnie, jak i relatywnie do skryptów użytkownika. Inspekcja skryptów innych osób może być pomocna. Zainteresuj się %{code_rules_link} i %{meta_keys_link}. Jeśli potrzebujesz pomocy z tworzeniem Twojego skryptu, możesz %{ask_in_forum_link}.</p><p>Aby udostępniać na %{site_name}, musisz stworzyć konto. Z Twojej %{user_page_link} możesz %{post_new_script_link}.</p>"
@@ -429,6 +484,97 @@ pl:
       post_new_script_link_text: 'udostępnić nowy skrypt'
     code_rules:
       title: "zasadami publikacji skryptów na %{site_name}"
+      content_html: >
+          <p> Wymagania dotyczące skryptów udostępnionych na %{site_name}. Są one
+          przewidziane aby %{site_name} była bezpieczną i użyteczną stroną dla skryptów
+          użytkowników. Każdy skrypt nie spełniający wymagań %{site_name} zostanie
+          usunięty przez moderatorów %{site_name}.</p> <ul>
+
+          <li>Skrypt musi zawierać opis co robi i nie może czynić niczego innego poza
+          tym opisem. Użytkownicy muszą wiedzieć co skrypt robi przed instalacją.
+          Skrypty które zawierają moduł śledzący lub reklamy, powinien zawierać informację
+          o tym w opisie </li>
+
+          <li>Kod udostępniany na tej stronie nie może być skomplikowany lub zmikronizowany.
+          Użytkownicy muszą być możliwość przeanalizowania i zrozumienia działania
+          kodu przed instalacją</li>
+
+          <li>Biblioteki używane przez skrypt<code>@require</code> chyba że są szczególne
+          wytyczne techniczne, aby tego nie robić. W przypadku w którym biblioteka
+          jest opublikowana inline, musi zawierać informacje dotyczące źródła tej
+          biblioteki (np. komenatrz wskazujący na adres URL i/lub nazwę i wersję).</li>
+
+          <li>Twój skrypt musi respektować prawa autorskie innych. Dotyczy to skryptu
+          i innych zasobów (na przykład zdjęć) które wykorzystuje. Jeżeli chcesz użyć
+          treść innej osoby, przestrzegaj treści jej licencji lub zapytaj o pozwolenie.</li>
+
+          <li>%{external_scripts_link:Użycie zewnętrznego JavaScript'u jest ograniczone.}</li>
+
+          %{adult_content_requirement}
+
+          </ul> <p>Jeżeli zauważysz,że skrypt łamie te zasady, zgłoś go poprzez udanie
+          się do linku strony informacji zwrotnej dla tego skryptu, rozpoczęcie dyskusji,
+          i wybranie opcji"Zgłoś skrypt"</p> <p>Jeżeli się nie zgadasz z powyższymi
+          regułami, %{contact_link:Napisz}!</p>
+      adult_content_rule_html: "<li>Skrypty które zawierają treści dla dorosłych oraz dla stron które zawierają treści dla dorosłych muszą być oznaczone jako takie, aby użytkownicy mogli zdecydować czy chcą to zobaczyć.</li>"
+    external_scripts:
+      title: "Polityka %{site_name} dot. zewnętrznych skryptów"
+      content_html: >
+          <p> Skrypty użytkowników mają możliwość techniczną aby ładować i wykonywać
+          inne skrypty. %{require_doc_link:<code>@require</code>}  klucz metadanych
+          jest najlepszym sposobem aby to osiągnąć, lecz skrypty mogą także, na przykład,
+          użyć XmlHttpRequest aby ściągnąć skrypt i wstrzyknąć go w DOM.</p><p>Kiedy
+          to jest przydatna opcja i większość autorów skryptów ją wykorzystuje w celach
+          zgodnych z prawem, może zostać ono także użyte w nieprawidłowym stylu. Jedno
+          z podstawowych pryncypiów %{site_name} jest to, iż użytkownik powinien być
+          w stanie przeanalizować kod skryptu. Zewnętrzne skrypty mogą ominąć to pryncypium
+          w różny sposób: mogą zmienić bez ostrzeżenia lub historii, mogą udostępniać
+          inny kod dla innych użytkowników lub mogą być użyte, aby ukryć złośliwy
+          kod wewnątrz znanych bibliotek. Nawet jeżeli ktoś sprawdzi kod skryptu zewnętrznego
+          i uzna go za bezpieczny, nie gwarantuje to, iż skrypt jest lub stanie się
+          bezpieczny.</p>
+
+          <p>Aby umożliwić autorom skryptów dalsze używanie skryptów zewnętrznych,
+          %{site_name} zaimplementował białą listę wzorów URL, które mogą zostać użyte
+          w skrypcie. Biała lista zawiera lokacje skryptów, które:</p><ul>
+
+          <li> Są publiczne </li>
+
+          <li> Nie zmieniają swojej zawartości w częstym okresie czasu</li>
+
+          <li> Mogą być użyteczne dla więcej niż jednego autora</li>
+
+          </ul><p>Aktualna lista:</p> %{allowed_require_list} <p>Jeżeli spróbujesz
+          udostępnić <code>@require</code> poza tymi lokacjami, nie będziesz w stanie
+          zapisać swojego skryptu</p> <p>Jeżeli skrypt których chcesz dołączyć zawiera
+          JavaScript (na przykład jQuery or YUI), spróbuj znaleść je na stronach dostępnych
+          poniżej. %{cdnjs_link:cdnjs} and %{jsdelivr_link:jsDelivr} w szególności
+          posiadają dużą liczbę dostępnych bibliotek</p> <p>Jeżeli skrypt których
+          chcesz udostępnić, nie znajduje się na stronach wymienionych poprzednio
+          %{contact_link:let us know} i spróbujemy znaleźć je (lub hostować je u siebie!).</p>
+          <p>Jeżeli skrypt których chcesz udostępnić został napisany przez Ciebie,
+          możesz wysłać go jako oddzielna pozycja %{site_name} poprzez wybór typu
+          "Biblioteka". Wtedy będziesz w stanie wykorzystać bibliotekę w Twoim skrypcie</p>
+    script_rewriting:
+      title: "Jak %{site_name} zostanie nadpisana udostępnionymi skryptami"
+      content_html: >+
+          <p> Skrypty udostępnione na %{site_name} zostaną nadpisane w następujący
+          sposób:</p> <ul>
+
+          <li>code>@updateURL</code>,
+
+          <code>@installURL</code>, i <code>@downloadURL</code> dyrektywy zostaną
+          usunięte, jeżeli występują. Brak tych dyrektyw oznacza, iż jakikolwiek skrypt
+          zainstalowany z %{site_name} zostanie zaakutalizowany z %{site_name}. </li>
+
+          <li><code>@version</code> i <code>@namespace</code> dyrektywy zostaną wstawione
+          jeżeli skrypt ich nie posiada. Te dyrektywy są potrzebne dla prawidłowej
+          aktualizacji.</li>
+
+          <li><code>@description</code> zostanie wstawiony jeżeli nowa wersja skryptu
+          go nie zawiera it, a poprzednia wersja skryptu go posiadała.</li>
+
+    site_feedback_link: "Zgłoś problem lub podziel się pomysłem na %{site_name}"
     credits:
       title: "Twórcy"
       authors_credit: "%{site_name} nie mógł powstać bez twórców, którzy współtworzą skrypty."
@@ -438,17 +584,73 @@ pl:
     help_with_greasymonkey: "Pomoc z Greasemonkey"
     contact:
       title: "Skontaktuj się z kimś"
+      content_html: >
+          <p> Jest wiele możliwości aby porozmawiać o %{site_name} i rzeczach na niej.</p>
+          <p> Czy chcesz pytanie lub dodać komentarz dotyczący specyficznego skryptu
+          udostępnionego na stronie? Jeżeli tak, udostępnij dyskusję z linku na stronie
+          informacji zwrotnej na stronie skryptu. Autorzy skryptu otrzymają notyfikację
+          na ich stronie profilowej o każdej z dyskusji dotyczących ich skryptu. </p>
+
+          <p> Czy chcesz zadać pytanie lub dodać komentarz dotyczący %{site_name}
+          ,tworzeniu skryptów lub chcesz aby ktoś stworzył Ci skrypt? %{forum_link:Pisanie
+          na forum}  da Ci możliwość większęgo zasięgu Twojej dyskusji.</p> <p> Czy
+          chcesz zgłosić błąd lub zasugerować ideę dotyczącą %{site_name} (nie dotyczącą
+          specyficznego skryptu <em> udostępnionego na </em> %{site_name})? %{github_link:
+          Opublikuj ją na GitHub.} </p>
+
+          <p> Może masz prywatne pytanie lub komentarz i chcesz aby zobaczył ją tylko
+          administrator? %{admin_email_link:Wyślij e-mail.} </p>
     privacy_policy:
       title: "Polityka prywatności"
+      content_html: >
+          Ta strona opisuje jak %{site_name} będzie zapisywać lub śledzić użytkowników.
+
+          Jeżeli masz jakiekolwiek wątpliwości, %{admin_email_link:e-mail the admin}.
+
+          <h2>Logi serwerowe</h2><p>%{site_name} loguje wszelkie zapytania w sposób
+          standardowy. Informacje logowane zawierają odwiedzone strony, adres IP oraz
+          odnośnik User Agent. Logi zostają użyte w celu odpluskwiania oraz analizy
+          kondycji serwera. Dane są przechowywane przez okres jednego tygodnia. Dane
+          nie są udostępniane osobom trzecim oraz upubliczniane.</p>
+
+          <h2>Statystyki skryptów</h2>
+
+          <p>W celu generowania statystyk, %{site_name} zapisuje informacje o żądania
+          instalacji oraz aktualizacji  wraz z adresem IP. Ta informacja jest przetrzymywana
+          przez jeden dzień, po tym okresie czasu jest agregowana bez informacji o
+          adresie IP. Specyficzne dla danego adresu IP dane nie są udostępniane oraz
+          upubliczniane, lecz zagregowane dane są.</p> <h2>Pliki cookie (kiedy nie
+          jest się zalogowanym)</h2> <p>%{site_name} może ustawić tymczasowe pliki
+          cookie, aby umożliwić dostęp do specyficznych cech witryny. Pliki cookie
+          nie są stałe i mogą zostać usunięte przy wyłączaniu przeglądarki (w zależności
+          od ustawień).</p> <h2>Konta użytkowników</h2> <p>%{site_name} wymaga od
+          użytkowników aby utworzyli konto w celu udostępniania skryptów, brania udziału
+          w dyskusjach , oraz dostępu do innych części wityrny. Przy tworzeniu konta
+          informacje takie jak adres IP ,adres  e-mail , oraz odnośnik User agent
+          może być przechowywany permamantnie. Niektóre z tych informacji mogą być
+          widoczne dla innych użytkowników.</p> <p>Akcje wykonywane na zalogowanym
+          koncie takie jak udostępnianie skryptów i komentarzy, będą widoczne dla
+          innych użytkowników</p> <p>Jeżeli opcja "Zapamiętaj mnie" zostanie oznaczona
+          podczas logowania do konta, %{site_name} ustawi a trwały plik cookie aby
+          przetrzymać stan logowania</p> <h2>Skrypty udostępnione na %{site_name}</h2>
+          <p>%{site_name} zawiera treści udostępniane przez użytkowników, i udostępnione
+          skrypty mogą być w stanie śledzić użytkownika jeżeli zostaną zainstalowane.</p>
+          <h2>Biblioteki osób trzecich</h2> <p>%{site_name} może zawierać biblioteki
+          osób trzecich aby zbierać statystyki i wyświetlać reklamy. Te biblioteki
+          mogą zawierać moduły śledzące.</p>
   search:
     script_search:
       title: "Wyszukiwanie skryptów"
+      description: "Szukaj skryptów. Szuka nazw skryptów, opisów, dodatkowych informacji i nazw autorów. %{sphinx_link:Sphinx extended query syntax.}"
     library_search:
       title: "Szukanie biblioteki"
+      description: "Szukaj bibliotek. Szuka nazw bibliotek, opisów, dodatkowych informacji i nazw autorów. %{sphinx_link:Sphinx extended query syntax.}"
     code_search:
       title: "Szukanie kodu"
+      description: "Szukaj kodu skryptu. To pole jest wrażliwe na wielkość liter, wyszukiwanie czysto tekstowe bez znaków wieloznacznych."
     forum_search:
       title: "Szukanie forum"
+      description: "Szukaj dyskusji i opinii na forum. %{fulltext_link:MySQL natural language search.}"
     user_search:
       title: "Szukanie użytkowników"
       description: "Szukanie użytkowników według nazwy. Wyszukiwanie zwykłego tekstu."
@@ -456,6 +658,8 @@ pl:
     error_preamble: "Mieliśmy małe problemy z tym, co chciałeś napisać..."
     allowed_elements_link: "(zobacz dozwolony kod)"
     allowed_elements_and_attributes_title: "Dozwolone elementy dla zawartości HTML"
+    allowed_elements_intro: "Dozwolone są następujące elementy i atrybuty. Dotyczy to zarówno HTML jak i makr (po konwersji do HTML)"
+    allowed_elements_extra_info: "Puste pola zostaną zamienione na elementy p lub br. Adresy URL będą automatycznie zamienione w linki."
     not_found_text: "Błąd 404 — nie znaleziono strony."
     not_found_title: "Błąd 404 — nie znaleziono strony"
     not_found_link_home: "Wróć do strony głównej."
@@ -491,6 +695,7 @@ pl:
       script_set:
         name: "Nazwa"
         description: "Opis"
+        default_sort: "Sortowanie domyślne"
   errors:
     messages:
       script_missing_name: "jest wymagana - wybierz jedną z dostępnych jako „@name”"
@@ -502,5 +707,9 @@ pl:
       cannot_be_deleted_reference: "nie może być usuniętym skryptem"
       must_be_greasy_fork_script: "musi być adresem URL dla skryptu na %{site_name}u"
       script_update_not_utf8: "wymaga kodowania UTF-8"
+      script_disallowed_require: "używa niezatwierdzonego zewnętrznego skryptu: %{code}"
   opensearch:
+    short_name: "%{site_name} wyszukaj"
     description: "Szukaj skryptów użytkownika na %{site_name}."
+    long_name: "%{site_name} szukanie skryptu użytkownika"
+    attribution: "Prawa autorskie dla autorów skryptów, zobacz pojedynczy skrypt aby zobaczyć prawa autorskie"
