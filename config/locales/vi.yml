@@ -5,6 +5,10 @@ vi:
       forum: "Diễn đàn"
       help: "Hướng dẫn"
       sign_in: "Đăng nhập"
+      submenu: "Thêm"
+      advanced_search: "TÌm kiếm nâng cao"
+      user_list: "Danh sách người dùng"
+      libraries: "Các thư viện"
   helpers:
     application:
       time_ago:
@@ -227,6 +231,9 @@ vi:
     locked_marker: "(Đã khóa)"
     unlisted_marker: "(Chưa xem)"
     library_marker: "(Thư Viện)"
+    libraries_title: "Thư viện"
+    by_site_list_filter: "Lọc theo tên trang:"
+    search_placeholder: "Tìm script"
   script_sets:
     favorites_name: "Mục ưa thích"
     delete: "Xóa bộ script"
@@ -249,6 +256,23 @@ vi:
       remove_included: "Xóa lựa chọn"
       excluded: "Đã loại trừ"
       excluded_none: "(Không chọn)"
+      remove_excluded: "Xóa lựa chọn"
+      add_include: "Bao gồm"
+      add_exclude: "Loại trừ"
+    edit_auto_sets:
+      included: "Đã bao gồm"
+      included_none: "(Rỗng)"
+      remove_included: "Xóa lựa chọn"
+      excluded: "Đã loại trừ"
+      excluded_none: "(Rỗng)"
+      all_scripts_include: "Bao gồm"
+      for_sites_include: "Bao gồm"
+      for_sites_exclude: "Loại trừ"
+      for_user_include: "Bao gồm"
+      for_user_exclude: "Loại trừ"
+      for_language_include: "Bao gồm"
+      for_language_exclude: "Loại trừ"
+    save: "Lưu"
   forum_discussions:
     listing_no_script_no_reply_html: "%{discussion_link} bởi %{original_poster_link} %{original_post_date}"
     listing_no_script_with_reply_html: "%{discussion_link} bởi %{original_poster_link} %{original_post_date}, bình luận cuối bởi %{last_commenter_link} %{last_comment_date}"
@@ -259,6 +283,7 @@ vi:
     welcome: "Chào mừng đến %{site_name}, trang web về các user script."
     sleazy_title: "%{site_name} - Những script dành cho người lớn an toàn và hữu ích"
     sleazy_welcome: "Chào mừng tới %{site_name}, một trang web dành cho những user script \"người lớn\""
+    scripts_for_label: "Các scripts dành cho:"
     explain_user_scripts_heading: "Các user script là gì?"
     explain_user_scripts_html: "Script của người dùng giúp bạn có những trải nghiệm mới với trình duyệt.Khi được cài đặt, chúng biến những trang bạn truy cập duyệt vời hơn bằng việc thêm những tính năng mới, dễ sử dụng hơn hay loại bỏ những chi tiết làm bạn khó chịu. Script trên %{site_name} được viết bởi những người dùng khác và được đăng để chia sẻ vpis mọi người. Chúng hoàn toàn miễn phis và dễ sử dụng."
   users:
@@ -325,6 +350,8 @@ vi:
     listing_new_scripts: "Script mới"
     listing_updated_scripts: "Script được cập nhật"
     listing_registration_date: "Thời gian đăng ký"
+    listing_title: "Người dùng"
+    search_placeholder: "Tìm người dùng"
     locale_prompt: "(Chọn một khu vực)"
     show_ads_description: "Ủng hộ %{site_name} bằng cách cho phép nó hiển thị quảng cáo"
     show_sensitive_description: "Hiện script có nội dung nhạy cảm"
@@ -336,6 +363,8 @@ vi:
     greasy_fork_scripts_link:
       other: "%{user_name} cũng có  %{count} script trên Greasy Fork."
   help:
+    installing_user_scripts:
+      title: 'Làm sao để cài đặt các user script?'
     meta_keys:
       title: "Thẻ mô tả Scripts đọc bởi %{site_name}"
       name: "Tên của script, sử dụng như đầu đề và trên liên kết. Bắt buộc"
