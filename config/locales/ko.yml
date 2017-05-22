@@ -5,6 +5,10 @@ ko:
       forum: "포럼"
       help: "도움말"
       sign_in: "로그인"
+      submenu: "더 보기..."
+      advanced_search: "상세 검색"
+      user_list: "유저 목록"
+      libraries: "라이브러리"
   helpers:
     application:
       time_ago:
@@ -58,6 +62,7 @@ ko:
     delete_update_behaviour_2: "그것들은 빈 스크립트로 업데이트 될 것입니다. 이것은 스크립트가 사이트들에 부정적인 영향이 계속될 경우 적합합니다."
     delete_permanently_heading: "영구 삭제"
     delete_permanently_explanation: "스크립트의 영구 삭제는 포럼 토론과 관리 기록을 제외하고 그것과 그와 관련된 모든 기록을 지울 것입니다. 영구 삭제는 영구적이며, 관리자조차 복구할 수 없습니다."
+    delete_permanently_request_explanation: "이 스크립트를 제거하려면 관리자의 검토가 필요합니다"
     delete_permanently_confirm: "당신의 스크립트를 영구적으로 삭제하시겠습니까?  이 행동은 취소할 수 없습니다!"
     delete_permanently_submit: "영구 삭제 요청"
     delete_permanently_immediate_submit: "영구 삭제"
@@ -86,6 +91,7 @@ ko:
     feedback_sign_in_to_favorite: "줄겨 찾고 싶다면 로그인하세요."
     stats_title: "%{script_name} - 통계"
     stats_daily_installs_heading: "일일 설치 수"
+    stats_weekly_installs_heading: "주간 설치수"
     stats_daily_update_checks_heading: "일일 업데이트 확인수"
     stats_daily_installs_date_column_heading: "날짜"
     stats_daily_installs_install_count_column_heading: "설치수"
@@ -95,6 +101,8 @@ ko:
     stats_no_data: "통계 사용불가"
     derivatives_title: "%{script_name} - 파생"
     derivatives_intro: "해당 스크립트는 아마 당신의 스크립트에 기반한 것 일수도 있습니다. (또는 당신이 이들의 것에 기반한 것 일수도 있음) 만약 허가받지 않고 당신의 코드를 사용한 것을 발견했다면, 새로운 의논을 시작하여 스크립트를 보고하세요."
+    derivatives_code_matches_info_html:
+      other: "당신의 스크립트와 %{match_size}줄  이상 겹치는 스크립트입니다. 이 검사는 %{max_size}이하의 스크립트만 포함하며 최근에 %{last_run}에 실행되었습니다."
     derivatives_namespace_matches_info_html: "<code>%{namespace}</code>를 올린 다른 스크립트:"
     derivatives_name_matches_info: "가장 비슷한 이름을 가진 스크립트:"
     derivatives_script_html: "%{user_link}가 만든 %{script_link}, 라이센스: %{license}"
@@ -219,23 +227,52 @@ ko:
     adult_content_on_greasy_logged_in_error: "이 스크립트는 더 이상 당신의 현재 %{edit_account_link:Greasy Fork account settings} 사이트에서 유효하지 않습니다."
     adult_content_on_greasy_not_logged_in_error: "이 스크립트는 이 사이트에서 더 이상 익명으로 사용되지 않습니다.\n%{login_link:Log in} 과 당신의 Greasy Fork 계정 설정을 확인하십시오."
     non_adult_content_on_sleazy: "이 스크립트는 이 사이트에서 사용할 수 없습니다."
+    adult_marker: "(성인)"
+    deleted_marker: "(제거됨)"
+    locked_marker: "(잠김)"
+    library_marker: "(라이브러리)"
+    libraries_title: "라이브러리"
+    by_site_list_description: "유저 스크립트의 인기가 높은 순으로 정렬된 사이트 목록입니다. 글자가 클 수록 유저 스크립트의 인기가 높습니다."
+    by_site_list_filter: "사이트 이름 제한:"
+    search_placeholder: "스크립트 검색"
   script_sets:
     favorites_name: "즐겨찾기"
     delete: "스크립트 모음 삭제"
     delete_confirmation: "정말로 이 스크립트 모음을 삭제하시겠습니까?"
     site_default_sort: "(사이트 기본값)"
+    edit_scripts:
+      heading: "스크립트"
+      description: "스크립트 세트에 스크립트 추가/제거"
+      included: "포함됨"
+      included_none: "(없음)"
+      remove_included: "선택된 항목 제거"
+      excluded: "제외됨"
+      excluded_none: "(없음)"
+      remove_excluded: "선택된 항목 제거"
+      add_label: "스크립트 추가 (URL 또는 ID, 공백으로 구분됨)"
+      add_include: "포함됨"
+      add_exclude: "제외됨"
     edit_sets:
+      heading: "스크립트 세트"
       remove_included: "선택된 항목 삭제"
       remove_excluded: "선택된 항목 삭제"
       add_label: "스크립트 추가 (공백으로 구분된 URL 혹은 ID 목록)"
+      user_no_sets: "(유저의 세트 없음)"
+      user_no_other_sets: "(유저의 다른 세트 없음)"
     edit_auto_sets:
       remove_included: "선택된 항목 삭제"
+    calculated_list_more:
+      other: "그리고 %{count}개 더..."
     already_included: "\"%{name}\"은 이미 포함되어있습니다."
     could_not_parse_script: "스크립트 '%{value}'를 분석할 수 없습니다"
     save: "저장"
+    saved: "스크립트 세트 저장됨."
     auto_set_types:
       all_scripts: "모든 스크립트"
+      site: "%{site}용 스크립트"
       all_sites: "모든 사이트"
+      user: "%{user}의 스크립트"
+      locale: "%{locale_name} 언어로 된 스크립트"
   forum_discussions:
     listing_no_script_no_reply_html: "%{discussion_link}, %{original_post_date}에 %{original_poster_link}이 올림."
     listing_no_script_with_reply_html: "%{discussion_link}, %{original_post_date}에 %{original_poster_link}가 올림. %{last_comment_date}에 %{last_commenter_link}가 마지막 댓글 씀."
@@ -246,12 +283,55 @@ ko:
     welcome: "유저스크립트 사이트 %{site_name}에 오신걸 환영합니다."
     sleazy_title: "%{site_name} - 인잔하고 유용한 성인용 유저스크립트"
     sleazy_welcome: "성인용 유저스크립트 사이트, %{site_name}에 오신 것을 환영합니다"
+    search_placeholder: "유저 스크립트 검색"
     explain_user_scripts_heading: "유저스크립트가 무엇인가요?"
     explain_user_scripts_html: "유저스크립트를 사용하면 자신의 경험을 새로운 경험으로 바꿀 수 있습니다. 설치됬을 때,  유저스크립트는 자동으로 사이트에서 짜쯩나는 걸 제거하거나, 사용을 쉽게 하거나, 기능을 추가하여 사이트에 방문할 때의 경험을 더 나아지게 합니다. %{site_name}에 있는 유저스크립트들은 다른 사용자에 의해 작성되고 전세계에 공유되고 있습니다. 설치하는 데에는 한푼의 돈도 들지 않으며 사용도 매우 간편합니다."
+    installing_step1_header: "1. 유저 스크립트 관리자 설치"
+    installing_step1_caption: "크롬의 Tampermonkey"
+    installing_step1_description_html: >
+        <p>유저 스크립트를 사용하려면 먼저 유저 스크립트 관리자를 설치해야 합니다. 사용 중인 브라우저에 맞는 유저 스크립트 관리자를 설치하면
+        됩니다.</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> or %{chrome_violentmonkey_link:Violent
+        monkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey} or %{firefox_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla: (추가 프로그램 설치 필요없음)</li>
+
+        </ul>
+    installing_step2_header: "2. 유저 스크립트 설치"
+    installing_step2_caption: "유저 스크립트의 설치 버튼"
+    installing_step2_description_html: >
+        <p>%{browse_link:이 사이트 탐색} 으로 사용하려는 유저 스크립트를 찾으세요. 아래는 인기 있는 스크립트 목록입니다.</p>
+
+        %{highlighted_scripts_list}
+
+        <p>유저 스크립트를 찾으면, 유저 스크립트 페이지의 초록색 설치 버튼을 누릅니다. 그러면 유저 스크립트 관리자가 설치 확인을 요청할
+        것입니다.</p>
+    installing_step3_header: "3. 유저 스크립트 사용하기"
+    installing_step3_description_html: >
+        <p>유저 스크립트의 대상 사이트로 가면 자동으로 스크립트가 작동할 것입니다. 어느 정도 스크립트를 사용해 본 후 유저 스크립트 설치
+        페이지로 돌아와 스크립트 제작자에게 평을 남길 수 있습니다.</p>
   users:
     sign_in_title: "%{site_name}에 로그인"
     sign_in_description: "%{site_name}에 로그인하면 스크립트를 게시하고 다른 스크립트에 피드백을 남길 수 있습니다. 스크립트 탐색 및 설치에는 로그인이 필요 없습니다."
     sign_in_external: "외부 서비스로 로그인"
+    sign_in_with: "%{provider}으로 로그인"
     sign_in_password: "비밀번호로 로그인"
     sign_in_email_used_no_external_services_html: "'%{email}'은 이미 '%{user_name}' 유저가 사용하고 있습니다. 만약 이는 당신이고 '%{provider}'로 자동으로 로그인하고 싶다면, 당신의 계정으로 %{sign_in_link}하여 당신의 %{provider} 로그인을 추가하세요."
     sign_in_email_used_with_external_services_html: "'%{email}'은 이미 %{existing_providers}로 로그인하는 유저 %{user_name}이 사용하고 있습니다. 만약 이는 당신이고 자동으로 %{provider}로 로그인하기를 바란다면, 당신의 계정에 %{sign_in_link}하고 %{provider} 로그인을 추가하세요."
@@ -294,6 +374,7 @@ ko:
     external_sign_in_removed: "%{provider} 로그인 제거됨."
     external_sign_in_failed: "%{provider} 로그인 실패: %{error}"
     external_sign_in_already_used: "%{provider} 로그인 추가 실패: 이미 '%{user_name}'이 사용중임."
+    external_sign_in_confirmation: "%{provider} 계정으로 새 %{site_name} 계정이 생성되었습니다. 당신의 유저명은 %{username}입니다."
     syncing_indicator: "(동기화중)"
     enable_syncing: "동기화 사용"
     disable_syncing: "동기화 해제"
@@ -311,6 +392,8 @@ ko:
     listing_new_scripts: "새로운 스크립트"
     listing_updated_scripts: "판올림된 스크립트"
     listing_registration_date: "등록 일자"
+    listing_title: "유저"
+    search_placeholder: "유저 검색"
     locale_prompt: "(지역이나 언어 선택)"
     show_ads_description: "광고 차단을 해제해 %{site_name}를 지원해주세요"
     show_sensitive_description: "성인물이 포함된 유저스크립트 표시"
@@ -319,7 +402,11 @@ ko:
     approve_redistribution_explanation: "다른 사이트에서 당신의 스크립트를 재배포 할 수 있는 지 말할 수 있으며, 라이선스에 의해 이미 허용되거나 허용되지 않을 수도 있으며 각각의 스크립트의 설정을 무시할 수 있습니다."
     approve_redistribution_true: "제 스크립트들이 다른 곳에서 재배포되도 상관 없습니다."
     approve_redistribution_false: "제 스크립트들이 다른곳에서 재배포되는 것을 원치 않습니다."
+    greasy_fork_scripts_link:
+      other: "%{user_name} 또한 Greasy Fork에  %{count} 개의 스크립트를 가지고 있습니다."
   help:
+    installing_user_scripts:
+      title: '유저 스크립트 설치 방법'
     meta_keys:
       title: "스크립트 메타 키는 %{site_name} 에 의해 읽힙니다."
       intro_html: "%{site_name}에서 읽는 <a href=\"http://wiki.greasespot.net/Metadata_Block\">유저스크립트 메타블럭</a>들입니다. 이 중에 없는 블럭은 스크립트내에 포함되나 %{site_name}의 UI에 아무런 영향도 주지 않습니다."
