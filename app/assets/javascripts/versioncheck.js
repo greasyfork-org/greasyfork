@@ -32,6 +32,7 @@ function getInstalledVersion(name, namespace) {
 	});
 }
 
+// https://developer.mozilla.org/en/docs/Toolkit_version_format
 function compareVersions(a, b) {
 	if (a == b) {
 		return 0;
@@ -39,22 +40,48 @@ function compareVersions(a, b) {
 	var aParts = a.split('.');
 	var bParts = b.split('.');
 	for (var i = 0; i < aParts.length; i++) {
-		if (typeof bParts[i] == "undefined") {
-			// Something is more than nothing
+		var result = compareVersionPart(aParts[i], bParts[i]);
+		if (result != 0) {
+			return result;
+		}
+	}
+	return 0;
+}
+
+function compareVersionPart(partA, partB) {
+	var partAParts = parseVersionPart(partA);
+	var partBParts = parseVersionPart(partB);
+	for (var i = 0; i < partAParts.length; i++) {
+		// "A string-part that exists is always less than a string-part that doesn't exist"
+		if (partAParts[i].length > 0 && partBParts[i].length == 0) {
+			return -1;
+		}
+		if (partAParts[i].length == 0 && partBParts[i].length > 0) {
 			return 1;
 		}
-		if (aParts[i] > bParts[i]) {
+		if (partAParts[i] > partBParts[i]) {
 			return 1;
 		}
-		if (aParts[i] < bParts[i]) {
+		if (partAParts[i] < partBParts[i]) {
 			return -1;
 		}
 	}
-	// At this point, all parts of A are equal to the corresponding part of B
-	if (bParts.length > aParts.length) {
-		return -1;
-	}
 	return 0;
+}
+
+// It goes number, string, number, string. If it doesn't exist, then
+// 0 for numbers, empty string for strings.
+function parseVersionPart(part) {
+	if (!part) {
+		return [0, "", 0, ""];
+	}
+	var partParts = /([0-9]*)([^0-9]*)([0-9]*)([^0-9]*)/.exec(part)
+	return [
+		partParts[1] ? parseInt(partParts[1]) : 0,
+		partParts[2],
+		partParts[3] ? parseInt(partParts[3]) : 0,
+		partParts[4]
+	];
 }
 
 function checkForUpdates(installButton) {
