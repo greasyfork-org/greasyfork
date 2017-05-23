@@ -68,6 +68,9 @@ class ScriptsController < ApplicationController
 				# back to the main listing
 				redirect_to scripts_path
 				return
+			rescue ThinkingSphinx::OutOfBoundsError => e
+				# Paginated too far.
+				@scripts = Script.none.paginate(page: 1)
 			end
 		else
 			@scripts = Script.listable(script_subset).includes({:user => {}, :script_type => {}, :localized_attributes => :locale, :script_delete_type => {}}).paginate(:page => params[:page], :per_page => get_per_page)
