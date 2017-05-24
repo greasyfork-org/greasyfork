@@ -34,8 +34,8 @@ class ScriptsController < ApplicationController
 	def index
 		is_search = params[:q].present?
 
-		# Search can't do script sets, otherwise we'd use it for everything.
-		if params[:set].nil?
+		# Search can't do script sets or sites, otherwise we'd use it for everything.
+		if params[:set].nil? && params[:site].nil?
 			begin
 				with = case script_subset
 					when :greasyfork
