@@ -26,9 +26,11 @@ current_options = {sort: params[:sort], site: params[:site], set: params[:set], 
 		</ul>
 	</div>
 
-	<div class="ad">
-		<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=greasyforkorg" id="_carbonads_js"></script>
-	</div>
+	<% if !sleazy? && (current_user.nil? || current_user.show_ads) %>
+		<div class="ad">
+			<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=greasyforkorg" id="_carbonads_js"></script>
+		</div>
+	<% end %>
 
 	<% if !by_sites.nil? %>
 		<div id="script-list-filter" class="list-option-group"><%=t('scripts.listing_filter_by_site_label')%>
