@@ -190,6 +190,18 @@ module ApplicationHelper
 		return url_for(current_url_with_params(p.merge(only_path: true)))
 	end
 
+	def asset_exists?(path)
+		if Rails.configuration.assets.compile
+			Rails.application.precompiled_assets.include? path
+		else
+			Rails.application.assets_manifest.assets[path].present?
+		end
+	end
+
+	def asset_path_if_exists(path)
+		return asset_path(path) if asset_exists?(path)
+	end
+
 private
 
 	@@markdown_sanitize_config = nil

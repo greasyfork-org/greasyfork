@@ -137,9 +137,9 @@ if !localized_additional_info.nil? || !@script_version.screenshots.empty? %>
 					if ($.fn.socialSharePrivacy.settings.services['<%=service%>']['<%=name%>']) {
 						<%# Check to see if it's a localized image %>
 						if ($.fn.socialSharePrivacy.settings.services['<%=service%>']['<%=name%>'].split('/').length == 3) {
-							$.fn.socialSharePrivacy.settings.services['<%=service%>']['<%=name%>'] = '<%=asset_path("jquery-socialshareprivacy/#{social_share_locale}/#{path}")%>';
+							$.fn.socialSharePrivacy.settings.services['<%=service%>']['<%=name%>'] = '<%=asset_path_if_exists("jquery-socialshareprivacy/#{social_share_locale ? "#{social_share_locale}/" : '/'}#{path}")%>';
 						} else {
-							$.fn.socialSharePrivacy.settings.services['<%=service%>']['<%=name%>'] = '<%=asset_path("jquery-socialshareprivacy/#{path}")%>';
+							$.fn.socialSharePrivacy.settings.services['<%=service%>']['<%=name%>'] = '<%=asset_path_if_exists("jquery-socialshareprivacy/#{path}")%>';
 						}
 					}<%
 					if service == 'flattr' %>
