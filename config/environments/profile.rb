@@ -11,7 +11,7 @@ Greasyfork::Application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local       = true
   config.action_controller.perform_caching = true
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
@@ -19,31 +19,13 @@ Greasyfork::Application.configure do
   # For large-scale production use, consider using a caching reverse proxy like nginx, varnish or squid.
   # config.action_dispatch.rack_cache = true
 
-  # Disable Rails's static asset server (Apache or nginx will already do this).
-  config.public_file_server.enabled = false
+  config.public_file_server.enabled = true
 
-  # Compress JavaScripts and CSS.
-  config.assets.js_compressor = :uglifier
-  # config.assets.css_compressor = :sass
-
-  # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
-
-  # Generate digests for assets URLs.
-  config.assets.digest = true
-
-  # Version of your assets, change this if you want to expire all your assets.
-  config.assets.version = '1.0'
-
-  # Specifies the header that your server uses for sending files.
-  # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
-  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
-
-  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.assets.debug = true
+  config.assets.quiet = true
 
   # Set to :debug to see everything in the log.
-  config.log_level = :debug
+  #config.log_level = :debug
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
@@ -54,12 +36,6 @@ Greasyfork::Application.configure do
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
   config.cache_store = :dalli_store, ['localhost:11211:10'], { :namespace => 'Greasy Fork', :expires_in => 2.hours, :compress => true }
-
-  config.assets.compress = true
-  config.assets.js_compressor  = :uglifier
-  config.assets.css_compressor = :yui
-  config.assets.compile = false
-  config.assets.digest = true
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = "http://assets.example.com"
