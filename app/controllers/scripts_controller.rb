@@ -386,16 +386,16 @@ class ScriptsController < ApplicationController
 	def install_ping
 		# verify for CSRF, but do it in a way that avoids an exception. Prevents monitoring from going nuts.
 		if !verified_request?
-			render :nothing => true, :status => 422
+			head 422
 			return
 		end
 		ip, script_id = ScriptsController.per_user_stat_params(request, params)
 		if ip.nil? || script_id.nil?
-			render :nothing => true, :status => 422
+			head 422
 			return
 		end
 		Script.record_install(script_id, ip)
-		render :nothing => true, :status => 204
+		head 204
 	end
 
 	def diff

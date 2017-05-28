@@ -103,7 +103,7 @@ protected
 				render 'home/error', status: 404, layout: 'application'
 			}
 			format.all {
-				render nothing: true, status: 404
+				head 404
 			}
 		end
 	end
