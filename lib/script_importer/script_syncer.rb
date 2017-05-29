@@ -12,7 +12,7 @@ module ScriptImporter
 			# pass the description in so we retain it if it's missing
 			begin
 				status, new_script, message = importer.generate_script(script.sync_identifier, script.description, script.user, 1, script.localized_attributes_for('additional_info'))
-			rescue Exception => ex
+			rescue => ex
 				status = :failure
 				message = ex
 			end
