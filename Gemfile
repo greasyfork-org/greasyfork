@@ -15,7 +15,7 @@ gem 'sanitize'
 gem 'newrelic_rpm'
 gem 'will_paginate'
 gem 'will-paginate-i18n'
-gem 'yui-compressor'
+gem 'sass-rails' # Just for the compressor
 gem 'strip_attributes'
 gem 'redcarpet'
 gem 'ignorable'
