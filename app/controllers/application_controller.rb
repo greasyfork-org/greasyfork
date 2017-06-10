@@ -287,7 +287,7 @@ protected
 		return per_page
 	end
 
-	RANDOM_OPTIONS = ['pw']
+	RANDOM_OPTIONS = ['ca']
 	def choose_ad_method(script=nil)
 		return nil if sleazy?
 		return nil if script&.sensitive

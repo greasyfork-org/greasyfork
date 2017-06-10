@@ -8,7 +8,7 @@
 </div>
 
 <% if !@ad_method.nil? %>
-	<div class="ad" id="home-ad">
+	<div class="ad ad-<%=@ad_method%>" id="script-show-info-ad">
 		<div class="ad-note" data-ad-method="<%=@ad_method.upcase%>"><%=t('common.advertisement_note')%></div>
 		<div class="ad-content">
 			<% case @ad_method
@@ -30,6 +30,8 @@
 					<script>
 					(adsbygoogle = window.adsbygoogle || []).push({});
 					</script>
+				<% when 'ca' %>
+					<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=greasyforkorg" id="_carbonads_js"></script>
 			<% end  %>
 		</div>
 	</div>
