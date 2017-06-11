@@ -76,7 +76,7 @@ pl:
     delete_update_behaviour_2: "Zostanie zaktualizowany do pustego skryptu. Jest to odpowiednie gdy skrypt miał negatywny wpływ na działanie stron, których dotyczy."
     delete_permanently_heading: "Trwałe usunięcie"
     delete_permanently_explanation: "Trwałe usunięcie skryptu usunie go wraz ze wszystkimi powiązanymi wpisami, z wyjątkiem dyskusji na forum oraz logów działań moderatorów. Trwałe usunięcie jest nieodwracalne; nie może być cofnięte nawet przez moderatorów."
-    delete_permanently_request_explanation: "Permanentne usunięcie tego skryptu może nastąpić dopiero po sprawdzeniu przez moderatora."
+    delete_permanently_request_explanation: "Trwałe usunięcie tego skryptu może nastąpić dopiero po sprawdzeniu przez moderatora."
     delete_permanently_confirm: "Czy na pewno chcesz usunąć tę kolekcję skryptów? To działanie nie może być cofnięte!"
     delete_permanently_submit: "Usuń trwale"
     delete_permanently_immediate_submit: "Permanentnie usunięty"
@@ -115,6 +115,11 @@ pl:
     stats_no_data: "Brak danych"
     derivatives_title: "%{script_name} — pochodne"
     derivatives_intro: "Te skrypty mogą bazować na Twoim skrypcie (lub Twoje skrypty mogą bazować na nich). Jeśli znajdziesz nieautoryzowane użycie Twojego kodu, zgłoś skrypt, poprzez rozpoczęcie nowej dyskusji na jego forum."
+    derivatives_code_matches_info_html:
+      one: "Skrypty zamieszczone przez innych, które zawierają kod o długości co najmniej %{match_size}linii wspólnej z twoim skryptem. Ta kontrola jest uruchamiana jedynie na skryptach mających rozmiar mniejszy niż %{max_size} i ostatnio uruchomionych %{last_run}."
+      few: "Skrypty zamieszczone przez innych, które zawierają kod o długości co najmniej %{match_size} linie wspólne z twoim skryptem. Ta kontrola jest uruchamiana jedynie na skryptach mających rozmiar mniejszy niż %{max_size} i ostatnio uruchomionych %{last_run}."
+      many: "Skrypty zamieszczone przez innych, które zawierają kod o długości co najmniej %{match_size} linii wspólnych z twoim skryptem. Ta kontrola jest uruchamiana jedynie na skryptach mających rozmiar mniejszy niż %{max_size} i ostatnio uruchomionych %{last_run}."
+      other: "Skrypty zamieszczone przez innych, które zawierają kod o długości co najmniej %{match_size} linii wspólnych z twoim skryptem. Ta kontrola jest uruchamiana jedynie na skryptach mających rozmiar mniejszy niż %{max_size} i ostatnio uruchomionych %{last_run}."
     derivatives_namespace_matches_info_html: "Skrypty udostepnione przez innych używające <code>%{namespace}</code>:"
     derivatives_name_matches_info: "Skrypty udostępnione przez innych z bardzo podobnymi nazwami do Twojego skryptu:"
     derivatives_script_html: "%{script_link} przez %{user_link}, licencja: %{license}"
@@ -174,7 +179,7 @@ pl:
     preview_additional_info: "Podgląd"
     post_new_script: "Udostępnij skrypt"
     post_updated_script: "Udostępnij nową wersję"
-    type_1_html: "Opublikuj skrypt — każdy może go podejrzeć i używać."
+    type_1_html: "Opublikuj skrypt użytkownika — dla wszystkich do podejrzenia i korzystania."
     type_2_html: "Niepubliczny skrypt użytkownika - skrypt użytkownika za (pół) użytku prywatnego. Dostępne poprzez bezpośredni dostęp, ale nie wiąże się z dowolnego miejsca w %{site_name}."
     type_3_html: "Biblioteka - skrypt ma być <code> @require </ code> -d z innych skryptów i nie instalować bezpośrednio."
     override_warning_checkbox_label: "Zapisać mimo to?"
@@ -304,6 +309,11 @@ pl:
       for_language_exclude: "Usuń"
     calculated_list: "Obliczona lista skryptów"
     calculated_list_none: "(brak)"
+    calculated_list_more:
+      one: "I %{count} więcej..."
+      few: "I %{count} więcej..."
+      many: "I %{count} więcej"
+      other: "I %{count} więcej..."
     already_included: "'%{name}' już dołączone."
     could_not_parse_script: "Nie można przeparsować skryptu '%{value}'"
     save: "Zapisz"
@@ -327,12 +337,12 @@ pl:
     search_placeholder: "Szukaj skryptów użytkowników"
     scripts_for_label: "Skrypty dla:"
     explain_user_scripts_heading: "Co to są skrypty użytkownika?"
-    explain_user_scripts_html: "Skrypty użytkownika dają możliwość kontrolowania przeglądanych stron. Po zainstalowaniu automatycznie dodają nowe możliwości, ułatwiają nam korzystanie lub usuwają niechciane treści ze stron, które odwiedzasz. Skrypty użytkownika na %{site_name} były pisane przez innych użytkowników i zostały udostępnione. Są darmowe i łatwe w użyciu."
-    installing_step1_header: "Krok 1: zainstaluj menadżera skryptów"
+    explain_user_scripts_html: "Skrypty użytkownika pozwalają kontrolować twoje doświadczenie przeglądania stron internetowych. Po zainstalowaniu, automatycznie czynią strony lepszymi poprzez dodanie nowych funkcji, sprawiając, że korzysta się z nich łatwiej lub usuwają niechciane treści z odwiedzanych stron. Skrypty użytkownika na %{site_name} zostały napisane przez innych użytkowników i zamieszczone, by podzielić się nimi ze światem. Są darmowe i łatwe w użyciu."
+    installing_step1_header: "Krok 1: zainstaluj menedżera skryptów"
     installing_step1_caption: "Tampermonkey na Chrome"
     installing_step1_description_html: >
-        <p>Aby używać skryptów, musisz najpierw zainstalować menadżera skryptów. To
-        jaki menadżer skryptów możesz używać, zależy od używanej przeglądarki.</p>
+        <p>Aby korzystać ze skryptów użytkownika, musisz najpierw zainstalować menedżera
+        skryptów. To jaki menedżer skryptów możesz używać, zależy od używanej przeglądarki.</p>
 
         <ul>
 
@@ -356,21 +366,23 @@ pl:
         <li>Qupzilla: (nie jest wymagane dodatkowe oprogramowanie)</li>
 
         </ul>
-    installing_step2_header: "Krok 2: zainstaluj skrypt"
-    installing_step2_caption: "Przycisk 'zainstaluj skrypt'"
+    installing_step2_header: "Krok 2: zainstaluj skrypt użytkownika"
+    installing_step2_caption: "Przycisk 'zainstaluj skrypt użytkownika'"
     installing_step2_description_html: >
-        <p>%{browse_link:Przeglądaj tę witrynę}, by znaleźć skrypt, których chcesz
-        wypróbować. Oto przykłady najbardziej popularnych skryptów:</p>
+        <p>%{browse_link:Przeglądaj tę witrynę}, by znaleźć skrypt użytkownika, których
+        chcesz wypróbować. Oto przykłady najbardziej popularnych skryptów:</p>
 
         %{highlighted_scripts_list}
 
-        <p>Jak już znajdziesz skrypt, to wciśnij zielony przycisk na stronie skryptu,
-        a twój menadżer skryptów poprosi ciebie o potwierdzenie zainstalowania.</p>
-    installing_step3_header: "Krok 3: używaj skryptu"
+        <p>Jak już znajdziesz skrypt użytkownika, to wciśnij zielony przycisk na stronie
+        skryptu użytkownika, a twój menedżer skryptów poprosi ciebie o potwierdzenie
+        zainstalowania.</p>
+    installing_step3_header: "Krok 3: korzystaj ze skryptu"
     installing_step3_description_html: >
-        <p>Przejdź do strony, którą obejmuje skrypt. Powinien automatycznie zrobić
-        to co ma zrobić. Po wypróbowaniu skryptu przez chwilę, wróć z powrotem tam
-        gdzie zainstalowałeś skrypt i zostaw pewne informacje zwrotne dla autora skryptu.</p>
+        <p>Przejdź do strony, którą obejmuje skrypt użytkownika. Powinien automatycznie
+        zrobić to co ma zrobić. Po wypróbowaniu skryptu użytkownika przez chwilę,
+        wróć z powrotem tam gdzie go zainstalowałeś i zostaw pewne informacje zwrotne
+        dla jego autora.</p>
   users:
     sign_in_title: "Zaloguj się na %{site_name}"
     sign_in_description: "Zarejestrowanie się na %{site_name} umożliwi Ci publikowanie skryptów i opinii w innych skryptach. Nie musisz logować się, aby przeszukiwać lub instalować skrypty."
@@ -432,13 +444,13 @@ pl:
       note: "Możesz także otrzymywać inne pocztówki elektroniczne ustawione według Ciebie w opcjach na forum."
     list_display_html:
       one: "%{user_link} — %{count} skrypt"
-      few: "%{user_link} — %{count} skryptów"
-      many: "%{user_link} — %{count} skrypty"
-      other: "%{user_link} — %{count} skrypty"
-    listing_number_of_scripts: "Liczba skryptów"
-    listing_new_scripts: "Nowe skrypty"
+      few: "%{user_link} — %{count} skrypty"
+      many: "%{user_link} — %{count} skryptów"
+      other: "%{user_link} — %{count} skryptów"
+    listing_number_of_scripts: "Liczby skryptów"
+    listing_new_scripts: "Nowych skryptów"
     listing_updated_scripts: "Zaktualizowanych skryptów"
-    listing_registration_date: "Data rejestracji"
+    listing_registration_date: "Daty rejestracji"
     listing_title: "Użytkownicy"
     search_placeholder: "Szukaj użytkowników"
     locale_prompt: "(wybierz język)"
@@ -454,11 +466,16 @@ pl:
       few: "%{user_name} ma %{count} skryptów na Greasy Fork."
       many: "%{user_name} ma %{count} skryptów na Greasy Fork."
       other: "%{user_name} ma %{count} skryptów na Greasy Fork."
+    update_sync_warning:
+      one: "Twoja nazwa użytkownika i email są ustawione by być synchronizowane kiedy się zalogujesz przez %{providers}. %{edit_sign_in_link:Zmień swoje metody logowania, by usunąć synchronizację} jeśli chcesz na stałe ustawić niestandardową nazwę użytkownika lub email."
+      few: "Twoja nazwa użytkownika i email są ustawione by być synchronizowane kiedy się zalogujesz przez %{providers}. %{edit_sign_in_link:Zmień swoje metody logowania, by usunąć synchronizację} jeśli chcesz na stałe ustawić niestandardową nazwę użytkownika lub email."
+      many: "Twoja nazwa użytkownika i email są ustawione by być synchronizowane kiedy się zalogujesz przez %{providers}. %{edit_sign_in_link:Zmień swoje metody logowania, by usunąć synchronizację} jeśli chcesz na stałe ustawić niestandardową nazwę użytkownika lub email."
+      other: "Twoja nazwa użytkownika i email są ustawione by być synchronizowane kiedy się zalogujesz przez %{providers}. %{edit_sign_in_link:Zmień swoje metody logowania, by usunąć synchronizację} jeśli chcesz na stałe ustawić niestandardową nazwę użytkownika lub email."
   help:
     installing_user_scripts:
-      title: 'Jak zainstalować skrypty'
+      title: 'Jak zainstalować skrypty użytkownika'
     meta_keys:
-      title: "kluczami meta skryptu czytanymi przez %{site_name}"
+      title: "Meta klucze skryptu czytane przez %{site_name}"
       intro_html: "Tutaj <a href=\"http://wiki.greasespot.net/Metadata_Block\">\n Lista kluczy meta skryptów użytkowników </a> znajduje się lista, którą %{site_name} będzie odczytywała. Klucze spoza tej listy mogą być dołączone w skryptach i będą obecne w zainstalowanym skrypcie, ale nie będą miały wpływu na %{site_name} wygląd strony."
       name: "(wymagane) Nazwa skryptu, która jest używana jako nagłówek i w linkach."
       name_localized_html: "Nazwa skryptu w specyficznym języku, gdzie XX oznacza <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\"> Kod dwuliterowy ISO 639-1 </a> i YY które jest opcjonalne <a href=\"https://www.iso.org/obp/ui/#search\"> Kod kraju ISO 3166 </a>.  Zastępuje <code>@name</code> kiedy użytkownik przegląda z wybranym językiem."
@@ -483,7 +500,7 @@ pl:
       user_page_link_text: 'strony użytkownika'
       post_new_script_link_text: 'udostępnić nowy skrypt'
     code_rules:
-      title: "zasadami publikacji skryptów na %{site_name}"
+      title: "Zasady publikacji skryptów na %{site_name}"
       content_html: >
           <p> Wymagania dotyczące skryptów udostępnionych na %{site_name}. Są one
           przewidziane aby %{site_name} była bezpieczną i użyteczną stroną dla skryptów
@@ -556,24 +573,26 @@ pl:
           możesz wysłać go jako oddzielna pozycja %{site_name} poprzez wybór typu
           "Biblioteka". Wtedy będziesz w stanie wykorzystać bibliotekę w Twoim skrypcie</p>
     script_rewriting:
-      title: "Jak %{site_name} zostanie nadpisana udostępnionymi skryptami"
-      content_html: >+
-          <p> Skrypty udostępnione na %{site_name} zostaną nadpisane w następujący
+      title: "Jak %{site_name} przepisze udostępnione skrypty"
+      content_html: >
+          <p>Skrypty zamieszczone na %{site_name} zostaną przepisane w następujący
           sposób:</p> <ul>
 
-          <li>code>@updateURL</code>,
+          <li><code>jeżeli występują dyrektywy @updateURL</code>, <code>@installURL</code>,
+          i <code>@downloadURL</code> , to zostaną usunięte. Brak tych dyrektyw oznacza,
+          iż jakikolwiek skrypt zainstalowany z%{site_name} zostanie zaktualizowany
+          z %{site_name}.</li>
 
-          <code>@installURL</code>, i <code>@downloadURL</code> dyrektywy zostaną
-          usunięte, jeżeli występują. Brak tych dyrektyw oznacza, iż jakikolwiek skrypt
-          zainstalowany z %{site_name} zostanie zaakutalizowany z %{site_name}. </li>
+          <li><code>jeśli skrypt nie posiada dyrektyw @version</code> i <code>@namespace</code>,
+          to zostaną one wstawione. Te dyrektywy są potrzebne dla prawidłowego aktualizowania.</li>
 
-          <li><code>@version</code> i <code>@namespace</code> dyrektywy zostaną wstawione
-          jeżeli skrypt ich nie posiada. Te dyrektywy są potrzebne dla prawidłowej
-          aktualizacji.</li>
+          <li><code>jeśli nowa wersja skryptu nie posiada dyrektywy @description</code>,
+          a poprzednia wersja ją miała, to zostanie wstawiona.</li>
 
-          <li><code>@description</code> zostanie wstawiony jeżeli nowa wersja skryptu
-          go nie zawiera it, a poprzednia wersja skryptu go posiadała.</li>
+          <li>Znaki końca linii CRLF i CR zostaną zamienione na standardowy/systemu
+          Unix styl końca linii.</li>
 
+          </ul>
     site_feedback_link: "Zgłoś problem lub podziel się pomysłem na %{site_name}"
     credits:
       title: "Twórcy"
@@ -691,7 +710,7 @@ pl:
         screenshots: "Zrzuty ekranu"
         screenshot_caption: "Podpis"
         replaced_by_script_id: "Skrypt zastępczy"
-        approve_redistribution: "Ponowna dystrybucja"
+        approve_redistribution: "Redystrybucja"
       script_set:
         name: "Nazwa"
         description: "Opis"
@@ -712,4 +731,4 @@ pl:
     short_name: "%{site_name} wyszukaj"
     description: "Szukaj skryptów użytkownika na %{site_name}."
     long_name: "%{site_name} szukanie skryptu użytkownika"
-    attribution: "Prawa autorskie dla autorów skryptów, zobacz pojedynczy skrypt aby zobaczyć prawa autorskie"
+    attribution: "Prawa autorskie dla autorów skryptów, zobacz pojedynczy skrypt aby zobaczyć licencjonowanie"
