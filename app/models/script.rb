@@ -257,6 +257,7 @@ class Script < ActiveRecord::Base
 	end
 
 	def self.record_update_check(id, ip)
+		Rails.logger.warn("Recording update - #{id} #{ip}")
 		Script.connection.execute("INSERT IGNORE INTO daily_update_check_counts (script_id, ip) VALUES (#{Script.connection.quote_string(id)}, '#{Script.connection.quote_string(ip)}');")
 	end
 
