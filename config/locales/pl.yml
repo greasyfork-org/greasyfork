@@ -334,7 +334,7 @@ pl:
     welcome: "Witaj na %{site_name}, stronie ze skryptami użytkownika."
     sleazy_title: "%{site_name} - bezpieczne i użyteczne skrypty dorosłego użytkownika"
     sleazy_welcome: "Witaj na %{site_name}, stronie ze skryptami dla dorosłego użytkownika."
-    search_placeholder: "Szukaj skryptów użytkowników"
+    search_placeholder: "Szukaj skryptów użytkownika"
     scripts_for_label: "Skrypty dla:"
     explain_user_scripts_heading: "Co to są skrypty użytkownika?"
     explain_user_scripts_html: "Skrypty użytkownika pozwalają kontrolować twoje doświadczenie przeglądania stron internetowych. Po zainstalowaniu, automatycznie czynią strony lepszymi poprzez dodanie nowych funkcji, sprawiając, że korzysta się z nich łatwiej lub usuwają niechciane treści z odwiedzanych stron. Skrypty użytkownika na %{site_name} zostały napisane przez innych użytkowników i zamieszczone, by podzielić się nimi ze światem. Są darmowe i łatwe w użyciu."
@@ -342,20 +342,21 @@ pl:
     installing_step1_caption: "Tampermonkey na Chrome"
     installing_step1_description_html: >
         <p>Aby korzystać ze skryptów użytkownika, musisz najpierw zainstalować menedżera
-        skryptów. To jaki menedżer skryptów możesz używać, zależy od używanej przeglądarki.</p>
+        skryptów. To jaki menedżer skryptów możesz używać, zależy od tego z której
+        przeglądarki korzystasz.</p>
 
         <ul>
 
-        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> lub %{chrome_violentmonkey_link:Violent
-        monkey}</li>
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> lub %{chrome_violentmonkey_link:Violentmonkey}</li>
 
-        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey} lub %{firefox_tampermonkey_link:Tampermonkey}</li>
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
+        lub %{firefox_violentmonkey_link:Violentmonkey}</li>
 
         <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
 
         <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
 
-        <li>Opera: %{opera_tampermonkey_link:Tampermonkey}</li>
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} lub %{opera_violentmonkey_link:Violentmonkey}</li>
 
         <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
 
@@ -377,16 +378,15 @@ pl:
         <p>Jak już znajdziesz skrypt użytkownika, to wciśnij zielony przycisk na stronie
         skryptu użytkownika, a twój menedżer skryptów poprosi ciebie o potwierdzenie
         zainstalowania.</p>
-    installing_step3_header: "Krok 3: korzystaj ze skryptu"
+    installing_step3_header: "Krok 3: używaj skryptu"
     installing_step3_description_html: >
-        <p>Przejdź do strony, którą obejmuje skrypt użytkownika. Powinien automatycznie
-        zrobić to co ma zrobić. Po wypróbowaniu skryptu użytkownika przez chwilę,
-        wróć z powrotem tam gdzie go zainstalowałeś i zostaw pewne informacje zwrotne
-        dla jego autora.</p>
+        <p>Przejdź do strony, którą obejmuje skrypt użytkownika. Powinien on automatycznie
+        zrobić swoje. Po wypróbowaniu skryptu użytkownika przez chwilę, wróć z powrotem
+        tam gdzie go zainstalowałeś i zostaw opinię dla jego autora.</p>
   users:
     sign_in_title: "Zaloguj się na %{site_name}"
-    sign_in_description: "Zarejestrowanie się na %{site_name} umożliwi Ci publikowanie skryptów i opinii w innych skryptach. Nie musisz logować się, aby przeszukiwać lub instalować skrypty."
-    sign_in_external: "Zaloguj się za pomocą serwisowi zewnętrznemu"
+    sign_in_description: "Zalogowanie się na %{site_name} umożliwi Ci publikowanie skryptów i opinii o innych skryptach. Nie musisz logować się, aby przeglądać lub instalować skrypty."
+    sign_in_external: "Zaloguj się za pomocą serwisu zewnętrznego"
     sign_in_with: "Zaloguj się z %{provider}"
     sign_in_password: "Zaloguj się z hasłem"
     sign_in_email_used_no_external_services_html: "Adres poczty elektronicznej '%{email}' jest już użyty przez użytkownika '%{user_name}'. Jeśli to jesteś Ty i chcesz dodać dodatkową metodę logowania za pomocą serwisu %{provider}, %{sign_in_link} najpierw do Twojego konta, a następnie dodaj Twoje konto w serwisie %{provider} do Twojego konta %{site_name}, aby się zalogować."
@@ -436,7 +436,7 @@ pl:
     disable_syncing: "Wyłącz synchronizację"
     remove_external_sign_in: "Usuń"
     add_external_sign_in_info: "Dodaj metodę logowania się"
-    set_up_webhook: "Skonfiguruj hak sieciowy GitHuba"
+    set_up_webhook: "Skonfiguruj webhook GitHuba"
     author_email_notification_type:
       none: "Nie otrzymuj e-maili o nowych dyskusjach w Twoich skryptach"
       discussion_only: "Otrzymuj maile o nowych dyskusjach na temat twoich skryptów"
@@ -476,23 +476,23 @@ pl:
       title: 'Jak zainstalować skrypty użytkownika'
     meta_keys:
       title: "Meta klucze skryptu czytane przez %{site_name}"
-      intro_html: "Tutaj <a href=\"http://wiki.greasespot.net/Metadata_Block\">\n Lista kluczy meta skryptów użytkowników </a> znajduje się lista, którą %{site_name} będzie odczytywała. Klucze spoza tej listy mogą być dołączone w skryptach i będą obecne w zainstalowanym skrypcie, ale nie będą miały wpływu na %{site_name} wygląd strony."
+      intro_html: "Tutaj jest lista <a href=\"http://wiki.greasespot.net/Metadata_Block\">meta kluczy skryptu użytkownika</a>, które %{site_name} będzie czytała.  Klucze spoza tej listy mogą być dołączone w skryptach i będą obecne w zainstalowanym skrypcie, ale nie będą miały wpływu na interfejs użytkownika strony %{site_name}."
       name: "(wymagane) Nazwa skryptu, która jest używana jako nagłówek i w linkach."
-      name_localized_html: "Nazwa skryptu w specyficznym języku, gdzie XX oznacza <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\"> Kod dwuliterowy ISO 639-1 </a> i YY które jest opcjonalne <a href=\"https://www.iso.org/obp/ui/#search\"> Kod kraju ISO 3166 </a>.  Zastępuje <code>@name</code> kiedy użytkownik przegląda z wybranym językiem."
+      name_localized_html: "Nazwa skryptu w specyficznym języku, gdzie XX oznacza <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\"> kod dwuliterowy ISO 639-1 </a>, a YY jest opcjonalnym <a href=\"https://www.iso.org/obp/ui/#search\"> kodem kraju ISO 3166 </a>.  Zastępuje <code>@name</code>, kiedy użytkownik przegląda z wybranym językiem."
       description: "Opis funkcji skryptu.  Wyświetlany jako tekst pod nazwą skryptu. Wymagane."
-      description_localized_html: "Opis w specyficznym języku, gdzie XX oznacza <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\"> Kod dwuliterowy ISO 639-1 </a> i YY które jest opcjonalne <a href=\"https://www.iso.org/obp/ui/#search\"> Kod kraju ISO 3166 </a>.  Zastępuje <code>@name</code> kiedy użytkownik przegląda z wybranym językiem."
+      description_localized_html: "Opis w specyficznym języku, gdzie XX oznacza <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\"> kod dwuliterowy ISO 639-1 </a>, a YY jest opcjonalnym <a href=\"https://www.iso.org/obp/ui/#search\"> kodem kraju ISO 3166 </a>.  Zastępuje <code>@description</code>, kiedy użytkownik przegląda z wybranym językiem."
       namespace_html: "Kombinacja <code>@namespace</code> i <code>@name</code> jest używana przez menedżerów skryptów użytkownika aby sprawdzić czy skrypt został już zainstalowany. %{site_name} wymaga tego pola i będzie ostrzegać jeżeli zostanie zmienione przy aktualizacji."
-      version_html: "Identyfikator dla specyficznej wersji skryptu <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">Format wersji Mozilli</a>. Wersja jest wyświetlana na stronie informacyjnej skryptu. %{site_name} wymaga tego pola i będzie ostrzegać jeżeli zostanie zmniejszone lub nie zostanie powiększone po zmianach w kodzie skryptu."
+      version_html: "Identyfikator dla specyficznej wersji skryptu w <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">formacie wersji Mozilli</a>. Wersja jest wyświetlana na stronie informacyjnej skryptu. %{site_name} wymaga tego pola i będzie ostrzegać jeżeli zostanie zmniejszone lub nie zostanie powiększone po zmianach w kodzie skryptu."
       include: "Opisuje które strony skrypt uruchomi. Ta lista będzie wykorzystana i wyświetlana na stronie informacyjnej skryptu oraz będzie używana dla kategoryzowania skryptów."
       require_html: "Zawiera zewnętrzny JavaScript w skrypcie. Zobacz %{external_script_link}."
       require_external_script_link_text: "zasady dla kodu zawierającego zewnętrzne skrypty"
-      updateURL: "Opisz, jak menedżerzy skryptu użytkownika powinny otrzymywać aktualizacje. %{site_name} usunie te klucze, które zrobią z dowolnego skryptu zainstalowanego z %{site_name} tylko aktualizację z %{site_name}."
+      updateURL: "Opisz, jak menedżerzy skryptu użytkownika powinni otrzymywać aktualizacje. %{site_name} usunie te klucze, co sprawi, że dowolny skrypt zainstalowany z%{site_name} będzie aktualizowany tylko z %{site_name}."
       license: "Adres URL dla lub nazwa licencji która opisuje w jaki sposób społeczność jest uprawniona do kopii lub modyfikacji skryptu. Brak licencji oznacza, iż użytkownicy mogą instalować skrypt dla użytku osobistego, lecz nie mogą go udostępniać. Licencja jest wyświetlana na stronie informacyjnej skryptu."
-      supportURL: "Adres URL dla strony gdzie użytkownik może otrzymać pomoc dotyczącą skryptu (np. śledzenie błędów, forum lub adres e-mail). Adres URL wsparcia jest wyświetlany na stronie informacji zwrotnej skryptu."
-      contributionURL_html: "Adres URL dla strony, gdzie użytkownicy mogą przekazać dotację autorowi skryptu. Adres URL wkładu jest pokazywany na stronie opinii danego skryptu. Protokołem adresu URL może być HTTP, HTTPS lub protokoły Bitcoina. Aby podać link to strony dotacji na PayPalu, użyj adresu URL w formacie <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Twój_adres_poczty_elektronicznej&item_name=Dotacja+Greasy+Fork</a>, zastępujące przykładowy adres poczty elektronicznej na Twój własny."
+      supportURL: "Adres URL dla strony gdzie użytkownik może otrzymać pomoc dotyczącą skryptu (np. śledzenie błędów, forum lub adres e-mail). Adres URL wsparcia jest wyświetlany na stronie z opiniami o skrypcie."
+      contributionURL_html: "Adres URL dla strony, gdzie użytkownicy mogą przekazać dotację autorowi skryptu. Adres URL datku jest wyświetlany na stronie opinii o danym skrypcie. Protokołem adresu URL może być http, https lub protokoły Bitcoin. Aby podać link to strony dotacji na PayPalu, użyj adresu URL w formacie <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Twój_adres_poczty_elektronicznej&item_name=Dotacja+Greasy+Fork</a>, zamieniając przykładowy adres poczty elektronicznej na swój własny."
       contributionAmount_html: "Sugerowana kwota dotacji, używana wraz z <code>@contributionURL</code>."
-      compatible_html: "Flagi ten skrypt jako kompatybilny z przeglądarką. Informacje o zgodności zostaną pokazane na stronie danego skryptu. Uwagi dotyczące zgodności mogą zostać włączone w formacie <code> @compatible Firefox musi wyłączyć wyskakujących okienek </ code>. Uznane przeglądarkami są: %{browsers}."
-      incompatible_html: "Oznacz ten skrypt jako niezgodny z przeglądarką.\nInformacje o kompatybilności zostaną wyświetlone na stronie skryptu. Opcjonalne komentarze dotyczące kompatybilności zostaną dołączone w formacie <code>@incompatible firefox Niezgodne od Firefox'a w wersji 23</code>. Zgodne z: %{browsers}"
+      compatible_html: "Oznacza ten skrypt jako kompatybilny z przeglądarką. Informacje o zgodności zostaną pokazane na stronie skryptu. Uwagi dotyczące zgodności mogą zostać dołączone w formacie<code>@compatible firefox Należy wyłączyć blokowanie wyskakujących okien.</code>. Rozpoznawane przeglądarki to: %{browsers}."
+      incompatible_html: "Oznacza ten skrypt jako niezgodny z przeglądarką. Informacje o kompatybilności zostaną wyświetlone na stronie skryptu. Opcjonalne komentarze dotyczące kompatybilności mogą zostać dołączone w formacie <code>@incompatible firefox Niezgodne od Firefox'a w wersji 23</code>. Rozpoznawane przeglądarki to: %{browsers}."
     writing_user_scripts:
       title: "Jak pisać skrypty użytkownika"
       content_html: "<p>Pisanie skryptów użytkownika wymaga znajomości JavaScriptu. <a href=\"http://wiki.greasespot.net/Tutorials\">Poradniki na Wiki GreaseSpot</a> powinny Ci dać rozbieg na JavaScript zarówno ogólnie, jak i relatywnie do skryptów użytkownika. Inspekcja skryptów innych osób może być pomocna. Zainteresuj się %{code_rules_link} i %{meta_keys_link}. Jeśli potrzebujesz pomocy z tworzeniem Twojego skryptu, możesz %{ask_in_forum_link}.</p><p>Aby udostępniać na %{site_name}, musisz stworzyć konto. Z Twojej %{user_page_link} możesz %{post_new_script_link}.</p>"
@@ -504,35 +504,38 @@ pl:
       content_html: >
           <p> Wymagania dotyczące skryptów udostępnionych na %{site_name}. Są one
           przewidziane aby %{site_name} była bezpieczną i użyteczną stroną dla skryptów
-          użytkowników. Każdy skrypt nie spełniający wymagań %{site_name} zostanie
+          użytkownika. Każdy skrypt nie spełniający wymagań %{site_name} zostanie
           usunięty przez moderatorów %{site_name}.</p> <ul>
 
-          <li>Skrypt musi zawierać opis co robi i nie może czynić niczego innego poza
-          tym opisem. Użytkownicy muszą wiedzieć co skrypt robi przed instalacją.
-          Skrypty które zawierają moduł śledzący lub reklamy, powinien zawierać informację
-          o tym w opisie </li>
+          <li>Skrypt musi zawierać opis co robi i nie może robić niczego innego poza
+          tym co jest w opisie. Użytkownicy muszą wiedzieć co skrypt robi przed instalacją.
+          Jeżeli skrypty zawierają moduł śledzący lub reklamy, to powinna być o tym
+          informacja w opisie.
 
-          <li>Kod udostępniany na tej stronie nie może być skomplikowany lub zmikronizowany.
-          Użytkownicy muszą być możliwość przeanalizowania i zrozumienia działania
+          </li>
+
+          <li>Kod udostępniany na tej stronie nie może być zaciemniony lub pomniejszony.
+          Użytkownicy muszą mieć możliwość przeanalizowania i zrozumienia działania
           kodu przed instalacją</li>
 
-          <li>Biblioteki używane przez skrypt<code>@require</code> chyba że są szczególne
-          wytyczne techniczne, aby tego nie robić. W przypadku w którym biblioteka
-          jest opublikowana inline, musi zawierać informacje dotyczące źródła tej
-          biblioteki (np. komenatrz wskazujący na adres URL i/lub nazwę i wersję).</li>
+          <li>Biblioteki używane przez skrypt, powinny mieć<code>@require</code> ,
+          chyba że są szczególne wytyczne techniczne, aby tego nie robić. Jeśli biblioteka
+          jest opublikowana jako wstawka, to musi zawierać informacje dotyczące jej
+          źródła (np. komentarz wskazujący na adres URL i/lub nazwę i wersję).</li>
 
-          <li>Twój skrypt musi respektować prawa autorskie innych. Dotyczy to skryptu
-          i innych zasobów (na przykład zdjęć) które wykorzystuje. Jeżeli chcesz użyć
-          treść innej osoby, przestrzegaj treści jej licencji lub zapytaj o pozwolenie.</li>
+          <li>Twój skrypt musi respektować prawa autorskie innych. Dotyczy to samego
+          skryptu i innych zasobów (np. zdjęć) które wykorzystuje. Jeżeli chcesz skorzystać
+          z zawartości innej osoby, to przestrzegaj treści jej licencji lub zapytaj
+          o pozwolenie.</li>
 
           <li>%{external_scripts_link:Użycie zewnętrznego JavaScript'u jest ograniczone.}</li>
 
           %{adult_content_requirement}
 
-          </ul> <p>Jeżeli zauważysz,że skrypt łamie te zasady, zgłoś go poprzez udanie
-          się do linku strony informacji zwrotnej dla tego skryptu, rozpoczęcie dyskusji,
-          i wybranie opcji"Zgłoś skrypt"</p> <p>Jeżeli się nie zgadasz z powyższymi
-          regułami, %{contact_link:Napisz}!</p>
+          </ul> <p>Jeżeli zauważysz, że skrypt łamie te zasady, zgłoś go poprzez udanie
+          się do linku strony z opiniami dla tego skryptu, rozpoczynając dyskusję,
+          i wybierając opcję "Zgłoś skrypt"</p> <p>Jeżeli się nie zgadasz z powyższymi
+          regułami, to %{contact_link:napisz o tym}!</p>
       adult_content_rule_html: "<li>Skrypty które zawierają treści dla dorosłych oraz dla stron które zawierają treści dla dorosłych muszą być oznaczone jako takie, aby użytkownicy mogli zdecydować czy chcą to zobaczyć.</li>"
     external_scripts:
       title: "Polityka %{site_name} dot. zewnętrznych skryptów"
@@ -578,19 +581,19 @@ pl:
           <p>Skrypty zamieszczone na %{site_name} zostaną przepisane w następujący
           sposób:</p> <ul>
 
-          <li><code>jeżeli występują dyrektywy @updateURL</code>, <code>@installURL</code>,
+          <li><code>Jeśli występują dyrektywy @updateURL</code>, <code>@installURL</code>,
           i <code>@downloadURL</code> , to zostaną usunięte. Brak tych dyrektyw oznacza,
           iż jakikolwiek skrypt zainstalowany z%{site_name} zostanie zaktualizowany
           z %{site_name}.</li>
 
-          <li><code>jeśli skrypt nie posiada dyrektyw @version</code> i <code>@namespace</code>,
-          to zostaną one wstawione. Te dyrektywy są potrzebne dla prawidłowego aktualizowania.</li>
+          <li><code>Jeśli skrypt nie posiada dyrektyw @version</code> i <code>@namespace</code>,
+          to zostaną dopisane. Te dyrektywy są potrzebne dla prawidłowego aktualizowania.</li>
 
-          <li><code>jeśli nowa wersja skryptu nie posiada dyrektywy @description</code>,
-          a poprzednia wersja ją miała, to zostanie wstawiona.</li>
+          <li><code>Jeśli nowa wersja skryptu nie posiada dyrektywy @description</code>,
+          a poprzednia wersja ją miała, to zostanie dopisana.</li>
 
-          <li>Znaki końca linii CRLF i CR zostaną zamienione na standardowy/systemu
-          Unix styl końca linii.</li>
+          <li>Znaki końca linii CRLF i CR zostaną zamienione na standardowy styl końca
+          linii/styl końca linii systemu Unix.</li>
 
           </ul>
     site_feedback_link: "Zgłoś problem lub podziel się pomysłem na %{site_name}"
@@ -605,19 +608,19 @@ pl:
       title: "Skontaktuj się z kimś"
       content_html: >
           <p> Jest wiele możliwości aby porozmawiać o %{site_name} i rzeczach na niej.</p>
-          <p> Czy chcesz pytanie lub dodać komentarz dotyczący specyficznego skryptu
-          udostępnionego na stronie? Jeżeli tak, udostępnij dyskusję z linku na stronie
-          informacji zwrotnej na stronie skryptu. Autorzy skryptu otrzymają notyfikację
-          na ich stronie profilowej o każdej z dyskusji dotyczących ich skryptu. </p>
+          <p> Czy masz pytanie lub komentarz dotyczący specyficznego skryptu udostępnionego
+          na stronie? Jeżeli tak, to udostępnij dyskusję z linku w karcie Opinie na
+          stronie skryptu. Autorzy skryptu dostaną powiadomienie o każdej z dyskusji
+          dotyczących skryptu na ich stronie profilowej. </p>
 
-          <p> Czy chcesz zadać pytanie lub dodać komentarz dotyczący %{site_name}
-          ,tworzeniu skryptów lub chcesz aby ktoś stworzył Ci skrypt? %{forum_link:Pisanie
-          na forum}  da Ci możliwość większęgo zasięgu Twojej dyskusji.</p> <p> Czy
-          chcesz zgłosić błąd lub zasugerować ideę dotyczącą %{site_name} (nie dotyczącą
-          specyficznego skryptu <em> udostępnionego na </em> %{site_name})? %{github_link:
-          Opublikuj ją na GitHub.} </p>
+          <p> Czy masz pytanie lub komentarz dotyczący %{site_name} tworzenia skryptów
+          lub chcesz, aby ktoś stworzył Ci skrypt? %{forum_link:Pisanie na forum}  da
+          Ci możliwość większego zasięgu Twojej dyskusji.</p> <p> Czy chcesz zgłosić
+          błąd lub zasugerować ideę dotyczącą %{site_name} (i nie dotyczącą specyficznego
+          skryptu <em> udostępnionego na </em> %{site_name})? %{github_link: Opublikuj
+          ją na GitHub.} </p>
 
-          <p> Może masz prywatne pytanie lub komentarz i chcesz aby zobaczył ją tylko
+          <p> Czy masz prywatne pytanie lub komentarz i chcesz, aby zobaczył je tylko
           administrator? %{admin_email_link:Wyślij e-mail.} </p>
     privacy_policy:
       title: "Polityka prywatności"

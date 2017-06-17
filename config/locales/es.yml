@@ -329,21 +329,22 @@ es:
     installing_step1_header: "1º paso: Instala un administrador de scripts de usuario"
     installing_step1_caption: "Tampermonkey en Chrome"
     installing_step1_description_html: >
-        <p>Para añadir scripts de usuario primero tienes que instalar un administrador
-        de scripts. La opción a elegir depende del navegador que utilices:</p>
+        <p>Para usar scripts de usuario primero necesita instalar un administrador
+        de scripts de usuario. Qué administrador de scripts de usuario puede usar
+        depende de qué navegador use.</p>
 
         <ul>
 
-        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> o %{chrome_violentmonkey_link:Violent
-        monkey}</li>
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> o %{chrome_violentmonkey_link:Violentmonkey}</li>
 
-        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey} o %{firefox_tampermonkey_link:Tampermonkey}</li>
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
+        o %{firefox_violentmonkey_link:Violentmonkey}</li>
 
         <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
 
         <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
 
-        <li>Opera: %{opera_tampermonkey_link:Tampermonkey}</li>
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} o %{opera_violentmonkey_link:Violentmonkey}</li>
 
         <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
 
@@ -351,7 +352,7 @@ es:
 
         <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
 
-        <li>Qupzilla: (no es necesario instalar nada)</li>
+        <li>Qupzilla: (no se requiere software adicional)</li>
 
         </ul>
     installing_step2_header: "2º paso: Elige e instala un script"
