@@ -20,3 +20,23 @@
 		<%=@highlighted_code.html_safe%>
 	<% end %>
 </div>
+<script>
+var cc = document.getElementById('code-container');
+var fullscreen = cc.requestFullscreen || cc.webkitRequestFullscreen || cc.mozRequestFullScreen;
+var exitFullscreen = document.exitFullscreen || document.webkitExitFullscreen || document.mozCancelFullScreen;
+var isFullscreen = function() {
+	return (document.fullscreen !== undefined ? document.fullscreen : (document.webkitIsFullScreen !== undefined ? document.webkitIsFullScreen : (document.mozFullScreen)));
+};
+window.addEventListener('keydown', function(event) {
+	if (event.target.tagName.toLowerCase() != 'input' && event.keyCode == 70) { // f
+		if (isFullscreen()) {
+			exitFullscreen.apply(document);
+		} else {
+			fullscreen.apply(cc);
+		}
+	}
+});
+window.addEventListener("resize", function(event) {
+	cc.style.maxHeight = window.innerHeight + 'px';
+});
+</script>
