@@ -174,7 +174,7 @@ class GreasyForkPlugin extends Gdn_Plugin {
 			if (
 				preg_match('/university/i', $Sender->EventArguments['Data']['Name']) ||
 				preg_match('/[0-9][0-9\s]{7,}[0-9]/', $Sender->EventArguments['Data']['Name']) ||
-				(preg_match('/毕\s*业/', $Sender->EventArguments['Data']['Name']) && preg_match('/[0-9]+/', $Sender->EventArguments['Data']['Name']))
+				preg_match('/毕\s*业/', $Sender->EventArguments['Data']['Name'])
 			) {
 				$Sender->EventArguments['IsSpam'] = true;
 			}
