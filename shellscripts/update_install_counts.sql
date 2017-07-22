@@ -29,6 +29,6 @@ UPDATE scripts s
 -- update update counts for last hour's date
 INSERT INTO update_check_counts
   (script_id, update_check_date, update_checks)
-  (SELECT script_id, DATE(update_check_date), COUNT(*) FROM daily_update_check_counts WHERE DATE(update_check_date) = DATE(DATE_SUB(NOW(), INTERVAL 1 HOUR)) GROUP BY script_id, DATE(update_check_date)) ON DUPLICATE KEY UPDATE;
+  (SELECT script_id, DATE(update_date), COUNT(*) c FROM daily_update_check_counts WHERE DATE(update_date) = DATE(DATE_SUB(NOW(), INTERVAL 1 HOUR)) GROUP BY script_id, DATE(update_date)) ON DUPLICATE KEY UPDATE update_check_date = VALUES(update_check_date);
 -- clear out anything older than 1 day so that new things are not considered duplicates
-DELETE FROM daily_update_check_counts WHERE update_check_date < DATE_SUB(NOW(), INTERVAL 1 DAY);
+DELETE FROM daily_update_check_counts WHERE update_date < DATE_SUB(NOW(), INTERVAL 1 DAY);
