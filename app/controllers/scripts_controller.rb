@@ -379,8 +379,6 @@ class ScriptsController < ApplicationController
 			script_info['script_delete_type_id'] == 2 ? ScriptVersion.get_blanked_code(script_info['code']) : ScriptVersion.get_meta_block(script_info['code'])
 		end
 		render body: cached_meta_js, content_type: 'text/x-userscript-meta'
-
-		ScriptsController.record_update_check(request, params)
 	end
 
 	def install_ping
@@ -744,14 +742,13 @@ class ScriptsController < ApplicationController
 		install_values = Hash[Script.connection.select_rows("SELECT install_date, installs FROM install_counts where script_id = #{@script.id}")]
 		daily_install_values = Hash[Script.connection.select_rows("SELECT DATE(install_date) d, COUNT(*) FROM daily_install_counts where script_id = #{@script.id} GROUP BY d")]
 		update_check_values = Hash[Script.connection.select_rows("SELECT update_check_date, update_checks FROM update_check_counts where script_id = #{@script.id}")]
-		daily_update_check_values = Hash[Script.connection.select_rows("SELECT DATE(update_check_date) d, COUNT(*) FROM daily_update_check_counts where script_id = #{@script.id} GROUP BY d")]
 		@stats = {}
 		update_check_start_date = Date.parse('2014-10-23')
 		(@script.created_at.to_date..Time.now.utc.to_date).each do |d|
 			stat = {}
 			stat[:installs] = install_values[d] || daily_install_values[d] || 0
 			# this stat not available before that date
-			stat[:update_checks] = d >= update_check_start_date ? (update_check_values[d] || daily_update_check_values[d] || 0) : nil
+			stat[:update_checks] = d >= update_check_start_date ? (update_check_values[d] || 0) : nil
 			@stats[d] = stat
 		end
 		respond_to do |format|
@@ -922,12 +919,6 @@ private
 		# strip the slug
 		script_id = p[:script_id].to_i.to_s
 		return [ip, script_id]
-	end
-
-	def self.record_update_check(r, p)
-		ip, script_id = per_user_stat_params(r, p)
-		return if ip.nil? || script_id.nil?
-		Script.record_update_check(script_id, ip)
 	end
 
 	def get_listing_link_alternatives
