@@ -16,6 +16,14 @@ GIT
       thinking-sphinx (>= 1.5.0)
 
 GIT
+  remote: https://github.com/tigrish/devise-i18n.git
+  revision: 2665bce94816fb3d0883e040526921f39e3f5341
+  ref: 2665bce94816fb3d0883e040526921f39e3f5341
+  specs:
+    devise-i18n (1.2.0)
+      devise (>= 2.0)
+
+GIT
   remote: https://github.com/tmaesaka/transifex-ruby.git
   revision: a66843ca262e5b403813154512b563efda03f137
   specs:
@@ -112,7 +120,6 @@ GEM
       railties (>= 4.1.0, < 5.2)
       responders
       warden (~> 1.2.3)
-    devise-i18n (1.2.0)
     diffy (3.2.0)
     erubi (1.6.1)
     execjs (2.7.0)
@@ -308,7 +315,7 @@ DEPENDENCIES
   delayed_job_active_record
   detect_language
   devise
-  devise-i18n (>= 1.2.0)
+  devise-i18n!
   diffy
   fancybox2-rails
   hashie
@@ -343,4 +350,4 @@ RUBY VERSION
    ruby 2.4.1p111
 
 BUNDLED WITH
-   1.15.1
+   1.15.3
