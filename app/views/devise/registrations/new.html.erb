@@ -7,16 +7,19 @@
   <%= devise_error_messages! %>
 
   <div><%= f.label :name %><br />
-  <%= f.text_field :name %></div>
+  <%= f.text_field :name, :required => true %></div>
 
   <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+  <%= f.email_field :email, :required => true %></div>
 
   <div><%= f.label :password %><br />
   <%= f.password_field :password, :required => true, :autocomplete => 'off' %></div>
 
   <div><%= f.label :password_confirmation %><br />
   <%= f.password_field :password_confirmation, :required => true, :autocomplete => 'off' %></div>
+
+  <%= flash[:recaptcha_error] %>
+  <%= recaptcha_tags %>
 
   <div><%= f.submit t('.sign_up', :default => "Sign up") %></div>
 <% end %>

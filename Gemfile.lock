@@ -145,6 +145,7 @@ GEM
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
+    json (2.1.0)
     jwt (1.5.6)
     levenshtein (0.2.2)
     libv8 (3.16.14.19)
@@ -235,6 +236,8 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     rb-readline (0.5.4)
+    recaptcha (4.3.1)
+      json
     redcarpet (3.4.0)
     ref (2.0.0)
     responders (2.4.0)
@@ -333,6 +336,7 @@ DEPENDENCIES
   rails (~> 5.1.0)
   rails-i18n
   rb-readline
+  recaptcha
   redcarpet
   ruby-prof
   sanitize
