@@ -17,3 +17,4 @@
 //= require jquery-socialshareprivacy/localstorage.js
 //= require everything
 //= require versioncheck
+//= require recaptcha

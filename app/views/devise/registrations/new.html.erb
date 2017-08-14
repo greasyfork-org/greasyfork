@@ -19,9 +19,7 @@
   <%= f.password_field :password_confirmation, :required => true, :autocomplete => 'off' %></div>
 
   <%= flash[:recaptcha_error] %>
-  <%= recaptcha_tags %>
-
-  <div><%= f.submit t('.sign_up', :default => "Sign up") %></div>
+  <div><%= invisible_recaptcha_tags callback: 'submitInvisibleRecaptchaForm', text: t('.sign_up', :default => "Sign up") %></div>
 <% end %>
 
 <%= render "devise/shared/links" %>
