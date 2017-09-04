@@ -342,7 +342,7 @@ class ScriptsController < ApplicationController
 		# parameters.
 		cache_path = Rails.root.join('tmp', 'cached_pages', "#{script_id}.meta.js")
 		if script_version_id == 0
-			if File.exist?(cache_path) && File.ctime(cache_path) > 5.minutes.ago
+			if File.exist?(cache_path) && File.ctime(cache_path) > 15.minutes.ago
 				send_file(cache_path, type: "text/x-userscript-meta")
 				return
 			end
