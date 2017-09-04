@@ -335,6 +335,20 @@ class ScriptsController < ApplicationController
 		script_id = params[:script_id].to_i
 		script_version_id = (params[:version] || 0).to_i
 
+		# If this is not for a specific version, see if there is a cache
+		# file to avoid the DB hit. Ideally this logic would've been done
+		# in nginx configuration, but I couldn't figure out how to
+		# effectively make it read from the cache only when there is no
+		# parameters.
+		cache_path = Rails.root.join('tmp', 'cached_pages', "#{script_id}.meta.js")
+		if script_version_id == 0
+			if File.exist?(cache_path) && File.ctime(cache_path) > 5.minutes.ago
+				send_file(cache_path, type: "text/x-userscript-meta")
+				return
+			end
+			do_caching = true
+		end
+
 		# Bypass ActiveRecord for performance
 		if script_version_id > 0
 			sql = <<-EOF
@@ -375,10 +389,11 @@ class ScriptsController < ApplicationController
 			return
 		end
 
-		cached_meta_js = cache_with_log("scripts/meta_js/#{script_info['script_version_id']}") do
-			script_info['script_delete_type_id'] == 2 ? ScriptVersion.get_blanked_code(script_info['code']) : ScriptVersion.get_meta_block(script_info['code'])
-		end
-		render body: cached_meta_js, content_type: 'text/x-userscript-meta'
+		meta_js_code = script_info['script_delete_type_id'] == 2 ? ScriptVersion.get_blanked_code(script_info['code']) : ScriptVersion.get_meta_block(script_info['code'])
+
+		File.write(cache_path, meta_js_code) if do_caching
+
+		render body: meta_js_code, content_type: 'text/x-userscript-meta'
 	end
 
 	def install_ping
