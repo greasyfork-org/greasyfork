@@ -20,9 +20,9 @@ $Definition['RatingOK'] = 'OK - skrypt działa, ale ma znaczące problemy';
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'Dobrze - skrypt działa poprawnie';
 // Category name for Site Feedback
-$Definition['Categories.general.Name'] = 'Opinia o stronie';
+$Definition['Categories.general.Name'] = 'Opinie o stronie';
 // Category description for Site Feedback
-$Definition['Categories.general.Description'] = 'Raporty o błędach, propozycje funkcji i inne rzeczy na Greasy Fork.';
+$Definition['Categories.general.Description'] = 'Raporty o błędach, propozycje funkcji i inne rzeczy dot. samej strony Greasy Fork.';
 // Category name for Development
 $Definition['Categories.script-development.Name'] = 'Rozwój';
 // Category description for Development
