@@ -340,7 +340,7 @@ class ScriptsController < ApplicationController
 		# in nginx configuration, but I couldn't figure out how to
 		# effectively make it read from the cache only when there is no
 		# parameters.
-		cache_path = Rails.root.join('tmp', 'cached_pages', "#{script_id}.meta.js")
+		cache_path = Rails.application.config.script_page_cache_directory.join("#{script_id}.meta.js")
 		if script_version_id == 0
 			if File.exist?(cache_path) && File.ctime(cache_path) > 15.minutes.ago
 				send_file(cache_path, type: "text/x-userscript-meta")

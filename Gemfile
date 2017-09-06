@@ -40,6 +40,7 @@ gem 'rb-readline'
 gem 'ace-rails-ap'
 gem 'hashie'
 gem 'recaptcha', require: 'recaptcha/rails'
+gem 'rails-observers'
 
 gem 'byebug', group: [:development, :test]
 
