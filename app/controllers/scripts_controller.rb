@@ -321,9 +321,26 @@ class ScriptsController < ApplicationController
 	def user_js
 		respond_to do |format|
 			format.any(:html, :all, :js) {
-				script, script_version = minimal_versionned_script(params[:script_id], params[:version])
+				script_id = params[:script_id].to_i
+				script_version_id = params[:version].to_i
+
+				cache_path = Rails.application.config.script_page_cache_directory.join("#{script_id}.user.js")
+				if params[:version].nil?
+					if File.exist?(cache_path) && File.ctime(cache_path) > Rails.application.config.script_page_cache_expiry.ago
+						send_file(cache_path, type: "text/javascript")
+						return
+					end
+					do_caching = true
+				end
+
+				script, script_version = minimal_versionned_script(script_id, script_version_id)
 				return if handle_replaced_script(script)
-				render body: script.script_delete_type_id == 2 ? script_version.get_blanked_code : script_version.rewritten_code, content_type: 'text/javascript'
+
+				user_js_code = script.script_delete_type_id == 2 ? script_version.get_blanked_code : script_version.rewritten_code
+
+				File.write(cache_path, user_js_code) if do_caching
+
+				render body: user_js_code, content_type: 'text/javascript'
 			}
 			format.user_script_meta { 
 				meta_js
@@ -342,7 +359,7 @@ class ScriptsController < ApplicationController
 		# parameters.
 		cache_path = Rails.application.config.script_page_cache_directory.join("#{script_id}.meta.js")
 		if script_version_id == 0
-			if File.exist?(cache_path) && File.ctime(cache_path) > 15.minutes.ago
+			if File.exist?(cache_path) && File.ctime(cache_path) > Rails.application.config.script_page_cache_expiry.ago
 				send_file(cache_path, type: "text/x-userscript-meta")
 				return
 			end
