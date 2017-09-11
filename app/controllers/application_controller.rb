@@ -287,15 +287,13 @@ protected
 		return per_page
 	end
 
-	RANDOM_OPTIONS = ['ca']
 	def choose_ad_method(script=nil)
 		return nil if sleazy?
 		return nil if script&.sensitive
 		return nil if current_user && !current_user.show_ads
-		return params[:ad] if RANDOM_OPTIONS.include?(params[:ad])
 		return 'ga' if script.nil?
-		return script.ad_method if script.ad_method
-		return RANDOM_OPTIONS.sample
+		return ['ga','ga','ga','c2'].sample if script.ad_method == 'ga'
+		return 'ca'
 	end
 	helper_method :choose_ad_method
 
