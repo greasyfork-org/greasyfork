@@ -313,9 +313,50 @@ vi:
     explain_user_scripts_html: "Script của người dùng giúp bạn có những trải nghiệm mới với trình duyệt.Khi được cài đặt, chúng biến những trang bạn truy cập duyệt vời hơn bằng việc thêm những tính năng mới, dễ sử dụng hơn hay loại bỏ những chi tiết làm bạn khó chịu. Script trên %{site_name} được viết bởi những người dùng khác và được đăng để chia sẻ vpis mọi người. Chúng hoàn toàn miễn phis và dễ sử dụng."
     installing_step1_header: "Bước 1: cài đặt một bộ quản lý script người dùng"
     installing_step1_caption: "Tampermonkey trên Chrome"
+    installing_step1_description_html: >
+        <p>Để sử dụng các script người dùng, trước tiên bạn cần cài đặt một bộ quản
+        lý script người dùng. Bộ quản lý script người dùng mà bạn có thể sử dụng phụ
+        thuộc vào trình duyệt mà bạn sử dụng.</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> hoặc %{chrome_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
+        hoặc %{firefox_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} hoặc %{opera_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla: (không cần phần mềm bổ sung)</li>
+
+        </ul>
     installing_step2_header: "Bước 2: cài đặt một script người dùng"
     installing_step2_caption: "Nút cài đặt của một script người dùng"
+    installing_step2_description_html: >
+        <p>%{browse_link:Duyệt trang này} để tìm một script người dùng bạn muốn thử.
+        Đây là một ví dụ tiêu biểu cho những script phổ biến nhất:</p>
+
+        %{highlighted_scripts_list}
+
+        <p>Khi bạn đã tìm thấy một script người dùng, hãy nhấp vào nút cài đặt màu
+        xanh lá cây trên trang của script người dùng và bộ quản lý script người dùng
+        của bạn sẽ yêu cầu bạn xác nhận cài đặt.</p>
     installing_step3_header: "Bước 3: sử dụng script người dùng"
+    installing_step3_description_html: >
+        <p>Truy cập trang web mà script người dùng tác động. Nó sẽ tự động làm việc
+        của nó. Sau khi thử script người dùng một lúc, quay trở lại nơi bạn đã cài
+        đặt script người dùng và để lại một số phản hồi cho tác giả của script người
+        dùng.</p>
   users:
     sign_in_title: "Đăng nhập vào %{site_name}"
     sign_in_description: "Đăng nhập vào %{site_name} để bạn có thể đăng script và gửi phản hồi trên script của những người khác. Bạn không cần đăng nhập để duyệt hoặc cài đặt script."
@@ -363,6 +404,7 @@ vi:
     external_sign_in_removed: "%{provider} đã xóa đăng nhập."
     external_sign_in_failed: "%{provider} đăng nhập thất bại: %{error}."
     external_sign_in_already_used: "Không thể đăng nhập bằng tài khoản %{provider}. Thông tin tài khoản này đã được sử dụng bởi '%{user_name}'."
+    external_sign_in_confirmation: "Một tài khoản %{site_name} mới đã được tạo dựa trên những chi tiết tài khoản %{provider} của bạn. Tên người dùng công khai của bạn là %{username}."
     syncing_indicator: "(đang đồng bộ)"
     enable_syncing: "Bật đồng bộ hóa"
     disable_syncing: "Tắt đồng bộ hóa"
