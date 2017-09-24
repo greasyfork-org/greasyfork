@@ -4,7 +4,7 @@ class ForumDiscussion < ApplicationRecord
 	alias_attribute 'name', 'Name'
 	
 	# ignore this so we don't have to cache something we won't use
-	ignore_columns :Body
+	ignored_columns :Body
 	
 	belongs_to :original_forum_poster, -> { readonly }, :class_name => 'ForumUser', :foreign_key => 'InsertUserID'
 	belongs_to :last_reply_forum_poster, -> { readonly }, :class_name => 'ForumUser', :foreign_key => 'LastCommentUserID'
