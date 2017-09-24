@@ -103,6 +103,8 @@ vi:
     stats_no_data: "N/A"
     derivatives_title: "%{script_name} - Các dẫn xuất"
     derivatives_intro: "Những script có thể được dựa trên của bạn (hoặc bạn có thể dựa vào chúng). Nếu bạn tìm thấy ai sử dụng trái phép mã nguồn của bạn, báo cáo script bằng cách bắt đầu một cuộc thảo luận mới trên nó."
+    derivatives_code_matches_info_html:
+      other: "Scripts đăng bởi những người khác bao gồm mã ít nhất %{match_size} dòng giống với script của bạn. Việc kiểm tra này là chỉ chạy trên các script ít hơn %{max_size} và đã được chạy lần cuối vào năm %{last_run}."
     derivatives_namespace_matches_info_html: "Scripts đăng bởi những người khác sử dụng <code>%{namespace}</code>:"
     derivatives_name_matches_info: "Scripts đăng bởi những người khác có tên giống những cái của bạn nhất:"
     derivatives_script_html: "%{script_link} của %{user_link}, bản quyền: %{license}"
@@ -268,6 +270,8 @@ vi:
       add_include: "Bao gồm"
       add_exclude: "Loại trừ"
       user_label: "Danh sách các bộ script thuộc về người dùng (URL, ID, hoặc tên)"
+      user_no_sets: "(Người dùng không có các bộ)"
+      user_no_other_sets: " (Người dùng không có các bộ khác)"
     edit_auto_sets:
       heading: "Các bộ script tự động"
       description: "Bao gồm hoặc loại trừ một danh sách các script được tạo tự động trong bộ script của bạn."
@@ -278,6 +282,7 @@ vi:
       excluded_none: "(Rỗng)"
       all_scripts_label: "Tất cả các script"
       all_scripts_include: "Bao gồm"
+      for_sites_label: "Các script cho trang web (ví dụ example.com, để trống cho \"Tất cả các trang web\")"
       for_sites_include: "Bao gồm"
       for_sites_exclude: "Loại trừ"
       for_user_label: "Các script bởi người dùng (URL, ID, hoặc tên)"
@@ -286,17 +291,20 @@ vi:
       for_language_label: "Các script bằng ngôn ngữ"
       for_language_include: "Bao gồm"
       for_language_exclude: "Loại trừ"
+    calculated_list: "Đã tính danh sách script"
     calculated_list_none: "(Không)"
     calculated_list_more:
       other: "Và thêm %{count} nữa ..."
     already_included: "'%{name}' đã được bao gồm."
     could_not_parse_script: "Không thể phân tích cú pháp script '%{value}'"
     save: "Lưu"
+    saved: "Bộ script đã lưu."
     auto_set_types:
       all_scripts: "Tất cả các script"
       site: "Các script cho %{site}"
       all_sites: "Tất cả trang web"
       user: "Các bộ script bởi người dùng %{user}"
+      locale: "Các script trong %{locale_name}"
   forum_discussions:
     listing_no_script_no_reply_html: "%{discussion_link} bởi %{original_poster_link} %{original_post_date}"
     listing_no_script_with_reply_html: "%{discussion_link} bởi %{original_poster_link} %{original_post_date}, bình luận cuối bởi %{last_commenter_link} %{last_comment_date}"
@@ -483,14 +491,19 @@ vi:
   search:
     script_search:
       title: "Tim kiếm Script"
+      description: "Tìm kiếm các script. Tìm kiếm tên script, mô tả, thông tin bổ sung và tên tác giả. %{sphinx_link: Sphinx mở rộng cú pháp truy vấn.}"
     library_search:
       title: "Tìm kiếm Thư viện"
+      description: "Tìm kiếm thư viện. Tìm kiếm tên thư viện, mô tả, thông tin bổ sung và tên tác giả. %{sphinx_link:Sphinx mở rộng cú pháp truy vấn.}"
     code_search:
       title: "Tìm kiếm Mã"
+      description: "Search script code. This is a case-insensitive, plain-text search with no wildcards.\nTìm kiếm mã script. Đây là một tìm kiếm không phân biệt chữ hoa chữ thường, tìm kiếm văn bản thuần túy mà không có những ký tự đại diện."
     forum_search:
       title: "Tìm kiếm Diễn đàn"
+      description: "Tìm kiếm thảo luận và nhận xét trong diễn đàn. %{fulltext_link:MySQL ngôn ngữ tìm kiếm tự nhiên.}"
     user_search:
       title: "Tìm kiếm Người dùng"
+      description: "Tìm kiếm người dùng theo tên. Tìm kiếm giống như văn bản thuần túy."
   common:
     error_preamble: "Có vài trục trặc với cái bạn vừa đăng.."
     allowed_elements_link: "(Xem mã cho phép.)"
