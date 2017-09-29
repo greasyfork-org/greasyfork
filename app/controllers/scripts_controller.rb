@@ -327,7 +327,7 @@ class ScriptsController < ApplicationController
 				cache_path = Rails.application.config.script_page_cache_directory.join("#{script_id}.user.js")
 				if params[:version].nil?
 					if File.exist?(cache_path) && File.ctime(cache_path) > Rails.application.config.script_page_cache_expiry.ago
-						send_file(cache_path, type: "text/javascript")
+						send_file(cache_path, type: "text/javascript", disposition: 'inline')
 						return
 					end
 					do_caching = true
