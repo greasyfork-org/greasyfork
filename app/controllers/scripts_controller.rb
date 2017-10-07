@@ -51,7 +51,6 @@ class ScriptsController < ApplicationController
 				# else matching on "name".
 				@scripts = Script.search(
 					params[:q],
-					match_mode: :extended,
 					with: with,
 					page: params[:page],
 					per_page: get_per_page,
@@ -150,7 +149,6 @@ class ScriptsController < ApplicationController
 			# else matching on "name".
 			@scripts = Script.search(
 				params[:q],
-				match_mode: :extended,
 				with: with,
 				page: params[:page],
 				per_page: get_per_page,
