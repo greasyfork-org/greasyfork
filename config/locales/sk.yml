@@ -341,24 +341,26 @@ sk:
 
         <ul>
 
-        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> alebo %{chrome_violentmonkey_link:Violentmonkey}</li>
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> or %{chrome_violentmonkey_link:Violentmonkey}</li>
 
         <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
-        alebo %{firefox_violentmonkey_link:Violentmonkey}</li>
+        or %{firefox_violentmonkey_link:Violentmonkey}</li>
 
         <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
 
         <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
 
-        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} alebo %{opera_violentmonkey_link:Violentmonkey}</li>
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} or %{opera_violentmonkey_link:Violentmonkey}</li>
 
-        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}9</li>
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
 
         <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
 
         <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
 
-        <li>Qupzilla: (no additional software required)</li>
+        <li>Qupzilla: (nie je potrebný žiadny ďalší softvér)</li>
+
+        <li>AdGuard: (nie je potrebný žiadny ďalší softvér)</li>
 
         </ul>
     installing_step2_header: "2. krok: nainštalovať užívateľský skript"
@@ -494,11 +496,10 @@ sk:
     code_rules:
       title: "Pravidlá pre poslané skripty na %{site_name}"
       content_html: >
-          <p>Toto sú všetky požiadavky na skripty poslané na %{site_name}.
-
-          Tie sú určené na uchovanie %{site_name} ako bezpečné a užitočné miesto pre
-          užívateľské skripty. Akýkoľvek skript, ktorý nespadá medzi tieto požiadavky
-          môže byť odstránený moderátorom %{site_name}</p> <ul>
+          nie je potrebný žiadny ďalší softvér %{site_name}. Tie sú určené na uchovanie
+          %{site_name} a ako bezpečné a užitočné miesto pre užívateľské skripty. Akýkoľvek
+          skript, ktorý nespadá medzi tieto požiadavky môže byť odstránený moderátorom
+          %{site_name}.</p> <ul>
 
           <li>Skripty musia obsahovať popis toho, čo robia a nemôžu robiť neprimerane
           iné veci ako v popise. Užívatelia musia vedieť čo skript robí ešte pred
@@ -515,12 +516,16 @@ sk:
           (napr. komentár označujúci URL a/alebo názov a verziu).</li>
 
           <li>Váš skript musí rešpektovať autorské práva ostatných. Teda skript samotný
-          aj jeho zdroje (napr. obrázky). Ak máte v úmysle použiť  obsah niekoho iného,
+          aj jeho zdroje (napr. obrázky). Ak máte v úmysle použiť obsah niekoho iného,
           riaďte sa licenčnými podmienkami alebo získajte predtým jeho súhlas.</li>
 
           <li>%{external_scripts_link:Použitie externých skriptov je obmedzené.}</li>
 
           %{adult_content_requirement}
+
+          <li>Skripty nesmú kontrolovať aktualizácie viac ako raz za deň. Uvedomte
+          si, že väčšina správcov užívateľských skriptov riadi automatickú aktualizáciu,
+          takže to nie je potrebné to robiť v skripte.</li>
 
           </ul> <p>Ak zbadáte skript, ktoré nesplňuje tieto parametre, prosím, nahláste
           ho na stránke spätnej väzby pre tento skript, začatím diskusie a vyberte

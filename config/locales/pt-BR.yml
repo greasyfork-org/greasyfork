@@ -329,9 +329,8 @@ pt-BR:
     installing_step1_header: "Passo 1: instalar um gerenciador de scripts de usuários"
     installing_step1_caption: "Tampermonkey para o Chrome"
     installing_step1_description_html: >
-        <p>Para usar scripts de usuário você precisa primeiro instalar um gerenciador
-        de scripts de usuário. O gerenciador que poderá ser usado depende de qual
-        navegador você está utilizando.</p>
+        <p>Para utilizar scripts de usuário você precisa primeiro instalar um gerenciador
+        de scripts de usuário. Suas opções dependerão do navegador que você utiliza.</p>
 
         <ul>
 
@@ -353,6 +352,8 @@ pt-BR:
         <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
 
         <li>Qupzilla: (não requer software adicional)</li>
+
+        <li>AdGuard: (não requer software adicional)</li>
 
         </ul>
     installing_step2_header: "Passo 2: instalar um script de usuário"
@@ -485,14 +486,14 @@ pt-BR:
       title: "Política do %{site_name} sobre scripts externos"
       content_html: >
           <p>Estes são os requisitos para os scripts postados no %{site_name}. Isto
-          tem como objetivo manter o %{site_name} um local seguro e útil para scripts
-          de usuário. Qualquer script que não se enquadre nesses requisitos poderão
-          ser deletados pelos moderadores do %{site_name}.</p> <ul>
+          tem como objetivo manter o %{site_name} como um local seguro e útil para
+          scripts de usuário. Qualquer script que não atenda esses requisitos pode
+          ser removido pelos moderadores do %{site_name}.</p> <ul>
 
-          <li>Os scripts devem ter uma descrição do que eles fazem e não podem fazer
-          nada fora dessa descrição sem um motivo justificável. Os usuários devem
-          saber o que um script fará antes de instalá-lo. Scripts que possuam rastreamento
-          ou propaganda devem deixar isso bem claro nas suas descrições.</li>
+          <li>Os scripts devem ter uma descrição a cerca do que eles e não podem fazer
+          nada fora dessa descrição sem razão. Os usuários devem saber o que um script
+          fará antes de instalá-lo. Scripts que possuam rastreamento devem deixar
+          isso bem claro nas suas descrições.</li>
 
           <li>O código postado neste site não deve estar obfuscado ou minificado.
           Os usuários devem poder verificar e entender o script antes de instalá-lo.</li>
@@ -508,11 +509,15 @@ pt-BR:
           pretenda usar conteúdo de outra pessoa, respeite seus termos de licença
           ou obtenha permissão antes de fazê-lo.</li>
 
-          <li>%{external_scripts_link:O uso de JavaScript externo é limitado.}</li>
+          <li>%{external_scripts_link:O uso de javascript externo é limitado.}</li>
 
           %{adult_content_requirement}
 
-          </ul> <p>Se você perceber que um script fuja desses parâmetros, por favor
+          <li>Os scripts não devem verificar se existem atualizações mais de uma vez
+          por dia. A maioria dos gerenciadores de scripts farão essas verificações
+          automaticamente, então não há necessidade de fazer isso no script.</li>
+
+          </ul> <p>Se você perceber que um script foge desses parâmetros, por favor
           reporte o script através do link de Feedback daquele script, iniciando uma
           discussão e escolhendo a opção "Reportar script".</p> <p>Caso discorde de
           algum desses itens, %{contact_link:vamos conversar a respeito}!</p>

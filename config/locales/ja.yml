@@ -346,6 +346,8 @@ ja:
 
         <li>Qupzilla: (追加のソフトウェアは不要)</li>
 
+        <li>AdGuard: (追加のソフトウェアは不要)</li>
+
         </ul>
     installing_step2_header: "(2) スクリプトをインストール"
     installing_step2_caption: "ユーザースクリプトのインストールボタン"
@@ -399,7 +401,7 @@ ja:
     password_removed: "パスワードを削除しました。"
     edit_sign_in_external: "ソーシャルアカウントによる認証"
     external_sign_in_info_no_sign_ins: "ソーシャルアカウントを利用して %{site_name} にログインすることができます。"
-    external_sign_in_info_with_sign_ins: "現在、以下のサービスのアカウントと連携しています。【同期中】のアカウントでログインすると、%{site_name} のアカウント情報 (ユーザー名やEmail) が同期中のアカウントと同じものに更新されます。"
+    external_sign_in_info_with_sign_ins: "現在、以下のサービスのアカウントと連携しています。【同期中】のアカウントでログインすると、%{site_name} のアカウント情報 (名前やメールアドレス) が同期中のアカウントと同じものに更新されます。"
     external_sign_in_added: "%{provider} との連携を追加しました。"
     external_sign_in_updated: "%{provider} の同期設定を更新しました。"
     external_sign_in_removed: "%{provider} との連携を解除しました。"
@@ -436,7 +438,7 @@ ja:
     greasy_fork_scripts_link:
       other: "%{user_name} さんは Greasy Fork にも%{count}個のスクリプトを投稿しています。"
     update_sync_warning:
-      other: "ユーザー名とメールアドレスは、%{providers} と同期中 (ログイン時に更新) です。このページで設定したユーザー名やメールアドレスを使い続けるには、%{edit_sign_in_link:ログインに利用するアカウントの設定}から同期を解除してください。"
+      other: "名前とメールアドレスは、%{providers} と同期中 (ログイン時に更新) です。このページで設定したユーザー名やメールアドレスを使い続けるには、%{edit_sign_in_link:ログインに利用するアカウントの設定}から同期を解除してください。"
   help:
     installing_user_scripts:
       title: 'ユーザースクリプトのインストール方法'
@@ -452,7 +454,7 @@ ja:
       include: "スクリプトが動作するページを記述。ページのリストは整理された上で、スクリプトの情報ページに表示され、スクリプトの分類に使用されます。"
       require_html: "スクリプトへの外部 JavaScript の読み込み。%{external_script_link}を参照してください。"
       require_external_script_link_text: "外部スクリプトにおける%{site_name}のポリシー"
-      updateURL: "ユーザースクリプトマネージャが更新を取得する方法の記述。%{site_name} はこれらのキーを取り除き、%{site_name}　からインストールされたすべてのスクリプトが　%{site_name}　から更新されるようにします。"
+      updateURL: "ユーザースクリプトマネージャーが更新を取得する方法の記述。%{site_name} はこれらのキーを取り除き、%{site_name}　からインストールされたすべてのスクリプトが　%{site_name}　から更新されるようにします。"
       license: "スクリプトのコピーや変更の許諾について記述されたライセンスの URL、名前。ライセンスの欠如は、私的使用目的でスクリプトがインストールできることを意味しますが、再配布することはできません。ライセンスはスクリプトの情報ページに表示されます。"
       supportURL: "ユーザーがスクリプトのサポートを受けることができるページの URL (例: バグトラッカー、フォーラム、電子メールアドレス)。サポート URL はスクリプトのフィードバックページに表示されます。"
       contributionURL_html: "ユーザーがスクリプト作者に寄付することができるページの URL。貢献 URL はスクリプトのフィードバックページに表示されます。http、https、bitcoin スキームの URL が指定可能です。PayPal の寄付ページにリンクするには、<a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=your.email.here%40example.com&amp;item_name=Greasy+Fork+%E5%AF%84%E4%BB%98\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;business=your.email.here%40example.com&amp;item_name=Greasy+Fork+%E5%AF%84%E4%BB%98</a> のような形式の URL を使用し、サンプルのメールアドレスを自分のものに置き換えます。"
@@ -484,6 +486,8 @@ ja:
           <li>%{external_scripts_link:外部の JavaScript の利用には制限があります。}</li>
 
           %{adult_content_requirement}
+
+          <li>スクリプトは1日1回よりも高い頻度で更新チェックを行ってはいけません。ほとんどのユーザースクリプトマネージャーは自動更新機能を備えているため、スクリプト側で行う必要はありません。</li>
 
           </ul> <p>これらの制限に違反するスクリプトに気づいた場合は、そのスクリプトのフィードバックで新しいスレッドを立てて、「スクリプトの削除をモデレーターに申請」を選択し報告してください。</p>
           <p>以上の要件のいずれかに同意できないものがある場合は、%{contact_link:それについて話し合いましょう}!</p>

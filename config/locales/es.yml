@@ -47,7 +47,7 @@ es:
     update: "Actualizar a la versión %{version}"
     downgrade: "Degradar a la versión %{version}"
     reinstall: "Reinstalar versión %{version}"
-    library_instructions_html: "Este script no debería instalarse directamente. Es una biblioteca que utilizan otros scripts mediante la directiva de inclusión meta %{code}"
+    library_instructions_html: "Este script no debería instalarse directamente. Es una biblioteca que utilizan otros scripts mediante la meta-directiva de inclusión %{code}"
     deleted_notice: "Este script ha sido borrado."
     inactive_pending_changes: "Este script está inactivo, ya que no se ajusta a la política de uso de %{site_name}."
     inactive_pending_changes_for_previous_version: "Esta versión de este script está inactiva, ya que no se ajusta a la política de uso de %{site_name}."
@@ -326,12 +326,11 @@ es:
     scripts_for_label: "Scripts para:"
     explain_user_scripts_heading: "¿Qué son los scripts de usuario?"
     explain_user_scripts_html: "Los scripts de usuario son pequeñas porciones de código que añaden funcionalidad, eliminan molestias y en general mejoran las páginas que visitas. Los scripts de usuario alojados en %{site_name} son gratuitos y creados por una comunidad global de usuarios. %{site_name} aloja miles de scripts de usuario escritos por cientos de autores."
-    installing_step1_header: "1º paso: Instala un administrador de scripts de usuario"
+    installing_step1_header: "Primer paso: Instala un administrador de scripts de usuario"
     installing_step1_caption: "Tampermonkey en Chrome"
     installing_step1_description_html: >
-        <p>Para usar scripts de usuario primero necesita instalar un administrador
-        de scripts de usuario. Qué administrador de scripts de usuario puede usar
-        depende de qué navegador use.</p>
+        <p>Para añadir scripts de usuario primero tienes que instalar un administrador
+        de scripts. La opción a elegir depende del navegador que utilices.</p>
 
         <ul>
 
@@ -352,10 +351,12 @@ es:
 
         <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
 
-        <li>Qupzilla: (no se requiere software adicional)</li>
+        <li>Qupzilla: (no es necesario instalar nada más)</li>
+
+        <li>AdGuard: (no es necesario instalar nada más)</li>
 
         </ul>
-    installing_step2_header: "2º paso: Elige e instala un script"
+    installing_step2_header: "Segundo paso: Elige e instala un script"
     installing_step2_caption: "Botón de instalación de un script de usuario"
     installing_step2_description_html: >
         <p>%{browse_link:Busca entre los scripts alojados en el sitio} hasta encontrar
@@ -367,7 +368,7 @@ es:
         <p>Una vez hayas encontrado lo que buscas haz clic sobre el correspondiente
         botón verde, el administrador de scripts de usuario pedirá que confirmes la
         instalación.</p>
-    installing_step3_header: "3º paso: Prueba el script"
+    installing_step3_header: "Tercer paso: Prueba el script"
     installing_step3_description_html: >
         <p>Visita el sitio en el que funciona el script, debería empezar a funcionar
         por su cuenta. Tras probar el script puedes dar tu opinión en la página de
@@ -486,34 +487,48 @@ es:
       title: "Reglas de %{site_name} para scripts publicados"
       content_html: >
           <p>Estos son los requisitos para los scripts publicados en %{site_name}.
-          Su propósito es que %{site_name} siga siendo un lugar seguro y útil para
-          scripts de usuario. Cualquier script que quede fuera de estos requisitos
+          Están pensados para mantener %{site_name} como un lugar seguro y conveniente
+          para scripts de usuario. Cualquier script que caiga fuera de estos requisitos
           puede ser borrado por los moderadores de %{site_name}.</p> <ul>
 
           <li>Los scripts deben incluir una descripción de lo que hacen, y no pueden
-          hacer cosas no razonables fuera de esta descripción. Los usuarios deben
-          conocer lo que hará un script antes de instalarlo. Los scripts que incluyan
-          rastreo o publicidad deben especificarlo en sus descripciones.</li>
+          hacer cosas fuera de lo razonable al margen de esta descripción. Los usuarios
+          tienen que saber lo que hará el script antes de instalarlo. Los scripts
+          que incluyan rastreo o publicidad deben revelar esto en sus descripciones.</li>
 
-          <li>Las bibliotecas que usa un script deben deben ser invocadas con <code>@require</code>,
+          <li>El código publicado en este sitio no debe de estar ofuscado o condensado.
+          A los usuarios se les debe dar la oportunidad de inspeccionar y comprender
+          un script antes de instalarlo.
+
+          ode posted to this site must not be obfuscated or minified. Users must be
+          given the opportunity to inspect and understand a script before installing
+          it.</li>
+
+          <li>Las bibliotecas que usa un script deben ser invocadas con <code>@require</code>,
           a menos que haya una razón técnica válida para no hacerlo así. En el caso
-          de que una biblioteca esté integrada, se debe incluir información acerca
-          de la fuente de la biblioteca (ej. un comentario indicando la URL y/o el
+          de que se haya integrado una biblioteca, se debe incluir información acerca
+          de la fuente de la biblioteca (p.e. un comentario indicando la URL y/o el
           nombre y la versión).</li>
 
           <li>Su script debe respetar el copyright de los demás. Esto incluye al propio
-          script y cualesquiera recursos (p.e. imágenes)  que utilice. Si pretende
-          usar el contenido de algún otro, acate los términos de su licencia u obtenga
+          script y cualquier recurso (p.e. imágenes) que utilice. Si pretende usar
+          el contenido de algún otro, acate los términos de su licencia u obtenga
           su permiso antes de hacerlo.</li>
 
           <li>%{external_scripts_link:El uso de JavaScript externo está limitado.}</li>
 
           %{adult_content_requirement}
 
+          <li>Los scripts no deben tener una frecuencia de búsqueda de actualizaciones
+          mayor de una vez al día. Observe que la mayoría de administradores de scripts
+          de usuario gestionarán las actualizaciones automáticas, así que hacer esto
+          en el script es innecesario.</li>
+
           </ul> <p>Si observa que un script queda fuera de estos parámetros, por favor,
-          informe de ello yendo al enlace de Comentarios y Opiniones para ese script,
-          inicie una conversación, o escoja la opción "Informar de infracción".</p>
-          <p>Si no está de acuerdo con algo de esto, ¡%{contact_link:hablemos de ello}!</p>
+          informe de ello yendo al enlace de Opiniones para ese script, inicie una
+          conversación, y escoja la opción "Informar de infracción".</p> <p>Si no
+          está de acuerdo con alguno de estos puntos, ¡%{contact_link:hablemos de
+          ello}!!</p>
       adult_content_rule_html: "<li>Los scripts con contenido para adultos (o que funcionen en sitios con este tipo de contenido restringido) deben marcarse para que los usuarios puedan decidir si quieren verlos o no.</li>"
     external_scripts:
       title: "Política de %{site_name} sobre scripts externos"
