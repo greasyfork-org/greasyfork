@@ -11,6 +11,7 @@ ThinkingSphinx::Index.define :script, :with => :active_record, :delta => Thinkin
 	has :created_at, :code_updated_at, :total_installs, :daily_installs, :default_name, :sensitive, :script_type_id
 	# int is default and unsigned, we deal with negatives
 	has :fan_score, :type => :bigint
+	has script_applies_tos.site_application_id, as: 'site_application_id'
 
 	where 'script_type_id IN (1,3) and script_delete_type_id is null'
 

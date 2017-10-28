@@ -34,8 +34,8 @@ class ScriptsController < ApplicationController
 	def index
 		is_search = params[:q].present?
 
-		# Search can't do script sets or sites, otherwise we'd use it for everything.
-		if params[:set].nil? && params[:site].nil?
+		# Search can't do script sets, otherwise we'd use it for everything.
+		if params[:set].nil?
 			begin
 				with = case script_subset
 					when :greasyfork
@@ -46,22 +46,34 @@ class ScriptsController < ApplicationController
 						{}
 				end
 				with = with.merge(script_type_id: 1)
-				# :ranker => "expr('top(user_weight)')" means that it will be sorted on the top ranking match rather than
-				# an aggregate of all matches. In other words, something matching on "name" will be tied with everything
-				# else matching on "name".
-				@scripts = Script.search(
-					params[:q],
-					with: with,
-					page: params[:page],
-					per_page: get_per_page,
-					order: self.class.get_sort(params, true),
-					populate: true,
-					sql: {include: [:script_type, {localized_attributes: :locale}, :user]},
-					select: '*, weight() myweight',
-					ranker: "expr('top(user_weight)')"
-				)
-				# make it run now so we can catch syntax errors
-				@scripts.empty?
+				if params[:site]
+					site = SiteApplication.find_by(text: params[:site])
+					if site.nil?
+						@scripts = Script.none.paginate(page: 1)
+					else
+						with[:site_application_id] = site.id
+					end
+				end
+
+				# This should be nil unless there are going to be no results.
+				if @scripts.nil?
+					# :ranker => "expr('top(user_weight)')" means that it will be sorted on the top ranking match rather than
+					# an aggregate of all matches. In other words, something matching on "name" will be tied with everything
+					# else matching on "name".
+					@scripts = Script.search(
+						params[:q],
+						with: with,
+						page: params[:page],
+						per_page: get_per_page,
+						order: self.class.get_sort(params, true),
+						populate: true,
+						sql: {include: [:script_type, {localized_attributes: :locale}, :user]},
+						select: '*, weight() myweight',
+						ranker: "expr('top(user_weight)')"
+					)
+					# make it run now so we can catch syntax errors
+					@scripts.empty?
+				end
 			rescue ThinkingSphinx::SyntaxError => e
 				flash[:alert] = "Invalid search query - '#{params[:q]}'."
 				# back to the main listing
