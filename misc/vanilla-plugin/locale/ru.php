@@ -16,7 +16,7 @@ $Definition['RatingReport'] = '<div class="report">Запросить удале
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = 'Плохой — скрипт не работает';
 /** Label for the radio button for rating a script "OK" **/
-$Definition['RatingOK'] = 'Неважный — скрипт работает, но имеет существенные недостатки';
+$Definition['RatingOK'] = 'Нормальный — скрипт работает, но имеет существенные недостатки';
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'Хороший — скрипт работает как нужно';
 // Category name for Site Feedback

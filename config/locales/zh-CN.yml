@@ -205,7 +205,7 @@ zh-CN:
     diff_lines_of_context: "上下文显示行数："
     diff_ignore_whitespace: "忽略空白字符更改"
     diff_refresh: "刷新"
-    diff_no_change: "并没有什么不同。"
+    diff_no_change: "二者没有区别。"
     good_rating_explanation: "好评或收藏的人数。"
     ok_rating_explanation: "评级为一般的人数。"
     bad_rating_explanation: "评级为差评的人数。"
@@ -322,32 +322,6 @@ zh-CN:
     explain_user_scripts_html: "用户脚本为您增强对浏览体验的控制权。在安装之后，它们可自动为您访问的网站添加功能，或使其更加易用、更加清新。在 %{site_name} 上的用户脚本是由其他用户编写并向全世界发表的，您可以免费和轻松地安装。"
     installing_step1_header: "第一步：安装一个用户脚本管理器"
     installing_step1_caption: "Chrome 上的 Tampermonkey"
-    installing_step1_description_html: >
-        <p>要使用用户脚本，您首先需要安装一个用户脚本管理器。根据您使用的浏览器不同，可用的用户脚本管理器也有所不同。</p>
-
-        <ul>
-
-        <li>Chrome：%{chrome_tampermonkey_link:Tampermonkey}</a> 或 %{chrome_violentmonkey_link:Violent
-        monkey}</li>
-
-        <li>Firefox：%{firefox_greasemonkey_link:Greasemonkey}、%{firefox_tampermonkey_link:Tampermonkey}</li>
-        或 %{firefox_violentmonkey_link:Violentmonkey}
-
-        <li>Safari：%{safari_tampermonkey_link:Tampermonkey}</li>
-
-        <li>Microsoft Edge：%{edge_tampermonkey_link:Tampermonkey}</li>
-
-        <li>Opera：%{opera_tampermonkey_link:Tampermonkey}</li> 或 %{opera_violentmonkey_link:Violentmonkey}
-
-        <li>Maxthon：%{maxthon_violentmonkey_link:Violentmonkey}</li>
-
-        <li>Dolphin：%{dolphin_tampermonkey_link:Tampermonkey}</li>
-
-        <li>UC：%{uc_tampermonkey_link:Tampermonkey}</li>
-
-        <li>Qupzilla：（不需要额外软件）</li>
-
-        </ul>
     installing_step2_header: "第二步：安装一个用户脚本"
     installing_step2_caption: "用户脚本的安装按钮"
     installing_step2_description_html: >
@@ -380,8 +354,8 @@ zh-CN:
     script_list: "脚本列表"
     script_list_none: "尚未发布过脚本。"
     script_list_none_for_filter: "没有匹配当前搜索条件的脚本。"
-    script_list_none_same_user_html: "你一个脚本都没有呢，%{script_list_none_same_user_info_link}"
-    script_list_none_same_user_info_link_text: "你要来试试吗?"
+    script_list_none_same_user_html: "您还没有编写过用户脚本，%{script_list_none_same_user_info_link}"
+    script_list_none_same_user_info_link_text: "想要学习如何编写吗?"
     deleted_script_list: "已删除的脚本"
     sign_out: "退出"
     edit: "编辑账户信息"
@@ -468,44 +442,26 @@ zh-CN:
       post_new_script_link_text: '发布新脚本'
     code_rules:
       title: "%{site_name} 有关发布脚本的规则"
-      content_html: >
-          <p>下述为针对提交至 %{site_name} 的脚本的一些要求。这些要求的存在，是为了保证 %{site_name} 成为一个安全以及有用的用户脚本网站。未达到下述要求的脚本可能会被
-          %{site_name} 的管理员删除。</p> <ul>
-
-          <li>脚本必须包含描述信息，表示该脚本的工作范围，并不得在未得到用户知晓的前提下无理跨线造成困扰。用户应在安装之前能知晓脚本的效用。若包含追踪统计信息或广告则必须在描述中提供该信息。</li>
-
-          <li>提交到该网站的脚本不得混淆或压缩。用户拥有在安装之前对脚本进行代码审查的权利。</li>
-
-          <li>脚本所需要的第三方库应使用 <code>@require</code> 进行引用，除非能提供合理的技术解释，否则不允许已其它方式进行引用。若内嵌第三方库到脚本内，则必须提供相应源代码的信息
-          (如一条指向脚本名称、版本、地址的注释)。</li>
-
-          <li>你的脚本必须遵守他人版权。包括脚本自身的代码以及其它使用到的资源 (如图像)。如果您需要使用他人创作内容，请务必遵守授权条款或取得创作者的授权。</li>
-
-          <li>%{external_scripts_link:允许引用的外部 JavaScript 地址需存在于白名单}。</li>
-
-          %{adult_content_requirement}
-
-          </ul> <p>如果您发现有脚本不满足上述任何一点要求，请单击“反馈”，“发起讨论”，然后选择“举报”选项告知管理员。</p> <p>若您不同意任意上述的要求，%{contact_link:我们可以深入探讨这些要求}！</p>
       adult_content_rule_html: "<li>包含成人内容，或脚本目标网站是成人内容的话则必须被正确记录，以允许其他用户根据选项来决定是否要看到它们。</li>"
     external_scripts:
       title: "%{site_name} 对外部脚本的政策"
       content_html: >
-          <p>用户脚本有技术能力来加载和执行其他脚本。这个 %{require_doc_link:<code>@require</code>} 元数据键值是最直接的方法来做到这一点，但脚本也可以做到，比如使用一个
-          XmlHttpRequest 来下载一个脚本并将其注入 DOM。</p> <p>虽然这是一个很有用的功能，并且大多数脚本作者将其用在合法目的，但它也可以被恶意使用。%{site_name}
-          的一项核心原则就是，用户必须能够检查脚本中的代码。外部脚本可能用多种方法绕过这一原则：它们可以没有任何警告或历史记录的悄悄改变，它们可以对不同的人采用不同的代码，它们还可以在知名的库之中插入恶意的代码。即便某个人检查了外部脚本并且确定它是合法的，也并不能保证该脚本是一直并且永远合法的。</p>
-          <p>为了允许脚本作者继续使用外部脚本，%{site_name} 已经实施了一个 URL 形式的白名单，里面涵盖的内容可以包含在脚本中。该白名单包含的脚本位置应该是：</p>
+          <p>用户脚本有能力加载和执行其他脚本。最直接的方法是通过 %{require_doc_link:<code>@require</code>}
+          来加载，但也有其他的途径——例如用 XmlHttpRequest 来下载外部脚本，并将其注入 DOM。</p> <p>虽然这是一个很有用的功能，并且大多数脚本作者将其用在合法目的，但它也可以被恶意使用。%{site_name}
+          的一项核心原则就是，必须能让用户阅读和检查脚本代码。而外部脚本可能用多种方法绕过这一原则：它们可以在用户不知情的情况下悄悄改变，而不留下历史记录；它们可以对不同的用户采用不同的代码；它们还可以在知名的库之中插入恶意的代码，以期逃避用户的检查。因此，即便某位用户检查了一个外部脚本，并确定它此时是安全的，他也无法保证该脚本在过去和将来不会包含恶意代码。</p>
+          <p>为了允许脚本作者继续使用外部脚本，%{site_name} 有一个 URL 形式的白名单，只允许引用白名单中的外部脚本。白名单中包含的网站应该是：</p>
           <ul>
 
           <li>公开的</li>
 
           <li>内容不会经常改变的</li>
 
-          <li>有多名脚本作者认为有用的</li>
+          <li>对多位脚本作者有帮助的</li>
 
-          </ul> <p>目前的名单为：</p> %{allowed_require_list} <p>如果您尝试发布的一个脚本使用 <code>@require</code>引用了此名单之外的脚本，您无法在此保存您的脚本。</p>
-          <p>如果您想包含的脚本是一个 JavaScript 库（例如 jQuery 或者 YUI），尝试在上面列出的网站中找到它。%{cdnjs_link:cdnjs}和
-          %{jsdelivr_link:jsDelivr} 涵盖了广泛的可用库。</p> <p>如果您想包含的脚本在上面的网站上均不存在，%{contact_link:告知我们}，我们可以找找别的地方是否有它（乃至我们自己托管）。</p>
-          <p>如果您想包含的脚本是你自己写的，你可以在 %{site_name} 上将它提交为一个单独的项目，选择“库”作为它的脚本类型。然后你就可以在你的脚本中引入已发布的库了。</p>
+          </ul> <p>目前的白名单包括：</p> %{allowed_require_list} <p>如果您尝试发布的一个脚本用 <code>@require</code>包含了此名单之外的外部脚本，您将无法保存您的脚本。</p>
+          <p>如果您想加载的外部脚本是一个 JavaScript 库（例如 jQuery 或者 YUI），请访问上面列出的网站，看看是否能找到它的链接。%{cdnjs_link:cdnjs}
+          和 %{jsdelivr_link:jsDelivr} 提供了大量的常用库。</p> <p>如果以上网站均没有您想引用的外部脚本，请%{contact_link:告知我们}，以便我们查找它的链接（乃至我们自己托管）。</p>
+          <p>如果您想包含的脚本是你自己写的，你可以在 %{site_name} 上将它提交为一个单独的项目，选择“库”作为它的类型，然后你就可以在你的脚本中引入自己发布的这个库了。</p>
     script_rewriting:
       title: "%{site_name} 将如何改写已发布的脚本"
       content_html: >
