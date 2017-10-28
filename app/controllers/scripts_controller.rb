@@ -74,7 +74,7 @@ class ScriptsController < ApplicationController
 					# make it run now so we can catch syntax errors
 					@scripts.empty?
 				end
-			rescue ThinkingSphinx::SyntaxError => e
+			rescue ThinkingSphinx::SyntaxError, ThinkingSphinx::ParseError => e
 				flash[:alert] = "Invalid search query - '#{params[:q]}'."
 				# back to the main listing
 				redirect_to scripts_path
