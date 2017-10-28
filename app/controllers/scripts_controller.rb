@@ -840,7 +840,7 @@ class ScriptsController < ApplicationController
 			if params[:site] == '*'
 				scripts = scripts.for_all_sites
 			else
-				scripts = scripts.joins(:script_applies_tos).where(['text = ?', params[:site]])
+				scripts = scripts.joins(:site_applications).where(site_applications: {text: params[:site]})
 			end
 		end
 		if !params[:set].nil?
@@ -902,6 +902,7 @@ private
 					text, SUM(daily_installs) install_count, COUNT(s.id) script_count
 				FROM script_applies_tos
 				JOIN scripts s ON script_id = s.id
+				JOIN site_applications on site_applications.id = site_application_id
 				WHERE
 					domain
 					AND script_type_id = 1

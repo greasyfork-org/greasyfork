@@ -51,6 +51,8 @@ group :development do
   gem 'capistrano-bundler', '~> 1.2'
   gem 'capistrano-rvm'
   gem 'capistrano3-delayed-job', '~> 1.0'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :profile do

@@ -6,7 +6,8 @@ class Script < ActiveRecord::Base
 	belongs_to :user
 
 	has_many :script_versions, dependent: :destroy
-	has_many :script_applies_tos, -> {order(:text)}, dependent: :destroy, autosave: true
+	has_many :script_applies_tos, dependent: :destroy, autosave: true
+	has_many :site_applications, through: :script_applies_tos
 	has_many :discussions, -> { readonly.order('COALESCE(DateLastComment, DateInserted)').where('Closed = 0') }, :class_name => 'ForumDiscussion', :foreign_key => 'ScriptID'
 	has_many :cpd_duplication_scripts, dependent: :destroy
 	has_many :cpd_duplications, :through => :cpd_duplication_scripts
@@ -131,7 +132,7 @@ class Script < ActiveRecord::Base
 	end
 
 	def matching_sensitive_sites
-		SensitiveSite.where(domain: script_applies_tos.select(&:domain).map(&:text))
+		SensitiveSite.where(domain: site_applications.where(domain: true).pluck(:text))
 	end
 
 	def for_sensitive_site?
@@ -183,7 +184,14 @@ class Script < ActiveRecord::Base
 			localized_attributes_for('description').select{|la| la.attribute_value.length > MAX_LENGTHS[:description]}.each{|la| la.attribute_value = la.attribute_value[0,MAX_LENGTHS[:description]]}
 		end
 
-		update_children(:script_applies_tos, script_version.calculate_applies_to_names)
+		applies_to_names = script_version.calculate_applies_to_names
+		applies_to_keep, applies_to_delete = script_applies_tos.partition{|sat| applies_to_names.any?{|atn| sat.text == atn[:text] && sat.tld_extra == atn[:tld_extra]}}
+		applies_to_delete.each(&:mark_for_destruction)
+		applies_to_add = applies_to_names.reject{|atn| script_applies_tos.any?{|sat| sat.text == atn[:text] && sat.tld_extra == atn[:tld_extra]}}
+		applies_to_add.each do |atn|
+			site_application = SiteApplication.find_by(text: atn[:text]) || SiteApplication.new(text: atn[:text], domain: atn[:domain])
+			script_applies_tos.build(site_application: site_application, tld_extra: atn[:tld_extra])
+		end
 
 		if new_record? or self.code_updated_at.nil?
 			self.code_updated_at = Time.now
