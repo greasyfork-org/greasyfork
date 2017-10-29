@@ -102,7 +102,7 @@ class ScriptSet < ApplicationRecord
 		return arr.sort{|a, b|
 			next -1 if a.favorite and !b.favorite
 			next 1 if !a.favorite and b.favorite
-			next a.id <=> b.id
+			next a.name <=> b.name
 		}
 	end
 
