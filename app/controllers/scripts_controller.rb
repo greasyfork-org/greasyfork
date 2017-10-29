@@ -313,7 +313,9 @@ class ScriptsController < ApplicationController
 				redirect_to @script.code_url
 			}
 			format.user_script_meta {
-				render_meta_js(@script, @script_version)
+				route_params = {:script_id => params[:script_id], :name => @script.name, :format => nil}
+				route_params[:version] = params[:version] if !params[:version].nil?
+				redirect_to script_meta_js_path(route_params)
 			}
 		end
 	end
