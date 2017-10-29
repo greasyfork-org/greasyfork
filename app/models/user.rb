@@ -51,7 +51,7 @@ class User < ApplicationRecord
 	strip_attributes
 
 	def discussions_on_scripts_written
-		scripts.map {|s| s.discussions}.flatten.sort{|a,b| a.updated <=> b.updated }
+		ForumDiscussion.where(ScriptID: script_ids).order('COALESCE(DateLastComment, DateInserted)')
 	end
 
 	def slugify(name)

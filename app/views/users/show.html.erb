@@ -53,12 +53,8 @@
 					<p><%=t('users.discussions_on_scripts_none')%></p>
 				<% else %>
 					<ul class="discussion-list">
-						<% dosr.reverse.take(10).each do |d| %>
-							<li class="<%=discussion_class(d)%>">
-								<%= render :partial => 'forum_discussions/discussion', :locals => {:discussion => d, :show_script => true}%>
-							</li>
-						<% end 
-						if dosr.length > 10 %>
+						<%= render collection: dosr.includes(last_reply_forum_poster: :users, original_forum_poster: :users).first(10), partial: 'forum_discussions/discussion', locals: {show_script: true} %>
+						<% if dosr.length > 10 %>
 							<li class="more-discussions"><a href="<%=forum_path%>?script_author=<%=@user.id%>" rel="nofollow"><%=t('users.discussions_on_scripts_more')%></a></li>
 						<% end %>
 					</ul>

@@ -41,11 +41,7 @@ if @script.discussions.length > 10 %>
 	</p>
 <% else %>
 	<ul id="discussions">
-		<% @script.discussions.reverse.each do |discussion| %>
-			<li class="<%=discussion_class(discussion)%>">
-				<%= render :partial => 'forum_discussions/discussion', :locals => {:discussion => discussion}%>
-			</li>
-		<% end %>
+		<%= render collection: @script.discussions.includes(last_reply_forum_poster: :users, original_forum_poster: :users).reverse, partial: 'forum_discussions/discussion' %>
 	</ul>
 	<p><a id="start-discussion-bottom" href="<%=forum_path%>post/discussion?script=<%=@script.id%>" rel="nofollow"><%=t('scripts.feedback_start_discussion_link')%></a></p>
 <% end %>
