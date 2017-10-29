@@ -420,7 +420,8 @@ class ScriptsController < ApplicationController
 			return
 		end
 
-		meta_js_code = script_info['script_delete_type_id'] == 2 ? ScriptVersion.get_blanked_code(script_info['code']) : ScriptVersion.get_meta_block(script_info['code'])
+		# Strip out some thing that could contain a lot of data (data: URIs). get_blanked_code already does this.
+		meta_js_code = script_info['script_delete_type_id'] == 2 ? ScriptVersion.get_blanked_code(script_info['code']) : ScriptVersion.inject_meta_for_code(ScriptVersion.get_meta_block(script_info['code']), {icon: nil, resource: nil})
 
 		File.write(cache_path, meta_js_code) if do_caching
 

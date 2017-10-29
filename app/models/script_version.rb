@@ -297,7 +297,7 @@ class ScriptVersion < ApplicationRecord
 		c = ScriptVersion.get_meta_block(rewritten_code)
 		return nil if c.nil?
 		current_version = ScriptVersion.get_first_meta(c, 'version')
-		return ScriptVersion.inject_meta_for_code(c, {:description => 'This script was deleted from Greasy Fork, and due to its negative effects, it has been automatically removed from your browser.', :version => ScriptVersion.get_next_version(current_version), :require => nil})
+		return ScriptVersion.inject_meta_for_code(c, {:description => 'This script was deleted from Greasy Fork, and due to its negative effects, it has been automatically removed from your browser.', :version => ScriptVersion.get_next_version(current_version), :require => nil, :icon => nil, :resource => nil})
 	end
 
 	def calculate_rewritten_code(previous_description = nil)
