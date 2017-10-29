@@ -1,0 +1,32 @@
+#script-show-info-ad:not(.ad-gn), #home-ad:not(.ad-gn) {
+	width: 732px;
+	box-sizing: border-box;
+	margin: 1.5em auto;
+}
+.ad:not(.ad-gn) .ad-note {
+	font-size: x-small;
+	line-height: 1em;
+	max-width: -webkit-max-content;
+	max-width: -moz-max-content;
+	max-width: max-content;
+	border-top: 2px solid #E7CF87;
+	border-left: 2px solid #E7CF87;
+	border-right: 2px solid #E7CF87;
+	padding: 0 0.5em;
+}
+.ad:not(.ad-gn) .ad-note, .ad:not(.ad-gn) .ad-content {
+	background-color: #E7CF87;
+}
+.ad:not(.ad-gn) .ad-content {
+	border: 2px solid #E7CF87;
+}
+.ad:not(.ad-gn) .ad-content > * {
+	vertical-align: bottom;
+}
+.ad-gn .ad-note {
+	display: none;
+}
+.ad-gn {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
