@@ -207,7 +207,7 @@ class ScriptVersionsController < ApplicationController
 private
 
 	def script_version_params
-		params.require(:script_version).permit(:code, :changelog, :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation)
+		params.require(:script_version).permit(:code, :changelog, :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation, :sensitive_site_confirmation)
 	end
 
 end

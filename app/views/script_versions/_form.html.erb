@@ -77,6 +77,9 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
 							<% when :potentially_minified %>
 								<%=t('scripts.warning_potentially_minified_html', {:allowed_requires_link => link_to(t('scripts.warning_potentially_minified_allowed_requires_link'), help_external_scripts_path())})%><br>
 								<label for="script_version_minified_confirmation"><%=t('scripts.override_warning_checkbox_label')%></label> <%=s.check_box(:minified_confirmation, {}, true, false)%>
+							<% when :automatic_sensitive %>
+								<%=t('scripts.warning_automatic_sensitive_html', {sensitive_domains: script_version.sensitive_domains.to_sentence})%><br>
+								<label for="script_version_minified_confirmation"><%=t('scripts.override_warning_checkbox_label')%></label> <%=s.check_box(:sensitive_site_confirmation, {}, true, false)%>
 							<% else
 								raise "Unknown warning #{w}"
 						end %>
@@ -130,9 +133,13 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
 	<% else %>
 		<div class="form-control radio-group">
 			<label><%=t('scripts.adult_content')%></label><br>
-			<%=t('scripts.not_adult_content_self_report_explanation', site_name: site_name)%><br>
-			<%= check_box('script', :not_adult_content_self_report, checked: @script.not_adult_content_self_report_date.present?) %>
-			<label for="script_not_adult_content_self_report_date" class="radio-label"><%=t('scripts.not_adult_content_self_report_html')%></label>
+			<% if @script.for_sensitive_site? %>
+				<%=t('scripts.not_adult_content_self_report_explanation_automatic', site_name: site_name, domain_list: @script.matching_sensitive_sites.pluck(:domain).to_sentence)%><br>
+			<% else %>
+				<%=t('scripts.not_adult_content_self_report_explanation', site_name: site_name)%><br>
+				<%= check_box('script', :not_adult_content_self_report, checked: @script.not_adult_content_self_report_date.present?) %>
+				<label for="script_not_adult_content_self_report_date" class="radio-label"><%=t('scripts.not_adult_content_self_report_html')%></label>
+			<% end %>
 		</div>
 	<% end %>
 	<div class="form-control radio-group">

@@ -90,6 +90,7 @@ class ScriptVersion < ApplicationRecord
 		w << :namespace_missing if namespace_missing?
 		w << :namespace_changed if namespace_changed?
 		w << :potentially_minified if potentially_minified?
+		w << :automatic_sensitive if automatic_sensitive?
 		return w
 	end
 
@@ -168,7 +169,19 @@ class ScriptVersion < ApplicationRecord
 		return ScriptVersion.code_appears_minified(code)
 	end
 
-	attr_accessor :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation, :truncate_description
+	def automatic_sensitive?
+		return false if sensitive_site_confirmation
+		return false if script.sensitive
+		return false if script.adult_content_self_report
+		return sensitive_domains.any?
+	end
+
+	def sensitive_domains
+		domain_names = calculate_applies_to_names.select{|atn| atn[:domain] && !atn[:tld_extra]}.map{|atn| atn[:text]}
+		return SensitiveSite.where(domain: domain_names).map(&:domain)
+	end
+
+	attr_accessor :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation, :truncate_description, :sensitive_site_confirmation
 
 	def initialize(*args)
 		# Allow code to be updated without version being upped
@@ -183,6 +196,8 @@ class ScriptVersion < ApplicationRecord
 		@minified_confirmation = false
 		# Truncate description if it's too long
 		@truncate_description = false
+		# Confirm automatic adult detection
+		@sensitive_site_confirmation = false
 		super(*args)
 	end
 
@@ -262,6 +277,7 @@ class ScriptVersion < ApplicationRecord
 		@namespace_check_override = true
 		@minified_confirmation = true
 		@truncate_description = true
+		@sensitive_site_confirmation = true
 	end
 
 	def calculate_all(previous_description = nil)
