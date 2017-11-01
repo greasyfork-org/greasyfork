@@ -340,33 +340,6 @@ pl:
     explain_user_scripts_html: "Skrypty użytkownika pozwalają kontrolować twoje doświadczenie przeglądania stron internetowych. Po zainstalowaniu, automatycznie czynią strony lepszymi poprzez dodanie nowych funkcji, sprawiając, że korzysta się z nich łatwiej lub usuwają niechciane treści z odwiedzanych stron. Skrypty użytkownika na %{site_name} zostały napisane przez innych użytkowników i zamieszczone, by podzielić się nimi ze światem. Są darmowe i łatwe w użyciu."
     installing_step1_header: "Krok 1: zainstaluj menedżera skryptów"
     installing_step1_caption: "Tampermonkey na Chrome"
-    installing_step1_description_html: >
-        <p>Aby korzystać ze skryptów użytkownika, musisz najpierw zainstalować menedżera
-        skryptów. To jaki menedżer skryptów możesz używać, zależy od tego z której
-        przeglądarki korzystasz.</p>
-
-        <ul>
-
-        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> lub %{chrome_violentmonkey_link:Violentmonkey}</li>
-
-        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
-        lub %{firefox_violentmonkey_link:Violentmonkey}</li>
-
-        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
-
-        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
-
-        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} lub %{opera_violentmonkey_link:Violentmonkey}</li>
-
-        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-
-        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
-
-        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
-
-        <li>Qupzilla: (nie jest wymagane dodatkowe oprogramowanie)</li>
-
-        </ul>
     installing_step2_header: "Krok 2: zainstaluj skrypt użytkownika"
     installing_step2_caption: "Przycisk 'zainstaluj skrypt użytkownika'"
     installing_step2_description_html: >
@@ -501,41 +474,6 @@ pl:
       post_new_script_link_text: 'udostępnić nowy skrypt'
     code_rules:
       title: "Zasady publikacji skryptów na %{site_name}"
-      content_html: >
-          <p> Wymagania dotyczące skryptów udostępnionych na %{site_name}. Są one
-          przewidziane aby %{site_name} była bezpieczną i użyteczną stroną dla skryptów
-          użytkownika. Każdy skrypt nie spełniający wymagań %{site_name} zostanie
-          usunięty przez moderatorów %{site_name}.</p> <ul>
-
-          <li>Skrypt musi zawierać opis co robi i nie może robić niczego innego poza
-          tym co jest w opisie. Użytkownicy muszą wiedzieć co skrypt robi przed instalacją.
-          Jeżeli skrypty zawierają moduł śledzący lub reklamy, to powinna być o tym
-          informacja w opisie.
-
-          </li>
-
-          <li>Kod udostępniany na tej stronie nie może być zaciemniony lub pomniejszony.
-          Użytkownicy muszą mieć możliwość przeanalizowania i zrozumienia działania
-          kodu przed instalacją</li>
-
-          <li>Biblioteki używane przez skrypt, powinny mieć<code>@require</code> ,
-          chyba że są szczególne wytyczne techniczne, aby tego nie robić. Jeśli biblioteka
-          jest opublikowana jako wstawka, to musi zawierać informacje dotyczące jej
-          źródła (np. komentarz wskazujący na adres URL i/lub nazwę i wersję).</li>
-
-          <li>Twój skrypt musi respektować prawa autorskie innych. Dotyczy to samego
-          skryptu i innych zasobów (np. zdjęć) które wykorzystuje. Jeżeli chcesz skorzystać
-          z zawartości innej osoby, to przestrzegaj treści jej licencji lub zapytaj
-          o pozwolenie.</li>
-
-          <li>%{external_scripts_link:Użycie zewnętrznego JavaScript'u jest ograniczone.}</li>
-
-          %{adult_content_requirement}
-
-          </ul> <p>Jeżeli zauważysz, że skrypt łamie te zasady, zgłoś go poprzez udanie
-          się do linku strony z opiniami dla tego skryptu, rozpoczynając dyskusję,
-          i wybierając opcję "Zgłoś skrypt"</p> <p>Jeżeli się nie zgadasz z powyższymi
-          regułami, to %{contact_link:napisz o tym}!</p>
       adult_content_rule_html: "<li>Skrypty które zawierają treści dla dorosłych oraz dla stron które zawierają treści dla dorosłych muszą być oznaczone jako takie, aby użytkownicy mogli zdecydować czy chcą to zobaczyć.</li>"
     external_scripts:
       title: "Polityka %{site_name} dot. zewnętrznych skryptów"

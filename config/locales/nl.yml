@@ -326,33 +326,6 @@ nl:
     explain_user_scripts_html: "Gebruikersscripts stellen je in staat je browser naar je eigen wensen aan te passen. Wanneer je ze hebt geïnstalleerd, maken ze sites die je bezoekt automatisch beter, door aanvullende mogelijkheden, makkelijker gebruik of vervelende eigenschappen kunnen worden verwijderd. De gebruikersscripts op %{site_name} zijn geschreven door andere gebruikers, en geplaatst om te delen met de rest van de wereld. Ze zijn gratis om te installeren, en makkelijk in gebruik."
     installing_step1_header: "Stap 1: Installeer een gebruikersscriptmanager"
     installing_step1_caption: "Tampermonkey voor Chrome"
-    installing_step1_description_html: >
-        <p>Om gebruikersscripts te kunnen gebruiken moet je eerst een scriptmanager
-        installeren. Welke scriptmanager je kunt gebruiken hangt af van welke browser
-        je gebruikt.</p>
-
-        <ul>
-
-        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> or %{chrome_violentmonkey_link:Violent
-        monkey}</li>
-
-        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey} or %{firefox_tampermonkey_link:Tampermonkey}</li>
-
-        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
-
-        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
-
-        <li>Opera: %{opera_tampermonkey_link:Tampermonkey}</li>
-
-        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-
-        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
-
-        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
-
-        <li>Qupzilla: (geen additionele software vereist)</li>
-
-        </ul>
     installing_step2_header: "Stap 2: Installeer een gebruikersscript"
     installing_step2_caption: "Een gebruikersscript-installeer knop"
     installing_step2_description_html: >
@@ -482,41 +455,6 @@ nl:
       post_new_script_link_text: 'publiceer een nieuw script'
     code_rules:
       title: "%{site_name}'s regels voor gepubliceerde scripts"
-      content_html: >
-          <p>Dit zijn de vereisten voor scripts geplaatst op %{site_name}. Deze zijn
-          bedoeld om van %{site_name} een veilige en handige plaats voor gebruikersscripts
-          te maken.. Elk script dat niet aan deze eisen voldoet kan worden verwijderd
-          door moderators van %{site_name}.</p> <ul>
-
-          <li>Scripts moeten een beschrijving bevatten van wat ze doen en mogen geen
-          onnodige dingen buiten de beschrijving doen. Gebruikers moeten weten wat
-          een script zal doen voor dat ze het installeren. Scripts die tracking of
-          advertenties bevatten moeten dit expliciet vermelden in de beschrijving.</li>
-
-          <li>Code geplaatst op deze site mag niet worden verborgen of ingekort. Gebruikers
-          moet de kans worden gegeven om een script te bestuderen en te begrijpen
-          voor ze het installeren.</li>
-
-          <li>Bibliotheken die een script gebruikt moeten worden <code>@require</code>-d,
-          behalve als er een geldige technische reden is om dat niet te doen. In het
-          geval dat een bibliotheek inline is opgenomen moet het informatie bevatten
-          omtrent de bron van herkomst van de bibliotheek (bijv. een comment met een
-          URL en/of de naam en versie).</li>
-
-          <li>Je script moet copyright van anderen respecteren. Dit omvat het script
-          zelf en alle bronnen (bijv. afbeeldingen) die het gebruikt. Wanneer je van
-          plan bent om andermans werk te gebruiken, houdt je dan aan de licentiebepalingen
-          of vraag (en krijg) toestemming om dit te doen.</li>
-
-          <li>%{external_scripts_link:Gebruik van externe JavaScript is beperkt.}</li>
-
-          %{adult_content_requirement}
-
-          </ul> <p>Wanneer je een script opmerkt dat niet aan deze vereisten voldoet,
-          verzoeken we je het script te rapporteren door naar de Feedback-link van
-          het script te gaan, een gesprek te starten, en voor de 'Rapporteer script'
-          optie te kiezen.</p> <p>Als je het niet eens bent met een van deze voorwaarden,
-          %{contact_link: laten we er dan over praten}!</p>
       adult_content_rule_html: "<li>Scripts die volwassen inhoud bevatten, of die zijn geschreven voor sites die volwassen inhoud bevatten, moeten worden gemarkeerd als zijnde volwassen, om andere gebruikers toe te staan ze te kunnen zien.</li>"
     external_scripts:
       title: "%{site_name}'s beleid voor externe scripts."

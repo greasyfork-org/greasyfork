@@ -175,6 +175,7 @@ zh-CN:
     warning_namespace_missing_generate_automatically_html: "自动生成 <code>@namespace</code> 属性？"
     warning_namespace_changed_html: "您的命名空间 <code>@namespace</code> 发生了改变。改变 <code>@namespace</code> 后脚本管理器会将更新作为新脚本安装。"
     warning_potentially_minified_html: "您的脚本看上去像最小化（压缩后）的版本。如果您使用了最小化后的库，请使用 <code>@require</code> 引用 %{allowed_requires_link} 里面的相应库。压缩后的脚本不被本站允许且会被管理员移除。"
+    warning_automatic_sensitive_html: "您的脚本因为应用到%{sensitive_domains}，所以会被标注为成人内容。"
     warning_potentially_minified_allowed_requires_link: "在这些地方"
     additional_info_locale_prompt: "(选择语言)"
     additional_info_add_localized: "添加一个本地化的附加信息"
@@ -226,6 +227,7 @@ zh-CN:
     adult_content_self_report_explanation: "%{site_name} 允许脚本带有成人内容，但必须被明确标注使用户可以选择是否查看此类内容。"
     not_adult_content_self_report_html: "这个脚本<strong>不包含</strong>成人内容，也<strong>不运行于</strong>含有成人内容的网站。"
     not_adult_content_self_report_explanation: "%{site_name} 允许脚本含有成人内容，但必须被「明确标注」，允许用户选择是否显示这类信息。您的脚本已经被网站自动标记为「包含和谐内容」，您也可以申请取消该标记；该请求将有管理员进行审核。"
+    not_adult_content_self_report_explanation_automatic: "%{site_name}允许脚本有成人内容，但脚本必须被标注以便用户可以选择是否看到它。您的脚本因为应用到%{domain_list}已被标注为具有成人内容。"
     adult_content_on_greasy_logged_in_error: "根据您当前的 %{edit_account_link:Greasy Fork 账户设置}，此脚本不再在本网站上可用。"
     adult_content_on_greasy_not_logged_in_error: "此脚本不再在本网站上匿名可用。请%{login_link:登录}并检查您的 Greasy Fork 账户设置。"
     non_adult_content_on_sleazy: "此脚本在本网站上不可用。"
@@ -322,6 +324,34 @@ zh-CN:
     explain_user_scripts_html: "用户脚本为您增强对浏览体验的控制权。在安装之后，它们可自动为您访问的网站添加功能，或使其更加易用、更加清新。在 %{site_name} 上的用户脚本是由其他用户编写并向全世界发表的，您可以免费和轻松地安装。"
     installing_step1_header: "第一步：安装一个用户脚本管理器"
     installing_step1_caption: "Chrome 上的 Tampermonkey"
+    installing_step1_description_html: >
+        <p>要使用用户脚本，您首先需要安装一个用户脚本管理器。根据您使用的浏览器不同，可用的用户脚本管理器也有所不同。</p>
+
+        <ul>
+
+        <li>Chrome：%{chrome_tampermonkey_link:Tampermonkey}</a> 或 %{chrome_violentmonkey_link:Violent
+        monkey}</li>
+
+        <li>Firefox：%{firefox_greasemonkey_link:Greasemonkey}、%{firefox_tampermonkey_link:Tampermonkey}</li>
+        或 %{firefox_violentmonkey_link:Violentmonkey}
+
+        <li>Safari：%{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Microsoft Edge：%{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera：%{opera_tampermonkey_link:Tampermonkey}</li> 或 %{opera_violentmonkey_link:Violentmonkey}
+
+        <li>Maxthon：%{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin：%{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC：%{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla：（不需要额外软件）</li>
+
+        <li>AdGuard：（不需要额外软件）</li>
+
+        </ul>
     installing_step2_header: "第二步：安装一个用户脚本"
     installing_step2_caption: "用户脚本的安装按钮"
     installing_step2_description_html: >
@@ -442,6 +472,26 @@ zh-CN:
       post_new_script_link_text: '发布新脚本'
     code_rules:
       title: "%{site_name} 有关发布脚本的规则"
+      content_html: >
+          <p>下述为针对提交至 %{site_name} 的脚本的一些要求。这些要求的存在，是为了保证 %{site_name} 成为一个安全以及有用的用户脚本网站。未达到下述要求的脚本可能会被
+          %{site_name} 的管理员删除。</p> <ul>
+
+          <li>脚本必须包含描述信息，表示该脚本的工作范围，并不得在未得到用户知晓的前提下无理跨线造成困扰。用户应在安装之前能知晓脚本的效用。若包含追踪统计信息或广告则必须在描述中提供该信息。</li>
+
+          <li>提交到该网站的脚本不得混淆或压缩。用户拥有在安装之前对脚本进行代码审查的权利。</li>
+
+          <li>脚本所需要的第三方库应使用 <code>@require</code> 进行引用，除非能提供合理的技术解释，否则不允许已其它方式进行引用。若内嵌第三方库到脚本内，则必须提供相应源代码的信息
+          (如一条指向脚本名称、版本、地址的注释)。</li>
+
+          <li>你的脚本必须遵守他人版权。包括脚本自身的代码以及其它使用到的资源 (如图像)。如果您需要使用他人创作内容，请务必遵守授权条款或取得创作者的授权。</li>
+
+          <li>%{external_scripts_link:允许引用的外部 JavaScript 地址需存在于白名单}。</li>
+
+          <li>脚本检查更新的次数不能多于每天一次。注意：大多数用户脚本管理器能处理自动更新，因此不要在脚本中执行此操作。
+
+          %{adult_content_requirement}
+
+          </ul> <p>如果您发现有脚本不满足上述任何一点要求，请单击“反馈”，“发起讨论”，然后选择“举报”选项告知管理员。</p> <p>若您不同意任意上述的要求，%{contact_link:我们可以深入探讨这些要求}！</p>
       adult_content_rule_html: "<li>包含成人内容，或脚本目标网站是成人内容的话则必须被正确记录，以允许其他用户根据选项来决定是否要看到它们。</li>"
     external_scripts:
       title: "%{site_name} 对外部脚本的政策"
