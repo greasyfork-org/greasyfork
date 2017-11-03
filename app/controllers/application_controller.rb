@@ -292,7 +292,7 @@ protected
 		return nil if script&.sensitive
 		return nil if current_user && !current_user.show_ads
 		return 'ga' if script.nil?
-		return ['ga','gn'].sample if script.ad_method == 'ga'
+		return 'gn' if script.ad_method == 'ga'
 		return script.ad_method || 'ca'
 	end
 	helper_method :choose_ad_method
