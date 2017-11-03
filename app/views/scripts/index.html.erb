@@ -22,7 +22,7 @@
 	<p><%=t('scripts.listing_no_scripts')%></p>
 <% else %>
 	<ol id="browse-script-list" class="script-list">
-		<%= render partial: 'script', collection: @scripts, cached: ->(script) { [script, I18n.locale] }%>
+		<%= render partial: 'script', collection: @scripts, cached: params[:locale_override].nil? ? ->(script) { [script, I18n.locale] } : false %>
 	</ol>
 <% end %>
 
