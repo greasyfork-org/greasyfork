@@ -173,13 +173,6 @@ module ApplicationHelper
 		return h
 	end
 
-	def social_share_locale
-		return I18n.locale.to_s if ['de', 'es', 'fr', 'it', 'nl', 'pl', 'pt', 'ru'].include?(I18n.locale.to_s)
-		return 'pt' if I18n.locale.to_s == 'pt-BR'
-		return 'fr' if I18n.locale.to_s == 'fr-CA'
-		return nil
-	end
-
 	def current_url_with_params(p={})
 		r = params.except(:only_path, :protocol, :host, :subdomain, :domain, :tld_length, :subdomain, :port, :anchor, :trailing_slash, :script_name, :controller, :action, :format).merge(p)
 		r.permit!

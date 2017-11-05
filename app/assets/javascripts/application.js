@@ -13,8 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require fancybox
-//= require jquery-socialshareprivacy/jquery.socialshareprivacy.min.js
-//= require jquery-socialshareprivacy/localstorage.js
 //= require everything
 //= require versioncheck
 //= require recaptcha

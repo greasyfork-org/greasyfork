@@ -5,9 +5,6 @@
 	<% if content_for?(:description) %><meta name="description" value="<%=content_for(:description)%>"><% end %>
 	<%= stylesheet_link_tag    "application", media: "all" %>
 	<%= javascript_include_tag "application" %>
-	<% if !social_share_locale.nil? %>
-		<%= javascript_include_tag "jquery-socialshareprivacy/jquery.socialshareprivacy.min.#{social_share_locale}.js" %>
-	<% end %>
 	<%= csrf_meta_tags %>
 	<% if defined?(@bots) %>
 		<meta name="robots" content="<%=@bots%>">
