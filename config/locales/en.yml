@@ -417,10 +417,12 @@ en:
     post_a_script_link_text: "Post a script you've written"
     # link text for the writing a user script help doc, used in write_your_own_html
     learn_to_write_scripts_link_text: "learn how to write one"
-    # a suggestion below the install button that users provide feedback. feedback_link is a link to starting a new discussion on the script, with text of feedback_link_text
-    feedback_suggestion_html: "After trying this script, you can %{feedback_link}."
-    # link text used in feedback_suggestion_html
-    feedback_link_text: "ask a question about it, review it, or report it"
+    # a suggestion below the install button that users provide feedback
+    feedback_suggestion: "Ask a question, post a review, or report the script on %{site_name}."
+    # a suggestion below the install button that users provide feedback or get support from the author's site. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
+    feedback_suggestion_with_support_site: "%{support_url:Visit the author's site for support} or %{feedback_link:ask a question, post a review, or report the script on %{site_name}}."
+    # a suggestion below the install button that users provide feedback or get support from the author's via email. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
+    feedback_suggestion_with_support_email: "%{support_url:Email the author for support} or %{feedback_link:ask a question, post a review, or report the script on %{site_name}}."
     # explanation of the approve redistribution option on the script edit page
     approve_redistribution_explanation: "%{site_name} can tell other sites that you allow them to repost your script. This may or may not be already permitted by the license you choose for your script."
     # option for approve redistribution on a script where the value is based on the account default. user_setting can be approve_redistribution_use_user_setting_not_set if the account doesn't have it set, or it can be users.approve_redistribution_true or users.approve_redistribution_false
