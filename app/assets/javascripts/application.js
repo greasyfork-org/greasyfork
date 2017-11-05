@@ -12,7 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require fancybox
+//= require jsonlylightbox
+//= require lightbox
 //= require everything
 //= require versioncheck
 //= require recaptcha

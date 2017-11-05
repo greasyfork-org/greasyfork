@@ -41,6 +41,10 @@ gem 'hashie'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'rails-observers'
 
+source 'https://rails-assets.org' do
+	gem 'rails-assets-jsonlylightbox'
+end
+
 gem 'byebug', group: [:development, :test]
 
 group :development do

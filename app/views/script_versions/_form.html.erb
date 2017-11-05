@@ -174,7 +174,7 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
 		<label><%=t('activerecord.attributes.script.screenshots')%></label> <span class="label-note"><%=t('scripts.screenshots_explanation', {:size => number_to_human_size(Rails.configuration.screenshot_max_size), :number => Rails.configuration.screenshot_max_count})%></span><br>
 		<% @current_screenshots.each_with_index do |screenshot, i| %>
 			<div class="screenshot-control">
-				<a href="<%=screenshot.screenshot.url%>" class="fancybox" rel="fancybox-screenshots"><%= image_tag screenshot.screenshot.url(:thumb) %></a>
+				<a href="<%=screenshot.screenshot.url%>" data-jslghtbx="<%=screenshot.screenshot.url%>" data-jslghtbx-group="screenshots"><%= image_tag screenshot.screenshot.url(:thumb) %></a>
 				<input maxlength="500" size="50" id="edit-screenshot-caption-<%=i%>" class="edit-screenshot-captions" name="edit-screenshot-captions[]" placeholder="<%=t('activerecord.attributes.script.screenshot_caption')%>" value="<%=screenshot.caption%>"><br>
 				<input id="remove-screenshot-<%=screenshot.id%>" name="remove-screenshot-<%=screenshot.id%>" type="checkbox"><label class="checkbox-label" for="remove-screenshot-<%=screenshot.id%>"><%=t('scripts.screenshots_remove')%></label>
 			</div>
