@@ -1,9 +1,9 @@
-#script-show-info-ad:not(.ad-gn), #home-ad:not(.ad-gn) {
+#script-show-info-ad.ad-ga, #home-ad.ad-ga {
 	width: 732px;
 	box-sizing: border-box;
 	margin: 1.5em auto;
 }
-.ad:not(.ad-gn) .ad-note {
+.ad.ad-ga .ad-note {
 	font-size: x-small;
 	line-height: 1em;
 	max-width: -webkit-max-content;
@@ -14,19 +14,19 @@
 	border-right: 2px solid #E7CF87;
 	padding: 0 0.5em;
 }
-.ad:not(.ad-gn) .ad-note, .ad:not(.ad-gn) .ad-content {
+.ad.ad-ga .ad-note, .ad.ad-ga .ad-content {
 	background-color: #E7CF87;
 }
-.ad:not(.ad-gn) .ad-content {
+.ad.ad-ga .ad-content {
 	border: 2px solid #E7CF87;
 }
-.ad:not(.ad-gn) .ad-content > * {
+.ad.ad-ga .ad-content > * {
 	vertical-align: bottom;
 }
-.ad-gn .ad-note {
+.ad:not(.ad-ga) .ad-note {
 	display: none;
 }
-.ad-gn {
+.ad:not(.ad-ga) {
 	margin-top: 1em;
 	margin-bottom: 1em;
 }

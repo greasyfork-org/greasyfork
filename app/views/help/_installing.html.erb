@@ -42,7 +42,7 @@
 </section>
 
 <% if !@ad_method.nil? %>
-	<div class="ad" id="script-show-info-ad">
+	<div class="ad ad-<%=@ad_method%>" id="home-ad">
 		<div class="ad-note" data-ad-method="<%=@ad_method.upcase%>"><%=t('common.advertisement_note')%></div>
 		<div class="ad-content">
 			<% case @ad_method
