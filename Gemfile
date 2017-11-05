@@ -33,7 +33,6 @@ gem 'omniauth-google-oauth2', '>= 0.4.1'
 gem 'detect_language'
 gem 'levenshtein'
 gem "paperclip"
-gem 'fancybox2-rails'
 gem 'it'
 gem 'rb-readline'
 gem 'ace-rails-ap'
