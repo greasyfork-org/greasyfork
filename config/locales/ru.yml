@@ -228,8 +228,9 @@ ru:
     write_your_own_html: "%{post_a_script_link} (или %{learn_to_write_scripts_link})"
     post_a_script_link_text: "Опубликовать ваш скрипт"
     learn_to_write_scripts_link_text: "научиться писать скрипт"
-    feedback_suggestion_html: "После того как вы попробуете этот скрипт, вы можете %{feedback_link}."
-    feedback_link_text: "задать вопрос о скрипте, оценить его, или пожаловаться на него."
+    feedback_suggestion: "Задайте вопрос, напишите отзыв, или пожалуйтесь на скрипт на сайте %{site_name}."
+    feedback_suggestion_with_support_site: "%{support_url:Посетите сайт автора для получения технической поддержки} или %{задайте вопрос, напишите отзыв, или пожалуйтесь на скрипт на сайте %{site_name}}."
+    feedback_suggestion_with_support_email: "%{support_url:Пошлите письмо автору для получения технической поддержки} или %{feedback_link:задайте вопрос, напишите отзыв, или пожалуйтесь на скрипт на сайте %{site_name}}."
     approve_redistribution_explanation: "%{site_name} может помочь в распространении вашего скрипта путем репостов на других сайтах. Но Вам решать, предоставлять лицензию или нет."
     approve_redistribution_use_user_setting: "Использовать мой аккаунт по умолчанию (%{user_setting})"
     approve_redistribution_use_user_setting_not_set: "не указано"
@@ -668,7 +669,7 @@ ru:
       description: "Искать в коде скрипта, без учёта регистра, без использования символов подстановки."
     forum_search:
       title: "Поиск на форуме"
-      description: "Искать в обсуждениях скрипта. %{fulltext_link:Как составить поисковый запрос MySQL.}"
+      description: "Искать в обсуждениях и обзорах скрипта на форуме. %{fulltext_link:Как составить поисковый запрос MySQL.}"
     user_search:
       title: "Поиск пользователей"
       description: "Поиск пользователей по имени (оператор SQL LIKE)."
@@ -686,7 +687,6 @@ ru:
     expander_show_more: "Развернуть"
     expander_show_less: "Свернуть"
     advertisement_note: Реклама
-    share: Поделиться
   activerecord:
     attributes:
       user:

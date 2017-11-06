@@ -213,8 +213,9 @@ ja:
     write_your_own_html: "%{post_a_script_link} (または %{learn_to_write_scripts_link})"
     post_a_script_link_text: "スクリプトを投稿する"
     learn_to_write_scripts_link_text: "スクリプトの書き方を見る"
-    feedback_suggestion_html: "このスクリプトを使ってみて、%{feedback_link} をすることできます。"
-    feedback_link_text: "質問、レビュー、問題の報告"
+    feedback_suggestion: "%{site_name} で、質問、評価の投稿、または通報を行います。"
+    feedback_suggestion_with_support_site: "%{support_url:サポートを受けるために作者のサイトを開く}、もしくは %{feedback_link:%{site_name} で、質問、評価の投稿、または通報を行います}。"
+    feedback_suggestion_with_support_email: "%{support_url:サポートを受けるために作者にメールを送る}、もしくは %{feedback_link:%{site_name} で、質問、評価の投稿、または通報を行います}。"
     approve_redistribution_explanation: "%{site_name} では、他のサイトへスクリプトを転載しても良いか示すことができます。スクリプトのライセンスによって、すでにこれを許可、あるいは不許可としているかもしれません。"
     approve_redistribution_use_user_setting: "アカウントの既定を使用 (%{user_setting})"
     approve_redistribution_use_user_setting_not_set: "未設定"
@@ -594,7 +595,6 @@ ja:
     expander_show_more: "さらに表示"
     expander_show_less: "隠す"
     advertisement_note: 広告
-    share: 共有
   activerecord:
     attributes:
       user:

@@ -148,7 +148,7 @@ sk:
     import: "Importovať skripty"
     new: "Nový skript"
     support_site: "Navštíviť stránky autora skriptu pre podporu."
-    support_email: "E-mial podpory autora skriptu."
+    support_email: "E-mail podpory autora skriptu."
     contribution_no_amount: "Poďakovať %{author} odoslaním finančného príspevku."
     contribution_with_amount: "Poďakovať %{author} odoslaním finančného príspevku. Navrhovaná čiastka je %{amount}."
     contribution_bitcoin_no_amount_html: "Poďakovať %{author} odoslaním finančného príspevku cez Bitcoin na %{address}."
@@ -223,8 +223,9 @@ sk:
     write_your_own_html: "%{post_a_script_link} (alebo %{learn_to_write_scripts_link})"
     post_a_script_link_text: "Odoslať skript, ktorý ste napísali"
     learn_to_write_scripts_link_text: "naučiť sa ako ho napísať"
-    feedback_suggestion_html: "Po vyskúšaní tohto skriptu, môžete %{feedback_link}."
-    feedback_link_text: "položiť otázku, ohodnotiť ho alebo nahlásiť"
+    feedback_suggestion: "Spýtať sa otázku, uverejniť recenziu alebo nahlásiť skript na %{site_name}."
+    feedback_suggestion_with_support_site: "%{support_url:Navštíviť stránky autora skriptu pre podporu.} alebo %{feedback_link:spýtať sa otázku, uverejniť recenziu alebo nahlásiť skript na %{site_name}}."
+    feedback_suggestion_with_support_email: "%{support_url:Napísať email autorovi pre podporu} alebo %{feedback_link:spýtať sa otázku, uverejniť recenziu alebo nahlásiť skript na %{site_name}}."
     approve_redistribution_explanation: "%{site_name} môže oznámiť iným stránkam, že váš skript môžu prevziať. To môže, ale nemusí byť povolené v licencii pre váš skript."
     approve_redistribution_use_user_setting: "Používať predvolene môj účet (%{user_setting})"
     approve_redistribution_use_user_setting_not_set: "nenastavené"
@@ -673,7 +674,6 @@ sk:
     expander_show_more: "Zobraziť viac"
     expander_show_less: "Zobraziť menej"
     advertisement_note: Reklama
-    share: Zdieľať
   activerecord:
     attributes:
       user:

@@ -218,8 +218,9 @@ es:
     write_your_own_html: "%{post_a_script_link} (o %{learn_to_write_scripts_link})"
     post_a_script_link_text: "Publica tu propio script"
     learn_to_write_scripts_link_text: "aprende a escribir uno"
-    feedback_suggestion_html: "Tras probar el script puedes %{feedback_link}."
-    feedback_link_text: "preguntar u opinar sobre él, o informar de uso inadecuado a los moderadores"
+    feedback_suggestion: "Pregunta tus dudas, ponle nota o notifica errores en %{site_name}."
+    feedback_suggestion_with_support_site: "%{support_url:Visita la página web del autor si necesitas ayuda} o %{feedback_link:pregunta tus dudas, ponle nota o notifica errores en %{site_name}}."
+    feedback_suggestion_with_support_email: "%{support_url:Contacta por correo con el autor si necesitas ayuda} o %{feedback_link:pregunta tus dudas, ponle nota o notifica errores en %{site_name}}."
     approve_redistribution_explanation: "%{site_name} puede notificar a otros sitios que les dejas listar tu script. Es posible que la licencia que elijas para cada uno de ellos ya lo permita en sus términos, o no. "
     approve_redistribution_use_user_setting: "Utilizar la opción general de mi cuenta (%{user_setting})"
     approve_redistribution_use_user_setting_not_set: "sin establecer"
@@ -682,7 +683,6 @@ es:
     expander_show_more: "Mostrar más"
     expander_show_less: "Mostrar menos"
     advertisement_note: Anuncio
-    share: Compartir
   activerecord:
     attributes:
       user:
