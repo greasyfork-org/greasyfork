@@ -1,0 +1,11 @@
+<div id="script-feedback-suggestion">
+	<% if script.support_url %>
+		<% if script.support_url.start_with?('mailto') %>
+			<%=it('scripts.feedback_suggestion_with_support_email', feedback_link: It.link("#{forum_path}post/discussion?script=#{script.id}", rel: :nofollow), support_url: It.link(script.support_url, rel: :nofollow), site_name: site_name)%>
+		<% else %>
+			<%=it('scripts.feedback_suggestion_with_support_site', feedback_link: It.link("#{forum_path}post/discussion?script=#{script.id}", rel: :nofollow), support_url: It.link(script.support_url, rel: :nofollow), site_name: site_name)%>
+		<% end %>
+	<% else %>
+		<%=link_to(t('scripts.feedback_suggestion', site_name: site_name), "#{forum_path}post/discussion?script=#{script.id}", rel: :nofollow)%>
+	<% end %>
+</div>

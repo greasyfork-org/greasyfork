@@ -5,9 +5,7 @@
 
 <%=render :partial => 'install', :locals => {:script => @script, :script_version => @script_version}%>
 
-<div id="script-feedback-suggestion">
-	<%=t('scripts.feedback_suggestion_html', feedback_link: link_to(t('scripts.feedback_link_text'), "#{forum_path}post/discussion?script=#{@script.id}", rel: :nofollow))%>
-</div>
+<%=render partial: 'feedback_suggestion', locals: {script: @script} %>
 
 <% if @highlighted_code.nil? && !SyntaxHighlightedCode.can_highlight?(@code) %>
 	<p><%=t('scripts.code_highlighting_disabled', :size => number_to_human_size(Rails.configuration.syntax_highlighting_limit))%></p>
