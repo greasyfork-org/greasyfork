@@ -47,11 +47,15 @@ class ScriptsController < ApplicationController
 				end
 				with = with.merge(script_type_id: 1)
 				if params[:site]
-					site = SiteApplication.find_by(text: params[:site])
-					if site.nil?
-						@scripts = Script.none.paginate(page: 1)
+					if params[:site] == '*'
+						with[:for_all_sites] = true
 					else
-						with[:site_application_id] = site.id
+						site = SiteApplication.find_by(text: params[:site])
+						if site.nil?
+							@scripts = Script.none.paginate(page: 1)
+						else
+							with[:site_application_id] = site.id
+						end
 					end
 				end
 
