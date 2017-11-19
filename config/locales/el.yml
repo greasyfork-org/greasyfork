@@ -180,6 +180,7 @@ el:
     warning_namespace_missing_generate_automatically_html: "Αυτόματη δημιουργία ετικέτας <code>@namespace</code>;"
     warning_namespace_changed_html: "Η ετικέτα <code>@namespace</code> έχει αλλάξει. Μια σταθερή ετικέτα <code>@namespace</code> επιτρέπει στους χρήστες να επανεγκαταστήσουν ή να τον ενημερώσουν."
     warning_potentially_minified_html: "Ο κώδικάς σας φαίνεται ότι ίσως περιέχει ελαχιστοποιημένο (συμπιεσμένο) κώδικα. Αν χρησιμοποιείτε μια ελαχιστοποιημένη βιβλιοθήκη, χρησιμοποιήστε αντίθετα την ετικέτα <code>@require</code> με μια από την λίστα %{allowed_requires_link}. Κώδικες με ελαχιστοποιημένο κώδικα απομακρύνονται."
+    warning_automatic_sensitive_html: "Ο κώδικάς σας είναι για %{sensitive_domains} και για αυτό θα επισημανθεί ως περιεχόμενο για ενήλικες."
     warning_potentially_minified_allowed_requires_link: "ένα από αυτά τα μέρη"
     additional_info_locale_prompt: "(Επιλέξτε γλώσσα)"
     additional_info_add_localized: "Προσθήκη μιας πρόσθετης πληροφορίας για μια γλώσσα"
@@ -217,6 +218,9 @@ el:
     write_your_own_html: "%{post_a_script_link} (ή %{learn_to_write_scripts_link})"
     post_a_script_link_text: "Δημοσιεύστε έναν κώδικα που έχετε γράψει"
     learn_to_write_scripts_link_text: "μάθετε πως να γράψετε έναν"
+    feedback_suggestion: "Κάντε μια ερώτηση, δημοσιεύστε μια επισκόπηση ή αναφέρτε ένα κώδικα στο %{site_name}."
+    feedback_suggestion_with_support_site: "%{support_url:Επίσκεψη του ιστοχώρου του δημιουργού για υποστήριξη} ή %{feedback_link:κάντε μια ερώτηση, δημοσιεύστε μια επισκόπηση ή αναφέρετε ένα κώδικα στο %{site_name}}."
+    feedback_suggestion_with_support_email: "%{support_url:Επικοινωνήστε ηλεκτρονικά με τον δημιουργό για υποστήριξη} ή %{feedback_link:κάντε μια ερώτηση, δημοσιεύστε μια επισκόπηση ή αναφέρετε ένα κώδικα στο %{site_name}}."
     approve_redistribution_explanation: "Το %{site_name} μπορεί να πει σε άλλες ιστοσελίδες ότι τους επιτρέπετε να επαναδημοσιεύσουν τον κώδικά σας. Αυτό ίσως επιτρέπεται ή όχι ανάλογα με την άδεια χρήσης που επιλέξατε για τον κώδικά σας."
     approve_redistribution_use_user_setting: "Χρήση της προεπιλεγμένης ρύθμισης (%{user_setting}) του λογαριασμού μου"
     approve_redistribution_use_user_setting_not_set: "δεν ορίστηκε"
@@ -229,6 +233,7 @@ el:
     adult_content_self_report_explanation: "Το Grease Fork επιτρέπει κώδικες με περιεχόμενο για ενήλικες, αλλά πρέπει να επισημανθούν ως τέτοιοι ώστε οι χρήστες να επιλέξουν αν θα τα χρησιμοποιήσουν."
     not_adult_content_self_report_html: "Αυτός ο κώδικας <strong>δεν</strong> περιέχει περιεχόμενο για ενήλικες και <strong>δεν</strong> αφορά ιστοσελίδα που περιέχει περιεχόμενο για ενήλικες."
     not_adult_content_self_report_explanation: "Το %{site_name} επιτρέπει κώδικες με περιεχόμενο για ενήλικες, αλλά πρέπει να επισημανθούν ως τέτοιοι ώστε οι χρήστες να μπορούν να επιλέξουν αν θα το δουν. Ο κώδικάς σας έχει επισημανθεί ότι έχει περιεχόμενο για ενήλικές. Μπορείτε να αναφέρετε ότι δεν έχει έχει και αυτό να ελεγχθεί από έναν συντονιστή."
+    not_adult_content_self_report_explanation_automatic: "Το %{site_name} επιτρέπει κώδικες με περιεχόμενο για ενήλικες, αλλά πρέπει να έχουν επισημανθεί ως τέτοιοι ώστε οι χρήστες να μπορούν να επιλέξουν αν θα τους δουν. Ο κώδικάς σας έχει επισημανθεί ότι έχει περιεχόμενο για ενήλικες λόγω του ότι αναφέρεται για τους ιστοχώρους %{domain_list}."
     adult_content_on_greasy_logged_in_error: "Αυτός ο κώδικας δεν είναι πλέον διαθέσιμος σε αυτή την ιστοσελίδα με τις %{edit_account_link:ρυθμίσεις λογαριασμού Greasy Fork}."
     adult_content_on_greasy_not_logged_in_error: "Αυτός ο κώδικας δεν είναι πλέον διαθέσιμος ανωνύμως σε αυτή την ιστοσελίδα. %{login_link:Συνδεθείτε} και ελέγξτε τις ρυθμίσεις λογαριασμού Greasy Fork."
     non_adult_content_on_sleazy: "Αυτός ο κώδικας δεν είναι διαθέσιμος σε αυτή την ιστοσελίδα."
@@ -244,6 +249,7 @@ el:
     by_site_list_filter: "Φιλτράρισμα ανά όνομα σελίδας:"
     search_placeholder: "Αναζήτηση κωδίκων"
   script_sets:
+    description: "Τα σύνολα κώδικα σας επιτρέπουν να δημιουργήσετε μια προσαρμοσμένη λίστα κωδικών για πλοήγηση στο Greasy Fork. Μπορείτε να προσθέσετε κωδικούς στο σύνολό σας περιλαμβάνοντας μεμονομένους κώδικες, σύνολα άλλων χρηστών ή αυτόματα δημιουργούμενα σύνολα. Μπορείτε, επίσης, να αποκλείσετε κώδικες από το σύνολό σας με τις ίδιες μεθόδους."
     favorites_name: "Αγαπημένα"
     delete: "Διαγραφή συνόλου κώδικα"
     delete_confirmation: "Θέλετε σίγουρα να διαγράψετε αυτό το σύνολο κώδικα;"
@@ -325,9 +331,52 @@ el:
     explain_user_scripts_html: "Οι κώδικες χρηστών σας δίνουν τον έλεγχο της εμπειρίας πλοήγησής. Μόλις εγκατασταθούν, κάνουν αυτόματα τις ιστοσελίδες που επισκέπτεστε καλύτερες προσθέτοντας χαρακτηριστικά, ευκολότερες στη χρήση ή απομακρύνουν ενοχλητικά χαρακτηριστικά. Οι κώδικες χρηστών στο %{site_name} γράφτηκαν από άλλους χρήστες και δημοσιεύτηκαν για κοινή χρήση από όλο τον κόσμο. Είναι δωρεάν η εγκατάστασή τους και εύκολοι στη χρήση."
     installing_step1_header: "Βήμα 1: Εγκατάσταση ενός διαχειριστή κώδικα χρήστη"
     installing_step1_caption: "Tampermonkey στο Chrome"
+    installing_step1_description_html: >
+        <p>Για να χρησιμοποιήσετε κώδικες χρηστών, πρέπει πρώτα να εγκαταστήσετε ένα
+        διαχειριστή κωδικών χρήστη. Ποιον διαχειριστή κωδικών χρήστη θα χρησιμοποιήσετε,
+        εξαρτάται από τον φυλλομετρητή που χρησιμοποιείτε.</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> ή %{chrome_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
+        ή %{firefox_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} ή %{opera_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla: (δεν απαιτείται πρόσθετο λογισμικό)</li>
+
+        <li>AdGuard: (δεν απαιτείται πρόσθετο λογισμικό)</li>
+
+        </ul>
     installing_step2_header: "Βήμα 2: Εγκατάσταση ενός κώδικα χρήστη"
     installing_step2_caption: "Ένα κουμπί εγκατάστασης κώδικα χρήστη"
+    installing_step2_description_html: >
+        <p>%{browse_link:Πλοηγηθείτε σε αυτόν τον ιστοχώρο} για να βρείτε ένα κώδικα
+        χρήστη που θέλετε να δοκιμάσετεt. Εδώ είναι ένα δείγμα των πιο δημοφιλών κωδικών:</p>
+
+        %{highlighted_scripts_list}
+
+        <p>Μόλις βρείτε ένα κώδικα χρήστη, πατήστε το πράσινο κουμπί εγκατάστασης
+        στη σελίδα κώδικα χρήστη και ο διαχειριστής κωδικών χρήστων θα σας ζητήσει
+        να επιβεβαιώσετε την εγκατάσταση.</p>
     installing_step3_header: "Βήμα 3: χρήση του κώδικα χρήστη"
+    installing_step3_description_html: >
+        <p>Μεταβείτε στον ιστοχώρο που επηρεάζει ο κώδικας χρήστη. Θα πρέπει να κάνει
+        αυτόματα τις δικές του ενέργειες. Αφού δοκιμάστε τον κώδικα χρήστη για λίγο,
+        μεταβείτε πίσω εκεί που εγκαταστήσατε τον κωδικό χρήστη και αφήστε κάποια
+        σχόλια για τον δημιουργό του κώδικα χρήστη.</p>
   users:
     sign_in_title: "Συνδεθείτε στο %{site_name}"
     sign_in_description: "Η σύνδεσή σας στο %{site_name} σας επιτρέπει να δημοσιεύετε κώδικες και να δίνετε τα σχόλιά σας σε κώδικες άλλων. Δεν χρειάζεται να συνδεθείτε για αναζήτηση ή εγκατάσταση κωδίκων."
@@ -407,6 +456,9 @@ el:
     greasy_fork_scripts_link:
       one: "Ο χρήστης %{user_name} έχει επίσης %{count} κώδικα στο Greasy Fork."
       other: "Ο χρήστης %{user_name} έχει επίσης %{count} κώδικες στο Greasy Fork."
+    update_sync_warning:
+      one: "Το όνομα χρήστη και η ηλεκτρονική σας διεύθυνση έχουν οριστεί να συγχρονίζονται όταν συνδέεστε με το %{providers}. %{edit_sign_in_link:Επεξεργαστεί τις μεθόδους σύνδεσής σας για να απομακρύνετε το συγχρονισμό} αν θέλετε να ορίσετε μόνιμα ένα προσαρμοσμένο όνομα χρήστη ή ηλεκτρονική διεύθυνση."
+      other: "Your user name and email are set to be synced when you log in with %{providers}. %{edit_sign_in_link:Edit your sign in methods to remove syncing} if you want to permanently set a custom user name or email."
   help:
     installing_user_scripts:
       title: 'Πως να εγκαταστήσετε κώδικες χρηστών'
