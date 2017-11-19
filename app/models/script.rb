@@ -353,11 +353,8 @@ class Script < ActiveRecord::Base
 	end
 
 	def license_display
-		if license.nil?
-			return "<i>#{I18n.t('scripts.no_license')}</i>".html_safe if license_text.nil?
-			return license_text
-		end
-		return license.html.html_safe
+		return "<i>#{I18n.t('scripts.no_license')}</i>".html_safe if license_text.nil?
+		return license_text
 	end
 
 	def code_url
