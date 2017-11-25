@@ -1,0 +1,41 @@
+.tabs {
+	list-style: none;
+	padding: 0 1em;
+	margin: 0 -1em 0;
+}
+.tabs > * {
+	display: inline-block;
+	margin: 0 -4px 0 0;
+}
+.tabs > * > * {
+	padding: 0.25em .5em .5em;
+	display: block;
+}
+.tabs a {
+	text-decoration: none;
+	cursor: pointer;
+}
+.tabs .current {
+	background: rgba(0, 0, 0, 0.03);
+	position: relative;
+	top: -4px;
+	font-weight: bold;
+	border-top: 7px solid #990000;
+	box-shadow: inset 1px 0 rgba(0, 0, 0, 0.1), inset -1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px rgba(0, 0, 0, 0.1);
+}
+/* shift the text back up to align with the others */
+.tabs .current > * {
+	position: relative;
+	top: 4px;
+}
+.tabs a:not(.current):hover, .tabs a:not(.current):focus {
+	background: rgba(0, 0, 0, 0.03);
+	position: relative;
+	top: -4px;
+	box-shadow: inset 1px 0 rgba(0, 0, 0, 0.1), inset -1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px rgba(0, 0, 0, 0.1);
+	padding-top: 8px;
+}
+.tabs a:not(.current):hover span, .tabs a:not(.current):focus span {
+	position: relative;
+	top: 4px;
+}

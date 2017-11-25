@@ -1,6 +1,6 @@
 <% content_for :content do %>
 	<section id="script-info">
-		<ul id="script-links">
+		<ul id="script-links" class="tabs">
 			<li<%=current_page?(script_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.info_page')}</span>".html_safe, script_path(@script, :version => params[:version])%></li>
 			<li<%=current_page?(script_show_code_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.code_page')}</span>".html_safe, script_show_code_path(@script, :version => params[:version])%></li>
 			<li<%=current_page?(script_script_versions_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.history_page')}</span>".html_safe, script_script_versions_path(@script, :version => params[:version])%></li>

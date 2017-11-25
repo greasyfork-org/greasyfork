@@ -17,3 +17,4 @@
 //= require everything
 //= require versioncheck
 //= require recaptcha
+//= require markup-preview

@@ -38,76 +38,6 @@
 		});
 	}
 
-	// on user input element:
-	// class = previewable
-	// data-markup-option-name = the name of the radio buttons for selecting markup
-	// data-preview-activate-id = the id of the button to activate the preview
-	// data-preview-result-id = the id of the div to place the results
-	function hookUpMarkupPreview() {
-		$(".previewable").each(function(index, previewable) {
-			var previewable = $(this);
-			var markupOptions = $('input:radio[name="' + previewable.attr("data-markup-option-name") + '"]');
-			var button = $("#" + previewable.attr("data-preview-activate-id"));
-
-			button.show();
-
-			// This function will get called when new additional infos are added. To prevent multiple calls on existing ones, unbind and then rebind.
-
-			button.unbind("click", handlePreviewClick);
-			button.click(handlePreviewClick);
-
-			// close when anything changed
-			markupOptions.unbind("click", handlePreviewInput);
-			markupOptions.click(handlePreviewInput);
-			previewable.unbind('input', handlePreviewInput);
-			previewable.bind('input', handlePreviewInput);
-		});
-	}
-
-	function handlePreviewClick(event) {
-		var previewable = $(event.target).parents(".form-control").first().find(".previewable");
-		var markupOptions = $('input:radio[name="' + previewable.attr("data-markup-option-name") + '"]');
-		var result = $("#" + previewable.attr("data-preview-result-id"));
-		var url = previewable.attr("data-preview-source") == "url";
-		var selectedMarkup = $('input:radio[name="' + previewable.attr("data-markup-option-name") + '"]:checked').val();
-
-		$.ajax({
-			type: "POST",
-			url: "/preview-markup",
-			data: {
-				text: previewable.val(),
-				markup: selectedMarkup,
-				url: url
-			},
-			success: function(data) {
-				result.html(data);
-				result.slideDown();
-				// scroll to it if it's not at all visible
-				if (result.offset().top > $(window).scrollTop() + $(window).height()) {
-					$('html, body').animate({
-						scrollTop: result.offset().top
-					}, 2000);
-				}
-			},
-			error: function(xhr, textStatus, errorThrown) {
-				result.html(textStatus + " " + errorThrown);
-				result.slideDown();
-				// scroll to it if it's not at all visible
-				if (result.offset().top > $(window).scrollTop() + $(window).height()) {
-					$('html, body').animate({
-						scrollTop: result.offset().top
-					}, 2000);
-				}
-			}
-		})
-		return false;
-	}
-
-	function handlePreviewInput(event) {
-		var result = $(event.target).parents(".form-control").first().find(".preview-result");
-		result.slideUp();
-	}
-
 	function hookUpAddLocalizedAdditionalInfo() {
 		var button = document.getElementById("add-additional-info");
 		if (!button) {
@@ -125,9 +55,11 @@
 			xhr.onload = function() {
 				var frag = document.createElement("div");
 				frag.innerHTML = this.responseText;
-				button.parentNode.parentNode.insertBefore(frag.firstChild, button.parentNode);
+				var elementToInsert = frag.firstChild;
+				var container = button.parentNode.parentNode;
+				container.insertBefore(elementToInsert, button.parentNode);
 				// Make the preview button work
-				hookUpMarkupPreview();
+				markupPreview(elementToInsert.querySelector(".previewable"));
 			};
 			xhr.send();
 			event.preventDefault();
@@ -319,7 +251,6 @@
 	function init() {
 		hookUpSelectAllCheckboxes();
 		hookUpInstallPingers();
-		hookUpMarkupPreview();
 		hookUpLocaleSwitcher();
 		hookUpBrowserId();
 		hookUpAddLocalizedAdditionalInfo();
