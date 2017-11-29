@@ -1,0 +1,755 @@
+// ==UserScript==
+// @name 7FILES+6BGD+TIMER+ALLFILLUP BY BASHAR
+// @namespace ALL IN ONE
+// @description Coded By BASHAR
+// @include     http://indianvisa-bangladesh.nic.in/visa/Registration
+// @include     http://indianvisa-bangladesh.nic.in/visa/CompleteForm
+// @include     http://indianvisa-bangladesh.nic.in/visa/Get_Appointment
+// @include     https://indianvisa-bangladesh.nic.in/visa/Get_Appointment
+// @include     http://indianvisa-bangladesh.nic.in/visa/VerifyAppointment
+// @include     https://indianvisa-bangladesh.nic.in/visa/VerifyAppointment
+// @include     http://indianvisa-bangladesh.nic.in/visa/Allotment
+// @include     http://indianvisa-bangladesh.nic.in/visa/Allotment
+// @include     http://indianvisa-bangladesh.nic.in/visa/PrintApplication
+// @include     https://indianvisa-bangladesh.nic.in/visa/PrintApplication
+// @include     http://indianvisa-bangladesh.nic.in/visa/StatusEnquiry
+// @version 1
+// @grant none
+// ==/UserScript==
+
+javascript: void(function(){
+$("li").remove();
+
+document.getElementsByTagName("div")[1].innerHTML = '<marquee behavior="scroll" direction="left"><b>ABUL BASHAR</b></marquee>';
+function file1(){
+
+var bgd      = "BGDDXB99AE17";
+var bgd2     = "BGDDXB996F17";
+var bgd3     = "";
+var bgd4     = "";
+var bgd5     = "";
+var bgd6     = "";
+var pn       = "BQ0054836";
+var gn       = "SHAHINUR";
+var bp       = "DHAKA";
+var fn       = "MDSHAHIN";
+var mn       = "JHORNABEGUM";
+                     
+var elem = document.getElementById('application_id')
+      elem.value = bgd;
+var elem = document.getElementById('passport_no')
+      elem.value = pn;
+{
+  document.getElementsByTagName('div') [13].innerHTML = '<input type=\'button\' value="'+ bgd +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd + '"\' /><input type=\'button\' value="'+ bgd2 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd2 + '"\' /><input type=\'button\' value="'+ bgd3 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd3 + '"\' /><input type=\'button\' value="'+ bgd4 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd4 + '"\' /><input type=\'button\' value="'+ bgd5 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd5 + '"\' /><input type=\'button\' value="'+ bgd6 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd6 + '"\' />';
+  document.getElementsByTagName('div') [21].innerHTML = '<input type=\'button\' value=\'M\' onclick=\'document.getElementsByTagName("input")[21].value = "' + mn + '"\' />';
+  document.getElementsByTagName('div') [25].innerHTML = '<input type=\'button\' value=\'M\' onclick=\'document.getElementsByTagName("input")[23].value = "' + mn + '"\' />';
+  x="";
+y="";
+
+var img = new Image();
+img.onload = function() {
+  //alert(this.width + 'x' + this.height);
+    x=this.width;
+       if(x==104){
+        p.value=fn;
+     }else if(x=="Mother's Name"){
+          p.value=mn;
+    }else if(x==176){
+          p.value=gn;
+    }else if(x==88){
+          p.value=bp;
+    } ;
+}
+
+img.src = 'http://indianvisa-bangladesh.nic.in/visa/DisplayDynamicField1';
+
+
+var img2 = new Image();
+img2.onload = function() {
+ // alert(this.width + 'x' + this.height);
+ y=this.width;
+       if(y==104){
+       q.value=fn;
+    }else if(y=="Mother's Name"){
+         q.value=mn;
+    }else if(y==176){
+          q.value=gn;
+    }else if(y==88){
+          q.value=bp;
+    } ;
+
+}
+img2.src = 'http://indianvisa-bangladesh.nic.in/visa/DisplayDynamicField2';
+      var p = document.getElementsByClassName("textBoxDashed app_field")[0];
+   var q = document.getElementsByClassName("textBoxDashed app_field")[1];
+ 
+ 
+    x=this.width;
+       if(x==104){
+        p.value=fn;
+     }else if(x=="Mother's Name"){
+          p.value=mn;
+    }else if(x==176){
+          p.value=gn;
+    }else if(x==88){
+          p.value=bp;
+    } ;
+
+y=this.width;
+       if(y==104){
+       q.value=fn;
+    }else if(y=="Mother's Name"){
+         q.value=mn;
+    }else if(y==176){
+          q.value=gn;
+    }else if(y==88){
+          q.value=bp;
+    } ;
+}
+}; 
+
+function file2(){
+
+var bgd      = "BGDDXB9AEB17";
+var bgd2     = "BGDDXB9B2E17";
+var bgd3     = "";
+var bgd4     = "";
+var bgd5     = "";
+var bgd6     = "";
+var pn       = "BQ0324930";
+var gn       = "KOHINUR";
+var bp       = "MADARIPUR";
+var fn       = "ALAUDDINHOWLADER";
+var mn       = "REJIABEGUM";
+
+                                
+var elem = document.getElementById('application_id')
+      elem.value = bgd;
+var elem = document.getElementById('passport_no')
+      elem.value = pn;
+{
+  document.getElementsByTagName('div') [13].innerHTML = '<input type=\'button\' value="'+ bgd +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd + '"\' /><input type=\'button\' value="'+ bgd2 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd2 + '"\' /><input type=\'button\' value="'+ bgd3 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd3 + '"\' /><input type=\'button\' value="'+ bgd4 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd4 + '"\' /><input type=\'button\' value="'+ bgd5 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd5 + '"\' /><input type=\'button\' value="'+ bgd6 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd6 + '"\' />';
+  document.getElementsByTagName('div') [21].innerHTML = '<input type=\'button\' value=\'M\' onclick=\'document.getElementsByTagName("input")[21].value = "' + mn + '"\' />';
+  document.getElementsByTagName('div') [25].innerHTML = '<input type=\'button\' value=\'M\' onclick=\'document.getElementsByTagName("input")[23].value = "' + mn + '"\' />';
+  x="";
+y="";
+var img = new Image();
+img.onload = function() {
+  //alert(this.width + 'x' + this.height);
+    x=this.width;
+       if(x==104){
+        p.value=fn;
+    }else if(x==176){
+          p.value=gn;
+    }else if(x==88){
+          p.value=bp;
+    } ;
+}
+img.src = 'http://indianvisa-bangladesh.nic.in/visa/DisplayDynamicField1';
+var img2 = new Image();
+img2.onload = function() {
+ // alert(this.width + 'x' + this.height);
+ y=this.width;
+       if(y==104){
+       q.value=fn;
+    }else if(y==176){
+          q.value=gn;
+    }else if(y==88){
+          q.value=bp;
+    } ;
+}
+img2.src = 'http://indianvisa-bangladesh.nic.in/visa/DisplayDynamicField2';
+      var p = document.getElementsByClassName("textBoxDashed app_field")[0];
+   var q = document.getElementsByClassName("textBoxDashed app_field")[1];
+    x=this.width;
+       if(x==104){
+        p.value=fn;
+    }else if(x==176){
+          p.value=gn;
+    }else if(x==88){
+          p.value=bp;
+    } ;
+y=this.width;
+       if(y==104){
+       q.value=fn;
+    }else if(y=="Mother's Name"){
+         q.value=mn;
+    }else if(y==176){
+          q.value=gn;
+    }else if(y==88){
+          q.value=bp;
+    } ;
+}
+};
+function file3(){
+
+var bgd      = "BGDDXAFB0B17";
+var bgd2     = "BGDDXAFB1317";
+var bgd3     = "";
+var bgd4     = "";
+var bgd5     = "";
+var bgd6     = "";
+var pn       = "BQ0517978";
+var gn       = "SMRITIRANI";
+var bp       = "COMILLA";
+var fn       = "SATISHCHANDRASUTRADHAR";
+var mn       = "BILLABALASUTRADHAR";
+                           
+var elem = document.getElementById('application_id')
+      elem.value = bgd;
+var elem = document.getElementById('passport_no')
+      elem.value = pn;
+{
+  document.getElementsByTagName('div') [13].innerHTML = '<input type=\'button\' value="'+ bgd +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd + '"\' /><input type=\'button\' value="'+ bgd2 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd2 + '"\' /><input type=\'button\' value="'+ bgd3 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd3 + '"\' /><input type=\'button\' value="'+ bgd4 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd4 + '"\' /><input type=\'button\' value="'+ bgd5 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd5 + '"\' /><input type=\'button\' value="'+ bgd6 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd6 + '"\' />';
+  document.getElementsByTagName('div') [21].innerHTML = '<input type=\'button\' value=\'M\' onclick=\'document.getElementsByTagName("input")[21].value = "' + mn + '"\' />';
+  document.getElementsByTagName('div') [25].innerHTML = '<input type=\'button\' value=\'M\' onclick=\'document.getElementsByTagName("input")[23].value = "' + mn + '"\' />';
+  x="";
+y="";
+var img = new Image();
+img.onload = function() {
+  //alert(this.width + 'x' + this.height);
+    x=this.width;
+       if(x==104){
+        p.value=fn;
+    }else if(x==176){
+          p.value=gn;
+    }else if(x==88){
+          p.value=bp;
+    } ;
+}
+img.src = 'http://indianvisa-bangladesh.nic.in/visa/DisplayDynamicField1';
+var img2 = new Image();
+img2.onload = function() {
+ // alert(this.width + 'x' + this.height);
+ y=this.width;
+       if(y==104){
+       q.value=fn;
+    }else if(y==176){
+          q.value=gn;
+    }else if(y==88){
+          q.value=bp;
+    } ;
+}
+img2.src = 'http://indianvisa-bangladesh.nic.in/visa/DisplayDynamicField2';
+      var p = document.getElementsByClassName("textBoxDashed app_field")[0];
+   var q = document.getElementsByClassName("textBoxDashed app_field")[1];
+    x=this.width;
+       if(x==104){
+        p.value=fn;
+    }else if(x==176){
+          p.value=gn;
+    }else if(x==88){
+          p.value=bp;
+    } ;
+y=this.width;
+       if(y==104){
+       q.value=fn;
+    }else if(y=="Mother's Name"){
+         q.value=mn;
+    }else if(y==176){
+          q.value=gn;
+    }else if(y==88){
+          q.value=bp;
+    } ;
+}
+};
+
+function file4(){
+
+var bgd      = "BGDDXAFB2217";
+var bgd2     = "BGDDXAFB2E17";
+var bgd3     = "";
+var bgd4     = "";
+var bgd5     = "";
+var bgd6     = "";
+var pn       = "BB0203852";
+var gn       = "SWADAL";
+var bp       = "KHULNA";
+var fn       = "DRMDSAYEDURRAHMANMIAH";
+var mn       = "SHAHANARARAHMAN";
+
+                               
+var elem = document.getElementById('application_id')
+      elem.value = bgd;
+var elem = document.getElementById('passport_no')
+      elem.value = pn;
+{
+  document.getElementsByTagName('div') [13].innerHTML = '<input type=\'button\' value="'+ bgd +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd + '"\' /><input type=\'button\' value="'+ bgd2 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd2 + '"\' /><input type=\'button\' value="'+ bgd3 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd3 + '"\' /><input type=\'button\' value="'+ bgd4 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd4 + '"\' /><input type=\'button\' value="'+ bgd5 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd5 + '"\' /><input type=\'button\' value="'+ bgd6 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd6 + '"\' />';
+  document.getElementsByTagName('div') [21].innerHTML = '<input type=\'button\' value=\'M\' onclick=\'document.getElementsByTagName("input")[21].value = "' + mn + '"\' />';
+  document.getElementsByTagName('div') [25].innerHTML = '<input type=\'button\' value=\'M\' onclick=\'document.getElementsByTagName("input")[23].value = "' + mn + '"\' />';
+  x="";
+y="";
+var img = new Image();
+img.onload = function() {
+  //alert(this.width + 'x' + this.height);
+    x=this.width;
+       if(x==104){
+        p.value=fn;
+    }else if(x==176){
+          p.value=gn;
+    }else if(x==88){
+          p.value=bp;
+    } ;
+}
+img.src = 'http://indianvisa-bangladesh.nic.in/visa/DisplayDynamicField1';
+var img2 = new Image();
+img2.onload = function() {
+ // alert(this.width + 'x' + this.height);
+ y=this.width;
+       if(y==104){
+       q.value=fn;
+    }else if(y==176){
+          q.value=gn;
+    }else if(y==88){
+          q.value=bp;
+    } ;
+}
+img2.src = 'http://indianvisa-bangladesh.nic.in/visa/DisplayDynamicField2';
+      var p = document.getElementsByClassName("textBoxDashed app_field")[0];
+   var q = document.getElementsByClassName("textBoxDashed app_field")[1];
+    x=this.width;
+       if(x==104){
+        p.value=fn;
+    }else if(x==176){
+          p.value=gn;
+    }else if(x==88){
+          p.value=bp;
+    } ;
+y=this.width;
+       if(y==104){
+       q.value=fn;
+    }else if(y=="Mother's Name"){
+         q.value=mn;
+    }else if(y==176){
+          q.value=gn;
+    }else if(y==88){
+          q.value=bp;
+    } ;
+}
+};
+
+function file5(){
+
+var bgd      = "BGDDX7DE2217";
+var bgd2     = "BGDDWC58B817";
+var bgd3     = "BGDDWC535F17";
+var bgd4     = "";
+var bgd5     = "";
+var bgd6     = "";
+var pn       = "AG1500648";
+var gn       = "PARVOZ";
+var bp       = "MUNSHIGANJ";
+var fn       = "ZOLILSHIKDER";
+var mn       = "SUPIABEGUM";
+                                 
+var elem = document.getElementById('application_id')
+      elem.value = bgd;
+var elem = document.getElementById('passport_no')
+      elem.value = pn;
+{
+  document.getElementsByTagName('div') [13].innerHTML = '<input type=\'button\' value="'+ bgd +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd + '"\' /><input type=\'button\' value="'+ bgd2 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd2 + '"\' /><input type=\'button\' value="'+ bgd3 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd3 + '"\' /><input type=\'button\' value="'+ bgd4 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd4 + '"\' /><input type=\'button\' value="'+ bgd5 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd5 + '"\' /><input type=\'button\' value="'+ bgd6 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd6 + '"\' />';
+  document.getElementsByTagName('div') [21].innerHTML = '<input type=\'button\' value=\'M\' onclick=\'document.getElementsByTagName("input")[21].value = "' + mn + '"\' />';
+  document.getElementsByTagName('div') [25].innerHTML = '<input type=\'button\' value=\'M\' onclick=\'document.getElementsByTagName("input")[23].value = "' + mn + '"\' />';
+  x="";
+y="";
+var img = new Image();
+img.onload = function() {
+  //alert(this.width + 'x' + this.height);
+    x=this.width;
+       if(x==104){
+        p.value=fn;
+    }else if(x==176){
+          p.value=gn;
+    }else if(x==88){
+          p.value=bp;
+    } ;
+}
+img.src = 'http://indianvisa-bangladesh.nic.in/visa/DisplayDynamicField1';
+var img2 = new Image();
+img2.onload = function() {
+ // alert(this.width + 'x' + this.height);
+ y=this.width;
+       if(y==104){
+       q.value=fn;
+    }else if(y==176){
+          q.value=gn;
+    }else if(y==88){
+          q.value=bp;
+    } ;
+}
+img2.src = 'http://indianvisa-bangladesh.nic.in/visa/DisplayDynamicField2';
+      var p = document.getElementsByClassName("textBoxDashed app_field")[0];
+   var q = document.getElementsByClassName("textBoxDashed app_field")[1];
+    x=this.width;
+       if(x==104){
+        p.value=fn;
+    }else if(x==176){
+          p.value=gn;
+    }else if(x==88){
+          p.value=bp;
+    } ;
+y=this.width;
+       if(y==104){
+       q.value=fn;
+    }else if(y=="Mother's Name"){
+         q.value=mn;
+    }else if(y==176){
+          q.value=gn;
+    }else if(y==88){
+          q.value=bp;
+    } ;
+}
+};
+
+function file6(){
+
+var bgd      = "BGDDWB11FC17";
+var bgd2     = "";
+var bgd3     = "";
+var bgd4     = "";
+var bgd5     = "";
+var bgd6     = "";
+var pn       = "BC0091353";
+var gn       = "FARDUSHI";
+var bp       = "DHAKA";
+var fn       = "GIASUDDINSARKER";
+var mn       = "RAHIMAAKHTER";
+                            
+var elem = document.getElementById('application_id')
+      elem.value = bgd;
+var elem = document.getElementById('passport_no')
+      elem.value = pn;
+{
+  document.getElementsByTagName('div') [13].innerHTML = '<input type=\'button\' value="'+ bgd +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd + '"\' /><input type=\'button\' value="'+ bgd2 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd2 + '"\' /><input type=\'button\' value="'+ bgd3 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd3 + '"\' /><input type=\'button\' value="'+ bgd4 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd4 + '"\' /><input type=\'button\' value="'+ bgd5 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd5 + '"\' /><input type=\'button\' value="'+ bgd6 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd6 + '"\' />';
+  document.getElementsByTagName('div') [21].innerHTML = '<input type=\'button\' value=\'M\' onclick=\'document.getElementsByTagName("input")[21].value = "' + mn + '"\' />';
+  document.getElementsByTagName('div') [25].innerHTML = '<input type=\'button\' value=\'M\' onclick=\'document.getElementsByTagName("input")[23].value = "' + mn + '"\' />';
+  x="";
+y="";
+var img = new Image();
+img.onload = function() {
+  //alert(this.width + 'x' + this.height);
+    x=this.width;
+       if(x==104){
+        p.value=fn;
+    }else if(x==176){
+          p.value=gn;
+    }else if(x==88){
+          p.value=bp;
+    } ;
+}
+img.src = 'http://indianvisa-bangladesh.nic.in/visa/DisplayDynamicField1';
+var img2 = new Image();
+img2.onload = function() {
+ // alert(this.width + 'x' + this.height);
+ y=this.width;
+       if(y==104){
+       q.value=fn;
+    }else if(y==176){
+          q.value=gn;
+    }else if(y==88){
+          q.value=bp;
+    } ;
+}
+img2.src = 'http://indianvisa-bangladesh.nic.in/visa/DisplayDynamicField2';
+      var p = document.getElementsByClassName("textBoxDashed app_field")[0];
+   var q = document.getElementsByClassName("textBoxDashed app_field")[1];
+    x=this.width;
+       if(x==104){
+        p.value=fn;
+    }else if(x==176){
+          p.value=gn;
+    }else if(x==88){
+          p.value=bp;
+    } ;
+y=this.width;
+       if(y==104){
+       q.value=fn;
+    }else if(y=="Mother's Name"){
+         q.value=mn;
+    }else if(y==176){
+          q.value=gn;
+    }else if(y==88){
+          q.value=bp;
+    } ;
+}
+};
+
+function file7(){
+
+
+var bgd      = "BGDC78074116";
+var bgd2     = "BGDC78078116";
+var bgd3     = "BGDC78082416";
+var bgd4     = "BGDC78085916";
+var bgd5     = "BGDC76233716";
+var bgd6     = "BGDC76233816";
+var pn       = "AF9699947";
+var gn       = "EMDADURRAHMAN";
+var bp       = "SYLHET";
+var fn       = "MDABDULMUHIT";
+var mn       = "MELONBEGUM";
+
+                             
+var elem = document.getElementById('application_id')
+      elem.value = bgd;
+var elem = document.getElementById('passport_no')
+      elem.value = pn;
+{
+  document.getElementsByTagName('div') [13].innerHTML = '<input type=\'button\' value="'+ bgd +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd + '"\' /><input type=\'button\' value="'+ bgd2 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd2 + '"\' /><input type=\'button\' value="'+ bgd3 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd3 + '"\' /><input type=\'button\' value="'+ bgd4 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd4 + '"\' /><input type=\'button\' value="'+ bgd5 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd5 + '"\' /><input type=\'button\' value="'+ bgd6 +'" onclick=\'document.getElementsByTagName("input")[13].value = "' + bgd6 + '"\' />';
+  document.getElementsByTagName('div') [21].innerHTML = '<input type=\'button\' value=\'M\' onclick=\'document.getElementsByTagName("input")[21].value = "' + mn + '"\' />';
+  document.getElementsByTagName('div') [25].innerHTML = '<input type=\'button\' value=\'M\' onclick=\'document.getElementsByTagName("input")[23].value = "' + mn + '"\' />';
+  x="";
+y="";
+var img = new Image();
+img.onload = function() {
+  //alert(this.width + 'x' + this.height);
+    x=this.width;
+       if(x==104){
+        p.value=fn;
+    }else if(x==176){
+          p.value=gn;
+    }else if(x==88){
+          p.value=bp;
+    } ;
+}
+img.src = 'http://indianvisa-bangladesh.nic.in/visa/DisplayDynamicField1';
+var img2 = new Image();
+img2.onload = function() {
+ // alert(this.width + 'x' + this.height);
+ y=this.width;
+       if(y==104){
+       q.value=fn;
+    }else if(y==176){
+          q.value=gn;
+    }else if(y==88){
+          q.value=bp;
+    } ;
+}
+img2.src = 'http://indianvisa-bangladesh.nic.in/visa/DisplayDynamicField2';
+      var p = document.getElementsByClassName("textBoxDashed app_field")[0];
+   var q = document.getElementsByClassName("textBoxDashed app_field")[1];
+    x=this.width;
+       if(x==104){
+        p.value=fn;
+    }else if(x==176){
+          p.value=gn;
+    }else if(x==88){
+          p.value=bp;
+    } ;
+y=this.width;
+       if(y==104){
+       q.value=fn;
+    }else if(y=="Mother's Name"){
+         q.value=mn;
+    }else if(y==176){
+          q.value=gn;
+    }else if(y==88){
+          q.value=bp;
+    } ;
+}
+};
+
+function file8(){
+target = document.getElementById('captcha').parentElement.parentElement.nextElementSibling;
+parent_target = target.parentElement;
+wrapper = document.createElement('tr');
+wrapper.innerHTML = '<td>';
+arngAlpha = document.createElement('button');
+rev = document.createElement('button');
+mlt = document.createElement('button');
+add = document.createElement('button');
+captcha = document.getElementById('captcha');
+arngAlpha.id = 'arngAlpha';
+arngAlpha.type = 'button';
+arngAlpha.innerHTML = 'Arrange Alphabetically';
+arngAlpha.style.marginRight = '5px';
+arngAlpha.onclick = function () {
+s = captcha.value;
+reversed_string = s.split('').sort().join('');
+captcha.value = reversed_string;
+};
+rev.id = 'reverse';
+rev.type = 'button';
+rev.innerHTML = 'Reverse';
+rev.style.marginRight = '5px';
+rev.onclick = function () {
+s = captcha.value;
+reversed_string = s.split('').reverse().join('');
+captcha.value = reversed_string;
+};
+mlt.id = 'multiply';
+mlt.type = 'button';
+mlt.innerHTML = 'Multiply';
+mlt.style.marginRight = '5px';
+mlt.onclick = function () {
+s = captcha.value;
+a = parseInt(s.substring(0, 3));
+b = parseInt(s.substring(3, 6));
+captcha.value = a * b;
+};
+add.id = 'addition';
+add.type = 'button';
+add.innerHTML = 'Add';
+add.onclick = function () {
+s = captcha.value;
+a = parseInt(s.substring(0, 3));
+b = parseInt(s.substring(3, 6));
+captcha.value = a + b;
+};
+wrapper.appendChild(arngAlpha);
+wrapper.appendChild(rev);
+wrapper.appendChild(mlt);
+wrapper.appendChild(add);
+parent_target.insertBefore(wrapper, target);
+
+};
+
+function file9(){
+document.getElementById("have_otp").onclick = function() {
+
+otp_check = document.getElementById('have_otp').value;
+$('.cotp').css('display', '');
+$('#otp').prop('disabled', false);
+$('#timer_msg').html('<input name="submit_btn" id="btn1" type="submit" class="btn btn-primary" value="Submit">');
+document.getElementById("otp").disabled = false;
+
+};
+};
+
+function file10(){
+
+javascript: void
+function() {
+  var isloop=false;
+ 
+target = document.getElementById('captcha').parentElement.parentElement.nextElementSibling;
+parent_target = target.parentElement;
+wrapper = document.createElement('tr');
+wrapper.innerHTML = '<td>';
+DETAILS = document.createElement('button');
+captcha = document.getElementById('captcha');
+DETAILS.id = 'DETAILS';
+DETAILS.type = 'button';
+DETAILS.innerHTML = 'GENERATE OTP';
+DETAILS.onclick = function () {
+  if(isloop)
+    {
+      isloop=false;     
+    }
+  else
+    {
+      isloop=true;
+    } 
+ 
+  alert(isloop);
+  if(isloop)
+    {
+       setInterval(function () {
+         if(isloop)
+         {
+         var elm = document.createElement('div');
+function sbt1ReprintAppt() {
+        var xhr,
+
+        captcha = document.getElementById("captcha").value;
+        filerfno = document.getElementById("application_id").value;
+        passport_number = document.getElementById("passport_no").value;
+        ta = document.getElementsByClassName("textBoxDashed app_field")[0].value;
+        atr = document.getElementsByClassName("textBoxDashed app_field")[1].value;
+        otp_required = document.getElementById.value="generate_otp";
+       
+        url = 'json/GenerateOtp',
+   
+    datastring = 'filerfno='+filerfno+'&passport_number='+passport_number+'&value1='+ta+'&value2='+atr+'&have_otp='+have_otp+'&otp_required='+otp_required+'&captcha='+captcha;
+    document.body.appendChild(elm);
+    if (window.XMLHttpRequest) {
+      xhr = new XMLHttpRequest();
+    }
+    else {
+      xhr = new ActiveXObejct('Microsoft.XMLHTTP');
+    }
+    function ajx_req() {
+      xhr.open('POST', url, true);
+      xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+      xhr.onreadystatechange = handleServerResponse;
+      xhr.send(datastring);
+    }
+    function handleServerResponse() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        var returnAjaxResponse = xhr.responseText;
+        elm.innerHTML = returnAjaxResponse;
+      }
+    }
+    ajx_req();
+}
+sbt1ReprintAppt();
+         }
+       }, 1000);
+    }
+ 
+};
+wrapper.appendChild(DETAILS);
+parent_target.insertBefore(wrapper, target);
+
+}();
+var pp=document.getElementsByClassName("pageHeading1 text_center")[0];
+
+};
+
+var list = document.getElementsByTagName("div")[0];
+
+list.getElementsByTagName("div")[1].innerHTML =
+
+' <input type="button" value="F-1" id="btn0" onclick="file1()" />\
+<input type="button" value="F-2" id="btn2" onclick="file2()" />\
+<input type="button" value="F-3" id="btn3" onclick="file3()" />\
+<input type="button" value="F-4" id="btn4" onclick="file4()" />\
+<input type="button" value="F-5" id="btn5" onclick="file5()" />\
+<input type="button" value="RAJ FILE" id="btn6" onclick="file6()" />\
+<input type="button" value="CTG FILE" id="btn7" onclick="file7()" />\
+<input type="button" value="CAPTURE" id="btn8" onclick="file8()" />\
+<input type="button" value="TIME REMOVE" id="btn9" onclick="file9()" />\
+<input type="button" value="REBOOT OTP" id="btn10" onclick="file10()" />\
+';
+
+btn0.addEventListener('click', function () {
+file1();
+});
+btn2.addEventListener('click', function () {
+file2();
+});
+btn3.addEventListener('click', function () {
+file3();
+});
+btn4.addEventListener('click', function () {
+file4();
+});
+btn5.addEventListener('click', function () {
+file5();
+});
+btn6.addEventListener('click', function () {
+file6();
+});
+btn7.addEventListener('click', function () {
+file7();
+});
+btn8.addEventListener('click', function () {
+file8();
+});
+btn9.addEventListener('click', function () {
+file9();
+});
+btn10.addEventListener('click', function () {
+file10();
+});
+$('#btn0').attr('class','btn btn-primary');
+$('#btn2').attr('class','btn btn-primary');
+$('#btn3').attr('class','btn btn-primary');
+$('#btn4').attr('class','btn btn-primary');
+$('#btn5').attr('class','btn btn-primary');
+$('#btn6').attr('class','btn btn-primary');
+$('#btn7').attr('class','btn btn-primary');
+$('#btn8').attr('class','btn btn-primary');
+$('#btn9').attr('class','btn btn-primary');
+$('#btn10').attr('class','btn btn-primary');
+}());
