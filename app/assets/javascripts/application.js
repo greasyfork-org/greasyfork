@@ -19,3 +19,4 @@
 //= require recaptcha
 //= require markup-preview
 //= require source-editor
+//= require submit-anchor
