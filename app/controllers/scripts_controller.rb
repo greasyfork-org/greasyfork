@@ -48,7 +48,7 @@ class ScriptsController < ApplicationController
 				with = with.merge(script_type_id: 1)
 				if params[:site]
 					if params[:site] == '*'
-						with[:for_all_sites] = true
+						with[:site_count] = 0
 					else
 						site = SiteApplication.find_by(text: params[:site])
 						if site.nil?
@@ -72,7 +72,7 @@ class ScriptsController < ApplicationController
 						order: self.class.get_sort(params, true),
 						populate: true,
 						sql: {include: [:script_type, {localized_attributes: :locale}, :user]},
-						select: '*, weight() myweight',
+						select: '*, weight() myweight, LENGTH(site_application_id) AS site_count',
 						ranker: "expr('top(user_weight)')"
 					)
 					# make it run now so we can catch syntax errors
