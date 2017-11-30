@@ -18,3 +18,4 @@
 //= require versioncheck
 //= require recaptcha
 //= require markup-preview
+//= require source-editor
