@@ -10,8 +10,7 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
+//= require rails-ujs
 //= require jsonlylightbox
 //= require lightbox
 //= require everything
