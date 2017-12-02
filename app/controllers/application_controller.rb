@@ -291,7 +291,7 @@ protected
 		return nil if sleazy?
 		return nil if script&.sensitive
 		return nil if current_user && !current_user.show_ads
-		return 'ga' if script.nil?
+		return 'gn' if script.nil?
 		return 'ca' if script.localized_attribute_for('additional_info', I18n.locale).blank?
 		return 'gn' if script.ad_method == 'ga'
 		return script.ad_method || 'ca'
