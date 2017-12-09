@@ -1,2 +1,3 @@
 class License < ApplicationRecord
+
 end

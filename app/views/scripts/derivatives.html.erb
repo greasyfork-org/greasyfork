@@ -27,7 +27,7 @@
 											}),
 											script_show_code_path(dup.script, :anchor => "n#{dup.line + 1}")
 										),
-										:license => dup.script.license_display,
+										:license => license_display(dup.script),
 										:user_link => link_to(dup.script.user.name, dup.script.user)
 									})%>
 								</li>

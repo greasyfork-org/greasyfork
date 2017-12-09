@@ -200,16 +200,8 @@ class Script < ActiveRecord::Base
 			self.code_updated_at = Time.now if newest_sv.nil? or newest_sv.code != script_version.code
 		end
 
-		self.license_text = meta.has_key?('license') ? meta['license'].first : nil
-		if self.license_text.nil?
-			self.license = nil
-		else
-			self.license = License.order('priority DESC, id').find do |l|
-				self.license_text =~ Regexp.new(l.pattern)
-			end
-		end
-
-		self.namespace = meta.has_key?('namespace') ? meta['namespace'].first : nil
+		update_license(meta['license']&.first)
+		self.namespace = meta['namespace']&.first
 		self.version = script_version.version
 
 		self.contribution_url = !meta.has_key?('contributionURL') ? nil : meta['contributionURL'].find {|url|
@@ -352,9 +344,23 @@ class Script < ActiveRecord::Base
 		return english
 	end
 
-	def license_display
-		return "<i>#{I18n.t('scripts.no_license')}</i>".html_safe if license_text.nil?
-		return license_text
+	def update_license(text)
+		if text.blank?
+			self.license = nil
+			self.license_text = nil
+			return
+		end
+
+		text = text.strip
+		license_entry = License.find_by(['code = ? OR name = ?', text, text])
+		if license_entry
+			self.license = license_entry
+			self.license_text = nil
+			return
+		end
+
+		self.license = nil
+		self.license_text = text
 	end
 
 	def code_url

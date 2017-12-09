@@ -36,6 +36,13 @@ module ScriptsHelper
 		)
 	end
 
+	def license_display(script)
+		return link_to(script.license.code, script.license.url, title: script.license.name) if script.license&.url
+		return script.license.code if script.license
+		return "<i>#{I18n.t('scripts.no_license')}</i>".html_safe if script.license_text.nil?
+		return script.license_text
+	end
+
 private
 
 	def content_for_script_applies_to_that_has_domain(sat, count_of_other_scripts)
