@@ -17,7 +17,8 @@ namespace :licenses do
 
         license = License.find_or_initialize_by(code: license_data['licenseId'])
         license.name = license_data['name']
-        license.url = license_data['seeAlso']&.first
+        url = license_data['seeAlso']&.first
+        license.url = (url.blank? || url == 'none') ? nil : url
         license.save!
       end
     end
