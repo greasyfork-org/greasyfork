@@ -12,7 +12,7 @@ atom_feed(:root_url => current_path_with_params(host: request.host)) do |feed|
 					entry.rights(script.license_text, type: 'text')
 				end
 			else
-				entry.rights(script.license.html.html_safe, type: 'html')
+				entry.rights(script.license.name, type: 'text')
 			end
 
 			entry.author do |author|
