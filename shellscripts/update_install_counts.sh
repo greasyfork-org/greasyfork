@@ -7,7 +7,12 @@ awk '{ print gensub(/.*scripts\/([0-9]+).*/, "\\1", "g", $3), $1, $2 }' |\
 grep -E '^[0-9]+.* [T:\+0-9\-]{25} [0-9\.]{7,}$' |\
 sed 's/\+[0-9][0-9]:[0-9][0-9]//' > /tmp/daily_update_check_counts.txt
 
+echo "Update check counts calculated at `date`" >> ../log/update_install_counts.log
+
 mysqlimport --login-path=greasyfork --local --fields-terminated-by=" " --ignore greasyfork /tmp/daily_update_check_counts.txt
 
+echo "Update check counts loaded into DB at `date`" >> ../log/update_install_counts.log
+
 ~/db < ./update_install_counts.sql >> ../log/update_install_counts.log 2>&1
+
 echo "Done at `date`" >> ../log/update_install_counts.log
