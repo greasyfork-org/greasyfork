@@ -7,7 +7,7 @@ module ScriptImporter
 	class ScriptSyncer
 
 		# Syncs the script and returns :success, :unchanged, or :failure
-		def self.sync(script, changelog = nil)
+		def self.sync(script, changelog = nil, changelog_markup = 'text')
 			importer = get_importer_for_sync_source_id(script.script_sync_source_id)
 			# pass the description in so we retain it if it's missing
 			begin
@@ -37,6 +37,7 @@ module ScriptImporter
 					end
 
 					sv.changelog = changelog.truncate(500) if !changelog.nil?
+					sv.changelog_markup = changelog_markup
 					sv.script = script
 					# Retain existing screenshots
 					sv.screenshots = last_saved_sv.screenshots

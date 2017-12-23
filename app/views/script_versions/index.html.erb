@@ -33,7 +33,7 @@ end %>
 					<% end %>
 					<%=markup_date(sv.created_at)%>
 					<% if !sv.changelog.nil? and !sv.changelog.empty? %>
-						- <%=sv.changelog%>
+						- <%=format_user_text(sv.changelog, sv.changelog_markup)%>
 					<% end %>
 				</li>
 			<% end
