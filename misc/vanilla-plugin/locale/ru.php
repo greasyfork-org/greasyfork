@@ -2,7 +2,7 @@
 /* Label for inputting a script ID when creating/editing a discussion */
 $Definition['Item ID:'] = 'Идентификатор скрипта:';
 // Appended to "Discussions" when viewing a list of discussions on scripts by a user. %s is the user name.
-$Definition['on scripts by %s'] = 'скриптов автора %s';
+$Definition['on scripts by %s'] = 'по скриптам %s';
 /*
  *  Label for the radio buttons for rating a script
  **/

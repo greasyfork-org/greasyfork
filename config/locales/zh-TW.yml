@@ -174,6 +174,7 @@ zh-TW:
     warning_namespace_missing_generate_automatically_html: "自動生成 <code>@namespace</code> 命名空間嗎?"
     warning_namespace_changed_html: "您已變更 <code>@namespace</code> 。不同的 <code>@namespace</code> 會讓使用者腳本管理器識別為不同腳本，下次使用者更新時，新版本會被識別為新腳本安裝而與舊版本共存。"
     warning_potentially_minified_html: "您的腳本看起來好像包含壓縮過的代碼。如果您使用了壓縮過的函式庫，請改爲透過 <code>@require</code> 引用 %{allowed_requires_link} 所提供的腳本。包含了壓縮代碼的腳本將會被刪除。"
+    warning_automatic_sensitive_html: "由於您的腳本執行於 %{sensitive_domains}，它將會被標記為包含成人內容。"
     warning_potentially_minified_allowed_requires_link: "這些網站"
     additional_info_locale_prompt: "(語言選擇)"
     additional_info_add_localized: "新增別的語言的「其他資訊」欄位"
@@ -211,6 +212,9 @@ zh-TW:
     write_your_own_html: "%{post_a_script_link}（或是 %{learn_to_write_scripts_link}）"
     post_a_script_link_text: "新增一個你寫的腳本"
     learn_to_write_scripts_link_text: "學習如何建立一個"
+    feedback_suggestion: "發表問題、評論、或檢舉該腳本於 %{site_name}。"
+    feedback_suggestion_with_support_site: "%{support_url:瀏覽作者的技術支援網站} 或 %{feedback_link:發表問題、評論、檢舉腳本於 %{site_name}}。"
+    feedback_suggestion_with_support_email: "%{support_url:向作者寄送電子郵件以取得技術支援} 或 %{feedback_link:發表問題、評論、檢舉該腳本於 %{site_name}}。"
     approve_redistribution_explanation: "%{site_name} 可以告訴其它網站，是否允許你的腳本被轉貼。即使這沒有包括在你所選擇的授權條款中。"
     approve_redistribution_use_user_setting: "使用帳戶預設值（%{user_setting}）"
     approve_redistribution_use_user_setting_not_set: "還未設定"
@@ -223,6 +227,7 @@ zh-TW:
     adult_content_self_report_explanation: "%{site_name} 允許腳本含有成人內容，但是他們必須被標記；這樣用戶可以選擇是否顯示這類信息。"
     not_adult_content_self_report_html: "這個腳本 <strong>不包含</strong> 成人內容且 <strong>不作用於</strong> 包含成人內容的站點。"
     not_adult_content_self_report_explanation: "%{site_name} 允許腳本含有成人內容，但是他們必須被標記；這樣用戶可以選擇是否顯示這類信息。這個腳本被自動標記為含有成人內容。您可以請求取消這個標記，該請求將由管理員進行審查。"
+    not_adult_content_self_report_explanation_automatic: "%{site_name} 允許腳本包含成人內容，但是必須被標記清楚所以使用者得以選擇是否要顯示它們。您的腳本已因 %{domain_list} 而被標記為包含成人內容。"
     adult_content_on_greasy_logged_in_error: "這個腳本對您當前的 %{edit_account_link:Greasy Fork 賬戶設定} 不合適。"
     adult_content_on_greasy_not_logged_in_error: "這個腳本不對遊客開放。請 %{login_link:登入} 並確認您的 Greasy Fork 帳戶設定。"
     non_adult_content_on_sleazy: "這個腳本在這個網站上不可用。"
@@ -319,6 +324,33 @@ zh-TW:
     explain_user_scripts_html: "使用者腳本讓您控制您的瀏覽體驗。當您安裝後，使用者腳本可以為網頁增加功能、簡化使用方法、或移除煩人的東西。在 %{site_name} 上的腳本都是由其它使用者撰寫、和全世界分享的。所有的腳本都是免費安裝，而且容易使用。"
     installing_step1_header: "第 1 步：安裝一個用戶腳本管理器"
     installing_step1_caption: "Chrome 下使用 TamerMonkey 的截圖"
+    installing_step1_description_html: >
+        <p>要啟用使用者腳本，您需要先安裝「使用者腳本管理器」。不同的瀏覽器所使用的腳本管理器也有所不同。</p>
+
+        <ul>
+
+        <li>Chrome︰%{chrome_tampermonkey_link:Tampermonkey}</a> 或 %{chrome_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Firefox︰%{firefox_greasemonkey_link:Greasemonkey}、%{firefox_tampermonkey_link:Tampermonkey}、或
+        %{firefox_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Safari︰%{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Microsoft Edge︰%{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera︰%{opera_tampermonkey_link:Tampermonkey} 或 %{opera_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Maxthon︰%{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin︰%{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC︰%{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla︰（無需安裝額外的管理器）</li>
+
+        <li>AdGuard︰（無需安裝額外的管理器）</li>
+
+        </ul>
     installing_step2_header: "第 2 步：安裝一個使用者腳本"
     installing_step2_caption: "使用者腳本的安裝按鈕"
     installing_step2_description_html: >
@@ -424,7 +456,7 @@ zh-TW:
       require_html: "在腳本中引入的外部 JavaScript，請參考 %{external_script_link}。"
       require_external_script_link_text: "外部腳本的使用規範"
       updateURL: "描述使用者腳本管理器要從何取得更新。%{site_name} 將會移除這些更新網址，目的是讓從 %{site_name} 安裝的腳本只能由 %{site_name} 更新。"
-      license: "授權條款的名稱或是網址，用來描述其他人是否可以複製或修改此腳本。若缺少授權條款，就代表使用者可安裝腳本作為個人使用，但不得再次進行散佈。腳本的資訊頁將會顯示使用的授權條款。"
+      license: "一授權條款，用來描述他人是如何被允許複製或修改此腳本。建議從 %{spdx_link:the SPDX 授權條款列表} 中選擇「Full name」或「Identifier」使用。若缺少授權條款，代表使用者可以安裝腳本作為個人使用，但不得再次進行散佈。腳本的授權條款會被顯示在資訊頁面中。"
       supportURL: "使用者能取得腳本的技術支援之處（例如：臭蟲追蹤系統、討論區、電子郵件信箱等等）。技術支援網址將會顯示在腳本的反饋頁。"
       contributionURL_html: "腳本作者的捐贈網址。捐贈網址會顯示在腳本的反饋頁。網址可以是 http、https 或者比特幣協議網址。例如：要連結到 PayPal 捐贈頁面，可使用 <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a> 的格式，請用您自己的電子郵件位址替代前述範例的位址。"
       contributionAmount_html: "建議的捐贈金額，與 <code>@contributionURL</code> 一起使用。"
@@ -438,6 +470,26 @@ zh-TW:
       post_new_script_link_text: '新增腳本'
     code_rules:
       title: "%{site_name} 的腳本規定"
+      content_html: >
+          <p>這些是上傳至 %{site_name} 的腳本所必須符合的條件。這些要求是為了維護 %{site_name} 上使用者腳本的安全與可用性。任何不符合條件的腳本則可能被
+          %{site_name} 管理員刪除。</p> <ul>
+
+          <li>腳本必須包含一份說明以描述腳本的行為，任何未註明、不合理的行為都是不允許的，使用者必須得以在安裝前瞭解腳本的行為。若腳本包含廣告或是會追蹤使用者資訊，必須在說明中註明。</li>
+
+          <li>上傳至此網站的代碼不得被壓縮或混淆，必須給予使用者在安裝腳本前先檢視並瞭解腳本的權利。</li>
+
+          <li>腳本使用到的函式庫應以 <code>@require</code> 引入，除非有技術性的理由無法這麼做。若將函式庫直接內嵌於腳本內，必須加入關於函式庫來源的資訊（例︰在註解內標示網址、函式庫名稱與版本）。</li>
+
+          <li>尊重他人的智慧財產權，包括腳本本身與其所用到的資源（例︰圖片）。如果你要使用他人的作品，請遵守他們的使用者條款，或先向作者取得授權。</li>
+
+          <li>%{external_scripts_link:關於外連 JavaScript 的限制。}</li>
+
+          %{adult_content_requirement}
+
+          <li>腳本不得以一次/日以上的頻率檢查腳本更新。注意，大部份的腳本管理器都擁有自動更新腳本的功能，沒有必要在腳本中撰寫。</li>
+
+          </ul> <p>若發現有腳本違反上述規則，請點選該腳本的反饋頁面，發起一個新討論主題，並選擇「舉報腳本」選項。</p> <p>如果您不認同上述內容，
+          %{contact_link:歡迎一起討論} ！</p>
       adult_content_rule_html: "<li>腳本若是包含成人內容、或執行的網站中有成人內容，作者應將其標示正確讓使用者去選擇是否要顯示它們。</li>"
     external_scripts:
       title: "%{site_name} 對於外部程式碼的政策"
@@ -573,6 +625,8 @@ zh-TW:
     expander_show_more: "顯示更多"
     expander_show_less: "折疊"
     advertisement_note: 廣告
+    preview_tab: 預覽
+    write_tab: 撰寫
   activerecord:
     attributes:
       user:
