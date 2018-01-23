@@ -179,6 +179,7 @@ it:
     warning_namespace_missing_generate_automatically_html: "Generare <code>@namespace</code> automaticamente?"
     warning_namespace_changed_html: "Il tuo <code>@namespace</code> è cambiato. Un discreto <code>@namespace</code> permette agli utenti di re-nstallare lo script aggiornandolo."
     warning_potentially_minified_html: "Il tuo script sembra che contenga codice compresso (minified). Se stai usando una libreria minified, per favore <code>@require</code> questa da %{allowed_requires_link}. Gli script con codice minified sono soggetti a rimozione."
+    warning_automatic_sensitive_html: "Il tuo script è per %{sensitive_domains} e perciò verrà indicato come contenuto per adulti."
     warning_potentially_minified_allowed_requires_link: "uno di questi campi"
     additional_info_locale_prompt: "(Seleziona luogo)"
     additional_info_add_localized: "Aggiungi informazione aggiuntiva sul luogo"
@@ -216,6 +217,9 @@ it:
     write_your_own_html: "%{post_a_script_link} (oppure %{learn_to_write_scripts_link})"
     post_a_script_link_text: "Posta uno script creato da te"
     learn_to_write_scripts_link_text: "impara come scriverne uno"
+    feedback_suggestion: "Fai una domanda, carica una recensione o segnala lo script su %{site_name}."
+    feedback_suggestion_with_support_site: "%{support_url:Visita il sito dell'autore per ricevere aiuto} oppure %{feedback_link:fai una domanda, carica una recensione o segnala lo script su %{site_name}}."
+    feedback_suggestion_with_support_email: "%{support_url:invia una email all'autore per ricevere aiuto} oppire %{feedback_link:fai una domanda, carica una recensione o segnala lo script su %{site_name}}."
     approve_redistribution_explanation: "%{site_name} può comunicare ad altri siti che autorizzi la pubblicazione dei tuoi script su portali esterni. L'autorizzazione potrebbe essere già concessa dal tipo di licenza scelta al momento della pubblicazione dello script."
     approve_redistribution_use_user_setting: "Usa le impostazioni di default del mio account (%{user_setting})"
     approve_redistribution_use_user_setting_not_set: "non impostato"
@@ -228,6 +232,7 @@ it:
     adult_content_self_report_explanation: "%{site_name}  permette script con contenuti per adulti, ma devono essere contrassegnati come tali per consentire agli utenti di filtrarli."
     not_adult_content_self_report_html: "Questo script <strong>non</strong> contiene contenuti per adulti e <strong>non</strong> è per un sito che contiene materiale per a dulti."
     not_adult_content_self_report_explanation: "%{site_name} permette script con contenuti per adulti, ma devono essere identificati come tali in modo che gli utenti possano scegliere se visualizzarli. Il tuo script è stato identificato come avente contenuti per adulti. Puoi riportare che non è vero; verrà controllato da un moderatore."
+    not_adult_content_self_report_explanation_automatic: "%{site_name} permette gli script con contenuto per adulti, ma devono essere indicati come tali in modo che gli utenti possano decidere se visualizzarli o meno. Il tuo script è stato indicato come contenuto per adulti poiché è per %{domain_list}."
     adult_content_on_greasy_logged_in_error: "Questo script non è più disponibile su questo sito con le tue %{edit_account_link:impostazioni account di Greasy Fork}."
     adult_content_on_greasy_not_logged_in_error: "Questo script non è più disponibile in modo anonimo su questo sito. %{login_link:Accedi} e controlla le tue impostazioni account di Greasy Fork."
     non_adult_content_on_sleazy: "Questo script non è disponibile su questo sito."
@@ -237,6 +242,11 @@ it:
     unlisted_marker: "(Non elencato)"
     library_marker: "(Libreria)"
     libraries_title: "Librerie"
+    libraries_description_html: "Ci sono librerie caricate dagli utenti del sito %{site_name} che puoi includere con <code>@require</code> nei tuoi script. Per conoscere altri tipi di librerie che puoi includere con <code>@require</code>, leggi %{policy_link: i termini di %{site_name} sull'utilizzo di <code>@require</code>}."
+    by_site_list_title: "Script utente su %{site_name} raggruppati per sito"
+    by_site_list_description: "Questi sono i siti modificati dagli script utente più popolari. Più i caratteri sono grandi, più popolari sono gli script utente."
+    by_site_list_filter: "Filtra per nome del sito:"
+    search_placeholder: "Ricerca script"
   script_sets:
     description: "Gli insiemi di script ti permettono di creare una lista personalizzata di script con cui navigare su Greasy Fork. Puoi aggiungere script al tuo insieme includendo script individuali, insiemi di altri utenti, o insiemi generati automaticamente. Puoi inoltre escludere degli script dal tuo insieme con gli stessi metodi."
     favorites_name: "Preferiti"
@@ -314,12 +324,57 @@ it:
     welcome: "Benvenuto su %{site_name}, un sito per gli user script."
     sleazy_title: "%{site_name} - script utente sicuro e utile per adulti"
     sleazy_welcome: "Benvenuto su %{site_name}, un sito per gli user script adulti."
+    search_placeholder: "Trova script utente"
+    scripts_for_label: "Script per:"
     explain_user_scripts_heading: "Cosa sono gli user script?"
     explain_user_scripts_html: "Gli scripts ti mettono al comando della tua esperienza di navigazione.Appena saranno installati, aggiungeranno funzionalità ai siti che navighi, li renderanno più semplici da usare,oppure rimuoveranno cose che non ti piacciono.Gli scripts su %{site_name} sono stati scritti da altri utenti e pubblicati per essere condivisi con tutti.Sono gratuiti e facili da usare."
     installing_step1_header: "Step 1: installa un gestore di script utente"
     installing_step1_caption: "Tampermonkey su Chrome"
+    installing_step1_description_html: >
+        <p>Per utilizzare gli script utente devi prima installare un gestore di script
+        utente. Quali gestori di script utente puoi utilizzare dipende dal tuo browser.</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> o %{chrome_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
+        o %{firefox_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} o %{opera_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla: (non è richiesto alcun software aggiuntivo)</li>
+
+        <li>AdGuard: (non è richiesto alcun software aggiuntivo)</li>
+
+        </ul>
     installing_step2_header: "Step 2: installa uno script utente"
+    installing_step2_caption: "Il tasto di installazione di uno script utente"
+    installing_step2_description_html: >
+        <p>%{browse_link:Esplora questo sito} per trovare uno script utente che vuoi
+        provare. Ecco alcuni esempi degli script più popolari:</p>
+
+        %{highlighted_scripts_list}
+
+        <p>Dopo aver trovato uno script utente, fai clic sul tasto di installazione
+        verde sulla pagina dello script utente, e il tuo gestore di script utente
+        di chiederà di confermare l'installazione.</p>
     installing_step3_header: "Step 3: usa lo script utente"
+    installing_step3_description_html: >
+        <p>Visita il sito che lo script utente modifica. Dovrebbe fare il suo lavoro
+        automaticamente. Dopo aver provato lo script utente per un po', torna alla
+        pagina da cui hai installato lo script utente e lascia qualche feedback per
+        l'autore dello script.</p>
   users:
     sign_in_title: "Entra in %{site_name}"
     sign_in_description: "Registrandoti a %{site_name} potrai postare script e commentare script caricati da altri utenti. Non è necessario essere registrati per visualizzare o installare gli script."
@@ -398,6 +453,9 @@ it:
     greasy_fork_scripts_link:
       one: "%{user_name} ha altri %{count} script su Greasy Fork."
       other: "%{user_name} also has %{count} scripts on Greasy Fork."
+    update_sync_warning:
+      one: "Il tuo nome utente e la tua email sono sincronizzati quando accedi con . %{edit_sign_in_link:Modifica i tuoi metodi di accesso per rimuovere la sincronizzazione} se desideri impostare permanentemente un nome utente o una email pesonalizzata."
+      other: "Il tuo nome utente e la tua email sono sincronizzati quando accedi con %{providers}. %{edit_sign_in_link:Modifica i tuoi metodi di accesso per rimuovere la sincronizzazione} se desideri impostare permanentemente un nome utente o una email pesonalizzata."
   help:
     installing_user_scripts:
       title: 'Come installare gli script'
@@ -414,6 +472,7 @@ it:
       require_html: "Include codice JavaScript esterno allo script. Guarda %{external_script_link}."
       require_external_script_link_text: "regole per codice contenente script esterni"
       updateURL: "Descrive come i gestori script utente debbano ottenere gli aggiornamenti. %{site_name} rimuoverà queste chiavi, il che farà sì che ogni script installato da %{site_name} riceva gli aggiornamenti solo da %{site_name}."
+      license: "La licenza che descrive se e come altre persone hanno il permesso di copiare o modificare uno script. È consigliato l'utilizzo di un \"Nome completo\" o \"Identificatore\" dalla %{spdx_link:Lista  di Licenze SPDX}. La mancanza di una licenza implica che gli utenti possono installare lo script per uso personale, ma non possono ridistribuirlo. La licenza è visualizzata sulla pagina delle informazioni di uno script."
       supportURL: "URL che punta a una pagina dove gli utenti possano ottenere supporto per uno script (ad es. un bug tracker, un forum, un indirizzo e-mail). L'URL di supporto viene visualizzato nella pagina dei feedback dello script."
       contributionURL_html: "URL che punta a una pagina dove gli utenti possano fare una donazione all'autore dello script. L'URL può avere come protocollo HTTP, HTTPS o Bitcoin. Per inserire un collegamento a una pagina per le donazioni di PayPal, utilizza un URL nel formato <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Donazione+Greasy+Fork\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Donazione+Greasy+Fork</a>, sostituendo l'indirizzo e-mail di esempio con il tuo."
       contributionAmount_html: "Importo suggerito per le donazioni, usato in concomitanza con il tag <code>@contributionURL</code>."
@@ -427,6 +486,46 @@ it:
       post_new_script_link_text: 'posta un nuovo script'
     code_rules:
       title: "Le regole di %{site_name} per gli script postati"
+      content_html: >
+          <p>Questi sono i requisiti per gli script caricati a %{site_name}. Essi
+          sono volti a mantenere %{site_name} un posto sicuro e utile per gli script
+          utente. Ogni script che non rispetti questi requisiti potrebbe essere eliminato
+          dai moderatori di %{site_name}.</p> <ul>
+
+          <li>Gli script devono includere una descrizione di ciò che fanno e non possono
+          compiere azioni che non ricadano ragionevolmente in tale descrizione. Gli
+          utenti devono sapere cosa farà uno script prima di installarlo. Gli script
+          che includono pubblicità o modalità di tracciamento devono dichiararlo nella
+          propria descrizione.</li>
+
+          <li>Il codice caricato su questo sito non può essere offuscato o minificato.
+          Agli utenti deve essere data l'opportunità di esaminare e comprendere cosa
+          fa uno script prima di installarlo.</li>
+
+          <li>Le librerie utilizzate da uno script dovrebbero essere incluse con <code>@require</code>,
+          a meno che non vi sia un motivo tecnico valido per non farlo. Nel caso in
+          cui una libreria sia inclusa inline, essa deve includere informazioni relative
+          all'origine della libreria (ad es. un commento che indichi l'URL e/o il
+          nome e la versione).</li>
+
+          <li>Il tuo script deve rispettare i copyright di terzi. Ciò include lo script
+          in sé e tutte le risorse (ad esempio, immagini) che utilizza. Se intendi
+          utilizzare i contenuti di altri, rispetta le loro condizioni di licenza
+          oppure ottieni il loro permesso prima di farlo.</li>
+
+          <li>%{external_scripts_link:L'utilizzo di JavaScript esterni è limitato.}</li>
+
+          %{adult_content_requirement}
+
+          <li>Gli script non devono controllare la disponibilità di aggiornamenti
+          più di una volta al giorno. Si tenga presente che la maggior parte dei gestori
+          di script gestisce gli aggiornamenti in maniera automatica, perciò ripeterlo
+          negli script non è necessario.</li>
+
+          </ul> <p>Se noti uno script che non ricade in questi parametri, segnalalo
+          utilizzando il collegamento Feedback per tale script, iniziando una discussione
+          e scegliendo l'opzione "Segnala script".</p> <p>Se non sei d'accordo con
+          uno di questi punti, %{contact_link:parliamone}!</p>
       adult_content_rule_html: "<li>Script che includono contenuti per adulti o sono per siti con contenuti per adulti devono essere contrassegnati come tali per dare agli altri utenti l'opzione di vederli oppure no.</li>"
     external_scripts:
       title: "Politiche di %{site_name} per gli script esterni"
@@ -553,9 +652,11 @@ it:
       title: "Cerca script"
       description: "Cerca gli script. Cerca i nomi, le descrizioni, gli autori e le informazioni aggiuntive degli script. %{sphinx_link:Sphinx extended query syntax.}"
     library_search:
+      title: "Ricerca nella libreria"
       description: "Cerca nelle librerie. Cerca i nomi delle librerie, descrizioni, informazioni aggiuntive e nomi degli autori. %{sphinx_link:Sphinx extended query syntax.}"
     code_search:
       title: "Cerca codice"
+      description: "Cerca nel codice dello script. Questa è una ricerca che non distingue tra maiuscole e minuscole, nel solo testo, senza caratteri jolly."
     forum_search:
       title: "Cerca nel forum"
       description: "Cerca discussioni e recensioni nel forum. %{fulltext_link:MySQL natural language search.}"
@@ -576,6 +677,8 @@ it:
     expander_show_more: "Mostra di più"
     expander_show_less: "Mostra meno"
     advertisement_note: Pubblicità
+    preview_tab: Anteprima
+    write_tab: Scrivi
   activerecord:
     attributes:
       user:

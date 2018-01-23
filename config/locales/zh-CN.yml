@@ -104,7 +104,7 @@ zh-CN:
     derivatives_title: "%{script_name} - 类似脚本"
     derivatives_intro: "这些脚本可能是基于您的 (或您基于他们的) 脚本修改而来。如果您发现了未经授权使用您的代码的情况，请新建一个讨论贴以通知管理员。"
     derivatives_code_matches_info_html:
-      other: "您的脚本与其他人发布的脚本有至少 %{match_size} 行相同。此检查仅在脚本不小于 %{max_size} 时运行，上次扫描时间为 %{last_run}。"
+      other: "您的脚本与其他人发布的脚本有至少 %{match_size} 行相同。此检查仅在脚本小于 %{max_size} 时运行，上次扫描时间为 %{last_run}。"
     derivatives_namespace_matches_info_html: "其他人使用 <code>%{namespace}</code> 发布的脚本："
     derivatives_name_matches_info: "他人发布的和您的脚本有最相似名称的脚本："
     derivatives_script_html: "%{user_link} 发布的 %{script_link}，许可协议：%{license}"
@@ -457,6 +457,7 @@ zh-CN:
       require_html: "若需引用外部脚本到您的脚本，请参见 %{external_script_link}。"
       require_external_script_link_text: "包含外部脚本的使用规定"
       updateURL: "告知用户脚本管理器应该在哪个地址获取脚本更新。%{site_name} 将自动修改该属性使其永远通过 %{site_name} 进行更新。"
+      license: "许可协议描述如何允许别人复制或修改此脚本。建议从 %{spdx_link:the SPDX 许可协议列表} 中选择「Full name」或「Identifier」使用。不提供许可协议则表示用户仅允许个人使用且不得二次分发；该协议将在脚本的简介页面显示。"
       supportURL: "用户可获得该脚本技术支持的链接地址 (如：错误反馈系统、论坛、电子邮件)，该链接将显示在脚本的反馈页面。"
       contributionURL_html: "用于捐赠脚本作者的链接，该链接将显示在脚本的反馈页面。网址可以为 http、https 或比特币协议的网址。如果您需要链接到贝宝捐赠页面，请使用例如 <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a> 这样的格式，替换为您自己的邮箱即可。"
       contributionAmount_html: "建议捐赠金额，请配合 <code>@contributionURL</code> 使用。"
