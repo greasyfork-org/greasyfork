@@ -48,7 +48,7 @@ show_report_thread = defined?(show_report_thread) && show_report_thread
 			Report threads:
 			<ul>
 				<% script.discussions.reports.each do |discussion| %>
-					<li><%= link_to(discussion.unescaped_name, discussion.url) %> by <%=link_to(discussion.original_poster.name, discussion.original_poster) %></li>
+					<li><%= link_to(discussion.unescaped_name, discussion.url) %><% if discussion.original_poster %> by <%=link_to(discussion.original_poster.name, discussion.original_poster) %><% end %></li>
 				<% end %>
 			</ul>
 		<% end %>
