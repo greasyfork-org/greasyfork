@@ -1,6 +1,7 @@
 class SessionsController < Devise::SessionsController
 	include Devise::Controllers::Rememberable
 	include LoginMethods
+	include LocalizedRequest
 
 	skip_before_action :verify_authenticity_token, :only => [:omniauth_callback]
 
@@ -145,6 +146,12 @@ class SessionsController < Devise::SessionsController
 		session[:chosen_name] = params[:name]
 		redirect_to "/auth/#{params[:provider]}"
 	end
+
+  # https://github.com/plataformatec/devise/issues/4084
+  def require_no_authentication
+    set_locale
+    super
+  end
 
 private
 
