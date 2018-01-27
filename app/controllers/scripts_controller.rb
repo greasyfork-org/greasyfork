@@ -129,7 +129,7 @@ class ScriptsController < ApplicationController
 					@title = t('scripts.listing_title_generic')
 					@description = t('scripts.listing_description_generic')
 				end
-				@canonical_params = [:page, :per_page, :site, :sort]
+				@canonical_params = [:page, :per_page, :site, :sort, :filter_locale]
 				if is_search
 					@canonical_params << :q
 				else
