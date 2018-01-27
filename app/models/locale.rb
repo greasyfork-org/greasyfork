@@ -6,7 +6,11 @@ class Locale < ApplicationRecord
 	scope :with_listable_scripts, ->(script_subset) {joins(:scripts).where(scripts: Script.listable(script_subset).where_values_hash).distinct.order(:code)}
 
 	def display_text
-		"#{native_name.nil? ? english_name : native_name} (#{code})"
+		"#{best_name} (#{code})"
+	end
+
+	def best_name
+		native_name || english_name
 	end
 
 	# Returns the matching locales for the passed locale code, with locales with UI available first.
