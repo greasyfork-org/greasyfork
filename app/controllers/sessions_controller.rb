@@ -150,7 +150,7 @@ class SessionsController < Devise::SessionsController
   # https://github.com/plataformatec/devise/issues/4084
   def require_no_authentication
     set_locale
-    super
+    super unless performed?
   end
 
 private
