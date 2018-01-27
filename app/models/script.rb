@@ -329,7 +329,7 @@ class Script < ActiveRecord::Base
 		if Greasyfork::Application.config.enable_detect_locale
 			begin
 				dl_lang_code = DetectLanguage.simple_detect(ft)
-			rescue Exception => ex
+			rescue => ex
 				Rails.logger.error "Could not detect language - #{ex}"
 			end
 			if !dl_lang_code.nil?
