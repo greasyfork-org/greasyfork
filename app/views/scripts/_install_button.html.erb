@@ -7,6 +7,7 @@ code_url = version_param.nil? ? script_user_js_path(script, name: script.url_nam
 	class: 'install-link',
 	'data-ping-url' => script_install_ping_path(script, :authenticity_token => session[:_csrf_token], :locale_override => nil),
 	'data-is-previous-version' => version_param.present?,
+	'data-previous-version-warning' => t('scripts.old_version_warning'),
 	rel: 'nofollow',
 	'data-script-name' => script.default_name,
 	'data-script-namespace' => script.namespace,
