@@ -14,6 +14,7 @@
 //= require jsonlylightbox
 //= require lightbox
 //= require everything
+//= require install
 //= require versioncheck
 //= require recaptcha
 //= require markup-preview

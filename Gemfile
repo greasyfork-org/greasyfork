@@ -38,6 +38,7 @@ gem 'ace-rails-ap'
 gem 'hashie'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'rails-observers'
+gem 'memoist'
 
 source 'https://rails-assets.org' do
 	gem 'rails-assets-jsonlylightbox'

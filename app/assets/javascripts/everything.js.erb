@@ -19,25 +19,6 @@
 		}
 	}
 
-	function hookUpInstallPingers() {
-		var installLink = document.querySelector(".install-link");
-		if (!installLink) {
-			return;
-		}
-		installLink.addEventListener("click", function(event) {
-			if (installLink.getAttribute("data-is-previous-version") == "true") {
-				if (!confirm("This is not the latest version of this script. If you install it, you will never be updated to a newer version. Install anyway?")) {
-					event.preventDefault();
-					return;
-				}
-			}
-			var xhr = new XMLHttpRequest();
-			xhr.open("POST", event.target.getAttribute("data-ping-url"), true);
-			xhr.overrideMimeType("text/plain");
-			xhr.send();
-		});
-	}
-
 	function hookUpAddLocalizedAdditionalInfo() {
 		var button = document.getElementById("add-additional-info");
 		if (!button) {
@@ -103,27 +84,6 @@
 		});
 	}
 
-	function hookUpBrowserId() {
-		var browserIdLink = document.querySelector(".browser_id-login");
-		if (browserIdLink) {
-			browserIdLink.addEventListener("click", function(event) {
-				navigator.id.get(function(assertion) {
-					var returnToParam = event.target.hasAttribute("data-return-to") ? ("&origin=" + event.target.getAttribute("data-return-to")) : "";
-					var rememberMeField = document.getElementById("remember_me");
-					if (rememberMeField && rememberMeField.checked) {
-						returnToParam += "&remember_me=1";
-					}
-					if (assertion) {
-						location.href = "<%=Greasyfork::Application.routes.url_helpers.omniauth_callback_path(:provider => 'browser_id')%>?assertion=" + encodeURIComponent(assertion) + returnToParam;
-					} else {
-						location.href = "<%=Greasyfork::Application.routes.url_helpers.omniauth_callback_path(:provider => 'browser_id')%>?failure=1"+ returnToParam;
-					}
-				});
-				event.preventDefault();
-			});
-		}
-	}
-
 	function hookUpExpandableText() {
 		var expandable = document.getElementById("script-applies-to");
 		if (!expandable) {
@@ -182,9 +142,7 @@
 
 	function init() {
 		hookUpSelectAllCheckboxes();
-		hookUpInstallPingers();
 		hookUpLocaleSwitcher();
-		hookUpBrowserId();
 		hookUpAddLocalizedAdditionalInfo();
 		hookUpAddSyncedLocalizedAdditionalInfo();
 		hookUpExpandableText();

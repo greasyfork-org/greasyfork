@@ -2,21 +2,14 @@
 	case script.script_type_id
 		when 1, 2 %>
 			<div id="install-area">
-				<%=link_to t('scripts.install'),
-					params[:version].nil? ? script_user_js_path(script, :name => script.url_name, :locale_override => nil) : script_user_js_path(script, :version => params[:version], :name => script.url_name, :locale_override => nil) + '&d=.user.js',
-					{
-						class: 'install-link',
-						'data-ping-url' => script_install_ping_path(script, :authenticity_token => session[:_csrf_token], :locale_override => nil),
-						'data-is-previous-version' => !params[:version].nil?,
-						rel: 'nofollow',
-						'data-script-name' => script.default_name,
-						'data-script-namespace' => script.namespace,
-						'data-script-version' => @script_version.version,
-						'data-update-label' => t('scripts.update', version: @script_version.version),
-						'data-downgrade-label' => t('scripts.downgrade', version: @script_version.version),
-						'data-reinstall-label' => t('scripts.reinstall', version: @script_version.version),
-					} %><%=link_to t('scripts.install_help'), help_installing_user_scripts_path, {:class => 'install-help-link', :title => t('scripts.install_help_title'), :rel => 'nofollow'}%>
-
+				<%= render partial: 'install_button', locals: {script_version: script_version, version_param: params[:version]}%><%=link_to t('scripts.install_help'), help_installing_user_scripts_path, {:class => 'install-help-link', :title => t('scripts.install_help_title'), :rel => 'nofollow'}%>
+				<% if promoted_script %>
+					<div class="post-install">
+						<div class="post-install-label"><%=t('scripts.promoted')%></div>
+						<%= t('scripts.promoted_text_html', script_link: link_to(promoted_script.name(I18n.locale), promoted_script)) %>
+						<%= render partial: 'install_button', locals: {script_version: promoted_script.script_versions.last}%>
+					</div>
+				<% end %>
 				<% if user_signed_in?
 					sets_direct_inclusion = []
 					sets_direct_exclusion = []

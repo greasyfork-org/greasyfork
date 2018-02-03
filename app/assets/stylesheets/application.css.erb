@@ -187,7 +187,7 @@ nav .with-submenu:hover > a::after, nav .with-submenu > a:focus::after {
 #install-area {
 	margin-bottom: 1em;
 }
-#install-area a:hover, #install-area a:focus {
+#install-area .install-link:hover, #install-area .install-link:focus, #install-area .install-help-link:hover, #install-area .install-help-link:focus {
 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
 }
 .install-link, .install-link:visited, .install-link:active, .install-link:hover, .install-help-link {
@@ -200,6 +200,20 @@ nav .with-submenu:hover > a::after, nav .with-submenu > a:focus::after {
 .install-help-link, .install-help-link:visited, .install-help-link:active, .install-help-link:hover {
 	background-color: #1E971E;
 	color: white;
+}
+.post-install {
+	display: none;
+	background-color: lightblue;
+	border: 1px solid lightblue;
+	border-radius: 2px;
+	padding: 0 10px 10px 10px;
+	margin-top: 10px;
+}
+.post-install-label {
+	font-size: x-small;
+	text-decoration: underline;
+	padding: 0;
+	margin: 0;
 }
 .script-in-sets {
 	display: inline-block;

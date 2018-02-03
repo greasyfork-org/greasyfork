@@ -1,4 +1,7 @@
+require 'memoist'
+
 module ScriptsHelper
+	extend Memoist
 
 	def script_list_link(label, sort: nil, site: nil, set: nil, default_sort: nil)
 		is_link = true
@@ -42,6 +45,11 @@ module ScriptsHelper
 		return "<i>#{I18n.t('scripts.no_license')}</i>".html_safe if script.license_text.nil?
 		return script.license_text
 	end
+
+	def promoted_script
+		Script.where(promoted: true).sample
+	end
+	memoize :promoted_script
 
 private
 
