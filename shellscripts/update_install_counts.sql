@@ -14,16 +14,10 @@ INSERT IGNORE INTO install_counts
 DELETE FROM daily_install_counts WHERE install_date < DATE_SUB(CURDATE(), INTERVAL 1 DAY);
 
 -- update total installs to be the sum of installs from historical and daily
-UPDATE scripts s
-  LEFT JOIN (
-    SELECT script_id, SUM(installs) c FROM install_counts GROUP BY script_id
-  ) h
-  ON s.id = h.script_id
-  LEFT JOIN (
-    SELECT script_id, COUNT(*) c FROM daily_install_counts GROUP BY script_id
-  ) d  
-  ON s.id = d.script_id
-  SET s.total_installs = IFNULL(h.c, 0) + IFNULL(d.c, 0);
+CREATE TEMPORARY TABLE total_install_counts (script_id int PRIMARY KEY NOT NULL, c INTEGER NOT NULL);
+INSERT INTO total_install_counts (script_id, c) SELECT script_id, SUM(installs) c FROM install_counts GROUP BY script_id;
+INSERT INTO total_install_counts (script_id, c) SELECT * FROM (SELECT script_id, COUNT(*) daily_count FROM daily_install_counts GROUP BY script_id) dic ON DUPLICATE KEY UPDATE c = c + daily_count;
+UPDATE scripts LEFT JOIN total_install_counts on id = script_id set total_installs = IFNULL(c, 0);
 
 -- for update counts, we want to deal with what happened last hour (as this runs at the top of the hour)
 -- update update counts for last hour's date
