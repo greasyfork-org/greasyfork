@@ -47,7 +47,11 @@ module ScriptsHelper
 	end
 
 	def promoted_script
-		Script.where(promoted: true).sample
+		return nil if sleazy?
+		return nil if @script&.sensitive
+		return nil if current_user && !current_user.show_ads
+		return nil unless @script&.id == 1
+		return Script.where(promoted: true).sample
 	end
 	memoize :promoted_script
 
