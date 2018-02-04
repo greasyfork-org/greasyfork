@@ -1,8 +1,8 @@
-<%- title t('.title', :resource => resource_class.model_name.human , :default => "Edit #{resource_name.to_s.humanize}") %>
+<%- title t('.title', resource: resource_name.to_s.humanize) %>
 
-<h2><%= t('.title', :resource => resource_class.model_name.human , :default => "Edit #{resource_name.to_s.humanize}") %></h2>
+<h2><%= t('.title', resource: resource_name.to_s.humanize) %></h2>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
 	<% syncing_identities = current_user.identities.select(&:syncing)
@@ -19,13 +19,11 @@
 	</div>
 
   <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
+  <%= f.email_field :email, autocomplete: "email" %></div>
 
-  <%- if devise_mapping.confirmable? && resource.pending_reconfirmation? -%>
-    <p>
-      <%= t('.currently_waiting_confirmation_for_email', :email => resource.unconfirmed_email, :default => "Currently waiting confirmation for: %{email}") %>
-    </p>
-  <%- end -%>
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
+  <% end %>
 
 	<div class="form-control">
 		<%= f.label :profile %>
@@ -96,15 +94,7 @@
 		<%= f.radio_button(:approve_redistribution, false)%> <label for="user_approve_redistribution_false"><%=t('users.approve_redistribution_false')%></label>
 	</div>
 
-  <div><%= f.submit t('.update', :default => "Update") %></div>
+  <div><%= f.submit t('.update') %></div>
 <% end %>
 
-<% if false 
-# disabled here and in routing
-%>
-	<h3><%= t('.cancel_my_account', :default => 'Cancel my account') %></h3>
-
-	<p><%= t('.unhappy', :default => 'Unhappy') %>? <%= link_to t('.cancel_my_account', :default => "Cancel my account"), registration_path(resource_name), :data => { :confirm => t('.are_you_sure', :default => "Are you sure?") }, :method => :delete %>.</p>
-<% end %>
-
-<%= link_to t('devise.shared.links.back', :default => "Back"), :back %>
+<%= link_to t('devise.shared.links.back'), :back %>
