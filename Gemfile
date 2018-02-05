@@ -47,7 +47,6 @@ end
 gem 'byebug', group: [:development, :test]
 
 group :development do
-  gem 'bullet'
   gem 'capistrano', "~> 3.7"
   gem 'capistrano-rails', "~> 1.2"
   gem 'capistrano-passenger'
