@@ -3,7 +3,7 @@
 
 <p><%=t('scripts.derivatives_intro')%></p>
 
-<% if !CpdDuplication.first.nil? %>
+<% if false && !CpdDuplication.first.nil? %>
 	<p><%=t('scripts.derivatives_code_matches_info_html', {last_run: markup_date(CpdDuplication.first.created_at), max_size: number_to_human_size(Rails.configuration.duplicate_check_size_limit), match_size: Rails.configuration.duplicate_check_line_threshold, count: Rails.configuration.duplicate_check_line_threshold})%></p>
 	<% if @code_duplications.empty? %>
 		<p><%=t('scripts.listing_none')%></p>

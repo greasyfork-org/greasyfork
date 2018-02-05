@@ -850,8 +850,9 @@ class ScriptsController < ApplicationController
 		@same_namespaces = []
 		@same_namespaces = Script.listable(script_subset).where(['user_id != ?', @script.user_id]).where(:namespace => @script.namespace).includes([:user, :license]) if !@script.namespace.nil?
 
+		# Disabled until we can find something that can handle current volumes.
 		# only duplications containing listable scripts by others
-		@code_duplications = @script.cpd_duplications.includes(:cpd_duplication_scripts => {:script => :user}).select {|dup| dup.cpd_duplication_scripts.any?{|cpdds| cpdds.script.user_id != @script.user_id && cpdds.script.listable?}}.uniq
+		# @code_duplications = @script.cpd_duplications.includes(:cpd_duplication_scripts => {:script => :user}).select {|dup| dup.cpd_duplication_scripts.any?{|cpdds| cpdds.script.user_id != @script.user_id && cpdds.script.listable?}}.uniq
 
 		@canonical_params = [:script_id]
 	end
