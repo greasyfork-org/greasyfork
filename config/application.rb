@@ -49,5 +49,7 @@ module Greasyfork
     config.action_controller.forgery_protection_origin_check = true
 
     config.active_record.observers = :script_observer
+
+    config.promoted_script_divisor = 10
   end
 end
