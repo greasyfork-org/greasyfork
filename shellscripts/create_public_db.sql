@@ -80,6 +80,10 @@ DROP TABLE IF EXISTS greasyfork_public.script_applies_tos;
 CREATE TABLE greasyfork_public.script_applies_tos LIKE greasyfork.script_applies_tos;
 INSERT INTO greasyfork_public.script_applies_tos SELECT greasyfork.script_applies_tos.* FROM greasyfork.script_applies_tos JOIN greasyfork_public.scripts ON scripts.id = script_id;
 
+DROP TABLE IF EXISTS greasyfork_public.site_applications;
+CREATE TABLE greasyfork_public.site_applications LIKE greasyfork.site_applications;
+INSERT INTO greasyfork_public.site_applications SELECT DISTINCT greasyfork.site_applications.* FROM greasyfork.site_applications JOIN greasyfork_public.script_applies_tos ON site_application_id = site_applications.id;
+
 DROP TABLE IF EXISTS greasyfork_public.script_versions;
 CREATE TABLE greasyfork_public.script_versions LIKE greasyfork.script_versions;
 INSERT INTO greasyfork_public.script_versions SELECT greasyfork.script_versions.* FROM greasyfork.script_versions JOIN greasyfork_public.scripts ON scripts.id = script_id;
