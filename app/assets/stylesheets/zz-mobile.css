@@ -55,7 +55,13 @@ input[type="checkbox"], input[type="radio"] {
 	.script-list dd, #script-content dd {
 		display: table-cell;
 		padding-left: 0;
+	}
+	#script-stats dt, #script-meta dt {
+		display: table-cell;
 		white-space: nowrap;
+	}
+	#script-stats dd, #script-meta dd {
+		min-width: unset;
 	}
 
 	.change-script-set .selection-box {
