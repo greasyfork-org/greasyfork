@@ -111,17 +111,22 @@ class Script < ActiveRecord::Base
 
 	strip_attributes :only => [:sync_identifier]
 
-	before_validation :set_locale
-	def set_locale
-		return if !locale.nil?
-		self.locale = detect_locale 
-		localized_attributes.select{|la| la.locale.nil?}.each{|la| la.locale = self.locale}
-		true
-	end
-
 	before_validation :set_default_name
 	def set_default_name
 		self.default_name = default_localized_value_for('name')
+		true
+	end
+
+	before_validation :set_locale
+	def set_locale
+		return if !locale.nil?
+
+		# Try to avoid doing this for something that will be invalid anyway.
+		# The API is limited.
+		return unless description.present?
+
+		self.locale = detect_locale 
+		localized_attributes.select{|la| la.locale.nil?}.each{|la| la.locale = self.locale}
 		true
 	end
 
@@ -397,8 +402,9 @@ private
 	# all text content of non-localized attributes for this script (for language detection)
 	def full_text
 		parts = []
-		parts << name if !name.nil? and !name.empty?
-		parts << description if !description.nil? and !description.empty?
+		parts << name if name.present?
+		parts << default_name if default_name.present?
+		parts << description if description.present?
 		la = localized_attributes.select{|la| la.attribute_key == 'additional_info' && la.attribute_default}.first
 		if !la.nil?
 			additional_text = ApplicationController.helpers.format_user_text_as_plain(la.attribute_value, la.value_markup)
