@@ -770,6 +770,36 @@ en:
     update_sync_warning:
       one: "Your user name and email are set to be synced when you log in with %{providers}. %{edit_sign_in_link:Edit your sign in methods to remove syncing} if you want to permanently set a custom user name or email."
       other: "Your user name and email are set to be synced when you log in with %{providers}. %{edit_sign_in_link:Edit your sign in methods to remove syncing} if you want to permanently set a custom user name or email."
+    # link on the user page to go to the delete page
+    delete_link: "Delete account"
+    delete:
+      intro: "Deleting your %{site_name} account '%{user_name}' will have the following effects:"
+      requires_permanent_deletion: "Before deleting your account, you must request permanent deletion of the following scripts:"
+      password_effect: "You will no longer be able to sign in with your password."
+      identities_effect:
+        one: "Signing in via %{identities} will result in a new account."
+        other: "Signing in via %{identities} will result in a new account."
+      scripts_effect:
+        one: "Your %{count} script will be deleted."
+        other: "Your %{count} scripts will be deleted."
+      script_sets_effect:
+        one: "Your %{count} script sets will be deleted."
+        other: "Your %{count} script sets will be deleted."
+      forum_effect: "Your contributions to the forum will remain, but the associated user will be renamed \"%{user_name}\"."
+      email_confirmation: "Before deleting your account, %{site_name} will send an email to %{email} to confirm your request."
+      submit: "Delete account"
+      confirmation_email_sent: "Deletion confirmation email has been sent."
+      confirmation_email:
+        subject: "%{site_name} account delete confirmation"
+        body: "A request was made to delete your account '%{user_name}' on %{site_name}. To confirm this request and delete your account, go to %{url} . This must be completed in the next 24 hours or the request will be cancelled."
+      confirmation:
+        intro: "You are about to delete the account '%{user_name}'. This action cannot be undone."
+        confirm: "Delete '%{user_name}'"
+        cancel: "Cancel deletion"
+        key_mismatch: "Could not delete user - keys do not match."
+        request_expired: "Could not delete user - request expired."
+        cancelled: "Deletion cancelled."
+        completed: "Your account has been deleted."
   help:
     installing_user_scripts:
       title: 'How to install user scripts'

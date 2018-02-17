@@ -285,17 +285,17 @@ class UsersController < ApplicationController
 	  @user.delete_confirmation_key = SecureRandom.hex
 	  @user.delete_confirmation_expiry = 1.day.from_now
 	  @user.save(validate: false)
-	  UserMailer.delete_confirm(@user).deliver_now
-	  flash[:notice] = 'Deletion confirmation email has been sent.'
+	  UserMailer.delete_confirm(@user, site_name).deliver_now
+	  flash[:notice] = t('users.delete.confirmation_email_sent')
 	  redirect_to @user
 	end
 
   def delete_confirm
     @user = current_user
     if params[:key].blank? || @user.delete_confirmation_key.blank? || params[:key] != @user.delete_confirmation_key
-      @error = 'Could not delete user - keys do not match.'
+      @error = t('users.delete.confirmation.key_mismatch')
     elsif @user.delete_confirmation_expiry.nil? || DateTime.now > @user.delete_confirmation_expiry
-      @error = 'Could not delete user - request expired.'
+      @error = t('users.delete.confirmation.request_expired')
     end
   end
 
@@ -303,15 +303,15 @@ class UsersController < ApplicationController
     @user = current_user
     if params[:cancel].present?
       @user.update_attributes(delete_confirmation_key: nil, delete_confirmation_expiry: nil)
-      flash[:notice] = 'Deletion cancelled.'
+      flash[:notice] = t('users.delete.confirmation.cancelled')
     elsif params[:key].blank? || @user.delete_confirmation_key.blank? || params[:key] != @user.delete_confirmation_key
-      flash[:alert] = 'Could not delete user - keys do not match.'
+      flash[:alert] = t('users.delete.confirmation.key_mismatch')
     elsif @user.delete_confirmation_expiry.nil? || DateTime.now > @user.delete_confirmation_expiry
-      flash[:alert] = 'Could not delete user - request expired.'
+      flash[:alert] = t('users.delete.confirmation.request_expired')
     else
       @user.destroy!
       sign_out @user
-      flash[:alert] = 'Your account has been deleted.'
+      flash[:alert] = t('users.delete.confirmation.completed')
     end
     redirect_to root_path
   end

@@ -1,9 +1,9 @@
 class UserMailer < ApplicationMailer
   
-  def delete_confirm(user)
-    mail(to: user.email, subject: 'Greasy Fork account delete confirmation') do |format|
+  def delete_confirm(user, site_name)
+    mail(to: user.email, subject: t('users.delete.confirmation_email.subject', site_name: site_name)) do |format|
       format.text {
-        render plain: "A request was made to delete your account '#{user.name}' on Greasy Fork. To confirm this request and delete your account, go to #{user_delete_confirm_url(key: user.delete_confirmation_key)}. This must be completed in the next 24 hours or the request will be cancelled."
+        render plain: t('users.delete.confirmation_email.body', site_name: site_name, user_name: user.name, url: user_delete_confirm_url(key: user.delete_confirmation_key))
       }
     end
   end
