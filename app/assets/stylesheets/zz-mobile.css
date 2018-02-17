@@ -1,0 +1,157 @@
+/* Mobile Friendly CSS */
+
+
+input[type="checkbox"], input[type="radio"] {
+	vertical-align: middle;
+}
+
+/* history, diff */
+#script-content ul {
+	list-style-type: none;
+	padding: 0;
+}
+#script-content form.diff_options li {
+	display: inline-block;
+}
+
+@media screen and (min-width: 440px) and (max-width: 960px) {
+	/* resize script list while screen resizing */
+	.script-list, .user-list {
+		width: calc(100% - 11em);
+		margin-left: 1px;
+		margin-right: 1px;
+	}
+	.list-option-groups ~ ol {
+		width: calc(100% - 11em);
+	}
+	.text-content .list-option-groups ~ ol {
+		width: calc(100% - 11em);
+	}
+	.list-option-groups {
+		float: right;
+		width: 12em;
+		margin-left: 1px;
+		margin-right: 1px;
+	}
+}
+
+@media screen and (max-width: 720px) {
+	/* make descriptions not wrap,
+	* and show one description each line for narrow width.
+	*/
+	.script-list, #script-content {
+		margin-left: 1px;
+		margin-right: 1px;
+	}
+
+	.script-list dl, #script-content dl {
+		display: table-row;
+	}
+	.script-list dt, #script-content dt {
+		display: table-cell;
+		padding-left: 0;
+		white-space: nowrap;
+	}
+	.script-list dd, #script-content dd {
+		display: table-cell;
+		padding-left: 0;
+		white-space: nowrap;
+	}
+
+	.change-script-set .selection-box {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 680px) {
+	/* site main header, make site-name not ovelape with others */
+	#site-name img {
+		max-width: 96px;
+		max-height: 96px;
+		width: 15%;
+		height: 15%;
+	}
+	#site-name-text {
+		margin-top: 3vw;
+	}
+	/* main header font size: 10% of viewport width */
+	#main-header h1 {
+		font-size: 8vw;
+	}
+	#main-header .subtitle {
+		margin: -2vw 0 0 10px;
+		font-size: 2vw;
+	}
+	#site-nav {
+		margin-top: -3vw;
+	}
+	#site-nav>nav, #nav-user-info {
+		display: block;
+		position: unset;
+		right: unset;
+		padding-top: 0.3em;
+	}
+	#site-nav>nav {
+		bottom: unset;
+	}
+	#nav-user-info {
+		top: unset;
+		font-size: unset;
+		width: 100%;
+	}
+	#nav-user-info .sign-in-link {
+		padding-right: 0.7em;
+	}
+	#script-search,#language-selector {
+		display: unset;
+	}
+
+	/* make image in home page to fill width */
+	#home-step-1 figure, #home-step-2 figure, #home-step-3 figure {
+		float: unset;
+		max-width: unset;
+		margin: unset;
+	}
+	[id^='home-step-'] figure img {
+		width: 100%;
+	}
+
+	/* use default font-size for search input */
+	.sidebar-search input[type="search"], .home-search input[type="search"] {
+		font-size: unset;
+	}
+}
+
+@media screen and (max-width: 440px) {
+	/* list need to fill the width */
+	.script-list, .user-list {
+		margin-left: 1px;
+		margin-right: 1px;
+	}
+	.list-option-groups ~ ol {
+		width: unset;
+	}
+	.text-content .list-option-groups ~ ol {
+		width: unset;
+	}
+	.list-option-groups {
+		float: unset;
+		width: unset;
+		margin-left: 1px;
+		margin-right: 1px;
+	}
+	/* show more code */
+	#code-container {
+		font-size: small;
+	}
+
+	/* sign up */
+	form.new_user {
+		width: unset;
+	}
+	/* show input and label on same line */
+	form input[type="checkbox"] + label {
+		display: unset;
+		word-wrap: break-word;
+	}
+}
