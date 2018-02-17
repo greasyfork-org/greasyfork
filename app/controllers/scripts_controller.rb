@@ -366,6 +366,11 @@ class ScriptsController < ApplicationController
 
 				user_js_code = script.script_delete_type_id == 2 ? script_version.get_blanked_code : script_version.rewritten_code
 
+				# If the request specifies a specific version, the code will never change, so inform the manager not to check for updates.
+				if params[:version].present?
+					user_js_code = ScriptVersion.inject_meta_for_code(user_js_code, downloadURL: 'none')
+				end
+
 				File.write(cache_path, user_js_code) if do_caching
 
 				render body: user_js_code, content_type: 'text/javascript'
