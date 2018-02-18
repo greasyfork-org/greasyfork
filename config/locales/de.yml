@@ -7,7 +7,7 @@ de:
       sign_in: "Anmelden"
       submenu: "mehr"
       advanced_search: "Erweiterte Suche"
-      user_list: "Benutzer Liste"
+      user_list: "Benutzerliste"
       libraries: "Bibliotheken"
       moderator_log: "Moderator Protokoll"
   helpers:
@@ -47,6 +47,9 @@ de:
     update: "Auf Version %{version} aktualisieren"
     downgrade: "Auf Version %{version} zurückstufen"
     reinstall: "Version %{version} erneut installieren"
+    old_version_warning: "Das ist nicht die neueste Version dieses Skripts. Wenn du es installierst, wirst du nie ein Update für eine neuere Version erhalten. Trotzdem installieren?"
+    promoted: "Vorgeschlagenes Skript"
+    promoted_text_html: "Dir könnte auch %{script_link} gefallen."
     library_instructions_html: "Dieses Skript sollte nicht direkt installiert werden. Es handelt sich hier um eine Bibliothek für andere Skripte, welche über folgenden Befehl in den Metadaten eines Skriptes eingebunden wird %{code}"
     deleted_notice: "Dieses Skript wurde gelöscht."
     version_notice_html: "Version vom %{date}. %{latest_version_link}"
@@ -138,6 +141,8 @@ de:
     listing_created_feed: "Neue Skripte"
     listing_updated_feed: "Aktualisierte Skripte"
     listing_none: "(Keine)"
+    listing_set_locale_filter: "Zeige Ergebnisse für alle Sprachen. %{set_filter_link:Zeige nur %{language}.}"
+    listing_remove_locale_filter: "Zeige nur Ergebnisse auf %{language}. %{remove_filter_link:Zeige Ergebnisse für alle Sprachen.}"
     import: "Skripte importieren"
     new: "Neues Skript veröffentlichen"
     support_site: "Die Hilfeseite des Autors besuchen."
@@ -177,6 +182,7 @@ de:
     warning_namespace_missing_generate_automatically_html: "<code>@namespace</code> automatisch erstellen?"
     warning_namespace_changed_html: "Ihr <code>@namespace</code> hat sich geändert. Ein konsistenter <code>@namespace</code> erlaubt es ihren Nutzern, das Script erneut zu installieren oder es zu aktualisieren."
     warning_potentially_minified_html: "Ihr Skriptquelltext sieht aus, als enthielte er verkürzten (komprimierten) Quelltext. Falls Sie eine verkleinerte Bibliothek benutzen, binden Sie diese bitte mit <code>@require</code> von %{allowed_requires_link} ein. Skripte mit verkleinertem Quelltext können entfernt werden."
+    warning_automatic_sensitive_html: "Dein Skript ist für %{sensitive_domains} und wird daher als nicht-jugendfrei markiert."
     warning_potentially_minified_allowed_requires_link: "einer dieser Seiten"
     additional_info_locale_prompt: "(Wählen Sie eine Sprache)"
     additional_info_add_localized: "Lokalisierte zusätzliche Informationen hinzufügen"
@@ -214,6 +220,9 @@ de:
     write_your_own_html: "%{post_a_script_link} (oder %{learn_to_write_scripts_link})"
     post_a_script_link_text: "Veröffentlichen Sie ein Skript, welches Sie geschrieben haben"
     learn_to_write_scripts_link_text: "lernen Sie eines zu schreiben"
+    feedback_suggestion: "Stelle eine Frage, veröffentlichen eine Bewertung oder melde das Skript auf %{site_name}."
+    feedback_suggestion_with_support_site: "%{support_url:Besuche die Seite des Autors für Hilfe} oder %{feedback_link:stelle eine Frage,  veröffentliche eine Bewertung oder melde ein Skript auf %{site_name}}."
+    feedback_suggestion_with_support_email: "%{support_url:Schreibe dem Autor für Hilfe} oder %{feedback_link:stelle eine Frage, veröffentliche eine Bewertung oder melde das Skript auf %{site_name}}."
     approve_redistribution_explanation: "%{site_name} kann anderen Internetseiten mitteilen, dass Sie Ihnen die Veröffentlichung Ihres Skriptes erlauben. Das kann durch die Lizenz, welche für das Skript gewählt wurde, bereits erlaubt sein."
     approve_redistribution_use_user_setting: "Meine Kontovorgabe benutzen (%{user_setting})"
     approve_redistribution_use_user_setting_not_set: "Nicht festgelegt"
@@ -226,6 +235,7 @@ de:
     adult_content_self_report_explanation: "%{site_name} erlaubt Skripte mit nicht-jugendfreien Inhalten. Diese müssen jedoch entsprechend gekennzeichnet sein, damit Nutzer entscheiden können ob sie diese Inhalte sehen möchten."
     not_adult_content_self_report_html: "Dieses Skript enthält <strong>keine</strong> nicht-jugendfreien Inhalte und es ist <strong>nicht</strong> für eine Seite die nicht-jugendfreie Inhalte enthält."
     not_adult_content_self_report_explanation: "%{site_name} erlaubt Skripte mit nicht-jugendfreien Inhalten. Diese müssen jedoch entsprechend gekennzeichnet sein, damit Nutzer entscheiden können ob sie diese Inhalte sehen möchten. Ihr Skript wurde als nicht-jugendfrei gekennzeichnet. Sie können erklären dass es dies nicht ist. Ihre Erklärung wird von einem Moderator überprüft."
+    not_adult_content_self_report_explanation_automatic: "%{site_name}erlaubt Skripte mit nicht-jugendfreiem Inhalt. Sie müssen aber als solche markiert sein, damit Benutzer auswählen können, ob sie sie sehen. Dein Skript wurde als nicht-jugendfrei markiert, weil es für %{domain_list} ist."
     adult_content_on_greasy_logged_in_error: "Dieses Skript ist mit Ihren derzeitigen %{edit_account_link:Greasy Fork Kontoeinstellungen} nicht länger auf dieser Seite verfügbar."
     adult_content_on_greasy_not_logged_in_error: "Dieses Skript ist auf dieser Seite nicht länger anonym verfügbar.  %{login_link:Loggen Sie sich ein} und prüfen Sie Ihre Greasy Fork Kontoeinstellungen."
     non_adult_content_on_sleazy: "Dieses Skript ist nicht auf dieser Webseite verfügbar."
@@ -323,6 +333,34 @@ de:
     explain_user_scripts_html: "Benutzerskripte erlauben die vollständige Kontrolle des Interneterlebnisses. Einmal installiert werten sie automatisch die besuchten Seiten auf, indem sie diesen Funktionen hinzufügen, deren Verwendung vereinfachen oder störende Kleinigkeiten entfernen. Die Benutzerskripte auf %{site_name} wurden von anderen Benutzern geschrieben und veröffentlicht um sie mit der ganzen Welt zu teilen. Sie sind frei verwendbar und einfach zu benutzen."
     installing_step1_header: "Schritt 1: Eine Benutzerskriptverwaltung installieren"
     installing_step1_caption: "Tampermonkey in Chrome"
+    installing_step1_description_html: >
+        <p>Um Benutzerskripte zu verwenden, musst du zuerst einen Skript-Verwaltung
+        installieren. Welchen Manager du nutzen kannst, hängt von deinem Browser ab.</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> or %{chrome_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
+        or %{firefox_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} or %{opera_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla: (no additional software required)</li>
+
+        <li>AdGuard: (no additional software required)</li>
+
+        </ul>
     installing_step2_header: "Schritt 2: Ein Benutzerskript installieren"
     installing_step2_caption: "Der Installationsknopf eines Benutzerskripts"
     installing_step2_description_html: >
@@ -422,6 +460,35 @@ de:
     update_sync_warning:
       one: "Ihr Benutzername und E-Mail sind auf Synchronisierung eingestellt, wenn Sie sich mit %{providers} anmelden. %{edit_sign_in_link:Bearbeiten Sie Ihre Anmeldearten, um die Synchronisierung zu beenden}, falls Sie einen endgültigen Benutzernamen oder E-Mail setzen möchten."
       other: "Ihr Benutzername und E-Mail sind auf Synchronisierung eingestellt, wenn Sie sich mit %{providers} anmelden. %{edit_sign_in_link:Bearbeiten Sie Ihre Anmeldearten, um die Synchronisierung zu beenden}, falls Sie einen endgültigen Benutzernamen oder E-Mail setzen möchten."
+    delete_link: "Konto löschen"
+    delete:
+      intro: "Die Löschung Ihres %{site_name}Kontos '%{user_name}' hat folgende Auswirkungen:"
+      requires_permanent_deletion: "Bevor Ihr Konto gelöscht wird, müssen Sie die dauerhafte Löschung folgender Skripte bestätigen:"
+      password_effect: "Sie können sich nicht mehr mit Ihrem Passwort anmelden."
+      identities_effect:
+        one: "Bei Anmeldung über %{identities} wird ein neues Konto erstellt."
+        other: "Bei Anmeldung über %{identities} wird ein neues Konto erstellt."
+      scripts_effect:
+        one: "%{count} Skript wird gelöscht."
+        other: "Ihre %{count} Skripte werden gelöscht."
+      script_sets_effect:
+        one: "%{count} Skriptsammlung wird gelöscht."
+        other: "Ihre %{count} Skriptsammlungen werden gelöscht."
+      forum_effect: "Ihre Forenbeiträge bleiben erhalten, aber der angezeigte Benutzername wird \"%{user_name}\" sein."
+      email_confirmation: "Bevor Ihr Konto gelöscht wird, erhalten Sie von %{site_name} eine E-Mail an %{email} mit einem Bestätigungslink."
+      submit: "Konto löschen"
+      confirmation_email_sent: "E-Mail mit Link zum Bestätigen des Löschens wurde versendet."
+      confirmation_email:
+        subject: "Bestätigen Sie die Löschung Ihres Kontos bei %{site_name}"
+        body: "Eine Anfrage zur Löschung Ihres Kontos '%{user_name}' auf %{site_name} wurde registriert. Um diese Anfrage zu bestätigen, rufe n Sie bitte %{url} auf. Dies muss innerhalb der nächsten 24 Stunden geschehen, andernfalls wird die Anfrage verworfen."
+      confirmation:
+        intro: "Sie sind dabei, das Konto '%{user_name}' zu löschen. Diese Aktion kann nicht rückgängig gemacht werden."
+        confirm: "Lösche '%{user_name}'"
+        cancel: "Löschen abbrechen"
+        key_mismatch: "Konnte Benutzer nicht löschen - Schlüssel stimmen nicht überein."
+        request_expired: "Konnte Benutzer nicht löschen - Anfrage abgelaufen."
+        cancelled: "Löschen abgebrochen."
+        completed: "Ihr Konto wurde gelöscht."
   help:
     installing_user_scripts:
       title: 'Wie installiert man Benutzerskripte?'
@@ -438,6 +505,7 @@ de:
       require_html: "Bindet externes JavaScript in einem Skript ein. Siehe %{external_script_link}."
       require_external_script_link_text: "die Regeln zum Einbinden von Quelltext externer Skripte"
       updateURL: "Beschreibt wie Benutzerskriptverwaltungen Aktualisierungen beziehen sollen. %{site_name} entfernt diese Keys, wodurch jedes Skript welches von %{site_name} aus installiert wurde, nur von %{site_name} aus aktualisiert wird."
+      license: "Die Lizenz, die beschreibt, ob Leute ein Skript kopieren oder bearbeiten dürfen. Es wird empfohlen, einen \"Vollnamen\" oder \"Kennzeichnung\" der %{spdx_link:the SPDX Lizenzliste}  zu verwenden. Eine fehlende Lizenz impliziert, dass das Skript für persönlichen Gebrauch installiert werden, aber nicht weiterverbreitet werden darf. Die Lizenz wird auf der Infoseite des Skripts angezeigt."
       supportURL: "Internetadresse zu einer Seite, auf der Benutzer Hilfe zu einem Skript erhalten können (z.B. ein Bug-Tracker, ein Forum, eine E-Mail-Adresse). Die Hilfeadresse wird auf der Rückmeldeseite eines Skriptes angezeigt."
       contributionURL_html: "Internetadresse zu einer Seite, auf der Benutzer an den Autor eines Skriptes spenden können. Die Spendenseite wird auf der Rückmeldeseite eines Skriptes angezeigt. Die Internetadresse kann http, https oder ein Bitcoin-Protokoll sein. Um eine PayPal-Spendenseite zu verknüpfen, nutzen Sie eine Internetadresse im Format <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a>, bei der Sie die Beispiel-E-Mail-Adresse durch Ihre eigene ersetzen."
       contributionAmount_html: "Vorgeschlagener Spendenbetrag; genutzt in Verbindung mit <code>@contributionURL</code>."
@@ -451,6 +519,47 @@ de:
       post_new_script_link_text: 'ein neues Skript zu veröffentlichen'
     code_rules:
       title: "%{site_name}s Regeln für veröffentlichte Skripte"
+      content_html: >
+          <p>Nachfolgend sind die Voraussetzungen zum Veröffentlichen von Skripten
+          auf %{site_name} genannt. Diese sollen dazu beitragen, dass %{site_name}
+          ein sicherer und hilfreicher Ort für Benutzerskripte bleibt. Alle Skripte,
+          die die Voraussetzungen nicht erfüllen, können von %{site_name} Moderatoren
+          gelöscht werden.</p> <ul>
+
+          <li>Skripte müssen eine Beschreibung darüber enthalten, was sie tun. Sie
+          dürfen nichts tun, was nicht dem Erreichen dieses Ziels dient. Benutzer
+          müssen wissen, was das Skript tun wird, bevor sie es installieren. Skripte,
+          die Tracking oder Werbung enthalten, müssen dies in ihrer Beschreibung offenlegen.</li>
+
+          <li>Code, der auf dieser Seite veröffentlicht wird, darf nicht verschleiert
+          oder unlesbar komprimiert sein. Benutzer müssen die Möglichkeit haben, den
+          Quelltext zu analysieren und verstehen, bevor sie das Skript installieren.</li>
+
+          <li>Nutzt das Skript Bibliotheken, so müssen diese mit <code>@require</code>eingebunden
+          werden, falls kein gültiger technischer Grund dagegen vorliegt. Wird eine
+          Bibliothek inline eingebunden, so müssen Informationen zur Quelle (URL)
+          und Version der Bibliothek in einem Kommentar hinterlegt werden.</li>
+
+          <li>Ihr Skript muss das Urheberrecht anderer beachten. Das betrifft sowohl
+          das Skript selbst, als auch sämtliche genutzten Ressourcen wie z.B. Bilder.
+          Wenn Sie beabsichtigen, Inhalte anderer zu nutzen, dann sind sie verpflichtet,
+          sich an deren Lizenzvorgaben zu halten oder zuvor eine Erlaubnis des Autors
+          einzuholen.</li>
+
+          <li>%{external_scripts_link:Die Nutzung externer Skripte ist begrenzt.}</li>
+
+          %{adult_content_requirement}
+
+          <li>Skripte dürfen nicht öfter als ein Mal pro Tag nach Updates suchen.
+          Beachten Sie, dass die meisten Userskript-Verwaltungen Aktualisierungen
+          automatisch abwickeln und eine Prüfung im Skript normalerweise unnötig ist.</li>
+
+          </ul> <p>Wenn Sie ein Skript bemerken, welches diese Voraussetzungen nicht
+          alle erfüllt, so melden Sie es bitte den Moderatoren, indem Sie auf den
+          "Rückmeldungen"-Link dieses Skripts klicken, eine neue Diskussion eröffnen
+          und die Option "Skript melden" auswählen.</p> <p>Falls Sie mit einer dieser
+          Vorgaben nicht einverstanden sind, dann %{contact_link:lassen Sie uns darüber
+          reden}!</p>
       adult_content_rule_html: "<li>Skripte, welche nicht-jugendfreie Inhalte enthalten oder für Seiten mit nicht-jugendfreien Inhalten gemacht sind, müssen als solche gekennzeichnet werden, um anderen Nutzern die Wahlmöglichkeit zu geben ob sie diese sehen möchten.</li>"
     external_scripts:
       title: "%{site_name}s Richtlinie für externe Skripte"
@@ -609,6 +718,8 @@ de:
     expander_show_more: "Mehr anzeigen"
     expander_show_less: "Weniger anzeigen"
     advertisement_note: Werbung
+    preview_tab: Vorschau
+    write_tab: Schreiben
   activerecord:
     attributes:
       user:
