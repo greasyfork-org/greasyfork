@@ -332,6 +332,7 @@ class Script < ActiveRecord::Base
 		ft = full_text
 		return if ft.nil?
 		if Greasyfork::Application.config.enable_detect_locale
+			Logger.new("#{Rails.root}/log/detectlanguage.log").info("Sending DetectLanguage request for #{id ? "script #{id}" : "a new script"} - #{full_text[0..50]}...")
 			begin
 				dl_lang_code = DetectLanguage.simple_detect(ft)
 			rescue => ex
