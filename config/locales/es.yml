@@ -459,6 +459,35 @@ es:
     update_sync_warning:
       one: "Su nombre de usuario y correo electrónico están configurados para sincronizarse cuando inicie sesión con %{providers}. %{edit_sign_in_link:Edite sus métodos de inicio de sesión para eliminar el sincronizado} si quiere establecer un nombre de usuario o correo electrónico personalizado de forma permanente."
       other: "Tu nombre de usuario y correo electrónico están configurados para sincronizarse cuando inicies sesión con %{providers}. %{edit_sign_in_link:Edita tus métodos de inicio de sesión para eliminar la sincronía} si quieres utilizar un nombre de usuario o correo electrónico personalizado de forma permanente."
+    delete_link: "Eliminar cuenta"
+    delete:
+      intro: "Eliminar su cuenta de %{site_name} '%{user_name}' tendrá los siguientes efectos:"
+      requires_permanent_deletion: "Antes de eliminar su cuenta, debe solicitar el borrado permanente de los siguientes scripts:"
+      password_effect: "Ya no podrá iniciar sesión con su contraseña."
+      identities_effect:
+        one: "Iniciar sesión vía %{identities} resultará en una nueva cuenta."
+        other: "Iniciar sesión vía %{identities} resultará en una nueva cuenta."
+      scripts_effect:
+        one: "Su script se eliminará"
+        other: "Sus %{count} scripts se eliminarán."
+      script_sets_effect:
+        one: "Su juego de scripts se eliminará."
+        other: "Sus %{count} juegos de scripts se eliminarán."
+      forum_effect: "Sus contribuciones al foro permanecerán, pero el usuario asociado será renombrado como \"%{user_name}\"."
+      email_confirmation: "Antes de eliminar su cuenta, %{site_name} le enviará un corro a %{email} para confirmar su solicitud."
+      submit: "Eliminar cuenta"
+      confirmation_email_sent: "El correo de confirmación de la eliminación se ha enviado."
+      confirmation_email:
+        subject: "Confirmación de eliminación de cuenta de %{site_name}"
+        body: "Se ha formulado una solicitud para eliminar su cuenta '%{user_name}' en %{site_name}. Para confirmar esta solicitud y eliminar su cuenta, vaya a %{url} . Esto debe completarse en las siguientes 24 horas o la solicitud será cancelada."
+      confirmation:
+        intro: "Está a punto de borrar la cuenta '%{user_name}'. Esta acción no se puede deshacer."
+        confirm: "Eliminar '%{user_name}'"
+        cancel: "Cancelar eliminación"
+        key_mismatch: "No se pudo eliminar al usuario - las claves no coinciden."
+        request_expired: "No se pudo eliminar al usuario - la solicitud caducó."
+        cancelled: "Eliminación cancelada."
+        completed: "Su cuenta ha sido eliminada."
   help:
     installing_user_scripts:
       title: 'Aprender a instalar scripts de usuario'

@@ -458,6 +458,31 @@ pt-BR:
     update_sync_warning:
       one: "Seu nome de usuário e email estão configurados para serem sincronizados quando você efetuar o login com %{providers}. %{edit_sign_in_link:Altere seus métodos de login para remover esta sincronização} caso deseje definir permanentemente um nome de usuário ou email personalizados."
       other: "Seu nome de usuário e email estão configurados para serem sincronizados quando você efetuar o login com %{providers}. %{edit_sign_in_link:Altere seus métodos de login para remover esta sincronização} caso deseje definir permanentemente um nome de usuário ou email personalizados."
+    delete_link: "Apagar conta"
+    delete:
+      requires_permanent_deletion: "Antes de apagar sua conta, você deve solicitar a remoção permanente dos seguintes scripts:"
+      password_effect: "Você não poderá mais acessar o site utilizando sua senha."
+      identities_effect:
+        one: "Acessar via %{identities} fará com que seja criada uma nova conta."
+        other: "Acessar via %{identities} fará com que seja criada uma nova conta. "
+      scripts_effect:
+        one: "Seu %{count} script script será removido."
+        other: "Seus %{count} scripts serão removidos."
+      script_sets_effect:
+        one: "Seu %{count} conjunto de scripts será removido."
+        other: "Seus %{count} conjuntos de script serão removidos."
+      forum_effect: "Suas contribuições para o fórum permanecerão, mas o usuário associado será renomeado para \"%{user_name}\"."
+      email_confirmation: "Antes de remover sua conta, o %{site_name} enviará um email para %{email} para confirmar sua solicitação."
+      submit: "Remover conta"
+      confirmation_email_sent: "O email para confirmar a remoção foi enviado."
+      confirmation:
+        intro: "Você está prestes a apagar a conta '%{user_name}'. Esta ação não poderá ser desfeita."
+        confirm: "Apagar '%{user_name}'"
+        cancel: "Cancelar remoção"
+        key_mismatch: "Não foi possível apagar o usuário - as chaves não batem."
+        request_expired: "Não foi possível apagar o usuário - a solicitação expirou."
+        cancelled: "A remoção foi cancelada."
+        completed: "Sua conta foi apagada."
   help:
     installing_user_scripts:
       title: 'Como instalar scripts de usuários'

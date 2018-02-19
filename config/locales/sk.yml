@@ -469,6 +469,38 @@ sk:
       one: "Vaše užívateľské meno a email sú nastavené na synchronizáciu po prihlásení sa na %{providers}. %{edit_sign_in_link:Upravte spôsob prihlasovania pre odstránenie synchronizácie} ak chcete natrvalo zmeniť užívateľské meno alebo email."
       few: "Vaše užívateľské meno a email sú nastavené na synchronizáciu po prihlásení sa na %{providers}. %{edit_sign_in_link:Upravte spôsob prihlasovania pre odstránenie synchronizácie} ak chcete natrvalo zmeniť užívateľské meno alebo email."
       other: "Vaše užívateľské meno a email sú nastavené na synchronizáciu po prihlásení sa na %{providers}. %{edit_sign_in_link:Upravte spôsob prihlasovania pre odstránenie synchronizácie} ak chcete natrvalo zmeniť užívateľské meno alebo email."
+    delete_link: "Odstrániť účet"
+    delete:
+      intro: "Odstránenie vášho účtu %{user_name} na %{site_name} spôsobí:"
+      requires_permanent_deletion: "Pred odstránením účtu musíte požiadať o trvalé vymazanie nasledujúcich skriptov:"
+      password_effect: "Už sa nebudete môcť prihlásiť pomocou svojho hesla."
+      identities_effect:
+        one: "Prihlásením sa cez %{identities} sa vytvorí nový účet."
+        few: "Prihlásením sa cez %{identities} sa vytvorí nový účet."
+        other: "Prihlásením sa cez %{identities} sa vytvorí nový účet."
+      scripts_effect:
+        one: "Váš %{count} skript bude vymazaný."
+        few: "Vaše %{count} skripty budú vymazané."
+        other: "Vašich %{count} skriptov bude vymazaných."
+      script_sets_effect:
+        one: "Vaša %{count} zbierka skriptov bude vymazaná."
+        few: "Vaše %{count} zbierky skriptov budú vymazané."
+        other: "Vašich %{count} zbierok skriptov bude vymazaných."
+      forum_effect: "Vaše príspevky na fóre zostanú, ale priradený používateľ bude premenovaný na \"%{user_name}\"."
+      email_confirmation: "Pred odstránením vášho účtu, %{site_name} odošle email na %{email} pre potvrdenie vašej požiadavky."
+      submit: "Odstrániť účet"
+      confirmation_email_sent: "E-mail s potvrdením odstránenia bol odoslaný."
+      confirmation_email:
+        subject: "Potvrdenie odstránenia účtu z %{site_name}"
+        body: "Požiadavka na odstránenie vášho účtu %{user_name} z %{site_name} bola vykonaná. Pre potvrdenie požiadavky a odstránenie účtu prejdite na tento odkaz %{url}. Urobte tak do 24 hodín inak bude požiadavka zrušená."
+      confirmation:
+        intro: "Chystáte sa odstrániť účet '%{user_name}'. Táto akcia sa nedá vrátiť späť."
+        confirm: "Odstrániť '%{user_name}'"
+        cancel: "Zrušiť odstránenie"
+        key_mismatch: "Nepodarilo sa odstrániť užívateľa - kľúče sa nezhodujú."
+        request_expired: "Nepodarilo sa odstrániť užívateľa - požiadavka exspirovala."
+        cancelled: "Odstránenie bolo zrušené."
+        completed: "Váš účet bol odstránený."
   help:
     installing_user_scripts:
       title: 'Ako nainštalovať užívateľské skripty'

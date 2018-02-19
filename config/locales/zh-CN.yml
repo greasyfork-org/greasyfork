@@ -444,6 +444,32 @@ zh-CN:
       other: "%{user_name} 还有 %{count} 个脚本在 Greasy Fork 上。"
     update_sync_warning:
       other: "您的用户名和电子邮件地址已设为在您用 %{providers} 登录时同步。如果您想永久设置自定义用户名或电子邮件地址，%{edit_sign_in_link:编辑您的登录方法以去除同步}。"
+    delete_link: "删除账户"
+    delete:
+      intro: "删除您的 %{site_name} 账户 '%{user_name}' 将有如下效果："
+      requires_permanent_deletion: "在删除您的账户前，您必须请求永久删除下列脚本："
+      password_effect: "您不再能用您的密码登录。"
+      identities_effect:
+        other: "通过 %{identities} 登录将产生一个新账户。"
+      scripts_effect:
+        other: "您的 %{count} 个脚本将被删除。"
+      script_sets_effect:
+        other: "您的 %{count} 个脚本集将被删除。"
+      forum_effect: "您对论坛的贡献不会改变，但关联的用户将被更名为“%{user_name}”。"
+      email_confirmation: "在删除您的用户前，%{site_name} 将发送一封电子邮件至 %{email} 以确认您的请求。"
+      submit: "删除账户"
+      confirmation_email_sent: "确认删除邮件已发送。"
+      confirmation_email:
+        subject: "%{site_name} 账户的删除确认"
+        body: "已有人请求删除您在 %{site_name} 上的 %{user_name} 账户。要确认此请求并删除您的账户，请转至 %{url} 。删除需在24小时内完成，否则删除请求自动取消。"
+      confirmation:
+        intro: "您即将删除账户 %{user_name}。此操作无法撤销。"
+        confirm: "删除 '%{user_name}'"
+        cancel: "取消删除"
+        key_mismatch: "无法删除用户 - 键值不匹配。"
+        request_expired: "无法删除用户 - 请求已过期。"
+        cancelled: "删除已取消。"
+        completed: "您的账户已删除。"
   help:
     installing_user_scripts:
       title: '如何安装用户脚本'

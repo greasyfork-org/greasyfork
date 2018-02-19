@@ -43,6 +43,9 @@ zh-TW:
     update: "更新至版本 %{version}"
     downgrade: "降級至版本 %{version}"
     reinstall: "重新安裝版本 %{version}"
+    old_version_warning: "這不是最新版的腳本，安裝後不會被自動更新至新版本。確定要安裝嗎？"
+    promoted: "精選腳本"
+    promoted_text_html: "你可能也喜歡 %{script_link}"
     library_instructions_html: "此腳本不應該直接安裝，它是一個供其他腳本使用的函式庫。欲使用本函式庫，請在腳本 metadata 寫上： %{code}"
     deleted_notice: "此腳本已被刪除。"
     version_notice_html: "目前為 %{date} 提交的版本，檢視 %{latest_version_link}。"
@@ -133,6 +136,8 @@ zh-TW:
     listing_created_feed: "新出爐的腳本"
     listing_updated_feed: "最近更新的腳本"
     listing_none: "(無)"
+    listing_set_locale_filter: "顯示所有語言的結果。%{set_filter_link:只顯示 %{language} 的結果。}"
+    listing_remove_locale_filter: "顯示 %{language} 的結果。%{remove_filter_link:顯示所有語言的結果。}"
     import: "匯入腳本"
     new: "發佈腳本"
     support_site: "作者的技術支援網站"
@@ -438,6 +443,32 @@ zh-TW:
       other: "%{user_name} 也有 %{count} 個腳本在 Greasy Fork 上。"
     update_sync_warning:
       other: "以 %{providers} 登入時，你的使用者名稱和 email 會和源帳號同步。若想自訂一個永久的使用者名稱或 email，請 %{edit_sign_in_link:修改登入資料並取消同步}。"
+    delete_link: "刪除帳號"
+    delete:
+      intro: "刪除你的 %{site_name} 帳號「%{user_name}」會有以下效果︰"
+      requires_permanent_deletion: "在刪除帳號之前，你必須對以下的腳本提出永久刪除請求︰"
+      password_effect: "你將無法以你的密碼登入。"
+      identities_effect:
+        other: "以 %{identities} 登入會產生一個新帳號。"
+      scripts_effect:
+        other: "你擁有的 %{count} 個腳本將會被刪除。"
+      script_sets_effect:
+        other: "你擁有的 %{count} 個腳本收藏集將會被刪除。"
+      forum_effect: "你在論壇所提供的內容會留下，但相關聯的使用者名稱會被重命名為「%{user_name}」。"
+      email_confirmation: "在刪除帳號之前，%{site_name} 會寄出一封電子郵件至 %{email} 以確認你的請求。"
+      submit: "刪除帳號"
+      confirmation_email_sent: "刪除帳號的確認電子郵件已寄出"
+      confirmation_email:
+        subject: "%{site_name} 帳號刪除確認"
+        body: "%{site_name} 收到一個請求要刪除你的帳號「%{user_name}」。若要確認請求並刪除你的帳號，訪問 %{url}。必須於 24 個小時內完成，否則該請求會被取消。"
+      confirmation:
+        intro: "你將要刪除帳號「%{user_name}」。這項操作無法撤消。"
+        confirm: "刪除「%{user_name}」"
+        cancel: "取消刪除"
+        key_mismatch: "無法刪除使用者 - 金鑰不匹配"
+        request_expired: "無法刪除使用者 - 請求過時"
+        cancelled: "已取消刪除。"
+        completed: "你的帳號已被刪除。"
   help:
     installing_user_scripts:
       title: '如何安裝使用者腳本'
