@@ -345,9 +345,7 @@ class Script < ActiveRecord::Base
 			end
 		end
 		# assume english
-		english = Locale.where(:code => 'en').first
-		raise "Me fail english? That's unpossible!" if english.nil?
-		return english
+		return Locale.english
 	end
 
 	def update_license(text)

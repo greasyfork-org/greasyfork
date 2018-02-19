@@ -6,7 +6,7 @@ Script.where('script_sync_type_id = 2').where('last_attempted_sync_date < DATE_S
 	begin
 		result = ScriptImporter::ScriptSyncer.sync(script)
 		puts "#{script.id} - #{result} - #{script.sync_error}"
-	rescue Exception => ex
+	rescue => ex
 		puts "#{script.id} exception - #{ex}"
 	end
 end

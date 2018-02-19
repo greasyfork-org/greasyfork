@@ -5,6 +5,10 @@ class Locale < ApplicationRecord
 
 	scope :with_listable_scripts, ->(script_subset) {joins(:scripts).where(scripts: Script.listable(script_subset).where_values_hash).distinct.order(:code)}
 
+	def self.english
+		Locale.find_by!(code: 'en')
+	end
+
 	def display_text
 		"#{best_name} (#{code})"
 	end
