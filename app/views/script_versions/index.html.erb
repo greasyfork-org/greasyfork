@@ -17,7 +17,7 @@ end %>
 	<% if show_diff %>
 		<%= submit_tag t('scripts.diff_button'), :name => nil%>
 	<% end %>
-	<ul>
+	<ul class="history_versions">
 		<% svs.each_with_index do |sv, i|
 			show_version = show_all_versions || ((i + 1 >= svs.length) || sv.rewritten_script_code_id != svs[i + 1].rewritten_script_code_id)
 			if show_version %>
