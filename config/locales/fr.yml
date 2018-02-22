@@ -47,6 +47,8 @@ fr:
     update: "Mettre à jour vers la version %{version}"
     downgrade: "Revenir à la version %{version}"
     reinstall: "Réinstaller la version %{version}"
+    old_version_warning: "Ceci n'est pas la dernière version de ce script. Si vous l'installez, vous n'aurez jamais de mise à jour vers les nouvelles versions. Voulez-vous vraiment l'installer ?"
+    promoted_text_html: "Vous pourriez également aimer %{script_link}."
     library_instructions_html: "Ce script ne doit pas être installé directement. C'est une librairie destinée à être incluse dans d'autres scripts avec la méta-directive %{code}"
     deleted_notice: "Ce script a été supprimé."
     version_notice_html: "Version au %{date}. Voir %{latest_version_link}."
@@ -421,6 +423,11 @@ fr:
     update_sync_warning:
       one: "Votre nom d'utilisateur et courriel sont configurés pour être synchronisés lorsque vous vous connectez avec %{providers}. %{edit_sign_in_link:Editer votre méthode de connexion pour supprimer la synchonisation} si vous voulez définir de façon permanente un nom d'utilisateur personnalisé ou un courriel."
       other: "Votre nom d'utilisateur et courriel sont configurés pour être synchronisés lorsque vous vous connectez avec %{providers}. %{edit_sign_in_link:Editer votre méthode de connexion pour supprimer la synchonisation} si vous voulez définir de façon permanente un nom d'utilisateur personnalisé ou un courriel."
+    delete_link: "Supprimer mon compte"
+    delete:
+      intro: "Supprimer votre compte %{site_name} '%{user_name}' aura les conséquences suivantes :"
+      requires_permanent_deletion: "Avant de supprimer votre compte, vous devez demander la suppression définitive des scripts suivants :"
+      password_effect: "Vous ne pourrez plus vous connecter avec votre mot de passe."
   help:
     installing_user_scripts:
       title: 'Comment installer des scripts utilisateurs'
