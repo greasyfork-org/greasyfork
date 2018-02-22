@@ -38,6 +38,9 @@ a {
 a:visited {
 	color: #A42121;
 }
+input[type="checkbox"], input[type="radio"] {
+	vertical-align: middle;
+}
 
 #main-header {
 	background-color: #670000;
@@ -47,6 +50,11 @@ a:visited {
 .width-constraint {
 	margin: auto;
 	max-width: 960px;
+}
+@media screen and (max-width: 970px) {
+	.width-constraint {
+		margin: auto 1.2vw;
+	}
 }
 
 #main-header .width-constraint {
@@ -152,6 +160,50 @@ nav .with-submenu:hover > a::after, nav .with-submenu > a:focus::after {
 }
 */
 
+@media screen and (max-width: 920px) {
+	/* site main header, make site-name not ovelape with others */
+	#site-name img {
+		max-width: 96px;
+		max-height: 96px;
+		width: 12%;
+		height: 12%;
+	}
+	#site-name-text {
+		margin-top: 2.3vw;
+	}
+	/* main header font size: 10% of viewport width */
+	#main-header h1 {
+		font-size: 8.3vw;
+	}
+	#main-header .subtitle {
+		margin: -0.8em 0 0 10px;
+		font-size: 2vw;
+	}
+	#site-nav {
+		margin-top: -1vw;
+	}
+	#site-nav>nav, #nav-user-info {
+		display: block;
+		position: unset;
+		right: unset;
+		padding-top: 0.3em;
+	}
+	#site-nav>nav {
+		bottom: unset;
+	}
+	#nav-user-info {
+		top: unset;
+		font-size: unset;
+		width: 100%;
+	}
+	#nav-user-info .sign-in-link {
+		padding-right: 0.7em;
+	}
+	#script-search,#language-selector {
+		display: unset;
+	}
+}
+
 #script-info {
 	border: 1px solid #BBBBBB;
 	border-radius: 5px;
@@ -166,6 +218,13 @@ nav .with-submenu:hover > a::after, nav .with-submenu > a:focus::after {
 }
 #script-content > *:first-child {
 	margin-top: 0;
+}
+#script-content ul {
+	list-style-type: none;
+	padding: 0;
+}
+#script-content form.diff_options li {
+	display: inline-block;
 }
 #script-info header h2 {
 	margin: 0.25em 0 0 0;
@@ -257,6 +316,20 @@ nav .with-submenu:hover > a::after, nav .with-submenu > a:focus::after {
 #script-applies-to dt:after, #script-meta dt:after {
 	content: ":";
 }
+
+@media screen and (max-width: 720px) {
+	/* make descriptions not wrap,
+	* and show one description each line for narrow width.
+	*/
+	#script-stats dt, #script-meta dt {
+		display: table-cell;
+		white-space: nowrap;
+	}
+	#script-stats dd, #script-meta dd {
+		min-width: unset;
+	}
+}
+
 .inline-list {
 	display: inline;
 	padding-left: 0;
@@ -281,6 +354,12 @@ dt[title] > span {
 	padding: 1em;
 	border: 1px solid #E6DDD6;
 	background-color: #F2E5E5;
+}
+@media screen and (max-width: 960px) {
+	#additional-info > div {
+		padding: 1.2vw;
+	}
+
 }
 #additional-info > div:not(:first-of-type) {
 	padding-top: 0.5em;
@@ -376,10 +455,63 @@ dt[title] > span {
 .text-content .list-option-groups ~ ol {
 	width: calc(960px - 16em);
 }
+@media screen and (max-width: 960px) {
+	#script-info, .user-list, .text-content {
+		padding: 0 1.2vw 1.2vw;
+	}
+}
+
+@media screen and (min-width: 680px) and (max-width: 960px) {
+	/* resize script list while screen resizing */
+	.script-list, .user-list {
+		width: 78%;
+		margin-left: unset;
+	}
+	.list-option-groups ~ ol {
+		width: 78%
+	}
+	.text-content .list-option-groups ~ ol {
+		width: 78%
+	}
+}
+
+@media screen and (min-width: 440px) and (max-width: 680px) {
+	/* resize script list while screen resizing */
+	.script-list, .user-list {
+		width: calc(100% - 8em);
+		margin-left: unset;
+	}
+	.list-option-groups ~ ol {
+		width: calc(100% - 8em);
+	}
+	.text-content .list-option-groups ~ ol {
+		width: calc(100% - 8em);
+	}
+}
+
+@media screen and (max-width: 440px) {
+	/* list need to fill the width */
+	.script-list, .user-list {
+		margin-left: unset;
+	}
+	.list-option-groups ~ ol {
+		width: unset;
+	}
+	.text-content .list-option-groups ~ ol {
+		width: unset;
+	}
+}
 .script-list li {
 	border-bottom: 1px solid #DDDDDD;
 	padding: 1em;
 }
+
+@media screen and (max-width: 960px) {
+	.script-list li {
+		padding: 1.2vw;
+	}
+}
+
 .script-list h2 {
 	margin: 0;
 	font-size: 18px;
@@ -418,6 +550,14 @@ dt[title] > span {
 	padding-right: 1em;
 	padding-left: 1em;
 }
+
+@media screen and (max-width: 960px) {
+	.script-list dt {
+		padding-left: 1.2vw;
+		text-align: right;
+	}
+}
+
 .script-list dl dt span {
 	float: right;
 	font-weight: bold;
@@ -445,6 +585,29 @@ dt[title] > span {
 .script-list .description {
 	word-wrap: break-word;
 }
+
+@media screen and (max-width: 720px) {
+	/* make descriptions not wrap,
+	* and show one description each line for narrow width.
+	*/
+	.script-list, #script-content {
+		margin-left: unset;
+	}
+
+	.script-list dl, #script-content dl {
+		display: table-row;
+	}
+	.script-list dt, #script-content dt {
+		display: table-cell;
+		padding-left: 0;
+		white-space: nowrap;
+	}
+	.script-list dd, #script-content dd {
+		display: table-cell;
+		padding-left: 0;
+	}
+}
+
 .pagination, .script-list + .pagination, .user-list + .pagination {
 	font-size: 18px;
 	display: block;
@@ -610,6 +773,31 @@ td.numeric, th.numeric {
 .list-option-group {
 	margin-bottom: 1em;
 }
+
+@media screen and (min-width: 680px) and (max-width: 960px) {
+	.list-option-groups {
+		float: right;
+		width: 20%;
+		margin-left: unset;
+	}
+}
+
+@media screen and (min-width: 440px) and (max-width: 680px) {
+	.list-option-groups {
+		float: right;
+		width: 9em;
+		margin-left: unset;
+	}
+}
+
+@media screen and (max-width: 440px) {
+	.list-option-groups {
+		float: unset;
+		width: unset;
+		margin-left: unset;
+	}
+}
+
 .list-option-group ul {
 	margin: .5em 0 0;
 	list-style-type: none;
@@ -634,6 +822,14 @@ td.numeric, th.numeric {
 	margin: .25em 0 .25em -4px;
 	padding: .4em 1em .4em calc(1em - 3px);
 	background: linear-gradient(white, #EEEEEE);
+}
+
+@media screen and (min-width: 440px) and (max-width: 960px) {
+	.list-option-group a,
+	.list-option-group .list-current {
+		padding-left: 1.2vw;
+		padding-right: 1.2vw;
+	}
 }
 
 .translation_missing {
@@ -678,6 +874,14 @@ pre, code, #code-container {
 	border: 1px solid #E6DDD6;
 	background-color: #F2E5E5;
 }
+
+@media screen and (max-width: 440px) {
+	/* show more code */
+	#code-container {
+		font-size: small;
+	}
+}
+
 pre.CodeRay, table.CodeRay, .CodeRay pre {
 	background: none;
 	border: 0;
@@ -757,6 +961,14 @@ form.new_user {
 	border-radius: 5px;
 	text-align: left;
 }
+
+@media screen and (max-width: 440px) {
+	/* sign up */
+	form.new_user {
+		width: unset;
+	}
+}
+
 form.new_user label {
 	display: block;
 	font-size: small;
@@ -789,6 +1001,15 @@ form input[type="checkbox"] + label {
 	display: inline-block;
 	font-size: small;
 }
+
+@media screen and (max-width: 440px) {
+	/* show input and label on same line */
+	form input[type="checkbox"] + label {
+		display: unset;
+		word-wrap: break-word;
+	}
+}
+
 form.new_user input[type="submit"] {
 	display: block;
 	width: 100%;
@@ -845,6 +1066,13 @@ form.new_user + a {
 	margin-right: 0;
 	background: none;
 	opacity: 0.5;
+}
+
+@media screen and (max-width: 680px) {
+	/* use default font-size for search input */
+	.sidebar-search input[type="search"], .home-search input[type="search"] {
+		font-size: unset;
+	}
 }
 
 figure {

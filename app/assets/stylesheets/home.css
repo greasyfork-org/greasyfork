@@ -12,7 +12,6 @@
 	width: 100%;
 }
 #home-top-sites {
-	white-space: nowrap;
 	overflow: hidden;
 	margin-top: 5px;
 }
@@ -39,4 +38,16 @@
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+}
+
+@media screen and (max-width: 680px) {
+	/* make image in home page to fill width */
+	#home-step-1 figure, #home-step-2 figure, #home-step-3 figure {
+		float: unset;
+		max-width: unset;
+		margin: unset;
+	}
+	[id^='home-step-'] figure img {
+		width: 100%;
+	}
 }

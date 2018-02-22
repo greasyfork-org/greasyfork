@@ -4,12 +4,14 @@
 <p>
 	<%=t('scripts.diff_old_version')%> <%=link_to('v' + @old_version.version, script_show_code_path(@script, :version =>  @old_version.id))%> <%=markup_date(@old_version.created_at)%> <%=@old_version.changelog%><br>
 	<%=t('scripts.diff_new_version')%> <%=link_to('v' + @new_version.version, script_show_code_path(@script, :version =>  @new_version.id))%> <%=markup_date(@new_version.created_at)%> <%=@new_version.changelog%><br>
-	<form>
+	<form class="diff_options">
 		<input type="hidden" name="v1" value="<%=params[:v1]%>">
 		<input type="hidden" name="v2" value="<%=params[:v2]%>">
-		<label for="context"><%=t('scripts.diff_lines_of_context')%></label> <input type="number" min="0" max="10000" size="5" name="context" required value="<%=@context%>">
-		<input id="ignore-whitespace" type="checkbox" name="w" value="1" <%if params[:w] == '1'%>checked<%end%>><label for="ignore-whitespace"><%=t('scripts.diff_ignore_whitespace')%></label>
-		<input type="submit" value="<%=t('scripts.diff_refresh')%>">
+		<ul>
+			<li><label for="context"><%=t('scripts.diff_lines_of_context')%></label> <input type="number" min="0" max="10000" size="5" name="context" required value="<%=@context%>"></li>
+			<li><input id="ignore-whitespace" type="checkbox" name="w" value="1" <%if params[:w] == '1'%>checked<%end%>><label for="ignore-whitespace"><%=t('scripts.diff_ignore_whitespace')%></label></li>
+			<li><input type="submit" value="<%=t('scripts.diff_refresh')%>"></li>
+		</ul>
 	</form>
 </p>
 
