@@ -1,0 +1,25 @@
+<%- title t('scripts.admin.title', script_name: @script.name) %>
+
+<% if !@script.errors.empty? %>
+	<div class="alert">
+		<p><%=t('common.error_preamble')%></p>
+		<ul class="errors">
+			<% @script.errors.full_messages.each do |m| %>
+				<li><%=m%></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+
+<h3><%= t('scripts.admin.promoted_heading') %></h3>
+
+<p><%= t('scripts.admin.promoted_explanation', site_name: site_name) %></p>
+
+<%=form_tag(script_update_promoted_path, method: :patch) do |f|%>
+	<div class="form-control">
+		<label for="promoted_script_id"><%=t('scripts.admin.promoted_script_label')%></label>
+		<input id="promoted_script_id" name="promoted_script_id" type="url" value="<%=params[:promoted_script_id] || (@script.promoted_script ? script_url(@script.promoted_script) : nil)%>">
+	</div>
+
+	<input type="submit" value="<%= t('scripts.admin.promoted_submit') %>">
+<% end %>

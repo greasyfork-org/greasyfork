@@ -5,7 +5,7 @@ class ScriptsController < ApplicationController
 
 	layout Proc.new {|c|
 		case c.action_name.to_sym
-			when :show, :show_code, :feedback, :diff, :sync, :sync_update, :delete, :do_delete, :stats, :derivatives, :mark, :do_mark
+			when :show, :show_code, :feedback, :diff, :sync, :sync_update, :delete, :do_delete, :stats, :derivatives, :mark, :do_mark, :admin, :update_promoted
 				'scripts'
 			when :by_site
 				'application'
@@ -14,9 +14,9 @@ class ScriptsController < ApplicationController
 		end
 	}
 
-	before_action :authorize_by_script_id, :only => [:sync, :sync_update, :request_permanent_deletion, :unrequest_permanent_deletion]
+	before_action :authorize_by_script_id, :only => [:sync, :sync_update, :request_permanent_deletion, :unrequest_permanent_deletion, :admin, :update_promoted]
 	before_action :authorize_by_script_id_or_moderator, :only => [:delete, :do_delete, :undelete, :do_undelete, :derivatives]
-	before_action :check_for_locked_by_script_id, :only => [:sync, :sync_update, :delete, :do_delete, :undelete, :do_undelete, :request_permanent_deletion, :unrequest_permanent_deletion]
+	before_action :check_for_locked_by_script_id, :only => [:sync, :sync_update, :delete, :do_delete, :undelete, :do_undelete, :request_permanent_deletion, :unrequest_permanent_deletion, :admin, :update_promoted]
 	before_action :check_for_deleted_by_id, :only => [:show]
 	before_action :check_for_deleted_by_script_id, :only => [:show_code, :feedback, :install_ping, :diff, :stats]
 	before_action :authorize_for_moderators_only, :only => [:minified, :mark, :do_mark, :reported_not_adult, :do_permanent_deletion, :reject_permanent_deletion, :requested_permanent_deletion]
@@ -604,49 +604,33 @@ class ScriptsController < ApplicationController
 		delete
 
 		# Handle replaced by
-		if !params[:replaced_by_script_id].nil? && !params[:replaced_by_script_id].blank?
-			replaced_by = nil
-			script_id = nil
-			# Is it an ID?
-			if params[:replaced_by_script_id].to_i != 0
-				script_id = params[:replaced_by_script_id].to_i
-			# A non-GF URL?
-			elsif !params[:replaced_by_script_id].start_with?('https://greasyfork.org/')
+		replaced_by = get_script_from_input(params[:replaced_by_script_id])
+		case replaced_by
+			when :non_gf_url
 				@script.errors.add(:replaced_by_script_id, I18n.t('errors.messages.must_be_greasy_fork_script', site_name: site_name))
 				render :delete
 				return
-			# A GF URL?
-			else
-				url_match = /\/scripts\/([0-9]+)(\-|$)/.match(params[:replaced_by_script_id])
-				if url_match.nil?
-					@script.errors.add(:replaced_by_script_id, :must_be_greasy_fork_script)
-					render :delete
-					return
-				end
-				script_id = url_match[1]
-			end
-
-			# Validate it's a good replacement
-			begin
-				replaced_by = Script.find(script_id)
-			rescue ActiveRecord::RecordNotFound
+			when :non_script_url
+				@script.errors.add(:replaced_by_script_id, :must_be_greasy_fork_script)
+				render :delete
+				return
+			when :not_found
 				@script.errors.add(:replaced_by_script_id, :not_found)
 				render :delete
 				return
-			end
-
-			if @script.id == replaced_by.id
-				@script.errors.add(:replaced_by_script_id, :cannot_be_self_reference)
-				render :delete
-				return
-			end
-			if !replaced_by.script_delete_type_id.nil?
+			when :deleted
 				@script.errors.add(:replaced_by_script_id, :cannot_be_deleted_reference)
 				render :delete
 				return
-			end
-			@script.replaced_by_script = replaced_by
 		end
+
+		if @script.id == replaced_by.id
+			@script.errors.add(:replaced_by_script_id, :cannot_be_self_reference)
+			render :delete
+			return
+		end
+
+		@script.replaced_by_script = replaced_by
 
 		if current_user.moderator? && current_user != @script.user
 			@script.locked = params[:locked].nil? ? false : params[:locked]
@@ -862,6 +846,54 @@ class ScriptsController < ApplicationController
 		@canonical_params = [:script_id]
 	end
 
+	def admin
+		@script = Script.find(params[:script_id])
+		@bots = 'noindex'
+	end
+
+	def update_promoted
+		@script = Script.find(params[:script_id])
+		@bots = 'noindex'
+
+		promoted_script = get_script_from_input(params[:promoted_script_id])
+		case promoted_script
+			when :non_gf_url
+				@script.errors.add(:promoted_script_id, I18n.t('errors.messages.must_be_greasy_fork_script', site_name: site_name))
+				render :admin
+				return
+			when :non_script_url
+				@script.errors.add(:promoted_script_id, :must_be_greasy_fork_script)
+				render :admin
+				return
+			when :not_found
+				@script.errors.add(:promoted_script_id, :not_found)
+				render :admin
+				return
+			when :deleted
+				@script.errors.add(:promoted_script_id, :cannot_be_deleted_reference)
+				render :admin
+				return
+		end
+
+		if promoted_script == @script
+			@script.errors.add(:promoted_script_id, :cannot_be_self_reference)
+			render :admin
+			return
+		end
+
+		if @script.sensitive? != promoted_script.sensitive?
+			@script.errors.add(:promoted_script_id, :cannot_be_used_with_this_script)
+			render :admin
+			return
+		end
+
+		@script.promoted_script = promoted_script
+		@script.save!
+
+		flash[:notice] = I18n.t('scripts.updated')
+		redirect_to script_admin_path(@script)
+	end
+
 	def self.get_top_by_sites(script_subset)
 		return cache_with_log("scripts/get_top_by_sites/#{script_subset}") do
 			get_by_sites(script_subset).sort{|a,b| b[1][:installs] <=> a[1][:installs]}.first(10)
@@ -1032,6 +1064,36 @@ private
 			return true
 		end
 		return false
+	end
+
+	def get_script_from_input(v)
+		return nil if v.blank?
+
+		replaced_by = nil
+		script_id = nil
+		# Is it an ID?
+		if v.to_i != 0
+			script_id = v.to_i
+		# A non-GF URL?
+		elsif !v.start_with?('https://greasyfork.org/')
+			return :non_gf_url
+		# A GF URL?
+		else
+			url_match = /\/scripts\/([0-9]+)(\-|$)/.match(v)
+			return :non_script_url if url_match.nil?
+			script_id = url_match[1]
+		end
+
+		# Validate it's a good replacement
+		begin
+			script = Script.find(script_id)
+		rescue ActiveRecord::RecordNotFound
+			return :not_found
+		end
+
+		return :deleted unless script.script_delete_type_id.nil?
+
+		return script
 	end
 
 end

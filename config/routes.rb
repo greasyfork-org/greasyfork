@@ -71,6 +71,10 @@ Greasyfork::Application.routes.draw do
 			get 'mark(.:format)', :to => 'scripts#mark', :as => 'mark'
 			post 'mark(.:format)', :to => 'scripts#do_mark', :as => 'do_mark'
 			get 'stats(.:format)', :to => 'scripts#stats', :as => 'stats'
+
+			get 'admin(.:format)', to: 'scripts#admin', as: 'admin'
+			patch 'update_promoted(.:format)', to: 'scripts#update_promoted', as: 'update_promoted'
+
 			get 'derivatives', :as => 'derivatives'
 			collection do
 				get 'by-site(.:format)', :action => 'by_site', :as => 'site_list'

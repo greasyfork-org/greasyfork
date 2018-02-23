@@ -4,6 +4,7 @@ class Script < ActiveRecord::Base
 	include LocalizingModel
 
 	belongs_to :user
+	belongs_to :promoted_script, class_name: 'Script', optional: true
 
 	has_many :script_versions, dependent: :destroy
 	has_many :script_applies_tos, dependent: :destroy, autosave: true

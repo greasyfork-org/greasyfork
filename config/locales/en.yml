@@ -83,6 +83,7 @@ en:
     old_version_warning: "This is not the latest version of this script. If you install it, you will never be updated to a newer version. Install anyway?"
     # label for a promoted script
     promoted: "Promoted script"
+    author_promoted: "Author's suggested script"
     # text for promoted script
     promoted_text_html: "You may also like %{script_link}."
     # instructions on a script library. code will be a <code> element. Don't use punctuation around the code element if possible so that people don't accidentally include that when copying.
@@ -142,6 +143,13 @@ en:
     cancel_delete_permanently_notice: "Your request for permanent deletion has been cancelled."
     # error when attempting to delete a locked script
     delete_permanently_rejected_locked: "This script is locked and can't be permanently deleted"
+    admin_page: "Admin"
+    admin:
+      title: "%{script_name} Admin"
+      promoted_heading: "Promoted Script"
+      promoted_explanation: "After installing this script, %{site_name} can suggest the user try another script of your choosing."
+      promoted_script_label: "URL of script to promote"
+      promoted_submit: "Set promoted script"
     # HTML title for the history page for a script
     history_title: "%{script_name} - Version history"
     # text explaining that we're only showing versions where the code changed
@@ -481,6 +489,7 @@ en:
     by_site_list_filter: "Filter by site name:"
     # placeholder for script search box
     search_placeholder: "Search scripts"
+    updated: "Script updated."
   script_sets:
     # description of script sets on edit page
     description: "Script sets let you create a customized list of scripts to browse Greasy Fork with. You can add scripts to your set by including individual scripts, other users' sets, or automatically generated sets. You can also exclude scripts from your set with the same methods."
@@ -1053,6 +1062,7 @@ en:
       cannot_be_self_reference: "can't be the same script"
       # validation for "deleted and replaced by" when the user says the script is replaced by a deleted script
       cannot_be_deleted_reference: "can't be a deleted script"
+      cannot_be_used_with_this_script: "can't be used with this script"
       # validation for "deleted and replaced by" when the user provides a non-%{site_name} URL
       must_be_greasy_fork_script: "must be the URL for a script on %{site_name}"
       # validation when the user uploads code that's not UTF-8 text

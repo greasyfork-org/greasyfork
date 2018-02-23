@@ -21,6 +21,9 @@
 			<% if (same_user and !@script.locked) or user_is_mod %>
 				<li<%=current_page?(script_delete_path(@script)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.delete_page')}</span>".html_safe, script_delete_path(@script)%></li>
 			<% end %>
+			<% if (same_user && !@script.locked) %>
+				<li<%=current_page?(script_admin_path(@script)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.admin_page')}</span>".html_safe, script_admin_path(@script)%></li>
+			<% end %>
 		</ul>
 		<header>
 			<h2><%=@script.name(I18n.locale)%></h2>
