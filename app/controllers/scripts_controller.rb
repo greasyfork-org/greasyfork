@@ -624,7 +624,7 @@ class ScriptsController < ApplicationController
 				return
 		end
 
-		if @script.id == replaced_by.id
+		if replaced_by && @script.id == replaced_by.id
 			@script.errors.add(:replaced_by_script_id, :cannot_be_self_reference)
 			render :delete
 			return
