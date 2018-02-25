@@ -350,19 +350,6 @@ class ScriptsController < ApplicationController
 				script_id = params[:script_id].to_i
 				script_version_id = params[:version].to_i
 
-				cache_path = Rails.application.config.script_page_cache_directory.join("#{script_id}.user.js")
-				if params[:version].nil?
-					ctime = File.exist?(cache_path) ? File.ctime(cache_path) : nil
-					if ctime && ctime > Rails.application.config.script_page_cache_expiry.ago
-						send_file(cache_path, type: "text/javascript", disposition: 'inline')
-						# This is the date the cache file was created, not the date
-						# of the last modification, but it's better than nothing.
-						response.headers['Last-Modified'] = ctime.httpdate
-						return
-					end
-					do_caching = true
-				end
-
 				script, script_version = minimal_versionned_script(script_id, script_version_id)
 				return if handle_replaced_script(script)
 
@@ -373,7 +360,10 @@ class ScriptsController < ApplicationController
 					user_js_code = ScriptVersion.inject_meta_for_code(user_js_code, downloadURL: 'none')
 				end
 
-				File.write(cache_path, user_js_code) if do_caching
+				# Only cache if:
+				# - It's not for a specific version (as the caching does not work with query params)
+				# - It's a .user.js extension (client's Accept header may not match path).
+				cache_request(user_js_code) if script_version_id == 0 && request.fullpath.end_with?('.user.js')
 
 				render body: user_js_code, content_type: 'text/javascript'
 			}
@@ -430,16 +420,10 @@ class ScriptsController < ApplicationController
 		# Strip out some thing that could contain a lot of data (data: URIs). get_blanked_code already does this.
 		meta_js_code = script_info['script_delete_type_id'] == 2 ? ScriptVersion.get_blanked_code(script_info['code']) : ScriptVersion.inject_meta_for_code(ScriptVersion.get_meta_block(script_info['code']), {icon: nil, resource: nil})
 
-		if script_version_id == 0
-			# Cache dir + request path without leading slash. Ensure it's actually under the cache dir to prevent
-			# directory traversal, and ensure it's a .meta.js file (client's Accept header may not match path).
-			cache_request_portion = CGI::unescape(request.fullpath[1..-1])
-			cache_path = Rails.application.config.script_page_cache_directory.join(cache_request_portion).cleanpath
-			if cache_path.to_s.start_with?(Rails.application.config.script_page_cache_directory.to_s) && cache_path.to_s.end_with?('.meta.js')
-				FileUtils.mkdir_p(cache_path.parent)
-				File.write(cache_path, meta_js_code)
-			end
-		end
+		# Only cache if:
+		# - It's not for a specific version (as the caching does not work with query params)
+		# - It's a .meta.js extension (client's Accept header may not match path).
+		cache_request(meta_js_code) if script_version_id == 0 && request.fullpath.end_with?('.meta.js')
 
 		render body: meta_js_code, content_type: 'text/x-userscript-meta'
 	end
@@ -1091,6 +1075,17 @@ private
 		return :deleted unless script.script_delete_type_id.nil?
 
 		return script
+	end
+
+	def cache_request(response_body)
+		# Cache dir + request path without leading slash. Ensure it's actually under the cache dir to prevent
+		# directory traversal.
+		cache_request_portion = CGI::unescape(request.fullpath[1..-1])
+		cache_path = Rails.application.config.script_page_cache_directory.join(cache_request_portion).cleanpath
+		if cache_path.to_s.start_with?(Rails.application.config.script_page_cache_directory.to_s)
+			FileUtils.mkdir_p(cache_path.parent)
+			File.write(cache_path, response_body)
+		end
 	end
 
 end
