@@ -50,6 +50,6 @@ module Greasyfork
 
     config.active_record.observers = :script_observer
 
-    config.promoted_script_divisor = 5
+    config.promoted_script_divisor = 2
   end
 end
