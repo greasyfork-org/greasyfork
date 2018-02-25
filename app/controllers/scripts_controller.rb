@@ -1,5 +1,7 @@
 require 'script_importer/script_syncer'
 require 'csv'
+require 'fileutils'
+require 'cgi'
 
 class ScriptsController < ApplicationController
 
@@ -385,20 +387,6 @@ class ScriptsController < ApplicationController
 		script_id = params[:script_id].to_i
 		script_version_id = (params[:version] || 0).to_i
 
-		# If this is not for a specific version, see if there is a cache
-		# file to avoid the DB hit. Ideally this logic would've been done
-		# in nginx configuration, but I couldn't figure out how to
-		# effectively make it read from the cache only when there is no
-		# parameters.
-		cache_path = Rails.application.config.script_page_cache_directory.join("#{script_id}.meta.js")
-		if script_version_id == 0
-			if File.exist?(cache_path) && File.ctime(cache_path) > Rails.application.config.script_page_cache_expiry.ago
-				send_file(cache_path, type: "text/x-userscript-meta")
-				return
-			end
-			do_caching = true
-		end
-
 		# Bypass ActiveRecord for performance
 		if script_version_id > 0
 			sql = <<-EOF
@@ -442,7 +430,16 @@ class ScriptsController < ApplicationController
 		# Strip out some thing that could contain a lot of data (data: URIs). get_blanked_code already does this.
 		meta_js_code = script_info['script_delete_type_id'] == 2 ? ScriptVersion.get_blanked_code(script_info['code']) : ScriptVersion.inject_meta_for_code(ScriptVersion.get_meta_block(script_info['code']), {icon: nil, resource: nil})
 
-		File.write(cache_path, meta_js_code) if do_caching
+		if script_version_id == 0
+			# Cache dir + request path without leading slash. Ensure it's actually under the cache dir to prevent
+			# directory traversal, and ensure it's a .meta.js file (client's Accept header may not match path).
+			cache_request_portion = CGI::unescape(request.fullpath[1..-1])
+			cache_path = Rails.application.config.script_page_cache_directory.join(cache_request_portion).cleanpath
+			if cache_path.to_s.start_with?(Rails.application.config.script_page_cache_directory.to_s) && cache_path.to_s.end_with?('.meta.js')
+				FileUtils.mkdir_p(cache_path.parent)
+				File.write(cache_path, meta_js_code)
+			end
+		end
 
 		render body: meta_js_code, content_type: 'text/x-userscript-meta'
 	end
