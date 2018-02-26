@@ -263,8 +263,7 @@ class ScriptsController < ApplicationController
 		respond_to do |format|
 			format.html {
 
-				return if handle_wrong_site(@script)
-				return if redirect_to_slug(@script, :id)
+				return if handle_wrong_url(@script, :id)
 
 				if !params[:version].nil?
 					@bots = 'noindex'
@@ -301,8 +300,7 @@ class ScriptsController < ApplicationController
 			return
 		end
 
-		return if handle_wrong_site(@script)
-		return if redirect_to_slug(@script, :script_id)
+		return if handle_wrong_url(@script, :script_id)
 
 		respond_to do |format|
 			format.html {
@@ -337,8 +335,7 @@ class ScriptsController < ApplicationController
 	def feedback
 		@script, @script_version = versionned_script(params[:script_id], params[:version])
 
-		return if handle_wrong_site(@script)
-		return if redirect_to_slug(@script, :script_id)
+		return if handle_wrong_url(@script, :script_id)
 
 		@bots = 'noindex' if !params[:version].nil?
 		@canonical_params = [:script_id, :version]
@@ -446,8 +443,7 @@ class ScriptsController < ApplicationController
 	def diff
 		@script = Script.find(params[:script_id])
 
-		return if handle_wrong_site(@script)
-		return if redirect_to_slug(@script, :script_id)
+		return if handle_wrong_url(@script, :script_id)
 
 		versions = [params[:v1].to_i, params[:v2].to_i]
 		@old_version = ScriptVersion.find(versions.min)
@@ -767,8 +763,7 @@ class ScriptsController < ApplicationController
 	def stats
 		@script, @script_version = versionned_script(params[:script_id], params[:version])
 
-		return if handle_wrong_site(@script)
-		return if redirect_to_slug(@script, :script_id)
+		return if handle_wrong_url(@script, :script_id)
 
 		install_values = Hash[Script.connection.select_rows("SELECT install_date, installs FROM install_counts where script_id = #{@script.id}")]
 		daily_install_values = Hash[Script.connection.select_rows("SELECT DATE(install_date) d, COUNT(*) FROM daily_install_counts where script_id = #{@script.id} GROUP BY d")]
@@ -1086,6 +1081,13 @@ private
 			FileUtils.mkdir_p(cache_path.parent)
 			File.write(cache_path, response_body)
 		end
+	end
+
+	def handle_wrong_url(resource, id_param_name)
+		raise ActiveRecord::RecordNotFound if resource.nil?
+		return true if handle_wrong_site(resource)
+		return true if redirect_to_slug(resource, id_param_name)
+		return true
 	end
 
 end
