@@ -32,6 +32,16 @@
 
 	<% if content_for(:head_bottom) %><%=yield(:head_bottom)%><% end %>
 
+	<% if @ad_method == 'gt' %>
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<script>
+				 (adsbygoogle = window.adsbygoogle || []).push({
+							google_ad_client: "ca-pub-2247465624637408",
+							enable_page_level_ads: true
+				 });
+		</script>
+	<% end %>
+
 </head>
 <body>
 

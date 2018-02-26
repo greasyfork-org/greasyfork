@@ -5,7 +5,7 @@
 
 <%=render partial: 'feedback_suggestion', locals: {script: @script} %>
 
-<% if !@ad_method.nil? %>
+<% if !@ad_method.nil? && @ad_method != 'gt' %>
 	<div class="ad ad-<%=@ad_method%>" id="script-show-info-ad">
 		<div class="ad-note" data-ad-method="<%=@ad_method.upcase%>"><%=t('common.advertisement_note')%></div>
 		<div class="ad-content">
