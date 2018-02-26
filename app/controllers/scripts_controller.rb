@@ -1087,7 +1087,7 @@ private
 		raise ActiveRecord::RecordNotFound if resource.nil?
 		return true if handle_wrong_site(resource)
 		return true if redirect_to_slug(resource, id_param_name)
-		return true
+		return false
 	end
 
 end
