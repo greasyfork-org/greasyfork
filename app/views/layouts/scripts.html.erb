@@ -13,7 +13,6 @@
 			<% end %>
 			<% if same_user and !@script.locked %>
 				<li<%=current_page?(new_script_script_version_path(@script.id)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.update_page')}</span>".html_safe, new_script_script_version_path(@script.id)%></li>
-				<li<%=current_page?(script_sync_path(@script)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.sync_page')}</span>".html_safe, script_sync_path(@script)%></li>
 			<% end %>
 			<% if user_is_mod %>
 				<li<%=current_page?(script_mark_path(@script.id)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>Mark</span>".html_safe, script_mark_path(@script.id)%></li>
@@ -22,7 +21,10 @@
 				<li<%=current_page?(script_delete_path(@script)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.delete_page')}</span>".html_safe, script_delete_path(@script)%></li>
 			<% end %>
 			<% if (same_user && !@script.locked) %>
-				<li<%=current_page?(script_admin_path(@script)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.admin_page')}</span>".html_safe, script_admin_path(@script)%></li>
+				<li<%=(
+					current_page?(script_admin_path(@script)) || 
+					action_name == 'sync_update'
+				 ) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.admin_page')}</span>".html_safe, script_admin_path(@script)%></li>
 			<% end %>
 		</ul>
 		<header>

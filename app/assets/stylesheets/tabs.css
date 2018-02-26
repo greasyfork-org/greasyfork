@@ -28,14 +28,14 @@
 	position: relative;
 	top: 4px;
 }
-.tabs a:not(.current):hover, .tabs a:not(.current):focus {
+.tabs li:not(.current) a:hover, .tabs li:not(.current) a:focus {
 	background: rgba(0, 0, 0, 0.03);
 	position: relative;
 	top: -4px;
 	box-shadow: inset 1px 0 rgba(0, 0, 0, 0.1), inset -1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px rgba(0, 0, 0, 0.1);
 	padding-top: 8px;
 }
-.tabs a:not(.current):hover span, .tabs a:not(.current):focus span {
+.tabs li:not(.current) a:hover span, .tabs li:not(.current) a:focus span {
 	position: relative;
 	top: 4px;
 }

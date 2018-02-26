@@ -7,7 +7,7 @@ class ScriptsController < ApplicationController
 
 	layout Proc.new {|c|
 		case c.action_name.to_sym
-			when :show, :show_code, :feedback, :diff, :sync, :sync_update, :delete, :do_delete, :stats, :derivatives, :mark, :do_mark, :admin, :update_promoted
+			when :show, :show_code, :feedback, :diff, :sync_update, :delete, :do_delete, :stats, :derivatives, :mark, :do_mark, :admin, :update_promoted
 				'scripts'
 			when :by_site
 				'application'
@@ -16,9 +16,9 @@ class ScriptsController < ApplicationController
 		end
 	}
 
-	before_action :authorize_by_script_id, :only => [:sync, :sync_update, :request_permanent_deletion, :unrequest_permanent_deletion, :admin, :update_promoted]
+	before_action :authorize_by_script_id, :only => [:sync_update, :request_permanent_deletion, :unrequest_permanent_deletion, :admin, :update_promoted]
 	before_action :authorize_by_script_id_or_moderator, :only => [:delete, :do_delete, :undelete, :do_undelete, :derivatives]
-	before_action :check_for_locked_by_script_id, :only => [:sync, :sync_update, :delete, :do_delete, :undelete, :do_undelete, :request_permanent_deletion, :unrequest_permanent_deletion, :admin, :update_promoted]
+	before_action :check_for_locked_by_script_id, :only => [:sync_update, :delete, :do_delete, :undelete, :do_undelete, :request_permanent_deletion, :unrequest_permanent_deletion, :admin, :update_promoted]
 	before_action :check_for_deleted_by_id, :only => [:show]
 	before_action :check_for_deleted_by_script_id, :only => [:show_code, :feedback, :install_ping, :diff, :stats]
 	before_action :authorize_for_moderators_only, :only => [:minified, :mark, :do_mark, :reported_not_adult, :do_permanent_deletion, :reject_permanent_deletion, :requested_permanent_deletion]
@@ -464,14 +464,6 @@ class ScriptsController < ApplicationController
 		@canonical_params = [:script_id, :v1, :v2, :context, :w]
 	end
 
-	def sync
-		@script = Script.find(params[:script_id])
-		return if redirect_to_slug(@script, :script_id)
-		@script.script_sync_type_id = 1 if @script.script_sync_source_id.nil?
-		@script.localized_attributes.build({:attribute_key => 'additional_info', :attribute_default => true}) if @script.localized_attributes_for('additional_info').empty?
-		@bots = 'noindex'
-	end
-
 	def sync_update
 		@script = Script.find(params[:script_id])
 		@bots = 'noindex'
@@ -552,7 +544,7 @@ class ScriptsController < ApplicationController
 
 		if !save_record || !@script.save
 			ensure_default_additional_info(@script, current_user.preferred_markup)
-			render :sync
+			render :admin
 			return
 		end
 		if !params['update-and-sync'].nil?
@@ -825,6 +817,10 @@ class ScriptsController < ApplicationController
 	def admin
 		@script = Script.find(params[:script_id])
 		@bots = 'noindex'
+
+		# For sync section
+		@script.script_sync_type_id = 1 if @script.script_sync_source_id.nil?
+		@script.localized_attributes.build({:attribute_key => 'additional_info', :attribute_default => true}) if @script.localized_attributes_for('additional_info').empty?
 	end
 
 	def update_promoted

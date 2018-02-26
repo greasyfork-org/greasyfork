@@ -57,7 +57,6 @@ Greasyfork::Application.routes.draw do
 			match 'code/:name.meta.js', :to => 'scripts#meta_js', :locale => nil, :via => :options
 			get 'code(.:format)', :to => 'scripts#show_code', :as =>  'show_code', :constraints => {:format => /.*/}
 			get 'feedback(.:format)', :to => 'scripts#feedback', :as =>  'feedback'
-			get 'sync(.:format)', :to => 'scripts#sync', :as =>  'sync'
 			patch 'sync_update(.:format)', :to => 'scripts#sync_update', :as =>  'sync_update'
 			post 'install-ping', :to => 'scripts#install_ping', :as => 'install_ping', :locale => nil
 			get 'diff', :to => 'scripts#diff', :as => 'diff', :constraints => lambda{ |req| !req.params[:v1].blank? and !req.params[:v2].blank? }
