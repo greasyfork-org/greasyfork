@@ -49,6 +49,7 @@ pt-BR:
     reinstall: "Reinstalar a versão %{version}"
     old_version_warning: "Essa não é a versão mais recente desse script. Se instalá-lo, você nunca estará atualizado com a versão mais nova. Deseja instalar mesmo assim? "
     promoted: "Script patrocinado"
+    author_promoted: "Script sugerido do autor"
     promoted_text_html: "Você também pode gostar de  %{script_link}."
     library_instructions_html: "Este script não deve ser instalado diretamente. Este script é uma biblioteca de outros scripts para incluir com o diretório meta %{code}"
     deleted_notice: "Este script foi deletado."
@@ -61,7 +62,6 @@ pt-BR:
     stats_page: "Estatísticas"
     derivatives_page: "Derivados"
     update_page: "Atualização"
-    sync_page: "Sincronizar"
     delete_page: "Apagar"
     delete_explanation: "A exclusão de um script deixa-o inacessivel para todos menos para você e para os moderadors do Greasy Fork. Você pode desfazer a exclusão a qualquer momento."
     delete_update_behaviour: "O que você gostaria que acontecesse com os usuários que instalaram seu script anteriormente?"
@@ -79,6 +79,14 @@ pt-BR:
     cancel_delete_permanently_submit: "Cancelar solicitação de exclusão permanente"
     cancel_delete_permanently_notice: "Sua solicitação para exclusão permanente foi cancelada."
     delete_permanently_rejected_locked: "Este script está travado e por isso não pode ser removido permanentemente"
+    admin_page: "Administrador"
+    admin:
+      title: "Administrador do %{script_name}"
+      promoted_heading: "Script promovido"
+      promoted_explanation: "Após instalar o script, o %{site_name} pode sugerir que o usuário experimente outro script de sua escolha."
+      promoted_script_label: "URL do script a ser promovido"
+      promoted_submit: "Definir script promovid"
+      sync_heading: "Sincronização de Fonte"
     history_title: "%{script_name} - Histórico da Versão"
     history_only_code_changes_info: "Estas são as versões deste script em que houve atualização do código."
     history_all_changes_link: "Mostar todas versões."
@@ -250,6 +258,8 @@ pt-BR:
     by_site_list_description: "Estes são os sites afetados pelos scripts mais populares. Maiores tamanhos de fonte significam scripts mais populares."
     by_site_list_filter: "Filtrar por nome do site:"
     search_placeholder: "Pesquisar scripts"
+    updated: "Script atualizado."
+    preview_additional_info: "Previsualizar"
   script_sets:
     description: "Coleções de scripts permitem a você criar uma lista personalizada de scripts dentro do Greasy Fork. Você pode adicionar scripts à sua coleção incluindo scripts individuais, coleções de outros usuários, ou coleções geradas automaticamente. Você também pode excluir scripts da sua coleção da mesma maneira."
     favorites_name: "Favoritos"
@@ -460,6 +470,7 @@ pt-BR:
       other: "Seu nome de usuário e email estão configurados para serem sincronizados quando você efetuar o login com %{providers}. %{edit_sign_in_link:Altere seus métodos de login para remover esta sincronização} caso deseje definir permanentemente um nome de usuário ou email personalizados."
     delete_link: "Apagar conta"
     delete:
+      intro: "Remover sua conta '%{user_name}' do %{site_name} terá as seguintes consequências:"
       requires_permanent_deletion: "Antes de apagar sua conta, você deve solicitar a remoção permanente dos seguintes scripts:"
       password_effect: "Você não poderá mais acessar o site utilizando sua senha."
       identities_effect:
@@ -475,6 +486,9 @@ pt-BR:
       email_confirmation: "Antes de remover sua conta, o %{site_name} enviará um email para %{email} para confirmar sua solicitação."
       submit: "Remover conta"
       confirmation_email_sent: "O email para confirmar a remoção foi enviado."
+      confirmation_email:
+        subject: "Confirmação de remoção de conta do %{site_name}"
+        body: "Foi feita uma solicitação para remover sua conta '%{user_name}' no %{site_name}. Para confirmar esta solicitação e remover sua conta, acesse %{url} . Esta ação deve ser realizada nas próximas 24 horas ou a solicitação será cancelada."
       confirmation:
         intro: "Você está prestes a apagar a conta '%{user_name}'. Esta ação não poderá ser desfeita."
         confirm: "Apagar '%{user_name}'"
@@ -736,6 +750,7 @@ pt-BR:
       script_too_many_screenshots: "Muitas capturas de tela incluídas - o máximo é %{number}"
       cannot_be_self_reference: "não pode ser o mesmo script"
       cannot_be_deleted_reference: "não pode ser um script deletado"
+      cannot_be_used_with_this_script: "não pode ser usado com este script"
       must_be_greasy_fork_script: "deve ser uma URL para um script em %{site_name}"
       script_update_not_utf8: "envio deve ser em texto UTF-8"
       script_disallowed_require: "usa um script externo não aprovado: %{code}"
