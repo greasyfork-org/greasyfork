@@ -43,10 +43,14 @@ project.languages.each do |language|
 		puts "Unknown locale #{code_with_hyphens}, skipping"
 		next
 	end
+	locale.percent_complete = rails_resource.stats(code).completed.to_i
+	if locale.percent_complete == 0
+		puts "Locale #{code_with_hyphens} empty, skipping"
+		next
+	end
 	(language.coordinators + language.reviewers + language.translators).each do |contributor|
 		LocaleContributor.create({:locale => locale, :transifex_user_name => contributor})
 	end
-	locale.percent_complete = rails_resource.stats(code).completed.to_i
 	locale.save!
 	if Greasyfork::Application.config.download_locale_files
 		# write Rails file
