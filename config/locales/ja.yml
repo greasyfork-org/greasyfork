@@ -44,6 +44,9 @@ ja:
     downgrade: "バージョン %{version} へダウングレード"
     reinstall: "バージョン %{version} を再インストール"
     old_version_warning: "これはこのスクリプトの最新バージョンではありません。最新バージョンへの自動更新は行われませんが、インストールを続行しますか?"
+    promoted: "推奨スクリプト"
+    author_promoted: "作者が勧める他のスクリプト"
+    promoted_text_html: "%{script_link}も気に入るかもしれません。"
     library_instructions_html: "このスクリプトは単体で利用できません。右のようなメタデータを含むスクリプトから、ライブラリとして読み込まれます: %{code}"
     deleted_notice: "このスクリプトは削除されました。"
     version_notice_html: "%{date} 時点のページです。%{latest_version_link}を参照してください。"
@@ -72,6 +75,14 @@ ja:
     cancel_delete_permanently_submit: "完全な削除の申請を取り消す"
     cancel_delete_permanently_notice: "完全な削除の申請が取り消されました。"
     delete_permanently_rejected_locked: "このスクリプトはロックされており、完全に削除することはできません"
+    admin_page: "管理"
+    admin:
+      title: "%{script_name} の管理"
+      promoted_heading: "推奨スクリプト"
+      promoted_explanation: "ユーザーがスクリプトをインストールしたら、その場で別のスクリプトもインストールするよう提案することができます。"
+      promoted_script_label: "推奨するスクリプトのURL"
+      promoted_submit: "推奨スクリプトを設定"
+      sync_heading: "ソースの同期"
     history_title: "%{script_name} のバージョン履歴"
     history_only_code_changes_info: "コードが変更されたバージョンのみを表示しています。"
     history_all_changes_link: "すべてのバージョンを表示"
@@ -242,6 +253,7 @@ ja:
     by_site_list_description: "以下は関連するユーザースクリプトが多いサイトです。文字が大きいほど、多くのユーザースクリプトが投稿されていることを表します。"
     by_site_list_filter: "サイト名で絞り込む"
     search_placeholder: "スクリプトを検索"
+    updated: "スクリプトが更新されました。"
     preview_additional_info: "プレビュー"
   script_sets:
     description: "「スクリプトセット」とは、Greasy Fork に投稿されているスクリプトのマイリストです。個々のスクリプトの追加だけでなく、他のスクリプトセットをリストに登録して一つのスクリプトセットとして表示することもでき、サイトやユーザーを指定した自動生成も可能です。また、同じようにして除外リストへの登録も行えます。"
@@ -443,6 +455,8 @@ ja:
       other: "名前とメールアドレスは、%{providers} と同期中 (ログイン時に更新) です。このページで設定したユーザー名やメールアドレスを使い続けるには、%{edit_sign_in_link:ログインに利用するアカウントの設定}から同期を解除してください。"
     delete_link: "アカウント削除"
     delete:
+      scripts_effect:
+        other: "あなたの%{count}個のスクリプトは削除されます。"
       submit: "アカウント削除"
       confirmation:
         completed: "あなたのアカウントは削除されました。"
