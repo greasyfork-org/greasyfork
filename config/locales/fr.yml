@@ -48,6 +48,7 @@ fr:
     downgrade: "Revenir à la version %{version}"
     reinstall: "Réinstaller la version %{version}"
     old_version_warning: "Ceci n'est pas la dernière version de ce script. Si vous l'installez, vous n'aurez jamais de mise à jour vers les nouvelles versions. Voulez-vous vraiment l'installer ?"
+    author_promoted: "Script suggéré par l'auteur"
     promoted_text_html: "Vous pourriez également aimer %{script_link}."
     library_instructions_html: "Ce script ne doit pas être installé directement. C'est une librairie destinée à être incluse dans d'autres scripts avec la méta-directive %{code}"
     deleted_notice: "Ce script a été supprimé."
@@ -77,6 +78,7 @@ fr:
     cancel_delete_permanently_submit: "Demande d'annulation de suppression définitive."
     cancel_delete_permanently_notice: "Votre demande de suppression définitive a été annulé."
     delete_permanently_rejected_locked: "Ce script est verrouillé et ne peut être supprimé de façon permanente"
+    admin_page: "Administrateur"
     history_title: "%{script_name} - Historique des versions"
     history_only_code_changes_info: "Voici les versions de ce script où le code a été modifié."
     history_all_changes_link: "Voir toutes les versions."
@@ -427,6 +429,16 @@ fr:
       intro: "Supprimer votre compte %{site_name} '%{user_name}' aura les conséquences suivantes :"
       requires_permanent_deletion: "Avant de supprimer votre compte, vous devez demander la suppression définitive des scripts suivants :"
       password_effect: "Vous ne pourrez plus vous connecter avec votre mot de passe."
+      scripts_effect:
+        one: "Vos %{count} scripts vont êtes supprimés."
+        other: "Vos %{count} scripts vont être supprimés."
+      submit: "Supprimer le compte"
+      confirmation_email_sent: "Un email de confirmation de la suppression du compte a été envoyé"
+      confirmation:
+        intro: "Vous êtes sur le point de supprimer le compte '%{user_name}'. Cette action est irréversible."
+        confirm: "Supprimer %{user_name}"
+        cancel: "Annuler la suppresion"
+        request_expired: "Suppression de l'utilisateur impossible - requête expirée"
   help:
     installing_user_scripts:
       title: 'Comment installer des scripts utilisateurs'
