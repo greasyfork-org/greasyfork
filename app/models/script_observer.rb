@@ -1,4 +1,4 @@
-require 'file_utils'
+require 'fileutils'
 class ScriptObserver < ActiveRecord::Observer
   def after_save(script)
     cache_files = ["#{script.id}.meta.js", "#{script.id}.user.js"]
