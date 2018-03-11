@@ -84,6 +84,8 @@ tr:
       title: "%{script_name} - Yönetici"
       promoted_heading: "Desteklenen betik"
       promoted_explanation: "Bu betiği yükledikten sonra, %{site_name} tercihinize uyan başka bir betik tavsiye edebilir."
+      promoted_submit: "Scripti ayarla"
+      sync_heading: "Kaynak Senkronizasyon"
     history_title: "%{script_name} - Versiyon geçmişi"
     history_only_code_changes_info: "Bunlar bu scriptin güncellenmiş kod versiyonlarıdır."
     history_all_changes_link: "Bütün versiyonları göster."
@@ -483,6 +485,7 @@ tr:
       title: "Forum Araması"
     user_search:
       title: "Kullanıcı araması"
+      description: "Kullanıcıları isimleriyle arayın. Düz yazı gibi arayın."
   common:
     error_preamble: "Ne gönderdiğinizde bazı sorunlar oldu.."
     allowed_elements_link: "(İzin verilen kodları gör.)"
@@ -497,6 +500,8 @@ tr:
     expander_show_more: "Daha fazla göster"
     expander_show_less: "Daha az göster"
     advertisement_note: Reklamlar
+    preview_tab: Görüntüle
+    write_tab: Yaz
   activerecord:
     attributes:
       user:
@@ -533,6 +538,7 @@ tr:
       script_too_many_screenshots: "Çok fazla ekran görüntüsü içeriyor. En fazla %{number} adet eklenebilir."
       cannot_be_self_reference: "aynı script olamaz"
       cannot_be_deleted_reference: "silinmiş script olamaz"
+      cannot_be_used_with_this_script: "bu script ile kullanılamaz"
       must_be_greasy_fork_script: "%{site_name}'ta bulunan script URL'si olmalıdır"
       script_update_not_utf8: "yüklenen UTF-8 biçiminde olmalıdır"
       script_disallowed_require: "onaylanmamış harici script kullanıyor: %{code}"

@@ -455,10 +455,29 @@ ja:
       other: "名前とメールアドレスは、%{providers} と同期中 (ログイン時に更新) です。このページで設定したユーザー名やメールアドレスを使い続けるには、%{edit_sign_in_link:ログインに利用するアカウントの設定}から同期を解除してください。"
     delete_link: "アカウント削除"
     delete:
+      intro: "%{site_name} のアカウント「%{user_name}」を削除した場合、次の影響があります:"
+      requires_permanent_deletion: "アカウントを削除する前に、以下のスクリプトの完全な削除を申請する必要があります。"
+      password_effect: "ログインできなくなります。"
+      identities_effect:
+        other: "%{identities} 経由でログインすると、新しいアカウントが作成されます。"
       scripts_effect:
         other: "あなたの%{count}個のスクリプトは削除されます。"
+      script_sets_effect:
+        other: "あなたの%{count}個のスクリプトセットは削除されます。"
+      forum_effect: "掲示板の投稿は残りますが、投稿者名は「%{user_name}」に変更されます。"
+      email_confirmation: "アカウントを削除する前に、%{email} へ %{site_name} から確認のメールを送信します。"
       submit: "アカウント削除"
+      confirmation_email_sent: "アカウントの削除について、確認のメールが送信されました。"
+      confirmation_email:
+        subject: "%{site_name} のアカウント削除の確認"
+        body: "%{site_name} のアカウント「%{user_name}」の削除が申請されました。確認を行いアカウントの削除を完了するには、%{url} へアクセスしてください。24時間以内に確認が行われない場合、削除申請はキャンセルされます。"
       confirmation:
+        intro: "アカウント「%{user_name}」を削除しようとしています。この操作を元に戻すことはできません。"
+        confirm: "「%{user_name}」を削除する"
+        cancel: "削除申請をキャンセルする"
+        key_mismatch: "ユーザーを削除できません — キーが一致しません。"
+        request_expired: "ユーザーを削除できません — ページの有効期限が切れています。"
+        cancelled: "削除申請はキャンセルされました。"
         completed: "あなたのアカウントは削除されました。"
   help:
     installing_user_scripts:
@@ -651,6 +670,7 @@ ja:
       script_too_many_screenshots: "スクリーンショットが多過ぎます – 最大 %{number} 枚まで"
       cannot_be_self_reference: "を同じスクリプトにすることはできません"
       cannot_be_deleted_reference: "に削除されたスクリプトを指定することはできません"
+      cannot_be_used_with_this_script: "このスクリプトでは使用できません。"
       must_be_greasy_fork_script: "は %{site_name} 上のスクリプトの URL にする必要があります"
       script_update_not_utf8: " (アップロード) は UTF-8 のテキスト形式にする必要があります"
       script_disallowed_require: "で許可されていない外部スクリプトが使用されています: %{code}"
