@@ -149,9 +149,18 @@ class ScriptsController < ApplicationController
 	end
 
 	def by_site
-		@by_sites = self.class.get_by_sites(script_subset)
-		@by_sites = @by_sites.select{|k, v| k.present? && k.include?(params[:q])} if params[:q].present?
-		@by_sites = Hash[@by_sites.max_by(200) {|k,v| v[:installs] }.sort_by{|k,v| k || ''}]
+		respond_to do |format|
+			format.html {
+				@by_sites = self.class.get_by_sites(script_subset)
+				@by_sites = @by_sites.select{|k, v| k.present? && k.include?(params[:q])} if params[:q].present?
+				@by_sites = Hash[@by_sites.max_by(200) {|k,v| v[:installs] }.sort_by{|k,v| k || ''}]
+			}
+			format.json {
+				render json: cache_with_log("scripts/get_by_sites/json") { 
+					ScriptAppliesTo.joins(:script, :site_application).where(scripts: {script_type_id: 1, script_delete_type_id: nil}, tld_extra: false, site_applications: {domain: true}).group('site_applications.text').count
+				}
+			}
+		end
 	end
 
 	def search
