@@ -369,7 +369,7 @@ class Script < ActiveRecord::Base
 	end
 
 	def code_url
-		return url_helpers.script_library_js_url(self, :version => get_newest_saved_script_version.id, :name => url_name) if library?
+		return url_helpers.library_js_script_url(self, version: get_newest_saved_script_version.id, name: url_name) if library?
 		return url_helpers.user_js_script_url(self, name: url_name)
 	end
 
