@@ -6,7 +6,7 @@ module ScriptListings
 
   included do 
     layout 'application', only: :by_site
-    layout 'list', only: [:index, :search, :libraries, :reported, :reported_not_adult, :requested_permanent_deletion, :minified, :restributable, :code_search]
+    layout 'list', only: [:index, :search, :libraries, :reported, :reported_not_adult, :requested_permanent_deletion, :minified, :restributable, :code_search, :redistributable]
   end
 
   def index
