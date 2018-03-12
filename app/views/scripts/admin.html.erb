@@ -11,7 +11,7 @@
 	</div>
 <% end %>
 
-<section>
+<section class="multiform-page">
 	<h3><%= t('scripts.admin.promoted_heading') %></h3>
 
 	<p><%= t('scripts.admin.promoted_explanation', site_name: site_name) %></p>
@@ -26,7 +26,7 @@
 	<% end %>
 </section>
 
-<section>
+<section class="multiform-page">
 	<h3><%= t('scripts.admin.sync_heading') %></h3>
 
 	<%=form_for(@script, :url => sync_update_script_path) do |s|%>
