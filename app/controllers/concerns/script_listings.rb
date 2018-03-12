@@ -1,7 +1,7 @@
 module ScriptListings
   extend ActiveSupport::Concern
 
-  COLLECTION_PUBLIC_ACTIONS = [:index, :search, :libraries, :code_search, :redistributable]
+  COLLECTION_PUBLIC_ACTIONS = [:index, :search, :libraries, :code_search, :redistributable, :by_site]
   COLLECTION_MODERATOR_ACTIONS = [:reported, :reported_not_adult, :requested_permanent_deletion, :minified]
 
   included do 
