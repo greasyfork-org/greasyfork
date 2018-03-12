@@ -35,11 +35,6 @@ protected
 		render_access_denied if current_user.nil? or (!params[:script_id].nil? and Script.find(params[:script_id]).user_id != current_user.id)
 	end
 
-	def authorize_by_script_id_or_moderator
-		return if !current_user.nil? and current_user.moderator?
-		authorize_by_script_id
-	end
-
 	def authorize_for_moderators_only
 		render_access_denied if current_user.nil? or !current_user.moderator?
 	end

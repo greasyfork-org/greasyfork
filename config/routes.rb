@@ -46,35 +46,42 @@ Greasyfork::Application.routes.draw do
 
 		get 'scripts/sync_additional_info_form', :to => 'scripts#sync_additional_info_form', :as => 'script_sync_additional_info_form'
 		resources :scripts, :only => [:index, :show] do
-			# Deprecated after https://github.com/JasonBarnabe/greasyfork/issues/76
-			get 'code.meta.js', :to => 'scripts#meta_js', :locale => nil
-			get 'code.user.js', :to => 'scripts#user_js', :locale => nil
 
-			get 'code/:name.user.js', :to => 'scripts#user_js', :as =>  'user_js', :locale => nil
-			get 'code/:name.js', :to => 'scripts#user_js', :as =>  'library_js', :locale => nil
-			get 'code/:name.meta.js', :to => 'scripts#meta_js', :as =>  'meta_js', :locale => nil
-			# something stupid is requesting this, let's let it have it so we don't see the errors
-			match 'code/:name.meta.js', :to => 'scripts#meta_js', :locale => nil, :via => :options
-			get 'code(.:format)', :to => 'scripts#show_code', :as =>  'show_code', :constraints => {:format => /.*/}
-			get 'feedback(.:format)', :to => 'scripts#feedback', :as =>  'feedback'
-			patch 'sync_update(.:format)', :to => 'scripts#sync_update', :as =>  'sync_update'
-			post 'install-ping', :to => 'scripts#install_ping', :as => 'install_ping', :locale => nil
-			get 'diff', :to => 'scripts#diff', :as => 'diff', :constraints => lambda{ |req| !req.params[:v1].blank? and !req.params[:v2].blank? }
-			get 'delete(.:format)', :to => 'scripts#delete', :as => 'delete'
-			post 'delete(.:format)', :to => 'scripts#do_delete', :as => 'do_delete'
-			post 'undelete(.:format)', :to => 'scripts#do_undelete', :as => 'do_undelete'
-			post 'request_permanent_deletion(.:format)', :to => 'scripts#request_permanent_deletion', :as => 'request_permanent_deletion'
-			post 'unrequest_permanent_deletion(.:format)', :to => 'scripts#unrequest_permanent_deletion', :as => 'unrequest_permanent_deletion'
-			post 'do_permanent_deletion(.:format)', :to => 'scripts#do_permanent_deletion', :as => 'do_permanent_deletion'
-			post 'reject_permanent_deletion(.:format)', :to => 'scripts#reject_permanent_deletion', :as => 'reject_permanent_deletion'
-			get 'mark(.:format)', :to => 'scripts#mark', :as => 'mark'
-			post 'mark(.:format)', :to => 'scripts#do_mark', :as => 'do_mark'
-			get 'stats(.:format)', :to => 'scripts#stats', :as => 'stats'
+			member do
+				# Deprecated after https://github.com/JasonBarnabe/greasyfork/issues/76
+				get 'code.meta.js', :to => 'scripts#meta_js', :locale => nil
+				get 'code.user.js', :to => 'scripts#user_js', :locale => nil
 
-			get 'admin(.:format)', to: 'scripts#admin', as: 'admin'
-			patch 'update_promoted(.:format)', to: 'scripts#update_promoted', as: 'update_promoted'
+				get 'code/:name.user.js', :to => 'scripts#user_js', :as =>  'user_js', :locale => nil
+				get 'code/:name.js', :to => 'scripts#user_js', :as =>  'library_js', :locale => nil
+				get 'code/:name.meta.js', :to => 'scripts#meta_js', :as =>  'meta_js', :locale => nil
+				# something stupid is requesting this, let's let it have it so we don't see the errors
+				match 'code/:name.meta.js', :to => 'scripts#meta_js', :locale => nil, :via => :options
 
-			get 'derivatives', :as => 'derivatives'
+				get 'admin'
+				get 'code(.:format)', to: 'scripts#show_code', as: 'show_code', :constraints => {:format => /.*/}
+				get 'derivatives'
+				get 'diff', constraints: ->(req) { !req.params[:v1].blank? && !req.params[:v2].blank? }
+				get 'feedback'
+				get 'stats'
+
+				post 'install-ping', locale: nil
+
+				get 'mark'
+				post 'mark', to: 'scripts#do_mark', as: 'do_mark'
+
+				get 'delete'
+				post 'delete', to: 'scripts#do_delete', as: 'do_delete'
+				post 'undelete', to: 'scripts#do_undelete', as: 'do_undelete'
+				post 'request_permanent_deletion'
+				post 'unrequest_permanent_deletion'
+				post 'do_permanent_deletion', to: 'scripts#do_permanent_deletion', as: 'do_permanent_deletion'
+				post 'reject_permanent_deletion', to: 'scripts#reject_permanent_deletion', as: 'reject_permanent_deletion'
+
+				patch 'sync_update'
+				patch 'update_promoted'
+			end
+
 			collection do
 				get 'by-site(.:format)', :action => 'by_site', :as => 'site_list'
 				# :site can contain a dot, make sure site doesn't eat format or vice versa
@@ -88,6 +95,7 @@ Greasyfork::Application.routes.draw do
 				get 'code-search(.:format)', :action => 'code_search', :as => 'code_search'
 				get 'redistributable(.:format)', :action => 'redistributable', :as => 'redistributable'
 			end
+
 			resources :script_versions, :only => [:create, :new, :index], :path => 'versions' do
 				get 'delete(.:format)', :to => 'script_versions#delete', :as => 'delete'
 				post 'delete(.:format)', :to => 'script_versions#do_delete', :as => 'do_delete'

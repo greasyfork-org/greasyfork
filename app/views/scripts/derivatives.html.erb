@@ -14,7 +14,7 @@
 				source_duplications = cd.cpd_duplication_scripts.select{|cpdds| cpdds.script_id == @script.id}
 				source_duplications.each do |source_duplication| %>
 					<li>
-						<%=link_to t('scripts.script_lines_link', {:script_name => @script.name, :start => source_duplication.line + 1, :end => source_duplication.line + cd.lines + 1}), script_show_code_path(source_duplication.script, :anchor => "n#{source_duplication.line + 1}")%>
+						<%=link_to t('scripts.script_lines_link', {:script_name => @script.name, :start => source_duplication.line + 1, :end => source_duplication.line + cd.lines + 1}), show_code_script_path(source_duplication.script, :anchor => "n#{source_duplication.line + 1}")%>
 						<ul>
 							<% cd.cpd_duplication_scripts.select{|cpdds| cpdds.script.user_id != @script.user_id && cpdds.script.listable?}.each do |dup| %>
 								<li>
@@ -25,7 +25,7 @@
 												:start => dup.line + 1,
 												:end => dup.line + cd.lines + 1
 											}),
-											script_show_code_path(dup.script, :anchor => "n#{dup.line + 1}")
+											show_code_script_path(dup.script, :anchor => "n#{dup.line + 1}")
 										),
 										:license => license_display(dup.script),
 										:user_link => link_to(dup.script.user.name, dup.script.user)

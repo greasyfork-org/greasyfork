@@ -1,11 +1,11 @@
 <%
 script = script_version.script
 version_param = nil if !defined?(:version_param)
-code_url = version_param.nil? ? script_user_js_path(script, name: script.url_name, locale_override: nil) : script_user_js_path(script, version: version_param, name: script.url_name, locale_override: nil) + '&d=.user.js'
+code_url = version_param.nil? ? user_js_script_path(script, name: script.url_name, locale_override: nil) : user_js_script_path(script, version: version_param, name: script.url_name, locale_override: nil) + '&d=.user.js'
 %>
 <%= link_to t('scripts.install'), code_url, {
 	class: 'install-link',
-	'data-ping-url' => script_install_ping_path(script, :authenticity_token => session[:_csrf_token], :locale_override => nil),
+	'data-ping-url' => install_ping_script_path(script, :authenticity_token => session[:_csrf_token], :locale_override => nil),
 	'data-is-previous-version' => version_param.present?,
 	'data-previous-version-warning' => t('scripts.old_version_warning'),
 	rel: 'nofollow',

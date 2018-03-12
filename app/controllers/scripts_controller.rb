@@ -5,23 +5,47 @@ require 'cgi'
 
 class ScriptsController < ApplicationController
 
-	layout Proc.new {|c|
-		case c.action_name.to_sym
-			when :show, :show_code, :feedback, :diff, :sync_update, :delete, :do_delete, :stats, :derivatives, :mark, :do_mark, :admin, :update_promoted
-				'scripts'
-			when :by_site
-				'application'
-			else
-				'list'
-		end
-	}
+	MEMBER_AUTHOR_ACTIONS = [:sync_update, :derivatives, :admin, :update_promoted, :request_permanent_deletion, :unrequest_permanent_deletion, :update_promoted]
+	MEMBER_AUTHOR_OR_MODERATOR_ACTIONS = [:delete, :do_delete, :undelete, :do_undelete, :derivatives]
+	MEMBER_MODERATOR_ACTIONS = [:mark, :do_mark, :do_permanent_deletion, :reject_permanent_deletion]
+	MEMBER_PUBLIC_ACTIONS = [:diff]
+	MEMBER_PUBLIC_ACTIONS_WITH_SPECIAL_LOADING = [:show, :show_code, :user_js, :meta_js, :feedback, :install_ping, :stats, :sync_additional_info_form]
 
-	before_action :authorize_by_script_id, :only => [:sync_update, :request_permanent_deletion, :unrequest_permanent_deletion, :admin, :update_promoted]
-	before_action :authorize_by_script_id_or_moderator, :only => [:delete, :do_delete, :undelete, :do_undelete, :derivatives]
-	before_action :check_for_locked_by_script_id, :only => [:sync_update, :delete, :do_delete, :undelete, :do_undelete, :request_permanent_deletion, :unrequest_permanent_deletion, :admin, :update_promoted]
-	before_action :check_for_deleted_by_id, :only => [:show]
-	before_action :check_for_deleted_by_script_id, :only => [:show_code, :feedback, :install_ping, :diff, :stats]
-	before_action :authorize_for_moderators_only, :only => [:minified, :mark, :do_mark, :reported_not_adult, :do_permanent_deletion, :reject_permanent_deletion, :requested_permanent_deletion]
+	before_action do
+		case action_name.to_sym
+			when *MEMBER_AUTHOR_ACTIONS
+				@script = Script.find(params[:id])
+				render_access_denied if current_user&.id != @script.user_id
+				render_locked if @script.locked?
+				@bots = 'noindex'
+			when *MEMBER_AUTHOR_OR_MODERATOR_ACTIONS
+				@script = Script.find(params[:id])
+				render_access_denied if current_user&.id != @script.user_id && !current_user&.moderator?
+				render_locked if @script.locked? && !current_user&.moderator?
+				@bots = 'noindex'
+			when *MEMBER_MODERATOR_ACTIONS
+				if !current_user&.moderator?
+					render_access_denied
+					next
+				end
+				@script = Script.find(params[:id])
+				@bots = 'noindex'
+			when *MEMBER_PUBLIC_ACTIONS
+				@script = Script.find(params[:id])
+				check_for_deleted(@script)
+			when *MEMBER_PUBLIC_ACTIONS_WITH_SPECIAL_LOADING
+				# Nothing
+			when *COLLECTION_PUBLIC_ACTIONS
+				# Nothing
+			when *COLLECTION_MODERATOR_ACTIONS
+				if !current_user&.moderator?
+					render_access_denied
+					next
+				end
+			else
+				raise "Unknown action #{action_name}"
+		end
+	end
 
 	skip_before_action :verify_authenticity_token, :only => [:install_ping]
 	protect_from_forgery :except => [:user_js, :meta_js, :show, :show_code]
@@ -29,242 +53,7 @@ class ScriptsController < ApplicationController
 	# The value a syncing additional info will have after syncing is added but before the first sync succeeds
 	ADDITIONAL_INFO_SYNC_PLACEHOLDER = '(Awaiting sync)'
 
-	#########################
-	# Collections
-	#########################
-
-	def index
-		is_search = params[:q].present?
-
-		# Search can't do script sets, otherwise we'd use it for everything.
-		if params[:set].nil?
-			begin
-				with = case script_subset
-					when :greasyfork
-						{sensitive: false}
-					when :sleazyfork
-						{sensitive: true}
-					else
-						{}
-				end
-
-				if params[:filter_locale] == '1'
-					@current_locale_filter = Locale.find_by(code: I18n.locale)
-					with[:locale] = @current_locale_filter.id
-				else
-					@offer_filtered_results_for_locale = Locale.find_by(code: I18n.locale)
-				end
-
-				with[:script_type_id] = 1
-				if params[:site]
-					if params[:site] == '*'
-						with[:site_count] = 0
-					else
-						site = SiteApplication.find_by(text: params[:site])
-						if site.nil?
-							@scripts = Script.none.paginate(page: 1)
-						else
-							with[:site_application_id] = site.id
-						end
-					end
-				end
-
-				# This should be nil unless there are going to be no results.
-				if @scripts.nil?
-					# :ranker => "expr('top(user_weight)')" means that it will be sorted on the top ranking match rather than
-					# an aggregate of all matches. In other words, something matching on "name" will be tied with everything
-					# else matching on "name".
-					@scripts = Script.search(
-						params[:q],
-						with: with,
-						page: params[:page],
-						per_page: get_per_page,
-						order: self.class.get_sort(params, true),
-						populate: true,
-						sql: {include: [:script_type, {localized_attributes: :locale}, :user]},
-						select: '*, weight() myweight, LENGTH(site_application_id) AS site_count',
-						ranker: "expr('top(user_weight)')"
-					)
-					# make it run now so we can catch syntax errors
-					@scripts.empty?
-				end
-			rescue ThinkingSphinx::SyntaxError, ThinkingSphinx::ParseError => e
-				flash[:alert] = "Invalid search query - '#{params[:q]}'."
-				# back to the main listing
-				redirect_to scripts_path
-				return
-			rescue ThinkingSphinx::OutOfBoundsError => e
-				# Paginated too far.
-				@scripts = Script.none.paginate(page: 1)
-			end
-		else
-			@scripts = Script.listable(script_subset).includes({:user => {}, :script_type => {}, :localized_attributes => :locale, :script_delete_type => {}}).paginate(:page => params[:page], :per_page => get_per_page)
-			@scripts = self.class.apply_filters(@scripts, params, script_subset)
-		end
-
-		respond_to do |format|
-			format.html {
-				if !params[:set].nil?
-					@set = ScriptSet.find(params[:set])
-				end
-				@by_sites = self.class.get_top_by_sites(script_subset)
-
-				@sort_options = ['relevance', 'daily_installs', 'total_installs', 'ratings', 'created', 'updated', 'name'] if is_search
-				@link_alternates = get_listing_link_alternatives
-
-				if !params[:set].nil?
-					if is_search
-						@title = t('scripts.listing_title_for_search', :search_string => params[:q])
-					elsif @set.favorite
-						@title = t('scripts.listing_title_for_favorites', :set_name => @set.display_name, :user_name => @set.user.name)
-					else
-						@title = @set.display_name
-						@description = @set.description
-					end
-				elsif params[:site] == '*' and !@scripts.empty?
-					@title = t('scripts.listing_title_all_sites')
-					@description = t('scripts.listing_description_all_sites')
-				elsif !params[:site].nil? and !@scripts.empty?
-					@title = t('scripts.listing_title_for_site', :site => params[:site])
-					@description = t('scripts.listing_description_for_site', :site => params[:site])
-				else
-					@title = t('scripts.listing_title_generic')
-					@description = t('scripts.listing_description_generic')
-				end
-				@canonical_params = [:page, :per_page, :site, :sort, :filter_locale]
-				if is_search
-					@canonical_params << :q
-				else
-					@canonical_params << :set
-				end
-			}
-			format.atom
-			format.json {
-				render :json => params[:meta] == '1' ? {count: @scripts.count} : @scripts.as_json(:include => :user)
-			}
-			format.jsonp {
-				render :json => params[:meta] == '1' ? {count: @scripts.count} : @scripts.as_json(:include => :user), :callback => clean_json_callback_param
-			}
-		end
-	end
-
-	def by_site
-		respond_to do |format|
-			format.html {
-				@by_sites = self.class.get_by_sites(script_subset)
-				@by_sites = @by_sites.select{|k, v| k.present? && k.include?(params[:q])} if params[:q].present?
-				@by_sites = Hash[@by_sites.max_by(200) {|k,v| v[:installs] }.sort_by{|k,v| k || ''}]
-			}
-			format.json {
-				render json: cache_with_log("scripts/get_by_sites/json") { 
-					ScriptAppliesTo.joins(:script, :site_application).where(scripts: {script_type_id: 1, script_delete_type_id: nil}, tld_extra: false, site_applications: {domain: true}).group('site_applications.text').count
-				}
-			}
-		end
-	end
-
-	def search
-		redirect_to params.permit(:page, :per_page, :site, :sort, :q).merge(action: :index), status: 301
-	end
-
-	def libraries
-		with = case script_subset
-			when :greasyfork
-				{sensitive: false}
-			when :sleazyfork
-				{sensitive: true}
-			else
-				{}
-		end
-		with = with.merge(script_type_id: 3)
-
-		begin
-			# :ranker => "expr('top(user_weight)')" means that it will be sorted on the top ranking match rather than
-			# an aggregate of all matches. In other words, something matching on "name" will be tied with everything
-			# else matching on "name".
-			@scripts = Script.search(
-				params[:q],
-				with: with,
-				page: params[:page],
-				per_page: get_per_page,
-				order: self.class.get_sort(params, true, nil, default_sort: 'created'),
-				populate: true,
-				sql: {include: [:script_type, {localized_attributes: :locale}, :user]},
-				select: '*, weight() myweight',
-				ranker: "expr('top(user_weight)')"
-			)
-			# make it run now so we can catch syntax errors
-			@scripts.empty?
-		rescue ThinkingSphinx::SyntaxError => e
-			flash[:alert] = "Invalid search query - '#{params[:q]}'."
-			# back to the main listing
-			redirect_to scripts_path
-			return
-		end
-	end
-
-	def reported
-		@bots = 'noindex'
-		@scripts = Script.reported
-	end
-
-	def reported_not_adult
-		@bots = 'noindex'
-		@scripts = Script.reported_not_adult
-		render :reported
-	end
-
-	def requested_permanent_deletion
-		@bots = 'noindex'
-		@scripts = Script.requested_permanent_deletion
-		render :reported
-	end
-
-	def minified
-		@bots = 'noindex'
-		@scripts = []
-		Script.order(self.class.get_sort(params)).where(:locked => false).each do |script|
-			sv = script.get_newest_saved_script_version
-			@scripts << script if sv.appears_minified
-		end
-		@paginate = false
-		@title = "Potentially minified user scripts on Greasy Fork"
-		@include_script_sets = false
-		render :action => 'index'
-	end
-
-	def redistributable
-		@title = t('scripts.redistributable_title')
-		@page_description = t('scripts.redistributable_page_description')
-		@bots = 'noindex,follow'
-		render_script_list(Script.redistributable(script_subset))
-	end
-
-	def code_search
-		@bots = 'noindex,follow'
-		if params[:c].nil? or params[:c].empty?
-			redirect_to search_path(anchor: 'code-search'), status: 301
-			return
-		end
-
-		# get latest version for each script
-		script_version_ids = Script.connection.select_values("SELECT MAX(id) FROM script_versions GROUP BY script_id")
-
-		# check the code for the search text
-		# using the escape character doesn't seem to work, yet it works from the command line. so choose something unlikely to be used as our escape character
-		script_ids = Script.connection.select_values("SELECT DISTINCT script_id FROM script_versions JOIN script_codes ON rewritten_script_code_id = script_codes.id WHERE script_versions.id IN (#{script_version_ids.join(',')}) AND code LIKE '%#{Script.connection.quote_string(params[:c].gsub('É', 'ÉÉ').gsub('%', 'É%').gsub('_', 'É_'))}%' ESCAPE 'É' LIMIT 100")
-		@scripts = Script.order(self.class.get_sort(params)).includes([:user, :script_type, :script_delete_type]).where(:id => script_ids)
-		@scripts = @scripts.listable(script_subset) if !current_user&.moderator?
-		@paginate = false
-		@title = t('scripts.listing_title_for_code_search', :search_string => params[:c])
-		@canonical_params = [:c, :sort]
-		@include_script_sets = false
-		render :action => 'index'
-	end
-
-	#########################
-	# Single resource
-	#########################
+	include ScriptListings
 
 	def show
 		@script, @script_version = versionned_script(params[:id], params[:version])
@@ -293,7 +82,7 @@ class ScriptsController < ApplicationController
 			format.json { render :json => @script.as_json(:include => :user) }
 			format.jsonp { render :json => @script.as_json(:include => :user), :callback => clean_json_callback_param }
 			format.user_script_meta {
-				route_params = {:script_id => params[:id], :name => @script.name, :format => nil}
+				route_params = {:id => params[:id], :name => @script.name, :format => nil}
 				route_params[:version] = params[:version] if !params[:version].nil?
 				redirect_to script_meta_js_path(route_params)
 			}
@@ -301,7 +90,7 @@ class ScriptsController < ApplicationController
 	end
 
 	def show_code
-		@script, @script_version = versionned_script(params[:script_id], params[:version])
+		@script, @script_version = versionned_script(params[:id], params[:version])
 
 		# some weird safari client tries to do this
 		if params[:format] == 'meta.js'
@@ -309,7 +98,7 @@ class ScriptsController < ApplicationController
 			return
 		end
 
-		return if handle_wrong_url(@script, :script_id)
+		return if handle_wrong_url(@script, :id)
 
 		respond_to do |format|
 			format.html {
@@ -328,13 +117,13 @@ class ScriptsController < ApplicationController
 				if @highlighted_code.nil?
 					@code = @script_version.rewritten_code
 				end
-				@canonical_params = [:script_id, :version]
+				@canonical_params = [:id, :version]
 			}
 			format.js {
 				redirect_to @script.code_url
 			}
 			format.user_script_meta {
-				route_params = {:script_id => params[:script_id], :name => @script.name, :format => nil}
+				route_params = {:id => params[:id], :name => @script.name, :format => nil}
 				route_params[:version] = params[:version] if !params[:version].nil?
 				redirect_to script_meta_js_path(route_params)
 			}
@@ -342,18 +131,18 @@ class ScriptsController < ApplicationController
 	end
 
 	def feedback
-		@script, @script_version = versionned_script(params[:script_id], params[:version])
+		@script, @script_version = versionned_script(params[:id], params[:version])
 
-		return if handle_wrong_url(@script, :script_id)
+		return if handle_wrong_url(@script, :id)
 
 		@bots = 'noindex' if !params[:version].nil?
-		@canonical_params = [:script_id, :version]
+		@canonical_params = [:id, :version]
 	end
 
 	def user_js
 		respond_to do |format|
 			format.any(:html, :all, :js) {
-				script_id = params[:script_id].to_i
+				script_id = params[:id].to_i
 				script_version_id = params[:version].to_i
 
 				script, script_version = minimal_versionned_script(script_id, script_version_id)
@@ -380,7 +169,7 @@ class ScriptsController < ApplicationController
 	end
 
 	def meta_js
-		script_id = params[:script_id].to_i
+		script_id = params[:id].to_i
 		script_version_id = (params[:version] || 0).to_i
 
 		# Bypass ActiveRecord for performance
@@ -450,9 +239,7 @@ class ScriptsController < ApplicationController
 	end
 
 	def diff
-		@script = Script.find(params[:script_id])
-
-		return if handle_wrong_url(@script, :script_id)
+		return if handle_wrong_url(@script, :id)
 
 		versions = [params[:v1].to_i, params[:v2].to_i]
 		@old_version = ScriptVersion.find(versions.min)
@@ -470,13 +257,10 @@ class ScriptsController < ApplicationController
 		diff_options << "-w" if !params[:w].nil? && params[:w] == '1'
 		@diff = Diffy::Diff.new(@old_version.code, @new_version.code, :include_plus_and_minus_in_html => true, :include_diff_info => true, :diff => diff_options).to_s(:html).html_safe
 		@bots = 'noindex'
-		@canonical_params = [:script_id, :v1, :v2, :context, :w]
+		@canonical_params = [:id, :v1, :v2, :context, :w]
 	end
 
 	def sync_update
-		@script = Script.find(params[:script_id])
-		@bots = 'noindex'
-
 		if !params['stop-syncing'].nil?
 			@script.script_sync_type_id = nil
 			@script.script_sync_source_id = nil
@@ -570,11 +354,9 @@ class ScriptsController < ApplicationController
 	end
 
 	def delete
-		@script = Script.find(params[:script_id])
 		if !@script.deleted?
 			@other_scripts = Script.where(:user => @script.user).where(:locked => false).where(['id != ?', @script.id]).count
 		end
-		@bots = 'noindex'
 	end
 
 	def do_delete
@@ -637,69 +419,64 @@ class ScriptsController < ApplicationController
 	end
 
 	def do_undelete
-		@bots = 'noindex'
-		script = Script.find(params[:script_id])
-		if current_user.moderator? && current_user != script.user
+		if current_user.moderator? && current_user != @script.user
 			ma = ModeratorAction.new
 			ma.moderator = current_user
-			ma.script = script
+			ma.script = @script
 			ma.action = 'Undelete'
 			ma.reason = params[:reason]
 			ma.save!
-			script.locked = false
-			if script.user.banned and params[:unbanned]
+			@script.locked = false
+			if @script.user.banned and params[:unbanned]
 				ma_ban = ModeratorAction.new
 				ma_ban.moderator = current_user
-				ma_ban.user = script.user
+				ma_ban.user = @script.user
 				ma_ban.action = 'Unban'
 				ma_ban.reason = params[:reason]
 				ma_ban.save!
-				script.user.banned = false
-				script.user.save!
+				@script.user.banned = false
+				@script.user.save!
 			end
 		end
-		script.script_delete_type_id = nil
-		script.replaced_by_script_id = nil
-		script.delete_reason = nil
-		script.permanent_deletion_request_date = nil
-		script.save(:validate => false)
-		redirect_to script
+		@script.script_delete_type_id = nil
+		@script.replaced_by_script_id = nil
+		@script.delete_reason = nil
+		@script.permanent_deletion_request_date = nil
+		@script.save(:validate => false)
+		redirect_to @script
 	end
 
 	def request_permanent_deletion
-		script = Script.find(params[:script_id])
-		if script.locked
+		if @script.locked
 			flash[:notice] = I18n.t('scripts.delete_permanently_rejected_locked')
 			redirect_to root_path
 			return
 		end
-		if script.immediate_deletion_allowed?
-			script.destroy!
+		if @script.immediate_deletion_allowed?
+			@script.destroy!
 			flash[:notice] = I18n.t('scripts.delete_permanently_notice_immediate')
 			redirect_to root_path
 			return
 		end
-		script.permanent_deletion_request_date = DateTime.now
-		script.save(validate: false)
+		@script.permanent_deletion_request_date = DateTime.now
+		@script.save(validate: false)
 		flash[:notice] = I18n.t('scripts.delete_permanently_notice')
-		redirect_to script
+		redirect_to @script
 	end
 
 	def unrequest_permanent_deletion
-		script = Script.find(params[:script_id])
-		script.permanent_deletion_request_date = nil
-		script.save(validate: false)
+		@script.permanent_deletion_request_date = nil
+		@script.save(validate: false)
 		flash[:notice] = I18n.t('scripts.cancel_delete_permanently_notice')
-		redirect_to script
+		redirect_to @script
 	end
 
 	def do_permanent_deletion
-		script = Script.find(params[:script_id])
 		Script.transaction do
-			script.destroy!
+			@script.destroy!
 			ma = ModeratorAction.new
 			ma.moderator = current_user
-			ma.script = script
+			ma.script = @script
 			ma.action = 'Permanent deletion'
 			ma.reason = 'Author request'
 			ma.save!
@@ -709,30 +486,24 @@ class ScriptsController < ApplicationController
 	end
 
 	def reject_permanent_deletion
-		script = Script.find(params[:script_id])
 		Script.transaction do
 			ma = ModeratorAction.new
 			ma.moderator = current_user
-			ma.script = script
+			ma.script = @script
 			ma.action = 'Permanent deletion denied'
 			ma.reason = params[:reason]
 			ma.save!
-			script.permanent_deletion_request_date = nil
-			script.save(validate: false)
+			@script.permanent_deletion_request_date = nil
+			@script.save(validate: false)
 		end
 		flash[:notice] = 'Permanent deletion request rejected.'
 		redirect_to script
 	end
 
 	def mark
-		@script = Script.find(params[:script_id])
-		@bots = 'noindex'
 	end
 
 	def do_mark
-		@script = Script.find(params[:script_id])
-		@bots = 'noindex'
-
 		ma = ModeratorAction.new
 		ma.moderator = current_user
 		ma.script = @script
@@ -762,9 +533,9 @@ class ScriptsController < ApplicationController
 	end
 
 	def stats
-		@script, @script_version = versionned_script(params[:script_id], params[:version])
+		@script, @script_version = versionned_script(params[:id], params[:version])
 
-		return if handle_wrong_url(@script, :script_id)
+		return if handle_wrong_url(@script, :id)
 
 		install_values = Hash[Script.connection.select_rows("SELECT install_date, installs FROM install_counts where script_id = #{@script.id}")]
 		daily_install_values = Hash[Script.connection.select_rows("SELECT DATE(install_date) d, COUNT(*) FROM daily_install_counts where script_id = #{@script.id} GROUP BY d")]
@@ -780,7 +551,7 @@ class ScriptsController < ApplicationController
 		end
 		respond_to do |format|
 			format.html {
-				@canonical_params = [:script_id, :version]
+				@canonical_params = [:id, :version]
 			}
 			format.csv {
 				data = CSV.generate do |csv|
@@ -799,9 +570,7 @@ class ScriptsController < ApplicationController
 	end
 
 	def derivatives
-		@script = Script.find(params[:script_id])
-		@bots = 'noindex'
-		return if redirect_to_slug(@script, :script_id)
+		return if redirect_to_slug(@script, :id)
 
 		similar_names = {}
 		Script.listable(script_subset).includes(:localized_names).where(['user_id != ?', @script.user_id]).each do |other_script|
@@ -820,22 +589,16 @@ class ScriptsController < ApplicationController
 		# only duplications containing listable scripts by others
 		# @code_duplications = @script.cpd_duplications.includes(:cpd_duplication_scripts => {:script => :user}).select {|dup| dup.cpd_duplication_scripts.any?{|cpdds| cpdds.script.user_id != @script.user_id && cpdds.script.listable?}}.uniq
 
-		@canonical_params = [:script_id]
+		@canonical_params = [:id]
 	end
 
 	def admin
-		@script = Script.find(params[:script_id])
-		@bots = 'noindex'
-
 		# For sync section
 		@script.script_sync_type_id = 1 if @script.script_sync_source_id.nil?
 		@script.localized_attributes.build({:attribute_key => 'additional_info', :attribute_default => true}) if @script.localized_attributes_for('additional_info').empty?
 	end
 
 	def update_promoted
-		@script = Script.find(params[:script_id])
-		@bots = 'noindex'
-
 		promoted_script = get_script_from_input(params[:promoted_script_id])
 		case promoted_script
 			when :non_gf_url
@@ -872,32 +635,7 @@ class ScriptsController < ApplicationController
 		@script.save!
 
 		flash[:notice] = I18n.t('scripts.updated')
-		redirect_to script_admin_path(@script)
-	end
-
-	def self.get_top_by_sites(script_subset)
-		return cache_with_log("scripts/get_top_by_sites/#{script_subset}") do
-			get_by_sites(script_subset).sort{|a,b| b[1][:installs] <=> a[1][:installs]}.first(10)
-		end
-	end
-
-	def self.apply_filters(scripts, params, script_subset, default_sort: nil)
-		if !params[:site].nil?
-			if params[:site] == '*'
-				scripts = scripts.for_all_sites
-			else
-				scripts = scripts.joins(:site_applications).where(site_applications: {text: params[:site]})
-			end
-		end
-		if !params[:set].nil?
-			set = ScriptSet.find(params[:set])
-			set_script_ids = cache_with_log([set, script_subset]) do
-				set.scripts(script_subset).map{|s| s.id}
-			end
-			scripts = scripts.where(:id => set_script_ids)
-		end
-		scripts = scripts.order(get_sort(params, false, set, default_sort: default_sort))
-		return scripts
+		redirect_to admin_script_path(@script)
 	end
 
 	def sync_additional_info_form
@@ -905,32 +643,6 @@ class ScriptsController < ApplicationController
 	end
 
 private
-
-	def self.get_sort(params, for_sphinx = false, set = nil, default_sort: nil)
-		# sphinx has these defined as attributes, outside of sphinx they're possibly ambiguous column names
-		column_prefix = for_sphinx ? '' : 'scripts.'
-		sort = params[:sort] || (!set.nil? ? set.default_sort : nil) || default_sort
-		case sort
-			when 'total_installs'
-				return "#{column_prefix}total_installs DESC, #{column_prefix}id"
-			when 'created'
-				return "#{column_prefix}created_at DESC, #{column_prefix}id"
-			when 'updated'
-				return "#{column_prefix}code_updated_at DESC, #{column_prefix}id"
-			when 'daily_installs'
-				return "#{column_prefix}daily_installs DESC, #{column_prefix}id"
-			when 'ratings'
-				return "#{column_prefix}fan_score DESC, #{column_prefix}id"
-			when 'name'
-				return "#{column_prefix}default_name ASC, #{column_prefix}id"
-			else
-				params[:sort] = nil
-				if for_sphinx
-					return "myweight DESC, #{column_prefix}daily_installs DESC, #{column_prefix}id"
-				end
-				return "#{column_prefix}daily_installs DESC, #{column_prefix}id"
-		end
-	end
 
 	# Returns a hash, key: site name, value: hash with keys installs, scripts
 	def self.get_by_sites(script_subset, cache_options = {})
@@ -982,12 +694,6 @@ private
 		return Script.connection.select_all(sql).first
 	end
 
-	def self.get_code_ids
-		newest_sv_ids = Script.connection.select_values('SELECT MAX(id) FROM script_versions GROUP BY script_id')
-		script_to_code_ids = Script.connection.select_rows("SELECT script_id, script_code_id FROM script_versions WHERE ID IN (#{newest_sv_ids.join(',')})")
-		return Hash[*script_to_code_ids.flatten]
-	end
-
 	# Returns IP and script ID. They will be nil if not valid.
 	def self.per_user_stat_params(r, p)
 		# Get IP in a way that avoids an exception. Prevents monitoring from going nuts.
@@ -998,45 +704,8 @@ private
 			# do nothing, ip remains nil
 		end
 		# strip the slug
-		script_id = p[:script_id].to_i.to_s
+		script_id = p[:id].to_i.to_s
 		return [ip, script_id]
-	end
-
-	def get_listing_link_alternatives
-		[
-			{:url => current_path_with_params(page: nil, sort: 'created', format: :atom), :type => 'application/atom+xml', :title => t('scripts.listing_created_feed')},
-			{:url => current_path_with_params(page: nil, sort: 'updated', format: :atom), :type => 'application/atom+xml', :title => t('scripts.listing_updated_feed')},
-			{:url => current_path_with_params(format: :json), :type => 'application/json'},
-			{:url => current_path_with_params(format: :jsonp, callback: 'callback'), :type => 'application/javascript'},
-			{:url => current_path_with_params(format: :json, meta: '1'), :type => 'application/json'},
-			{:url => current_path_with_params(format: :jsonp, meta:'1', callback: 'callback'), :type => 'application/javascript'}
-		]
-	end
-
-	def render_script_list(scripts, options = {})
-		@scripts = scripts
-		if !(options && options[:skip_filters])
-			@scripts = @scripts.paginate(page: params[:page], per_page: get_per_page)
-			@scripts = self.class.apply_filters(@scripts, params, script_subset)
-		end
-
-		respond_to do |format|
-			format.html {
-				@feeds = {t('scripts.listing_created_feed') => {sort: 'created'}, t('scripts.listing_updated_feed') => {sort: 'updated'}}
-				@canonical_params = [:q, :page, :per_page, :sort]
-				@link_alternates = get_listing_link_alternatives
-				render :index
-			}
-			format.atom {
-				render :index
-			}
-			format.json {
-				render json: params[:meta] == '1' ? {count: @scripts.count} : @scripts.as_json(include: :user)
-			}
-			format.jsonp {
-				render json: params[:meta] == '1' ? {count: @scripts.count} : @scripts.as_json(include: :user), callback: clean_json_callback_param
-			}
-		end
 	end
 
 	def handle_replaced_script(script)

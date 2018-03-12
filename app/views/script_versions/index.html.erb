@@ -13,7 +13,7 @@ if show_diff
 		<p><%=t('scripts.history_all_changes_info')%> <%=link_to t('scripts.history_only_code_changes_link'), :show_all_versions => nil%></p>
 	<% end
 end %>
-<form action="<%=script_diff_path(params[:script_id])%>">
+<form action="<%=diff_script_path(params[:script_id])%>">
 	<% if show_diff %>
 		<%= submit_tag t('scripts.diff_button'), :name => nil%>
 	<% end %>

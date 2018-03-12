@@ -4,7 +4,7 @@
 
 <% if @script.deleted? %>
 
-	<%=form_tag(script_do_undelete_path) do |f|%>
+	<%=form_tag(do_undelete_script_path) do |f|%>
 		<% if moderator_view %>
 			<p>
 				<label for="reason">Why are you undeleting this?</label><br>
@@ -25,7 +25,7 @@
 
 <% else %>
 
-	<%=form_tag(script_do_delete_path) do |f|%>
+	<%=form_tag(do_delete_script_path) do |f|%>
 
 		<% if !@script.errors.empty? %>
 			<div class="alert">

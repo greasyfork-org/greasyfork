@@ -16,7 +16,7 @@
 
 	<p><%= t('scripts.admin.promoted_explanation', site_name: site_name) %></p>
 
-	<%=form_tag(script_update_promoted_path, method: :patch) do |f|%>
+	<%=form_tag(update_promoted_script_path, method: :patch) do |f|%>
 		<div class="form-control">
 			<label for="promoted_script_id"><%=t('scripts.admin.promoted_script_label')%></label>
 			<input id="promoted_script_id" name="promoted_script_id" type="url" value="<%=params[:promoted_script_id] || (@script.promoted_script ? script_url(@script.promoted_script) : nil)%>">
@@ -29,7 +29,7 @@
 <section>
 	<h3><%= t('scripts.admin.sync_heading') %></h3>
 
-	<%=form_for(@script, :url => script_sync_update_path) do |s|%>
+	<%=form_for(@script, :url => sync_update_script_path) do |s|%>
 
 		<% case @script.script_sync_source_id 
 			when 1 %>

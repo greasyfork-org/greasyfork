@@ -2,29 +2,29 @@
 	<section id="script-info">
 		<ul id="script-links" class="tabs">
 			<li<%=current_page?(script_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.info_page')}</span>".html_safe, script_path(@script, :version => params[:version])%></li>
-			<li<%=current_page?(script_show_code_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.code_page')}</span>".html_safe, script_show_code_path(@script, :version => params[:version])%></li>
+			<li<%=current_page?(show_code_script_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.code_page')}</span>".html_safe, show_code_script_path(@script, :version => params[:version])%></li>
 			<li<%=current_page?(script_script_versions_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.history_page')}</span>".html_safe, script_script_versions_path(@script, :version => params[:version])%></li>
-			<li<%=current_page?(script_feedback_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.feedback_page', :count => @script.discussions.count)}</span>".html_safe, script_feedback_path(@script, :version => params[:version])%></li>
-			<li<%=current_page?(script_stats_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.stats_page')}</span>".html_safe, script_stats_path(@script, :version => params[:version])%></li>
+			<li<%=current_page?(feedback_script_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.feedback_page', :count => @script.discussions.count)}</span>".html_safe, feedback_script_path(@script, :version => params[:version])%></li>
+			<li<%=current_page?(stats_script_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.stats_page')}</span>".html_safe, stats_script_path(@script, :version => params[:version])%></li>
 			<% same_user = !current_user.nil? && current_user.id == @script.user_id
 			user_is_mod = !current_user.nil? && current_user.moderator? %>
 			<% if (same_user and !@script.locked) or user_is_mod %>
-				<li<%=current_page?(script_derivatives_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.derivatives_page')}</span>".html_safe, script_derivatives_path(@script, :version => params[:version])%></li>
+				<li<%=current_page?(derivatives_script_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.derivatives_page')}</span>".html_safe, derivatives_script_path(@script, :version => params[:version])%></li>
 			<% end %>
 			<% if same_user and !@script.locked %>
 				<li<%=current_page?(new_script_script_version_path(@script.id)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.update_page')}</span>".html_safe, new_script_script_version_path(@script.id)%></li>
 			<% end %>
 			<% if user_is_mod %>
-				<li<%=current_page?(script_mark_path(@script.id)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>Mark</span>".html_safe, script_mark_path(@script.id)%></li>
+				<li<%=current_page?(mark_script_path(@script.id)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>Mark</span>".html_safe, mark_script_path(@script.id)%></li>
 			<% end %>
 			<% if (same_user and !@script.locked) or user_is_mod %>
-				<li<%=current_page?(script_delete_path(@script)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.delete_page')}</span>".html_safe, script_delete_path(@script)%></li>
+				<li<%=current_page?(delete_script_path(@script)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.delete_page')}</span>".html_safe, delete_script_path(@script)%></li>
 			<% end %>
 			<% if (same_user && !@script.locked) %>
 				<li<%=(
-					current_page?(script_admin_path(@script)) || 
+					current_page?(admin_script_path(@script)) || 
 					action_name == 'sync_update'
-				 ) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.admin_page')}</span>".html_safe, script_admin_path(@script)%></li>
+				 ) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.admin_page')}</span>".html_safe, admin_script_path(@script)%></li>
 			<% end %>
 		</ul>
 		<header>

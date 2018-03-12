@@ -370,7 +370,7 @@ class Script < ActiveRecord::Base
 
 	def code_url
 		return url_helpers.script_library_js_url(self, :version => get_newest_saved_script_version.id, :name => url_name) if library?
-		return url_helpers.script_user_js_url(self, :name => url_name)
+		return url_helpers.user_js_script_url(self, name: url_name)
 	end
 
 	def serializable_hash(options = nil)
