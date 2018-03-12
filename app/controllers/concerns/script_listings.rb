@@ -5,7 +5,6 @@ module ScriptListings
   COLLECTION_MODERATOR_ACTIONS = [:reported, :reported_not_adult, :requested_permanent_deletion, :minified]
 
   included do 
-    layout 'application', only: :by_site
     layout 'list', only: [:index, :search, :libraries, :reported, :reported_not_adult, :requested_permanent_deletion, :minified, :restributable, :code_search, :redistributable]
   end
 
@@ -130,6 +129,7 @@ module ScriptListings
         @by_sites = self.class.get_by_sites(script_subset)
         @by_sites = @by_sites.select{|k, v| k.present? && k.include?(params[:q])} if params[:q].present?
         @by_sites = Hash[@by_sites.max_by(200) {|k,v| v[:installs] }.sort_by{|k,v| k || ''}]
+        render layout: 'application'
       }
       format.json {
         render json: cache_with_log("scripts/get_by_sites/json") { 
