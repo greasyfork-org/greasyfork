@@ -42,6 +42,7 @@ class ScriptsController < ApplicationController
 					render_access_denied
 					next
 				end
+				@bots = 'noindex'
 			else
 				raise "Unknown action #{action_name}"
 		end

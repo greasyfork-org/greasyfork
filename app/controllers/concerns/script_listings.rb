@@ -180,24 +180,20 @@ module ScriptListings
   end
 
   def reported
-    @bots = 'noindex'
     @scripts = Script.reported
   end
 
   def reported_not_adult
-    @bots = 'noindex'
     @scripts = Script.reported_not_adult
     render :reported
   end
 
   def requested_permanent_deletion
-    @bots = 'noindex'
     @scripts = Script.requested_permanent_deletion
     render :reported
   end
 
   def minified
-    @bots = 'noindex'
     @scripts = []
     Script.order(self.class.get_sort(params)).where(:locked => false).each do |script|
       sv = script.get_newest_saved_script_version
