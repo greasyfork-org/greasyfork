@@ -85,7 +85,7 @@ class ScriptsController < ApplicationController
 			format.user_script_meta {
 				route_params = {:id => params[:id], :name => @script.name, :format => nil}
 				route_params[:version] = params[:version] if !params[:version].nil?
-				redirect_to script_meta_js_path(route_params)
+				redirect_to meta_js_script_path(route_params)
 			}
 		end
 	end
@@ -95,7 +95,7 @@ class ScriptsController < ApplicationController
 
 		# some weird safari client tries to do this
 		if params[:format] == 'meta.js'
-			redirect_to script_meta_js_path(params.merge({:name => @script.name, :format => nil}))
+			redirect_to meta_js_script_path(params.merge({:name => @script.name, :format => nil}))
 			return
 		end
 
@@ -126,7 +126,7 @@ class ScriptsController < ApplicationController
 			format.user_script_meta {
 				route_params = {:id => params[:id], :name => @script.name, :format => nil}
 				route_params[:version] = params[:version] if !params[:version].nil?
-				redirect_to script_meta_js_path(route_params)
+				redirect_to meta_js_script_path(route_params)
 			}
 		end
 	end
