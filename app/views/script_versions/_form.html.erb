@@ -144,7 +144,7 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
 		</div>
 	<% end %>
 
-	<% if true && @script.new_record? %>
+	<% if true || @script.new_record? %>
 		<div class="form-control radio-group">
 			<label><%=t('activerecord.attributes.script.locale')%></label> <span class="label-note"><%=t('scripts.locale_explanation_html')%></span><br>
 			<%= render partial: 'scripts/default_locale_selector', locals: {script: @script} %>
