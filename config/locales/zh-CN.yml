@@ -43,7 +43,7 @@ zh-CN:
     update: "更新到 %{version} 版本"
     downgrade: "降级到 %{version} 版本"
     reinstall: "重新安装 %{version} 版本"
-    old_version_warning: "这不是此脚本的最新版。如果安装了此版本，您将永远不会被更新到较新的版本。是否安装？"
+    old_version_warning: "这不是此脚本的最新版。如果安装了此版本，您将停留在这个旧版本，不会自动更新。是否安装？"
     promoted: "推荐脚本"
     author_promoted: "作者推荐脚本"
     promoted_text_html: "您或许会喜欢%{script_link}。"
@@ -60,11 +60,11 @@ zh-CN:
     update_page: "更新脚本"
     delete_page: "删除脚本"
     delete_explanation: "当你选择删除脚本之后，这个脚本将只能被你以及 Greasy Fork 的管理员访问。你可以之后撤销这个删除操作。"
-    delete_update_behaviour: "您想如何处理以前已安装您的脚本的用户？"
+    delete_update_behaviour: "您想如何对待已经安装这个脚本的用户？"
     delete_update_behaviour_1: "保持原样。"
     delete_update_behaviour_2: "用户将通过自动更新功能变成一个无代码的脚本。当脚本对其所运行的网站产生了负面作用时选择此项。"
     delete_permanently_heading: "永久删除"
-    delete_permanently_explanation: "永久删除您的脚本将删除它和与其相关的所有记录，除了论坛的讨论和管理员操作日志。永久删除是永久性的，不可撤销，即使管理员也不能。"
+    delete_permanently_explanation: "永久删除功能会删除脚本本身及与脚本相关的所有记录，但不会删除论坛上的相关讨论和管理员操作日志。该操作不可撤销，即使是管理员也不能撤销。"
     delete_permanently_request_explanation: "永久删除此脚本需要管理员审核。"
     delete_permanently_confirm: "您确定真的想要永久删除您的脚本？此操作不可撤销！"
     delete_permanently_submit: "请求永久删除"
@@ -115,7 +115,7 @@ zh-CN:
     derivatives_code_matches_info_html:
       other: "您的脚本与其他人发布的脚本有至少 %{match_size} 行相同。此检查仅当脚本小于 %{max_size} 时运行，上次扫描时间为 %{last_run}。"
     derivatives_namespace_matches_info_html: "他人发布到 <code>%{namespace}</code> 命名空间的脚本："
-    derivatives_name_matches_info: "他人发布的和您的脚本有最相似名称的脚本："
+    derivatives_name_matches_info: "他人发布的、名称与您最相近的脚本："
     derivatives_script_html: "%{user_link} 发布的 %{script_link}，许可协议：%{license}"
     derivatives_script_with_code_line_html: "%{user_link} 发布的 %{script_lines_link}，许可协议：%{license}"
     script_lines_link: "%{script_name}，第 %{start} 行至第 %{end} 行"
@@ -529,7 +529,7 @@ zh-CN:
 
           %{adult_content_requirement}
 
-          </ul> <p>如果您发现有脚本不满足上述任何一点要求，请单击“反馈”，“发起讨论”，然后选择“举报”选项告知管理员。</p> <p>若您不同意任意上述的要求，%{contact_link:我们可以深入探讨这些要求}！</p>
+          </li> <p>如果您发现有脚本不满足上述任何一点要求，请单击“反馈”，“发起讨论”，然后选择“举报”选项告知管理员。</p> <p>若您不同意任意上述的要求，%{contact_link:我们可以深入探讨这些要求}！</p>
       adult_content_rule_html: "<li>包含成人内容，或脚本目标网站是成人内容的话则必须被正确记录，以允许其他用户根据选项来决定是否要看到它们。</li>"
     external_scripts:
       title: "%{site_name} 对外部脚本的政策"
