@@ -80,6 +80,7 @@ Greasyfork::Application.routes.draw do
 
 				patch 'sync_update'
 				patch 'update_promoted'
+				patch 'update_locale'
 			end
 
 			collection do

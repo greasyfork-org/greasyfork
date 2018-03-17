@@ -20,7 +20,7 @@
 			<% if (same_user and !@script.locked) or user_is_mod %>
 				<li<%=current_page?(delete_script_path(@script)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.delete_page')}</span>".html_safe, delete_script_path(@script)%></li>
 			<% end %>
-			<% if (same_user && !@script.locked) %>
+			<% if (same_user && !@script.locked) || user_is_mod %>
 				<li<%=(
 					current_page?(admin_script_path(@script)) || 
 					action_name == 'sync_update'

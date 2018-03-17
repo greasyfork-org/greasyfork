@@ -143,20 +143,13 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
 			<% end %>
 		</div>
 	<% end %>
-	<div class="form-control radio-group">
-		<label><%=t('activerecord.attributes.script.locale')%></label> <span class="label-note"><%=t('scripts.locale_explanation_html')%></span><br>
-		<select name="script[locale_id]">
-			<option value="" <%if @script.locale_id.nil?%>selected<%end%>><%=t('scripts.locale_auto_select')%></option>
-			<option disabled>---</option>
-			<% Locale.where(:ui_available => true).each do |locale| %>
-				<option value="<%=locale.id%>" <%if @script.locale_id == locale.id%>selected<%end%>><%=locale.display_text%></option>
-			<% end %>
-			<option disabled>---</option>
-			<% Locale.all.each do |locale| %>
-				<option value="<%=locale.id%>"<%if @script.locale_id == locale.id%>selected<%end%>><%=locale.display_text%></option>
-			<% end %>
-		</select>
-	</div>
+
+	<% if @script.new_record? %>
+		<div class="form-control radio-group">
+			<label><%=t('activerecord.attributes.script.locale')%></label> <span class="label-note"><%=t('scripts.locale_explanation_html')%></span><br>
+			<%= render partial: 'scripts/default_locale_selector', locals: {script: @script} %>
+		</div>
+	<% end %>
 
 	<% # default first
 	script_version.localized_attributes_for('additional_info').sort{|a,b|

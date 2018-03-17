@@ -1,0 +1,63 @@
+<section class="multiform-page">
+  <h3><%= t('scripts.admin.sync_heading') %></h3>
+
+  <%=form_for(@script, :url => sync_update_script_path) do |s|%>
+
+    <% case @script.script_sync_source_id 
+      when 1 %>
+        <p>
+          <%=t('scripts.code_syncing_from_url_html', :field => s.url_field(:sync_identifier, :size => 50, :placeholder => t('scripts.sync_url_placeholder')))%>
+        </p>
+      <% when nil %>
+        <p>
+          <%=t('scripts.provide_code_syncing_from_url_html', field: s.url_field(:sync_identifier, size: 50, placeholder: t('scripts.sync_url_placeholder')), site_name: site_name)%>
+        </p>
+    <% end %>
+
+    <div class="radio-group">
+      <%=t('scripts.sync_type_intro')%><br>
+      <%=s.radio_button(:script_sync_type_id, 2)%> <label for="script_script_sync_type_id_2"><%=t('scripts.sync_type_2')%></label><br>
+      <%=s.radio_button(:script_sync_type_id, 1)%> <label for="script_script_sync_type_id_1"><%=t('scripts.sync_type_1')%></label><br>
+      <% # only allow changing *off* of Webhook - setting it to Webhook is done when a push comes in
+      if @script.script_sync_type_id == 3 %>
+        <%=s.radio_button(:script_sync_type_id, 3)%> <label for="script_script_sync_type_id_3"><%=t('scripts.sync_type_3')%></label><br>
+      <% end %>
+    </div>
+
+    <div>
+      <p>You can optionally sync your script's additional info.</p>
+      <div class="indented">
+        <% localized_additional_infos = @script.localized_attributes_for('additional_info').select{|la| la.attribute_default || !la.sync_identifier.nil? || la.new_record?}
+        localized_additional_infos.each_with_index do |la, index| %>
+          <%=render :partial => 'sync_additional_info', :locals => {:la => la, :index => index, :preview => @preview.nil? ? nil : @preview[index]}%>
+        <% end %>
+        <div>
+          <button id="add-synced-additional-info" name="add-synced-additional-info" value="1" type="submit">Add a localized, synced additional info</button>
+        </div>
+      </div>
+    </div>
+
+    <% if !@script.script_sync_source_id.nil? %>
+      <p>
+        <% if !@script_sync_error.nil? %>
+          <%=t('scripts.sync_failed_info_html', {:date => markup_date(@script.last_attempted_sync_date), :error => @script.sync_error})%>
+        <% end %>
+        <% if @script.last_successful_sync_date.nil? %>
+          <%=t('scripts.sync_never_succeeded')%>
+        <% else %>
+          <%=t('scripts.sync_success_info_html', {:date => markup_date(@script.last_successful_sync_date)})%>
+        <% end %>
+      </p>
+    <% end %>
+    <p>
+      <% if @script.script_sync_source_id.nil? %>
+        <input type="submit" name="update-and-sync" value="<%=t('scripts.update_and_sync')%>">
+      <% else %>
+        <input type="submit" name="update-only" value="<%=t('scripts.update_no_sync')%>">
+        <input type="submit" name="update-and-sync" value="<%=t('scripts.update_and_sync')%>">
+        <input type="submit" name="stop-syncing" value="<%=t('scripts.turn_off_syncing')%>">
+      <% end %>
+    </p>
+
+  <% end %>
+</section>

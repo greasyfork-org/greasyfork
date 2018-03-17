@@ -5,8 +5,8 @@ require 'cgi'
 
 class ScriptsController < ApplicationController
 
-	MEMBER_AUTHOR_ACTIONS = [:sync_update, :derivatives, :admin, :update_promoted, :request_permanent_deletion, :unrequest_permanent_deletion, :update_promoted]
-	MEMBER_AUTHOR_OR_MODERATOR_ACTIONS = [:delete, :do_delete, :undelete, :do_undelete, :derivatives]
+	MEMBER_AUTHOR_ACTIONS = [:sync_update, :derivatives, :update_promoted, :request_permanent_deletion, :unrequest_permanent_deletion, :update_promoted]
+	MEMBER_AUTHOR_OR_MODERATOR_ACTIONS = [:delete, :do_delete, :undelete, :do_undelete, :derivatives, :admin, :update_locale]
 	MEMBER_MODERATOR_ACTIONS = [:mark, :do_mark, :do_permanent_deletion, :reject_permanent_deletion]
 	MEMBER_PUBLIC_ACTIONS = [:diff]
 	MEMBER_PUBLIC_ACTIONS_WITH_SPECIAL_LOADING = [:show, :show_code, :user_js, :meta_js, :feedback, :install_ping, :stats, :sync_additional_info_form]
@@ -641,6 +641,20 @@ class ScriptsController < ApplicationController
 
 	def sync_additional_info_form
 		render :partial => 'sync_additional_info', :locals => {:la => LocalizedScriptAttribute.new({:attribute_default => false}), :index => params[:index].to_i}
+	end
+
+	def update_locale
+		update_params = params.require(:script).permit(:locale_id)
+		if @script.update_attributes(update_params)
+			if @script.user != current_user
+				ModeratorAction.create!(script: @script, moderator: current_user, action: 'Update locale', reason: "Changed to #{@script.locale.code}#{update_params[:locale_id].blank? ? ' (auto-detected)' : ''}")
+			end
+			flash[:notice] = I18n.t('scripts.updated')
+			redirect_to admin_script_path(@script)
+			return
+		end
+
+		render :admin
 	end
 
 private

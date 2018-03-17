@@ -393,12 +393,6 @@ class Script < ActiveRecord::Base
 		return total_installs <= (Date.today - created_at.to_date).to_i * 5
 	end
 
-private
-
-	def url_helpers
-		Rails.application.routes.url_helpers
-	end
-
 	# all text content of non-localized attributes for this script (for language detection)
 	def full_text
 		parts = []
@@ -412,6 +406,12 @@ private
 		end
 		return nil if parts.empty?
 		return parts.join("\n")
+	end
+
+private
+
+	def url_helpers
+		Rails.application.routes.url_helpers
 	end
 
 	def update_localized_attribute(meta_keys, attr_name)

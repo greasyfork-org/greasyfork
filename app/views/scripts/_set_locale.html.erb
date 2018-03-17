@@ -1,0 +1,10 @@
+<section class="multiform-page">
+  <h3><%= t('scripts.admin.locale_heading') %></h3>
+
+  <%=form_for(@script, :url => update_locale_script_path) do |s|%>
+    <p><%= t('scripts.admin.locale_example_html', text: @script.full_text.truncate(100)) %></p>
+    <p><%= it('scripts.admin.locale_multiple_note', meta_keys_link: help_meta_keys_path(anchor: 'meta-name-localized')) %></p>
+    <%= render partial: 'default_locale_selector', locals: {script: @script} %>
+    <input type="submit" value="<%= t('scripts.admin.update_locale') %>">
+  <% end %>
+</section>
