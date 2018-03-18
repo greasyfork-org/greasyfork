@@ -72,6 +72,7 @@ class ScriptVersion < ApplicationRecord
 		}
 	end
 
+	before_validation :set_locale
 	before_save :set_locale
 	def set_locale
 		localized_attributes.select{|la| la.locale.nil?}.each{|la| la.locale = script.locale}

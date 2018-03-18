@@ -828,7 +828,7 @@ END
 		sv.code = script.script_versions.first.code
 		sv.rewritten_code = script.script_versions.first.rewritten_code
 		sv.localized_attributes.build({:attribute_key => 'additional_info', :attribute_value => 'New', :attribute_default => true, :locale => script.locale, :value_markup => 'html'})
-		sv.localized_attributes.build({:attribute_key => 'additional_info', :attribute_value => 'Nouveau', :attribute_default => true, :locale => Locale.where(:code => 'fr').first, :value_markup => 'html'})
+		sv.localized_attributes.build({:attribute_key => 'additional_info', :attribute_value => 'Nouveau', :attribute_default => false, :locale => Locale.where(:code => 'fr').first, :value_markup => 'html'})
 		sv.calculate_all
 		assert sv.valid?, sv.errors.full_messages
 		script.apply_from_script_version(sv)

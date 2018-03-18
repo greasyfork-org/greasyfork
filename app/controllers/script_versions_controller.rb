@@ -51,7 +51,7 @@ class ScriptVersionsController < ApplicationController
 
 		@script_version.script = @script
 		@script.script_type_id = params['script']['script_type_id']
-		@script.locale_id = params['script']['locale_id']
+		@script.locale_id = params['script']['locale_id'] if params['script'].has_key?('locale_id')
 		# a bit of weirdness because one of the radio buttons maps to nil
 		@script.approve_redistribution = params['script']['approve_redistribution'] == 'on' ? nil : params['script']['approve_redistribution']
 		@script.adult_content_self_report = params['script']['adult_content_self_report'] == '1'

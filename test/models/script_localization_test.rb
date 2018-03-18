@@ -21,9 +21,11 @@ class ScriptLocalizationTest < ActiveSupport::TestCase
 // ==/UserScript==
 var foo = "bar";
 EOF
+		sv.localized_attributes.build(attribute_key: 'additional_info', attribute_value: 'Additional info', locale: Locale.find_by(code: :en), attribute_default: true, value_markup: 'text')
+		sv.localized_attributes.build(attribute_key: 'additional_info', attribute_value: 'Info additionelle', locale: Locale.find_by(code: :fr), attribute_default: false, value_markup: 'text')
 		sv.calculate_all
 		script.apply_from_script_version(sv)
-		assert script.valid?, sv.errors.full_messages.inspect
+		assert script.valid?, script.errors.full_messages.inspect
 		assert_equal 'A Test!', script.name
 		assert_equal 'Unit test', script.description
 		available_locale_codes = script.available_locales.map{|l| l.code}
@@ -33,6 +35,7 @@ EOF
 		assert available_locale_codes.include?('es')
 		assert available_locale_codes.include?('zh-TW')
 		assert_equal 'Un test!', script.localized_value_for(:name, 'fr')
+		assert_equal 'Info additionelle', script.localized_value_for(:additional_info, 'fr')
 		assert_equal 'Unidad de prueba', script.localized_value_for(:description, 3)
 		assert_equal 'A Test!', script.localized_value_for('name', Locale.find(1))
 		assert_equal '本地化測試腳本', script.localized_value_for(:description, 'zh-TW')
@@ -128,4 +131,85 @@ EOF
 		assert sv.valid?
 	end
 
+	test 'changing the default locale' do
+		script = Script.new(user: User.find(1), locale: Locale.find_by(code: :en))
+		sv = ScriptVersion.new
+		sv.script = script
+		sv.code = <<EOF
+// ==UserScript==
+// @name		Una prueba!
+// @name:fr		Un test!
+// @description		Unidad de prueba
+// @description:fr	Test d'unit
+// @namespace http://greasyfork.local/users/1
+// @version 1.0
+// ==/UserScript==
+var foo = "bar";
+EOF
+		sv.localized_attributes.build(attribute_key: 'additional_info', attribute_value: 'Additional info en espanol', locale: Locale.find_by(code: :en), attribute_default: true, value_markup: 'text')
+		sv.localized_attributes.build(attribute_key: 'additional_info', attribute_value: 'Additional info en francais', locale: Locale.find_by(code: :fr), attribute_default: false, value_markup: 'text')
+		sv.calculate_all
+		script.apply_from_script_version(sv)
+		script.script_versions << sv
+		sv.save!
+		script.save!
+
+		available_locale_codes = script.available_locales.map{|l| l.code}
+		assert_equal available_locale_codes, ['en', 'fr']
+
+		assert_equal 'Una prueba!', script.localized_value_for(:name, 'en')
+		assert_equal 'Un test!', script.localized_value_for(:name, 'fr')
+		assert_equal 'Unidad de prueba', script.localized_value_for(:description, 'en')
+		assert_equal 'Test d\'unit', script.localized_value_for(:description, 'fr')
+		assert_equal 'Additional info en espanol', script.localized_value_for(:additional_info, 'en')
+		assert_equal 'Additional info en francais', script.localized_value_for(:additional_info, 'fr')
+
+		script.locale = Locale.find_by(code: 'es')
+		script.save!
+
+		available_locale_codes = script.available_locales.map{|l| l.code}
+		assert_equal available_locale_codes, ['es', 'fr']
+
+		assert_equal 'Una prueba!', script.localized_value_for(:name, 'es')
+		assert_equal 'Un test!', script.localized_value_for(:name, 'fr')
+		assert_equal 'Unidad de prueba', script.localized_value_for(:description, 'es')
+		assert_equal 'Test d\'unit', script.localized_value_for(:description, 'fr')
+		assert_equal 'Additional info en espanol', script.localized_value_for(:additional_info, 'es')
+		assert_equal 'Additional info en francais', script.localized_value_for(:additional_info, 'fr')
+	end
+
+	test 'detecting default locale' do
+
+		script = Script.new(user: User.find(1))
+		sv = ScriptVersion.new
+		sv.script = script
+		sv.code = <<EOF
+// ==UserScript==
+// @name		Una prueba!
+// @name:fr		Un test!
+// @description		Unidad de prueba
+// @description:fr	Test d'unit
+// @namespace http://greasyfork.local/users/1
+// @version 1.0
+// ==/UserScript==
+var foo = "bar";
+EOF
+		sv.localized_attributes.build(attribute_key: 'additional_info', attribute_value: 'en espanol', attribute_default: true, value_markup: 'text')
+		sv.localized_attributes.build(attribute_key: 'additional_info', attribute_value: 'en francais', locale: Locale.find_by(code: :fr), attribute_default: false, value_markup: 'text')
+		sv.calculate_all
+		script.apply_from_script_version(sv)
+		script.script_versions << sv
+
+		Greasyfork::Application.config.enable_detect_locale = true
+		DetectLanguage.stub(:simple_detect, 'es') do
+			script.valid?
+			sv.valid?
+			sv.save!
+			script.save!
+		end
+
+		assert_equal 'es', script.locale.code
+		available_locale_codes = script.available_locales.map{|l| l.code}
+		assert_equal available_locale_codes, ['es', 'fr']
+	end
 end

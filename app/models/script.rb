@@ -126,9 +126,16 @@ class Script < ActiveRecord::Base
 		# The API is limited.
 		return unless description.present?
 
-		self.locale = detect_locale 
+		self.locale = detect_locale
 		localized_attributes.select{|la| la.locale.nil?}.each{|la| la.locale = self.locale}
 		true
+	end
+
+	# If the locale has changed, update the default localized attributes' locale
+	before_validation :update_localized_attribute_locales
+	def update_localized_attribute_locales
+		return if !locale_id_changed?
+		localized_attributes.select(&:attribute_default).each{|la| la.locale = self.locale}
 	end
 
 	before_validation :set_sensitive_flag
@@ -332,6 +339,7 @@ class Script < ActiveRecord::Base
 	def detect_locale
 		ft = full_text
 		return if ft.nil?
+
 		if Greasyfork::Application.config.enable_detect_locale
 			Logger.new("#{Rails.root}/log/detectlanguage.log").info("Sending DetectLanguage request for #{id ? "script #{id}" : "a new script"} - #{full_text[0..50]}...")
 			begin
