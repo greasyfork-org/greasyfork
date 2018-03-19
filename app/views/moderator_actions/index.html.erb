@@ -19,7 +19,7 @@
 				<% if !action.script.nil? %>
 					<%= t('moderator_logs.item_script_html', script_link: link_to(action.script.name(I18n.locale), action.script)) %>
 				<% elsif !action.script_id.nil? %>
-					<%= t('moderator_logs.item_deleted_script', script_id: action.script_id) %>
+					<%= t('moderator_logs.item_deleted_script', id: action.script_id) %>
 				<% end %>
 				<% if !action.user.nil?%>
 					<%= t('moderator_logs.item_user_html', user_link: link_to(action.user.name, action.user)) %>
