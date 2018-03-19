@@ -1,14 +1,14 @@
-<%-title 'Moderator log' %>
+<%-title t('layouts.application.moderator_log') %>
 <%-description 'List of actions taken by moderators' %>
 
-<table class="text-content">
+<table class="text-content log-table">
 	<thead>
 		<tr>
-			<th>Date</th>
-			<th>Moderator</th>
-			<th>Item</th>
-			<th>Action</th>
-			<th>Reason</th>
+			<th><%= t('moderator_logs.date_column') %></th>
+			<th><%= t('moderator_logs.moderator_column') %></th>
+			<th><%= t('moderator_logs.item_column') %></th>
+			<th><%= t('moderator_logs.action_column') %></th>
+			<th><%= t('moderator_logs.reason_column') %></th>
 		</tr>
 	</thead>
 	<% @actions.each do |action| %>
@@ -17,11 +17,13 @@
 			<td><%=link_to action.moderator.name, action.moderator%></td>
 			<td>
 				<% if !action.script.nil? %>
-					Script: <%=link_to action.script.name(I18n.locale), action.script%>
+					<%= t('moderator_logs.item_script_html', script_link: link_to(action.script.name(I18n.locale), action.script)) %>
 				<% elsif !action.script_id.nil? %>
-					(Deleted script <%=action.script_id%>)
-				<%end%>
-				<%if !action.user.nil?%>User: <%=link_to action.user.name, action.user%><%end%>
+					<%= t('moderator_logs.item_deleted_script', script_id: action.script_id) %>
+				<% end %>
+				<% if !action.user.nil?%>
+					<%= t('moderator_logs.item_user_html', user_link: link_to(action.user.name, action.user)) %>
+				<% end %>
 			</td>
 			<td><%=action.action%></td>
 			<td><%=action.reason%></td>
