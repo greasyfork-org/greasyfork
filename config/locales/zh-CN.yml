@@ -83,6 +83,11 @@ zh-CN:
       promoted_script_label: "要推荐的脚本的网址"
       promoted_submit: "设置推荐脚本"
       sync_heading: "源代码同步中"
+      locale_heading: "默认语言"
+      locale_example_html: "这段文本的语言：<i>%{text}</i>"
+      locale_multiple_note: "注意%{meta_keys_link:您可以为此脚本定义多个语言}."
+      update_locale: "更新语言"
+      no_moderator_logs: "管理员没有对此脚本采取任何操作。"
     history_title: "%{script_name} - 版本历史"
     history_only_code_changes_info: "这些是代码更新过的版本。"
     history_all_changes_link: "显示所有版本"
@@ -610,6 +615,15 @@ zh-CN:
     user_search:
       title: "用户搜索"
       description: "按名称搜索用户。纯文本 LIKE 语法搜索。"
+  moderator_logs:
+    date_column: "时间"
+    moderator_column: "管理员"
+    item_column: "项目"
+    action_column: "行为"
+    reason_column: "原因"
+    item_script_html: "脚本：%{script_link}"
+    item_deleted_script: "已删除的脚本%{id}"
+    item_user_html: "用户：%{user_link}"
   common:
     error_preamble: "很抱歉，您提交的内容有点问题…"
     allowed_elements_link: "(查看允许使用的代码)"

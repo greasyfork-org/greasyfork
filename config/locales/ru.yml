@@ -99,6 +99,7 @@ ru:
       locale_example_html: "Язык этого текста: <i>%{text}</i>"
       locale_multiple_note: "Обратите внимание: в скрипт можно добавить %{meta_keys_link:несколько языков}."
       update_locale: "Обновить язык"
+      no_moderator_logs: "Модераторы ничего не делали с этим скриптом."
     history_title: "%{script_name} - История версий"
     history_only_code_changes_info: "Ниже показаны версии этого скрипта, в которых изменялся код."
     history_all_changes_link: "Показать все версии."
@@ -723,6 +724,15 @@ ru:
     user_search:
       title: "Поиск пользователей"
       description: "Поиск пользователей по имени (оператор SQL LIKE)."
+  moderator_logs:
+    date_column: "Дата"
+    moderator_column: "Модератор"
+    item_column: "Предмет"
+    action_column: "Действие"
+    reason_column: "Причина"
+    item_script_html: "Скрипт: %{script_link}"
+    item_deleted_script: "Удалённый скрипт %{id}"
+    item_user_html: "Пользователь: %{user_link}"
   common:
     error_preamble: "Обнаружены проблемы в отправленном вами тексте..."
     allowed_elements_link: "(См. разрешенные теги)"

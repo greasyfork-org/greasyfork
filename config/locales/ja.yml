@@ -84,8 +84,10 @@ ja:
       promoted_submit: "推奨スクリプトを設定"
       sync_heading: "ソースの同期"
       locale_heading: "既定のロケール (言語・地域)"
+      locale_example_html: "次のようなテキストに対する既定のロケールを選択します: <i>%{text}</i>"
       locale_multiple_note: "%{meta_keys_link:スクリプトには複数のロケールを定義できます。}"
       update_locale: "ロケールの設定を更新"
+      no_moderator_logs: "このスクリプトに対するモデレーターの処置はありません。"
     history_title: "%{script_name} のバージョン履歴"
     history_only_code_changes_info: "コードが変更されたバージョンのみを表示しています。"
     history_all_changes_link: "すべてのバージョンを表示"
@@ -621,6 +623,15 @@ ja:
     user_search:
       title: "ユーザーの検索"
       description: "ユーザー名からユーザーを検索します (部分一致)。"
+  moderator_logs:
+    date_column: "日付け"
+    moderator_column: "モデレーター"
+    item_column: "対象"
+    action_column: "処置"
+    reason_column: "理由"
+    item_script_html: "スクリプト: %{script_link}"
+    item_deleted_script: "削除されたスクリプト %{id}"
+    item_user_html: "ユーザー: %{user_link}"
   common:
     error_preamble: "以下に表示されているエラーを修正し、もう一度送信してください。"
     allowed_elements_link: "使用可能なタグ"

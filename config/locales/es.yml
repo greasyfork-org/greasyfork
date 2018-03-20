@@ -91,6 +91,7 @@ es:
       locale_example_html: "Regionalización de este texto: <i>%{text}</i>"
       locale_multiple_note: "Observe que %{meta_keys_link:se pueden definir múltiples regionalizaciones para un script}."
       update_locale: "Actualizar regionalización"
+      no_moderator_logs: "No se ha tomado ninguna decisión por parte de los moderadores sobre este script."
     history_title: "%{script_name} - Historial de versiones"
     history_only_code_changes_info: "A continuación se muestran las versiones de este script en las que se actualizó el código."
     history_all_changes_link: "Ver todas las versiones."
@@ -713,6 +714,15 @@ es:
     user_search:
       title: "Búsqueda de usuario"
       description: "Busca usuarios por nombre. Búsqueda parecida al operador «LIKE» de SQL en texto simple."
+  moderator_logs:
+    date_column: "Fecha"
+    moderator_column: "Moderador"
+    item_column: "Elemento"
+    action_column: "Acción"
+    reason_column: "Razón"
+    item_script_html: "Script: %{script_link}"
+    item_deleted_script: "Script borrado %{id}"
+    item_user_html: "Usuario: %{user_link}"
   common:
     error_preamble: "Hemos tenido problemas al procesar el envío..."
     allowed_elements_link: "(Ver código permitido)"

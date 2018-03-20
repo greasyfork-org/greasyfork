@@ -95,6 +95,7 @@ sk:
       locale_example_html: "Jazyk tohto textu: <i>%{text}</i>"
       locale_multiple_note: "Upozorňujeme, že %{meta_keys_link:pre skript môžu byť definované viaceré jazyky}."
       update_locale: "Aktualizovať jazyk"
+      no_moderator_logs: "V tomto skripte neboli moderátormi vykonané žiadne kroky."
     history_title: "%{script_name} - História verzií"
     history_only_code_changes_info: "Zoznam verzií skriptu, ktorých kód bol aktualizovaný."
     history_all_changes_link: "Zobraziť všetky verzie."
@@ -707,6 +708,15 @@ sk:
     user_search:
       title: "Hľadanie užívateľov"
       description: "Hľadať užívateľov podľa mena. Obyčajný text AKO hľadanie."
+  moderator_logs:
+    date_column: "Dátum"
+    moderator_column: "Moderátor"
+    item_column: "Položka"
+    action_column: "Akcia"
+    reason_column: "Dôvod"
+    item_script_html: "Skript: %{script_link}"
+    item_deleted_script: "Odstránený skript %{id}"
+    item_user_html: "Užívateľ: %{user_link}"
   common:
     error_preamble: "Boli zistené problémy s tým, čo ste poslali."
     allowed_elements_link: "(Pozri zoznam povolených značiek.)"
