@@ -725,7 +725,7 @@ private
 
 	def handle_replaced_script(script)
 		if !script.replaced_by_script_id.nil? && script.script_delete_type_id == 1
-			redirect_to(script_id: script.replaced_by_script_id, status: 301)
+			redirect_to(id: script.replaced_by_script_id, status: 301)
 			return true
 		end
 		return false
