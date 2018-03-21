@@ -209,7 +209,7 @@ class ScriptsController < ApplicationController
 		raise ActiveRecord::RecordNotFound if script_info.nil?
 
 		if !script_info['replaced_by_script_id'].nil? && script_info['script_delete_type_id'] == 1
-			redirect_to(script_id: script_info['replaced_by_script_id'], status: 301)
+			redirect_to(id: script_info['replaced_by_script_id'], status: 301)
 			return
 		end
 
