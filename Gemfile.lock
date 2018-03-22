@@ -6,16 +6,6 @@ GIT
     coderay (1.1.1.rc1)
 
 GIT
-  remote: https://github.com/pat/ts-delayed-delta
-  revision: 0aef2195f3acc1da048f18bc0191c90538565705
-  ref: 0aef2195f3acc1da048f18bc0191c90538565705
-  specs:
-    ts-delayed-delta (2.0.2)
-      activerecord (>= 2.0)
-      delayed_job
-      thinking-sphinx (>= 1.5.0)
-
-GIT
   remote: https://github.com/tmaesaka/transifex-ruby.git
   revision: a66843ca262e5b403813154512b563efda03f137
   specs:
@@ -240,7 +230,7 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
-    riddle (2.2.0)
+    riddle (2.3.0)
     ruby-prof (0.17.0)
     sanitize (4.6.4)
       crass (~> 1.0.2)
@@ -282,6 +272,10 @@ GEM
     thor (0.20.0)
     thread_safe (0.3.6)
     tilt (2.0.8)
+    ts-delayed-delta (2.1.0)
+      activerecord (>= 2.0)
+      delayed_job
+      thinking-sphinx (>= 1.5.0)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uglifier (4.1.5)
@@ -342,7 +336,7 @@ DEPENDENCIES
   therubyracer
   thinking-sphinx
   transifex-ruby!
-  ts-delayed-delta!
+  ts-delayed-delta
   uglifier
   will-paginate-i18n
   will_paginate
