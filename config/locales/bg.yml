@@ -87,6 +87,11 @@ bg:
       promoted_script_label: "URL на предложения скрипт"
       promoted_submit: "Препоръчай скрипта"
       sync_heading: "Синхронизиране с източника"
+      locale_heading: "Локализация по подразбиране"
+      locale_example_html: "Локализация за този текст: <i>%{text}</i>"
+      locale_multiple_note: "Отбележете, че %{meta_keys_link:multiple locales can be defined for a script}."
+      update_locale: "Обновете локализацията"
+      no_moderator_logs: "Модераторите не предприеха никакви действия спрямо скрипта."
     history_title: "%{script_name} - История на версиите"
     history_only_code_changes_info: "Има други версии на този скрипт, където кодът е обновен."
     history_all_changes_link: "Покажи всички версии."
@@ -689,6 +694,15 @@ bg:
     user_search:
       title: "Търсене по потребители"
       description: "Търсене на потребители по име. Обикновено текстово LIKE търсене."
+  moderator_logs:
+    date_column: "Дата"
+    moderator_column: "Модератор"
+    item_column: "Елемент"
+    action_column: "Действие"
+    reason_column: "Причина"
+    item_script_html: "Скрипт: %{script_link}"
+    item_deleted_script: "Изтрит скрипт %{id}"
+    item_user_html: "Потребител: %{user_link}"
   common:
     error_preamble: "Има някои проблеми с това, което публикувате..."
     allowed_elements_link: "(Вижте разрешения код.)"
