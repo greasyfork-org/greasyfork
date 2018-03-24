@@ -6,4 +6,4 @@ $Definition['layouts.application.submenu'] = 'อื่น ๆ';
 $Definition['layouts.application.advanced_search'] = 'การค้นหาขั้นสูง';
 $Definition['layouts.application.user_list'] = 'รายชื่อผู้ใช้';
 $Definition['layouts.application.libraries'] = 'คลัง';
-$Definition['layouts.application.moderator_log'] = 'บันทึกผู้ดูแล';
+$Definition['layouts.application.moderator_log'] = 'บันทึกผู้ช่วยดูแล';

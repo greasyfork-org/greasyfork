@@ -9,7 +9,7 @@ th:
       advanced_search: "การค้นหาขั้นสูง"
       user_list: "รายชื่อผู้ใช้"
       libraries: "คลัง"
-      moderator_log: "บันทึกผู้ดูแล"
+      moderator_log: "บันทึกผู้ช่วยดูแล"
   helpers:
     application:
       time_ago:
@@ -43,6 +43,9 @@ th:
     update: "อัปเดตเป็นเวอร์ชัน %{version}"
     downgrade: "ดาวน์เกรดเป็นเวอร์ชัน %{version}"
     reinstall: "ติดตั้งเวอร์ชัน %{version} ใหม่อีกครั้ง"
+    old_version_warning: "นี่ไม่ใช่เวอร์ชันใหม่ล่าสุดของสคริปต์นี้ หากคุณติดตั้ง คุณจะไม่ถูกอัปเดตให้เป็นเวอร์ชันใหม่ ติดตั้งต่อไป?"
+    author_promoted: "สคริปต์ที่แนะนำของผู้เขียน"
+    promoted_text_html: "คุณอาจชื่นชอบ %{script_link}"
     library_instructions_html: "สคริปต์นี้ไม่ควรถูกติดตั้งโดยตรง มันเป็นคลังสำหรับสคริปต์อื่น ๆ เพื่อบรรจุด้วยคำสั่งเมทา %{code}"
     deleted_notice: "สคริปต์นี้ถูกลบออกแล้ว"
     version_notice_html: "ของเมื่อวันที่ %{date} ดู %{latest_version_link}"
@@ -55,22 +58,29 @@ th:
     derivatives_page: "คล้ายคลึง"
     update_page: "อัปเดต"
     delete_page: "ลบ"
-    delete_explanation: "การลบสคริปต์ของคุณจะทำให้ไม่มีใครสามารถเข้าถึงได้นอกจากคุณและผู้ดูแล Greasy Fork คุณสามารถเลิกลบได้ตลอดเวลา"
+    delete_explanation: "การลบสคริปต์ของคุณจะทำให้ไม่มีใครสามารถเข้าถึงได้นอกจากคุณและผู้ช่วยดูแล Greasy Fork คุณสามารถเลิกลบได้ตลอดเวลา"
     delete_update_behaviour: "คุณต้องการให้ผู้ใช้ที่ได้ติดตั้งเวอร์ชันก่อนของสคริปต์ของคุณได้รับผลอย่างไร?"
     delete_update_behaviour_1: "ให้พวกเขาเก็บไว้ตามเดิม"
     delete_update_behaviour_2: "อัปเดตสคริปต์ให้ว่างเปล่าให้กับพวกเขา นี่เป็นวิธีที่เหมาะสมเมื่อสคริปต์มีผลเสียบนไซต์ที่สคริปต์ทำงาน"
     delete_permanently_heading: "การลบถาวร"
-    delete_permanently_explanation: "การลบสคริปต์ของคุณอย่างถาวรจะลบมันและบันทึกที่เกี่ยวข้องทั้งหมด ยกเว้นกระทู้บนฟอรัมและบันทึกการดำเนินการของผู้ดูแล การลบถาวรเป็นการถาวร ซึ่งไม่สามารถถูกย้อนกลับได้ แม้โดยผู้ดูแล"
-    delete_permanently_request_explanation: "การลบถาวรของสคริปต์นี้สามารถเสร็จสมบูรณ์ได้หลังจากถูกตรวจสอบโดยผู้ดูแลแล้วเท่านั้น"
+    delete_permanently_explanation: "การลบสคริปต์ของคุณอย่างถาวรจะลบมันและบันทึกที่เกี่ยวข้องทั้งหมด ยกเว้นกระทู้บนฟอรัมและบันทึกการดำเนินการของผู้ช่วยดูแล การลบถาวรเป็นการถาวร ซึ่งไม่สามารถถูกย้อนกลับได้ แม้โดยผู้ช่วยดูแล"
+    delete_permanently_request_explanation: "การลบถาวรของสคริปต์นี้สามารถเสร็จสมบูรณ์ได้หลังจากถูกตรวจสอบโดยผู้ช่วยดูแลแล้วเท่านั้น"
     delete_permanently_confirm: "คุณแน่ใจหรือไม่ว่าคุณต้องการจะลบสคริปต์ของคุณอย่างถาวร? การดำเนินการนี้ไม่สามารถย้อนกลับได้"
     delete_permanently_submit: "ร้องขอการลบถาวร"
     delete_permanently_immediate_submit: "ลบอย่างถาวร"
-    delete_permanently_notice: "คำขอสำหรับการลบถาวรได้ถูกบันทึกแล้ว และจะถูกตรวจสอบโดยผู้ดูแล"
+    delete_permanently_notice: "คำขอสำหรับการลบถาวรได้ถูกบันทึกแล้ว และจะถูกตรวจสอบโดยผู้ช่วยดูแล"
     delete_permanently_already_requested: "คุณได้ร้องขอการลบถาวรเมื่อ %{datetime}"
     delete_permanently_notice_immediate: "สคริปต์ถูกลบอย่างถาวรแล้ว"
     cancel_delete_permanently_submit: "ยกเลิกคำขอการลบถาวร"
     cancel_delete_permanently_notice: "คำขอของคุณสำหรับการลบถาวรถูกยกเลิกแล้ว"
     delete_permanently_rejected_locked: "สคริปต์นี้ถูกล็อคอยู่และไม่สามารถถูกลบอย่างถาวรได้"
+    admin_page: "ผู้ดูแล"
+    admin:
+      title: "%{script_name} - ผู้ดูแล"
+      sync_heading: "แหล่งการซิงค์"
+      locale_heading: "ภาษาเริ่มต้น"
+      locale_example_html: "ภาษาของข้อความนี้: <i>%{text}</i>"
+      update_locale: "อัปเดตภาษา"
     history_title: "%{script_name} - ประวัติเวอร์ชัน"
     history_only_code_changes_info: "นี่คือเวอร์ชันของสคริปต์นี้ที่โค้ดมีการอัปเดต"
     history_all_changes_link: "แสดงเวอร์ชันทั้งหมด"
@@ -132,6 +142,8 @@ th:
     listing_created_feed: "สคริตป์ใหม่"
     listing_updated_feed: "สคริปต์ที่ถูกอัปเดต"
     listing_none: "(ไม่มี)"
+    listing_set_locale_filter: "กำลังแสดงผลลัพธ์สำหรับภาษาทั้งหมด %{set_filter_link:แสดงผลลัพธ์%{language}เท่านั้น}"
+    listing_remove_locale_filter: "กำลังแสดงเพียง %{language} ผลลัพธ์ %{remove_filter_link:แสดงผลลัพธ์สำหรับภาษาทั้งหมด}"
     import: "นำเข้าสคริปต์"
     new: "โพสต์สคริปต์"
     support_site: "เยี่ยมชมหน้าสนับสนุนของผู้เขียน"
@@ -206,6 +218,9 @@ th:
     write_your_own_html: "%{post_a_script_link} (หรือ %{learn_to_write_scripts_link})"
     post_a_script_link_text: "โพสต์สคริปต์ที่คุณเขียน"
     learn_to_write_scripts_link_text: "เรียนรู้วิธีเขียน"
+    feedback_suggestion: "ถามคำถาม เขียนบทวิจารณ์ หรือรายงานสคริปต์บน %{site_name}"
+    feedback_suggestion_with_support_site: "%{support_url:เยี่ยมชมไซต์ของผู้เขียนสำหรับการช่วยเหลือ} หรือ %{feedback_link:ถามคำถาม เขียนบทวิจารณ์ หรือรายงานสคริปต์บน %{site_name}}"
+    feedback_suggestion_with_support_email: "%{support_url:อีเมลถึงผู้เขียนสำหรับการช่วยเหลือ} หรือ %{feedback_link:ถามคำถาม เขียนบทวิจารณ์ หรือรายงานสคริปต์บน  %{site_name}}"
     approve_redistribution_use_user_setting: "ใช้ค่าเริ่มต้นบัญชีของฉัน (%{user_setting})"
     approve_redistribution_use_user_setting_not_set: "ไม่ได้กำหนด"
     approve_redistribution_true: "ฉันอนุญาตให้สคริปต์ของฉันถูกโพสต์ใหม่ในที่อื่น ๆ ได้"
@@ -309,6 +324,34 @@ th:
     explain_user_scripts_html: "สคริปต์ผู้ใช้จะทำให้คุณควบคุมประสบการณ์การเปิดหาของคุณ เมื่อติดตั้งแล้ว สคริปต์จะทำให้ไซต์ที่คุณเยี่ยมชมดีขึ้นกว่าเดิมโดยอัตโนมัติได้โดยเพิ่มคุณสมบัติ ทำให้ใช้งานง่ายขึ้น หรือกำจัดสิ่งที่น่ารำคาญออก สคริปต์ผู้ใช้บน %{site_name} ถูกเขียนโดนผู้ใช้อื่นและถูกโพสต์เพื่อแบ่งปันกันทั่วโลก ซึ่งสามารถติดตั้งได้ฟรีและใช้งานง่าย"
     installing_step1_header: "ขั้นตอนที่ 1: ติดตั้งเครื่องมือจัดการสคริปต์ผู้ใช้"
     installing_step1_caption: "Tampermonkey บน Chrome"
+    installing_step1_description_html: >
+        <p>เพื่อที่จะใช้งานสคริปต์ผู้ใช้ คุณต้องติดตั้งเครื่องมือจัดการสคริปต์ผู้ใช้ก่อน
+        เครื่องมือจัดการสคริปต์ผู้ใช้ที่คุณใช้งานได้จะขึ้นอยู่กับเบราว์เซอร์ที่คุณใช้งาน</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> หรือ %{chrome_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}
+        หรือ %{firefox_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} หรือ %{opera_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla: (ไม่จำเป็นต้องติดตั้งซอฟต์แวร์เพิ่มเติม)</li>
+
+        <li>AdGuard: (ไม่จำเป็นต้องติดตั้งซอฟต์แวร์เพิ่มเติม)</li>
+
+        </ul>
     installing_step2_header: "ขั้นตอนที่ 2: ติดตั้งสคริปต์ผู้ใช้"
     installing_step2_caption: "ปุ่มติดตั้งของสคริปต์ผู้ใช้"
     installing_step2_description_html: >
@@ -328,6 +371,8 @@ th:
     sign_in_external: "เข้าสู่ระบบด้วยบริการภายนอก"
     sign_in_with: "เข้าสู่ระบบด้วย %{provider}"
     sign_in_password: "เข้าสู่ระบบด้วยรหัสผ่าน"
+    sign_in_email_used_no_external_services_html: "'%{email}' ได้ถูกใช้งานโดยผู้ใช้ '%{user_name}' อยู่แล้ว หากนี่คือคุณและคุณต้องการเข้าสู่ระบบเพิ่มเติมด้วย %{provider} %{sign_in_link} ไปยังบัญชีของคุณก่อน จากนั้นเพิ่มการเข้าสู่ระบบด้วย %{provider} ของคุณ"
+    sign_in_email_used_with_external_services_html: "'%{email}' ได้ถูกใช้งานโดยผู้ใช้ '%{user_name}' อยู่แล้ว ซึ่งได้เข้าสู่ระบบด้วย %{existing_providers} หากนี่คือคุณและคุณต้องการเข้าสู่ระบบเพิ่มเติมด้วย %{provider} %{sign_in_link} ไปยังบัญชีของคุณก่อน จากนั้นเพิ่มการเข้าสู่ระบบด้วย %{provider} ของคุณ"
     sign_in_email_used_sign_in_link: "เข้าสู่ระบบ"
     sign_in_name_used: "ชื่อ '%{name}' ถูกใช้ไปแล้ว เลือกชื่ออื่น"
     sign_in_name_used_submit: "ส่ง"
@@ -392,6 +437,28 @@ th:
     approve_redistribution_false: "ฉันไม่ต้องการให้สคริปต์ของฉันถูกโพสต์ใหม่ในที่อื่น ๆ"
     greasy_fork_scripts_link:
       other: "%{user_name} ก็มี %{count} สคริปต์บน Greasy Fork"
+    delete_link: "ลบบัญชี"
+    delete:
+      intro: "การลบบัญชี '%{user_name}' ของคุณบน %{site_name} จะส่งผลต่อไปนี้:"
+      password_effect: "คุณจะไม่สามารถเข้าสู่ระบบด้วยรหัสผ่านของคุณได้อีก"
+      identities_effect:
+        other: "การเข้าสู่ระบบผ่าน %{identities} จะสร้างบัญชีใหม่"
+      scripts_effect:
+        other: "%{count} สคริปต์ของคุณจะถูกลบ"
+      script_sets_effect:
+        other: "%{count} ชุดสคริปต์ของคุณจะถูกลบ"
+      email_confirmation: "ก่อนที่จะลบบัญชีของคุณ %{site_name} จะส่งอีเมลไปยัง %{email} เพื่อยืนยันคำขอของคุณก่อน"
+      submit: "ลบบัญชี"
+      confirmation_email_sent: "อีเมลยืนยันการลบได้ถูกส่งแล้ว"
+      confirmation_email:
+        subject: "ยืนยันการลบบัญชี %{site_name}"
+      confirmation:
+        confirm: "ลบ '%{user_name}'"
+        cancel: "ยกเลิกการลบ"
+        key_mismatch: "ไม่สามารถลบผู้ใช้ได้ - รหัสไม่ตรงกัน"
+        request_expired: "ไม่สามารถลบผู้ใช้ได้ - คำขอหมดอายุ"
+        cancelled: "การลบถูกยกเลิกแล้ว"
+        completed: "บัญชีของคุณได้ถูกลบแล้ว"
   help:
     installing_user_scripts:
       title: 'วิธีติดตั้งสคริปต์ผู้ใช้'
@@ -440,6 +507,15 @@ th:
     user_search:
       title: "การค้นหาผู้ใช้"
       description: "ค้นหาผู้ใช้ด้วยชื่อ ค้นหาด้วยข้อความธรรมดา"
+  moderator_logs:
+    date_column: "วันที่"
+    moderator_column: "ผู้ช่วยดูแล"
+    item_column: "รายการ"
+    action_column: "การกระทำ"
+    reason_column: "เหตุผล"
+    item_script_html: "สคริปต์: %{script_link}"
+    item_deleted_script: "ลบสคริปต์ %{id}"
+    item_user_html: "ผู้ใช้: %{user_link}"
   common:
     error_preamble: "ตรวจพบปัญหาบางอย่างเกี่ยวกับสิ่งที่คุณโพสต์..."
     allowed_elements_link: "(ดูโค้ดที่อนุญาต)"
@@ -454,6 +530,8 @@ th:
     expander_show_more: "แสดงเพิ่มเติม"
     expander_show_less: "แสดงน้อยลง"
     advertisement_note: การโฆษณา
+    preview_tab: ตัวอย่าง
+    write_tab: เขียน
   activerecord:
     attributes:
       user:
@@ -490,6 +568,7 @@ th:
       script_too_many_screenshots: "ภาพหน้าจอมีอยู่มากเกินไป - จำนวนสูงสุดคือ %{number}"
       cannot_be_self_reference: "เป็นสคริปต์เดียวกันไม่ได้"
       cannot_be_deleted_reference: "เป็นสคริปต์ที่ถูกลบแล้วไม่ได้"
+      cannot_be_used_with_this_script: "ไม่สามารถเข้าร่วมกับสคริปต์นี้ได้"
       must_be_greasy_fork_script: "ต้องเป็น URL สำหรับสคริปต์บน %{site_name}"
       script_update_not_utf8: "ที่อัปโหลดต้องเป็นอักขระ UTF-8"
       script_disallowed_require: "ใช้สคริปต์ภายนอกที่ไม่ได้รับอนุญาต: %{code}"
