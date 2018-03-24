@@ -278,11 +278,19 @@ class Script < ActiveRecord::Base
 	end
 
 	def listable?
-		active? and script_type_id == 1
+		active? && public?
+	end
+
+	def public?
+		script_type_id == 1
 	end
 
 	def unlisted?
 		script_type_id == 2
+	end
+
+	def can_be_added_to_set?
+		public? || unlisted?
 	end
 
 	def redistributable?

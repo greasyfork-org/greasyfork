@@ -1,0 +1,55 @@
+<% if user_signed_in?
+  sets_direct_inclusion = []
+  sets_direct_exclusion = []
+  sets_indirect_inclusion = []
+  sets_not_included = []
+  current_user.script_sets.each do |set|
+    if set.child_script_inclusions.include?(script)
+      sets_direct_inclusion << set
+      next
+    end
+    if set.child_script_exclusions.include?(script)
+      sets_direct_exclusion << set
+      next
+    end
+    set_script_ids = cache_with_log([set, script_subset]) do
+      set.scripts(script_subset).map{|s| s.id}
+    end
+    if set_script_ids.include?(script.id)
+      sets_indirect_inclusion << set
+    else
+      sets_not_included << set
+    end
+  end
+  in_sets = sets_direct_inclusion + sets_indirect_inclusion
+  user_has_favorites_set = current_user.script_sets.find{|s| s.favorite}
+  %>
+  <%=form_tag(add_to_script_set_path, {:class => 'script-in-sets'}) do |f| %>
+    <% if in_sets.empty? %>
+      <%=t('scripts.sets_label_no_sets')%>
+    <% else %>
+      <%=t('scripts.sets_label')%>
+      <%=ScriptSet.favorites_first(in_sets).map{|s| link_to(s.display_name, scripts_path(:set => s.id)).html_safe}.join(', ').html_safe%>
+    <% end %>
+    <select name="action-set">
+      <% if !user_has_favorites_set %>
+        <option value="ai-fav"><%=t('scripts.sets_add_inclusion', :set_name => t('script_sets.favorites_name'))%></option>
+      <% end %>
+      <% ScriptSet.favorites_first(sets_direct_inclusion).each do |set| %>
+        <option value="ri-<%=set.id%>"><%=t('scripts.sets_remove_inclusion', :set_name => set.display_name)%></option>
+      <% end
+      sets_direct_exclusion.each do |set| %>
+        <option value="re-<%=set.id%>"><%=t('scripts.sets_remove_exclusion', :set_name => set.display_name)%></option>
+      <% end
+      sets_indirect_inclusion.each do |set| %>
+        <option value="ae-<%=set.id%>"><%=t('scripts.sets_add_exclusion', :set_name => set.display_name)%></option>
+      <% end
+      ScriptSet.favorites_first(sets_not_included).each do |set| %>
+        <option value="ai-<%=set.id%>"><%=t('scripts.sets_add_inclusion', :set_name => set.display_name)%></option>
+      <% end %>
+      <option value="ai-new"><%=t('scripts.sets_add_to_new')%></option>
+    </select>
+    <input type="hidden" name="script_id" value="<%=script.id%>">
+    <input type="submit" value="→">
+  <% end %>
+<% end %>

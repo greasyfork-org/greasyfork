@@ -3,8 +3,6 @@
 
 <%=render :partial => 'install', :locals => {:script => @script, :script_version => @script_version}%>
 
-<%=render partial: 'feedback_suggestion', locals: {script: @script} %>
-
 <% if !@ad_method.nil? && @ad_method != 'gt' %>
 	<div class="ad ad-<%=@ad_method%>" id="script-show-info-ad">
 		<div class="ad-note" data-ad-method="<%=@ad_method.upcase%>"><%=t('common.advertisement_note')%></div>
@@ -47,6 +45,12 @@
 		</div>
 	</div>
 <% end %>
+
+<% if @script.active? && @script.can_be_added_to_set? %>
+	<%= render partial: 'script_set', locals: {script: @script} %>
+<% end %>
+
+<%=render partial: 'feedback_suggestion', locals: {script: @script} %>
 
 <div id="script-meta">
 	<dl id="script-stats">
