@@ -273,57 +273,6 @@ nav .with-submenu:hover > a::after, nav .with-submenu > a:focus::after {
 	padding: 0;
 	margin: 0;
 }
-#script-meta {
-	display: table;
-	font-size: small;
-}
-#script-meta > * {
-	margin-bottom: 1em;
-}
-#script-meta > dl dd {
-	max-width: 50%;
-}
-#script-stats, #script-stats dt, #script-stats dd, #script-applies-to, #script-applies-to dt, #script-applies-to dd {
-	vertical-align: top;
-	margin: 0;
-	padding: 0;
-}
-#script-stats {
-	padding-right: 1em;
-	min-width: 18em;
-	-moz-column-count: 2;
-	-webkit-column-count: 2;
-	column-count: 2;
-	-moz-column-gap: 1em;
-	-webkit-column-gap: 1em;
-	column-gap: 1em;
-}
-#script-stats dt, #script-meta dt {
-	clear: left;
-	float: left;
-	width: 12em;
-	font-weight: bold;
-}
-#script-stats dd, #script-meta dd{
-	float: left;
-	min-width: 12em;
-}
-#script-applies-to dt:after, #script-meta dt:after {
-	content: ":";
-}
-
-@media screen and (max-width: 720px) {
-	/* make descriptions not wrap,
-	* and show one description each line for narrow width.
-	*/
-	#script-stats dt, #script-meta dt {
-		display: table-cell;
-		white-space: nowrap;
-	}
-	#script-stats dd, #script-meta dd {
-		min-width: unset;
-	}
-}
 
 .inline-list {
 	display: inline;
@@ -517,49 +466,8 @@ dt[title] > span {
 .script-list footer {
 	margin-top: 0.25em;
 }
-.script-list dl {
-	font-size: smaller;
-	-moz-column-count: 2;
-	-webkit-column-count: 2;
-	column-count: 2;
-	-moz-column-gap: 0;
-	-webkit-column-gap: 0;
-	column-gap: 0;
-	max-width: 45em;
-	margin: 0;
-}
-.script-list dt, .script-list dd {
-	margin: 0;
-	padding: 0;
-}
-.script-list dd {
-	color: #666;
-}
-.script-list dt::after {
-	content: "";
-}
-.script-list dt {
-	clear: left;
-	float: left;
-	width: 10em;
-	padding-right: 1em;
-	padding-left: 1em;
-}
 
-@media screen and (max-width: 960px) {
-	.script-list dt {
-		padding-left: 1.2vw;
-		text-align: right;
-	}
-}
 
-.script-list dl dt span {
-	float: right;
-	font-weight: bold;
-}
-.script-list dd {
-	float: left;
-}
 .list-current {
 	font-weight: bold;
 }
@@ -582,24 +490,8 @@ dt[title] > span {
 }
 
 @media screen and (max-width: 720px) {
-	/* make descriptions not wrap,
-	* and show one description each line for narrow width.
-	*/
 	.script-list, #script-content {
 		margin-left: unset;
-	}
-
-	.script-list dl, #script-content dl {
-		display: table-row;
-	}
-	.script-list dt, #script-content dt {
-		display: table-cell;
-		padding-left: 0;
-		white-space: nowrap;
-	}
-	.script-list dd, #script-content dd {
-		display: table-cell;
-		padding-left: 0;
 	}
 }
 

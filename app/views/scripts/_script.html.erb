@@ -28,7 +28,7 @@ show_report_thread = defined?(show_report_thread) && show_report_thread
 				<%=script.description(I18n.locale)%>
 			</span>
 		</h2>
-		<dl>
+		<dl class="inline-script-stats">
 			<dt class="script-list-author"><span><%=t('scripts.author_name')%></span></dt>
 			<dd class="script-list-author"><span><%=link_to script.user.name, user_path(script.user)%></span></dd>
 			<% if !script.library? %>

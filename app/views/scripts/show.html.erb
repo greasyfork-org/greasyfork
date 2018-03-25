@@ -53,7 +53,7 @@
 <%=render partial: 'feedback_suggestion', locals: {script: @script} %>
 
 <div id="script-meta">
-	<dl id="script-stats">
+	<dl id="script-stats" class="inline-script-stats">
 		<dt class="script-show-author"><span><%=t('scripts.author_name')%></span></dt>
 		<dd class="script-show-author"><span><%=link_to @script.user.name, @script.user%></span></dd>
 		<% if @script.script_type_id != 3 and params[:version].nil? %>
@@ -98,7 +98,7 @@
 		<dd class="script-show-license"><span><%=license_display(@script)%></span></dd>
 	</dl>
 	<div>
-		<dl id="script-applies-to" data-show-more-text="<%=t('common.expander_show_more')%>" data-show-less-text="<%=t('common.expander_show_less')%>">
+		<dl id="script-applies-to" class="inline-script-stats" data-show-more-text="<%=t('common.expander_show_more')%>" data-show-less-text="<%=t('common.expander_show_less')%>">
 			<dt class="script-show-applies-to"><span><%=t('scripts.applies_to')%></span></dt>
 			<dd class="script-show-applies-to">
 				<% if @script.script_applies_tos.empty? %>
