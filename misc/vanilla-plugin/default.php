@@ -30,6 +30,7 @@ class GreasyForkPlugin extends Gdn_Plugin {
 	# Add CSS, JS, and link to main site
 	public function Base_Render_Before($Sender) {
 		$Sender->addCssFile('https://fonts.googleapis.com/css?family=Open+Sans');
+		$Sender->Data['locale'] = $_GET['locale'];
 	}
 
 	# Going to render our own category selector

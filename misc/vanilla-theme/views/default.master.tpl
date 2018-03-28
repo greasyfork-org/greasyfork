@@ -7,7 +7,7 @@
 <div id="Frame">
     <div class="Head" id="Head">
         <div class="Row">
-            {assign var=locale value=$CurrentLocale.Lang|default:'en'}
+            {assign var=locale value=$locale|default:'en'}
             <div id="site-name">
                  <a href="/{$locale}/">{logo}</a>
                  <div id="site-name-text">
