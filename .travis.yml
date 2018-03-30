@@ -3,6 +3,7 @@ rvm:
   - 2.5.1
 env:
   - DB=mysql
+before_install: gem install bundler
 before_script:
   - cp test/travisconfig/database.yml config/database.yml
   - cp test/travisconfig/secrets.yml config/secrets.yml
