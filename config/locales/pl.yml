@@ -55,6 +55,7 @@ pl:
     update: "Aktualizacja do wersji %{version}"
     downgrade: "Powrót do wersji %{version}"
     reinstall: "Ponowna instalacja wersji %{version}"
+    promoted: "Promowane skrypty"
     library_instructions_html: "Ten skrypt nie powinien być instalowany bezpośrednio. Jest to biblioteka dla innych skyptów do włączenia z dyrektywami meta %{code}"
     deleted_notice: "Ten skrypt został usunięty."
     version_notice_html: "Stan na %{date}. Zobacz %{latest_version_link}."
@@ -83,6 +84,10 @@ pl:
     cancel_delete_permanently_submit: "Wycofaj prośbę o trwałe usunięcie"
     cancel_delete_permanently_notice: "Twoja prośba o trwałe usunięcie została wycofana."
     delete_permanently_rejected_locked: "Ten skrypt jest zablokowany i nie może być permanentnie usunięty"
+    admin_page: "Administrator"
+    admin:
+      promoted_heading: "Promowany skrypt"
+      locale_heading: "Domyślna lokalizacja"
     history_title: "%{script_name} — historia wersji"
     history_only_code_changes_info: "To są wersje tego skryptu, gdzie kod został zaktualizowany."
     history_all_changes_link: "Pokaż wszystkie wersje."
@@ -249,6 +254,8 @@ pl:
     by_site_list_description: "Witryny wykorzystujące najbardziej popularne skrypty użytkowników. Większa czcionka oznacza bardziej popularne skrypty użytkowników."
     by_site_list_filter: "Filtruj według nazwy strony:"
     search_placeholder: "Szukaj skryptów"
+    updated: "Skrypt zaktualizowany."
+    preview_additional_info: "Podgląd"
   script_sets:
     description: "Zestawy skryptów umożliwiają Ci stworzenie zmodyfikowanej listy skryptów do przeglądania Greasy Fork'a. Możesz dodać skrypty do Twojego zestawu poprzez dołączanie pojedynczych skryptów, zestawów innych użytkowników lub automatycznie generowanych zestawów. Możesz także usunąć skrypty z Twojego zestawów w taki sam sposób."
     favorites_name: "Ulubione"
@@ -437,6 +444,13 @@ pl:
       few: "Twoja nazwa użytkownika i email są ustawione by być synchronizowane kiedy się zalogujesz przez %{providers}. %{edit_sign_in_link:Zmień swoje metody logowania, by usunąć synchronizację} jeśli chcesz na stałe ustawić niestandardową nazwę użytkownika lub email."
       many: "Twoja nazwa użytkownika i email są ustawione by być synchronizowane kiedy się zalogujesz przez %{providers}. %{edit_sign_in_link:Zmień swoje metody logowania, by usunąć synchronizację} jeśli chcesz na stałe ustawić niestandardową nazwę użytkownika lub email."
       other: "Twoja nazwa użytkownika i email są ustawione by być synchronizowane kiedy się zalogujesz przez %{providers}. %{edit_sign_in_link:Zmień swoje metody logowania, by usunąć synchronizację} jeśli chcesz na stałe ustawić niestandardową nazwę użytkownika lub email."
+    delete_link: "Usuń konto"
+    delete:
+      intro: "Usunięcie twojego %{site_name}konta '%{user_name}' będzie miało następujące efekty:"
+      submit: "Usuń konto"
+      confirmation:
+        confirm: "Usuń '%{user_name}'"
+        cancel: "Anuluj usuwanie"
   help:
     installing_user_scripts:
       title: 'Jak zainstalować skrypty użytkownika'
@@ -606,6 +620,11 @@ pl:
     user_search:
       title: "Szukanie użytkowników"
       description: "Szukanie użytkowników według nazwy. Wyszukiwanie zwykłego tekstu."
+  moderator_logs:
+    date_column: "Data"
+    moderator_column: "Moderator"
+    reason_column: "Powód"
+    item_user_html: "Użytkownik: %{user_link}"
   common:
     error_preamble: "Mieliśmy małe problemy z tym, co chciałeś napisać..."
     allowed_elements_link: "(zobacz dozwolony kod)"
@@ -620,6 +639,8 @@ pl:
     expander_show_more: "Rozwiń"
     expander_show_less: "Zwiń"
     advertisement_note: Reklama
+    preview_tab: Podgląd
+    write_tab: Napisz
   activerecord:
     attributes:
       user:
@@ -656,6 +677,7 @@ pl:
       script_too_many_screenshots: "Zawarto zbyt wiele zrzutów ekranu — maksymalna ilość to %{number}"
       cannot_be_self_reference: "nie może być tym samym skryptem"
       cannot_be_deleted_reference: "nie może być usuniętym skryptem"
+      cannot_be_used_with_this_script: "nie może być użyte z tym skryptem"
       must_be_greasy_fork_script: "musi być adresem URL dla skryptu na %{site_name}u"
       script_update_not_utf8: "wymaga kodowania UTF-8"
       script_disallowed_require: "używa niezatwierdzonego zewnętrznego skryptu: %{code}"
