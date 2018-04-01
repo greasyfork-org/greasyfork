@@ -2,7 +2,7 @@
 class RegistrationsController < Devise::RegistrationsController
 	include LoginMethods
 
-	prepend_before_action :check_captcha, only: [:create]
+	before_action :check_captcha, only: [:create]
 
 	# https://github.com/plataformatec/devise/wiki/How-To%3a-Allow-users-to-edit-their-account-without-providing-a-password
 	def update
@@ -43,6 +43,7 @@ protected
 		unless verify_recaptcha
 			self.resource = resource_class.new sign_up_params
 			resource.validate # Look for any other validation errors besides Recaptcha
+			set_minimum_password_length
 			respond_with_navigational(resource) { render :new }
 		end
 	end
