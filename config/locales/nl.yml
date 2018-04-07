@@ -47,6 +47,9 @@ nl:
     update: "Update naar versie %{version}"
     downgrade: "Downgrade naar versie %{version}"
     reinstall: "Herinstalleer versie %{version}"
+    old_version_warning: "Dit is niet de nieuwste versie van dit script. Als je deze installeert, zal hij nooit updaten naar een nieuwere versie. Toch installeren?"
+    promoted: "Aanbevolen script"
+    author_promoted: "Aanbevolen script door auteur"
     library_instructions_html: "Dit script moet niet direct worden geïnstalleerd. Het is een bibliotheek voor andere scripts om op te nemen met de meta-richtlijn %{code}"
     deleted_notice: "Dit script is verwijderd."
     version_notice_html: "Per %{date}. Zie %{latest_version_link}."
@@ -75,6 +78,19 @@ nl:
     cancel_delete_permanently_submit: "Annuleer verwijderingsverzoek"
     cancel_delete_permanently_notice: "Je aanvraag voor permanente verwijdering is geannuleerd."
     delete_permanently_rejected_locked: "Dit script is vergrendeld en kan daarom niet permanent worden verwijderd."
+    admin_page: "Administrator"
+    admin:
+      title: "%{script_name}- Administrator"
+      promoted_heading: "Aanbevolen script"
+      promoted_explanation: "Na het installeren van dit script, %{site_name} kan de gebruiker een ander script naar uw keuze aanbevelen."
+      promoted_script_label: "URL van script om te promoten"
+      promoted_submit: "Stel gepromoot script in"
+      sync_heading: "Broncodesynchronisatie"
+      locale_heading: "Standaard-Locale"
+      locale_example_html: "Lacale van deze text: <i>%{text}</i>"
+      locale_multiple_note: "Opmerking: %{meta_keys_link:meerdere locales kunnen gedefinieerd worden voor een script}."
+      update_locale: "Locale bijwerken"
+      no_moderator_logs: "Geen acties zijn ondernomen door beheerders bij dit script."
     history_title: "%{script_name} - Versiegeschiedenis"
     history_only_code_changes_info: "Dit zijn versies van het script waarin de code is bijgewerkt."
     history_all_changes_link: "Alle versies weergeven."
@@ -137,6 +153,8 @@ nl:
     listing_created_feed: "Nieuwe scripts"
     listing_updated_feed: "Bijgewerkte scripts"
     listing_none: "(Geen)"
+    listing_set_locale_filter: "Resultaten weergeven voor alle talen. %{set_filter_link:Geef alleen resultaten uit het  %{language} weer.}"
+    listing_remove_locale_filter: "Alleen resultaten uit het %{language} aan het weergeven. %{remove_filter_link:Geef resultaten voor alle talen weer.}"
     import: "Scripts importeren"
     new: "Nieuw script plaatsen"
     support_site: "Bezoek de ondersteuningswebsite van de auteur."
@@ -176,6 +194,7 @@ nl:
     warning_namespace_missing_generate_automatically_html: "<code>@namespace</code> automatisch genereren?"
     warning_namespace_changed_html: "U <code>@namespace</code> is gewijzigd. Een consistente <code>@namespace</code> stelt gebruikers in staat uw script opnieuw te installeren voor bijwerken van de code."
     warning_potentially_minified_html: "Het lijkt erop dat uw script minimalistische (gecomprimeerde) code bevat. Als u een minimalistische bibliotheek gebruikt, gebruik dan liever <code>@require</code> van %{allowed_requires_link}. Script met minimalistische code is onderhevig aan verwijdering."
+    warning_automatic_sensitive_html: "Uw script is voor %{sensitive_domains} en zal daarom gemarkeerd worden als volwassen content."
     warning_potentially_minified_allowed_requires_link: "één van deze plaatsen"
     additional_info_locale_prompt: "(Kies een taal)"
     additional_info_add_localized: "Extra, vertaalde informatie toevoegen"
@@ -213,6 +232,9 @@ nl:
     write_your_own_html: "%{post_a_script_link} (of %{learn_to_write_scripts_link})"
     post_a_script_link_text: "Publiceer een door u geschreven script"
     learn_to_write_scripts_link_text: "leer hoe u een script schrijft"
+    feedback_suggestion: "Stel een vraag, geef een feedback, of rapporteer het script op %{site_name}."
+    feedback_suggestion_with_support_site: "%{support_url:Bezoek de website van de auteur voor ondersteuning} of %{feedback_link:Stel een vraag, geef een feedback, of rapporteer het script op %{site_name}}."
+    feedback_suggestion_with_support_email: "%{support_url:Email de author voor ondersteuning} of %{feedback_link:Stel een vraag, geef een feedback, of rapporteer het script op %{site_name}}."
     approve_redistribution_explanation: "%{site_name} kan bij andere websites bekend maken dat u toestaat dat uw script herplaatst wordt. Het kan zijn dat de door u gekozen scriptlicentie dit al toestaat."
     approve_redistribution_use_user_setting: "Mijn accountstandaard gebruiken (%{user_setting})"
     approve_redistribution_use_user_setting_not_set: "niet ingesteld"
@@ -225,6 +247,7 @@ nl:
     adult_content_self_report_explanation: "%{site_name} staat scripts met inhoud voor volwassenen toe mits deze als dusdanig gemarkeerd zijn zodat gebruikers zelf kunnen kiezen of ze dit willen zien of niet."
     not_adult_content_self_report_html: "Dit script bevat <strong>geen</strong> inhoud voor volwassenen en is ook <strong>niet</strong> bestemd voor een website met inhoud voor volwassenen."
     not_adult_content_self_report_explanation: "%{site_name} staat scripts met inhoud voor volwassenen toe mits deze als dusdanig gemarkeerd zijn zodat gebruikers zelf kunnen kiezen of ze dit willen zien of niet. Uw script is gemarkeerd als zijnde 'inhoud voor volwassenen'. U kunt ervoor kiezen om het te rapporteren omdat dit onjuist is; dit zal worden nagekeken door een moderator."
+    not_adult_content_self_report_explanation_automatic: "%{site_name} staat scripts met volwassen content toe, maar ze moeten zo gemarkeerd zijn dat gebruikers kunnen kiezen of ze het zien. Uw script is gemarkeerd voor volwassen content, want deze is voor %{domain_list}."
     adult_content_on_greasy_logged_in_error: "Dit script is niet langer anoniem beschikbaar op deze site, met je huidige %{edit_account_link:Greasy Fork account instellingen}."
     adult_content_on_greasy_not_logged_in_error: "Dit script is niet langer anoniem verkrijgbaar op deze site. %{login_link:Log in} en controleer je Greasy Fork account instellingen."
     non_adult_content_on_sleazy: "Dit script is niet beschikbaar op deze site."
@@ -239,6 +262,8 @@ nl:
     by_site_list_description: "Dit zijn de sites beïnvloed door de most populaire gebruikersscripts. Groter lettertype betekent populairder gebruikersscript."
     by_site_list_filter: "Filter op site naam:"
     search_placeholder: "Zoek scripts"
+    updated: "Script bijgewerkt."
+    preview_additional_info: "Voorvertoning"
   script_sets:
     description: "Script-sets stellen je in staat om een gepersonaliseerde lijst met scripts met Greasy Fork door te bladeren. Je kunt scripts toevoegen aan je set door individuele scripts op te nemen, sets van andere gebruikers of automatisch gegenereerde sets. Je kunt ook scripts uit je set verwijderen met dezelfde methode."
     favorites_name: "Favorieten"
@@ -316,10 +341,41 @@ nl:
     welcome: "Welkom bij %{site_name}, een site voor gebruikersscripts."
     sleazy_title: "%{site_name} - veilige en nuttige gebruikersscripts"
     sleazy_welcome: "Welkom bij %{site_name}, een site voor volwassen gebruikersscripts."
+    search_placeholder: "Zoek naar gebruikersscripts"
+    scripts_for_label: "Scripts voor:"
     explain_user_scripts_heading: "Wat zijn gebruikersscripts?"
     explain_user_scripts_html: "Gebruikersscripts stellen je in staat je browser naar je eigen wensen aan te passen. Wanneer je ze hebt geïnstalleerd, maken ze sites die je bezoekt automatisch beter, door aanvullende mogelijkheden, makkelijker gebruik of vervelende eigenschappen kunnen worden verwijderd. De gebruikersscripts op %{site_name} zijn geschreven door andere gebruikers, en geplaatst om te delen met de rest van de wereld. Ze zijn gratis om te installeren, en makkelijk in gebruik."
     installing_step1_header: "Stap 1: Installeer een gebruikersscriptmanager"
     installing_step1_caption: "Tampermonkey voor Chrome"
+    installing_step1_description_html: >
+        <p>Om gebruikersscripts te kunnen gebruiken moet je eerst een scriptmanager
+        installeren. Welke scriptmanager je kunt gebruiken hangt af van welke browser
+        je gebruikt.</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> or %{chrome_violentmonkey_link:Violent
+        monkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey} or %{firefox_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla: (geen additionele software vereist)</li>
+
+        <li>AdGuard: (geen additionele software vereist)</li>
+
+        </ul>
     installing_step2_header: "Stap 2: Installeer een gebruikersscript"
     installing_step2_caption: "Een gebruikersscript-installeer knop"
     installing_step2_description_html: >
@@ -418,6 +474,19 @@ nl:
     update_sync_warning:
       one: "Je gebruikersnaam en email zijn ingesteld om te worden gesynchroniseerd met %{providers}. %{edit_sign_in_link:Wijzig je login-methodes om synchronisatie uit te schakelen} als je een permanente gebruikersnaam of email in wilt stellen."
       other: "Je gebruikersnaam en email zijn ingesteld om wanneer je inlogt te worden gesynchroniseerd met %{providers}. %{edit_sign_in_link:Wijzig je login-methodes om synchronisatie uit te schakelen} als je een permanente gebruikersnaam of email in wilt stellen."
+    delete_link: "Verwijder account"
+    delete:
+      intro: "Als u uw %{site_name} account '%{user_name}' verwijdert, heeft dat de volgende gevolgen:"
+      requires_permanent_deletion: "Voordat u uw account verwijdert, moet u permanente verwijdering van de volgende scripts opvragen:"
+      password_effect: "U kunt niet langer inloggen met uw wachtwoord."
+      identities_effect:
+        one: "Inloggen via %{identities} zal als resultaat een nieuw account hebben."
+        other: "Inloggen via %{identities} zal als resultaat een nieuw account hebben."
+      scripts_effect:
+        one: "Uw %{count} scripts zullen verwijderd worden."
+        other: "Uw %{count} scripts zullen verwijderd worden."
+      submit: "Verwijder account"
+      confirmation_email_sent: "Bevestigingsmail voor verwijdering is verzonden."
   help:
     installing_user_scripts:
       title: 'Hoe je gebruikersscripts installeert'
