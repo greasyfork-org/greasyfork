@@ -1,30 +1,30 @@
 <?php
 /* Label for inputting a script ID when creating/editing a discussion */
-$Definition['Item ID:'] = 'Script ID:';
+$Definition['Item ID:'] = 'ID Skripte:';
 // Appended to "Discussions" when viewing a list of discussions on scripts by a user. %s is the user name.
 $Definition['on scripts by %s'] = 'on scripts by %s';
 /*
  *  Label for the radio buttons for rating a script
  **/
-$Definition['RatingLabel'] = 'How would you rate this script?';
+$Definition['RatingLabel'] = 'Kako ce te oceniti ovu skriptu?';
 # Label for the radio buttons for updating a rating on a script
-$Definition['RatingUpdateLabel'] = 'Update your rating:';
+$Definition['RatingUpdateLabel'] = 'Promenite svoju ocenu:';
 # Label for the radio button for not rating a script
-$Definition['RatingNone'] = 'No rating - just a question, comment, feature request, or bug report';
+$Definition['RatingNone'] = 'Bez ocene - samo pitanje,komentar,zahtev ili prijava greske';
 ## Label for the radio button for reporting a script
-$Definition['RatingReport'] = '<div class="report">Report script to moderators for removal, for example:<ul><li>Malware - describe which portion of the code is malicious</li><li>Licensing/copyright - describe and link to the original source of the code and provide any other evidence</li></ul></div>';
+$Definition['RatingReport'] = '<div class="report">Prijavite Skriptu moderatoru za brisanje,naprimer<ul><li>Crv-opisite koji deo koda je zlonameran</li><li>Licenciranje/autorska prava-opisite i dodajte link originalnog koda za scriptu i dokazite bilo koji presud</li></ul></div>';
 /** Label for the radio button for rating a script "Bad" */
-$Definition['RatingBad'] = 'Bad - script doesn\'t work';
+$Definition['RatingBad'] = 'Lose-Skripta ne radi';
 /** Label for the radio button for rating a script "OK" **/
-$Definition['RatingOK'] = 'OK - script works, but has significant issues';
+$Definition['RatingOK'] = 'OK-Skripta radi,ali ima gresaka';
 // Label for the radio button for rating a script "Good"
-$Definition['RatingGood'] = 'Good - script works well';
+$Definition['RatingGood'] = 'Dobro_Scriptra radi odlicno';
 // Category name for Site Feedback
-$Definition['Categories.general.Name'] = 'Site Feedback';
+$Definition['Categories.general.Name'] = 'Povratne informacije sajta';
 // Category description for Site Feedback
-$Definition['Categories.general.Description'] = 'Bug reports, feature requests, and other stuff about Greasy Fork itself.';
+$Definition['Categories.general.Description'] = 'Prijava bagova,zahtevi,i ostale stvari o Greasy Fork-u';
 // Category name for Development
-$Definition['Categories.script-development.Name'] = 'Development';
+$Definition['Categories.script-development.Name'] = 'Izradnja';
 // Category description for Development
 $Definition['Categories.script-development.Description'] = 'Technical talk about user script development.';
 // Category name for Script Creation Requests
