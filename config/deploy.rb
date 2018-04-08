@@ -12,5 +12,6 @@ append :linked_dirs, 'public/forum', 'public/system', 'log', 'tmp', 'public/data
 
 namespace :deploy do
   after :published, "thinking_sphinx:index"
+  after :published, "invoke[transifex:update_stats]"
   after :rollback, "thinking_sphinx:index"
 end
