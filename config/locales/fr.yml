@@ -32,7 +32,7 @@ fr:
     version_number: "Version"
     license: "Licence"
     no_license: "N/A"
-    compatibility: "compatibilité"
+    compatibility: "Compatibilité"
     compatible_with_browser: "Compatible avec %[browser]"
     incompatible_with_browser: "Incompatible avec %{browser}"
     applies_to: "S'applique à"
@@ -48,6 +48,7 @@ fr:
     downgrade: "Revenir à la version %{version}"
     reinstall: "Réinstaller la version %{version}"
     old_version_warning: "Ceci n'est pas la dernière version de ce script. Si vous l'installez, vous n'aurez jamais de mise à jour vers les nouvelles versions. Voulez-vous vraiment l'installer ?"
+    promoted: "Script promotionnel"
     author_promoted: "Script suggéré par l'auteur"
     promoted_text_html: "Vous pourriez également aimer %{script_link}."
     library_instructions_html: "Ce script ne doit pas être installé directement. C'est une librairie destinée à être incluse dans d'autres scripts avec la méta-directive %{code}"
@@ -79,6 +80,12 @@ fr:
     cancel_delete_permanently_notice: "Votre demande de suppression définitive a été annulé."
     delete_permanently_rejected_locked: "Ce script est verrouillé et ne peut être supprimé de façon permanente"
     admin_page: "Administrateur"
+    admin:
+      promoted_heading: "Script promotionnel"
+      promoted_explanation: "Après avoir installer le script, %{site_name} peut suggérer à l'utilisateur d'essayer un autre script de votre choix."
+      promoted_script_label: "URL du script à promouvoir"
+      sync_heading: "Source de synchronisation"
+      no_moderator_logs: "Aucun mesure n'a été prise par les modérateurs sur ce script."
     history_title: "%{script_name} - Historique des versions"
     history_only_code_changes_info: "Voici les versions de ce script où le code a été modifié."
     history_all_changes_link: "Voir toutes les versions."
@@ -243,6 +250,8 @@ fr:
     by_site_list_description: "Ce sont les sites affectés par les scripts utilisateur les plus populaires. Une plus grande taille de police signifie des scripts utilisateur plus populaires."
     by_site_list_filter: "Filtrer par nom de site :"
     search_placeholder: "Recherche de scripts"
+    updated: "Script mis à jour."
+    preview_additional_info: "Prévisualisation"
   script_sets:
     description: "Les jeux de scripts vous permettent de créer une liste personnalisée de scripts pour naviguer avec sur Greasy Fork. Vous pouvez ajouter des scripts à votre jeu en incluant des scripts individuels, des jeux d'autres utilisateurs ou des jeux générés automatiquement. Vous pouvez également exclure les scripts de votre jeu avec les mêmes méthodes."
     favorites_name: "Favoris"
@@ -432,13 +441,18 @@ fr:
       scripts_effect:
         one: "Vos %{count} scripts vont êtes supprimés."
         other: "Vos %{count} scripts vont être supprimés."
+      email_confirmation: "Avant de supprimer votre compte, %{site_name} nous allons envoyer un email à %{email} afin de confirmer votre demande."
       submit: "Supprimer le compte"
       confirmation_email_sent: "Un email de confirmation de la suppression du compte a été envoyé"
+      confirmation_email:
+        subject: "Confirmation de la suppression du compte %{site_name}"
       confirmation:
         intro: "Vous êtes sur le point de supprimer le compte '%{user_name}'. Cette action est irréversible."
         confirm: "Supprimer %{user_name}"
         cancel: "Annuler la suppresion"
         request_expired: "Suppression de l'utilisateur impossible - requête expirée"
+        cancelled: "Suppression annulée"
+        completed: "Votre compte a été supprimé"
   help:
     installing_user_scripts:
       title: 'Comment installer des scripts utilisateurs'
@@ -500,6 +514,13 @@ fr:
     user_search:
       title: "Recherche d'utilisateur"
       description: "Rechercher des utilisateurs par nom. Recherche simple LIKE."
+  moderator_logs:
+    date_column: "Date"
+    moderator_column: "Moderateur"
+    reason_column: "Raison"
+    item_script_html: "Script :"
+    item_deleted_script: "Script supprimé"
+    item_user_html: "Utilisateur:"
   common:
     error_preamble: "Il y a des erreurs dans ce que vous avez posté..."
     allowed_elements_link: "(Voir les balises autorisées.)"
@@ -515,6 +536,7 @@ fr:
     expander_show_less: "Voir moins"
     advertisement_note: Publicité
     preview_tab: Prévisualiser
+    write_tab: Ecrire
   activerecord:
     attributes:
       user:
@@ -551,6 +573,7 @@ fr:
       script_too_many_screenshots: "Trop de captures d'écran : le maximum est %{number}"
       cannot_be_self_reference: "ne peut pas être le même script"
       cannot_be_deleted_reference: "ne peut pas être un script effacé"
+      cannot_be_used_with_this_script: "Ne peut être utilisé avec ce script."
       must_be_greasy_fork_script: "doit être l'URL d'un script %{site_name}"
       script_update_not_utf8: "téléchargé sur le serveur doit être du texte encodé en UTF-8"
       script_disallowed_require: "utilise un script externe non approuvé: %{code}"
