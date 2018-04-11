@@ -7,3 +7,8 @@
 .log-table td, .log-table th {
   padding: 0 5px;
 }
+/* overflow-wrap doesn't work on table cells, so this is in its own div */
+.log-table td .possibly-long-text {
+  max-width: 500px;
+  overflow-wrap: break-word;
+}

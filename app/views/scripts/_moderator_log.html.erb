@@ -17,7 +17,7 @@
 					<td><%=markup_date action.created_at%></td>
 					<td><%=link_to action.moderator.name, action.moderator%></td>
 					<td><%=action.action%></td>
-					<td><%=action.reason%></td>
+					<td><div class="possibly-long-text"><%=action.reason%></div></td>
 				</tr>
 			<% end %>
 		</table>
