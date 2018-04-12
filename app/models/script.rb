@@ -50,7 +50,7 @@ class Script < ActiveRecord::Base
 	scope :listable, ->(script_subset) {active(script_subset).where(:script_type_id => 1)}
 	scope :libraries, ->(script_subset) {active(script_subset).where(:script_type_id => 3)}
 	scope :listable_including_libraries, ->(script_subset) {active(script_subset).where(script_type_id: [1,3])}
-	scope :reported, -> {not_deleted.joins(:discussions).includes(:user).distinct.where('GDN_Discussion.Rating = 1').where('Closed = 0')}
+	scope :reported, -> { not_deleted.joins('JOIN GDN_Discussion ON scripts.id = ScriptID AND Rating = 1 AND Closed = 0').includes(:user).order('GDN_Discussion.DiscussionID') }
 	scope :reported_not_adult, -> {not_deleted.includes(:user).where('not_adult_content_self_report_date IS NOT NULL')}
 	scope :requested_permanent_deletion, -> {where('permanent_deletion_request_date is not null')}
 	scope :for_all_sites, -> {includes(:script_applies_tos).references(:script_applies_tos).where('script_applies_tos.id IS NULL')}
