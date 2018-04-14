@@ -25,7 +25,7 @@
 		if (!postInstall) {
 			return;
 		}
-		postInstall.style.display = 'block';
+		postInstall.style.display = 'flex';
 	}
 
 	function init() {
