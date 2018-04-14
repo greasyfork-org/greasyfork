@@ -6,8 +6,10 @@
 				<% if promoted_script %>
 					<div class="post-install">
 						<div class="post-install-label"><%=t(@script.promoted_script ? 'scripts.author_promoted' : 'scripts.promoted')%></div>
-						<%= t('scripts.promoted_text_html', script_link: link_to(promoted_script.name(I18n.locale), promoted_script)) %>
-						<%= render partial: 'install_button', locals: {script_version: promoted_script.script_versions.last}%>
+						<div class="post-install-text"><p><%= t('scripts.promoted_text_html', script_link: link_to(promoted_script.name(I18n.locale), promoted_script)) %></p></div>
+						<div class="post-install-button">
+							<%= render partial: 'install_button', locals: {script_version: promoted_script.script_versions.last}%>
+						</div>
 					</div>
 				<% end %>
 			</div>
