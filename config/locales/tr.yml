@@ -84,8 +84,14 @@ tr:
       title: "%{script_name} - Yönetici"
       promoted_heading: "Desteklenen betik"
       promoted_explanation: "Bu betiği yükledikten sonra, %{site_name} tercihinize uyan başka bir betik tavsiye edebilir."
+      promoted_script_label: "Promosyon için script URL'si"
       promoted_submit: "Scripti ayarla"
       sync_heading: "Kaynak Senkronizasyon"
+      locale_heading: "Varsayılan Yerel Ayar"
+      locale_example_html: "Yerel ayar konumu: %{text}"
+      locale_multiple_note: "Dikkat, %{meta_keys_link:Çoklu yerel ayar bir script için tanımlı olabilir}."
+      update_locale: "Yerel Ayarı Kaydet"
+      no_moderator_logs: "Bu script üzerinde moderatör etkinliği yok."
     history_title: "%{script_name} - Versiyon geçmişi"
     history_only_code_changes_info: "Bunlar bu scriptin güncellenmiş kod versiyonlarıdır."
     history_all_changes_link: "Bütün versiyonları göster."
@@ -145,6 +151,8 @@ tr:
     listing_created_feed: "Yeni scriptler"
     listing_updated_feed: "Güncellenmiş scriptler"
     listing_none: "(Hiç)"
+    listing_set_locale_filter: "Tüm dillerdeki sonuçlar gösteriliyor. %{set_filter_link:Yalnızca %{language}dilini göster}"
+    listing_remove_locale_filter: "Yalnızca %{language}dili gösteriliyor. %{remove_filter_link:Tüm dillerdeki sonuçları göster.}"
     import: "Scriptleri içe aktar"
     new: "Bir script gönder"
     support_site: "Yazarın destek sitesini ziyaret et."
@@ -223,6 +231,7 @@ tr:
     post_a_script_link_text: "Yazdığınız bir scripti gönderin"
     learn_to_write_scripts_link_text: "nasıl bir tane yazılır öğren"
     feedback_suggestion: "Soru sorun, inceleme gönderin ya da scripti %{site_name} üzerinde bildirin."
+    feedback_suggestion_with_support_email: "%{support_url:Yazara destek için e-posta yollayın} veya %{feedback_link:soru sorun, öneri gönderin veya %{site_name}üzerideki bir script bildirin}."
     approve_redistribution_explanation: "%{site_name} diğer sitelere scriptinizi yeniden yayınlamalarına izin verdiğinizi söyler. Ancak buna scriptinizin lisansı tarafından zaten izin verilmiş veya verilmemiş olabilir."
     approve_redistribution_use_user_setting: "Benim varsayılan hesap (%{user_setting})'ımı kullan"
     approve_redistribution_use_user_setting_not_set: "ayarlanmamış"
@@ -332,6 +341,35 @@ tr:
     explain_user_scripts_html: "Kullanıcı scriptleri göz atma deneyiminizi kontrol etmenizi sağlar. Yüklendikten sonra, özellikler ekleyerek, onları daha kolay kullanmanızı sağlayarak veya rahatsız edici bitleri çıkartarak ziyaret ettiğiniz siteleri otomatik olarak daha iyi hale getirirler. %{site_name} alanındaki kullanıcı scriptler diğer kullanıcılar tarafından yazılmış ve dünyayla paylaşımda bulunmak için gönderilmiştir. Kurulumu kolay ve kullanımı kolaydır."
     installing_step1_header: "Adım 1: Bir kullanıcı script yöneticisi kur"
     installing_step1_caption: "Chrome için Tampermonkey "
+    installing_step1_description_html: >
+        <p>Bu kullanıcı scriptleri kullanılabilmek için öncelikle bir script yöneticisi
+        kurulması gerekiyor. Kullanabileceğiniz script yöneticisi kullandığınız tarayıcıya
+        bağlıdır.</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> veya %{chrome_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
+        veya %{firefox_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} veya %{opera_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla: (ek bileşene ihtiyaç yoktur)</li>
+
+        <li>AdGuard: (ek bileşene ihtiyaç yoktur)</li>
+
+        </ul>
     installing_step2_header: "Adım 2: Bir kullanıcı skripti kur"
     installing_step2_caption: "Bir kullanıcı scriptinin yükleme düğmesi"
     installing_step3_header: "Adım 3: Kullanıcı scripti kullan"
@@ -412,6 +450,25 @@ tr:
     greasy_fork_scripts_link:
       one: "%{user_name}'nin ayrıca Greasy Fork'da %{count} scripti var."
       other: "%{user_name}'nin ayrıca Greasy Fork'da %{count} scripti var."
+    delete_link: "Hesap Sil"
+    delete:
+      intro: "Sizin %{site_name}, %{user_name}hesap silmeniz şu sonuçlara sebep olur:"
+      password_effect: "Şifrenizle girişiniz artık mümkün olmayacak."
+      scripts_effect:
+        one: "Size ait %{count} script silinecek."
+        other: "Size ait %{count}scriptleriniz silinecek."
+      submit: "Hesap Sil"
+      confirmation_email_sent: "Silme onayı için e-posta gönderildi."
+      confirmation_email:
+        subject: "%{site_name}hesap silme onayı"
+      confirmation:
+        intro: "'%{user_name}' hesap silinmek üzere. Bu işlem geri alınamaz."
+        confirm: "Sil '%{user_name}'"
+        cancel: "Silme işlemini iptal et"
+        key_mismatch: "Kullanıcı silinemedi - anahtarlar uyumsuz."
+        request_expired: "Kullanıcı silinemedi - talep süresi geçti."
+        cancelled: "Silme işlemi iptal edildi."
+        completed: "Hesap silindi."
   help:
     installing_user_scripts:
       title: 'Kullanıcı scriptleri nasıl yüklenir?'
@@ -481,11 +538,22 @@ tr:
       title: "Kütüphane Ara"
     code_search:
       title: "Kod Ara"
+      description: "Script kod ara. Joker karakter olmaksızın düz metin araması, BÜYÜK/küçük harfe duyarsızdır."
     forum_search:
       title: "Forum Araması"
+      description: "Forumda tartışma ve yorumları ara.  %{fulltext_link:MySQL yerel dil araması.}"
     user_search:
       title: "Kullanıcı araması"
       description: "Kullanıcıları isimleriyle arayın. Düz yazı gibi arayın."
+  moderator_logs:
+    date_column: "Tarih"
+    moderator_column: "Moderatör"
+    item_column: "Öğe"
+    action_column: "Eylem"
+    reason_column: "Sebep"
+    item_script_html: "Script: %{script_link}"
+    item_deleted_script: "Silinmiş script %{id}"
+    item_user_html: "Kullanıcı: %{user_link}"
   common:
     error_preamble: "Ne gönderdiğinizde bazı sorunlar oldu.."
     allowed_elements_link: "(İzin verilen kodları gör.)"
@@ -546,3 +614,4 @@ tr:
     short_name: "%{site_name} ara"
     description: "%{site_name} sitesinde kullanıcı scriptleri için ara."
     long_name: "%{site_name} kullanıcı scripti ara"
+    attribution: "Yazarlar kendi scriptinin telifine sahiptir, lisans için her scripte bakınız."

@@ -485,8 +485,15 @@ nl:
       scripts_effect:
         one: "Uw %{count} scripts zullen verwijderd worden."
         other: "Uw %{count} scripts zullen verwijderd worden."
+      forum_effect: "Uw bijdragen aan het forum blijven behouden, maar de corresponderende gebruiker wordt hernoemd tot \"%{user_name}\"."
       submit: "Verwijder account"
       confirmation_email_sent: "Bevestigingsmail voor verwijdering is verzonden."
+      confirmation:
+        cancel: "Verwijdering annuleren"
+        key_mismatch: "Kon gebruiker niet verwijderen - sleutels komen niet overeen."
+        request_expired: "Kon gebruiker niet verwijderen - aanvraag verlopen."
+        cancelled: "Verwijdering afgebroken."
+        completed: "Uw account is verwijderd."
   help:
     installing_user_scripts:
       title: 'Hoe je gebruikersscripts installeert'
@@ -503,6 +510,7 @@ nl:
       require_html: "Dit sluit externe JavaScript in een script in. Zie %{external_script_link}."
       require_external_script_link_text: "de regels voor de code inclusief externe scripts"
       updateURL: "Beschrijf hoe gebruikersscriptbeheerders bijwerkingen moeten verkrijgen. %{site_name} zal deze sleutels schrappen zodat elk met %{site_name} geïnstalleerd script alleen kan worden bijgewerkt vanuit %{site_name}."
+      license: "De licentie die beschrijft hoe personen een script mogen kopiëren of bewerken. Gebruik van een \"Volledige naam\" of \"Identificatie\" van %{spdx_link:the SPDX License List} wordt aanbevolen. Het ontbreken van een licentie wekt de indruk dat gebruikers het script persoonlijk mogen installeren maar niet mogen verspreiden. De licentie wordt weergegeven op de informatiepagina van een script."
       supportURL: "URL van de pagina waar gebruikers ondersteuning kunnen krijgen op een script (bijv. een bugtracker, forum of e-mailadres). De ondersteunings-URL zal worden weergegeven op de feedbackpagina van een script."
       contributionURL_html: "URL van de pagina waar gebruikers een donatie kunnen doen aan de auteur van een script. De donatie-URL zal worden weergegeven op de feedbackpagina van een script. URL's kunnen http-, https- of Bitcoin- protocollen zijn. Om een URL te plaatsen van een PayPal-donatiepagina moet hem plaatsen in de opmaak <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a> waarbij u het voorbeeld-e-mailadres vervangt door uw eigen."
       contributionAmount_html: "De aangeraden hoogte van een donatie. Deze wordt tezamen gebruikt met <code>@contributionURL</code>."
