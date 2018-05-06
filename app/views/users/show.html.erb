@@ -118,6 +118,8 @@ script_list = @scripts - deleted_script_list %>
 			<%= render partial: 'scripts/script', collection: script_list, locals: {show_author_details: true}, cached: params[:locale_override].nil? ? ->(script) { ['user', script, I18n.locale] } : false %>
 		</ol>
 	<% end %>
+
+	<%= will_paginate @scripts %>
 </section>
 
 <% if !deleted_script_list.empty? %>
