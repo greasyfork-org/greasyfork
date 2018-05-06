@@ -125,6 +125,11 @@ class Script < ActiveRecord::Base
 		end
 	end
 
+	# Private use area unicode
+	validates_each :name, :description, :additional_info do |script, attr, value|
+		script.errors.add(attr, :invalid) if /[\u{e000}-\u{f8ff}\u{f0000}-\u{fffff}\u{100000}-\u{10ffff}]/.match?(value)
+	end
+
 	strip_attributes :only => [:sync_identifier]
 
 	before_validation :set_default_name
