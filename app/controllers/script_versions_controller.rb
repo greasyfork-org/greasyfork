@@ -38,6 +38,12 @@ class ScriptVersionsController < ApplicationController
 	end
 
 	def create
+		# Temporary spam mitigation
+		if current_user.id >= 181906 && params['script']['script_type_id'] == '3'
+			render plain: 'This feature has been temporarily disabled.'
+			return
+		end
+
 		@bots = 'noindex'
 		@script_version = ScriptVersion.new
 		@script_version.assign_attributes(script_version_params)
