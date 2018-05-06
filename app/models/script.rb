@@ -67,6 +67,15 @@ class Script < ActiveRecord::Base
 		errors.add(:name, :taken) if Script.where.not(id: script.id).where(default_name: script.name).any?
 	end
 
+	RATE_LIMITS = {
+		1.hour => 5,
+		1.day => 10,
+	}
+
+	validate on: :create do |script|
+		errors.add(:base, :script_rate_limit) if RATE_LIMITS.any?{|period, count| script.user.scripts.where(['created_at > ?', period.ago]).count >= count}
+	end
+
 	MAX_LENGTHS = {:name => 100, :description => 500, :additional_info => 50000}
 	validates_each *MAX_LENGTHS.keys do |script, attr, nothing|
 		len = MAX_LENGTHS[attr]
