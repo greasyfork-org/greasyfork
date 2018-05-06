@@ -20,3 +20,26 @@
 		<% end %>
 	</tbody>
 </table>
+
+<p>Additionally, scripts may be blocked on non-code attributes:</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>Code</th>
+			<th>Attribute</th>
+			<th>Pattern</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% DisallowedAttribute.all.each do |dc| %>
+			<tr>
+				<td><%=dc.ob_code%></td>
+				<td><%=dc.attribute_name%></td>
+				<td><code><%=dc.pattern%></code></td>
+				<td><%=dc.reason%></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
