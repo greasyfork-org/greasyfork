@@ -58,9 +58,14 @@ class Script < ActiveRecord::Base
 
 	# Must have a default name and description
 	validates_presence_of :default_name, :message => :script_missing_name, :unless => Proc.new {|s| s.library?}
-	validates_presence_of :name, :if => Proc.new {|s| s.library?}
+	validates :name, presence: true, if: ->(s) { s.library? }
 	validates_presence_of :description, :message => :script_missing_description, :unless => Proc.new {|r| r.deleted? || r.library?}
 	validates_presence_of :description, :unless => Proc.new {|r| r.deleted? || !r.library?}
+
+	validate do |script|
+		next if !script.library?
+		errors.add(:name, :taken) if Script.where.not(id: script.id).where(default_name: script.name).any?
+	end
 
 	MAX_LENGTHS = {:name => 100, :description => 500, :additional_info => 50000}
 	validates_each *MAX_LENGTHS.keys do |script, attr, nothing|
