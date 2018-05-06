@@ -115,6 +115,16 @@ class Script < ActiveRecord::Base
 
 	validates_length_of :sync_identifier, maximum: 500
 
+	validate do |record|
+		DisallowedAttribute.all.each do |da|
+			value = record.public_send(da.attribute_name)
+			if value =~ Regexp.new(da.pattern)
+				record.errors.add(:base, "Exception #{da.ob_code}")
+				break
+			end
+		end
+	end
+
 	strip_attributes :only => [:sync_identifier]
 
 	before_validation :set_default_name
