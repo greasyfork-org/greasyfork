@@ -73,6 +73,7 @@ class Script < ActiveRecord::Base
 	}
 
 	validate on: :create do |script|
+		next if Rails.env.test?
 		errors.add(:base, :script_rate_limit) if RATE_LIMITS.any?{|period, count| script.user.scripts.where(['created_at > ?', period.ago]).count >= count}
 	end
 
