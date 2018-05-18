@@ -55,7 +55,9 @@ pl:
     update: "Aktualizacja do wersji %{version}"
     downgrade: "Powrót do wersji %{version}"
     reinstall: "Ponowna instalacja wersji %{version}"
+    old_version_warning: "To nie jest aktualna wersja skryptu. Jeśli ją zainstalujesz, nie zostanie ona automatycznie zaktualizowana do nowszej. Zainstalować pomimo to?"
     promoted: "Promowane skrypty"
+    promoted_text_html: "%{script_link}może Ci się również spodobać. "
     library_instructions_html: "Ten skrypt nie powinien być instalowany bezpośrednio. Jest to biblioteka dla innych skyptów do włączenia z dyrektywami meta %{code}"
     deleted_notice: "Ten skrypt został usunięty."
     version_notice_html: "Stan na %{date}. Zobacz %{latest_version_link}."
@@ -87,6 +89,8 @@ pl:
     admin_page: "Administrator"
     admin:
       promoted_heading: "Promowany skrypt"
+      promoted_explanation: "Po instalacji tego skryptu, %{site_name}może sugerować użytkownikowi, aby sprawdził inny skrypt, który wybierzesz."
+      sync_heading: "Synchronizacja ze źródłem"
       locale_heading: "Domyślna lokalizacja"
     history_title: "%{script_name} — historia wersji"
     history_only_code_changes_info: "To są wersje tego skryptu, gdzie kod został zaktualizowany."
@@ -447,7 +451,13 @@ pl:
     delete_link: "Usuń konto"
     delete:
       intro: "Usunięcie twojego %{site_name}konta '%{user_name}' będzie miało następujące efekty:"
+      scripts_effect:
+        one: "Twój %{count} skrypt zostanie usunięty."
+        few: "%{count}twoje skrypty zostaną usunięte."
+        many: "%{count}twoich skryptów zostanie usuniętych."
+        other: "%{count} twoich skryptów zostanie usunięte."
       submit: "Usuń konto"
+      confirmation_email_sent: "Email z potwierdzeniem usunięcia został wysłany."
       confirmation:
         confirm: "Usuń '%{user_name}'"
         cancel: "Anuluj usuwanie"

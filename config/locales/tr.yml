@@ -260,6 +260,7 @@ tr:
     updated: "Betik güncellendi."
     preview_additional_info: "Önizle"
   script_sets:
+    description: "Komut dizileri, Greasey Fork ile göz atmak için özelleştirilmiş bir komut listesi oluşturmanıza izin verir. Tek tek komut dosyalarını, diğer kullanıcıların kümelerini veya otomatik olarak oluşturulan setleri ekleyerek kümenize komut dosyaları ekleyebilirsiniz. Komut dosyalarını da kümenizden aynı yöntemlerle hariç tutabilirsiniz."
     favorites_name: "Favoriler"
     delete: "Script setini sil"
     delete_confirmation: "Script setini silmek istediğinden emin misin?"
@@ -373,6 +374,11 @@ tr:
     installing_step2_header: "Adım 2: Bir kullanıcı skripti kur"
     installing_step2_caption: "Bir kullanıcı scriptinin yükleme düğmesi"
     installing_step3_header: "Adım 3: Kullanıcı scripti kullan"
+    installing_step3_description_html: >
+        <p>Kullanıcı komut dosyasının etkilediği siteye gidin. İşini otomatik olarak
+        yapmalı. Kullanıcı komut dosyasını bir süre denedikten sonra, kullanıcı komut
+        dosyasını yüklediğiniz yere geri dönün ve kullanıcı komut dosyasının yazarı
+        için geri bildirim bırakın.</p>
   users:
     sign_in_title: "%{site_name}'ta oturum aç"
     sign_in_description: "Daha fazla..Daha fazla..%{site_name}'ta oturum aç%{site_name}'ta oturum aç%{site_name}'da scriptlerini göndermek ya da başa scriptlere geribesleme yapmak için oturum açılır. Script bulmak ya da kurmak için oturum açmana gerek yok."
@@ -479,6 +485,7 @@ tr:
       include: "Scriptin hangi sayfalarda çalışacağını tanımlayın. Bu liste işlenip scriptin bilgi sayfasında görüntülenecek ve scriptleri kategorize etmekte kullanılacaktır."
       require_html: "Kodlar harici Java kodları içermektedir. Bakınız %{external_script_link}."
       require_external_script_link_text: "kod kuralları harici komut içermektedir"
+      supportURL: "Kullanıcıların bir komut dosyasında destek alabileceği bir sayfanın URL'si (ör. Bir hata izleyici, bir forum, bir e-posta adresi). Destek URL'si bir komut dosyasının geribildirim sayfasında görüntülenir."
     writing_user_scripts:
       title: "Nasıl kullanıcı scripti yazarım"
       ask_in_forum_link_text: 'forumda sor'
@@ -534,6 +541,7 @@ tr:
   search:
     script_search:
       title: "Script Ara"
+      description: "Komut dosyalarını arayın. Komut dosyası adlarını, açıklamaları, ek bilgileri ve yazar isimlerini arar. %{sphinx_link:Sphinx extended query syntax.}"
     library_search:
       title: "Kütüphane Ara"
     code_search:

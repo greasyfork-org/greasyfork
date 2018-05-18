@@ -16,14 +16,17 @@ uk:
         minutes:
           one: "%{count} хвилину тому"
           few: "%{count} хвилини тому"
+          many: "%{count} хвилин тому"
           other: "%{count} хвилин тому"
         hours:
           one: "%{count} годину тому"
           few: "%{count} години тому"
+          many: "%{count} годин тому"
           other: "%{count} годин тому"
         days:
           one: "%{count} день тому"
           few: "%{count} дні тому"
+          many: "%{count} днів тому"
           other: "%{count} днів тому"
   scripts:
     created_date: "Створено"
@@ -42,6 +45,7 @@ uk:
     applies_to_link_title:
       one: "Подивіть ще %{count} скрипт для %{site}"
       few: "Подивіть ще %{count} скрипта для %{site}"
+      many: "Подивіть ще %{count} скриптів для %{site}"
       other: "Подивіть ще %{count} скриптів для %{site}"
     applies_to_all: "Всі сайти"
     additional_info: "Опис Автора"
@@ -111,6 +115,7 @@ uk:
     derivatives_code_matches_info_html:
       one: "Скрипти, розміщені іншими особами, які включають в себе код принаймні %{match_size} рядок разом з вашим скриптом. Ця перевірку проходять тільки скрипти, менші за %{max_size}, з останнім запуском %{last_run}."
       few: "Скрипти, розміщені іншими особами, які включають в себе код принаймні %{match_size} рядків разом з вашим скриптом. Ця перевірку проходять тільки скрипти, менші за %{max_size}, з останнім запуском %{last_run}."
+      many: "Скрипти, розміщені іншими особами, які включають в себе код принаймні %{match_size} рядків разом з вашим скриптом. Ця перевірку проходять тільки скрипти, менші за %{max_size}, з останнім запуском %{last_run}."
       other: "Скрипти, розміщені іншими особами, які включають в себе код принаймні %{match_size} рядків разом з вашим скриптом. Ця перевірку проходять тільки скрипти, менші за %{max_size}, з останнім запуском %{last_run}."
     derivatives_namespace_matches_info_html: "Сценарії опубліковані іншими користувачами використовуючи <code>%{namespace}</code>:"
     derivatives_name_matches_info: "Сценарії опубліковані іншими з найбільш схожими іменами з вашим:"
@@ -315,6 +320,7 @@ uk:
     list_display_html:
       one: "%{user_link} - %{count} скрипт"
       few: "%{user_link} - %{count} скрипта"
+      many: "%{user_link} - %{count} скриптів"
       other: "%{user_link} - %{count} скриптів"
     listing_number_of_scripts: "Кількість скриптів"
     listing_new_scripts: "Нові скрипти"
@@ -331,6 +337,7 @@ uk:
     greasy_fork_scripts_link:
       one: "%{user_name} також має %{count} скрипт на Greasy Fork'у."
       few: "%{user_name} також має %{count} скрипти на Greasy Fork'у."
+      many: "%{user_name} також має %{count} скриптів на Greasy Fork'у."
       other: "%{user_name} також має %{count} скриптів на Greasy Fork'у."
   help:
     meta_keys:

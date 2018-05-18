@@ -16,14 +16,17 @@ cs:
         minutes:
           one: "před %{count} minutou"
           few: "před %{count} minutami"
+          many: "před %{count} minutami"
           other: "před %{count} minutami"
         hours:
           one: "před %{count} hodinou"
           few: "před %{count} hodinami"
+          many: "před %{count} hodinami"
           other: "před %{count} hodinami"
         days:
           one: "před %{count} dnem"
           few: "před %{count} dny"
+          many: "před %{count} dny"
           other: "před %{count} dny"
   scripts:
     created_date: "Vytvořeno"
@@ -42,6 +45,7 @@ cs:
     applies_to_link_title:
       one: "Zobrazit %{count} další skript pro %{site}"
       few: "Zobrazit %{count} další skripty pro %{site}"
+      many: "Zobrazit %{count} dalších skriptů pro %{site}"
       other: "Zobrazit %{count} dalších skriptů pro %{site}"
     applies_to_all: "všech stránkách"
     additional_info: "Autorův popis"
@@ -51,6 +55,7 @@ cs:
     update: "Aktualizovat na verzi %{version}"
     downgrade: "Návrat k verzi %{version}"
     reinstall: "Přeinstalovat verzi %{version}"
+    author_promoted: "Skript doporučený autorem"
     library_instructions_html: "Tento skript by neměl být instalován přímo. Jedná se o knihovnu, kterou by měly jiné skripty využívat pomocí meta příkazu %{code}"
     deleted_notice: "Tento skript byl smazán."
     version_notice_html: "Verze ze dne %{date}. Zobrazit %{latest_version_link}."
@@ -239,6 +244,7 @@ cs:
     libraries_title: "Knihovny"
     by_site_list_filter: "Řadit podle názvu stránky"
     search_placeholder: "Hledat skripty"
+    preview_additional_info: "Náhled"
   script_sets:
     favorites_name: "Oblíbené"
     delete: "Smazat sadu skriptů"
@@ -352,13 +358,14 @@ cs:
     list_display_html:
       one: "%{user_link} - %{count} skript"
       few: "%{user_link} - %{count} skripty"
+      many: "%{user_link} - %{count} skriptů"
       other: "%{user_link} - %{count} skriptů"
     listing_number_of_scripts: "Počet skriptů"
     listing_new_scripts: "Nové skripty"
     listing_updated_scripts: "Aktualizované skripty"
     listing_registration_date: "Datum registrace"
     listing_title: "Uživatelé"
-    search_placeholder: "Hledat uživatelé"
+    search_placeholder: "Hledat uživatele"
     locale_prompt: "(Vybrat jazyk)"
     show_ads_description: "Podpořte %{site_name} povolením zobrazení reklam"
     show_sensitive_description: "Zobrazovat skripty s obsahem pro dospělé"
@@ -370,12 +377,13 @@ cs:
     greasy_fork_scripts_link:
       one: "%{user_name} má %{count} další skript na Greasy Fork."
       few: "%{user_name} má %{count} další skripty na Greasy Fork."
+      many: "%{user_name} má %{count} dalších skriptů na Greasy Fork."
       other: "%{user_name} má %{count} dalších skriptů na Greasy Fork."
   help:
     installing_user_scripts:
       title: 'Jak nainstalovat uživatelsé skripty'
     meta_keys:
-      title: "Meta klíče zpracované %{site_name}em"
+      title: "Meta parametry skriptu zpracovávané %{site_name}em"
       intro_html: "Toto je seznam <a href=\"http://wiki.greasespot.net/Metadata_Block\">meta klíčů uživatelského skriptu</a>, které %{site_name} rozpozná. Klíče mimo tento seznam mohou být obsaženy ve skriptu, budou v instalovaném skriptu přítomny, ale nebudou mít efekt v uživatelském rozhraní %{site_name}."
       name: "Název skriptu, používaný v záhlaví a odkazech. Povinná položka."
       description: "Popis funkce skriptu. Zobrazuje se pod názvem skriptu. Povinná položka"
@@ -422,6 +430,7 @@ cs:
     expander_show_more: "Zobrazit více"
     expander_show_less: "Zobrazit méně"
     advertisement_note: Reklama
+    preview_tab: Náhled
   activerecord:
     attributes:
       user:

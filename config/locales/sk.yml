@@ -16,14 +16,17 @@ sk:
         minutes:
           one: "pred %{count} minútou"
           few: "pred %{count} minútami"
+          many: "pred %{count} minútami"
           other: "pred %{count} minútami"
         hours:
           one: "pred %{count} hodinou"
           few: "pred %{count} hodinami"
+          many: "pred %{count} hodinami"
           other: "pred %{count} hodinami"
         days:
           one: "pred %{count} dňom"
           few: "pred %{count} dňami"
+          many: "pred %{count} dňami"
           other: "pred %{count} dňami"
   scripts:
     created_date: "Vytvorené"
@@ -42,6 +45,7 @@ sk:
     applies_to_link_title:
       one: "Zobraziť %{count} ďalší skript pre %{site}"
       few: "Zobraziť %{count} ďalšie skripty pre %{site}"
+      many: "Zobraziť %{count} ďalších skriptov pre %{site}"
       other: "Zobraziť %{count} ďalších skriptov pre %{site}"
     applies_to_all: "Všetkých stránkach"
     additional_info: "Autorov popis"
@@ -128,6 +132,7 @@ sk:
     derivatives_code_matches_info_html:
       one: "Skripty iných autorov majú najmenej %{match_size} riadok spoločný s vašim skriptom. Táto kontrola je spustená len na skriptoch menších ako %{max_size} a kontrola naposledy prebehla %{last_run}."
       few: "Skripty iných autorov majú najmenej %{match_size} riadky spoločné s vašim skriptom. Táto kontrola je spustená len na skriptoch menších ako %{max_size} a kontrola naposledy prebehla %{last_run}."
+      many: "Skripty iných autorov majú najmenej %{match_size} riadkov spoločných s vašim skriptom. Táto kontrola je spustená len na skriptoch menších ako %{max_size} a kontrola naposledy prebehla %{last_run}."
       other: "Skripty iných autorov majú najmenej %{match_size} riadkov spoločných s vašim skriptom. Táto kontrola je spustená len na skriptoch menších ako %{max_size} a kontrola naposledy prebehla %{last_run}."
     derivatives_namespace_matches_info_html: "Zoznam skriptov od iných užívateľov obsahujúcích <code>%{namespace}</code>:"
     derivatives_name_matches_info: "Zoznam skriptov od iných užívateľov s názvom podobným ako je váš:"
@@ -327,6 +332,7 @@ sk:
     calculated_list_more:
       one: "A %{count} ďalší..."
       few: "A %{count} ďalšie..."
+      many: "A %{count} ďalších..."
       other: "A %{count} ďalších..."
     already_included: "'%{name}' už obsahuje."
     could_not_parse_script: "Nemožno analyzovať skript %{value}'"
@@ -461,6 +467,7 @@ sk:
     list_display_html:
       one: "%{user_link} - %{count} skript"
       few: "%{user_link} - %{count} skripty"
+      many: "%{user_link} - %{count} skriptov"
       other: "%{user_link} - %{count} skriptov"
     listing_number_of_scripts: "Počet skriptov"
     listing_new_scripts: "Nové skripty"
@@ -479,10 +486,12 @@ sk:
     greasy_fork_scripts_link:
       one: "%{user_name} má tiež %{count} skript na Greasy Fork."
       few: "%{user_name} má tiež %{count} skripty na Greasy Fork."
+      many: "%{user_name} má tiež %{count} skriptov na Greasy Fork."
       other: "%{user_name} má tiež %{count} skriptov na Greasy Fork."
     update_sync_warning:
       one: "Vaše užívateľské meno a email sú nastavené na synchronizáciu po prihlásení sa na %{providers}. %{edit_sign_in_link:Upravte spôsob prihlasovania pre odstránenie synchronizácie} ak chcete natrvalo zmeniť užívateľské meno alebo email."
       few: "Vaše užívateľské meno a email sú nastavené na synchronizáciu po prihlásení sa na %{providers}. %{edit_sign_in_link:Upravte spôsob prihlasovania pre odstránenie synchronizácie} ak chcete natrvalo zmeniť užívateľské meno alebo email."
+      many: "Vaše užívateľské meno a email sú nastavené na synchronizáciu po prihlásení sa na %{providers}. %{edit_sign_in_link:Upravte spôsob prihlasovania pre odstránenie synchronizácie} ak chcete natrvalo zmeniť užívateľské meno alebo email."
       other: "Vaše užívateľské meno a email sú nastavené na synchronizáciu po prihlásení sa na %{providers}. %{edit_sign_in_link:Upravte spôsob prihlasovania pre odstránenie synchronizácie} ak chcete natrvalo zmeniť užívateľské meno alebo email."
     delete_link: "Odstrániť účet"
     delete:
@@ -492,14 +501,17 @@ sk:
       identities_effect:
         one: "Prihlásením sa cez %{identities} sa vytvorí nový účet."
         few: "Prihlásením sa cez %{identities} sa vytvorí nový účet."
+        many: "Prihlásením sa cez %{identities} sa vytvorí nový účet."
         other: "Prihlásením sa cez %{identities} sa vytvorí nový účet."
       scripts_effect:
         one: "Váš %{count} skript bude vymazaný."
         few: "Vaše %{count} skripty budú vymazané."
+        many: "Vašich %{count} skriptov bude vymazaných."
         other: "Vašich %{count} skriptov bude vymazaných."
       script_sets_effect:
         one: "Vaša %{count} zbierka skriptov bude vymazaná."
         few: "Vaše %{count} zbierky skriptov budú vymazané."
+        many: "Vašich %{count} zbierok skriptov bude vymazaných."
         other: "Vašich %{count} zbierok skriptov bude vymazaných."
       forum_effect: "Vaše príspevky na fóre zostanú, ale priradený používateľ bude premenovaný na \"%{user_name}\"."
       email_confirmation: "Pred odstránením vášho účtu, %{site_name} odošle email na %{email} pre potvrdenie vašej požiadavky."
@@ -547,38 +559,39 @@ sk:
     code_rules:
       title: "Pravidlá pre poslané skripty na %{site_name}"
       content_html: >
-          nie je potrebný žiadny ďalší softvér %{site_name}. Tie sú určené na uchovanie
-          %{site_name} a ako bezpečné a užitočné miesto pre užívateľské skripty. Akýkoľvek
-          skript, ktorý nespadá medzi tieto požiadavky môže byť odstránený moderátorom
-          %{site_name}.</p> <ul>
+          <p>Toto sú požiadavky na skripty odoslané na . Tie sú určené na udržanie
+          %{site_name} ako bezpečné a užitočné miesto pre skripty. Akýkoľvek skript,
+          ktorý nespĺňa tieto požiadavky môže byť odstránený moderátorom %{site_name}.
+          </p><ul>
 
           <li>Skripty musia obsahovať popis toho, čo robia a nemôžu robiť neprimerane
           iné veci ako v popise. Užívatelia musia vedieť čo skript robí ešte pred
-          jeho inštaláciou. Skripty, ktoré obsahujú sledovanie alebo reklamu to musia
-          mať uverejnené v popise.</li>
+          jeho inštaláciou. Skripty s monetizačnými metódami (sledovacie, reklamné,
+          ťažobné, atď.) nie sú zakázané, ale autor musí túto skutočnosť zverejniť
+          viditeľne v popise skriptu alebo doplňujúcich informáciách.</li>
 
-          <li>Kód poslaný na túto stránku nemôže byť zmätočný alebo komprimovaný.
-          Užívatelia musia dostať príležitosť preskúmať a pochopiť skript pred jeho
-          inštaláciou.</li>
+          <li>Kód odoslaný na túto stránku nemôže byť obfuskovaný alebo minifikovaný.
+          Užívatelia musia mať možnosť preskúmať a pochopiť skript pred jeho inštaláciou.</li>
 
-          <li>Knižnice, ktoré skript používa by mali byť vyžiadné pomocou <code>@require</code>,
-          ak neexistuje opodstatnený technický dôvod, prečo to neurobiť. V prípade,
+          <li>Knižnice, ktoré skript používa by mali byť vyžiadané pomocou <code>@require</code>,
+          pokiaľ neexistuje opodstatnený technický dôvod, prečo to neurobiť. V prípade,
           že knižnice sú zahrnuté inline, musia obsahovať informácie ako zdroj knižnice
           (napr. komentár označujúci URL a/alebo názov a verziu).</li>
 
           <li>Váš skript musí rešpektovať autorské práva ostatných. Teda skript samotný
-          aj jeho zdroje (napr. obrázky). Ak máte v úmysle použiť obsah niekoho iného,
-          riaďte sa licenčnými podmienkami alebo získajte predtým jeho súhlas.</li>
+          aj jeho zdroje (napr. obrázky), ktoré využíva. Ak máte v úmysle použiť obsah
+          niekoho iného, riaďte sa licenčnými podmienkami alebo získajte jeho súhlas
+          predtým ako tak urobíte.</li>
 
-          <li>%{external_scripts_link:Použitie externých skriptov je obmedzené.}</li>
+          <li>%{external_scripts_link:Použitie externých JS je obmedzené.}</li>
 
           %{adult_content_requirement}
 
-          <li>Skripty nesmú kontrolovať aktualizácie viac ako raz za deň. Uvedomte
+          <li>Skripty nemôžu kontrolovať aktualizácie častejšie ako raz za deň. Uvedomte
           si, že väčšina správcov užívateľských skriptov riadi automatickú aktualizáciu,
-          takže to nie je potrebné to robiť v skripte.</li>
+          takže to nie je potrebné robiť v skripte.</li>
 
-          </ul> <p>Ak zbadáte skript, ktoré nesplňuje tieto parametre, prosím, nahláste
+          </ul> <p>Ak zbadáte skript, ktoré nespĺňa tieto parametre, prosím, nahláste
           ho na stránke spätnej väzby pre tento skript, začatím diskusie a vyberte
           voľbu "Nahlásiť skript".</p> <p>Ak s čímkoľvek nesúhlasíte, %{contact_link:povedzte
           nám o tom}!</p>
@@ -773,6 +786,7 @@ sk:
       must_be_greasy_fork_script: "musí to byť URL skriptu na %{site_name}"
       script_update_not_utf8: "kód nie je v UTF-8 text"
       script_disallowed_require: "používa neschválených externý skript:% {code}"
+      script_rate_limit: "Prekročili ste limit na odosielanie. Skúste to neskôr."
   opensearch:
     short_name: "hľadať %{site_name}"
     description: "Hľadanie skriptov na %{site_name}."

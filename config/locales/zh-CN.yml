@@ -237,13 +237,13 @@ zh-CN:
     approve_redistribution_true: "我允许我的脚本被其他人二次分发到其他网站"
     approve_redistribution_false: "我不想我的脚本被二次分发到其他网站"
     redistributable_title: "允许二次分发的用户脚本"
-    redistributable_page_description: "这些脚本的作者已经明确表示他们允许这些脚本被二次分发到其他网站。但请注意，部分脚本的使用协议可能不允许二次分发，记得检查哦。"
+    redistributable_page_description: "这些脚本的作者已经明确表示，他们允许这些脚本被二次分发到其他网站。但请注意，部分脚本的使用协议可能不允许二次分发，记得检查哦。"
     adult_content: "成人内容"
     adult_content_self_report: "此脚本包含成人内容，或者适用于一个含有成人内容的网站。"
     adult_content_self_report_explanation: "%{site_name} 允许脚本带有成人内容，但必须被明确标注使用户可以选择是否查看此类内容。"
-    not_adult_content_self_report_html: "这个脚本<strong>不包含</strong>成人内容，也<strong>不运行于</strong>含有成人内容的网站。"
-    not_adult_content_self_report_explanation: "%{site_name} 允许脚本含有成人内容，但必须被「明确标注」，允许用户选择是否显示这类信息。您的脚本已经被网站自动标记为「包含和谐内容」，您也可以申请取消该标记；该请求将有管理员进行审核。"
-    not_adult_content_self_report_explanation_automatic: "%{site_name}允许脚本有成人内容，但脚本必须被标注以便用户可以选择是否看到它。您的脚本因为应用到%{domain_list}已被标注为具有成人内容。"
+    not_adult_content_self_report_html: "这个脚本<strong>不包含</strong>成人内容，也<strong>不在</strong>成人网站上运行。"
+    not_adult_content_self_report_explanation: "%{site_name} 允许脚本含有成人内容，但必须被「明确标注」，以便用户自主选择是否显示此类信息。您的脚本已经被网站自动标记为「包含和谐内容」；如果这是误判，您可以申请取消该标记，管理员将对您的申请进行审核。"
+    not_adult_content_self_report_explanation_automatic: "%{site_name}允许脚本含有成人内容，但必须被「明确标注」，以便用户自主选择是否显示此类信息。您的脚本在成人网站%{domain_list}上运行，因此已被自动标注为包含成人内容。"
     adult_content_on_greasy_logged_in_error: "根据您当前的 %{edit_account_link:Greasy Fork 账户设置}，此脚本不再在本网站上可用。"
     adult_content_on_greasy_not_logged_in_error: "此脚本不再在本网站上匿名可用。请%{login_link:登录}并检查您的 Greasy Fork 账户设置。"
     non_adult_content_on_sleazy: "此脚本在本网站上不可用。"
@@ -256,7 +256,7 @@ zh-CN:
     libraries_description_html: "这些是 %{site_name} 用户发布的库，您可以在您的脚本中 <code>@require</code> 它们。对于其他可以 <code>@require</code> 的库，参见 %{policy_link:%{site_name} 对 <code>@require</code> 的政策}。"
     by_site_list_title: "%{site_name} 上按站点分组的用户脚本"
     by_site_list_description: "这些是最受用户脚本欢迎的站点。字体越大表示越受到用户脚本的欢迎。"
-    by_site_list_filter: "按站点名称过滤："
+    by_site_list_filter: "按网站域名过滤："
     search_placeholder: "搜索脚本"
     updated: "脚本已更新。"
     preview_additional_info: "预览"
@@ -265,16 +265,16 @@ zh-CN:
     favorites_name: "收藏"
     delete: "删除脚本收藏集"
     delete_confirmation: "您确定要删除这个脚本收藏集吗？"
-    site_default_sort: "(网站默认)"
+    site_default_sort: "（网站默认）"
     edit_scripts:
       heading: "脚本"
       description: "在您的脚本收藏集中包含或排除单个脚本。"
       included: "包含"
-      included_none: "(无)"
-      remove_included: "移除选中"
+      included_none: "（无）"
+      remove_included: "移除选中的条目"
       excluded: "排除"
-      excluded_none: "(无)"
-      remove_excluded: "移除选中"
+      excluded_none: "（无）"
+      remove_excluded: "移除选中的条目"
       add_label: "添加脚本（网址或ID，以空格分隔）"
       add_include: "包含"
       add_exclude: "排除"
@@ -282,28 +282,28 @@ zh-CN:
       heading: "脚本收藏集"
       description: "在您的脚本收藏集中包含或排除其他脚本收藏集。"
       included: "包含"
-      included_none: "(无)"
+      included_none: "（无）"
       remove_included: "移除选中"
       excluded: "排除"
-      excluded_none: "(无)"
-      remove_excluded: "移除选中"
+      excluded_none: "（无）"
+      remove_excluded: "移除选中的条目"
       add_label: "添加脚本（网址或ID，以空格分隔）"
       add_include: "包含"
       add_exclude: "排除"
       user_label: "列出属于某个用户的脚本收藏集（网址、ID或名称）"
-      user_no_sets: "(用户无收藏集)"
-      user_no_other_sets: "(用户无其他收藏集)"
+      user_no_sets: "（用户没有建立收藏集）"
+      user_no_other_sets: "（用户没有其他收藏集）"
     edit_auto_sets:
       heading: "自动脚本收藏集"
       description: "在您的脚本收藏集中包含或排除自动生成的脚本列表。"
       included: "已包含"
-      included_none: "(无)"
-      remove_included: "移除选中"
+      included_none: "（无）"
+      remove_included: "移除选中的条目"
       excluded: "已排除"
-      excluded_none: "(无)"
+      excluded_none: "（无）"
       all_scripts_label: "所有脚本"
       all_scripts_include: "包含"
-      for_sites_label: "脚本适用的网站（例如 example.com，留空则为“所有网站”）"
+      for_sites_label: "脚本适用的网站（例如 example.com；留空则为“所有网站”）"
       for_sites_include: "包含"
       for_sites_exclude: "排除"
       for_user_label: "用户的脚本（网址、ID或名称）"
@@ -313,33 +313,33 @@ zh-CN:
       for_language_include: "包含"
       for_language_exclude: "排除"
     calculated_list: "计算后的脚本列表"
-    calculated_list_none: "(无)"
+    calculated_list_none: "（无）"
     calculated_list_more:
-      other: "以及 %{count} 个…"
+      other: "以及 %{count} 条未显示的结果…"
     already_included: "“%{name}”已经包含。"
     could_not_parse_script: "无法解析“%{value}”脚本"
     save: "保存"
-    saved: "脚本收藏集已保存。"
+    saved: "脚本收藏集保存成功。"
     auto_set_types:
       all_scripts: "所有脚本"
-      site: "适用于 %{site} 的脚本"
+      site: "适用于 %{site} 网站的脚本"
       all_sites: "所有网站"
       user: "用户 %{user} 的脚本"
-      locale: "%{locale_name} 的脚本"
+      locale: "语言为%{locale_name}的脚本"
   forum_discussions:
     listing_no_script_no_reply_html: "%{discussion_link} 由 %{original_poster_link} 于 %{original_post_date} 发表"
     listing_no_script_with_reply_html: "%{discussion_link} 由 %{original_poster_link} 于 %{original_post_date} 发表，最终回复由 %{last_commenter_link} 回应于 %{last_comment_date}"
     listing_with_script_no_reply_html: "%{script_link}: %{discussion_link} 由 %{original_poster_link} 发表于 %{original_post_date}"
     listing_with_script_with_reply_html: "%{script_link}: %{discussion_link} 由 %{original_poster_link} 发表于 %{original_post_date}，最终回复由 %{last_commenter_link} 发表于 %{last_comment_date}"
   home:
-    title: "%{site_name} - 安全、有用的用户脚本大全"
+    title: "%{site_name} - 安全、实用的用户脚本大全"
     welcome: "欢迎来到 %{site_name}，这里是一个提供用户脚本的网站。"
     sleazy_title: "%{site_name} - 安全、有用的成人用户脚本大全"
     sleazy_welcome: "欢迎来到 %{site_name}，这里是一个提供成人用户脚本的网站。"
     search_placeholder: "搜索用户脚本"
     scripts_for_label: "脚本适用于："
     explain_user_scripts_heading: "用户脚本是什么？"
-    explain_user_scripts_html: "用户脚本为您增强对浏览体验的控制权。在安装之后，它们可自动为您访问的网站添加功能，或使其更加易用、更加清新。在 %{site_name} 上的用户脚本是由其他用户编写并向全世界发表的，您可以免费和轻松地安装。"
+    explain_user_scripts_html: "用户脚本是一段代码，它们能够优化您的网页浏览体验。安装之后，有些脚本能为网站添加新的功能，有些能使网站的界面更加易用，有些则能隐藏网站上烦人的部分内容。在 %{site_name} 上的用户脚本都是由用户编写并向全世界发表的，您可以免费安装，轻松体验。"
     installing_step1_header: "第一步：安装一个用户脚本管理器"
     installing_step1_caption: "Chrome 上的 Tampermonkey"
     installing_step1_description_html: >
@@ -377,20 +377,20 @@ zh-CN:
 
         %{highlighted_scripts_list}
 
-        <p>在您找到想要的用户脚本后，点击用户脚本页面上绿色的安装按钮，您的用户脚本管理器将询问您是否安装。</p>
+        <p>在您找到想要的用户脚本后，点击用户脚本页面上绿色的安装按钮，您的用户脚本管理器将向您确认是否安装。</p>
     installing_step3_header: "第三步：使用用户脚本"
     installing_step3_description_html: >
-        <p>转至用户脚本适用的网站。它应该已自动启动和生效。在试用用户脚本后，您可以返回用户脚本页面，给用户脚本的作者留下反馈。</p>
+        <p>现在您可以访问这个用户脚本所针对的网站，脚本应该已经自动启动和生效。在试用一段时间之后，您可以回到用户脚本发表的页面，给用户脚本的作者留下反馈。</p>
   users:
     sign_in_title: "登录 %{site_name}"
-    sign_in_description: "登录到 %{site_name} 可以让您发布脚本以及反馈其他作者的脚本。如果您只是翻阅或安装脚本，登录并不是必须的。"
+    sign_in_description: "登录到 %{site_name} 可以让您发布脚本或为其他作者的脚本提供反馈。如果您只是翻阅网站或安装脚本，登录并不是必须的。"
     sign_in_external: "使用第三方账户登录"
     sign_in_with: "使用 %{provider} 登录"
     sign_in_password: "使用密码登录"
     sign_in_email_used_no_external_services_html: "“%{email}”已被“%{user_name}”注册。如果您是该用户的持有者并希望连接账户至 %{provider}，请先 %{sign_in_link} 然后添加 %{provider} 至您的第三方登录。"
     sign_in_email_used_with_external_services_html: "“%{email}”已被“%{user_name}”绑定至第三方登录服务 %{existing_providers}。如果您是该用户的持有者并希望连接账户至 %{provider}，请先 %{sign_in_link} 然后添加 %{provider} 至您的第三方登录。"
     sign_in_email_used_sign_in_link: "登录"
-    sign_in_email_missing: "%{site_name} 需要一个电子邮件地址来建立一个新账户，但是 %{provider} 没有为您提供。您可以更新您的 %{provider} 账户增加一个邮箱地址，然后再登录；或者您可以在 %{site_name} 上创建一个常规的电子邮件/密码账户，然后在里面添加您的 %{provider} 账户。"
+    sign_in_email_missing: "%{site_name} 需要一个电子邮件地址来建立新账户，但是您的 %{provider} 账号并未绑定邮箱。您可以到 %{provider} 上绑定一个邮箱，然后再在本网站用该账号登录；或者您可以直接在 %{site_name} 上创建一个常规的电子邮件/密码账户，然后在里面添加您的 %{provider} 账户。"
     sign_in_name_used: "用户名“%{name}”已存在，换一个吧。"
     sign_in_name_used_submit: "提交"
     control_panel: "控制台"
@@ -452,35 +452,35 @@ zh-CN:
     show_sensitive_description: "显示带有成人内容的脚本"
     preferred_markup_description: "将用于新的脚本和讨论帖。"
     flattr_username_description_html: "请求您的用户通过 <a href=\"https://flattr.com\">Flattr</a> 向您捐款。"
-    approve_redistribution_explanation: "%{site_name} 可以告诉其他网站您允许他们重新发布您的脚本。这可能由于您为您的脚本选择的许可协议而允许或不允许完成。您可以在各个脚本上覆盖此首选项。"
-    approve_redistribution_true: "我允许我的脚本被其他人二次分发"
+    approve_redistribution_explanation: "%{site_name} 可以告诉其他网站您是否允许他们二次分发您的脚本。但根据您为脚本选择的许可协议不同，此处的声明可能有效或无效，请以许可协议为准。此处设置的是默认值，您可以单独设置每个脚本来覆盖这一默认值。"
+    approve_redistribution_true: "我允许我的脚本被他人二次分发"
     approve_redistribution_false: "我不希望我的脚本被他人二次分发"
     greasy_fork_scripts_link:
-      other: "%{user_name} 还有 %{count} 个脚本在 Greasy Fork 上。"
+      other: "%{user_name} 还在 Greasy Fork 上发布了另外 %{count} 个脚本。"
     update_sync_warning:
-      other: "您的用户名和电子邮件地址已设为在您用 %{providers} 登录时同步。如果您想永久设置自定义用户名或电子邮件地址，%{edit_sign_in_link:编辑您的登录方法以去除同步}。"
+      other: "您的用户名和电子邮件地址将在您用 %{providers} 登录时与该账户保持同步。如果您想永久设置自定义用户名或电子邮件地址，%{edit_sign_in_link:编辑您的登录方法以去除同步}。"
     delete_link: "删除账户"
     delete:
-      intro: "删除您的 %{site_name} 账户 '%{user_name}' 将有如下效果："
+      intro: "删除您的 %{site_name} 账户「%{user_name}」将有如下效果："
       requires_permanent_deletion: "在删除您的账户前，您必须请求永久删除下列脚本："
-      password_effect: "您不再能用您的密码登录。"
+      password_effect: "您将不再能用您的密码登录。"
       identities_effect:
         other: "通过 %{identities} 登录将产生一个新账户。"
       scripts_effect:
         other: "您的 %{count} 个脚本将被删除。"
       script_sets_effect:
         other: "您的 %{count} 个脚本集将被删除。"
-      forum_effect: "您对论坛的贡献不会改变，但关联的用户将被更名为“%{user_name}”。"
+      forum_effect: "您在论坛上的发言不会删除，但关联的用户将被更名为“%{user_name}”。"
       email_confirmation: "在删除您的用户前，%{site_name} 将发送一封电子邮件至 %{email} 以确认您的请求。"
       submit: "删除账户"
       confirmation_email_sent: "确认删除邮件已发送。"
       confirmation_email:
         subject: "%{site_name} 账户的删除确认"
-        body: "已有人请求删除您在 %{site_name} 上的 %{user_name} 账户。要确认此请求并删除您的账户，请转至 %{url} 。删除需在24小时内完成，否则删除请求自动取消。"
+        body: "已有人请求删除您在 %{site_name} 上的账户「%{user_name}」。要确认此请求并删除您的账户，请访问 %{url} 。删除需在24小时内完成，否则删除请求自动取消。"
       confirmation:
         intro: "您即将删除账户 %{user_name}。此操作无法撤销。"
-        confirm: "删除 '%{user_name}'"
-        cancel: "取消删除"
+        confirm: "删除「%{user_name}」"
+        cancel: "取消操作"
         key_mismatch: "无法删除用户 - 键值不匹配。"
         request_expired: "无法删除用户 - 请求已过期。"
         cancelled: "删除已取消。"
@@ -489,53 +489,33 @@ zh-CN:
     installing_user_scripts:
       title: '如何安装用户脚本'
     meta_keys:
-      title: "%{site_name} 要读取的脚本元键值"
+      title: "%{site_name} 要读取的脚本元属性值"
       intro_html: "这里有 %{site_name} 将读取的 <a href=\"http://wiki.greasespot.net/Metadata_Block\">用户脚本属性值</a>的一个列表。不在此列表的属性也可以写在脚本中，用户安装的脚本将包含这些属性值但是并不会对网站界面产生更变。"
       name: "脚本的名称。该项将显示在页面的标题以及链接内容，必填项。"
       name_localized_html: "脚本在特定语言区域的标题。XX 指 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 国家代码</a> 以及 YY 指可选的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 地区代码</a>。该选项用于提供多语言的<code>@name</code> 脚本名称。"
       description: "脚本功能的描述，显示在脚本标题下面，必填项。"
-      description_localized_html: "脚本在特定语言区域的描述。XX 指 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 国家代码</a> 以及 YY 指可选的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 地区代码</a>。该选项用于提供多语言的<code>@description</code> 脚本介绍。"
-      namespace_html: "<code>@namespace</code> 及 <code>@name</code> 这两个属性将帮助用户脚本管理器判断是否已安装该脚本。%{site_name} 也需要这个属性，且当用户更新脚本时改变了任意一向时发出警告。"
+      description_localized_html: "用某门语言写成的脚本描述。XX 指 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 国家代码</a> 以及 YY 指可选的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 地区代码</a>。该选项用于提供多语言的<code>@description</code> 脚本介绍。"
+      namespace_html: "<code>@namespace</code> 及 <code>@name</code> 这两个属性将唯一的标识一个脚本，用户脚本管理器根据这两个属性来判断是否已安装该脚本。%{site_name} 也需要这些属性，若用户更新脚本时改变了二者中的任意一项，将受到警告。"
       version_html: "脚本的版本标记将使用 <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">Mozilla 版本格式</a> 并显示于脚本的简介页面。%{site_name} 要求填写该属性，且当用户更新脚本时没有更新版本号或降低了版本号时将发出警告。"
-      include: "描述脚本将执行的页面。该列表会被分析并展示到脚本的简介页面，以及用于脚本分类。"
-      require_html: "若需引用外部脚本到您的脚本，请参见 %{external_script_link}。"
+      include: "描述脚本会在哪些网站上运行。该列表会被解析和展示到脚本的简介页面，并用于脚本的分类。"
+      require_html: "在您的脚本中引用其他外部脚本。请参见 %{external_script_link}。"
       require_external_script_link_text: "包含外部脚本的使用规定"
       updateURL: "告知用户脚本管理器应该在哪个地址获取脚本更新。%{site_name} 将自动修改该属性使其永远通过 %{site_name} 进行更新。"
-      license: "许可协议描述如何允许别人复制或修改此脚本。建议从 %{spdx_link:the SPDX 许可协议列表} 中选择「Full name」或「Identifier」使用。不提供许可协议则表示用户仅允许个人使用且不得二次分发；该协议将在脚本的简介页面显示。"
-      supportURL: "用户可获得该脚本技术支持的链接地址 (如：错误反馈系统、论坛、电子邮件)，该链接将显示在脚本的反馈页面。"
+      license: "许可协议描述的是您是否允许别人以某些形式复制或修改您的脚本。建议从 %{spdx_link:the SPDX 许可协议列表} 中选择「Full name」或「Identifier」填至此处。若您不提供许可协议，则表示仅允许个人使用且不得二次分发。许可协议将在脚本的简介页面显示。"
+      supportURL: "该脚本的技术支持链接（如：错误反馈系统、论坛、电子邮件等），该链接将显示在脚本的反馈页面。"
       contributionURL_html: "用于捐赠脚本作者的链接，该链接将显示在脚本的反馈页面。网址可以为 http、https 或比特币协议的网址。如果您需要链接到贝宝捐赠页面，请使用例如 <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a> 这样的格式，替换为您自己的邮箱即可。"
       contributionAmount_html: "建议捐赠金额，请配合 <code>@contributionURL</code> 使用。"
       compatible_html: "标记此脚本与某个浏览器兼容，兼容性信息将显示在脚本的简介页面上。您也可以添加额外的兼容说明，如 <code>@compatible firefox 火狐上必须关闭广告过滤器</code> 这样的格式。目前能被网站识别的浏览器名称有：%{browsers}。"
       incompatible_html: "标记此脚本与某个浏览器不兼容，兼容性信息将显示在脚本的简介页面上。您也可以添加额外的兼容说明，如 <code>@incompatible firefox 自火狐 23 开始不兼容</code> 这样的写法。目前能被网站识别的浏览器名称有：%{browsers}。"
     writing_user_scripts:
       title: "如何编写用户脚本"
-      content_html: "<p>编写用户脚本需要基础的 JavaScript 知识。<a href=\"http://wiki.greasespot.net/Tutorials\">GreaseSpot 百科上的教程</a>应该能让您开始了解如何编写一个通常脚本以及用户脚本。观摩、阅读前人编写的脚本可对您有所启发，您可能同样对 %{code_rules_link} 以及 %{meta_keys_link} 感兴趣。如果您希望得到帮助，您可以在 %{ask_in_forum_link}。</p>\n<p>在 %{site_name} 提交脚本，您需要建立一个账户，然后从您的 %{user_page_link}，选择 %{post_new_script_link} 即可发表新的脚本。</p>"
+      content_html: "<p>编写用户脚本需要基础的 JavaScript 知识。<a href=\"http://wiki.greasespot.net/Tutorials\">GreaseSpot 百科上的教程</a>应该能让您开始了解如何编写一个通常脚本以及用户脚本。观摩、阅读前人编写的脚本可对您有所启发，您可能同样对 %{code_rules_link} 以及 %{meta_keys_link} 感兴趣。如果您希望得到帮助，您可以在 %{ask_in_forum_link}。</p>\n<p>为了在 %{site_name} 提交脚本，您需要建立一个账户，然后从您的 %{user_page_link}，选择 %{post_new_script_link} 即可发表新的脚本。</p>"
       ask_in_forum_link_text: '在论坛中询问'
       user_page_link_text: '用户页面'
       post_new_script_link_text: '发布新脚本'
     code_rules:
       title: "%{site_name} 有关发布脚本的规则"
-      content_html: >
-          <p>下述为针对提交至 %{site_name} 的脚本的一些要求。这些要求的存在，是为了保证 %{site_name} 成为一个安全以及有用的用户脚本网站。未达到下述要求的脚本可能会被
-          %{site_name} 的管理员删除。</p> <ul>
-
-          <li>脚本必须包含描述信息，表示该脚本的工作范围，并不得在未得到用户知晓的前提下无理跨线造成困扰。用户应在安装之前能知晓脚本的效用。若包含追踪统计信息或广告则必须在描述中提供该信息。</li>
-
-          <li>提交到该网站的脚本不得混淆或压缩。用户拥有在安装之前对脚本进行代码审查的权利。</li>
-
-          <li>脚本所需要的第三方库应使用 <code>@require</code> 进行引用，除非能提供合理的技术解释，否则不允许已其它方式进行引用。若内嵌第三方库到脚本内，则必须提供相应源代码的信息
-          (如一条指向脚本名称、版本、地址的注释)。</li>
-
-          <li>你的脚本必须遵守他人版权。包括脚本自身的代码以及其它使用到的资源 (如图像)。如果您需要使用他人创作内容，请务必遵守授权条款或取得创作者的授权。</li>
-
-          <li>%{external_scripts_link:允许引用的外部 JavaScript 地址需存在于白名单}。</li>
-
-          <li>脚本检查更新的次数不能多于每天一次。注意：大多数用户脚本管理器能处理自动更新，因此不要在脚本中执行此操作。
-
-          %{adult_content_requirement}
-
-          </li> <p>如果您发现有脚本不满足上述任何一点要求，请单击“反馈”，“发起讨论”，然后选择“举报”选项告知管理员。</p> <p>若您不同意任意上述的要求，%{contact_link:我们可以深入探讨这些要求}！</p>
-      adult_content_rule_html: "<li>包含成人内容，或脚本目标网站是成人内容的话则必须被正确记录，以允许其他用户根据选项来决定是否要看到它们。</li>"
+      adult_content_rule_html: "<li>本站允许脚本中包含成人内容，但含有成人内容或者针对成人网站设计的脚本必须被「明确标注」，以便用户自主选择是否显示此类信息。</li>"
     external_scripts:
       title: "%{site_name} 对外部脚本的政策"
       content_html: >
@@ -558,7 +538,7 @@ zh-CN:
     script_rewriting:
       title: "%{site_name} 将如何改写已发布的脚本"
       content_html: >
-          <p>发布到 %{site_name} 的脚本将会被系统根据下述规则重写部分字段，如：</p> <ul>
+          <p>发布到 %{site_name} 的脚本将会被系统修改以下属性：</p> <ul>
 
           <li><code>@updateURL</code>、<code>@installURL</code> 和 <code>@downloadURL</code>
           元信息将被删除（如有提供）。任何从 %{site_name} 安装的脚本将通过 %{site_name} 更新。</li>
@@ -611,7 +591,7 @@ zh-CN:
       description: "搜索脚本代码。此功能不区分大小写，不支持通配符，搜索纯文本。"
     forum_search:
       title: "论坛搜索"
-      description: "搜索论坛上的讨论和评测。详细请参考 %{fulltext_link:MySQL 自然语言搜索}。"
+      description: "搜索论坛上的讨论和评测。搜索的方式请参考 %{fulltext_link:MySQL 自然语言搜索}。"
     user_search:
       title: "用户搜索"
       description: "按名称搜索用户。纯文本 LIKE 语法搜索。"
@@ -680,6 +660,7 @@ zh-CN:
       must_be_greasy_fork_script: "网址必须是 %{site_name} 上的一个脚本"
       script_update_not_utf8: "上传的文本必须为 UTF-8 编码"
       script_disallowed_require: "使用了一个未经批准的外部脚本：%{code}"
+      script_rate_limit: "您已超出脚本发布数量的限制。请稍后再试。"
   opensearch:
     short_name: "%{site_name} 搜索"
     description: "搜索 %{site_name} 上的用户脚本。"

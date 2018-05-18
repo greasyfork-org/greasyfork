@@ -540,8 +540,9 @@ pt-BR:
 
           <li>Os scripts devem ter uma descrição a cerca do que eles e não podem fazer
           nada fora dessa descrição sem razão. Os usuários devem saber o que um script
-          fará antes de instalá-lo. Scripts que possuam rastreamento devem deixar
-          isso bem claro nas suas descrições.</li>
+          fará antes de instalá-lo. Scripts que possuem métodos de monetização (rastreamento,
+          propagandas, mineradores, etc.) não são proibidos, mas o autor deve deixar
+          isso de forma bem clara na descrição do script ou nas informações adicionais.</li>
 
           <li>O código postado neste site não deve estar obfuscado ou minificado.
           Os usuários devem poder verificar e entender o script antes de instalá-lo.</li>
@@ -768,6 +769,7 @@ pt-BR:
       must_be_greasy_fork_script: "deve ser uma URL para um script em %{site_name}"
       script_update_not_utf8: "envio deve ser em texto UTF-8"
       script_disallowed_require: "usa um script externo não aprovado: %{code}"
+      script_rate_limit: "Você atingiu o limite de postagens. Tente novamente mais tarde."
   opensearch:
     short_name: "%{site_name} busca"
     description: "Busca por scripts de usuário em %{site_name}."

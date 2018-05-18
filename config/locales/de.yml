@@ -49,6 +49,7 @@ de:
     reinstall: "Version %{version} erneut installieren"
     old_version_warning: "Das ist nicht die neueste Version dieses Skripts. Wenn du es installierst, wirst du nie ein Update für eine neuere Version erhalten. Trotzdem installieren?"
     promoted: "Vorgeschlagenes Skript"
+    author_promoted: "Vom Autor empfohlenes Skript"
     promoted_text_html: "Dir könnte auch %{script_link} gefallen."
     library_instructions_html: "Dieses Skript sollte nicht direkt installiert werden. Es handelt sich hier um eine Bibliothek für andere Skripte, welche über folgenden Befehl in den Metadaten eines Skriptes eingebunden wird %{code}"
     deleted_notice: "Dieses Skript wurde gelöscht."
@@ -78,6 +79,19 @@ de:
     cancel_delete_permanently_submit: "Antrag auf endgültige Löschung zurücknehmen"
     cancel_delete_permanently_notice: "Der Antrag auf endgültige Löschung wurde zurückgenommen."
     delete_permanently_rejected_locked: "Dieses Skript ist gesperrt und kann nicht endgültig gelöscht werden"
+    admin_page: "Administrator"
+    admin:
+      title: "%{script_name} - Administrator "
+      promoted_heading: "Vorgestelltes Skript"
+      promoted_explanation: "Nach Installation dieses Skripts,  kann %{site_name} dem Nutzer die Nutzung eines anderen Skripts deiner Wahl vorschlagen."
+      promoted_script_label: "URL des Skripts zum Vorstellen"
+      promoted_submit: "Vorgeschlagenes Skript festlegen"
+      sync_heading: "Synchronisation"
+      locale_heading: "Standardsprache"
+      locale_example_html: "Lokalisierung dieses Textes: <i>%{text}</i>"
+      locale_multiple_note: "Beachte, dass %{meta_keys_link:mehrere Sprachen für ein Skript} definiert werden können."
+      update_locale: "Sprache aktualisieren"
+      no_moderator_logs: "Gegen dieses Skript wurden keine Maßnahmen durch Moderatoren getroffen."
     history_title: "%{script_name} - Versionsverlauf"
     history_only_code_changes_info: "Das sind Skriptversionen, bei denen der Quelltext aktualisiert wurde."
     history_all_changes_link: "Alle Versionen anzeigen."
@@ -249,6 +263,8 @@ de:
     by_site_list_description: "Dies sind die Seiten, welche durch die beliebtesten Benutzerskripte geändert werden. Größere Schriftgröße bedeutet beliebtere Benutzerskripte."
     by_site_list_filter: "Nach Seitennamen filtern:"
     search_placeholder: "Skripte suchen"
+    updated: "Skript aktualisiert."
+    preview_additional_info: "Vorschau"
   script_sets:
     description: "Mit Skriptsammlungen können individuelle Listen von Skripten angelegt werden, um Greasy Fork zu durchstöbern. Sie können Ihrer Sammlung einzelne Skripte, die Skripte anderer Nutzer und automatisch erzeugte Listen hinzufügen. Auf dem selben Weg können Sie auch Skripte aus Ihrer Sammlung entfernen."
     favorites_name: "Favoriten"
@@ -519,7 +535,7 @@ de:
     code_rules:
       title: "%{site_name}s Regeln für veröffentlichte Skripte"
       content_html: >
-          <p>Nachfolgend sind die Voraussetzungen zum Veröffentlichen von Skripten
+          <p>Nachfolgend sind die Voraussetzungen zur Veröffentlichung von Skripten
           auf %{site_name} genannt. Diese sollen dazu beitragen, dass %{site_name}
           ein sicherer und hilfreicher Ort für Benutzerskripte bleibt. Alle Skripte,
           die die Voraussetzungen nicht erfüllen, können von %{site_name} Moderatoren
@@ -528,22 +544,24 @@ de:
           <li>Skripte müssen eine Beschreibung darüber enthalten, was sie tun. Sie
           dürfen nichts tun, was nicht dem Erreichen dieses Ziels dient. Benutzer
           müssen wissen, was das Skript tun wird, bevor sie es installieren. Skripte,
-          die Tracking oder Werbung enthalten, müssen dies in ihrer Beschreibung offenlegen.</li>
+          die Tracking, Werbung oder Cryptominer enthalten, sind nicht verboten, müssen
+          dies aber hervorstechend in ihrer Beschreibung oder den zusätzlichen Informationen
+          offenlegen.</li>
 
           <li>Code, der auf dieser Seite veröffentlicht wird, darf nicht verschleiert
           oder unlesbar komprimiert sein. Benutzer müssen die Möglichkeit haben, den
           Quelltext zu analysieren und verstehen, bevor sie das Skript installieren.</li>
 
           <li>Nutzt das Skript Bibliotheken, so müssen diese mit <code>@require</code>eingebunden
-          werden, falls kein gültiger technischer Grund dagegen vorliegt. Wird eine
+          werden, falls kein triftiger technischer Grund dagegen vorliegt. Wird eine
           Bibliothek inline eingebunden, so müssen Informationen zur Quelle (URL)
           und Version der Bibliothek in einem Kommentar hinterlegt werden.</li>
 
-          <li>Ihr Skript muss das Urheberrecht anderer beachten. Das betrifft sowohl
-          das Skript selbst, als auch sämtliche genutzten Ressourcen wie z.B. Bilder.
-          Wenn Sie beabsichtigen, Inhalte anderer zu nutzen, dann sind sie verpflichtet,
-          sich an deren Lizenzvorgaben zu halten oder zuvor eine Erlaubnis des Autors
-          einzuholen.</li>
+          <li>Veröffentlichte Skripte müssen das Urheberrecht anderer beachten. Das
+          betrifft sowohl das Skript selbst, als auch sämtliche genutzten Ressourcen
+          wie z.B. Bilder. Wenn Sie beabsichtigen, Inhalte anderer zu nutzen, dann
+          sind sie verpflichtet, sich an deren Lizenzvorgaben zu halten oder zuvor
+          eine Erlaubnis des Autors einzuholen.</li>
 
           <li>%{external_scripts_link:Die Nutzung externer Skripte ist begrenzt.}</li>
 
@@ -703,6 +721,15 @@ de:
     user_search:
       title: "Benutzersuche"
       description: "Suchen nach Benutzern über den Namen. Volltext LIKE Suche."
+  moderator_logs:
+    date_column: "Datum"
+    moderator_column: "Moderator"
+    item_column: "Eintrag"
+    action_column: "Aktion"
+    reason_column: "Grund"
+    item_script_html: "Skript %{script_link}"
+    item_deleted_script: "Gelöschtes Skript%{id}"
+    item_user_html: "Nutzer: %{user_link}"
   common:
     error_preamble: "Es gab einige Probleme mit dem was Sie eingegeben haben …"
     allowed_elements_link: "(Erlaubte Elemente anzeigen.)"
@@ -755,9 +782,11 @@ de:
       script_too_many_screenshots: "Zu viele Bildschirmfotos eingebunden - maximal %{number} möglich"
       cannot_be_self_reference: "darf nicht das gleiche Skript sein"
       cannot_be_deleted_reference: "darf kein gelöschtes Skript sein"
+      cannot_be_used_with_this_script: "kann mit diesem Skript nicht benutzt werden"
       must_be_greasy_fork_script: "muss die Adresse eines Skriptes auf %{site_name} sein"
       script_update_not_utf8: "das Format des hochgeladenen Textes muss UTF-8 sein"
       script_disallowed_require: "benutzt ein nicht zugelassenes externes Skript: %{code}"
+      script_rate_limit: "Du hast das Beitragslimit überschritten. Versuche es später nochmal."
   opensearch:
     short_name: "%{site_name} Suche"
     description: "Auf %{site_name} nach Benutzerskripten suchen."

@@ -87,6 +87,11 @@ el:
       promoted_script_label: "URL κώδικα για προώθηση"
       promoted_submit: "Ορισμός προωθούμενος κώδικας"
       sync_heading: "Συγχρονισμός Προέλευσης"
+      locale_heading: "Προεπιλεγμενη γλώσσα"
+      locale_example_html: "Γλώσσα αυτού του κειμένου: <i>%{text}</i>"
+      locale_multiple_note: "Σημειώστε ότι %{meta_keys_link:για έναν κώδικα μπορούν να οριστούν πολλές γλώσσες}."
+      update_locale: "Ενημέρωση γλώσσας"
+      no_moderator_logs: "Καμιά ενέργεια δεν έχει λάβει χώρα από τους συντονιστές για αυτόν τον κώδικα."
     history_title: "%{script_name} - Ιστορικό έκδοσης"
     history_only_code_changes_info: "Αυτές είναι εκδόσεις αυτού του κώδικα όπου ο κώδικας έχει ενημερωθεί."
     history_all_changes_link: "Προβολή όλων των εκδόσεων."
@@ -702,6 +707,15 @@ el:
     user_search:
       title: "Αναζήτηση χρήστη"
       description: "Αναζήτηση για χρήστες κατά όνομα. Αναζήτηση απλού κειμένου με την εντολή LIKE."
+  moderator_logs:
+    date_column: "Ημερομηνία"
+    moderator_column: "Συντονιστής"
+    item_column: "Αντικείμενο"
+    action_column: "Ενέργεια"
+    reason_column: "Αιτία"
+    item_script_html: "Κώδικας: %{script_link}"
+    item_deleted_script: "Διαγραμμένος κώδικας %{id}"
+    item_user_html: "Χρήστης: %{user_link}"
   common:
     error_preamble: "Υπήρξαν κάποια προβλήματα με αυτά που δημοσιεύσατε..."
     allowed_elements_link: "(Δείτε τον επιτρεπτόμενο κώδικα.)"
@@ -758,6 +772,7 @@ el:
       must_be_greasy_fork_script: "Πρέπει να είναι το URL για έναν κώδικα στο %{site_name}"
       script_update_not_utf8: "ο κώδικας που στέλνετε πρέπει να είναι κείμενο UTF-8"
       script_disallowed_require: "χρησιμοποιείται ένας μη αποδεκτός εξωτερικός κώδικας: %{code}"
+      script_rate_limit: "Έχετε υπερβεί το όριο δημοσιεύσεων. Δοκιμάστε ξανά αργότερα."
   opensearch:
     short_name: "Αναζήτηση %{site_name}"
     description: "Αναζήτηση για κώδικες χρηστών στο %{site_name}."
