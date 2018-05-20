@@ -1,0 +1,6 @@
+<p>
+  <%= t('scripts.must_confirm_email') %>
+  <%= form_tag(controller: 'users', action: 'send_confirmation_email', method: :post) do %>
+    <input type="submit" value="<%= t('scripts.must_confirm_email_button', email: current_user.email) %>">
+  <% end %>
+</p>

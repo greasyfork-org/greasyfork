@@ -17,6 +17,12 @@ class ScriptVersionsController < ApplicationController
 
 	def new
 		@bots = 'noindex'
+
+		if !current_user.can_post_scripts?
+			render 'must_confirm'
+			return
+		end
+
 		@script_version = ScriptVersion.new
 		if !params[:script_id].nil?
 			@script = Script.find(params[:script_id]) 
@@ -38,13 +44,13 @@ class ScriptVersionsController < ApplicationController
 	end
 
 	def create
-		# Temporary spam mitigation
-		if current_user.id >= 181906 && params['script']['script_type_id'] == '3'
-			render plain: 'This feature has been temporarily disabled.'
+		@bots = 'noindex'
+
+		if !current_user.can_post_scripts?
+			render status: 403
 			return
 		end
 
-		@bots = 'noindex'
 		@script_version = ScriptVersion.new
 		@script_version.assign_attributes(script_version_params)
 

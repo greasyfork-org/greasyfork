@@ -40,6 +40,7 @@ Greasyfork::Application.routes.draw do
 			get '/auth/failure', to: 'sessions#omniauth_failure'
 			get '/auth/failure2', to: 'sessions#omniauth_failure'
 			post '/auth/name_conflict', to: 'sessions#name_conflict'
+			post '/users/send_confirmation_email' => 'users#send_confirmation_email'
 		end
 
 		root :to => "home#index"

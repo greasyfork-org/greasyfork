@@ -33,8 +33,8 @@ class User < ApplicationRecord
   end
 
 	# Include default devise modules. Others available are:
-	# :confirmable, :lockable, :timeoutable and :omniauthable
-	devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
+	# :lockable, :timeoutable and :omniauthable
+	devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
 	validates_presence_of :name, :profile_markup, :preferred_markup
 	validates_uniqueness_of :name
@@ -125,9 +125,17 @@ class User < ApplicationRecord
 	  return scripts.all(&:immediate_deletion_allowed?)
 	end
 
+	def can_post_scripts?
+		confirmed? || identities.any?
+	end
+
 	protected
 
 	def password_required?
 		self.new_record? && self.identities.empty?
+	end
+	
+	def confirmation_required?
+		false
 	end
 end

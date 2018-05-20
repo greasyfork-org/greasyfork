@@ -316,6 +316,12 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def send_confirmation_email
+    current_user.send_confirmation_instructions
+    flash[:notice] = t('devise.confirmations.send_instructions')
+    redirect_to user_path(current_user)
+  end
+
 private
 
 	def self.apply_sort(finder, script_subset:, sort:)
