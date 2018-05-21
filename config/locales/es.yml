@@ -265,6 +265,8 @@ es:
     search_placeholder: "Buscar scripts"
     updated: "Se ha actualizado el script."
     preview_additional_info: "Vista previa"
+    must_confirm_email: "Tienes que verificar tu dirección de correo electrónico antes de subir scripts."
+    must_confirm_email_button: "Enviar un enlace de confirmación a %{email}"
   script_sets:
     description: "Los grupos permiten crear un listado personal de scripts con los que explorar Greasy Fork. Puedes agruparlos añadiendo scripts individuales, incluyendo grupos de otros usuarios, o incluso grupos generados automáticamente. También puedes excluir scripts de la misma forma."
     favorites_name: "Favoritos"
@@ -533,50 +535,6 @@ es:
       post_new_script_link_text: 'publicar un nuevo script'
     code_rules:
       title: "Reglas de %{site_name} para scripts publicados"
-      content_html: >
-          <p>Estos son los requisitos para los scripts publicados en %{site_name}.
-          Están pensados para mantener %{site_name} como un lugar seguro y conveniente
-          para scripts de usuario. Cualquier script que caiga fuera de estos requisitos
-          puede ser borrado por los moderadores de %{site_name}.</p> <ul>
-
-          <li>Los scripts deben incluir una descripción de lo que hacen, y no pueden
-          hacer cosas fuera de lo razonable al margen de esta descripción. Los usuarios
-          tienen que saber lo que hará el script antes de instalarlo. Los scripts
-          que incluyan rastreo o publicidad deben revelar esto en sus descripciones.</li>
-
-          <li>El código publicado en este sitio no debe de estar ofuscado o condensado.
-          A los usuarios se les debe dar la oportunidad de inspeccionar y comprender
-          un script antes de instalarlo.
-
-          ode posted to this site must not be obfuscated or minified. Users must be
-          given the opportunity to inspect and understand a script before installing
-          it.</li>
-
-          <li>Las bibliotecas que usa un script deben ser invocadas con <code>@require</code>,
-          a menos que haya una razón técnica válida para no hacerlo así. En el caso
-          de que se haya integrado una biblioteca, se debe incluir información acerca
-          de la fuente de la biblioteca (p.e. un comentario indicando la URL y/o el
-          nombre y la versión).</li>
-
-          <li>Su script debe respetar el copyright de los demás. Esto incluye al propio
-          script y cualquier recurso (p.e. imágenes) que utilice. Si pretende usar
-          el contenido de algún otro, acate los términos de su licencia u obtenga
-          su permiso antes de hacerlo.</li>
-
-          <li>%{external_scripts_link:El uso de JavaScript externo está limitado.}</li>
-
-          %{adult_content_requirement}
-
-          <li>Los scripts no deben tener una frecuencia de búsqueda de actualizaciones
-          mayor de una vez al día. Observe que la mayoría de administradores de scripts
-          de usuario gestionarán las actualizaciones automáticas, así que hacer esto
-          en el script es innecesario.</li>
-
-          </ul> <p>Si observa que un script queda fuera de estos parámetros, por favor,
-          informe de ello yendo al enlace de Opiniones para ese script, inicie una
-          conversación, y escoja la opción "Informar de infracción".</p> <p>Si no
-          está de acuerdo con alguno de estos puntos, ¡%{contact_link:hablemos de
-          ello}!!</p>
       adult_content_rule_html: "<li>Los scripts con contenido para adultos (o que funcionen en sitios con este tipo de contenido restringido) deben marcarse para que los usuarios puedan decidir si quieren verlos o no.</li>"
     external_scripts:
       title: "Política de %{site_name} sobre scripts externos"
@@ -779,6 +737,7 @@ es:
       must_be_greasy_fork_script: "debe ser la dirección URL de un script en %{site_name}"
       script_update_not_utf8: "debe ser texto en formato UTF-8"
       script_disallowed_require: "usa un script externo no aprobado: %{code}"
+      script_rate_limit: "Has subido demasiados scripts seguidos, prueba más tarde."
   opensearch:
     short_name: "Buscar en %{site_name}"
     description: "Busca scripts de usuario en %{site_name}."
