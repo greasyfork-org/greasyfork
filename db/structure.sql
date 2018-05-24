@@ -1473,14 +1473,14 @@ CREATE TABLE `users` (
   `show_sensitive` tinyint(1) DEFAULT '0',
   `delete_confirmation_key` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `delete_confirmation_expiry` datetime DEFAULT NULL,
-  `confirmation_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `confirmation_token` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `confirmed_at` datetime DEFAULT NULL,
   `confirmation_sent_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_users_on_email` (`email`),
   UNIQUE KEY `index_users_on_reset_password_token` (`reset_password_token`),
   UNIQUE KEY `index_users_on_confirmation_token` (`confirmation_token`)
-) ENGINE=InnoDB AUTO_INCREMENT=181302 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=181303 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
