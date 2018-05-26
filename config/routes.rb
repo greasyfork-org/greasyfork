@@ -1,4 +1,4 @@
-Greasyfork::Application.routes.draw do
+Rails.application.routes.draw do
 
 	get 'sso', :to => 'home#sso'
 

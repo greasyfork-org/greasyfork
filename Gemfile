@@ -2,8 +2,9 @@ source 'https://rubygems.org'
 
 ruby '2.5.1'
 
-gem 'rails', '~> 5.1.0'
+gem 'rails', '~> 5.2.0'
 gem 'rails-i18n'
+gem 'bootsnap'
 gem 'uglifier'
 gem 'devise'
 gem 'devise-i18n', git: 'https://github.com/tigrish/devise-i18n.git'
@@ -55,6 +56,7 @@ group :development do
   gem 'capistrano3-delayed-job', '~> 1.0'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'listen'
 end
 
 group :profile do

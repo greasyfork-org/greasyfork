@@ -9,7 +9,7 @@ class Script < ActiveRecord::Base
 	has_many :script_versions, dependent: :destroy
 	has_many :script_applies_tos, dependent: :destroy, autosave: true
 	has_many :site_applications, through: :script_applies_tos
-	has_many :discussions, -> { readonly.order('COALESCE(DateLastComment, DateInserted)').where('Closed = 0') }, :class_name => 'ForumDiscussion', :foreign_key => 'ScriptID'
+	has_many :discussions, -> { readonly.order(Arel.sql('COALESCE(DateLastComment, DateInserted)')).where('Closed = 0') }, :class_name => 'ForumDiscussion', :foreign_key => 'ScriptID'
 	has_many :cpd_duplication_scripts, dependent: :destroy
 	has_many :cpd_duplications, :through => :cpd_duplication_scripts
 	has_many :script_set_script_inclusions, foreign_key: 'child_id', dependent: :destroy
