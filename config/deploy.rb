@@ -3,10 +3,16 @@ lock "3.10.1"
 
 set :application, "greasyfork"
 set :repo_url, "https://github.com/JasonBarnabe/greasyfork.git"
-set :deploy_to, "/home/www/greasyfork"
-set :rvm_ruby_version, '2.5.1'
+set :deploy_to, "/www/greasyfork"
+set :branch, ENV['BRANCH'] if ENV['BRANCH']
+set :rbenv_type, :user
+set :rbenv_ruby, File.read('.ruby-version').strip
 
-append :linked_files, 'config/database.yml', 'config/newrelic.yml', 'config/production.sphinx.conf', 'config/secrets.yml',  'config/initializers/vanilla.rb', 'config/initializers/transifex.rb', 'config/initializers/omniauth.rb', 'config/initializers/detect_language.rb', 'bin/java', 'bin/simian.jar', 'bin/git'
+#set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+#set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+#set :rbenv_roles, :all # default value
+
+append :linked_files, 'config/database.yml', 'config/newrelic.yml', 'config/production.sphinx.conf', 'config/secrets.yml',  'config/initializers/vanilla.rb', 'config/initializers/transifex.rb', 'config/initializers/omniauth.rb', 'config/initializers/detect_language.rb', 'bin/git'
 
 append :linked_dirs, 'public/forum', 'public/system', 'log', 'tmp', 'public/data', 'public/cached_pages'
 

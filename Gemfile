@@ -52,7 +52,7 @@ group :development do
   gem 'capistrano-rails', "~> 1.2"
   gem 'capistrano-passenger'
   gem 'capistrano-bundler', '~> 1.2'
-  gem 'capistrano-rvm'
+  gem 'capistrano-rbenv', '~> 2.1'
   gem 'capistrano3-delayed-job', '~> 1.0'
   gem 'better_errors'
   gem 'binding_of_caller'
