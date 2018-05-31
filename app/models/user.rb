@@ -126,7 +126,16 @@ class User < ApplicationRecord
 	end
 
 	def can_post_scripts?
-		confirmed? || identities.any?
+		(confirmed? && !(has_spammy_email? && in_confirmation_period?)) || identities.any?
+	end
+
+	def has_spammy_email?
+		return false if email.blank?
+		return SpammyEmailDomain.where(domain: email.split('@').last).any?
+	end
+
+	def in_confirmation_period?
+		created_at > 5.minutes.ago
 	end
 
 	protected
