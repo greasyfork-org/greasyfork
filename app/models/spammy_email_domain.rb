@@ -1,0 +1,2 @@
+class SpammyEmailDomain < ApplicationRecord
+end
