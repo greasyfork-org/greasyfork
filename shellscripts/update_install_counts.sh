@@ -13,6 +13,6 @@ mysqlimport --login-path=greasyfork --local --fields-terminated-by=" " --ignore 
 
 echo "Update check counts loaded into DB at `date`" >> ../log/update_install_counts.log
 
-~/db < ./update_install_counts.sql >> ../log/update_install_counts.log 2>&1
+mysql --login-path=greasyfork greasyfork < ./update_install_counts.sql >> ../log/update_install_counts.log 2>&1
 
 echo "Done at `date`" >> ../log/update_install_counts.log
