@@ -3,6 +3,7 @@ lock "3.10.1"
 
 set :application, "greasyfork"
 set :repo_url, "https://github.com/JasonBarnabe/greasyfork.git"
+set :branch, ENV['BRANCH'] if ENV['BRANCH']
 set :deploy_to, "/home/www/greasyfork"
 set :rvm_ruby_version, '2.5.1'
 
