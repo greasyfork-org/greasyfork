@@ -144,6 +144,13 @@
 			<p class="alert"><%=alert%></p>
 		<% end %>
 
+		<% if current_user || controller.is_a?(SessionsController) %>
+			<p class="alert">
+				2018-06-02T16:24:49+00:00:
+				This site is migrating to a new server. Any changes you make here, such as script updates or forum discussions, will be lost. When you no longer see this notice when logged in, the migration is complete.
+			</p>
+		<% end %>
+
 		<%= content_for?(:content) ? yield(:content) : yield %>
 	</div>
 
