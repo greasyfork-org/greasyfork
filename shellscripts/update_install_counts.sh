@@ -9,7 +9,7 @@ sed 's/\+[0-9][0-9]:[0-9][0-9]//' > /tmp/daily_update_check_counts.txt
 
 echo "Update check counts calculated at `date`" >> ../log/update_install_counts.log
 
-mysqlimport --login-path=greasyfork --local --fields-terminated-by=" " --ignore greasyfork /tmp/daily_update_check_counts.txt
+mysqlimport --login-path=greasyfork --local --fields-terminated-by=" " --ignore greasyfork /tmp/daily_update_check_counts.txt >> ../log/update_install_counts.log 2>&1
 
 echo "Update check counts loaded into DB at `date`" >> ../log/update_install_counts.log
 
