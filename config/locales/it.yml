@@ -47,6 +47,10 @@ it:
     update: "Aggiorna alla versione %{version}"
     downgrade: "Riporta alla versione %{version}"
     reinstall: "Reinstalla la versione %{version}"
+    old_version_warning: "Questa non è la versione più recente di questo script. Se la installi, non sarà mai aggiornata ad una versione successiva. Installare comunque?"
+    promoted: "Script suggerito"
+    author_promoted: "Script suggerito dall'autore"
+    promoted_text_html: "Potresti essere interessato/a anche a %{script_link}"
     library_instructions_html: "Questo script non dovrebbe essere installato direttamente. È una libreria per altri script da includere con la chiave %{code}"
     deleted_notice: "Questo script è stato rimosso."
     version_notice_html: "Versione datata %{date}. Vedi la nuova versione %{latest_version_link}."
@@ -75,6 +79,19 @@ it:
     cancel_delete_permanently_submit: "Annulla richiesta di eliminazione permanente"
     cancel_delete_permanently_notice: "La tua richiesta di eliminazione permanente è stata annullata."
     delete_permanently_rejected_locked: "Questo script è bloccato e non può essere eliminato permanentemente"
+    admin_page: "Amministratore"
+    admin:
+      title: "%{script_name} - Amministratore"
+      promoted_heading: "Script suggerito"
+      promoted_explanation: "Dopo l'installazione di questo script, %{site_name} potrebbe suggerire all'utente di provare un altro script a tua scelta."
+      promoted_script_label: "URL dello script da suggerire"
+      promoted_submit: "Imposta script suggerito"
+      sync_heading: "Sincronizzazione del sorgente"
+      locale_heading: "Lingua predefinita"
+      locale_example_html: "Lingua di questo testo: <i>%{text}</i>"
+      locale_multiple_note: "Ricorda che %{meta_keys_link:uno script può avere più lingue definite}."
+      update_locale: "Aggiorna lingua"
+      no_moderator_logs: "I moderatori non hanno intrapreso alcuna azione su questo script."
     history_title: "%{script_name} - Cambiamenti versioni"
     history_only_code_changes_info: "queste sono le versioni di questo script in cui il codice è stato aggiornato"
     history_all_changes_link: "Visualizza tutte le versioni."
@@ -137,6 +154,8 @@ it:
     listing_created_feed: "Nuovi script"
     listing_updated_feed: "Script aggiornati"
     listing_none: "(niente)"
+    listing_set_locale_filter: "Sono visualizzati i risultati per tutte le lingue. %{set_filter_link:Mostra solo i risultati per%{language}.}"
+    listing_remove_locale_filter: "Sono visualizzati solo i risultati per %{language}. %{remove_filter_link:Mostra i risultati per tutte le lingue.}"
     import: "Importa script"
     new: "Posta uno script"
     support_site: "Visita il sito dell'autore"
@@ -244,6 +263,10 @@ it:
     by_site_list_description: "Questi sono i siti modificati dagli script utente più popolari. Più i caratteri sono grandi, più popolari sono gli script utente."
     by_site_list_filter: "Filtra per nome del sito:"
     search_placeholder: "Ricerca script"
+    updated: "Script aggiornato."
+    preview_additional_info: "Anteprima"
+    must_confirm_email: "Devi confermare la tua email prima di poter pubblicare script."
+    must_confirm_email_button: "Invia il link di conferma a %{email}"
   script_sets:
     description: "Gli insiemi di script ti permettono di creare una lista personalizzata di script con cui navigare su Greasy Fork. Puoi aggiungere script al tuo insieme includendo script individuali, insiemi di altri utenti, o insiemi generati automaticamente. Puoi inoltre escludere degli script dal tuo insieme con gli stessi metodi."
     favorites_name: "Preferiti"
@@ -453,6 +476,35 @@ it:
     update_sync_warning:
       one: "Il tuo nome utente e la tua email sono sincronizzati quando accedi con . %{edit_sign_in_link:Modifica i tuoi metodi di accesso per rimuovere la sincronizzazione} se desideri impostare permanentemente un nome utente o una email pesonalizzata."
       other: "Il tuo nome utente e la tua email sono sincronizzati quando accedi con %{providers}. %{edit_sign_in_link:Modifica i tuoi metodi di accesso per rimuovere la sincronizzazione} se desideri impostare permanentemente un nome utente o una email pesonalizzata."
+    delete_link: "Cancella account"
+    delete:
+      intro: "La cancellazione del tuo account %{site_name} chiamato \"%{user_name}\" avrà i seguenti effetti:"
+      requires_permanent_deletion: "Prima di cancellare il tuo account, devi richiedere la cancellazione permanente dei seguenti script:"
+      password_effect: "Non potrai più accedere con la tua password."
+      identities_effect:
+        one: "Effettuando l'accesso tramite %{identities} verrà creato un nuovo account."
+        other: "Effettuando l'accesso tramite %{identities} verrà creato un nuovo account."
+      scripts_effect:
+        one: "Il tuo script verrà cancellato."
+        other: "I tuoi %{count} script verranno cancellati."
+      script_sets_effect:
+        one: "Il tuo set di script verrà cancellato."
+        other: "I tuoi %{count} set di script verranno cancellati."
+      forum_effect: "I tuoi contributi sul forum rimarranno, ma l'utente associato verrò rinominato \"%{user_name}\"."
+      email_confirmation: "Prima di cancellare il tuo account, %{site_name} invierà una email a %{email} per confermare la tua richiesta."
+      submit: "Cancella account"
+      confirmation_email_sent: "L'email di conferma della cancellazione è stata inviata."
+      confirmation_email:
+        subject: "Conferma di cancellazione account %{site_name}"
+        body: "È stata effettuata una richiesta per cancellare il tuo account \"%{user_name}\" su %{site_name}. Per confermare questa richiesta e cancellare il tuo account, vai su  %{url}. Questo procedimento deve essere completato entro le prossime 24 ore o la richiesta sarà annullata."
+      confirmation:
+        intro: "Stai per cancellare l'account \"%{user_name}\". Questa azione non può essere annullata."
+        confirm: "Cancella \"%{user_name}\""
+        cancel: "Interrompi la cancellazione"
+        key_mismatch: "Impossible cancellare l'utente - le chiavi non corrispondono."
+        request_expired: "Impossibile cancellare l'utente - richiesta scaduta."
+        cancelled: "Cancellazione interrotta."
+        completed: "Il tuo account è stato eliminato."
   help:
     installing_user_scripts:
       title: 'Come installare gli script'
@@ -484,7 +536,7 @@ it:
     code_rules:
       title: "Le regole di %{site_name} per gli script postati"
       content_html: >
-          <p>Questi sono i requisiti per gli script caricati a %{site_name}. Essi
+          <p>Questi sono i requisiti per gli script caricati su %{site_name}. Essi
           sono volti a mantenere %{site_name} un posto sicuro e utile per gli script
           utente. Ogni script che non rispetti questi requisiti potrebbe essere eliminato
           dai moderatori di %{site_name}.</p> <ul>
@@ -492,8 +544,9 @@ it:
           <li>Gli script devono includere una descrizione di ciò che fanno e non possono
           compiere azioni che non ricadano ragionevolmente in tale descrizione. Gli
           utenti devono sapere cosa farà uno script prima di installarlo. Gli script
-          che includono pubblicità o modalità di tracciamento devono dichiararlo nella
-          propria descrizione.</li>
+          che includono modalità di monetizzazione (tracciamento, pubblicità, miner)
+          non sono proibiti, ma l'autore deve dichiarare ciò in maniera evidente nella
+          descrizione dello script o nelle informazioni aggiuntive.</li>
 
           <li>Il codice caricato su questo sito non può essere offuscato o minificato.
           Agli utenti deve essere data l'opportunità di esaminare e comprendere cosa
@@ -660,6 +713,15 @@ it:
     user_search:
       title: "Cerca utente"
       description: "Cerca gli utenti dal nome. Solo testo come una ricerca normale."
+  moderator_logs:
+    date_column: "Data"
+    moderator_column: "Moderatore"
+    item_column: "Oggetto"
+    action_column: "Azione"
+    reason_column: "Motivazione"
+    item_script_html: "Script: %{script_link}"
+    item_deleted_script: "Script eliminato %{id}"
+    item_user_html: "Utente: %{user_link}"
   common:
     error_preamble: "Ci sono alcuni problemi con quello che hai postato..."
     allowed_elements_link: "(Controlla codice permesso.)"
@@ -712,9 +774,11 @@ it:
       script_too_many_screenshots: "Troppe schermate incluse - il numero massimo è %{number}"
       cannot_be_self_reference: "non può essere lo stesso script"
       cannot_be_deleted_reference: "non può essere uno script cancellato"
+      cannot_be_used_with_this_script: "non può essere utilizzato con questo script"
       must_be_greasy_fork_script: "deve essere l'URL dello script su %{site_name}"
       script_update_not_utf8: "il testo caricato deve rispettare lo standard UTF-8 "
       script_disallowed_require: "utilizza uno script esterno non ammesso: %{code}"
+      script_rate_limit: "Hai superato il limite di caricamento. Riprova più tardi."
   opensearch:
     short_name: "ricerca %{site_name}"
     description: "Ricerca per user script su %{site_name}."
