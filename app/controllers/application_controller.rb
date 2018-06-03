@@ -230,6 +230,7 @@ protected
 	helper_method :choose_ad_method
 
 	def self.cache_with_log(key, options = {})
+		key = key.map{|k| k.respond_to?(:cache_key) ? k.cache_key : k} if key.is_a?(Array)
 		Rails.cache.fetch(key, options) do
 			Rails.logger.warn("Cache miss - #{key} - #{options}") if Greasyfork::Application.config.log_cache_misses
 			o = yield
