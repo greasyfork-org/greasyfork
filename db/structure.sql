@@ -306,6 +306,7 @@ CREATE TABLE `GDN_Discussion` (
   KEY `IX_Discussion_DateInserted` (`DateInserted`),
   KEY `IX_Discussion_CategoryPages` (`CategoryID`,`DateLastComment`),
   KEY `IX_Discussion_CategoryInserted` (`CategoryID`,`DateInserted`),
+  KEY `index_GDN_Discussion_on_ScriptID` (`ScriptID`),
   FULLTEXT KEY `TX_Discussion` (`Name`,`Body`)
 ) ENGINE=MyISAM AUTO_INCREMENT=36889 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1417,7 +1418,7 @@ CREATE TABLE `spammy_email_domains` (
   `domain` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `index_spammy_email_domains_on_domain` (`domain`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `syntax_highlighted_codes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1612,6 +1613,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20180506054543'),
 ('20180506151937'),
 ('20180519011340'),
-('20180531002815');
+('20180531002815'),
+('20180603023711');
 
 
