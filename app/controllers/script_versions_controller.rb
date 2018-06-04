@@ -24,6 +24,7 @@ class ScriptVersionsController < ApplicationController
 		end
 
 		@script_version = ScriptVersion.new
+
 		if !params[:script_id].nil?
 			@script = Script.find(params[:script_id]) 
 			@script_version.script = @script
@@ -152,7 +153,7 @@ class ScriptVersionsController < ApplicationController
 
 		# Don't save if this is a preview or if there's something invalid.
 		# If we're attempting to save, ensure all validations are run - short circuit the OR.
-		if !save_record or (!@script.valid? | !@script_version.valid?)
+		if !save_record || !verify_recaptcha || (!@script.valid? | !@script_version.valid?)
 
 			# Unfortunately, we can't retain what the user picked for screenshots
 			nssv = @script.get_newest_saved_script_version

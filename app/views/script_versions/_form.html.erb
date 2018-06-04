@@ -180,7 +180,9 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
 		<% end %>
 	</div>
 
+	<%= flash[:recaptcha_error] %>
+
 	<p>
-		<%=s.submit(script_version.script.new_record? ? t('scripts.post_new_script') : t('scripts.post_updated_script'))%>
+		<%= invisible_recaptcha_tags callback: 'submitInvisibleRecaptchaFormScriptVersion', text: script_version.script.new_record? ? t('scripts.post_new_script') : t('scripts.post_updated_script') %>
 	</p>
 <% end %>
