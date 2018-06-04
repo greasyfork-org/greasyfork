@@ -4,7 +4,7 @@ fr:
       script_list: "Scripts"
       forum: "Forum"
       help: "Aide"
-      sign_in: "s'identifier"
+      sign_in: "S'identifier"
       submenu: "Plus"
       advanced_search: "Recherche avancée"
       user_list: "Liste d'utilisateurs"
@@ -81,6 +81,7 @@ fr:
     delete_permanently_rejected_locked: "Ce script est verrouillé et ne peut être supprimé de façon permanente"
     admin_page: "Administrateur"
     admin:
+      title: "%{script_name} - Admin"
       promoted_heading: "Script promotionnel"
       promoted_explanation: "Après avoir installer le script, %{site_name} peut suggérer à l'utilisateur d'essayer un autre script de votre choix."
       promoted_script_label: "URL du script à promouvoir"
@@ -252,6 +253,8 @@ fr:
     search_placeholder: "Recherche de scripts"
     updated: "Script mis à jour."
     preview_additional_info: "Prévisualisation"
+    must_confirm_email: "Vous devez confirmer votre adresse email avant de poster des scripts."
+    must_confirm_email_button: "Envoyer le lien de confirmation à %{email}"
   script_sets:
     description: "Les jeux de scripts vous permettent de créer une liste personnalisée de scripts pour naviguer avec sur Greasy Fork. Vous pouvez ajouter des scripts à votre jeu en incluant des scripts individuels, des jeux d'autres utilisateurs ou des jeux générés automatiquement. Vous pouvez également exclure les scripts de votre jeu avec les mêmes méthodes."
     favorites_name: "Favoris"
@@ -438,6 +441,9 @@ fr:
       intro: "Supprimer votre compte %{site_name} '%{user_name}' aura les conséquences suivantes :"
       requires_permanent_deletion: "Avant de supprimer votre compte, vous devez demander la suppression définitive des scripts suivants :"
       password_effect: "Vous ne pourrez plus vous connecter avec votre mot de passe."
+      identities_effect:
+        one: "Se connecter via %{identities} créera un nouveau compte."
+        other: "Se connecter via %{identities} créera un nouveau compte."
       scripts_effect:
         one: "Vos %{count} scripts vont êtes supprimés."
         other: "Vos %{count} scripts vont être supprimés."
@@ -450,6 +456,7 @@ fr:
         intro: "Vous êtes sur le point de supprimer le compte '%{user_name}'. Cette action est irréversible."
         confirm: "Supprimer %{user_name}"
         cancel: "Annuler la suppresion"
+        key_mismatch: "Impossible de supprimer l'utilisateur - les clés ne correspondent pas."
         request_expired: "Suppression de l'utilisateur impossible - requête expirée"
         cancelled: "Suppression annulée"
         completed: "Votre compte a été supprimé"
@@ -577,6 +584,7 @@ fr:
       must_be_greasy_fork_script: "doit être l'URL d'un script %{site_name}"
       script_update_not_utf8: "téléchargé sur le serveur doit être du texte encodé en UTF-8"
       script_disallowed_require: "utilise un script externe non approuvé: %{code}"
+      script_rate_limit: "Vous avez atteint la limite d'envois. Essayez plus tard."
   opensearch:
     short_name: "%{site_name} recherche"
     description: "Recherche de scripts utilisateur sur %{site_name}."

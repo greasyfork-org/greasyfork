@@ -87,6 +87,7 @@ zh-TW:
       locale_example_html: "下列文字所使用的語系︰ <i>%{text}</i>"
       locale_multiple_note: "注意 %{meta_keys_link:你可以在腳本內定義不同語系的說明}。"
       update_locale: "更新語系"
+      no_moderator_logs: "管理員未對此腳本採取任何措施。"
     history_title: "%{script_name} - 版本歷史"
     history_only_code_changes_info: "這裡只顯示彼此間有代碼差異的版本。"
     history_all_changes_link: "顯示所有版本。"
@@ -259,6 +260,8 @@ zh-TW:
     search_placeholder: "搜尋腳本"
     updated: "腳本已更新。"
     preview_additional_info: "預覽"
+    must_confirm_email: "發布腳本之前，必須驗證您的電子郵件。"
+    must_confirm_email_button: "發送驗證郵件到%{email}"
   script_sets:
     description: "腳本收藏集讓你自訂一個腳本列表。你可以把單獨的腳本、其它使用者的收藏集、或自動產生的收藏集，加入包含列表。排除列表也是同樣的方式。"
     favorites_name: "我的最愛"
@@ -514,25 +517,26 @@ zh-TW:
     code_rules:
       title: "%{site_name} 的腳本規定"
       content_html: >
-          <p>這些是上傳至 %{site_name} 的腳本所必須符合的條件。這些要求是為了維護 %{site_name} 上使用者腳本的安全與可用性。任何不符合條件的腳本則可能被
-          %{site_name} 管理員刪除。</p> <ul>
+          <p>以下是關於發佈到%{site_name}的用戶腳本的一些規定。我們希望保持用戶腳本的安全和高質量。任何違反規定的腳步都會被管理員刪除。</p>
 
-          <li>腳本必須包含一份說明以描述腳本的行為，任何未註明、不合理的行為都是不允許的，使用者必須得以在安裝前瞭解腳本的行為。若腳本包含廣告或是會追蹤使用者資訊，必須在說明中註明。</li>
+          <ul>
 
-          <li>上傳至此網站的代碼不得被壓縮或混淆，必須給予使用者在安裝腳本前先檢視並瞭解腳本的權利。</li>
+          <li>腳本必須包含其描述，包括它們的用途及注意事項等。用戶在安裝腳本前，必須了解這個腳本。存在可能損害用戶利益行為（如跟蹤、廣告、挖礦）的腳本不會被禁止，但是作者必須在腳本描述中提及，並將其放在顯眼位置。</li>
 
-          <li>腳本使用到的函式庫應以 <code>@require</code> 引入，除非有技術性的理由無法這麼做。若將函式庫直接內嵌於腳本內，必須加入關於函式庫來源的資訊（例︰在註解內標示網址、函式庫名稱與版本）。</li>
+          <li>發布到此網站的代碼可能會與其他腳本混淆，用戶在安裝一個腳本之前，必須被給予機會來審查和理解這個腳本。</li>
 
-          <li>尊重他人的智慧財產權，包括腳本本身與其所用到的資源（例︰圖片）。如果你要使用他人的作品，請遵守他們的使用者條款，或先向作者取得授權。</li>
+          <li>腳本使用的資料庫必須被標示<code>@require</code>-d，除非有合法理由不這樣做。如果一個資料庫被引用在腳本內，則它必須包含這個數據庫的來源（例如URL和/或其名稱和版本）。</li>
 
-          <li>%{external_scripts_link:關於外連 JavaScript 的限制。}</li>
+          <li>您的腳本必須尊重他人的著作權，這包括腳本本身及其所使用資源（例如圖像）。如果您想要使用這些內容，需要同意作者的許可條款或預先徵得其同意。</li>
+
+          <li>%{external_scripts_link:Use of external JavaScript is limited.}</li>
 
           %{adult_content_requirement}
 
-          <li>腳本不得以一次/日以上的頻率檢查腳本更新。注意，大部份的腳本管理器都擁有自動更新腳本的功能，沒有必要在腳本中撰寫。</li>
+          <li>檢查腳本更新的頻率不會超過一次/天。絕大多數用戶腳本管理者會自動更新腳本，所以在腳本中做這些是不必要的。</li>
 
-          </ul> <p>若發現有腳本違反上述規則，請點選該腳本的反饋頁面，發起一個新討論主題，並選擇「舉報腳本」選項。</p> <p>如果您不認同上述內容，
-          %{contact_link:歡迎一起討論} ！</p>
+          </ul><p>如果您發現一個腳本中存在非法內容，請在腳本的「反饋」頁報告，開始一場議論，並點擊「舉報腳本」項。</p><p>如果您不同意以上任何規定，%{contact_link:let's
+          talk about it}！</p>
       adult_content_rule_html: "<li>腳本若是包含成人內容、或執行的網站中有成人內容，作者應將其標示正確讓使用者去選擇是否要顯示它們。</li>"
     external_scripts:
       title: "%{site_name} 對於外部程式碼的政策"
@@ -654,6 +658,15 @@ zh-TW:
     user_search:
       title: "使用者搜尋"
       description: "搜尋使用者名稱。純文字 LIKE 搜尋。"
+  moderator_logs:
+    date_column: "日期"
+    moderator_column: "管理員"
+    item_column: "項目"
+    action_column: "措施"
+    reason_column: "原因"
+    item_script_html: "腳本：%{script_link}"
+    item_deleted_script: "刪除腳本%{id}"
+    item_user_html: "用戶：%{user_link}"
   common:
     error_preamble: "您所發表的帖子內容有點問題..."
     allowed_elements_link: "(檢視允許使用的 HTML/Markdown 代碼。)"
@@ -710,6 +723,7 @@ zh-TW:
       must_be_greasy_fork_script: "必須為本站的腳本"
       script_update_not_utf8: "上傳之腳本的編碼格式須為 UTF-8"
       script_disallowed_require: "使用了未經批準的外部腳本: %{code}"
+      script_rate_limit: "超出發布限制，請稍後再試。"
   opensearch:
     short_name: "%{site_name} 搜尋"
     description: "在 %{site_name} 上尋找腳本。"
