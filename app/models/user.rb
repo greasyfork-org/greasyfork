@@ -51,7 +51,7 @@ class User < ApplicationRecord
 	strip_attributes
 
 	def discussions_on_scripts_written
-		ForumDiscussion.where(ScriptID: script_ids).order('COALESCE(DateLastComment, DateInserted) DESC')
+		ForumDiscussion.where(ScriptID: script_ids).order(Arel.sql('COALESCE(DateLastComment, DateInserted) DESC'))
 	end
 
 	def slugify(name)
