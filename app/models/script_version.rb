@@ -522,9 +522,9 @@ class ScriptVersion < ApplicationRecord
 	end
 
 	def normalize_code
+		self.code = '' if code.nil?
 		# use \n for linefeeds
-		code.gsub!("\r\n", "\n")
-		code.gsub!("\r", "\n")
+		self.code = code.gsub("\r\n", "\n").gsub("\r", "\n")
 	end
 
 	# Returns the meta for this script in a hash of key to array of values
