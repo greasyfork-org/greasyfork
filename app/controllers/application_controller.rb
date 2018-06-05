@@ -105,8 +105,15 @@ protected
 	end
 
 	def render_deleted
-		@text = 'Script has been deleted.'
-		render 'home/error', status: 403, layout: 'application'
+		respond_to do |format|
+			format.html {
+				@text = 'Script has been deleted.'
+				render 'home/error', status: 403, layout: 'application'
+			}
+			format.all {
+				head 404
+			}
+		end
 	end
 
 	def render_locked
