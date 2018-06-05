@@ -59,6 +59,11 @@ class ScriptsController < ApplicationController
 	def show
 		@script, @script_version = versionned_script(params[:id], params[:version])
 
+		if @script.locked && !(current_user == @script.user || current_user&.moderator?)
+			render_deleted
+			return
+		end
+
 		respond_to do |format|
 			format.html {
 
@@ -92,6 +97,11 @@ class ScriptsController < ApplicationController
 
 	def show_code
 		@script, @script_version = versionned_script(params[:id], params[:version])
+
+		if @script.locked && !(current_user == @script.user || current_user&.moderator?)
+			render_deleted
+			return
+		end
 
 		# some weird safari client tries to do this
 		if params[:format] == 'meta.js'
@@ -133,6 +143,11 @@ class ScriptsController < ApplicationController
 
 	def feedback
 		@script, @script_version = versionned_script(params[:id], params[:version])
+
+		if @script.locked && !(current_user == @script.user || current_user&.moderator?)
+			render_deleted
+			return
+		end
 
 		return if handle_wrong_url(@script, :id)
 
@@ -535,6 +550,11 @@ class ScriptsController < ApplicationController
 
 	def stats
 		@script, @script_version = versionned_script(params[:id], params[:version])
+
+		if @script.locked && !(current_user == @script.user || current_user&.moderator?)
+			render_deleted
+			return
+		end
 
 		return if handle_wrong_url(@script, :id)
 
