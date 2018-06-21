@@ -12,7 +12,7 @@ $Definition['RatingUpdateLabel'] = 'Zmień swoją ocenę:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = 'Brak ocen - tylko pytanie, komentarz, propozycja funkcji lub zgłoszenie błędu';
 ## Label for the radio button for reporting a script
-$Definition['RatingReport'] = '<div class="report">Zgłoś skrypt do moderatorów do usunięcia, za przykładowo:<ul><li>Malware - opisz, która część kodu jest zagrożeniem</li><li>Licencjonowanie/prawa autorskie - opisz i podrzuć link do oryginalnego źródła kodu i podrzuć jakieś inne dowody</li></ul></div>';
+$Definition['RatingReport'] = '<div class="report">Zgłoś skrypt moderatorom do usunięcia np. ze względu na:<ul><li>"malware" - opisz, które fragmenty kodu są złośliwe</li><li>licencjonowanie/prawa autorskie - opisz i wklej link do oryginalnego kodu źródłowego oraz dostarcz jakiekolwiej inne dowody</li></ul></div>';
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = 'Źle - skrypt nie działa';
 /** Label for the radio button for rating a script "OK" **/
@@ -22,11 +22,11 @@ $Definition['RatingGood'] = 'Dobrze - skrypt działa poprawnie';
 // Category name for Site Feedback
 $Definition['Categories.general.Name'] = 'Opinie o stronie';
 // Category description for Site Feedback
-$Definition['Categories.general.Description'] = 'Raporty o błędach, propozycje funkcji i inne rzeczy dot. samej strony Greasy Fork.';
+$Definition['Categories.general.Description'] = 'Raporty o błędach, propozycje funkcjonalności i inne rzeczy o dot. samej strony Greasy Fork.';
 // Category name for Development
-$Definition['Categories.script-development.Name'] = 'Rozwój';
+$Definition['Categories.script-development.Name'] = 'Pisanie skryptów';
 // Category description for Development
-$Definition['Categories.script-development.Description'] = 'Rozmowy techniczne o rozwoju skryptu użytkownika.';
+$Definition['Categories.script-development.Description'] = 'Rozmowy techniczne o rozwijaniu skryptów użytkownika.';
 // Category name for Script Creation Requests
 $Definition['Categories.script-requests.Name'] = 'Propozycje stworzenia skryptu';
 // Category description for Script Creation Requests

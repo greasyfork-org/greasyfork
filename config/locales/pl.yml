@@ -57,8 +57,9 @@ pl:
     reinstall: "Ponowna instalacja wersji %{version}"
     old_version_warning: "To nie jest aktualna wersja skryptu. Jeśli ją zainstalujesz, nie zostanie ona automatycznie zaktualizowana do nowszej. Zainstalować pomimo to?"
     promoted: "Promowane skrypty"
+    author_promoted: "Skrypt zaproponowany przez autora"
     promoted_text_html: "%{script_link}może Ci się również spodobać. "
-    library_instructions_html: "Ten skrypt nie powinien być instalowany bezpośrednio. Jest to biblioteka dla innych skyptów do włączenia z dyrektywami meta %{code}"
+    library_instructions_html: "Ten skrypt nie powinien być instalowany bezpośrednio. Jest to biblioteka dla innych skyptów do włączenia dyrektywą meta %{code}"
     deleted_notice: "Ten skrypt został usunięty."
     version_notice_html: "Stan na %{date}. Zobacz %{latest_version_link}."
     version_notice_latest_version_link: "najnowszą wersję"
@@ -88,10 +89,15 @@ pl:
     delete_permanently_rejected_locked: "Ten skrypt jest zablokowany i nie może być permanentnie usunięty"
     admin_page: "Administrator"
     admin:
+      title: "%{script_name} - Administrator"
       promoted_heading: "Promowany skrypt"
       promoted_explanation: "Po instalacji tego skryptu, %{site_name}może sugerować użytkownikowi, aby sprawdził inny skrypt, który wybierzesz."
       sync_heading: "Synchronizacja ze źródłem"
       locale_heading: "Domyślna lokalizacja"
+      locale_example_html: "Lokalizacja tego tekstu: <i>%{text}</i>"
+      locale_multiple_note: "Zauważ, że %{meta_keys_link:możesz zdefiniować wielokrotne ustawienia regionalne dla swojego skryptu}."
+      update_locale: "Zaktualizuj ustawienia regionalne"
+      no_moderator_logs: "Moderatorzy nie podjęli żadnej akcji w sprawie tego skryptu."
     history_title: "%{script_name} — historia wersji"
     history_only_code_changes_info: "To są wersje tego skryptu, gdzie kod został zaktualizowany."
     history_all_changes_link: "Pokaż wszystkie wersje."
@@ -156,6 +162,8 @@ pl:
     listing_created_feed: "Nowe skrypty"
     listing_updated_feed: "Zaktualizowanych skryptów"
     listing_none: "(brak)"
+    listing_set_locale_filter: "Wyświetlanie wyników dla wszystkich języków. %{set_filter_link:Pokaż wyniki tylko dla języka: %{language}} "
+    listing_remove_locale_filter: "Wyświetlanie wyników dla języka: %{language}. ${remove_filter_link:Pokaż wyniki dla wszystkich języków.}"
     import: "Importuj skrypty"
     new: "Udostępnij skrypt"
     support_site: "Odwiedź stronę pomocy autora tego skryptu."
@@ -195,6 +203,7 @@ pl:
     warning_namespace_missing_generate_automatically_html: "Wygenerować <code>@namespace</code> automatycznie?"
     warning_namespace_changed_html: "Twój <code> @namespace </ code> nie zmieniło. Spójne <code> @namespace </ code> pozwala użytkownikom ponownie zainstalować skrypt, aby go zaktualizować."
     warning_potentially_minified_html: "Skrypt wygląda może on zawierać minified (z kompresją) kod. Jeśli używasz minified biblioteki, należy zamiast <code> @require </ code> to z %{allowed_requires_link} wymaga dozwolone. Skrypty z kodem minified podlegają usunięciu."
+    warning_automatic_sensitive_html: "Twój skrypt jest przeznaczony dla %{sensitive_domains} i będzie oznaczony jako zawartość dla osób dorosłych."
     warning_potentially_minified_allowed_requires_link: "jedno z tych miejsc"
     additional_info_locale_prompt: "(wybierz język)"
     additional_info_add_localized: "Dodaj dodatkową zlokalizowaną informację"
@@ -232,6 +241,9 @@ pl:
     write_your_own_html: "%{post_a_script_link} (lub %{learn_to_write_scripts_link})"
     post_a_script_link_text: "Udostępnij skrypt, który piszesz"
     learn_to_write_scripts_link_text: "dowiedz się, jak go napisać"
+    feedback_suggestion: "Zadaj pytanie, udostępnij recenzję lub zgłoś skrypt na %{site_name}."
+    feedback_suggestion_with_support_site: "%{support_url:Odwiedź stronę autora w celu uzyskania wsparcia} albo %{feedback_link:zadaj pytanie, udostępnij recenzję albo zgłoś skrypt na %{site_name}}."
+    feedback_suggestion_with_support_email: "%{support_url:Wyślij email autorowi w celu wsparcia} albo %{feedback_link:zadaj pytanie, udostępnij opinię lub zgłoś skrypt na %{site_name}}."
     approve_redistribution_explanation: "%{site_name} może przekazywać innym stronom, że zezwalasz im na używanie Twojego skryptu. To może być lub nie być dozwolone przez licencję, której używasz w swoim skrypcie."
     approve_redistribution_use_user_setting: "Użyj mojego domyślnego konta (%{user_setting})"
     approve_redistribution_use_user_setting_not_set: "Nie zdefiniowano"
@@ -260,6 +272,8 @@ pl:
     search_placeholder: "Szukaj skryptów"
     updated: "Skrypt zaktualizowany."
     preview_additional_info: "Podgląd"
+    must_confirm_email: "Musisz potwierdzić swój email zanim zaczniesz udostępniać skrypty."
+    must_confirm_email_button: "Wyślij link potwierdzający na adres %{email}"
   script_sets:
     description: "Zestawy skryptów umożliwiają Ci stworzenie zmodyfikowanej listy skryptów do przeglądania Greasy Fork'a. Możesz dodać skrypty do Twojego zestawu poprzez dołączanie pojedynczych skryptów, zestawów innych użytkowników lub automatycznie generowanych zestawów. Możesz także usunąć skrypty z Twojego zestawów w taki sam sposób."
     favorites_name: "Ulubione"
@@ -345,6 +359,35 @@ pl:
     explain_user_scripts_html: "Skrypty użytkownika pozwalają kontrolować twoje doświadczenie przeglądania stron internetowych. Po zainstalowaniu, automatycznie czynią strony lepszymi poprzez dodanie nowych funkcji, sprawiając, że korzysta się z nich łatwiej lub usuwają niechciane treści z odwiedzanych stron. Skrypty użytkownika na %{site_name} zostały napisane przez innych użytkowników i zamieszczone, by podzielić się nimi ze światem. Są darmowe i łatwe w użyciu."
     installing_step1_header: "Krok 1: zainstaluj menedżera skryptów"
     installing_step1_caption: "Tampermonkey na Chrome"
+    installing_step1_description_html: >
+        <p>Aby korzystać ze skryptów użytkownika musisz najpierw zainstalować menedżera
+        skryptów. To, którego menedżera możesz używać, zależy od posiadanej przez
+        Ciebie przeglądarki.</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> or %{chrome_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
+        or %{firefox_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} or %{opera_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla: (nie jest wymagane dodatkowe oprogramowanie)</li>
+
+        <li>AdGuard: (nie jest wymagane dodatkowe oprogramowanie)</li>
+
+        </ul>
     installing_step2_header: "Krok 2: zainstaluj skrypt użytkownika"
     installing_step2_caption: "Przycisk 'zainstaluj skrypt użytkownika'"
     installing_step2_description_html: >
@@ -459,8 +502,11 @@ pl:
       submit: "Usuń konto"
       confirmation_email_sent: "Email z potwierdzeniem usunięcia został wysłany."
       confirmation:
+        intro: "Zamierzasz usunąć konto '%{user_name}'. To działanie jest nieodwracalne."
         confirm: "Usuń '%{user_name}'"
         cancel: "Anuluj usuwanie"
+        cancelled: "Usunięcie anulowane."
+        completed: "Twoje konto zostało usunięte."
   help:
     installing_user_scripts:
       title: 'Jak zainstalować skrypty użytkownika'
@@ -633,7 +679,10 @@ pl:
   moderator_logs:
     date_column: "Data"
     moderator_column: "Moderator"
+    action_column: "Akcja"
     reason_column: "Powód"
+    item_script_html: "Skrypt: %{script_link}"
+    item_deleted_script: "Usunięto skrypt %{id}"
     item_user_html: "Użytkownik: %{user_link}"
   common:
     error_preamble: "Mieliśmy małe problemy z tym, co chciałeś napisać..."
@@ -691,6 +740,7 @@ pl:
       must_be_greasy_fork_script: "musi być adresem URL dla skryptu na %{site_name}u"
       script_update_not_utf8: "wymaga kodowania UTF-8"
       script_disallowed_require: "używa niezatwierdzonego zewnętrznego skryptu: %{code}"
+      script_rate_limit: "Przekroczono limit udostępniania. Spróbuj ponownie później."
   opensearch:
     short_name: "%{site_name} wyszukaj"
     description: "Szukaj skryptów użytkownika na %{site_name}."
