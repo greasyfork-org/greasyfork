@@ -747,36 +747,6 @@ private
 		return false
 	end
 
-	def get_script_from_input(v)
-		return nil if v.blank?
-
-		replaced_by = nil
-		script_id = nil
-		# Is it an ID?
-		if v.to_i != 0
-			script_id = v.to_i
-		# A non-GF URL?
-		elsif !v.start_with?('https://greasyfork.org/')
-			return :non_gf_url
-		# A GF URL?
-		else
-			url_match = /\/scripts\/([0-9]+)(\-|$)/.match(v)
-			return :non_script_url if url_match.nil?
-			script_id = url_match[1]
-		end
-
-		# Validate it's a good replacement
-		begin
-			script = Script.find(script_id)
-		rescue ActiveRecord::RecordNotFound
-			return :not_found
-		end
-
-		return :deleted unless script.script_delete_type_id.nil?
-
-		return script
-	end
-
 	def cache_request(response_body)
 		# Cache dir + request path without leading slash. Ensure it's actually under the cache dir to prevent
 		# directory traversal.

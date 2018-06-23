@@ -20,6 +20,7 @@ class Script < ActiveRecord::Base
 	has_many :localized_descriptions, -> {where(:attribute_key => 'description')}, :class_name => 'LocalizedScriptAttribute'
 	has_many :localized_additional_infos, -> {where(:attribute_key => 'additional_info')}, :class_name => 'LocalizedScriptAttribute'
 	has_many :compatibilities, autosave: true, dependent: :destroy
+	has_many :script_reports, inverse_of: :script
 
 	has_one :syntax_highlighted_code, dependent: :destroy
 
@@ -51,6 +52,7 @@ class Script < ActiveRecord::Base
 	scope :libraries, ->(script_subset) {active(script_subset).where(:script_type_id => 3)}
 	scope :listable_including_libraries, ->(script_subset) {active(script_subset).where(script_type_id: [1,3])}
 	scope :reported, -> { not_deleted.joins('JOIN GDN_Discussion ON scripts.id = ScriptID AND Rating = 1 AND Closed = 0').includes(:user).order('GDN_Discussion.DiscussionID') }
+	scope :reported_unauthorized, -> { includes(:script_reports).where(script_reports: {resolved: false}) }
 	scope :reported_not_adult, -> {not_deleted.includes(:user).where('not_adult_content_self_report_date IS NOT NULL')}
 	scope :requested_permanent_deletion, -> {where('permanent_deletion_request_date is not null')}
 	scope :for_all_sites, -> {includes(:script_applies_tos).references(:script_applies_tos).where('script_applies_tos.id IS NULL')}

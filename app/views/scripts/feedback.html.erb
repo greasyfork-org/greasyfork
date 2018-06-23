@@ -72,3 +72,14 @@ if @script.discussions.length > 10 %>
 		<%=link_to(t('scripts.feedback_sign_in_to_favorite'), new_user_session_path(:return_to => url_for(:anchor => 'feedback-favoriters')), {:rel => :nofollow})%>
 	<% end %>
 </p>
+
+<h3>Reports</h3>
+
+<p>
+	<% if @script.script_reports.none? %>
+		No reports have been posted about this script.
+	<% else %>
+		<%= link_to 'This script has been reported as containing unauthorized code.', script_script_reports_path(@script), rel: :nofollow %>
+	<% end %>
+	<%= link_to 'Report this script.', new_script_script_report_path(@script), rel: :nofollow %>
+</p>

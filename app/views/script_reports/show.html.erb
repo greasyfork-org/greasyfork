@@ -1,0 +1,70 @@
+<%- title 'Report script' %>
+
+<p><%= link_to "#{site_name}'s rules", help_code_rules_path %> state that scripts' copyright and licenses must be respected. <%= link_to @script_report.script.name(I18n.locale), @script_report.script %> by <%= link_to @script_report.script.user.name, @script_report.script.user %> has been reported as an unauthorized copy of <%= link_to @script_report.reference_script.name(I18n.locale), @script_report.reference_script %> by <%= link_to @script_report.reference_script.user.name, @script_report.reference_script.user %> on <%= @script_report.created_at %>.</p>
+
+<p><%= link_to @script_report.reference_script.user.name, @script_report.reference_script.user %> says the following content was copied: "<i><%= @script_report.copy_details %></i>". This additional info was provided: "<i><%= @script_report.additional_info %></i>".</p>
+
+<% if @script_report.rebuttal.present? %>
+  <p><%= link_to @script_report.script.user.name, @script_report.script.user %> has responded: "<i><%= @script_report.rebuttal %></i>"
+<% else %>
+  <p><%= link_to @script_report.script.user.name, @script_report.script.user %> has not yet responded to this report.
+<% end %>
+
+<hr>
+
+<% if @script_report.dismissed? %>
+
+  <p>Report has been dismissed by moderators.</p>
+
+<% elsif @script_report.resolved? %>
+
+  <p>Script has been deleted.</p>
+
+<% elsif current_user == @script_report.script.user %>
+  <p>As the author of <%= link_to @script_report.script.name(I18n.locale), @script_report.script %>, you can choose to delete your script or to submit a rebuttal. If you choose to submit a rebuttal, it will be reviewed by a moderator and a decision will be made.</p>
+  <%= form_with(model: @script_report, url: rebut_script_script_report_path(@script_report.script, @script_report), method: :patch, local: true) do |f| %>
+    <div class="form-control">
+      <%= f.label :rebuttal %><br>
+      <span class="label-note">Include reasoning and evidence and avoid personal attacks.</span>
+      <%= f.text_area :rebuttal %>
+    </div>
+    <%= f.submit @script_report.rebuttal.present? ? 'Update rebuttal' : 'Submit rebuttal' %>
+  <% end %>
+  
+  <%= form_with(model: @script_report, url: resolve_delete_script_script_report_path(@script_report.script, @script_report), method: :patch, local: true, html: {style: 'margin-top: 1em'}) do |f| %>
+    <div class="form-control">
+      <%= label_tag 'Delete script' %>
+    </div>
+    <p>This cannot be undone.</p>
+    <%= f.submit 'Delete script' %>
+  <% end %>
+
+<% elsif current_user&.moderator? %>
+
+  <% if current_user == @script_report.script.user || current_user == @script_report.reference_script.user %>
+
+    <p>You cannot moderate a report you are involved in.</p>
+
+  <% else %>
+
+    <%= form_with(model: @script_report, url: dismiss_script_script_report_path(@script_report.script, @script_report), method: :patch, local: true, html: {style: 'margin-top: 1em'}) do |f| %>
+      <div class="form-control">
+        <%= label_tag 'Dismiss report' %>
+      </div>
+      <p>Dismiss the report if it has no merit - the script is not an unauthorized copy.</p>
+      <%= f.submit 'Dismiss report' %>
+    <% end %>
+
+    <%= form_with(model: @script_report, url: resolve_delete_script_script_report_path(@script_report.script, @script_report), method: :patch, local: true, html: {style: 'margin-top: 1em'}) do |f| %>
+      <div class="form-control">
+        <%= label_tag 'Delete script' %>
+      </div>
+      <p>Delete the script if you find it indeed is an unauthorized copy.</p>
+      <%= f.submit 'Delete script' %>
+    <% end %>
+
+  <% end %>
+
+<% else %>
+  <p>This report will be reviewed by a moderator.</p>
+<% end %>

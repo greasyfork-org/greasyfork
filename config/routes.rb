@@ -89,6 +89,7 @@ Rails.application.routes.draw do
 				# :site can contain a dot, make sure site doesn't eat format or vice versa
 				get 'by-site/:site(.:format)', :action => 'index', :as => 'by_site', :constraints => {:site => /.*?/, :format => /|html|atom|json|jsonp/}
 				get 'reported(.:format)', :action => 'reported', :as => 'reported'
+				get 'reported-unauthorized(.:format)', :action => 'reported_unauthorized', :as => 'reported_unauthorized'
 				get 'reported_not_adult(.:format)', :action => 'reported_not_adult', :as => 'reported_not_adult'
 				get 'requested_permanent_deletion(.:format)', :action => 'requested_permanent_deletion', :as => 'requested_permanent_deletion'
 				get 'libraries(.:format)', :action => 'libraries', :as => 'libraries'
@@ -101,6 +102,14 @@ Rails.application.routes.draw do
 			resources :script_versions, :only => [:create, :new, :index], :path => 'versions' do
 				get 'delete(.:format)', :to => 'script_versions#delete', :as => 'delete'
 				post 'delete(.:format)', :to => 'script_versions#do_delete', :as => 'do_delete'
+			end
+
+			resources :script_reports, path: 'reports', only: [:new, :create, :show, :index] do
+				member do
+					patch :rebut
+					patch :resolve_delete
+					patch :dismiss
+				end
 			end
 		end
 		resources :script_versions, :only => [:create, :new]

@@ -45,12 +45,23 @@ show_report_thread = defined?(show_report_thread) && show_report_thread
 			<dd class="script-list-updated-date"><span><%=markup_date(script.code_updated_at)%></span></dd>
 		</dl>
 		<% if show_report_thread %>
-			Report threads:
-			<ul>
-				<% script.discussions.reports.each do |discussion| %>
-					<li><%= link_to(discussion.unescaped_name, discussion.url) %><% if discussion.original_poster %> by <%=link_to(discussion.original_poster.name, discussion.original_poster) %><% end %></li>
-				<% end %>
-			</ul>
+			<% if script.discussions.reports.any? %>
+				Report discussions:
+				<ul>
+					<% script.discussions.reports.each do |discussion| %>
+						<li><%= link_to(discussion.unescaped_name, discussion.url) %><% if discussion.original_poster %> by <%=link_to(discussion.original_poster.name, discussion.original_poster) %><% end %></li>
+					<% end %>
+				</ul>
+			<% end %>
+			<% if script.script_reports.any? %>
+				<ul>
+					<% script.script_reports.each do |report| %>
+						<li>
+							<%= link_to report.reference_script.name(I18n.locale), report.reference_script %> - 
+							<%= link_to 'View report', script_script_report_path(report.script, report) %>
+						</li>
+					<% end %>
+			<% end %>
 		<% end %>
 	</article>
 </li>

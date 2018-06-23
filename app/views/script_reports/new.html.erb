@@ -1,0 +1,54 @@
+<%- title 'Report script' %>
+
+<p>This page is for reporting cases where one script (the "unauthorized script") copies the content from another one (the "originating script") without permission. This page can only be used if all of the following are true:</p>
+
+<ul>
+  <li>The "originating script" license does not permit copies, or the "originating script"'s conditions for copying are not being followed by the "unauthorized script". (Consider <%= link_to 'specifying a license on your script', help_meta_keys_path(anchor: 'meta-license') %> to make clear what is allowed.)</li>
+  <li>The "originating script" is posted on <%= site_name %>.</li>
+  <li>The "originating script" was posted on <%= site_name %> prior to the "unauthorized script".</li>
+  <li>You are the author of the "originating script".</li>
+</ul>
+
+<p>If any of these are not the case, or if you would like to report this script for a different reason, <a href="<%=forum_path%>post/discussion?script=<%=@script.id%>" rel="nofollow">submit a report on the forum.</a></p>
+
+<p>A notice will be sent to the author of the "unauthorized script" and they will be given the opportunity to rebut your claims. A moderator will then decide whether to delete the "unauthorized script".</p>
+
+<p>Note that repeated unfounded claims of unauthorized scripts may result in a ban from <%= site_name %>.</p>
+
+<hr>
+
+<% if @script_report.errors.any? %>
+  <div class="alert">
+    <p><%=t('common.error_preamble')%></p>
+    <ul class="errors">
+      <% @script_report.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_with(model: @script_report, url: script_script_reports_path(@script), method: :post, local: true) do |f| %>
+  <div class="form-control">
+    <label>Unauthorized script</label><br>
+    <%= link_to @script.name(I18n.locale), @script %>
+  </div>
+
+  <div class="form-control">
+    <%= label_tag :reference_script, 'Originating script' %><br>
+    <%= f.url_field :reference_script, value: f.object.reference_script ? script_url(f.object.reference_script) : nil, required: true, placeholder: "URL on #{site_name}" %>
+  </div>
+
+  <div class="form-control">
+    <%= f.label :copy_details, 'Details of code copied' %><br>
+    <span class="label-note">Which parts of the script were copied (e.g. entire script, or use line numbers)?</span>
+    <%= f.text_area :copy_details, required: true %>
+  </div>
+
+  <div class="form-control">
+    <%= f.label :additional_info, 'Additional info for moderators' %><br>
+    <%= f.text_area :additional_info %>
+  </div>
+  
+  <%= f.submit 'Submit report' %>
+<% end %>
