@@ -10,12 +10,14 @@
 
 	<section>
 		<% if !@set.errors.empty? %>
-			<p><%=t('common.error_preamble')%></p>
-			<ul class="errors">
-				<% @set.errors.full_messages.each do |m| %>
-					<li><%=m%></li>
-				<% end %>
-			</ul>
+			<div class="alert">
+				<p><%=t('common.error_preamble')%></p>
+				<ul class="errors">
+					<% @set.errors.full_messages.each do |m| %>
+						<li><%=m%></li>
+					<% end %>
+				</ul>
+			</div>
 		<% end %>
 
 		<% if @set.favorite %>
@@ -257,5 +259,14 @@
 	<% end %>
 
 	<input type="hidden" name="favorite" value="<%=@set.favorite ? '1' : '0'%>">
-	<button name="save" value="1"><%=t('script_sets.save')%></button>
+
+	<%= flash[:recaptcha_error] %>
+
+	<% if @set.new_record? %>
+		<input id="save-indicator" type="hidden" name="save">
+		<%= invisible_recaptcha_tags callback: 'submitInvisibleRecaptchaFormScriptSet', text: t('script_sets.save') %>
+	<% else %>
+		<button name="save" value="1"><%=t('script_sets.save')%></button>
+	<% end %>
+
 <% end %>

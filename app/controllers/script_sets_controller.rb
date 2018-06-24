@@ -224,7 +224,8 @@ private
 			set.errors.add(:base, err)
 		end
 
-		if set.errors.empty? and params[:save] == '1'
+		# Require recaptcha for creating non-favourite new sets
+		if set.errors.empty? && params[:save] == '1' && (!set.new_record? || set.favorite || verify_recaptcha)
 			set.save
 			redirect_to set.user
 			flash[:notice] = I18n.t("script_sets.saved")
