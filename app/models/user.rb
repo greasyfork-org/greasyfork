@@ -87,7 +87,7 @@ class User < ApplicationRecord
 	end
 
 	def pretty_signin_methods
-		return self.identity_providers_used.map{|p| Identity.pretty_provider(p)}
+		return identity_providers_used.map{|p| Identity.pretty_provider(p)}.compact
 	end
 
 	def identity_providers_used
