@@ -4,6 +4,14 @@
 
 <p><%= link_to @script_report.reference_script.user.name, @script_report.reference_script.user %> says the following content was copied: "<i><%= @script_report.copy_details %></i>". This additional info was provided: "<i><%= @script_report.additional_info %></i>".</p>
 
+<div class="report-diff">
+  <% if @diff.nil? %>
+    <p>The scripts are identical.</p>
+  <% else %>
+    <%= @diff %>
+  <% end %>
+</div>
+
 <% if @script_report.rebuttal.present? %>
   <p><%= link_to @script_report.script.user.name, @script_report.script.user %> has responded: "<i><%= @script_report.rebuttal %></i>"
 <% else %>

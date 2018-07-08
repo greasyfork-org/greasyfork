@@ -33,6 +33,11 @@ class ScriptReportsController < ApplicationController
 
   def show
     @script_report = @script.script_reports.find(params[:id])
+    original_code = @script_report.reference_script.script_versions.last.code
+    new_code = @script_report.script.script_versions.last.code
+    if original_code != new_code
+      @diff = Diffy::Diff.new(original_code, new_code, include_plus_and_minus_in_html: true).to_s(:html).html_safe
+    end
   end
 
   def rebut
