@@ -63,6 +63,7 @@ class ScriptReportsController < ApplicationController
       render_access_denied
       return
     end
+    @script_report = @script.script_reports.find(params[:id])
     if current_user&.moderator? && @script_report.reference_script.user == current_user
       # Can't delete if you are the reporter.
       render_access_denied
