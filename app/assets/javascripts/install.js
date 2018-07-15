@@ -14,7 +14,8 @@
 			var xhr = new XMLHttpRequest();
 			xhr.open("POST", event.target.getAttribute("data-ping-url"), true);
 			xhr.overrideMimeType("text/plain");
-			xhr.send();
+			// Seems to send more consistently on a timeout
+			setTimeout(function() {xhr.send()}, 100);
 
 			setTimeout(showPostInstall, 2000);
 		});
