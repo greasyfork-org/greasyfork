@@ -43,6 +43,10 @@ id:
     update: "Perbarui ke versi %{version}"
     downgrade: "Turunkan ke versi %{version}"
     reinstall: "Pasang ulang versi %{version}"
+    old_version_warning: "Ini bukan skrip versi terbaru. jika kamu pasang, kamu tidak akan pernah memperbarui ke versi terbaru. tetap pasang?"
+    promoted: "Skrip dipromosikan"
+    author_promoted: "Sugesti pemilik skrip"
+    promoted_text_html: "Kamu mungkin juga suka %{script_link}."
     library_instructions_html: "Skrip ini tidak untuk dipasang secara langsung. Ini adalah pustaka skrip lain untuk disertakan dengan direktif meta %{code}"
     deleted_notice: "Skrip ini telah dihapus."
     version_notice_html: "Pada tanggal %{date}. Lihat %(latest_version_link)."
@@ -71,6 +75,9 @@ id:
     cancel_delete_permanently_submit: "Batalkan permintaan penghapusan permanen"
     cancel_delete_permanently_notice: "Permintaan penghapusan permanen Anda telah dibatalkan."
     delete_permanently_rejected_locked: "Skrip ini sedang dikunci dan tidak dapat dihapus secara permanen"
+    admin:
+      promoted_heading: "Skrip dipromosikan"
+      promoted_script_label: "URL skrip untuk dipromosikan"
     history_title: "%{script_name} - Riwayat versi"
     history_only_code_changes_info: "Ini adalah versi dari skrip ini yang kodenya telah diperbarui."
     history_all_changes_link: "Tampilkan semua versi."
@@ -231,6 +238,7 @@ id:
     libraries_title: "Pustaka"
     by_site_list_filter: "Saring menurut nama situs:"
     search_placeholder: "Cari Skrip"
+    updated: "Skrip diperbarui"
   script_sets:
     favorites_name: "Favorit"
     delete: "Hapus set skrip"
@@ -238,6 +246,20 @@ id:
     site_default_sort: "(Bawaan situs)"
     edit_scripts:
       heading: "Skrip"
+      remove_included: "Hilangkan yang dipilih"
+      remove_excluded: "Hilangkan yang dipilih"
+    edit_sets:
+      remove_included: "Hilangkan yang dipilih"
+      remove_excluded: "Hilangkan yang dipilih"
+    edit_auto_sets:
+      remove_included: "Hilangkan yang dipilih"
+      all_scripts_label: "Semua skrip"
+    calculated_list: "Menghitung daftar skrip"
+    save: "Simpan"
+    saved: "Skrip disimpan"
+    auto_set_types:
+      all_scripts: "Semua skrip"
+      all_sites: "Semua situs"
   forum_discussions:
     listing_no_script_no_reply_html: "%{discussion_link} oleh %{original_poster_link} %{original_post_date}"
     listing_no_script_with_reply_html: "%{discussion_link} oleh %{original_poster_link} %{original_post_date}, komentar terakhir oleh %{last_commenter_link} %{last_comment_date}"
@@ -248,8 +270,10 @@ id:
     welcome: "Selamat datang di %{site_name}, situs untuk semua skrip."
     sleazy_title: "%{site_name} - skrip konten dewasa yang aman dan berguna"
     sleazy_welcome: "Selamat datang di %{site_name}, situs untuk skrip konten dewasa."
+    scripts_for_label: "Skrip untuk"
     explain_user_scripts_heading: "Apakah itu skrip pengguna?"
     explain_user_scripts_html: "Skrip membantu Anda mengontrol pengalaman menjelajah internet. Sekali dipasang, mereka secara otomatis membuat situs yang Anda kunjungi lebih baik dengan menambahkan fitur, membuat situs lebih mudah digunakan, atau menyingkirkan hal-hal yang mengganggu. Skrip pada situs %{site_name} dibuat oleh pengguna lainnya dan dikirimkan untuk dibagikan ke seluruh dunia. Mereka gratisdan bebas untuk dipasang dan mudah digunakan."
+    installing_step1_caption: "Tampermonkey di Chrome"
   users:
     sign_in_title: "Masuk ke %{site_name}"
     sign_in_description: "Masuk ke %{site_name} memungkinkan anda mengirimkan skrip dan memberi umpanbalik pada skrip lain. Anda tidak perlu masuk untuk menjelajah atau memasang skrip."
@@ -313,6 +337,8 @@ id:
     listing_new_scripts: "Skrip baru"
     listing_updated_scripts: "Skrip terbaru"
     listing_registration_date: "Tanggal pendaftaran"
+    listing_title: "Pengguna"
+    search_placeholder: "Cari pengguna"
     locale_prompt: "(Pilih lokal)"
     show_ads_description: "Dukung %{site_name} dengan mengizinkannya menampilkan iklan"
     show_sensitive_description: "Tampilkan skrip dengan konten dewasa"
@@ -323,7 +349,19 @@ id:
     approve_redistribution_false: "Saya tidak ingin skrip saya dikirim ulang ke situs lain"
     greasy_fork_scripts_link:
       other: "%{user_name} juga memiliki %{count} skrip di Greasy Fork."
+    delete_link: "Hapus akun"
+    delete:
+      requires_permanent_deletion: "Sebelum menghapus akunmu, kamu harus meminta penghapusan permanen dari skrip yang bersangkutan"
+      submit: "Hapus akun"
+      confirmation_email_sent: "Email konfirmasi penghapusan telah dikirim"
+      confirmation:
+        confirm: "Hapus ' %{user_name}'"
+        cancel: "Batalkan Penghapusan"
+        cancelled: "Penghapusan dibatalkan"
+        completed: "Akunmu telah dihapus"
   help:
+    installing_user_scripts:
+      title: 'Bagaimana cara memasang skrip pengguna'
     meta_keys:
       title: "Kunci meta skrip dibaca oleh %{site_name}"
       intro_html: "Berikut adalah daftar <a href=\"http://wiki.greasespot.net/Metadata_Block\">kunci meta skrip</a> yang %{site_name} akan baca. Kunci di luar daftar ini boleh disertakan dalam skrip, dan akan tersedia dalam skrip yang terpasang, tetapi tidak akan memiliki pengaruh pada UI %{site_name}."
@@ -367,6 +405,15 @@ id:
       title: "Hubungi seseorang"
     privacy_policy:
       title: "Kebijakan privasi"
+  search:
+    code_search:
+      title: "Kode pencarian"
+  moderator_logs:
+    date_column: "Tanggal"
+    reason_column: "Alasan"
+    item_script_html: "Skrip: %{script_link}"
+    item_deleted_script: "Skrip terhapus %{id}"
+    item_user_html: "Pengguna: %{user_link}"
   common:
     error_preamble: "Ada beberapa masalah dengan apa yang anda kirimkan..."
     allowed_elements_link: "(Lihat kode yang diizinkan.)"
@@ -381,6 +428,7 @@ id:
     expander_show_more: "Tampilkan lebih banyak"
     expander_show_less: "Tampilkan lebih sedikit"
     advertisement_note: Periklanan
+    write_tab: Tulis
   activerecord:
     attributes:
       user:
@@ -404,6 +452,9 @@ id:
         screenshot_caption: "Keterangan"
         replaced_by_script_id: "Skrip pengganti"
         approve_redistribution: "Penyebarluasan"
+      script_set:
+        name: "Nama"
+        description: "Deskripsi"
   errors:
     messages:
       script_missing_name: "dibutuhkan - tetapkan satu dengan @name"
@@ -413,6 +464,7 @@ id:
       script_too_many_screenshots: "Terlalu banyak tangkapan layar disertakan - maksimal %{number}"
       cannot_be_self_reference: "tidak boleh skrip yang sama"
       cannot_be_deleted_reference: "tidak boleh skrip yang telah dihapus"
+      cannot_be_used_with_this_script: "Tidak dapat digunakan dengan skrip ini"
       must_be_greasy_fork_script: "harus URL untuk skrip di %{site_name}"
       script_update_not_utf8: "pengunggahan harus format teks UTF-8"
       script_disallowed_require: "menggunakan skrip eksternal yang tidak disetujui: %{code}"

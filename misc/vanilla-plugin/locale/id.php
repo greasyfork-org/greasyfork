@@ -22,7 +22,7 @@ $Definition['RatingGood'] = 'Baik - skrip bekerja dengan baik';
 // Category name for Site Feedback
 $Definition['Categories.general.Name'] = 'Umpanbalik Situs';
 // Category description for Site Feedback
-$Definition['Categories.general.Description'] = 'Laporan kutu, permintaan fitur, dan hal lain mengenai Greasy Fork itu sendiri.';
+$Definition['Categories.general.Description'] = 'Laporan kesalahan, permintaan fitur, dan hal lain mengenai Greasy Fork itu sendiri.';
 // Category name for Development
 $Definition['Categories.script-development.Name'] = 'Pengembangan';
 // Category description for Development
