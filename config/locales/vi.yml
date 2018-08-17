@@ -149,6 +149,8 @@ vi:
     listing_created_feed: "Scripts mới"
     listing_updated_feed: "Scripts đã cập nhật"
     listing_none: "(Rỗng)"
+    listing_set_locale_filter: "Đang hiển thị kết quả cho tất cả ngôn ngữ. %{set_filter_link:Chỉ hiển thị %{language} kết quả.}"
+    listing_remove_locale_filter: "Đang hiển thị kết quả cho %{language}. %{remove_filter_link:Hiển thị kết quả cho mọi ngôn ngữ.}"
     import: "Nhập script"
     new: "Đăng một script"
     support_site: "Ghé thăm trang hỗ trợ của tác giả."
@@ -342,6 +344,35 @@ vi:
     explain_user_scripts_html: "Script của người dùng giúp bạn có những trải nghiệm mới với trình duyệt.Khi được cài đặt, chúng biến những trang bạn truy cập duyệt vời hơn bằng việc thêm những tính năng mới, dễ sử dụng hơn hay loại bỏ những chi tiết làm bạn khó chịu. Script trên %{site_name} được viết bởi những người dùng khác và được đăng để chia sẻ vpis mọi người. Chúng hoàn toàn miễn phis và dễ sử dụng."
     installing_step1_header: "Bước 1: cài đặt một bộ quản lý script người dùng"
     installing_step1_caption: "Tampermonkey trên Chrome"
+    installing_step1_description_html: >
+        <p>Để sử dụng các script, trước tiên bạn cần cài đặt một trình quản lý script.
+        Trình quản lý script mà bạn có thể sử dụng phụ thuộc vào trình duyệt mà bạn
+        sử dụng.</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> hoặc %{chrome_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
+        hoặc %{firefox_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} hoặc %{opera_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla: (không cần trình quản lý bổ sung)</li>
+
+        <li>AdGuard: (không cần trình quản lý bổ sung)</li>
+
+        </ul>
     installing_step2_header: "Bước 2: cài đặt một script người dùng"
     installing_step2_caption: "Nút cài đặt của một script người dùng"
     installing_step2_description_html: >
@@ -436,6 +467,26 @@ vi:
     greasy_fork_scripts_link:
       other: "%{user_name} cũng có  %{count} script trên Greasy Fork."
     delete_link: "Xoá tài khoản"
+    delete:
+      password_effect: "Bạn sẽ không thể đăng nhập bằng mật khẩu của mình"
+      identities_effect:
+        other: "Đăng nhập với %{identities}sẽ tạo tài khoản mới"
+      scripts_effect:
+        other: "%{count}script của bạn sẽ bị xoá"
+      script_sets_effect:
+        other: "%{count}bộ script của bạn sẽ bị xoá"
+      email_confirmation: "tTrước khi xoá tài khoản của bạn, %{site_name}sẽ gửi một email đến %{email}để xác thực yêu cầu của bạn."
+      submit: "Xoá tài khoản"
+      confirmation_email_sent: "Email xác nhận xoá tài khoản đã được gửi đi"
+      confirmation_email:
+        subject: "Xác nhận xoá tài khoản %{site_name}"
+      confirmation:
+        confirm: "Xoá '%{user_name}'"
+        cancel: "Huỷ xoá"
+        key_mismatch: "Không thể xoá người dùng dùng - khoá không khớp"
+        request_expired: "Không thể xoá người dùng - yêu cầu đã hết hạn"
+        cancelled: "Đã huỷ xoá"
+        completed: "Tài khoản của bạn đã bị xoá"
   help:
     installing_user_scripts:
       title: 'Làm sao để cài đặt các user script?'
@@ -500,6 +551,7 @@ vi:
   moderator_logs:
     date_column: "Ngày"
     moderator_column: "Quản lý"
+    item_column: "Phần tử"
     action_column: "Hành động"
     reason_column: "Lý do"
     item_script_html: "Script: %{script_link}"

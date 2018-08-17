@@ -5,6 +5,11 @@ nb:
       forum: "Forum"
       help: "Hjelp"
       sign_in: "Logg inn"
+      submenu: "Mer"
+      advanced_search: "Avansert søk"
+      user_list: "Brukerliste"
+      libraries: "Biblioteker"
+      moderator_log: "Moderatorloggbok"
   helpers:
     application:
       time_ago:
@@ -39,6 +44,13 @@ nb:
     install: "Installer dette scriptet"
     install_help: "?"
     install_help_title: "Hvordan installere"
+    update: "Oppdater til versjon %{version}"
+    downgrade: "Nedgrader til versjon %{version}"
+    reinstall: "Re-installer versjon %{version}"
+    old_version_warning: "Dette er ikke den nyeste versjonen av dette skriptet. Dersom du installerer den, vil du aldri bli oppdatert til dens nyere versjoner. Vil du installere den likevel?"
+    promoted: "Fremhevet skript"
+    author_promoted: "Skaperens foreslåtte skript"
+    promoted_text_html: "Du vil kanskje også like %{script_link}."
     library_instructions_html: "Dette scriptet burde ikke installeres direkte. Det er et bibliotek for andre script å inkludere med det nye metadirektivet %{code}"
     deleted_notice: "Dette scriptet har blitt slettet."
     version_notice_html: "Fra %{date}. Se %{latest_version_link}."
@@ -67,6 +79,19 @@ nb:
     cancel_delete_permanently_submit: "Avbryt forespørsel om permanent sletting"
     cancel_delete_permanently_notice: "Din forespørsel om permanent sletting har blitt avbrutt."
     delete_permanently_rejected_locked: "Skriptet er låst og kan ikke bli slettet permanent"
+    admin_page: "Admin"
+    admin:
+      title: "%{script_name} - Admin"
+      promoted_heading: "Fremhevet skript"
+      promoted_explanation: "Etter å ha installert dette skriptet, kan %{site_name} foreslå til brukeren å prøve et annet skript som du har valgt."
+      promoted_script_label: "URLen til skriptet som skal fremheves"
+      promoted_submit: "Velg promotert skript"
+      sync_heading: "Kildsynkronisering"
+      locale_heading: "Standardområde"
+      locale_example_html: "Denne tekstens område: <i>%{text}</i>"
+      locale_multiple_note: "Bemerk at %{meta_keys_link:flere geografiske områder kan bli tilegnet til et skript}."
+      update_locale: "Oppdater området"
+      no_moderator_logs: "Ingen handlinger har blitt tatt av moderatorene mot dette skriptet."
     history_title: "%{script_name} - Versjonshistorikk"
     history_only_code_changes_info: "Dette er versjoner av dette scriptet hvor koden ble oppdatert."
     history_all_changes_link: "Vis alle versjoner."
@@ -86,6 +111,7 @@ nb:
     feedback_sign_in_to_favorite: "Logg inn for å legge til favoritter"
     stats_title: "%{script_name} - Statistikk"
     stats_daily_installs_heading: "Daglige installasjoner"
+    stats_weekly_installs_heading: "Ukentlige installeringer"
     stats_daily_update_checks_heading: "Daglige oppdatteringssjekker"
     stats_daily_installs_date_column_heading: "Dato"
     stats_daily_installs_install_count_column_heading: "Installasjoner"
@@ -95,6 +121,9 @@ nb:
     stats_no_data: "N/A"
     derivatives_title: "%{script_name} - Derivativer"
     derivatives_intro: "Disse scriptene kan være basert på dine (eller dine kan være basert på dem). Hvis du finner uautorisert bruk av din kode, rapporter scriptet ved å starte en ny diskusjonstråd."
+    derivatives_code_matches_info_html:
+      one: "Skript som er lagt ut av andre som inneholder minst %{match_size} linjer med kod som er felles med din liste. Denne sjekken kjøres kun på skript som er mindre enn %{max_size} og ble senest kjørt den %{last_run}."
+      other: "Skript som er lagt ut av andre som inneholder minst %{match_size} linjer med kode som er felles med din liste. Denne sjekken kjøres kun på skript som er mindre enn %{max_size} og ble senest kjørt den %{last_run}."
     derivatives_namespace_matches_info_html: "Script postet av andre som bruker <code>%{namespace}</code>:"
     derivatives_name_matches_info: "Script postet av andre med de mest lignende navn som dine:"
     derivatives_script_html: "%{script_link} av %{user_link}, lisens: %{license}"
@@ -125,6 +154,8 @@ nb:
     listing_created_feed: "Nye script"
     listing_updated_feed: "Oppdaterte script"
     listing_none: "(Ingen)"
+    listing_set_locale_filter: "Viser resultater for alle språk. %{set_filter_link:Bare vis resultater på %{language}.}"
+    listing_remove_locale_filter: "Viser bare resultater på %{language}. %{remove_filter_link:Vis resultater for alle språk.}"
     import: "Importer script"
     new: "Post et script"
     support_site: "Besøk forfatterens støtteside."
@@ -164,6 +195,7 @@ nb:
     warning_namespace_missing_generate_automatically_html: "Generer <code>@namespace</code> automatisk?"
     warning_namespace_changed_html: "Ditt <code>@namespace</code> er endret. Et konsistent <code>@namespace</code> lar brukere reinstallere skriptet ditt for å oppdatere det."
     warning_potentially_minified_html: "Det ser ut til at skriptet ditt inneholder minifled (komprimert) kode. Hvis du bruker et minifled-bibliotek, vennligst <code>@require</code> koden fra %{allowed_requires_link} i stedet.  Skript med minified-kode kan bli fjernet."
+    warning_automatic_sensitive_html: "Ditt skript er for %{sensitive_domains}, og den vil derfor bli merket som voksent innhold."
     warning_potentially_minified_allowed_requires_link: "ett av disse stedene"
     additional_info_locale_prompt: "(Velg lokale)"
     additional_info_add_localized: "Legg til lokalisert tilleggsinformasjon"
@@ -201,6 +233,9 @@ nb:
     write_your_own_html: "%{post_a_script_link} (eller %{learn_to_write_scripts_link})"
     post_a_script_link_text: "Send inn et skript"
     learn_to_write_scripts_link_text: "lær hvordan du skriver et"
+    feedback_suggestion: "Still et spørsmål, legg ut en anmeldelse, eller rapporter skriptet på %{site_name}."
+    feedback_suggestion_with_support_site: "%{support_url:Besøk skaperens nettsted for brukerstøtte}, eller %{feedback_link:still et spørsmål, legg ut en anmeldelse, eller rapporter skriptet på %{site_name}}."
+    feedback_suggestion_with_support_email: "%{support_url:Send en E-post til skaperen for brukerstøtte}, eller %{feedback_link:still et spørsmål, legg ut en anmeldelse, eller rapporter skriptet på %{site_name}}."
     approve_redistribution_explanation: "%{site_name} kan fortelle andre sider at du tillater at de republiserer ditt skript. Det kan allerede være tillatt eller ikke tillatt av lisensen du velger for ditt skript."
     approve_redistribution_use_user_setting: "Bruk standard for min konto (%{user_setting})"
     approve_redistribution_use_user_setting_not_set: "ikke satt"
@@ -213,6 +248,7 @@ nb:
     adult_content_self_report_explanation: "%{site_name} tillater skript med innhold for voksne, men de må merkes slik at brukere kan velge om de ønsker å se dem."
     not_adult_content_self_report_html: "Dette skriptet inneholder <strong>ikke</strong> innhold for voksne og er <strong>ikke</strong> laget for en side med innhold for voksne."
     not_adult_content_self_report_explanation: "%{site_name} tillater skript med innhold for voksne, men de må merkes slik at brukere kan velge om de ønsker å se dem. Ditt skript har blitt merket som innhold for voksne. Du kan rapportere at det ikke stemmer, så vil det bli vurdert av en moderator."
+    not_adult_content_self_report_explanation_automatic: "%{site_name} tillater skript med voksent innhold, men de må bli merket som sådan sånn at brukere kan velge om de ønsker å se det. Ditt skript har blitt markert som at den inneholder voksent innhold, ettersom den er for %{domain_list}."
     adult_content_on_greasy_logged_in_error: "Dette skriptet er ikke tilgjengelig på denne siden med din nåværende %{edit_account_link:Greasy Fork kontoinnstillinger}."
     adult_content_on_greasy_not_logged_in_error: "Dette skriptet er ikke lenger tilgjengelig anonymt på denne siden. %{login_link:Logg inn} og sjekk dine kontoinnstillinger for Greasy Fork."
     non_adult_content_on_sleazy: "Dette skriptet er ikke tilgjengelig på denne siden."
@@ -221,11 +257,83 @@ nb:
     locked_marker: "(Låst)"
     unlisted_marker: "(Ulistet)"
     library_marker: "(Bibliotek)"
+    libraries_title: "Biblioteker"
+    libraries_description_html: "Det finnes biblioteker som er lagt ut av %{site_name}-brukere, som du kan kreve i skriptene dine med <code>@require<code>-verdien, les %{policy_link:%{site_name} sine retningslinjer for <code>@require</code>}."
+    by_site_list_title: "Brukerskript for %{site_name} gruppert etter nettsted"
+    by_site_list_description: "Disse er nettstedene som er påvirket av de mest populære brukerskriptene. En større skriftstørrelse betyr mer populære brukerskript."
+    by_site_list_filter: "Filtrer etter nettstedsnavn:"
+    search_placeholder: "Søk blant skript"
+    updated: "Skript oppdatert."
+    preview_additional_info: "Forhåndsvisning"
+    must_confirm_email: "Du må bekrefte E-postadressen din før du kan legge ut skript."
+    must_confirm_email_button: "Send en bekreftelseslenke til %{email}"
   script_sets:
+    description: "Skriptsett lar deg lage en tilpasset skriptliste som du kan bli i Greasy Fork med. Du kan legge til skripter i settet det ved å inkludere individuelle skripter, andre brukeres sett, eller automatisk genererte sett. Du kan også ekskludere skripter fra settet ditt på de samme måtene."
     favorites_name: "Favoritter"
     delete: "Slett scriptsett"
     delete_confirmation: "Er du sikker på at du vil slette scriptsettet?"
     site_default_sort: "(Standard)"
+    edit_scripts:
+      heading: "Skript"
+      description: "Inkluder eller ekskluder individuelle skripter i skriptsettet ditt."
+      included: "Inkludert"
+      included_none: "(Ingen)"
+      remove_included: "Fjern de valgte"
+      excluded: "Ekskludert"
+      excluded_none: "(Ingen)"
+      remove_excluded: "Fjern de valgte"
+      add_label: "Legg til skripter (URLer eller IDer, adskilt med mellomrom)"
+      add_include: "Inkluder"
+      add_exclude: "Ekskluder"
+    edit_sets:
+      heading: "Skriptsett"
+      description: "Inkluder eller ekskluder andre skriptsett i skriptsettet ditt."
+      included: "Inkludert"
+      included_none: "(Ingen)"
+      remove_included: "Fjern de valgte"
+      excluded: "Ekskludert"
+      excluded_none: "(Ingen)"
+      remove_excluded: "Fjern de valgte"
+      add_label: "Legg til skripter (URLer eller IDer, adskilt med mellomrom)"
+      add_include: "Inkluder"
+      add_exclude: "Ekskluder"
+      user_label: "List opp skriptsett som tilhører en bruker (URL, ID, eller navn)"
+      user_no_sets: "(Brukeren har ikke noen sett)"
+      user_no_other_sets: "(Bruker har ingen andre sett)"
+    edit_auto_sets:
+      heading: "Automatiske skriptsett"
+      description: "Inkluder eller ekskluder en automatisk generert skriptliste i skriptsettet ditt."
+      included: "Inkludert"
+      included_none: "(Ingen)"
+      remove_included: "Fjern de valgte"
+      excluded: "Ekskludert"
+      excluded_none: "(Ingen)"
+      all_scripts_label: "Alle skripter"
+      all_scripts_include: "Inkluder"
+      for_sites_label: "Skript for nettsted (f.eks. example.com, la det stå tomt for å bla i alle nettsteder)"
+      for_sites_include: "Inkluder"
+      for_sites_exclude: "Ekskluder"
+      for_user_label: "Skript etter bruker (URL, ID, eller navn)"
+      for_user_include: "Inkluder"
+      for_user_exclude: "Ekskluder"
+      for_language_label: "Skript på språk"
+      for_language_include: "Inkluder"
+      for_language_exclude: "Ekskluder"
+    calculated_list: "Kalkulert skriptliste"
+    calculated_list_none: "(Ingen)"
+    calculated_list_more:
+      one: "Og %{count} til …"
+      other: "Og %{count} til …"
+    already_included: "'%{name}' er allerede inkludert."
+    could_not_parse_script: "Klarte ikke å parse skriptet '%{value}'"
+    save: "Lagre"
+    saved: "Skriptsettet er lagret."
+    auto_set_types:
+      all_scripts: "Alle skripter"
+      site: "Skript for %{site}"
+      all_sites: "Alle nettsteder"
+      user: "Skript laget av brukeren%{user}"
+      locale: "Skript i %{locale_name}"
   forum_discussions:
     listing_no_script_no_reply_html: "%{discussion_link} av %{original_poster_link} %{original_post_date}"
     listing_no_script_with_reply_html: "%{discussion_link} av %{original_poster_link} %{original_post_date}, siste kommentar av %{last_commenter_link} %{last_comment_date}"
@@ -236,12 +344,49 @@ nb:
     welcome: "Velkommen til %{site_name}, en side for brukerskript."
     sleazy_title: "%{site_name} - trygge og nyttige brukerskript for voksne"
     sleazy_welcome: "Velkommen til %{site_name}, en side for brukerskript for voksne."
+    search_placeholder: "Søk etter brukerskript"
+    scripts_for_label: "Skript for:"
     explain_user_scripts_heading: "Hva er brukerskript?"
     explain_user_scripts_html: "Brukerskript gir deg kontroll over surfeopplevelsen din. Når de er installert vil de automatisk gjøre sidene dine bedre ved å legge til funksjoner, gjøre dem enklere å bruke, eller fjerne irriterende elementer. Brukerskriptene på %{site_name} er skrevet av andre brukere og sendt inn for å deles med resten av verden. De er gratis å innstallere og lette å bruke."
+    installing_step1_header: "Trinn 1: installer en brukerskriptbehandler"
+    installing_step1_caption: "Tampermonkey på Chrome"
+    installing_step1_description_html: >
+        <p>For å bruke brukerskript, må du først installere en brukerskriptbehandler.
+        Hvilke brukerskriptbehandlere du kan bruke, avhenger av hvilken nettleser
+        du bruker.</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> eller %{chrome_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
+        eller %{firefox_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} eller %{opera_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla: (ingen ytterligere programvare er nødvendig)</li>
+
+        <li>AdGuard: (ingen ytterligere programvare er nødvendig)</li>
+
+        </ul>
+    installing_step2_header: "Trinn 2: installer et brukerskript"
+    installing_step2_caption: "Et brukerskripts installeringsknapp"
+    installing_step3_header: "Trinn 3: bruk brukerskriptet"
   users:
     sign_in_title: "Logg inn hos %{site_name}"
     sign_in_description: "Innlogging på %{site_name} lar deg poste skript og tilbakemeldinger på andres skript. Du trenger ikke å logge inn for å søke etter eller installere skript."
     sign_in_external: "Logg inn ved hjelp av en ekstern tjeneste"
+    sign_in_with: "Logg på med %{provider}"
     sign_in_password: "Logg inn med et passord"
     sign_in_email_used_no_external_services_html: "'%{email}' er allerede i bruk av '%{user_name}'. Hvis dette er deg og du ønsker å legge til innlogging med %{provider}, %{sign_in_link} på din konto, og deretter legg til innlogging med %{provider}."
     sign_in_email_used_with_external_services_html: "'%{email}' er allerede i bruk av '%{user_name}', som logger inn med %{existing_providers}. Hvis dette er deg og du ønsker å legge til innlogging med %{provider}, %{sign_in_link} på din konto, og deretter legg til innlogging med %{provider}."
@@ -283,6 +428,7 @@ nb:
     external_sign_in_removed: "%{provider}-innlogging fjernet."
     external_sign_in_failed: "%{provider}-innlogging feilet: %{error}."
     external_sign_in_already_used: "Innlogging med %{provider} feilet: innloggingen er allerede i bruk av '%{user_name}'."
+    external_sign_in_confirmation: "En ny %{site_name}-konto har blitt laget, basert på dine %{provider}-kontodetaljer. Ditt offentlige brukernavn er %{username}."
     syncing_indicator: "(synkroniseres)"
     enable_syncing: "Slå på synkronisering"
     disable_syncing: "Slå av synkronisering"
@@ -301,6 +447,8 @@ nb:
     listing_new_scripts: "Nye script"
     listing_updated_scripts: "Oppdaterte script"
     listing_registration_date: "Registreringsdato"
+    listing_title: "Brukere"
+    search_placeholder: "Søk blant brukere"
     locale_prompt: "(Velg lokale)"
     show_ads_description: "Støtt %{site_name} ved å tillate dem å vise deg reklame"
     show_sensitive_description: "Vis skript med innhold for voksne"
@@ -312,15 +460,49 @@ nb:
     greasy_fork_scripts_link:
       one: "%{user_name} har også %{count} skript på Greasy Fork."
       other: "%{user_name} har også %{count} skript på Greasy Fork."
+    delete_link: "Slett konto"
+    delete:
+      intro: "Å slette din '%{user_name}'-%{site_name}-konto vil ha følgende effekter:"
+      requires_permanent_deletion: "Før du sletter kontoen din, må du be om permanent sletting av de følgende skripter:"
+      password_effect: "Du vil ikke lenger kunne logge på med passordet ditt."
+      identities_effect:
+        one: "Å logge på gjennom %{identities} vil føre til en ny konto."
+        other: "Å logge på gjennom %{identities} vil føre til en ny konto."
+      scripts_effect:
+        one: "Ditt ene skript vil bli slettet."
+        other: "Dine %{count} skripter vil bli slettet."
+      script_sets_effect:
+        one: "Ditt ene skriptsett vil bli slettet."
+        other: "Dine %{count} skriptsett vil bli slettet."
+      forum_effect: "Dine bidrag til forumet vil stå igjen, men den assosierte brukeren vil få det nye navnet \"%{user_name}\"."
+      email_confirmation: "Før du sletter kontoen din, vil %{site_name} sende en E-post til %{email} for å bekrefte din forespørsel."
+      submit: "Slett konto"
+      confirmation_email_sent: "Slettingsbekreftelses-E-posten har blitt sendt."
+      confirmation_email:
+        subject: "Slettingsbekreftelse for %{site_name}-konto"
+        body: "En forespørsel ble gjort om å slette din konto '%{user_name}' på %{site_name}. For å bekrefte denne forespørselen og slette kontoen din, gå til %{url} . Dette må bli gjort innen de neste 24 timer, ellers vil forespørselen bli avbrutt."
+      confirmation:
+        intro: "Du er i ferd med å slette kontoen '%{user_name}'. Denne handlingen kan ikke bli angret på."
+        confirm: "Slett '%{user_name}'"
+        cancel: "Avbryt slettingen"
+        key_mismatch: "Kunne ikke slette brukeren - nøklene samsvarer ikke."
+        request_expired: "Kunne ikke slette brukeren - forespørselen utløp."
+        cancelled: "Slettingen har blitt avbrutt."
+        completed: "Kontoen din har blitt slettet."
   help:
+    installing_user_scripts:
+      title: 'Hvordan installere brukerskript'
     meta_keys:
       title: "Metadata om skript som brukes av %{site_name}"
       name: "Navnet på skriptet, som brukes i tittel og lenker. Obligatorisk."
+      name_localized_html: "Navnet til skriptet for et spesifikt område, hvor XX er en <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-bokstaverskode</a> og YY er et <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166-landskode</a> som er valgfritt å inkludere. Overstyrer <code>@description</code> når brukeren blar i et samsvarende område."
       description: "Beskrivelse av hva skriptet gjør. Vises som tekst under skriptnavnet. Obligatorisk."
+      description_localized_html: "Beskrivelsen av skriptet for et spesifikt område, hvor XX er en <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-bokstaverskode</a> og YY er et <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166-landskode</a> som er valgfritt å inkludere. Overstyrer <code>@description</code> når brukeren blar i et samsvarende område."
       include: "Beskriv hva skriptet kjører på. Listen vil bli prosessert, vist på skriptets infoside, og brukt til å kategorisere skript."
       require_html: "Inkluderer ekstern JavaScript i et skript. Se %{external_script_link}."
       require_external_script_link_text: "regler for kode som inkluderer eksterne skript"
       updateURL: "Beskriv hvordan brukerskriptsystemer skal få oppdateringer. %{site_name} vil bruke disse nøklene, slik at skript installert fra %{site_name} kun oppdateres fra %{site_name}."
+      contributionURL_html: "URLen til en side hvor brukere kan donere til skaperen av et skript. Bidrags-URL vises på et skript sin tilbakemeldingsside. URLer kan være https, http, eller Bitcoin-protokoller. For å lenke til en PayPal-donasjonsside, bruk en URL i formatet<a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=din.epostadresse.her@example.com&item_name=Greasy+Fork+donation</a>, ved å erstatte eksempel-E-postadressen med din egen."
       contributionAmount_html: "Foreslått donasjon, brukes sammen med <code>@contributionURL</code>."
     writing_user_scripts:
       title: "Hvordan skrive brukerskript"
@@ -346,6 +528,31 @@ nb:
       title: "Kontakt noen"
     privacy_policy:
       title: "Personvernregler"
+  search:
+    script_search:
+      title: "Skriptsøk"
+      description: "Søk etter skript. Søker i skriptnavn, beskrivelser, ytterligere info, og skapernavn. %{sphinx_link:Sphinx sin utvidede søkesyntaks.}"
+    library_search:
+      title: "Bibliotekssøk"
+      description: "Søk etter biblioteker. Søker i biblioteksnavn, beskrivelser, ytterligere info, og skapernavn. %{sphinx_link:Sphinx sin utvidede søkesyntaks.}"
+    code_search:
+      title: "Kodesøk"
+      description: "Søk etter skriptkode. Dette er et søk i ren tekst med ingen jokertegn, og som ikke skiller mellom store og små bokstaver."
+    forum_search:
+      title: "Forumsøk"
+      description: "Søk etter diskusjoner og anmeldelser i forumet. %{fulltext_link:MySQL sitt naturlige språksøk.}"
+    user_search:
+      title: "Brukersøk"
+      description: "Søk blant brukere etter navn. LIKE-søk i ren tekst."
+  moderator_logs:
+    date_column: "Dato"
+    moderator_column: "Moderator"
+    item_column: "Gjenstand"
+    action_column: "Handling"
+    reason_column: "Årsak"
+    item_script_html: "Skript: %{script_link}"
+    item_deleted_script: "Slettet skriptet %{id}"
+    item_user_html: "Bruker: %{user_link}"
   common:
     error_preamble: "Det var noen problemer med det du sendte inn..."
     allowed_elements_link: "(Se lovlig kode)"
@@ -356,10 +563,12 @@ nb:
     not_found_title: "404 - Side Ikke Funnet"
     not_found_link_home: "Gå hjem."
     suggest_locale: "%{site_name} er tilgjengelig i %{locale_name}."
-    incomplete_locale: "%{site_name}s %{locale_name}-oversettelse er bare %{percent} fullført. Du kan forrandre det."
+    incomplete_locale: "%{site_name}s %{locale_name}-oversettelse er bare %{percent} fullført. Du kan forandre på det."
     expander_show_more: "Vis mer"
     expander_show_less: "Vis mindre"
     advertisement_note: Reklame
+    preview_tab: Forhåndsvisning
+    write_tab: Skriv
   activerecord:
     attributes:
       user:
@@ -383,6 +592,10 @@ nb:
         screenshot_caption: "Bildetekst"
         replaced_by_script_id: "Erstatningsskript"
         approve_redistribution: "Redistribusjon"
+      script_set:
+        name: "Navn"
+        description: "Beskrivelse"
+        default_sort: "Standard sortering"
   errors:
     messages:
       script_missing_name: "obligatorisk - spesifiser et med @name"
@@ -392,10 +605,13 @@ nb:
       script_too_many_screenshots: "For mange skjermbilder inkludert - maksimum er %{number}"
       cannot_be_self_reference: "kan ikke være det samme skriptet"
       cannot_be_deleted_reference: "kan ikke velge et slettet skript"
+      cannot_be_used_with_this_script: "kan ikke bli brukt med dette skriptet"
       must_be_greasy_fork_script: "å være URL-en til et skript på %{site_name}"
       script_update_not_utf8: "opplastingen må være UTF-8-tekst"
       script_disallowed_require: "bruker et ikke godkjent eksternt skript: %{code}"
+      script_rate_limit: "Du har overgått postegrensen. Prøv igjen senere."
   opensearch:
     short_name: "%{site_name} søk"
     description: "Søke etter brukerskript på %{site_name}"
     long_name: "%{site_name} brukerskriptsøk"
+    attribution: "Krediter opphavsrett til skriptenes skapere, se hvert individuelle skript for lisensieringsdetaljer"
