@@ -56,14 +56,22 @@ window.addEventListener("DOMContentLoaded", function() {
   }
 
   // Submitting form - set the textarea to the editor's value
-  getParentForm(enableRadio).addEventListener('submit', function(e) {
+  function handleSubmit(e) {
     var editorElement = document.getElementById("ace-editor");
     if (editorElement) {
       var textboxId = enableRadio.getAttribute("data-related-editor");
       var textbox = document.getElementById(textboxId);
       textbox.value = aceEditor.getSession().getValue();
     }
-  })
+  }
+
+  var parentForm = getParentForm(enableRadio);
+  parentForm.addEventListener('submit', handleSubmit);
+  // When there's a recaptcha the submit event doesn't happen.
+  var recaptchaSubmit = parentForm.querySelector('.g-recaptcha');
+  if (recaptchaSubmit) {
+    recaptchaSubmit.addEventListener('click', handleSubmit);
+  }
 
   // Page load
   
