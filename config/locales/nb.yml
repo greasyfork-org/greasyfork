@@ -347,7 +347,7 @@ nb:
     search_placeholder: "Søk etter brukerskript"
     scripts_for_label: "Skript for:"
     explain_user_scripts_heading: "Hva er brukerskript?"
-    explain_user_scripts_html: "Brukerskript gir deg kontroll over surfeopplevelsen din. Når de er installert vil de automatisk gjøre sidene dine bedre ved å legge til funksjoner, gjøre dem enklere å bruke, eller fjerne irriterende elementer. Brukerskriptene på %{site_name} er skrevet av andre brukere og sendt inn for å deles med resten av verden. De er gratis å innstallere og lette å bruke."
+    explain_user_scripts_html: "Brukerskript gir deg kontroll over surfeopplevelsen din. Når de er installert vil de automatisk gjøre nettstedene du besøker bedre ved å legge til funksjoner, gjøre dem enklere å bruke, eller fjerne irriterende elementer. Brukerskriptene på %{site_name} er skrevet av andre brukere og er lagt ut for å deles med resten av verden. De er gratis å installere og lette å bruke."
     installing_step1_header: "Trinn 1: installer en brukerskriptbehandler"
     installing_step1_caption: "Tampermonkey på Chrome"
     installing_step1_description_html: >
@@ -380,8 +380,22 @@ nb:
 
         </ul>
     installing_step2_header: "Trinn 2: installer et brukerskript"
-    installing_step2_caption: "Et brukerskripts installeringsknapp"
+    installing_step2_caption: "Et brukerskript sin installeringsknapp"
+    installing_step2_description_html: >
+        <p>%{browse_link:Bla rundt på dette nettstedet} for å finne et brukerskript
+        som du vil prøve ut. Her er et utdrag av de mest populære skriptene:</p>
+
+        %{highlighted_scripts_list}
+
+        <p>Når du har funnet et brukerskript, klikk på den grønne installasjonsknappen
+        på brukerskriptets side, og din brukerskriptbehandler vil spørre deg om å
+        bekrefte installasjonen.</p>
     installing_step3_header: "Trinn 3: bruk brukerskriptet"
+    installing_step3_description_html: >
+        <p>Gå til nettstedet som brukerskriptet påvirker. Den burde automatisk gjøre
+        greien dens. Etter å ha prøvd ut brukerskriptet en stund, gå tilbake til dit
+        du installerte brukerskriptet ifra, og legg igjen litt tilbakemelding til
+        brukerskriptets skaper.</p>
   users:
     sign_in_title: "Logg inn hos %{site_name}"
     sign_in_description: "Innlogging på %{site_name} lar deg poste skript og tilbakemeldinger på andres skript. Du trenger ikke å logge inn for å søke etter eller installere skript."
