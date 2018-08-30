@@ -753,8 +753,13 @@ private
 		cache_request_portion = CGI::unescape(request.fullpath[1..-1])
 		cache_path = Rails.application.config.script_page_cache_directory.join(cache_request_portion).cleanpath
 		if cache_path.to_s.start_with?(Rails.application.config.script_page_cache_directory.to_s)
-			FileUtils.mkdir_p(cache_path.parent)
-			File.write(cache_path, response_body)
+			# Make sure each portion is under the filesystem limit
+			if cache_path.to_s.split('/').all?{|portion| portion.bytesize <= 255}
+raise 'caching'
+				FileUtils.mkdir_p(cache_path.parent)
+				File.write(cache_path, response_body)
+			end
+			raise 'no caching'
 		end
 	end
 
