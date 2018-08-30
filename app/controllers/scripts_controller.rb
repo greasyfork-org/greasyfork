@@ -755,11 +755,9 @@ private
 		if cache_path.to_s.start_with?(Rails.application.config.script_page_cache_directory.to_s)
 			# Make sure each portion is under the filesystem limit
 			if cache_path.to_s.split('/').all?{|portion| portion.bytesize <= 255}
-raise 'caching'
 				FileUtils.mkdir_p(cache_path.parent)
 				File.write(cache_path, response_body)
 			end
-			raise 'no caching'
 		end
 	end
 
