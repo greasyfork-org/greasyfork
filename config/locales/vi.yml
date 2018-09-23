@@ -468,6 +468,7 @@ vi:
       other: "%{user_name} cũng có  %{count} script trên Greasy Fork."
     delete_link: "Xoá tài khoản"
     delete:
+      requires_permanent_deletion: "Trước khi xoá tài khoản, bạn phải yêu càu xoá vĩnh viễn những script sau:"
       password_effect: "Bạn sẽ không thể đăng nhập bằng mật khẩu của mình"
       identities_effect:
         other: "Đăng nhập với %{identities}sẽ tạo tài khoản mới"
@@ -475,12 +476,14 @@ vi:
         other: "%{count}script của bạn sẽ bị xoá"
       script_sets_effect:
         other: "%{count}bộ script của bạn sẽ bị xoá"
+      forum_effect: "Đóng góp của bạn tới diễn đàn sẽ được giữ lại, nhưng người dùng liên quan sẽ được đổi tên thành \"%{user_name}\""
       email_confirmation: "tTrước khi xoá tài khoản của bạn, %{site_name}sẽ gửi một email đến %{email}để xác thực yêu cầu của bạn."
       submit: "Xoá tài khoản"
       confirmation_email_sent: "Email xác nhận xoá tài khoản đã được gửi đi"
       confirmation_email:
         subject: "Xác nhận xoá tài khoản %{site_name}"
       confirmation:
+        intro: "Bạn đang thực hiện xoá tài khoản '%{user_name}'. Hành động này là không thể hoàn tác."
         confirm: "Xoá '%{user_name}'"
         cancel: "Huỷ xoá"
         key_mismatch: "Không thể xoá người dùng dùng - khoá không khớp"
