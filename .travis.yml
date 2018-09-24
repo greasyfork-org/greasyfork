@@ -5,7 +5,9 @@ env:
   - DB=mysql
 sudo: required
 addons:
-  chrome: stable
+  apt:
+    - google-chrome-stable
+    - chromium-chromedriver
 before_install: gem install bundler
 before_script:
   - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
