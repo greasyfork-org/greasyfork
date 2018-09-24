@@ -1,11 +1,12 @@
 <ul>
-	<% AllowedRequire.all.each do |ar| %>
-		<li>
-			<% if ar.url.nil? %>
-				<%=ar.name%>
-			<% else %>
-				<%=link_to ar.name, ar.url%>
-			<% end %>
-		</li>
-	<% end %>
+  <% AllowedRequire.all.each do |ar| %>
+    <li>
+      <% if ar.url.nil? %>
+        <%= ar.name%>
+      <% else %>
+        <%= link_to ar.name, ar.url %>
+      <% end %>
+      - <code><%= ar.pattern %></code>
+    </li>
+  <% end %>
 </ul>
