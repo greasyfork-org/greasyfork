@@ -5,12 +5,16 @@ env:
   - DB=mysql
 sudo: required
 addons:
-  apt:
-    - google-chrome-stable
-    - chromium-chromedriver
+  chrome: stable
 before_install: gem install bundler
+install:
+  - wget -N https://chromedriver.storage.googleapis.com/2.42/chromedriver_linux64.zip -P ~/
+  - unzip ~/chromedriver_linux64.zip -d ~/
+  - rm ~/chromedriver_linux64.zip
+  - sudo mv -f ~/chromedriver /usr/local/share/
+  - sudo chmod +x /usr/local/share/chromedriver
+  - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
 before_script:
-  - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
   - cp test/travisconfig/database.yml config/database.yml
   - cp test/travisconfig/secrets.yml config/secrets.yml
   - mysql -e 'create database greasyforktest'
