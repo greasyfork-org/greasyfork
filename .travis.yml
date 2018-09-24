@@ -20,4 +20,5 @@ before_script:
   - mysql -e 'create database greasyforktest'
   - mysql greasyforktest < db/structure.sql
 script:
+  - bundle install
   - bundle exec rake test test:system
