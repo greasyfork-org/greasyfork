@@ -415,7 +415,7 @@ END
 		assert !sv.valid?
 		sv.add_missing_namespace = true
 		sv.calculate_all
-		assert_equal "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @namespace http://greasyfork.local/users/1\n// ==/UserScript==\nvar foo = 2;", sv.rewritten_code
+		assert_equal "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @namespace http://localhost/users/1\n// ==/UserScript==\nvar foo = 2;", sv.rewritten_code
 		assert sv.valid?, sv.errors.full_messages.inspect
 	end
 
