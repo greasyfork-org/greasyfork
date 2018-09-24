@@ -3,9 +3,15 @@ rvm:
   - 2.5.1
 env:
   - DB=mysql
+sudo: required
+addons:
+  chrome: stable
 before_install: gem install bundler
 before_script:
+  - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
   - cp test/travisconfig/database.yml config/database.yml
   - cp test/travisconfig/secrets.yml config/secrets.yml
   - mysql -e 'create database greasyforktest'
   - mysql greasyforktest < db/structure.sql
+script:
+  - bundle exec rake test test:system
