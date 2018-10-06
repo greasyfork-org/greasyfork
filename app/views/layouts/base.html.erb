@@ -81,6 +81,16 @@
 			<div id="site-nav">
 				<div id="nav-user-info">
 					<% if user_signed_in? %>
+						<% if current_user.moderator? %>
+							<% reported_count = Script.reported_old.count
+							if reported_count > 0 %>
+								<%= link_to "[#{reported_count}]", reported_scripts_path %>
+							<% end
+							reported_unauthorized_count = ScriptReport.unresolved_old.count %>
+							<% if reported_unauthorized_count > 0 %>
+								<%= link_to "[#{reported_unauthorized_count}]", reported_unauthorized_scripts_path %>
+							<% end %>
+						<% end %>
 						<span class="user-profile-link"><%=link_to(current_user.name, current_user)%></span>
 						<span class="sign-out-link">[ <%= link_to t('users.sign_out'), destroy_user_session_path, :method => :delete %> ]</span>
 					<% else %>
