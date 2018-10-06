@@ -1,6 +1,12 @@
 <%- title t('scripts.feedback_title', :script_name => @script.name(I18n.locale)) %>
 <%- description 'Feedback on ' + @script.name(I18n.locale) %>
 
+<% if @script.script_reports.any? %>
+	<p>
+		<%= link_to t('scripts.feedback_has_unauthorized'), script_script_reports_path(@script), rel: :nofollow %>
+	</p>
+<% end %>
+
 <% if !@script.contribution_url.nil?
 	is_bitcoin = @script.contribution_url.starts_with?('bitcoin:') %>
 	<p id="contribution">
@@ -43,7 +49,9 @@ if @script.discussions.length > 10 %>
 	<ul id="discussions">
 		<%= render collection: @script.discussions.includes(last_reply_forum_poster: :users, original_forum_poster: :users).reverse, partial: 'forum_discussions/discussion' %>
 	</ul>
-	<p><a id="start-discussion-bottom" href="<%=forum_path%>post/discussion?script=<%=@script.id%>" rel="nofollow"><%=t('scripts.feedback_start_discussion_link')%></a></p>
+	<p>
+		<%= it('scripts.feedback_discussion_or_report', new_discussion_link: "#{forum_path}post/discussion?script=#{@script.id}", report_link: report_script_path(@script)) %>
+	</p>
 <% end %>
 
 <h3 id="feedback-favoriters"><%=t('scripts.feedback_favoriters_heading')%></h3>
@@ -71,15 +79,4 @@ if @script.discussions.length > 10 %>
 	<% else %>
 		<%=link_to(t('scripts.feedback_sign_in_to_favorite'), new_user_session_path(:return_to => url_for(:anchor => 'feedback-favoriters')), {:rel => :nofollow})%>
 	<% end %>
-</p>
-
-<h3>Reports</h3>
-
-<p>
-	<% if @script.script_reports.none? %>
-		No reports have been posted about this script.
-	<% else %>
-		<%= link_to 'This script has been reported as containing unauthorized code.', script_script_reports_path(@script), rel: :nofollow %>
-	<% end %>
-	<%= link_to 'Report this script.', new_script_script_report_path(@script), rel: :nofollow %>
 </p>

@@ -8,7 +8,7 @@ class ScriptsController < ApplicationController
 	MEMBER_AUTHOR_ACTIONS = [:sync_update, :derivatives, :update_promoted, :request_permanent_deletion, :unrequest_permanent_deletion, :update_promoted]
 	MEMBER_AUTHOR_OR_MODERATOR_ACTIONS = [:delete, :do_delete, :undelete, :do_undelete, :derivatives, :admin, :update_locale]
 	MEMBER_MODERATOR_ACTIONS = [:mark, :do_mark, :do_permanent_deletion, :reject_permanent_deletion]
-	MEMBER_PUBLIC_ACTIONS = [:diff]
+	MEMBER_PUBLIC_ACTIONS = [:diff, :report]
 	MEMBER_PUBLIC_ACTIONS_WITH_SPECIAL_LOADING = [:show, :show_code, :user_js, :meta_js, :feedback, :install_ping, :stats, :sync_additional_info_form]
 
 	before_action do

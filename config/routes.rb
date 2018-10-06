@@ -64,6 +64,7 @@ Rails.application.routes.draw do
 				get 'derivatives'
 				get 'diff', constraints: ->(req) { !req.params[:v1].blank? && !req.params[:v2].blank? }
 				get 'feedback'
+				get 'report'
 				get 'stats'
 
 				post 'install-ping', locale: nil

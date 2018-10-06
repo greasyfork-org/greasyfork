@@ -53,4 +53,5 @@ Rails.application.configure do
   config.enable_detect_locale = false
   config.active_support.test_order = :random
 
+  config.log_cache_misses = true
 end

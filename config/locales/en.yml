@@ -172,11 +172,11 @@ en:
     code_highlighting_disabled: "Code is over %{size}, so syntax highlighting has been disabled to spare your browser."
     # HTML title of the script feedback page
     feedback_title: "%{script_name} - Feedback"
+    feedback_has_unauthorized: "This script has been reported as containing unauthorized code."
     # text to show when no discussions are posted. start_discussion_first_link is a link with the text from feedback_start_first_discussion_link
     feedback_no_discussions_html: "No discussions posted yet. %{start_first_discussion_link}"
     feedback_start_first_discussion_link: "Be the first to discuss this script."
-    # link text for starting a new discussion when previous discussions already exist
-    feedback_start_discussion_link: "Start a new discussion on this script."
+    feedback_discussion_or_report: "%{new_discussion_link:Start a new discussion on this script} or %{report_link:report it for removal}."
     # heading for list of discussions on this script
     feedback_discussions_heading: "Discussions on Greasy Forum"
     # heading for list of people who favorited this script
@@ -435,11 +435,11 @@ en:
     # link text for the writing a user script help doc, used in write_your_own_html
     learn_to_write_scripts_link_text: "learn how to write one"
     # a suggestion below the install button that users provide feedback
-    feedback_suggestion: "Ask a question, post a review, or report the script on %{site_name}."
+    feedback_or_report: "%{feedback_link:Ask a question, post a review}, or %{report_link:report the script}."
     # a suggestion below the install button that users provide feedback or get support from the author's site. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
-    feedback_suggestion_with_support_site: "%{support_url:Visit the author's site for support} or %{feedback_link:ask a question, post a review, or report the script on %{site_name}}."
+    support_feedback_or_report: "%{support_url:Visit the author's site for support}, %{feedback_link:ask a question, post a review}, or %{report_link:report the script}."
     # a suggestion below the install button that users provide feedback or get support from the author's via email. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
-    feedback_suggestion_with_support_email: "%{support_url:Email the author for support} or %{feedback_link:ask a question, post a review, or report the script on %{site_name}}."
+    support_email_feedback_or_report: "%{support_url:Email the author for support}, %{feedback_link:ask a question, post a review}, or %{report_link:report the script}."
     # explanation of the approve redistribution option on the script edit page
     approve_redistribution_explanation: "%{site_name} can tell other sites that you allow them to repost your script. This may or may not be already permitted by the license you choose for your script."
     # option for approve redistribution on a script where the value is based on the account default. user_setting can be approve_redistribution_use_user_setting_not_set if the account doesn't have it set, or it can be users.approve_redistribution_true or users.approve_redistribution_false
@@ -497,6 +497,12 @@ en:
     preview_additional_info: "Preview"
     must_confirm_email: "You must confirm your email before posting scripts."
     must_confirm_email_button: "Send confirmation link to %{email}"
+    report:
+      title: "Report %{script_name}"
+      rules_summary: "Scripts posted on %{site_name} must abide by %{rules_link:its rules}. Common violations include scripts that are malware; scripts that have ads, cryptominers, or other monetization methods and do not disclose them in their descriptions; and scripts that contain unauthorized copies of code."
+      non_rules_summary_html: "Please note that being non-functional and contravening a third party's terms of use are <em>not</em> violations of %{site_name}'s rules. In these cases, you can instead %{feedback_link:leave feedback} on the script."
+      unauthorized_code_report_link: "If %{script_name} is using code from one of your scripts also posted on %{site_name}, please use %{report_link:the expedited report form}."
+      general_report_link: "For all other contraventions of the rules, %{forum_link:please post on the forum}."
   script_sets:
     # description of script sets on edit page
     description: "Script sets let you create a customized list of scripts to browse Greasy Fork with. You can add scripts to your set by including individual scripts, other users' sets, or automatically generated sets. You can also exclude scripts from your set with the same methods."

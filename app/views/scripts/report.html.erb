@@ -1,0 +1,18 @@
+<%- title t('scripts.report.title', script_name: @script.name(I18n.locale)) %>
+<%- description "Report #{@script.name(I18n.locale)} for a violation of the rules." %>
+
+<p>
+  <%= it('scripts.report.rules_summary', rules_link: help_code_rules_path, site_name: site_name) %>
+</p>
+
+<p>
+  <%= it('scripts.report.non_rules_summary_html', feedback_link: It.link("#{forum_path}post/discussion?script=#{@script.id}", rel: :nofollow), site_name: site_name) %>
+</p>
+
+<p>
+  <%= it('scripts.report.unauthorized_code_report_link', script_name: @script.name(I18n.locale), site_name: site_name, report_link: It.link(new_script_script_report_path(@script), rel: :nofollow)) %>
+</p>
+
+<p>
+  <%= it('scripts.report.general_report_link', forum_link: It.link("#{forum_path}post/discussion?script=#{@script.id}", rel: :nofollow)) %>
+</p>
