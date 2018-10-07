@@ -55,7 +55,10 @@ cs:
     update: "Aktualizovat na verzi %{version}"
     downgrade: "Návrat k verzi %{version}"
     reinstall: "Přeinstalovat verzi %{version}"
+    old_version_warning: "Toto není poslední verze skriptu. Po instalaci nebude funkční aktualizace na nejnovější verzi. Přejete si přesto provést instalaci?"
+    promoted: "Doporučený skript"
     author_promoted: "Skript doporučený autorem"
+    promoted_text_html: "Mohl by se vám také líbit %{script_link}"
     library_instructions_html: "Tento skript by neměl být instalován přímo. Jedná se o knihovnu, kterou by měly jiné skripty využívat pomocí meta příkazu %{code}"
     deleted_notice: "Tento skript byl smazán."
     version_notice_html: "Verze ze dne %{date}. Zobrazit %{latest_version_link}."
@@ -84,6 +87,16 @@ cs:
     cancel_delete_permanently_submit: "Stornovat požadavek na trvalé smazání"
     cancel_delete_permanently_notice: "Požadavek na trvalé smazání byl stornován."
     delete_permanently_rejected_locked: "Tento skript je uzamčený a nelze ho trvale smazat"
+    admin_page: "Správce"
+    admin:
+      title: "%{script_name} – Správce"
+      promoted_heading: "Doporučený skript"
+      promoted_explanation: "Po instalaci tohoto skriptu může %{site_name} navrhnout uživateli instalaci jiného skriptu dle vašeho výběru."
+      promoted_script_label: "Odkaz na doporučený skript"
+      promoted_submit: "Nastavit doporučený skript"
+      sync_heading: "Synchronizace zdroje"
+      locale_heading: "Výchozí jazyk"
+      locale_example_html: "Jazyk tohoto textu <i>%{text}</i>"
     history_title: "%{script_name} - Historie verzí"
     history_only_code_changes_info: "Seznam verzí skriptu, při kterých došlo ke změnám v kódu."
     history_all_changes_link: "Zobrazit všechny verze."
@@ -95,7 +108,6 @@ cs:
     feedback_title: "%{script_name} - Zpětná vazba"
     feedback_no_discussions_html: "Dosud žádná diskuse. %{start_first_discussion_link}"
     feedback_start_first_discussion_link: "Zahájit první diskusi o skriptu."
-    feedback_start_discussion_link: "Zahájit novou diskusi o skriptu."
     feedback_discussions_heading: "Diskuse na Greasy fóru"
     feedback_favoriters_heading: "Oblíbené"
     feedback_favoriters_user_list_intro: "Tento skript byl označili jako oblíbený:"
@@ -220,7 +232,6 @@ cs:
     write_your_own_html: "%{post_a_script_link} (nebo %{learn_to_write_scripts_link})"
     post_a_script_link_text: "Vložit vámi napsaný skript"
     learn_to_write_scripts_link_text: "naučit se napsat skript"
-    feedback_suggestion: "Zeptat se na otázku, odeslat hodnocení, nebo nahlásit skript na %{site_name}"
     approve_redistribution_explanation: "%{site_name} může sdělit jiným stránkám, zda mohou převzít váš skript. To již může současně také povolovat licence, kterou jste zvolili."
     approve_redistribution_use_user_setting: "Použít výchozí hodnotu (%{user_setting})"
     approve_redistribution_use_user_setting_not_set: "nenastaveno"
@@ -379,6 +390,41 @@ cs:
       few: "%{user_name} má %{count} další skripty na Greasy Fork."
       many: "%{user_name} má %{count} dalších skriptů na Greasy Fork."
       other: "%{user_name} má %{count} dalších skriptů na Greasy Fork."
+    delete_link: "Smazat účet"
+    delete:
+      intro: "Smazání účtu '%{user_name}' služby %{site_name} bude mít následující důsledky:"
+      requires_permanent_deletion: "Před smazáním účtu musíte požádat o trvalé smazání následujících skriptů:"
+      password_effect: "Nebude možno přihlásit se pomocí současného hesla."
+      identities_effect:
+        one: "Přihlášení prostřednictvím %{identities} povede k založení nového účtu."
+        few: "Přihlášení prostřednictvím %{identities} povede k založení nového účtu."
+        many: "Přihlášení prostřednictvím %{identities} povede k založení nového účtu."
+        other: "Přihlášení prostřednictvím %{identities} povede k založení nového účtu."
+      scripts_effect:
+        one: "Váš %{count} skript bude vymazán."
+        few: "Vaše %{count} skripty budou vymazány."
+        many: "Vašich %{count} skriptů bude vymazáno."
+        other: "Vašich %{count} skriptů bude vymazána."
+      script_sets_effect:
+        one: "Vaše %{count} sada skriptů bude vymazána."
+        few: "Vaše %{count} sady skriptů budou vymazány."
+        many: "Vašich %{count} sad skriptů bude vymazáno."
+        other: "Vašich %{count} sad skriptů bude vymazáno."
+      forum_effect: "Vaše příspěvky na fóru budou zachovány, ale související uživatelský účet bude přejmenován na \"%{user_name}\"."
+      email_confirmation: "Před smazáním účtu odešle služba %{site_name} e-mailovou zprávu na adresu %{email} pro potvrzení požadavku na smazání."
+      submit: "Smazat účet"
+      confirmation_email_sent: "Potvrzující e-mailová zpráva byla odeslána."
+      confirmation_email:
+        subject: "Potvrzení smazání účtu služby %{site_name}"
+        body: "Ve službě %{site_name} byl učiněn požadavek na smazání vašeho uživatelského účtu '%{user_name}'. Pro potvrzení tohoto požadavku přejděte na stránku %{url}. Potvrzení musí být provedeno do 24 hodin, jinak je požadavek stornován."
+      confirmation:
+        intro: "Chystáte se smazat účet '%{user_name}'. Tato operace je nevratná."
+        confirm: "Smazat účet '%{user_name}'"
+        cancel: "Stornovat pořadavek"
+        key_mismatch: "Nelze smazat účet – potvrzující kód nesouhlasí."
+        request_expired: "Nelze smazat účet – platnost požadavku vypršela. "
+        cancelled: "Požadavek stornován."
+        completed: "Váš účet byl smazán."
   help:
     installing_user_scripts:
       title: 'Jak nainstalovat uživatelsé skripty'
@@ -416,6 +462,9 @@ cs:
       title: "Kontaktovat někoho"
     privacy_policy:
       title: "Ochrana soukromí"
+  moderator_logs:
+    moderator_column: "Moderátor"
+    reason_column: "Důvod"
   common:
     error_preamble: "S vloženým obsahem není vše v pořádku..."
     allowed_elements_link: "(Zobrazit povolené elementy.)"
