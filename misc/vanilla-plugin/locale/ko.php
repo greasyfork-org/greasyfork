@@ -6,7 +6,7 @@ $Definition['on scripts by %s'] = '%s의 스크립트 관련';
 /*
  *  Label for the radio buttons for rating a script
  **/
-$Definition['RatingLabel'] = '이 스크립트는 어떻습니까?';
+$Definition['RatingLabel'] = '이 스크립트는 어떤가요?';
 # Label for the radio buttons for updating a rating on a script
 $Definition['RatingUpdateLabel'] = '평점 갱신:';
 # Label for the radio button for not rating a script

@@ -42,6 +42,7 @@ ko:
     update: "%{version}으로 업데이트"
     downgrade: "%{version} 버전으로 다운그레이드"
     reinstall: "%{version} 버전 재설치"
+    old_version_warning: "이 스크립트는 최신 버전이 아닙니다. 만약 이 스크립트를 설치한다면, 새로운 버전으로 업데이트 되지 않을 것입니다. 정말 설치하시겠습니까?"
     library_instructions_html: "이 스크립트는 직접 설치해서 쓰는 게 아닙니다. 다른 스크립트가 메타 명령 %{code}로 포함하여 쓰는 라이브러리입니다."
     deleted_notice: "해당 스크립트는 삭제되었습니다."
     version_notice_html: "%{date} 일자. %{latest_version_link} 확인 바람."
@@ -69,6 +70,9 @@ ko:
     cancel_delete_permanently_submit: "영구 삭제 요청 취소"
     cancel_delete_permanently_notice: "당신의 영구 삭제 요청은 취소되었습니다."
     delete_permanently_rejected_locked: "이 스크립트는 잠겨있으므로 영구 삭제 할 수 없습니다"
+    admin_page: "관리자"
+    admin:
+      title: "%{script_name} - 관리자"
     history_title: "%{script_name} - 버전 기록"
     history_only_code_changes_info: "코드가 바뀐 버전들입니다."
     history_all_changes_link: "모든 버전 보기"
@@ -205,6 +209,9 @@ ko:
     write_your_own_html: "%{post_a_script_link} (또는 %{learn_to_write_scripts_link})"
     post_a_script_link_text: "작성한 스크립트를 업로드"
     learn_to_write_scripts_link_text: "작성 방법 배우기"
+    feedback_or_report: "%{feedback_link:질문을 하거나, 리뷰를 작성하거나}, %{report_link:이 스크립트를 신고하세요}."
+    support_feedback_or_report: "%{support_url:작성자의 홈페이지에 방문하기}, %{feedback_link:질문을 하거나, 리뷰를 작성하거나}, %{report_link:이 스크립트를 신고하세요}."
+    support_email_feedback_or_report: "%{support_url:작성자에게 이메일 보내기}, %{feedback_link:질문을 하거나, 리뷰를 작성하거나}, %{report_link:이 스크립트를 신고하세요}."
     approve_redistribution_explanation: "다른 사이트에서 당신의 스크립트를 재배포 할 수 있는 지 말할 수 있으며, 라이선스에 의해 이미 허용되거나 허용되지 않을 수도 있습니다."
     approve_redistribution_use_user_setting: "내 계정의 기본값으로 (${user_setting})"
     approve_redistribution_use_user_setting_not_set: "설정되지 않음"
@@ -281,6 +288,33 @@ ko:
     explain_user_scripts_html: "유저스크립트를 사용하면 자신의 경험을 새로운 경험으로 바꿀 수 있습니다. 설치됬을 때,  유저스크립트는 자동으로 사이트에서 짜쯩나는 걸 제거하거나, 사용을 쉽게 하거나, 기능을 추가하여 사이트에 방문할 때의 경험을 더 나아지게 합니다. %{site_name}에 있는 유저스크립트들은 다른 사용자에 의해 작성되고 전세계에 공유되고 있습니다. 설치하는 데에는 한푼의 돈도 들지 않으며 사용도 매우 간편합니다."
     installing_step1_header: "1. 유저 스크립트 관리자 설치"
     installing_step1_caption: "크롬의 Tampermonkey"
+    installing_step1_description_html: >
+        <p>유저 스크립트를 이용하려면 먼저 유저 스크립트 관리자를 설치해야 합니다. 사용 중인 브라우저에 맞는 유저 스크립트 관리자를 설치하세요.</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> 또는 %{chrome_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
+        또는 %{firefox_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} or %{opera_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla: (추가 소프트웨어가 필요하지 않습니다)</li>
+
+        <li>AdGuard: (추가 소프트웨어가 필요하지 않습니다)</li>
+
+        </ul>
     installing_step2_header: "2. 유저 스크립트 설치"
     installing_step2_caption: "유저 스크립트의 설치 버튼"
     installing_step2_description_html: >
