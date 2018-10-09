@@ -1,11 +1,11 @@
 <div id="script-feedback-suggestion">
   <% if script.support_url %>
     <% if script.support_url.start_with?('mailto') %>
-      <%= it('scripts.support_email_feedback_or_report', report_link: It.link(report_script_path(@script), rel: :nofollow), feedback_link: It.link("#{forum_path}post/discussion?script=#{script.id}", rel: :nofollow), support_url: It.link(script.support_url, rel: :nofollow)) %>
+      <%= it('scripts.support_email_feedback_or_report', report_link: It.link(report_script_path(script), rel: :nofollow), feedback_link: It.link("#{forum_path}post/discussion?script=#{script.id}", rel: :nofollow), support_url: It.link(script.support_url, rel: :nofollow)) %>
     <% else %>
-      <%= it('scripts.support_feedback_or_report', report_link: It.link(report_script_path(@script), rel: :nofollow), feedback_link: It.link("#{forum_path}post/discussion?script=#{script.id}", rel: :nofollow), support_url: It.link(script.support_url, rel: :nofollow)) %>
+      <%= it('scripts.support_feedback_or_report', report_link: It.link(report_script_path(script), rel: :nofollow), feedback_link: It.link("#{forum_path}post/discussion?script=#{script.id}", rel: :nofollow), support_url: It.link(script.support_url, rel: :nofollow)) %>
     <% end %>
   <% else %>
-    <%= it('scripts.feedback_or_report', report_link: It.link(report_script_path(@script), rel: :nofollow), feedback_link: It.link("#{forum_path}post/discussion?script=#{script.id}", rel: :nofollow)) %>
+    <%= it('scripts.feedback_or_report', report_link: It.link(report_script_path(script), rel: :nofollow), feedback_link: It.link("#{forum_path}post/discussion?script=#{script.id}", rel: :nofollow)) %>
   <% end %>
 </div>

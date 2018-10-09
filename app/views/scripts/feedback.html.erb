@@ -39,7 +39,9 @@
 <h3><%=t('scripts.feedback_discussions_heading')%></h3>
 <% #if we're showing a lot of them, have a link on top too
 if @script.discussions.length > 10 %>
-	<p><a id="start-discussion-top" href="<%=forum_path%>post/discussion?script=<%=@script.id%>" rel="nofollow"><%=t('scripts.feedback_start_discussion_link')%></a></p>
+  <p>
+    <%= it('scripts.feedback_or_report', report_link: It.link(report_script_path(@script), rel: :nofollow), feedback_link: It.link("#{forum_path}post/discussion?script=#{@script.id}", rel: :nofollow)) %>
+  </p>
 <% end %>
 <% if @script.discussions.empty? %>
 	<p id="no-discussions">
@@ -49,9 +51,9 @@ if @script.discussions.length > 10 %>
 	<ul id="discussions">
 		<%= render collection: @script.discussions.includes(last_reply_forum_poster: :users, original_forum_poster: :users).reverse, partial: 'forum_discussions/discussion' %>
 	</ul>
-	<p>
-		<%= it('scripts.feedback_discussion_or_report', new_discussion_link: "#{forum_path}post/discussion?script=#{@script.id}", report_link: report_script_path(@script)) %>
-	</p>
+  <p>
+    <%= it('scripts.feedback_or_report', report_link: It.link(report_script_path(@script), rel: :nofollow), feedback_link: It.link("#{forum_path}post/discussion?script=#{@script.id}", rel: :nofollow)) %>
+  </p>
 <% end %>
 
 <h3 id="feedback-favoriters"><%=t('scripts.feedback_favoriters_heading')%></h3>
