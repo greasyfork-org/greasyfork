@@ -9,6 +9,7 @@ ko:
       advanced_search: "상세 검색"
       user_list: "유저 목록"
       libraries: "라이브러리"
+      moderator_log: "관리자 기록"
   helpers:
     application:
       time_ago:
@@ -35,7 +36,7 @@ ko:
     applies_to_link_title:
       other: "%{site}에 적용되는 %{count}개의 다른 스크립트도 확인해보세요"
     applies_to_all: "모든 사이트"
-    additional_info: "개발자의 소개"
+    additional_info: "스크립트 소개"
     install: "해당 스크립트 설치"
     install_help: "?"
     install_help_title: "스크립트 설치방법"
@@ -43,6 +44,7 @@ ko:
     downgrade: "%{version} 버전으로 다운그레이드"
     reinstall: "%{version} 버전 재설치"
     old_version_warning: "이 스크립트는 최신 버전이 아닙니다. 만약 이 스크립트를 설치한다면, 새로운 버전으로 업데이트 되지 않을 것입니다. 정말 설치하시겠습니까?"
+    author_promoted: "개발자의 추천 스크립트"
     library_instructions_html: "이 스크립트는 직접 설치해서 쓰는 게 아닙니다. 다른 스크립트가 메타 명령 %{code}로 포함하여 쓰는 라이브러리입니다."
     deleted_notice: "해당 스크립트는 삭제되었습니다."
     version_notice_html: "%{date} 일자. %{latest_version_link} 확인 바람."
@@ -133,6 +135,8 @@ ko:
     listing_created_feed: "새로운 스크립트"
     listing_updated_feed: "업데이트된 스크립트"
     listing_none: "(없음)"
+    listing_set_locale_filter: "모든 언어 검색 결과를 표시하고 있습니다.. %{set_filter_link:%{language} 검색 결과만 표시하기}"
+    listing_remove_locale_filter: "%{language} 검색 결과만 표시하고 있습니다. %{remove_filter_link:모든 언어 검색 결과 표시하기}"
     import: "스크립트 불러오기"
     new: "스크립트 게시"
     support_site: "개발자의 지원 사이트 방문"
@@ -210,7 +214,7 @@ ko:
     post_a_script_link_text: "작성한 스크립트를 업로드"
     learn_to_write_scripts_link_text: "작성 방법 배우기"
     feedback_or_report: "%{feedback_link:질문을 하거나, 리뷰를 작성하거나}, %{report_link:이 스크립트를 신고하세요}."
-    support_feedback_or_report: "%{support_url:작성자의 홈페이지에 방문하기}, %{feedback_link:질문을 하거나, 리뷰를 작성하거나}, %{report_link:이 스크립트를 신고하세요}."
+    support_feedback_or_report: "%{support_url:개발자의 홈페이지에 방문하기}, %{feedback_link:질문을 하거나, 리뷰를 작성하거나}, %{report_link:이 스크립트를 신고하세요}."
     support_email_feedback_or_report: "%{support_url:작성자에게 이메일 보내기}, %{feedback_link:질문을 하거나, 리뷰를 작성하거나}, %{report_link:이 스크립트를 신고하세요}."
     approve_redistribution_explanation: "다른 사이트에서 당신의 스크립트를 재배포 할 수 있는 지 말할 수 있으며, 라이선스에 의해 이미 허용되거나 허용되지 않을 수도 있습니다."
     approve_redistribution_use_user_setting: "내 계정의 기본값으로 (${user_setting})"
