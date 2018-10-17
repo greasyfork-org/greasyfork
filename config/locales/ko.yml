@@ -9,7 +9,7 @@ ko:
       advanced_search: "상세 검색"
       user_list: "유저 목록"
       libraries: "라이브러리"
-      moderator_log: "관리자 기록"
+      moderator_log: "관리자 로그"
   helpers:
     application:
       time_ago:
@@ -37,7 +37,7 @@ ko:
       other: "%{site}에 적용되는 %{count}개의 다른 스크립트도 확인해보세요"
     applies_to_all: "모든 사이트"
     additional_info: "스크립트 소개"
-    install: "해당 스크립트 설치"
+    install: "이 스크립트 설치"
     install_help: "?"
     install_help_title: "스크립트 설치방법"
     update: "%{version}으로 업데이트"
@@ -51,7 +51,7 @@ ko:
     version_notice_latest_version_link: "최신 버전"
     info_page: "정보"
     code_page: "코드"
-    history_page: "기록"
+    history_page: "역사"
     feedback_page: "피드백 (%{count})"
     stats_page: "통계"
     derivatives_page: "파생"
@@ -130,12 +130,12 @@ ko:
     listing_filter_by_site_label: "다음 사이트에 적용되는 스크립트들:"
     listing_filter_by_site_disable: "모두"
     listing_filter_by_site_all_sites: "(모든 사이트)"
-    listing_filter_by_site_more_sites: "더..."
+    listing_filter_by_site_more_sites: "더 보기..."
     listing_no_scripts: "스크립트 없음."
     listing_created_feed: "새로운 스크립트"
     listing_updated_feed: "업데이트된 스크립트"
     listing_none: "(없음)"
-    listing_set_locale_filter: "모든 언어 검색 결과를 표시하고 있습니다.. %{set_filter_link:%{language} 검색 결과만 표시하기}"
+    listing_set_locale_filter: "모든 언어 검색 결과를 표시하고 있습니다. %{set_filter_link:%{language} 검색 결과만 표시하기}"
     listing_remove_locale_filter: "%{language} 검색 결과만 표시하고 있습니다. %{remove_filter_link:모든 언어 검색 결과 표시하기}"
     import: "스크립트 불러오기"
     new: "스크립트 게시"
@@ -161,7 +161,7 @@ ko:
     syncing_notice_sync_type_automatic: "자동으로 %{sync_identifier}에서 동기화"
     upload_label: "업로드:"
     enable_source_code_editor_label: "구문 강조된 소스 에디터 활성화"
-    changelog_note: "이 버전에서 바뀐 점은?"
+    changelog_note: "이 버전의 변경 사항"
     additional_info_note_html: "당신의 스크립트에 대해 자세히 말해보세요. %{allowed_elements_link}"
     post_new_script: "스크립트 게시"
     post_updated_script: "새 버전 게시"
@@ -408,6 +408,7 @@ ko:
     approve_redistribution_false: "제 스크립트들이 다른곳에서 재배포되는 것을 원치 않습니다."
     greasy_fork_scripts_link:
       other: "%{user_name} 또한 Greasy Fork에  %{count} 개의 스크립트를 가지고 있습니다."
+    delete_link: "계정 삭제"
   help:
     installing_user_scripts:
       title: '유저 스크립트 설치 방법'
@@ -455,6 +456,12 @@ ko:
       title: "포럼 검색"
     user_search:
       title: "사용자 검색"
+  moderator_logs:
+    moderator_column: "관리자"
+    item_column: "대상"
+    action_column: "조치"
+    reason_column: "사유"
+    item_deleted_script: "삭제된 스크립트 %{id}"
   common:
     error_preamble: "당신이 올린 거에 몇몇 문제들이 있습니다...."
     allowed_elements_link: "(허용된 코드 보기)"
@@ -465,7 +472,7 @@ ko:
     not_found_title: "404 - 페이지 미존재"
     not_found_link_home: "홈페이지로"
     suggest_locale: "%{site_name}는 %{locale_name} 로케일로 사용 가능합니다."
-    incomplete_locale: "%{site_name}의 {local_name} 번역은 %{percent}%만 완료되었습니다. 당신이 참여하여 바꿀 수 있습니다."
+    incomplete_locale: "%{site_name}의  %{locale_name} 번역은 %{percent} 완료되었습니다. 번역을 도와주세요!"
     expander_show_more: "더 보기"
     expander_show_less: "덜 보기"
     advertisement_note: 광고
