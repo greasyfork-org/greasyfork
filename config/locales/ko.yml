@@ -52,7 +52,7 @@ ko:
     info_page: "정보"
     code_page: "코드"
     history_page: "역사"
-    feedback_page: "피드백 (%{count})"
+    feedback_page: "리뷰 (%{count})"
     stats_page: "통계"
     derivatives_page: "파생"
     update_page: "업데이트"
@@ -83,7 +83,7 @@ ko:
     diff_button: "선택된 다른 버전"
     code_title: "%{script_name} - 소스 코드"
     code_highlighting_disabled: "코드 용량이 %{size}를 넘었으므로, 브라우저 렉을 방지하기 위해 구문 강조 기능이 비활성화되었습니다."
-    feedback_title: "%{script_name} - 피드백"
+    feedback_title: "%{script_name} - 리뷰"
     feedback_no_discussions_html: "아무 의논도 없습니다. %{start_first_discussion_link}"
     feedback_start_first_discussion_link: "해당 스크립트에 대해 먼저 의논해보세요."
     feedback_discussions_heading: "Greasy 포럼에 있는 의논"
@@ -284,12 +284,12 @@ ko:
     listing_with_script_with_reply_html: "%{script_link}: %{discussion_link}, %{original_post_date}에 %{original_poster_link}가 올림. %{last_comment_date}에 %{last_commenter_link}가 마지막 댓글 씀."
   home:
     title: "%{site_name} - 안전하고 유용한 유저스크립트"
-    welcome: "유저스크립트 사이트 %{site_name}에 오신걸 환영합니다."
+    welcome: "유저 스크립트 사이트, %{site_name}에 오신 것을 환영합니다!"
     sleazy_title: "%{site_name} - 인잔하고 유용한 성인용 유저스크립트"
     sleazy_welcome: "성인용 유저스크립트 사이트, %{site_name}에 오신 것을 환영합니다"
     search_placeholder: "유저 스크립트 검색"
-    explain_user_scripts_heading: "유저스크립트가 무엇인가요?"
-    explain_user_scripts_html: "유저스크립트를 사용하면 자신의 경험을 새로운 경험으로 바꿀 수 있습니다. 설치됬을 때,  유저스크립트는 자동으로 사이트에서 짜쯩나는 걸 제거하거나, 사용을 쉽게 하거나, 기능을 추가하여 사이트에 방문할 때의 경험을 더 나아지게 합니다. %{site_name}에 있는 유저스크립트들은 다른 사용자에 의해 작성되고 전세계에 공유되고 있습니다. 설치하는 데에는 한푼의 돈도 들지 않으며 사용도 매우 간편합니다."
+    explain_user_scripts_heading: "유저 스크립트가 무엇인가요?"
+    explain_user_scripts_html: "유저 스크립트를 사용하면 새로운 경험을 누릴 수 있습니다. 유저 스크립트를 한 번 설치만 하면 자동으로 기능을 추가하고, 짜증나는 요소도 없애줍니다. %{site_name}에 있는 유저 스크립트들은 다른 사용자에 의해 작성되고 전 세계에 공유되고 있습니다. 유저 스크립트는 무료이며, 사용하기도 쉽습니다!"
     installing_step1_header: "1. 유저 스크립트 관리자 설치"
     installing_step1_caption: "크롬의 Tampermonkey"
     installing_step1_description_html: >
@@ -322,19 +322,18 @@ ko:
     installing_step2_header: "2. 유저 스크립트 설치"
     installing_step2_caption: "유저 스크립트의 설치 버튼"
     installing_step2_description_html: >
-        <p>%{browse_link:이 사이트 탐색} 으로 사용하려는 유저 스크립트를 찾으세요. 아래는 인기 있는 스크립트 목록입니다.</p>
+        <p>%{browse_link:Greasy Fork에서 검색}하여 유용한 유저 스크립트를 찾으세요. 다음은 인기 있는 스크립트 목록입니다.</p>
 
         %{highlighted_scripts_list}
 
-        <p>유저 스크립트를 찾으면, 유저 스크립트 페이지의 초록색 설치 버튼을 누릅니다. 그러면 유저 스크립트 관리자가 설치 확인을 요청할
-        것입니다.</p>
+        <p>설치하고자 하는 스크립트를 찾으면 초록색의 '유저 스크립트 설치' 버튼을 누르세요. 그러면 유저 스크립트 관리자가 설치 확인을
+        요청할 것입니다.</p>
     installing_step3_header: "3. 유저 스크립트 사용하기"
     installing_step3_description_html: >
-        <p>유저 스크립트의 대상 사이트로 가면 자동으로 스크립트가 작동할 것입니다. 어느 정도 스크립트를 사용해 본 후 유저 스크립트 설치
-        페이지로 돌아와 스크립트 제작자에게 평을 남길 수 있습니다.</p>
+        <p>유저 스크립트의 대상 사이트로 가면 자동으로 스크립트가 작동할 것입니다. 유저 스크립트를 이용하신 후 리뷰를 남겨보세요!</p>
   users:
     sign_in_title: "%{site_name}에 로그인"
-    sign_in_description: "%{site_name}에 로그인하면 스크립트를 게시하고 다른 스크립트에 피드백을 남길 수 있습니다. 스크립트 탐색 및 설치에는 로그인이 필요 없습니다."
+    sign_in_description: "%{site_name}에 로그인하면 스크립트를 게시하고 다른 스크립트에 리뷰를 남길 수 있습니다. 스크립트 탐색 및 설치에는 로그인이 필요 없습니다."
     sign_in_external: "외부 서비스로 로그인"
     sign_in_with: "%{provider}으로 로그인"
     sign_in_password: "비밀번호로 로그인"

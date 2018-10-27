@@ -256,6 +256,10 @@ tr:
     search_placeholder: "Arama scriptleri"
     updated: "Betik güncellendi."
     preview_additional_info: "Önizle"
+    must_confirm_email: "Script'leri yayınlamadan önce e-posta adresinizi doğrulamalısınız."
+    must_confirm_email_button: "%{email} adresine doğrulama e-postası yolla"
+    report:
+      title: "%{script_name}'yı şikayet et"
   script_sets:
     description: "Komut dizileri, Greasey Fork ile göz atmak için özelleştirilmiş bir komut listesi oluşturmanıza izin verir. Tek tek komut dosyalarını, diğer kullanıcıların kümelerini veya otomatik olarak oluşturulan setleri ekleyerek kümenize komut dosyaları ekleyebilirsiniz. Komut dosyalarını da kümenizden aynı yöntemlerle hariç tutabilirsiniz."
     favorites_name: "Favoriler"
@@ -456,10 +460,13 @@ tr:
     delete_link: "Hesap Sil"
     delete:
       intro: "Sizin %{site_name}, %{user_name}hesap silmeniz şu sonuçlara sebep olur:"
+      requires_permanent_deletion: "Hesabınızı silmeden önce, şu scriptlerin kalıcı olarak silinmesini talep etmelisiniz:"
       password_effect: "Şifrenizle girişiniz artık mümkün olmayacak."
       scripts_effect:
         one: "Size ait %{count} script silinecek."
         other: "Size ait %{count}scriptleriniz silinecek."
+      forum_effect: "Foruma katkılarınız kalacak, ancak kullanıcının adı %{user_name} olacak."
+      email_confirmation: "Hesabınızı silmeden önce, %{site_name}%{email}'ye isteğinizi doğrulamak için bir e-posta yollayacak."
       submit: "Hesap Sil"
       confirmation_email_sent: "Silme onayı için e-posta gönderildi."
       confirmation_email:
@@ -483,6 +490,7 @@ tr:
       require_html: "Kodlar harici Java kodları içermektedir. Bakınız %{external_script_link}."
       require_external_script_link_text: "kod kuralları harici komut içermektedir"
       supportURL: "Kullanıcıların bir komut dosyasında destek alabileceği bir sayfanın URL'si (ör. Bir hata izleyici, bir forum, bir e-posta adresi). Destek URL'si bir komut dosyasının geribildirim sayfasında görüntülenir."
+      contributionAmount_html: "Önerilen bağış miktarı, <code>@contributionURL</code>'ya bağlı kullanılır"
     writing_user_scripts:
       title: "Nasıl kullanıcı scripti yazarım"
       ask_in_forum_link_text: 'forumda sor'
@@ -493,6 +501,8 @@ tr:
       adult_content_rule_html: "<li>Yetişkin içerik barındıran scriptler bu şekilde işaretlenmelidir. Böylece kullancılar ne göreceklerini seçebilirler.</li>"
     external_scripts:
       title: "%{site_name} sitesinin harici scriptlerdeki politikası"
+    script_rewriting:
+      title: "%{site_name}, gönderilen scriptleri nasıl yeniden yazacak"
     site_feedback_link: "%{site_name} için bir sorun bildir veya birşetler söyle"
     credits:
       title: "Künye"
@@ -615,6 +625,7 @@ tr:
       must_be_greasy_fork_script: "%{site_name}'ta bulunan script URL'si olmalıdır"
       script_update_not_utf8: "yüklenen UTF-8 biçiminde olmalıdır"
       script_disallowed_require: "onaylanmamış harici script kullanıyor: %{code}"
+      script_rate_limit: "Yayınlama sınırını geçtiniz. Daha sonra tekrar deneyin."
   opensearch:
     short_name: "%{site_name} ara"
     description: "%{site_name} sitesinde kullanıcı scriptleri için ara."
