@@ -135,7 +135,7 @@ class UsersController < ApplicationController
 		changed_files = changed_files.select{|filename, info| info[:scripts].any? || info[:script_attributes].any?}
 
 		if changed_files.empty?
-			render :json => {:affected_scripts => []} 
+			render json: { updated_scripts: [], updated_failed: [] }
 			return
 		end
 
@@ -182,7 +182,7 @@ class UsersController < ApplicationController
 			end
 		end
 
-		render json: {updated_scripts: updated_scripts, updated_failed: update_failed_scripts}
+		render json: { updated_scripts: updated_scripts.map{ |s| script_url(s) }, updated_failed: update_failed_scripts.map{ |s| script_url(s) } }
 	end
 
 	def edit_sign_in
