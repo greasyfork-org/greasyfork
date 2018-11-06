@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'git'
 
 class GithubWebhookTest < ActionDispatch::IntegrationTest
 
@@ -28,6 +29,8 @@ class GithubWebhookTest < ActionDispatch::IntegrationTest
   end
   
   def test_webhook_change
+    script = Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js')
+    Git.expects(:get_contents).yields('test.user.js', 'abc123', script.get_newest_saved_script_version.rewritten_code)
     user = User.find(1)
     webhook_request(user)
     assert_equal '200', response.code

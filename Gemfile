@@ -68,4 +68,5 @@ group :test do
   gem 'capybara'
   gem 'selenium-webdriver'
   gem 'bundler-audit'
+  gem 'mocha'
 end
