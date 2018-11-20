@@ -1,14 +1,14 @@
 <%- title "Setting up a webhook" %>
 <%- description "Setting up a webook to update scripts on #{site_name} automatically." %>
 
-<p>A webhook connected with <%= site_name %> makes it so any push to repository automatically updates your scripts on <%= site_name %> in a matter of minutes. <%= site_name %> currently supports GitHub and Bitbucket webhooks.</p>
+<p>A webhook connected with <%= site_name %> makes it so any push to repository automatically updates your scripts on <%= site_name %> in a matter of minutes. <%= site_name %> currently supports GitHub, Bitbucket, and GitLab webhooks.</p>
 
 <p>
   To use this feature, you must have scripts on Greasy Fork set up to sync by URL to your repository. You can add new scripts by <%= link_to 'importing new scripts into Greasy Fork', import_start_path%>, or you can set previously posted scripts to sync by accessing the "Sync" tab from the script's page.
 </p>
 
 <% if @webhook_scripts.any? %> 
-  <p>Here are the syncing scripts you have so far:</p>
+  <p>Here are the scripts you have already set up to sync from a supported provider:</p>
   <ul>
     <% @webhook_scripts.each do |s| %>
       <li><%=link_to s.name, s%> - <%=s.script_sync_type.name.downcase%> syncing from <%=link_to s.sync_identifier, s.sync_identifier%></li>
@@ -16,9 +16,11 @@
   </ul>
 <% end %>
 
+<p>Your scripts will continue to show a sync type of "Automatic" or "Manual" until the first push happens, and then they'll be set to "Webhook".</p>
+
 <h4>GitHub</h4>
 
-<p>To set up the webhook on GitHub, access your GitHub repository and go to Settings, Webhooks, Add webhook, then enter the data below. You can set up multiple repositories with the same info.</p>
+<p>To set up the webhook on GitHub, access your GitHub repository and go to Settings, Webhooks, Add webhook, then enter the data below.</p>
 
 <dl>
   <dt>Payload URL</dt>
@@ -41,11 +43,9 @@
   <dd>(Checked)</dd>
 </dl>
 
-<p>After you set up the webhook, GitHub will send a ping to Greasy Fork. If this ping is successful, then you've set things up correctly. Your scripts will continue to show a sync type of "Automatic" or "Manual" until the first push happens, and then they'll be set to "Webhook".</p>
-
 <h4>Bitbucket</h4>
 
-<p>To set up the webhook on Bitbucket, access your Bitbucket repository and go to Settings, Webhooks, Add webhook, then enter the data below. You can set up multiple repositories with the same info.</p>
+<p>To set up the webhook on Bitbucket, access your Bitbucket repository and go to Settings, Webhooks, Add webhook, then enter the data below.</p>
 
 <dl>
   <dt>Title</dt>
@@ -70,4 +70,25 @@
   <dd>Repository push</dd>
 </dl>
 
-<p>Your scripts will continue to show a sync type of "Automatic" or "Manual" until the first push happens, and then they'll be set to "Webhook".</p>
+<h4>GitLab</h4>
+
+<p>To set up the webhook on GitLab, access your GitLab repository and go to Settings, Integrations, then enter the data below.</p>
+
+<dl>
+  <dt>URL</dt>
+  <dd><%= user_webhook_url(@user) %></dd>
+  <dt>Secret Token</dt>
+  <dd>
+    <%= form_tag do |f| %>
+      <% if @user.webhook_secret.nil? %>
+        <input type="submit" value="Generate">
+      <% else %>
+        <textarea cols="64" rows="2"><%= @user.webhook_secret %></textarea> <input type="submit" value="Regenerate">
+      <% end %>
+    <% end %>
+  </dd>
+  <dt>Trigger</dt>
+  <dd>(Push events only)</dd>
+  <dt>Enable SSL Verification</dt>
+  <dd>(Checked)</dd>
+</dl>

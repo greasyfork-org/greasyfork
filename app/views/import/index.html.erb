@@ -14,9 +14,9 @@
     <input name="sync-type" id="sync-type-1" type="radio" value="1"><label for="sync-type-1">Manually - only when you trigger it</label>
   </p>
 
-  <p>For scripts from source control, ensure that the URL you use refers to a branch and not a specific commit, otherwise it will never get updated. For example, <code>https://bitbucket.org/username/reponame/raw/<b>branch-name</b>/script.user.js</code> rather than <code>https://bitbucket.org/username/reponame/raw/<b><i>commit-hash</i></b>/script.user.js</code>.</p>
+  <p>For scripts from source control, ensure that the URL you use refers to a branch and not a specific commit, otherwise it will never get updated. For example, <code>https://bitbucket.org/username/reponame/raw/<b>branch-name</b>/script.user.js</code> rather than <code>https://bitbucket.org/username/reponame/raw/<b>commit-hash</b>/script.user.js</code>.</p>
 
-  <p>Scripts imported from GitHub and Bitbucket can also be set up to sync using a webhook. A webhook will make it so your scripts are immediately updated on <%= site_name %> when you push to your repository. If you want to use a webhook but haven't set it up yet, do the import first, then <%=link_to 'set up the webhook after', user_webhook_info_path%>.</p>
+  <p>Scripts imported from GitHub, Bitbucket, or GitLab can also be set up to sync using a webhook. A webhook will make it so your scripts are immediately updated on <%= site_name %> when you push to your repository. If you want to use a webhook but haven't set it up yet, do the import first, then <%=link_to 'set up the webhook after', user_webhook_info_path%>.</p>
 
 
   <%=submit_tag 'Import'%>

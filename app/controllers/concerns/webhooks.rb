@@ -107,6 +107,45 @@ module Webhooks
     return changed_files, repo_url
   end
 
+  def process_gitlab_webhook(user)
+    if user.webhook_secret.nil? || user.webhook_secret != request.headers['X-Gitlab-Token']
+      head 403
+      return nil, nil
+    end
+
+    if request.headers['X-Gitlab-Event'] != 'Push Hook'
+      head 406
+      return nil, nil
+    end
+
+    if params[:commits].nil?
+      render :json => {:message => 'No commits found in this push.'}
+      return nil, nil
+    end
+
+    # Get a list of changed files and the commit info that goes with them.
+    # We will keep all commit messages but only the most recent commit.
+    changed_files = {}
+    params[:commits].each do |c|
+      if !c[:modified].nil?
+        c[:modified].each do |m|
+          changed_files[m] ||= {}
+          changed_files[m][:commit] = c[:id]
+          (changed_files[m][:messages] ||= []) << c[:message]
+        end
+      end
+    end
+
+    base_paths = [
+      params[:repository][:git_http_url].gsub(/\.git\z/, '') + '/raw/' + params[:ref].split('/').last + '/',
+    ]
+
+    inject_script_info(user, changed_files, base_paths)
+
+    return changed_files, params[:repository][:url]
+  end
+
+
   # Adds scripts and script_attributes keys to changed_files.
   # - user
   # - changed_files - a Hash of filename to Hash

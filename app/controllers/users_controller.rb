@@ -69,13 +69,15 @@ class UsersController < ApplicationController
       @user.generate_webhook_secret
       @user.save!
     end
-    @webhook_scripts = Script.not_deleted.where(:user_id => @user.id).where('sync_identifier LIKE "https://github.com/%" OR sync_identifier LIKE "https://raw.githubusercontent.com/%" OR sync_identifier LIKE "https://bitbucket.org/%"').includes(:script_sync_type)
+    @webhook_scripts = Script.not_deleted.where(:user_id => @user.id).where('sync_identifier LIKE "https://github.com/%" OR sync_identifier LIKE "https://raw.githubusercontent.com/%" OR sync_identifier LIKE "https://bitbucket.org/%" OR sync_identifier LIKE "https://gitlab.com/%"').includes(:script_sync_type)
   end
 
   def webhook
     user = User.find(params[:user_id])
     changes, git_url = if request.headers['User-Agent'] == 'Bitbucket-Webhooks/2.0'
       process_bitbucket_webhook(user)
+    elsif request.headers['X-Gitlab-Token'].present?
+      process_gitlab_webhook(user)
     else
       process_github_webhook(user)
     end
