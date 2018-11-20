@@ -320,6 +320,7 @@ class BitbucketWebhookTest < ActionDispatch::IntegrationTest
   def test_webook_no_script_match
     user = User.find(1)
     Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js').update!(sync_identifier: nil)
+    Git.expects(:get_files_changed).yields('12245dbfb00de399a3108828b5aa2dc8bdbc4107', ['test.user.js'])
     webhook_request(user)
     assert_equal '200', response.code
     assert_equal({ 'updated_scripts' => [], 'updated_failed' => [] }, JSON.parse(response.body))
@@ -328,7 +329,8 @@ class BitbucketWebhookTest < ActionDispatch::IntegrationTest
   def test_webhook_change
     script = Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js')
     script.update!(sync_identifier: 'https://bitbucket.org/JasonBarnabe/webhookstest/raw/master/test.user.js')
-    Git.expects(:get_contents).yields('test.user.js', 'abc123', script.get_newest_saved_script_version.rewritten_code)
+    Git.expects(:get_contents).yields('test.user.js', '12245dbfb00de399a3108828b5aa2dc8bdbc4107', script.get_newest_saved_script_version.rewritten_code)
+    Git.expects(:get_files_changed).yields('12245dbfb00de399a3108828b5aa2dc8bdbc4107', ['test.user.js'])
     user = User.find(1)
     webhook_request(user)
     assert_equal '200', response.code
