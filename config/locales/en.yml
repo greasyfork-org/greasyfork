@@ -381,7 +381,7 @@ en:
     # label for radio button for automatic syncing
     sync_type_2: "Automatically - it will be periodically checked for updates"
     # label for radio button for webhook syncing
-    sync_type_3: "By webhook - it will be updated when you push changes to this file on GitHub"
+    sync_type_3: "By webhook - it will be updated when you push changes to this file on your repository"
     # text when the last attempted sync failed. date is the date of the error run through markup_date. error is the technical error.
     sync_failed_info_html: "Last attempted sync was %{date}, which resulted in %{error}."
     # text indicating the date of the last successful sync. date is the date of the sync run through markup_date
@@ -741,8 +741,8 @@ en:
     remove_external_sign_in: "Remove"
     # information text indicating that the list of links below it are for addding an external sign in
     add_external_sign_in_info: "Add a sign in:"
-    # link to docs on how to set up a GitHub webhook for script syncing
-    set_up_webhook: "Set up a GitHub webhook"
+    # link to docs on how to set up a webhook for script syncing
+    set_up_webhook: "Set up a webhook"
     author_email_notification_type:
       # notification option: don't send the user e-mails
       none: "Don't get emails about discussions on your scripts"

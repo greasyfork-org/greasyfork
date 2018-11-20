@@ -58,19 +58,72 @@ module Webhooks
       params[:repository][:url] + '/raw/' + params[:ref].split('/').last + '/', 'https://raw.githubusercontent.com/' + params[:repository][:url].split('/')[3..4].join('/') + '/' + params[:ref].split('/').last + '/'
     ]
 
+    inject_script_info(user, changed_files, base_paths)
+
+    return changed_files, params[:repository][:git_url]
+  end
+
+  def process_bitbucket_webhook(user)
+    if user.webhook_secret.nil? || user.webhook_secret != params[:secret]
+      head 403
+      return nil, nil
+    end
+
+    if request.headers['X-Event-Key'] != 'repo:push'
+      head 406
+      return nil, nil
+    end
+
+    # Hash of commit hash to Array of commit messages
+    commits = {}
+    params[:push][:changes].each do |change|
+      change[:commits].each do |commit| 
+        (commits[commit[:hash]] ||= []) << commit[:summary][:raw]
+      end
+    end
+
+    if commits.empty?
+      render :json => {:message => 'No commits found in this push.'}
+      return nil, nil
+    end
+
+    repo_url = "https://bitbucket.org/#{params[:repository][:full_name]}.git"
+    branch = params[:push][:changes].first[:new][:name]
+    base_paths = [
+      "https://bitbucket.org/#{params[:repository][:full_name]}/raw/#{branch}/",
+    ]
+
+    changed_files = {}
+    Git.get_files_changed(repo_url, commits.keys.uniq) do |commit, files|
+      files.each do |file|
+        changed_files[file] ||= {messages: []}
+        changed_files[file][:commit] = commit
+        changed_files[file][:messages].concat(commits[commit])
+      end
+    end
+
+    inject_script_info(user, changed_files, base_paths)
+
+    return changed_files, repo_url
+  end
+
+  # Adds scripts and script_attributes keys to changed_files.
+  # - user
+  # - changed_files - a Hash of filename to Hash
+  # - base_paths - paths to add to to start of the filename to find scripts by URL
+  def inject_script_info(user, changed_files, base_paths)
     # Associate scripts to each file.
     changed_files.each do |filename, info|
       urls = base_paths.map do |bp|
         bp + self.class.urlify_webhook_path_segment(filename)
       end
+
       # Scripts syncing code to this file
       info[:scripts] = user.scripts.not_deleted.where(sync_identifier: urls)
 
       # Scripts syncing additional info to this file
       info[:script_attributes] = LocalizedScriptAttribute.where(sync_identifier: urls).joins(:script).where(scripts: {user_id: user.id})
     end
-    
-    return changed_files, params[:repository][:git_url]
   end
 
   # changed_files: Hash with keys of files names and a value of a Hash with keys:
