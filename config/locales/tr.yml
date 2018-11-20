@@ -101,8 +101,10 @@ tr:
     code_title: "%{script_name} - Kaynak kodu"
     code_highlighting_disabled: "Kod %{size}'dan büyük, bu yüzden sözdizimi vurgulaması tarayıcınızdan engellendi."
     feedback_title: "%{script_name} - Geribildirim"
+    feedback_has_unauthorized: "Bu betiğin yetkisiz kod içerdiği bildirildi."
     feedback_no_discussions_html: "Henüz tartışmalar yapılmamış.  %{start_first_discussion_link}"
     feedback_start_first_discussion_link: "Bu script hakkındaki tartışmayı ilk siz başlatın."
+    feedback_discussion_or_report: "% {new_discussion_link: Bu komut dosyasıyla ilgili yeni bir tartışma başlatınız} veya% {report_link: kaldırılmak üzere raporlayın}."
     feedback_discussions_heading: "Greasy Forum'da Tartışmalar"
     feedback_favoriters_heading: "Favorilerine ekleyenler"
     feedback_favoriters_user_list_intro: "Bu scripti bu kişiler favorilerine ekledi:"
@@ -229,6 +231,9 @@ tr:
     write_your_own_html: "%{post_a_script_link} (ya da %{learn_to_write_scripts_link})"
     post_a_script_link_text: "Yazdığınız bir scripti gönderin"
     learn_to_write_scripts_link_text: "nasıl bir tane yazılır öğren"
+    feedback_or_report: "% {feedback_link: Bir soru sorun, yorum yayınlayın} veya% {report_link: komut dosyasını bildirin}."
+    support_feedback_or_report: "% {support_url: Destek için yazarın sitesini ziyaret edin},% {feedback_link: bir soru sorun, yorum gönderin} veya% {report_link: komut dosyasını bildirin}."
+    support_email_feedback_or_report: "% {support_url: Destek için yazara e-posta gönderin},% {feedback_link: bir soru sorun, yorum gönderin} veya% {report_link: komut dosyasını bildirin}."
     approve_redistribution_explanation: "%{site_name} diğer sitelere scriptinizi yeniden yayınlamalarına izin verdiğinizi söyler. Ancak buna scriptinizin lisansı tarafından zaten izin verilmiş veya verilmemiş olabilir."
     approve_redistribution_use_user_setting: "Benim varsayılan hesap (%{user_setting})'ımı kullan"
     approve_redistribution_use_user_setting_not_set: "ayarlanmamış"
@@ -551,6 +556,7 @@ tr:
       description: "Komut dosyalarını arayın. Komut dosyası adlarını, açıklamaları, ek bilgileri ve yazar isimlerini arar. %{sphinx_link:Sphinx extended query syntax.}"
     library_search:
       title: "Kütüphane Ara"
+      description: "Kütüphaneleri arayın. Kitaplık adlarını, açıklamaları, ek bilgileri ve yazar isimlerini arar. % {sphinx_link: Sfenks genişletilmiş sorgu sözdizimi.}"
     code_search:
       title: "Kod Ara"
       description: "Script kod ara. Joker karakter olmaksızın düz metin araması, BÜYÜK/küçük harfe duyarsızdır."

@@ -234,6 +234,7 @@ ko:
     adult_marker: "(성인)"
     deleted_marker: "(제거됨)"
     locked_marker: "(잠김)"
+    unlisted_marker: "(미등록)"
     library_marker: "(라이브러리)"
     libraries_title: "라이브러리"
     by_site_list_description: "유저 스크립트의 인기가 높은 순으로 정렬된 사이트 목록입니다. 글자가 클 수록 유저 스크립트의 인기가 높습니다."
@@ -258,9 +259,13 @@ ko:
       add_exclude: "제외됨"
     edit_sets:
       heading: "스크립트 세트"
+      included: "포함된"
       remove_included: "선택된 항목 삭제"
+      excluded: "제외된"
       remove_excluded: "선택된 항목 삭제"
       add_label: "스크립트 추가 (공백으로 구분된 URL 혹은 ID 목록)"
+      add_include: "포함된"
+      add_exclude: "제외된"
       user_no_sets: "(유저의 세트 없음)"
       user_no_other_sets: "(유저의 다른 세트 없음)"
     edit_auto_sets:
@@ -408,6 +413,10 @@ ko:
     greasy_fork_scripts_link:
       other: "%{user_name} 또한 Greasy Fork에  %{count} 개의 스크립트를 가지고 있습니다."
     delete_link: "계정 삭제"
+    delete:
+      intro: "너의 %{site_name} 계정 '%{user_name}'를 삭제하는 것은 다음의 영향이 있을 것이다:"
+      scripts_effect:
+        other: "너의 %{count}개의 스크립트들이 삭제될 것이다."
   help:
     installing_user_scripts:
       title: '유저 스크립트 설치 방법'
@@ -437,6 +446,8 @@ ko:
       post_new_script_link_text: '새로운 스크립트 게시'
     code_rules:
       title: "외부 스크립트에 관한 Gresay Fork 정책"
+    external_scripts:
+      title: "%{site_name}의 외부 스크립트 정책"
     credits:
       title: "제작자"
       authors_credit: "만약 스크립트를 기여해주는 개발자분들이 없어진다면, %{site_name}는 사라질 겁니다."
@@ -449,6 +460,8 @@ ko:
   search:
     script_search:
       title: "스크립트 검색"
+    library_search:
+      title: "라이브러리 검색"
     code_search:
       title: "코드 검색"
     forum_search:
@@ -475,6 +488,7 @@ ko:
     expander_show_more: "더 보기"
     expander_show_less: "덜 보기"
     advertisement_note: 광고
+    preview_tab: 미리보기
   activerecord:
     attributes:
       user:
