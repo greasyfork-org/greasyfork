@@ -142,7 +142,7 @@ module Webhooks
 
     inject_script_info(user, changed_files, base_paths)
 
-    return changed_files, params[:repository][:url]
+    return changed_files, params[:repository][:git_http_url]
   end
 
 
