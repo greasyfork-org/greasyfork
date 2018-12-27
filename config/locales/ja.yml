@@ -226,6 +226,7 @@ ja:
     write_your_own_html: "%{post_a_script_link} (または %{learn_to_write_scripts_link})"
     post_a_script_link_text: "スクリプトを投稿する"
     learn_to_write_scripts_link_text: "スクリプトの書き方を見る"
+    feedback_or_report: "質問やレビューの%{feedback_link:投稿はこちら}へ、スクリプトの%{report_link:通報はこちら}へどうぞ。"
     approve_redistribution_explanation: "%{site_name} では、他のサイトへスクリプトを転載しても良いか示すことができます。スクリプトのライセンスによって、すでにこれを許可、あるいは不許可としているかもしれません。"
     approve_redistribution_use_user_setting: "アカウントの既定を使用 (%{user_setting})"
     approve_redistribution_use_user_setting_not_set: "未設定"
@@ -257,6 +258,12 @@ ja:
     preview_additional_info: "プレビュー"
     must_confirm_email: "スクリプトを投稿するには、メールアドレスの確認を行う必要があります。"
     must_confirm_email_button: "確認リンクを %{email} に送信"
+    report:
+      title: "%{script_name}を通報"
+      rules_summary: "%{site_name}に投稿するスクリプトは、%{rules_link:ルール}を遵守したものでなければなりません。よくある違反行為としてはマルウェアがあります。広告やマイニング (採掘) などの収益化機構を備えておりながらそのことを説明文で明示していないスクリプトや、コードの無断コピーを含むスクリプトなどがこれにあたります。"
+      non_rules_summary_html: "お気をつけいただきたいのは、機能しないものやサードパーティの利用規約に反するものは%{site_name}のルール違反<b>ではない</b>ということです。そのような場合、通報ではなくスクリプトの%{feedback_link:フィードバックを投稿する}ことができます。"
+      unauthorized_code_report_link: "もし自分自身が%{site_name}に投稿したスクリプトの一部のコードが%{script_name}にも使われているということであれば、%{report_link:緊急通報フォーム}をご利用ください。"
+      general_report_link: "それ以外のあらゆるルール違反行為につきましては、%{forum_link:フォーラムへの投稿}をお願いします。"
   script_sets:
     description: "「スクリプトセット」とは、Greasy Fork に投稿されているスクリプトのマイリストです。個々のスクリプトの追加だけでなく、他のスクリプトセットをリストに登録して一つのスクリプトセットとして表示することもでき、サイトやユーザーを指定した自動生成も可能です。また、同じようにして除外リストへの登録も行えます。"
     favorites_name: "お気に入り"

@@ -17,17 +17,17 @@ pl:
           one: "%{count} minutę temu"
           few: "%{count} minut temu"
           many: "%{count} minuty temu"
-          other: "%{count} minuty temu"
+          other: "%{count} minut(y) temu"
         hours:
           one: "%{count} godzinę temu"
           few: "%{count} godzin temu"
           many: "%{count} godziny temu"
-          other: "%{count} godziny temu"
+          other: "%{count} godzin(y) temu"
         days:
           one: "wczoraj"
           few: "%{count} dni temu"
           many: "%{count} dni temu"
-          other: "%{count} dni temu"
+          other: "%{count} dni(dzień) temu"
   scripts:
     created_date: "Utworzono"
     updated_date: "Zaktualizowano"
@@ -112,6 +112,7 @@ pl:
     feedback_has_unauthorized: "Ten skrypt został zgłoszony jako zawierający nieautoryzowany kod."
     feedback_no_discussions_html: "Brak udostępnionych dyskusji. %{start_first_discussion_link}"
     feedback_start_first_discussion_link: "Bądź pierwszy, by rozpocząć dyskusję o tym skrypcie."
+    feedback_discussion_or_report: "%{new_discussion_link:Rozpocznij nową dyskusję nad tym skryptem} lub %{report_link:zgłoś do usunięcia}."
     feedback_discussions_heading: "Dyskusje na Greasy Forum"
     feedback_favoriters_heading: "Użytkownicy, którzy uwielbiają ten skrypt"
     feedback_favoriters_user_list_intro: "Ten skrypt został dodany do ulubionych przez:"
@@ -242,6 +243,7 @@ pl:
     write_your_own_html: "%{post_a_script_link} (lub %{learn_to_write_scripts_link})"
     post_a_script_link_text: "Udostępnij skrypt, który piszesz"
     learn_to_write_scripts_link_text: "dowiedz się, jak go napisać"
+    feedback_or_report: "%{feedback_link:Zadaj pytanie, dodaj opinię}, lub %{report_link:zgłoś ten skrypt}."
     approve_redistribution_explanation: "%{site_name} może przekazywać innym stronom, że zezwalasz im na używanie Twojego skryptu. To może być lub nie być dozwolone przez licencję, której używasz w swoim skrypcie."
     approve_redistribution_use_user_setting: "Użyj mojego domyślnego konta (%{user_setting})"
     approve_redistribution_use_user_setting_not_set: "Nie zdefiniowano"
@@ -272,6 +274,8 @@ pl:
     preview_additional_info: "Podgląd"
     must_confirm_email: "Musisz potwierdzić swój email zanim zaczniesz udostępniać skrypty."
     must_confirm_email_button: "Wyślij link potwierdzający na adres %{email}"
+    report:
+      title: "Zgłoś %{script_name}"
   script_sets:
     description: "Zestawy skryptów umożliwiają Ci stworzenie zmodyfikowanej listy skryptów do przeglądania Greasy Fork'a. Możesz dodać skrypty do Twojego zestawu poprzez dołączanie pojedynczych skryptów, zestawów innych użytkowników lub automatycznie generowanych zestawów. Możesz także usunąć skrypty z Twojego zestawów w taki sam sposób."
     favorites_name: "Ulubione"
@@ -454,6 +458,7 @@ pl:
     disable_syncing: "Wyłącz synchronizację"
     remove_external_sign_in: "Usuń"
     add_external_sign_in_info: "Dodaj metodę logowania się"
+    set_up_webhook: "Stwórz nowego webhooka"
     author_email_notification_type:
       none: "Nie otrzymuj e-maili o nowych dyskusjach w Twoich skryptach"
       discussion_only: "Otrzymuj maile o nowych dyskusjach na temat twoich skryptów"
@@ -491,6 +496,7 @@ pl:
     delete_link: "Usuń konto"
     delete:
       intro: "Usunięcie twojego %{site_name}konta '%{user_name}' będzie miało następujące efekty:"
+      requires_permanent_deletion: "Zanim usuniesz swoje konto, musisz potwierdzić usunięcie poniższych skryptów:"
       scripts_effect:
         one: "Twój %{count} skrypt zostanie usunięty."
         few: "%{count}twoje skrypty zostaną usunięte."

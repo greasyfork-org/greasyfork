@@ -50,6 +50,7 @@ nl:
     old_version_warning: "Dit is niet de nieuwste versie van dit script. Als je deze installeert, zal hij nooit updaten naar een nieuwere versie. Toch installeren?"
     promoted: "Aanbevolen script"
     author_promoted: "Aanbevolen script door auteur"
+    promoted_text_html: "Wellicht ook leuk: %{script_link}."
     library_instructions_html: "Dit script moet niet direct worden geïnstalleerd. Het is een bibliotheek voor andere scripts om op te nemen met de meta-richtlijn %{code}"
     deleted_notice: "Dit script is verwijderd."
     version_notice_html: "Per %{date}. Zie %{latest_version_link}."
@@ -100,8 +101,10 @@ nl:
     code_title: "%{script_name} - Broncode"
     code_highlighting_disabled: "Omdat de code meer dan %{size} is is syntax-markering uitgeschakeld om uw webbrowser te sparen."
     feedback_title: "%{script_name} - Feedback"
+    feedback_has_unauthorized: "Dit script is gerapporteerd omdat het ongeautoriseerde code zou bevatten."
     feedback_no_discussions_html: "Er zijn nog geen discussies geplaatst. %{start_first_discussion_link}"
     feedback_start_first_discussion_link: "Wees de eerste om een discussie te beginnen over dit script."
+    feedback_discussion_or_report: "%{new_discussion_link:Start een discussie over dit script} of %{report_link:verzoek tot verwijdering}."
     feedback_discussions_heading: "Discussies op het Greasy-forum"
     feedback_favoriters_heading: "Personen die dit script hebben toegevoegd aan hun favorieten"
     feedback_favoriters_user_list_intro: "De volgende personen hebben dit script toegevoegd aan hun favorieten:"
@@ -204,6 +207,7 @@ nl:
     sync_type_intro: "Het script zal worden gesynchroniseerd:"
     sync_type_1: "Handmatig - er zal alleen worden gecontroleerd op bijwerken wanneer u hierom vraagt"
     sync_type_2: "Automatisch - er zal regelmatig worden gecontroleerd op bijwerkingen"
+    sync_type_3: "Door webkoppeling - het zal worden bijgewerkt wanneer u wijzigingen aan dit bestand doorvoert op uw repository"
     sync_failed_info_html: "De laatst getrachte synchronisatie was %{date}, welke resulteerde in %{error}."
     sync_success_info_html: "De laatste succesvolle synchronisatie was %{date}."
     sync_never_succeeded: "De synchronisatie is nog nooit succesvol afgerond."
@@ -230,6 +234,9 @@ nl:
     write_your_own_html: "%{post_a_script_link} (of %{learn_to_write_scripts_link})"
     post_a_script_link_text: "Publiceer een door u geschreven script"
     learn_to_write_scripts_link_text: "leer hoe u een script schrijft"
+    feedback_or_report: "%{feedback_link:Stel een vraag, plaats een beoordeling}, of %{report_link:maak melding van het script}."
+    support_feedback_or_report: "%{support_url:Bezoek de website van de auteur}, %{feedback_link:stel een vraag, plaats een beoordeling}, of %{report_link:maak melding van het script}."
+    support_email_feedback_or_report: "%{support_url:Stuur een e-mail aan de auteur}, %{feedback_link:stel een vraag, plaats een beoordeling}, of %{report_link:maak melding van het script}."
     approve_redistribution_explanation: "%{site_name} kan bij andere websites bekend maken dat u toestaat dat uw script herplaatst wordt. Het kan zijn dat de door u gekozen scriptlicentie dit al toestaat."
     approve_redistribution_use_user_setting: "Mijn accountstandaard gebruiken (%{user_setting})"
     approve_redistribution_use_user_setting_not_set: "niet ingesteld"
@@ -259,6 +266,14 @@ nl:
     search_placeholder: "Zoek scripts"
     updated: "Script bijgewerkt."
     preview_additional_info: "Voorvertoning"
+    must_confirm_email: "U dient uw e-mailadres te bevestigen voor het plaatsen van scripts."
+    must_confirm_email_button: "Stuur bevestigings-link naar %{email}"
+    report:
+      title: "Maak melding van %{script_name}"
+      rules_summary: "Scripts op %{site_name} dienen zich te houden aan %{rules_link:de regels}. Gebruikelijke overtredingen zijn o.a. malware; scripts met advertenties, cryptominers of andere financieringsmethoden die niet vooraf aangegeven zijn; en scripts met ongeautoriseerde kopieën van code."
+      non_rules_summary_html: "Merk op dat niet-functioneren of overtreden van de voorwaarden van een derde partij <em>geen</em> overtreding van de voorwaarden van %{site_name} is. In deze gevallen kunt u in plaats daarvan %{feedback_link:feedback geven} op het script."
+      unauthorized_code_report_link: "Als %{script_name} code gebruikt van een van uw scripts op %{site_name}, gebruik dan aub %{report_link:het meldingsformulier}."
+      general_report_link: "Voor andere overtredingen van de regels, plaats een %{forum_link:post op het forum}."
   script_sets:
     description: "Script-sets stellen je in staat om een gepersonaliseerde lijst met scripts met Greasy Fork door te bladeren. Je kunt scripts toevoegen aan je set door individuele scripts op te nemen, sets van andere gebruikers of automatisch gegenereerde sets. Je kunt ook scripts uit je set verwijderen met dezelfde methode."
     favorites_name: "Favorieten"
@@ -440,6 +455,7 @@ nl:
     disable_syncing: "Synchroniseren uitschakelen"
     remove_external_sign_in: "Verwijderen"
     add_external_sign_in_info: "Inlogdienst toevoegen:"
+    set_up_webhook: "Webkoppeling instellen"
     author_email_notification_type:
       none: "Geen e-mails ontvangen over discussies aangaande uw scripts"
       discussion_only: "Een e-mail ontvangen wanneer er discussies worden geplaatst aangaande uw scripts"
@@ -480,9 +496,15 @@ nl:
         one: "Uw %{count} scripts zullen verwijderd worden."
         other: "Uw %{count} scripts zullen verwijderd worden."
       forum_effect: "Uw bijdragen aan het forum blijven behouden, maar de corresponderende gebruiker wordt hernoemd tot \"%{user_name}\"."
+      email_confirmation: "%{site_name} stuurt een bevestiging naar %{email} om uw aanvraag tot account-verwijdering te bevestigen."
       submit: "Verwijder account"
       confirmation_email_sent: "Bevestigingsmail voor verwijdering is verzonden."
+      confirmation_email:
+        subject: "%{site_name} bevestig verwijderen van account"
+        body: "Er is een aanvraag gedaan om uw account '%{user_name}' van %{site_name} te verwijderen. Ga naar %{url} om deze aanvraag te bevestigen en uw account werkelijk te verwijderen. Doe dit binnen 24 uur, anders wordt de aanvraag geannuleerd."
       confirmation:
+        intro: "U staat op het punt om de account '%{user_name}' te verwijderen. Deze actie kan niet ongedaan worden gemaakt."
+        confirm: "'%{user_name}' verwijderen"
         cancel: "Verwijdering annuleren"
         key_mismatch: "Kon gebruiker niet verwijderen - sleutels komen niet overeen."
         request_expired: "Kon gebruiker niet verwijderen - aanvraag verlopen."
@@ -518,6 +540,45 @@ nl:
       post_new_script_link_text: 'publiceer een nieuw script'
     code_rules:
       title: "%{site_name}'s regels voor gepubliceerde scripts"
+      content_html: >
+          <p>Dit zijn de vereisten voor scripts geplaatst op %{site_name}. Deze zijn
+          bedoeld om van %{site_name} een veilige en handige plaats voor gebruikersscripts
+          te maken. Elk script dat niet aan deze eisen voldoet kan worden verwijderd
+          door moderators van %{site_name}.</p> <ul>
+
+          <li>Scripts moeten een beschrijving bevatten van wat ze doen en mogen geen
+          onnodige dingen buiten de beschrijving doen. Gebruikers moeten weten wat
+          een script zal doen voor dat ze het installeren. Scripts die tracking of
+          advertenties bevatten moeten dit expliciet vermelden in de beschrijving.</li>
+
+          <li>Code geplaatst op deze site mag niet worden verborgen of ingekort. Gebruikers
+          moet de kans worden gegeven om een script te bestuderen en te begrijpen
+          voor ze het installeren.</li>
+
+          <li>Bibliotheken die een script gebruikt moeten <code>@require</code> gebruiken,
+          behalve als er een geldige technische reden is om dat niet te doen. In het
+          geval dat een bibliotheek inline is opgenomen moet het informatie bevatten
+          omtrent de bron van herkomst van de bibliotheek (bijv. een comment met een
+          URL en/of de naam en versie).</li>
+
+          <li>Uw script moet copyright van anderen respecteren. Dit omvat het script
+          zelf en alle bronnen (bijv. afbeeldingen) die het gebruikt. Wanneer u van
+          plan bent om andermans werk te gebruiken, houdt u dan aan de licentiebepalingen
+          of vraag (en krijg) toestemming om dit te doen.</li>
+
+          <li>%{external_scripts_link:Gebruik van externe JavaScript is beperkt.}</li>
+
+          %{adult_content_requirement}
+
+          <li>Scripts mogen niet vaker dan eens per dag op updates controleren. Merk
+          op dat de meeste user script managers automatische updates verzorgen, dus
+          via het script zelf op updates controleren is onnodig.</li>
+
+          </ul> <p>Wanneer u een script opmerkt dat niet aan deze vereisten voldoet,
+          verzoeken we u het script te rapporteren door naar de Feedback-link van
+          het script te gaan, een gesprek te starten, en voor de 'Rapporteer script'
+          optie te kiezen.</p> <p>Als u het niet eens bent met een van deze voorwaarden,
+          %{contact_link:laten we er dan over praten}!</p>
       adult_content_rule_html: "<li>Scripts die volwassen inhoud bevatten, of die zijn geschreven voor sites die volwassen inhoud bevatten, moeten worden gemarkeerd als zijnde volwassen, om andere gebruikers toe te staan ze te kunnen zien.</li>"
     external_scripts:
       title: "%{site_name}'s beleid voor externe scripts."
@@ -648,6 +709,15 @@ nl:
     user_search:
       title: "Zoek gebruikers"
       description: "Zoekt gebruikers op naam. Platte tekst LIKE zoeken."
+  moderator_logs:
+    date_column: "Datum"
+    moderator_column: "Moderator"
+    item_column: "Item"
+    action_column: "Actie"
+    reason_column: "Reden"
+    item_script_html: "Script: %{script_link}"
+    item_deleted_script: "Verwijderd: script %{id}"
+    item_user_html: "Gebruiker: %{user_link}"
   common:
     error_preamble: "Er zijn enkele problemen met wat u trachtte te plaatsen..."
     allowed_elements_link: "(Zie de toegestane code.)"
@@ -662,6 +732,8 @@ nl:
     expander_show_more: "Meer weergeven"
     expander_show_less: "Minder weergeven"
     advertisement_note: Advertentie
+    preview_tab: Voorvertoning
+    write_tab: Schrijf
   activerecord:
     attributes:
       user:
@@ -698,9 +770,11 @@ nl:
       script_too_many_screenshots: "Teveel bijgevoegde schermafdrukken - het maximaal aantal toegestane is %{number}"
       cannot_be_self_reference: "kan niet hetzelfde zijn als het script"
       cannot_be_deleted_reference: "kan geen verwijderd script zijn"
+      cannot_be_used_with_this_script: "kan niet gebruikt worden met dit script"
       must_be_greasy_fork_script: "moet een URL zijn van een script op %{site_name}"
       script_update_not_utf8: "upload moet UTF-8-tekst bevatten"
       script_disallowed_require: "gebruikt een nog niet goedgekeurd extern script %{code}"
+      script_rate_limit: "U heeft de plaatsingslimiet overschreden. Probeer het later nog eens."
   opensearch:
     short_name: "Zoeken op %{site_name}"
     description: "Zoek naar gebruikersscripts op %{site_name}."
