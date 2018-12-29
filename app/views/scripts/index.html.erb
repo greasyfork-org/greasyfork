@@ -1,39 +1,53 @@
 <%- title @title %>
 <%- description @description %>
-<%= render partial: 'list_options', locals: {by_sites: @by_sites, scripts: @scripts, sort_options: @sort_options, include_script_sets: @include_script_sets.nil? ? true : @include_script_sets, include_search: true}%>
 
-<% if defined?(@set) and !@set.nil? %>
-  <h3>
-    <%=@set.display_name%> by <%=link_to @set.user.name, @set.user%>
-    <% if user_signed_in? and current_user == @set.user%>
-      <%=link_to('Edit', edit_user_script_set_path(current_user, @set))%>
+<div class="sidebarred">
+  <div class="sidebarred-main-content">
+    <div class="open-sidebar sidebar-collapsed">
+      ☰
+    </div>
+
+    <% if defined?(@set) and !@set.nil? %>
+      <h3>
+        <%=@set.display_name%> by <%=link_to @set.user.name, @set.user%>
+        <% if user_signed_in? and current_user == @set.user%>
+          <%=link_to('Edit', edit_user_script_set_path(current_user, @set))%>
+        <% end %>
+      </h3>
+      <% if !@set.favorite %>
+        <p><%=@set.description%></p>
+      <% end %>
     <% end %>
-  </h3>
-  <% if !@set.favorite %>
-    <p><%=@set.description%></p>
-  <% end %>
-<% end %>
 
-<% if defined?(@page_description) %>
-  <p><%=@page_description%></p>
-<% end %>
+    <% if defined?(@page_description) %>
+      <p><%=@page_description%></p>
+    <% end %>
 
-<% if @current_locale_filter %>
-  <p><%=it('scripts.listing_remove_locale_filter', language: @current_locale_filter.best_name, remove_filter_link: current_path_with_params(filter_locale: nil))%></p>
-<% elsif @offer_filtered_results_for_locale %>
-  <p><%=it('scripts.listing_set_locale_filter', language: @offer_filtered_results_for_locale.best_name, set_filter_link: current_path_with_params(filter_locale: 1))%></p>
-<% end %>
+    <% if @current_locale_filter %>
+      <p><%=it('scripts.listing_remove_locale_filter', language: @current_locale_filter.best_name, remove_filter_link: current_path_with_params(filter_locale: nil))%></p>
+    <% elsif @offer_filtered_results_for_locale %>
+      <p><%=it('scripts.listing_set_locale_filter', language: @offer_filtered_results_for_locale.best_name, set_filter_link: current_path_with_params(filter_locale: 1))%></p>
+    <% end %>
 
-<% if @scripts.empty? %>
-  <p><%=t('scripts.listing_no_scripts')%></p>
-<% else %>
-  <ol id="browse-script-list" class="script-list">
-    <%= render partial: 'script', collection: @scripts, cached: params[:locale_override].nil? ? ->(script) { [script, I18n.locale] } : false %>
-  </ol>
-<% end %>
+    <% if @scripts.empty? %>
+      <p><%=t('scripts.listing_no_scripts')%></p>
+    <% else %>
+      <ol id="browse-script-list" class="script-list">
+        <%= render partial: 'script', collection: @scripts, cached: params[:locale_override].nil? ? ->(script) { [script, I18n.locale] } : false %>
+      </ol>
+    <% end %>
 
-<% if !defined?(@paginate) or @paginate %>
-  <%= will_paginate @scripts %>
-<% end %>
+    <% if !defined?(@paginate) or @paginate %>
+      <%= will_paginate @scripts %>
+    <% end %>
 
-<p><%=t('scripts.write_your_own_html', post_a_script_link: link_to(t('scripts.post_a_script_link_text'), new_script_version_path), learn_to_write_scripts_link: link_to(t('scripts.learn_to_write_scripts_link_text'), help_writing_user_scripts_path)) %></p>
+    <p><%=t('scripts.write_your_own_html', post_a_script_link: link_to(t('scripts.post_a_script_link_text'), new_script_version_path), learn_to_write_scripts_link: link_to(t('scripts.learn_to_write_scripts_link_text'), help_writing_user_scripts_path)) %></p>
+  </div>
+  <div class="sidebar collapsed">
+    <div class="close-sidebar">
+      <div class="sidebar-title"><%= t('common.listing_options_title') %></div>
+      <div>☰</div>
+    </div>
+    <%= render partial: 'list_options', locals: {by_sites: @by_sites, scripts: @scripts, sort_options: @sort_options, include_script_sets: @include_script_sets.nil? ? true : @include_script_sets, include_search: true}%>
+  </div>
+</div>

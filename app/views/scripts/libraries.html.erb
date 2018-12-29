@@ -1,22 +1,36 @@
 <%- title t('scripts.libraries_title') %>
 <%- description 'List of user-submitted libraries available on Greasy Fork' %>
 
-<%= render partial: 'list_options', locals: {scripts: @scripts, include_script_sets: false, include_search: true, sort_options: ['created', 'updated', 'name']}%>
+<div class="sidebarred">
+  <div class="sidebarred-main-content">
+    <div class="open-sidebar sidebar-collapsed">
+      ☰
+    </div>
 
-<h3><%=t('scripts.libraries_title')%></h3>
+    <h2><%=t('scripts.libraries_title')%></h2>
 
-<p><%=it('scripts.libraries_description_html', policy_link: help_code_rules_path(anchor: 'require'), site_name: site_name)%></p>
+    <p><%=it('scripts.libraries_description_html', policy_link: help_code_rules_path(anchor: 'require'), site_name: site_name)%></p>
 
-<% if @scripts.empty? %>
-	<p><%=t('scripts.listing_no_scripts')%></p>
-<% else %>
-	<ol id="browse-script-list" class="script-list">
-		<%= render partial: 'script', collection: @scripts, cached: params[:locale_override].nil? ? ->(script) { ['libraries', script, I18n.locale] } : false %>
-	</ol>
-<% end %>
+    <% if @scripts.empty? %>
+      <p><%=t('scripts.listing_no_scripts')%></p>
+    <% else %>
+      <ol id="browse-script-list" class="script-list">
+        <%= render partial: 'script', collection: @scripts, cached: params[:locale_override].nil? ? ->(script) { ['libraries', script, I18n.locale] } : false %>
+      </ol>
+    <% end %>
 
-<% if !defined?(@paginate) or @paginate %>
-	<%= will_paginate @scripts %>
-<% end %>
+    <% if !defined?(@paginate) or @paginate %>
+      <%= will_paginate @scripts %>
+    <% end %>
 
-<p><%=t('scripts.write_your_own_html', post_a_script_link: link_to(t('scripts.post_a_script_link_text'), new_script_version_path), learn_to_write_scripts_link: link_to(t('scripts.learn_to_write_scripts_link_text'), help_writing_user_scripts_path)) %></p>
+    <p><%=t('scripts.write_your_own_html', post_a_script_link: link_to(t('scripts.post_a_script_link_text'), new_script_version_path), learn_to_write_scripts_link: link_to(t('scripts.learn_to_write_scripts_link_text'), help_writing_user_scripts_path)) %></p>
+  </div>
+
+  <div class="sidebar collapsed">
+    <div class="close-sidebar">
+      <div class="sidebar-title"><%= t('common.listing_options_title') %></div>
+      <div>☰</div>
+    </div>
+    <%= render partial: 'list_options', locals: {scripts: @scripts, include_script_sets: false, include_search: true, sort_options: ['created', 'updated', 'name']}%>
+  </div>
+</div>

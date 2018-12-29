@@ -1,17 +1,32 @@
 <%- title @title %>
 <%- description @description %>
 
-<%= render partial: 'list_options'%>
+<div class="sidebarred">
+  <div class="sidebarred-main-content">
+    <div class="open-sidebar sidebar-collapsed">
+      ☰
+    </div>
 
-<% if @users.empty? %>
-	<p>No users!</p>
-<% else %>
-	<ol id="browse-user-list" class="user-list">
-		<%= render partial: 'user', collection: @users, locals: {script_counts: @user_script_counts} %>
-	</ol>
-<% end %>
+    <h2><%= t('users.listing_title') %></h2>
 
-<% if !defined?(@paginate) or @paginate %>
-	<%= will_paginate @users %>
-<% end %>
+    <% if @users.empty? %>
+      <p>No users!</p>
+    <% else %>
+      <ol id="browse-user-list" class="user-list">
+        <%= render partial: 'user', collection: @users, locals: {script_counts: @user_script_counts} %>
+      </ol>
+    <% end %>
+
+    <% if !defined?(@paginate) or @paginate %>
+      <%= will_paginate @users %>
+    <% end %>
+  </div>
+  <div class="sidebar collapsed">
+    <div class="close-sidebar">
+      <div class="sidebar-title"><%= t('common.listing_options_title') %></div>
+      <div>☰</div>
+    </div>
+    <%= render partial: 'list_options'%>
+  </div>
+</div>
 

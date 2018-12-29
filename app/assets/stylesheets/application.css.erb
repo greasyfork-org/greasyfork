@@ -391,46 +391,6 @@ dt[title] > span {
 	}
 }
 
-@media screen and (min-width: 680px) and (max-width: 960px) {
-	/* resize script list while screen resizing */
-	.script-list, .user-list {
-		width: 78%;
-		margin-left: unset;
-	}
-	.list-option-groups ~ ol {
-		width: 78%
-	}
-	.text-content .list-option-groups ~ ol {
-		width: 78%
-	}
-}
-
-@media screen and (min-width: 440px) and (max-width: 680px) {
-	/* resize script list while screen resizing */
-	.script-list, .user-list {
-		width: calc(100% - 8em);
-		margin-left: unset;
-	}
-	.list-option-groups ~ ol {
-		width: calc(100% - 8em);
-	}
-	.text-content .list-option-groups ~ ol {
-		width: calc(100% - 8em);
-	}
-}
-
-@media screen and (max-width: 440px) {
-	/* list need to fill the width */
-	.script-list, .user-list {
-		margin-left: unset;
-	}
-	.list-option-groups ~ ol {
-		width: unset;
-	}
-	.text-content .list-option-groups ~ ol {
-		width: unset;
-	}
-}
 .script-list li {
 	border-bottom: 1px solid #DDDDDD;
 	padding: 1em;
@@ -637,38 +597,10 @@ td.numeric, th.numeric {
 }
 
 .list-option-groups {
-	margin-top: 1em;
-	float: right;
-	width: 15em;
 	font-size: smaller;
-	margin-left: 2em;
 }
 .list-option-group {
 	margin-bottom: 1em;
-}
-
-@media screen and (min-width: 680px) and (max-width: 960px) {
-	.list-option-groups {
-		float: right;
-		width: 20%;
-		margin-left: unset;
-	}
-}
-
-@media screen and (min-width: 440px) and (max-width: 680px) {
-	.list-option-groups {
-		float: right;
-		width: 9em;
-		margin-left: unset;
-	}
-}
-
-@media screen and (max-width: 440px) {
-	.list-option-groups {
-		float: unset;
-		width: unset;
-		margin-left: unset;
-	}
 }
 
 .list-option-group ul {

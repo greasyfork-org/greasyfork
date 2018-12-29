@@ -21,3 +21,4 @@
 //= require source-editor
 //= require submit-anchor
 //= require expandable-text
+//= require sidebar
