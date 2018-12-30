@@ -1,82 +1,66 @@
 <section>
-	<h3><%=t('home.explain_user_scripts_heading')%></h3>
+  <h3><%=t('home.explain_user_scripts_heading')%></h3>
 
-	<p><%=t('home.explain_user_scripts_html', site_name: site_name)%></p>
+  <p><%=t('home.explain_user_scripts_html', site_name: site_name)%></p>
 </section>
 
 <section id="home-step-1">
-	<h3><%=t('home.installing_step1_header')%></h3>
+  <h3><%=t('home.installing_step1_header')%></h3>
 
-	<figure>
-		<%= image_tag('tampermonkey-manage.png') %>
-		<figcaption><%=t('home.installing_step1_caption')%></figcaption>
-	</figure>
+  <figure>
+    <%= image_tag('tampermonkey-manage.png') %>
+    <figcaption><%=t('home.installing_step1_caption')%></figcaption>
+  </figure>
 
-	<%=it('home.installing_step1_description_html', chrome_tampermonkey_link: 'https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo', chrome_violentmonkey_link: 'https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag', firefox_greasemonkey_link: 'https://addons.mozilla.org/firefox/addon/greasemonkey/', firefox_tampermonkey_link: 'https://addons.mozilla.org/firefox/addon/tampermonkey/', firefox_violentmonkey_link: 'https://addons.mozilla.org/firefox/addon/violentmonkey/', safari_tampermonkey_link: 'http://tampermonkey.net/?browser=safari', edge_tampermonkey_link: 'https://www.microsoft.com/store/p/tampermonkey/9nblggh5162s', opera_tampermonkey_link: 'https://addons.opera.com/extensions/details/tampermonkey-beta/', opera_violentmonkey_link: 'https://addons.opera.com/extensions/details/violent-monkey/', maxthon_violentmonkey_link: 'http://extension.maxthon.com/detail/index.php?view_id=1680', dolphin_tampermonkey_link: 'https://play.google.com/store/apps/details?id=net.tampermonkey.dolphin', uc_tampermonkey_link: 'https://play.google.com/store/apps/details?id=net.tampermonkey.uc')%>
+  <%=it('home.installing_step1_description_html', chrome_tampermonkey_link: 'https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo', chrome_violentmonkey_link: 'https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag', firefox_greasemonkey_link: 'https://addons.mozilla.org/firefox/addon/greasemonkey/', firefox_tampermonkey_link: 'https://addons.mozilla.org/firefox/addon/tampermonkey/', firefox_violentmonkey_link: 'https://addons.mozilla.org/firefox/addon/violentmonkey/', safari_tampermonkey_link: 'http://tampermonkey.net/?browser=safari', edge_tampermonkey_link: 'https://www.microsoft.com/store/p/tampermonkey/9nblggh5162s', opera_tampermonkey_link: 'https://addons.opera.com/extensions/details/tampermonkey-beta/', opera_violentmonkey_link: 'https://addons.opera.com/extensions/details/violent-monkey/', maxthon_violentmonkey_link: 'http://extension.maxthon.com/detail/index.php?view_id=1680', dolphin_tampermonkey_link: 'https://play.google.com/store/apps/details?id=net.tampermonkey.dolphin', uc_tampermonkey_link: 'https://play.google.com/store/apps/details?id=net.tampermonkey.uc')%>
 
 </section>
 
 <section id="home-step-2">
-	<h3><%=t('home.installing_step2_header')%></h3>
+  <h3><%=t('home.installing_step2_header')%></h3>
 
-	<figure>
-		<%= image_tag('install-button-example.png') %>
-		<figcaption><%=t('home.installing_step2_caption')%></figcaption>
-	</figure>
+  <figure>
+    <%= image_tag('install-button-example.png') %>
+    <figcaption><%=t('home.installing_step2_caption')%></figcaption>
+  </figure>
 
-	<% highlighted_scripts_html = capture do %>
-		<ul>
-			<% highlighted_scripts(restrict_to_ad_method: @ad_method == 'ga' ? @ad_method : nil).each do |script| %>
-				<li><%=link_to script.name(I18n.locale), script%> - <%=script.description(I18n.locale)%></li>
-			<% end %>
-		</ul>
-	<% end %>
-	<%=it('home.installing_step2_description_html', browse_link: scripts_path, highlighted_scripts_list: highlighted_scripts_html)%>
+  <% highlighted_scripts_html = capture do %>
+    <ul>
+      <% highlighted_scripts(restrict_to_ad_method: @ad_method == 'ga' ? @ad_method : nil).each do |script| %>
+        <li><%=link_to script.name(I18n.locale), script%> - <%=script.description(I18n.locale)%></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <%=it('home.installing_step2_description_html', browse_link: scripts_path, highlighted_scripts_list: highlighted_scripts_html)%>
 
 </section>
 
 <section id="home-step-3">
-	<h3><%=t('home.installing_step3_header')%></h3>
+  <h3><%=t('home.installing_step3_header')%></h3>
 
-	<%=t('home.installing_step3_description_html')%>
+  <%=t('home.installing_step3_description_html')%>
 </section>
 
-<% if !@ad_method.nil? %>
-	<div class="ad ad-<%=@ad_method%>" id="home-ad">
-		<div class="ad-note" data-ad-method="<%=@ad_method.upcase%>"><%=t('common.advertisement_note')%></div>
-		<div class="ad-content">
-			<% case @ad_method
-				when 'pw' %>
-					<!-- Project Wonderful Ad Box Code -->
-					<div id="pw_adbox_79896_5_0"></div>
-					<script type="text/javascript"></script>
-					<noscript><map name="admap79896" id="admap79896"><area href="http://www.projectwonderful.com/out_nojs.php?r=0&c=0&id=79896&type=5" shape="rect" coords="0,0,728,90" title="" alt="" target="_blank" rel="noopener noreferrer" /></map>
-					<table cellpadding="0" cellspacing="0" style="width:728px;border-style:none;background-color:#ffffff;"><tr><td><img src="http://www.projectwonderful.com/nojs.php?id=79896&type=5" style="width:728px;height:90px;border-style:none;" usemap="#admap79896" alt="" /></td></tr><tr><td style="background-color:#ffffff;" colspan="1"><center><a style="font-size:10px;color:#0000ff;text-decoration:none;line-height:1.2;font-weight:bold;font-family:Tahoma, verdana,arial,helvetica,sans-serif;text-transform: none;letter-spacing:normal;text-shadow:none;white-space:normal;word-spacing:normal;" href="http://www.projectwonderful.com/advertisehere.php?id=79896&type=5" target="_blank">Ads by Project Wonderful!  Your ad here, right now: $0</a></center></td></tr></table>
-					</noscript>
-					<!-- End Project Wonderful Ad Box Code -->
-				<% when 'ga' %>
-					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-					<!-- Greasy Fork home page bottom -->
-					<ins class="adsbygoogle"
-							 style="display:block"
-							 data-ad-client="ca-pub-2247465624637408"
-							 data-ad-slot="5006821313"
-							 data-ad-format="auto"></ins>
-					<script>
-					(adsbygoogle = window.adsbygoogle || []).push({});
-					</script>
-				<% when 'gn' %>
-					<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-					<ins class="adsbygoogle"
-							 style="display:block; text-align:center;"
-							 data-ad-layout="in-article"
-							 data-ad-format="fluid"
-							 data-ad-client="ca-pub-2247465624637408"
-							 data-ad-slot="2593917175"></ins>
-					<script>
-							 (adsbygoogle = window.adsbygoogle || []).push({});
-					</script>
-			<% end %>
-		</div>
-	</div>
+<% if @ad_method %>
+  <div class="ad ad-<%=@ad_method%>" id="home-ad">
+    <div class="ad-content">
+      <% case @ad_method
+      when 'ga' %>
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+             style="display:block; text-align:center;"
+             data-ad-layout="in-article"
+             data-ad-format="fluid"
+             data-ad-client="ca-pub-2247465624637408"
+             data-ad-slot="2593917175"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      <% when 'ca' %>
+        <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CKYI5KQU&placement=greasyforkorg" id="_carbonads_js"></script>
+      <% when 'c2' %>
+        <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=greasyforkorgalpha" id="_carbonads_js"></script>
+      <% end %>
+    </div>
+  </div>
 <% end %>
