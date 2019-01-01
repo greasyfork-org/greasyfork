@@ -1,41 +1,32 @@
+/* Use of 3.5px is half of the overlapping border of the active item. */
 .tabs {
-	list-style: none;
-	padding: 0 1em;
-	margin: 0 -1em 0;
+  list-style: none;
+  padding: 0 1em;
+  margin: 0 -1em 0;
+  display: flex;
+  position: relative;
+  top: -3.5px;
 }
 .tabs > * {
-	display: inline-block;
-	margin: 0 -4px 0 0;
+  align-items: stretch;
 }
 .tabs > * > * {
-	padding: 0.25em .5em .5em;
-	display: block;
+  padding: 0.25em .5em .5em;
+  display: block;
 }
 .tabs a {
-	text-decoration: none;
-	cursor: pointer;
+  text-decoration: none;
+  cursor: pointer;
+}
+.tabs .current, .tabs li:not(.current) a:hover, .tabs li:not(.current) a:focus {
+  background: rgba(0, 0, 0, 0.03);
+  box-shadow: inset 1px 0 rgba(0, 0, 0, 0.1), inset -1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px rgba(0, 0, 0, 0.1);
 }
 .tabs .current {
-	background: rgba(0, 0, 0, 0.03);
-	position: relative;
-	top: -4px;
-	font-weight: bold;
-	border-top: 7px solid #990000;
-	box-shadow: inset 1px 0 rgba(0, 0, 0, 0.1), inset -1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 1px 0 rgba(0, 0, 0, 0.1), inset -1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px rgba(0, 0, 0, 0.1);
+  border-top: 7px solid #990000;
 }
-/* shift the text back up to align with the others */
-.tabs .current > * {
-	position: relative;
-	top: 4px;
-}
-.tabs li:not(.current) a:hover, .tabs li:not(.current) a:focus {
-	background: rgba(0, 0, 0, 0.03);
-	position: relative;
-	top: -4px;
-	box-shadow: inset 1px 0 rgba(0, 0, 0, 0.1), inset -1px 0 rgba(0, 0, 0, 0.1), inset 0 -1px rgba(0, 0, 0, 0.1);
-	padding-top: 8px;
-}
-.tabs li:not(.current) a:hover span, .tabs li:not(.current) a:focus span {
-	position: relative;
-	top: 4px;
+.tabs li:not(.current) a {
+  margin-top: 3.5px;
+  padding-top: calc(0.25em + 3.5px);
 }
