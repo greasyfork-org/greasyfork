@@ -2,6 +2,34 @@
 
 <p><%= link_to "#{site_name}'s rules", help_code_rules_path %> state that scripts' copyright and licenses must be respected. <%= link_to @script_report.script.name(I18n.locale), @script_report.script %> by <%= link_to @script_report.script.user.name, @script_report.script.user %> has been reported as an unauthorized copy of <%= link_to @script_report.reference_script.name(I18n.locale), @script_report.reference_script %> by <%= link_to @script_report.reference_script.user.name, @script_report.reference_script.user %> on <%= @script_report.created_at %>.</p>
 
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Script</th>
+      <th>License</th>
+      <th>Created</th>
+      <th>Updated</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Reported</td>
+      <td><%= link_to @script_report.script.name(I18n.locale), @script_report.script %></td>
+      <td><%= license_display(@script_report.script) %></td>
+      <td><%= @script_report.script.created_at %></td>
+      <td><%= @script_report.script.code_updated_at %></td>
+    </tr>
+    <tr>
+      <td>Original</td>
+      <td><%= link_to @script_report.reference_script.name(I18n.locale), @script_report.reference_script %></td>
+      <td><%= license_display(@script_report.reference_script) %></td>
+      <td><%= @script_report.reference_script.created_at %></td>
+      <td><%= @script_report.reference_script.code_updated_at %></td>
+    </tr>
+  </tbody>
+</table>
+
 <p><%= link_to @script_report.reference_script.user.name, @script_report.reference_script.user %> says the following content was copied: "<i><%= @script_report.copy_details %></i>". This additional info was provided: "<i><%= @script_report.additional_info %></i>".</p>
 
 <div class="report-diff">
