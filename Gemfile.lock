@@ -1,11 +1,4 @@
 GIT
-  remote: https://github.com/JasonBarnabe/coderay.git
-  revision: 782d1899fa4409b78fd8261e467728ccb215b9f9
-  branch: js-ident-unicode
-  specs:
-    coderay (1.1.1.rc1)
-
-GIT
   remote: https://github.com/tigrish/devise-i18n.git
   revision: 9db8ea7c941a247d827fa6b9f4166409f17ed22b
   specs:
@@ -117,6 +110,7 @@ GEM
     climate_control (0.2.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
+    coderay (1.1.2)
     concurrent-ruby (1.1.4)
     crass (1.0.4)
     daemons (1.2.6)
@@ -351,7 +345,6 @@ DEPENDENCIES
   capistrano-rbenv (~> 2.1)
   capistrano3-delayed-job (~> 1.0)
   capybara
-  coderay!
   daemons
   dalli
   delayed_job

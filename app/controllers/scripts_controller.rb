@@ -107,21 +107,8 @@ class ScriptsController < ApplicationController
 
 		respond_to do |format|
 			format.html {
-				@highlighted_code = nil
-				if params[:version].nil?
-					if !@script.syntax_highlighted_code.nil?
-						@highlighted_code = @script.syntax_highlighted_code.html
-					end
-				else
-					@bots = 'noindex'
-				end
-				# Generate on the fly
-				if @highlighted_code.nil?
-					@highlighted_code = SyntaxHighlightedCode.highlight(@script_version.rewritten_code)
-				end
-				if @highlighted_code.nil?
-					@code = @script_version.rewritten_code
-				end
+				@code = @script_version.rewritten_code
+				@bots = 'noindex' unless params[:version].nil?
 				@canonical_params = [:id, :version]
 			}
 			format.js {

@@ -22,8 +22,6 @@ class Script < ActiveRecord::Base
 	has_many :compatibilities, autosave: true, dependent: :destroy
 	has_many :script_reports, inverse_of: :script
 
-	has_one :syntax_highlighted_code, dependent: :destroy
-
 	belongs_to :script_type
 	belongs_to :script_sync_source, optional: true
 	belongs_to :script_sync_type, optional: true
@@ -183,18 +181,6 @@ class Script < ActiveRecord::Base
 
 	def for_sensitive_site?
 		return matching_sensitive_sites.any?
-	end
-
-	after_save :update_syntax_highlighted_code
-	def update_syntax_highlighted_code
-		html = SyntaxHighlightedCode.highlight(get_newest_saved_script_version.rewritten_code)
-		if html.nil?
-			syntax_highlighted_code.delete if !syntax_highlighted_code.nil?
-		else
-			build_syntax_highlighted_code if syntax_highlighted_code.nil?
-			syntax_highlighted_code.html = html
-			syntax_highlighted_code.save
-		end
 	end
 
 	before_destroy do |script|

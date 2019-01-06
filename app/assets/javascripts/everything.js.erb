@@ -84,24 +84,11 @@
 		});
 	}
 
-	function restyleScreenMaxHeight() {
-		if (!window.innerHeight) {
-			return;
-		}
-		var es = document.querySelectorAll(".max-screen-height")
-		for (var i = 0; i < es.length; i++) {
-			es[i].style.overflow = "auto";
-			es[i].style.maxHeight = window.innerHeight + "px";
-			es[i].style.maxWidth = "100%";
-		}
-	}
-
 	function init() {
 		hookUpSelectAllCheckboxes();
 		hookUpLocaleSwitcher();
 		hookUpAddLocalizedAdditionalInfo();
 		hookUpAddSyncedLocalizedAdditionalInfo();
-		restyleScreenMaxHeight();
 	}
 	
 	window.addEventListener("DOMContentLoaded", init);

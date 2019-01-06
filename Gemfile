@@ -18,7 +18,6 @@ gem 'will-paginate-i18n'
 gem 'sass-rails' # Just for the compressor
 gem 'strip_attributes'
 gem 'redcarpet'
-gem 'coderay', git: 'https://github.com/JasonBarnabe/coderay.git', branch: 'js-ident-unicode'
 gem 'thinking-sphinx'
 gem 'ts-delayed-delta'
 gem 'delayed_job'

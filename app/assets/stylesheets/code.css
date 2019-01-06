@@ -1,0 +1,22 @@
+code {
+  background-color: #F2E5E5;
+}
+pre, code {
+  border-radius: 2px;
+  border: 1px solid #E6DDD6;
+}
+pre {
+  padding: 1em;
+}
+.prettyprint {
+  /* Ensure when page is scrolled to bottom, the element is entirely in view. */
+  max-height: calc(100vh - 54px);
+  overflow-x: auto;
+}
+
+@media screen and (max-width: 440px) {
+  /* show more code */
+  #code-container {
+    font-size: small;
+  }
+}
