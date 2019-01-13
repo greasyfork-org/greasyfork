@@ -3,7 +3,7 @@
 /**
  * An associative array of information about this application.
  */
-$ThemeInfo['default'] = array(
+$ThemeInfo['greasyfork'] = array(
    'Name' => 'Greasy Fork',
    'Description' => "Greasy Fork customizations.",
    'Version' => APPLICATION_VERSION,

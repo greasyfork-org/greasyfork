@@ -1,17 +1,5 @@
 <?php if (!defined('APPLICATION')) exit();
 
-// Define the plugin:
-$PluginInfo['GreasyFork'] = array(
-	'Name' => 'GreasyFork',
-	'Description' => 'Greasy Fork customizations',
-	'Version' => '1.0',
-	'Author' => "Jason Barnabe",
-	'RequiredApplications' => array('Vanilla' => '2.1'),
-	'AuthorEmail' => 'jason.barnabe@gmail.com',
-	'AuthorUrl' => 'https://greasyfork.org',
-	'MobileFriendly' => TRUE
-);
-
 class GreasyForkPlugin extends Gdn_Plugin {
 
 	# Link to main profile
@@ -30,7 +18,9 @@ class GreasyForkPlugin extends Gdn_Plugin {
 	# Add CSS, JS, and link to main site
 	public function Base_Render_Before($Sender) {
 		$Sender->addCssFile('https://fonts.googleapis.com/css?family=Open+Sans');
-		$Sender->Data['locale'] = $_GET['locale'];
+		if (isset($_GET['locale'])) {
+			$Sender->Data['locale'] = $_GET['locale'];
+		}
 	}
 
 	# Going to render our own category selector
