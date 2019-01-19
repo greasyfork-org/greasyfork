@@ -7,4 +7,4 @@
 
 <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 
-<pre class="prettyprint lang-js"><%=@code%></pre>
+<pre <% if @code.length <= Rails.configuration.syntax_highlighting_limit %>class="prettyprint lang-js"<% end %>><%=@code%></pre>
