@@ -1,30 +1,38 @@
 <% if script.active? 
-	case script.script_type_id
-		when 1, 2 %>
-			<div id="install-area">
-				<%= render partial: 'install_button', locals: {script_version: script_version, version_param: params[:version]}%><%=link_to t('scripts.install_help'), help_installing_user_scripts_path, {:class => 'install-help-link', :title => t('scripts.install_help_title'), :rel => 'nofollow'}%>
-				<% if promoted_script %>
-					<div class="post-install">
-						<div class="post-install-label"><%=t(@script.promoted_script ? 'scripts.author_promoted' : 'scripts.promoted')%></div>
-						<div class="post-install-text"><p><%= t('scripts.promoted_text_html', script_link: link_to(promoted_script.name(I18n.locale), promoted_script)) %></p></div>
-						<div class="post-install-button">
-							<%= render partial: 'install_button', locals: {script_version: promoted_script.script_versions.last}%>
-						</div>
-					</div>
-				<% end %>
-			</div>
+  case script.script_type_id
+    when 1, 2 %>
+      <div id="install-area">
+        <%= render partial: 'install_button', locals: {script_version: script_version, version_param: params[:version]}%><%=link_to t('scripts.install_help'), help_installing_user_scripts_path, {:class => 'install-help-link', :title => t('scripts.install_help_title'), :rel => 'nofollow'}%>
+        <% if promoted_script %>
+          <div class="post-install">
+            <div class="post-install-label"><%=t(@script.promoted_script ? 'scripts.author_promoted' : 'scripts.promoted')%></div>
+            <div class="post-install-text"><p><%= t('scripts.promoted_text_html', script_link: link_to(promoted_script.name(I18n.locale), promoted_script)) %></p></div>
+            <div class="post-install-button">
+              <%= render partial: 'install_button', locals: {script_version: promoted_script.script_versions.last}%>
+            </div>
+          </div>
+        <% end %>
+      </div>
 
-		<% when 3 %>
-			<p>
-				<% if params[:version].nil?
-					library_code_snippet = "<code>// @require #{library_js_script_url(script, version: script_version.id, name: script.url_name, locale_override: nil)}</code>"
-				else
-					library_code_snippet = "<code>// @require #{library_js_script_url(script, version: params[:version], name: script.url_name, locale_override: nil)}</code>"
-				end %>
-				<%=t('scripts.library_instructions_html', :code => library_code_snippet.html_safe)%>
-			</p>
-	<% end %>
+    <% when 3 %>
+      <p>
+        <% if params[:version].nil?
+          library_code_snippet = "<code>// @require #{library_js_script_url(script, version: script_version.id, name: script.url_name, locale_override: nil)}</code>"
+        else
+          library_code_snippet = "<code>// @require #{library_js_script_url(script, version: params[:version], name: script.url_name, locale_override: nil)}</code>"
+        end %>
+        <%=t('scripts.library_instructions_html', :code => library_code_snippet.html_safe)%>
+      </p>
+  <% end %>
 <% else %>
-	<p><%=t('scripts.deleted_notice')%>	<% if !script.delete_reason.nil? %><%=script.delete_reason%><%end%></p>
+  <p>
+    <% if script.replaced_by_script %>
+      <%= t('scripts.deleted_notice_with_replacement_html', replacement_script_name: script.replaced_by_script.name(I18n.locale), replacement_script_url: script_path(script.replaced_by_script)) %>
+    <% else %>
+      <%= t('scripts.deleted_notice', reason: script.delete_reason) %>
+    <% end %>
+    <% if script.delete_reason.present? %>
+      "<i><%= script.delete_reason %></i>"
+    <% end %>
+  </p>
 <% end %>
-
