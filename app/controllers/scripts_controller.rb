@@ -728,7 +728,7 @@ private
 
 	def handle_replaced_script(script)
 		if !script.replaced_by_script_id.nil? && script.script_delete_type_id == 1
-			redirect_to(id: script.replaced_by_script_id, status: 301)
+			redirect_to(user_js_script_path(script.replaced_by_script, name: script.replaced_by_script.url_name, locale_override: nil), status: 301)
 			return true
 		end
 		return false
