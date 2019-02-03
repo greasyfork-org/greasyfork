@@ -34,7 +34,7 @@ module LocalizingModel
 			(
 				lookup_locale.nil? ||
 				(lookup_locale.is_a?(Integer) && la.locale_id == lookup_locale) ||
-				((lookup_locale.is_a?(String) || lookup_locale.is_a?(Symbol)) && la.locale.code == lookup_locale.to_s) ||
+				((lookup_locale.is_a?(String) || lookup_locale.is_a?(Symbol)) && la.locale&.code == lookup_locale.to_s) ||
 				(lookup_locale.is_a?(Locale) && la.locale == lookup_locale)
 			)
 		}
