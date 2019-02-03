@@ -68,4 +68,5 @@ group :test do
   gem 'selenium-webdriver'
   gem 'bundler-audit'
   gem 'mocha'
+  gem 'minitest-around'
 end

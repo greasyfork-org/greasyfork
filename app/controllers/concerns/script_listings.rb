@@ -152,7 +152,7 @@ module ScriptListings
       else
         {}
     end
-    with = with.merge(script_type_id: 3)
+    with.merge!(script_type_id: 3)
 
     begin
       # :ranker => "expr('top(user_weight)')" means that it will be sorted on the top ranking match rather than
@@ -165,7 +165,7 @@ module ScriptListings
         per_page: get_per_page,
         order: self.class.get_sort(params, true, nil, default_sort: 'created'),
         populate: true,
-        sql: {include: [:script_type, {localized_attributes: :locale}, :user]},
+        sql: {include: [:script_type, {localized_attributes: :locale}, :users]},
         select: '*, weight() myweight',
         ranker: "expr('top(user_weight)')"
       )
