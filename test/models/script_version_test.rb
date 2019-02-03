@@ -215,7 +215,7 @@ END
 foo.baz();
 END
 		script = Script.new
-		script.user = User.find(1)
+		script.authors.build(user: User.find(1))
 		sv = ScriptVersion.new
 		sv.script = script
 		sv.code = js
@@ -335,7 +335,7 @@ END
 
 	test 'missing version' do
 		script = Script.new
-		script.user = User.find(1)
+		script.authors.build(user: User.find(1))
 		sv = ScriptVersion.new
 		sv.script = script
 		# valid with the version
@@ -350,7 +350,7 @@ END
 
 	test 'add missing version' do
 		script = Script.new
-		script.user = User.find(1)
+		script.authors.build(user: User.find(1))
 		sv = ScriptVersion.new
 		sv.script = script
 		# valid with the version
@@ -392,7 +392,7 @@ END
 
 	test 'missing namespace' do
 		script = Script.new
-		script.user = User.find(1)
+		script.authors.build(user: User.find(1))
 		sv = ScriptVersion.new
 		sv.script = script
 		# valid with the namespace
@@ -407,7 +407,7 @@ END
 
 	test 'add missing namespace' do
 		script = Script.new
-		script.user = User.find(1)
+		script.authors.build(user: User.find(1))
 		sv = ScriptVersion.new
 		sv.script = script
 		sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// ==/UserScript==\nvar foo = 2;"
@@ -593,7 +593,7 @@ END
 		sv = ScriptVersion.new
 		sv.code = js
 		script = Script.new
-		script.user = User.first
+		script.authors.build(user: User.first)
 		sv.script = script
 		script.script_versions << sv
 		sv.calculate_all(script.description)
@@ -624,7 +624,7 @@ END
 		sv = ScriptVersion.new
 		sv.code = js
 		script = Script.new
-		script.user = User.first
+		script.authors.build(user: User.first)
 		script.script_versions << sv
 		sv.script = script
 		sv.calculate_all(script.description)
@@ -692,7 +692,7 @@ END
 		sv.do_lenient_saving
 		sv.code = js
 		script = Script.new
-		script.user = User.first
+		script.authors.build(user: User.first)
 		sv.script = script
 		script.script_versions << sv
 		sv.calculate_all(script.description)
@@ -800,7 +800,7 @@ foo.baz();
 END
 		sv = ScriptVersion.new
 		script = Script.new
-		script.user = User.first
+		script.authors.build(user: User.first)
 		sv.script = script
 		sv.code = js
 		sv.calculate_all

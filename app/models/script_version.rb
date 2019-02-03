@@ -339,7 +339,7 @@ class ScriptVersion < ApplicationRecord
 		previous_namespace = get_meta_from_previous('namespace', true)
 		return previous_namespace.first unless previous_namespace.nil? or previous_namespace.empty?
 		return nil if !add_missing_namespace
-		return Rails.application.routes.url_helpers.user_url(:id => script.user.id)
+		return Rails.application.routes.url_helpers.user_url(:id => script.authors.first.user_id)
 	end
 
 	def inject_meta(replacements, additions_if_missing = {})

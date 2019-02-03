@@ -3,7 +3,9 @@ require 'devise'
 
 class User < ApplicationRecord
 
-	has_many :scripts, dependent: :destroy
+	has_many :authors, dependent: :destroy
+	has_many :scripts, through: :authors
+
 	# Gotta to it this way because you can't pass a parameter to a has_many, and we need it has_many
 	# to do eager loading.
 	Script.subsets.each do |subset|

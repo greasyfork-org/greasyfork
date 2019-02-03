@@ -129,7 +129,7 @@ protected
 	def versionned_script(script_id, version_id)
 		return nil if script_id.nil?
 		script_id = script_id.to_i
-		current_script = Script.includes({:user => {}, :license => {}, :localized_attributes => :locale, :compatibilities => :browser}).find(script_id)
+		current_script = Script.includes(users: {}, license: {}, localized_attributes: :locale, compatibilities: :browser).find(script_id)
 		return [current_script, current_script.get_newest_saved_script_version] if version_id.nil?
 		version_id = version_id.to_i
 		script_version = ScriptVersion.find(version_id)
@@ -226,6 +226,7 @@ protected
 	end
 
 	def choose_ad_method(script=nil)
+		return nil if Rails.env.test?
 		return nil if sleazy?
 		return nil if script&.sensitive
 		return nil if current_user && !current_user.show_ads

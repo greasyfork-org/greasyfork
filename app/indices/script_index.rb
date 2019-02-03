@@ -5,7 +5,7 @@ ThinkingSphinx::Index.define :script, :with => :active_record, :delta => Thinkin
 	indexes localized_descriptions.attribute_value, :as => 'description'
 	indexes localized_additional_infos.attribute_value, :as => 'additional_info'
 
-	indexes user.name, :as => :author
+	indexes users.name, :as => :author
 
 	# attributes
 	has :created_at, :code_updated_at, :total_installs, :daily_installs, :default_name, :sensitive, :script_type_id

@@ -101,7 +101,7 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
 		</div>
 	<% end %>
 	<div class="form-control">
-		<label for="code"><%=t('activerecord.attributes.script.code')%></label> <span class="label-note" style="display: none"><input type="checkbox" id="enable-source-editor-code" name="enable-source-editor-code" <%if params['enable-source-editor-code']%>checked<%end%> class="enable-source-editor" data-related-editor="script_version_code"><label for="enable-source-editor-code" class="checkbox-label"><%=t('scripts.enable_source_code_editor_label')%></label></span><br>
+		<label for="script_version_code"><%=t('activerecord.attributes.script.code')%></label> <span class="label-note" style="display: none"><input type="checkbox" id="enable-source-editor-code" name="enable-source-editor-code" <%if params['enable-source-editor-code']%>checked<%end%> class="enable-source-editor" data-related-editor="script_version_code"><label for="enable-source-editor-code" class="checkbox-label"><%=t('scripts.enable_source_code_editor_label')%></label></span><br>
 		<%=s.text_area(:code)%>
 		<div><%=t('scripts.upload_label')%> <input type="file" name="code_upload" id="code-upload" accept="text/javascript,application/javascript"></div>
 	</div>
@@ -120,7 +120,7 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
 	<div class="form-control radio-group">
 		<label><%=t('activerecord.attributes.script.approve_redistribution')%></label><br>
 		<%=t('scripts.approve_redistribution_explanation', site_name: site_name)%><br>
-		<%= radio_button('script', :approve_redistribution, nil)%> <label for="script_approve_redistribution" class="radio-label"><%=t('scripts.approve_redistribution_use_user_setting', user_setting: script_version.script.user.approve_redistribution.nil? ? t('scripts.approve_redistribution_use_user_setting_not_set') : t("users.approve_redistribution_#{script_version.script.user.approve_redistribution}"))%></label><br>
+		<%= radio_button('script', :approve_redistribution, nil)%> <label for="script_approve_redistribution" class="radio-label"><%=t('scripts.approve_redistribution_use_user_setting', user_setting: script_version.script.authors.first.user.approve_redistribution.nil? ? t('scripts.approve_redistribution_use_user_setting_not_set') : t("users.approve_redistribution_#{script_version.script.authors.first.user.approve_redistribution}"))%></label><br>
 		<%= radio_button('script', :approve_redistribution, true)%> <label for="script_approve_redistribution_true" class="radio-label"><%=t('scripts.approve_redistribution_true')%></label><br>
 		<%= radio_button('script', :approve_redistribution, false)%> <label for="script_approve_redistribution_false" class="radio-label"><%=t('scripts.approve_redistribution_false')%></label>
 	</div>

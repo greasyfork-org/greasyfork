@@ -3,9 +3,12 @@ require 'localizing_model'
 class Script < ActiveRecord::Base
 	include LocalizingModel
 
-	belongs_to :user
+	self.ignored_columns = %w(user_id)
+
 	belongs_to :promoted_script, class_name: 'Script', optional: true
 
+	has_many :authors, dependent: :destroy
+	has_many :users, through: :authors
 	has_many :script_versions, dependent: :destroy
 	has_many :script_applies_tos, dependent: :destroy, autosave: true
 	has_many :site_applications, through: :script_applies_tos
@@ -13,7 +16,7 @@ class Script < ActiveRecord::Base
 	has_many :cpd_duplication_scripts, dependent: :destroy
 	has_many :cpd_duplications, :through => :cpd_duplication_scripts
 	has_many :script_set_script_inclusions, foreign_key: 'child_id', dependent: :destroy
-	has_many :favorited_in_sets, -> {includes(:user).where('favorite = true')}, :through => :script_set_script_inclusions, :class_name => 'ScriptSet', :source => 'parent'
+	has_many :favorited_in_sets, -> {includes(:users).where('favorite = true')}, :through => :script_set_script_inclusions, :class_name => 'ScriptSet', :source => 'parent'
 	has_many :favoriters, :through => :favorited_in_sets, :class_name => 'User', :source => 'user'
 	has_many :localized_attributes, class_name: 'LocalizedScriptAttribute', autosave: true, dependent: :destroy
 	has_many :localized_names, -> {where(:attribute_key => 'name')}, :class_name => 'LocalizedScriptAttribute'
@@ -49,13 +52,13 @@ class Script < ActiveRecord::Base
 	scope :listable, ->(script_subset) {active(script_subset).where(:script_type_id => 1)}
 	scope :libraries, ->(script_subset) {active(script_subset).where(:script_type_id => 3)}
 	scope :listable_including_libraries, ->(script_subset) {active(script_subset).where(script_type_id: [1,3])}
-	scope :reported, -> { not_deleted.joins('JOIN GDN_Discussion ON scripts.id = ScriptID AND Rating = 1 AND Closed = 0').includes(:user).order('GDN_Discussion.DiscussionID') }
+	scope :reported, -> { not_deleted.joins('JOIN GDN_Discussion ON scripts.id = ScriptID AND Rating = 1 AND Closed = 0').includes(:users).order('GDN_Discussion.DiscussionID') }
 	scope :reported_old, -> { reported.where(['GDN_Discussion.DateInserted <= ?', 3.days.ago]) }
 	scope :reported_unauthorized, -> { includes(:script_reports).where(script_reports: {resolved: false}) }
-	scope :reported_not_adult, -> {not_deleted.includes(:user).where('not_adult_content_self_report_date IS NOT NULL')}
+	scope :reported_not_adult, -> {not_deleted.includes(:users).where('not_adult_content_self_report_date IS NOT NULL')}
 	scope :requested_permanent_deletion, -> {where('permanent_deletion_request_date is not null')}
 	scope :for_all_sites, -> {includes(:script_applies_tos).references(:script_applies_tos).where('script_applies_tos.id IS NULL')}
-	scope :redistributable, ->(script_subset) {listable(script_subset).includes(:user).references([:scripts, :users]).where('scripts.approve_redistribution OR (scripts.approve_redistribution IS NULL AND users.approve_redistribution)')}
+	scope :redistributable, ->(script_subset) {listable(script_subset).includes(:users).references([:scripts, :users]).where('scripts.approve_redistribution OR (scripts.approve_redistribution IS NULL AND users.approve_redistribution)')}
 
 	# Must have a default name and description
 	validates_presence_of :default_name, :message => :script_missing_name, :unless => Proc.new {|s| s.library?}
@@ -75,7 +78,7 @@ class Script < ActiveRecord::Base
 
 	validate on: :create do |script|
 		next if Rails.env.test?
-		errors.add(:base, :script_rate_limit) if RATE_LIMITS.any?{|period, count| script.user.scripts.where(['created_at > ?', period.ago]).count >= count}
+		errors.add(:base, :script_rate_limit) if RATE_LIMITS.any? { |period, count| script.users.map { |u| u.scripts.where(['created_at > ?', period.ago]).count }.sum >= count }
 	end
 
 	MAX_LENGTHS = {:name => 100, :description => 500, :additional_info => 50000}
@@ -120,7 +123,7 @@ class Script < ActiveRecord::Base
 		end
 	end
 
-	validates_presence_of :user_id, :code_updated_at, :script_type
+	validates_presence_of :code_updated_at, :script_type
 
 	validates_format_of :sync_identifier, :with => URI::regexp(%w(http https)), :message => :script_sync_identifier_bad_protocol, :if => Proc.new {|r| r.script_sync_source_id == 1}
 
@@ -173,6 +176,14 @@ class Script < ActiveRecord::Base
 	def set_sensitive_flag
 		self.sensitive ||= (adult_content_self_report || for_sensitive_site?)
 		true
+	end
+
+	def user
+		users.first
+	end
+
+	def user_id
+		user&.id
 	end
 
 	def matching_sensitive_sites
@@ -356,7 +367,7 @@ class Script < ActiveRecord::Base
 	end
 
 	def to_param
-		"#{id}-#{slugify(name)}"
+		"#{id}-#{slugify(name || default_name)}"
 	end
 
 	def deleted?

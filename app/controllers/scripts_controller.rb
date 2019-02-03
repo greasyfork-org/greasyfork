@@ -15,12 +15,12 @@ class ScriptsController < ApplicationController
 		case action_name.to_sym
 			when *MEMBER_AUTHOR_ACTIONS
 				@script = Script.find(params[:id])
-				render_access_denied if current_user&.id != @script.user_id
+				render_access_denied unless @script.user_ids.include?(current_user&.id)
 				render_locked if @script.locked?
 				@bots = 'noindex'
 			when *MEMBER_AUTHOR_OR_MODERATOR_ACTIONS
 				@script = Script.find(params[:id])
-				render_access_denied if current_user&.id != @script.user_id && !current_user&.moderator?
+				render_access_denied unless @script.user_ids.include?(current_user&.id) || current_user&.moderator?
 				render_locked if @script.locked? && !current_user&.moderator?
 				@bots = 'noindex'
 			when *MEMBER_MODERATOR_ACTIONS
@@ -568,8 +568,10 @@ class ScriptsController < ApplicationController
 	def derivatives
 		return if redirect_to_slug(@script, :id)
 
+		base_scope = Script.listable(script_subset).joins(:authors).where.not(authors: { user_id: @script.user_ids })
+
 		similar_names = {}
-		Script.listable(script_subset).includes(:localized_names).where(['user_id != ?', @script.user_id]).each do |other_script|
+		base_scope.includes(:localized_names).each do |other_script|
 			other_script.localized_names.each do |ln|
 				dist = Levenshtein.normalized_distance(@script.name, ln.attribute_value)
 				similar_names[other_script.id] = dist if similar_names[other_script.id].nil? or dist < similar_names[other_script.id]
@@ -579,7 +581,7 @@ class ScriptsController < ApplicationController
 		@similar_name_scripts = similar_names.map{|a| Script.includes([:user, :license]).find(a[0])}
 
 		@same_namespaces = []
-		@same_namespaces = Script.listable(script_subset).where(['user_id != ?', @script.user_id]).where(:namespace => @script.namespace).includes([:user, :license]) if !@script.namespace.nil?
+		@same_namespaces = base_scope.where(namespace: @script.namespace).includes(:users, :license) if !@script.namespace.nil?
 
 		# Disabled until we can find something that can handle current volumes.
 		# only duplications containing listable scripts by others

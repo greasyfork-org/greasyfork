@@ -69,7 +69,7 @@ module ScriptImporter
 			sv.changelog = "Imported from #{import_source_name}"
 
 			script = Script.new
-			script.user = user
+			script.authors.build(user: user)
 			script.script_type_id = 1
 			script.script_sync_source_id = sync_source_id
 			script.script_sync_type_id = sync_type_id

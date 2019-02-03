@@ -54,4 +54,6 @@ Rails.application.configure do
   config.active_support.test_order = :random
 
   config.log_cache_misses = true
+  
+  config.assets.debug = true
 end

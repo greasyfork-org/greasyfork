@@ -56,7 +56,7 @@ module ScriptListings
             per_page: get_per_page,
             order: self.class.get_sort(params, true),
             populate: true,
-            sql: {include: [:script_type, {localized_attributes: :locale}, :user]},
+            sql: { include: [:script_type, {localized_attributes: :locale}, :users] },
             select: '*, weight() myweight, LENGTH(site_application_id) AS site_count',
             ranker: "expr('top(user_weight)')"
           )
@@ -73,7 +73,7 @@ module ScriptListings
         @scripts = Script.none.paginate(page: 1)
       end
     else
-      @scripts = Script.listable(script_subset).includes({:user => {}, :script_type => {}, :localized_attributes => :locale, :script_delete_type => {}}).paginate(:page => params[:page], :per_page => get_per_page)
+      @scripts = Script.listable(script_subset).includes({:users => {}, :script_type => {}, :localized_attributes => :locale, :script_delete_type => {}}).paginate(:page => params[:page], :per_page => get_per_page)
       @scripts = self.class.apply_filters(@scripts, params, script_subset)
     end
 
@@ -230,7 +230,7 @@ module ScriptListings
     # check the code for the search text
     # using the escape character doesn't seem to work, yet it works from the command line. so choose something unlikely to be used as our escape character
     script_ids = Script.connection.select_values("SELECT DISTINCT script_id FROM script_versions JOIN script_codes ON rewritten_script_code_id = script_codes.id WHERE script_versions.id IN (#{script_version_ids.join(',')}) AND code LIKE '%#{Script.connection.quote_string(params[:c].gsub('É', 'ÉÉ').gsub('%', 'É%').gsub('_', 'É_'))}%' ESCAPE 'É' LIMIT 100")
-    @scripts = Script.order(self.class.get_sort(params)).includes([:user, :script_type, :script_delete_type]).where(:id => script_ids)
+    @scripts = Script.order(self.class.get_sort(params)).includes(:users, :script_type, :script_delete_type).where(id: script_ids)
     @scripts = @scripts.listable(script_subset) if !current_user&.moderator?
     @paginate = false
     @title = t('scripts.listing_title_for_code_search', :search_string => params[:c])

@@ -132,7 +132,8 @@ EOF
 	end
 
 	test 'changing the default locale' do
-		script = Script.new(user: User.find(1), locale: Locale.find_by(code: :en))
+		script = Script.new(locale: Locale.find_by(code: :en))
+		script.authors.build(user: User.find(1))
 		sv = ScriptVersion.new
 		sv.script = script
 		sv.code = <<EOF
@@ -180,7 +181,8 @@ EOF
 
 	test 'detecting default locale' do
 
-		script = Script.new(user: User.find(1))
+		script = Script.new
+		script.authors.build(user: User.find(1))
 		sv = ScriptVersion.new
 		sv.script = script
 		sv.code = <<EOF
