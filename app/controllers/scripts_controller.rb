@@ -348,9 +348,7 @@ class ScriptsController < ApplicationController
 	end
 
 	def delete
-		if !@script.deleted?
-			@other_scripts = Script.where(:user => @script.user).where(:locked => false).where(['id != ?', @script.id]).count
-		end
+		@other_scripts = Script.joins(:authors).where(authors: { user_id: @script.user_ids }).where(locked: false).where.not(id: @script.id).count unless @script.deleted?
 	end
 
 	def do_delete
