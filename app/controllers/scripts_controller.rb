@@ -575,11 +575,12 @@ class ScriptsController < ApplicationController
 				similar_names[other_script.id] = dist if similar_names[other_script.id].nil? or dist < similar_names[other_script.id]
 			end
 		end
+
 		similar_names = similar_names.sort_by{|k, v| v}.take(10)
-		@similar_name_scripts = similar_names.map{|a| Script.includes([:user, :license]).find(a[0])}
+		@similar_name_scripts = Script.includes(:users, :license).find(similar_names.map(&:first))
 
 		@same_namespaces = []
-		@same_namespaces = base_scope.where(namespace: @script.namespace).includes(:users, :license) if !@script.namespace.nil?
+		@same_namespaces = base_scope.where(namespace: @script.namespace).includes(:users, :license) unless @script.namespace.nil?
 
 		# Disabled until we can find something that can handle current volumes.
 		# only duplications containing listable scripts by others
