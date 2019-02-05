@@ -6,7 +6,7 @@
 			<li<%=current_page?(script_script_versions_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.history_page')}</span>".html_safe, script_script_versions_path(@script, :version => params[:version])%></li>
 			<li<%=current_page?(feedback_script_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.feedback_page', :count => @script.discussions.count)}</span>".html_safe, feedback_script_path(@script, :version => params[:version])%></li>
 			<li<%=current_page?(stats_script_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.stats_page')}</span>".html_safe, stats_script_path(@script, :version => params[:version])%></li>
-			<% same_user = !current_user.nil? && current_user.id == @script.user_id
+			<% same_user = current_user && @script.user_ids.include?(current_user.id)
 			user_is_mod = !current_user.nil? && current_user.moderator? %>
 			<% if (same_user and !@script.locked) or user_is_mod %>
 				<li<%=current_page?(derivatives_script_path(@script, :version => params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.derivatives_page')}</span>".html_safe, derivatives_script_path(@script, :version => params[:version])%></li>
