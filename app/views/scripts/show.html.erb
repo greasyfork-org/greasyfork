@@ -36,7 +36,7 @@
 <div id="script-meta">
   <dl id="script-stats" class="inline-script-stats">
     <dt class="script-show-author"><span><%=t('scripts.author_name')%></span></dt>
-    <dd class="script-show-author"><span><%=link_to @script.user.name, @script.user%></span></dd>
+    <dd class="script-show-author"><span><%= @script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %></span></dd>
     <% if @script.script_type_id != 3 and params[:version].nil? %>
     <dt class="script-show-daily-installs"><span><%=t('scripts.daily_installs')%></span></dt>
     <dd class="script-show-daily-installs"><span><%=number_with_delimiter(@script.daily_installs)%></span></dd>

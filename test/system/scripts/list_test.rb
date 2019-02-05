@@ -19,4 +19,15 @@ class ListTest < ApplicationSystemTestCase
     visit libraries_scripts_url
     assert_selector 'h2', text: 'jQuery'
   end
+
+  test "all authors should be listed" do
+    visit scripts_url
+    script = Script.find(2)
+    assert_operator script.users.count, :>, 1
+    within "li[data-script-id=\"#{script.id}\"]" do
+      script.users.each do |user|
+        assert_selector 'a', text: user.name
+      end
+    end
+  end
 end

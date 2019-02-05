@@ -7,7 +7,15 @@ class ShowTest < ApplicationSystemTestCase
     script.users.each do |user|
       login_as(user, scope: :user)
       visit script_path(script, locale: :en)
-      assert_selector 'a', text: 'Update'
+      click_link 'Update'
+    end
+  end
+
+  test "all authors should be listed" do
+    script = Script.find(2)
+    visit script_path(script, locale: :en)
+    script.users.each do |user|
+      assert_selector 'a', text: user.name
     end
   end
 end

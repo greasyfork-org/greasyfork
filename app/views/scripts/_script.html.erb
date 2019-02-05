@@ -30,7 +30,7 @@ show_report_thread = defined?(show_report_thread) && show_report_thread
 		</h2>
 		<dl class="inline-script-stats">
 			<dt class="script-list-author"><span><%=t('scripts.author_name')%></span></dt>
-			<dd class="script-list-author"><span><%=link_to script.user.name, user_path(script.user)%></span></dd>
+			<dd class="script-list-author"><span><%= script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %></span></dd>
 			<% if !script.library? %>
 				<dt class="script-list-daily-installs"><span><%=t('scripts.daily_installs')%></span></dt>
 				<dd class="script-list-daily-installs"><span><%=number_with_delimiter(script.daily_installs)%></span></dd>
