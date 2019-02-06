@@ -1,9 +1,8 @@
 require 'test_helper'
 require 'script_importer/url_importer'
 require 'script_importer/script_syncer'
-include ScriptImporter
-
 class ScriptSyncerTest < ActiveSupport::TestCase
+	include ScriptImporter
 
 	test 'sync' do
 		script = Script.find(7)

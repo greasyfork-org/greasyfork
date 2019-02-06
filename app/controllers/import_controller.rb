@@ -4,8 +4,6 @@ include ScriptImporter
 
 class ImportController < ApplicationController
 
-	$IMPORTERS = [UserScriptsOrgImporter, UrlImporter]
-
 	before_action :authenticate_user!
 
 	def index
@@ -51,7 +49,7 @@ class ImportController < ApplicationController
 	end
 
 	def add
-		importer = $IMPORTERS.select{|i| i.sync_source_id == params[:sync_source_id].to_i}.first
+		importer = ScriptImporter::IMPORTERS.select{|i| i.sync_source_id == params[:sync_source_id].to_i}.first
 		@results = {:new => [], :failure => [], :needsdescription => [], :existing => []}
 		sync_ids = nil
 		if params[:sync_ids].nil?
