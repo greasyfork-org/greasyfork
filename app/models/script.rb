@@ -7,7 +7,7 @@ class Script < ActiveRecord::Base
 
 	belongs_to :promoted_script, class_name: 'Script', optional: true
 
-	has_many :authors, dependent: :destroy
+	has_many :authors, -> { order(:id) }, dependent: :destroy, inverse_of: :script
 	has_many :users, through: :authors
 	has_many :script_versions, dependent: :destroy
 	has_many :script_applies_tos, dependent: :destroy, autosave: true
