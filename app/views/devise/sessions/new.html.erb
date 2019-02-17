@@ -20,9 +20,9 @@
 				<% end %>
 			</div>
 
-			<% if devise_mapping.rememberable? -%>
+			<% if devise_mapping.rememberable? %>
 				<div><%= check_box_tag :remember_me %><%= label_tag :remember_me, t('activerecord.attributes.user.remember_me') %></div>
-			<% end -%>
+			<% end %>
 		<% end %>
 	<% end %>
 </div>
