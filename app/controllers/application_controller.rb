@@ -253,7 +253,7 @@ protected
 	end
 
 	def sleazy?
-		['sleazyfork.org', 'sleazyfork.local'].include?(request.domain)
+		['sleazyfork.org', 'sleazyfork.local', 'www.sleazyfork.org'].include?(request.domain)
 	end
 
 	def site_name

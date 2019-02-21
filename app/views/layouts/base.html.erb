@@ -10,7 +10,7 @@
   <% if defined?(@bots) %>
     <meta name="robots" content="<%=@bots%>">
   <% end %>
-  <link rel="canonical" href="<%=url_for(params.permit(*@canonical_params).merge(only_path: false))%>">
+  <link rel="canonical" href="<%=url_for(params.permit(*@canonical_params).merge(only_path: false, host: sleazy? ? 'sleazyfork.org': 'greasyfork.org', port: nil))%>">
   <link rel="icon" href="<%=asset_path 'blacklogo16.png'%>">
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   <% if request.get?
