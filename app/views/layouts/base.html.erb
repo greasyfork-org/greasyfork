@@ -30,7 +30,7 @@
 
   <link rel="search" href="<%=opensearch_description_path%>" type="application/opensearchdescription+xml" title="<%=t('opensearch.short_name', site_name: site_name, default: t('opensearch.short_name', site_name: site_name, locale: 'en'))%>" hreflang="<%=I18n.locale%>">
 
-  <% if @ad_method = 'ez' %>
+  <% if @ad_method == 'ez' %>
     <!-- Ezoic Code -->
     <script>var ezoicId = 98254;</script>
     <script type="text/javascript" src="//go.ezoic.net/ezoic/ezoic.js"></script>
