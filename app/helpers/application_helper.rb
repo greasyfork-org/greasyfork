@@ -1,5 +1,4 @@
 module ApplicationHelper
-
 	def title(page_title)
 		content_for(:title) { page_title }
 	end
@@ -72,7 +71,7 @@ module ApplicationHelper
 	# Sample from the top scripts.
 	def highlighted_script_ids_for_locale(locale:, script_subset:, restrict_to_ad_method: nil)
 		highlightable_scripts = Script.listable(script_subset)
-		highlightable_scripts = highlightable_scripts.where(ad_method: restrict_to_ad_method) if restrict_to_ad_method
+		highlightable_scripts = highlightable_scripts.where(adsense_approved: true) if restrict_to_ad_method
 
 		# Use scripts in the passed locale first.
 		locale_scripts = highlightable_scripts.joins(:localized_attributes => :locale).references([:localized_attributes, :locale]).where('localized_script_attributes.attribute_key' => 'name').where('locales.code' => I18n.locale)

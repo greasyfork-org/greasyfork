@@ -3,7 +3,7 @@ require 'localizing_model'
 class Script < ActiveRecord::Base
 	include LocalizingModel
 
-	self.ignored_columns = %w(user_id)
+	self.ignored_columns = %w(user_id ad_method)
 
 	belongs_to :promoted_script, class_name: 'Script', optional: true
 

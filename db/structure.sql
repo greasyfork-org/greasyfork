@@ -216,7 +216,7 @@ CREATE TABLE `GDN_Comment` (
   KEY `IX_Comment_1` (`DiscussionID`,`DateInserted`),
   KEY `IX_Comment_DateInserted` (`DateInserted`),
   FULLTEXT KEY `TX_Comment` (`Body`)
-) ENGINE=MyISAM AUTO_INCREMENT=63551 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=63553 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `GDN_Conversation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -308,7 +308,7 @@ CREATE TABLE `GDN_Discussion` (
   KEY `IX_Discussion_CategoryInserted` (`CategoryID`,`DateInserted`),
   KEY `index_GDN_Discussion_on_ScriptID` (`ScriptID`),
   FULLTEXT KEY `TX_Discussion` (`Name`,`Body`)
-) ENGINE=MyISAM AUTO_INCREMENT=49238 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=49242 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `GDN_Draft`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -332,7 +332,7 @@ CREATE TABLE `GDN_Draft` (
   KEY `FK_Draft_DiscussionID` (`DiscussionID`),
   KEY `FK_Draft_CategoryID` (`CategoryID`),
   KEY `FK_Draft_InsertUserID` (`InsertUserID`)
-) ENGINE=InnoDB AUTO_INCREMENT=68030 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=68031 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `GDN_Flag`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -895,7 +895,7 @@ CREATE TABLE `authors` (
   KEY `fk_rails_46e884287b` (`user_id`),
   CONSTRAINT `fk_rails_46e884287b` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_rails_899bcb69f5` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=65536 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=65537 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `browsers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1412,6 +1412,7 @@ CREATE TABLE `scripts` (
   `permanent_deletion_request_date` datetime DEFAULT NULL,
   `promoted` tinyint(1) NOT NULL DEFAULT '0',
   `promoted_script_id` int(11) DEFAULT NULL,
+  `adsense_approved` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_scripts_on_user_id` (`user_id`),
   KEY `index_scripts_on_delta` (`delta`),
@@ -1651,6 +1652,8 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20180622231059'),
 ('20181110222109'),
 ('20190131020341'),
-('20190131022248');
+('20190131022248'),
+('20190302205639'),
+('20190302205715');
 
 

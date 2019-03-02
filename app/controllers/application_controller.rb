@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 	before_action :banned?
 
 	include ApplicationHelper
+	include ShowsAds
 	include LocalizedRequest
 
 	rescue_from ActiveRecord::RecordNotFound, :with => :routing_error
@@ -224,17 +225,6 @@ protected
 		per_page = [params[:per_page].to_i, 200].min if !params[:per_page].nil? and params[:per_page].to_i > 0
 		return per_page
 	end
-
-	def choose_ad_method(script=nil)
-		return nil if Rails.env.test?
-		return nil if sleazy?
-		return nil if script&.sensitive
-		return nil if current_user && !current_user.show_ads
-		return 'ga' if script.nil?
-		return 'ca' if script.localized_attribute_for('additional_info', I18n.locale).blank?
-		return script.ad_method || 'ca'
-	end
-	helper_method :choose_ad_method
 
 	def self.cache_with_log(key, options = {})
 		key = key.map{|k| k.respond_to?(:cache_key) ? k.cache_key : k} if key.is_a?(Array)
