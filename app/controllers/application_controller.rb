@@ -231,8 +231,8 @@ protected
 		return nil if script&.sensitive
 		return nil if current_user && !current_user.show_ads
 		return 'ga' if script.nil?
-		return ['ca', 'ca', 'ca', 'ca', 'ez'].sample if script.localized_attribute_for('additional_info', I18n.locale).blank?
-		return script.ad_method || ['ca', 'ca', 'ca', 'ca', 'ez'].sample
+		return 'ca' if script.localized_attribute_for('additional_info', I18n.locale).blank?
+		return script.ad_method || 'ca'
 	end
 	helper_method :choose_ad_method
 
