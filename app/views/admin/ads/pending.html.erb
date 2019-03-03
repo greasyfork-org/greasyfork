@@ -1,0 +1,29 @@
+<ol class="script-list">
+  <% @scripts.each do |script| %>
+    <li>
+      <article>
+        <h2>
+          <%=link_to script.name(I18n.locale), script_path(script)%></h2>
+          <%=script.description(I18n.locale)%>
+        </h2>
+        <div>
+          <%= script.site_applications.map { |s| s.domain? ? link_to(s.text, "http://#{s.text}") : s.text}.join(", ").html_safe %>
+        </div>
+        <%= form_with(model: @script, url: approve_admin_ad_path(script), method: :patch, html: { style: 'display: inline;' }) do %>
+          <button>Approve</button>
+        <% end %>
+        <%= form_with(model: @script, url: reject_admin_ad_path(script), method: :patch, html: { style: 'display: inline;' }) do %>
+          <button>Reject</button>
+        <% end %>
+        <% script_version = script.get_newest_saved_script_version %>
+        <% if !script_version.screenshots.empty? %>
+          <div class="script-screenshots">
+            <% script_version.screenshots.each do |screenshot| %>
+              <a href="<%=screenshot.screenshot.url%>" data-jslghtbx="<%=screenshot.screenshot.url%>" data-jslghtbx-group="screenshots" <%if !screenshot.caption.nil?%>title="<%=screenshot.caption%>" data-jslghtbx-caption="<%=screenshot.caption%>"<%end%>><%= image_tag screenshot.screenshot.url(:thumb) %></a>
+            <% end %>
+          </div>
+        <% end %>
+      </article>
+    </li>
+  <% end %>
+</ol>

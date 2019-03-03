@@ -147,6 +147,18 @@ Rails.application.routes.draw do
 
     get 'opensearch.xml', to: 'opensearch#description', as: 'opensearch_description'
 
+    namespace :admin do
+      resources :ads, only: [] do
+        member do
+          patch :approve
+          patch :reject
+        end
+        collection do
+          get :pending
+        end
+      end
+    end
+
     match '*path', :to => 'home#routing_error', :via => [:get, :post]
   end
 
