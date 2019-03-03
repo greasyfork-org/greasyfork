@@ -3,18 +3,24 @@
     <li>
       <article>
         <h2>
-          <%=link_to script.name(I18n.locale), script_path(script)%></h2>
-          <%=script.description(I18n.locale)%>
+          <%= link_to script.name(I18n.locale), script_path(script) %>
+          (<%= script.page_views %>)
         </h2>
         <div>
-          <%= script.site_applications.map { |s| s.domain? ? link_to(s.text, "http://#{s.text}") : s.text}.join(", ").html_safe %>
+          <%= script.description(I18n.locale) %>
+          <%= link_to('Translate', "https://translate.google.com/#view=home&op=translate&sl=auto&tl=en&text=#{URI.encode_www_form_component(script.description(I18n.locale))}") %>
         </div>
-        <%= form_with(model: @script, url: approve_admin_ad_path(script), method: :patch, html: { style: 'display: inline;' }) do %>
-          <button>Approve</button>
-        <% end %>
-        <%= form_with(model: @script, url: reject_admin_ad_path(script), method: :patch, html: { style: 'display: inline;' }) do %>
-          <button>Reject</button>
-        <% end %>
+        <p>
+          <%= script.site_applications.map { |s| s.domain? ? link_to(s.text, "http://#{s.text}") : s.text}.join(", ").html_safe %>
+        </p>
+        <p style="padding: 0.5em 0">
+          <%= form_with(model: @script, url: approve_admin_ad_path(script), method: :patch, html: { style: 'display: inline;' }) do %>
+            <button>Approve</button>
+          <% end %>
+          <%= form_with(model: @script, url: reject_admin_ad_path(script), method: :patch, html: { style: 'display: inline;' }) do %>
+            <button>Reject</button>
+          <% end %>
+        </p>
         <% script_version = script.get_newest_saved_script_version %>
         <% if !script_version.screenshots.empty? %>
           <div class="script-screenshots">

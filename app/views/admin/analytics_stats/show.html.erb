@@ -1,0 +1,6 @@
+<%= form_with(url: admin_analytics_stats_path, method: :PATCH) do |f| %>
+  <p>
+    <%= f.file_field :analytics_csv %>
+    <%= f.submit 'Upload' %>
+  </p>
+<% end %>

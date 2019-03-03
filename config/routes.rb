@@ -157,6 +157,7 @@ Rails.application.routes.draw do
           get :pending
         end
       end
+      resource :analytics_stats, only: [:show, :update]
     end
 
     match '*path', :to => 'home#routing_error', :via => [:get, :post]

@@ -7,6 +7,7 @@ module Admin
         .active(:greasyfork)
         .includes(:site_applications)
         .where(adsense_approved: nil)
+        .order(page_views: :desc)
         .limit(25)
     end
 

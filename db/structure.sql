@@ -987,7 +987,7 @@ CREATE TABLE `delayed_jobs` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `delayed_jobs_priority` (`priority`,`run_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=489123 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=489128 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `disallowed_attributes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1413,6 +1413,7 @@ CREATE TABLE `scripts` (
   `promoted` tinyint(1) NOT NULL DEFAULT '0',
   `promoted_script_id` int(11) DEFAULT NULL,
   `adsense_approved` tinyint(1) DEFAULT NULL,
+  `page_views` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `index_scripts_on_user_id` (`user_id`),
   KEY `index_scripts_on_delta` (`delta`),
@@ -1654,6 +1655,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20190131020341'),
 ('20190131022248'),
 ('20190302205639'),
-('20190302205715');
+('20190302205715'),
+('20190303012524');
 
 
