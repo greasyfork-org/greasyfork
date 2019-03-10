@@ -77,7 +77,7 @@ class ScriptsController < ApplicationController
 					{:url => current_path_with_params(format: :jsonp, callback: 'callback'), :type => 'application/javascript'}
 				]
 				@canonical_params = [:id, :version]
-				@ad_method = choose_ad_method(@script)
+				@ad_method = choose_ad_method_for_script(@script)
 			}
 			format.js {
 				redirect_to @script.code_url

@@ -112,6 +112,7 @@ module ScriptListings
         else
           @canonical_params << :set
         end
+        @ad_method = choose_ad_method_for_scripts(@scripts)
       }
       format.atom
       format.json {
