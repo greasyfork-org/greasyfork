@@ -7,7 +7,7 @@ module ShowsAds
   def choose_ad_method_for_script(script)
     return nil unless ads_enabled?
     return nil if script.sensitive
-    return fallback_ad_method if script.localized_attribute_for('additional_info', I18n.locale).blank?
+    return fallback_ad_method if script.localized_attributes.where(attribute_key: 'additional_info').none?
     script.adsense_approved ? 'ga' : fallback_ad_method
   end
 
