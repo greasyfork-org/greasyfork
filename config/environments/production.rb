@@ -98,4 +98,5 @@ Rails.application.configure do
   config.enable_detect_locale = true
   config.log_cache_misses = true
 
+  config.eager_load_namespaces << I18n
 end
