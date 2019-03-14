@@ -263,7 +263,7 @@ protected
 			render_404 I18n.t('scripts.non_adult_content_on_sleazy')
 			return true
 		end
-		if script.sensitive && script_subset == :greasyfork && !script.users.include(current_user)
+		if script.sensitive && script_subset == :greasyfork && !script.users.include?(current_user)
 			message = current_user.nil? ? view_context.it('scripts.adult_content_on_greasy_not_logged_in_error', login_link: new_user_session_path): view_context.it('scripts.adult_content_on_greasy_logged_in_error', edit_account_link: edit_user_registration_path)
 			render_404 message
 			return true
