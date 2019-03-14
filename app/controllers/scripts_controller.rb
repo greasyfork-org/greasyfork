@@ -15,12 +15,12 @@ class ScriptsController < ApplicationController
 		case action_name.to_sym
 			when *MEMBER_AUTHOR_ACTIONS
 				@script = Script.find(params[:id])
-				render_access_denied unless @script.user_ids.include?(current_user&.id)
+				render_access_denied unless @script.users.include?(current_user)
 				render_locked if @script.locked?
 				@bots = 'noindex'
 			when *MEMBER_AUTHOR_OR_MODERATOR_ACTIONS
 				@script = Script.find(params[:id])
-				render_access_denied unless @script.user_ids.include?(current_user&.id) || current_user&.moderator?
+				render_access_denied unless @script.users.include?(current_user) || current_user&.moderator?
 				render_locked if @script.locked? && !current_user&.moderator?
 				@bots = 'noindex'
 			when *MEMBER_MODERATOR_ACTIONS
@@ -348,13 +348,9 @@ class ScriptsController < ApplicationController
 	end
 
 	def delete
-		@other_scripts = Script.joins(:authors).where(authors: { user_id: @script.user_ids }).where(locked: false).where.not(id: @script.id).count unless @script.deleted?
 	end
 
 	def do_delete
-		# Grab those vars...
-		delete
-
 		# Handle replaced by
 		replaced_by = get_script_from_input(params[:replaced_by_script_id])
 		case replaced_by
@@ -384,7 +380,7 @@ class ScriptsController < ApplicationController
 
 		@script.replaced_by_script = replaced_by
 
-		if current_user.moderator? && current_user != @script.user
+		if current_user.moderator? && !@script.users.include?(current_user)
 			@script.locked = params[:locked].nil? ? false : params[:locked]
 			ma = ModeratorAction.new
 			ma.moderator = current_user
@@ -394,14 +390,16 @@ class ScriptsController < ApplicationController
 			@script.delete_reason = params[:reason]
 			ma.save!
 			if params[:banned]
-				ma_ban = ModeratorAction.new
-				ma_ban.moderator = current_user
-				ma_ban.user = @script.user
-				ma_ban.action = 'Ban'
-				ma_ban.reason = params[:reason]
-				ma_ban.save!
-				@script.user.banned = true
-				@script.user.save!
+				@script.users.each do |user|
+					ma_ban = ModeratorAction.new
+					ma_ban.moderator = current_user
+					ma_ban.user = user
+					ma_ban.action = 'Ban'
+					ma_ban.reason = params[:reason]
+					ma_ban.save!
+					user.banned = true
+					user.save!
+				end
 			end
 		end
 		@script.permanent_deletion_request_date = nil if @script.locked
@@ -411,7 +409,7 @@ class ScriptsController < ApplicationController
 	end
 
 	def do_undelete
-		if current_user.moderator? && current_user != @script.user
+		if current_user.moderator? && !@script.users.include?(current_user)
 			ma = ModeratorAction.new
 			ma.moderator = current_user
 			ma.script = @script
@@ -419,15 +417,17 @@ class ScriptsController < ApplicationController
 			ma.reason = params[:reason]
 			ma.save!
 			@script.locked = false
-			if @script.user.banned and params[:unbanned]
-				ma_ban = ModeratorAction.new
-				ma_ban.moderator = current_user
-				ma_ban.user = @script.user
-				ma_ban.action = 'Unban'
-				ma_ban.reason = params[:reason]
-				ma_ban.save!
-				@script.user.banned = false
-				@script.user.save!
+			if params[:unbanned]
+				@script.users.select(&:banned).each do |user|
+					ma_ban = ModeratorAction.new
+					ma_ban.moderator = current_user
+					ma_ban.user = user
+					ma_ban.action = 'Unban'
+					ma_ban.reason = params[:reason]
+					ma_ban.save!
+					user.banned = false
+					user.save!
+				end
 			end
 		end
 		@script.script_delete_type_id = nil
@@ -582,10 +582,6 @@ class ScriptsController < ApplicationController
 		@same_namespaces = []
 		@same_namespaces = base_scope.where(namespace: @script.namespace).includes(:users, :license) unless @script.namespace.nil?
 
-		# Disabled until we can find something that can handle current volumes.
-		# only duplications containing listable scripts by others
-		# @code_duplications = @script.cpd_duplications.includes(:cpd_duplication_scripts => {:script => :user}).select {|dup| dup.cpd_duplication_scripts.any?{|cpdds| cpdds.script.user_id != @script.user_id && cpdds.script.listable?}}.uniq
-
 		@canonical_params = [:id]
 	end
 
@@ -642,7 +638,7 @@ class ScriptsController < ApplicationController
 	def update_locale
 		update_params = params.require(:script).permit(:locale_id)
 		if @script.update_attributes(update_params)
-			if @script.user != current_user
+			unless @script.users.include?(current_user)
 				ModeratorAction.create!(script: @script, moderator: current_user, action: 'Update locale', reason: "Changed to #{@script.locale.code}#{update_params[:locale_id].blank? ? ' (auto-detected)' : ''}")
 			end
 			flash[:notice] = I18n.t('scripts.updated')
@@ -656,7 +652,7 @@ class ScriptsController < ApplicationController
 private
 
 	def handle_publicly_deleted(script)
-		if script.locked && !(current_user == script.user || current_user&.moderator?)
+		if script.locked && !(script.users.include?(current_user) || current_user&.moderator?)
 			render_deleted
 			return true
 		end

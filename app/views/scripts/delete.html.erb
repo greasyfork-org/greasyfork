@@ -10,9 +10,10 @@
 				<label for="reason">Why are you undeleting this?</label><br>
 				<textarea id="reason" name="reason" rows="5" cols="100" maxlength="500" required></textarea>
 			</p>
-			<% if @script.user.banned %>
+      <% users_to_unban = @script.users.select(&:banned) %>
+			<% if users_to_unban.any? %>
 				<p>
-					<label for="unbanned">Unban this user?</label> <input type="checkbox" id="unbanned" name="unbanned" value="1">
+					<label for="unbanned">Unban <%= users_to_unban.map { |u| link_to(u.name, u) }.to_sentence.html_safe %>?</label> <input type="checkbox" id="unbanned" name="unbanned" value="1">
 				</p>
 			<% end %>
 		<% end %>
@@ -61,16 +62,23 @@
 				<textarea id="reason" name="reason" rows="5" cols="100" maxlength="500" required></textarea>
 			</p>
 			<p>
-				<label for="locked">Lock the script to prevent undelete by the author?</label> <input type="checkbox" id="locked" name="locked" value="1" checked>
+				<label for="locked">Lock the script to prevent undelete by the <%= 'author'.pluralize(@script.users.count) %>?</label> <input type="checkbox" id="locked" name="locked" value="1" checked>
 			</p>
-			<% if @script.user.banned %>
-				<p>(User already banned.)</p>
-			<% else %>
-				<p>
-					<label for="banned">Ban this user?</label> <input type="checkbox" id="banned" name="banned" value="1">
-				</p>
+
+      <% banned_users, users_to_ban = @script.users.partition(&:banned) %>
+      <% if users_to_ban.any? %>
+        <p>
+          <label for="banned">Ban <%= users_to_ban.map { |u| link_to(u.name, u) }.to_sentence.html_safe %>?</label> <input type="checkbox" id="banned" name="banned" value="1">
+        </p>
+      <% end %>
+      <% if banned_users.any? %>
+				<p>(<%= banned_users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> already banned.)</p>
 			<% end %>
-			<p>This user has <%=link_to("#{@other_scripts} other non-locked scripts", @script.user)%>.</p>
+
+      <% @script.users.each do |user| %>
+        <% other_scripts = Script.joins(:authors).where(authors: { user_id: user.id }).where(locked: false).where.not(id: @script.id).count unless @script.deleted? %>
+  			<p><%= user.name %> has <%=link_to("#{other_scripts} other non-locked scripts", user)%>.</p>
+      <% end %>
 		<% end %>
 		<input type="submit" value="Delete">
 	<% end %>
@@ -85,7 +93,7 @@
 
 	<h3>Permanent deletion</h3>
 
-	<p>The author requested this script be permanently deleted at <%=@script.permanent_deletion_request_date%>. Verify that this script does not contain malware, as permanently deleting would not allow us to blank it out for those who already installed it.</p>
+	<p>The <%= 'author'.pluralize(@script.users.count) %> requested this script be permanently deleted at <%=@script.permanent_deletion_request_date%>. Verify that this script does not contain malware, as permanently deleting would not allow us to blank it out for those who already installed it.</p>
 
 	<%=form_tag(action: 'do_permanent_deletion') do %>
 		<p>

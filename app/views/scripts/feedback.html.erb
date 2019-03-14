@@ -12,15 +12,15 @@
 	<p id="contribution">
 		<% if @script.contribution_amount.nil? %>
 			<% if is_bitcoin %>
-				<%=t('scripts.contribution_bitcoin_no_amount_html', {:author => @script.user.name, :address => link_to(@script.contribution_url.sub('bitcoin:', ''), @script.contribution_url, {:rel => 'nofollow'})})%>
+				<%=t('scripts.contribution_bitcoin_no_amount_html', {:author => @script.users.map(&:name).to_sentence, :address => link_to(@script.contribution_url.sub('bitcoin:', ''), @script.contribution_url, {:rel => 'nofollow'})})%>
 			<% else %>
-				<%=link_to t('scripts.contribution_no_amount', {:author => @script.user.name}), @script.contribution_url, {:rel => 'nofollow'}%>
+				<%=link_to t('scripts.contribution_no_amount', {:author => @script.users.map(&:name).to_sentence}), @script.contribution_url, {:rel => 'nofollow'}%>
 			<% end %>
 		<% else %>
 			<% if is_bitcoin %>
-				<%=t('scripts.contribution_bitcoin_with_amount_html', {:author => @script.user.name, :amount => @script.contribution_amount, :address => link_to(@script.contribution_url.sub('bitcoin:', ''), @script.contribution_url, {:rel => 'nofollow'})})%>
+				<%=t('scripts.contribution_bitcoin_with_amount_html', {:author => @script.users.map(&:name).to_sentence, :amount => @script.contribution_amount, :address => link_to(@script.contribution_url.sub('bitcoin:', ''), @script.contribution_url, {:rel => 'nofollow'})})%>
 			<% else %>
-				<%=link_to t('scripts.contribution_with_amount', {:author => @script.user.name, :amount => @script.contribution_amount}), @script.contribution_url, {:rel => 'nofollow'}%>
+				<%=link_to t('scripts.contribution_with_amount', {:author => @script.users.map(&:name).to_sentence, :amount => @script.contribution_amount}), @script.contribution_url, {:rel => 'nofollow'}%>
 			<% end %>
 		<% end %>
 	</p>

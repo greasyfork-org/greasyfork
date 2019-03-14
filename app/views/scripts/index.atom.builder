@@ -16,8 +16,12 @@ atom_feed(:root_url => current_path_with_params(host: request.host)) do |feed|
 			end
 
 			entry.author do |author|
-				author.name(script.user.name)
-				author.uri(user_url(script.user))
+        if script.users.count == 1
+          author.name(script.users.first.name)
+          author.uri(user_url(script.users.first))
+        else
+          author.name(script.users.map(&:name).to_sentence)
+        end
 			end
 		end
 	end

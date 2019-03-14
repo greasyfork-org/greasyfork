@@ -13,10 +13,10 @@ class ScriptReportsController < ApplicationController
 
   def create
     @script_report = @script.script_reports.build(script_report_create_params)
-    if @script_report.reference_script && @script_report.reference_script.user != current_user
+    if @script_report.reference_script && !@script_report.reference_script.users.include?(current_user)
       @script_report.valid?
       @script_report.errors.add(:reference_script, 'must be one of your scripts')
-    elsif @script_report.script.user == current_user
+    elsif @script_report.script.users.include?(current_user)
       @script_report.valid?
       @script_report.errors.add(:script, 'cannot be one of your scripts')    
     elsif @script_report.save
@@ -41,7 +41,7 @@ class ScriptReportsController < ApplicationController
   end
 
   def rebut
-    is_author = @script.user == current_user
+    is_author = @script.users.include?(current_user)
     if !is_author
       render_access_denied
       return
@@ -58,13 +58,13 @@ class ScriptReportsController < ApplicationController
   end
 
   def resolve_delete
-    is_author = @script.user == current_user
+    is_author = @script.users.include?(current_user)
     if !is_author && !current_user&.moderator?
       render_access_denied
       return
     end
     @script_report = @script.script_reports.find(params[:id])
-    if current_user&.moderator? && @script_report.reference_script.user == current_user
+    if current_user&.moderator? && @script_report.reference_script.users.include?(current_user)
       # Can't delete if you are the reporter.
       render_access_denied
       return
@@ -84,7 +84,7 @@ class ScriptReportsController < ApplicationController
       render_access_denied
       return
     end
-    if @script_report.script.user == current_user || @script_report.reference_script.user == current_user
+    if @script_report.script.users.include?(current_user) || @script_report.reference_script.users.include?(current_user)
       # Can't moderate one you're involved in.
       render_access_denied
       return

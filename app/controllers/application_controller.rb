@@ -33,7 +33,8 @@ protected
 	end
 
 	def authorize_by_script_id
-		render_access_denied if current_user.nil? or (!params[:script_id].nil? and Script.find(params[:script_id]).user_id != current_user.id)
+		return unless params[:script_id].present?
+		render_access_denied unless current_user && Script.find(params[:script_id]).users.include?(current_user)
 	end
 
 	def authorize_for_moderators_only
@@ -45,7 +46,8 @@ protected
 	end
 
 	def check_for_deleted(script)
-		if !script.nil? && (current_user.nil? || (current_user != script.user && !current_user.moderator?))
+		return if script.nil?
+		if current_user.nil? || (!script.users.include?(current_user) && !current_user.moderator?)
 			if !script.script_delete_type_id.nil?
 				if !script.replaced_by_script_id.nil?
 					if params.include?(:script_id)
@@ -261,7 +263,7 @@ protected
 			render_404 I18n.t('scripts.non_adult_content_on_sleazy')
 			return true
 		end
-		if script.sensitive && script_subset == :greasyfork && script.user != current_user
+		if script.sensitive && script_subset == :greasyfork && !script.users.include(current_user)
 			message = current_user.nil? ? view_context.it('scripts.adult_content_on_greasy_not_logged_in_error', login_link: new_user_session_path): view_context.it('scripts.adult_content_on_greasy_logged_in_error', edit_account_link: edit_user_registration_path)
 			render_404 message
 			return true

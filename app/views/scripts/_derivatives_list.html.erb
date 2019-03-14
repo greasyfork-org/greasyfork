@@ -5,7 +5,7 @@
 	<ul>
 		<% scripts.each do |script| %>
 			<li>
-				<%=t('scripts.derivatives_script_html', {:script_link => link_to(script.name(I18n.locale), script), :user_link => link_to(script.user.name, script.user), :license => license_display(script)})%>
+				<%=t('scripts.derivatives_script_html', {:script_link => link_to(script.name(I18n.locale), script), :user_link => script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe, :license => license_display(script)})%>
 			</li>
 		<% end %>
 	</ul>

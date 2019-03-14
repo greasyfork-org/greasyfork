@@ -11,7 +11,7 @@
 	</div>
 <% end %>
 
-<% if @script.user == current_user %>
+<% if @script.users.include?(current_user) %>
   <%= render partial: 'set_promoted' %>
   <%= render partial: 'sync' %>
 <% end %>
