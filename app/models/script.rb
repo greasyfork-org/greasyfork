@@ -178,14 +178,6 @@ class Script < ActiveRecord::Base
 		true
 	end
 
-	def user
-		users.first
-	end
-
-	def user_id
-		user&.id
-	end
-
 	def matching_sensitive_sites
 		SensitiveSite.where(domain: site_applications.where(domain: true).pluck(:text))
 	end

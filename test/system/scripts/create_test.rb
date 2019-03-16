@@ -2,7 +2,8 @@ require "application_system_test_case"
 
 class CreateTest < ApplicationSystemTestCase
   test "script creation" do
-    login_as(User.first, scope: :user)
+    user = User.first
+    login_as(user, scope: :user)
     visit new_script_version_url
     code = <<~EOF
       // ==UserScript==
@@ -16,7 +17,7 @@ class CreateTest < ApplicationSystemTestCase
     fill_in 'Code', with: code
     click_button 'Post script'
     assert_selector 'h2', text: 'A Test!'
-    assert_equal User.first, Script.last.user
+    assert_includes(Script.last.users, user)
   end
 
   test 'blocked email domain' do
