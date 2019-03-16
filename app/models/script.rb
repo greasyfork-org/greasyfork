@@ -316,7 +316,7 @@ class Script < ActiveRecord::Base
 	end
 
 	def redistributable?
-		approve_redistribution.nil? ? user.approve_redistribution == true : approve_redistribution
+		approve_redistribution.nil? ? users.all?(&:approve_redistribution) : approve_redistribution
 	end
 
 	def name(lookup_locale = nil)
