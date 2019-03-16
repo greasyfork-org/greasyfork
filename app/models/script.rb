@@ -355,7 +355,7 @@ class Script < ActiveRecord::Base
 
 	# Full name minus URL-y characters
 	def url_name
-		return name.gsub(/[\?\&\/\#\.]+/, '')
+		return (name || default_name).gsub(/[\?\&\/\#\.]+/, '')
 	end
 
 	def to_param

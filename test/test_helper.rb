@@ -36,5 +36,14 @@ END
 	script.code_updated_at = Time.now
 	assert (script.valid? and script_version.valid?), (script.errors.full_messages + script_version.errors.full_messages + script_version.warnings).inspect
 	return script
-  end
+	end
+
+	def with_sphinx(&block)
+		ThinkingSphinx::Test.init
+		ThinkingSphinx::Test.start index: true
+		ThinkingSphinx::Configuration.instance.settings['real_time_callbacks'] = true
+		block.call
+		ThinkingSphinx::Test.stop
+		ThinkingSphinx::Test.clear
+	end
 end

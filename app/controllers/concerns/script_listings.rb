@@ -116,10 +116,10 @@ module ScriptListings
       }
       format.atom
       format.json {
-        render :json => params[:meta] == '1' ? {count: @scripts.count} : @scripts.as_json(:include => :user)
+        render json: params[:meta] == '1' ? { count: @scripts.count } : @scripts.as_json(include: :users)
       }
       format.jsonp {
-        render :json => params[:meta] == '1' ? {count: @scripts.count} : @scripts.as_json(:include => :user), :callback => clean_json_callback_param
+        render json: params[:meta] == '1' ? { count: @scripts.count } : @scripts.as_json(include: :users), callback: clean_json_callback_param
       }
     end
   end

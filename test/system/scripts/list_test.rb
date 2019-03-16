@@ -2,12 +2,9 @@ require "application_system_test_case"
 
 class ListTest < ApplicationSystemTestCase
   def around(&block)
-    ThinkingSphinx::Test.init
-    ThinkingSphinx::Test.start index: true
-    ThinkingSphinx::Configuration.instance.settings['real_time_callbacks'] = true
-    block.call
-    ThinkingSphinx::Test.stop
-    ThinkingSphinx::Test.clear
+    with_sphinx do
+      block.call
+    end
   end
 
   test "script list" do
