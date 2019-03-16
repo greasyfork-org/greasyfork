@@ -127,13 +127,19 @@ class User < ApplicationRecord
 	  return scripts.all(&:immediate_deletion_allowed?)
 	end
 
-	def can_post_scripts?
-		(confirmed? && !(has_spammy_email? && in_confirmation_period?)) || identities.any?
-	end
+	def posting_permission
+		# Assume identity providers are good at stopping bots.
+		return :allowed if identities.any?
 
-	def has_spammy_email?
-		return false if email.blank?
-		return SpammyEmailDomain.where(domain: email.split('@').last).any?
+		# If they are attempt to create a script really quickly, maybe they're a bot.
+		return :needs_confirmation if in_confirmation_period? && !confirmed?
+
+		return :allowed if email.blank?
+
+		sed = SpammyEmailDomain.find_by(domain: email.split('@').last)
+		return :allowed if sed.nil?
+		return :blocked if sed.complete_block?
+		confirmed? ? :allowed : :needs_confirmation
 	end
 
 	def in_confirmation_period?

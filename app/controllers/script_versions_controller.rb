@@ -18,7 +18,9 @@ class ScriptVersionsController < ApplicationController
 	def new
 		@bots = 'noindex'
 
-		if !current_user.can_post_scripts?
+		case current_user.posting_permission
+		when :needs_confirmation, :blocked
+			# We're lying to spammers :(
 			render 'must_confirm'
 			return
 		end
@@ -47,7 +49,7 @@ class ScriptVersionsController < ApplicationController
 	def create
 		@bots = 'noindex'
 
-		if !current_user.can_post_scripts?
+		if current_user.posting_permission != :allowed
 			render status: 403
 			return
 		end

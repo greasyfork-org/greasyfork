@@ -4,7 +4,7 @@
 <section class="text-content">
   <h2><%=@user.name%></h2>
 
-  <% if @user.profile.present? && (!@user.banned || current_user&.moderator?) %>
+  <% if @user.profile.present? && (!@user.banned || current_user&.moderator?) && current_user.posting_permission == :allowed %>
     <section id="user-profile"><%=format_user_text(@user.profile, @user.profile_markup)%></section>
   <% end %>
 

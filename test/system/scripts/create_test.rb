@@ -18,4 +18,28 @@ class CreateTest < ApplicationSystemTestCase
     assert_selector 'h2', text: 'A Test!'
     assert_equal User.first, Script.last.user
   end
+
+  test 'blocked email domain' do
+    user = User.first
+    user.update(email: 'ich@derspamhaus.de')
+    login_as(user, scope: :user)
+    visit new_script_version_url
+    assert_content "You must confirm your email before posting scripts."
+  end
+
+  test 'suspicious email domain, not confirmed' do
+    user = User.first
+    user.update(email: 'salomon@fishy.hut', confirmed_at: nil)
+    login_as(user, scope: :user)
+    visit new_script_version_url
+    assert_content "You must confirm your email before posting scripts."
+  end
+
+  test 'suspicious email domain, confirmed' do
+    user = User.first
+    user.update(email: 'salomon@fishy.hut', confirmed_at: Date.today)
+    login_as(user, scope: :user)
+    visit new_script_version_url
+    assert_content 'Scripts must be properly described'
+  end
 end
