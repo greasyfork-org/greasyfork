@@ -43,4 +43,22 @@ class CreateTest < ApplicationSystemTestCase
     visit new_script_version_url
     assert_content 'Scripts must be properly described'
   end
+
+  test "disallowed with originating script" do
+    user = User.find(4)
+    login_as(user, scope: :user)
+    visit new_script_version_url
+    code = <<~EOF
+      // ==UserScript==
+      // @name A Test!
+      // @description Unit test.
+      // @version 1.1
+      // @namespace http://greasyfork.local/users/1
+      // ==/UserScript==
+      this was copied from another script
+    EOF
+    fill_in 'Code', with: code
+    click_button 'Post script'
+    assert_selector 'li', text: 'This code appears to be an unauthorized copy'
+  end
 end

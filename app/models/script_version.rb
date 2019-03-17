@@ -27,11 +27,22 @@ class ScriptVersion < ApplicationRecord
 		errors.add(:base, I18n.t('errors.messages.script_too_many_screenshots', :number => Rails.configuration.screenshot_max_count)) if screenshots.length > Rails.configuration.screenshot_max_count
 	end
 
+  attr_accessor :unauthorized_original
 	validates_each(:code, :allow_nil => true, :allow_blank => true) do |record, attr, value|
 		meta = ScriptVersion.parse_meta(value)
 
 		ScriptVersion.disallowed_codes_used_for_code(value).each do |dc|
-			record.errors.add(:base, "Exception #{dc.ob_code}") if value =~ Regexp.new(dc.pattern)
+			if value =~ Regexp.new(dc.pattern)
+				if dc.originating_script
+					# Possibly not saved - can't do record.users
+          if (record.script.authors.map(&:user) & dc.originating_script.users).none?
+            record.unauthorized_original = dc.originating_script
+            record.errors.add(:base, "appears to be an unauthorized copy")
+          end
+				else
+					record.errors.add(:base, "Exception #{dc.ob_code}")
+				end
+			end
 		end
 	end
 

@@ -1009,6 +1009,7 @@ CREATE TABLE `disallowed_codes` (
   `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
+  `originating_script_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1658,6 +1659,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20190302205639'),
 ('20190302205715'),
 ('20190303012524'),
-('20190316005137');
+('20190316005137'),
+('20190317022326');
 
 
