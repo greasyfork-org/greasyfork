@@ -41,6 +41,7 @@ el:
     promoted_text_html: "Μπορεί, επίσης, να σας αρέσει ο κώδικας %{script_link}."
     library_instructions_html: "Αυτός ο κώδικας δεν πρέπει να εγκατασταθεί άμεσα. Είναι μια βιβλιοθήκη για όλους κώδικες που περιλαμβάνεται μέσω της οδηγίας meta %{code}"
     deleted_notice: "Αυτός ο κώδικας έχει διαγραφεί."
+    deleted_notice_with_replacement_html: "Αυτός ο κώδικας έχει διαγραφεί και αντικατασταθεί από τον <a href=\"%{replacement_script_url}\">%{replacement_script_name}</a>"
     version_notice_html: "Από την %{date}. Δείτε %{latest_version_link}."
     version_notice_latest_version_link: "την τελευταία έκδοση"
     info_page: "Πληροφορίες"
@@ -250,6 +251,10 @@ el:
     search_placeholder: "Αναζήτηση κώδικα"
     updated: "Ο κώδικας ενημερώθηκε."
     preview_additional_info: "Προεπισκόπηση"
+    must_confirm_email: "Πρέπει να επιβεβαιώσετε την ηλεκτρονική σας διεύθυνση πριν τη δημοσίευση κώδικα."
+    must_confirm_email_button: "Αποστολή συνδέσμου επιβεβαίωσης στο %{email}"
+    report:
+      title: "Αναφορά του κώδικα %{script_name}"
   script_sets:
     description: "Τα σύνολα κώδικα σας επιτρέπουν να δημιουργήσετε μια προσαρμοσμένη λίστα για πλοήγηση στο Greasy Fork. Μπορείτε να προσθέσετε κωδικούς στο σύνολό σας περιλαμβάνοντας μεμονωμένους κώδικες, σύνολα άλλων χρηστών ή αυτόματα δημιουργούμενα σύνολα. Μπορείτε, επίσης, να αποκλείσετε κώδικες από το σύνολό σας με τις ίδιες μεθόδους."
     favorites_name: "Αγαπημένα"
@@ -431,6 +436,7 @@ el:
     disable_syncing: "Απενεργοποίηση συγχρονισμού"
     remove_external_sign_in: "Απομάκρυνση"
     add_external_sign_in_info: "Προσθήκη μιας σύνδεσης:"
+    set_up_webhook: "Ορισμός ενός ιστοάγκιστρου"
     author_email_notification_type:
       none: "Να μην λαμβάνονται ηλεκτρονικές επιστολές για τις συζητήσεις των κωδικών σας."
       discussion_only: "Να λαμβάνεται ηλεκτρονική επιστολη όταν δημοσιεύονται συζητήσεις για τους κώδικές σας"
@@ -716,6 +722,7 @@ el:
     advertisement_note: Διαφήμιση
     preview_tab: Προεπισκόπηση
     write_tab: Εγγραφή
+    listing_options_title: "Επιλογές Αναζήτησης"
   activerecord:
     attributes:
       user:

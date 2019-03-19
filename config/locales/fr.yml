@@ -89,7 +89,7 @@ fr:
     diff_button: "Voir les différences entre les versions sélectionnées"
     code_title: "%{script_name} - Code source"
     feedback_title: "%{script_name} - Commentaires"
-    feedback_has_unauthorized: "Ce script a été signalé comme contenant du code non autorisé."
+    feedback_has_unauthorized: "Ce script a été signalé comme contenant du code source non autorisé."
     feedback_no_discussions_html: "Aucun commentaire. %{start_first_discussion_link}"
     feedback_start_first_discussion_link: "Soyez le premier à commenter ce script."
     feedback_discussion_or_report: "%{new_discussion_link:Démarrer une nouvelle discussion concernant ce script} ou %{report_link:demander sa suppression}."
@@ -147,8 +147,8 @@ fr:
     listing_remove_locale_filter: "Les résultats pour %{language} sont affichés uniquement. %{remove_filter_link:Afficher les résultats pour toutes les langues.} "
     import: "Importer des scripts"
     new: "Poster un script"
-    support_site: "Visiter le site du support indiqué par l'auteur."
-    support_email: "Contacter l'auteur pour obtenir du support."
+    support_site: "Visiter le site d'entraide de l'auteur."
+    support_email: "Envoyer un e-mail à l'auteur pour obtenir de l'aide."
     contribution_no_amount: "Remercier %{author} en faisant un don."
     contribution_with_amount: "Remercier %{author} en faisant un don. Le don suggéré est de %{amount}"
     contribution_bitcoin_no_amount_html: "Remercier %{author} en faisant une donation Bitcoin à %{address}."
@@ -224,6 +224,7 @@ fr:
     learn_to_write_scripts_link_text: "Apprenez à scripter"
     feedback_or_report: "%{feedback_link:Poser une question, écrire un avis}, ou %{report_link:signaler le script}."
     support_feedback_or_report: "%{support_url:Visiter le site de l'auteur pour obtenir de l'aide}, %{feedback_link:poser une question, écrire un avis}, ou %{report_link:signaler le script}."
+    support_email_feedback_or_report: "%{support_url:Envoyer un e-mail à l'auteur pour obtenir de l'aide}, %{feedback_link:poser une question, écrire un avis}, ou %{report_link:signaler le script}."
     approve_redistribution_explanation: "%{site_name} peut informer d'autres sites que vous les autorisez à republier votre script. Cela peut ou peut ne pas être déjà permis par la licence que vous choisissez pour votre script."
     approve_redistribution_use_user_setting: "Utiliser la valeur par défaut de mon compte (%{user_setting})"
     approve_redistribution_use_user_setting_not_set: "non renseigné"
@@ -236,6 +237,7 @@ fr:
     adult_content_self_report_explanation: "%{site_name} autorise les scripts avec du contenu adulte, mais ils doivent être identifiés comme tels pour permettre aux utilisateurs de choisir si il le voit."
     not_adult_content_self_report_html: "Ce script ne contient <strong>pas</strong> de contenu adulte et n'est <strong>pas</strong> pour un site qui contient du contient du contenu adulte."
     not_adult_content_self_report_explanation: "%{site_name} permet les scripts à contenu adulte, mais doivent être indiqué comme tels afin que les utilisateurs peuvent choisir de les voir. Votre script a été marqué comme ayant du contenu adulte. Vous pouvez signaler que votre script n'en contient pas; Il sera vérifié par un modérateur."
+    not_adult_content_self_report_explanation_automatic: "%{site_name} autorise les scripts avec du contenu adulte, mais ceux-ci doivent être marqués comme tels afin que les utilisateurs puissent choisir de les voir ou non. Votre script a été marqué comme ayant du contenu adulte car étant pour %{domain_list}."
     adult_content_on_greasy_logged_in_error: "Ce script n'est plus disponible sur ce site avec vos %{edit_account_link:paramètres de compte Greasy Fork} actuels."
     adult_content_on_greasy_not_logged_in_error: "Ce script n'est plus disponible anonymement sur ce site. %{login_link:Connectez-vous} et vérifiez vos paramètres de compte Greasy Fork."
     non_adult_content_on_sleazy: "Ce script n'est pas disponible sur ce site."
@@ -254,6 +256,13 @@ fr:
     preview_additional_info: "Prévisualisation"
     must_confirm_email: "Vous devez confirmer votre adresse email avant de poster des scripts."
     must_confirm_email_button: "Envoyer le lien de confirmation à %{email}"
+    report:
+      title: "Signaler %{script_name}"
+      rules_summary: "Les scripts postés sur %{site_name} doivent respecter %{rules_link:ces règles}. Les violations courantes incluent les scripts malware; les scripts qui ont des pubs, des mineurs de crypto-monnaie, ou d'autres méthodes de monétisation qui ne sont pas signalés dans leurs descriptions; ainsi que les scripts qui contiennent des reproductions interdites de code source."
+      non_rules_summary_html: "Veuillez noter que d'être non fonctionnel ou de violer un contrat d'utilisation tiers <em>ne sont pas</em> des violations aux règles de %{site_name}. Dans ces cas-là, vous pouvez %{feedback_link:laisser un commentaire} sur le script."
+      unauthorized_code_report_link: "Si %{script_name} utilise du code source d'un de vos scripts postés également sur %{site_name}, merci d'utiliser %{report_link:le formulaire de signalement rapide}."
+      general_report_link: "Pour toute autre infraction aux règles, %{forum_link:merci d'écrire sur le forum}."
+    error_unauthorized_copy: "Ce code source a l'air d'être une reproduction interdite de %{script}. Veuillez vous référer aux %{rules_link:règles} de %{site_name} sur la soumission de scripts."
   script_sets:
     description: "Les jeux de scripts vous permettent de créer une liste personnalisée de scripts pour naviguer avec sur Greasy Fork. Vous pouvez ajouter des scripts à votre jeu en incluant des scripts individuels, des jeux d'autres utilisateurs ou des jeux générés automatiquement. Vous pouvez également exclure les scripts de votre jeu avec les mêmes méthodes."
     favorites_name: "Favoris"
@@ -406,6 +415,7 @@ fr:
     disable_syncing: "Désactiver la synchronisation"
     remove_external_sign_in: "Supprimer"
     add_external_sign_in_info: "Ajouter une identification externe :"
+    set_up_webhook: "Mettre en place un Webhook"
     author_email_notification_type:
       none: "Ne pas recevoir de courriel à propos des dicusssions sur vos scripts"
       discussion_only: "Recevoir un courriel quand une discussion est postée sur l'un de vos scripts"
@@ -421,7 +431,7 @@ fr:
     listing_title: "Utilisateurs"
     search_placeholder: "Rechercher des utilisateurs"
     locale_prompt: "(Choisissez une région)"
-    show_ads_description: "Aider %{site_name} en l'autorisant à afficher des publicités"
+    show_ads_description: "Soutenir %{site_name} en l'autorisant à vous afficher des publicités"
     show_sensitive_description: "Afficher les scripts avec du contenu adulte"
     preferred_markup_description: "Sera utilisé pour les nouveaux script et posts."
     flattr_username_description_html: "On demandera aux utilisateurs de vos scripts de faire un don sur votre compte <a href=\"https://flattr.com\">Flattr</a>."
@@ -445,11 +455,16 @@ fr:
       scripts_effect:
         one: "Vos %{count} scripts vont êtes supprimés."
         other: "Vos %{count} scripts vont être supprimés."
+      script_sets_effect:
+        one: "Votre jeu de scripts va être supprimé."
+        other: "Vos %{count} jeux de scripts vont être supprimés."
+      forum_effect: "Vos contributions sur le forum resteront, mais l'utilisateur associé sera renommé \"%{user_name}\"."
       email_confirmation: "Avant de supprimer votre compte, %{site_name} nous allons envoyer un email à %{email} afin de confirmer votre demande."
       submit: "Supprimer le compte"
       confirmation_email_sent: "Un email de confirmation de la suppression du compte a été envoyé"
       confirmation_email:
         subject: "Confirmation de la suppression du compte %{site_name}"
+        body: "Une demande de suppression de votre compte '%{user_name}' sur %{site_name} a été faite. Pour confirmer celle-ci et supprimer votre compte, allez sur %{url}. Cette demande expirera après les prochaines 24 heures."
       confirmation:
         intro: "Vous êtes sur le point de supprimer le compte '%{user_name}'. Cette action est irréversible."
         confirm: "Supprimer %{user_name}"
@@ -474,7 +489,7 @@ fr:
       require_html: "Inclut du JavaScript externe dans un script. Voir %{external_script_link}."
       require_external_script_link_text: "Règles pour les codes incluant des scripts externes."
       updateURL: "Décrit comment les gestionnaires de scripts utilisateurs doivent obtenir les mises à jours. %{site_name} supprimera ces clés, ce qui fait que n'importe quel script installé de %{site_name} se met à jour seulement de %{site_name}."
-      supportURL: "URL de la page où l'utilisateur peut obtenir du support pour un script (un bug tracker, un forum, une adresse e-mail). L'URL de support est affichée sur la page de commentaires du script."
+      supportURL: "URL de la page où les utilisateurs peuvent obtenir de l'aide sur un script ( un bug tracker, un forum, une adresse e-mail ). L'URL d'aide est affichée sur la page de commentaires du script."
       contributionURL_html: "Lien de la page où les utilisateurs peuvent faire un don à l'auteur d'un script. Le lien de contribution est affiché dans la page de commentaires d'un script. Les liens peuvent être en protocole HTTP, HTTPS, ou Bitcoin. Pour diriger vers une page de donation PayPal, utilisez un lien dans ce format <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=votre.email.ici@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=votre.email.ici@example.com&item_name=Greasy+Fork+donation</a>, en remplaçant l'adresse e-mail en exemple par la vôtre."
       contributionAmount_html: "Montant suggéré de don, utilisé en conjonction avec <code>@contributionURL</code>."
       compatible_html: "Marquer ce script comme compatible avec un navigateur. L'information de la compatibilité va être affichée sur la page du script. Les commentaires sur la compatibilité peuvent être inclus dans le format <code>@compatible firefox Bloqueur de pub doit être désactivé</code>. Les navigateurs reconnus sont : %{browsers}."
@@ -545,6 +560,7 @@ fr:
     advertisement_note: Publicité
     preview_tab: Prévisualiser
     write_tab: Ecrire
+    listing_options_title: "Options de recherche"
   activerecord:
     attributes:
       user:
