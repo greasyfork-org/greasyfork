@@ -70,7 +70,7 @@
       </header>
       <ul id="user-control-panel">
         <% if @user.banned %>
-          <li>(User already banned</li>
+          <li>(User already banned.)</li>
         <% else %>
           <li><%= link_to 'Ban', user_ban_path(@user)%></li>
         <% end %>
