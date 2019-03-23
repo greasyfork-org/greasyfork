@@ -131,16 +131,17 @@ class User < ApplicationRecord
   def posting_permission
     # Assume identity providers are good at stopping bots.
     return :allowed if identities.any?
-
-    # If they are attempt to create a script really quickly, maybe they're a bot.
-    return :needs_confirmation if in_confirmation_period? && !confirmed?
-
     return :allowed if email.blank?
 
     sed = SpammyEmailDomain.find_by(domain: email.split('@').last)
-    return :allowed if sed.nil?
-    return :blocked if sed.complete_block?
-    confirmed? ? :allowed : :needs_confirmation
+    if sed
+      return :blocked if sed.complete_block?
+      return :needs_confirmation if in_confirmation_period?
+    end
+
+    return :needs_confirmation unless confirmed?
+
+    :allowed
   end
 
   def in_confirmation_period?

@@ -38,15 +38,6 @@ class CreateTest < ApplicationSystemTestCase
     assert_content "You must confirm your email before posting scripts."
   end
 
-  test 'suspicious email domain, confirmed' do
-    user = User.first
-    user.skip_reconfirmation!
-    user.update(email: 'salomon@fishy.hut', confirmed_at: Date.today)
-    login_as(user, scope: :user)
-    visit new_script_version_url
-    assert_content 'Scripts must be properly described'
-  end
-
   test "disallowed with originating script" do
     user = User.find(4)
     login_as(user, scope: :user)
