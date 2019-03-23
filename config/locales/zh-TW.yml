@@ -40,6 +40,7 @@ zh-TW:
     promoted_text_html: "你可能也喜歡 %{script_link}"
     library_instructions_html: "此腳本不應該直接安裝，它是一個供其他腳本使用的函式庫。欲使用本函式庫，請在腳本 metadata 寫上： %{code}"
     deleted_notice: "此腳本已被刪除。"
+    deleted_notice_with_replacement_html: "腳本已被刪除，並且被<a href=\"%{replacement_script_url}\">%{replacement_script_name}</a>取代。"
     version_notice_html: "目前為 %{date} 提交的版本，檢視 %{latest_version_link}。"
     version_notice_latest_version_link: "最新版本"
     info_page: "資訊"
@@ -87,8 +88,10 @@ zh-TW:
     diff_button: "檢視版本差異"
     code_title: "%{script_name} - 原始程式碼"
     feedback_title: "%{script_name} - 反饋"
+    feedback_has_unauthorized: "腳本因為包含未授權的代碼而被舉報。"
     feedback_no_discussions_html: "尚無相關討論，%{start_first_discussion_link}"
     feedback_start_first_discussion_link: "成為第一個討論該腳本的人吧。"
+    feedback_discussion_or_report: "%{new_discussion_link:新開一個關於該腳本的討論串} 或 %{report_link:檢舉並請求移除}。"
     feedback_discussions_heading: "論壇上相關的討論主題"
     feedback_favoriters_heading: "粉絲"
     feedback_favoriters_user_list_intro: "這個腳本的粉絲："
@@ -190,6 +193,7 @@ zh-TW:
     sync_type_intro: "此腳本將會被同步："
     sync_type_1: "手動 - 只在您選擇更新腳本時才會觸發同步。"
     sync_type_2: "自動 - 腳本每隔一段時間檢查更新。"
+    sync_type_3: "Webhook - 只在您推送更新至倉庫時觸發同步。"
     sync_failed_info_html: "上次嘗試同步於 %{date}，發生了錯誤：%{error}。"
     sync_success_info_html: "上次成功同步於 %{date}。"
     sync_never_succeeded: "從未成功同步過。"
@@ -216,6 +220,9 @@ zh-TW:
     write_your_own_html: "%{post_a_script_link}（或是 %{learn_to_write_scripts_link}）"
     post_a_script_link_text: "新增一個你寫的腳本"
     learn_to_write_scripts_link_text: "學習如何建立一個"
+    feedback_or_report: "%{feedback_link:發表問題、評論}、或%{report_link:檢舉該腳本}。"
+    support_feedback_or_report: "%{support_url:瀏覽作者的技術支援網站}、%{feedback_link:發表問題、評論}、或 %{report_link:檢舉該腳本}。"
+    support_email_feedback_or_report: "%{support_url:向作者寄送電子郵件以取得技術支援}、%{feedback_link:發表問題、評論}、或 %{report_link:檢舉該腳本}。"
     approve_redistribution_explanation: "%{site_name} 可以告訴其它網站，是否允許你的腳本被轉貼。即使這沒有包括在你所選擇的授權條款中。"
     approve_redistribution_use_user_setting: "使用帳戶預設值（%{user_setting}）"
     approve_redistribution_use_user_setting_not_set: "還未設定"
@@ -247,6 +254,13 @@ zh-TW:
     preview_additional_info: "預覽"
     must_confirm_email: "發布腳本之前，必須驗證您的電子郵件。"
     must_confirm_email_button: "發送驗證郵件到%{email}"
+    report:
+      title: "檢舉 %{script_name}"
+      rules_summary: "張貼於 %{site_name} 的腳本必須遵守 %{rules_link:腳本規範}。常見的違規例如︰腳本包含惡意軟體；腳本包含未註明的廣告、挖礦、或其它的收費行為；腳本包含未授權、拷貝的程式碼。"
+      non_rules_summary_html: "請注意，失效或違反其它網站規則的腳本 <em>並不</em> 違反 %{site_name} 的規範。在這種狀況下，您可以對腳本 %{feedback_link:留下反饋} 以告知作者和其它使用者。"
+      unauthorized_code_report_link: "若 %{script_name} 使用的代碼剽竊自您張貼於 %{site_name} 的腳本，請使用 %{report_link:快速回報表單}。"
+      general_report_link: "對於其它的違規行為，%{forum_link:請張貼於論壇}。"
+    error_unauthorized_copy: "這份代碼中包含了 %{script} 的未授權代碼。請參考  %{site_name} 的 %{rules_link:腳本規範}。"
   script_sets:
     description: "腳本收藏集讓你自訂一個腳本列表。你可以把單獨的腳本、其它使用者的收藏集、或自動產生的收藏集，加入包含列表。排除列表也是同樣的方式。"
     favorites_name: "我的最愛"
@@ -419,6 +433,7 @@ zh-TW:
     disable_syncing: "取消同步"
     remove_external_sign_in: "移除"
     add_external_sign_in_info: "新增登入方式："
+    set_up_webhook: "設定 Webhook"
     author_email_notification_type:
       none: "腳本收到評論時請不要寄郵件通知我"
       discussion_only: "腳本收到評論時請發郵件通知我"
@@ -501,26 +516,27 @@ zh-TW:
     code_rules:
       title: "%{site_name} 的腳本規定"
       content_html: >
-          <p>以下是關於發佈到%{site_name}的用戶腳本的一些規定。我們希望保持用戶腳本的安全和高質量。任何違反規定的腳本都會被管理員刪除。</p>
+          <p>這些對於所有 %{site_name}上腳本的要求，是為了保持 %{site_name} 腳本的安全與可用性。任何不尊守這些規則的腳本，則可能會被
+          %{site_name} 管理員刪除。</p> <ul>
 
-          <ul>
+          <li>使用者腳本必須包含一份說明，說明腳本會做些什麼，並且不應該有其它未註明、不合理的行為。使用者在安裝腳本前必須知道腳本會做什麼事情。我們並不禁止腳本中包含收費手段（例如追蹤器、廣告、挖礦等等），但作者必須於腳本說明欄或附加信息欄透明地公佈。</li>
 
-          <li>腳本必須包含其描述，包括它們的用途及注意事項等。用戶在安裝腳本前，必須了解這個腳本。存在可能損害用戶利益行為（如跟蹤、廣告、挖礦）的腳本不會被禁止，但是作者必須在腳本描述中提及，並將其放在顯眼位置。</li>
+          <li>張貼於此網站的代碼不得被壓縮或混淆，使用者在安裝腳本前有權利去研究並瞭解該腳本。</li>
 
-          <li>發布到此網站的代碼可能會與其他腳本混淆，用戶在安裝一個腳本之前，必須被給予機會來審查和理解這個腳本。</li>
+          <li>腳本所用到的函式庫應該使用 <code>@require</code>來引入，除非有技術性的理由無法這麼做。若將函式庫直接內嵌於腳本內，必須註明函式庫的原始碼來自何處（如︰在註解內標示網址、函式庫名稱與版本）。</li>
 
-          <li>腳本使用的資料庫必須被標示<code>@require</code>-d，除非有合法理由不這樣做。如果一個資料庫被引用在腳本內，則它必須包含這個數據庫的來源（例如URL和/或其名稱和版本）。</li>
+          <li>腳本必須尊重他人的版權，包括腳本本身與其所用到的資源（如︰圖片）。如果你要使用其它人的作品，請遵守他們的許可說明，或先向作者取得授權。</li>
 
-          <li>您的腳本必須尊重他人的著作權，這包括腳本本身及其所使用資源（例如圖像）。如果您想要使用這些內容，需要同意作者的許可條款或預先徵得其同意。</li>
+          <li>即使沒有侵權，重覆張貼已經存在於 %{site_name} 的腳本是不允許的，除非它是原腳本的改良版本。</li>
 
-          <li>%{external_scripts_link:Use of external JavaScript is limited.}</li>
+          <li>%{external_scripts_link:使用第三方 JavaScript 的限制。}</li>
 
           %{adult_content_requirement}
 
-          <li>檢查腳本更新的頻率不會超過一次/天。絕大多數用戶腳本管理者會自動更新腳本，所以在腳本中做這些是不必要的。</li>
+          <li>腳本的檢查更新頻率不可超過一天一次。注意，目前大部份的腳本管理器都擁有自動更新的機能，所以在腳本中檢查更新是沒有必要的。</li>
 
-          </ul><p>如果您發現一個腳本中存在非法內容，請在腳本的「反饋」頁報告，開始一場議論，並點擊「舉報腳本」項。</p><p>如果您不同意以上任何規定，%{contact_link:let's
-          talk about it}！</p>
+          </ul> <p>如果發現有腳本違反上述規則，請向管理員回報︰點選該腳本的反饋頁面，發起一個新討論主題，並點選「舉報」選項。</p> <p>如果你不認同上述內容，
+          %{contact_link:歡迎一起討論} ！</p>
       adult_content_rule_html: "<li>腳本若是包含成人內容、或執行的網站中有成人內容，作者應將其標示正確讓使用者去選擇是否要顯示它們。</li>"
     external_scripts:
       title: "%{site_name} 對於外部程式碼的政策"
@@ -667,6 +683,7 @@ zh-TW:
     advertisement_note: 廣告
     preview_tab: 預覽
     write_tab: 撰寫
+    listing_options_title: "搜尋選項"
   activerecord:
     attributes:
       user:

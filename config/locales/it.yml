@@ -516,47 +516,6 @@ it:
       post_new_script_link_text: 'posta un nuovo script'
     code_rules:
       title: "Le regole di %{site_name} per gli script postati"
-      content_html: >
-          <p>Questi sono i requisiti per gli script caricati su %{site_name}. Essi
-          sono volti a mantenere %{site_name} un posto sicuro e utile per gli script
-          utente. Ogni script che non rispetti questi requisiti potrebbe essere eliminato
-          dai moderatori di %{site_name}.</p> <ul>
-
-          <li>Gli script devono includere una descrizione di ciò che fanno e non possono
-          compiere azioni che non ricadano ragionevolmente in tale descrizione. Gli
-          utenti devono sapere cosa farà uno script prima di installarlo. Gli script
-          che includono modalità di monetizzazione (tracciamento, pubblicità, miner)
-          non sono proibiti, ma l'autore deve dichiarare ciò in maniera evidente nella
-          descrizione dello script o nelle informazioni aggiuntive.</li>
-
-          <li>Il codice caricato su questo sito non può essere offuscato o minificato.
-          Agli utenti deve essere data l'opportunità di esaminare e comprendere cosa
-          fa uno script prima di installarlo.</li>
-
-          <li>Le librerie utilizzate da uno script dovrebbero essere incluse con <code>@require</code>,
-          a meno che non vi sia un motivo tecnico valido per non farlo. Nel caso in
-          cui una libreria sia inclusa inline, essa deve includere informazioni relative
-          all'origine della libreria (ad es. un commento che indichi l'URL e/o il
-          nome e la versione).</li>
-
-          <li>Il tuo script deve rispettare i copyright di terzi. Ciò include lo script
-          in sé e tutte le risorse (ad esempio, immagini) che utilizza. Se intendi
-          utilizzare i contenuti di altri, rispetta le loro condizioni di licenza
-          oppure ottieni il loro permesso prima di farlo.</li>
-
-          <li>%{external_scripts_link:L'utilizzo di JavaScript esterni è limitato.}</li>
-
-          %{adult_content_requirement}
-
-          <li>Gli script non devono controllare la disponibilità di aggiornamenti
-          più di una volta al giorno. Si tenga presente che la maggior parte dei gestori
-          di script gestisce gli aggiornamenti in maniera automatica, perciò ripeterlo
-          negli script non è necessario.</li>
-
-          </ul> <p>Se noti uno script che non ricade in questi parametri, segnalalo
-          utilizzando il collegamento Feedback per tale script, iniziando una discussione
-          e scegliendo l'opzione "Segnala script".</p> <p>Se non sei d'accordo con
-          uno di questi punti, %{contact_link:parliamone}!</p>
       adult_content_rule_html: "<li>Script che includono contenuti per adulti o sono per siti con contenuti per adulti devono essere contrassegnati come tali per dare agli altri utenti l'opzione di vederli oppure no.</li>"
     external_scripts:
       title: "Politiche di %{site_name} per gli script esterni"

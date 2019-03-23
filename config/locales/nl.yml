@@ -530,45 +530,6 @@ nl:
       post_new_script_link_text: 'publiceer een nieuw script'
     code_rules:
       title: "%{site_name}'s regels voor gepubliceerde scripts"
-      content_html: >
-          <p>Dit zijn de vereisten voor scripts geplaatst op %{site_name}. Deze zijn
-          bedoeld om van %{site_name} een veilige en handige plaats voor gebruikersscripts
-          te maken. Elk script dat niet aan deze eisen voldoet kan worden verwijderd
-          door moderators van %{site_name}.</p> <ul>
-
-          <li>Scripts moeten een beschrijving bevatten van wat ze doen en mogen geen
-          onnodige dingen buiten de beschrijving doen. Gebruikers moeten weten wat
-          een script zal doen voor dat ze het installeren. Scripts die tracking of
-          advertenties bevatten moeten dit expliciet vermelden in de beschrijving.</li>
-
-          <li>Code geplaatst op deze site mag niet worden verborgen of ingekort. Gebruikers
-          moet de kans worden gegeven om een script te bestuderen en te begrijpen
-          voor ze het installeren.</li>
-
-          <li>Bibliotheken die een script gebruikt moeten <code>@require</code> gebruiken,
-          behalve als er een geldige technische reden is om dat niet te doen. In het
-          geval dat een bibliotheek inline is opgenomen moet het informatie bevatten
-          omtrent de bron van herkomst van de bibliotheek (bijv. een comment met een
-          URL en/of de naam en versie).</li>
-
-          <li>Uw script moet copyright van anderen respecteren. Dit omvat het script
-          zelf en alle bronnen (bijv. afbeeldingen) die het gebruikt. Wanneer u van
-          plan bent om andermans werk te gebruiken, houdt u dan aan de licentiebepalingen
-          of vraag (en krijg) toestemming om dit te doen.</li>
-
-          <li>%{external_scripts_link:Gebruik van externe JavaScript is beperkt.}</li>
-
-          %{adult_content_requirement}
-
-          <li>Scripts mogen niet vaker dan eens per dag op updates controleren. Merk
-          op dat de meeste user script managers automatische updates verzorgen, dus
-          via het script zelf op updates controleren is onnodig.</li>
-
-          </ul> <p>Wanneer u een script opmerkt dat niet aan deze vereisten voldoet,
-          verzoeken we u het script te rapporteren door naar de Feedback-link van
-          het script te gaan, een gesprek te starten, en voor de 'Rapporteer script'
-          optie te kiezen.</p> <p>Als u het niet eens bent met een van deze voorwaarden,
-          %{contact_link:laten we er dan over praten}!</p>
       adult_content_rule_html: "<li>Scripts die volwassen inhoud bevatten, of die zijn geschreven voor sites die volwassen inhoud bevatten, moeten worden gemarkeerd als zijnde volwassen, om andere gebruikers toe te staan ze te kunnen zien.</li>"
     external_scripts:
       title: "%{site_name}'s beleid voor externe scripts."
