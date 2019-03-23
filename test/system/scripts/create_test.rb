@@ -22,6 +22,7 @@ class CreateTest < ApplicationSystemTestCase
 
   test 'blocked email domain' do
     user = User.first
+    user.skip_reconfirmation!
     user.update(email: 'ich@derspamhaus.de')
     login_as(user, scope: :user)
     visit new_script_version_url
@@ -30,6 +31,7 @@ class CreateTest < ApplicationSystemTestCase
 
   test 'suspicious email domain, not confirmed' do
     user = User.first
+    user.skip_reconfirmation!
     user.update(email: 'salomon@fishy.hut', confirmed_at: nil)
     login_as(user, scope: :user)
     visit new_script_version_url
@@ -38,6 +40,7 @@ class CreateTest < ApplicationSystemTestCase
 
   test 'suspicious email domain, confirmed' do
     user = User.first
+    user.skip_reconfirmation!
     user.update(email: 'salomon@fishy.hut', confirmed_at: Date.today)
     login_as(user, scope: :user)
     visit new_script_version_url
