@@ -41,6 +41,7 @@ es:
     promoted_text_html: "Puede que también te guste %{script_link}."
     library_instructions_html: "Este script no debería instalarse directamente. Es una biblioteca que utilizan otros scripts mediante la meta-directiva de inclusión %{code}"
     deleted_notice: "Este script ha sido borrado."
+    deleted_notice_with_replacement_html: "Este script se ha borrado porque ha sido reemplazado por <a href=\"%{replacement_script_url}\">%{replacement_script_name}</a>."
     version_notice_html: "Versión del día %{date}. Echa un vistazo a %{latest_version_link}."
     version_notice_latest_version_link: "la versión más reciente"
     info_page: "Info"
@@ -88,8 +89,10 @@ es:
     diff_button: "Comparar versiones seleccionadas"
     code_title: "%{script_name} - Código fuente"
     feedback_title: "%{script_name} - Comentarios y opiniones"
+    feedback_has_unauthorized: "Se ha informado de un posible uso de código copiado sin la debida autorización."
     feedback_no_discussions_html: "Todavía no se ha publicado nada. %{start_first_discussion_link}"
     feedback_start_first_discussion_link: "Sé el primero en comentar este script."
+    feedback_discussion_or_report: "%{new_discussion_link:Abre un hilo de conversación sobre el script} o %{report_link:notifica una posible infracción de las normas}."
     feedback_discussions_heading: "Conversaciones en el Greasy Foro"
     feedback_favoriters_heading: "Seguidores"
     feedback_favoriters_user_list_intro: "Este script ha sido marcado como favorito por:"
@@ -192,6 +195,7 @@ es:
     sync_type_intro: "El script se sincronizará:"
     sync_type_1: "Manualmente; se comprobará si hay actualizaciones sólo cuando tú lo pidas"
     sync_type_2: "Automáticamente; las actualizaciones se comprobarán periódicamente"
+    sync_type_3: "Por «webhook»; se actualizará cuando hagas cambios a este archivo en su repositorio"
     sync_failed_info_html: "El último intento de sincronización fue el %{date}, y resultó en %{error}."
     sync_success_info_html: "La última actualización satisfactoria fue el %{date}."
     sync_never_succeeded: "La sincronización nunca se ha completado con éxito."
@@ -218,6 +222,9 @@ es:
     write_your_own_html: "%{post_a_script_link} (o %{learn_to_write_scripts_link})"
     post_a_script_link_text: "Publica tu propio script"
     learn_to_write_scripts_link_text: "aprende a escribir uno"
+    feedback_or_report: "%{feedback_link:Pregunta tus dudas, ponle nota} o %{report_link:notifica una posible infracción de las normas}."
+    support_feedback_or_report: "%{support_url:Visita la página web del autor si necesitas ayuda} o %{feedback_link:pregunta tus dudas, ponle nota o %{report_link:notifica una posible infracción de las normas}."
+    support_email_feedback_or_report: "%{support_url:Contacta por correo con el autor si necesitas ayuda} o %{feedback_link:pregunta tus dudas, ponle nota} o %{report_link:notifica una posible infracción de las normas}."
     approve_redistribution_explanation: "%{site_name} puede notificar a otros sitios que les dejas listar tu script. Es posible que la licencia que elijas para cada uno de ellos ya lo permita en sus términos, o no. "
     approve_redistribution_use_user_setting: "Utilizar la opción general de mi cuenta (%{user_setting})"
     approve_redistribution_use_user_setting_not_set: "sin establecer"
@@ -249,6 +256,13 @@ es:
     preview_additional_info: "Vista previa"
     must_confirm_email: "Tienes que verificar tu dirección de correo electrónico antes de subir scripts."
     must_confirm_email_button: "Enviar un enlace de confirmación a %{email}"
+    report:
+      title: "%{script_name} incumple las normas"
+      rules_summary: "Los scripts de %{site_name} deben cumplir %{rules_link:las normas}. Las infracciones más frecuentes son incluir malware; scripts con anuncios, explotación de criptomonedas u otros métodos con los que sacar rédito económico sin avisar a los usuarios con notas en la descripción. Tampoco se permite código copiado sin la debida autorización."
+      non_rules_summary_html: "Ten en cuenta que ni contravenir las normas de otros sitios ni que el script no funcione incumple las normas de %{site_name}. En esos casos puedes %{feedback_link:comentarlo en el foro} del propio script, pero en principio no es un problema."
+      unauthorized_code_report_link: "Si %{script_name} utiliza código de uno de tus scripts en %{site_name} puedes utilizar %{report_link:el formulario de informe rápido}."
+      general_report_link: "%{forum_link:Abre un hilo en el foro} para informar de otros problemas que contravengan las normas de contenido."
+    error_unauthorized_copy: "Parece que este script era una copia no autorizada de %{script}. Échale un vistazo a %{rules_link:las normas de contenido} de %{site_name} para ver lo que se puede y no puede hacer."
   script_sets:
     description: "Los grupos permiten crear un listado personal de scripts con los que explorar Greasy Fork. Puedes agruparlos añadiendo scripts individuales, incluyendo grupos de otros usuarios, o incluso grupos generados automáticamente. También puedes excluir scripts de la misma forma."
     favorites_name: "Favoritos"
@@ -429,6 +443,7 @@ es:
     disable_syncing: "Desactivar sincronización"
     remove_external_sign_in: "Eliminar"
     add_external_sign_in_info: "Añadir un inicio de sesión:"
+    set_up_webhook: "Configurar un «webhook»"
     author_email_notification_type:
       none: "No recibir correos electrónicos sobre comentarios en tus scripts"
       discussion_only: "Recibir un correo cuando se publiquen comentarios en tus scripts"
@@ -516,6 +531,44 @@ es:
       post_new_script_link_text: 'publicar un nuevo script'
     code_rules:
       title: "Reglas de %{site_name} para scripts publicados"
+      content_html: >
+          <p>A continuación se enumeran los requisitos necesarios para que un script
+          aparezca en %{site_name}. Su objetivo es que hagan de %{site_name} un sitio
+          fiable y útil. Los moderadores se ocuparán de borrar cualquier script que
+          no cumpla los requisitos de %{site_name}.</p> <ul>
+
+          <li>Los scripts deben incluir una descripción de lo que hacen y adecuarse
+          a la funcionalidad descrita en la misma. Los usuarios deben saber lo que
+          hará un script antes de instalarlo.</li>
+
+          <li>El código publicado en este sitio no debe de estar ofuscado o compactado.
+          A los usuarios se les debe dar la oportunidad de inspeccionar y comprender
+          un script antes de instalarlo.</li>
+
+          <li>Cualquier biblioteca externa debe cargarse con ( <code>@require</code>
+          ), a menos que haya una razón técnica para no hacerlo. En caso de incrustar
+          una biblioteca de terceros en el script debes incluir información básica
+          sobre su origen (un comentario indicando la dirección URL original, nombre
+          y, si es posible, versión).
+
+          <li>Respetar los derechos de autor es importante. El código es primordial,
+          pero los recursos (como imágenes y estilos) que utilices también lo son.
+          Para usar el trabajo de otros respeta sus términos de licencia y pide permiso
+          al autor según sea necesario.</li>
+
+          <li>%{external_scripts_link:Se limita el uso y abuso de JavaScript externo.}</li>
+
+          %{adult_content_requirement}
+
+          <li>Los scripts no podrán buscar actualizaciones más de una vez por día.
+          Ten en cuenta que en la mayoría de los casos las extensiones para administrar
+          scripts ya los actualizan por su cuenta, así que no suele ser necesario.</li>
+
+          </ul> <p>Si descubres una violación de las reglas puedes informar a los
+          moderadores utilizando la pestaña de «Opiniones» del script en cuestión,
+          iniciando una conversación, y eligiendo la opción «Informar del script».</p>
+          <p>Si no estás de acuerdo con algún apartado de esta lista no te preocupes,
+          %{contact_link:podemos discutirlo}.</p>
       adult_content_rule_html: "<li>Los scripts con contenido para adultos (o que funcionen en sitios con este tipo de contenido restringido) deben marcarse para que los usuarios puedan decidir si quieren verlos o no.</li>"
     external_scripts:
       title: "Política de %{site_name} sobre scripts externos"
@@ -678,6 +731,7 @@ es:
     advertisement_note: Anuncio
     preview_tab: Vista previa
     write_tab: Editar
+    listing_options_title: "Opciones de búsqueda"
   activerecord:
     attributes:
       user:
