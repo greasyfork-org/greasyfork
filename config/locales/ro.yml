@@ -42,6 +42,7 @@ ro:
     promoted_text_html: "Poate îți vor plăcea%{script_link}."
     library_instructions_html: "Acest script nu ar trebui instalat direct. Aceasta este o bibliotecă pentru alte scripturi care este inclusă prin directiva meta a %{code}"
     deleted_notice: "Acest script a fost șters."
+    deleted_notice_with_replacement_html: "Acest script a fost șters și înlocuit de <a href=\"%{replacement_script_url}\">%{replacement_script_name}</a>."
     version_notice_html: "La data de %{date}. Vezi %{latest_version_link}."
     version_notice_latest_version_link: "Ultima versiune"
     info_page: "Informații"
@@ -71,6 +72,7 @@ ro:
     admin_page: "Administrator"
     admin:
       title: "%{script_name}- Administrator"
+      promoted_heading: "Script promovat"
       promoted_explanation: "După instalarea acestui script,%{site_name}poți sugera utilizatorului sa încerce alt script din alegera ta."
       promoted_script_label: "URLul scripturilor spre promovare"
       promoted_submit: "Setează scripturile promovate"
@@ -114,6 +116,7 @@ ro:
     derivatives_script_with_code_line_html: "%{script_lines_link} de %{user_link}, licență: %{license}"
     script_lines_link: "%{script_name}, liniile %{start} - %{end}"
     listing_title_all_sites: "Scripturi pentru toate site-urile"
+    listing_description_all_sites: "Scripturi de utilizator care adaugă caracteristici și rezolvă bug-uri pe toate siteurile"
     listing_title_for_site: "Scripturi pentru %{site}"
     listing_title_generic: "Script-uri utilizator"
     listing_title_for_favorites: "Setul %{set_name} al lui %{user_name}"
