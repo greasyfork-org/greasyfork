@@ -5,10 +5,10 @@ require 'cgi'
 
 class ScriptsController < ApplicationController
 
-	MEMBER_AUTHOR_ACTIONS = [:sync_update, :derivatives, :update_promoted, :request_permanent_deletion, :unrequest_permanent_deletion, :update_promoted]
+	MEMBER_AUTHOR_ACTIONS = [:sync_update, :derivatives, :update_promoted, :request_permanent_deletion, :unrequest_permanent_deletion, :update_promoted, :invite]
 	MEMBER_AUTHOR_OR_MODERATOR_ACTIONS = [:delete, :do_delete, :undelete, :do_undelete, :derivatives, :admin, :update_locale]
 	MEMBER_MODERATOR_ACTIONS = [:mark, :do_mark, :do_permanent_deletion, :reject_permanent_deletion]
-	MEMBER_PUBLIC_ACTIONS = [:diff, :report]
+	MEMBER_PUBLIC_ACTIONS = [:diff, :report, :accept_invitation]
 	MEMBER_PUBLIC_ACTIONS_WITH_SPECIAL_LOADING = [:show, :show_code, :user_js, :meta_js, :feedback, :install_ping, :stats, :sync_additional_info_form]
 
 	before_action do
@@ -647,6 +647,56 @@ class ScriptsController < ApplicationController
 		end
 
 		render :admin
+	end
+
+	def invite
+		user_url_match = %r{https://(?:greasyfork|sleazyfork)\.org/(?:[a-zA-Z\-]+/)?users/([0-9]+)}.match(params[:invited_user_url])
+
+		unless user_url_match
+			flash[:alert] = t('scripts.invitations.invalid_user_url')
+			redirect_to admin_script_path(@script)
+			return
+		end
+
+		user_id = user_url_match[1]
+		user = User.find_by(id: user_id)
+
+		unless user
+			flash[:alert] = t('scripts.invitations.invalid_user_url')
+			redirect_to admin_script_path(@script)
+			return
+		end
+
+		if @script.users.include?(user)
+			flash[:alert] = t('scripts.invitations.already_author')
+			redirect_to admin_script_path(@script)
+			return
+		end
+
+		invitation = @script.script_invitations.create!(
+			invited_user: user,
+			expires_at: ScriptInvitation::VALIDITY_PERIOD.from_now,
+		)
+		ScriptInvitationMailer.invite(invitation, site_name).deliver_later
+		flash[:notice] = t('scripts.invitations.sent')
+		redirect_to admin_script_path(@script)
+	end
+
+	def accept_invitation
+		authenticate_user!
+
+		ais = AcceptInvitationService.new(@script, current_user)
+
+		unless ais.valid?
+			flash[:alert] = t(ais.error)
+			redirect_to script_path(@script)
+			return
+		end
+
+		ais.accept!
+
+		flash[:notice] = t('scripts.invitations.invitation_accepted')
+		redirect_to script_path(@script)
 	end
 
 private

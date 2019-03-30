@@ -14,6 +14,7 @@
 <% if @script.users.include?(current_user) %>
   <%= render partial: 'set_promoted' %>
   <%= render partial: 'sync' %>
+  <%= render partial: 'invite' %>
 <% end %>
 
 <%= render partial: 'set_locale' %>

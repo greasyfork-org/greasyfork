@@ -66,4 +66,5 @@ Rails.application.configure do
   config.enable_detect_locale = true
   config.log_cache_misses = true
 
+  config.active_job.queue_adapter = :inline
 end

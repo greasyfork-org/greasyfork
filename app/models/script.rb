@@ -24,6 +24,7 @@ class Script < ActiveRecord::Base
 	has_many :localized_additional_infos, -> {where(:attribute_key => 'additional_info')}, :class_name => 'LocalizedScriptAttribute'
 	has_many :compatibilities, autosave: true, dependent: :destroy
 	has_many :script_reports, inverse_of: :script
+	has_many :script_invitations
 
 	belongs_to :script_type
 	belongs_to :script_sync_source, optional: true

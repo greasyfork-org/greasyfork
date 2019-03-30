@@ -332,7 +332,7 @@ CREATE TABLE `GDN_Draft` (
   KEY `FK_Draft_DiscussionID` (`DiscussionID`),
   KEY `FK_Draft_CategoryID` (`CategoryID`),
   KEY `FK_Draft_InsertUserID` (`InsertUserID`)
-) ENGINE=InnoDB AUTO_INCREMENT=73231 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=73214 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `GDN_Flag`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -860,7 +860,7 @@ CREATE TABLE `allowed_requires` (
   `updated_at` datetime DEFAULT NULL,
   `url` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=980190963 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `ar_internal_metadata`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -895,7 +895,7 @@ CREATE TABLE `authors` (
   KEY `fk_rails_46e884287b` (`user_id`),
   CONSTRAINT `fk_rails_46e884287b` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_rails_899bcb69f5` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=68667 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1010052050 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `browsers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -921,7 +921,7 @@ CREATE TABLE `compatibilities` (
   KEY `fk_rails_d7eb310317` (`browser_id`),
   CONSTRAINT `fk_rails_94fd31c3c7` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_rails_d7eb310317` FOREIGN KEY (`browser_id`) REFERENCES `browsers` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2554 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2560 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `cpd_duplication_scripts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -957,7 +957,7 @@ CREATE TABLE `daily_install_counts` (
   `install_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_daily_install_counts_on_script_id_and_ip` (`script_id`,`ip`)
-) ENGINE=InnoDB AUTO_INCREMENT=58730214 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=58730200 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `daily_update_check_counts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -987,7 +987,7 @@ CREATE TABLE `delayed_jobs` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `delayed_jobs_priority` (`priority`,`run_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=103123 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=103077 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `disallowed_attributes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1011,7 +1011,7 @@ CREATE TABLE `disallowed_codes` (
   `updated_at` datetime DEFAULT NULL,
   `originating_script_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=399047335 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `domains`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1048,7 +1048,7 @@ CREATE TABLE `install_counts` (
   `installs` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_install_counts_on_script_id_and_install_date` (`script_id`,`install_date`)
-) ENGINE=InnoDB AUTO_INCREMENT=5956519 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5952647 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `licenses`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1103,7 +1103,7 @@ CREATE TABLE `localized_script_attributes` (
   PRIMARY KEY (`id`),
   KEY `index_localized_script_attributes_on_script_id` (`script_id`),
   KEY `index_localized_script_attributes_on_locale_id` (`locale_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=946504 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1053189732 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `localized_script_version_attributes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1120,7 +1120,7 @@ CREATE TABLE `localized_script_version_attributes` (
   KEY `index_localized_script_version_attributes_on_script_version_id` (`script_version_id`),
   KEY `index_localized_script_version_attributes_on_locale_id` (`locale_id`),
   CONSTRAINT `fk_rails_5dffd65780` FOREIGN KEY (`script_version_id`) REFERENCES `script_versions` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=201054 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=948006859 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `moderator_actions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1188,7 +1188,7 @@ CREATE TABLE `screenshots_script_versions` (
   KEY `index_screenshots_script_versions_on_screenshot_id` (`screenshot_id`),
   KEY `index_screenshots_script_versions_on_script_version_id` (`script_version_id`),
   CONSTRAINT `fk_rails_9fecbc9bb1` FOREIGN KEY (`script_version_id`) REFERENCES `script_versions` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=128283 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=128308 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `script_applies_tos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1223,7 +1223,7 @@ CREATE TABLE `script_codes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=822732 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED;
+) ENGINE=InnoDB AUTO_INCREMENT=822785 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `script_delete_types`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1234,6 +1234,21 @@ CREATE TABLE `script_delete_types` (
   `description` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `script_invitations`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `script_invitations` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `script_id` int(11) NOT NULL,
+  `invited_user_id` int(11) NOT NULL,
+  `expires_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_rails_f52d98b0ef` (`script_id`),
+  KEY `fk_rails_55c05503c1` (`invited_user_id`),
+  CONSTRAINT `fk_rails_55c05503c1` FOREIGN KEY (`invited_user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_rails_f52d98b0ef` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `script_reports`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1288,7 +1303,7 @@ CREATE TABLE `script_set_script_inclusions` (
   PRIMARY KEY (`id`),
   KEY `index_script_set_script_inclusions_on_parent_id` (`parent_id`),
   KEY `index_script_set_script_inclusions_on_child_id` (`child_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=242478 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=242477 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `script_set_set_inclusions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1328,7 +1343,7 @@ CREATE TABLE `script_sync_sources` (
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=101 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `script_sync_types`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1367,7 +1382,7 @@ CREATE TABLE `script_versions` (
   PRIMARY KEY (`id`),
   KEY `index_script_versions_on_script_id` (`script_id`),
   CONSTRAINT `fk_script_versions_script_id` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=680837 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=680892 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `scripts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1424,7 +1439,7 @@ CREATE TABLE `scripts` (
   KEY `index_scripts_on_promoted` (`promoted`),
   CONSTRAINT `fk_rails_22d3a5b825` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_rails_f98f8b875c` FOREIGN KEY (`promoted_script_id`) REFERENCES `scripts` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=380532 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=380547 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `sensitive_sites`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1444,7 +1459,7 @@ CREATE TABLE `site_applications` (
   `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `domain` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=41021 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=41020 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `spammy_email_domains`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1455,7 +1470,7 @@ CREATE TABLE `spammy_email_domains` (
   `complete_block` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `index_spammy_email_domains_on_domain` (`domain`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=577735333 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `syntax_highlighted_codes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1488,7 +1503,7 @@ CREATE TABLE `update_check_counts` (
   `update_checks` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_update_check_counts_on_script_id_and_update_check_date` (`script_id`,`update_check_date`)
-) ENGINE=InnoDB AUTO_INCREMENT=23794619 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=23793152 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1530,7 +1545,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `index_users_on_email` (`email`),
   UNIQUE KEY `index_users_on_reset_password_token` (`reset_password_token`),
   UNIQUE KEY `index_users_on_confirmation_token` (`confirmation_token`)
-) ENGINE=InnoDB AUTO_INCREMENT=282872 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=282867 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -1662,6 +1677,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20190303012524'),
 ('20190316005137'),
 ('20190317022326'),
-('20190323211921');
+('20190323211921'),
+('20190330015535');
 
 

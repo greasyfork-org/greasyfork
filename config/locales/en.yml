@@ -488,6 +488,21 @@ en:
       unauthorized_code_report_link: "If %{script_name} is using code from one of your scripts also posted on %{site_name}, please use %{report_link:the expedited report form}."
       general_report_link: "For all other contraventions of the rules, %{forum_link:please post on the forum}."
     error_unauthorized_copy: "This code appears to be an unauthorized copy of %{script}. Please refer to %{site_name}'s %{rules_link:rules} on posting scripts."
+    invitations:
+      form_title: "Invite other authors"
+      explanation: "You can add other Greasy Fork users as authors of this script. They will have the same rights as on this script as you do."
+      invited_user_url_label: "User to invite"
+      invited_user_placeholder: "URL of user's profile on %{site_name}"
+      submit: "Send invite"
+      invalid_user_url: "Invited user URL is not valid."
+      already_author: "The user you specified is already an author of this script."
+      sent: "Invitation has been sent."
+      subject: "Invitation for %{script_name}"
+      body: "You have been invited to be an author of %{script_name} (%{script_url}) on %{site_name}. To accept this invite, please visit %{accept_url} ."
+      current_user_already_author: "You are already an author on this script."
+      invitation_not_found: "Invitation not found."
+      invitation_expired: "Invitation has expired."
+      invitation_accepted: "You are now an author on this script."
   script_sets:
     # description of script sets on edit page
     description: "Script sets let you create a customized list of scripts to browse Greasy Fork with. You can add scripts to your set by including individual scripts, other users' sets, or automatically generated sets. You can also exclude scripts from your set with the same methods."

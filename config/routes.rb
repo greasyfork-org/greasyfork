@@ -81,6 +81,8 @@ Rails.application.routes.draw do
         patch 'sync_update'
         patch 'update_promoted'
         patch 'update_locale'
+        post 'invite'
+        get 'accept_invitation'
       end
 
       collection do
