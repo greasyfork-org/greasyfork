@@ -18,10 +18,16 @@ class ScriptVersionsController < ApplicationController
 	def new
 		@bots = 'noindex'
 
+		# This is the trigger to do more stringent checking of the user.
 		case current_user.posting_permission
 		when :needs_confirmation, :blocked
 			# We're lying to spammers :(
 			render 'must_confirm'
+			return
+		end
+
+		unless EmailCheckingService.check_user(current_user)
+			render 'disposable_email'
 			return
 		end
 
@@ -50,6 +56,11 @@ class ScriptVersionsController < ApplicationController
 		@bots = 'noindex'
 
 		if current_user.posting_permission != :allowed
+			render status: 403
+			return
+		end
+
+		unless EmailCheckingService.check_user(current_user)
 			render status: 403
 			return
 		end
