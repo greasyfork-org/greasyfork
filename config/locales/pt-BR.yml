@@ -263,6 +263,22 @@ pt-BR:
       unauthorized_code_report_link: "Se o script %{script_name} estiver usando código de outro script também publicado no %{site_name}, por favor use %{report_link:o formulário de denúncia agilizado}."
       general_report_link: "Para qualquer outra quebra das regras, %{forum_link:por favor publique no forum}."
     error_unauthorized_copy: "Este código parece ser um cópia não autorizada de %{script}. Por favor cheque as %{rules_link:regras} do  %{site_name} ao postar scripts."
+    invitations:
+      form_title: "Convide outros autores"
+      explanation: "Você pode adicionar outros usuários do Greasy Fork como autores deste script. Eles terão os mesmos direitos neste script que você."
+      invited_user_url_label: "Usuário a ser convidado"
+      invited_user_placeholder: "URL do perfil do usuário no %{site_name}"
+      submit: "Enviar convite"
+      invalid_user_url: "A URL do usuário convidado é inválida."
+      already_author: "O usuário que você especificou já é um autor desde script."
+      sent: "O convite foi enviado."
+      subject: "Convite para %{script_name}"
+      body: "Você foi convidado para ser um autor do script %{script_name} (%{script_url}) no %{site_name}. Para aceitar este convite, por favor acesse %{accept_url} ."
+      current_user_already_author: "Você já é um autor deste script."
+      invitation_not_found: "Convite não encontrado."
+      invitation_expired: "O convite expirou."
+      invitation_accepted: "Você agora é um autor deste script."
+    no_disposable_email: "Você não poderá publicar scripts caso use um endereço de email descartável."
   script_sets:
     description: "Coleções de scripts permitem a você criar uma lista personalizada de scripts dentro do Greasy Fork. Você pode adicionar scripts à sua coleção incluindo scripts individuais, coleções de outros usuários, ou coleções geradas automaticamente. Você também pode excluir scripts da sua coleção da mesma maneira."
     favorites_name: "Favoritos"
@@ -530,6 +546,49 @@ pt-BR:
       post_new_script_link_text: 'Postar um script'
     code_rules:
       title: "Política do %{site_name} sobre scripts externos"
+      content_html: >
+          <p>Estes são os requisitos para os scripts postados no %{site_name}. Isto
+          tem como objetivo manter o  %{site_name} a safe and useful place for user
+          scripts. como um local seguro e útil para scripts de usuário. Qualquer script
+          que não atenda esses requisitos pode ser removido pelos moderadores do%{site_name}.</p>
+          <ul>
+
+          <li>Os scripts devem ter uma descrição a cerca do que eles e não podem fazer
+          nada fora dessa descrição sem razão. Os usuários devem saber o que um script
+          fará antes de instalá-lo. Scripts que possuem métodos de monetização (rastreamento,
+          propagandas, mineradores, etc.) não são proibidos, mas o autor deve deixar
+          isso de forma bem clara na descrição do script ou nas informações adicionais.</li>
+
+          <li>O código postado neste site não deve estar obfuscado ou minificado.
+          Os usuários devem poder verificar e entender o script antes de instalá-lo.</li>
+
+          <li>Bibliotecas usadas pelo script devem estar definidas em forma de <code>@require</code>,
+          exceto quando há uma razão técnica válida para não fazer isso. No caso da
+          biblioteca precisar ser incluída inline, deverá ser incluída também informação
+          como a fonte da biblioteca (um comentário indicando a URL e/ou o nome e
+          versão, por exemplo).</li>
+
+          <li>Seu script deve respeitar os direitos autorais de outros. Isso inclui
+          o script em si e seus recursos (como imagens) que ele utiliza. Caso você
+          pretenda usar conteúdo de outra pessoa, respeite seus termos de licença
+          ou obtenha permissão antes de fazê-lo.</li>
+
+          <li>Mesmo nos casos em que não haja violação da regra de direitos autorais,
+          republicar scripts que já estejam no %{site_name} não é permitido a não
+          ser que hajam melhorias em relação ao original.</li>
+
+          <li>%{external_scripts_link:O uso de javascript externo é limitado.}</li>
+
+          %{adult_content_requirement}
+
+          <li>Os scripts não devem verificar se existem atualizações mais de uma vez
+          por dia. A maioria dos gerenciadores de scripts farão essas verificações
+          automaticamente, então não há necessidade de fazer isso no script.</li>
+
+          </ul> <p>Se você perceber que um script foge desses parâmetros, por favor
+          reporte o script através do link de Feedback daquele script, iniciando uma
+          discussão e escolhendo a opção "Reportar script".</p> <p>Caso discorde de
+          algum desses itens, %{contact_link:vamos conversar a respeito}!</p>
       adult_content_rule_html: "<li>Os scripts que incluem conteúdo adulto ou são destinados a sites com este tipo de conteúdo devem ser marcados como tal para permitir que os usuários escolham se desejam vê-los.</li>"
     external_scripts:
       title: "Política em scripts externo do %{site_name}"
