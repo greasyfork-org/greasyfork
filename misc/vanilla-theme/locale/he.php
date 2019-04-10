@@ -6,4 +6,4 @@ $Definition['layouts.application.submenu'] = 'עוד';
 $Definition['layouts.application.advanced_search'] = 'חיפוש מתקדם';
 $Definition['layouts.application.user_list'] = 'רשימת משתמש';
 $Definition['layouts.application.libraries'] = 'ספריות';
-$Definition['layouts.application.moderator_log'] = 'Moderator log';
+$Definition['layouts.application.moderator_log'] = 'יומן מנהל';
