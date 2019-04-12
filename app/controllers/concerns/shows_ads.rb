@@ -27,7 +27,7 @@ module ShowsAds
     current_user.nil? || current_user.show_ads
   end
 
-  FALLBACK_METHODS = ['cf'] * 4 + ['ca']
+  FALLBACK_METHODS = ['ca', 'cf']
 
   def fallback_ad_method
     FALLBACK_METHODS.sample
