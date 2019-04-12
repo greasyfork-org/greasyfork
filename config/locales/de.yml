@@ -41,6 +41,7 @@ de:
     promoted_text_html: "Dir könnte auch %{script_link} gefallen."
     library_instructions_html: "Dieses Skript sollte nicht direkt installiert werden. Es handelt sich hier um eine Bibliothek für andere Skripte, welche über folgenden Befehl in den Metadaten eines Skriptes eingebunden wird %{code}"
     deleted_notice: "Dieses Skript wurde gelöscht."
+    deleted_notice_with_replacement_html: "Dieses Skript wurde gelöscht und ersetzt durch <a href=\"%{replacement_script_url}\">%{replacement_script_name}</a>."
     version_notice_html: "Version vom %{date}. %{latest_version_link}"
     version_notice_latest_version_link: "Aktuellste Version"
     info_page: "Info"
@@ -249,6 +250,14 @@ de:
     preview_additional_info: "Vorschau"
     must_confirm_email: "Sie müssen Ihre E-Mailadresse bestätigen, bevor Sie Skripte veröffentlichen können."
     must_confirm_email_button: "Bestätigungslink an %{email} senden"
+    report:
+      title: "Melde %{script_name}"
+    invitations:
+      invited_user_url_label: "Einzuladender Benutzer"
+      invited_user_placeholder: "URL des Benutzerprofils auf %{site_name}"
+      submit: "Sende Einladung"
+      invalid_user_url: "Eingeladene Benutzer-URL ist ungültig."
+      sent: "Einladung wurde gesendet."
   script_sets:
     description: "Mit Skriptsammlungen können individuelle Listen von Skripten angelegt werden, um Greasy Fork zu durchstöbern. Sie können Ihrer Sammlung einzelne Skripte, die Skripte anderer Nutzer und automatisch erzeugte Listen hinzufügen. Auf dem selben Weg können Sie auch Skripte aus Ihrer Sammlung entfernen."
     favorites_name: "Favoriten"
