@@ -40,6 +40,7 @@ ja:
     promoted_text_html: "%{script_link}も気に入るかもしれません。"
     library_instructions_html: "このスクリプトは単体で利用できません。右のようなメタデータを含むスクリプトから、ライブラリとして読み込まれます: %{code}"
     deleted_notice: "このスクリプトは削除されました。"
+    deleted_notice_with_replacement_html: "このスクリプトは<a href=\"%{replacement_script_url}\">%{replacement_script_name}</a>によって削除されました。"
     version_notice_html: "%{date} 時点のページです。%{latest_version_link}を参照してください。"
     version_notice_latest_version_link: "最新バージョン"
     info_page: "情報"
@@ -87,8 +88,10 @@ ja:
     diff_button: "選択したバージョン同士を比較"
     code_title: "%{script_name} のソースコード"
     feedback_title: "%{script_name} のフィードバック"
+    feedback_has_unauthorized: "このスクリプトは未承認のコードを含んでいると報告されています。"
     feedback_no_discussions_html: "まだスレッドはありません。%{start_first_discussion_link}"
     feedback_start_first_discussion_link: "このスクリプトについて最初のスレッドを立てる。"
+    feedback_discussion_or_report: "%{new_discussion_link:Start a new discussion on this script} または %{report_link:report it for removal}."
     feedback_discussions_heading: "掲示板のスレッド"
     feedback_favoriters_heading: "お気に入り"
     feedback_favoriters_user_list_intro: " "
@@ -190,6 +193,7 @@ ja:
     sync_type_intro: "スクリプトの同期方法:"
     sync_type_1: "手動 – 自分で同期ボタンを押したときにのみ更新がチェックされます"
     sync_type_2: "自動 – 定期的に更新がチェックされます"
+    sync_type_3: "webhookで - あなたのリポジトリのこのファイルに変更をプッシュすると更新されます"
     sync_failed_info_html: "%{date} に同期に失敗しました。結果: %{error}"
     sync_success_info_html: "%{date} に同期に成功しました。"
     sync_never_succeeded: "まだ一度も同期に成功していません。"
@@ -217,6 +221,8 @@ ja:
     post_a_script_link_text: "スクリプトを投稿する"
     learn_to_write_scripts_link_text: "スクリプトの書き方を見る"
     feedback_or_report: "質問やレビューの%{feedback_link:投稿はこちら}へ、スクリプトの%{report_link:通報はこちら}へどうぞ。"
+    support_feedback_or_report: "%{support_url:Visit the author's site for support}, %{feedback_link:ask a question, post a review}, または %{report_link:report the script}."
+    support_email_feedback_or_report: "%{support_url:Email the author for support}, %{feedback_link:ask a question, post a review}, または %{report_link:report the script}."
     approve_redistribution_explanation: "%{site_name} では、他のサイトへスクリプトを転載しても良いか示すことができます。スクリプトのライセンスによって、すでにこれを許可、あるいは不許可としているかもしれません。"
     approve_redistribution_use_user_setting: "アカウントの既定を使用 (%{user_setting})"
     approve_redistribution_use_user_setting_not_set: "未設定"
@@ -254,6 +260,23 @@ ja:
       non_rules_summary_html: "お気をつけいただきたいのは、機能しないものやサードパーティの利用規約に反するものは%{site_name}のルール違反<b>ではない</b>ということです。そのような場合、通報ではなくスクリプトの%{feedback_link:フィードバックを投稿する}ことができます。"
       unauthorized_code_report_link: "もし自分自身が%{site_name}に投稿したスクリプトの一部のコードが%{script_name}にも使われているということであれば、%{report_link:緊急通報フォーム}をご利用ください。"
       general_report_link: "それ以外のあらゆるルール違反行為につきましては、%{forum_link:フォーラムへの投稿}をお願いします。"
+    error_unauthorized_copy: "このコードは不正コピーのようです%{script}。%{site_name}の%{rules_link:rules}を参考にしてください"
+    invitations:
+      form_title: "その他の作者を招待する"
+      explanation: "他のGreasy Forkユーザーをこのスクリプトの作者として追加できます。それらはあなたがするのと同じようにこのスクリプトと同じ権利を持つでしょう。"
+      invited_user_url_label: "ユーザーを招待する"
+      invited_user_placeholder: "ユーザーのプロフィールのURL%{site_name}"
+      submit: "招待を送る"
+      invalid_user_url: "招待ユーザーのURLが無効です。"
+      already_author: "指定したユーザーは既にこのスクリプトの作成者です。"
+      sent: "招待が送信されました。"
+      subject: "%{script_name}の招待"
+      body: "%{script_name}（%{script_url}）%{site_name}の作者になるよう招待されました。この招待を受け入れるには、%{accept_url}にアクセスしてください。"
+      current_user_already_author: "あなたはすでにこのスクリプトの作者です。"
+      invitation_not_found: "招待が見つかりませんでした。"
+      invitation_expired: "招待は期限切れです"
+      invitation_accepted: "あなたは現在このスクリプトの作者です。"
+    no_disposable_email: "使い捨ての電子メールアドレスを使用している場合は、スクリプトを投稿することはできません。"
   script_sets:
     description: "「スクリプトセット」とは、Greasy Fork に投稿されているスクリプトのマイリストです。個々のスクリプトの追加だけでなく、他のスクリプトセットをリストに登録して一つのスクリプトセットとして表示することもでき、サイトやユーザーを指定した自動生成も可能です。また、同じようにして除外リストへの登録も行えます。"
     favorites_name: "お気に入り"
@@ -426,6 +449,7 @@ ja:
     disable_syncing: "同期を解除する"
     remove_external_sign_in: "連携を解除する"
     add_external_sign_in_info: "以下のサービスのアカウントを使ってログインできるようにする:"
+    set_up_webhook: "Web Hookを設定する"
     author_email_notification_type:
       none: "通知メールを受け取らない"
       discussion_only: "投稿したスクリプトに関する新しいスレッドが立てられたときに通知メールを受け取る"
@@ -644,6 +668,7 @@ ja:
     advertisement_note: 広告
     preview_tab: プレビュー
     write_tab: 編集
+    listing_options_title: "検索オプション"
   activerecord:
     attributes:
       user:

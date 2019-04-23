@@ -1,6 +1,6 @@
 <?php
 /* Label for inputting a script ID when creating/editing a discussion */
-$Definition['Item ID:'] = 'Identyfikator skryptu:';
+$Definition['Item ID:'] = 'ID skryptu:';
 // Appended to "Discussions" when viewing a list of discussions on scripts by a user. %s is the user name.
 $Definition['on scripts by %s'] = 'o skryptach od %s';
 /*
