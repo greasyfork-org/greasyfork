@@ -133,9 +133,9 @@ module ScriptListings
         render layout: 'application'
       }
       format.json {
-        result = ScriptAppliesTo.joins(:script, :site_application).where(scripts: {script_type_id: 1, script_delete_type_id: nil}, tld_extra: false, site_applications: {domain: true}).group('site_applications.text').count
-        cache_request(result.to_json)
-        render json: result
+        render json: cache_with_log("scripts/get_by_sites/json") { 
+          ScriptAppliesTo.joins(:script, :site_application).where(scripts: {script_type_id: 1, script_delete_type_id: nil}, tld_extra: false, site_applications: {domain: true}).group('site_applications.text').count
+        }
       }
     end
   end
