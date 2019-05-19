@@ -5,7 +5,7 @@ require 'cgi'
 
 class ScriptsController < ApplicationController
 
-	MEMBER_AUTHOR_ACTIONS = [:sync_update, :derivatives, :update_promoted, :request_permanent_deletion, :unrequest_permanent_deletion, :update_promoted, :invite]
+	MEMBER_AUTHOR_ACTIONS = [:sync_update, :derivatives, :update_promoted, :request_permanent_deletion, :unrequest_permanent_deletion, :update_promoted, :invite, :remove_author]
 	MEMBER_AUTHOR_OR_MODERATOR_ACTIONS = [:delete, :do_delete, :undelete, :do_undelete, :derivatives, :admin, :update_locale]
 	MEMBER_MODERATOR_ACTIONS = [:mark, :do_mark, :do_permanent_deletion, :reject_permanent_deletion]
 	MEMBER_PUBLIC_ACTIONS = [:diff, :report, :accept_invitation]
@@ -696,6 +696,18 @@ class ScriptsController < ApplicationController
 		ais.accept!
 
 		flash[:notice] = t('scripts.invitations.invitation_accepted')
+		redirect_to script_path(@script)
+	end
+
+	def remove_author
+		user = User.find(params[:user_id])
+		if @script.authors.count < 2 || @script.authors.where(user: user).none?
+			flash[:error] = t('scripts.remove_author.failure')
+			return
+		end
+
+		@script.authors.find_by!(user: user).destroy!
+		flash[:notice] = t('scripts.remove_author.success', user_name: user.name)
 		redirect_to script_path(@script)
 	end
 

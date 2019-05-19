@@ -83,6 +83,7 @@ Rails.application.routes.draw do
         patch 'update_locale'
         post 'invite'
         get 'accept_invitation'
+        post 'remove_author'
       end
 
       collection do

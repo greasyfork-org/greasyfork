@@ -1,5 +1,9 @@
 <section class="multiform-page">
-  <h3><%= t('scripts.invitations.form_title') %></h3>
+  <h3>Authors</h3>
+
+  <% if @script.users.count > 1 %>
+    <h4><%= t('scripts.invitations.form_title') %></h4>
+  <% end %>
 
   <p><%= t('scripts.invitations.explanation', site_name: site_name) %></p>
 
@@ -10,5 +14,15 @@
     </div>
 
     <input type="submit" value="<%= t('scripts.invitations.submit') %>">
+  <% end %>
+
+  <% if @script.users.count > 1 %>
+    <h4><%= t('scripts.remove_author.heading') %></h4>
+
+    <ul id="user-remove-list">
+      <% @script.users.each do |user| %>
+        <li><%= link_to user.name, user %> <%= button_to(t('scripts.remove_author.remove_button'), remove_author_script_path(user_id: user.id), form_class: 'inline-form', data: { confirm: t('scripts.remove_author.remove_confirm', user_name: user.name) }) %></li>
+      <% end %>
+    </ul>
   <% end %>
 </section>
