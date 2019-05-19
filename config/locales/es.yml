@@ -1,131 +1,72 @@
 es:
   layouts:
     application:
-      # link to the list of scripts
       script_list: "Scripts"
-      # link to the forum
       forum: "Foro"
-      # link to the help docs
       help: "Ayuda"
-      # link to sign in
       sign_in: "Iniciar sesión"
-      # label for nav submenu
       submenu: "Más"
-      # link to advanced search
       advanced_search: "Búsqueda avanzada"
-      # link to user list
       user_list: "Listado de usuarios"
-      # link to libraries
       libraries: "Bibliotecas"
-      # link to moderator log
       moderator_log: "Registro del moderador"
   scripts:
-    # label for created date of a script
     created_date: "Creado"
-    # label for updated date of a script
     updated_date: "Actualizado"
-    # label for total install count of a script
     total_installs: "Instalaciones totales"
-    # label for daily install count of a script
     daily_installs: "Instalaciones diarias"
-    # label for the ratings of a script
     ratings: "Calificaciones"
-    # label for author name of a script
     author_name: "Autor"
-    # label for version number of a script
     version_number: "Versión"
-    # label for the legal license a script is released under (e.g. GPL)
     license: "Licencia"
-    # what is shown as the license when no license is provided in a script
     no_license: "N/D"
-    # label for the browser compatibility for a script
     compatibility: "Compatibilidad"
     compatible_with_browser: "Compatible con %{browser}"
     incompatible_with_browser: "Incompatible con %{browser}"
-    # label for the list of sites or patterns a script applies to
     applies_to: "Funciona en"
-    # a title (tooltip) for the links in the "applies to" section going to a list of scripts for that site. count is the number of other scripts, site is the name of the site. add subkeys for your language per http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
     applies_to_link_title:
       one: "Ver %{count} script más para %{site}"
       other: "Ver otros %{count} scripts para %{site}"
-    # what is shown as the applies to when a script applies to all sites
     applies_to_all: "Todos los sitios"
-    # header before the author-provided additional info - should imply that it was the author who wrote this, not the site
     additional_info: "Descripción del autor"
-    # link that makes the user install the script
     install: "Instalar este script"
-    # text for link that gives information on how to install scripts. should be very short.
     install_help: "¿?"
-    # title (tooltip) for link that gives information on how to install scripts
     install_help_title: "Cómo instalar"
-    # link that makes the user update the script
     update: "Actualizar a la versión %{version}"
-    # link that makes the user downgrade the script
     downgrade: "Degradar a la versión %{version}"
-    # link that makes the user reinstall the script
     reinstall: "Reinstalar versión %{version}"
-    # warning when installing an old version of a script
     old_version_warning: "Esta no es la versión reciente de este script. Si la instalas, nunca se actualizará a una versión más nueva. ¿Instalarla de todos modos?"
-    # label for a promoted script
     promoted: "Script promovido"
     author_promoted: "Script recomendado por el autor"
-    # text for promoted script
     promoted_text_html: "Puede que también te guste %{script_link}."
-    # instructions on a script library. code will be a <code> element. Don't use punctuation around the code element if possible so that people don't accidentally include that when copying.
     library_instructions_html: "Este script no debería instalarse directamente. Es una biblioteca que utilizan otros scripts mediante la meta-directiva de inclusión %{code}"
-     # text displayed for deleted scripts
     deleted_notice: "Este script ha sido borrado."
     deleted_notice_with_replacement_html: "Este script se ha borrado porque ha sido reemplazado por <a href=\"%{replacement_script_url}\">%{replacement_script_name}</a>."
-    # test displayed when viewing a previous version. date is a date and time (no "ago"), latest_version_link is a link to the newest version whose text is version_notice_latest_version_link
     version_notice_html: "Versión del día %{date}. Echa un vistazo a %{latest_version_link}."
     version_notice_latest_version_link: "la versión más reciente"
-    # link to the script's info page, containing script meta and author's description
     info_page: "Info"
-    # link to the script's code page
     code_page: "Código"
-    # link to the script's history page, listing all versions of the code
     history_page: "Historial"
-    # link to the script's feedback page, listing discussions on the script. count is the number of discussions
     feedback_page: "Opiniones (%{count})"
-    # link to the script's install statistics page
     stats_page: "Estadísticas"
-    # link to the script's derivatives page, which shows similar scripts
     derivatives_page: "Derivados"
-    # link to the page that lets the author update the script
     update_page: "Actualizar"
-    # link to the page that lets the author delete a script
     delete_page: "Borrar"
-    # explanation of what deleting does
     delete_explanation: "Borrar tu script lo hace inaccesible para todos excepto para ti y los moderadores de Greasy Fork. Puedes recuperarlo en cualquier momento."
-    # intro text to radio options for choosing update behaviour after deletion
     delete_update_behaviour: "¿Qué te gustaría que pasara con los usuarios que ya han instalado tu script?"
-    # label for the option allowing users to retain the script after delete
     delete_update_behaviour_1: "Dejarlo tal cual."
-    # label for the option where users get a blanked script after delete 
     delete_update_behaviour_2: "La próxima vez que actualicen se les proporcionará un script en blanco. Útil cuando el script tiene efectos negativos en los sitios en los que normalmente funciona."
-    # heading for permanent deletion section
     delete_permanently_heading: "Borrado permanente"
-    # explanation of permanent deletion
     delete_permanently_explanation: "Borrar de forma permanente tu script lo eliminará por completo junto con todos los registros asociados, con excepción de las conversaciones del foro y el registro de acciones del moderador. La eliminación es permanente, sí, permanente; no se puede deshacer, ni siquiera con ayuda de algún moderador."
-    # explanation that the permanent deletion must be confirmed by a moderator
     delete_permanently_request_explanation: "Se ha registrado la solicitud de borrado permanente y un moderador la revisará en breve. Hasta entonces el script permanecerá intacto."
-    # confirmation on pressing the permanent deletion button
     delete_permanently_confirm: "¿Seguro que quieres borrar permanentemente el script? Recuerda, si lo haces no se podrá deshacer y por lo tanto no habrá marcha atrás."
-    # text for the permanent deletion button
     delete_permanently_submit: "Solicitar borrado permanente"
-    # text for the permanent deletion button when it would take effect immediately
     delete_permanently_immediate_submit: "Borrar de forma permanente"
-    # notice after requesting permanent deletion
     delete_permanently_notice: "Se ha registrado la solicitud de borrado permanente y un moderador la revisará en breve."
-    # text on the delete page after permanently deletion was requested
     delete_permanently_already_requested: "Solicitaste el borrado permanente el %{datetime}."
-    # notice after permanently deletion
     delete_permanently_notice_immediate: "Este script ha sido borrado permanentemente."
-    # text for cancelling a permanent deletion request
     cancel_delete_permanently_submit: "Cancelar solicitud de borrado permanente"
-    # notice after cancelling a permanent deletion request
     cancel_delete_permanently_notice: "Hemos cancelado tu solicitud de borrado permanente."
-    # error when attempting to delete a locked script
     delete_permanently_rejected_locked: "Este script está bloqueado y no se puede borrar de forma permanente"
     admin_page: "Administrar"
     admin:
@@ -140,34 +81,21 @@ es:
       locale_multiple_note: "Observe que %{meta_keys_link:se pueden definir múltiples regionalizaciones para un script}."
       update_locale: "Actualizar regionalización"
       no_moderator_logs: "No se ha tomado ninguna decisión por parte de los moderadores sobre este script."
-    # HTML title for the history page for a script
     history_title: "%{script_name} - Historial de versiones"
-    # text explaining that we're only showing versions where the code changed
     history_only_code_changes_info: "A continuación se muestran las versiones de este script en las que se actualizó el código."
-    # link to the list of all versions
     history_all_changes_link: "Ver todas las versiones."
-    # text explaining that we're showing all versions
     history_all_changes_info: "Aquí están todas las versiones de este script."
-    # link to the list of version where the code changed
     history_only_code_changes_link: "Mostrar únicamente las versiones en las que hubo cambios de código."
-    # button that shows changes (a diff) of the selected versions
     diff_button: "Comparar versiones seleccionadas"
-    # HTML title of the script source code page
     code_title: "%{script_name} - Código fuente"
-    # HTML title of the script feedback page
     feedback_title: "%{script_name} - Comentarios y opiniones"
     feedback_has_unauthorized: "Se ha informado de un posible uso de código copiado sin la debida autorización."
-    # text to show when no discussions are posted. start_discussion_first_link is a link with the text from feedback_start_first_discussion_link
     feedback_no_discussions_html: "Todavía no se ha publicado nada. %{start_first_discussion_link}"
     feedback_start_first_discussion_link: "Sé el primero en comentar este script."
     feedback_discussion_or_report: "%{new_discussion_link:Abre un hilo de conversación sobre el script} o %{report_link:notifica una posible infracción de las normas}."
-    # heading for list of discussions on this scrip
     feedback_discussions_heading: "Conversaciones en el Greasy Foro"
-    # heading for list of people who favorited this script
     feedback_favoriters_heading: "Seguidores"
-    # text before a comma separated list of users who favorited the script
     feedback_favoriters_user_list_intro: "Este script ha sido marcado como favorito por:"
-    # text when no one has favorited a script
     feedback_no_favoriters: "Este script todavía no ha recibido favoritos."
     feedback_sign_in_to_favorite: "Inicia sesión para añadirlo a favoritos."
     stats_title: "%{script_name} - Estadísticas"
@@ -335,6 +263,19 @@ es:
       unauthorized_code_report_link: "Si %{script_name} utiliza código de uno de tus scripts en %{site_name} puedes utilizar %{report_link:el formulario de informe rápido}."
       general_report_link: "%{forum_link:Abre un hilo en el foro} para informar de otros problemas que contravengan las normas de contenido."
     error_unauthorized_copy: "Parece que este script era una copia no autorizada de %{script}. Échale un vistazo a %{rules_link:las normas de contenido} de %{site_name} para ver lo que se puede y no puede hacer."
+    invitations:
+      form_title: "Invitar a otros autores"
+      explanation: "Puedes añadir otros usuarios de Greasy Fork como autores de este script. Ellos tendrán los mismos privilegios en este script que tú."
+      invited_user_url_label: "Usuario a invitar"
+      submit: "Enviar invitación"
+      already_author: "El usuario que especificaste ya es un autor de este script."
+      sent: "Invitación enviada."
+      subject: "Invitación para %{script_name}"
+      body: "Fuiste invitado a ser un autor de %{script_name} (%{script_url}) en%{site_name}. Para aceptar esta invitación, visita %{accept_url} ."
+      current_user_already_author: "Ya eres un autor de este script."
+      invitation_not_found: "Invitación no encontrada."
+      invitation_expired: "Invitación expirada."
+      invitation_accepted: "Ahora eres un autor de este script."
   script_sets:
     description: "Los grupos permiten crear un listado personal de scripts con los que explorar Greasy Fork. Puedes agruparlos añadiendo scripts individuales, incluyendo grupos de otros usuarios, o incluso grupos generados automáticamente. También puedes excluir scripts de la misma forma."
     favorites_name: "Favoritos"
