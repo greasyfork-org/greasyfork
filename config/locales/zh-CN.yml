@@ -260,6 +260,7 @@ zh-CN:
       non_rules_summary_html: "请注意脚本不起作用并违反第三方的使用条款并<em>不</em>违反%{site_name}的规则。这种情况下，您可以对此脚本%{feedback_link:提交反馈} 。"
       unauthorized_code_report_link: "如果 %{script_name} 使用了您在 %{site_name} 上发布的脚本中的代码，请填写 %{report_link:快速举报表单}。"
       general_report_link: "对于所有其他违反规则的行为，%{forum_link:请在论坛上发帖}。"
+    authors_heading: "作者"
     error_unauthorized_copy: "此代码似乎未经授权地复制了 %{script}。发布脚本时请参考 %{site_name} 的 %{rules_link:rules}。"
     invitations:
       form_title: "邀请其他作者"
@@ -276,6 +277,12 @@ zh-CN:
       invitation_not_found: "未找到邀请。"
       invitation_expired: "邀请已过期。"
       invitation_accepted: "您现在是此脚本的作者。"
+    remove_author:
+      heading: "移除作者"
+      success: "已将 %{user_name} 从作者列表中移除。"
+      remove_button: "移除"
+      remove_confirm: "确定要将 %{user_name} 从作者列表中移除吗？"
+      failure: "无法移除该作者。"
     no_disposable_email: "如果您使用一次性电子邮件地址, 则不能发布脚本。"
   script_sets:
     description: "脚本收藏集有助于您创建一个自定义的使用 Greasy Fork 浏览的脚本列表。您可以包含单个脚本，以及其他用户或自动生成的脚本收藏集。您也可以用相同的方法排除特定脚本。"
@@ -448,7 +455,7 @@ zh-CN:
     syncing_indicator: "(同步中)"
     enable_syncing: "开启同步"
     disable_syncing: "关闭同步"
-    remove_external_sign_in: "删除"
+    remove_external_sign_in: "移除"
     add_external_sign_in_info: "添加第三方登录："
     set_up_webhook: "设置 webhook"
     author_email_notification_type:
