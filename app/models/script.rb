@@ -130,15 +130,7 @@ class Script < ActiveRecord::Base
 
 	validates_length_of :sync_identifier, maximum: 500
 
-	validate do |record|
-		DisallowedAttribute.all.each do |da|
-			value = record.public_send(da.attribute_name)
-			if value =~ Regexp.new(da.pattern)
-				record.errors.add(:base, "Exception #{da.ob_code}")
-				break
-			end
-		end
-	end
+	validates_with DisallowedAttributeValidator, object_type: :script
 
 	# Private use area unicode
 	validates_each :name, :description, :additional_info do |script, attr, value|
