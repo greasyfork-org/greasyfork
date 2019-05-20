@@ -5,22 +5,22 @@
 <p>This is a private list for moderator eyes only, because malicious people could easily craft their scripts to get around these blocks if they knew what they were.</p>
 
 <table>
-	<thead>
-		<tr>
-			<th>Code</th>
-			<th>Pattern</th>
-			<th>Description</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% DisallowedCode.where(originating_script_id: nil).each do |dc| %>
-			<tr>
-				<td><%=dc.ob_code%></td>
-				<td><code><%=dc.pattern%></code></td>
-				<td><%=dc.description%></td>
-			</tr>
-		<% end %>
-	</tbody>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Pattern</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% DisallowedCode.where(originating_script_id: nil).each do |dc| %>
+      <tr>
+        <td><%=dc.ob_code%></td>
+        <td><code><%=dc.pattern%></code></td>
+        <td><%=dc.description%></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
 <h3>Unauthorized copy blacklist</h3>
@@ -49,22 +49,24 @@
 <h3>Non-code blacklist</h3>
 
 <table>
-	<thead>
-		<tr>
-			<th>Code</th>
-			<th>Attribute</th>
-			<th>Pattern</th>
-			<th>Description</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% DisallowedAttribute.all.each do |dc| %>
-			<tr>
-				<td><%=dc.ob_code%></td>
-				<td><%=dc.attribute_name%></td>
-				<td><code><%=dc.pattern%></code></td>
-				<td><%=dc.reason%></td>
-			</tr>
-		<% end %>
-	</tbody>
+  <thead>
+    <tr>
+      <th>Object Type</th>
+      <th>Code</th>
+      <th>Attribute</th>
+      <th>Pattern</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% DisallowedAttribute.all.each do |dc| %>
+      <tr>
+        <td><%=dc.object_type%></td>
+        <td><%=dc.ob_code%></td>
+        <td><%=dc.attribute_name%></td>
+        <td><code><%=dc.pattern%></code></td>
+        <td><%=dc.reason%></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>

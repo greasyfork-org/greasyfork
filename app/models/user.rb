@@ -44,6 +44,7 @@ class User < ApplicationRecord
   validates_length_of :profile, :maximum => 10000
   validates_inclusion_of :profile_markup, :in => ['html', 'markdown']
   validates_inclusion_of :preferred_markup, :in => ['html', 'markdown']
+  validates_with DisallowedAttributeValidator, object_type: :user
 
   # Devise runs this when password_required?, and we override that so
   # that users don't have to deal with passwords all the time. Add it
