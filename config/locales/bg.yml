@@ -262,6 +262,7 @@ bg:
       non_rules_summary_html: "Ако скриптът не е функционален и противоречи на правилата на трето лице, той <em>не</em> нарушава правилата на %{site_name}. В такива случаи можете да напишете %{feedback_link:leave feedback} за скрипта."
       unauthorized_code_report_link: "Ако %{script_name} използва код от някой от вашите скриптове, публикувани на %{site_name}, моля, използвайте %{report_link:the expedited report form}."
       general_report_link: "За всички други противоречия с правилата, %{forum_link:please post on the forum}."
+    authors_heading: "Автори"
     error_unauthorized_copy: "Този код изглежда е неоторизирано копие на %{script}. Моля, прочетете %{rules_link:rules} на%{site_name}за публикуване на скриптове."
     invitations:
       form_title: "Поканете други автори"
@@ -278,6 +279,12 @@ bg:
       invitation_not_found: "Ненамерена покана."
       invitation_expired: "Поканата е изтекла."
       invitation_accepted: "Вече сте автор на този скрипт."
+    remove_author:
+      heading: "Премахни автори"
+      success: "%{user_name} беше премахнат от авторите."
+      remove_button: "Премахни"
+      remove_confirm: "Наистина ли желаете да премахнете %{user_name} от авторите?"
+      failure: "Авторът не може да бъде премахнат."
     no_disposable_email: "Ако използвате еднократни имейл адреси, не можете да публикувате скриптове."
   script_sets:
     description: "Групите позволяват да създадете подбран списък от скриптове, с които да разглеждате Greasy Fork. Можете да добавяте към групата индивидуални скриптове, групи на други потребители или автоматично генерирани групи. С помощта на същите методи можете да изключвате скриптове от вашата група."
