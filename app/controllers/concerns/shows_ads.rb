@@ -8,7 +8,7 @@ module ShowsAds
     return nil unless ads_enabled?
     return nil if script.sensitive
     return fallback_ad_method if script.localized_attributes.where(attribute_key: 'additional_info').none?
-    script.adsense_approved ? 'ga' : fallback_ad_method
+    script.adsense_approved ? 'ga' : 'cf'
   end
 
   def choose_ad_method_for_scripts(scripts)
@@ -16,7 +16,7 @@ module ShowsAds
     return nil if scripts.count < 3
     return nil if scripts.any?(&:sensitive?)
     return 'ga' if scripts.all?(&:adsense_approved)
-    fallback_ad_method
+    'ca'
   end
 
   private
@@ -27,9 +27,9 @@ module ShowsAds
     current_user.nil? || current_user.show_ads
   end
 
-  FALLBACK_METHODS = ['ca', 'cf']
+  #FALLBACK_METHODS = ['ca', 'cf']
 
-  def fallback_ad_method
-    FALLBACK_METHODS.sample
-  end
+  #def fallback_ad_method
+  #  FALLBACK_METHODS.sample
+  #end
 end
