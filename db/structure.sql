@@ -999,7 +999,7 @@ CREATE TABLE `disallowed_attributes` (
   `reason` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `object_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `disallowed_codes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1011,6 +1011,7 @@ CREATE TABLE `disallowed_codes` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `originating_script_id` int(11) DEFAULT NULL,
+  `slow_ban` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1682,6 +1683,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20190323211921'),
 ('20190330015535'),
 ('20190331213941'),
-('20190519231037');
+('20190519231037'),
+('20190520005220');
 
 

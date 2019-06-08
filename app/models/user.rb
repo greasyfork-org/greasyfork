@@ -3,6 +3,8 @@ require 'devise'
 
 class User < ApplicationRecord
 
+  scope :administrators, -> { joins(:roles).where(roles: { name: 'administrator' }) }
+
   has_many :authors, dependent: :destroy
   has_many :scripts, through: :authors
 
@@ -79,11 +81,11 @@ class User < ApplicationRecord
   end
 
   def moderator?
-    !roles.select { |role| role.name == 'Moderator' }.empty?
+    roles.where(name: 'Moderator').any?
   end
 
   def administrator?
-    !roles.select { |role| role.name == 'Moderator' }.empty?
+    roles.where(name: 'Administrator').any?
   end
 
   def generate_webhook_secret

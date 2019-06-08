@@ -591,7 +591,7 @@ class ScriptVersion < ApplicationRecord
 	end
 
 	def self.disallowed_codes_used_for_code(c)
-		return DisallowedCode.all.select { |dc| c =~ Regexp.new(dc.pattern)}
+		return DisallowedCode.where(slow_ban: false).select { |dc| c =~ Regexp.new(dc.pattern)}
 	end
 
 	def self.compare_versions(v1, v2)
