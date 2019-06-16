@@ -803,6 +803,8 @@ private
 			if cache_path.to_s.split('/').all?{|portion| portion.bytesize <= 255}
 				FileUtils.mkdir_p(cache_path.parent)
 				File.write(cache_path, response_body)
+				# nginx does not seem to automatically compress with try_files, so give it a .gz to use.
+				system("gzip", cache_path)
 			end
 		end
 	end
