@@ -28,7 +28,7 @@ $Definition['Categories.script-development.Name'] = 'Sviluppo';
 // Category description for Development
 $Definition['Categories.script-development.Description'] = 'Discussioni tecniche sullo sviluppo degli script utente.';
 // Category name for Script Creation Requests
-$Definition['Categories.script-requests.Name'] = 'Richieste creazioni script';
+$Definition['Categories.script-requests.Name'] = 'Richieste creazione script';
 // Category description for Script Creation Requests
 $Definition['Categories.script-requests.Description'] = 'Chiedi a qualcuno di scrivere uno script per te.';
 // Category name for Script Discussions

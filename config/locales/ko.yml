@@ -229,6 +229,17 @@ ko:
     by_site_list_description: "유저 스크립트의 인기가 높은 순으로 정렬된 사이트 목록입니다. 글자가 클 수록 유저 스크립트의 인기가 높습니다."
     by_site_list_filter: "사이트 이름 제한:"
     search_placeholder: "스크립트 검색"
+    updated: "스크립트가 업데이트 되었습니다."
+    preview_additional_info: "미리보기"
+    must_confirm_email: "스크립트를 올리기 전에 먼저 이메일을 인증해야 합니다."
+    report:
+      title: "%{script_name} 신고하기"
+    authors_heading: "작성자"
+    invitations:
+      invited_user_url_label: "초대할 유저"
+      invited_user_placeholder: "유저의 %{site_name}에서의 프로필 URL"
+      submit: "초대 보내기"
+      invalid_user_url: "초대된 유저의 URL이 유효하지 않습니다."
   script_sets:
     favorites_name: "즐겨찾기"
     delete: "스크립트 모음 삭제"
@@ -282,6 +293,7 @@ ko:
     sleazy_title: "%{site_name} - 인잔하고 유용한 성인용 유저스크립트"
     sleazy_welcome: "성인용 유저스크립트 사이트, %{site_name}에 오신 것을 환영합니다!"
     search_placeholder: "유저 스크립트 검색"
+    scripts_for_label: "다음 사이트에 적용되는 스크립트:"
     explain_user_scripts_heading: "유저 스크립트가 무엇인가요?"
     explain_user_scripts_html: "유저 스크립트를 사용하면 새로운 경험을 누릴 수 있습니다. 유저 스크립트를 한 번 설치만 하면 자동으로 기능을 추가하고, 짜증나는 요소도 없애줍니다. %{site_name}에 있는 유저 스크립트들은 다른 사용자에 의해 작성되고 전 세계에 공유되고 있습니다. 유저 스크립트는 무료이며, 사용하기도 쉽습니다!"
     installing_step1_header: "1. 유저 스크립트 관리자 설치"
@@ -405,6 +417,12 @@ ko:
       intro: "너의 %{site_name} 계정 '%{user_name}'를 삭제하는 것은 다음의 영향이 있을 것이다:"
       scripts_effect:
         other: "너의 %{count}개의 스크립트들이 삭제될 것이다."
+      submit: "계정 삭제"
+      confirmation:
+        confirm: "'%{user_name}' 삭제"
+        cancel: "삭제 취소"
+        cancelled: "삭제가 취소되었습니다."
+        completed: "계쩡이 삭제되었습니다."
   help:
     installing_user_scripts:
       title: '유저 스크립트 설치 방법'
@@ -457,11 +475,14 @@ ko:
     user_search:
       title: "사용자 검색"
   moderator_logs:
+    date_column: "날짜"
     moderator_column: "관리자"
     item_column: "대상"
     action_column: "조치"
     reason_column: "사유"
+    item_script_html: "스크립트: %{script_link} "
     item_deleted_script: "삭제된 스크립트 %{id}"
+    item_user_html: "유저: %{user_link}"
   common:
     error_preamble: "당신이 올린 거에 몇몇 문제들이 있습니다...."
     allowed_elements_link: "(허용된 코드 보기)"
@@ -477,6 +498,8 @@ ko:
     expander_show_less: "덜 보기"
     advertisement_note: 광고
     preview_tab: 미리보기
+    write_tab: 작성
+    listing_options_title: "검색 옵션"
   activerecord:
     attributes:
       user:
@@ -517,4 +540,5 @@ ko:
       script_update_not_utf8: "업로드된 건 반드시 UTF-8 텍스트여야함."
   opensearch:
     short_name: "%{site_name} 검색"
+    long_name: "%{site_name} 유저 스크립트 검색"
     attribution: "저작권은 스크립트의 저자에게 있으며 라이센스는 각 스크립트를 확인하세요"
