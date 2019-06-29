@@ -49,7 +49,7 @@ class CreateTest < ApplicationSystemTestCase
       // @version 1.1
       // @namespace http://greasyfork.local/users/1
       // ==/UserScript==
-      this was copied from another script
+      this.was.copied.from.another.script
     EOF
     fill_in 'Code', with: code
     click_button 'Post script'
