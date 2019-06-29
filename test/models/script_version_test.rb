@@ -301,7 +301,7 @@ END
 // @version 1.0
 // @namespace http://greasyfork.local/users/1
 // ==/UserScript==
-this was copied from another script
+this.was.copied.from.another.script
 END
     assert !script_version.valid?
     assert_equal 1, script_version.errors.to_a.length
@@ -320,9 +320,27 @@ END
 // @version 1.0
 // @namespace http://greasyfork.local/users/1
 // ==/UserScript==
-this was copied from another script
+this.was.copied.from.another.script
 END
     assert script_version.valid?
+  end
+
+  test 'syntax errors in code' do
+    script = get_valid_script
+    script.authors.clear
+    script.authors.build(user: User.find(1))
+    script_version = script.script_versions.first
+    script_version.code = <<END
+// ==UserScript==
+// @name		A Test!
+// @description		Unit test.
+// @version 1.0
+// @namespace http://greasyfork.local/users/1
+// ==/UserScript==
+syn tax error
+END
+    assert !script_version.valid?
+    assert_not_empty script_version.errors[:code]
   end
 
   test 'update code with changing version' do
