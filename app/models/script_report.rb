@@ -5,8 +5,8 @@ class ScriptReport < ApplicationRecord
   scope :unresolved, -> { where(resolved: false).joins(:script) }
   scope :unresolved_old, -> { unresolved.where(['script_reports.created_at < ?', 3.days.ago]) }
   
-  validates :copy_details, :additional_info, presence: true
-  validates :reference_script, presence: true, if: -> (sr) { sr.unauthorized_code? }
+  validates :details, presence: true
+  validates :reference_script, presence: true, if: ->(sr) { sr.unauthorized_code? }
 
   TYPE_UNAUTHORIZED_CODE = 'unauthorized_code'
 

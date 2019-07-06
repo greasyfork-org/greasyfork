@@ -102,7 +102,7 @@ class ScriptReportsController < ApplicationController
   def script_report_create_params
     reference = get_script_from_input(params[:script_report].delete(:reference_script))
     params[:script_report][:reference_script_id] = reference.id if reference.is_a?(Script)
-    params.require(:script_report).permit(:copy_details, :additional_info, :reference_script_id)
+    params.require(:script_report).permit(:details, :additional_info, :reference_script_id)
   end
 
   def script_report_rebuttal_params
