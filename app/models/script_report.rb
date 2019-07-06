@@ -7,6 +7,8 @@ class ScriptReport < ApplicationRecord
   
   validates :copy_details, :additional_info, presence: true
 
+  TYPE_UNAUTHORIZED_CODE = 'unauthorized_code'
+
   def dismissed?
     resolved? && !script.locked?
   end

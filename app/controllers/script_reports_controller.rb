@@ -8,11 +8,12 @@ class ScriptReportsController < ApplicationController
   end
 
   def new
-    @script_report = @script.script_reports.build
+    @script_report = @script.script_reports.build(report_type: ScriptReport::TYPE_UNAUTHORIZED_CODE)
   end
 
   def create
     @script_report = @script.script_reports.build(script_report_create_params)
+    @script_report.report_type = ScriptReport::TYPE_UNAUTHORIZED_CODE
     if @script_report.reference_script && !@script_report.reference_script.users.include?(current_user)
       @script_report.valid?
       @script_report.errors.add(:reference_script, 'must be one of your scripts')
