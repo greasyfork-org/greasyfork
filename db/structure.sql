@@ -1261,7 +1261,7 @@ CREATE TABLE `script_reports` (
   `script_id` int(11) NOT NULL,
   `reference_script_id` int(11) DEFAULT NULL,
   `copy_details` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `additional_info` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `additional_info` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `rebuttal` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `resolved` tinyint(1) NOT NULL DEFAULT 0,
   `report_type` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -1687,6 +1687,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20190519231037'),
 ('20190520005220'),
 ('20190706015520'),
-('20190706020932');
+('20190706020932'),
+('20190706021911');
 
 
