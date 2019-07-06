@@ -48,7 +48,7 @@ class ScriptVersion < ApplicationRecord
   end
 
   validates_each :code do |record, attr, value|
-    next unless record.script.new_record?
+    next unless record.new_record?
     js = JsChecker.new(value)
     unless js.check
       js.errors.each do |type, message|
