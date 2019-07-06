@@ -36,7 +36,7 @@
 
   <div class="form-control">
     <%= label_tag :reference_script, 'Originating script' %><br>
-    <%= f.url_field :reference_script, value: f.object.reference_script ? script_url(f.object.reference_script) : nil, required: true, placeholder: "URL on #{site_name}" %>
+    <%= f.url_field :reference_script, value: f.object.reference_script ? script_url(f.object.reference_script) : nil, required: f.object.unauthorized_code?, placeholder: "URL on #{site_name}" %>
   </div>
 
   <div class="form-control">

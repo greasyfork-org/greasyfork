@@ -1259,7 +1259,7 @@ CREATE TABLE `script_reports` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_at` datetime NOT NULL,
   `script_id` int(11) NOT NULL,
-  `reference_script_id` int(11) NOT NULL,
+  `reference_script_id` int(11) DEFAULT NULL,
   `copy_details` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `additional_info` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `rebuttal` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1270,7 +1270,7 @@ CREATE TABLE `script_reports` (
   KEY `index_script_reports_on_reference_script_id` (`reference_script_id`),
   CONSTRAINT `fk_rails_6107f26e1e` FOREIGN KEY (`reference_script_id`) REFERENCES `scripts` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_rails_70bdd3688c` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=88 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `script_set_automatic_set_inclusions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1686,6 +1686,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20190331213941'),
 ('20190519231037'),
 ('20190520005220'),
-('20190706015520');
+('20190706015520'),
+('20190706020932');
 
 
