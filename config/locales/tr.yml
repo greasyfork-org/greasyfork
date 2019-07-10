@@ -237,6 +237,7 @@ tr:
     adult_content_self_report_explanation: "%{site_name} yetişkin içerikli scriptlere izin verir, ancak bunlar kullanıcıların görmek isteyip istemediklerini seçebileceği bir şekilde işaretlenmelidir. "
     not_adult_content_self_report_html: "Bu script içinde yetişkin içerikleri  <strong>barındırmıyor</strong> ve yetişkin içerik barındıran bir site için <strong>hazırlanmamış.</strong>"
     not_adult_content_self_report_explanation: " %{site_name} sitesi yetişkin içerikli scriptlere izin verir, ancak bu kullanıcıların görmek isteyip istemedikleri bir şekilde işaretlenmelidir. Senin kodun yetişkin içeriği olarak işaretlendi. Bunu geri bildirebilrsiniz, bir moderatör tarafından incelenecektir."
+    not_adult_content_self_report_explanation_automatic: "%{site_name}yetişkin içerikli scriptlere izin verir, ancak bunlar kullanıcıların görmek isteyip istemediklerini seçebileceği bir şekilde işaretlenmelidir. Oluşturduğunuz script %{domain_list} sitesi ile ilişkili olduğundan yetişkin içerikli olarak işaretlendi."
     adult_content_on_greasy_logged_in_error: "Bu script artık sizin geçerli %{edit_account_link:Greasy Fork account settings} üyeliğiniz için kullanılabilir değil."
     adult_content_on_greasy_not_logged_in_error: "Bu script artık kullanıcı girişi yapılmadan kullanılamaz. Lütfen {login_link:Log in} linkinden giriş yapın ve hesap ayarlarınızı kontrol edin"
     non_adult_content_on_sleazy: "Bu script bu sitede mevcut değil."
@@ -261,7 +262,10 @@ tr:
     invitations:
       form_title: "Diğer yazarları davet edin"
       invited_user_url_label: "Davet için kullanıcı"
+      invited_user_placeholder: "Kullanıcının %{site_name}sitesinde ki profili"
       submit: "Davet gönder"
+      invalid_user_url: "Davet ettiğiniz kullanıcının profili geçerli değil."
+      already_author: "Belirttiğin kullanıcı zaten script sahiplerinden biri."
       sent: "Davet gönderildi"
       subject: "%{script_name}için davet"
       current_user_already_author: "Sen zaten bu script 'in yazarısın"
@@ -272,6 +276,9 @@ tr:
       heading: "Yazarları sil"
       success: "%{user_name}Adlı kullanıcı yazarlıktan alındı."
       remove_button: "Sil"
+      remove_confirm: "%{user_name}'i sahip bilgilerinden kaldırmak istediğine eminmisin?"
+      failure: "Sahip bilgisi kaldırılamıyor."
+    no_disposable_email: "Geçici email adresi kullanırsanız script oluşturamazsınız."
   script_sets:
     description: "Komut dizileri, Greasey Fork ile göz atmak için özelleştirilmiş bir komut listesi oluşturmanıza izin verir. Tek tek komut dosyalarını, diğer kullanıcıların kümelerini veya otomatik olarak oluşturulan setleri ekleyerek kümenize komut dosyaları ekleyebilirsiniz. Komut dosyalarını da kümenizden aynı yöntemlerle hariç tutabilirsiniz."
     favorites_name: "Favoriler"
