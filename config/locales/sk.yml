@@ -91,7 +91,7 @@ sk:
     diff_button: "Porovnať vybrané verzie"
     code_title: "%{script_name} - Zdrojový kod"
     feedback_title: "%{script_name} - Spätná väzba"
-    feedback_has_unauthorized: "Tento skript bol hlásený ako obsahujúci neautorizovaný kód."
+    feedback_has_reports: "Tento skript bol nahlásený, že porušuje pravidlá stránky %{site_name}."
     feedback_no_discussions_html: "Zatiaľ žiadna diskusia. %{start_first_discussion_link}"
     feedback_start_first_discussion_link: "Buďte prvý, kto začne diskusiu o tomto skripte."
     feedback_discussion_or_report: "%{new_discussion_link:Začať diskusiu pre tento skript} alebo %{report_link:nahlásiť ho na odstránenie}."
@@ -262,10 +262,23 @@ sk:
     must_confirm_email_button: "Poslať potvrdzovací odkaz na %{email}"
     report:
       title: "Nahlásiť %{script_name}"
-      rules_summary: "Skripty odoslané na %{site_name} musia dodržiavať %{rules_link:pravidlá}. Bežne porušujú pravidlá skripty, ktoré obsahujú malvér, reklamu; skripty určené na ťaženie kryptomien alebo iné monetizačné metódy a nie sú uvedené v popise; a skripty obsahujúce neautorizované časti kódu."
-      non_rules_summary_html: "Upozorňujeme, že nefunkčnosť a porušenie zmluvných podmienok tretích strán <em>nie sú</em> porušením pravidiel %{site_name}. V týchto prípadoch môžete namiesto toho %{feedback_link:zanechať odozvu} pre skript."
-      unauthorized_code_report_link: "Ak %{script_name} používa kód z jedného z vašich skriptov odoslaných tiež na %{site_name}, prosím, použite %{report_link:formulár rýchlej správy}."
-      general_report_link: "Všetky ostatné porušenia pravidiel, %{forum_link:prosím, pošlite na fórum}."
+      text_html: >-
+          <p>Skript odoslaný na %{site_name} musí dodržiavať %{rules_link:jeho pravidlá}.
+          Porušenia pravidiel nahlasujte pomocou odkazov nižšie a moderátori %{site_name}
+          skontrolujú vaše hlásenie.</p> <ul>
+
+          <li>%{unauthorized_link:Nahlásiť neautorizovanú kópiu skriptu.}</li>
+
+          <li>%{malware_link:Nahlásiť malvér.}</li>
+
+          <li>%{other_report_link:Nahlásiť iné porušenie, vrátane nezverejnených reklám
+          alebo ťaženie kryptomien.}</li>
+
+          </ul>
+
+          <p>Upozorňujem, že nefunkčnosť a porušenie podmienok tretích strán <em>nie
+          je</em> porušením pravidiel %{site_name}. V týchto prípadoch môžete použiť
+          %{feedback_link:zanechať spätnú väzbu} skriptu.</p>
     authors_heading: "Autori"
     error_unauthorized_copy: "Tento kód sa zdá byť neoprávnenou kópiou skriptu %{script}. Prosím, pozrite si pravidlá posielania skriptov na %{site_name}%{rules_link:pravidlá}"
     invitations:

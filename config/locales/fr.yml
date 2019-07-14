@@ -89,7 +89,6 @@ fr:
     diff_button: "Voir les différences entre les versions sélectionnées"
     code_title: "%{script_name} - Code source"
     feedback_title: "%{script_name} - Commentaires"
-    feedback_has_unauthorized: "Ce script a été signalé comme contenant du code source non autorisé."
     feedback_no_discussions_html: "Aucun commentaire. %{start_first_discussion_link}"
     feedback_start_first_discussion_link: "Soyez le premier à commenter ce script."
     feedback_discussion_or_report: "%{new_discussion_link:Démarrer une nouvelle discussion concernant ce script} ou %{report_link:demander sa suppression}."
@@ -258,10 +257,6 @@ fr:
     must_confirm_email_button: "Envoyer le lien de confirmation à %{email}"
     report:
       title: "Signaler %{script_name}"
-      rules_summary: "Les scripts postés sur %{site_name} doivent respecter %{rules_link:ces règles}. Les violations courantes incluent les scripts malware; les scripts qui ont des pubs, des mineurs de crypto-monnaie, ou d'autres méthodes de monétisation qui ne sont pas signalés dans leurs descriptions; ainsi que les scripts qui contiennent des reproductions interdites de code source."
-      non_rules_summary_html: "Veuillez noter que d'être non fonctionnel ou de violer un contrat d'utilisation tiers <em>ne sont pas</em> des violations aux règles de %{site_name}. Dans ces cas-là, vous pouvez %{feedback_link:laisser un commentaire} sur le script."
-      unauthorized_code_report_link: "Si %{script_name} utilise du code source d'un de vos scripts postés également sur %{site_name}, merci d'utiliser %{report_link:le formulaire de signalement rapide}."
-      general_report_link: "Pour toute autre infraction aux règles, %{forum_link:merci d'écrire sur le forum}."
     error_unauthorized_copy: "Ce code source a l'air d'être une reproduction interdite de %{script}. Veuillez vous référer aux %{rules_link:règles} de %{site_name} sur la soumission de scripts."
   script_sets:
     description: "Les jeux de scripts vous permettent de créer une liste personnalisée de scripts pour naviguer avec sur Greasy Fork. Vous pouvez ajouter des scripts à votre jeu en incluant des scripts individuels, des jeux d'autres utilisateurs ou des jeux générés automatiquement. Vous pouvez également exclure les scripts de votre jeu avec les mêmes méthodes."

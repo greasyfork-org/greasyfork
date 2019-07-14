@@ -39,9 +39,13 @@ ar:
     update: "تحديث لنسخة %{version}"
     downgrade: "رجوع لنسخة %{version}"
     reinstall: "إعادة تثبيت نسخة %{version}"
+    old_version_warning: "هذا السكربت ليس أحدث اصدار. إذا قمت بتثبيته ، فلن يتم تحديثه إلى إصدار أحدث. تثبيت على أي حال؟"
+    promoted: "سكربت ترويجي"
+    author_promoted: "سكربت موصى به للمؤلف"
     promoted_text_html: "ربما يعجبك أيضا %{script_link}."
     library_instructions_html: "لا ينبغي أن لا يتم تثبيت هذا السكريت مباشرة. هو مكتبة لسكبتات لتشمل مع التوجيه الفوقية %{code}"
     deleted_notice: "لقد تم حذف هذا البرنامج النصي."
+    deleted_notice_with_replacement_html: "هذا السكربت تم حذفة واستبدالة بـ<a href=\"%{replacement_script_url}\">%{replacement_script_name}</a>"
     version_notice_html: "اعتبارا من %{date}. شاهد %{latest_version_link}."
     version_notice_latest_version_link: "أحدث إصدار"
     info_page: "معلومات"
@@ -71,6 +75,15 @@ ar:
     admin_page: "مسؤول"
     admin:
       title: "%{script_name} - مسؤول"
+      promoted_heading: "سكربت ترويجي"
+      promoted_explanation: "بعد تثبيت هذا السكربت ، يمكن لـ%{site_name} أن يقترح على المستخدم تجربة سكربت آخر من اختيارك."
+      promoted_script_label: "رابط السكربت لترويجة"
+      promoted_submit: "أختر سكربت لترويجة"
+      sync_heading: "مزامنة المصدر"
+      locale_heading: "اللغة الافتراضية"
+      locale_example_html: "لغة هذا النص: <i>%{text}</i>"
+      update_locale: "تحديث اللغة"
+      no_moderator_logs: "لم يتم اتخاذ أي إجراءات بواسطة المشرفين على هذا السكربت."
     history_title: "%{script_name} - تاريخ الإصدار"
     history_only_code_changes_info: "هذه إصدارات لهذا البرنامج النصي حيث تم تحديث الكود."
     history_all_changes_link: "عرض كل الإصدارات."
@@ -79,6 +92,7 @@ ar:
     diff_button: "الفرق بين الإصدارات المختارة"
     code_title: "%{script_name} - كود المصدر"
     feedback_title: "%{script_name} - ردود الفعل"
+    feedback_has_reports: "تم الإبلاغ عن هذا السكربت لأنتهاكة قواعد %{site_name}."
     feedback_no_discussions_html: "لا يوجد نقاش حتى الآن. %{start_first_discussion_link}"
     feedback_start_first_discussion_link: "كن أول من يناقش هذا البرنامج النصي."
     feedback_discussions_heading: "مناقشة في منتدى Greasy"
@@ -174,6 +188,7 @@ ar:
     warning_namespace_missing_generate_automatically_html: "إنشاء a <code>@namespace</code> تلقائيا؟"
     warning_namespace_changed_html: "<code>@namespace</code> الخاص بك تغير. <code>@namespace</code> ثابت سمح للمستخدمين بإعادة تثبيت برنامجك النصي لتحديثه."
     warning_potentially_minified_html: "يبدو أنا برنامجك النصي يحتوي كود مصغر (مضغوط). إذا كنت تستخدم مكتبة مضغوطة رجاء استبدلها <code>@require</code> من %{allowed_requires_link}. البرامج النصية التي تحوي كود مضغوط هي عرضة للحذف."
+    warning_automatic_sensitive_html: "السكربت الخاص بك مخصص لـ %{sensitive_domains} وسيتم تمييزه على أنه محتوى للبالغين."
     warning_potentially_minified_allowed_requires_link: "واحد من هذه الأماكن"
     additional_info_locale_prompt: "(اختر اللغة المحلية)"
     additional_info_add_localized: "إضافة معلومات إضافية بلغة محلية أخرى"
@@ -236,6 +251,33 @@ ar:
     by_site_list_description: "هذه هي المواقع المتأثرة من البرامج النصية الأكثر شعبية. حجم خط أكبر يدل على البرامج النصية الأكثر شعبية."
     by_site_list_filter: "تصفية حسب اسم الموقع:"
     search_placeholder: "بحث في البرامج النصية"
+    updated: "تم تحديث السكربت."
+    preview_additional_info: "معاينة"
+    must_confirm_email: "يجب عليك تأكيد بريدك الإلكتروني قبل نشر السكربتات."
+    must_confirm_email_button: "أرسل رابط التأكيد إلى %{email}"
+    report:
+      title: "أبلغ عن %{script_name}"
+    authors_heading: "المؤلفين"
+    invitations:
+      form_title: "أدعُ مؤلفين آخرين"
+      explanation: "يمكنك إضافة مستخدمي Greasy Fork الآخرين كمؤلفين لهذا السكربت. سيكون لديهم نفس الحقوق التي تملكها لهذا السكربت."
+      invited_user_url_label: "مستخدم لدعوته"
+      submit: "أرسل دعوة"
+      invalid_user_url: "رابط دعوة المستخدم غير صالح."
+      already_author: "المستخدم الذي حددته هو مؤلف لهذا السكربت بالفعل."
+      sent: "تم أرسال الدعوة."
+      subject: "دعوة لـ %{script_name}"
+      body: "لقد تمت دعوتك لتكون مؤلف لـ %{script_name} (%{script_url}) على %{site_name}. لقبول هذه الدعوة, رجاءً زيارة %{accept_url}."
+      current_user_already_author: "أنت بالفعل مؤلف لهذا السكربت."
+      invitation_not_found: "الدعوة غير موجودة."
+      invitation_expired: "انتهت صلاحية الدعوة."
+      invitation_accepted: "أنت الآن مؤلف في هذا السكربت."
+    remove_author:
+      heading: "أزٍل المؤلفين"
+      success: "تم أزالة %{user_name} كمؤلف."
+      remove_button: "إزالة"
+      remove_confirm: "هل انت متأكد من أزالة %{user_name} كمؤلف؟"
+      failure: "فشل أزالة المؤلف."
   script_sets:
     description: "مجموعات البرامج النصية تسمح لك بإنشاء قائمة برامج نصية مخصصة لتصفح النصية بها. يمكنك إضافة البرنامج النصية إلى مجموعة عن طريق إضافتها منفردة أو من مجموعات المستخدمين  الآخرين أو تلقائيا. يمكنك أيضا استثناء برامج نصية من مجموعتك بنفس الأساليب."
     favorites_name: "المفضلة"
@@ -429,6 +471,20 @@ ar:
       few: "تم إعداد اسم المستخدم والبريد الإلكتروني الخاصين بك للمزامنة عند دخولك بواسطة %{providers}. %{edit_sign_in_link:عدل طرق تسجيل الدخول لحذف المزامنة} إذا كنت تريد وضع اسم مستخدم أو بريد مخصص بشكل دائم."
       many: "تم إعداد اسم المستخدم والبريد الإلكتروني الخاصين بك للمزامنة عند دخولك بواسطة %{providers}. %{edit_sign_in_link:عدل طرق تسجيل الدخول لحذف المزامنة} إذا كنت تريد وضع اسم مستخدم أو بريد مخصص بشكل دائم."
       other: "تم إعداد اسم المستخدم والبريد الإلكتروني الخاصين بك للمزامنة عند دخولك بواسطة %{providers}. %{edit_sign_in_link:عدل طرق تسجيل الدخول لحذف المزامنة} إذا كنت تريد وضع اسم مستخدم أو بريد مخصص بشكل دائم."
+    delete_link: "أحذف الحساب"
+    delete:
+      submit: "أحذف الحساب"
+      confirmation_email_sent: "تم إرسال بريد الكتروني لتأكيد الحذف."
+      confirmation_email:
+        subject: "تأكيد حذف الحساب %{site_name}"
+      confirmation:
+        intro: "أنت على وشك حذف الحساب '%{user_name}'. لا يمكن التراجع عن هذا الإجراء."
+        confirm: "أحذف '%{user_name}'"
+        cancel: "الغ الحذف"
+        key_mismatch: "لا يمكن حذف المستخدم - المفاتيح غير متطابقة."
+        request_expired: "لا يمكن حذف المستخدم - انتهت صلاحية الطلب."
+        cancelled: "تم الغاء عملية الحذف."
+        completed: "لقد تم حذف حسابك."
   help:
     installing_user_scripts:
       title: 'كيفية تثبيت البرامج النصية'
@@ -575,6 +631,16 @@ ar:
       title: "بحث في المنتدى"
     user_search:
       title: "بحث عن مستخدم"
+      description: "البحث عن المستخدمين بالاسم. نص مجرد كـ أبحث."
+  moderator_logs:
+    date_column: "التاريخ"
+    moderator_column: "مدير"
+    item_column: "عنصر"
+    action_column: "إجراء"
+    reason_column: "السبب"
+    item_script_html: "السكربت: %{script_link}"
+    item_deleted_script: "أحذف السكربت %{id}"
+    item_user_html: "المستخدم: %{user_link}"
   common:
     error_preamble: "هناك بعض المشاكل مع ما قمت بنشره ..."
     allowed_elements_link: "(مشاهدة الكود المسموح به)"
@@ -589,6 +655,9 @@ ar:
     expander_show_more: "عرض المزيد"
     expander_show_less: "عرض أقل"
     advertisement_note: الإعلانات
+    preview_tab: معاينة
+    write_tab: أكتب
+    listing_options_title: "خيارات البحث"
   activerecord:
     attributes:
       user:
@@ -625,9 +694,11 @@ ar:
       script_too_many_screenshots: "كثير من لقطات الشاشة - الحد الأقصى هو %{number}"
       cannot_be_self_reference: "لا يمكن أن يكون نفس البرنامج النصي"
       cannot_be_deleted_reference: "لا يمكن أن يكون برنامج نصي محذوف"
+      cannot_be_used_with_this_script: "لا يمكن استخدامة مع هذا السكربت"
       must_be_greasy_fork_script: "يجب أن يكون الرابط لبرنامج نصي على %{site_name}"
       script_update_not_utf8: "المرفوع يجب أن يكون نص UTF-8"
       script_disallowed_require: "يستخدم برنامج نصي خارجي غير مصرح به: %{code}"
+      script_rate_limit: "لقد تجاوزت حد النشر. حاول مجدداً في وقت لاحق."
   opensearch:
     short_name: "بحث %{site_name}"
     description: "بحث عن البرامج النصية للمستخدم في %{site_name}."
