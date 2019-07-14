@@ -3,65 +3,72 @@ show_author_details = defined?(show_author_details) && show_author_details
 show_report_thread = defined?(show_report_thread) && show_report_thread
 %>
 <li data-script-id="<%=script.id%>" data-script-name="<%=script.name(I18n.locale)%>" data-script-authors="<%= script.users.map { |u| [u.id, u.name] }.to_h.to_json %>" data-script-daily-installs="<%=script.daily_installs%>" data-script-total-installs="<%=script.total_installs%>" data-script-rating-score="<%=script.fan_score%>" data-script-created-date="<%=script.created_at.strftime('%Y-%m-%d')%>" data-script-updated-date="<%=script.code_updated_at.strftime('%Y-%m-%d')%>" data-script-type="<%=script.script_type.short_name%>" data-script-version="<%=script.version%>" data-sensitive="<%=script.sensitive%>">
-	<article>
-		<h2>
-			<%=link_to script.name(I18n.locale), script_path(script)%>
-			<% if show_author_details && script.users.include?(current_user) && script.sensitive %>
-				<span class="script-type"><%=t('scripts.adult_marker')%></span>
-			<% end %>
-			<% case script.script_type_id
-				when 2 %>
-					<span class="script-type"><%=t('scripts.unlisted_marker')%></span>
-				<% when 3 %>
-					<span class="script-type"><%=t('scripts.library_marker')%></span>
-			<% end %>
-			<% if script.deleted? %>
-				<span class="script-type"><%=t('scripts.deleted_marker')%></span>
-			<% end %>
-			<% if script.locked %>
-				<span class="script-type"><%=t('scripts.locked_marker')%></span>
-			<% end %>
-			<span class="name-description-separator">
-				-
-			</span>
-			<span class="description">
-				<%=script.description(I18n.locale)%>
-			</span>
-		</h2>
-		<dl class="inline-script-stats">
-			<dt class="script-list-author"><span><%=t('scripts.author_name')%></span></dt>
-			<dd class="script-list-author"><span><%= script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %></span></dd>
-			<% if !script.library? %>
-				<dt class="script-list-daily-installs"><span><%=t('scripts.daily_installs')%></span></dt>
-				<dd class="script-list-daily-installs"><span><%=number_with_delimiter(script.daily_installs)%></span></dd>
-				<dt class="script-list-total-installs"><span><%=t('scripts.total_installs')%></span></dt>
-				<dd class="script-list-total-installs"><span><%=number_with_delimiter(script.total_installs)%></span></dd>
-				<dt class="script-list-ratings"><span><%=t('scripts.ratings')%></span></dt>
-				<dd class="script-list-ratings" data-rating-score="<%=script.fan_score%>"><span><%=render :partial => 'scripts/ratings', :locals => {:script => script}%></span></dd>
-			<% end %>
-			<dt class="script-list-created-date"><span><%=t('scripts.created_date')%></span></dt>
-			<dd class="script-list-created-date"><span><%=markup_date(script.created_at)%></span></dd>
-			<dt class="script-list-updated-date"><span><%=t('scripts.updated_date')%></span></dt>
-			<dd class="script-list-updated-date"><span><%=markup_date(script.code_updated_at)%></span></dd>
-		</dl>
-		<% if show_report_thread %>
-			<% if script.discussions.reports.any? %>
-				Report discussions:
-				<ul>
-					<% script.discussions.reports.each do |discussion| %>
-						<li><%= link_to(discussion.unescaped_name, discussion.url) %><% if discussion.original_poster %> by <%=link_to(discussion.original_poster.name, discussion.original_poster) %><% end %></li>
-					<% end %>
-				</ul>
-			<% end %>
-			<% if script.script_reports.any? %>
-				<ul>
-					<% script.script_reports.each do |report| %>
-						<li>
-							<%= link_to report.reference_script.name(I18n.locale), report.reference_script %> - 
-							<%= link_to 'View report', script_script_report_path(report.script, report) %>
-						</li>
-					<% end %>
-			<% end %>
-		<% end %>
-	</article>
+  <article>
+    <h2>
+      <%=link_to script.name(I18n.locale), script_path(script)%>
+      <% if show_author_details && script.users.include?(current_user) && script.sensitive %>
+        <span class="script-type"><%=t('scripts.adult_marker')%></span>
+      <% end %>
+      <% case script.script_type_id
+        when 2 %>
+          <span class="script-type"><%=t('scripts.unlisted_marker')%></span>
+        <% when 3 %>
+          <span class="script-type"><%=t('scripts.library_marker')%></span>
+      <% end %>
+      <% if script.deleted? %>
+        <span class="script-type"><%=t('scripts.deleted_marker')%></span>
+      <% end %>
+      <% if script.locked %>
+        <span class="script-type"><%=t('scripts.locked_marker')%></span>
+      <% end %>
+      <span class="name-description-separator">
+        -
+      </span>
+      <span class="description">
+        <%=script.description(I18n.locale)%>
+      </span>
+    </h2>
+    <dl class="inline-script-stats">
+      <dt class="script-list-author"><span><%=t('scripts.author_name')%></span></dt>
+      <dd class="script-list-author"><span><%= script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %></span></dd>
+      <% if !script.library? %>
+        <dt class="script-list-daily-installs"><span><%=t('scripts.daily_installs')%></span></dt>
+        <dd class="script-list-daily-installs"><span><%=number_with_delimiter(script.daily_installs)%></span></dd>
+        <dt class="script-list-total-installs"><span><%=t('scripts.total_installs')%></span></dt>
+        <dd class="script-list-total-installs"><span><%=number_with_delimiter(script.total_installs)%></span></dd>
+        <dt class="script-list-ratings"><span><%=t('scripts.ratings')%></span></dt>
+        <dd class="script-list-ratings" data-rating-score="<%=script.fan_score%>"><span><%=render :partial => 'scripts/ratings', :locals => {:script => script}%></span></dd>
+      <% end %>
+      <dt class="script-list-created-date"><span><%=t('scripts.created_date')%></span></dt>
+      <dd class="script-list-created-date"><span><%=markup_date(script.created_at)%></span></dd>
+      <dt class="script-list-updated-date"><span><%=t('scripts.updated_date')%></span></dt>
+      <dd class="script-list-updated-date"><span><%=markup_date(script.code_updated_at)%></span></dd>
+    </dl>
+    <% if show_report_thread %>
+      <% if script.discussions.reports.any? %>
+        Report discussions:
+        <ul>
+          <% script.discussions.reports.each do |discussion| %>
+            <li><%= link_to(discussion.unescaped_name, discussion.url) %><% if discussion.original_poster %> by <%=link_to(discussion.original_poster.name, discussion.original_poster) %><% end %></li>
+          <% end %>
+        </ul>
+      <% end %>
+      <% if script.script_reports.any? %>
+        <ul>
+          <% script.script_reports.each do |report| %>
+            <li>
+              <%
+              case report.report_type
+              when ScriptReport::TYPE_UNAUTHORIZED_CODE %>
+                Unauthorized copy of <%= link_to report.reference_script.name(I18n.locale), report.reference_script %>
+              <% when ScriptReport::TYPE_MALWARE %>
+                Malware -
+              <% end %>
+              <%= link_to 'View report', script_script_report_path(report.script, report) %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    <% end %>
+  </article>
 </li>
