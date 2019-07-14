@@ -3,11 +3,15 @@
 <% if @script.script_reports.none? %>
   <p>No reports have been posted about <%= link_to @script.name(I18n.locale), @script %>.</p>
 <% else %>
-  <p><%= link_to @script.name(I18n.locale), @script %> has been reported as containing unauthorized code from the following scripts:</p>
+  <p><%= link_to @script.name(I18n.locale), @script %> has been reported as violating <%= site_name %>'s rules:</p>
   <ul>
     <% @script.script_reports.each do |report| %>
       <li>
-        <%= link_to report.reference_script.name(I18n.locale), report.reference_script %> - 
+        <% if report.unauthorized_code? %>
+          Unauthorized copy of <%= link_to report.reference_script.name(I18n.locale), report.reference_script %> -
+        <% else %>
+          Malware
+        <% end %>
         <%= link_to 'View report', script_script_report_path(report.script, report) %> - 
         <% if report.upheld? %>
           Script deleted

@@ -3,7 +3,7 @@
 
 <% if @script.script_reports.any? %>
 	<p>
-		<%= link_to t('scripts.feedback_has_unauthorized'), script_script_reports_path(@script), rel: :nofollow %>
+		<%= link_to t('scripts.feedback_has_reports', site_name: site_name), script_script_reports_path(@script), rel: :nofollow %>
 	</p>
 <% end %>
 

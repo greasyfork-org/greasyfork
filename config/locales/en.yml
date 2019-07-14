@@ -156,7 +156,7 @@ en:
     code_title: "%{script_name} - Source code"
     # HTML title of the script feedback page
     feedback_title: "%{script_name} - Feedback"
-    feedback_has_unauthorized: "This script has been reported as containing unauthorized code."
+    feedback_has_reports: "This script has been reported as violating %{site_name}'s rules."
     # text to show when no discussions are posted. start_discussion_first_link is a link with the text from feedback_start_first_discussion_link
     feedback_no_discussions_html: "No discussions posted yet. %{start_first_discussion_link}"
     feedback_start_first_discussion_link: "Be the first to discuss this script."
@@ -483,10 +483,14 @@ en:
     must_confirm_email_button: "Send confirmation link to %{email}"
     report:
       title: "Report %{script_name}"
-      rules_summary: "Scripts posted on %{site_name} must abide by %{rules_link:its rules}. Common violations include scripts that are malware; scripts that have ads, cryptominers, or other monetization methods and do not disclose them in their descriptions; and scripts that contain unauthorized copies of code."
-      non_rules_summary_html: "Please note that being non-functional and contravening a third party's terms of use are <em>not</em> violations of %{site_name}'s rules. In these cases, you can instead %{feedback_link:leave feedback} on the script."
-      unauthorized_code_report_link: "If %{script_name} is using code from one of your scripts also posted on %{site_name}, please use %{report_link:the expedited report form}."
-      general_report_link: "For all other contraventions of the rules, %{forum_link:please post on the forum}."
+      text_html: >-
+        <p>Scripts posted on %{site_name} must abide by %{rules_link:its rules}. Report violations using the links below and %{site_name} moderators will review your report.</p>
+        <ul>
+          <li>%{unauthorized_link:Report unauthorized copies of your script.}</li>
+          <li>%{malware_link:Report malware.}</li>
+          <li>%{other_report_link:Report other violations, including undisclosed ads or cryptominers.}</li>
+         </ul>
+        <p>Please note that being non-functional and contravening a third party's terms of use are <em>not</em> violations of %{site_name}'s rules. In these cases, you can instead %{feedback_link:leave feedback} on the script.</p>
     authors_heading: "Authors"
     error_unauthorized_copy: "This code appears to be an unauthorized copy of %{script}. Please refer to %{site_name}'s %{rules_link:rules} on posting scripts."
     invitations:

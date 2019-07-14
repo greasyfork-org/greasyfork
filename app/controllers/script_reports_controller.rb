@@ -8,12 +8,12 @@ class ScriptReportsController < ApplicationController
   end
 
   def new
-    @script_report = @script.script_reports.build(report_type: ScriptReport::TYPE_UNAUTHORIZED_CODE)
+    @script_report = @script.script_reports.build(report_type: params[:report_type] || ScriptReport::TYPE_UNAUTHORIZED_CODE)
   end
 
   def create
     @script_report = @script.script_reports.build(script_report_create_params)
-    @script_report.report_type = ScriptReport::TYPE_UNAUTHORIZED_CODE
+    @script_report.reporter = current_user
     if @script_report.reference_script && !@script_report.reference_script.users.include?(current_user)
       @script_report.valid?
       @script_report.errors.add(:reference_script, 'must be one of your scripts')
@@ -34,10 +34,12 @@ class ScriptReportsController < ApplicationController
 
   def show
     @script_report = @script.script_reports.find(params[:id])
-    original_code = @script_report.reference_script.script_versions.last.code
-    new_code = @script_report.script.script_versions.last.code
-    if original_code != new_code
-      @diff = Diffy::Diff.new(original_code, new_code, include_plus_and_minus_in_html: true).to_s(:html).html_safe
+    if @script_report.unauthorized_code?
+      original_code = @script_report.reference_script.script_versions.last.code
+      new_code = @script_report.script.script_versions.last.code
+      if original_code != new_code
+        @diff = Diffy::Diff.new(original_code, new_code, include_plus_and_minus_in_html: true).to_s(:html).html_safe
+      end
     end
   end
 
@@ -65,7 +67,7 @@ class ScriptReportsController < ApplicationController
       return
     end
     @script_report = @script.script_reports.find(params[:id])
-    if current_user&.moderator? && @script_report.reference_script.users.include?(current_user)
+    if current_user&.moderator? && @script_report.reference_script && @script_report.reference_script.users.include?(current_user)
       # Can't delete if you are the reporter.
       render_access_denied
       return
@@ -85,7 +87,7 @@ class ScriptReportsController < ApplicationController
       render_access_denied
       return
     end
-    if @script_report.script.users.include?(current_user) || @script_report.reference_script.users.include?(current_user)
+    if @script_report.script.users.include?(current_user) || (@script_report.reference_script && @script_report.reference_script.users.include?(current_user))
       # Can't moderate one you're involved in.
       render_access_denied
       return
@@ -102,7 +104,7 @@ class ScriptReportsController < ApplicationController
   def script_report_create_params
     reference = get_script_from_input(params[:script_report].delete(:reference_script))
     params[:script_report][:reference_script_id] = reference.id if reference.is_a?(Script)
-    params.require(:script_report).permit(:details, :additional_info, :reference_script_id)
+    params.require(:script_report).permit(:report_type, :details, :additional_info, :reference_script_id)
   end
 
   def script_report_rebuttal_params
