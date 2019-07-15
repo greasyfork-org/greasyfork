@@ -89,6 +89,7 @@ pt-BR:
     diff_button: "Comparar versões selecionadas"
     code_title: "%{script_name} - Código Fonte"
     feedback_title: "%{script_name} - Comentário"
+    feedback_has_reports: "Este script foi denunciado por violar as regras do %{site_name}."
     feedback_no_discussions_html: "Sem discussões postadas ainda. %{start_first_discussion_link}"
     feedback_start_first_discussion_link: "Seja o primeiro a comentar sobre este script."
     feedback_discussion_or_report: "%{new_discussion_link:Comece uma nova discussão neste script} ou %{report_link:denuncie-o para que seja removido}."
@@ -257,6 +258,23 @@ pt-BR:
     must_confirm_email_button: "Enviar link de confirmação para  %{email}"
     report:
       title: "Denunciar %{script_name}"
+      text_html: >-
+          <p>Scripts postados no %{site_name} devem respeitar %{rules_link:suas regras}.
+          Denuncie violações através dos links abaixo e os moderadores do %{site_name}
+          irão analisar sua denúncia.</p> <ul>
+
+          <li>%{unauthorized_link:Denunciar cópias não autorizadas do seu script.}</li>
+
+          <li>%{malware_link:Denunciar malware.}</li>
+
+          <li>%{other_report_link:Denunciar outras violações, incluindo propagandas
+          ocultas e mineradores de criptomoedas.}</li>
+
+          </ul>
+
+          <p>Por favor esteja ciente que não ser funcional e violar os termos de uso
+          de terceiros <em>não</em> são violações das regras do %{site_name}. Nesses
+          casos, você pode, em vez disso, %{feedback_link:deixar um feedback} no script.</p>
     authors_heading: "Autores"
     error_unauthorized_copy: "Este código parece ser um cópia não autorizada de %{script}. Por favor cheque as %{rules_link:regras} do  %{site_name} ao postar scripts."
     invitations:
