@@ -987,7 +987,7 @@ CREATE TABLE `delayed_jobs` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `delayed_jobs_priority` (`priority`,`run_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=102937 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=102941 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `disallowed_attributes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1464,6 +1464,8 @@ CREATE TABLE `site_applications` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `domain` tinyint(1) NOT NULL,
+  `blocked` tinyint(1) NOT NULL DEFAULT 0,
+  `blocked_message` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=41020 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1693,6 +1695,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20190706020932'),
 ('20190706021911'),
 ('20190706022139'),
-('20190714021359');
+('20190714021359'),
+('20190714234716');
 
 

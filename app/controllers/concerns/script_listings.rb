@@ -38,6 +38,9 @@ module ScriptListings
             site = SiteApplication.find_by(text: params[:site])
             if site.nil?
               @scripts = Script.none.paginate(page: 1)
+            elsif site.blocked
+              render_404(site.blocked_message)
+              return
             else
               with[:site_application_id] = site.id
             end

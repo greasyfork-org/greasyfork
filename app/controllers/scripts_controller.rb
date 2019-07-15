@@ -740,6 +740,7 @@ private
 				JOIN site_applications on site_applications.id = site_application_id
 				WHERE
 					domain
+					AND blocked = 0
 					AND script_type_id = 1
 					AND script_delete_type_id IS NULL
 					AND !tld_extra

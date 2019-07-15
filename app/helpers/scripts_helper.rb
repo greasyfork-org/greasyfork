@@ -59,7 +59,7 @@ module ScriptsHelper
 private
 
 	def content_for_script_applies_to_that_has_domain(sat, count_of_other_scripts)
-		if count_of_other_scripts > 0
+		if !sat.site_application.blocked && count_of_other_scripts > 0
 			title = t('scripts.applies_to_link_title', {:count => count_of_other_scripts, :site => sat.text})
 			return link_to(sat.text, by_site_scripts_path(:site => sat.text), {:title => title})
 		end
