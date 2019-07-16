@@ -258,6 +258,23 @@ bg:
     must_confirm_email_button: "Изпрати връзка за потвърждение до %{email}"
     report:
       title: "Докладвай%{script_name}"
+      text_html: >-
+          <p>Скриптовете, публикувани на %{site_name} трябва да се придържат към %{rules_link:its
+          rules}. Докладвайте нарушенията чрез връзките по-долу. Модераторите на %{site_name}
+          ще прегледат сигналите.</p> <ul>
+
+          <li>%{unauthorized_link:Report unauthorized copies of your script.}</li>
+
+          <li>%{malware_link:Report malware.}</li>
+
+          <li>%{other_report_link:Report other violations, including undisclosed ads
+          or cryptominers.}</li>
+
+          </ul>
+
+          <p>Имайте предвид, че ако не е работещ или нарушава правата на трета страна,
+          това <em>не е</em> нарушава правилата на%{site_name}. В такъв случай можете
+          да оставите %{feedback_link:leave feedback} за скрипта.</p>
     authors_heading: "Автори"
     error_unauthorized_copy: "Този код изглежда е неоторизирано копие на %{script}. Моля, прочетете %{rules_link:rules} на%{site_name}за публикуване на скриптове."
     invitations:
