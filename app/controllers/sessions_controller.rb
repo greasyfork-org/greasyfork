@@ -142,11 +142,6 @@ class SessionsController < Devise::SessionsController
 		handle_omniauth_failure(params[:message])
 	end
 
-	def name_conflict
-		session[:chosen_name] = params[:name]
-		redirect_to "/auth/#{params[:provider]}"
-	end
-
   # https://github.com/plataformatec/devise/issues/4084
   def require_no_authentication
     set_locale

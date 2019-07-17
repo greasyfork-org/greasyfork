@@ -9,7 +9,7 @@
   <% if Rails.application.config.available_auths.empty? %>
     <p>(No external providers configured.)</p>
   <% else %>
-    <form method="POST" class="inline-form external-login-form">
+    <%= form_tag '', class: 'inline-form external-login-form' do %>
       <div>
         <% Rails.application.config.available_auths.keys.reverse.each do |provider| %>
           <span class="external-login-container">
@@ -23,7 +23,7 @@
       <% if devise_mapping.rememberable? %>
         <div><%= check_box_tag :remember_me %><%= label_tag :remember_me, t('activerecord.attributes.user.remember_me') %></div>
       <% end %>
-    </form>
+    <% end %>
   <% end %>
 </div>
 

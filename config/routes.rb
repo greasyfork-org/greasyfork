@@ -37,7 +37,6 @@ Rails.application.routes.draw do
       post '/auth/:provider/callback', to: 'sessions#omniauth_callback'
       get '/auth/failure', to: 'sessions#omniauth_failure'
       get '/auth/failure2', to: 'sessions#omniauth_failure'
-      post '/auth/name_conflict', to: 'sessions#name_conflict'
       post '/users/send_confirmation_email' => 'users#send_confirmation_email'
     end
 
