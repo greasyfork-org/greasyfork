@@ -17,8 +17,6 @@ Rails.application.routes.draw do
     get '/users/delete_confirm' => 'users#delete_confirm', :as => 'user_delete_confirm'
     post '/users/delete_complete' => 'users#delete_complete', :as => 'user_delete_complete'
 
-    get '/external_login', :as => 'external_login', to: 'home#external_login'
-
     # disable destroying users
     devise_for :users, :skip => :registrations, :controllers => { :sessions => "sessions" }
     devise_scope :user do

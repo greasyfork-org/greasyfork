@@ -43,12 +43,6 @@ class HomeController < ApplicationController
 		render :js => json
 	end
 
-	# used so that we can log in with a form rather than a link
-	def external_login
-		session[:remember_me] = params[:remember_me]
-		redirect_to "/auth/#{params[:provider]}/"
-	end
-
 	def search
 	end
 

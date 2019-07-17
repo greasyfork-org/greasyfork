@@ -6,25 +6,25 @@
 <h3><%=t('users.sign_in_external')%></h3>
 
 <div>
-	<% if Rails.application.config.available_auths.empty? %>
-		<p>(No external providers configured.)</p>
-	<% else %>
-		<%=form_tag(external_login_path, {:method => :get, :class => 'inline-form external-login-form'}) do %>
-			<div>
-				<% Rails.application.config.available_auths.keys.reverse.each do |provider| %>
-					<span class="external-login-container">
-						<button name="provider" class="external-login <%=provider%>-login" value="<%=provider%>">
-							<%=t('users.sign_in_with', provider: Identity.pretty_provider(provider)) %>
-						</button>
-					</span>
-				<% end %>
-			</div>
+  <% if Rails.application.config.available_auths.empty? %>
+    <p>(No external providers configured.)</p>
+  <% else %>
+    <form method="POST" class="inline-form external-login-form">
+      <div>
+        <% Rails.application.config.available_auths.keys.reverse.each do |provider| %>
+          <span class="external-login-container">
+            <button formaction="/auth/<%= provider %>" class="external-login <%=provider%>-login">
+              <%=t('users.sign_in_with', provider: Identity.pretty_provider(provider)) %>
+            </button>
+          </span>
+        <% end %>
+      </div>
 
-			<% if devise_mapping.rememberable? %>
-				<div><%= check_box_tag :remember_me %><%= label_tag :remember_me, t('activerecord.attributes.user.remember_me') %></div>
-			<% end %>
-		<% end %>
-	<% end %>
+      <% if devise_mapping.rememberable? %>
+        <div><%= check_box_tag :remember_me %><%= label_tag :remember_me, t('activerecord.attributes.user.remember_me') %></div>
+      <% end %>
+    </form>
+  <% end %>
 </div>
 
 <h3><%=t('users.sign_in_password')%></h3>
