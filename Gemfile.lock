@@ -214,6 +214,9 @@ GEM
     omniauth-oauth2 (1.6.0)
       oauth2 (~> 1.1)
       omniauth (~> 1.9)
+    omniauth-rails_csrf_protection (0.1.2)
+      actionpack (>= 4.2)
+      omniauth (>= 1.3.1)
     orm_adapter (0.5.0)
     paperclip (5.2.1)
       activemodel (>= 4.2.0)
@@ -368,6 +371,7 @@ DEPENDENCIES
   omniauth-github
   omniauth-gitlab
   omniauth-google-oauth2 (>= 0.4.1)
+  omniauth-rails_csrf_protection
   paperclip
   public_suffix
   rails (~> 5.2.0)
