@@ -88,6 +88,7 @@ zh-CN:
     diff_button: "对比选中版本差异"
     code_title: "%{script_name} - 源码"
     feedback_title: "%{script_name} - 反馈"
+    feedback_has_reports: "此脚本已被报告违反 %{site_name} 守则。"
     feedback_no_discussions_html: "暂无相关讨论。%{start_first_discussion_link}"
     feedback_start_first_discussion_link: "成为第一个发起讨论的人吧。"
     feedback_discussion_or_report: "%{new_discussion_link:针对此脚本发起一个新的讨论} 或者%{report_link:举报使此脚本被移除}。"
@@ -255,6 +256,19 @@ zh-CN:
     must_confirm_email_button: "发送确认链接至 %{email}"
     report:
       title: "举报 %{script_name}"
+      text_html: >-
+          <p>发布在 %{site_name} 上的脚本必须遵守%{rules_link:我们的守则}。使用下方的链接举报违规行为，%{site_name}
+          管理员将审核您的报告。</p> <ul>
+
+          <li>%{unauthorized_link:举报未经授权复制您的脚本}</li>
+
+          <li>%{malware_link:举报恶意程序}</li>
+
+          <li>%{other_report_link:举报其他违规，包括隐秘的广告或挖矿行为。}</li>
+
+          </ul>
+
+          <p>注意，没有功能或者违反第三方的使用条款<em>不违反</em> %{site_name} 的守则。对于这些情况，考虑在脚本页面上%{feedback_link:留下反馈}。</p>
     authors_heading: "作者"
     error_unauthorized_copy: "此代码似乎未经授权地复制了 %{script}。发布脚本时请参考 %{site_name} 的 %{rules_link:rules}。"
     invitations:
