@@ -6,11 +6,11 @@ $Definition['on scripts by %s'] = 'des scripts par %s';
 /*
  *  Label for the radio buttons for rating a script
  **/
-$Definition['RatingLabel'] = 'Quelle note donnez-vous à ce script ?';
+$Definition['RatingLabel'] = 'Comment évalueriez-vous ce script ?';
 # Label for the radio buttons for updating a rating on a script
-$Definition['RatingUpdateLabel'] = 'Mettre à jour votre note :';
+$Definition['RatingUpdateLabel'] = 'Mettez à jour votre note :';
 # Label for the radio button for not rating a script
-$Definition['RatingNone'] = 'Pas de note - juste une question, un commentaire, une requête, ou un rapport de bug';
+$Definition['RatingNone'] = 'Pas de note - juste une question, un commentaire, une requête, ou un rapport d\'erreur';
 ## Label for the radio button for reporting a script
 $Definition['RatingReport'] = '<div class="report">Rapporter le script aux modérateurs pour suppression, par exemple:<ul><li>Malware - décrire quelle portion du script est malveillante</li><li>License/copyright - décrire et lier à la source originelle du code et fournir toute autre preuve</li></ul></div>';
 /** Label for the radio button for rating a script "Bad" */

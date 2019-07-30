@@ -89,6 +89,7 @@ fr:
     diff_button: "Voir les différences entre les versions sélectionnées"
     code_title: "%{script_name} - Code source"
     feedback_title: "%{script_name} - Commentaires"
+    feedback_has_reports: "Ce script a été rapporté comme violent la règles %{site_name}."
     feedback_no_discussions_html: "Aucun commentaire. %{start_first_discussion_link}"
     feedback_start_first_discussion_link: "Soyez le premier à commenter ce script."
     feedback_discussion_or_report: "%{new_discussion_link:Démarrer une nouvelle discussion concernant ce script} ou %{report_link:demander sa suppression}."
@@ -257,7 +258,45 @@ fr:
     must_confirm_email_button: "Envoyer le lien de confirmation à %{email}"
     report:
       title: "Signaler %{script_name}"
+      text_html: >-
+          <p>Les scripts envoyés sur %{site_name} doivent respecter %{rules_link:its
+          rules}.  Rapporter une violation en utilisant les liens ci-dessous et les
+          modérateurs de %{site_name} examineront votre rapport.</p><ul><li>%{unauthorized_link:Report
+          unauthorized copies of your script.}</li><li>%{malware_link:Report malware.}</li>
+
+          <li>%{other_report_link:Report other violations, including undisclosed ads
+          or cryptominers.}</li>
+
+          </ul>
+
+          <p>Veuillez noter que le non-fonctionnement et la violation des conditions
+          d'utilisation d'un tiers ne constituent <em>pas</em> une violation des règles
+          de %{site_name}. Dans ces cas, vous pouvez plutôt % {feedback_link: laisser
+          des commentaires} sur le script.</p>
+    authors_heading: "Auteurs"
     error_unauthorized_copy: "Ce code source a l'air d'être une reproduction interdite de %{script}. Veuillez vous référer aux %{rules_link:règles} de %{site_name} sur la soumission de scripts."
+    invitations:
+      form_title: "Inviter d'autres auteurs"
+      explanation: "Vous pouvez ajouter d'autres utilisateurs de Greasy Fork en tant qu'auteurs de ce script. Ils auront les mêmes droits que vous sur ce script."
+      invited_user_url_label: "Utilisateur à inviter"
+      invited_user_placeholder: "URL du profile de l'utilisateur sur %{site_name}"
+      submit: "Envoyer une invitation"
+      invalid_user_url: "L'URL de l'utilisateur invité n'est pas valide."
+      already_author: "L'utilisateur que vous avez spécifié est déjà un auteur de ce script."
+      sent: "L'invitation a été envoyée."
+      subject: "Invitation pour %{script_name}"
+      body: "Vous avez été invité pour être un auteur de %{script_name} (%{script_url}) sur %{site_name}. Pour accepter cette invitation, merci de visiter %{accept_url}."
+      current_user_already_author: "Vous êtes déjà un auteur pour ce script."
+      invitation_not_found: "L'invitation n'a pas été trouvée."
+      invitation_expired: "L'invitation a expirée."
+      invitation_accepted: "Vous êtes maintenant un autre pour ce script."
+    remove_author:
+      heading: "Retirer des auteurs"
+      success: "%{user_name} a été retiré en tant qu'auteur."
+      remove_button: "Retirer"
+      remove_confirm: "Êtes vous sur de retirer %{user_name} en tant qu'auteur ?"
+      failure: "Impossible de retirer l'auteur."
+    no_disposable_email: "Vous ne pouvez pas envoyer de scripts si vous utilisez une adresse email jetable."
   script_sets:
     description: "Les jeux de scripts vous permettent de créer une liste personnalisée de scripts pour naviguer avec sur Greasy Fork. Vous pouvez ajouter des scripts à votre jeu en incluant des scripts individuels, des jeux d'autres utilisateurs ou des jeux générés automatiquement. Vous pouvez également exclure les scripts de votre jeu avec les mêmes méthodes."
     favorites_name: "Favoris"
