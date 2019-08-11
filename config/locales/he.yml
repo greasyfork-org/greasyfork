@@ -68,6 +68,7 @@ he:
     admin_page: "מנהל"
     admin:
       title: "%{script_name} - מנהל"
+      sync_heading: "תרגום מקור"
       no_moderator_logs: "אף פעולה לא נעשתה על ידי מנהל על סקריפט זה."
     history_title: "%{script_name} - היסטורית גרסאות"
     history_only_code_changes_info: "יש גרסאות של סקריפט זה עם קוד מעודכן."
@@ -94,6 +95,11 @@ he:
     stats_download_raw_data_html: "הורד את כל הנתונים כ: %{links}"
     stats_no_data: "לא זמין"
     derivatives_intro: "סקריפטים אלו אולי בוססו על הסקריפטים שלך (או ששלך מבוססים עליהם). אם אתה מוצע שימוש לא מאושר בקוד שלך, דווח על הסקריפט על-ידי התחלת דיון חדש עליו."
+    derivatives_code_matches_info_html:
+      one: "סקריפטים שפורסמו על-ידי אחרים שכוללים קוד שחולק לפחות שורה  %{match_size}  עם הקוד שלך. בדיקה זו מורצת רק על סקריפטים אשר קטנים מ-%{max_size} והורצה פעם אחרונה ב-%{last_run}."
+      two: "סקריפטים שפורסמו על-ידי אחרים שכוללים קוד שחולק לפחות %{match_size}שורות עם הקוד שלך. בדיקה זו מורצת רק על סקריפטים אשר קטנים מ-%{max_size} והורצה פעם אחרונה ב-%{last_run}."
+      many: "סקריפטים שפורסמו על-ידי אחרים שכוללים קוד שחולק לפחות %{match_size} שורות עם הקוד שלך. בדיקה זו מורצת רק על סקריפטים אשר קטנים מ-%{max_size} והורצה פעם אחרונה ב-%{last_run}."
+      other: "סקריפטים שפורסמו על-ידי אחרים שכוללים קוד שחולק לפחות %{match_size} שורות עם הקוד שלך. בדיקה זו מורצת רק על סקריפטים אשר קטנים מ-%{max_size} והורצה פעם אחרונה ב-%{last_run}."
     derivatives_name_matches_info: "סקריפטים שפורסמו על-ידי אחרים, עם השמות הכי דומים לשלך: "
     listing_title_all_sites: "סקריפטים של המשתמש בכל האתרים"
     listing_description_all_sites: "סקריפטי משתמש שמוסיפים תכונות ומסירים באגים בכל האתרים"
@@ -103,6 +109,7 @@ he:
     listing_title_generic: "סקריפטים של המשתמש"
     listing_description_generic: "סקריפטי משתמש שמוסיפים תכונות ומסירים באגים באתרים בהם אתה משתמש"
     listing_sort_label: "מיין לפי:"
+    listing_sort_relevance: "רלוונטיות"
     listing_sort_daily_installs: "התקנות יומיות"
     listing_sort_total_installs: "סה\"כ התקנות"
     listing_sort_ratings: "דירוג"
@@ -135,9 +142,11 @@ he:
     syncing_notice_sync_type_automatic: "הגדר שיתעדכן אוטומטית מ-%{sync_identifier}"
     upload_label: "או העלה:"
     changelog_note: "מה עודכן בגרסה זו?"
+    additional_info_note_html: "לקשקש עוד על הסקריפט שלך. %{allowed_elements_link}"
     post_new_script: "העלה סקריפט"
     post_updated_script: "העלה סקריפט חדש"
     type_1_html: "סקריפט משתמש פומבי - סקריפט משתמש שכולם יוכלו לראות ובו להשתמש."
+    type_3_html: "ספריה - סקריפט שיעודו להיות <code>מוכלל</code> על-ידי סקריפטים אחרים, ולא להיות מותקן ישירות."
     override_warning_checkbox_label: "לשמור בכל זאת?"
     warning_potentially_minified_allowed_requires_link: "אחד ממקומות אלו"
     sync_type_intro: "סקריפט זה יסונכרן:"
@@ -156,6 +165,7 @@ he:
     diff_title: "%{script} - הבדלי גרסא"
     diff_old_version: "ישן:"
     diff_new_version: "חדש:"
+    diff_ignore_whitespace: "התעלם משינויים בריווח"
     diff_refresh: "רענן"
     diff_no_change: "לא נמצאו הבדלים."
     good_rating_explanation: "מספר האנשים שדירגו אותו טוב או הוסיפו אותו למועדפים שלהם."
@@ -175,24 +185,80 @@ he:
     adult_marker: "(מבוגרים)"
     deleted_marker: "(נמחק)"
     locked_marker: "(ננעל)"
+    library_marker: "(ספריה)"
+    libraries_title: "ספריות"
     by_site_list_description: "אלו האתרים המושפעים על-ידי הסקריפטים הפופולאריים ביותר. גודל גופן גדול יותר אומר שהסקריפטים יותר פופולאריים."
     by_site_list_filter: "סנן לפי שם אתר:"
     search_placeholder: "חפש סקריפטים"
     updated: "הסקריפט עודכן."
     preview_additional_info: "תצוגה מקדימה"
+    must_confirm_email: "עליך לאשר את כתובת המייל שלך לפני פרסום סקריפטים."
+    must_confirm_email_button: "שלח מייל אישור ל-%{email}"
+    report:
+      title: "דווח על %{script_name}"
+    authors_heading: "יוצרים"
+    invitations:
+      form_title: "הזמן יוצרים אחרים"
+      invited_user_url_label: "משתמשים להזמין"
+      submit: "שלח הזמנות"
+      already_author: "המשתמש שציינת כבר רשום כיוצר סקריפט זה."
+      sent: "הזמנה נשלחה."
+      subject: "הזמנה עבור %{script_name}"
+      current_user_already_author: "הינך כבר רשום כיוצר על סקריפט זה."
+      invitation_not_found: "הזמנה לא נמצאה."
+      invitation_expired: "פג תוקף ההזמנה."
+      invitation_accepted: "הינך עכשיו רשום כיוצר על סקריפט זה."
+    remove_author:
+      heading: "הסר יוצרים"
+      success: "%{user_name} הוסר כיוצר מסקריפט זה."
+      remove_button: "הסר"
+      remove_confirm: "האם אתה בטוח שהינך רוצה להסיר את %{user_name} כיוצר?"
+      failure: "לא ניתן להסיר יוצר."
+    no_disposable_email: "לא ניתן לפרסם סקריפטים אם אתה משתמש בכתובת מייל חד פעמית."
   script_sets:
-    edit_auto_sets:
+    favorites_name: "מועדפים"
+    site_default_sort: "(ברירת מחדל האתר)"
+    edit_scripts:
+      heading: "סקריפטים"
       included: "כלול"
+      included_none: "(אין)"
       remove_included: "הסר נבחרים"
       excluded: "לא כלול"
+      excluded_none: "(אין)"
+      remove_excluded: "הסר נבחרים"
+      add_include: "כלול"
+      add_exclude: "אל תכלול"
+    edit_sets:
+      included: "כלול"
+      included_none: "(אין)"
+      remove_included: "הסר נבחרים"
+      excluded: "לא כלול"
+      excluded_none: "(אין)"
+      remove_excluded: "הסר נבחרים"
+      add_include: "כלול"
+      add_exclude: "אל תכלול"
+    edit_auto_sets:
+      included: "כלול"
+      included_none: "(אין)"
+      remove_included: "הסר נבחרים"
+      excluded: "לא כלול"
+      excluded_none: "(אין)"
       all_scripts_label: "כל הסקריפטים"
       all_scripts_include: "כלול"
       for_sites_include: "כלול"
       for_sites_exclude: "אל תכלול"
       for_user_include: "כלול"
       for_user_exclude: "אל תכלול"
+      for_language_label: "סקריפטים בשפה"
       for_language_include: "כלול"
       for_language_exclude: "אל תכלול"
+    calculated_list_none: "(אין)"
+    calculated_list_more:
+      one: "ו-%{count} נוסף..."
+      two: "ו-%{count} נוספים..."
+      many: "ועוד %{count} נוספים..."
+      other: "ועוד %{count} נוספים..."
+    already_included: "'%{name}' כבר כלול."
     save: "שמור"
     auto_set_types:
       all_scripts: "כל הסקריפטים"
@@ -200,6 +266,11 @@ he:
       all_sites: "כל האתרים"
       user: "סקריפטים של המשתמש %{user}"
       locale: "סקריפטים ב-%{locale_name}"
+  forum_discussions:
+    listing_no_script_no_reply_html: "%{discussion_link} נכתב ע\"י %{original_poster_link} ב-%{original_post_date}"
+    listing_no_script_with_reply_html: "%{discussion_link} נכתב ע\"י %{original_poster_link} ב-%{original_post_date}, תגובה אחרונה ע\"י %{last_commenter_link} ב-%{last_comment_date}"
+    listing_with_script_no_reply_html: "%{script_link}: %{discussion_link} נכתב ע\"י %{original_poster_link} ב-%{original_post_date}"
+    listing_with_script_with_reply_html: "%{script_link}: %{discussion_link} נכתב ע\"י %{original_poster_link} ב-%{original_post_date}, תגובה אחרונה ע\"י %{last_commenter_link} ב-%{last_comment_date}"
   home:
     title: "%{site_name} - סקריפטי משתמש בטוחים ושימושיים"
     welcome: "ברוכים הבאים ל-%{site_name}, אתר לסקריפטי משתמש."
@@ -211,6 +282,34 @@ he:
     explain_user_scripts_html: "סקריפטי משתמש מאפשרים לך לשלוט בחווית הגלישה שלך. ברגע שהם מותקנים, הם אוטומטית הופכים את האתרים בהם אתה מבקר לטובים יותר על-ידי הוספת תכונות, הפיכתם ליותר קלים לשימוש, או הסרת החלקים המעצבנים. סקריפטי המשתמש ב-%{site_name} נכתבו על ידי משתמשים אחרים ופורסמו כדי לחלוק אותם עם העולם. ניתן להתקין אותם בחינם ולהשתמש בהם בקלות."
     installing_step1_header: "שלב 1: התקנת מנהל סקריפטי משתמש"
     installing_step1_caption: "Tampermonkey בגוגל כרום"
+    installing_step1_description_html: >
+        <p>כדי להשתמש בסקריפטי משתמש עליך קודם להתקין מנהל סקריפטי משתמש. הבחירה בין
+        מנהלי סקריפטי המשתמש גם תלויה באיזה דפדפן הינך משתמש.</p>
+
+        <ul>
+
+        <li>כרום: %{chrome_tampermonkey_link:Tampermonkey}</a> או %{chrome_violentmonkey_link:Violentmonkey}</li>
+
+        <li>פיירפוקס: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
+        או %{firefox_violentmonkey_link:Violentmonkey}</li>
+
+        <li>ספארי: %{safari_tampermonkey_link:Tampermonkey}</li>
+
+        <li>מייקרוסופט אדג': %{edge_tampermonkey_link:Tampermonkey}7</li>
+
+        <li>אופרה: %{opera_tampermonkey_link:Tampermonkey} או %{opera_violentmonkey_link:Violentmonkey}8</li>
+
+        <li>מקסתון: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>דולפין: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Qupzilla: (אין צורך בהתקנה נוספת)</li>
+
+        <li>AdGuard: (אין צורך בהתקנה נוספת)</li>
+
+        </ul>
     installing_step2_header: "שלב 2: התקנת סקריפט משתמש"
     installing_step2_caption: "כפתור להתקנת סקריפט משתמש"
     installing_step2_description_html: >
@@ -229,12 +328,17 @@ he:
   users:
     sign_in_title: "התחבר ל-%{site_name}"
     sign_in_description: "התחברות ל-%{site_name} נותנת לך לפרסם סקריפטים ומשוב על סקריפטים אחרים. אינך צריך להתחבר כדי לסייר באתר או להתקין סקריפטים."
+    sign_in_external: "התחבר עם מכשיר חיצוני"
     sign_in_with: "התחבר עם %{provider}"
     sign_in_password: "התחבר עם סיסמא"
+    sign_in_email_used_no_external_services_html: "'%{email}' כבר תפוס ע\"י המשתמש '%{user_name}'. אם זהו אתה ואתה רוצה להוסיף יכולת התחברות עם %{provider}, %{sign_in_link} למשתמש שלך קודם, ואז הוסף את יכולת ההתחברות דרך %{provider}."
+    sign_in_email_used_with_external_services_html: "'%{email}' כבר תפוס ע\"י המשתמש '%{user_name}', שמתחבר באמצעות %{existing_providers}. אם זהו אתה ואתה רוצה להוסיף יכולת התחברות עם %{provider}, %{sign_in_link} למשתמש שלך קודם, ואז הוסף את יכולת ההתחברות דרך %{provider}."
     sign_in_email_used_sign_in_link: "התחבר"
+    sign_in_name_used: "שם המשתמש '%{name}' כבר תפוס. בחר שם אחר."
     sign_in_name_used_submit: "שלח"
     control_panel: "לוח בקרה"
     discussions_on_scripts: "דיונים על הסקריפטים שלך"
+    discussions_on_scripts_feed_alt: "רשומות RSS"
     discussions_on_scripts_none: "עדיין ריק!"
     discussions_on_scripts_more: "עוד דיונים..."
     script_list: "סקריפטים"
@@ -253,66 +357,162 @@ he:
     update_password: "עדכן סיסמא"
     update_password_no_match: "הסיסמאות לא תואמות."
     password_updated: "סיסמא עודכנה."
+    remove_password_info: "הינך יכול להסיר את סיסמתך ולהסתמך על התחברויות חיצוניות בלבד"
     remove_password: "הסר סיסמא"
     cant_remove_password: "לא יכול להסיר סיסמא - לא תהיה לך דרך להתחבר!"
+    cant_remove_sign_in: "לא ניתן להסיר את ההתחברות דרך %{provider} - לא תהיה לך דרך להתחבר!"
     password_removed: "סיסמא הוסרה."
+    edit_sign_in_external: "דרכי התחברות חיצוניות"
+    external_sign_in_info_no_sign_ins: "ניתן להשתמש במשתמש שלך מאתרים אחרים כדי להתחבר ל-%{site_name}."
+    external_sign_in_info_with_sign_ins: "הינך כרגע משתמש בדרך ההתחברות החיצונית הרשומה מטה. התחברות \"מסונכרנת\" אומרת שהמידע שלך מ-%{site_name} (כמו שם משתמש וכתובת מייל) יעודכנו פעם הבאה שאתה מתחבר."
     external_sign_in_added: "נוספה התחברות דרך %{provider}."
     external_sign_in_updated: "עודכנה התחברות דרך %{provider}."
     external_sign_in_removed: "הוסרה ההתחברות דרך %{provider}."
     external_sign_in_failed: "התחברות דרך %{provider} נכשלה: %{error}."
+    external_sign_in_already_used: "הוספת התחברות דרך %{provider} נכשלה: דרך התחברות זו כבר בשימוש על-ידי המשתמש '%{user_name}'."
     syncing_indicator: "(מסנכרן)"
     enable_syncing: "הפעל סנכרון"
     disable_syncing: "כבה סנכרון"
     remove_external_sign_in: "הסר"
     add_external_sign_in_info: "הוסף דרך התחברות:"
+    set_up_webhook: "יצירת webhook"
+    author_email_notification_type:
+      none: "אל תשלח מיילים על דיונים על הסקריפטים שלך"
+      discussion_only: "קבל מיילים כאשר מתפרסמים דיונים על הסקריפטים שלך"
+      discussion_and_comment: "קבל מייל כאשר דיונים מתפרסמים על הסקריפטים שלך או כאשר בדיונים אלו מתפרסמות תגובות חדשות"
+      note: "אולי תקבל מיילים אחרים בהתאם להגדרות הפורום שלך."
+    list_display_html:
+      one: "%{user_link} - סקריפט %{count}"
+      two: "%{user_link} - %{count} סקריפטים"
+      many: "%{user_link} - %{count} סקריפטים"
+      other: "%{user_link} - %{count} סקריפטים"
     listing_number_of_scripts: "מספר הסקריפטים"
     listing_new_scripts: "סקריפטים חדשים"
     listing_updated_scripts: "סקריפטים שעודכנו"
     listing_registration_date: "תאריך הרשמה"
     listing_title: "משתמשים"
     search_placeholder: "חפש משתמשים"
+    show_ads_description: "תמוך ב-%{site_name} על-ידי אפשור פרסומות"
     show_sensitive_description: "הראה סקריפטים עם תוכן למבוגרים"
+    preferred_markup_description: "ישומש עבור סקריפטים ופוסטים חדשים."
     approve_redistribution_true: "אני מסכים לכך שהסקריפטים שלי יפורסמו במקום נוסף"
     approve_redistribution_false: "אני לא רוצה שהסקריפטים שלי יפורסמו במקומות נוספים"
+    greasy_fork_scripts_link:
+      one: "ל-%{user_name} יש גם סקריפט %{count} ב-GreasyFork"
+      two: "ל-%{user_name} יש גם %{count} סקריפטים ב-GreasyFork"
+      many: "ל-%{user_name} יש גם %{count} סקריפטים ב-GreasyFork"
+      other: "ל-%{user_name} יש גם %{count} סקריפטים ב-GreasyFork"
     delete_link: "מחק את המשתמש שלך"
     delete:
+      requires_permanent_deletion: "לפני מחיקת המשתמש שלך, עליך לבקש מחיקה לצמיתות של הסקריפטים הבאים:"
+      password_effect: "לא תוכל יותר להתחבר עם הסיסמא שלך."
+      identities_effect:
+        one: "התחברות דרך %{identities} תגרור יצירת משתמש חדש."
+        two: "התחברות דרך %{identities} תגרור יצירת משתמש חדש."
+        many: "התחברות דרך %{identities} תגרור יצירת משתמש חדש."
+        other: "התחברות דרך %{identities} תגרור יצירת משתמש חדש."
       scripts_effect:
         one: "הסקריפט ה-%{count} שלך ימחק."
         two: "%{count} הסקריפטים שלך ימחקו."
         many: "%{count} הסקריפטים שלך ימחקו. "
         other: "%{count} הסקריפטים שלך ימחקו."
       submit: "מחק את המשתמש שלך"
+      confirmation_email_sent: "מייל אישור מחיקה נשלח."
+      confirmation_email:
+        subject: "אישור מחיקת משתמש ב-%{site_name}"
       confirmation:
+        confirm: "מחק את '%{user_name}'"
         cancel: "בטל מחיקה"
+        key_mismatch: "לא ניתן למחוק משתמש - המפתחות אינם תואמים."
+        request_expired: "לא ניתן למחוק משתמש - פג תוקף הבקשה."
         cancelled: "מחיקה בוטלה."
         completed: "המשתמש שלך נמחק."
   help:
     installing_user_scripts:
       title: 'איך להתקין סקריפטי משתמש'
+    meta_keys:
+      name: "שם הסקריפט, בכותרת ובקישורים. נחוץ."
+      description: "תיאור של מה הסקריפט עושה. יראה כטקסט מתחת לשם הסקריפט. נחוץ."
+      require_external_script_link_text: "חוקים לקוד הכולל סקריפטים חיצוניים"
     writing_user_scripts:
       title: "איך לכתוב סקריפטי משתמש"
       ask_in_forum_link_text: 'שאל בפורום'
       user_page_link_text: 'דף משתמש'
       post_new_script_link_text: 'העלה סקריפט חדש'
+    external_scripts:
+      title: "תקנות %{site_name} על סקריפטים חיצוניים"
+    site_feedback_link: "דווח על בעיה או שלח רעיון ל-%{site_name} עצמו"
+    credits:
+      title: "קרדיטים"
+      authors_credit: "%{site_name} לא היה אפשרי ללא היוצרים שתורמים סקריפטים."
+      developers_credit: "%{site_name} נכתב על-ידי %{developers_link:אנשים אלו} ועם עזרת כל אלו שדיווחו על תקלות והציעו שיפורים."
+      translators_credit: "%{site_name} תורגם על-ידי %{translators_link:חטיבת תרגום Greasy ב-Transifex}: "
+    help_with_greasymonkey: "עזרו ל-Greasemonkey"
+    contact:
+      title: "צור קשר"
     privacy_policy:
       title: "הצהרת פרטיות"
+  search:
+    script_search:
+      title: "חיפוש סקריפטים"
+    library_search:
+      title: "חיפוש ספריה"
+    code_search:
+      title: "חיפוש קוד"
+    forum_search:
+      title: "חיפוש פורום"
+    user_search:
+      title: "חיפוש משתמש"
+  moderator_logs:
+    date_column: "תאריך"
+    moderator_column: "מנהל"
+    action_column: "פעולה"
+    reason_column: "סיבה"
+    item_script_html: "סקריפט: %{script_link}"
+    item_deleted_script: "סקריפט מחוק %{id}"
+    item_user_html: "משתמש: %{user_link}"
   common:
+    error_preamble: "היו בעיות עם מה שפירסמת..."
     not_found_text: "404- הדף לא קיים"
     not_found_title: "404- הדף לא קיים"
     not_found_link_home: "לך לדף הבית"
     expander_show_more: "הצג עוד"
     expander_show_less: "הצג פחות"
     advertisement_note: פרסום
+    preview_tab: תצודה מקדימה
+    write_tab: כתוב
+    listing_options_title: "אפשרויות חיפוש"
   activerecord:
     attributes:
       user:
         name: "שם"
         profile: "פרופיל"
+        author_email_notification_type_id: "הודעות על דיוני סקריפטים"
         show_ads: "הצג פרסומות"
         show_sensitive: "תוכן למבוגרים"
+        flattr_username: "שם משתמש ב-Flattr"
       script:
         name: "שם"
         description: "תיאור"
         code: "קוד"
+        changelog: "יומן שינויים"
+        type: "סוג הסקריפט"
         additional_info: "מידע נוסף"
         screenshots: "צילומי מסך"
+        screenshot_caption: "תיאור"
+        replaced_by_script_id: "סקריפט חליפי"
+        approve_redistribution: "הפצה מחדש"
+      script_set:
+        name: "שם"
+        description: "תיאור"
+        default_sort: "מיון ברירת מחדל"
+  errors:
+    messages:
+      script_name_same_as_description: "לא ניתן להשתמש באותו השם"
+      cannot_be_self_reference: "לא יכול להיות אותו הסקריפט"
+      cannot_be_deleted_reference: "לא יכול להיות סקריפט מחוק"
+      must_be_greasy_fork_script: "חייב להיות קישור לסקריפט ב-%{site_name}"
+      script_rate_limit: "פרסמת מעבר למגבלה המותרת. נסה שוב מאוחר יותר."
+  opensearch:
+    short_name: "חיפוש ב-%{site_name}"
+    description: "חפש סקריפטי משתמש ב-%{site_name}."
