@@ -31,9 +31,11 @@ body:lang(zh-CN), select:lang(zh-CN), input:lang(zh-CN) {
 body:lang(zh-TW), select:lang(zh-TW), input:lang(zh-TW) {
 	font-family: "Open Sans", "Microsoft JHengHei UI", sans-serif;
 }
-.text-content:lang(he), .script-list:lang(he), .sidebar:lang(he), #script-info:lang(he),
-.text-content:lang(ar), .script-list:lang(ar), .sidebar:lang(ar), #script-info:lang(ar) {
+body:lang(he), body:lang(ar) {
   direction: rtl;
+}
+body:lang(he) #main-header, body:lang(ar) #main-header {
+  direction: ltr;
 }
 
 a {
@@ -736,7 +738,7 @@ form.new_user {
 	background-color: #fff;
 	border: 1px solid #d8dee2;
 	border-radius: 5px;
-	text-align: left;
+	text-align: start;
 }
 
 @media screen and (max-width: 440px) {
