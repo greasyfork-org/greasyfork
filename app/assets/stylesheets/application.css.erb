@@ -828,7 +828,7 @@ form.new_user + a {
 	vertical-align: middle;
 }
 .sidebar-search input[type=search], .home-search input[type=search] {
-	padding-right: 20px;
+	padding-inline-end: 20px;
 }
 .sidebar-search input[type=search] {
 	width: 100%;
@@ -841,12 +841,17 @@ form.new_user + a {
 	right: 0;
 	top: 0;
 	border-color: transparent;
-	padding-left: 0;
-	padding-right: 6px;
+	padding-inline-start: 0;
+	padding-inline-end: 6px;
 	margin-left: 0;
 	margin-right: 0;
 	background: none;
 	opacity: 0.5;
+}
+body:lang(he) .sidebar-search input[type=submit], body:lang(he) .home-search input[type=submit],
+body:lang(ar) .sidebar-search input[type=submit], body:lang(ar) .home-search input[type=submit] {
+  left: 0;
+  right: auto;
 }
 
 @media screen and (max-width: 680px) {
