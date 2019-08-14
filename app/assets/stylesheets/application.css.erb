@@ -34,8 +34,14 @@ body:lang(zh-TW), select:lang(zh-TW), input:lang(zh-TW) {
 body:lang(he), body:lang(ar) {
   direction: rtl;
 }
+:not(:lang(he)):not(:lang(ar)) {
+  direction: ltr;
+}
 body:lang(he) #main-header, body:lang(ar) #main-header {
   direction: ltr;
+}
+pre, code {
+  direction: ltr !important;
 }
 
 a {

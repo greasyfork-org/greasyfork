@@ -102,7 +102,7 @@ if !localized_additional_info.nil? || !@script_version.screenshots.empty? %>
   <div id="additional-info">
     <h3><%=t('scripts.additional_info')%></h3>
     <% if !localized_additional_info.nil? %>
-      <div class="script-author-description">
+      <div class="script-author-description" lang="<%= localized_additional_info.locale.code %>">
         <%=format_user_text(localized_additional_info.attribute_value, localized_additional_info.value_markup)%>
       </div>
     <% end %>
