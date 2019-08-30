@@ -343,6 +343,36 @@ END
     assert_not_empty script_version.errors[:code]
   end
 
+  test 'JSON is not valid' do
+    script = get_valid_script
+    script.authors.clear
+    script.authors.build(user: User.find(1))
+    script_version = script.script_versions.first
+    script_version.code = <<~END
+      {
+        "this": "is json"
+      }
+    END
+    assert !script_version.valid?
+    assert_not_empty script_version.errors[:code]
+  end
+
+  test 'JSON is valid for libraries' do
+    js = <<~END
+      {
+        "this": "is json"
+      }
+    END
+    sv = ScriptVersion.new
+    sv.code = js
+    script = Script.find(13)
+    script.script_type_id = 3
+    sv.script = script
+    sv.calculate_all(script.description)
+    script.apply_from_script_version(sv)
+    assert sv.valid?, sv.errors[:code]
+  end
+
   test 'update code with changing version' do
     script = Script.find(3)
     assert script.valid? and script.script_versions.length == 1 and script.script_versions.first.valid?

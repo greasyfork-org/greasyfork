@@ -51,6 +51,15 @@ class ScriptVersion < ApplicationRecord
     next unless record.new_record?
     js = JsChecker.new(value)
     unless js.check
+      # JSON is OK for libraries
+      if record.script.library?
+        begin
+          JSON.parse(value)
+          next
+        rescue JSON::ParserError
+          # Not valid, fall through
+        end
+      end
       js.errors.each do |type, message|
         record.errors.add(:code, "contains errors: #{message}")
       end
