@@ -110,6 +110,17 @@ when ScriptReport::TYPE_UNAUTHORIZED_CODE %>
         <%= label_tag 'Delete script' %>
       </div>
       <p>Delete the script if it's breaking the rules.</p>
+
+      <% banned_users, users_to_ban = @script_report.script.users.partition(&:banned) %>
+      <% if users_to_ban.any? %>
+        <p>
+          <label for="banned">Ban <%= users_to_ban.map { |u| link_to(u.name, u) }.to_sentence.html_safe %>?</label> <input type="checkbox" id="banned" name="banned" value="1">
+        </p>
+      <% end %>
+      <% if banned_users.any? %>
+        <p>(<%= banned_users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> already banned.)</p>
+      <% end %>
+
       <%= f.submit 'Delete script' %>
     <% end %>
 

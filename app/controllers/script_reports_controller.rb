@@ -77,6 +77,7 @@ class ScriptReportsController < ApplicationController
     @script_report.update(resolved: true)
     ScriptReportMailer.report_upheld_reporter(@script_report, is_author, site_name).deliver_later
     ScriptReportMailer.report_upheld_offender(@script_report, site_name).deliver_later if !is_author
+    @script.ban_all_authors!(moderator: current_user, reason: "In response to report #{@script_report.id}") if params[:banned]
     flash[:notice] = 'Script has been deleted.'
     redirect_to root_path
   end

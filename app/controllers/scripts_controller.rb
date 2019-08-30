@@ -389,18 +389,7 @@ class ScriptsController < ApplicationController
 			ma.reason = params[:reason]
 			@script.delete_reason = params[:reason]
 			ma.save!
-			if params[:banned]
-				@script.users.each do |user|
-					ma_ban = ModeratorAction.new
-					ma_ban.moderator = current_user
-					ma_ban.user = user
-					ma_ban.action = 'Ban'
-					ma_ban.reason = params[:reason]
-					ma_ban.save!
-					user.banned = true
-					user.save!
-				end
-			end
+			@script.ban_all_authors!(moderator: current_user, reason: params[:reason]) if params[:banned]
 		end
 		@script.permanent_deletion_request_date = nil if @script.locked
 		@script.script_delete_type_id = params[:script_delete_type_id]
