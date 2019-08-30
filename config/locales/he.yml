@@ -251,6 +251,7 @@ he:
     unlisted_marker: "(לא-רשום)"
     library_marker: "(ספריה)"
     libraries_title: "ספריות"
+    libraries_description_html: "קיימות ספריות שפורסמו על-ידי משתמשי %{site_name} שתוכל לכלול באמצעות <code>@require</code> בסקריפטים שלך. עבור סוגים  אחרים של ספריות שהינך יכול לכלול באמצעות <code>@require</code>, קרא %{policy_link:את חוקי %{site_name} על <code>@require</code>}."
     by_site_list_title: "סקריפטי משתמש ב-%{site_name}, מקובצים לפי אתר"
     by_site_list_description: "אלו האתרים המושפעים על-ידי הסקריפטים הפופולאריים ביותר. גודל גופן גדול יותר אומר שהסקריפטים יותר פופולאריים."
     by_site_list_filter: "סנן לפי שם אתר:"
@@ -512,6 +513,11 @@ he:
       two: "ל-%{user_name} יש גם %{count} סקריפטים ב-GreasyFork"
       many: "ל-%{user_name} יש גם %{count} סקריפטים ב-GreasyFork"
       other: "ל-%{user_name} יש גם %{count} סקריפטים ב-GreasyFork"
+    update_sync_warning:
+      one: "מוגדר כרגע ששם המשתמש וכתובת המייל שלך יסתנכרנו כאשר אתה מתחבר באמצעות %{providers}. %{edit_sign_in_link:ערוך את שיטות ההתחברות שלך כדי להסיר סנכרון} אם ברצונך לקבוע שם משתמש או מייל אחר לצמיתות."
+      two: "מוגדר כרגע ששם המשתמש וכתובת המייל שלך יסתנכרנו כאשר אתה מתחבר באמצעות %{providers}. %{edit_sign_in_link:ערוך את שיטות ההתחברות שלך כדי להסיר סנכרון} אם ברצונך לקבוע שם משתמש או מייל אחר לצמיתות."
+      many: "מוגדר כרגע ששם המשתמש וכתובת המייל שלך יסתנכרנו כאשר אתה מתחבר באמצעות %{providers}. %{edit_sign_in_link:ערוך את שיטות ההתחברות שלך כדי להסיר סנכרון} אם ברצונך לקבוע שם משתמש או מייל אחר לצמיתות."
+      other: "מוגדר כרגע ששם המשתמש וכתובת המייל שלך יסתנכרנו כאשר אתה מתחבר באמצעות %{providers}. %{edit_sign_in_link:ערוך את שיטות ההתחברות שלך כדי להסיר סנכרון} אם ברצונך לקבוע שם משתמש או מייל אחר לצמיתות."
     delete_link: "מחק את המשתמש שלך"
     delete:
       intro: "מחיקת המשתמש '%{user_name}' ב-%{site_name} יגרום לדברים הבאים:"
@@ -572,7 +578,7 @@ he:
     writing_user_scripts:
       title: "איך לכתוב סקריפטי משתמש"
       content_html: "<p>כתיבת סקריפטי משתמש דורשת ידע ב-JavaScript. ה<a href=\"http://wiki.greasespot.net/Tutorials\">מדריכים בויקי GreaseSpot</a> אמורים להוות קרש קפיצה ל-JavaScript גם באופן כללי וגם באופן בו היא מתקשרת לסקריפטי משתמש. בדיקת סקריפטי משתמש של אחרים יכולה להיות יעילה. ייתכן ותתעניין ב-%{code_rules_link} וב-%{meta_keys_link}. אם אתה רוצה עזרה בפיתוח הסקריפט שלך, הרגש חופשי ל%{ask_in_forum_link}.</p> <p>כדי לפרסם ב-%{site_name}, עליך ליצור משתמש. מ%{user_page_link}, בחר בלינק ל%{post_new_script_link}.</p> "
-      ask_in_forum_link_text: 'שאל בפורום'
+      ask_in_forum_link_text: 'שאול בפורום'
       user_page_link_text: 'דף משתמש'
       post_new_script_link_text: 'העלה סקריפט חדש'
     code_rules:
@@ -618,15 +624,44 @@ he:
       title: "תקנות %{site_name} על סקריפטים חיצוניים"
     script_rewriting:
       title: "איך %{site_name} יכתוב מחדש סקריפטים שפורסמו"
+      content_html: >
+          <p>סקריפטים שמפורסמים ל-%{site_name} יכתבו מחדש בדרכים הבאות:</p><ul>
+
+          <li>תגי ה<code>@updateURL</code>, <code>@installURL</code>, ו-<code>@downloadURL</code>
+          יוסרו, אם קיימים. החוסר בתגים אלו גורם לכך שכל סקריפט שהותקן מ-%{site_name}
+          יעודכן מ-%{site_name}.</li>
+
+          <li>תגי ה-<code>@version</code> ו<code>@namespace</code> יוכנסו אם הם חסרים
+          בסקריפט. תגים אלו נחוצים לעדכון נכון.</li>
+
+          <li>תג ה -<code>@description</code> יוכנס אם הוא חסר בגרסה חדשה של סקריפט
+          והיה קיים בגרסה קודמת.</li>
+
+          <li>ירידת שורות מסוג  CR ו-CRLF יומרו לירידת שורות תקנית/בסגנון-יוניקס.</li>
+
+          </ul>
     site_feedback_link: "דווח על בעיה או שלח רעיון ל-%{site_name} עצמו"
     credits:
       title: "קרדיטים"
       authors_credit: "%{site_name} לא היה אפשרי ללא היוצרים שתורמים סקריפטים."
       developers_credit: "%{site_name} נכתב על-ידי %{developers_link:אנשים אלו} ועם עזרת כל אלו שדיווחו על תקלות והציעו שיפורים."
       translators_credit: "%{site_name} תורגם על-ידי %{translators_link:חטיבת תרגום Greasy ב-Transifex}: "
+      icons_credit: "האייקונים בדיון הם מ-%{vistastylebase} על-ידי %{iconsland}. האייקונים בדפדפן הם מ-%{browserlogos}."
     help_with_greasymonkey: "עזרו ל-Greasemonkey"
     contact:
       title: "צור קשר"
+      content_html: >+
+          <p>קיימות מספר דרכים לדבר על %{site_name} ועל הדברים בו.</p> <p>האם יש לך
+          שאלה או ביקורת על סקריפט מסויים שפורסם באתר? אם כן, פרסם דיון דרך הקישור
+          בחלקת הביקורות בעמוד הסקריפט. יוצרי הסקריפט מקבלים התראות בעמוד המשתמש שלהם
+          על כל דיון על סקריפטים שהם פרסמו.</p> <p>האם יש לך שאלה או ביקורת על %{site_name}
+          עצמו או על פיתוח סקריפטים, או שאתה רוצה שמישהו יכתוב עבורך סקריפט? %{forum_link:פרסום
+          בפורום} ייתן לך את הקהל הרחב ביותר לדיון שלך.</p> <p>האם יש לך דיווח על
+          תקלה או רעיון שלם ומגובש ל-%{site_name} עצמו (ולא לסקריפט מסויים <em>שפורסם</em>
+          ב-%{site_name}?%{github_link:פרסם אותו בעמוד ה-GitHub.}</p> <p>האם יש לך
+          שאלה פרטית או ביקורת שברצונך שרק המנהלים יראו? %{admin_email_link:שלח מייל.}
+          </p>
+
     privacy_policy:
       title: "הצהרת פרטיות"
   search:
@@ -635,6 +670,7 @@ he:
       description: "חפש סקריפטים. מחפש בשמות, תיאורים, מידע נוסף ושמות יוצרי הסקריפטים. %{sphinx_link:שפת חיפוש Sphinx מורחבת.}"
     library_search:
       title: "חיפוש ספריה"
+      description: "חפש ספריות. מחפש בשמות, תיאורי, מידע נוסף ושמות יוצרי הספריות. %{sphinx_link:שפת חיפוש Sphinx מורחבת.}"
     code_search:
       title: "חיפוש קוד"
       description: "חפש בקוד הסקריפט. החיפוש לא רגיש לאותיות גדולות, זהו חיפוש טקסט פשוט ללא תווים כלליים."
