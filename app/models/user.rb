@@ -11,7 +11,7 @@ class User < ApplicationRecord
   # Gotta to it this way because you can't pass a parameter to a has_many, and we need it has_many
   # to do eager loading.
   Script.subsets.each do |subset|
-    has_many "#{subset}_listable_scripts".to_sym, -> { listable(subset) }, :class_name => 'Script'
+    has_many "#{subset}_listable_scripts".to_sym, -> { listable(subset) }, class_name: 'Script', through: :authors, source: :script
   end
 
   #this results in a cartesian join when included with the scripts relation
