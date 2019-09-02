@@ -161,7 +161,7 @@ module Webhooks
       info[:scripts] = user.scripts.not_deleted.where(sync_identifier: urls)
 
       # Scripts syncing additional info to this file
-      info[:script_attributes] = LocalizedScriptAttribute.where(sync_identifier: urls).joins(:script).where(scripts: {user_id: user.id})
+      info[:script_attributes] = LocalizedScriptAttribute.where(sync_identifier: urls).joins(script: :authors).where(authors: {user_id: user.id})
     end
   end
 
