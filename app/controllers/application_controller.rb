@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
 	protect_from_forgery with: :exception
 
 	before_action :configure_permitted_parameters, if: :devise_controller?
-	before_action :banned?
+	before_action :banned?, :notify_of_syntax_errors
 
 	include ApplicationHelper
 	include ShowsAds
@@ -303,4 +303,14 @@ protected
 		return script
 	end
 
+	def notify_of_syntax_errors
+		return if current_user.nil?
+		scripts_with_errors = current_user.scripts.not_deleted.where(has_syntax_error: true).load
+		return if scripts_with_errors.none?
+		if scripts_with_errors.count == 1
+			flash[:notice] = "You have a script with syntax errors: #{scripts_with_errors.map{|s| view_context.link_to(s.name, s)}.to_sentence}. This script will be deleted in the future if it is not fixed. Please fix it, or delete it yourself to dismiss this notice.".html_safe
+		else
+			flash[:notice] = "You have #{script_with_errors.count} scripts with syntax errors: #{scripts_with_errors.map{|s| view_context.link_to(s.name, s)}.to_sentence}. These scripts will be deleted in the future if they are not fixed. Please fix them, or delete them yourself to dismiss this notice.".html_safe
+		end
+	end
 end
