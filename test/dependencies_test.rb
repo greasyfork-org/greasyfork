@@ -3,13 +3,13 @@ require 'bundler/audit/scanner'
 
 class DependenciesTest < ActiveSupport::TestCase
 
-  IGNORED_VULERNABILITIES = ['CVE-2015-9284']
+  IGNORED_VULNERABILITIES = ['CVE-2015-9284']
 
   test 'for gem vulnerabilities' do
     Bundler::Audit::Database.update!(quiet: true)
     vulnerabilities = Bundler::Audit::Scanner.new.scan.to_a
 
-    ignored_vulnerabilities, reported_vulnerabilities = vulnerabilities.partition{ |r| IGNORED_VULERNABILITIES.include?(r.advisory.id) }
+    ignored_vulnerabilities, reported_vulnerabilities = vulnerabilities.partition{ |r| IGNORED_VULNERABILITIES.include?(r.advisory.id) }
     if ignored_vulnerabilities.any? && reported_vulnerabilities.none?
       skip "Ignored advisories: #{vulnerability_string(ignored_vulnerabilities)}"
     end
