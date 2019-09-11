@@ -49,18 +49,12 @@ class ScriptVersion < ApplicationRecord
 
   validates_each :code do |record, attr, value|
     next unless record.new_record?
-    js = JsChecker.new(value)
-    unless js.check
-      # JSON is OK for libraries
-      if record.script.library?
-        begin
-          JSON.parse(value)
-          next
-        rescue JSON::ParserError
-          # Not valid, fall through
-        end
-      end
+    js = JsChecker.new(value, allow_json: record.script.library?)
+    if js.check
+      record.script.has_syntax_error = false
+    else
       js.errors.each do |type, message|
+        record.script.has_syntax_error = true
         record.errors.add(:code, "contains errors: #{message}")
       end
     end

@@ -1434,6 +1434,7 @@ CREATE TABLE `scripts` (
   `promoted_script_id` int(11) DEFAULT NULL,
   `adsense_approved` tinyint(1) DEFAULT NULL,
   `page_views` int(11) NOT NULL DEFAULT 0,
+  `has_syntax_error` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `index_scripts_on_delta` (`delta`),
   KEY `index_scripts_on_script_delete_type_id` (`script_delete_type_id`),
@@ -1693,6 +1694,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20190706022139'),
 ('20190714021359'),
 ('20190714234716'),
-('20190902205455');
+('20190902205455'),
+('20190910235346');
 
 

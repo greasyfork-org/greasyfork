@@ -2,8 +2,9 @@ require 'mini_racer'
 
 class JsChecker
   attr_accessor :result
-  def initialize(js)
+  def initialize(js, allow_json: false)
     @js = js
+    @allow_json = allow_json
   end
 
   def check
@@ -22,11 +23,22 @@ class JsChecker
       # Some other error. Since we don't support all the browser objects, we'll let this go.
       self.result = nil
     end
-    self.result == nil
+    self.result = nil if !result.nil? && @allow_json && valid_json?
+    return result == nil
   end
 
   def errors
     return [] if result == nil
     [[:syntax, result]]
+  end
+
+  def valid_json?
+    begin
+      JSON.parse(@js)
+      return true
+    rescue JSON::ParserError
+      # Not valid, fall through
+    end
+    return false
   end
 end
