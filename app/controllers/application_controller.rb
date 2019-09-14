@@ -310,7 +310,7 @@ protected
 		if scripts_with_errors.count == 1
 			flash[:notice] = "You have a script with syntax errors: #{scripts_with_errors.map{|s| view_context.link_to(s.name, s)}.to_sentence}. This script will be deleted in the future if it is not fixed. Please fix it, or delete it yourself to dismiss this notice.".html_safe
 		else
-			flash[:notice] = "You have #{script_with_errors.count} scripts with syntax errors: #{scripts_with_errors.map{|s| view_context.link_to(s.name, s)}.to_sentence}. These scripts will be deleted in the future if they are not fixed. Please fix them, or delete them yourself to dismiss this notice.".html_safe
+			flash[:notice] = "You have #{scripts_with_errors.count} scripts with syntax errors: #{scripts_with_errors.map{|s| view_context.link_to(s.name, s)}.to_sentence}. These scripts will be deleted in the future if they are not fixed. Please fix them, or delete them yourself to dismiss this notice.".html_safe
 		end
 	end
 end
