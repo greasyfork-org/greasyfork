@@ -30,6 +30,7 @@
                         <option value="de" {if $locale == 'de'}selected{/if}>Deutsch (de)</option>
                         <option value="el" {if $locale == 'el'}selected{/if}>Ελληνικά (el)</option>
                         <option value="en" {if $locale == 'en'}selected{/if}>English (en)</option>
+                        <option value="eo" {if $locale == 'eo'}selected{/if}>Esperanto (eo)</option>
                         <option value="es" {if $locale == 'es'}selected{/if}>Español (es)</option>
                         <option value="fi" {if $locale == 'fi'}selected{/if}>Suomi (fi)</option>
                         <option value="fr" {if $locale == 'fr'}selected{/if}>Français (fr)</option>
@@ -47,6 +48,7 @@
                         <option value="ro" {if $locale == 'ro'}selected{/if}>Română (ro)</option>
                         <option value="ru" {if $locale == 'ru'}selected{/if}>Русский (ru)</option>
                         <option value="sk" {if $locale == 'sk'}selected{/if}>Slovenčina (sk)</option>
+                        <option value="sr" {if $locale == 'sr'}selected{/if}>srpski (sr)</option>
                         <option value="sv" {if $locale == 'sv'}selected{/if}>Svenska (sv)</option>
                         <option value="th" {if $locale == 'th'}selected{/if}>ภาษาไทย (th)</option>
                         <option value="tr" {if $locale == 'tr'}selected{/if}>Türkçe (tr)</option>

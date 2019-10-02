@@ -895,7 +895,7 @@ CREATE TABLE `authors` (
   KEY `fk_rails_46e884287b` (`user_id`),
   CONSTRAINT `fk_rails_46e884287b` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_rails_899bcb69f5` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=68678 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=68680 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `browsers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -987,7 +987,7 @@ CREATE TABLE `delayed_jobs` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `delayed_jobs_priority` (`priority`,`run_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=102945 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=111340 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `disallowed_attributes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1105,7 +1105,7 @@ CREATE TABLE `localized_script_attributes` (
   PRIMARY KEY (`id`),
   KEY `index_localized_script_attributes_on_script_id` (`script_id`),
   KEY `index_localized_script_attributes_on_locale_id` (`locale_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=946522 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=946526 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `localized_script_version_attributes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1122,7 +1122,7 @@ CREATE TABLE `localized_script_version_attributes` (
   KEY `index_localized_script_version_attributes_on_script_version_id` (`script_version_id`),
   KEY `index_localized_script_version_attributes_on_locale_id` (`locale_id`),
   CONSTRAINT `fk_rails_5dffd65780` FOREIGN KEY (`script_version_id`) REFERENCES `script_versions` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=201055 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=201059 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `moderator_actions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1225,7 +1225,7 @@ CREATE TABLE `script_codes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=822744 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED;
+) ENGINE=InnoDB AUTO_INCREMENT=822747 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `script_delete_types`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1388,7 +1388,7 @@ CREATE TABLE `script_versions` (
   PRIMARY KEY (`id`),
   KEY `index_script_versions_on_script_id` (`script_id`),
   CONSTRAINT `fk_script_versions_script_id` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=680844 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=680850 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `scripts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1442,7 +1442,7 @@ CREATE TABLE `scripts` (
   KEY `fk_rails_f98f8b875c` (`promoted_script_id`),
   KEY `index_scripts_on_promoted` (`promoted`),
   CONSTRAINT `fk_rails_f98f8b875c` FOREIGN KEY (`promoted_script_id`) REFERENCES `scripts` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=380539 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=380541 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `sensitive_sites`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1695,6 +1695,8 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20190714021359'),
 ('20190714234716'),
 ('20190902205455'),
-('20190910235346');
+('20190910235346'),
+('20191002004430'),
+('20191002005748');
 
 
