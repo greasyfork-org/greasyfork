@@ -29,4 +29,9 @@ class Locale < ApplicationRecord
 		return self.where(['code like ?', c + '-%']).order([:ui_available, :code])
 	end
 
+	def has_scripts?(script_subset)
+		Rails.cache.fetch("locale_has_scripts/#{code}/#{script_subset}") do
+			Script.listable(script_subset).joins(:localized_attributes).where(locale_id: id).any?
+		end
+	end
 end

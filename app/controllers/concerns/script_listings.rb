@@ -23,11 +23,14 @@ module ScriptListings
             {}
         end
 
-        if params[:filter_locale] == '1'
-          @current_locale_filter = Locale.find_by(code: I18n.locale)
-          with[:locale] = @current_locale_filter.id
-        else
-          @offer_filtered_results_for_locale = Locale.find_by(code: I18n.locale)
+        locale = Locale.find_by(code: I18n.locale)
+        if locale.has_scripts?(script_subset)
+          if params[:filter_locale] == '0'
+            @offer_filtered_results_for_locale = locale
+          else
+            @current_locale_filter = locale
+            with[:locale] = @current_locale_filter.id
+          end
         end
 
         with[:script_type_id] = 1

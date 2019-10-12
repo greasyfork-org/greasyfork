@@ -24,9 +24,9 @@
     <% end %>
 
     <% if @current_locale_filter %>
-      <p><%=it('scripts.listing_remove_locale_filter', language: @current_locale_filter.best_name, remove_filter_link: current_path_with_params(filter_locale: nil))%></p>
+      <p><%=it('scripts.listing_remove_locale_filter', language: @current_locale_filter.best_name, remove_filter_link: current_path_with_params(filter_locale: '0'))%></p>
     <% elsif @offer_filtered_results_for_locale %>
-      <p><%=it('scripts.listing_set_locale_filter', language: @offer_filtered_results_for_locale.best_name, set_filter_link: current_path_with_params(filter_locale: 1))%></p>
+      <p><%=it('scripts.listing_set_locale_filter', language: @offer_filtered_results_for_locale.best_name, set_filter_link: current_path_with_params(filter_locale: nil))%></p>
     <% end %>
 
     <% if @scripts.empty? %>
