@@ -1,35 +1,84 @@
 eo:
   layouts:
     application:
+      script_list: "Skriptoj"
       forum: "Forumo"
       help: "Helpo"
+      sign_in: "Ensaluti"
       submenu: "Pli"
+      libraries: "Bibliotekoj"
   scripts:
+    created_date: "Kreita"
+    updated_date: "Ĝisdatigita"
+    author_name: "Aŭtoro"
+    version_number: "Versio"
+    no_license: "N/A"
+    applies_to_all: "Ĉiuj retejoj"
+    additional_info: "Priskribo de aŭtoro"
+    install: "Instali tiun ĉi skripton"
+    install_help: "?"
     install_help_title: "Kiel instali"
+    deleted_notice: "Tiu ĉi skripto estas forigita"
     info_page: "Informoj"
-    delete_page: "Forigu"
+    history_page: "Historio"
+    update_page: "Ĝisdatigi"
+    delete_page: "Forigi"
+    history_all_changes_link: "Montri ĉiujn versiojn"
+    stats_daily_installs_install_count_column_heading: "Instaloj"
+    stats_no_data: "N/A"
     listing_sort_name: "Nomo"
+    listing_filter_by_site_disable: "Ĉiuj"
+    listing_filter_by_site_all_sites: "(Ĉiuj retejoj)"
     listing_filter_by_site_more_sites: "Pli..."
+    listing_no_scripts: "Neniuj skriptoj trovita."
+    listing_created_feed: "Novaj skriptoj"
+    listing_updated_feed: "Ĝisdatigitaj Skriptoj"
+    listing_none: "(Neniu)"
+    screenshots_add: "Aldoni:"
+    screenshots_remove: "Forigi"
+    diff_old_version: "Malnova:"
+    diff_new_version: "Nova:"
     adult_marker: "(Plenkreska)"
     deleted_marker: "(Forigita)"
+    locked_marker: "(Ŝlosita)"
     remove_author:
-      remove_button: "Forigu"
+      remove_button: "Forigi"
   script_sets:
-    save: "Konservu"
+    save: "Konservi"
+  home:
+    welcome: "Bonvenon al %{site_name}, retejo por uzantaj skriptoj."
+    sleazy_welcome: "Bonvenon al %{site_name}, retejo por plenkreskaj uzantaj skriptoj."
   users:
+    script_list: "Skriptoj"
+    deleted_script_list: "Forigitaj Skriptoj"
     edit_sign_in_password: "Pasvorto"
-    password_removed: "Pasvorton foriginta"
-    remove_external_sign_in: "Forigu"
+    password_removed: "Pasvorto forigita"
+    remove_external_sign_in: "Forigi"
     listing_title: "Uzantoj"
   help:
     writing_user_scripts:
       ask_in_forum_link_text: 'Demandu en la forumo'
     contact:
-      title: "Kontaktu iun"
+      title: "Kontakti iun"
+  moderator_logs:
+    reason_column: "Kialo"
+    item_user_html: "Uzanto: %{user_link}"
   common:
-    not_found_link_home: "Hejmen"
-    write_tab: Skribu
+    not_found_text: "404 - Paĝo ne trovita."
+    not_found_title: "404 - Paĝo ne trovita."
+    not_found_link_home: "Hejmen."
+    expander_show_more: "Montri pli"
+    expander_show_less: "Montri malpli"
+    write_tab: Skribi
   activerecord:
     attributes:
       user:
         name: "Nomo"
+      script:
+        name: "Nomo"
+        description: "Priskribo"
+        approve_redistribution: "Redisdonado"
+  errors:
+    messages:
+      cannot_be_self_reference: "ne povas esti la sama skripto"
+      cannot_be_deleted_reference: "ne povas esti forigita skripto"
