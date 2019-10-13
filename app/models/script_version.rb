@@ -1,6 +1,7 @@
 require 'uri'
 require 'localizing_model'
 require 'js_checker'
+require 'js_parser'
 
 class ScriptVersion < ApplicationRecord
   include LocalizingModel
@@ -30,7 +31,7 @@ class ScriptVersion < ApplicationRecord
 
   attr_accessor :unauthorized_original
   validates_each(:code, :allow_nil => true, :allow_blank => true) do |record, attr, value|
-    meta = ScriptVersion.parse_meta(value)
+    meta = record.parser_class.parse_meta(value)
 
     ScriptVersion.disallowed_codes_used_for_code(value).each do |dc|
       if value =~ Regexp.new(dc.pattern)
@@ -91,7 +92,7 @@ class ScriptVersion < ApplicationRecord
   # Additional info where no @name for that locale exists. This is OK if the script locale matches, though.
   validate do |record|
     additional_info_locales = localized_attributes_for('additional_info').select{|la|!la.attribute_default}.map{|la|la.locale.nil? ? script.locale : la.locale}.select{|l| !l.nil?}.uniq
-    meta_keys = ScriptVersion.parse_meta(code)
+    meta_keys = record.parser_class.parse_meta(code)
     additional_info_locales.each{|l|
       record.errors[:base] << I18n.t('scripts.localized_additional_info_with_no_name', {:locale_code => l.code}) if !meta_keys.include?('name:' + l.code) and l != script.locale
     }
@@ -155,7 +156,7 @@ class ScriptVersion < ApplicationRecord
     previous_namespace = get_meta_from_previous('namespace', true)
     return false if !previous_namespace.nil? and !previous_namespace.empty?
 
-    meta = ScriptVersion.parse_meta(code)
+    meta = parser_class.parse_meta(code)
     # handled elsewhere
     return false if meta.nil?
 
@@ -168,7 +169,7 @@ class ScriptVersion < ApplicationRecord
     # exempt scripts that are (being) deleted as well as libraries
     return false if !script.nil? and (script.deleted? or script.library?)
 
-    meta = ScriptVersion.parse_meta(code)
+    meta = parser_class.parse_meta(code)
     # handled elsewhere
     return false if meta.nil?
 
@@ -308,7 +309,7 @@ class ScriptVersion < ApplicationRecord
 
   def calculate_all(previous_description = nil)
     normalize_code
-    meta = ScriptVersion.parse_meta(code)
+    meta = parser_class.parse_meta(code)
     if meta.has_key?('version')
       self.version = meta['version'].first
     else
@@ -328,7 +329,7 @@ class ScriptVersion < ApplicationRecord
   end
 
   def get_rewritten_meta_block
-    ScriptVersion.get_meta_block(rewritten_code)
+    parser_class.get_meta_block(rewritten_code)
   end
 
   def get_blanked_code
@@ -336,7 +337,7 @@ class ScriptVersion < ApplicationRecord
   end
 
   def self.get_blanked_code(rewritten_code)
-    c = ScriptVersion.get_meta_block(rewritten_code)
+    c = JsParser.get_meta_block(rewritten_code)
     return nil if c.nil?
     current_version = ScriptVersion.get_first_meta(c, 'version')
     return ScriptVersion.inject_meta_for_code(c, {:description => 'This script was deleted from Greasy Fork, and due to its negative effects, it has been automatically removed from your browser.', :version => ScriptVersion.get_next_version(current_version), :require => nil, :icon => nil, :resource => nil})
@@ -373,7 +374,7 @@ class ScriptVersion < ApplicationRecord
 
   # Inserts, changes, or deletes meta values in the current code and returns the entire code
   def self.inject_meta_for_code(c, replacements, additions_if_missing = {})
-    meta_block = ScriptVersion.get_meta_block(c)
+    meta_block = JsParser.get_meta_block(c)
     return nil if meta_block.nil?
 
     # handle strings or symbols as the keys
@@ -411,7 +412,7 @@ class ScriptVersion < ApplicationRecord
       meta_lines << close_meta
     end
 
-    code_blocks = ScriptVersion.get_code_blocks(c)
+    code_blocks = JsParser.get_code_blocks(c)
     return code_blocks[0] + meta_lines.join("\n") + code_blocks[1]
   end
 
@@ -420,7 +421,7 @@ class ScriptVersion < ApplicationRecord
   # - :domain - boolean - is text a domain?
   # - :tld_extra - boolean - is this extra entries added because of .tld?
   def calculate_applies_to_names
-    meta = ScriptVersion.parse_meta(code)
+    meta = parser_class.parse_meta(code)
     patterns = []
     meta.each { |k, v| patterns.concat(v) if ['include', 'match'].include?(k) }
 
@@ -552,46 +553,9 @@ class ScriptVersion < ApplicationRecord
     self.code = code.gsub("\r\n", "\n").gsub("\r", "\n")
   end
 
-  # Returns the meta for this script in a hash of key to array of values
-  def self.parse_meta(c)
-    meta = {}
-    meta_block = ScriptVersion.get_meta_block(c)
-    return meta if meta_block.nil?
-    # can these be multiline?
-    meta_block.split("\n").each do |meta_line|
-      meta_match = /\/\/\s+@([a-zA-Z\:\-]+)\s+(.*)/.match(meta_line)
-      next if meta_match.nil?
-      key = meta_match[1].strip
-      value = meta_match[2].strip
-      if meta.has_key?(key)
-        meta[key] << value
-      else
-        meta[key] = [value]
-      end
-    end
-    return meta
-  end
-
-  def self.get_meta_block(c)
-    return nil if c.nil?
-    start_block = c.index(@@meta_start_comment)
-    return nil if start_block.nil?
-    end_block = c.index(@@meta_end_comment, start_block)
-    return nil if end_block.nil?
-    return c[start_block..end_block+@@meta_end_comment.length]
-  end
-
-  # Returns a two-element array: code before the meta block, code after
-  def self.get_code_blocks(c)
-    meta_start = c.index(@@meta_start_comment)
-    return [c, ""] if meta_start.nil?
-    meta_end = c.index(@@meta_end_comment, meta_start) + @@meta_end_comment.length
-    return [(meta_start == 0 ? '' : c[0..meta_start-1]), c[meta_end..c.length]]
-  end
-
   def disallowed_requires_used
     r = []
-    meta = ScriptVersion.parse_meta(code)
+    meta = parser_class.parse_meta(code)
     return r if !meta.has_key?('require')
     allowed_requires = AllowedRequire.all
     meta['require'].each do |script_url|
@@ -601,7 +565,7 @@ class ScriptVersion < ApplicationRecord
   end
 
   def disallowed_codes_used
-    return ScriptVersion.disallowed_codes_used_for_code(self.code)
+    return self.class.disallowed_codes_used_for_code(self.code)
   end
 
   def self.disallowed_codes_used_for_code(c)
@@ -631,14 +595,14 @@ class ScriptVersion < ApplicationRecord
     return nil if script.nil?
     previous_script_version = script.get_newest_saved_script_version
     return nil if previous_script_version.nil?
-    previous_meta = ScriptVersion.parse_meta(use_rewritten ? previous_script_version.rewritten_code : previous_script_version.code)
+    previous_meta = parser_class.parse_meta(use_rewritten ? previous_script_version.rewritten_code : previous_script_version.code)
     return nil if previous_meta.nil?
     return previous_meta[key]
   end
 
   # Returns the first meta value matching the passed code, or nil
   def self.get_first_meta(c, meta_name)
-    meta = ScriptVersion.parse_meta(c)
+    meta = JsParser.parse_meta(c)
     return meta[meta_name].first if meta.has_key?(meta_name)
     return nil
   end
@@ -681,13 +645,12 @@ class ScriptVersion < ApplicationRecord
     return la.value_markup
   end
 
+  def parser_class
+    return JsParser if script.language == 'js'
+    raise 'Unknown language'
+  end
+
   private
-
-  # handled by script
-  #@@required_meta = ['name', 'description']
-
-  @@meta_start_comment = '// ==UserScript=='
-  @@meta_end_comment = '// ==/UserScript=='
 
   @@applies_to_all_patterns = ['http://*', 'https://*', 'http://*/*', 'https://*/*', 'http*://*', 'http*://*/*', '*', '*://*', '*://*/*', 'http*']
 
@@ -708,5 +671,4 @@ class ScriptVersion < ApplicationRecord
       [match_array[1].to_i, match_array[2], match_array[3].to_i, match_array[4]]
     }.flatten
   end
-
 end

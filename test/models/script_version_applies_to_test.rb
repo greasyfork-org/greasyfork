@@ -4,7 +4,7 @@ class ScriptVersionAppliesToTest < ActiveSupport::TestCase
 
 	def get_applies_to(includes)
 		js = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n" + includes.map {|i| '// @include ' + i}.join("\n") + "\n// ==/UserScript==\nvar foo = \"bar\";"
-		sv = ScriptVersion.new
+		sv = ScriptVersion.new(script: Script.new(language: 'js'))
 		sv.code = js
 		return sv.calculate_applies_to_names
 	end

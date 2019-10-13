@@ -208,7 +208,7 @@ class Script < ActiveRecord::Base
     # Delete any that are gone
     original_script_las.each(&:mark_for_destruction)
 
-    meta = ScriptVersion.parse_meta(script_version.rewritten_code)
+    meta = JsParser.parse_meta(script_version.rewritten_code)
 
     ['name', 'description'].each{|key| update_localized_attribute(meta, key)}
 
