@@ -26,7 +26,8 @@ CREATE TABLE `GDN_AccessToken` (
   PRIMARY KEY (`AccessTokenID`),
   UNIQUE KEY `UX_AccessToken` (`Token`),
   KEY `IX_AccessToken_UserID` (`UserID`),
-  KEY `IX_AccessToken_Type` (`Type`)
+  KEY `IX_AccessToken_Type` (`Type`),
+  KEY `IX_AccessToken_DateExpires` (`DateExpires`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `GDN_Activity`;
@@ -215,8 +216,9 @@ CREATE TABLE `GDN_Comment` (
   KEY `FK_Comment_InsertUserID` (`InsertUserID`),
   KEY `IX_Comment_1` (`DiscussionID`,`DateInserted`),
   KEY `IX_Comment_DateInserted` (`DateInserted`),
+  KEY `IX_Comment_Score` (`Score`),
   FULLTEXT KEY `TX_Comment` (`Body`)
-) ENGINE=MyISAM AUTO_INCREMENT=67721 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=67722 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `GDN_Conversation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -308,7 +310,7 @@ CREATE TABLE `GDN_Discussion` (
   KEY `IX_Discussion_CategoryInserted` (`CategoryID`,`DateInserted`),
   KEY `index_GDN_Discussion_on_ScriptID` (`ScriptID`),
   FULLTEXT KEY `TX_Discussion` (`Name`,`Body`)
-) ENGINE=MyISAM AUTO_INCREMENT=54317 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=54318 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `GDN_Draft`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -403,7 +405,7 @@ CREATE TABLE `GDN_Log` (
   KEY `IX_Log_Operation` (`Operation`),
   KEY `IX_Log_RecordUserID` (`RecordUserID`),
   KEY `IX_Log_DateInserted` (`DateInserted`)
-) ENGINE=InnoDB AUTO_INCREMENT=24307 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24312 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `GDN_Media`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -413,6 +415,7 @@ CREATE TABLE `GDN_Media` (
   `Name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Type` varchar(128) COLLATE utf8mb4_unicode_ci NOT NULL,
   `Size` int(11) NOT NULL,
+  `Active` tinyint(4) NOT NULL DEFAULT 1,
   `ImageWidth` smallint(5) unsigned DEFAULT NULL,
   `ImageHeight` smallint(5) unsigned DEFAULT NULL,
   `ThumbWidth` smallint(5) unsigned DEFAULT NULL,
@@ -425,7 +428,8 @@ CREATE TABLE `GDN_Media` (
   `ForeignID` int(11) DEFAULT NULL,
   `ForeignTable` varchar(24) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`MediaID`),
-  KEY `IX_Media_Foreign` (`ForeignID`,`ForeignTable`)
+  KEY `IX_Media_Foreign` (`ForeignID`,`ForeignTable`),
+  KEY `IX_Media_InsertUserID` (`InsertUserID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7682 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `GDN_Message`;
@@ -475,6 +479,7 @@ CREATE TABLE `GDN_Permission` (
   `Garden.AdvancedNotifications.Allow` tinyint(4) NOT NULL DEFAULT 0,
   `Garden.Community.Manage` tinyint(4) NOT NULL DEFAULT 0,
   `Garden.Tokens.Add` tinyint(4) NOT NULL DEFAULT 0,
+  `Garden.Uploads.Add` tinyint(4) NOT NULL DEFAULT 0,
   `Conversations.Moderation.Manage` tinyint(4) NOT NULL DEFAULT 0,
   `Conversations.Conversations.Add` tinyint(4) NOT NULL DEFAULT 0,
   `Vanilla.Discussions.View` tinyint(4) NOT NULL DEFAULT 0,
@@ -847,6 +852,60 @@ CREATE TABLE `GDN_UserRole` (
   `RoleID` int(11) NOT NULL,
   PRIMARY KEY (`UserID`,`RoleID`),
   KEY `IX_UserRole_RoleID` (`RoleID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `GDN_contentDraft`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `GDN_contentDraft` (
+  `draftID` int(11) NOT NULL AUTO_INCREMENT,
+  `recordType` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `recordID` int(11) DEFAULT NULL,
+  `parentRecordID` int(11) DEFAULT NULL,
+  `attributes` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `insertUserID` int(11) NOT NULL,
+  `dateInserted` datetime NOT NULL,
+  `updateUserID` int(11) NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  PRIMARY KEY (`draftID`),
+  KEY `IX_contentDraft_recordType` (`recordType`),
+  KEY `IX_contentDraft_insertUserID` (`insertUserID`),
+  KEY `IX_contentDraft_record` (`recordType`,`recordID`),
+  KEY `IX_contentDraft_parentRecord` (`recordType`,`parentRecordID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `GDN_reaction`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `GDN_reaction` (
+  `reactionID` int(11) NOT NULL AUTO_INCREMENT,
+  `reactionOwnerID` int(11) NOT NULL,
+  `recordID` int(11) NOT NULL,
+  `reactionValue` int(11) NOT NULL,
+  `insertUserID` int(11) NOT NULL,
+  `dateInserted` datetime NOT NULL,
+  PRIMARY KEY (`reactionID`),
+  KEY `IX_reaction_reactionOwnerID` (`reactionOwnerID`),
+  KEY `IX_reaction_insertUserID` (`insertUserID`),
+  KEY `IX_reaction_record` (`reactionOwnerID`,`recordID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `GDN_reactionOwner`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `GDN_reactionOwner` (
+  `reactionOwnerID` int(11) NOT NULL AUTO_INCREMENT,
+  `ownerType` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `reactionType` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `recordType` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `insertUserID` int(11) NOT NULL,
+  `dateInserted` datetime NOT NULL,
+  PRIMARY KEY (`reactionOwnerID`),
+  UNIQUE KEY `UX_reactionOwner` (`ownerType`,`reactionType`,`recordType`),
+  KEY `IX_reactionOwner_ownerType` (`ownerType`),
+  KEY `IX_reactionOwner_reactionType` (`reactionType`),
+  KEY `IX_reactionOwner_recordType` (`recordType`),
+  KEY `IX_reactionOwner_insertUserID` (`insertUserID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `allowed_requires`;
@@ -1435,6 +1494,7 @@ CREATE TABLE `scripts` (
   `adsense_approved` tinyint(1) DEFAULT NULL,
   `page_views` int(11) NOT NULL DEFAULT 0,
   `has_syntax_error` tinyint(1) NOT NULL DEFAULT 0,
+  `language` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'js',
   PRIMARY KEY (`id`),
   KEY `index_scripts_on_delta` (`delta`),
   KEY `index_scripts_on_script_delete_type_id` (`script_delete_type_id`),
@@ -1697,6 +1757,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20190902205455'),
 ('20190910235346'),
 ('20191002004430'),
-('20191002005748');
+('20191002005748'),
+('20191013004547');
 
 

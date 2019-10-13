@@ -64,6 +64,7 @@ class Script < ActiveRecord::Base
   validates :name, presence: true, if: ->(s) { s.library? }
   validates_presence_of :description, :message => :script_missing_description, :unless => Proc.new {|r| r.deleted? || r.library?}
   validates_presence_of :description, :unless => Proc.new {|r| r.deleted? || !r.library?}
+  validates :language, presence: true, inclusion: %w(js)
 
   validate do |script|
     next if !script.library?
