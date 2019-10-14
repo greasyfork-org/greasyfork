@@ -146,7 +146,7 @@ class ScriptsController < ApplicationController
 
 				# If the request specifies a specific version, the code will never change, so inform the manager not to check for updates.
 				if params[:version].present? && !script.library?
-					user_js_code = ScriptVersion.inject_meta_for_code(user_js_code, downloadURL: 'none')
+					user_js_code = script_version.parser_class.inject_meta(user_js_code, downloadURL: 'none')
 				end
 
 				# Only cache if:
@@ -207,7 +207,7 @@ class ScriptsController < ApplicationController
 		end
 
 		# Strip out some thing that could contain a lot of data (data: URIs). get_blanked_code already does this.
-		meta_js_code = script_info['script_delete_type_id'] == 2 ? ScriptVersion.get_blanked_code(script_info['code']) : ScriptVersion.inject_meta_for_code(JsParser.get_meta_block(script_info['code']), {icon: nil, resource: nil})
+		meta_js_code = script_info['script_delete_type_id'] == 2 ? ScriptVersion.get_blanked_code(script_info['code']) : JsParser.inject_meta(JsParser.get_meta_block(script_info['code']), {icon: nil, resource: nil})
 
 		# Only cache if:
 		# - It's not for a specific version (as the caching does not work with query params)

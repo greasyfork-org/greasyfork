@@ -87,4 +87,94 @@ class JsParserTest < ActiveSupport::TestCase
     END
     assert_equal ["var foo = 'bar';\nfoo.baz();\n", ""], JsParser.get_code_blocks(js)
   end
+
+  test '::inject_meta replace' do
+    js = <<~END
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.0
+      // @namespace http://greasyfork.local/users/1
+      // ==/UserScript==
+      foo.baz();
+    END
+    rewritten_js = JsParser.inject_meta(js, name: 'Something else')
+    expected_js = "// ==UserScript==\n// @name		Something else\n// @description		Unit test.\n// @version 1.0\n// @namespace http://greasyfork.local/users/1\n// ==/UserScript==\nfoo.baz();\n"
+    assert_equal expected_js, rewritten_js
+  end
+
+  test '::inject_meta remove' do
+    js = <<~END
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.0
+      // @namespace http://greasyfork.local/users/1
+      // ==/UserScript==
+      foo.baz();
+    END
+    rewritten_js = JsParser.inject_meta(js, name: nil)
+    expected_js = "// ==UserScript==\n// @description		Unit test.\n// @version 1.0\n// @namespace http://greasyfork.local/users/1\n// ==/UserScript==\nfoo.baz();\n"
+    assert_equal expected_js, rewritten_js
+  end
+
+  test '::inject_meta remove not present' do
+    js = <<~END
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.0
+      // @namespace http://greasyfork.local/users/1
+      // ==/UserScript==
+      foo.baz();
+    END
+    expected_js = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.0\n// @namespace http://greasyfork.local/users/1\n// ==/UserScript==\nfoo.baz();\n"
+    assert_equal expected_js, JsParser.inject_meta(js, updateUrl: nil)
+  end
+
+  test '::inject_meta add' do
+    js = <<~END
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.0
+      // @namespace http://greasyfork.local/users/1
+      // ==/UserScript==
+      foo.baz();
+    END
+    rewritten_js = JsParser.inject_meta(js, updateURL: 'http://example.com')
+    expected_js = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.0\n// @namespace http://greasyfork.local/users/1\n// @updateURL http://example.com\n// ==/UserScript==\nfoo.baz();\n"
+    assert_equal expected_js, rewritten_js
+  end
+
+  test '::inject_meta add if missing is missing' do
+    js = <<~END
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.0
+      // @namespace http://greasyfork.local/users/1
+      // ==/UserScript==
+      foo.baz();
+    END
+    rewritten_js = JsParser.inject_meta(js, {}, { updateURL: 'http://example.com' })
+    expected_js = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.0\n// @namespace http://greasyfork.local/users/1\n// @updateURL http://example.com\n// ==/UserScript==\nfoo.baz();\n"
+    assert_equal expected_js, rewritten_js
+  end
+
+  test '::inject_meta add if missing isnt missing' do
+    js = <<~END
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @updateURL http://example.com
+      // @version 1.0
+      // @namespace http://greasyfork.local/users/1
+      // ==/UserScript==
+      foo.baz();
+    END
+    rewritten_js = JsParser.inject_meta(js, {}, { updateURL: 'http://example.net' })
+    expected_js = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @updateURL http://example.com\n// @version 1.0\n// @namespace http://greasyfork.local/users/1\n// ==/UserScript==\nfoo.baz();\n"
+    assert_equal expected_js, rewritten_js
+  end
 end

@@ -129,4 +129,204 @@ class CssParserTest < ActiveSupport::TestCase
     END
     assert_equal ["@-moz-document domain(\"example.com\") {\n  a {\n    color: red;\n  }\n}\n", ""], CssParser.get_code_blocks(css)
   end
+
+  test '::inject_meta replace' do
+    css = <<~END
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      ==/UserStyle== */
+      
+      @-moz-document domain("example.com") {
+        a {
+          color: red;
+        }
+      }
+    END
+    rewritten_css = CssParser.inject_meta(css, name: 'Something else')
+    expected_css = <<~END
+      /* ==UserStyle==
+      @name        Something else
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      ==/UserStyle== */
+      
+      @-moz-document domain("example.com") {
+        a {
+          color: red;
+        }
+      }
+    END
+    assert_equal expected_css, rewritten_css
+  end
+
+  test '::inject_meta remove' do
+    css = <<~END
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      ==/UserStyle== */
+      
+      @-moz-document domain("example.com") {
+        a {
+          color: red;
+        }
+      }
+    END
+    rewritten_css = CssParser.inject_meta(css, name: nil)
+    expected_css = <<~END
+      /* ==UserStyle==
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      ==/UserStyle== */
+      
+      @-moz-document domain("example.com") {
+        a {
+          color: red;
+        }
+      }
+    END
+    assert_equal expected_css, rewritten_css
+  end
+
+  test '::inject_meta remove not present' do
+    css = <<~END
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      ==/UserStyle== */
+      
+      @-moz-document domain("example.com") {
+        a {
+          color: red;
+        }
+      }
+    END
+    expected_css = <<~END
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      ==/UserStyle== */
+      
+      @-moz-document domain("example.com") {
+        a {
+          color: red;
+        }
+      }
+    END
+    assert_equal expected_css, CssParser.inject_meta(css, updateUrl: nil)
+  end
+
+  test '::inject_meta add' do
+    css = <<~END
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      ==/UserStyle== */
+      
+      @-moz-document domain("example.com") {
+        a {
+          color: red;
+        }
+      }
+    END
+    rewritten_css = CssParser.inject_meta(css, updateURL: 'http://example.com')
+    expected_css = <<~END
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      @updateURL http://example.com
+      ==/UserStyle== */
+      
+      @-moz-document domain("example.com") {
+        a {
+          color: red;
+        }
+      }
+    END
+    assert_equal expected_css, rewritten_css
+  end
+
+  test '::inject_meta add if missing is missing' do
+    css = <<~END
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      ==/UserStyle== */
+      
+      @-moz-document domain("example.com") {
+        a {
+          color: red;
+        }
+      }
+    END
+    rewritten_css = CssParser.inject_meta(css, {}, { updateURL: 'http://example.com' })
+    expected_css = <<~END
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      @updateURL http://example.com
+      ==/UserStyle== */
+      
+      @-moz-document domain("example.com") {
+        a {
+          color: red;
+        }
+      }
+    END
+    assert_equal expected_css, rewritten_css
+  end
+
+  test '::inject_meta add if missing isnt missing' do
+    css = <<~END
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      @updateURL   http://example.net
+      ==/UserStyle== */
+      
+      @-moz-document domain("example.com") {
+        a {
+          color: red;
+        }
+      }
+    END
+    rewritten_css = CssParser.inject_meta(css, {}, { updateURL: 'http://example.net' })
+    expected_css = <<~END
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      @updateURL   http://example.net
+      ==/UserStyle== */
+      
+      @-moz-document domain("example.com") {
+        a {
+          color: red;
+        }
+      }
+    END
+    assert_equal expected_css, rewritten_css
+  end
 end

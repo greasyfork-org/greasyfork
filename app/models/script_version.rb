@@ -340,7 +340,7 @@ class ScriptVersion < ApplicationRecord
     c = JsParser.get_meta_block(rewritten_code)
     return nil if c.nil?
     current_version = ScriptVersion.get_first_meta(c, 'version')
-    return ScriptVersion.inject_meta_for_code(c, {:description => 'This script was deleted from Greasy Fork, and due to its negative effects, it has been automatically removed from your browser.', :version => ScriptVersion.get_next_version(current_version), :require => nil, :icon => nil, :resource => nil})
+    return JsParser.inject_meta(c, { description: 'This script was deleted from Greasy Fork, and due to its negative effects, it has been automatically removed from your browser.', version: ScriptVersion.get_next_version(current_version), :require => nil, icon: nil, resource: nil})
   end
 
   def calculate_rewritten_code(previous_description = nil)
@@ -349,11 +349,11 @@ class ScriptVersion < ApplicationRecord
     backup_namespace = calculate_backup_namespace
     add_if_missing[:namespace] = backup_namespace if !backup_namespace.nil?
     add_if_missing[:description] = previous_description if !previous_description.nil?
-    rewritten_meta = inject_meta({
-                                     :version => version,
-                                     :updateURL => nil,
-                                     :installURL => nil,
-                                     :downloadURL => nil
+    rewritten_meta = parser_class.inject_meta(code, {
+                                     version: version,
+                                     updateURL: nil,
+                                     installURL: nil,
+                                     downloadURL: nil,
                                  }, add_if_missing)
     return nil if rewritten_meta.nil?
     return rewritten_meta
@@ -366,54 +366,6 @@ class ScriptVersion < ApplicationRecord
     return previous_namespace.first unless previous_namespace.nil? or previous_namespace.empty?
     return nil if !add_missing_namespace
     return Rails.application.routes.url_helpers.user_url(:id => script.authors.first.user_id)
-  end
-
-  def inject_meta(replacements, additions_if_missing = {})
-    ScriptVersion.inject_meta_for_code(code, replacements, additions_if_missing)
-  end
-
-  # Inserts, changes, or deletes meta values in the current code and returns the entire code
-  def self.inject_meta_for_code(c, replacements, additions_if_missing = {})
-    meta_block = JsParser.get_meta_block(c)
-    return nil if meta_block.nil?
-
-    # handle strings or symbols as the keys
-    replacement_keys = replacements.keys.map{|s|s.to_s}
-    replacements = replacements.with_indifferent_access
-    additions_if_missing = additions_if_missing.with_indifferent_access
-    # replace any existing values
-    meta_lines = meta_block.split("\n").map do |meta_line|
-      meta_match = /\/\/\s+@([a-zA-Z]+)\s+(.*)/.match(meta_line)
-      next meta_line if meta_match.nil?
-      key = meta_match[1].strip
-      value = meta_match[2].strip
-      additions_if_missing.delete(key)
-      # replace the first one, remove any subsequent ones
-      if replacement_keys.include?(key)
-        if replacements.has_key?(key) and !value.nil?
-          replacement = replacements.delete(key)
-          next nil if replacement.nil?
-          next meta_line.sub(value, replacement)
-        end
-        next nil
-      end
-      next meta_line
-    end
-
-    meta_lines.compact!
-
-    # add new values
-    replacements.update(additions_if_missing)
-    if !replacements.empty?
-      # nils here would indicate a removal that wasn't there, so ignore that
-      new_lines = replacements.delete_if{|k,v|v.nil?}.map { |k, v| "// @#{k} #{v}" }
-      close_meta = meta_lines.pop
-      meta_lines.concat(new_lines)
-      meta_lines << close_meta
-    end
-
-    code_blocks = JsParser.get_code_blocks(c)
-    return code_blocks[0] + meta_lines.join("\n") + code_blocks[1]
   end
 
   # Returns an object with:
