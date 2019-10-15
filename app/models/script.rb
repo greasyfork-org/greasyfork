@@ -64,7 +64,7 @@ class Script < ActiveRecord::Base
   validates :name, presence: true, if: ->(s) { s.library? }
   validates_presence_of :description, :message => :script_missing_description, :unless => Proc.new {|r| r.deleted? || r.library?}
   validates_presence_of :description, :unless => Proc.new {|r| r.deleted? || !r.library?}
-  validates :language, presence: true, inclusion: %w(js)
+  validates :language, presence: true, inclusion: %w(js css)
 
   validate do |script|
     next if !script.library?
@@ -208,7 +208,7 @@ class Script < ActiveRecord::Base
     # Delete any that are gone
     original_script_las.each(&:mark_for_destruction)
 
-    meta = JsParser.parse_meta(script_version.rewritten_code)
+    meta = script_version.parser_class.parse_meta(script_version.rewritten_code)
 
     ['name', 'description'].each{|key| update_localized_attribute(meta, key)}
 

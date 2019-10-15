@@ -84,5 +84,10 @@ class CssParser
       code_blocks = get_code_blocks(c)
       return code_blocks[0] + meta_lines.join("\n") + code_blocks[1]
     end
+
+    def calculate_applies_to_names(code)
+      #TODO
+      []
+    end
   end
 end

@@ -20,6 +20,31 @@ class CreateTest < ApplicationSystemTestCase
     assert_includes(Script.last.users, user)
   end
 
+  test "css script creation" do
+    user = User.first
+    login_as(user, scope: :user)
+    visit new_script_version_url(language: 'css')
+    code = <<~EOF
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @description This is an example
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      ==/UserStyle== */
+      
+      @-moz-document domain("example.com") {
+        a {
+          color: red;
+        }
+      }
+    EOF
+    fill_in 'Code', with: code
+    click_button 'Post script'
+    assert_selector 'h2', text: 'Example UserCSS style'
+    assert_includes(Script.last.users, user)
+  end
+
   test 'blocked email domain' do
     user = User.first
     user.skip_reconfirmation!

@@ -2,6 +2,11 @@ class JsParser
   META_START_COMMENT = '// ==UserScript=='
   META_END_COMMENT = '// ==/UserScript=='
 
+  APPLIES_TO_ALL_PATTERNS = ['http://*', 'https://*', 'http://*/*', 'https://*/*', 'http*://*', 'http*://*/*', '*', '*://*', '*://*/*', 'http*']
+  TLD_EXPANSION = ['com', 'net', 'org', 'de', 'co.uk']
+  DONT_STRIP_TLD_SITES = ['del.icio.us']
+  IP_PATTERN = /^([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}):?[0-9]*$/
+
   class << self
     def get_meta_block(c)
       return nil if c.nil?
@@ -82,6 +87,135 @@ class JsParser
 
       code_blocks = get_code_blocks(c)
       return code_blocks[0] + meta_lines.join("\n") + code_blocks[1]
+    end
+
+    # Returns an object with:
+    # - :text
+    # - :domain - boolean - is text a domain?
+    # - :tld_extra - boolean - is this extra entries added because of .tld?
+    def calculate_applies_to_names(code)
+      meta = parse_meta(code)
+      patterns = []
+      meta.each { |k, v| patterns.concat(v) if ['include', 'match'].include?(k) }
+
+      return [] if patterns.empty?
+      return [] if !(patterns & APPLIES_TO_ALL_PATTERNS).empty?
+
+      applies_to_names = []
+      patterns.each do |p|
+        original_pattern = p
+
+        # regexp - starts and ends with /
+        if p.match(/^\/.*\/$/).present?
+
+          # unescape slashes, then grab between the first slash (start of regexp) and the fourth (after domain)
+          slash_parts = p.gsub(/\\\//, '/').split("/")
+
+          if slash_parts.length < 4
+            # not a full url regexp
+            pre_wildcard = nil
+          else
+            pre_wildcard = slash_parts[1..3].join("/")
+
+            # get rid of escape sequences
+            pre_wildcard.gsub!(/\\(.)/, '\1')
+
+            # start of string
+            pre_wildcard.gsub!(/^\^/, '')
+
+            # https?:
+            pre_wildcard.gsub!(/^https\?:/, 'http:')
+
+            # https*:
+            pre_wildcard.gsub!(/^https\*:/, 'http:')
+
+            # wildcarded subdomain ://.*
+            pre_wildcard.gsub!(/:\/\/\.\*/, '://')
+
+            # remove optional groups
+            pre_wildcard.gsub!(/\([^\)]+\)[\?\*]/, '')
+
+            # if there's weird characters left, it's no good
+            pre_wildcard = nil if /[\[\]\*\{\}\^\+\?\(\)]/.match(pre_wildcard).present?
+          end
+
+        else
+
+          # senseless wildcard before protocol
+          m = p.match(/^\*(https?:.*)/i)
+          p = m[1] if !m.nil?
+
+          # protocol wild-cards
+          p = p.sub(/^\*:/i, 'http:')
+          p = p.sub(/^\*\/\//i, 'http://')
+          p = p.sub(/^http\*:/i, 'http:')
+
+          # skipping the protocol slashes
+          p = p.sub(/^(https?):([^\/])/i, '\1://\2')
+
+          # subdomain wild-cards - http://*.example.com and http://*example.com
+          m = p.match(/^([a-z]+:\/\/)\*\.?([a-z0-9\-]+(?:.[a-z0-9\-]+)+.*)/i)
+          p = m[1] + m[2] if !m.nil?
+
+          # protocol and subdomain wild-cards - *example.com and *.example.com
+          m = p.match(/^\*\.?([a-z0-9\-]+\.[a-z0-9\-]+.*)/i)
+          p = 'http://' + m[1] if !m.nil?
+
+          # protocol and subdomain wild-cards - http*.example.com, http*example.com, http*//example.com
+          m = p.match(/^http\*(?:\/\/)?\.?((?:[a-z0-9\-]+)(?:\.[a-z0-9\-]+)+.*)/i)
+          p = 'http://' + m[1] if !m.nil?
+
+          # tld wildcards - http://example.* - switch to .tld. don't switch if it's an ip address, though
+          m = p.match(/^([a-z]+:\/\/([a-z0-9\-]+(?:\.[a-z0-9\-]+)*\.))\*(.*)/)
+          if !m.nil? && m[2].match(/\A([0-9]+\.){2,}\z/).nil?
+            p = m[1] + 'tld' + m[3]
+            # grab up to the first *
+            pre_wildcard = p.split('*').first
+          else
+            pre_wildcard = p
+          end
+        end
+
+        begin
+          uri = URI(pre_wildcard)
+          if uri.host.nil?
+            applies_to_names << {text: original_pattern, domain: false, tld_extra: false}
+          elsif !uri.host.include?('.') || uri.host.include?('*')
+            # ensure the host is something sane
+            applies_to_names << {text: original_pattern, domain: false, tld_extra: false}
+          else
+            if uri.host.ends_with?('.tld')
+              TLD_EXPANSION.each_with_index do |tld, i|
+                applies_to_names << {text: get_tld_plus_1(uri.host.sub(/tld$/i, tld)), domain: true, tld_extra: i != 0}
+              end
+              # "example.com."
+            elsif uri.host.ends_with?('.')
+              applies_to_names << {text: get_tld_plus_1(uri.host[0, uri.host.length - 1]), domain: true, tld_extra: false}
+            else
+              applies_to_names << {text: get_tld_plus_1(uri.host), domain: true, tld_extra: false}
+            end
+          end
+        rescue ArgumentError
+          Rails.logger.warn "Unrecognized pattern '" + p + "'"
+          applies_to_names << {text: original_pattern, domain: false, tld_extra: false}
+        rescue URI::InvalidURIError
+          Rails.logger.warn "Unrecognized pattern '" + p + "'"
+          applies_to_names << {text: original_pattern, domain: false, tld_extra: false}
+        end
+      end
+      # If there's a tld_extra and a not-tld_extra for the same text, remove the tld_extra
+      applies_to_names.delete_if{|h1| h1[:tld_extra] && applies_to_names.any?{|h2| !h2[:tld_extra] && h1[:text] == h2[:text]}}
+      # Then make sure we're unique
+      return applies_to_names.uniq
+    end
+
+    def get_tld_plus_1(domain)
+      return domain if !domain.include?('.')
+      return domain if !IP_PATTERN.match(domain).nil?
+      return domain if DONT_STRIP_TLD_SITES.include?(domain)
+      return domain if !PublicSuffix.valid?(domain)
+      pd = PublicSuffix.parse(domain)
+      return pd.domain
     end
   end
 end
