@@ -18,7 +18,7 @@ $Definition['RatingBad'] = 'Malbona - la skripto ne funkcias';
 /** Label for the radio button for rating a script "OK" **/
 $Definition['RatingOK'] = 'OK - script works, but has significant issues';
 // Label for the radio button for rating a script "Good"
-$Definition['RatingGood'] = 'Good - script works well';
+$Definition['RatingGood'] = 'Bona - la skripto bone funkcias';
 // Category name for Site Feedback
 $Definition['Categories.general.Name'] = 'Site Feedback';
 // Category description for Site Feedback
