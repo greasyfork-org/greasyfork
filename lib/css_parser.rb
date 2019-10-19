@@ -86,8 +86,27 @@ class CssParser
     end
 
     def calculate_applies_to_names(code)
-      #TODO
-      []
+      # XXX This should be a real parser, whether a gem or custom made. This is not properly handling
+      # comments or stuff inside other strings.
+      matches = []
+      s = StringScanner.new(code)
+      while s.skip_until(/@\-moz\-document/)
+        s.skip(/\s*/)
+        while rule_type = s.scan(/domain|url|url\-prefix|regexp/)
+          s.skip(/\s*\(\s*/)
+          quote = s.scan(/['"]/)
+          if quote
+            ending_pattern = Regexp.new("#{quote}\\s*\\)")
+          else
+            ending_pattern = /\)/
+          end
+          value = s.scan_until(ending_pattern)
+          value = value.sub(Regexp.union(ending_pattern, /\z/), '')
+          matches << {text: value, domain: rule_type == 'domain', tld_extra: false}
+          s.skip(/\s*,\s*/)
+        end
+      end
+      matches.uniq
     end
   end
 end
