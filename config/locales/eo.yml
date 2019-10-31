@@ -47,7 +47,11 @@ eo:
     listing_created_feed: "Novaj skriptoj"
     listing_updated_feed: "Ĝisdatigitaj Skriptoj"
     listing_none: "(Neniu)"
+    listing_set_locale_filter: "Montri rezultojn por ĉiuj lingvoj. %{set_filter_link:Show %{language} results only.}"
+    listing_remove_locale_filter: "Montrante nur rezultojn por %{language} . %{remove_filter_link:Show results for all languages.}"
+    upload_label: "Aŭ alŝuti:"
     warning_potentially_minified_allowed_requires_link: "unu de tiuj lokoj"
+    update_no_sync: "Ĝisdatigi"
     screenshots_add: "Aldoni:"
     screenshots_remove: "Forigi"
     diff_old_version: "Malnova:"
@@ -55,20 +59,29 @@ eo:
     adult_marker: "(Plenkreska)"
     deleted_marker: "(Forigita)"
     locked_marker: "(Ŝlosita)"
+    library_marker: "(Biblioteko)"
     remove_author:
       remove_button: "Forigi"
   script_sets:
+    edit_scripts:
+      heading: "Skriptoj"
+      included_none: "(Neniu)"
+      excluded_none: "(Neniu)"
+    edit_auto_sets:
+      all_scripts_label: "Ĉiuj skriptoj"
     save: "Konservi"
   home:
     welcome: "Bonvenon al %{site_name}, retejo por uzantskriptoj."
     sleazy_welcome: "Bonvenon al %{site_name}, retejo por plenkreskaj uzantskriptoj."
     explain_user_scripts_heading: "Kiuj estas uzantskriptoj"
   users:
+    sign_in_with: "Ensaluti per %{provider}"
     sign_in_password: "Ensaluti per pasvorto"
     sign_in_email_used_sign_in_link: "ensaluti"
     discussions_on_scripts_none: "Neniu jam!"
     script_list: "Skriptoj"
     deleted_script_list: "Forigitaj Skriptoj"
+    sign_out: "Adiaŭi"
     edit_sign_in_password: "Pasvorto"
     update_password: "Ĝisdatigi pasvorton"
     remove_password: "Forigi pasvorton"
