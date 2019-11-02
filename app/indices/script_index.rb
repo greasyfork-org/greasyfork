@@ -14,7 +14,7 @@ ThinkingSphinx::Index.define :script, :with => :active_record, :delta => Thinkin
 	has script_applies_tos.site_application_id, as: 'site_application_id'
 	has localized_attributes.locale_id, as: 'locale'
 
-	where 'script_type_id IN (1,3) and script_delete_type_id is null and language ="javascript"'
+	where 'script_type_id IN (1,3) and script_delete_type_id is null and language = "js"'
 
 	set_property :field_weights => {
 		:name => 10,
