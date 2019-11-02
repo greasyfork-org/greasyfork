@@ -48,8 +48,8 @@ class Script < ActiveRecord::Base
     end
     f
   }
-  scope :listable, ->(script_subset) {active(script_subset).where(:script_type_id => 1)}
-  scope :libraries, ->(script_subset) {active(script_subset).where(:script_type_id => 3)}
+  scope :listable, ->(script_subset) { active(script_subset).where(script_type_id: 1).where(language: 'js') }
+  scope :libraries, ->(script_subset) { active(script_subset).where(script_type_id: ScriptType::LIBRARY_TYPE_ID) }
   scope :listable_including_libraries, ->(script_subset) {active(script_subset).where(script_type_id: [1,3])}
   scope :reported, -> { not_deleted.joins('JOIN GDN_Discussion ON scripts.id = ScriptID AND Rating = 1 AND Closed = 0').includes(:users).order('GDN_Discussion.DiscussionID') }
   scope :reported_old, -> { reported.where(['GDN_Discussion.DateInserted <= ?', 3.days.ago]) }
@@ -456,7 +456,15 @@ class Script < ActiveRecord::Base
     end
   end
 
-private
+  def js?
+    language == 'js'
+  end
+
+  def css?
+    language == 'css'
+  end
+
+  private
 
   def url_helpers
     Rails.application.routes.url_helpers
@@ -521,5 +529,4 @@ private
   def self.subsets
     [:greasyfork, :sleazyfork, :all]
   end
-
 end

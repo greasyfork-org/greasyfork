@@ -51,6 +51,7 @@ Rails.application.routes.draw do
         get 'code.user.js', :to => 'scripts#user_js', :locale => nil
 
         match 'code/:name.user.js', to: 'scripts#user_js', as:  'user_js', locale: nil, via: [:get, :options]
+        match 'code/:name.user.css', to: 'scripts#user_css', as:  'user_css', locale: nil, via: [:get, :options]
         match 'code/:name.js', to: 'scripts#user_js', as: 'library_js', locale: nil, via: [:get, :options]
         match 'code/:name.meta.js', to: 'scripts#meta_js', as: 'meta_js', locale: nil, via: [:get, :options]
 

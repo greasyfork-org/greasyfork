@@ -9,7 +9,7 @@ class ScriptsController < ApplicationController
   MEMBER_AUTHOR_OR_MODERATOR_ACTIONS = [:delete, :do_delete, :undelete, :do_undelete, :derivatives, :admin, :update_locale]
   MEMBER_MODERATOR_ACTIONS = [:mark, :do_mark, :do_permanent_deletion, :reject_permanent_deletion]
   MEMBER_PUBLIC_ACTIONS = [:diff, :report, :accept_invitation]
-  MEMBER_PUBLIC_ACTIONS_WITH_SPECIAL_LOADING = [:show, :show_code, :user_js, :meta_js, :feedback, :install_ping, :stats, :sync_additional_info_form]
+  MEMBER_PUBLIC_ACTIONS_WITH_SPECIAL_LOADING = [:show, :show_code, :user_js, :meta_js, :user_css, :feedback, :install_ping, :stats, :sync_additional_info_form]
 
   before_action do
     case action_name.to_sym
@@ -159,6 +159,32 @@ class ScriptsController < ApplicationController
       }
       format.user_script_meta { 
         meta_js
+      }
+    end
+  end
+
+  def user_css
+    respond_to do |format|
+      format.any(:html, :all, :css) {
+        script_id = params[:id].to_i
+        script_version_id = params[:version].to_i
+
+        script, script_version = minimal_versionned_script(script_id, script_version_id)
+        return if handle_replaced_script(script)
+
+        user_js_code = script.script_delete_type_id == 2 ? script_version.get_blanked_code : script_version.rewritten_code
+
+        # If the request specifies a specific version, the code will never change, so inform the manager not to check for updates.
+        if params[:version].present? && !script.library?
+          user_js_code = script_version.parser_class.inject_meta(user_js_code, downloadURL: 'none')
+        end
+
+        # Only cache if:
+        # - It's not for a specific version (as the caching does not work with query params)
+        # - It's a .user.css extension (client's Accept header may not match path).
+        cache_request(user_js_code) if script_version_id == 0 && request.fullpath.end_with?('.user.css')
+
+        render body: user_js_code, content_type: 'text/css'
       }
     end
   end
@@ -795,7 +821,7 @@ private
         FileUtils.mkdir_p(cache_path.parent)
         File.write(cache_path, response_body)
         # nginx does not seem to automatically compress with try_files, so give it a .gz to use.
-        system("gzip", cache_path.to_s)
+        system("gzip", "-f", cache_path.to_s)
       end
     end
   end

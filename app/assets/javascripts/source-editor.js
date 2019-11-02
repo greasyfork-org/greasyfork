@@ -10,6 +10,7 @@ window.addEventListener("DOMContentLoaded", function() {
   function handleChange(e) {
     var textboxId = e.target.getAttribute("data-related-editor");
     var textbox = document.getElementById(textboxId);
+    var language = e.target.getAttribute("data-editor-language");
     if (e.target.checked) {
       textbox.style.display = "none";
       var div = document.createElement("div");
@@ -28,7 +29,7 @@ window.addEventListener("DOMContentLoaded", function() {
           }
         }
       });
-      aceEditor.getSession().setMode("ace/mode/javascript");
+      aceEditor.getSession().setMode("ace/mode/" + language);
       /*$('#ace-editor').resizable({
         resize: function(event, ui) { aceEditor.resize(false); }
       });*/

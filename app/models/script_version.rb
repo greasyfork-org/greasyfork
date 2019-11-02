@@ -19,6 +19,8 @@ class ScriptVersion < ApplicationRecord
   has_many :localized_attributes, class_name: 'LocalizedScriptVersionAttribute', autosave: true, dependent: :destroy
   has_and_belongs_to_many :screenshots, autosave: true, dependent: :destroy
 
+  delegate :js?, :css?, to: :script
+
   strip_attributes :only => [:changelog]
 
   validates_presence_of :code
@@ -464,10 +466,6 @@ class ScriptVersion < ApplicationRecord
     else
       raise 'Unknown language'
     end
-  end
-
-  def js?
-    script.language == 'js'
   end
 
   private
