@@ -821,7 +821,7 @@ private
         FileUtils.mkdir_p(cache_path.parent)
         File.write(cache_path, response_body)
         # nginx does not seem to automatically compress with try_files, so give it a .gz to use.
-        system("gzip", "-f", cache_path.to_s)
+        system("gzip", cache_path.to_s)
       end
     end
   end
