@@ -145,6 +145,7 @@ zh-TW:
     listing_remove_locale_filter: "顯示 %{language} 的結果。%{remove_filter_link:顯示所有語言的結果。}"
     import: "匯入腳本"
     new: "發佈腳本"
+    new_css: "提交用戶樣式表"
     support_site: "作者的技術支援網站"
     support_email: "寄郵件給作者以獲取技術支援"
     contribution_no_amount: "透過捐贈感謝 %{author}。"
@@ -256,6 +257,19 @@ zh-TW:
     must_confirm_email_button: "發送驗證郵件到%{email}"
     report:
       title: "檢舉 %{script_name}"
+      text_html: >-
+          <p>提交到 %{site_name} 的脚本必須遵守%{rules_link:其規則}。使用下述鏈接來報告違反規則的脚本，%{site_name}
+          的管理員將會審閲你提交的報告。</p> <ul>
+
+          <li>%{unauthorized_link:報告未經授權建立您的脚本副本的行爲。}</li>
+
+          <li>%{malware_link:報告惡意程式}</li>
+
+          <li>%{other_report_link:報告其它違反的規則，例如未做出説明的廣告或挖礦脚本。}</li>
+
+          </ul>
+
+          <p>需要注意的是，脚本不能正常運作或違反第三方内容的使用條款<em>并不</em> 違反%{site_name}的規則。在這些情況下，你應該對這個脚本%{feedback_link:留下反饋}。</p>
     authors_heading: "作者列表"
     error_unauthorized_copy: "這份代碼中包含了 %{script} 的未授權代碼。請參考  %{site_name} 的 %{rules_link:腳本規範}。"
     invitations:
