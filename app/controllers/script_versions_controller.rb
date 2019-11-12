@@ -10,9 +10,11 @@ class ScriptVersionsController < ApplicationController
 
 	def index
 		@script, @script_version = versionned_script(params[:script_id], params[:version])
+		return if redirect_to_slug(@script, :script_id)
+
 		@bots = 'noindex' if !params[:show_all_versions].nil?
 		@canonical_params = [:script_id, :version, :show_all_versions]
-		return if redirect_to_slug(@script, :script_id)
+		@show_ad = eligible_for_ads?(@script)
 	end
 
 	def new

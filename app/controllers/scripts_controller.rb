@@ -279,6 +279,7 @@ class ScriptsController < ApplicationController
     @diff = Diffy::Diff.new(@old_version.code, @new_version.code, :include_plus_and_minus_in_html => true, :include_diff_info => true, :diff => diff_options).to_s(:html).html_safe
     @bots = 'noindex'
     @canonical_params = [:id, :v1, :v2, :context, :w]
+    @show_ad = eligible_for_ads?(@script)
   end
 
   def sync_update
