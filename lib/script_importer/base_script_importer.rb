@@ -73,6 +73,7 @@ module ScriptImporter
 			script.script_type_id = 1
 			script.script_sync_source_id = sync_source_id
 			script.script_sync_type_id = sync_type_id
+			script.language = url.ends_with?('.css') ? 'css' : 'js'
 			script.locale = locale
 			script.sync_identifier = sync_id
 			script.last_attempted_sync_date = DateTime.now
