@@ -406,9 +406,13 @@ dt[title] > span {
 	}
 }
 
-.script-list li {
+.script-list li:not(.ad-entry) {
 	border-bottom: 1px solid #DDDDDD;
 	padding: 1em;
+}
+
+.script-list .cf-wrapper {
+  margin: 0 !important;
 }
 
 @media screen and (max-width: 960px) {
