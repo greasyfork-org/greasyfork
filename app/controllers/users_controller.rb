@@ -55,6 +55,7 @@ class UsersController < ApplicationController
           {:url => current_path_with_params(format: :jsonp, callback: 'callback'), :type => 'application/javascript'}
         ]
         @canonical_params = [:id, :page, :per_page, :set, :site, :sort]
+        @ad_method = 'cf' if ads_enabled?
 
         render layout: 'base'
       }

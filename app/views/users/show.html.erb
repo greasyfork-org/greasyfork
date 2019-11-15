@@ -126,6 +126,10 @@
         <p><%=t('users.script_list_none_for_filter')%></p>
       <% else %>
         <ol id="user-script-list" class="script-list">
+          <% if @ad_method == 'cf' %>
+            <div id="codefund"><!-- fallback content --></div>
+            <script src="https://app.codefund.io/properties/623/funder.js" async="async"></script>
+          <% end %>
           <%= render partial: 'scripts/script', collection: script_list, locals: {show_author_details: true}, cached: params[:locale_override].nil? ? ->(script) { ['user', script, I18n.locale] } : false %>
         </ol>
       <% end %>
