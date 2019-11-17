@@ -2,6 +2,9 @@
   case script.script_type_id
     when 1, 2 %>
       <div id="install-area">
+        <% if script.css? %>
+          <p><i>This is a user style meant to be installed with <a href="https://github.com/openstyles/stylus#releases" target="_blank">Stylus</a>.</i></p>
+        <% end %>
         <%= render partial: 'install_button', locals: {script_version: script_version, version_param: params[:version]}%><%=link_to t('scripts.install_help'), help_installing_user_scripts_path, {:class => 'install-help-link', :title => t('scripts.install_help_title'), :rel => 'nofollow'}%>
         <% if promoted_script %>
           <div class="post-install">
