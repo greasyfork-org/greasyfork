@@ -4,7 +4,7 @@ by_sites = nil if !defined?(by_sites)
 include_search = false if !defined?(include_search) || include_search.nil?
 sort_options = ['daily_installs', 'total_installs', 'ratings', 'created', 'updated', 'name'] if !defined?(sort_options) || sort_options.nil?
 default_sort = @set&.default_sort || sort_options.first
-current_options = {sort: params[:sort], site: params[:site], set: params[:set], default_sort: default_sort}
+current_options = {sort: params[:sort], site: params[:site], set: params[:set], default_sort: default_sort, language: params[:language]}
 %>
 
 <div id="script-list-option-groups" class="list-option-groups">
