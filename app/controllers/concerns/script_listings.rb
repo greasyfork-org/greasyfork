@@ -50,6 +50,8 @@ module ScriptListings
           end
         end
 
+        with[:language] = params[:language] == 'css' ? 'css' : 'js'
+
         # This should be nil unless there are going to be no results.
         if @scripts.nil?
           # :ranker => "expr('top(user_weight)')" means that it will be sorted on the top ranking match rather than
@@ -79,7 +81,10 @@ module ScriptListings
         @scripts = Script.none.paginate(page: 1)
       end
     else
-      @scripts = Script.listable(script_subset).includes({:users => {}, :script_type => {}, :localized_attributes => :locale, :script_delete_type => {}}).paginate(:page => params[:page], :per_page => get_per_page)
+      @scripts = Script
+                     .listable(script_subset)
+                     .includes({:users => {}, :script_type => {}, :localized_attributes => :locale, :script_delete_type => {}})
+                     .paginate(:page => params[:page], :per_page => get_per_page)
       @scripts = self.class.apply_filters(@scripts, params, script_subset)
     end
 
@@ -112,7 +117,7 @@ module ScriptListings
           @title = t('scripts.listing_title_generic')
           @description = t('scripts.listing_description_generic')
         end
-        @canonical_params = [:page, :per_page, :site, :sort, :filter_locale]
+        @canonical_params = [:page, :per_page, :site, :sort, :filter_locale, :language]
         if is_search
           @canonical_params << :q
         else
@@ -263,6 +268,7 @@ module ScriptListings
         end
         scripts = scripts.where(:id => set_script_ids)
       end
+      scripts = scripts.where(language: params[:language] == 'css' ? 'css' : 'js')
       scripts = scripts.order(get_sort(params, false, set, default_sort: default_sort))
       return scripts
     end
