@@ -19,7 +19,7 @@ module ShowsAds
     return nil if scripts.count < 3
     return nil if scripts.any?(&:sensitive?)
     return 'ga' if scripts.all?(&:adsense_approved)
-    ['ca', 'ca', 'ca', 'cf'].sample
+    'cf'
   end
 
   private
