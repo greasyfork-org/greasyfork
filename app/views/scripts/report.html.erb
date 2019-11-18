@@ -8,5 +8,6 @@
        script_name: @script.name(I18n.locale),
        unauthorized_link: It.link(new_script_script_report_path(@script, report_type: ScriptReport::TYPE_UNAUTHORIZED_CODE), rel: :nofollow),
        malware_link: It.link(new_script_script_report_path(@script, report_type: ScriptReport::TYPE_MALWARE), rel: :nofollow),
+       spam_link: It.link(new_script_script_report_path(@script, report_type: ScriptReport::TYPE_SPAM), rel: :nofollow),
        other_report_link: It.link("#{forum_path}post/discussion?script=#{@script.id}", rel: :nofollow),
     ) %>

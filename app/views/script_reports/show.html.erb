@@ -52,7 +52,17 @@ when ScriptReport::TYPE_UNAUTHORIZED_CODE %>
   <p>
     <%= @script_report.reporter ? link_to(@script_report.reporter.name, @script_report.reporter) : '<i>(Deleted user)</i>'.html_safe %> says: "<i><%= @script_report.details %></i>". This additional info was provided: "<i><%= @script_report.additional_info %></i>".
   </p>
+
+<% when ScriptReport::TYPE_SPAM %>
+<p>
+  <%= link_to @script_report.script.name(I18n.locale), @script_report.script %> by <%= @script_report.script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> has been reported as spam.
+</p>
+
+<p>
+  <%= @script_report.reporter ? link_to(@script_report.reporter.name, @script_report.reporter) : '<i>(Deleted user)</i>'.html_safe %> says: "<i><%= @script_report.details %></i>". This additional info was provided: "<i><%= @script_report.additional_info %></i>".
+</p>
 <% end %>
+
 
 <% if @script_report.rebuttal.present? %>
   <p><%= @script_report.script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> has responded: "<i><%= @script_report.rebuttal %></i>"

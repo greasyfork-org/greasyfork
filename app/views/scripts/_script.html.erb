@@ -63,6 +63,8 @@ show_report_thread = defined?(show_report_thread) && show_report_thread
                 Unauthorized copy of <%= link_to report.reference_script.name(I18n.locale), report.reference_script %>
               <% when ScriptReport::TYPE_MALWARE %>
                 Malware -
+              <% when ScriptReport::TYPE_SPAM %>
+                Spam -
               <% end %>
               <%= link_to 'View report', script_script_report_path(report.script, report) %>
             </li>

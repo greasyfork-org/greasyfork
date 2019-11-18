@@ -24,6 +24,21 @@ case @script_report.report_type
     </ul>
 
     <p>If you would like to report this script for a different reason, visit <%= link_to 'the report page', report_script_path(@script), rel: :nofollow %>.</p>
+
+<% when ScriptReport::TYPE_SPAM %>
+  <%- title 'Report spam' %>
+  <p>Use the form below for reporting a script that is just spam. This may include, but is not limited to:</p>
+
+  <ul>
+    <li>The script entry serves simply to promote an external product or service, and the script code is empty, non-functional, or unrelated.</li>
+    <li>The script's code does not contain functionality other than to promote an external product or service.</li>
+    <li>The script's description or code points to another location for the "real" script.</li>
+  </ul>
+
+  <p>Note that scripts are allowed to contain advertisements in additional to their functionality if these are disclosed in their descriptions.</p>
+
+  <p>If you would like to report this script for a different reason, visit <%= link_to 'the report page', report_script_path(@script), rel: :nofollow %>.</p>
+
 <% end %>
 
 <p>A notice will be sent to the author of <%= link_to @script.name(I18n.locale), @script %> and they will be given the opportunity to rebut your claims. A moderator will then decide whether to delete the script.</p>
