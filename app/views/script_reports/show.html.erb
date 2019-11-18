@@ -76,7 +76,7 @@ when ScriptReport::TYPE_UNAUTHORIZED_CODE %>
 
   <p>Report has been dismissed by moderators.</p>
 
-<% elsif @script_report.resolved? %>
+<% elsif @script_report.upheld? %>
 
   <p>Script has been deleted.</p>
 

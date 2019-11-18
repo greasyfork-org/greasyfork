@@ -3,7 +3,7 @@ class ScriptReport < ApplicationRecord
   belongs_to :reference_script, class_name: 'Script', optional: true
   belongs_to :reporter, class_name: 'User', optional: true
 
-  scope :unresolved, -> { where(resolved: false).joins(:script).merge(Script.not_deleted) }
+  scope :unresolved, -> { where(result: nil).joins(:script).merge(Script.not_deleted) }
   scope :unresolved_old, -> { unresolved.where(['script_reports.report_type IN (?) OR script_reports.created_at < ?', [TYPE_MALWARE, TYPE_SPAM], 3.days.ago]) }
   
   validates :details, presence: true
@@ -14,11 +14,11 @@ class ScriptReport < ApplicationRecord
   TYPE_SPAM = 'spam'
 
   def dismissed?
-    resolved? && !script.locked?
+    result == 'dismissed'
   end
 
   def upheld?
-    resolved? && script.locked?
+    result == 'upheld'
   end
 
   def unauthorized_code?
