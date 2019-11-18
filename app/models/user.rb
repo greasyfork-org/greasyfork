@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :authors, dependent: :destroy
   has_many :scripts, through: :authors
+  has_many :script_reports, foreign_key: 'reporter_id'
 
   # Gotta to it this way because you can't pass a parameter to a has_many, and we need it has_many
   # to do eager loading.
@@ -149,6 +150,16 @@ class User < ApplicationRecord
 
   def in_confirmation_period?
     created_at > 5.minutes.ago
+  end
+
+  def update_trusted_report!
+    resolved_count = script_reports.resolved.count
+    if resolved_count < 3
+      update(trusted_reports: false)
+    else
+      upheld_count = script_reports.upheld.count
+      update(trusted_reports: (upheld_count.to_f / resolved_count.to_f) >= 0.75)
+    end
   end
 
   protected

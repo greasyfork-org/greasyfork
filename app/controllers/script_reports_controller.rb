@@ -74,7 +74,7 @@ class ScriptReportsController < ApplicationController
     end
     @script_report = @script.script_reports.find(params[:id])
     @script.update(script_delete_type_id: 1, locked: true, replaced_by_script_id: @script_report.reference_script_id, delete_reason: "Deleted by #{is_author ? 'author' : 'moderator'} in response to report ##{@script_report.id}.")
-    @script_report.update(result: 'upheld')
+    @script_report.uphold!
     ScriptReportMailer.report_upheld_reporter(@script_report, is_author, site_name).deliver_later
     ScriptReportMailer.report_upheld_offender(@script_report, site_name).deliver_later if !is_author
     @script.ban_all_authors!(moderator: current_user, reason: "In response to report #{@script_report.id}") if params[:banned]
@@ -93,7 +93,7 @@ class ScriptReportsController < ApplicationController
       render_access_denied
       return
     end
-    @script_report.update(result: 'dismissed')
+    @script_report.dismiss!
     ScriptReportMailer.report_dismissed_reporter(@script_report, site_name).deliver_later
     ScriptReportMailer.report_dismissed_offender(@script_report, site_name).deliver_later
     flash[:notice] = 'Report has been dismissed.'

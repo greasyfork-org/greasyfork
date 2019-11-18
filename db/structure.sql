@@ -1046,7 +1046,7 @@ CREATE TABLE `delayed_jobs` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `delayed_jobs_priority` (`priority`,`run_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=111345 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=111347 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `disallowed_attributes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1607,6 +1607,7 @@ CREATE TABLE `users` (
   `confirmation_sent_at` datetime DEFAULT NULL,
   `unconfirmed_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `disposable_email` tinyint(1) DEFAULT NULL,
+  `trusted_reports` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_users_on_email` (`email`),
   UNIQUE KEY `index_users_on_reset_password_token` (`reset_password_token`),
@@ -1759,6 +1760,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20191002004430'),
 ('20191002005748'),
 ('20191013004547'),
-('20191118025439');
+('20191118025439'),
+('20191118031654');
 
 
