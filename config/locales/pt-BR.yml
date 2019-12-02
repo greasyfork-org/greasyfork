@@ -138,6 +138,7 @@ pt-BR:
     listing_filter_by_site_label: "Mostrando scripts de:"
     listing_filter_by_site_disable: "Todos"
     listing_filter_by_site_all_sites: "(Todos sites)"
+    listing_filter_by_language_label: "Idioma:"
     listing_filter_by_site_more_sites: "Mais..."
     listing_no_scripts: "Nenhum script encontrado."
     listing_created_feed: "Novos scripts"
@@ -260,13 +261,15 @@ pt-BR:
     report:
       title: "Denunciar %{script_name}"
       text_html: >-
-          <p>Scripts postados no %{site_name} devem respeitar %{rules_link:suas regras}.
-          Denuncie violações através dos links abaixo e os moderadores do %{site_name}
-          irão analisar sua denúncia.</p> <ul>
+          <p>Scripts publicados no %{site_name} devem respeitar %{rules_link:suas
+          regras}. Denuncie violações através dos links abaixo e os moderadores do
+          %{site_name} irão analisar sua denúncia.</p> <ul>
 
           <li>%{unauthorized_link:Denunciar cópias não autorizadas do seu script.}</li>
 
           <li>%{malware_link:Denunciar malware.}</li>
+
+          <li>%{spam_link:Spam ou outro conteúdo além do script.}</li>
 
           <li>%{other_report_link:Denunciar outras violações, incluindo propagandas
           ocultas e mineradores de criptomoedas.}</li>

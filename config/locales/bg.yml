@@ -138,6 +138,7 @@ bg:
     listing_filter_by_site_label: "Показване на скриптове за:"
     listing_filter_by_site_disable: "Всички"
     listing_filter_by_site_all_sites: "(Всички сайтове)"
+    listing_filter_by_language_label: "Език:"
     listing_filter_by_site_more_sites: "Още..."
     listing_no_scripts: "Няма намерени скриптове."
     listing_created_feed: "Нови скриптове"
@@ -260,22 +261,24 @@ bg:
     report:
       title: "Докладвай%{script_name}"
       text_html: >-
-          <p>Скриптовете, публикувани на %{site_name} трябва да се придържат към %{rules_link:its
-          rules}. Докладвайте нарушенията чрез връзките по-долу. Модераторите на %{site_name}
-          ще прегледат сигналите.</p> <ul>
+          <p>Скриптовете, публикувани на %{site_name} трябва да уважават %{rules_link:правилата}.
+          Докладвайте нарушенията чрез връзките отдолу и те ще бъдат прегледани от
+          модераторите на %{site_name}.</p> <ul>
 
-          <li>%{unauthorized_link:Report unauthorized copies of your script.}</li>
+          <li>%{unauthorized_link:Докладвай неоторизирани копия на ваши скриптове.}</li>
 
-          <li>%{malware_link:Report malware.}</li>
+          <li>%{malware_link:Докладвай зловреден код.}</li>
 
-          <li>%{other_report_link:Report other violations, including undisclosed ads
-          or cryptominers.}</li>
+          <li>%{spam_link:Спам или не скриптово съдържание.}</li>
+
+          <li>%{other_report_link:Докладвай други нарушения, включително скрити реклами
+          и криптомайнъри.}</li>
 
           </ul>
 
-          <p>Имайте предвид, че ако не е работещ или нарушава правата на трета страна,
-          това <em>не е</em> нарушава правилата на%{site_name}. В такъв случай можете
-          да оставите %{feedback_link:leave feedback} за скрипта.</p>
+          <p>Обърнете внимание, че неработещи скриптове и скриптове, нарушаващи правилата
+          на трети страни, <em>не</em> са в нарушение на правилата на %{site_name}.
+          В такива случаи можете да оставите %{feedback_link:отзив} за скрипта.</p>
     authors_heading: "Автори"
     error_unauthorized_copy: "Този код изглежда е неоторизирано копие на %{script}. Моля, прочетете %{rules_link:rules} на%{site_name}за публикуване на скриптове."
     invitations:

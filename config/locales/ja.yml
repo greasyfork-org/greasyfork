@@ -53,7 +53,7 @@ ja:
     delete_page: "削除"
     delete_explanation: "スクリプトを削除すると、自分とモデレーター以外からはアクセスできなくなります。スクリプトの削除はいつでも取り消すことができます。"
     delete_update_behaviour: "削除する前にスクリプトをインストールしたユーザーについては、どのように対応しますか？"
-    delete_update_behaviour_1: "スクリプトがインストールされたままにします。"
+    delete_update_behaviour_1: "インストールされたままにします。"
     delete_update_behaviour_2: "インストールされているスクリプトを更新して空のスクリプトにします。実行されるサイトにスクリプトが悪影響をおよぼす場合は、こちらが適切です。"
     delete_permanently_heading: "完全な削除"
     delete_permanently_explanation: "スクリプトの完全な削除を実行すると、掲示板のスレッドとモデレーターの対処ログを除いて、関連するすべての記録が削除されます。完全な削除は永久的であり、モデレーターでも元に戻すことはできません。"
@@ -88,6 +88,7 @@ ja:
     diff_button: "選択したバージョン同士を比較"
     code_title: "%{script_name} のソースコード"
     feedback_title: "%{script_name} のフィードバック"
+    feedback_has_reports: "このスクリプトは %{site_name} のルールに違反していると報告されています。"
     feedback_no_discussions_html: "まだスレッドはありません。%{start_first_discussion_link}"
     feedback_start_first_discussion_link: "このスクリプトについて最初のスレッドを立てる。"
     feedback_discussion_or_report: "%{new_discussion_link:Start a new discussion on this script} または %{report_link:report it for removal}."
@@ -133,8 +134,9 @@ ja:
     listing_sort_updated: "更新日"
     listing_sort_name: "名前"
     listing_filter_by_site_label: "実行されるサイト"
-    listing_filter_by_site_disable: "すべてのスクリプト"
+    listing_filter_by_site_disable: "すべてのスクリプト / スタイル"
     listing_filter_by_site_all_sites: "(すべてのサイト)"
+    listing_filter_by_language_label: "対象:"
     listing_filter_by_site_more_sites: "さらに表示 ▸"
     listing_no_scripts: "スクリプトが見つかりませんでした。"
     listing_created_feed: "新しいスクリプト"
@@ -144,6 +146,7 @@ ja:
     listing_remove_locale_filter: "%{language}で絞り込んだ結果を表示しています。%{remove_filter_link:すべての言語の結果を表示する。}"
     import: "スクリプトのインポート"
     new: "スクリプトの投稿"
+    new_css: "スタイルの投稿"
     support_site: "サポートサイト"
     support_email: "サポートメールアドレス"
     contribution_no_amount: "%{author} は寄付を募っています。"
@@ -158,18 +161,18 @@ ja:
     sets_remove_exclusion: "%{set_name} の除外リストから削除"
     sets_add_inclusion: "%{set_name} に追加"
     sets_add_exclusion: "%{set_name} から除外"
-    sets_add_to_new: "新しいスクリプトセットに追加"
+    sets_add_to_new: "新しいセットに追加"
     rules_summary_html: "スクリプトは<strong>難読化</strong>や<strong>圧縮 (minify)</strong> をせず<strong>正しく記述</strong>し、<strong>著作権</strong>を守るように心がけてください。また、<strong>外部スクリプト</strong>の読み込みには制限があります。%{full_rules_link}"
     rules_summary_link_to_full: "すべてのルールを読む。"
     syncing_notice_html: "このスクリプトは%{syncing_notice_sync_type}になっています。ここでコードに加えた変更点は、同期の際に上書きされます。"
     syncing_notice_sync_type_manual: "手動で %{sync_identifier} と同期する設定"
     syncing_notice_sync_type_automatic: "自動で %{sync_identifier} と同期する設定"
-    upload_label: "スクリプトをアップロード:"
+    upload_label: "または アップロード:"
     enable_source_code_editor_label: "ソースエディタを有効にしてシンタックスハイライトする"
     changelog_note: "バージョン履歴ページに表示する変更点。"
     additional_info_note_html: "スクリプトに関する説明など。%{allowed_elements_link}"
     post_new_script: "スクリプトを投稿"
-    post_updated_script: "スクリプトを更新"
+    post_updated_script: "更新"
     type_1_html: "公開スクリプト – 誰でも閲覧・利用できるユーザースクリプト。"
     type_2_html: "限定公開スクリプト – 半プライベートなユーザースクリプト。URLを知っていればアクセス可能ですが、%{site_name} のどこからもリンクされません。"
     type_3_html: "ライブラリ – <code>@require</code> によって他のスクリプトから読み込まれるスクリプト。インストールボタンは表示されません。"
@@ -186,7 +189,7 @@ ja:
     additional_info_locale_prompt: "(ロケールを選択してください)"
     additional_info_add_localized: "ローカライズした (他国語に翻訳した) 追加情報を書く"
     additional_info_locale_repeated: "ロケール「%{locale_code}」の追加情報が複数あります。"
-    localized_additional_info_with_no_name: "ロケール「%{locale_code}」の追加情報を設定する場合、スクリプトのメタデータに @name:%{locale_code} (ローカライズしたスクリプト名) が必要です。"
+    localized_additional_info_with_no_name: "ロケール「%{locale_code}」の追加情報を設定する場合、メタデータに @name:%{locale_code} (ローカライズした名称) が必要です。"
     code_syncing_from_url_html: "このスクリプトは次のURLと同期するように設定されています: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} は、GitHub のようなバージョン管理システム、自分のサーバー、他のユーザースクリプト公開サイトなどで公開しているスクリプトをインポートすることができます。URL を設定して、スクリプトの同期を有効化します: %{field}"
     sync_type_intro: "スクリプトの同期方法:"
@@ -199,7 +202,7 @@ ja:
     update_and_sync: "設定を更新して同期"
     update_no_sync: "設定を更新"
     turn_off_syncing: "同期を解除"
-    additional_info_default_sync_html: "既定の追加情報 (スクリプトのメタデータの <code>@name</code> と同じ言語)"
+    additional_info_default_sync_html: "既定の追加情報 (メタデータの <code>@name</code> と同じ言語)"
     additional_info_localized_sync_html: "ローカライズした (他国語に翻訳した) 追加情報 (<code>@name:XX</code> と同じ言語)"
     sync_url_placeholder: "(URL)"
     screenshots_explanation: "最大 %{number} 枚までの PNG、GIF、JPEG 画像、各画像は %{size} 未満。"
@@ -255,14 +258,33 @@ ja:
     must_confirm_email_button: "確認リンクを %{email} に送信"
     report:
       title: "%{script_name}を通報"
-    error_unauthorized_copy: "このコードは不正コピーのようです%{script}。%{site_name}の%{rules_link:rules}を参考にしてください"
+      text_html: >-
+          <p>%{site_name} へ投稿されるスクリプトは、%{rules_link:サイトのルール} に遵う必要があります。以下のリンクから違反を通報すると、%{site_name}
+          のモデレーターが報告を検証します。</p>
+
+          <ul>
+
+          <li>%{unauthorized_link:あなたのスクリプトの不正コピーの通報。}</li>
+
+          <li>%{malware_link:マルウェアの通報。}</li>
+
+          <li>%{spam_link:スパムなど、スクリプトではないコンテンツ。}</li>
+
+          %{other_report_link:その他の違反通報 (明示せずに広告掲載やマイニングをスクリプトなど)。}
+
+          </ul>
+
+          <p>機能していないスクリプト、第三者の規約に違反するスクリプトは、<em>%{site_name} の規約に違反していない</em>ことに注意してください。その場合は、代わりに
+          %{feedback_link:フィードバックを残す}ことができます。</p>
+    authors_heading: "共同の作者"
+    error_unauthorized_copy: "このコードは %{script} の不正コピーのようです。投稿されるスクリプトに関する %{site_name} の %{rules_link:ルール} を確認してください。"
     invitations:
       form_title: "その他の作者を招待する"
-      explanation: "他のGreasy Forkユーザーをこのスクリプトの作者として追加できます。それらはあなたがするのと同じようにこのスクリプトと同じ権利を持つでしょう。"
+      explanation: "他のGreasy Forkユーザーをこのスクリプトの作者として追加できます。他の作者もあなたとまったく同じ権限を持つようになります。"
       invited_user_url_label: "ユーザーを招待する"
-      invited_user_placeholder: "ユーザーのプロフィールのURL%{site_name}"
+      invited_user_placeholder: "%{site_name} ユーザーのプロフィールURL"
       submit: "招待を送る"
-      invalid_user_url: "招待ユーザーのURLが無効です。"
+      invalid_user_url: "無効な招待URLです。"
       already_author: "指定したユーザーは既にこのスクリプトの作成者です。"
       sent: "招待が送信されました。"
       subject: "%{script_name}の招待"
@@ -270,7 +292,13 @@ ja:
       current_user_already_author: "あなたはすでにこのスクリプトの作者です。"
       invitation_not_found: "招待が見つかりませんでした。"
       invitation_expired: "招待は期限切れです"
-      invitation_accepted: "あなたは現在このスクリプトの作者です。"
+      invitation_accepted: "スクリプトの作者になりました。"
+    remove_author:
+      heading: "作者の解除"
+      success: "%{user_name}を作者から解除しました。"
+      remove_button: "解除"
+      remove_confirm: "%{user_name}を作者から削除してもよろしいですか？"
+      failure: "作者を解除できませんでした。"
     no_disposable_email: "使い捨ての電子メールアドレスを使用している場合は、スクリプトを投稿することはできません。"
   script_sets:
     description: "「スクリプトセット」とは、Greasy Fork に投稿されているスクリプトのマイリストです。個々のスクリプトの追加だけでなく、他のスクリプトセットをリストに登録して一つのスクリプトセットとして表示することもでき、サイトやユーザーを指定した自動生成も可能です。また、同じようにして除外リストへの登録も行えます。"
@@ -283,10 +311,10 @@ ja:
       description: "このスクリプトセットに追加する、またはスクリプトセットから除外するスクリプト。"
       included: "追加リスト"
       included_none: "(未設定)"
-      remove_included: "選択したスクリプトをリストから外す"
+      remove_included: "選択したものをリストから外す"
       excluded: "除外リスト"
       excluded_none: "(未設定)"
-      remove_excluded: "選択したスクリプトをリストから外す"
+      remove_excluded: "選択したものをリストから外す"
       add_label: "リストに入れるスクリプト (空白・改行区切りの URL または ID)"
       add_include: "追加リストへ登録する"
       add_exclude: "除外リストへ登録する"
@@ -295,16 +323,16 @@ ja:
       description: "このスクリプトセットに追加する、またはスクリプトセットから除外する他のスクリプトセット。"
       included: "追加リスト"
       included_none: "(未設定)"
-      remove_included: "選択したスクリプトセットをリストから外す"
+      remove_included: "選択したセットをリストから外す"
       excluded: "除外リスト"
       excluded_none: "(未設定)"
-      remove_excluded: "選択したスクリプトセットをリストから外す"
+      remove_excluded: "選択したセットをリストから外す"
       add_label: "リストに入れるスクリプト (空白・改行区切りの URL または ID)"
       add_include: "追加リストへ登録する"
       add_exclude: "除外リストへ登録する"
       user_label: "指定したユーザー (URL、ID または 名前) のスクリプトセットを一覧表示する"
-      user_no_sets: "(指定したユーザーはスクリプトセットを作成していません)"
-      user_no_other_sets: "(指定したユーザーのスクリプトセットは、リストに登録されているもので全部です)"
+      user_no_sets: "(指定したユーザーはセットを作成していません)"
+      user_no_other_sets: "(指定したユーザーのセットは、リストに登録されているもので全部です)"
     edit_auto_sets:
       heading: "自動生成スクリプトセット"
       description: "このスクリプトセットに追加する、またはスクリプトセットから除外する自動生成されたスクリプトリスト。"
@@ -335,7 +363,7 @@ ja:
     auto_set_types:
       all_scripts: "すべてのスクリプト"
       site: "%{site} で実行されるスクリプト"
-      all_sites: "すべてのサイトで実行されるスクリプト"
+      all_sites: "すべてのサイトで実行されるスクリプト / スタイル"
       user: "%{user} が作成したスクリプト"
       locale: "%{locale_name} に対応したスクリプト"
   forum_discussions:
@@ -676,7 +704,7 @@ ja:
         preferred_markup: "マークアップの初期設定"
         flattr_username: "Flattr ユーザー名"
       script:
-        name: "スクリプト名"
+        name: "名称"
         description: "説明"
         locale: "ロケール (言語・地域)"
         code: "コード"
@@ -688,7 +716,7 @@ ja:
         replaced_by_script_id: "代替スクリプト"
         approve_redistribution: "再配布"
       script_set:
-        name: "スクリプトセット名"
+        name: "セット名"
         description: "説明"
         default_sort: "既定の並べ替え"
   errors:

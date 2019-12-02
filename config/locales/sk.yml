@@ -142,6 +142,7 @@ sk:
     listing_filter_by_site_label: "Zobrazenie skriptov pre:"
     listing_filter_by_site_disable: "Všetky"
     listing_filter_by_site_all_sites: "(Všetky stránky)"
+    listing_filter_by_language_label: "Jazyk:"
     listing_filter_by_site_more_sites: "Viac..."
     listing_no_scripts: "Nenašli sa žiadne skripty."
     listing_created_feed: "Nové skripty"
@@ -264,20 +265,22 @@ sk:
     report:
       title: "Nahlásiť %{script_name}"
       text_html: >-
-          <p>Skript odoslaný na %{site_name} musí dodržiavať %{rules_link:jeho pravidlá}.
+          <p>Skripty odoslané na %{site_name} musí dodržiavať %{rules_link:jeho pravidlá}.
           Porušenia pravidiel nahlasujte pomocou odkazov nižšie a moderátori %{site_name}
           skontrolujú vaše hlásenie.</p> <ul>
 
-          <li>%{unauthorized_link:Nahlásiť neautorizovanú kópiu skriptu.}</li>
+          <li>%{unauthorized_link:Nahlásiť neautorizovanú kópiu vášho skriptu.}</li>
 
           <li>%{malware_link:Nahlásiť malvér.}</li>
+
+          <li>%{spam_link:Spam alebo iný neskriptový obsah.}</li>
 
           <li>%{other_report_link:Nahlásiť iné porušenie, vrátane nezverejnených reklám
           alebo ťaženie kryptomien.}</li>
 
           </ul>
 
-          <p>Upozorňujem, že nefunkčnosť a porušenie podmienok tretích strán <em>nie
+          <p>Upozorňujeme, že nefunkčnosť a porušenie podmienok tretích strán <em>nie
           je</em> porušením pravidiel %{site_name}. V týchto prípadoch môžete použiť
           %{feedback_link:zanechať spätnú väzbu} skriptu.</p>
     authors_heading: "Autori"
