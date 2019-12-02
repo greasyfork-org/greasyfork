@@ -4,6 +4,7 @@ require 'fileutils'
 require 'cgi'
 
 class ScriptsController < ApplicationController
+  include ScriptAndVersions
 
   MEMBER_AUTHOR_ACTIONS = [:sync_update, :derivatives, :update_promoted, :request_permanent_deletion, :unrequest_permanent_deletion, :update_promoted, :invite, :remove_author]
   MEMBER_AUTHOR_OR_MODERATOR_ACTIONS = [:delete, :do_delete, :undelete, :do_undelete, :derivatives, :admin, :update_locale]
@@ -730,25 +731,6 @@ class ScriptsController < ApplicationController
 
 private
 
-  def handle_publicly_deleted(script)
-    if script.nil?
-      render_deleted
-      return true
-    end
-
-    if script.locked && !(script.users.include?(current_user) || current_user&.moderator?)
-      render_deleted
-      return true
-    end
-
-    if script.pending_report_by_trusted_reporter? && !(current_user && (script.users.include?(current_user) || current_user.moderator? || script.script_reports.where(reporter: current_user).any?))
-      render_pending_report(script)
-      return true
-    end
-
-    return false
-  end
-
   # Returns a hash, key: site name, value: hash with keys installs, scripts
   def self.get_by_sites(script_subset, cache_options = {})
     return cache_with_log("scripts/get_by_sites#{script_subset}", cache_options) do
@@ -845,4 +827,15 @@ private
     return false
   end
 
+  # versionned_script loads a bunch of stuff we may not care about
+  def minimal_versionned_script(script_id, version_id)
+    script_version = ScriptVersion.includes(:script).where(script_id: script_id)
+    if params[:version]
+      script_version = script_version.find(version_id)
+    else
+      script_version = script_version.references(:script_versions).order('script_versions.id DESC').first
+      raise ActiveRecord::RecordNotFound if script_version.nil?
+    end
+    return [script_version.script, script_version]
+  end
 end

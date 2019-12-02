@@ -1,4 +1,5 @@
 class ScriptVersionsController < ApplicationController
+	include ScriptAndVersions
 
 	before_action :authenticate_user!, :except => [:index]
 	before_action :authorize_by_script_id, :except => [:index, :delete, :do_delete]
@@ -238,4 +239,25 @@ private
 		params.require(:script_version).permit(:code, :changelog, :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation, :sensitive_site_confirmation)
 	end
 
+	def check_for_locked_by_script_id
+		return if params[:script_id].nil?
+		begin
+			script = Script.find(params[:script_id])
+		rescue ActiveRecord::RecordNotFound
+			render_404
+			return
+		end
+		render_locked if script.locked and (current_user.nil? or !current_user.moderator?)
+	end
+
+	def check_for_deleted_by_script_id
+		return if params[:script_id].nil?
+		begin
+			script = Script.find(params[:script_id])
+		rescue ActiveRecord::RecordNotFound
+			render_404
+			return
+		end
+		check_for_deleted(script)
+	end
 end
