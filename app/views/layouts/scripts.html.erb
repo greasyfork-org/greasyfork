@@ -34,6 +34,9 @@
 				latest_version_link = link_to t('scripts.version_notice_latest_version_link'), {:version => nil}%>
 				<p id="version-note"><%=t('scripts.version_notice_html', :date => @script.updated_at, :latest_version_link => latest_version_link.html_safe)%></p>
 			<% end %>
+      <% if @script.pending_report_by_trusted_reporter? %>
+        <p id="reported-note"><%= link_to t('scripts.reported_notice_for_author'), [@script, @script.script_reports.block_on_pending.first] %></p>
+      <% end %>
 		</header>
 		<div id="script-content">
 			<%= content_for?(:scripts_content) ? yield(:scripts_content) : yield %>

@@ -10,6 +10,8 @@ class ScriptReport < ApplicationRecord
   scope :dismissed, -> { where(result: 'dismissed') }
   scope :upheld, -> { where(result: 'upheld') }
 
+  scope :trusted_reporter, -> { joins(:reporter).where(users: { trusted_reports: true }) }
+  scope :block_on_pending, -> { unresolved.trusted_reporter.where(report_type: [TYPE_MALWARE, TYPE_SPAM]) }
 
   validates :details, presence: true
   validates :reference_script, presence: true, if: ->(sr) { sr.unauthorized_code? }

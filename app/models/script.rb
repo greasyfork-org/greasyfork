@@ -464,6 +464,10 @@ class Script < ActiveRecord::Base
     language == 'css'
   end
 
+  def pending_report_by_trusted_reporter?
+    script_reports.block_on_pending.any?
+  end
+
   private
 
   def url_helpers
