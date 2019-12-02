@@ -148,7 +148,7 @@ protected
     return [current_script, current_script.get_newest_saved_script_version] if version_id.nil?
     version_id = version_id.to_i
     script_version = ScriptVersion.find(version_id)
-    return nil if script_version.nil? or script_version.script_id != script_id
+    return nil if script_version.script_id != script_id
     script = Script.new
 
     # this is not versionned information

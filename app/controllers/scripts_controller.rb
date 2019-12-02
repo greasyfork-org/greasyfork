@@ -731,6 +731,11 @@ class ScriptsController < ApplicationController
 private
 
   def handle_publicly_deleted(script)
+    if script.nil?
+      render_deleted
+      return true
+    end
+
     if script.locked && !(script.users.include?(current_user) || current_user&.moderator?)
       render_deleted
       return true

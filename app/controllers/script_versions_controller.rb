@@ -10,6 +10,7 @@ class ScriptVersionsController < ApplicationController
 
 	def index
 		@script, @script_version = versionned_script(params[:script_id], params[:version])
+		return if handle_publicly_deleted(@script)
 		return if redirect_to_slug(@script, :script_id)
 
 		@bots = 'noindex' if !params[:show_all_versions].nil?
