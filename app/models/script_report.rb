@@ -8,7 +8,7 @@ class ScriptReport < ApplicationRecord
 
   scope :resolved, -> { where.not(result: nil) }
   scope :dismissed, -> { where(result: 'dismissed') }
-  scope :upheld, -> { where(result: 'dismissed') }
+  scope :upheld, -> { where(result: 'upheld') }
 
 
   validates :details, presence: true
