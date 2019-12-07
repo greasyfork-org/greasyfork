@@ -7,7 +7,7 @@
 .diff li.del{background:#fee; color:#b00}
 .diff li:hover{background:#ffc}
 /* try 'whitespace:pre;' if you don't want lines to wrap */
-.diff del, .diff ins, .diff span{white-space:pre-wrap;font-family:courier;}
+.diff del, .diff ins, .diff span{white-space:pre;font-family:courier;}
 .diff del strong{font-weight:normal;background:#fcc;}
 .diff ins strong{font-weight:normal;background:#9f9;}
 .diff li.diff-comment { display: none; }
@@ -15,7 +15,11 @@
 
 .diff del, .diff ins, .diff span{font-family:monospace;}
 
+.diff {
+  max-height: calc(100vh - 54px);
+  overflow-y: auto;
+}
+
 .report-diff .diff {
   max-height: 75vh;
-  overflow-y: auto;
 }
