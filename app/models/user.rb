@@ -3,6 +3,8 @@ require 'devise'
 
 class User < ApplicationRecord
 
+  serialize :announcements_seen, Array
+
   scope :administrators, -> { joins(:roles).where(roles: { name: 'administrator' }) }
 
   has_many :authors, dependent: :destroy
@@ -160,6 +162,15 @@ class User < ApplicationRecord
       upheld_count = script_reports.upheld.count
       update(trusted_reports: (upheld_count.to_f / resolved_count.to_f) >= 0.75)
     end
+  end
+
+  def seen_announcement?(key)
+    announcements_seen&.include?(key.to_s)
+  end
+
+  def announcement_seen!(key)
+    (self.announcements_seen ||= []) << key
+    save!
   end
 
   protected

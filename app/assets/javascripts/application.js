@@ -22,3 +22,4 @@
 //= require submit-anchor
 //= require expandable-text
 //= require sidebar
+//= require announcements

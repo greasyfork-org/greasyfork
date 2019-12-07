@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
   include ApplicationHelper
   include ShowsAds
   include LocalizedRequest
+  include Announcement
+
+  show_announcement key: :chinese_mod, show_if: -> { greasy? && ['zh-CN', 'zh-TW'].include?(I18n.locale.to_s) }, content: "<a href=\"https://greasyfork.org/forum/discussion/67257/looking-for-more-chinese-moderators\">Greasy Fork is looking for Chinese moderators.</a>".html_safe
+  show_announcement key: :test_announcement, show_if: -> { params[:test] == '1' }, content: "This is a test announcement" #if Rails.env.test?
 
   rescue_from ActiveRecord::RecordNotFound, :with => :routing_error
   def routing_error
@@ -140,6 +144,10 @@ protected
     self.class.cache_with_log(key, options) do
       yield
     end
+  end
+
+  def greasy?
+    !sleazy?
   end
 
   def sleazy?

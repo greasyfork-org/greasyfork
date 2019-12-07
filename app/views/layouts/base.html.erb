@@ -117,6 +117,14 @@
   </header>
 
   <div class="width-constraint">
+    <% if @announcement %>
+      <div class="announcement">
+        <%= @announcement.content %>
+        <%= form_with(url: dismiss_announcement_path(key: @announcement.key), data: { remote: true }, id: 'announcement-dismiss') do |f| %>
+          <%= f.submit '✖' %>
+        <% end %>
+      </div>
+    <% end %>
     <% if !notice.nil? %>
       <p class="notice"><%=notice%></p>
     <% end %>

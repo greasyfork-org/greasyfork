@@ -222,6 +222,18 @@ class UsersController < ApplicationController
     redirect_to user_path(current_user)
   end
 
+  def dismiss_announcement
+    current_user&.announcement_seen!(params[:key])
+    respond_to do |format|
+      format.html {
+        redirect_to root_path
+      }
+      format.js {
+        head :ok
+      }
+    end
+  end
+
   private
 
   def self.apply_sort(finder, script_subset:, sort:)
