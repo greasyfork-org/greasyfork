@@ -812,12 +812,10 @@ private
     if cache_path.to_s.start_with?(Rails.application.config.script_page_cache_directory.to_s)
       # Make sure each portion is under the filesystem limit
       if cache_path.to_s.split('/').all?{|portion| portion.bytesize <= 255}
-        unless File.exist?(cache_path.to_s + '.gz')
-          FileUtils.mkdir_p(cache_path.parent)
-          File.write(cache_path, response_body)
-          # nginx does not seem to automatically compress with try_files, so give it a .gz to use.
-          system("gzip", cache_path.to_s)
-        end
+        FileUtils.mkdir_p(cache_path.parent)
+        File.write(cache_path, response_body) unless File.exist?(cache_path)
+        # nginx does not seem to automatically compress with try_files, so give it a .gz to use, but keep the original.
+        system("gzip", "--keep", cache_path.to_s) unless File.exist?(cache_path.to_s + '.gz')
       end
     end
   end
