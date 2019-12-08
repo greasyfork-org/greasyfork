@@ -45,6 +45,43 @@ class CreateTest < ApplicationSystemTestCase
     assert_includes(Script.last.users, user)
   end
 
+  test "library creation with meta block" do
+    user = User.first
+    login_as(user, scope: :user)
+    visit new_script_version_url
+    code = <<~EOF
+      // ==UserScript==
+      // @name My library
+      // @description Unit test.
+      // @version 1.1
+      // @namespace http://greasyfork.local/users/1
+      // ==/UserScript==
+      var foo = 1;
+    EOF
+    fill_in 'Code', with: code
+    choose 'Library - a script intended to be @require-d from other scripts and not installed directly.'
+    click_button 'Post script'
+    assert_selector 'h2', text: 'My library'
+    assert_includes(Script.last.users, user)
+  end
+
+  test "library creation without meta block" do
+    user = User.first
+    login_as(user, scope: :user)
+    visit new_script_version_url
+    code = <<~EOF
+      var foo = 1;
+    EOF
+    fill_in 'Code', with: code
+    choose 'Library - a script intended to be @require-d from other scripts and not installed directly.'
+    click_button 'Post script'
+    fill_in 'Name', with: 'My library'
+    fill_in 'Description', with: 'My library description'
+    click_button 'Post script'
+    assert_selector 'h2', text: 'My library'
+    assert_includes(Script.last.users, user)
+  end
+
   test 'blocked email domain' do
     user = User.first
     user.skip_reconfirmation!

@@ -210,7 +210,8 @@ class Script < ActiveRecord::Base
 
     meta = script_version.parser_class.parse_meta(script_version.rewritten_code)
 
-    ['name', 'description'].each{|key| update_localized_attribute(meta, key)}
+    # Don't use meta @name or @description for existing libraries - we are showing text boxes for that.
+    ['name', 'description'].each{|key| update_localized_attribute(meta, key)} unless library? && !new_record?
 
     if script_version.truncate_description
       localized_attributes_for('description').select{|la| la.attribute_value.length > MAX_LENGTHS[:description]}.each{|la| la.attribute_value = la.attribute_value[0,MAX_LENGTHS[:description]]}

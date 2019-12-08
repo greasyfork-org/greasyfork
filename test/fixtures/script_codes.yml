@@ -170,3 +170,13 @@ webhook_sync:
     // @version      2016.3.20.2000
     // ==/UserScript==
     foo.baz();
+
+library:
+  code: |
+    // ==UserScript==
+    // @name A Test Update!
+    // @description Unit test.
+    // @version 1.2
+    // @namespace http://greasyfork.local/users/1
+    // ==/UserScript==
+    var foo = 1;
