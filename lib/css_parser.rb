@@ -109,7 +109,7 @@ class CssParser
           when 'regexp'
             matches << { text: value, domain: false, tld_extra: false }
           when 'domain'
-            matches << { text: value, domain: true, tld_extra: false }
+            matches << { text: MatchURI.get_tld_plus_1(value), domain: true, tld_extra: false }
           else
             begin
               uri = URI(value)
