@@ -1,11 +1,11 @@
+require 'match_uri'
+
 class JsParser
   META_START_COMMENT = '// ==UserScript=='
   META_END_COMMENT = '// ==/UserScript=='
 
-  APPLIES_TO_ALL_PATTERNS = ['http://*', 'https://*', 'http://*/*', 'https://*/*', 'http*://*', 'http*://*/*', '*', '*://*', '*://*/*', 'http*']
   TLD_EXPANSION = ['com', 'net', 'org', 'de', 'co.uk']
-  DONT_STRIP_TLD_SITES = ['del.icio.us']
-  IP_PATTERN = /^([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}):?[0-9]*$/
+  APPLIES_TO_ALL_PATTERNS = ['http://*', 'https://*', 'http://*/*', 'https://*/*', 'http*://*', 'http*://*/*', '*', '*://*', '*://*/*', 'http*']
 
   class << self
     def get_meta_block(c)
@@ -186,13 +186,13 @@ class JsParser
           else
             if uri.host.ends_with?('.tld')
               TLD_EXPANSION.each_with_index do |tld, i|
-                applies_to_names << {text: get_tld_plus_1(uri.host.sub(/tld$/i, tld)), domain: true, tld_extra: i != 0}
+                applies_to_names << {text: MatchURI.get_tld_plus_1(uri.host.sub(/tld$/i, tld)), domain: true, tld_extra: i != 0}
               end
               # "example.com."
             elsif uri.host.ends_with?('.')
-              applies_to_names << {text: get_tld_plus_1(uri.host[0, uri.host.length - 1]), domain: true, tld_extra: false}
+              applies_to_names << {text: MatchURI.get_tld_plus_1(uri.host[0, uri.host.length - 1]), domain: true, tld_extra: false}
             else
-              applies_to_names << {text: get_tld_plus_1(uri.host), domain: true, tld_extra: false}
+              applies_to_names << {text: MatchURI.get_tld_plus_1(uri.host), domain: true, tld_extra: false}
             end
           end
         rescue ArgumentError
@@ -207,15 +207,6 @@ class JsParser
       applies_to_names.delete_if{|h1| h1[:tld_extra] && applies_to_names.any?{|h2| !h2[:tld_extra] && h1[:text] == h2[:text]}}
       # Then make sure we're unique
       return applies_to_names.uniq
-    end
-
-    def get_tld_plus_1(domain)
-      return domain if !domain.include?('.')
-      return domain if !IP_PATTERN.match(domain).nil?
-      return domain if DONT_STRIP_TLD_SITES.include?(domain)
-      return domain if !PublicSuffix.valid?(domain)
-      pd = PublicSuffix.parse(domain)
-      return pd.domain
     end
   end
 end

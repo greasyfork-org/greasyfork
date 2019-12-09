@@ -27,10 +27,28 @@ class CssParserAppliesToTest < ActiveSupport::TestCase
         a { color: red; }
       }
     CSS
-    assert_equal [{text: 'http://www.example.com', domain: false, tld_extra: false}], get_applies_tos(css)
+    assert_equal [{text: 'example.com', domain: true, tld_extra: false}], get_applies_tos(css)
   end
 
   test 'applies to single url-prefix' do
+    css = <<~CSS
+      @-moz-document url-prefix("http://www.example.com/") {
+        a { color: red; }
+      }
+    CSS
+    assert_equal [{text: 'example.com', domain: true, tld_extra: false}], get_applies_tos(css)
+  end
+
+  test 'applies to single url-prefix with domain wildcard' do
+    css = <<~CSS
+      @-moz-document url-prefix("http://example") {
+        a { color: red; }
+      }
+    CSS
+    assert_equal [{text: 'http://example*', domain: false, tld_extra: false}], get_applies_tos(css)
+  end
+
+  test 'applies to single regexp' do
     css = <<~CSS
       @-moz-document regexp(".*example.*") {
         a { color: red; }

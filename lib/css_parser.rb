@@ -1,3 +1,5 @@
+require 'match_uri'
+
 class CssParser
   META_START_COMMENT = '/* ==UserStyle=='
   META_END_COMMENT = '==/UserStyle== */'
@@ -92,8 +94,9 @@ class CssParser
       s = StringScanner.new(code)
       while s.skip_until(/@\-moz\-document/)
         s.skip(/\s*/)
-        while rule_type = s.scan(/domain|url|url\-prefix|regexp/)
-          s.skip(/\s*\(\s*/)
+        while rule_type = s.scan(/(domain|url|url\-prefix|regexp)\s*\(/)
+          rule_type.sub!(/\s*\(/, '')
+          s.skip(/\s*/)
           quote = s.scan(/['"]/)
           if quote
             ending_pattern = Regexp.new("#{quote}\\s*\\)")
@@ -102,7 +105,28 @@ class CssParser
           end
           value = s.scan_until(ending_pattern)
           value = value.sub(Regexp.union(ending_pattern, /\z/), '')
-          matches << {text: value, domain: rule_type == 'domain', tld_extra: false}
+          case rule_type
+          when 'regexp'
+            matches << { text: value, domain: false, tld_extra: false }
+          when 'domain'
+            matches << { text: value, domain: true, tld_extra: false }
+          else
+            begin
+              uri = URI(value)
+            rescue ArgumentError, URI::InvalidURIError
+              Rails.logger.warn "Unrecognized pattern '" + p + "'"
+              matches << { text: value + (rule_type == 'url-prefix' ? '*' : ''), domain: false, tld_extra: false }
+            else
+              if uri.host.nil?
+                matches << { text: value + (rule_type == 'url-prefix' ? '*' : ''), domain: false, tld_extra: false }
+              elsif !uri.host.include?('.') || uri.host.include?('*')
+                # ensure the host is something sane
+                matches << { text: value + (rule_type == 'url-prefix' ? '*' : ''), domain: false, tld_extra: false }
+              else
+                matches << { text: MatchURI.get_tld_plus_1(uri.host), domain: true, tld_extra: false }
+              end
+            end
+          end
           s.skip(/\s*,\s*/)
         end
       end
