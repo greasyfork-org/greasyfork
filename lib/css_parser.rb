@@ -88,11 +88,23 @@ class CssParser
     end
 
     def calculate_applies_to_names(code)
+      parse_doc_blocks(code).map(&:first).flatten.uniq
+    end
+
+    CSSDocumentBlock = Struct.new(:matches, :start_pos, :end_pos)
+
+    def parse_doc_blocks(code, calculate_block_positions: false)
       # XXX This should be a real parser, whether a gem or custom made. This is not properly handling
       # comments or stuff inside other strings.
       matches = []
       s = StringScanner.new(code)
+
+      last_block_end = 0
+
       while s.skip_until(/@\-moz\-document/)
+        matches << CSSDocumentBlock.new([], last_block_end, s.pos - '@-moz-document'.length - 1)
+
+        block_matches = []
         s.skip(/\s*/)
         while rule_type = s.scan(/(domain|url|url\-prefix|regexp)\s*\(/)
           rule_type.sub!(/\s*\(/, '')
@@ -107,30 +119,53 @@ class CssParser
           value = value.sub(Regexp.union(ending_pattern, /\z/), '')
           case rule_type
           when 'regexp'
-            matches << { text: value, domain: false, tld_extra: false }
+            block_matches << { text: value, domain: false, tld_extra: false }
           when 'domain'
-            matches << { text: MatchURI.get_tld_plus_1(value), domain: true, tld_extra: false }
+            block_matches << { text: MatchURI.get_tld_plus_1(value), domain: true, tld_extra: false }
           else
             begin
               uri = URI(value)
             rescue ArgumentError, URI::InvalidURIError
               Rails.logger.warn "Unrecognized pattern '" + p + "'"
-              matches << { text: value + (rule_type == 'url-prefix' ? '*' : ''), domain: false, tld_extra: false }
+              block_matches << { text: value + (rule_type == 'url-prefix' ? '*' : ''), domain: false, tld_extra: false }
             else
               if uri.host.nil?
-                matches << { text: value + (rule_type == 'url-prefix' ? '*' : ''), domain: false, tld_extra: false }
+                block_matches << { text: value + (rule_type == 'url-prefix' ? '*' : ''), domain: false, tld_extra: false }
               elsif !uri.host.include?('.') || uri.host.include?('*')
                 # ensure the host is something sane
-                matches << { text: value + (rule_type == 'url-prefix' ? '*' : ''), domain: false, tld_extra: false }
+                block_matches << { text: value + (rule_type == 'url-prefix' ? '*' : ''), domain: false, tld_extra: false }
               else
-                matches << { text: MatchURI.get_tld_plus_1(uri.host), domain: true, tld_extra: false }
+                block_matches << { text: MatchURI.get_tld_plus_1(uri.host), domain: true, tld_extra: false }
               end
             end
           end
           s.skip(/\s*,\s*/)
         end
+
+        if calculate_block_positions
+          # At this point the @-moz-document is open to open its bracket.
+          s.skip(/\s*\{/)
+          start_pos = s.pos
+
+          bracket_count = 1
+
+          until bracket_count == 0 || s.eos?
+            # Count opening and closing brackets. Would get totally borked by comments or brackets in strings.
+            bracket = s.scan_until(/[\{\}]/)[-1]
+            if bracket == '{'
+              bracket_count += 1
+            else
+              bracket_count -= 1
+            end
+          end
+          matches << CSSDocumentBlock.new(block_matches, start_pos, s.pos - 2)
+        else
+          matches << CSSDocumentBlock.new(block_matches, nil, nil)
+        end
+
+        last_block_end = s.pos
       end
-      matches.uniq
+      matches
     end
   end
 end

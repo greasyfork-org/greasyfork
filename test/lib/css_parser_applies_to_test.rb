@@ -77,4 +77,152 @@ class CssParserAppliesToTest < ActiveSupport::TestCase
     CSS
     assert_equal [{text: 'example.com', domain: true, tld_extra: false}, {text: 'example2.com', domain: true, tld_extra: false}], get_applies_tos(css)
   end
+
+  test 'parse_doc_blocks with calculate_block_positions - one block' do
+    css = <<~END
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      @updateURL   http://example.net
+      ==/UserStyle== */
+      
+      @-moz-document domain("example.com") {
+        a {
+          color: red;
+        }
+      }
+    END
+
+    blocks = CssParser.parse_doc_blocks(css, calculate_block_positions: true)
+    assert_equal 2, blocks.count
+    first_block_css = <<~END
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      @updateURL   http://example.net
+      ==/UserStyle== */
+
+    END
+    assert_equal first_block_css, css[blocks[0].start_pos..blocks[0].end_pos]
+    assert_empty blocks[0].matches
+
+    second_block_css = <<-END
+
+  a {
+    color: red;
+  }
+    END
+    assert_equal second_block_css, css[blocks[1].start_pos..blocks[1].end_pos]
+    assert_equal 1, blocks[1].matches.count
+  end
+
+  test 'parse_doc_blocks with calculate_block_positions - multiple blocks' do
+    css = <<~END
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      @updateURL   http://example.net
+      ==/UserStyle== */
+      
+      @-moz-document domain("example.com") {
+        a {
+          color: red;
+        }
+      }
+
+      b { color: blue; }
+
+      @-moz-document domain("example.net") {
+        s {
+          color: yellow;
+        }
+      }
+    END
+
+    blocks = CssParser.parse_doc_blocks(css, calculate_block_positions: true)
+    assert_equal 4, blocks.count
+    first_block_css = <<~END
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      @updateURL   http://example.net
+      ==/UserStyle== */
+
+    END
+    assert_equal first_block_css, css[blocks[0].start_pos..blocks[0].end_pos]
+    assert_empty blocks[0].matches
+
+    second_block_css = <<-END
+
+  a {
+    color: red;
+  }
+    END
+    assert_equal second_block_css, css[blocks[1].start_pos..blocks[1].end_pos]
+    assert_equal 1, blocks[1].matches.count
+
+    third_block_css = <<-END
+
+
+b { color: blue; }
+
+    END
+    assert_equal third_block_css, css[blocks[2].start_pos..blocks[2].end_pos]
+    assert_empty blocks[2].matches
+
+    fourth_block_css = <<-END
+
+  s {
+    color: yellow;
+  }
+    END
+    assert_equal fourth_block_css, css[blocks[3].start_pos..blocks[3].end_pos]
+    assert_equal 1, blocks[3].matches.count
+  end
+
+  test 'parse_doc_blocks with calculate_block_positions - whitespace deficient' do
+    css = <<~END
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      @updateURL   http://example.net
+      ==/UserStyle== */@-moz-document domain("example.com"){a{color:red;}}b{color:blue;}@-moz-document domain("example.net"){s{color:yellow;}}
+    END
+
+    blocks = CssParser.parse_doc_blocks(css, calculate_block_positions: true)
+    assert_equal 4, blocks.count
+    first_block_css = <<~END.strip
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      @updateURL   http://example.net
+      ==/UserStyle== */
+    END
+    assert_equal first_block_css, css[blocks[0].start_pos..blocks[0].end_pos]
+    assert_empty blocks[0].matches
+
+    second_block_css = "a{color:red;}"
+    assert_equal second_block_css, css[blocks[1].start_pos..blocks[1].end_pos]
+    assert_equal 1, blocks[1].matches.count
+
+    third_block_css = "b{color:blue;}"
+    assert_equal third_block_css, css[blocks[2].start_pos..blocks[2].end_pos]
+    assert_empty blocks[2].matches
+
+    fourth_block_css = "s{color:yellow;}"
+    assert_equal fourth_block_css, css[blocks[3].start_pos..blocks[3].end_pos]
+    assert_equal 1, blocks[1].matches.count
+  end
 end
