@@ -107,7 +107,7 @@ class CssParser
       next_block_start = 0
 
       while s.skip_until(/@\-moz\-document/)
-        matches << CssDocumentBlock.new([], next_block_start, s.pos - '@-moz-document'.length - 1)
+        matches << CssDocumentBlock.new([], next_block_start, s.charpos - '@-moz-document'.length - 1)
 
         block_matches = []
         s.skip(/\s*/)
@@ -129,7 +129,7 @@ class CssParser
         if calculate_block_positions
           # At this point the @-moz-document is open to open its bracket.
           s.skip(/\s*\{/)
-          start_pos = s.pos
+          start_pos = s.charpos
 
           bracket_count = 1
 
@@ -142,12 +142,12 @@ class CssParser
               bracket_count -= 1
             end
           end
-          matches << CssDocumentBlock.new(block_matches, start_pos, s.pos - bracket.length - 1)
+          matches << CssDocumentBlock.new(block_matches, start_pos, s.charpos - bracket.length - 1)
         else
           matches << CssDocumentBlock.new(block_matches, nil, nil)
         end
 
-        next_block_start = s.pos
+        next_block_start = s.charpos
       end
       matches
     end

@@ -118,6 +118,73 @@ class CssToJsConverterTest < ActiveSupport::TestCase
     assert_equal js, CssToJsConverter.convert(css)
   end
 
+  test 'js conversion with multibyte characters' do
+    css = <<~END
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      ==/UserStyle== */
+      
+      @-moz-document domain("example.com") {
+        a {
+          content: "☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃";
+        }
+      }
+      @-moz-document domain("example.net") {
+        a {
+          content: "☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃";
+        }
+      }
+    END
+
+    js = <<~END
+      // ==UserScript==
+      // @name Example UserCSS style
+      // @namespace github.com/openstyles/stylus
+      // @version 1.0.0
+      // @license unlicense
+      // @grant GM_addStyle
+      // @run-at document-start
+      // @include http://example.com/*
+      // @include https://example.com/*
+      // @include http://*.example.com/*
+      // @include https://*.example.com/*
+      // @include http://example.net/*
+      // @include https://example.net/*
+      // @include http://*.example.net/*
+      // @include https://*.example.net/*
+      // ==/UserScript==
+      
+      (function() {
+      let css = "";
+      if ((location.hostname === "example.com" || location.hostname.endsWith(".example.com"))) {
+        css += `
+          a {
+            content: "☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃";
+          }
+        `;
+      }
+      if ((location.hostname === "example.net" || location.hostname.endsWith(".example.net"))) {
+        css += `
+          a {
+            content: "☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃";
+          }
+        `;
+      }
+      if (typeof GM_addStyle !== "undefined") {
+        GM_addStyle(css);
+      } else {
+        let styleNode = document.createElement("style");
+        styleNode.appendChild(document.createTextNode(css));
+        (document.querySelector("head") || document.documentElement).appendChild(styleNode);
+      }
+      })();
+    END
+    assert_equal js, CssToJsConverter.convert(css)
+  end
+
   test 'calculate_includes domain with overlapping URL' do
     block = CssParser::CssDocumentBlock.new([
                                                 CssParser::CssDocumentMatch.new('domain', 'example.com'),
