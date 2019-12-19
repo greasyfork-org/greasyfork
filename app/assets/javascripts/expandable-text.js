@@ -7,10 +7,10 @@
     }
     // Use a multiple of line height to prevent partially displayed lines
     var height = parseInt(getComputedStyle(expandable).height, 10);
-    var lineHeight = parseInt(getComputedStyle(expandable).lineHeight, 10);
+    var lineHeight = parseInt(getComputedStyle(expandable).lineHeight, 10) || parseInt(getComputedStyle(expandable).fontSize, 10);
     // Matching the number of metas on the other side
     var lines = 8;
-    var maxAllowedHeight = lineHeight * lines
+    var maxAllowedHeight = lineHeight * lines;
     if (height <= maxAllowedHeight) {
       return;
     }
