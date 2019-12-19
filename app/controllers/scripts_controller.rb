@@ -2,6 +2,7 @@ require 'script_importer/script_syncer'
 require 'csv'
 require 'fileutils'
 require 'cgi'
+require 'css_to_js_converter'
 
 class ScriptsController < ApplicationController
   include ScriptAndVersions
@@ -144,7 +145,13 @@ class ScriptsController < ApplicationController
         script, script_version = minimal_versionned_script(script_id, script_version_id)
         return if handle_replaced_script(script)
 
-        user_js_code = script.script_delete_type_id == 2 ? script_version.get_blanked_code : script_version.rewritten_code
+        user_js_code = if script.deleted_and_blanked?
+                         script_version.get_blanked_code
+                       elsif script.css?
+                         CssToJsConverter.convert(script_version.rewritten_code)
+                       else
+                         script_version.rewritten_code
+                       end
 
         # If the request specifies a specific version, the code will never change, so inform the manager not to check for updates.
         if params[:version].present? && !script.library?

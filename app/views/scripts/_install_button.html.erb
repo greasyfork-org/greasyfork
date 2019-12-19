@@ -1,13 +1,15 @@
 <%
 script = script_version.script
-version_param = nil if !defined?(:version_param)
-if script.js?
+version_param = nil if !defined?(version_param)
+format_override = nil unless defined?(format_override)
+install_as_js = script.js? || format_override == 'js'
+if install_as_js
   code_url = version_param.nil? ? user_js_script_path(script, name: script.url_name, locale_override: nil) : user_js_script_path(script, version: version_param, name: script.url_name, locale_override: nil) + '&d=.user.js'
 else
   code_url = version_param.nil? ? user_css_script_path(script, name: script.url_name, locale_override: nil) : user_css_script_path(script, version: version_param, name: script.url_name, locale_override: nil) + '&d=.user.css'
 end
 %>
-<%= link_to t('scripts.install'), code_url, {
+<%= link_to install_as_js ? t('scripts.install') : 'Install as user style', code_url, {
 	class: 'install-link',
 	'data-ping-url' => install_ping_script_path(script, :authenticity_token => session[:_csrf_token], :locale_override => nil),
 	'data-is-previous-version' => version_param.present?,

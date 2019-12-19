@@ -42,9 +42,9 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       if (typeof GM_addStyle !== "undefined") {
         GM_addStyle(css);
       } else {
-        var styleNode = document.createElement("style");
-        node.appendChild(document.createTextNode(css));
-        (document.querySelector("head") || document.documentElement).appendChild(node);
+        let styleNode = document.createElement("style");
+        styleNode.appendChild(document.createTextNode(css));
+        (document.querySelector("head") || document.documentElement).appendChild(styleNode);
       }
       })();
     END
@@ -109,9 +109,9 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       if (typeof GM_addStyle !== "undefined") {
         GM_addStyle(css);
       } else {
-        var styleNode = document.createElement("style");
-        node.appendChild(document.createTextNode(css));
-        (document.querySelector("head") || document.documentElement).appendChild(node);
+        let styleNode = document.createElement("style");
+        styleNode.appendChild(document.createTextNode(css));
+        (document.querySelector("head") || document.documentElement).appendChild(styleNode);
       }
       })();
     END

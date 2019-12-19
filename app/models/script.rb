@@ -364,6 +364,10 @@ class Script < ActiveRecord::Base
     !script_delete_type.nil?
   end
 
+  def deleted_and_blanked?
+    script_delete_type_id == ScriptDeleteType::BLANKED
+  end
+
   def detect_locale
     ft = full_text
     return if ft.nil?
