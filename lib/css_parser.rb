@@ -4,6 +4,9 @@ class CssParser
   META_START_COMMENT = '/* ==UserStyle=='
   META_END_COMMENT = '==/UserStyle== */'
 
+  CssDocumentBlock = Struct.new(:matches, :start_pos, :end_pos)
+  CssDocumentMatch = Struct.new(:rule_type, :value)
+
   class << self
     def get_meta_block(c)
       return nil if c.nil?
@@ -88,10 +91,12 @@ class CssParser
     end
 
     def calculate_applies_to_names(code)
-      parse_doc_blocks(code).map(&:first).flatten.uniq
+      parse_doc_blocks(code)
+          .map(&:first)
+          .flatten
+          .map { |css_document_match| convert_for_applies_to_name(css_document_match) }
+          .uniq
     end
-
-    CSSDocumentBlock = Struct.new(:matches, :start_pos, :end_pos)
 
     def parse_doc_blocks(code, calculate_block_positions: false)
       # XXX This should be a real parser, whether a gem or custom made. This is not properly handling
@@ -99,10 +104,10 @@ class CssParser
       matches = []
       s = StringScanner.new(code)
 
-      last_block_end = 0
+      next_block_start = 0
 
       while s.skip_until(/@\-moz\-document/)
-        matches << CSSDocumentBlock.new([], last_block_end, s.pos - '@-moz-document'.length - 1)
+        matches << CssDocumentBlock.new([], next_block_start, s.pos - '@-moz-document'.length - 1)
 
         block_matches = []
         s.skip(/\s*/)
@@ -117,28 +122,7 @@ class CssParser
           end
           value = s.scan_until(ending_pattern)
           value = value.sub(Regexp.union(ending_pattern, /\z/), '')
-          case rule_type
-          when 'regexp'
-            block_matches << { text: value, domain: false, tld_extra: false }
-          when 'domain'
-            block_matches << { text: MatchURI.get_tld_plus_1(value), domain: true, tld_extra: false }
-          else
-            begin
-              uri = URI(value)
-            rescue ArgumentError, URI::InvalidURIError
-              Rails.logger.warn "Unrecognized pattern '" + p + "'"
-              block_matches << { text: value + (rule_type == 'url-prefix' ? '*' : ''), domain: false, tld_extra: false }
-            else
-              if uri.host.nil?
-                block_matches << { text: value + (rule_type == 'url-prefix' ? '*' : ''), domain: false, tld_extra: false }
-              elsif !uri.host.include?('.') || uri.host.include?('*')
-                # ensure the host is something sane
-                block_matches << { text: value + (rule_type == 'url-prefix' ? '*' : ''), domain: false, tld_extra: false }
-              else
-                block_matches << { text: MatchURI.get_tld_plus_1(uri.host), domain: true, tld_extra: false }
-              end
-            end
-          end
+          block_matches << CssDocumentMatch.new(rule_type, value)
           s.skip(/\s*,\s*/)
         end
 
@@ -158,14 +142,39 @@ class CssParser
               bracket_count -= 1
             end
           end
-          matches << CSSDocumentBlock.new(block_matches, start_pos, s.pos - 2)
+          matches << CssDocumentBlock.new(block_matches, start_pos, s.pos - bracket.length - 1)
         else
-          matches << CSSDocumentBlock.new(block_matches, nil, nil)
+          matches << CssDocumentBlock.new(block_matches, nil, nil)
         end
 
-        last_block_end = s.pos
+        next_block_start = s.pos
       end
       matches
+    end
+
+    def convert_for_applies_to_name(css_document_match)
+      case css_document_match.rule_type
+      when 'regexp'
+        return { text: css_document_match.value, domain: false, tld_extra: false }
+      when 'domain'
+        return { text: MatchURI.get_tld_plus_1(css_document_match.value), domain: true, tld_extra: false }
+      else
+        begin
+          uri = URI(css_document_match.value)
+        rescue ArgumentError, URI::InvalidURIError
+          Rails.logger.warn "Unrecognized pattern '" + p + "'"
+          return { text: css_document_match.value + (css_document_match.rule_type == 'url-prefix' ? '*' : ''), domain: false, tld_extra: false }
+        else
+          if uri.host.nil?
+            return { text: css_document_match.value + (css_document_match.rule_type == 'url-prefix' ? '*' : ''), domain: false, tld_extra: false }
+          end
+          if !uri.host.include?('.') || uri.host.include?('*')
+            # ensure the host is something sane
+            return { text: css_document_match.value + (css_document_match.rule_type == 'url-prefix' ? '*' : ''), domain: false, tld_extra: false }
+          end
+          return { text: MatchURI.get_tld_plus_1(uri.host), domain: true, tld_extra: false }
+        end
+      end
     end
   end
 end
