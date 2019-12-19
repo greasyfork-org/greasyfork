@@ -9,7 +9,11 @@ INSERT IGNORE INTO fan_score (script_id, fan_id, score) SELECT child_id, user_id
 # ok
 INSERT IGNORE INTO fan_score (script_id, fan_id, score) SELECT ScriptID, ForeignUserKey, 0 FROM GDN_Discussion JOIN GDN_UserAuthentication ON InsertUserID = UserID WHERE ScriptID IS NOT NULL AND Rating = 3;
 # remove narcissists
-DELETE fan_score.* FROM fan_score JOIN scripts ON scripts.id = script_id WHERE fan_id = user_id;
+DELETE fan_score.*
+    FROM fan_score
+    JOIN scripts ON scripts.id = fan_score.script_id
+    JOIN authors ON authors.script_id = scripts.id
+WHERE fan_id = authors.user_id;
 
 # Set good/bad counts for display
 UPDATE scripts SET good_ratings = 0, ok_ratings = 0, bad_ratings = 0;
