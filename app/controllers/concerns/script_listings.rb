@@ -1,11 +1,11 @@
 module ScriptListings
   extend ActiveSupport::Concern
 
-  COLLECTION_PUBLIC_ACTIONS = [:index, :search, :libraries, :code_search, :redistributable, :by_site]
+  COLLECTION_PUBLIC_ACTIONS = [:index, :search, :libraries, :code_search, :by_site]
   COLLECTION_MODERATOR_ACTIONS = [:reported, :reported_unauthorized, :reported_not_adult, :requested_permanent_deletion, :minified]
 
   included do 
-    layout 'list', only: [:index, :search, :libraries, :reported, :reported_unauthorized, :reported_not_adult, :requested_permanent_deletion, :minified, :restributable, :code_search, :redistributable]
+    layout 'list', only: [:index, :search, :libraries, :reported, :reported_unauthorized, :reported_not_adult, :requested_permanent_deletion, :minified, :code_search]
   end
 
   def index
@@ -220,13 +220,6 @@ module ScriptListings
     @title = "Potentially minified user scripts on Greasy Fork"
     @include_script_sets = false
     render :action => 'index'
-  end
-
-  def redistributable
-    @title = t('scripts.redistributable_title')
-    @page_description = t('scripts.redistributable_page_description')
-    @bots = 'noindex,follow'
-    render_script_list(Script.redistributable(script_subset))
   end
 
   def code_search

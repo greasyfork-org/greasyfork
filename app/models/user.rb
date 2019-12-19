@@ -2,6 +2,7 @@ require 'securerandom'
 require 'devise'
 
 class User < ApplicationRecord
+  self.ignored_columns = %w(approve_redistribution)
 
   serialize :announcements_seen, Array
 

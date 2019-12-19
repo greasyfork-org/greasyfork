@@ -57,7 +57,6 @@ class Script < ActiveRecord::Base
   scope :reported_not_adult, -> {not_deleted.includes(:users).where('not_adult_content_self_report_date IS NOT NULL')}
   scope :requested_permanent_deletion, -> {where('permanent_deletion_request_date is not null')}
   scope :for_all_sites, -> {includes(:script_applies_tos).references(:script_applies_tos).where('script_applies_tos.id IS NULL')}
-  scope :redistributable, ->(script_subset) {listable(script_subset).includes(:users).references([:scripts, :users]).where('scripts.approve_redistribution OR (scripts.approve_redistribution IS NULL AND users.approve_redistribution)')}
 
   # Must have a default name and description
   validates_presence_of :default_name, :message => :script_missing_name, :unless => Proc.new {|s| s.library?}
@@ -313,10 +312,6 @@ class Script < ActiveRecord::Base
     public? || unlisted?
   end
 
-  def redistributable?
-    approve_redistribution.nil? ? users.all?(&:approve_redistribution) : approve_redistribution
-  end
-
   def name(lookup_locale = nil)
     return localized_value_for('name', lookup_locale)
   end
@@ -422,7 +417,6 @@ class Script < ActiveRecord::Base
       license: license_text,
       version: version,
       locale: locale.nil? ? nil : locale.code,
-      redistributable: redistributable?,
       deleted: deleted?
     })
   end

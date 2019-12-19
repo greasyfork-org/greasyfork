@@ -97,7 +97,6 @@ Rails.application.routes.draw do
         get 'search(.:format)', :action => 'search', :as => 'search'
         get 'minified(.:format)', :action => 'minified', :as => 'minified'
         get 'code-search(.:format)', :action => 'code_search', :as => 'code_search'
-        get 'redistributable(.:format)', :action => 'redistributable', :as => 'redistributable'
       end
 
       resources :script_versions, :only => [:create, :new, :index], :path => 'versions' do

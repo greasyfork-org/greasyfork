@@ -428,20 +428,6 @@ en:
     support_feedback_or_report: "%{support_url:Visit the author's site for support}, %{feedback_link:ask a question, post a review}, or %{report_link:report the script}."
     # a suggestion below the install button that users provide feedback or get support from the author's via email. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
     support_email_feedback_or_report: "%{support_url:Email the author for support}, %{feedback_link:ask a question, post a review}, or %{report_link:report the script}."
-    # explanation of the approve redistribution option on the script edit page
-    approve_redistribution_explanation: "%{site_name} can tell other sites that you allow them to repost your script. This may or may not be already permitted by the license you choose for your script."
-    # option for approve redistribution on a script where the value is based on the account default. user_setting can be approve_redistribution_use_user_setting_not_set if the account doesn't have it set, or it can be users.approve_redistribution_true or users.approve_redistribution_false
-    approve_redistribution_use_user_setting: "Use my account default (%{user_setting})"
-    # used with approve_redistribution_use_user_setting when the setting is not set on the account
-    approve_redistribution_use_user_setting_not_set: "not set"
-    # option for approve redistribution on a script for when they approve
-    approve_redistribution_true: "I'm OK with my script being reposted elsewhere"
-    # option for approve redistribution on a script for when they don't approve
-    approve_redistribution_false: "I don't want my script being reposted elsewhere"
-    # title for list of scripts where the author opted in for redistribution
-    redistributable_title: "Redistributable user scripts"
-    # text on redistributable scripts page explaining what it is
-    redistributable_page_description: "The authors of these scripts have explicitly indicated they approve of them being posted elsewhere. These scripts may still be subject to additional terms regarding redistribution; check each script's license for details."
     # heading for section relating to adult content when posting new script or script version
     adult_content: "Adult content"
     # label for checkbox letting authors report their script as containing adult content
@@ -795,12 +781,6 @@ en:
     preferred_markup_description: "Will be used for new scripts and posts."
     # text describing what the flattr username setting does
     flattr_username_description_html: "Users of your scripts will be asked to donate to your account on <a href=\"https://flattr.com\">Flattr</a>."
-    # explanation of the approve redistribution option on the user edit page
-    approve_redistribution_explanation: "%{site_name} can tell other sites that you allow them to repost your script. This may or may not be already permitted by the license you choose for your scripts. You may override this preference on each individual script."
-    # option for approve redistribution on a user for when they approve
-    approve_redistribution_true: "I'm OK with my scripts being reposted elsewhere"
-    # option for approve redistribution on a user for when they don't approve
-    approve_redistribution_false: "I don't want my scripts being reposted elsewhere"
     # link from sleazy fork to greasy fork on user page
     greasy_fork_scripts_link:
       one: "%{user_name} also has %{count} script on Greasy Fork."
@@ -1078,8 +1058,6 @@ en:
         screenshot_caption: "Caption"
         # when deleting, which script to redirect to
         replaced_by_script_id: "Replacement script"
-        # whether the user is OK with their script being posted elsewhere
-        approve_redistribution: "Redistribution"
       script_set:
         # name of the script set
         name: "Name"
