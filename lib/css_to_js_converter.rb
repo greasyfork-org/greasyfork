@@ -33,11 +33,11 @@ class CssToJsConverter
 
       if doc_blocks_and_code.length == 1 && (meta['include'] != ['*'] || doc_blocks_and_code.first.first.matches.empty?)
         # 0 or 1 document block, and we correctly encoded it as an include. No need for conditionals.
-        lines << "let css = `#{doc_blocks_and_code.first.last.gsub('`', '\`')}`;"
+        lines << "let css = `#{escape_for_js_literal(doc_blocks_and_code.first.last)}`;"
       else
         lines << 'let css = "";'
         lines += doc_blocks_and_code.map do |doc_block, block_code|
-          js_for_block = "css += `#{block_code.gsub('`', '\`')}`;"
+          js_for_block = "css += `#{escape_for_js_literal(block_code)}`;"
           next js_for_block if doc_block.matches.empty?
           conditions = doc_block.matches.map do |match|
             case match.rule_type
@@ -106,6 +106,10 @@ class CssToJsConverter
 
     def only_comments?(css)
       /\A(\s*\/\*.*?\*\/\s*)*\z/.match?(css)
+    end
+
+    def escape_for_js_literal(css)
+      css.gsub('\\', '\\\\\\').gsub('`', '\\\`')
     end
   end
 end
