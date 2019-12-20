@@ -50,7 +50,11 @@ module ScriptListings
           end
         end
 
-        with[:language] = params[:language] == 'css' ? 'css' : 'js'
+        if params[:language] == 'css'
+          with[:available_as_css] = true
+        else
+          with[:available_as_js] = true
+        end
 
         # This should be nil unless there are going to be no results.
         if @scripts.nil?
