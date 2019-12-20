@@ -3,7 +3,9 @@
     when 1, 2 %>
       <div id="install-area">
         <% if script.css? %>
-          <%= render partial: 'install_button', locals: {script_version: script_version, version_param: params[:version], format_override: 'js'}%><%=link_to t('scripts.install_help'), help_installing_user_scripts_path, {:class => 'install-help-link', :title => t('scripts.install_help_title'), :rel => 'nofollow'}%>
+          <% if script.css_convertible_to_js? %>
+            <%= render partial: 'install_button', locals: {script_version: script_version, version_param: params[:version], format_override: 'js'}%><%=link_to t('scripts.install_help'), help_installing_user_scripts_path, {:class => 'install-help-link', :title => t('scripts.install_help_title'), :rel => 'nofollow'}%>
+          <% end %>
           <%= render partial: 'install_button', locals: {script_version: script_version, version_param: params[:version]}%><%=link_to t('scripts.install_help'), help_installing_user_styles_path, {:class => 'install-help-link', :title => t('scripts.install_help_title'), :rel => 'nofollow'}%>
         <% else %>
           <%= render partial: 'install_button', locals: {script_version: script_version, version_param: params[:version]}%><%=link_to t('scripts.install_help'), help_installing_user_scripts_path, {:class => 'install-help-link', :title => t('scripts.install_help_title'), :rel => 'nofollow'}%>

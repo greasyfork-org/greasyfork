@@ -148,6 +148,10 @@ class ScriptsController < ApplicationController
         user_js_code = if script.deleted_and_blanked?
                          script_version.get_blanked_code
                        elsif script.css?
+                         unless script.css_convertible_to_js?
+                           head 404
+                           return
+                         end
                          CssToJsConverter.convert(script_version.rewritten_code)
                        else
                          script_version.rewritten_code

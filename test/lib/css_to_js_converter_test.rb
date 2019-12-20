@@ -292,4 +292,79 @@ class CssToJsConverterTest < ActiveSupport::TestCase
                                             ], nil, nil)
     assert_equal %w(http://example.com/* https://example.com/* http://*.example.com/* https://*.example.com/*), CssToJsConverter.calculate_includes([block])
   end
+
+  test 'convertible default case' do
+    css = <<~END
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      ==/UserStyle== */
+      
+      @-moz-document domain("example.com") {
+        a {
+          color: red;
+        }
+      }
+    END
+    assert CssToJsConverter.convertible?(css)
+  end
+
+  test 'convertible with default preprocessor' do
+    css = <<~END
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      @preprocessor default
+      ==/UserStyle== */
+      
+      @-moz-document domain("example.com") {
+        a {
+          color: red;
+        }
+      }
+    END
+    assert CssToJsConverter.convertible?(css)
+  end
+
+  test 'not convertible with different preprocessor' do
+    css = <<~END
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      @preprocessor less
+      ==/UserStyle== */
+      
+      @-moz-document domain("example.com") {
+        a {
+          color: red;
+        }
+      }
+    END
+    assert !CssToJsConverter.convertible?(css)
+  end
+
+  test 'not convertible with var' do
+    css = <<~END
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      @var         something
+      ==/UserStyle== */
+      
+      @-moz-document domain("example.com") {
+        a {
+          color: red;
+        }
+      }
+    END
+    assert !CssToJsConverter.convertible?(css)
+  end
 end

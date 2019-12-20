@@ -259,6 +259,8 @@ class Script < ActiveRecord::Base
       self.support_url = nil
     end
 
+    self.css_convertible_to_js = css? && CssToJsConverter.convertible?(script_version.rewritten_code)
+
     new_compatibility_data = []
     ['compatible', 'incompatible'].each do |key|
       next if !meta.has_key?(key)

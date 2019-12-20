@@ -111,5 +111,10 @@ class CssToJsConverter
     def escape_for_js_literal(css)
       css.gsub('\\', '\\\\\\').gsub('`', '\\\`')
     end
+
+    def convertible?(css)
+      meta = CssParser.parse_meta(css)
+      !(meta['preprocessor']&.any? { |pp| pp != 'default' } || meta['var']&.any?)
+    end
   end
 end
