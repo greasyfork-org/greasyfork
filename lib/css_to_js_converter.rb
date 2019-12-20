@@ -12,6 +12,12 @@ class CssToJsConverter
                              .map{ |doc_block| [doc_block, code_css[doc_block.start_pos..doc_block.end_pos]] }
                              .reject{ |doc_block, block_code| block_code.blank? }
 
+      if doc_blocks_and_code.count > 1
+        doc_blocks_and_code = doc_blocks_and_code.reject do |doc_block, block_code|
+          doc_block.matches.none? && only_comments?(block_code)
+        end
+      end
+
       meta = CssParser.parse_meta(css).select{|k, v| VERBATIM_META_LINES.include?(k) }
       meta['grant'] = ['GM_addStyle']
       meta['run-at'] = ['document-start']
@@ -96,6 +102,10 @@ class CssToJsConverter
       end
 
       js_includes.uniq
+    end
+
+    def only_comments?(css)
+      /\A(\s*\/\*.*?\*\/\s*)*\z/.match?(css)
     end
   end
 end
