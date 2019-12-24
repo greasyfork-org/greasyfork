@@ -4,6 +4,8 @@ rvm:
 env:
   - DB=mysql
 sudo: required
+services:
+  - mysql
 addons:
   chrome: stable
 before_install: gem install bundler
