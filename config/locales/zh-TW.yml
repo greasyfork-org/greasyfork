@@ -43,6 +43,8 @@ zh-TW:
     deleted_notice_with_replacement_html: "腳本已被刪除，並且被<a href=\"%{replacement_script_url}\">%{replacement_script_name}</a>取代。"
     version_notice_html: "目前為 %{date} 提交的版本，檢視 %{latest_version_link}。"
     version_notice_latest_version_link: "最新版本"
+    reported_notice: "舉報 \"%{script_name}\" 的信息已經提交，且將由一名管理員進行審閱。"
+    reported_notice_for_author: "這個腳本在被管理員審閱前將暫時不可用。"
     info_page: "資訊"
     code_page: "代碼"
     history_page: "歷史"
@@ -136,6 +138,7 @@ zh-TW:
     listing_filter_by_site_label: "依網站篩選："
     listing_filter_by_site_disable: "所有腳本"
     listing_filter_by_site_all_sites: "(全域執行)"
+    listing_filter_by_language_label: "語言："
     listing_filter_by_site_more_sites: "更多…"
     listing_no_scripts: "找不到相關腳本 :<"
     listing_created_feed: "新出爐的腳本"
@@ -224,13 +227,6 @@ zh-TW:
     feedback_or_report: "%{feedback_link:發表問題、評論}、或%{report_link:檢舉該腳本}。"
     support_feedback_or_report: "%{support_url:瀏覽作者的技術支援網站}、%{feedback_link:發表問題、評論}、或 %{report_link:檢舉該腳本}。"
     support_email_feedback_or_report: "%{support_url:向作者寄送電子郵件以取得技術支援}、%{feedback_link:發表問題、評論}、或 %{report_link:檢舉該腳本}。"
-    approve_redistribution_explanation: "%{site_name} 可以告訴其它網站，是否允許你的腳本被轉貼。即使這沒有包括在你所選擇的授權條款中。"
-    approve_redistribution_use_user_setting: "使用帳戶預設值（%{user_setting}）"
-    approve_redistribution_use_user_setting_not_set: "還未設定"
-    approve_redistribution_true: "我 允許 此腳本可以被其它網站轉貼"
-    approve_redistribution_false: "我 不要 其它網站轉貼我的腳本"
-    redistributable_title: "允許轉貼的腳本"
-    redistributable_page_description: "這些腳本的作者明確許可、同意你將腳本轉貼到其它網站。有些腳本或許會有額外關於轉貼的限制，詳細規定請參考各腳本的授權條款。"
     adult_content: "成人內容"
     adult_content_self_report: "這個腳本含有成人內容，或者它作用於含有成人內容的站點。"
     adult_content_self_report_explanation: "%{site_name} 允許腳本含有成人內容，但是他們必須被標記；這樣用戶可以選擇是否顯示這類信息。"
@@ -257,6 +253,21 @@ zh-TW:
     must_confirm_email_button: "發送驗證郵件到%{email}"
     report:
       title: "檢舉 %{script_name}"
+      text_html: >-
+          <p>提交至%{site_name}的腳本必須遵守%{rules_link:其規則}。你可以使用下方的連結來舉報這個腳本所違反的內容，並由%{site_name}的管理員對你的舉報進行審核。</p>
+          <ul>
+
+          <li>%{unauthorized_link:舉報未授權的副本。}</li>
+
+          <li>%{malware_link:舉報腳本含有惡意程式碼。}</li>
+
+          <li>%{spam_link:垃圾信息或其它不是用戶腳本程式碼的濫用。}</li>
+
+          <li>%{other_report_link:舉報其它違反的規則，包括但不限於未聲明的廣告內容或加密貨幣的挖礦腳本。}</li>
+
+          </ul>
+
+          <p>請注意，如果是失去效用或繞過第三方站點使用條例的用戶腳本<em>並不屬於</em>違反%{site_name}的規則。在這種情況下，你應該%{feedback_link:提交反饋}告知腳本作者。</p>
     authors_heading: "作者列表"
     error_unauthorized_copy: "這份代碼中包含了 %{script} 的未授權代碼。請參考  %{site_name} 的 %{rules_link:腳本規範}。"
     invitations:
@@ -472,9 +483,6 @@ zh-TW:
     show_sensitive_description: "顯示含有成人內容的腳本"
     preferred_markup_description: "該設定將會套用到新的腳本以及新的發言。"
     flattr_username_description_html: "您的腳本的使用者將被詢問是否要向您的 <ahref=\"https://flattr.com\">Flattr</a> 帳號捐贈。"
-    approve_redistribution_explanation: "%{site_name} 可以告訴其它網站，是否允許你的腳本被轉貼。即使這沒有包括在你所選擇的授權條款中。你可以在各別腳本設定中覆蓋此項目。"
-    approve_redistribution_true: "我 允許 此腳本可以被其它網站轉貼"
-    approve_redistribution_false: "我 不要 其它網站轉貼我的腳本"
     greasy_fork_scripts_link:
       other: "%{user_name} 也有 %{count} 個腳本在 Greasy Fork 上。"
     update_sync_warning:
@@ -726,7 +734,6 @@ zh-TW:
         screenshots: "擷圖"
         screenshot_caption: "標題"
         replaced_by_script_id: "替代腳本"
-        approve_redistribution: "轉載"
       script_set:
         name: "名稱"
         description: "描述"
