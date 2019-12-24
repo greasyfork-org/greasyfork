@@ -1,4 +1,4 @@
 <%- title t('help.code_rules.title', site_name: site_name) %>
 <%- description "Rules and restrictions for code posted to #{site_name}." %>
 
-<%=it('help.code_rules.content_html', external_scripts_link: help_external_scripts_path, contact_link: help_contact_path, site_name: site_name, adult_content_requirement: sleazy? ? '' : t('help.code_rules.adult_content_rule_html'))%>
+<%=it('help.code_rules.content_html', external_scripts_link: help_external_scripts_path, site_name: site_name, adult_content_requirement: sleazy? ? '' : t('help.code_rules.adult_content_rule_html'))%>
