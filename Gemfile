@@ -70,4 +70,5 @@ group :test do
   gem 'bundler-audit'
   gem 'mocha'
   gem 'minitest-around'
+  gem 'webdrivers', '~> 4.0'
 end
