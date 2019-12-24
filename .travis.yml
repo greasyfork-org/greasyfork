@@ -24,6 +24,7 @@ before_script:
   - cp test/travisconfig/secrets.yml config/secrets.yml
   - mysql -e 'create database greasyforktest'
   - mysql greasyforktest < db/structure.sql
+  - rake ts:configure
 script:
   - bundle install
   - bundle exec rake test test:system
