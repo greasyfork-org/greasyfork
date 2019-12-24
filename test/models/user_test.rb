@@ -1,6 +1,12 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
+  def around(&block)
+    with_sphinx do
+      block.call
+    end
+  end
+
   test 'deleting scripts where they are the sole author' do
     user = User.find(1)
     assert_equal user, Script.find(1).users.first
