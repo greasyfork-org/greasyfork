@@ -8,6 +8,9 @@ set :branch, ENV['BRANCH'] if ENV['BRANCH']
 set :rbenv_type, :user
 set :rbenv_ruby, File.read('.ruby-version').strip
 
+set :default_env, {
+  'PATH' => '$PATH:/www/sphinx-3.1.1/bin'
+}
 #set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 #set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 #set :rbenv_roles, :all # default value
