@@ -16,6 +16,9 @@ install:
   - sudo mv -f ~/chromedriver /usr/local/share/
   - sudo chmod +x /usr/local/share/chromedriver
   - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+  - wget http://sphinxsearch.com/files/sphinx-3.1.1-612d99f-linux-amd64.tar.gz
+  - tar -xvf sphinx-3.1.1-612d99f-linux-amd64.tar.gz
+  - export PATH=$PATH:$PWD/sphinx-3.1.1/bin/
 before_script:
   - cp test/travisconfig/database.yml config/database.yml
   - cp test/travisconfig/secrets.yml config/secrets.yml
