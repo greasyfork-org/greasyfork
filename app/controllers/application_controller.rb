@@ -2,6 +2,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :banned?
 
+  skip_before_action :verify_authenticity_token, if: -> { request.format.jsonp? }
+
   include ApplicationHelper
   include ShowsAds
   include LocalizedRequest
