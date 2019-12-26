@@ -41,6 +41,10 @@ class User < ApplicationRecord
     scripts.select { |script| script.authors.where.not(user_id: id).none? }.each(&:destroy!)
   end
 
+  before_validation do
+    self.canonical_email = EmailAddress.canonical(email)
+  end
+
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
@@ -51,6 +55,10 @@ class User < ApplicationRecord
   validates_inclusion_of :profile_markup, :in => ['html', 'markdown']
   validates_inclusion_of :preferred_markup, :in => ['html', 'markdown']
   validates_with DisallowedAttributeValidator, object_type: :user
+
+  validate on: :create do
+    errors.add(:base, "This account has been banned.") if User.where(banned: true, canonical_email: canonical_email).any?
+  end
 
   # Devise runs this when password_required?, and we override that so
   # that users don't have to deal with passwords all the time. Add it

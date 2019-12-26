@@ -41,6 +41,7 @@ gem 'hashie'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'rails-observers'
 gem 'memoist'
+gem 'email_address'
 
 source 'https://rails-assets.org' do
 	gem 'rails-assets-jsonlylightbox'
