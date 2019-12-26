@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.6.2'
 
-gem 'rails', '~> 5.2.0'
+gem 'rails', '~> 6.0.2'
 gem 'rails-i18n'
 gem 'bootsnap'
 gem 'uglifier'
