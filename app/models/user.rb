@@ -50,7 +50,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   validates_presence_of :name, :profile_markup, :preferred_markup
-  validates_uniqueness_of :name, case_sensitive: false
+  validates_uniqueness_of :name
   validates_length_of :profile, :maximum => 10000
   validates_inclusion_of :profile_markup, :in => ['html', 'markdown']
   validates_inclusion_of :preferred_markup, :in => ['html', 'markdown']
