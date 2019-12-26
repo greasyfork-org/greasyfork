@@ -2,7 +2,7 @@ require 'js_connect'
 
 class HomeController < ApplicationController
 
-  protect_from_forgery :except => [:sso]
+  skip_before_action :verify_authenticity_token, only: :sso
 
   def index
     @ad_method = choose_ad_method

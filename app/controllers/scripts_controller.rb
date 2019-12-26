@@ -50,8 +50,7 @@ class ScriptsController < ApplicationController
     end
   end
 
-  skip_before_action :verify_authenticity_token, :only => [:install_ping]
-  protect_from_forgery :except => [:user_js, :meta_js, :show, :show_code]
+  skip_before_action :verify_authenticity_token, only: [:install_ping, :user_js, :meta_js, :show, :show_code]
 
   # The value a syncing additional info will have after syncing is added but before the first sync succeeds
   ADDITIONAL_INFO_SYNC_PLACEHOLDER = '(Awaiting sync)'
