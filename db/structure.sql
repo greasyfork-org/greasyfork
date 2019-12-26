@@ -982,30 +982,6 @@ CREATE TABLE `compatibilities` (
   CONSTRAINT `fk_rails_d7eb310317` FOREIGN KEY (`browser_id`) REFERENCES `browsers` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=3102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-DROP TABLE IF EXISTS `cpd_duplication_scripts`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `cpd_duplication_scripts` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cpd_duplication_id` int(11) NOT NULL,
-  `script_id` int(11) NOT NULL,
-  `line` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `index_cpd_duplication_scripts_on_cpd_duplication_id` (`cpd_duplication_id`),
-  KEY `index_cpd_duplication_scripts_on_script_id` (`script_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6303097 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-DROP TABLE IF EXISTS `cpd_duplications`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `cpd_duplications` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `lines` int(11) NOT NULL,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1430185 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `daily_install_counts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -1759,6 +1735,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20191207032221'),
 ('20191220163134'),
 ('20191225180112'),
-('20191225180515');
+('20191225180515'),
+('20191226213624');
 
 

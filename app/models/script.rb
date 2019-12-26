@@ -11,8 +11,6 @@ class Script < ActiveRecord::Base
   has_many :script_applies_tos, dependent: :destroy, autosave: true
   has_many :site_applications, through: :script_applies_tos
   has_many :discussions, -> { readonly.order(Arel.sql('COALESCE(DateLastComment, DateInserted)')).where('Closed = 0') }, :class_name => 'ForumDiscussion', :foreign_key => 'ScriptID'
-  has_many :cpd_duplication_scripts, dependent: :destroy
-  has_many :cpd_duplications, :through => :cpd_duplication_scripts
   has_many :script_set_script_inclusions, foreign_key: 'child_id', dependent: :destroy
   has_many :favorited_in_sets, -> {includes(:users).where('favorite = true')}, :through => :script_set_script_inclusions, :class_name => 'ScriptSet', :source => 'parent'
   has_many :favoriters, :through => :favorited_in_sets, :class_name => 'User', :source => 'user'

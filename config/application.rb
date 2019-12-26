@@ -32,9 +32,6 @@ module Greasyfork
     config.help_translate_url = 'https://github.com/JasonBarnabe/greasyfork/wiki/Translating-Greasy-Fork'
     config.i18n.fallbacks = [:en]
 
-    config.duplicate_check_size_limit = 75.kilobytes
-    config.duplicate_check_line_threshold = 5
-
     config.syntax_highlighting_limit = 500.kilobytes
 
     config.screenshot_max_count = 5
