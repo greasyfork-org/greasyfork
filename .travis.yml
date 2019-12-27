@@ -27,4 +27,4 @@ before_script:
   - mkdir -p tmp/sockets
 script:
   - bundle install
-  - bundle exec rake test test:system
+  - bundle exec rails test test:system
