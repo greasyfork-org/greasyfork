@@ -53,6 +53,7 @@ function markupPreview(p) {
     params.append("text", getTextElement(previewable).value);
     params.append("markup", selectedMarkup);
     params.append("url", url);
+    params.append(document.querySelector("meta[name='csrf-param']").getAttribute("content"), document.querySelector("meta[name='csrf-token']").getAttribute("content"))
     xhr.send(params);
   }
 
@@ -84,14 +85,14 @@ function markupPreview(p) {
   }
 
   function updateTabUI(previewable, previewTab) {
-    previewable.querySelector(previewTab ? ".preview-tab" : ".write-tab").className += " current";
+    previewable.querySelector(previewTab ? ".preview-tab" : ".write-tab").parentNode.classList.add("current");
     var tabToHide = previewable.querySelector(previewTab ? ".write-tab" : ".preview-tab");
-    tabToHide.className = tabToHide.className.replace(/ current/g, "");
+    tabToHide.parentNode.classList.remove("current");
   }
 
   var tabs = document.createElement("div");
   tabs.className = "tabs";
-  tabs.innerHTML = "<span><a class='write-tab current'><span>" + p.getAttribute("data-write-label") + "</span></a></span> <span><a class='preview-tab'><span>" + p.getAttribute("data-preview-label") + "</span></a></span>";
+  tabs.innerHTML = "<span class='current'><a class='write-tab'><span>" + p.getAttribute("data-write-label") + "</span></a></span> <span><a class='preview-tab'><span>" + p.getAttribute("data-preview-label") + "</span></a></span>";
   p.insertBefore(tabs, p.firstChild);
 
   var results = document.createElement("div");
