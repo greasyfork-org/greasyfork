@@ -46,7 +46,7 @@ class Script < ActiveRecord::Base
     end
     f
   }
-  scope :listable, ->(script_subset) { active(script_subset).where(script_type_id: 1).where(language: 'js') }
+  scope :listable, ->(script_subset) { active(script_subset).where(script_type_id: 1) }
   scope :libraries, ->(script_subset) { active(script_subset).where(script_type_id: ScriptType::LIBRARY_TYPE_ID) }
   scope :listable_including_libraries, ->(script_subset) {active(script_subset).where(script_type_id: [1,3])}
   scope :reported, -> { not_deleted.joins('JOIN GDN_Discussion ON scripts.id = ScriptID AND Rating = 1 AND Closed = 0').includes(:users).order('GDN_Discussion.DiscussionID') }
@@ -293,7 +293,7 @@ class Script < ActiveRecord::Base
   end
 
   def library?
-    script_type_id == 3
+    script_type_id == ScriptType::LIBRARY_TYPE_ID
   end
 
   def listable?
