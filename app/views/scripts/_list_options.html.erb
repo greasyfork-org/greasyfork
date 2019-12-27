@@ -72,8 +72,9 @@ current_options = {sort: params[:sort], site: params[:site], set: params[:set], 
 
   <div id="script-language-filter" class="list-option-group"><%=t('scripts.listing_filter_by_language_label')%>
     <ul>
-      <% { t('scripts.listing_language_all') => 'all', t('scripts.listing_language_js') => nil, t('scripts.listing_language_css') => 'css' }.each do |language_option, key| %>
-        <%= script_list_link(language_option, current_options.merge(language: key)) %>
+      <% default_language_option = controller.is_a?(UsersController) ? 'all' : 'js' %>
+      <% { t('scripts.listing_language_all') => 'all', t('scripts.listing_language_js') => 'js', t('scripts.listing_language_css') => 'css' }.each do |language_option, key| %>
+        <%= script_list_link(language_option, current_options.merge(language: default_language_option == key ? nil : key)) %>
       <% end %>
     </ul>
   </div>
