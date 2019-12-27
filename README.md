@@ -1,4 +1,4 @@
-[Greasy Fork](https://greasyfork.org) is an online repository of user scripts.
+[Greasy Fork](https://greasyfork.org) is an online repository of user scripts and user styles.
 
 ## Help
 
