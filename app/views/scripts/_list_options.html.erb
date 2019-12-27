@@ -72,7 +72,7 @@ current_options = {sort: params[:sort], site: params[:site], set: params[:set], 
 
   <div id="script-language-filter" class="list-option-group"><%=t('scripts.listing_filter_by_language_label')%>
     <ul>
-      <% { 'JavaScript' => nil, 'CSS' => 'css' }.each do |language_option, key| %>
+      <% { t('scripts.listing_language_all') => 'all', t('scripts.listing_language_js') => nil, t('scripts.listing_language_css') => 'css' }.each do |language_option, key| %>
         <%= script_list_link(language_option, current_options.merge(language: key)) %>
       <% end %>
     </ul>

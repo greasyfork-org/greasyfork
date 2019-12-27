@@ -265,7 +265,7 @@ module ScriptListings
         end
         scripts = scripts.where(:id => set_script_ids)
       end
-      scripts = scripts.where(language: params[:language] == 'css' ? 'css' : 'js')
+      scripts = scripts.where(language: params[:language] == 'css' ? 'css' : 'js') unless params[:language] == 'all'
       scripts = scripts.order(get_sort(params, false, set, default_sort: default_sort))
       return scripts
     end
