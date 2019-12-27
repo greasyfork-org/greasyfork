@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   include Announcement
 
   show_announcement key: :test_announcement, show_if: -> { params[:test] == '1' }, content: "This is a test announcement" #if Rails.env.test?
+  show_announcement key: :user_style_support, show_if: -> { current_user.scripts.where("created_at <= '2019-12-26'").any? }, content: "You can now post <a href=\"https://github.com/openstyles/stylus/wiki/UserCSS-authors\">Stylus format</a> user CSS and we will also convert it to user JS format. <a href=\"/script_versions/new?language=css\">Post your first user style!</a>".html_safe
 
   rescue_from ActiveRecord::RecordNotFound, :with => :routing_error
   def routing_error
