@@ -141,7 +141,7 @@ Rails.application.routes.draw do
     get 'help/rewriting', :to => 'help#rewriting', :as => 'help_rewriting'
     get 'help/meta-keys', :to => 'help#meta_keys', :as => 'help_meta_keys'
     get 'help/privacy', :to => 'help#privacy', :as => 'help_privacy'
-    get 'help/user-js-conversions', :to => 'help#user_js_conversions', :as => 'user_js_conversions'
+    get 'help/user-js-conversions', :to => 'help#user_js_conversions', :as => 'help_user_js_conversions'
 
     post 'preview-markup', :to => 'home#preview_markup', :as => 'preview_markup'
     get 'search', to: 'home#search'

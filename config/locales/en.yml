@@ -826,8 +826,15 @@ en:
         cancelled: "Deletion cancelled."
         completed: "Your account has been deleted."
   help:
+    sections:
+      usage: Usage
+      development: Development
+      miscellaneous: Miscellaneous
+    open_source: "%{site_name} is open source (GPLv3 licensed). You can %{github_link:view its source on GitHub}."
     installing_user_scripts:
       title: 'How to install user scripts'
+    installing_user_styles:
+      title: 'How to install user styles'
     meta_keys:
       # title of the help document describing script meta keys (e.g. @name).
       title: "Script meta keys read by %{site_name}"
@@ -981,6 +988,8 @@ en:
         <p>%{site_name} contains user-generated content, and scripts posted may be able to track users if they install that script.</p>
         <h2>Third party libraries</h2>
         <p>%{site_name} may include third party code to collect statistics or display advertisements on the site. These libraries may include tracking logic.</p>
+    user_css_to_user_js:
+      title: Conversion of user CSS to user JS
   search:
     script_search:
       title: "Script Search"

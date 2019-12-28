@@ -150,7 +150,7 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
   <% if @script.css? %>
     <div class="form-control radio-group">
       <label><%=t('scripts.not_js_convertible_override_header')%></label><br>
-      <%= it('scripts.not_js_convertible_override_explanation', site_name: site_name, help_link: user_js_conversions_path)%><br>
+      <%= it('scripts.not_js_convertible_override_explanation', site_name: site_name, help_link: help_user_js_conversions_path)%><br>
       <%= s.check_box :not_js_convertible_override %>
       <%= s.label :not_js_convertible_override, t('scripts.not_js_convertible_override_label_html'), class: 'radio-label' %>
     </div>
