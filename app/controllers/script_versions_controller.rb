@@ -44,6 +44,7 @@ class ScriptVersionsController < ApplicationController
 			@script_version.code = previous_script.code
 			previous_script.localized_attributes.each{|la| @script_version.build_localized_attribute(la)}
 			ensure_default_additional_info(@script_version, current_user.preferred_markup)
+			@script_version.not_js_convertible_override = @script.not_js_convertible_override
 			@current_screenshots = previous_script.screenshots
 			render :layout => 'scripts'
 		else
@@ -234,7 +235,7 @@ class ScriptVersionsController < ApplicationController
 private
 
 	def script_version_params
-		params.require(:script_version).permit(:code, :changelog, :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation, :sensitive_site_confirmation)
+		params.require(:script_version).permit(:code, :changelog, :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation, :sensitive_site_confirmation, :not_js_convertible_override)
 	end
 
 	def check_for_locked_by_script_id

@@ -233,6 +233,7 @@ class Script < ActiveRecord::Base
     update_license(meta['license']&.first)
     self.namespace = meta['namespace']&.first
     self.version = script_version.version
+    self.not_js_convertible_override = script_version.not_js_convertible_override
 
     self.contribution_url = !meta.has_key?('contributionURL') ? nil : meta['contributionURL'].find {|url|
       URI::regexp(%w(http https bitcoin)) =~ url
@@ -257,7 +258,7 @@ class Script < ActiveRecord::Base
       self.support_url = nil
     end
 
-    self.css_convertible_to_js = css? && CssToJsConverter.convertible?(script_version.rewritten_code)
+    self.css_convertible_to_js = css? && !not_js_convertible_override && CssToJsConverter.convertible?(script_version.rewritten_code)
 
     new_compatibility_data = []
     ['compatible', 'incompatible'].each do |key|

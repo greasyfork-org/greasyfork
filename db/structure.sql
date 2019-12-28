@@ -1411,6 +1411,7 @@ CREATE TABLE `script_versions` (
   `updated_at` datetime DEFAULT NULL,
   `script_code_id` int(11) NOT NULL,
   `rewritten_script_code_id` int(11) NOT NULL,
+  `not_js_convertible_override` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `index_script_versions_on_script_id` (`script_id`),
   CONSTRAINT `fk_script_versions_script_id` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`)
@@ -1463,6 +1464,7 @@ CREATE TABLE `scripts` (
   `has_syntax_error` tinyint(1) NOT NULL DEFAULT 0,
   `language` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'js',
   `css_convertible_to_js` tinyint(1) NOT NULL DEFAULT 0,
+  `not_js_convertible_override` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `index_scripts_on_delta` (`delta`),
   KEY `index_scripts_on_script_delete_type_id` (`script_delete_type_id`),
@@ -1737,6 +1739,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20191225180112'),
 ('20191225180515'),
 ('20191226213624'),
-('20191226220007');
+('20191226220007'),
+('20191228011034');
 
 
