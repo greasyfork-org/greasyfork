@@ -80,7 +80,7 @@ bg:
       sync_heading: "Синхронизиране с източника"
       locale_heading: "Локализация по подразбиране"
       locale_example_html: "Локализация за този текст: <i>%{text}</i>"
-      locale_multiple_note: "Отбележете, че %{meta_keys_link:multiple locales can be defined for a script}."
+      locale_multiple_note: "Отбележете, че %{meta_keys_link:за един скрипт може да се дефинират повече езици}."
       update_locale: "Обновете локализацията"
       no_moderator_logs: "Модераторите не предприеха никакви действия спрямо скрипта."
     history_title: "%{script_name} - История на версиите"
@@ -94,7 +94,7 @@ bg:
     feedback_has_reports: "Този скрипт беше докладван като нарушаващ правилата на %{site_name}."
     feedback_no_discussions_html: "Все още няма дискусии. %{start_first_discussion_link}"
     feedback_start_first_discussion_link: "Бъди първи, който ще дискутира скрипта."
-    feedback_discussion_or_report: "%{new_discussion_link:Start a new discussion on this script} или %{report_link:report it for removal}."
+    feedback_discussion_or_report: "%{new_discussion_link:Започни ново обсъждане за скрипта} или %{report_link:докладвай за премахване}."
     feedback_discussions_heading: "Дискусии на Greasy форума"
     feedback_favoriters_heading: "В любими"
     feedback_favoriters_user_list_intro: "Този скрипт е избран в любими от:"
@@ -147,7 +147,10 @@ bg:
     listing_updated_feed: "Обновени скриптове"
     listing_none: "(Нищо)"
     listing_set_locale_filter: "Това са резултатите за всички езици. %{set_filter_link:Show %{language} results only.}"
-    listing_remove_locale_filter: "Това са резултатите за %{language}. %{remove_filter_link:Show results for all languages.}"
+    listing_remove_locale_filter: "Това са резултатите за %{language}. %{remove_filter_link:Покажи резултатите за всички езици.}"
+    listing_language_all: "Всички"
+    listing_language_js: "JavaScript"
+    listing_language_css: "CSS"
     import: "Импортиране на скриптове"
     new: "Публикуване на скрипт"
     new_css: "Публикувай стил"
@@ -226,18 +229,21 @@ bg:
     write_your_own_html: "%{post_a_script_link} (или %{learn_to_write_scripts_link})"
     post_a_script_link_text: "Публикувайте написан от вас скрипт"
     learn_to_write_scripts_link_text: "научете как да напишете"
-    feedback_or_report: "%{feedback_link:Ask a question, post a review}, или %{report_link:report the script}."
-    support_feedback_or_report: "%{support_url:Visit the author's site for support}, %{feedback_link:ask a question, post a review}, или %{report_link:report the script}."
-    support_email_feedback_or_report: "%{support_url:Email the author for support}, %{feedback_link:ask a question, post a review}, или %{report_link:report the script}."
+    feedback_or_report: "%{feedback_link:Задай въпрос, напиши отзив }, или %{report_link:докладвай скрипта}."
+    support_feedback_or_report: "%{support_url:За поддръжка посети сайта на автора}, %{feedback_link:задай въпрос, напиши отзив}, или %{report_link:докладвай скрипта}."
+    support_email_feedback_or_report: "%{support_url:За поддръжка напиши имейл на автора}, %{feedback_link:задай въпрос, напиши отзив}, или %{report_link:докладвай скрипта}."
     adult_content: "Съдържание за възрастни"
     adult_content_self_report: "Този скрипт съдържа съдържание за възрастни, или е за такъв сайт."
     adult_content_self_report_explanation: "%{site_name} позволява скриптове със съдържание за възрастни, но те трябва да бъдат маркирани като такива, така че потребителите да могат да избират дали да ги видят."
     not_adult_content_self_report_html: "Този скрипт <strong>не</strong> съдържа съдържание за възрастни и <strong>не</strong> е за сайтове със съдържание за възрастни."
     not_adult_content_self_report_explanation: "%{site_name} позволява скриптове със съдържание за възрастни, но те трябва да бъдат маркирани като такива, така че потребителите да могат да избират дали да ги видят. Вашият скрипт беше маркиран, че има съдържание за възрастни. Можете да го докладвате, че не е такъв; това ще бъде прегледано от модератор."
     not_adult_content_self_report_explanation_automatic: "%{site_name} позволява скриптове със съдържание за възрастни, но те трябва да маркират по такъв начин, че потребителите да могат да избират дали да ги виждат. Вашият скрипт е маркиран, че има съдържание за възрастни, заради принадлежността си към  %{domain_list}."
-    adult_content_on_greasy_logged_in_error: "Скриптът вече не достъпен на този сайт  с вашите текущи %{edit_account_link:Greasy Fork account settings}."
-    adult_content_on_greasy_not_logged_in_error: "Този скрипт повече не е достъпен анонимно на сайта. %{login_link:Log in} и проверете вашите настройки за профила в Greasy Fork."
+    adult_content_on_greasy_logged_in_error: "Скриптът вече не достъпен на този сайт с вашите текущи %{edit_account_link:Greasy Fork настройки на акаунта}."
+    adult_content_on_greasy_not_logged_in_error: "Този скрипт повече не е достъпен анонимно на сайта. %{login_link:Влезте} и проверете вашите настройки за профила в Greasy Fork."
     non_adult_content_on_sleazy: "Скриптът не е достъпен на този сайт."
+    not_js_convertible_override_header: "Конвертиране до JS"
+    not_js_convertible_override_explanation: "%{site_name} автоматично може да създаде %{help_link:JS конвертиране} на вашия CSS. Понеже JS преработката може да се държи различно от вашия CSS, препоръчваме да тествате резултата. Ако се вижда, че не работи, можете да го направите недостъпен чрез отметката по-долу."
+    not_js_convertible_override_label_html: "Това <strong>не</strong> трябва да бъде достъпно в потребителски JS формат."
     adult_marker: "(За възрастни)"
     deleted_marker: "(Изтрит)"
     locked_marker: "(Заключен)"
@@ -275,7 +281,7 @@ bg:
           на трети страни, <em>не</em> са в нарушение на правилата на %{site_name}.
           В такива случаи можете да оставите %{feedback_link:отзив} за скрипта.</p>
     authors_heading: "Автори"
-    error_unauthorized_copy: "Този код изглежда е неоторизирано копие на %{script}. Моля, прочетете %{rules_link:rules} на%{site_name}за публикуване на скриптове."
+    error_unauthorized_copy: "Този код изглежда е неоторизирано копие на %{script}. Моля, прочетете %{rules_link:правилата} на%{site_name}за публикуване на скриптове."
     invitations:
       form_title: "Поканете други автори"
       explanation: "Можете да добавите други Greasy Fork потребители като автори на този скрипт. Те ще имат същите права върху скрипта, както и вие."
@@ -390,13 +396,13 @@ bg:
         <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> or %{chrome_violentmonkey_link:Violentmonkey}</li>
 
         <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
-        or %{firefox_violentmonkey_link:Violentmonkey}</li>
+        или %{firefox_violentmonkey_link:Violentmonkey}</li>
 
         <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
 
         <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
 
-        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} or %{opera_violentmonkey_link:Violentmonkey}</li>
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} или %{opera_violentmonkey_link:Violentmonkey}</li>
 
         <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
 
@@ -404,9 +410,9 @@ bg:
 
         <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
 
-        <li>Qupzilla: (no additional software required)</li>
+        <li>Qupzilla: (не се изисква допълнителен софтуер)</li>
 
-        <li>AdGuard: (no additional software required)</li>
+        <li>AdGuard: (не се изисква допълнителен софтуер)</li>
 
         </ul>
     installing_step2_header: "Стъпка 2: инсталирайте потребителски скрипт"
@@ -532,8 +538,15 @@ bg:
         cancelled: "Изтриването е отменено."
         completed: "Вашият профил беше изтрит."
   help:
+    sections:
+      usage: Употреба
+      development: Разработка
+      miscellaneous: Разни
+    open_source: "%{site_name} е с отворен код (GPLv3 лиценз). Можете да видите %{github_link:изходния код на GitHub}."
     installing_user_scripts:
       title: 'Как да инсталираме потребителските скриптове'
+    installing_user_styles:
+      title: 'Как да инсталирате потребителски стилове'
     meta_keys:
       title: "Meta keys, четени от %{site_name}"
       intro_html: "Това е списък с <a href=\"http://wiki.greasespot.net/Metadata_Block\">user script мета данни</a>, които %{site_name} ще прочете. Данните, които не са включени в този списък, могат да са включени в, и ще се ползват в инсталираните скриптове, но няма да имат ефект върху интерфейса на %{site_name}'s."
@@ -561,6 +574,59 @@ bg:
       post_new_script_link_text: 'публикувате нов скрипт'
     code_rules:
       title: "Правила на %{site_name} за публикуване на скриптове"
+      content_html: >
+          <p>Това са изискванията за скриптовете, публикувани на %{site_name}. Целта
+          е %{site_name} да се съхрани като безопасно и полезно място за потребителски
+          скриптове. Всеки скрипт, който излиза извън тези изисквания, може да бъде
+          изтрит от модераторите на%{site_name}</p> <h4>Функционалност</h4> <ul>
+
+          <li>Скриптовете трябва да съдържат описание на това, какво правят, и не
+          трябва да вършат нищо друго освен него. Преди да го инсталират, потребителите
+          трябва могат да разберат какво прави скрипта.</li>
+
+          <li>Скриптовете трябва да имат причина да бъдат скриптове. Например скрипт,
+          който пренасочва потребителя към сайт, може да не бъде скрипт, а да просто
+          да бъде връзка.</li>
+
+          <li>Скриптовете с монетизация (проследяване, реклами, майнъри и други) не
+          са забранени, но авторът трябва ясно да обяви това в описанието на скрипта
+          или в допълнителната информация.
+
+          </ul> <h4>Код</h4> <ul>
+
+          <li>Кодът, публикуван на сайта, не трябва да бъде завоалиран или минифициран.
+          Потребителите трябва да имат възможност да прегледат и разберат действията
+          на скрипта преди да го инсталират.</li>
+
+          <li>Библиотеките, които използва скриптът, трябва да се използват с <code>@require</code>,
+          освен ако няма основателна техническа причина това да не бъде направено.
+          В случай, че те бъдат вписани в скрипта, трябва да бъде включена информация
+          към източника на библиотеката (например коментар с URL и/или името и версията).</li>
+
+          <li>%{external_scripts_link:Използването на външен JS е ограничено.}</li>
+
+          </ul> <h4>Авторски права</h4> <ul>
+
+          <li>Вашият скрипт трябва да уважава авторските права на другите. Това включва
+          самия скрипт и ресурсите му (например изображения), които използва. Ако
+          смятате да използвате нечие произведение, трябва да се съобразите с лицензионните
+          условия, или да получите разрешение.</li>
+
+          <li>Дори в случаите когато не се нарушават авторските права, републикуването
+          на скриптове, които вече съществуват на %{site_name} не е позволено, освен
+          ако те не съдържат подобрения спрямо оригинала.</li>
+
+          </ul> <h4>Разни</h4> <ul>
+
+          %{adult_content_requirement}
+
+          <li>Скриптовете не трябва да проверяват за обновяване по-често от веднъж
+          дневно. Повечето скриптови мениджъри автоматично проверяват за нови версии,
+          така че няма смисъл да се прави и от самия скрипт.</li>
+
+          </ul> <p>Ако забележите скрипт, който излиза извън тези параметри, моля,
+          докладвайте го, като отидете на връзката за отзиви за скрипта, започнете
+          дискусия и изберете опцията "Докладвай скрипта".</p>
       adult_content_rule_html: "<li>Скриптовете, включващи съдържание за възрастни, или са за сайтове със съдържание за възрастни, трябва да бъдат маркирани като такива, за да могат потребителите да избират дали да ги виждат.</li>"
     external_scripts:
       title: "Политика на %{site_name} за външни скриптове"
@@ -621,8 +687,8 @@ bg:
     credits:
       title: "Кредити"
       authors_credit: "%{site_name} нямаше да съществува без авторите, които допринасят със скриптовете си."
-      developers_credit: "%{site_name} е създаден от %{developers_link:these people} с помощта на всички, които докладват бъгове и препоръчват подобрения."
-      translators_credit: "%{site_name} беше преведен с помощта на %{translators_link:the Greasy Translation Force on Transifex}:"
+      developers_credit: "%{site_name} е създаден от %{developers_link:тези автори} с помощта на всички, които докладват бъгове и препоръчват подобрения."
+      translators_credit: "%{site_name} беше преведен с помощта на %{translators_link:the Greasy Translation Force не Transifex}:"
       icons_credit: "Иконите за дискусиите са от %{vistastylebase} от %{iconsland}. Иконите за браузъра са от %{browserlogos}."
     help_with_greasymonkey: "Помощ за Greasemonkey"
     contact:
@@ -643,7 +709,7 @@ bg:
       title: "Политика за поверителност"
       content_html: >
           <p>В тази страница е описано как %{site_name} записва или проследява потребителите.
-          Ако имате някакви притеснения, %{admin_email_link:e-mail the admin}.</p>
+          Ако имате някакви притеснения, %{admin_email_link:напишете имейл до админа}.</p>
           <h2>Записи на сървъра</h2> <p>%{site_name} записва всички заявки, по начин,
           подобен на останалите сървъри. Съхраняваната информация включва IP адресите
           и user agent на браузъра. Записите се използват с цел дебъгване и анализ
@@ -671,6 +737,8 @@ bg:
           ги потребители.</p> <h2>Библиотеки от трети лица</h2> <p>%{site_name} може
           да съдържа код от трети лица, за да показва рекламите на сайта. Тези библиотеки
           могат да съдържат проследяващи функции.</p>
+    user_css_to_user_js:
+      title: Преобразуване на потребителски CSS до потребителски JS
   search:
     script_search:
       title: "Търсене по скриптове"
@@ -683,7 +751,7 @@ bg:
       description: "Претърсва скриптовия код. Регистърът няма значение, чист текст и без маски."
     forum_search:
       title: "Търсене по форума"
-      description: "Търсене във форума за дискусии и отзиви. %{fulltext_link:MySQL natural language search.}"
+      description: "Търсене във форума за дискусии и отзиви. %{fulltext_link:търсене с MySQL natural language.}"
     user_search:
       title: "Търсене по потребители"
       description: "Търсене на потребители по име. Обикновено текстово LIKE търсене."

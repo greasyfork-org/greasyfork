@@ -146,6 +146,9 @@ zh-CN:
     listing_none: "(无)"
     listing_set_locale_filter: "现在显示所有语言的结果。%{set_filter_link:只显示 %{language} 的结果}"
     listing_remove_locale_filter: "现在只显示 %{language} 的结果。%{remove_filter_link:显示所有语言的结果。}"
+    listing_language_all: "所有"
+    listing_language_js: "JavaScript"
+    listing_language_css: "CSS"
     import: "导入脚本"
     new: "提交脚本"
     new_css: "发表一个用户样式"
@@ -236,6 +239,9 @@ zh-CN:
     adult_content_on_greasy_logged_in_error: "根据您当前的 %{edit_account_link:Greasy Fork 账户设置}，此脚本不再在本网站上可用。"
     adult_content_on_greasy_not_logged_in_error: "此脚本不再在本网站上匿名可用。请%{login_link:登录}并检查您的 Greasy Fork 账户设置。"
     non_adult_content_on_sleazy: "此脚本在本网站上不可用。"
+    not_js_convertible_override_header: "转换为 JS"
+    not_js_convertible_override_explanation: "%{site_name} 可以为您的用户样式（user CSS）自动创建一份 %{help_link:用户脚本（user JS）版本}。两者的运作方式有所不同，我们推荐您测试转换后的脚本版。如果您发现转换的脚本版不能用，可以选中下方的复选框来禁用它。"
+    not_js_convertible_override_label_html: "<strong>不要为</strong>此样式提供用户脚本版本"
     adult_marker: "(成人)"
     deleted_marker: "(已删除)"
     locked_marker: "(已锁定)"
@@ -513,8 +519,15 @@ zh-CN:
         cancelled: "删除已取消。"
         completed: "您的账户已删除。"
   help:
+    sections:
+      usage: 使用
+      development: 开发
+      miscellaneous: 其他
+    open_source: "%{site_name} 采用开源的 GPLv3 许可证。可以 %{github_link:在 GitHub 上查看源码}。"
     installing_user_scripts:
       title: '如何安装用户脚本'
+    installing_user_styles:
+      title: '如何安装用户样式'
     meta_keys:
       title: "%{site_name} 要读取的脚本元属性值"
       intro_html: "这里有 %{site_name} 将读取的 <a href=\"http://wiki.greasespot.net/Metadata_Block\">用户脚本属性值</a>的一个列表。不在此列表的属性也可以写在脚本中，用户安装的脚本将包含这些属性值但是并不会对网站界面产生更变。"
@@ -637,6 +650,8 @@ zh-CN:
           <p>如果登录时选中了“记住我”的选项，%{site_name} 将设置一个持久的 Cookie 以保持登录状态。</p> <h2>发布在 %{site_name}
           的脚本</h2> <p>%{site_name} 包含用户生成的内容，安装已发布的脚本有可能遇到被跟踪的情况。</p> <h2>第三方库</h2>
           <p>%{site_name} 可能包含第三方代码以收集统计数据或者在网站上显示广告。这些库可能存在跟踪逻辑。</p>
+    user_css_to_user_js:
+      title: 用户样式如何被转换为用户脚本
   search:
     script_search:
       title: "脚本搜索"

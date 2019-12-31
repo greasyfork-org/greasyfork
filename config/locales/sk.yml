@@ -245,6 +245,9 @@ sk:
     adult_content_on_greasy_logged_in_error: "Tento skript už nie je dostupný na tejto stránke s vaším aktuálnym %{edit_account_link:nastavením účtu Greasy Fork}."
     adult_content_on_greasy_not_logged_in_error: "Tento skript už nie je dostupný anonymne. %{login_link:Prihláste sa} a skontroluje nastavenie svojho účtu na Greasy Fork."
     non_adult_content_on_sleazy: "Tento skript nie je dostupný na tejto stránke."
+    not_js_convertible_override_header: "Prevod na JS"
+    not_js_convertible_override_explanation: "%{site_name} môže automaticky vytvoriť %{help_link:prevod užívateľského JS} vášho užívateľského CSS. Aj keď prevod užívateľského JS a užívateľského CSS bude fungovať trochu inak, odporúčame vyskúšať prevod užívateľského JS. Ak zistíte, že nefunguje, môžete ho zrušiť zaškrtnutím políčka nižšie."
+    not_js_convertible_override_label_html: "Toto <strong>nemusí byť</strong> dostupné v užívateľskom formáte JS"
     adult_marker: "(Pre dospelých)"
     deleted_marker: "(Odstránený)"
     locked_marker: "(Uzamknutý)"
@@ -556,8 +559,15 @@ sk:
         cancelled: "Odstránenie bolo zrušené."
         completed: "Váš účet bol odstránený."
   help:
+    sections:
+      usage: Použitie
+      development: Vývoj
+      miscellaneous: Ostatné
+    open_source: "%{site_name} má otvorený zdrojový kód (licencia GPLv3 ). Môžete si %{github_link:pozrieť jeho zdrojový kód na GitHube}."
     installing_user_scripts:
       title: 'Ako nainštalovať užívateľské skripty'
+    installing_user_styles:
+      title: 'Ako nainštalovať užívateľské štýly'
     meta_keys:
       title: "Metakľúče skriptu spracované %{site_name}"
       intro_html: "Toto je zoznam <a href=\"http://wiki.greasespot.net/Metadata_Block\">metaľkúčov užívateľského skriptu</a>, ktoré %{site_name} rozpozná. Kľúče mimo tohto zoznamu môžu byť zahrnuté v skriptoch a budú v nainštalovanom skripte prítomné, ale nebudú mať efekt na UI %{site_name}."
@@ -746,6 +756,8 @@ sk:
           ktorí si skript nainštalovali.</p> <h2>Knižnice tretích strán</h2> <p>%{site_name}
           môžu obsahovať kód tretích strán za účelom štatistiky alebo zobrazenia reklamy
           na stránke. Tieto knižnice môžu obsahovať sledovaciu logiku.</p>
+    user_css_to_user_js:
+      title: Prevod užívateľského CSS na JS
   search:
     script_search:
       title: "Hľadať skript"

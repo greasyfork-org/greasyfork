@@ -146,6 +146,9 @@ ja:
     listing_none: "(なし)"
     listing_set_locale_filter: "すべての言語の結果を表示しています。%{set_filter_link:%{language}で絞り込む。}"
     listing_remove_locale_filter: "%{language}で絞り込んだ結果を表示しています。%{remove_filter_link:すべての言語の結果を表示する。}"
+    listing_language_all: "すべて"
+    listing_language_js: "JavaScript"
+    listing_language_css: "CSS"
     import: "スクリプトのインポート"
     new: "スクリプトの投稿"
     new_css: "スタイルの投稿"
@@ -236,6 +239,9 @@ ja:
     adult_content_on_greasy_logged_in_error: "%{edit_account_link:Greasy Fork のアカウント設定} で許可しない限り、このスクリプトを当サイトから利用することはできなくなりました。"
     adult_content_on_greasy_not_logged_in_error: "ログインしていない場合、このスクリプトを当サイトから利用することはできなくなりました。%{login_link:ログイン} 後、Greasy Fork のアカウント設定をご確認ください。"
     non_adult_content_on_sleazy: "このスクリプトを当サイトから利用することはできません。"
+    not_js_convertible_override_header: "JS 形式への変換"
+    not_js_convertible_override_explanation: "%{site_name} は、あなたのユーザーCSS の ユーザーJS変換版  %{help_link:user JS conversion} を自動的に作成できます。ユーザーJS変換版 と ユーザーCSS の挙動には少し違いがあるので、ユーザー JS 変換版をテストすることを推奨します。もし、うまく動作していなければ、下記のチェックボックスをチェックすることで無効にできます。"
+    not_js_convertible_override_label_html: "ユーザーJS 形式を利用 <strong>しない</strong>"
     adult_marker: "(アダルト)"
     deleted_marker: "(削除済み)"
     locked_marker: "(ロック済み)"
@@ -517,8 +523,14 @@ ja:
         cancelled: "削除申請はキャンセルされました。"
         completed: "あなたのアカウントは削除されました。"
   help:
+    sections:
+      usage: 利用法
+      development: 開発
+      miscellaneous: その他
     installing_user_scripts:
       title: 'ユーザースクリプトのインストール方法'
+    installing_user_styles:
+      title: 'ユーザースタイルのインストール方法'
     meta_keys:
       title: "%{site_name} が読み込むスクリプト・メタキー"
       intro_html: "%{site_name} が読み込む<a href=\"http://wiki.greasespot.net/Metadata_Block\">ユーザースクリプトのメタキー</a>の一覧です。以下の一覧にないキーをスクリプトに含めることも可能で、そのキーはインストールされたスクリプト中にも含まれることになりますが、%{site_name} の UI (表示) には影響しません。"
@@ -650,6 +662,8 @@ ja:
           <p>アカウントへログイン時に「ログインを記憶」オプションにチェックを入れた場合、%{site_name} はログイン状態を保持するために永続的な
           Cookie を設定します。</p> <h2>%{site_name} に投稿されたスクリプト</h2> <p>%{site_name} はユーザーが作成したコンテンツを含んでおり、投稿されたスクリプトをインストールした場合、そのスクリプトによってユーザーの追跡が可能となる場合があります。</p>
           <h2>サードパーティーライブラリ</h2> <p>%{site_name} は、サイト上での統計や広告の表示を行うために、サードパーティーのコードを含んでいる場合があります。これらのライブラリは、追跡を行うロジックを含んでいるかもしれません。</p>
+    user_css_to_user_js:
+      title: ユーザーCSSのユーザーJSへの変換
   search:
     script_search:
       title: "スクリプトの検索"
