@@ -37,7 +37,6 @@ gem "paperclip"
 gem 'it'
 gem 'rb-readline'
 gem 'ace-rails-ap'
-gem 'hashie'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'rails-observers'
 gem 'memoist'
