@@ -2,7 +2,7 @@
 show_author_details = defined?(show_author_details) && show_author_details
 show_report_thread = defined?(show_report_thread) && show_report_thread
 %>
-<li data-script-id="<%=script.id%>" data-script-name="<%=script.name(I18n.locale)%>" data-script-authors="<%= script.users.map { |u| [u.id, u.name] }.to_h.to_json %>" data-script-daily-installs="<%=script.daily_installs%>" data-script-total-installs="<%=script.total_installs%>" data-script-rating-score="<%=script.fan_score%>" data-script-created-date="<%=script.created_at.strftime('%Y-%m-%d')%>" data-script-updated-date="<%=script.code_updated_at.strftime('%Y-%m-%d')%>" data-script-type="<%=script.script_type.short_name%>" data-script-version="<%=script.version%>" data-sensitive="<%=script.sensitive%>">
+<li data-script-id="<%=script.id%>" data-script-name="<%=script.name(I18n.locale)%>" data-script-authors="<%= script.users.map { |u| [u.id, u.name] }.to_h.to_json %>" data-script-daily-installs="<%=script.daily_installs%>" data-script-total-installs="<%=script.total_installs%>" data-script-rating-score="<%=script.fan_score%>" data-script-created-date="<%=script.created_at.strftime('%Y-%m-%d')%>" data-script-updated-date="<%=script.code_updated_at.strftime('%Y-%m-%d')%>" data-script-type="<%=script.script_type.short_name%>" data-script-version="<%=script.version%>" data-sensitive="<%=script.sensitive%>" data-script-language="<%= script.language %>" data-css-available-as-js="<%= script.css_convertible_to_js %>">
   <article>
     <h2>
       <%=link_to script.name(I18n.locale), script_path(script)%>
