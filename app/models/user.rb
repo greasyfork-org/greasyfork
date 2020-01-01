@@ -190,7 +190,7 @@ class User < ApplicationRecord
         reason: reason,
         private_reason: private_reason,
       )
-      update!(banned: true)
+      update_columns(banned: true)
     end
     User.where(canonical_email: canonical_email, banned: false).each do |user|
       user.ban!(moderator: moderator, reason: reason, private_reason: private_reason, ban_related: false)
