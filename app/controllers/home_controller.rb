@@ -2,7 +2,7 @@ require 'js_connect'
 
 class HomeController < ApplicationController
 
-  skip_before_action :verify_authenticity_token, only: :sso
+  skip_before_action :verify_authenticity_token, only: [:sso, :routing_error]
 
   def index
     @ad_method = choose_ad_method
