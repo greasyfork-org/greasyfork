@@ -161,6 +161,7 @@ Rails.application.routes.draw do
         end
       end
       resource :analytics_stats, only: [:show, :update]
+      resources :blocked_script_urls, only: [:index, :new, :create, :edit, :update, :destroy]
     end
 
     match '*path', :to => 'home#routing_error', :via => [:get, :post]

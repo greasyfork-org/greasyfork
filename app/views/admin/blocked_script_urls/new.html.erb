@@ -1,0 +1,18 @@
+<%= form_with(model: [:admin, @blocked_script_url]) do |f| %>
+  <div class="form-control">
+    <%= f.label :url %>
+    <%= f.url_field :url, required: true %>
+  </div>
+
+  <div class="form-control">
+    <%= f.label :public_reason %>
+    <%= f.text_field :public_reason, required: true %>
+  </div>
+
+  <div class="form-control">
+    <%= f.label :private_reason %>
+    <%= f.text_field :private_reason, required: true %>
+  </div>
+
+  <%= f.submit %>
+<% end %>

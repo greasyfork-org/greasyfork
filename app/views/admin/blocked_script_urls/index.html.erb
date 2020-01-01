@@ -1,0 +1,31 @@
+<h1>Blocked Script URLs</h1>
+
+<p>If a script contains any of these URLs, or an URL that redirects to any of these URLs, the script will be deleted and the user banned.</p>
+
+<p><%= link_to 'Add new', new_admin_blocked_script_url_path %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>URL</th>
+      <th>Public Reason</th>
+      <th>Private Reason</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @blocked_script_urls.each do |blocked_script_url| %>
+      <tr>
+        <td><%= blocked_script_url.id %></td>
+        <td><%= blocked_script_url.url %></td>
+        <td><%= blocked_script_url.public_reason %></td>
+        <td><%= blocked_script_url.private_reason %></td>
+        <td>
+          <%= link_to 'Edit', edit_admin_blocked_script_url_path(blocked_script_url) %>
+          <%= link_to 'Delete', admin_blocked_script_url_path(blocked_script_url), method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
