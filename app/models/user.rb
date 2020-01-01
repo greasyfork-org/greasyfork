@@ -180,6 +180,23 @@ class User < ApplicationRecord
     save!
   end
 
+  def ban!(moderator: , reason: , private_reason: nil, ban_related: true)
+    return if banned?
+    User.transaction do
+      ModeratorAction.create!(
+        moderator: moderator,
+        user: self,
+        action: 'Ban',
+        reason: reason,
+        private_reason: private_reason,
+      )
+      update!(banned: true)
+    end
+    User.where(canonical_email: canonical_email, banned: false).each do |user|
+      user.ban!(moderator: moderator, reason: reason, private_reason: private_reason, ban_related: false)
+    end if ban_related
+  end
+
   protected
 
   def password_required?

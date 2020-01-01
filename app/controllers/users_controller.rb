@@ -150,14 +150,7 @@ class UsersController < ApplicationController
 
   def do_ban
     user = User.find(params[:user_id])
-    ma_ban = ModeratorAction.new
-    ma_ban.moderator = current_user
-    ma_ban.user = user
-    ma_ban.action = 'Ban'
-    ma_ban.reason = params[:reason]
-    ma_ban.save!
-    user.banned = true
-    user.save!
+    user.ban!(moderator: current_user, reason: params[:reason])
     if !params[:script_delete_type_id].blank?
       user.non_locked_scripts.each do |s|
         s.delete_reason = params[:reason]
