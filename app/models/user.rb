@@ -2,8 +2,6 @@ require 'securerandom'
 require 'devise'
 
 class User < ApplicationRecord
-  self.ignored_columns = %w(approve_redistribution)
-
   serialize :announcements_seen, Array
 
   scope :administrators, -> { joins(:roles).where(roles: { name: 'administrator' }) }

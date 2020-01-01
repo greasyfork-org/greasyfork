@@ -5,8 +5,6 @@ require 'js_parser'
 require 'css_parser'
 
 class ScriptVersion < ApplicationRecord
-  self.ignored_columns = %w(approve_redistribution)
-
   include LocalizingModel
   include ScriptVersionJs
 
