@@ -125,4 +125,24 @@ class CreateTest < ApplicationSystemTestCase
     visit new_script_version_url
     assert_content "You may not post scripts if you use a disposable email address."
   end
+
+  test "banned via disallowed url" do
+    user = User.find(4)
+    login_as(user, scope: :user)
+    visit new_script_version_url
+    code = <<~EOF
+      // ==UserScript==
+      // @name A Test!
+      // @description Unit test.
+      // @version 1.1
+      // @namespace http://greasyfork.local/users/1
+      // ==/UserScript==
+      location.href = "https://example.com/unique-test-value"
+    EOF
+    fill_in 'Code', with: code
+    assert_changes -> { user.reload.banned }, from: false, to: true do
+      click_button 'Post script'
+      assert_content 'This script has been deleted'
+    end
+  end
 end

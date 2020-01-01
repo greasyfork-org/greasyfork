@@ -443,13 +443,14 @@ class Script < ActiveRecord::Base
     return parts.join("\n")
   end
 
-  def ban_all_authors!(moderator:, reason:)
+  def ban_all_authors!(moderator:, reason:, private_reason: nil)
     users.where(banned: false).each do |user|
       ma_ban = ModeratorAction.new
       ma_ban.moderator = moderator
       ma_ban.user = user
       ma_ban.action = 'Ban'
       ma_ban.reason = reason
+      ma_ban.private_reason = private_reason
       ma_ban.save!
       user.banned = true
       user.save!

@@ -10,6 +10,9 @@
 					<th><%= t('moderator_logs.moderator_column') %></th>
 					<th><%= t('moderator_logs.action_column') %></th>
 					<th><%= t('moderator_logs.reason_column') %></th>
+          <% if current_user&.moderator? %>
+            <th></th>
+          <% end %>
 				</tr>
 			</thead>
 			<% actions.each do |action| %>
@@ -18,6 +21,9 @@
 					<td><%=link_to action.moderator.name, action.moderator%></td>
 					<td><%=action.action%></td>
 					<td><div class="possibly-long-text"><%=action.reason%></div></td>
+          <% if current_user&.moderator? %>
+            <td><div class="possibly-long-text"><%=action.private_reason%></div></td>
+          <% end %>
 				</tr>
 			<% end %>
 		</table>

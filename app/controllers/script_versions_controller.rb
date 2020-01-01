@@ -136,6 +136,11 @@ class ScriptVersionsController < ApplicationController
 		@script_version.calculate_all(@script.description)
 		@script.apply_from_script_version(@script_version)
 
+		script_check_results, script_check_result_code = ScriptCheckingService.check(@script_version)
+		if script_check_result_code == ScriptChecking::Result::RESULT_CODE_BLOCK
+			@script.errors.add(:base, script_check_results.first.public_reason)
+		end
+
 		# support preview for JS disabled users
 		if !params[:preview].nil?
 			@preview = view_context.format_user_text(@script_version.additional_info, @script_version.additional_info_markup)
@@ -191,6 +196,14 @@ class ScriptVersionsController < ApplicationController
 		@script.script_versions << @script_version
 		@script_version.save!
 		@script.save!
+
+		if script_check_result_code == ScriptChecking::Result::RESULT_CODE_BAN
+			if Rails.env.test?
+				ScriptCheckerBanAndDeleteJob.perform_now(@script.id, script_check_results.to_json)
+			else
+				ScriptCheckerBanAndDeleteJob.set(wait: 5.minutes).perform_later(@script.id, script_check_results.to_json)
+			end
+		end
 
 		redirect_to @script
 	end
