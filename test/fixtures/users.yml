@@ -5,16 +5,19 @@ one:
   webhook_secret: 31dc177d015ad5668f34698209b13ef9edc3f877
   confirmed_at: 2018-01-01
   disposable_email: false
+  canonical_email: timmy@example.com
 
 consumer:
   id: 2
   email: consumer@example.com
   name: Gordon J. Canada
+  canonical_email: consumer@example.com
 
 geoff:
   id: 3
   email: geoff@example.com
   name: Geoffrey
+  canonical_email: geoff@example.com
 
 junior:
   id: 4
@@ -22,6 +25,7 @@ junior:
   email: jr@example.com
   confirmed_at: 2018-01-01
   disposable_email: false
+  canonical_email: jr@example.com
 
 banned:
   id: 5
@@ -37,4 +41,5 @@ admin:
   webhook_secret: 31dc177d015ad5668f34698209b13ef9edc3f877
   confirmed_at: 2018-01-01
   disposable_email: false
+  canonical_email: admin@example.com
 

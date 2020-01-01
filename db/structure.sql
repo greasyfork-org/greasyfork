@@ -1589,7 +1589,7 @@ CREATE TABLE `users` (
   `disposable_email` tinyint(1) DEFAULT NULL,
   `trusted_reports` tinyint(1) NOT NULL DEFAULT 0,
   `announcements_seen` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `canonical_email` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `canonical_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_users_on_email` (`email`),
   UNIQUE KEY `index_users_on_reset_password_token` (`reset_password_token`),
@@ -1753,6 +1753,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20191228011034'),
 ('20200101005408'),
 ('20200101013842'),
-('20200101030644');
+('20200101030644'),
+('20200101203938');
 
 
