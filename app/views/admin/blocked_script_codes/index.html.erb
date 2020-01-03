@@ -1,0 +1,33 @@
+<h1>Blocked Script Codes</h1>
+
+<p>If a script's code contains any of these patterns the script save will be rejected or it will be deleted and the author banned.</p>
+
+<p><%= link_to 'Add new', new_admin_blocked_script_code_path %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Pattern</th>
+      <th>Public Reason</th>
+      <th>Private Reason</th>
+      <th>Consequence</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @blocked_script_codes.each do |blocked_script_code| %>
+      <tr>
+        <td><%= blocked_script_code.id %></td>
+        <td><code><%= blocked_script_code.pattern %></code></td>
+        <td><%= blocked_script_code.public_reason %></td>
+        <td><%= blocked_script_code.private_reason %></td>
+        <td><%= blocked_script_code.serious ? 'Delete and ban' : 'Rejected' %></td>
+        <td>
+          <%= link_to 'Edit', edit_admin_blocked_script_code_path(blocked_script_code) %>
+          <%= link_to 'Delete', admin_blocked_script_code_path(blocked_script_code), method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

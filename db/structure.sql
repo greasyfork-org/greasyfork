@@ -956,6 +956,18 @@ CREATE TABLE `authors` (
   CONSTRAINT `fk_rails_899bcb69f5` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=82189 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `blocked_script_codes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `blocked_script_codes` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `pattern` varchar(255) NOT NULL,
+  `public_reason` varchar(255) NOT NULL,
+  `private_reason` varchar(255) NOT NULL,
+  `serious` tinyint(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `blocked_script_urls`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -965,7 +977,7 @@ CREATE TABLE `blocked_script_urls` (
   `public_reason` varchar(255) NOT NULL,
   `private_reason` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `browsers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1754,6 +1766,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20200101005408'),
 ('20200101013842'),
 ('20200101030644'),
-('20200101203938');
+('20200101203938'),
+('20200103021449');
 
 

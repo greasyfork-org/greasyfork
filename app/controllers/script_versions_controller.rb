@@ -137,9 +137,6 @@ class ScriptVersionsController < ApplicationController
 		@script.apply_from_script_version(@script_version)
 
 		script_check_results, script_check_result_code = ScriptCheckingService.check(@script_version)
-		if script_check_result_code == ScriptChecking::Result::RESULT_CODE_BLOCK
-			@script.errors.add(:base, script_check_results.first.public_reason)
-		end
 
 		# support preview for JS disabled users
 		if !params[:preview].nil?
@@ -173,7 +170,8 @@ class ScriptVersionsController < ApplicationController
 
 		# Don't save if this is a preview or if there's something invalid.
 		# If we're attempting to save, ensure all validations are run - short circuit the OR.
-		if !save_record || !verify_recaptcha || (!@script.valid? | !@script_version.valid?)
+		if !save_record || !verify_recaptcha || (!@script.valid? | !@script_version.valid?) || script_check_result_code == ScriptChecking::Result::RESULT_CODE_BLOCK
+			@script.errors.add(:base, script_check_results.first.public_reason) if script_check_result_code == ScriptChecking::Result::RESULT_CODE_BLOCK
 
 			# Unfortunately, we can't retain what the user picked for screenshots
 			nssv = @script.get_newest_saved_script_version

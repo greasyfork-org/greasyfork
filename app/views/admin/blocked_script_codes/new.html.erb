@@ -1,0 +1,23 @@
+<%= form_with(model: [:admin, @blocked_script_code]) do |f| %>
+  <div class="form-control">
+    <%= f.label :pattern %>
+    <%= f.text_field :pattern, required: true %>
+  </div>
+
+  <div class="form-control">
+    <%= f.label :public_reason %>
+    <%= f.text_field :public_reason, required: true %>
+  </div>
+
+  <div class="form-control">
+    <%= f.label :private_reason %>
+    <%= f.text_field :private_reason, required: true %>
+  </div>
+
+  <div class="form-control">
+    <%= f.check_box :serious %>
+    <%= f.label :serious, 'Ban/delete', class: 'radio-label' %>
+  </div>
+
+  <%= f.submit %>
+<% end %>
