@@ -23,7 +23,7 @@ pl:
     compatibility: "Kompatybilność"
     compatible_with_browser: "Kompatybilny z przeglądarką %{browser}"
     incompatible_with_browser: "Niekompatybilny z przeglądarką %{browser}"
-    applies_to: "Stosowany na"
+    applies_to: "Dotyczy"
     applies_to_link_title:
       one: "Zobacz %{count} inny skrypt dla %{site}"
       few: "Zobacz %{count} innych skryptów dla %{site}"
@@ -43,9 +43,11 @@ pl:
     promoted_text_html: "%{script_link}może Ci się również spodobać. "
     library_instructions_html: "Ten skrypt nie powinien być instalowany bezpośrednio. Jest to biblioteka dla innych skyptów do włączenia dyrektywą meta %{code}"
     deleted_notice: "Ten skrypt został usunięty."
-    deleted_notice_with_replacement_html: "Ten skrypt został usunięty i zamieniony przez <a href=\"%{replacement_script_url}\">1%{replacement_script_name}</a>."
+    deleted_notice_with_replacement_html: "Ten skrypt został usunięty i zastąpiony przez <a href=\"%{replacement_script_url}\">%{replacement_script_name}</a>."
     version_notice_html: "Stan na %{date}. Zobacz %{latest_version_link}."
     version_notice_latest_version_link: "najnowszą wersję"
+    reported_notice: "\"%{script_name}\" został zgłoszony i czeka na sprawdzenie przez moderatora."
+    reported_notice_for_author: "Ten skrypt jest niedostępny dla innych użytkowników, dopóki nie zostanie sprawdzony przez moderatora."
     info_page: "Informacje"
     code_page: "Kod"
     history_page: "Historia"
@@ -91,6 +93,7 @@ pl:
     diff_button: "Porównaj wybrane wersje"
     code_title: "%{script_name} — kod źródłowy"
     feedback_title: "%{script_name} - opinie"
+    feedback_has_reports: "Ten skrypt został zgłoszony za naruszanie zasad %{site_name}."
     feedback_no_discussions_html: "Brak udostępnionych dyskusji. %{start_first_discussion_link}"
     feedback_start_first_discussion_link: "Bądź pierwszy, by rozpocząć dyskusję o tym skrypcie."
     feedback_discussion_or_report: "%{new_discussion_link:Rozpocznij nową dyskusję nad tym skryptem} lub %{report_link:zgłoś do usunięcia}."
@@ -176,14 +179,14 @@ pl:
     syncing_notice_sync_type_manual: "ustawiony do ręcznej synchronizacji z %{sync_identifier}"
     syncing_notice_sync_type_automatic: "ustawiony do automatycznej synchronizacji z %{sync_identifier}"
     upload_label: "Lub prześlij:"
-    enable_source_code_editor_label: "Włącz podświetlanie składni w edytorze źródła"
+    enable_source_code_editor_label: "Włącz podświetlanie składni w edytorze kodu"
     changelog_note: "Jakie zmiany zaszły w tej wersji?"
     additional_info_note_html: "Na temat skryptu. %{allowed_elements_link}"
     post_new_script: "Opublikuj skrypt"
     post_updated_script: "Udostępnij nową wersję"
-    type_1_html: "Opublikuj skrypt użytkownika — dla wszystkich do podejrzenia i korzystania."
-    type_2_html: "Niepubliczny skrypt użytkownika - skrypt użytkownika za (pół) użytku prywatnego. Dostępne poprzez bezpośredni dostęp, ale nie wiąże się z dowolnego miejsca w %{site_name}."
-    type_3_html: "Biblioteka - skrypt ma być <code> @require </ code> -d z innych skryptów i nie instalować bezpośrednio."
+    type_1_html: "Publiczny skrypt użytkownika — wszyscy mogą go zobaczyć i używać"
+    type_2_html: "Niepubliczny skrypt użytkownika - do użytku prywatnego (lub półprywatnego). Dostępny przez bezpośredni dostęp. Nie jest nigdzie linkowany w %{site_name}."
+    type_3_html: "Biblioteka - skrypt nie jest przeznaczony do instalowania bezpośrednio tylko do używania przez inne skrypty poprzez <code>@require</code>."
     override_warning_checkbox_label: "Zapisać mimo to?"
     warning_version_not_incremented_html: "Zaktualizowałeś kod, ale nie zwiększyłeś liczby w linii <code>@version</code>. Ci, którzy zainstalowali wcześniej Twój skrypt mogą nie otrzymać zaktualizowanego kodu.."
     warning_version_missing_html: "Nie określono <code> @version </ code>. A <code> @version </ code> klucz meta pozwala na sprawdzanie aktualizacji skryptu w menedżerów skryptów użytkownika."
@@ -230,7 +233,7 @@ pl:
     post_a_script_link_text: "Udostępnij skrypt, który piszesz"
     learn_to_write_scripts_link_text: "dowiedz się, jak go napisać"
     feedback_or_report: "%{feedback_link:Zadaj pytanie, dodaj opinię}, lub %{report_link:zgłoś ten skrypt}."
-    adult_content: "Treść dla dorosłych"
+    adult_content: "Treści dla dorosłych"
     adult_content_self_report: "Ten skrypt zawiera treści dla dorosłych lub został stworzony dla strony zawierającej treści dla dorosłych."
     adult_content_self_report_explanation: "%{site_name} zezwala na skrypty zawierające treści dla dorosłych, ale musi to być odpowiednio oznakowane, aby użytkownicy mogli zdecydować czy chcą to zobaczyć."
     not_adult_content_self_report_html: "Ten skrypt <strong>nie</strong> zawiera treści dla dorosłych i  <strong>nie</strong> jest przeznaczony dla strony zawierającej treści dla dorosłych."
@@ -239,10 +242,11 @@ pl:
     adult_content_on_greasy_not_logged_in_error: "Ten skrypt nie jest już dostępny anonimowo na tej stronie. %{login_link:Log in} i sprawdź swoje ustawienia konta Greasy Fork."
     non_adult_content_on_sleazy: "Ten skrypt nie jest dostępny na tej stronie"
     not_js_convertible_override_header: "Konwersja do JS"
-    adult_marker: "(Dorośli)"
+    not_js_convertible_override_label_html: "To <strong>nie</strong> powinno być dostępne w formacie user JS"
+    adult_marker: "(Dla dorosłych)"
     deleted_marker: "(Usunięty)"
     locked_marker: "(Zablokowany)"
-    unlisted_marker: "(Niewymieniony)"
+    unlisted_marker: "(Niepubliczny)"
     library_marker: "(Biblioteka)"
     libraries_title: "Biblioteki"
     libraries_description_html: "Tu są biblioteki udostępnione przez użytkowników %{site_name}, które możesz <code>@require</code> w swoich skryptach. Dla innego typu bibliotek, które możesz\n<code>@require</code>, przeczytaj %{policy_link: politykę%{site_name} nt. <code>@require</code>}."
@@ -258,8 +262,11 @@ pl:
       title: "Zgłoś %{script_name}"
     authors_heading: "Autorzy"
     invitations:
+      form_title: "Zaproś innych autorów"
+      invited_user_url_label: "Zaproś użytkownika"
       submit: "Wyślij zaproszenie"
       invalid_user_url: "Adres URL zaproszonego użytkownika jest nieprawidłowy."
+      already_author: "Podany użytkownik jest już autorem tego skryptu."
       sent: "Zaproszenie zostało wysłane."
       subject: "Zaproszenie do %{script_name}"
       current_user_already_author: "Jesteś już autorem tego skryptu."
@@ -272,6 +279,7 @@ pl:
       remove_button: "Usuń"
       remove_confirm: "Czy na pewno chcesz usunąć %{user_name} jako autora?"
       failure: "Nie można usunąć autora."
+    no_disposable_email: "Nie możesz publikować skryptów, jeśli używasz jednorazowego adresu e-mail."
   script_sets:
     description: "Zestawy skryptów umożliwiają Ci stworzenie zmodyfikowanej listy skryptów do przeglądania Greasy Fork'a. Możesz dodać skrypty do Twojego zestawu poprzez dołączanie pojedynczych skryptów, zestawów innych użytkowników lub automatycznie generowanych zestawów. Możesz także usunąć skrypty z Twojego zestawów w taki sam sposób."
     favorites_name: "Ulubione"
@@ -488,24 +496,37 @@ pl:
       other: "Twoja nazwa użytkownika i email są ustawione by być synchronizowane kiedy się zalogujesz przez %{providers}. %{edit_sign_in_link:Zmień swoje metody logowania, by usunąć synchronizację} jeśli chcesz na stałe ustawić niestandardową nazwę użytkownika lub email."
     delete_link: "Usuń konto"
     delete:
-      intro: "Usunięcie twojego %{site_name}konta '%{user_name}' będzie miało następujące efekty:"
+      intro: "Usunięcie twojego konta '%{user_name}' na %{site_name} będzie miało następujące efekty:"
       requires_permanent_deletion: "Zanim usuniesz swoje konto, musisz potwierdzić usunięcie poniższych skryptów:"
+      password_effect: "Nie będziesz już mógł logować się za pomocą swojego hasła."
       scripts_effect:
         one: "Twój %{count} skrypt zostanie usunięty."
         few: "%{count}twoje skrypty zostaną usunięte."
         many: "%{count}twoich skryptów zostanie usuniętych."
         other: "%{count} twoich skryptów zostanie usunięte."
+      email_confirmation: "Przed usunięciem konta, %{site_name} wyśle prośbę o potwierdzenie na e-mail %{email}"
       submit: "Usuń konto"
       confirmation_email_sent: "Email z potwierdzeniem usunięcia został wysłany."
+      confirmation_email:
+        subject: "Potwierdzenie usunięcia konta %{site_name}"
       confirmation:
         intro: "Zamierzasz usunąć konto '%{user_name}'. To działanie jest nieodwracalne."
         confirm: "Usuń '%{user_name}'"
         cancel: "Anuluj usuwanie"
+        key_mismatch: "Nie można usunąć użytkownika - klucze się nie zgadzają"
+        request_expired: "Nie można usunąć użytkownika - żądanie wygasło."
         cancelled: "Usunięcie anulowane."
         completed: "Twoje konto zostało usunięte."
   help:
+    sections:
+      usage: Używanie
+      development: Tworzenie
+      miscellaneous: Różne
+    open_source: "%{site_name} jest otwartoźródłowy (na licencji GPLv3). Możesz zobaczyć jego %{github_ink:kod źródłowy na GitHubie}."
     installing_user_scripts:
       title: 'Jak zainstalować skrypty użytkownika'
+    installing_user_styles:
+      title: 'Jak zainstalować style użytkownika'
     meta_keys:
       title: "Meta klucze skryptu czytane przez %{site_name}"
       intro_html: "Tutaj jest lista <a href=\"http://wiki.greasespot.net/Metadata_Block\">meta kluczy skryptu użytkownika</a>, które %{site_name} będzie czytała.  Klucze spoza tej listy mogą być dołączone w skryptach i będą obecne w zainstalowanym skrypcie, ale nie będą miały wpływu na interfejs użytkownika strony %{site_name}."
@@ -656,6 +677,8 @@ pl:
           <h2>Biblioteki osób trzecich</h2> <p>%{site_name} może zawierać biblioteki
           osób trzecich aby zbierać statystyki i wyświetlać reklamy. Te biblioteki
           mogą zawierać moduły śledzące.</p>
+    user_css_to_user_js:
+      title: Konwersja user CSS do user JS
   search:
     script_search:
       title: "Wyszukiwanie skryptów"
@@ -696,6 +719,7 @@ pl:
     advertisement_note: Reklama
     preview_tab: Podgląd
     write_tab: Napisz
+    listing_options_title: "Opcje wyszukiwania"
   activerecord:
     attributes:
       user:
