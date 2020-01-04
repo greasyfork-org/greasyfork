@@ -44,7 +44,7 @@ module Admin
     private
 
     def blocked_script_code_params
-      params.require(:blocked_script_code).permit(:pattern, :public_reason, :private_reason, :serious)
+      params.require(:blocked_script_code).permit(:pattern, :public_reason, :private_reason, :serious, :originating_script_id)
     end
   end
 end

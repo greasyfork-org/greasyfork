@@ -19,5 +19,10 @@
     <%= f.label :serious, 'Ban/delete', class: 'radio-label' %>
   </div>
 
+  <div class="form-control">
+    <%= f.label :originating_script_id %>
+    <%= f.text_field :originating_script_id %>
+  </div>
+
   <%= f.submit %>
 <% end %>

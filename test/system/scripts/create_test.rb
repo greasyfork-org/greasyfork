@@ -100,49 +100,11 @@ class CreateTest < ApplicationSystemTestCase
     assert_content "You must confirm your email before posting scripts."
   end
 
-  test "disallowed with originating script" do
-    user = User.find(4)
-    login_as(user, scope: :user)
-    visit new_script_version_url
-    code = <<~EOF
-      // ==UserScript==
-      // @name A Test!
-      // @description Unit test.
-      // @version 1.1
-      // @namespace http://greasyfork.local/users/1
-      // ==/UserScript==
-      this.was.copied.from.another.script
-    EOF
-    fill_in 'Code', with: code
-    click_button 'Post script'
-    assert_selector 'li', text: 'This code appears to be an unauthorized copy'
-  end
-
   test 'confirmed, disposable email' do
     user = User.first
     user.update(email: 'test@example.com', confirmed_at: Time.now, disposable_email: true)
     login_as(user, scope: :user)
     visit new_script_version_url
     assert_content "You may not post scripts if you use a disposable email address."
-  end
-
-  test "banned via disallowed url" do
-    user = User.find(4)
-    login_as(user, scope: :user)
-    visit new_script_version_url
-    code = <<~EOF
-      // ==UserScript==
-      // @name A Test!
-      // @description Unit test.
-      // @version 1.1
-      // @namespace http://greasyfork.local/users/1
-      // ==/UserScript==
-      location.href = "https://example.com/unique-test-value"
-    EOF
-    fill_in 'Code', with: code
-    assert_changes -> { user.reload.banned }, from: false, to: true do
-      click_button 'Post script'
-      assert_content 'This script has been deleted'
-    end
   end
 end

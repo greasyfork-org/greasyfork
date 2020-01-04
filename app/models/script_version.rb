@@ -33,25 +33,6 @@ class ScriptVersion < ApplicationRecord
     errors.add(:base, I18n.t('errors.messages.script_too_many_screenshots', :number => Rails.configuration.screenshot_max_count)) if screenshots.length > Rails.configuration.screenshot_max_count
   end
 
-  attr_accessor :unauthorized_original
-  validates_each(:code, :allow_nil => true, :allow_blank => true) do |record, attr, value|
-    meta = record.parser_class.parse_meta(value)
-
-    ScriptVersion.disallowed_codes_used_for_code(value).each do |dc|
-      if value =~ Regexp.new(dc.pattern)
-        if dc.originating_script
-          # Possibly not saved - can't do record.users
-          if (record.script.authors.map(&:user) & dc.originating_script.users).none?
-            record.unauthorized_original = dc.originating_script
-            record.errors.add(:base, "appears to be an unauthorized copy")
-          end
-        else
-          record.errors.add(:base, "Exception #{dc.ob_code}")
-        end
-      end
-    end
-  end
-
   # Warnings are separated because we need to show custom UI for them (including checkboxes to override)
   validate do |record|
     record.warnings.each {|w| record.errors.add(:base, "warning-" + w.to_s)}
@@ -177,7 +158,7 @@ class ScriptVersion < ApplicationRecord
 
   # things shouldn't be minified
   def potentially_minified?
-    return false if minified_confirmation or !disallowed_codes_used.empty?
+    return false if minified_confirmation
     # only warn on new
     return false if script.nil? or !script.new_record?
     return ScriptVersion.code_appears_minified(code)
@@ -374,14 +355,6 @@ class ScriptVersion < ApplicationRecord
       r << script_url if allowed_requires.none?{ |ar| script_url =~ Regexp.new(ar.pattern) }
     end
     return r
-  end
-
-  def disallowed_codes_used
-    return self.class.disallowed_codes_used_for_code(self.code)
-  end
-
-  def self.disallowed_codes_used_for_code(c)
-    return DisallowedCode.where(slow_ban: false).select { |dc| c =~ Regexp.new(dc.pattern)}
   end
 
   def self.compare_versions(v1, v2)

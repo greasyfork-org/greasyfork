@@ -83,59 +83,6 @@ END
     assert script_version.valid?, script_version.errors.full_messages.to_s
   end
 
-  test 'validate disallowed code' do
-    script = get_valid_script
-    script_version = script.script_versions.first
-    script_version.code = <<END
-// ==UserScript==
-// @name		A Test!
-// @description		Unit test.
-// @version 1.0
-// @namespace http://greasyfork.local/users/1
-// ==/UserScript==
-function Like(p) {}
-END
-    assert !script_version.valid?
-    assert_equal 1, script_version.errors.to_a.length
-    assert_equal 'Exception 403001', script_version.errors.full_messages.first
-  end
-
-  test 'validate disallowed code with originating script' do
-    script = get_valid_script
-    script.authors.clear
-    script.authors.build(user: User.find(4))
-    script_version = script.script_versions.first
-    script_version.code = <<END
-// ==UserScript==
-// @name		A Test!
-// @description		Unit test.
-// @version 1.0
-// @namespace http://greasyfork.local/users/1
-// ==/UserScript==
-this.was.copied.from.another.script
-END
-    assert !script_version.valid?
-    assert_equal 1, script_version.errors.to_a.length
-    assert_equal 'appears to be an unauthorized copy', script_version.errors.full_messages.first
-  end
-
-  test 'validate disallowed code with originating same author' do
-    script = get_valid_script
-    script.authors.clear
-    script.authors.build(user: User.find(1))
-    script_version = script.script_versions.first
-    script_version.code = <<END
-// ==UserScript==
-// @name		A Test!
-// @description		Unit test.
-// @version 1.0
-// @namespace http://greasyfork.local/users/1
-// ==/UserScript==
-this.was.copied.from.another.script
-END
-    assert script_version.valid?
-  end
-
   test 'syntax errors in code' do
     script = get_valid_script
     script.authors.clear

@@ -167,11 +167,6 @@ class Script < ActiveRecord::Base
     true
   end
 
-  after_create do
-    disallowed_code = DisallowedCode.where(slow_ban: true).find { |dc| script_versions.last.code =~ Regexp.new(dc.pattern)}
-    BanAndDeleteJob.set(wait: 5.seconds).perform_later(id, disallowed_code.id) if disallowed_code
-  end
-
   def matching_sensitive_sites
     SensitiveSite.where(domain: site_applications.where(domain: true).pluck(:text))
   end
