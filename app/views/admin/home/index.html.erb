@@ -1,0 +1,18 @@
+<h2>Greasy Fork admin</h2>
+
+<ul>
+  <li><%= link_to 'Blocked Code', admin_blocked_script_codes_path %></li>
+  <li><%= link_to 'Blocked URLs', admin_blocked_script_urls_path %></li>
+  <% if current_user.administrator? %>
+    <li><%= link_to 'Ad Approval', pending_admin_ads_path %></li>
+    <li><%= link_to 'Stats Upload', admin_analytics_stats_path %></li>
+  <% end %>
+</ul>
+
+<h3>Moderator team</h3>
+
+<ul>
+  <% User.moderators.each do |user| %>
+    <li><%= link_to user.name, user %></li>
+  <% end %>
+</ul>

@@ -151,6 +151,7 @@ Rails.application.routes.draw do
     get 'opensearch.xml', to: 'opensearch#description', as: 'opensearch_description'
 
     namespace :admin do
+      get '/' => 'home#index'
       resources :ads, only: [] do
         member do
           patch :approve

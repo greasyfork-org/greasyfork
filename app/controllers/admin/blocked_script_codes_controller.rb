@@ -1,5 +1,8 @@
 module Admin
   class BlockedScriptCodesController < BaseController
+
+    before_action :administrators_only, except: :index
+
     def index
       @blocked_script_codes = BlockedScriptCode.all
     end

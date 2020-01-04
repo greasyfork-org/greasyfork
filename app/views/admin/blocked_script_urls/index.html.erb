@@ -2,7 +2,17 @@
 
 <p>If a script contains any of these URLs, or an URL that redirects to any of these URLs, the script will be deleted and the user banned.</p>
 
-<p><%= link_to 'Add new', new_admin_blocked_script_url_path %></p>
+<p>Redirect services are checked with the following patterns:</p>
+
+<ul>
+  <% ScriptChecking::LinkChecker::REDIRECT_PATTERNS.each do |pattern| %>
+    <li><code><%= pattern %></code></li>
+  <% end %>
+</ul>
+
+<% if current_user.administrator? %>
+  <p><%= link_to 'Add new', new_admin_blocked_script_url_path %></p>
+<% end %>
 
 <table>
   <thead>
@@ -22,8 +32,8 @@
         <td><%= blocked_script_url.public_reason %></td>
         <td><%= blocked_script_url.private_reason %></td>
         <td>
-          <%= link_to 'Edit', edit_admin_blocked_script_url_path(blocked_script_url) %>
-          <%= link_to 'Delete', admin_blocked_script_url_path(blocked_script_url), method: :delete %>
+          <%= link_to('Edit', edit_admin_blocked_script_url_path(blocked_script_url)) if current_user.administrator? %>
+          <%= link_to('Delete', admin_blocked_script_url_path(blocked_script_url), method: :delete) if current_user.administrator? %>
         </td>
       </tr>
     <% end %>

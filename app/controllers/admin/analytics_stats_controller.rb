@@ -2,6 +2,9 @@ require 'csv'
 
 module Admin
   class AnalyticsStatsController < BaseController
+
+    before_action :administrators_only
+
     def show
     end
     

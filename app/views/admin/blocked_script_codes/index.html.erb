@@ -2,7 +2,9 @@
 
 <p>If a script's code contains any of these patterns the script save will be rejected or it will be deleted and the author banned.</p>
 
-<p><%= link_to 'Add new', new_admin_blocked_script_code_path %></p>
+<% if current_user.administrator? %>
+  <p><%= link_to 'Add new', new_admin_blocked_script_code_path %></p>
+<% end %>
 
 <table>
   <thead>
@@ -24,8 +26,8 @@
         <td><%= blocked_script_code.private_reason %></td>
         <td><%= blocked_script_code.serious ? 'Delete and ban' : 'Rejected' %></td>
         <td>
-          <%= link_to 'Edit', edit_admin_blocked_script_code_path(blocked_script_code) %>
-          <%= link_to 'Delete', admin_blocked_script_code_path(blocked_script_code), method: :delete %>
+          <%= link_to('Edit', edit_admin_blocked_script_code_path(blocked_script_code)) if current_user.administrator? %>
+          <%= link_to('Delete', admin_blocked_script_code_path(blocked_script_code), method: :delete) if current_user.administrator? %>
         </td>
       </tr>
     <% end %>

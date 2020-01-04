@@ -4,6 +4,7 @@ require 'devise'
 class User < ApplicationRecord
   serialize :announcements_seen, Array
 
+  scope :moderators, -> { joins(:roles).where(roles: { name: 'moderator' }) }
   scope :administrators, -> { joins(:roles).where(roles: { name: 'administrator' }) }
 
   has_many :authors, dependent: :destroy

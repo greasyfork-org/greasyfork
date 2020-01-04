@@ -2,6 +2,8 @@ module Admin
   class AdsController < BaseController
     DISALLOWED_INCLUDES = ['youtube', 'google']
 
+    before_action :administrators_only
+
     def pending
       @scripts = Script
         .active(:greasyfork)
