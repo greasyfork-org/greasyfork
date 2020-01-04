@@ -5,6 +5,7 @@ class ScriptChecking::LinkChecker
   REDIRECT_PATTERNS = [
     /https?:\/\/bit\.ly\/[a-z0-9]+/i,
     /https?:\/\/bit\.do\/[a-z0-9\-]+/i,
+    /https?:\/\/cutt\.ly\/[a-z0-9\-]+/i,
   ]
 
   class << self
