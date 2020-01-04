@@ -1,0 +1,29 @@
+<h1>Spammy Email Domains</h1>
+
+<p>Additional checks on email addresses from these domains.</p>
+
+<% if current_user.administrator? %>
+  <p><%= link_to 'Add new', new_admin_spammy_email_domain_path %></p>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Domain</th>
+      <th>Check</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @spammy_email_domains.each do |spammy_email_domain| %>
+      <tr>
+        <td><%= spammy_email_domain.domain %></td>
+        <td><%= spammy_email_domain.complete_block ? 'Blocked' : 'Delay' %></td>
+        <td>
+          <%= link_to('Edit', edit_admin_spammy_email_domain_path(spammy_email_domain)) if current_user.administrator? %>
+          <%= link_to('Delete', admin_spammy_email_domain_path(spammy_email_domain), method: :delete) if current_user.administrator? %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

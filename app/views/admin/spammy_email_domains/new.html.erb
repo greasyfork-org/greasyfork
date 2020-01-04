@@ -1,0 +1,13 @@
+<%= form_with(model: [:admin, @spammy_email_domain]) do |f| %>
+  <div class="form-control">
+    <%= f.label :domain %>
+    <%= f.text_field :domain, required: true %>
+  </div>
+
+  <div class="form-control">
+    <%= f.check_box :complete_block %>
+    <%= f.label :complete_block, class: 'radio-label' %>
+  </div>
+
+  <%= f.submit %>
+<% end %>

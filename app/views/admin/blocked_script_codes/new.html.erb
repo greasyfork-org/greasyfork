@@ -15,13 +15,13 @@
   </div>
 
   <div class="form-control">
-    <%= f.check_box :serious %>
-    <%= f.label :serious, 'Ban/delete', class: 'radio-label' %>
+    <%= f.label :originating_script_id %>
+    <%= f.text_field :originating_script_id %>
   </div>
 
   <div class="form-control">
-    <%= f.label :originating_script_id %>
-    <%= f.text_field :originating_script_id %>
+    <%= f.check_box :serious %>
+    <%= f.label :serious, 'Ban/delete', class: 'radio-label' %>
   </div>
 
   <%= f.submit %>

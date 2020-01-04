@@ -163,6 +163,7 @@ Rails.application.routes.draw do
       resource :analytics_stats, only: [:show, :update]
       resources :blocked_script_codes, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :blocked_script_urls, only: [:index, :new, :create, :edit, :update, :destroy]
+      resources :spammy_email_domains, only: [:index, :new, :create, :edit, :update, :destroy]
     end
 
     match '*path', :to => 'home#routing_error', :via => [:get, :post]
