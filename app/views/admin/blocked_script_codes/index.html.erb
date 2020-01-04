@@ -9,8 +9,6 @@
 <table>
   <thead>
     <tr>
-      <th>ID</th>
-      <th>Pattern</th>
       <th>Public Reason</th>
       <th>Private Reason</th>
       <th>Consequence</th>
@@ -21,8 +19,11 @@
   <tbody>
     <% @blocked_script_codes.each do |blocked_script_code| %>
       <tr>
-        <td><%= blocked_script_code.id %></td>
-        <td><code><%= blocked_script_code.pattern %></code></td>
+        <td colspan="5">
+          <code><%= blocked_script_code.pattern %></code>
+        </td>
+      </tr>
+      <tr>
         <td><%= blocked_script_code.public_reason %></td>
         <td><%= blocked_script_code.private_reason %></td>
         <td><%= blocked_script_code.serious ? 'Delete and ban' : 'Rejected' %></td>
