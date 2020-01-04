@@ -53,7 +53,6 @@ class User < ApplicationRecord
   validates_length_of :profile, :maximum => 10000
   validates_inclusion_of :profile_markup, :in => ['html', 'markdown']
   validates_inclusion_of :preferred_markup, :in => ['html', 'markdown']
-  validates_with DisallowedAttributeValidator, object_type: :user
 
   validate do
     errors.add(:base, "This email has been banned.") if User.where(banned: true, canonical_email: canonical_email).any? if new_record? || email_changed? || unconfirmed_email_changed?

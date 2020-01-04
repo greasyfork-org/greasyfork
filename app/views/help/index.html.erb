@@ -26,13 +26,4 @@
   <li><%=link_to t('help.privacy_policy.title'), help_privacy_path%></li>
 </ul>
 
-
-<% if !current_user.nil? and current_user.moderator? %>
-  <h3>Moderator stuff</h3>
-  <ul>
-    <li><%=link_to 'Disallowed code patterns', help_disallowed_code_path%></li>
-    <li><%=link_to 'Reported scripts', reported_scripts_path%></li>
-  </ul>
-<% end %>
-
 <p><%= it('help.open_source', github_link: 'https://github.com/JasonBarnabe/greasyfork', site_name: site_name) %></p>

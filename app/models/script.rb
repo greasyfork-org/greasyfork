@@ -126,8 +126,6 @@ class Script < ActiveRecord::Base
 
   validates_length_of :sync_identifier, maximum: 500
 
-  validates_with DisallowedAttributeValidator, object_type: :script
-
   # Private use area unicode
   validates_each :name, :description, :additional_info do |script, attr, value|
     script.errors.add(attr, :invalid) if /[\u{e000}-\u{f8ff}\u{f0000}-\u{fffff}\u{100000}-\u{10ffff}]/.match?(value)
