@@ -6,9 +6,10 @@
   <p><%= link_to 'Add new', new_admin_blocked_script_code_path %></p>
 <% end %>
 
-<table>
+<table class="blocked-script-codes">
   <thead>
     <tr>
+      <th></th>
       <th>Public Reason</th>
       <th>Private Reason</th>
       <th>Consequence</th>
@@ -18,12 +19,13 @@
   </thead>
   <tbody>
     <% @blocked_script_codes.each do |blocked_script_code| %>
-      <tr>
-        <td colspan="5">
+      <tr class="pattern-row">
+        <td colspan="6">
           <code><%= blocked_script_code.pattern %></code>
         </td>
       </tr>
-      <tr>
+      <tr class="info-row">
+        <td></td>
         <td><%= blocked_script_code.public_reason %></td>
         <td><%= blocked_script_code.private_reason %></td>
         <td><%= blocked_script_code.serious ? 'Delete and ban' : 'Rejected' %></td>
