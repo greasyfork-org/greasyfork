@@ -9,7 +9,7 @@ class JsChecker
 
   def check
     begin
-      context = MiniRacer::Context.new(timeout: 500, max_memory: 200000000)
+      context = MiniRacer::Context.new(timeout: 500, max_memory: 20_000_000)
       # Enclose in a function - we just want to check for syntax errors, not execute. Also some code does a top-level
       # return.
       context.eval("function foo() {\n#{@js}\n}")
