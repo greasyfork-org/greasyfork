@@ -3,6 +3,7 @@
 <ul>
   <li><%= link_to 'Blocked Code', admin_blocked_script_codes_path %></li>
   <li><%= link_to 'Blocked URLs', admin_blocked_script_urls_path %></li>
+  <li><%= link_to 'Redirect Service Domains', admin_redirect_service_domains_path %></li>
   <li><%= link_to 'Spammy Email Domains', admin_spammy_email_domains_path %></li>
   <% if current_user.administrator? %>
     <li><%= link_to 'Ad Approval', pending_admin_ads_path %></li>

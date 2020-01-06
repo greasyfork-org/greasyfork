@@ -1191,6 +1191,15 @@ CREATE TABLE `moderator_actions` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=25254 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `redirect_service_domains`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `redirect_service_domains` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `domain` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `roles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -1771,6 +1780,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20200101030644'),
 ('20200101203938'),
 ('20200103021449'),
-('20200104202749');
+('20200104202749'),
+('20200106011534');
 
 

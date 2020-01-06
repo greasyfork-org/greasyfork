@@ -1,0 +1,8 @@
+<%= form_with(model: [:admin, @redirect_service_domain]) do |f| %>
+  <div class="form-control">
+    <%= f.label :domain %>
+    <%= f.text_field :domain, required: true %>
+  </div>
+
+  <%= f.submit %>
+<% end %>

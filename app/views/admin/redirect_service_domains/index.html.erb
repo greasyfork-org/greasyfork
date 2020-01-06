@@ -1,0 +1,21 @@
+<h1>Redirect Service Domain</h1>
+
+<p>These domains are redirect services (URL shorteners). This list is used in conjunction with the blocked script URLs.</p>
+
+<% if current_user.administrator? %>
+  <p><%= link_to 'Add new', new_admin_redirect_service_domain_path %></p>
+<% end %>
+
+<table>
+  <tbody>
+    <% @redirect_service_domains.each do |redirect_service_domain| %>
+      <tr>
+        <td><%= redirect_service_domain.domain %></td>
+        <td>
+          <%= link_to('Edit', edit_admin_redirect_service_domain_path(redirect_service_domain)) if current_user.administrator? %>
+          <%= link_to('Delete', admin_redirect_service_domain_path(redirect_service_domain), method: :delete) if current_user.administrator? %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
