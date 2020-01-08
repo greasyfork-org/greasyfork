@@ -2,14 +2,6 @@
 
 <p>If a script contains any of these URLs, or an URL that redirects to any of these URLs, the script will be deleted and the user banned.</p>
 
-<p>Redirect services are checked with the following patterns:</p>
-
-<ul>
-  <% ScriptChecking::LinkChecker::REDIRECT_PATTERNS.each do |pattern| %>
-    <li><code><%= pattern %></code></li>
-  <% end %>
-</ul>
-
 <% if current_user.administrator? %>
   <p><%= link_to 'Add new', new_admin_blocked_script_url_path %></p>
 <% end %>
