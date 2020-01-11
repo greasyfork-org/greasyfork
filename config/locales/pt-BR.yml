@@ -148,6 +148,9 @@ pt-BR:
     listing_none: "(Nenhum)"
     listing_set_locale_filter: "Mostrando resultados para todos os idiomas. %{set_filter_link:Mostrar somente resultados em  %{language}.}"
     listing_remove_locale_filter: "Mostrando somente resultados em %{language}. %{remove_filter_link:Mostrar resultados para todos os idiomas.}"
+    listing_language_all: "Todos"
+    listing_language_js: "JavaScript"
+    listing_language_css: "CSS"
     import: "Scripts importantes"
     new: "Postar um script"
     new_css: "Cole um estilo"
@@ -238,6 +241,9 @@ pt-BR:
     adult_content_on_greasy_logged_in_error: "Este script não está mais disponível neste site com sua %{edit_account_link:Greasy Fork account settings}."
     adult_content_on_greasy_not_logged_in_error: "Este script não está mais disponível anonimamente neste site. %{login_link:Log in} e cheque suas preferências da sua conta no Greasy Fork."
     non_adult_content_on_sleazy: "O script não está disponível neste site."
+    not_js_convertible_override_header: "Conversão para JS"
+    not_js_convertible_override_explanation: "O %{site_name} pode criar automaticamente uma %{help_link:conversão de JS de usuário} do seu CSS de usuário. Como a conversão do JS de usuário e seu CSS de usuário funcionarão de formas diferentes, recomendamos que você teste a conversão do JS de usuário. Se você achar que não está funcional, você pode torná-la indisponível marcando a caixa abaixo."
+    not_js_convertible_override_label_html: "Isso <strong>não</strong> deve ser disponibilizado no formato de JS de usuário"
     adult_marker: "(Adulto)"
     deleted_marker: "(Excluído)"
     locked_marker: "(Trancado)"
@@ -533,8 +539,15 @@ pt-BR:
         cancelled: "A remoção foi cancelada."
         completed: "Sua conta foi apagada."
   help:
+    sections:
+      usage: Uso
+      development: Desenvolvimento
+      miscellaneous: Diversos
+    open_source: "O %{site_name} é open source (licença GPLv3). Você pode %{github_link:ver seu código fonte no GitHub}."
     installing_user_scripts:
       title: 'Como instalar scripts de usuários'
+    installing_user_styles:
+      title: 'Como instalar estilos de usuário'
     meta_keys:
       title: "Chaves de metadados de scripts lidas pelo %{site_name}"
       intro_html: "Esta é uma lista de <a href=\"http://wiki.greasespot.net/Metadata_Block\">meta chaves de scripts de usuário</a> que %{site_name} irá ler. Chaves fora desta lista podem ser incluídas nos scripts, e serão apresentados no script instalado, mas não surtirão efeito na UI de %{site_name}."
@@ -562,6 +575,60 @@ pt-BR:
       post_new_script_link_text: 'Postar um script'
     code_rules:
       title: "Política do %{site_name} sobre scripts externos"
+      content_html: >
+          <p> Estes são os requisitos para os scripts postados no %{site_name}. Isso
+          tem como objetivo manter o %{site_name} seguro e útil para os scripts de
+          usuário. Qualquer script que não atenda esses requisitos serão removidos
+          pelos moderadores do %{site_name}.</p> <h4>Funcionalidade</h4> <ul>
+
+          <li>Os scripts devem ter uma descrição a cerca do que eles fazem e não podem
+          fazer nada fora dessa descrição sem razão. Os usuários devem saber o que
+          um script fará antes de instalá-lo.</li>
+
+          <li>Scripts devem ter um motivo de ser um script. Por exemplo, um script
+          que simplesmente direciona um usuário para um site não precisa ser um script;
+          poderia ser um link.</li>
+
+          <li> Scripts que possuem métodos de monetização (rastreamento, propagandas,
+          mineradores, etc) não são proibidos, mas o autor deve deixar isso de forma
+          bem clara na descrição do script ou nas informações adicionais.</li>
+
+          </ul> <h4>Código</h4> <ul>
+
+          <li>Códigos postados neste site não devem estar ofuscados ou minificados.
+          Os usuários devem ter a possibilidade de inspecionar e entender o script
+          antes de instalá-lo.</li>
+
+          <li>Bibliotecas que um script de usuário utiliza devem ser incluídas usando
+          a tag <code>@require</code>, a não ser que haja um motivo técnico razoável
+          para não fazer isso. No caso da biblioteca ser incluída inline, deve ser
+          adicionada informação da fonte da bibiioteca (por exemplo, um comentário
+          indicando a url e/ou nome e versão).</li>
+
+          <li>%{external_scripts_link:Uso de JavaScript externo é limitado.}</li>
+
+          </ul> <h4>Direitos Autorais</h4> <ul>
+
+          <li>Seu script deve respeitar os direitos autorais de outros. Isto inclui
+          o script em si e qualquer recurso (como imagens) que ele utilize. Caso você
+          tenha pretenda utilizar o conteúdo de alguém, siga seus termos de licença
+          ou obtenha permissão antes de fazê-lo.</li>
+
+          <li>Mesmo em casos onde não há violação de direitos autorais, repostar um
+          script que já esteja no %{site_name} não é permitido a não ser que ele tenha
+          melhorias em relação ao original.</li>
+
+          </ul> <h4>Diversos</h4> <ul>
+
+          %{adult_content_requirement}
+
+          <li>Os scripts não devem verificar atualização muitas vezes por dia. Note
+          que a maioria dos gerenciadores de scripts já cuida das atualizações por
+          conta própria, então fazer isso dentro do seu script é desnecessário.</li>
+
+          </ul> <p>Se você perceber que um script fuja desses parâmetros, por fazer
+          denuncie através do link de Feedback daquele script e escolha a opção "Denunciar
+          script".</p>
       adult_content_rule_html: "<li>Os scripts que incluem conteúdo adulto ou são destinados a sites com este tipo de conteúdo devem ser marcados como tal para permitir que os usuários escolham se desejam vê-los.</li>"
     external_scripts:
       title: "Política em scripts externo do %{site_name}"
@@ -680,6 +747,8 @@ pt-BR:
           <h2>Bibliotecas de terceiros</h2> <p>O %{site_name} pode incluir código
           de terceiros para coletar estatísticas ou exibir publicidade no site. Essas
           bibliotecas podem incluir lógicas de rastreamento.</p>
+    user_css_to_user_js:
+      title: Conversão de CSS de usuário para JS de usuário
   search:
     script_search:
       title: "Pesquisa de Script"
