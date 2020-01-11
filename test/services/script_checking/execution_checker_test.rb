@@ -11,16 +11,36 @@ class ScriptChecking::ExecutionCheckerTest < ActiveSupport::TestCase
   end
 
   test 'block set' do
-    assert_equal ScriptChecking::Result::RESULT_CODE_BLOCK, check_script_with_code('window.location.href = "bad.guy"').code
+    assert_equal ScriptChecking::Result::RESULT_CODE_BAN, check_script_with_code('window.location.href = "https://example.com/unique-test-value"').code
+  end
+
+  test 'block set for OK URL' do
+    assert_equal ScriptChecking::Result::RESULT_CODE_OK, check_script_with_code('window.location.href = "https://example.com/innocent-value"').code
   end
 
   test 'block set on top-level object' do
+    assert_equal ScriptChecking::Result::RESULT_CODE_BAN, check_script_with_code('location.href = "https://example.com/unique-test-value"').code
+  end
+
+  test 'block set of top-level object' do
     skip
-    assert_equal ScriptChecking::Result::RESULT_CODE_BLOCK, check_script_with_code('location.href = "bad.guy"').code
+    assert_equal ScriptChecking::Result::RESULT_CODE_BAN, check_script_with_code('location = "https://example.com/unique-test-value"').code
   end
 
   test 'block function' do
-    assert_equal ScriptChecking::Result::RESULT_CODE_BLOCK, check_script_with_code('window.open("bad.guy")').code
+    assert_equal ScriptChecking::Result::RESULT_CODE_BAN, check_script_with_code('window.open("https://example.com/unique-test-value")').code
+  end
+
+  test 'block within setTimeout' do
+    assert_equal ScriptChecking::Result::RESULT_CODE_BAN, check_script_with_code('setTimeout(function() { window.open("https://example.com/unique-test-value") }, 1000)').code
+  end
+
+  test 'block within addEventListener' do
+    assert_equal ScriptChecking::Result::RESULT_CODE_BAN, check_script_with_code('addEventListener("load", function() { window.open("https://example.com/unique-test-value") }, 1000)').code
+  end
+
+  test 'block within addEventListener on another object' do
+    assert_equal ScriptChecking::Result::RESULT_CODE_BAN, check_script_with_code('document.getElementById("foo").addEventListener("click", function() { window.open("https://example.com/unique-test-value") }, 1000)').code
   end
 
   def check_script_with_code(code)

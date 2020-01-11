@@ -2,6 +2,7 @@ class ScriptCheckingService
   STRATEGIES = [
     ScriptChecking::LinkChecker,
     ScriptChecking::CodeChecker,
+    ScriptChecking::ExecutionChecker,
   ]
 
   def self.check(script_version)

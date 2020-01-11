@@ -2,49 +2,89 @@ class ScriptChecking::ExecutionChecker
   class << self
     def check(script_version)
       code = script_version.code
+      urls = extract_urls(code)
 
-      context = MiniRacer::Context.new(timeout: 500, max_memory: 20_000_000)
-
-      sets = Set.new
-      function_calls = Set.new
-      context.attach('greasyforkSetLogger', ->(property) { sets << property.join(".") })
-      context.attach('greasyforkFunctionLogger', ->(property) { function_calls << property.join(".") })
-
-      begin
-        context.eval(PROXY_CODE + "\n" + code)
-      rescue MiniRacer::Error => e
-        return ScriptChecking::Result.new(ScriptChecking::Result::RESULT_CODE_OK)
+      blocked_urls = BlockedScriptUrl.all
+      blocked_urls.each do |bu|
+        return ScriptChecking::Result.new(ScriptChecking::Result::RESULT_CODE_BAN, bu.public_reason, bu.private_reason, bu) if urls.include?(bu.url)
       end
 
-      return ScriptChecking::Result.new(ScriptChecking::Result::RESULT_CODE_BLOCK, 'Something', "Blocked set - #{sets.first}") if (sets & BLOCKED_SETS).any?
-      return ScriptChecking::Result.new(ScriptChecking::Result::RESULT_CODE_BLOCK, 'Something', "Blocked function call - #{sets.first}") if (function_calls & BLOCKED_FUNCTION_CALLS).any?
+      redirect_url_pattern = ScriptChecking::LinkChecker.redirect_url_pattern
+      urls.select { |url| redirect_url_pattern.match?(url) }.each do |redirect_url|
+        target_url = ScriptChecking::LinkChecker.resolve(redirect_url)
+        blocked_urls.each do |bu|
+          return ScriptChecking::Result.new(ScriptChecking::Result::RESULT_CODE_BAN, bu.public_reason, bu.private_reason, bu) if target_url == bu.url
+        end
+      end
 
       ScriptChecking::Result.new(ScriptChecking::Result::RESULT_CODE_OK)
     end
+
+    def extract_urls(code)
+      context = MiniRacer::Context.new(timeout: 500, max_memory: 20_000_000)
+
+      urls = Set.new
+      context.attach 'greasyforkSetLogger', ->(property, value) do
+        urls << value if URL_SETTERS.include?(property.join("."))
+      end
+      context.attach'greasyforkFunctionLogger', ->(property, args) do
+        urls << args.first if URL_FUNCTIONS.include?(property.join("."))
+      end
+
+      begin
+        context.eval(proxy_code + "\n" + code)
+      rescue MiniRacer::Error => e
+        #puts code
+        #puts e.backtrace.select{|bt| bt.start_with?('JavaScript') }
+        #raise e
+      end
+
+      urls
+    end
+
+    def proxy_code
+      js = <<~JS
+        function GreasyforkProxy(reference) {
+          return new Proxy(function() {}, {
+            get: function(obj, prop) {
+              switch(prop) {
+                case 'setTimeout':
+                case 'setInterval':
+                  return function() { arguments[0](); }
+                case 'addEventListener':
+                  return function() { arguments[1](new GreasyforkProxy(['(event)'])); }
+                case Symbol.toPrimitive:
+                  return function(hint) { 
+                    switch(hint) {
+                      case 'number':
+                        return 12;
+                      case 'string':
+                        return 'twelve';
+                      default:
+                        return null;
+                    }
+                  }
+              }
+              return new GreasyforkProxy(reference.concat(prop));
+            },
+            set: function(obj, prop, val) {
+              greasyforkSetLogger(reference.concat(prop), val);
+              return true;
+            },
+            apply: function(target, thisArg, argumentsList) {
+              greasyforkFunctionLogger(reference, argumentsList);
+              return new GreasyforkProxy(reference);
+            }
+          });
+        };
+        
+        window = new GreasyforkProxy(['window']);
+      JS
+      js + TOP_LEVEL_MEMBERS.map { |tlm| "#{tlm} = window.#{tlm};" }.join("\n")
+    end
   end
 
-  BLOCKED_SETS = ['window.location', 'window.location.href']
-  BLOCKED_FUNCTION_CALLS = ['window.open']
-
-  PROXY_CODE = <<~JS
-    function GreasyforkProxy(reference) {
-      return new Proxy(function() {}, {
-        get: function(obj, prop) {
-          return new GreasyforkProxy(reference.concat(prop));
-        },
-        set: function(obj, prop, val) {
-          greasyforkSetLogger(reference.concat(prop));
-          return true;
-        },
-        apply: function(target, thisArg, argumentsList) {
-          greasyforkFunctionLogger(reference);
-          return new GreasyforkProxy(reference);
-        }
-      });
-    };
-    
-    var window = new GreasyforkProxy(['window']);
-    globalThis = window;
-  JS
-
+  URL_SETTERS = %w(window.location window.location.href).to_set
+  URL_FUNCTIONS = %w(window.open window.location.assign window.location.replace).to_set
+  TOP_LEVEL_MEMBERS = %w(close stop focus blur open alert confirm prompt print postMessage captureEvents releaseEvents getSelection getComputedStyle matchMedia moveTo moveBy resizeTo resizeBy scroll scrollTo scrollBy requestAnimationFrame cancelAnimationFrame getDefaultComputedStyle scrollByLines scrollByPages sizeToContent updateCommands find dump setResizable requestIdleCallback cancelIdleCallback btoa atob setTimeout clearTimeout setInterval clearInterval queueMicrotask createImageBitmap fetch self name history customElements locationbar menubar personalbar scrollbars statusbar toolbar status closed event frames length opener parent frameElement navigator external screen innerWidth innerHeight scrollX pageXOffset scrollY pageYOffset screenLeft screenTop screenX screenY outerWidth outerHeight performance mozInnerScreenX mozInnerScreenY devicePixelRatio scrollMaxX scrollMaxY fullScreen ondevicemotion ondeviceorientation onabsolutedeviceorientation ondeviceproximity onuserproximity ondevicelight InstallTrigger sidebar crypto onabort onblur onfocus onauxclick oncanplay oncanplaythrough onchange onclick onclose oncontextmenu oncuechange ondblclick ondrag ondragend ondragenter ondragexit ondragleave ondragover ondragstart ondrop ondurationchange onemptied onended onformdata oninput oninvalid onkeydown onkeypress onkeyup onload onloadeddata onloadedmetadata onloadend onloadstart onmousedown onmouseenter onmouseleave onmousemove onmouseout onmouseover onmouseup onwheel onpause onplay onplaying onprogress onratechange onreset onresize onscroll onseeked onseeking onselect onshow onstalled onsubmit onsuspend ontimeupdate onvolumechange onwaiting onselectstart ontoggle onpointercancel onpointerdown onpointerup onpointermove onpointerout onpointerover onpointerenter onpointerleave ongotpointercapture onlostpointercapture onmozfullscreenchange onmozfullscreenerror onanimationcancel onanimationend onanimationiteration onanimationstart ontransitioncancel ontransitionend ontransitionrun ontransitionstart onwebkitanimationend onwebkitanimationiteration onwebkitanimationstart onwebkittransitionend onerror speechSynthesis onafterprint onbeforeprint onbeforeunload onhashchange onlanguagechange onmessage onmessageerror onoffline ononline onpagehide onpageshow onpopstate onrejectionhandled onstorage onunhandledrejection onunload localStorage origin crossOriginIsolated isSecureContext indexedDB caches sessionStorage document location top properties addEventListener removeEventListener dispatchEvent).to_set
 end
