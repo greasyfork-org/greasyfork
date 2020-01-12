@@ -76,6 +76,7 @@ Rails.application.routes.draw do
         post 'unrequest_permanent_deletion'
         post 'do_permanent_deletion', to: 'scripts#do_permanent_deletion', as: 'do_permanent_deletion'
         post 'reject_permanent_deletion', to: 'scripts#reject_permanent_deletion', as: 'reject_permanent_deletion'
+        patch 'approve'
 
         patch 'sync_update'
         patch 'update_promoted'
@@ -162,6 +163,7 @@ Rails.application.routes.draw do
       end
       resource :analytics_stats, only: [:show, :update]
       resources :blocked_script_codes, only: [:index, :new, :create, :edit, :update, :destroy]
+      resources :blocked_script_texts, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :blocked_script_urls, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :redirect_service_domains, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :spammy_email_domains, only: [:index, :new, :create, :edit, :update, :destroy]

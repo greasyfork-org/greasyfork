@@ -75,4 +75,25 @@ class BlockTest < ApplicationSystemTestCase
       click_button 'Post new version'
     end
   end
+
+  test "banned via disallowed text" do
+    user = User.find(4)
+    login_as(user, scope: :user)
+    visit new_script_version_url
+    code = <<~EOF
+      // ==UserScript==
+      // @name A Test!
+      // @description Unit test.
+      // @version 1.1
+      // @namespace http://greasyfork.local/users/1
+      // ==/UserScript==
+      location.href = "badguytext"
+    EOF
+    fill_in 'Code', with: code
+    assert_difference -> { Script.count } => 1 do
+      click_button 'Post script'
+      assert_content 'This script is unavailable to other users until it is reviewed by a moderator.'
+    end
+    assert_equal 'required', Script.last.review_state
+  end
 end

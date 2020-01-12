@@ -1,6 +1,7 @@
 class ScriptChecking::Result
   RESULT_CODE_OK = :ok
   RESULT_CODE_BLOCK = :block
+  RESULT_CODE_REVIEW = :review
   RESULT_CODE_BAN = :ban
 
   attr_accessor :code, :public_reason, :private_reason, :related_object

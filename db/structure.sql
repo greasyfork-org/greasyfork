@@ -971,6 +971,17 @@ CREATE TABLE `blocked_script_codes` (
   CONSTRAINT `fk_rails_6f37f4eb64` FOREIGN KEY (`originating_script_id`) REFERENCES `scripts` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `blocked_script_texts`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `blocked_script_texts` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `text` varchar(255) NOT NULL,
+  `public_reason` varchar(255) NOT NULL,
+  `private_reason` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `blocked_script_urls`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -1198,7 +1209,7 @@ CREATE TABLE `redirect_service_domains` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `domain` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `roles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1500,12 +1511,14 @@ CREATE TABLE `scripts` (
   `language` varchar(3) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'js',
   `css_convertible_to_js` tinyint(1) NOT NULL DEFAULT 0,
   `not_js_convertible_override` tinyint(1) NOT NULL DEFAULT 0,
+  `review_state` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'not_required',
   PRIMARY KEY (`id`),
   KEY `index_scripts_on_delta` (`delta`),
   KEY `index_scripts_on_script_delete_type_id` (`script_delete_type_id`),
   KEY `index_scripts_on_script_type_id` (`script_type_id`),
   KEY `fk_rails_f98f8b875c` (`promoted_script_id`),
   KEY `index_scripts_on_promoted` (`promoted`),
+  KEY `index_scripts_on_review_state` (`review_state`),
   CONSTRAINT `fk_rails_f98f8b875c` FOREIGN KEY (`promoted_script_id`) REFERENCES `scripts` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=393999 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1781,6 +1794,8 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20200101203938'),
 ('20200103021449'),
 ('20200104202749'),
-('20200106011534');
+('20200106011534'),
+('20200112155750'),
+('20200112162130');
 
 

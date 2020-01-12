@@ -28,6 +28,11 @@ module ScriptAndVersions
       return true
     end
 
+    if script.review_required? && !(current_user && (script.users.include?(current_user) || current_user.moderator?))
+    render_review_required(script)
+      return true
+    end
+
     return false
   end
 
@@ -72,6 +77,18 @@ module ScriptAndVersions
   end
 
   def render_pending_report(script)
+    respond_to do |format|
+      format.html {
+        @text = t('scripts.reported_notice', script_name: @script.name(I18n.locale))
+        render 'home/error', status: 404, layout: 'application'
+      }
+      format.all {
+        head 404
+      }
+    end
+  end
+
+  def render_review_required(script)
     respond_to do |format|
       format.html {
         @text = t('scripts.reported_notice', script_name: @script.name(I18n.locale))

@@ -1,0 +1,46 @@
+<h1>Blocked Script Text</h1>
+
+<p>If a script contains any of this text, the script will be marked for moderator review.</p>
+
+<% if current_user.administrator? %>
+  <p><%= link_to 'Add new', new_admin_blocked_script_text_path %></p>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Text</th>
+      <th>Public Reason</th>
+      <th>Private Reason</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @blocked_script_texts.each do |blocked_script_text| %>
+      <tr>
+        <td><%= blocked_script_text.id %></td>
+        <td><%= blocked_script_text.text %></td>
+        <td><%= blocked_script_text.public_reason %></td>
+        <td><%= blocked_script_text.private_reason %></td>
+        <td>
+          <%= link_to('Edit', edit_admin_blocked_script_text_path(blocked_script_text)) if current_user.administrator? %>
+          <%= link_to('Delete', admin_blocked_script_text_path(blocked_script_text), method: :delete) if current_user.administrator? %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Scripts to Review</h2>
+
+<ul>
+  <% Script.where(review_state: :required).each do |script| %>
+    <li>
+      <%= link_to script.name(I18n.locale), script_path(script) %>
+      <%= form_with(url: approve_script_path(script), method: :PATCH) do |f| %>
+        <%= f.submit 'Approve' %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

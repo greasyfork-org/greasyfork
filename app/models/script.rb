@@ -46,7 +46,7 @@ class Script < ActiveRecord::Base
     end
     f
   }
-  scope :listable, ->(script_subset) { active(script_subset).where(script_type_id: 1) }
+  scope :listable, ->(script_subset) { active(script_subset).where(script_type_id: 1).where.not(review_state: 'required') }
   scope :libraries, ->(script_subset) { active(script_subset).where(script_type_id: ScriptType::LIBRARY_TYPE_ID) }
   scope :listable_including_libraries, ->(script_subset) {active(script_subset).where(script_type_id: [1,3])}
   scope :reported, -> { not_deleted.joins('JOIN GDN_Discussion ON scripts.id = ScriptID AND Rating = 1 AND Closed = 0').includes(:users).order('GDN_Discussion.DiscussionID') }
@@ -452,6 +452,10 @@ class Script < ActiveRecord::Base
 
   def pending_report_by_trusted_reporter?
     script_reports.block_on_pending.any?
+  end
+
+  def review_required?
+    review_state == 'required'
   end
 
   private

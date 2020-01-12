@@ -9,7 +9,7 @@ class ScriptsController < ApplicationController
 
   MEMBER_AUTHOR_ACTIONS = [:sync_update, :derivatives, :update_promoted, :request_permanent_deletion, :unrequest_permanent_deletion, :update_promoted, :invite, :remove_author]
   MEMBER_AUTHOR_OR_MODERATOR_ACTIONS = [:delete, :do_delete, :undelete, :do_undelete, :derivatives, :admin, :update_locale]
-  MEMBER_MODERATOR_ACTIONS = [:mark, :do_mark, :do_permanent_deletion, :reject_permanent_deletion]
+  MEMBER_MODERATOR_ACTIONS = [:mark, :do_mark, :do_permanent_deletion, :reject_permanent_deletion, :approve]
   MEMBER_PUBLIC_ACTIONS = [:diff, :report, :accept_invitation]
   MEMBER_PUBLIC_ACTIONS_WITH_SPECIAL_LOADING = [:show, :show_code, :user_js, :meta_js, :user_css, :feedback, :install_ping, :stats, :sync_additional_info_form]
 
@@ -739,7 +739,13 @@ class ScriptsController < ApplicationController
     redirect_to script_path(@script)
   end
 
-private
+  def approve
+    @script.update!(review_state: 'approved')
+    flash[:notice] = 'Marked as approved.'
+    redirect_to script_path(@script)
+  end
+
+  private
 
   # Returns a hash, key: site name, value: hash with keys installs, scripts
   def self.get_by_sites(script_subset, cache_options = {})

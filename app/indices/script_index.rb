@@ -16,7 +16,7 @@ ThinkingSphinx::Index.define :script, :with => :active_record, :delta => Thinkin
   has "language = 'js' OR css_convertible_to_js = TRUE", as: 'available_as_js', type: :boolean
   has "language = 'css'", as: 'available_as_css', type: :boolean
 
-  where 'script_type_id IN (1,3) and script_delete_type_id is null'
+  where 'script_type_id IN (1,3) and script_delete_type_id is null and review_state != "required"'
 
   set_property :field_weights => {
     :name => 10,

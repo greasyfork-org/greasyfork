@@ -1,0 +1,2 @@
+class BlockedScriptText < ApplicationRecord
+end
