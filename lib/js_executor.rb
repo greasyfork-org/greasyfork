@@ -1,29 +1,10 @@
-class ScriptChecking::ExecutionChecker
+class JsExecutor
   class << self
-    def check(script_version)
-      code = script_version.code
-      urls = extract_urls(code)
-
-      blocked_urls = BlockedScriptUrl.all
-      blocked_urls.each do |bu|
-        return ScriptChecking::Result.new(ScriptChecking::Result::RESULT_CODE_BAN, bu.public_reason, bu.private_reason, bu) if urls.include?(bu.url)
-      end
-
-      redirect_url_pattern = ScriptChecking::LinkChecker.redirect_url_pattern
-      urls.select { |url| redirect_url_pattern.match?(url) }.each do |redirect_url|
-        target_url = ScriptChecking::LinkChecker.resolve(redirect_url)
-        blocked_urls.each do |bu|
-          return ScriptChecking::Result.new(ScriptChecking::Result::RESULT_CODE_BAN, bu.public_reason, bu.private_reason, bu) if target_url == bu.url
-        end
-      end
-
-      ScriptChecking::Result.new(ScriptChecking::Result::RESULT_CODE_OK)
-    end
-
     def extract_urls(code)
-      context = MiniRacer::Context.new(timeout: 500, max_memory: 20_000_000)
-
       urls = Set.new
+      return urls unless code
+
+      context = MiniRacer::Context.new(timeout: 500, max_memory: 20_000_000)
       context.attach 'greasyforkSetLogger', ->(property, value) do
         urls << value if URL_SETTERS.include?(property.join("."))
       end
