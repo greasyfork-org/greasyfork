@@ -191,7 +191,7 @@ class ScriptVersionsController < ApplicationController
 			return
 		end
 
-		@script.review_state = 'required' if script_check_result_code == ScriptChecking::Result::RESULT_CODE_REVIEW
+		@script.review_state = 'required' if script_check_result_code == ScriptChecking::Result::RESULT_CODE_REVIEW && @script.review_state != 'approved'
 
 		@script.script_versions << @script_version
 		@script_version.save!
