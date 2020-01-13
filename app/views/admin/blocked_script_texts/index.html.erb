@@ -35,7 +35,7 @@
 <h2>Scripts to Review</h2>
 
 <ul>
-  <% Script.where(review_state: :required).each do |script| %>
+  <% Script.not_deleted.where(review_state: :required).each do |script| %>
     <li>
       <%= link_to script.name(I18n.locale), script_path(script) %>
       <%= form_with(url: approve_script_path(script), method: :PATCH) do |f| %>
