@@ -6,10 +6,10 @@ class JsExecutor
 
       context = MiniRacer::Context.new(timeout: 500, max_memory: 20_000_000)
       context.attach 'greasyforkSetLogger', ->(property, value) do
-        urls << value if URL_SETTERS.include?(property.join("."))
+        urls << value if URL_SETTERS.include?(property.join(".")) && value.is_a?(String)
       end
       context.attach'greasyforkFunctionLogger', ->(property, args) do
-        urls << args.first if URL_FUNCTIONS.include?(property.join("."))
+        urls << args.first if URL_FUNCTIONS.include?(property.join(".")) && args.first.is_a?(String)
       end
 
       begin
