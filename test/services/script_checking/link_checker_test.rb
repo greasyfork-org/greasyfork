@@ -10,6 +10,14 @@ class ScriptChecking::LinkCheckerTest < ActiveSupport::TestCase
     assert_equal ScriptChecking::Result::RESULT_CODE_BAN, check_script_with_url_in_code('https://example.com/unique-test-value').code
   end
 
+  test 'directly blocked with params' do
+    assert_equal ScriptChecking::Result::RESULT_CODE_BAN, check_script_with_url_in_code('https://example.com/unique-test-value?query').code
+  end
+
+  test 'directly blocked with hash' do
+    assert_equal ScriptChecking::Result::RESULT_CODE_BAN, check_script_with_url_in_code('https://example.com/unique-test-value#hash').code
+  end
+
   test 'bit.ly not blocked' do
     assert_equal ScriptChecking::Result::RESULT_CODE_OK, check_script_with_url_in_code('https://bit.ly/2uaUwLP').code
   end
@@ -65,6 +73,18 @@ class ScriptChecking::LinkCheckerTest < ActiveSupport::TestCase
 
   test 'block within addEventListener on another object' do
     assert_equal ScriptChecking::Result::RESULT_CODE_BAN, check_script_with_code('document.getElementById("foo").addEventListener("click", function() { window.open("https://example.com/unique-test-value") }, 1000)').code
+  end
+
+  test 'block function with concat' do
+    assert_equal ScriptChecking::Result::RESULT_CODE_BAN, check_script_with_code('window.open("https://example.com/" + "unique-test-value")').code
+  end
+
+  test 'block function with concat and query params' do
+    assert_equal ScriptChecking::Result::RESULT_CODE_BAN, check_script_with_code('window.open("https://example.com/" + "unique-test-value" + "?foo=bar")').code
+  end
+
+  test 'block function with concat and hash' do
+    assert_equal ScriptChecking::Result::RESULT_CODE_BAN, check_script_with_code('window.open("https://example.com/" + "unique-test-value" + "#hash")').code
   end
 
   test 'safe browsing' do

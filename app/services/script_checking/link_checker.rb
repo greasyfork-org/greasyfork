@@ -31,7 +31,7 @@ class ScriptChecking::LinkChecker
 
     def checked_for_blocked_urls(urls)
       return nil if urls.empty?
-      bsu = BlockedScriptUrl.find_by(url: urls.to_a)
+      bsu = BlockedScriptUrl.find_by(url: urls.map{ |u| u.sub(/[?#&].*/, '') }.to_a)
       return nil if bsu.nil?
       return ScriptChecking::Result.new(ScriptChecking::Result::RESULT_CODE_BAN, bsu.public_reason, bsu.private_reason, bsu)
     end
