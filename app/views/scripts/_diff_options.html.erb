@@ -1,0 +1,2 @@
+<label for="context"><%=t('scripts.diff_lines_of_context')%></label> <input type="number" min="0" max="10000" size="5" name="context" required value="<%= context %>">
+<input id="ignore-whitespace" type="checkbox" name="w" value="1" <%if params[:w] == '1'%>checked<%end%>><label for="ignore-whitespace"><%=t('scripts.diff_ignore_whitespace')%></label>

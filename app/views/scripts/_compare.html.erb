@@ -1,0 +1,24 @@
+<section class="multiform-page">
+  <h3><%= t('scripts.admin.compare_title') %></h3>
+
+  <%= form_with(url: admin_script_path(@script), method: :GET, html: { class: 'diff_options' }) do |f| %>
+    <%= f.label :compare, t('scripts.admin.compare_to') %>
+    <%= f.url_field :compare, required: true, value: params[:compare] %>
+
+    <%= render partial: 'diff_options', locals: { context: @context} %>
+
+    <%= f.submit t('scripts.admin.compare_button') %>
+  <% end %>
+
+  <% unless @diff.nil? %>
+    <p>
+      <%= link_to(@other_script.name(I18n.locale), show_code_script_path(@other_script))%><br>
+    </p>
+
+    <% if @diff.empty? %>
+      <p><%=t('scripts.diff_no_change')%></p>
+    <% else %>
+      <%= @diff %>
+    <% end %>
+  <% end %>
+</section>
