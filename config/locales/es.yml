@@ -35,8 +35,8 @@ es:
     update: "Actualizar a la versión %{version}"
     downgrade: "Degradar a la versión %{version}"
     reinstall: "Reinstalar versión %{version}"
-    old_version_warning: "Esta no es la versión reciente de este script. Si la instalas, nunca se actualizará a una versión más nueva. ¿Instalarla de todos modos?"
-    promoted: "Script promovido"
+    old_version_warning: "Esta no es la versión reciente de esta secuencia de comandos. Si la instalas, nunca se actualizará a una versión más nueva. ¿Instalarla de todos modos?"
+    promoted: "Secuencia de comandos promovido"
     author_promoted: "Script recomendado por el autor"
     promoted_text_html: "Puede que también te guste %{script_link}."
     library_instructions_html: "Este script no debería instalarse directamente. Es una biblioteca que utilizan otros scripts mediante la meta-directiva de inclusión %{code}"
@@ -44,6 +44,8 @@ es:
     deleted_notice_with_replacement_html: "Este script se ha borrado porque ha sido reemplazado por <a href=\"%{replacement_script_url}\">%{replacement_script_name}</a>."
     version_notice_html: "Versión del día %{date}. Echa un vistazo a %{latest_version_link}."
     version_notice_latest_version_link: "la versión más reciente"
+    reported_notice: "\"%{script_name}\" ha sido reportado y su revisión esta pendiente por un moderador."
+    reported_notice_for_author: "Este script no esta disponible para otros usuarios mientras esta siendo verificado por un moderador."
     info_page: "Info"
     code_page: "Código"
     history_page: "Historial"
@@ -73,7 +75,7 @@ es:
       title: "Administrar - %{script_name}"
       promoted_heading: "Promocionar otro script"
       promoted_explanation: "%{site_name} puede sugerir al usuario otro script interesante una vez se haya pulsado en «instalar»."
-      promoted_script_label: "Dirección URL del script a promocionar"
+      promoted_script_label: "Dirección URL del secuencia de comandos a promocionar"
       promoted_submit: "Promocionar script"
       sync_heading: "Sincronizar código"
       locale_heading: "Regionalización predeterminada"
@@ -89,6 +91,7 @@ es:
     diff_button: "Comparar versiones seleccionadas"
     code_title: "%{script_name} - Código fuente"
     feedback_title: "%{script_name} - Comentarios y opiniones"
+    feedback_has_reports: "Este script ha sido reportado como violación de las normas de %{site_name}."
     feedback_no_discussions_html: "Todavía no se ha publicado nada. %{start_first_discussion_link}"
     feedback_start_first_discussion_link: "Sé el primero en comentar este script."
     feedback_discussion_or_report: "%{new_discussion_link:Abre un hilo de conversación sobre el script} o %{report_link:notifica una posible infracción de las normas}."
@@ -137,6 +140,7 @@ es:
     listing_filter_by_site_label: "Mostrando scripts para:"
     listing_filter_by_site_disable: "Todos"
     listing_filter_by_site_all_sites: "(Todos los sitios)"
+    listing_filter_by_language_label: "Idioma:"
     listing_filter_by_site_more_sites: "Más…"
     listing_no_scripts: "No se ha encontrado ningún script que coincida con los parámetros."
     listing_created_feed: "Scripts nuevos"
@@ -144,8 +148,12 @@ es:
     listing_none: "(Ninguno)"
     listing_set_locale_filter: "Mostrando resultados para todos los idiomas. %{set_filter_link:Sólo mostrar resultados en %{language}.}"
     listing_remove_locale_filter: "Mostrando sólo resultados en %{language}. %{remove_filter_link:Mostrar resultados para todos los idiomas.}"
+    listing_language_all: "Todo"
+    listing_language_js: "JavaScript"
+    listing_language_css: "CSS"
     import: "Importar scripts"
     new: "Publicar un script"
+    new_css: "Publica un estilo"
     support_site: "Visitar el sitio de asistencia del autor."
     support_email: "Enviar un correo de asistencia al autor."
     contribution_no_amount: "Agradece a %{author} su trabajo haciendo una donación."
@@ -233,6 +241,9 @@ es:
     adult_content_on_greasy_logged_in_error: "Ahora mismo no puedes ver este script con los filtros de contenido %{edit_account_link:elegidos en los ajustes de tu cuenta de Greasy Fork}, pero puedes cambiarlos."
     adult_content_on_greasy_not_logged_in_error: "Este script ya no se puede ver de forma anónima en este sitio. %{login_link:Inicia sesión} y echa un vistazo a los ajustes de contenido permitido en tu cuenta de Greasy Fork."
     non_adult_content_on_sleazy: "Este script ya no está disponible en este sitio."
+    not_js_convertible_override_header: "Convertir a JavaScript"
+    not_js_convertible_override_explanation: "%{site_name} puede crear automáticamente una %{help_link: conversión de JS de usuario} de su CSS de usuario. Como la conversión JS del usuario y su CSS del usuario funcionarán de manera algo diferente, le recomendamos que pruebe la conversión JS del usuario. Si ves que no funciona, puede hacer que no esté disponible marcando la casilla a continuación."
+    not_js_convertible_override_label_html: "Esto <strong>no</strong> debería estar disponible en formato JS de usuario."
     adult_marker: "(Para adultos)"
     deleted_marker: "(Borrado)"
     locked_marker: "(Bloqueado)"
@@ -250,12 +261,35 @@ es:
     must_confirm_email_button: "Enviar un enlace de confirmación a %{email}"
     report:
       title: "%{script_name} incumple las normas"
+      text_html: >-
+          <p>Scripts publicados en %{site_name} debe cumplir las %[rules_link:normas].
+          Violaciones reportadas usando el link debajo, los moderadores de %{site_name}
+          revisaran su reporte.</p><ul>
+
+          <li>%[unauthorized_link:Reportar copias no autorizadas de tus scripts.]</li>
+
+          <li>%[malware_link:Reportar malware.]</li>
+
+          <li>%[spam_link: Spam o otro contenido que no sean script.]</li>
+
+          <li>%[other_report_link:Reportar otras violaciones, incluido los anuncios
+          no relevado o criptomineros]</li>
+
+          </ul>
+
+          <p>Por favor, tenga en cuenta que no ser funcional y contravenir los términos
+          de uso de un tercero no son violaciones de las reglas de %{site_name}. En
+          estos casos, puede en su lugar %{feedback_link:dejar comentarios} en el
+          script.</p>
+    authors_heading: "Autores"
     error_unauthorized_copy: "Parece que este script era una copia no autorizada de %{script}. Échale un vistazo a %{rules_link:las normas de contenido} de %{site_name} para ver lo que se puede y no puede hacer."
     invitations:
       form_title: "Invitar a otros autores"
       explanation: "Puedes añadir otros usuarios de Greasy Fork como autores de este script. Ellos tendrán los mismos privilegios en este script que tú."
       invited_user_url_label: "Usuario a invitar"
+      invited_user_placeholder: "URL del perfil de usuario en %{site_name}"
       submit: "Enviar invitación"
+      invalid_user_url: "URL de usuario invitado no es valido."
       already_author: "El usuario que especificaste ya es un autor de este script."
       sent: "Invitación enviada."
       subject: "Invitación para %{script_name}"
@@ -264,6 +298,13 @@ es:
       invitation_not_found: "Invitación no encontrada."
       invitation_expired: "Invitación expirada."
       invitation_accepted: "Ahora eres un autor de este script."
+    remove_author:
+      heading: "Quitar autores"
+      success: "%{user_name} ha sido eliminado como un autor"
+      remove_button: "Eliminar"
+      remove_confirm: "Esta seguro de querer eliminar %{user_name} como un autor?"
+      failure: "No se puede eliminar autor."
+    no_disposable_email: "No puede publicar scripts si utiliza una dirección de correo electrónico desechable."
   script_sets:
     description: "Los grupos permiten crear un listado personal de scripts con los que explorar Greasy Fork. Puedes agruparlos añadiendo scripts individuales, incluyendo grupos de otros usuarios, o incluso grupos generados automáticamente. También puedes excluir scripts de la misma forma."
     favorites_name: "Favoritos"
@@ -500,8 +541,15 @@ es:
         cancelled: "Se ha cancelado el borrado."
         completed: "Su cuenta ha sido eliminada."
   help:
+    sections:
+      usage: Uso
+      development: Desarollo
+      miscellaneous: Observaciones
+    open_source: "%{site_name} es de codigo abierto (licensiado por GPLv3). Puede %{github_link: ver su codigo en GitHub}."
     installing_user_scripts:
       title: 'Aprender a instalar scripts de usuario'
+    installing_user_styles:
+      title: 'Como instalar estilos de usuario'
     meta_keys:
       title: "Claves de metadatos de scripts leídas por %{site_name}"
       intro_html: "Esta es una lista con las <a href=\"http://wiki.greasespot.net/Metadata_Block\">claves de metadatos utilizables en los scripts de usuario</a> que %{site_name} admite. Puedes incluir en los scripts claves sin listar, y de hecho aparecerán en la versión instalable que reciban tus usuarios, pero no tendrán ningún efecto en la interfaz de %{site_name}."
@@ -529,6 +577,66 @@ es:
       post_new_script_link_text: 'publicar un nuevo script'
     code_rules:
       title: "Reglas de %{site_name} para scripts publicados"
+      content_html: >
+          <p>Estos son los requisitos para las secuencia de comandos publicados en%{site_name}.
+          Su objetivo es mantener%{site_name}en un lugar seguro y útil para los script(s)
+          de usuario. Los moderadores de%{site_name} pueden eliminar cualquier secuencia
+          de comandos que no cumpla estos requisitos.</p><h4> Funcionalidad</h4>
+
+          <ul>
+
+          <li>Los guiones deben incluir una descripción de lo que hacen y no pueden
+          hacer cosas sin razón fuera de esta descripción. Los usuarios deben saber
+          qué hará un script antes de instalarlo.</li>
+
+          <li>Los guiones deben tener una razón para ser un guión. Por ejemplo, una
+          secuencia de comandos
+
+
+          que solo dirige a un usuario a un sitio web no necesita ser una secuencia
+          de comandos; Podría ser un enlace.</li>
+
+          <li>Los guiones con métodos de monetización como seguimiento, anuncios,
+          mineros, etc., no están prohibidos, pero el autor debe revelar esto de manera
+          prominente en la descripción del guión o información adicional.</li>
+
+          </ul> <h4>Código</h4><ul>
+
+          <li>El código publicado en este sitio no debe ofuscarse ni minimizarse.
+          Los usuarios deben tener la oportunidad de inspeccionar y comprender un
+          script antes de instalarlo.</li>
+
+          <li>Las bibliotecas que utiliza un script deben ser <code>@require</code>-d,
+          a menos que haya una razón técnica válida para no hacerlo. En el caso de
+          que una biblioteca se incluya en línea, debe incluir información sobre la
+          fuente de la biblioteca (por ejemplo, un comentario que indique URL y /
+          o nombre y versión).</li>
+
+          <li>%{external_scripts_link: El uso de JavaScript externo es limitado.}</li>
+
+          </ul><h4>Derechos de autor</h4><ul>
+
+          <li>Su guión debe respetar los derechos de autor de los demás. Esto incluye
+          la secuencia de comandos en sí y cualquier recurso (por ejemplo, imágenes)
+          que usa. Si tiene la intención de usar el contenido de otra persona, cumpla
+          con sus términos de licencia u obtenga su permiso antes de hacerlo.</li>
+
+          <li>Incluso en los casos que no violen la regla de derechos de autor, no
+          se permiten reposiciones de secuencia de comandos que ya están en %{site_name}
+          a menos que estén mejorando el original.</li>
+
+          </ul><h4>Diverso</h4><ul>
+
+          %{adult_content_requirement}
+
+          <li>Las secuencias de comandos no deben buscar actualizaciones a una velocidad
+          superior a una vez por día. Tenga en cuenta que la mayoría de los coordinadores
+          / administradores de secuencia de comandos de usuario manejarán las actualizaciones
+          automáticas, por lo que no es necesario hacerlo en el script.</li>
+
+          <p>Si observa una secuencia de comandos que se encuentra fuera de estos
+          parámetros, infórmela yendo al vínculo comentarios y opiniones para esa
+          secuencia de comandos y seleccionando la opción "Informar secuencia de comandos".</p>
       adult_content_rule_html: "<li>Los scripts con contenido para adultos (o que funcionen en sitios con este tipo de contenido restringido) deben marcarse para que los usuarios puedan decidir si quieren verlos o no.</li>"
     external_scripts:
       title: "Política de %{site_name} sobre scripts externos"
@@ -650,6 +758,8 @@ es:
           si estos instalan ese script.</p> <h2>Librerías de terceros</h2> <p>%{site_name}
           puede incluir código de terceros para recopilar estadísticas o mostrar publicidad
           en el sitio. Estas librerías puede que incluyan algún mecanismo de rastreo.</p>
+    user_css_to_user_js:
+      title: Conversion de usuario CSS a usuario JavaScript
   search:
     script_search:
       title: "Buscar scripts"

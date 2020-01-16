@@ -234,6 +234,8 @@ pl:
     post_a_script_link_text: "Udostępnij skrypt, który piszesz"
     learn_to_write_scripts_link_text: "dowiedz się, jak go napisać"
     feedback_or_report: "%{feedback_link:Zadaj pytanie, dodaj opinię}, lub %{report_link:zgłoś ten skrypt}."
+    support_feedback_or_report: "%{support_url:Odwiedź stronę autora w celu uzyskania pomocy}, %{feedback_link:zadaj pytanie, napisz recenzję}, lub %{report_link:zgłoś skrypt}."
+    support_email_feedback_or_report: "%{support_url:Napisz email do autora w celu uzyskania pomocy}, %{feedback_link:zadaj pytanie, napisz recenzję}, lub %{report_link:zgłoś skrypt}."
     adult_content: "Treści dla dorosłych"
     adult_content_self_report: "Ten skrypt zawiera treści dla dorosłych lub został stworzony dla strony zawierającej treści dla dorosłych."
     adult_content_self_report_explanation: "%{site_name} zezwala na skrypty zawierające treści dla dorosłych, ale musi to być odpowiednio oznakowane, aby użytkownicy mogli zdecydować czy chcą to zobaczyć."
@@ -244,6 +246,7 @@ pl:
     adult_content_on_greasy_not_logged_in_error: "Ten skrypt nie jest już dostępny anonimowo na tej stronie. %{login_link:Log in} i sprawdź swoje ustawienia konta Greasy Fork."
     non_adult_content_on_sleazy: "Ten skrypt nie jest dostępny na tej stronie"
     not_js_convertible_override_header: "Konwersja do JS"
+    not_js_convertible_override_explanation: "%{site_name} może automatycznie przekonwertować twój %{help_link:user CSS do user JS}. Ponieważ zachowanie przekonwertowanego skryptu może się różnić od oryginału, zalecamy przetestowanie czy działa poprawnie. Jeśli okaże się, że nie działa zgodnie z przeznaczeniem, możesz wyłączyć tę opcję, zaznaczając poniższe pole."
     not_js_convertible_override_label_html: "To <strong>nie</strong> powinno być dostępne w formacie user JS"
     adult_marker: "(Dla dorosłych)"
     deleted_marker: "(Usunięty)"
@@ -251,7 +254,7 @@ pl:
     unlisted_marker: "(Niepubliczny)"
     library_marker: "(Biblioteka)"
     libraries_title: "Biblioteki"
-    libraries_description_html: "Tu są biblioteki udostępnione przez użytkowników %{site_name}, które możesz <code>@require</code> w swoich skryptach. Dla innego typu bibliotek, które możesz\n<code>@require</code>, przeczytaj %{policy_link: politykę%{site_name} nt. <code>@require</code>}."
+    libraries_description_html: "Tutaj znajdują się biblioteki zamieszczone przez użytkowników %{site_name}, które możesz użyć poprzez <code>@require</code> w swoich skryptach. W przypadku innych rodzajów bibliotek, które możesz dołączyć, przeczytaj {policy_link:politykę %{site_name} dotyczącą <code>@require</code>}."
     by_site_list_title: "Skrypty użytkownika dla %{site_name} pogrupowane według strony"
     by_site_list_description: "Witryny wykorzystujące najbardziej popularne skrypty użytkowników. Większa czcionka oznacza bardziej popularne skrypty użytkowników."
     by_site_list_filter: "Filtruj według nazwy strony:"
@@ -262,6 +265,25 @@ pl:
     must_confirm_email_button: "Wyślij link potwierdzający na adres %{email}"
     report:
       title: "Zgłoś %{script_name}"
+      text_html: >-
+          <p>Skrypty zamieszczone na %{site_name} muszą być zgodne z {rules_link:jego
+          zasadami}. Zgłoś nadużycie za pomocą poniższych linków, a moderatorzy %{site_name}
+          rozpatrzą twoją skargę.</p> <ul>
+
+          <li>%{unauthorized_link:Zgłoś nieautoryzowane kopie twojego skryptu.}</li>
+
+          <li>%{malware_link:Zgłoś malware.}</li>
+
+          <li>%{spam_link:Spam lub treść niebędąca skryptem}</li>
+
+          <li>%{other_report_link:Zgłoś inne naruszenia, w tym niezgłoszone reklamy
+          lub kopanie kryptowalut.}</li>
+
+          </ul>
+
+          <p>Proszę mieć na uwadze, że niefunkcjonalność i naruszanie warunków stron
+          trzecich, nie stanowią naruszenia zasad %{site_name}. W takich przypadkach
+          możesz %{feedback_link:zostawić opinię} na temat skryptu.</p>
     authors_heading: "Autorzy"
     error_unauthorized_copy: "Ten kod wydaje się być nieautoryzowaną kopią %{script}. Zapoznaj się z %{rules_link:rules} o zamieszczaniu skryptów na %{site_name}."
     invitations:
@@ -558,6 +580,7 @@ pl:
       require_html: "Zawiera zewnętrzny JavaScript w skrypcie. Zobacz %{external_script_link}."
       require_external_script_link_text: "zasady dla kodu zawierającego zewnętrzne skrypty"
       updateURL: "Opisz, jak menedżerzy skryptu użytkownika powinni otrzymywać aktualizacje. %{site_name} usunie te klucze, co sprawi, że dowolny skrypt zainstalowany z%{site_name} będzie aktualizowany tylko z %{site_name}."
+      license: "Licencja opisuje, w jaki sposób użytkownicy mogą kopiować lub modyfikować skrypt. Używanie \"Pełnej nazwy\" lub \"Identyfikatora\" z %{spdx_link:listy licencji SPDX} jest zalecane. Brak licencji oznacza, że użytkownicy mogą zainstalować skrypt na własny użytek, ale nie mogą go rozpowszechniać. Licencja jest wyświetlana na stronie informacyjnej skryptu."
       supportURL: "Adres URL dla strony gdzie użytkownik może otrzymać pomoc dotyczącą skryptu (np. śledzenie błędów, forum lub adres e-mail). Adres URL wsparcia jest wyświetlany na stronie z opiniami o skrypcie."
       contributionURL_html: "Adres URL dla strony, gdzie użytkownicy mogą przekazać dotację autorowi skryptu. Adres URL datku jest wyświetlany na stronie opinii o danym skrypcie. Protokołem adresu URL może być http, https lub protokoły Bitcoin. Aby podać link to strony dotacji na PayPalu, użyj adresu URL w formacie <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=Twój_adres_poczty_elektronicznej&item_name=Dotacja+Greasy+Fork</a>, zamieniając przykładowy adres poczty elektronicznej na swój własny."
       contributionAmount_html: "Sugerowana kwota dotacji, używana wraz z <code>@contributionURL</code>."
@@ -571,6 +594,62 @@ pl:
       post_new_script_link_text: 'udostępnić nowy skrypt'
     code_rules:
       title: "Zasady publikacji skryptów na %{site_name}"
+      content_html: >
+          <p>Tutaj znajdują się wymagania dotyczące skryptów publikowanych w %{site_name}.
+          Mające na celu utrzymanie %{site_name} bezpiecznym i użytecznym miejscem
+          dla skryptów użytkownika. Skrypty niespełniające tych wymagań mogą zostać
+          usunięte przez moderatorów %{site_name}.</p> <h4>Funkcjonalność</h4> <ul>
+
+          <li>Skrypty muszą zawierać opis tego, co robią oraz nie powinny celowo robić
+          innych rzeczy niezawartych w opisie. Użytkownik powinien wiedzieć, co robi
+          skrypt przed jego instalacją.</li>
+
+          <li>Skrypt musi mieć powód do bycia skryptem. Na przykład skrypt, który
+          po prostu przekierowuje użytkownika na stronę internetową, nie musi być
+          skryptem; może to być link</li>
+
+          <li>Skrypty z możliwością ich monetyzacji (śledzenie, reklamy, koparki kryptowalut,
+          itd.) nie są zabronione, ale takie działania muszą być wyraźnie zaznaczone
+          w opisie skryptu lub dodatkowych informacjach.</li>
+
+          </ul> <h4>Kod</h4> <ul>
+
+          <li>Kod zamieszczony na tej stronie nie może być zaciemniany ani zminifikowany.
+          Użytkownicy muszą mieć możliwość podejrzenia i zrozumienia skryptu, zanim
+          go zainstalują.</li>
+
+          <li>Biblioteki, których używa skrypt, powinny zostać dodane poprzez <code>@require</code>,
+          chyba że istnieje wyraźny techniczny powód, by tego nie robić. Jeśli kod
+          źródłowy biblioteki jest zawarty w kodzie skryptu, należy również dodać
+          informację o źródle biblioteki (np. komentarz zawierający adres URL i/lub
+          nazwę i wersję)</li>
+
+          <li>%{external_scripts_link:Korzystanie z zewnętrznego kodu JavaScript jest
+          ograniczone.}</li>
+
+          </ul> <h4>Prawa autorskie</h4> <ul>
+
+          <li>Twój skrypt musi szanować prawa autorskie innych osób. Obejmuje to sam
+          skrypt i wszystkie zasoby (na przykład obrazy), których używa. Jeśli zamierzasz
+          korzystać z cudzej zawartości, przestrzegaj ich postanowień licencyjnych
+          lub uzyskaj ich zgodę.</li>
+
+          <li>Nawet jeśli prawa autorskie nie są naruszone to ponowne publikowanie
+          skryptów, które znajdują się na%{site_name}, jest zabronione, chyba że wprowadzają
+          usprawnienia różniące się od oryginału</li>
+
+          </ul> <h4>Różne</h4> <ul>
+
+          %{adult_content_requirement}
+
+          <li>Skrypty nie powinny sprawdzać dostępności aktualizacji częściej niż
+          raz dziennie. Należy pamiętać, że większość menedżerów skryptów użytkownika
+          obsługuje automatyczne aktualizacje, więc wykonanie tego w skrypcie nie
+          jest konieczne.</li>
+
+          </ul> <p>Jeśli zauważysz skrypt, który nie przestrzega wyżej wymienionych
+          zasad, zgłoś go na stronie skryptu, przechodząc na podstronę Opinie, a następnie
+          kliknij "zgłoś ten skrypt'".</p>
       adult_content_rule_html: "<li>Skrypty które zawierają treści dla dorosłych oraz dla stron które zawierają treści dla dorosłych muszą być oznaczone jako takie, aby użytkownicy mogli zdecydować czy chcą to zobaczyć.</li>"
     external_scripts:
       title: "Polityka %{site_name} dot. zewnętrznych skryptów"
