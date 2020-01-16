@@ -23,3 +23,4 @@
 //= require expandable-text
 //= require sidebar
 //= require announcements
+//= require ads
