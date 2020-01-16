@@ -618,11 +618,12 @@ class ScriptsController < ApplicationController
     @script.script_sync_type_id = 1 if @script.script_sync_source_id.nil?
     @script.localized_attributes.build({:attribute_key => 'additional_info', :attribute_default => true}) if @script.localized_attributes_for('additional_info').empty?
 
+    @context = 3
+    if !params[:context].nil? and params[:context].to_i.between?(0, 10000)
+      @context = params[:context].to_i
+    end
+
     if params[:compare].present?
-      @context = 3
-      if !params[:context].nil? and params[:context].to_i.between?(0, 10000)
-        @context = params[:context].to_i
-      end
       diff_options = ["-U #{@context}"]
       diff_options << "-w" if !params[:w].nil? && params[:w] == '1'
       @other_script = get_script_from_input(params[:compare])
