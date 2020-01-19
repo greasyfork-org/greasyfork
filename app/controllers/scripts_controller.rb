@@ -3,12 +3,13 @@ require 'csv'
 require 'fileutils'
 require 'cgi'
 require 'css_to_js_converter'
+require 'fuzzystringmatch'
 
 class ScriptsController < ApplicationController
   include ScriptAndVersions
 
   MEMBER_AUTHOR_ACTIONS = [:sync_update, :derivatives, :update_promoted, :request_permanent_deletion, :unrequest_permanent_deletion, :update_promoted, :invite, :remove_author]
-  MEMBER_AUTHOR_OR_MODERATOR_ACTIONS = [:delete, :do_delete, :undelete, :do_undelete, :derivatives, :admin, :update_locale]
+  MEMBER_AUTHOR_OR_MODERATOR_ACTIONS = [:delete, :do_delete, :undelete, :do_undelete, :derivatives, :similar_search, :admin, :update_locale]
   MEMBER_MODERATOR_ACTIONS = [:mark, :do_mark, :do_permanent_deletion, :reject_permanent_deletion, :approve]
   MEMBER_PUBLIC_ACTIONS = [:diff, :report, :accept_invitation]
   MEMBER_PUBLIC_ACTIONS_WITH_SPECIAL_LOADING = [:show, :show_code, :user_js, :meta_js, :user_css, :feedback, :install_ping, :stats, :sync_additional_info_form]
@@ -608,9 +609,23 @@ class ScriptsController < ApplicationController
     @similar_name_scripts = Script.includes(:users, :license).find(similar_names.map(&:first))
 
     @same_namespaces = []
-    @same_namespaces = base_scope.where(namespace: @script.namespace).includes(:users, :license) unless @script.namespace.nil?
+    @same_namespaces = base_scope.where(namespace: @script.namespace).includes(:users, :license).order(id: :desc).limit(50) unless @script.namespace.nil?
 
     @canonical_params = [:id]
+  end
+
+  def similar_search
+    base_code = @script.current_code
+    scripts = Script.search(params[:terms], order: 'daily_installs DESC', page: params[:page], per_page: 25, populate: true)
+    jarow = FuzzyStringMatch::JaroWinkler.create(:native)
+    results = scripts.map do |s|
+      {
+        url: script_path(s),
+        name: s.name(I18n.locale),
+        distance: jarow.getDistance(base_code, s.current_code).round(3),
+      }
+    end
+    render json: results
   end
 
   def admin

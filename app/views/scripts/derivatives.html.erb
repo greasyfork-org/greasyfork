@@ -3,8 +3,31 @@
 
 <p><%=t('scripts.derivatives_intro')%></p>
 
+<h3><code>@namespace</code></h3>
+
 <% if !@script.namespace.nil? %>
 	<%=render :partial => 'derivatives_list', :locals => {:description => t('scripts.derivatives_namespace_matches_info_html', :namespace => "@namespace #{@script.namespace}"), :scripts => @same_namespaces} %>
 <% end %>
 
+<h3><code>@name</code></h3>
+
 <%=render :partial => 'derivatives_list', :locals => {:description => t('scripts.derivatives_name_matches_info'), :scripts => @similar_name_scripts} %>
+
+<h3>Code</h3>
+
+<p>Enter some search terms and see how similar other scripts' code is. A score of 1.000 means identical. The search begins with the most popular scripts matching your query, not the most similar.</p>
+
+<%= form_with(url: similar_search_script_path(@script, format: :json), method: :GET, local: false, html: { id: 'similar-search-form' }) do |f| %>
+  <%= f.search_field :terms, required: true %>
+  <%= f.submit 'Search' %>
+<% end %>
+
+<ul id="similar-search-results">
+  <li id="similar-search-more">
+    <%= form_with(url: similar_search_script_path(@script, format: :json), method: :GET, local: false, html: { id: 'similar-search-form' }) do |f| %>
+      <%= f.hidden_field :terms %>
+      <%= f.hidden_field :page %>
+      <%= f.submit 'More Results' %>
+    <% end %>
+  </li>
+</ul>

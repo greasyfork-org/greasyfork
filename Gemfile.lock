@@ -18,6 +18,9 @@ GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
   specs:
+    RubyInline (3.12.5)
+      ZenTest (~> 4.3)
+    ZenTest (4.12.0)
     ace-rails-ap (4.2)
     actioncable (6.0.2.1)
       actionpack (= 6.0.2.1)
@@ -149,6 +152,8 @@ GEM
     faraday_middleware (0.13.1)
       faraday (>= 0.7.4, < 1.0)
     ffi (1.11.3)
+    fuzzy-string-match (1.0.1)
+      RubyInline (>= 3.8.6)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     hashie (3.6.0)
@@ -381,6 +386,7 @@ DEPENDENCIES
   devise-i18n!
   diffy
   email_address
+  fuzzy-string-match
   it
   levenshtein
   listen
