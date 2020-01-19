@@ -54,6 +54,10 @@
               <% if reported_unauthorized_count > 0 %>
                 <%= link_to "[#{reported_unauthorized_count}]", reported_unauthorized_scripts_path %>
               <% end %>
+              <% requiring_review_count = Script.not_deleted.where(review_state: :required).count %>
+              <% if requiring_review_count > 0 %>
+                <%= link_to "[#{requiring_review_count}]", admin_blocked_script_texts_path %>
+              <% end %>
             <% end %>
             <span class="user-profile-link"><%=link_to(current_user.name, current_user)%></span>
             <span class="sign-out-link">[ <%= link_to t('users.sign_out'), destroy_user_session_path, :method => :delete %> ]</span>
