@@ -31,10 +31,15 @@ window.addEventListener("DOMContentLoaded", function() {
     results.forEach(function(d) {
       var resultElement = getResultElementTemplate();
       resultElement.score = d.distance;
-      var link = resultElement.querySelector("a");
+
+      var link = resultElement.querySelector(".similar-search-result-script-link");
       link.appendChild(document.createTextNode(d.name));
       link.setAttribute("href", d.url);
-      resultElement.insertBefore(document.createTextNode(d.distance.toFixed(3) + ": "), resultElement.firstChild);
+
+      var diff = resultElement.querySelector(".similar-search-result-diff-link");
+      diff.setAttribute("href", diff.getAttribute("href") + encodeURIComponent("https://greasyfork.org" + d.url) + "#script-comparison");
+
+      resultElement.insertBefore(document.createTextNode(d.distance.toFixed(3) + " "), resultElement.firstChild);
 
       nodes.push(resultElement);
     });
@@ -53,7 +58,16 @@ window.addEventListener("DOMContentLoaded", function() {
       resultElementTemplate = document.createElement("li");
       resultElementTemplate.setAttribute("class", "similar-search-result");
 
+      var diff = document.createElement("a");
+      diff.appendChild(document.createTextNode(("[Diff]")));
+      diff.setAttribute("class", "similar-search-result-diff-link");
+      diff.setAttribute("href", "admin?compare=");
+      resultElementTemplate.appendChild(diff);
+
+      resultElementTemplate.appendChild(document.createTextNode(": "));
+
       var link = document.createElement("a");
+      link.setAttribute("class", "similar-search-result-script-link")
       resultElementTemplate.appendChild(link);
     }
     return resultElementTemplate.cloneNode(true);

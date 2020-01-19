@@ -175,7 +175,7 @@ protected
     if v.to_i != 0
       script_id = v.to_i
     # A non-GF URL?
-    elsif !v.start_with?('https://greasyfork.org/')
+    elsif !v.start_with?('https://greasyfork.org/') && !v.start_with?('/')
       return :non_gf_url
     # A GF URL?
     else
