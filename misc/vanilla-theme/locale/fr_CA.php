@@ -2,8 +2,8 @@
 $Definition['layouts.application.script_list'] = 'Scripts';
 $Definition['layouts.application.forum'] = 'Forum';
 $Definition['layouts.application.help'] = 'Aide';
-$Definition['layouts.application.submenu'] = 'More';
-$Definition['layouts.application.advanced_search'] = 'Advanced search';
-$Definition['layouts.application.user_list'] = 'User list';
-$Definition['layouts.application.libraries'] = 'Libraries';
-$Definition['layouts.application.moderator_log'] = 'Moderator log';
+$Definition['layouts.application.submenu'] = 'Plus';
+$Definition['layouts.application.advanced_search'] = 'Recherche Avancée';
+$Definition['layouts.application.user_list'] = 'Liste d\'utilisateur';
+$Definition['layouts.application.libraries'] = 'Bibliothèques';
+$Definition['layouts.application.moderator_log'] = 'Journal du modérateur';
