@@ -19,9 +19,6 @@ window.addEventListener("DOMContentLoaded", function() {
   moreItem.addEventListener("ajax:success", function(event) {
     addResults(event.detail[0]);
     moreItem.querySelector("input[name=page]").value = parseInt(moreItem.querySelector("input[name=page]").value) + 1;
-    if (event.detail[0].length < 25) {
-      moreItem.style.display = "none";
-    }
   });
 
   function addResults(results) {
@@ -51,6 +48,12 @@ window.addEventListener("DOMContentLoaded", function() {
     });
 
     resultsElement.insertBefore(fragment, moreItem);
+
+    if (results.length < 25) {
+      moreItem.style.display = "none";
+    } else {
+      moreItem.style.display = "";
+    }
   }
 
   function getResultElementTemplate() {
