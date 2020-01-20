@@ -9,6 +9,7 @@ module Admin
         .active(:greasyfork)
         .includes(:site_applications)
         .where(adsense_approved: nil)
+        .where.not(script_type_id: ScriptType::LIBRARY_TYPE_ID)
         .order(page_views: :desc)
         .limit(25)
     end
