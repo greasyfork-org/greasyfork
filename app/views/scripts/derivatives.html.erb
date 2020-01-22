@@ -24,10 +24,11 @@
 
 <ul id="similar-search-results">
   <li id="similar-search-more">
-    <%= form_with(url: similar_search_script_path(@script, format: :json), method: :GET, local: false, html: { id: 'similar-search-form' }) do |f| %>
+    <%= form_with(url: similar_search_script_path(@script, format: :json), method: :GET, local: false, html: { id: 'similar-search-form', data: { 'current-script' => @script.id } }) do |f| %>
       <%= f.hidden_field :terms %>
       <%= f.hidden_field :page %>
       <%= f.submit 'More Results' %>
     <% end %>
   </li>
+  <li id="similar-search-none">There are no results matching your query.</li>
 </ul>

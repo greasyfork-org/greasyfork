@@ -3,7 +3,7 @@ window.addEventListener("DOMContentLoaded", function() {
   if (!form) {
     return;
   }
-  var moreItem = document.getElementById("similar-search-more")
+  var moreItem = document.getElementById("similar-search-more");
 
   var resultElementTemplate = null;
 
@@ -24,8 +24,9 @@ window.addEventListener("DOMContentLoaded", function() {
   function addResults(results) {
     var resultsElement = document.getElementById("similar-search-results");
     var nodes = Array.from(resultsElement.querySelectorAll(".similar-search-result"));
+    var currentScriptId = parseInt(document.querySelector("[data-current-script]").getAttribute("data-current-script"));
 
-    results.forEach(function(d) {
+    results.filter(function(d) { return d.id != currentScriptId }).forEach(function(d) {
       var resultElement = getResultElementTemplate();
       resultElement.score = d.distance;
 
@@ -43,9 +44,16 @@ window.addEventListener("DOMContentLoaded", function() {
 
     var fragment = document.createDocumentFragment();
 
-    nodes.sort(function(a, b) { return b.score - a.score }).forEach(function(n) {
-      fragment.appendChild(n);
-    });
+    if (nodes.length > 0) {
+      nodes.sort(function (a, b) {
+        return b.score - a.score
+      }).forEach(function (n) {
+        fragment.appendChild(n);
+      });
+      document.getElementById("similar-search-none").style.display = "none";
+    } else {
+      document.getElementById("similar-search-none").style.display = "block";
+    }
 
     resultsElement.insertBefore(fragment, moreItem);
 

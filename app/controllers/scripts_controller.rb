@@ -625,6 +625,7 @@ class ScriptsController < ApplicationController
     jarow = FuzzyStringMatch::JaroWinkler.create(:native)
     results = scripts.map do |s|
       {
+        id: s.id,
         url: script_path(s),
         name: s.name(I18n.locale),
         distance: jarow.getDistance(base_code, s.current_code).round(3),
