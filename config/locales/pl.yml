@@ -85,6 +85,9 @@ pl:
       locale_multiple_note: "Zauważ, że %{meta_keys_link:możesz zdefiniować wielokrotne ustawienia regionalne dla swojego skryptu}."
       update_locale: "Zaktualizuj ustawienia regionalne"
       no_moderator_logs: "Moderatorzy nie podjęli żadnej akcji w sprawie tego skryptu."
+      compare_title: "Porównaj z innym skryptem"
+      compare_to: "Skrypt do porównania (URL)"
+      compare_button: "Porównaj"
     history_title: "%{script_name} — historia wersji"
     history_only_code_changes_info: "To są wersje tego skryptu, gdzie kod został zaktualizowany."
     history_all_changes_link: "Pokaż wszystkie wersje."
@@ -113,6 +116,7 @@ pl:
     stats_download_raw_data_html: "Pobierz wszystkie dane jako: %{links}"
     stats_no_data: "Brak danych"
     derivatives_title: "%{script_name} — pochodne"
+    derivatives_intro: "Te skrypty mogą być bazowane na twoim skrypcie (lub twój może być bazowany na ich). Jeśli znajdziesz nieautoryzowane użycie twojego kodu, zgłoś go poprzez kartę opinii tego skryptu."
     derivatives_code_matches_info_html:
       one: "Skrypty zamieszczone przez innych, które zawierają kod o długości co najmniej %{match_size}linii wspólnej z twoim skryptem. Ta kontrola jest uruchamiana jedynie na skryptach mających rozmiar mniejszy niż %{max_size} i ostatnio uruchomionych %{last_run}."
       few: "Skrypty zamieszczone przez innych, które zawierają kod o długości co najmniej %{match_size} linie wspólne z twoim skryptem. Ta kontrola jest uruchamiana jedynie na skryptach mających rozmiar mniejszy niż %{max_size} i ostatnio uruchomionych %{last_run}."
@@ -167,10 +171,10 @@ pl:
     locale_auto_select: "(wykryj automatycznie)"
     sets_label: "W kolekcjach skryptów:"
     sets_label_no_sets: "Kolekcje skryptów:"
-    sets_remove_inclusion: "Usuń z kolekcji i%{set_name}"
-    sets_remove_exclusion: "Usuń wyłączenie z kolekcji %{set_name}"
+    sets_remove_inclusion: "Usuń z kolekcji %{set_name}"
+    sets_remove_exclusion: "Usuń wykluczenie z kolekcji %{set_name}"
     sets_add_inclusion: "Dodaj do kolekcji %{set_name}"
-    sets_add_exclusion: "Wyłącznie z kolekcji %{set_name}"
+    sets_add_exclusion: "Wyklucz z kolekcji %{set_name}"
     sets_add_to_new: "Dodaj do nowego zestawu"
     rules_summary_html: "Skrypty muszą być <strong>poprawnie opisane</strong>, nie mogą być <strong>skomplikowane</strong>, muszą przestrzegać <strong>prawa autorskiego</strong> i być ograniczone w wykorzystywaniu <strong>zewnętrznego kodu</strong>. %{full_rules_link}"
     rules_summary_link_to_full: "Przeczytaj pełny regulamin."
@@ -311,7 +315,7 @@ pl:
     description: "Zestawy skryptów umożliwiają Ci stworzenie zmodyfikowanej listy skryptów do przeglądania Greasy Fork'a. Możesz dodać skrypty do Twojego zestawu poprzez dołączanie pojedynczych skryptów, zestawów innych użytkowników lub automatycznie generowanych zestawów. Możesz także usunąć skrypty z Twojego zestawów w taki sam sposób."
     favorites_name: "Ulubione"
     delete: "Usuń kolekcję skryptów"
-    delete_confirmation: "Czy na pewno chcesz usunąć tą kolekcję skryptów?"
+    delete_confirmation: "Czy na pewno chcesz usunąć tę kolekcję skryptów?"
     site_default_sort: "(domyślne dla strony)"
     edit_scripts:
       heading: "Skrypty"
@@ -605,7 +609,7 @@ pl:
 
           <li>Skrypt musi mieć powód do bycia skryptem. Na przykład skrypt, który
           po prostu przekierowuje użytkownika na stronę internetową, nie musi być
-          skryptem; może to być link</li>
+          skryptem; może to być link.</li>
 
           <li>Skrypty z możliwością ich monetyzacji (śledzenie, reklamy, koparki kryptowalut,
           itd.) nie są zabronione, ale takie działania muszą być wyraźnie zaznaczone
@@ -621,7 +625,7 @@ pl:
           chyba że istnieje wyraźny techniczny powód, by tego nie robić. Jeśli kod
           źródłowy biblioteki jest zawarty w kodzie skryptu, należy również dodać
           informację o źródle biblioteki (np. komentarz zawierający adres URL i/lub
-          nazwę i wersję)</li>
+          nazwę oraz wersję).</li>
 
           <li>%{external_scripts_link:Korzystanie z zewnętrznego kodu JavaScript jest
           ograniczone.}</li>
@@ -634,8 +638,8 @@ pl:
           lub uzyskaj ich zgodę.</li>
 
           <li>Nawet jeśli prawa autorskie nie są naruszone to ponowne publikowanie
-          skryptów, które znajdują się na%{site_name}, jest zabronione, chyba że wprowadzają
-          usprawnienia różniące się od oryginału</li>
+          skryptów, które znajdują się na %{site_name}, jest zabronione, chyba że
+          wprowadzają usprawnienia różniące się od oryginału.</li>
 
           </ul> <h4>Różne</h4> <ul>
 
@@ -648,7 +652,7 @@ pl:
 
           </ul> <p>Jeśli zauważysz skrypt, który nie przestrzega wyżej wymienionych
           zasad, zgłoś go na stronie skryptu, przechodząc na podstronę Opinie, a następnie
-          kliknij "zgłoś ten skrypt'".</p>
+          klikając "zgłoś ten skrypt'".</p>
       adult_content_rule_html: "<li>Skrypty które zawierają treści dla dorosłych oraz dla stron które zawierają treści dla dorosłych muszą być oznaczone jako takie, aby użytkownicy mogli zdecydować czy chcą to zobaczyć.</li>"
     external_scripts:
       title: "Polityka %{site_name} dot. zewnętrznych skryptów"
