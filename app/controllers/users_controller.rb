@@ -4,6 +4,8 @@ require 'securerandom'
 
 class UsersController < ApplicationController
 
+  MAX_LIST_ENTRIES = 1000
+
   include Webhooks
 
   skip_before_action :verify_authenticity_token, :only => [:webhook]
@@ -14,7 +16,12 @@ class UsersController < ApplicationController
   def index
     @users = User
     @users = @users.where(['name like ?', "%#{params[:q]}%"]) if params[:q].present?
-    @users = self.class.apply_sort(@users, sort: params[:sort], script_subset: script_subset).paginate(page: params[:page], per_page: get_per_page).load
+
+    # Limit to 1000 results. Otherwise bots get at it and load way far into the list, which has performance problems.
+    per_page = get_per_page
+    page = [[params[:page].to_i, 1].max || MAX_LIST_ENTRIES / per_page].min
+
+    @users = self.class.apply_sort(@users, sort: params[:sort], script_subset: script_subset).paginate(page: page, per_page: per_page, total_entries: [@users.count, MAX_LIST_ENTRIES].min).load
     @user_script_counts = Script.listable(script_subset).joins(:authors).where(authors: { user_id: @users.map(&:id) }).group(:user_id).count
 
     @bots = 'noindex,follow' if !params[:sort].nil? || !params[:q].nil?
