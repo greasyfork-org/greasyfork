@@ -58,13 +58,13 @@ class UsersController < ApplicationController
         @scripts = ScriptsController.apply_filters(@scripts, params.reverse_merge(language: 'all'), script_subset).paginate(per_page: 100, page: params[:page] || 1)
         @other_site_scripts = script_subset == :sleazyfork ? @user.scripts.listable(:greasyfork).count : 0
 
-        @bots = 'noindex,follow' if !params[:sort].nil?
+        @bots = 'noindex,follow' if [:per_page, :set, :site, :sort, :language].any? { |name| params[name].present? }
 
         @link_alternates = [
           {:url => current_path_with_params(format: :json), :type => 'application/json'},
           {:url => current_path_with_params(format: :jsonp, callback: 'callback'), :type => 'application/javascript'}
         ]
-        @canonical_params = [:id, :page, :per_page, :set, :site, :sort]
+        @canonical_params = [:id, :page, :per_page, :set, :site, :sort, :language]
         @ad_method = 'cf' if ads_enabled?
 
         render layout: 'base'
