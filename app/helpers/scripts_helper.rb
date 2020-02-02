@@ -3,7 +3,7 @@ require 'memoist'
 module ScriptsHelper
   extend Memoist
 
-  def script_list_link(label, sort: nil, site: nil, set: nil, default_sort: nil, language: nil)
+  def script_list_link(label, sort: nil, site: nil, set: nil, default_sort: nil, language: nil, filter_locale: nil)
     is_link = true
     is_minified = action_name == 'minified'
     is_code_search = action_name == 'code_search'
@@ -20,11 +20,11 @@ module ScriptsHelper
     elsif is_code_search
       l = link_to label, code_search_scripts_path(sort: sort_param_to_use, c: params[:c])
     elsif site.nil?
-      l = link_to label, { sort: sort_param_to_use, site: nil, set: set, q: params[:q], language: language }
+      l = link_to label, { sort: sort_param_to_use, site: nil, set: set, q: params[:q], language: language, filter_locale: filter_locale }
     elsif params[:controller] == 'users'
-      l = link_to label, { sort: sort_param_to_use, site: site, set: set, language: language }
+      l = link_to label, { sort: sort_param_to_use, site: site, set: set, language: language, filter_locale: filter_locale }
     else
-      l = link_to label, by_site_scripts_path(sort: sort_param_to_use, site: site, set: set, q: params[:q], language: language)
+      l = link_to label, by_site_scripts_path(sort: sort_param_to_use, site: site, set: set, q: params[:q], language: language, filter_locale: filter_locale)
     end
     return ("<li class=\"list-option#{is_link ? '' : ' list-current'}\">" + l + '</li>').html_safe
   end

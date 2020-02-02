@@ -4,7 +4,7 @@ by_sites = nil if !defined?(by_sites)
 include_search = false if !defined?(include_search) || include_search.nil?
 sort_options = ['daily_installs', 'total_installs', 'ratings', 'created', 'updated', 'name'] if !defined?(sort_options) || sort_options.nil?
 default_sort = @set&.default_sort || sort_options.first
-current_options = {sort: params[:sort], site: params[:site], set: params[:set], default_sort: default_sort, language: params[:language]}
+current_options = params.to_unsafe_h.slice(:sort, :site, :set, :language, :filter_locale).map {|k, v| [k.to_sym, v] }.to_h.merge(default_sort: default_sort)
 %>
 
 <div id="script-list-option-groups" class="list-option-groups">
@@ -21,7 +21,7 @@ current_options = {sort: params[:sort], site: params[:site], set: params[:set], 
   <div id="script-list-sort" class="list-option-group"><%=t('scripts.listing_sort_label')%>
     <ul>
       <% sort_options.each do |sort_option| %>
-        <%=script_list_link(t("scripts.listing_sort_#{sort_option}"), current_options.merge(sort: default_sort == sort_option ? nil : sort_option))%>
+        <%=script_list_link(t("scripts.listing_sort_#{sort_option}"), **current_options.merge(sort: default_sort == sort_option ? nil : sort_option))%>
       <% end %>
     </ul>
   </div>
