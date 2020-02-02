@@ -44,6 +44,11 @@ class User < ApplicationRecord
     self.canonical_email = EmailAddress.canonical(email)
   end
 
+  after_update do
+    # To clear partial caches
+    scripts.touch_all if saved_change_to_name?
+  end
+
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
