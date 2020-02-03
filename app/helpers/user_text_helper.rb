@@ -132,14 +132,27 @@ module UserTextHelper
   end
 
   def replace_text_with_node(node, text, node_to_insert)
-    parts = node.text.split(text)
-    node.content = parts.first
+    node_text = node.text
+    replaced_original_node = false
 
+    # Can't use split because we'd swallow consecutive delimiters.
+
+    # Put everything in a fragment first and insert it all at once for performance.
     fragment = Nokogiri::HTML::DocumentFragment.new(node.document)
-
-    parts[1..].each do |text|
+    while node_text
+      index = node_text.index(text)
+      if index.nil?
+        fragment << Nokogiri::XML::Text.new(node_text, node.document)
+        break
+      end
+      if replaced_original_node
+        fragment << Nokogiri::XML::Text.new(node_text[0, index], node.document)
+      else
+        node.content = node_text[0, index]
+        replaced_original_node = true
+      end
       fragment << node_to_insert.dup
-      fragment << Nokogiri::XML::Text.new(text, node.document)
+      node_text = node_text[(index+text.length)..]
     end
 
     node.add_next_sibling(fragment)

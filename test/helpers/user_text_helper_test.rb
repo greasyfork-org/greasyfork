@@ -7,6 +7,11 @@ class UserTextHelperTest < ActionView::TestCase
     assert_equal "line<br>breaks<br>here", format_user_text(text, 'html')
   end
 
+  test "format_user_text html just whitespace" do
+    text = "\n\n"
+    assert_equal "<br><br>", format_user_text(text, 'html')
+  end
+
   test "format_user_text html links are linkified" do
     text = "my url is https://example.com yes"
     assert_equal "my url is <a href=\"https://example.com\" rel=\"nofollow\">https://example.com</a> yes", format_user_text(text, 'html')
