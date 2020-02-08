@@ -34,8 +34,13 @@ class SessionsController < Devise::SessionsController
 			return
 		end
 
-		return_to = clean_redirect_param(:origin)
 		o = request.env['omniauth.auth']
+		if o.nil?
+			handle_omniauth_failure
+			return
+		end
+
+		return_to = clean_redirect_param(:origin)
 		provider = o[:provider]
 		uid = o[:uid]
 		email = o[:info][:email]
