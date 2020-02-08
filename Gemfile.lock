@@ -136,7 +136,6 @@ GEM
     concurrent-ruby (1.1.5)
     crass (1.0.5)
     daemons (1.3.1)
-    dalli (2.7.10)
     debug_inspector (0.0.3)
     delayed_job (4.1.8)
       activesupport (>= 3.0, < 6.1)
@@ -166,6 +165,7 @@ GEM
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     hashie (3.6.0)
+    hiredis (0.6.3)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
     innertube (1.1.0)
@@ -290,6 +290,7 @@ GEM
     recaptcha (5.2.1)
       json
     redcarpet (3.5.0)
+    redis (4.1.3)
     regexp_parser (1.6.0)
     responders (3.0.0)
       actionpack (>= 5.0)
@@ -384,7 +385,6 @@ DEPENDENCIES
   capistrano3-delayed-job (~> 1.0)
   capybara
   daemons
-  dalli
   delayed_job
   delayed_job_active_record
   detect_language
@@ -393,6 +393,7 @@ DEPENDENCIES
   diffy
   email_address
   fuzzy-string-match
+  hiredis
   it
   levenshtein
   listen
@@ -416,6 +417,7 @@ DEPENDENCIES
   rb-readline
   recaptcha
   redcarpet
+  redis
   ruby-prof
   sanitize
   sass-rails

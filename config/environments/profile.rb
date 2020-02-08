@@ -57,7 +57,7 @@ Rails.application.configure do
   config.log_tags = [ :request_id ]
 
   # Use a different cache store in production.
-  config.cache_store = :dalli_store, ['localhost:11211:10'], { :namespace => 'Greasy Fork', :expires_in => 2.hours, :compress => true }
+  config.cache_store = :redis_cache_store, { path: '/var/run/redis/redis-server.sock' }
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque

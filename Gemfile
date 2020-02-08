@@ -25,7 +25,10 @@ gem 'delayed_job_active_record'
 gem 'daemons'
 gem 'public_suffix'
 gem 'transifex-ruby', git: 'https://github.com/tmaesaka/transifex-ruby.git'
-gem 'dalli'
+
+gem 'redis'
+gem 'hiredis'
+
 gem 'omniauth', '>= 1.6.0'
 # For https://github.com/omniauth/omniauth-github/pull/84, not present in 1.3.0.
 gem 'omniauth-github', git: 'https://github.com/omniauth/omniauth-github.git', branch: 'master'
