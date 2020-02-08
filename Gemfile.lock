@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/omniauth/omniauth-github.git
+  revision: 967d76979b6bf9bb0b71b255ad204f8931f65be6
+  branch: master
+  specs:
+    omniauth-github (1.3.0)
+      omniauth (~> 1.5)
+      omniauth-oauth2 (>= 1.4.0, < 2.0)
+
+GIT
   remote: https://github.com/tigrish/devise-i18n.git
   revision: 59b665ff564d116ac160291f750df514af725105
   specs:
@@ -217,9 +226,6 @@ GEM
     omniauth (1.9.0)
       hashie (>= 3.4.6, < 3.7.0)
       rack (>= 1.6.2, < 3)
-    omniauth-github (1.3.0)
-      omniauth (~> 1.5)
-      omniauth-oauth2 (>= 1.4.0, < 2.0)
     omniauth-gitlab (2.0.0)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.0)
@@ -397,7 +403,7 @@ DEPENDENCIES
   mysql2
   newrelic_rpm
   omniauth (>= 1.6.0)
-  omniauth-github
+  omniauth-github!
   omniauth-gitlab
   omniauth-google-oauth2 (>= 0.4.1)
   omniauth-rails_csrf_protection
