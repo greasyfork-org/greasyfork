@@ -28,7 +28,7 @@ gem 'transifex-ruby', git: 'https://github.com/tmaesaka/transifex-ruby.git'
 gem 'dalli'
 gem 'omniauth', '>= 1.6.0'
 # For https://github.com/omniauth/omniauth-github/pull/84, not present in 1.3.0.
-gem 'omniauth-github', github: 'omniauth/omniauth-github', branch: 'master'
+gem 'omniauth-github', git: 'https://github.com/omniauth/omniauth-github.git', branch: 'master'
 gem 'omniauth-gitlab'
 gem 'omniauth-google-oauth2', '>= 0.4.1'
 gem 'omniauth-rails_csrf_protection'
