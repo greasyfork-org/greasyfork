@@ -28,7 +28,7 @@ class User < ApplicationRecord
 
   belongs_to :locale, optional: true
 
-  has_and_belongs_to_many :forum_users, -> { readonly }, :foreign_key => 'ForeignUserKey', :association_foreign_key => 'UserID', :join_table => 'GDN_UserAuthentication'
+  has_and_belongs_to_many :forum_users, :foreign_key => 'ForeignUserKey', :association_foreign_key => 'UserID', :join_table => 'GDN_UserAuthentication'
 
   def forum_user
     return forum_users.first
@@ -47,6 +47,10 @@ class User < ApplicationRecord
   after_update do
     # To clear partial caches
     scripts.touch_all if saved_change_to_name?
+  end
+
+  after_update do
+    forum_user&.update(Name: name) if saved_change_to_name?
   end
 
   # Include default devise modules. Others available are:
