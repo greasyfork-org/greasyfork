@@ -14,6 +14,6 @@
   <!-- END COPY CODEFUND EMBED -->
 <% end %>
 
-<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=js&lang=css"></script>
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=css"></script>
 
 <pre <% if @code.length <= Rails.configuration.syntax_highlighting_limit %>class="prettyprint <%= @script.css? ? 'lang-css' : 'lang-js' %>"<% end %>><%=@code%></pre>
