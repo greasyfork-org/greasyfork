@@ -50,7 +50,7 @@ function getInstalledVersion(name, namespace) {
       });
     }, function() {
       getViolentmonkey().then(function(vm) {
-        return vm.isInstalled(name, namespace);
+        vm.isInstalled(name, namespace).then(resolve);
       }, reject)
     });
   });
