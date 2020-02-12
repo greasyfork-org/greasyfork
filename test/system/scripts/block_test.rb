@@ -16,8 +16,10 @@ class BlockTest < ApplicationSystemTestCase
     EOF
     fill_in 'Code', with: code
     assert_changes -> { user.reload.banned }, from: false, to: true do
-      click_button 'Post script'
-      assert_content 'This script has been deleted'
+      allow_js_error /the server responded with a status of 403 \(Forbidden\)/ do
+        click_button 'Post script'
+        assert_content 'This script has been deleted'
+      end
     end
   end
 
