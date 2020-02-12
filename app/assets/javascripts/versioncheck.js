@@ -8,13 +8,7 @@ function getTampermonkey() {
       resolve(window.external.Tampermonkey);
       return;
     }
-    window.setTimeout(function() {
-      if (window.external.Tampermonkey) {
-        resolve(window.external.Tampermonkey);
-        return;
-      }
-      reject('Tampermonkey is not installed.');
-    }, 1000);
+    reject('Tampermonkey is not installed.');
   });
 }
 
@@ -28,13 +22,7 @@ function getViolentmonkey() {
       resolve(window.external.Violentmonkey);
       return;
     }
-    window.setTimeout(function() {
-      if (window.external.Violentmonkey) {
-        resolve(window.external.Violentmonkey);
-        return;
-      }
-      reject('Violentmonkey is not installed.');
-    }, 1000);
+    reject('Violentmonkey is not installed.');
   });
 }
 
@@ -108,7 +96,7 @@ function parseVersionPart(part) {
   ];
 }
 
-function checkForUpdates(installButton) {
+function checkForUpdates(installButton, retry) {
   var name = installButton.getAttribute("data-script-name");
   var namespace = installButton.getAttribute("data-script-namespace");
   var version = installButton.getAttribute("data-script-version");
@@ -132,6 +120,10 @@ function checkForUpdates(installButton) {
         installButton.textContent = installButton.getAttribute("data-reinstall-label");
         break;
     }
+  }, function() {
+    if (retry) {
+      setTimeout(function() { checkForUpdates(installButton, false) }, 1000);
+    }
   }).catch(function(error) {
     // Could not determine the installed version, assume it's not
     // installed and do nothing.
@@ -143,5 +135,5 @@ document.addEventListener("DOMContentLoaded", function() {
   if (!installButton) {
     return;
   }
-  checkForUpdates(installButton);
+  checkForUpdates(installButton, true);
 });
