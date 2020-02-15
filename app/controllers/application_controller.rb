@@ -195,4 +195,8 @@ protected
 
     return script
   end
+
+  def set_cookie(k, v, httponly: true)
+    cookies[k] = { value: v, secure: Rails.env.production?, httponly: httponly }
+  end
 end
