@@ -92,14 +92,14 @@ class ScriptVersionsController < ApplicationController
 		save_record = params[:preview].nil? && params['add-additional-info'].nil?
 
 		# Additional info - if we're saving, don't construct blank ones
-		@script_version.localized_attributes.each{|la| la.mark_for_destruction}
+		@script_version.localized_attributes(&:mark_for_destruction)
 		params['script_version']['additional_info'].each do |index, additional_info_params|
 			locale_id = additional_info_params['locale'] || @script.locale_id
 			attribute_value = additional_info_params['attribute_value']
 			attribute_default = additional_info_params['attribute_default'] == 'true'
 			value_markup = additional_info_params['value_markup']
 			@script_version.localized_attributes.build({:attribute_key => 'additional_info', :attribute_value => attribute_value, :attribute_default => attribute_default, :locale_id => locale_id, :value_markup => value_markup}) unless (save_record && attribute_value.blank?)
-		end
+		end if params['script_version']['additional_info']
 
 		if !params[:code_upload].nil?
 			uploaded_content = params[:code_upload].read
