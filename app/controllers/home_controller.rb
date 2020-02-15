@@ -1,4 +1,5 @@
 require 'js_connect'
+require 'digest/sha1'
 
 class HomeController < ApplicationController
 
@@ -39,7 +40,7 @@ class HomeController < ApplicationController
     end
 
     secure = true # this should be true unless you are testing.
-    json = JsConnect.getJsConnectString(user, self.params, client_id, secret, secure)
+    json = JsConnect.getJsConnectString(user, self.params, client_id, secret, secure, Digest::SHA1)
 
     render :js => json
   end
