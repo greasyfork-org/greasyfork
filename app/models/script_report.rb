@@ -32,13 +32,13 @@ class ScriptReport < ApplicationRecord
     report_type == TYPE_UNAUTHORIZED_CODE
   end
 
-  def uphold!
-    update(result: 'upheld')
+  def uphold!(moderator_note=nil)
+    update!(result: 'upheld', moderator_note: moderator_note.presence)
     reporter&.update_trusted_report!
   end
 
-  def dismiss!
-    update(result: 'dismissed')
+  def dismiss!(moderator_note=nil)
+    update!(result: 'dismissed', moderator_note: moderator_note.presence)
     reporter&.update_trusted_report!
   end
 end

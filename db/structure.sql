@@ -1029,7 +1029,7 @@ CREATE TABLE `daily_install_counts` (
   `install_date` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_daily_install_counts_on_script_id_and_ip` (`script_id`,`ip`)
-) ENGINE=InnoDB AUTO_INCREMENT=88943172 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=88943176 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `daily_update_check_counts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1059,7 +1059,7 @@ CREATE TABLE `delayed_jobs` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `delayed_jobs_priority` (`priority`,`run_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=138447 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=138449 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `disallowed_attributes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1339,6 +1339,7 @@ CREATE TABLE `script_reports` (
   `report_type` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `reporter_id` int(11) DEFAULT NULL,
   `result` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `moderator_note` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_script_reports_on_script_id` (`script_id`),
   KEY `index_script_reports_on_reference_script_id` (`reference_script_id`),
@@ -1382,7 +1383,7 @@ CREATE TABLE `script_set_script_inclusions` (
   PRIMARY KEY (`id`),
   KEY `index_script_set_script_inclusions_on_parent_id` (`parent_id`),
   KEY `index_script_set_script_inclusions_on_child_id` (`child_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=301758 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=301779 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `script_set_set_inclusions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1412,7 +1413,7 @@ CREATE TABLE `script_sets` (
   PRIMARY KEY (`id`),
   KEY `index_script_sets_on_user_id` (`user_id`),
   CONSTRAINT `fk_rails_faace970e1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=360191 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=360193 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `script_sync_sources`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1798,6 +1799,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20200106011534'),
 ('20200112155750'),
 ('20200112162130'),
-('20200122030130');
+('20200122030130'),
+('20200216204021');
 
 

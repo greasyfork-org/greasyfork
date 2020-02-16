@@ -6,35 +6,61 @@ when ScriptReport::TYPE_UNAUTHORIZED_CODE %>
 
   <p><%= link_to "#{site_name}'s rules", help_code_rules_path %> state that scripts' copyright and licenses must be respected. <%= link_to @script_report.script.name(I18n.locale), @script_report.script %> by <%= @script_report.script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> has been reported as an unauthorized copy of <%= link_to @script_report.reference_script.name(I18n.locale), @script_report.reference_script %> by <%= @script_report.reference_script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> on <%= @script_report.created_at %>.</p>
 
+<% when ScriptReport::TYPE_MALWARE %>
+  <p>
+    <%= link_to @script_report.script.name(I18n.locale), @script_report.script %> by <%= @script_report.script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> has been reported as malware.
+  </p>
+
+<% when ScriptReport::TYPE_SPAM %>
+  <p>
+    <%= link_to @script_report.script.name(I18n.locale), @script_report.script %> by <%= @script_report.script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> has been reported as spam.
+  </p>
+
+<% end %>
+
+<p><%= @script_report.reporter ? link_to(@script_report.reporter.name, @script_report.reporter) : '<i>(Deleted user)</i>'.html_safe %> says:</p>
+<blockquote><%= @script_report.details %></blockquote>
+
+<% if @script_report.additional_info.present? %>
+  <p>This additional info was provided:</p>
+  <blockquote><%= @script_report.additional_info %></blockquote>
+<% end %>
+
+<% if @script_report.rebuttal.present? %>
+  <p><%= @script_report.script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> has responded: "<i><%= @script_report.rebuttal %></i>"
+<% else %>
+  <p><%= @script_report.script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> has not yet responded to this report.
+<% end %>
+
+<% if @script_report.report_type == ScriptReport::TYPE_UNAUTHORIZED_CODE %>
   <table>
     <thead>
-      <tr>
-        <th></th>
-        <th>Script</th>
-        <th>License</th>
-        <th>Created</th>
-        <th>Updated</th>
-      </tr>
+    <tr>
+      <th></th>
+      <th>Script</th>
+      <th>License</th>
+      <th>Created</th>
+      <th>Updated</th>
+    </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Reported</td>
-        <td><%= link_to @script_report.script.name(I18n.locale), @script_report.script %></td>
-        <td><%= license_display(@script_report.script) %></td>
-        <td><%= @script_report.script.created_at %></td>
-        <td><%= @script_report.script.code_updated_at %></td>
-      </tr>
-      <tr>
-        <td>Original</td>
-        <td><%= link_to @script_report.reference_script.name(I18n.locale), @script_report.reference_script %></td>
-        <td><%= license_display(@script_report.reference_script) %></td>
-        <td><%= @script_report.reference_script.created_at %></td>
-        <td><%= @script_report.reference_script.code_updated_at %></td>
-      </tr>
+    <tr>
+      <td>Reported</td>
+      <td><%= link_to @script_report.script.name(I18n.locale), @script_report.script %></td>
+      <td><%= license_display(@script_report.script) %></td>
+      <td><%= @script_report.script.created_at %></td>
+      <td><%= @script_report.script.code_updated_at %></td>
+    </tr>
+    <tr>
+      <td>Original</td>
+      <td><%= link_to @script_report.reference_script.name(I18n.locale), @script_report.reference_script %></td>
+      <td><%= license_display(@script_report.reference_script) %></td>
+      <td><%= @script_report.reference_script.created_at %></td>
+      <td><%= @script_report.reference_script.code_updated_at %></td>
+    </tr>
     </tbody>
   </table>
 
-  <p><%= @script_report.reference_script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> says the following content was copied: "<i><%= @script_report.details %></i>". This additional info was provided: "<i><%= @script_report.additional_info %></i>".</p>
 
   <div class="report-diff">
     <% if @diff.nil? %>
@@ -43,42 +69,27 @@ when ScriptReport::TYPE_UNAUTHORIZED_CODE %>
       <%= @diff %>
     <% end %>
   </div>
-
-<% when ScriptReport::TYPE_MALWARE %>
-  <p>
-    <%= link_to @script_report.script.name(I18n.locale), @script_report.script %> by <%= @script_report.script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> has been reported as malware.
-  </p>
-
-  <p>
-    <%= @script_report.reporter ? link_to(@script_report.reporter.name, @script_report.reporter) : '<i>(Deleted user)</i>'.html_safe %> says: "<i><%= @script_report.details %></i>". This additional info was provided: "<i><%= @script_report.additional_info %></i>".
-  </p>
-
-<% when ScriptReport::TYPE_SPAM %>
-<p>
-  <%= link_to @script_report.script.name(I18n.locale), @script_report.script %> by <%= @script_report.script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> has been reported as spam.
-</p>
-
-<p>
-  <%= @script_report.reporter ? link_to(@script_report.reporter.name, @script_report.reporter) : '<i>(Deleted user)</i>'.html_safe %> says: "<i><%= @script_report.details %></i>". This additional info was provided: "<i><%= @script_report.additional_info %></i>".
-</p>
-<% end %>
-
-
-<% if @script_report.rebuttal.present? %>
-  <p><%= @script_report.script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> has responded: "<i><%= @script_report.rebuttal %></i>"
-<% else %>
-  <p><%= @script_report.script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> has not yet responded to this report.
 <% end %>
 
 <hr>
 
 <% if @script_report.dismissed? %>
 
-  <p>Report has been dismissed by moderators.</p>
+  <p>This report has been dismissed by a <%= site_name %> moderator.</p>
+
+  <% if @script_report.moderator_note.presence %>
+    <p>Notes from the moderator:</p>
+    <blockquote><%= @script_report.moderator_note %></blockquote>
+  <% end %>
 
 <% elsif @script_report.upheld? %>
 
-  <p>Script has been deleted.</p>
+  <p>As a result of this report, the script has been deleted by a <%= site_name %> moderator.</p>
+
+  <% if @script_report.moderator_note.presence %>
+    <p>Notes from the moderator:</p>
+    <blockquote><%= @script_report.moderator_note %></blockquote>
+  <% end %>
 
 <% elsif @script_report.script.users.include?(current_user) %>
   <p>As the author of <%= link_to @script_report.script.name(I18n.locale), @script_report.script %>, you can choose to delete your script or to submit a rebuttal. If you choose to submit a rebuttal, it will be reviewed by a moderator and a decision will be made.</p>
@@ -112,6 +123,9 @@ when ScriptReport::TYPE_UNAUTHORIZED_CODE %>
         <%= label_tag 'Dismiss report' %>
       </div>
       <p>Dismiss the report if it has no merit.</p>
+      <div class="form-control">
+        <%= text_area_tag(:moderator_note, nil, placeholder: 'Dismissal notes (optional)') %>
+      </div>
       <%= f.submit 'Dismiss report' %>
     <% end %>
 
@@ -120,6 +134,9 @@ when ScriptReport::TYPE_UNAUTHORIZED_CODE %>
         <%= label_tag 'Delete script' %>
       </div>
       <p>Delete the script if it's breaking the rules.</p>
+      <div class="form-control">
+        <%= text_area_tag(:moderator_note, nil, placeholder: 'Dismissal notes (optional)') %>
+      </div>
 
       <% banned_users, users_to_ban = @script_report.script.users.partition(&:banned) %>
       <% if users_to_ban.any? %>
