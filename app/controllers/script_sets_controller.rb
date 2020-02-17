@@ -89,7 +89,10 @@ class ScriptSetsController < ApplicationController
     end
 
     if r
-      if !set.save
+      if set.save
+        # Removing a child seems to not update the set so caching gets weird.
+        set.touch
+      else
         flash[:notice] = 'Could not save set'
       end
     else
