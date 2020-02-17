@@ -81,6 +81,9 @@ el:
       locale_multiple_note: "Σημειώστε ότι %{meta_keys_link:για έναν κώδικα μπορούν να οριστούν πολλές γλώσσες}."
       update_locale: "Ενημέρωση γλώσσας"
       no_moderator_logs: "Καμιά ενέργεια δεν έχει λάβει χώρα από τους συντονιστές για αυτόν τον κώδικα."
+      compare_title: "Σύγκριση με άλλο κώδικα"
+      compare_to: "Κώδικας για σύγκριση με (URL)"
+      compare_button: "Σύγκριση"
     history_title: "%{script_name} - Ιστορικό έκδοσης"
     history_only_code_changes_info: "Αυτές είναι εκδόσεις αυτού του κώδικα όπου ο κώδικας έχει ενημερωθεί."
     history_all_changes_link: "Προβολή όλων των εκδόσεων."
@@ -145,6 +148,9 @@ el:
     listing_none: "(Κανένα)"
     listing_set_locale_filter: "Προβολή αποτελεσμάτων από όλες τις γλώσσες. . %{set_filter_link:Προβολή αποτελεσμάτων μόνο από την %{language}.}"
     listing_remove_locale_filter: "Προβολή αποτελεσμάτων μόνο από την %{language}. %{remove_filter_link:Προβολή αποτελεσμάτων από όλες τις γλώσσες.}"
+    listing_language_all: "Όλες"
+    listing_language_js: "JavaScript"
+    listing_language_css: "CSS"
     import: "Εισαγωγή κώδικα"
     new: "Δημοσίευση ενός κώδικα"
     new_css: "Δημοσίευση ενός στυλ"
@@ -235,6 +241,8 @@ el:
     adult_content_on_greasy_logged_in_error: "Αυτός ο κώδικας δεν είναι πλέον διαθέσιμος σε αυτή την ιστοσελίδα με τις %{edit_account_link:ρυθμίσεις λογαριασμού Greasy Fork}."
     adult_content_on_greasy_not_logged_in_error: "Αυτός ο κώδικας δεν είναι πλέον διαθέσιμος ανωνύμως σε αυτή την ιστοσελίδα. %{login_link:Συνδεθείτε} και ελέγξτε τις ρυθμίσεις λογαριασμού Greasy Fork."
     non_adult_content_on_sleazy: "Αυτός ο κώδικας δεν είναι διαθέσιμος σε αυτή την ιστοσελίδα."
+    not_js_convertible_override_header: "Μετατροπή σε JS"
+    not_js_convertible_override_label_html: "Αυτό <strong>δεν</strong> πρέπει να είναι διαθέσιμο σε μορφή JS χρήστη"
     adult_marker: "(Μόνο για ενήλικες)"
     deleted_marker: "(Διαγραμμένο)"
     locked_marker: "(Κλειδωμένο)"
@@ -510,8 +518,14 @@ el:
         cancelled: "Η διαγραφή ακυρώθηκε."
         completed: "Ο λογαριασμός σας έχει διαγραφεί."
   help:
+    sections:
+      usage: Χρήση
+      development: Ανάπτυξη
+      miscellaneous: Διάφορα
     installing_user_scripts:
       title: 'Πως να εγκαταστήσετε κώδικες χρηστών'
+    installing_user_styles:
+      title: 'Πως να εγκαταστήσετε στυλ χρήστη'
     meta_keys:
       title: "Τα μετα-κλειδιά του κώδικα που διαβάζει το %{site_name}"
       intro_html: "Αυτή είναι μια λίστα με τα <a href=\"http://wiki.greasespot.net/Metadata_Block\">μετά-κλειδιά των κωδικών χρήστη</a> που το %{site_name} θα διαβάζει. Τα κλειδιά εκτός αυτής της λίστας μπορούν να περιλαμβάνονται στους κώδικες και θα είναι παρόντα στον εγκατεστημένο κώδικα, αλλά δεν θα έχουν καμιά επίδραση στο περιβάλλον του %{site_name}."
@@ -662,6 +676,8 @@ el:
           τον κώδικα.</p> <h2>Βιβλιοθήκες τρίτων</h2> <p>Το %{site_name} μπορεί να
           περιλαμβάνει κώδικα τρίτων για συλλογή στατιστικών ή προβολής διαφημίσεων
           στην ιστοσελίδα. Αυτές οι βιβλιοθήκες μπορεί να περιλαμβάνουν λογική καταγραφής.</p>
+    user_css_to_user_js:
+      title: Μετατροπή CSS χρήστη σε JS χρήστη
   search:
     script_search:
       title: "Αναζήτηση κώδικα"
@@ -749,3 +765,7 @@ el:
     description: "Αναζήτηση για κώδικες χρηστών στο %{site_name}."
     long_name: "Αναζήτηση κώδικα χρήστη του %{site_name}"
     attribution: "Για τα πνευματικά δικαιώματα των δημιουργών των κωδικών, δείτε κάθε ξεχωριστό κώδικα για την αδειοδότηση"
+  mailers:
+    script_report:
+      report_created_offender:
+        subject: "Ο κώδικάς σας %{script_name} στο %{site_name} έχει αναφερθεί"

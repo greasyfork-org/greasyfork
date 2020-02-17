@@ -852,3 +852,30 @@ ru:
     description: "Поиск пользовательских скриптов на %{site_name}."
     long_name: "Поиск пользовательских скриптов на %{site_name}."
     attribution: "Авторские лицензии скриптов - указана на странице информации каждого скрипта."
+  mailers:
+    script_report:
+      report_created_offender:
+        subject: "На ваш скрипт %{script_name} на %{site_name} поступила жалоба"
+        reason_unauthorized: "На ваш скрипт %{script_name} на %{site_name} поступила жалоба о том, что он является нелегальной копией другого скрипта."
+        reason_malware: "На ваш скрипт %{script_name} на %{site_name} поступила жалоба о том, что он является вредоносным."
+        reason_spam: "На ваш скрипт %{script_name} на %{site_name} поступила жалоба о том, что он является спамом."
+        reason_other: "На ваш скрипт %{script_name} поступила жалоба о том, что он нарушает правила %{site_name}."
+        action: "Вы можете просмотреть жалобу по адресу %{report_url} и отправить опровержение. Если вы не отправите опровержение, то модератор может удалить ваш скрипт. Если у вас есть вопросы, пожалуйста посетите https://greasyfork.org/forum/."
+      report_upheld_offender:
+        subject: "Ваш скрипт %{script_name} на %{site_name} был удалён"
+        text: "Ваш скрипт %{script_name} на %{site_name} был удалён модератором. Вы можете просмотреть жалобу по адресу %{report_url}. Если у вас есть вопросы, пожалуйста посетите https://greasyfork.org/forum/."
+      report_dismissed_offender:
+        subject: "Жалоба на ваш скрипт %{script_name} на %{site_name} была отклонена"
+        text: "Жалоба на ваш скрипт %{script_name} на %{site_name} была отклонена модератором. Ваш скрипт по прежнему активен. Вы можете просмотреть жалобу по адресу %{report_url}. Если у вас есть вопросы, пожалуйста посетите https://greasyfork.org/forum/."
+      report_rebutted_reporter:
+        subject: "Получен ответ на вашу жалобу на %{script_name} на %{site_name}"
+        text: "Получен ответ на вашу жалобу на %{script_name} на %{site_name}. Вы можете просмотреть ответ по адресу %{report_url}. Модератор примет решение на основе вашей жалобы и этого ответа. Если у вас есть вопросы, пожалуйста посетите https://greasyfork.org/forum/."
+      report_upheld_reporter:
+        subject: "Ваша жалоба на %{script_name} на %{site_name} была удовлетворена"
+        text: "Ваша жалоба на %{script_name} на %{site_name} была удовлетворена модератором. Скрипт удалён. Вы можете просмотреть жалобу по адресу %{report_url}. Если у вас есть вопросы, пожалуйста посетите https://greasyfork.org/forum/."
+      report_script_deleted_reported:
+        subject: "Ваша жалоба на %{script_name} на %{site_name} была закрыта"
+        text: "Ваша жалоба на %{script_name} на %{site_name} была закрыта. Автор удалил свой скрипт. Вы можете просмотреть жалобу по адресу %{report_url}. Если у вас есть вопросы, пожалуйста посетите https://greasyfork.org/forum/."
+      report_dismissed_reporter:
+        subject: "Ваша жалоба на %{script_name} на %{site_name} была отклонена"
+        text: "Ваша жалоба на %{script_name} на %{site_name} была отклонена модератором. Скрипт по прежнему активен. Вы можете просмотреть жалобу по адресу %{report_url}. Если у вас есть вопросы, пожалуйста посетите https://greasyfork.org/forum/."

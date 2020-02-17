@@ -742,3 +742,24 @@ zh-CN:
     description: "搜索 %{site_name} 上的用户脚本。"
     long_name: "%{site_name} 用户脚本搜索"
     attribution: "脚本作者保留所有权利，详见各脚本许可协议"
+  mailers:
+    script_report:
+      report_created_offender:
+        subject: "您的脚本 %{script_name} 在 %{site_name} 上被举报"
+        reason_unauthorized: "您的脚本 %{script_name} 在 %{site_name} 上被报告是另一个脚本的未授权副本或修改。"
+        reason_malware: "您的脚本 %{script_name} 在 %{site_name} 上被举报为恶意软件"
+        reason_spam: "您的脚本 %{script_name} 在 %{site_name} 上被举报为垃圾内容"
+        action: "您可以访问 %{report_url} 查阅该举报，并提交反驳意见。如果您没有提交反驳，管理员可能删除您的脚本。如有疑问，请访问 https://greasyfork.org/forum/。"
+      report_upheld_offender:
+        subject: "您的脚本 %{script_name} 在 %{site_name} 上已被删除"
+        text: "您在 %{site_name} 上的%{script_name}脚本已由管理员删除。详情查阅此报告: %{report_url}。如有疑问，请访问 https://greasyfork.org/forum/。"
+      report_dismissed_offender:
+        subject: "%{site_name} 上的一则针对您的 %{script_name} 脚本的举报已被驳回"
+        text: "%{site_name} 上的一则针对您的 %{script_name} 脚本的举报已由管理员驳回，您的脚本继续保留。详情查阅此报告: %{report_url}。如有疑问，请访问 https://greasyfork.org/forum/。"
+      report_rebutted_reporter:
+        subject: "您在%{site_name}上对于%{script_name}脚本的举报收到了一条回复"
+      report_upheld_reporter:
+        subject: "您在%{site_name}上对于%{script_name}脚本的举报已被核实"
+      report_dismissed_reporter:
+        subject: "您在%{site_name}上对于%{script_name}脚本的举报被驳回"
+        text: "您在%{site_name}上对于%{script_name}脚本的举报已被管理员驳回，并且该脚本将继续保留。 详情查阅此报告:%{report_url}。如有疑问，请访问https://greasyfork.org/forum/。"

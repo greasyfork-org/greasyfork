@@ -839,3 +839,30 @@ pt-BR:
     description: "Busca por scripts de usuário em %{site_name}."
     long_name: "Busca de script de usuário em %{site_name}"
     attribution: "Cite a autoria original dos scripts, veja cada script individualmente para licenciamento"
+  mailers:
+    script_report:
+      report_created_offender:
+        subject: "O seu script %{script_name} no %{site_name} foi denunciado"
+        reason_unauthorized: "Seu script %{script_name} no %{site_name} foi denunciado como sendo uma cópia não autorizada ou modificação de outro script."
+        reason_malware: "Seu script %{script_name} no %{site_name} foi denunciado como sendo um malware."
+        reason_spam: "Seu script %{script_name} no %{site_name} foi denunciado como sendo spam."
+        reason_other: "Seu script %{script_name} foi denunciado por violar as regras do %{site_name}."
+        action: "Você pode rever este relatório em %{report_url} e enviar uma réplica. Caso você não envie uma réplica, seu script pode ser removido pelos moderadores. Se você tiver alguma dúvida, por favor visite https://greasyfork.org/forum/."
+      report_upheld_offender:
+        subject: "Seu script %{script_name} no %{site_name} foi removido"
+        text: "Seu script %{script_name} no %{site_name} foi removido por um moderador. Você pode rever esta denúncia em %{report_url}. Se você tiver alguma dúvida, por favor visite https://greasyfork.org/forum/."
+      report_dismissed_offender:
+        subject: "Uma denúncia do seu script %{script_name} no %{site_name} foi desfeita"
+        text: "Uma denúncia no seu script %{script_name} no %{site_name} foi indeferida por um moderador. Seu script continuará ativo. Você pode rever esta denúncia em %{report_url}. Se você tiver alguma dúvida, por favor visite https://greasyfork.org/forum/."
+      report_rebutted_reporter:
+        subject: "Sua denúncia no %{script_name} no %{site_name} recebeu uma resposta"
+        text: "Sua denúncia no %{script_name} no %{site_name} recebeu uma resposta. Você pode rever esta resposta em %{report_url}. Um moderador irá rever sua denúncia e esta resposta, e decidir o resultado. Se você tiver alguma dúvida, por favor visite https://greasyfork.org/forum/."
+      report_upheld_reporter:
+        subject: "Sua denúncia no %{script_name} no %{site_name} foi confirmada"
+        text: "Sua denúncia no %{script_name} no %{site_name} foi confirmada por um moderador e o script foi demovido. Você pode rever a denúncia em %{report_url}. Se você tiver alguma dúvida, por favor visite https://greasyfork.org/forum/."
+      report_script_deleted_reported:
+        subject: "Sua denúncia no %{script_name} no %{site_name} foi encerrada"
+        text: "Sua denúncia no %{script_name} no %{site_name} foi encerrada pois o script foi removido pelo autor.  Você pode rever esta denúncia em %{report_url}. Se você tem alguma dúvida, por favor visite https://greasyfork.org/forum/."
+      report_dismissed_reporter:
+        subject: "Sua denúncia no %{script_name} no %{site_name} foi indeferida"
+        text: "Sua denúncia no %{script_name} no %{site_name} foi indeferido por um moderador e o script que você denunciou continuará ativo. Você pode rever a denúncia em %{report_url}. Se você tiver alguma dúvida, por favor visite https://greasyfork.org/forum/."

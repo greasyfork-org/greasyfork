@@ -829,3 +829,23 @@ es:
     description: "Busca scripts de usuario en %{site_name}."
     long_name: "Búsqueda de scripts de usuario en %{site_name}"
     attribution: "Propiedad de los autores de cada script, para ver las distintas licencias abre cada script de forma individual."
+  mailers:
+    script_report:
+      report_created_offender:
+        subject: "Tu script %{script_name} en %{site_name} ha sido reportado"
+        reason_unauthorized: "Tu script %{script_name} en %{site_name} ha sido reportado como copia o modificación de un script de forma no autorizada."
+        reason_malware: "Tu script %{script_name} en %{site_name} ha sido reportado como malware."
+        reason_spam: "Tu script %{script_name} en %{site_name} ha sido reportado como spam."
+        action: "Puede revisar este informe en %{report_url} y enviar una refutación. Si no envía una refutación, los moderadores pueden eliminar su secuencia de comando. Si tiene alguna pregunta, visite https://greasyfork.org/forum/."
+      report_upheld_offender:
+        subject: "Tu script %{script_name} en %{site_name} ha sido eliminado."
+        text: "Tu script %{script_name} en %{site_name} ha sido eliminado por un moderador. Puede revisar el reporte en %{report_url}. Si tiene alguna pregunta, por favor visire https://greasyfork.org/forum/ ."
+      report_dismissed_offender:
+        subject: "Un reporte en su script %{script_name} en %{site_name} ha sido ignorado"
+      report_rebutted_reporter:
+        subject: "Alguien ha contestado a tu denuncia de %{script_name} en %{site_name}"
+        text: "Alguien ha contestado a tu denuncia de %{script_name} en %{site_name}. Puedes ver la respuesta en %{report_url}. Un moderador revisará el problema y verá si existe o no. Si tienes dudas puedes escribirnos en https://greasyfork.org/forum/."
+      report_script_deleted_reported:
+        subject: "Se ha cerrado el informe de %{script_name} en %{site_name}"
+      report_dismissed_reporter:
+        subject: "Se ha revisado tu denuncia en %{site_name} y %{script_name} no parece incumplir las normas."

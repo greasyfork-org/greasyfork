@@ -848,3 +848,30 @@ sk:
     description: "Hľadanie skriptov na %{site_name}."
     long_name: "Hľadanie skriptov na %{site_name}"
     attribution: "Autorské práva autorov skriptov nájdete na jednotlivých stránkach skriptov"
+  mailers:
+    script_report:
+      report_created_offender:
+        subject: "Váš skript %{script_name} na %{site_name} bol nahlásený"
+        reason_unauthorized: "Váš skript %{script_name} na %{site_name}bol nahlásený ako neautorizovaná kópia alebo modifikácia iného skriptu."
+        reason_malware: "Váš skript %{script_name} na %{site_name} bol nahlásený ako malvér."
+        reason_spam: "Váš skript %{script_name} na %{site_name} bol nahlásený ako spam."
+        reason_other: "Váš skript %{script_name} bol nahlásený pre porušovanie pravidiel stránky %{site_name}."
+        action: "Toto hlásenie si môžete prezrieť na %{report_url} a odoslať protiargumenty. Ak nepošlete dôkazy o neopodstatnenosti, váš skript môže byť moderátorom odstránený. Ak máte nejaké otázky, prosím, navštívte https://greasyfork.org/forum/."
+      report_upheld_offender:
+        subject: "Váš skript %{script_name} na %{site_name} bol odstránený"
+        text: "Váš skript %{script_name} na %{site_name} bol odstránený moderátorom. Správu o hlásení si môžete pozrieť na %{report_url}. Ak máte nejaké otázky, prosím, navštívte https://greasyfork.org/forum/."
+      report_dismissed_offender:
+        subject: "Sťažnosť na váš skript %{script_name} na %{site_name} bola zamietnutá"
+        text: "Sťažnosť na váš skript %{script_name} na %{site_name} bola zamietnutá moderátorom. Váš skript zostane aktívny. Správu o hlásení si môžete pozrieť na %{report_url}. Ak máte nejaké otázky, prosím, navštívte https://greasyfork.org/forum/."
+      report_rebutted_reporter:
+        subject: "Na vašu sťažnosť na %{script_name} na %{site_name} ste dostali odpoveď"
+        text: "Na vašu sťažnosť na %{script_name} na %{site_name} ste dostali odpoveď. Na správu o hlásení môžete odpovedať na %{report_url}. Moderátor posúdi vašu sťažnosť a túto reakciu a rozhodne o výsledku. Ak máte nejaké otázky, prosím, navštívte https://greasyfork.org/forum/."
+      report_upheld_reporter:
+        subject: "Vašej sťažnosti na %{script_name} na %{site_name} bolo vyhovené"
+        text: "Vašej sťažnosti na %{script_name} na %{site_name} bolo vyhovené moderátorom a skript bol odstránený. Správu o hlásení si môžete pozrieť na %{report_url}. Ak máte nejaké otázky, prosím, navštívte https://greasyfork.org/forum/."
+      report_script_deleted_reported:
+        subject: "Vaša sťažnosť na %{script_name} na %{site_name} bola uzavretá"
+        text: "Vaša sťažnosť na %{script_name} na %{site_name} bola uzavretá a skript bol odstránený autorom. Správu o hlásení si môžete pozrieť na %{report_url}. Ak máte nejaké otázky, prosím, navštívte https://greasyfork.org/forum/."
+      report_dismissed_reporter:
+        subject: "Vaša sťažnosť na %{script_name} na %{site_name} bola zamietnutá"
+        text: "Vaša sťažnosť na %{script_name} na %{site_name} bola zamietnutá moderátorom a skript, ktorý ste nahlásili zostáva aktívny. Správu o hlásení si môžete pozrieť na %{report_url}. Ak máte nejaké otázky, prosím, navštívte https://greasyfork.org/forum/."

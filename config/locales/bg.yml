@@ -829,3 +829,30 @@ bg:
     description: "Търсене на потребителски скриптове в %{site_name}."
     long_name: "%{site_name} търсене на потребителски скриптове"
     attribution: "Авторски права на скриптовете, вижте лицензите на всеки един скрипт "
+  mailers:
+    script_report:
+      report_created_offender:
+        subject: "Скриптът ви %{script_name} на %{site_name} беше докладван"
+        reason_unauthorized: "Вашият скрипт %{script_name} на %{site_name} беше докладван, че е неоторизирано копие или модификация на друг скрипт."
+        reason_malware: "Скриптът ви %{script_name} на %{site_name} беше докладван като зловреден."
+        reason_spam: "Скриптът ви %{script_name} на %{site_name} беше докладван като спам."
+        reason_other: "Вашият скрипт %{script_name} е докладван като нарушаващ правилата на %{site_name}."
+        action: "Можете да прегледате доклада на %{report_url} да изпратите опровержение. Ако не изпратите опровержение, скриптът ви може да бъде изтрит от модераторите. Ако имате въпроси, моля посетете https://greasyfork.org/forum/."
+      report_upheld_offender:
+        subject: "Скриптът ви %{script_name} на %{site_name} беше изтрит"
+        text: "Вашият скрипт %{script_name} на %{site_name} беше изтрит от модератор. Можете да прегледате доклада на %{report_url}. Ако имате някакви въпроси, моля посетете https://greasyfork.org/forum/."
+      report_dismissed_offender:
+        subject: "Доклад на скриптът ви %{script_name} на %{site_name} беше отхвърлен"
+        text: "Доклад за вашия скрипт %{script_name} на %{site_name} беше отхвърлен от модератор. Скритът ви ще остане активен. Можете да прегледате доклада на %{report_url}. Ако имате някакви въпроси, моля посетете https://greasyfork.org/forum/."
+      report_rebutted_reporter:
+        subject: "Има отговор на доклада ви за %{script_name} в %{site_name}"
+        text: "Има отговор на вашия доклад за %{script_name} в %{site_name}. Можете да го прегледате на %{report_url}. Модератор ще прегледа доклада ви и отговора, и ще избере по-нататъшните действия. Ако имате някакви въпроси, моля посетете https://greasyfork.org/forum/."
+      report_upheld_reporter:
+        subject: "Докладът ви за %{script_name} на %{site_name} беше потвърден"
+        text: "Вашият доклад за %{script_name} на %{site_name} беше потвърден от модератор и скриптът беше изтрит. Можете да прегледате доклада на %{report_url}. Ако имате някакви въпроси, моля посетете https://greasyfork.org/forum/."
+      report_script_deleted_reported:
+        subject: "Докладът ви за %{script_name} на %{site_name} беше затворен"
+        text: "Вашият доклад за %{script_name} на %{site_name} беше затворен, защото скриптът беше изтрит от автора си. Можете да прегледате доклада на %{report_url}. Ако имате някакви въпроси, моля посетете https://greasyfork.org/forum/."
+      report_dismissed_reporter:
+        subject: "Докладът ви за %{script_name} на %{site_name} беше отхвърлен"
+        text: "Вашият доклад за %{script_name} на %{site_name} беше отхвърлен от модератор и докладваният скрипт остава активен. Можете да прегледате доклада на %{report_url}. Ако имате някакви въпроси, моля посетете https://greasyfork.org/forum/."
