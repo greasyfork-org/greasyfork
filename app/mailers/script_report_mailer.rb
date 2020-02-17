@@ -78,9 +78,9 @@ class ScriptReportMailer < ApplicationMailer
     reporters = [report.reporter]
     reporters += report.reference_script.users if report.reference_script
     reporters.compact.uniq.each do |user|
-      mail(to: user.email, subject: subject_lambda.call(user.locale)) do |format|
+      mail(to: user.email, subject: subject_lambda.call(user.available_locale_code)) do |format|
         format.text {
-          render plain: text_lambda.call(user.locale)
+          render plain: text_lambda.call(user.available_locale_code)
         }
       end
     end
@@ -88,9 +88,9 @@ class ScriptReportMailer < ApplicationMailer
 
   def mail_to_offender(report, subject_lambda, text_lambda)
     report.script.users.each do |user|
-      mail(to: user.email, subject: subject_lambda.call(user.locale)) do |format|
+      mail(to: user.email, subject: subject_lambda.call(user.available_locale_code)) do |format|
         format.text {
-          render plain: text_lambda.call(user.locale)
+          render plain: text_lambda.call(user.available_locale_code)
         }
       end
     end
