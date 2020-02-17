@@ -35,9 +35,13 @@ case @script_report.report_type
     <li>The script's description or code points to another location for the "real" script.</li>
   </ul>
 
-  <p>Note that scripts are allowed to contain advertisements in additional to their functionality if these are disclosed in their descriptions.</p>
+  <p>Note that scripts are allowed to contain advertisements in addition to their functionality if these are disclosed in their descriptions.</p>
 
   <p>If you would like to report this script for a different reason, visit <%= link_to 'the report page', report_script_path(@script), rel: :nofollow %>.</p>
+
+<% when ScriptReport::TYPE_OTHER %>
+  <%- title 'Report rule violation' %>
+  <p>Use the form below for reporting a script that violates one of <%= link_to "#{site_name}'s rules", help_code_rules_path %> that is not otherwise specified on <%= link_to 'the report page', report_script_path(@script), rel: :nofollow %>.</p>
 
 <% end %>
 
@@ -88,6 +92,8 @@ case @script_report.report_type
         Which parts of the script were copied (e.g. entire script, or use line numbers)?
       <% when ScriptReport::TYPE_MALWARE %>
         What does this script do (include line numbers if known)?
+      <% when ScriptReport::TYPE_OTHER %>
+        What rule is this violating?
       <% end %>
     </span>
     <%= f.text_area :details, required: true %>

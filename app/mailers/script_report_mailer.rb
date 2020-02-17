@@ -9,6 +9,7 @@ class ScriptReportMailer < ApplicationMailer
                     when ScriptReport::TYPE_UNAUTHORIZED_CODE; t('mailers.script_report.report_created_offender.reason_unauthorized', locale: locale, script_name: report.script.name(locale), site_name: site_name)
                     when ScriptReport::TYPE_MALWARE; t('mailers.script_report.report_created_offender.reason_malware', locale: locale, script_name: report.script.name(locale), site_name: site_name)
                     when ScriptReport::TYPE_SPAM; t('mailers.script_report.report_created_offender.reason_spam', locale: locale, script_name: report.script.name(locale), site_name: site_name)
+                    when ScriptReport::TYPE_OTHER; t('mailers.script_report.report_created_offender.reason_other', locale: locale, script_name: report.script.name(locale), site_name: site_name)
                     end
       reason_text + ' ' + t('mailers.script_report.report_created_offender.action', locale: locale, report_url: script_script_report_url(report.script, report, locale: locale))
     }

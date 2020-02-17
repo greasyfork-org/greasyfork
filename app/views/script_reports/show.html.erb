@@ -16,6 +16,11 @@ when ScriptReport::TYPE_UNAUTHORIZED_CODE %>
     <%= link_to @script_report.script.name(I18n.locale), @script_report.script %> by <%= @script_report.script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> has been reported as spam.
   </p>
 
+<% when ScriptReport::TYPE_OTHER %>
+  <p>
+    <%= link_to @script_report.script.name(I18n.locale), @script_report.script %> by <%= @script_report.script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> has been reported as violating <%= link_to "#{site_name}'s rules", help_code_rules_path %>.
+  </p>
+
 <% end %>
 
 <p><%= @script_report.reporter ? link_to(@script_report.reporter.name, @script_report.reporter) : '<i>(Deleted user)</i>'.html_safe %> says:</p>

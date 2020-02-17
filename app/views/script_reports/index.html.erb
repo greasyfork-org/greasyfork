@@ -7,10 +7,13 @@
   <ul>
     <% @script.script_reports.each do |report| %>
       <li>
-        <% if report.unauthorized_code? %>
+        <% case report.report_type %>
+        <% when ScriptReport::TYPE_UNAUTHORIZED_CODE %>
           Unauthorized copy of <%= link_to report.reference_script.name(I18n.locale), report.reference_script %> -
-        <% else %>
+        <% when ScriptReport::TYPE_MALWARE %>
           Malware
+        <% when ScriptReport::TYPE_SPAM %>
+          Spam
         <% end %>
         <%= link_to 'View report', script_script_report_path(report.script, report) %> - 
         <% if report.upheld? %>
@@ -25,4 +28,4 @@
   </ul>
 <% end %>
 
-<p><%= link_to 'Create a new report', new_script_script_report_path(@script) %></p>
+<p><%= link_to 'Create a new report', report_script_path(@script) %></p>
