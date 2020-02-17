@@ -260,7 +260,7 @@ module ScriptListings
       end
       if !params[:set].nil?
         set = ScriptSet.find(params[:set])
-        set_script_ids = cache_with_log([set, script_subset]) do
+        set_script_ids = cache_with_log(set, namespace: script_subset) do
           set.scripts(script_subset).map{|s| s.id}
         end
         scripts = scripts.where(:id => set_script_ids)

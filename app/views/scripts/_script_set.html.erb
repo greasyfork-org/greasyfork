@@ -12,7 +12,7 @@
       sets_direct_exclusion << set
       next
     end
-    set_script_ids = cache_with_log([set, script_subset]) do
+    set_script_ids = cache_with_log(set, namespace: script_subset) do
       set.scripts(script_subset).map{|s| s.id}
     end
     if set_script_ids.include?(script.id)

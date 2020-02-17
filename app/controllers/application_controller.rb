@@ -131,7 +131,8 @@ protected
   end
 
   def self.cache_with_log(key, options = {})
-    key = key.map{|k| k.respond_to?(:cache_key) ? k.cache_key : k} if key.is_a?(Array)
+    options[:version] = key.cache_version if key.respond_to?(:cache_version)
+    key = options.delete(:namespace).to_s + '/' + (key.respond_to?(:cache_key) ? key.cache_key : key.to_s) if options[:namespace]
     Rails.cache.fetch(key, options) do
       Rails.logger.warn("Cache miss - #{key} - #{options}") if Greasyfork::Application.config.log_cache_misses
       o = yield
