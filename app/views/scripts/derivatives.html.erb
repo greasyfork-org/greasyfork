@@ -6,12 +6,12 @@
 <h3><code>@namespace</code></h3>
 
 <% if !@script.namespace.nil? %>
-	<%=render :partial => 'derivatives_list', :locals => {:description => t('scripts.derivatives_namespace_matches_info_html', :namespace => "@namespace #{@script.namespace}"), :scripts => @same_namespaces} %>
+	<%= render partial: 'derivatives_list', locals: { description: t('scripts.derivatives_namespace_matches_info_html', :namespace => "@namespace #{@script.namespace}"), script: @script, scripts: @same_namespaces } %>
 <% end %>
 
 <h3><code>@name</code></h3>
 
-<%=render :partial => 'derivatives_list', :locals => {:description => t('scripts.derivatives_name_matches_info'), :scripts => @similar_name_scripts} %>
+<%= render partial: 'derivatives_list', locals: { description: t('scripts.derivatives_name_matches_info'), script: @script, scripts: @similar_name_scripts } %>
 
 <h3>Code</h3>
 

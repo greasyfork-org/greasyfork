@@ -1,12 +1,12 @@
 <p><%=description.html_safe%></p>
 <% if scripts.empty? %>
-	<p><%=t('scripts.listing_none')%></p>
+  <p><%=t('scripts.listing_none')%></p>
 <% else %>
-	<ul>
-		<% scripts.each do |script| %>
-			<li>
-				<%=t('scripts.derivatives_script_html', {:script_link => link_to(script.name(I18n.locale), script), :user_link => script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe, :license => license_display(script)})%>
-			</li>
-		<% end %>
-	</ul>
+  <ul>
+    <% scripts.each do |other_script| %>
+      <li>
+        <%= it('scripts.derivatives_script_html', { script: link_to(script.name(I18n.locale), other_script), user: other_script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe, license: license_display(other_script), diff_link: admin_script_path(script, compare: script_path(other_script), anchor: 'script-comparison') }) %>
+      </li>
+    <% end %>
+  </ul>
 <% end %>
