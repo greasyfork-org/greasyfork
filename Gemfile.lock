@@ -1,13 +1,4 @@
 GIT
-  remote: https://github.com/omniauth/omniauth-github.git
-  revision: 967d76979b6bf9bb0b71b255ad204f8931f65be6
-  branch: master
-  specs:
-    omniauth-github (1.3.0)
-      omniauth (~> 1.5)
-      omniauth-oauth2 (>= 1.4.0, < 2.0)
-
-GIT
   remote: https://github.com/tigrish/devise-i18n.git
   revision: 59b665ff564d116ac160291f750df514af725105
   specs:
@@ -155,7 +146,7 @@ GEM
       simpleidn
     erubi (1.9.0)
     execjs (2.7.0)
-    faraday (0.17.1)
+    faraday (0.17.3)
       multipart-post (>= 1.2, < 3)
     faraday_middleware (0.13.1)
       faraday (>= 0.7.4, < 1.0)
@@ -217,7 +208,7 @@ GEM
       mini_portile2 (~> 2.4.0)
     nokogumbo (2.0.2)
       nokogiri (~> 1.8, >= 1.8.4)
-    oauth2 (1.4.2)
+    oauth2 (1.4.4)
       faraday (>= 0.8, < 2.0)
       jwt (>= 1.0, < 3.0)
       multi_json (~> 1.3)
@@ -226,6 +217,9 @@ GEM
     omniauth (1.9.0)
       hashie (>= 3.4.6, < 3.7.0)
       rack (>= 1.6.2, < 3)
+    omniauth-github (1.4.0)
+      omniauth (~> 1.5)
+      omniauth-oauth2 (>= 1.4.0, < 2.0)
     omniauth-gitlab (2.0.0)
       omniauth (~> 1.0)
       omniauth-oauth2 (~> 1.0)
@@ -247,7 +241,7 @@ GEM
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
     public_suffix (4.0.3)
-    rack (2.1.2)
+    rack (2.2.2)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (6.0.2.1)
@@ -404,7 +398,7 @@ DEPENDENCIES
   mysql2
   newrelic_rpm
   omniauth (>= 1.6.0)
-  omniauth-github!
+  omniauth-github
   omniauth-gitlab
   omniauth-google-oauth2 (>= 0.4.1)
   omniauth-rails_csrf_protection
