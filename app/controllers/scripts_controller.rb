@@ -596,7 +596,7 @@ class ScriptsController < ApplicationController
     return if redirect_to_slug(@script, :id)
 
     similar_names = {}
-    Script.search(@script.default_name.split(/[\s\-\|]+/).map{ |w| ThinkingSphinx::Query.escape(w) }.join(' | ')).each do |other_script|
+    Script.search(@script.default_name.split(/[\s\-\|\/]+/).map{ |w| ThinkingSphinx::Query.escape(w) }.join(' | ')).each do |other_script|
       next if (other_script.users & @script.users).any?
       other_script.localized_names.each do |ln|
         dist = Levenshtein.normalized_distance(@script.name, ln.attribute_value)
