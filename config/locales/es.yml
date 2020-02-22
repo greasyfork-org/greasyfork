@@ -120,6 +120,7 @@ es:
       other: "Scripts escritos por otros que incluyen código con al menos %{match_size} líneas en común con tu script. Esta comprobación se ejecuta sólo en los scripts de menos de %{max_size} y se ejecutó por última vez el %{last_run}."
     derivatives_namespace_matches_info_html: "Scripts publicados por otros usando <code>%{namespace}</code>:"
     derivatives_name_matches_info: "Scripts publicados por otros con los nombres más similares al suyo:"
+    derivatives_script_html: "%{script} por %{user}, licencia: %{license} %{diff_link:[Diff]}"
     derivatives_script_with_code_line_html: "%{script_lines_link} por %{user_link}, licencia: %{license}"
     script_lines_link: "%{script_name}, líneas de %{start} a %{end}"
     listing_title_all_sites: "Scripts de usuario para todos los sitios"
@@ -835,16 +836,23 @@ es:
         reason_unauthorized: "Tu script %{script_name} en %{site_name} ha sido reportado como copia o modificación de un script de forma no autorizada."
         reason_malware: "Tu script %{script_name} en %{site_name} ha sido reportado como malware."
         reason_spam: "Tu script %{script_name} en %{site_name} ha sido reportado como spam."
+        reason_other: "Su script %{script_name} ha sido reportado como violador de las normas de %{site_name}."
         action: "Puede revisar este informe en %{report_url} y enviar una refutación. Si no envía una refutación, los moderadores pueden eliminar su secuencia de comando. Si tiene alguna pregunta, visite https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Tu script %{script_name} en %{site_name} ha sido eliminado."
         text: "Tu script %{script_name} en %{site_name} ha sido eliminado por un moderador. Puede revisar el reporte en %{report_url}. Si tiene alguna pregunta, por favor visire https://greasyfork.org/forum/ ."
       report_dismissed_offender:
         subject: "Un reporte en su script %{script_name} en %{site_name} ha sido ignorado"
+        text: "Un reporte en tu script %{script_name} en %{site_name} ha sido ignorado por un moderador. Tu script seguirá activo. Puede ver el reporte en %{report_url}. Si tiene alguna pregunta, por favor visite https://greasyfork.org/forum/ ."
       report_rebutted_reporter:
         subject: "Alguien ha contestado a tu denuncia de %{script_name} en %{site_name}"
         text: "Alguien ha contestado a tu denuncia de %{script_name} en %{site_name}. Puedes ver la respuesta en %{report_url}. Un moderador revisará el problema y verá si existe o no. Si tienes dudas puedes escribirnos en https://greasyfork.org/forum/."
+      report_upheld_reporter:
+        subject: "Tu reporte de %{script_name} en %{site_name} ha sido confirmada"
+        text: "Tu reporte de %{script_name} en %{site_name} ha sido confirmado por un moderador y el script ha sido eliminado. Puede ver el reporte en %{report_url}. Si tiene alguna pregunta, por favor visite https://greasyfork.org/forum/ ."
       report_script_deleted_reported:
         subject: "Se ha cerrado el informe de %{script_name} en %{site_name}"
+        text: "Tu reporte de %{script_name} en %{site_name} ha sido cerrado porque ha sido eliminado por su autor. Puede ver su reporte en %{report_url}. Si tiene alguna pregunta, por favor visite https://greasyfork.org/forum/ ."
       report_dismissed_reporter:
         subject: "Se ha revisado tu denuncia en %{site_name} y %{script_name} no parece incumplir las normas."
+        text: "Tu reporte en %{script_name} en %{site_name} ha sido ignorado por u moderador y el script que ha reportado seguirá activo. Puede ver su reporte en %{report_url}. Si tiene alguna pregunta, por favor visite https://greasyfork.org/forum/."
