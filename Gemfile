@@ -36,7 +36,6 @@ gem 'omniauth-google-oauth2', '>= 0.4.1'
 gem 'omniauth-rails_csrf_protection'
 gem 'detect_language'
 gem 'levenshtein'
-gem 'fuzzy-string-match'
 gem "paperclip"
 gem 'it'
 gem 'rb-readline'

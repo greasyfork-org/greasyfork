@@ -3,7 +3,6 @@ require 'csv'
 require 'fileutils'
 require 'cgi'
 require 'css_to_js_converter'
-require 'fuzzystringmatch'
 
 class ScriptsController < ApplicationController
   include ScriptAndVersions
@@ -620,15 +619,15 @@ class ScriptsController < ApplicationController
   end
 
   def similar_search
-    base_code = @script.current_code
     scripts = Script.search(params[:terms], order: 'daily_installs DESC', page: params[:page], per_page: 25, populate: true)
-    jarow = FuzzyStringMatch::JaroWinkler.create(:native)
+    similiarities = CodeSimilarityScorer.get_similarities(@script, scripts.map(&:id))
+
     results = scripts.map do |s|
       {
         id: s.id,
         url: script_path(s),
         name: s.name(I18n.locale),
-        distance: jarow.getDistance(base_code, s.current_code).round(3),
+        distance: similiarities[s.id].round(3),
       }
     end
     render json: results
