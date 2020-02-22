@@ -32,7 +32,8 @@ when ScriptReport::TYPE_UNAUTHORIZED_CODE %>
 <% end %>
 
 <% if @script_report.rebuttal.present? %>
-  <p><%= @script_report.script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> has responded: "<i><%= @script_report.rebuttal %></i>"
+  <p><%= @script_report.script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> has responded:</p>
+  <blockquote><%= @script_report.rebuttal %></blockquote>
 <% else %>
   <p><%= @script_report.script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> has not yet responded to this report.
 <% end %>
@@ -140,7 +141,7 @@ when ScriptReport::TYPE_UNAUTHORIZED_CODE %>
       </div>
       <p>Delete the script if it's breaking the rules.</p>
       <div class="form-control">
-        <%= text_area_tag(:moderator_note, nil, placeholder: 'Dismissal notes (optional)') %>
+        <%= text_area_tag(:moderator_note, nil, placeholder: 'Deletion notes (optional)') %>
       </div>
 
       <% banned_users, users_to_ban = @script_report.script.users.partition(&:banned) %>
