@@ -6,7 +6,8 @@
   <li><%= link_to 'Blocked URLs', admin_blocked_script_urls_path %></li>
   <li><%= link_to 'Redirect Service Domains', admin_redirect_service_domains_path %></li>
   <li><%= link_to 'Spammy Email Domains', admin_spammy_email_domains_path %></li>
-  <li><%=link_to "Possibly minified", minified_scripts_path%></li>
+  <li><%= link_to "Possibly minified", minified_scripts_path %></li>
+  <li><%= link_to "Reported: #{Script.reported.count}", reported_scripts_path %></li>
   <li><%=link_to "Reported as not adult content: #{Script.reported_not_adult.count}", reported_not_adult_scripts_path%></li>
   <li><%=link_to "Requested permanent deletion: #{Script.requested_permanent_deletion.count}", requested_permanent_deletion_scripts_path%></li>
   <% if current_user.administrator? %>
