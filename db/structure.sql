@@ -1059,7 +1059,7 @@ CREATE TABLE `delayed_jobs` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `delayed_jobs_priority` (`priority`,`run_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=138449 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=138452 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `disallowed_attributes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1347,7 +1347,7 @@ CREATE TABLE `script_reports` (
   CONSTRAINT `fk_rails_6107f26e1e` FOREIGN KEY (`reference_script_id`) REFERENCES `scripts` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_rails_70bdd3688c` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_rails_8cb0f3e455` FOREIGN KEY (`reporter_id`) REFERENCES `users` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=391 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=396 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `script_set_automatic_set_inclusions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1383,7 +1383,7 @@ CREATE TABLE `script_set_script_inclusions` (
   PRIMARY KEY (`id`),
   KEY `index_script_set_script_inclusions_on_parent_id` (`parent_id`),
   KEY `index_script_set_script_inclusions_on_child_id` (`child_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=301779 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=301800 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `script_set_set_inclusions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1414,6 +1414,22 @@ CREATE TABLE `script_sets` (
   KEY `index_script_sets_on_user_id` (`user_id`),
   CONSTRAINT `fk_rails_faace970e1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=360193 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `script_similarities`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `script_similarities` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `script_id` int(11) NOT NULL,
+  `other_script_id` int(11) NOT NULL,
+  `similarity` decimal(4,3) NOT NULL,
+  `checked_at` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index_script_similarities_on_script_id_and_other_script_id` (`script_id`,`other_script_id`),
+  KEY `fk_rails_3fba862a5b` (`other_script_id`),
+  CONSTRAINT `fk_rails_3fba862a5b` FOREIGN KEY (`other_script_id`) REFERENCES `scripts` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_rails_a0ca33ef1d` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `script_sync_sources`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1633,7 +1649,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `index_users_on_reset_password_token` (`reset_password_token`),
   UNIQUE KEY `index_users_on_confirmation_token` (`confirmation_token`),
   KEY `index_users_on_name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=426501 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=426502 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -1800,6 +1816,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20200112155750'),
 ('20200112162130'),
 ('20200122030130'),
-('20200216204021');
+('20200216204021'),
+('20200222033044');
 
 

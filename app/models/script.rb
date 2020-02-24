@@ -177,6 +177,10 @@ class Script < ActiveRecord::Base
     end
   end
 
+  after_save do |script|
+    ScriptDuplicateCheckerJob.perform_later(script.id) if script.saved_change_to_code_updated_at?
+  end
+
   def apply_from_script_version(script_version)
     # Copy additional_info from script versions. Retain syncing info.
     original_script_las = localized_attributes_for('additional_info').to_a
