@@ -2,10 +2,10 @@ module ScriptListings
   extend ActiveSupport::Concern
 
   COLLECTION_PUBLIC_ACTIONS = [:index, :search, :libraries, :code_search, :by_site]
-  COLLECTION_MODERATOR_ACTIONS = [:reported, :reported_unauthorized, :reported_not_adult, :requested_permanent_deletion, :minified]
+  COLLECTION_MODERATOR_ACTIONS = [:reported_unauthorized, :reported_not_adult, :requested_permanent_deletion, :minified]
 
   included do 
-    layout 'list', only: [:index, :search, :libraries, :reported, :reported_unauthorized, :reported_not_adult, :requested_permanent_deletion, :minified, :code_search]
+    layout 'list', only: [:index, :search, :libraries, :reported_unauthorized, :reported_not_adult, :requested_permanent_deletion, :minified, :code_search]
   end
 
   def index
@@ -193,10 +193,6 @@ module ScriptListings
       redirect_to scripts_path
       return
     end
-  end
-
-  def reported
-    @scripts = Script.reported
   end
 
   def reported_unauthorized

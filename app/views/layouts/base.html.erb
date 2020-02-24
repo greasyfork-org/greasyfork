@@ -46,11 +46,7 @@
         <div id="nav-user-info">
           <% if user_signed_in? %>
             <% if current_user.moderator? %>
-              <% reported_count = Script.reported_old.count
-              if reported_count > 0 %>
-                <%= link_to "[#{reported_count}]", reported_scripts_path %>
-              <% end
-              reported_unauthorized_count = ScriptReport.unresolved_old.count %>
+              <% reported_unauthorized_count = ScriptReport.unresolved_old.count %>
               <% if reported_unauthorized_count > 0 %>
                 <%= link_to "[#{reported_unauthorized_count}]", reported_unauthorized_scripts_path %>
               <% end %>
