@@ -11,8 +11,6 @@ $Definition['RatingLabel'] = 'Jak byste ohodnotili tento skript?';
 $Definition['RatingUpdateLabel'] = 'Upravit hodnocení:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = 'Žádné hodnocení - pouze dotaz, připomínka, požadavek na funkcionalitu nebo hlášení chyby';
-## Label for the radio button for reporting a script
-$Definition['RatingReport'] = '<div class="report">Nahlásit skript moderátorům, například:<ul><li>Malware - popište která část kódu je škodlivá</li><li>License/copyright - popište a uveďte odkaz na originální zdroj kódu, případně uveďte další potvrzení zneužití</li></ul></div>';
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = 'Špatné - skript nefunguje';
 /** Label for the radio button for rating a script "OK" **/

@@ -11,8 +11,6 @@ $Definition['RatingLabel'] = 'Đánh giá của bạn về script này?';
 $Definition['RatingUpdateLabel'] = 'Cập nhật đánh giá của bạn:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = 'Không đánh giá - chỉ là một câu hỏi, bình luận, yêu cầu tính năng, hoặc báo cáo lỗi';
-## Label for the radio button for reporting a script
-$Definition['RatingReport'] = '<div class="report">Báo cáo script cho người kiểm duyệt để xóa, ví dụ:<ul><li>Phần mềm độc hại - mô tả phần nào của mã là độc hại</li><li>Giấy phép/bản quyền - mô tả và liên kết đến nguồn gốc của mã và cung cấp bất kỳ bằng chứng khác</li></ul></div>';
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = 'Tồi tệ - script không làm việc';
 /** Label for the radio button for rating a script "OK" **/

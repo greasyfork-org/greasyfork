@@ -11,8 +11,6 @@ $Definition['RatingLabel'] = 'Kako biste ocenili ovu skriptu?';
 $Definition['RatingUpdateLabel'] = 'Promenite svoju ocenu:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = 'Bez ocene - samo pitanje,  komentar, zahtev ili prijava greske';
-## Label for the radio button for reporting a script
-$Definition['RatingReport'] = '<div class="report">Prijavite Skriptu moderatoru za brisanje, na primer<ul><li>Virus-opisite koji deo koda je zlonameran</li><li>Licenciranje/autorska prava-opišite i dodajte link originalnog koda za scriptu i dokažite bilo koji presud</li></ul></div>';
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = 'Lose - Skripta ne radi';
 /** Label for the radio button for rating a script "OK" **/

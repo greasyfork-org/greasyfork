@@ -11,8 +11,6 @@ $Definition['RatingLabel'] = '이 스크립트는 어떤가요?';
 $Definition['RatingUpdateLabel'] = '평점 갱신:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = '평점이 없습니다 - 일반 질문, 의견, 기능 추가 요청, 또는 버그 신고입니다.';
-## Label for the radio button for reporting a script
-$Definition['RatingReport'] = '<div class="report">중재자에게 스크립트 삭제를 요청하세요, 예시:<ul><li>멀웨어 - 코드의 유해한 부분을 서술해주세요</li><li>라이센스/저작권 - 코드의 원 출처 링크 혹은 다른 증거를 제시하세요</li></ul></div>';
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = '나쁨 - 스크립트가 작동하지 않습니다.';
 /** Label for the radio button for rating a script "OK" **/

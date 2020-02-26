@@ -11,8 +11,6 @@ $Definition['RatingLabel'] = 'كيف تقيم هذا البرنامج النصي
 $Definition['RatingUpdateLabel'] = 'تحديث تقييمك:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = 'لا يوجد تقييم - مجرد سؤال، تعليق، طلب ميزة، أو تقرير أخطاء';
-## Label for the radio button for reporting a script
-$Definition['RatingReport'] = '<div class="report">إبلاغ المشرفين لإزالة البرنامج النصي، مثلاً::<ul><li>برنامج خبيث - حدد أي جزء من الكود هو مشبوه</li><li>الترخيص/حقوق النسخ - وضح وقم بإضافة رابط للمصدر الأصلي وأي أدلة أخرى</li></ul></div>';
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = 'سيء - البرنامج النصي لا يعمل';
 /** Label for the radio button for rating a script "OK" **/

@@ -11,8 +11,6 @@ $Definition['RatingLabel'] = '您想如何评价这个脚本？';
 $Definition['RatingUpdateLabel'] = '更新您的评分：';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = '无评分 - 只是一个询问、评论、功能要求或错误报告';
-## Label for the radio button for reporting a script
-$Definition['RatingReport'] = '<div class="report">通过向管理员举报来要求移除脚本，例如：<ul><li> - 恶意软件 - 需描述代码的哪一部分存在恶意行为。</li><li>许可/版权问题 - 描述并提供原始代码的链接及其他可能的证据</li></ul></div>';
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = '差评 - 脚本失效或无法使用';
 /** Label for the radio button for rating a script "OK" **/

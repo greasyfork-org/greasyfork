@@ -11,8 +11,6 @@ $Definition['RatingLabel'] = 'דרג את הסקריפט';
 $Definition['RatingUpdateLabel'] = 'עדכן את הדירוג שלך:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = 'ללא דירוג- רק שאלה, הערה, בקשה להוספת יכולת או דיווח על תקלה';
-## Label for the radio button for reporting a script
-$Definition['RatingReport'] = '<div class="report"> דווח על הסקריפט למנהלים להסרתו, לדוגמא: <ul><li> תוכנה זדונית - לתאר איזה חלק בקוד הוא זדוני </li><li> רישוי / זכויות יוצרים - תאר ותן קישור למקור המקורי של הקוד ותספק ראיות אחרות </li></ul></div>';
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = 'לא טוב- הסקריפט אינו עובד';
 /** Label for the radio button for rating a script "OK" **/

@@ -11,8 +11,6 @@ $Definition['RatingLabel'] = 'Cum doriți să notați acest script?';
 $Definition['RatingUpdateLabel'] = 'Actualizează-ți nota:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = 'Fără note - doar întrebări, comentarii, cereri, sau raportare de bug-uri';
-## Label for the radio button for reporting a script
-$Definition['RatingReport'] = '<div class="report">Raportează scriptul moderatorilor pentru a fi șters, de exemplu:<ul><li>Malware - explică care porțiune a codului este malițioasă</li><li>Licențiere/drepturi de autor - explică și indică o legătură către sursa originală a codului, oferind și alte evidențe suplimentare</li></ul></div>';
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = 'Rău - scriptul nu funcționează';
 /** Label for the radio button for rating a script "OK" **/

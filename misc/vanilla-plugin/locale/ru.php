@@ -11,8 +11,6 @@ $Definition['RatingLabel'] = 'Как бы вы оценили этот скри�
 $Definition['RatingUpdateLabel'] = 'Обновить оценку:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = 'Без оценки — просто вопрос, комментарий, сообщение об ошибке, запрос добавления новых функций';
-## Label for the radio button for reporting a script
-$Definition['RatingReport'] = '<div class="report">Запросить удаление скрипта, например если:<ul><li>Это вредоносный скрипт — опишите какая его часть опасна</li><li>Это плагиат — приведите ссылку на оригинальный код и прочие доказательства</li></ul></div>';
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = 'Плохой — скрипт не работает';
 /** Label for the radio button for rating a script "OK" **/

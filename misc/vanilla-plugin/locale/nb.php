@@ -11,8 +11,6 @@ $Definition['RatingLabel'] = 'Hvordan vil du vurdere dette skriptet?';
 $Definition['RatingUpdateLabel'] = 'Oppdater din vurdering:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = 'Ingen vurdering - bare et spørsmål, en kommentar, et innholdsønske eller en programvarefeilrapport';
-## Label for the radio button for reporting a script
-$Definition['RatingReport'] = '<div class="report">Rapporter skriptet til moderatorer for fjerning, for eksempel:<ul><li>Skadevare - beskriv hvilken del av koden som er ondsinnet</li><li>Lisensiering/opphavsrett - beskriv og lenk til kodens opprinnelige kilde og legg til ethvert annet bevis</li></ul></div>';
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = 'Ikke bra - skriptet virker ikke';
 /** Label for the radio button for rating a script "OK" **/

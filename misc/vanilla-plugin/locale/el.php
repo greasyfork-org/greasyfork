@@ -11,8 +11,6 @@ $Definition['RatingLabel'] = 'Πως θα βαθμολογούσατε αυτό�
 $Definition['RatingUpdateLabel'] = 'Ενημερώστε τη βαθμολογία σας:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = 'Καμιά βαθμολογία - απλά μια ερώτηση, ένα σχόλιο, ένα αίτημα για χαρακτηριστικό ή μια αναφορά σφάλματος';
-## Label for the radio button for reporting a script
-$Definition['RatingReport'] = '<div class="report">Αναφέρετε τον κώδικα στους διαχειριστές για απομάκρυνση, για παράδειγμα:<ul><li>Malware - πειργράψτε ποιο τμήμα του κώδικα είναι κακόβουλο</li><li>Αδειοδότηση/πνευματική ιδιοκτησία- περιγράψτε και συνδέστε με την αρχική προέλευση του κώδικα και παρέχετε οποιαδήποτε άλλη απόδειξη</li></ul></div>';
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = 'Κακό - ο κώδικας δεν λειτουργεί';
 /** Label for the radio button for rating a script "OK" **/

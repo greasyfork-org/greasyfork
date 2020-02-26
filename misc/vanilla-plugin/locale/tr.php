@@ -11,10 +11,6 @@ $Definition['RatingLabel'] = 'Bu scripti nasıl değerlendirirsiniz?';
 $Definition['RatingUpdateLabel'] = 'Değerlendirmeni güncelle:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = 'Değerlendirme yok - sadece soru, yorum, özellik isteği ya da bug bildirimi';
-## Label for the radio button for reporting a script
-$Definition['RatingReport'] = '<div class="report">Script dosyasını kaldırmak için moderatörlere bildirin. Örneğin: 
-<ul><li>Kötü niyetli yazılım için; Kodun hangi bölümün kötü amaçlı olduğunu tanımlayın/belirtin.</li><li>
-Lisans / Telif Hakkı için; Kodun orijinal kaynağını gösterin ve kanıt sağlayın.</li></ul></div>';
 /** Label for the radio button for rating a script "Bad" */
 $Definition['RatingBad'] = 'Kötü - script çalışmıyor';
 /** Label for the radio button for rating a script "OK" **/
