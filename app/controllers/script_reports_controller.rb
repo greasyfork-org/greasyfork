@@ -73,7 +73,15 @@ class ScriptReportsController < ApplicationController
       return
     end
     @script_report = @script.script_reports.find(params[:id])
-    @script.update(script_delete_type_id: 1, locked: true, replaced_by_script_id: @script_report.reference_script_id, delete_reason: "Deleted by #{is_author ? 'author' : 'moderator'} in response to report ##{@script_report.id}.")
+    @script.update!(script_delete_type_id: 1, locked: true, replaced_by_script_id: @script_report.reference_script_id, delete_reason: "Deleted by #{is_author ? 'author' : 'moderator'} in response to report ##{@script_report.id}.")
+
+    ma = ModeratorAction.new
+    ma.moderator = current_user
+    ma.script = @script
+    ma.action = 'Delete and lock'
+    ma.reason = "In response to report #{@script_report.id}"
+    ma.save!
+
     @script_report.uphold!(current_user.moderator? ? params[:moderator_note] : nil)
     ScriptReportMailer.report_upheld_reporter(@script_report, is_author, site_name).deliver_later
     ScriptReportMailer.report_upheld_offender(@script_report, site_name).deliver_later if !is_author
