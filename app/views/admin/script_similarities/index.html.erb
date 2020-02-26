@@ -1,0 +1,23 @@
+<p>
+  Similarity check has been run on <%= @run_count %> out of <%= @total_count %> scripts.
+</p>
+
+<h3>Top 100 Similarities</h3>
+<table class="log-table">
+  <% @top_similarities.each do |s| %>
+    <tr>
+      <td>
+        <%= link_to s.script.name(I18n.locale), script_path(s.script)%>
+      </td>
+      <td>
+        <%= link_to s.other_script.name(I18n.locale), script_path(s.other_script) %>
+      </td>
+      <td>
+        <%= number_with_precision(s.similarity, precision: 3) %>
+      </td>
+      <td>
+        <%= link_to 'Diff', admin_script_path(s.script, compare: script_path(s.other_script), anchor: 'script-comparison') %>
+      </td>
+    </tr>
+  <% end %>
+</table>

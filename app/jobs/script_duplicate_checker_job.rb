@@ -4,7 +4,12 @@ class ScriptDuplicateCheckerJob < ApplicationJob
   def perform(script_id)
     now = Time.now
 
-    script = Script.find(script_id)
+    begin
+      script = Script.find(script_id)
+    rescue ActiveRecord::RecordNotFound
+      return
+    end
+
     other_scripts = Script.not_deleted.where.not(id: script_id)
 
     last_run = ScriptSimilarity.where(script_id: script_id).maximum(:checked_at)
