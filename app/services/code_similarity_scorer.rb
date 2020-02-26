@@ -8,7 +8,14 @@ class CodeSimilarityScorer
     base_length = base_code.size
     base_compressed_length = get_compressed_size(base_code)
 
-    compressed_length_if_identical = get_compressed_size(base_code + base_code)
+    # The "look-behind" only works for 32KB. If the code is longer than that then two copies of it won't get fully
+    # compressed. This also means we're unlikely to find very similar scripts.
+    # https://en.wikipedia.org/wiki/DEFLATE#Duplicate_string_elimination
+    if base_length > 32.kilobytes
+      compressed_length_if_identical = base_compressed_length
+    else
+      compressed_length_if_identical = get_compressed_size(base_code + base_code)
+    end
 
     # Create a map from script id to code id
     script_id_and_latest_version_id = ScriptVersion.where(script_id: other_scripts).group(:script_id).pluck(:script_id, 'MAX(id)')
@@ -28,8 +35,9 @@ class CodeSimilarityScorer
 
         # How far between identical and completely different are we, normalized to 0..1.
         differentness = (combined_compressed_length - compressed_length_if_identical).to_f / compressed_length_if_completely_different
-        # Put a ceiling in so very short scripts don't come up as very similar. If it's 50% of the length, then the 0.5 is the highest it can get.
-        results[script_id] = [1.0 - differentness, other_code_length.to_f / base_length].min
+        # Put a ceiling in so very short scripts (before or after compression) don't come up as very similar.
+        # If it's 50% of the length, then the 0.5 is the highest it can get.
+        results[script_id] = [1.0 - differentness, other_code_length.to_f / base_length, other_compressed_length.to_f / base_compressed_length].min
       end
     end
 
