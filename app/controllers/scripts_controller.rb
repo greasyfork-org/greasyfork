@@ -50,6 +50,8 @@ class ScriptsController < ApplicationController
     end
   end
 
+  before_action :check_read_only_mode, except: [:show, :show_code, :user_js, :meta_js, :user_css, :feedback, :stats, :diff, :derivatives, :index, :by_site]
+
   skip_before_action :verify_authenticity_token, only: [:install_ping, :user_js, :meta_js, :show, :show_code]
 
   # The value a syncing additional info will have after syncing is added but before the first sync succeeds

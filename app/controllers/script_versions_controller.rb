@@ -6,8 +6,9 @@ class ScriptVersionsController < ApplicationController
 	before_action :check_for_deleted_by_script_id
 	before_action :check_for_locked_by_script_id, :except => [:index]
 	before_action :authorize_for_moderators_only, :only => [:delete, :do_delete]
+	before_action :check_read_only_mode, except: [:index, :show]
 
-	layout 'scripts', only: [:index, :delete, :do_delete]
+	layout 'scripts', only: [:index]
 
 	def index
 		@script, @script_version = versionned_script(params[:script_id], params[:version])

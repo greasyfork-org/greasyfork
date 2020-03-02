@@ -12,6 +12,7 @@ class UsersController < ApplicationController
 
   before_action :authenticate_user!, :except => [:show, :webhook, :index]
   before_action :authorize_for_moderators_only, :only => [:ban, :do_ban]
+  before_action :check_read_only_mode, except: [:index, :show]
 
   def index
     # Limit to 1000 results. Otherwise bots get at it and load way far into the list, which has performance problems.

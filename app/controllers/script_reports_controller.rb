@@ -7,6 +7,8 @@ class ScriptReportsController < ApplicationController
     @bots = 'noindex'
   end
 
+  before_action :check_read_only_mode, except: [:index, :show]
+
   def new
     @script_report = @script.script_reports.build(report_type: params[:report_type] || ScriptReport::TYPE_UNAUTHORIZED_CODE)
   end

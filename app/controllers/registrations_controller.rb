@@ -3,6 +3,7 @@ class RegistrationsController < Devise::RegistrationsController
 	include LoginMethods
 
 	before_action :check_captcha, only: [:create]
+	before_action :check_read_only_mode
 
 	# https://github.com/plataformatec/devise/wiki/How-To%3a-Allow-users-to-edit-their-account-without-providing-a-password
 	def update

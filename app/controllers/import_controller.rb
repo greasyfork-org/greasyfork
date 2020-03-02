@@ -5,6 +5,7 @@ include ScriptImporter
 class ImportController < ApplicationController
 
 	before_action :authenticate_user!
+	before_action :check_read_only_mode, except: [:index]
 
 	def index
 		@scripts_by_source = Script.joins(:authors).where(authors: { user_id: current_user.id }).where.not(script_sync_source_id: nil).includes([:script_sync_source, :script_sync_type])

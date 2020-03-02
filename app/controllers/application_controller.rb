@@ -50,13 +50,17 @@ protected
   end
 
   def render_404(message = 'Script does not exist.')
+    render_error(404, message)
+  end
+
+  def render_error(code, message)
     respond_to do |format|
       format.html {
         @text = message
-        render 'home/error', status: 404, layout: 'application'
+        render 'home/error', status: code, layout: 'application'
       }
       format.all {
-        head 404
+        head code
       }
     end
   end
@@ -199,5 +203,9 @@ protected
 
   def set_cookie(k, v, httponly: true)
     cookies[k] = { value: v, secure: Rails.env.production?, httponly: httponly }
+  end
+
+  def check_read_only_mode
+    render_error(503, "#{site_name} is in read-only mode while it's being upgraded. This upgrade should be complete within a few hours. You can still browse the site and install scripts while the upgrade proceeds.") if Rails.application.config.read_only_mode
   end
 end
