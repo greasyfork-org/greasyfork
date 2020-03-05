@@ -28,3 +28,10 @@ namespace :deploy do
   after :published, "transifex_update_stats"
   after :rollback, "thinking_sphinx:index"
 end
+
+task :restart_sidekiq do
+  on roles(:worker) do
+    execute 'systemctl --user start sidekiq-production'
+  end
+end
+after "deploy:published", "restart_sidekiq"
