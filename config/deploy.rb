@@ -31,7 +31,7 @@ end
 
 task :restart_sidekiq do
   on roles(:worker) do
-    execute 'systemctl --user start sidekiq-production'
+    execute 'systemctl --user restart sidekiq-production'
   end
 end
 after "deploy:published", "restart_sidekiq"
