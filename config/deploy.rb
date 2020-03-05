@@ -7,6 +7,9 @@ set :deploy_to, "/www/greasyfork"
 set :branch, ENV['BRANCH'] if ENV['BRANCH']
 set :rbenv_type, :user
 set :rbenv_ruby, File.read('.ruby-version').strip
+set :sidekiq_role, :worker
+set :sidekiq_config, "#{current_path}/config/sidekiq.yml"
+set :sidekiq_env, 'production'
 
 set :default_env, {
   'PATH' => '$PATH:/www/sphinx-3.1.1/bin'

@@ -10,6 +10,7 @@ require 'thinking_sphinx/capistrano'
 require "capistrano/passenger"
 require "capistrano/bundler"
 require 'capistrano/delayed_job'
+require 'capistrano/sidekiq'
 
 require "capistrano/scm/git"
 install_plugin Capistrano::SCM::Git

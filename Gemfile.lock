@@ -107,6 +107,9 @@ GEM
     capistrano-rbenv (2.1.6)
       capistrano (~> 3.1)
       sshkit (~> 1.3)
+    capistrano-sidekiq (1.0.3)
+      capistrano (>= 3.9.0)
+      sidekiq (>= 3.4, < 6.0)
     capistrano3-delayed-job (1.7.6)
       capistrano (~> 3.0, >= 3.0.0)
       daemons (~> 1.3)
@@ -122,6 +125,7 @@ GEM
     climate_control (0.2.0)
     coderay (1.1.2)
     concurrent-ruby (1.1.6)
+    connection_pool (2.2.2)
     crass (1.0.5)
     daemons (1.3.1)
     debug_inspector (0.0.3)
@@ -237,6 +241,8 @@ GEM
       terrapin (~> 0.6.0)
     public_suffix (4.0.3)
     rack (2.2.2)
+    rack-protection (2.0.8.1)
+      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (6.0.2.1)
@@ -304,6 +310,11 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    sidekiq (5.2.7)
+      connection_pool (~> 2.2, >= 2.2.2)
+      rack (>= 1.5.0)
+      rack-protection (>= 1.5.0)
+      redis (>= 3.3.5, < 5)
     simpleidn (0.1.1)
       unf (~> 0.1.4)
     sprockets (4.0.0)
@@ -371,6 +382,7 @@ DEPENDENCIES
   capistrano-passenger
   capistrano-rails (~> 1.2)
   capistrano-rbenv (~> 2.1)
+  capistrano-sidekiq
   capistrano3-delayed-job (~> 1.0)
   capybara
   daemons
