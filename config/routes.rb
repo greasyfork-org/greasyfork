@@ -1,6 +1,12 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
 
   get 'sso', :to => 'home#sso'
+
+  authenticate :user, ->(user) { user.administrator? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
   scope "(:locale)", locale: /ar|bg|cs|da|de|el|en|es|fi|fr|fr\-CA|he|hu|id|it|ja|ko|nb|nl|eo|pl|pt\-BR|ro|ru|sk|sr|sv|th|tr|uk|vi|zh\-CN|zh\-TW/ do
 
