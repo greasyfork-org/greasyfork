@@ -7,7 +7,7 @@ set :deploy_to, "/www/greasyfork"
 set :branch, ENV['BRANCH'] if ENV['BRANCH']
 set :rbenv_type, :user
 set :rbenv_ruby, File.read('.ruby-version').strip
-set :sidekiq_role, :worker
+set :sidekiq_roles, %w(worker)
 set :sidekiq_config, "#{current_path}/config/sidekiq.yml"
 set :sidekiq_env, 'production'
 set :init_system, :systemd
@@ -28,10 +28,3 @@ namespace :deploy do
   after :published, "transifex_update_stats"
   after :rollback, "thinking_sphinx:index"
 end
-
-task :restart_sidekiq do
-  on roles(:worker) do
-    execute 'systemctl --user restart sidekiq-production'
-  end
-end
-after "deploy:published", "restart_sidekiq"
