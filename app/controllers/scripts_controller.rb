@@ -604,6 +604,7 @@ class ScriptsController < ApplicationController
                        .join(' | ')
     begin
       results = Script.search(search_terms)
+      results.empty?
     rescue ThinkingSphinx::SyntaxError
       # Try again with just alphanums
       search_terms = @script.default_name
