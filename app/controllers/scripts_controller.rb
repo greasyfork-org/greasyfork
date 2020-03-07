@@ -602,7 +602,19 @@ class ScriptsController < ApplicationController
                        .reject { |w| /\A[\(\)\|\-!@~\/"\/\^\$\\><&=\?]+\z/.match?(w) } # Riddle::Query::ESCAPE_CHARACTERS but with \A and \z.
                        .map{ |w| ThinkingSphinx::Query.escape(w) }
                        .join(' | ')
-    Script.search(search_terms).each do |other_script|
+    begin
+      results = Script.search(search_terms)
+    rescue ThinkingSphinx::SyntaxError
+      # Try again with just alphanums
+      search_terms = @script.default_name
+                         .split(/\s+/)
+                         .select { |w| /\A[a-zA-Z0-9]+\z/.match?(w) }
+                         .map{ |w| ThinkingSphinx::Query.escape(w) }
+                         .join(' | ')
+      results = Script.search(search_terms)
+    end
+
+    results.each do |other_script|
       next if (other_script.users & @script.users).any?
       other_script.localized_names.each do |ln|
         dist = Levenshtein.normalized_distance(@script.name, ln.attribute_value)
