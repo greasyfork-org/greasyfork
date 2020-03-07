@@ -1,7 +1,6 @@
-require 'sidekiq-scheduler'
-
 class ScriptDuplicateCheckerQueueingJob
-  include Sidekiq::Worker
+  queue_as :background
+  self.queue_adapter = :sidekiq if Rails.env.production?
 
   def perform
     Script
@@ -12,5 +11,6 @@ class ScriptDuplicateCheckerQueueingJob
         .limit(5)
         .pluck('scripts.id')
         .each { |id| ScriptDuplicateCheckerJob.perform_later(id) }
+    self.class.perform_later
   end
 end
