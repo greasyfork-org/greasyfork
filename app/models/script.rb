@@ -21,6 +21,7 @@ class Script < ActiveRecord::Base
   has_many :compatibilities, autosave: true, dependent: :destroy
   has_many :script_reports, inverse_of: :script
   has_many :script_invitations
+  has_many :script_similarities
 
   belongs_to :script_type
   belongs_to :script_sync_source, optional: true

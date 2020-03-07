@@ -3,3 +3,13 @@
 :queues:
   - default
   - low
+  - background
+
+tasks: &tasks
+  ScriptDuplicateCheckerQueueingJob:
+    interval: ["10s"]
+    queue: background
+    description: 'Find scripts to check for duplicates'
+
+:schedule:
+  <<: *tasks
