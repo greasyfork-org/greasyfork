@@ -142,6 +142,7 @@ de:
     listing_filter_by_site_label: "Skripte anzeigen für:"
     listing_filter_by_site_disable: "Alle Skripte"
     listing_filter_by_site_all_sites: "(Alle Seiten)"
+    listing_filter_by_language_label: "Sprache:"
     listing_filter_by_site_more_sites: "Mehr …"
     listing_no_scripts: "Es wurden keine Skripte gefunden."
     listing_created_feed: "Neue Skripte"
@@ -149,6 +150,9 @@ de:
     listing_none: "(Keine)"
     listing_set_locale_filter: "Es werden Ergebnisse für alle Sprachen angezeigt. %{set_filter_link:Zeige nur %{language}.}"
     listing_remove_locale_filter: "Es werden nur Ergebnisse in %{language} angezeigt. %{remove_filter_link:Zeige Ergebnisse für alle Sprachen.}"
+    listing_language_all: "Alle"
+    listing_language_js: "JavaScript"
+    listing_language_css: "CSS"
     import: "Skripte importieren"
     new: "Neues Skript veröffentlichen"
     support_site: "Die Hilfeseite des Autors besuchen."
@@ -238,6 +242,9 @@ de:
     adult_content_on_greasy_logged_in_error: "Dieses Skript ist mit Ihren derzeitigen %{edit_account_link:Greasy Fork Kontoeinstellungen} nicht länger auf dieser Seite verfügbar."
     adult_content_on_greasy_not_logged_in_error: "Dieses Skript ist auf dieser Seite nicht länger anonym verfügbar.  %{login_link:Loggen Sie sich ein} und prüfen Sie Ihre Greasy Fork Kontoeinstellungen."
     non_adult_content_on_sleazy: "Dieses Skript ist nicht auf dieser Webseite verfügbar."
+    not_js_convertible_override_header: "Konvertierung zu JS"
+    not_js_convertible_override_explanation: "%{site_name} kann automatisch eine %{help_link:user JS conversion} des CSS-Codes erzeugen. Da die User-JS-Konvertierung sowie das Benutzer-CSS etwas unterschiedlich arbeiten werden, empfehlen wir, die JS-Konvertierung zu testen. Wenn es sich als nicht funktional erweisen sollte, kann es durch Markieren der Checkbox unten deaktiviert werden."
+    not_js_convertible_override_label_html: "Dies sollte <strong>nicht</strong>im Benutzer-JS-Format verfügbar gemacht werden"
     adult_marker: "(Nicht Jugendfrei)"
     deleted_marker: "(Gelöscht)"
     locked_marker: "(Gesperrt)"
@@ -517,8 +524,14 @@ de:
         cancelled: "Löschen abgebrochen."
         completed: "Ihr Konto wurde gelöscht."
   help:
+    sections:
+      usage: Nutzung
+      development: Entwicklung
+      miscellaneous: Sonstiges
     installing_user_scripts:
       title: 'Wie installiert man Benutzerskripte?'
+    installing_user_styles:
+      title: 'Wie Benutzer-Styles installiert werden'
     meta_keys:
       title: "Von %{site_name} gelesene Skript-Meta-Keys"
       intro_html: "Das ist eine Liste von <a href=\"http://wiki.greasespot.net/Metadata_Block\">Benutzerskript-Meta-Keys</a>, welche %{site_name} ausliest. Nicht in dieser Liste aufgeführte Keys sind im installierten Skript vorhanden, haben aber keine Auswirkungen in der Benutzerobefläche von %{site_name}."
@@ -674,6 +687,8 @@ de:
           <h2>Bibliotheken Dritter</h2> <p>%{site_name} kann fremden Quellcode beinhalten,
           um Statistiken zu erstellen oder Werbung auf der Seite anzuzeigen. Diese
           Bibliotheken könnten Logik zur Verfolgung beinhalten.</p>
+    user_css_to_user_js:
+      title: Konvertierung von Benutzer-CSS zu Benutzer-JS
   search:
     script_search:
       title: "Skriptsuche"
