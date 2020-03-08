@@ -121,6 +121,7 @@ Rails.application.routes.draw do
     end
     resources :script_versions, :only => [:create, :new]
     get 'script_versions/additional_info_form', :to => 'script_versions#additional_info_form', :as => 'script_version_additional_info_form'
+    get 'script_versions/confirm_new_author', :to => 'script_versions#confirm_new_author', :as => 'script_version_confirm_new_author'
     resources :users, :only => :show do
       post 'webhook'
       resources :script_sets, :only => [:create, :new, :edit, :update, :destroy], :path => 'sets'

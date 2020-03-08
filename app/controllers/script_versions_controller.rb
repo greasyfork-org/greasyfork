@@ -23,6 +23,11 @@ class ScriptVersionsController < ApplicationController
 	def new
 		@bots = 'noindex'
 
+		if current_user.scripts.none? && session[:new_script_notice].nil?
+			render 'new_script_notice'
+			return
+		end
+
 		# This is the trigger to do more stringent checking of the user.
 		case current_user.posting_permission
 		when :needs_confirmation, :blocked
@@ -55,6 +60,11 @@ class ScriptVersionsController < ApplicationController
 			ensure_default_additional_info(@script_version, current_user.preferred_markup)
 			@current_screenshots = []
 		end
+	end
+
+	def confirm_new_author
+		session[:new_script_notice] = true
+		redirect_to new_script_version_path
 	end
 
 	def create

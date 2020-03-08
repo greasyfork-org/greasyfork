@@ -5,6 +5,7 @@ class BlockTest < ApplicationSystemTestCase
     user = User.find(4)
     login_as(user, scope: :user)
     visit new_script_version_url
+    click_link "I've written a script and want to share it with others."
     code = <<~EOF
       // ==UserScript==
       // @name A Test!
@@ -26,6 +27,7 @@ class BlockTest < ApplicationSystemTestCase
   test "blocked with originating script" do
     login_as(User.find(4))
     visit new_script_version_url
+    click_link "I've written a script and want to share it with others."
     code = <<~EOF
       // ==UserScript==
       // @name A Test!
@@ -82,6 +84,7 @@ class BlockTest < ApplicationSystemTestCase
     user = User.find(4)
     login_as(user, scope: :user)
     visit new_script_version_url
+    click_link "I've written a script and want to share it with others."
     code = <<~EOF
       // ==UserScript==
       // @name A Test!
