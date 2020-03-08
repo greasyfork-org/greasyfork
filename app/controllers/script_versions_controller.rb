@@ -64,7 +64,7 @@ class ScriptVersionsController < ApplicationController
 
 	def confirm_new_author
 		session[:new_script_notice] = true
-		redirect_to new_script_version_path
+		redirect_to new_script_version_path(language: params[:language])
 	end
 
 	def create
