@@ -15,8 +15,17 @@
 
 <h3>Code</h3>
 
-<% if @script.script_similarities.any? %>
-  <p>We checked all other scripts on <%= markup_date(@script.script_similarities.minimum(:checked_at)) %> to see which were most similar to yours. A score of 1.000 means identical.</p>
+<% check_date = @script.script_similarities.minimum(:checked_at) %>
+<% enqueued = ScriptDuplicateCheckerJob.currently_queued_script_ids.include?(@script.id) %>
+
+<p>
+  We periodically check all other scripts to find the ones most similar to yours. We also check whenever you post an
+  update to your script and upon your request. You can use this list to find unauthorized copies and report them for
+  removal.
+</p>
+
+<% if check_date %>
+  <p>Scores range from 0.000 (completely different) to 1.000 (identical).</p>
   <ul>
     <% @script.script_similarities.includes(:other_script).order(similarity: :desc, id: :asc).each do |ss| %>
       <li>
@@ -26,10 +35,31 @@
       </li>
     <% end %>
   </ul>
-  <p>Enter some search terms for a live similarity check. The search begins with the most popular scripts matching your query, not the most similar.</p>
-<% else %>
-  <p>Enter some search terms and see how similar other scripts' code is. A score of 1.000 means identical. The search begins with the most popular scripts matching your query, not the most similar.</p>
 <% end %>
+
+<p>
+  <% if enqueued %>
+    <% if check_date %>
+      We last checked for scripts similar to yours on <%= markup_date(check_date) %>. We will check again shortly.
+    <% else %>
+      We will check for scripts similar to yours shortly.
+    <% end %>
+  <% elsif check_date %>
+    We last checked for scripts similar to yours on <%= markup_date(check_date) %>.
+  <% else %>
+    We have not yet checked for scripts similar to yours.
+  <% end %>
+
+  <% if !enqueued %>
+    <% if check_date.nil? %>
+      <%= button_to 'Check now', request_duplicate_check_script_path(@script), method: :POST %>
+    <% elsif check_date < 1.day.ago %>
+      <%= button_to 'Recheck now', request_duplicate_check_script_path(@script), method: :POST %>
+    <% end %>
+  <% end %>
+</p>
+
+<p>You can also enter some search terms for a live similarity check. The search begins with the most popular scripts matching your query, not the most similar.</p>
 
 <%= form_with(url: similar_search_script_path(@script, format: :json), method: :GET, local: false, html: { id: 'similar-search-form' }) do |f| %>
   <%= f.search_field :terms, required: true %>

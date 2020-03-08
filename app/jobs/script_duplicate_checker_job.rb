@@ -30,4 +30,11 @@ class ScriptDuplicateCheckerJob < ApplicationJob
       ScriptSimilarity.upsert_all(bulk_data)
     end
   end
+
+  def self.currently_queued_script_ids
+    return [] unless Rails.env.production?
+    Sidekiq::Queue.new('low')
+        .select { |sq| sq.item['wrapped'] == 'ScriptDuplicateCheckerJob' }
+        .map{|job| job.args.first['arguments'].first }
+  end
 end

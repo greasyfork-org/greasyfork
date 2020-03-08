@@ -3,9 +3,7 @@ class ScriptDuplicateCheckerQueueingJob < ApplicationJob
   self.queue_adapter = :sidekiq if Rails.env.production?
 
   def perform
-    currently_running = Sidekiq::Queue.new('low')
-                            .select { |sq| sq.item['wrapped'] == 'ScriptDuplicateCheckerJob' }
-                            .map{|job| job.args.first['arguments'].first }
+    currently_running = ScriptDuplicateCheckerJob.currently_queued_script_ids
     Script
         .not_deleted
         .left_joins(:script_similarities)

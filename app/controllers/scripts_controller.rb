@@ -8,7 +8,7 @@ class ScriptsController < ApplicationController
   include ScriptAndVersions
 
   MEMBER_AUTHOR_ACTIONS = [:sync_update, :update_promoted, :request_permanent_deletion, :unrequest_permanent_deletion, :update_promoted, :invite, :remove_author]
-  MEMBER_AUTHOR_OR_MODERATOR_ACTIONS = [:delete, :do_delete, :undelete, :do_undelete, :derivatives, :similar_search, :admin, :update_locale]
+  MEMBER_AUTHOR_OR_MODERATOR_ACTIONS = [:delete, :do_delete, :undelete, :do_undelete, :derivatives, :similar_search, :admin, :update_locale, :request_duplicate_check]
   MEMBER_MODERATOR_ACTIONS = [:mark, :do_mark, :do_permanent_deletion, :reject_permanent_deletion, :approve]
   MEMBER_PUBLIC_ACTIONS = [:diff, :report, :accept_invitation]
   MEMBER_PUBLIC_ACTIONS_WITH_SPECIAL_LOADING = [:show, :show_code, :user_js, :meta_js, :user_css, :feedback, :install_ping, :stats, :sync_additional_info_form]
@@ -795,6 +795,14 @@ class ScriptsController < ApplicationController
     @script.update!(review_state: 'approved')
     flash[:notice] = 'Marked as approved.'
     redirect_to script_path(@script)
+  end
+
+  def request_duplicate_check
+    unless ScriptDuplicateCheckerJob.currently_queued_script_ids.include?(@script.id)
+      ScriptDuplicateCheckerJob.perform_later(@script.id)
+    end
+    flash[:notice] = 'Similarity check will be completed in a few minutes.'
+    redirect_to derivatives_script_path(@script)
   end
 
   private
