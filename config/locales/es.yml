@@ -233,7 +233,7 @@ es:
     post_a_script_link_text: "Publica tu propio script"
     learn_to_write_scripts_link_text: "aprende a escribir uno"
     feedback_or_report: "%{feedback_link:Pregunta tus dudas, ponle nota} o %{report_link:notifica una posible infracción de las normas}."
-    support_feedback_or_report: "%{support_url:Visita la página web del autor si necesitas ayuda} o %{feedback_link:pregunta tus dudas, ponle nota o %{report_link:notifica una posible infracción de las normas}."
+    support_feedback_or_report: "%{support_url:Visita la página web del autor si necesitas ayuda} o %{feedback_link:pregunta tus dudas, ponle nota} o %{report_link:notifica una posible infracción de las normas}."
     support_email_feedback_or_report: "%{support_url:Contacta por correo con el autor si necesitas ayuda} o %{feedback_link:pregunta tus dudas, ponle nota} o %{report_link:notifica una posible infracción de las normas}."
     adult_content: "Contenido para adultos"
     adult_content_self_report: "Este script contiene contenido para adultos o funciona en una web con este tipo de contenidos restringidos."
@@ -311,6 +311,10 @@ es:
       remove_confirm: "¿Seguro que quieres quitar a %{user_name} del equipo?"
       failure: "Este miembro del equipo no se puede eliminar."
     no_disposable_email: "No puedes publicar scripts si utilizas una dirección de correo electrónico de usar y tirar."
+    new_script_notice:
+      title: "¿Qué te propones?"
+      install_link_html: "Quiero <b>instalar</b> un script ya existente."
+      share_link_html: "He <b>escrito</b> un script y quiero <b>compartirlo</b> con otros."
   script_sets:
     description: "Los grupos permiten crear un listado personal de scripts con los que explorar Greasy Fork. Puedes agruparlos añadiendo scripts individuales, incluyendo grupos de otros usuarios, o incluso grupos generados automáticamente. También puedes excluir scripts de la misma forma."
     favorites_name: "Favoritos"
@@ -432,8 +436,7 @@ es:
         %{highlighted_scripts_list}
 
         <p>Una vez hayas encontrado lo que buscas haz clic sobre el correspondiente
-        botón verde, el administrador de scripts de usuario pedirá que confirmes la
-        instalación.</p>
+        botón verde, el administrador de scripts pedirá que confirmes la instalación.</p>
     installing_step3_header: "Tercer paso: Prueba el script"
     installing_step3_description_html: >
         <p>Visita el sitio en el que funciona el script, debería empezar a funcionar
