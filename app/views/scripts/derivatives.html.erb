@@ -15,7 +15,21 @@
 
 <h3>Code</h3>
 
-<p>Enter some search terms and see how similar other scripts' code is. A score of 1.000 means identical. The search begins with the most popular scripts matching your query, not the most similar.</p>
+<% if @script.script_similarities.any? %>
+  <p>We checked all other scripts on <%= markup_date(@script.script_similarities.minimum(:checked_at)) %> to see which were most similar to yours. A score of 1.000 means identical.</p>
+  <ul>
+    <% @script.script_similarities.includes(:other_script).order(similarity: :desc, id: :asc).each do |ss| %>
+      <li>
+        <%= number_with_precision(ss.similarity, precision: 3) %>
+        <%= link_to '[Diff]', admin_script_path(@script, compare: script_path(ss.other_script), anchor: 'script-comparison') %>:
+        <%= link_to(ss.other_script.name(I18n.locale), ss.other_script) %>
+      </li>
+    <% end %>
+  </ul>
+  <p>Enter some search terms for a live similarity check. The search begins with the most popular scripts matching your query, not the most similar.</p>
+<% else %>
+  <p>Enter some search terms and see how similar other scripts' code is. A score of 1.000 means identical. The search begins with the most popular scripts matching your query, not the most similar.</p>
+<% end %>
 
 <%= form_with(url: similar_search_script_path(@script, format: :json), method: :GET, local: false, html: { id: 'similar-search-form' }) do |f| %>
   <%= f.search_field :terms, required: true %>
