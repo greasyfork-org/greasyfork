@@ -1,9 +1,6 @@
-require 'sidekiq-scheduler'
-
-class SyncScriptsJob
-  include Sidekiq::Worker
-
-  sidekiq_options queue: 'low'
+class SyncScriptsJob < ApplicationJob
+  queue_as :low
+  self.queue_adapter = :sidekiq if Rails.env.production?
 
   def perform
     Script
@@ -18,5 +15,6 @@ class SyncScriptsJob
         #puts "#{script.id} exception - #{ex}"
       end
     end
+    self.class.perform_later(wait: 5.minutes)
   end
 end
