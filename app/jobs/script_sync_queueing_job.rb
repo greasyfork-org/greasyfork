@@ -1,5 +1,5 @@
-class SyncScriptsJob < ApplicationJob
-  queue_as :low
+class ScriptSyncQueueingJob < ApplicationJob
+  queue_as :background
   self.queue_adapter = :sidekiq if Rails.env.production?
 
   def perform
@@ -9,12 +9,8 @@ class SyncScriptsJob < ApplicationJob
         .order(:last_attempted_sync_date)
         .limit(100)
         .find_each(batch_size: 10) do |script|
-      begin
-        result = ScriptImporter::ScriptSyncer.sync(script)
-      rescue => ex
-        #puts "#{script.id} exception - #{ex}"
-      end
+      ScriptSyncJob.perform_later(script.id)
     end
-    self.class.perform_later(wait: 5.minutes)
+    self.class.perform_later
   end
 end
