@@ -5,5 +5,6 @@ class BackgroundJob < ApplicationJob
   def perform
     ScriptSyncQueueingJob.perform_later
     ScriptDuplicateCheckerQueueingJob.perform_later
+    BackgroundJob.perform_later
   end
 end
