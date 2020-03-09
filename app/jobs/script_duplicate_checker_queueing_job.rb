@@ -1,5 +1,5 @@
 class ScriptDuplicateCheckerQueueingJob < ApplicationJob
-  queue_as :background
+  queue_as :low
   self.queue_adapter = :sidekiq if Rails.env.production?
 
   def perform
@@ -13,6 +13,5 @@ class ScriptDuplicateCheckerQueueingJob < ApplicationJob
         .pluck('scripts.id')
         .reject { |id| currently_running.include?(id) }
         .each { |id| ScriptDuplicateCheckerJob.perform_later(id) }
-    self.class.perform_later
   end
 end
