@@ -27,6 +27,7 @@ class CodeSimilarityScorer
 
       slice.each do |script_id, code_id|
         other_code = script_code_id_to_code[code_id]
+        next if other_code.nil?
         if base_code == other_code
           results[script_id] = 1.000
           next
