@@ -33,8 +33,9 @@ class ScriptDuplicateCheckerJob < ApplicationJob
 
   def self.currently_queued_script_ids
     return [] unless Rails.env.production?
-    Sidekiq::Queue.new('low')
-        .select { |sq| sq.item['wrapped'] == 'ScriptDuplicateCheckerJob' }
+    Sidekiq::Queue.all
+        .map { |queue| queue.select { |sq| sq.item['wrapped'] == 'ScriptDuplicateCheckerJob' } }
+        .flatten
         .map{|job| job.args.first['arguments'].first } +
     Sidekiq::Workers.new
         .map { |process_id, thread_id, work| work['payload'] }
