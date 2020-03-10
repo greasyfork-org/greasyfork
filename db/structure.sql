@@ -1059,7 +1059,7 @@ CREATE TABLE `delayed_jobs` (
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `delayed_jobs_priority` (`priority`,`run_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=138461 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=138560 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `disallowed_attributes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1480,6 +1480,8 @@ CREATE TABLE `script_versions` (
   `not_js_convertible_override` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `index_script_versions_on_script_id` (`script_id`),
+  KEY `index_script_versions_on_script_code_id` (`script_code_id`),
+  KEY `index_script_versions_on_rewritten_script_code_id` (`rewritten_script_code_id`),
   CONSTRAINT `fk_script_versions_script_id` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=759420 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -1823,6 +1825,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20200308010644'),
 ('20200308024143'),
 ('20200308042042'),
-('20200308042133');
+('20200308042133'),
+('20200310225042');
 
 

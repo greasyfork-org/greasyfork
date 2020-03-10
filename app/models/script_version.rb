@@ -441,6 +441,15 @@ class ScriptVersion < ApplicationRecord
     end
   end
 
+  def script_versions_with_identical_code
+    script_code_ids = ScriptCode.where(code_hash: [script_code.code_hash, rewritten_script_code.code_hash].uniq).pluck(:id)
+    ScriptVersion
+        .joins(:script)
+        .merge(Script.not_deleted)
+        .where.not(script_id: script_id)
+        .where(['script_code_id IN (?) OR rewritten_script_code_id IN (?)', script_code_ids, script_code_ids])
+  end
+
   private
 
   # Returns a 16 element array of version info per https://developer.mozilla.org/en-US/docs/Toolkit_version_format

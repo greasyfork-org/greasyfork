@@ -200,20 +200,8 @@ en:
     derivatives_title: "%{script_name} - Derivatives"
     # text explaining the derivatives page and what to do if the user finds unauthorized copies
     derivatives_intro: "These scripts may be based on yours (or yours may be based on them). If you find an unauthorized use of your code, report it from that script's feedback tab."
-    # info on the list of derivative code matches. last_run is a date run through the "time ago" process. max_size is the maximum size of script this process will check and is run through number_to_human_size, for example "50 KB". match_size is the minimum number of lines of code that can be counted as a duplicate
-    derivatives_code_matches_info_html:
-      one: "Scripts posted by others that include code at least %{match_size} line in common with your script. This check is run only on scripts less than %{max_size} and was last run %{last_run}."
-      other: "Scripts posted by others that include code at least %{match_size} lines in common with your script. This check is run only on scripts less than %{max_size} and was last run %{last_run}."
-    # info on the list of derivative namespace matches. namespace is a user script meta line, like "@namespace http://example.com"
-    derivatives_namespace_matches_info_html: "Scripts posted by others using <code>%{namespace}</code>:"
-    # info on the list of derivative name matches
-    derivatives_name_matches_info: "Scripts posted by others with the most similar names to yours:"
     # format for scripts listed on the derivatives page. script_link is a link to the derivative's page, user_link is a link to the user who created the derivative, license is text, link to the license, or scripts.no_license
     derivatives_script_html: "%{script} by %{user}, license: %{license} %{diff_link:[Diff]}"
-    # format for scripts listed on the derivatives page when referencing particular lines in the script. script_lines_link is a link to the derivative's code page with an fragment going to the particular line number, user_link is a link to the user who created the derivative, license is text, link to the license, or scripts.no_license
-    derivatives_script_with_code_line_html: "%{script_lines_link} by %{user_link}, license: %{license}"
-    # link text to a particular script's code, referencing particular lines
-    script_lines_link: "%{script_name}, lines %{start} to %{end}"
     # html title for script list page when showing scripts that affect all sites
     listing_title_all_sites: "User scripts for all sites"
     # meta description and feed subtitle when showing scripts that affect all sites

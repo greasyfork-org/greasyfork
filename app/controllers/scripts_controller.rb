@@ -595,46 +595,6 @@ class ScriptsController < ApplicationController
 
   def derivatives
     return if redirect_to_slug(@script, :id)
-
-    similar_names = {}
-    search_terms = @script.default_name
-                       .split(/\s+/)
-                       .reject { |w| /\A[\(\)\|\-!@~\/"\/\^\$\\><&=\?]+\z/.match?(w) } # Riddle::Query::ESCAPE_CHARACTERS but with \A and \z.
-                       .map{ |w| ThinkingSphinx::Query.escape(w) }
-                       .join(' | ')
-    begin
-      results = Script.search(search_terms)
-      results.empty?
-    rescue ThinkingSphinx::SyntaxError
-      # Try again with just alphanums
-      search_terms = @script.default_name
-                         .split(/\s+/)
-                         .select { |w| /\A[a-zA-Z0-9]+\z/.match?(w) }
-                         .map{ |w| ThinkingSphinx::Query.escape(w) }
-                         .join(' | ')
-      results = Script.search(search_terms)
-    end
-
-    results.each do |other_script|
-      next if (other_script.users & @script.users).any?
-      other_script.localized_names.each do |ln|
-        dist = Levenshtein.normalized_distance(@script.name, ln.attribute_value)
-        similar_names[other_script.id] = dist if similar_names[other_script.id].nil? or dist < similar_names[other_script.id]
-      end
-    end
-
-    similar_names = similar_names.sort_by{|k, v| v}.take(10)
-    @similar_name_scripts = Script.includes(:users, :license).find(similar_names.map(&:first))
-
-    @same_namespaces = []
-    @same_namespaces = Script
-                           .listable(script_subset)
-                           .joins(:authors)
-                           .where.not(authors: { user_id: @script.user_ids })
-                           .where(namespace: @script.namespace)
-                           .includes(:users, :license)
-                           .order(id: :desc).limit(50) unless @script.namespace.nil?
-
     @canonical_params = [:id]
   end
 

@@ -465,6 +465,16 @@ class Script < ActiveRecord::Base
     review_state == 'required'
   end
 
+  def script_versions_with_identical_code
+    hashes = script_versions.joins(:script_code, :rewritten_script_code).pluck('script_codes.code_hash', 'rewritten_script_codes_script_versions.code_hash').flatten.uniq
+    script_code_ids = ScriptCode.where(code_hash: hashes.uniq).pluck(:id)
+    ScriptVersion
+        .joins(:script)
+        .merge(Script.not_deleted)
+        .where.not(script_id: id)
+        .where(['script_code_id IN (?) OR rewritten_script_code_id IN (?)', script_code_ids, script_code_ids])
+  end
+
   private
 
   def url_helpers
