@@ -27,6 +27,11 @@ class CodeSimilarityScorer
 
       slice.each do |script_id, code_id|
         other_code = script_code_id_to_code[code_id]
+        if base_code == other_code
+          results[script_id] = 1.000
+          next
+        end
+
         other_code_length = other_code.size
         other_compressed_length = get_compressed_size(other_code)
 
@@ -37,7 +42,8 @@ class CodeSimilarityScorer
         differentness = (combined_compressed_length - compressed_length_if_identical).to_f / compressed_length_if_completely_different
         # Put a ceiling in so very short scripts (before or after compression) don't come up as very similar.
         # If it's 50% of the length, then the 0.5 is the highest it can get.
-        results[script_id] = [1.0 - differentness, other_code_length.to_f / base_length, other_compressed_length.to_f / base_compressed_length].min
+        # In addition, if they're not identical, max out at 0.999 (avoiding rounding up to 1.000).
+        results[script_id] = [1.0 - differentness, other_code_length.to_f / base_length, other_compressed_length.to_f / base_compressed_length, 0.999].min
       end
     end
 
