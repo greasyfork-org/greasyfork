@@ -799,7 +799,7 @@ class ScriptsController < ApplicationController
 
   def request_duplicate_check
     unless ScriptDuplicateCheckerJob.currently_queued_script_ids.include?(@script.id)
-      ScriptDuplicateCheckerJob.perform_later(@script.id)
+      ScriptDuplicateCheckerJob.set(queue: 'user_low').perform_later(@script.id)
     end
     flash[:notice] = 'Similarity check will be completed in a few minutes.'
     redirect_to derivatives_script_path(@script)
