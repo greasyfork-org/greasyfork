@@ -3,8 +3,7 @@ class BackgroundJob < ApplicationJob
   self.queue_adapter = :sidekiq if Rails.env.production?
 
   def perform
-    ScriptSyncQueueingJob.perform_later
-    ScriptDuplicateCheckerQueueingJob.perform_later
+    [ScriptSyncQueueingJob, ScriptDuplicateCheckerQueueingJob].reject(&:enqueued?).each(&:perform_later)
     BackgroundJob.perform_later
   end
 end
