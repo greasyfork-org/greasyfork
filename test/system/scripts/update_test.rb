@@ -9,7 +9,7 @@ class UpdateTest < ApplicationSystemTestCase
       // ==UserScript==
       // @name A Test Update!
       // @description Unit test.
-      // @version 1.2
+      // @version 1.3
       // @namespace http://greasyfork.local/users/1
       // ==/UserScript==
       var foo = 1;
@@ -17,7 +17,7 @@ class UpdateTest < ApplicationSystemTestCase
     fill_in 'Code', with: code
     click_button 'Post new version'
     assert_selector 'h2', text: 'A Test Update!'
-    assert_selector 'dd', text: '1.2'
+    assert_selector 'dd', text: '1.3'
   end
 
   test "library update with meta block" do

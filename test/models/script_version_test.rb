@@ -379,13 +379,28 @@ END
     assert script.valid?, script.errors.full_messages
   end
 
+  test 'posting previously posted code as update' do
+    script = Script.find(3)
+    assert script.valid? && script.script_versions.length == 1 && script.script_versions.first.valid?
+    sv = ScriptVersion.new
+    sv.code = ScriptCode.find(13).code
+    sv.script = script
+    sv.calculate_all
+    sv.namespace_check_override = true
+    sv.version_check_override = true
+    assert !sv.valid?
+    sv.allow_code_previously_posted = true
+    assert sv.valid?
+  end
+
   test 'linebreak only update code without changing version' do
     script = Script.find(3)
-    assert script.valid? and script.script_versions.length == 1 and script.script_versions.first.valid?
+    assert script.valid? && script.script_versions.length == 1 && script.script_versions.first.valid?
     sv = ScriptVersion.new
     sv.code = script.script_versions.first.code.gsub("\n", "\r\n")
     sv.script = script
     sv.calculate_all
+    sv.allow_code_previously_posted = true
     assert sv.valid?
   end
 

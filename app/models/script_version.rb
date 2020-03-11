@@ -86,6 +86,7 @@ class ScriptVersion < ApplicationRecord
     w << :namespace_changed if namespace_changed?
     w << :potentially_minified if potentially_minified?
     w << :automatic_sensitive if automatic_sensitive?
+    w << :code_previously_posted if code_previously_posted?
     return w
   end
 
@@ -176,7 +177,21 @@ class ScriptVersion < ApplicationRecord
     return SensitiveSite.where(domain: domain_names).map(&:domain)
   end
 
-  attr_accessor :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation, :truncate_description, :sensitive_site_confirmation
+  def code_previously_posted?
+    return false if allow_code_previously_posted || !new_record?
+    hash = script_code.calculate_hash
+    self.previously_posted_scripts = ScriptVersion
+        .joins(:script_code, :rewritten_script_code, :script)
+        .merge(Script.not_deleted)
+        .where(['script_codes.code_hash = ? OR rewritten_script_codes_script_versions.code_hash = ?', hash, hash])
+        .where.not(script_id: script_id)
+        .map(&:script).uniq
+    previously_posted_scripts.any?
+  end
+
+  attr_accessor :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace,
+                :minified_confirmation, :truncate_description, :sensitive_site_confirmation,
+                :allow_code_previously_posted, :previously_posted_scripts
 
   def initialize(*args)
     # Allow code to be updated without version being upped
@@ -193,6 +208,9 @@ class ScriptVersion < ApplicationRecord
     @truncate_description = false
     # Confirm automatic adult detection
     @sensitive_site_confirmation = false
+    # Allow code that was already posted elsewhere
+    @allow_code_previously_posted = false
+    @previously_posted_scripts = []
     super(*args)
   end
 
@@ -273,6 +291,7 @@ class ScriptVersion < ApplicationRecord
     @minified_confirmation = true
     @truncate_description = true
     @sensitive_site_confirmation = true
+    @allow_code_previously_posted = true
   end
 
   def calculate_all(previous_description = nil)

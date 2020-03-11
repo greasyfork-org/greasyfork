@@ -27,7 +27,7 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
 <%=form_for(script_version.script.new_record? ? script_version : [script_version.script, script_version], {:html => {:enctype => 'multipart/form-data'}}) do |s| %>
 
   <% # remember previously chosen overrides
-  [:version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation].each do |override|
+  [:version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation, :allow_code_previously_posted].each do |override|
     if script_version.send(override) %>
       <%=s.hidden_field(override)%>
     <% end
@@ -91,6 +91,9 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
               <% when :automatic_sensitive %>
                 <%=t('scripts.warning_automatic_sensitive_html', {sensitive_domains: script_version.sensitive_domains.to_sentence})%><br>
                 <label for="script_version_minified_confirmation"><%=t('scripts.override_warning_checkbox_label')%></label> <%=s.check_box(:sensitive_site_confirmation, {}, true, false)%>
+              <% when :code_previously_posted %>
+                <%= t('scripts.warning_code_previously_posted_html', { script_links: script_version.previously_posted_scripts.map { |s| link_to(s.name(I18n.locale), script_path(s)) }.to_sentence.html_safe}) %><br>
+                <label for="script_version_allow_code_previously_posted"><%=t('scripts.override_warning_checkbox_label')%></label> <%=s.check_box(:allow_code_previously_posted, {}, true, false)%>
               <% else
                 raise "Unknown warning #{w}"
             end %>
