@@ -30,7 +30,7 @@ module ScriptsHelper
   end
 
   def script_applies_to_list_contents(script, by_sites)
-    sats_with_domains, sats_without_domains = script.script_applies_tos.partition{|sat|sat.domain}
+    sats_with_domains, sats_without_domains = script.script_applies_tos.includes(:site_application).partition(&:domain)
     return (
     sats_with_domains.map{ |sat|
       content_for_script_applies_to_that_has_domain(sat, count_of_other_scripts_with_sat(sat, script, by_sites))
