@@ -11,6 +11,7 @@ class ApplicationJob < ActiveJob::Base
 
   def self.enqueued?
     return Sidekiq::Workers.new.any? {|process_id, thread_id, work| work['payload']['wrapped'] == self.name } ||
-      Sidekiq::Queue.all.any? { |queue| queue.any? { |sq| sq.item['wrapped'] == self.name } }
+      Sidekiq::Queue.all.any? { |queue| queue.any? { |sq| sq.item['wrapped'] == self.name } } ||
+      Sidekiq::ScheduledSet.new.any?{ |sq| sq.item['wrapped'] == self.name }
   end
 end
