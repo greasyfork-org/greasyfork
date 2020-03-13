@@ -439,6 +439,10 @@ class ScriptVersion < ApplicationRecord
     return value.split("\n").any? {|s| s.length > 5000 and s.include?('function') }
   end
 
+  def get_meta
+    parser_class.parse_meta(code)
+  end
+
   def additional_info
     return default_localized_value_for('additional_info')
   end

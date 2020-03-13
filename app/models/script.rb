@@ -33,6 +33,8 @@ class Script < ActiveRecord::Base
 
   attr_accessor :adult_content_self_report, :not_adult_content_self_report
 
+  delegate :get_meta, to: :get_newest_saved_script_version
+
   scope :not_deleted, -> {where('script_delete_type_id is null')}
   scope :active, ->(script_subset) {
     f = not_deleted
