@@ -1,10 +1,9 @@
-require 'script_importer/userscriptsorg_importer'
 require 'script_importer/url_importer'
 require 'script_importer/test_importer'
 
 module ScriptImporter
 
-  IMPORTERS = Rails.env.test? ? [UserScriptsOrgImporter, UrlImporter, TestImporter] : [UserScriptsOrgImporter, UrlImporter]
+  IMPORTERS = Rails.env.test? ? [UrlImporter, TestImporter] : [UrlImporter]
 
   class ScriptSyncer
 

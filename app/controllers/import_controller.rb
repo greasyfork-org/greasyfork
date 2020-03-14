@@ -1,4 +1,3 @@
-require 'script_importer/userscriptsorg_importer'
 require 'script_importer/url_importer'
 include ScriptImporter
 
@@ -10,43 +9,6 @@ class ImportController < ApplicationController
 	def index
 		@scripts_by_source = Script.joins(:authors).where(authors: { user_id: current_user.id }).where.not(script_sync_source_id: nil).includes([:script_sync_source, :script_sync_type])
 		@scripts_by_source = @scripts_by_source.group_by{|script| script.script_sync_source}
-	end
-
-	# verifies identify and gets a script list
-	def verify
-		url = params[:url]
-		@importer = UserScriptsOrgImporter
-		if @importer.remote_user_identifier(url).nil?
-			@text = "Invalid #{@importer.import_source_name} profile URL."
-			render 'home/error', layout: 'application'
-			return
-		end
-		case @importer.verify_ownership(url, current_user.id)
-			when :failure
-				@text = "#{@importer.import_source_name} profile check failed."
-				render 'home/error', layout: 'application'
-				return
-			when :nourl
-				@text = "Greasy Fork URL not found on #{@importer.import_source_name} profile."
-				render 'home/error', layout: 'application'
-				return
-			when :wronguser
-				@text = "Greasy Fork URL found on #{@importer.import_source_name} profile, but it wasn't yours."
-				render 'home/error', layout: 'application'
-				return
-		end
-		begin
-			@new_scripts, @existing_scripts = @importer.pull_script_list(url)
-		rescue OpenURI::HTTPError => ex
-			@text = "Could not download script list. '#{ex}' accessing #{url}."
-			render 'home/error', status: 500, layout: 'application'
-			return
-		end
-		if @new_scripts.empty? and @existing_scripts.empty?
-			@text = "No scripts found on #{@importer.import_source_name}"
-			render 'home/error', layout: 'application'
-			return
-		end
 	end
 
 	def add
