@@ -271,6 +271,9 @@ GEM
       railties (>= 6.0.0, < 7)
     rails-observers (0.1.5)
       activemodel (>= 4.0)
+    rails_same_site_cookie (0.1.7)
+      rack (>= 1.5)
+      user_agent_parser (~> 2.5)
     railties (6.0.2.1)
       actionpack (= 6.0.2.1)
       activesupport (= 6.0.2.1)
@@ -352,6 +355,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.6)
+    user_agent_parser (2.6.0)
     warden (1.2.8)
       rack (>= 2.0.6)
     webdrivers (4.2.0)
@@ -414,6 +418,7 @@ DEPENDENCIES
   rails-assets-jsonlylightbox!
   rails-i18n
   rails-observers
+  rails_same_site_cookie
   rb-readline
   recaptcha
   redcarpet

@@ -45,6 +45,8 @@ gem 'recaptcha', require: 'recaptcha/rails'
 gem 'rails-observers'
 gem 'memoist'
 gem 'email_address'
+# Rails gets support in https://github.com/rails/rails/pull/28297
+gem 'rails_same_site_cookie'
 
 source 'https://rails-assets.org' do
 	gem 'rails-assets-jsonlylightbox'
