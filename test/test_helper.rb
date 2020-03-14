@@ -27,6 +27,7 @@ class ActiveSupport::TestCase
 // @description		Unit test.
 // @namespace http://greasyfork.local/users/1
 // @version 1.0
+// @include *
 // ==/UserScript==
 var foo = "bar";
 END

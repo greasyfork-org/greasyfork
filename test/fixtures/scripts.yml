@@ -48,6 +48,7 @@ url_sync_script:
     // @description		Unit test.
     // @version 1.1
     // @namespace http://greasyfork.local/users/1
+    // @include *
     // ==/UserScript==
     var foo = 1;
   version: 1
@@ -66,6 +67,7 @@ url_sync_script_unchanged:
     // @description		Unit test.
     // @version 1.1
     // @namespace http://greasyfork.local/users/1
+    // @include *
     // ==/UserScript==
     var foo = 1;
   version: 1
@@ -83,6 +85,7 @@ url_sync_script_new_has_no_description:
     // @name		A Test!
     // @version 1.1
     // @namespace http://greasyfork.local/users/1
+    // @include *
     // ==/UserScript==
     var foo = 1;
   version: 1
@@ -133,6 +136,7 @@ synced_and_localized:
     // @description		Unit test.
     // @description:fr		Test d'unit.
     // @version		1
+    // @include *
     // ==/UserScript==
     foo.baz();
   version: 1
@@ -166,6 +170,7 @@ url_sync_script_with_screenshots:
     // @description		Unit test.
     // @version 1.1
     // @namespace http://greasyfork.local/users/1
+    // @include *
     // ==/UserScript==
     var foo = 1;
   version: 1

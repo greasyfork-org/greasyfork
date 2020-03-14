@@ -13,6 +13,7 @@ class ScriptCompatibilityTest < ActiveSupport::TestCase
 // @version 1.1
 // @namespace http://greasyfork.local/users/1
 // @compatible firefox
+// @include *
 // ==/UserScript==
 var foo = 2;
 		EOF
@@ -40,6 +41,7 @@ var foo = 2;
 // @namespace http://greasyfork.local/users/1
 // @compatible firefox
 // @compatible chrome Except for X
+// @include *
 // ==/UserScript==
 var foo = 2;
 		EOF
@@ -70,6 +72,7 @@ var foo = 2;
 // @version 1.1
 // @namespace http://greasyfork.local/users/1
 // @incompatible firefox
+// @include *
 // ==/UserScript==
 var foo = 2;
 		EOF
@@ -91,6 +94,7 @@ var foo = 2;
 // @version 1.1
 // @namespace http://greasyfork.local/users/1
 // @compatible firefox(24-27)
+// @include *
 // ==/UserScript==
 var foo = 2;
 		EOF
@@ -115,6 +119,7 @@ var foo = 2;
 // @namespace http://greasyfork.local/users/1
 // @compatible firefox
 // @compatible crazybrowser
+// @include *
 // ==/UserScript==
 var foo = 2;
 		EOF

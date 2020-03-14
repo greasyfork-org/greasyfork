@@ -11,6 +11,7 @@ class UpdateTest < ApplicationSystemTestCase
       // @description Unit test.
       // @version 1.3
       // @namespace http://greasyfork.local/users/1
+      // @include *
       // ==/UserScript==
       var foo = 1;
     EOF
@@ -31,6 +32,7 @@ class UpdateTest < ApplicationSystemTestCase
       // @description Unit test.
       // @version 1.2
       // @namespace http://greasyfork.local/users/1
+      // @include *
       // ==/UserScript==
       var foo = 1;
     EOF

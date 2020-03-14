@@ -11,6 +11,7 @@ class CreateTest < ApplicationSystemTestCase
       // @description Unit test.
       // @version 1.1
       // @namespace http://greasyfork.local/users/1
+      // @include *
       // ==/UserScript==
       var foo = 1;
     EOF
@@ -55,6 +56,7 @@ class CreateTest < ApplicationSystemTestCase
       // @description Unit test.
       // @version 1.1
       // @namespace http://greasyfork.local/users/1
+      // @include *
       // ==/UserScript==
       var foo = 1;
     EOF

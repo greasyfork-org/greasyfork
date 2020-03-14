@@ -849,7 +849,7 @@ en:
       # description of @description:XX-YY. developer.mozilla.org may have localized content; use it if available.
       version_html: "Identifier for a specific version of a script in <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">Mozilla version format</a>. Version is displayed on a script's info page. %{site_name} requires this field and will warn if it's decremented or if it's not incremented when the script's code changes."
       # description of @include
-      include: "Describe what pages the script will run on. This list will be processed, displayed on the script's info page, and used to categorize scripts."
+      include_html: "Describe what pages the script will run on. This list will be processed, displayed on the script's info page, and used to categorize scripts. Every script must have at least one <code>@match</code> or <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Read about the format here.</a>"
       # description of @require. %{external_script_link} is a link to the document describing allowed external scripts and has a link of key "require_external_script_link_text"
       require_html: "Includes external JavaScript into a script. See %{external_script_link}."
       # used in required_html
@@ -1111,6 +1111,7 @@ en:
       # validation when user uploads code that contains a disallowed @require
       script_disallowed_require: "uses an unapproved external script: %{code}"
       script_rate_limit: "You have exceeded the posting limit. Try again later."
+      missing_include_or_match: "must include at least one @match or @include key"
   opensearch:
     # short name for opensearch.xml
     short_name: "%{site_name} search"

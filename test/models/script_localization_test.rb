@@ -18,6 +18,7 @@ class ScriptLocalizationTest < ActiveSupport::TestCase
 // @description:zh-TW	本地化測試腳本
 // @namespace http://greasyfork.local/users/1
 // @version 1.0
+// @include *
 // ==/UserScript==
 var foo = "bar";
 EOF
@@ -54,6 +55,7 @@ EOF
 // @description		Unit test
 // @namespace http://greasyfork.local/users/1
 // @version 1.0
+// @include *
 // ==/UserScript==
 var foo = "bar";
 EOF
@@ -76,6 +78,7 @@ EOF
 // @description:fr	Test d'unit
 // @namespace http://greasyfork.local/users/1
 // @version 1.0
+// @include *
 // ==/UserScript==
 var foo = "bar";
 EOF
@@ -100,6 +103,7 @@ EOF
 // @description:fr	Test d'unit
 // @namespace http://greasyfork.local/users/1
 // @version 1.0
+// @include *
 // ==/UserScript==
 var foo = "bar";
 EOF
@@ -123,6 +127,7 @@ EOF
 // @description:fr	Test d'unit
 // @namespace http://greasyfork.local/users/1
 // @version 1.0
+// @include *
 // ==/UserScript==
 var foo = "bar";
 EOF
@@ -144,6 +149,7 @@ EOF
 // @description:fr	Test d'unit
 // @namespace http://greasyfork.local/users/1
 // @version 1.0
+// @include *
 // ==/UserScript==
 var foo = "bar";
 EOF
@@ -193,6 +199,7 @@ EOF
 // @description:fr	Test d'unit
 // @namespace http://greasyfork.local/users/1
 // @version 1.0
+// @include *
 // ==/UserScript==
 var foo = "bar";
 EOF

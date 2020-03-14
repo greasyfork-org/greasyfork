@@ -66,6 +66,14 @@ class ScriptVersion < ApplicationRecord
     }
   end
 
+  validate do |record|
+    next if record.script.library? || !record.js?
+    meta = record.get_meta
+    if !meta.has_key?('include') && !meta.has_key?('match')
+      record.errors.add(:code, :missing_include_or_match)
+    end
+  end
+
   before_validation :set_locale
   before_save :set_locale
   def set_locale

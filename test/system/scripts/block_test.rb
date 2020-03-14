@@ -12,6 +12,7 @@ class BlockTest < ApplicationSystemTestCase
       // @description Unit test.
       // @version 1.1
       // @namespace http://greasyfork.local/users/1
+      // @include *
       // ==/UserScript==
       location.href = "https://example.com/unique-test-value"
     EOF
@@ -34,6 +35,7 @@ class BlockTest < ApplicationSystemTestCase
       // @description Unit test.
       // @version 1.1
       // @namespace http://greasyfork.local/users/1
+      // @include *
       // ==/UserScript==
       some.unique[value]
     EOF
@@ -52,6 +54,7 @@ class BlockTest < ApplicationSystemTestCase
       // @description Unit test.
       // @version 1.1
       // @namespace http://greasyfork.local/users/1
+      // @include *
       // ==/UserScript==
       some.unique[value]
     EOF
@@ -71,6 +74,7 @@ class BlockTest < ApplicationSystemTestCase
       // @description Unit test.
       // @version 1.1
       // @namespace http://greasyfork.local/users/1
+      // @include *
       // ==/UserScript==
       some.unique[value]
     EOF
@@ -91,6 +95,7 @@ class BlockTest < ApplicationSystemTestCase
       // @description Unit test.
       // @version 1.1
       // @namespace http://greasyfork.local/users/1
+      // @include *
       // ==/UserScript==
       location.href = "badguytext"
     EOF

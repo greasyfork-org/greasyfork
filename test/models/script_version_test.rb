@@ -8,6 +8,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
 // @description		Unit test.
 // @updateURL		http://example.com
 // @namespace		http://greasyfork.local/users/1
+// @include *
 // ==/UserScript==
 foo.baz();
 END
@@ -17,7 +18,7 @@ END
     sv.script = Script.find(1)
     sv.rewritten_code = sv.calculate_rewritten_code
     sv.save!
-    expected_js = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @namespace		http://greasyfork.local/users/1\n// @version 123\n// ==/UserScript==\nfoo.baz();\n"
+    expected_js = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @namespace		http://greasyfork.local/users/1\n// @include *\n// @version 123\n// ==/UserScript==\nfoo.baz();\n"
     assert_equal expected_js, sv.rewritten_code
   end
 
@@ -43,6 +44,7 @@ END
 // @namespace		http://example.com/1
 // @description		Unit test.
 // @version		1
+// @include *
 // ==/UserScript==
 foo.baz();
 END
@@ -59,6 +61,7 @@ END
 // @require		http://example.com
 // @version 1.0
 // @namespace http://greasyfork.local/users/1
+// @include *
 // ==/UserScript==
 var foo = "bar";
 END
@@ -77,6 +80,7 @@ END
 // @version 1.0
 // @namespace http://greasyfork.local/users/1
 // @require		http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
+// @include *
 // ==/UserScript==
 var foo = "bar";
 END
@@ -94,6 +98,7 @@ END
 // @description		Unit test.
 // @version 1.0
 // @namespace http://greasyfork.local/users/1
+// @include *
 // ==/UserScript==
 syn tax error
 END
@@ -135,7 +140,7 @@ END
     script = Script.find(3)
     assert script.valid? and script.script_versions.length == 1 and script.script_versions.first.valid?
     sv = ScriptVersion.new
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.2\n// @namespace http://greasyfork.local/users/1\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.2\n// @namespace http://greasyfork.local/users/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
     sv.script = script
     sv.calculate_all
     assert sv.valid?, sv.errors.full_messages.join(' ')
@@ -146,7 +151,7 @@ END
     script = Script.find(3)
     assert script.valid? and script.script_versions.length == 1 and script.script_versions.first.valid?
     sv = ScriptVersion.new
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @namespace http://greasyfork.local/users/1\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @namespace http://greasyfork.local/users/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
     sv.script = script
     sv.calculate_all
     assert !sv.valid?
@@ -157,7 +162,7 @@ END
     script = Script.find(3)
     assert script.valid? and script.script_versions.length == 1 and script.script_versions.first.valid?
     sv = ScriptVersion.new
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @namespace http://greasyfork.local/users/1\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @namespace http://greasyfork.local/users/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
     sv.script = script
     sv.calculate_all
     sv.version_check_override = true
@@ -169,7 +174,7 @@ END
     script = Script.find(3)
     assert script.valid? and script.script_versions.length == 1 and script.script_versions.first.valid?
     sv = ScriptVersion.new
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @namespace http://greasyfork.local/users/1\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @namespace http://greasyfork.local/users/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
     sv.script = script
     sv.calculate_all
     sv.do_lenient_saving
@@ -182,7 +187,7 @@ END
     sv = ScriptVersion.new
     sv.script = script
     # valid with the version
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @namespace http://greasyfork.local/users/1\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @namespace http://greasyfork.local/users/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
     sv.calculate_all
     assert sv.valid?, sv.errors.full_messages.join(' ')
     # invalid without
@@ -197,11 +202,11 @@ END
     sv = ScriptVersion.new
     sv.script = script
     # valid with the version
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n\n// @namespace http://greasyfork.local/users/1// ==/UserScript==\nvar foo = 2;"
+    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n\n// @namespace http://greasyfork.local/users/1/\n// @include *\n// ==/UserScript==\nvar foo = 2;"
     sv.calculate_all
     assert sv.valid?, sv.errors.full_messages.join(' ')
     # invalid without
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n\n// @namespace http://greasyfork.local/users/1// ==/UserScript==\nvar foo = 2;"
+    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n\n// @namespace http://greasyfork.local/users/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
     sv.add_missing_version = true
     sv.calculate_all
     assert sv.valid?
@@ -213,7 +218,7 @@ END
     assert script.valid? and script.script_versions.length == 1 and script.script_versions.first.valid?
     old_version = script.script_versions.first.version
     sv = ScriptVersion.new
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @namespace http://greasyfork.local/users/1\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @namespace http://greasyfork.local/users/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
     sv.script = script
     sv.calculate_all
     assert sv.valid?, sv.errors.full_messages.join(' ')
@@ -226,7 +231,7 @@ END
     assert script.valid? and script.script_versions.length == 1 and script.script_versions.first.valid?
     old_version = script.script_versions.first.version
     sv = ScriptVersion.new
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @namespace http://greasyfork.local/users/1\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @namespace http://greasyfork.local/users/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
     sv.script = script
     sv.calculate_all
     assert !sv.valid?
@@ -239,11 +244,11 @@ END
     sv = ScriptVersion.new
     sv.script = script
     # valid with the namespace
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @namespace http://greasyfork.local/users/1\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @namespace http://greasyfork.local/users/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
     sv.calculate_all
     assert sv.valid?, sv.errors.full_messages.join(' ')
     # invalid without
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
     sv.calculate_all
     assert !sv.valid?
   end
@@ -253,12 +258,12 @@ END
     script.authors.build(user: User.find(1))
     sv = ScriptVersion.new
     sv.script = script
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
     sv.calculate_all
     assert !sv.valid?
     sv.add_missing_namespace = true
     sv.calculate_all
-    assert_equal "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @namespace http://localhost/users/1\n// ==/UserScript==\nvar foo = 2;", sv.rewritten_code
+    assert_equal "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @include *\n// @namespace http://localhost/users/1\n// ==/UserScript==\nvar foo = 2;", sv.rewritten_code
     assert sv.valid?, sv.errors.full_messages.inspect
   end
 
@@ -266,19 +271,19 @@ END
     script = Script.find(6)
     sv = ScriptVersion.new
     sv.script = script
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.2\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.2\n// @include *\n// ==/UserScript==\nvar foo = 2;"
     sv.calculate_all
     assert sv.valid?, sv.errors.full_messages.inspect
-    assert_equal "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.2\n// @namespace http://example.com\n// ==/UserScript==\nvar foo = 2;", sv.rewritten_code
+    assert_equal "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.2\n// @include *\n// @namespace http://example.com\n// ==/UserScript==\nvar foo = 2;", sv.rewritten_code
   end
 
   test 'retain namespace' do
     script = Script.find(6)
     sv = ScriptVersion.new
     sv.script = script
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.2\n// @namespace http://example.com\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.2\n// @namespace http://example.com\n// @include *\n// ==/UserScript==\nvar foo = 2;"
     sv.calculate_all
-    assert_equal "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.2\n// @namespace http://example.com\n// ==/UserScript==\nvar foo = 2;", sv.rewritten_code
+    assert_equal "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.2\n// @namespace http://example.com\n// @include *\n// ==/UserScript==\nvar foo = 2;", sv.rewritten_code
     assert sv.valid?, sv.errors.full_messages.inspect
   end
 
@@ -286,7 +291,7 @@ END
     script = Script.find(6)
     sv = ScriptVersion.new
     sv.script = script
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.2\n// @namespace http://example.com/1\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.2\n// @namespace http://example.com/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
     sv.calculate_all
     assert !sv.valid?
   end
@@ -295,10 +300,10 @@ END
     script = Script.find(6)
     sv = ScriptVersion.new
     sv.script = script
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.2\n// @namespace http://example.com/1\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.2\n// @namespace http://example.com/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
     sv.namespace_check_override = true
     sv.calculate_all
-    assert_equal "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.2\n// @namespace http://example.com/1\n// ==/UserScript==\nvar foo = 2;", sv.rewritten_code
+    assert_equal "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.2\n// @namespace http://example.com/1\n// @include *\n// ==/UserScript==\nvar foo = 2;", sv.rewritten_code
     assert sv.valid?
   end
 
@@ -327,6 +332,7 @@ END
 // @name		A Test!
 // @namespace		http://example.com/1
 // @version		1
+// @include *
 // ==/UserScript==
 foo.baz();
 END
@@ -346,6 +352,7 @@ END
 // @description		A Test!
 // @namespace		http://example.com/1
 // @version		1
+// @include *
 // ==/UserScript==
 foo.baz();
 END
@@ -365,6 +372,7 @@ END
 // @description		A Test!
 // @namespace		http://example.com/1
 // @version		1
+// @include *
 // ==/UserScript==
 foo.baz();
 END
@@ -413,6 +421,7 @@ END
 // @namespace whatever
 // @require http://www.example.com/script.js
 // @require http://www.example.com/script2.js
+// @include *
 // ==/UserScript==
 var foo = "bar";
 END
@@ -426,6 +435,7 @@ END
 // @description		This script was deleted from Greasy Fork, and due to its negative effects, it has been automatically removed from your browser.
 // @version 2.0.0.1
 // @namespace whatever
+// @include *
 // ==/UserScript==
 END
     assert_equal expected_meta, sv.get_blanked_code
@@ -446,6 +456,7 @@ END
 // @description		A Test!
 // @namespace		http://example.com/1
 // @version		1
+// @include *
 // ==/UserScript==
 END
     sv = ScriptVersion.new
@@ -477,6 +488,7 @@ END
 // @description		A Test!
 // @namespace		http://example.com/1
 // @version		1
+// @include *
 // ==/UserScript==
 END
     sv = ScriptVersion.new
@@ -504,6 +516,7 @@ END
 // @description		A Test!
 // @namespace		http://example.com/1
 // @version		2
+// @include *
 // ==/UserScript==
 var foo = 'bar';
 END
@@ -524,6 +537,7 @@ END
 // @namespace		http://example.com/1
 // @version		3
 // @downloadURL http://example.com
+// @include *
 // ==/UserScript==
 END
     sv_new_2 = ScriptVersion.new
@@ -544,6 +558,7 @@ END
 // @description		A Test!
 // @namespace		http://example.com/1
 // @version		1
+// @include *
 // ==/UserScript==
 END
     sv = ScriptVersion.new
@@ -584,6 +599,7 @@ END
 // @namespace		http://example.com/1
 // @version		1
 // @downloadURL http://example.com
+// @include *
 // ==/UserScript==
 END
     sv.code = js
@@ -607,6 +623,7 @@ END
 // @namespace		http://example.com/1
 // @version		1
 // @downloadURL http://example.com
+// @include *
 // ==/UserScript==
 var foo = "bar";
 END
@@ -631,6 +648,7 @@ END
 // @description		A Test!
 // @namespace		http://example.com/1
 // @version		1
+// @include *
 // ==/UserScript==
 var foo = "bar";
 END
@@ -653,6 +671,7 @@ END
 // @description		123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
 // @version 1.0
 // @namespace http://greasyfork.local/users/1
+// @include *
 // ==/UserScript==
 foo.baz();
 END
@@ -697,5 +716,22 @@ END
     assert ['New', 'Nouveau'].all?{|ai| script.localized_attributes_for('additional_info').any?{|la| la.attribute_value == ai}}, script.localized_attributes_for('additional_info').inspect
     # but sync stuff should be retained!
     assert script.localized_attributes_for('additional_info').all?{|la| !la.sync_identifier.nil? && !la.sync_source_id.nil?}, script.localized_attributes_for('additional_info').inspect
+  end
+
+  test 'validate missing include' do
+    script = get_valid_script
+    script_version = script.script_versions.first
+    script_version.code = <<~END
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.0
+      // @namespace http://greasyfork.local/users/1
+      // ==/UserScript==
+      var foo = "bar";
+    END
+    assert !script_version.valid?
+    assert_equal 1, script_version.errors.size
+    assert_equal [:code, 'must include at least one @match or @include key'], script_version.errors.first
   end
 end
