@@ -7,16 +7,21 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   include Warden::Test::Helpers
 
   def allow_js_error(pattern, &block)
-    pre_messages = page.driver.browser.manage.logs.get(:browser).map(&:message)
+    pre_messages = page.driver.browser.manage.logs.get(:browser).map(&:message).reject{ |message| js_error_ignored?(message) }
     raise pre_messages.first if pre_messages.any?
     block.call
-    post_messages = page.driver.browser.manage.logs.get(:browser).map(&:message).reject { |m| pattern.match?(m) }
+    post_messages = page.driver.browser.manage.logs.get(:browser).map(&:message).reject { |m| pattern.match?(m) }.reject{ |message| js_error_ignored?(message) }
     raise post_messages.first if post_messages.any?
+  end
+
+  def js_error_ignored?(err)
+    err.include?('`SameSite=None` but without `Secure`')
   end
 
   teardown do
     page.driver.browser.manage.logs.get(:browser)
         .map(&:message)
+        .reject{ |message| js_error_ignored?(message) }
         .each do |message|
       raise "Browser console in #{method_name}: #{message}"
     end
