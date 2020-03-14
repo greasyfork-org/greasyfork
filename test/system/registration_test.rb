@@ -1,7 +1,7 @@
-require "application_system_test_case"
+require 'application_system_test_case'
 
 class RegistrationTest < ApplicationSystemTestCase
-  test "password registration" do
+  test 'password registration' do
     EmailAddress.stubs(:valid?).returns(true)
     visit root_url
     click_link 'Sign in'
@@ -27,7 +27,7 @@ class RegistrationTest < ApplicationSystemTestCase
     assert_selector '#error_explanation', text: 'This email has been banned'
   end
 
-  test "registration then switching to banned email variant" do
+  test 'registration then switching to banned email variant' do
     EmailAddress.stubs(:valid?).returns(true)
     visit root_url
     click_link 'Sign in'
@@ -45,7 +45,7 @@ class RegistrationTest < ApplicationSystemTestCase
     assert_selector '#error_explanation', text: 'This email has been banned'
   end
 
-  test "invalid email" do
+  test 'invalid email' do
     visit root_url
     click_link 'Sign in'
     click_link 'Sign up'

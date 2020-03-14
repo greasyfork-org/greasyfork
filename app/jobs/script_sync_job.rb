@@ -3,10 +3,8 @@ class ScriptSyncJob < ApplicationJob
   self.queue_adapter = :sidekiq if Rails.env.production?
 
   def perform(script_id)
-    begin
-      result = ScriptImporter::ScriptSyncer.sync(Script.find(script_id))
-    rescue => ex
-      #puts "#{script.id} exception - #{ex}"
-    end
+    ScriptImporter::ScriptSyncer.sync(Script.find(script_id))
+  rescue StandardError
+    # puts "#{script.id} exception - #{ex}"
   end
 end

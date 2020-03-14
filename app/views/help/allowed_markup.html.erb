@@ -4,10 +4,10 @@
 <p><%=t('common.allowed_elements_intro')%></p>
 
 <ul id="help-allowed-elements">
-	<li>&lt;* <%=get_markdown_sanitize_config[:attributes][:all].join('&#8203;|').html_safe%>&gt;</li>
-	<% get_markdown_sanitize_config[:elements].sort.each do |el| %>
-		<% attrs = get_markdown_sanitize_config[:attributes][el] %>
-		<% protocols = get_markdown_sanitize_config[:protocols][el] %>
+	<li>&lt;* <%= markdown_sanitize_config[:attributes][:all].join('&#8203;|').html_safe%>&gt;</li>
+	<% markdown_sanitize_config[:elements].sort.each do |el| %>
+		<% attrs = markdown_sanitize_config[:attributes][el] %>
+		<% protocols = markdown_sanitize_config[:protocols][el] %>
 		<li>
 			&lt;<%=el%><%
 			if !attrs.nil?

@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 require 'minitest/around/unit'
 require 'webdrivers/chromedriver'
 
@@ -7,10 +7,11 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   include Warden::Test::Helpers
 
   def allow_js_error(pattern, &block)
-    pre_messages = page.driver.browser.manage.logs.get(:browser).map(&:message).reject{ |message| js_error_ignored?(message) }
+    pre_messages = page.driver.browser.manage.logs.get(:browser).map(&:message).reject { |message| js_error_ignored?(message) }
     raise pre_messages.first if pre_messages.any?
+
     block.call
-    post_messages = page.driver.browser.manage.logs.get(:browser).map(&:message).reject { |m| pattern.match?(m) }.reject{ |message| js_error_ignored?(message) }
+    post_messages = page.driver.browser.manage.logs.get(:browser).map(&:message).reject { |m| pattern.match?(m) }.reject { |message| js_error_ignored?(message) }
     raise post_messages.first if post_messages.any?
   end
 
@@ -21,7 +22,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   teardown do
     page.driver.browser.manage.logs.get(:browser)
         .map(&:message)
-        .reject{ |message| js_error_ignored?(message) }
+        .reject { |message| js_error_ignored?(message) }
         .each do |message|
       raise "Browser console in #{method_name}: #{message}"
     end
@@ -32,9 +33,9 @@ Capybara.server = :webrick
 
 Capybara.register_driver :headless_chrome do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-      'goog:chromeOptions' => { args: ['verbose', 'disable-gpu', 'no-sandbox', 'disable-dev-shm-usage', 'window-size=1400,1400', ENV['HEADED'] == '1' ? nil : "headless"].compact },
-      'goog:loggingPrefs' => { browser: 'ALL' },
-      )
+    'goog:chromeOptions' => { args: ['verbose', 'disable-gpu', 'no-sandbox', 'disable-dev-shm-usage', 'window-size=1400,1400', ENV['HEADED'] == '1' ? nil : 'headless'].compact },
+    'goog:loggingPrefs' => { browser: 'ALL' }
+  )
 
   Capybara::Selenium::Driver.new app,
                                  browser: :chrome,

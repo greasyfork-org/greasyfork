@@ -17,8 +17,8 @@ class User < ApplicationRecord
     has_many "#{subset}_listable_scripts".to_sym, -> { listable(subset) }, class_name: 'Script', through: :authors, source: :script
   end
 
-  #this results in a cartesian join when included with the scripts relation
-  #has_many :discussions, through: :scripts
+  # this results in a cartesian join when included with the scripts relation
+  # has_many :discussions, through: :scripts
 
   has_and_belongs_to_many :roles, dependent: :destroy
 
@@ -28,14 +28,14 @@ class User < ApplicationRecord
 
   belongs_to :locale, optional: true
 
-  has_and_belongs_to_many :forum_users, :foreign_key => 'ForeignUserKey', :association_foreign_key => 'UserID', :join_table => 'GDN_UserAuthentication'
+  has_and_belongs_to_many :forum_users, foreign_key: 'ForeignUserKey', association_foreign_key: 'UserID', join_table: 'GDN_UserAuthentication'
 
   def forum_user
     return forum_users.first
   end
 
   before_destroy(prepend: true) do
-    throw(:abort) if !can_be_deleted?
+    throw(:abort) unless can_be_deleted?
     forum_user.rename_on_delete! if forum_user.present?
     scripts.select { |script| script.authors.where.not(user_id: id).none? }.each(&:destroy!)
   end
@@ -59,23 +59,23 @@ class User < ApplicationRecord
 
   validates_presence_of :name, :profile_markup, :preferred_markup
   validates_uniqueness_of :name, case_sensitive: false
-  validates_length_of :profile, :maximum => 10000
-  validates_inclusion_of :profile_markup, :in => ['html', 'markdown']
-  validates_inclusion_of :preferred_markup, :in => ['html', 'markdown']
+  validates_length_of :profile, maximum: 10_000
+  validates_inclusion_of :profile_markup, in: %w[html markdown]
+  validates_inclusion_of :preferred_markup, in: %w[html markdown]
 
   validate do
     errors.add(:email) if new_record? && identities.none? && !EmailAddress.valid?(email)
   end
 
   validate do
-    errors.add(:base, "This email has been banned.") if User.where(banned: true, canonical_email: canonical_email).any? if new_record? || email_changed? || unconfirmed_email_changed?
+    errors.add(:base, 'This email has been banned.') if (new_record? || email_changed? || unconfirmed_email_changed?) && User.where(banned: true, canonical_email: canonical_email).any?
   end
 
   # Devise runs this when password_required?, and we override that so
   # that users don't have to deal with passwords all the time. Add it
   # back when Devise won't run it and the user is actually setting the
   # password.
-  validates_confirmation_of :password, if: Proc.new{|u| !u.password_required? && !u.password.nil?}
+  validates_confirmation_of :password, if: proc { |u| !u.password_required? && !u.password.nil? }
 
   strip_attributes
 
@@ -87,7 +87,7 @@ class User < ApplicationRecord
     # take out swears
     r = name.downcase.gsub(/motherfucking|motherfucker|fucking|fucker|fucks|fuck|shitty|shits|shit|niggers|nigger|cunts|cunt/, '')
     # multiple non-alphas into one
-    r.gsub!(/([^[:alnum:]])[^[:alnum:]]+/) {|s| $1}
+    r.gsub!(/([^[:alnum:]])[^[:alnum:]]+/) { |_| Regexp.last_match(1) }
     # leading non-alphas
     r.gsub!(/^[^[:alnum:]]+/, '')
     # trailing non-alphas
@@ -116,23 +116,23 @@ class User < ApplicationRecord
   end
 
   def pretty_signin_methods
-    return identity_providers_used.map{|p| Identity.pretty_provider(p)}.compact
+    return identity_providers_used.map { |p| Identity.pretty_provider(p) }.compact
   end
 
   def identity_providers_used
-    return self.identities.map{|i| i.provider}.uniq
+    return identities.map(&:provider).uniq
   end
 
   def favorite_script_set
-    return ScriptSet.where(:favorite => true).where(:user_id => id).first
+    return ScriptSet.where(favorite: true).where(user_id: id).first
   end
 
   def serializable_hash(options = nil)
     h = super({ only: [:id, :name] }.merge(options || {})).merge({
-                                                                     :url => Rails.application.routes.url_helpers.user_url(nil, self)
+                                                                   url: Rails.application.routes.url_helpers.user_url(nil, self),
                                                                  })
     # rename listable_scripts to scripts
-    if !h['listable_scripts'].nil?
+    unless h['listable_scripts'].nil?
       h['scripts'] = h['listable_scripts']
       h.delete('listable_scripts')
     end
@@ -142,12 +142,13 @@ class User < ApplicationRecord
   # Returns the user's preferred locale code, if we have that locale available, otherwise nil.
   def available_locale_code
     return nil if locale.nil?
-    return nil if !locale.ui_available
+    return nil unless locale.ui_available
+
     return locale.code
   end
 
   def non_locked_scripts
-    return scripts.select{|s| !s.locked}
+    return scripts.reject(&:locked)
   end
 
   def can_be_deleted?
@@ -180,7 +181,7 @@ class User < ApplicationRecord
       update(trusted_reports: false)
     else
       upheld_count = script_reports.upheld.count
-      update(trusted_reports: (upheld_count.to_f / resolved_count.to_f) >= 0.75)
+      update(trusted_reports: (upheld_count.to_f / resolved_count) >= 0.75)
     end
   end
 
@@ -193,27 +194,31 @@ class User < ApplicationRecord
     save!
   end
 
-  def ban!(moderator: , reason: , private_reason: nil, ban_related: true)
+  def ban!(moderator:, reason:, private_reason: nil, ban_related: true)
     return if banned?
+
     User.transaction do
       ModeratorAction.create!(
         moderator: moderator,
         user: self,
         action: 'Ban',
         reason: reason,
-        private_reason: private_reason,
+        private_reason: private_reason
       )
       update_columns(banned: true)
     end
+
+    return unless ban_related
+
     User.where(canonical_email: canonical_email, banned: false).each do |user|
       user.ban!(moderator: moderator, reason: reason, private_reason: private_reason, ban_related: false)
-    end if ban_related
+    end
   end
 
   protected
 
   def password_required?
-    self.new_record? && self.identities.empty?
+    new_record? && identities.empty?
   end
 
   def confirmation_required?

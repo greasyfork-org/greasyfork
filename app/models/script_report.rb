@@ -16,10 +16,10 @@ class ScriptReport < ApplicationRecord
   validates :details, presence: true
   validates :reference_script, presence: true, if: ->(sr) { sr.unauthorized_code? }
 
-  TYPE_UNAUTHORIZED_CODE = 'unauthorized_code'
-  TYPE_MALWARE = 'malware'
-  TYPE_SPAM = 'spam'
-  TYPE_OTHER = 'other'
+  TYPE_UNAUTHORIZED_CODE = 'unauthorized_code'.freeze
+  TYPE_MALWARE = 'malware'.freeze
+  TYPE_SPAM = 'spam'.freeze
+  TYPE_OTHER = 'other'.freeze
 
   def dismissed?
     result == 'dismissed'
@@ -33,12 +33,12 @@ class ScriptReport < ApplicationRecord
     report_type == TYPE_UNAUTHORIZED_CODE
   end
 
-  def uphold!(moderator_note=nil)
+  def uphold!(moderator_note = nil)
     update!(result: 'upheld', moderator_note: moderator_note.presence)
     reporter&.update_trusted_report!
   end
 
-  def dismiss!(moderator_note=nil)
+  def dismiss!(moderator_note = nil)
     update!(result: 'dismissed', moderator_note: moderator_note.presence)
     reporter&.update_trusted_report!
   end

@@ -78,6 +78,7 @@ GEM
       public_suffix (>= 2.0.2, < 5.0)
     airbrussh (1.4.0)
       sshkit (>= 1.6.1, != 1.7.0)
+    ast (2.4.0)
     bcrypt (3.1.13)
     better_errors (2.5.1)
       coderay (>= 1.0.0)
@@ -161,6 +162,7 @@ GEM
     innertube (1.1.0)
     it (1.0.0)
       actionpack (>= 3.0.0)
+    jaro_winkler (1.5.4)
     joiner (0.5.0)
       activerecord (>= 6.0.0.rc2)
     json (2.3.0)
@@ -238,6 +240,9 @@ GEM
       mime-types
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
+    parallel (1.19.1)
+    parser (2.7.0.4)
+      ast (~> 2.4.0)
     public_suffix (4.0.3)
     rack (2.2.2)
     rack-protection (2.0.8.1)
@@ -279,6 +284,7 @@ GEM
       method_source
       rake (>= 0.8.7)
       thor (>= 0.20.3, < 2.0)
+    rainbow (3.0.0)
     rake (13.0.1)
     rb-fsevent (0.10.3)
     rb-inotify (0.10.1)
@@ -292,8 +298,18 @@ GEM
     responders (3.0.0)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rexml (3.2.4)
     riddle (2.4.0)
+    rubocop (0.80.1)
+      jaro_winkler (~> 1.5.1)
+      parallel (~> 1.10)
+      parser (>= 2.7.0.1)
+      rainbow (>= 2.2.2, < 4.0)
+      rexml
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 1.7)
     ruby-prof (1.2.0)
+    ruby-progressbar (1.10.1)
     rubyzip (2.0.0)
     sanitize (5.1.0)
       crass (~> 1.0.2)
@@ -354,6 +370,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.6)
+    unicode-display_width (1.6.1)
     user_agent_parser (2.6.0)
     warden (1.2.8)
       rack (>= 2.0.6)
@@ -421,6 +438,7 @@ DEPENDENCIES
   recaptcha
   redcarpet
   redis
+  rubocop
   ruby-prof
   sanitize
   sass-rails

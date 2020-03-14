@@ -3,15 +3,15 @@ class ApplicationJob < ActiveJob::Base
 
   self.queue_adapter = :delayed_job
 
+  def self.enqueued?
+    return Sidekiq::Workers.new.any? { |_process_id, _thread_id, work| work['payload']['wrapped'] == name } ||
+           Sidekiq::Queue.all.any? { |queue| queue.any? { |sq| sq.item['wrapped'] == name } } ||
+           Sidekiq::ScheduledSet.new.any? { |sq| sq.item['wrapped'] == name }
+  end
+
   protected
 
   def default_url_options
     Rails.application.routes.default_url_options
-  end
-
-  def self.enqueued?
-    return Sidekiq::Workers.new.any? {|process_id, thread_id, work| work['payload']['wrapped'] == self.name } ||
-      Sidekiq::Queue.all.any? { |queue| queue.any? { |sq| sq.item['wrapped'] == self.name } } ||
-      Sidekiq::ScheduledSet.new.any?{ |sq| sq.item['wrapped'] == self.name }
   end
 end

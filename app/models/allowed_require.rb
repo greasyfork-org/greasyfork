@@ -1,7 +1,5 @@
 class AllowedRequire < ApplicationRecord
-
-	def readonly?
-		true
-	end
-
+  def readonly?
+    true
+  end
 end

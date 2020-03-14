@@ -1,4 +1,4 @@
-require "application_system_test_case"
+require 'application_system_test_case'
 
 class ListTest < ApplicationSystemTestCase
   def around(&block)
@@ -7,7 +7,7 @@ class ListTest < ApplicationSystemTestCase
     end
   end
 
-  test "script list" do
+  test 'script list' do
     visit scripts_url
     assert_selector 'h2', text: 'MyString'
   end
@@ -17,7 +17,7 @@ class ListTest < ApplicationSystemTestCase
     assert_selector 'h2', text: 'jQuery'
   end
 
-  test "all authors should be listed" do
+  test 'all authors should be listed' do
     visit scripts_url
     script = Script.find(2)
     assert_operator script.users.count, :>, 1

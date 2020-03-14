@@ -21,7 +21,7 @@
             <button>Reject</button>
           <% end %>
         </p>
-        <% script_version = script.get_newest_saved_script_version %>
+        <% script_version = script.newest_saved_script_version %>
         <% if !script_version.screenshots.empty? %>
           <div class="script-screenshots">
             <% script_version.screenshots.each do |screenshot| %>

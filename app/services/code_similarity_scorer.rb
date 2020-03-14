@@ -11,11 +11,11 @@ class CodeSimilarityScorer
     # The "look-behind" only works for 32KB. If the code is longer than that then two copies of it won't get fully
     # compressed. This also means we're unlikely to find very similar scripts.
     # https://en.wikipedia.org/wiki/DEFLATE#Duplicate_string_elimination
-    if base_length > 32.kilobytes
-      compressed_length_if_identical = base_compressed_length
-    else
-      compressed_length_if_identical = get_compressed_size(base_code + base_code)
-    end
+    compressed_length_if_identical = if base_length > 32.kilobytes
+                                       base_compressed_length
+                                     else
+                                       get_compressed_size(base_code + base_code)
+                                     end
 
     # Create a map from script id to code id
     script_id_and_latest_version_id = ScriptVersion.where(script_id: other_scripts).group(:script_id).pluck(:script_id, 'MAX(id)')
@@ -28,6 +28,7 @@ class CodeSimilarityScorer
       slice.each do |script_id, code_id|
         other_code = script_code_id_to_code[code_id]
         next if other_code.nil?
+
         if base_code == other_code
           results[script_id] = 1.000
           next
@@ -51,7 +52,7 @@ class CodeSimilarityScorer
     results
   end
 
-  def self.get_compressed_size(s)
-    Zlib::Deflate.deflate(s, Zlib::BEST_SPEED).size
+  def self.get_compressed_size(code)
+    Zlib::Deflate.deflate(code, Zlib::BEST_SPEED).size
   end
 end

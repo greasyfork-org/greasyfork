@@ -1,6 +1,5 @@
 module Admin
   class RedirectServiceDomainsController < BaseController
-
     before_action :administrators_only, except: :index
 
     def index

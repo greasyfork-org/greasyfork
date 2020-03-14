@@ -54,7 +54,7 @@ Rails.application.configure do
   config.log_level = :debug
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   config.cache_store = :redis_cache_store, { path: '/var/run/redis/redis-server.sock', expires_in: 2.hours }
@@ -79,7 +79,7 @@ Rails.application.configure do
   # require 'syslog/logger'
   # config.logger = ActiveSupport::TaggedLogging.new(Syslog::Logger.new 'app-name')
 
-  if ENV["RAILS_LOG_TO_STDOUT"].present?
+  if ENV['RAILS_LOG_TO_STDOUT'].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter
     config.logger    = ActiveSupport::TaggedLogging.new(logger)
@@ -88,14 +88,13 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_mailer.default_url_options = { :host => 'greasyfork.org' }
+  config.action_mailer.default_url_options = { host: 'greasyfork.org' }
 
   routes.default_url_options[:host] = 'greasyfork.org'
   routes.default_url_options[:protocol] = 'https'
-  
+
   config.verify_ownership_on_import = false
   config.userscriptsorg_host = 'http://userscripts.org:8080'
   config.enable_detect_locale = true
   config.log_cache_misses = true
-
 end

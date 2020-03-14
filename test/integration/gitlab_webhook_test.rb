@@ -2,8 +2,7 @@ require 'test_helper'
 require 'git'
 
 class GitlabWebhookTest < ActionDispatch::IntegrationTest
-
-  CHANGE_BODY = <<~'EOF'
+  CHANGE_BODY = <<~'JSON'.freeze
     {
         "object_kind": "push",
         "event_name": "push",
@@ -64,12 +63,12 @@ class GitlabWebhookTest < ActionDispatch::IntegrationTest
             "visibility_level": 20
         }
     }
-  EOF
-  
+  JSON
+
   def webhook_request(user, secret: nil)
     post user_webhook_url(user_id: user.id),
-      headers: {'Content-Type' => 'application/json', 'X-Gitlab-Event' => 'Push Hook', 'X-Gitlab-Token' => secret || user.webhook_secret, 'Connection' => 'close', 'Host' => 'greasyfork.org', 'X-Forwarded-Proto' => 'https', 'X-Forwarded-For' => '35.231.231.98'},
-      params: CHANGE_BODY
+         headers: { 'Content-Type' => 'application/json', 'X-Gitlab-Event' => 'Push Hook', 'X-Gitlab-Token' => secret || user.webhook_secret, 'Connection' => 'close', 'Host' => 'greasyfork.org', 'X-Forwarded-Proto' => 'https', 'X-Forwarded-For' => '35.231.231.98' },
+         params: CHANGE_BODY
   end
 
   def test_webook_no_secret_match
@@ -77,7 +76,7 @@ class GitlabWebhookTest < ActionDispatch::IntegrationTest
     webhook_request(user, secret: 'abc123')
     assert_equal '403', response.code
   end
-  
+
   def test_webook_no_script_match
     user = User.find(1)
     Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js').update!(sync_identifier: nil)
@@ -85,11 +84,11 @@ class GitlabWebhookTest < ActionDispatch::IntegrationTest
     assert_equal '200', response.code
     assert_equal({ 'updated_scripts' => [], 'updated_failed' => [] }, JSON.parse(response.body))
   end
-  
+
   def test_webhook_change
     script = Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js')
     script.update!(sync_identifier: 'https://gitlab.com/jason.barnabe/glwebhookstest/raw/master/test.user.js')
-    Git.expects(:get_contents).yields('test.user.js', 'abc123', script.get_newest_saved_script_version.rewritten_code)
+    Git.expects(:get_contents).yields('test.user.js', 'abc123', script.newest_saved_script_version.rewritten_code)
     user = User.find(1)
     webhook_request(user)
     assert_equal '200', response.code

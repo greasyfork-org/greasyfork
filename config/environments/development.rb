@@ -20,7 +20,7 @@ Rails.application.configure do
 
     config.cache_store = :redis_cache_store, { path: '/var/run/redis/redis-server.sock', expires_in: 2.hours }
     config.public_file_server.headers = {
-      'Cache-Control' => "public, max-age=#{2.days.to_i}"
+      'Cache-Control' => "public, max-age=#{2.days.to_i}",
     }
   else
     config.action_controller.perform_caching = false
@@ -61,7 +61,7 @@ Rails.application.configure do
 
   routes.default_url_options[:host] = 'greasyfork.local'
   routes.default_url_options[:protocol] = 'http'
-  
+
   config.verify_ownership_on_import = false
   config.userscriptsorg_host = 'http://userscripts.org:8080'
   config.enable_detect_locale = true
@@ -69,5 +69,5 @@ Rails.application.configure do
 
   config.active_job.queue_adapter = :inline
 
-  config.hosts << "greasyfork.local"
+  config.hosts << 'greasyfork.local'
 end

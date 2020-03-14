@@ -3,5 +3,5 @@
 # Add new mime types for use in respond_to blocks:
 # Mime::Type.register "text/richtext", :rtf
 
-Mime::Type.register "application/javascript", :jsonp
-Mime::Type.register "text/x-userscript-meta", :user_script_meta
+Mime::Type.register 'application/javascript', :jsonp
+Mime::Type.register 'text/x-userscript-meta', :user_script_meta

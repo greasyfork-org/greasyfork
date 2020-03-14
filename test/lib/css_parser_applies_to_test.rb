@@ -18,7 +18,7 @@ class CssParserAppliesToTest < ActiveSupport::TestCase
         a { color: red; }
       }
     CSS
-    assert_equal [{text: 'example.com', domain: true, tld_extra: false}], get_applies_tos(css)
+    assert_equal [{ text: 'example.com', domain: true, tld_extra: false }], get_applies_tos(css)
   end
 
   test 'applies to single url' do
@@ -27,7 +27,7 @@ class CssParserAppliesToTest < ActiveSupport::TestCase
         a { color: red; }
       }
     CSS
-    assert_equal [{text: 'example.com', domain: true, tld_extra: false}], get_applies_tos(css)
+    assert_equal [{ text: 'example.com', domain: true, tld_extra: false }], get_applies_tos(css)
   end
 
   test 'applies to single url-prefix' do
@@ -36,7 +36,7 @@ class CssParserAppliesToTest < ActiveSupport::TestCase
         a { color: red; }
       }
     CSS
-    assert_equal [{text: 'example.com', domain: true, tld_extra: false}], get_applies_tos(css)
+    assert_equal [{ text: 'example.com', domain: true, tld_extra: false }], get_applies_tos(css)
   end
 
   test 'applies to single url-prefix with domain wildcard' do
@@ -45,7 +45,7 @@ class CssParserAppliesToTest < ActiveSupport::TestCase
         a { color: red; }
       }
     CSS
-    assert_equal [{text: 'http://example*', domain: false, tld_extra: false}], get_applies_tos(css)
+    assert_equal [{ text: 'http://example*', domain: false, tld_extra: false }], get_applies_tos(css)
   end
 
   test 'applies to single regexp' do
@@ -54,7 +54,7 @@ class CssParserAppliesToTest < ActiveSupport::TestCase
         a { color: red; }
       }
     CSS
-    assert_equal [{text: '.*example.*', domain: false, tld_extra: false}], get_applies_tos(css)
+    assert_equal [{ text: '.*example.*', domain: false, tld_extra: false }], get_applies_tos(css)
   end
 
   test 'multiple values in a rule' do
@@ -63,7 +63,7 @@ class CssParserAppliesToTest < ActiveSupport::TestCase
         a { color: red; }
       }
     CSS
-    assert_equal [{text: 'example.com', domain: true, tld_extra: false}, {text: 'example2.com', domain: true, tld_extra: false}], get_applies_tos(css)
+    assert_equal [{ text: 'example.com', domain: true, tld_extra: false }, { text: 'example2.com', domain: true, tld_extra: false }], get_applies_tos(css)
   end
 
   test 'multiple document blocks' do
@@ -75,11 +75,11 @@ class CssParserAppliesToTest < ActiveSupport::TestCase
         a { color: red; }
       }
     CSS
-    assert_equal [{text: 'example.com', domain: true, tld_extra: false}, {text: 'example2.com', domain: true, tld_extra: false}], get_applies_tos(css)
+    assert_equal [{ text: 'example.com', domain: true, tld_extra: false }, { text: 'example2.com', domain: true, tld_extra: false }], get_applies_tos(css)
   end
 
   test 'parse_doc_blocks with calculate_block_positions - one block' do
-    css = <<~END
+    css = <<~CSS
       /* ==UserStyle==
       @name        Example UserCSS style
       @namespace   github.com/openstyles/stylus
@@ -87,17 +87,17 @@ class CssParserAppliesToTest < ActiveSupport::TestCase
       @license     unlicense
       @updateURL   http://example.net
       ==/UserStyle== */
-      
+
       @-moz-document domain("example.com") {
         a {
           color: red;
         }
       }
-    END
+    CSS
 
     blocks = CssParser.parse_doc_blocks(css, calculate_block_positions: true)
     assert_equal 2, blocks.count
-    first_block_css = <<~END
+    first_block_css = <<~CSS
       /* ==UserStyle==
       @name        Example UserCSS style
       @namespace   github.com/openstyles/stylus
@@ -106,22 +106,22 @@ class CssParserAppliesToTest < ActiveSupport::TestCase
       @updateURL   http://example.net
       ==/UserStyle== */
 
-    END
+    CSS
     assert_equal first_block_css, css[blocks[0].start_pos..blocks[0].end_pos]
     assert_empty blocks[0].matches
 
-    second_block_css = <<-END
+    second_block_css = <<-CSS
 
   a {
     color: red;
   }
-    END
+    CSS
     assert_equal second_block_css, css[blocks[1].start_pos..blocks[1].end_pos]
     assert_equal 1, blocks[1].matches.count
   end
 
   test 'parse_doc_blocks with calculate_block_positions - multiple blocks' do
-    css = <<~END
+    css = <<~CSS
       /* ==UserStyle==
       @name        Example UserCSS style
       @namespace   github.com/openstyles/stylus
@@ -129,7 +129,7 @@ class CssParserAppliesToTest < ActiveSupport::TestCase
       @license     unlicense
       @updateURL   http://example.net
       ==/UserStyle== */
-      
+
       @-moz-document domain("example.com") {
         a {
           color: red;
@@ -143,11 +143,11 @@ class CssParserAppliesToTest < ActiveSupport::TestCase
           color: yellow;
         }
       }
-    END
+    CSS
 
     blocks = CssParser.parse_doc_blocks(css, calculate_block_positions: true)
     assert_equal 4, blocks.count
-    first_block_css = <<~END
+    first_block_css = <<~CSS
       /* ==UserStyle==
       @name        Example UserCSS style
       @namespace   github.com/openstyles/stylus
@@ -156,40 +156,40 @@ class CssParserAppliesToTest < ActiveSupport::TestCase
       @updateURL   http://example.net
       ==/UserStyle== */
 
-    END
+    CSS
     assert_equal first_block_css, css[blocks[0].start_pos..blocks[0].end_pos]
     assert_empty blocks[0].matches
 
-    second_block_css = <<-END
+    second_block_css = <<-CSS
 
   a {
     color: red;
   }
-    END
+    CSS
     assert_equal second_block_css, css[blocks[1].start_pos..blocks[1].end_pos]
     assert_equal 1, blocks[1].matches.count
 
-    third_block_css = <<-END
+    third_block_css = <<~CSS
 
 
-b { color: blue; }
+      b { color: blue; }
 
-    END
+    CSS
     assert_equal third_block_css, css[blocks[2].start_pos..blocks[2].end_pos]
     assert_empty blocks[2].matches
 
-    fourth_block_css = <<-END
+    fourth_block_css = <<-CSS
 
   s {
     color: yellow;
   }
-    END
+    CSS
     assert_equal fourth_block_css, css[blocks[3].start_pos..blocks[3].end_pos]
     assert_equal 1, blocks[3].matches.count
   end
 
   test 'parse_doc_blocks with calculate_block_positions - whitespace deficient' do
-    css = <<~END
+    css = <<~CSS
       /* ==UserStyle==
       @name        Example UserCSS style
       @namespace   github.com/openstyles/stylus
@@ -197,11 +197,11 @@ b { color: blue; }
       @license     unlicense
       @updateURL   http://example.net
       ==/UserStyle== */@-moz-document domain("example.com"){a{color:red;}}b{color:blue;}@-moz-document domain("example.net"){s{color:yellow;}}
-    END
+    CSS
 
     blocks = CssParser.parse_doc_blocks(css, calculate_block_positions: true)
     assert_equal 4, blocks.count
-    first_block_css = <<~END.strip
+    first_block_css = <<~CSS.strip
       /* ==UserStyle==
       @name        Example UserCSS style
       @namespace   github.com/openstyles/stylus
@@ -209,19 +209,19 @@ b { color: blue; }
       @license     unlicense
       @updateURL   http://example.net
       ==/UserStyle== */
-    END
+    CSS
     assert_equal first_block_css, css[blocks[0].start_pos..blocks[0].end_pos]
     assert_empty blocks[0].matches
 
-    second_block_css = "a{color:red;}"
+    second_block_css = 'a{color:red;}'
     assert_equal second_block_css, css[blocks[1].start_pos..blocks[1].end_pos]
     assert_equal 1, blocks[1].matches.count
 
-    third_block_css = "b{color:blue;}"
+    third_block_css = 'b{color:blue;}'
     assert_equal third_block_css, css[blocks[2].start_pos..blocks[2].end_pos]
     assert_empty blocks[2].matches
 
-    fourth_block_css = "s{color:yellow;}"
+    fourth_block_css = 's{color:yellow;}'
     assert_equal fourth_block_css, css[blocks[3].start_pos..blocks[3].end_pos]
     assert_equal 1, blocks[1].matches.count
   end

@@ -32,17 +32,18 @@ module ScriptsHelper
   def script_applies_to_list_contents(script, by_sites)
     sats_with_domains, sats_without_domains = script.script_applies_tos.includes(:site_application).partition(&:domain)
     return (
-    sats_with_domains.map{ |sat|
+    sats_with_domains.map do |sat|
       content_for_script_applies_to_that_has_domain(sat, count_of_other_scripts_with_sat(sat, script, by_sites))
-    } +
-    sats_without_domains.map{ |sat| content_tag(:code, sat.text) }
-    )
+    end +
+    sats_without_domains.map { |sat| content_tag(:code, sat.text) }
+  )
   end
 
   def license_display(script)
     return link_to(script.license.code, script.license.url, title: script.license.name) if script.license&.url
     return script.license.code if script.license
     return "<i>#{I18n.t('scripts.no_license')}</i>".html_safe if script.license_text.nil?
+
     return script.license_text
   end
 
@@ -52,24 +53,25 @@ module ScriptsHelper
     return nil if current_user && !current_user.show_ads
     return @script.promoted_script if @script&.promoted_script
     return nil unless Random.rand(Rails.application.config.promoted_script_divisor) == 0
+
     return Script.where(promoted: true).sample
   end
   memoize :promoted_script
 
-private
+  private
 
   def content_for_script_applies_to_that_has_domain(sat, count_of_other_scripts)
     if !sat.site_application.blocked && count_of_other_scripts > 0
-      title = t('scripts.applies_to_link_title', {:count => count_of_other_scripts, :site => sat.text})
-      return link_to(sat.text, by_site_scripts_path(:site => sat.text), {:title => title})
+      title = t('scripts.applies_to_link_title', { count: count_of_other_scripts, site: sat.text })
+      return link_to(sat.text, by_site_scripts_path(site: sat.text), { title: title })
     end
     return sat.text
   end
 
   def count_of_other_scripts_with_sat(script_applies_to, script, by_sites)
     return 0 if by_sites[script_applies_to.text].nil?
+
     # take this one out of the count if it's a listable
     return (by_sites[script_applies_to.text][:scripts] - (script.listable? ? 1 : 0))
   end
-
 end

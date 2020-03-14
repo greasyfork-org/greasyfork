@@ -2,16 +2,16 @@ require 'test_helper'
 
 class ScriptVersionTest < ActiveSupport::TestCase
   test 'calculate rewritten' do
-    js = <<END
-// ==UserScript==
-// @name		A Test!
-// @description		Unit test.
-// @updateURL		http://example.com
-// @namespace		http://greasyfork.local/users/1
-// @include *
-// ==/UserScript==
-foo.baz();
-END
+    js = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @updateURL		http://example.com
+      // @namespace		http://greasyfork.local/users/1
+      // @include *
+      // ==/UserScript==
+      foo.baz();
+    JS
     sv = ScriptVersion.new
     sv.code = js
     sv.version = '123'
@@ -23,9 +23,9 @@ END
   end
 
   test 'calculate rewritten no meta' do
-    js = <<END
-foo.baz();
-END
+    js = <<~JS
+      foo.baz();
+    JS
     script = Script.new
     script.authors.build(user: User.find(1))
     sv = ScriptVersion.new
@@ -37,95 +37,95 @@ END
 
   test 'calculate rewritten meta not at top' do
     script = Script.find(12)
-    expected_js = <<END
-/* License info is here */
-// ==UserScript==
-// @name		A Test!
-// @namespace		http://example.com/1
-// @description		Unit test.
-// @version		1
-// @include *
-// ==/UserScript==
-foo.baz();
-END
+    expected_js = <<~JS
+      /* License info is here */
+      // ==UserScript==
+      // @name		A Test!
+      // @namespace		http://example.com/1
+      // @description		Unit test.
+      // @version		1
+      // @include *
+      // ==/UserScript==
+      foo.baz();
+    JS
     assert_equal expected_js, script.script_versions.first.calculate_rewritten_code
   end
 
   test 'validate require disallowed' do
-    script = get_valid_script
+    script = valid_script
     script_version = script.script_versions.first
-    script_version.code = <<END
-// ==UserScript==
-// @name		A Test!
-// @description		Unit test.
-// @require		http://example.com
-// @version 1.0
-// @namespace http://greasyfork.local/users/1
-// @include *
-// ==/UserScript==
-var foo = "bar";
-END
+    script_version.code = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @require		http://example.com
+      // @version 1.0
+      // @namespace http://greasyfork.local/users/1
+      // @include *
+      // ==/UserScript==
+      var foo = "bar";
+    JS
     assert !script_version.valid?
     assert_equal 1, script_version.errors.size
     assert_equal [:code, 'uses an unapproved external script: @require http://example.com'], script_version.errors.first
   end
 
   test 'validate require exemption' do
-    script = get_valid_script
+    script = valid_script
     script_version = script.script_versions.first
-    script_version.code = <<END
-// ==UserScript==
-// @name		A Test!
-// @description		Unit test.
-// @version 1.0
-// @namespace http://greasyfork.local/users/1
-// @require		http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
-// @include *
-// ==/UserScript==
-var foo = "bar";
-END
+    script_version.code = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.0
+      // @namespace http://greasyfork.local/users/1
+      // @require		http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
+      // @include *
+      // ==/UserScript==
+      var foo = "bar";
+    JS
     assert script_version.valid?, script_version.errors.full_messages.to_s
   end
 
   test 'syntax errors in code' do
-    script = get_valid_script
+    script = valid_script
     script.authors.clear
     script.authors.build(user: User.find(1))
     script_version = script.script_versions.first
-    script_version.code = <<END
-// ==UserScript==
-// @name		A Test!
-// @description		Unit test.
-// @version 1.0
-// @namespace http://greasyfork.local/users/1
-// @include *
-// ==/UserScript==
-syn tax error
-END
+    script_version.code = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.0
+      // @namespace http://greasyfork.local/users/1
+      // @include *
+      // ==/UserScript==
+      syn tax error
+    JS
     assert !script_version.valid?
     assert_not_empty script_version.errors[:code]
   end
 
   test 'JSON is not valid' do
-    script = get_valid_script
+    script = valid_script
     script.authors.clear
     script.authors.build(user: User.find(1))
     script_version = script.script_versions.first
-    script_version.code = <<~END
+    script_version.code = <<~JS
       {
         "this": "is json"
       }
-    END
+    JS
     assert !script_version.valid?
     assert_not_empty script_version.errors[:code]
   end
 
   test 'JSON is valid for libraries' do
-    js = <<~END
+    js = <<~JS
       {
         "this": "is json"
       }
-    END
+    JS
     sv = ScriptVersion.new
     sv.code = js
     script = Script.find(13)
@@ -138,7 +138,7 @@ END
 
   test 'update code with changing version' do
     script = Script.find(3)
-    assert script.valid? and script.script_versions.length == 1 and script.script_versions.first.valid?
+    assert(script.valid?) && (script.script_versions.length == 1) && script.script_versions.first.valid?
     sv = ScriptVersion.new
     sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.2\n// @namespace http://greasyfork.local/users/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
     sv.script = script
@@ -149,7 +149,7 @@ END
 
   test 'update code without changing version' do
     script = Script.find(3)
-    assert script.valid? and script.script_versions.length == 1 and script.script_versions.first.valid?
+    assert(script.valid?) && (script.script_versions.length == 1) && script.script_versions.first.valid?
     sv = ScriptVersion.new
     sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @namespace http://greasyfork.local/users/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
     sv.script = script
@@ -160,7 +160,7 @@ END
 
   test 'update code without changing version with override' do
     script = Script.find(3)
-    assert script.valid? and script.script_versions.length == 1 and script.script_versions.first.valid?
+    assert(script.valid?) && (script.script_versions.length == 1) && script.script_versions.first.valid?
     sv = ScriptVersion.new
     sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @namespace http://greasyfork.local/users/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
     sv.script = script
@@ -172,7 +172,7 @@ END
 
   test 'update code without changing version with be_lenient' do
     script = Script.find(3)
-    assert script.valid? and script.script_versions.length == 1 and script.script_versions.first.valid?
+    assert(script.valid?) && (script.script_versions.length == 1) && script.script_versions.first.valid?
     sv = ScriptVersion.new
     sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @namespace http://greasyfork.local/users/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
     sv.script = script
@@ -210,26 +210,25 @@ END
     sv.add_missing_version = true
     sv.calculate_all
     assert sv.valid?
-    assert /0\.0\.1\.20/ =~ sv.version
+    assert(/0\.0\.1\.20/ =~ sv.version)
   end
 
   test 'update code without version previous had generated version' do
     script = Script.find(4)
-    assert script.valid? and script.script_versions.length == 1 and script.script_versions.first.valid?
+    assert(script.valid?) && (script.script_versions.length == 1) && script.script_versions.first.valid?
     old_version = script.script_versions.first.version
     sv = ScriptVersion.new
     sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @namespace http://greasyfork.local/users/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
     sv.script = script
     sv.calculate_all
     assert sv.valid?, sv.errors.full_messages.join(' ')
-    assert /^0\.0\.1\.[0-9]{14}$/ =~ sv.version
+    assert(/^0\.0\.1\.[0-9]{14}$/ =~ sv.version)
     assert sv.version != old_version
   end
 
   test 'update code without version previous had explicit version' do
     script = Script.find(5)
-    assert script.valid? and script.script_versions.length == 1 and script.script_versions.first.valid?
-    old_version = script.script_versions.first.version
+    assert(script.valid?) && (script.script_versions.length == 1) && script.script_versions.first.valid?
     sv = ScriptVersion.new
     sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @namespace http://greasyfork.local/users/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
     sv.script = script
@@ -308,14 +307,14 @@ END
   end
 
   test 'missing description' do
-    js = <<END
-// ==UserScript==
-// @name		A Test!
-// @namespace		http://example.com/1
-// @version		1
-// ==/UserScript==
-foo.baz();
-END
+    js = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @namespace		http://example.com/1
+      // @version		1
+      // ==/UserScript==
+      foo.baz();
+    JS
     sv = ScriptVersion.new
     sv.code = js
     script = Script.new
@@ -327,15 +326,15 @@ END
   end
 
   test 'missing description previous had description' do
-    js = <<END
-// ==UserScript==
-// @name		A Test!
-// @namespace		http://example.com/1
-// @version		1
-// @include *
-// ==/UserScript==
-foo.baz();
-END
+    js = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @namespace		http://example.com/1
+      // @version		1
+      // @include *
+      // ==/UserScript==
+      foo.baz();
+    JS
     sv = ScriptVersion.new
     sv.code = js
     script = Script.find(11)
@@ -347,15 +346,15 @@ END
   end
 
   test 'missing name previous had name' do
-    js = <<END
-// ==UserScript==
-// @description		A Test!
-// @namespace		http://example.com/1
-// @version		1
-// @include *
-// ==/UserScript==
-foo.baz();
-END
+    js = <<~JS
+      // ==UserScript==
+      // @description		A Test!
+      // @namespace		http://example.com/1
+      // @version		1
+      // @include *
+      // ==/UserScript==
+      foo.baz();
+    JS
     sv = ScriptVersion.new
     sv.code = js
     script = Script.find(13)
@@ -367,15 +366,15 @@ END
   end
 
   test 'library missing name previous had name' do
-    js = <<END
-// ==UserScript==
-// @description		A Test!
-// @namespace		http://example.com/1
-// @version		1
-// @include *
-// ==/UserScript==
-foo.baz();
-END
+    js = <<~JS
+      // ==UserScript==
+      // @description		A Test!
+      // @namespace		http://example.com/1
+      // @version		1
+      // @include *
+      // ==/UserScript==
+      foo.baz();
+    JS
     sv = ScriptVersion.new
     sv.code = js
     script = Script.find(13)
@@ -413,34 +412,33 @@ END
   end
 
   test 'get blanked code' do
-    js = <<END
-// ==UserScript==
-// @name		A Test!
-// @description		Unit test.
-// @version 2
-// @namespace whatever
-// @require http://www.example.com/script.js
-// @require http://www.example.com/script2.js
-// @include *
-// ==/UserScript==
-var foo = "bar";
-END
+    js = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 2
+      // @namespace whatever
+      // @require http://www.example.com/script.js
+      // @require http://www.example.com/script2.js
+      // @include *
+      // ==/UserScript==
+      var foo = "bar";
+    JS
     sv = ScriptVersion.new
     sv.code = js
     sv.script = Script.new
     sv.calculate_all
-    expected_meta = <<END
-// ==UserScript==
-// @name		A Test!
-// @description		This script was deleted from Greasy Fork, and due to its negative effects, it has been automatically removed from your browser.
-// @version 2.0.0.1
-// @namespace whatever
-// @include *
-// ==/UserScript==
-END
-    assert_equal expected_meta, sv.get_blanked_code
+    expected_meta = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		This script was deleted from Greasy Fork, and due to its negative effects, it has been automatically removed from your browser.
+      // @version 2.0.0.1
+      // @namespace whatever
+      // @include *
+      // ==/UserScript==
+    JS
+    assert_equal expected_meta, sv.generate_blanked_code
   end
-
 
   test 'get next version' do
     assert_equal '1.0.0.1', ScriptVersion.get_next_version('1')
@@ -450,15 +448,15 @@ END
   end
 
   test 'minified' do
-    js = <<END
-// ==UserScript==
-// @name Test
-// @description		A Test!
-// @namespace		http://example.com/1
-// @version		1
-// @include *
-// ==/UserScript==
-END
+    js = <<~JS
+      // ==UserScript==
+      // @name Test
+      // @description		A Test!
+      // @namespace		http://example.com/1
+      // @version		1
+      // @include *
+      // ==/UserScript==
+    JS
     sv = ScriptVersion.new
     sv.code = js
     script = Script.new
@@ -470,7 +468,7 @@ END
     # regular new script...
     assert sv.valid?, sv.errors.full_messages
     # now minified
-    sv.code += "function a(){}" * 5000
+    sv.code += 'function a(){}' * 5000
     assert !sv.valid?
     # override
     sv.minified_confirmation = true
@@ -482,15 +480,15 @@ END
   end
 
   test 'use same script code between code and rewritten' do
-    js = <<END
-// ==UserScript==
-// @name Test
-// @description		A Test!
-// @namespace		http://example.com/1
-// @version		1
-// @include *
-// ==/UserScript==
-END
+    js = <<~JS
+      // ==UserScript==
+      // @name Test
+      // @description		A Test!
+      // @namespace		http://example.com/1
+      // @version		1
+      // @include *
+      // ==/UserScript==
+    JS
     sv = ScriptVersion.new
     sv.code = js
     script = Script.new
@@ -510,16 +508,16 @@ END
     # new version, code changed, code and rewritten should have the same ids
     sv_new = ScriptVersion.new
     sv_new.script = script
-    js = <<END
-// ==UserScript==
-// @name Test
-// @description		A Test!
-// @namespace		http://example.com/1
-// @version		2
-// @include *
-// ==/UserScript==
-var foo = 'bar';
-END
+    js = <<~JS
+      // ==UserScript==
+      // @name Test
+      // @description		A Test!
+      // @namespace		http://example.com/1
+      // @version		2
+      // @include *
+      // ==/UserScript==
+      var foo = 'bar';
+    JS
     sv_new.code = js
     assert_not_equal sv_new.code, sv_new.rewritten_code
     sv_new.calculate_all(script.description)
@@ -530,37 +528,37 @@ END
     assert_equal sv_new.script_code_id, sv_new.rewritten_script_code_id
     assert_not_equal sv_new.script_code_id, sv.rewritten_script_code_id
     # now test a case where code and rewritten should stay different
-    js = <<END
-// ==UserScript==
-// @name Test
-// @description		A Test!
-// @namespace		http://example.com/1
-// @version		3
-// @downloadURL http://example.com
-// @include *
-// ==/UserScript==
-END
-    sv_new_2 = ScriptVersion.new
-    sv_new_2.script = script
-    sv_new_2.code = js
-    assert_not_equal sv_new_2.code, sv_new_2.rewritten_code
-    sv_new_2.calculate_all(script.description)
+    js = <<~JS
+      // ==UserScript==
+      // @name Test
+      // @description		A Test!
+      // @namespace		http://example.com/1
+      // @version		3
+      // @downloadURL http://example.com
+      // @include *
+      // ==/UserScript==
+    JS
+    sv_new2 = ScriptVersion.new
+    sv_new2.script = script
+    sv_new2.code = js
+    assert_not_equal sv_new2.code, sv_new2.rewritten_code
+    sv_new2.calculate_all(script.description)
     script.save!
-    sv_new_2.save!
-    assert_not_equal sv_new_2.code, sv_new_2.rewritten_code
-    assert_not_equal sv_new_2.script_code_id, sv_new_2.rewritten_script_code_id
+    sv_new2.save!
+    assert_not_equal sv_new2.code, sv_new2.rewritten_code
+    assert_not_equal sv_new2.script_code_id, sv_new2.rewritten_script_code_id
   end
 
   test 'reuse script code when not changed' do
-    js = <<END
-// ==UserScript==
-// @name Test
-// @description		A Test!
-// @namespace		http://example.com/1
-// @version		1
-// @include *
-// ==/UserScript==
-END
+    js = <<~JS
+      // ==UserScript==
+      // @name Test
+      // @description		A Test!
+      // @namespace		http://example.com/1
+      // @version		1
+      // @include *
+      // ==/UserScript==
+    JS
     sv = ScriptVersion.new
     sv.do_lenient_saving
     sv.code = js
@@ -576,7 +574,7 @@ END
     previous_script_code_id = sv.script_code_id
     previous_rewritten_script_code_id = sv.rewritten_script_code_id
     script.reload
-    assert_not_nil script.get_newest_saved_script_version
+    assert_not_nil script.newest_saved_script_version
     # a new version with the same code
     sv = ScriptVersion.new
     sv.code = js
@@ -592,16 +590,16 @@ END
     # a new version with a different code, but same rewritten code
     sv = ScriptVersion.new
     sv.do_lenient_saving
-    js = <<END
-// ==UserScript==
-// @name Test
-// @description		A Test!
-// @namespace		http://example.com/1
-// @version		1
-// @downloadURL http://example.com
-// @include *
-// ==/UserScript==
-END
+    js = <<~JS
+      // ==UserScript==
+      // @name Test
+      // @description		A Test!
+      // @namespace		http://example.com/1
+      // @version		1
+      // @downloadURL http://example.com
+      // @include *
+      // ==/UserScript==
+    JS
     sv.code = js
     sv.script = script
     sv.calculate_all(script.description)
@@ -616,17 +614,17 @@ END
     # completely different code, with rewrites
     sv = ScriptVersion.new
     sv.do_lenient_saving
-    js = <<END
-// ==UserScript==
-// @name Test
-// @description		A Test!
-// @namespace		http://example.com/1
-// @version		1
-// @downloadURL http://example.com
-// @include *
-// ==/UserScript==
-var foo = "bar";
-END
+    js = <<~JS
+      // ==UserScript==
+      // @name Test
+      // @description		A Test!
+      // @namespace		http://example.com/1
+      // @version		1
+      // @downloadURL http://example.com
+      // @include *
+      // ==/UserScript==
+      var foo = "bar";
+    JS
     sv.code = js
     sv.script = script
     sv.calculate_all(script.description)
@@ -642,16 +640,16 @@ END
     # rewritten stays the same, original changes to match
     sv = ScriptVersion.new
     sv.do_lenient_saving
-    js = <<END
-// ==UserScript==
-// @name Test
-// @description		A Test!
-// @namespace		http://example.com/1
-// @version		1
-// @include *
-// ==/UserScript==
-var foo = "bar";
-END
+    js = <<~JS
+      // ==UserScript==
+      // @name Test
+      // @description		A Test!
+      // @namespace		http://example.com/1
+      // @version		1
+      // @include *
+      // ==/UserScript==
+      var foo = "bar";
+    JS
     sv.code = js
     sv.script = script
     sv.calculate_all(script.description)
@@ -665,16 +663,16 @@ END
   end
 
   test 'truncate description' do
-    js = <<END
-// ==UserScript==
-// @name		A Test!
-// @description		123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
-// @version 1.0
-// @namespace http://greasyfork.local/users/1
-// @include *
-// ==/UserScript==
-foo.baz();
-END
+    js = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
+      // @version 1.0
+      // @namespace http://greasyfork.local/users/1
+      // @include *
+      // ==/UserScript==
+      foo.baz();
+    JS
     sv = ScriptVersion.new
     script = Script.new
     script.authors.build(user: User.first)
@@ -698,14 +696,14 @@ END
     assert script.valid?, script.errors.full_messages
     assert_equal 1, script.script_versions.length
     assert script.script_versions.first.valid?, script.script_versions.first.errors.full_messages
-    assert script.localized_attributes_for('additional_info').all?{|la| !la.sync_identifier.nil? && !la.sync_source_id.nil?}, script.localized_attributes_for('additional_info').inspect
+    assert script.localized_attributes_for('additional_info').all? { |la| !la.sync_identifier.nil? && !la.sync_source_id.nil? }, script.localized_attributes_for('additional_info').inspect
 
     sv = ScriptVersion.new
     sv.script = script
     sv.code = script.script_versions.first.code
     sv.rewritten_code = script.script_versions.first.rewritten_code
-    sv.localized_attributes.build({:attribute_key => 'additional_info', :attribute_value => 'New', :attribute_default => true, :locale => script.locale, :value_markup => 'html'})
-    sv.localized_attributes.build({:attribute_key => 'additional_info', :attribute_value => 'Nouveau', :attribute_default => false, :locale => Locale.where(:code => 'fr').first, :value_markup => 'html'})
+    sv.localized_attributes.build({ attribute_key: 'additional_info', attribute_value: 'New', attribute_default: true, locale: script.locale, value_markup: 'html' })
+    sv.localized_attributes.build({ attribute_key: 'additional_info', attribute_value: 'Nouveau', attribute_default: false, locale: Locale.where(code: 'fr').first, value_markup: 'html' })
     sv.calculate_all
     assert sv.valid?, sv.errors.full_messages
     script.apply_from_script_version(sv)
@@ -713,15 +711,15 @@ END
 
     assert_equal 2, script.localized_attributes_for('additional_info').length, script.localized_attributes_for('additional_info')
     # new values should be applied...
-    assert ['New', 'Nouveau'].all?{|ai| script.localized_attributes_for('additional_info').any?{|la| la.attribute_value == ai}}, script.localized_attributes_for('additional_info').inspect
+    assert %w[New Nouveau].all? { |ai| script.localized_attributes_for('additional_info').any? { |la| la.attribute_value == ai } }, script.localized_attributes_for('additional_info').inspect
     # but sync stuff should be retained!
-    assert script.localized_attributes_for('additional_info').all?{|la| !la.sync_identifier.nil? && !la.sync_source_id.nil?}, script.localized_attributes_for('additional_info').inspect
+    assert script.localized_attributes_for('additional_info').all? { |la| !la.sync_identifier.nil? && !la.sync_source_id.nil? }, script.localized_attributes_for('additional_info').inspect
   end
 
   test 'validate missing include' do
-    script = get_valid_script
+    script = valid_script
     script_version = script.script_versions.first
-    script_version.code = <<~END
+    script_version.code = <<~JS
       // ==UserScript==
       // @name		A Test!
       // @description		Unit test.
@@ -729,7 +727,7 @@ END
       // @namespace http://greasyfork.local/users/1
       // ==/UserScript==
       var foo = "bar";
-    END
+    JS
     assert !script_version.valid?
     assert_equal 1, script_version.errors.size
     assert_equal [:code, 'must include at least one @match or @include key'], script_version.errors.first

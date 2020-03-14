@@ -13,38 +13,39 @@ class ScriptVersion < ApplicationRecord
   before_save :reuse_script_codes
 
   belongs_to :script
-  belongs_to :script_code, :autosave => true
-  belongs_to :rewritten_script_code, :class_name => 'ScriptCode', :autosave => true
+  belongs_to :script_code, autosave: true
+  belongs_to :rewritten_script_code, class_name: 'ScriptCode', autosave: true
 
   has_many :localized_attributes, class_name: 'LocalizedScriptVersionAttribute', autosave: true, dependent: :destroy
   has_and_belongs_to_many :screenshots, autosave: true, dependent: :destroy
 
   delegate :js?, :css?, to: :script
 
-  strip_attributes :only => [:changelog]
+  strip_attributes only: [:changelog]
 
   validates_presence_of :code
 
-  validates_length_of :code, :maximum => 2000000
-  validates_length_of :changelog, :maximum => 500
+  validates_length_of :code, maximum: 2_000_000
+  validates_length_of :changelog, maximum: 500
 
   validate :number_of_screenshots
   def number_of_screenshots
-    errors.add(:base, I18n.t('errors.messages.script_too_many_screenshots', :number => Rails.configuration.screenshot_max_count)) if screenshots.length > Rails.configuration.screenshot_max_count
+    errors.add(:base, I18n.t('errors.messages.script_too_many_screenshots', number: Rails.configuration.screenshot_max_count)) if screenshots.length > Rails.configuration.screenshot_max_count
   end
 
   # Warnings are separated because we need to show custom UI for them (including checkboxes to override)
   validate do |record|
-    record.warnings.each {|w| record.errors.add(:base, "warning-" + w.to_s)}
+    record.warnings.each { |w| record.errors.add(:base, 'warning-' + w.to_s) }
   end
 
   validates_each :localized_attributes do |s, attr, children|
     s.errors[attr].clear
     children.each do |child|
-      child.errors.keys.each{|key| s.errors[attr.to_s + '.' + key.to_s].clear}
-      next if child.marked_for_destruction? or child.valid?
+      child.errors.keys.each { |key| s.errors[attr.to_s + '.' + key.to_s].clear }
+      next if child.marked_for_destruction? || child.valid?
+
       child.errors.each do |child_attr, msg|
-        s.errors[:base] << I18n.t("activerecord.attributes.script." + child.attribute_key) + " - " + I18n.t("activerecord.attributes.script." + child_attr.to_s, :default => child_attr.to_s) + " " + msg
+        s.errors[:base] << I18n.t('activerecord.attributes.script.' + child.attribute_key) + ' - ' + I18n.t('activerecord.attributes.script.' + child_attr.to_s, default: child_attr.to_s) + ' ' + msg
       end
     end
   end
@@ -52,32 +53,31 @@ class ScriptVersion < ApplicationRecord
   # Multiple additional infos in the same locale
   validate do |record|
     # The default will get set to the script's locale
-    additional_info_locales = localized_attributes_for('additional_info').map{|la|(la.locale.nil? && la.attribute_default) ? script.locale : la.locale}.select{|l| !l.nil?}
-    duplicated_locales = additional_info_locales.select{|l| additional_info_locales.count(l) > 1 }.uniq
-    duplicated_locales.each {|l| record.errors[:base] << I18n.t("scripts.additional_info_locale_repeated", {:locale_code => l.code})}
+    additional_info_locales = localized_attributes_for('additional_info').map { |la| (la.locale.nil? && la.attribute_default) ? script.locale : la.locale }.reject(&:nil?)
+    duplicated_locales = additional_info_locales.select { |l| additional_info_locales.count(l) > 1 }.uniq
+    duplicated_locales.each { |l| record.errors[:base] << I18n.t('scripts.additional_info_locale_repeated', { locale_code: l.code }) }
   end
 
   # Additional info where no @name for that locale exists. This is OK if the script locale matches, though.
   validate do |record|
-    additional_info_locales = localized_attributes_for('additional_info').select{|la|!la.attribute_default}.map{|la|la.locale.nil? ? script.locale : la.locale}.select{|l| !l.nil?}.uniq
+    additional_info_locales = localized_attributes_for('additional_info').reject(&:attribute_default).map { |la| la.locale.nil? ? script.locale : la.locale }.reject(&:nil?).uniq
     meta_keys = record.parser_class.parse_meta(code)
-    additional_info_locales.each{|l|
-      record.errors[:base] << I18n.t('scripts.localized_additional_info_with_no_name', {:locale_code => l.code}) if !meta_keys.include?('name:' + l.code) and l != script.locale
-    }
+    additional_info_locales.each do |l|
+      record.errors[:base] << I18n.t('scripts.localized_additional_info_with_no_name', { locale_code: l.code }) if !meta_keys.include?('name:' + l.code) && (l != script.locale)
+    end
   end
 
   validate do |record|
     next if record.script.library? || !record.js?
-    meta = record.get_meta
-    if !meta.has_key?('include') && !meta.has_key?('match')
-      record.errors.add(:code, :missing_include_or_match)
-    end
+
+    meta = record.meta
+    record.errors.add(:code, :missing_include_or_match) if !meta.key?('include') && !meta.key?('match')
   end
 
   before_validation :set_locale
   before_save :set_locale
   def set_locale
-    localized_attributes.select{|la| la.locale.nil?}.each{|la| la.locale = script.locale}
+    localized_attributes.select { |la| la.locale.nil? }.each { |la| la.locale = script.locale }
   end
 
   # Delete the code if not in use by another version.
@@ -102,7 +102,7 @@ class ScriptVersion < ApplicationRecord
     return false if add_missing_version
 
     # exempt scripts that are (being) deleted as well as libraries
-    return false if !script.nil? and (script.deleted? or script.library?)
+    return false if !script.nil? && (script.deleted? || script.library?)
 
     return version.nil?
   end
@@ -113,10 +113,10 @@ class ScriptVersion < ApplicationRecord
     return false if version.nil?
 
     # exempt scripts that are (being) deleted as well as libraries
-    return false if !script.nil? and (script.deleted? or script.library?)
+    return false if !script.nil? && (script.deleted? || script.library?)
 
     # did the code change?
-    previous_script_version = script.get_newest_saved_script_version
+    previous_script_version = script.newest_saved_script_version
     return false if previous_script_version.nil?
     return false if code == previous_script_version.code
 
@@ -127,24 +127,24 @@ class ScriptVersion < ApplicationRecord
   def namespace_missing?
     return false if add_missing_namespace
     # exempt scripts that are (being) deleted as well as libraries
-    return false if !script.nil? and (script.deleted? or script.library?)
+    return false if !script.nil? && (script.deleted? || script.library?)
 
     # previous namespace will be used in calculate_rewritten_code if this one doesn't have one
     previous_namespace = get_meta_from_previous('namespace', true)
-    return false if !previous_namespace.nil? and !previous_namespace.empty?
+    return false if !previous_namespace.nil? && !previous_namespace.empty?
 
     meta = parser_class.parse_meta(code)
     # handled elsewhere
     return false if meta.nil?
 
-    return !meta.has_key?('namespace')
+    return !meta.key?('namespace')
   end
 
   # namespace shouldn't change
   def namespace_changed?
     return false if namespace_check_override
     # exempt scripts that are (being) deleted as well as libraries
-    return false if !script.nil? and (script.deleted? or script.library?)
+    return false if !script.nil? && (script.deleted? || script.library?)
 
     meta = parser_class.parse_meta(code)
     # handled elsewhere
@@ -152,12 +152,12 @@ class ScriptVersion < ApplicationRecord
 
     # handled in namespace_missing?
     namespaces = meta['namespace']
-    return false if namespaces.nil? or namespaces.empty?
+    return false if namespaces.nil? || namespaces.empty?
 
     namespace = namespaces.first
 
     previous_namespace = get_meta_from_previous('namespace', true)
-    previous_namespace = (previous_namespace.nil? or previous_namespace.empty?) ? nil : previous_namespace.first
+    previous_namespace = (previous_namespace.nil? || previous_namespace.empty?) ? nil : previous_namespace.first
 
     # if there was no previous namespace, then anything new is fine
     return false if previous_namespace.nil?
@@ -169,7 +169,8 @@ class ScriptVersion < ApplicationRecord
   def potentially_minified?
     return false if minified_confirmation
     # only warn on new
-    return false if script.nil? or !script.new_record?
+    return false if script.nil? || !script.new_record?
+
     return ScriptVersion.code_appears_minified(code)
   end
 
@@ -177,23 +178,25 @@ class ScriptVersion < ApplicationRecord
     return false if sensitive_site_confirmation
     return false if script.sensitive
     return false if script.adult_content_self_report
+
     return sensitive_domains.any?
   end
 
   def sensitive_domains
-    domain_names = calculate_applies_to_names.select{|atn| atn[:domain] && !atn[:tld_extra]}.map{|atn| atn[:text]}
+    domain_names = calculate_applies_to_names.select { |atn| atn[:domain] && !atn[:tld_extra] }.map { |atn| atn[:text] }
     return SensitiveSite.where(domain: domain_names).map(&:domain)
   end
 
   def code_previously_posted?
     return false if allow_code_previously_posted || !new_record?
+
     hash = script_code.calculate_hash
     previously_posted_scope = ScriptVersion.joins(:script).merge(Script.not_deleted).where.not(script_id: script_id)
     # Split into two queries to better use the indexes.
     self.previously_posted_scripts = (
           previously_posted_scope.joins(:script_code).where(script_codes: { code_hash: hash }) +
           previously_posted_scope.joins(:rewritten_script_code).where(script_codes: { code_hash: hash })
-    ).map(&:script).uniq
+        ).map(&:script).uniq
     previously_posted_scripts.any?
   end
 
@@ -224,70 +227,71 @@ class ScriptVersion < ApplicationRecord
 
   # reuse script code objects to save disk space
   def reuse_script_codes
-    return if !new_record?
+    return unless new_record?
 
     code_found = false
     rewritten_code_found = false
 
     # check if one of the previous versions had the same code, reuse if so
-    if !self.script.nil?
-      self.script.script_versions.each do |old_sv|
-        # only use older versions for this
-        break if !self.id.nil? and self.id < old_sv.id
-        next if old_sv == self
-        if !code_found
-          if old_sv.code == self.code
-            self.script_code = old_sv.script_code
-            code_found = true
-          elsif old_sv.rewritten_code == self.code
-            self.script_code = old_sv.rewritten_script_code
-            code_found = true
-          end
+    # only use older versions for this
+    script&.script_versions&.each do |old_sv|
+      # only use older versions for this
+      break if !id.nil? && (id < old_sv.id)
+      next if old_sv == self
+
+      unless code_found
+        if old_sv.code == code
+          self.script_code = old_sv.script_code
+          code_found = true
+        elsif old_sv.rewritten_code == code
+          self.script_code = old_sv.rewritten_script_code
+          code_found = true
         end
-        if !rewritten_code_found
-          if old_sv.rewritten_code == self.rewritten_code
-            self.rewritten_script_code = old_sv.rewritten_script_code
-            rewritten_code_found = true
-          elsif old_sv.code == self.rewritten_code
-            self.rewritten_script_code = old_sv.script_code
-            rewritten_code_found = true
-          end
-        end
-        break if code_found and rewritten_code_found
       end
+      unless rewritten_code_found
+        if old_sv.rewritten_code == rewritten_code
+          self.rewritten_script_code = old_sv.rewritten_script_code
+          rewritten_code_found = true
+        elsif old_sv.code == rewritten_code
+          self.rewritten_script_code = old_sv.script_code
+          rewritten_code_found = true
+        end
+      end
+      break if code_found && rewritten_code_found
     end
 
     # if we didn't find a previous version, see if original and rewritten are the same in the current version
-    if !code_found and self.rewritten_code == self.code
-      self.script_code = self.rewritten_script_code
-    elsif !rewritten_code_found and self.rewritten_code == self.code
-      self.rewritten_script_code = self.script_code
+    if !code_found && (rewritten_code == code)
+      self.script_code = rewritten_script_code
+    elsif !rewritten_code_found && (rewritten_code == code)
+      self.rewritten_script_code = script_code
     end
-
   end
 
   def code
     script_code.nil? ? nil : script_code.code
   end
 
-  def code=(c)
+  def code=(new_code)
     # no op if the same
-    return if self.code == c
-    #self.script_code = ScriptCode.new
-    self.build_script_code
-    self.script_code.code = c
+    return if code == new_code
+
+    # self.script_code = ScriptCode.new
+    build_script_code
+    script_code.code = new_code
   end
 
   def rewritten_code
     rewritten_script_code.nil? ? nil : rewritten_script_code.code
   end
 
-  def rewritten_code=(c)
+  def rewritten_code=(new_code)
     # no op if the same
-    return if self.rewritten_code == c
-    #self.rewritten_script_code = ScriptCode.new
-    self.build_rewritten_script_code
-    self.rewritten_script_code.code = c
+    return if rewritten_code == new_code
+
+    # self.rewritten_script_code = ScriptCode.new
+    build_rewritten_script_code
+    rewritten_script_code.code = new_code
   end
 
   # Try our best to accept the code
@@ -305,52 +309,53 @@ class ScriptVersion < ApplicationRecord
   def calculate_all(previous_description = nil)
     normalize_code
     meta = parser_class.parse_meta(code)
-    if meta.has_key?('version')
+    if meta.key?('version')
       self.version = meta['version'].first
     else
-      nssv = script.get_newest_saved_script_version
-      if !nssv.nil? and nssv.code == code
-        # no update, use the last one
-        self.version = nssv.version
-        # generate the version ourselves if the user asked or if the previous one was generated
-      elsif self.add_missing_version or (!nssv.nil? and /^0\.0\.1\.[0-9]{14}$/ =~ nssv.version)
-        # a "low" version based on timestamp so if the author decides to start using versions, they'll beat ours
-        self.version = "0.0.1.#{Time.now.utc.strftime('%Y%m%d%H%M%S')}"
-      else
-        self.version = nil
-      end
+      nssv = script.newest_saved_script_version
+      self.version = if !nssv.nil? && (nssv.code == code)
+                       # no update, use the last one
+                       nssv.version
+                     # generate the version ourselves if the user asked or if the previous one was generated
+                     elsif add_missing_version || (!nssv.nil? && /^0\.0\.1\.[0-9]{14}$/ =~ nssv.version)
+                       # a "low" version based on timestamp so if the author decides to start using versions, they'll beat ours
+                       "0.0.1.#{Time.now.utc.strftime('%Y%m%d%H%M%S')}"
+                     end
     end
     self.rewritten_code = calculate_rewritten_code(previous_description)
   end
 
-  def get_rewritten_meta_block
+  def generate_rewritten_meta_block
     parser_class.get_meta_block(rewritten_code)
   end
 
-  def get_blanked_code
-    ScriptVersion.get_blanked_code(rewritten_code)
+  def generate_blanked_code
+    ScriptVersion.generate_blanked_code(rewritten_code)
   end
 
-  def self.get_blanked_code(rewritten_code)
+  def self.generate_blanked_code(rewritten_code)
     c = JsParser.get_meta_block(rewritten_code)
     return nil if c.nil?
+
     current_version = ScriptVersion.get_first_meta(c, 'version')
-    return JsParser.inject_meta(c, { description: 'This script was deleted from Greasy Fork, and due to its negative effects, it has been automatically removed from your browser.', version: ScriptVersion.get_next_version(current_version), :require => nil, icon: nil, resource: nil})
+    return JsParser.inject_meta(c, { description: 'This script was deleted from Greasy Fork, and due to its negative effects, it has been automatically removed from your browser.', version: ScriptVersion.get_next_version(current_version), require: nil, icon: nil, resource: nil })
   end
 
   def calculate_rewritten_code(previous_description = nil)
-    return code if !script.nil? and script.library?
+    return code if !script.nil? && script.library?
+
     add_if_missing = {}
     backup_namespace = calculate_backup_namespace
-    add_if_missing[:namespace] = backup_namespace if !backup_namespace.nil?
-    add_if_missing[:description] = previous_description if !previous_description.nil?
+    add_if_missing[:namespace] = backup_namespace unless backup_namespace.nil?
+    add_if_missing[:description] = previous_description unless previous_description.nil?
     rewritten_meta = parser_class.inject_meta(code, {
-                                     version: version,
-                                     updateURL: nil,
-                                     installURL: nil,
-                                     downloadURL: nil,
-                                 }, add_if_missing)
+                                                version: version,
+                                                updateURL: nil,
+                                                installURL: nil,
+                                                downloadURL: nil,
+                                              }, add_if_missing)
     return nil if rewritten_meta.nil?
+
     return rewritten_meta
   end
 
@@ -358,9 +363,10 @@ class ScriptVersion < ApplicationRecord
   def calculate_backup_namespace
     # use the rewritten code as the previous one may have been a backup as well
     previous_namespace = get_meta_from_previous('namespace', true)
-    return previous_namespace.first unless previous_namespace.nil? or previous_namespace.empty?
-    return nil if !add_missing_namespace
-    return Rails.application.routes.url_helpers.user_url(:id => script.authors.first.user_id)
+    return previous_namespace.first unless previous_namespace.nil? || previous_namespace.empty?
+    return nil unless add_missing_namespace
+
+    return Rails.application.routes.url_helpers.user_url(id: script.authors.first.user_id)
   end
 
   def calculate_applies_to_names
@@ -376,10 +382,11 @@ class ScriptVersion < ApplicationRecord
   def disallowed_requires_used
     r = []
     meta = parser_class.parse_meta(code)
-    return r if !meta.has_key?('require')
+    return r unless meta.key?('require')
+
     allowed_requires = AllowedRequire.all
     meta['require'].each do |script_url|
-      r << script_url if allowed_requires.none?{ |ar| script_url =~ Regexp.new(ar.pattern) }
+      r << script_url if allowed_requires.none? { |ar| script_url =~ Regexp.new(ar.pattern) }
     end
     return r
   end
@@ -390,12 +397,13 @@ class ScriptVersion < ApplicationRecord
     # - Ruby: "If the strings are of different lengths, and the strings are equal when compared up to the shortest length, then the longer string is considered greater than the shorter one."
     sv1 = ScriptVersion.split_version(v1)
     sv2 = ScriptVersion.split_version(v2)
-    return nil if sv1.nil? or sv2.nil?
+    return nil if sv1.nil? || sv2.nil?
+
     (0..15).each do |i|
       # Odds are strings
       if i.odd?
-        return 1 if sv1[i].empty? and !sv2[i].empty?
-        return -1 if !sv1[i].empty? and sv2[i].empty?
+        return 1 if sv1[i].empty? && !sv2[i].empty?
+        return -1 if !sv1[i].empty? && sv2[i].empty?
       end
       r = sv1[i] <=> sv2[i]
       return r if r != 0
@@ -405,29 +413,33 @@ class ScriptVersion < ApplicationRecord
 
   def get_meta_from_previous(key, use_rewritten = false)
     return nil if script.nil?
-    previous_script_version = script.get_newest_saved_script_version
+
+    previous_script_version = script.newest_saved_script_version
     return nil if previous_script_version.nil?
+
     previous_meta = parser_class.parse_meta(use_rewritten ? previous_script_version.rewritten_code : previous_script_version.code)
     return nil if previous_meta.nil?
+
     return previous_meta[key]
   end
 
   # Returns the first meta value matching the passed code, or nil
-  def self.get_first_meta(c, meta_name)
-    meta = JsParser.parse_meta(c)
-    return meta[meta_name].first if meta.has_key?(meta_name)
+  def self.get_first_meta(code, meta_name)
+    meta = JsParser.parse_meta(code)
+    return meta[meta_name].first if meta.key?(meta_name)
+
     return nil
   end
 
   # Increments the passed version
-  def self.get_next_version(v)
-    a = split_version(v)
+  def self.get_next_version(version_number)
+    a = split_version(version_number)
     # wipe out zeros
     [0, 2, 4, 6, 8, 10, 12, 14].each do |i|
       a[i] = nil if a[i] == 0
     end
     # incremement the last numeric value - position 12 if 13 and 14 aren't set, 14 if either is
-    if a[13].empty? and a[14].nil?
+    if a[13].empty? && a[14].nil?
       a[12] = a[12].nil? ? 1 : a[12] + 1
     else
       a[14] = a[14].nil? ? 1 : a[14] + 1
@@ -436,7 +448,7 @@ class ScriptVersion < ApplicationRecord
     p2 = a[4..7].join('')
     p3 = a[8..11].join('')
     p4 = a[12..15].join('')
-    return [p1, p2, p3, p4].map{|p| p.empty? ? '0' : p}.join('.')
+    return [p1, p2, p3, p4].map { |p| p.empty? ? '0' : p }.join('.')
   end
 
   def appears_minified
@@ -444,10 +456,10 @@ class ScriptVersion < ApplicationRecord
   end
 
   def self.code_appears_minified(value)
-    return value.split("\n").any? {|s| s.length > 5000 and s.include?('function') }
+    return value.split("\n").any? { |s| (s.length > 5000) && s.include?('function') }
   end
 
-  def get_meta
+  def meta
     parser_class.parse_meta(code)
   end
 
@@ -456,8 +468,9 @@ class ScriptVersion < ApplicationRecord
   end
 
   def additional_info_markup
-    la = localized_attributes_for('additional_info').select{|la| la.attribute_default}.first
+    la = localized_attributes_for('additional_info').select(&:attribute_default).first
     return 'html' if la.nil?
+
     return la.value_markup
   end
 
@@ -475,27 +488,23 @@ class ScriptVersion < ApplicationRecord
   def script_versions_with_identical_code
     script_code_ids = ScriptCode.where(code_hash: [script_code.code_hash, rewritten_script_code.code_hash].uniq).pluck(:id)
     ScriptVersion
-        .joins(:script)
-        .merge(Script.not_deleted)
-        .where.not(script_id: script_id)
-        .where(['script_code_id IN (?) OR rewritten_script_code_id IN (?)', script_code_ids, script_code_ids])
+      .joins(:script)
+      .merge(Script.not_deleted)
+      .where.not(script_id: script_id)
+      .where(['script_code_id IN (?) OR rewritten_script_code_id IN (?)', script_code_ids, script_code_ids])
   end
 
-  private
-
   # Returns a 16 element array of version info per https://developer.mozilla.org/en-US/docs/Toolkit_version_format
-  def self.split_version(v)
+  def self.split_version(version_number)
     # up to 4 strings separated by dots
-    a = v.split('.', 4)
+    a = version_number.split('.', 4)
     # missing part counts as 0
-    until a.length == 4
-      a << '0'
-    end
-    return a.map { |p|
+    a << '0' until a.length == 4
+    return a.map do |p|
       # each part consists of number, string, number, string, each part optional
       # string #2 we will assume is no numbers, string #4 will eat whatever's left
       match_array = /((?:\-?[0-9]+)?)([^0-9\-]*)((?:\-?[0-9]+)?)(.*)/.match(p)
       [match_array[1].to_i, match_array[2], match_array[3].to_i, match_array[4]]
-    }.flatten
+    end.flatten
   end
 end

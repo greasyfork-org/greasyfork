@@ -1,10 +1,10 @@
 module ScriptListings
   extend ActiveSupport::Concern
 
-  COLLECTION_PUBLIC_ACTIONS = [:index, :search, :libraries, :code_search, :by_site]
-  COLLECTION_MODERATOR_ACTIONS = [:reported, :reported_not_adult, :requested_permanent_deletion, :minified]
+  COLLECTION_PUBLIC_ACTIONS = [:index, :search, :libraries, :code_search, :by_site].freeze
+  COLLECTION_MODERATOR_ACTIONS = [:reported, :reported_not_adult, :requested_permanent_deletion, :minified].freeze
 
-  included do 
+  included do
     layout 'list', only: [:index, :search, :libraries, :reported, :reported_not_adult, :requested_permanent_deletion, :minified, :code_search]
   end
 
@@ -15,16 +15,16 @@ module ScriptListings
     if params[:set].nil?
       begin
         with = case script_subset
-          when :greasyfork
-            {sensitive: false}
-          when :sleazyfork
-            {sensitive: true}
-          else
-            {}
-        end
+               when :greasyfork
+                 { sensitive: false }
+               when :sleazyfork
+                 { sensitive: true }
+               else
+                 {}
+               end
 
         locale = Locale.find_by(code: I18n.locale)
-        if locale.has_scripts?(script_subset)
+        if locale.scripts?(script_subset)
           if params[:filter_locale] == '0'
             @offer_filtered_results_for_locale = locale
           else
@@ -65,93 +65,91 @@ module ScriptListings
             params[:q],
             with: with,
             page: params[:page],
-            per_page: get_per_page,
+            per_page: per_page,
             order: self.class.get_sort(params, true),
             populate: true,
-            sql: { include: [:script_type, {localized_attributes: :locale}, :users] },
+            sql: { include: [:script_type, { localized_attributes: :locale }, :users] },
             select: '*, weight() myweight, LENGTH(site_application_id) AS site_count',
             ranker: "expr('top(user_weight)')"
           )
           # make it run now so we can catch syntax errors
           @scripts.empty?
         end
-      rescue ThinkingSphinx::SyntaxError, ThinkingSphinx::ParseError => e
+      rescue ThinkingSphinx::SyntaxError, ThinkingSphinx::ParseError
         flash[:alert] = "Invalid search query - '#{params[:q]}'."
         # back to the main listing
         redirect_to scripts_path
         return
-      rescue ThinkingSphinx::OutOfBoundsError => e
+      rescue ThinkingSphinx::OutOfBoundsError
         # Paginated too far.
         @scripts = Script.none.paginate(page: 1)
       end
     else
       @scripts = Script
-                     .listable(script_subset)
-                     .includes({:users => {}, :script_type => {}, :localized_attributes => :locale, :script_delete_type => {}})
-                     .paginate(:page => params[:page], :per_page => get_per_page)
+                 .listable(script_subset)
+                 .includes({ users: {}, script_type: {}, localized_attributes: :locale, script_delete_type: {} })
+                 .paginate(page: params[:page], per_page: per_page)
       @scripts = self.class.apply_filters(@scripts, params, script_subset)
     end
 
     respond_to do |format|
-      format.html {
-        if !params[:set].nil?
-          @set = ScriptSet.find(params[:set])
-        end
+      format.html do
+        @set = ScriptSet.find(params[:set]) unless params[:set].nil?
         @by_sites = self.class.get_top_by_sites(script_subset)
 
-        @sort_options = ['relevance', 'daily_installs', 'total_installs', 'ratings', 'created', 'updated', 'name'] if is_search
-        @link_alternates = get_listing_link_alternatives
+        @sort_options = %w[relevance daily_installs total_installs ratings created updated name] if is_search
+        @link_alternates = listing_link_alternatives
 
         if !params[:set].nil?
           if is_search
-            @title = t('scripts.listing_title_for_search', :search_string => params[:q])
+            @title = t('scripts.listing_title_for_search', search_string: params[:q])
           elsif @set.favorite
-            @title = t('scripts.listing_title_for_favorites', :set_name => @set.display_name, :user_name => @set.user.name)
+            @title = t('scripts.listing_title_for_favorites', set_name: @set.display_name, user_name: @set.user.name)
           else
             @title = @set.display_name
             @description = @set.description
           end
-        elsif params[:site] == '*' and !@scripts.empty?
+        elsif (params[:site] == '*') && !@scripts.empty?
           @title = t('scripts.listing_title_all_sites')
           @description = t('scripts.listing_description_all_sites')
-        elsif !params[:site].nil? and !@scripts.empty?
-          @title = t('scripts.listing_title_for_site', :site => params[:site])
-          @description = t('scripts.listing_description_for_site', :site => params[:site])
+        elsif !params[:site].nil? && !@scripts.empty?
+          @title = t('scripts.listing_title_for_site', site: params[:site])
+          @description = t('scripts.listing_description_for_site', site: params[:site])
         else
           @title = t('scripts.listing_title_generic')
           @description = t('scripts.listing_description_generic')
         end
         @canonical_params = [:page, :per_page, :site, :sort, :filter_locale, :language]
-        if is_search
-          @canonical_params << :q
-        else
-          @canonical_params << :set
-        end
+        @canonical_params << if is_search
+                               :q
+                             else
+                               :set
+                             end
         @ad_method = choose_ad_method_for_scripts(@scripts)
-      }
+      end
       format.atom
-      format.json {
+      format.json do
         render json: params[:meta] == '1' ? { count: @scripts.count } : @scripts.as_json(include: :users)
-      }
-      format.jsonp {
+      end
+      format.jsonp do
         render json: params[:meta] == '1' ? { count: @scripts.count } : @scripts.as_json(include: :users), callback: clean_json_callback_param
-      }
+      end
     end
   end
 
   def by_site
     respond_to do |format|
-      format.html {
+      format.html do
         @by_sites = self.class.get_by_sites(script_subset)
-        @by_sites = @by_sites.select{|k, v| k.present? && k.include?(params[:q])} if params[:q].present?
-        @by_sites = Hash[@by_sites.max_by(200) {|k,v| v[:installs] }.sort_by{|k,v| k || ''}]
+        @by_sites = @by_sites.select { |k, _v| k.present? && k.include?(params[:q]) } if params[:q].present?
+        @by_sites = Hash[@by_sites.max_by(200) { |_k, v| v[:installs] }.sort_by { |k, _v| k || '' }]
         render layout: 'application'
-      }
-      format.json {
-        result = ScriptAppliesTo.joins(:script, :site_application).where(scripts: {script_type_id: 1, script_delete_type_id: nil}, tld_extra: false, site_applications: {domain: true}).group('site_applications.text').count
+      end
+      format.json do
+        result = ScriptAppliesTo.joins(:script, :site_application).where(scripts: { script_type_id: 1, script_delete_type_id: nil }, tld_extra: false, site_applications: { domain: true }).group('site_applications.text').count
         cache_request(result.to_json)
         render json: result
-      }
+      end
     end
   end
 
@@ -161,13 +159,13 @@ module ScriptListings
 
   def libraries
     with = case script_subset
-      when :greasyfork
-        {sensitive: false}
-      when :sleazyfork
-        {sensitive: true}
-      else
-        {}
-    end
+           when :greasyfork
+             { sensitive: false }
+           when :sleazyfork
+             { sensitive: true }
+           else
+             {}
+           end
     with.merge!(script_type_id: 3)
 
     begin
@@ -178,16 +176,16 @@ module ScriptListings
         params[:q],
         with: with,
         page: params[:page],
-        per_page: get_per_page,
+        per_page: per_page,
         order: self.class.get_sort(params, true, nil, default_sort: 'created'),
         populate: true,
-        sql: {include: [:script_type, {localized_attributes: :locale}, :users]},
+        sql: { include: [:script_type, { localized_attributes: :locale }, :users] },
         select: '*, weight() myweight',
         ranker: "expr('top(user_weight)')"
       )
       # make it run now so we can catch syntax errors
       @scripts.empty?
-    rescue ThinkingSphinx::SyntaxError => e
+    rescue ThinkingSphinx::SyntaxError
       flash[:alert] = "Invalid search query - '#{params[:q]}'."
       # back to the main listing
       redirect_to scripts_path
@@ -212,54 +210,53 @@ module ScriptListings
 
   def minified
     @scripts = []
-    Script.order(self.class.get_sort(params)).where(:locked => false).each do |script|
-      sv = script.get_newest_saved_script_version
+    Script.order(self.class.get_sort(params)).where(locked: false).each do |script|
+      sv = script.newest_saved_script_version
       @scripts << script if sv.appears_minified
     end
     @paginate = false
-    @title = "Potentially minified user scripts on Greasy Fork"
+    @title = 'Potentially minified user scripts on Greasy Fork'
     @include_script_sets = false
-    render :action => 'index'
+    render action: 'index'
   end
 
   def code_search
     @bots = 'noindex,follow'
-    if params[:c].nil? or params[:c].empty?
+    if params[:c].nil? || params[:c].empty?
       redirect_to search_path(anchor: 'code-search'), status: 301
       return
     end
 
     # get latest version for each script
-    script_version_ids = Script.connection.select_values("SELECT MAX(id) FROM script_versions GROUP BY script_id")
+    script_version_ids = Script.connection.select_values('SELECT MAX(id) FROM script_versions GROUP BY script_id')
 
     # check the code for the search text
     # using the escape character doesn't seem to work, yet it works from the command line. so choose something unlikely to be used as our escape character
     script_ids = Script.connection.select_values("SELECT DISTINCT script_id FROM script_versions JOIN script_codes ON rewritten_script_code_id = script_codes.id WHERE script_versions.id IN (#{script_version_ids.join(',')}) AND code LIKE '%#{Script.connection.quote_string(params[:c].gsub('É', 'ÉÉ').gsub('%', 'É%').gsub('_', 'É_'))}%' ESCAPE 'É' LIMIT 100")
     @scripts = Script.order(self.class.get_sort(params)).includes(:users, :script_type, :script_delete_type).where(id: script_ids)
-    @scripts = @scripts.listable(script_subset) if !current_user&.moderator?
+    @scripts = @scripts.listable(script_subset) unless current_user&.moderator?
     @paginate = false
-    @title = t('scripts.listing_title_for_code_search', :search_string => params[:c])
+    @title = t('scripts.listing_title_for_code_search', search_string: params[:c])
     @canonical_params = [:c, :sort]
     @include_script_sets = false
-    render :action => 'index'
+    render action: 'index'
   end
 
   class_methods do
-
     def apply_filters(scripts, params, script_subset, default_sort: nil)
-      if !params[:site].nil?
-        if params[:site] == '*'
-          scripts = scripts.for_all_sites
-        else
-          scripts = scripts.joins(:site_applications).where(site_applications: {text: params[:site]})
-        end
+      unless params[:site].nil?
+        scripts = if params[:site] == '*'
+                    scripts.for_all_sites
+                  else
+                    scripts.joins(:site_applications).where(site_applications: { text: params[:site] })
+                  end
       end
-      if !params[:set].nil?
+      unless params[:set].nil?
         set = ScriptSet.find(params[:set])
         set_script_ids = cache_with_log(set, namespace: script_subset) do
-          set.scripts(script_subset).map{|s| s.id}
+          set.scripts(script_subset).map(&:id)
         end
-        scripts = scripts.where(:id => set_script_ids)
+        scripts = scripts.where(id: set_script_ids)
       end
       scripts = scripts.where(language: params[:language] == 'css' ? 'css' : 'js') unless params[:language] == 'all'
       scripts = scripts.order(get_sort(params, false, set, default_sort: default_sort))
@@ -268,7 +265,7 @@ module ScriptListings
 
     def get_top_by_sites(script_subset)
       return cache_with_log("scripts/get_top_by_sites/#{script_subset}") do
-        get_by_sites(script_subset).sort{|a,b| b[1][:installs] <=> a[1][:installs]}.first(10)
+        get_by_sites(script_subset).sort { |a, b| b[1][:installs] <=> a[1][:installs] }.first(10)
       end
     end
 
@@ -277,66 +274,63 @@ module ScriptListings
       column_prefix = for_sphinx ? '' : 'scripts.'
       sort = params[:sort] || (!set.nil? ? set.default_sort : nil) || default_sort
       case sort
-        when 'total_installs'
-          return "#{column_prefix}total_installs DESC, #{column_prefix}id"
-        when 'created'
-          return "#{column_prefix}created_at DESC, #{column_prefix}id"
-        when 'updated'
-          return "#{column_prefix}code_updated_at DESC, #{column_prefix}id"
-        when 'daily_installs'
-          return "#{column_prefix}daily_installs DESC, #{column_prefix}id"
-        when 'ratings'
-          return "#{column_prefix}fan_score DESC, #{column_prefix}id"
-        when 'name'
-          return "#{column_prefix}default_name ASC, #{column_prefix}id"
-        else
-          params[:sort] = nil
-          if for_sphinx
-            return "myweight DESC, #{column_prefix}daily_installs DESC, #{column_prefix}id"
-          end
-          return "#{column_prefix}daily_installs DESC, #{column_prefix}id"
+      when 'total_installs'
+        return "#{column_prefix}total_installs DESC, #{column_prefix}id"
+      when 'created'
+        return "#{column_prefix}created_at DESC, #{column_prefix}id"
+      when 'updated'
+        return "#{column_prefix}code_updated_at DESC, #{column_prefix}id"
+      when 'daily_installs'
+        return "#{column_prefix}daily_installs DESC, #{column_prefix}id"
+      when 'ratings'
+        return "#{column_prefix}fan_score DESC, #{column_prefix}id"
+      when 'name'
+        return "#{column_prefix}default_name ASC, #{column_prefix}id"
+      else
+        params[:sort] = nil
+        return "myweight DESC, #{column_prefix}daily_installs DESC, #{column_prefix}id" if for_sphinx
+
+        return "#{column_prefix}daily_installs DESC, #{column_prefix}id"
       end
     end
-
   end
 
   protected
 
   def render_script_list(scripts, options = {})
     @scripts = scripts
-    if !(options && options[:skip_filters])
-      @scripts = @scripts.paginate(page: params[:page], per_page: get_per_page)
+    unless options && options[:skip_filters]
+      @scripts = @scripts.paginate(page: params[:page], per_page: per_page)
       @scripts = self.class.apply_filters(@scripts, params, script_subset)
     end
 
     respond_to do |format|
-      format.html {
-        @feeds = {t('scripts.listing_created_feed') => {sort: 'created'}, t('scripts.listing_updated_feed') => {sort: 'updated'}}
+      format.html do
+        @feeds = { t('scripts.listing_created_feed') => { sort: 'created' }, t('scripts.listing_updated_feed') => { sort: 'updated' } }
         @canonical_params = [:q, :page, :per_page, :sort]
-        @link_alternates = get_listing_link_alternatives
+        @link_alternates = listing_link_alternatives
         render :index
-      }
-      format.atom {
+      end
+      format.atom do
         render :index
-      }
-      format.json {
-        render json: params[:meta] == '1' ? {count: @scripts.count} : @scripts.as_json(include: :users)
-      }
-      format.jsonp {
-        render json: params[:meta] == '1' ? {count: @scripts.count} : @scripts.as_json(include: :users), callback: clean_json_callback_param
-      }
+      end
+      format.json do
+        render json: params[:meta] == '1' ? { count: @scripts.count } : @scripts.as_json(include: :users)
+      end
+      format.jsonp do
+        render json: params[:meta] == '1' ? { count: @scripts.count } : @scripts.as_json(include: :users), callback: clean_json_callback_param
+      end
     end
   end
 
-  def get_listing_link_alternatives
+  def listing_link_alternatives
     [
-      {:url => current_path_with_params(page: nil, sort: 'created', format: :atom), :type => 'application/atom+xml', :title => t('scripts.listing_created_feed')},
-      {:url => current_path_with_params(page: nil, sort: 'updated', format: :atom), :type => 'application/atom+xml', :title => t('scripts.listing_updated_feed')},
-      {:url => current_path_with_params(format: :json), :type => 'application/json'},
-      {:url => current_path_with_params(format: :jsonp, callback: 'callback'), :type => 'application/javascript'},
-      {:url => current_path_with_params(format: :json, meta: '1'), :type => 'application/json'},
-      {:url => current_path_with_params(format: :jsonp, meta:'1', callback: 'callback'), :type => 'application/javascript'}
+      { url: current_path_with_params(page: nil, sort: 'created', format: :atom), type: 'application/atom+xml', title: t('scripts.listing_created_feed') },
+      { url: current_path_with_params(page: nil, sort: 'updated', format: :atom), type: 'application/atom+xml', title: t('scripts.listing_updated_feed') },
+      { url: current_path_with_params(format: :json), type: 'application/json' },
+      { url: current_path_with_params(format: :jsonp, callback: 'callback'), type: 'application/javascript' },
+      { url: current_path_with_params(format: :json, meta: '1'), type: 'application/json' },
+      { url: current_path_with_params(format: :jsonp, meta: '1', callback: 'callback'), type: 'application/javascript' },
     ]
   end
-
 end

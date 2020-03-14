@@ -4,22 +4,22 @@ require 'css_parser'
 
 class CssToJsConverterTest < ActiveSupport::TestCase
   test 'js conversion of single blocked code' do
-    css = <<~END
+    css = <<~CSS
       /* ==UserStyle==
       @name        Example UserCSS style
       @namespace   github.com/openstyles/stylus
       @version     1.0.0
       @license     unlicense
       ==/UserStyle== */
-      
+
       @-moz-document domain("example.com") {
         a {
           color: red;
         }
       }
-    END
+    CSS
 
-    js = <<~END
+    js = <<~JS
       // ==UserScript==
       // @name Example UserCSS style
       // @namespace github.com/openstyles/stylus
@@ -32,7 +32,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       // @include http://*.example.com/*
       // @include https://*.example.com/*
       // ==/UserScript==
-      
+
       (function() {
       let css = `
         a {
@@ -47,19 +47,19 @@ class CssToJsConverterTest < ActiveSupport::TestCase
         (document.querySelector("head") || document.documentElement).appendChild(styleNode);
       }
       })();
-    END
+    JS
     assert_equal js, CssToJsConverter.convert(css)
   end
 
   test 'js conversion of multi blocked code' do
-    css = <<~END
+    css = <<~CSS
       /* ==UserStyle==
       @name        Example UserCSS style
       @namespace   github.com/openstyles/stylus
       @version     1.0.0
       @license     unlicense
       ==/UserStyle== */
-      
+
       @-moz-document domain("example.com") {
         a {
           color: red;
@@ -70,9 +70,9 @@ class CssToJsConverterTest < ActiveSupport::TestCase
           color: blue;
         }
       }
-    END
+    CSS
 
-    js = <<~END
+    js = <<~JS
       // ==UserScript==
       // @name Example UserCSS style
       // @namespace github.com/openstyles/stylus
@@ -89,7 +89,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       // @include http://*.example.net/*
       // @include https://*.example.net/*
       // ==/UserScript==
-      
+
       (function() {
       let css = "";
       if ((location.hostname === "example.com" || location.hostname.endsWith(".example.com"))) {
@@ -114,19 +114,19 @@ class CssToJsConverterTest < ActiveSupport::TestCase
         (document.querySelector("head") || document.documentElement).appendChild(styleNode);
       }
       })();
-    END
+    JS
     assert_equal js, CssToJsConverter.convert(css)
   end
 
   test 'js conversion with multibyte characters' do
-    css = <<~END
+    css = <<~CSS
       /* ==UserStyle==
       @name        Example UserCSS style
       @namespace   github.com/openstyles/stylus
       @version     1.0.0
       @license     unlicense
       ==/UserStyle== */
-      
+
       @-moz-document domain("example.com") {
         a {
           content: "☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃";
@@ -137,9 +137,9 @@ class CssToJsConverterTest < ActiveSupport::TestCase
           content: "☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃☃";
         }
       }
-    END
+    CSS
 
-    js = <<~END
+    js = <<~JS
       // ==UserScript==
       // @name Example UserCSS style
       // @namespace github.com/openstyles/stylus
@@ -156,7 +156,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       // @include http://*.example.net/*
       // @include https://*.example.net/*
       // ==/UserScript==
-      
+
       (function() {
       let css = "";
       if ((location.hostname === "example.com" || location.hostname.endsWith(".example.com"))) {
@@ -181,19 +181,19 @@ class CssToJsConverterTest < ActiveSupport::TestCase
         (document.querySelector("head") || document.documentElement).appendChild(styleNode);
       }
       })();
-    END
+    JS
     assert_equal js, CssToJsConverter.convert(css)
   end
 
   test 'js conversion with ignoring global comment' do
-    css = <<~END
+    css = <<~CSS
       /* ==UserStyle==
       @name        Example UserCSS style
       @namespace   github.com/openstyles/stylus
       @version     1.0.0
       @license     unlicense
       ==/UserStyle== */
-      
+
       /* This is my global comment */
       /* This is my second comment */
       @-moz-document domain("example.com") {
@@ -201,9 +201,9 @@ class CssToJsConverterTest < ActiveSupport::TestCase
           color: red;
         }
       }
-    END
+    CSS
 
-    js = <<~END
+    js = <<~JS
       // ==UserScript==
       // @name Example UserCSS style
       // @namespace github.com/openstyles/stylus
@@ -216,7 +216,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       // @include http://*.example.com/*
       // @include https://*.example.com/*
       // ==/UserScript==
-      
+
       (function() {
       let css = `
         a {
@@ -231,28 +231,28 @@ class CssToJsConverterTest < ActiveSupport::TestCase
         (document.querySelector("head") || document.documentElement).appendChild(styleNode);
       }
       })();
-    END
+    JS
     assert_equal js, CssToJsConverter.convert(css)
   end
 
   test 'js conversion with escapy things' do
-    css = <<~END
+    css = <<~CSS
       /* ==UserStyle==
       @name        Example UserCSS style
       @namespace   github.com/openstyles/stylus
       @version     1.0.0
       @license     unlicense
       ==/UserStyle== */
-      
+
       @-moz-document domain("example.com") {
         a {
           content: "backtick : `";
           content: "backslash : \\";
         }
       }
-    END
+    CSS
 
-    js = <<~END
+    js = <<~JS
       // ==UserScript==
       // @name Example UserCSS style
       // @namespace github.com/openstyles/stylus
@@ -265,7 +265,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       // @include http://*.example.com/*
       // @include https://*.example.com/*
       // ==/UserScript==
-      
+
       (function() {
       let css = `
         a {
@@ -281,38 +281,38 @@ class CssToJsConverterTest < ActiveSupport::TestCase
         (document.querySelector("head") || document.documentElement).appendChild(styleNode);
       }
       })();
-    END
+    JS
     assert_equal js, CssToJsConverter.convert(css)
   end
 
   test 'calculate_includes domain with overlapping URL' do
     block = CssParser::CssDocumentBlock.new([
-                                                CssParser::CssDocumentMatch.new('domain', 'example.com'),
-                                                CssParser::CssDocumentMatch.new('url', 'http://example.com/foo')
+                                              CssParser::CssDocumentMatch.new('domain', 'example.com'),
+                                              CssParser::CssDocumentMatch.new('url', 'http://example.com/foo'),
                                             ], nil, nil)
-    assert_equal %w(http://example.com/* https://example.com/* http://*.example.com/* https://*.example.com/*), CssToJsConverter.calculate_includes([block])
+    assert_equal %w[http://example.com/* https://example.com/* http://*.example.com/* https://*.example.com/*], CssToJsConverter.calculate_includes([block])
   end
 
   test 'convertible default case' do
-    css = <<~END
+    css = <<~CSS
       /* ==UserStyle==
       @name        Example UserCSS style
       @namespace   github.com/openstyles/stylus
       @version     1.0.0
       @license     unlicense
       ==/UserStyle== */
-      
+
       @-moz-document domain("example.com") {
         a {
           color: red;
         }
       }
-    END
+    CSS
     assert CssToJsConverter.convertible?(css)
   end
 
   test 'convertible with default preprocessor' do
-    css = <<~END
+    css = <<~CSS
       /* ==UserStyle==
       @name        Example UserCSS style
       @namespace   github.com/openstyles/stylus
@@ -320,18 +320,18 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       @license     unlicense
       @preprocessor default
       ==/UserStyle== */
-      
+
       @-moz-document domain("example.com") {
         a {
           color: red;
         }
       }
-    END
+    CSS
     assert CssToJsConverter.convertible?(css)
   end
 
   test 'not convertible with different preprocessor' do
-    css = <<~END
+    css = <<~CSS
       /* ==UserStyle==
       @name        Example UserCSS style
       @namespace   github.com/openstyles/stylus
@@ -339,18 +339,18 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       @license     unlicense
       @preprocessor less
       ==/UserStyle== */
-      
+
       @-moz-document domain("example.com") {
         a {
           color: red;
         }
       }
-    END
+    CSS
     assert !CssToJsConverter.convertible?(css)
   end
 
   test 'not convertible with var' do
-    css = <<~END
+    css = <<~CSS
       /* ==UserStyle==
       @name        Example UserCSS style
       @namespace   github.com/openstyles/stylus
@@ -358,13 +358,13 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       @license     unlicense
       @var         something
       ==/UserStyle== */
-      
+
       @-moz-document domain("example.com") {
         a {
           color: red;
         }
       }
-    END
+    CSS
     assert !CssToJsConverter.convertible?(css)
   end
 end

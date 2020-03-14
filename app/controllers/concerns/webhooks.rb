@@ -9,8 +9,7 @@ module Webhooks
   class_methods do
     # Turns a path segment from a webhook request to a URL segment
     def urlify_webhook_path_segment(path)
-      re = Regexp.new("[^#{URI::PATTERN::UNRESERVED}]")
-      return path.split('/').map{|part| URI.escape(part, re)}.join('/')
+      return path.split('/').map { |part| CGI.escape(part) }.join('/')
     end
   end
 
@@ -23,7 +22,7 @@ module Webhooks
     end
 
     if request.headers['X-GitHub-Event'] == 'ping'
-      render :json => {:message => 'Webhook successfully configured.'}
+      render json: { message: 'Webhook successfully configured.' }
       return nil, nil
     end
 
@@ -33,7 +32,7 @@ module Webhooks
     end
 
     if params[:commits].nil?
-      render :json => {:message => 'No commits found in this push.'}
+      render json: { message: 'No commits found in this push.' }
       return nil, nil
     end
 
@@ -41,12 +40,12 @@ module Webhooks
     # We will keep all commit messages but only the most recent commit.
     changed_files = {}
     params[:commits].each do |c|
-      if !c[:modified].nil?
-        c[:modified].each do |m|
-          changed_files[m] ||= {}
-          changed_files[m][:commit] = c[:id]
-          (changed_files[m][:messages] ||= []) << c[:message]
-        end
+      next if c[:modified].nil?
+
+      c[:modified].each do |m|
+        changed_files[m] ||= {}
+        changed_files[m][:commit] = c[:id]
+        (changed_files[m][:messages] ||= []) << c[:message]
       end
     end
 
@@ -77,13 +76,13 @@ module Webhooks
     # Hash of commit hash to Array of commit messages
     commits = {}
     params[:push][:changes].each do |change|
-      change[:commits].each do |commit| 
+      change[:commits].each do |commit|
         (commits[commit[:hash]] ||= []) << commit[:summary][:raw]
       end
     end
 
     if commits.empty?
-      render :json => {:message => 'No commits found in this push.'}
+      render json: { message: 'No commits found in this push.' }
       return nil, nil
     end
 
@@ -96,7 +95,7 @@ module Webhooks
     changed_files = {}
     Git.get_files_changed(repo_url, commits.keys.uniq) do |commit, files|
       files.each do |file|
-        changed_files[file] ||= {messages: []}
+        changed_files[file] ||= { messages: [] }
         changed_files[file][:commit] = commit
         changed_files[file][:messages].concat(commits[commit])
       end
@@ -119,7 +118,7 @@ module Webhooks
     end
 
     if params[:commits].nil?
-      render :json => {:message => 'No commits found in this push.'}
+      render json: { message: 'No commits found in this push.' }
       return nil, nil
     end
 
@@ -127,12 +126,12 @@ module Webhooks
     # We will keep all commit messages but only the most recent commit.
     changed_files = {}
     params[:commits].each do |c|
-      if !c[:modified].nil?
-        c[:modified].each do |m|
-          changed_files[m] ||= {}
-          changed_files[m][:commit] = c[:id]
-          (changed_files[m][:messages] ||= []) << c[:message]
-        end
+      next if c[:modified].nil?
+
+      c[:modified].each do |m|
+        changed_files[m] ||= {}
+        changed_files[m][:commit] = c[:id]
+        (changed_files[m][:messages] ||= []) << c[:message]
       end
     end
 
@@ -144,7 +143,6 @@ module Webhooks
 
     return changed_files, params[:repository][:git_http_url]
   end
-
 
   # Adds scripts and script_attributes keys to changed_files.
   # - user
@@ -161,7 +159,7 @@ module Webhooks
       info[:scripts] = user.scripts.not_deleted.where(sync_identifier: urls)
 
       # Scripts syncing additional info to this file
-      info[:script_attributes] = LocalizedScriptAttribute.where(sync_identifier: urls).joins(script: :authors).where(authors: {user_id: user.id})
+      info[:script_attributes] = LocalizedScriptAttribute.where(sync_identifier: urls).joins(script: :authors).where(authors: { user_id: user.id })
     end
   end
 
@@ -172,7 +170,7 @@ module Webhooks
   #   - messages
   def process_webhook_changes(changed_files, git_url)
     # Forget about any files that changed but are not related to scripts or attributes.
-    changed_files = changed_files.select{|filename, info| info[:scripts].any? || info[:script_attributes].any?}
+    changed_files = changed_files.select { |_filename, info| info[:scripts].any? || info[:script_attributes].any? }
 
     if changed_files.empty?
       render json: { updated_scripts: [], updated_failed: [] }
@@ -180,7 +178,7 @@ module Webhooks
     end
 
     # Get the contents of the files.
-    Git.get_contents(git_url, Hash[changed_files.map{|filename, info| [filename, info[:commit]]}]) do |file_path, commit, content|
+    Git.get_contents(git_url, changed_files.transform_values { |info| info[:commit] }) do |file_path, _commit, content|
       changed_files[file_path][:content] = content
     end
 
@@ -189,7 +187,7 @@ module Webhooks
     updated_scripts = []
     update_failed_scripts = []
 
-    changed_files.each do |filename, info|
+    changed_files.each do |_filename, info|
       contents = info[:content]
       info[:scripts].each do |script|
         # update sync type to webhook, now that we know this script is affected by it
@@ -197,7 +195,7 @@ module Webhooks
         sv = script.script_versions.build(code: contents, changelog: info[:messages].join(', '))
 
         # Copy previous additional infos and screenshots
-        last_saved_sv = script.get_newest_saved_script_version
+        last_saved_sv = script.newest_saved_script_version
         script.localized_attributes_for('additional_info').each do |la|
           sv.build_localized_attribute(la)
         end
@@ -222,7 +220,6 @@ module Webhooks
       end
     end
 
-    render json: { updated_scripts: updated_scripts.map{ |s| script_url(s) }, updated_failed: update_failed_scripts.map{ |s| script_url(s) } }
+    render json: { updated_scripts: updated_scripts.map { |s| script_url(s) }, updated_failed: update_failed_scripts.map { |s| script_url(s) } }
   end
-
 end

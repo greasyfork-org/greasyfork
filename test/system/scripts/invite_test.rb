@@ -1,7 +1,7 @@
-require "application_system_test_case"
+require 'application_system_test_case'
 
 class InviteTest < ApplicationSystemTestCase
-  test "bad invited user url" do
+  test 'bad invited user url' do
     script = Script.find(1)
     login_as(script.users.first, scope: :user)
     visit admin_script_url(script, locale: :en)
@@ -19,7 +19,7 @@ class InviteTest < ApplicationSystemTestCase
     assert_selector 'p', text: 'Invited user URL is not valid.'
   end
 
-  test "invited user url is already author" do
+  test 'invited user url is already author' do
     script = Script.find(1)
     login_as(script.users.first, scope: :user)
     visit admin_script_url(script, locale: :en)
@@ -28,7 +28,7 @@ class InviteTest < ApplicationSystemTestCase
     assert_selector 'p', text: 'The user you specified is already an author of this script.'
   end
 
-  test "valid invite" do
+  test 'valid invite' do
     script = Script.find(1)
     login_as(script.users.first, scope: :user)
     user_to_invite = User.find(3)

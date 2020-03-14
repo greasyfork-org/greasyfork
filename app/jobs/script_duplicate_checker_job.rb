@@ -24,22 +24,23 @@ class ScriptDuplicateCheckerJob < ApplicationJob
 
     results = CodeSimilarityScorer.get_similarities(script, other_scripts)
 
-    if results.any?
-      ScriptSimilarity.where(script_id: script_id).delete_all
-      bulk_data = results.sort_by(&:last).last(100).map { |other_script_id, similarity| { script_id: script_id, other_script_id: other_script_id, similarity: similarity.round(3), checked_at: now } }
-      ScriptSimilarity.upsert_all(bulk_data)
-    end
+    return if results.none?
+
+    ScriptSimilarity.where(script_id: script_id).delete_all
+    bulk_data = results.sort_by(&:last).last(100).map { |other_script_id, similarity| { script_id: script_id, other_script_id: other_script_id, similarity: similarity.round(3), checked_at: now } }
+    ScriptSimilarity.upsert_all(bulk_data)
   end
 
   def self.currently_queued_script_ids
     return [] unless Rails.env.production?
+
     Sidekiq::Queue.all
-        .map { |queue| queue.select { |sq| sq.item['wrapped'] == 'ScriptDuplicateCheckerJob' } }
-        .flatten
-        .map{|job| job.args.first['arguments'].first } +
-    Sidekiq::Workers.new
-        .map { |process_id, thread_id, work| work['payload'] }
-        .select { |p| p['wrapped'] == 'ScriptDuplicateCheckerJob' }
-        .map { |p| p['args'].first['arguments'].first}
+                  .map { |queue| queue.select { |sq| sq.item['wrapped'] == 'ScriptDuplicateCheckerJob' } }
+                  .flatten
+                  .map { |job| job.args.first['arguments'].first } +
+      Sidekiq::Workers.new
+                      .map { |_process_id, _thread_id, work| work['payload'] }
+                      .select { |p| p['wrapped'] == 'ScriptDuplicateCheckerJob' }
+                      .map { |p| p['args'].first['arguments'].first }
   end
 end

@@ -6,6 +6,6 @@ class JsExecutorTest < ActiveSupport::TestCase
   end
 
   test 'ignoring non-strings where URLs should be' do
-    assert_empty JsExecutor.extract_urls("window.location.assign(function() {})").to_a
+    assert_empty JsExecutor.extract_urls('window.location.assign(function() {})').to_a
   end
 end

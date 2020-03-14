@@ -2,12 +2,12 @@ require 'transifex'
 require 'yaml'
 
 namespace :transifex do
-
-  def lookup_value(h, dot_string)
+  def lookup_value(content, dot_string)
     parts = dot_string.split('.')
-    h = h[parts.first]
-    return h if parts.length == 1 || h.nil?
-    return lookup_value(h, parts[1..parts.length].join('.'))
+    content = content[parts.first]
+    return content if parts.length == 1 || content.nil?
+
+    return lookup_value(content, parts[1..parts.length].join('.'))
   end
 
   def project
@@ -23,7 +23,7 @@ namespace :transifex do
     p.languages.each do |language|
       code = language.language_code
       code_with_hyphens = code.sub('_', '-')
-      locale = Locale.where(:code => code_with_hyphens).first
+      locale = Locale.where(code: code_with_hyphens).first
       if locale.nil?
         Rails.logger.warn("Unknown locale #{code_with_hyphens}, skipping")
         next
@@ -35,7 +35,7 @@ namespace :transifex do
       end
       Rails.logger.info("Locale #{code_with_hyphens} is #{locale.percent_complete}% complete")
       (language.coordinators + language.reviewers + language.translators).each do |contributor|
-        LocaleContributor.create({:locale => locale, :transifex_user_name => contributor})
+        LocaleContributor.create({ locale: locale, transifex_user_name: contributor })
       end
       locale.save!
     end
@@ -72,17 +72,17 @@ namespace :transifex do
       File.open("misc/vanilla-plugin/locale/#{vanilla_filename}.php", 'w') { |file| file.write(vanilla_resource.translation(code).content) }
 
       # write Vanilla file for things already in Rails
-      translated_content = YAML.load(c)[code_with_hyphens]
-      File.open("misc/vanilla-theme/locale/#{vanilla_filename}.php", 'w') { |file|
+      translated_content = YAML.safe_load(c)[code_with_hyphens]
+      File.open("misc/vanilla-theme/locale/#{vanilla_filename}.php", 'w') do |file|
         file.write("<?php\n")
         ['layouts.application.script_list', 'layouts.application.forum', 'layouts.application.help', 'layouts.application.submenu', 'layouts.application.advanced_search', 'layouts.application.user_list', 'layouts.application.libraries', 'layouts.application.moderator_log'].each do |k|
           v = lookup_value(translated_content, k)
           v = lookup_value(english_content, k) if v.nil?
           raise "not found #{k}" if v.nil?
+
           file.write("$Definition['#{k}'] = '#{v.gsub(/'/, "\\\\\'")}';\n")
         end
-      }
+      end
     end
   end
-
 end

@@ -21,12 +21,12 @@ class ScriptCheckerBanAndDeleteJob < ApplicationJob
       script: script,
       action: 'Delete and lock',
       reason: reason,
-      private_reason: private_reason,
+      private_reason: private_reason
     )
     script.ban_all_authors!(moderator: moderator, reason: reason, private_reason: private_reason)
 
     User.administrators.each do |admin|
-      ActionMailer::Base.mail(from: 'noreply@greasyfork.org', to: admin.email, subject: "Script auto-deleted", body: "Script '#{script.default_name} (#{script_url(script, locale: nil)})' has been automatically deleted: #{private_reason}.").deliver
+      ActionMailer::Base.mail(from: 'noreply@greasyfork.org', to: admin.email, subject: 'Script auto-deleted', body: "Script '#{script.default_name} (#{script_url(script, locale: nil)})' has been automatically deleted: #{private_reason}.").deliver
     end
   end
 end

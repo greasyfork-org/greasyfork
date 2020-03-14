@@ -3,29 +3,28 @@ require 'uri'
 require 'securerandom'
 
 class UsersController < ApplicationController
-
   MAX_LIST_ENTRIES = 1000
 
   include Webhooks
 
-  skip_before_action :verify_authenticity_token, :only => [:webhook]
+  skip_before_action :verify_authenticity_token, only: [:webhook]
 
-  before_action :authenticate_user!, :except => [:show, :webhook, :index]
-  before_action :authorize_for_moderators_only, :only => [:ban, :do_ban]
+  before_action :authenticate_user!, except: [:show, :webhook, :index]
+  before_action :authorize_for_moderators_only, only: [:ban, :do_ban]
   before_action :check_read_only_mode, except: [:index, :show]
 
   def index
     # Limit to 1000 results. Otherwise bots get at it and load way far into the list, which has performance problems.
-    per_page = get_per_page
-    if params[:page].to_i > MAX_LIST_ENTRIES / per_page
-      render_404 "User list is limited to 1000 results."
+    pp = per_page
+    if params[:page].to_i > MAX_LIST_ENTRIES / pp
+      render_404 'User list is limited to 1000 results.'
       return
     end
 
     @users = User
     @users = @users.where(['name like ?', "%#{params[:q]}%"]) if params[:q].present?
 
-    @users = self.class.apply_sort(@users, sort: params[:sort], script_subset: script_subset).paginate(page: params[:page], per_page: per_page, total_entries: [@users.count, MAX_LIST_ENTRIES].min).load
+    @users = self.class.apply_sort(@users, sort: params[:sort], script_subset: script_subset).paginate(page: params[:page], per_page: pp, total_entries: [@users.count, MAX_LIST_ENTRIES].min).load
     @user_script_counts = Script.listable(script_subset).joins(:authors).where(authors: { user_id: @users.map(&:id) }).group(:user_id).count
 
     @bots = 'noindex,follow' if !params[:sort].nil? || !params[:q].nil?
@@ -36,14 +35,14 @@ class UsersController < ApplicationController
   end
 
   def show
-    # TODO sort scripts by name, keeping into account localization
+    # TODO: sort scripts by name, keeping into account localization
     user = User.order('scripts.default_name')
     # current user will display discussions
-    if !current_user.nil? and current_user.id == params[:id].to_i
-      user = user.includes(:scripts => [:discussions, :script_type, :script_delete_type, :localized_attributes => :locale])
-    else
-      user = user.includes(:scripts => [:script_type, :script_delete_type, :localized_attributes => :locale])
-    end
+    user = if !current_user.nil? && (current_user.id == params[:id].to_i)
+             user.includes(scripts: [:discussions, :script_type, :script_delete_type, localized_attributes: :locale])
+           else
+             user.includes(scripts: [:script_type, :script_delete_type, localized_attributes: :locale])
+           end
     @user = user.find(params[:id])
 
     return if redirect_to_slug(@user, :id)
@@ -51,7 +50,7 @@ class UsersController < ApplicationController
     @same_user = !current_user.nil? && current_user.id == @user.id
 
     respond_to do |format|
-      format.html {
+      format.html do
         @by_sites = ScriptsController.get_top_by_sites(script_subset)
 
         @scripts = (@same_user || (!current_user.nil? && current_user.moderator?)) ? @user.scripts : @user.scripts.listable_including_libraries(script_subset)
@@ -62,16 +61,16 @@ class UsersController < ApplicationController
         @bots = 'noindex,follow' if [:per_page, :set, :site, :sort, :language].any? { |name| params[name].present? }
 
         @link_alternates = [
-          {:url => current_path_with_params(format: :json), :type => 'application/json'},
-          {:url => current_path_with_params(format: :jsonp, callback: 'callback'), :type => 'application/javascript'}
+          { url: current_path_with_params(format: :json), type: 'application/json' },
+          { url: current_path_with_params(format: :jsonp, callback: 'callback'), type: 'application/javascript' },
         ]
         @canonical_params = [:id, :page, :per_page, :set, :site, :sort, :language]
         @ad_method = 'cf' if ads_enabled?
 
         render layout: 'base'
-      }
-      format.json { render :json => @user.as_json(include: @same_user ? :scripts : :all_listable_scripts) }
-      format.jsonp { render :json => @user.as_json(include: @same_user ? :scripts : :all_listable_scripts), :callback => clean_json_callback_param }
+      end
+      format.json { render json: @user.as_json(include: @same_user ? :scripts : :all_listable_scripts) }
+      format.jsonp { render json: @user.as_json(include: @same_user ? :scripts : :all_listable_scripts), callback: clean_json_callback_param }
     end
   end
 
@@ -87,23 +86,22 @@ class UsersController < ApplicationController
   def webhook
     user = User.find(params[:user_id])
     changes, git_url = if request.headers['User-Agent'] == 'Bitbucket-Webhooks/2.0'
-      process_bitbucket_webhook(user)
-    elsif request.headers['X-Gitlab-Token'].present?
-      process_gitlab_webhook(user)
-    else
-      process_github_webhook(user)
-    end
+                         process_bitbucket_webhook(user)
+                       elsif request.headers['X-Gitlab-Token'].present?
+                         process_gitlab_webhook(user)
+                       else
+                         process_github_webhook(user)
+                       end
     process_webhook_changes(changes, git_url) if changes
   end
 
-  def edit_sign_in
-  end
+  def edit_sign_in; end
 
   def update_password
     current_user.password = params[:password]
     current_user.password_confirmation = params[:password_confirmation]
     # prevent empty and invalid passwords
-    if !current_user.valid? or params[:password].nil? or params[:password].empty?
+    if !current_user.valid? || params[:password].nil? || params[:password].empty?
       current_user.reload
       render :edit_sign_in
       return
@@ -124,31 +122,31 @@ class UsersController < ApplicationController
     current_user.encrypted_password = nil
     current_user.save!
     # password changed, have to sign in again
-    sign_in current_user, :bypass => true
+    sign_in current_user, bypass: true
     flash[:notice] = t('users.password_removed')
     redirect_to user_edit_sign_in_path
   end
 
   def update_identity
     current_user.identities.each do |id|
-      if id.provider == params[:provider]
-        flash[:notice] = t('users.external_sign_in_updated', :provider => Identity.pretty_provider(id.provider))
-        id.syncing = params[:syncing]
-        id.save
-      end
+      next unless id.provider == params[:provider]
+
+      flash[:notice] = t('users.external_sign_in_updated', provider: Identity.pretty_provider(id.provider))
+      id.syncing = params[:syncing]
+      id.save
     end
     redirect_to user_edit_sign_in_path
   end
 
   def delete_identity
-    if current_user.identities.size == 1 and current_user.encrypted_password.nil?
-      flash[:notice] = t('users.cant_remove_sign_in', :provider => Identity.pretty_provider(params[:provider]))
+    if (current_user.identities.size == 1) && current_user.encrypted_password.nil?
+      flash[:notice] = t('users.cant_remove_sign_in', provider: Identity.pretty_provider(params[:provider]))
       redirect_to user_edit_sign_in_path
       return
     end
     current_user.identities.each do |id|
       if id.provider == params[:provider]
-        flash[:notice] = t('users.external_sign_in_removed', :provider => Identity.pretty_provider(id.provider))
+        flash[:notice] = t('users.external_sign_in_removed', provider: Identity.pretty_provider(id.provider))
         id.delete
       end
     end
@@ -162,12 +160,12 @@ class UsersController < ApplicationController
   def do_ban
     user = User.find(params[:user_id])
     user.ban!(moderator: current_user, reason: params[:reason])
-    if !params[:script_delete_type_id].blank?
+    unless params[:script_delete_type_id].blank?
       user.non_locked_scripts.each do |s|
         s.delete_reason = params[:reason]
         s.locked = true
         s.script_delete_type_id = params[:script_delete_type_id]
-        s.save(:validate => false)
+        s.save(validate: false)
         ma_delete = ModeratorAction.new
         ma_delete.moderator = current_user
         ma_delete.script = s
@@ -178,12 +176,12 @@ class UsersController < ApplicationController
     end
     redirect_to user
   end
-  
+
   def delete_info
     @user = current_user
     @bots = 'noindex'
   end
-  
+
   def delete_start
     @user = current_user
     @user.delete_confirmation_key = SecureRandom.hex
@@ -229,36 +227,35 @@ class UsersController < ApplicationController
   def dismiss_announcement
     current_user&.announcement_seen!(params[:key])
     respond_to do |format|
-      format.html {
+      format.html do
         redirect_to root_path
-      }
-      format.js {
+      end
+      format.js do
         head :ok
-      }
+      end
     end
   end
-
-  private
 
   def self.apply_sort(finder, script_subset:, sort:)
     return finder.order(id: :desc) if sort.blank?
     return finder.order(:name, :id) if sort == 'name'
+
     finder = finder.joins("#{script_subset}_listable_scripts".to_sym).group('users.id')
     case sort
-      when 'scripts'
-        return finder.order('count(scripts.id) DESC, users.id')
-      when 'total_installs'
-        return finder.order('sum(scripts.total_installs) DESC, users.id')
-      when 'created_script'
-        return finder.order('max(scripts.created_at) DESC, users.id')
-      when 'updated_script'
-        return finder.order('max(scripts.code_updated_at) DESC, users.id')
-      when 'daily_installs'
-        return finder.order('sum(scripts.daily_installs) DESC, users.id')
-      when 'fans'
-        return finder.order('sum(scripts.fan_score) DESC, users.id')
-      when 'ratings'
-        return finder.order('sum(scripts.good_ratings + scripts.ok_ratings + scripts.bad_ratings) DESC, users.id')
+    when 'scripts'
+      return finder.order('count(scripts.id) DESC, users.id')
+    when 'total_installs'
+      return finder.order('sum(scripts.total_installs) DESC, users.id')
+    when 'created_script'
+      return finder.order('max(scripts.created_at) DESC, users.id')
+    when 'updated_script'
+      return finder.order('max(scripts.code_updated_at) DESC, users.id')
+    when 'daily_installs'
+      return finder.order('sum(scripts.daily_installs) DESC, users.id')
+    when 'fans'
+      return finder.order('sum(scripts.fan_score) DESC, users.id')
+    when 'ratings'
+      return finder.order('sum(scripts.good_ratings + scripts.ok_ratings + scripts.bad_ratings) DESC, users.id')
     end
     finder.order(id: :desc)
   end

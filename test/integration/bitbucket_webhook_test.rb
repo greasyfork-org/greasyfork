@@ -2,8 +2,7 @@ require 'test_helper'
 require 'git'
 
 class BitbucketWebhookTest < ActionDispatch::IntegrationTest
-
-  CHANGE_BODY = <<~'EOF'
+  CHANGE_BODY = <<~'JSON'.freeze
     {
       "push": {
         "changes": [
@@ -302,13 +301,13 @@ class BitbucketWebhookTest < ActionDispatch::IntegrationTest
         "uuid": "{cc821ce6-0c1e-400e-b5fe-ad4ef350854f}"
       }
     }
-  EOF
-  
+  JSON
+
   def webhook_request(user, secret: nil)
-    secret = user.webhook_secret unless secret
+    secret ||= user.webhook_secret
     post user_webhook_url(user_id: user.id, secret: secret),
-      headers: { 'Host' => 'greasyfork.org', 'X-Forwarded-Proto' => 'https', 'X-Request-UUID' => 'cbb57380-2da5-4efa-9a69-fa61182bbccb', 'X-Event-Key' => 'repo:push', 'User-Agent' => 'Bitbucket-Webhooks/2.0', 'X-Attempt-Number' => '1', 'X-Hook-UUID' => '61bb6549-54df-4f62-81fe-350a0335d847', 'Content-Type' => 'application/json' },
-      params: CHANGE_BODY
+         headers: { 'Host' => 'greasyfork.org', 'X-Forwarded-Proto' => 'https', 'X-Request-UUID' => 'cbb57380-2da5-4efa-9a69-fa61182bbccb', 'X-Event-Key' => 'repo:push', 'User-Agent' => 'Bitbucket-Webhooks/2.0', 'X-Attempt-Number' => '1', 'X-Hook-UUID' => '61bb6549-54df-4f62-81fe-350a0335d847', 'Content-Type' => 'application/json' },
+         params: CHANGE_BODY
   end
 
   def test_webook_no_secret_match
@@ -316,7 +315,7 @@ class BitbucketWebhookTest < ActionDispatch::IntegrationTest
     webhook_request(user, secret: 'abc123')
     assert_equal '403', response.code
   end
-  
+
   def test_webook_no_script_match
     user = User.find(1)
     Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js').update!(sync_identifier: nil)
@@ -325,11 +324,11 @@ class BitbucketWebhookTest < ActionDispatch::IntegrationTest
     assert_equal '200', response.code
     assert_equal({ 'updated_scripts' => [], 'updated_failed' => [] }, JSON.parse(response.body))
   end
-  
+
   def test_webhook_change
     script = Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js')
     script.update!(sync_identifier: 'https://bitbucket.org/JasonBarnabe/webhookstest/raw/master/test.user.js')
-    Git.expects(:get_contents).yields('test.user.js', '12245dbfb00de399a3108828b5aa2dc8bdbc4107', script.get_newest_saved_script_version.rewritten_code)
+    Git.expects(:get_contents).yields('test.user.js', '12245dbfb00de399a3108828b5aa2dc8bdbc4107', script.newest_saved_script_version.rewritten_code)
     Git.expects(:get_files_changed).yields('12245dbfb00de399a3108828b5aa2dc8bdbc4107', ['test.user.js'])
     user = User.find(1)
     webhook_request(user)

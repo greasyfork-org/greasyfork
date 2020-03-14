@@ -1,8 +1,7 @@
 class ScriptSetsController < ApplicationController
-
   before_action :authenticate_user!
   before_action :authorize_by_user_id
-  before_action :ensure_set_ownership, :except => [:new, :create, :add_to_set]
+  before_action :ensure_set_ownership, except: [:new, :create, :add_to_set]
   before_action :check_read_only_mode
 
   def new
@@ -10,7 +9,7 @@ class ScriptSetsController < ApplicationController
     @set = ScriptSet.new
     @set.user = @user
     @set.favorite = !params[:fav].nil?
-    @set.add_child(Script.find(params[:script_id]), false) if !params[:script_id].nil?
+    @set.add_child(Script.find(params[:script_id]), false) unless params[:script_id].nil?
     @child_set_user = @user
   end
 
@@ -25,26 +24,28 @@ class ScriptSetsController < ApplicationController
     @set.user = User.find(params[:user_id])
     if params[:favorite] == '1'
       # check to make sure the user doesn't already have a favorite set
-      if !@set.user.favorite_script_set.nil?
-        render :action => :new
+      unless @set.user.favorite_script_set.nil?
+        render action: :new
         return
       end
       make_favorite_set(@set)
     end
     return if handle_update(@set)
-    render :action => :new
+
+    render action: :new
   end
 
   def update
     @set = ScriptSet.find(params[:id])
 
     # blow away everything, the form will resubmit the info
-    @set.set_inclusions.each{|si| si.mark_for_destruction}
-    @set.automatic_set_inclusions.each{|si| si.mark_for_destruction}
-    @set.script_inclusions.each{|si| si.mark_for_destruction}
+    @set.set_inclusions.each(&:mark_for_destruction)
+    @set.automatic_set_inclusions.each(&:mark_for_destruction)
+    @set.script_inclusions.each(&:mark_for_destruction)
 
     return if handle_update(@set)
-    render :action => :edit
+
+    render action: :edit
   end
 
   def destroy
@@ -65,7 +66,7 @@ class ScriptSetsController < ApplicationController
         make_favorite_set(set)
       end
     elsif set_id == 'new'
-      redirect_to new_user_script_set_path(current_user, :script_id => params[:script_id])
+      redirect_to new_user_script_set_path(current_user, script_id: params[:script_id])
       return
     else
       set = ScriptSet.find(set_id)
@@ -79,14 +80,14 @@ class ScriptSetsController < ApplicationController
 
     r = false
     case action
-      when 'ai'
-        r = set.add_child(script, false)
-      when 'ae'
-        r = set.add_child(script, true)
-      when 'ri'
-        r = set.remove_child(script)
-      when 're'
-        r = set.remove_child(script)
+    when 'ai'
+      r = set.add_child(script, false)
+    when 'ae'
+      r = set.add_child(script, true)
+    when 'ri'
+      r = set.remove_child(script)
+    when 're'
+      r = set.remove_child(script)
     end
 
     if r
@@ -103,63 +104,55 @@ class ScriptSetsController < ApplicationController
     redirect_to clean_redirect_param(:return_to) || script
   end
 
-private
+  private
 
   def handle_update(set)
     set.assign_attributes(script_set_params) unless set.favorite
 
     @child_set_user = nil
-    if !params['child-set-user-id'].nil?
-      @child_set_user = User.find(params['child-set-user-id'])
-    end
+    @child_set_user = User.find(params['child-set-user-id']) unless params['child-set-user-id'].nil?
     errors = []
 
     # Previously added scripts
-    if !params['scripts-included'].nil?
-      params['scripts-included'].each do |script_id|
-        next if params['remove-selected-scripts'] == 'i' and !params['remove-scripts-included'].nil? and params['remove-scripts-included'].include?(script_id)
-        set.add_child(Script.find(script_id), false)
-      end
+    params['scripts-included']&.each do |script_id|
+      next if (params['remove-selected-scripts'] == 'i') && !params['remove-scripts-included'].nil? && params['remove-scripts-included'].include?(script_id)
+
+      set.add_child(Script.find(script_id), false)
     end
-    if !params['scripts-excluded'].nil?
-      params['scripts-excluded'].each do |script_id|
-        next if params['remove-selected-scripts'] == 'e' and !params['remove-scripts-excluded'].nil? and params['remove-scripts-excluded'].include?(script_id)
-        set.add_child(Script.find(script_id), true)
-      end
+    params['scripts-excluded']&.each do |script_id|
+      next if (params['remove-selected-scripts'] == 'e') && !params['remove-scripts-excluded'].nil? && params['remove-scripts-excluded'].include?(script_id)
+
+      set.add_child(Script.find(script_id), true)
     end
 
     # Previously added sets
-    if !params['sets-included'].nil?
-      params['sets-included'].each do |set_id|
-        next if params['remove-selected-sets'] == 'i' and !params['remove-sets-included'].nil? and params['remove-sets-included'].include?(set_id)
-        set.add_child(ScriptSet.find(set_id), false)
-      end
+    params['sets-included']&.each do |set_id|
+      next if (params['remove-selected-sets'] == 'i') && !params['remove-sets-included'].nil? && params['remove-sets-included'].include?(set_id)
+
+      set.add_child(ScriptSet.find(set_id), false)
     end
-    if !params['sets-excluded'].nil?
-      params['sets-excluded'].each do |set_id|
-        next if params['remove-selected-sets'] == 'e' and !params['remove-sets-excluded'].nil? and params['remove-sets-excluded'].include?(set_id)
-        set.add_child(ScriptSet.find(set_id), true)
-      end
+    params['sets-excluded']&.each do |set_id|
+      next if (params['remove-selected-sets'] == 'e') && !params['remove-sets-excluded'].nil? && params['remove-sets-excluded'].include?(set_id)
+
+      set.add_child(ScriptSet.find(set_id), true)
     end
 
     # Previously added automatic sets
-    if !params['automatic-sets-included'].nil?
-      params['automatic-sets-included'].each do |set_id|
-        next if params['remove-selected-automatic-sets'] == 'i' and !params['remove-automatic-sets-included'].nil? and params['remove-automatic-sets-included'].include?(set_id)
-        ssasi = ScriptSetAutomaticSetInclusion.from_param_value(set_id, false)
-        set.add_automatic_child(ssasi)
-      end
+    params['automatic-sets-included']&.each do |set_id|
+      next if (params['remove-selected-automatic-sets'] == 'i') && !params['remove-automatic-sets-included'].nil? && params['remove-automatic-sets-included'].include?(set_id)
+
+      ssasi = ScriptSetAutomaticSetInclusion.from_param_value(set_id, false)
+      set.add_automatic_child(ssasi)
     end
-    if !params['automatic-sets-excluded'].nil?
-      params['automatic-sets-excluded'].each do |set_id|
-        next if params['remove-selected-automatic-sets'] == 'e' and !params['remove-automatic-sets-excluded'].nil? and params['remove-automatic-sets-excluded'].include?(set_id)
-        ssasi = ScriptSetAutomaticSetInclusion.from_param_value(set_id, true)
-        set.add_automatic_child(ssasi)
-      end
+    params['automatic-sets-excluded']&.each do |set_id|
+      next if (params['remove-selected-automatic-sets'] == 'e') && !params['remove-automatic-sets-excluded'].nil? && params['remove-automatic-sets-excluded'].include?(set_id)
+
+      ssasi = ScriptSetAutomaticSetInclusion.from_param_value(set_id, true)
+      set.add_automatic_child(ssasi)
     end
 
     # Add script
-    if !params['script-action'].nil? and !params['add-script'].nil?
+    if !params['script-action'].nil? && !params['add-script'].nil?
       params['add-script'].split(/\s+/).each do |possible_script|
         script_id = nil
         # is it an ID?
@@ -168,7 +161,7 @@ private
         rescue ArgumentError, TypeError
         end
 
-        #is it a URL?
+        # is it a URL?
         if script_id.nil?
           begin
             path_params = Rails.application.routes.recognize_path(possible_script)
@@ -181,43 +174,43 @@ private
           errors << I18n.t('script_sets.could_not_parse_script', value: possible_script)
         else
           script = Script.find(script_id)
-          errors << I18n.t('script_sets.already_included', name: script.name(I18n.locale)) if !set.add_child(script, params['script-action'] == 'e')
+          errors << I18n.t('script_sets.already_included', name: script.name(I18n.locale)) unless set.add_child(script, params['script-action'] == 'e')
         end
       end
     end
 
     # Add set
-    if !params['set-action'].nil? and !params['add-child-set'].nil?
+    if !params['set-action'].nil? && !params['add-child-set'].nil?
       child_set = ScriptSet.find(params['add-child-set'])
-      errors << I18n.t('script_sets.already_included', name: child_set.name) if !set.add_child(child_set, params['set-action'] == 'e')
+      errors << I18n.t('script_sets.already_included', name: child_set.name) unless set.add_child(child_set, params['set-action'] == 'e')
     end
 
     # Add automatic set
     if !params['add-automatic-script-set-1'].nil?
-      ssasi = ScriptSetAutomaticSetInclusion.from_param_value("1-", false)
-      errors << I18n.t('script_sets.already_included', name: I18n.t(*ssasi.i18n_params)) if !set.add_automatic_child(ssasi)
+      ssasi = ScriptSetAutomaticSetInclusion.from_param_value('1-', false)
+      errors << I18n.t('script_sets.already_included', name: I18n.t(*ssasi.i18n_params)) unless set.add_automatic_child(ssasi)
     elsif !params['add-automatic-script-set-2'].nil?
       ssasi = ScriptSetAutomaticSetInclusion.from_param_value("2-#{params['add-automatic-script-set-value-2']}", params['add-automatic-script-set-2'] == 'e')
-      errors << I18n.t('script_sets.already_included', name: I18n.t(*ssasi.i18n_params)) if !set.add_automatic_child(ssasi)
-    elsif !params['add-automatic-script-set-3'].nil? and !params['add-automatic-script-set-value-3'].nil?  and !params['add-automatic-script-set-value-3'].empty?
+      errors << I18n.t('script_sets.already_included', name: I18n.t(*ssasi.i18n_params)) unless set.add_automatic_child(ssasi)
+    elsif !params['add-automatic-script-set-3'].nil? && !params['add-automatic-script-set-value-3'].nil? && !params['add-automatic-script-set-value-3'].empty?
       automatic_script_set_user = parse_user(params['add-automatic-script-set-value-3'])
       automatic_script_set_user = automatic_script_set_user.nil? ? nil : automatic_script_set_user.id
       ssasi = ScriptSetAutomaticSetInclusion.from_param_value("3-#{automatic_script_set_user}", params['add-automatic-script-set-3'] == 'e')
-      errors << I18n.t('script_sets.already_included', name: I18n.t(*ssasi.i18n_params)) if !set.add_automatic_child(ssasi)
+      errors << I18n.t('script_sets.already_included', name: I18n.t(*ssasi.i18n_params)) unless set.add_automatic_child(ssasi)
     elsif !params['add-automatic-script-set-4'].nil?
       params['add-automatic-script-set-value-4'].each do |l|
         ssasi = ScriptSetAutomaticSetInclusion.from_param_value("4-#{l}", params['add-automatic-script-set-4'] == 'e')
-        errors << I18n.t('script_sets.already_included', name: I18n.t(*ssasi.i18n_params)) if !set.add_automatic_child(ssasi)
+        errors << I18n.t('script_sets.already_included', name: I18n.t(*ssasi.i18n_params)) unless set.add_automatic_child(ssasi)
       end
     end
 
     # Change the user for whom we're listing the sets
-    if !params['child-set-user-refresh'].nil? and !@child_set_user.nil?
+    if !params['child-set-user-refresh'].nil? && !@child_set_user.nil?
       @child_set_user = parse_user(params['child-set-user'])
 
       if @child_set_user.nil?
         @child_set_user = user
-        errors << "Could not parse user '#{CGI::escapeHTML(params['child-set-user'])}'"
+        errors << "Could not parse user '#{CGI.escapeHTML(params['child-set-user'])}'"
       end
     end
 
@@ -231,29 +224,29 @@ private
     if set.errors.empty? && params[:save] == '1' && (!set.new_record? || set.favorite || verify_recaptcha)
       set.save!
       redirect_to set.user
-      flash[:notice] = I18n.t("script_sets.saved")
+      flash[:notice] = I18n.t('script_sets.saved')
       return true
     end
 
     return false
   end
 
-  def parse_user(v)
+  def parse_user(value)
     # is it an ID?
     begin
-      return User.find(Integer(v))
+      return User.find(Integer(value))
     rescue ArgumentError, TypeError
     end
 
-    #is it a URL?
+    # is it a URL?
     begin
-      path_params = Rails.application.routes.recognize_path(v)
-      return User.find(path_params[:id]) if path_params.has_key?(:id)
+      path_params = Rails.application.routes.recognize_path(value)
+      return User.find(path_params[:id]) if path_params.key?(:id)
     rescue ActionController::RoutingError
     end
 
-    #is it a name?
-    return User.find_by_name(v)
+    # is it a name?
+    return User.find_by_name(value)
   end
 
   def script_set_params

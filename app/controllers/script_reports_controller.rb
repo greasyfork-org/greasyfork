@@ -1,5 +1,4 @@
 class ScriptReportsController < ApplicationController
-
   before_action :authenticate_user!, except: [:index, :show]
 
   before_action do
@@ -21,7 +20,7 @@ class ScriptReportsController < ApplicationController
       @script_report.errors.add(:reference_script, 'must be one of your scripts')
     elsif @script_report.script.users.include?(current_user)
       @script_report.valid?
-      @script_report.errors.add(:script, 'cannot be one of your scripts')    
+      @script_report.errors.add(:script, 'cannot be one of your scripts')
     elsif @script_report.save
       ScriptReportMailer.report_created(@script_report, site_name).deliver_later
       flash[:notice] = 'Your report has been recorded and will be reviewed by moderators.'
@@ -31,23 +30,20 @@ class ScriptReportsController < ApplicationController
     render :new
   end
 
-  def index
-  end
+  def index; end
 
   def show
     @script_report = @script.script_reports.find(params[:id])
-    if @script_report.unauthorized_code?
-      original_code = @script_report.reference_script.script_versions.last.code
-      new_code = @script_report.script.script_versions.last.code
-      if original_code != new_code
-        @diff = Diffy::Diff.new(original_code, new_code, include_plus_and_minus_in_html: true).to_s(:html).html_safe
-      end
-    end
+    return unless @script_report.unauthorized_code?
+
+    original_code = @script_report.reference_script.script_versions.last.code
+    new_code = @script_report.script.script_versions.last.code
+    @diff = Diffy::Diff.new(original_code, new_code, include_plus_and_minus_in_html: true).to_s(:html).html_safe if original_code != new_code
   end
 
   def rebut
     is_author = @script.users.include?(current_user)
-    if !is_author
+    unless is_author
       render_access_denied
       return
     end
@@ -86,7 +82,7 @@ class ScriptReportsController < ApplicationController
 
     @script_report.uphold!(current_user.moderator? ? params[:moderator_note] : nil)
     ScriptReportMailer.report_upheld_reporter(@script_report, is_author, site_name).deliver_later
-    ScriptReportMailer.report_upheld_offender(@script_report, site_name).deliver_later if !is_author
+    ScriptReportMailer.report_upheld_offender(@script_report, site_name).deliver_later unless is_author
     @script.ban_all_authors!(moderator: current_user, reason: "In response to report #{@script_report.id}") if params[:banned]
     flash[:notice] = 'Script has been deleted.'
     redirect_to root_path
@@ -94,11 +90,11 @@ class ScriptReportsController < ApplicationController
 
   def dismiss
     @script_report = @script.script_reports.find(params[:id])
-    if !current_user&.moderator?
+    unless current_user&.moderator?
       render_access_denied
       return
     end
-    if @script_report.script.users.include?(current_user) || (@script_report.reference_script && @script_report.reference_script.users.include?(current_user))
+    if @script_report.script.users.include?(current_user) || @script_report.reference_script&.users&.include?(current_user)
       # Can't moderate one you're involved in.
       render_access_denied
       return
@@ -121,5 +117,4 @@ class ScriptReportsController < ApplicationController
   def script_report_rebuttal_params
     params.require(:script_report).permit(:rebuttal)
   end
-
 end

@@ -9,18 +9,18 @@ class ApplicationController < ActionController::Base
   include LocalizedRequest
   include Announcement
 
-  show_announcement key: :test_announcement, show_if: -> { params[:test] == '1' }, content: "This is a test announcement" #if Rails.env.test?
-  show_announcement key: :user_style_support, show_if: -> { current_user.scripts.where("created_at <= '2019-12-26'").any? }, content: "You can now post <a href=\"https://github.com/openstyles/stylus/wiki/UserCSS-authors\">Stylus format</a> user CSS and we will also convert it to user JS format. <a href=\"/script_versions/new?language=css\">Post your first user style!</a>".html_safe
+  show_announcement key: :test_announcement, show_if: -> { params[:test] == '1' }, content: 'This is a test announcement' # if Rails.env.test?
+  show_announcement key: :user_style_support, show_if: -> { current_user.scripts.where("created_at <= '2019-12-26'").any? }, content: 'You can now post <a href="https://github.com/openstyles/stylus/wiki/UserCSS-authors">Stylus format</a> user CSS and we will also convert it to user JS format. <a href="/script_versions/new?language=css">Post your first user style!</a>'.html_safe
 
-  rescue_from ActiveRecord::RecordNotFound, :with => :routing_error
+  rescue_from ActiveRecord::RecordNotFound, with: :routing_error
   def routing_error
     respond_to do |format|
-      format.html {
+      format.html do
         render 'home/routing_error', status: 404, layout: 'application'
-      }
-      format.all {
+      end
+      format.all do
         head 404, content_type: 'text/html'
-      }
+      end
     end
   end
 
@@ -29,7 +29,18 @@ class ApplicationController < ActionController::Base
     head 406, content_type: 'text/plain'
   end
 
-protected
+  def self.cache_with_log(key, options = {})
+    options[:version] = key.cache_version if key.respond_to?(:cache_version)
+    key = options.delete(:namespace).to_s + '/' + (key.respond_to?(:cache_key) ? key.cache_key : key.to_s) if options[:namespace]
+    Rails.cache.fetch(key, options) do
+      Rails.logger.warn("Cache miss - #{key} - #{options}") if Greasyfork::Application.config.log_cache_misses
+      o = yield
+      Rails.logger.warn("Cache stored - #{key} - #{options}") if Greasyfork::Application.config.log_cache_misses
+      next o
+    end
+  end
+
+  protected
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
@@ -38,15 +49,16 @@ protected
 
   def authorize_by_script_id
     return unless params[:script_id].present?
+
     render_access_denied unless current_user && Script.find(params[:script_id]).users.include?(current_user)
   end
 
   def authorize_for_moderators_only
-    render_access_denied if current_user.nil? or !current_user.moderator?
+    render_access_denied if current_user.nil? || !current_user.moderator?
   end
 
   def authorize_by_user_id
-    render_access_denied if current_user.nil? or (!params[:user_id].nil? and params[:user_id].to_i != current_user.id)
+    render_access_denied if current_user.nil? || (!params[:user_id].nil? && (params[:user_id].to_i != current_user.id))
   end
 
   def render_404(message = 'Script does not exist.')
@@ -55,13 +67,13 @@ protected
 
   def render_error(code, message)
     respond_to do |format|
-      format.html {
+      format.html do
         @text = message
         render 'home/error', status: code, layout: 'application'
-      }
-      format.all {
+      end
+      format.all do
         head code
-      }
+      end
     end
   end
 
@@ -78,33 +90,34 @@ protected
   def redirect_to_slug(resource, id_param_name)
     if resource.nil?
       # no good
-      render :status => 404
+      render status: 404
       return
     end
     correct_id = resource.to_param
     if correct_id != params[id_param_name]
-      url_params = {id_param_name => correct_id}
+      url_params = { id_param_name => correct_id }
       retain_params = [:format]
       retain_params << :callback if params[:format] == 'jsonp'
       retain_params << :version if params[:controller] == 'scripts'
-      retain_params.each{|param_name| url_params[param_name] = params[param_name]}
-      redirect_to(url_params, :status => 301)
+      retain_params.each { |param_name| url_params[param_name] = params[param_name] }
+      redirect_to(url_params, status: 301)
       return true
     end
     return false
   end
 
   def banned?
-    if current_user.present? && current_user.banned?
-      sign_out current_user
-      flash[:alert] = "This account has been banned."
-      root_path
-    end
+    return unless current_user.present? && current_user.banned?
+
+    sign_out current_user
+    flash[:alert] = 'This account has been banned.'
+    root_path
   end
 
   def clean_redirect_param(param_name)
     v = params[param_name]
     return nil if v.nil?
+
     begin
       u = URI.parse(v)
       p = u.path
@@ -119,30 +132,18 @@ protected
 
   def clean_json_callback_param
     return params[:callback] if /\A[a-zA-Z0-9_]{1,64}\z/ =~ params[:callback]
+
     return 'callback'
   end
 
-  def ensure_default_additional_info(s, default_markup = 'html')
-    if !s.localized_attributes_for('additional_info').any?{|la| la.attribute_default}
-      s.localized_attributes.build({:attribute_key => 'additional_info', :attribute_default => true, :value_markup => default_markup})
-    end
+  def ensure_default_additional_info(script, default_markup = 'html')
+    script.localized_attributes.build({ attribute_key: 'additional_info', attribute_default: true, value_markup: default_markup }) unless script.localized_attributes_for('additional_info').any?(&:attribute_default)
   end
 
-  def get_per_page
-    per_page = 50
-    per_page = [params[:per_page].to_i, 200].min if !params[:per_page].nil? and params[:per_page].to_i > 0
-    return per_page
-  end
-
-  def self.cache_with_log(key, options = {})
-    options[:version] = key.cache_version if key.respond_to?(:cache_version)
-    key = options.delete(:namespace).to_s + '/' + (key.respond_to?(:cache_key) ? key.cache_key : key.to_s) if options[:namespace]
-    Rails.cache.fetch(key, options) do
-      Rails.logger.warn("Cache miss - #{key} - #{options}") if Greasyfork::Application.config.log_cache_misses
-      o = yield
-      Rails.logger.warn("Cache stored - #{key} - #{options}") if Greasyfork::Application.config.log_cache_misses
-      next o
-    end
+  def per_page
+    pp = 50
+    pp = [params[:per_page].to_i, 200].min if !params[:per_page].nil? && (params[:per_page].to_i > 0)
+    return pp
   end
 
   def cache_with_log(key, options = {})
@@ -165,27 +166,28 @@ protected
 
   def script_subset
     return :sleazyfork if sleazy?
-    return :greasyfork if !user_signed_in?
+    return :greasyfork unless user_signed_in?
+
     return current_user.show_sensitive ? :all : :greasyfork
   end
 
   helper_method :cache_with_log, :sleazy?, :script_subset, :site_name
 
-  def get_script_from_input(v)
-    return nil if v.blank?
+  def get_script_from_input(value)
+    return nil if value.blank?
 
-    replaced_by = nil
     script_id = nil
     # Is it an ID?
-    if v.to_i != 0
-      script_id = v.to_i
+    if value.to_i != 0
+      script_id = value.to_i
     # A non-GF URL?
-    elsif !v.start_with?('https://greasyfork.org/') && !v.start_with?('/')
+    elsif !value.start_with?('https://greasyfork.org/') && !value.start_with?('/')
       return :non_gf_url
     # A GF URL?
     else
-      url_match = /\/scripts\/([0-9]+)(\-|$)/.match(v)
+      url_match = %r{/scripts/([0-9]+)(\-|$)}.match(value)
       return :non_script_url if url_match.nil?
+
       script_id = url_match[1]
     end
 
@@ -201,8 +203,8 @@ protected
     return script
   end
 
-  def set_cookie(k, v, httponly: true)
-    cookies[k] = { value: v, secure: Rails.env.production?, httponly: httponly }
+  def set_cookie(key, value, httponly: true)
+    cookies[key] = { value: value, secure: Rails.env.production?, httponly: httponly }
   end
 
   def check_read_only_mode

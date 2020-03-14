@@ -11,7 +11,7 @@ module ActionDispatch
             if k == :id
               params[k] = ActiveSupport::Multibyte::Unicode.tidy_bytes(v)
             # Name parameter is not required for script install
-            elsif k == :name && params[:controller] == 'scripts' && %w(user_js user_css meta_js).include?(params[:action])
+            elsif k == :name && params[:controller] == 'scripts' && %w[user_js user_css meta_js].include?(params[:action])
               params[k] = nil
             # 404 with bad params
             elsif k == :path && params[:action] == 'routing_error'

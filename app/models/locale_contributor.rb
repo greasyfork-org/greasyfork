@@ -1,3 +1,3 @@
 class LocaleContributor < ApplicationRecord
-	belongs_to :locale
+  belongs_to :locale
 end

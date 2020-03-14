@@ -1,12 +1,12 @@
-require "application_system_test_case"
+require 'application_system_test_case'
 
 class BlockTest < ApplicationSystemTestCase
-  test "banned via disallowed url" do
+  test 'banned via disallowed url' do
     user = User.find(4)
     login_as(user, scope: :user)
     visit new_script_version_url
     click_link "I've written a script and want to share it with others."
-    code = <<~EOF
+    code = <<~JS
       // ==UserScript==
       // @name A Test!
       // @description Unit test.
@@ -15,21 +15,21 @@ class BlockTest < ApplicationSystemTestCase
       // @include *
       // ==/UserScript==
       location.href = "https://example.com/unique-test-value"
-    EOF
+    JS
     fill_in 'Code', with: code
     assert_changes -> { user.reload.banned }, from: false, to: true do
-      allow_js_error /the server responded with a status of 403 \(Forbidden\)/ do
+      allow_js_error(/the server responded with a status of 403 \(Forbidden\)/) do
         click_button 'Post script'
         assert_content 'This script has been deleted'
       end
     end
   end
 
-  test "blocked with originating script" do
+  test 'blocked with originating script' do
     login_as(User.find(4))
     visit new_script_version_url
     click_link "I've written a script and want to share it with others."
-    code = <<~EOF
+    code = <<~JS
       // ==UserScript==
       // @name A Test!
       // @description Unit test.
@@ -38,17 +38,17 @@ class BlockTest < ApplicationSystemTestCase
       // @include *
       // ==/UserScript==
       some.unique[value]
-    EOF
+    JS
     fill_in 'Code', with: code
     click_button 'Post script'
     assert_content 'This appears to be an unauthorized copy'
   end
 
-  test "not blocked when same author" do
+  test 'not blocked when same author' do
     origin = scripts(:copy_origin)
     login_as(origin.users.first, scope: :user)
     visit new_script_version_url
-    code = <<~EOF
+    code = <<~JS
       // ==UserScript==
       // @name A Test!
       // @description Unit test.
@@ -57,18 +57,18 @@ class BlockTest < ApplicationSystemTestCase
       // @include *
       // ==/UserScript==
       some.unique[value]
-    EOF
+    JS
     fill_in 'Code', with: code
     assert_difference -> { ScriptVersion.count } => 1 do
       click_button 'Post script'
     end
   end
 
-  test "updating originating script" do
+  test 'updating originating script' do
     origin = scripts(:copy_origin)
     login_as(origin.users.first, scope: :user)
     visit new_script_script_version_url(script_id: origin.id)
-    code = <<~EOF
+    code = <<~JS
       // ==UserScript==
       // @name A Test!
       // @description Unit test.
@@ -77,19 +77,19 @@ class BlockTest < ApplicationSystemTestCase
       // @include *
       // ==/UserScript==
       some.unique[value]
-    EOF
+    JS
     fill_in 'Code', with: code
     assert_difference -> { ScriptVersion.count } => 1 do
       click_button 'Post new version'
     end
   end
 
-  test "banned via disallowed text" do
+  test 'banned via disallowed text' do
     user = User.find(4)
     login_as(user, scope: :user)
     visit new_script_version_url
     click_link "I've written a script and want to share it with others."
-    code = <<~EOF
+    code = <<~JS
       // ==UserScript==
       // @name A Test!
       // @description Unit test.
@@ -98,7 +98,7 @@ class BlockTest < ApplicationSystemTestCase
       // @include *
       // ==/UserScript==
       location.href = "badguytext"
-    EOF
+    JS
     fill_in 'Code', with: code
     assert_difference -> { Script.count } => 1 do
       click_button 'Post script'

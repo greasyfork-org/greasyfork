@@ -9,27 +9,28 @@ module ApplicationHelper
 
   def markup_date(date)
     return '?' if date.nil?
+
     # Take out "about" and "less than" to make it shorter. Obviously won't work in the other languages.
     "<time datetime=\"#{date.to_datetime.rfc3339}\">#{I18n.l(date.to_date)}</time>".html_safe
   end
 
   def discussion_class(discussion)
     case discussion.Rating
-      when 0
-        return 'discussion-question'
-      when 1
-        return 'discussion-report'
-      when 2
-        return 'discussion-bad'
-      when 3
-        return 'discussion-ok'
-      when 4
-        return 'discussion-good'
+    when 0
+      return 'discussion-question'
+    when 1
+      return 'discussion-report'
+    when 2
+      return 'discussion-bad'
+    when 3
+      return 'discussion-ok'
+    when 4
+      return 'discussion-good'
     end
   end
 
   def self_link(name, text)
-    "<span id=\"#{name}\">#{link_to('§', {:anchor => name}, {:class => 'self-link'})} #{text}</span>".html_safe
+    "<span id=\"#{name}\">#{link_to('§', { anchor: name }, { class: 'self-link' })} #{text}</span>".html_safe
   end
 
   def forum_path
@@ -39,18 +40,18 @@ module ApplicationHelper
   # Translates an array of keys and returns a hash.
   def translate_keys(keys)
     h = {}
-    keys.each{|k| h[k] = I18n.t(k)}
+    keys.each { |k| h[k] = I18n.t(k) }
     return h
   end
 
-  def current_url_with_params(p={})
-    r = params.except(:only_path, :protocol, :host, :subdomain, :domain, :tld_length, :subdomain, :port, :anchor, :trailing_slash, :script_name, :controller, :action, :format).merge(p)
+  def current_url_with_params(other_params = {})
+    r = params.except(:only_path, :protocol, :host, :subdomain, :domain, :tld_length, :subdomain, :port, :anchor, :trailing_slash, :script_name, :controller, :action, :format).merge(other_params)
     r.permit!
     return url_for(r)
   end
 
-  def current_path_with_params(p={})
-    return url_for(current_url_with_params(p.merge(only_path: true)))
+  def current_path_with_params(other_params = {})
+    return url_for(current_url_with_params(other_params.merge(only_path: true)))
   end
 
   def asset_exists?(path)
@@ -74,22 +75,22 @@ module ApplicationHelper
     highlightable_scripts = highlightable_scripts.where(adsense_approved: true) if restrict_to_ad_method
 
     # Use scripts in the passed locale first.
-    locale_scripts = highlightable_scripts.joins(:localized_attributes => :locale).references([:localized_attributes, :locale]).where('localized_script_attributes.attribute_key' => 'name').where('locales.code' => I18n.locale)
+    locale_scripts = highlightable_scripts.joins(localized_attributes: :locale).references([:localized_attributes, :locale]).where('localized_script_attributes.attribute_key' => 'name').where('locales.code' => locale)
     locale_scripts = locale_scripts.select(:id)
     locale_script_count = locale_scripts.count
     top_percentage_count = (locale_script_count * TOP_SCRIPTS_PERCENTAGE).to_i
     # If there are enough from the top percentage, then sample from that.
-    if top_percentage_count >= TOP_SCRIPTS_COUNT
-      highlighted_scripts = Set.new + locale_scripts.order('daily_installs DESC').limit(top_percentage_count).sample(TOP_SCRIPTS_COUNT).map{|s| s.id}
-    else
-      # Otherwise, sample from all scripts in this locale.
-      highlighted_scripts = Set.new + locale_scripts.sample(TOP_SCRIPTS_COUNT).map{|s| s.id}
-    end
+    highlighted_scripts = if top_percentage_count >= TOP_SCRIPTS_COUNT
+                            Set.new + locale_scripts.order('daily_installs DESC').limit(top_percentage_count).sample(TOP_SCRIPTS_COUNT).map(&:id)
+                          else
+                            # Otherwise, sample from all scripts in this locale.
+                            Set.new + locale_scripts.sample(TOP_SCRIPTS_COUNT).map(&:id)
+                          end
 
     # If we don't have enough, use scripts that aren't in the passed locale.
     if highlighted_scripts.length < TOP_SCRIPTS_COUNT
       total_script_count = highlightable_scripts.count
-      highlightable_scripts.order('daily_installs DESC').limit((total_script_count * TOP_SCRIPTS_PERCENTAGE).to_i).select(:id).map{|s| s.id}.shuffle.each do |id|
+      highlightable_scripts.order('daily_installs DESC').limit((total_script_count * TOP_SCRIPTS_PERCENTAGE).to_i).select(:id).map(&:id).shuffle.each do |id|
         highlighted_scripts << id
         break if highlighted_scripts.length >= TOP_SCRIPTS_COUNT
       end
@@ -99,21 +100,21 @@ module ApplicationHelper
   end
 
   def highlighted_scripts(restrict_to_ad_method: nil)
-    highlighted_scripts_ids = cache_with_log("scripts/highlighted/#{script_subset}/#{I18n.locale.to_s}/#{restrict_to_ad_method}") do
+    highlighted_scripts_ids = cache_with_log("scripts/highlighted/#{script_subset}/#{I18n.locale}/#{restrict_to_ad_method}") do
       highlighted_script_ids_for_locale(locale: I18n.locale, script_subset: script_subset, restrict_to_ad_method: restrict_to_ad_method)
     end
-    @highlighted_scripts = Script.includes(:localized_attributes => :locale).find(highlighted_scripts_ids.to_a)
+    @highlighted_scripts = Script.includes(localized_attributes: :locale).find(highlighted_scripts_ids.to_a)
   end
 
   def canonical_url
     canonical_param_names = (@canonical_params || []).push(:id, :locale)
     canonical_params = params
-                         .to_unsafe_h
-                         .map {|k, v| canonical_param_names.include?(k.to_sym) ? [k, v] : [k, nil] }
-                         .to_h
+                       .to_unsafe_h
+                       .map { |k, v| canonical_param_names.include?(k.to_sym) ? [k, v] : [k, nil] }
+                       .to_h
     begin
-      url_for(canonical_params.merge(controller: controller_name, action: action_name, only_path: false, host: sleazy? ? 'sleazyfork.org': 'greasyfork.org', port: nil))
-    rescue
+      url_for(canonical_params.merge(controller: controller_name, action: action_name, only_path: false, host: sleazy? ? 'sleazyfork.org' : 'greasyfork.org', port: nil))
+    rescue StandardError
       request.url
     end
   end

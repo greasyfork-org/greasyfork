@@ -1,6 +1,5 @@
 module Admin
   class SpammyEmailDomainsController < BaseController
-
     before_action :administrators_only, except: :index
 
     def index

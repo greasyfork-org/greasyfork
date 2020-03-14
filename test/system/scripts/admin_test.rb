@@ -1,7 +1,7 @@
-require "application_system_test_case"
+require 'application_system_test_case'
 
 class ScriptAdminTest < ApplicationSystemTestCase
-  test "setting a promoted script" do
+  test 'setting a promoted script' do
     script = Script.find(1)
     login_as(script.users.first, scope: :user)
     visit admin_script_url(script, locale: :en)

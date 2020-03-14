@@ -1,7 +1,7 @@
-require "application_system_test_case"
+require 'application_system_test_case'
 
 class AcceptInvitationUTest < ApplicationSystemTestCase
-  test "good invitation" do
+  test 'good invitation' do
     script = Script.find(1)
     invited_user = User.find(3)
     script.script_invitations.create!(invited_user: invited_user, expires_at: 1.day.from_now)
@@ -11,7 +11,7 @@ class AcceptInvitationUTest < ApplicationSystemTestCase
     assert_includes(script.reload.users, invited_user)
   end
 
-  test "bad invitation" do
+  test 'bad invitation' do
     script = Script.find(1)
     invited_user = User.find(3)
     script.script_invitations.create!(invited_user: invited_user, expires_at: 1.day.ago)
@@ -21,7 +21,7 @@ class AcceptInvitationUTest < ApplicationSystemTestCase
     assert_not_includes(script.reload.users, invited_user)
   end
 
-  test "not logged in" do
+  test 'not logged in' do
     script = Script.find(1)
     invited_user = User.find(3)
     script.script_invitations.create!(invited_user: invited_user, expires_at: 1.day.from_now)
