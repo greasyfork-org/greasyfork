@@ -188,12 +188,12 @@ class ScriptVersion < ApplicationRecord
   def code_previously_posted?
     return false if allow_code_previously_posted || !new_record?
     hash = script_code.calculate_hash
-    self.previously_posted_scripts = ScriptVersion
-        .joins(:script_code, :rewritten_script_code, :script)
-        .merge(Script.not_deleted)
-        .where(['script_codes.code_hash = ? OR rewritten_script_codes_script_versions.code_hash = ?', hash, hash])
-        .where.not(script_id: script_id)
-        .map(&:script).uniq
+    previously_posted_scope = ScriptVersion.joins(:script).merge(Script.not_deleted).where.not(script_id: script_id)
+    # Split into two queries to better use the indexes.
+    self.previously_posted_scripts = (
+          previously_posted_scope.joins(:script_code).where(script_codes: { code_hash: hash }) +
+          previously_posted_scope.joins(:rewritten_script_code).where(script_codes: { code_hash: hash })
+    ).map(&:script).uniq
     previously_posted_scripts.any?
   end
 
