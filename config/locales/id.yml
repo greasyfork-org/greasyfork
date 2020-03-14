@@ -340,7 +340,6 @@ id:
       description_localized_html: "Deskripsi skrip dalam lokal yang spesifik, dimana XX adalah <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">kode 2-huruf ISO 639-1</a> dan YY adalah opsional <a href=\"https://www.iso.org/obp/ui/#search\">kode negara ISO 3166</a>. Akan menimpa <code>@description</code> ketika pengguna menjelajah dengan lokal yang sama."
       namespace_html: "Kombinasi dari <code>@namespace</code> dan <code>@name</code> digunakan oleh pengelola skrip untuk memastikan apakah skrip telah dipasang. %{site_name} memerlukan ruas ini dan akan memperingatkan jika berubah ketika pembaruan."
       version_html: "Identifikasi untuk versi spesifik dari skrip dalam <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">format versi Mozilla</a>. Versi akan ditampilkan di halaman info skrip. %{site_name} membutuhkan ruas ini dan akan mengingatkan jika angka versi tidak berkurang atau bertambah ketika kode skrip berubah."
-      include: "Jelaskan di halaman apa skrip akan dijalankan. Daftar ini akan diproses, ditampilkan di halaman info skrip, dan akan digunakan untuk mengelompokkan skrip."
       require_html: "Sertakan JavaScript eksternal ke dalam skrip. Lihat %{external_script_link}."
       require_external_script_link_text: "aturan untuk kode termasuk skrip eksternal"
       updateURL: "Jelaskan bagaimana pengelola skrip mendapatkan pembaruan. %{site_name} akan mengabaikan kunci ini, yang membuat skrip yang dipasang dari %{site_name} hanya diperbarui dari %{site_name}."

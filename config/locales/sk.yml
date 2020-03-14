@@ -576,7 +576,7 @@ sk:
       description_localized_html: "Popis skriptu vo vybranom jazyku, kde XX je <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-znakový kód</a> a YY je voliteľný <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 kód krajiny</a>. Ignoruje <code>@description</code> ak užívateľ prehliada vo vybranom jazyku."
       namespace_html: "Kombinácia <code>@namespace</code> a <code>@name</code> sa používa správcami skriptov na to, aby zistili, či je už skript nainštalovaný. %{site_name} vyžaduje toto pole a upozorní ak sa zmení po aktualizácii."
       version_html: "Identifikátor pre konkrétnu verziu skriptu vo <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">formáte Mozilla version format</a>. Verzia sa zobrazí na stránke skriptu. %{site_name} vyžaduje toto pole a upozorní, ak sa zníži alebo ak sa nezvýši pri zmene kódu skriptu."
-      include: "Vypíšte stránky, na ktorých skript pobeží. Tento zoznam bude spracovaný, zobrazený na stránke skriptu a použitý na kategorizovanie skriptu."
+      include_html: "Vypíšte stránky, na ktorých skript pobeží. Tento zoznam bude spracovaný, zobrazený na stránke skriptu a použitý na kategorizovanie skriptu. Každý skript musí mať aspoň jeden kľúč<code>@match</code> alebo <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">O formátoch si prečítajte tu.</a>"
       require_html: "Skript obsahuje externý JavaScript. Pozri %{external_script_link}."
       require_external_script_link_text: "pravidlá pre kód obsahujúci externé skripty"
       updateURL: "Popis ako správcovia užívateľských skriptov môžu získať aktualizácie. %{site_name} vymaže tieto kľúče, všetky skripty z %{site_name} musia byť aktualizované cez %{site_name}."
@@ -839,6 +839,7 @@ sk:
       script_update_not_utf8: "kód nie je v UTF-8 text"
       script_disallowed_require: "používa neschválených externý skript:% {code}"
       script_rate_limit: "Prekročili ste limit na odosielanie. Skúste to neskôr."
+      missing_include_or_match: "musí obsahovať aspoň jeden kľúč @match alebo @include"
   opensearch:
     short_name: "hľadať %{site_name}"
     description: "Hľadanie skriptov na %{site_name}."

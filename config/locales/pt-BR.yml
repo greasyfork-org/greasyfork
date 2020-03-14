@@ -558,7 +558,7 @@ pt-BR:
       description_localized_html: "A descrição do script em um idioma específico, onde XX é um <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">código de caracter ISO 639-1 2</a> e YY é um <a href=\"https://www.iso.org/obp/ui/#search\">código de país ISO 3166</a>, opcional. Substitui <code>@description</code> quando o usuário estiver navegando em um idioma correspondente."
       namespace_html: "É usada uma combinação de <code>@namespace</code> e <code>@name</code> pelos gerenciadores de scripts de usuário para verificar se o script já está instalado. %{site_name} requer este campo e irá informar se não sofreu nenhuma mudança na atualização."
       version_html: "Identificador para uma versão específica de um script em <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">formato de versão do Mozilla</a>. A versão é exibida na página de informações do script. %{site_name} requer este campo e irá informar se estiver decrementado ou se não estiver incrementado quando o código do script mudar."
-      include: "Descreva em que páginas o script correrá. Esta lista será processada, exibida na página do script e usada para categorizar scripts."
+      include_html: "Descreve em quais páginas o script irá rodar. Esta lista será processada, exibida na página de informações do script e utilizada para categorizar os scripts. Todo script deve ter ao menos uma chave <code>@match</code> ou <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Leia sobre o formato aqui.</a>"
       require_html: "Incluir JavaScript externo em um script. Ver %{external_script_link}."
       require_external_script_link_text: "Política do %{site_name} sobre scripts externos"
       updateURL: "Descreve como os gerenciadores de script de usuário devem ser atualizados. %{site_name} irá retirar essas chaves, o que faz com que qualquer script instalado a partir de %{site_name} seja atualizado somente a partir de %{site_name}."
@@ -832,6 +832,7 @@ pt-BR:
       script_update_not_utf8: "envio deve ser em texto UTF-8"
       script_disallowed_require: "usa um script externo não aprovado: %{code}"
       script_rate_limit: "Você atingiu o limite de postagens. Tente novamente mais tarde."
+      missing_include_or_match: "deve incluir pelo menos uma chave @match ou @include"
   opensearch:
     short_name: "%{site_name} busca"
     description: "Busca por scripts de usuário em %{site_name}."

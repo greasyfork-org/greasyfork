@@ -517,7 +517,6 @@ zh-TW:
       description_localized_html: "此腳本在不同語系中的描述，XX 是 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 的兩字母代碼</a> ，YY 則是非必要的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 國家代碼</a>。當使用者在符合的語系中瀏覽時就會蓋過 <code>@description</code> 顯示。"
       namespace_html: "使用者腳本管理器將會透過 <code>@namespace</code> 與 <code>@name</code> 的組合來判斷是否已安裝該腳本。%{site_name} 要求必填此欄位，若於更新時修改了此欄位也會警告您。"
       version_html: "使用 <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">Mozilla 版本格式</a> 的腳本版本號。版本號將顯示於腳本的資訊頁中，%{site_name} 需要此欄位，並會在數值變小時，或是程式碼變動後版本號卻沒有增加時警告您。"
-      include: "描述此腳本會在哪些網頁執行。此清單將被處理並顯示於腳本的資訊頁，並用來分類腳本。"
       require_html: "在腳本中引入的外部 JavaScript，請參考 %{external_script_link}。"
       require_external_script_link_text: "外部腳本的使用規範"
       updateURL: "描述使用者腳本管理器要從何取得更新。%{site_name} 將會移除這些更新網址，目的是讓從 %{site_name} 安裝的腳本只能由 %{site_name} 更新。"

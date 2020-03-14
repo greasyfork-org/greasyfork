@@ -537,7 +537,6 @@ ja:
       description_localized_html: "特定のロケールにおけるスクリプトの説明で、XX は<a href=\"https://ja.wikipedia.org/wiki/ISO_639-1\">ISO 639-1の2文字コード</a>、任意指定の YY は<a href=\"https://ja.wikipedia.org/wiki/ISO_3166-1\">ISO 3166-1の国名コード</a>。ユーザーが対応するロケールで閲覧しているときに、<code>@description</code> を上書きします。"
       namespace_html: "ユーザースクリプトマネージャーは、<code>@namespace</code> と <code>@name</code> の組み合わせで、スクリプトがすでにインストールされているか否かを判断します。%{site_name} ではこのキーを必須としており、スクリプト更新時に変更された場合は警告を表示します。"
       version_html: "<a href=\"https://developer.mozilla.org/docs/Toolkit_version_format\">Mozillaのバージョン書式</a>で記述された、スクリプトの特定バージョンを表す識別子。バージョンはスクリプトの情報ページに表示されます。%{site_name} ではこのキーを必須としており、スクリプトコードの変更時に下がっている、または上がっていない場合は警告を表示します。"
-      include: "スクリプトが動作するページを記述。ページのリストは整理された上で、スクリプトの情報ページに表示され、スクリプトの分類に使用されます。"
       require_html: "スクリプトへの外部 JavaScript の読み込み。%{external_script_link}を参照してください。"
       require_external_script_link_text: "外部スクリプトにおける%{site_name}のポリシー"
       updateURL: "ユーザースクリプトマネージャーが更新を取得する方法の記述。%{site_name} はこれらのキーを取り除き、%{site_name}　からインストールされたすべてのスクリプトが　%{site_name}　から更新されるようにします。"
