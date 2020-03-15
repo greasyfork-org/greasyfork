@@ -1,6 +1,8 @@
 require 'localizing_model'
 
 class Script < ActiveRecord::Base
+  self.ignored_columns = %w[userscripts_id]
+
   include LocalizingModel
 
   belongs_to :promoted_script, class_name: 'Script', optional: true
