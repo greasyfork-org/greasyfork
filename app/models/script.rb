@@ -35,7 +35,7 @@ class Script < ActiveRecord::Base
 
   delegate :meta, to: :newest_saved_script_version
 
-  scope :not_deleted, -> { where('script_delete_type_id is null') }
+  scope :not_deleted, -> { where(script_delete_type_id: nil) }
   scope :active, lambda { |script_subset|
     f = not_deleted
     case script_subset
@@ -187,6 +187,14 @@ class Script < ActiveRecord::Base
 
   after_save do |script|
     ScriptDuplicateCheckerJob.perform_later(script.id) if script.saved_change_to_code_updated_at?
+  end
+
+  before_save do |script|
+    if script.deleted?
+      script.deleted_at ||= Time.now
+    else
+      script.deleted_at = nil
+    end
   end
 
   def apply_from_script_version(script_version)
@@ -487,6 +495,10 @@ class Script < ActiveRecord::Base
 
   def self.subsets
     [:greasyfork, :sleazyfork, :all]
+  end
+
+  def deleted?
+    script_delete_type_id.present?
   end
 
   private

@@ -1533,6 +1533,7 @@ CREATE TABLE `scripts` (
   `css_convertible_to_js` tinyint(1) NOT NULL DEFAULT 0,
   `not_js_convertible_override` tinyint(1) NOT NULL DEFAULT 0,
   `review_state` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'not_required',
+  `deleted_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_scripts_on_delta` (`delta`),
   KEY `index_scripts_on_script_delete_type_id` (`script_delete_type_id`),
@@ -1828,6 +1829,8 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20200308042042'),
 ('20200308042133'),
 ('20200310225042'),
-('20200314010547');
+('20200314010547'),
+('20200315221243'),
+('20200315221318');
 
 
