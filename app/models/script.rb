@@ -497,10 +497,6 @@ class Script < ActiveRecord::Base
     [:greasyfork, :sleazyfork, :all]
   end
 
-  def deleted?
-    script_delete_type_id.present?
-  end
-
   private
 
   def url_helpers
