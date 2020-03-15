@@ -557,6 +557,7 @@ bg:
       description_localized_html: "Описанието на скрипта в специфична локализация, където XX е <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 двубуквен код</a>, а YY е незадължителен <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 код за държавата</a>. Когато потребителят браузва в съответната локализация, презаписва <code>@description</code>."
       namespace_html: "Скрипт мениджърите използват комбинация от <code>@namespace</code> и <code>@name</code>, за да разберат дали скриптът вече е инсталиран. %{site_name} изисква това поле и ще предупреди ако то е променено при обновяване."
       version_html: "Идентификатор за конкретна версия на скрипта в <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">Mozilla version format</a>. Версията се показва в страницата на скрипта. %{site_name} изисква наличието на това поле и ще предупреди ако стойността му се намали, или ако не се увеличи при промяна на кода на скрипта."
+      include_html: "Опишете на кои страници ще се изпълнява скриптът. Списъкът ще бъде обработен, ще бъде показан на страницата на скрипта, и ще бъде използван за категоризиране на скриптовете. Всеки скрипт трябва да има поне един <code>@match</code> или <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Повече за формата можете да прочетете тук.</a>"
       require_html: "Включва външен JavaScript в скрипта. Виж %{external_script_link}."
       require_external_script_link_text: "правила за вмъкване на код от външни скриптове"
       updateURL: "Описва как скриптовите мениджъри могат да получат обновленията. %{site_name} ще премахне тези ключове, за да могат скриптовете, инсталирани от %{site_name}, да получават обновления само от %{site_name}."
@@ -821,6 +822,7 @@ bg:
       script_update_not_utf8: "трябва да използвате UTF-8 кодировка"
       script_disallowed_require: "използва неодобрен външен скрипт: %{code}"
       script_rate_limit: "Надхвърлили сте лимита за публикуване. Опитайте отново по-късно."
+      missing_include_or_match: "трябва да съдържа поне един @match или @include"
   opensearch:
     short_name: "%{site_name} търсене"
     description: "Търсене на потребителски скриптове в %{site_name}."
