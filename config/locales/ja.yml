@@ -114,6 +114,7 @@ ja:
     stats_no_data: "(データなし)"
     derivatives_title: "%{script_name} に似ているスクリプト"
     derivatives_intro: "以下のスクリプトは、あなたのスクリプトを基にしている可能性があります (あるいはその逆)。ライセンス上の許可なくあなたのコードが使われている場合は、そのスクリプトのフィードバックに新しいスレッドを立て報告してください。"
+    derivatives_script_html: "%{script}  作者:%{user} ライセンス: %{license} %{diff_link:[Diff]}"
     listing_title_all_sites: "すべてのサイトで実行されるユーザースクリプト"
     listing_description_all_sites: "すべてのサイトに機能を追加し、バグを取り除くユーザースクリプト"
     listing_title_for_site: "%{site} で実行されるユーザースクリプト"
@@ -187,6 +188,7 @@ ja:
     warning_potentially_minified_html: "圧縮 (minify) されたコードが含まれている可能性があります。圧縮されたライブラリを使用している場合は、ライブラリのコードを貼り付ける代わりに、%{allowed_requires_link} で許可されたURLから <code>@require</code> メタキーで読み込んでください。圧縮されたスクリプトは削除対象です。"
     warning_automatic_sensitive_html: "%{sensitive_domains} 向けであるため、アダルトコンテンツに関するスクリプトであるとマークされます。"
     warning_potentially_minified_allowed_requires_link: "外部スクリプトにおける%{site_name}のポリシー"
+    warning_code_previously_posted_html: "このコードは以前に %{script_links} に投稿されています。原作者以外が再投稿したスクリプトは管理担当者によって削除される可能性があります。"
     additional_info_locale_prompt: "(ロケールを選択してください)"
     additional_info_add_localized: "ローカライズした (他国語に翻訳した) 追加情報を書く"
     additional_info_locale_repeated: "ロケール「%{locale_code}」の追加情報が複数あります。"
@@ -297,6 +299,10 @@ ja:
       remove_confirm: "%{user_name}を作者から削除してもよろしいですか？"
       failure: "作者を解除できませんでした。"
     no_disposable_email: "使い捨ての電子メールアドレスを使用している場合は、スクリプトを投稿することはできません。"
+    new_script_notice:
+      title: "何をしようとしていますか？"
+      install_link_html: "スクリプトを <b>インストールし使用したい</b> です。"
+      share_link_html: " スクリプトを<b>書いた</b> ので他者に <b>共有したい</b> 。"
   script_sets:
     description: "「スクリプトセット」とは、Greasy Fork に投稿されているスクリプトのマイリストです。個々のスクリプトの追加だけでなく、他のスクリプトセットをリストに登録して一つのスクリプトセットとして表示することもでき、サイトやユーザーを指定した自動生成も可能です。また、同じようにして除外リストへの登録も行えます。"
     favorites_name: "お気に入り"
@@ -537,6 +543,7 @@ ja:
       description_localized_html: "特定のロケールにおけるスクリプトの説明で、XX は<a href=\"https://ja.wikipedia.org/wiki/ISO_639-1\">ISO 639-1の2文字コード</a>、任意指定の YY は<a href=\"https://ja.wikipedia.org/wiki/ISO_3166-1\">ISO 3166-1の国名コード</a>。ユーザーが対応するロケールで閲覧しているときに、<code>@description</code> を上書きします。"
       namespace_html: "ユーザースクリプトマネージャーは、<code>@namespace</code> と <code>@name</code> の組み合わせで、スクリプトがすでにインストールされているか否かを判断します。%{site_name} ではこのキーを必須としており、スクリプト更新時に変更された場合は警告を表示します。"
       version_html: "<a href=\"https://developer.mozilla.org/docs/Toolkit_version_format\">Mozillaのバージョン書式</a>で記述された、スクリプトの特定バージョンを表す識別子。バージョンはスクリプトの情報ページに表示されます。%{site_name} ではこのキーを必須としており、スクリプトコードの変更時に下がっている、または上がっていない場合は警告を表示します。"
+      include_html: "スクリプトを実行するページを指定します。この一覧は処理されてスクリプトの情報ページに表示され、またスクリプトの分類に使われます。各スクリプトには 1 回以上の<code>@match</code> か <code>@include</code> を含めてください。そのフォーマットについては <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">ここをお読みください。</a>"
       require_html: "スクリプトへの外部 JavaScript の読み込み。%{external_script_link}を参照してください。"
       require_external_script_link_text: "外部スクリプトにおける%{site_name}のポリシー"
       updateURL: "ユーザースクリプトマネージャーが更新を取得する方法の記述。%{site_name} はこれらのキーを取り除き、%{site_name}　からインストールされたすべてのスクリプトが　%{site_name}　から更新されるようにします。"
@@ -742,8 +749,36 @@ ja:
       script_update_not_utf8: " (アップロード) は UTF-8 のテキスト形式にする必要があります"
       script_disallowed_require: "で許可されていない外部スクリプトが使用されています: %{code}"
       script_rate_limit: "投稿制限です。時間をおいて再投稿してください。"
+      missing_include_or_match: "@match か @include キーを 1 回以上含めてください"
   opensearch:
     short_name: "%{site_name}"
     description: "%{site_name} 上のユーザースクリプトを検索します。"
     long_name: "%{site_name} ユーザースクリプト検索"
     attribution: "スクリプト作者の著作権について、ライセンスはそれぞれのスクリプトを参照してください"
+  mailers:
+    script_report:
+      report_created_offender:
+        subject: "あなたのスクリプト%{script_name} (%{site_name}) に報告があります"
+        reason_unauthorized: "あなたのスクリプト%{script_name} (%{site_name}) は、許可のない複製または別のスクリプトの改変版だと報告されています。"
+        reason_malware: " あなたのスクリプト%{script_name} ( %{site_name} ) はマルウェアだと報告されています。"
+        reason_spam: "あなたのスクリプト %{script_name}(%{site_name}) はスパムだと報告されています。"
+        reason_other: "あなたのスクリプト %{script_name} は %{site_name}の規則に違反しています。"
+        action: "%{report_url}で、この報告を調査し反論することができます。斑トンを行わない場合、管理担当者がスクリプトを削除する可能性があります。疑問があれば https://greasyfork.org/forum/ にアクセスしてください。"
+      report_upheld_offender:
+        subject: "あなたのスクリプト %{script_name} (%{site_name}) は削除されました。"
+        text: "あなたのスクリプト %{script_name} (%{site_name}) は管理担当者によって削除されました。報告内容 %{report_url} を調査することができます。疑問があれば https://greasyfork.org/forum/ にアクセスしてください。"
+      report_dismissed_offender:
+        subject: "あなたのスクリプト %{script_name} (%{site_name}) に関する報告の却下"
+        text: "あなたのスクリプト%{script_name}(%{site_name}) に関する報告が、管理担当者によって却下されました。あなたのスクリプトはまだ使用可能です。報告内容 %{report_url}を調査することができます。疑問があれば https://greasyfork.org/forum/ にアクセスしてください。"
+      report_rebutted_reporter:
+        subject: "あなたの報告に返信あり (%{script_name}, %{site_name}) "
+        text: " %{script_name} (%{site_name}) に関するあなたの報告に返信があります。%{report_url} にてこの返信を閲覧できます。管理担当者はあなたの報告と返信を審査し対応を決定します。疑問があれば https://greasyfork.org/forum/ へアクセスしてください。"
+      report_upheld_reporter:
+        subject: "あなたの報告 %{script_name} (%{site_name}) を支持"
+        text: "%{script_name}(%{site_name})に関するあなたの報告が管理担当者に指示されスクリプトは削除されました。報告内容を%{report_url}で閲覧できます。疑問があれば https://greasyfork.org/forum/ にアクセスしてください。"
+      report_script_deleted_reported:
+        subject: "あなたの報告 %{script_name}(%{site_name}) がクローズ"
+        text: "%{script_name}(%{site_name}) に関するあなたの報告はクローズされ、スクリプトはその作者によって削除されました。報告内容を %{report_url} で閲覧できます。疑問があれば https://greasyfork.org/forum/ にアクセスしてください。"
+      report_dismissed_reporter:
+        subject: "あなたの報告 %{script_name} (%{site_name}) が却下"
+        text: "%{script_name} (%{site_name}) に関するあなたの報告は、管理担当者に却下され、スクリプトはまだ使用可能です。報告内容を %{report_url}で閲覧できます。疑問があれば https://greasyfork.org/forum/ にアクセスしてください。"
