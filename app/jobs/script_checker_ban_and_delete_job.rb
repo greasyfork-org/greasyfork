@@ -1,6 +1,11 @@
 class ScriptCheckerBanAndDeleteJob < ApplicationJob
   def perform(script_id, script_check_results)
-    script = Script.find(script_id)
+    begin
+      script = Script.find(script_id)
+    rescue ActiveRecord::RecordNotFound
+      return
+    end
+
     script_check_results = JSON.parse(script_check_results)
 
     moderator = User.administrators.first
