@@ -1,7 +1,7 @@
 <%- title t('scripts.feedback_title', :script_name => @script.name(request_locale)) %>
 <%- description 'Feedback on ' + @script.name(request_locale) %>
 
-<% if @script.script_reports.any? %>
+<% if @script.script_reports.unresolved.any? %>
 	<p>
 		<%= link_to t('scripts.feedback_has_reports', site_name: site_name), script_script_reports_path(@script), rel: :nofollow %>
 	</p>
