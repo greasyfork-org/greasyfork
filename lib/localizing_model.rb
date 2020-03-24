@@ -32,10 +32,16 @@ module LocalizingModel
 
   # Returns an array of LocalizedAttributes. locale can be a Locale, ID, code, or nil.
   def localized_attributes_for(attr_name, lookup_locale = nil, use_default = true)
+    attr_name = attr_name.to_s
+    # Optimize for the case when localized_names is already loaded. We don't want to load localized_names here because
+    # it's possible that localized_attributes is already or will be loaded, and we want to avoid an additional query.
+    la_scope = (attr_name == 'name' && localized_names.loaded?) ? localized_names : active_localized_attributes
+
     # Get the Locale object if we're not passed an ID or a Locale so that we don't have to dig into the locale object
     # for each record.
     lookup_locale = Locale.find_by(code: lookup_locale) if lookup_locale.is_a?(String) || lookup_locale.is_a?(Symbol)
-    attrs = active_localized_attributes.select do |la|
+
+    attrs = la_scope.select do |la|
       la.attribute_key.to_s == attr_name.to_s &&
         (
           lookup_locale.nil? ||
