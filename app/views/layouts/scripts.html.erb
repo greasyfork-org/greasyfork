@@ -28,7 +28,7 @@
 			<% end %>
 		</ul>
 		<header>
-			<h2><%=@script.name(I18n.locale)%></h2>
+			<h2><%=@script.name(request_locale)%></h2>
 			<p id="script-description"><%=@script.description(I18n.locale)%></p>
 			<% if !params[:version].nil?
 				latest_version_link = link_to t('scripts.version_notice_latest_version_link'), {:version => nil}%>

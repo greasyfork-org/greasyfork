@@ -13,7 +13,7 @@
     <% identical_svs.each do |svs| %>
       <li>
         <% script = svs.first.script %>
-        <%= link_to script.name(I18n.locale), script_path(script) %> by <%= script.users.map { |u| link_to u.name, user_path(u) }.to_sentence.html_safe %> - versions: <%= svs.map(&:version).uniq.join(', ') %>
+        <%= link_to script.name(request_locale), script_path(script) %> by <%= script.users.map { |u| link_to u.name, user_path(u) }.to_sentence.html_safe %> - versions: <%= svs.map(&:version).uniq.join(', ') %>
       </li>
     <% end %>
   </ul>
@@ -39,7 +39,7 @@
       <li>
         <%= number_with_precision(ss.similarity, precision: 3) %>
         <%= link_to '[Diff]', admin_script_path(@script, compare: script_path(ss.other_script), anchor: 'script-comparison') %>:
-        <%= link_to(ss.other_script.name(I18n.locale), ss.other_script) %>
+        <%= link_to(ss.other_script.name(request_locale), ss.other_script) %>
       </li>
     <% end %>
   </ul>

@@ -1,9 +1,10 @@
 require 'test_helper'
 
 class LocalizedRequestTest < ActionController::TestCase
-  def self.before_action(*args)
-    # Dummy to pretend we're a controller
-  end
+  # Dummy to pretend we're a controller
+  def self.before_action(*args); end
+
+  def self.helper_method(*args); end
 
   include LocalizedRequest
 

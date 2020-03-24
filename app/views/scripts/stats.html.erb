@@ -1,5 +1,5 @@
-<%- title t('scripts.stats_title', :script_name => @script.name(I18n.locale)) %>
-<%- description 'Install stats for ' + @script.name(I18n.locale) %>
+<%- title t('scripts.stats_title', :script_name => @script.name(request_locale)) %>
+<%- description 'Install stats for ' + @script.name(request_locale) %>
 
 <%= javascript_include_tag "Chart" %>
 

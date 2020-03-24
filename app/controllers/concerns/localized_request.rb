@@ -3,6 +3,11 @@ module LocalizedRequest
 
   included do
     before_action :set_locale
+    helper_method :request_locale
+  end
+
+  def request_locale
+    @request_locale ||= Locale.find_by(code: I18n.locale)
   end
 
   def set_locale

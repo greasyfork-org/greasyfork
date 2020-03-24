@@ -1,5 +1,5 @@
-<%- title t('scripts.code_title', :script_name => @script.name(I18n.locale)) %>
-<%- description 'Source code for ' + @script.name(I18n.locale) %>
+<%- title t('scripts.code_title', :script_name => @script.name(request_locale)) %>
+<%- description 'Source code for ' + @script.name(request_locale) %>
 
 <%=render :partial => 'install', :locals => {:script => @script, :script_version => @script_version}%>
 

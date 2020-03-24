@@ -1,5 +1,5 @@
-<%- title t('scripts.history_title', :script_name => @script.name(I18n.locale)) %>
-<%- description 'Version history for ' + @script.name(I18n.locale) %>
+<%- title t('scripts.history_title', :script_name => @script.name(request_locale)) %>
+<%- description 'Version history for ' + @script.name(request_locale) %>
 
 <% if @show_ad %>
   <!-- BEGIN COPY CODEFUND EMBED -->

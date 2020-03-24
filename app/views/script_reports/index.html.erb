@@ -1,15 +1,15 @@
 <%- title 'Report script' %>
 
 <% if @script.script_reports.none? %>
-  <p>No reports have been posted about <%= link_to @script.name(I18n.locale), @script %>.</p>
+  <p>No reports have been posted about <%= link_to @script.name(request_locale), @script %>.</p>
 <% else %>
-  <p><%= link_to @script.name(I18n.locale), @script %> has been reported as violating <%= site_name %>'s rules:</p>
+  <p><%= link_to @script.name(request_locale), @script %> has been reported as violating <%= site_name %>'s rules:</p>
   <ul>
     <% @script.script_reports.each do |report| %>
       <li>
         <% case report.report_type %>
         <% when ScriptReport::TYPE_UNAUTHORIZED_CODE %>
-          Unauthorized copy of <%= link_to report.reference_script.name(I18n.locale), report.reference_script %> -
+          Unauthorized copy of <%= link_to report.reference_script.name(request_locale), report.reference_script %> -
         <% when ScriptReport::TYPE_MALWARE %>
           Malware
         <% when ScriptReport::TYPE_SPAM %>

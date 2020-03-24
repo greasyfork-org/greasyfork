@@ -65,7 +65,7 @@
 			<% else %>
 				<select id="remove-scripts-included" name="remove-scripts-included[]" multiple size="10">
 					<% @set.child_script_inclusions.each do |script| %>
-						<option value="<%=script.id%>"><%=script.name(I18n.locale)%></option>
+						<option value="<%=script.id%>"><%=script.name(request_locale)%></option>
 					<% end %>
 				</select><br>
 				<button name="remove-selected-scripts" value="i" data-submit-anchor="script-set-scripts"><%=t('script_sets.edit_scripts.remove_included')%></button>
@@ -81,7 +81,7 @@
 				<% else %>
 					<select id="remove-scripts-excluded" name="remove-scripts-excluded[]" multiple size="10">
 						<% @set.child_script_exclusions.each do |script| %>
-							<option value="<%=script.id%>"><%=script.name(I18n.locale)%></option>
+							<option value="<%=script.id%>"><%=script.name(request_locale)%></option>
 						<% end %>
 					</select><br>
 					<button name="remove-selected-scripts" value="e" data-submit-anchor="script-set-scripts"><%=t('script_sets.edit_scripts.remove_excluded')%></button>
@@ -248,7 +248,7 @@
 			<% else %>
 				<ul>
 					<% @set.scripts(script_subset).take(100).each do |script| %>
-						<li><%=link_to script.name(I18n.locale), script%></li>
+						<li><%=link_to script.name(request_locale), script%></li>
 					<% end
 					if script_count > 100 %>
 						<li><%=t('script_sets.calculated_list_more', count: script_count - 100)%></li>

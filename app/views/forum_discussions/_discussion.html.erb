@@ -6,7 +6,7 @@ t_params = {
 }
 
 show_script = defined?(show_script) && show_script && !discussion.script.nil? 
-t_params[:script_link] = link_to discussion.script.name(I18n.locale), discussion.script if show_script
+t_params[:script_link] = link_to discussion.script.name(request_locale), discussion.script if show_script
 
 show_reply = !discussion.LastCommentUserID.nil? && discussion.last_commenter.present?
 if show_reply

@@ -4,21 +4,21 @@
 case @script_report.report_type
 when ScriptReport::TYPE_UNAUTHORIZED_CODE %>
 
-  <p><%= link_to "#{site_name}'s rules", help_code_rules_path %> state that scripts' copyright and licenses must be respected. <%= link_to @script_report.script.name(I18n.locale), @script_report.script %> by <%= @script_report.script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> has been reported as an unauthorized copy of <%= link_to @script_report.reference_script.name(I18n.locale), @script_report.reference_script %> by <%= @script_report.reference_script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> on <%= @script_report.created_at %>.</p>
+  <p><%= link_to "#{site_name}'s rules", help_code_rules_path %> state that scripts' copyright and licenses must be respected. <%= link_to @script_report.script.name(request_locale), @script_report.script %> by <%= @script_report.script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> has been reported as an unauthorized copy of <%= link_to @script_report.reference_script.name(request_locale), @script_report.reference_script %> by <%= @script_report.reference_script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> on <%= @script_report.created_at %>.</p>
 
 <% when ScriptReport::TYPE_MALWARE %>
   <p>
-    <%= link_to @script_report.script.name(I18n.locale), @script_report.script %> by <%= @script_report.script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> has been reported as malware.
+    <%= link_to @script_report.script.name(request_locale), @script_report.script %> by <%= @script_report.script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> has been reported as malware.
   </p>
 
 <% when ScriptReport::TYPE_SPAM %>
   <p>
-    <%= link_to @script_report.script.name(I18n.locale), @script_report.script %> by <%= @script_report.script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> has been reported as spam.
+    <%= link_to @script_report.script.name(request_locale), @script_report.script %> by <%= @script_report.script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> has been reported as spam.
   </p>
 
 <% when ScriptReport::TYPE_OTHER %>
   <p>
-    <%= link_to @script_report.script.name(I18n.locale), @script_report.script %> by <%= @script_report.script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> has been reported as violating <%= link_to "#{site_name}'s rules", help_code_rules_path %>.
+    <%= link_to @script_report.script.name(request_locale), @script_report.script %> by <%= @script_report.script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> has been reported as violating <%= link_to "#{site_name}'s rules", help_code_rules_path %>.
   </p>
 
 <% end %>
@@ -52,14 +52,14 @@ when ScriptReport::TYPE_UNAUTHORIZED_CODE %>
     <tbody>
     <tr>
       <td>Reported</td>
-      <td><%= link_to @script_report.script.name(I18n.locale), @script_report.script %></td>
+      <td><%= link_to @script_report.script.name(request_locale), @script_report.script %></td>
       <td><%= license_display(@script_report.script) %></td>
       <td><%= @script_report.script.created_at %></td>
       <td><%= @script_report.script.code_updated_at %></td>
     </tr>
     <tr>
       <td>Original</td>
-      <td><%= link_to @script_report.reference_script.name(I18n.locale), @script_report.reference_script %></td>
+      <td><%= link_to @script_report.reference_script.name(request_locale), @script_report.reference_script %></td>
       <td><%= license_display(@script_report.reference_script) %></td>
       <td><%= @script_report.reference_script.created_at %></td>
       <td><%= @script_report.reference_script.code_updated_at %></td>
@@ -98,7 +98,7 @@ when ScriptReport::TYPE_UNAUTHORIZED_CODE %>
   <% end %>
 
 <% elsif @script_report.script.users.include?(current_user) %>
-  <p>As the author of <%= link_to @script_report.script.name(I18n.locale), @script_report.script %>, you can choose to delete your script or to submit a rebuttal. If you choose to submit a rebuttal, it will be reviewed by a moderator and a decision will be made.</p>
+  <p>As the author of <%= link_to @script_report.script.name(request_locale), @script_report.script %>, you can choose to delete your script or to submit a rebuttal. If you choose to submit a rebuttal, it will be reviewed by a moderator and a decision will be made.</p>
   <%= form_with(model: @script_report, url: rebut_script_script_report_path(@script_report.script, @script_report), method: :patch, local: true) do |f| %>
     <div class="form-control">
       <%= f.label :rebuttal %><br>

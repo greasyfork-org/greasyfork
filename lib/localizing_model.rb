@@ -32,13 +32,15 @@ module LocalizingModel
 
   # Returns an array of LocalizedAttributes. locale can be a Locale, ID, code, or nil.
   def localized_attributes_for(attr_name, lookup_locale = nil, use_default = true)
+    # Get the Locale object if we're not passed an ID or a Locale so that we don't have to dig into the locale object
+    # for each record.
+    lookup_locale = Locale.find_by(code: lookup_locale) if lookup_locale.is_a?(String) || lookup_locale.is_a?(Symbol)
     attrs = active_localized_attributes.select do |la|
       la.attribute_key.to_s == attr_name.to_s &&
         (
           lookup_locale.nil? ||
           (lookup_locale.is_a?(Integer) && la.locale_id == lookup_locale) ||
-          ((lookup_locale.is_a?(String) || lookup_locale.is_a?(Symbol)) && la.locale&.code == lookup_locale.to_s) ||
-          (lookup_locale.is_a?(Locale) && la.locale == lookup_locale)
+          (lookup_locale.is_a?(Locale) && la.locale_id == lookup_locale.id)
         )
     end
     # if there's no locale lookup, the default will already be included

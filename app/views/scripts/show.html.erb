@@ -1,4 +1,4 @@
-<%- title @script.name(I18n.locale) %>
+<%- title @script.name(request_locale) %>
 <%- description @script.description(I18n.locale) %>
 
 <%=render :partial => 'install', :locals => {:script => @script, :script_version => @script_version}%>

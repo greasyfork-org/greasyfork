@@ -1,5 +1,5 @@
-<%- title t('scripts.feedback_title', :script_name => @script.name(I18n.locale)) %>
-<%- description 'Feedback on ' + @script.name(I18n.locale) %>
+<%- title t('scripts.feedback_title', :script_name => @script.name(request_locale)) %>
+<%- description 'Feedback on ' + @script.name(request_locale) %>
 
 <% if @script.script_reports.any? %>
 	<p>

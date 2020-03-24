@@ -10,7 +10,7 @@
 			<p><%=@user.name%> has <%=@user.non_locked_scripts.count%> non-locked scripts:</p>
 			<ul>
 				<%@user.non_locked_scripts.each do |script| %>
-					<li><%=link_to script.name(I18n.locale), script%></li>
+					<li><%=link_to script.name(request_locale), script%></li>
 				<% end %>
 			</ul>
 			<p>

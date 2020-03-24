@@ -3,7 +3,7 @@
     <li>
       <article>
         <h2>
-          <%= link_to script.name(I18n.locale), script_path(script) %>
+          <%= link_to script.name(request_locale), script_path(script) %>
           (<%= script.page_views %>)
         </h2>
         <div>

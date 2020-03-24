@@ -174,7 +174,7 @@ class ScriptSetsController < ApplicationController
           errors << I18n.t('script_sets.could_not_parse_script', value: possible_script)
         else
           script = Script.find(script_id)
-          errors << I18n.t('script_sets.already_included', name: script.name(I18n.locale)) unless set.add_child(script, params['script-action'] == 'e')
+          errors << I18n.t('script_sets.already_included', name: script.name(request_locale)) unless set.add_child(script, params['script-action'] == 'e')
         end
       end
     end

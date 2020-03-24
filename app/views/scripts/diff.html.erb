@@ -1,5 +1,5 @@
-<%- title t('scripts.diff_title', script: @script.name(I18n.locale)) %>
-<%- description "Differences in #{@script.name(I18n.locale)} between #{@old_version.version} and #{@new_version.version}" %>
+<%- title t('scripts.diff_title', script: @script.name(request_locale)) %>
+<%- description "Differences in #{@script.name(request_locale)} between #{@old_version.version} and #{@new_version.version}" %>
 
 <% if @show_ad %>
   <!-- BEGIN COPY CODEFUND EMBED -->

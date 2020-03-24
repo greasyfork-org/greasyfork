@@ -82,7 +82,7 @@ module ScriptAndVersions
   def render_pending_report(script)
     respond_to do |format|
       format.html do
-        @text = t('scripts.reported_notice', script_name: script.name(I18n.locale))
+        @text = t('scripts.reported_notice', script_name: script.name(request_locale))
         render 'home/error', status: 404, layout: 'application'
       end
       format.all do
@@ -94,7 +94,7 @@ module ScriptAndVersions
   def render_review_required(script)
     respond_to do |format|
       format.html do
-        @text = t('scripts.reported_notice', script_name: script.name(I18n.locale))
+        @text = t('scripts.reported_notice', script_name: script.name(request_locale))
         render 'home/error', status: 404, layout: 'application'
       end
       format.all do

@@ -45,7 +45,7 @@ case @script_report.report_type
 
 <% end %>
 
-<p>A notice will be sent to the author of <%= link_to @script.name(I18n.locale), @script %> and they will be given the opportunity to rebut your claims. A moderator will then decide whether to delete the script.</p>
+<p>A notice will be sent to the author of <%= link_to @script.name(request_locale), @script %> and they will be given the opportunity to rebut your claims. A moderator will then decide whether to delete the script.</p>
 
 <p>Note that abuse of script reports, including repeated unfounded claims, may result in a ban from <%= site_name %>.</p>
 
@@ -73,7 +73,7 @@ case @script_report.report_type
         Script
       <% end %>
     </label><br>
-    <%= link_to @script.name(I18n.locale), @script %>
+    <%= link_to @script.name(request_locale), @script %>
   </div>
 
   <% if @script_report.unauthorized_code? %>
