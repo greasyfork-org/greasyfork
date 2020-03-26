@@ -18,7 +18,9 @@ module ScriptAndVersions
       return true
     end
 
-    if script.deleted? && !script.users.include?(current_user) && !current_user&.moderator?
+    return false if current_user && (script.users.include?(current_user) || current_user.moderator?)
+
+    if script.deleted?
       if script.replaced_by_script_id
         # Same action, different script.
         if params.include?(:script_id)
@@ -32,12 +34,12 @@ module ScriptAndVersions
       return true
     end
 
-    if script.pending_report_by_trusted_reporter? && !(current_user && (script.users.include?(current_user) || current_user.moderator? || script.script_reports.where(reporter: current_user).any?))
+    if script.pending_report_by_trusted_reporter? && !(current_user && script.script_reports.where(reporter: current_user).any?)
       render_pending_report(script)
       return true
     end
 
-    if script.review_required? && !(current_user && (script.users.include?(current_user) || current_user.moderator?))
+    if script.review_required?
       render_review_required(script)
       return true
     end
@@ -76,7 +78,7 @@ module ScriptAndVersions
     return [script, script_version]
   end
 
-  def render_deleted(http_code=404)
+  def render_deleted(http_code = 404)
     respond_to do |format|
       format.html do
         @text = t('scripts.deleted_notice')
