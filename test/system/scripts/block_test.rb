@@ -18,7 +18,7 @@ class BlockTest < ApplicationSystemTestCase
     JS
     fill_in 'Code', with: code
     assert_changes -> { user.reload.banned }, from: false, to: true do
-      allow_js_error(/the server responded with a status of 403 \(Forbidden\)/) do
+      allow_js_error('Failed to load resource: the server responded with a status of 404 (Not Found)') do
         click_button 'Post script'
         assert_content 'This script has been deleted'
       end

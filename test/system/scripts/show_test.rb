@@ -18,4 +18,21 @@ class ShowTest < ApplicationSystemTestCase
       assert_selector 'a', text: user.name
     end
   end
+
+  test 'deleted script not replaced' do
+    script = Script.find(2)
+    script.update!(script_delete_type_id: 1)
+    allow_js_error 'Failed to load resource: the server responded with a status of 404 (Not Found)' do
+      visit script_path(script, locale: :en)
+      assert_content 'This script has been deleted.'
+    end
+  end
+
+  test 'deleted script replaced' do
+    script = Script.find(2)
+    replacing_script = Script.find(1)
+    script.update!(script_delete_type_id: 1, replaced_by_script: replacing_script)
+    visit script_path(script, locale: :en)
+    assert_current_path script_path(replacing_script, locale: :en)
+  end
 end

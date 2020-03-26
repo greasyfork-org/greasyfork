@@ -11,7 +11,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     raise pre_messages.first if pre_messages.any?
 
     block.call
-    post_messages = page.driver.browser.manage.logs.get(:browser).map(&:message).reject { |m| pattern.match?(m) }.reject { |message| js_error_ignored?(message) }
+    post_messages = page.driver.browser.manage.logs.get(:browser).map(&:message).reject { |m| pattern.is_a?(Regexp) ? pattern.match?(m) : m.include?(pattern) }.reject { |message| js_error_ignored?(message) }
     raise post_messages.first if post_messages.any?
   end
 

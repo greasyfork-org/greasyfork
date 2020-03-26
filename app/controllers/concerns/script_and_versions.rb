@@ -14,11 +14,20 @@ module ScriptAndVersions
 
   def handle_publicly_deleted(script)
     if script.nil?
-      render_deleted
+      render_deleted(410)
       return true
     end
 
-    if script.locked && !(script.users.include?(current_user) || current_user&.moderator?)
+    if script.deleted? && !script.users.include?(current_user) && !current_user&.moderator?
+      if script.replaced_by_script_id
+        # Same action, different script.
+        if params.include?(:script_id)
+          redirect_to script_id: script.replaced_by_script_id, status: 301
+        else
+          redirect_to id: script.replaced_by_script_id, status: 301
+        end
+        return true
+      end
       render_deleted
       return true
     end
@@ -67,14 +76,14 @@ module ScriptAndVersions
     return [script, script_version]
   end
 
-  def render_deleted
+  def render_deleted(http_code=404)
     respond_to do |format|
       format.html do
         @text = t('scripts.deleted_notice')
-        render 'home/error', status: 403, layout: 'application'
+        render 'home/error', status: http_code, layout: 'application'
       end
       format.all do
-        head 404
+        head http_code
       end
     end
   end
