@@ -34,7 +34,7 @@ class ScriptsController < ApplicationController
       @bots = 'noindex'
     when *MEMBER_PUBLIC_ACTIONS
       @script = Script.find(params[:id])
-      check_for_deleted(@script)
+      handle_publicly_deleted(@script)
     when *MEMBER_PUBLIC_ACTIONS_WITH_SPECIAL_LOADING
       # Nothing
     when *COLLECTION_PUBLIC_ACTIONS

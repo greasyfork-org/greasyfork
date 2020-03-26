@@ -113,22 +113,4 @@ module ScriptAndVersions
       end
     end
   end
-
-  def check_for_deleted(script)
-    return if script.nil?
-
-    return unless current_user.nil? || (!script.users.include?(current_user) && !current_user.moderator?)
-
-    return if script.script_delete_type_id.nil?
-
-    if !script.replaced_by_script_id.nil?
-      if params.include?(:script_id)
-        redirect_to script_id: script.replaced_by_script_id, status: 301
-      else
-        redirect_to id: script.replaced_by_script_id, status: 301
-      end
-    else
-      render_deleted
-    end
-  end
 end

@@ -269,13 +269,6 @@ class ScriptVersionsController < ApplicationController
 
   def check_for_deleted_by_script_id
     return if params[:script_id].nil?
-
-    begin
-      script = Script.find(params[:script_id])
-    rescue ActiveRecord::RecordNotFound
-      render_404
-      return
-    end
-    check_for_deleted(script)
+    handle_publicly_deleted(Script.find_by(id: params[:script_id]))
   end
 end
