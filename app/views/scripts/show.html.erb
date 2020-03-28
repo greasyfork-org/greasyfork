@@ -21,9 +21,8 @@
       <% when 'ca' %>
         <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CKYI5KQU&placement=greasyforkorg" id="_carbonads_js"></script>
       <% when 'cf' %>
-        <% cf_template = ['default', 'horizontal'].sample %>
-        <div id="codefund" class="codefund-<%= cf_template %>"><!-- fallback content --></div>
-        <script src="https://codefund.app/properties/230/funder.js?template=<%= cf_template %>" async="async"></script>
+        <div id="codefund" class="codefund-horizontal"><!-- fallback content --></div>
+        <script src="https://codefund.app/properties/230/funder.js" async="async"></script>
         <div class="ad carbon-ad" style="display: none">
           <div id="_carbonads_js" data-src="https://cdn.carbonads.com/carbon.js?serve=CKYI5KQU&placement=greasyforkorg"></div>
         </div>
