@@ -1,0 +1,16 @@
+<% reported_count = ScriptReport.unresolved_old.count %>
+<% if reported_count > 0 %>
+  <%= link_to "[#{reported_count}]", reported_scripts_path, title: 'Reported' %>
+<% end %>
+<% requiring_review_count = Script.not_deleted.where(review_state: :required).count %>
+<% if requiring_review_count > 0 %>
+  <%= link_to "[#{requiring_review_count}]", admin_blocked_script_texts_path, title: 'Requiring review' %>
+<% end %>
+<% requested_deletion_count = Script.requested_permanent_deletion.count %>
+<% if requested_deletion_count > 0 %>
+  <%= link_to "[#{requested_deletion_count}]", requested_permanent_deletion_scripts_path, title: 'Requested deletion' %>
+<% end %>
+<% reported_not_adult = Script.reported_not_adult.count %>
+<% if reported_not_adult > 0 %>
+  <%= link_to "[#{reported_not_adult}]", reported_not_adult_scripts_path, title: 'Reported not adult' %>
+<% end %>

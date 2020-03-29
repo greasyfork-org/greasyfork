@@ -46,14 +46,7 @@
         <div id="nav-user-info">
           <% if user_signed_in? %>
             <% if current_user.moderator? %>
-              <% reported_count = ScriptReport.unresolved_old.count %>
-              <% if reported_count > 0 %>
-                <%= link_to "[#{reported_count}]", reported_scripts_path %>
-              <% end %>
-              <% requiring_review_count = Script.not_deleted.where(review_state: :required).count %>
-              <% if requiring_review_count > 0 %>
-                <%= link_to "[#{requiring_review_count}]", admin_blocked_script_texts_path %>
-              <% end %>
+              <%= render partial: 'layouts/moderator_notices' %>
             <% end %>
             <span class="user-profile-link"><%=link_to(current_user.name, current_user)%></span>
             <span class="sign-out-link">[ <%= link_to t('users.sign_out'), destroy_user_session_path, :method => :delete %> ]</span>
