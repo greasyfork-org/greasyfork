@@ -333,12 +333,12 @@ class ScriptVersion < ApplicationRecord
     ScriptVersion.generate_blanked_code(rewritten_code)
   end
 
-  def self.generate_blanked_code(rewritten_code)
-    c = JsParser.get_meta_block(rewritten_code)
+  def self.generate_blanked_code(rewritten_code, parser = JsParser)
+    c = parser.get_meta_block(rewritten_code)
     return nil if c.nil?
 
     current_version = ScriptVersion.get_first_meta(c, 'version')
-    return JsParser.inject_meta(c, { description: 'This script was deleted from Greasy Fork, and due to its negative effects, it has been automatically removed from your browser.', version: ScriptVersion.get_next_version(current_version), require: nil, icon: nil, resource: nil })
+    return parser.inject_meta(c, { description: 'This script was deleted from Greasy Fork, and due to its negative effects, it has been automatically removed from your browser.', version: ScriptVersion.get_next_version(current_version), require: nil, icon: nil, resource: nil })
   end
 
   def calculate_rewritten_code(previous_description = nil)

@@ -58,6 +58,7 @@ Rails.application.routes.draw do
         match 'code/:name.user.css', to: 'scripts#user_css', as: 'user_css', locale: nil, via: [:get, :options]
         match 'code/:name.js', to: 'scripts#user_js', as: 'library_js', locale: nil, via: [:get, :options]
         match 'code/:name.meta.js', to: 'scripts#meta_js', as: 'meta_js', locale: nil, via: [:get, :options]
+        match 'code/:name.meta.css', to: 'scripts#meta_css', as: 'meta_css', locale: nil, via: [:get, :options]
 
         get 'admin'
         get 'code(.:format)', to: 'scripts#show_code', as: 'show_code', constraints: { format: /.*/ }

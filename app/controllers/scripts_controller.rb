@@ -3,6 +3,8 @@ require 'csv'
 require 'fileutils'
 require 'cgi'
 require 'css_to_js_converter'
+require 'css_parser'
+require 'js_parser'
 
 class ScriptsController < ApplicationController
   include ScriptAndVersions
@@ -11,7 +13,7 @@ class ScriptsController < ApplicationController
   MEMBER_AUTHOR_OR_MODERATOR_ACTIONS = [:delete, :do_delete, :undelete, :do_undelete, :derivatives, :similar_search, :admin, :update_locale, :request_duplicate_check].freeze
   MEMBER_MODERATOR_ACTIONS = [:mark, :do_mark, :do_permanent_deletion, :reject_permanent_deletion, :approve].freeze
   MEMBER_PUBLIC_ACTIONS = [:diff, :report, :accept_invitation].freeze
-  MEMBER_PUBLIC_ACTIONS_WITH_SPECIAL_LOADING = [:show, :show_code, :user_js, :meta_js, :user_css, :feedback, :install_ping, :stats, :sync_additional_info_form].freeze
+  MEMBER_PUBLIC_ACTIONS_WITH_SPECIAL_LOADING = [:show, :show_code, :user_js, :meta_js, :user_css, :meta_css, :feedback, :install_ping, :stats, :sync_additional_info_form].freeze
 
   before_action do
     case action_name.to_sym
@@ -50,9 +52,9 @@ class ScriptsController < ApplicationController
     end
   end
 
-  before_action :check_read_only_mode, except: [:show, :show_code, :user_js, :meta_js, :user_css, :feedback, :stats, :diff, :derivatives, :index, :by_site]
+  before_action :check_read_only_mode, except: [:show, :show_code, :user_js, :meta_js, :user_css, :meta_css, :feedback, :stats, :diff, :derivatives, :index, :by_site]
 
-  skip_before_action :verify_authenticity_token, only: [:install_ping, :user_js, :meta_js, :show, :show_code]
+  skip_before_action :verify_authenticity_token, only: [:install_ping, :user_js, :meta_js, :user_css, :meta_css, :show, :show_code]
 
   # The value a syncing additional info will have after syncing is added but before the first sync succeeds
   ADDITIONAL_INFO_SYNC_PLACEHOLDER = '(Awaiting sync)'.freeze
@@ -198,58 +200,11 @@ class ScriptsController < ApplicationController
   end
 
   def meta_js
-    script_id = params[:id].to_i
-    script_version_id = (params[:version] || 0).to_i
+    handle_meta_request(:js)
+  end
 
-    # Bypass ActiveRecord for performance
-    sql = if script_version_id > 0
-            <<~SQL
-              SELECT
-                script_versions.id script_version_id,
-                script_delete_type_id,
-                scripts.replaced_by_script_id,
-                script_codes.code
-              FROM scripts
-              JOIN script_versions on script_versions.script_id = scripts.id
-              JOIN script_codes on script_versions.rewritten_script_code_id = script_codes.id
-              WHERE
-                scripts.id = #{Script.connection.quote(script_id)}
-                AND script_versions.id = #{Script.connection.quote(script_version_id)}
-              LIMIT 1
-            SQL
-          else
-            <<~SQL
-              SELECT
-                script_versions.id script_version_id,
-                script_delete_type_id,
-                scripts.replaced_by_script_id,
-                script_codes.code
-              FROM scripts
-              JOIN script_versions on script_versions.script_id = scripts.id
-              JOIN script_codes on script_versions.rewritten_script_code_id = script_codes.id
-              WHERE
-                scripts.id = #{Script.connection.quote(script_id)}
-              ORDER BY script_versions.id DESC
-              LIMIT 1
-            SQL
-          end
-    script_info = Script.connection.select_one(sql)
-    raise ActiveRecord::RecordNotFound if script_info.nil?
-
-    if !script_info['replaced_by_script_id'].nil? && script_info['script_delete_type_id'] == 1
-      redirect_to(id: script_info['replaced_by_script_id'], status: 301)
-      return
-    end
-
-    # Strip out some thing that could contain a lot of data (data: URIs). get_blanked_code already does this.
-    meta_js_code = script_info['script_delete_type_id'] == 2 ? ScriptVersion.generate_blanked_code(script_info['code']) : JsParser.inject_meta(JsParser.get_meta_block(script_info['code']), { icon: nil, resource: nil })
-
-    # Only cache if:
-    # - It's not for a specific version (as the caching does not work with query params)
-    # - It's a .meta.js extension (client's Accept header may not match path).
-    cache_request(meta_js_code) if script_version_id == 0 && request.fullpath.end_with?('.meta.js')
-
-    render body: meta_js_code, content_type: 'text/x-userscript-meta'
+  def meta_css
+    handle_meta_request(:css)
   end
 
   def install_ping
@@ -859,5 +814,77 @@ class ScriptsController < ApplicationController
       raise ActiveRecord::RecordNotFound if script_version.nil?
     end
     return [script_version.script, script_version]
+  end
+
+  def load_minimal_script_info(script_id, script_version_id)
+    # Bypass ActiveRecord for performance
+    sql = if script_version_id > 0
+            <<~SQL
+              SELECT
+                scripts.language,
+                script_delete_type_id,
+                scripts.replaced_by_script_id,
+                script_codes.code
+              FROM scripts
+              JOIN script_versions on script_versions.script_id = scripts.id
+              JOIN script_codes on script_versions.rewritten_script_code_id = script_codes.id
+              WHERE
+                scripts.id = #{Script.connection.quote(script_id)}
+                AND script_versions.id = #{Script.connection.quote(script_version_id)}
+              LIMIT 1
+            SQL
+          else
+            <<~SQL
+              SELECT
+                scripts.language,
+                script_delete_type_id,
+                scripts.replaced_by_script_id,
+                script_codes.code
+              FROM scripts
+              JOIN script_versions on script_versions.script_id = scripts.id
+              JOIN script_codes on script_versions.rewritten_script_code_id = script_codes.id
+              WHERE
+                scripts.id = #{Script.connection.quote(script_id)}
+              ORDER BY script_versions.id DESC
+              LIMIT 1
+            SQL
+          end
+    script_info = Script.connection.select_one(sql)
+
+    raise ActiveRecord::RecordNotFound if script_info.nil?
+
+    Struct.new(:language, :script_delete_type_id, :replaced_by_script_id, :code).new(*script_info.values)
+  end
+
+  def handle_meta_request(language)
+    is_css = language == :css
+    script_id = params[:id].to_i
+    script_version_id = (params[:version] || 0).to_i
+
+    script_info = load_minimal_script_info(script_id, script_version_id)
+
+    if !script_info.replaced_by_script_id.nil? && script_info.script_delete_type_id == ScriptDeleteType::KEEP
+      redirect_to(id: script_info.replaced_by_script_id, status: 301)
+      return
+    end
+
+    # A style can serve out either JS or CSS. A script can only serve out JS.
+    if script_info.language == 'js' && is_css
+      head 404
+      return
+    end
+
+    script_info.code = CssToJsConverter.convert(script_info.code) if script_info.language == 'css' && !is_css
+
+    parser = is_css ? CssParser : JsParser
+    # Strip out some thing that could contain a lot of data (data: URIs). get_blanked_code already does this.
+    meta_js_code = script_info.script_delete_type_id == ScriptDeleteType::BLANKED ? ScriptVersion.generate_blanked_code(script_info.code, parser) : parser.inject_meta(parser.get_meta_block(script_info.code), { icon: nil, resource: nil })
+
+    # Only cache if:
+    # - It's not for a specific version (as the caching does not work with query params)
+    # - It's a .meta.js extension (client's Accept header may not match path).
+    cache_request(meta_js_code) if !is_css && script_version_id == 0 && request.fullpath.end_with?('.meta.js')
+
+    render body: meta_js_code, content_type: is_css ? 'text/css' : 'text/x-userscript-meta'
   end
 end
