@@ -20,7 +20,8 @@ module ShowsAds
     return nil unless ads_enabled?
     return nil if scripts.count < 3
     return nil if scripts.any?(&:sensitive?)
-    return 'ga' if scripts.all?(&:adsense_approved)
+
+    # return 'ga' if scripts.all?(&:adsense_approved)
 
     'cf'
   end
