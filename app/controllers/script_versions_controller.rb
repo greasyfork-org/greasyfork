@@ -15,7 +15,11 @@ class ScriptVersionsController < ApplicationController
     return if handle_publicly_deleted(@script)
     return if redirect_to_slug(@script, :script_id)
 
-    @bots = 'noindex' unless params[:show_all_versions].nil?
+    if params[:show_all_versions].present? || params[:version].present?
+      @bots = 'noindex'
+    elsif @script.unlisted?
+      @bots = 'noindex,follow'
+    end
     @canonical_params = [:script_id, :version, :show_all_versions]
     @show_ad = eligible_for_ads?(@script)
   end

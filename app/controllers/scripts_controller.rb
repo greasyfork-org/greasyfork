@@ -36,7 +36,7 @@ class ScriptsController < ApplicationController
       @bots = 'noindex'
     when *MEMBER_PUBLIC_ACTIONS
       @script = Script.find(params[:id])
-      handle_publicly_deleted(@script)
+      set_bots_directive unless handle_publicly_deleted(@script)
     when *MEMBER_PUBLIC_ACTIONS_WITH_SPECIAL_LOADING
       # Nothing
     when *COLLECTION_PUBLIC_ACTIONS
@@ -70,17 +70,13 @@ class ScriptsController < ApplicationController
       format.html do
         return if handle_wrong_url(@script, :id)
 
-        if !params[:version].nil?
-          @bots = 'noindex'
-        elsif @script.unlisted?
-          @bots = 'noindex,follow'
-        end
         @by_sites = self.class.get_by_sites(script_subset)
         @link_alternates = [
           { url: current_path_with_params(format: :json), type: 'application/json' },
           { url: current_path_with_params(format: :jsonp, callback: 'callback'), type: 'application/javascript' },
         ]
         @canonical_params = [:id, :version]
+        set_bots_directive
         @ad_method = choose_ad_method_for_script(@script)
       end
       format.js do
@@ -112,7 +108,7 @@ class ScriptsController < ApplicationController
     respond_to do |format|
       format.html do
         @code = @script_version.rewritten_code
-        @bots = 'noindex' unless params[:version].nil?
+        set_bots_directive
         @canonical_params = [:id, :version]
         @show_ad = eligible_for_ads?(@script)
       end
@@ -134,7 +130,7 @@ class ScriptsController < ApplicationController
 
     return if handle_wrong_url(@script, :id)
 
-    @bots = 'noindex' unless params[:version].nil?
+    set_bots_directive
     @canonical_params = [:id, :version]
   end
 
@@ -519,6 +515,7 @@ class ScriptsController < ApplicationController
     respond_to do |format|
       format.html do
         @canonical_params = [:id, :version]
+        set_bots_directive
       end
       format.csv do
         data = CSV.generate do |csv|
@@ -886,5 +883,15 @@ class ScriptsController < ApplicationController
     cache_request(meta_js_code) if !is_css && script_version_id == 0 && request.fullpath.end_with?('.meta.js')
 
     render body: meta_js_code, content_type: is_css ? 'text/css' : 'text/x-userscript-meta'
+  end
+
+  def set_bots_directive
+    return unless @script
+
+    if params[:version].present?
+      @bots = 'noindex'
+    elsif @script.unlisted?
+      @bots = 'noindex,follow'
+    end
   end
 end
