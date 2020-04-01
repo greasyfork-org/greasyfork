@@ -113,6 +113,7 @@ zh-TW:
     stats_download_raw_data_html: "統計資料下載: %{links}"
     stats_no_data: "無"
     derivatives_title: "%{script_name} - 衍生腳本"
+    derivatives_intro: "這些腳本可能衍生自您的腳本（或您的腳本可能衍生於他們的腳本）。如果您發現了未經授權使用您代碼的情況，請在腳本的反饋頁面中檢舉該腳本。"
     listing_title_all_sites: "執行於所有網站的使用者腳本"
     listing_description_all_sites: "對所有網站新增功能或解決 bug 的使用者腳本"
     listing_title_for_site: "執行於 %{site} 的使用者腳本"
@@ -141,6 +142,9 @@ zh-TW:
     listing_none: "(無)"
     listing_set_locale_filter: "顯示所有語言的結果。%{set_filter_link:只顯示 %{language} 的結果。}"
     listing_remove_locale_filter: "顯示 %{language} 的結果。%{remove_filter_link:顯示所有語言的結果。}"
+    listing_language_all: "全部"
+    listing_language_js: "JavaScript"
+    listing_language_css: "CSS"
     import: "匯入腳本"
     new: "發佈腳本"
     new_css: "提交用戶樣式表"
@@ -183,6 +187,7 @@ zh-TW:
     warning_potentially_minified_html: "您的腳本看起來好像包含壓縮過的代碼。如果您使用了壓縮過的函式庫，請改爲透過 <code>@require</code> 引用 %{allowed_requires_link} 所提供的腳本。包含了壓縮代碼的腳本將會被刪除。"
     warning_automatic_sensitive_html: "由於您的腳本執行於 %{sensitive_domains}，它將會被標記為包含成人內容。"
     warning_potentially_minified_allowed_requires_link: "這些網站"
+    warning_code_previously_posted_html: "此代碼已在%{script_links}被發表過。被非原作者發表的腳本會由管理員移除。"
     additional_info_locale_prompt: "(語言選擇)"
     additional_info_add_localized: "新增別的語言的「其他資訊」欄位"
     additional_info_locale_repeated: "對於 '%{locale_code}' 語言，請勿提供多個其他資訊。"
@@ -231,6 +236,9 @@ zh-TW:
     adult_content_on_greasy_logged_in_error: "這個腳本對您當前的 %{edit_account_link:Greasy Fork 賬戶設定} 不合適。"
     adult_content_on_greasy_not_logged_in_error: "這個腳本不對遊客開放。請 %{login_link:登入} 並確認您的 Greasy Fork 帳戶設定。"
     non_adult_content_on_sleazy: "這個腳本在這個網站上不可用。"
+    not_js_convertible_override_header: "轉換成JS"
+    not_js_convertible_override_explanation: "%{site_name}可自動生成一個使用者CSS的 %{help_link:user JS conversion}。當使用者轉換JS，你的使用者CSS會以不同的某種方式運作，我們建議你測試使用者JS轉換。若你發現他不會運作，你可以勾遠下方的欄位使其成為不可用狀態。"
+    not_js_convertible_override_label_html: "在使用者JS格式中，這<strong>不應該</strong>處於可用狀態。"
     adult_marker: "(成人)"
     deleted_marker: "(已移除)"
     locked_marker: "(已鎖定)"
@@ -287,6 +295,10 @@ zh-TW:
       remove_confirm: "確定要將 %{user_name} 從作者列表中移除嗎？"
       failure: "無法移除作者。"
     no_disposable_email: "如果您使用一次性電子郵件地址，那您則不可以提交腳本。"
+    new_script_notice:
+      title: "你到底想做什麼？"
+      install_link_html: "我想<b>安裝並使用</b>腳本。"
+      share_link_html: "我已<b>編寫</b>一個腳本並想<b>分享</b>給其他人。"
   script_sets:
     description: "腳本收藏集讓你自訂一個腳本列表。你可以把單獨的腳本、其它使用者的收藏集、或自動產生的收藏集，加入包含列表。排除列表也是同樣的方式。"
     favorites_name: "我的最愛"
@@ -509,8 +521,15 @@ zh-TW:
         cancelled: "已取消刪除。"
         completed: "你的帳號已被刪除。"
   help:
+    sections:
+      usage: 使用量
+      development: 開發
+      miscellaneous: 雜項
+    open_source: "%{site_name}為開源(GPLv3 授權)。你可以 %{github_link:在GitHub上查看其來源}"
     installing_user_scripts:
       title: '如何安裝使用者腳本'
+    installing_user_styles:
+      title: '如何安裝使用者風格'
     meta_keys:
       title: "%{site_name} 讀取的 meta keys"
       intro_html: "這是 %{site_name} 會讀取的 <a href=\"http://wiki.greasespot.net/Metadata_Block\">使用者腳本 meta keys</a> 的清單。腳本中可以有不在此清單中的 key，也會存在使用者安裝的腳本中，但不會對 %{site_name} 的介面有任何效果。"
@@ -520,6 +539,7 @@ zh-TW:
       description_localized_html: "此腳本在不同語系中的描述，XX 是 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 的兩字母代碼</a> ，YY 則是非必要的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 國家代碼</a>。當使用者在符合的語系中瀏覽時就會蓋過 <code>@description</code> 顯示。"
       namespace_html: "使用者腳本管理器將會透過 <code>@namespace</code> 與 <code>@name</code> 的組合來判斷是否已安裝該腳本。%{site_name} 要求必填此欄位，若於更新時修改了此欄位也會警告您。"
       version_html: "使用 <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">Mozilla 版本格式</a> 的腳本版本號。版本號將顯示於腳本的資訊頁中，%{site_name} 需要此欄位，並會在數值變小時，或是程式碼變動後版本號卻沒有增加時警告您。"
+      include_html: "描述腳本所欲執行的頁面。此清單將被處理並顯示於腳本資訊頁用以分類腳本。每個腳本必須有一個<code>@相符</code>或<code>@包含</code>。<a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">於此閱讀格式。</a>"
       require_html: "在腳本中引入的外部 JavaScript，請參考 %{external_script_link}。"
       require_external_script_link_text: "外部腳本的使用規範"
       updateURL: "描述使用者腳本管理器要從何取得更新。%{site_name} 將會移除這些更新網址，目的是讓從 %{site_name} 安裝的腳本只能由 %{site_name} 更新。"
