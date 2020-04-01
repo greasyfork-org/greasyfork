@@ -187,7 +187,7 @@ class UsersController < ApplicationController
     @user.delete_confirmation_key = SecureRandom.hex
     @user.delete_confirmation_expiry = 1.day.from_now
     @user.save(validate: false)
-    UserMailer.delete_confirm(@user, site_name).deliver_now
+    UserMailer.delete_confirm(@user, site_name).deliver_later
     flash[:notice] = t('users.delete.confirmation_email_sent')
     redirect_to @user
   end
