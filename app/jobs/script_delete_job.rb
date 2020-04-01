@@ -1,6 +1,5 @@
 class ScriptDeleteJob < ApplicationJob
   queue_as :low
-  self.queue_adapter = :sidekiq if Rails.env.production?
 
   def perform
     # Delete callbacks don't work on a remote Sphinx. We don't need that anyway, as these already don't show in search results.

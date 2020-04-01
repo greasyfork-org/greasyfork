@@ -1,7 +1,7 @@
 class ApplicationJob < ActiveJob::Base
   include Rails.application.routes.url_helpers
 
-  self.queue_adapter = :delayed_job
+  self.queue_adapter = :sidekiq if Rails.env.production?
 
   def self.enqueued?
     return Sidekiq::Workers.new.any? { |_process_id, _thread_id, work| work['payload']['wrapped'] == name } ||

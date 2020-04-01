@@ -1,6 +1,5 @@
 class ScriptSyncQueueingJob < ApplicationJob
   queue_as :low
-  self.queue_adapter = :sidekiq if Rails.env.production?
 
   def perform
     Script
