@@ -1,4 +1,7 @@
 class ScriptCheckerBanAndDeleteJob < ApplicationJob
+  queue_as :default
+  self.queue_adapter = :sidekiq if Rails.env.production?
+
   def perform(script_id, script_check_results)
     begin
       script = Script.find(script_id)
