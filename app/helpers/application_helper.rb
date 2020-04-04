@@ -15,16 +15,16 @@ module ApplicationHelper
   end
 
   def discussion_class(discussion)
-    case discussion.Rating
-    when 0
+    case discussion.rating
+    when ForumDiscussion::RATING_QUESTION
       return 'discussion-question'
-    when 1
+    when ForumDiscussion::RATING_REPORT
       return 'discussion-report'
-    when 2
+    when ForumDiscussion::RATING_BAD
       return 'discussion-bad'
-    when 3
+    when ForumDiscussion::RATING_OK
       return 'discussion-ok'
-    when 4
+    when ForumDiscussion::RATING_GOOD
       return 'discussion-good'
     end
   end

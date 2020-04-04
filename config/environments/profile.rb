@@ -60,7 +60,7 @@ Rails.application.configure do
   config.cache_store = :redis_cache_store, { path: '/var/run/redis/redis-server.sock', expires_in: 2.hours }
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
-  config.active_job.queue_adapter     = :test
+  config.active_job.queue_adapter = :test
   # config.active_job.queue_name_prefix = "greasyfork_#{Rails.env}"
 
   config.action_mailer.perform_caching = false

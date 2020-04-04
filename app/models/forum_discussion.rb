@@ -1,7 +1,14 @@
 class ForumDiscussion < ApplicationRecord
+  RATING_QUESTION = 0
+  RATING_REPORT = 1
+  RATING_BAD = 2
+  RATING_OK = 3
+  RATING_GOOD = 4
+
   self.table_name = 'GDN_Discussion'
   self.primary_key = 'DiscussionID'
   alias_attribute 'name', 'Name'
+  alias_attribute 'rating', 'Rating'
 
   # ignore this so we don't have to cache something we won't use
   self.ignored_columns = [:Body]
@@ -39,5 +46,25 @@ class ForumDiscussion < ApplicationRecord
     return nil if last_reply_forum_poster.nil?
 
     return last_reply_forum_poster.user
+  end
+
+  def bad_rating?
+    rating == RATING_BAD
+  end
+
+  def author_posted?
+    return false unless script
+
+    forum_user_ids = script.users.map(&:forum_user).compact.map(&:UserID)
+    return false if forum_user_ids.empty?
+
+    author_posted = self.class.connection.select_value <<~SQL
+      select 1
+      from GDN_Comment
+      where DiscussionID = #{self.DiscussionID}
+        AND InsertUserID IN (#{forum_user_ids.join(',')});
+    SQL
+
+    author_posted == 1
   end
 end
