@@ -159,7 +159,7 @@ class UsersController < ApplicationController
 
   def do_ban
     user = User.find(params[:user_id])
-    user.ban!(moderator: current_user, reason: params[:reason])
+    user.ban!(moderator: current_user, reason: params[:reason]) unless user.banned?
     unless params[:script_delete_type_id].blank?
       user.non_locked_scripts.each do |s|
         s.delete_reason = params[:reason]

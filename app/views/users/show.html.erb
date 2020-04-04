@@ -45,22 +45,28 @@
       </section>
     <% end %>
   <% end %>
-
-  <% if current_user&.moderator? && !@user.moderator? %>
-    <section id="moderator-user-control-panel">
-      <header>
-        <h3>Moderator control panel</h3>
-      </header>
-      <ul id="user-control-panel">
-        <% if @user.banned %>
-          <li>(User already banned.)</li>
-        <% else %>
-          <li><%= link_to 'Ban', user_ban_path(@user)%></li>
-        <% end %>
-      </ul>
-    </section>
-  <% end %>
 </section>
+
+<% if current_user&.moderator? && !@user.moderator? %>
+  <section id="moderator-user-control-panel">
+    <header>
+      <h3>Moderator control panel</h3>
+    </header>
+    <section class="text-content">
+      <p>
+        <% if @user.banned %>
+          <% if @user.non_locked_scripts.any? %>
+            User has been banned, but has non-locked scripts. <%= link_to 'Delete all', user_ban_path(@user) %>
+          <% else %>
+            User has been banned.
+          <% end %>
+        <% else %>
+          <%= link_to 'Ban', user_ban_path(@user) %>
+        <% end %>
+      </p>
+    </section>
+  </section>
+<% end %>
 
 <% if !@user.script_sets.empty? or @same_user %>
   <section>
