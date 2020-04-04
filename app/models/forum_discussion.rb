@@ -10,7 +10,6 @@ class ForumDiscussion < ApplicationRecord
   belongs_to :last_reply_forum_poster, -> { readonly }, class_name: 'ForumUser', foreign_key: 'LastCommentUserID'
   belongs_to :script, foreign_key: 'ScriptID'
 
-  scope :reports, -> { where(Rating: 1) }
   scope :open, -> { where(Closed: 0) }
 
   def unescaped_name
