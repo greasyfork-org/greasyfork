@@ -15,6 +15,8 @@ window.addEventListener("codefund", function(evt) {
     parent.style.display = "block";
 
     var codefundElement = document.getElementById("codefund");
-    codefundElement.parentNode.removeChild(codefundElement);
+    if (codefundElement) {
+      codefundElement.parentNode.removeChild(codefundElement);
+    }
   }
 });
