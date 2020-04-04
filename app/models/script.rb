@@ -3,6 +3,9 @@ require 'localizing_model'
 class Script < ActiveRecord::Base
   include LocalizingModel
 
+  CONSECUTIVE_BAD_RATINGS_COUNT = 3
+  CONSECUTIVE_BAD_RATINGS_GRACE_PERIOD = 2.weeks
+
   belongs_to :promoted_script, class_name: 'Script', optional: true
 
   has_many :authors, -> { order(:id) }, dependent: :destroy, inverse_of: :script
@@ -500,11 +503,16 @@ class Script < ActiveRecord::Base
   def consecutive_bad_ratings?
     recent_ratings = discussions
                      .where('Rating' => [ForumDiscussion::RATING_BAD, ForumDiscussion::RATING_OK, ForumDiscussion::RATING_GOOD])
+                     .where(['DateInserted >= ?', code_updated_at])
                      .reorder(:DateInserted)
-                     .last(3)
+                     .last(CONSECUTIVE_BAD_RATINGS_COUNT)
                      .reject(&:author_posted?)
                      .map(&:Rating)
-    recent_ratings.count == 3 && recent_ratings.all? { |rr| rr == ForumDiscussion::RATING_BAD }
+    recent_ratings.count == CONSECUTIVE_BAD_RATINGS_COUNT && recent_ratings.all? { |rr| rr == ForumDiscussion::RATING_BAD }
+  end
+
+  def reset_consecutive_bad_ratings!
+    update(consecutive_bad_ratings_at: nil) if consecutive_bad_ratings_at
   end
 
   private

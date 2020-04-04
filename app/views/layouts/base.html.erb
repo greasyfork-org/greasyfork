@@ -112,9 +112,11 @@
   <div class="width-constraint">
     <% if @announcement %>
       <div class="announcement">
-        <%= @announcement.content %>
-        <%= form_with(url: dismiss_announcement_path(key: @announcement.key), data: { remote: true }, id: 'announcement-dismiss') do |f| %>
-          <%= f.submit '✖' %>
+        <%= @announcement.content.is_a?(String) ? @announcement.content : instance_exec(&@announcement.content) %>
+        <% if @announcement.dismissable %>
+          <%= form_with(url: dismiss_announcement_path(key: @announcement.key), data: { remote: true }, id: 'announcement-dismiss') do |f| %>
+            <%= f.submit '✖' %>
+          <% end %>
         <% end %>
       </div>
     <% end %>

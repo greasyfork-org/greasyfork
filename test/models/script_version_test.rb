@@ -732,4 +732,17 @@ class ScriptVersionTest < ActiveSupport::TestCase
     assert_equal 1, script_version.errors.size
     assert_equal [:code, 'must include at least one @match or @include key'], script_version.errors.first
   end
+
+  test 'creation resets consecutive bad reviews' do
+    script = Script.find(3)
+    script.update(consecutive_bad_ratings_at: Time.now)
+    assert script.valid? && script.script_versions.length == 1 && script.script_versions.first.valid?
+    sv = ScriptVersion.new
+    sv.code = script.script_versions.first.code
+    sv.script = script
+    sv.calculate_all
+    sv.allow_code_previously_posted = true
+    sv.save!
+    assert_nil script.reload.consecutive_bad_ratings_at
+  end
 end

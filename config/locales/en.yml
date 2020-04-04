@@ -1011,6 +1011,10 @@ en:
     item_script_html: "Script: %{script_link}"
     item_deleted_script: "Deleted script %{id}"
     item_user_html: "User: %{user_link}"
+  notifications:
+    consecutive_bad_ratings:
+      one: "%{script_names} has received consecutive bad ratings. Please review your script and reply to the concerns raised in the ratings."
+      other: "%{script_names} have received consecutive bad ratings. Please review your scripts and reply to the concerns raised in the ratings."
   common:
     # text to show before listing errors in a submission
     error_preamble: "There were some problems with what you posted..."
@@ -1148,3 +1152,12 @@ en:
       report_dismissed_reporter:
         subject: "Your report on %{script_name} on %{site_name} has been dismissed"
         text: "Your report on %{script_name} on %{site_name} has been dismissed by a moderator and the script you reported will remain active. You can review the report at %{report_url}. If you have any questions, please visit https://greasyfork.org/forum/."
+    consecutive_bad_ratings:
+      notify:
+        subject: "Your script %{script_name} on %{site_name} has received multiple bad reviews."
+        text: |
+          Your script '%{script_name}' on %{site_name} (%{script_url}) has received multiple bad reviews in a row.
+
+          Please review the feedback you received at %{feedback_url}, fix any issues, and reply to the concerns raised.
+
+          If you do not post a new version or reply to the discussions by %{delete_date}, your script will become hidden on %{site_name}. (After this date, you will be able to make it visible again if you wish.)

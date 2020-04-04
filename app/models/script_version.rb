@@ -80,6 +80,10 @@ class ScriptVersion < ApplicationRecord
     localized_attributes.select { |la| la.locale.nil? }.each { |la| la.locale = script.locale }
   end
 
+  after_create do
+    script.reset_consecutive_bad_ratings!
+  end
+
   # Delete the code if not in use by another version.
   after_destroy do
     script_code.destroy! if script_code.present? && ScriptVersion.where(['script_code_id = ? or rewritten_script_code_id = ?', script_code_id, script_code_id]).where.not(id: id).none?

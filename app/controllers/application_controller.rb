@@ -9,8 +9,23 @@ class ApplicationController < ActionController::Base
   include LocalizedRequest
   include Announcement
 
-  show_announcement key: :test_announcement, show_if: -> { params[:test] == '1' }, content: 'This is a test announcement' # if Rails.env.test?
-  show_announcement key: :user_style_support, show_if: -> { current_user.scripts.where("created_at <= '2019-12-26'").any? }, content: 'You can now post <a href="https://github.com/openstyles/stylus/wiki/UserCSS-authors">Stylus format</a> user CSS and we will also convert it to user JS format. <a href="/script_versions/new?language=css">Post your first user style!</a>'.html_safe
+  if Rails.env.test?
+    show_announcement key: :test_announcement,
+                      show_if: -> { params[:test] == '1' },
+                      content: 'This is a test announcement'
+  end
+  show_announcement key: :user_style_support,
+                    show_if: -> { current_user.scripts.where("created_at <= '2019-12-26'").any? },
+                    content: 'You can now post <a href="https://github.com/openstyles/stylus/wiki/UserCSS-authors">Stylus format</a> user CSS and we will also convert it to user JS format. <a href="/script_versions/new?language=css">Post your first user style!</a>'.html_safe
+  show_announcement key: :consecutive_bad_ratings,
+                    show_if: -> { current_user.scripts.not_deleted.where.not(consecutive_bad_ratings_at: nil).any? },
+                    content: lambda {
+                      scripts = current_user.scripts.not_deleted.where.not(consecutive_bad_ratings_at: nil)
+                      t('notifications.consecutive_bad_ratings',
+                        script_names: scripts.map { |script| link_to(script.name(request_locale), script) }.to_sentence,
+                        count: scripts.count).html_safe
+                    },
+                    dismissable: false
 
   rescue_from ActiveRecord::RecordNotFound, with: :routing_error
   def routing_error
