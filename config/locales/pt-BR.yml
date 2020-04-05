@@ -775,6 +775,10 @@ pt-BR:
     item_script_html: "Script: %{script_link}"
     item_deleted_script: "O script %{id} foi removido"
     item_user_html: "Usuário: %{user_link}"
+  notifications:
+    consecutive_bad_ratings:
+      one: "%{script_names} recebeu consecutivas avaliações negativas.  Por favor reveja seu script e responda as queixas nas avaliações."
+      other: "%{script_names} receberam consecutivas avaliações negativas. Por favor reveja seus scripts e responda as queixas nas avaliações."
   common:
     error_preamble: "Houve alguns problemas com o que você postou..."
     allowed_elements_link: "(Veja código permitido.)"
@@ -865,3 +869,12 @@ pt-BR:
       report_dismissed_reporter:
         subject: "Sua denúncia no %{script_name} no %{site_name} foi indeferida"
         text: "Sua denúncia no %{script_name} no %{site_name} foi indeferido por um moderador e o script que você denunciou continuará ativo. Você pode rever a denúncia em %{report_url}. Se você tiver alguma dúvida, por favor visite https://greasyfork.org/forum/."
+    consecutive_bad_ratings:
+      notify:
+        subject: "Seu script %{script_name} no %{site_name} recebeu múltiplas avaliações negativas."
+        text: |-
+            Seu script '%{script_name}' no %{site_name} (%{script_url}) recebeu múltiplas avaliações negativas em seguida.
+
+            Por favor, analise o feedback recebido em%{feedback_url}, corrija quaisquer problemas, e responda as queixas levantadas.
+
+            Se você não publicar uma nova versão ou resposta na discussão até %{delete_date}, seu script será ocultado no %{site_name}. (Após esta data, você poderá torná-lo visível novamente caso deseje.)

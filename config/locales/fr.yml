@@ -44,6 +44,8 @@ fr:
     deleted_notice_with_replacement_html: "Ce script a été supprimé et remplacé par <a href=\"%{replacement_script_url}\">%{replacement_script_name}</a>."
     version_notice_html: "Version au %{date}. Voir %{latest_version_link}."
     version_notice_latest_version_link: "la dernière version"
+    reported_notice: "\"%{script_name}\" a été signalé et est en attente d'examen par un modérateur."
+    reported_notice_for_author: "Ce script n'est pas disponible pour les autres utilisateurs jusqu'à ce qu'il soit examiné par un modérateur."
     info_page: "Info"
     code_page: "Code"
     history_page: "Historique"
@@ -81,6 +83,9 @@ fr:
       locale_multiple_note: "Notez que %{meta_keys_link:plusieurs locales peuvent être définies pour un script}."
       update_locale: "Mettre à jour la locale"
       no_moderator_logs: "Aucun mesure n'a été prise par les modérateurs sur ce script."
+      compare_title: "Comparer à d'autre script"
+      compare_to: "Script à comparer (URL)"
+      compare_button: "Comparer"
     history_title: "%{script_name} - Historique des versions"
     history_only_code_changes_info: "Voici les versions de ce script où le code a été modifié."
     history_all_changes_link: "Voir toutes les versions."
@@ -109,6 +114,8 @@ fr:
     stats_download_raw_data_html: "Télécharger toutes les données en : %{links}"
     stats_no_data: "N/A"
     derivatives_title: "%{script_name} - Scripts similaires"
+    derivatives_intro: "Ces scripts peuvent être basés sur les vôtres (ou même les vôtres peuvent être basés sur d'autres). Si vous trouvez une utilisation non autorisée de votre code, signalez-le à partir de l'onglet du script que vous voulez signaler."
+    derivatives_script_html: "%{script}de%{user},Licence:%{license}%{diff_link:[Diff]}"
     listing_title_all_sites: "Scripts utilisateurs pour tous les sites"
     listing_description_all_sites: "Scripts utilisateurs qui ajoutent des fonctionnalités et corrigent des bugs sur tous les sites"
     listing_title_for_site: "Scripts utilisateurs pour %{site}"
@@ -129,6 +136,7 @@ fr:
     listing_filter_by_site_label: "Montrer les scripts applicables à :"
     listing_filter_by_site_disable: "Tout"
     listing_filter_by_site_all_sites: "(Tous les sites)"
+    listing_filter_by_language_label: "Langue:"
     listing_filter_by_site_more_sites: "Plus..."
     listing_no_scripts: "Aucun script trouvé."
     listing_created_feed: "Nouveaux scripts"
@@ -136,8 +144,12 @@ fr:
     listing_none: "(Aucun)"
     listing_set_locale_filter: "Les résultats pour toutes les langues sont affichés. %{set_filter_link:Afficher uniquement les résultats pour %{language}}"
     listing_remove_locale_filter: "Les résultats pour %{language} sont affichés uniquement. %{remove_filter_link:Afficher les résultats pour toutes les langues.} "
+    listing_language_all: "Tout"
+    listing_language_js: "JavaScript"
+    listing_language_css: "CSS"
     import: "Importer des scripts"
     new: "Poster un script"
+    new_css: "Poster un style"
     support_site: "Visiter le site d'entraide de l'auteur."
     support_email: "Envoyer un e-mail à l'auteur pour obtenir de l'aide."
     contribution_no_amount: "Remercier %{author} en faisant un don."
@@ -177,6 +189,7 @@ fr:
     warning_potentially_minified_html: "Votre script semble contenir du code minimisé (compressé). Si vous utilisez une bibliothèque minimisée, veuillez utiliser <code>@require</code> depuis %{allowed_requires_link}. Les scripts avec du code minimisé risquent d'être supprimés."
     warning_automatic_sensitive_html: "Votre script est pour %{sensitive_domains} et sera donc marqué comment du contenu adulte."
     warning_potentially_minified_allowed_requires_link: "un de ces endroits"
+    warning_code_previously_posted_html: "Ce code a déjà été posté dans%{script_links}. Les scripts qui sont republiés par d'autres personnes que l'auteur d'origine sont susceptibles d'être supprimés par les modérateurs."
     additional_info_locale_prompt: "(Sélectionner une langue)"
     additional_info_add_localized: "Ajouter une information additionnelle dans une autre langue"
     additional_info_locale_repeated: "Ne spécifiez qu'une information additionnelle pour la région '%{locale_code}'."
@@ -225,6 +238,7 @@ fr:
     adult_content_on_greasy_logged_in_error: "Ce script n'est plus disponible sur ce site avec vos %{edit_account_link:paramètres de compte Greasy Fork} actuels."
     adult_content_on_greasy_not_logged_in_error: "Ce script n'est plus disponible anonymement sur ce site. %{login_link:Connectez-vous} et vérifiez vos paramètres de compte Greasy Fork."
     non_adult_content_on_sleazy: "Ce script n'est pas disponible sur ce site."
+    not_js_convertible_override_header: "Convertir en JS"
     adult_marker: "(Adulte)"
     deleted_marker: "(Supprimé)"
     locked_marker: "(Verouillé)"
@@ -266,6 +280,8 @@ fr:
       remove_confirm: "Êtes vous sur de retirer %{user_name} en tant qu'auteur ?"
       failure: "Impossible de retirer l'auteur."
     no_disposable_email: "Vous ne pouvez pas envoyer de scripts si vous utilisez une adresse email jetable."
+    new_script_notice:
+      title: "Qu'essayez-vous de faire ?"
   script_sets:
     description: "Les jeux de scripts vous permettent de créer une liste personnalisée de scripts pour naviguer avec sur Greasy Fork. Vous pouvez ajouter des scripts à votre jeu en incluant des scripts individuels, des jeux d'autres utilisateurs ou des jeux générés automatiquement. Vous pouvez également exclure les scripts de votre jeu avec les mêmes méthodes."
     favorites_name: "Favoris"
@@ -474,6 +490,10 @@ fr:
         cancelled: "Suppression annulée"
         completed: "Votre compte a été supprimé"
   help:
+    sections:
+      usage: Utilisation
+      development: Développement
+      miscellaneous: ' Diverses'
     installing_user_scripts:
       title: 'Comment installer des scripts utilisateurs'
     meta_keys:
@@ -518,6 +538,8 @@ fr:
       title: "Contactez une personne"
     privacy_policy:
       title: "Politique de confidentialité"
+    user_css_to_user_js:
+      title: 'Conversion du CSS en JS '
   search:
     script_search:
       title: "Recherche de script"
@@ -600,8 +622,22 @@ fr:
       script_update_not_utf8: "téléchargé sur le serveur doit être du texte encodé en UTF-8"
       script_disallowed_require: "utilise un script externe non approuvé: %{code}"
       script_rate_limit: "Vous avez atteint la limite d'envois. Essayez plus tard."
+      missing_include_or_match: "doit inclure au moins une clé @match ou @include"
   opensearch:
     short_name: "%{site_name} recherche"
     description: "Recherche de scripts utilisateur sur %{site_name}."
     long_name: "%{site_name} recherche de script utilisateur"
     attribution: "Copyright des auteurs des scripts, voir chaque script individuel pour les licences"
+  mailers:
+    script_report:
+      report_created_offender:
+        subject: "Votre script %{script_name} par %{site_name}  a été signalé"
+      report_rebutted_reporter:
+        subject: "Votre rapport sur%{script_name} par %{site_name}a reçu une réponse"
+      report_upheld_reporter:
+        subject: "Votre rapport sur%{script_name}par%{site_name}a été confirmé"
+      report_dismissed_reporter:
+        subject: "Votre rapport sur%{script_name}par%{site_name}a été rejeté"
+    consecutive_bad_ratings:
+      notify:
+        subject: "Votre script%{script_name} par %{site_name}a reçu plusieurs mauvaises critiques."

@@ -782,6 +782,12 @@ sk:
     item_script_html: "Skript: %{script_link}"
     item_deleted_script: "Odstránený skript %{id}"
     item_user_html: "Užívateľ: %{user_link}"
+  notifications:
+    consecutive_bad_ratings:
+      one: "%{script_names} dostal po sebe idúce zlé hodnotenia. Preskúmajte váš skript a odpovedzte na obavy uvedené v hodnoteniach."
+      few: "%{script_names} dostal po sebe idúce zlé hodnotenia. Preskúmajte vaše skripty a odpovedzte na obavy uvedené v hodnoteniach."
+      many: "%{script_names} dostal po sebe idúce zlé hodnotenia. Preskúmajte vaše skripty a odpovedzte na obavy uvedené v hodnoteniach."
+      other: "%{script_names} dostal po sebe idúce zlé hodnotenia. Preskúmajte vaše skripty a odpovedzte na obavy uvedené v hodnoteniach."
   common:
     error_preamble: "Boli zistené problémy s tým, čo ste poslali."
     allowed_elements_link: "(Pozri zoznam povolených značiek.)"
@@ -872,3 +878,12 @@ sk:
       report_dismissed_reporter:
         subject: "Vaša sťažnosť na %{script_name} na %{site_name} bola zamietnutá"
         text: "Vaša sťažnosť na %{script_name} na %{site_name} bola zamietnutá moderátorom a skript, ktorý ste nahlásili zostáva aktívny. Správu o hlásení si môžete pozrieť na %{report_url}. Ak máte nejaké otázky, prosím, navštívte https://greasyfork.org/forum/."
+    consecutive_bad_ratings:
+      notify:
+        subject: "Váš skript %{script_name} na %{site_name} dostal viacero zlých hodnotení."
+        text: |-
+            Váš skript "%{script_name}" na %{site_name} (%{script_url}) dostal viacero zlých hodnotení za sebou.
+
+            Prosím, skontrolujte spätnú väzbu, ktorú ste dostali na %{feedback_url}, opravte problémy a odpovedzte na vznesené obavy.
+
+            Ak nepridáte novú verziu alebo odpoveď do diskusie do %{delete_date}, váš skript bude na %{site_name} skrytý. (Po tomto dátume ho budte môcť zviditeľniť, ak budte chcieť.)

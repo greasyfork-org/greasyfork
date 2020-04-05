@@ -188,6 +188,7 @@ zh-CN:
     warning_potentially_minified_html: "您的脚本看上去像最小化（压缩后）的版本。如果您使用了最小化后的库，请使用 <code>@require</code> 引用 %{allowed_requires_link} 里面的相应库。压缩后的脚本不被本站允许且会被管理员移除。"
     warning_automatic_sensitive_html: "您的脚本适用于%{sensitive_domains}，因此会被标注为成人内容。"
     warning_potentially_minified_allowed_requires_link: "在这些地方"
+    warning_code_previously_posted_html: "此代码已在 %{script_links} 发布。非原作者发布的脚本可能由管理员移除。"
     additional_info_locale_prompt: "(选择语言)"
     additional_info_add_localized: "添加一个本地化的附加信息"
     additional_info_locale_repeated: "您只能对“%{locale_code}”提供一条附加信息。"
@@ -538,6 +539,7 @@ zh-CN:
       description_localized_html: "用某门语言写成的脚本描述。XX 指 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 国家代码</a> 以及 YY 指可选的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 地区代码</a>。该选项用于提供多语言的<code>@description</code> 脚本介绍。"
       namespace_html: "<code>@namespace</code> 与 <code>@name</code> 这两个属性被作为脚本的唯一标识符，用户脚本管理器根据它们来判断一个脚本是否已安装。%{site_name} 也需要这些属性，若用户在更新脚本时改变了两者中的任意一项，将发出警告。"
       version_html: "脚本的版本标记将使用 <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">Mozilla 版本格式</a> 并显示于脚本的简介页面。%{site_name} 要求填写该属性，且当用户更新脚本时没有更新版本号或降低了版本号时将发出警告。"
+      include_html: "描述脚本会在哪些网站上运行。该列表会被解析和展示到脚本的简介页面，并用于脚本的分类。每个脚本须有至少一个 <code>@match</code> 或 <code>@include</code>。<a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">了解格式细则</a>。"
       require_html: "在您的脚本中引用其他外部脚本。请参见 %{external_script_link}。"
       require_external_script_link_text: "包含外部脚本的使用规定"
       updateURL: "告知用户脚本管理器应该在哪个地址获取脚本更新。%{site_name} 将自动修改该属性使其永远通过 %{site_name} 进行更新。"
@@ -677,6 +679,9 @@ zh-CN:
     item_script_html: "脚本：%{script_link}"
     item_deleted_script: "已删除的脚本 %{id}"
     item_user_html: "用户：%{user_link}"
+  notifications:
+    consecutive_bad_ratings:
+      other: "%{script_names} 已连续收到差评。请检查您的脚本和回复评价中提出的问题。"
   common:
     error_preamble: "很抱歉，您提交的内容有点问题…"
     allowed_elements_link: "(查看允许使用的代码)"
@@ -734,6 +739,7 @@ zh-CN:
       script_update_not_utf8: "上传的文本必须为 UTF-8 编码"
       script_disallowed_require: "使用了一个未经批准的外部脚本：%{code}"
       script_rate_limit: "您已超出脚本发布数量的限制。请稍后再试。"
+      missing_include_or_match: "必须包含至少一个 @match 或 @include 规则"
   opensearch:
     short_name: "%{site_name} 搜索"
     description: "搜索 %{site_name} 上的用户脚本。"
@@ -746,6 +752,7 @@ zh-CN:
         reason_unauthorized: "您的脚本 %{script_name} 在 %{site_name} 上被报告是另一个脚本的未授权副本或修改。"
         reason_malware: "您的脚本 %{script_name} 在 %{site_name} 上被举报为恶意软件"
         reason_spam: "您的脚本 %{script_name} 在 %{site_name} 上被举报为垃圾内容"
+        reason_other: "您的脚本 %{script_name} 已被报告违反了 %{site_name} 的准则。"
         action: "您可以访问 %{report_url} 查阅该举报，并提交反驳意见。如果您没有提交反驳，管理员可能删除您的脚本。如有疑问，请访问 https://greasyfork.org/forum/。"
       report_upheld_offender:
         subject: "您的脚本 %{script_name} 在 %{site_name} 上已被删除"

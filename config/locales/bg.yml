@@ -765,6 +765,10 @@ bg:
     item_script_html: "Скрипт: %{script_link}"
     item_deleted_script: "Изтрит скрипт %{id}"
     item_user_html: "Потребител: %{user_link}"
+  notifications:
+    consecutive_bad_ratings:
+      one: "%{script_names} has received consecutive bad ratings. Please review your script and reply to the concerns raised in the ratings."
+      other: "Вашите скриптове %{script_names} са получили няколко последователни лоши оценки. Моля, прегледайте ги и отговорете на повдигнатите в оценките въпроси."
   common:
     error_preamble: "Има някои проблеми с това, което публикувате..."
     allowed_elements_link: "(Вижте разрешения код.)"
@@ -855,3 +859,12 @@ bg:
       report_dismissed_reporter:
         subject: "Докладът ви за %{script_name} на %{site_name} беше отхвърлен"
         text: "Вашият доклад за %{script_name} на %{site_name} беше отхвърлен от модератор и докладваният скрипт остава активен. Можете да прегледате доклада на %{report_url}. Ако имате някакви въпроси, моля посетете https://greasyfork.org/forum/."
+    consecutive_bad_ratings:
+      notify:
+        subject: "Вашят скриптов %{script_name} на %{site_name} е получил няколко последователни лоши оценки. Моля, прегледайте го и отговорете на повдигнатите в рецензиите въпроси."
+        text: |-
+            Вашият скрипт '%{script_name}' на %{site_name} (%{script_url}) е получил няколко последователни лоши рецензии.
+
+            Моля, прегледайте получената обратната връзка тук%{feedback_url}, отстранете всички забележки и отговорете на повдигнатите въпроси.
+
+            Ако не публикувате нова версия или не отговорите в дискусията до %{delete_date}, скриптът ви ще бъде скрит от%{site_name}. (След тази дата, ако желаете, ще можете да го направите отново видим.)
