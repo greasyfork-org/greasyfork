@@ -1,4 +1,5 @@
 window.addEventListener("codefund", function(evt) {
+  console.log("codefund event: " + evt.detail);
   if (evt.detail.status !== 'ok' || evt.detail.house) {
     var carbonPlaceholder = document.getElementById("_carbonads_js");
     if (!carbonPlaceholder) {
@@ -11,8 +12,8 @@ window.addEventListener("codefund", function(evt) {
     }
 
     var carbonScript = document.createElement('script');
-    carbonScript.type= 'text/javascript';
-    carbonScript.src= carbonPlaceholder.getAttribute("data-src");
+    carbonScript.type = 'text/javascript';
+    carbonScript.src = carbonPlaceholder.getAttribute("data-src");
     carbonScript.setAttribute("id", carbonPlaceholder.getAttribute("id"));
 
     var parent = carbonPlaceholder.parentNode;
