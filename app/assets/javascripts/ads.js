@@ -2,7 +2,8 @@ window.addEventListener("codefund", function(evt) {
   console.log("codefund event: " + evt.detail);
   if (evt.detail.status !== 'ok' || evt.detail.house) {
     var carbonPlaceholder = document.getElementById("_carbonads_js");
-    if (!carbonPlaceholder) {
+    // No Carbon on the page, or this has already run.
+    if (!carbonPlaceholder || carbonPlaceholder.nodeName == 'SCRIPT') {
       return;
     }
 
