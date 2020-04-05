@@ -4,6 +4,12 @@ window.addEventListener("codefund", function(evt) {
     if (!carbonPlaceholder) {
       return;
     }
+
+    var codefundElement = document.getElementById("codefund");
+    if (codefundElement) {
+      codefundElement.parentNode.removeChild(codefundElement);
+    }
+
     var carbonScript = document.createElement('script');
     carbonScript.type= 'text/javascript';
     carbonScript.src= carbonPlaceholder.getAttribute("data-src");
@@ -13,10 +19,5 @@ window.addEventListener("codefund", function(evt) {
     parent.removeChild(carbonPlaceholder);
     parent.appendChild(carbonScript);
     parent.style.display = "block";
-
-    var codefundElement = document.getElementById("codefund");
-    if (codefundElement) {
-      codefundElement.parentNode.removeChild(codefundElement);
-    }
   }
 });
