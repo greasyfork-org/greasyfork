@@ -25,7 +25,6 @@ class ScriptsController < ApplicationController
     when *MEMBER_AUTHOR_OR_MODERATOR_ACTIONS
       @script = Script.find(params[:id])
       render_access_denied unless @script.users.include?(current_user) || current_user&.moderator?
-      render_locked if @script.locked? && !current_user&.moderator?
       @bots = 'noindex'
     when *MEMBER_MODERATOR_ACTIONS
       unless current_user&.moderator?
@@ -379,6 +378,11 @@ class ScriptsController < ApplicationController
   end
 
   def do_undelete
+    if @script.locked? && !current_user&.moderator?
+      render_locked
+      return
+    end
+
     if current_user.moderator? && !@script.users.include?(current_user)
       ma = ModeratorAction.new
       ma.moderator = current_user

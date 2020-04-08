@@ -31,15 +31,4 @@
         <%=t('scripts.library_instructions_html', :code => library_code_snippet.html_safe)%>
       </p>
   <% end %>
-<% else %>
-  <p>
-    <% if script.replaced_by_script %>
-      <%= t('scripts.deleted_notice_with_replacement_html', replacement_script_name: script.replaced_by_script.name(request_locale), replacement_script_url: script_path(script.replaced_by_script)) %>
-    <% else %>
-      <%= t('scripts.deleted_notice', reason: script.delete_reason) %>
-    <% end %>
-    <% if script.delete_reason.present? %>
-      "<i><%= script.delete_reason %></i>"
-    <% end %>
-  </p>
 <% end %>
