@@ -21,3 +21,8 @@
     </tr>
   <% end %>
 </table>
+
+<p>
+  <%= link_to('Prev', page: @page - 1) if @page > 0 %>
+  <%= link_to('Next', page: @page + 1) %>
+</p>
