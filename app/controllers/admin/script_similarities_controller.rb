@@ -9,8 +9,9 @@ module Admin
       # This is slow
       # .includes(script: :localized_names, other_script: :localized_names)
 
-      @run_count = ScriptSimilarity.select(:script_id).distinct.count
-      @total_count = Script.not_deleted.count
+      count_scope = Script.not_deleted
+      @run_count = count_scope.where(id: ScriptSimilarity.select(:script_id).distinct).count
+      @total_count = count_scope.count
     end
   end
 end
