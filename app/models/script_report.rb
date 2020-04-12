@@ -4,7 +4,7 @@ class ScriptReport < ApplicationRecord
   belongs_to :reporter, class_name: 'User', optional: true
 
   scope :unresolved, -> { where(result: nil).joins(:script).merge(Script.not_deleted) }
-  scope :unresolved_old, -> { unresolved.where(['script_reports.report_type IN (?) OR script_reports.created_at < ?', [TYPE_MALWARE, TYPE_SPAM, TYPE_OTHER], 3.days.ago]) }
+  scope :unresolved_old, -> { unresolved.where(['script_reports.report_type IN (?) OR script_reports.created_at < ?', [TYPE_MALWARE, TYPE_SPAM, TYPE_OTHER], UNAUTHORIZED_CODE_WAIT_PERIOD.ago]) }
 
   scope :resolved, -> { where.not(result: nil) }
   scope :dismissed, -> { where(result: 'dismissed') }
@@ -20,6 +20,8 @@ class ScriptReport < ApplicationRecord
   TYPE_MALWARE = 'malware'.freeze
   TYPE_SPAM = 'spam'.freeze
   TYPE_OTHER = 'other'.freeze
+
+  UNAUTHORIZED_CODE_WAIT_PERIOD = 3.days
 
   def dismissed?
     result == 'dismissed'
@@ -41,5 +43,9 @@ class ScriptReport < ApplicationRecord
   def dismiss!(moderator_note = nil)
     update!(result: 'dismissed', moderator_note: moderator_note.presence)
     reporter&.update_trusted_report!
+  end
+
+  def actionable?
+    !unauthorized_code? || created_at < UNAUTHORIZED_CODE_WAIT_PERIOD.ago
   end
 end

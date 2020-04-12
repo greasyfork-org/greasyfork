@@ -48,16 +48,25 @@ show_report_thread = defined?(show_report_thread) && show_report_thread
       <ul>
         <% script.script_reports.unresolved.each do |report| %>
           <li>
-            <%
-            case report.report_type
-            when ScriptReport::TYPE_UNAUTHORIZED_CODE %>
-              Unauthorized copy of <%= link_to report.reference_script.name(request_locale), report.reference_script %>
-            <% when ScriptReport::TYPE_MALWARE %>
-              Malware -
-            <% when ScriptReport::TYPE_SPAM %>
-              Spam -
+            <%= link_to script_script_report_path(report.script, report) do %>
+              <% unless report.actionable? %>
+                <b>(Waiting for response)</b>
+              <% end %>
+              <%= l report.created_at.to_date %> -
+              <% case report.report_type
+              when ScriptReport::TYPE_UNAUTHORIZED_CODE %>
+                Unauthorized copy:
+              <% when ScriptReport::TYPE_MALWARE %>
+                Malware:
+              <% when ScriptReport::TYPE_SPAM %>
+                Spam:
+              <% when ScriptReport::TYPE_OTHER %>
+                Other report:
+              <% end %>
+              <i>
+                "<%= truncate(report.details, length: 100) %>"
+              </i>
             <% end %>
-            <%= link_to 'View report', script_script_report_path(report.script, report) %>
           </li>
         <% end %>
       </ul>
