@@ -5,8 +5,8 @@
   </div>
 
   <div class="form-control">
-    <%= f.check_box :complete_block %>
-    <%= f.label :complete_block, class: 'radio-label' %>
+    <%= f.label :block_type %>
+    <%= f.select :block_type, [SpammyEmailDomain::BLOCK_TYPE_CONFIRMATION, SpammyEmailDomain::BLOCK_TYPE_SCRIPT, SpammyEmailDomain::BLOCK_TYPE_REGISTER] %>
   </div>
 
   <%= f.submit %>

@@ -18,7 +18,7 @@
     <% @spammy_email_domains.each do |spammy_email_domain| %>
       <tr>
         <td><%= spammy_email_domain.domain %></td>
-        <td><%= spammy_email_domain.complete_block ? 'Blocked' : 'Delay' %></td>
+        <td><%= spammy_email_domain.description %></td>
         <td>
           <%= link_to('Edit', edit_admin_spammy_email_domain_path(spammy_email_domain)) if current_user.administrator? %>
           <%= link_to('Delete', admin_spammy_email_domain_path(spammy_email_domain), method: :delete) if current_user.administrator? %>

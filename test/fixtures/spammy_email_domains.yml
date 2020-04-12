@@ -1,7 +1,11 @@
 derspamhaus:
   domain: derspamhaus.de
-  complete_block: true
+  block_type: block_script
 
 fishyhut:
   domain: fishy.hut
-  complete_block: false
+  block_type: confirmation
+
+reallybademail:
+  domain: reallybademail.com
+  block_type: block_register

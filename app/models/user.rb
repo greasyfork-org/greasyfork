@@ -68,6 +68,10 @@ class User < ApplicationRecord
   end
 
   validate do
+    errors.add(:email) if new_record? && SpammyEmailDomain.where(domain: email.split('@').last, block_type: SpammyEmailDomain::BLOCK_TYPE_REGISTER).any?
+  end
+
+  validate do
     errors.add(:base, 'This email has been banned.') if (new_record? || email_changed? || unconfirmed_email_changed?) && User.where(banned: true, canonical_email: canonical_email).any?
   end
 
@@ -162,7 +166,7 @@ class User < ApplicationRecord
 
     sed = SpammyEmailDomain.find_by(domain: email.split('@').last)
     if sed
-      return :blocked if sed.complete_block?
+      return :blocked if sed.blocked_script_posting?
       return :needs_confirmation if in_confirmation_period?
     end
 
