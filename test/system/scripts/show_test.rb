@@ -22,9 +22,8 @@ class ShowTest < ApplicationSystemTestCase
   test 'deleted script not replaced' do
     script = Script.find(2)
     script.update!(script_delete_type_id: 1)
-    allow_js_error 'Failed to load resource: the server responded with a status of 404 (Not Found)' do
+    assert_script_deleted_page do
       visit script_path(script, locale: :en)
-      assert_content 'This script has been deleted.'
     end
   end
 

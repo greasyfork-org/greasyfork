@@ -14,16 +14,9 @@ module ScriptListings
     # Search can't do script sets, otherwise we'd use it for everything.
     if params[:set].nil?
       begin
-        with = case script_subset
-               when :greasyfork
-                 { sensitive: false }
-               when :sleazyfork
-                 { sensitive: true }
-               else
-                 {}
-               end
+        with = sphinx_options_for_request
 
-        locale = Locale.find_by(code: I18n.locale)
+        locale = request_locale
         if locale.scripts?(script_subset)
           if params[:filter_locale] == '0'
             @offer_filtered_results_for_locale = locale
@@ -33,7 +26,6 @@ module ScriptListings
           end
         end
 
-        with[:script_type_id] = 1
         if params[:site]
           if params[:site] == '*'
             with[:site_count] = 0

@@ -14,7 +14,7 @@ module ScriptAndVersions
 
   def handle_publicly_deleted(script)
     if script.nil?
-      render_deleted(410)
+      render_deleted(http_code: 410)
       return true
     end
 
@@ -30,7 +30,7 @@ module ScriptAndVersions
         end
         return true
       end
-      render_deleted
+      render_deleted(script: script)
       return true
     end
 
@@ -78,11 +78,35 @@ module ScriptAndVersions
     return [script, script_version]
   end
 
-  def render_deleted(http_code = 404)
+  def render_deleted(script: nil, http_code: 404)
     respond_to do |format|
       format.html do
-        @text = t('scripts.deleted_notice')
-        render 'home/error', status: http_code, layout: 'application'
+        if script
+          with = sphinx_options_for_request
+          with[:site_application_id] = script.site_applications.pluck(:id)
+
+          locale = request_locale
+          with[:locale] = locale.id if locale.scripts?(script_subset)
+
+          @scripts = Script.search(
+            params[:q],
+            with: with,
+            per_page: 5,
+            order: 'daily_installs DESC',
+            populate: true,
+            sql: { include: [:script_type, { localized_attributes: :locale }, :users] }
+          )
+        end
+
+        if @scripts&.any?
+          @page_description = t('scripts.deleted_notice_with_related')
+          @paginate = false
+          @skip_search_options = true
+          render 'scripts/index', layout: 'list', status: http_code
+        else
+          @text = t('scripts.deleted_notice')
+          render 'home/error', status: http_code, layout: 'application'
+        end
       end
       format.all do
         head http_code

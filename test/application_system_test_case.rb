@@ -19,6 +19,14 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
     err.include?('`SameSite=None` but without `Secure`')
   end
 
+  def assert_script_deleted_page(&block)
+    allow_js_error 'Failed to load resource: the server responded with a status of 404 (Not Found)' do
+      Script.stubs(:search).returns(Script.all)
+      block.call
+      assert_content 'The script you requested has been deleted, but here are some related scripts.'
+    end
+  end
+
   teardown do
     page.driver.browser.manage.logs.get(:browser)
         .map(&:message)
