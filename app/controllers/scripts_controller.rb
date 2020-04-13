@@ -540,6 +540,20 @@ class ScriptsController < ApplicationController
   def derivatives
     return if redirect_to_slug(@script, :id)
 
+    # Include the inverse as well so that we can notice new/updated scripts that are similar to this. If we have the
+    # relation both forward and backward, take the higher score.
+    @similarities = []
+    @script.script_similarities.includes(:other_script).order(similarity: :desc, id: :asc).each do |ss|
+      @similarities << [ss.other_script, ss.similarity]
+    end
+    # If we haven't run the forward, don't bother with the backward.
+    if @similarities.any?
+      ScriptSimilarity.where(other_script: @script).order(similarity: :desc, id: :asc).each do |ss|
+        @similarities << [ss.script, ss.similarity]
+      end
+      @similarities = @similarities.sort_by(&:last).reverse.uniq(&:first).first(100)
+    end
+
     @canonical_params = [:id]
   end
 

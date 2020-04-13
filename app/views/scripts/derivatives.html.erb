@@ -35,11 +35,11 @@
 <% if check_date %>
   <p>Scores range from 0.000 (completely different) to 1.000 (identical).</p>
   <ul>
-    <% @script.script_similarities.includes(:other_script).order(similarity: :desc, id: :asc).each do |ss| %>
+    <% @similarities.each do |other_script, score| %>
       <li>
-        <%= number_with_precision(ss.similarity, precision: 3) %>
-        <%= link_to '[Diff]', admin_script_path(@script, compare: script_path(ss.other_script), anchor: 'script-comparison') %>:
-        <%= link_to(ss.other_script.name(request_locale), ss.other_script) %>
+        <%= number_with_precision(score, precision: 3) %>
+        <%= link_to '[Diff]', admin_script_path(@script, compare: script_path(other_script), anchor: 'script-comparison') %>:
+        <%= link_to(other_script.name(request_locale), other_script) %>
       </li>
     <% end %>
   </ul>
