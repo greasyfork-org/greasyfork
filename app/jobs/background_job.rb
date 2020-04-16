@@ -3,6 +3,6 @@ class BackgroundJob < ApplicationJob
 
   def perform
     [ScriptSyncQueueingJob, ScriptDuplicateCheckerQueueingJob].reject(&:enqueued?).each(&:perform_later)
-    BackgroundJob.perform_later
+    BackgroundJob.set(wait: 10.seconds).perform_later
   end
 end
