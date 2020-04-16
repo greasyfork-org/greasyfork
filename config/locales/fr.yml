@@ -262,8 +262,8 @@ fr:
     report:
       title: "Signaler %{script_name}"
       text_html: >-
-          <p>Les scripts postés sur %{site_name} doivent respecter %{rules_link:its
-          rules}. Signalez des violations en utilisant les liens ci-dessous et %{site_name}
+          <p>Les scripts postés sur %{site_name} doivent respecter %{rules_link:ses
+          règles}. Signalez des violations en utilisant les liens ci-dessous et %{site_name}
           modérateurs examineront votre rapport.</p> <ul>
 
           <li>%{unauthorized_link:pour signalez les copies non autorisées de votre
@@ -551,7 +551,7 @@ fr:
       usage: Utilisation
       development: Développement
       miscellaneous: ' Diverses'
-    open_source: "%{site_name} est open source (sous licence GPLv3). Vous pouvez %{github_link:view voir la source sur GitHub}."
+    open_source: "%{site_name} est open source (sous licence GPLv3). Vous pouvez %{github_link:voir la source sur GitHub}."
     installing_user_scripts:
       title: 'Comment installer des scripts utilisateurs'
     installing_user_styles:
@@ -569,7 +569,7 @@ fr:
       require_html: "Inclut du JavaScript externe dans un script. Voir %{external_script_link}."
       require_external_script_link_text: "Règles pour les codes incluant des scripts externes."
       updateURL: "Décrit comment les gestionnaires de scripts utilisateurs doivent obtenir les mises à jours. %{site_name} supprimera ces clés, ce qui fait que n'importe quel script installé de %{site_name} se met à jour seulement de %{site_name}."
-      license: "Cette licence décrit comment les utilisateurs sont autorisés à copier ou modifier un script. Il est recommandé d'utiliser un \"Nom complet\" ou un \"Identifiant\" de %{spdx_link:the SPDX License List}. Le manque de licence implique que les utilisateurs peuvent installer le script pour un usage personnel, mais ne peuvent pas le redistribuer. La licence est affichée sur la page d'informations d'un script."
+      license: "Cette licence décrit comment les utilisateurs sont autorisés à copier ou modifier un script. Il est recommandé d'utiliser un \"Nom complet\" ou un \"Identifiant\" de %{spdx_link:la liste des licences SPDX}. Le manque de licence implique que les utilisateurs peuvent installer le script pour un usage personnel, mais ne peuvent pas le redistribuer. La licence est affichée sur la page d'informations d'un script."
       supportURL: "URL de la page où les utilisateurs peuvent obtenir de l'aide sur un script ( un bug tracker, un forum, une adresse e-mail ). L'URL d'aide est affichée sur la page de commentaires du script."
       contributionURL_html: "Lien de la page où les utilisateurs peuvent faire un don à l'auteur d'un script. Le lien de contribution est affiché dans la page de commentaires d'un script. Les liens peuvent être en protocole HTTP, HTTPS, ou Bitcoin. Pour diriger vers une page de donation PayPal, utilisez un lien dans ce format <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=votre.email.ici@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=votre.email.ici@example.com&item_name=Greasy+Fork+donation</a>, en remplaçant l'adresse e-mail en exemple par la vôtre."
       contributionAmount_html: "Montant suggéré de don, utilisé en conjonction avec <code>@contributionURL</code>."
@@ -710,7 +710,7 @@ fr:
       title: "Crédits"
       authors_credit: "%{site_name} ne serait pas possible sans les auteurs de scripts qui contribuent."
       developers_credit: "%{site_name} lui-même est réalisé par %{developers_link:these people} avec l'aide de tous ceux qui signalent des bugs et qui proposent des améliorations."
-      translators_credit: "%{site_name} a été traduit par %{translators_link:the Greasy Translation Force on Transifex}:"
+      translators_credit: "%{site_name} a été traduit par %{translators_link:la Greasy Translation Force sur Transifex}:"
       icons_credit: "Les icônes de discussion proviennent de %{vistastylebase} par %{iconsland}. Les icônes de navigateur viennent de %{browserlogos}."
     help_with_greasymonkey: "Aide avec Greasemonkey"
     contact:
@@ -770,7 +770,7 @@ fr:
   search:
     script_search:
       title: "Recherche de script"
-      description: "Recherche de scripts. Recherche des noms de script, des descriptions, des infos supplémentaires et des noms d'auteur. %{sphinx_link:Sphinx extended query syntax.}"
+      description: "Recherche de scripts. Recherche des noms de script, des descriptions, des infos supplémentaires et des noms d'auteur. %{sphinx_link:Syntaxe de recherche avancée Sphinx.}"
     library_search:
       title: "Recherche dans la bibliothèque"
       description: "Recherche de bibliothèques. Recherche des noms de bibliothèque, des descriptions, des infos supplémentaires, et des noms d'auteur. %{sphinx_link:Syntaxe de recherche avancée Sphinx.}"
@@ -789,9 +789,9 @@ fr:
     item_column: "Objet"
     action_column: "Action"
     reason_column: "Raison"
-    item_script_html: "Script :"
-    item_deleted_script: "Script supprimé"
-    item_user_html: "Utilisateur:"
+    item_script_html: "Script: %{script_link}"
+    item_deleted_script: "Script supprimé %{id}"
+    item_user_html: "Utilisateur: %{user_link}"
   notifications:
     consecutive_bad_ratings:
       one: "%{script_names} a reçu plusieurs mauvaises notes consécutives. Veuillez revoir votre script et répondre aux préoccupations soulevées dans les évaluations."
@@ -867,25 +867,25 @@ fr:
         reason_malware: "Votre script %{script_name} par %{site_name} a été signalé comme malware."
         reason_spam: "Votre script %{script_name} par %{site_name} a été signalé comme spam."
         reason_other: "Votre script %{script_name} a été signalé comme enfreignant les règles de%{site_name}."
-        action: "Vous pouvez consulter ce rapport sur %{report_url}  et soumettre une réfutation. Si vous ne soumettez pas de réfutation, votre script peut être supprimé par les modérateurs. Si vous avez des questions, veuillez visiter https://greasyfork.org/forum/."
+        action: "Vous pouvez consulter ce rapport sur %{report_url}  et soumettre une réfutation. Si vous ne soumettez pas de réfutation, votre script peut être supprimé par les modérateurs. Si vous avez des questions, visiter https://greasyfork.org/fr/forum/."
       report_upheld_offender:
         subject: "Votre script %{script_name} par %{site_name} a été supprimé"
-        text: "Votre script %{script_name} par %{site_name} a été supprimé par un modérateur. Vous pouvez consulter le rapport sur %{report_url}. Si vous avez des questions, veuillez visiter https://greasyfork.org/forum/."
+        text: "Votre script %{script_name} par %{site_name} a été supprimé par un modérateur. Vous pouvez consulter le rapport sur %{report_url}. Si vous avez des questions, visiter https://greasyfork.org/fr/forum/."
       report_dismissed_offender:
         subject: "Un rapport sur votre script %{script_name} par %{site_name} a été rejeté"
-        text: "Un rapport sur votre script %{script_name} par %{site_name} a été rejeté par un modérateur. Votre script restera actif. Vous pouvez consulter le rapport sur %{report_url}. Si vous avez des questions, veuillez visiter https://greasyfork.org/forum/."
+        text: "Un rapport sur votre script %{script_name} par %{site_name} a été rejeté par un modérateur. Votre script restera actif. Vous pouvez consulter le rapport sur %{report_url}. Si vous avez des questions, visiter https://greasyfork.org/fr/forum/."
       report_rebutted_reporter:
         subject: "Votre rapport sur%{script_name} par %{site_name}a reçu une réponse"
-        text: "Votre rapport sur %{script_name} par %{site_name} a reçu une réponse. Vous pouvez consulter cette réponse sur %{report_url}. Un modérateur examinera votre rapport et cette réponse et décidera du résultat. Si vous avez des questions, veuillez visiter https://greasyfork.org/forum/."
+        text: "Votre rapport sur %{script_name} par %{site_name} a reçu une réponse. Vous pouvez consulter cette réponse sur %{report_url}. Un modérateur examinera votre rapport et cette réponse et décidera du résultat. Si vous avez des questions, visiter https://greasyfork.org/fr/forum/."
       report_upheld_reporter:
         subject: "Votre rapport sur%{script_name}par%{site_name}a été confirmé"
-        text: "Votre rapport sur %{script_name} par %{site_name} a été confirmé par un modérateur et le script a été supprimé. Vous pouvez consulter le rapport sur %{report_url}. Si vous avez des questions, veuillez visiter https://greasyfork.org/forum/."
+        text: "Votre rapport sur %{script_name} par %{site_name} a été confirmé par un modérateur et le script a été supprimé. Vous pouvez consulter le rapport sur %{report_url}. Si vous avez des questions, visiter https://greasyfork.org/fr/forum/."
       report_script_deleted_reported:
         subject: "Votre rapport sur %{script_name} par %{site_name} a été fermé"
-        text: "Votre rapport sur %{script_name} par %{site_name} a été fermé car le script a été supprimé par son auteur. Vous pouvez consulter le rapport sur %{report_url}. Si vous avez des questions, veuillez visiter https://greasyfork.org/forum/."
+        text: "Votre rapport sur %{script_name} par %{site_name} a été fermé car le script a été supprimé par son auteur. Vous pouvez consulter le rapport sur %{report_url}. Si vous avez des questions, visiter https://greasyfork.org/fr/forum/."
       report_dismissed_reporter:
         subject: "Votre rapport sur%{script_name}par%{site_name}a été rejeté"
-        text: "Votre rapport sur %{script_name} par %{site_name} a été rejeté par un modérateur et le script que vous avez signalé restera actif. Vous pouvez consulter le rapport sur %{report_url}. Si vous avez des questions, veuillez visiter https://greasyfork.org/forum/."
+        text: "Votre rapport sur %{script_name} par %{site_name} a été rejeté par un modérateur et le script que vous avez signalé restera actif. Vous pouvez consulter le rapport sur %{report_url}. Si vous avez des questions, visiter https://greasyfork.org/fr/forum/."
     consecutive_bad_ratings:
       notify:
         subject: "Votre script%{script_name} par %{site_name}a reçu plusieurs mauvaises critiques."
