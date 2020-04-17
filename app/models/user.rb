@@ -152,11 +152,26 @@ class User < ApplicationRecord
   end
 
   def non_locked_scripts
-    return scripts.reject(&:locked)
+    return scripts.not_locked
   end
 
   def can_be_deleted?
     return scripts.all(&:immediate_deletion_allowed?)
+  end
+
+  def lock_all_scripts!(reason:, moderator:, delete_type:)
+    non_locked_scripts.each do |s|
+      s.delete_reason = reason
+      s.locked = true
+      s.script_delete_type_id = delete_type
+      s.save(validate: false)
+      ma_delete = ModeratorAction.new
+      ma_delete.moderator = moderator
+      ma_delete.script = s
+      ma_delete.action = 'Delete and lock'
+      ma_delete.reason = reason
+      ma_delete.save!
+    end
   end
 
   def posting_permission

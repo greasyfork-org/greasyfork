@@ -144,14 +144,25 @@ when ScriptReport::TYPE_UNAUTHORIZED_CODE %>
         <%= text_area_tag(:moderator_note, nil, placeholder: 'Deletion notes (optional)') %>
       </div>
 
-      <% banned_users, users_to_ban = @script_report.script.users.partition(&:banned) %>
-      <% if users_to_ban.any? %>
+      <% @script_report.script.users.each do |user| %>
+        <%
+          locked_count = user.scripts.locked.count
+          not_locked_count = user.scripts.not_locked.where.not(id: @script_report.script.id).count
+        %>
         <p>
-          <label for="banned">Ban <%= users_to_ban.map { |u| link_to(u.name, u) }.to_sentence.html_safe %>?</label> <input type="checkbox" id="banned" name="banned" value="1">
+          <%= link_to(user.name, user) %> has <%= locked_count %> locked <%= 'script'.pluralize(locked_count) %> and <%= not_locked_count %> non-locked <%= 'script'.pluralize(not_locked_count) %> (not including this one).<br>
+          <% if user.banned? %>
+            <input type="checkbox" disabled> <label><i>(<%= user.name %> is already banned.)</i></label>
+          <% else %>
+            <input id="ban-<%= user.id %>" name="ban_users[]" type="checkbox" value="<%= user.id %>"> <label for="ban-<%= user.id %>"> Ban <%= user.name %></label>
+          <% end %>
+          <br>
+          <% if not_locked_count == 0 %>
+            <input type="checkbox" disabled> <label><i>(<%= user.name %> has no other scripts to delete and lock.)</i></label>
+          <% else %>
+            <input id="delete-<%= user.id %>" name="delete_users[]" type="checkbox" value="<%= user.id %>"> <label for="delete-<%= user.id %>"> Delete and lock <%= user.name %>'s <%= not_locked_count %> <%= 'script'.pluralize(not_locked_count) %></label>
+          <% end %>
         </p>
-      <% end %>
-      <% if banned_users.any? %>
-        <p>(<%= banned_users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %> already banned.)</p>
       <% end %>
 
       <%= f.submit 'Delete script' %>

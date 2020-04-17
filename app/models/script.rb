@@ -59,6 +59,8 @@ class Script < ActiveRecord::Base
   scope :reported_not_adult, -> { not_deleted.includes(:users).where('not_adult_content_self_report_date IS NOT NULL') }
   scope :requested_permanent_deletion, -> { where('permanent_deletion_request_date is not null') }
   scope :for_all_sites, -> { includes(:script_applies_tos).references(:script_applies_tos).where('script_applies_tos.id IS NULL') }
+  scope :locked, -> { where(locked: true) }
+  scope :not_locked, -> { where.not(locked: true) }
 
   # Must have a default name and description
   validates_presence_of :default_name, message: :script_missing_name, unless: proc { |s| s.library? }
