@@ -136,6 +136,17 @@ class ScriptVersionTest < ActiveSupport::TestCase
     assert sv.valid?, sv.errors[:code]
   end
 
+  test 'non-code is invalid for libraries' do
+    sv = ScriptVersion.new
+    sv.code = "this is just words and not script"
+    script = Script.find(13)
+    script.script_type_id = 3
+    sv.script = script
+    sv.calculate_all(script.description)
+    script.apply_from_script_version(sv)
+    assert !sv.valid?
+  end
+
   test 'update code with changing version' do
     script = Script.find(3)
     assert(script.valid?) && (script.script_versions.length == 1) && script.script_versions.first.valid?

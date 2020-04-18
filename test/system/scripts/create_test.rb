@@ -73,6 +73,7 @@ class CreateTest < ApplicationSystemTestCase
     visit new_script_version_url
     code = <<~JS
       var foo = 1;
+      var bar = 2;
     JS
     fill_in 'Code', with: code
     choose 'Library - a script intended to be @require-d from other scripts and not installed directly.'

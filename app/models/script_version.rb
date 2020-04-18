@@ -23,9 +23,13 @@ class ScriptVersion < ApplicationRecord
 
   strip_attributes only: [:changelog]
 
-  validates_presence_of :code
+  validates :code, presence: true, length: { minimum: 20, maximum: 2_000_000 }
 
-  validates_length_of :code, maximum: 2_000_000
+  # Code has to look code-y.
+  validate do
+    errors.add(:code, :invalid) unless code =~ %r{[=\.:\[\(]}
+  end
+
   validates_length_of :changelog, maximum: 500
 
   validate :number_of_screenshots
