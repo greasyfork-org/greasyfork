@@ -49,7 +49,7 @@ if @script.discussions.length > 10 %>
 	</p>
 <% else %>
 	<ul id="discussions">
-		<%= render collection: @script.discussions.includes(last_reply_forum_poster: :users, original_forum_poster: :users).reverse, partial: 'forum_discussions/discussion' %>
+		<%= render collection: @script.discussions.includes(last_reply_forum_poster: :users, original_forum_poster: :users).reorder(Arel.sql('COALESCE(DateLastComment, DateInserted) DESC')).limit(50), partial: 'forum_discussions/discussion' %>
 	</ul>
   <p>
     <%= it('scripts.feedback_or_report', report_link: It.link(report_script_path(@script), rel: :nofollow), feedback_link: It.link("#{forum_path}post/discussion?script=#{@script.id}", rel: :nofollow)) %>
