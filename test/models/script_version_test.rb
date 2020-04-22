@@ -138,7 +138,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
 
   test 'non-code is invalid for libraries' do
     sv = ScriptVersion.new
-    sv.code = "this is just words and not script"
+    sv.code = 'this is just words and not script'
     script = Script.find(13)
     script.script_type_id = 3
     sv.script = script

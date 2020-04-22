@@ -27,7 +27,7 @@ class ScriptVersion < ApplicationRecord
 
   # Code has to look code-y.
   validate do
-    errors.add(:code, :invalid) unless code =~ %r{[=\.:\[\(]}
+    errors.add(:code, :invalid) unless code =~ /[=\.:\[\(]/
   end
 
   validates_length_of :changelog, maximum: 500

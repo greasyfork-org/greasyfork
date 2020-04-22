@@ -129,6 +129,11 @@ class ScriptsController < ApplicationController
 
     return if handle_wrong_url(@script, :id)
 
+    @discussions = @script.discussions
+                          .includes(last_reply_forum_poster: :users, original_forum_poster: :users)
+                          .reorder(Arel.sql('COALESCE(DateLastComment, DateInserted) DESC'))
+                          .paginate(page: params[:page], per_page: 25)
+
     set_bots_directive
     @canonical_params = [:id, :version]
   end
