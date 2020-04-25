@@ -18,7 +18,7 @@ $Definition['RatingOK'] = 'Εντάξει - ο κώδικας λειτουργε
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'Καλό - ο κώδικας λειτουργεί καλά';
 // Category name for Site Feedback
-$Definition['Categories.general.Name'] = 'Σχόλια για τον ιστότοπο';
+$Definition['Categories.general.Name'] = 'Greasy Fork Feedback';
 // Category description for Site Feedback
 $Definition['Categories.general.Description'] = 'Αναφορές σφάλματος, αιτήματα χαρακτηριστικών και άλλα σχετικά με το ίδιο το Greasy Fork.';
 // Category name for Development

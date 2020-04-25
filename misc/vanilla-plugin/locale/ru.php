@@ -18,7 +18,7 @@ $Definition['RatingOK'] = 'Нормальный — скрипт работае�
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'Хороший — скрипт работает как нужно';
 // Category name for Site Feedback
-$Definition['Categories.general.Name'] = 'Обратная связь';
+$Definition['Categories.general.Name'] = 'Обратная связь Greasy Fork';
 // Category description for Site Feedback
 $Definition['Categories.general.Description'] = 'Обсуждение сайта Greasy Fork: сообщить об ошибке, предложить улучшение и т.д.';
 // Category name for Development

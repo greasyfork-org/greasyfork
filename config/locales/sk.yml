@@ -272,7 +272,9 @@ sk:
 
           <li>%{malware_link:Nahlásiť malvér.}</li>
 
-          <li>%{spam_link:Spam alebo iný neskriptový obsah.}</li>
+          <li>%{spam_link:Nahlásiť spam alebo iný neskriptový obsah.}</li>
+
+          <li>%{feedback_link:Nahlásiť nefunkčnosť skriptu.}</li>
 
           <li>%{other_report_link:Nahlásiť iné porušenie, vrátane nezverejnených reklám
           alebo ťaženie kryptomien.}</li>
@@ -610,14 +612,19 @@ sk:
           <li>Skripty musia mať dôvod, prečo sú skriptami. Napríklad skript, ktorý
           odkazuje užívateľa na stránku nemusí byť skript, môže to byť odkaz.</li>
 
+          <li>Skripty nemôžu od používateľa, pre funkčnosť, vyžadovať nesúvisiace
+          akcie ako sú posielanie platby, prihlasovanie k odberu kanála alebo lajkovanie
+          stránky.</li>
+
           <li>Skripty s monetizačnými metódami (sledovacie, reklamné, ťažobné, atď.)
           nie sú zakázané, ale autor musí túto skutočnosť zverejniť viditeľne v popise
-          skriptu alebo doplňujúcich informáciách.
+          skriptu alebo doplňujúcich informáciách.</li>
 
           <ul> <h4>Kód</h4> <ul>
 
           <li>Kód odoslaný na túto stránku nemôže byť obfuskovaný alebo minifikovaný.
-          Užívatelia musia mať možnosť preskúmať a pochopiť skript pred jeho inštaláciou.</li>
+          To zahŕňa aj používanie balíkov ako je webpack. Užívatelia musia mať možnosť
+          preskúmať a pochopiť skript pred jeho inštaláciou.</li>
 
           <li>Knižnice, ktoré skript používa by mali byť vyžiadané pomocou <code>@require</code>,
           pokiaľ neexistuje opodstatnený technický dôvod, prečo to neurobiť. V prípade,
@@ -631,11 +638,11 @@ sk:
           <li>Váš skript musí rešpektovať autorské práva ostatných. Teda skript samotný
           aj jeho zdroje (napr. obrázky), ktoré využíva. Ak máte v úmysle použiť obsah
           niekoho iného, riaďte sa licenčnými podmienkami alebo získajte jeho súhlas
-          predtým ako tak urobíte.
+          predtým ako tak urobíte.</li>
 
           <li>Aj v prípadoch, ktoré nie sú v rozpore s autorskými právami, zverejňovanie
           skriptov, ktoré sa už nachádzajú na %{site_name} nie je povolené, aj keď
-          sú lepšie ako pôvodné. </li>
+          sú lepšie ako pôvodné.</li>
 
           </ul> <h4>Ostatné</h4> <ul>
 
@@ -645,9 +652,11 @@ sk:
           si, že väčšina správcov užívateľských skriptov riadi automatickú aktualizáciu,
           takže to nie je potrebné robiť v skripte.</li>
 
-          </ul> <p>Ak zbadáte skript, ktoré nespĺňa tieto parametre, prosím, nahláste
-          ho na stránke spätnej väzby pre tento skript, začatím diskusie a vyberte
-          voľbu "Nahlásiť skript".</p>
+          <li>Skripty nemôžu obsahovať <code>@include</code> s, <code>@match</code>es,
+          alebo kľúčové slová pre stránky, ktoré neposkytujú funkčnosť</ul> <p>Ak
+          zbadáte skript, ktoré nespĺňa tieto parametre, prosím, nahláste ho na stránke
+          spätnej väzby pre tento skript, začatím diskusie a vyberte voľbu "Nahlásiť
+          skript".</p>
       adult_content_rule_html: "<li>Skripty, ktoré majú obsah pre dospelých alebo stránky s obsahom pre dospelých musia byť takto označené a umožniť užívateľom, či ich chcú vidieť.</li>"
     external_scripts:
       title: "Zásady %{site_name} používania externých skritpov"

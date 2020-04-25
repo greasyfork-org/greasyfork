@@ -18,7 +18,7 @@ $Definition['RatingOK'] = '보통 - 스크립트가 작동하지만, 심각한 �
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = '좋음 - 스크립트가 잘 작동합니다.';
 // Category name for Site Feedback
-$Definition['Categories.general.Name'] = '사이트 피드백';
+$Definition['Categories.general.Name'] = 'Greasy Fork Feedback';
 // Category description for Site Feedback
 $Definition['Categories.general.Description'] = '버그 신고, 기능 추가 요청 등을 남겨 보세요.';
 // Category name for Development

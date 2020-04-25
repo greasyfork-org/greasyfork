@@ -18,7 +18,7 @@ $Definition['RatingOK'] = 'OK - script làm việc, nhưng có vấn đề quan 
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'Tốt - script hoạt động tốt';
 // Category name for Site Feedback
-$Definition['Categories.general.Name'] = 'Trang phản hồi';
+$Definition['Categories.general.Name'] = 'Greasy Fork Feedback';
 // Category description for Site Feedback
 $Definition['Categories.general.Description'] = 'Báo lỗi, yêu cầu chức năng, và chuyện của Greasy Fork';
 // Category name for Development

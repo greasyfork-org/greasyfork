@@ -18,7 +18,7 @@ $Definition['RatingOK'] = 'OK - skripti toimii, mutta siinä on merkittäviä on
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'Hyvä - skripti toimii hyvin';
 // Category name for Site Feedback
-$Definition['Categories.general.Name'] = 'Palautetta sivustosta';
+$Definition['Categories.general.Name'] = 'Greasy Fork Feedback';
 // Category description for Site Feedback
 $Definition['Categories.general.Description'] = 'Bugiraportit, ominaisuuspyynnöt, ja muut asiat Gresy Forkista itsestään.';
 // Category name for Development

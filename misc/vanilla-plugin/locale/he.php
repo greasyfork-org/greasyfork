@@ -18,7 +18,7 @@ $Definition['RatingOK'] = 'בסדר- הסקריפט עובד, אך סובל מב
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'מעולה- הסקירפט עובד טוב';
 // Category name for Site Feedback
-$Definition['Categories.general.Name'] = 'ביקורת אתר';
+$Definition['Categories.general.Name'] = 'Greasy Fork Feedback';
 // Category description for Site Feedback
 $Definition['Categories.general.Description'] = 'דיווחים על באגים, בקשת יכולות, ודברים אחרים לגבי Greasy Fork עצמו.';
 // Category name for Development

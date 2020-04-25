@@ -18,7 +18,7 @@ $Definition['RatingOK'] = 'OK - skrip bekerja, tapi memiliki masalah yang signif
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'Baik - skrip bekerja dengan baik';
 // Category name for Site Feedback
-$Definition['Categories.general.Name'] = 'Umpanbalik Situs';
+$Definition['Categories.general.Name'] = 'Greasy Fork Feedback';
 // Category description for Site Feedback
 $Definition['Categories.general.Description'] = 'Laporan kesalahan, permintaan fitur, dan hal lain mengenai Greasy Fork itu sendiri.';
 // Category name for Development

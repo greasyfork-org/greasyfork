@@ -18,7 +18,7 @@ $Definition['RatingOK'] = 'OK -Skripta radi, ali ima grešaka';
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'Dobro - Scripta radi odlično';
 // Category name for Site Feedback
-$Definition['Categories.general.Name'] = 'Povratne informacije sajta';
+$Definition['Categories.general.Name'] = 'Greasy Fork Feedback';
 // Category description for Site Feedback
 $Definition['Categories.general.Description'] = 'Prijava bagova, zahtevi, i ostale stvari o Greasy Fork-u.';
 // Category name for Development

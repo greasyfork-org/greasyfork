@@ -18,7 +18,7 @@ $Definition['RatingOK'] = 'Oké - a szkript működik, de jelentős problémái 
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'Jó - a szkript jól működik';
 // Category name for Site Feedback
-$Definition['Categories.general.Name'] = 'Visszajelzés';
+$Definition['Categories.general.Name'] = 'Greasy Fork Feedback';
 // Category description for Site Feedback
 $Definition['Categories.general.Description'] = 'Hibajelentések, feature kérések és egyéb dolgok a Greasy Forkkal kapcsolatban';
 // Category name for Development

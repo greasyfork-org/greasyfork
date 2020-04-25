@@ -262,26 +262,27 @@ fr:
     report:
       title: "Signaler %{script_name}"
       text_html: >-
-          <p>Les scripts postés sur %{site_name} doivent respecter %{rules_link:ses
-          règles}. Signalez des violations en utilisant les liens ci-dessous et %{site_name}
+          <p>Les scripts posté sur %{site_name} doivent respecter %{rules_link:ses
+          règles}. Signalez les violations en utilisant les liens ci-dessous et %{site_name}
           modérateurs examineront votre rapport.</p> <ul>
 
-          <li>%{unauthorized_link:pour signalez les copies non autorisées de votre
-          script.}</li>
+          <li>%{unauthorized_link:Signalez les copies non autorisées de votre script.}</li>
 
-          <li>%{malware_link:pour signalez les malwares.}</li>
+          <li>%{malware_link:Signalez les logiciels malveillants.}</li>
 
-          <li>%{spam_link:pour les spam ou autre contenu non scripté.}</li>
+          <li>%{spam_link:Signalez le spam ou tout autre contenu non scripté.}</li>
 
-          <li>%{other_report_link:pour signalez les autres violations, y compris les
-          publicités non divulguées ou les cryptomètres.}</li>
+          <li>%{feedback_link:Signalez que le script ne fonctionne pas .} </li>
+
+          <li>%{other_report_link:Signalez d'autres violations, y compris les publicités
+          non divulguées ou les cryptomineurs.}</li>
 
           </ul>
 
           <p>Veuillez noter qu'un dis-fonctionnement et une infraction des conditions
-          d'utilisation d'un tiers ne constitue pas une violation des règles de %{site_name}.
-          Dans ce cas, vous pouvez à la place% {feedback_link: laisser des commentaires}
-          sur le script.</p>
+          d'utilisation d'un tiers ne constitue <em>pas</em> une violation des règles
+          de %{site_name}. Dans ces cas, vous pouvez à la place %{feedback_link: laisser
+          des commentaires} sur le script.</p>
     authors_heading: "Auteurs"
     error_unauthorized_copy: "Ce code source a l'air d'être une reproduction interdite de %{script}. Veuillez vous référer aux %{rules_link:règles} de %{site_name} sur la soumission de scripts."
     invitations:
@@ -584,37 +585,41 @@ fr:
     code_rules:
       title: "Les règles à respecter lors de la soumission d'un script"
       content_html: >
-          <p>Ce sont les conditions requises pour les scripts postés sur %{site_name}.
-          Celles-ci sont destinées à garder %{site_name} un endroit sûr et d'utilisation
-          des scripts d'utilisateurs. Tout script ne répondant pas à ces exigences
-          peut être supprimé par les modérateurs de %{site_name}.</p> <h4>Fonctionnalité</h4>
-          <ul>
+          <p>Ce sont les conditions requises pour posté des scripts  sur %{site_name}.
+          Celles-ci sont destinées à garder %{site_name} sûr et utile les scripts
+          utilisateurs. Tout script ne répondant pas à ces exigences peut être supprimé
+          par les modérateurs de %{site_name}.</p> <h4>Fonctionnalité</h4> <ul>
 
-          <li>Les scripts doivent inclure une description de ce qu'ils font et peuvent
-          ne pas faire des choses en dehors du contexte de cette description. Les
-          utilisateurs doivent savoir ce que fera le script avant de l'installer.</li>
+          <li>Les scripts doivent inclure une description de ce qu'ils font et non
+          des choses déraisonnablement en dehors de cette description. Les utilisateurs
+          doivent savoir ce que fera un script avant de l'installer.</li>
 
-          <li>Les scripts doivent avoir une raison d'être un script. Par exemple,
+          <li>Les scripts doivent avoir une raison d'être des scripts. Par exemple,
           un script qui dirige simplement un utilisateur vers un site Web n'a pas
-          besoin d'être un script; il peut s'agir d'un lien.</li>
+          besoin d'être un script; il peut s'agir juste d'un lien.</li>
 
-          <li>Les scripts avec des méthodes de monétisation (suivi, publicités, mineurs,
-          etc.) ne sont pas interdits, mais l'auteur doit le divulguer bien en évidence
+          <li>Les scripts ne doivent pas obliger les utilisateurs à effectuer une
+          action non liée, comme l'envoi d'un paiement, l'abonnement à une chaîne
+          ou liké  une page, pour que le script soit fonctionnel.</li>
+
+          <li>Les scripts avec des méthodes de monétisation (suivi, annonces , mineurs,
+          etc.) ne sont pas interdits, mais l'auteur doit divulguer cela en évidence
           dans la description du script ou des informations supplémentaires.</li>
 
-          </ul> <h4>Code</h4> <ul>
+          </ul> <h4>Code Source</h4> <ul>
 
-          <li>Le code publié sur ce site ne doit pas être incompréhensible ou compresser.
-          Les utilisateurs doivent avoir la possibilité d'inspecter et de comprendre
-          le script avant de l'installer.</li>
+          <li>Le code posté sur ce site ne doit pas être obscurci ou mini-fié. Cela
+          comprend l'utilisation d'outils de regroupement comme webpack. Les utilisateurs
+          doivent avoir la possibilité d'inspecter et de comprendre un script avant
+          de l'installer.</li>
 
-          <li>Les bibliothèques qu'un script utilise doivent être utiliser avec <code>@require</code>,
-          sauf s'il existe une raison technique valable de ne permet pas le faire.
-          Dans le cas où une bibliothèque est en ligne, elle doit inclure des informations
+          <li>Les bibliothèques qu'un script utilise doivent être <code>@require</code>-d,
+          sauf s'il existe une raison technique valable de ne pas le faire. Dans le
+          cas où une bibliothèque est incluse en ligne, elle doit inclure des informations
           sur la source de la bibliothèque (par exemple, un commentaire indiquant
           l'URL et / ou le nom et la version).</li>
 
-          <li>%{external_scripts_link: l'utilisation de JavaScript externe est limitée.}</li>
+          <li>%{external_scripts_link:L'utilisation de JavaScript externe est limitée.}</li>
 
           </ul> <h4>Copyright</h4> <ul>
 
@@ -624,22 +629,25 @@ fr:
           respectez leurs conditions de licence ou obtenez leur autorisation avant
           de le faire.</li>
 
-          <li>Même dans les cas qui ne violent pas la règle du droit d'auteur, les
-          dépôts de scripts qui sont déjà poster sur %{site_name} ne sont pas autorisés
-          à moins qu'ils sois différent de l'original.</li>
+          <li> Même dans les cas qui ne violent pas la règle du droit d'auteur, les
+          dépôts de scripts qui sont déjà sur %{site_name} ne sont pas autorisés à
+          moins qu'ils ne s'améliorent sur l'original.</li>
 
           </ul> <h4>Divers</h4> <ul>
 
           %{adult_content_requirement}
 
-          <li>Les scripts ne doivent pas effectuer des mises à jour à un taux supérieur
+          <li>Les scripts ne doivent pas rechercher les mises à jour à un taux supérieur
           à une fois par jour. Notez que la plupart des gestionnaires de scripts utilisateurs
           gèrent les mises à jour automatiques, il n'est donc pas nécessaire de le
           faire dans le script.</li>
 
-          </ul> <p>Si vous remarquez qu'un script ne fait pas partie de ces paramètres,
-          veuillez le signaler en accédant au lien Commentaires de ce script et en
-          choisissant l'option "signaler le script".</p>
+          <li>Les scripts ne doivent pas inclure <code>@include</code>s, <code>@match</code>es
+          ou des mots clés pour les sites sur lesquels ils ne fournissent pas de fonctionnalité.</li>
+
+          </ul> <p>Si vous remarquez un script qui tombe en dehors de ces paramètres,
+          veuillez le signaler en accédant au lien Commentaires pour ce script et
+          en choisissant l'option "Signaler le script".</p>
       adult_content_rule_html: "<li>Les scripts, qui incluent du contenu adulte ou qui sont pour des sites avec contenu adulte, doivent être marqués comme tels pour laisser aux autres utilisateurs le choix de les voir ou non.</li>"
     external_scripts:
       title: "Politique de %{site_name} concernant les scripts externes"

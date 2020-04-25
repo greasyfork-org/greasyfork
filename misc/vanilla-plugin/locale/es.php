@@ -18,7 +18,7 @@ $Definition['RatingOK'] = 'Pasable; el script funciona, pero tiene carencias imp
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'Bueno; el script funciona tal y como promete';
 // Category name for Site Feedback
-$Definition['Categories.general.Name'] = 'Opiniones y comentarios sobre el sitio';
+$Definition['Categories.general.Name'] = 'Greasy Fork Feedback';
 // Category description for Site Feedback
 $Definition['Categories.general.Description'] = 'Informes de errores, peticiones de características, y otras cosas sobre la página de Greasy Fork.';
 // Category name for Development

@@ -18,7 +18,7 @@ $Definition['RatingOK'] = 'พอใช้ - สคริปต์ทำงา�
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'ดี - สคริปต์ทำงานได้ดีมาก';
 // Category name for Site Feedback
-$Definition['Categories.general.Name'] = 'ข้อเสนอแนะไซต์';
+$Definition['Categories.general.Name'] = 'Greasy Fork Feedback';
 // Category description for Site Feedback
 $Definition['Categories.general.Description'] = 'รายงานจุดบกพร่อง คำขอคุณสมบัติ และสิ่งอื่น ๆ เกี่ยวกับตัว Greasy Fork';
 // Category name for Development

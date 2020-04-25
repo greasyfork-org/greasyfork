@@ -18,7 +18,7 @@ $Definition['RatingOK'] = '可 – スクリプトは動くが、大きな問題
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = '良 – スクリプトは良好に動作する';
 // Category name for Site Feedback
-$Definition['Categories.general.Name'] = 'サイトのフィードバック';
+$Definition['Categories.general.Name'] = 'Greasy Fork Feedback';
 // Category description for Site Feedback
 $Definition['Categories.general.Description'] = 'Greasy Fork 自体に関するバグ報告や機能の要望。';
 // Category name for Development

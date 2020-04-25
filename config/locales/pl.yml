@@ -194,6 +194,7 @@ pl:
     warning_potentially_minified_html: "Skrypt wygląda może on zawierać minified (z kompresją) kod. Jeśli używasz minified biblioteki, należy zamiast <code> @require </ code> to z %{allowed_requires_link} wymaga dozwolone. Skrypty z kodem minified podlegają usunięciu."
     warning_automatic_sensitive_html: "Twój skrypt jest przeznaczony dla %{sensitive_domains} i będzie oznaczony jako zawartość dla osób dorosłych."
     warning_potentially_minified_allowed_requires_link: "jedno z tych miejsc"
+    warning_code_previously_posted_html: "Ten kod został poprzednio opublikowany pod adresem %{script_links}. Skrypty publikowane przez inne osoby od oryginalnego ich autora mogą zostać usunięte przez moderatorów."
     additional_info_locale_prompt: "(wybierz język)"
     additional_info_add_localized: "Dodaj dodatkową zlokalizowaną informację"
     additional_info_locale_repeated: "Zapewnienie tylko jedno dodatkowe informacje dla '% {locale_key} \"locale."
@@ -262,25 +263,6 @@ pl:
     must_confirm_email_button: "Wyślij link potwierdzający na adres %{email}"
     report:
       title: "Zgłoś %{script_name}"
-      text_html: >-
-          <p>Skrypty zamieszczone na %{site_name} muszą być zgodne z {rules_link:jego
-          zasadami}. Zgłoś nadużycie za pomocą poniższych linków, a moderatorzy %{site_name}
-          rozpatrzą twoją skargę.</p> <ul>
-
-          <li>%{unauthorized_link:Zgłoś nieautoryzowane kopie twojego skryptu.}</li>
-
-          <li>%{malware_link:Zgłoś malware.}</li>
-
-          <li>%{spam_link:Spam lub treść niebędąca skryptem}</li>
-
-          <li>%{other_report_link:Zgłoś inne naruszenia, w tym niezgłoszone reklamy
-          lub kopanie kryptowalut.}</li>
-
-          </ul>
-
-          <p>Proszę mieć na uwadze, że niefunkcjonalność i naruszanie warunków stron
-          trzecich, nie stanowią naruszenia zasad %{site_name}. W takich przypadkach
-          możesz %{feedback_link:zostawić opinię} na temat skryptu.</p>
     authors_heading: "Autorzy"
     error_unauthorized_copy: "Ten kod wydaje się być nieautoryzowaną kopią %{script}. Zapoznaj się z %{rules_link:rules} o zamieszczaniu skryptów na %{site_name}."
     invitations:
@@ -577,6 +559,7 @@ pl:
       description_localized_html: "Opis w specyficznym języku, gdzie XX oznacza <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\"> kod dwuliterowy ISO 639-1 </a>, a YY jest opcjonalnym <a href=\"https://www.iso.org/obp/ui/#search\"> kodem kraju ISO 3166 </a>.  Zastępuje <code>@description</code>, kiedy użytkownik przegląda z wybranym językiem."
       namespace_html: "Kombinacja <code>@namespace</code> i <code>@name</code> jest używana przez menedżerów skryptów użytkownika aby sprawdzić czy skrypt został już zainstalowany. %{site_name} wymaga tego pola i będzie ostrzegać jeżeli zostanie zmienione przy aktualizacji."
       version_html: "Identyfikator dla specyficznej wersji skryptu w <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">formacie wersji Mozilli</a>. Wersja jest wyświetlana na stronie informacyjnej skryptu. %{site_name} wymaga tego pola i będzie ostrzegać jeżeli zostanie zmniejszone lub nie zostanie powiększone po zmianach w kodzie skryptu."
+      include_html: "Określa, na jakich stronach zostanie uruchomiony dany skrypt. Ich lista zostanie wyświetlona na stronie listingu skryptu, oraz użyta do ich kategoryzacji. Każdy skrypt musi posiadać co najmniej jedną deklarację <code>@match</code> lub <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Więcej informacji o wymaganym formacie znajdziesz tutaj.</a>"
       require_html: "Zawiera zewnętrzny JavaScript w skrypcie. Zobacz %{external_script_link}."
       require_external_script_link_text: "zasady dla kodu zawierającego zewnętrzne skrypty"
       updateURL: "Opisz, jak menedżerzy skryptu użytkownika powinni otrzymywać aktualizacje. %{site_name} usunie te klucze, co sprawi, że dowolny skrypt zainstalowany z%{site_name} będzie aktualizowany tylko z %{site_name}."
@@ -594,62 +577,6 @@ pl:
       post_new_script_link_text: 'udostępnić nowy skrypt'
     code_rules:
       title: "Zasady publikacji skryptów na %{site_name}"
-      content_html: >
-          <p>Tutaj znajdują się wymagania dotyczące skryptów publikowanych w %{site_name}.
-          Mające na celu utrzymanie %{site_name} bezpiecznym i użytecznym miejscem
-          dla skryptów użytkownika. Skrypty niespełniające tych wymagań mogą zostać
-          usunięte przez moderatorów %{site_name}.</p> <h4>Funkcjonalność</h4> <ul>
-
-          <li>Skrypty muszą zawierać opis tego, co robią oraz nie powinny celowo robić
-          innych rzeczy niezawartych w opisie. Użytkownik powinien wiedzieć, co robi
-          skrypt przed jego instalacją.</li>
-
-          <li>Skrypt musi mieć powód do bycia skryptem. Na przykład skrypt, który
-          po prostu przekierowuje użytkownika na stronę internetową, nie musi być
-          skryptem; może to być link.</li>
-
-          <li>Skrypty z możliwością ich monetyzacji (śledzenie, reklamy, koparki kryptowalut,
-          itd.) nie są zabronione, ale takie działania muszą być wyraźnie zaznaczone
-          w opisie skryptu lub dodatkowych informacjach.</li>
-
-          </ul> <h4>Kod</h4> <ul>
-
-          <li>Kod zamieszczony na tej stronie nie może być zaciemniany ani zminifikowany.
-          Użytkownicy muszą mieć możliwość podejrzenia i zrozumienia skryptu, zanim
-          go zainstalują.</li>
-
-          <li>Biblioteki, których używa skrypt, powinny zostać dodane poprzez <code>@require</code>,
-          chyba że istnieje wyraźny techniczny powód, by tego nie robić. Jeśli kod
-          źródłowy biblioteki jest zawarty w kodzie skryptu, należy również dodać
-          informację o źródle biblioteki (np. komentarz zawierający adres URL i/lub
-          nazwę oraz wersję).</li>
-
-          <li>%{external_scripts_link:Korzystanie z zewnętrznego kodu JavaScript jest
-          ograniczone.}</li>
-
-          </ul> <h4>Prawa autorskie</h4> <ul>
-
-          <li>Twój skrypt musi szanować prawa autorskie innych osób. Obejmuje to sam
-          skrypt i wszystkie zasoby (na przykład obrazy), których używa. Jeśli zamierzasz
-          korzystać z cudzej zawartości, przestrzegaj ich postanowień licencyjnych
-          lub uzyskaj ich zgodę.</li>
-
-          <li>Nawet jeśli prawa autorskie nie są naruszone to ponowne publikowanie
-          skryptów, które znajdują się na %{site_name}, jest zabronione, chyba że
-          wprowadzają usprawnienia różniące się od oryginału.</li>
-
-          </ul> <h4>Różne</h4> <ul>
-
-          %{adult_content_requirement}
-
-          <li>Skrypty nie powinny sprawdzać dostępności aktualizacji częściej niż
-          raz dziennie. Należy pamiętać, że większość menedżerów skryptów użytkownika
-          obsługuje automatyczne aktualizacje, więc wykonanie tego w skrypcie nie
-          jest konieczne.</li>
-
-          </ul> <p>Jeśli zauważysz skrypt, który nie przestrzega wyżej wymienionych
-          zasad, zgłoś go na stronie skryptu, przechodząc na podstronę Opinie, a następnie
-          klikając "zgłoś ten skrypt'".</p>
       adult_content_rule_html: "<li>Skrypty które zawierają treści dla dorosłych oraz dla stron które zawierają treści dla dorosłych muszą być oznaczone jako takie, aby użytkownicy mogli zdecydować czy chcą to zobaczyć.</li>"
     external_scripts:
       title: "Polityka %{site_name} dot. zewnętrznych skryptów"
@@ -801,6 +728,12 @@ pl:
     item_script_html: "Skrypt: %{script_link}"
     item_deleted_script: "Usunięto skrypt %{id}"
     item_user_html: "Użytkownik: %{user_link}"
+  notifications:
+    consecutive_bad_ratings:
+      one: "%{script_names} otrzymał konsekwentnie negatywne oceny. Prosimy, przejrzyj swój skrypt oraz ustosunkuj się do zarzutów podniesionych w opiniach."
+      few: "%{script_names} otrzymały konsekwentnie negatywne oceny. Prosimy, przejrzyj swoje skrypty oraz ustosunkuj się do zarzutów podniesionych w opiniach."
+      many: "%{script_names} otrzymały konsekwentnie negatywne oceny. Prosimy, przejrzyj swoje skrypty oraz ustosunkuj się do zarzutów podniesionych w opiniach."
+      other: "%{script_names}otrzymały konsekwentnie negatywne oceny. Prosimy, przejrzyj swoje skrypty oraz ustosunkuj się do zarzutów podniesionych w opiniach."
   common:
     error_preamble: "Mieliśmy małe problemy z tym, co chciałeś napisać..."
     allowed_elements_link: "(zobacz dozwolony kod)"
@@ -858,8 +791,45 @@ pl:
       script_update_not_utf8: "wymaga kodowania UTF-8"
       script_disallowed_require: "używa niezatwierdzonego zewnętrznego skryptu: %{code}"
       script_rate_limit: "Przekroczono limit udostępniania. Spróbuj ponownie później."
+      missing_include_or_match: "musi zawierać co najmniej jeden klucz @match lub @include"
   opensearch:
     short_name: "%{site_name} wyszukaj"
     description: "Szukaj skryptów użytkownika na %{site_name}."
     long_name: "%{site_name} szukanie skryptu użytkownika"
     attribution: "Prawa autorskie dla autorów skryptów, zobacz pojedynczy skrypt aby zobaczyć licencjonowanie"
+  mailers:
+    script_report:
+      report_created_offender:
+        subject: "Twój skrypt %{script_name} dla %{site_name} został zgłoszony"
+        reason_unauthorized: "Twój skrypt %{script_name} dla %{site_name} został zgłoszony jako nieautoryzowana kopia lub modyfikacja innego skryptu."
+        reason_malware: "Twój skrypt %{script_name} dla %{site_name} został zgłoszony jako szkodliwe oprogramowanie."
+        reason_spam: "Twój skrypt %{script_name} dla %{site_name} został zgłoszony jako spam."
+        reason_other: "Twój skrypt %{script_name} został zgłoszony jako naruszający zasady %{site_name}."
+        action: "Możesz zapoznać się z tym zgłoszeniem pod %{report_url} oraz przesłać swoje sprostowanie. Jeśli nie odniesiesz się do zgłoszenia, Twój skrypt może zostać usunięty przez moderatorów. Jeśli masz jakieś pytania, odwiedź https://greasyfork.org/forum/."
+      report_upheld_offender:
+        subject: "Twój skrypt %{script_name} dla %{site_name} został usunięty"
+        text: "Twój skrypt %{script_name} dla %{site_name} został usunięty przez moderatora. Możesz zapoznać się ze zgłoszeniem pod %{report_url}. Jeśli masz jakieś pytania, odwiedź https://greasyfork.org/forum/."
+      report_dismissed_offender:
+        subject: "Zgłoszenie odnośnie Twojego skryptu %{script_name} dla %{site_name} zostało odrzucone"
+        text: "Zgłoszenie odnośnie Twojego skryptu %{script_name} dla %{site_name} zostało odrzucone przez moderatora. Twój skrypt pozostanie dostępny. Możesz zapoznać się ze zgłoszeniem pod %{report_url}. Jeśli masz jakieś pytania, odwiedź https://greasyfork.org/forum/."
+      report_rebutted_reporter:
+        subject: "Twoje zgłoszenie odnośnie skryptu %{script_name} dla %{site_name} otrzymało odpowiedź"
+        text: "Twoje zgłoszenie odnośnie skryptu %{script_name} dla %{site_name} otrzymało odpowiedź. Możesz zapoznać się z odpowiedzią pod %{report_url}. Moderator zapozna się z Twoim zgłoszeniem oraz odpowiedzią na nie, oraz zadecyduje o dalszym postępowaniu. Jeśli masz jakieś pytania, odwiedź https://greasyfork.org/forum/."
+      report_upheld_reporter:
+        subject: "Twoje zgłoszenie odnośnie skryptu %{script_name} dla %{site_name} zostało podtrzymane"
+        text: "Twoje zgłoszenie odnośnie skryptu %{script_name} dla %{site_name} zostało uznane przez moderatora, a skrypt został usunięty. Możesz zapoznać się ze zgłoszeniem pod %{report_url}. Jeśli masz jakieś pytania, odwiedź https://greasyfork.org/forum/."
+      report_script_deleted_reported:
+        subject: "Twoje zgłoszenie odnośnie skryptu %{script_name} dla %{site_name} zostało zamknięte"
+        text: "Twoje zgłoszenie odnośnie skryptu %{script_name} dla %{site_name}zostało zamknięte, ponieważ skrypt został usunięty przez jego autora. Możesz zapoznać się ze zgłoszeniem pod %{report_url}. Jeśli masz jakieś pytania, odwiedź https://greasyfork.org/forum/."
+      report_dismissed_reporter:
+        subject: "Twoje zgłoszenie odnośnie skryptu %{script_name} dla %{site_name} zostało odrzucone"
+        text: "Twoje zgłoszenie odnośnie skryptu %{script_name} dla %{site_name} zostało odrzucone przez moderatora, a skrypt pozostanie dostępny. Możesz zapoznać się ze zgłoszeniem pod %{report_url}. Jeśli masz jakieś pytania, odwiedź https://greasyfork.org/forum/. "
+    consecutive_bad_ratings:
+      notify:
+        subject: "Twój skrypt %{script_name} dla %{site_name} otrzymał wiele negatywnych opinii."
+        text: |-
+            Twój skrypt %{script_name} dla %{site_name} otrzymał wiele negatywnych opinii z rzędu.
+
+            Prosimy o zapoznanie się z otrzymanymi opiniami pod %{feedback_url}, poprawienie zgłoszonych błędów oraz odniesienie się do zarzutów.
+
+            Jeśli nie opublikujesz poprawionej wersji ani nie odniesiesz się do komentarzy przed %{delete_date}, Twój skrypt zostanie ukryty dla %{site_name}. (Po upłynięciu terminu będziesz mieć możliwość przywrócenia jego prezentacji, o ile się na to zdecydujesz.)

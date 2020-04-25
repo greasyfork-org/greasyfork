@@ -262,23 +262,25 @@ pt-BR:
     report:
       title: "Denunciar %{script_name}"
       text_html: >-
-          <p>Scripts publicados no %{site_name} devem respeitar %{rules_link:suas
-          regras}. Denuncie violações através dos links abaixo e os moderadores do
-          %{site_name} irão analisar sua denúncia.</p> <ul>
+          <p>Scripts postados no %{site_name} devem estar de acordo com %{rules_link:suas
+          regras}. Denuncie violações usando os links abaixo e os moderadores do %{site_name}
+          irão revisar sua denúncia.</p> <ul>
 
           <li>%{unauthorized_link:Denunciar cópias não autorizadas do seu script.}</li>
 
           <li>%{malware_link:Denunciar malware.}</li>
 
-          <li>%{spam_link:Spam ou outro conteúdo além do script.}</li>
+          <li>%{spam_link:Denunciar spam ou outros conteúdos que não são scripts.}</li>
 
-          <li>%{other_report_link:Denunciar outras violações, incluindo propagandas
-          ocultas e mineradores de criptomoedas.}</li>
+          <li>%{feedback_link:Reportar que o script não funciona.}</li>
+
+          <li>%{other_report_link:Reportar outras violações, incluindo propagandas
+          ocultas ou mineradores de criptomoedas.}</li>
 
           </ul>
 
-          <p>Por favor esteja ciente que não ser funcional e violar os termos de uso
-          de terceiros <em>não</em> são violações das regras do %{site_name}. Nesses
+          <p>Por favor perceba que não ser funcional e violar os termos de uso de
+          terceiros <em>não</em> são violações das regras do %{site_name}. Nestes
           casos, você pode, em vez disso, %{feedback_link:deixar um feedback} no script.</p>
     authors_heading: "Autores"
     error_unauthorized_copy: "Este código parece ser um cópia não autorizada de %{script}. Por favor cheque as %{rules_link:regras} do  %{site_name} ao postar scripts."
@@ -580,10 +582,10 @@ pt-BR:
     code_rules:
       title: "Política do %{site_name} sobre scripts externos"
       content_html: >
-          <p> Estes são os requisitos para os scripts postados no %{site_name}. Isso
-          tem como objetivo manter o %{site_name} seguro e útil para os scripts de
+          <p>Estes são os requisitos para os scripts postados no %{site_name}. Isso
+          tem como objetivo manter o %{site_name} seguro e útil para os scripts de
           usuário. Qualquer script que não atenda esses requisitos serão removidos
-          pelos moderadores do %{site_name}.</p> <h4>Funcionalidade</h4> <ul>
+          pelos moderadores do%{site_name}.</p> <h4>Funcionalidade</h4> <ul>
 
           <li>Os scripts devem ter uma descrição a cerca do que eles fazem e não podem
           fazer nada fora dessa descrição sem razão. Os usuários devem saber o que
@@ -593,15 +595,19 @@ pt-BR:
           que simplesmente direciona um usuário para um site não precisa ser um script;
           poderia ser um link.</li>
 
-          <li> Scripts que possuem métodos de monetização (rastreamento, propagandas,
+          <li>Scripts não devem pedir que os usuários executem ações sem relação,
+          como enviar um pagamento, se inscrever em um canal ou curtir uma página,
+          para que o script seja funcional.</li>
+
+          <li>Scripts que possuem métodos de monetização (rastreamento, propagandas,
           mineradores, etc) não são proibidos, mas o autor deve deixar isso de forma
           bem clara na descrição do script ou nas informações adicionais.</li>
 
-          </ul> <h4>Código</h4> <ul>
+          </ul> <h4>Code</h4> <ul>
 
           <li>Códigos postados neste site não devem estar ofuscados ou minificados.
-          Os usuários devem ter a possibilidade de inspecionar e entender o script
-          antes de instalá-lo.</li>
+          Isto inclui o uso de ferramentas de bundle como webpack. Os usuários devem
+          ter a possibilidade de inspecionar e entender o script antes de instalá-lo.</li>
 
           <li>Bibliotecas que um script de usuário utiliza devem ser incluídas usando
           a tag <code>@require</code>, a não ser que haja um motivo técnico razoável
@@ -629,6 +635,9 @@ pt-BR:
           <li>Os scripts não devem verificar atualização muitas vezes por dia. Note
           que a maioria dos gerenciadores de scripts já cuida das atualizações por
           conta própria, então fazer isso dentro do seu script é desnecessário.</li>
+
+          <li>Scripts não devem incluir tags <code>@include</code>, <code>@match</code>,
+          ou palavras-chave para sites nos quais eles não forneçam funcionalidades.</li>
 
           </ul> <p>Se você perceber que um script fuja desses parâmetros, por fazer
           denuncie através do link de Feedback daquele script e escolha a opção "Denunciar
