@@ -40,6 +40,7 @@ zh-CN:
     promoted_text_html: "您或许会喜欢%{script_link}。"
     library_instructions_html: "此脚本不应被直接安装，它是一个供其他脚本使用的外部库。如果您需要使用该库，请在脚本元属性加入：%{code}"
     deleted_notice: "此脚本已被删除。"
+    deleted_notice_with_related: "请求的脚本已被删除。不过，这里还有一些相关的脚本。"
     version_notice_html: "您查看的为 %{date} 提交的版本。查看 %{latest_version_link}。"
     version_notice_latest_version_link: "最新版本"
     reported_notice: "“%{script_name}”已报告并等待管理员审核。"
@@ -629,7 +630,7 @@ zh-CN:
     date_column: "时间"
     moderator_column: "管理员"
     item_column: "项目"
-    action_column: "行为"
+    action_column: "操作"
     reason_column: "原因"
     item_script_html: "脚本：%{script_link}"
     item_deleted_script: "已删除的脚本 %{id}"
@@ -719,6 +720,12 @@ zh-CN:
         subject: "您在%{site_name}上对于%{script_name}脚本的举报收到了一条回复"
       report_upheld_reporter:
         subject: "您在%{site_name}上对于%{script_name}脚本的举报已被核实"
+      report_script_deleted_reported:
+        subject: "您对于站点%{site_name}的脚本%{script_name}的举报已被关闭。"
+        text: "由于作者删除了该脚本，您对于站点%{site_name}的脚本%{script_name}的举报已被关闭。您可以在%{report_url}重新查看这个举报。如有任何问题请访问https://greasyfork.org/forum 。"
       report_dismissed_reporter:
         subject: "您在%{site_name}上对于%{script_name}脚本的举报被驳回"
         text: "您在%{site_name}上对于%{script_name}脚本的举报已被管理员驳回，并且该脚本将继续保留。 详情查阅此报告:%{report_url}。如有疑问，请访问https://greasyfork.org/forum/。"
+    consecutive_bad_ratings:
+      notify:
+        subject: "您对于站点%{site_name}的脚本%{script_name}收到多个差评。"
