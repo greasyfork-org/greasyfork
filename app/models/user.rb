@@ -225,6 +225,7 @@ class User < ApplicationRecord
         private_reason: private_reason
       )
       update_columns(banned: true)
+      script_reports.unresolved.each(&:dismiss!)
     end
 
     return unless ban_related
