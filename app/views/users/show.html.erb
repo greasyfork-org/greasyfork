@@ -64,6 +64,17 @@
           <%= link_to 'Ban', user_ban_path(@user) %>
         <% end %>
       </p>
+      <% report_count = @user.script_reports.count %>
+      <p>This user has filed <%= report_count %> <%= 'report'.pluralize(report_count) %>.</p>
+      <% if report_count > 0 %>
+        <ul>
+          <% @user.script_reports.each do |report| %>
+            <li>
+              <%= render partial: 'script_reports/script_report', locals: { script_report: report, include_script: true } %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
     </section>
   </section>
 <% end %>
