@@ -18,7 +18,7 @@ $Definition['RatingOK'] = '一般 - 脚本有用，但还有一些问题';
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = '好评 - 一切运行良好';
 // Category name for Site Feedback
-$Definition['Categories.general.Name'] = 'Greasy Fork Feedback';
+$Definition['Categories.general.Name'] = 'Greasy Fork 反馈';
 // Category description for Site Feedback
 $Definition['Categories.general.Description'] = '有关 Greasy Fork 本身的故障报告、功能需求等事务。';
 // Category name for Development

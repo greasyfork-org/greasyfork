@@ -64,10 +64,20 @@ ru:
     delete_update_behaviour_1: "Оставить."
     delete_update_behaviour_2: "Заменить пустым скриптом. Используйте этот вариант, чтобы быстро отключить неисправный скрипт до появления работающей версии."
     delete_permanently_heading: "Безвозвратное удаление"
+    delete_permanently_explanation_html: >-
+        <p>Безвозвратное удаление вашего скрипта удалит скрипт и все связанные с ним
+        данные, кроме обсуждений на форуме и логов модерации.</p> <p>Ваш скрипт будет
+        безвозвратно удалён через 7 дней после вашего запроса. В течении этого времени
+        вы можете отменить удаление. Если вы это не сделаете, то никто не сможет восстановить
+        ваш скрипт, включая модераторов.</p>
+    delete_permanently_confirm: "Вы уверены, что хотите безвозвратно удалить ваш скрипт?"
     delete_permanently_submit: "Запросить безвозвратное удаление"
     delete_permanently_immediate_submit: "Удалить безвозвратно"
+    delete_permanently_notice: "Запрос на безвозвратное удаление принят. Ваш скрипт будет безвозвратно удалён через 7 дней."
+    delete_permanently_already_requested: "Вы запросили безвозвратное удаление %{datetime}."
     delete_permanently_notice_immediate: "Скрипт удалён."
     cancel_delete_permanently_submit: "Отменить безвозвратное удаление"
+    cancel_delete_permanently_notice: "Запрос на безвозвратное удаление отменён. Ваш скрипт по прежнему скрыт."
     delete_permanently_rejected_locked: "Этот скрипт закреплен и поэтому его нельзя удалить."
     admin_page: "Управление"
     admin:
@@ -83,8 +93,9 @@ ru:
       update_locale: "Обновить язык"
       no_moderator_logs: "Модераторы ничего не делали с этим скриптом."
       compare_title: "Сравнить с другим скриптом"
-      compare_to: "Скрипт для сравнения (URL)"
+      compare_to: "Скрипт на %{site_name} для сравнения (URL)"
       compare_button: "Сравнить"
+      compare_must_be_local_url: "Сравниваемый скрипт должен находиться на %{site_name}."
     history_title: "%{script_name} - История версий"
     history_only_code_changes_info: "Ниже показаны версии этого скрипта, в которых изменялся код."
     history_all_changes_link: "Показать все версии."

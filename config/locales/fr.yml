@@ -62,10 +62,21 @@ fr:
     delete_update_behaviour_1: "Ils le garderont comme il est."
     delete_update_behaviour_2: "Ils seront mis à jour vers un script vierge. Cela convient quand le script a un effet négatif sur les sites où il est exécuté."
     delete_permanently_heading: "Suppression définitive"
+    delete_permanently_explanation_html: >-
+        <p>La suppression définitive de votre script le supprimera ainsi que tous
+        les enregistrements associés, à l'exception des discussions du forum et du
+        journal des actions du modérateur.</p> <p>Votre script sera définitivement
+        supprimé 7 jours après votre demande. Vous pouvez annuler la suppression définitive
+        dans ce délai. Si vous ne le faites pas, personne, pas même les modérateurs,
+        ne pourra récupérer votre script.</p>
+    delete_permanently_confirm: "Voulez-vous vraiment supprimer définitivement votre script?"
     delete_permanently_submit: "Demande de suppression définitive"
     delete_permanently_immediate_submit: "Supprimer de façon permanente"
+    delete_permanently_notice: "Une demande de suppression définitive a été enregistrée. Votre script sera définitivement supprimé dans 7 jours."
+    delete_permanently_already_requested: "Vous avez demandé la suppression définitive le %{datetime}."
     delete_permanently_notice_immediate: "Script supprimé de façon permanente."
     cancel_delete_permanently_submit: "Demande d'annulation de suppression définitive."
+    cancel_delete_permanently_notice: "Votre demande de suppression définitive a été annulée. Votre script n'est toujours pas visible pour les autres."
     delete_permanently_rejected_locked: "Ce script est verrouillé et ne peut être supprimé de façon permanente"
     admin_page: "Administrateur"
     admin:
@@ -81,7 +92,6 @@ fr:
       update_locale: "Mettre à jour la locale"
       no_moderator_logs: "Aucun mesure n'a été prise par les modérateurs sur ce script."
       compare_title: "Comparer à d'autre script"
-      compare_to: "Script à comparer (URL)"
       compare_button: "Comparer"
     history_title: "%{script_name} - Historique des versions"
     history_only_code_changes_info: "Voici les versions de ce script où le code a été modifié."

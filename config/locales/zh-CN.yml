@@ -41,6 +41,9 @@ zh-CN:
     library_instructions_html: "此脚本不应被直接安装，它是一个供其他脚本使用的外部库。如果您需要使用该库，请在脚本元属性加入：%{code}"
     deleted_notice: "此脚本已被删除。"
     deleted_notice_with_related: "请求的脚本已被删除。不过，这里还有一些相关的脚本。"
+    deleted_undelete_notice_html: "该脚本的已被管理员锁定且不能取消删除。锁定的原因是：“<i>%{delete_reason}</i>”。"
+    deleted_locked_author_notice_html: "该脚本已被管理员删除且不能被其他用户所访问。删除的原因是：“<i>%{delete_reason}</i>”。"
+    deleted_author_notice: "其他用户不能访问该脚本，因为它已经被删除。你可以在“删除”面板中取消删除。"
     version_notice_html: "您查看的为 %{date} 提交的版本。查看 %{latest_version_link}。"
     version_notice_latest_version_link: "最新版本"
     reported_notice: "“%{script_name}”已报告并等待管理员审核。"
@@ -58,10 +61,17 @@ zh-CN:
     delete_update_behaviour_1: "保持原样。"
     delete_update_behaviour_2: "用户将通过自动更新功能变成一个无代码的脚本。当脚本对其所运行的网站产生了负面作用时选择此项。"
     delete_permanently_heading: "永久删除"
+    delete_permanently_explanation_html: >-
+        <p>永久删除您的脚本将删除「管理员操作记录」与「论坛讨论帖」以外的所有数据。</p> <p>您的脚本会在 7 日后永久删除，因此如果反悔，您可以在此期间内取消；反之，若是在
+        7 日内没有取消操作，那么脚本将会被永久删除，即便是管理员也不能还原您的脚本。</p>
+    delete_permanently_confirm: "确定要永久删除您的脚本？"
     delete_permanently_submit: "请求永久删除"
     delete_permanently_immediate_submit: "永久删除"
+    delete_permanently_notice: "已记录您的永久删除请求。您的脚本将在7天内得到永久删除。"
+    delete_permanently_already_requested: "您已于 %{datetime} 请求永久删除。"
     delete_permanently_notice_immediate: "已永久删除该脚本。"
     cancel_delete_permanently_submit: "取消永久删除的请求"
+    cancel_delete_permanently_notice: "您的永久删除请求已取消。您的脚本仍对其他人不可见。"
     delete_permanently_rejected_locked: "此脚本已被锁定并且不能永久删除"
     admin_page: "管理"
     admin:
@@ -77,8 +87,8 @@ zh-CN:
       update_locale: "更新语言"
       no_moderator_logs: "管理员没有对此脚本采取任何操作。"
       compare_title: "与另一脚本比较"
-      compare_to: "要比较的脚本网址"
       compare_button: "比较"
+      compare_must_be_local_url: "比较脚本必须是一个位于%{site_name}的网址。"
     history_title: "%{script_name} - 版本历史"
     history_only_code_changes_info: "这些是代码更新过的版本。"
     history_all_changes_link: "显示所有版本"
@@ -251,6 +261,23 @@ zh-CN:
     must_confirm_email_button: "发送确认链接至 %{email}"
     report:
       title: "举报 %{script_name}"
+      text_html: >-
+          <p>发布在 %{site_name} 上的脚本必须遵守%{rules_link:其守则}。若是发现违反规定的脚本，您可以使用下方的链接来举报其违规行为。%{site_name}
+          的管理员将审核并处理您的报告。</p> <ul>
+
+          <li>%{unauthorized_link:举报脚本包含未经授权的脚本副本}。</li>
+
+          <li>%{malware_link:举报脚本含有恶意代码}。</li>
+
+          <li>%{spam_link:举报提交的脚本为垃圾内容或不是脚本的内容}。</li>
+
+          <li>%{feedback_link:报告脚本功能已经失效}。</li>
+
+          <li>  %{other_report_link:举报脚本的其他违规项目，包括但不限于暗藏广告或挖矿行为}。</li>
+
+          </ul>
+
+          <p>注意，失效或违反第三方的使用条款的脚本<em>并不违反</em> %{site_name} 的守则。若是遇到这种情况，请尝试%{feedback_link:留下反馈}与作者交流。</p>
     authors_heading: "作者"
     error_unauthorized_copy: "此代码似乎未经授权地复制了 %{script}。发布脚本时请参考 %{site_name} 的 %{rules_link:rules}。"
     invitations:
@@ -537,6 +564,43 @@ zh-CN:
       post_new_script_link_text: '发布新脚本'
     code_rules:
       title: "%{site_name} 有关发布脚本的规则"
+      content_html: >
+          <p>下述列表阐述了提交到%{site_name}的脚本所需要遵守的规则。这些规则是为了让%{site_name}能提供安全且对用户有所帮助的用户脚本网站。任何违反这些规定的脚本将会被%{site_name}的管理员审核后删除。</p>
+          <h4>功能性</h4> <ul>
+
+          <li>脚本必须包含一个描述来说明这个脚本会执行的功能，以及某些情况下不会执行的功能。用户必须能从这个描述来得知这个脚本的功能与作用。</li>
+
+          <li>必须有一个建立这个脚本的原因。举例说明，如果一个脚本只是为了将用户导向另外一个网站，那么这不一定得是一个脚本；可以就是一个链接。</li>
+
+          <li>脚本不得要求用户进行无关的操作，包括但不限于「付费」、「订阅」或「点赞」后才能使用脚本功能。</li>
+
+          <li>有利益相关的脚本 (包括但不限于用户追踪、广告、加密货币挖掘等) 并非禁止上传，但是作者必须在脚本描述或更多信息中明确说明。</li>
+
+          </ul>
+
+          <h4>代码</h4> <ul>
+
+          <li>提交到本站的代码不得混淆或压缩最小化，这包括使用 WebPack 这类打包工具处理后的脚本。用户必须能在安装之前对即将安装的脚本进行审阅并理解其作用。</li>
+
+          <li>脚本所引用的第三方代码库应通过 <code>@require</code> 元信息来引用，除非有一个合理的技术限制而无法实现。在这种情况下第三方代码可以直接嵌入进来，但也必须包含原始的库的来源（如一条指向官方的地址、名字以及版本）。</li>
+
+          <li>%{external_scripts_link:对于能引入的外部资源，本站有一些限制}。</li>
+
+          </ul> <h4>版权</h4> <ul>
+
+          <li>你的脚本必须遵守它人的版权。这包括你的脚本和其引用的资源（如图片）。如果你希望使用其他人的内容，请注明授权条款或事先获取对方的授权。</li>
+
+          <li>即便在没有于违反版权的情况下，重新上传并已经存在于%{site_name}里的脚本并未作实质性的更改也是不被允许的。</li>
+
+          </ul> <h4>其它注意事项</h4> <ul>
+
+          %{adult_content_requirement}
+
+          <li>脚本不得以每日一次以上的频率来检查更新。请注意，大部分的用户脚本管理器都内置了自动更新的功能，所以这类功能是非必需的。</li>
+
+          <li>脚本不得滥用<code>@include</code>、<code>@match</code>或其他关键字使其在脚本不提供功能的网站上执行。</li>
+
+          </ul> <p>如果你发现一些未能遵守以上规则的脚本，请利用反馈链接并选择 “举报脚本” 选项来报告。</p>
       adult_content_rule_html: "<li>本站允许脚本中包含成人内容，但含有成人内容或者针对成人网站设计的脚本必须被「明确标注」，以便用户自主选择是否显示此类信息。</li>"
     external_scripts:
       title: "%{site_name} 对外部脚本的政策"
@@ -711,8 +775,10 @@ zh-CN:
         text: "%{site_name} 上的一则针对您的 %{script_name} 脚本的举报已由管理员驳回，您的脚本继续保留。详情查阅此报告: %{report_url}。如有疑问，请访问 https://greasyfork.org/forum/。"
       report_rebutted_reporter:
         subject: "您在%{site_name}上对于%{script_name}脚本的举报收到了一条回复"
+        text: "您在 %{site_name} 上针对 %{script_name} 的举报收到了一则回应，你可以访问 %{report_url} 来查看。管理员将同时参考您的报告与原作者的回应来判定脚本是否违规。如有疑问，请访问 https://greasyfork.org/forum/ 。"
       report_upheld_reporter:
         subject: "您在%{site_name}上对于%{script_name}脚本的举报已被核实"
+        text: "您在%{site_name}上举报的脚本 %{script_name}已被管理员判定违规并删除，你可以在 %{report_url} 查看具体的报告。如有疑问，请访问 https://greasyfork.org/forum/ 。"
       report_script_deleted_reported:
         subject: "您对于站点%{site_name}的脚本%{script_name}的举报已被关闭。"
         text: "由于作者删除了该脚本，您对于站点%{site_name}的脚本%{script_name}的举报已被关闭。您可以在%{report_url}重新查看这个举报。如有任何问题请访问https://greasyfork.org/forum 。"
@@ -722,3 +788,9 @@ zh-CN:
     consecutive_bad_ratings:
       notify:
         subject: "您对于站点%{site_name}的脚本%{script_name}收到多个差评。"
+        text: |-
+            您在 %{site_name} 所发布的脚本“%{script_name}”（地址：%{script_url}）在近期收到了多则差评的评论。
+
+            请访问 %{feedback_url} 来查阅您所收到的反馈，修正问题并回应提出问题的用户。
+
+            如果您在 %{delete_date} 之前没有发布新的版本或作出回应，你的脚本将会在 %{site_name} 变成隐藏状态。（在此日期之后，你可以手动将其状态更改为公开可见）

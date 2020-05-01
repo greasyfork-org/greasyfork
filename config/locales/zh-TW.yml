@@ -40,6 +40,10 @@ zh-TW:
     promoted_text_html: "你可能也喜歡 %{script_link}"
     library_instructions_html: "此腳本不應該直接安裝，它是一個供其他腳本使用的函式庫。欲使用本函式庫，請在腳本 metadata 寫上： %{code}"
     deleted_notice: "此腳本已被刪除。"
+    deleted_notice_with_related: "您請求的腳本已被刪除，但是這裡有一些相關的腳本。"
+    deleted_undelete_notice_html: "該腳本已被主持人鎖定，無法撤消刪除。原因提供：“<i>%{delete_reason}</i>“”"
+    deleted_locked_author_notice_html: "該腳本已被版主刪除，其他人無法訪問。原因提供：\"<i>%{delete_reason}</i>\"。"
+    deleted_author_notice: "該腳本已被刪除，其他人無法訪問。您可以從“刪除”標籤取消刪除它。"
     version_notice_html: "目前為 %{date} 提交的版本，檢視 %{latest_version_link}。"
     version_notice_latest_version_link: "最新版本"
     reported_notice: "舉報 \"%{script_name}\" 的信息已經提交，且將由一名管理員進行審閱。"
@@ -57,10 +61,14 @@ zh-TW:
     delete_update_behaviour_1: "保留當前版本。"
     delete_update_behaviour_2: "更新到一個空白腳本。該項適用於當腳本對網站產生負面影響時。"
     delete_permanently_heading: "永久刪除"
+    delete_permanently_confirm: "您確定要永久刪除腳本嗎？"
     delete_permanently_submit: "請求永久刪除"
     delete_permanently_immediate_submit: "永久刪除"
+    delete_permanently_notice: "永久刪除的請求已被記錄。您的腳本將在7天內永久刪除。"
+    delete_permanently_already_requested: "您要求永久刪除%{datetime}"
     delete_permanently_notice_immediate: "腳本已被永久刪除"
     cancel_delete_permanently_submit: "取消永久刪除請求"
+    cancel_delete_permanently_notice: "您永久刪除的請求已被取消。您的腳本仍然對其他人不可見。"
     delete_permanently_rejected_locked: "此腳本已鎖定，無法永久刪除"
     admin_page: "管理"
     admin:
@@ -76,7 +84,6 @@ zh-TW:
       update_locale: "更新語系"
       no_moderator_logs: "管理員未對此腳本採取任何措施。"
       compare_title: "與其他腳本比較"
-      compare_to: "與 (URL) 比較的腳本"
       compare_button: "比較"
     history_title: "%{script_name} - 版本歷史"
     history_only_code_changes_info: "這裡只顯示彼此間有代碼差異的版本。"
@@ -639,6 +646,8 @@ zh-TW:
           <h2>第三方函式庫</h2>
 
           <p>%{site_name} 使用第三方的程式碼來收集統計資料或放置廣告，這些函式庫可能會追蹤使用者。</p>
+    user_css_to_user_js:
+      title: 用戶CSS到用戶JS的轉換
   search:
     script_search:
       title: "腳本搜尋"
@@ -664,6 +673,9 @@ zh-TW:
     item_script_html: "腳本：%{script_link}"
     item_deleted_script: "刪除腳本%{id}"
     item_user_html: "用戶：%{user_link}"
+  notifications:
+    consecutive_bad_ratings:
+      other: "%{script_names}已連續收到不良評價。請查看您的腳本並回複評分中提出的問題。"
   common:
     error_preamble: "您所發表的帖子內容有點問題..."
     allowed_elements_link: "(檢視允許使用的 HTML/Markdown 代碼。)"
@@ -721,8 +733,29 @@ zh-TW:
       script_update_not_utf8: "上傳之腳本的編碼格式須為 UTF-8"
       script_disallowed_require: "使用了未經批準的外部腳本: %{code}"
       script_rate_limit: "超出發布限制，請稍後再試。"
+      missing_include_or_match: "必須至少包含一個@match或@include密鑰"
   opensearch:
     short_name: "%{site_name} 搜尋"
     description: "在 %{site_name} 上尋找腳本。"
     long_name: "%{site_name} 腳本搜尋"
     attribution: "版權屬於腳本作者，請在各腳本的頁面查詢相關授權"
+  mailers:
+    script_report:
+      report_created_offender:
+        subject: "您在%{site_name}的腳本%{script_name}已被舉報。"
+        reason_unauthorized: "您在%{site_name}的腳本%{script_name}已被舉報是未經授權複製或修改自另一個腳本。"
+        reason_malware: "您在%{site_name}的腳本%{script_name}已被舉報為惡意軟件。"
+        reason_spam: "您在%{site_name}的腳本%{script_name}已被舉報為垃圾郵件。"
+        reason_other: "您的腳本%{script_name}被報告違反了%{site_name}的規則。"
+        action: "您可以在%{report_url}上查看此報告並提出反駁。如果您不提交反駁，版主可能會刪除您的腳本。如有任何疑問，請訪問https://greasyfork.org/forum/。"
+      report_upheld_offender:
+        subject: "您在%{site_name}的腳本%{script_name}已被刪除。"
+        text: "版主已刪除您在%{site_name}上的腳本%{script_name}。您可以通過%{report_url}查看該報告。如有任何疑問，請訪問https://greasyfork.org/forum/。"
+      report_dismissed_offender:
+        subject: "您關於%{site_name}上腳本%{script_name}的報告已被關閉"
+        text: "版主已拒絕有關%{site_name}上腳本%{script_name}的報告。您的腳本將保持活動狀態。您可以通過%{report_url}查看此報告。如有任何疑問，請訪問https://greasyfork.org/forum/。"
+      report_rebutted_reporter:
+        subject: "您在關於%{site_name}上的腳本%{script_name}的報告已收到回复"
+        text: "您關於%{site_name}的%{script_name}的報告已收到回复。 您可以通過%{report_url}查看此回复。版主將審閱您的報告和此答复並決定結果。 如有任何疑問，請訪問https://greasyfork.org/forum/。"
+      report_upheld_reporter:
+        subject: "您關於%{site_name}上的腳本%{script_name}的報告已保留"

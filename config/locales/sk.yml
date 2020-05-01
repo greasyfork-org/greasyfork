@@ -64,10 +64,19 @@ sk:
     delete_update_behaviour_1: "Ponechať tak ako je."
     delete_update_behaviour_2: "Aktualizovať na prázdny skript. Vhodné pre skripty, ktoré negatívne ovplyvňujú chod stránky."
     delete_permanently_heading: "Trvalé vymazanie"
+    delete_permanently_explanation_html: >-
+        <p>Trvalé odstránenie skriptu odstráni skript a všetky jeho záznamy, okrem
+        diskusie na fóre a záznamov akcií moderátora.</p> <p>Skript bude natrvalo
+        odstránený po 7 dňoch od žiadosti. Počas tejto doby môžete žiadosť o odstránenie
+        zrušiť. Ak tak neurobíte, nikto, ani moderátor, nebude môcť skript obnoviť.</p>
+    delete_permanently_confirm: "Naozaj chcete natrvalo odstrániť skript?"
     delete_permanently_submit: "Žiadosť o trvalé vymazanie"
     delete_permanently_immediate_submit: "Trvale vymazať"
+    delete_permanently_notice: "Žiadosť o trvalé odstránenie bola zaznamenaná. Skript bude natrvalo odstránený o 7 dní."
+    delete_permanently_already_requested: "Žiadosť o trvalé odstránenie zo dňa %{datetime}."
     delete_permanently_notice_immediate: "Skript bol trvale vymazaný."
     cancel_delete_permanently_submit: "Zrušiť žiadosť o trvalé vymazanie"
+    cancel_delete_permanently_notice: "Žiadosť o trvalé odstránenie bola zrušená. Skript sa nebude naďalej ostatným zobrazovať."
     delete_permanently_rejected_locked: "Tento skript je uzamknutý a nemôže byť trvalo odstránený"
     admin_page: "Správca"
     admin:
@@ -83,8 +92,9 @@ sk:
       update_locale: "Aktualizovať jazyk"
       no_moderator_logs: "V tomto skripte neboli moderátormi vykonané žiadne kroky."
       compare_title: "Porovnať s iným skriptom"
-      compare_to: "Porovnať skript s (URL)"
+      compare_to: "Porovnať skript na %{site_name} s (URL)"
       compare_button: "Porovnať"
+      compare_must_be_local_url: "Porovnávaný skript musí byť URL na %{site_name}."
     history_title: "%{script_name} - História verzií"
     history_only_code_changes_info: "Zoznam verzií skriptu, ktorých kód bol aktualizovaný."
     history_all_changes_link: "Zobraziť všetky verzie."
