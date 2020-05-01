@@ -98,7 +98,6 @@ Rails.application.routes.draw do
         get 'by-site/:site(.:format)', action: 'index', as: 'by_site', constraints: { site: /.*?/, format: /|html|atom|json|jsonp/ }
         get 'reported(.:format)', action: 'reported', as: 'reported'
         get 'reported_not_adult(.:format)', action: 'reported_not_adult', as: 'reported_not_adult'
-        get 'requested_permanent_deletion(.:format)', action: 'requested_permanent_deletion', as: 'requested_permanent_deletion'
         get 'libraries(.:format)', action: 'libraries', as: 'libraries'
         get 'search(.:format)', action: 'search', as: 'search'
         get 'minified(.:format)', action: 'minified', as: 'minified'

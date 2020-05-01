@@ -423,12 +423,7 @@ class ScriptsController < ApplicationController
       redirect_to root_path
       return
     end
-    if @script.immediate_deletion_allowed?
-      @script.destroy!
-      flash[:notice] = I18n.t('scripts.delete_permanently_notice_immediate')
-      redirect_to root_path
-      return
-    end
+    @script.script_delete_type_id = ScriptDeleteType::KEEP
     @script.permanent_deletion_request_date = DateTime.now
     @script.save(validate: false)
     flash[:notice] = I18n.t('scripts.delete_permanently_notice')

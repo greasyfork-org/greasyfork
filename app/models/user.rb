@@ -35,7 +35,6 @@ class User < ApplicationRecord
   end
 
   before_destroy(prepend: true) do
-    throw(:abort) unless can_be_deleted?
     forum_user.rename_on_delete! if forum_user.present?
     scripts.select { |script| script.authors.where.not(user_id: id).none? }.each(&:destroy!)
   end
@@ -153,10 +152,6 @@ class User < ApplicationRecord
 
   def non_locked_scripts
     return scripts.not_locked
-  end
-
-  def can_be_deleted?
-    return scripts.all(&:immediate_deletion_allowed?)
   end
 
   def lock_all_scripts!(reason:, moderator:, delete_type:)

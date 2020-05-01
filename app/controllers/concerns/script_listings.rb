@@ -2,10 +2,10 @@ module ScriptListings
   extend ActiveSupport::Concern
 
   COLLECTION_PUBLIC_ACTIONS = [:index, :search, :libraries, :code_search, :by_site].freeze
-  COLLECTION_MODERATOR_ACTIONS = [:reported, :reported_not_adult, :requested_permanent_deletion, :minified].freeze
+  COLLECTION_MODERATOR_ACTIONS = [:reported, :reported_not_adult, :minified].freeze
 
   included do
-    layout 'list', only: [:index, :search, :libraries, :reported, :reported_not_adult, :requested_permanent_deletion, :minified, :code_search]
+    layout 'list', only: [:index, :search, :libraries, :reported, :reported_not_adult, :minified, :code_search]
   end
 
   def index
@@ -192,11 +192,6 @@ module ScriptListings
 
   def reported_not_adult
     @scripts = Script.reported_not_adult
-    render :reported
-  end
-
-  def requested_permanent_deletion
-    @scripts = Script.requested_permanent_deletion
     render :reported
   end
 

@@ -1,42 +1,29 @@
-<% if @user.can_be_deleted? %>
+<% script_count = @user.scripts.count %>
+<% script_set_count = @user.script_sets.count %>
 
-	<% script_count = @user.scripts.count %>
-	<% script_set_count = @user.script_sets.count %>
+<p><%= t('users.delete.intro', site_name: site_name, user_name: @user.name) %></p>
 
-	<p><%= t('users.delete.intro', site_name: site_name, user_name: @user.name) %></p>
+<ul>
+  <% if @user.encrypted_password.present? %>
+    <li><%= t('users.delete.password_effect') %></li>
+  <% end
+  if @user.identities.any?
+    user_identities = @user.identities.map(&:pretty_provider).compact.uniq %>
+    <li><%= t('users.delete.identities_effect', identities: user_identities.to_sentence, count: user_identities.count) %></li>
+  <% end
+  if script_count > 0 %>
+    <li><%= t('users.delete.scripts_effect', count: script_count) %></li>
+  <% end
+  if script_set_count > 0 %>
+    <li><%= t('users.delete.script_sets_effect', count: script_set_count) %></li>
+  <% end
+  if @user.forum_user.present? %>
+    <li><%= t('users.delete.forum_effect', user_name: "Deleted User #{@user.id}") %></li>
+  <% end %>
+</ul>
 
-	<ul>
-		<% if @user.encrypted_password.present? %>
-			<li><%= t('users.delete.password_effect') %></li>
-		<% end
-		if @user.identities.any? 
-			user_identities = @user.identities.map(&:pretty_provider).compact.uniq %>
-			<li><%= t('users.delete.identities_effect', identities: user_identities.to_sentence, count: user_identities.count) %></li>
-		<% end
-		if script_count > 0 %>
-			<li><%= t('users.delete.scripts_effect', count: script_count) %></li>
-		<% end
-		if script_set_count > 0 %>
-			<li><%= t('users.delete.script_sets_effect', count: script_set_count) %></li>
-		<% end
-		if @user.forum_user.present? %>
-			<li><%= t('users.delete.forum_effect', user_name: "Deleted User #{@user.id}") %></li>
-		<% end %>
-	</ul>
+<p><%= t('users.delete.email_confirmation', email: @user.email, site_name: site_name) %></p>
 
-	<p><%= t('users.delete.email_confirmation', email: @user.email, site_name: site_name) %></p>
-
-	<%= form_tag(user_delete_start_path) do %>
-		<input type="submit" value="<%= t('users.delete.submit') %>">
-	<% end %>
-
-<% else %>
-
-	<p><%= t('users.delete.require_permanent_deletion') %></p>
-
-	<ul>
-		<% @user.scripts.reject(&:immediate_deletion_allowed?).each do |script| %>
-			<li><%=link_to script.default_name, script%></li>
-		<% end %>
-	</ul>
+<%= form_tag(user_delete_start_path) do %>
+  <input type="submit" value="<%= t('users.delete.submit') %>">
 <% end %>

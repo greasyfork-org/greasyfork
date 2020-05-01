@@ -111,25 +111,25 @@ en:
     # heading for permanent deletion section
     delete_permanently_heading: "Permanent deletion"
     # explanation of permanent deletion
-    delete_permanently_explanation: "Permanently deleting your script will delete it and all associated records, with the exception of forum discussions and the log of moderator actions. Permanent deletion is permanent; it can't be undone, even by moderators."
-    # explanation that the permanent deletion must be confirmed by a moderator
-    delete_permanently_request_explanation: "Permanent deletion of this script can only be completed after review by moderators."
+    delete_permanently_explanation_html: >-
+      <p>Permanently deleting your script will delete it and all associated records, with the exception of forum discussions and the log of moderator actions.</p>
+      <p>Your script will be permanently deleted 7 days after your request. You can cancel the permanent deletion in this time. If you do not, no one, not even moderators, will be able to recover your script.</p>
     # confirmation on pressing the permanent deletion button
-    delete_permanently_confirm: "Are you sure you want to permanently delete your script? This action cannot be undone!"
+    delete_permanently_confirm: "Are you sure you want to permanently delete your script?"
     # text for the permanent deletion button
     delete_permanently_submit: "Request permanent deletion"
     # text for the permanent deletion button when it would take effect immediately
     delete_permanently_immediate_submit: "Permanently delete"
     # notice after requesting permanent deletion
-    delete_permanently_notice: "Request for permanent deletion has been recorded and will be reviewed by a moderator."
+    delete_permanently_notice: "Request for permanent deletion has been recorded. Your script will be permanently deleted in 7 days."
     # text on the delete page after permanently deletion was requested
-    delete_permanently_already_requested: "You requested permanent deletion at %{datetime}."
+    delete_permanently_already_requested: "You requested permanent deletion on %{datetime}."
     # notice after permanently deletion
     delete_permanently_notice_immediate: "Script permanently deleted."
     # text for cancelling a permanent deletion request
     cancel_delete_permanently_submit: "Cancel permanent deletion request"
     # notice after cancelling a permanent deletion request
-    cancel_delete_permanently_notice: "Your request for permanent deletion has been cancelled."
+    cancel_delete_permanently_notice: "Your request for permanent deletion has been cancelled. Your script is still not visible to others."
     # error when attempting to delete a locked script
     delete_permanently_rejected_locked: "This script is locked and can't be permanently deleted"
     admin_page: "Admin"
@@ -799,7 +799,6 @@ en:
     delete_link: "Delete account"
     delete:
       intro: "Deleting your %{site_name} account '%{user_name}' will have the following effects:"
-      requires_permanent_deletion: "Before deleting your account, you must request permanent deletion of the following scripts:"
       password_effect: "You will no longer be able to sign in with your password."
       identities_effect:
         one: "Signing in via %{identities} will result in a new account."

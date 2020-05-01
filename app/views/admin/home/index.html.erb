@@ -10,7 +10,6 @@
   <li><%= link_to "Similarities", admin_script_similarities_path %></li>
   <li><%= link_to "Reported: #{Script.reported.count}", reported_scripts_path %></li>
   <li><%=link_to "Reported as not adult content: #{Script.reported_not_adult.count}", reported_not_adult_scripts_path%></li>
-  <li><%=link_to "Requested permanent deletion: #{Script.requested_permanent_deletion.count}", requested_permanent_deletion_scripts_path%></li>
   <% if current_user.administrator? %>
     <li><%= link_to 'Ad Approval', pending_admin_ads_path %></li>
     <li><%= link_to 'Stats Upload', admin_analytics_stats_path %></li>
