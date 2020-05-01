@@ -544,12 +544,12 @@ class ScriptsController < ApplicationController
     # relation both forward and backward, take the higher score.
     @similarities = []
     @script.script_similarities.includes(:other_script).order(similarity: :desc, id: :asc).each do |ss|
-      @similarities << [ss.other_script, ss.similarity]
+      @similarities << [ss.other_script, ss.similarity] unless ss.other_script.deleted?
     end
     # If we haven't run the forward, don't bother with the backward.
     if @similarities.any?
       ScriptSimilarity.where(other_script: @script).order(similarity: :desc, id: :asc).each do |ss|
-        @similarities << [ss.script, ss.similarity]
+        @similarities << [ss.script, ss.similarity] unless ss.script.deleted?
       end
       @similarities = @similarities.sort_by(&:last).reverse.uniq(&:first).first(100)
     end
