@@ -2,11 +2,11 @@
   <h3><%= t('scripts.admin.compare_title') %></h3>
 
   <%= form_with(url: admin_script_path(@script), method: :GET, html: { class: 'diff_options' }) do |f| %>
-    <%= f.label :compare, t('scripts.admin.compare_to') %>
+    <%= f.label :compare, t('scripts.admin.compare_to', site_name: site_name) %>
     <%= f.url_field :compare, required: true, value: params[:compare] %>
-
+    <br>
     <%= render partial: 'diff_options', locals: { context: @context} %>
-
+    <br>
     <%= f.submit t('scripts.admin.compare_button') %>
   <% end %>
 
