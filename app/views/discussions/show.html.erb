@@ -1,0 +1,13 @@
+<% @discussion.comments.each do |comment| %>
+  <div>
+    At <%= l(comment.created_at) %>, <%= render_poster(comment) %> said:
+    <div>
+      <%= format_user_text(comment.text, comment.text_markup) %>
+    </div>
+  </div>
+<% end %>
+<%= form_with(model: @comment, url: scoped_comment_create_path(@discussion), method: :POST) do |f| %>
+  <%= f.label 'Post reply' %>
+  <%= render partial: 'discussions/comment_entry', locals: { f: f } %>
+  <%= f.submit %>
+<% end %>
