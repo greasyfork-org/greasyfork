@@ -6,6 +6,6 @@ class CreateDiscussions < ActiveRecord::Migration[6.0]
       t.integer :script_id
       t.integer :rating
     end
-    add_foreign_key :discussions, :scripts
+    add_foreign_key :discussions, :scripts, on_delete: :cascade
   end
 end
