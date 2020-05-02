@@ -7,10 +7,12 @@ class ScriptDiscussionsTest < ApplicationSystemTestCase
     script = Script.first
     visit feedback_script_url(script, locale: :en)
     fill_in 'discussion_comments_attributes_0_text', with: 'this is my comment'
+    choose 'Good'
     assert_difference -> { Discussion.count } => 1 do
       click_button 'Create Discussion'
       assert_content 'this is my comment'
     end
+    assert_equal Discussion::RATING_GOOD, Discussion.last.rating
   end
 
   test 'commenting on a discussion' do
