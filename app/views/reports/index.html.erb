@@ -1,0 +1,22 @@
+<% if @reports.any? %>
+  <% @reports.each do |report| %>
+    <h4><%= report_item_link(report) %> has been reported for <%= report.reason_text %> by <%= link_to(report.reporter.name, user_path(report.reporter)) %>.</h4>
+    <% if report.explanation %>
+      <blockquote>
+        <%= report.explanation %>
+      </blockquote>
+    <% end %>
+    <%
+      uphold_text = case report.item
+                    when User
+                      "Ban #{report.item.name}"
+                    else
+                      raise "Unknown item #{report.item}"
+                    end
+    %>
+    <%= button_to('Dismiss report', dismiss_report_path(report), method: 'POST', form_class: 'inline-form') %>
+    <%= button_to(uphold_text, uphold_report_path(report), method: 'POST', form_class: 'inline-form') %>
+  <% end %>
+<% else %>
+  <p>There are currently no pending reports.</p>
+<% end %>

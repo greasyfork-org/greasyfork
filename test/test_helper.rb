@@ -3,6 +3,7 @@ require File.expand_path('../config/environment', __dir__)
 require 'rails/test_help'
 require 'minitest/autorun'
 require 'mocha/minitest'
+require 'application_system_test_case'
 
 module ActiveSupport
   class TestCase

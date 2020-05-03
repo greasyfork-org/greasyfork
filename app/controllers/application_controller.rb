@@ -238,4 +238,12 @@ class ApplicationController < ActionController::Base
     with[:script_type_id] = ScriptType::PUBLIC_TYPE_ID
     with
   end
+
+  def moderators_only
+    render_access_denied unless current_user&.moderator?
+  end
+
+  def administrators_only
+    render_access_denied unless current_user&.administrator?
+  end
 end
