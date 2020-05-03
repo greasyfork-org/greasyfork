@@ -584,7 +584,7 @@ class ScriptsController < ApplicationController
 
     diff_options = ["-U #{@context}"]
     diff_options << '-w' if !params[:w].nil? && params[:w] == '1'
-    @other_script = get_script_from_input(params[:compare])
+    @other_script = get_script_from_input(params[:compare], allow_deleted: true)
 
     if @other_script.is_a?(Script)
       @diff = Diffy::Diff.new(@other_script.newest_saved_script_version.code, @script.newest_saved_script_version.code, include_plus_and_minus_in_html: true, include_diff_info: true, diff: diff_options).to_s(:html).html_safe
