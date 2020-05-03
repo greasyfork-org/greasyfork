@@ -795,6 +795,28 @@ pt-BR:
     consecutive_bad_ratings:
       one: "%{script_names} recebeu consecutivas avaliações negativas.  Por favor reveja seu script e responda as queixas nas avaliações."
       other: "%{script_names} receberam consecutivas avaliações negativas. Por favor reveja seus scripts e responda as queixas nas avaliações."
+  reports:
+    report_filed: "Sua denúncia será revisada por um moderador"
+    new_report_title:
+      user: "Denunciar %{user}"
+    new_report_notes_html: >
+        <p>Antes de denunciar, saiba que:</p> <ul>
+
+        <li>Um moderador revisará sua denúncia e tomará as medidas apropriadas.</li>
+
+        <li>Discordar com o conteúdo ou acreditar que ele não é verdadeiro não é um
+        motivo válido para fazer uma denúncia.</li>
+
+        <li>Abusar da função de denúncia pode fazer com que <i>você</i> seja banido.</li>
+
+        </ul>
+    reason:
+      spam: "Spam"
+      abuse: "Conteúdo de ódio ou abusivo"
+      illegal: "Malware ou conteúdo ilegal"
+    explanation_placeholder: "Forneça detalhes adicionais (opicional)"
+    create_button: "Criar denúncia"
+    report_user: "Denunciar usuário"
   common:
     error_preamble: "Houve alguns problemas com o que você postou..."
     allowed_elements_link: "(Veja código permitido.)"
@@ -838,6 +860,8 @@ pt-BR:
         name: "Nome"
         description: "Descrição"
         default_sort: "Ordenação padrão"
+      report:
+        reason: "Motivo da denúncia"
   errors:
     messages:
       script_missing_name: "é requerido - especifique um com @name"
