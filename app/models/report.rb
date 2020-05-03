@@ -15,7 +15,7 @@ class Report < ApplicationRecord
   scope :unresolved, -> { where(result: nil) }
 
   belongs_to :item, polymorphic: true
-  belongs_to :reporter, class_name: 'User'
+  belongs_to :reporter, class_name: 'User', inverse_of: :reports_as_reporter
 
   validates :reason, inclusion: { in: [REASON_SPAM, REASON_ABUSE, REASON_ILLEGAL] }, presence: true
 

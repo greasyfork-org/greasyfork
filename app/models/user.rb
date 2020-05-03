@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   has_many :authors, dependent: :destroy
   has_many :scripts, through: :authors
+  has_many :reports_as_reporter, foreign_key: :reporter_id, inverse_of: :reporter, class_name: 'Report'
   has_many :script_reports, foreign_key: 'reporter_id'
 
   # Gotta to it this way because you can't pass a parameter to a has_many, and we need it has_many
@@ -228,6 +229,17 @@ class User < ApplicationRecord
     User.where(canonical_email: canonical_email, banned: false).each do |user|
       user.ban!(moderator: moderator, reason: reason, private_reason: private_reason, ban_related: false)
     end
+  end
+
+  def report_stats(ignore_report: nil)
+    report_scope = reports_as_reporter
+    report_scope = report_scope.where.not(id: ignore_report) if ignore_report
+    stats = report_scope.group(:result).count
+    {
+        pending: stats[nil] || 0,
+        dismissed: stats['dismissed'] || 0,
+        upheld: stats['upheld'] || 0
+    }
   end
 
   protected
