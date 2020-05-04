@@ -2,6 +2,10 @@ class ReportsController < ApplicationController
   before_action :authenticate_user!
   before_action :moderators_only, only: [:index, :dismiss, :uphold]
 
+  before_action do
+    @bots = 'noindex'
+  end
+
   def new
     @report = Report.new(item: item, reporter: current_user)
   end

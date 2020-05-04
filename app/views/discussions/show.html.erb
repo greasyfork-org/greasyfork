@@ -1,8 +1,18 @@
 <% @discussion.comments.each do |comment| %>
   <div class="comment" id="comment-<%= comment.id %>">
-    At <%= l(comment.created_at) %>, <%= render_poster(comment) %> said:
+    <div class="comment-meta">
+      <div class="comment-meta-item comment-meta-item-main">
+        <%= render_poster(comment) %>
+      </div>
+      <div class="comment-meta-item">
+        Posted: <%= markup_date(comment.created_at) %>
+      </div>
+      <div class="comment-meta-spacer"></div>
+      <div class="comment-meta-item">
+        <%= link_to t('reports.report_comment'), new_report_path(item_class: 'comment', item_id: comment.id), class: 'report-link' %>
+      </div>
+    </div>
     <div class="user-content">
-      <%= link_to t('reports.report_comment'), new_report_path(item_class: 'comment', item_id: comment.id), class: 'report-link' %>
       <%= format_user_text(comment.text, comment.text_markup) %>
     </div>
   </div>
