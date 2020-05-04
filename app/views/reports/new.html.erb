@@ -1,0 +1,31 @@
+<h3>
+  <% case @report.item %>
+  <% when User %>
+    <%= t('reports.new_report_title.user', user: report_item_link(@report)).html_safe %>
+  <% when Comment %>
+    <%= t('reports.new_report_title.comment', user: render_user(@report.item.poster, @report.item.poster_id)).html_safe %>
+  <% end %>
+</h3>
+
+<% if @report.item.is_a?(Comment) %>
+  <div class="user-content">
+    <%= format_user_text(@report.item.text, @report.item.text_markup) %>
+  </div>
+<% end %>
+
+<%= t('reports.new_report_notes_html') %>
+
+<%= form_with(model: @report) do |f| %>
+  <div class="form-control radio-group">
+    <%= f.label :reason %><br>
+    <%= f.radio_button(:reason, Report::REASON_SPAM, required: true) %> <%= f.label :reason, t('reports.reason.spam'), class: 'radio-label', value: Report::REASON_SPAM %><br>
+    <%= f.radio_button(:reason, Report::REASON_ABUSE, required: true) %> <%= f.label :reason, t('reports.reason.abuse'), class: 'radio-label', value: Report::REASON_ABUSE %><br>
+    <%= f.radio_button(:reason, Report::REASON_ILLEGAL, required: true) %> <%= f.label :reason, t('reports.reason.illegal'), class: 'radio-label', value: Report::REASON_ILLEGAL %><br>
+  </div>
+  <%= f.text_area :explanation, placeholder: t('reports.explanation_placeholder') %>
+  <%= hidden_field_tag :item_class, @report.item.class.name.downcase %>
+  <%= hidden_field_tag :item_id, @report.item.id %>
+  <p>
+    <%= f.submit t('reports.create_button') %>
+  </p>
+<% end %>

@@ -1,6 +1,6 @@
 <% reported_count = ScriptReport.unresolved_old.count %>
 <% if reported_count > 0 %>
-  <%= link_to "[#{reported_count}]", reported_scripts_path, title: 'Reported' %>
+  <%= link_to "[#{reported_count}]", reported_scripts_path, title: 'Reported scripts' %>
 <% end %>
 <% requiring_review_count = Script.not_deleted.where(review_state: :required).count %>
 <% if requiring_review_count > 0 %>
@@ -9,4 +9,8 @@
 <% reported_not_adult = Script.reported_not_adult.count %>
 <% if reported_not_adult > 0 %>
   <%= link_to "[#{reported_not_adult}]", reported_not_adult_scripts_path, title: 'Reported not adult' %>
+<% end %>
+<% generic_reported_count = Report.unresolved.count %>
+<% if generic_reported_count > 0 %>
+  <%= link_to "[#{generic_reported_count}]", reports_path, title: 'Reported' %>
 <% end %>

@@ -188,7 +188,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :cache_with_log, :sleazy?, :script_subset, :site_name
 
-  def get_script_from_input(value)
+  def get_script_from_input(value, allow_deleted: false)
     return nil if value.blank?
 
     script_id = nil
@@ -213,7 +213,7 @@ class ApplicationController < ActionController::Base
       return :not_found
     end
 
-    return :deleted unless script.script_delete_type_id.nil?
+    return :deleted if !allow_deleted && script.deleted?
 
     return script
   end
@@ -237,5 +237,13 @@ class ApplicationController < ActionController::Base
            end
     with[:script_type_id] = ScriptType::PUBLIC_TYPE_ID
     with
+  end
+
+  def moderators_only
+    render_access_denied unless current_user&.moderator?
+  end
+
+  def administrators_only
+    render_access_denied unless current_user&.administrator?
   end
 end

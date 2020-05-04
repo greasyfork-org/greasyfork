@@ -785,6 +785,28 @@ bg:
     consecutive_bad_ratings:
       one: "%{script_names} has received consecutive bad ratings. Please review your script and reply to the concerns raised in the ratings."
       other: "Вашите скриптове %{script_names} са получили няколко последователни лоши оценки. Моля, прегледайте ги и отговорете на повдигнатите в оценките въпроси."
+  reports:
+    report_filed: "Вашият доклад ще бъде прегледан от модератор."
+    new_report_title:
+      user: "Докладвай %{user}"
+    new_report_notes_html: >
+        <p>Преди да докладвате обърнете внимание:</p> <ul>
+
+        <li>Модератор ще прегледа доклада ви и ще вземе съответните мерки.</li>
+
+        <li>Неодобрение на съдържанието или мнението ви, че не е вярно, не е валидна
+        причина за доклад.</li>
+
+        <li>Злоупотребата с тази функция може да доведе  <i>вие</i> да получите бан.</li>
+
+        </ul>
+    reason:
+      spam: "Спам"
+      abuse: "Обидно или омразно съдържание"
+      illegal: "Зловредно или нелегално съдържание"
+    explanation_placeholder: "Напишете допълнителни подробности (по желание)"
+    create_button: "Изпратете доклад"
+    report_user: "Докладвайте потребителя"
   common:
     error_preamble: "Има някои проблеми с това, което публикувате..."
     allowed_elements_link: "(Вижте разрешения код.)"
@@ -828,6 +850,8 @@ bg:
         name: "Име"
         description: "Описание"
         default_sort: "Сортиране по подразбиране"
+      report:
+        reason: "Причина за доклада"
   errors:
     messages:
       script_missing_name: "е задължително - укажете с @name"

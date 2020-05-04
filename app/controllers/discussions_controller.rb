@@ -14,7 +14,7 @@ class DiscussionsController < ApplicationController
     discussion.poster = discussion.comments.first.poster = current_user
     discussion.script = @script
     discussion.save!
-    redirect_to scoped_discussion_path(discussion)
+    redirect_to discussion.path
   end
 
   private

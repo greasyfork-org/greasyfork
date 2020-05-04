@@ -1021,6 +1021,26 @@ en:
     consecutive_bad_ratings:
       one: "%{script_names} has received consecutive bad ratings. Please review your script and reply to the concerns raised in the ratings."
       other: "%{script_names} have received consecutive bad ratings. Please review your scripts and reply to the concerns raised in the ratings."
+  reports:
+    report_filed: "Your report will be reviewed by a moderator."
+    new_report_title:
+      user: "Report %{user}"
+      comment: "Report a comment by %{user}"
+    new_report_notes_html: >
+      <p>Before reporting, please note:</p>
+      <ul>
+        <li>A moderator will review your report and act on it accordingly.</li>
+        <li>Disagreeing with the content or believing it to be untrue is not a valid reason for reporting.</li>
+        <li>Abuse of this reporting feature may lead to <i>you</i> being banned.</li>
+      </ul>
+    reason:
+      spam: "Spam"
+      abuse: "Abusive or hateful content"
+      illegal: "Malware or illegal content"
+    explanation_placeholder: "Provide additional details (optional)"
+    create_button: "Create report"
+    report_user: "Report user"
+    report_comment: "Report comment"
   common:
     # text to show before listing errors in a submission
     error_preamble: "There were some problems with what you posted..."
@@ -1097,6 +1117,8 @@ en:
         description: "Description"
         # default sort of the script set
         default_sort: "Default sort"
+      report:
+        reason: "Reason for report"
   errors:
     messages:
       # validation for when a script name is not provided

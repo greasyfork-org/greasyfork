@@ -1,7 +1,8 @@
 <% @discussion.comments.each do |comment| %>
-  <div>
+  <div class="comment" id="comment-<%= comment.id %>">
     At <%= l(comment.created_at) %>, <%= render_poster(comment) %> said:
-    <div>
+    <div class="user-content">
+      <%= link_to t('reports.report_comment'), new_report_path(item_class: 'comment', item_id: comment.id), class: 'report-link' %>
       <%= format_user_text(comment.text, comment.text_markup) %>
     </div>
   </div>

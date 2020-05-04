@@ -62,10 +62,20 @@ pt-BR:
     delete_update_behaviour_1: "Eles irão mante-lo como está."
     delete_update_behaviour_2: "Serão atualizados para um script em branco. Isto é útilizado quando o script tem um efeito negativo nos sites os quais ele é executado."
     delete_permanently_heading: "Exclusão permanente"
+    delete_permanently_explanation_html: >-
+        <p>Remover seu script permanentemente irá removê-lo e todos os registros associados
+        a ele, com exceção do fórum de discussão e o log de ações de moderadores.</p>
+        <p>Seu script será removido permanentemente 7 dias após o pedido. Você pode
+        cancelar a remoção permanente durante este período. Se não o fizer, ninguém,
+        nem mesmo moderadores, poderão recuperar seu script.</p>
+    delete_permanently_confirm: "Tem certeza que deseja remover seu script permanentemente?"
     delete_permanently_submit: "Solicitar exclusão permanente"
     delete_permanently_immediate_submit: "Remover permanentemente"
+    delete_permanently_notice: "O pedido para remoção permanente foi registrado. Seu script será removido permanentemente em 7 dias."
+    delete_permanently_already_requested: "Você solicitou a remoção permanente em %{datetime}."
     delete_permanently_notice_immediate: "O script foi removido permanentemente."
     cancel_delete_permanently_submit: "Cancelar solicitação de exclusão permanente"
+    cancel_delete_permanently_notice: "Seu pedido de remoção permanente foi cancelado. Seu script continua visível para outros."
     delete_permanently_rejected_locked: "Este script está travado e por isso não pode ser removido permanentemente"
     admin_page: "Administrador"
     admin:
@@ -81,7 +91,9 @@ pt-BR:
       update_locale: "Atualizar Tradução"
       no_moderator_logs: "Esse script não sofreu modificações por parte dos moderadores."
       compare_title: "Comparar com outro script"
+      compare_to: "Script no %{site_name} para comparar (URL)"
       compare_button: "Comparar"
+      compare_must_be_local_url: "O script de comparação deve ser uma URL do %{site_name}."
     history_title: "%{script_name} - Histórico da Versão"
     history_only_code_changes_info: "Estas são as versões deste script em que houve atualização do código."
     history_all_changes_link: "Mostar todas versões."
@@ -783,6 +795,28 @@ pt-BR:
     consecutive_bad_ratings:
       one: "%{script_names} recebeu consecutivas avaliações negativas.  Por favor reveja seu script e responda as queixas nas avaliações."
       other: "%{script_names} receberam consecutivas avaliações negativas. Por favor reveja seus scripts e responda as queixas nas avaliações."
+  reports:
+    report_filed: "Sua denúncia será revisada por um moderador"
+    new_report_title:
+      user: "Denunciar %{user}"
+    new_report_notes_html: >
+        <p>Antes de denunciar, saiba que:</p> <ul>
+
+        <li>Um moderador revisará sua denúncia e tomará as medidas apropriadas.</li>
+
+        <li>Discordar com o conteúdo ou acreditar que ele não é verdadeiro não é um
+        motivo válido para fazer uma denúncia.</li>
+
+        <li>Abusar da função de denúncia pode fazer com que <i>você</i> seja banido.</li>
+
+        </ul>
+    reason:
+      spam: "Spam"
+      abuse: "Conteúdo de ódio ou abusivo"
+      illegal: "Malware ou conteúdo ilegal"
+    explanation_placeholder: "Forneça detalhes adicionais (opicional)"
+    create_button: "Criar denúncia"
+    report_user: "Denunciar usuário"
   common:
     error_preamble: "Houve alguns problemas com o que você postou..."
     allowed_elements_link: "(Veja código permitido.)"
@@ -826,6 +860,8 @@ pt-BR:
         name: "Nome"
         description: "Descrição"
         default_sort: "Ordenação padrão"
+      report:
+        reason: "Motivo da denúncia"
   errors:
     messages:
       script_missing_name: "é requerido - especifique um com @name"

@@ -135,9 +135,9 @@ class ScriptsController < ApplicationController
       @discussion.comments.build
     else
       @discussions = @script.discussions
-        .includes(last_reply_forum_poster: :users, original_forum_poster: :users)
-        .reorder(Arel.sql('COALESCE(DateLastComment, DateInserted) DESC'))
-        .paginate(page: params[:page], per_page: 25)
+                            .includes(last_reply_forum_poster: :users, original_forum_poster: :users)
+                            .reorder(Arel.sql('COALESCE(DateLastComment, DateInserted) DESC'))
+                            .paginate(page: params[:page], per_page: 25)
     end
 
     set_bots_directive
@@ -590,7 +590,7 @@ class ScriptsController < ApplicationController
 
     diff_options = ["-U #{@context}"]
     diff_options << '-w' if !params[:w].nil? && params[:w] == '1'
-    @other_script = get_script_from_input(params[:compare])
+    @other_script = get_script_from_input(params[:compare], allow_deleted: true)
 
     if @other_script.is_a?(Script)
       @diff = Diffy::Diff.new(@other_script.newest_saved_script_version.code, @script.newest_saved_script_version.code, include_plus_and_minus_in_html: true, include_diff_info: true, diff: diff_options).to_s(:html).html_safe

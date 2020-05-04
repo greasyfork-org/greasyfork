@@ -92,7 +92,9 @@ fr:
       update_locale: "Mettre à jour la locale"
       no_moderator_logs: "Aucun mesure n'a été prise par les modérateurs sur ce script."
       compare_title: "Comparer à d'autre script"
+      compare_to: "Le script %{site_name} est comparable à (URL)"
       compare_button: "Comparer"
+      compare_must_be_local_url: "Le script de comparaison doit être un URL de %{site_name}."
     history_title: "%{script_name} - Historique des versions"
     history_only_code_changes_info: "Voici les versions de ce script où le code a été modifié."
     history_all_changes_link: "Voir toutes les versions."
@@ -807,6 +809,28 @@ fr:
     consecutive_bad_ratings:
       one: "%{script_names} a reçu plusieurs mauvaises notes consécutives. Veuillez revoir votre script et répondre aux préoccupations soulevées dans les évaluations."
       other: "%{script_names} ont reçu plusieurs mauvaises notes consécutives. Veuillez revoir vos scripts et répondre aux préoccupations soulevées dans les évaluations."
+  reports:
+    report_filed: "Votre rapport sera examiné par un modérateur."
+    new_report_title:
+      user: "Rapport %{user}"
+    new_report_notes_html: >
+        <p>Avant de signaler, veuillez noter que:</p> <ul>
+
+        <li>Un modérateur examinera votre rapport et agira en conséquence.</li>
+
+        <li>Le fait de ne pas être d'accord avec le contenu ou de le croire faux n'est
+        pas une raison valable pour signaler.</li>
+
+        <li>L'abus de cette fonctionnalité de rapport peut entraîner <i>votre</i>  bannissement.</li>
+
+        </ul>
+    reason:
+      spam: "Spam"
+      abuse: "Contenu abusif ou haineux"
+      illegal: "Contenu malveillant ou illégal"
+    explanation_placeholder: "Ajouter des détails supplémentaires (optionnel)"
+    create_button: "Créer un rapport"
+    report_user: "Rapport utilisateur"
   common:
     error_preamble: "Il y a des erreurs dans ce que vous avez posté..."
     allowed_elements_link: "(Voir les balises autorisées.)"
@@ -850,6 +874,8 @@ fr:
         name: "Nom"
         description: "Description"
         default_sort: "Tri par défaut"
+      report:
+        reason: "Motif du signalement"
   errors:
     messages:
       script_missing_name: "est nécessaire - spécifiez-le avec @name"

@@ -1,0 +1,23 @@
+#report_explanation {
+  width: 100%;
+  height: 10em;
+}
+.reportable {
+  position: relative;
+}
+.report-link {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: smaller;
+  margin-right: 16px;
+  margin-top: 8px;
+}
+.report-list-item:not(:last-child) {
+  padding-bottom: 20px;
+  border-bottom: 1px solid gray;
+  margin-bottom: 20px;
+}
+.report-list-item .inline-form {
+  margin-right: 5px;
+}

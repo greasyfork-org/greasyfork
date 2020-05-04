@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     comment = @discussion.comments.build(comments_params)
     comment.poster = current_user
     comment.save!
-    redirect_to scoped_discussion_path(@discussion)
+    redirect_to @discussion.path
   end
 
   private

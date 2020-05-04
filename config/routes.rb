@@ -159,6 +159,13 @@ Rails.application.routes.draw do
 
     get 'opensearch.xml', to: 'opensearch#description', as: 'opensearch_description'
 
+    resources :reports, only: [:new, :create, :index] do
+      member do
+        post :dismiss
+        post :uphold
+      end
+    end
+
     namespace :admin do
       get '/' => 'home#index'
       resources :ads, only: [] do
