@@ -39,7 +39,7 @@
             <script src="https://app.codefund.io/properties/620/funder.js" async="async"></script>
           </li>
         <% end %>
-        <%= render partial: 'scripts/script', collection: @scripts, cached: params[:locale_override].nil? ? ->(script) { [script, I18n.locale] } : false %>
+        <%= render partial: 'scripts/script', collection: @scripts, cached: params[:locale_override].nil? ? ->(script) { [script, request_locale] } : false %>
       </ol>
     <% end %>
 
