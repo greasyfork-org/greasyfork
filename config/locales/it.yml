@@ -41,8 +41,14 @@ it:
     promoted_text_html: "Potresti essere interessato/a anche a %{script_link}"
     library_instructions_html: "Questo script non dovrebbe essere installato direttamente. È una libreria per altri script da includere con la chiave %{code}"
     deleted_notice: "Questo script è stato rimosso."
+    deleted_notice_with_related: "Lo script che hai cercato è stato rimosso, ma ci sono alcuni script simili."
+    deleted_undelete_notice_html: "Lo script è stato bloccato da un moderatore e non può essere cancellato. La motivazione fornita è: \"<i>%{delete_reason}</i>\"."
+    deleted_locked_author_notice_html: "Lo script è stato cancellato da un moderatore e non è accessibile da altri. La motivazione fornita è: \"<i>%{delete_reason}</i>\"."
+    deleted_author_notice: "Lo script è stato cancellato e non è accessibile da altri. Puoi ripristinarlo dalla finestra Cancella."
     version_notice_html: "Versione datata %{date}. Vedi la nuova versione %{latest_version_link}."
     version_notice_latest_version_link: "l'ultima versione"
+    reported_notice: "\"%{script_name}\" è stato segnalato e la valutazione è in capo ad un moderatore."
+    reported_notice_for_author: "Questo script non sarà disponibile per tutti finché non sarà approvato da un moderatore."
     info_page: "Informazioni"
     code_page: "Codice"
     history_page: "Storia"
@@ -56,10 +62,21 @@ it:
     delete_update_behaviour_1: "Lo manterranno così com'è."
     delete_update_behaviour_2: "Sarà loro offerto un aggiornamento a uno script vuoto. Quest'opzione è adatta al caso in cui lo script abbia un effetto negativo sui siti su cui viene eseguito."
     delete_permanently_heading: "Elimina definitivamente"
+    delete_permanently_explanation_html: >-
+        <p>L'eliminazione definitiva del tuo script lo cancellerà insieme a tutti
+        i record associati, ad eccezione delle discussioni sul forum e dei log delle
+        azioni dei moderatori.</p> <p>Il tuo script sarà cancellato definitivamente
+        7 giorni dopo la tua richiesta. Puoi annullare l'eliminazione entro questo
+        periodo di tempo. Se non lo farai nessuno potrà recuperare il tuo script,
+        nemmeno i moderatori.</p>
+    delete_permanently_confirm: "Sei sicuro di voler eliminare definitivamente il tuo script?"
     delete_permanently_submit: "Richiedi eliminazione permanente"
     delete_permanently_immediate_submit: "Elimina permanentemente"
+    delete_permanently_notice: "La richiesta di eliminazione definitiva è stata registrata. Il tuo script sarà definitivamente cancellato fra 7 giorni."
+    delete_permanently_already_requested: "Hai richiesto l'eliminazione definitiva il %{datetime} "
     delete_permanently_notice_immediate: "Script eliminato permanentemente."
     cancel_delete_permanently_submit: "Annulla richiesta di eliminazione permanente"
+    cancel_delete_permanently_notice: "La tua richiesta di eliminazione definitiva è stata rimossa. Il tuo script è ancora invisibile agli altri."
     delete_permanently_rejected_locked: "Questo script è bloccato e non può essere eliminato permanentemente"
     admin_page: "Amministratore"
     admin:
@@ -74,6 +91,10 @@ it:
       locale_multiple_note: "Ricorda che %{meta_keys_link:uno script può avere più lingue definite}."
       update_locale: "Aggiorna lingua"
       no_moderator_logs: "I moderatori non hanno intrapreso alcuna azione su questo script."
+      compare_title: "Confronta con un altro script"
+      compare_to: "Script su %{site_name}da confrontare (URL)"
+      compare_button: "Confronta"
+      compare_must_be_local_url: "Lo script da confrontare deve essere rappresentato da un URL di %{site_name} "
     history_title: "%{script_name} - Cambiamenti versioni"
     history_only_code_changes_info: "queste sono le versioni di questo script in cui il codice è stato aggiornato"
     history_all_changes_link: "Visualizza tutte le versioni."
@@ -102,6 +123,8 @@ it:
     stats_download_raw_data_html: "Scarica tutti i dati come: %{links}"
     stats_no_data: "N/A"
     derivatives_title: "%{script_name} - Derivati"
+    derivatives_intro: "Questi script potrebbero essere basati sui tuoi (o i tuoi su di loro). Se trovi un utilizzo illecito del tuo codice segnalalo dal tab dei feedback di quello script."
+    derivatives_script_html: "%{script}di %{user}, licenza: %{license} %{diff_link:[Diff]}"
     listing_title_all_sites: "Script utente per tutti i siti"
     listing_description_all_sites: "Script che aggiungono funzioni e rimuovono bug in tutti i siti"
     listing_title_for_site: "Script per %{site}"
@@ -122,6 +145,7 @@ it:
     listing_filter_by_site_label: "Visualizza script per:"
     listing_filter_by_site_disable: "Tutti"
     listing_filter_by_site_all_sites: "(tutti i siti)"
+    listing_filter_by_language_label: "Lingua:"
     listing_filter_by_site_more_sites: "Più..."
     listing_no_scripts: "Nessuno script trovato"
     listing_created_feed: "Nuovi script"
@@ -129,6 +153,9 @@ it:
     listing_none: "(niente)"
     listing_set_locale_filter: "Sono visualizzati i risultati per tutte le lingue. %{set_filter_link:Mostra solo i risultati per%{language}.}"
     listing_remove_locale_filter: "Sono visualizzati solo i risultati per %{language}. %{remove_filter_link:Mostra i risultati per tutte le lingue.}"
+    listing_language_all: "Tutti"
+    listing_language_js: "JavaScript"
+    listing_language_css: "CSS"
     import: "Importa script"
     new: "Posta uno script"
     new_css: "Carica uno stile"
@@ -219,6 +246,7 @@ it:
     adult_content_on_greasy_logged_in_error: "Questo script non è più disponibile su questo sito con le tue %{edit_account_link:impostazioni account di Greasy Fork}."
     adult_content_on_greasy_not_logged_in_error: "Questo script non è più disponibile in modo anonimo su questo sito. %{login_link:Accedi} e controlla le tue impostazioni account di Greasy Fork."
     non_adult_content_on_sleazy: "Questo script non è disponibile su questo sito."
+    not_js_convertible_override_header: "Conversione in JS"
     adult_marker: "(Adulti)"
     deleted_marker: "(Eliminato)"
     locked_marker: "(Bloccato)"
@@ -260,6 +288,10 @@ it:
       remove_confirm: "Sei sicuro che vuoi rimuovere %{user_name} come autore?"
       failure: "Non è possibile rimuovere l'autore."
     no_disposable_email: "Non è possibile pubblicare script se si utilizza un indirizzo email usa e getta."
+    new_script_notice:
+      title: "Cosa stai cercando di fare?"
+      install_link_html: "Voglio <b>installare e usare</b>uno script"
+      share_link_html: "Ho <b>creato</b>uno script e voglio <b>condividerlo</b>con gli altri."
   script_sets:
     description: "Gli insiemi di script ti permettono di creare una lista personalizzata di script con cui navigare su Greasy Fork. Puoi aggiungere script al tuo insieme includendo script individuali, insiemi di altri utenti, o insiemi generati automaticamente. Puoi inoltre escludere degli script dal tuo insieme con gli stessi metodi."
     favorites_name: "Preferiti"
@@ -340,12 +372,12 @@ it:
     search_placeholder: "Trova script utente"
     scripts_for_label: "Script per:"
     explain_user_scripts_heading: "Cosa sono gli user script?"
-    explain_user_scripts_html: "Gli scripts ti mettono al comando della tua esperienza di navigazione.Appena saranno installati, aggiungeranno funzionalità ai siti che navighi, li renderanno più semplici da usare,oppure rimuoveranno cose che non ti piacciono.Gli scripts su %{site_name} sono stati scritti da altri utenti e pubblicati per essere condivisi con tutti.Sono gratuiti e facili da usare."
+    explain_user_scripts_html: "Gli scripts ti mettono al comando della tua esperienza di navigazione. Appena saranno installati aggiungeranno funzionalità ai siti su cui navighi, li renderanno più semplici da usare,oppure rimuoveranno cose che non ti piacciono. Gli scripts su %{site_name} sono stati prodotti da altri utenti e pubblicati per essere condivisi con tutti. Sono gratuiti e facili da usare."
     installing_step1_header: "Step 1: installa un gestore di script utente"
     installing_step1_caption: "Tampermonkey su Chrome"
     installing_step1_description_html: >
-        <p>Per utilizzare gli script utente devi prima installare un gestore di script
-        utente. Quali gestori di script utente puoi utilizzare dipende dal tuo browser.</p>
+        <p>Per utilizzare gli script devi prima installare un gestore di script utente.
+        Quale gestore di script utente installare dipende dal tuo browser.</p>
 
         <ul>
 
@@ -495,6 +527,10 @@ it:
         cancelled: "Cancellazione interrotta."
         completed: "Il tuo account è stato eliminato."
   help:
+    sections:
+      usage: Utilizzo
+      development: Sviluppo
+      miscellaneous: Vari
     installing_user_scripts:
       title: 'Come installare gli script'
     meta_keys:
@@ -669,6 +705,17 @@ it:
     item_script_html: "Script: %{script_link}"
     item_deleted_script: "Script eliminato %{id}"
     item_user_html: "Utente: %{user_link}"
+  reports:
+    report_filed: "La tua segnalazione sarà presa in carico da un moderatore."
+    new_report_title:
+      user: "Segnala %{user}"
+    reason:
+      spam: "Spam"
+      abuse: "Contenuto non autorizzato o che incita all'odio"
+      illegal: "Malware o contenuto pericoloso o illegale"
+    explanation_placeholder: "Fornisci ulteriori dettagli (opzionale)"
+    create_button: "Crea segnalazione"
+    report_user: "Segnala utente"
   common:
     error_preamble: "Ci sono alcuni problemi con quello che hai postato..."
     allowed_elements_link: "(Controlla codice permesso.)"
@@ -712,6 +759,8 @@ it:
         name: "Nome"
         description: "Descrizione"
         default_sort: "Ordinamento predefinito"
+      report:
+        reason: "Motivo della segnalazione"
   errors:
     messages:
       script_missing_name: "è richiesto - specificane uno con @name"
@@ -726,8 +775,20 @@ it:
       script_update_not_utf8: "il testo caricato deve rispettare lo standard UTF-8 "
       script_disallowed_require: "utilizza uno script esterno non ammesso: %{code}"
       script_rate_limit: "Hai superato il limite di caricamento. Riprova più tardi."
+      missing_include_or_match: "deve includere almeno una chiave @match o @include"
   opensearch:
     short_name: "ricerca %{site_name}"
     description: "Ricerca per user script su %{site_name}."
     long_name: "ricerca user script %{site_name}"
     attribution: "Copyright degli autori degli script, vedere ogni singolo script per le licenze"
+  mailers:
+    script_report:
+      report_created_offender:
+        subject: "Il tuo script %{script_name} su %{site_name} è stato segnalato"
+        reason_unauthorized: "Il tuo script %{script_name} su %{site_name} è stato segnalato essere copia non autorizzata o modificata di un altro script."
+        reason_malware: "Il tuo script %{script_name} su %{site_name} è stato segnalato come malware."
+        reason_spam: "Il tuo script %{script_name} su %{site_name} è stato segnalato come spam."
+        reason_other: "Il tuo script %{script_name} è stato segnalato violare le regole di %{site_name}."
+    consecutive_bad_ratings:
+      notify:
+        subject: "Il tuo script %{script_name} su %{site_name} ha ricevuto numerose recensioni negative"
