@@ -25,7 +25,7 @@ show_report_thread = defined?(show_report_thread) && show_report_thread
         -
       </span>
       <span class="description">
-        <%=script.description(I18n.locale)%>
+        <%= script.description(request_locale) %>
       </span>
     </h2>
     <dl class="inline-script-stats">

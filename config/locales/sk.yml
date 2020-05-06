@@ -803,6 +803,27 @@ sk:
       few: "%{script_names} dostal po sebe idúce zlé hodnotenia. Preskúmajte vaše skripty a odpovedzte na obavy uvedené v hodnoteniach."
       many: "%{script_names} dostal po sebe idúce zlé hodnotenia. Preskúmajte vaše skripty a odpovedzte na obavy uvedené v hodnoteniach."
       other: "%{script_names} dostal po sebe idúce zlé hodnotenia. Preskúmajte vaše skripty a odpovedzte na obavy uvedené v hodnoteniach."
+  reports:
+    report_filed: "Vaša sťažnosť bude posúdená moderátorom."
+    new_report_title:
+      user: "Nahlásiť %{user}"
+    new_report_notes_html: >
+        <p>Pred nahlásením, si uvedomte, že: <ul>
+
+        <li>Moderátor posúdi vašu sťažnosť a podľa toho bude konať.</li>
+
+        <li>Nesúhlas s obsahom alebo jeho pravdivosťou nie je dôvod pre jeho nahlásenie.</li>
+
+        <li>Zneužitie tejto funkcie nahlasovania môže viesť k <i>vášmu</i> zablokovaniu.</li>
+
+        </ul>
+    reason:
+      spam: "Spam"
+      abuse: "Urážlivý alebo nenávistný obsah"
+      illegal: "Škodlivý alebo nezákonný obsah"
+    explanation_placeholder: "Uveďte ďalšie podrobnosti (voliteľné)"
+    create_button: "Nahlásiť"
+    report_user: "Nahlásiť užívateľa"
   common:
     error_preamble: "Boli zistené problémy s tým, čo ste poslali."
     allowed_elements_link: "(Pozri zoznam povolených značiek.)"
@@ -846,6 +867,8 @@ sk:
         name: "Názov"
         description: "Popis"
         default_sort: "Predvolené zoradenie"
+      report:
+        reason: "Dôvod nahlásenia"
   errors:
     messages:
       script_missing_name: "potrebné - uveďte v @name"
