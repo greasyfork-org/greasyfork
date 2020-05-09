@@ -1,8 +1,10 @@
 module ScriptListings
   extend ActiveSupport::Concern
 
-  COLLECTION_PUBLIC_ACTIONS = [:index, :search, :libraries, :code_search, :by_site].freeze
+  COLLECTION_PUBLIC_ACTIONS = [:index, :search, :libraries, :by_site].freeze
   COLLECTION_MODERATOR_ACTIONS = [:reported, :reported_not_adult, :minified].freeze
+  # We want to avoid bots on code_search as it's pretty expensive.
+  COLLECTION_LOGGED_IN_ACTIONS = [:code_search].freeze
 
   included do
     layout 'list', only: [:index, :search, :libraries, :reported, :reported_not_adult, :minified, :code_search]
@@ -215,7 +217,7 @@ module ScriptListings
     end
 
     # get latest version for each script
-    script_version_ids = Script.connection.select_values('SELECT MAX(id) FROM script_versions GROUP BY script_id')
+    script_version_ids = Rails.cache.fetch('latest_script_version_ids', expires_in: 5.minutes) { Script.connection.select_values('SELECT MAX(id) FROM script_versions GROUP BY script_id') }
 
     # check the code for the search text
     # using the escape character doesn't seem to work, yet it works from the command line. so choose something unlikely to be used as our escape character
