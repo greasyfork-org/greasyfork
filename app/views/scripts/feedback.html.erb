@@ -38,18 +38,10 @@
 
 <h3><%=t('scripts.feedback_discussions_heading')%></h3>
 <% if @script.use_new_discussions? %>
-  <%= form_with(model: @discussion, url: script_discussions_path(@script), method: :POST) do |f| %>
-    <%= f.fields_for(:comments) do |cf| %>
-      <%= render partial: 'discussions/comment_entry', locals: { f: cf, markup_name: 'discussion[comments_attributes][0][text_markup]' } %>
-    <% end %>
-    <%= render partial: 'discussions/rating_entry', locals: { f: f } %>
-    <%= f.submit %>
-  <% end %>
-
   <% #if we're showing a lot of them, have a link on top too
      if @discussions.length > 10 %>
     <p>
-      <%= it('scripts.feedback_or_report', report_link: It.link(report_script_path(@script), rel: :nofollow), feedback_link: It.link("#{forum_path}post/discussion?script=#{@script.id}", rel: :nofollow)) %>
+      <%= it('scripts.feedback_or_report', report_link: It.link(feedback_script_path(@script), rel: :nofollow), feedback_link: It.link("#{forum_path}post/discussion?script=#{@script.id}", rel: :nofollow)) %>
     </p>
   <% end %>
   <% if @discussions.empty? %>
@@ -61,9 +53,14 @@
       <%= render collection: @discussions, partial: 'discussions/discussion' %>
     </ul>
     <%= will_paginate @discussions %>
-    <p>
-      <%= it('scripts.feedback_or_report', report_link: It.link(report_script_path(@script), rel: :nofollow), feedback_link: It.link("#{forum_path}post/discussion?script=#{@script.id}", rel: :nofollow)) %>
-    </p>
+  <% end %>
+  <h3><%= t('discussions.new_discussion_heading') %></h3>
+  <%= form_with(model: @discussion, url: script_discussions_path(@script), method: :POST) do |f| %>
+    <%= f.fields_for(:comments) do |cf| %>
+      <%= render partial: 'discussions/comment_entry', locals: { f: cf, markup_name: 'discussion[comments_attributes][0][text_markup]' } %>
+    <% end %>
+    <%= render partial: 'discussions/rating_entry', locals: { f: f } %>
+    <%= f.submit t('discussions.new_discussion_submit') %>
   <% end %>
 <% else %>
   <% #if we're showing a lot of them, have a link on top too
