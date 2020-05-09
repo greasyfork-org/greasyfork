@@ -1,5 +1,5 @@
 class Discussion < ApplicationRecord
-  RATING_QUESTION = 1
+  RATING_QUESTION = 0
   RATING_BAD = 2
   RATING_OK = 3
   RATING_GOOD = 4
@@ -22,6 +22,18 @@ class Discussion < ApplicationRecord
 
   def last_comment_date
     comments.last.created_at
+  end
+
+  def actual_rating?
+    [RATING_BAD, RATING_OK, RATING_GOOD].include?(rating)
+  end
+
+  def rating_key
+    case rating
+    when RATING_GOOD; 'good'
+    when RATING_BAD; 'bad'
+    when RATING_OK; 'ok'
+    end
   end
 
   def path(locale: nil)

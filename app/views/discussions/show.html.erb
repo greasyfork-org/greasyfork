@@ -3,6 +3,14 @@
     <%= link_to t('discussions.back_to_feedback', script: @discussion.script.name(request_locale)), feedback_script_path(@discussion.script) %>
   </p>
 <% end %>
+<h3>
+  <% if @discussion.actual_rating? %>
+    <%= t('discussions.review_heading_html', user: render_poster(@discussion), rating: t("discussions.ratings.#{@discussion.rating_key}")) %>
+  <% else %>
+    <%= t('discussions.question_heading_html', user: render_poster(@discussion)) %>
+  <% end %>
+</h3>
+
 <% @discussion.comments.each do |comment| %>
   <% by_current_user = comment.poster && current_user == comment.poster %>
   <div class="comment" id="comment-<%= comment.id %>">

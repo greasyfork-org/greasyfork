@@ -1052,6 +1052,13 @@ en:
     delete_discussion: "Delete"
     update_comment_submit: "Update comment"
     cancel_update_comment: "Cancel"
+    question_heading_html: "Question/comment by %{user}"
+    review_heading_html: "Review by %{user}: %{rating}"
+    ratings:
+      question: "No rating - just a question/comment"
+      bad: "Bad - script does not work"
+      ok: "OK - script works, but could use improvement"
+      good: "Good - script works"
   common:
     # text to show before listing errors in a submission
     error_preamble: "There were some problems with what you posted..."
@@ -1130,6 +1137,8 @@ en:
         default_sort: "Default sort"
       report:
         reason: "Reason for report"
+      discussion:
+        rating: "Rating"
   errors:
     messages:
       # validation for when a script name is not provided
