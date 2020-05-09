@@ -65,9 +65,15 @@
   </div>
 <% end %>
 <div class="post-reply">
-  <%= form_with(model: @comment, url: scoped_comment_create_path(@discussion), method: :POST) do |f| %>
-    <h3><%= t('discussions.new_comment_heading') %></h3>
-    <%= render partial: 'discussions/comment_entry', locals: { f: f } %>
-    <%= f.submit t('discussions.new_comment_submit') %>
+  <h3><%= t('discussions.new_comment_heading') %></h3>
+  <% if current_user %>
+    <%= form_with(model: @comment, url: scoped_comment_create_path(@discussion), method: :POST) do |f| %>
+      <%= render partial: 'discussions/comment_entry', locals: { f: f } %>
+      <%= f.submit t('discussions.new_comment_submit') %>
+    <% end %>
+  <% else %>
+    <p>
+      <%= link_to t('discussions.sign_in_to_post_comment'), new_user_session_path(return_to: request.fullpath) %>
+    </p>
   <% end %>
 </div>

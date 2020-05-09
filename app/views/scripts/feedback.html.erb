@@ -55,12 +55,18 @@
     <%= will_paginate @discussions %>
   <% end %>
   <h3><%= t('discussions.new_discussion_heading') %></h3>
-  <%= form_with(model: @discussion, url: script_discussions_path(@script), method: :POST) do |f| %>
-    <%= f.fields_for(:comments) do |cf| %>
-      <%= render partial: 'discussions/comment_entry', locals: { f: cf, markup_name: 'discussion[comments_attributes][0][text_markup]' } %>
+  <% if current_user %>
+    <%= form_with(model: @discussion, url: script_discussions_path(@script), method: :POST) do |f| %>
+      <%= f.fields_for(:comments) do |cf| %>
+        <%= render partial: 'discussions/comment_entry', locals: { f: cf, markup_name: 'discussion[comments_attributes][0][text_markup]' } %>
+      <% end %>
+      <%= render partial: 'discussions/rating_entry', locals: { f: f } %>
+      <%= f.submit t('discussions.new_discussion_submit') %>
     <% end %>
-    <%= render partial: 'discussions/rating_entry', locals: { f: f } %>
-    <%= f.submit t('discussions.new_discussion_submit') %>
+  <% else %>
+    <p>
+      <%= link_to t('discussions.sign_in_to_post_discussion'), new_user_session_path(return_to: request.fullpath) %>
+    </p>
   <% end %>
 <% else %>
   <% #if we're showing a lot of them, have a link on top too
