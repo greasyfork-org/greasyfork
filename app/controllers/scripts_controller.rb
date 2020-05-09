@@ -46,6 +46,8 @@ class ScriptsController < ApplicationController
         next
       end
       @bots = 'noindex'
+    when *COLLECTION_LOGGED_IN_ACTIONS
+      authenticate_user!
     else
       raise "Unknown action #{action_name}"
     end
