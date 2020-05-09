@@ -208,7 +208,7 @@ module ScriptListings
   end
 
   def code_search
-    @bots = 'noindex,follow'
+    @bots = 'noindex,nofollow'
     if params[:c].nil? || params[:c].empty?
       redirect_to search_path(anchor: 'code-search'), status: 301
       return
