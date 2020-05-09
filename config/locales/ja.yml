@@ -61,10 +61,16 @@ ja:
     delete_update_behaviour_1: "インストールされたままにします。"
     delete_update_behaviour_2: "インストールされているスクリプトを更新して空のスクリプトにします。実行されるサイトにスクリプトが悪影響をおよぼす場合は、こちらが適切です。"
     delete_permanently_heading: "完全な削除"
+    delete_permanently_explanation_html: >-
+        <p>このスクリプトとすべての関連する記録を、フォーラムでの議論と管理担当者による処理のログを除き完全に削除します。</p> <p>このリクエストから7日後に完全に削除されます。この間に完全な削除をキャンセルできます。キャンセルしなかった場合、管理担当者でもこのスクリプトを復元できません。</p>
+    delete_permanently_confirm: "本当にこのスクリプトを完全に削除しますか？"
     delete_permanently_submit: "完全な削除を申請する"
     delete_permanently_immediate_submit: "完全に削除する"
+    delete_permanently_notice: "完全な削除のリクエストが記録されました。このスクリプトは7日後に完全に削除されます。"
+    delete_permanently_already_requested: "%{datetime}に完全な削除をリクエストしました。"
     delete_permanently_notice_immediate: "スクリプトは完全に削除されました。"
     cancel_delete_permanently_submit: "完全な削除の申請を取り消す"
+    cancel_delete_permanently_notice: "完全な削除のリクエストはキャンセルされました。あなたのスクリプトはまだ第三者に対し表示されていません。"
     delete_permanently_rejected_locked: "このスクリプトはロックされており、完全に削除することはできません"
     admin_page: "管理"
     admin:
@@ -80,7 +86,9 @@ ja:
       update_locale: "ロケールの設定を更新"
       no_moderator_logs: "このスクリプトに対するモデレーターの処置はありません。"
       compare_title: "別のスクリプトと比較"
+      compare_to: "%{site_name} 上のスクリプトと比較 (URL)"
       compare_button: "比較"
+      compare_must_be_local_url: "比較には%{site_name} 上の URL が必要です。"
     history_title: "%{script_name} のバージョン履歴"
     history_only_code_changes_info: "コードが変更されたバージョンのみを表示しています。"
     history_all_changes_link: "すべてのバージョンを表示"
@@ -92,7 +100,7 @@ ja:
     feedback_has_reports: "このスクリプトは %{site_name} のルールに違反していると報告されています。"
     feedback_no_discussions_html: "まだスレッドはありません。%{start_first_discussion_link}"
     feedback_start_first_discussion_link: "このスクリプトについて最初のスレッドを立てる。"
-    feedback_discussion_or_report: "%{new_discussion_link:Start a new discussion on this script} または %{report_link:report it for removal}."
+    feedback_discussion_or_report: "%{new_discussion_link:このスクリプトの新規の議論を開始} または %{report_link:削除のために報告}する。"
     feedback_discussions_heading: "掲示板のスレッド"
     feedback_favoriters_heading: "お気に入り"
     feedback_favoriters_user_list_intro: " "
@@ -315,8 +323,8 @@ ja:
       excluded_none: "(未設定)"
       remove_excluded: "選択したものをリストから外す"
       add_label: "リストに入れるスクリプト (空白・改行区切りの URL または ID)"
-      add_include: "追加リストへ登録する"
-      add_exclude: "除外リストへ登録する"
+      add_include: "追加リストへ登録"
+      add_exclude: "除外リストへ登録"
     edit_sets:
       heading: "スクリプトセット"
       description: "このスクリプトセットに追加する、またはスクリプトセットから除外する他のスクリプトセット。"
@@ -327,8 +335,8 @@ ja:
       excluded_none: "(未設定)"
       remove_excluded: "選択したセットをリストから外す"
       add_label: "リストに入れるスクリプト (空白・改行区切りの URL または ID)"
-      add_include: "追加リストへ登録する"
-      add_exclude: "除外リストへ登録する"
+      add_include: "追加リストへ登録"
+      add_exclude: "除外リストへ登録"
       user_label: "指定したユーザー (URL、ID または 名前) のスクリプトセットを一覧表示する"
       user_no_sets: "(指定したユーザーはセットを作成していません)"
       user_no_other_sets: "(指定したユーザーのセットは、リストに登録されているもので全部です)"
@@ -694,6 +702,27 @@ ja:
   notifications:
     consecutive_bad_ratings:
       other: "%{script_names} に連続で悪い評価がついています。スクリプトを見直し、評価の懸念事項に返信を行ってください。"
+  reports:
+    report_filed: "あなたの報告は管理担当者によって審査されます。"
+    new_report_title:
+      user: "%{user} を報告"
+    new_report_notes_html: >
+        <p>報告前にお読みください:</p> <ul>
+
+        <li>管理担当者は報告を審査して応じて対処します。</li>
+
+        <li>内容に同意しないとか、虚偽であると思うのは報告の正当な理由にはなりません。</li>
+
+        <li>この報告機能を乱用すれば<i>あなたの追放</i> という結果になることがあります。</li>
+
+        </ul>
+    reason:
+      spam: "スパム"
+      abuse: "虐待や増悪に満ちた内容"
+      illegal: "マルウェアや違法な内容"
+    explanation_placeholder: "追加の詳細を提供 (任意)"
+    create_button: "報告の作成"
+    report_user: "ユーザーを報告"
   common:
     error_preamble: "以下に表示されているエラーを修正し、もう一度送信してください。"
     allowed_elements_link: "使用可能なタグ"
@@ -737,6 +766,8 @@ ja:
         name: "セット名"
         description: "説明"
         default_sort: "既定の並べ替え"
+      report:
+        reason: "報告の理由"
   errors:
     messages:
       script_missing_name: "は必須です – @name メタキーで指定"
