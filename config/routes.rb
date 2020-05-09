@@ -117,8 +117,8 @@ Rails.application.routes.draw do
         end
       end
 
-      resources :discussions, only: [:show, :create, :show] do
-        resources :comments, only: [:create]
+      resources :discussions, only: [:show, :create, :show, :destroy] do
+        resources :comments, only: [:create, :destroy, :update]
       end
     end
     resources :script_versions, only: [:create, :new]

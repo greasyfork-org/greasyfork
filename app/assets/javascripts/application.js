@@ -25,3 +25,4 @@
 //= require announcements
 //= require ads
 //= require similar-search
+//= require forum

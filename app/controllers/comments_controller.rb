@@ -1,13 +1,30 @@
 class CommentsController < ApplicationController
   include DiscussionHelper
 
-  before_action :authenticate_user!, only: :create
+  before_action :authenticate_user!
   before_action :load_discussion
+  before_action :moderators_only, only: :destroy
 
   def create
     comment = @discussion.comments.build(comments_params)
     comment.poster = current_user
     comment.save!
+    redirect_to @discussion.path
+  end
+
+  def update
+    comment = @discussion.comments.find(params[:id])
+    unless comment.poster && comment.poster == current_user
+      render_access_denied
+      return
+    end
+    comment.update!(comments_params)
+    redirect_to comment.path(locale: request_locale.code)
+  end
+
+  def destroy
+    comment = @discussion.comments.find(params[:id])
+    comment.destroy!
     redirect_to @discussion.path
   end
 

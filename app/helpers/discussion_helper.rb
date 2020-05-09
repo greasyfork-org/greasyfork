@@ -19,4 +19,12 @@ module DiscussionHelper
       discussion_comments_path(discussion)
     end
   end
+
+  def scoped_comment_path(comment)
+    if comment.discussion.script
+      script_discussion_comment_path(comment.discussion.script, comment.discussion, comment)
+    else
+      discussion_comment_path(comment.discussion, comment)
+    end
+  end
 end

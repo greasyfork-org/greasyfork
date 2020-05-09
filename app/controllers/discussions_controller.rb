@@ -2,6 +2,7 @@ class DiscussionsController < ApplicationController
   include DiscussionHelper
 
   before_action :authenticate_user!, only: :create
+  before_action :moderators_only, only: :destroy
 
   def show
     @discussion = discussion_scope.find(params[:id])
@@ -15,6 +16,16 @@ class DiscussionsController < ApplicationController
     discussion.script = @script
     discussion.save!
     redirect_to discussion.path
+  end
+
+  def destroy
+    discussion = discussion_scope.find(params[:id])
+    discussion.destroy!
+    if discussion.script
+      redirect_to script_path(discussion.script)
+    else
+      redirect_to root_path
+    end
   end
 
   private

@@ -1,24 +1,60 @@
+<% if @discussion.script %>
+  <p class="discussion-up-level">
+    <%= link_to t('discussions.back_to_feedback', script: @discussion.script.name(request_locale)), feedback_script_path(@discussion.script) %>
+  </p>
+<% end %>
 <% @discussion.comments.each do |comment| %>
+  <% by_current_user = comment.poster && current_user == comment.poster %>
   <div class="comment" id="comment-<%= comment.id %>">
     <div class="comment-meta">
       <div class="comment-meta-item comment-meta-item-main">
         <%= render_poster(comment) %>
       </div>
       <div class="comment-meta-item">
-        Posted: <%= markup_date(comment.created_at) %>
+        <%= t('discussions.comment_date', date: markup_date(comment.created_at)).html_safe %>
       </div>
       <div class="comment-meta-spacer"></div>
-      <div class="comment-meta-item">
-        <%= link_to t('reports.report_comment'), new_report_path(item_class: 'comment', item_id: comment.id), class: 'report-link' %>
-      </div>
+      <% if by_current_user %>
+        <div class="comment-meta-item">
+          <%= link_to t('discussions.edit_comment_link'), '#', class: 'edit-comment', data: { comment_container: "comment-#{comment.id}" } %>
+        </div>
+      <% end %>
+      <% if current_user&.moderator? %>
+        <div class="comment-meta-item">
+          <% if comment.discussion.script %>
+            <% if comment.first_comment? %>
+              <%= link_to t('discussions.delete_discussion'), script_discussion_path(comment.discussion.script, comment.discussion.id), method: :DELETE, data: { confirm: 'Are you sure you want to delete this discussion?' } %>
+            <% else %>
+              <%= link_to t('discussions.delete_comment'), script_discussion_comment_path(comment.discussion.script, comment.discussion.id, comment.id), method: :DELETE, data: { confirm: 'Are you sure you want to delete this comment?' } %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+      <% unless by_current_user %>
+        <div class="comment-meta-item">
+          <%= link_to t('reports.report_comment'), new_report_path(item_class: 'comment', item_id: comment.id), class: 'report-link' %>
+        </div>
+      <% end %>
     </div>
     <div class="user-content">
       <%= format_user_text(comment.text, comment.text_markup) %>
     </div>
+    <% if by_current_user %>
+      <div class="edit-comment-form">
+        <%= form_with(model: comment, url: scoped_comment_path(comment), method: :PATCH) do |f| %>
+          <h3><%= t('discussions.edit_comment_header') %></h3>
+          <%= render partial: 'discussions/comment_entry', locals: { f: f } %>
+          <%= f.submit t('discussions.update_comment_submit') %>
+          <%= f.submit t('discussions.cancel_update_comment'), class: 'cancel-edit-comment', data: { comment_container: "comment-#{comment.id}" } %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 <% end %>
-<%= form_with(model: @comment, url: scoped_comment_create_path(@discussion), method: :POST) do |f| %>
-  <%= f.label 'Post reply' %>
-  <%= render partial: 'discussions/comment_entry', locals: { f: f } %>
-  <%= f.submit %>
-<% end %>
+<div class="post-reply">
+  <%= form_with(model: @comment, url: scoped_comment_create_path(@discussion), method: :POST) do |f| %>
+    <h3><%= t('discussions.new_comment_heading') %></h3>
+    <%= render partial: 'discussions/comment_entry', locals: { f: f } %>
+    <%= f.submit t('discussions.new_comment_submit') %>
+  <% end %>
+</div>
