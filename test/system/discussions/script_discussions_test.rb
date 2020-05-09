@@ -13,6 +13,15 @@ class ScriptDiscussionsTest < ApplicationSystemTestCase
       assert_content 'this is my comment'
     end
     assert_equal Discussion::RATING_GOOD, Discussion.last.rating
+    click_link 'Edit'
+    within '.edit-comment-form' do
+      fill_in 'comment_text', with: 'this is an updated reply'
+    end
+    choose 'Bad'
+    assert_changes -> { Discussion.last.rating }, from: Discussion::RATING_GOOD, to: Discussion::RATING_BAD do
+      click_button 'Update comment'
+      assert_content 'this is an updated reply'
+    end
   end
 
   test 'commenting on a discussion' do
