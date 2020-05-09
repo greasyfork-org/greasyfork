@@ -42,13 +42,7 @@
     <%= f.fields_for(:comments) do |cf| %>
       <%= render partial: 'discussions/comment_entry', locals: { f: cf, markup_name: 'discussion[comments_attributes][0][text_markup]' } %>
     <% end %>
-    <div class="form-control radio-group">
-      <label><%= t('activerecord.attributes.discussion.rating') %></label><br>
-      <%= f.radio_button :rating, Discussion::RATING_QUESTION, required: true %> <%= f.label :rating, 'No rating - just a question', value: Discussion::RATING_QUESTION, class: 'radio-label' %><br>
-      <%= f.radio_button :rating, Discussion::RATING_BAD, required: true %> <%= f.label :rating, 'Bad - script does not work', value: Discussion::RATING_BAD, class: 'radio-label' %><br>
-      <%= f.radio_button :rating, Discussion::RATING_OK, required: true %> <%= f.label :rating, 'OK - script works, but could use improvement', value: Discussion::RATING_OK, class: 'radio-label' %><br>
-      <%= f.radio_button :rating, Discussion::RATING_GOOD, required: true %> <%= f.label :rating, 'Good - script works', value: Discussion::RATING_GOOD, class: 'radio-label' %><br>
-    </div>
+    <%= render partial: 'discussions/rating_entry', locals: { f: f } %>
     <%= f.submit %>
   <% end %>
 

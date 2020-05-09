@@ -52,6 +52,11 @@
         <%= form_with(model: comment, url: scoped_comment_path(comment), method: :PATCH) do |f| %>
           <h3><%= t('discussions.edit_comment_header') %></h3>
           <%= render partial: 'discussions/comment_entry', locals: { f: f } %>
+          <% if comment.first_comment? %>
+            <%= f.fields_for comment.discussion do |df| %>
+              <%= render partial: 'discussions/rating_entry', locals: { f: df } %>
+            <% end %>
+          <% end %>
           <%= f.submit t('discussions.update_comment_submit') %>
           <%= f.submit t('discussions.cancel_update_comment'), class: 'cancel-edit-comment', data: { comment_container: "comment-#{comment.id}" } %>
         <% end %>

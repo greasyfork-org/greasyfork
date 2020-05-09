@@ -18,7 +18,13 @@ class CommentsController < ApplicationController
       render_access_denied
       return
     end
-    comment.update!(comments_params)
+    Comment.transaction do
+      if comment.first_comment?
+        rating = params[:comment][:discussion].delete(:rating)
+        comment.discussion.update!(rating: rating)
+      end
+      comment.update!(comments_params)
+    end
     redirect_to comment.path(locale: request_locale.code)
   end
 
