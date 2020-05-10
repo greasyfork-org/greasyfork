@@ -8,6 +8,8 @@ class Discussion < ApplicationRecord
   belongs_to :script
   has_many :comments
 
+  scope :with_actual_rating, -> { where(rating: [RATING_BAD, RATING_OK, RATING_GOOD]) }
+
   accepts_nested_attributes_for :comments
 
   validates :rating, inclusion: { in: [RATING_QUESTION, RATING_BAD, RATING_OK, RATING_GOOD] }
@@ -24,15 +26,21 @@ class Discussion < ApplicationRecord
     comments.last.created_at
   end
 
+  def author_posted?
+    return false unless script
+
+    comments.where(poster: script.users).any?
+  end
+
   def actual_rating?
     [RATING_BAD, RATING_OK, RATING_GOOD].include?(rating)
   end
 
   def rating_key
     case rating
-    when RATING_GOOD; 'good'
-    when RATING_BAD; 'bad'
-    when RATING_OK; 'ok'
+    when RATING_GOOD then 'good'
+    when RATING_BAD then 'bad'
+    when RATING_OK then 'ok'
     end
   end
 

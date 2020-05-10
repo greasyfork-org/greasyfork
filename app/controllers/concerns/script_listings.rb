@@ -226,11 +226,11 @@ module ScriptListings
     include_deleted = current_user&.moderator? && params[:include_deleted] == '1'
     @scripts = @scripts.listable(script_subset) unless include_deleted
     if current_user&.moderator?
-      if include_deleted
-        @page_description = view_context.link_to('Exclude deleted scripts', { c: params[:c], include_deleted: nil })
-      else
-        @page_description = view_context.link_to('Include deleted scripts', { c: params[:c], include_deleted: '1' })
-      end
+      @page_description = if include_deleted
+                            view_context.link_to('Exclude deleted scripts', { c: params[:c], include_deleted: nil })
+                          else
+                            view_context.link_to('Include deleted scripts', { c: params[:c], include_deleted: '1' })
+                          end
     end
     @scripts = @scripts.paginate(page: params[:page], per_page: per_page)
     @title = t('scripts.listing_title_for_code_search', search_string: params[:c])

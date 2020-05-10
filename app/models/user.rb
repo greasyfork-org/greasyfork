@@ -229,9 +229,11 @@ class User < ApplicationRecord
       script_reports.unresolved.each(&:dismiss!)
     end
 
-    User.where(canonical_email: canonical_email, banned: false).each do |user|
-      user.ban!(moderator: moderator, reason: reason, private_reason: private_reason, ban_related: false)
-    end if ban_related
+    if ban_related
+      User.where(canonical_email: canonical_email, banned: false).each do |user|
+        user.ban!(moderator: moderator, reason: reason, private_reason: private_reason, ban_related: false)
+      end
+    end
 
     Report.unresolved.where(item: self).each do |report|
       report.uphold!(moderator: moderator)

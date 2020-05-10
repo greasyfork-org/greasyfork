@@ -38,9 +38,8 @@ class Comment < ApplicationRecord
 
   def notify_script_authors!
     return unless script
-    script.users.reject { |user| poster == user }.select { |author_user|
-      author_user.author_email_notification_type_id == User::AUTHOR_NOTIFICATION_COMMENT || (author_user.author_email_notification_type_id == User::AUTHOR_NOTIFICATION_DISCUSSION && first_comment?)
-    }.each do |author_user|
+
+    script.users.reject { |user| poster == user }.select { |author_user| author_user.author_email_notification_type_id == User::AUTHOR_NOTIFICATION_COMMENT || (author_user.author_email_notification_type_id == User::AUTHOR_NOTIFICATION_DISCUSSION && first_comment?) }.each do |author_user|
       ForumMailer.comment_on_script(author_user, self).deliver_later
     end
   end

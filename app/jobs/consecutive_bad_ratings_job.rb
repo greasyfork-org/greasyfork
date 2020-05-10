@@ -27,6 +27,6 @@ class ConsecutiveBadRatingsJob < ApplicationJob
   end
 
   def scripts_with_discussions
-    ForumDiscussion.where.not('ScriptID' => nil).distinct('ScriptID').pluck('ScriptID')
+    ForumDiscussion.where.not('ScriptID' => nil).distinct('ScriptID').pluck('ScriptID') + Discussion.distinct('script_id').pluck('script_id')
   end
 end
