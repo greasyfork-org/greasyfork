@@ -4,7 +4,7 @@
 <%= it('scripts.report.text_html',
        rules_link: help_code_rules_path,
        site_name: site_name,
-       feedback_link: It.link("#{forum_path}post/discussion?script=#{@script.id}", rel: :nofollow),
+       feedback_link: @script.use_new_discussions? ? It.link(feedback_script_path(@script)) : It.link("#{forum_path}post/discussion?script=#{@script.id}", rel: :nofollow),
        script_name: @script.name(request_locale),
        unauthorized_link: It.link(new_script_script_report_path(@script, report_type: ScriptReport::TYPE_UNAUTHORIZED_CODE), rel: :nofollow),
        malware_link: It.link(new_script_script_report_path(@script, report_type: ScriptReport::TYPE_MALWARE), rel: :nofollow),
