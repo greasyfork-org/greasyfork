@@ -23,6 +23,7 @@ class CommentsController < ApplicationController
         rating = params[:comment][:discussion].delete(:rating)
         comment.discussion.update!(rating: rating)
       end
+      comment.edited_at = Time.now
       comment.update!(comments_params)
     end
     redirect_to comment.path(locale: request_locale.code)

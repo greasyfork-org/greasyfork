@@ -21,6 +21,11 @@
       <div class="comment-meta-item">
         <%= t('discussions.comment_date', date: markup_date(comment.created_at)).html_safe %>
       </div>
+      <% if comment.edited_at %>
+        <div class="comment-meta-item">
+          <%= t('discussions.comment_edit_date', date: markup_date(comment.edited_at)).html_safe %>
+        </div>
+      <% end %>
       <div class="comment-meta-spacer"></div>
       <% if by_current_user %>
         <div class="comment-meta-item">
