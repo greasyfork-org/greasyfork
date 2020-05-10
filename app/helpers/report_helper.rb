@@ -3,6 +3,8 @@ module ReportHelper
     case report.item
     when User
       link_to report.item.name, user_path(report.item)
+    when Comment
+      link_to "A comment by #{report.item.poster&.name || "Deleted user #{report.item.poster_id}"}", report.item.path
     end
   end
 end

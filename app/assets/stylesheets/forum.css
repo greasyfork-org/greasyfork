@@ -1,0 +1,48 @@
+.comment {
+  margin-bottom: 20px;
+}
+.comment-entry {
+  width: 100%;
+  height: 10em;
+}
+.comment-meta {
+  font-size: smaller;
+  display: flex;
+  margin-bottom: 2px;
+  align-items: end;
+}
+.comment-meta-item-main {
+  font-size: medium;
+  font-weight: bold;
+}
+.comment-meta-item + .comment-meta-item {
+  margin-left: 10px;
+}
+.comment-meta-spacer {
+  flex: 1;
+}
+.post-reply {
+  margin-top: 20px;
+}
+.post-reply h3, .edit-comment-form h3 {
+  margin-bottom: 0;
+}
+.post-reply input[type=submit], .edit-comment-form input[type=submit] {
+  margin-top: 5px;
+}
+.discussion-up-level {
+  font-size: smaller;
+  margin-top: 0;
+}
+.edit-comment-form {
+  display: none;
+}
+.edit-comment-mode .edit-comment-form {
+  display: block;
+}
+.edit-comment-mode .user-content, .edit-comment-mode .comment-meta {
+  display: none;
+}
+.discussion-rating {
+  margin-top: 10px;
+}

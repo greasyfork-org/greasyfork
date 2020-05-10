@@ -131,10 +131,16 @@ class ScriptsController < ApplicationController
 
     return if handle_wrong_url(@script, :id)
 
-    @discussions = @script.discussions
-                          .includes(last_reply_forum_poster: :users, original_forum_poster: :users)
-                          .reorder(Arel.sql('COALESCE(DateLastComment, DateInserted) DESC'))
-                          .paginate(page: params[:page], per_page: 25)
+    if @script.use_new_discussions?
+      @discussions = @script.new_discussions.includes(:poster).paginate(page: params[:page], per_page: 25)
+      @discussion = @discussions.build
+      @discussion.comments.build
+    else
+      @discussions = @script.discussions
+                            .includes(last_reply_forum_poster: :users, original_forum_poster: :users)
+                            .reorder(Arel.sql('COALESCE(DateLastComment, DateInserted) DESC'))
+                            .paginate(page: params[:page], per_page: 25)
+    end
 
     set_bots_directive
     @canonical_params = [:id, :version]

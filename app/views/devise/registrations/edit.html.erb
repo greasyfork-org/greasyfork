@@ -61,13 +61,12 @@
 		<%=f.radio_button(:preferred_markup, 'markdown')%><%=link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', {:target => 'markup_choice'}%>
 	</div>
 
-
 	<div>
 		<%= f.label :author_email_notification_type_id %><br>
-		<%= f.radio_button(:author_email_notification_type_id, 1)%> <label for="user_author_email_notification_type_id_1"><%=t('users.author_email_notification_type.none')%></label><br>
-		<%= f.radio_button(:author_email_notification_type_id, 2)%> <label for="user_author_email_notification_type_id_2"><%=t('users.author_email_notification_type.discussion_only')%></label><br>
-		<%= f.radio_button(:author_email_notification_type_id, 3)%> <label for="user_author_email_notification_type_id_3"><%=t('users.author_email_notification_type.discussion_and_comment')%></label><br>
-		<i><%=t('users.author_email_notification_type.note')%></i>
+		<%= f.radio_button(:author_email_notification_type_id, User::AUTHOR_NOTIFICATION_NONE)%> <%= f.label :author_email_notification_type_id, t('users.author_email_notification_type.none'), value: User::AUTHOR_NOTIFICATION_NONE %><br>
+		<%= f.radio_button(:author_email_notification_type_id, User::AUTHOR_NOTIFICATION_DISCUSSION)%> <%= f.label :author_email_notification_type_id, t('users.author_email_notification_type.discussion_only'), value: User::AUTHOR_NOTIFICATION_DISCUSSION %><br>
+		<%= f.radio_button(:author_email_notification_type_id, User::AUTHOR_NOTIFICATION_COMMENT)%> <%= f.label :author_email_notification_type_id, t('users.author_email_notification_type.discussion_and_comment'), value: User::AUTHOR_NOTIFICATION_COMMENT %><br>
+		<i><%= t('users.author_email_notification_type.note') %></i>
 	</div>
 
 	<div>

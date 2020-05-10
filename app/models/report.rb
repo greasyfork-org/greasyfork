@@ -1,16 +1,16 @@
 class Report < ApplicationRecord
-  REASON_SPAM = 'spam'
-  REASON_ABUSE = 'abuse'
-  REASON_ILLEGAL = 'illegal'
+  REASON_SPAM = 'spam'.freeze
+  REASON_ABUSE = 'abuse'.freeze
+  REASON_ILLEGAL = 'illegal'.freeze
 
   REASON_TEXT = {
-      REASON_SPAM => 'spam',
-      REASON_ABUSE => 'abusive or hateful content',
-      REASON_ILLEGAL => 'malware or illegal content',
-  }
+    REASON_SPAM => 'spam',
+    REASON_ABUSE => 'abusive or hateful content',
+    REASON_ILLEGAL => 'malware or illegal content',
+  }.freeze
 
-  RESULT_DISMISSED = 'dismissed'
-  RESULT_UPHELD = 'upheld'
+  RESULT_DISMISSED = 'dismissed'.freeze
+  RESULT_UPHELD = 'upheld'.freeze
 
   scope :unresolved, -> { where(result: nil) }
 
@@ -23,10 +23,13 @@ class Report < ApplicationRecord
     update!(result: RESULT_DISMISSED)
   end
 
-  def uphold!(moderator:)
+  def uphold!(moderator:, variant: nil)
     case item
     when User
       item.ban!(moderator: moderator, reason: "In response to report ##{id}", ban_related: true)
+    when Comment
+      item.poster.ban!(moderator: moderator, reason: "In response to report ##{id}", ban_related: true) if variant == 'ban'
+      item.destroy!
     else
       raise "Unknown report item #{item}"
     end

@@ -37,24 +37,57 @@
 <% end %>
 
 <h3><%=t('scripts.feedback_discussions_heading')%></h3>
-<% #if we're showing a lot of them, have a link on top too
-if @script.discussions.length > 10 %>
-  <p>
-    <%= it('scripts.feedback_or_report', report_link: It.link(report_script_path(@script), rel: :nofollow), feedback_link: It.link("#{forum_path}post/discussion?script=#{@script.id}", rel: :nofollow)) %>
-  </p>
-<% end %>
-<% if @script.discussions.empty? %>
-  <p id="no-discussions">
-    <%=t('scripts.feedback_no_discussions_html', :start_first_discussion_link => "<a id=\"start-discussion\" href=\"#{forum_path}post/discussion?script=#{@script.id}\" rel=\"nofollow\">#{t('scripts.feedback_start_first_discussion_link')}</a>".html_safe)%>
-  </p>
+<% if @script.use_new_discussions? %>
+  <% #if we're showing a lot of them, have a link on top too
+     if @discussions.length > 10 %>
+    <p>
+      <%= it('scripts.feedback_or_report', report_link: It.link(feedback_script_path(@script), rel: :nofollow), feedback_link: It.link("#{forum_path}post/discussion?script=#{@script.id}", rel: :nofollow)) %>
+    </p>
+  <% end %>
+  <% if @discussions.empty? %>
+    <p id="no-discussions">
+      <%=t('scripts.feedback_no_discussions_html', :start_first_discussion_link => "<a id=\"start-discussion\" href=\"#{forum_path}post/discussion?script=#{@script.id}\" rel=\"nofollow\">#{t('scripts.feedback_start_first_discussion_link')}</a>".html_safe)%>
+    </p>
+  <% else %>
+    <ul id="discussions">
+      <%= render collection: @discussions, partial: 'discussions/discussion' %>
+    </ul>
+    <%= will_paginate @discussions %>
+  <% end %>
+  <h3><%= t('discussions.new_discussion_heading') %></h3>
+  <% if current_user %>
+    <%= form_with(model: @discussion, url: script_discussions_path(@script), method: :POST) do |f| %>
+      <%= f.fields_for(:comments) do |cf| %>
+        <%= render partial: 'discussions/comment_entry', locals: { f: cf, markup_name: 'discussion[comments_attributes][0][text_markup]' } %>
+      <% end %>
+      <%= render partial: 'discussions/rating_entry', locals: { f: f } %>
+      <%= f.submit t('discussions.new_discussion_submit') %>
+    <% end %>
+  <% else %>
+    <p>
+      <%= link_to t('discussions.sign_in_to_post_discussion'), new_user_session_path(return_to: request.fullpath) %>
+    </p>
+  <% end %>
 <% else %>
-  <ul id="discussions">
-    <%= render collection: @discussions, partial: 'forum_discussions/discussion' %>
-  </ul>
-  <%= will_paginate @discussions %>
-  <p>
-    <%= it('scripts.feedback_or_report', report_link: It.link(report_script_path(@script), rel: :nofollow), feedback_link: It.link("#{forum_path}post/discussion?script=#{@script.id}", rel: :nofollow)) %>
-  </p>
+  <% #if we're showing a lot of them, have a link on top too
+  if @discussions.length > 10 %>
+    <p>
+      <%= it('scripts.feedback_or_report', report_link: It.link(report_script_path(@script), rel: :nofollow), feedback_link: It.link("#{forum_path}post/discussion?script=#{@script.id}", rel: :nofollow)) %>
+    </p>
+  <% end %>
+  <% if @discussions.empty? %>
+    <p id="no-discussions">
+      <%=t('scripts.feedback_no_discussions_html', :start_first_discussion_link => "<a id=\"start-discussion\" href=\"#{forum_path}post/discussion?script=#{@script.id}\" rel=\"nofollow\">#{t('scripts.feedback_start_first_discussion_link')}</a>".html_safe)%>
+    </p>
+  <% else %>
+    <ul id="discussions">
+      <%= render collection: @discussions, partial: 'forum_discussions/discussion' %>
+    </ul>
+    <%= will_paginate @discussions %>
+    <p>
+      <%= it('scripts.feedback_or_report', report_link: It.link(report_script_path(@script), rel: :nofollow), feedback_link: It.link("#{forum_path}post/discussion?script=#{@script.id}", rel: :nofollow)) %>
+    </p>
+  <% end %>
 <% end %>
 
 <h3 id="feedback-favoriters"><%=t('scripts.feedback_favoriters_heading')%></h3>

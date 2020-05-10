@@ -14,6 +14,7 @@ class Script < ActiveRecord::Base
   has_many :script_applies_tos, dependent: :destroy, autosave: true
   has_many :site_applications, through: :script_applies_tos
   has_many :discussions, -> { readonly.open.order(Arel.sql('COALESCE(DateLastComment, DateInserted)')) }, class_name: 'ForumDiscussion', foreign_key: 'ScriptID'
+  has_many :new_discussions, class_name: 'Discussion'
   has_many :script_set_script_inclusions, foreign_key: 'child_id', dependent: :destroy
   has_many :favorited_in_sets, -> { includes(:users).where('favorite = true') }, through: :script_set_script_inclusions, class_name: 'ScriptSet', source: 'parent'
   has_many :favoriters, through: :favorited_in_sets, class_name: 'User', source: 'user'
@@ -495,18 +496,33 @@ class Script < ActiveRecord::Base
   end
 
   def consecutive_bad_ratings?
-    recent_ratings = discussions
-                     .where('Rating' => [ForumDiscussion::RATING_BAD, ForumDiscussion::RATING_OK, ForumDiscussion::RATING_GOOD])
-                     .where(['DateInserted >= ?', code_updated_at])
-                     .reorder(:DateInserted)
-                     .last(CONSECUTIVE_BAD_RATINGS_COUNT)
-                     .reject(&:author_posted?)
-                     .map(&:Rating)
+    recent_ratings = if use_new_discussions?
+                       new_discussions
+                         .with_actual_rating
+                         .where(['created_at >= ?', code_updated_at])
+                         .reorder(:created_at)
+                         .last(CONSECUTIVE_BAD_RATINGS_COUNT)
+                         .reject(&:author_posted?)
+                         .map(&:rating)
+                     else
+                       discussions
+                         .where('Rating' => [ForumDiscussion::RATING_BAD, ForumDiscussion::RATING_OK, ForumDiscussion::RATING_GOOD])
+                         .where(['DateInserted >= ?', code_updated_at])
+                         .reorder(:DateInserted)
+                         .last(CONSECUTIVE_BAD_RATINGS_COUNT)
+                         .reject(&:author_posted?)
+                         .map(&:Rating)
+
+                     end
     recent_ratings.count == CONSECUTIVE_BAD_RATINGS_COUNT && recent_ratings.all? { |rr| rr == ForumDiscussion::RATING_BAD }
   end
 
   def reset_consecutive_bad_ratings!
     update(consecutive_bad_ratings_at: nil) if consecutive_bad_ratings_at
+  end
+
+  def use_new_discussions?
+    Rails.env.development? || Rails.env.test?
   end
 
   private

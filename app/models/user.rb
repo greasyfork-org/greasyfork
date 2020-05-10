@@ -2,6 +2,10 @@ require 'securerandom'
 require 'devise'
 
 class User < ApplicationRecord
+  AUTHOR_NOTIFICATION_NONE = 1
+  AUTHOR_NOTIFICATION_DISCUSSION = 2
+  AUTHOR_NOTIFICATION_COMMENT = 3
+
   serialize :announcements_seen, Array
 
   scope :moderators, -> { joins(:roles).where(roles: { name: 'moderator' }) }
@@ -62,6 +66,7 @@ class User < ApplicationRecord
   validates_length_of :profile, maximum: 10_000
   validates_inclusion_of :profile_markup, in: %w[html markdown]
   validates_inclusion_of :preferred_markup, in: %w[html markdown]
+  validates :author_email_notification_type_id, inclusion: { in: [AUTHOR_NOTIFICATION_NONE, AUTHOR_NOTIFICATION_DISCUSSION, AUTHOR_NOTIFICATION_DISCUSSION] }
 
   validate do
     errors.add(:email) if new_record? && identities.none? && !EmailAddress.valid?(email)
@@ -224,9 +229,11 @@ class User < ApplicationRecord
       script_reports.unresolved.each(&:dismiss!)
     end
 
-    User.where(canonical_email: canonical_email, banned: false).each do |user|
-      user.ban!(moderator: moderator, reason: reason, private_reason: private_reason, ban_related: false)
-    end if ban_related
+    if ban_related
+      User.where(canonical_email: canonical_email, banned: false).each do |user|
+        user.ban!(moderator: moderator, reason: reason, private_reason: private_reason, ban_related: false)
+      end
+    end
 
     Report.unresolved.where(item: self).each do |report|
       report.uphold!(moderator: moderator)
@@ -238,9 +245,9 @@ class User < ApplicationRecord
     report_scope = report_scope.where.not(id: ignore_report) if ignore_report
     stats = report_scope.group(:result).count
     {
-        pending: stats[nil] || 0,
-        dismissed: stats['dismissed'] || 0,
-        upheld: stats['upheld'] || 0
+      pending: stats[nil] || 0,
+      dismissed: stats['dismissed'] || 0,
+      upheld: stats['upheld'] || 0,
     }
   end
 

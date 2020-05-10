@@ -9,4 +9,12 @@ module UsersHelper
     end
     return ("<li class=\"list-option#{is_link ? '' : ' list-current'}\">" + label + '</li>').html_safe
   end
+
+  def render_user(user, user_id)
+    if user
+      link_to(user.name, user_path(user))
+    else
+      "<i>(Deleted user #{user_id})</i>".html_safe
+    end
+  end
 end

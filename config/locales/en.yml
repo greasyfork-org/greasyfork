@@ -1025,6 +1025,7 @@ en:
     report_filed: "Your report will be reviewed by a moderator."
     new_report_title:
       user: "Report %{user}"
+      comment: "Report a comment by %{user}"
     new_report_notes_html: >
       <p>Before reporting, please note:</p>
       <ul>
@@ -1039,6 +1040,30 @@ en:
     explanation_placeholder: "Provide additional details (optional)"
     create_button: "Create report"
     report_user: "Report user"
+    report_comment: "Report comment"
+  discussions:
+    comment_date: "Posted: %{date}"
+    comment_edit_date: "Edited: %{date}"
+    new_discussion_heading: "Post a review, comment, or question"
+    new_discussion_submit: "Post comment"
+    new_comment_heading: "Post reply"
+    new_comment_submit: "Post reply"
+    back_to_feedback: "< Feedback on %{script}"
+    edit_comment_link: "Edit"
+    edit_comment_header: "Edit comment"
+    delete_comment: "Delete"
+    delete_discussion: "Delete"
+    update_comment_submit: "Update comment"
+    cancel_update_comment: "Cancel"
+    question_heading_html: "Question/comment by %{user}"
+    review_heading_html: "Review by %{user}: %{rating}"
+    ratings:
+      question: "No rating - just a question/comment"
+      bad: "Bad - script does not work"
+      ok: "OK - script works, but could use improvement"
+      good: "Good - script works"
+    sign_in_to_post_discussion: "Sign in to post a review, comment, or question."
+    sign_in_to_post_comment: "Sign in to post a reply."
   common:
     # text to show before listing errors in a submission
     error_preamble: "There were some problems with what you posted..."
@@ -1117,6 +1142,8 @@ en:
         default_sort: "Default sort"
       report:
         reason: "Reason for report"
+      discussion:
+        rating: "Rating"
   errors:
     messages:
       # validation for when a script name is not provided
@@ -1187,3 +1214,13 @@ en:
           Please review the feedback you received at %{feedback_url}, fix any issues, and reply to the concerns raised.
 
           If you do not post a new version or reply to the discussions by %{delete_date}, your script will become hidden on %{site_name}. (After this date, you will be able to make it visible again if you wish.)
+    script_comment:
+      subject: "Your script %{script_name} on %{site_name} has received a comment."
+      text: |
+        Your script '%{script_name}' on %{site_name} (%{script_url}) has received a comment by user '%{commenter_name}':
+
+        ---
+        %{comment_text}
+        ---
+
+        You can view and reply to this comment at %{comment_url}. Manage your notification preferences at %{notification_preferences_url}.

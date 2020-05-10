@@ -116,6 +116,10 @@ Rails.application.routes.draw do
           patch :dismiss
         end
       end
+
+      resources :discussions, only: [:show, :create, :show, :destroy] do
+        resources :comments, only: [:create, :destroy, :update]
+      end
     end
     resources :script_versions, only: [:create, :new]
     get 'script_versions/additional_info_form', to: 'script_versions#additional_info_form', as: 'script_version_additional_info_form'

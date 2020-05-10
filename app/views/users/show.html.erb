@@ -2,7 +2,7 @@
 <%- description "Greasy Fork profile for #{@user.name}" %>
 
 <section class="text-content reportable">
-  <%= link_to t('reports.report_user'), new_report_path(item_class: 'user', item_id: @user.id), class: 'report-link' %>
+  <%= link_to t('reports.report_user'), new_report_path(item_class: 'user', item_id: @user.id), class: 'report-link report-link-abs' %>
 
   <h2><%=@user.name%></h2>
 
