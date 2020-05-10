@@ -522,7 +522,7 @@ class Script < ActiveRecord::Base
   end
 
   def use_new_discussions?
-    Rails.env.development? || Rails.env.test?
+    Rails.env.development? || Rails.env.test? || discussions.none?
   end
 
   private
