@@ -2,6 +2,10 @@ require 'securerandom'
 require 'devise'
 
 class User < ApplicationRecord
+  AUTHOR_NOTIFICATION_NONE = 1
+  AUTHOR_NOTIFICATION_DISCUSSION = 2
+  AUTHOR_NOTIFICATION_COMMENT = 3
+
   serialize :announcements_seen, Array
 
   scope :moderators, -> { joins(:roles).where(roles: { name: 'moderator' }) }
@@ -62,6 +66,7 @@ class User < ApplicationRecord
   validates_length_of :profile, maximum: 10_000
   validates_inclusion_of :profile_markup, in: %w[html markdown]
   validates_inclusion_of :preferred_markup, in: %w[html markdown]
+  validates :author_email_notification_type_id, inclusion: { in: [AUTHOR_NOTIFICATION_NONE, AUTHOR_NOTIFICATION_DISCUSSION, AUTHOR_NOTIFICATION_DISCUSSION] }
 
   validate do
     errors.add(:email) if new_record? && identities.none? && !EmailAddress.valid?(email)

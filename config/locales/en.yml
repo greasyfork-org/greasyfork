@@ -1214,3 +1214,13 @@ en:
           Please review the feedback you received at %{feedback_url}, fix any issues, and reply to the concerns raised.
 
           If you do not post a new version or reply to the discussions by %{delete_date}, your script will become hidden on %{site_name}. (After this date, you will be able to make it visible again if you wish.)
+    script_comment:
+      subject: "Your script %{script_name} on %{site_name} has received a comment."
+      text: |
+        Your script '%{script_name}' on %{site_name} (%{script_url}) has received a comment by user '%{commenter_name}':
+
+        ---
+        %{comment_text}
+        ---
+
+        You can view and reply to this comment at %{comment_url}. Manage your notification preferences at %{notification_preferences_url}.

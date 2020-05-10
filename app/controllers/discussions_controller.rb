@@ -15,6 +15,7 @@ class DiscussionsController < ApplicationController
     discussion.poster = discussion.comments.first.poster = current_user
     discussion.script = @script
     discussion.save!
+    discussion.comments.first.notify_script_authors!
     redirect_to discussion.path
   end
 
