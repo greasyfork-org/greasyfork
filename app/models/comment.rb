@@ -11,6 +11,8 @@ class Comment < ApplicationRecord
 
   delegate :script, to: :discussion
 
+  strip_attributes only: :text
+
   def path(locale: nil)
     "#{discussion.path(locale: locale)}#comment-#{id}"
   end
