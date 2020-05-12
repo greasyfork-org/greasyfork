@@ -818,9 +818,3 @@ ja:
     consecutive_bad_ratings:
       notify:
         subject: " あなたのスクリプト%{script_name} (%{site_name}) は連続して悪い評価がついています。"
-        text: |-
-            あなたのスクリプト %{script_name} (%{site_name} 用、%{script_url}) は連続して悪い評価がついています。
-
-            %{feedback_url}で反響を確認し、問題を修正し、提起された懸念事項に返信してください。
-
-            更新版の投稿がないか、%{delete_date} までに議論への返信がない場合、あなたのスクリプトは %{site_name} で非表示にされるでしょう。 (この日付移行、希望があれば再び表示することも可能です)

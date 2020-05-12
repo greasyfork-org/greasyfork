@@ -104,6 +104,8 @@ pt-BR:
     feedback_title: "%{script_name} - Comentário"
     feedback_has_reports: "Este script foi denunciado por violar as regras do %{site_name}."
     feedback_no_discussions_html: "Sem discussões postadas ainda. %{start_first_discussion_link}"
+    feedback_no_discussions_on_page_form: "Nenhuma discussão foi publicada ainda"
+    feedback_report_instead: "Se você achar que esse script está quebrando as %{rules_link:regras do %{site_name}}, por favor %{report_link:reporte-o para remoção}."
     feedback_start_first_discussion_link: "Seja o primeiro a comentar sobre este script."
     feedback_discussion_or_report: "%{new_discussion_link:Comece uma nova discussão neste script} ou %{report_link:denuncie-o para que seja removido}."
     feedback_discussions_heading: "Discussões no Fórum Greasy"
@@ -799,6 +801,7 @@ pt-BR:
     report_filed: "Sua denúncia será revisada por um moderador"
     new_report_title:
       user: "Denunciar %{user}"
+      comment: "Denunciar um comentário por %{user}"
     new_report_notes_html: >
         <p>Antes de denunciar, saiba que:</p> <ul>
 
@@ -817,6 +820,30 @@ pt-BR:
     explanation_placeholder: "Forneça detalhes adicionais (opicional)"
     create_button: "Criar denúncia"
     report_user: "Denunciar usuário"
+    report_comment: "Denunciar comentátio"
+  discussions:
+    comment_date: "Publicado: %{date}"
+    comment_edit_date: "Editado: %{date}"
+    new_discussion_heading: "Publique uma análise, comentário ou questionamento"
+    new_discussion_submit: "Publicar comentário"
+    new_comment_heading: "Publicar resposta"
+    new_comment_submit: "Publicar resposta"
+    back_to_feedback: "< Feedback em %{script}"
+    edit_comment_link: "Editar"
+    edit_comment_header: "Editar comentário"
+    delete_comment: "Remover"
+    delete_discussion: "Remover"
+    update_comment_submit: "Atualizar comentário"
+    cancel_update_comment: "Cancelar"
+    question_heading_html: "Pergunta/comentário por %{user}"
+    review_heading_html: "Análise por %{user}: %{rating}"
+    ratings:
+      question: "Sem avaliação - apenas uma pergunta/comentário"
+      bad: "Ruim - o script não funciona"
+      ok: "OK - o script funciona, mas poderia ser melhorado"
+      good: "Bom - o script funciona"
+    sign_in_to_post_discussion: "Faça o login para publicar uma análise, comentário ou pergunta."
+    sign_in_to_post_comment: "Faça o login para publicar uma resposta."
   common:
     error_preamble: "Houve alguns problemas com o que você postou..."
     allowed_elements_link: "(Veja código permitido.)"
@@ -862,6 +889,8 @@ pt-BR:
         default_sort: "Ordenação padrão"
       report:
         reason: "Motivo da denúncia"
+      discussion:
+        rating: "Avaliação"
   errors:
     messages:
       script_missing_name: "é requerido - especifique um com @name"
@@ -912,9 +941,19 @@ pt-BR:
     consecutive_bad_ratings:
       notify:
         subject: "Seu script %{script_name} no %{site_name} recebeu múltiplas avaliações negativas."
-        text: |-
+        text: |
             Seu script '%{script_name}' no %{site_name} (%{script_url}) recebeu múltiplas avaliações negativas em seguida.
 
-            Por favor, analise o feedback recebido em%{feedback_url}, corrija quaisquer problemas, e responda as queixas levantadas.
+            Por favor, analise o feedback que você recebeu em %{feedback_url}, corrija quaisquer problemas, e responda as questões levantadas.
 
-            Se você não publicar uma nova versão ou resposta na discussão até %{delete_date}, seu script será ocultado no %{site_name}. (Após esta data, você poderá torná-lo visível novamente caso deseje.)
+            Se você não publicar uma nova versão ou resposta na discussão até %{delete_date}, seu script ficará oculto no %{site_name}. (Após esta data, você poderá torná-lo visível novamente caso desejar.)
+    script_comment:
+      subject: "Seu script %{script_name} no %{site_name} recebeu um comentário."
+      text: |-
+          Seu script '%{script_name}' no %{site_name} (%{script_url}) recebeu um comentário do usuário '%{commenter_name}':
+
+          ---
+          %{comment_text}
+          ---
+
+          Você pode ver e responder a esse comentário em %{comment_url}. Gerencie suas configurações de notificação em %{notification_preferences_url}.

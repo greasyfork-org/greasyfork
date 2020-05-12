@@ -105,6 +105,8 @@ fr:
     feedback_title: "%{script_name} - Commentaires"
     feedback_has_reports: "Ce script a été rapporté comme violent la règles %{site_name}."
     feedback_no_discussions_html: "Aucun commentaire. %{start_first_discussion_link}"
+    feedback_no_discussions_on_page_form: "Aucune discussion n'a encore été posté."
+    feedback_report_instead: "Si vous pensez que ce script enfreint %{rules_link:les règles de%{site_name}, veuillez %{report_link:signalez-le pour le retirer}."
     feedback_start_first_discussion_link: "Soyez le premier à commenter ce script."
     feedback_discussion_or_report: "%{new_discussion_link:Démarrer une nouvelle discussion concernant ce script} ou %{report_link:demander sa suppression}."
     feedback_discussions_heading: "Discussions sur le forum Greasy"
@@ -813,6 +815,7 @@ fr:
     report_filed: "Votre rapport sera examiné par un modérateur."
     new_report_title:
       user: "Rapport %{user}"
+      comment: "Signaler un commentaire de %{user}"
     new_report_notes_html: >
         <p>Avant de signaler, veuillez noter que:</p> <ul>
 
@@ -831,6 +834,30 @@ fr:
     explanation_placeholder: "Ajouter des détails supplémentaires (optionnel)"
     create_button: "Créer un rapport"
     report_user: "Rapport utilisateur"
+    report_comment: "Signaler un commentaire"
+  discussions:
+    comment_date: "Publié le: %{date}"
+    comment_edit_date: "Édité le: %{date}"
+    new_discussion_heading: "Poster un avis, un commentaire ou une question"
+    new_discussion_submit: "Poster un commentaire"
+    new_comment_heading: "Poster une réponse"
+    new_comment_submit: "Poster une réponse"
+    back_to_feedback: "< Commentaires sur %{script}"
+    edit_comment_link: "Éditer"
+    edit_comment_header: "Modifier le commentaire"
+    delete_comment: "Supprimer"
+    delete_discussion: "Supprimer"
+    update_comment_submit: "Mettre à jour le commentaire"
+    cancel_update_comment: "Annuler"
+    question_heading_html: "Question / commentaire de %{user}"
+    review_heading_html: "Examiné par %{user}: %{rating}"
+    ratings:
+      question: "Aucune note - juste une question / un commentaire"
+      bad: "Mauvais - le script ne fonctionne pas"
+      ok: "OK - le script fonctionne, mais pourrait être amélioré"
+      good: "Bon - le script fonctionne correctement"
+    sign_in_to_post_discussion: "Connectez-vous pour poster un avis, un commentaire ou une question."
+    sign_in_to_post_comment: "Connectez-vous pour poster une réponse."
   common:
     error_preamble: "Il y a des erreurs dans ce que vous avez posté..."
     allowed_elements_link: "(Voir les balises autorisées.)"
@@ -876,6 +903,8 @@ fr:
         default_sort: "Tri par défaut"
       report:
         reason: "Motif du signalement"
+      discussion:
+        rating: "Évaluation"
   errors:
     messages:
       script_missing_name: "est nécessaire - spécifiez-le avec @name"
@@ -926,9 +955,19 @@ fr:
     consecutive_bad_ratings:
       notify:
         subject: "Votre script%{script_name} par %{site_name}a reçu plusieurs mauvaises critiques."
-        text: |-
-            Votre script '%{script_name}' par %{site_name} (%{script_url}) a reçu plusieurs mauvaises critiques d'affilée.
+        text: |
+            Votre script '%{script_name}' sur %{site_name} (%{script_url}) a reçu plusieurs mauvaises critiques d'affilée.
 
-            Veuillez consulter les commentaires que vous avez reçus sur %{feedback_url}, pour résoudre les problèmes et répondre aux préoccupations soulevées.
+            Veuillez examiner les commentaires que vous avez reçus sur %{feedback_url}, corriger les problèmes et répondez-y.
 
-            Si vous ne postez pas de nouvelle version ou ne répondez pas aux discussions d'ici %{delete_date}, votre script sera masqué par%{site_name}. (Après cette date, vous pourrez à nouveau la rendre visible si vous le souhaitez.)
+            Si vous ne postez pas de nouvelle version ou ne répondez pas aux discussions d'ici %{delete_date}, votre script sera masqué sur %{site_name}. (Après cette date, vous pourrez la rendre à nouveau visible si vous le souhaitez.)
+    script_comment:
+      subject: "Votre script %{script_name} sur %{site_name} a reçu un commentaire."
+      text: |-
+          Votre script '%{script_name}' sur %{site_name} (%{script_url}) a reçu un commentaire de l'utilisateur '%{commenter_name}':
+
+          ---
+          %{comment_text}
+          ---
+
+          Vous pouvez afficher et répondre à ce commentaire sur %{comment_url}. Gérez vos préférences de notification dans %{notification_preferences_url}.

@@ -819,9 +819,3 @@ pl:
     consecutive_bad_ratings:
       notify:
         subject: "Twój skrypt %{script_name} dla %{site_name} otrzymał wiele negatywnych opinii."
-        text: |-
-            Twój skrypt %{script_name} dla %{site_name} otrzymał wiele negatywnych opinii z rzędu.
-
-            Prosimy o zapoznanie się z otrzymanymi opiniami pod %{feedback_url}, poprawienie zgłoszonych błędów oraz odniesienie się do zarzutów.
-
-            Jeśli nie opublikujesz poprawionej wersji ani nie odniesiesz się do komentarzy przed %{delete_date}, Twój skrypt zostanie ukryty dla %{site_name}. (Po upłynięciu terminu będziesz mieć możliwość przywrócenia jego prezentacji, o ile się na to zdecydujesz.)

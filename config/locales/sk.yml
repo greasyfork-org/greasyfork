@@ -105,6 +105,8 @@ sk:
     feedback_title: "%{script_name} - Spätná väzba"
     feedback_has_reports: "Tento skript bol nahlásený, že porušuje pravidlá stránky %{site_name}."
     feedback_no_discussions_html: "Zatiaľ žiadna diskusia. %{start_first_discussion_link}"
+    feedback_no_discussions_on_page_form: "Zatiaľ nie sú zverejnené žiadne diskusie."
+    feedback_report_instead: "Ak si myslíte, že skript porušuje %{rules_link:Pravidlá %{site_name}}, prosím, %{report_link:nahlásiť ho na odstránenie}."
     feedback_start_first_discussion_link: "Buďte prvý, kto začne diskusiu o tomto skripte."
     feedback_discussion_or_report: "%{new_discussion_link:Začať diskusiu pre tento skript} alebo %{report_link:nahlásiť ho na odstránenie}."
     feedback_discussions_heading: "Diskusie na fóre Greasy"
@@ -807,6 +809,7 @@ sk:
     report_filed: "Vaša sťažnosť bude posúdená moderátorom."
     new_report_title:
       user: "Nahlásiť %{user}"
+      comment: "Nahlásiť komentár od %{user}"
     new_report_notes_html: >
         <p>Pred nahlásením, si uvedomte, že: <ul>
 
@@ -824,6 +827,30 @@ sk:
     explanation_placeholder: "Uveďte ďalšie podrobnosti (voliteľné)"
     create_button: "Nahlásiť"
     report_user: "Nahlásiť užívateľa"
+    report_comment: "Nahlásiť komentár"
+  discussions:
+    comment_date: "Pridaný: %{date}"
+    comment_edit_date: "Upravený: %{date}"
+    new_discussion_heading: "Pridať recenziu, komentár alebo otázku"
+    new_discussion_submit: "Pridať komentár"
+    new_comment_heading: "Pridať odpoveď"
+    new_comment_submit: "Pridať odpoveď"
+    back_to_feedback: "< Spätná väzba na %{script}"
+    edit_comment_link: "Upraviť"
+    edit_comment_header: "Upraviť komentár"
+    delete_comment: "Odstrániť"
+    delete_discussion: "Odstrániť"
+    update_comment_submit: "Upraviť komentár"
+    cancel_update_comment: "Zrušiť"
+    question_heading_html: "Otázka/komentár od %{user}"
+    review_heading_html: "Hodnotenie od %{user}: %{rating}"
+    ratings:
+      question: "Žiadne hodnotenie - len otázka/komentár"
+      bad: "Zlé - skript nefunguje"
+      ok: "OK - skript funguje, ale dá sa vylepšiť"
+      good: "Dobré - skript funguje"
+    sign_in_to_post_discussion: "Ak chcete pridať recenziu, komentár alebo otázku, prihláste sa."
+    sign_in_to_post_comment: "Aby ste mohli pridať odpoveď, prihláste sa."
   common:
     error_preamble: "Boli zistené problémy s tým, čo ste poslali."
     allowed_elements_link: "(Pozri zoznam povolených značiek.)"
@@ -869,6 +896,8 @@ sk:
         default_sort: "Predvolené zoradenie"
       report:
         reason: "Dôvod nahlásenia"
+      discussion:
+        rating: "Hodnotenie"
   errors:
     messages:
       script_missing_name: "potrebné - uveďte v @name"
@@ -919,9 +948,19 @@ sk:
     consecutive_bad_ratings:
       notify:
         subject: "Váš skript %{script_name} na %{site_name} dostal viacero zlých hodnotení."
-        text: |-
+        text: |
             Váš skript "%{script_name}" na %{site_name} (%{script_url}) dostal viacero zlých hodnotení za sebou.
 
             Prosím, skontrolujte spätnú väzbu, ktorú ste dostali na %{feedback_url}, opravte problémy a odpovedzte na vznesené obavy.
 
             Ak nepridáte novú verziu alebo odpoveď do diskusie do %{delete_date}, váš skript bude na %{site_name} skrytý. (Po tomto dátume ho budte môcť zviditeľniť, ak budte chcieť.)
+    script_comment:
+      subject: "Váš skript %{script_name} na %{site_name} bol komentovaný."
+      text: |-
+          Váš skript '%{script_name}' na %{site_name} (%{script_url}) bol komentovaný užívateľom '%{commenter_name}':
+
+          ---
+          %{comment_text}
+          ---
+
+          Komentár môžete zobraziť o odpovedať naň na %{comment_url}. Spravujte svoje predvoľby upozornení na stránke %{notification_preferences_url}.

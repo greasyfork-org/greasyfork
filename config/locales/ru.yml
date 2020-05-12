@@ -106,6 +106,8 @@ ru:
     feedback_title: "%{script_name} - Обсуждения"
     feedback_has_reports: "Поступила жалоба о нарушении этим скриптом правил %{site_name}."
     feedback_no_discussions_html: "Нет ни одного обсуждения. %{start_first_discussion_link}"
+    feedback_no_discussions_on_page_form: "Нет ни одного обсуждения."
+    feedback_report_instead: "Если вы считаете, что скрипт нарушает %{rules_link:правила %{site_name}}, пожалуйста, %{report_link:запросите его удаление}."
     feedback_start_first_discussion_link: "Начать обсуждение этого скрипта."
     feedback_discussion_or_report: "%{new_discussion_link:Начните обсуждать скрипт} или %{report_link:запросите его удаление}."
     feedback_discussions_heading: "Обсуждения скрипта на форуме "
@@ -813,6 +815,7 @@ ru:
     report_filed: "Ваша жалоба будет рассмотрена модератором."
     new_report_title:
       user: "Пожаловаться на %{user}"
+      comment: "Пожаловаться на комментарий %{user}"
     new_report_notes_html: >
         <p>Обратите внимание:</p> <ul>
 
@@ -831,6 +834,30 @@ ru:
     explanation_placeholder: "Сообщите дополнительные подробности (не обязательно)"
     create_button: "Создать жалобу"
     report_user: "Пожаловаться на пользователя"
+    report_comment: "Пожаловаться на комментарий"
+  discussions:
+    comment_date: "Создано: %{date}"
+    comment_edit_date: "Отредактировано: %{date}"
+    new_discussion_heading: "Напишите отзыв, комментарий, или задайте вопрос"
+    new_discussion_submit: "Создать комментарий"
+    new_comment_heading: "Ответить"
+    new_comment_submit: "Ответить"
+    back_to_feedback: "< Обсуждения %{script}"
+    edit_comment_link: "Редактировать"
+    edit_comment_header: "Редактировать комментарий"
+    delete_comment: "Удалить"
+    delete_discussion: "Удалить"
+    update_comment_submit: "Обновить комментарий"
+    cancel_update_comment: "Отменить"
+    question_heading_html: "Вопрос/комментарий %{user}"
+    review_heading_html: "Отзыв %{user}: %{rating}"
+    ratings:
+      question: "Без оценки — просто вопрос или комментарий"
+      bad: "Плохой — скрипт не работает"
+      ok: "Нормальный — скрипт работает, но может быть улучшен"
+      good: "Хороший — скрипт работает как нужно"
+    sign_in_to_post_discussion: "Войдите, чтобы написать отзыв, комментарий, или задать вопрос."
+    sign_in_to_post_comment: "Войдите, чтобы ответить."
   common:
     error_preamble: "Обнаружены проблемы в отправленном вами тексте..."
     allowed_elements_link: "(См. разрешенные теги)"
@@ -876,6 +903,8 @@ ru:
         default_sort: "Сортировка"
       report:
         reason: "Причина жалобы"
+      discussion:
+        rating: "Оценка"
   errors:
     messages:
       script_missing_name: "требуется - укажите @name"
@@ -926,9 +955,19 @@ ru:
     consecutive_bad_ratings:
       notify:
         subject: "Ваш скрипт %{script_name} на %{site_name} получил несколько отрицательных отзывов подряд."
-        text: |-
+        text: |
             Ваш скрипт '%{script_name}' на %{site_name} (%{script_url}) получил несколько отрицательных отзывов подряд.
 
             Пожалуйста, прочтите полученные отзывы по адресу %{feedback_url}, исправьте проблемы и ответьте в обсуждении.
 
-            Если вы не опубликуете новую версию скрипта или не ответите в обсуждении до %{delete_date}, ваш скрипт будет скрыт на %{site_name}. (После этой даты, вы сможете опять его показать, если захотите.)
+            Если вы не опубликуете новую версию скрипта или не ответите в обсуждении до %{delete_date}, ваш скрипт будет скрыт на %{site_name}. (После этой даты вы сможете опять его показать, если захотите.)
+    script_comment:
+      subject: "Ваш скрипт %{script_name} на %{site_name} получил комментарий."
+      text: |-
+          Ваш скрипт '%{script_name}' на %{site_name} (%{script_url}) получил комментарий от пользователя '%{commenter_name}':
+
+          ---
+          %{comment_text}
+          ---
+
+          Вы можете просмотреть комментарий и ответить на него по адресу %{comment_url}. Настройки уведомлений находятся по адресу %{notification_preferences_url}.
