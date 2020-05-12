@@ -6,6 +6,7 @@ class Discussion < ApplicationRecord
 
   belongs_to :poster, class_name: 'User'
   belongs_to :script
+  belongs_to :stat_last_replier, class_name: 'User'
   has_many :comments
 
   scope :with_actual_rating, -> { where(rating: [RATING_BAD, RATING_OK, RATING_GOOD]) }
@@ -58,5 +59,13 @@ class Discussion < ApplicationRecord
     else
       Rails.application.routes.url_helpers.discussion_url(self, locale: locale)
     end
+  end
+
+  def update_stats!
+    update!(
+      stat_reply_count: comments.count - 1,
+      stat_last_reply_date: last_comment.created_at,
+      stat_last_replier_id: last_comment.poster_id,
+    )
   end
 end

@@ -8,9 +8,9 @@
   show_script = defined?(show_script) && show_script && !discussion.script.nil?
   t_params[:script_link] = link_to discussion.script.name(request_locale), discussion.script if show_script
 
-  if discussion.replies?
-    t_params[:last_commenter_link] = render_last_poster(discussion)
-    t_params[:last_comment_date] = markup_date(discussion.last_comment_date).html_safe
+  if discussion.stat_reply_count > 0
+    t_params[:last_commenter_link] = render_user(discussion.stat_last_replier, discussion.stat_last_replier_id)
+    t_params[:last_comment_date] = markup_date(discussion.stat_last_reply_date).html_safe
   end
 
   if show_script

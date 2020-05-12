@@ -1018,7 +1018,7 @@ CREATE TABLE `comments` (
   PRIMARY KEY (`id`),
   KEY `index_comments_on_discussion_id` (`discussion_id`),
   CONSTRAINT `fk_rails_750d1a8a36` FOREIGN KEY (`discussion_id`) REFERENCES `discussions` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `compatibilities`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1114,11 +1114,14 @@ CREATE TABLE `discussions` (
   `poster_id` int(11) NOT NULL,
   `script_id` int(11) DEFAULT NULL,
   `rating` int(11) NOT NULL DEFAULT 1,
+  `stat_reply_count` int(11) NOT NULL DEFAULT 0,
+  `stat_last_reply_date` datetime DEFAULT NULL,
+  `stat_last_replier_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_discussions_on_poster_id` (`poster_id`),
   KEY `fk_rails_a52537835c` (`script_id`),
   CONSTRAINT `fk_rails_a52537835c` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `identities`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1890,6 +1893,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20200501204556'),
 ('20200502005533'),
 ('20200504010752'),
-('20200510183902');
+('20200510183902'),
+('20200512022035');
 
 
