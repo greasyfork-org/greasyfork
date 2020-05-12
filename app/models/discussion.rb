@@ -6,7 +6,7 @@ class Discussion < ApplicationRecord
 
   belongs_to :poster, class_name: 'User'
   belongs_to :script
-  belongs_to :stat_last_replier, class_name: 'User'
+  belongs_to :stat_last_replier, class_name: 'User', optional: true
   has_many :comments
 
   scope :with_actual_rating, -> { where(rating: [RATING_BAD, RATING_OK, RATING_GOOD]) }
