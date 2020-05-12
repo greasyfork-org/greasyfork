@@ -4,6 +4,13 @@ class DiscussionsController < ApplicationController
   before_action :authenticate_user!, only: :create
   before_action :moderators_only, only: :destroy
 
+  def index
+    @discussions = Discussion
+                       .includes(:poster, :script)
+                       .order(id: :desc)
+                       .paginate(page: params[:page], per_page: 25)
+  end
+
   def show
     @discussion = discussion_scope.find(params[:id])
     @comment = Comment.new

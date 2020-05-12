@@ -132,6 +132,8 @@ Rails.application.routes.draw do
     end
     post 'script_sets/add_to_set', to: 'script_sets#add_to_set', as: 'add_to_script_set'
 
+    resources :discussions, only: :index
+
     get 'import', to: 'import#index', as: 'import_start'
     get 'import/userscriptsorg', to: 'import#userscriptsorg', as: 'import_userscriptsorg'
     post 'import/verify', to: 'import#verify', as: 'import_verify'
