@@ -104,6 +104,8 @@ bg:
     feedback_title: "%{script_name} - Отзиви"
     feedback_has_reports: "Този скрипт беше докладван като нарушаващ правилата на %{site_name}."
     feedback_no_discussions_html: "Все още няма дискусии. %{start_first_discussion_link}"
+    feedback_no_discussions_on_page_form: "Все още няма започната дискусия."
+    feedback_report_instead: "Ако мислите, че този скрипт нарушава %{rules_link: правилата на%{site_name}}, моля %{report_link:докладвайте го за премахване}."
     feedback_start_first_discussion_link: "Бъди първи, който ще дискутира скрипта."
     feedback_discussion_or_report: "%{new_discussion_link:Започни ново обсъждане за скрипта} или %{report_link:докладвай за премахване}."
     feedback_discussions_heading: "Дискусии на Greasy форума"
@@ -789,6 +791,7 @@ bg:
     report_filed: "Вашият доклад ще бъде прегледан от модератор."
     new_report_title:
       user: "Докладвай %{user}"
+      comment: "Докладвайте коментар от %{user}"
     new_report_notes_html: >
         <p>Преди да докладвате обърнете внимание:</p> <ul>
 
@@ -807,6 +810,30 @@ bg:
     explanation_placeholder: "Напишете допълнителни подробности (по желание)"
     create_button: "Изпратете доклад"
     report_user: "Докладвайте потребителя"
+    report_comment: "Докладвайте коментар"
+  discussions:
+    comment_date: "Публикуван на: %{date}"
+    comment_edit_date: "Редактиран на: %{date}"
+    new_discussion_heading: "Публикувайте отзив, коментар или въпрос"
+    new_discussion_submit: "Публикувайте коментар"
+    new_comment_heading: "Публикувайте отговор"
+    new_comment_submit: "Публикувайте отговор"
+    back_to_feedback: "< Отзив за %{script}"
+    edit_comment_link: "Редакция"
+    edit_comment_header: "Редактирайте коментар"
+    delete_comment: "Изтриване"
+    delete_discussion: "Изтрийте"
+    update_comment_submit: "Обновете коментара"
+    cancel_update_comment: "Отказ"
+    question_heading_html: "Въпрос/коментар от %{user}"
+    review_heading_html: "Отзив от %{user}: %{rating}"
+    ratings:
+      question: "Без оценка - просто въпрос/коментар"
+      bad: "Лошо - скриптът не работи"
+      ok: "ОК - скриптът работи, но може да бъде подобрен"
+      good: "Отлично - скриптът работи"
+    sign_in_to_post_discussion: "Влезте, за да публикувате отзив, коментар или въпрос."
+    sign_in_to_post_comment: "Влезте, за да публикувате отговор."
   common:
     error_preamble: "Има някои проблеми с това, което публикувате..."
     allowed_elements_link: "(Вижте разрешения код.)"
@@ -852,6 +879,8 @@ bg:
         default_sort: "Сортиране по подразбиране"
       report:
         reason: "Причина за доклада"
+      discussion:
+        rating: "Оценка"
   errors:
     messages:
       script_missing_name: "е задължително - укажете с @name"
@@ -902,3 +931,19 @@ bg:
     consecutive_bad_ratings:
       notify:
         subject: "Вашят скриптов %{script_name} на %{site_name} е получил няколко последователни лоши оценки. Моля, прегледайте го и отговорете на повдигнатите в рецензиите въпроси."
+        text: |
+            Скриптът ви '%{script_name}' на %{site_name} (%{script_url}) е получил няколко последователни лоши отзива.
+
+            Моля, прегледайте отзивите тук %{feedback_url}, оправете всички възможни проблеми и отговорете на повдигнатите въпроси.
+
+            Ако не публикувате нова версия или не отговорите в дискусията до %{delete_date}, вашият скрипт ще бъде скрит на %{site_name}. (Ако искате, след тази дата вие ще можете да го покажете отново.)
+    script_comment:
+      subject: "Получихте коментар за вашия скрипт %{script_name} на %{site_name}."
+      text: |-
+          Скриптът ви '%{script_name}' на %{site_name} (%{script_url}) беше коментиран от потребител '%{commenter_name}':
+
+          ---
+          %{comment_text}
+          ---
+
+          Можете да видите коментара и да публикувате отговор тук %{comment_url}. Можете да промените настройките за известия от тук %{notification_preferences_url}.

@@ -34,19 +34,19 @@ zh-CN:
     update: "更新到 %{version} 版本"
     downgrade: "降级到 %{version} 版本"
     reinstall: "重新安装 %{version} 版本"
-    old_version_warning: "这不是此脚本的最新版。如果安装了此版本，您将停留在这个旧版本，不会自动更新。是否安装？"
+    old_version_warning: "这不是此脚本的最新版。如果您选择安装此版本，脚本将不会自动更新。仍然继续吗？"
     promoted: "推荐脚本"
     author_promoted: "作者推荐脚本"
     promoted_text_html: "您或许会喜欢%{script_link}。"
     library_instructions_html: "此脚本不应被直接安装，它是一个供其他脚本使用的外部库。如果您需要使用该库，请在脚本元属性加入：%{code}"
     deleted_notice: "此脚本已被删除。"
-    deleted_notice_with_related: "请求的脚本已被删除。不过，这里还有一些相关的脚本。"
-    deleted_undelete_notice_html: "该脚本的已被管理员锁定且不能取消删除。锁定的原因是：“<i>%{delete_reason}</i>”。"
+    deleted_notice_with_related: "请求的脚本已被删除。不过，这里还有一些可能类似的脚本。"
+    deleted_undelete_notice_html: "该脚本已被管理员锁定并删除且无法撤销。锁定原因：“<i>%{delete_reason}</i>”。"
     deleted_locked_author_notice_html: "该脚本已被管理员删除且不能被其他用户所访问。删除的原因是：“<i>%{delete_reason}</i>”。"
     deleted_author_notice: "其他用户不能访问该脚本，因为它已经被删除。你可以在“删除”面板中取消删除。"
     version_notice_html: "您查看的为 %{date} 提交的版本。查看 %{latest_version_link}。"
     version_notice_latest_version_link: "最新版本"
-    reported_notice: "“%{script_name}”已报告并等待管理员审核。"
+    reported_notice: "“%{script_name}”已被举报并等待管理员审核。"
     reported_notice_for_author: "在管理员完成审核前，其他用户不能访问此脚本。"
     info_page: "信息"
     code_page: "代码"
@@ -58,18 +58,18 @@ zh-CN:
     delete_page: "删除脚本"
     delete_explanation: "当你选择删除脚本之后，这个脚本将只能被你以及 Greasy Fork 的管理员访问。你可以之后撤销这个删除操作。"
     delete_update_behaviour: "您想如何对待已经安装这个脚本的用户？"
-    delete_update_behaviour_1: "保持原样。"
+    delete_update_behaviour_1: "这将保持原样不变。"
     delete_update_behaviour_2: "用户将通过自动更新功能变成一个无代码的脚本。当脚本对其所运行的网站产生了负面作用时选择此项。"
     delete_permanently_heading: "永久删除"
     delete_permanently_explanation_html: >-
-        <p>永久删除您的脚本将删除「管理员操作记录」与「论坛讨论帖」以外的所有数据。</p> <p>您的脚本会在 7 日后永久删除，因此如果反悔，您可以在此期间内取消；反之，若是在
-        7 日内没有取消操作，那么脚本将会被永久删除，即便是管理员也不能还原您的脚本。</p>
-    delete_permanently_confirm: "确定要永久删除您的脚本？"
+        <p>永久删除您的脚本将删除「管理员操作记录」与「论坛讨论帖」以外的所有数据。</p> <p>您的脚本会在 7 日后永久删除，如果反悔，您可以在此期间内撤销删除；反之，若是在
+        7 日内没有撤销操作，那么脚本将会被永久删除，即便是管理员也不能还原您的脚本。</p>
+    delete_permanently_confirm: "您确定要永久删除您的脚本？"
     delete_permanently_submit: "请求永久删除"
     delete_permanently_immediate_submit: "永久删除"
-    delete_permanently_notice: "已记录您的永久删除请求。您的脚本将在7天内得到永久删除。"
+    delete_permanently_notice: "已记录您的永久删除请求。您的脚本将在7天后永久删除。"
     delete_permanently_already_requested: "您已于 %{datetime} 请求永久删除。"
-    delete_permanently_notice_immediate: "已永久删除该脚本。"
+    delete_permanently_notice_immediate: "该脚本已永久删除。"
     cancel_delete_permanently_submit: "取消永久删除的请求"
     cancel_delete_permanently_notice: "您的永久删除请求已取消。您的脚本仍对其他人不可见。"
     delete_permanently_rejected_locked: "此脚本已被锁定并且不能永久删除"
@@ -87,6 +87,7 @@ zh-CN:
       update_locale: "更新语言"
       no_moderator_logs: "管理员没有对此脚本采取任何操作。"
       compare_title: "与另一脚本比较"
+      compare_to: "要比较的站点%{site_name}上的脚本（网址）"
       compare_button: "比较"
       compare_must_be_local_url: "比较脚本必须是一个位于%{site_name}的网址。"
     history_title: "%{script_name} - 版本历史"
@@ -99,6 +100,8 @@ zh-CN:
     feedback_title: "%{script_name} - 反馈"
     feedback_has_reports: "此脚本已被报告违反 %{site_name} 守则。"
     feedback_no_discussions_html: "暂无相关讨论。%{start_first_discussion_link}"
+    feedback_no_discussions_on_page_form: "现在还没有已发布的讨论。"
+    feedback_report_instead: "如果您觉得这个脚本违反了 %{rules_link: %{site_name} 的规则}, 请 %{report_link: 举报这个脚本}."
     feedback_start_first_discussion_link: "成为第一个发起讨论的人吧。"
     feedback_discussion_or_report: "%{new_discussion_link:针对此脚本发起一个新的讨论} 或者%{report_link:举报使此脚本被移除}。"
     feedback_discussions_heading: "在 Greasy 论坛上的讨论"
@@ -180,7 +183,7 @@ zh-CN:
     post_new_script: "发布脚本"
     post_updated_script: "发布新版本"
     type_1_html: "公开的用户脚本 - 任何人都可以查看和使用。"
-    type_2_html: "只允许通过链接访问的用户脚本 —— 个人用（或半公开）的用户脚本。只有知道链接的人才能访问，该链接不会出现在 %{site_name} 的其它地方。"
+    type_2_html: "只允许通过链接访问的用户脚本 —— 私人（或半公开）的用户脚本。只有知道链接的人才能访问，该链接不会出现在 %{site_name} 的任何地方。"
     type_3_html: "库 - 用于被其他脚本以 <code>@require</code> 调用而非直接安装的脚本。"
     override_warning_checkbox_label: "即便如此也要继续保存吗？"
     warning_version_not_incremented_html: "您更新了脚本代码但是没有增加 <code>@version</code> 版本号。之前安装了您的脚本的用户可能不会自动更新到更新后的代码。"
@@ -192,7 +195,7 @@ zh-CN:
     warning_potentially_minified_html: "您的脚本看上去像最小化（压缩后）的版本。如果您使用了最小化后的库，请使用 <code>@require</code> 引用 %{allowed_requires_link} 里面的相应库。压缩后的脚本不被本站允许且会被管理员移除。"
     warning_automatic_sensitive_html: "您的脚本适用于%{sensitive_domains}，因此会被标注为成人内容。"
     warning_potentially_minified_allowed_requires_link: "在这些地方"
-    warning_code_previously_posted_html: "此代码已在 %{script_links} 发布。非原作者发布的脚本可能由管理员移除。"
+    warning_code_previously_posted_html: "此代码已在 %{script_links} 发布。非原作者重新发布此脚本可能被管理员移除。"
     additional_info_locale_prompt: "(选择语言)"
     additional_info_add_localized: "添加一个本地化的附加信息"
     additional_info_locale_repeated: "您只能对“%{locale_code}”提供一条附加信息。"
@@ -231,7 +234,7 @@ zh-CN:
     learn_to_write_scripts_link_text: "了解如何编写脚本"
     feedback_or_report: "%{feedback_link:询问，评论}，或者%{report_link:举报这个脚本}."
     support_feedback_or_report: "%{support_url:访问作者的支持站点}, %{feedback_link:询问，评论}，或者%{report_link:举报此脚本}。"
-    support_email_feedback_or_report: "%{support_url:发送邮件给脚本作者来获取帮助}，%{feedback_link:询问，评价}，或者%{report_link:举报此脚本}。"
+    support_email_feedback_or_report: "%{support_url:发送邮件给作者以获取帮助}，%{feedback_link:咨询问题，发布评价}，或者 %{report_link:举报此脚本}。"
     adult_content: "成人内容"
     adult_content_self_report: "此脚本包含成人内容，或者适用于一个含有成人内容的网站。"
     adult_content_self_report_explanation: "%{site_name} 允许脚本带有成人内容，但必须被明确标注使用户可以选择是否查看此类内容。"
@@ -242,7 +245,7 @@ zh-CN:
     adult_content_on_greasy_not_logged_in_error: "此脚本不再在本网站上匿名可用。请%{login_link:登录}并检查您的 Greasy Fork 账户设置。"
     non_adult_content_on_sleazy: "此脚本在本网站上不可用。"
     not_js_convertible_override_header: "转换为 JS"
-    not_js_convertible_override_explanation: "%{site_name} 可以为您的用户样式（user CSS）自动创建一份 %{help_link:用户脚本（user JS）版本}。两者的运作方式有所不同，我们推荐您测试转换后的脚本版。如果您发现转换的脚本版不能用，可以选中下方的复选框来禁用它。"
+    not_js_convertible_override_explanation: "%{site_name} 可以为您的用户样式 (user CSS) 自动创建一份 %{help_link:用户脚本 (user JS) 版本。两者的运行方式有所不同，我们推荐您测试转换后的脚本。如果您发现转换的脚本不能使用，可以选中下方的复选框来禁用它。"
     not_js_convertible_override_label_html: "<strong>不要为</strong>此样式提供用户脚本版本"
     adult_marker: "(成人)"
     deleted_marker: "(已删除)"
@@ -695,6 +698,50 @@ zh-CN:
   notifications:
     consecutive_bad_ratings:
       other: "%{script_names} 已连续收到差评。请检查您的脚本和回复评价中提出的问题。"
+  reports:
+    report_filed: "您提交的举报将由管理员审核。"
+    new_report_title:
+      user: "举报%{user}"
+      comment: "举报%{user}的评论"
+    new_report_notes_html: >
+        <p>举报之前请注意：</p>
+
+        <ul><li>管理员将审阅您的举报并进行相应处理。</li>
+
+        <li>反对内容或认为内容不真实不能作为举报的合理理由。</li>
+
+        <li>滥用举报功能可能会导致<i>您</i>被封号</li></ul>。
+    reason:
+      spam: "灌水"
+      abuse: "滥用或反感内容"
+      illegal: "恶意程序或非法内容"
+    explanation_placeholder: "提供额外信息（可选）"
+    create_button: "创建举报"
+    report_user: "举报用户"
+    report_comment: "举报评论"
+  discussions:
+    comment_date: "发表于：%{date}"
+    comment_edit_date: "修改于：%{date}"
+    new_discussion_heading: "发表评价、评论或提问"
+    new_discussion_submit: "发表评论"
+    new_comment_heading: "发表回复"
+    new_comment_submit: "发表回复"
+    back_to_feedback: "< 脚本%{script}的反馈"
+    edit_comment_link: "编辑"
+    edit_comment_header: "编辑评论"
+    delete_comment: "删除"
+    delete_discussion: "删除"
+    update_comment_submit: "更新评论"
+    cancel_update_comment: "取消"
+    question_heading_html: "来自%{user}的提问/评论"
+    review_heading_html: "来自%{user}的评价：%{rating}"
+    ratings:
+      question: "不评分 - 只是提问或者进行评论"
+      bad: "差评 - 脚本失效"
+      ok: "还行 - 脚本可用，但是还有待改进"
+      good: "很好 - 脚本可行有效"
+    sign_in_to_post_discussion: "登录以发表评价、评论或提问。"
+    sign_in_to_post_comment: "登录以发表回复。"
   common:
     error_preamble: "很抱歉，您提交的内容有点问题…"
     allowed_elements_link: "(查看允许使用的代码)"
@@ -738,6 +785,10 @@ zh-CN:
         name: "名称"
         description: "描述"
         default_sort: "默认排序"
+      report:
+        reason: "举报原因"
+      discussion:
+        rating: "评分"
   errors:
     messages:
       script_missing_name: "必填 - 请通过 <code>@name</code> 指定"
@@ -788,3 +839,19 @@ zh-CN:
     consecutive_bad_ratings:
       notify:
         subject: "您对于站点%{site_name}的脚本%{script_name}收到多个差评。"
+        text: |
+            您在 %{site_name} 所发布的脚本“%{script_name}”（地址：%{script_url}）在近期收到了多则差评的评论。
+
+            请访问 %{feedback_url} 来查阅您所收到的反馈，修正问题并回应提出问题的用户。
+
+            如果您在 %{delete_date} 之前没有发布新的版本或作出回应，你的脚本将会在 %{site_name} 变成隐藏状态。（在此日期之后，你可以手动将其状态更改为公开可见）
+    script_comment:
+      subject: "您对于站点%{site_name}的脚本%{script_name}收到了一条评论。"
+      text: |-
+          您对于站点%{site_name}的脚本'%{script_name}' (%{script_url}) 收到了一条来自用户'%{commenter_name}'的评论:
+
+          ---
+          %{comment_text}
+          ---
+
+          您可以在%{comment_url} 查看并回复该评论。可以在%{notification_preferences_url}调整通知设置。

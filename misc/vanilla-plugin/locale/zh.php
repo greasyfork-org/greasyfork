@@ -6,7 +6,7 @@ $Definition['on scripts by %s'] = '来自 %s 的评价';
 /*
  *  Label for the radio buttons for rating a script
  **/
-$Definition['RatingLabel'] = '您想如何评价这个脚本？';
+$Definition['RatingLabel'] = '您对这个脚本的评价如何？';
 # Label for the radio buttons for updating a rating on a script
 $Definition['RatingUpdateLabel'] = '更新您的评分：';
 # Label for the radio button for not rating a script
