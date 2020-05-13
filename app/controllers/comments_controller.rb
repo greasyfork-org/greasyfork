@@ -6,11 +6,19 @@ class CommentsController < ApplicationController
   before_action :moderators_only, only: :destroy
 
   def create
-    comment = @discussion.comments.build(comments_params)
-    comment.poster = current_user
-    comment.save!
-    comment.notify_script_authors!
-    redirect_to @discussion.path
+    @comment = @discussion.comments.build(comments_params)
+    @comment.poster = current_user
+    if @comment.save
+      @comment.notify_script_authors!
+      redirect_to @comment.path
+      return
+    end
+    if @discussion.script
+      @script = @discussion.script
+      render 'discussions/show', layout: 'scripts'
+    else
+      render 'discussions/show'
+    end
   end
 
   def update

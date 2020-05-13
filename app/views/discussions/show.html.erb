@@ -11,7 +11,18 @@
   <% end %>
 </h3>
 
-<% @discussion.comments.each do |comment| %>
+<% if !@comment.errors.empty? %>
+  <div class="alert">
+    <p><%=t('common.error_preamble')%></p>
+    <ul class="errors">
+      <% @comment.errors.full_messages.each do |m| %>
+        <li><%=m%></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% @discussion.comments.reject(&:new_record?).each do |comment| %>
   <% by_current_user = comment.poster && current_user == comment.poster %>
   <div class="comment" id="comment-<%= comment.id %>">
     <div class="comment-meta">
