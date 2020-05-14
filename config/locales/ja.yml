@@ -99,6 +99,8 @@ ja:
     feedback_title: "%{script_name} のフィードバック"
     feedback_has_reports: "このスクリプトは %{site_name} のルールに違反していると報告されています。"
     feedback_no_discussions_html: "まだスレッドはありません。%{start_first_discussion_link}"
+    feedback_no_discussions_on_page_form: "議論はまだ投稿されていません。"
+    feedback_report_instead: "もしこのスクリプトが %{rules_link:%{site_name}の規則}に反するとお考えであれば、%{report_link:削除依頼}してください。"
     feedback_start_first_discussion_link: "このスクリプトについて最初のスレッドを立てる。"
     feedback_discussion_or_report: "%{new_discussion_link:このスクリプトの新規の議論を開始} または %{report_link:削除のために報告}する。"
     feedback_discussions_heading: "掲示板のスレッド"
@@ -706,6 +708,7 @@ ja:
     report_filed: "あなたの報告は管理担当者によって審査されます。"
     new_report_title:
       user: "%{user} を報告"
+      comment: "%{user}によるコメントを報告"
     new_report_notes_html: >
         <p>報告前にお読みください:</p> <ul>
 
@@ -723,6 +726,30 @@ ja:
     explanation_placeholder: "追加の詳細を提供 (任意)"
     create_button: "報告の作成"
     report_user: "ユーザーを報告"
+    report_comment: "コメントを報告"
+  discussions:
+    comment_date: "投稿日: %{date}"
+    comment_edit_date: "編集日; %{date}"
+    new_discussion_heading: "審査やコメント、質問を投稿"
+    new_discussion_submit: "コメントを投稿"
+    new_comment_heading: "返信を投稿"
+    new_comment_submit: "返信を投稿"
+    back_to_feedback: "< %{script}について意見"
+    edit_comment_link: "編集"
+    edit_comment_header: "コメントを編集"
+    delete_comment: "削除"
+    delete_discussion: "削除"
+    update_comment_submit: "コメントの更新"
+    cancel_update_comment: "キャンセル"
+    question_heading_html: "%{user}からの質問/コメント"
+    review_heading_html: "%{user}による評価 : %{rating}"
+    ratings:
+      question: "評価しない - 単に質問/コメント"
+      bad: "不可 – スクリプトが動かない"
+      ok: "可 – スクリプトは動くが、改良の余地あり"
+      good: "良 – スクリプトは良好に動作する"
+    sign_in_to_post_discussion: "審査やコメント、質問を投稿するにはサインインします。"
+    sign_in_to_post_comment: "返信を投稿するにはサインインします。"
   common:
     error_preamble: "以下に表示されているエラーを修正し、もう一度送信してください。"
     allowed_elements_link: "使用可能なタグ"
@@ -768,6 +795,8 @@ ja:
         default_sort: "既定の並べ替え"
       report:
         reason: "報告の理由"
+      discussion:
+        rating: "評価"
   errors:
     messages:
       script_missing_name: "は必須です – @name メタキーで指定"
@@ -818,3 +847,5 @@ ja:
     consecutive_bad_ratings:
       notify:
         subject: " あなたのスクリプト%{script_name} (%{site_name}) は連続して悪い評価がついています。"
+    script_comment:
+      subject: "スクリプト %{script_name} (%{site_name}) にコメントがあります。"
