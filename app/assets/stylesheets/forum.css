@@ -22,16 +22,13 @@
 }
 .discussion-meta-item {
   flex: 1;
-  text-align: center;
+  text-align: left;
 }
 .discussion-meta-item:not(:first-child) {
   margin-left: 8px;
 }
 .discussion-meta-item:not(:last-child) {
   margin-right: 8px;
-}
-.discussion-meta-item:first-child {
-  text-align: left;
 }
 .discussion-meta-item:last-child {
   text-align: right;
@@ -80,16 +77,21 @@ a.discussion-title {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-a.discussion-title .discussion-snippet:hover {
+.discussion-title {
+  vertical-align: middle;
+}
+.discussion-title .discussion-snippet:hover {
   text-decoration: underline;
 }
 .rating-icon {
-  border: 1px solid transparent;
   border-radius: 5px;
-  font-size: smaller;
+  font-size: 12px;
   text-transform: uppercase;
   font-weight: 800;
-  padding: 2px 4px;
+  padding: 3px 4px;
+  position: relative;
+  top: -1px;
+  margin-right: 5px;
 }
 .rating-icon-good {
   background-color: green;
@@ -102,4 +104,13 @@ a.discussion-title .discussion-snippet:hover {
 .rating-icon-bad {
   background-color: red;
   color: white;
+}
+.discussion-meta-item-script-name {
+  overflow: hidden;
+}
+.discussion-meta-item-script-name a {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: block;
 }
