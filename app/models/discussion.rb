@@ -65,7 +65,7 @@ class Discussion < ApplicationRecord
     update!(
       stat_reply_count: comments.count - 1,
       stat_last_reply_date: last_comment.created_at,
-      stat_last_replier_id: last_comment.poster_id,
+      stat_last_replier_id: last_comment.poster_id
     )
   end
 end

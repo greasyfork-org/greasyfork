@@ -133,9 +133,9 @@ class ScriptsController < ApplicationController
 
     if @script.use_new_discussions?
       @discussions = @script.new_discussions
-                         .includes(:poster)
-                         .order(stat_last_reply_date: :desc)
-                         .paginate(page: params[:page], per_page: 25)
+                            .includes(:poster)
+                            .order(stat_last_reply_date: :desc)
+                            .paginate(page: params[:page], per_page: 25)
       @discussion = @discussions.build
       @discussion.comments.build
     else
