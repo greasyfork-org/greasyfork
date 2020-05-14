@@ -7,7 +7,7 @@ class DiscussionsController < ApplicationController
   def index
     @discussions = Discussion
                        .includes(:poster, :script)
-                       .order(id: :desc)
+                       .order(stat_last_reply_date: :desc)
                        .paginate(page: params[:page], per_page: 25)
   end
 

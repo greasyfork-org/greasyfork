@@ -49,9 +49,7 @@
       <%= t('scripts.feedback_no_discussions_on_page_form') %>
     </p>
   <% else %>
-    <ul id="discussions">
-      <%= render collection: @discussions, partial: 'discussions/discussion' %>
-    </ul>
+    <%= render collection: @discussions, partial: 'discussions/discussion' %>
     <%= will_paginate @discussions %>
   <% end %>
   <h3><%= t('discussions.new_discussion_heading') %></h3>

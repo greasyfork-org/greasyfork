@@ -132,7 +132,10 @@ class ScriptsController < ApplicationController
     return if handle_wrong_url(@script, :id)
 
     if @script.use_new_discussions?
-      @discussions = @script.new_discussions.includes(:poster).paginate(page: params[:page], per_page: 25)
+      @discussions = @script.new_discussions
+                         .includes(:poster)
+                         .order(stat_last_reply_date: :desc)
+                         .paginate(page: params[:page], per_page: 25)
       @discussion = @discussions.build
       @discussion.comments.build
     else

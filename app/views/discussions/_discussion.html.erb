@@ -1,23 +1,35 @@
 <%
-  t_params = {
-      discussion_link: link_to(discussion_snippet(discussion), discussion.path).html_safe,
-      original_poster_link: render_poster(discussion),
-      original_post_date: markup_date(discussion.created_at).html_safe
-  }
-
   show_script = defined?(show_script) && show_script && !discussion.script.nil?
-  t_params[:script_link] = link_to discussion.script.name(request_locale), discussion.script if show_script
+%>
 
-  if discussion.stat_reply_count > 0
-    t_params[:last_commenter_link] = render_user(discussion.stat_last_replier, discussion.stat_last_replier_id)
-    t_params[:last_comment_date] = markup_date(discussion.stat_last_reply_date).html_safe
-  end
-
-  if show_script
-    t_key = discussion.replies? ? 'forum_discussions.listing_with_script_with_reply_html' : 'forum_discussions.listing_with_script_no_reply_html'
-  else
-    t_key = discussion.replies? ? 'forum_discussions.listing_no_script_with_reply_html' : 'forum_discussions.listing_no_script_no_reply_html'
-  end %>
-<li class="<%=discussion_class(discussion)%>">
-  <%=t(t_key, t_params)%>
-</li>
+<div class="discussion-list-item">
+  <div class="discussion-meta">
+    <% if show_script %>
+      <div class="discussion-meta-item">
+        <% if discussion.script %>
+          <%= link_to discussion.script.name(request_locale), script_path(discussion.script) %>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="discussion-meta-item">
+      <%= t('discussions.posted_by_html', user: render_poster(discussion), date: markup_date(discussion.created_at)) %>
+    </div>
+    <div class="discussion-meta-item">
+      <% if discussion.stat_reply_count > 0 %>
+        <div class="discussion-meta-item">
+          <%= t('discussions.last_comment', user: render_user(discussion.stat_last_replier, discussion.stat_last_replier_id), date: markup_date(discussion.stat_last_reply_date)).html_safe %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <% if discussion.script %>
+    <%= link_to script_discussion_path(discussion.script, discussion), class: 'discussion-title' do %>
+      <% if discussion.actual_rating? %>
+        <span class="rating-icon rating-icon-<%= discussion.rating_key %>"><%= t("discussions.ratings_short.#{discussion.rating_key}") %></span>
+      <% end %>
+      <span class="discussion-snippet">
+        <%= truncate(format_user_text_as_plain(discussion.comments.first.text, discussion.comments.first.text_markup), length: 200) %>
+      </span>
+    <% end %>
+  <% end %>
+</div>

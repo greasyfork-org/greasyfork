@@ -1,5 +1,3 @@
 <h2>Discussions</h2>
-<ul id="discussions">
-  <%= render collection: @discussions, partial: 'discussions/discussion', locals: { show_script: true } %>
-</ul>
+<%= render collection: @discussions, partial: 'discussions/discussion', locals: { show_script: true } %>
 <%= will_paginate @discussions %>

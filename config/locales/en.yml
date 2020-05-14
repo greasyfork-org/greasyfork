@@ -1046,6 +1046,8 @@ en:
   discussions:
     comment_date: "Posted: %{date}"
     comment_edit_date: "Edited: %{date}"
+    posted_by_html: "Posted by: %{user} on %{date}"
+    last_comment: "Last comment: %{user} on %{date}"
     new_discussion_heading: "Post a review, comment, or question"
     new_discussion_submit: "Post comment"
     new_comment_heading: "Post reply"
@@ -1057,13 +1059,18 @@ en:
     delete_discussion: "Delete"
     update_comment_submit: "Update comment"
     cancel_update_comment: "Cancel"
-    question_heading_html: "Question/comment by %{user}"
-    review_heading_html: "Review by %{user}: %{rating}"
+    question_heading_html: "Question/comment"
+    review_heading_html: "Review: %{rating}"
     ratings:
       question: "No rating - just a question/comment"
       bad: "Bad - script does not work"
       ok: "OK - script works, but could use improvement"
       good: "Good - script works"
+    ratings_short:
+      question: "Question/comment"
+      bad: "Bad"
+      ok: "OK"
+      good: "Good"
     sign_in_to_post_discussion: "Sign in to post a review, comment, or question."
     sign_in_to_post_comment: "Sign in to post a reply."
   common:
