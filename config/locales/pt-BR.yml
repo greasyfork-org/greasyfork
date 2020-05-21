@@ -824,6 +824,8 @@ pt-BR:
   discussions:
     comment_date: "Publicado: %{date}"
     comment_edit_date: "Editado: %{date}"
+    posted_by_html: "Publicado por: %{user} em %{date}"
+    last_comment: "Último comentário: %{user} em %{date}"
     new_discussion_heading: "Publique uma análise, comentário ou questionamento"
     new_discussion_submit: "Publicar comentário"
     new_comment_heading: "Publicar resposta"
@@ -835,13 +837,18 @@ pt-BR:
     delete_discussion: "Remover"
     update_comment_submit: "Atualizar comentário"
     cancel_update_comment: "Cancelar"
-    question_heading_html: "Pergunta/comentário por %{user}"
-    review_heading_html: "Análise por %{user}: %{rating}"
+    question_heading_html: "Pergunta/comentário"
+    review_heading_html: "Avaliação: %{rating}"
     ratings:
       question: "Sem avaliação - apenas uma pergunta/comentário"
       bad: "Ruim - o script não funciona"
       ok: "OK - o script funciona, mas poderia ser melhorado"
       good: "Bom - o script funciona"
+    ratings_short:
+      question: "Pergunta/comentário"
+      bad: "Ruim"
+      ok: "OK"
+      good: "Bom"
     sign_in_to_post_discussion: "Faça o login para publicar uma análise, comentário ou pergunta."
     sign_in_to_post_comment: "Faça o login para publicar uma resposta."
   common:

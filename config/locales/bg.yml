@@ -814,6 +814,8 @@ bg:
   discussions:
     comment_date: "Публикуван на: %{date}"
     comment_edit_date: "Редактиран на: %{date}"
+    posted_by_html: "Публикувано от: %{user} на %{date}"
+    last_comment: "Последен коментар: %{user} на %{date}"
     new_discussion_heading: "Публикувайте отзив, коментар или въпрос"
     new_discussion_submit: "Публикувайте коментар"
     new_comment_heading: "Публикувайте отговор"
@@ -825,13 +827,18 @@ bg:
     delete_discussion: "Изтрийте"
     update_comment_submit: "Обновете коментара"
     cancel_update_comment: "Отказ"
-    question_heading_html: "Въпрос/коментар от %{user}"
-    review_heading_html: "Отзив от %{user}: %{rating}"
+    question_heading_html: "Въпрос/коментар"
+    review_heading_html: "Отзив: %{rating}"
     ratings:
       question: "Без оценка - просто въпрос/коментар"
       bad: "Лошо - скриптът не работи"
       ok: "ОК - скриптът работи, но може да бъде подобрен"
       good: "Отлично - скриптът работи"
+    ratings_short:
+      question: "Въпрос/коментар"
+      bad: "Лошо"
+      ok: "ОК"
+      good: "Добре"
     sign_in_to_post_discussion: "Влезте, за да публикувате отзив, коментар или въпрос."
     sign_in_to_post_comment: "Влезте, за да публикувате отговор."
   common:

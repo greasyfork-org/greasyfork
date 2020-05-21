@@ -41,6 +41,10 @@ tr:
     promoted_text_html: "Şunu da %{script_link} sevebilirsiniz."
     library_instructions_html: "Bu script direkt olarak kurulamaz. Başka scriptler için bir kütüphanedir ve meta yönergeleri içerir %{code}"
     deleted_notice: "Bu script silinmiş."
+    deleted_notice_with_related: "Baktığınız script silinmiş, ama burada benzer scriptleri bulabilirsiniz"
+    deleted_undelete_notice_html: "Bu script bir moderatör tarafından kilitlenmiş ve geri alınamaz.\nGerekçe: \"<i>%{delete_reason}</i>\"."
+    deleted_locked_author_notice_html: "Bu script bir moderatör tarafından silinmiş ve erişebilir değil.\nGerekçe: \"<i>%{delete_reason}</i>\"."
+    deleted_author_notice: "Bu script silinmiş ve diğerleri tarafından erişilemez. Silme sekmesinden geri alabilirsin."
     version_notice_html: "%{date} itibariyledir. %{latest_version_link} görün."
     version_notice_latest_version_link: "En son verisyonu"
     reported_notice: "\"%{script_name}\" rapor edildi ve bir moderatör tarafından incelenmeyi bekliyor."
@@ -58,8 +62,15 @@ tr:
     delete_update_behaviour_1: "Olduğu gibi saklasınlar."
     delete_update_behaviour_2: "Boş bir scriptle yer değiştirsin. Bu seçenek scriptiniz bir sitede olumsuz bir davranış sergiliyorsa kullanılabilir."
     delete_permanently_heading: "Kalıcı olarak silme"
+    delete_permanently_explanation_html: >-
+        Kalıcı olarak silme işlemi, scriptinizi ve ona ait tüm kayıtları forum tartışmaları
+        ve yönetici müdahaleleri hariç siler. Bu işlem sistem yöneticileri tarafından
+        bile geri alınamaz.
+    delete_permanently_confirm: "Scripti kalıcı olarak silmek istediğinizden emin misiniz? Bu işlem geri alınamaz!"
     delete_permanently_submit: "Kalıcı olarak silme isteğinde bulun"
     delete_permanently_immediate_submit: "Kalıcı olarak sil"
+    delete_permanently_notice: "Kalıcı olarak silme isteğiniz kaydedilmiştir. 7 gün içerisinde scriptiniz kalıcı olarak silinecektir."
+    delete_permanently_already_requested: "%{datetime} tarihinde kalıcı silme isteğinde bulundunuz."
     delete_permanently_notice_immediate: "Script kalıcı olarak silindi."
     cancel_delete_permanently_submit: "Kalıcı silme isteğini iptal et"
     delete_permanently_rejected_locked: "Bu script kilitlidir ve kalıcı olarak silinemez."

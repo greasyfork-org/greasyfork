@@ -64,10 +64,14 @@ pl:
     delete_update_behaviour_1: "Pozostanie u nich taki jak dotychczas."
     delete_update_behaviour_2: "Zostanie zaktualizowany do pustego skryptu. Jest to odpowiednie gdy skrypt miał negatywny wpływ na działanie stron, których dotyczy."
     delete_permanently_heading: "Trwałe usunięcie"
+    delete_permanently_confirm: "Czy na pewno chcesz trwale usunąć swój skrypt?"
     delete_permanently_submit: "Usuń trwale"
     delete_permanently_immediate_submit: "Permanentnie usunięty"
+    delete_permanently_notice: "Prośba o usunięcie została zarejestrowana. Twój skrypt zostanie trwale usunięty w ciągu 7 dni."
+    delete_permanently_already_requested: "Poprosiłeś o trwałe usunięcie %{datetime}."
     delete_permanently_notice_immediate: "Skrypt permanentnie usunięty."
     cancel_delete_permanently_submit: "Wycofaj prośbę o trwałe usunięcie"
+    cancel_delete_permanently_notice: "Twoja prośba o trwałe usunięcie została anulowana. Twój skrypt nadal nie jest widoczny dla innych."
     delete_permanently_rejected_locked: "Ten skrypt jest zablokowany i nie może być permanentnie usunięty"
     admin_page: "Administrator"
     admin:
@@ -83,7 +87,9 @@ pl:
       update_locale: "Zaktualizuj ustawienia regionalne"
       no_moderator_logs: "Moderatorzy nie podjęli żadnej akcji w sprawie tego skryptu."
       compare_title: "Porównaj z innym skryptem"
+      compare_to: "Skrypt na %{site_name} do porównania (URL)"
       compare_button: "Porównaj"
+      compare_must_be_local_url: "Skrypt do porównania musi mieć adres URL %{site_name}."
     history_title: "%{script_name} — historia wersji"
     history_only_code_changes_info: "To są wersje tego skryptu, gdzie kod został zaktualizowany."
     history_all_changes_link: "Pokaż wszystkie wersje."
@@ -94,6 +100,8 @@ pl:
     feedback_title: "%{script_name} - opinie"
     feedback_has_reports: "Ten skrypt został zgłoszony za naruszanie zasad %{site_name}."
     feedback_no_discussions_html: "Brak udostępnionych dyskusji. %{start_first_discussion_link}"
+    feedback_no_discussions_on_page_form: "Brak dyskusji."
+    feedback_report_instead: "Jeśli myślisz, że ten skrypt łamie %{rules_link: zasady %{site_name}}, możesz %{report_link:zgłosić go do usunięcia}."
     feedback_start_first_discussion_link: "Bądź pierwszy, by rozpocząć dyskusję o tym skrypcie."
     feedback_discussion_or_report: "%{new_discussion_link:Rozpocznij nową dyskusję nad tym skryptem} lub %{report_link:zgłoś do usunięcia}."
     feedback_discussions_heading: "Dyskusje na Greasy Forum"
@@ -614,15 +622,15 @@ pl:
           <p>Skrypty zamieszczone na %{site_name} zostaną przepisane w następujący
           sposób:</p> <ul>
 
-          <li><code>Jeśli występują dyrektywy @updateURL</code>, <code>@installURL</code>,
+          <li>Jeśli występują dyrektywy </code>@updateURL</code>, <code>@installURL</code>,
           i <code>@downloadURL</code> , to zostaną usunięte. Brak tych dyrektyw oznacza,
-          iż jakikolwiek skrypt zainstalowany z%{site_name} zostanie zaktualizowany
+          iż jakikolwiek skrypt zainstalowany z %{site_name} zostanie zaktualizowany
           z %{site_name}.</li>
 
-          <li><code>Jeśli skrypt nie posiada dyrektyw @version</code> i <code>@namespace</code>,
+          <li>Jeśli skrypt nie posiada dyrektyw </code>@version</code> i <code>@namespace</code>,
           to zostaną dopisane. Te dyrektywy są potrzebne dla prawidłowego aktualizowania.</li>
 
-          <li><code>Jeśli nowa wersja skryptu nie posiada dyrektywy @description</code>,
+          <li>Jeśli nowa wersja skryptu nie posiada dyrektywy </code>@description</code>,
           a poprzednia wersja ją miała, to zostanie dopisana.</li>
 
           <li>Znaki końca linii CRLF i CR zostaną zamienione na standardowy styl końca
@@ -634,7 +642,7 @@ pl:
       title: "Twórcy"
       authors_credit: "%{site_name} nie mógł powstać bez twórców, którzy współtworzą skrypty."
       developers_credit: "%{site_name} sam w sobie został stworzony przez %{developers_link:tych ludzi} razem z pomocą tych, którzy zgłaszali błędy i sugerowali poprawki."
-      translators_credit: "%{site_name} został przetłumaczony przez %{translators_link:zespół tłumaczy %{site_name}a na Transifeksie}:"
+      translators_credit: "%{site_name} został przetłumaczony przez %{translators_link:Zespół Greasy Tłumaczy na Transifex}:"
       icons_credit: "Ikony dyskusji są pochodzą od %{vistastylebase} przez %{iconsland}. Ikony przeglądarek pochodzą od %{browserlogos}."
     help_with_greasymonkey: "Pomoc z Greasemonkey"
     contact:
@@ -726,6 +734,58 @@ pl:
       few: "%{script_names} otrzymały konsekwentnie negatywne oceny. Prosimy, przejrzyj swoje skrypty oraz ustosunkuj się do zarzutów podniesionych w opiniach."
       many: "%{script_names} otrzymały konsekwentnie negatywne oceny. Prosimy, przejrzyj swoje skrypty oraz ustosunkuj się do zarzutów podniesionych w opiniach."
       other: "%{script_names}otrzymały konsekwentnie negatywne oceny. Prosimy, przejrzyj swoje skrypty oraz ustosunkuj się do zarzutów podniesionych w opiniach."
+  reports:
+    report_filed: "Twoje zgłoszenie zostanie sprawdzone przez moderatora."
+    new_report_title:
+      user: "Zgłoś %{user}"
+      comment: "Zgłoś komentarz użytkownika %{user}"
+    new_report_notes_html: >
+        <p>Przed zgłoszeniem należy pamiętać, że:</p> <ul>
+
+        <li>Moderator sprawdzi twoje zgłoszenie i odpowiednio się do niego odniesie.</li>
+
+        <li>Niezgadzanie się z treścią lub uważanie, że jest nieprawdziwe, nie jest
+        uzasadnionym powodem do zgłoszenia.</li>
+
+        <li>Nadużywanie opcji zgłaszania może doprowadzić <i>cię</i> do bana.</li>
+
+        </ul>
+    reason:
+      spam: "Spam"
+      abuse: "Obraźliwe lub nienawistne treści"
+      illegal: "Złośliwe oprogramowanie lub nielegalne treści"
+    explanation_placeholder: "Podaj dodatkowe szczegóły (opcjonalne)"
+    create_button: "Utwórz zgłoszenie"
+    report_user: "Zgłoś użytkownika"
+    report_comment: "Zgłoś komentarz"
+  discussions:
+    comment_date: "Napisano: %{date}"
+    comment_edit_date: "Edytowano: %{date}"
+    posted_by_html: "Napisano przez: %{user} %{date}"
+    last_comment: "Ostatni komentarz: %{user} %{date}"
+    new_discussion_heading: "Napisz recenzję, komentarz lub pytanie"
+    new_discussion_submit: "Opublikuj komentarz"
+    new_comment_heading: "Odpowiedz"
+    new_comment_submit: "Odpowiedz"
+    edit_comment_link: "Edytuj"
+    edit_comment_header: "Edytuj komentarz"
+    delete_comment: "Usuń"
+    delete_discussion: "Usuń"
+    update_comment_submit: "Zaktualizuj komentarz"
+    cancel_update_comment: "Anuluj"
+    question_heading_html: "Pytanie/komentarz"
+    ratings:
+      question: "Bez oceny - samo pytanie/komentarz"
+      bad: "Słaby - skrypt nie działa"
+      ok: "OK - skrypt działa, ale można by go dopracować"
+      good: "Dobry - skrypt działa"
+    ratings_short:
+      question: "Pytanie/komentarz"
+      bad: "Słaby"
+      ok: "OK"
+      good: "Dobry"
+    sign_in_to_post_discussion: "Zaloguj się, by napisać recenzję, komentarz lub pytanie."
+    sign_in_to_post_comment: "Zaloguj się, by odpowiedzieć."
   common:
     error_preamble: "Mieliśmy małe problemy z tym, co chciałeś napisać..."
     allowed_elements_link: "(zobacz dozwolony kod)"
@@ -769,6 +829,10 @@ pl:
         name: "Nazwa"
         description: "Opis"
         default_sort: "Sortowanie domyślne"
+      report:
+        reason: "Powód zgłoszenia"
+      discussion:
+        rating: "Ocena"
   errors:
     messages:
       script_missing_name: "jest wymagana - wybierz jedną z dostępnych jako „@name”"
@@ -819,3 +883,5 @@ pl:
     consecutive_bad_ratings:
       notify:
         subject: "Twój skrypt %{script_name} dla %{site_name} otrzymał wiele negatywnych opinii."
+    script_comment:
+      subject: "Twój skrypt %{script_name} na %{site_name} został skomentowany."

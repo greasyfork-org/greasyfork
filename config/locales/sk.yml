@@ -831,6 +831,8 @@ sk:
   discussions:
     comment_date: "Pridaný: %{date}"
     comment_edit_date: "Upravený: %{date}"
+    posted_by_html: "Pridal/a: %{user} %{date}"
+    last_comment: "Posledný komentár: %{user} %{date}"
     new_discussion_heading: "Pridať recenziu, komentár alebo otázku"
     new_discussion_submit: "Pridať komentár"
     new_comment_heading: "Pridať odpoveď"
@@ -842,13 +844,18 @@ sk:
     delete_discussion: "Odstrániť"
     update_comment_submit: "Upraviť komentár"
     cancel_update_comment: "Zrušiť"
-    question_heading_html: "Otázka/komentár od %{user}"
-    review_heading_html: "Hodnotenie od %{user}: %{rating}"
+    question_heading_html: "Otázka/komentár"
+    review_heading_html: "Hodnotenie: %{rating}"
     ratings:
       question: "Žiadne hodnotenie - len otázka/komentár"
       bad: "Zlé - skript nefunguje"
       ok: "OK - skript funguje, ale dá sa vylepšiť"
       good: "Dobré - skript funguje"
+    ratings_short:
+      question: "Otázka/komentár"
+      bad: "Zlé"
+      ok: "OK"
+      good: "Dobré"
     sign_in_to_post_discussion: "Ak chcete pridať recenziu, komentár alebo otázku, prihláste sa."
     sign_in_to_post_comment: "Aby ste mohli pridať odpoveď, prihláste sa."
   common:

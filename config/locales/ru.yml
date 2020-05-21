@@ -838,6 +838,8 @@ ru:
   discussions:
     comment_date: "Создано: %{date}"
     comment_edit_date: "Отредактировано: %{date}"
+    posted_by_html: "Создано: %{user} %{date}"
+    last_comment: "Последний комментарий: %{user} %{date}"
     new_discussion_heading: "Напишите отзыв, комментарий, или задайте вопрос"
     new_discussion_submit: "Создать комментарий"
     new_comment_heading: "Ответить"
@@ -849,13 +851,18 @@ ru:
     delete_discussion: "Удалить"
     update_comment_submit: "Обновить комментарий"
     cancel_update_comment: "Отменить"
-    question_heading_html: "Вопрос/комментарий %{user}"
-    review_heading_html: "Отзыв %{user}: %{rating}"
+    question_heading_html: "Вопрос/комментарий"
+    review_heading_html: "Отзыв: %{rating}"
     ratings:
       question: "Без оценки — просто вопрос или комментарий"
       bad: "Плохой — скрипт не работает"
       ok: "Нормальный — скрипт работает, но может быть улучшен"
       good: "Хороший — скрипт работает как нужно"
+    ratings_short:
+      question: "Вопрос/комментарий"
+      bad: "Плохой"
+      ok: "Нормальный"
+      good: "Хороший"
     sign_in_to_post_discussion: "Войдите, чтобы написать отзыв, комментарий, или задать вопрос."
     sign_in_to_post_comment: "Войдите, чтобы ответить."
   common:

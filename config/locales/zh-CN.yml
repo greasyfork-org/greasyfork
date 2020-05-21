@@ -255,7 +255,7 @@ zh-CN:
     libraries_title: "库"
     libraries_description_html: "这些是 %{site_name} 用户发布的库，您可以在您的脚本中 <code>@require</code> 它们。对于其他可以 <code>@require</code> 的库，参见 %{policy_link:%{site_name} 对 <code>@require</code> 的政策}。"
     by_site_list_title: "%{site_name} 上按站点分组的用户脚本"
-    by_site_list_description: "这些是最受用户脚本欢迎的站点。字体越大表示越受到用户脚本的欢迎。"
+    by_site_list_description: "这些是具有最受欢迎的用户脚本的站点。字体越大表示站点拥有越受到欢迎的用户脚本。"
     by_site_list_filter: "按网站域名过滤："
     search_placeholder: "搜索脚本"
     updated: "脚本已更新。"
@@ -722,6 +722,8 @@ zh-CN:
   discussions:
     comment_date: "发表于：%{date}"
     comment_edit_date: "修改于：%{date}"
+    posted_by_html: "由%{user}发表于%{date}"
+    last_comment: "最新评论：%{user} %{date}"
     new_discussion_heading: "发表评价、评论或提问"
     new_discussion_submit: "发表评论"
     new_comment_heading: "发表回复"
@@ -733,13 +735,18 @@ zh-CN:
     delete_discussion: "删除"
     update_comment_submit: "更新评论"
     cancel_update_comment: "取消"
-    question_heading_html: "来自%{user}的提问/评论"
-    review_heading_html: "来自%{user}的评价：%{rating}"
+    question_heading_html: "提问/评论"
+    review_heading_html: "评价：%{rating}"
     ratings:
       question: "不评级 - 只是提问或者进行评论"
       bad: "差评 - 脚本失效"
       ok: "一般 - 脚本可用，但是还有待改进"
       good: "好评 - 脚本可行有效"
+    ratings_short:
+      question: "提问/评论"
+      bad: "差评"
+      ok: "一般"
+      good: "好评"
     sign_in_to_post_discussion: "登录以发表评价、评论或提问。"
     sign_in_to_post_comment: "登录以发表回复。"
   common:

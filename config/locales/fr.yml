@@ -838,6 +838,8 @@ fr:
   discussions:
     comment_date: "Publié le: %{date}"
     comment_edit_date: "Édité le: %{date}"
+    posted_by_html: "Posté par: %{user} le %{date}"
+    last_comment: "Dernier commentaire: %{user} le %{date}"
     new_discussion_heading: "Poster un avis, un commentaire ou une question"
     new_discussion_submit: "Poster un commentaire"
     new_comment_heading: "Poster une réponse"
@@ -849,13 +851,18 @@ fr:
     delete_discussion: "Supprimer"
     update_comment_submit: "Mettre à jour le commentaire"
     cancel_update_comment: "Annuler"
-    question_heading_html: "Question / commentaire de %{user}"
-    review_heading_html: "Examiné par %{user}: %{rating}"
+    question_heading_html: "Question / commentaire"
+    review_heading_html: "Avis: %{rating}"
     ratings:
       question: "Aucune note - juste une question / un commentaire"
       bad: "Mauvais - le script ne fonctionne pas"
       ok: "OK - le script fonctionne, mais pourrait être amélioré"
       good: "Bon - le script fonctionne correctement"
+    ratings_short:
+      question: "Question / commentaire"
+      bad: "Mauvais"
+      ok: "OK"
+      good: "Bon"
     sign_in_to_post_discussion: "Connectez-vous pour poster un avis, un commentaire ou une question."
     sign_in_to_post_comment: "Connectez-vous pour poster une réponse."
   common:

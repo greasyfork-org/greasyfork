@@ -730,6 +730,8 @@ ja:
   discussions:
     comment_date: "投稿日: %{date}"
     comment_edit_date: "編集日; %{date}"
+    posted_by_html: "投稿: %{user} : %{date}"
+    last_comment: "最新のコメント: %{user} : %{date}"
     new_discussion_heading: "審査やコメント、質問を投稿"
     new_discussion_submit: "コメントを投稿"
     new_comment_heading: "返信を投稿"
@@ -741,13 +743,17 @@ ja:
     delete_discussion: "削除"
     update_comment_submit: "コメントの更新"
     cancel_update_comment: "キャンセル"
-    question_heading_html: "%{user}からの質問/コメント"
-    review_heading_html: "%{user}による評価 : %{rating}"
+    question_heading_html: "質問/コメント"
     ratings:
       question: "評価しない - 単に質問/コメント"
       bad: "不可 – スクリプトが動かない"
       ok: "可 – スクリプトは動くが、改良の余地あり"
       good: "良 – スクリプトは良好に動作する"
+    ratings_short:
+      question: "質問/コメント"
+      bad: "不可"
+      ok: "可"
+      good: "良"
     sign_in_to_post_discussion: "審査やコメント、質問を投稿するにはサインインします。"
     sign_in_to_post_comment: "返信を投稿するにはサインインします。"
   common:
@@ -847,5 +853,19 @@ ja:
     consecutive_bad_ratings:
       notify:
         subject: " あなたのスクリプト%{script_name} (%{site_name}) は連続して悪い評価がついています。"
+        text: |
+            あなたのスクリプト %{script_name} (%{site_name} の、%{script_url}) は連続して悪い評価がついています。
+
+            %{feedback_url}で反響を確認し、問題を修正し、提起された懸念事項に返信してください。
+
+            更新版の投稿がないか、%{delete_date} までに議論への返信がない場合、あなたのスクリプトは %{site_name} で非表示にされるでしょう。 (この日付移行、希望があれば再び表示することも可能です)
     script_comment:
       subject: "スクリプト %{script_name} (%{site_name}) にコメントがあります。"
+      text: |-
+          あなたのスクリプト「%{script_name}」( %{site_name} , %{script_url})  に対しユーザー %{commenter_name}」からのコメントがあります:
+
+          ---
+          %{comment_text}
+          ---
+
+          このコメントへ %{comment_url} から返信できます。通知設定の管理は%{notification_preferences_url} から行えます。
