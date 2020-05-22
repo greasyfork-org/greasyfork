@@ -13,7 +13,11 @@
   </div>
 <% end %>
 
-<%= t('reports.new_report_notes_html') %>
+<% if @report.item.is_a?(User) %>
+  <%= t('reports.new_report_notes_html') %>
+<% else %>
+  <%= t('reports.new_user_report_notes_html') %>
+<% end %>
 
 <%= form_with(model: @report) do |f| %>
   <div class="form-control radio-group">
