@@ -2,9 +2,9 @@
 <%- description "Greasy Fork profile for #{@user.name}" %>
 
 <section class="text-content reportable">
-  <%= link_to t('reports.report_user'), new_report_path(item_class: 'user', item_id: @user.id), class: 'report-link report-link-abs' %>
+  <%= link_to(t('reports.report_user'), new_report_path(item_class: 'user', item_id: @user.id), class: 'report-link report-link-abs') unless @user.banned? %>
 
-  <h2><%=@user.name%></h2>
+  <h2><%= render_user(@user, @user.id, skip_link: true) %></h2>
 
   <% if @user.profile.present? && (!@user.banned || current_user&.moderator?) && @user.posting_permission == :allowed %>
     <section id="user-profile" class="user-content"><%=format_user_text(@user.profile, @user.profile_markup)%></section>

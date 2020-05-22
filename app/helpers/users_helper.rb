@@ -10,11 +10,20 @@ module UsersHelper
     return ("<li class=\"list-option#{is_link ? '' : ' list-current'}\">" + label + '</li>').html_safe
   end
 
-  def render_user(user, user_id)
-    if user
-      link_to(user.name, user_path(user))
+  def render_user(user, user_id, skip_link: false)
+    return content_tag(:i) { "Deleted user #{user_id}" } unless user
+
+    badge = if user.banned?
+              content_tag(:span, class: 'badge badge-banned') { t('users.badges.banned') }
+            elsif user.moderator?
+              content_tag(:span, class: 'badge badge-moderator') { t('users.badges.moderator') }
+            else
+              ''
+            end
+    if skip_link
+      ''.html_safe + user.name + badge
     else
-      "<i>(Deleted user #{user_id})</i>".html_safe
+      link_to(user.name, user_path(user)) + badge
     end
   end
 end
