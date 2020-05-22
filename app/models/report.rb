@@ -39,4 +39,16 @@ class Report < ApplicationRecord
   def reason_text
     REASON_TEXT[reason]
   end
+
+  def resolved?
+    result.nil?
+  end
+
+  def dismissed?
+    result == RESULT_DISMISSED
+  end
+
+  def upheld?
+    result == RESULT_UPHELD
+  end
 end

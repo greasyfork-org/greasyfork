@@ -1,0 +1,50 @@
+<h4><%= report_item_link(report) %> has been reported for <%= report.reason_text %> by <%= link_to(report.reporter.name, user_path(report.reporter)) %>.</h4>
+
+<% if report.item.is_a?(Comment) %>
+  <div class="user-content">
+    <%= format_user_text(report.item.text, report.item.text_markup) %>
+  </div>
+<% end %>
+
+<% if report.explanation %>
+  <blockquote>
+    <%= report.explanation %>
+  </blockquote>
+<% end %>
+
+<% reporter_stats = report.reporter.report_stats(ignore_report: report) %>
+<% if reporter_stats.values.any?{ |v| v > 0 } %>
+  <p>
+    <%= link_to(report.reporter.name, user_path(report.reporter)) %> has made
+    <%= reporter_stats[:pending] %> pending <%= 'report'.pluralize(reporter_stats[:pending]) %>,
+    <%= reporter_stats[:dismissed] %> dismissed <%= 'report'.pluralize(reporter_stats[:dismissed]) %>,
+    and <%= reporter_stats[:upheld] %> upheld <%= 'report'.pluralize(reporter_stats[:upheld]) %>.
+  </p>
+<% end %>
+
+<% if report.upheld? %>
+  <p>
+    <%= t('reports.result_upheld') %>
+  </p>
+<% elsif report.dismissed? %>
+  <p>
+    <%= t('reports.result_dismissed') %>
+  </p>
+<% elsif current_user&.moderator? %>
+  <%= button_to('Dismiss report', dismiss_report_path(report), method: 'POST', form_class: 'inline-form') %>
+  <% case report.item %>
+  <% when User %>
+    <%= button_to("Ban #{report.item.name}", uphold_report_path(report), method: 'POST', form_class: 'inline-form') %>
+  <% when Comment %>
+    <%= button_to("Delete comment", uphold_report_path(report), method: 'POST', form_class: 'inline-form') %>
+    <% if report.item.poster && !report.item.poster.banned? %>
+      <%= button_to("Delete comment and ban #{report.item.poster.name}", uphold_report_path(report, variant: 'ban'), method: 'POST', form_class: 'inline-form') %>
+    <% end %>
+  <% else
+       raise "Unknown item #{report.item}"
+     end %>
+<% else %>
+  <p>
+    <%= t('reports.result_pending') %>
+  </p>
+<% end %>

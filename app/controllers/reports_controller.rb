@@ -1,5 +1,5 @@
 class ReportsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: :show
   before_action :moderators_only, only: [:index, :dismiss, :uphold]
 
   before_action do
@@ -8,6 +8,8 @@ class ReportsController < ApplicationController
 
   def new
     @report = Report.new(item: item, reporter: current_user)
+    previous_report = Report.unresolved.where(item: item, reporter: current_user).first
+    redirect_to report_path(previous_report) if previous_report
   end
 
   def create
@@ -15,13 +17,7 @@ class ReportsController < ApplicationController
     @report.reporter = current_user
     @report.item = item
     @report.save!
-    url = case item
-          when Comment
-            item.path(locale: request_locale.code)
-          else
-            item
-          end
-    redirect_to url, notice: t('reports.report_filed')
+    redirect_to report_path(@report), notice: t('reports.report_filed')
   end
 
   def index
@@ -38,6 +34,10 @@ class ReportsController < ApplicationController
     @report = Report.find(params[:id])
     @report.uphold!(moderator: current_user, variant: params[:variant])
     redirect_to reports_path
+  end
+
+  def show
+    @report = Report.find(params[:id])
   end
 
   private
