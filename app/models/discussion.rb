@@ -62,10 +62,18 @@ class Discussion < ApplicationRecord
   end
 
   def update_stats!
-    update!(
+    update!(calculate_stats)
+  end
+
+  def assign_stats
+    assign_attributes(calculate_stats)
+  end
+
+  def calculate_stats
+    {
       stat_reply_count: comments.count - 1,
       stat_last_reply_date: last_comment.created_at,
-      stat_last_replier_id: last_comment.poster_id
-    )
+      stat_last_replier_id: last_comment.poster_id,
+    }
   end
 end

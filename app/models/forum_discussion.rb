@@ -10,14 +10,14 @@ class ForumDiscussion < ApplicationRecord
   alias_attribute 'name', 'Name'
   alias_attribute 'rating', 'Rating'
 
-  # ignore this so we don't have to cache something we won't use
-  self.ignored_columns = [:Body]
-
   belongs_to :original_forum_poster, -> { readonly }, class_name: 'ForumUser', foreign_key: 'InsertUserID'
   belongs_to :last_reply_forum_poster, -> { readonly }, class_name: 'ForumUser', foreign_key: 'LastCommentUserID'
   belongs_to :script, foreign_key: 'ScriptID'
 
+  has_many :forum_comments, foreign_key: 'DiscussionID'
+
   scope :open, -> { where(Closed: 0) }
+  scope :for_script, -> { where.not(ScriptID: nil) }
 
   def unescaped_name
     # Vanilla stored this as escaped. We are going to unescape on output anyway.

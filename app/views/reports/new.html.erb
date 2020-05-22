@@ -7,12 +7,6 @@
   <% end %>
 </h3>
 
-<% if @previous_reports.any? %>
-  <p>
-    You've made <%= @previous_reports.count %> previous report
-  </p>
-<% end %>
-
 <% if @report.item.is_a?(Comment) %>
   <div class="user-content">
     <%= format_user_text(@report.item.text, @report.item.text_markup) %>

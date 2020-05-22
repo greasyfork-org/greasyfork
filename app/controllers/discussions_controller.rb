@@ -1,3 +1,5 @@
+require 'discussion_converter'
+
 class DiscussionsController < ApplicationController
   include DiscussionHelper
 
@@ -46,6 +48,13 @@ class DiscussionsController < ApplicationController
 
     @comment = Comment.new
     render layout: 'scripts' if @script
+  end
+
+  def preview_converted
+    @discussion = DiscussionConverter.convert(ForumDiscussion.find(params[:id]))
+    @script = @discussion.script
+    @conversion_preview = true
+    render :show, layout: 'scripts'
   end
 
   def create

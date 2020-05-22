@@ -11,7 +11,7 @@
   <% end %>
 </h3>
 
-<% if !@comment.errors.empty? %>
+<% if @comment&.errors&.any? %>
   <div class="alert">
     <p><%=t('common.error_preamble')%></p>
     <ul class="errors">
@@ -22,7 +22,7 @@
   </div>
 <% end %>
 
-<% @discussion.comments.reject(&:new_record?).each do |comment| %>
+<% (@conversion_preview ? @discussion.comments : @discussion.comments.reject(&:new_record?)).each do |comment| %>
   <% by_current_user = comment.poster && current_user == comment.poster %>
   <div class="comment" id="comment-<%= comment.id %>">
     <div class="comment-meta">
@@ -38,14 +38,14 @@
         </div>
       <% end %>
       <div class="comment-meta-spacer"></div>
-      <% if by_current_user %>
+      <% if by_current_user && !comment.new_record? %>
         <div class="comment-meta-item">
           <%= link_to t('discussions.edit_comment_link'), '#', class: 'edit-comment', data: { comment_container: "comment-#{comment.id}" } %>
         </div>
       <% end %>
       <% if current_user&.moderator? %>
         <div class="comment-meta-item">
-          <% if comment.discussion.script %>
+          <% if comment.discussion.script && !comment.new_record? %>
             <% if comment.first_comment? %>
               <%= link_to t('discussions.delete_discussion'), script_discussion_path(comment.discussion.script, comment.discussion.id), method: :DELETE, data: { confirm: 'Are you sure you want to delete this discussion?' } %>
             <% else %>
@@ -54,7 +54,7 @@
           <% end %>
         </div>
       <% end %>
-      <% unless by_current_user %>
+      <% unless by_current_user || comment.new_record? %>
         <div class="comment-meta-item">
           <%= link_to t('reports.report_comment'), new_report_path(item_class: 'comment', item_id: comment.id), class: 'report-link' %>
         </div>
@@ -80,16 +80,18 @@
     <% end %>
   </div>
 <% end %>
-<div class="post-reply">
-  <h3><%= t('discussions.new_comment_heading') %></h3>
-  <% if current_user %>
-    <%= form_with(model: @comment, url: scoped_comment_create_path(@discussion), method: :POST) do |f| %>
-      <%= render partial: 'discussions/comment_entry', locals: { f: f } %>
-      <%= f.submit t('discussions.new_comment_submit') %>
+<% unless @conversion_preview %>
+  <div class="post-reply">
+    <h3><%= t('discussions.new_comment_heading') %></h3>
+    <% if current_user && @comment %>
+      <%= form_with(model: @comment, url: scoped_comment_create_path(@discussion), method: :POST) do |f| %>
+        <%= render partial: 'discussions/comment_entry', locals: { f: f } %>
+        <%= f.submit t('discussions.new_comment_submit') %>
+      <% end %>
+    <% else %>
+      <p>
+        <%= link_to t('discussions.sign_in_to_post_comment'), new_user_session_path(return_to: request.fullpath) %>
+      </p>
     <% end %>
-  <% else %>
-    <p>
-      <%= link_to t('discussions.sign_in_to_post_comment'), new_user_session_path(return_to: request.fullpath) %>
-    </p>
-  <% end %>
-</div>
+  </div>
+<% end %>
