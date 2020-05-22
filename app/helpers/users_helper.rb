@@ -14,9 +14,9 @@ module UsersHelper
     return content_tag(:i) { "Deleted user #{user_id}" } unless user
 
     badge = if user.banned?
-              content_tag(:span, class: 'badge badge-banned') { t('users.badges.banned') }
+              render_badge(:banned)
             elsif user.moderator?
-              content_tag(:span, class: 'badge badge-moderator') { t('users.badges.moderator') }
+              render_badge(:moderator)
             else
               ''
             end
@@ -25,5 +25,11 @@ module UsersHelper
     else
       link_to(user.name, user_path(user)) + badge
     end
+  end
+
+  def render_badge(key)
+    text = t("users.badges.#{key}.short")
+    title = t("users.badges.#{key}.long")
+    content_tag(:span, class: "badge badge-#{key}", title: text == title ? nil : title) { text }
   end
 end
