@@ -1,15 +1,31 @@
 <%- title t('help.credits.title') %>
 
-<p><%=t('help.credits.authors_credit', site_name: site_name)%></p>
+<p>
+  <%= t('help.credits.authors_credit', site_name: site_name) %>
+</p>
 
-<p><%=it('help.credits.developers_credit', developers_link: 'https://github.com/JasonBarnabe/greasyfork/graphs/contributors', site_name: site_name)%></p>
+<p>
+  <%= it('help.credits.developers_credit', developers_link: 'https://github.com/JasonBarnabe/greasyfork/graphs/contributors', site_name: site_name) %>
+</p>
 
-<p><%=it('help.credits.translators_credit', translators_link: 'https://www.transifex.com/organization/greasy-fork/team/21359/', site_name: site_name)%></p>
+<p>
+  <%= it('help.credits.translators_credit', translators_link: 'https://www.transifex.com/greasy-fork/teams/', site_name: site_name) %>
+</p>
 
 <ul>
-	<% Locale.where(:ui_available => true).joins(:locale_contributors).order(:code).distinct.each do |locale| %>
-		<li><%=locale.native_name%> (<%=locale.code%>): <%=locale.locale_contributors.map{|lc| lc.transifex_user_name}.join(', ')%></li>
-	<% end %>
+  <% Locale.where(ui_available: true).includes(:locale_contributors).order(:code).distinct.reject { |locale| locale.locale_contributors.none? }.each do |locale| %>
+    <li>
+      <b>
+        <%= link_to "#{locale.native_name || locale.english_name} (#{locale.code})", root_path(locale: locale.code, locale_override: 1) %>
+      </b>:
+      <ul class="inline-list">
+        <% locale.locale_contributors.map(&:transifex_user_name).each do |contributor| %>
+          <li><%= contributor %></li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
 </ul>
-
-<p><%=it('help.credits.icons_credit', vistastylebase: link_to('Vista Style Base Software', 'https://www.iconfinder.com/search/?q=iconset:softwaredemo'), iconsland: link_to('Icons Land', 'http://www.icons-land.com/'), browserlogos: link_to('alrra/browser-logos', 'https://github.com/alrra/browser-logos/'))%></p>
+<p>
+  <%= it('help.credits.icons_credit', vistastylebase: link_to('Vista Style Base Software', 'https://www.iconfinder.com/search/?q=iconset:softwaredemo'), iconsland: link_to('Icons Land', 'http://www.icons-land.com/'), browserlogos: link_to('alrra/browser-logos', 'https://github.com/alrra/browser-logos/')) %>
+</p>
