@@ -8,11 +8,34 @@ class DiscussionsController < ApplicationController
     @discussions = Discussion
                    .includes(:poster, :script)
                    .order(stat_last_reply_date: :desc)
-                   .paginate(page: params[:page], per_page: 25)
+    case script_subset
+    when :sleazy
+      @discussions = @discussions.where(script: { sensitive: true })
+    when :greasy
+      @discussions = @discussions.where.not(script: { sensitive: true })
+    end
+
+    @discussions = @discussions.paginate(page: params[:page], per_page: 25)
   end
 
   def show
     @discussion = discussion_scope.find(params[:id])
+
+    if @discussion.script
+      case script_subset
+      when :sleazy
+        unless @discussion.script.sensitive?
+          render_404
+          return
+        end
+      when :greasy
+        if @discussion.script.sensitive?
+          render_404
+          return
+        end
+      end
+    end
+
     @comment = Comment.new
     render layout: 'scripts' if @script
   end
