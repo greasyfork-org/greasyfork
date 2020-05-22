@@ -6,4 +6,4 @@ $Definition['layouts.application.submenu'] = 'Więcej';
 $Definition['layouts.application.advanced_search'] = 'Wyszukiwanie zaawansowane';
 $Definition['layouts.application.user_list'] = 'Lista użytkowników';
 $Definition['layouts.application.libraries'] = 'Biblioteki';
-$Definition['layouts.application.moderator_log'] = 'Log moderatora';
+$Definition['layouts.application.moderator_log'] = 'Logi moderatora';

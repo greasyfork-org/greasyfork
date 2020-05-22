@@ -9,7 +9,7 @@ pl:
       advanced_search: "Wyszukiwanie zaawansowane"
       user_list: "Lista użytkowników"
       libraries: "Biblioteki"
-      moderator_log: "Log moderatora"
+      moderator_log: "Logi moderatora"
   scripts:
     created_date: "Utworzono"
     updated_date: "Zaktualizowano"
@@ -64,6 +64,12 @@ pl:
     delete_update_behaviour_1: "Pozostanie u nich taki jak dotychczas."
     delete_update_behaviour_2: "Zostanie zaktualizowany do pustego skryptu. Jest to odpowiednie gdy skrypt miał negatywny wpływ na działanie stron, których dotyczy."
     delete_permanently_heading: "Trwałe usunięcie"
+    delete_permanently_explanation_html: >-
+        <p>Trwałe usunięcie skryptu usunie go wraz ze wszystkimi powiązanymi rekordami,
+        z wyjątkiem dyskusji na forum oraz logów działań moderatorów.</p> <p>Twój
+        skrypt zostanie trwale usunięty po 7 dniach od zgłoszenia. Możesz w tym czasie
+        anulować jego usunięcie. Po tym czasie przywrócenie skryptu jest niemożliwe
+        nawet przez moderatorów.</p>
     delete_permanently_confirm: "Czy na pewno chcesz trwale usunąć swój skrypt?"
     delete_permanently_submit: "Usuń trwale"
     delete_permanently_immediate_submit: "Permanentnie usunięty"
@@ -264,6 +270,27 @@ pl:
     must_confirm_email_button: "Wyślij link potwierdzający na adres %{email}"
     report:
       title: "Zgłoś %{script_name}"
+      text_html: >-
+          <p>Skrypty zamieszczone na %{site_name} muszą przestrzegać jego %{rules_link:regulamin}.
+          Zgłoś nadużycie za pomocą linków poniżej, a moderatorzy %{site_name} rozpatrzą
+          twoje zgłoszenie.</p> <ul>
+
+          <li>%{unauthorized_link::Zgłoś nieautoryzowane kopie twojego skryptu.}</li>
+
+          <li>%{malware_link:Zgłoś malware.}</li>
+
+          <li>%{spam_link:Spam lub inna treść niezwiązana ze skryptem.}</li>
+
+          <li>%{feedback_link:Niedziałający skrypt.}</li>
+
+          <li>%{other_report_link:Zgłoś inne naruszenia, w tym niejawne reklamy lub
+          kopanie kryptowalut.}</li>
+
+          </ul>
+
+          <p>Proszę pamiętać, że niefunkcjonalny skrypt lub naruszenie warunków stron
+          trzecich, <em>nie</em> stanowią naruszenia regulaminu %{site_name}'s. W
+          takim przypadku należy %{feedback_link:zostawić opinię} na stronie skryptu.</p>
     authors_heading: "Autorzy"
     error_unauthorized_copy: "Ten kod wydaje się być nieautoryzowaną kopią %{script}. Zapoznaj się z %{rules_link:rules} o zamieszczaniu skryptów na %{site_name}."
     invitations:
@@ -577,6 +604,69 @@ pl:
       post_new_script_link_text: 'udostępnić nowy skrypt'
     code_rules:
       title: "Zasady publikacji skryptów na %{site_name}"
+      content_html: >
+          <p>Tutaj znajdują się wymagania dotyczące skryptów publikowanych w %{site_name}.
+          Mające na celu utrzymanie %{site_name} bezpiecznym i użytecznym miejscem
+          dla skryptów użytkownika. Skrypty niespełniające tych wymagań mogą zostać
+          usunięte przez moderatorów %{site_name}.</p> <h4>Funkcjonalność</h4> <ul>
+
+          <li>krypty muszą zawierać opis tego, co robią oraz nie powinny celowo robić
+          innych rzeczy niezawartych w opisie. Użytkownik powinien wiedzieć, co robi
+          skrypt przed jego instalacją.</li>
+
+          <li>Skrypt musi mieć powód do bycia skryptem. Na przykład skrypt, który
+          po prostu przekierowuje użytkownika na stronę internetową, nie musi być
+          skryptem; może to być link.</li>
+
+          <li>Skrypty nie mogą wymagać od użytkowników wykonywania niezwiązanych działań,
+          takich jak wysyłanie płatności, subskrybowanie kanału lub polubienie strony,
+          aby skrypt działał.</li>
+
+          <li>Skrypty z możliwością ich monetyzacji (śledzenie, reklamy, koparki kryptowalut,
+          itd.) nie są zabronione, ale takie działania muszą być wyraźnie zaznaczone
+          w opisie skryptu lub dodatkowych informacjach.</li>
+
+          </ul> <h4>Kod</h4> <ul>
+
+          <li>Kod zamieszczony na tej stronie nie może być zaciemniany ani zminifikowany.
+          Dotyczy to także bundlerów takich jak webpack. Użytkownicy muszą mieć możliwość
+          podejrzenia i zrozumienia skryptu, zanim go zainstalują.</li>
+
+          <li>Biblioteki, których używa skrypt, powinny zostać dodane poprzez <code>@require</code>,
+          chyba że istnieje wyraźny techniczny powód, by tego nie robić. Jeśli kod
+          źródłowy biblioteki jest zawarty w kodzie skryptu, należy również dodać
+          informację o źródle biblioteki (np. komentarz zawierający adres URL i/lub
+          nazwę oraz wersję).</li>
+
+          <li>%{external_scripts_link:Korzystanie z zewnętrznego kodu JavaScript jest
+          ograniczone.}</li>
+
+          </ul> <h4>Prawa autorskie</h4> <ul>
+
+          <li>Twój skrypt musi szanować prawa autorskie innych osób. Obejmuje to sam
+          skrypt i wszystkie zasoby (na przykład obrazy), których używa. Jeśli zamierzasz
+          korzystać z cudzej zawartości, przestrzegaj ich postanowień licencyjnych
+          lub uzyskaj ich zgodę.</li>
+
+          <li>Nawet jeśli prawa autorskie nie są naruszone to ponowne publikowanie
+          skryptów, które znajdują się na %{site_name}, jest zabronione, chyba że
+          wprowadzają usprawnienia różniące się od oryginału.</li>
+
+          </ul> <h4>Inne</h4> <ul>
+
+          %{adult_content_requirement}
+
+          <li>Skrypty nie powinny sprawdzać dostępności aktualizacji częściej niż
+          raz dziennie. Należy pamiętać, że większość menedżerów skryptów użytkownika
+          obsługuje automatyczne aktualizacje, więc wykonanie tego w skrypcie nie
+          jest konieczne.</li>
+
+          <li>Skrypty nie mogą zawierać <code>@include</code>, <code>@match</code>,
+          lub słów kluczowych, do których stron nie wprowadzają żadnej funkcjonalności.</li>
+
+          </ul> <p>Jeśli zauważysz skrypt, który nie przestrzega wyżej wymienionych
+          zasad, zgłoś go na stronie skryptu, przechodząc na podstronę Opinie, a następnie
+          klikając "zgłoś ten skrypt'".</p>
       adult_content_rule_html: "<li>Skrypty które zawierają treści dla dorosłych oraz dla stron które zawierają treści dla dorosłych muszą być oznaczone jako takie, aby użytkownicy mogli zdecydować czy chcą to zobaczyć.</li>"
     external_scripts:
       title: "Polityka %{site_name} dot. zewnętrznych skryptów"
@@ -640,10 +730,10 @@ pl:
     site_feedback_link: "Zgłoś problem lub podziel się pomysłem na %{site_name}"
     credits:
       title: "Twórcy"
-      authors_credit: "%{site_name} nie mógł powstać bez twórców, którzy współtworzą skrypty."
-      developers_credit: "%{site_name} sam w sobie został stworzony przez %{developers_link:tych ludzi} razem z pomocą tych, którzy zgłaszali błędy i sugerowali poprawki."
+      authors_credit: "%{site_name} nie byłby możliwy bez twórców dodających swoje skrypty."
+      developers_credit: "Sam %{site_name} jest tworzony przez %{developers_link:tych ludzi} razem z pomocą wszystkich, którzy zgłaszają błędy i proponują poprawki."
       translators_credit: "%{site_name} został przetłumaczony przez %{translators_link:Zespół Greasy Tłumaczy na Transifex}:"
-      icons_credit: "Ikony dyskusji są pochodzą od %{vistastylebase} przez %{iconsland}. Ikony przeglądarek pochodzą od %{browserlogos}."
+      icons_credit: "Ikony dyskusji pochodzą z %{vistastylebase} autorstwa %{iconsland}. Ikony przeglądarek pochodzą z %{browserlogos}."
     help_with_greasymonkey: "Pomoc z Greasemonkey"
     contact:
       title: "Skontaktuj się z kimś"
@@ -767,6 +857,7 @@ pl:
     new_discussion_submit: "Opublikuj komentarz"
     new_comment_heading: "Odpowiedz"
     new_comment_submit: "Odpowiedz"
+    back_to_feedback: "< Opinie na %{script}"
     edit_comment_link: "Edytuj"
     edit_comment_header: "Edytuj komentarz"
     delete_comment: "Usuń"
@@ -774,6 +865,7 @@ pl:
     update_comment_submit: "Zaktualizuj komentarz"
     cancel_update_comment: "Anuluj"
     question_heading_html: "Pytanie/komentarz"
+    review_heading_html: "Ocena: %{rating}"
     ratings:
       question: "Bez oceny - samo pytanie/komentarz"
       bad: "Słaby - skrypt nie działa"
@@ -883,5 +975,19 @@ pl:
     consecutive_bad_ratings:
       notify:
         subject: "Twój skrypt %{script_name} dla %{site_name} otrzymał wiele negatywnych opinii."
+        text: |
+            Twój skrypt '%{script_name}' na %{site_name} (%{script_url}) otrzymał wiele negatywnych ocen pod rząd.
+
+            Przejrzyj otrzymane opinie na %{feedback_url}, napraw wszelakie problemy i odpowiedz na zgłoszenia.
+
+            Jeśli nie zaktualizujesz skryptu lub nie odpowiesz na otrzymane opinie przed %{delete_date}, twój skrypt zostanie ukryty na %{site_name}. (Po tym czasie będziesz miał możliwość, by ponownie ustawić go jako widoczny jeśli się zdecydujesz.)
     script_comment:
       subject: "Twój skrypt %{script_name} na %{site_name} został skomentowany."
+      text: |-
+          Twój skrypt '%{script_name}' na %{site_name} (%{script_url}) został skomentowany przez '%{commenter_name}':
+
+          ---
+          %{comment_text}
+          ---
+
+          Możesz zobaczyć ten komentarz i odpowiedzieć na %{comment_url}. Zarządzaj ustawieniami powiadomień na %{notification_preferences_url}.
