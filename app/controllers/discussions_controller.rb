@@ -9,10 +9,14 @@ class DiscussionsController < ApplicationController
                    .includes(:poster, :script)
                    .order(stat_last_reply_date: :desc)
     case script_subset
-    when :sleazy
+    when :sleazyfork
       @discussions = @discussions.where(script: { sensitive: true })
-    when :greasy
+    when :greasyfork
       @discussions = @discussions.where.not(script: { sensitive: true })
+    when :all
+      # No restrictions
+    else
+      raise "Unknown subset #{script_subset}"
     end
 
     @discussions = @discussions.paginate(page: params[:page], per_page: 25)
@@ -23,16 +27,20 @@ class DiscussionsController < ApplicationController
 
     if @discussion.script
       case script_subset
-      when :sleazy
+      when :sleazyfork
         unless @discussion.script.sensitive?
           render_404
           return
         end
-      when :greasy
+      when :greasyfork
         if @discussion.script.sensitive?
           render_404
           return
         end
+      when :all
+        # No restrictions
+      else
+        raise "Unknown subset #{script_subset}"
       end
     end
 
