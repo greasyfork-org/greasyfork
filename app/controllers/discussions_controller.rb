@@ -10,9 +10,9 @@ class DiscussionsController < ApplicationController
                    .order(stat_last_reply_date: :desc)
     case script_subset
     when :sleazyfork
-      @discussions = @discussions.where(script: { sensitive: true })
+      @discussions = @discussions.where(scripts: { sensitive: true })
     when :greasyfork
-      @discussions = @discussions.where.not(script: { sensitive: true })
+      @discussions = @discussions.where.not(scripts: { sensitive: true })
     when :all
       # No restrictions
     else
