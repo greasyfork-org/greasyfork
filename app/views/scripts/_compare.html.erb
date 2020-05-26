@@ -15,6 +15,18 @@
       <%= link_to(@other_script.name(request_locale), show_code_script_path(@other_script))%><br>
     </p>
 
+    <% if current_user.moderator? %>
+      <p>
+        <%= link_to delete_script_path(@script, script_delete_type_id: ScriptDeleteType::KEEP, replaced_by_script_id: script_url(@other_script)) do %>
+          Mark <i><%= @script.name(request_locale) %></i> as a copy of <i><%= @other_script.name(request_locale) %></i>
+        <% end %>
+        <br>
+        <%= link_to delete_script_path(@other_script, script_delete_type_id: ScriptDeleteType::KEEP, replaced_by_script_id: script_url(@script)) do %>
+          Mark <i><%= @other_script.name(request_locale) %></i> as a copy of <i><%= @script.name(request_locale) %></i>
+        <% end %>
+      </p>
+    <% end %>
+
     <% if @diff.empty? %>
       <p><%=t('scripts.diff_no_change')%></p>
     <% else %>
