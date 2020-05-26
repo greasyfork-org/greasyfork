@@ -550,6 +550,13 @@ pt-BR:
         request_expired: "Não foi possível apagar o usuário - a solicitação expirou."
         cancelled: "A remoção foi cancelada."
         completed: "Sua conta foi apagada."
+    badges:
+      banned:
+        short: Banido
+        long: Banido
+      moderator:
+        short: Mod
+        long: Moderador
   help:
     sections:
       usage: Uso
@@ -813,6 +820,17 @@ pt-BR:
         <li>Abusar da função de denúncia pode fazer com que <i>você</i> seja banido.</li>
 
         </ul>
+    new_user_report_notes_html: >
+        <p>Antes de reportar, saiba que:</p> <ul>
+
+        <li>Se estiver reportando baseado no conteúdo de um script ou de um comentário,
+        por favor, em vez disso reporte o script ou comentário específico.</li>
+
+        <li>Um moderador irá analisar sua denúncia e agirá de acordo.</li>
+
+        <li>O abuso desses reportes podem levar a <i>você</i> ser banido.</li>
+
+        </ul>
     reason:
       spam: "Spam"
       abuse: "Conteúdo de ódio ou abusivo"
@@ -821,6 +839,9 @@ pt-BR:
     create_button: "Criar denúncia"
     report_user: "Denunciar usuário"
     report_comment: "Denunciar comentátio"
+    result_dismissed: "Essa denúncia foi desconsiderada por um moderador."
+    result_upheld: "Essa denúncia foi confirmada por um moderador."
+    result_pending: "Essa denúncia está aguardando avaliação de um moderador."
   discussions:
     comment_date: "Publicado: %{date}"
     comment_edit_date: "Editado: %{date}"

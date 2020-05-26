@@ -554,6 +554,13 @@ fr:
         request_expired: "Suppression de l'utilisateur impossible - requête expirée"
         cancelled: "Suppression annulée"
         completed: "Votre compte a été supprimé"
+    badges:
+      banned:
+        short: Banni
+        long: Banni
+      moderator:
+        short: Mod
+        long: Modérateur
   help:
     sections:
       usage: Utilisation
@@ -827,6 +834,17 @@ fr:
         <li>L'abus de cette fonctionnalité de rapport peut entraîner <i>votre</i>  bannissement.</li>
 
         </ul>
+    new_user_report_notes_html: >
+        <p>Avant de signaler, veuillez noter:</p> <ul>
+
+        <li>Si vous générez des rapports sur la base du contenu d'un script ou d'un
+        commentaire, veuillez plutôt signaler ce script ou commentaire spécifiquement.</li>
+
+        <li>Un modérateur examinera votre rapport et agira en conséquence.</li>
+
+        <li>L'abus de cette fonctionnalité de rapport peut conduire à <i>votre</i>bannisement.</li>
+
+        </ul>
     reason:
       spam: "Spam"
       abuse: "Contenu abusif ou haineux"
@@ -835,6 +853,9 @@ fr:
     create_button: "Créer un rapport"
     report_user: "Rapport utilisateur"
     report_comment: "Signaler un commentaire"
+    result_dismissed: "Ce rapport a été rejeté par un modérateur."
+    result_upheld: "signalerCe rapport a été approuver par un modérateur."
+    result_pending: "Ce rapport est en attente d'examen par un modérateur."
   discussions:
     comment_date: "Publié le: %{date}"
     comment_edit_date: "Édité le: %{date}"

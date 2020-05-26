@@ -530,6 +530,13 @@ zh-CN:
         request_expired: "无法删除用户 - 请求已过期。"
         cancelled: "删除已取消。"
         completed: "您的账户已删除。"
+    badges:
+      banned:
+        short: 封禁
+        long: 封禁
+      moderator:
+        short: 管理员
+        long: 管理员
   help:
     sections:
       usage: 使用
@@ -711,6 +718,14 @@ zh-CN:
         <li>反对内容或认为内容不真实不能作为举报的合理理由。</li>
 
         <li>滥用举报功能可能会导致<i>您</i>被封号</li></ul>。
+    new_user_report_notes_html: >
+        <p>举报之前请注意：</p>
+
+        <ul><li>如果是举报一个脚本或者评论，请到对应的脚本或者评论处举报。</li>
+
+        <li>管理员将审阅您的举报并进行相应处理。</li>
+
+        <li>滥用举报功能可能会导致<i>您</i>被封号</li></ul>。
     reason:
       spam: "灌水"
       abuse: "滥用或反感内容"
@@ -719,6 +734,9 @@ zh-CN:
     create_button: "创建举报"
     report_user: "举报用户"
     report_comment: "举报评论"
+    result_dismissed: "该举报已被管理员忽略。"
+    result_upheld: "管理员已通过该举报。"
+    result_pending: "该举报尚待管理员查看。"
   discussions:
     comment_date: "发表于：%{date}"
     comment_edit_date: "修改于：%{date}"

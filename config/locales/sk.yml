@@ -567,6 +567,13 @@ sk:
         request_expired: "Nepodarilo sa odstrániť užívateľa - požiadavka exspirovala."
         cancelled: "Odstránenie bolo zrušené."
         completed: "Váš účet bol odstránený."
+    badges:
+      banned:
+        short: Zablokovaný
+        long: Zablokovaný
+      moderator:
+        short: Zablokovaný
+        long: Moderátor
   help:
     sections:
       usage: Použitie
@@ -820,6 +827,19 @@ sk:
         <li>Zneužitie tejto funkcie nahlasovania môže viesť k <i>vášmu</i> zablokovaniu.</li>
 
         </ul>
+    new_user_report_notes_html: >
+        <p>Pred nahlásením, si uvedomte, že: <ul>
+
+        <li>Ak nahlasujete na základe obsahu skriptu alebo komentára, namiesto toho
+        nahláste tento konkrétny skript alebo komentár.</li>
+
+        <li>Moderátor posúdi vašu sťažnosť a podľa toho bude konať.</li>
+
+        <li>Nesúhlas s obsahom alebo jeho pravdivosťou nie je dôvod pre jeho nahlásenie.</li>
+
+        <li>Zneužitie tejto funkcie nahlasovania môže viesť k <i>vášmu</i> zablokovaniu.</li>
+
+        </ul>
     reason:
       spam: "Spam"
       abuse: "Urážlivý alebo nenávistný obsah"
@@ -828,6 +848,9 @@ sk:
     create_button: "Nahlásiť"
     report_user: "Nahlásiť užívateľa"
     report_comment: "Nahlásiť komentár"
+    result_dismissed: "Táto sťažnosť bola moderátorom zamietnutá."
+    result_upheld: "Táto sťažnosť bola moderátorom schválená."
+    result_pending: "Táto sťažnosť čaká na schválenie moderátorom."
   discussions:
     comment_date: "Pridaný: %{date}"
     comment_edit_date: "Upravený: %{date}"
