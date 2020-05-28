@@ -88,6 +88,7 @@ es:
     feedback_title: "%{script_name} - Comentarios y opiniones"
     feedback_has_reports: "Se ha denunciado este script por incumplir las normas de %{site_name}."
     feedback_no_discussions_html: "Todavía no se ha publicado nada. %{start_first_discussion_link}"
+    feedback_no_discussions_on_page_form: "Aún no se han publicado discusiones."
     feedback_start_first_discussion_link: "Sé el primero en comentar este script."
     feedback_discussion_or_report: "%{new_discussion_link:Abre un hilo de conversación sobre el script} o %{report_link:notifica una posible infracción de las normas}."
     feedback_discussions_heading: "Conversaciones en el Greasy Foro"
@@ -275,7 +276,7 @@ es:
       failure: "Este miembro del equipo no se puede eliminar."
     no_disposable_email: "No puedes publicar scripts si utilizas una dirección de correo electrónico de usar y tirar."
     new_script_notice:
-      title: "¿Qué te propones?"
+      title: "¿Qué estás intentando hacer?"
       install_link_html: "Quiero <b>instalar</b> un script ya existente."
       share_link_html: "He <b>escrito</b> un script y quiero <b>compartirlo</b> con otros."
   script_sets:
@@ -511,6 +512,13 @@ es:
         request_expired: "El borrado de usuario no se pudo completar porque ha caducado la solicitud."
         cancelled: "Se ha cancelado el borrado."
         completed: "Has eliminado tu cuenta."
+    badges:
+      banned:
+        short: Suspendido
+        long: Suspendido
+      moderator:
+        short: Mod
+        long: Moderador
   help:
     sections:
       usage: Uso
@@ -700,6 +708,41 @@ es:
     consecutive_bad_ratings:
       one: "%{script_names} ha recibido malas puntuaciones consecutivas. Revise su guión y responda a las inquietudes planteadas en las puntuaciones."
       other: "%{script_names} han recibido malas puntuaciones consecutivas. Revise sus guiones y responda a las inquietudes planteadas en las puntuaciones."
+  reports:
+    report_filed: "Tu reporte será revisado por un moderador."
+    new_report_title:
+      user: "Reportar %{user}"
+      comment: "Reportar un comentario por %{user}"
+    reason:
+      spam: "Spam"
+      illegal: "Malware o contenido ilegal"
+    create_button: "Crear reporte"
+    report_user: "Reportar usuario"
+    report_comment: "Reportar comentario"
+  discussions:
+    comment_date: "Publicado: %{date}"
+    comment_edit_date: "Editado: %{date}"
+    posted_by_html: "Publicado por: %{user} el %{date}"
+    last_comment: "Último comentario: %{user} el %{date} "
+    new_discussion_submit: "Publicar comentario"
+    new_comment_heading: "Publicar respuesta"
+    new_comment_submit: "Publicar respuesta"
+    edit_comment_link: "Editar"
+    edit_comment_header: "Editar comentario"
+    delete_comment: "Eliminar"
+    delete_discussion: "Eliminar"
+    update_comment_submit: "Actualizar comentario"
+    cancel_update_comment: "Cancelar"
+    question_heading_html: "Pregunta/comentario"
+    ratings:
+      bad: "Malo - el script no funciona"
+      ok: "OK - el script funciona, pero podría mejorarse"
+      good: "Bueno - el script funciona"
+    ratings_short:
+      question: "Pregunta/comentario"
+      bad: "Malo"
+      ok: "OK"
+      good: "Bueno"
   common:
     error_preamble: "Hemos tenido problemas al procesar el envío..."
     allowed_elements_link: "(Ver código permitido)"
@@ -743,6 +786,8 @@ es:
         name: "Nombre"
         description: "Descripción"
         default_sort: "Orden predeterminado"
+      discussion:
+        rating: "Calificación"
   errors:
     messages:
       script_missing_name: "obligatorio; especifica uno con @name"
