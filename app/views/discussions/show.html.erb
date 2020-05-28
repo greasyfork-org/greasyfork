@@ -35,6 +35,9 @@
         <%= render_poster(comment) %>
       </div>
       <div class="comment-meta-item">
+        <%= link_to('§', { anchor: "comment-#{comment.id}" }, { class: 'self-link' }) %>
+      </div>
+      <div class="comment-meta-item">
         <%= t('discussions.comment_date', date: markup_date(comment.created_at)).html_safe %>
       </div>
       <% if comment.edited_at %>
