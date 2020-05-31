@@ -6,6 +6,8 @@ class DiscussionsController < ApplicationController
   before_action :authenticate_user!, only: :create
   before_action :moderators_only, only: :destroy
 
+  layout 'discussions', only: :index
+
   def index
     @discussions = Discussion
                    .includes(:poster, :script)
@@ -19,6 +21,13 @@ class DiscussionsController < ApplicationController
       # No restrictions
     else
       raise "Unknown subset #{script_subset}"
+    end
+
+    case params[:by]
+    when 'me'
+      @discussions = @discussions.where(poster: current_user) if current_user
+    when 'comment-me'
+      @discussions = @discussions.where(id: Comment.where(poster: current_user).pluck(:discussion_id)) if current_user
     end
 
     @discussions = @discussions.paginate(page: params[:page], per_page: 25)

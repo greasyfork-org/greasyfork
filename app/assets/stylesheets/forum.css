@@ -6,11 +6,14 @@
   height: 10em;
 }
 .discussion-meta, .comment-meta {
-  font-size: smaller;
   display: flex;
   align-items: end;
 }
+.discussion-meta {
+  font-size: 11px;
+}
 .comment-meta {
+  font-size: smaller;
   margin-bottom: 2px;
 }
 .comment-meta-item-main {
@@ -104,6 +107,9 @@ a.discussion-title {
 .rating-icon-bad {
   background-color: red;
   color: white;
+}
+.discussion-list-main-content {
+  overflow-x: hidden;
 }
 .discussion-meta-item-script-name {
   overflow: hidden;

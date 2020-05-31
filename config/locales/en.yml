@@ -1063,8 +1063,8 @@ en:
   discussions:
     comment_date: "Posted: %{date}"
     comment_edit_date: "Edited: %{date}"
-    posted_by_html: "Posted by: %{user} on %{date}"
-    last_comment: "Last comment: %{user} on %{date}"
+    posted_by_html: "%{user} on %{date}"
+    last_comment: "Last: %{user} on %{date}"
     new_discussion_heading: "Post a review, comment, or question"
     new_discussion_submit: "Post comment"
     new_comment_heading: "Post reply"
@@ -1090,6 +1090,11 @@ en:
       good: "Good"
     sign_in_to_post_discussion: "Sign in to post a review, comment, or question."
     sign_in_to_post_comment: "Sign in to post a reply."
+    user_filter:
+      label: "Discussions involving me"
+      all: "All discussions"
+      discussion_by_me: "Started by me"
+      comment_by_me: "Comments by me"
   common:
     # text to show before listing errors in a submission
     error_preamble: "There were some problems with what you posted..."

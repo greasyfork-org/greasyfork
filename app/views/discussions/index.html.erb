@@ -1,3 +1,45 @@
-<h2>Discussions</h2>
-<%= render collection: @discussions, partial: 'discussions/discussion', locals: { show_script: true } %>
-<%= will_paginate @discussions %>
+<div class="sidebarred">
+  <div class="sidebarred-main-content discussion-list-main-content">
+    <div class="open-sidebar sidebar-collapsed">
+      ☰
+    </div>
+
+    <h2>Discussions</h2>
+    <div class="discussion-list">
+      <%= render collection: @discussions, partial: 'discussions/discussion', locals: { show_script: true } %>
+    </div>
+    <%= will_paginate @discussions %>
+  </div>
+
+  <div class="sidebar collapsed">
+    <div class="close-sidebar">
+      <div class="sidebar-title"><%= t('common.listing_options_title') %></div>
+      <div>☰</div>
+    </div>
+
+    <div class="list-option-groups">
+      <% if current_user %>
+        <div id="script-list-sort" class="list-option-group">
+          <%= t('discussions.user_filter.label') %>
+          <ul>
+            <% if params[:by].nil? %>
+              <li class="list-option list-current"><%= t('discussions.user_filter.all') %></li>
+            <% else %>
+              <li class="list-option"><%= link_to t('discussions.user_filter.all'), current_path_with_params(by: nil) %></li>
+            <% end %>
+            <% if params[:by] == 'me' %>
+              <li class="list-option list-current"><%= t('discussions.user_filter.discussion_by_me') %></li>
+            <% else %>
+              <li class="list-option"><%= link_to t('discussions.user_filter.discussion_by_me'), current_path_with_params(by: 'me') %></li>
+            <% end %>
+            <% if params[:by] == 'comment-me' %>
+              <li class="list-option list-current"><%= t('discussions.user_filter.comment_by_me') %></li>
+            <% else %>
+              <li class="list-option"><%= link_to t('discussions.user_filter.comment_by_me'), current_path_with_params(by: 'comment-me') %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
