@@ -567,6 +567,13 @@ pl:
         request_expired: "Nie można usunąć użytkownika - żądanie wygasło."
         cancelled: "Usunięcie anulowane."
         completed: "Twoje konto zostało usunięte."
+    badges:
+      banned:
+        short: Zbanowany
+        long: Zbanowany
+      moderator:
+        short: Mod
+        long: Moderator
   help:
     sections:
       usage: Używanie
@@ -840,6 +847,17 @@ pl:
         <li>Nadużywanie opcji zgłaszania może doprowadzić <i>cię</i> do bana.</li>
 
         </ul>
+    new_user_report_notes_html: >
+        <p>Przed zgłoszeniem należy pamiętać, że:</p> <ul>
+
+        <li>Jeśli zgłoszenie dotyczy treści skryptu lub komentarza, zamiast tego zgłoś
+        ten konkretny skrypt lub komentarz.</li>
+
+        <li>Moderator sprawdzi twoje zgłoszenie i odpowiednio się do niego odniesie.</li>
+
+        <li>Nadużywanie opcji zgłaszania może doprowadzić <i>cię</i> do bana.</li>
+
+        </ul>
     reason:
       spam: "Spam"
       abuse: "Obraźliwe lub nienawistne treści"
@@ -848,6 +866,9 @@ pl:
     create_button: "Utwórz zgłoszenie"
     report_user: "Zgłoś użytkownika"
     report_comment: "Zgłoś komentarz"
+    result_dismissed: "Twoje zgłoszenie zostało odrzucone przez moderatora."
+    result_upheld: "Twoje zgłoszenie zostało uznane przez moderatora."
+    result_pending: "Twoje zgłoszenie oczekuje na sprawdzenie przez moderatora."
   discussions:
     comment_date: "Napisano: %{date}"
     comment_edit_date: "Edytowano: %{date}"
