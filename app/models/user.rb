@@ -92,6 +92,10 @@ class User < ApplicationRecord
     ForumDiscussion.where(ScriptID: script_ids).order(Arel.sql('COALESCE(DateLastComment, DateInserted) DESC'))
   end
 
+  def new_discussions_on_scripts_written
+    Discussion.where(script: script_ids).order(stat_last_reply_date: :desc)
+  end
+
   def slugify(name)
     # take out swears
     r = name.downcase.gsub(/motherfucking|motherfucker|fucking|fucker|fucks|fuck|shitty|shits|shit|niggers|nigger|cunts|cunt/, '')

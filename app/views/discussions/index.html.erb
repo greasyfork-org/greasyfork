@@ -22,20 +22,27 @@
         <div id="script-list-sort" class="list-option-group">
           <%= t('discussions.user_filter.label') %>
           <ul>
-            <% if params[:by].nil? %>
+            <% if params[:me].nil? %>
               <li class="list-option list-current"><%= t('discussions.user_filter.all') %></li>
             <% else %>
-              <li class="list-option"><%= link_to t('discussions.user_filter.all'), current_path_with_params(by: nil) %></li>
+              <li class="list-option"><%= link_to t('discussions.user_filter.all'), current_path_with_params(me: nil) %></li>
             <% end %>
-            <% if params[:by] == 'me' %>
+            <% if params[:me] == 'started' %>
               <li class="list-option list-current"><%= t('discussions.user_filter.discussion_by_me') %></li>
             <% else %>
-              <li class="list-option"><%= link_to t('discussions.user_filter.discussion_by_me'), current_path_with_params(by: 'me') %></li>
+              <li class="list-option"><%= link_to t('discussions.user_filter.discussion_by_me'), current_path_with_params(me: 'started') %></li>
             <% end %>
-            <% if params[:by] == 'comment-me' %>
+            <% if params[:me] == 'comment' %>
               <li class="list-option list-current"><%= t('discussions.user_filter.comment_by_me') %></li>
             <% else %>
-              <li class="list-option"><%= link_to t('discussions.user_filter.comment_by_me'), current_path_with_params(by: 'comment-me') %></li>
+              <li class="list-option"><%= link_to t('discussions.user_filter.comment_by_me'), current_path_with_params(me: 'comment') %></li>
+            <% end %>
+            <% if current_user.scripts.any? %>
+              <% if params[:me] == 'script' %>
+                <li class="list-option list-current"><%= t('discussions.user_filter.on_my_scripts') %></li>
+              <% else %>
+                <li class="list-option"><%= link_to t('discussions.user_filter.on_my_scripts'), current_path_with_params(me: 'script') %></li>
+              <% end %>
             <% end %>
           </ul>
         </div>

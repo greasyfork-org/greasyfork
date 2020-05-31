@@ -23,11 +23,15 @@ class DiscussionsController < ApplicationController
       raise "Unknown subset #{script_subset}"
     end
 
-    case params[:by]
-    when 'me'
-      @discussions = @discussions.where(poster: current_user) if current_user
-    when 'comment-me'
-      @discussions = @discussions.where(id: Comment.where(poster: current_user).pluck(:discussion_id)) if current_user
+    if current_user
+      case params[:me]
+      when 'started'
+        @discussions = @discussions.where(poster: current_user)
+      when 'comment'
+        @discussions = @discussions.where(id: Comment.where(poster: current_user).pluck(:discussion_id))
+      when 'script'
+        @discussions = @discussions.where(script_id: current_user.script_ids)
+      end
     end
 
     @discussions = @discussions.paginate(page: params[:page], per_page: 25)
