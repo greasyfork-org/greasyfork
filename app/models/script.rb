@@ -521,10 +521,6 @@ class Script < ActiveRecord::Base
     update(consecutive_bad_ratings_at: nil) if consecutive_bad_ratings_at
   end
 
-  def use_new_discussions?
-    Rails.env.development? || Rails.env.test? || discussions.none?
-  end
-
   private
 
   def url_helpers
