@@ -845,8 +845,8 @@ pt-BR:
   discussions:
     comment_date: "Publicado: %{date}"
     comment_edit_date: "Editado: %{date}"
-    posted_by_html: "Publicado por: %{user} em %{date}"
-    last_comment: "Último comentário: %{user} em %{date}"
+    posted_by_html: "%{user} em %{date}"
+    last_comment: "Último: %{user} em %{date}"
     new_discussion_heading: "Publique uma análise, comentário ou questionamento"
     new_discussion_submit: "Publicar comentário"
     new_comment_heading: "Publicar resposta"
@@ -872,6 +872,12 @@ pt-BR:
       good: "Bom"
     sign_in_to_post_discussion: "Faça o login para publicar uma análise, comentário ou pergunta."
     sign_in_to_post_comment: "Faça o login para publicar uma resposta."
+    user_filter:
+      label: "Discussões me envolvendo"
+      all: "Todas as discussões"
+      discussion_by_me: "Iniciadas por mim"
+      comment_by_me: "Comentário feitos por mim"
+      on_my_scripts: "Em meus scripts"
   common:
     error_preamble: "Houve alguns problemas com o que você postou..."
     allowed_elements_link: "(Veja código permitido.)"

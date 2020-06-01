@@ -740,8 +740,8 @@ zh-CN:
   discussions:
     comment_date: "发表于：%{date}"
     comment_edit_date: "修改于：%{date}"
-    posted_by_html: "由%{user}发表于%{date}"
-    last_comment: "最新评论：%{user} %{date}"
+    posted_by_html: "%{user} 于 %{date}"
+    last_comment: "最后讨论: %{user} 于 %{date}"
     new_discussion_heading: "发表评价、评论或提问"
     new_discussion_submit: "发表评论"
     new_comment_heading: "发表回复"
@@ -767,6 +767,12 @@ zh-CN:
       good: "好评"
     sign_in_to_post_discussion: "登录以发表评价、评论或提问。"
     sign_in_to_post_comment: "登录以发表回复。"
+    user_filter:
+      label: "我参与的讨论"
+      all: "所有讨论"
+      discussion_by_me: "我发起的"
+      comment_by_me: "我评论的"
+      on_my_scripts: "我的脚本"
   common:
     error_preamble: "很抱歉，您提交的内容有点问题…"
     allowed_elements_link: "(查看允许使用的代码)"

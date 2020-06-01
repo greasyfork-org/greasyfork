@@ -859,8 +859,8 @@ ru:
   discussions:
     comment_date: "Создано: %{date}"
     comment_edit_date: "Отредактировано: %{date}"
-    posted_by_html: "Создано: %{user} %{date}"
-    last_comment: "Последний комментарий: %{user} %{date}"
+    posted_by_html: "%{user}, %{date}"
+    last_comment: "Последний: %{user}, %{date}"
     new_discussion_heading: "Напишите отзыв, комментарий, или задайте вопрос"
     new_discussion_submit: "Создать комментарий"
     new_comment_heading: "Ответить"
@@ -886,6 +886,12 @@ ru:
       good: "Хороший"
     sign_in_to_post_discussion: "Войдите, чтобы написать отзыв, комментарий, или задать вопрос."
     sign_in_to_post_comment: "Войдите, чтобы ответить."
+    user_filter:
+      label: "Фильтр"
+      all: "Все обсуждения"
+      discussion_by_me: "Созданные мною"
+      comment_by_me: "С моими комментариями"
+      on_my_scripts: "Обсуждения моих скриптов"
   common:
     error_preamble: "Обнаружены проблемы в отправленном вами тексте..."
     allowed_elements_link: "(См. разрешенные теги)"

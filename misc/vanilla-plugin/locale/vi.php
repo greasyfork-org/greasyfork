@@ -1,6 +1,6 @@
 <?php
 /* Label for inputting a script ID when creating/editing a discussion */
-$Definition['Item ID:'] = 'Mã Script:';
+$Definition['Item ID:'] = 'ID Script:';
 // Appended to "Discussions" when viewing a list of discussions on scripts by a user. %s is the user name.
 $Definition['on scripts by %s'] = 'Script Của %s';
 /*
@@ -12,13 +12,13 @@ $Definition['RatingUpdateLabel'] = 'Cập nhật đánh giá của bạn:';
 # Label for the radio button for not rating a script
 $Definition['RatingNone'] = 'Không đánh giá - chỉ là một câu hỏi, bình luận, yêu cầu tính năng, hoặc báo cáo lỗi';
 /** Label for the radio button for rating a script "Bad" */
-$Definition['RatingBad'] = 'Tồi tệ - script không làm việc';
+$Definition['RatingBad'] = 'Tồi tệ - script không chạy';
 /** Label for the radio button for rating a script "OK" **/
-$Definition['RatingOK'] = 'OK - script làm việc, nhưng có vấn đề quan trọng';
+$Definition['RatingOK'] = 'OK - script làm việc, nhưng có một số vấn đề';
 // Label for the radio button for rating a script "Good"
 $Definition['RatingGood'] = 'Tốt - script hoạt động tốt';
 // Category name for Site Feedback
-$Definition['Categories.general.Name'] = 'Greasy Fork Feedback';
+$Definition['Categories.general.Name'] = 'Phản hồi Greasy Fork';
 // Category description for Site Feedback
 $Definition['Categories.general.Description'] = 'Báo lỗi, yêu cầu chức năng, và chuyện của Greasy Fork';
 // Category name for Development
