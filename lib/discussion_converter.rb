@@ -17,7 +17,7 @@ class DiscussionConverter
     comment = discussion.comments.build(
       poster: forum_discussion.original_poster,
       text: forum_discussion.name + "\n\n" + forum_discussion.Body,
-      text_markup: forum_discussion.Format.downcase,
+      text_markup: get_markup(forum_discussion),
       created_at: forum_discussion.created,
       edited_at: forum_discussion.DateUpdated
     )
@@ -28,7 +28,7 @@ class DiscussionConverter
       discussion.comments.build(
         poster: forum_comment.poster,
         text: forum_comment.Body,
-        text_markup: forum_comment.Format.downcase,
+        text_markup: get_markup(forum_comment),
         created_at: forum_comment.DateInserted,
         edited_at: forum_comment.DateUpdated
       )
@@ -38,5 +38,12 @@ class DiscussionConverter
     discussion.assign_stats
 
     discussion
+  end
+
+  def self.get_markup(discussion_or_comment)
+    format = discussion_or_comment.Format.downcase
+    return format if %w[html markdown].include?(format)
+
+    'markdown'
   end
 end
