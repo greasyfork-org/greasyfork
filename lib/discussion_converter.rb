@@ -2,7 +2,7 @@ class DiscussionConverter
   class InvalidDiscussionException < StandardError
   end
 
-  def self.convert(forum_discussion)
+  def self.convert(forum_discussion, raise_on_invalid: true)
     raise InvalidDiscussionException if forum_discussion.Closed == 1 || forum_discussion.rating == ForumDiscussion::RATING_REPORT
 
     discussion = Discussion.new(
@@ -12,7 +12,7 @@ class DiscussionConverter
       rating: forum_discussion.rating
     )
 
-    raise InvalidDiscussionException unless discussion.valid?
+    raise InvalidDiscussionException if raise_on_invalid && !discussion.valid?
 
     comment = discussion.comments.build(
       poster: forum_discussion.original_poster,
@@ -22,7 +22,7 @@ class DiscussionConverter
       edited_at: forum_discussion.DateUpdated
     )
 
-    raise InvalidDiscussionException unless comment.valid?
+    raise InvalidDiscussionException if raise_on_invalid && !comment.valid?
 
     forum_discussion.forum_comments.each do |forum_comment|
       discussion.comments.build(
@@ -32,7 +32,7 @@ class DiscussionConverter
         created_at: forum_comment.DateInserted,
         edited_at: forum_comment.DateUpdated
       )
-      raise InvalidDiscussionException unless comment.valid?
+      raise InvalidDiscussionException if raise_on_invalid && !comment.valid?
     end
 
     discussion.assign_stats
