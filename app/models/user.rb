@@ -256,6 +256,10 @@ class User < ApplicationRecord
     }
   end
 
+  def email_domain
+    email&.split('@')&.last
+  end
+
   protected
 
   def password_required?

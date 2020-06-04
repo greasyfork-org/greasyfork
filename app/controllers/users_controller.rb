@@ -22,7 +22,9 @@ class UsersController < ApplicationController
     end
 
     @users = User
-    @users = @users.where(['name like ?', "%#{params[:q]}%"]) if params[:q].present?
+    @users = @users.where(['name like ?', "%#{User.sanitize_sql_like(params[:q])}%"]) if params[:q].present?
+
+    @users = @users.where('email like ?', "%@#{User.sanitize_sql_like(params[:email_domain])}") if current_user&.moderator? && params[:email_domain]
 
     @users = self.class.apply_sort(@users, sort: params[:sort], script_subset: script_subset).paginate(page: params[:page], per_page: pp, total_entries: [@users.count, MAX_LIST_ENTRIES].min).load
     @user_script_counts = Script.listable(script_subset).joins(:authors).where(authors: { user_id: @users.map(&:id) }).group(:user_id).count

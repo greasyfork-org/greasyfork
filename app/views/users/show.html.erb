@@ -75,9 +75,9 @@
           <%= link_to 'Ban', user_ban_path(@user) %>
         <% end %>
       </p>
-      <% if @user.email %>
+      <% if @user.email_domain %>
         <p>
-          Email domain: <%= @user.email.split('@').last %>
+          Email domain: <%= link_to @user.email_domain, users_path(email_domain: @user.email_domain) %>
         </p>
       <% end %>
       <% report_count = @user.script_reports.count %>

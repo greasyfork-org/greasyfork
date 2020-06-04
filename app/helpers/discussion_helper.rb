@@ -24,7 +24,7 @@ module DiscussionHelper
     end
   end
 
-  def user_activity_title(discussion, post: )
+  def user_activity_title(discussion, post:)
     if discussion.script
       key = if discussion.actual_rating?
               post ? 'discussions.user_activity.script_review.posted_html' : 'discussions.user_activity.script_review.replied_html'

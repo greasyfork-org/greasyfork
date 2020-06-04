@@ -59,7 +59,7 @@ class Comment < ApplicationRecord
 
   def calculate_stats
     {
-        first_comment: discussion.comments.order(:id).first == self,
+      first_comment: discussion.comments.order(:id).first == self,
     }
   end
 end
