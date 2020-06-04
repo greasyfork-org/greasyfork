@@ -28,10 +28,15 @@ class DiscussionsController < ApplicationController
       when 'started'
         @discussions = @discussions.where(poster: current_user)
       when 'comment'
-        @discussions = @discussions.where(id: Comment.where(poster: current_user).pluck(:discussion_id))
+        @discussions = @discussions.with_comment_by(current_user)
       when 'script'
         @discussions = @discussions.where(script_id: current_user.script_ids)
       end
+    end
+
+    if params[:user].to_i > 0
+      @by_user = User.find_by(id: params[:user].to_i)
+      @discussions = @discussions.with_comment_by(@by_user) if @by_user
     end
 
     @discussions = @discussions.paginate(page: params[:page], per_page: 25)

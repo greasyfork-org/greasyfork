@@ -19,7 +19,7 @@
 
     <div class="list-option-groups">
       <% if current_user %>
-        <div id="script-list-sort" class="list-option-group">
+        <div class="list-option-group">
           <%= t('discussions.user_filter.label') %>
           <ul>
             <% if params[:me].nil? %>
@@ -44,6 +44,14 @@
                 <li class="list-option"><%= link_to t('discussions.user_filter.on_my_scripts'), current_path_with_params(me: 'script') %></li>
               <% end %>
             <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <% if @by_user %>
+        <div class="list-option-group">
+          <ul>
+            <li class="list-option"><%= link_to t('discussions.other_user_filter.all'), current_path_with_params(user: nil) %></li>
+            <li class="list-option list-current"><%= t('discussions.other_user_filter.comments_by', user: @by_user.name) %></li>
           </ul>
         </div>
       <% end %>

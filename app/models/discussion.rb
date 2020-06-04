@@ -10,6 +10,7 @@ class Discussion < ApplicationRecord
   has_many :comments
 
   scope :with_actual_rating, -> { where(rating: [RATING_BAD, RATING_OK, RATING_GOOD]) }
+  scope :with_comment_by, ->(user) { where(id: Comment.where(poster: user).pluck(:discussion_id)) }
 
   accepts_nested_attributes_for :comments
 

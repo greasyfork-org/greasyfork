@@ -23,4 +23,16 @@ module DiscussionHelper
       discussion_comment_path(comment.discussion, comment)
     end
   end
+
+  def user_activity_title(discussion, post: )
+    if discussion.script
+      key = if discussion.actual_rating?
+              post ? 'discussions.user_activity.script_review.posted_html' : 'discussions.user_activity.script_review.replied_html'
+            else
+              post ? 'discussions.user_activity.script_question.posted_html' : 'discussions.user_activity.script_question.replied_html'
+            end
+      return t(key, script: discussion.script.name(request_locale))
+    end
+    raise 'not implemented'
+  end
 end
