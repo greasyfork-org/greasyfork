@@ -8,6 +8,10 @@ class ForumUser < ApplicationRecord
     return users.first
   end
 
+  def user_id
+    user&.id || /Deleted user ([0-9]+)/.match(self.Name)[1].to_i
+  end
+
   # This is a read-only model, so do this in SQL.
   def rename_on_delete!
     self.class.connection.execute "UPDATE GDN_User SET Name = 'Deleted user #{user.id}' WHERE UserID = #{id}"

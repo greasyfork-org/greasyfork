@@ -42,6 +42,10 @@ class ForumDiscussion < ApplicationRecord
     return original_forum_poster.user
   end
 
+  def original_poster_id
+    return original_forum_poster.user_id
+  end
+
   def last_commenter
     return nil if last_reply_forum_poster.nil?
 

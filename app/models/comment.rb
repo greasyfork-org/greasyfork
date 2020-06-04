@@ -4,7 +4,8 @@ class Comment < ApplicationRecord
   extend Memoist
 
   belongs_to :discussion
-  belongs_to :poster, class_name: 'User'
+  # Optional because the user may no longer exist.
+  belongs_to :poster, class_name: 'User', optional: true
 
   validates :text, presence: true
   validates :text_markup, inclusion: { in: %w[html markdown] }, presence: true

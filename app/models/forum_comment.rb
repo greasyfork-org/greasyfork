@@ -10,4 +10,8 @@ class ForumComment < ApplicationRecord
   def poster
     forum_user.user
   end
+
+  def poster_id
+    forum_user.user_id
+  end
 end

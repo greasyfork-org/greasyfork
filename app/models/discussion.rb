@@ -4,7 +4,8 @@ class Discussion < ApplicationRecord
   RATING_OK = 3
   RATING_GOOD = 4
 
-  belongs_to :poster, class_name: 'User'
+  # Optional because the user may no longer exist.
+  belongs_to :poster, class_name: 'User', optional: true
   belongs_to :script
   belongs_to :stat_last_replier, class_name: 'User', optional: true
   has_many :comments

@@ -6,7 +6,7 @@ class DiscussionConverter
     raise InvalidDiscussionException if forum_discussion.Closed == 1 || forum_discussion.rating == ForumDiscussion::RATING_REPORT
 
     discussion = Discussion.new(
-      poster: forum_discussion.original_poster,
+      poster_id: forum_discussion.original_poster_id,
       created_at: forum_discussion.created,
       script: forum_discussion.script,
       rating: forum_discussion.rating
@@ -15,7 +15,7 @@ class DiscussionConverter
     raise InvalidDiscussionException if raise_on_invalid && !discussion.valid?
 
     comment = discussion.comments.build(
-      poster: forum_discussion.original_poster,
+      poster_id: forum_discussion.original_poster_id,
       text: forum_discussion.name + "\n\n" + forum_discussion.Body,
       text_markup: get_markup(forum_discussion),
       created_at: forum_discussion.created,
@@ -27,7 +27,7 @@ class DiscussionConverter
 
     forum_discussion.forum_comments.each do |forum_comment|
       discussion.comments.build(
-        poster: forum_comment.poster,
+        poster_id: forum_comment.poster_id,
         text: forum_comment.Body,
         text_markup: get_markup(forum_comment),
         created_at: forum_comment.DateInserted,
