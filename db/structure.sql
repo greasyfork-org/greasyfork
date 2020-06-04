@@ -1015,6 +1015,7 @@ CREATE TABLE `comments` (
   `text` text NOT NULL,
   `text_markup` varchar(10) NOT NULL DEFAULT 'html',
   `edited_at` datetime DEFAULT NULL,
+  `first_comment` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `index_comments_on_discussion_id` (`discussion_id`),
   CONSTRAINT `fk_rails_750d1a8a36` FOREIGN KEY (`discussion_id`) REFERENCES `discussions` (`id`) ON DELETE CASCADE
@@ -1898,6 +1899,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20200510183902'),
 ('20200512022035'),
 ('20200514004501'),
-('20200601021359');
+('20200601021359'),
+('20200604020122');
 
 

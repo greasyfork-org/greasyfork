@@ -19,7 +19,8 @@ class DiscussionConverter
       text: forum_discussion.name + "\n\n" + forum_discussion.Body,
       text_markup: get_markup(forum_discussion),
       created_at: forum_discussion.created,
-      edited_at: forum_discussion.DateUpdated
+      edited_at: forum_discussion.DateUpdated,
+      first_comment: true,
     )
 
     raise InvalidDiscussionException if raise_on_invalid && !comment.valid?

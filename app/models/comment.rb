@@ -25,11 +25,6 @@ class Comment < ApplicationRecord
     discussion_url
   end
 
-  def first_comment?
-    discussion.comments.order(:id).first == self
-  end
-  memoize :first_comment?
-
   def destroy
     if first_comment?
       discussion.destroy
@@ -52,5 +47,19 @@ class Comment < ApplicationRecord
     script.users.reject { |user| poster == user }.select { |author_user| author_user.author_email_notification_type_id == User::AUTHOR_NOTIFICATION_COMMENT || (author_user.author_email_notification_type_id == User::AUTHOR_NOTIFICATION_DISCUSSION && first_comment?) }.each do |author_user|
       ForumMailer.comment_on_script(author_user, self).deliver_later
     end
+  end
+
+  def update_stats!
+    update!(calculate_stats)
+  end
+
+  def assign_stats
+    assign_attributes(calculate_stats)
+  end
+
+  def calculate_stats
+    {
+        first_comment: discussion.comments.order(:id).first == self,
+    }
   end
 end

@@ -79,6 +79,7 @@ class DiscussionsController < ApplicationController
     discussion = discussion_scope.build(discussion_params)
     discussion.poster = discussion.comments.first.poster = current_user
     discussion.script = @script
+    discussion.comments.first.first_comment = true
     discussion.save!
     discussion.comments.first.notify_script_authors!
     redirect_to discussion.path
