@@ -887,11 +887,24 @@ ru:
     sign_in_to_post_discussion: "Войдите, чтобы написать отзыв, комментарий, или задать вопрос."
     sign_in_to_post_comment: "Войдите, чтобы ответить."
     user_filter:
-      label: "Фильтр"
+      label: "Фильтр обсуждений"
       all: "Все обсуждения"
       discussion_by_me: "Созданные мною"
       comment_by_me: "С моими комментариями"
       on_my_scripts: "Обсуждения моих скриптов"
+    other_user_filter:
+      all: "Все обсуждения"
+      comments_by: "С комментариями %{user}"
+    user_activity:
+      title: "Свежие комментарии"
+      no_recent_activity: "Этот пользователь уже давно не оставлял комментариев."
+      see_all_activity: "Показать всю активность пользователя."
+      script_review:
+        posted_html: "Разместил отзыв о <i>%{script}</i>"
+        replied_html: "Ответил на отзыв о <i>%{script}</i>"
+      script_question:
+        posted_html: "Разместил вопрос/комментарий о <i>%{script}</i>"
+        replied_html: "Ответил на вопрос/комментарий о <i>%{script}</i>"
   common:
     error_preamble: "Обнаружены проблемы в отправленном вами тексте..."
     allowed_elements_link: "(См. разрешенные теги)"

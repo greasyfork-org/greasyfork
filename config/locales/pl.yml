@@ -872,6 +872,8 @@ pl:
   discussions:
     comment_date: "Napisano: %{date}"
     comment_edit_date: "Edytowano: %{date}"
+    posted_by_html: "%{user}, %{date}"
+    last_comment: "Ostatni: %{user}, %{date}"
     new_discussion_heading: "Napisz recenzję, komentarz lub pytanie"
     new_discussion_submit: "Opublikuj komentarz"
     new_comment_heading: "Odpowiedz"
@@ -897,6 +899,25 @@ pl:
       good: "Dobry"
     sign_in_to_post_discussion: "Zaloguj się, by napisać recenzję, komentarz lub pytanie."
     sign_in_to_post_comment: "Zaloguj się, by odpowiedzieć."
+    user_filter:
+      label: "Dyskusje z moim udziałem"
+      all: "Wszystkie dyskusje"
+      discussion_by_me: "Rozpoczęte przeze mnie"
+      comment_by_me: "Skomentowane przeze mnie"
+      on_my_scripts: "Na moich skryptach"
+    other_user_filter:
+      all: "Wszystkie dyskusje"
+      comments_by: "Skomentowane przez %{user}"
+    user_activity:
+      title: "Ostatnie komentarze"
+      no_recent_activity: "Ten użytkownik nie opublikował ostatnio żadnych komentarzy."
+      see_all_activity: "Zobacz całą aktywność użytkownika."
+      script_review:
+        posted_html: "Napisano recenzję o <i>%{script}</i>"
+        replied_html: "Odpowiedziano na recenzję o <i>%{script}</i>"
+      script_question:
+        posted_html: "Napisano pytanie/komentarz o <i>%{script}</i>"
+        replied_html: "Odpowiedziano na pytanie/komentarz o <i>%{script}</i>"
   common:
     error_preamble: "Mieliśmy małe problemy z tym, co chciałeś napisać..."
     allowed_elements_link: "(zobacz dozwolony kod)"

@@ -859,6 +859,8 @@ fr:
   discussions:
     comment_date: "Publié le: %{date}"
     comment_edit_date: "Édité le: %{date}"
+    posted_by_html: "%{user} le %{date}"
+    last_comment: "Dernier: %{user} le %{date}"
     new_discussion_heading: "Poster un avis, un commentaire ou une question"
     new_discussion_submit: "Poster un commentaire"
     new_comment_heading: "Poster une réponse"
@@ -884,6 +886,25 @@ fr:
       good: "Bon"
     sign_in_to_post_discussion: "Connectez-vous pour poster un avis, un commentaire ou une question."
     sign_in_to_post_comment: "Connectez-vous pour poster une réponse."
+    user_filter:
+      label: "Discussions impliquant moi"
+      all: "Toutes les discussions"
+      discussion_by_me: "Commencé par moi"
+      comment_by_me: "Commentaires de moi"
+      on_my_scripts: "Sur mes scripts"
+    other_user_filter:
+      all: "Toutes les discussions"
+      comments_by: "Commentaires de %{user}"
+    user_activity:
+      title: "Commentaires récents"
+      no_recent_activity: "Cet utilisateur n'a posté aucun commentaire récemment."
+      see_all_activity: "Voir toutes les activités des utilisateurs."
+      script_review:
+        posted_html: "A posté un avis sur <i>%{script}</i>"
+        replied_html: "En réponse à une ex-amination de <i>%{script}</i>"
+      script_question:
+        posted_html: "Posté une question / un commentaire sur <i>%{script}</i>"
+        replied_html: "Répondre à une question / commentaire sur <i>%{script}</i>"
   common:
     error_preamble: "Il y a des erreurs dans ce que vous avez posté..."
     allowed_elements_link: "(Voir les balises autorisées.)"
