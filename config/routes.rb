@@ -192,8 +192,8 @@ Rails.application.routes.draw do
       resources :spammy_email_domains, only: [:index, :new, :create, :edit, :update, :destroy]
     end
 
-    match '*path', to: 'home#routing_error', via: [:get, :post]
+    get '404', to: 'home#routing_error'
   end
 
-  match '*path', to: 'home#routing_error', via: [:get, :post]
+  get '404', to: 'home#routing_error'
 end
