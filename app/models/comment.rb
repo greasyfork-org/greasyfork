@@ -34,10 +34,6 @@ class Comment < ApplicationRecord
     end
   end
 
-  after_commit do
-    discussion.update_stats!
-  end
-
   after_destroy do
     Report.where(item: self).destroy_all
   end
