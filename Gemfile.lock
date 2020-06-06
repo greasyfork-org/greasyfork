@@ -72,6 +72,8 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.1, >= 1.2.0)
+    active_storage_validations (0.8.9)
+      rails (>= 5.2.0)
     activejob (6.0.3.1)
       activesupport (= 6.0.3.1)
       globalid (>= 0.3.6)
@@ -96,6 +98,22 @@ GEM
     airbrussh (1.4.0)
       sshkit (>= 1.6.1, != 1.7.0)
     ast (2.4.0)
+    aws-eventstream (1.1.0)
+    aws-partitions (1.326.0)
+    aws-sdk-core (3.98.0)
+      aws-eventstream (~> 1, >= 1.0.2)
+      aws-partitions (~> 1, >= 1.239.0)
+      aws-sigv4 (~> 1.1)
+      jmespath (~> 1.0)
+    aws-sdk-kms (1.33.0)
+      aws-sdk-core (~> 3, >= 3.71.0)
+      aws-sigv4 (~> 1.1)
+    aws-sdk-s3 (1.67.1)
+      aws-sdk-core (~> 3, >= 3.96.1)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.1)
+    aws-sigv4 (1.1.4)
+      aws-eventstream (~> 1.0, >= 1.0.2)
     bcrypt (3.1.13)
     better_errors (2.6.0)
       coderay (>= 1.0.0)
@@ -173,8 +191,12 @@ GEM
     hiredis (0.6.3)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
+    image_processing (1.11.0)
+      mini_magick (>= 4.9.5, < 5)
+      ruby-vips (>= 2.0.17, < 3)
     innertube (1.1.0)
     jaro_winkler (1.5.4)
+    jmespath (1.4.0)
     joiner (0.5.0)
       activerecord (>= 6.0.0.rc2)
     json (2.3.0)
@@ -197,6 +219,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2019.1009)
     mimemagic (0.3.5)
+    mini_magick (4.10.1)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     mini_racer (0.2.9)
@@ -322,6 +345,8 @@ GEM
       unicode-display_width (>= 1.4.0, < 2.0)
     ruby-prof (1.3.1)
     ruby-progressbar (1.10.1)
+    ruby-vips (2.0.17)
+      ffi (~> 1.9)
     rubyzip (2.3.0)
     sanitize (5.1.0)
       crass (~> 1.0.2)
@@ -404,6 +429,8 @@ PLATFORMS
 
 DEPENDENCIES
   ace-rails-ap
+  active_storage_validations
+  aws-sdk-s3
   better_errors
   binding_of_caller
   bootsnap
@@ -426,6 +453,7 @@ DEPENDENCIES
   diffy
   email_address
   hiredis
+  image_processing
   it!
   listen
   memoist

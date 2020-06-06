@@ -33,6 +33,7 @@ class CommentsController < ApplicationController
         comment.discussion.update!(rating: rating)
       end
       comment.edited_at = Time.now
+      comment.attachments.select { |attachment| params["remove-attachment-#{attachment.id}"] == '1' }.each(&:destroy!)
       comment.update!(comments_params)
     end
     redirect_to comment.path(locale: request_locale.code)
@@ -51,6 +52,6 @@ class CommentsController < ApplicationController
   end
 
   def comments_params
-    params.require(:comment).permit(:text, :text_markup)
+    params.require(:comment).permit(:text, :text_markup, attachments: [])
   end
 end

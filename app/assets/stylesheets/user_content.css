@@ -1,0 +1,40 @@
+.user-content {
+  border: 1px solid #E6DDD6;
+  background-color: #F2E5E5;
+  padding: 1em;
+  overflow-x: auto;
+}
+.user-screenshots * {
+  vertical-align: middle;
+}
+.user-screenshots a {
+  text-decoration: none;
+}
+
+.comment-screenshot-control {
+  margin: 10px 0;
+}
+.remove-images {
+  display: flex;
+  margin-top: 5px;
+}
+.remove-image {
+  border: 2px solid black;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+.remove-image:not(:first-child) {
+  margin-left: 5px;
+}
+.remove-image img {
+  display: block;
+}
+.remove-image-selecter {
+  margin-top: 10px;
+}
+
+.comment .user-content .user-screenshots {
+  margin-top: 10px;
+}

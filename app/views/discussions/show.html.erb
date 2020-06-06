@@ -70,6 +70,11 @@
     </div>
     <div class="user-content">
       <%= format_user_text(comment.text, comment.text_markup) %>
+      <div class="user-screenshots">
+        <% comment.attachments.each do |attachment| %>
+          <%= link_to attachment, data: { jslghtbx: url_for(attachment), jslghtbx_group: "screenshots-#{attachment.id}" } do %><%= image_tag attachment.variant(resize_to_limit: [200, 200]) %><% end %>
+        <% end %>
+      </div>
     </div>
     <% if by_current_user %>
       <div class="edit-comment-form">

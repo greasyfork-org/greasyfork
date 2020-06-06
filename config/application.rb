@@ -24,5 +24,7 @@ module Greasyfork
     config.active_record.schema_format = :sql
 
     config.exceptions_app = self.routes
+
+    config.active_storage.replace_on_assign_to_many = false
   end
 end

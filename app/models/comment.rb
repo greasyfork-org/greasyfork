@@ -6,9 +6,14 @@ class Comment < ApplicationRecord
   belongs_to :discussion
   # Optional because the user may no longer exist.
   belongs_to :poster, class_name: 'User', optional: true
+  has_many_attached :attachments
 
   validates :text, presence: true
   validates :text_markup, inclusion: { in: %w[html markdown] }, presence: true
+  validates :attachments,
+            content_type: %w[image/png image/jpg image/jpeg],
+            size: {less_than: Rails.configuration.screenshot_max_size },
+            limit: { max: Rails.configuration.screenshot_max_count }
 
   delegate :script, to: :discussion
 

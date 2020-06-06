@@ -9,3 +9,22 @@
 <div class="previewable" data-markup-option-name="<%= markup_name %>" data-preview-label="<%= t('common.preview_tab') %>" data-write-label="<%= t('common.write_tab') %>">
   <%= f.text_area :text, required: true, class: 'comment-entry' %>
 </div>
+<div class="comment-screenshot-control">
+  <%= t('scripts.screenshots_explanation', size: number_to_human_size(Rails.configuration.screenshot_max_size), number: Rails.configuration.screenshot_max_count ) %>
+  <div>
+    <%= f.label :attachments, t('scripts.screenshots_add') %>
+    <%= f.file_field :attachments, multiple: true, accept: "image/*" %>
+  </div>
+  <% if f.object.attachments.attached? %>
+    <div class="remove-attachments">
+      <% f.object.attachments.reject(&:new_record?).each do |attachment| %>
+        <div class="remove-attachment">
+          <%= link_to attachment, data: { jslghtbx: url_for(attachment), jslghtbx_group: "screenshots-edit-#{f.object.id}" } do %><%= image_tag attachment.variant(resize_to_limit: [200, 200]) %><% end %>
+          <div class="remove-attachment-selecter">
+            <input id="remove-attachment-<%= attachment.id %>" name="remove-attachment-<%= attachment.id %>" type="checkbox" value="1"><label class="checkbox-label" for="remove-attachment-<%= attachment.id %>"><%= t('scripts.screenshots_remove') %></label>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

@@ -23,7 +23,7 @@
         </p>
         <% script_version = script.newest_saved_script_version %>
         <% if !script_version.screenshots.empty? %>
-          <div class="script-screenshots">
+          <div class="user-screenshots">
             <% script_version.screenshots.each do |screenshot| %>
               <a href="<%=screenshot.screenshot.url%>" data-jslghtbx="<%=screenshot.screenshot.url%>" data-jslghtbx-group="screenshots" <%if !screenshot.caption.nil?%>title="<%=screenshot.caption%>" data-jslghtbx-caption="<%=screenshot.caption%>"<%end%>><%= image_tag screenshot.screenshot.url(:thumb) %></a>
             <% end %>
