@@ -42,10 +42,10 @@ gem 'omniauth-gitlab'
 gem 'omniauth-google-oauth2', '>= 0.4.1'
 gem 'omniauth-rails_csrf_protection'
 
-gem 'paperclip'
-gem "aws-sdk-s3", require: false
-gem 'image_processing'
 gem 'active_storage_validations'
+gem 'aws-sdk-s3', require: false
+gem 'image_processing'
+gem 'paperclip'
 
 gem 'rails-observers'
 gem 'rb-readline'

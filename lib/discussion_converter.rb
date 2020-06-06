@@ -10,7 +10,7 @@ class DiscussionConverter
       created_at: forum_discussion.created,
       script: forum_discussion.script,
       rating: forum_discussion.rating,
-      migrated_from: forum_discussion.id,
+      migrated_from: forum_discussion.id
     )
 
     raise InvalidDiscussionException if raise_on_invalid && !discussion.valid?
