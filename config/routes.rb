@@ -90,6 +90,7 @@ Rails.application.routes.draw do
         get 'accept_invitation'
         post 'remove_author'
         post 'request_duplicate_check'
+        post 'convert_discussions'
       end
 
       collection do

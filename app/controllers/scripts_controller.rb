@@ -9,7 +9,7 @@ require 'js_parser'
 class ScriptsController < ApplicationController
   include ScriptAndVersions
 
-  MEMBER_AUTHOR_ACTIONS = [:sync_update, :update_promoted, :request_permanent_deletion, :unrequest_permanent_deletion, :update_promoted, :invite, :remove_author].freeze
+  MEMBER_AUTHOR_ACTIONS = [:sync_update, :update_promoted, :request_permanent_deletion, :unrequest_permanent_deletion, :update_promoted, :invite, :remove_author, :convert_discussions].freeze
   MEMBER_AUTHOR_OR_MODERATOR_ACTIONS = [:delete, :do_delete, :undelete, :do_undelete, :derivatives, :similar_search, :admin, :update_locale, :request_duplicate_check].freeze
   MEMBER_MODERATOR_ACTIONS = [:mark, :do_mark, :do_permanent_deletion, :reject_permanent_deletion, :approve].freeze
   MEMBER_PUBLIC_ACTIONS = [:diff, :report, :accept_invitation].freeze
@@ -734,6 +734,12 @@ class ScriptsController < ApplicationController
     ScriptDuplicateCheckerJob.set(queue: 'user_low').perform_later(@script.id) unless ScriptDuplicateCheckerJob.currently_queued_script_ids.include?(@script.id)
     flash[:notice] = 'Similarity check will be completed in a few minutes.'
     redirect_to derivatives_script_path(@script)
+  end
+
+  def convert_discussions
+    ScriptDiscussionConversionJob.perform_later(@script.id)
+    flash[:notice] = "Conversion of your script's discussions will be completed within a few minutes."
+    redirect_to feedback_script_path(@script)
   end
 
   # Returns a hash, key: site name, value: hash with keys installs, scripts

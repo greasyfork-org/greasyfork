@@ -922,7 +922,7 @@ CREATE TABLE `active_storage_attachments` (
   UNIQUE KEY `index_active_storage_attachments_uniqueness` (`record_type`,`record_id`,`name`,`blob_id`),
   KEY `index_active_storage_attachments_on_blob_id` (`blob_id`),
   CONSTRAINT `fk_rails_c3b3935057` FOREIGN KEY (`blob_id`) REFERENCES `active_storage_blobs` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `active_storage_blobs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -938,7 +938,7 @@ CREATE TABLE `active_storage_blobs` (
   `created_at` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_active_storage_blobs_on_key` (`key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `allowed_requires`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1051,7 +1051,7 @@ CREATE TABLE `comments` (
   PRIMARY KEY (`id`),
   KEY `index_comments_on_discussion_id` (`discussion_id`),
   CONSTRAINT `fk_rails_750d1a8a36` FOREIGN KEY (`discussion_id`) REFERENCES `discussions` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `compatibilities`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1150,12 +1150,13 @@ CREATE TABLE `discussions` (
   `stat_reply_count` int(11) NOT NULL DEFAULT 0,
   `stat_last_reply_date` datetime DEFAULT NULL,
   `stat_last_replier_id` int(11) DEFAULT NULL,
+  `migrated_from` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_discussions_on_poster_id` (`poster_id`),
   KEY `fk_rails_a52537835c` (`script_id`),
   KEY `index_discussions_on_stat_last_reply_date` (`stat_last_reply_date`),
   CONSTRAINT `fk_rails_a52537835c` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `identities`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1933,6 +1934,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20200514004501'),
 ('20200601021359'),
 ('20200604020122'),
-('20200605225727');
+('20200605225727'),
+('20200606184728');
 
 
