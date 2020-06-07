@@ -44,6 +44,13 @@
                 <li class="list-option"><%= link_to t('discussions.user_filter.on_my_scripts'), current_path_with_params(me: 'script') %></li>
               <% end %>
             <% end %>
+            <% if current_user.discussion_subscriptions.any? %>
+              <% if params[:me] == 'subscribed' %>
+                <li class="list-option list-current"><%= t('discussions.user_filter.subscribed') %></li>
+              <% else %>
+                <li class="list-option"><%= link_to t('discussions.user_filter.subscribed'), current_path_with_params(me: 'subscribed') %></li>
+              <% end %>
+            <% end %>
           </ul>
         </div>
       <% end %>

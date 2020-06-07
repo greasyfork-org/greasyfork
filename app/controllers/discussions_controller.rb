@@ -31,6 +31,8 @@ class DiscussionsController < ApplicationController
         @discussions = @discussions.with_comment_by(current_user)
       when 'script'
         @discussions = @discussions.where(script_id: current_user.script_ids)
+      when 'subscribed'
+        @discussions = @discussions.where(id: current_user.discussion_subscriptions.pluck(:discussion_id))
       end
     end
 
