@@ -73,7 +73,8 @@ class Discussion < ApplicationRecord
   end
 
   def update_stats!
-    update!(calculate_stats)
+    assign_stats
+    save! if changed?
   end
 
   def assign_stats
