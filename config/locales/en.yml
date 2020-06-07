@@ -1109,6 +1109,10 @@ en:
       script_question:
         posted_html: "Posted a question/comment about <i>%{script}</i>"
         replied_html: "Replied to a question/comment about <i>%{script}</i>"
+    review_title: "A review on %{script_name}"
+    question_title: "A question about %{script_name}"
+    subscribe: Subscribe
+    unsubscribe: Unsubscribe
   common:
     # text to show before listing errors in a submission
     error_preamble: "There were some problems with what you posted..."
@@ -1269,3 +1273,15 @@ en:
         ---
 
         You can view and reply to this comment at %{comment_url}. Manage your notification preferences at %{notification_preferences_url}.
+    subscribed_discussion:
+      subject: "The discussion %{discussion_title} on %{site_name} has received a comment."
+      text: |
+        The discussion '%{discussion_title}' on %{site_name} has received a comment by user '%{commenter_name}':
+
+        ---
+        %{comment_text}
+        ---
+
+        You can view and reply to this comment at %{comment_url}.
+
+        You received this notification because you subscribed to this discussion. Visit %{discussion_url} to unsubscribe.

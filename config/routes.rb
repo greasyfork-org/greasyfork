@@ -119,6 +119,10 @@ Rails.application.routes.draw do
       end
 
       resources :discussions, only: [:show, :create, :show, :destroy] do
+        member do
+          post :subscribe
+          post :unsubscribe
+        end
         resources :comments, only: [:create, :destroy, :update]
       end
     end

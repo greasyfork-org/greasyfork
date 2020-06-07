@@ -3,7 +3,7 @@ require 'discussion_converter'
 class DiscussionsController < ApplicationController
   include DiscussionHelper
 
-  before_action :authenticate_user!, only: :create
+  before_action :authenticate_user!, only: [:create, :subscribe, :unsubscribe]
   before_action :moderators_only, only: :destroy
 
   layout 'discussions', only: :index
@@ -81,7 +81,7 @@ class DiscussionsController < ApplicationController
     discussion.script = @script
     discussion.comments.first.first_comment = true
     discussion.save!
-    discussion.comments.first.notify_script_authors!
+    discussion.comments.first.send_notifications!
     redirect_to discussion.path
   end
 
@@ -92,6 +92,24 @@ class DiscussionsController < ApplicationController
       redirect_to script_path(discussion.script)
     else
       redirect_to root_path
+    end
+  end
+
+  def subscribe
+    discussion = discussion_scope.find(params[:id])
+    DiscussionSubscription.find_or_create_by!(user: current_user, discussion: discussion)
+    respond_to do |format|
+      format.js { head 200 }
+      format.all { redirect_to discussion.path }
+    end
+  end
+
+  def unsubscribe
+    discussion = discussion_scope.find(params[:id])
+    DiscussionSubscription.find_by(user: current_user, discussion: discussion)&.destroy
+    respond_to do |format|
+      format.js { head 200 }
+      format.all { redirect_to discussion.path }
     end
   end
 

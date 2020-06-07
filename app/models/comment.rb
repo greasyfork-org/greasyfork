@@ -47,13 +47,29 @@ class Comment < ApplicationRecord
     Report.where(item: self).destroy_all
   end
 
-  def notify_script_authors!
-    return unless script
+  def send_notifications!
+    satn = script_authors_to_notify
 
-    script.users.reject { |user| poster == user }.select { |author_user| author_user.author_email_notification_type_id == User::AUTHOR_NOTIFICATION_COMMENT || (author_user.author_email_notification_type_id == User::AUTHOR_NOTIFICATION_DISCUSSION && first_comment?) }.each do |author_user|
+    satn.each do |author_user|
       ForumMailer.comment_on_script(author_user, self).deliver_later
     end
+
+    # Don't double-notify.
+    discussion.discussion_subscriptions.where.not(user: [poster] + satn).includes(:user).map(&:user).each do |user|
+      ForumMailer.comment_on_subscribed(user, self).deliver_later
+    end
   end
+
+  def script_authors_to_notify
+    return User.none unless script
+
+    script
+      .users
+      .reject { |user| poster == user }
+      .select { |author_user| author_user.author_email_notification_type_id == User::AUTHOR_NOTIFICATION_COMMENT || (author_user.author_email_notification_type_id == User::AUTHOR_NOTIFICATION_DISCUSSION && first_comment?) }
+  end
+
+  def notify_subscribers!; end
 
   def update_stats!
     update!(calculate_stats)

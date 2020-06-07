@@ -9,6 +9,7 @@ class Discussion < ApplicationRecord
   belongs_to :script
   belongs_to :stat_last_replier, class_name: 'User', optional: true
   has_many :comments
+  has_many :discussion_subscriptions
 
   scope :with_actual_rating, -> { where(rating: [RATING_BAD, RATING_OK, RATING_GOOD]) }
   scope :with_comment_by, ->(user) { where(id: Comment.where(poster: user).pluck(:discussion_id)) }
@@ -60,6 +61,14 @@ class Discussion < ApplicationRecord
       Rails.application.routes.url_helpers.script_discussion_url(script, self, locale: locale)
     else
       Rails.application.routes.url_helpers.discussion_url(self, locale: locale)
+    end
+  end
+
+  def title(locale: nil)
+    if actual_rating?
+      I18n.t('discussions.review_title', script_name: script.name(locale), locale: locale)
+    else
+      I18n.t('discussions.question_title', script_name: script.name(locale), locale: locale)
     end
   end
 

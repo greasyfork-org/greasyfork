@@ -45,4 +45,19 @@ class ScriptDiscussionsTest < ApplicationSystemTestCase
       assert_content 'this is an updated reply'
     end
   end
+
+  test 'subscribing to a discussion' do
+    user = User.first
+    login_as(user, scope: :user)
+    discussion = discussions(:script_discussion)
+    visit discussion.url
+    assert_difference -> { DiscussionSubscription.count } => 1 do
+      click_link 'Subscribe'
+      assert_selector 'a', text: 'Unsubscribe'
+    end
+    assert_difference -> { DiscussionSubscription.count } => -1 do
+      click_link 'Unsubscribe'
+      assert_selector 'a', text: 'Subscribe'
+    end
+  end
 end

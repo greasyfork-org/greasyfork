@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
     @comment = @discussion.comments.build(comments_params)
     @comment.poster = current_user
     if @comment.save
-      @comment.notify_script_authors!
+      @comment.send_notifications!
       redirect_to @comment.path
       return
     end

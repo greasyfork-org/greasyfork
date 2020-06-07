@@ -130,3 +130,21 @@ a.discussion-title {
   font-size: smaller;
   padding: 0.5em 0;
 }
+.discussion-header {
+  display: flex;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+.discussion-header h3 {
+  flex: 1;
+  margin: 0 !important;
+}
+.discussion-actions {
+  font-size: smaller;
+}
+.discussion-subscribed .discussion-subscribe {
+  display: none;
+}
+.discussion-not-subscribed .discussion-unsubscribe {
+  display: none;
+}

@@ -24,6 +24,22 @@ module DiscussionHelper
     end
   end
 
+  def scoped_subscribe_path(discussion)
+    if discussion.script
+      subscribe_script_discussion_path(discussion.script, discussion)
+    else
+      subscribe_discussion_path(discussion)
+    end
+  end
+
+  def scoped_unsubscribe_path(discussion)
+    if discussion.script
+      unsubscribe_script_discussion_path(discussion.script, discussion)
+    else
+      unsubscribe_discussion_path(discussion)
+    end
+  end
+
   def user_activity_title(discussion, post:)
     if discussion.script
       key = if discussion.actual_rating?

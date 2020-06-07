@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_many :reports_as_reporter, foreign_key: :reporter_id, inverse_of: :reporter, class_name: 'Report'
   has_many :script_reports, foreign_key: 'reporter_id'
   has_many :comments, foreign_key: 'poster_id', inverse_of: :poster
+  has_many :discussion_subscriptions
 
   # Gotta to it this way because you can't pass a parameter to a has_many, and we need it has_many
   # to do eager loading.
@@ -258,6 +259,10 @@ class User < ApplicationRecord
 
   def email_domain
     email&.split('@')&.last
+  end
+
+  def subscribed_to?(discussion)
+    discussion_subscriptions.where(discussion: discussion).any?
   end
 
   protected
