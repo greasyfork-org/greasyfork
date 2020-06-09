@@ -892,6 +892,7 @@ ru:
       discussion_by_me: "Созданные мною"
       comment_by_me: "С моими комментариями"
       on_my_scripts: "Обсуждения моих скриптов"
+      subscribed: "Подписаны"
     other_user_filter:
       all: "Все обсуждения"
       comments_by: "С комментариями %{user}"
@@ -905,6 +906,10 @@ ru:
       script_question:
         posted_html: "Разместил вопрос/комментарий о <i>%{script}</i>"
         replied_html: "Ответил на вопрос/комментарий о <i>%{script}</i>"
+    review_title: "Отзыв на %{script_name}"
+    question_title: "Вопрос о %{script_name}"
+    subscribe: Подписаться
+    unsubscribe: Отписаться
   common:
     error_preamble: "Обнаружены проблемы в отправленном вами тексте..."
     allowed_elements_link: "(См. разрешенные теги)"
@@ -1010,7 +1015,7 @@ ru:
             Если вы не опубликуете новую версию скрипта или не ответите в обсуждении до %{delete_date}, ваш скрипт будет скрыт на %{site_name}. (После этой даты вы сможете опять его показать, если захотите.)
     script_comment:
       subject: "Ваш скрипт %{script_name} на %{site_name} получил комментарий."
-      text: |-
+      text: |
           Ваш скрипт '%{script_name}' на %{site_name} (%{script_url}) получил комментарий от пользователя '%{commenter_name}':
 
           ---
@@ -1018,3 +1023,15 @@ ru:
           ---
 
           Вы можете просмотреть комментарий и ответить на него по адресу %{comment_url}. Настройки уведомлений находятся по адресу %{notification_preferences_url}.
+    subscribed_discussion:
+      subject: "В обсуждении %{discussion_title} на %{site_name} был добавлен комментарий."
+      text: |
+          В обсуждении '%{discussion_title}' на %{site_name} '%{commenter_name}' добавил комментарий:
+
+          ---
+          %{comment_text}
+          ---
+
+          Вы можете просмотреть комментарий и ответить на него по адресу %{comment_url}.
+
+          Вы получили это уведомление, потому что подписались на эту тему. Отписаться можно по адресу %{discussion_url}.

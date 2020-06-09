@@ -887,6 +887,7 @@ sk:
       discussion_by_me: "Začal som"
       comment_by_me: "Komentoval som"
       on_my_scripts: "K mojim skriptom"
+      subscribed: "Prihlásené na odber"
     other_user_filter:
       all: "Všetky diskusie"
       comments_by: "Komentáre od %{user}"
@@ -900,6 +901,10 @@ sk:
       script_question:
         posted_html: "Pridané otázky/komentáre k skriptu <i>%{script}</i>"
         replied_html: "Odpovede na otázky/komentáre k skriptu <i>%{script}</i>"
+    review_title: "Recenzia na %{script_name}"
+    question_title: "Otázka k %{script_name}"
+    subscribe: Prihlásiť na odber
+    unsubscribe: Odhlásiť z odberu
   common:
     error_preamble: "Boli zistené problémy s tým, čo ste poslali."
     allowed_elements_link: "(Pozri zoznam povolených značiek.)"
@@ -1005,11 +1010,23 @@ sk:
             Ak nepridáte novú verziu alebo odpoveď do diskusie do %{delete_date}, váš skript bude na %{site_name} skrytý. (Po tomto dátume ho budte môcť zviditeľniť, ak budte chcieť.)
     script_comment:
       subject: "Váš skript %{script_name} na %{site_name} bol komentovaný."
-      text: |-
+      text: |
           Váš skript '%{script_name}' na %{site_name} (%{script_url}) bol komentovaný užívateľom '%{commenter_name}':
 
           ---
           %{comment_text}
           ---
 
-          Komentár môžete zobraziť o odpovedať naň na %{comment_url}. Spravujte svoje predvoľby upozornení na stránke %{notification_preferences_url}.
+          Komentár môžete zobraziť a odpovedať naň na %{comment_url}. Spravujte svoje predvoľby upozornení na stránke %{notification_preferences_url}.
+    subscribed_discussion:
+      subject: "Do diskusie %{discussion_title} na %{site_name} bol pridaný komentár."
+      text: |
+          Užívateľ "%{commenter_name}" pridal do diskusie "%{discussion_title}" na %{site_name} komentár:
+
+          ---
+          %{comment_text}
+          ---
+
+          Zobraziť a odpovedať na komentár môžete na %{comment_url}.
+
+          Toto upozornenie ste dostali, lebo ste prihlásený na odber tejto diskusie. Pre odhlásenie prejdite na %{discussion_url}.

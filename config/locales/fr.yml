@@ -892,6 +892,7 @@ fr:
       discussion_by_me: "Commencé par moi"
       comment_by_me: "Commentaires de moi"
       on_my_scripts: "Sur mes scripts"
+      subscribed: "Abonné"
     other_user_filter:
       all: "Toutes les discussions"
       comments_by: "Commentaires de %{user}"
@@ -905,6 +906,10 @@ fr:
       script_question:
         posted_html: "Posté une question / un commentaire sur <i>%{script}</i>"
         replied_html: "Répondre à une question / commentaire sur <i>%{script}</i>"
+    review_title: "Un avis sur %{script_name}"
+    question_title: "Une question sur %{script_name}"
+    subscribe: S'abonner
+    unsubscribe: Se désabonner
   common:
     error_preamble: "Il y a des erreurs dans ce que vous avez posté..."
     allowed_elements_link: "(Voir les balises autorisées.)"
@@ -1010,11 +1015,23 @@ fr:
             Si vous ne postez pas de nouvelle version ou ne répondez pas aux discussions d'ici %{delete_date}, votre script sera masqué sur %{site_name}. (Après cette date, vous pourrez la rendre à nouveau visible si vous le souhaitez.)
     script_comment:
       subject: "Votre script %{script_name} sur %{site_name} a reçu un commentaire."
-      text: |-
+      text: |
           Votre script '%{script_name}' sur %{site_name} (%{script_url}) a reçu un commentaire de l'utilisateur '%{commenter_name}':
 
           ---
           %{comment_text}
           ---
 
-          Vous pouvez afficher et répondre à ce commentaire sur %{comment_url}. Gérez vos préférences de notification dans %{notification_preferences_url}.
+          Vous pouvez voir et répondre à ce commentaire sur %{comment_url}. Gérez vos préférences de notification dans %{notification_preferences_url}.
+    subscribed_discussion:
+      subject: "La discussion %{discussion_title} sur %{site_name} a reçu un commentaire."
+      text: |
+          La discussion '%{discussion_title}' sur %{site_name} a reçu un commentaire de l'utilisateur '%{commenter_name}':
+
+          ---
+          %{comment_text}
+          ---
+
+          Vous pouvez voir et répondre à ce commentaire sur %{comment_url}.
+
+          Vous avez reçu cette notification parce que vous vous êtes abonné à cette discussion. Visitez %{discussion_url} pour vous désabonnez.

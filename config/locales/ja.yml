@@ -859,11 +859,3 @@ ja:
             更新版の投稿がないか、%{delete_date} までに議論への返信がない場合、あなたのスクリプトは %{site_name} で非表示にされるでしょう。 (この日付移行、希望があれば再び表示することも可能です)
     script_comment:
       subject: "スクリプト %{script_name} (%{site_name}) にコメントがあります。"
-      text: |-
-          あなたのスクリプト「%{script_name}」( %{site_name} , %{script_url})  に対しユーザー %{commenter_name}」からのコメントがあります:
-
-          ---
-          %{comment_text}
-          ---
-
-          このコメントへ %{comment_url} から返信できます。通知設定の管理は%{notification_preferences_url} から行えます。

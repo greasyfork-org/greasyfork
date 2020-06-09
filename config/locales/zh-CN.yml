@@ -878,11 +878,3 @@ zh-CN:
             如果您在 %{delete_date} 之前没有发布新的版本或作出回应，你的脚本将会在 %{site_name} 变成隐藏状态。（在此日期之后，你可以手动将其状态更改为公开可见）
     script_comment:
       subject: "您对于站点%{site_name}的脚本%{script_name}收到了一条评论。"
-      text: |-
-          您对于站点%{site_name}的脚本'%{script_name}' (%{script_url}) 收到了一条来自用户'%{commenter_name}'的评论:
-
-          ---
-          %{comment_text}
-          ---
-
-          您可以在%{comment_url} 查看并回复该评论。可以在%{notification_preferences_url}调整通知设置。

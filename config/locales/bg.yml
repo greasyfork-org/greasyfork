@@ -869,6 +869,7 @@ bg:
       discussion_by_me: "Започнати от мен"
       comment_by_me: "Мои коментари"
       on_my_scripts: "На моите скриптове"
+      subscribed: "Абониран"
     other_user_filter:
       all: "Всички дискусии"
       comments_by: "Коментари от %{user}"
@@ -882,6 +883,10 @@ bg:
       script_question:
         posted_html: "Публикува въпрос/коментар за <i>%{script}</i>"
         replied_html: "Отговори на въпрос/коментар за <i>%{script}</i>"
+    review_title: "Отзив за %{script_name}"
+    question_title: "Въпрос за %{script_name}"
+    subscribe: Абонирай се
+    unsubscribe: Премахни абонамент
   common:
     error_preamble: "Има някои проблеми с това, което публикувате..."
     allowed_elements_link: "(Вижте разрешения код.)"
@@ -987,11 +992,23 @@ bg:
             Ако не публикувате нова версия или не отговорите в дискусията до %{delete_date}, вашият скрипт ще бъде скрит на %{site_name}. (Ако искате, след тази дата вие ще можете да го покажете отново.)
     script_comment:
       subject: "Получихте коментар за вашия скрипт %{script_name} на %{site_name}."
-      text: |-
-          Скриптът ви '%{script_name}' на %{site_name} (%{script_url}) беше коментиран от потребител '%{commenter_name}':
+      text: |
+          Вашият скрипт '%{script_name}' на %{site_name} (%{script_url}) е коментиран от потребител '%{commenter_name}':
 
           ---
           %{comment_text}
           ---
 
-          Можете да видите коментара и да публикувате отговор тук %{comment_url}. Можете да промените настройките за известия от тук %{notification_preferences_url}.
+          Можете да видите и отговорите на коментара тук: %{comment_url}. Управлявайте настройките за известията тук: %{notification_preferences_url}.
+    subscribed_discussion:
+      subject: "В дискусията %{discussion_title} на %{site_name} има получен коментар."
+      text: |
+          В дискусията '%{discussion_title}' на %{site_name} има коментира от потребител '%{commenter_name}':
+
+          ---
+          %{comment_text}
+          ---
+
+          Можете да видите коментара и да отговорите тук: %{comment_url}.
+
+          Вие получихте това известие, защото сте абонирани за дискусията. Посетете %{discussion_url} за да се отпишете.
