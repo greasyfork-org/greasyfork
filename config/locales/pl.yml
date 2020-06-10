@@ -905,6 +905,7 @@ pl:
       discussion_by_me: "Rozpoczęte przeze mnie"
       comment_by_me: "Skomentowane przeze mnie"
       on_my_scripts: "Na moich skryptach"
+      subscribed: "Subskrybowane"
     other_user_filter:
       all: "Wszystkie dyskusje"
       comments_by: "Skomentowane przez %{user}"
@@ -918,6 +919,10 @@ pl:
       script_question:
         posted_html: "Napisano pytanie/komentarz o <i>%{script}</i>"
         replied_html: "Odpowiedziano na pytanie/komentarz o <i>%{script}</i>"
+    review_title: "Recenzja o %{script_name}"
+    question_title: "Pytanie o %{script_name}"
+    subscribe: Subskrybuj
+    unsubscribe: Odsubskrybuj
   common:
     error_preamble: "Mieliśmy małe problemy z tym, co chciałeś napisać..."
     allowed_elements_link: "(zobacz dozwolony kod)"
@@ -1023,3 +1028,22 @@ pl:
             Jeśli nie zaktualizujesz skryptu lub nie odpowiesz na otrzymane opinie przed %{delete_date}, twój skrypt zostanie ukryty na %{site_name}. (Po tym czasie będziesz miał możliwość, by ponownie ustawić go jako widoczny jeśli się zdecydujesz.)
     script_comment:
       subject: "Twój skrypt %{script_name} na %{site_name} został skomentowany."
+      text: |
+          Twój skrypt '%{script_name}' na %{site_name} (%{script_url}) został skomentowany przez '%{commenter_name}':
+
+          ---
+          %{comment_text}
+          ---
+
+          Możesz zobaczyć ten komentarz i odpowiedzieć na %{comment_url}. Zarządzaj ustawieniami powiadomień na %{notification_preferences_url}.
+    subscribed_discussion:
+      subject: "Dyskusja o %{discussion_title} na %{site_name} otrzymała komentarz."
+      text: |
+          Dyskusja o '%{discussion_title}' na %{site_name} została skomentowana przez '%{commenter_name}':
+
+          ---
+          %{comment_text}
+          ---
+
+          Możesz zobaczyć ten komentarz i odpowiedzieć na %{comment_url}.
+          Powiadomienie zostało wysłane, ponieważ subskrybujesz tę dyskusję. Odwiedź %{discussion_url} by odsubskrybować.
