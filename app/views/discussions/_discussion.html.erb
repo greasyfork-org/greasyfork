@@ -17,7 +17,7 @@
     <div class="discussion-meta-item">
       <% if discussion.stat_reply_count > 0 %>
         <div class="discussion-meta-item">
-          <%= t('discussions.last_comment', user: render_user(discussion.stat_last_replier, discussion.stat_last_replier_id), date: markup_date(discussion.stat_last_reply_date)).html_safe %>
+          <%= t('discussions.last_comment', user: render_user(discussion.stat_last_replier, discussion.stat_last_replier_id, script: discussion.script), date: markup_date(discussion.stat_last_reply_date)).html_safe %>
         </div>
       <% end %>
     </div>
