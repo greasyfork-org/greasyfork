@@ -1,6 +1,6 @@
 module DiscussionHelper
-  def render_poster(comment)
-    render_user(comment.poster, comment.poster_id)
+  def render_poster(comment_or_discusion)
+    render_user(comment_or_discusion.poster, comment_or_discusion.poster_id, script: comment_or_discusion.script)
   end
 
   def discussion_snippet(discussion)
