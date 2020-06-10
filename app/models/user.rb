@@ -265,6 +265,11 @@ class User < ApplicationRecord
     discussion_subscriptions.where(discussion: discussion).any?
   end
 
+  # Override devise's method to send async. https://github.com/heartcombo/devise#activejob-integration
+  def send_devise_notification(notification, *args)
+    devise_mailer.send(notification, self, *args).deliver_later
+  end
+
   protected
 
   def password_required?
