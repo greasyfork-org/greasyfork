@@ -3,7 +3,7 @@ class DiscussionConverter
   end
 
   def self.convert(forum_discussion, raise_on_invalid: true)
-    raise InvalidDiscussionException if forum_discussion.Closed == 1 || forum_discussion.rating == ForumDiscussion::RATING_REPORT
+    raise InvalidDiscussionException if forum_discussion.closed? || forum_discussion.rating == ForumDiscussion::RATING_REPORT
 
     discussion = Discussion.new(
       poster_id: forum_discussion.original_poster_id,

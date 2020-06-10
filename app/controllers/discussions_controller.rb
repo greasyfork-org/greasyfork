@@ -71,7 +71,19 @@ class DiscussionsController < ApplicationController
   end
 
   def preview_converted
-    @discussion = DiscussionConverter.convert(ForumDiscussion.find(params[:id]))
+    forum_discussion = ForumDiscussion.find(params[:id])
+
+    if forum_discussion.closed?
+      render plain: 'The discussion was closed and will not be converted.'
+      return
+    end
+
+    if forum_discussion.rating == ForumDiscussion::RATING_REPORT
+      render plain: 'The discussion was a report and will not be converted.'
+      return
+    end
+
+    @discussion = DiscussionConverter.convert(forum_discussion)
     @script = @discussion.script
     @conversion_preview = true
     render :show, layout: 'scripts'

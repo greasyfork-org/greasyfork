@@ -71,4 +71,8 @@ class ForumDiscussion < ApplicationRecord
 
     author_posted == 1
   end
+
+  def closed?
+    self.Closed == 1
+  end
 end
