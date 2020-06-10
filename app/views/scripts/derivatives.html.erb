@@ -3,84 +3,53 @@
 
 <p><%=t('scripts.derivatives_intro')%></p>
 
-<h3>Exact copies</h3>
+<h3><%= t('scripts.derivatives_exact_copies_heading') %></h3>
 
 <% identical_svs = @script.script_versions_with_identical_code.group_by(&:script_id).values %>
 
 <% if identical_svs.any? %>
-  <p>The following scripts have the exact same code as yours:</p>
+  <p><%= t('scripts.derivatives_exact_copies_list_intro') %></p>
   <ul>
     <% identical_svs.each do |svs| %>
       <li>
         <% script = svs.first.script %>
-        <%= link_to script.name(request_locale), script_path(script) %> by <%= script.users.map { |u| link_to u.name, user_path(u) }.to_sentence.html_safe %> - versions: <%= svs.map(&:version).uniq.join(', ') %>
+        <%= t('scripts.derivatives_exact_copies_item_html', script_link: link_to(script.name(request_locale), script_path(script)), author_links: script.users.map { |u| link_to u.name, user_path(u) }.to_sentence.html_safe, version_list: svs.map(&:version).uniq.join(', ')) %>
       </li>
     <% end %>
   </ul>
 <% else %>
-  <p>There are no other scripts on <%= site_name %> that have the exact same code as this script.</p>
+  <p><%= t('scripts.derivatives_exact_copes_none', site_name: site_name) %></p>
 <% end %>
 
 
-<h3>Similar scripts</h3>
+<h3><%= t('scripts.derivatives_similar_heading') %></h3>
 
 <% check_date = @script.script_similarities.minimum(:checked_at) %>
 <% enqueued = ScriptDuplicateCheckerJob.currently_queued_script_ids.include?(@script.id) %>
 
-<p>
-  We periodically check the latest version of all other scripts to find the ones most similar to yours. We also check
-  whenever you post an update to your script and upon your request.
-</p>
+<p><%= t('scripts.derivatives_similar_info') %></p>
 
 <% if check_date %>
-  <p>Scores range from 0.000 (completely different) to 1.000 (identical).</p>
+  <p><%= t('scripts.derivatives_similar_score_info') %></p>
   <ul>
     <% @similarities.each do |other_script, score| %>
       <li>
-        <%= number_with_precision(score, precision: 3) %>
-        <%= link_to '[Diff]', admin_script_path(@script, compare: script_path(other_script), anchor: 'script-comparison') %>:
-        <%= link_to(other_script.name(request_locale), other_script) %>
+        <%= it('scripts.derivatives_similar_item', score: number_with_precision(score, precision: 3), diff_link: admin_script_path(@script, compare: script_path(other_script), anchor: 'script-comparison'), script: link_to(other_script.name(request_locale), other_script)) %>
       </li>
     <% end %>
   </ul>
 <% end %>
 
 <p>
-  <% if enqueued %>
-    <% if check_date %>
-      We last checked for scripts similar to yours on <%= markup_date(check_date) %>. We will check again shortly.
-    <% else %>
-      We will check for scripts similar to yours shortly.
-    <% end %>
+  <% if enqueued && check_date %>
+    <%= t('scripts.derivatives_similar_last_check_again_soon_html', date: markup_date(check_date)) %>
   <% elsif check_date %>
-    We last checked for scripts similar to yours on <%= markup_date(check_date) %>.
+    <%= t('scripts.derivatives_similar_last_check_html', date: markup_date(check_date)) %>
   <% else %>
-    We have not yet checked for scripts similar to yours.
+    <%= t('scripts.derivatives_similar_last_check_soon') %>
   <% end %>
 
-  <% if !enqueued %>
-    <% if check_date.nil? %>
-      <%= button_to 'Check now', request_duplicate_check_script_path(@script), method: :POST %>
-    <% elsif check_date < 1.day.ago %>
-      <%= button_to 'Recheck now', request_duplicate_check_script_path(@script), method: :POST %>
-    <% end %>
+  <% if !enqueued && check_date && check_date < 1.day.ago %>
+    <%= button_to t('scripts.derivatives_similar_check_now'), request_duplicate_check_script_path(@script), method: :POST %>
   <% end %>
 </p>
-
-<p>You can also enter some search terms for a live similarity check. The search begins with the most popular scripts matching your query, not the most similar.</p>
-
-<%= form_with(url: similar_search_script_path(@script, format: :json), method: :GET, local: false, html: { id: 'similar-search-form' }) do |f| %>
-  <%= f.search_field :terms, required: true %>
-  <%= f.submit 'Search' %>
-<% end %>
-
-<ul id="similar-search-results">
-  <li id="similar-search-more">
-    <%= form_with(url: similar_search_script_path(@script, format: :json), method: :GET, local: false, html: { id: 'similar-search-form', data: { 'current-script' => @script.id } }) do |f| %>
-      <%= f.hidden_field :terms %>
-      <%= f.hidden_field :page %>
-      <%= f.submit 'More Results' %>
-    <% end %>
-  </li>
-  <li id="similar-search-none">There are no results matching your query.</li>
-</ul>

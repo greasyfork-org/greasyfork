@@ -15,7 +15,7 @@ module UsersHelper
 
     badge = if user.banned?
               render_badge(:banned)
-            elsif script && script.users.include?(user)
+            elsif script&.users&.include?(user)
               render_badge(:author)
             elsif user.moderator?
               render_badge(:moderator)

@@ -10,7 +10,7 @@ class ScriptsController < ApplicationController
   include ScriptAndVersions
 
   MEMBER_AUTHOR_ACTIONS = [:sync_update, :update_promoted, :request_permanent_deletion, :unrequest_permanent_deletion, :update_promoted, :invite, :remove_author, :convert_discussions].freeze
-  MEMBER_AUTHOR_OR_MODERATOR_ACTIONS = [:delete, :do_delete, :undelete, :do_undelete, :derivatives, :similar_search, :admin, :update_locale, :request_duplicate_check].freeze
+  MEMBER_AUTHOR_OR_MODERATOR_ACTIONS = [:delete, :do_delete, :undelete, :do_undelete, :derivatives, :admin, :update_locale, :request_duplicate_check].freeze
   MEMBER_MODERATOR_ACTIONS = [:mark, :do_mark, :do_permanent_deletion, :reject_permanent_deletion, :approve].freeze
   MEMBER_PUBLIC_ACTIONS = [:diff, :report, :accept_invitation].freeze
   MEMBER_PUBLIC_ACTIONS_WITH_SPECIAL_LOADING = [:show, :show_code, :user_js, :meta_js, :user_css, :meta_css, :feedback, :install_ping, :stats, :sync_additional_info_form].freeze
@@ -566,21 +566,6 @@ class ScriptsController < ApplicationController
     end
 
     @canonical_params = [:id]
-  end
-
-  def similar_search
-    scripts = Script.search(params[:terms], order: 'daily_installs DESC', page: params[:page], per_page: 25, populate: true)
-    similiarities = CodeSimilarityScorer.get_similarities(@script, scripts.map(&:id))
-
-    results = scripts.map do |s|
-      {
-        id: s.id,
-        url: script_path(s),
-        name: s.name(I18n.locale),
-        distance: similiarities[s.id].round(3),
-      }
-    end
-    render json: results
   end
 
   def admin
