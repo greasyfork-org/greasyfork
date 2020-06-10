@@ -75,7 +75,7 @@
   <% if current_user && @script.users.include?(current_user) %>
     <div class="notice">
       <%= link_to "#{site_name} will soon be moving to a new format for discussions.", '/forum/discussion/78867/new-comment-review-method-for-scripts' %>
-      You can convert your existing discussions to the new format early.
+      You can convert your existing discussions for this script to the new format early.
       <%= button_to('Convert Discussions', convert_discussions_script_path(@script), form_class: 'inline-form') %>
     </div>
   <% end %>

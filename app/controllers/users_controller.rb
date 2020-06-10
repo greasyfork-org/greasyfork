@@ -225,6 +225,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def convert_discussions
+    current_user.scripts.not_deleted.where(use_new_discussions: false).each do |script|
+      ScriptDiscussionConversionJob.perform_later(script.id)
+    end
+    flash[:notice] = "Conversion of your scripts' discussions will be completed within a few minutes."
+    redirect_to root_path
+  end
+
   def self.apply_sort(finder, script_subset:, sort:)
     return finder.order(id: :desc) if sort.blank?
     return finder.order(:name, :id) if sort == 'name'

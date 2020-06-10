@@ -26,6 +26,11 @@ class ApplicationController < ActionController::Base
                         count: scripts.count).html_safe
                     },
                     dismissable: false
+  show_announcement key: :new_discussion_format,
+                    show_if: -> { current_user.scripts.not_deleted.where(use_new_discussions: false).any? },
+                    content: lambda {
+                      "#{link_to "#{site_name} will soon be moving to a new format for discussions.", '/forum/discussion/78867/new-comment-review-method-for-scripts'}. You can convert the existing discussions on your scripts to the new format early. #{link_to('Convert Discussions', convert_discussions_user_path(current_user), method: :POST)}".html_safe
+                    }
 
   rescue_from ActiveRecord::RecordNotFound, with: :routing_error
   def routing_error
