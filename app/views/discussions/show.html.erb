@@ -17,7 +17,7 @@
       <%= t('discussions.question_heading_html', user: render_poster(@discussion)) %>
     <% end %>
   </h3>
-  <% if current_user %>
+  <% if current_user && !@conversion_preview %>
     <div class="discussion-actions">
       <div class="discussion-subscription-links <%= current_user.subscribed_to?(@discussion) ? 'discussion-subscribed' : 'discussion-not-subscribed' %>">
         <%= link_to t('discussions.subscribe'), scoped_subscribe_path(@discussion), method: :POST, remote: true, class: 'discussion-subscribe' %>
