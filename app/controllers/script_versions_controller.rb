@@ -171,9 +171,11 @@ class ScriptVersionsController < ApplicationController
       @script_version.screenshots.build(screenshot: screenshot_param, caption: params['screenshot-captions'][i])
     end
 
+    recaptcha_ok = current_user.needs_to_recaptcha? ? verify_recaptcha : true
+
     # Don't save if this is a preview or if there's something invalid.
     # If we're attempting to save, ensure all validations are run - short circuit the OR.
-    if !save_record || !verify_recaptcha || (!@script.valid? | !@script_version.valid?) || script_check_result_code == ScriptChecking::Result::RESULT_CODE_BLOCK
+    if !save_record || !recaptcha_ok || (!@script.valid? | !@script_version.valid?) || script_check_result_code == ScriptChecking::Result::RESULT_CODE_BLOCK
       @script.errors.add(:base, script_check_results.first.public_reason) if script_check_result_code == ScriptChecking::Result::RESULT_CODE_BLOCK
 
       # Unfortunately, we can't retain what the user picked for screenshots

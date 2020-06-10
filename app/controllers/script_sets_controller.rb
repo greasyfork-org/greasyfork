@@ -220,8 +220,10 @@ class ScriptSetsController < ApplicationController
       set.errors.add(:base, err)
     end
 
+    recaptcha_ok = current_user.needs_to_recaptcha? ? verify_recaptcha : true
+
     # Require recaptcha for creating non-favourite new sets
-    if set.errors.empty? && params[:save] == '1' && (!set.new_record? || set.favorite || verify_recaptcha)
+    if set.errors.empty? && params[:save] == '1' && (!set.new_record? || set.favorite || recaptcha_ok)
       set.save!
       redirect_to set.user
       flash[:notice] = I18n.t('script_sets.saved')

@@ -270,6 +270,10 @@ class User < ApplicationRecord
     devise_mailer.send(notification, self, *args).deliver_later
   end
 
+  def needs_to_recaptcha?
+    scripts.not_deleted.where('created_at <= ?', 1.month.ago).none?
+  end
+
   protected
 
   def password_required?

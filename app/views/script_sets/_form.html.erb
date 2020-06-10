@@ -262,7 +262,7 @@
 
 	<%= flash[:recaptcha_error] %>
 
-	<% if @set.new_record? %>
+	<% if @set.new_record? && current_user.needs_to_recaptcha? %>
 		<input id="save-indicator" type="hidden" name="save">
 		<%= invisible_recaptcha_tags callback: 'submitInvisibleRecaptchaFormScriptSet', text: t('script_sets.save') %>
 	<% else %>
