@@ -83,6 +83,11 @@ class DiscussionsController < ApplicationController
       return
     end
 
+    if forum_discussion.ScriptID && forum_discussion.script.nil?
+      render plain: 'The discussion is for a deleted script and will not be converted.'
+      return
+    end
+
     @discussion = DiscussionConverter.convert(forum_discussion)
     @script = @discussion.script
     @conversion_preview = true
