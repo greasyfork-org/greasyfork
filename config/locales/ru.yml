@@ -128,6 +128,18 @@ ru:
     derivatives_title: "%{script_name} - Похожие скрипты"
     derivatives_intro: "Эти скрипты могут быть основаны на вашем (или наоборот). Если код используется без вашего разрешения, сообщите об этом на вкладке Обсуждения скрипта."
     derivatives_script_html: "%{script} автора %{user}, лицензия: %{license} %{diff_link:[Diff]}"
+    derivatives_exact_copies_heading: "Точные копии"
+    derivatives_exact_copies_list_intro: "У следующих скриптов точно такой же код, как и у вашего:"
+    derivatives_exact_copies_item_html: "%{script_link} от %{author_links} - версии: %{version_list}"
+    derivatives_exact_copes_none: "На сайте %{site_name} нет скриптов с точно таким же кодом, как и у вашего."
+    derivatives_similar_heading: "Похожие скрипты"
+    derivatives_similar_info: "Мы периодически проверяем последние версии скриптов, похожи ли они на ваш. Мы также проводим эту проверку после размещения вами обновления скрипта и по вашему запросу."
+    derivatives_similar_score_info: "Диапазон оценок от 0 (ничего общего) до 1 (точная копия)."
+    derivatives_similar_item: "%{score} %{diff_link:[Diff]}: %{script}"
+    derivatives_similar_last_check_html: "Последний раз мы искали похожие скрипты %{date}."
+    derivatives_similar_last_check_soon: "Мы проведём поиск похожих скриптов в ближайшее время."
+    derivatives_similar_last_check_again_soon_html: "Последний раз мы искали похожие скрипты %{date}. Мы повторим проверку в ближайшее время."
+    derivatives_similar_check_now: "Проверить сейчас"
     listing_title_all_sites: "Пользовательские скрипты для всех сайтов"
     listing_description_all_sites: "Пользовательские скрипты, которые добавляют функциональность и устраняют ошибки на всех сайтах"
     listing_title_for_site: "Пользовательские скрипты для %{site}"
@@ -573,6 +585,9 @@ ru:
       moderator:
         short: Мод
         long: Модератор
+      author:
+        short: Автор
+        long: Автор этого скрипта
   help:
     sections:
       usage: Использование

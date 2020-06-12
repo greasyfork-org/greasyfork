@@ -62,6 +62,7 @@ de:
     delete_update_behaviour_1: "Sie behalten das Skript wie es ist."
     delete_update_behaviour_2: "Ihre Version wird mit einem leeren Skript aktualisiert. Dies ist anzuraten, wenn das Skript auf den Seiten, auf denen es ausgeführt wird, negative Auswirkungen hat."
     delete_permanently_heading: "Endgültige Löschung"
+    delete_permanently_confirm: "Sind Sie sicher, dass Sie Ihr Skript endgültig löschen wollen?"
     delete_permanently_submit: "Endgültige Löschung beantragen"
     delete_permanently_immediate_submit: "Endgültig löschen"
     delete_permanently_notice_immediate: "Skript endgültig gelöscht."
@@ -92,6 +93,7 @@ de:
     feedback_title: "%{script_name} - Rückmeldung"
     feedback_has_reports: "Es wurde gemeldet, dass dieses Skript die Regeln von %{site_name} verletzt."
     feedback_no_discussions_html: "Es sind bisher keine Diskussionen veröffentlicht. %{start_first_discussion_link}"
+    feedback_no_discussions_on_page_form: "Es wurden noch keine Diskussionen veröffentlicht."
     feedback_start_first_discussion_link: "Die erste Diskussion über dieses Skript starten."
     feedback_discussion_or_report: "%{new_discussion_link:Starten Sie eine neue Diskussion über dieses Skript} oder %{report_link:melden Sie es zum Entfernen}."
     feedback_discussions_heading: "Diskussionen im Greasy Forum"
@@ -112,6 +114,11 @@ de:
     derivatives_title: "%{script_name} - Derivate"
     derivatives_intro: "Diese Skripte könnten auf Ihren Skripten basieren (oder Ihre Skripte auf diesen). Falls Sie eine nicht genehmigte Nutzung ihres Quelltextes feststellen, können Sie es vom Feedback-Tab des Skripts melden."
     derivatives_script_html: "%{script} von %{user}, Lizenz: %{license} %{diff_link:[Diff]}"
+    derivatives_exact_copies_heading: "Exakte Kopien"
+    derivatives_exact_copies_list_intro: "Die folgenden Skripte haben exakt den gleichen Quelltext wie Ihre:"
+    derivatives_similar_heading: "Ähnliche Skripte"
+    derivatives_similar_info: "Wir überprüfen regelmäßig die neueste Version aller anderen Skripte, um diejenigen zu finden, die den Ihren am ähnlichsten sind. Wir überprüfen auch immer dann, wenn Sie eine Aktualisierung Ihres Skripts veröffentlichen und auf Ihre Anfrage hin."
+    derivatives_similar_last_check_soon: "Wir werden in Kürze nach ähnlichen Skripten wie Ihrem suchen."
     listing_title_all_sites: "Benutzerskripte für alle Seiten"
     listing_description_all_sites: "Benutzerskripte, welche auf allen Seiten Funktionen hinzufügen und Fehler beheben"
     listing_title_for_site: "Benutzerskripte für %{site}"
@@ -518,6 +525,13 @@ de:
         request_expired: "Konnte Benutzer nicht löschen - Anfrage abgelaufen."
         cancelled: "Löschen abgebrochen."
         completed: "Ihr Konto wurde gelöscht."
+    badges:
+      banned:
+        short: Gesperrt
+        long: Gesperrt
+      author:
+        short: Verfasser
+        long: Verfasser dieses Skripts
   help:
     sections:
       usage: Nutzung
@@ -710,6 +724,39 @@ de:
     item_script_html: "Skript %{script_link}"
     item_deleted_script: "Gelöschtes Skript %{id}"
     item_user_html: "Nutzer: %{user_link}"
+  reports:
+    report_filed: "Ihr Bericht wird von einem Moderator geprüft."
+    new_report_title:
+      comment: "Einen Kommentar melden von %{user}"
+    reason:
+      abuse: "Beleidigender oder hasserfüllter Inhalt"
+      illegal: "Malware oder illegale Inhalte"
+    explanation_placeholder: "Geben Sie zusätzliche Einzelheiten an (optional)"
+    report_user: "Benutzer melden"
+    report_comment: "Kommentar melden"
+  discussions:
+    new_discussion_heading: "Eine Rezension, einen Kommentar oder eine Frage posten"
+    new_discussion_submit: "Kommentar schreiben"
+    new_comment_heading: "Antwort schreiben"
+    edit_comment_link: "bearbeiten"
+    edit_comment_header: "bearbeite Kommentar"
+    delete_comment: "löschen"
+    delete_discussion: "löschen"
+    update_comment_submit: "Kommentar ändern"
+    cancel_update_comment: "Abbrechen"
+    question_heading_html: "Frage/Kommentar"
+    ratings:
+      question: "Keine Bewertung - nur eine Frage/Kommentar"
+      bad: "Fehler - Skript funktioniert nicht"
+    sign_in_to_post_discussion: "Melden Sie sich an, um eine Rezension, einen Kommentar oder eine Frage zu veröffentlichen."
+    user_filter:
+      label: "Diskussionen mit mir"
+      discussion_by_me: "Von mir begonnen"
+      subscribed: "Abonniert"
+    user_activity:
+      title: "Neueste Kommentare"
+      no_recent_activity: "Dieser Benutzer hat in letzter Zeit keine Kommentare veröffentlicht."
+      see_all_activity: "Alle Benutzeraktivitäten anzeigen."
   common:
     error_preamble: "Es gab einige Probleme mit dem was Sie eingegeben haben …"
     allowed_elements_link: "(Erlaubte Elemente anzeigen.)"
@@ -753,6 +800,8 @@ de:
         name: "Name"
         description: "Beschreibung"
         default_sort: "Standardsortierung"
+      discussion:
+        rating: "Bewertung"
   errors:
     messages:
       script_missing_name: "wird benötigt - bitte einen Namen mit @name angeben"

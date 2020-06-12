@@ -127,6 +127,18 @@ fr:
     derivatives_title: "%{script_name} - Scripts similaires"
     derivatives_intro: "Ces scripts peuvent être basés sur les vôtres (ou même les vôtres peuvent être basés sur d'autres). Si vous trouvez une utilisation non autorisée de votre code, signalez-le à partir de l'onglet du script que vous voulez signaler."
     derivatives_script_html: "%{script}de%{user},Licence:%{license}%{diff_link:[Diff]}"
+    derivatives_exact_copies_heading: "Copies exactes"
+    derivatives_exact_copies_list_intro: "Les scripts suivants ont exactement le même code que le vôtre:"
+    derivatives_exact_copies_item_html: "%{script_link} par %{author_links} - versions: %{version_list}"
+    derivatives_exact_copes_none: "Il n'y a pas d'autres scripts sur %{site_name} qui ont exactement le même code que ce script."
+    derivatives_similar_heading: "Scripts similaires"
+    derivatives_similar_info: "Nous vérifions périodiquement la dernière version de tous les autres scripts pour trouver ceux qui ressemblent le plus au vôtre. Nous vérifions également chaque fois que vous postez une mise à jour de votre script et à votre demande."
+    derivatives_similar_score_info: "Les scores vont de 0,000 (complètement différent) à 1.000 (identique)."
+    derivatives_similar_item: "%{score} %{diff_link:[Diff]}: %{script}"
+    derivatives_similar_last_check_html: "Nous avons vérifié pour la dernière fois des scripts similaires aux vôtres le %{date}."
+    derivatives_similar_last_check_soon: "Nous vérifierons sous peu les scripts similaires aux vôtres."
+    derivatives_similar_last_check_again_soon_html: "Nous avons vérifié pour la dernière fois des scripts similaires aux vôtres le %{date}. Nous revérifions sous peu."
+    derivatives_similar_check_now: "Revérifiez maintenant"
     listing_title_all_sites: "Scripts utilisateurs pour tous les sites"
     listing_description_all_sites: "Scripts utilisateurs qui ajoutent des fonctionnalités et corrigent des bugs sur tous les sites"
     listing_title_for_site: "Scripts utilisateurs pour %{site}"
@@ -561,6 +573,9 @@ fr:
       moderator:
         short: Mod
         long: Modérateur
+      author:
+        short: Auteur
+        long: Auteur de ce script
   help:
     sections:
       usage: Utilisation

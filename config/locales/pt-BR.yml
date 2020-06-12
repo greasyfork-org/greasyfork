@@ -126,6 +126,18 @@ pt-BR:
     derivatives_title: "%{script_name} - Derivados"
     derivatives_intro: "Esses scripts podem ser baseados no seu (ou o seu pode ser baseados neles). Caso você detecte um uso não autorizado de seu código, denuncie através da aba feedback do script."
     derivatives_script_html: "%{script} feito por %{user}, sob a licença: %{license} %{diff_link:[Diff]}"
+    derivatives_exact_copies_heading: "Cópias exatas"
+    derivatives_exact_copies_list_intro: "Os seguintes scripts possuem o mesmo exato código que o seu:"
+    derivatives_exact_copies_item_html: "%{script_link} po %{author_links} - versões: %{version_list}"
+    derivatives_exact_copes_none: "Não existem outros scripts no %{site_name} quem tem o exato mesmo código que este script."
+    derivatives_similar_heading: "Scripts similares"
+    derivatives_similar_info: "Periodicamente nós checamos a última versão de todos os outros scripts para encontrar aqueles que são similares aos seus. Nós também verificamos sempre que você publica uma atualização de seus scripts e também caso você nos solicite."
+    derivatives_similar_score_info: "Pontuação varia de 0.000 (completamente diferente) até 1.000 (idêntico)."
+    derivatives_similar_item: "%{score} %{diff_link:[Diferença]}: %{script}"
+    derivatives_similar_last_check_html: "A última vez que verificamos a existência de scripts similares aos seus foi em %{date}."
+    derivatives_similar_last_check_soon: "Iremos verificar se existem scripts similares aos seus em breve."
+    derivatives_similar_last_check_again_soon_html: "A última vez que verificamos a existência de scripts similares aos seus foi em %{date}. Verificaremos novamente em breve."
+    derivatives_similar_check_now: "Verificar novamente agora"
     listing_title_all_sites: "Scripts para todos os sites"
     listing_description_all_sites: "Scripts que adicionam recuros e removem bugs em todos sites"
     listing_title_for_site: "Scripts de %{site}"
@@ -557,6 +569,9 @@ pt-BR:
       moderator:
         short: Mod
         long: Moderador
+      author:
+        short: Autor
+        long: Autor deste scrip
   help:
     sections:
       usage: Uso

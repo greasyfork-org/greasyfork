@@ -128,6 +128,18 @@ pl:
     derivatives_title: "%{script_name} — pochodne"
     derivatives_intro: "Te skrypty mogą być bazowane na twoim skrypcie (lub twój może być bazowany na ich). Jeśli znajdziesz nieautoryzowane użycie twojego kodu, zgłoś go poprzez kartę opinii tego skryptu."
     derivatives_script_html: "%{script}, autor: %{user}, licencja: %{license} %{diff_link:[Diff]}"
+    derivatives_exact_copies_heading: "Dokładne kopie"
+    derivatives_exact_copies_list_intro: "Poniższe skrypty mają dokładnie taki sam kod jak twój:"
+    derivatives_exact_copies_item_html: "%{script_link} przez %{author_links} - wersje: %{version_list}"
+    derivatives_exact_copes_none: "Na %{site_name} nie znajdują się żadne skrypty, które mają dokładnie ten sam kod co ten skrypt."
+    derivatives_similar_heading: "Podobne skrypty"
+    derivatives_similar_info: "Okresowo sprawdzamy najnowsze wersje wszystkich innych skryptów, aby znaleźć najbardziej podobne do twojego. Sprawdzamy także przy każdej nowej aktualizacji oraz na twoją prośbę."
+    derivatives_similar_score_info: "Wyniki wahają się od 0.000 (zupełnie inne) do 1.000 (identyczne)."
+    derivatives_similar_item: "%{score} %{diff_link:[Diff]}: %{script}"
+    derivatives_similar_last_check_html: "Ostatnio sprawdziliśmy skrypty podobne do twojego %{date}."
+    derivatives_similar_last_check_soon: "Wkrótce sprawdzimy skrypty podobne do twojego."
+    derivatives_similar_last_check_again_soon_html: "Ostatnio sprawdziliśmy skrypty podobne do twojego %{date}. Za jakiś czas sprawdzimy ponownie."
+    derivatives_similar_check_now: "Sprawdź ponownie teraz"
     listing_title_all_sites: "Skrypty użytkownika dla wszystkich stron"
     listing_description_all_sites: "Skrypty użytkownika, które dodają funkcje i usuwają błędy dla wszystkich stron"
     listing_title_for_site: "Skrypty użytkownika dla strony %{site}"
@@ -188,9 +200,9 @@ pl:
     additional_info_note_html: "Na temat skryptu. %{allowed_elements_link}"
     post_new_script: "Opublikuj skrypt"
     post_updated_script: "Udostępnij nową wersję"
-    type_1_html: "Publiczny skrypt użytkownika — wszyscy mogą go zobaczyć i używać"
+    type_1_html: "Publiczny skrypt użytkownika - wszyscy mogą go zobaczyć i używać."
     type_2_html: "Niepubliczny skrypt użytkownika - do użytku prywatnego (lub półprywatnego). Dostępny przez bezpośredni dostęp. Nie jest nigdzie linkowany w %{site_name}."
-    type_3_html: "Biblioteka - skrypt nie jest przeznaczony do instalowania bezpośrednio tylko do używania przez inne skrypty poprzez <code>@require</code>."
+    type_3_html: "Biblioteka - skrypt nie jest przeznaczony do instalowania bezpośrednio, tylko do używania przez inne skrypty poprzez <code>@require</code>."
     override_warning_checkbox_label: "Zapisać mimo to?"
     warning_version_not_incremented_html: "Zaktualizowałeś kod, ale nie zwiększyłeś liczby w linii <code>@version</code>. Ci, którzy zainstalowali wcześniej Twój skrypt mogą nie otrzymać zaktualizowanego kodu.."
     warning_version_missing_html: "Nie określono <code> @version </ code>. A <code> @version </ code> klucz meta pozwala na sprawdzanie aktualizacji skryptu w menedżerów skryptów użytkownika."
@@ -574,6 +586,9 @@ pl:
       moderator:
         short: Mod
         long: Moderator
+      author:
+        short: Autor
+        long: Autor tego skryptu
   help:
     sections:
       usage: Używanie

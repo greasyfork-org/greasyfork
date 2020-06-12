@@ -122,6 +122,18 @@ zh-CN:
     derivatives_title: "%{script_name} - 类似脚本"
     derivatives_intro: "这些脚本与您的脚本相似。如果有脚本违反授权使用了您的代码，可在那个脚本的反馈面板中举报。"
     derivatives_script_html: "%{script}，作者 %{user}，许可协议: %{license} %{diff_link:[Diff]}"
+    derivatives_exact_copies_heading: "完整拷贝的副本"
+    derivatives_exact_copies_list_intro: "以下这些脚本有与你的脚本有着完全一致的代码："
+    derivatives_exact_copies_item_html: "%{author_links}发布的%{script_link}，版本：%{version_list}"
+    derivatives_exact_copes_none: "没有其他对于网站%{site_name}的脚本有和该脚本相似的代码。"
+    derivatives_similar_heading: "相似脚本"
+    derivatives_similar_info: "我们会周期性的检查所有其他脚本的最新版本，从而找出和您的脚本最相似的内容。我们也会在您对您的脚本发布更新的时候根据您的请求来检查。"
+    derivatives_similar_score_info: "分数从 0.000（完全不同）到 1.000（完全相同）。"
+    derivatives_similar_item: "%{score} %{diff_link:[对比]}: %{script}"
+    derivatives_similar_last_check_html: "上一次对您的脚本查重的时间为 %{date}。"
+    derivatives_similar_last_check_soon: "我们将会稍后查询与您的脚本相似的脚本。"
+    derivatives_similar_last_check_again_soon_html: "我们在%{date}查询了与您的脚本相似的脚本。我们稍后会再次检查。"
+    derivatives_similar_check_now: "再检查一次"
     listing_title_all_sites: "适用于所有网站的用户脚本"
     listing_description_all_sites: "针对所有网站添加功能或解决问题的用户脚本"
     listing_title_for_site: "适用于 %{site} 的用户脚本"
@@ -537,6 +549,9 @@ zh-CN:
       moderator:
         short: 管理员
         long: 管理员
+      author:
+        short: 作者
+        long: 此脚本的作者
   help:
     sections:
       usage: 使用
@@ -756,10 +771,10 @@ zh-CN:
     question_heading_html: "提问/评论"
     review_heading_html: "评价：%{rating}"
     ratings:
-      question: "不评级 - 只是提问或者进行评论"
-      bad: "差评 - 脚本失效"
-      ok: "一般 - 脚本可用，但是还有待改进"
-      good: "好评 - 脚本可行有效"
+      question: "无评分 - 只是一个询问或评论"
+      bad: "差评 - 脚本失效或无法使用"
+      ok: "一般 - 脚本有用，但还有一些问题"
+      good: "好评 - 一切运行良好"
     ratings_short:
       question: "提问/评论"
       bad: "差评"
@@ -773,6 +788,24 @@ zh-CN:
       discussion_by_me: "我发起的"
       comment_by_me: "我评论的"
       on_my_scripts: "我的脚本"
+      subscribed: "已关注"
+    other_user_filter:
+      all: "所有讨论"
+      comments_by: "%{user} 的评论"
+    user_activity:
+      title: "近期评论"
+      no_recent_activity: "该用户最近没有撰写任何评论"
+      see_all_activity: "查看所有用户活动"
+      script_review:
+        posted_html: "发表关于<i>%{script}</i>的评价"
+        replied_html: "回复关于<i>%{script}</i>的评价"
+      script_question:
+        posted_html: "发表关于<i>%{script}</i>的提问或评论"
+        replied_html: "回复关于<i>%{script}</i>的提问或评论"
+    review_title: "%{script_name}的评论"
+    question_title: "关于%{script_name}的问题"
+    subscribe: 关注
+    unsubscribe: 取消关注
   common:
     error_preamble: "很抱歉，您提交的内容有点问题…"
     allowed_elements_link: "(查看允许使用的代码)"
@@ -878,3 +911,23 @@ zh-CN:
             如果您在 %{delete_date} 之前没有发布新的版本或作出回应，你的脚本将会在 %{site_name} 变成隐藏状态。（在此日期之后，你可以手动将其状态更改为公开可见）
     script_comment:
       subject: "您对于站点%{site_name}的脚本%{script_name}收到了一条评论。"
+      text: |
+          您对于站点%{site_name}的脚本'%{script_name}' (%{script_url}) 收到了一条来自用户'%{commenter_name}'的评论:
+
+          ---
+          %{comment_text}
+          ---
+
+          您可以在%{comment_url} 查看并回复该评论，或者在%{notification_preferences_url}调整通知设置。
+    subscribed_discussion:
+      subject: "站点%{site_name}的讨论%{discussion_title}收到了一条评论。"
+      text: |
+          站点%{site_name}上的讨论'%{discussion_title}'收到了一条来自'%{commenter_name}'的评论：
+
+          ---
+          %{comment_text}
+          ---
+
+          您可以在%{comment_url}查看并回复该评论。
+
+          您收到这条通知是因为您关注了这个讨论。访问%{discussion_url}可以取消关注。

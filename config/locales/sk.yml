@@ -127,6 +127,18 @@ sk:
     derivatives_title: "%{script_name} - Odvodené skripty"
     derivatives_intro: "Tieto skripty môžu byť založené na vašich (alebo vaše môžu byť založené na ich). Ak zistíte neoprávnené použitie vášho kódu, nahláste ho na cez spätnú väzbu daného skriptu."
     derivatives_script_html: "%{script} od užívateľa %{user}, licencia: %{license} %{diff_link:[Diff]}"
+    derivatives_exact_copies_heading: "Presné kópie"
+    derivatives_exact_copies_list_intro: "Nasledujúce skripty majú rovnaký kód ako vaše:"
+    derivatives_exact_copies_item_html: "%{script_link} od %{author_links} - verzie: %{version_list}"
+    derivatives_exact_copes_none: "Na %{site_name} nie sú žiadne ďalšie skripty, ktoré majú rovnaký kód ako tento skript."
+    derivatives_similar_heading: "Podobné skripty"
+    derivatives_similar_info: "Pravidelne kontrolujeme posledné verzie všetkých ďalších skriptov pre nájdenie podobných skriptov tým vašim. Tiež kontrolujeme odoslané aktualizácie vašich skriptov na vašu žiadosť."
+    derivatives_similar_score_info: "Rozsah skóre od 0.000 (úplne odlišné) do 1.000 (identické)."
+    derivatives_similar_item: "%{score} %{diff_link:[Rozdiel]}: %{script}"
+    derivatives_similar_last_check_html: "Posledná kontrola podobnosti vašim skriptom prebehla %{date}."
+    derivatives_similar_last_check_soon: "Čoskoro skontrolujeme skripty podobné vašim."
+    derivatives_similar_last_check_again_soon_html: "Posledná kontrola podobnosti vašim skriptom prebehla %{date}. Čoskoro skontrolujeme skripty podobné vašim."
+    derivatives_similar_check_now: "Skontrolovať teraz"
     listing_title_all_sites: "Užívateľské skripty pre všetky stránky"
     listing_description_all_sites: "Užívateľské skripty, ktoré pridávajú funkcie a odstraňujú chyby na všetkých stránkach"
     listing_title_for_site: "Užívateľské skripty pre %{site}"
@@ -574,6 +586,9 @@ sk:
       moderator:
         short: Zablokovaný
         long: Moderátor
+      author:
+        short: Autor
+        long: Autor tohto skriptu
   help:
     sections:
       usage: Použitie
