@@ -126,6 +126,18 @@ bg:
     derivatives_title: "%{script_name} - Производни"
     derivatives_intro: "Тези скриптове може да са базирани на вашия (или вашите може да са базирани на тях). Ако намерите не оторизирана употреба на ваш код, докладвайте го чрез обратната връзка за скрипта."
     derivatives_script_html: "%{script} от %{user}, лиценз: %{license} %{diff_link:[Diff]}"
+    derivatives_exact_copies_heading: "Точни копия"
+    derivatives_exact_copies_list_intro: "Тези скриптове имат точно същия код както вашия:"
+    derivatives_exact_copies_item_html: "%{script_link} от %{author_links} - версии: %{version_list}"
+    derivatives_exact_copes_none: "Няма други скриптове на %{site_name}, които имат същия код както вашия скрипт."
+    derivatives_similar_heading: "Подобни скриптове"
+    derivatives_similar_info: "Ние периодично проверяваме последните версии на другите скриптове, за да намерим тези, които са подобни на вашия Проверката се извършва когато публикувате обновена версия на скрипта или при заявка."
+    derivatives_similar_score_info: "Обхват на точките от 0.000 (напълно различен) до 1.000 (идентичен)."
+    derivatives_similar_item: "%{score} %{diff_link:[Diff]}: %{script}"
+    derivatives_similar_last_check_html: "Последно проверихме за подобни на вашия скрипт на %{date}."
+    derivatives_similar_last_check_soon: "След малко започва проверка за сходни скриптове на вашия."
+    derivatives_similar_last_check_again_soon_html: "Последно проверихме за подобни на вашия скрипт на %{date}. След малко започва нова проверка."
+    derivatives_similar_check_now: "Провери отново сега"
     listing_title_all_sites: "Скриптове, работещи на всички сайтове"
     listing_description_all_sites: "Скриптове, добавящи екстри или отстраняващи бъгове за всички сайтове"
     listing_title_for_site: "Скриптове за %{site}"
@@ -556,6 +568,9 @@ bg:
       moderator:
         short: Мод
         long: Модератор
+      author:
+        short: Автор
+        long: Автор на скрипта
   help:
     sections:
       usage: Употреба
