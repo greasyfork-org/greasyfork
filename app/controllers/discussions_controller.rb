@@ -2,6 +2,7 @@ require 'discussion_converter'
 
 class DiscussionsController < ApplicationController
   include DiscussionHelper
+  include ScriptAndVersions
 
   before_action :authenticate_user!, only: [:create, :subscribe, :unsubscribe]
   before_action :moderators_only, only: :destroy
@@ -48,6 +49,8 @@ class DiscussionsController < ApplicationController
     @discussion = discussion_scope.find(params[:id])
 
     if @discussion.script
+      return if handle_publicly_deleted(@discussion.script)
+
       case script_subset
       when :sleazyfork
         unless @discussion.script.sensitive?
