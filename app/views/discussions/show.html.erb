@@ -87,7 +87,7 @@
         <% end %>
       </div>
     </div>
-    <% if by_current_user %>
+    <% if by_current_user && !@conversion_preview %>
       <div class="edit-comment-form">
         <%= form_with(model: comment, url: scoped_comment_path(comment), method: :PATCH) do |f| %>
           <h3><%= t('discussions.edit_comment_header') %></h3>
