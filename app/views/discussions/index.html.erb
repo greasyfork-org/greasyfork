@@ -25,30 +25,30 @@
             <% if params[:me].nil? %>
               <li class="list-option list-current"><%= t('discussions.user_filter.all') %></li>
             <% else %>
-              <li class="list-option"><%= link_to t('discussions.user_filter.all'), current_path_with_params(me: nil) %></li>
+              <li class="list-option"><%= link_to t('discussions.user_filter.all'), current_path_with_params(me: nil, page: nil) %></li>
             <% end %>
             <% if params[:me] == 'started' %>
               <li class="list-option list-current"><%= t('discussions.user_filter.discussion_by_me') %></li>
             <% else %>
-              <li class="list-option"><%= link_to t('discussions.user_filter.discussion_by_me'), current_path_with_params(me: 'started') %></li>
+              <li class="list-option"><%= link_to t('discussions.user_filter.discussion_by_me'), current_path_with_params(me: 'started', page: nil) %></li>
             <% end %>
             <% if params[:me] == 'comment' %>
               <li class="list-option list-current"><%= t('discussions.user_filter.comment_by_me') %></li>
             <% else %>
-              <li class="list-option"><%= link_to t('discussions.user_filter.comment_by_me'), current_path_with_params(me: 'comment') %></li>
+              <li class="list-option"><%= link_to t('discussions.user_filter.comment_by_me'), current_path_with_params(me: 'comment', page: nil) %></li>
             <% end %>
             <% if current_user.scripts.any? %>
               <% if params[:me] == 'script' %>
                 <li class="list-option list-current"><%= t('discussions.user_filter.on_my_scripts') %></li>
               <% else %>
-                <li class="list-option"><%= link_to t('discussions.user_filter.on_my_scripts'), current_path_with_params(me: 'script') %></li>
+                <li class="list-option"><%= link_to t('discussions.user_filter.on_my_scripts'), current_path_with_params(me: 'script', page: nil) %></li>
               <% end %>
             <% end %>
             <% if current_user.discussion_subscriptions.any? %>
               <% if params[:me] == 'subscribed' %>
                 <li class="list-option list-current"><%= t('discussions.user_filter.subscribed') %></li>
               <% else %>
-                <li class="list-option"><%= link_to t('discussions.user_filter.subscribed'), current_path_with_params(me: 'subscribed') %></li>
+                <li class="list-option"><%= link_to t('discussions.user_filter.subscribed'), current_path_with_params(me: 'subscribed', page: nil) %></li>
               <% end %>
             <% end %>
           </ul>
@@ -57,7 +57,7 @@
       <% if @by_user %>
         <div class="list-option-group">
           <ul>
-            <li class="list-option"><%= link_to t('discussions.other_user_filter.all'), current_path_with_params(user: nil) %></li>
+            <li class="list-option"><%= link_to t('discussions.other_user_filter.all'), current_path_with_params(user: nil, page: nil) %></li>
             <li class="list-option list-current"><%= t('discussions.other_user_filter.comments_by', user: @by_user.name) %></li>
           </ul>
         </div>
