@@ -1,4 +1,5 @@
 require 'localizing_model'
+require 'css_to_js_converter'
 
 class Script < ActiveRecord::Base
   include LocalizingModel

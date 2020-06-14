@@ -8,7 +8,7 @@ class Discussion < ApplicationRecord
   belongs_to :poster, class_name: 'User', optional: true
   belongs_to :script
   belongs_to :stat_last_replier, class_name: 'User', optional: true
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :discussion_subscriptions
 
   scope :with_actual_rating, -> { where(rating: [RATING_BAD, RATING_OK, RATING_GOOD]) }

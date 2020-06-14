@@ -6,6 +6,7 @@ class Comment < ApplicationRecord
   belongs_to :discussion
   # Optional because the user may no longer exist.
   belongs_to :poster, class_name: 'User', optional: true
+  has_many :reports, inverse_of: :item, dependent: :destroy
   has_many_attached :attachments
 
   validates :text, presence: true

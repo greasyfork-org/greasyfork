@@ -225,4 +225,22 @@ class CssParserAppliesToTest < ActiveSupport::TestCase
     assert_equal fourth_block_css, css[blocks[3].start_pos..blocks[3].end_pos]
     assert_equal 1, blocks[1].matches.count
   end
+
+  test 'url-prefix with var' do
+    css = <<~CSS
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      @updateURL   http://example.net
+      @var         text ip 'router ip' 192.168.1.1
+      ==/UserStyle== */
+      
+      @-moz-document url-prefix(http:///*[[ip]]*//) {
+        a { color: red; }
+      }
+    CSS
+    assert_equal [{ text: 'http:///*[[ip]]*//*', domain: false, tld_extra: false }], get_applies_tos(css)
+  end
 end

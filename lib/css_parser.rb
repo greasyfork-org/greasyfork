@@ -169,7 +169,7 @@ class CssParser
         begin
           uri = URI(css_document_match.value)
         rescue ArgumentError, URI::InvalidURIError
-          Rails.logger.warn "Unrecognized pattern '" + p + "'"
+          Rails.logger.warn "Invalid URI '#{css_document_match.value}'"
           return { text: css_document_match.value + (css_document_match.rule_type == 'url-prefix' ? '*' : ''), domain: false, tld_extra: false }
         else
           if uri.host.nil?
