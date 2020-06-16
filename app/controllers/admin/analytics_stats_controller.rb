@@ -12,7 +12,7 @@ module Admin
       CSV.new(params[:analytics_csv].read).each do |row|
         next if row.length < 2
 
-        m = %r{.*/scripts/([0-9]+)\-.*}.match(row[0])
+        m = %r{.*/scripts/([0-9]+)-.*}.match(row[0])
         next if m.nil?
 
         urls[m[1]] = (urls[m[1]] || 0) + row[1].gsub(',', '').to_i

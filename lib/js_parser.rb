@@ -28,7 +28,7 @@ class JsParser
 
       # can these be multiline?
       meta_block.split("\n").each do |meta_line|
-        meta_match = %r{//\s+@([a-zA-Z\:\-]+)\s+(.*)}.match(meta_line)
+        meta_match = %r{//\s+@([a-zA-Z:\-]+)\s+(.*)}.match(meta_line)
         next if meta_match.nil?
 
         key = meta_match[1].strip
@@ -141,10 +141,10 @@ class JsParser
             pre_wildcard.gsub!(%r{://\.\*}, '://')
 
             # remove optional groups
-            pre_wildcard.gsub!(/\([^\)]+\)[\?\*]/, '')
+            pre_wildcard.gsub!(/\([^)]+\)[?*]/, '')
 
             # if there's weird characters left, it's no good
-            pre_wildcard = nil if /[\[\]\*\{\}\^\+\?\(\)]/.match(pre_wildcard).present?
+            pre_wildcard = nil if /[\[\]*{}\^+?()]/.match(pre_wildcard).present?
           end
 
         else

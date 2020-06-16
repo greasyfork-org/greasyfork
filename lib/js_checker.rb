@@ -2,6 +2,7 @@ require 'mini_racer'
 
 class JsChecker
   attr_accessor :result
+
   def initialize(js, allow_json: false)
     @js = js
     @allow_json = allow_json

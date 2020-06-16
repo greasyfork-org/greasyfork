@@ -6,7 +6,7 @@ class LocalizedScriptAttribute < ApplicationRecord
 
   validates_presence_of :attribute_key, :attribute_value, :locale, :value_markup
 
-  validates_format_of :sync_identifier, with: URI.regexp(%w[http https]), message: :script_sync_identifier_bad_protocol, if: proc { |r| r.sync_source_id == 1 }
+  validates_format_of :sync_identifier, with: URI::DEFAULT_PARSER.make_regexp(%w[http https]), message: :script_sync_identifier_bad_protocol, if: proc { |r| r.sync_source_id == 1 }
 
   def localized_meta_key
     return LocalizedScriptAttribute.localized_meta_key(attribute_key, locale, attribute_default)

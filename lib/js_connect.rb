@@ -120,7 +120,7 @@ module JsConnect
 
     string = Base64.strict_encode64(JSON.generate(user))
     timestamp = JsConnect.timestamp
-    digest = OpenSSL::Digest::Digest.new('sha1')
+    digest = OpenSSL::Digest.new('Digest', 'sha1')
     hash = OpenSSL::HMAC.hexdigest(digest, secret, "#{string} #{timestamp}")
 
     result = "#{string} #{hash} #{timestamp} hmacsha1"

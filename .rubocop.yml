@@ -3,6 +3,9 @@ AllCops:
     - 'bin/**/*'
     - 'db/**/*'
 
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+
 Lint/EmptyWhen:
   Enabled: false
 
@@ -10,6 +13,15 @@ Layout/LineLength:
   Enabled: false
 
 Lint/RaiseException:
+  Enabled: true
+
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+
+Lint/MixedRegexpCaptureTypes:
   Enabled: true
 
 Lint/StructNewOverride:
@@ -51,14 +63,26 @@ Naming/MethodParameterName:
 Style/Documentation:
   Enabled: false
 
+Style/ExponentialNotation:
+  Enabled: true
+
 Style/FrozenStringLiteralComment:
   Enabled: false
 
 Style/NumericPredicate:
   Enabled: false
 
+Style/RedundantRegexpCharacterClass:
+  Enabled: true
+
+Style/RedundantRegexpEscape:
+  Enabled: true
+
 Style/RedundantReturn:
   Enabled: false
+
+Style/SlicingWithRange:
+  Enabled: true
 
 Style/SymbolArray:
   EnforcedStyle: brackets

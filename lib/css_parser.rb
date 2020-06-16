@@ -28,7 +28,7 @@ class CssParser
 
       # can these be multiline?
       meta_block.split("\n").each do |meta_line|
-        meta_match = /@([a-zA-Z\:\-]+)\s+(.*)/.match(meta_line)
+        meta_match = /@([a-zA-Z:\-]+)\s+(.*)/.match(meta_line)
         next if meta_match.nil?
 
         key = meta_match[1].strip
@@ -113,12 +113,12 @@ class CssParser
 
       next_block_start = 0
 
-      while s.skip_until(/@\-moz\-document/)
+      while s.skip_until(/@-moz-document/)
         matches << CssDocumentBlock.new([], next_block_start, s.charpos - '@-moz-document'.length - 1)
 
         block_matches = []
         s.skip(/\s*/)
-        while (rule_type = s.scan(/(domain|url|url\-prefix|regexp)\s*\(/))
+        while (rule_type = s.scan(/(domain|url|url-prefix|regexp)\s*\(/))
           rule_type.sub!(/\s*\(/, '')
           s.skip(/\s*/)
           quote = s.scan(/['"]/)
@@ -142,7 +142,7 @@ class CssParser
 
           until bracket_count == 0 || s.eos?
             # Count opening and closing brackets. Would get totally borked by comments or brackets in strings.
-            bracket = s.scan_until(/[\{\}]/)[-1]
+            bracket = s.scan_until(/[{}]/)[-1]
             if bracket == '{'
               bracket_count += 1
             else

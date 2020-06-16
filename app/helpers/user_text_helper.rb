@@ -114,7 +114,7 @@ module UserTextHelper
         return if node_has_ancestor?(node, 'a')
         return if node_has_ancestor?(node, 'pre')
 
-        url_reference = node.text.match(%r{(\s|^|\()(https?://[^\s\)\]]*)}i)
+        url_reference = node.text.match(%r{(\s|^|\()(https?://[^\s)\]]*)}i)
         return if url_reference.nil?
 
         replace_text_with_link(node, url_reference[2], url_reference[2], url_reference[2])

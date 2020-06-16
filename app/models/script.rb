@@ -133,7 +133,7 @@ class Script < ActiveRecord::Base
 
   validates_presence_of :code_updated_at, :script_type
 
-  validates_format_of :sync_identifier, with: URI.regexp(%w[http https]), message: :script_sync_identifier_bad_protocol, if: proc { |r| r.script_sync_source_id == 1 }
+  validates_format_of :sync_identifier, with: URI::DEFAULT_PARSER.make_regexp(%w[http https]), message: :script_sync_identifier_bad_protocol, if: proc { |r| r.script_sync_source_id == 1 }
 
   validates_length_of :sync_identifier, maximum: 500
 
@@ -250,16 +250,16 @@ class Script < ActiveRecord::Base
     self.version = script_version.version
     self.not_js_convertible_override = script_version.not_js_convertible_override
 
-    self.contribution_url = !meta.key?('contributionURL') ? nil : meta['contributionURL'].find { |url| URI.regexp(%w[http https bitcoin]) =~ url }
+    self.contribution_url = !meta.key?('contributionURL') ? nil : meta['contributionURL'].find { |url| URI::DEFAULT_PARSER.make_regexp(%w[http https bitcoin]) =~ url }
     self.contribution_amount = (!contribution_url.nil? && meta.key?('contributionAmount')) ? meta['contributionAmount'].first : nil
 
     self.support_url = if meta.key?('supportURL')
                          meta['supportURL'].find do |url|
                            next false if url.size > 500
                            # mailto is always OK
-                           next true if URI.regexp(%w[mailto]) =~ url
+                           next true if URI::DEFAULT_PARSER.make_regexp(%w[mailto]) =~ url
                            # http(s) is also OK
-                           next false unless URI.regexp(%w[http https]) =~ url
+                           next false unless URI::DEFAULT_PARSER.make_regexp(%w[http https]) =~ url
 
                            # avoid self-linking, there's UI on the same page for discussions
                            begin
@@ -369,7 +369,7 @@ class Script < ActiveRecord::Base
 
   # Full name minus URL-y characters
   def url_name
-    return (name || default_name).gsub(%r{[\?\&/\#\.]+}, '')
+    return (name || default_name).gsub(%r{[?&/\#.]+}, '')
   end
 
   def to_param

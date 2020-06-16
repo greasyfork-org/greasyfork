@@ -107,7 +107,7 @@ module ScriptImporter
     end
 
     def self.download(url)
-      raise ArgumentError, 'URL must be http or https' unless url =~ URI.regexp(%w[http https])
+      raise ArgumentError, 'URL must be http or https' unless url =~ URI::DEFAULT_PARSER.make_regexp(%w[http https])
 
       uri = URI.parse(url)
       Timeout.timeout(11) do

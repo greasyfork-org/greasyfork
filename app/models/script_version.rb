@@ -27,7 +27,7 @@ class ScriptVersion < ApplicationRecord
 
   # Code has to look code-y.
   validate do
-    errors.add(:code, :invalid) unless code =~ /[=\.:\[\(]/
+    errors.add(:code, :invalid) unless code =~ /[=.:\[(]/
   end
 
   validates_length_of :changelog, maximum: 500
@@ -511,7 +511,7 @@ class ScriptVersion < ApplicationRecord
     return a.map do |p|
       # each part consists of number, string, number, string, each part optional
       # string #2 we will assume is no numbers, string #4 will eat whatever's left
-      match_array = /((?:\-?[0-9]+)?)([^0-9\-]*)((?:\-?[0-9]+)?)(.*)/.match(p)
+      match_array = /((?:-?[0-9]+)?)([^0-9\-]*)((?:-?[0-9]+)?)(.*)/.match(p)
       [match_array[1].to_i, match_array[2], match_array[3].to_i, match_array[4]]
     end.flatten
   end
