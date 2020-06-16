@@ -41,7 +41,7 @@
   <% #if we're showing a lot of them, have a link on top too
      if @discussions.length > 10 %>
     <p>
-      <%= it('scripts.feedback_or_report', report_link: It.link(feedback_script_path(@script), rel: :nofollow), feedback_link: It.link("#{forum_path}post/discussion?script=#{@script.id}", rel: :nofollow)) %>
+      <%= it('scripts.feedback_or_report', report_link: It.link(feedback_script_path(@script), rel: :nofollow), feedback_link: It.link("#post-discussion", rel: :nofollow)) %>
     </p>
   <% end %>
   <% if @discussions.empty? %>
@@ -54,7 +54,7 @@
     </div>
     <%= will_paginate @discussions %>
   <% end %>
-  <h3><%= t('discussions.new_discussion_heading') %></h3>
+  <h3 id="post-discussion"><%= t('discussions.new_discussion_heading') %></h3>
   <p>
     <%= it('scripts.feedback_report_instead', site_name: site_name, rules_link: It.link(help_code_rules_path), report_link: It.link(report_script_path(@script), rel: :nofollow)) %>
   </p>
