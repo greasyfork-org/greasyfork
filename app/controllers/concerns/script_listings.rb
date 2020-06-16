@@ -120,7 +120,7 @@ module ScriptListings
                                :set
                              end
         @ad_method = choose_ad_method_for_scripts(@scripts)
-        @dual_ads = @ad_method == 'cf' && @scripts.count >= 20
+        @dual_ads = @ad_method == 'cf' && @scripts.count >= 10
       end
       format.atom
       format.json do
