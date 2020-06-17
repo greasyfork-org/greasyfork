@@ -13,7 +13,7 @@ class ScriptDiscussionConversionJob < ApplicationJob
         new_discussion.save!
         forum_discussion.update_columns(Closed: 1)
       end
-      script.update!(use_new_discussions: true)
+      script.update_attribute(:use_new_discussions, true)
     end
   end
 end
