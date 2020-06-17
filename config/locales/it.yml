@@ -105,6 +105,8 @@ it:
     feedback_title: "%{script_name} - Feedback"
     feedback_has_reports: "Questo script è segnalato come una violazione delle regole."
     feedback_no_discussions_html: "Non c'è ancora nessuna discussione. %{start_first_discussion_link}"
+    feedback_no_discussions_on_page_form: "Non ci sono ancora discussioni pubblicate."
+    feedback_report_instead: "Se pensi che questo script stia violando %{rules_link:%{site_name}'s rules}, per favore %{report_link:segnalalo per la rimozione}."
     feedback_start_first_discussion_link: "Discuti per primo questo script"
     feedback_discussion_or_report: "%{new_discussion_link:Inizia una nuova discussione su questo script} oppure %{report_link:segnalalo per la rimozione}."
     feedback_discussions_heading: "Discussioni su Greasy Forum"
@@ -125,6 +127,12 @@ it:
     derivatives_title: "%{script_name} - Derivati"
     derivatives_intro: "Questi script potrebbero essere basati sui tuoi (o i tuoi su di loro). Se trovi un utilizzo illecito del tuo codice segnalalo dal tab dei feedback di quello script."
     derivatives_script_html: "%{script}di %{user}, licenza: %{license} %{diff_link:[Diff]}"
+    derivatives_exact_copies_heading: "Copie esatte"
+    derivatives_exact_copies_list_intro: "I seguenti script hanno esattamente lo stesso codice del tuo:"
+    derivatives_exact_copies_item_html: "%{script_link} di %{author_links} - versioni: %{version_list}"
+    derivatives_exact_copes_none: "Non ci sono scripts su %{site_name} che hanno esattamente lo stesso codice di questo."
+    derivatives_similar_heading: "Scripts simili"
+    derivatives_similar_info: "Periodicamente controlliamo l'ultima versione di tutti gli altri scripts per trovare quelli molto simili ai tuoi. Controlliamo anche quando pubblichi un aggiornamento del tuo script e su tua richiesta."
     listing_title_all_sites: "Script utente per tutti i siti"
     listing_description_all_sites: "Script che aggiungono funzioni e rimuovono bug in tutti i siti"
     listing_title_for_site: "Script per %{site}"
@@ -562,44 +570,6 @@ it:
       adult_content_rule_html: "<li>Script che includono contenuti per adulti o sono per siti con contenuti per adulti devono essere contrassegnati come tali per dare agli altri utenti l'opzione di vederli oppure no.</li>"
     external_scripts:
       title: "Politiche di %{site_name} per gli script esterni"
-      content_html: >
-          <p>Gli script utente hanno la capacità tecnica di caricare ed eseguire altri
-          script. La chiave %{require_doc_link:<code>@require</code>} dei metadati
-          è il modo più semplice per fare ciò, ma gli script possono anche, ad esempio,
-          utilizzare una XmlHttpRequest per scaricare uno script e iniettarlo nel
-          DOM.</p> <p>Benché questa sia una funzionalità utile e molti autori di script
-          la utilizzino per scopi leciti, essa può anche essere utilizzata per scopi
-          malevoli. Uno dei principi fondamentali di %{site_name} è che l'utente debba
-          essere in grado di esaminare il codice di uno script. Gli script esterni
-          possono aggirare questo principio in molti modi: possono essere modificati
-          senza alcun preavviso e senza che siano mantenute le versioni precedenti,
-          possono offrire codice differente a persone differenti e possono essere
-          utilizzati per nascondere codice malevolo all'interno di librerie note.
-          Anche se qualcuno controllasse uno script esterno e ne determinasse la legittimità,
-          ciò non sarebbe una garanzia del fatto che tale script sia sempre stato
-          o sarà sempre legittimo.</p> <p>Per consentire agli autori di script di
-          continuare a utilizzare script esterni, %{site_name} ha implementato una
-          lista bianca di pattern URL che possono essere inclusi in uno script. Questa
-          lista bianca consiste di indirizzi:</p> <ul>
-
-          <li>che sono pubblici</li>
-
-          <li>il cui contenuto non venga modificato di frequente</li>
-
-          <li>potrebbero probabilmente essere utili a più di un autore di script</li>
-
-          </ul> <p>L'elenco attuale è:</p> %{allowed_require_list} <p>Se tenti di
-          inviare uno script che utilizza un <code>@require</code> non appartenente
-          a tali indirizzi, non sarai in grado di salvare il tuo script.</p> <p>Se
-          lo script che vuoi includere è una libreria JavaScript (ad esempio jQuery
-          o YUI), prova a cercarlo su uno dei siti elencati sopra. In particolare,
-          %{cdnjs_link:cdnjs} e %{jsdelivr_link:jsDelivr} offrono un'ampia scelta
-          di librerie.</p> <p>Se lo script che vuoi includere non è disponibile sui
-          siti di cui sopra, %{contact_link:faccelo sapere} in modo che possiamo cercarlo
-          (oppure ospitarlo noi!).</p> <p>Se lo script che vuoi includere è stato
-          scritto da te, puoi inviarlo separatamente su %{site_name} scegliendo il
-          tipo di script "Libreria". Sarai quindi in grado di includere questa libreria
-          caricata nel tuo script.</p>
     script_rewriting:
       title: "Come %{site_name} riscriverà gli script postati"
       content_html: >
