@@ -105,8 +105,8 @@ module UserTextHelper
 
         Sanitize.clean_node!(node, config_allows_rel)
 
-        # whitelist so the initial clean call doesn't strip the rel
-        return { node_whitelist: [node] }
+        # allow so the initial clean call doesn't strip the rel
+        return { node_allowlist: [node] }
       end
       linkify_urls = lambda do |env|
         node = env[:node]

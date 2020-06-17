@@ -947,7 +947,7 @@ en:
       content_html: >
         <p>User scripts have the technical ability to load and execute other scripts. The %{require_doc_link:<code>@require</code>} metadata key is the most straightforward way to accomplish this, but scripts can also, for example, use an XmlHttpRequest to download a script and then inject it into the DOM.</p>
         <p>While this is a useful feature and most script authors use this for legitimate purposes, it can also be used maliciously. One of the core principles of %{site_name} is that the user must be able to inspect the code in a script. External scripts can bypass this principle in a number of ways: they can change without warning or history, they can serve up different code to different people, and they can be used to hide malicious code in the middle of known libraries. Even if someone were to check an external script and determine it to be legitimate, that would be no guarantee that that script always has been or always will be legitimate.</p>
-        <p>To allow script authors to continue to use external scripts, %{site_name} has implemented a whitelist of URL patterns that can be included with a script. This whitelist consists of script locations that:</p>
+        <p>To allow script authors to continue to use external scripts, %{site_name} has implemented a list of alloewd URL patterns that can be included with a script. This list consists of script locations that:</p>
         <ul>
           <li>Are public</li>
           <li>Will not have their contents change frequently</li>
