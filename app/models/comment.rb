@@ -6,7 +6,7 @@ class Comment < ApplicationRecord
   belongs_to :discussion
   # Optional because the user may no longer exist.
   belongs_to :poster, class_name: 'User', optional: true
-  has_many :reports, inverse_of: :item, dependent: :destroy
+  has_many :reports, as: :item, dependent: :destroy
   has_many_attached :attachments
 
   validates :text, presence: true
@@ -33,15 +33,12 @@ class Comment < ApplicationRecord
   end
 
   def destroy
-    if first_comment?
-      discussion.destroy
-    else
-      super
-    end
+    discussion.destroy if first_comment?
+    super
   end
 
   after_commit do
-    discussion.update_stats!
+    discussion.update_stats! unless discussion.destroyed?
   end
 
   after_destroy do
