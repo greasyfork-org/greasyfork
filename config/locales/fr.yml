@@ -106,7 +106,7 @@ fr:
     feedback_has_reports: "Ce script a été rapporté comme violent la règles %{site_name}."
     feedback_no_discussions_html: "Aucun commentaire. %{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "Aucune discussion n'a encore été posté."
-    feedback_report_instead: "Si vous pensez que ce script enfreint %{rules_link:les règles de%{site_name}, veuillez %{report_link:signalez-le pour le retirer}."
+    feedback_report_instead: "Si vous pensez que ce script enfreint %{rules_link:les règles de%{site_name}}, veuillez %{report_link:signalez-le pour le retirer}."
     feedback_start_first_discussion_link: "Soyez le premier à commenter ce script."
     feedback_discussion_or_report: "%{new_discussion_link:Démarrer une nouvelle discussion concernant ce script} ou %{report_link:demander sa suppression}."
     feedback_discussions_heading: "Discussions sur le forum Greasy"
@@ -680,46 +680,6 @@ fr:
       adult_content_rule_html: "<li>Les scripts, qui incluent du contenu adulte ou qui sont pour des sites avec contenu adulte, doivent être marqués comme tels pour laisser aux autres utilisateurs le choix de les voir ou non.</li>"
     external_scripts:
       title: "Politique de %{site_name} concernant les scripts externes"
-      content_html: >
-          <p>Les scripts utilisateurs ont la capacité technique de charger et d'exécuter
-          d'autres scripts. La clé de métadonnées %{require_doc_link:<code>@require</code>}
-          est le moyen le plus simple dans ajouté, mais les scripts peuvent également,
-          par exemple, utiliser un XmlHttpRequest pour télécharger un script puis
-          l'injecter dans le DOM.</p> <p>Bien que cette fonctionnalité soit utile
-          et que la plupart des auteurs de scripts l'utilisent à des fins légitimes,
-          elle peut également être utilisée de manière malveillante. L'un des principes
-          fondamentaux de %{site_name} est que l'utilisateur doit pouvoir inspecter
-          le code source dans un script. Les scripts externes peuvent contourner ce
-          principe de plusieurs façons: ils peuvent changer sans avertissement ni
-          historique, ils peuvent utiliser du code source différent à différentes
-          personnes et ils peuvent être utilisés pour cacher du code source malveillant
-          au milieu des bibliothèques connues. Même si quelqu'un vérifiait un script
-          externe et le jugeait légitime, cela ne garantirait pas que ce script a
-          toujours été ou sera toujours légitime.</p> <p>Pour permettre aux auteurs
-          de scripts de continuer à utiliser des scripts externes, %{site_name} a
-          implémenté une liste blanche de modèles d'URL pouvant être inclus dans un
-          script. Cette liste blanche se compose d'emplacements de script qui:</p>
-          <ul>
-
-          <li>sont publics</li>
-
-          <li>ne verront pas leur contenu changer fréquemment</li>
-
-          <li> seraient probablement utiles par plusieurs auteurs de scripts</li>
-
-          </ul> <p>la liste actuelle est:</p>%{allowed_require_list} <p>si vous essayez
-          de poster un script utilisant un <code>@require</code> en dehors de ces
-          emplacements, vous ne pourrez pas enregistrer votre script.</p> <p>Si le
-          script que vous souhaitez ajouter a une bibliothèque JavaScript (par exemple
-          jQuery ou YUI), essayez de le trouver sur l'un des sites répertoriés ci-dessus.
-          %{cdnjs_link:cdnjs} et %{jsdelivr_link:jsDelivr} en particulier ont un large
-          éventail de bibliothèques disponibles.</p> <p>Si le script que vous souhaitez
-          inclure n'est pas disponible sur les sites ci-dessus, %{contact_link:faites-le
-          nous savoir} et nous pourrons le trouver quelque part (ou l'héberger nous-mêmes!).</p>
-          <p>Si le script que vous souhaitez inclure a été écrit par vous, vous pouvez
-          le soumettre en tant qu'entrée séparée sur %{site_name} en choisissant le
-          type de script "Bibliothèque". Vous pourrez alors inclure cette bibliothèque
-          posté dans votre script.</p>
     script_rewriting:
       title: "Comment %{site_name} va récrire les scripts postés"
       content_html: >

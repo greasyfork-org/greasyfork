@@ -673,43 +673,6 @@ pt-BR:
       adult_content_rule_html: "<li>Os scripts que incluem conteúdo adulto ou são destinados a sites com este tipo de conteúdo devem ser marcados como tal para permitir que os usuários escolham se desejam vê-los.</li>"
     external_scripts:
       title: "Política em scripts externo do %{site_name}"
-      content_html: >
-          <p>Scripts de usuário possuem a capacidade técnica de carregar e executar
-          outros scripts. A chave de meta dados %{require_doc_link:<code>@require</code>}
-          é a maneira mais direta de fazer isso, mas os scripts também podem, por
-          exemplo, usar um XmlHttpRequest para baixar um script ou então injetá-lo
-          no DOM.</p> <p>Da mesma forma que isso é uma ferramenta útil e a maioria
-          dos autores de scripts a usem para propósitos legítimos, também pode ser
-          usada para fins maliciosos. Um dos princípios do %{site_name} é que o usuário
-          deve poder inspecionar o código de um script. Scripts externos podem não
-          cumprir este princípio de diversas maneiras: eles podem mudar sem aviso
-          ou histórico, podem servir para diferentes códigos de diferentes pessoas,
-          e podem ser usados para esconder códigos maliciosos entre bibliotecas conhecidas.
-          Mesmo se alguém checar um script externo e determinar que ele é legítimo,
-          isso não garantirá que esse script sempre tenha sido ou sempre será legítimo.</p>
-          <p>Para permitir que autores de script continuem usando scripts externos,
-          o %{site_name} implementou uma lista de padrões de URL permitidas que podem
-          ser incluídas com um script. Essa lista consiste em scripts vindos de locais
-          que:</p> <ul>
-
-          <li>São públicos</li>
-
-          <li>Não tem seu conteúdo atualizado com frequência</li>
-
-          <li>São úteis para mais de um autor de scripts</li>
-
-          </ul> <p>A lista atual é:</p> %{allowed_require_list} <p>Se você tentar
-          publicar um script que usa um <code>@require</code> de fora desses lugares,
-          você não conseguirá salvar seu script.</p> <p>Se o script que você deseja
-          incluir é uma biblioteca JavaScript (jQuery ou YUI, por exemplo), tente
-          encontrá-la em um dos sites listados acima. %{cdnjs_link:cdnjs} e %{jsdelivr_link:jsDelivr}
-          em particular possuem um grande número de bibliotecas disponíveis.</p> <p>Se
-          o script que você deseja incluir não estiver disponível nos sites acima,
-          %{contact_link:fale conosco} e iremos encontrar algum outro lugar em que
-          ela esteja (ou a hospedarmos nós mesmo!).</p> <p>Se o script que deseja
-          incluir foi escrito por você, você pode enviá-lo como um script separado
-          no %{site_name} escolhendo o tipo de script "Biblioteca". Com isso você
-          poderá incluir esta nova biblioteca no seu script.</p>
     script_rewriting:
       title: "Como o %{site_name} irá sobrescrever scripts postados"
       content_html: >

@@ -572,47 +572,6 @@ de:
       adult_content_rule_html: "<li>Skripte, welche nicht-jugendfreie Inhalte enthalten oder für Seiten mit nicht-jugendfreien Inhalten gemacht sind, müssen als solche gekennzeichnet werden, um anderen Nutzern die Wahlmöglichkeit zu geben ob sie diese sehen möchten.</li>"
     external_scripts:
       title: "%{site_name}s Richtlinie für externe Skripte"
-      content_html: >
-          <p>Benutzerskripte haben die technische Möglichkeit andere Skripte zu laden
-          und auszuführen. Der %{require_doc_link:<code>@require</code>} Meta-Key
-          ist der einfachste Weg, dies zu erreichen, aber Skripte können beispielsweise
-          auch einen XmlHttpRequest nutzen, um ein anderes Skript herunterzuladen
-          und in den DOM einzufügen.</p> <p>Während dies eine nützliche Funktion ist
-          und die meisten Skriptautoren diese für seriöse Zwecke nutzen, kann sie
-          aber auch schadhaaft genutzt werden. Eines der Kernprinzipien von %{site_name}
-          ist es, dass Nutzer in der Lage sein müssen den Code eines Skriptes zu inspizieren.
-          Externe Skripte können dieses Prinzip auf verschiedene Arten umgehen: sie
-          können sich ohne Warnung oder Historie ändern, sie können verschiedenen
-          Quelltext an verschiedene Personen ausliefern und sie können genutzt werden,
-          um schadhaften Quellcode inmitten von bekannten Bibliotheken zu verstecken.
-          Selbst wenn jemand eine externes Skript überprüfen würde und es als seriös
-          einstuft, wäre dies keine Garantie, dass das Skript auch schon immer seriös
-          war oder sein wird.</p> <p>Um Skriptautoren die Nutzung externer Skripte
-          weiterhin zu erlauben, hat %{site_name} eine Positivliste von URL-Mustern
-          eingebaut, welche in einem Skript eingebunden werden dürfen. Diese Positivliste
-          besteht aus Skriptorten welche:</p> <ul>
-
-          <li>öffentlich sind</li>
-
-          <li>ihre Inhalte nicht laufend ändern</li>
-
-          <li>für mehr als einen Skriptautoren nützlich sind</li>
-
-          </ul> <p>Die aktuelle Liste besteht aus:</p> %{allowed_require_list} <p>Falls
-          Sie versuchen ein Skript zu erstellen, welches ein <code>@require</code>
-          außerhalb dieser Orte beinhaltet, sind Sie nicht in der Lage Ihr Skript
-          zu speichern.</p> <p>Falls das Skript, welches sie einbinden möchten eine
-          Java Script Bibliothek ist (beispielsweise JQuery oder YUI), dann versuchen
-          Sie bitte diese auf einer der oben aufgeführten Seiten zu finden. Insbesondere
-          %{cdnjs_link:cdnjs} und %{jsdelivr_link:jsDelivr} stellen eine große Zahl
-          an Bibliotheken bereit.</p> <p>Falls das Skript, welches Sie verwenden möchten,
-          nicht auf einer der oben aufgeführten Seiten zu finden ist, dann %{contact_link:informieren
-          Sie uns darüber} und wir können eine Seite finden, auf der es zu finden
-          ist (oder es selbst speichern!).</p> <p>Falls das Skript, welches Sie einbinden
-          möchten auch von Ihnen geschrieben wurde, dann können Sie es als eigenes
-          Skript auf %{site_name} übermitteln indem sie den "Bibliothek" Skripttyp
-          verwenden. Sie sind dann in der Lage diese Bibliothek auch in Ihrem Skript
-          zu verwenden.</p>
     script_rewriting:
       title: "Wie %{site_name} veröffentlichte Skripte umschreibt"
       content_html: >

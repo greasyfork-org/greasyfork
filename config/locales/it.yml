@@ -1,7 +1,7 @@
 it:
   layouts:
     application:
-      script_list: "Scripts"
+      script_list: "Script"
       forum: "Forum"
       help: "Aiuto"
       sign_in: "Entra"
@@ -130,8 +130,8 @@ it:
     derivatives_exact_copies_heading: "Copie esatte"
     derivatives_exact_copies_list_intro: "I seguenti script hanno esattamente lo stesso codice del tuo:"
     derivatives_exact_copies_item_html: "%{script_link} di %{author_links} - versioni: %{version_list}"
-    derivatives_exact_copes_none: "Non ci sono scripts su %{site_name} che hanno esattamente lo stesso codice di questo."
-    derivatives_similar_heading: "Scripts simili"
+    derivatives_exact_copes_none: "Non ci sono script su %{site_name} che hanno esattamente lo stesso codice di questo."
+    derivatives_similar_heading: "Script simili"
     derivatives_similar_info: "Periodicamente controlliamo l'ultima versione di tutti gli altri scripts per trovare quelli molto simili ai tuoi. Controlliamo anche quando pubblichi un aggiornamento del tuo script e su tua richiesta."
     listing_title_all_sites: "Script utente per tutti i siti"
     listing_description_all_sites: "Script che aggiungono funzioni e rimuovono bug in tutti i siti"
@@ -159,7 +159,7 @@ it:
     listing_created_feed: "Nuovi script"
     listing_updated_feed: "Script aggiornati"
     listing_none: "(niente)"
-    listing_set_locale_filter: "Sono visualizzati i risultati per tutte le lingue. %{set_filter_link:Mostra solo i risultati per%{language}.}"
+    listing_set_locale_filter: "Sono visualizzati i risultati per tutte le lingue. %{set_filter_link:Mostra solo i risultati in %{language}.}"
     listing_remove_locale_filter: "Sono visualizzati solo i risultati per %{language}. %{remove_filter_link:Mostra i risultati per tutte le lingue.}"
     listing_language_all: "Tutti"
     listing_language_js: "JavaScript"
@@ -273,7 +273,7 @@ it:
     report:
       title: "Segnala %{script_name}"
     authors_heading: "Autori"
-    error_unauthorized_copy: "Questo codice sembra essere una copia non autorizzata di%{script}. Fai riferimento a %{site_name} %{rules_link:regole} sulla pubblicazione degli scripts."
+    error_unauthorized_copy: "Questo codice sembra essere una copia non autorizzata di%{script}. Fai riferimento a %{site_name} %{rules_link:regole} sulla pubblicazione degli script."
     invitations:
       form_title: "Invita altri autori."
       explanation: "Puoi aggiungere altri utenti di Greasy Fork come autori di questo script. Avranno i tuoi stessi diritti su questo script."
@@ -380,7 +380,7 @@ it:
     search_placeholder: "Trova script utente"
     scripts_for_label: "Script per:"
     explain_user_scripts_heading: "Cosa sono gli user script?"
-    explain_user_scripts_html: "Gli scripts ti mettono al comando della tua esperienza di navigazione. Appena saranno installati aggiungeranno funzionalità ai siti su cui navighi, li renderanno più semplici da usare,oppure rimuoveranno cose che non ti piacciono. Gli scripts su %{site_name} sono stati prodotti da altri utenti e pubblicati per essere condivisi con tutti. Sono gratuiti e facili da usare."
+    explain_user_scripts_html: "Gli script ti mettono al comando della tua esperienza di navigazione. Appena saranno installati aggiungeranno funzionalità ai siti su cui navighi, li renderanno più semplici da usare,oppure rimuoveranno cose che non ti piacciono. Gli script su %{site_name} sono stati prodotti da altri utenti e pubblicati per essere condivisi con tutti. Sono gratuiti e facili da usare."
     installing_step1_header: "Step 1: installa un gestore di script utente"
     installing_step1_caption: "Tampermonkey su Chrome"
     installing_step1_description_html: >
@@ -445,12 +445,12 @@ it:
     discussions_on_scripts_feed_alt: "Feed RSS"
     discussions_on_scripts_none: "Ancora niente!"
     discussions_on_scripts_more: "Altre discussioni..."
-    script_list: "Scripts"
+    script_list: "Script"
     script_list_none: "Nessuno script postato"
     script_list_none_for_filter: "Nessuno script corrisponde al filtro corrente."
     script_list_none_same_user_html: "Non scritto nessuno script ancora.\n%{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "Voui sapere come?"
-    deleted_script_list: "Scripts eliminati"
+    deleted_script_list: "Script eliminati"
     sign_out: "Esci"
     edit: "Modifica profilo"
     edit_sign_in: "Modifica il metodo di accesso"
@@ -489,7 +489,7 @@ it:
     list_display_html:
       one: "%{user_link} - %{count} script"
       other: "%{user_link} - %{count} script"
-    listing_number_of_scripts: "Numero di scripts"
+    listing_number_of_scripts: "Numero di script"
     listing_new_scripts: "Nuovi script"
     listing_updated_scripts: "Script aggiornati"
     listing_registration_date: "Data di registrazione"
@@ -502,7 +502,7 @@ it:
     flattr_username_description_html: "Utenti dei tuoi script hanno chiesto di donare al tuo account su <a href=\"https://flattr.com\">Flattr</a>."
     greasy_fork_scripts_link:
       one: "%{user_name} ha altri %{count} script su Greasy Fork."
-      other: "%{user_name} also has %{count} scripts on Greasy Fork."
+      other: "%{user_name} ha anche %{count} script su Greasy Fork."
     update_sync_warning:
       one: "Il tuo nome utente e la tua email sono sincronizzati quando accedi con . %{edit_sign_in_link:Modifica i tuoi metodi di accesso per rimuovere la sincronizzazione} se desideri impostare permanentemente un nome utente o una email pesonalizzata."
       other: "Il tuo nome utente e la tua email sono sincronizzati quando accedi con %{providers}. %{edit_sign_in_link:Modifica i tuoi metodi di accesso per rimuovere la sincronizzazione} se desideri impostare permanentemente un nome utente o una email pesonalizzata."
@@ -534,11 +534,22 @@ it:
         request_expired: "Impossibile cancellare l'utente - richiesta scaduta."
         cancelled: "Cancellazione interrotta."
         completed: "Il tuo account è stato eliminato."
+    badges:
+      banned:
+        short: Bannato
+        long: Bannato
+      moderator:
+        short: Mod
+        long: Moderatore
+      author:
+        short: Autore
+        long: Autore di questo script
   help:
     sections:
       usage: Utilizzo
       development: Sviluppo
       miscellaneous: Vari
+    open_source: "%{site_name} è open source (con licenza GPLv3). Puoi %{github_link:vedere i suoi sorgenti su GitHub}."
     installing_user_scripts:
       title: 'Come installare gli script'
     meta_keys:
@@ -675,10 +686,15 @@ it:
     item_script_html: "Script: %{script_link}"
     item_deleted_script: "Script eliminato %{id}"
     item_user_html: "Utente: %{user_link}"
+  notifications:
+    consecutive_bad_ratings:
+      one: "%{script_names} ha ricevuto una serie di valutazioni negative. Rivedi il tuo script e rispondi ai problemi fatti presente nelle valutazioni."
+      other: "%{script_names} hanno ricevuto una serie di valutazioni negative. Rivedi i tuoi script e rispondi ai problemi fatti presente nelle valutazioni."
   reports:
     report_filed: "La tua segnalazione sarà presa in carico da un moderatore."
     new_report_title:
       user: "Segnala %{user}"
+      comment: "Segnala un commento di %{user}"
     reason:
       spam: "Spam"
       abuse: "Contenuto non autorizzato o che incita all'odio"
@@ -686,6 +702,64 @@ it:
     explanation_placeholder: "Fornisci ulteriori dettagli (opzionale)"
     create_button: "Crea segnalazione"
     report_user: "Segnala utente"
+    report_comment: "Segnala commento"
+    result_dismissed: "Questa segnalazione è stata rigettata da un moderatore."
+    result_upheld: "Questa segnalazione è stata confermata da un moderatore."
+    result_pending: "Questa segnalazione non è ancora stata controllata da un moderatore."
+  discussions:
+    comment_date: "Pubblicato: %{date}"
+    comment_edit_date: "Modificato: %{date}"
+    posted_by_html: "%{user} il %{date}"
+    last_comment: "Ultimo: %{user} il %{date}"
+    new_discussion_heading: "Pubblica una recensione, un commento o una domanda"
+    new_discussion_submit: "Pubblica commento"
+    new_comment_heading: "Pubblica risposta"
+    new_comment_submit: "Pubblica risposta"
+    back_to_feedback: "< Valutazione su %{script}"
+    edit_comment_link: "Modifica"
+    edit_comment_header: "Modifica commento"
+    delete_comment: "Cancella"
+    delete_discussion: "Cancella"
+    update_comment_submit: "Aggiorna commento"
+    cancel_update_comment: "Annulla"
+    question_heading_html: "Domanda/commento"
+    review_heading_html: "Recensione: %{rating}"
+    ratings:
+      question: "Nessuna valutazione - solo una domanda o commento"
+      bad: "Male - lo script non funziona"
+      ok: "OK - lo script funziona ma può essere migliorato"
+      good: "Bene - lo script funziona"
+    ratings_short:
+      question: "Domanda/commento"
+      bad: "Male"
+      ok: "OK"
+      good: "Bene"
+    sign_in_to_post_discussion: "Accedi per pubblicare una recensione, commentare o fare domande."
+    sign_in_to_post_comment: "Accedi per pubblicare una risposta."
+    user_filter:
+      label: "Discussioni che mi riguardano"
+      all: "Tutte le discussioni"
+      discussion_by_me: "Iniziate da me"
+      comment_by_me: "Commenti fatti da me"
+      on_my_scripts: "Sui miei script"
+      subscribed: "Iscritto"
+    other_user_filter:
+      all: "Tutte le discussioni"
+      comments_by: "Commenti di %{user}"
+    user_activity:
+      title: "Commenti recenti"
+      no_recent_activity: "Questo utente non ha pubblicato alcun commento di recente."
+      see_all_activity: "Vedi tutta l’attività dell’utente."
+      script_review:
+        posted_html: "Pubblicata una recensione di <i>%{script}</i>"
+        replied_html: "Risposto ad una recensione di <i>%{script}</i>"
+      script_question:
+        posted_html: "Pubblicata una domanda/commento su <i>%{script}</i>"
+        replied_html: "Riposto ad una domanda/commento su <i>%{script}</i>"
+    review_title: "Una recensione su %{script_name}"
+    question_title: "Una domanda su %{script_name}"
+    subscribe: Iscriviti
+    unsubscribe: Disiscriviti
   common:
     error_preamble: "Ci sono alcuni problemi con quello che hai postato..."
     allowed_elements_link: "(Controlla codice permesso.)"
@@ -696,7 +770,7 @@ it:
     not_found_title: "404 - Pagina Non Trovata."
     not_found_link_home: "Vai alla home."
     suggest_locale: "%{site_name} è disponibile in %{locale_name}."
-    incomplete_locale: "%{site_name} è tradotto in %{locale_name} solo al %{percent}. Tu puoi dare una mano."
+    incomplete_locale: "%{site_name} è tradotto in %{locale_name} solo al %{percent}. Puoi dare una mano."
     expander_show_more: "Mostra di più"
     expander_show_less: "Mostra meno"
     advertisement_note: Pubblicità
@@ -731,6 +805,8 @@ it:
         default_sort: "Ordinamento predefinito"
       report:
         reason: "Motivo della segnalazione"
+      discussion:
+        rating: "Valutazione"
   errors:
     messages:
       script_missing_name: "è richiesto - specificane uno con @name"

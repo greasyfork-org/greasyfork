@@ -303,42 +303,6 @@ fi:
       adult_content_rule_html: "<li>Aikuisille suunnattua sisältöä sisältävät skriptit tai aikuissisältöä sisältäville sivustoille tarkoitetut skriptit täytyy merkitä sellaisiksi, jotta muut käyttäjät voivat valita, näkevätkö ne.</li>"
     external_scripts:
       title: "%{site_name}in käytäntö ulkoisista skripteistä"
-      content_html: >
-          <p>Userscripteillä on tekninen kyky ladata ja suorittaa muita skriptejä.
-          User scripts have the technical ability to load and execute other scripts.
-          %{require_doc_link:<code>@require</code>} -metadata-avain on yksinkertaisin
-          tapa tehdä tämä, mutta skriptit voivat myös esimerkiksi käyttää XmlHttpRequestia
-          ladatakseen skriptin ja sitten lisätä sen DOMiin.</p> <p>Vaikka tämä on
-          hyödyllinen ominaisuus ja useimmat skriptien tekijät käyttävät sitä hyvään
-          tarkoitukseen, sitä voidaan myös käyttää haitallisesti. Yksi %{site_name}in
-          pääperiaatteista on, että käyttäjän täytyy voida tutkia skriptin koodia.
-          Ulkoiset skriptit voivat ohittaa tämän periaatteen monella tavalla: ne voivat
-          muuttua ilman varoitusta tai historiaa, ne voivat jaella eri koodia eri
-          ihmisille, ja niitä voidaan käyttää haitallisen koodin piilottamiseen keskelle
-          tunnettuja kirjastoja. Vaikka joku tarkistaisi ulkoisen skriptin ja toteaisi
-          sen hyväntahtoiseksi, se ei takaisi, että skripti olisi aina ollut tai tulisi
-          aina olemaan hyväntahtoinen.</p> <p>Salliakseen skriptien tekijöiden jatkaa
-          ulkoisten skriptien käyttöä %{site_name} on toteuttanut listan sallituista
-          URL-rakenteista, jotka voidaan sisällyttää skriptiin. Tällä listalla on
-          sijainteja, jotka:</p> <ul>
-
-          <li>Ovat julkisia</li>
-
-          <li>Eivät muutu usein</li>
-
-          <li>Ovat todennäköisesti hyödyllisiä useammalle kuin yhdelle skriptin tekijälle</li>
-
-          </ul> <p>Tämänhetkinen lista on:</p> %{allowed_require_list} <p>Jos yrität
-          lähettää skriptin, joka sisältää näiden sijaintien ulkopuolella olevan <code>@require</code>:n,
-          et voi tallentaa skriptiäsi.</p> <p>Jos skripti, jonka haluat sisällyttää,
-          on JavaScript-kirjasto (kuten jQuery tai YUI), yritä löytää sen jostain
-          yllä olevista sivustoista. Erityisesti %{cdnjs_link:cdnjs} and %{jsdelivr_link:jsDelivr}
-          tarjoavat laajan valikoiman kirjastoja.</p> <p>Jos skripti, jonka haluat
-          sisällyttää, ei ole saatavilla yllä olevilla sivustoilla,  %{contact_link:kerro
-          siitä meille} ja voimme etsiä sen jostain (tai jaella sitä itse!).</p> <p>Jos
-          skripti, jonka haluat sisällyttää, on itse kirjoittamasi, voit lähettää
-          sen erikseen %{site_name}in valitsemalla skriptityypin "Kirjasto". Tämän
-          jälkeen voit sisällyttää lähettämäsi kirjaston skriptiisi.</p>
     script_rewriting:
       title: "Miten %{site_name} uudelleenkirjoittaa lähetetyt skriptit"
     site_feedback_link: "Ilmoita ongelmasta tai kerro idea %{site_name}ista itsestään"

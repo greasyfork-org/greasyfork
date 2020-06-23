@@ -692,42 +692,6 @@ pl:
       adult_content_rule_html: "<li>Skrypty które zawierają treści dla dorosłych oraz dla stron które zawierają treści dla dorosłych muszą być oznaczone jako takie, aby użytkownicy mogli zdecydować czy chcą to zobaczyć.</li>"
     external_scripts:
       title: "Polityka %{site_name} dot. zewnętrznych skryptów"
-      content_html: >
-          <p> Skrypty użytkowników mają możliwość techniczną aby ładować i wykonywać
-          inne skrypty. %{require_doc_link:<code>@require</code>}  klucz metadanych
-          jest najlepszym sposobem aby to osiągnąć, lecz skrypty mogą także, na przykład,
-          użyć XmlHttpRequest aby ściągnąć skrypt i wstrzyknąć go w DOM.</p><p>Kiedy
-          to jest przydatna opcja i większość autorów skryptów ją wykorzystuje w celach
-          zgodnych z prawem, może zostać ono także użyte w nieprawidłowym stylu. Jedno
-          z podstawowych pryncypiów %{site_name} jest to, iż użytkownik powinien być
-          w stanie przeanalizować kod skryptu. Zewnętrzne skrypty mogą ominąć to pryncypium
-          w różny sposób: mogą zmienić bez ostrzeżenia lub historii, mogą udostępniać
-          inny kod dla innych użytkowników lub mogą być użyte, aby ukryć złośliwy
-          kod wewnątrz znanych bibliotek. Nawet jeżeli ktoś sprawdzi kod skryptu zewnętrznego
-          i uzna go za bezpieczny, nie gwarantuje to, iż skrypt jest lub stanie się
-          bezpieczny.</p>
-
-          <p>Aby umożliwić autorom skryptów dalsze używanie skryptów zewnętrznych,
-          %{site_name} zaimplementował białą listę wzorów URL, które mogą zostać użyte
-          w skrypcie. Biała lista zawiera lokacje skryptów, które:</p><ul>
-
-          <li> Są publiczne </li>
-
-          <li> Nie zmieniają swojej zawartości w częstym okresie czasu</li>
-
-          <li> Mogą być użyteczne dla więcej niż jednego autora</li>
-
-          </ul><p>Aktualna lista:</p> %{allowed_require_list} <p>Jeżeli spróbujesz
-          udostępnić <code>@require</code> poza tymi lokacjami, nie będziesz w stanie
-          zapisać swojego skryptu</p> <p>Jeżeli skrypt których chcesz dołączyć zawiera
-          JavaScript (na przykład jQuery or YUI), spróbuj znaleść je na stronach dostępnych
-          poniżej. %{cdnjs_link:cdnjs} and %{jsdelivr_link:jsDelivr} w szególności
-          posiadają dużą liczbę dostępnych bibliotek</p> <p>Jeżeli skrypt których
-          chcesz udostępnić, nie znajduje się na stronach wymienionych poprzednio
-          %{contact_link:let us know} i spróbujemy znaleźć je (lub hostować je u siebie!).</p>
-          <p>Jeżeli skrypt których chcesz udostępnić został napisany przez Ciebie,
-          możesz wysłać go jako oddzielna pozycja %{site_name} poprzez wybór typu
-          "Biblioteka". Wtedy będziesz w stanie wykorzystać bibliotekę w Twoim skrypcie</p>
     script_rewriting:
       title: "Jak %{site_name} przepisze udostępnione skrypty"
       content_html: >

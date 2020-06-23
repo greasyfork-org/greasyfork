@@ -510,45 +510,6 @@ nl:
       adult_content_rule_html: "<li>Scripts die volwassen inhoud bevatten, of die zijn geschreven voor sites die volwassen inhoud bevatten, moeten worden gemarkeerd als zijnde volwassen, om andere gebruikers toe te staan ze te kunnen zien.</li>"
     external_scripts:
       title: "%{site_name}'s beleid voor externe scripts."
-      content_html: >
-          <p>Gebruikersscripts hebben de technische mogelijkheden om andere scripts
-          te laden en uit te voeren. De %{require_doc_link:<code>@require</code>}
-          metadata sleutel is de meest gangbare manier om dit te bereiken, maar scripts
-          kunnen ook bijvoorbeeld een XmlHttpRequest gebruiken om een script te downloaden
-          en die dan direct te implementeren in de DOM.</p> <p>Hoewel dit een handige
-          functie is en de meeste scriptauteurs dit gebruiken voor legitieme doeleinden,
-          kan het ook gebruikt worden voor kwaadwillige doeleinden. Een van de basisprincipes
-          van %{site_name} is  dat de gebruiker de code van een script moet kunnen
-          inspecteren. Externe scripts kunnen dit principe omzeilen op de volgende
-          manieren: ze kunnen zonder waarschuwing of geschiedenis veranderen, ze kunnen
-          verschillende code serveren aan verschillende mensen en ze kunnen gebruikt
-          worden om kwaadwillende code te verbergen in het midden van bekende bibliotheken.
-          Zelfs wanneer iemand aangeeft een extern script gecontroleerd te hebben
-          is dat geen garantie dat dat script altijd legitiem is geweest en zal zijn.</p>
-          <p>Om scriptauteurs de mogelijkheid te geven om door te gaan met het gebruik
-          van externe scripts heeft %{site_name} een whitelist geïmplementeerd van
-          URL-patronen die kunnen worden gebruikt in een script. Deze whitelist bestaat
-          uit scriptlocaties die:</p> <ul>
-
-          <li>Openbaar zijn</li>
-
-          <li>Hun inhoud niet vaak aanpassen</li>
-
-          <li>Waarschijnlijk nuttig zullen zijn voor meer dan één scriptauteur.</li>
-
-          </ul> <p>De huidige lijst is:</p> %{allowed_require_list} <p>Wanneer je
-          probeert een script te plaatsen dat een <code>@require</code> buiten deze
-          locaties heeft zul je niet in staat zijn je script op te slaan.</p> <p>Als
-          het script dat je wenst te gebruiken een JavaScript bibliotheek is (bijv.
-          jQuery of YUI) probeer die dan te vinden op één van bovengenoemde websites.
-          %{cdnjs_link:cdnjs} en %{jsdelivr_link:jsDelivr} in het bijzonder hebben
-          een breed scala aan bibliotheken beschikbaar.</p> <p>Als het script dat
-          je wenst te gebruiken niet beschikbaar is op één van deze bovengenoemde
-          sites, %{contact_link:laat het ons dan weten} en we kunnen het vinden waar
-          het is (of het zelf hosten!).</p> <p>Als het script dat je wenst te gebruiken
-          door jou geschreven is, dan kun je het indienen als een afzonderlijke inschrijving
-          op %{site_name} door te kiezen voor het "Bibliotheek" script type. Dan zul
-          je in staat zijn het geplaatste script te gebruiken in je script.</p>
     script_rewriting:
       title: "Hoe %{site_name} geplaatste scripts herschrijft"
       content_html: >
