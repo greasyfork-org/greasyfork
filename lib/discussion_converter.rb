@@ -26,7 +26,7 @@ class DiscussionConverter
 
     raise InvalidDiscussionException if raise_on_invalid && !comment.valid?
 
-    forum_discussion.forum_comments.each do |forum_comment|
+    forum_discussion.forum_comments.reject { |forum_comment| forum_comment.Body.empty? }.each do |forum_comment|
       discussion.comments.build(
         poster_id: forum_comment.poster_id,
         text: forum_comment.Body,
