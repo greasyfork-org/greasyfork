@@ -137,7 +137,7 @@ class ScriptsController < ApplicationController
                             .order(stat_last_reply_date: :desc)
                             .paginate(page: params[:page], per_page: 25)
       @discussion = @discussions.build
-      @discussion.comments.build
+      @discussion.comments.build(text_markup: current_user&.preferred_markup)
     else
       @discussions = @script.discussions
                             .includes(last_reply_forum_poster: :users, original_forum_poster: :users)
