@@ -650,8 +650,9 @@ sk:
           <ul> <h4>Kód</h4> <ul>
 
           <li>Kód odoslaný na túto stránku nemôže byť obfuskovaný alebo minifikovaný.
-          To zahŕňa aj používanie balíkov ako je webpack. Užívatelia musia mať možnosť
-          preskúmať a pochopiť skript pred jeho inštaláciou.</li>
+          Užívatelia musia mať možnosť preskúmať a pochopiť skript pred jeho inštaláciou.
+          Ak je skript zabalený  nástrojom ako je webpack, vo výsledku musí byť v
+          neminifikovanej podobe</li>
 
           <li>Knižnice, ktoré skript používa by mali byť vyžiadané pomocou <code>@require</code>,
           pokiaľ neexistuje opodstatnený technický dôvod, prečo to neurobiť. V prípade,
