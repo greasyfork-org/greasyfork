@@ -69,7 +69,7 @@ class DiscussionsController < ApplicationController
       end
     end
 
-    @comment = Comment.new(text_markup: current_user&.preferred_markup)
+    @comment = @discussion.comments.build(text_markup: current_user&.preferred_markup)
     render layout: 'scripts' if @script
   end
 

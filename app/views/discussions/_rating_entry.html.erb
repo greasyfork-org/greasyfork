@@ -1,5 +1,12 @@
+<% full_label = false unless defined?(full_label) %>
 <div class="form-control radio-group discussion-rating">
-  <label><%= t('activerecord.attributes.discussion.rating') %></label><br>
+  <label>
+    <% if full_label %>
+      <%= t('discussions.update_rating', script_name: f.object.script.name(request_locale)) %>
+    <% else %>
+      <%= t('activerecord.attributes.discussion.rating') %>
+    <% end %>
+  </label><br>
   <%= f.radio_button :rating, Discussion::RATING_QUESTION, required: true %> <%= f.label :rating, t('discussions.ratings.question'), value: Discussion::RATING_QUESTION, class: 'radio-label' %><br>
   <%= f.radio_button :rating, Discussion::RATING_BAD, required: true %> <%= f.label :rating, t('discussions.ratings.bad'), value: Discussion::RATING_BAD, class: 'radio-label' %><br>
   <%= f.radio_button :rating, Discussion::RATING_OK, required: true %> <%= f.label :rating, t('discussions.ratings.ok'), value: Discussion::RATING_OK, class: 'radio-label' %><br>

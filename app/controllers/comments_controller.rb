@@ -6,18 +6,25 @@ class CommentsController < ApplicationController
   before_action :moderators_only, only: :destroy
 
   def create
-    @comment = @discussion.comments.build(comments_params)
-    @comment.poster = current_user
-    if @comment.save
-      @comment.send_notifications!
-      redirect_to @comment.path
-      return
-    end
-    if @discussion.script
-      @script = @discussion.script
-      render 'discussions/show', layout: 'scripts'
-    else
-      render 'discussions/show'
+    begin
+      Comment.transaction do
+        rating = params.dig(:comment, :discussion, :rating)
+        params[:comment].delete(:discussion)
+        @discussion.update!(rating: rating) if rating && @discussion.poster == current_user && @discussion.script
+        @comment = @discussion.comments.build(comments_params)
+        @comment.poster = current_user
+        @comment.save!
+        @comment.send_notifications!
+        redirect_to @comment.path
+        return
+      end
+    rescue ActiveRecord::Rollback
+      if @discussion.script
+        @script = @discussion.script
+        render 'discussions/show', layout: 'scripts'
+      else
+        render 'discussions/show'
+      end
     end
   end
 
@@ -28,10 +35,9 @@ class CommentsController < ApplicationController
       return
     end
     Comment.transaction do
-      if comment.first_comment?
-        rating = params[:comment][:discussion].delete(:rating)
-        comment.discussion.update!(rating: rating)
-      end
+      rating = params.dig(:comment, :discussion, :rating)
+      params[:comment].delete(:discussion)
+      @discussion.update!(rating: rating) if rating && comment.first_comment? && @discussion.poster == current_user && @discussion.script
       comment.edited_at = Time.now
       comment.attachments.select { |attachment| params["remove-attachment-#{attachment.id}"] == '1' }.each(&:destroy!)
       comment.update!(comments_params)
@@ -51,7 +57,7 @@ class CommentsController < ApplicationController
     @discussion = Discussion.find(params[:discussion_id])
   end
 
-  def comments_params
+  def comments_params(with_rating_update: false)
     params.require(:comment).permit(:text, :text_markup, attachments: [])
   end
 end

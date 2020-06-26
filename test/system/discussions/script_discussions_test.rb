@@ -16,8 +16,8 @@ class ScriptDiscussionsTest < ApplicationSystemTestCase
     click_link 'Edit'
     within '.edit-comment-form' do
       fill_in 'comment_text', with: 'this is an updated reply'
+      choose 'Bad'
     end
-    choose 'Bad'
     assert_changes -> { Discussion.last.rating }, from: Discussion::RATING_GOOD, to: Discussion::RATING_BAD do
       click_button 'Update comment'
       assert_content 'this is an updated reply'
@@ -43,6 +43,17 @@ class ScriptDiscussionsTest < ApplicationSystemTestCase
     assert_difference -> { Comment.count } => 0 do
       click_button 'Update comment'
       assert_content 'this is an updated reply'
+    end
+
+    within '.post-reply' do
+      fill_in 'comment_text', with: 'this is an another reply'
+      choose 'Bad'
+    end
+    assert_difference -> { Comment.count } => 1 do
+      assert_changes -> { discussion.reload.rating }, to: Discussion::RATING_BAD do
+        click_button 'Post reply'
+        assert_content 'this is an another reply'
+      end
     end
   end
 
