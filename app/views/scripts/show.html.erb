@@ -102,10 +102,10 @@
 
 <% localized_additional_info = @script.localized_attribute_for('additional_info', I18n.locale)
 if !localized_additional_info.nil? || !@script_version.screenshots.empty? %>
-  <div id="additional-info">
+  <div id="additional-info" class="user-content">
     <% if !localized_additional_info.nil? %>
-      <div class="user-content" lang="<%= localized_additional_info.locale.code %>">
-        <%=format_user_text(localized_additional_info.attribute_value, localized_additional_info.value_markup)%>
+      <div lang="<%= localized_additional_info.locale.code %>">
+        <%= format_user_text(localized_additional_info.attribute_value, localized_additional_info.value_markup) %>
       </div>
     <% end %>
     <% if !@script_version.screenshots.empty? %>
