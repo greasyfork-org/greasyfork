@@ -201,6 +201,10 @@ class User < ApplicationRecord
     created_at > 5.minutes.ago
   end
 
+  def allow_posting_profile?
+    scripts.not_deleted.any? || comments.any?
+  end
+
   def update_trusted_report!
     resolved_count = script_reports.resolved.count
     if resolved_count < 3

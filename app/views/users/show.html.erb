@@ -6,7 +6,7 @@
 
   <h2><%= render_user(@user, @user.id, skip_link: true) %></h2>
 
-  <% if @user.profile.present? && (!@user.banned || current_user&.moderator?) && @user.posting_permission == :allowed %>
+  <% if @user.profile.present? && (current_user&.moderator? || (!@user.banned && @user.posting_permission == :allowed && @user.allow_posting_profile?))  %>
     <section id="user-profile" class="user-content"><%=format_user_text(@user.profile, @user.profile_markup)%></section>
   <% end %>
 
