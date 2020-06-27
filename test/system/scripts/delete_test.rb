@@ -7,11 +7,11 @@ class DeleteTest < ApplicationSystemTestCase
     visit delete_script_url(script, locale: :en)
     choose 'They will keep it as it is.'
     click_button 'Delete'
-    assert_content "Daily installs"
+    assert_content 'Daily installs'
     assert script.reload.deleted?
     click_on 'Delete'
     click_button 'Undelete'
-    assert_content "Daily installs"
+    assert_content 'Daily installs'
     assert !script.reload.deleted?
   end
 end

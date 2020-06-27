@@ -2,11 +2,13 @@ class ScriptDiscussionConversionQueueingJob < ApplicationJob
   queue_as :low
 
   def perform
-    script = Script.where(use_new_discussions: false).order(:id).first
-    return unless script
+    scripts = Script.where(use_new_discussions: false).order(:id).limit(5)
+    return unless script.any?
 
-    script.users.first.scripts.pluck(:id).each do |script_id|
-      ScriptDiscussionConversionJob.perform_later(script_id)
+    scripts.map(&:users).flatten.uniq.map do |user|
+      user.scripts.pluck(:id).each do |script_id|
+        ScriptDiscussionConversionJob.perform_later(script_id)
+      end
     end
   end
 end

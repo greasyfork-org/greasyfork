@@ -6,25 +6,23 @@ class CommentsController < ApplicationController
   before_action :moderators_only, only: :destroy
 
   def create
-    begin
-      Comment.transaction do
-        rating = params.dig(:comment, :discussion, :rating)
-        params[:comment].delete(:discussion)
-        @discussion.update!(rating: rating) if rating && @discussion.poster == current_user && @discussion.script
-        @comment = @discussion.comments.build(comments_params)
-        @comment.poster = current_user
-        @comment.save!
-        @comment.send_notifications!
-        redirect_to @comment.path
-        return
-      end
-    rescue ActiveRecord::Rollback
-      if @discussion.script
-        @script = @discussion.script
-        render 'discussions/show', layout: 'scripts'
-      else
-        render 'discussions/show'
-      end
+    Comment.transaction do
+      rating = params.dig(:comment, :discussion, :rating)
+      params[:comment].delete(:discussion)
+      @discussion.update!(rating: rating) if rating && @discussion.poster == current_user && @discussion.script
+      @comment = @discussion.comments.build(comments_params)
+      @comment.poster = current_user
+      @comment.save!
+      @comment.send_notifications!
+      redirect_to @comment.path
+      return
+    end
+  rescue ActiveRecord::Rollback
+    if @discussion.script
+      @script = @discussion.script
+      render 'discussions/show', layout: 'scripts'
+    else
+      render 'discussions/show'
     end
   end
 
