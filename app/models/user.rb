@@ -202,7 +202,7 @@ class User < ApplicationRecord
   end
 
   def allow_posting_profile?
-    scripts.not_deleted.any? || comments.any?
+    posting_permission == :allowed && (scripts.not_deleted.any? || comments.any?)
   end
 
   def update_trusted_report!
