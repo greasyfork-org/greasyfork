@@ -13,20 +13,21 @@ module ScriptListings
   def index
     is_search = params[:q].present?
 
+    locale = request_locale
+    if locale.scripts?(script_subset)
+      if params[:filter_locale] == '0'
+        @offer_filtered_results_for_locale = locale
+      else
+        @current_locale_filter = locale
+        search_locale = @current_locale_filter.id
+      end
+    end
+
     # Search can't do script sets, otherwise we'd use it for everything.
     if params[:set].nil?
       begin
         with = sphinx_options_for_request
-
-        locale = request_locale
-        if locale.scripts?(script_subset)
-          if params[:filter_locale] == '0'
-            @offer_filtered_results_for_locale = locale
-          else
-            @current_locale_filter = locale
-            with[:locale] = @current_locale_filter.id
-          end
-        end
+        with[:locale] = search_locale
 
         if params[:site]
           if params[:site] == '*'
@@ -89,7 +90,7 @@ module ScriptListings
     respond_to do |format|
       format.html do
         @set = ScriptSet.find(params[:set]) unless params[:set].nil?
-        @by_sites = TopSitesService.get_top_by_sites(script_subset: script_subset, locale_id: with[:locale])
+        @by_sites = TopSitesService.get_top_by_sites(script_subset: script_subset, locale_id: search_locale)
 
         @sort_options = %w[relevance daily_installs total_installs ratings created updated name] if is_search
         @link_alternates = listing_link_alternatives
