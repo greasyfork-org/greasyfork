@@ -89,7 +89,7 @@ module ScriptListings
     respond_to do |format|
       format.html do
         @set = ScriptSet.find(params[:set]) unless params[:set].nil?
-        @by_sites = self.class.get_top_by_sites(script_subset)
+        @by_sites = TopSitesService.get_top_by_sites(script_subset: script_subset, locale_id: with[:locale])
 
         @sort_options = %w[relevance daily_installs total_installs ratings created updated name] if is_search
         @link_alternates = listing_link_alternatives
@@ -135,7 +135,7 @@ module ScriptListings
   def by_site
     respond_to do |format|
       format.html do
-        @by_sites = self.class.get_by_sites(script_subset)
+        @by_sites = TopSitesService.get_by_sites(script_subset: script_subset)
         @by_sites = @by_sites.select { |k, _v| k.present? && k.include?(params[:q]) } if params[:q].present?
         @by_sites = Hash[@by_sites.max_by(200) { |_k, v| v[:installs] }.sort_by { |k, _v| k || '' }]
         render layout: 'application'
@@ -259,12 +259,6 @@ module ScriptListings
       scripts = scripts.where(language: params[:language] == 'css' ? 'css' : 'js') unless params[:language] == 'all'
       scripts = scripts.order(get_sort(params, false, set, default_sort: default_sort))
       return scripts
-    end
-
-    def get_top_by_sites(script_subset)
-      return cache_with_log("scripts/get_top_by_sites/#{script_subset}") do
-        get_by_sites(script_subset).sort { |a, b| b[1][:installs] <=> a[1][:installs] }.first(10)
-      end
     end
 
     def get_sort(params, for_sphinx = false, set = nil, default_sort: nil)

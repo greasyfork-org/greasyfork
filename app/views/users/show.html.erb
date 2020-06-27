@@ -201,7 +201,7 @@
         <div class="sidebar-title"><%= t('common.listing_options_title') %></div>
         <div>☰</div>
       </div>
-      <%= render partial: 'scripts/list_options', :locals => {:by_sites => @by_sites, :scripts => script_list}%>
+      <%= render partial: 'scripts/list_options', locals: { by_sites: @by_sites, scripts: script_list, skip_all_sites_link: true } %>
     </div>
   <% end %>
 </div>

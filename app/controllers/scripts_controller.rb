@@ -71,7 +71,7 @@ class ScriptsController < ApplicationController
       format.html do
         return if handle_wrong_url(@script, :id)
 
-        @by_sites = self.class.get_by_sites(script_subset)
+        @by_sites = TopSitesService.get_by_sites(script_subset: script_subset)
         @link_alternates = [
           { url: current_path_with_params(format: :json), type: 'application/json' },
           { url: current_path_with_params(format: :jsonp, callback: 'callback'), type: 'application/javascript' },
@@ -725,57 +725,6 @@ class ScriptsController < ApplicationController
     ScriptDiscussionConversionJob.perform_later(@script.id)
     flash[:notice] = "Conversion of your script's discussions will be completed within a few minutes."
     redirect_to feedback_script_path(@script)
-  end
-
-  # Returns a hash, key: site name, value: hash with keys installs, scripts
-  def self.get_by_sites(script_subset, cache_options = {})
-    return cache_with_log("scripts/get_by_sites#{script_subset}", cache_options) do
-      subset_clause = case script_subset
-                      when :greasyfork
-                        'AND `sensitive` = false'
-                      when :sleazyfork
-                        'AND `sensitive` = true'
-                      else
-                        ''
-                      end
-      sql = <<~SQL
-        SELECT
-          text, SUM(daily_installs) install_count, COUNT(s.id) script_count
-        FROM script_applies_tos
-        JOIN scripts s ON script_id = s.id
-        JOIN site_applications on site_applications.id = site_application_id
-        WHERE
-          domain
-          AND blocked = 0
-          AND script_type_id = 1
-          AND script_delete_type_id IS NULL
-          AND !tld_extra
-          #{subset_clause}
-        GROUP BY text
-        ORDER BY text
-      SQL
-      Rails.logger.warn('Loading by_sites') if Greasyfork::Application.config.log_cache_misses
-      by_sites = Script.connection.select_rows(sql)
-      Rails.logger.warn('Loading all_sites') if Greasyfork::Application.config.log_cache_misses
-      all_sites = all_sites_count.values.to_a
-      Rails.logger.warn('Combining by_sites and all_sites') if Greasyfork::Application.config.log_cache_misses
-      # combine with "All sites" number
-      a = ([[nil] + all_sites] + by_sites)
-      Hash[a.map { |key, install_count, script_count| [key, { installs: install_count.to_i, scripts: script_count.to_i }] }]
-    end
-  end
-
-  def self.all_sites_count
-    sql = <<-SQL
-      SELECT
-        sum(daily_installs) install_count, count(distinct scripts.id) script_count
-      FROM scripts
-      WHERE
-        script_type_id = 1
-        AND script_delete_type_id is null
-        AND NOT EXISTS (SELECT * FROM script_applies_tos WHERE script_id = scripts.id)
-    SQL
-    return Script.connection.select_all(sql).first
   end
 
   # Returns IP and script ID. They will be nil if not valid.

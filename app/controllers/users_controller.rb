@@ -53,7 +53,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html do
-        @by_sites = ScriptsController.get_top_by_sites(script_subset)
+        @by_sites = TopSitesService.get_top_by_sites(script_subset: script_subset, user_id: @user.id)
 
         @scripts = (@same_user || (!current_user.nil? && current_user.moderator?)) ? @user.scripts : @user.scripts.listable_including_libraries(script_subset)
         @user_has_scripts = !@scripts.empty?

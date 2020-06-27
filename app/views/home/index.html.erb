@@ -10,7 +10,7 @@
 	<% end %>
 	<div id="home-top-sites">
 		<%=t('home.scripts_for_label')%>
-		<% ScriptsController.get_top_by_sites(script_subset).map(&:first).compact.first(5).each do |site| %>
+		<% TopSitesService.get_top_by_sites(script_subset: script_subset, locale_id: request_locale.id).map(&:first).compact.first(5).each do |site| %>
 			<%= link_to(site, by_site_scripts_path(site: site)) %>
 		<% end %>
 		<%= link_to t('scripts.listing_filter_by_site_more_sites'), site_list_scripts_path %>

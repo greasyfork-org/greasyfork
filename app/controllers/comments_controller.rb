@@ -55,7 +55,7 @@ class CommentsController < ApplicationController
     @discussion = Discussion.find(params[:discussion_id])
   end
 
-  def comments_params(with_rating_update: false)
+  def comments_params
     params.require(:comment).permit(:text, :text_markup, attachments: [])
   end
 end
