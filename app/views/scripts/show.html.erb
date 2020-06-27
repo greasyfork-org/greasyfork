@@ -102,13 +102,9 @@
 
 <% localized_additional_info = @script.localized_attribute_for('additional_info', I18n.locale)
 if !localized_additional_info.nil? || !@script_version.screenshots.empty? %>
-  <div id="additional-info" class="user-content">
-    <% if !localized_additional_info.nil? %>
-      <div lang="<%= localized_additional_info.locale.code %>">
-        <%= format_user_text(localized_additional_info.attribute_value, localized_additional_info.value_markup) %>
-      </div>
-    <% end %>
-    <% if !@script_version.screenshots.empty? %>
+  <div id="additional-info" class="user-content" <% if !localized_additional_info.nil? %>lang="<%= localized_additional_info.locale.code %>"<% end %>>
+    <%= format_user_text(localized_additional_info.attribute_value, localized_additional_info.value_markup) if localized_additional_info%>
+    <% if @script_version.screenshots.any? %>
       <div class="user-screenshots">
         <% @script_version.screenshots.each do |screenshot| %>
           <a href="<%=screenshot.screenshot.url%>" data-jslghtbx="<%=screenshot.screenshot.url%>" data-jslghtbx-group="screenshots" <%if !screenshot.caption.nil?%>title="<%=screenshot.caption%>" data-jslghtbx-caption="<%=screenshot.caption%>"<%end%>><%= image_tag screenshot.screenshot.url(:thumb) %></a>
