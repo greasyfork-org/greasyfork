@@ -3,7 +3,7 @@ class ScriptDiscussionConversionQueueingJob < ApplicationJob
 
   def perform
     scripts = Script.where(use_new_discussions: false).order(:id).limit(5)
-    return unless script.any?
+    return unless scripts.any?
 
     scripts.map(&:users).flatten.uniq.map do |user|
       user.scripts.pluck(:id).each do |script_id|
