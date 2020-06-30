@@ -9,7 +9,7 @@ require 'js_parser'
 class ScriptsController < ApplicationController
   include ScriptAndVersions
 
-  MEMBER_AUTHOR_ACTIONS = [:sync_update, :update_promoted, :request_permanent_deletion, :unrequest_permanent_deletion, :update_promoted, :invite, :remove_author, :convert_discussions].freeze
+  MEMBER_AUTHOR_ACTIONS = [:sync_update, :update_promoted, :request_permanent_deletion, :unrequest_permanent_deletion, :update_promoted, :invite, :remove_author].freeze
   MEMBER_AUTHOR_OR_MODERATOR_ACTIONS = [:delete, :do_delete, :undelete, :do_undelete, :derivatives, :admin, :update_locale, :request_duplicate_check].freeze
   MEMBER_MODERATOR_ACTIONS = [:mark, :do_mark, :do_permanent_deletion, :reject_permanent_deletion, :approve].freeze
   MEMBER_PUBLIC_ACTIONS = [:diff, :report, :accept_invitation].freeze
@@ -131,19 +131,12 @@ class ScriptsController < ApplicationController
 
     return if handle_wrong_url(@script, :id)
 
-    if @script.use_new_discussions?
-      @discussions = @script.new_discussions
-                            .includes(:poster)
-                            .order(stat_last_reply_date: :desc)
-                            .paginate(page: params[:page], per_page: 25)
-      @discussion = @discussions.build
-      @discussion.comments.build(text_markup: current_user&.preferred_markup)
-    else
-      @discussions = @script.discussions
-                            .includes(last_reply_forum_poster: :users, original_forum_poster: :users)
-                            .reorder(Arel.sql('COALESCE(DateLastComment, DateInserted) DESC'))
-                            .paginate(page: params[:page], per_page: 25)
-    end
+    @discussions = @script.discussions
+                          .includes(:poster)
+                          .order(stat_last_reply_date: :desc)
+                          .paginate(page: params[:page], per_page: 25)
+    @discussion = @discussions.build
+    @discussion.comments.build(text_markup: current_user&.preferred_markup)
 
     set_bots_directive
     @canonical_params = [:id, :version]
@@ -719,12 +712,6 @@ class ScriptsController < ApplicationController
     ScriptDuplicateCheckerJob.set(queue: 'user_low').perform_later(@script.id) unless ScriptDuplicateCheckerJob.currently_queued_script_ids.include?(@script.id)
     flash[:notice] = 'Similarity check will be completed in a few minutes.'
     redirect_to derivatives_script_path(@script)
-  end
-
-  def convert_discussions
-    ScriptDiscussionConversionJob.perform_later(@script.id)
-    flash[:notice] = "Conversion of your script's discussions will be completed within a few minutes."
-    redirect_to feedback_script_path(@script)
   end
 
   # Returns IP and script ID. They will be nil if not valid.

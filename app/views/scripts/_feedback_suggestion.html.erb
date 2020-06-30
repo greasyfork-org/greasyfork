@@ -1,4 +1,4 @@
-<% feedback_link = script.use_new_discussions? ? feedback_script_path(script) : "#{forum_path}post/discussion?script=#{script.id}" %>
+<% feedback_link = feedback_script_path(script) %>
 <div id="script-feedback-suggestion">
   <% if script.support_url %>
     <% if script.support_url.start_with?('mailto') %>

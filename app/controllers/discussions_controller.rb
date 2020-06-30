@@ -140,7 +140,7 @@ class DiscussionsController < ApplicationController
   def discussion_scope
     if params[:script_id]
       @script = Script.find(params[:script_id])
-      @script.new_discussions
+      @script.discussions
     else
       Discussion
     end

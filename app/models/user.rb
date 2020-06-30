@@ -91,10 +91,6 @@ class User < ApplicationRecord
   strip_attributes
 
   def discussions_on_scripts_written
-    ForumDiscussion.where(ScriptID: script_ids).order(Arel.sql('COALESCE(DateLastComment, DateInserted) DESC'))
-  end
-
-  def new_discussions_on_scripts_written
     Discussion.where(script: script_ids).order(stat_last_reply_date: :desc)
   end
 

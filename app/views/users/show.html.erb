@@ -29,28 +29,17 @@
     </section>
 
     <% if @user.scripts.any?
-      new_dosr = @user.new_discussions_on_scripts_written
-      dosr = @user.discussions_on_scripts_written %>
+      dosr = @user.discussions_on_scripts_written  %>
       <section id="user-discussions-on-scripts-written">
         <header>
           <h3><%=t('users.discussions_on_scripts')%> <a href="<%=forum_path%>discussions/feed.rss?script_author=<%=@user.id%>"><img src="<%=asset_path('feed-icon-14x14.png')%>" alt="<%=t('users.discussions_on_scripts_feed_alt')%>" rel="nofollow"></a></h3>
         </header>
-        <% if dosr.empty? && new_dosr.empty? %>
+        <% if dosr.empty? %>
           <p><%=t('users.discussions_on_scripts_none')%></p>
         <% else %>
-          <% if dosr.any? %>
-            <ul>
-              <%= render collection: dosr.includes(last_reply_forum_poster: :users, original_forum_poster: :users).first(10), partial: 'forum_discussions/discussion', locals: {show_script: true} %>
-              <% if dosr.length > 10 %>
-                <li class="more-discussions"><a href="<%=forum_path%>?script_author=<%=@user.id%>" rel="nofollow"><%=t('users.discussions_on_scripts_more')%></a></li>
-              <% end %>
-            </ul>
-          <% end %>
-          <% if new_dosr.any? %>
-            <%= render collection: new_dosr.first(10), partial: 'discussions/discussion', locals: { show_script: true } %>
-            <% if new_dosr.length > 10 %>
-              <%= link_to t('users.discussions_on_scripts_more'), discussions_path(me: 'script') %>
-            <% end %>
+          <%= render collection: dosr.first(10), partial: 'discussions/discussion', locals: { show_script: true } %>
+          <% if dosr.length > 10 %>
+            <%= link_to t('users.discussions_on_scripts_more'), discussions_path(me: 'script') %>
           <% end %>
         <% end %>
       </section>
