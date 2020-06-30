@@ -27,7 +27,6 @@ zh-CN:
     applies_to_link_title:
       other: "查看其他 %{count} 个应用到 %{site} 的脚本"
     applies_to_all: "所有站点"
-    additional_info: "脚本描述"
     install: "安装此脚本"
     install_help: "?"
     install_help_title: "如何安装"
@@ -166,8 +165,8 @@ zh-CN:
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
     import: "导入脚本"
-    new: "提交脚本"
-    new_css: "发表一个用户样式"
+    new: "发布你编写的脚本"
+    new_css: "发布你编写的样式"
     support_site: "访问作者的支持站点。"
     support_email: "向作者发邮件以寻求帮助。"
     contribution_no_amount: "捐赠以感谢 %{author}。"
@@ -242,7 +241,7 @@ zh-CN:
     ok_rating_explanation: "评级为一般的人数。"
     bad_rating_explanation: "评级为差评的人数。"
     write_your_own_html: "%{post_a_script_link}(或 %{learn_to_write_scripts_link})"
-    post_a_script_link_text: "发布您编写的脚本"
+    post_a_script_link_text: "发布你编写的脚本"
     learn_to_write_scripts_link_text: "了解如何编写脚本"
     feedback_or_report: "%{feedback_link:询问，评论}，或者%{report_link:举报这个脚本}."
     support_feedback_or_report: "%{support_url:访问作者的支持站点}, %{feedback_link:询问，评论}，或者%{report_link:举报此脚本}。"
@@ -603,7 +602,7 @@ zh-CN:
 
           </ul> <h4>代码</h4> <ul>
 
-          <li>提交到本站的代码不得经过压缩或最小化处理。必须让用户有机会在安装脚本之前能够对代码进行审计并理解该脚本。如果脚本使用 WebPack 之类的工具进行打包，其打包后的脚本不得经过最小化处理。</li>
+          <li>提交到本站的代码不得经过压缩或最小化处理。必须让用户有机会在安装脚本之前能够对代码进行审查并理解该脚本。如果脚本使用 WebPack 之类的工具进行打包，其打包后的脚本不得经过最小化处理。</li>
 
           <li>需要引入的代码库应使用<code>@require</code> 元数据声明，除非这种方式会带来难以解决的技术性问题。如果因为某些原因代码库需要直接引入，它必须包含其来源地址（如一条指向原始地址、名称与版本的注释）。</li>
 
@@ -611,7 +610,7 @@ zh-CN:
 
           </ul> <h4>版权</h4> <ul>
 
-          <li>你的脚步必须尊重他人的版权。这包括你所提交的脚本及其所引入的资源（如图像）。如果你希望使用他人的内容，请遵守其授权协议或提前获取作者的授权。</li>
+          <li>你的脚本必须尊重他人的版权。这包括你所提交的脚本及其所引入的资源（如图像）。如果你希望使用他人的内容，请遵守其授权协议或提前获取作者的授权。</li>
 
           <li>即便在未违反版权的情况下，重复提交已存在于 %{site_name} 但却未进行任何改进的脚本是禁止的。</li>
 
@@ -623,7 +622,7 @@ zh-CN:
 
           <li>脚本不得在 <code>@include</code>、<code>@match</code> 或关键字提及脚本不提供功能的网站。</li>
 
-          </ul> <p>如果你发现任何违反了这些规定的脚本，请在提交反馈的页面选择“举报该脚本”选项。</p>
+          </ul> <p>如果你发现任何违反了这些规定的脚本，请在提交反馈的页面选择“举报这个脚本”选项。</p>
       adult_content_rule_html: "<li>本站允许脚本中包含成人内容，但含有成人内容或者针对成人网站设计的脚本必须被「明确标注」，以便用户自主选择是否显示此类信息。</li>"
     external_scripts:
       title: "%{site_name} 对外部脚本的政策"
