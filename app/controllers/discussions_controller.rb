@@ -76,7 +76,10 @@ class DiscussionsController < ApplicationController
   def create
     discussion = discussion_scope.build(discussion_params)
     discussion.poster = discussion.comments.first.poster = current_user
-    discussion.script = @script
+    if @script
+      discussion.script = @script
+      discussion.discussion_category = DiscussionCategory.script_discussions
+    end
     discussion.comments.first.first_comment = true
     discussion.save!
     discussion.comments.first.send_notifications!

@@ -1137,6 +1137,15 @@ CREATE TABLE `disallowed_codes` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=97 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `discussion_categories`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `discussion_categories` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `category_key` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `discussion_subscriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -1167,6 +1176,7 @@ CREATE TABLE `discussions` (
   `stat_last_reply_date` datetime DEFAULT NULL,
   `stat_last_replier_id` int(11) DEFAULT NULL,
   `migrated_from` int(11) DEFAULT NULL,
+  `discussion_category_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `index_discussions_on_poster_id` (`poster_id`),
   KEY `fk_rails_a52537835c` (`script_id`),
@@ -1952,6 +1962,11 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20200605225727'),
 ('20200606184728'),
 ('20200607012451'),
-('20200630024246');
+('20200630024246'),
+('20200630025057'),
+('20200630025140'),
+('20200630025619'),
+('20200630025650'),
+('20200630025853');
 
 

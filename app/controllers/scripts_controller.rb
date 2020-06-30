@@ -135,7 +135,7 @@ class ScriptsController < ApplicationController
                           .includes(:poster)
                           .order(stat_last_reply_date: :desc)
                           .paginate(page: params[:page], per_page: 25)
-    @discussion = @discussions.build
+    @discussion = @discussions.build(discussion_category: DiscussionCategory.script_discussions)
     @discussion.comments.build(text_markup: current_user&.preferred_markup)
 
     set_bots_directive

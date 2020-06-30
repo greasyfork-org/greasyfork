@@ -8,6 +8,7 @@ class Discussion < ApplicationRecord
   belongs_to :poster, class_name: 'User', optional: true
   belongs_to :script
   belongs_to :stat_last_replier, class_name: 'User', optional: true
+  belongs_to :discussion_category
   has_many :comments, dependent: :destroy
   has_many :discussion_subscriptions
 
