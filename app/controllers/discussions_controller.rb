@@ -73,30 +73,6 @@ class DiscussionsController < ApplicationController
     render layout: 'scripts' if @script
   end
 
-  def preview_converted
-    forum_discussion = ForumDiscussion.find(params[:id])
-
-    if forum_discussion.closed?
-      render plain: 'The discussion was closed and will not be converted.'
-      return
-    end
-
-    if forum_discussion.rating == ForumDiscussion::RATING_REPORT
-      render plain: 'The discussion was a report and will not be converted.'
-      return
-    end
-
-    if forum_discussion.ScriptID && forum_discussion.script.nil?
-      render plain: 'The discussion is for a deleted script and will not be converted.'
-      return
-    end
-
-    @discussion = DiscussionConverter.convert(forum_discussion)
-    @script = @discussion.script
-    @conversion_preview = true
-    render :show, layout: 'scripts'
-  end
-
   def create
     discussion = discussion_scope.build(discussion_params)
     discussion.poster = discussion.comments.first.poster = current_user

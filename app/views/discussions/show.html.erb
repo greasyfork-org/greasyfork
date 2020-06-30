@@ -17,7 +17,7 @@
       <%= t('discussions.question_heading_html', user: render_poster(@discussion)) %>
     <% end %>
   </h3>
-  <% if current_user && !@conversion_preview %>
+  <% if current_user %>
     <div class="discussion-actions">
       <div class="discussion-subscription-links <%= current_user.subscribed_to?(@discussion) ? 'discussion-subscribed' : 'discussion-not-subscribed' %>">
         <%= link_to t('discussions.subscribe'), scoped_subscribe_path(@discussion), method: :POST, remote: true, class: 'discussion-subscribe' %>
@@ -38,7 +38,7 @@
   </div>
 <% end %>
 
-<% (@conversion_preview ? @discussion.comments : @discussion.comments.reject(&:new_record?)).each do |comment| %>
+<% @discussion.comments.reject(&:new_record?).each do |comment| %>
   <% by_current_user = comment.poster && current_user == comment.poster %>
   <div class="comment" id="comment-<%= comment.id %>">
     <div class="comment-meta">
@@ -89,7 +89,7 @@
         </div>
       <% end %>
     </div>
-    <% if by_current_user && !@conversion_preview %>
+    <% if by_current_user %>
       <div class="edit-comment-form">
         <%= form_with(model: comment, url: scoped_comment_path(comment), method: :PATCH) do |f| %>
           <h3><%= t('discussions.edit_comment_header') %></h3>
@@ -106,18 +106,16 @@
     <% end %>
   </div>
 <% end %>
-<% unless @conversion_preview %>
-  <div class="post-reply">
-    <h3><%= t('discussions.new_comment_heading') %></h3>
-    <% if current_user && @comment %>
-      <%= form_with(model: @comment, url: scoped_comment_create_path(@discussion), method: :POST) do |f| %>
-        <%= render partial: 'discussions/comment_entry', locals: { f: f } %>
-        <%= f.submit t('discussions.new_comment_submit') %>
-      <% end %>
-    <% else %>
-      <p>
-        <%= link_to t('discussions.sign_in_to_post_comment'), new_user_session_path(return_to: request.fullpath) %>
-      </p>
+<div class="post-reply">
+  <h3><%= t('discussions.new_comment_heading') %></h3>
+  <% if current_user && @comment %>
+    <%= form_with(model: @comment, url: scoped_comment_create_path(@discussion), method: :POST) do |f| %>
+      <%= render partial: 'discussions/comment_entry', locals: { f: f } %>
+      <%= f.submit t('discussions.new_comment_submit') %>
     <% end %>
-  </div>
-<% end %>
+  <% else %>
+    <p>
+      <%= link_to t('discussions.sign_in_to_post_comment'), new_user_session_path(return_to: request.fullpath) %>
+    </p>
+  <% end %>
+</div>
