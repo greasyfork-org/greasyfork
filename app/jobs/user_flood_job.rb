@@ -2,7 +2,7 @@ class UserFloodJob < ApplicationJob
   queue_as :low
 
   CHECK_COUNT = 100
-  THRESHOLD = 1
+  THRESHOLD = 25
   IGNORED_DOMAINS = %w[gmail.com].freeze
 
   def perform
