@@ -32,7 +32,7 @@
       dosr = @user.discussions_on_scripts_written  %>
       <section id="user-discussions-on-scripts-written">
         <header>
-          <h3><%=t('users.discussions_on_scripts')%> <a href="<%=forum_path%>discussions/feed.rss?script_author=<%=@user.id%>"><img src="<%=asset_path('feed-icon-14x14.png')%>" alt="<%=t('users.discussions_on_scripts_feed_alt')%>" rel="nofollow"></a></h3>
+          <h3><%= t('users.discussions_on_scripts') %></h3>
         </header>
         <% if dosr.empty? %>
           <p><%=t('users.discussions_on_scripts_none')%></p>
