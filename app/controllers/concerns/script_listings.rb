@@ -27,7 +27,7 @@ module ScriptListings
     if params[:set].nil?
       begin
         with = sphinx_options_for_request
-        with[:locale] = search_locale
+        with[:locale] = search_locale if search_locale
 
         if params[:site]
           if params[:site] == '*'
