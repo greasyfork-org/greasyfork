@@ -2,7 +2,7 @@ require 'localizing_model'
 require 'css_to_js_converter'
 
 class Script < ActiveRecord::Base
-  self.ignored_columns = %w(use_new_discussions)
+  self.ignored_columns = %w[use_new_discussions]
 
   include LocalizingModel
 
@@ -499,12 +499,12 @@ class Script < ActiveRecord::Base
 
   def consecutive_bad_ratings?
     recent_ratings = discussions
-                         .with_actual_rating
-                         .where(['created_at >= ?', code_updated_at])
-                         .reorder(:created_at)
-                         .last(CONSECUTIVE_BAD_RATINGS_COUNT)
-                         .reject(&:author_posted?)
-                         .map(&:rating)
+                     .with_actual_rating
+                     .where(['created_at >= ?', code_updated_at])
+                     .reorder(:created_at)
+                     .last(CONSECUTIVE_BAD_RATINGS_COUNT)
+                     .reject(&:author_posted?)
+                     .map(&:rating)
     recent_ratings.count == CONSECUTIVE_BAD_RATINGS_COUNT && recent_ratings.all? { |rr| rr == ForumDiscussion::RATING_BAD }
   end
 
