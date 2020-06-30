@@ -2,8 +2,6 @@ require 'localizing_model'
 require 'css_to_js_converter'
 
 class Script < ActiveRecord::Base
-  self.ignored_columns = %w[use_new_discussions]
-
   include LocalizingModel
 
   CONSECUTIVE_BAD_RATINGS_COUNT = 3
