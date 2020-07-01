@@ -39,16 +39,7 @@
             <script src="https://app.codefund.io/properties/620/funder.js?target=codefund-1" async="async"></script>
           </li>
         <% end %>
-        <% if @dual_ads %>
-          <%= render partial: 'scripts/script', collection: @scripts[0..4], cached: params[:locale_override].nil? ? ->(script) { [script, request_locale] } : false %>
-          <li class="ad-entry">
-            <div id="codefund-2"><!-- fallback content --></div>
-            <script src="https://app.codefund.io/properties/855/funder.js?target=codefund-2" async="async"></script>
-          </li>
-          <%= render partial: 'scripts/script', collection: @scripts[5..], cached: params[:locale_override].nil? ? ->(script) { [script, request_locale] } : false %>
-        <% else %>
-          <%= render partial: 'scripts/script', collection: @scripts, cached: params[:locale_override].nil? ? ->(script) { [script, request_locale] } : false %>
-        <% end %>
+        <%= render partial: 'scripts/script', collection: @scripts, cached: params[:locale_override].nil? ? ->(script) { [script, request_locale] } : false %>
       </ol>
     <% end %>
 

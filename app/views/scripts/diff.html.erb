@@ -1,15 +1,6 @@
 <%- title t('scripts.diff_title', script: @script.name(request_locale)) %>
 <%- description "Differences in #{@script.name(request_locale)} between #{@old_version.version} and #{@new_version.version}" %>
 
-<% if @show_ad %>
-  <!-- BEGIN COPY CODEFUND EMBED -->
-  <div id="codefund"></div>
-  <script
-    src="https://app.codefund.io/properties/619/funder.js"
-    async="async"></script>
-  <!-- END COPY CODEFUND EMBED -->
-<% end %>
-
 <p>
   <%=t('scripts.diff_old_version')%> <%=link_to('v' + @old_version.version, show_code_script_path(@script, :version =>  @old_version.id))%> <%=markup_date(@old_version.created_at)%> <%=@old_version.changelog%><br>
   <%=t('scripts.diff_new_version')%> <%=link_to('v' + @new_version.version, show_code_script_path(@script, :version =>  @new_version.id))%> <%=markup_date(@new_version.created_at)%> <%=@new_version.changelog%><br>
