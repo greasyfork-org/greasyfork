@@ -68,5 +68,5 @@ Rails.application.configure do
 
   config.active_job.queue_adapter = :inline
 
-  config.hosts << 'greasyfork.local'
+  config.hosts += %w[greasyfork.local test.greasyfork.org]
 end

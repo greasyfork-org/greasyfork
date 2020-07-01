@@ -11,9 +11,9 @@ module ShowsAds
 
   def choose_ad_method_for_script(script)
     return nil unless eligible_for_ads?(script)
-    return 'cf' if script.localized_attributes.where(attribute_key: 'additional_info').none?
+    return 'ca' if script.localized_attributes.where(attribute_key: 'additional_info').none?
 
-    script.adsense_approved ? 'ga' : 'cf'
+    script.adsense_approved ? 'ga' : 'ca'
   end
 
   def choose_ad_method_for_scripts(scripts)
