@@ -6,7 +6,6 @@ class HomeController < ApplicationController
 
   def index
     @ad_method = choose_ad_method
-    @show_additional_ad = eligible_for_ads?
   end
 
   def preview_markup
