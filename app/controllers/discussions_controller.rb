@@ -6,12 +6,14 @@ class DiscussionsController < ApplicationController
 
   before_action :authenticate_user!, only: [:create, :subscribe, :unsubscribe]
   before_action :moderators_only, only: :destroy
+  before_action :greasy_only, only: :new
 
   layout 'discussions', only: :index
+  layout 'application', only: :new
 
   def index
     @discussions = Discussion
-                   .includes(:poster, :script)
+                   .includes(:poster, :script, :discussion_category)
                    .order(stat_last_reply_date: :desc)
     case script_subset
     when :sleazyfork
@@ -72,11 +74,17 @@ class DiscussionsController < ApplicationController
     @comment = @discussion.comments.build(text_markup: current_user&.preferred_markup)
     @subscribe = current_user&.subscribed_to?(@discussion)
 
-    render layout: 'scripts' if @script
+    render layout: @script ? 'scripts' : 'application'
+  end
+
+  def new
+    @discussion = Discussion.new(poster: current_user)
+    @discussion.comments.build(poster: current_user)
+    @subscribe = true
   end
 
   def create
-    discussion = discussion_scope.build(discussion_params)
+    discussion = discussion_scope.new(discussion_params)
     discussion.poster = discussion.comments.first.poster = current_user
     if @script
       discussion.script = @script
@@ -131,6 +139,8 @@ class DiscussionsController < ApplicationController
   end
 
   def discussion_params
-    params.require(:discussion).permit(:rating, comments_attributes: [:text, :text_markup, attachments: []])
+    params
+      .require(:discussion)
+      .permit(:rating, :title, :discussion_category_id, comments_attributes: [:text, :text_markup, attachments: []])
   end
 end

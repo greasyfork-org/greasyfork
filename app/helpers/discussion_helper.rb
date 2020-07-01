@@ -4,8 +4,13 @@ module DiscussionHelper
   end
 
   def discussion_snippet(discussion)
-    first_comment = discussion.comments.first
-    format_user_text_as_plain(first_comment.text, first_comment.text_markup).truncate(200)
+    if discussion.for_script?
+      first_comment = discussion.comments.first
+      text = format_user_text_as_plain(first_comment.text, first_comment.text_markup)
+    else
+      text = discussion.title
+    end
+    text.truncate(200)
   end
 
   def scoped_comment_create_path(discussion)

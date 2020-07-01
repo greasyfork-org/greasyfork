@@ -11,7 +11,9 @@
 
 <div class="discussion-header">
   <h3>
-    <% if @discussion.actual_rating? %>
+    <% if @discussion.title %>
+      <%= @discussion.title %>
+    <% elsif @discussion.actual_rating? %>
       <%= t('discussions.review_heading_html', user: render_poster(@discussion), rating: t("discussions.ratings.#{@discussion.rating_key}")) %>
     <% else %>
       <%= t('discussions.question_heading_html', user: render_poster(@discussion)) %>
@@ -93,8 +95,16 @@
       <div class="edit-comment-form">
         <%= form_with(model: comment, url: scoped_comment_path(comment), method: :PATCH) do |f| %>
           <h3><%= t('discussions.edit_comment_header') %></h3>
+          <% if comment.first_comment? && !comment.discussion.for_script? %>
+            <%= f.fields_for comment.discussion do |df| %>
+              <div class="form-control">
+                <%= df.label :title %>
+                <%= df.text_field :title, required: true, maxlength: 255, size: nil %>
+              </div>
+            <% end %>
+          <% end %>
           <%= render partial: 'discussions/comment_entry', locals: { f: f } %>
-          <% if comment.first_comment? %>
+          <% if comment.first_comment? && comment.discussion.for_script? %>
             <%= f.fields_for comment.discussion do |df| %>
               <%= render partial: 'discussions/rating_entry', locals: { f: df } %>
             <% end %>

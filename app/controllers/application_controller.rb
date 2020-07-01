@@ -186,6 +186,10 @@ class ApplicationController < ActionController::Base
     return current_user.show_sensitive ? :all : :greasyfork
   end
 
+  def greasy_only
+    render_404 unless greasy?
+  end
+
   helper_method :cache_with_log, :sleazy?, :script_subset, :site_name
 
   def get_script_from_input(value, allow_deleted: false)

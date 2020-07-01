@@ -4,10 +4,12 @@
 
 <div class="discussion-list-item">
   <div class="discussion-meta">
-    <% if show_script %>
+    <% if !discussion.for_script? || show_script %>
       <div class="discussion-meta-item discussion-meta-item-script-name">
         <% if discussion.script %>
           <%= link_to discussion.script.name(request_locale), script_path(discussion.script) %>
+        <% else %>
+          <%= t("discussions.categories.#{discussion.discussion_category.category_key}.name") %>
         <% end %>
       </div>
     <% end %>
@@ -22,12 +24,10 @@
       <% end %>
     </div>
   </div>
-  <% if discussion.script %>
-    <%= link_to script_discussion_path(discussion.script, discussion), class: 'discussion-title' do %>
-      <% if discussion.actual_rating? -%><span class="rating-icon rating-icon-<%= discussion.rating_key %>"><%= t("discussions.ratings_short.#{discussion.rating_key}") %></span><% end
-      %><span class="discussion-snippet">
-        <%= truncate(format_user_text_as_plain(discussion.comments.first.text, discussion.comments.first.text_markup), length: 200) %>
-      </span>
-    <% end %>
+  <%= link_to discussion.path, class: 'discussion-title' do %>
+    <% if discussion.actual_rating? -%><span class="rating-icon rating-icon-<%= discussion.rating_key %>"><%= t("discussions.ratings_short.#{discussion.rating_key}") %></span><% end
+    %><span class="discussion-snippet">
+      <%= discussion_snippet(discussion) %>
+    </span>
   <% end %>
 </div>

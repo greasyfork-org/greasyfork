@@ -6,7 +6,7 @@ class Discussion < ApplicationRecord
 
   # Optional because the user may no longer exist.
   belongs_to :poster, class_name: 'User', optional: true
-  belongs_to :script
+  belongs_to :script, optional: true
   belongs_to :stat_last_replier, class_name: 'User', optional: true
   belongs_to :discussion_category
   has_many :comments, dependent: :destroy
@@ -17,7 +17,23 @@ class Discussion < ApplicationRecord
 
   accepts_nested_attributes_for :comments
 
-  validates :rating, inclusion: { in: [RATING_QUESTION, RATING_BAD, RATING_OK, RATING_GOOD] }
+  validates :title, length: { maximum: 255 }
+
+  validates :title, absence: true, if: :for_script?
+  validates :rating, inclusion: { in: [RATING_QUESTION, RATING_BAD, RATING_OK, RATING_GOOD] }, if: :for_script?
+
+  validates :title, presence: true, unless: :for_script?
+  validates :rating, absence: true, unless: :for_script?
+
+  validate do
+    if discussion_category_id == DiscussionCategory.script_discussions.id
+      errors.add(:category, :invalid) unless script_id
+    else
+      errors.add(:category, :invalid) if script_id
+    end
+  end
+
+  strip_attributes
 
   def replies?
     comments.count > 1
@@ -65,12 +81,11 @@ class Discussion < ApplicationRecord
     end
   end
 
-  def title(locale: nil)
-    if actual_rating?
-      I18n.t('discussions.review_title', script_name: script.name(locale), locale: locale)
-    else
-      I18n.t('discussions.question_title', script_name: script.name(locale), locale: locale)
-    end
+  def display_title(locale: nil)
+    return title if title
+    return I18n.t('discussions.review_title', script_name: script.name(locale), locale: locale) if actual_rating?
+
+    I18n.t('discussions.question_title', script_name: script.name(locale), locale: locale)
   end
 
   def update_stats!
@@ -88,5 +103,9 @@ class Discussion < ApplicationRecord
       stat_last_reply_date: last_comment.created_at,
       stat_last_replier_id: last_comment.poster_id,
     }
+  end
+
+  def for_script?
+    script_id.present?
   end
 end

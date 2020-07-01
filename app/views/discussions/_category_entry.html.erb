@@ -1,0 +1,6 @@
+<div class="form-control radio-group discussion-rating">
+  <%= f.label :category %><br>
+  <% DiscussionCategory.non_script.each do |category| %>
+    <%= f.radio_button :discussion_category_id, category.id, required: true %> <%= f.label :discussion_category_id, t('discussions.category_display', name: t("discussions.categories.#{category.category_key}.name"), description: t("discussions.categories.#{category.category_key}.description")), value: category.id, class: 'radio-label' %><br>
+  <% end %>
+</div>

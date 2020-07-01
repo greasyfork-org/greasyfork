@@ -39,9 +39,13 @@ class CommentsController < ApplicationController
       return
     end
     Comment.transaction do
-      rating = params.dig(:comment, :discussion, :rating)
-      params[:comment].delete(:discussion)
-      @discussion.update!(rating: rating) if rating && comment.first_comment? && @discussion.poster == current_user && @discussion.script
+      if comment.first_comment? && @discussion.poster == current_user
+        rating = params.dig(:comment, :discussion, :rating)
+        title = params.dig(:comment, :discussion, :title)
+        @discussion.update!(rating: rating) if rating && @discussion.for_script?
+        @discussion.update!(title: title) if title && !@discussion.for_script?
+        params[:comment].delete(:discussion)
+      end
       comment.edited_at = Time.now
       comment.attachments.select { |attachment| params["remove-attachment-#{attachment.id}"] == '1' }.each(&:destroy!)
       comment.update!(comments_params)

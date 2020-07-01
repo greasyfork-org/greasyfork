@@ -22,10 +22,10 @@ class ForumMailer < ApplicationMailer
   def comment_on_subscribed(user, comment)
     site_name = 'Greasy Fork'
     locale = user.available_locale_code
-    mail(to: user.email, subject: t('mailers.subscribed_discussion.subject', discussion_title: comment.discussion.title, site_name: site_name, locale: locale)) do |format|
+    mail(to: user.email, subject: t('mailers.subscribed_discussion.subject', discussion_title: comment.discussion.display_title(locale: locale), site_name: site_name, locale: locale)) do |format|
       format.text do
         render plain: t('mailers.subscribed_discussion.text',
-                        discussion_title: comment.discussion.title(locale: locale),
+                        discussion_title: comment.discussion.display_title(locale: locale),
                         site_name: site_name,
                         commenter_name: comment.poster.name,
                         comment_text: format_user_text_as_plain(comment.text, comment.text_markup),

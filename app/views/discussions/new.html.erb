@@ -1,0 +1,19 @@
+<%- title t('discussions.new_title') %>
+
+<div class="post-discussion">
+  <h3><%= t('discussions.new_title') %></h3>
+  <%= form_with(model: @discussion, url: discussions_path, method: :POST) do |f| %>
+    <div class="form-control">
+      <%= f.label :title %>
+      <%= f.text_field :title, required: true, maxlength: 255, size: nil %>
+    </div>
+
+    <%= f.fields_for(:comments) do |cf| %>
+      <%= render partial: 'discussions/comment_entry', locals: { f: cf, markup_name: 'discussion[comments_attributes][0][text_markup]' } %>
+    <% end %>
+
+    <%= render partial: 'discussions/category_entry', locals: { f: f} %>
+    <%= render partial: 'discussions/subscribe', locals: { subscribe: @subscribe} %>
+    <%= f.submit t('discussions.new_discussion_submit') %>
+  <% end %>
+</div>

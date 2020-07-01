@@ -135,7 +135,13 @@ Rails.application.routes.draw do
     end
     post 'script_sets/add_to_set', to: 'script_sets#add_to_set', as: 'add_to_script_set'
 
-    resources :discussions, only: :index
+    resources :discussions, only: [:index, :new, :create, :show] do
+      member do
+        post :subscribe
+        post :unsubscribe
+      end
+      resources :comments, only: [:create, :destroy, :update]
+    end
 
     get 'import', to: 'import#index', as: 'import_start'
     get 'import/userscriptsorg', to: 'import#userscriptsorg', as: 'import_userscriptsorg'
