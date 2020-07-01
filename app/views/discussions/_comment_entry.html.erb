@@ -6,9 +6,11 @@
   <%= f.radio_button(:text_markup, 'markdown') %><%= link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', { target: 'markup_choice' } %>
 </span>
 <br>
+
 <div class="previewable" data-markup-option-name="<%= markup_name %>" data-preview-label="<%= t('common.preview_tab') %>" data-write-label="<%= t('common.write_tab') %>">
   <%= f.text_area :text, required: true, class: 'comment-entry' %>
 </div>
+
 <div class="comment-screenshot-control">
   <%= t('scripts.screenshots_explanation', size: number_to_human_size(Rails.configuration.screenshot_max_size), number: Rails.configuration.screenshot_max_count ) %>
   <div>
@@ -27,9 +29,10 @@
       <% end %>
     </div>
   <% end %>
-  <% if f.object.new_record? && !f.object.discussion.new_record? && f.object.discussion.poster == current_user %>
-    <%= f.fields_for f.object.discussion do |discussion_f| %>
-      <%= render partial: 'rating_entry', locals: { f: discussion_f, full_label: true } %>
-    <% end %>
-  <% end %>
 </div>
+
+<% if f.object.new_record? && !f.object.discussion.new_record? && f.object.discussion.poster == current_user %>
+  <%= f.fields_for f.object.discussion do |discussion_f| %>
+    <%= render partial: 'rating_entry', locals: { f: discussion_f, full_label: true } %>
+  <% end %>
+<% end %>

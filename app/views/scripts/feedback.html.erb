@@ -36,64 +36,67 @@
   </p>
 <% end %>
 
-<h3><%=t('scripts.feedback_discussions_heading')%></h3>
-<% #if we're showing a lot of them, have a link on top too
-   if @discussions.length > 10 %>
-  <p>
-    <%= it('scripts.feedback_or_report', report_link: It.link(feedback_script_path(@script), rel: :nofollow), feedback_link: It.link("#post-discussion", rel: :nofollow)) %>
-  </p>
-<% end %>
-<% if @discussions.empty? %>
-  <p id="no-discussions">
-    <%= t('scripts.feedback_no_discussions_on_page_form') %>
-  </p>
-<% else %>
-  <div class="script-discussion-list">
-    <%= render collection: @discussions, partial: 'discussions/discussion' %>
-  </div>
-  <%= will_paginate @discussions %>
-<% end %>
-<h3 id="post-discussion"><%= t('discussions.new_discussion_heading') %></h3>
-<p>
-  <%= it('scripts.feedback_report_instead', site_name: site_name, rules_link: It.link(help_code_rules_path), report_link: It.link(report_script_path(@script), rel: :nofollow)) %>
-</p>
-<% if current_user %>
-  <%= form_with(model: @discussion, url: script_discussions_path(@script), method: :POST) do |f| %>
-    <%= f.fields_for(:comments) do |cf| %>
-      <%= render partial: 'discussions/comment_entry', locals: { f: cf, markup_name: 'discussion[comments_attributes][0][text_markup]' } %>
-    <% end %>
-    <%= render partial: 'discussions/rating_entry', locals: { f: f } %>
-    <%= f.submit t('discussions.new_discussion_submit') %>
+<div class="post-discussion">
+  <h3><%=t('scripts.feedback_discussions_heading')%></h3>
+  <% #if we're showing a lot of them, have a link on top too
+     if @discussions.length > 10 %>
+    <p>
+      <%= it('scripts.feedback_or_report', report_link: It.link(feedback_script_path(@script), rel: :nofollow), feedback_link: It.link("#post-discussion", rel: :nofollow)) %>
+    </p>
   <% end %>
-<% else %>
-  <p>
-    <%= link_to t('discussions.sign_in_to_post_discussion'), new_user_session_path(return_to: request.fullpath) %>
-  </p>
-<% end %>
-
-<h3 id="feedback-favoriters"><%=t('scripts.feedback_favoriters_heading')%></h3>
-<div>
-  <% if @script.favoriters.empty? %>
-    <%=t('scripts.feedback_no_favoriters')%>
+  <% if @discussions.empty? %>
+    <p id="no-discussions">
+      <%= t('scripts.feedback_no_discussions_on_page_form') %>
+    </p>
   <% else %>
-    <%=t('scripts.feedback_favoriters_user_list_intro')%>
-    <ul class="inline-list"><% @script.favoriters.each do |user| %><li><%=link_to user.name, user%></li><% end %></ul>.
+    <div class="script-discussion-list">
+      <%= render collection: @discussions, partial: 'discussions/discussion' %>
+    </div>
+    <%= will_paginate @discussions %>
   <% end %>
-</div>
-<p>
-  <% if user_signed_in? %>
-    <%=form_tag(add_to_script_set_path) do |f| %>
-      <input type="hidden" name="script_id" value="<%=@script.id%>">
-      <input type="hidden" name="return_to" value="<%=url_for(:anchor => 'feedback-favoriters')%>">
-      <% if @script.favoriters.find{|f| f.id == current_user.id}.nil? %>
-        <input type="hidden" name="action-set" value="ai-fav">
-        <input type="submit" value="<%=t('scripts.sets_add_inclusion', :set_name => t('script_sets.favorites_name'))%>">
-      <% else %>
-        <input type="hidden" name="action-set" value="ri-fav">
-        <input type="submit" value="<%=t('scripts.sets_remove_inclusion', :set_name => t('script_sets.favorites_name'))%>">
+  <h3 id="post-discussion"><%= t('discussions.new_discussion_heading') %></h3>
+  <p>
+    <%= it('scripts.feedback_report_instead', site_name: site_name, rules_link: It.link(help_code_rules_path), report_link: It.link(report_script_path(@script), rel: :nofollow)) %>
+  </p>
+  <% if current_user %>
+    <%= form_with(model: @discussion, url: script_discussions_path(@script), method: :POST) do |f| %>
+      <%= f.fields_for(:comments) do |cf| %>
+        <%= render partial: 'discussions/comment_entry', locals: { f: cf, markup_name: 'discussion[comments_attributes][0][text_markup]' } %>
       <% end %>
+      <%= render partial: 'discussions/rating_entry', locals: { f: f } %>
+      <%= render partial: 'discussions/subscribe', locals: { subscribe: @subscribe} %>
+      <%= f.submit t('discussions.new_discussion_submit') %>
     <% end %>
   <% else %>
-    <%=link_to(t('scripts.feedback_sign_in_to_favorite'), new_user_session_path(:return_to => url_for(:anchor => 'feedback-favoriters')), {:rel => :nofollow})%>
+    <p>
+      <%= link_to t('discussions.sign_in_to_post_discussion'), new_user_session_path(return_to: request.fullpath) %>
+    </p>
   <% end %>
-</p>
+
+  <h3 id="feedback-favoriters"><%=t('scripts.feedback_favoriters_heading')%></h3>
+  <div>
+    <% if @script.favoriters.empty? %>
+      <%=t('scripts.feedback_no_favoriters')%>
+    <% else %>
+      <%=t('scripts.feedback_favoriters_user_list_intro')%>
+      <ul class="inline-list"><% @script.favoriters.each do |user| %><li><%=link_to user.name, user%></li><% end %></ul>.
+    <% end %>
+  </div>
+  <p>
+    <% if user_signed_in? %>
+      <%=form_tag(add_to_script_set_path) do |f| %>
+        <input type="hidden" name="script_id" value="<%=@script.id%>">
+        <input type="hidden" name="return_to" value="<%=url_for(:anchor => 'feedback-favoriters')%>">
+        <% if @script.favoriters.find{|f| f.id == current_user.id}.nil? %>
+          <input type="hidden" name="action-set" value="ai-fav">
+          <input type="submit" value="<%=t('scripts.sets_add_inclusion', :set_name => t('script_sets.favorites_name'))%>">
+        <% else %>
+          <input type="hidden" name="action-set" value="ri-fav">
+          <input type="submit" value="<%=t('scripts.sets_remove_inclusion', :set_name => t('script_sets.favorites_name'))%>">
+        <% end %>
+      <% end %>
+    <% else %>
+      <%=link_to(t('scripts.feedback_sign_in_to_favorite'), new_user_session_path(:return_to => url_for(:anchor => 'feedback-favoriters')), {:rel => :nofollow})%>
+    <% end %>
+  </p>
+</div>

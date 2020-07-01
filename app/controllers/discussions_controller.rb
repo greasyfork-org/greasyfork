@@ -70,6 +70,8 @@ class DiscussionsController < ApplicationController
     end
 
     @comment = @discussion.comments.build(text_markup: current_user&.preferred_markup)
+    @subscribe = current_user&.subscribed_to?(@discussion)
+
     render layout: 'scripts' if @script
   end
 
@@ -83,6 +85,9 @@ class DiscussionsController < ApplicationController
     discussion.comments.first.first_comment = true
     discussion.save!
     discussion.comments.first.send_notifications!
+
+    DiscussionSubscription.find_or_create_by!(user: current_user, discussion: discussion) if params[:subscribe] == '1'
+
     redirect_to discussion.path
   end
 

@@ -13,10 +13,16 @@ class CommentsController < ApplicationController
       @comment = @discussion.comments.build(comments_params)
       @comment.poster = current_user
       @comment.save!
+
+      if params[:subscribe] == '1'
+        DiscussionSubscription.find_or_create_by!(user: current_user, discussion: @discussion)
+      else
+        DiscussionSubscription.find_by(user: current_user, discussion: @discussion)&.destroy
+      end
+
       @comment.send_notifications!
-      redirect_to @comment.path
-      return
     end
+    redirect_to @comment.path
   rescue ActiveRecord::Rollback
     if @discussion.script
       @script = @discussion.script

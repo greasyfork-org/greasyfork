@@ -13,11 +13,14 @@ class ScriptDiscussionsTest < ApplicationSystemTestCase
       assert_content 'this is my comment'
     end
     assert_equal Discussion::RATING_GOOD, Discussion.last.rating
+    assert user.subscribed_to?(Discussion.last)
+
     click_link 'Edit'
     within '.edit-comment-form' do
       fill_in 'comment_text', with: 'this is an updated reply'
       choose 'Bad'
     end
+
     assert_changes -> { Discussion.last.rating }, from: Discussion::RATING_GOOD, to: Discussion::RATING_BAD do
       click_button 'Update comment'
       assert_content 'this is an updated reply'
@@ -31,10 +34,14 @@ class ScriptDiscussionsTest < ApplicationSystemTestCase
     visit feedback_script_url(discussion.script, locale: :en)
     click_link 'this is a test discussion'
     fill_in 'comment_text', with: 'this is a reply'
+    check 'Notify me of any replies'
+
     assert_difference -> { Comment.count } => 1 do
       click_button 'Post reply'
       assert_content 'this is a reply'
     end
+
+    assert user.subscribed_to?(Discussion.last)
 
     click_link 'Edit'
     within '.edit-comment-form' do
@@ -48,13 +55,17 @@ class ScriptDiscussionsTest < ApplicationSystemTestCase
     within '.post-reply' do
       fill_in 'comment_text', with: 'this is an another reply'
       choose 'Bad'
+      uncheck 'Notify me of any replies'
     end
+
     assert_difference -> { Comment.count } => 1 do
       assert_changes -> { discussion.reload.rating }, to: Discussion::RATING_BAD do
         click_button 'Post reply'
         assert_content 'this is an another reply'
       end
     end
+
+    assert !user.subscribed_to?(Discussion.last)
   end
 
   test 'subscribing to a discussion' do
