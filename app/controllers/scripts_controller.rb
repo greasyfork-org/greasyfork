@@ -79,6 +79,7 @@ class ScriptsController < ApplicationController
         @canonical_params = [:id, :version]
         set_bots_directive
         @ad_method = choose_ad_method_for_script(@script)
+        @ad_method = 'gu' if @ad_method == 'ga'
       end
       format.js do
         redirect_to @script.code_url
