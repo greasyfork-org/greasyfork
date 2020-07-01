@@ -44,10 +44,14 @@ module ApplicationHelper
     return h
   end
 
-  def current_url_with_params(other_params = {})
+  def safe_params(other_params = {})
     r = params.except(:only_path, :protocol, :host, :subdomain, :domain, :tld_length, :subdomain, :port, :anchor, :trailing_slash, :script_name, :controller, :action, :format).merge(other_params)
     r.permit!
-    return url_for(r)
+    r
+  end
+
+  def current_url_with_params(other_params = {})
+    return url_for(safe_params(other_params))
   end
 
   def current_path_with_params(other_params = {})

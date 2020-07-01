@@ -94,24 +94,11 @@ class User < ApplicationRecord
     Discussion.where(script: script_ids).order(stat_last_reply_date: :desc)
   end
 
-  def slugify(name)
-    # take out swears
-    r = name.downcase.gsub(/motherfucking|motherfucker|fucking|fucker|fucks|fuck|shitty|shits|shit|niggers|nigger|cunts|cunt/, '')
-    # multiple non-alphas into one
-    r.gsub!(/([^[:alnum:]])[^[:alnum:]]+/) { |_| Regexp.last_match(1) }
-    # leading non-alphas
-    r.gsub!(/^[^[:alnum:]]+/, '')
-    # trailing non-alphas
-    r.gsub!(/[^[:alnum:]]+$/, '')
-    # non-alphas into dashes
-    r.gsub!(/[^[:alnum:]]/, '-')
-    # use "user" if we don't have something suitable
-    r = 'user' if r.empty?
-    return r
-  end
-
   def to_param
-    "#{id}-#{slugify(name)}"
+    slug = slugify(name)
+    return id if slug.blank?
+
+    "#{id}-#{slug}"
   end
 
   def moderator?

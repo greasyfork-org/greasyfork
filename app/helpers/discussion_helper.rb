@@ -17,7 +17,7 @@ module DiscussionHelper
     if discussion.script
       script_discussion_comments_path(discussion.script, discussion)
     else
-      discussion_comments_path(discussion)
+      category_discussion_comments_path(discussion, category: discussion.discussion_category)
     end
   end
 
@@ -25,7 +25,7 @@ module DiscussionHelper
     if comment.discussion.script
       script_discussion_comment_path(comment.discussion.script, comment.discussion, comment)
     else
-      discussion_comment_path(comment.discussion, comment)
+      category_discussion_comment_path(comment.discussion, comment, category: comment.discussion.discussion_category)
     end
   end
 
@@ -33,7 +33,7 @@ module DiscussionHelper
     if discussion.script
       subscribe_script_discussion_path(discussion.script, discussion)
     else
-      subscribe_discussion_path(discussion)
+      subscribe_category_discussion_path(discussion, category: discussion.discussion_category)
     end
   end
 
@@ -41,7 +41,7 @@ module DiscussionHelper
     if discussion.script
       unsubscribe_script_discussion_path(discussion.script, discussion)
     else
-      unsubscribe_discussion_path(discussion)
+      unsubscribe_category_discussion_path(discussion, category: discussion.discussion_category)
     end
   end
 

@@ -27,7 +27,7 @@ class DiscussionsTest < ApplicationSystemTestCase
     user = User.first
     login_as(user, scope: :user)
     discussion = discussions(:non_script_discussion)
-    visit discussion_url(discussion, locale: :en)
+    visit discussion.url
     fill_in 'comment_text', with: 'this is a reply'
     check 'Notify me of any replies'
 

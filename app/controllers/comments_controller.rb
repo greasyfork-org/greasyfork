@@ -62,7 +62,7 @@ class CommentsController < ApplicationController
   private
 
   def load_discussion
-    @discussion = Discussion.find(params[:discussion_id])
+    @discussion = Discussion.find(params[:discussion_id] || params[:category_discussion_id])
   end
 
   def comments_params

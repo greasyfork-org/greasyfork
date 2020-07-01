@@ -135,13 +135,15 @@ Rails.application.routes.draw do
     end
     post 'script_sets/add_to_set', to: 'script_sets#add_to_set', as: 'add_to_script_set'
 
-    resources :discussions, only: [:index, :new, :create, :show] do
+    resources :discussions, path: 'discussions/:category', category: /greasyfork|development|requests|script-discussions/, only: [:index, :show], as: 'category_discussion' do
       member do
         post :subscribe
         post :unsubscribe
       end
       resources :comments, only: [:create, :destroy, :update]
     end
+
+    resources :discussions, only: [:index, :new, :create]
 
     get 'import', to: 'import#index', as: 'import_start'
     get 'import/userscriptsorg', to: 'import#userscriptsorg', as: 'import_userscriptsorg'

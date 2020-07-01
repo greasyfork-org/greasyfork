@@ -26,6 +26,11 @@ class DiscussionsController < ApplicationController
       raise "Unknown subset #{script_subset}"
     end
 
+    if params[:category]
+      @category = DiscussionCategory.find_by(category_key: params[:category])
+      @discussions = @discussions.where(discussion_category: @category) if @category
+    end
+
     if current_user
       case params[:me]
       when 'started'

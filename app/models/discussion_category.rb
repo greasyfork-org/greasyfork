@@ -8,4 +8,8 @@ class DiscussionCategory < ApplicationRecord
   def self.non_script
     where.not(category_key: 'script-discussions')
   end
+
+  def to_param
+    category_key
+  end
 end

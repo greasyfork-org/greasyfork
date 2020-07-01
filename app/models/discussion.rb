@@ -28,8 +28,8 @@ class Discussion < ApplicationRecord
   validate do
     if discussion_category_id == DiscussionCategory.script_discussions.id
       errors.add(:category, :invalid) unless script_id
-    else
-      errors.add(:category, :invalid) if script_id
+    elsif script_id
+      errors.add(:category, :invalid)
     end
   end
 
@@ -65,11 +65,17 @@ class Discussion < ApplicationRecord
     end
   end
 
+  def to_param
+    return super if for_script?
+
+    "#{id}-#{slugify(title)}"
+  end
+
   def path(locale: nil)
     if script
       Rails.application.routes.url_helpers.script_discussion_path(script, self, locale: locale)
     else
-      Rails.application.routes.url_helpers.discussion_path(self, locale: locale)
+      Rails.application.routes.url_helpers.category_discussion_path(self, category: discussion_category, locale: locale)
     end
   end
 
@@ -77,7 +83,7 @@ class Discussion < ApplicationRecord
     if script
       Rails.application.routes.url_helpers.script_discussion_url(script, self, locale: locale)
     else
-      Rails.application.routes.url_helpers.discussion_url(self, locale: locale)
+      Rails.application.routes.url_helpers.category_discussion_url(self, category: discussion_category, locale: locale)
     end
   end
 

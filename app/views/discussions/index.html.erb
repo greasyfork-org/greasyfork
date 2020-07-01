@@ -54,6 +54,7 @@
           </ul>
         </div>
       <% end %>
+
       <% if @by_user %>
         <div class="list-option-group">
           <ul>
@@ -62,6 +63,24 @@
           </ul>
         </div>
       <% end %>
+
+      <div class="list-option-group">
+        <%= t('discussions.category_filter.label') %>
+        <ul>
+          <% if @category.nil? %>
+            <li class="list-option list-current"><%= t('discussions.category_filter.all') %></li>
+          <% else %>
+            <li class="list-option"><%= link_to t('discussions.category_filter.all'), discussions_path(safe_params(category: nil, page: nil, locale: nil)) %></li>
+          <% end %>
+          <% DiscussionCategory.all.each do |dc| %>
+            <% if dc == @category %>
+              <li class="list-option list-current"><%= t("discussions.categories.#{dc.category_key}.name") %></li>
+            <% else %>
+              <li class="list-option"><%= link_to t("discussions.categories.#{dc.category_key}.name"), category_discussion_index_path(category: dc, page: nil) %></li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
 </div>
