@@ -26,6 +26,9 @@ class Locale < ApplicationRecord
       l = where(code: locale_code).order([:ui_available, :code])
       return l unless l.empty?
     end
+
+    return Locale.none if locale_code.nil?
+
     return where(['code like ?', locale_code + '-%']).order([:ui_available, :code])
   end
 
