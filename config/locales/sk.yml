@@ -907,6 +907,9 @@ sk:
     other_user_filter:
       all: "Všetky diskusie"
       comments_by: "Komentáre od %{user}"
+    category_filter:
+      label: Kategória
+      all: Všetky kategórie
     user_activity:
       title: "Nedávne komentáre"
       no_recent_activity: "Tento užívateľ nepridal v poslednej dobe žiadne komentáre."
@@ -921,6 +924,7 @@ sk:
     question_title: "Otázka k %{script_name}"
     subscribe: Prihlásiť na odber
     unsubscribe: Odhlásiť z odberu
+    notify: Upozorniť ma na každú odpoveď
     categories:
       greasyfork:
         name: Spätná väzba ku Greasy Fork
@@ -934,6 +938,8 @@ sk:
       script-discussions:
         name: Diskusia o skripte
         description: Diskusia o existujúcich užívateľských skriptoch a štýloch.
+    category_display: "%{name} - %{description}"
+    new_title: Nová diskusia
   common:
     error_preamble: "Boli zistené problémy s tým, čo ste poslali."
     allowed_elements_link: "(Pozri zoznam povolených značiek.)"
@@ -981,6 +987,8 @@ sk:
         reason: "Dôvod nahlásenia"
       discussion:
         rating: "Hodnotenie"
+        category: "Kategória"
+        title: Nadpis
   errors:
     messages:
       script_missing_name: "potrebné - uveďte v @name"

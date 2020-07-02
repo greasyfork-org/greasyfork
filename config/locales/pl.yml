@@ -171,6 +171,8 @@ pl:
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
     import: "Importuj skrypty"
+    new: "Opublikuj swój skrypt"
+    new_css: "Opublikuj swój styl"
     support_site: "Odwiedź stronę pomocy autora tego skryptu."
     support_email: "Napisz pocztówkę elektroniczną do autora tego skryptu, by uzyskać wsparcie."
     contribution_no_amount: "Podziękuj użytkownikowi %{author} wykonując dotację."
@@ -245,6 +247,7 @@ pl:
     ok_rating_explanation: "Ilość osób, które oceniły jako „Okej”."
     bad_rating_explanation: "Ilość osób, które oceniły jako „Zły”."
     write_your_own_html: "%{post_a_script_link} (lub %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "Opublikuj swój skrypt"
     learn_to_write_scripts_link_text: "dowiedz się, jak go napisać"
     feedback_or_report: "%{feedback_link:Zadaj pytanie, dodaj opinię}, lub %{report_link:zgłoś ten skrypt}."
     support_feedback_or_report: "%{support_url:Odwiedź stronę autora w celu uzyskania pomocy}, %{feedback_link:zadaj pytanie, napisz recenzję}, lub %{report_link:zgłoś skrypt}."
@@ -622,9 +625,106 @@ pl:
       post_new_script_link_text: 'udostępnić nowy skrypt'
     code_rules:
       title: "Zasady publikacji skryptów na %{site_name}"
+      content_html: >
+          <p>Tutaj znajdują się wymagania dotyczące skryptów publikowanych w %{site_name}.
+          Mające na celu utrzymanie %{site_name} bezpiecznym i użytecznym miejscem
+          dla skryptów użytkownika. Skrypty niespełniające tych wymagań mogą zostać
+          usunięte przez moderatorów %{site_name}.</p> <h4>Funkcjonalność</h4> <ul>
+
+          <li>Skrypty muszą zawierać opis tego, co robią oraz nie powinny celowo robić
+          innych rzeczy niezawartych w opisie. Użytkownik powinien wiedzieć, co robi
+          skrypt przed jego instalacją.</li>
+
+          <li>Skrypt musi mieć powód do bycia skryptem. Na przykład skrypt, który
+          po prostu przekierowuje użytkownika na stronę internetową, nie musi być
+          skryptem; może to być link.</li>
+
+          <li>Skrypty nie mogą wymagać od użytkowników wykonywania niezwiązanych działań,
+          takich jak wysyłanie płatności, subskrybowanie kanału lub polubienie strony,
+          aby skrypt działał.</li>
+
+          <li>Skrypty z możliwością ich monetyzacji (śledzenie, reklamy, koparki kryptowalut,
+          itd.) nie są zabronione, ale takie działania muszą być wyraźnie zaznaczone
+          w opisie skryptu lub dodatkowych informacjach.</li>
+
+          </ul> <h4>Kod</h4> <ul>
+
+          <li>Kod zamieszczony na tej stronie nie może być zaciemniany ani zminifikowany.
+          Dotyczy to także bundlerów takich jak webpack. Użytkownicy muszą mieć możliwość
+          podejrzenia i zrozumienia skryptu, zanim go zainstalują.</li>
+
+          <li>Biblioteki, których używa skrypt, powinny zostać dodane poprzez <code>@require</code>,
+          chyba że istnieje wyraźny techniczny powód, by tego nie robić. Jeśli kod
+          źródłowy biblioteki jest zawarty w kodzie skryptu, należy również dodać
+          informację o źródle biblioteki (np. komentarz zawierający adres URL i/lub
+          nazwę oraz wersję).</li>
+
+          <li>%{external_scripts_link:Korzystanie z zewnętrznego kodu JavaScript jest
+          ograniczone.}</li>
+
+          </ul> <h4>Prawa autorskie</h4> <ul>
+
+          <li>Twój skrypt musi szanować prawa autorskie innych osób. Obejmuje to sam
+          skrypt i wszystkie zasoby (na przykład obrazy), których używa. Jeśli zamierzasz
+          korzystać z cudzej zawartości, przestrzegaj ich postanowień licencyjnych
+          lub uzyskaj ich zgodę.</li>
+
+          <li>Nawet jeśli prawa autorskie nie są naruszone to ponowne publikowanie
+          skryptów, które znajdują się na %{site_name}, jest zabronione, chyba że
+          wprowadzają usprawnienia różniące się od oryginału.</li>
+
+          </ul> <h4>Inne</h4> <ul>
+
+          %{adult_content_requirement}
+
+          <li>Skrypty nie powinny sprawdzać dostępności aktualizacji częściej niż
+          raz dziennie. Należy pamiętać, że większość menedżerów skryptów użytkownika
+          obsługuje automatyczne aktualizacje, więc wykonywanie tego w skrypcie nie
+          jest konieczne.</li>
+
+          <li>Skrypty nie mogą zawierać <code>@include</code>, <code>@match</code>,
+          lub słów kluczowych, do których stron nie wprowadzają żadnej funkcjonalności.</li>
+
+          </ul> <p>Jeśli zauważysz skrypt, który nie przestrzega wyżej wymienionych
+          zasad, zgłoś go na stronie skryptu, przechodząc na podstronę Opinie, a następnie
+          klikając "zgłoś ten skrypt'".</p>
       adult_content_rule_html: "<li>Skrypty które zawierają treści dla dorosłych oraz dla stron które zawierają treści dla dorosłych muszą być oznaczone jako takie, aby użytkownicy mogli zdecydować czy chcą to zobaczyć.</li>"
     external_scripts:
       title: "Polityka %{site_name} dot. zewnętrznych skryptów"
+      content_html: >
+          <p>Skrypty użytkownika mają techniczną możliwość do ładowania i wykonywania
+          innych skryptów. Klucz metadanych %{require_doc_link:<code>@require</code>}
+          jest najprostszym sposobem, by to osiągnąć, lecz skrypty także mogą na przykład
+          użyć XmlHttpRequest do pobrania skryptu i wstrzyknięcia go w DOM.</p> <p>Mimo
+          że jest to przydatna funkcja i większość autorów skryptów używa jej do uzasadnionych
+          celów, może być również użyta złośliwie. Jedną z głównych zasad %{site_name}
+          jest to, że użytkownik powinien mieć możliwość sprawdzenia kodu skryptu.
+          Zewnętrzne skrypty mogą ominąć tę zasadę na kilka sposobów: mogą się zmieniać
+          bez żadnego ostrzeżenia i śladu, mogą udostępniać inny kod dla innych użytkowników
+          oraz mogą być użyte do ukrycia złośliwego kodu w znanych bibliotekach. Nawet
+          jeśli ktoś sprawdził zewnętrzny skrypt i uważa, że nie ma w nim nic nieprawidłowego,
+          to nie znaczy, że zawsze tak będzie.</p> <p>Aby umożliwić autorom skryptów
+          dalsze używanie zewnętrznych skryptów, %{site_name} zaimplementowało białą
+          listę wzorców adresów URL, które mogą być zawarte w skrypcie. Lista zawiera
+          lokalizacje skryptów, które:</p> <ul>
+
+          <li>Są publiczne</li>
+
+          <li>Nie będą często zmieniać ich zawartości</li>
+
+          <li>Będą prawdopodobnie przydatne więcej niż jednemu autorowi skryptu</li>
+
+          </ul> <p>Obecna lista:</p> %{allowed_require_list} <p>Jeśli spróbujesz opublikować
+          skrypt, który używa <code>@require</code> spoza tej listy, nie będziesz
+          w stanie zapisać skryptu.</p> <p>Jeśli skrypt, który chcesz dołączyć, jest
+          biblioteką JavaScript (na przykład jQuery lub YUI), spróbuj znaleźć ją na
+          wyżej wymienionych stronach. W szczególności %{cdnjs_link:cdnjs} i %{jsdelivr_link:jsDelivr}
+          mają szeroki wybór dostępnych bibliotek.</p> <p>Jeśli skrypt, który chcesz
+          dołączyć, nie jest dostępny na powyższych stronach, %{contact_link:daj nam
+          znać}, a spróbujemy go znaleźć (lub zamieść go sam!).</p> <p>Jeśli skrypt,
+          który chcesz dołączyć, jest napisany przez ciebie, możesz go zamieścić na
+          %{site_name} jako oddzielny wpis, wybierając typ skryptu "Biblioteka". Następnie
+          możesz dołączyć tę bibliotekę do skryptu.</p>
     script_rewriting:
       title: "Jak %{site_name} przepisze udostępnione skrypty"
       content_html: >
@@ -821,6 +921,9 @@ pl:
     other_user_filter:
       all: "Wszystkie dyskusje"
       comments_by: "Skomentowane przez %{user}"
+    category_filter:
+      label: Kategoria
+      all: Wszystkie kategorie
     user_activity:
       title: "Ostatnie komentarze"
       no_recent_activity: "Ten użytkownik nie opublikował ostatnio żadnych komentarzy."
@@ -835,6 +938,12 @@ pl:
     question_title: "Pytanie o %{script_name}"
     subscribe: Subskrybuj
     unsubscribe: Odsubskrybuj
+    notify: Powiadom mnie o wszelkich odpowiedziach
+    categories:
+      greasyfork:
+        name: Greasy Fork Feedback
+    category_display: "%{name} - %{description}"
+    new_title: Nowa dyskusja
   common:
     error_preamble: "Mieliśmy małe problemy z tym, co chciałeś napisać..."
     allowed_elements_link: "(zobacz dozwolony kod)"
@@ -882,6 +991,8 @@ pl:
         reason: "Powód zgłoszenia"
       discussion:
         rating: "Ocena"
+        category: "Kategoria"
+        title: Tytuł
   errors:
     messages:
       script_missing_name: "jest wymagana - wybierz jedną z dostępnych jako „@name”"

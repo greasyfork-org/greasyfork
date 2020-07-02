@@ -120,6 +120,8 @@ ja:
     derivatives_title: "%{script_name} に似ているスクリプト"
     derivatives_intro: "以下のスクリプトは、あなたのスクリプトを基にしている可能性があります (あるいはその逆)。ライセンス上の許可なくあなたのコードが使われている場合は、そのスクリプトのフィードバックに新しいスレッドを立て報告してください。"
     derivatives_script_html: "%{script}  作者:%{user} ライセンス: %{license} %{diff_link:[Diff]}"
+    derivatives_exact_copies_heading: "正確なコピー"
+    derivatives_similar_heading: "似ているスクリプト"
     listing_title_all_sites: "すべてのサイトで実行されるユーザースクリプト"
     listing_description_all_sites: "すべてのサイトに機能を追加し、バグを取り除くユーザースクリプト"
     listing_title_for_site: "%{site} で実行されるユーザースクリプト"
@@ -152,6 +154,8 @@ ja:
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
     import: "スクリプトのインポート"
+    new: "スクリプトを投稿する"
+    new_css: "スタイルを投稿する"
     support_site: "サポートサイト"
     support_email: "サポートメールアドレス"
     contribution_no_amount: "%{author} は寄付を募っています。"
@@ -226,6 +230,7 @@ ja:
     ok_rating_explanation: "「可」と評価した人数"
     bad_rating_explanation: "「不可」と評価した人数"
     write_your_own_html: "%{post_a_script_link} (または %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "スクリプトを投稿する"
     learn_to_write_scripts_link_text: "スクリプトの書き方を見る"
     feedback_or_report: "質問やレビューの%{feedback_link:投稿はこちら}へ、スクリプトの%{report_link:通報はこちら}へどうぞ。"
     support_feedback_or_report: "%{support_url:Visit the author's site for support}, %{feedback_link:ask a question, post a review}, または %{report_link:report the script}."
@@ -525,6 +530,10 @@ ja:
         request_expired: "ユーザーを削除できません — ページの有効期限が切れています。"
         cancelled: "削除申請はキャンセルされました。"
         completed: "あなたのアカウントは削除されました。"
+    badges:
+      author:
+        short: 作者
+        long: このスクリプトの作者
   help:
     sections:
       usage: 利用法
@@ -681,6 +690,7 @@ ja:
     update_comment_submit: "コメントの更新"
     cancel_update_comment: "キャンセル"
     question_heading_html: "質問/コメント"
+    update_rating: "%{script_name}の評価を更新する"
     ratings:
       question: "評価しない - 単に質問/コメント"
       bad: "不可 – スクリプトが動かない"
@@ -693,6 +703,25 @@ ja:
       good: "良"
     sign_in_to_post_discussion: "審査やコメント、質問を投稿するにはサインインします。"
     sign_in_to_post_comment: "返信を投稿するにはサインインします。"
+    category_filter:
+      label: カテゴリー
+      all: 全てのカテゴリー
+    notify: 返信を通知する
+    categories:
+      greasyfork:
+        name: Greasy Fork フィードバック
+        description: バグレポート、機能リクエスト、その他Greasy Fork自体に関するもの。
+      development:
+        name: 開発
+        description: ユーザースクリプトやユーザースタイル開発の技術的な話。
+      requests:
+        name: 作成依頼
+        description: 誰かにユーザースクリプトやユーザースタイルを書いてもらう。
+      script-discussions:
+        name: スクリプトの議論
+        description: 既存のユーザースクリプトやユーザースタイルについての議論。
+    category_display: "1%{name} - %{description}"
+    new_title: ディスカッション
   common:
     error_preamble: "以下に表示されているエラーを修正し、もう一度送信してください。"
     allowed_elements_link: "使用可能なタグ"
@@ -740,6 +769,8 @@ ja:
         reason: "報告の理由"
       discussion:
         rating: "評価"
+        category: "カテゴリー"
+        title: タイトル
   errors:
     messages:
       script_missing_name: "は必須です – @name メタキーで指定"

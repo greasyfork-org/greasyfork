@@ -898,6 +898,9 @@ pt-BR:
     other_user_filter:
       all: "Todas as discussões"
       comments_by: "Comentários feitos por %{user}"
+    category_filter:
+      label: Categoria
+      all: Todas as categorias
     user_activity:
       title: "Comentários recentes"
       no_recent_activity: "Esse usuário não publicou nenhum comentário recentemente."
@@ -912,6 +915,7 @@ pt-BR:
     question_title: "Uma pergunta sobre o script %{script_name}"
     subscribe: Inscrever
     unsubscribe: Desinscrever
+    notify: Me notificar sobre qualquer resposta
     categories:
       greasyfork:
         name: Feedback do Greasy Fork
@@ -925,6 +929,8 @@ pt-BR:
       script-discussions:
         name: Discussões de Script
         description: Discussões sobre scripts e estilos de usuários existentes.
+    category_display: "%{name} - %{description}"
+    new_title: Nova discussão
   common:
     error_preamble: "Houve alguns problemas com o que você postou..."
     allowed_elements_link: "(Veja código permitido.)"
@@ -972,6 +978,8 @@ pt-BR:
         reason: "Motivo da denúncia"
       discussion:
         rating: "Avaliação"
+        category: "Categoria"
+        title: Título
   errors:
     messages:
       script_missing_name: "é requerido - especifique um com @name"

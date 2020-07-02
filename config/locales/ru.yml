@@ -911,6 +911,9 @@ ru:
     other_user_filter:
       all: "Все обсуждения"
       comments_by: "С комментариями %{user}"
+    category_filter:
+      label: Категория
+      all: Все категории
     user_activity:
       title: "Свежие комментарии"
       no_recent_activity: "Этот пользователь уже давно не оставлял комментариев."
@@ -925,6 +928,7 @@ ru:
     question_title: "Вопрос о %{script_name}"
     subscribe: Подписаться
     unsubscribe: Отписаться
+    notify: Уведомлять меня об ответах
     categories:
       greasyfork:
         name: Обсуждение сайта Greasy Fork
@@ -938,6 +942,8 @@ ru:
       script-discussions:
         name: Обсуждения скриптов
         description: Обсуждение существующих скриптов и стилей.
+    category_display: "%{name} - %{description}"
+    new_title: Новое обсуждение
   common:
     error_preamble: "Обнаружены проблемы в отправленном вами тексте..."
     allowed_elements_link: "(См. разрешенные теги)"
@@ -985,6 +991,8 @@ ru:
         reason: "Причина жалобы"
       discussion:
         rating: "Оценка"
+        category: "Категория"
+        title: Название
   errors:
     messages:
       script_missing_name: "требуется - укажите @name"
