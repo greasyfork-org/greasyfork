@@ -1,10 +1,12 @@
+<%- title t('discussions.title') %>
+
 <div class="sidebarred">
   <div class="sidebarred-main-content discussion-list-main-content">
     <div class="open-sidebar sidebar-collapsed">
       ☰
     </div>
 
-    <h2>Discussions</h2>
+    <h2><%= t('discussions.title') %></h2>
     <div class="discussion-list">
       <%= render collection: @discussions, partial: 'discussions/discussion', locals: { show_script: true } %>
     </div>
@@ -18,6 +20,10 @@
     </div>
 
     <div class="list-option-groups">
+      <p>
+        <%= link_to t('discussions.new_button'), new_discussion_path, class: 'list-option-button' %>
+      </p>
+
       <% if current_user %>
         <div class="list-option-group">
           <%= t('discussions.user_filter.label') %>
