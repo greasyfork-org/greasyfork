@@ -121,7 +121,17 @@ ja:
     derivatives_intro: "以下のスクリプトは、あなたのスクリプトを基にしている可能性があります (あるいはその逆)。ライセンス上の許可なくあなたのコードが使われている場合は、そのスクリプトのフィードバックに新しいスレッドを立て報告してください。"
     derivatives_script_html: "%{script}  作者:%{user} ライセンス: %{license} %{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "正確なコピー"
+    derivatives_exact_copies_list_intro: "以下のスクリプトは、あなたのスクリプトと全く同じコードを持っています。"
+    derivatives_exact_copies_item_html: "%{script_link} by %{author_links} -バージョン：%{version_list}　"
+    derivatives_exact_copes_none: "%{site_name}には、このスクリプトと全く同じコードを持つスクリプトは他にありません。"
     derivatives_similar_heading: "似ているスクリプト"
+    derivatives_similar_info: "他のスクリプトの最新バージョンを定期的にチェックして、あなたのスクリプトと最も類似しているものを見つけます。また、あなたがスクリプトの更新を投稿された場合や、あなたの要望に応じてチェックしています。"
+    derivatives_similar_score_info: "スコアは0.000（完全に異なる）から1.000（完全に同じ）までの範囲です。"
+    derivatives_similar_item: "%{score}%{diff_link:[Diff]}:%{script}"
+    derivatives_similar_last_check_html: "あなたのスクリプトと似たスクリプトがないか最後に確認したのは%{date}です。"
+    derivatives_similar_last_check_soon: "あなたのスクリプトに似たスクリプトがないか、まもなくチェックします。"
+    derivatives_similar_last_check_again_soon_html: "最後に確認したのは%{date}です。まもなく再確認します。"
+    derivatives_similar_check_now: "今すぐ再確認"
     listing_title_all_sites: "すべてのサイトで実行されるユーザースクリプト"
     listing_description_all_sites: "すべてのサイトに機能を追加し、バグを取り除くユーザースクリプト"
     listing_title_for_site: "%{site} で実行されるユーザースクリプト"
@@ -531,6 +541,12 @@ ja:
         cancelled: "削除申請はキャンセルされました。"
         completed: "あなたのアカウントは削除されました。"
     badges:
+      banned:
+        short: BANされました
+        long: BANされました。
+      moderator:
+        short: Mod
+        long: モデレーター
       author:
         short: 作者
         long: このスクリプトの作者
@@ -675,9 +691,15 @@ ja:
     create_button: "報告の作成"
     report_user: "ユーザーを報告"
     report_comment: "コメントを報告"
+    result_dismissed: "この報告はモデレーターに拒否されました。"
+    result_upheld: "この報告はモデレーターに支持されました。"
+    result_pending: "この報告はモデレーターによる審査待ちです。"
   discussions:
+    title: 議論
     comment_date: "投稿日: %{date}"
     comment_edit_date: "編集日; %{date}"
+    posted_by_html: "%{date}の%{user}"
+    last_comment: "最新：%{date}の%{user}"
     new_discussion_heading: "審査やコメント、質問を投稿"
     new_discussion_submit: "コメントを投稿"
     new_comment_heading: "返信を投稿"
@@ -690,6 +712,7 @@ ja:
     update_comment_submit: "コメントの更新"
     cancel_update_comment: "キャンセル"
     question_heading_html: "質問/コメント"
+    review_heading_html: "レート：%{rating}"
     update_rating: "%{script_name}の評価を更新する"
     ratings:
       question: "評価しない - 単に質問/コメント"
@@ -703,9 +726,33 @@ ja:
       good: "良"
     sign_in_to_post_discussion: "審査やコメント、質問を投稿するにはサインインします。"
     sign_in_to_post_comment: "返信を投稿するにはサインインします。"
+    user_filter:
+      label: "あなたを含めた議論"
+      all: "全ての議論"
+      discussion_by_me: "あなたによって開始されました"
+      comment_by_me: "あなたのコメント"
+      on_my_scripts: "あなたのスクリプトについて"
+      subscribed: "購読しています"
+    other_user_filter:
+      all: "全ての議論"
+      comments_by: "%{user}によるコメント"
     category_filter:
       label: カテゴリー
       all: 全てのカテゴリー
+    user_activity:
+      title: "最近のコメント"
+      no_recent_activity: "このユーザーは最近コメントを投稿していません。"
+      see_all_activity: "全てのユーザーアクティビティを見る。"
+      script_review:
+        posted_html: "%{script}のレビューを投稿しました"
+        replied_html: "%{script}のレビューに返信"
+      script_question:
+        posted_html: "%{script}の質問/コメントに投稿しました。"
+        replied_html: "%{script}に関する質問/コメントに返信しました。"
+    review_title: "%{script_name}のレビュー"
+    question_title: "%{script_name}に関する質問"
+    subscribe: 購読
+    unsubscribe: 購読解除
     notify: 返信を通知する
     categories:
       greasyfork:
@@ -722,6 +769,8 @@ ja:
         description: 既存のユーザースクリプトやユーザースタイルについての議論。
     category_display: "1%{name} - %{description}"
     new_title: ディスカッション
+    new_button: 新しい議論
+    script_notice: 特定のスクリプトについて議論したい場合は、スクリプトのフィードバックページにアクセスして、そこから議論を始めてください。
   common:
     error_preamble: "以下に表示されているエラーを修正し、もう一度送信してください。"
     allowed_elements_link: "使用可能なタグ"
@@ -829,3 +878,24 @@ ja:
             更新版の投稿がないか、%{delete_date} までに議論への返信がない場合、あなたのスクリプトは %{site_name} で非表示にされるでしょう。 (この日付移行、希望があれば再び表示することも可能です)
     script_comment:
       subject: "スクリプト %{script_name} (%{site_name}) にコメントがあります。"
+      text: |
+          あなたのスクリプト「%{script_name}」( %{site_name}, %{script_url}) に対しユーザー %{commenter_name}」からのコメントがあります:
+
+          ---
+          %{comment_text}
+          ---
+
+          このコメントへ%{comment_url}から返信できます。通知設定の管理は%{notification_preferences_url}から行えます。
+    subscribed_discussion:
+      subject: "%{site_name}での議論%{discussion_title}はコメントを受け付けてます。"
+      text: |
+          %{commenter_name}が%{site_name}での議論%{discussion_title}にコメントされました。
+
+          ---
+          %{comment_text}
+          ---
+
+          返信する%{comment_url}
+
+          あなたはこの議論に登録したため、この通知を受け取りました。
+          購読を解除するには%{discussion_url}にアクセスしてください。

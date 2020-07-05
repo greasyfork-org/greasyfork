@@ -815,19 +815,19 @@ pl:
   search:
     script_search:
       title: "Wyszukiwanie skryptów"
-      description: "Szukaj skryptów. Szuka nazw skryptów, opisów, dodatkowych informacji i nazw autorów. %{sphinx_link:Rozszerzona sfinksowa składnia zapytań.}"
+      description: "Szukaj skryptów. Szuka nazw skryptów, opisów, dodatkowych informacji i nazw autorów. %{sphinx_link:Rozszerzona składnia zapytań Sphinx.}"
     library_search:
-      title: "Szukanie biblioteki"
-      description: "Szukaj bibliotek. Szuka nazw bibliotek, opisów, dodatkowych informacji i nazw autorów. %{sphinx_link:Rozszerzona sfinksowa składnia zapytań.}"
+      title: "Wyszukiwanie bibliotek"
+      description: "Szukaj bibliotek. Szuka nazw bibliotek, opisów, dodatkowych informacji i nazw autorów. %{sphinx_link:Rozszerzona składnia zapytań Sphinx.}"
     code_search:
-      title: "Szukanie kodu"
-      description: "Szukaj kodu skryptu. To jest niewrażliwe na wielkość liter, wyszukiwanie zwykłego tekstu bez znaków wieloznacznych."
+      title: "Wyszukiwanie kodu"
+      description: "Szukaj kodu skryptu. Brak rozróżniania wielkości liter, zwykły tekst bez symboli wieloznacznych."
     forum_search:
-      title: "Szukanie forum"
+      title: "Przeszukaj forum"
       description: "Szukaj dyskusji i opinii na forum. %{fulltext_link:Wyszukiwanie w naturalnym języku MySQL.}"
     user_search:
-      title: "Szukanie użytkowników"
-      description: "Szukanie użytkowników według nazwy. Wyszukiwanie zwykłego tekstu."
+      title: "Wyszukiwanie użytkownika"
+      description: "Znajdź użytkowników według nazwy (operator SQL LIKE)."
   moderator_logs:
     date_column: "Data"
     moderator_column: "Moderator"
@@ -882,6 +882,7 @@ pl:
     result_upheld: "Twoje zgłoszenie zostało uznane przez moderatora."
     result_pending: "Twoje zgłoszenie oczekuje na sprawdzenie przez moderatora."
   discussions:
+    title: Dyskusje
     comment_date: "Napisano: %{date}"
     comment_edit_date: "Edytowano: %{date}"
     posted_by_html: "%{user}, %{date}"
@@ -899,6 +900,7 @@ pl:
     cancel_update_comment: "Anuluj"
     question_heading_html: "Pytanie/komentarz"
     review_heading_html: "Ocena: %{rating}"
+    update_rating: "Zaktualizuj swoją ocenę o %{script_name}"
     ratings:
       question: "Bez oceny - samo pytanie/komentarz"
       bad: "Słaby - skrypt nie działa"
@@ -942,8 +944,20 @@ pl:
     categories:
       greasyfork:
         name: Greasy Fork Feedback
+        description: Raporty o błędach, zgłaszanie propozycji i inne rzeczy dotyczące samego Greasy Fork.
+      development:
+        name: Tworzenie skryptów
+        description: Dyskusje techniczne na temat tworzenia skryptów i stylów użytkownika.
+      requests:
+        name: Propozycje stworzenia skryptu/stylu
+        description: Poproś kogoś o napisanie skryptu lub stylu użytkownika.
+      script-discussions:
+        name: Dyskusje o skryptach
+        description: Dyskusje na temat istniejących skryptów i stylów użytkownika.
     category_display: "%{name} - %{description}"
     new_title: Nowa dyskusja
+    new_button: Nowa dyskusja
+    script_notice: Jeśli chcesz skomentować konkretny skrypt, przejdź do podstrony "Opinie" tego skryptu i rozpocznij dyskusję.
   common:
     error_preamble: "Mieliśmy małe problemy z tym, co chciałeś napisać..."
     allowed_elements_link: "(zobacz dozwolony kod)"
