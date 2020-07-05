@@ -3,7 +3,7 @@ class UserFloodJob < ApplicationJob
 
   CHECK_COUNT = 100
   THRESHOLD = 25
-  IGNORED_DOMAINS = %w[gmail.com].freeze
+  IGNORED_DOMAINS = %w[gmail.com qq.com].freeze
 
   def perform
     most_used_domain = User
