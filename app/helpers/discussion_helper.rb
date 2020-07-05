@@ -54,6 +54,7 @@ module DiscussionHelper
             end
       return t(key, script: discussion.script.name(request_locale))
     end
-    raise 'not implemented'
+
+    t(post ? 'discussions.user_activity.discussion.posted_html' : 'discussions.user_activity.discussion.replied_html', title: discussion.title)
   end
 end
