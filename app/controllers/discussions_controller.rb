@@ -27,8 +27,13 @@ class DiscussionsController < ApplicationController
     end
 
     if params[:category]
-      @category = DiscussionCategory.find_by(category_key: params[:category])
-      @discussions = @discussions.where(discussion_category: @category) if @category
+      if params[:category] == 'no-scripts'
+        @category = params[:category]
+        @discussions = @discussions.where(discussion_category: DiscussionCategory.non_script)
+      else
+        @category = DiscussionCategory.find_by(category_key: params[:category])
+        @discussions = @discussions.where(discussion_category: @category) if @category
+      end
     end
 
     if current_user

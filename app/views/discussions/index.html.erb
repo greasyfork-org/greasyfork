@@ -89,6 +89,11 @@
               <li class="list-option"><%= link_to t("discussions.categories.#{dc.category_key}.name"), category_discussion_index_path(category: dc, page: nil) %></li>
             <% end %>
           <% end %>
+          <% if @category == 'no-scripts' %>
+            <li class="list-option list-current"><%= t("discussions.categories.no-scripts.name") %></li>
+          <% else %>
+            <li class="list-option"><%= link_to t("discussions.categories.no-scripts.name"), category_discussion_index_path(category: 'no-scripts', page: nil) %></li>
+          <% end %>
         </ul>
       </div>
     </div>
