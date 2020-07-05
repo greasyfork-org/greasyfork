@@ -1,4 +1,4 @@
-  <%- title t('common.allowed_elements_and_attributes_title') %>
+<%- title t('common.allowed_elements_and_attributes_title') %>
 <%- description 'Elements and attributes allowed when posting to Greasy Fork.' %>
 
 <p><%=t('common.allowed_elements_intro')%></p>
@@ -23,3 +23,12 @@
 </ul>
 
 <p><%=t('common.allowed_elements_extra_info')%></p>
+
+
+<p><%= t('common.allowed_css_intro') %></p>
+
+<ul id="help-allowed-styles">
+  <% markdown_sanitize_config[:css][:properties].sort.each do |property| %>
+    <li><%= property %></li>
+  <% end %>
+</ul>

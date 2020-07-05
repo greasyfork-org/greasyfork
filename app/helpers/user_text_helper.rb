@@ -52,7 +52,8 @@ module UserTextHelper
       @_markdown_sanitize_config = Sanitize::Config::BASIC.dup
       @_markdown_sanitize_config[:elements] = @_markdown_sanitize_config[:elements].dup
       @_markdown_sanitize_config[:elements].concat(%w[h1 h2 h3 h4 h5 h6 img hr del ins table tr th td thead tbody tfoot span div tt center ruby rt rp video details summary])
-      @_markdown_sanitize_config[:attributes] = @_markdown_sanitize_config[:attributes].merge('img' => %w[src alt height width], 'video' => %w[src poster height width], 'details' => ['open'], :all => %w[title name])
+      @_markdown_sanitize_config[:attributes] = @_markdown_sanitize_config[:attributes].merge('img' => %w[src alt height width], 'video' => %w[src poster height width], 'details' => ['open'], :all => %w[title name style])
+      @_markdown_sanitize_config[:css] = { properties: %w[border background-color color] }
       @_markdown_sanitize_config[:protocols] = @_markdown_sanitize_config[:protocols].merge('img' => { 'src' => ['https'] }, 'video' => { 'src' => ['https'] })
       @_markdown_sanitize_config[:remove_contents] = %w[script style]
       @_markdown_sanitize_config[:add_attributes] = @_markdown_sanitize_config[:add_attributes].merge('video' => { 'controls' => 'controls' })
