@@ -7,10 +7,14 @@
     </div>
 
     <h2><%= t('discussions.title') %></h2>
-    <div class="discussion-list">
-      <%= render collection: @discussions, partial: 'discussions/discussion', locals: { show_script: true } %>
-    </div>
-    <%= will_paginate @discussions %>
+    <% if @discussions.empty? %>
+      <p><%=t('discussions.no_discussions')%></p>
+    <% else %>
+      <div class="discussion-list">
+        <%= render collection: @discussions, partial: 'discussions/discussion', locals: { show_script: true } %>
+      </div>
+      <%= will_paginate @discussions %>
+    <% end %>
   </div>
 
   <div class="sidebar collapsed">
