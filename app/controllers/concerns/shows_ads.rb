@@ -23,7 +23,7 @@ module ShowsAds
 
     # return 'ga' if scripts.all?(&:adsense_approved)
 
-    'cf'
+    'ea'
   end
 
   private

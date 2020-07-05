@@ -33,10 +33,9 @@
       <p><%=t('scripts.listing_no_scripts')%></p>
     <% else %>
       <ol id="browse-script-list" class="script-list">
-        <% if @ad_method == 'cf' %>
+        <% if @ad_method == 'ea' %>
           <li class="ad-entry">
-            <div id="codefund-1"><!-- fallback content --></div>
-            <script src="https://app.codefund.io/properties/620/funder.js?target=codefund-1" async="async"></script>
+            <div class="flat" data-ea-publisher="greasyfork" data-ea-type="text"></div>
           </li>
         <% end %>
         <%= render partial: 'scripts/script', collection: @scripts, cached: params[:locale_override].nil? ? ->(script) { [script, request_locale] } : false %>

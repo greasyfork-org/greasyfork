@@ -30,6 +30,10 @@
 
   <link rel="search" href="<%=opensearch_description_path%>" type="application/opensearchdescription+xml" title="<%=t('opensearch.short_name', site_name: site_name, default: t('opensearch.short_name', site_name: site_name, locale: 'en'))%>" hreflang="<%=I18n.locale%>">
 
+  <% if @ad_method == 'ea' %>
+    <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
+  <% end %>
+
   <% if content_for(:head_bottom) %><%=yield(:head_bottom)%><% end %>
 </head>
 <body>
