@@ -936,6 +936,9 @@ pl:
       script_question:
         posted_html: "Napisano pytanie/komentarz o <i>%{script}</i>"
         replied_html: "Odpowiedziano na pytanie/komentarz o <i>%{script}</i>"
+      discussion:
+        posted_html: "Napisano dyskusję: <i>%{title}</i>"
+        replied_html: "Odpowiedziano na dyskusję: <i>%{script}</i>"
     review_title: "Recenzja o %{script_name}"
     question_title: "Pytanie o %{script_name}"
     subscribe: Subskrybuj
@@ -954,16 +957,20 @@ pl:
       script-discussions:
         name: Dyskusje o skryptach
         description: Dyskusje na temat istniejących skryptów i stylów użytkownika.
+      no-scripts:
+        name: Wszystko oprócz dyskusji o skryptach
     category_display: "%{name} - %{description}"
     new_title: Nowa dyskusja
     new_button: Nowa dyskusja
     script_notice: Jeśli chcesz skomentować konkretny skrypt, przejdź do podstrony "Opinie" tego skryptu i rozpocznij dyskusję.
+    no_discussions: Nie znaleziono dyskusji.
   common:
     error_preamble: "Mieliśmy małe problemy z tym, co chciałeś napisać..."
     allowed_elements_link: "(zobacz dozwolony kod)"
     allowed_elements_and_attributes_title: "Dozwolone elementy dla zawartości HTML"
     allowed_elements_intro: "Dozwolone są następujące elementy i atrybuty. Dotyczy to zarówno HTML jak i makr (po konwersji do HTML)"
     allowed_elements_extra_info: "Puste pola zostaną zamienione na elementy p lub br. Adresy URL będą automatycznie zamienione w linki."
+    allowed_css_intro: "Następujące właściwości CSS są dozwolone we wszystkich elementach."
     not_found_text: "Błąd 404 — nie znaleziono strony."
     not_found_title: "Błąd 404 — nie znaleziono strony"
     not_found_link_home: "Wróć do strony głównej."

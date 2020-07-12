@@ -925,6 +925,9 @@ ru:
       script_question:
         posted_html: "Разместил вопрос/комментарий о <i>%{script}</i>"
         replied_html: "Ответил на вопрос/комментарий о <i>%{script}</i>"
+      discussion:
+        posted_html: "Создано обсуждение: <i>%{title}</i>"
+        replied_html: "Ответ в обсуждении: <i>%{script}</i>"
     review_title: "Отзыв на %{script_name}"
     question_title: "Вопрос о %{script_name}"
     subscribe: Подписаться
@@ -943,16 +946,20 @@ ru:
       script-discussions:
         name: Обсуждения скриптов
         description: Обсуждение существующих скриптов и стилей.
+      no-scripts:
+        name: Все кроме обсуждения скриптов
     category_display: "%{name} - %{description}"
     new_title: Новое обсуждение
     new_button: Новое обсуждение
     script_notice: Если вы хотите обсудить какой-то скрипт, зайдите в секцию "Обсуждения" на странице этого скрипта и там создайте новое обсуждение.
+    no_discussions: Обсуждений не найдено.
   common:
     error_preamble: "Обнаружены проблемы в отправленном вами тексте..."
     allowed_elements_link: "(См. разрешенные теги)"
     allowed_elements_and_attributes_title: "Разрешенные теги HTML"
     allowed_elements_intro: "Следующие элементы и атрибуты разрешены для HTML и для Markdown (после преобразования в HTML)."
     allowed_elements_extra_info: "Пустые строки будут автоматически преобразованы в элементы P или BR. Адреса — в элемент A."
+    allowed_css_intro: "Следующие свойства CSS разрешены для всех элементов."
     not_found_text: "Ошибка 404: по этому адресу ничего нет."
     not_found_title: "Ошибка 404: по этому адресу ничего нет"
     not_found_link_home: "Перейти на главную страницу."

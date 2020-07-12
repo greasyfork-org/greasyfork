@@ -912,6 +912,9 @@ pt-BR:
       script_question:
         posted_html: "Publicou uma pergunta/comentário sobre o script <i>%{script}</i>"
         replied_html: "Respondeu uma pergunta/comentário sobre o script <i>%{script}</i>"
+      discussion:
+        posted_html: "Publicou uma discussão: <i>%{title}</i>"
+        replied_html: "Respondeu uma discussão: <i>%{script}</i>"
     review_title: "Uma avaliação no script %{script_name}"
     question_title: "Uma pergunta sobre o script %{script_name}"
     subscribe: Inscrever
@@ -930,16 +933,20 @@ pt-BR:
       script-discussions:
         name: Discussões de Script
         description: Discussões sobre scripts e estilos de usuários existentes.
+      no-scripts:
+        name: Tudo menos Discussões de Scripts
     category_display: "%{name} - %{description}"
     new_title: Nova discussão
     new_button: Nova discussão
     script_notice: Se você estiver procurando discutir um script específico, vá até a página de feedback do script e inicie uma discussão por lá.
+    no_discussions: Nenhuma discussão encontrada.
   common:
     error_preamble: "Houve alguns problemas com o que você postou..."
     allowed_elements_link: "(Veja código permitido.)"
     allowed_elements_and_attributes_title: "Permitir elementos para conteúdo HTML"
     allowed_elements_intro: "Os seguintes elementos e atributos são permitidos. Estes se aplicam para HTML e Markdown (após converter para HTML)."
     allowed_elements_extra_info: "Espaços em branco deverão ser convertidos em elementos p ou br. URLs serão convertidos em links automaticamente."
+    allowed_css_intro: "As seguintes propriedades CSS são permitidas em todos os elementos."
     not_found_text: "404 - página não encontrada."
     not_found_title: "404 - Página Não Encontrada"
     not_found_link_home: "Ir para página principal."

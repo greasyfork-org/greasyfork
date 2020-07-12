@@ -626,6 +626,23 @@ zh-CN:
       adult_content_rule_html: "<li>本站允许脚本中包含成人内容，但含有成人内容或者针对成人网站设计的脚本必须被「明确标注」，以便用户自主选择是否显示此类信息。</li>"
     external_scripts:
       title: "%{site_name} 对外部脚本的政策"
+      content_html: >
+          <p>用户脚本有能力加载和执行其他脚本。最直接的方法是通过 %{require_doc_link:<code>@require</code>}
+          来加载，但也有其他的途径——例如用 XmlHttpRequest 来下载外部脚本，并将其注入 DOM。</p> <p>虽然这是一个很有用的功能，并且大多数脚本作者将其用在合法目的，但它也可以被恶意使用。%{site_name}
+          的一项核心原则就是，必须能让用户阅读和检查脚本代码。而外部脚本可能用多种方法绕过这一原则：它们可以在用户不知情的情况下悄悄改变，而不留下历史记录；它们可以对不同的用户采用不同的代码；它们还可以在知名的库之中插入恶意的代码，以期逃避用户的检查。因此，即便某位用户检查了一个外部脚本，并确定它此时是安全的，他也无法保证该脚本在过去和将来不会包含恶意代码。</p>
+          <p>为了允许脚本作者继续使用外部脚本，%{site_name} 有一个 URL 形式的白名单，只允许引用白名单中的外部脚本。白名单中包含的网站应该是：</p>
+          <ul>
+
+          <li>公开的</li>
+
+          <li>内容不会经常改变的</li>
+
+          <li>对多位脚本作者有帮助的</li>
+
+          </ul> <p>目前的白名单包括：</p> %{allowed_require_list} <p>如果您尝试发布的一个脚本用 <code>@require</code>包含了此名单之外的外部脚本，您将无法保存您的脚本。</p>
+          <p>如果您想加载的外部脚本是一个 JavaScript 库（例如 jQuery 或者 YUI），请访问上面列出的网站，看看是否能找到它的链接。%{cdnjs_link:cdnjs}
+          和 %{jsdelivr_link:jsDelivr} 提供了大量的常用库。</p> <p>如果以上网站均没有您想引用的外部脚本，请%{contact_link:告知我们}，以便我们查找它的链接（乃至我们自己托管）。</p>
+          <p>如果您想包含的脚本是你自己写的，你可以在 %{site_name} 上将它提交为一个单独的项目，选择“库”作为它的类型，然后你就可以在你的脚本中引入自己发布的这个库了。</p>
     script_rewriting:
       title: "%{site_name} 将如何改写已发布的脚本"
       content_html: >
@@ -712,7 +729,7 @@ zh-CN:
 
         <li>反对内容或认为内容不真实不能作为举报的合理理由。</li>
 
-        <li>滥用举报功能可能会导致<i>您</i>被封号</li></ul>。
+        <li>滥用举报功能可能会导致<i>您</i>被封号。</li></ul>
     new_user_report_notes_html: >
         <p>举报之前请注意：</p>
 
@@ -724,7 +741,7 @@ zh-CN:
     reason:
       spam: "灌水"
       abuse: "滥用或反感内容"
-      illegal: "恶意程序或非法内容"
+      illegal: "恶意程序或违法内容"
     explanation_placeholder: "提供额外信息（可选）"
     create_button: "创建举报"
     report_user: "举报用户"
@@ -733,6 +750,7 @@ zh-CN:
     result_upheld: "管理员已通过该举报。"
     result_pending: "该举报尚待管理员查看。"
   discussions:
+    title: 讨论
     comment_date: "发表于：%{date}"
     comment_edit_date: "修改于：%{date}"
     posted_by_html: "%{user} 于 %{date}"
@@ -773,6 +791,9 @@ zh-CN:
     other_user_filter:
       all: "所有讨论"
       comments_by: "%{user} 的评论"
+    category_filter:
+      label: 分类
+      all: 所有分类
     user_activity:
       title: "近期评论"
       no_recent_activity: "该用户最近没有撰写任何评论"
@@ -783,16 +804,41 @@ zh-CN:
       script_question:
         posted_html: "发表关于<i>%{script}</i>的提问或评论"
         replied_html: "回复关于<i>%{script}</i>的提问或评论"
+      discussion:
+        posted_html: "发表讨论：<i>%{title}</i>"
+        replied_html: "回复讨论：<i>%{script}</i>"
     review_title: "%{script_name}的评论"
     question_title: "关于%{script_name}的问题"
     subscribe: 关注
     unsubscribe: 取消关注
+    notify: 通知我所有在该讨论的回复
+    categories:
+      greasyfork:
+        name: Greasy Fork 反馈
+        description: 有关 Greasy Fork 本身的故障报告、功能需求等事务。
+      development:
+        name: 开发
+        description: 有关用户脚本和用户样式开发的技术讨论。
+      requests:
+        name: 创建请求
+        description: 请求开发新的用户脚本或用户样式。
+      script-discussions:
+        name: 脚本讨论
+        description: 讨论现有的用户脚本和用户样式。
+      no-scripts:
+        name: 除脚本讨论以外的其他讨论
+    category_display: "%{name} - %{description}"
+    new_title: 创建讨论
+    new_button: 创建讨论
+    script_notice: 如果需要对一个特定脚本开展讨论，请前往脚本的反馈页面开展讨论。
+    no_discussions: 未找到讨论。
   common:
     error_preamble: "很抱歉，您提交的内容有点问题…"
     allowed_elements_link: "(查看允许使用的代码)"
     allowed_elements_and_attributes_title: "HTML 内容中允许的元素"
     allowed_elements_intro: "可以使用下列元素和属性。此规则应用于 HTML 以及 Markdown (转换到 HTML 后的代码)。"
     allowed_elements_extra_info: "空行将会自动转化为 p 或 br 元素，链接文本会自动转换为可点击链接。"
+    allowed_css_intro: "下列CSS属性允许在所有元素使用。"
     not_found_text: "404 - 页面未找到"
     not_found_title: "404 - 页面未找到"
     not_found_link_home: "返回首页"
@@ -834,6 +880,8 @@ zh-CN:
         reason: "举报原因"
       discussion:
         rating: "评级"
+        category: "分类"
+        title: 标题
   errors:
     messages:
       script_missing_name: "必填 - 请通过 <code>@name</code> 指定"

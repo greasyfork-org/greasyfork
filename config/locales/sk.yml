@@ -921,6 +921,9 @@ sk:
       script_question:
         posted_html: "Pridané otázky/komentáre k skriptu <i>%{script}</i>"
         replied_html: "Odpovede na otázky/komentáre k skriptu <i>%{script}</i>"
+      discussion:
+        posted_html: "Pridaná diskusia: <i>%{title}</i>"
+        replied_html: "Odpoveď na diskusiu: <i>%{script}</i>"
     review_title: "Recenzia na %{script_name}"
     question_title: "Otázka k %{script_name}"
     subscribe: Prihlásiť na odber
@@ -939,16 +942,20 @@ sk:
       script-discussions:
         name: Diskusia o skripte
         description: Diskusia o existujúcich užívateľských skriptoch a štýloch.
+      no-scripts:
+        name: Všetky diskusie o skripte
     category_display: "%{name} - %{description}"
     new_title: Nová diskusia
     new_button: Nová diskusia
     script_notice: Ak chcete diskutovať o konkrétnom skripte, prejdite na stránku spätnej väzby skriptu a začnite diskusiu odtiaľ .
+    no_discussions: Žiadna diskusia.
   common:
     error_preamble: "Boli zistené problémy s tým, čo ste poslali."
     allowed_elements_link: "(Pozri zoznam povolených značiek.)"
     allowed_elements_and_attributes_title: "Povolené elementy pre HTML obsah"
     allowed_elements_intro: "Nasledujúce elementy a atribúty sú povolené. To platí pre HTML aj Markdown (po konverzii na HTML)."
     allowed_elements_extra_info: "Prázdne znaky budú nahradené P alebo BR elementami. URL adresy budú automaticky klikateľné."
+    allowed_css_intro: "Tieto CSS vlastnosti sú povolené pre všetky elementy."
     not_found_text: "404 - stránka nenájdená."
     not_found_title: "404 - stránka nenájdená"
     not_found_link_home: "Prejsť na hlavnú stránku."
