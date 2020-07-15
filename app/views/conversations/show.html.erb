@@ -1,0 +1,44 @@
+<h2>
+  <%= t('conversations.title_html', count: @conversation.users.count - 1, users: (@conversation.users - [current_user]).map{ |u| link_to(u.name, user_path(u)) }.to_sentence.html_safe) %>
+</h2>
+
+<% @conversation.messages.reject(&:new_record?).each do |message| %>
+  <% by_current_user = message.poster && current_user == message.poster %>
+  <div class="comment" id="message-<%= message.id %>">
+    <div class="comment-meta">
+      <div class="comment-meta-item comment-meta-item-main">
+        <%= render_poster(message) %>
+      </div>
+      <div class="comment-meta-item">
+        <%= link_to('§', { anchor: "message-#{message.id}" }, { class: 'self-link' }) %>
+      </div>
+      <div class="comment-meta-item">
+        <%= t('discussions.comment_date', date: markup_date(message.created_at)).html_safe %>
+      </div>
+      <% unless by_current_user %>
+        <div class="comment-meta-item">
+          <%= link_to t('reports.report_message'), new_report_path(item_class: 'message', item_id: message.id), class: 'report-link' %>
+        </div>
+      <% end %>
+    </div>
+    <div class="user-content">
+      <%= format_user_text(message.content, message.content_markup) %>
+      <% if message.attachments.any? %>
+        <div class="user-screenshots">
+          <% message.attachments.each do |attachment| %>
+            <%= link_to attachment, data: { jslghtbx: url_for(attachment), jslghtbx_group: "screenshots-#{attachment.id}" } do %><%= image_tag attachment.variant(resize_to_limit: [200, 200]) %><% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<div class="post-reply">
+  <h3><%= t('discussions.new_comment_heading') %></h3>
+  <% if @conversation.users.include?(current_user) %>
+    <%= form_with(model: @message, url: user_conversation_messages_path(current_user, @conversation), method: :POST) do |f| %>
+      <%= render partial: 'message_entry', locals: { f: f } %>
+      <%= f.submit t('discussions.new_comment_submit') %>
+    <% end %>
+  <% end %>
+</div>

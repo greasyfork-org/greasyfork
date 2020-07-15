@@ -1,0 +1,17 @@
+<h2><%= t('conversations.new_title') %></h2>
+
+<%= form_with(model: @conversation, url: user_conversations_path(current_user), method: :POST) do |f| %>
+  <div class="form-control">
+    <%= f.label :user_input %>
+    <span class="label-note"><%= t('conversations.user_input_note') %></span><br>
+    <%= f.text_field :user_input, required: true %>
+  </div>
+
+  <div class="form-control">
+    <%= f.fields_for(:messages) do |mf| %>
+      <%= render partial: 'message_entry', locals: { f: mf } %>
+    <% end %>
+  </div>
+
+  <%= f.submit t('conversations.new_button') %>
+<% end %>

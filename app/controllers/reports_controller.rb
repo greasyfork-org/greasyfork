@@ -52,6 +52,9 @@ class ReportsController < ApplicationController
       User.find(params[:item_id])
     when 'comment'
       Comment.find(params[:item_id])
+    when 'message'
+      # Don't allow reporting a message in a conversation they're not involved in.
+      Message.where(conversation: current_user.conversations).find(params[:item_id])
     else
       render_404
     end

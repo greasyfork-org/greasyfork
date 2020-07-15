@@ -132,6 +132,9 @@ Rails.application.routes.draw do
       resources :script_sets, only: [:create, :new, :edit, :update, :destroy], path: 'sets'
       get 'ban', to: 'users#ban', as: 'ban'
       post 'ban', to: 'users#do_ban', as: 'do_ban'
+      resources :conversations, only: [:new, :create, :show] do
+        resources :messages, only: :create
+      end
     end
     post 'script_sets/add_to_set', to: 'script_sets#add_to_set', as: 'add_to_script_set'
 

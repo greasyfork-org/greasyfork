@@ -1,0 +1,12 @@
+<div class="form-control">
+  <%= f.label :content %>
+  <span class="label-note">
+    <%=link_to t('common.allowed_elements_link'), help_allowed_markup_path, {:target => 'markup_choice'}%>
+    <%= f.radio_button(:content_markup, 'html', required: true)%>HTML
+    <%= f.radio_button(:content_markup, 'markdown', required: true)%><%=link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', {:target => 'markup_choice'}%>
+  </span>
+  <br>
+  <div class="previewable" data-markup-option-name="conversation[message][content_markup]" data-preview-label="<%=t('common.preview_tab')%>" data-write-label="<%=t('common.write_tab')%>">
+    <%= f.text_area :content, required: true %>
+  </div>
+</div>

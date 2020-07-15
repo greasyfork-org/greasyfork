@@ -36,6 +36,7 @@ class User < ApplicationRecord
   belongs_to :locale, optional: true
 
   has_and_belongs_to_many :forum_users, foreign_key: 'ForeignUserKey', association_foreign_key: 'UserID', join_table: 'GDN_UserAuthentication'
+  has_and_belongs_to_many :conversations
 
   def forum_user
     return forum_users.first

@@ -29,4 +29,19 @@ class ReportsTest < ApplicationSystemTestCase
     end
     assert_equal comment, Report.last.item
   end
+
+  test 'reporting a message' do
+    user = users(:junior)
+    conversation = conversations(:geoff_and_junior)
+    login_as(user, scope: :user)
+    visit user_conversation_url(user, conversation, locale: :en)
+    click_link 'Report message'
+    choose 'Spam'
+    fill_in 'Provide additional details (optional)', with: 'and eggs'
+    assert_difference -> { Report.count } => 1 do
+      click_button 'Create report'
+      assert_content 'Your report will be reviewed by a moderator.'
+    end
+    assert_equal conversation.messages.first, Report.last.item
+  end
 end

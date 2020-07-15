@@ -222,6 +222,18 @@ class ApplicationController < ActionController::Base
     return script
   end
 
+  def get_user_from_input(value)
+    return nil if value.blank?
+
+    if /\A[0-9]+\z/.match?(value)
+      user_id = value.to_i
+    elsif url_match = %r{/users/([0-9]+)(-|$)}.match(value)
+      user_id = url_match[1]
+    end
+
+    User.find_by(id: user_id) || User.find_by(name: value)
+  end
+
   def set_cookie(key, value, httponly: true)
     cookies[key] = { value: value, secure: Rails.env.production?, httponly: httponly }
   end
