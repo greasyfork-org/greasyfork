@@ -9,4 +9,7 @@
   <div class="previewable" data-markup-option-name="conversation[message][content_markup]" data-preview-label="<%=t('common.preview_tab')%>" data-write-label="<%=t('common.write_tab')%>">
     <%= f.text_area :content, required: true %>
   </div>
+  <div class="comment-screenshot-control">
+    <%= render partial: 'screenshots/entry', locals: { f: f } %>
+  </div>
 </div>

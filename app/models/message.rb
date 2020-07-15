@@ -1,16 +1,11 @@
 class Message < ApplicationRecord
+  include HasAttachments
+
   belongs_to :conversation
   belongs_to :poster, class_name: 'User'
 
-  has_many_attached :attachments
-
   validates :content, presence: true, length: { maximum: 10_000 }
   validates :content_markup, presence: true, inclusion: { in: %w[html markdown] }
-
-  validates :attachments,
-            content_type: %w[image/png image/jpg image/jpeg],
-            size: { less_than: Rails.configuration.screenshot_max_size },
-            limit: { max: Rails.configuration.screenshot_max_count }
 
   after_commit do
     conversation.update_stats! unless conversation.destroyed?

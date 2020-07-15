@@ -7,11 +7,15 @@
     <%= f.text_field :user_input, required: true %>
   </div>
 
-  <div class="form-control">
-    <%= f.fields_for(:messages) do |mf| %>
+  <%= f.fields_for(:messages) do |mf| %>
+    <div class="form-control">
       <%= render partial: 'message_entry', locals: { f: mf } %>
-    <% end %>
-  </div>
+    </div>
+
+    <div class="comment-screenshot-control">
+      <%= render partial: 'screenshots/entry', locals: { f: mf } %>
+    </div>
+  <% end %>
 
   <%= f.submit t('conversations.new_button') %>
 <% end %>
