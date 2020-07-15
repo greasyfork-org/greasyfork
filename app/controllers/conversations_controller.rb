@@ -38,6 +38,14 @@ class ConversationsController < ApplicationController
     @message = @conversation.messages.build(poster: current_user)
   end
 
+  def index
+    unless @user == current_user || current_user&.moderator?
+      render_404('You can only view your own conversations.')
+      return
+    end
+    @conversations = current_user.conversations.includes(:users, :stat_last_poster).order(stat_last_message_date: :desc).paginate(page: params[:page])
+  end
+
   private
 
   def find_user

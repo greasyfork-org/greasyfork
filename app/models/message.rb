@@ -12,6 +12,10 @@ class Message < ApplicationRecord
             size: { less_than: Rails.configuration.screenshot_max_size },
             limit: { max: Rails.configuration.screenshot_max_count }
 
+  after_commit do
+    conversation.update_stats! unless conversation.destroyed?
+  end
+
   def first_message?
     conversation.messages.order(:id).first.id == id
   end

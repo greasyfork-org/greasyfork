@@ -1,0 +1,23 @@
+<h2><%= t('conversations.conversation_list_title') %></h2>
+
+<% if @conversations.any? %>
+  <ul>
+    <% @conversations.each do |conversation| %>
+      <li>
+        <% other_users = (conversation.users - [@user]) %>
+        <%= link_to t('conversations.conversation_link', users: other_users.map(&:name).to_sentence, count: other_users.count) %>
+        <%= t('conversations.conversation_info_html', date: markup_date(conversation.stat_last_message_date), user: conversation.stat_last_poster.name) %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>
+    <%= t('conversations.no_conversations') %>
+  </p>
+<% end %>
+
+<p>
+  <%= link_to t('conversations.new_link'), new_user_conversation_path(@user) %>
+</p>
+
+<%= will_paginate @conversations %>

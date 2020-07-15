@@ -1076,8 +1076,10 @@ CREATE TABLE `conversations` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `created_at` datetime(6) NOT NULL,
   `updated_at` datetime(6) NOT NULL,
+  `stat_last_message_date` datetime DEFAULT NULL,
+  `stat_last_poster_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `conversations_users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1089,7 +1091,7 @@ CREATE TABLE `conversations_users` (
   PRIMARY KEY (`id`),
   KEY `fk_rails_fa156dfe4c` (`conversation_id`),
   CONSTRAINT `fk_rails_fa156dfe4c` FOREIGN KEY (`conversation_id`) REFERENCES `conversations` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `daily_install_counts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1322,7 +1324,7 @@ CREATE TABLE `messages` (
   KEY `index_messages_on_poster_id` (`poster_id`),
   KEY `fk_rails_7f927086d2` (`conversation_id`),
   CONSTRAINT `fk_rails_7f927086d2` FOREIGN KEY (`conversation_id`) REFERENCES `conversations` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `moderator_actions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2012,6 +2014,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20200701175829'),
 ('20200706015413'),
 ('20200706015446'),
-('20200706015815');
+('20200706015815'),
+('20200715013441');
 
 
