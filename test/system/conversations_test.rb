@@ -23,6 +23,17 @@ class ConversationsTest < ApplicationSystemTestCase
     end
   end
 
+  test 'following conversation link when it already exists' do
+    user = users(:geoff)
+    login_as(user, scope: :user)
+
+    to_user = users(:junior)
+    visit user_url(to_user, locale: :en)
+    click_link 'Send message'
+
+    assert_content "Conversation with #{to_user.name}"
+  end
+
   test 'starting a conversation when it already exists' do
     user = users(:geoff)
     login_as(user, scope: :user)

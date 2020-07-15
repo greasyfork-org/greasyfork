@@ -5,7 +5,7 @@ class ConversationsController < ApplicationController
   before_action :find_conversation, only: :show
 
   def new
-    @conversation = Conversation.new
+    @conversation = Conversation.new(user_input: params[:other_user])
     @conversation.messages.build(poster: current_user)
   end
 

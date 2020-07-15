@@ -262,6 +262,12 @@ class User < ApplicationRecord
     scripts.not_deleted.where('created_at <= ?', 1.month.ago).none?
   end
 
+  def existing_conversation_with(users)
+    c = conversations
+    users.each { |user| c = c.where(id: user.conversation_ids) }
+    c.first
+  end
+
   protected
 
   def password_required?

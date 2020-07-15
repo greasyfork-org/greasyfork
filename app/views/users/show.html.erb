@@ -10,6 +10,17 @@
     <section id="user-profile" class="user-content"><%=format_user_text(@user.profile, @user.profile_markup)%></section>
   <% end %>
 
+  <% if current_user && !@same_user %>
+    <p>
+      <% conversation = current_user.existing_conversation_with([@user]) %>
+      <% if conversation %>
+        <%= link_to t('conversations.send_message'), user_conversation_path(current_user, conversation) %>
+      <% else %>
+        <%= link_to t('conversations.send_message'), new_user_conversation_path(current_user, other_user: @user.name) %>
+      <% end %>
+    </p>
+  <% end %>
+
   <% if @same_user %>
     <section id="control-panel">
       <header>
