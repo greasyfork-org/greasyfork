@@ -35,7 +35,7 @@
     <% end %>
     <% if @user.comments.any? %>
       <p>
-        <input type="checkbox" name="delete_comments" id="delete_comments"> <label for="delete-comments">Delete user's <%= link_to "#{@user.comments.count} #{'comment'.pluralize(@user.comments.count)}", discussions_path(user: @user.id) %></label>
+        <input type="checkbox" name="delete_comments" id="delete_comments" value="1"> <label for="delete-comments">Delete user's <%= link_to "#{@user.comments.count} #{'comment'.pluralize(@user.comments.count)}", discussions_path(user: @user.id) %></label>
       </p>
     <% end %>
     <input type="submit" value="Ban">
