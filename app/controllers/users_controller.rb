@@ -226,6 +226,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def notifications
+    @user = current_user
+  end
+
+  def update_notifications
+    current_user.update!(params.require(:user).permit(:author_email_notification_type_id))
+    redirect_to user_path(current_user)
+  end
+
   def self.apply_sort(finder, script_subset:, sort:)
     return finder.order(id: :desc) if sort.blank?
     return finder.order(:name, :id) if sort == 'name'

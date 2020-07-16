@@ -64,14 +64,6 @@
   </div>
 
   <div>
-    <%= f.label :author_email_notification_type_id %><br>
-    <%= f.radio_button(:author_email_notification_type_id, User::AUTHOR_NOTIFICATION_NONE)%> <%= f.label :author_email_notification_type_id, t('users.author_email_notification_type.none'), value: User::AUTHOR_NOTIFICATION_NONE %><br>
-    <%= f.radio_button(:author_email_notification_type_id, User::AUTHOR_NOTIFICATION_DISCUSSION)%> <%= f.label :author_email_notification_type_id, t('users.author_email_notification_type.discussion_only'), value: User::AUTHOR_NOTIFICATION_DISCUSSION %><br>
-    <%= f.radio_button(:author_email_notification_type_id, User::AUTHOR_NOTIFICATION_COMMENT)%> <%= f.label :author_email_notification_type_id, t('users.author_email_notification_type.discussion_and_comment'), value: User::AUTHOR_NOTIFICATION_COMMENT %><br>
-    <i><%= t('users.author_email_notification_type.note') %></i>
-  </div>
-
-  <div>
     <%= f.label :show_ads %><br>
     <%= f.check_box(:show_ads)%><label for="user_show_ads"><%=t('users.show_ads_description', site_name: site_name)%></label>
   </div>

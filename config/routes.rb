@@ -135,6 +135,10 @@ Rails.application.routes.draw do
       resources :conversations, only: [:new, :create, :show, :index] do
         resources :messages, only: :create
       end
+      member do
+        get :notifications
+        patch :update_notifications
+      end
     end
     post 'script_sets/add_to_set', to: 'script_sets#add_to_set', as: 'add_to_script_set'
 

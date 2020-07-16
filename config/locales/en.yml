@@ -716,6 +716,7 @@ en:
     # heading for the password section of the edit sign in methods page
     edit_sign_in_password: "Password"
     # informational text telling the user they're not using a password
+    edit_notifications: "Edit notifications"
     no_password_set_info: "Your account is not configured with a password."
     # button to set a password when one is not already set
     set_password: "Set password"
@@ -772,8 +773,6 @@ en:
       discussion_only: "Get an email when discussions are posted on your scripts"
       # notification option: send e-mails on new discussoins and on new posts on existing discussions
       discussion_and_comment: "Get an email when discussions are posted on your scripts or when those discussions get new comments"
-      # tell the user that the forum can send them other emails that are not controlled by this setting
-      note: "You may receive other emails based on your settings in the forum."
     # display of a single user when displaying a list of users. user_link is a link to the user's page with text of the user name, count is the number of public scripts authored
     list_display_html:
       one: "%{user_link} - %{count} script"
@@ -847,6 +846,9 @@ en:
       author:
         short: Author
         long: Author of this script
+    notifications:
+      save_button: Update notification settings
+      title: Notifications
   help:
     sections:
       usage: Usage

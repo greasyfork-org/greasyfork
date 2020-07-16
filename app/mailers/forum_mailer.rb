@@ -13,7 +13,7 @@ class ForumMailer < ApplicationMailer
                         commenter_name: comment.poster.name,
                         comment_text: format_user_text_as_plain(comment.text, comment.text_markup),
                         comment_url: comment.url,
-                        notification_preferences_url: edit_user_registration_url(locale: locale),
+                        notification_preferences_url: notifications_user_url(author_user, locale: locale),
                         locale: locale)
       end
     end
