@@ -1,12 +1,19 @@
-<ul>
-  <% AllowedRequire.all.each do |ar| %>
-    <li>
-      <% if ar.url.nil? %>
-        <%= ar.name%>
-      <% else %>
-        <%= link_to ar.name, ar.url %>
-      <% end %>
-      - <code><%= ar.pattern %></code>
-    </li>
-  <% end %>
+<table>
+  <tbody>
+    <% AllowedRequire.order(:name, :pattern).each do |ar| %>
+      <tr>
+        <td>
+          <% if ar.url.nil? %>
+            <%= ar.name %>
+          <% else %>
+            <%= link_to ar.name, ar.url %>
+          <% end %>
+        </td>
+        <td>
+          <code><%= ar.pattern %></code>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 </ul>
