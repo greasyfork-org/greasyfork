@@ -854,6 +854,7 @@ pt-BR:
     create_button: "Criar denúncia"
     report_user: "Denunciar usuário"
     report_comment: "Denunciar comentátio"
+    report_message: "Reportar mensagem"
     result_dismissed: "Essa denúncia foi desconsiderada por um moderador."
     result_upheld: "Essa denúncia foi confirmada por um moderador."
     result_pending: "Essa denúncia está aguardando avaliação de um moderador."
@@ -914,7 +915,7 @@ pt-BR:
         replied_html: "Respondeu uma pergunta/comentário sobre o script <i>%{script}</i>"
       discussion:
         posted_html: "Publicou uma discussão: <i>%{title}</i>"
-        replied_html: "Respondeu uma discussão: <i>%{script}</i>"
+        replied_html: "Respondido a uma discussão: <i>%{title}</i>"
     review_title: "Uma avaliação no script %{script_name}"
     question_title: "Uma pergunta sobre o script %{script_name}"
     subscribe: Inscrever
@@ -940,6 +941,23 @@ pt-BR:
     new_button: Nova discussão
     script_notice: Se você estiver procurando discutir um script específico, vá até a página de feedback do script e inicie uma discussão por lá.
     no_discussions: Nenhuma discussão encontrada.
+  conversations:
+    user_input_note: Digite o nome do usuário ou a URL do seu perfil.
+    new_title: Criar uma nota conversa
+    new_link: Criar uma nova conversa
+    new_button: Criar conversa
+    title_html:
+      one: Conversa com %{users}
+      other: Conversa com %{users}
+    send_message: Enviar mensagem
+    conversation_list_title: Conversas
+    conversation_link:
+      one: Conversa com %{users}.
+      other: Conversa com %{users}.
+    conversation_info_html: Última mensagem em %{date} por %{user}.
+    no_conversations: Você ainda não possui nenhuma conversa.
+  screenshots:
+    requirements: "Máximo de %{number} imagens PNG, GIF, JPEG, ou WebP, com menos de %{size} cada."
   common:
     error_preamble: "Houve alguns problemas com o que você postou..."
     allowed_elements_link: "(Veja código permitido.)"
@@ -990,6 +1008,10 @@ pt-BR:
         rating: "Avaliação"
         category: "Categoria"
         title: Título
+      conversation:
+        user_input: Usuário
+      message:
+        content: Mensagem
   errors:
     messages:
       script_missing_name: "é requerido - especifique um com @name"
@@ -1068,3 +1090,7 @@ pt-BR:
           Você pode ver e responder este comentário pelo link %{comment_url}.
 
           Você recebeu esta notificação porque está inscrito nesta discussão. Visite %{discussion_url} para se desinscrever.
+    new_conversation:
+      subject: "Uma nova conversa no %{site_name}"
+      text: |
+          O usuário '%{user}' no %{site_name} iniciou uma nova conversa com você. Você pode ver e responder em  %{conversation_url}.

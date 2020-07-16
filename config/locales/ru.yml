@@ -867,6 +867,7 @@ ru:
     create_button: "Создать жалобу"
     report_user: "Пожаловаться на пользователя"
     report_comment: "Пожаловаться на комментарий"
+    report_message: "Пожаловаться на сообщение"
     result_dismissed: "Это жалоба была отклонена модератором."
     result_upheld: "Это жалоба была поддержана модератором."
     result_pending: "Это жалоба ожидает рассмотрения модератором."
@@ -927,7 +928,7 @@ ru:
         replied_html: "Ответил на вопрос/комментарий о <i>%{script}</i>"
       discussion:
         posted_html: "Создано обсуждение: <i>%{title}</i>"
-        replied_html: "Ответ в обсуждении: <i>%{script}</i>"
+        replied_html: "Ответил в обсуждении <i>%{title}</i>"
     review_title: "Отзыв на %{script_name}"
     question_title: "Вопрос о %{script_name}"
     subscribe: Подписаться
@@ -953,6 +954,27 @@ ru:
     new_button: Новое обсуждение
     script_notice: Если вы хотите обсудить какой-то скрипт, зайдите в секцию "Обсуждения" на странице этого скрипта и там создайте новое обсуждение.
     no_discussions: Обсуждений не найдено.
+  conversations:
+    user_input_note: Введите имя пользователя или URL его профиля.
+    new_title: Новый разговор
+    new_link: Новый разговор
+    new_button: Начать разговор
+    title_html:
+      one: Разговор с %{users}
+      few: Разговор с %{users}
+      many: Разговор с %{users}
+      other: Разговор с %{users}
+    send_message: Послать сообщение
+    conversation_list_title: Разговоры
+    conversation_link:
+      one: Диалог с %{users}.
+      few: Диалог с %{users}.
+      many: Диалог с %{users}.
+      other: Разговор с %{users}.
+    conversation_info_html: Последнее сообщение %{date} от %{user}.
+    no_conversations: Нет ни одного разговора.
+  screenshots:
+    requirements: "Не более %{number} изображений PNG, GIF, JPEG, or WebP, размер каждого меньше %{size}."
   common:
     error_preamble: "Обнаружены проблемы в отправленном вами тексте..."
     allowed_elements_link: "(См. разрешенные теги)"
@@ -1003,6 +1025,10 @@ ru:
         rating: "Оценка"
         category: "Категория"
         title: Название
+      conversation:
+        user_input: Пользователь
+      message:
+        content: Сообщение
   errors:
     messages:
       script_missing_name: "требуется - укажите @name"
@@ -1081,3 +1107,7 @@ ru:
           Вы можете просмотреть комментарий и ответить на него по адресу %{comment_url}.
 
           Вы получили это уведомление, потому что подписались на эту тему. Отписаться можно по адресу %{discussion_url}.
+    new_conversation:
+      subject: "Новый разговор на %{site_name}"
+      text: |
+          Пользователь '%{user}' сайта %{site_name} начал с вами разговор. Вы можете поболтать по адресу %{conversation_url}.

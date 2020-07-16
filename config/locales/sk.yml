@@ -863,6 +863,7 @@ sk:
     create_button: "Nahlásiť"
     report_user: "Nahlásiť užívateľa"
     report_comment: "Nahlásiť komentár"
+    report_message: "Nahlásiť správu"
     result_dismissed: "Táto sťažnosť bola moderátorom zamietnutá."
     result_upheld: "Táto sťažnosť bola moderátorom schválená."
     result_pending: "Táto sťažnosť čaká na schválenie moderátorom."
@@ -923,7 +924,7 @@ sk:
         replied_html: "Odpovede na otázky/komentáre k skriptu <i>%{script}</i>"
       discussion:
         posted_html: "Pridaná diskusia: <i>%{title}</i>"
-        replied_html: "Odpoveď na diskusiu: <i>%{script}</i>"
+        replied_html: "Odpovede na diskusiu: <i>%{title}</i>"
     review_title: "Recenzia na %{script_name}"
     question_title: "Otázka k %{script_name}"
     subscribe: Prihlásiť na odber
@@ -949,6 +950,27 @@ sk:
     new_button: Nová diskusia
     script_notice: Ak chcete diskutovať o konkrétnom skripte, prejdite na stránku spätnej väzby skriptu a začnite diskusiu odtiaľ .
     no_discussions: Žiadna diskusia.
+  conversations:
+    user_input_note: Zadajte meno užívateľa alebo adresu URL na jeho profil.
+    new_title: Založiť novú konverzáciu
+    new_link: Založiť novú konverzáciu
+    new_button: Založiť konverzáciu
+    title_html:
+      one: Konverzácia s %{users}
+      few: Konverzácia s %{users}
+      many: Konverzácia s %{users}
+      other: Konverzácia s %{users}
+    send_message: Odoslať správu
+    conversation_list_title: Konverzácie
+    conversation_link:
+      one: Konverzácia s %{users}.
+      few: Konverzácia s %{users}.
+      many: Konverzácia s %{users}.
+      other: Konverzácia s %{users}.
+    conversation_info_html: Posledná správa %{date} od %{user}.
+    no_conversations: Zatiaľ ste nemali žiadne rozhovory.
+  screenshots:
+    requirements: "Maximálne %{number} PNG, GIF, JPEG, alebo WebP obrázkov, každý menší ako %{size}."
   common:
     error_preamble: "Boli zistené problémy s tým, čo ste poslali."
     allowed_elements_link: "(Pozri zoznam povolených značiek.)"
@@ -999,6 +1021,10 @@ sk:
         rating: "Hodnotenie"
         category: "Kategória"
         title: Nadpis
+      conversation:
+        user_input: Užívateľ
+      message:
+        content: Správa
   errors:
     messages:
       script_missing_name: "potrebné - uveďte v @name"
@@ -1077,3 +1103,7 @@ sk:
           Zobraziť a odpovedať na komentár môžete na %{comment_url}.
 
           Toto upozornenie ste dostali, lebo ste prihlásený na odber tejto diskusie. Pre odhlásenie prejdite na %{discussion_url}.
+    new_conversation:
+      subject: "Nová konverzácia na %{site_name}"
+      text: |
+          Užívateľ "%{user}" na %{site_name} založil novú konverzáciu s vami. Prezrieť a odpovedať môžete na %{conversation_url}.
