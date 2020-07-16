@@ -12,10 +12,22 @@
         <td>
           <code><%= ar.pattern %></code>
         </td>
+        <% if current_user&.administrator? %>
+          <td>
+            <%= link_to 'Edit', edit_admin_allowed_require_path(ar) %>
+            <%= link_to 'Delete', admin_allowed_require_path(ar), method: :DELETE %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<% if current_user&.administrator? %>
+  <p>
+    <%= link_to 'New', new_admin_allowed_require_path %>
+  </p>
+<% end %>
 
 <p>
   <label for="test-require"><%= t('help.external_scripts.test_url.label') %></label>

@@ -194,6 +194,7 @@ Rails.application.routes.draw do
         end
       end
       resource :analytics_stats, only: [:show, :update]
+      resources :allowed_requires, only: [:new, :create, :edit, :update, :destroy]
       resources :blocked_script_codes, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :blocked_script_texts, only: [:index, :new, :create, :edit, :update, :destroy]
       resources :blocked_script_urls, only: [:index, :new, :create, :edit, :update, :destroy]

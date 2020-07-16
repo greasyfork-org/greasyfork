@@ -1,0 +1,18 @@
+<%= form_with(model: [:admin, @allowed_require]) do |f| %>
+  <div class="form-control">
+    <%= f.label :name %>
+    <%= f.text_field :name, required: true %>
+  </div>
+
+  <div class="form-control">
+    <%= f.label :url %>
+    <%= f.url_field :url %>
+  </div>
+
+  <div class="form-control">
+    <%= f.label :pattern %>
+    <%= f.text_field :pattern, required: true %>
+  </div>
+
+  <%= f.submit %>
+<% end %>
