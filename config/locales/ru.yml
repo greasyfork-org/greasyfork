@@ -1003,6 +1003,8 @@ ru:
     preview_tab: Предпросмотр
     write_tab: Написать
     listing_options_title: "Настройки поиска"
+    quote:
+      prefix_html: "%{user} сказал:"
   activerecord:
     attributes:
       user:
@@ -1122,5 +1124,6 @@ ru:
       text: |
           Пользователь '%{user}' сайта %{site_name} начал с вами разговор. Вы можете поболтать по адресу %{conversation_url}.
     new_message:
+      subject: "Новое сообщение на %{site_name}"
       text: |
           Пользователь '%{user}' сайта %{site_name} прислал вам сообщение. Вы можете прочесть его и ответить по адресу %{conversation_url}.
