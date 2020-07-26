@@ -976,6 +976,9 @@ sk:
       other: Konverzácia s %{users}.
     conversation_info_html: Posledná správa %{date} od %{user}.
     no_conversations: Zatiaľ ste nemali žiadne rozhovory.
+    recent:
+      title: Nedávne konverzácie
+      more: Zobraziť všetky konverzácie
   screenshots:
     requirements: "Maximálne %{number} PNG, GIF, JPEG, alebo WebP obrázkov, každý menší ako %{size}."
   common:
@@ -996,6 +999,8 @@ sk:
     preview_tab: Náhľad
     write_tab: Napísať
     listing_options_title: "Možnosti vyhľadávania"
+    quote:
+      prefix_html: "%{user} napísal:"
   activerecord:
     attributes:
       user:
@@ -1114,3 +1119,7 @@ sk:
       subject: "Nová konverzácia na %{site_name}"
       text: |
           Užívateľ "%{user}" na %{site_name} založil novú konverzáciu s vami. Prezrieť a odpovedať môžete na %{conversation_url}.
+    new_message:
+      subject: "Nová správa na %{site_name}"
+      text: |
+          Užívateľ "%{user}" na %{site_name} vám poslal správu Prezrieť a odpovedať môžete na %{conversation_url}.
