@@ -83,7 +83,7 @@
         <% @script.users.each do |user| %>
           <% other_scripts = Script.joins(:authors).where(authors: { user_id: user.id }).where.not(id: @script.id) %>
           <p>
-            <%= user.name %> has <%= link_to("#{other_scripts.count} other scripts, #{other_scripts.where(locked: true).count} of which are locked.", user) %>.
+            <%= user.name %> has <%= link_to("#{other_scripts.count} other scripts, #{other_scripts.where(locked: true).count} of which are locked", user) %>.
           </p>
         <% end %>
       <% end %>
