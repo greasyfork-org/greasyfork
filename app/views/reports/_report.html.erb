@@ -1,12 +1,16 @@
 <h4><%= report_item_link(report) %> has been reported for <%= report.reason_text %> by <%= link_to(report.reporter.name, user_path(report.reporter)) %>.</h4>
 
 <% if report.item.is_a?(Comment) %>
-  <div class="user-content">
-    <%= format_user_text(report.item.text, report.item.text_markup) %>
-  </div>
+  <div><%= t('common.quote.prefix_html', user: render_user(reported_user(report), reported_user_id(report))) %></div>
+  <blockquote>
+    <div class="user-content">
+      <%= format_user_text(report.item.text, report.item.text_markup) %>
+    </div>
+  </blockquote>
 <% end %>
 
-<% if report.explanation %>
+<% if report.explanation.present? %>
+  <div><%= t('common.quote.prefix_html', user: render_user(report.reporter, report.reporter_id)) %></div>
   <blockquote>
     <%= report.explanation %>
   </blockquote>
