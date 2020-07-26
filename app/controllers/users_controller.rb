@@ -69,6 +69,12 @@ class UsersController < ApplicationController
         @canonical_params = [:id, :page, :per_page, :set, :site, :sort, :language]
         @ad_method = 'cf' if ads_enabled?
 
+        if @same_user
+          conversation_scope = current_user.conversations.includes(:users, :stat_last_poster)
+          @recent_conversations = conversation_scope.order(stat_last_message_date: :desc).where(stat_last_message_date: 1.month.ago..)
+          @more_conversations = conversation_scope.count > @recent_conversations.count
+        end
+
         render layout: 'base'
       end
       format.json { render json: @user.as_json(include: @same_user ? :scripts : :all_listable_scripts) }
