@@ -155,7 +155,7 @@
   </section>
 <% end %>
 
-<% if !@user.script_sets.empty? or @same_user %>
+<% if @same_user || (@user.script_sets.any? && (current_user&.moderator? || (!@user.banned && @user.allow_posting_profile?)))  %>
   <section id="user-script-sets-section">
     <header>
       <h3>Script Sets</h3>
