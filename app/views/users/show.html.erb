@@ -1,7 +1,7 @@
 <%- title @user.name %>
 <%- description "Greasy Fork profile for #{@user.name}" %>
 
-<section class="text-content reportable">
+<section id="about-user" class="text-content reportable">
   <%= link_to(t('reports.report_user'), new_report_path(item_class: 'user', item_id: @user.id), class: 'report-link report-link-abs') unless @user.banned? %>
 
   <h2><%= render_user(@user, @user.id, skip_link: true) %></h2>
@@ -96,7 +96,7 @@
   </section>
 <% end %>
 
-<section>
+<section id="user-discussions">
   <header>
     <h3>
       <%= t('discussions.user_activity.title') %>
@@ -124,7 +124,7 @@
 </section>
 
 <% if @same_user %>
-  <section>
+  <section id="user-conversations">
     <header>
       <h3><%= t('conversations.recent.title') %></h3>
     </header>
@@ -154,7 +154,7 @@
 <% end %>
 
 <% if !@user.script_sets.empty? or @same_user %>
-  <section>
+  <section id="user-script-sets-section">
     <header>
       <h3>Script Sets</h3>
     </header>
@@ -185,7 +185,7 @@
     <% # show deletions in a separate section if we're going to show any
     deleted_script_list = @scripts.select{|s| s.deleted?}
     script_list = @scripts - deleted_script_list %>
-    <section>
+    <section id="user-script-list-section">
       <header>
         <h3><%=t('users.script_list')%></h3>
       </header>
@@ -207,7 +207,7 @@
     </section>
 
     <% if !deleted_script_list.empty? %>
-      <section>
+      <section id="user-deleted-script-list-section">
         <header>
           <h3><%=t('users.deleted_script_list')%></h3>
         </header>
