@@ -249,7 +249,7 @@ pl:
     write_your_own_html: "%{post_a_script_link} (lub %{learn_to_write_scripts_link})"
     post_a_script_link_text: "Opublikuj swój skrypt"
     learn_to_write_scripts_link_text: "dowiedz się, jak go napisać"
-    feedback_or_report: "%{feedback_link:Zadaj pytanie, dodaj opinię}, lub %{report_link:zgłoś ten skrypt}."
+    feedback_or_report: "%{feedback_link:Zadaj pytanie, napisz recenzję}, lub %{report_link:zgłoś ten skrypt}."
     support_feedback_or_report: "%{support_url:Odwiedź stronę autora w celu uzyskania pomocy}, %{feedback_link:zadaj pytanie, napisz recenzję}, lub %{report_link:zgłoś skrypt}."
     support_email_feedback_or_report: "%{support_url:Napisz email do autora w celu uzyskania pomocy}, %{feedback_link:zadaj pytanie, napisz recenzję}, lub %{report_link:zgłoś skrypt}."
     adult_content: "Treści dla dorosłych"
@@ -286,7 +286,7 @@ pl:
           Zgłoś nadużycie za pomocą linków poniżej, a moderatorzy %{site_name} rozpatrzą
           twoje zgłoszenie.</p> <ul>
 
-          <li>%{unauthorized_link::Zgłoś nieautoryzowane kopie twojego skryptu.}</li>
+          <li>%{unauthorized_link:Zgłoś nieautoryzowane kopie twojego skryptu.}</li>
 
           <li>%{malware_link:Zgłoś malware.}</li>
 
@@ -488,6 +488,7 @@ pl:
     edit_sign_in: "Edytuj metody zalogowania się"
     edit_sign_in_title: "Edytuj metody zalogowania się"
     edit_sign_in_password: "Hasło"
+    edit_notifications: "Edytuj powiadomienia"
     no_password_set_info: "Twoje konto nie posiada skonfigurowanego hasła."
     set_password: "Ustaw hasło"
     update_password: "Zaktualizuj hasło"
@@ -517,7 +518,6 @@ pl:
       none: "Nie otrzymuj e-maili o nowych dyskusjach w Twoich skryptach"
       discussion_only: "Otrzymuj maile o nowych dyskusjach na temat twoich skryptów"
       discussion_and_comment: "Otrzymuj pocztówki elektroniczne o nowych dyskusjach w Twoich skryptach lub kiedy te dyskusję będą miały nowe komentarze."
-      note: "Możesz także otrzymywać inne pocztówki elektroniczne ustawione według Ciebie w opcjach na forum."
     list_display_html:
       one: "%{user_link} — %{count} skrypt"
       few: "%{user_link} — %{count} skrypty"
@@ -588,6 +588,9 @@ pl:
       author:
         short: Autor
         long: Autor tego skryptu
+    notifications:
+      save_button: Zaktualizuj ustawienia powiadomień
+      title: Powiadomienia
   help:
     sections:
       usage: Używanie
@@ -725,6 +728,10 @@ pl:
           który chcesz dołączyć, jest napisany przez ciebie, możesz go zamieścić na
           %{site_name} jako oddzielny wpis, wybierając typ skryptu "Biblioteka". Następnie
           możesz dołączyć tę bibliotekę do skryptu.</p>
+      test_url:
+        label: Testuj adres URL
+        result_ok: URL jest dozwolony
+        result_not_ok: URL jest niedozwolony
     script_rewriting:
       title: "Jak %{site_name} przepisze udostępnione skrypty"
       content_html: >
@@ -878,6 +885,7 @@ pl:
     create_button: "Utwórz zgłoszenie"
     report_user: "Zgłoś użytkownika"
     report_comment: "Zgłoś komentarz"
+    report_message: "Zgłoś wiadomość"
     result_dismissed: "Twoje zgłoszenie zostało odrzucone przez moderatora."
     result_upheld: "Twoje zgłoszenie zostało uznane przez moderatora."
     result_pending: "Twoje zgłoszenie oczekuje na sprawdzenie przez moderatora."
@@ -938,6 +946,7 @@ pl:
         replied_html: "Odpowiedziano na pytanie/komentarz o <i>%{script}</i>"
       discussion:
         posted_html: "Napisano dyskusję: <i>%{title}</i>"
+        replied_html: "Odpowiedziano na dyskusję: <i>%{title}</i>"
     review_title: "Recenzja o %{script_name}"
     question_title: "Pytanie o %{script_name}"
     subscribe: Subskrybuj
@@ -963,6 +972,27 @@ pl:
     new_button: Nowa dyskusja
     script_notice: Jeśli chcesz skomentować konkretny skrypt, przejdź do podstrony "Opinie" tego skryptu i rozpocznij dyskusję.
     no_discussions: Nie znaleziono dyskusji.
+  conversations:
+    user_input_note: Wprowadź nazwę użytkownika lub adres URL do jego profilu.
+    new_title: Utwórz nową rozmowę
+    new_link: Utwórz nową rozmowę
+    new_button: Utwórz rozmowę
+    title_html:
+      one: Rozmowa z %{users}
+      few: Rozmowa z %{users}
+      many: Rozmowa z %{users}
+      other: Rozmowa z %{users}
+    send_message: Wyślij wiadomość
+    conversation_list_title: Rozmowy
+    conversation_link:
+      one: Rozmowa z %{users}.
+      few: Rozmowa z %{users}.
+      many: Rozmowa z %{users}.
+      other: Rozmowa z %{users}.
+    conversation_info_html: Ostatnia wiadomość o %{date} od %{user}.
+    no_conversations: Nie masz jeszcze żadnych rozmów.
+  screenshots:
+    requirements: "Maksymalnie %{number} obrazów PNG, GIF, JPEG, lub WebP, mniejszych niż %{size} każdy."
   common:
     error_preamble: "Mieliśmy małe problemy z tym, co chciałeś napisać..."
     allowed_elements_link: "(zobacz dozwolony kod)"
@@ -1013,6 +1043,10 @@ pl:
         rating: "Ocena"
         category: "Kategoria"
         title: Tytuł
+      conversation:
+        user_input: Użytkownik
+      message:
+        content: Wiadomość
   errors:
     messages:
       script_missing_name: "jest wymagana - wybierz jedną z dostępnych jako „@name”"
@@ -1090,3 +1124,7 @@ pl:
 
           Możesz zobaczyć ten komentarz i odpowiedzieć na %{comment_url}.
           Powiadomienie zostało wysłane, ponieważ subskrybujesz tę dyskusję. Odwiedź %{discussion_url} by odsubskrybować.
+    new_conversation:
+      subject: "Nowa rozmowa na %{site_name}"
+      text: |
+          Użytkownik '%{user}' na %{site_name} rozpoczął nową rozmowę z tobą. Zobacz i odpowiedz na %{conversation_url}.

@@ -170,6 +170,8 @@ fr:
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
     import: "Importer des scripts"
+    new: "Publiez un script que vous avez écrit"
+    new_css: "Publiez un style que vous avez écrit"
     support_site: "Visiter le site d'entraide de l'auteur."
     support_email: "Envoyer un e-mail à l'auteur pour obtenir de l'aide."
     contribution_no_amount: "Remercier %{author} en faisant un don."
@@ -244,6 +246,7 @@ fr:
     ok_rating_explanation: "Nombre de personnes l'ayant jugé-e OK."
     bad_rating_explanation: "Nombre de personnes l'ayant jugé-e Mauvais-e."
     write_your_own_html: "%{post_a_script_link} (ou %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "Publiez un script que vous avez écrit"
     learn_to_write_scripts_link_text: "Apprenez à scripter"
     feedback_or_report: "%{feedback_link:Poser une question, écrire un avis}, ou %{report_link:signaler le script}."
     support_feedback_or_report: "%{support_url:Visiter le site de l'auteur pour obtenir de l'aide}, %{feedback_link:poser une question, écrire un avis}, ou %{report_link:signaler le script}."
@@ -484,6 +487,7 @@ fr:
     edit_sign_in: "Modifier mes méthodes d'identification"
     edit_sign_in_title: "Modifier mes méthodes d'identification"
     edit_sign_in_password: "Mot de passe"
+    edit_notifications: "Modifier les notifications"
     no_password_set_info: "Votre compte n'est pas configuré avec un mot de passe."
     set_password: "Choisir un mot de passe"
     update_password: "Mettre à jour le mot de passe"
@@ -513,7 +517,6 @@ fr:
       none: "Ne pas recevoir de courriel à propos des dicusssions sur vos scripts"
       discussion_only: "Recevoir un courriel quand une discussion est postée sur l'un de vos scripts"
       discussion_and_comment: "Recevoir un email quand une discussion est postée sur l'un de vos scripts, ou quand un nouveau commentaire est posté sur l'une de ces discussions"
-      note: "Vous pouvez recevoir d'autres courriels selon les paramètres de votre compte dans le forum."
     list_display_html:
       one: "%{user_link} - %{count} script"
       other: "%{user_link} - %{count} scripts"
@@ -572,6 +575,9 @@ fr:
       author:
         short: Auteur
         long: Auteur de ce script
+    notifications:
+      save_button: Mettre à jour les paramètres de notification
+      title: Notifications
   help:
     sections:
       usage: Utilisation
@@ -612,6 +618,10 @@ fr:
       adult_content_rule_html: "<li>Les scripts, qui incluent du contenu adulte ou qui sont pour des sites avec contenu adulte, doivent être marqués comme tels pour laisser aux autres utilisateurs le choix de les voir ou non.</li>"
     external_scripts:
       title: "Politique de %{site_name} concernant les scripts externes"
+      test_url:
+        label: Testé un URL
+        result_ok: L'URL est autorisée
+        result_not_ok: L'URL n'est pas autorisée
     script_rewriting:
       title: "Comment %{site_name} va récrire les scripts postés"
       content_html: >
@@ -764,6 +774,7 @@ fr:
     result_upheld: "signalerCe rapport a été approuver par un modérateur."
     result_pending: "Ce rapport est en attente d'examen par un modérateur."
   discussions:
+    title: Discussions
     comment_date: "Posté le: %{date}"
     comment_edit_date: "Édité le: %{date}"
     posted_by_html: "%{user} le %{date}"
@@ -781,6 +792,7 @@ fr:
     cancel_update_comment: "Annuler"
     question_heading_html: "Question / commentaire"
     review_heading_html: "Avis: %{rating}"
+    update_rating: "Mettez à jour votre note de %{script_name}"
     ratings:
       question: "Aucune note - juste une question / un commentaire"
       bad: "Mauvais - le script ne fonctionne pas"
@@ -803,6 +815,9 @@ fr:
     other_user_filter:
       all: "Toutes les discussions"
       comments_by: "Commentaires de %{user}"
+    category_filter:
+      label: Catégorie
+      all: Toutes les catégories
     user_activity:
       title: "Commentaires récents"
       no_recent_activity: "Cet utilisateur n'a posté aucun commentaire récemment."
@@ -813,16 +828,57 @@ fr:
       script_question:
         posted_html: "Posté une question / un commentaire sur <i>%{script}</i>"
         replied_html: "Répondre à une question / commentaire sur <i>%{script}</i>"
+      discussion:
+        posted_html: "A Posté une discussion: <i>%{title}</i>"
+        replied_html: "A répondu à une discussion: <i>%{title}</i>"
     review_title: "Un avis sur %{script_name}"
     question_title: "Une question sur %{script_name}"
     subscribe: S'abonner
     unsubscribe: Se désabonner
+    notify: Notifiez-moi de toute réponse
+    categories:
+      greasyfork:
+        description: Rapports de bug, demandes de fonctionnalités et autres informations du site Greasy Fork.
+      development:
+        name: Développement
+        description: Discussion technique sur le développement de scripts utilisateur et de style utilisateur.
+      requests:
+        name: Demandes de création de scripts
+        description: Demandez à quelqu'un d'écrire un script utilisateur ou un style utilisateur pour vous.
+      script-discussions:
+        name: Discussions de Script
+        description: Discussions sur les scripts utilisateurs et les styles utilisateurs existants.
+      no-scripts:
+        name: Afficher uniquement les discussions de scripts
+    category_display: "%{name} - %{description}"
+    new_title: Nouvelle discussion
+    new_button: Nouvelle discussion
+    script_notice: Si vous souhaitez discuter d'un script spécifique, accédez à la page de commentaires du script et démarrez une discussion à partir de là.
+    no_discussions: Aucune discussion trouvée.
+  conversations:
+    user_input_note: Saisissez le nom de l'utilisateur ou l'URL de son profil.
+    new_title: Créer une nouvelle conversation
+    new_link: Créer une nouvelle conversation
+    new_button: Créer une conversation
+    title_html:
+      one: Conversation avec %{users}
+      other: Conversation de %{users}
+    send_message: Envoyer le message
+    conversation_list_title: Conversations
+    conversation_link:
+      one: Conversation avec %{users}.
+      other: Conversation de %{users}.
+    conversation_info_html: Dernier message à %{date} de %{user}.
+    no_conversations: Vous n'avez encore eu aucune conversation.
+  screenshots:
+    requirements: "Maximum %{number} images PNG, GIF, JPEG ou WebP, inférieures à %{size} chacune."
   common:
     error_preamble: "Il y a des erreurs dans ce que vous avez posté..."
     allowed_elements_link: "(Voir les balises autorisées.)"
     allowed_elements_and_attributes_title: "Balises autorisées pour le contenu HTML"
     allowed_elements_intro: "Les éléments et attributs suivants sont autorisés. Cela s'applique à la fois au HTML et au Markdown (après conversion en HTML)"
     allowed_elements_extra_info: "Les sauts de ligne seront transformés en éléments <p> ou <br>. Les URL seront automatiquement transformées en liens."
+    allowed_css_intro: "Les propriétés CSS suivantes sont autorisées sur tous les éléments."
     not_found_text: "404 - Page introuvable."
     not_found_title: "404 - Page introuvable"
     not_found_link_home: "Aller à la page d'accueil."
@@ -864,6 +920,12 @@ fr:
         reason: "Motif du signalement"
       discussion:
         rating: "Note"
+        category: "Catégorie"
+        title: Titre
+      conversation:
+        user_input: Utilisateur
+      message:
+        content: Message
   errors:
     messages:
       script_missing_name: "est nécessaire - spécifiez-le avec @name"
@@ -942,3 +1004,7 @@ fr:
           Vous pouvez voir et répondre à ce commentaire sur %{comment_url}.
 
           Vous avez reçu cette notification parce que vous vous êtes abonné à cette discussion. Visitez %{discussion_url} pour vous désabonnez.
+    new_conversation:
+      subject: "Une nouvelle conversation sur %{site_name}"
+      text: |
+          L'utilisateur '%{user}' sur %{site_name} a commencé une nouvelle conversation avec vous. Vous pouvez consulter et répondre à l'adresse %{conversation_url} .

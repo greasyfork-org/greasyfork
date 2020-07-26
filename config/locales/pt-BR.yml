@@ -483,6 +483,7 @@ pt-BR:
     edit_sign_in: "Editar métodos de entrada"
     edit_sign_in_title: "Editar métodos de entrada"
     edit_sign_in_password: "Senha"
+    edit_notifications: "Editar notificações"
     no_password_set_info: "Sua conta não está configurado com uma senha."
     set_password: "Digitar senha"
     update_password: "Atualizar senha"
@@ -512,7 +513,6 @@ pt-BR:
       none: "Não receber emails sobre discussões em seus scripts"
       discussion_only: "Receber email quando discussões são postadas em seus scripts"
       discussion_and_comment: "Receber um email quando discussões são postadas em seus scripts ou quando estas discussões recebem novos comentários"
-      note: "Você pode receber outros emails de acordo com suas configurações no fórum"
     list_display_html:
       one: "%{user_link} - %{count} script"
       other: "%{user_link} - %{count} scripts"
@@ -571,6 +571,9 @@ pt-BR:
       author:
         short: Autor
         long: Autor deste scrip
+    notifications:
+      save_button: Atualizar configurações de notificação
+      title: Notificações
   help:
     sections:
       usage: Uso
@@ -710,6 +713,10 @@ pt-BR:
           incluir foi escrito por você, você pode enviá-lo como um script separado
           no %{site_name} escolhendo o tipo de script "Biblioteca". Com isso você
           poderá incluir esta nova biblioteca no seu script.</p>
+      test_url:
+        label: Testar uma URL
+        result_ok: A URL é permitida
+        result_not_ok: A URL não é permitida
     script_rewriting:
       title: "Como o %{site_name} irá sobrescrever scripts postados"
       content_html: >

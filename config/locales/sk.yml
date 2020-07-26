@@ -488,6 +488,7 @@ sk:
     edit_sign_in: "Zmeniť spôsob prihlasovania"
     edit_sign_in_title: "Zmeniť spôsob prihlasovania"
     edit_sign_in_password: "Heslo"
+    edit_notifications: "Upraviť upozornenia"
     no_password_set_info: "Váš účet nepoužíva heslo."
     set_password: "Nastaviť helso"
     update_password: "Aktualizovať heslo"
@@ -517,7 +518,6 @@ sk:
       none: "Nezasielať emaily o diskusiách pre vaše skripty"
       discussion_only: "Nezasielať emaily o novej diskusii pre vaše skripty"
       discussion_and_comment: "Nezasielať emaily o nových diskusiách pre vaše skripty alebo nových komentároch v diskusiách"
-      note: "Naďalej môžete dostávať ďalšie emaily podľa nastavenia na fóre."
     list_display_html:
       one: "%{user_link} - %{count} skript"
       few: "%{user_link} - %{count} skripty"
@@ -588,6 +588,9 @@ sk:
       author:
         short: Autor
         long: Autor tohto skriptu
+    notifications:
+      save_button: Aktualizovať nastavenia upozornenia
+      title: Upozornenia
   help:
     sections:
       usage: Použitie
@@ -721,6 +724,10 @@ sk:
           <p>Ak skript, ktorý chcete priložiť ste napísali Vy, môžete ho poslať ako
           samostatnú položku na %{site_name} vybraním typu skriptu "Knižnica". Potom
           budete môcť priložiť túto knižnicu do vášho skriptu.</p>
+      test_url:
+        label: Skúška adresy URL
+        result_ok: Adresa URL je povolená
+        result_not_ok: Adresa URL nie je povolená
     script_rewriting:
       title: "Ako budú prepísané skripty odoslané na %{site_name}"
       content_html: >
@@ -754,7 +761,7 @@ sk:
           <p>Existuje viacero spôsobov ako sa rozprávať o %{site_name} a jeho obsahu.</p>
           <p>Máte otázku alebo komentár ku konkrétnemu skriptu na stránke? Ak áno,
           použite diskusiu cez záložku z odkazu na spätnú väzbu na stránke skriptu.
-          Autori skriptu dostanú notifikáciu na ich účet stránky alebo v diskusii
+          Autori skriptu dostanú upozornenie na ich účet stránky alebo v diskusii
           k ich skriptu.</p> <p>Máte otázku alebo komentár k stránke %{site_name}
           alebo k vývoju skriptu, alebo chcete niekoho požiadať o vytvorenie skriptu?
           %{forum_link:Prispievanie vo fóre} ti poskytuje najširšie publikum na diskusiu.</p>
