@@ -39,25 +39,27 @@
         <li><%= link_to t('users.sign_out'), destroy_user_session_path, :method => :delete %></li>
       </ul>
     </section>
-
-    <% if @user.scripts.any?
-      dosr = @user.discussions_on_scripts_written  %>
-      <section id="user-discussions-on-scripts-written">
-        <header>
-          <h3><%= t('users.discussions_on_scripts') %></h3>
-        </header>
-        <% if dosr.empty? %>
-          <p><%=t('users.discussions_on_scripts_none')%></p>
-        <% else %>
-          <%= render collection: dosr.first(10), partial: 'discussions/discussion', locals: { show_script: true } %>
-          <% if dosr.length > 10 %>
-            <%= link_to t('users.discussions_on_scripts_more'), discussions_path(me: 'script') %>
-          <% end %>
-        <% end %>
-      </section>
-    <% end %>
   <% end %>
 </section>
+
+<% if @same_user && @user.scripts.any?
+     dosr = @user.discussions_on_scripts_written  %>
+  <section id="user-discussions-on-scripts-written">
+    <header>
+      <h3><%= t('users.discussions_on_scripts') %></h3>
+    </header>
+    <section class="text-content">
+      <% if dosr.empty? %>
+        <p><%=t('users.discussions_on_scripts_none')%></p>
+      <% else %>
+        <%= render collection: dosr.first(10), partial: 'discussions/discussion', locals: { show_script: true } %>
+        <% if dosr.length > 10 %>
+          <%= link_to t('users.discussions_on_scripts_more'), discussions_path(me: 'script') %>
+        <% end %>
+      <% end %>
+    </section>
+  </section>
+<% end %>
 
 <% if current_user&.moderator? && !@user.moderator? %>
   <section id="moderator-user-control-panel">
