@@ -140,7 +140,7 @@
           <% end %>
         </ul>
         <% if @more_conversations %>
-          <p><%= t('conversations.recent.more') %></p>
+          <p><%= link_to t('conversations.recent.more'), user_conversations_path(current_user) %></p>
         <% end %>
         <p></p>
       <% else %>
