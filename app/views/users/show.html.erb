@@ -103,26 +103,26 @@
     <h3>
       <%= t('discussions.user_activity.title') %>
     </h3>
-    <section class="text-content">
-      <% recent_comments = @user.comments.where(created_at: 1.month.ago..).includes(discussion: :script).order(created_at: :desc).limit(10).load %>
-      <% if recent_comments.any? %>
-        <ul>
-          <% recent_comments.each do |comment| %>
-            <li><%= link_to user_activity_title(comment.discussion, post: comment.first_comment?), comment.path %></li>
-          <% end %>
-        </ul>
-      <% else %>
-        <p>
-          <%= t('discussions.user_activity.no_recent_activity') %>
-        </p>
-      <% end %>
-      <% if @user.comments.any? %>
-        <p>
-          <%= link_to t('discussions.user_activity.see_all_activity'), discussions_path(user: @user.id) %>
-        </p>
-      <% end %>
-    </section>
   </header>
+  <section class="text-content">
+    <% recent_comments = @user.comments.where(created_at: 1.month.ago..).includes(discussion: :script).order(created_at: :desc).limit(10).load %>
+    <% if recent_comments.any? %>
+      <ul>
+        <% recent_comments.each do |comment| %>
+          <li><%= link_to user_activity_title(comment.discussion, post: comment.first_comment?), comment.path %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>
+        <%= t('discussions.user_activity.no_recent_activity') %>
+      </p>
+    <% end %>
+    <% if @user.comments.any? %>
+      <p>
+        <%= link_to t('discussions.user_activity.see_all_activity'), discussions_path(user: @user.id) %>
+      </p>
+    <% end %>
+  </section>
 </section>
 
 <% if @same_user %>
