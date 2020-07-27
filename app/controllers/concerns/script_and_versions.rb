@@ -81,7 +81,7 @@ module ScriptAndVersions
   def render_deleted(script: nil, http_code: 404)
     respond_to do |format|
       format.html do
-        if script
+        if script && script.site_applications.where(blocked: true).none?
           with = sphinx_options_for_request
           with[:site_application_id] = script.site_applications.pluck(:id)
 
