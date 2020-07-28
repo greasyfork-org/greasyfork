@@ -963,6 +963,9 @@ pt-BR:
       other: Conversa com %{users}.
     conversation_info_html: Última mensagem em %{date} por %{user}.
     no_conversations: Você ainda não possui nenhuma conversa.
+    recent:
+      title: Conversas recentes
+      more: Ver todas as conversas
   screenshots:
     requirements: "Máximo de %{number} imagens PNG, GIF, JPEG, ou WebP, com menos de %{size} cada."
   common:
@@ -983,6 +986,8 @@ pt-BR:
     preview_tab: Visualizar
     write_tab: Escrever
     listing_options_title: "Opções de Pesquisa"
+    quote:
+      prefix_html: "%{user} disse:"
   activerecord:
     attributes:
       user:
@@ -1101,3 +1106,7 @@ pt-BR:
       subject: "Uma nova conversa no %{site_name}"
       text: |
           O usuário '%{user}' no %{site_name} iniciou uma nova conversa com você. Você pode ver e responder em  %{conversation_url}.
+    new_message:
+      subject: "Uma nova mensagem no %{site_name}"
+      text: |
+          O usário '%{user}' no %{site_name} te enviou uma mensagem. Você pode ver e responder em %{conversation_url}.

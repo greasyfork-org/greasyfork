@@ -96,7 +96,7 @@ ja:
     diff_button: "選択したバージョン同士を比較"
     code_title: "%{script_name} のソースコード"
     feedback_title: "%{script_name} のフィードバック"
-    feedback_has_reports: "このスクリプトは %{site_name} のルールに違反していると報告されています。"
+    feedback_has_reports: "このスクリプトは %{site_name} の規約違反として通報されました。"
     feedback_no_discussions_html: "まだスレッドはありません。%{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "議論はまだ投稿されていません。"
     feedback_report_instead: "もしこのスクリプトが %{rules_link:%{site_name}の規則}に反するとお考えであれば、%{report_link:削除依頼}してください。"
@@ -106,7 +106,7 @@ ja:
     feedback_favoriters_heading: "お気に入り"
     feedback_favoriters_user_list_intro: " "
     feedback_no_favoriters: "まだ登録はありません。"
-    feedback_sign_in_to_favorite: "ログインしてお気に入りに追加する。"
+    feedback_sign_in_to_favorite: "お気に入りに追加するにはログインしてください。"
     stats_title: "%{script_name} のインストール数の統計"
     stats_daily_installs_heading: "1日ごとのインストール数"
     stats_weekly_installs_heading: "1週間ごとのインストール数"
@@ -118,7 +118,7 @@ ja:
     stats_download_raw_data_html: "すべてのデータをダウンロードする: %{links}"
     stats_no_data: "(データなし)"
     derivatives_title: "%{script_name} に似ているスクリプト"
-    derivatives_intro: "以下のスクリプトは、あなたのスクリプトを基にしている可能性があります (あるいはその逆)。ライセンス上の許可なくあなたのコードが使われている場合は、そのスクリプトのフィードバックに新しいスレッドを立て報告してください。"
+    derivatives_intro: "以下のスクリプトは、あなたのスクリプトを基にしている可能性があります (あるいはその逆)。ライセンス上の許可なくあなたのコードが使われている場合は、そのスクリプトのフィードバックタブから通報を行ってください。"
     derivatives_script_html: "%{script}  作者:%{user} ライセンス: %{license} %{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "正確なコピー"
     derivatives_exact_copies_list_intro: "以下のスクリプトは、あなたのスクリプトと全く同じコードを持っています。"
@@ -182,7 +182,7 @@ ja:
     sets_add_exclusion: "%{set_name} から除外"
     sets_add_to_new: "新しいセットに追加"
     rules_summary_html: "スクリプトは<strong>難読化</strong>や<strong>圧縮 (minify)</strong> をせず<strong>正しく記述</strong>し、<strong>著作権</strong>を守るように心がけてください。また、<strong>外部スクリプト</strong>の読み込みには制限があります。%{full_rules_link}"
-    rules_summary_link_to_full: "すべてのルールを読む。"
+    rules_summary_link_to_full: "すべてのルールはこちらでご確認ください。"
     syncing_notice_html: "このスクリプトは%{syncing_notice_sync_type}になっています。ここでコードに加えた変更点は、同期の際に上書きされます。"
     syncing_notice_sync_type_manual: "手動で %{sync_identifier} と同期する設定"
     syncing_notice_sync_type_automatic: "自動で %{sync_identifier} と同期する設定"
@@ -242,14 +242,14 @@ ja:
     write_your_own_html: "%{post_a_script_link} (または %{learn_to_write_scripts_link})"
     post_a_script_link_text: "スクリプトを投稿する"
     learn_to_write_scripts_link_text: "スクリプトの書き方を見る"
-    feedback_or_report: "質問やレビューの%{feedback_link:投稿はこちら}へ、スクリプトの%{report_link:通報はこちら}へどうぞ。"
-    support_feedback_or_report: "%{support_url:Visit the author's site for support}, %{feedback_link:ask a question, post a review}, または %{report_link:report the script}."
-    support_email_feedback_or_report: "%{support_url:Email the author for support}, %{feedback_link:ask a question, post a review}, または %{report_link:report the script}."
+    feedback_or_report: "質問やレビューの%{feedback_link:投稿はこちら}へ、スクリプトの%{report_link:通報はこちら}へお寄せください。"
+    support_feedback_or_report: "%{support_url:作者のサイト}でサポートを受けることもできます。質問やレビューの%{feedback_link:投稿はこちら}へ、スクリプトの%{report_link:通報はこちら}へお寄せください。"
+    support_email_feedback_or_report: "%{support_url:作者にメール}してサポートを受けることもできます。質問やレビューの%{feedback_link:投稿はこちら}へ、スクリプトの%{report_link:通報はこちら}へお寄せください。"
     adult_content: "アダルトコンテンツ"
     adult_content_self_report: "このスクリプトはアダルトコンテンツを含んでいます。または、アダルトコンテンツを含むサイト向けのスクリプトです。"
     adult_content_self_report_explanation: "%{site_name} はアダルトコンテンツに関するスクリプトを許容しますが、該当するスクリプトにはその旨をマークしなければなりません。これは、ユーザーがそのようなスクリプトを表示するかどうか選択できるようにするためです。"
     not_adult_content_self_report_html: "このスクリプトはアダルトコンテンツを<strong>含んでいません</strong>。なおかつ、アダルトコンテンツを含むサイト向けのスクリプト<strong>でもありません</strong>。"
-    not_adult_content_self_report_explanation: "%{site_name} はアダルトコンテンツに関するスクリプトを許容しますが、該当するスクリプトにはその旨をマークしなければなりません。これは、ユーザーがそのようなスクリプトを表示するかどうか選択できるようにするためです。このスクリプトはアダルトコンテンツを含むスクリプトとしてマークされています。あなたはアダルトコンテンツがスクリプトに含まれていないことを報告することができ、この報告はモデレーターによって審査されます。"
+    not_adult_content_self_report_explanation: "%{site_name} ではアダルトコンテンツに関するスクリプトも許容されますが、該当するスクリプトにはその旨をマークしなければなりません。これは、ユーザーがそのようなスクリプトを表示するかどうか選択できるようにするためです。あなたのスクリプトはアダルトコンテンツを含むスクリプトとしてマークされました。身に覚えがない場合、ご報告いただければモデレーターが審査いたします。"
     not_adult_content_self_report_explanation_automatic: "%{site_name} はアダルトコンテンツに関するスクリプトを許容しますが、該当するスクリプトにはその旨をマークしなければなりません。これは、ユーザーがそのようなスクリプトを表示するかどうか選択できるようにするためです。%{domain_list} 向けであるため、このスクリプトはアダルトコンテンツを含むスクリプトとしてマークされています。"
     adult_content_on_greasy_logged_in_error: "%{edit_account_link:Greasy Fork のアカウント設定} で許可しない限り、このスクリプトを当サイトから利用することはできなくなりました。"
     adult_content_on_greasy_not_logged_in_error: "ログインしていない場合、このスクリプトを当サイトから利用することはできなくなりました。%{login_link:ログイン} 後、Greasy Fork のアカウント設定をご確認ください。"
@@ -275,23 +275,22 @@ ja:
     report:
       title: "%{script_name}を通報"
       text_html: >-
-          <p>  投稿されるスクリプトは、 %{rules_link:サイトのルール} に従う必要があります。以下のリンクから違反を通報すると、 %{site_name}
-          のモデレーターが報告を検証します。</p> <ul>
+          <p>%{site_name} に投稿されるスクリプトは、 %{rules_link:サイトのルール} に従う必要があります。以下のリンクから違反を通報すると、
+          %{site_name} のモデレーターが報告を審査します。</p> <ul>
 
-          <li>%{unauthorized_link:あなたのスクリプトの不正コピーの通報。}</li>
+          <li>%{unauthorized_link:あなたのスクリプトの不正コピーを通報する}</li>
 
-          <li>%{malware_link:マルウェアの通報。}</li>
+          <li>%{malware_link:マルウェアを通報する}</li>
 
-          <li>%{spam_link:スパムなど、スクリプトではないコンテンツ。}</li>
+          <li>%{spam_link:スパムなど、スクリプトではないコンテンツを通報する}</li>
 
-          <li>%{feedback_link:スクリプトが動作しないことを報告。}</li>
+          <li>%{feedback_link:スクリプトが動作しないことを報告する}</li>
 
-          <li>%{other_report_link:その他の違反通報。明示のない広告掲載やマイニング:採掘を含む。}</li>
+          <li>%{other_report_link:その他の違反を通報する（明示のない広告掲載や、マイニング:採掘、他）}</li>
 
           </ul>
 
-          <p>機能していないスクリプトや、第三者の規約に違反するスクリプトは、%{site_name} の<em>規約違反ではない</em>ことに注意してください。その場合は、代わりに
-          %{feedback_link:フィードバックを残す}ことができます。</p>
+          <p>くれぐれも、単に機能していないスクリプトや第三者の規約に違反するスクリプトは、%{site_name} の規約違反<em>ではない</em>ことにご注意ください。そのような場合には、通報ではなく%{feedback_link:フィードバック}を行うことをおすすめします。</p>
     authors_heading: "共同の作者"
     error_unauthorized_copy: "このコードは %{script} の不正コピーのようです。投稿されるスクリプトに関する %{site_name} の %{rules_link:ルール} を確認してください。"
     invitations:
@@ -318,8 +317,8 @@ ja:
     no_disposable_email: "使い捨ての電子メールアドレスを使用している場合は、スクリプトを投稿することはできません。"
     new_script_notice:
       title: "何をしようとしていますか？"
-      install_link_html: "スクリプトを <b>インストールし使用したい</b> です。"
-      share_link_html: " スクリプトを<b>書いた</b> ので他者に <b>共有したい</b> 。"
+      install_link_html: "スクリプトを<b>インストールして使用したい</b>。"
+      share_link_html: " スクリプトを<b>書いた</b>ので、他の人に<b>共有したい</b>。"
   script_sets:
     description: "「スクリプトセット」とは、Greasy Fork に投稿されているスクリプトのマイリストです。個々のスクリプトの追加だけでなく、他のスクリプトセットをリストに登録して一つのスクリプトセットとして表示することもでき、サイトやユーザーを指定した自動生成も可能です。また、同じようにして除外リストへの登録も行えます。"
     favorites_name: "お気に入り"
@@ -468,6 +467,7 @@ ja:
     edit_sign_in: "ログイン方法の設定"
     edit_sign_in_title: "ログインに利用するアカウントの設定"
     edit_sign_in_password: "パスワードの設定"
+    edit_notifications: "通知設定"
     no_password_set_info: "パスワードを設定すると、メールアドレスとここで設定したパスワードでログインできるようになります。"
     set_password: "設定"
     update_password: "更新"
@@ -549,6 +549,9 @@ ja:
       author:
         short: 作者
         long: このスクリプトの作者
+    notifications:
+      save_button: 通知設定を更新
+      title: 通知
   help:
     sections:
       usage: 利用法
@@ -592,7 +595,7 @@ ja:
 
           <li>スクリプトにはそれが何を行うかについての説明が含まれなければならず、スクリプトはその説明にそぐわない不正な動作をしてはいけません。スクリプトがインストールされる前に、それが何を行うかについてユーザーが知っている必要があります。</li>
 
-          <li>スクリプトにはスクリプトたる理由が必要です。たとえば、ユーザーをサイトに誘導するだけのスクリプトはスクリプトである必要はありません。リンクでしょう。</li>
+          <li>スクリプトにはスクリプトたる理由が必要です。たとえば、ユーザーをサイトに誘導するだけのスクリプトは単なるリンクであり、スクリプトである必要がありません。</li>
 
           <li>支払いの送信、チャンネル購読、「いいね！」など、スクリプトを機能させるために、利用者に無関係な行動をスクリプトが要求してはいけません。
 
@@ -604,7 +607,7 @@ ja:
           webpack などのツールでバンドルされていれば、非圧縮形式で出力される必要がります。</li>
 
           <li>スクリプトが使用するライブラリは、そうできない技術的な理由がない限り <code>@require</code>する必要があります。ライブラリがスクリプト本文に直接転記されている場合には、そのライブラリの出所の情報
-          ( URL や名前とバージョンを示すコメントなど)を含める必要があります。</li>
+          (URL や名前とバージョンを示すコメントなど)を含める必要があります。</li>
 
           <li>%{external_scripts_link:外部の JavaScript の利用には制限があります。}</li>
 
@@ -623,7 +626,7 @@ ja:
 
           <li>スクリプトには、 機能を提供しないサイトを<code>@include</code>や <code>@match</code> させたり、そうした一覧を含めてはいけません。</li>
 
-          </ul> <p>これらの制限に違反するスクリプトを見つけた場合、そのスクリプトのフィードバックで新しいスレッドを立てて、「スクリプトの削除をモデレーターに申請」を選択し報告してください。</p>
+          </ul> <p>これらの制限に違反するスクリプトを見つけた場合、当該スクリプトのフィードバックリンクから「通報」機能をご利用ください。</p>
       adult_content_rule_html: "<li>アダルトコンテンツを含むスクリプト、またはアダルトコンテンツを含むサイト向けのスクリプトは、その旨をマークしなければなりません。これは、そのようなスクリプトを表示するか否かの選択肢を、ユーザーが利用できるようにするためです。</li>"
     external_scripts:
       title: "外部スクリプトにおける %{site_name} のポリシー"
@@ -726,28 +729,28 @@ ja:
     consecutive_bad_ratings:
       other: "%{script_names} に連続で悪い評価がついています。スクリプトを見直し、評価の懸念事項に返信を行ってください。"
   reports:
-    report_filed: "あなたの報告は管理担当者によって審査されます。"
+    report_filed: "あなたの通報は管理担当者によって審査されます。"
     new_report_title:
-      user: "%{user} を報告"
-      comment: "%{user}によるコメントを報告"
+      user: "%{user} を通報"
+      comment: "%{user} によるコメントを通報"
     new_report_notes_html: >
-        <p>報告前にお読みください:</p> <ul>
+        <p>通報前にご確認ください：</p> <ul>
 
-        <li>管理担当者は報告を審査して応じて対処します。</li>
+        <li>管理担当者が通報内容を審査し、適宜対応していきます。</li>
 
-        <li>内容に同意しないとか、虚偽であると思うのは報告の正当な理由にはなりません。</li>
+        <li>対象のユーザーやコメントについて、単に同意できないからとか、嘘偽りに違いないと思ったからというのは、通報の正当な理由にはなりません。</li>
 
-        <li>この報告機能を乱用すれば<i>あなたの追放</i> という結果になることがあります。</li>
+        <li>この通報機能を乱用すると、<i>あなたが</i>アクセス禁止になる場合があります。</li>
 
         </ul>
     new_user_report_notes_html: >
-        <p>報告前に注意してください:</p> <ul>
+        <p>通報前にご確認ください：</p> <ul>
 
-        <li>報告がスクリプトかコメントの内容を元にする場合、具体的なスクリプトやコメントを報告してください。</li>
+        <li>通報がスクリプトやコメントの内容に基づくものである場合、その具体的なスクリプトやコメントの方を通報してください。</li>
 
-        <li>管理担当者が報告を調査し、その報告に応じて対処するでしょう。</li>
+        <li>管理担当者が通報内容を審査し、適宜対応していきます。</li>
 
-        <li>この報告機能を悪用すると<i>あなた</i>がアクセス禁止にされる可能性があります。</li>
+        <li>この報告機能を乱用すると、<i>あなたが</i>アクセス禁止になる場合があります。</li>
 
         </ul>
     reason:
@@ -755,12 +758,12 @@ ja:
       abuse: "虐待や増悪に満ちた内容"
       illegal: "マルウェアや違法な内容"
     explanation_placeholder: "追加の詳細を提供 (任意)"
-    create_button: "報告の作成"
-    report_user: "ユーザーを報告"
-    report_comment: "コメントを報告"
-    result_dismissed: "この報告はモデレーターに拒否されました。"
-    result_upheld: "この報告はモデレーターに支持されました。"
-    result_pending: "この報告はモデレーターによる審査待ちです。"
+    create_button: "通報を作成"
+    report_user: "ユーザーを通報"
+    report_comment: "コメントを通報"
+    result_dismissed: "この通報はモデレーターに拒否されました。"
+    result_upheld: "この通報はモデレーターに承認されました。"
+    result_pending: "この通報はモデレーターによる審査待ちです。"
   discussions:
     title: 議論
     comment_date: "投稿日: %{date}"
@@ -771,7 +774,7 @@ ja:
     new_discussion_submit: "コメントを投稿"
     new_comment_heading: "返信を投稿"
     new_comment_submit: "返信を投稿"
-    back_to_feedback: "< %{script}について意見"
+    back_to_feedback: "< %{script}についてのフィードバック"
     edit_comment_link: "編集"
     edit_comment_header: "コメントを編集"
     delete_comment: "削除"
@@ -791,8 +794,8 @@ ja:
       bad: "不可"
       ok: "可"
       good: "良"
-    sign_in_to_post_discussion: "審査やコメント、質問を投稿するにはサインインします。"
-    sign_in_to_post_comment: "返信を投稿するにはサインインします。"
+    sign_in_to_post_discussion: "審査やコメント、質問を投稿するにはサインインしてください。"
+    sign_in_to_post_comment: "返信を投稿するにはサインインしてください。"
     user_filter:
       label: "あなたを含めた議論"
       all: "全ての議論"
@@ -826,7 +829,7 @@ ja:
     categories:
       greasyfork:
         name: Greasy Fork フィードバック
-        description: バグレポート、機能リクエスト、その他Greasy Fork自体に関するもの。
+        description: バグ報告、機能リクエスト、その他 Greasy Fork 自体に関するもの。
       development:
         name: 開発
         description: ユーザースクリプトやユーザースタイル開発の技術的な話。
@@ -841,6 +844,8 @@ ja:
     new_button: 新しい議論
     script_notice: 特定のスクリプトについて議論したい場合は、スクリプトのフィードバックページにアクセスして、そこから議論を始めてください。
     no_discussions: 議論はありません。
+  screenshots:
+    requirements: "画像は最大 %{number} 枚、PNG・GIF・JPEG・WebP のいずれか、それぞれ %{size} までです。"
   common:
     error_preamble: "以下に表示されているエラーを修正し、もう一度送信してください。"
     allowed_elements_link: "使用可能なタグ"
@@ -886,7 +891,7 @@ ja:
         description: "説明"
         default_sort: "既定の並べ替え"
       report:
-        reason: "報告の理由"
+        reason: "通報理由"
       discussion:
         rating: "評価"
         category: "カテゴリー"
@@ -914,39 +919,39 @@ ja:
   mailers:
     script_report:
       report_created_offender:
-        subject: "あなたのスクリプト%{script_name} (%{site_name}) に報告があります"
-        reason_unauthorized: "あなたのスクリプト%{script_name} (%{site_name}) は、許可のない複製または別のスクリプトの改変版だと報告されています。"
-        reason_malware: " あなたのスクリプト%{script_name} ( %{site_name} ) はマルウェアだと報告されています。"
-        reason_spam: "あなたのスクリプト %{script_name}(%{site_name}) はスパムだと報告されています。"
-        reason_other: "あなたのスクリプト %{script_name} は %{site_name}の規則に違反しています。"
-        action: "%{report_url}で、この報告を調査し反論することができます。斑トンを行わない場合、管理担当者がスクリプトを削除する可能性があります。疑問があれば https://greasyfork.org/forum/ にアクセスしてください。"
+        subject: "あなたのスクリプト%{script_name} (%{site_name}) に通報があります"
+        reason_unauthorized: "あなたのスクリプト%{script_name} (%{site_name}) は、許可のない複製または別のスクリプトの改変版として通報されました。"
+        reason_malware: " あなたのスクリプト%{script_name} ( %{site_name} ) は、マルウェアとして通報されました。"
+        reason_spam: "あなたのスクリプト %{script_name}(%{site_name}) はスパムとして通報されました。"
+        reason_other: "あなたのスクリプト %{script_name} は、%{site_name}の規約違反として通報されました。"
+        action: "%{report_url}にて、通報内容の閲覧と異議の申し立てを行うことができます。異議を申し立てない場合、管理担当者がスクリプトを削除する可能性があります。疑問があれば https://greasyfork.org/forum/ にアクセスしてください。"
       report_upheld_offender:
         subject: "あなたのスクリプト %{script_name} (%{site_name}) は削除されました。"
-        text: "あなたのスクリプト %{script_name} (%{site_name}) は管理担当者によって削除されました。報告内容 %{report_url} を調査することができます。疑問があれば https://greasyfork.org/forum/ にアクセスしてください。"
+        text: "あなたのスクリプト %{script_name} (%{site_name}) は管理担当者によって削除されました。通報内容は %{report_url} で閲覧できます。疑問があれば https://greasyfork.org/forum/ にアクセスしてください。"
       report_dismissed_offender:
-        subject: "あなたのスクリプト %{script_name} (%{site_name}) に関する報告の却下"
-        text: "あなたのスクリプト%{script_name}(%{site_name}) に関する報告が、管理担当者によって却下されました。あなたのスクリプトはまだ使用可能です。報告内容 %{report_url}を調査することができます。疑問があれば https://greasyfork.org/forum/ にアクセスしてください。"
+        subject: "あなたのスクリプト %{script_name} (%{site_name}) への通報は却下されました"
+        text: "あなたのスクリプト%{script_name}(%{site_name}) に関する通報が、管理担当者によって却下されました。当該スクリプトは引き続き使用可能です。通報内容は %{report_url}で閲覧できます。疑問があれば https://greasyfork.org/forum/ にアクセスしてください。"
       report_rebutted_reporter:
-        subject: "あなたの報告に返信あり (%{script_name}, %{site_name}) "
-        text: " %{script_name} (%{site_name}) に関するあなたの報告に返信があります。%{report_url} にてこの返信を閲覧できます。管理担当者はあなたの報告と返信を審査し対応を決定します。疑問があれば https://greasyfork.org/forum/ へアクセスしてください。"
+        subject: "%{script_name} (%{site_name}) に関するあなたの通報に返信があります"
+        text: " %{script_name} (%{site_name}) に関するあなたの通報に返信があります。返信内容は %{report_url} で閲覧できます。管理担当者はあなたの報告と返信を審査し対応を決定します。疑問があれば https://greasyfork.org/forum/ へアクセスしてください。"
       report_upheld_reporter:
-        subject: "あなたの報告 %{script_name} (%{site_name}) を支持"
-        text: "%{script_name}(%{site_name})に関するあなたの報告が管理担当者に指示されスクリプトは削除されました。報告内容を%{report_url}で閲覧できます。疑問があれば https://greasyfork.org/forum/ にアクセスしてください。"
+        subject: "%{script_name} (%{site_name}) に関するあなたの通報が承認されました"
+        text: "%{script_name}(%{site_name}) に関するあなたの通報が管理担当者に承認され、当該スクリプトは削除されました。通報内容は %{report_url} で閲覧できます。疑問があれば https://greasyfork.org/forum/ にアクセスしてください。"
       report_script_deleted_reported:
-        subject: "あなたの報告 %{script_name}(%{site_name}) がクローズ"
-        text: "%{script_name}(%{site_name}) に関するあなたの報告はクローズされ、スクリプトはその作者によって削除されました。報告内容を %{report_url} で閲覧できます。疑問があれば https://greasyfork.org/forum/ にアクセスしてください。"
+        subject: "%{script_name}(%{site_name}) に関するあなたの通報はクローズされました"
+        text: "%{script_name}(%{site_name}) に関するあなたの通報は、当該スクリプトが作者自身によって削除されたことでクローズされました。通報内容は %{report_url} で閲覧できます。疑問があれば https://greasyfork.org/forum/ にアクセスしてください。"
       report_dismissed_reporter:
-        subject: "あなたの報告 %{script_name} (%{site_name}) が却下"
-        text: "%{script_name} (%{site_name}) に関するあなたの報告は、管理担当者に却下され、スクリプトはまだ使用可能です。報告内容を %{report_url}で閲覧できます。疑問があれば https://greasyfork.org/forum/ にアクセスしてください。"
+        subject: "%{script_name} (%{site_name}) に関するあなたの通報は却下されました"
+        text: "%{script_name} (%{site_name}) に関するあなたの通報は管理担当者に却下され、当該スクリプトの公開は続行されました。通報内容は %{report_url}で閲覧できます。疑問があれば https://greasyfork.org/forum/ にアクセスしてください。"
     consecutive_bad_ratings:
       notify:
         subject: " あなたのスクリプト%{script_name} (%{site_name}) は連続して悪い評価がついています。"
         text: |
             あなたのスクリプト %{script_name} (%{site_name} の、%{script_url}) は連続して悪い評価がついています。
 
-            %{feedback_url}で反響を確認し、問題を修正し、提起された懸念事項に返信してください。
+            %{feedback_url}でフィードバックの内容を確認し、問題を修正し、提起された懸念事項に返信してください。
 
-            更新版の投稿がないか、%{delete_date} までに議論への返信がない場合、あなたのスクリプトは %{site_name} で非表示にされるでしょう。 (この日付移行、希望があれば再び表示することも可能です)
+            更新版の投稿がないか、%{delete_date} までに議論への返信がない場合、あなたのスクリプトは %{site_name} で非表示にされます。 (この日付以降でも、お望みなら再び表示することは可能です)
     script_comment:
       subject: "スクリプト %{script_name} (%{site_name}) にコメントがあります。"
       text: |

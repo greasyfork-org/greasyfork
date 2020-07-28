@@ -469,6 +469,7 @@ zh-CN:
     edit_sign_in: "更改登录方式"
     edit_sign_in_title: "更改登录方式"
     edit_sign_in_password: "密码"
+    edit_notifications: "编辑通知"
     no_password_set_info: "该账户尚未配置密码。"
     set_password: "设置密码"
     update_password: "更新密码"
@@ -550,6 +551,9 @@ zh-CN:
       author:
         short: 作者
         long: 此脚本的作者
+    notifications:
+      save_button: 更新通知设置
+      title: 通知
   help:
     sections:
       usage: 使用
@@ -562,7 +566,7 @@ zh-CN:
       title: '如何安装用户样式'
     meta_keys:
       title: "%{site_name} 要读取的脚本元属性值"
-      intro_html: "这里有 %{site_name} 将读取的 <a href=\"http://wiki.greasespot.net/Metadata_Block\">用户脚本属性值</a>的一个列表。不在此列表的属性也可以写在脚本中，用户安装的脚本将包含这些属性值但是并不会对网站界面产生更变。"
+      intro_html: "这是 %{site_name} 将读取的 <a href=\"http://wiki.greasespot.net/Metadata_Block\">用户脚本属性值</a>的一个列表。不在此列表的属性也可以写在脚本中，那些不在此列表的属性值也会包含在用户安装的脚本中，但是并不会对%{site_name}上的脚本页面做任何变动。"
       name: "脚本的名称。该项将显示在页面的标题以及链接内容，必填项。"
       name_localized_html: "脚本在特定语言区域的标题。XX 指 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 国家代码</a> 以及 YY 指可选的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 地区代码</a>。该选项用于提供多语言的<code>@name</code> 脚本名称。"
       description: "脚本功能的描述，显示在脚本标题下面，必填项。"
@@ -642,6 +646,10 @@ zh-CN:
           <p>如果您想加载的外部脚本是一个 JavaScript 库（例如 jQuery 或者 YUI），请访问上面列出的网站，看看是否能找到它的链接。%{cdnjs_link:cdnjs}
           和 %{jsdelivr_link:jsDelivr} 提供了大量的常用库。</p> <p>如果以上网站均没有您想引用的外部脚本，请%{contact_link:告知我们}，以便我们查找它的链接（乃至我们自己托管）。</p>
           <p>如果您想包含的脚本是你自己写的，你可以在 %{site_name} 上将它提交为一个单独的项目，选择“库”作为它的类型，然后你就可以在你的脚本中引入自己发布的这个库了。</p>
+      test_url:
+        label: 测试一个URL
+        result_ok: URL允许使用
+        result_not_ok: URL不允许使用
     script_rewriting:
       title: "%{site_name} 将如何改写已发布的脚本"
       content_html: >
@@ -745,6 +753,7 @@ zh-CN:
     create_button: "创建举报"
     report_user: "举报用户"
     report_comment: "举报评论"
+    report_message: "举报消息"
     result_dismissed: "该举报已被管理员忽略。"
     result_upheld: "管理员已通过该举报。"
     result_pending: "该举报尚待管理员查看。"
@@ -805,6 +814,7 @@ zh-CN:
         replied_html: "回复关于<i>%{script}</i>的提问或评论"
       discussion:
         posted_html: "发表讨论：<i>%{title}</i>"
+        replied_html: "回复讨论：<i>%{title}</i>"
     review_title: "%{script_name}的评论"
     question_title: "关于%{script_name}的问题"
     subscribe: 关注
@@ -830,6 +840,24 @@ zh-CN:
     new_button: 创建讨论
     script_notice: 如果需要对一个特定脚本开展讨论，请前往脚本的反馈页面开展讨论。
     no_discussions: 未找到讨论。
+  conversations:
+    user_input_note: 输入用户名或者用户页面的URL。
+    new_title: 创建新的对话
+    new_link: 创建新的对话
+    new_button: 创建对话
+    title_html:
+      other: 和%{users}的对话
+    send_message: 发送消息
+    conversation_list_title: 对话
+    conversation_link:
+      other: 和%{users}的对话。
+    conversation_info_html: 最新消息：%{user}发送于%{date}
+    no_conversations: 暂时没有对话
+    recent:
+      title: 最近对话
+      more: 查看所有对话
+  screenshots:
+    requirements: "最多上传 %{number} 张 PNG、GIF 、 JPEG 、或 WEBP 图片，且每张图片不得超过 %{size}。"
   common:
     error_preamble: "很抱歉，您提交的内容有点问题…"
     allowed_elements_link: "(查看允许使用的代码)"
@@ -848,6 +876,8 @@ zh-CN:
     preview_tab: 预览
     write_tab: 撰写
     listing_options_title: "搜索选项"
+    quote:
+      prefix_html: "%{user}说："
   activerecord:
     attributes:
       user:
@@ -880,6 +910,10 @@ zh-CN:
         rating: "评级"
         category: "分类"
         title: 标题
+      conversation:
+        user_input: 用户
+      message:
+        content: 消息
   errors:
     messages:
       script_missing_name: "必填 - 请通过 <code>@name</code> 指定"
@@ -958,3 +992,11 @@ zh-CN:
           您可以在%{comment_url}查看并回复该评论。
 
           您收到这条通知是因为您关注了这个讨论。访问%{discussion_url}可以取消关注。
+    new_conversation:
+      subject: "关于站点%{site_name}的新对话"
+      text: |
+          用户'%{user}'对您发起了关于站点%{site_name}的新对话。您可以在%{conversation_url}查看并回复。
+    new_message:
+      subject: "关于站点%{site_name}的新消息"
+      text: |
+          用户'%{user}'对您发送了一条关于站点%{site_name}的消息。您可以在%{conversation_url}查看并回复。
