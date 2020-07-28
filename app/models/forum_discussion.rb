@@ -35,7 +35,7 @@ class ForumDiscussion < ApplicationRecord
   end
 
   def url
-    "#{ApplicationController.helpers.forum_path}discussion/#{self.DiscussionID}/x"
+    "/forum/discussion/#{self.DiscussionID}/x"
   end
 
   def original_poster

@@ -1,29 +1,23 @@
 <%= form_tag(scripts_path, id: 'script-search', method: :get) do %>
-	<h3><%=t('search.script_search.title')%></h3>
-	<p><%=it('search.script_search.description', sphinx_link: 'http://sphinxsearch.com/docs/current/extended-syntax.html')%></p>
-	<input type="search" name="q"><input class="search-submit" type="submit" value="🔎">
+  <h3><%=t('search.script_search.title')%></h3>
+  <p><%=it('search.script_search.description', sphinx_link: 'http://sphinxsearch.com/docs/current/extended-syntax.html')%></p>
+  <input type="search" name="q"><input class="search-submit" type="submit" value="🔎">
 <% end %>
 
 <%= form_tag(libraries_scripts_path, id: 'library-search', method: :get) do %>
-	<h3><%=t('search.library_search.title')%></h3>
-	<p><%=it('search.library_search.description', sphinx_link: 'http://sphinxsearch.com/docs/current/extended-syntax.html')%></p>
-	<input type="search" name="q"><input class="search-submit" type="submit" value="🔎">
+  <h3><%=t('search.library_search.title')%></h3>
+  <p><%=it('search.library_search.description', sphinx_link: 'http://sphinxsearch.com/docs/current/extended-syntax.html')%></p>
+  <input type="search" name="q"><input class="search-submit" type="submit" value="🔎">
 <% end %>
 
 <%= form_tag(code_search_scripts_path, id: 'code-search', method: :get) do %>
-	<h3><%=t('search.code_search.title')%></h3>
-	<p><%=t('search.code_search.description')%></p>
-	<input type="search" name="c"><input class="search-submit" type="submit" value="🔎">
+  <h3><%=t('search.code_search.title')%></h3>
+  <p><%=t('search.code_search.description')%></p>
+  <input type="search" name="c"><input class="search-submit" type="submit" value="🔎">
 <% end %>
 
-<form action="<%=forum_path%>search" id="forum-search">
-	<h3><%=t('search.forum_search.title')%></h3>
-	<p><%=it('search.forum_search.description', fulltext_link: 'http://dev.mysql.com/doc/refman/5.7/en/fulltext-natural-language.html')%></p>
-	<input type="search" name="Search"><input class="search-submit" type="submit" value="🔎">
-</form>
-
 <%= form_tag(users_path, id: 'user-search', method: :get) do %>
-	<h3><%=t('search.user_search.title')%></h3>
-	<p><%=t('search.user_search.description')%></p>
-	<input type="search" name="q"><input class="search-submit" type="submit" value="🔎">
+  <h3><%=t('search.user_search.title')%></h3>
+  <p><%=t('search.user_search.description')%></p>
+  <input type="search" name="q"><input class="search-submit" type="submit" value="🔎">
 <% end %>

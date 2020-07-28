@@ -33,10 +33,6 @@ module ApplicationHelper
     "<span id=\"#{name}\">#{link_to('§', { anchor: name }, { class: 'self-link' })} #{text}</span>".html_safe
   end
 
-  def forum_path
-    return "/#{I18n.locale}/forum/"
-  end
-
   # Translates an array of keys and returns a hash.
   def translate_keys(keys)
     h = {}

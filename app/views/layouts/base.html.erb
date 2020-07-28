@@ -92,12 +92,7 @@
         </div>
         <nav>
           <li class="scripts-index-link"><%=link_to(t('layouts.application.script_list'), scripts_path)%></li>
-          <% # user signed in to main site, but not to forum?
-          if user_signed_in? and cookies[:Vanilla].nil? %>
-            <li class="forum-link"><%=link_to(t('layouts.application.forum'), "#{forum_path}entry/jsconnect?client_id=1462516369")%></li>
-          <% else %>
-            <li class="forum-link"><%=link_to(t('layouts.application.forum'), forum_path)%></li>
-          <% end %>
+          <li class="forum-link"><%=link_to(t('layouts.application.forum'), discussions_path)%></li>
           <li class="help-link"><%=link_to_unless_current(t('layouts.application.help'), help_path)%></li>
           <li class="with-submenu">
             <a href="#" onclick="return false"><%=t('layouts.application.submenu')%></a>
