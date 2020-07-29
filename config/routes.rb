@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => '/sidekiq'
   end
 
+  get '/forum', to: redirect('/discussions'), status: 301
+
   scope '(:locale)', locale: /ar|bg|cs|da|de|el|en|es|fi|fr|fr-CA|he|hu|id|it|ja|ko|nb|nl|eo|pl|pt-BR|ro|ru|sk|sr|sv|th|tr|uk|vi|zh-CN|zh-TW/ do
     get '/users', to: 'users#index', as: 'users'
     get '/users/webhook-info', to: 'users#webhook_info', as: 'user_webhook_info'
@@ -207,6 +209,7 @@ Rails.application.routes.draw do
       resources :spammy_email_domains, only: [:index, :new, :create, :edit, :update, :destroy]
     end
 
+    get '/forum', to: redirect('/%{locale}/discussions'), status: 301
     get '/forum/discussion/:id' => 'discussions#old_redirect'
     get '/forum/discussion/:id/:slug' => 'discussions#old_redirect'
 
