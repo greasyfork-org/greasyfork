@@ -137,6 +137,10 @@ class DiscussionsController < ApplicationController
     end
   end
 
+  def old_redirect
+    redirect_to Discussion.find_by!(migrated_from: params[:id]).url, status: 301
+  end
+
   private
 
   def discussion_scope
