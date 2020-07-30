@@ -4,12 +4,12 @@ class DiscussionsController < ApplicationController
   include DiscussionHelper
   include ScriptAndVersions
 
-  before_action :authenticate_user!, only: [:create, :subscribe, :unsubscribe]
+  before_action :authenticate_user!, only: [:new, :create, :subscribe, :unsubscribe]
   before_action :moderators_only, only: :destroy
   before_action :greasy_only, only: :new
 
   layout 'discussions', only: :index
-  layout 'application', only: :new
+  layout 'application', only: [:new, :create]
 
   def index
     @discussions = Discussion
@@ -98,19 +98,27 @@ class DiscussionsController < ApplicationController
   end
 
   def create
-    discussion = discussion_scope.new(discussion_params)
-    discussion.poster = discussion.comments.first.poster = current_user
+    @discussion = discussion_scope.new(discussion_params)
+    @discussion.poster = @discussion.comments.first.poster = current_user
     if @script
-      discussion.script = @script
-      discussion.discussion_category = DiscussionCategory.script_discussions
+      @discussion.script = @script
+      @discussion.discussion_category = DiscussionCategory.script_discussions
     end
-    discussion.comments.first.first_comment = true
-    discussion.save!
-    discussion.comments.first.send_notifications!
+    @discussion.comments.first.first_comment = true
+    @subscribe = params[:subscribe] == '1'
 
-    DiscussionSubscription.find_or_create_by!(user: current_user, discussion: discussion) if params[:subscribe] == '1'
+    recaptcha_ok = current_user.needs_to_recaptcha? ? verify_recaptcha : true
+    unless recaptcha_ok && @discussion.valid?
+      render :new
+      return
+    end
 
-    redirect_to discussion.path
+    @discussion.save!
+    @discussion.comments.first.send_notifications!
+
+    DiscussionSubscription.find_or_create_by!(user: current_user, discussion: @discussion) if @subscribe
+
+    redirect_to @discussion.path
   end
 
   def destroy

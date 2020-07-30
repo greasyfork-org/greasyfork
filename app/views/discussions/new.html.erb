@@ -1,24 +1,41 @@
+<%# This is also used when validation of script discussion fails. %>
 <%- title t('discussions.new_title') %>
 
 <div class="post-discussion">
   <h3><%= t('discussions.new_title') %></h3>
 
-  <p class="notice">
-    <%= t('discussions.script_notice') %>
-  </p>
+  <% unless @discussion.script %>
+    <p class="notice">
+      <%= t('discussions.script_notice') %>
+    </p>
+  <% end %>
 
-  <%= form_with(model: @discussion, url: discussions_path, method: :POST) do |f| %>
-    <div class="form-control">
-      <%= f.label :title %>
-      <%= f.text_field :title, required: true, maxlength: 255, size: nil %>
-    </div>
+  <%= form_with(model: @discussion, url: @discussion.script ? script_discussions_path(@discussion.script) : discussions_path, method: :POST, id: 'new-discussion') do |f| %>
+    <% unless @discussion.script %>
+      <div class="form-control">
+        <%= f.label :title %>
+        <%= f.text_field :title, required: true, maxlength: 255, size: nil %>
+      </div>
+    <% end %>
 
     <%= f.fields_for(:comments) do |cf| %>
       <%= render partial: 'discussions/comment_entry', locals: { f: cf, markup_name: 'discussion[comments_attributes][0][text_markup]' } %>
     <% end %>
 
-    <%= render partial: 'discussions/category_entry', locals: { f: f} %>
-    <%= render partial: 'discussions/subscribe', locals: { subscribe: @subscribe} %>
-    <%= f.submit t('discussions.new_discussion_submit') %>
+    <% if @discussion.script %>
+      <%= render partial: 'discussions/rating_entry', locals: { f: f } %>
+    <% else %>
+      <%= render partial: 'discussions/category_entry', locals: { f: f} %>
+    <% end %>
+
+    <%= render partial: 'discussions/subscribe', locals: { subscribe: @subscribe } %>
+
+    <p>
+      <% if current_user.needs_to_recaptcha? %>
+        <%= invisible_recaptcha_tags callback: 'submitInvisibleRecaptchaDiscussionForm', text: t('discussions.new_discussion_submit') %>
+      <% else %>
+        <%= f.submit t('discussions.new_discussion_submit') %>
+    <% end %>
+    </p>
   <% end %>
 </div>
