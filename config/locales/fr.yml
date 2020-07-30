@@ -716,9 +716,6 @@ fr:
     code_search:
       title: "Recherche de code"
       description: "Rechercher le code de script. Il s'agit d'une case-insensible, la recherche en texte brut sans caractères génériques."
-    forum_search:
-      title: "Recherche de forum"
-      description: "Rechercher des discussions et des commentaires sur le forum. %{fulltext_link:MySQL natural language search.}"
     user_search:
       title: "Recherche d'utilisateur"
       description: "Rechercher des utilisateurs par nom. Recherche simple LIKE."
@@ -870,6 +867,9 @@ fr:
       other: Conversation de %{users}.
     conversation_info_html: Dernier message à %{date} de %{user}.
     no_conversations: Vous n'avez encore eu aucune conversation.
+    recent:
+      title: Conversations Récents
+      more: Voir toutes les conversations
   screenshots:
     requirements: "Maximum %{number} images PNG, GIF, JPEG ou WebP, inférieures à %{size} chacune."
   common:
@@ -890,6 +890,8 @@ fr:
     preview_tab: Prévisualiser
     write_tab: Ecrire
     listing_options_title: "Options de recherche"
+    quote:
+      prefix_html: "%{user} a dit:"
   activerecord:
     attributes:
       user:
@@ -1008,3 +1010,7 @@ fr:
       subject: "Une nouvelle conversation sur %{site_name}"
       text: |
           L'utilisateur '%{user}' sur %{site_name} a commencé une nouvelle conversation avec vous. Vous pouvez consulter et répondre à l'adresse %{conversation_url} .
+    new_message:
+      subject: "Un nouveau message sur %{site_name}"
+      text: |
+          L'utilisateur '%{user}' sur %{site_name} vous a envoyé un message. Vous pouvez le consulter et répondre à l'adresse %{conversation_url}.

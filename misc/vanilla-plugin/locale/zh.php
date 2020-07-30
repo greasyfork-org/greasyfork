@@ -2,7 +2,7 @@
 /* Label for inputting a script ID when creating/editing a discussion */
 $Definition['Item ID:'] = '脚本 ID：';
 // Appended to "Discussions" when viewing a list of discussions on scripts by a user. %s is the user name.
-$Definition['on scripts by %s'] = '来自 %s 的评价';
+$Definition['on scripts by %s'] = '%s 的脚本';
 /*
  *  Label for the radio buttons for rating a script
  **/
