@@ -10,9 +10,9 @@ class DiscussionConverter
     discussion = Discussion.new(
       poster_id: forum_discussion.original_poster_id,
       created_at: forum_discussion.created,
-      migrated_from: forum_discussion.id,
+      migrated_from: forum_discussion.id
     )
-    if [1,2,3].include?(forum_discussion.CategoryID)
+    if [1, 2, 3].include?(forum_discussion.CategoryID)
       discussion.discussion_category_id = forum_discussion.CategoryID
       discussion.title = forum_discussion.name
     else

@@ -11,7 +11,7 @@
       <p><%=t('discussions.no_discussions')%></p>
     <% else %>
       <div class="discussion-list">
-        <%= render collection: @discussions, partial: 'discussions/discussion', locals: { show_script: true } %>
+        <%= render collection: @discussions, partial: 'discussions/discussion', locals: { show_script: true, discussion_ids_read: @discussion_ids_read } %>
       </div>
       <%= will_paginate @discussions %>
     <% end %>

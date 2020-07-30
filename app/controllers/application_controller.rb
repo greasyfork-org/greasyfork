@@ -227,7 +227,7 @@ class ApplicationController < ActionController::Base
 
     if /\A[0-9]+\z/.match?(value)
       user_id = value.to_i
-    elsif url_match = %r{/users/([0-9]+)(-|$)}.match(value)
+    elsif (url_match = %r{/users/([0-9]+)(-|$)}.match(value))
       user_id = url_match[1]
     end
 

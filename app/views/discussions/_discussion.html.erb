@@ -1,8 +1,9 @@
 <%
   show_script = defined?(show_script) && show_script && !discussion.script.nil?
+  discussion_ids_read = [] unless defined?(discussion_ids_read) && discussion_ids_read
 %>
 
-<div class="discussion-list-item">
+<div class="discussion-list-item<%= ' discussion-not-read' if current_user && !discussion_ids_read.include?(discussion.id) %>">
   <div class="discussion-meta">
     <% if !discussion.for_script? || show_script %>
       <div class="discussion-meta-item discussion-meta-item-script-name">

@@ -55,6 +55,8 @@ class DiscussionsController < ApplicationController
     end
 
     @discussions = @discussions.paginate(page: params[:page], per_page: 25)
+
+    @discussion_ids_read = DiscussionRead.read_ids_for(@discussions, current_user) if current_user
   end
 
   def show
@@ -83,6 +85,8 @@ class DiscussionsController < ApplicationController
 
     @comment = @discussion.comments.build(text_markup: current_user&.preferred_markup)
     @subscribe = current_user&.subscribed_to?(@discussion)
+
+    record_view(@discussion) if current_user
 
     render layout: @script ? 'scripts' : 'application'
   end
@@ -156,5 +160,9 @@ class DiscussionsController < ApplicationController
     params
       .require(:discussion)
       .permit(:rating, :title, :discussion_category_id, comments_attributes: [:text, :text_markup, attachments: []])
+  end
+
+  def record_view(discussion)
+    DiscussionRead.upsert({ user_id: current_user.id, discussion_id: discussion.id, read_at: Time.now })
   end
 end

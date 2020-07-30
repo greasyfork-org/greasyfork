@@ -68,6 +68,9 @@
   padding-top: 10px;
   border-top: 1px solid #CCC;
 }
+.discussion-not-read {
+  /*background: linear-gradient(to bottom, rgb(255, 255, 230), white 50px);*/
+}
 .script-discussion-list .discussion-list-item:last-child {
   border-bottom: 1px solid #CCC;
 }
@@ -101,18 +104,18 @@ a.discussion-title {
   top: -1px;
 }
 .rating-icon-good {
-  border-color: rgba(0, 128, 0, 0.7);
-  background-color: rgba(0, 128, 0, 0.1);
+  border-color: rgb(77,166,77);
+  background-color: rgb(230, 242, 230);
   color: rgb(0, 128, 0);
 }
 .rating-icon-ok {
-  border-color: rgba(192, 192, 0, 0.7);
-  background-color: rgba(255, 255, 0, 0.1);
+  border-color: rgb(211, 211, 77);
+  background-color: rgb(255, 255, 230);
   color: rgb(192, 192, 0);
 }
 .rating-icon-bad {
-  border-color: rgba(255, 0, 0, 0.7);
-  background-color: rgba(255, 0, 0, 0.1);
+  border-color: rgb(255, 77, 77);
+  background-color: rgb(255, 230, 230);
   color: rgb(255, 0, 0);
 }
 .discussion-list-main-content {
