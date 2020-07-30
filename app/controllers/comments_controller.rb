@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
   include DiscussionHelper
 
-  before_action :authenticate_user!
-  before_action :load_discussion
+  before_action :authenticate_user!, except: :old_redirect
+  before_action :load_discussion, except: :old_redirect
   before_action :moderators_only, only: :destroy
 
   def create
@@ -57,6 +57,10 @@ class CommentsController < ApplicationController
     comment = @discussion.comments.find(params[:id])
     comment.destroy!
     redirect_to @discussion.path
+  end
+
+  def old_redirect
+    redirect_to Discussion.find_by!(migrated_from: ForumComment.find(params[:id]).DiscussionID).url, status: 301
   end
 
   private

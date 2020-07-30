@@ -211,12 +211,14 @@ Rails.application.routes.draw do
 
     get '/forum', to: redirect('/%{locale}/discussions'), status: 301
     get '/forum/discussion/:id' => 'discussions#old_redirect'
+    get '/forum/discussion/comment/:id' => 'comments#old_redirect'
     get '/forum/discussion/:id/:slug' => 'discussions#old_redirect'
 
     get '404', to: 'home#routing_error'
   end
 
   get '/forum/discussion/:id' => 'discussions#old_redirect'
+  get '/forum/discussion/comment/:id' => 'comments#old_redirect'
   get '/forum/discussion/:id/:slug' => 'discussions#old_redirect'
 
   get '404', to: 'home#routing_error'
