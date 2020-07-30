@@ -988,6 +988,9 @@ pl:
       other: Rozmowa z %{users}.
     conversation_info_html: Ostatnia wiadomość o %{date} od %{user}.
     no_conversations: Nie masz jeszcze żadnych rozmów.
+    recent:
+      title: Ostatnie rozmowy
+      more: Zobacz wszystkie rozmowy
   screenshots:
     requirements: "Maksymalnie %{number} obrazów PNG, GIF, JPEG, lub WebP, mniejszych niż %{size} każdy."
   common:
@@ -1008,6 +1011,8 @@ pl:
     preview_tab: Podgląd
     write_tab: Napisz
     listing_options_title: "Opcje wyszukiwania"
+    quote:
+      prefix_html: "%{user} napisał:"
   activerecord:
     attributes:
       user:
@@ -1125,3 +1130,7 @@ pl:
       subject: "Nowa rozmowa na %{site_name}"
       text: |
           Użytkownik '%{user}' na %{site_name} rozpoczął nową rozmowę z tobą. Zobacz i odpowiedz na %{conversation_url}.
+    new_message:
+      subject: "Nowa wiadomość na %{site_name}"
+      text: |
+          Użytkownik '%{user}' na %{site_name} wysłał ci wiadomość. Zobacz i odpowiedz na %{conversation_url}.
