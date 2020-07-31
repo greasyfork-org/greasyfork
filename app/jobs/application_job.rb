@@ -27,6 +27,10 @@ class ApplicationJob < ActiveJob::Base
     Sidekiq::ScheduledSet.new.select { |sq| sq.item['wrapped'] == name }
   end
 
+  def self.throttled_limit_reached?
+    ScriptDuplicateCheckerJob.currently_running.count + ScriptDuplicateCheckerQueueingJob.currently_running.count >= 2
+  end
+
   protected
 
   def default_url_options

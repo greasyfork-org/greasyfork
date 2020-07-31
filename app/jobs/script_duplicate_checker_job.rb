@@ -3,12 +3,8 @@ require 'zlib'
 class ScriptDuplicateCheckerJob < ApplicationJob
   queue_as :low
 
-  EXECUTION_LIMIT = 2
-  QUEUE_LIMIT = 5
-
   def perform(script_id)
-    # Allow 2 (including this one) to run at once so that there's always a process for other jobs.
-    if ScriptDuplicateCheckerJob.currently_running.count > EXECUTION_LIMIT
+    if self.class.throttled_limit_reached?
       self.class.set(wait: 5.seconds).perform_later(script_id)
       return
     end

@@ -2,15 +2,17 @@ class ScriptDuplicateCheckerQueueingJob < ApplicationJob
   queue_as :low
 
   def perform
-    to_enqueue = ScriptDuplicateCheckerJob::QUEUE_LIMIT - ScriptDuplicateCheckerJob.currently_queued_script_ids.count
-    return unless to_enqueue > 0
+    if self.class.throttled_limit_reached?
+      self.class.set(wait: 5.seconds).perform_later
+      return
+    end
 
     Script
       .not_deleted
       .left_joins(:script_similarities)
       .group('scripts.id')
       .order('min(script_similarities.checked_at)', :id)
-      .limit(to_enqueue)
+      .limit(5)
       .pluck('scripts.id')
       .reject { |id| ScriptDuplicateCheckerJob.currently_queued_script_ids.include?(id) }
       .each_with_index do |id, i|
