@@ -7,7 +7,7 @@ class ScriptDuplicateCheckerJob < ApplicationJob
 
   def perform(script_id)
     # Allow 2 (including this one) to run at once so that there's always a process for other jobs.
-    if ScriptDuplicateCheckerJob.currently_queued_script_ids.count > EXECUTION_LIMIT
+    if ScriptDuplicateCheckerJob.currently_running.count > EXECUTION_LIMIT
       self.class.set(wait: 5.seconds).perform_later(script_id)
       return
     end
