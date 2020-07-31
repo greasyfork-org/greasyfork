@@ -4,9 +4,27 @@ class ApplicationJob < ActiveJob::Base
   self.queue_adapter = :sidekiq if Rails.env.production?
 
   def self.enqueued?
-    return Sidekiq::Workers.new.any? { |_process_id, _thread_id, work| work['payload']['wrapped'] == name } ||
-           Sidekiq::Queue.all.any? { |queue| queue.any? { |sq| sq.item['wrapped'] == name } } ||
-           Sidekiq::ScheduledSet.new.any? { |sq| sq.item['wrapped'] == name }
+    currently_running.any? || currently_enqueued.any? || currently_scheduled.any?
+  end
+
+  # Returns an Array of Hashes.
+  def self.currently_running
+    Sidekiq::Workers
+      .new
+      .map { |_process_id, _thread_id, work| work['payload'] }
+      .select { |p| p['wrapped'] == name }
+  end
+
+  # Returns an Array of Sidekiq::Job.
+  def self.currently_enqueued
+    Sidekiq::Queue.all
+                  .map { |queue| queue.select { |sq| sq.item['wrapped'] == name } }
+                  .flatten
+  end
+
+  # Returns an Array of Sidekiq::Job.
+  def self.currently_scheduled
+    Sidekiq::ScheduledSet.new.select { |sq| sq.item['wrapped'] == name }
   end
 
   protected

@@ -3,7 +3,15 @@ require 'zlib'
 class ScriptDuplicateCheckerJob < ApplicationJob
   queue_as :low
 
+  EXECUTION_LIMIT = 2
+
   def perform(script_id)
+    # Allow 2 (including this one) to run at once so that there's always a process for other jobs.
+    if ScriptDuplicateCheckerJob.currently_queued_script_ids.count > EXECUTION_LIMIT
+      self.class.set(wait: 5.seconds).perform_later(script_id)
+      return
+    end
+
     now = Time.now
 
     begin
@@ -33,13 +41,10 @@ class ScriptDuplicateCheckerJob < ApplicationJob
   def self.currently_queued_script_ids
     return [] unless Rails.env.production?
 
-    Sidekiq::Queue.all
-                  .map { |queue| queue.select { |sq| sq.item['wrapped'] == 'ScriptDuplicateCheckerJob' } }
-                  .flatten
-                  .map { |job| job.args.first['arguments'].first } +
-      Sidekiq::Workers.new
-                      .map { |_process_id, _thread_id, work| work['payload'] }
-                      .select { |p| p['wrapped'] == 'ScriptDuplicateCheckerJob' }
-                      .map { |p| p['args'].first['arguments'].first }
+    [
+      currently_enqueued.map { |job| job.args.first['arguments'].first },
+      currently_running.map { |p| p['args'].first['arguments'].first },
+      currently_scheduled.map { |p| p['args'].first['arguments'].first },
+    ].flatten
   end
 end

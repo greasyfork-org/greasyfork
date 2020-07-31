@@ -2,6 +2,8 @@ class ScriptDuplicateCheckerQueueingJob < ApplicationJob
   queue_as :low
 
   def perform
+    return if ScriptDuplicateCheckerJob.currently_queued_script_ids.count > ScriptDuplicateCheckerJob::EXECUTION_LIMIT
+
     Script
       .not_deleted
       .left_joins(:script_similarities)
