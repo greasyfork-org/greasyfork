@@ -38,7 +38,7 @@ function markupPreview(p) {
 
   function updateContent(previewable) {
     var markupOptions = getMarkupOptions(previewable);
-    var selectedMarkup = document.querySelector('input[name="' + previewable.getAttribute("data-markup-option-name") + '"]:checked').value;
+    var selectedMarkup = previewable.closest("form").querySelector('input[name="' + previewable.getAttribute("data-markup-option-name") + '"]:checked').value;
     var url = previewable.getAttribute("data-preview-source") == "url";
 
     var xhr = new XMLHttpRequest();
