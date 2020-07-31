@@ -1,7 +1,12 @@
-<% if @script.nil? or @script.new_record?
-	title "Post new script" 
+<%
+if @script.nil? || @script.new_record?
+  if @script.css?
+    title t('scripts.new_title.css')
+  else
+    title t('scripts.new_title.js')
+  end
 else
-	title "Post new version of #{@script.name}" 
+	title t('scripts.update_title', script: @script.name)
 end %>
 
 <%= render :partial => 'script_versions/form', :locals => {:script_version => @script_version} %>
