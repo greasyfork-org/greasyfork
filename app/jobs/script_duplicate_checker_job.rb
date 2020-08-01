@@ -4,6 +4,9 @@ class ScriptDuplicateCheckerJob < ApplicationJob
   queue_as :low
 
   def perform(script_id)
+    # Sleep a bit so maybe we can notice the throttle limit?
+    sleep rand()
+    
     if self.class.throttled_limit_reached?
       self.class.set(wait: 5.seconds).perform_later(script_id)
       return
