@@ -11,7 +11,7 @@ class ScriptDuplicateCheckerQueueingJob < ApplicationJob
 
     script_ids.shift(number_to_enqueue)
               .reject { |id| ScriptDuplicateCheckerJob.currently_queued_script_ids.include?(id) }
-              .each { |id| ScriptDuplicateCheckerJob.set(wait: i.seconds).perform_later(id) }
+              .each { |id| ScriptDuplicateCheckerJob.perform_later(id) }
 
     Rails.cache.write('ScriptDuplicateCheckerQueueingJob.queue', script_ids)
   end
