@@ -4,8 +4,9 @@ class ScriptDuplicateCheckerJob < ApplicationJob
   queue_as :low
 
   def perform(script_id)
-    # Sleep a bit so maybe we can notice the throttle limit?
-    sleep 5
+    Rails.logger.warn("ScriptDuplicateCheckerJob[#{script_id}] Currently enqueued/running: #{self.class.currently_queued_script_ids}")
+    Rails.logger.warn("ScriptDuplicateCheckerJob[#{script_id}] Running queued: #{ScriptDuplicateCheckerQueueingJob.enqueued?}")
+    Rails.logger.warn("ScriptDuplicateCheckerJob[#{script_id}] Currently running throttled count: #{ScriptDuplicateCheckerJob.currently_running.count + ScriptDuplicateCheckerQueueingJob.currently_running.count}")
 
     if self.class.throttled_limit_reached?
       self.class.set(wait: 5.seconds).perform_later(script_id)
