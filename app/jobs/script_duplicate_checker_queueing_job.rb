@@ -2,23 +2,27 @@ class ScriptDuplicateCheckerQueueingJob < ApplicationJob
   queue_as :low
 
   def perform
-    if self.class.throttled_limit_reached?
-      self.class.set(wait: 5.seconds).perform_later
-      return
-    end
+    number_to_enqueue = ScriptDuplicateCheckerJob::DESIRED_RUN_COUNT - ScriptDuplicateCheckerJob.currently_queued_script_ids.count
+    return if number_to_enqueue <= 0
 
+    script_ids = Rails.cache.fetch('ScriptDuplicateCheckerQueueingJob.queue') { [] }
+
+    script_ids = calculate_script_ids if script_ids.empty?
+
+    script_ids.shift(number_to_enqueue)
+              .reject { |id| ScriptDuplicateCheckerJob.currently_queued_script_ids.include?(id) }
+              .each { |id| ScriptDuplicateCheckerJob.set(wait: i.seconds).perform_later(id) }
+
+    Rails.cache.write('ScriptDuplicateCheckerQueueingJob.queue', script_ids)
+  end
+
+  def calculate_script_ids
     Script
       .not_deleted
       .left_joins(:script_similarities)
       .group('scripts.id')
       .order('min(script_similarities.checked_at)', :id)
-      .limit(5)
+      .limit(10)
       .pluck('scripts.id')
-      .reject { |id| ScriptDuplicateCheckerJob.currently_queued_script_ids.include?(id) }
-      .each_with_index do |id, i|
-      # Don't start them at the exact same time so that ScriptDuplicateCheckerJob can check the execution limit
-      # properly.
-      ScriptDuplicateCheckerJob.set(wait: i.seconds).perform_later(id)
-    end
   end
 end

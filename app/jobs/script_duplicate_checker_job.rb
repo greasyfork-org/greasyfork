@@ -3,18 +3,9 @@ require 'zlib'
 class ScriptDuplicateCheckerJob < ApplicationJob
   queue_as :low
 
+  DESIRED_RUN_COUNT = 2
+
   def perform(script_id)
-    Rails.logger.warn("[#{script_id}] Started")
-    Rails.logger.warn("[#{script_id}] Currently enqueued/running: #{self.class.currently_queued_script_ids}")
-    Rails.logger.warn("[#{script_id}] Running queued: #{ScriptDuplicateCheckerQueueingJob.enqueued?}")
-    Rails.logger.warn("[#{script_id}] Currently running throttled count: #{ScriptDuplicateCheckerJob.currently_running.count + ScriptDuplicateCheckerQueueingJob.currently_running.count}")
-    Rails.logger.warn("[#{script_id}] All running jobs (#{Sidekiq::Workers.new.count}): #{Sidekiq::Workers.new.map { |_process_id, _thread_id, work| work['payload'] }}")
-
-    if self.class.throttled_limit_reached?
-      self.class.set(wait: 5.seconds).perform_later(script_id)
-      return
-    end
-
     now = Time.now
 
     begin
