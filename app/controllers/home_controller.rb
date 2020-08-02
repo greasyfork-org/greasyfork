@@ -1,5 +1,3 @@
-require 'digest/sha1'
-
 class HomeController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:sso, :routing_error]
 
