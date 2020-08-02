@@ -127,7 +127,7 @@ class DiscussionsController < ApplicationController
     if discussion.script
       redirect_to script_path(discussion.script)
     else
-      redirect_to root_path
+      redirect_to discussions_path
     end
   end
 
