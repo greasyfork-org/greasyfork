@@ -29,3 +29,5 @@ module Greasyfork
     config.active_storage.variable_content_types << 'image/webp'
   end
 end
+
+ApplicationSettings = YAML.load_file(Rails.root.join('config', 'application.yml'))
