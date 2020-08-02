@@ -54,7 +54,7 @@ Rails.application.configure do
   config.log_tags = [:request_id]
 
   # Use a different cache store in production.
-  config.cache_store = :redis_cache_store, { path: '/var/run/redis/redis-server.sock', expires_in: 2.hours }
+  config.cache_store = :redis_cache_store, ApplicationSettings['rails_cache'].merge(expires_in: 2.hours)
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   config.active_job.queue_adapter = :sidekiq
