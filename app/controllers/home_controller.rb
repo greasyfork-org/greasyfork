@@ -1,4 +1,3 @@
-require 'js_connect'
 require 'digest/sha1'
 
 class HomeController < ApplicationController
@@ -23,24 +22,6 @@ class HomeController < ApplicationController
       text = params[:text]
     end
     render html: view_context.format_user_text(text, params[:markup])
-  end
-
-  def sso
-    client_id = Greasyfork::Application.config.vanilla_jsconnect_clientid
-    secret = Greasyfork::Application.config.vanilla_jsconnect_secret
-    user = {}
-
-    if user_signed_in?
-      user['uniqueid'] = current_user.id.to_s
-      user['name'] = current_user.name
-      user['email'] = current_user.email
-      user['photourl'] = ''
-    end
-
-    secure = true # this should be true unless you are testing.
-    json = JsConnect.js_connect_string(user, params, client_id, secret, secure, Digest::SHA1)
-
-    render js: json
   end
 
   def search; end

@@ -1,8 +1,6 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  get 'sso', to: 'home#sso'
-
   authenticate :user, ->(user) { user.administrator? } do
     mount Sidekiq::Web => '/sidekiq'
   end
