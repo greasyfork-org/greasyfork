@@ -93,7 +93,7 @@ class DiscussionsController < ApplicationController
 
   def new
     @discussion = Discussion.new(poster: current_user)
-    @discussion.comments.build(poster: current_user)
+    @discussion.comments.build(poster: current_user, text_markup: current_user&.preferred_markup)
     @subscribe = true
   end
 
