@@ -121,7 +121,13 @@
   <% if current_user && @comment %>
     <%= form_with(model: @comment, url: scoped_comment_create_path(@discussion), method: :POST) do |f| %>
       <%= render partial: 'discussions/comment_entry', locals: { f: f } %>
-      <%= render partial: 'discussions/subscribe', locals: { subscribe: @subscribe} %>
+      <% if @script && @script.users.include?(current_user) && current_user.author_email_notification_type_id == User::AUTHOR_NOTIFICATION_COMMENT %>
+        <p class="form-note">
+          <%= it('discussions.notifying_on_script', notifications_link: notifications_user_path(current_user)) %>
+        </p>
+      <% else %>
+        <%= render partial: 'discussions/subscribe', locals: { subscribe: @subscribe} %>
+      <% end %>
       <%= f.submit t('discussions.new_comment_submit') %>
     <% end %>
   <% else %>
