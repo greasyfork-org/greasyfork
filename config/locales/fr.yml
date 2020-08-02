@@ -131,7 +131,7 @@ fr:
     derivatives_exact_copies_item_html: "%{script_link} par %{author_links} - versions: %{version_list}"
     derivatives_exact_copes_none: "Il n'y a pas d'autres scripts sur %{site_name} qui ont exactement le même code que ce script."
     derivatives_similar_heading: "Scripts similaires"
-    derivatives_similar_info: "Nous vérifions périodiquement la dernière version de tous les autres scripts pour trouver ceux qui ressemblent le plus au vôtre. Nous vérifions également chaque fois que vous postez une mise à jour de votre script et à votre demande."
+    derivatives_similar_info: "Nous vérifions périodiquement la dernière version de tous les autres scripts pour trouver ceux qui ressemblent le plus au vôtre. Nous vérifions également à chaque fois que vous publiez une mise à jour de votre script et à votre demande."
     derivatives_similar_score_info: "Les scores vont de 0,000 (complètement différent) à 1.000 (identique)."
     derivatives_similar_item: "%{score} %{diff_link:[Diff]}: %{script}"
     derivatives_similar_last_check_html: "Nous avons vérifié pour la dernière fois des scripts similaires aux vôtres le %{date}."
@@ -196,8 +196,8 @@ fr:
     enable_source_code_editor_label: "Activer l'éditeur de code source avec coloration syntaxique"
     changelog_note: "Qu'est-ce qui a changé dans cette version ?"
     additional_info_note_html: "Blablatez à propos de votre script. %{allowed_elements_link}"
-    post_new_script: "Poster un script"
-    post_updated_script: "Poster une nouvelle version"
+    post_new_script: "Publier un script"
+    post_updated_script: "Publier une nouvelle version"
     type_1_html: "Script utilisateur public - un script utilisateur que tout le monde peut voir et utiliser."
     type_2_html: "Script utilisateur non listé - un script utilisateur pour utilisation (semi-)privée. Disponible par accès direct, mais aucun lien n'est présent sur %{site_name}."
     type_3_html: "Bibliothèque - un script fait pour être inclus dans d'autres scripts à l'aide de <code>@require</code>, et non installé directement."
@@ -269,7 +269,7 @@ fr:
     unlisted_marker: "(Non-listé)"
     library_marker: "(Bibliothèque)"
     libraries_title: "Bibliothèques"
-    libraries_description_html: "Il y a des librairies postées par l'utilisateur %{site_name} que vous pouvez <code>@require</code> dans vos scripts. Pour les autres genres de librairies vous pouvez <code>@require</code>, lire les règles  de %{policy_link:%{site_name} sur <code>@require</code>}."
+    libraries_description_html: "Il y a des librairies publiées par l'utilisateur %{site_name} que vous pouvez <code>@require</code> dans vos scripts. Pour les autres genres de librairies vous pouvez <code>@require</code>, lire les règles  de %{policy_link:%{site_name} sur <code>@require</code>}."
     by_site_list_title: "Scripts utilisateurs sur %{site_name} triés par site"
     by_site_list_description: "Ce sont les sites affectés par les scripts utilisateur les plus populaires. Une plus grande taille de police signifie des scripts utilisateur plus populaires."
     by_site_list_filter: "Filtrer par nom de site :"
@@ -330,6 +330,10 @@ fr:
       title: "Qu'essayez-vous de faire ?"
       install_link_html: "Je souhaite <b>installer et utiliser</b> un script."
       share_link_html: "J'ai <b>écrit</b> un script et je veux le <b>partager</b> avec les autres."
+    new_title:
+      js: "Publier un nouveau script"
+      css: "Publier un nouveau style"
+    update_title: "Publier une nouvelle version de %{script}"
   script_sets:
     description: "Les jeux de scripts vous permettent de créer une liste personnalisée de scripts pour naviguer avec sur Greasy Fork. Vous pouvez ajouter des scripts à votre jeu en incluant des scripts individuels, des jeux d'autres utilisateurs ou des jeux générés automatiquement. Vous pouvez également exclure les scripts de votre jeu avec les mêmes méthodes."
     favorites_name: "Favoris"
@@ -682,6 +686,45 @@ fr:
       adult_content_rule_html: "<li>Les scripts, qui incluent du contenu adulte ou qui sont pour des sites avec contenu adulte, doivent être marqués comme tels pour laisser aux autres utilisateurs le choix de les voir ou non.</li>"
     external_scripts:
       title: "Politique de %{site_name} concernant les scripts externes"
+      content_html: >
+          <p>Les scripts utilisateur ont la capacité technique de charger et exécuter
+          d'autres scripts. La clé %{require_doc_link:<code>@require</code>} est la
+          plus indiquée pour cela, mais les scripts peuvent aussi, par exemple, utiliser
+          une requête XmlHttpRequest pour télécharger un script et l'injecter dans
+          le DOM.</p> <p>Bien que cette fonctionnalité soit très pratique et utilisée
+          par la plupart des auteurs de scripts, elle peut aussi être utilisé de façon
+          malicieuse. Un des principes fondamentaux de %{site_name} est que l'utilisateur
+          doit être capable d'inspecter le code source du script. Les scripts externes
+          peuvent contourner ce principe de plusieurs façons: ils peuvent changer
+          sans avertissement ou historique, ils peuvent servir un code différent à
+          des personnes différentes, et ils peuvent être utilisés pour cacher du code
+          malicieux au coeur de bibliothèques connues. Même si quelqu'un prenait le
+          soin de vérifier un script externe et déterminer qu'il est légitime, cela
+          ne garantirait pas que le script a toujours été ou sera toujours légitime.</p>
+          <p>Afin de permettre aux auteurs de scripts de continuer à utiliser des
+          scripts externes, %{site_name} a mis en place une liste de modèles d'URL
+          autorisés pour une inclusion dans un script. Cette liste comprend des emplacements
+          de script qui :</p> <ul>
+
+          <li>Sont publics</li>
+
+          <li>N'auront pas leur contenu modifié fréquement</li>
+
+          <li>Seraient probablement utiles à plus d'un auteur de script</li>
+
+          </ul> <p>La liste actuelle est :</p> %{allowed_require_list} <p>Si vous
+          tentez de publier un script qui utilise un <code>@require</code> en dehors
+          de ces emplacements, vous serez incapable de sauvegarder votre script.</p>
+          <p>Si le script que vous désirez inclure est une librairie JavaScript (par
+          exemple jQuery ou YUI), essayez de la trouver sur l'un des sites listés
+          çi-dessus. %{cdnjs_link:cdnjs} et %{jsdelivr_link:jsDelivr} en particulier,
+          ont un large assortiment de librairies à disposition.</p> <p>Si le script
+          que vous désirez inclure n'est pas disponible sur les sites çi-dessus, %{contact_link:faites-le
+          nous savoir} et nous pourrons le rechercher (ou l'héberger nous-même !).</p>
+          <p>Si vous être l'auteur du script que vous désirez inclure, vous pouvez
+          le soumettre séparément sur %{site_name} en choisissant "Librairie" comme
+          type de script. Vous serez alors capable d'inclure cette librairie publiée
+          dans votre script.</p>
       test_url:
         label: Testé un URL
         result_ok: L'URL est autorisée
