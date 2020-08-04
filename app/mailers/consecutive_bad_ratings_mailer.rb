@@ -11,7 +11,7 @@ class ConsecutiveBadRatingsMailer < ApplicationMailer
             script_name: script_name,
             script_url: script_url(script, locale: locale),
             feedback_url: feedback_script_url(script, locale: locale),
-            delete_date: l(script.consecutive_bad_ratings_at.to_date, format: :short, locale: locale))
+            delete_date: l(script.consecutive_bad_ratings_at.to_date + Script::CONSECUTIVE_BAD_RATINGS_GRACE_PERIOD, format: :short, locale: locale))
         end
       end
     end
