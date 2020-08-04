@@ -64,12 +64,22 @@
 .discussion-rating {
   margin-top: 10px;
 }
+.discussion-list {
+  padding-bottom: 0;
+}
 .discussion-list-item {
   padding-top: 10px;
   border-top: 1px solid #CCC;
 }
-.discussion-not-read {
-  /*background: linear-gradient(to bottom, rgb(255, 255, 230), white 50px);*/
+.discussion-list-container:first-child .discussion-list-item {
+  border-top: 0;
+}
+.discussion-list-logged-in .discussion-read {
+  background-color: #FAFAFA;
+  margin-left: -16px;
+  margin-right: -16px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 .script-discussion-list .discussion-list-item:last-child {
   border-bottom: 1px solid #CCC;

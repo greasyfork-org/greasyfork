@@ -3,32 +3,34 @@
   discussion_ids_read = [] unless defined?(discussion_ids_read) && discussion_ids_read
 %>
 
-<div class="discussion-list-item<%= ' discussion-not-read' if current_user && !discussion_ids_read.include?(discussion.id) %>">
-  <div class="discussion-meta">
-    <% if !discussion.for_script? || show_script %>
-      <div class="discussion-meta-item discussion-meta-item-script-name">
-        <% if discussion.script %>
-          <%= link_to discussion.script.name(request_locale), script_path(discussion.script) %>
-        <% else %>
-          <%= link_to t("discussions.categories.#{discussion.discussion_category.category_key}.name"), category_discussion_index_path(discussion.discussion_category) %>
-        <% end %>
-      </div>
-    <% end %>
-    <div class="discussion-meta-item">
-      <%= t('discussions.posted_by_html', user: render_poster(discussion), date: markup_date(discussion.created_at)) %>
-    </div>
-    <div class="discussion-meta-item">
-      <% if discussion.stat_reply_count > 0 %>
-        <div class="discussion-meta-item">
-          <%= t('discussions.last_comment', user: render_user(discussion.stat_last_replier, discussion.stat_last_replier_id, script: discussion.script), date: markup_date(discussion.stat_last_reply_date)).html_safe %>
+<div class="discussion-list-container <%= discussion_ids_read.include?(discussion.id) ? ' discussion-read' : ' discussion-not-read' if current_user %>">
+  <div class="discussion-list-item">
+    <div class="discussion-meta">
+      <% if !discussion.for_script? || show_script %>
+        <div class="discussion-meta-item discussion-meta-item-script-name">
+          <% if discussion.script %>
+            <%= link_to discussion.script.name(request_locale), script_path(discussion.script) %>
+          <% else %>
+            <%= link_to t("discussions.categories.#{discussion.discussion_category.category_key}.name"), category_discussion_index_path(discussion.discussion_category) %>
+          <% end %>
         </div>
       <% end %>
+      <div class="discussion-meta-item">
+        <%= t('discussions.posted_by_html', user: render_poster(discussion), date: markup_date(discussion.created_at)) %>
+      </div>
+      <div class="discussion-meta-item">
+        <% if discussion.stat_reply_count > 0 %>
+          <div class="discussion-meta-item">
+            <%= t('discussions.last_comment', user: render_user(discussion.stat_last_replier, discussion.stat_last_replier_id, script: discussion.script), date: markup_date(discussion.stat_last_reply_date)).html_safe %>
+          </div>
+        <% end %>
+      </div>
     </div>
+    <%= link_to discussion.path(locale: request_locale.code), class: 'discussion-title' do %>
+      <% if discussion.actual_rating? -%><span class="rating-icon rating-icon-<%= discussion.rating_key %>"><%= t("discussions.ratings_short.#{discussion.rating_key}") %></span><% end
+      %><span class="discussion-snippet">
+        <%= discussion_snippet(discussion) %>
+      </span>
+    <% end %>
   </div>
-  <%= link_to discussion.path(locale: request_locale.code), class: 'discussion-title' do %>
-    <% if discussion.actual_rating? -%><span class="rating-icon rating-icon-<%= discussion.rating_key %>"><%= t("discussions.ratings_short.#{discussion.rating_key}") %></span><% end
-    %><span class="discussion-snippet">
-      <%= discussion_snippet(discussion) %>
-    </span>
-  <% end %>
 </div>
