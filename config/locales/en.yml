@@ -1337,13 +1337,13 @@ en:
         text: "Your report on %{script_name} on %{site_name} has been dismissed by a moderator and the script you reported will remain active. You can review the report at %{report_url}. If you have any questions, please visit https://greasyfork.org/forum/."
     consecutive_bad_ratings:
       notify:
-        subject: "Your script %{script_name} on %{site_name} has received multiple bad reviews."
+        subject: "Your script %{script_name} on %{site_name} has received multiple \"Bad\" reviews."
         text: |
-          Your script '%{script_name}' on %{site_name} (%{script_url}) has received multiple bad reviews in a row.
+          Your script '%{script_name}' on %{site_name} (%{script_url}) has received multiple "Bad" reviews in a row.
 
-          Please review the feedback you received at %{feedback_url}, fix any issues, and reply to the concerns raised.
+          The feedback you've received at %{feedback_url} may indicate a problem with your script, a temporary outage, or a change to the underlying site. Please review the feedback, fix any issues, and reply to the concerns raised.
 
-          If you do not post a new version or reply to the discussions by %{delete_date}, your script will become hidden on %{site_name}. (After this date, you will be able to make it visible again if you wish.)
+          %{site_name} strives to maintain a high-quality list of scripts for users. To deal with broken, abandoned scripts, those that receive multiple consecutive "Bad" reviews without a timely response will become hidden. To avoid your script becoming hidden, post a new version or reply to the discussions by %{delete_date}. If you take no action, you will still have the option to make it visible again after this date.
     script_comment:
       subject: "Your script %{script_name} on %{site_name} has received a comment."
       text: |
