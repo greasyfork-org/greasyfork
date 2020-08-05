@@ -45,8 +45,11 @@ module ScriptListings
           end
         end
 
-        if params[:language] == 'css'
+        case params[:language]
+        when 'css'
           with[:available_as_css] = true
+        when 'all'
+          # No filter
         else
           with[:available_as_js] = true
         end
