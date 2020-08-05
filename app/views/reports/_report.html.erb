@@ -7,6 +7,13 @@
       <%= format_user_text(report.item.text, report.item.text_markup) %>
     </div>
   </blockquote>
+<% elsif report.item.is_a?(Message) %>
+    <div><%= t('common.quote.prefix_html', user: render_user(reported_user(report), reported_user_id(report))) %></div>
+    <blockquote>
+      <div class="user-content">
+        <%= format_user_text(report.item.content, report.item.content_markup) %>
+      </div>
+    </blockquote>
 <% end %>
 
 <% if report.explanation.present? %>
