@@ -6,7 +6,15 @@
       ☰
     </div>
 
-    <h2><%= t('discussions.title') %></h2>
+    <div class="discussion-list-header">
+      <h2><%= t('discussions.title') %></h2>
+      <% if current_user %>
+        <div class="discussion-actions">
+          <%= link_to t('discussions.mark_all_read'), mark_all_read_discussions_path(category: @filter_result.category, by_user: @filter_result.by_user&.id, related_to_me: @filter_result.related_to_me), method: :post %>
+        </div>
+      <% end %>
+    </div>
+
     <% if @discussions.empty? %>
       <p><%=t('discussions.no_discussions')%></p>
     <% else %>
@@ -32,30 +40,30 @@
         <div class="list-option-group">
           <%= t('discussions.user_filter.label') %>
           <ul>
-            <% if params[:me].nil? %>
+            <% if @filter_result.related_to_me.nil? %>
               <li class="list-option list-current"><%= t('discussions.user_filter.all') %></li>
             <% else %>
               <li class="list-option"><%= link_to t('discussions.user_filter.all'), current_path_with_params(me: nil, page: nil) %></li>
             <% end %>
-            <% if params[:me] == 'started' %>
+            <% if @filter_result.related_to_me == 'started' %>
               <li class="list-option list-current"><%= t('discussions.user_filter.discussion_by_me') %></li>
             <% else %>
               <li class="list-option"><%= link_to t('discussions.user_filter.discussion_by_me'), current_path_with_params(me: 'started', page: nil) %></li>
             <% end %>
-            <% if params[:me] == 'comment' %>
+            <% if @filter_result.related_to_me == 'comment' %>
               <li class="list-option list-current"><%= t('discussions.user_filter.comment_by_me') %></li>
             <% else %>
               <li class="list-option"><%= link_to t('discussions.user_filter.comment_by_me'), current_path_with_params(me: 'comment', page: nil) %></li>
             <% end %>
             <% if current_user.scripts.any? %>
-              <% if params[:me] == 'script' %>
+              <% if @filter_result.related_to_me == 'script' %>
                 <li class="list-option list-current"><%= t('discussions.user_filter.on_my_scripts') %></li>
               <% else %>
                 <li class="list-option"><%= link_to t('discussions.user_filter.on_my_scripts'), current_path_with_params(me: 'script', page: nil) %></li>
               <% end %>
             <% end %>
             <% if current_user.discussion_subscriptions.any? %>
-              <% if params[:me] == 'subscribed' %>
+              <% if @filter_result.related_to_me == 'subscribed' %>
                 <li class="list-option list-current"><%= t('discussions.user_filter.subscribed') %></li>
               <% else %>
                 <li class="list-option"><%= link_to t('discussions.user_filter.subscribed'), current_path_with_params(me: 'subscribed', page: nil) %></li>
@@ -65,11 +73,11 @@
         </div>
       <% end %>
 
-      <% if @by_user %>
+      <% if @filter_result.by_user %>
         <div class="list-option-group">
           <ul>
             <li class="list-option"><%= link_to t('discussions.other_user_filter.all'), current_path_with_params(user: nil, page: nil) %></li>
-            <li class="list-option list-current"><%= t('discussions.other_user_filter.comments_by', user: @by_user.name) %></li>
+            <li class="list-option list-current"><%= t('discussions.other_user_filter.comments_by', user: @filter_result.by_user.name) %></li>
           </ul>
         </div>
       <% end %>
@@ -77,19 +85,19 @@
       <div class="list-option-group">
         <%= t('discussions.category_filter.label') %>
         <ul>
-          <% if @category.nil? %>
+          <% if @filter_result.category.nil? %>
             <li class="list-option list-current"><%= t('discussions.category_filter.all') %></li>
           <% else %>
             <li class="list-option"><%= link_to t('discussions.category_filter.all'), discussions_path(safe_params(category: nil, page: nil, locale: nil)) %></li>
           <% end %>
           <% DiscussionCategory.all.each do |dc| %>
-            <% if dc == @category %>
+            <% if dc == @filter_result.category %>
               <li class="list-option list-current"><%= t("discussions.categories.#{dc.category_key}.name") %></li>
             <% else %>
               <li class="list-option"><%= link_to t("discussions.categories.#{dc.category_key}.name"), category_discussion_index_path(category: dc, page: nil) %></li>
             <% end %>
           <% end %>
-          <% if @category == 'no-scripts' %>
+          <% if @filter_result.category == 'no-scripts' %>
             <li class="list-option list-current"><%= t("discussions.categories.no-scripts.name") %></li>
           <% else %>
             <li class="list-option"><%= link_to t("discussions.categories.no-scripts.name"), category_discussion_index_path(category: 'no-scripts', page: nil) %></li>

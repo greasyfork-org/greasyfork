@@ -1051,7 +1051,7 @@ CREATE TABLE `comments` (
   PRIMARY KEY (`id`),
   KEY `index_comments_on_discussion_id` (`discussion_id`),
   CONSTRAINT `fk_rails_750d1a8a36` FOREIGN KEY (`discussion_id`) REFERENCES `discussions` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=32341 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32351 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `compatibilities`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1183,7 +1183,7 @@ CREATE TABLE `discussion_reads` (
   KEY `index_discussion_reads_on_discussion_id` (`discussion_id`),
   CONSTRAINT `fk_rails_07825bdb9c` FOREIGN KEY (`discussion_id`) REFERENCES `discussions` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_rails_6fafaad5e9` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `discussion_subscriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1199,7 +1199,7 @@ CREATE TABLE `discussion_subscriptions` (
   KEY `index_discussion_subscriptions_on_user_id` (`user_id`),
   CONSTRAINT `fk_rails_fa31029900` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_rails_feaa602412` FOREIGN KEY (`discussion_id`) REFERENCES `discussions` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `discussions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1222,7 +1222,7 @@ CREATE TABLE `discussions` (
   KEY `fk_rails_a52537835c` (`script_id`),
   KEY `index_discussions_on_stat_last_reply_date` (`stat_last_reply_date`),
   CONSTRAINT `fk_rails_a52537835c` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=10044 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10050 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `identities`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1821,6 +1821,7 @@ CREATE TABLE `users` (
   `trusted_reports` tinyint(1) NOT NULL DEFAULT 0,
   `announcements_seen` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `canonical_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `discussions_read_since` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_users_on_email` (`email`),
   UNIQUE KEY `index_users_on_reset_password_token` (`reset_password_token`),
@@ -2031,6 +2032,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20200706015446'),
 ('20200706015815'),
 ('20200715013441'),
-('20200730003009');
+('20200730003009'),
+('20200804032917');
 
 

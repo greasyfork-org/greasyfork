@@ -150,7 +150,11 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :destroy, :update]
     end
 
-    resources :discussions, only: [:index, :new, :create]
+    resources :discussions, only: [:index, :new, :create] do
+      collection do
+        post :mark_all_read
+      end
+    end
 
     get 'import', to: 'import#index', as: 'import_start'
     get 'import/userscriptsorg', to: 'import#userscriptsorg', as: 'import_userscriptsorg'

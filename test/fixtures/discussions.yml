@@ -3,8 +3,10 @@ script_discussion:
   poster_id: 1
   rating: 0
   discussion_category: script-discussions
+  stat_last_reply_date: <%= Time.now %>
 
 non_script_discussion:
   title: discussing something
   poster_id: 1
   discussion_category: greasyfork
+  stat_last_reply_date: <%= Time.now %>

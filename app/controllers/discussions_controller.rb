@@ -4,6 +4,8 @@ class DiscussionsController < ApplicationController
   include DiscussionHelper
   include ScriptAndVersions
 
+  FILTER_RESULT = Struct.new(:category, :by_user, :related_to_me, :result)
+
   before_action :authenticate_user!, only: [:new, :create, :subscribe, :unsubscribe]
   before_action :moderators_only, only: :destroy
   before_action :greasy_only, only: :new
@@ -19,41 +21,16 @@ class DiscussionsController < ApplicationController
     when :sleazyfork
       @discussions = @discussions.where(scripts: { sensitive: true })
     when :greasyfork
-      @discussions = @discussions.where.not(scripts: { sensitive: true })
+      @discussions = @discussions.where(scripts: { sensitive: [nil, false] })
     when :all
       # No restrictions
     else
       raise "Unknown subset #{script_subset}"
     end
 
-    if params[:category]
-      if params[:category] == 'no-scripts'
-        @category = params[:category]
-        @discussions = @discussions.where(discussion_category: DiscussionCategory.non_script)
-      else
-        @category = DiscussionCategory.find_by(category_key: params[:category])
-        @discussions = @discussions.where(discussion_category: @category) if @category
-      end
-    end
+    @filter_result = apply_filters(@discussions)
 
-    if current_user
-      case params[:me]
-      when 'started'
-        @discussions = @discussions.where(poster: current_user)
-      when 'comment'
-        @discussions = @discussions.with_comment_by(current_user)
-      when 'script'
-        @discussions = @discussions.where(script_id: current_user.script_ids)
-      when 'subscribed'
-        @discussions = @discussions.where(id: current_user.discussion_subscriptions.pluck(:discussion_id))
-      end
-    end
-
-    if params[:user].to_i > 0
-      @by_user = User.find_by(id: params[:user].to_i)
-      @discussions = @discussions.with_comment_by(@by_user) if @by_user
-    end
-
+    @discussions = @filter_result.result
     @discussions = @discussions.paginate(page: params[:page], per_page: 25)
 
     @discussion_ids_read = DiscussionRead.read_ids_for(@discussions, current_user) if current_user
@@ -153,6 +130,19 @@ class DiscussionsController < ApplicationController
     redirect_to Discussion.find_by!(migrated_from: params[:id]).url, status: 301
   end
 
+  def mark_all_read
+    filter_result = apply_filters(Discussion.all)
+
+    if filter_result.category || filter_result.related_to_me || filter_result.by_user
+      now = Time.now
+      DiscussionRead.upsert_all(filter_result.result.pluck(:id).map { |discussion_id| { discussion_id: discussion_id, user_id: current_user.id, read_at: now } })
+    else
+      current_user.update!(discussions_read_since: Time.now)
+    end
+
+    redirect_back(fallback_location: discussions_path)
+  end
+
   private
 
   def discussion_scope
@@ -172,5 +162,40 @@ class DiscussionsController < ApplicationController
 
   def record_view(discussion)
     DiscussionRead.upsert({ user_id: current_user.id, discussion_id: discussion.id, read_at: Time.now })
+  end
+
+  def apply_filters(discussions)
+    if params[:category]
+      if params[:category] == 'no-scripts'
+        category = params[:category]
+        discussions = discussions.where(discussion_category: DiscussionCategory.non_script)
+      else
+        category = DiscussionCategory.find_by(category_key: params[:category])
+        discussions = discussions.where(discussion_category: category) if category
+      end
+    end
+
+    if current_user
+      related_to_me = params[:me]
+      case related_to_me
+      when 'started'
+        discussions = discussions.where(poster: current_user)
+      when 'comment'
+        discussions = discussions.with_comment_by(current_user)
+      when 'script'
+        discussions = discussions.where(script_id: current_user.script_ids)
+      when 'subscribed'
+        discussions = discussions.where(id: current_user.discussion_subscriptions.pluck(:discussion_id))
+      else
+        related_to_me = nil
+      end
+    end
+
+    if params[:user].to_i > 0
+      by_user = User.find_by(id: params[:user].to_i)
+      discussions = discussions.with_comment_by(by_user) if by_user
+    end
+
+    FILTER_RESULT.new(category, by_user, related_to_me, discussions)
   end
 end
