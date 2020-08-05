@@ -44,6 +44,8 @@
     <% if report.item.poster && !report.item.poster.banned? %>
       <%= button_to("Delete comment and ban #{report.item.poster.name}", uphold_report_path(report, variant: 'ban'), method: 'POST', form_class: 'inline-form') %>
     <% end %>
+  <% when Message %>
+    <%= button_to("Ban #{report.item.poster.name}", uphold_report_path(report), method: 'POST', form_class: 'inline-form') %>
   <% else
        raise "Unknown item #{report.item}"
      end %>
