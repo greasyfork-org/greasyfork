@@ -8,7 +8,7 @@ module ReportHelper
     when Message
       "A message by #{report.item.poster&.name || "Deleted user #{report.item.poster_id}"}"
     else
-      raise "Unknown type"
+      raise 'Unknown type'
     end
   end
 
@@ -21,7 +21,7 @@ module ReportHelper
     when Message
       report.item.poster
     else
-      raise "Unknown type"
+      raise 'Unknown type'
     end
   end
 
@@ -34,7 +34,7 @@ module ReportHelper
     when Message
       report.item.poster_id
     else
-      raise "Unknown type"
+      raise 'Unknown type'
     end
   end
 end
