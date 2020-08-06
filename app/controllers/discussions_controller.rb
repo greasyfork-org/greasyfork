@@ -4,7 +4,7 @@ class DiscussionsController < ApplicationController
   include DiscussionHelper
   include ScriptAndVersions
 
-  FILTER_RESULT = Struct.new(:category, :by_user, :related_to_me, :result)
+  FILTER_RESULT = Struct.new(:category, :by_user, :related_to_me, :read_status, :result)
 
   before_action :authenticate_user!, only: [:new, :create, :subscribe, :unsubscribe]
   before_action :moderators_only, only: :destroy
@@ -196,6 +196,19 @@ class DiscussionsController < ApplicationController
       discussions = discussions.with_comment_by(by_user) if by_user
     end
 
-    FILTER_RESULT.new(category, by_user, related_to_me, discussions)
+    # This needs to be the last.
+    if current_user
+      read_status = params[:read]
+      case read_status
+      when 'read'
+        discussions = discussions.where(id: DiscussionRead.read_ids_for(discussions, current_user))
+      when 'unread'
+        discussions = discussions.where.not(id: DiscussionRead.read_ids_for(discussions, current_user))
+      else
+        read_status = nil
+      end
+    end
+
+    FILTER_RESULT.new(category, by_user, related_to_me, read_status, discussions)
   end
 end
