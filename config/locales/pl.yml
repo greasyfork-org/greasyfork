@@ -1096,15 +1096,6 @@ pl:
       report_dismissed_reporter:
         subject: "Twoje zgłoszenie odnośnie skryptu %{script_name} dla %{site_name} zostało odrzucone"
         text: "Twoje zgłoszenie odnośnie skryptu %{script_name} dla %{site_name} zostało odrzucone przez moderatora, a skrypt pozostanie dostępny. Możesz zapoznać się ze zgłoszeniem pod %{report_url}. Jeśli masz jakieś pytania, odwiedź https://greasyfork.org/forum/. "
-    consecutive_bad_ratings:
-      notify:
-        subject: "Twój skrypt %{script_name} dla %{site_name} otrzymał wiele negatywnych opinii."
-        text: |
-            Twój skrypt '%{script_name}' na %{site_name} (%{script_url}) otrzymał wiele negatywnych ocen pod rząd.
-
-            Przejrzyj otrzymane opinie na %{feedback_url}, napraw wszelakie problemy i odpowiedz na zgłoszenia.
-
-            Jeśli nie zaktualizujesz skryptu lub nie odpowiesz na otrzymane opinie przed %{delete_date}, twój skrypt zostanie ukryty na %{site_name}. (Po tym czasie będziesz miał możliwość, by ponownie ustawić go jako widoczny jeśli się zdecydujesz.)
     script_comment:
       subject: "Twój skrypt %{script_name} na %{site_name} został skomentowany."
       text: |

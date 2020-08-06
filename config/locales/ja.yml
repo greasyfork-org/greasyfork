@@ -764,7 +764,7 @@ ja:
   discussions:
     title: 議論
     comment_date: "投稿日: %{date}"
-    comment_edit_date: "編集日; %{date}"
+    comment_edit_date: "編集日: %{date}"
     posted_by_html: "%{date}の%{user}"
     last_comment: "最新：%{date}の%{user}"
     new_discussion_heading: "審査やコメント、質問を投稿"
@@ -940,15 +940,6 @@ ja:
       report_dismissed_reporter:
         subject: "%{script_name} (%{site_name}) に関するあなたの通報は却下されました"
         text: "%{script_name} (%{site_name}) に関するあなたの通報は管理担当者に却下され、当該スクリプトの公開は続行されました。通報内容は %{report_url}で閲覧できます。疑問があれば https://greasyfork.org/forum/ にアクセスしてください。"
-    consecutive_bad_ratings:
-      notify:
-        subject: " あなたのスクリプト%{script_name} (%{site_name}) は連続して悪い評価がついています。"
-        text: |
-            あなたのスクリプト %{script_name} (%{site_name} の、%{script_url}) は連続して悪い評価がついています。
-
-            %{feedback_url}でフィードバックの内容を確認し、問題を修正し、提起された懸念事項に返信してください。
-
-            更新版の投稿がないか、%{delete_date} までに議論への返信がない場合、あなたのスクリプトは %{site_name} で非表示にされます。 (この日付以降でも、お望みなら再び表示することは可能です)
     script_comment:
       subject: "スクリプト %{script_name} (%{site_name}) にコメントがあります。"
       text: |

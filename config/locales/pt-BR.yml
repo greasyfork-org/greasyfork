@@ -950,6 +950,7 @@ pt-BR:
     new_button: Nova discussão
     script_notice: Se você estiver procurando discutir um script específico, vá até a página de feedback do script e inicie uma discussão por lá.
     no_discussions: Nenhuma discussão encontrada.
+    mark_all_read: Marcar tudo como lido
   conversations:
     user_input_note: Digite o nome do usuário ou a URL do seu perfil.
     new_title: Criar uma nota conversa
@@ -1075,13 +1076,13 @@ pt-BR:
         text: "Sua denúncia no %{script_name} no %{site_name} foi indeferido por um moderador e o script que você denunciou continuará ativo. Você pode rever a denúncia em %{report_url}. Se você tiver alguma dúvida, por favor visite https://greasyfork.org/forum/."
     consecutive_bad_ratings:
       notify:
-        subject: "Seu script %{script_name} no %{site_name} recebeu múltiplas avaliações negativas."
+        subject: "O seu script %{script_name} no %{site_name} recebeu múltiplas avaliações \"Ruins\"."
         text: |
-            Seu script '%{script_name}' no %{site_name} (%{script_url}) recebeu múltiplas avaliações negativas em seguida.
+            Seu script '%{script_name}' no %{site_name} (%{script_url}) recebeu múltiplas avaliações "Ruins" em seguida.
 
-            Por favor, analise o feedback que você recebeu em %{feedback_url}, corrija quaisquer problemas, e responda as questões levantadas.
+            O feedback que você recebeu em %{feedback_url} pode indicar um problema com seu script, uma parada temporária, ou uma mudança no site em que ele se baseia. Por favor, analise o feedback, corrija quaisquer problemas e responda as questões levantadas.
 
-            Se você não publicar uma nova versão ou resposta na discussão até %{delete_date}, seu script ficará oculto no %{site_name}. (Após esta data, você poderá torná-lo visível novamente caso desejar.)
+            O %{site_name} tenta manter uma lista de alta qualidade de scripts para os usuários. Para lidar com scripts quebrados ou abandonados, scripts que receberam múltiplas avaliações ruins consecutivas sem uma resposta em tempo hábil serão ocultados. Para evitar que seu script seja ocultado, publique uma nova versão ou responda as discussões até %{delete_date}. Caso você não tome nenhuma providência, você ainda terá a opção de torná-lo visível mesmo após esta data.
     script_comment:
       subject: "Seu script %{script_name} no %{site_name} recebeu um comentário."
       text: |

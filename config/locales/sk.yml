@@ -959,6 +959,7 @@ sk:
     new_button: Nová diskusia
     script_notice: Ak chcete diskutovať o konkrétnom skripte, prejdite na stránku spätnej väzby skriptu a začnite diskusiu odtiaľ .
     no_discussions: Žiadna diskusia.
+    mark_all_read: Označiť ako prečítané
   conversations:
     user_input_note: Zadajte meno užívateľa alebo adresu URL na jeho profil.
     new_title: Založiť novú konverzáciu
@@ -1088,13 +1089,13 @@ sk:
         text: "Vaša sťažnosť na %{script_name} na %{site_name} bola zamietnutá moderátorom a skript, ktorý ste nahlásili zostáva aktívny. Správu o hlásení si môžete pozrieť na %{report_url}. Ak máte nejaké otázky, prosím, navštívte https://greasyfork.org/forum/."
     consecutive_bad_ratings:
       notify:
-        subject: "Váš skript %{script_name} na %{site_name} dostal viacero zlých hodnotení."
+        subject: "Váš skript %{script_name} na %{site_name} dostal viacero \"zlých\" hodnotení."
         text: |
-            Váš skript "%{script_name}" na %{site_name} (%{script_url}) dostal viacero zlých hodnotení za sebou.
+            Váš skript "%{script_name}" na %{site_name} (%{script_url}) dostal viacero "zlých" hodnotení za sebou.
 
-            Prosím, skontrolujte spätnú väzbu, ktorú ste dostali na %{feedback_url}, opravte problémy a odpovedzte na vznesené obavy.
+            Spätnú väzbu, ktorú ste dostali na %{feedback_url} naznačuje problém s vašim skriptom, dočasný výpadok alebo zmenu základnej stránky. Prosím, skontrolujte spätnú väzbu, opravte problémy a odpovedzte na vznesené obavy.
 
-            Ak nepridáte novú verziu alebo odpoveď do diskusie do %{delete_date}, váš skript bude na %{site_name} skrytý. (Po tomto dátume ho budte môcť zviditeľniť, ak budte chcieť.)
+            %{site_name} sa udržiavať kvalitný zoznam skriptov pre používateľov. Nefunkčné, zanedbané, skripty s posebe idúcimi "zlými" hodnoteniami bez včasnej odozvy budú skryté. Ak chcete zabrániť skrytiu vášho skriptu pridajte novú verziu alebo odpoveď do diskusie do %{delete_date}. Ak nič neurobíte, stále budete mať možnosť skript zviditeľniť aj po tomto dátume.
     script_comment:
       subject: "Váš skript %{script_name} na %{site_name} bol komentovaný."
       text: |

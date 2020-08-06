@@ -961,6 +961,7 @@ fr:
     new_button: Nouvelle discussion
     script_notice: Si vous souhaitez discuter d'un script spécifique, accédez à la page de commentaires du script et démarrez une discussion à partir de là.
     no_discussions: Aucune discussion trouvée.
+    mark_all_read: Tout marquer lu
   conversations:
     user_input_note: Saisissez le nom de l'utilisateur ou l'URL de son profil.
     new_title: Créer une nouvelle conversation
@@ -1086,13 +1087,13 @@ fr:
         text: "Votre rapport sur %{script_name} par %{site_name} a été rejeté par un modérateur et le script que vous avez signalé restera actif. Vous pouvez consulter le rapport sur %{report_url}. Si vous avez des questions, visiter https://greasyfork.org/fr/forum/."
     consecutive_bad_ratings:
       notify:
-        subject: "Votre script%{script_name} par %{site_name}a reçu plusieurs mauvaises critiques."
+        subject: "Votre script %{script_name} sur %{site_name} a reçu plusieurs \"mauvraises\" critiques."
         text: |
-            Votre script '%{script_name}' sur %{site_name} (%{script_url}) a reçu plusieurs mauvaises critiques d'affilée.
+            Votre script '%{script_name}' sur %{site_name} (%{script_url}) a reçu plusieurs "mauvaises" critiques à la suite.
 
-            Veuillez examiner les commentaires que vous avez reçus sur %{feedback_url}, corriger les problèmes et répondez-y.
+            Les retours que vous avez reçus à %{feedback_url} peuvent indiquer un problème avec votre script, un soucis temporaire, ou un changement du site pour lequel il est destiné. Veuillez examiner les avis, résoudre les problèmes, et répondre au préoccupations soulevées.
 
-            Si vous ne postez pas de nouvelle version ou ne répondez pas aux discussions d'ici %{delete_date}, votre script sera masqué sur %{site_name}. (Après cette date, vous pourrez la rendre à nouveau visible si vous le souhaitez.)
+            %{site_name} s'efforce de maintenir un ensemble de scripts de haute qualité pour les utilisateurs. Afin de faire face aux scripts cassés, ou abandonnés, ceux qui reçoivent plusieurs "mauvaises" critiques consécutives sans réaction opportune seront cachés. Pour éviter que votre script se retrouve caché, publiez une nouvelle version ou répondez à la discussion avant le %{delete_date}. Si vous ne réagissez pas, vous aurez encore la possibilité de le rendre visible après cette date.
     script_comment:
       subject: "Votre script %{script_name} sur %{site_name} a reçu un commentaire."
       text: |
