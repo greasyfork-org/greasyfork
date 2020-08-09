@@ -1,7 +1,7 @@
 <% if @reports.any? %>
-  <% @reports.each do |report| %>
+  <% @reports.each_with_index do |report, i| %>
     <section class="report-list-item">
-      <%= render partial: report %>
+      <%= render partial: report, locals: { i: i } %>
     </section>
   <% end %>
 <% else %>

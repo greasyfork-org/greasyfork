@@ -1,4 +1,6 @@
-<h4><%= report_item_link(report) %> has been reported for <%= report.reason_text %> by <%= link_to(report.reporter.name, user_path(report.reporter)) %>.</h4>
+<% i = 0 unless defined?(i) %>
+
+<h4 id="open-report-<%= i %>"><%= report_item_link(report) %> has been reported for <%= report.reason_text %> by <%= link_to(report.reporter.name, user_path(report.reporter)) %>.</h4>
 
 <% if report.item.is_a?(Comment) %>
   <div><%= t('common.quote.prefix_html', user: render_user(reported_user(report), reported_user_id(report))) %></div>
@@ -50,17 +52,17 @@
     <%= t('reports.result_dismissed') %>
   </p>
 <% elsif current_user&.moderator? %>
-  <%= button_to('Dismiss report', dismiss_report_path(report), method: 'POST', form_class: 'inline-form') %>
+  <%= button_to('Dismiss report', dismiss_report_path(report, index: i), method: 'POST', form_class: 'inline-form') %>
   <% case report.item %>
   <% when User %>
-    <%= button_to("Ban #{report.item.name}", uphold_report_path(report), method: 'POST', form_class: 'inline-form') %>
+    <%= button_to("Ban #{report.item.name}", uphold_report_path(report, index: i), method: 'POST', form_class: 'inline-form') %>
   <% when Comment %>
-    <%= button_to("Delete comment", uphold_report_path(report), method: 'POST', form_class: 'inline-form') %>
+    <%= button_to("Delete comment", uphold_report_path(report, index: i), method: 'POST', form_class: 'inline-form') %>
     <% if report.item.poster && !report.item.poster.banned? %>
       <%= button_to("Delete comment and ban #{report.item.poster.name}", uphold_report_path(report, variant: 'ban'), method: 'POST', form_class: 'inline-form') %>
     <% end %>
   <% when Message %>
-    <%= button_to("Ban #{report.item.poster.name}", uphold_report_path(report), method: 'POST', form_class: 'inline-form') %>
+    <%= button_to("Ban #{report.item.poster.name}", uphold_report_path(report, index: i), method: 'POST', form_class: 'inline-form') %>
   <% else
        raise "Unknown item #{report.item}"
      end %>

@@ -27,13 +27,13 @@ class ReportsController < ApplicationController
   def dismiss
     @report = Report.find(params[:id])
     @report.dismiss!
-    redirect_to reports_path
+    redirect_to reports_path(anchor: "open-report-#{params[:index]}")
   end
 
   def uphold
     @report = Report.find(params[:id])
     @report.uphold!(moderator: current_user, variant: params[:variant])
-    redirect_to reports_path
+    redirect_to reports_path(anchor: "open-report-#{params[:index]}")
   end
 
   def show
