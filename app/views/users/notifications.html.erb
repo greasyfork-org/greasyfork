@@ -8,5 +8,17 @@
     <%= f.radio_button(:author_email_notification_type_id, User::AUTHOR_NOTIFICATION_COMMENT)%> <%= f.label :author_email_notification_type_id, t('users.author_email_notification_type.discussion_and_comment'), class: 'radio-label', value: User::AUTHOR_NOTIFICATION_COMMENT %><br>
   </div>
 
+  <div class="form-control">
+    <%= label_tag t('users.notifications.discussion_defaults.title') %>
+    <div>
+      <%= f.check_box :subscribe_on_discussion %>
+      <%= f.label :subscribe_on_discussion, t('users.notifications.discussion_defaults.new_discussion'), class: 'radio-label' %>
+    </div>
+    <div>
+      <%= f.check_box :subscribe_on_comment %>
+      <%= f.label :subscribe_on_comment, t('users.notifications.discussion_defaults.new_comment'), class: 'radio-label' %>
+    </div>
+  </div>
+
   <div><%= f.submit t('users.notifications.save_button') %></div>
 <% end %>

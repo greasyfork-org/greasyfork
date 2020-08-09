@@ -237,7 +237,7 @@ class UsersController < ApplicationController
   end
 
   def update_notifications
-    current_user.update!(params.require(:user).permit(:author_email_notification_type_id))
+    current_user.update!(params.require(:user).permit(:author_email_notification_type_id, :subscribe_on_discussion, :subscribe_on_comment))
     redirect_to user_path(current_user)
   end
 

@@ -61,7 +61,7 @@ class DiscussionsController < ApplicationController
     end
 
     @comment = @discussion.comments.build(text_markup: current_user&.preferred_markup)
-    @subscribe = current_user&.subscribed_to?(@discussion)
+    @subscribe = current_user&.subscribe_on_comment || current_user&.subscribed_to?(@discussion)
 
     record_view(@discussion) if current_user
 
@@ -71,7 +71,7 @@ class DiscussionsController < ApplicationController
   def new
     @discussion = Discussion.new(poster: current_user)
     @discussion.comments.build(poster: current_user, text_markup: current_user&.preferred_markup)
-    @subscribe = true
+    @subscribe = current_user.subscribe_on_discussion
   end
 
   def create

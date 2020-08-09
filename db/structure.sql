@@ -1183,7 +1183,7 @@ CREATE TABLE `discussion_reads` (
   KEY `index_discussion_reads_on_discussion_id` (`discussion_id`),
   CONSTRAINT `fk_rails_07825bdb9c` FOREIGN KEY (`discussion_id`) REFERENCES `discussions` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_rails_6fafaad5e9` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9910 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `discussion_subscriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1822,6 +1822,8 @@ CREATE TABLE `users` (
   `announcements_seen` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `canonical_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `discussions_read_since` datetime DEFAULT NULL,
+  `subscribe_on_discussion` tinyint(1) NOT NULL DEFAULT 1,
+  `subscribe_on_comment` tinyint(1) NOT NULL DEFAULT 1,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_users_on_email` (`email`),
   UNIQUE KEY `index_users_on_reset_password_token` (`reset_password_token`),
@@ -2033,6 +2035,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20200706015815'),
 ('20200715013441'),
 ('20200730003009'),
-('20200804032917');
+('20200804032917'),
+('20200806021345');
 
 

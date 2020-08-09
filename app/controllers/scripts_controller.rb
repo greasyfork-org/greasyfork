@@ -138,7 +138,7 @@ class ScriptsController < ApplicationController
     @discussion = @discussions.build(discussion_category: DiscussionCategory.script_discussions)
     @discussion.comments.build(text_markup: current_user&.preferred_markup)
 
-    @subscribe = true
+    @subscribe = current_user&.subscribe_on_discussion
 
     set_bots_directive
     @canonical_params = [:id, :version]
