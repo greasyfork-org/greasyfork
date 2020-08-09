@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :scripts, through: :authors
   has_many :reports_as_reporter, foreign_key: :reporter_id, inverse_of: :reporter, class_name: 'Report'
   has_many :script_reports, foreign_key: 'reporter_id'
+  has_many :discussions, foreign_key: 'poster_id', inverse_of: :poster
   has_many :comments, foreign_key: 'poster_id', inverse_of: :poster
   has_many :discussion_subscriptions
 
@@ -23,9 +24,6 @@ class User < ApplicationRecord
   Script.subsets.each do |subset|
     has_many "#{subset}_listable_scripts".to_sym, -> { listable(subset) }, class_name: 'Script', through: :authors, source: :script
   end
-
-  # this results in a cartesian join when included with the scripts relation
-  # has_many :discussions, through: :scripts
 
   has_and_belongs_to_many :roles, dependent: :destroy
 
