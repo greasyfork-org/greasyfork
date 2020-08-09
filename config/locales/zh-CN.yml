@@ -803,6 +803,11 @@ zh-CN:
     category_filter:
       label: 分类
       all: 所有分类
+    read_filter:
+      label: 阅读状态
+      all: 全部
+      read: 已读
+      unread: 未读
     user_activity:
       title: "近期评论"
       no_recent_activity: "该用户最近没有撰写任何评论"
@@ -821,6 +826,7 @@ zh-CN:
     subscribe: 关注
     unsubscribe: 取消关注
     notify: 通知我所有在该讨论的回复
+    notifying_on_script: 基于您%{notifications_link:脚本的通知设定}，你会收到回复的通知。
     categories:
       greasyfork:
         name: Greasy Fork 反馈
@@ -841,6 +847,7 @@ zh-CN:
     new_button: 创建讨论
     script_notice: 如果需要对一个特定脚本开展讨论，请前往脚本的反馈页面开展讨论。
     no_discussions: 未找到讨论。
+    mark_all_read: 全部标为已读
   conversations:
     user_input_note: 输入用户名或者用户页面的URL。
     new_title: 创建新的对话
@@ -962,6 +969,15 @@ zh-CN:
       report_dismissed_reporter:
         subject: "您在%{site_name}上对于%{script_name}脚本的举报被驳回"
         text: "您在%{site_name}上对于%{script_name}脚本的举报已被管理员驳回，并且该脚本将继续保留。 详情查阅此报告:%{report_url}。如有疑问，请访问https://greasyfork.org/forum/。"
+    consecutive_bad_ratings:
+      notify:
+        subject: "您在 %{site_name}发布的脚本 %{script_name} 收到了多条差评。"
+        text: |
+            你在 %{site_name} 发表的脚本 '%{script_name}'（地址 %{script_url}）在短时间内收到了多条差评反馈。
+
+            你在 %{feedback_url} 收到的反馈可能意味着您的脚本发生了问题、临时失效、或目标网站已经不再兼容。请审阅收到的反馈，修正错误，并回应相关问题。
+
+            %{site_name} 力求为用户提供高质量的脚本。为了防止网站被不可用或已抛弃的脚本填充，收到大量建设性的差评反馈却未能在一定时间内回应的脚本将会被隐藏。为了防止这种事件发生，请在 %{delete_date} 或之前提交一个新的版本或做出回应。即使您未做出任何上述的操作，您也可以在此日期后手动取消隐藏状态。
     script_comment:
       subject: "您对于站点%{site_name}的脚本%{script_name}收到了一条评论。"
       text: |
