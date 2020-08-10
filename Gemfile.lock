@@ -1,12 +1,4 @@
 GIT
-  remote: https://github.com/JasonBarnabe/it
-  revision: 62329a9033450905afd3eeac269f1495eea27401
-  branch: raise-symbol
-  specs:
-    it (1.0.0)
-      actionpack (>= 3.0.0)
-
-GIT
   remote: https://github.com/rwojnarowski/capistrano-sidekiq.git
   revision: 8a8a2edf86dfcdebd69dafc4f96adc55745aecde
   ref: 8a8a2edf86dfcdebd69dafc4f96adc55745aecde
@@ -195,6 +187,8 @@ GEM
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
     innertube (1.1.0)
+    it (2.0.0)
+      actionpack (>= 3.0.0)
     jmespath (1.4.0)
     joiner (0.5.0)
       activerecord (>= 6.0.0.rc2)
@@ -458,7 +452,7 @@ DEPENDENCIES
   email_address
   hiredis
   image_processing
-  it!
+  it
   listen
   memoist
   mini_racer
