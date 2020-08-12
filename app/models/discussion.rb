@@ -50,7 +50,7 @@ class Discussion < ApplicationRecord
   def author_posted?
     return false unless script
 
-    comments.where(poster: script.users).any?
+    comments.not_deleted.where(poster: script.users).any?
   end
 
   def actual_rating?

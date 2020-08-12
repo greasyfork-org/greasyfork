@@ -33,15 +33,9 @@ class User < ApplicationRecord
 
   belongs_to :locale, optional: true
 
-  has_and_belongs_to_many :forum_users, foreign_key: 'ForeignUserKey', association_foreign_key: 'UserID', join_table: 'GDN_UserAuthentication'
   has_and_belongs_to_many :conversations
 
-  def forum_user
-    return forum_users.first
-  end
-
   before_destroy(prepend: true) do
-    forum_user.rename_on_delete! if forum_user.present?
     scripts.select { |script| script.authors.where.not(user_id: id).none? }.each(&:destroy!)
   end
 
@@ -52,10 +46,6 @@ class User < ApplicationRecord
   after_update do
     # To clear partial caches
     scripts.touch_all if saved_change_to_name?
-  end
-
-  after_update do
-    forum_user&.update(Name: name) if saved_change_to_name?
   end
 
   # Include default devise modules. Others available are:

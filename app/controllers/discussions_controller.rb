@@ -1,5 +1,3 @@
-require 'discussion_converter'
-
 class DiscussionsController < ApplicationController
   include DiscussionHelper
   include ScriptAndVersions

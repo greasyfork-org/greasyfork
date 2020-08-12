@@ -10,8 +10,6 @@ class ForumDiscussion < ApplicationRecord
   alias_attribute 'name', 'Name'
   alias_attribute 'rating', 'Rating'
 
-  belongs_to :original_forum_poster, -> { readonly }, class_name: 'ForumUser', foreign_key: 'InsertUserID'
-  belongs_to :last_reply_forum_poster, -> { readonly }, class_name: 'ForumUser', foreign_key: 'LastCommentUserID'
   belongs_to :script, foreign_key: 'ScriptID'
 
   has_many :forum_comments, foreign_key: 'DiscussionID'
@@ -54,22 +52,6 @@ class ForumDiscussion < ApplicationRecord
 
   def bad_rating?
     rating == RATING_BAD
-  end
-
-  def author_posted?
-    return false unless script
-
-    forum_user_ids = script.users.map(&:forum_user).compact.map(&:UserID)
-    return false if forum_user_ids.empty?
-
-    author_posted = self.class.connection.select_value <<~SQL
-      select 1
-      from GDN_Comment
-      where DiscussionID = #{self.DiscussionID}
-        AND InsertUserID IN (#{forum_user_ids.join(',')});
-    SQL
-
-    author_posted == 1
   end
 
   def closed?
