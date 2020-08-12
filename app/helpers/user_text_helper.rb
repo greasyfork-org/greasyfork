@@ -42,7 +42,7 @@ module UserTextHelper
         replace_text_with_node(node, "\n", Nokogiri::XML::Node.new('br', node.document))
       end
 
-      @_html_sanitize_config[:transformers] << fix_whitespace
+      @_html_sanitize_config[:transformers] = @_html_sanitize_config[:transformers] + [fix_whitespace]
     end
     return @_html_sanitize_config
   end
