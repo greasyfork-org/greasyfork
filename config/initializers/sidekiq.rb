@@ -7,9 +7,9 @@ end
 if Rails.env.production?
   Sidekiq.configure_server do |config|
     config.on(:startup) do
-      [BackgroundJob, CacheRefreshJob, ScriptDeleteJob, ConsecutiveBadRatingsJob, UserFloodJob].each do |worker_class|
-        worker_class.perform_later unless worker_class.enqueued?
-      end
+      [BackgroundJob, CacheRefreshJob, ScriptDeleteJob, ConsecutiveBadRatingsJob, UserFloodJob, DiscussionReadCleanupJob]
+        .reject(&:enqueued?)
+        .each(&:perform_later)
     end
   end
 end

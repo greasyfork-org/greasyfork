@@ -1,3 +1,2 @@
 class DiscussionConverter
-  
 end
