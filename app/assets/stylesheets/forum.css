@@ -155,9 +155,15 @@ a.discussion-title {
   margin-top: 30px;
   margin-bottom: 20px;
 }
-.discussion-header h2, .discussion-list-header h2 {
+.discussion-header-no-script {
+  margin-top: 16px;
+}
+.discussion-header > *:first-child, .discussion-list-header h2 {
   flex: 1;
   margin: 0 !important;
+}
+.discussion-header h2, .discussion-header .discussion-up-level {
+  margin: 0;
 }
 .discussion-actions {
   font-size: smaller;

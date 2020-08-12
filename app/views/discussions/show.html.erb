@@ -9,16 +9,25 @@
   </p>
 <% end %>
 
-<div class="discussion-header">
-  <h2>
-    <% if @discussion.title %>
-      <%= @discussion.title %>
-    <% elsif @discussion.actual_rating? %>
-      <%= t('discussions.review_heading_html', user: render_poster(@discussion), rating: t("discussions.ratings.#{@discussion.rating_key}")) %>
-    <% else %>
-      <%= t('discussions.question_heading_html', user: render_poster(@discussion)) %>
+<div class="discussion-header <%= @discussion.script ? 'discussion-header-script' : 'discussion-header-no-script' %>">
+  <div>
+    <% unless @discussion.script %>
+      <p class="discussion-up-level">
+        <%= link_to t('discussions.title'), discussions_path %>
+        »
+        <%= link_to t("discussions.categories.#{@discussion.discussion_category.category_key}.name"), category_discussion_index_path(category: @discussion.discussion_category) %>
+      </p>
     <% end %>
-  </h2>
+    <h2>
+      <% if @discussion.title %>
+        <%= @discussion.title %>
+      <% elsif @discussion.actual_rating? %>
+        <%= t('discussions.review_heading_html', user: render_poster(@discussion), rating: t("discussions.ratings.#{@discussion.rating_key}")) %>
+      <% else %>
+        <%= t('discussions.question_heading_html', user: render_poster(@discussion)) %>
+      <% end %>
+    </h2>
+  </div>
   <% if current_user %>
     <div class="discussion-actions">
       <div class="discussion-subscription-links <%= current_user.subscribed_to?(@discussion) ? 'discussion-subscribed' : 'discussion-not-subscribed' %>">
