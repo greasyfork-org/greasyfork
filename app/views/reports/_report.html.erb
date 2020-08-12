@@ -38,7 +38,7 @@
 <% if reported_user(report) %>
   <p>
     <%= render_user(reported_user(report), reported_user_id(report)) %> has made
-    <%= link_to "#{reported_user(report).comments.count} #{'comment'.pluralize(reported_user(report).comments.count)}", discussions_path(user: reported_user(report).id) %>
+    <%= link_to "#{reported_user(report).comments.not_deleted.count} #{'comment'.pluralize(reported_user(report).comments.not_deleted.count)}", discussions_path(user: reported_user(report).id) %>
     and posted <%= reported_user(report).scripts.count %> <%= 'script'.pluralize(reported_user(report).scripts.count) %>.
   </p>
 <% end %>

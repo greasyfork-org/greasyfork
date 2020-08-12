@@ -3,6 +3,7 @@ require 'memoist'
 class Comment < ApplicationRecord
   extend Memoist
   include HasAttachments
+  include SoftDeletable
 
   belongs_to :discussion
   # Optional because the user may no longer exist.
@@ -75,7 +76,7 @@ class Comment < ApplicationRecord
 
   def calculate_stats
     {
-      first_comment: discussion.comments.order(:id).first == self,
+      first_comment: discussion.comments.not_deleted.order(:id).first == self,
     }
   end
 end

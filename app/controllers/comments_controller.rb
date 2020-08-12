@@ -33,7 +33,7 @@ class CommentsController < ApplicationController
   end
 
   def update
-    comment = @discussion.comments.find(params[:id])
+    comment = @discussion.comments.not_deleted.find(params[:id])
     unless comment.poster && comment.poster == current_user
       render_access_denied
       return
@@ -54,8 +54,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    comment = @discussion.comments.find(params[:id])
-    comment.destroy!
+    comment = @discussion.comments.not_deleted.find(params[:id])
+    comment.soft_destroy!(by_user: current_user)
     redirect_to @discussion.path
   end
 

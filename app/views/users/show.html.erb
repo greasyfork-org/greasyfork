@@ -105,7 +105,7 @@
     </h3>
   </header>
   <section class="text-content">
-    <% recent_comments = @user.comments.where(created_at: 1.month.ago..).includes(discussion: :script).order(created_at: :desc).limit(10).load %>
+    <% recent_comments = @user.comments.not_deleted.where(created_at: 1.month.ago..).includes(discussion: :script).order(created_at: :desc).limit(10).load %>
     <% if recent_comments.any? %>
       <ul>
         <% recent_comments.each do |comment| %>
@@ -117,7 +117,7 @@
         <%= t('discussions.user_activity.no_recent_activity') %>
       </p>
     <% end %>
-    <% if @user.comments.any? %>
+    <% if @user.comments.not_deleted.any? %>
       <p>
         <%= link_to t('discussions.user_activity.see_all_activity'), discussions_path(user: @user.id) %>
       </p>

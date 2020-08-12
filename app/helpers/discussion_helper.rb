@@ -5,7 +5,7 @@ module DiscussionHelper
 
   def discussion_snippet(discussion)
     if discussion.for_script?
-      first_comment = discussion.comments.first
+      first_comment = discussion.comments.not_deleted.first
       text = format_user_text_as_plain(first_comment.text, first_comment.text_markup)
     else
       text = discussion.title

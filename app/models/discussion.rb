@@ -36,15 +36,15 @@ class Discussion < ApplicationRecord
   strip_attributes
 
   def replies?
-    comments.count > 1
+    comments.not_deleted.count > 1
   end
 
   def last_comment
-    comments.last
+    comments.not_deleted.last
   end
 
   def last_comment_date
-    comments.last.created_at
+    last_comment.created_at
   end
 
   def author_posted?
@@ -105,7 +105,7 @@ class Discussion < ApplicationRecord
 
   def calculate_stats
     {
-      stat_reply_count: comments.count - 1,
+      stat_reply_count: comments.not_deleted.count - 1,
       stat_last_reply_date: last_comment.created_at,
       stat_last_replier_id: last_comment.poster_id,
     }

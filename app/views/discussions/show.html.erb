@@ -40,7 +40,7 @@
   </div>
 <% end %>
 
-<% @discussion.comments.reject(&:new_record?).each do |comment| %>
+<% @discussion.comments.not_deleted.reject(&:new_record?).each do |comment| %>
   <% by_current_user = comment.poster && current_user == comment.poster %>
   <div class="comment" id="comment-<%= comment.id %>">
     <div class="comment-meta">
