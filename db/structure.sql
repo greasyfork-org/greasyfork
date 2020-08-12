@@ -1053,7 +1053,7 @@ CREATE TABLE `comments` (
   PRIMARY KEY (`id`),
   KEY `index_comments_on_discussion_id` (`discussion_id`),
   CONSTRAINT `fk_rails_750d1a8a36` FOREIGN KEY (`discussion_id`) REFERENCES `discussions` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=32351 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32353 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `compatibilities`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1185,7 +1185,7 @@ CREATE TABLE `discussion_reads` (
   KEY `index_discussion_reads_on_discussion_id` (`discussion_id`),
   CONSTRAINT `fk_rails_07825bdb9c` FOREIGN KEY (`discussion_id`) REFERENCES `discussions` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_rails_6fafaad5e9` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9925 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=9968 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `discussion_subscriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1201,7 +1201,7 @@ CREATE TABLE `discussion_subscriptions` (
   KEY `index_discussion_subscriptions_on_user_id` (`user_id`),
   CONSTRAINT `fk_rails_fa31029900` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_rails_feaa602412` FOREIGN KEY (`discussion_id`) REFERENCES `discussions` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `discussions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1219,6 +1219,8 @@ CREATE TABLE `discussions` (
   `migrated_from` int(11) DEFAULT NULL,
   `discussion_category_id` int(11) NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL,
+  `deleted_by_user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_discussions_on_poster_id` (`poster_id`),
   KEY `fk_rails_a52537835c` (`script_id`),
@@ -1356,7 +1358,7 @@ CREATE TABLE `moderator_actions` (
   `user_id` int(11) DEFAULT NULL,
   `private_reason` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32442 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32447 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `redirect_service_domains`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2039,6 +2041,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20200730003009'),
 ('20200804032917'),
 ('20200806021345'),
-('20200812003620');
+('20200812003620'),
+('20200812232744');
 
 

@@ -13,6 +13,7 @@ class DiscussionsController < ApplicationController
 
   def index
     @discussions = Discussion
+                   .not_deleted
                    .includes(:poster, :script, :discussion_category)
                    .order(stat_last_reply_date: :desc)
     case script_subset
@@ -146,9 +147,9 @@ class DiscussionsController < ApplicationController
   def discussion_scope
     if params[:script_id]
       @script = Script.find(params[:script_id])
-      @script.discussions
+      @script.discussions.not_deleted
     else
-      Discussion
+      Discussion.not_deleted
     end
   end
 

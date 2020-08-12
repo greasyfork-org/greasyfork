@@ -35,11 +35,11 @@ class Comment < ApplicationRecord
   end
 
   after_soft_destroy do
-    discussion.destroy if first_comment?
+    discussion.soft_destroy! if first_comment? && !discussion.soft_deleted?
   end
 
   after_commit do
-    discussion.update_stats! unless discussion.destroyed?
+    discussion.update_stats! unless discussion.destroyed? || discussion.soft_deleted?
   end
 
   after_destroy do
@@ -80,7 +80,7 @@ class Comment < ApplicationRecord
 
   def calculate_stats
     {
-      first_comment: discussion.comments.not_deleted.order(:id).first == self,
+      first_comment: discussion.comments.order(:id).first == self,
     }
   end
 end

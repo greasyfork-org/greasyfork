@@ -16,4 +16,8 @@ module SoftDeletable
       update!(deleted_at: Time.now, deleted_by_user_id: by_user&.id)
     end
   end
+
+  def soft_deleted?
+    deleted_at.present?
+  end
 end

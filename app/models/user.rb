@@ -80,7 +80,7 @@ class User < ApplicationRecord
   strip_attributes
 
   def discussions_on_scripts_written
-    Discussion.where(script: script_ids).order(stat_last_reply_date: :desc)
+    Discussion.not_deleted.where(script: script_ids).order(stat_last_reply_date: :desc)
   end
 
   def to_param

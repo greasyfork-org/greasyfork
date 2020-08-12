@@ -1,4 +1,6 @@
 class Discussion < ApplicationRecord
+  include SoftDeletable
+
   RATING_QUESTION = 0
   RATING_BAD = 2
   RATING_OK = 3
@@ -31,6 +33,10 @@ class Discussion < ApplicationRecord
     elsif script_id
       errors.add(:category, :invalid)
     end
+  end
+
+  after_soft_destroy do
+    comments.not_deleted.each(&:soft_destroy!)
   end
 
   strip_attributes

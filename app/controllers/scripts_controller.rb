@@ -132,6 +132,7 @@ class ScriptsController < ApplicationController
     return if handle_wrong_url(@script, :id)
 
     @discussions = @script.discussions
+                          .not_deleted
                           .includes(:poster)
                           .order(stat_last_reply_date: :desc)
                           .paginate(page: params[:page], per_page: 25)
