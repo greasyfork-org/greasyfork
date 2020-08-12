@@ -34,6 +34,10 @@ class Comment < ApplicationRecord
     super
   end
 
+  after_soft_destroy do
+    discussion.destroy if first_comment?
+  end
+
   after_commit do
     discussion.update_stats! unless discussion.destroyed?
   end
