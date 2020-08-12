@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
 
   def self.cache_with_log(key, options = {})
     options[:version] = key.cache_version if key.respond_to?(:cache_version)
-    key = options.delete(:namespace).to_s + '/' + (key.respond_to?(:cache_key) ? key.cache_key : key.to_s) if options[:namespace]
+    key = "#{options.delete(:namespace)}/#{key.respond_to?(:cache_key) ? key.cache_key : key.to_s}" if options[:namespace]
     Rails.cache.fetch(key, options) do
       Rails.logger.info("Cache miss - #{key} - #{options}") if Greasyfork::Application.config.log_cache_misses
       o = yield
@@ -161,10 +161,8 @@ class ApplicationController < ActionController::Base
     return pp
   end
 
-  def cache_with_log(key, options = {})
-    self.class.cache_with_log(key, options) do
-      yield
-    end
+  def cache_with_log(key, options = {}, &block)
+    self.class.cache_with_log(key, options, &block)
   end
 
   def greasy?

@@ -51,7 +51,7 @@ module ScriptImporter
           script.save!
           return :success
         end
-        handle_failed_sync(script, (sv.errors.full_messages.empty? ? script.errors.full_messages : sv.errors.full_messages).join('. ') + '.')
+        handle_failed_sync(script, "#{(sv.errors.full_messages.empty? ? script.errors.full_messages : sv.errors.full_messages).join('. ')}.")
         return :failure
       when :failure
         handle_failed_sync(script, message)

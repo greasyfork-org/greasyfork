@@ -29,7 +29,7 @@ class Locale < ApplicationRecord
 
     return Locale.none if locale_code.nil?
 
-    return where(['code like ?', locale_code + '-%']).order([:ui_available, :code])
+    return where(['code like ?', "#{locale_code}-%"]).order([:ui_available, :code])
   end
 
   def scripts?(script_subset)

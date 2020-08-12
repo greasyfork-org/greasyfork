@@ -28,12 +28,10 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   end
 
   teardown do
-    page.driver.browser.manage.logs.get(:browser)
-        .map(&:message)
-        .reject { |message| js_error_ignored?(message) }
-        .each do |message|
-      raise "Browser console in #{method_name}: #{message}"
-    end
+    messages = page.driver.browser.manage.logs.get(:browser)
+                   .map(&:message)
+                   .reject { |message| js_error_ignored?(message) }
+    raise "Browser console in #{method_name}: #{messages}" if messages.any?
   end
 end
 

@@ -2,7 +2,7 @@ require 'test_helper'
 
 class JsParserAppliesToTest < ActiveSupport::TestCase
   def get_applies_to(includes)
-    js = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n" + includes.map { |i| '// @include ' + i }.join("\n") + "\n// ==/UserScript==\nvar foo = \"bar\";"
+    js = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n#{includes.map { |i| "// @include #{i}" }.join("\n")}\n// ==/UserScript==\nvar foo = \"bar\";"
     JsParser.calculate_applies_to_names(js)
   end
 

@@ -80,7 +80,7 @@ class ScriptSyncerTest < ActiveSupport::TestCase
     assert_equal Time.now.utc.to_date, script.code_updated_at.to_date
     assert_equal Time.now.utc.to_date, script.last_attempted_sync_date.to_date
     assert_equal Time.now.utc.to_date, script.last_successful_sync_date.to_date
-    assert_equal 'a' * 497 + '...', script.script_versions.last.changelog
+    assert_equal "#{'a' * 497}...", script.script_versions.last.changelog
     assert_nil script.sync_error
     assert_equal 2, script.script_versions.length
   end

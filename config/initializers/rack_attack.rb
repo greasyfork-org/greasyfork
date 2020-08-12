@@ -1,4 +1,4 @@
-SIGNUP_PATH_PATTERN = Regexp.new('\\A/(' + Rails.application.config.available_locales.keys.map { |locale| Regexp.escape(locale) }.join('|') + ')/users\\z')
+SIGNUP_PATH_PATTERN = Regexp.new("\\A/(#{Rails.application.config.available_locales.keys.map { |locale| Regexp.escape(locale) }.join('|')})/users\\z")
 
 if Rails.env.production?
   Rack::Attack.throttle('limit registrations per ip', limit: 3, period: 3600) do |req|

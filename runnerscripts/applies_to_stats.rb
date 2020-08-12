@@ -9,5 +9,5 @@ Script.find_each do |script|
   end
 end
 applies_tos.sort_by { |_name, script_id_array| script_id_array.length }.reverse.each do |name, script_id_array|
-  puts name + ' ' + script_id_array.inspect
+  puts "#{name} #{script_id_array.inspect}"
 end

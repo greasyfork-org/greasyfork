@@ -7,7 +7,7 @@ module UsersHelper
       opts[:q] = params[:q] if params[:q].present?
       label = link_to label, users_path(opts)
     end
-    return ("<li class=\"list-option#{is_link ? '' : ' list-current'}\">" + label + '</li>').html_safe
+    return "<li class=\"list-option#{is_link ? '' : ' list-current'}\">#{label}</li>".html_safe
   end
 
   def render_user(user, user_id, skip_link: false, script: nil)

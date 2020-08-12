@@ -62,7 +62,7 @@ class ScriptSet < ApplicationRecord
     automatic_set_inclusions.reject(&:marked_for_destruction?).select(&:exclusion)
   end
 
-  def add_child(child, exclusion = false)
+  def add_child(child, exclusion: false)
     if child.is_a?(ScriptSet)
       return false if child_set_inclusions.include?(child) || child_set_exclusions.include?(child)
 

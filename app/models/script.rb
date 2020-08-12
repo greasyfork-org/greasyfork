@@ -121,11 +121,11 @@ class Script < ApplicationRecord
   validates_each :localized_attributes do |s, attr, children|
     s.errors[attr].clear
     children.each do |child|
-      child.errors.keys.each { |key| s.errors[attr.to_s + '.' + key.to_s].clear }
+      child.errors.keys.each { |key| s.errors["#{attr}.#{key}"].clear }
       next if child.marked_for_destruction? || child.valid?
 
       child.errors.each do |child_attr, msg|
-        s.errors[:base] << I18n.t('activerecord.attributes.script.' + child.attribute_key) + ' - ' + I18n.t('activerecord.attributes.script.' + child_attr.to_s, default: child_attr.to_s) + ' ' + msg
+        s.errors[:base] << "#{I18n.t("activerecord.attributes.script.#{child.attribute_key}")} - #{I18n.t("activerecord.attributes.script.#{child_attr}", default: child_attr.to_s)} #{msg}"
       end
     end
   end
@@ -520,7 +520,7 @@ class Script < ApplicationRecord
       default_la.assign_attributes({ attribute_value: default_value, value_markup: 'text' })
     end
 
-    meta_keys.select { |n, _v| n.starts_with?(attr_name + ':') }.each do |n, v|
+    meta_keys.select { |n, _v| n.starts_with?("#{attr_name}:") }.each do |n, v|
       locale_code = n.split(':', 2).last
       meta_locale = Locale.where(code: locale_code).first
       if meta_locale.nil?

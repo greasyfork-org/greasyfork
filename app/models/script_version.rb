@@ -39,17 +39,17 @@ class ScriptVersion < ApplicationRecord
 
   # Warnings are separated because we need to show custom UI for them (including checkboxes to override)
   validate do |record|
-    record.warnings.each { |w| record.errors.add(:base, 'warning-' + w.to_s) }
+    record.warnings.each { |w| record.errors.add(:base, "warning-#{w}") }
   end
 
   validates_each :localized_attributes do |s, attr, children|
     s.errors[attr].clear
     children.each do |child|
-      child.errors.keys.each { |key| s.errors[attr.to_s + '.' + key.to_s].clear }
+      child.errors.keys.each { |key| s.errors["#{attr}.#{key}"].clear }
       next if child.marked_for_destruction? || child.valid?
 
       child.errors.each do |child_attr, msg|
-        s.errors[:base] << I18n.t('activerecord.attributes.script.' + child.attribute_key) + ' - ' + I18n.t('activerecord.attributes.script.' + child_attr.to_s, default: child_attr.to_s) + ' ' + msg
+        s.errors[:base] << "#{I18n.t("activerecord.attributes.script.#{child.attribute_key}")} - #{I18n.t("activerecord.attributes.script.#{child_attr}", default: child_attr.to_s)} #{msg}"
       end
     end
   end
@@ -67,7 +67,7 @@ class ScriptVersion < ApplicationRecord
     additional_info_locales = localized_attributes_for('additional_info').reject(&:attribute_default).map { |la| la.locale.nil? ? script.locale : la.locale }.reject(&:nil?).uniq
     meta_keys = record.parser_class.parse_meta(code)
     additional_info_locales.each do |l|
-      record.errors[:base] << I18n.t('scripts.localized_additional_info_with_no_name', { locale_code: l.code }) if !meta_keys.include?('name:' + l.code) && (l != script.locale)
+      record.errors[:base] << I18n.t('scripts.localized_additional_info_with_no_name', { locale_code: l.code }) if !meta_keys.include?("name:#{l.code}") && (l != script.locale)
     end
   end
 
@@ -138,7 +138,7 @@ class ScriptVersion < ApplicationRecord
     return false if !script.nil? && (script.deleted? || script.library?)
 
     # previous namespace will be used in calculate_rewritten_code if this one doesn't have one
-    previous_namespace = get_meta_from_previous('namespace', true)
+    previous_namespace = get_meta_from_previous('namespace', use_rewritten: true)
     return false if !previous_namespace.nil? && !previous_namespace.empty?
 
     meta = parser_class.parse_meta(code)
@@ -164,7 +164,7 @@ class ScriptVersion < ApplicationRecord
 
     namespace = namespaces.first
 
-    previous_namespace = get_meta_from_previous('namespace', true)
+    previous_namespace = get_meta_from_previous('namespace', use_rewritten: true)
     previous_namespace = (previous_namespace.nil? || previous_namespace.empty?) ? nil : previous_namespace.first
 
     # if there was no previous namespace, then anything new is fine
@@ -370,7 +370,7 @@ class ScriptVersion < ApplicationRecord
   # returns a potential namespace to use if one is not set
   def calculate_backup_namespace
     # use the rewritten code as the previous one may have been a backup as well
-    previous_namespace = get_meta_from_previous('namespace', true)
+    previous_namespace = get_meta_from_previous('namespace', use_rewritten: true)
     return previous_namespace.first unless previous_namespace.nil? || previous_namespace.empty?
     return nil unless add_missing_namespace
 
@@ -419,7 +419,7 @@ class ScriptVersion < ApplicationRecord
     return 0
   end
 
-  def get_meta_from_previous(key, use_rewritten = false)
+  def get_meta_from_previous(key, use_rewritten: false)
     return nil if script.nil?
 
     previous_script_version = script.newest_saved_script_version

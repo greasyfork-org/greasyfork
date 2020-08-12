@@ -1,31 +1,14 @@
 AllCops:
+  NewCops: enable
   Exclude:
     - 'bin/**/*'
     - 'db/**/*'
-
-Layout/EmptyLinesAroundAttributeAccessor:
-  Enabled: true
 
 Lint/EmptyWhen:
   Enabled: false
 
 Layout/LineLength:
   Enabled: false
-
-Lint/RaiseException:
-  Enabled: true
-
-Layout/SpaceAroundMethodCallOperator:
-  Enabled: true
-
-Lint/DeprecatedOpenSSLConstant:
-  Enabled: true
-
-Lint/MixedRegexpCaptureTypes:
-  Enabled: true
-
-Lint/StructNewOverride:
-  Enabled: true
 
 Lint/SuppressedException:
   Enabled: false
@@ -63,9 +46,6 @@ Naming/MethodParameterName:
 Style/Documentation:
   Enabled: false
 
-Style/ExponentialNotation:
-  Enabled: true
-
 Style/FormatStringToken:
   Exclude:
     - config/routes.rb
@@ -76,17 +56,8 @@ Style/FrozenStringLiteralComment:
 Style/NumericPredicate:
   Enabled: false
 
-Style/RedundantRegexpCharacterClass:
-  Enabled: true
-
-Style/RedundantRegexpEscape:
-  Enabled: true
-
 Style/RedundantReturn:
   Enabled: false
-
-Style/SlicingWithRange:
-  Enabled: true
 
 Style/SymbolArray:
   EnforcedStyle: brackets
@@ -102,9 +73,3 @@ Style/TrailingCommaInHashLiteral:
 
 Style/HashEachMethods:
   Enabled: false
-
-Style/HashTransformKeys:
-  Enabled: true
-
-Style/HashTransformValues:
-  Enabled: true

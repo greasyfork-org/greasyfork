@@ -9,7 +9,7 @@ class GithubWebhookTest < ActionDispatch::IntegrationTest
   def webhook_request(user, secret: nil)
     signature = OpenSSL::HMAC.hexdigest(UsersController::HMAC_DIGEST, secret || user.webhook_secret, CHANGE_BODY.strip)
     post user_webhook_url(user_id: user.id),
-         headers: { 'Host' => 'greasyfork.org', 'Accept' => '*/*', 'User-Agent' => 'GitHub-Hookshot/8e03811', 'X-GitHub-Event' => 'push', 'X-GitHub-Delivery' => '2fdd0ba2-df8a-11e8-9fba-09ae25713944', 'content-type' => 'application/json', 'X-Hub-Signature' => 'sha1=' + signature, 'Content-Length' => '7523', 'X-Forwarded-Proto' => 'https', 'X-Forwarded-For' => '192.30.252.44' },
+         headers: { 'Host' => 'greasyfork.org', 'Accept' => '*/*', 'User-Agent' => 'GitHub-Hookshot/8e03811', 'X-GitHub-Event' => 'push', 'X-GitHub-Delivery' => '2fdd0ba2-df8a-11e8-9fba-09ae25713944', 'content-type' => 'application/json', 'X-Hub-Signature' => "sha1=#{signature}", 'Content-Length' => '7523', 'X-Forwarded-Proto' => 'https', 'X-Forwarded-For' => '192.30.252.44' },
          params: CHANGE_BODY
   end
 

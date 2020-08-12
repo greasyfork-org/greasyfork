@@ -167,16 +167,16 @@ class JsParser
 
           # protocol and subdomain wild-cards - *example.com and *.example.com
           m = p.match(/^\*\.?([a-z0-9\-]+\.[a-z0-9\-]+.*)/i)
-          p = 'http://' + m[1] unless m.nil?
+          p = "http://#{m[1]}" unless m.nil?
 
           # protocol and subdomain wild-cards - http*.example.com, http*example.com, http*//example.com
           m = p.match(%r{^http\*(?://)?\.?((?:[a-z0-9\-]+)(?:\.[a-z0-9\-]+)+.*)}i)
-          p = 'http://' + m[1] unless m.nil?
+          p = "http://#{m[1]}" unless m.nil?
 
           # tld wildcards - http://example.* - switch to .tld. don't switch if it's an ip address, though
           m = p.match(%r{^([a-z]+://([a-z0-9\-]+(?:\.[a-z0-9\-]+)*\.))\*(.*)})
           if !m.nil? && m[2].match(/\A([0-9]+\.){2,}\z/).nil?
-            p = m[1] + 'tld' + m[3]
+            p = "#{m[1]}tld#{m[3]}"
             # grab up to the first *
             pre_wildcard = p.split('*').first
           else
@@ -202,10 +202,10 @@ class JsParser
             applies_to_names << { text: MatchURI.get_tld_plus_1(uri.host), domain: true, tld_extra: false }
           end
         rescue ArgumentError
-          Rails.logger.warn "Unrecognized pattern '" + p + "'"
+          Rails.logger.warn "Unrecognized pattern '#{p}'"
           applies_to_names << { text: original_pattern, domain: false, tld_extra: false }
         rescue URI::InvalidURIError
-          Rails.logger.warn "Unrecognized pattern '" + p + "'"
+          Rails.logger.warn "Unrecognized pattern '#{p}'"
           applies_to_names << { text: original_pattern, domain: false, tld_extra: false }
         end
       end

@@ -24,7 +24,7 @@ class DiscussionConverter
 
     comment = discussion.comments.build(
       poster_id: forum_discussion.original_poster_id,
-      text: forum_discussion.name + "\n\n" + forum_discussion.Body,
+      text: "#{forum_discussion.name}\n\n#{forum_discussion.Body}",
       text_markup: get_markup(forum_discussion),
       created_at: forum_discussion.created,
       edited_at: forum_discussion.DateUpdated,

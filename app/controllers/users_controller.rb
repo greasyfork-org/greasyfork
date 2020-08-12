@@ -41,9 +41,9 @@ class UsersController < ApplicationController
     user = User.order('scripts.default_name')
     # current user will display discussions
     user = if !current_user.nil? && (current_user.id == params[:id].to_i)
-             user.includes(scripts: [:discussions, :script_type, :script_delete_type, localized_attributes: :locale])
+             user.includes(scripts: [:discussions, :script_type, :script_delete_type, { localized_attributes: :locale }])
            else
-             user.includes(scripts: [:script_type, :script_delete_type, localized_attributes: :locale])
+             user.includes(scripts: [:script_type, :script_delete_type, { localized_attributes: :locale }])
            end
     @user = user.find(params[:id])
 

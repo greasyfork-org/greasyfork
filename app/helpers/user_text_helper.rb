@@ -75,7 +75,7 @@ module UserTextHelper
           # check domain against our list, including subdomains
           unless match.nil?
             follow_domains.each do |d|
-              if (match[1] == d) || match[1].ends_with?('.' + d)
+              if (match[1] == d) || match[1].ends_with?(".#{d}")
                 follow = true
                 break
               end

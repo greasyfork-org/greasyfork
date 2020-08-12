@@ -33,7 +33,7 @@ class ScriptSetTest < ActiveSupport::TestCase
     script1 = Script.new
     script2 = Script.new
     set1.add_child(set2)
-    set1.add_child(script1, true)
+    set1.add_child(script1, exclusion: true)
     set2.add_child(script1)
     set2.add_child(script2)
     assert_equal [script2], set1.scripts(:all).to_a
@@ -47,7 +47,7 @@ class ScriptSetTest < ActiveSupport::TestCase
     script2 = Script.new
     script3 = Script.new
     set1.add_child(set2)
-    set1.add_child(set3, true)
+    set1.add_child(set3, exclusion: true)
     set2.add_child(script1)
     set2.add_child(script2)
     set3.add_child(script2)

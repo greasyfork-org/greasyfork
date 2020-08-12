@@ -65,7 +65,7 @@ class CssToJsConverter
         }
       JS
       lines << '})();'
-      lines.flatten.join("\n") + "\n"
+      "#{lines.flatten.join("\n")}\n"
     end
 
     def j(code)

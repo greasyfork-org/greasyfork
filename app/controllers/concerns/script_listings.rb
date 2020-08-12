@@ -64,7 +64,7 @@ module ScriptListings
             with: with,
             page: params[:page],
             per_page: per_page,
-            order: self.class.get_sort(params, true),
+            order: self.class.get_sort(params, for_sphinx: true),
             populate: true,
             sql: { include: [:script_type, { localized_attributes: :locale }, :users] },
             select: '*, weight() myweight, LENGTH(site_application_id) AS site_count',
@@ -175,7 +175,7 @@ module ScriptListings
         with: with,
         page: params[:page],
         per_page: per_page,
-        order: self.class.get_sort(params, true, nil, default_sort: 'created'),
+        order: self.class.get_sort(params, for_sphinx: true, set: nil, default_sort: 'created'),
         populate: true,
         sql: { include: [:script_type, { localized_attributes: :locale }, :users] },
         select: '*, weight() myweight',
@@ -260,11 +260,11 @@ module ScriptListings
         scripts = scripts.where(id: set_script_ids)
       end
       scripts = scripts.where(language: params[:language] == 'css' ? 'css' : 'js') unless params[:language] == 'all'
-      scripts = scripts.order(get_sort(params, false, set, default_sort: default_sort))
+      scripts = scripts.order(get_sort(params, for_sphinx: false, set: set, default_sort: default_sort))
       return scripts
     end
 
-    def get_sort(params, for_sphinx = false, set = nil, default_sort: nil)
+    def get_sort(params, for_sphinx: false, set: nil, default_sort: nil)
       # sphinx has these defined as attributes, outside of sphinx they're possibly ambiguous column names
       column_prefix = for_sphinx ? '' : 'scripts.'
       sort = params[:sort] || (!set.nil? ? set.default_sort : nil) || default_sort

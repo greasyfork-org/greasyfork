@@ -753,7 +753,7 @@ class ScriptsController < ApplicationController
     FileUtils.mkdir_p(cache_path.parent)
     File.write(cache_path, response_body) unless File.exist?(cache_path)
     # nginx does not seem to automatically compress with try_files, so give it a .gz to use, but keep the original.
-    system('gzip', '--keep', cache_path.to_s) unless File.exist?(cache_path.to_s + '.gz')
+    system('gzip', '--keep', cache_path.to_s) unless File.exist?("#{cache_path}.gz")
   end
 
   def handle_wrong_url(resource, id_param_name)

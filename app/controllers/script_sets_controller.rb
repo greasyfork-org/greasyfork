@@ -58,14 +58,15 @@ class ScriptSetsController < ApplicationController
   def add_to_set
     action, set_id = params['action-set'].split('-')
 
-    if set_id == 'fav'
+    case set_id
+    when 'fav'
       set = current_user.favorite_script_set
       if set.nil?
         set = ScriptSet.new
         set.user = current_user
         make_favorite_set(set)
       end
-    elsif set_id == 'new'
+    when 'new'
       redirect_to new_user_script_set_path(current_user, script_id: params[:script_id])
       return
     else
@@ -81,9 +82,9 @@ class ScriptSetsController < ApplicationController
     r = false
     case action
     when 'ai'
-      r = set.add_child(script, false)
+      r = set.add_child(script, exclusion: false)
     when 'ae'
-      r = set.add_child(script, true)
+      r = set.add_child(script, exclusion: true)
     when 'ri'
       r = set.remove_child(script)
     when 're'
@@ -117,37 +118,37 @@ class ScriptSetsController < ApplicationController
     params['scripts-included']&.each do |script_id|
       next if (params['remove-selected-scripts'] == 'i') && !params['remove-scripts-included'].nil? && params['remove-scripts-included'].include?(script_id)
 
-      set.add_child(Script.find(script_id), false)
+      set.add_child(Script.find(script_id), exclusion: false)
     end
     params['scripts-excluded']&.each do |script_id|
       next if (params['remove-selected-scripts'] == 'e') && !params['remove-scripts-excluded'].nil? && params['remove-scripts-excluded'].include?(script_id)
 
-      set.add_child(Script.find(script_id), true)
+      set.add_child(Script.find(script_id), exclusion: true)
     end
 
     # Previously added sets
     params['sets-included']&.each do |set_id|
       next if (params['remove-selected-sets'] == 'i') && !params['remove-sets-included'].nil? && params['remove-sets-included'].include?(set_id)
 
-      set.add_child(ScriptSet.find(set_id), false)
+      set.add_child(ScriptSet.find(set_id), exclusion: false)
     end
     params['sets-excluded']&.each do |set_id|
       next if (params['remove-selected-sets'] == 'e') && !params['remove-sets-excluded'].nil? && params['remove-sets-excluded'].include?(set_id)
 
-      set.add_child(ScriptSet.find(set_id), true)
+      set.add_child(ScriptSet.find(set_id), exclusion: true)
     end
 
     # Previously added automatic sets
     params['automatic-sets-included']&.each do |set_id|
       next if (params['remove-selected-automatic-sets'] == 'i') && !params['remove-automatic-sets-included'].nil? && params['remove-automatic-sets-included'].include?(set_id)
 
-      ssasi = ScriptSetAutomaticSetInclusion.from_param_value(set_id, false)
+      ssasi = ScriptSetAutomaticSetInclusion.from_param_value(set_id, exclusion: false)
       set.add_automatic_child(ssasi)
     end
     params['automatic-sets-excluded']&.each do |set_id|
       next if (params['remove-selected-automatic-sets'] == 'e') && !params['remove-automatic-sets-excluded'].nil? && params['remove-automatic-sets-excluded'].include?(set_id)
 
-      ssasi = ScriptSetAutomaticSetInclusion.from_param_value(set_id, true)
+      ssasi = ScriptSetAutomaticSetInclusion.from_param_value(set_id, exclusion: true)
       set.add_automatic_child(ssasi)
     end
 
@@ -174,7 +175,7 @@ class ScriptSetsController < ApplicationController
           errors << I18n.t('script_sets.could_not_parse_script', value: possible_script)
         else
           script = Script.find(script_id)
-          errors << I18n.t('script_sets.already_included', name: script.name(request_locale)) unless set.add_child(script, params['script-action'] == 'e')
+          errors << I18n.t('script_sets.already_included', name: script.name(request_locale)) unless set.add_child(script, exclusion: params['script-action'] == 'e')
         end
       end
     end
@@ -182,24 +183,24 @@ class ScriptSetsController < ApplicationController
     # Add set
     if !params['set-action'].nil? && !params['add-child-set'].nil?
       child_set = ScriptSet.find(params['add-child-set'])
-      errors << I18n.t('script_sets.already_included', name: child_set.name) unless set.add_child(child_set, params['set-action'] == 'e')
+      errors << I18n.t('script_sets.already_included', name: child_set.name) unless set.add_child(child_set, exclusion: params['set-action'] == 'e')
     end
 
     # Add automatic set
     if !params['add-automatic-script-set-1'].nil?
-      ssasi = ScriptSetAutomaticSetInclusion.from_param_value('1-', false)
+      ssasi = ScriptSetAutomaticSetInclusion.from_param_value('1-', exclusion: false)
       errors << I18n.t('script_sets.already_included', name: I18n.t(*ssasi.i18n_params)) unless set.add_automatic_child(ssasi)
     elsif !params['add-automatic-script-set-2'].nil?
-      ssasi = ScriptSetAutomaticSetInclusion.from_param_value("2-#{params['add-automatic-script-set-value-2']}", params['add-automatic-script-set-2'] == 'e')
+      ssasi = ScriptSetAutomaticSetInclusion.from_param_value("2-#{params['add-automatic-script-set-value-2']}", exclusion: params['add-automatic-script-set-2'] == 'e')
       errors << I18n.t('script_sets.already_included', name: I18n.t(*ssasi.i18n_params)) unless set.add_automatic_child(ssasi)
     elsif !params['add-automatic-script-set-3'].nil? && !params['add-automatic-script-set-value-3'].nil? && !params['add-automatic-script-set-value-3'].empty?
       automatic_script_set_user = parse_user(params['add-automatic-script-set-value-3'])
       automatic_script_set_user = automatic_script_set_user.nil? ? nil : automatic_script_set_user.id
-      ssasi = ScriptSetAutomaticSetInclusion.from_param_value("3-#{automatic_script_set_user}", params['add-automatic-script-set-3'] == 'e')
+      ssasi = ScriptSetAutomaticSetInclusion.from_param_value("3-#{automatic_script_set_user}", exclusion: params['add-automatic-script-set-3'] == 'e')
       errors << I18n.t('script_sets.already_included', name: I18n.t(*ssasi.i18n_params)) unless set.add_automatic_child(ssasi)
     elsif !params['add-automatic-script-set-4'].nil?
       params['add-automatic-script-set-value-4'].each do |l|
-        ssasi = ScriptSetAutomaticSetInclusion.from_param_value("4-#{l}", params['add-automatic-script-set-4'] == 'e')
+        ssasi = ScriptSetAutomaticSetInclusion.from_param_value("4-#{l}", exclusion: params['add-automatic-script-set-4'] == 'e')
         errors << I18n.t('script_sets.already_included', name: I18n.t(*ssasi.i18n_params)) unless set.add_automatic_child(ssasi)
       end
     end

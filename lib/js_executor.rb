@@ -13,7 +13,7 @@ class JsExecutor
       }
 
       begin
-        context.eval(proxy_code + "\n" + code)
+        context.eval("#{proxy_code}\n#{code}")
       rescue MiniRacer::Error
         # puts code
         # puts e.backtrace.select{|bt| bt.start_with?('JavaScript') }

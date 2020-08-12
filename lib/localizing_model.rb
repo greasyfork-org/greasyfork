@@ -31,7 +31,7 @@ module LocalizingModel
   end
 
   # Returns an array of LocalizedAttributes. locale can be a Locale, ID, code, or nil.
-  def localized_attributes_for(attr_name, lookup_locale = nil, use_default = true)
+  def localized_attributes_for(attr_name, lookup_locale = nil)
     attr_name = attr_name.to_s
     # Optimize for the case when localized_names is already loaded. We don't want to load localized_names here because
     # it's possible that localized_attributes is already or will be loaded, and we want to avoid an additional query.
@@ -50,7 +50,7 @@ module LocalizingModel
         )
     end
     # if there's no locale lookup, the default will already be included
-    if use_default && !lookup_locale.nil?
+    unless lookup_locale.nil?
       d = default_localized_attribute_for(attr_name)
       attrs << d if !d.nil? && !attrs.include?(d)
     end

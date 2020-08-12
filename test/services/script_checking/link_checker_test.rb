@@ -99,7 +99,7 @@ module ScriptChecking
     end
 
     def check_script_with_url_in_code(url)
-      script_version = ScriptVersion.new(code: "location.href = '" + url + "'")
+      script_version = ScriptVersion.new(code: "location.href = '#{url}'")
       ScriptChecking::LinkChecker.check(script_version)
     end
 

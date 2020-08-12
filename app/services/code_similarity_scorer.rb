@@ -14,7 +14,7 @@ class CodeSimilarityScorer
     compressed_length_if_identical = if base_length > 32.kilobytes
                                        base_compressed_length
                                      else
-                                       get_compressed_size(base_code + base_code)
+                                       get_compressed_size(base_code * 2)
                                      end
 
     # Create a map from script id to code id

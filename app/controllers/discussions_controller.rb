@@ -157,7 +157,7 @@ class DiscussionsController < ApplicationController
   def discussion_params
     params
       .require(:discussion)
-      .permit(:rating, :title, :discussion_category_id, comments_attributes: [:text, :text_markup, attachments: []])
+      .permit(:rating, :title, :discussion_category_id, comments_attributes: [:text, :text_markup, { attachments: [] }])
   end
 
   def record_view(discussion)

@@ -16,7 +16,7 @@ module Webhooks
   def process_github_webhook(user)
     # using the secret, see if this is good
     body = request.body.read
-    if user.webhook_secret.nil? || request.headers['X-Hub-Signature'] != ('sha1=' + OpenSSL::HMAC.hexdigest(HMAC_DIGEST, user.webhook_secret, body))
+    if user.webhook_secret.nil? || request.headers['X-Hub-Signature'] != "sha1=#{OpenSSL::HMAC.hexdigest(HMAC_DIGEST, user.webhook_secret, body)}"
       head 403
       return nil, nil
     end
@@ -54,7 +54,7 @@ module Webhooks
     # https://raw.githubusercontent.com/(user)/(repo)/(branch)/(path)
     # This will be used to find the related scripts.
     base_paths = [
-      params[:repository][:url] + '/raw/' + params[:ref].split('/').last + '/', 'https://raw.githubusercontent.com/' + params[:repository][:url].split('/')[3..4].join('/') + '/' + params[:ref].split('/').last + '/'
+      "#{params[:repository][:url]}/raw/#{params[:ref].split('/').last}/", "https://raw.githubusercontent.com/#{params[:repository][:url].split('/')[3..4].join('/')}/#{params[:ref].split('/').last}/"
     ]
 
     inject_script_info(user, changed_files, base_paths)
@@ -136,7 +136,7 @@ module Webhooks
     end
 
     base_paths = [
-      params[:repository][:git_http_url].gsub(/\.git\z/, '') + '/raw/' + params[:ref].split('/').last + '/',
+      "#{params[:repository][:git_http_url].gsub(/\.git\z/, '')}/raw/#{params[:ref].split('/').last}/",
     ]
 
     inject_script_info(user, changed_files, base_paths)
