@@ -10,11 +10,11 @@ module SoftDeletable
 
   class_methods do
     def soft_destroy_all(by_user: nil)
-      update_all(deleted_at: Time.now, deleted_by_user: by_user)
+      update_all(deleted_at: Time.now, deleted_by_user_id: by_user&.id)
     end
   end
 
   def soft_destroy!(by_user: nil)
-    update!(deleted_at: Time.now, deleted_by_user: by_user)
+    update!(deleted_at: Time.now, deleted_by_user_id: by_user&.id)
   end
 end
