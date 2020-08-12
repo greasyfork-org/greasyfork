@@ -3,8 +3,12 @@ SIGNUP_PATH_PATTERN = Regexp.new('\\A/(' + Rails.application.config.available_lo
 if Rails.env.production?
   Rack::Attack.throttle('limit registrations per ip', limit: 3, period: 3600) do |req|
     if SIGNUP_PATH_PATTERN.match?(req.path) && req.post?
-      # Normalize the email, using the same logic as your authentication process, to
-      # protect against rate limit bypasses.
+      req.ip
+    end
+  end
+
+  Rack::Attack.throttle('limit registrations per email', limit: 10, period: 3600) do |req|
+    if SIGNUP_PATH_PATTERN.match?(req.path) && req.post? && req.params.dig('user', 'email')&.ends_with?('163.com')
       req.ip
     end
   end
