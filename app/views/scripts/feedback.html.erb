@@ -37,11 +37,10 @@
 <% end %>
 
 <div class="post-discussion">
-  <h3><%=t('scripts.feedback_discussions_heading')%></h3>
   <% #if we're showing a lot of them, have a link on top too
      if @discussions.length > 10 %>
     <p>
-      <%= it('scripts.feedback_or_report', report_link: It.link(feedback_script_path(@script), rel: :nofollow), feedback_link: It.link("#post-discussion", rel: :nofollow)) %>
+      <%= it('scripts.feedback_or_report', report_link: It.link(report_script_path(@script), rel: :nofollow), feedback_link: It.link("#post-discussion", rel: :nofollow)) %>
     </p>
   <% end %>
   <% if @discussions.empty? %>
