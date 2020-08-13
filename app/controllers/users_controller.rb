@@ -169,7 +169,10 @@ class UsersController < ApplicationController
     user = User.find(params[:user_id])
     user.ban!(moderator: current_user, reason: params[:reason]) unless user.banned?
     user.lock_all_scripts!(reason: params[:reason], moderator: current_user, delete_type: params[:script_delete_type_id]) unless params[:script_delete_type_id].blank?
-    user.comments.not_deleted.each { |comment| comment.soft_destroy!(by_user: current_user) } if params[:delete_comments] == '1'
+    if params[:delete_comments] == '1'
+      user.discussions.not_deleted.each { |comment| comment.soft_destroy!(by_user: current_user) }
+      user.comments.not_deleted.each { |comment| comment.soft_destroy!(by_user: current_user) }
+    end
     redirect_to user
   end
 

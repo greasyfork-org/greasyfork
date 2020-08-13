@@ -106,6 +106,9 @@ class Discussion < ApplicationRecord
   end
 
   def assign_stats
+    # If there's no comments, we're probably in the middle of a delete.
+    return if comments.not_deleted.none?
+
     assign_attributes(calculate_stats)
   end
 
