@@ -74,6 +74,11 @@ class DiscussionsController < ApplicationController
   end
 
   def create
+    if current_user.email&.ends_with?('163.com') && current_user.created_at > 7.days.ago && current_user.discussions.where(created_at: 1.hour.ago..).any?
+      render plain: 'Please try again later.'
+      return
+    end
+
     @discussion = discussion_scope.new(discussion_params)
     @discussion.poster = @discussion.comments.first.poster = current_user
     if @script
