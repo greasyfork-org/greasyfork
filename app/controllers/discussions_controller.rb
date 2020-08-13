@@ -99,7 +99,7 @@ class DiscussionsController < ApplicationController
 
   def destroy
     discussion = discussion_scope.find(params[:id])
-    discussion.destroy!
+    discussion.soft_destroy!
     if discussion.script
       redirect_to script_path(discussion.script)
     else
