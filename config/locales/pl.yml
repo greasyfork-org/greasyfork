@@ -109,7 +109,6 @@ pl:
     feedback_report_instead: "Jeśli myślisz, że ten skrypt łamie %{rules_link: zasady %{site_name}}, możesz %{report_link:zgłosić go do usunięcia}."
     feedback_start_first_discussion_link: "Bądź pierwszy, by rozpocząć dyskusję o tym skrypcie."
     feedback_discussion_or_report: "%{new_discussion_link:Rozpocznij nową dyskusję nad tym skryptem} lub %{report_link:zgłoś do usunięcia}."
-    feedback_discussions_heading: "Dyskusje na Greasy Forum"
     feedback_favoriters_heading: "Użytkownicy, którzy uwielbiają ten skrypt"
     feedback_favoriters_user_list_intro: "Ten skrypt został dodany do ulubionych przez:"
     feedback_no_favoriters: "Chwilowo nikt nie dodał tego skryptu do ulubionych."
@@ -330,6 +329,10 @@ pl:
       title: "Co próbujesz zrobić?"
       install_link_html: "Chcę <b>zainstalować i użyć</b> skryptu."
       share_link_html: "<b>Napisałem</b> skrypt i chcę <b>udostępnić</b> go innym."
+    new_title:
+      js: "Opublikuj nowy skrypt"
+      css: "Opublikuj nowy styl"
+    update_title: "Opublikuj nową wersję %{script}"
   script_sets:
     description: "Zestawy skryptów umożliwiają Ci stworzenie zmodyfikowanej listy skryptów do przeglądania Greasy Fork'a. Możesz dodać skrypty do Twojego zestawu poprzez dołączanie pojedynczych skryptów, zestawów innych użytkowników lub automatycznie generowanych zestawów. Możesz także usunąć skrypty z Twojego zestawów w taki sam sposób."
     favorites_name: "Ulubione"
@@ -589,6 +592,10 @@ pl:
         short: Autor
         long: Autor tego skryptu
     notifications:
+      discussion_defaults:
+        title: Powiadomienia forum
+        new_discussion: Domyślnie subskrybuj wszystkie rozpoczęte przez ciebie dyskusje
+        new_comment: Domyślnie subskrybuj wszystkie dyskusje, które komentujesz
       save_button: Zaktualizuj ustawienia powiadomień
       title: Powiadomienia
   help:
@@ -931,6 +938,11 @@ pl:
     category_filter:
       label: Kategoria
       all: Wszystkie kategorie
+    read_filter:
+      label: Status przeczytania
+      all: Wszystkie
+      read: Przeczytane
+      unread: Nieprzeczytane
     user_activity:
       title: "Ostatnie komentarze"
       no_recent_activity: "Ten użytkownik nie opublikował ostatnio żadnych komentarzy."
@@ -949,6 +961,7 @@ pl:
     subscribe: Subskrybuj
     unsubscribe: Odsubskrybuj
     notify: Powiadom mnie o wszelkich odpowiedziach
+    notifying_on_script: Otrzymasz powiadomienie gdy ktoś odpowie, zgodnie z  %{notifications_link:script notification settings}.
     categories:
       greasyfork:
         name: Greasy Fork Feedback
@@ -969,6 +982,7 @@ pl:
     new_button: Nowa dyskusja
     script_notice: Jeśli chcesz skomentować konkretny skrypt, przejdź do podstrony "Opinie" tego skryptu i rozpocznij dyskusję.
     no_discussions: Nie znaleziono dyskusji.
+    mark_all_read: Oznacz wszystkie jako przeczytane
   conversations:
     user_input_note: Wprowadź nazwę użytkownika lub adres URL do jego profilu.
     new_title: Utwórz nową rozmowę
@@ -1096,6 +1110,15 @@ pl:
       report_dismissed_reporter:
         subject: "Twoje zgłoszenie odnośnie skryptu %{script_name} dla %{site_name} zostało odrzucone"
         text: "Twoje zgłoszenie odnośnie skryptu %{script_name} dla %{site_name} zostało odrzucone przez moderatora, a skrypt pozostanie dostępny. Możesz zapoznać się ze zgłoszeniem pod %{report_url}. Jeśli masz jakieś pytania, odwiedź https://greasyfork.org/forum/. "
+    consecutive_bad_ratings:
+      notify:
+        subject: "Twój skrypt %{script_name} na %{site_name} został oceniony przez wielu jako \"Słaby\"."
+        text: |
+            Twój skrypt '%{script_name}' na %{site_name} (%{script_url}) otrzymał wiele negatywnych recenzji pod rząd.
+
+            Opinie, które otrzymałeś na %{feedback_url} mogą wskazywać na problem ze skryptem, tymczasową awarię lub zmiany na stronie, do której skrypt się odnosi. Zapoznaj się z opiniami, rozwiąż wszelkie problemy i odpowiedz na zgłoszone wątpliwości.
+
+            %{site_name} stara się utrzymywać wysokiej jakości listę skryptów dla użytkowników. By radzić sobie z zepsutymi, porzuconymi skryptami te, które zostały ocenione wiele razy jako "Słaby", zostaną ukryte. Aby uniknąć ukrycia twojego skryptu, opublikuj nową wersję lub odpowiedz na dyskusje przed %{delete_date}. Jeśli nie podejmiesz żadnych działań, nadal będziesz mieć możliwość przywrócenia go po tej dacie.
     script_comment:
       subject: "Twój skrypt %{script_name} na %{site_name} został skomentowany."
       text: |

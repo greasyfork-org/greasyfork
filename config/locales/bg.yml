@@ -107,7 +107,6 @@ bg:
     feedback_report_instead: "Ако мислите, че този скрипт нарушава %{rules_link: правилата на%{site_name}}, моля %{report_link:докладвайте го за премахване}."
     feedback_start_first_discussion_link: "Бъди първи, който ще дискутира скрипта."
     feedback_discussion_or_report: "%{new_discussion_link:Започни ново обсъждане за скрипта} или %{report_link:докладвай за премахване}."
-    feedback_discussions_heading: "Дискусии на Greasy форума"
     feedback_favoriters_heading: "В любими"
     feedback_favoriters_user_list_intro: "Този скрипт е избран в любими от:"
     feedback_no_favoriters: "Все още никой не е избрал скрипта за любим."
@@ -169,6 +168,8 @@ bg:
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
     import: "Импортиране на скриптове"
+    new: "Публикувай написан от теб скрипт"
+    new_css: "Публикувай създаден от теб стил"
     support_site: "Посетете сайта за поддръжка."
     support_email: "Изпратете e-mail на автора за поддръжка."
     contribution_no_amount: "Благодарете на %{author}, като направите дарение."
@@ -243,6 +244,7 @@ bg:
     ok_rating_explanation: "Брой потребители, гласували с ОК."
     bad_rating_explanation: "Брой потребители, гласували с Лош."
     write_your_own_html: "%{post_a_script_link} (или %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "Публикувай написан от теб скрипт"
     learn_to_write_scripts_link_text: "научете как да напишете"
     feedback_or_report: "%{feedback_link:Задай въпрос, напиши отзив }, или %{report_link:докладвай скрипта}."
     support_feedback_or_report: "%{support_url:За поддръжка посети сайта на автора}, %{feedback_link:задай въпрос, напиши отзив}, или %{report_link:докладвай скрипта}."
@@ -325,6 +327,10 @@ bg:
       title: "Какво искате да направите?"
       install_link_html: "Искам да<b>инсталирам и използвам</b> скрипт."
       share_link_html: "Аз <b>написах</b> скрипт и искам да го <b>споделя</b> с останалите."
+    new_title:
+      js: "Публикувай нов скрипт"
+      css: "Публикувай нов стил"
+    update_title: "Публикувай нова версия на %{script}"
   script_sets:
     description: "Групите позволяват да създадете подбран списък от скриптове, с които да разглеждате Greasy Fork. Можете да добавяте към групата индивидуални скриптове, групи на други потребители или автоматично генерирани групи. С помощта на същите методи можете да изключвате скриптове от вашата група."
     favorites_name: "Любими"
@@ -479,6 +485,7 @@ bg:
     edit_sign_in: "Промяна на начините за вход"
     edit_sign_in_title: "Промяна на начините за вход"
     edit_sign_in_password: "Парола"
+    edit_notifications: "Промени известията"
     no_password_set_info: "Вашият профил не е конфигуриран с парола."
     set_password: "Сложете парола"
     update_password: "Обновете паролата"
@@ -566,6 +573,13 @@ bg:
       author:
         short: Автор
         long: Автор на скрипта
+    notifications:
+      discussion_defaults:
+        title: Известия от форума
+        new_discussion: По подразбиране, абонирай се за всички започнати от теб дискусии
+        new_comment: По подразбиране, абонирай се за всички дискусии, в които коментираш
+      save_button: Промени настройките за известия
+      title: Известия
   help:
     sections:
       usage: Употреба
@@ -606,6 +620,10 @@ bg:
       adult_content_rule_html: "<li>Скриптовете, включващи съдържание за възрастни, или са за сайтове със съдържание за възрастни, трябва да бъдат маркирани като такива, за да могат потребителите да избират дали да ги виждат.</li>"
     external_scripts:
       title: "Политика на %{site_name} за външни скриптове"
+      test_url:
+        label: Тествай URL
+        result_ok: URL-ът е позволен
+        result_not_ok: URL-ът не е позволен
     script_rewriting:
       title: "Как %{site_name} ще презапише публикуваните скриптове"
       content_html: >
@@ -743,10 +761,12 @@ bg:
     create_button: "Изпратете доклад"
     report_user: "Докладвайте потребителя"
     report_comment: "Докладвайте коментар"
+    report_message: "Докладвай съобщение"
     result_dismissed: "Този доклад е отхвърлен от модератор."
     result_upheld: "Този доклад е одобрен от модератор."
     result_pending: "Този доклад очаква да бъде прегледан от модератор."
   discussions:
+    title: Дискусии
     comment_date: "Публикуван на: %{date}"
     comment_edit_date: "Редактиран на: %{date}"
     posted_by_html: "%{user} на %{date}"
@@ -787,6 +807,14 @@ bg:
     other_user_filter:
       all: "Всички дискусии"
       comments_by: "Коментари от %{user}"
+    category_filter:
+      label: Категория
+      all: Всички категории
+    read_filter:
+      label: Статус прочетено
+      all: Всички
+      read: Прочетени
+      unread: Не прочетени
     user_activity:
       title: "Последни коментари"
       no_recent_activity: "Потребителят не е публикувал скорошни коментари."
@@ -797,16 +825,63 @@ bg:
       script_question:
         posted_html: "Публикува въпрос/коментар за <i>%{script}</i>"
         replied_html: "Отговори на въпрос/коментар за <i>%{script}</i>"
+      discussion:
+        posted_html: "Публикува дискусия: <i>%{title}</i>"
+        replied_html: "Отговори в дискусия: <i>%{title}</i>"
     review_title: "Отзив за %{script_name}"
     question_title: "Въпрос за %{script_name}"
     subscribe: Абонирай се
     unsubscribe: Премахни абонамент
+    notify: Извести ме за всеки отговор
+    notifying_on_script: Ще бъдеш известяван за всички отговори, заради %{notifications_link:настройките за известия}.
+    categories:
+      greasyfork:
+        name: Обратна връзка за Greasy Fork
+        description: Доклади за бъгове, заявки за нови функции и други неща в самия Greasy Fork.
+      development:
+        name: Разработка
+        description: Технически разговори за разработка на потребителски скриптове и потребителски стилове.
+      requests:
+        name: Заявки за създаване
+        description: Поръчай някой да напише потребителски скрипт или потребителски стил за теб.
+      script-discussions:
+        name: Дискусии за скриптове
+        description: Дискусии относно съществуващи потребителски скриптове и потребителски стилове.
+      no-scripts:
+        name: Дискусии за всичко друго, но не скриптове
+    category_display: "%{name} - %{description}"
+    new_title: Нова дискусия
+    new_button: Нова дискусия
+    script_notice: Ако искате да дискутирате конкретен скрипт, идете до страницата му за отзиви и започнете дискусията там.
+    no_discussions: Няма намерени дискусии.
+    mark_all_read: Маркирай като прочетени
+  conversations:
+    user_input_note: Въведете името на потребителя или връзка към профила му.
+    new_title: Започнете нов разговор
+    new_link: Започнете нов разговор
+    new_button: Започнете разговор
+    title_html:
+      one: Разговор с %{users}
+      other: Разговор с %{users}
+    send_message: Изпрати съобщение
+    conversation_list_title: Разговори
+    conversation_link:
+      one: Разговор с %{users}.
+      other: Разговор с %{users}.
+    conversation_info_html: Последно съобщение на %{date} от %{user}.
+    no_conversations: Все още няма разговори.
+    recent:
+      title: Последни разговори
+      more: Виж всички разговори
+  screenshots:
+    requirements: "Не повече от %{number} PNG, GIF, JPEG, или WebP изображения, по-малки от %{size} всяко."
   common:
     error_preamble: "Има някои проблеми с това, което публикувате..."
     allowed_elements_link: "(Вижте разрешения код.)"
     allowed_elements_and_attributes_title: "Разрешени елементи за HTML съдържание"
     allowed_elements_intro: "Разрешени са следните елементи и атрибути. Това се отнася до HTML и Markdown (след конвертиране до HTML)."
     allowed_elements_extra_info: "Празните символи ще бъдат преобразувани до p или br елементи. URL-ите автоматично ще бъдат направени на връзка."
+    allowed_css_intro: "Следните CSS свойства са разрешени на всички елементи."
     not_found_text: "404 - страницата не е намерена."
     not_found_title: "404 - Страницата не е намерена"
     not_found_link_home: "Към началото."
@@ -818,6 +893,8 @@ bg:
     preview_tab: Преглед
     write_tab: Напишете
     listing_options_title: "Настройки за търсене"
+    quote:
+      prefix_html: "%{user} каза:"
   activerecord:
     attributes:
       user:
@@ -848,6 +925,12 @@ bg:
         reason: "Причина за доклада"
       discussion:
         rating: "Оценка"
+        category: "Категория"
+        title: Заглавие
+      conversation:
+        user_input: Потребител
+      message:
+        content: Съобщение
   errors:
     messages:
       script_missing_name: "е задължително - укажете с @name"
@@ -895,6 +978,9 @@ bg:
       report_dismissed_reporter:
         subject: "Докладът ви за %{script_name} на %{site_name} беше отхвърлен"
         text: "Вашият доклад за %{script_name} на %{site_name} беше отхвърлен от модератор и докладваният скрипт остава активен. Можете да прегледате доклада на %{report_url}. Ако имате някакви въпроси, моля посетете https://greasyfork.org/forum/."
+    consecutive_bad_ratings:
+      notify:
+        subject: "Твоят скрипт %{script_name} на %{site_name} е получил множество \"Лоши\" отзиви."
     script_comment:
       subject: "Получихте коментар за вашия скрипт %{script_name} на %{site_name}."
       text: |
@@ -917,3 +1003,11 @@ bg:
           Можете да видите коментара и да отговорите тук: %{comment_url}.
 
           Вие получихте това известие, защото сте абонирани за дискусията. Посетете %{discussion_url} за да се отпишете.
+    new_conversation:
+      subject: "Нов разговор на %{site_name}"
+      text: |
+          Потребителят '%{user}' на %{site_name} започна нов разговор с теб. Можеш да го прегледаш и да отговориш на %{conversation_url}.
+    new_message:
+      subject: "Ново съобщение на %{site_name}"
+      text: |
+          Потребителят '%{user}' на %{site_name} ти е изпратил съобщение. Можеш да го прегледаш и отговориш на %{conversation_url}.
