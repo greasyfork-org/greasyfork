@@ -32,6 +32,7 @@ gem 'hiredis'
 gem 'redis'
 
 gem 'ace-rails-ap'
+gem 'akismet'
 gem 'detect_language'
 gem 'email_address'
 gem 'it'
