@@ -6,7 +6,7 @@ class ConversationsController < ApplicationController
 
   def new
     @conversation = Conversation.new(user_input: params[:other_user])
-    @conversation.messages.build(poster: current_user)
+    @conversation.messages.build(poster: current_user, content_markup: current_user&.preferred_markup)
   end
 
   def create
@@ -35,7 +35,7 @@ class ConversationsController < ApplicationController
   end
 
   def show
-    @message = @conversation.messages.build(poster: current_user)
+    @message = @conversation.messages.build(poster: current_user, content_markup: current_user&.preferred_markup)
   end
 
   def index
