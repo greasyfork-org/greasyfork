@@ -1,0 +1,8 @@
+<% unless resource.errors.empty? %>
+  <%= t('common.error_preamble') %>
+  <ul>
+    <% resource.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>

@@ -59,4 +59,6 @@ Rails.application.configure do
   config.assets.debug = true
 
   config.active_job.queue_adapter = :inline
+
+  config.action_controller.allow_forgery_protection = true
 end

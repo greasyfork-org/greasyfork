@@ -1,6 +1,8 @@
 <h2><%= t('conversations.new_title') %></h2>
 
 <%= form_with(model: @conversation, url: user_conversations_path(current_user), method: :POST) do |f| %>
+  <%= render partial: 'shared/errors', locals: { resource: @conversation} %>
+
   <div class="form-control">
     <%= f.label :user_input %>
     <span class="label-note"><%= t('conversations.user_input_note') %></span><br>
