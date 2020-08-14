@@ -59,7 +59,7 @@
   <% when Comment %>
     <%= button_to("Delete comment", uphold_report_path(report, index: i), method: 'POST', form_class: 'inline-form') %>
     <% if report.item.poster && !report.item.poster.banned? %>
-      <%= button_to("Delete comment and ban #{report.item.poster.name}", uphold_report_path(report, variant: 'ban'), method: 'POST', form_class: 'inline-form') %>
+      <%= button_to("Delete comment and ban #{report.item.poster.name}", uphold_report_path(report, variant: 'ban', index: i), method: 'POST', form_class: 'inline-form') %>
     <% end %>
   <% when Message %>
     <%= button_to("Ban #{report.item.poster.name}", uphold_report_path(report, index: i), method: 'POST', form_class: 'inline-form') %>
