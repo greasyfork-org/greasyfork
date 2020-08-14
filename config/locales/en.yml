@@ -855,6 +855,10 @@ en:
         new_comment: By default, subscribe to any discussions you comment in
       save_button: Update notification settings
       title: Notifications
+      current_discussion_subscriptions:
+        one: Unsubscribe from the %{discussions_link:%{count} discussion} you are subscribed to
+        other: Unsubscribe from the %{discussions_link:%{count} discussions} you are subscribed to
+      save_success: Your notification preferences have been updated.
   help:
     sections:
       usage: Usage
@@ -1373,7 +1377,7 @@ en:
 
         You can view and reply to this comment at %{comment_url}.
 
-        You received this notification because you subscribed to this discussion. Visit %{discussion_url} to unsubscribe.
+        You received this notification because you subscribed to this discussion. Visit %{discussion_url} to unsubscribe, or manage your notification preferences at %{notification_preferences_url}.
     new_conversation:
       subject: "A new conversation on %{site_name}"
       text: |

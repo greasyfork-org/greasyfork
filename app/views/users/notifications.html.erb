@@ -18,6 +18,12 @@
       <%= f.check_box :subscribe_on_comment %>
       <%= f.label :subscribe_on_comment, t('users.notifications.discussion_defaults.new_comment'), class: 'radio-label' %>
     </div>
+    <% if @user.discussion_subscriptions.any? %>
+      <div>
+        <%= check_box_tag :unsubscribe_all_discussions, '1' %>
+        <%= label_tag :unsubscribe_all_discussions, it('users.notifications.current_discussion_subscriptions', count: @user.discussion_subscriptions.count, discussions_link: discussions_path(me: 'subscribed')), class: 'radio-label' %>
+      </div>
+    <% end %>
   </div>
 
   <div><%= f.submit t('users.notifications.save_button') %></div>

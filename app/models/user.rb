@@ -17,7 +17,7 @@ class User < ApplicationRecord
   has_many :script_reports, foreign_key: 'reporter_id'
   has_many :discussions, foreign_key: 'poster_id', inverse_of: :poster
   has_many :comments, foreign_key: 'poster_id', inverse_of: :poster
-  has_many :discussion_subscriptions
+  has_many :discussion_subscriptions, dependent: :destroy
 
   # Gotta to it this way because you can't pass a parameter to a has_many, and we need it has_many
   # to do eager loading.

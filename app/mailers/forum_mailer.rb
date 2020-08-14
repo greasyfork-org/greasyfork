@@ -31,6 +31,7 @@ class ForumMailer < ApplicationMailer
                         comment_text: format_user_text_as_plain(comment.text, comment.text_markup),
                         comment_url: comment.url,
                         discussion_url: comment.discussion.url,
+                        notification_preferences_url: notifications_user_url(author_user, locale: locale),
                         locale: locale)
       end
     end
