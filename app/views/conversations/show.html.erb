@@ -1,6 +1,14 @@
-<h2>
-  <%= t('conversations.title_html', count: @conversation.users.count - 1, users: (@conversation.users - [current_user]).map{ |u| link_to(u.name, user_path(u)) }.to_sentence.html_safe) %>
-</h2>
+<div class="discussion-header">
+  <h2>
+    <%= t('conversations.title_html', count: @conversation.users.count - 1, users: (@conversation.users - [current_user]).map{ |u| link_to(u.name, user_path(u)) }.to_sentence.html_safe) %>
+  </h2>
+  <div class="discussion-actions">
+    <div class="discussion-subscription-links <%= current_user.subscribed_to_conversation?(@conversation) ? 'discussion-subscribed' : 'discussion-not-subscribed' %>">
+      <%= link_to t('discussions.subscribe'), subscribe_user_conversation_path(current_user, @conversation), method: :POST, remote: true, class: 'discussion-subscribe' %>
+      <%= link_to t('discussions.unsubscribe'), unsubscribe_user_conversation_path(current_user, @conversation), method: :POST, remote: true, class: 'discussion-unsubscribe' %>
+    </div>
+  </div>
+</div>
 
 <% @conversation.messages.reject(&:new_record?).each do |message| %>
   <% by_current_user = message.poster && current_user == message.poster %>

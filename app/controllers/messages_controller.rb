@@ -5,8 +5,16 @@ class MessagesController < ApplicationController
   def create
     message = @conversation.messages.build(message_params)
     message.poster = current_user
+    @subscribe = params[:subscribe] == '1'
     message.save!
+
+    if @subscribe
+      ConversationSubscription.find_or_create_by!(user: current_user, conversation: @conversation)
+    else
+      ConversationSubscription.where(user: current_user, conversation: @conversation).destroy!
+    end
     message.send_notifications!
+
     redirect_to user_conversation_path(current_user, @conversation, anchor: "message-#{message.id}")
   end
 

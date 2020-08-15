@@ -34,6 +34,7 @@ class User < ApplicationRecord
   belongs_to :locale, optional: true
 
   has_and_belongs_to_many :conversations
+  has_many :conversation_subscriptions, dependent: :destroy
 
   before_destroy(prepend: true) do
     scripts.select { |script| script.authors.where.not(user_id: id).none? }.each(&:destroy!)
@@ -239,6 +240,10 @@ class User < ApplicationRecord
 
   def subscribed_to?(discussion)
     discussion_subscriptions.where(discussion: discussion).any?
+  end
+
+  def subscribed_to_conversation?(conversation)
+    conversation_subscriptions.where(conversation: conversation).any?
   end
 
   # Override devise's method to send async. https://github.com/heartcombo/devise#activejob-integration

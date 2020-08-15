@@ -2,11 +2,12 @@ class ConversationsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_user
   before_action :ensure_user_current, only: [:new, :create]
-  before_action :find_conversation, only: :show
+  before_action :find_conversation, only: [:show, :subscribe, :unsubscribe]
 
   def new
     @conversation = Conversation.new(user_input: params[:other_user])
     @conversation.messages.build(poster: current_user, content_markup: current_user&.preferred_markup)
+    @subscribe = current_user.subscribe_on_conversation_starter
   end
 
   def create
@@ -27,15 +28,21 @@ class ConversationsController < ApplicationController
     else
       @conversation.users = [current_user, other_user]
     end
+    @subscribe = params[:subscribe] == '1'
 
     @conversation.messages.last.poster = current_user
     @conversation.save!
+
+    ConversationSubscription.find_or_create_by!(user: current_user, conversation: @conversation) if @subscribe
+    ConversationSubscription.find_or_create_by!(user: other_user, conversation: @conversation) if other_user.subscribe_on_conversation_receiver
     @conversation.messages.last.send_notifications!
+
     redirect_to user_conversation_path(current_user, @conversation)
   end
 
   def show
     @message = @conversation.messages.build(poster: current_user, content_markup: current_user&.preferred_markup)
+    @subscribe = current_user.subscribed_to_conversation?(@conversation)
   end
 
   def index
@@ -44,6 +51,22 @@ class ConversationsController < ApplicationController
       return
     end
     @conversations = current_user.conversations.includes(:users, :stat_last_poster).order(stat_last_message_date: :desc).paginate(page: params[:page])
+  end
+
+  def subscribe
+    ConversationSubscription.find_or_create_by!(user: current_user, conversation: @conversation)
+    respond_to do |format|
+      format.js { head 200 }
+      format.all { redirect_to @conversation.path }
+    end
+  end
+
+  def unsubscribe
+    ConversationSubscription.where(user: current_user, conversation: @conversation).destroy_all
+    respond_to do |format|
+      format.js { head 200 }
+      format.all { redirect_to @conversation.path }
+    end
   end
 
   private

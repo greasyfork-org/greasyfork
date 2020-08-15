@@ -16,7 +16,7 @@ class Message < ApplicationRecord
   end
 
   def send_notifications!
-    (conversation.users - [poster]).each do |user|
+    (conversation.users - [poster]).select { |user| user.subscribed_to_conversation?(conversation) }.each do |user|
       if first_message?
         ConversationMailer.new_conversation(conversation, user, conversation.messages.first.poster).deliver_later
       else

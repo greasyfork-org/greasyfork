@@ -26,5 +26,17 @@
     <% end %>
   </div>
 
+  <div class="form-control">
+    <%= label_tag t('users.notifications.conversation_defaults.title') %>
+    <div>
+      <%= f.check_box :subscribe_on_conversation_starter %>
+      <%= f.label :subscribe_on_conversation_starter, t('users.notifications.conversation_defaults.starter'), class: 'radio-label' %>
+    </div>
+    <div>
+      <%= f.check_box :subscribe_on_conversation_receiver %>
+      <%= f.label :subscribe_on_conversation_receiver, t('users.notifications.conversation_defaults.receiver'), class: 'radio-label' %>
+    </div>
+  </div>
+
   <div><%= f.submit t('users.notifications.save_button') %></div>
 <% end %>
