@@ -191,7 +191,7 @@ class Script < ApplicationRecord
   end
 
   after_save do |script|
-    ScriptDuplicateCheckerJob.perform_later(script.id) if script.saved_change_to_code_updated_at?
+    ScriptDuplicateCheckerJob.perform_later(script.id) if script.saved_change_to_code_updated_at? && !ScriptDuplicateCheckerJob.currently_queued?(script.id)
   end
 
   before_save do |script|
