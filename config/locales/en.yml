@@ -1381,12 +1381,26 @@ en:
 
         You can view and reply to this comment at %{comment_url}.
 
-        You received this notification because you subscribed to this discussion. Visit %{discussion_url} to unsubscribe, or manage your notification preferences at %{notification_preferences_url}.
+        You received this notification because you are subscribed to this discussion. Visit %{discussion_url} to unsubscribe, or manage your notification preferences at %{notification_preferences_url}.
     new_conversation:
       subject: "A new conversation on %{site_name}"
       text: |
-        User '%{user}' on %{site_name} has started a new conversation with you. You can view and reply at %{conversation_url}.
+        User '%{user}' on %{site_name} has started a new conversation with you.
+
+        ---
+        %{message_text}
+        ---
+
+        You can view and reply at %{conversation_url}.
+
+        You received this notification because you are subscribed to this conversation. Visit %{conversation_url} to unsubscribe, or manage your notification preferences at %{notification_preferences_url}.
     new_message:
       subject: "A new message on %{site_name}"
       text: |
-        User '%{user}' on %{site_name} has sent you a message. You can view and reply at %{conversation_url}.
+        User '%{user}' on %{site_name} has sent you a message.
+
+        ---
+        %{message_text}
+        ---
+
+        You received this notification because you are subscribed to this conversation. Visit %{conversation_url} to unsubscribe, or manage your notification preferences at %{notification_preferences_url}.

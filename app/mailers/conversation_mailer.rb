@@ -10,7 +10,9 @@ class ConversationMailer < ApplicationMailer
                         user: initiator_user.name,
                         conversation_url: user_conversation_url(to_user, conversation, locale: locale),
                         site_name: site_name,
-                        locale: locale)
+                        locale: locale,
+                        notification_preferences_url: notifications_user_url(to_user, locale: locale),
+                        message_text: format_user_text_as_plain(conversation.messages.first.content, conversation.messages.first.content_markup))
       end
     end
   end
@@ -24,7 +26,9 @@ class ConversationMailer < ApplicationMailer
                         user: message.poster.name,
                         site_name: site_name,
                         conversation_url: user_conversation_url(to_user, message.conversation, locale: locale, anchor: "message-#{message.id}"),
-                        locale: locale)
+                        locale: locale,
+                        notification_preferences_url: notifications_user_url(to_user, locale: locale),
+                        message_text: format_user_text_as_plain(message.content, message.content_markup))
       end
     end
   end
