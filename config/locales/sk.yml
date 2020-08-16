@@ -596,8 +596,18 @@ sk:
         title: Upozornenia na fóre
         new_discussion: Predvolene, prihlásiť do každej diskusie, ktorú som začal
         new_comment: Predvolene, prihlásiť do každej diskusie, do ktorej som napísal komentár
+      conversation_defaults:
+        title: Upozornenia na konverzácie
+        starter: Predvolene, prihlásiť k odberu konverzácie, ktoré som začal/a
+        receiver: Predvolene, prihlásiť k odberu konverzácie, do ktorých som sa zapojil/a a nezačal/a som ich
       save_button: Aktualizovať nastavenia upozornenia
       title: Upozornenia
+      current_discussion_subscriptions:
+        one: Odhlásiť z %{discussions_link:%{count} diskusie}, ku ktorej ste prihlásený
+        few: Odhlásiť z %{discussions_link:%{count} diskusií}, ku ktorým ste prihlásený
+        many: Odhlásiť z %{discussions_link:%{count} diskusií}, ku ktorým ste prihlásený
+        other: Odhlásiť z %{discussions_link:%{count} diskusií}, ku ktorým ste prihlásený
+      save_success: Vaše nastavenia upozornení boli aktualizované.
   help:
     sections:
       usage: Použitie
@@ -1117,20 +1127,34 @@ sk:
     subscribed_discussion:
       subject: "Do diskusie %{discussion_title} na %{site_name} bol pridaný komentár."
       text: |
-          Užívateľ "%{commenter_name}" pridal do diskusie "%{discussion_title}" na %{site_name} komentár:
+          V diskusii "%{discussion_title}" na %{site_name} pribudol komentár od užívateľa "%{commenter_name}":
 
           ---
           %{comment_text}
           ---
 
-          Zobraziť a odpovedať na komentár môžete na %{comment_url}.
+          Zobraziť a odpovedať na tento komentár môžete na %{comment_url}.
 
-          Toto upozornenie ste dostali, lebo ste prihlásený na odber tejto diskusie. Pre odhlásenie prejdite na %{discussion_url}.
+          Toto upozornenie ste dostali, pretože ste prihlásení na odber tejto diskusie. Pre odhlásenie prejdite na %{discussion_url}, alebo spravujte nastavenia upozornení na%{notification_preferences_url}.
     new_conversation:
       subject: "Nová konverzácia na %{site_name}"
       text: |
-          Užívateľ "%{user}" na %{site_name} založil novú konverzáciu s vami. Prezrieť a odpovedať môžete na %{conversation_url}.
+          Užívateľ "%{user}" na %{site_name} založil novú konverzáciu s vami.
+
+          ---
+          %{message_text}
+          ---
+
+          Zobraziť a odpovedať môžete na %{conversation_url}.
+
+          Toto upozornenie ste dostali, pretože ste prihlásený na odber tejto konverzácie. Pre odhlásenie prejdite na %{conversation_url}, alebo spravujte nastavenia upozornení na %{notification_preferences_url}.
     new_message:
       subject: "Nová správa na %{site_name}"
       text: |
-          Užívateľ "%{user}" na %{site_name} vám poslal správu Prezrieť a odpovedať môžete na %{conversation_url}.
+          Užívateľ "%{user}" na %{site_name}vám poslal správu.
+
+          ---
+          %{message_text}
+          ---
+
+          Toto upozornenie ste dostali, pretože ste prihlásený na odber tejto konverzácie. Pre odhlásenie prejdite na %{conversation_url}, alebo spravujte nastavenia upozornení na %{notification_preferences_url}.

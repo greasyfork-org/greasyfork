@@ -61,8 +61,10 @@ es:
     delete_permanently_confirm: "¿Seguro que quieres borrar permanentemente el script?"
     delete_permanently_submit: "Solicitar borrado permanente"
     delete_permanently_immediate_submit: "Borrar de forma permanente"
+    delete_permanently_already_requested: "Solicitaste el borrado permanente el %{datetime}."
     delete_permanently_notice_immediate: "Este script ha sido borrado permanentemente."
     cancel_delete_permanently_submit: "Cancelar solicitud de borrado permanente"
+    cancel_delete_permanently_notice: "Hemos cancelado tu solicitud de borrado permanente, pero los demás todavía no pueden ver tu script."
     delete_permanently_rejected_locked: "Este script está bloqueado y no se puede borrar de forma permanente"
     admin_page: "Administrar"
     admin:
@@ -78,7 +80,9 @@ es:
       update_locale: "Actualizar idioma"
       no_moderator_logs: "No se ha tomado ninguna decisión por parte de los moderadores sobre este script."
       compare_title: "Comparar con otra secuencia de comandos"
+      compare_to: "Scripts de usuario en %{site_name} que comparar con (URL)"
       compare_button: "Comparar"
+      compare_must_be_local_url: "El script a comparar debe ser la dirección URL de un script en %{site_name}"
     history_title: "%{script_name} - Historial de versiones"
     history_only_code_changes_info: "A continuación se muestran las versiones de este script en las que se actualizó el código."
     history_all_changes_link: "Ver todas las versiones."
@@ -90,6 +94,7 @@ es:
     feedback_has_reports: "Se ha denunciado este script por incumplir las normas de %{site_name}."
     feedback_no_discussions_html: "Todavía no se ha publicado nada. %{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "Aún no se han publicado discusiones."
+    feedback_report_instead: "Si crees que este script incumple las %{rules_link:normas de %{site_name}}, puedes %{report_link:denunciarlo} para que otros lo borren."
     feedback_start_first_discussion_link: "Sé el primero en comentar este script."
     feedback_discussion_or_report: "%{new_discussion_link:Abre un hilo de conversación sobre el script} o %{report_link:notifica una posible infracción de las normas}."
     feedback_favoriters_heading: "Seguidores"
@@ -109,6 +114,10 @@ es:
     derivatives_title: "%{script_name} - Derivados"
     derivatives_intro: "Estos scripts pueden basarse en el tuyo (o viceversa). Si detectas un uso no autorizado de tu código, denuncia el script creando un nueva conversación en su perfil."
     derivatives_script_html: "%{script} por %{user}, licencia: %{license} %{diff_link:[Diff]}"
+    derivatives_exact_copies_heading: "Copias exactas"
+    derivatives_similar_heading: "Scripts similares"
+    derivatives_similar_item: "%{score} %{diff_link:[Diferencias]}: %{script}"
+    derivatives_similar_last_check_soon: "Empezaremos a escanear scripts parecidos a los tuyos en breve."
     derivatives_similar_check_now: "Revisar ahora"
     listing_title_all_sites: "Scripts de usuario para todos los sitios"
     listing_description_all_sites: "Scripts de usuario que añaden características y corrigen errores en todos los sitios"
@@ -143,6 +152,7 @@ es:
     listing_language_css: "CSS"
     import: "Importar scripts"
     new: "Publicar script que escribiste"
+    new_css: "Publica tu propio estilo"
     support_site: "Visitar el sitio de asistencia del autor."
     support_email: "Enviar un correo de asistencia al autor."
     contribution_no_amount: "Agradece a %{author} su trabajo haciendo una donación."
@@ -217,6 +227,7 @@ es:
     ok_rating_explanation: "Número de personas que lo calificaron como aceptable."
     bad_rating_explanation: "Número de personas que lo calificaron como malo."
     write_your_own_html: "%{post_a_script_link} (o %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "Publica tu propio script"
     learn_to_write_scripts_link_text: "aprende a escribir uno"
     feedback_or_report: "%{feedback_link:Pregunta tus dudas, ponle nota} o %{report_link:notifica una posible infracción de las normas}."
     support_feedback_or_report: "%{support_url:Visita la página web del autor si necesitas ayuda} o %{feedback_link:pregunta tus dudas, ponle nota} o %{report_link:notifica una posible infracción de las normas}."
@@ -250,6 +261,29 @@ es:
     must_confirm_email_button: "Enviar un enlace de confirmación a %{email}"
     report:
       title: "%{script_name} incumple las normas"
+      text_html: >-
+          <p>Los scripts de %{site_name} deben cumplir %{rules_link:las normas}. Puedes
+          informar de los problemas enumerados a continuación, los moderadores de
+          %{site_name} lo revisaran a su debido tiempo:</p><ul>
+
+          <li>%[unauthorized_link:Contiene un posible uso de código copiado sin la
+          debida autorización.]</li>
+
+          <li>%[malware_link:Contiene software malicioso.]</li>
+
+          <li>%[spam_link:Contiene spam u otros tipos de contenido extraño.]</li>
+
+          <li>%[other_report_link:Contiene scripts con anuncios, explotación de criptomonedas
+          u otros métodos con los que sacar rédito económico sin avisar a los usuarios.
+          Otras cosas.]</li>
+
+          </ul>
+
+
+          <p>Ten en cuenta que ni contravenir las normas de otros sitios ni que el
+          script no funcione incumple las normas de %{site_name}. En esos casos puedes
+          %{feedback_link:comentarlo en el foro} del propio script, pero en principio
+          no es un problema.</p>
     authors_heading: "Miembros del equipo"
     error_unauthorized_copy: "Parece que este script era una copia no autorizada de %{script}. Échale un vistazo a %{rules_link:las normas de contenido} de %{site_name} para ver lo que se puede y no puede hacer."
     invitations:
@@ -278,6 +312,10 @@ es:
       title: "¿Qué estás intentando hacer?"
       install_link_html: "Quiero <b>instalar</b> un script ya existente."
       share_link_html: "He <b>escrito</b> un script y quiero <b>compartirlo</b> con otros."
+    new_title:
+      js: "Publicar un nuevo script"
+      css: "Publicar un nuevo estilo"
+    update_title: "Publicar una nueva versión de %{script}"
   script_sets:
     description: "Los grupos permiten crear un listado personal de scripts con los que explorar Greasy Fork. Puedes agruparlos añadiendo scripts individuales, incluyendo grupos de otros usuarios, o incluso grupos generados automáticamente. También puedes excluir scripts de la misma forma."
     favorites_name: "Favoritos"
@@ -433,6 +471,7 @@ es:
     edit_sign_in: "Editar métodos de inicio de sesión"
     edit_sign_in_title: "Editar métodos de inicio de sesión"
     edit_sign_in_password: "Contraseña"
+    edit_notifications: "Editar notificaciones"
     no_password_set_info: "Tu cuenta todavía no tiene asignada una contraseña."
     set_password: "Crear contraseña"
     update_password: "Actualizar contraseña"
@@ -517,6 +556,13 @@ es:
       moderator:
         short: Mod
         long: Moderador
+      author:
+        short: Autor
+        long: Autor del script
+    notifications:
+      discussion_defaults:
+        title: Notificaciones del foro
+      save_success: Se han actualizado tus preferencias de notificaciones
   help:
     sections:
       usage: Uso
@@ -554,9 +600,76 @@ es:
       post_new_script_link_text: 'publicar un nuevo script'
     code_rules:
       title: "Reglas de %{site_name} para scripts publicados"
+      content_html: >
+          <p>A continuación se enumeran los requisitos necesarios para que un script
+          aparezca en %{site_name}. Su objetivo es que hagan de %{site_name} un sitio
+          fiable y útil. Los moderadores se ocuparán de borrar cualquier script que
+          no cumpla los requisitos de %{site_name}.</p> <h4>Funcionalidad</h4> <ul>
+
+          <li>Los scripts deben incluir una descripción de lo que hacen y adecuarse
+          a la funcionalidad descrita en la misma. Los usuarios deben saber lo que
+          hará un script antes de instalarlo.</li>
+
+          <li>Un script tiene que tener una razón de ser, por ejemplo: un script que
+          sólo dirige al usuario a otra página Web podría ser un simple enlace.</li>
+
+          <li>Los scripts no pueden obligar a los usuario a realizar actividades;
+          como hacer pagos, suscribirse a sitios o hacer «me gusta» en una página
+          para que empiecen a funcionar.</li>
+
+          <li>Los scripts que proporcionen dinero al autor (seguimiento o trastreo,
+          anuncios, criptomonedas, y otros) no están prohibidos, pero deberán describir
+          con mucho detalle todo lo que hacen de antemano y dejarlo bien claro en
+          la descripción para que lo vea quien lo instale.</li>
+
+          </ul> <h4>Código</h4> <ul>
+
+          <li>El código publicado en este sitio no debe de estar ofuscado o compactado.
+          A los usuarios se les debe dar la oportunidad de inspeccionar y comprender
+          un script antes de instalarlo. Si el script ha sido procesado con alguna
+          herramienta como webpack, se debe de pegar sin minimizar.</li>
+
+          <li>Cualquier biblioteca externa debe cargarse con (<code>@require</code>),
+          a menos que haya una razón técnica para no hacerlo. En caso de incrustar
+          una biblioteca de terceros en el script debes incluir información básica
+          sobre su origen (un comentario indicando la dirección URL original, nombre
+          y, si es posible, versión).</li>
+
+          <li>%{external_scripts_link:Se limita el uso y abuso de JavaScript externo
+          de forma estricta.}</li>
+
+          </ul> <h4>Derechos de autoría</h4> <ul>
+
+          <li>Respetar los derechos de autor es importante. El código es primordial,
+          pero los recursos (como imágenes y estilos) que utilices también lo son.
+          Para usar el trabajo de otros respeta sus términos de licencia y pide permiso
+          al autor según sea necesario.</li>
+
+          <li>Incluso en casos que no violen los derechos de autor, copiar o duplicar
+          scripts que ya existen de forma innecesaria sin aportar mejoras está prohibido.</li>
+
+          </ul> <h4>Otras cosas</h4> <ul>
+
+          %{adult_content_requirement}
+
+          <li>Los scripts no podrán buscar actualizaciones más de una vez por día.
+          Ten en cuenta que en la mayoría de los casos las extensiones para administrar
+          scripts ya los actualizan por su cuenta, así que no suele ser necesario.</li>
+
+          <li>Los scripts no pueden incluir <code>@include</code>s, <code>@match</code>es,
+          o etiquetar sitios (en claves o metadatos) en los que no proporcionen ninguna
+          funcionalidad.</li>
+
+          </ul> <p>Si descubres una violación de las reglas puedes informar a los
+          moderadores utilizando la pestaña de «Opiniones» del script en cuestión,
+          iniciando una conversación, y eligiendo la opción «Informar del script».</p>
       adult_content_rule_html: "<li>Los scripts con contenido para adultos (o que funcionen en sitios con este tipo de contenido restringido) deben marcarse para que los usuarios puedan decidir si quieren verlos o no.</li>"
     external_scripts:
       title: "Política de %{site_name} sobre scripts externos"
+      test_url:
+        label: Probar una dirección URL
+        result_ok: La dirección URL es correcta
+        result_not_ok: La dirección URL no está permitida
     script_rewriting:
       title: "Cómo afectará %{site_name} a los scripts publicados"
       content_html: >
@@ -672,43 +785,126 @@ es:
       comment: "Reportar un comentario por %{user}"
     reason:
       spam: "Spam"
+      abuse: "Abusos, perjuicios o discurso del odio"
       illegal: "Malware o contenido ilegal"
-    create_button: "Crear reporte"
-    report_user: "Reportar usuario"
-    report_comment: "Reportar comentario"
+    explanation_placeholder: "Proporciona más detalles (opcional)"
+    create_button: "Denunciar"
+    report_user: "Denunciar usuario"
+    report_comment: "Denunciar comentario"
+    report_message: "Incumple las normas"
+    result_dismissed: "Se ha revisado tu denuncia y no parece incumplir las normas."
+    result_upheld: "Se ha confirmado tu denuncia y ha sido eliminado."
+    result_pending: "Pendiente de que lo revise un moderador. "
   discussions:
+    title: Conversaciones
     comment_date: "Publicado: %{date}"
     comment_edit_date: "Editado: %{date}"
+    posted_by_html: "%{user} en %{date}"
+    last_comment: "Último comentario: %{user} en %{date} "
+    new_discussion_heading: "Pregunta tus dudas o ponle nota"
     new_discussion_submit: "Publicar comentario"
     new_comment_heading: "Publicar respuesta"
     new_comment_submit: "Publicar respuesta"
+    back_to_feedback: "< Opiniones de %{script}"
     edit_comment_link: "Editar"
     edit_comment_header: "Editar comentario"
     delete_comment: "Eliminar"
     delete_discussion: "Eliminar"
     update_comment_submit: "Actualizar comentario"
     cancel_update_comment: "Cancelar"
-    question_heading_html: "Pregunta/comentario"
+    question_heading_html: "Pregunta o comentario"
+    review_heading_html: "Puntuación: %{rating}"
+    update_rating: "Actualiza tu calificación de %{script_name}"
     ratings:
-      bad: "Malo - el script no funciona"
-      ok: "OK - el script funciona, pero podría mejorarse"
-      good: "Bueno - el script funciona"
+      question: "Sin opinión; sólo hacer una pregunta o comentario"
+      bad: "Malo; el script no funciona"
+      ok: "Pasable; el script funciona, pero tiene carencias importantes"
+      good: "Bueno; el script funciona tal y como promete"
     ratings_short:
-      question: "Pregunta/comentario"
+      question: "Pregunta o comentario"
       bad: "Malo"
-      ok: "OK"
+      ok: "Pasable"
       good: "Bueno"
+    sign_in_to_post_discussion: "Inicia sesión para preguntar tus dudas o ponerle nota."
     sign_in_to_post_comment: "Inicia sesión para responder."
     user_filter:
+      label: "Conversaciones en las que participo"
+      all: "Todas las conversaciones"
+      discussion_by_me: "Empezadas por mí"
       comment_by_me: "Mis comentarios"
+      on_my_scripts: "En mis scripts"
+      subscribed: "Siguiendo"
+    other_user_filter:
+      all: "Todas las conversaciones"
+      comments_by: "Comentarios de %{user}"
+    category_filter:
+      label: Categoría
+      all: Todas las categorías
+    read_filter:
+      label: Leído o no
+      all: Todas
+      read: Leídas
+      unread: Sin leer
     user_activity:
       title: "Comentarios recientes"
+      no_recent_activity: "Este usuario no ha comentado últimamente."
+      see_all_activity: "Ver toda la actividad del usuario"
+      script_review:
+        posted_html: "Ha publicado una crítica de <i>%{script}</i>"
+        replied_html: "Ha respondido a una crítica de <i>%{script}</i>"
+      script_question:
+        posted_html: "Ha publicado un comentario o pregunta sobre <i>%{script}</i>"
+    subscribe: Seguir conversación
+    unsubscribe: Dejar de seguir
+    notify: Avisarme de futuros mensajes
+    categories:
+      greasyfork:
+        name: Comentarios y opiniones sobre Greasy Fork
+        description: Informa de problemas, pide funcionalidades nuevas, y cualquier otra cosa que tenga que ver sobre el sitio en sí.
+      development:
+        name: Desarrolladores
+        description: Conversaciones técnicas sobre programar scripts y estilos.
+      requests:
+        name: Peticiones de scripts
+        description: Pide a alguien que te ayude a crear un script o estilo.
+      script-discussions:
+        name: Conversaciones sobre scripts
+        description: Hablar sobre scripts de usuario y estilos que ya existan.
+      no-scripts:
+        name: Todo lo demás
+    category_display: "%{name} - %{description}"
+    new_title: Nueva conversación
+    new_button: Nueva conversación
+    script_notice: Si quieres hablar sobre un script en particular, ve a su página de opiniones y empieza una conversación.
+    no_discussions: No se ha encontrado ninguna conversación que coincida con los parámetros.
+    mark_all_read: Marcar todo como leído
+  conversations:
+    user_input_note: Introduce el nombre de usuario o la dirección URL de su perfil
+    new_title: Empezar una conversación nueva
+    new_link: Empezar una conversación
+    new_button: Nueva conversación
+    title_html:
+      one: Conversación con %{users}
+      other: Conversación con %{users}
+    send_message: Enviar mensaje
+    conversation_list_title: Conversaciones
+    conversation_link:
+      one: Conversación con %{users}
+      other: Conversación con %{users}
+    conversation_info_html: Último mensaje en %{date} por %{user}.
+    no_conversations: Todavía no has empezado a conversar.
+    recent:
+      title: Conversaciones recientes
+      more: Ver todas las conversaciones
+  screenshots:
+    requirements: "Hay un tope de subida de %{number} imágenes PNG, GIF, JPEG, o WebP; cada una de ellas puede llegar a %{size}."
   common:
     error_preamble: "Hemos tenido problemas al procesar el envío..."
     allowed_elements_link: "(Ver código permitido)"
     allowed_elements_and_attributes_title: "Elementos permitidos para el contenido HTML"
     allowed_elements_intro: "Se permiten los siguientes elementos y atributos. Esto se aplica tanto a HTML como a Markdown (después de la conversión a HTML)."
     allowed_elements_extra_info: "Los espacios en blanco se convertirán en elementos p o br. Las URLs se convertirán automáticamente en enlaces."
+    allowed_css_intro: "Se permite utilizar las siguientes propiedades CSS."
     not_found_text: "404 - página no encontrada."
     not_found_title: "404 - Página no encontrada"
     not_found_link_home: "Ir a la página principal."
@@ -720,6 +916,8 @@ es:
     preview_tab: Vista previa
     write_tab: Editar
     listing_options_title: "Opciones de búsqueda"
+    quote:
+      prefix_html: "%{user} dijo:"
   activerecord:
     attributes:
       user:
@@ -746,8 +944,16 @@ es:
         name: "Nombre"
         description: "Descripción"
         default_sort: "Orden predeterminado"
+      report:
+        reason: "Causa de la infracción"
       discussion:
-        rating: "Calificación"
+        rating: "Puntuación"
+        category: "Categoría"
+        title: Título
+      conversation:
+        user_input: Usuario
+      message:
+        content: Mensaje
   errors:
     messages:
       script_missing_name: "obligatorio; especifica uno con @name"
@@ -795,3 +1001,25 @@ es:
       report_dismissed_reporter:
         subject: "Se ha revisado tu denuncia en %{site_name} y %{script_name} no parece incumplir las normas."
         text: "Tu reporte en %{script_name} en %{site_name} ha sido ignorado por u moderador y el script que ha reportado seguirá activo. Puede ver su reporte en %{report_url}. Si tiene alguna pregunta, por favor visite https://greasyfork.org/forum/."
+    new_conversation:
+      subject: "Alguien ha empezado una conversación nueva en %{site_name}"
+      text: |
+          El usuario «%{user}» de %{site_name} ha empezado a conversar contigo.
+
+          ---
+          %{message_text}
+          ---
+
+          Puedes verla y responder en %{conversation_url}.
+
+          Has recibido esta notificación porque te has suscrito a esta conversación. Visita %{conversation_url} para desuscribirte, o cambia tus preferencias sobre notificaciones en %{notification_preferences_url}.
+    new_message:
+      subject: "Tienes un mensaje nuevo en %{site_name}"
+      text: |
+          El usuario «%{user}» de %{site_name} te ha enviado un mensaje.
+
+          ---
+          %{message_text}
+          ---
+
+          Has recibido esta notificación porque te has suscrito a esta conversación. Visita %{conversation_url} para desuscribirte, o cambia tus preferencias sobre notificaciones en %{notification_preferences_url}.

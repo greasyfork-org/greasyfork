@@ -579,8 +579,16 @@ pt-BR:
         title: Notificações do forum
         new_discussion: Por padrão, inscrever em qualquer discussão que você iniciar
         new_comment: Por padrão, inscrever em qualquer discussão que você fizer um comentário
+      conversation_defaults:
+        title: Notificações de conversa
+        starter: Por padrão, inscrever-se em qualquer conversa que você iniciar
+        receiver: Por padrão, inscrever-se em qualquer conversa que envolva você que você não iniciou
       save_button: Atualizar configurações de notificação
       title: Notificações
+      current_discussion_subscriptions:
+        one: Desinscrever da %{discussions_link:%{count} discussão} que você está inscrito
+        other: Desinscrever das %{discussions_link:%{count} discussões} que você está inscrito
+      save_success: Suas preferências de notificação foram atualizadas
   help:
     sections:
       usage: Uso
@@ -1110,14 +1118,28 @@ pt-BR:
           %{comment_text}
           ---
 
-          Você pode ver e responder este comentário pelo link %{comment_url}.
+          Você pode ver e responder a este comentário em %{comment_url}.
 
-          Você recebeu esta notificação porque está inscrito nesta discussão. Visite %{discussion_url} para se desinscrever.
+          Você recebeu esta notificação pois você está inscrito nesta discussão. Visite %{discussion_url} para se desinscrever, ou gerencie suas preferencias em %{notification_preferences_url}.
     new_conversation:
       subject: "Uma nova conversa no %{site_name}"
       text: |
-          O usuário '%{user}' no %{site_name} iniciou uma nova conversa com você. Você pode ver e responder em  %{conversation_url}.
+          O usuário '%{user}' no %{site_name} iniciou uma nova conversa com você.
+
+          ---
+          %{message_text}
+          ---
+
+          Você pode ver e responder em %{conversation_url}.
+
+          Você recebeu esta notificação pois está inscrito nesta conversa. Visite %{conversation_url} para se desinscrever, ou gerencie suas preferências de notificação em %{notification_preferences_url}.
     new_message:
       subject: "Uma nova mensagem no %{site_name}"
       text: |
-          O usário '%{user}' no %{site_name} te enviou uma mensagem. Você pode ver e responder em %{conversation_url}.
+          O usuário '%{user}' no %{site_name} te enviou uma mensagem.
+
+          ---
+          %{message_text}
+          ---
+
+          Você recebeu esta notificação pois está inscrito nesta conversa. Visite %{conversation_url} para se desinscrever, ou gerencie suas preferências de notificações em %{notification_preferences_url}.
