@@ -8,6 +8,7 @@ class UserFloodJob < ApplicationJob
   def perform
     most_used_domain = User
                        .where.not(email: nil)
+                       .where(banned: false)
                        .last(CHECK_COUNT)
                        .pluck(:email)
                        .map { |email| email.split('@').last }
