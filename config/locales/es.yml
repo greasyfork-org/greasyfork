@@ -41,6 +41,9 @@ es:
     library_instructions_html: "Este script no debería instalarse directamente. Es una biblioteca que utilizan otros scripts mediante la meta-directiva de inclusión %{code}"
     deleted_notice: "Este script ha sido borrado."
     deleted_notice_with_related: "EL script que pides ha sido eliminado, pero aquí hay algunos scripts relacionados"
+    deleted_undelete_notice_html: "Un moderador ha bloqueado este script y no se puede restaurar. La razón es la siguiente: «<i>%{delete_reason}</i>»."
+    deleted_locked_author_notice_html: "Un moderador ha borrado este script y ya no es visible para el resto de usuarios. La razón es la siguiente: «<i>%{delete_reason}</i>»."
+    deleted_author_notice: "Se ha borrado este script y ya no es visible para el resto de usuarios. Puedes restaurarlo desde la pestaña de borrado."
     version_notice_html: "Versión del día %{date}. Echa un vistazo a %{latest_version_link}."
     version_notice_latest_version_link: "la versión más reciente"
     reported_notice: "Se ha informado de que «%{script_name}» incumple las normas de la comunidad y el script está pendiente de que lo revise un moderador. "
@@ -58,9 +61,17 @@ es:
     delete_update_behaviour_1: "Dejarlo tal cual."
     delete_update_behaviour_2: "La próxima vez que actualicen se les proporcionará un script en blanco. Útil cuando el script tiene efectos negativos en los sitios en los que normalmente funciona."
     delete_permanently_heading: "Borrado permanente"
+    delete_permanently_explanation_html: >-
+        <p>Borrar de forma permanente tu script hará que se elimine todo el código
+        e información relacionada, exceptuando conversaciones del foro y el registro
+        con las acciones de moderación.</p> <p>Tu script se borrará pasados siete
+        (7) días desde la fecha de petición de borrado. Si te arrepientes, puedes
+        cancelar el borrado en el transcurso de esos siete días. Si no lo haces, nadie,
+        ni siquiera los moderadores, podrá restaurar tu script.</p>
     delete_permanently_confirm: "¿Seguro que quieres borrar permanentemente el script?"
     delete_permanently_submit: "Solicitar borrado permanente"
     delete_permanently_immediate_submit: "Borrar de forma permanente"
+    delete_permanently_notice: "Se ha registrado la solicitud de borrado permanente, por lo que el script se eliminará pasados siete (7) días desde la fecha actual."
     delete_permanently_already_requested: "Solicitaste el borrado permanente el %{datetime}."
     delete_permanently_notice_immediate: "Este script ha sido borrado permanentemente."
     cancel_delete_permanently_submit: "Cancelar solicitud de borrado permanente"
@@ -79,7 +90,7 @@ es:
       locale_multiple_note: "Ten en cuenta que %{meta_keys_link:puedes utilizar varios idiomas en un mismo script}."
       update_locale: "Actualizar idioma"
       no_moderator_logs: "No se ha tomado ninguna decisión por parte de los moderadores sobre este script."
-      compare_title: "Comparar con otra secuencia de comandos"
+      compare_title: "Comparar con otro script"
       compare_to: "Scripts de usuario en %{site_name} que comparar con (URL)"
       compare_button: "Comparar"
       compare_must_be_local_url: "El script a comparar debe ser la dirección URL de un script en %{site_name}"
@@ -113,11 +124,18 @@ es:
     stats_no_data: "N/D"
     derivatives_title: "%{script_name} - Derivados"
     derivatives_intro: "Estos scripts pueden basarse en el tuyo (o viceversa). Si detectas un uso no autorizado de tu código, denuncia el script creando un nueva conversación en su perfil."
-    derivatives_script_html: "%{script} por %{user}, licencia: %{license} %{diff_link:[Diff]}"
+    derivatives_script_html: "%{script} por %{user}, licencia: %{license} %{diff_link:[Diferencias]}"
     derivatives_exact_copies_heading: "Copias exactas"
+    derivatives_exact_copies_list_intro: "Los siguientes scripts son idénticos al tuyo:"
+    derivatives_exact_copies_item_html: "%{script_link} por %{author_links}, versiones: %{version_list}"
+    derivatives_exact_copes_none: "No hay ningún otro script en %{site_name} que coincida exactamente con el tuyo."
     derivatives_similar_heading: "Scripts similares"
+    derivatives_similar_info: "Comprobamos de forma periódica las últimas versiones de todos los otros scripts alojados en la página para encontrar coincidencias con el tuyo. También lo comprobamos cuando actualizas to script o solicitas una comprobación manual."
+    derivatives_similar_score_info: "La puntuación oscila entre 0.000 (no se parece en nada) a 1.000 (idéntico)."
     derivatives_similar_item: "%{score} %{diff_link:[Diferencias]}: %{script}"
+    derivatives_similar_last_check_html: "La última vez que se hizo la comprobación de coincidencias fue el %{date}."
     derivatives_similar_last_check_soon: "Empezaremos a escanear scripts parecidos a los tuyos en breve."
+    derivatives_similar_last_check_again_soon_html: "La última vez que se hizo la comprobación de coincidencias fue el %{date}. Y lo volveremos a comprobar otra vez en breve."
     derivatives_similar_check_now: "Revisar ahora"
     listing_title_all_sites: "Scripts de usuario para todos los sitios"
     listing_description_all_sites: "Scripts de usuario que añaden características y corrigen errores en todos los sitios"
@@ -151,7 +169,7 @@ es:
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
     import: "Importar scripts"
-    new: "Publicar script que escribiste"
+    new: "Publica tu propio script"
     new_css: "Publica tu propio estilo"
     support_site: "Visitar el sitio de asistencia del autor."
     support_email: "Enviar un correo de asistencia al autor."
@@ -180,7 +198,7 @@ es:
     post_new_script: "Publicar script"
     post_updated_script: "Publicar nueva versión"
     type_1_html: "Script de usuario público; un script de usuario que todos puedan ver y utilizar."
-    type_2_html: "Script de usuario oculto; un script de usuario para un uso (más o menos) privado. Sólo los que tengan el enlace original podrán encontrarlo en %{site_name}."
+    type_2_html: "Script de usuario oculto; un script de usuario para un uso (más o menos) privado; solo se puede encontrar al tener el enlace en %{site_name}."
     type_3_html: "Biblioteca; un script destinado a ser usado por otros scripts mediante <code>@require</code> y que no puede instalarse directamente."
     override_warning_checkbox_label: "¿Guardar de todas formas?"
     warning_version_not_incremented_html: "Has actualizado el código pero no has cambiado el número de <code>@version</code>. Puede que los que hayan instalado tu script no reciban versiones nuevas."
@@ -192,7 +210,7 @@ es:
     warning_potentially_minified_html: "Tu script parece contener código compactado (miniaturizado). Si estás usando una biblioteca miniaturizada, por favor, cárgala desde %{allowed_requires_link} con <code>@require</code>. Los scripts con código miniaturizado se terminarán eliminando."
     warning_automatic_sensitive_html: "Tu script es para %{sensitive_domains} y por tanto se marcará como contenido para adultos."
     warning_potentially_minified_allowed_requires_link: "uno de estos sitios"
-    warning_code_previously_posted_html: "Este código se publicó anteriormente en %{script_links}. Los scripts que son reenviados por otros que no sean el autor original están sujetos a la eliminación por parte de los moderadores."
+    warning_code_previously_posted_html: "Ya hay otra copia de este código publicada en %{script_links}. Los moderadores borrarán cualquier script duplicado que sea publicado por todo aquel que no sea el autor original."
     additional_info_locale_prompt: "(Elige una configuración regional)"
     additional_info_add_localized: "Añadir información regional adicional"
     additional_info_locale_repeated: "Proporciona una sola información adicional para el idioma '%{locale_code}'."
@@ -212,7 +230,7 @@ es:
     additional_info_default_sync_html: "Información adicional por defecto (el idioma coincide con <code>@name</code>)"
     additional_info_localized_sync_html: "Información adicional traducida (el idioma coincide con <code>@name:XX</code>)"
     sync_url_placeholder: "(URL)"
-    screenshots_explanation: "Un máximo de %{number} imágenes en formato PNG, GIF o JPEG, menores de %{size} cada una."
+    screenshots_explanation: "Hay un tope de subida de %{number} imágenes en formato PNG, GIF o JPEG; cada una de ellas puede llegar a %{size}."
     screenshots_add: "Añadir:"
     screenshots_remove: "Eliminar"
     replacement_script_explanation: "(Opcional) Elige un nuevo script que sustituya al actual. Los usuarios que actualicen serán redirigidos a este script. Introduce la dirección URL del script sustituto:"
@@ -290,7 +308,7 @@ es:
       form_title: "Invitar a otros autores"
       explanation: "Puedes añadir otros usuarios de Greasy Fork como autores de este script. Tendrán los mismos privilegios que tú."
       invited_user_url_label: "Usuario a invitar"
-      invited_user_placeholder: "URL del perfil de usuario en %{site_name}"
+      invited_user_placeholder: "Dirección URL del perfil de usuario en %{site_name}"
       submit: "Enviar invitación"
       invalid_user_url: "La dirección URL del usuario a invitar no es correcta."
       already_author: "El usuario que especificaste ya es un autor de este script."
@@ -562,13 +580,24 @@ es:
     notifications:
       discussion_defaults:
         title: Notificaciones del foro
+        new_discussion: Suscribirte de forma predeterminada a toda conversación que empieces
+        new_comment: Suscribirte de forma predeterminada a toda conversación en la que comentes
+      conversation_defaults:
+        title: Notificaciones de conversación
+        starter: Suscribirte de forma predeterminada a toda conversación que empieces
+        receiver: Suscribirte de forma predeterminada a cualquier conversación en la que participes pero que no hayas empezado
+      save_button: Actualizar ajustes de notificaciones
+      title: Notificaciones
+      current_discussion_subscriptions:
+        one: Desuscribirte de %{discussions_link:%{count} conversación} a la que estás suscrito
+        other: Desuscribirte de %{discussions_link:%{count} conversaciones} a las que estás suscrito
       save_success: Se han actualizado tus preferencias de notificaciones
   help:
     sections:
       usage: Uso
       development: Desarrollo
       miscellaneous: Otras cosas
-    open_source: "%{site_name} es de codigo abierto (licensiado por GPLv3). Puede %{github_link: ver su codigo en GitHub}."
+    open_source: "%{site_name} es código abierto (con licencia GPLv3). Puedes ver %{github_link:su código fuente en GitHub}."
     installing_user_scripts:
       title: 'Aprender a instalar scripts de usuario'
     installing_user_styles:
@@ -582,7 +611,7 @@ es:
       description_localized_html: "La descripción del script en otro idioma, donde XX es un <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">código de dos letras ISO 639-1</a> e YY es un <a href=\"https://www.iso.org/obp/ui/#search\">código de pais ISO 3166</a> totalmente opcional. Esta clave tiene precedencia sobre <code>@description</code> cuando el usuario está viendo la página en ese idioma."
       namespace_html: "Los gestores de scripts utilizan la combinación entre <code>@namespace</code> y <code>@name</code> para ver si el script ya está instalado. Este campo es obligatorio para %{site_name} y te avisaremos si cambia durante alguna actualización."
       version_html: "Identificador para una versión específica de un script en <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">el formato de versionado de Mozilla</a>. La versión se muestra en una página de información del script. %{site_name} necesita este campo y te avisará si lo cambias a una versión menor o si directamente no lo actualizas cuando cambias el código del script."
-      include_html: "Describe en qué paginas va a funcionar tu script. La lista se procesará y se mostrará en la página de información, y se utilizará para categorizarlo. Cada script debe de tener al menos una clave <code>@match</code> o <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Puedes leer más cosas sobre el formato aquí.</a>"
+      include_html: "Describe en qué páginas va a funcionar tu script. La lista se procesará y se mostrará en la página de información, y se utilizará para categorizarlo. Cada script debe de tener al menos una clave <code>@match</code> o <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Puedes leer más cosas sobre el formato aquí.</a>"
       require_html: "Incluye JavaScript externo en un script. Ver las %{external_script_link}."
       require_external_script_link_text: "reglas para código que incluye scripts externos"
       updateURL: "Describe desde dónde los gestores de scripts deberían conseguir las actualizaciones. %{site_name} quitará este tipo de claves para hacer que cualquier script instalado desde %{site_name} se actualice única y exclusivamente desde aquí, %{site_name}."
@@ -594,12 +623,12 @@ es:
       incompatible_html: "Marca este script como incompatible con un navegador. La información de compatibilidad se mostrará en otra página del script. Es posible incluir comentarios adicionales usando el formato <code>@incompatible firefox Dejó de funcionar en Firefox 23</code>. Los navegadores reconocidos son: %{browsers}."
     writing_user_scripts:
       title: "Cómo escribir scripts de usuario"
-      content_html: "<p>Para escribir scripts de usuario es necesario saber JavaScript. Los <a href=\"http://wiki.greasespot.net/Tutorials\">tutoriales en GreaseSpot Wiki</a> deberían ser buen punto de partida para ver como funciona JavaScript en general y su relación con los scripts de usuario en particular. Ver el código de los demás, inspeccionando como funcionan por dentro sus scripts, puede ser educativo y divertido. Puede que te interesen las %{code_rules_link} y las %{meta_keys_link}. Si necesitas ayuda creando tu script puedes %{ask_in_forum_link}.</p><p>Para publicarlo en %{site_name} necesitarás tener una cuenta. Una vez estés en tu %{user_page_link} sigue el enlace llamado «%{post_new_script_link}», y listo.</p>"
+      content_html: "<p>Para escribir scripts de usuario es necesario saber JavaScript. Las <a href=\"http://wiki.greasespot.net/Tutorials\">guías en GreaseSpot Wiki</a> (en inglés) deberían ser buen punto de partida para ver como funciona JavaScript en general y su relación con los scripts de usuario en particular. Ver el código de los demás, inspeccionando como funcionan por dentro sus scripts, puede ser educativo y divertido. Puede que te interesen las %{code_rules_link} y las %{meta_keys_link}. Si necesitas ayuda creando tu script puedes %{ask_in_forum_link}.</p><p>Para publicarlo en %{site_name} necesitarás tener una cuenta. Una vez estés en tu %{user_page_link} sigue el enlace llamado «%{post_new_script_link}», y listo.</p>"
       ask_in_forum_link_text: 'preguntar en el foro'
       user_page_link_text: 'página de usuario'
       post_new_script_link_text: 'publicar un nuevo script'
     code_rules:
-      title: "Reglas de %{site_name} para scripts publicados"
+      title: "Normas de %{site_name} para scripts publicados"
       content_html: >
           <p>A continuación se enumeran los requisitos necesarios para que un script
           aparezca en %{site_name}. Su objetivo es que hagan de %{site_name} un sitio
@@ -613,9 +642,9 @@ es:
           <li>Un script tiene que tener una razón de ser, por ejemplo: un script que
           sólo dirige al usuario a otra página Web podría ser un simple enlace.</li>
 
-          <li>Los scripts no pueden obligar a los usuario a realizar actividades;
-          como hacer pagos, suscribirse a sitios o hacer «me gusta» en una página
-          para que empiecen a funcionar.</li>
+          <li>Los scripts no pueden obligar a un usuario a realizar actividades; como
+          hacer pagos, suscribirse a sitios o hacer «me gusta» en una página para
+          empezar a funcionar.</li>
 
           <li>Los scripts que proporcionen dinero al autor (seguimiento o trastreo,
           anuncios, criptomonedas, y otros) no están prohibidos, pero deberán describir
@@ -666,6 +695,43 @@ es:
       adult_content_rule_html: "<li>Los scripts con contenido para adultos (o que funcionen en sitios con este tipo de contenido restringido) deben marcarse para que los usuarios puedan decidir si quieren verlos o no.</li>"
     external_scripts:
       title: "Política de %{site_name} sobre scripts externos"
+      content_html: >
+          <p>Los scripts de usuario tienen la capacidad técnica de cargar y ejecutar
+          otros scripts. La clave de metadatos %{require_doc_link:<code>@require</code>}
+          es la forma más directa, pero los scripts también pueden usar otros métodos,
+          como una llamada <code>XmlHttpRequest</code> para descargar un script y
+          luego inyectarlo en el DOM.</p> <p>Aunque es una característica útil (y
+          la mayoría de los autores de scripts la usan para propósitos legítimos)
+          también se puede usar de forma maliciosa. Uno de principios centrales de
+          %{site_name} es que el usuario tiene que poder inspeccionar el código de
+          un script. Los scripts externos pueden subvertir esta regla de varias formas:
+          el código puede alterarse sin dejar rastro en el registro de cambios, distintas
+          personas pueden recibir código diferente y pueden usarse para ocultar código
+          malicioso en medio de bibliotecas comunes. Incluso cuando alguien verifica
+          que el script que está viendo es legítimo, eso no asegura que lo sea en
+          el pasado o en el futuro.</p> <p>Para permitir que los autores de scripts
+          continúen usando scripts externos, %{site_name} ha implementado una lista
+          permisiva de patrones con las direcciones URLs que sí se pueden incluir
+          en tu script. Esta lista consiste en ubicaciones que:</p> <ul>
+
+          <li>Sean públicas.</li>
+
+          <li>Sus contenidos no cambien a menudo.</li>
+
+          <li>Tiendan a ser útiles para grupos grandes de autores de scripts.</li>
+
+          </ul> <p>La lista actual es la siguiente:</p> %{allowed_require_list} <p>Si
+          intentas publicar un script que use un <code>@require</code> que no esté
+          en la lista no podrás subirlo.</p> <p>Si el script que quieres incluir es
+          una biblioteca JavaScript (por ejemplo jQuery o YUI), intenta encontrarla
+          en uno de los sitios listados arriba. En particular %{cdnjs_link:cdnjs}
+          y {jsdelivr_link:jsDelivr} tienen disponible un amplio catálogo de bibliotecas
+          comunes.</p> <p>Si el script que intentas incluir no está disponible en
+          ninguno de los sitios anteriores puedes %{contact_link:contactar con nosotros}
+          e intentaremos añadirlo a la lista (o incluso alojarlo nosotros mismos).</p>
+          <p>Si tú eres el creador del script a incluir también puedes subirlo como
+          un script aparte en %{site_name} al configurarlo como tipo «biblioteca»,
+          así podrás enlazarlo en tu script normal.</p>
       test_url:
         label: Probar una dirección URL
         result_ok: La dirección URL es correcta
@@ -776,13 +842,37 @@ es:
     item_user_html: "Usuario: %{user_link}"
   notifications:
     consecutive_bad_ratings:
-      one: "%{script_names} ha recibido malas puntuaciones consecutivas. Revise su guión y responda a las inquietudes planteadas en las puntuaciones."
-      other: "%{script_names} han recibido malas puntuaciones consecutivas. Revise sus guiones y responda a las inquietudes planteadas en las puntuaciones."
+      one: "«%{script_names}» ha recibido múltiples opiniones «malas» seguidas. Échale un vistazo a los comentarios, arregla los posibles problemas y responde en consonancia."
+      other: "«%{script_names}» han recibido múltiples opiniones «malas» seguidas. Échale un vistazo a los comentarios, arregla los posibles problemas y responde en consonancia."
   reports:
-    report_filed: "Tu reporte será revisado por un moderador."
+    report_filed: "Pendiente de que lo revise un moderador. "
     new_report_title:
-      user: "Reportar %{user}"
-      comment: "Reportar un comentario por %{user}"
+      user: "Denunciar a %{user}"
+      comment: "Denunciar un comentario de %{user}"
+    new_report_notes_html: >
+        <p>Antes de denunciar ten en cuenta que:</p> <ul>
+
+        <li>Un moderador revisará tu denuncia y actuará en consonancia.</li>
+
+        <li>Tener desavenencias o no estar de acuerdo con las opiniones de los demás
+        no es motivo de denuncia.</li>
+
+        <li>Abusar de la funcionalidad de denuncia, o utilizarla sin ton ni son puede
+        hacer que te juegues <i>tu cuenta</i>.</li>
+
+        </ul>
+    new_user_report_notes_html: >
+        <p>Antes de denunciar ten en cuenta que:</p> <ul>
+
+        <li>Si estás denunciando al usuario basándote en el contenido de un script
+        o comentario, denuncia dicho script o comentario en su lugar.</li>
+
+        <li>Un moderador revisará tu denuncia y actuará en consonancia.</li>
+
+        <li>Abusar de la funcionalidad de denuncia, o utilizarla sin ton ni son puede
+        hacer que te juegues <i>tu cuenta</i>.</li>
+
+        </ul>
     reason:
       spam: "Spam"
       abuse: "Abusos, perjuicios o discurso del odio"
@@ -854,9 +944,16 @@ es:
         replied_html: "Ha respondido a una crítica de <i>%{script}</i>"
       script_question:
         posted_html: "Ha publicado un comentario o pregunta sobre <i>%{script}</i>"
-    subscribe: Seguir conversación
+        replied_html: "Ha respondido a un comentario o pregunta sobre <i>%{script}</i>"
+      discussion:
+        posted_html: "Nueva conversación: <i>%{title}</i>"
+        replied_html: "Han respondido a una conversación: <i>%{title}</i>"
+    review_title: "Crítica de %{script_name}"
+    question_title: "Pregunta sobre %{script_name}"
+    subscribe: Suscribirse a la conversación
     unsubscribe: Dejar de seguir
     notify: Avisarme de futuros mensajes
+    notifying_on_script: Se te notificará de cualquier respuesta tal y como se establece en tus %{notifications_link:ajustes de notificación}.
     categories:
       greasyfork:
         name: Comentarios y opiniones sobre Greasy Fork
@@ -968,7 +1065,7 @@ es:
       script_update_not_utf8: "debe ser texto en formato UTF-8"
       script_disallowed_require: "usa un script externo no aprobado: %{code}"
       script_rate_limit: "Has subido demasiados scripts seguidos, prueba más tarde."
-      missing_include_or_match: "es necesario incluir al menus una clave de tipo @match o @include"
+      missing_include_or_match: "es necesario incluir al menos una clave de tipo @match o @include"
   opensearch:
     short_name: "Buscar en %{site_name}"
     description: "Busca scripts de usuario en %{site_name}."
@@ -977,30 +1074,61 @@ es:
   mailers:
     script_report:
       report_created_offender:
-        subject: "Tu script %{script_name} en %{site_name} ha sido reportado"
-        reason_unauthorized: "Tu script %{script_name} en %{site_name} ha sido reportado como copia o modificación de un script de forma no autorizada."
-        reason_malware: "Tu script %{script_name} en %{site_name} ha sido reportado como malware."
-        reason_spam: "Tu script %{script_name} en %{site_name} ha sido reportado como spam."
-        reason_other: "Su script %{script_name} ha sido reportado como violador de las normas de %{site_name}."
-        action: "Puede revisar este informe en %{report_url} y enviar una refutación. Si no envía una refutación, los moderadores pueden eliminar su secuencia de comando. Si tiene alguna pregunta, visite https://greasyfork.org/forum/."
+        subject: "Alguien ha denunciado tu script %{script_name} en %{site_name}"
+        reason_unauthorized: "Han denunciado tu script «%{script_name}» en %{site_name} por ser una copia o modificación no autorizada de otro script."
+        reason_malware: "Han denunciado tu script «%{script_name}» en %{site_name} por incluir malware, virus o software malicioso."
+        reason_spam: "Han denunciado tu script «%{script_name}» en %{site_name} por incluir spam o material publicitario no deseado."
+        reason_other: "Han denunciado tu script «%{script_name}» por incumplir las normas de %{site_name}."
+        action: "Puedes revisar la denuncia en %{report_url} y enviar una justificación o refutarla. Si no respondes a tiempo los moderadores podrían borrarlo en el futuro. Si tienes dudas puedes visitar el foro: https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Tu script %{script_name} en %{site_name} ha sido eliminado."
-        text: "Tu script %{script_name} en %{site_name} ha sido eliminado por un moderador. Puede revisar el reporte en %{report_url}. Si tiene alguna pregunta, por favor visire https://greasyfork.org/forum/ ."
+        text: "Un moderador ha confirmado una denuncia y tu script %{script_name} en %{site_name} ha sido eliminado. Puedes ver la denuncia en %{report_url}. Si tienes dudas puedes escribirnos en https://greasyfork.org/forum/."
       report_dismissed_offender:
-        subject: "Un reporte en su script %{script_name} en %{site_name} ha sido ignorado"
-        text: "Un reporte en tu script %{script_name} en %{site_name} ha sido ignorado por un moderador. Tu script seguirá activo. Puede ver el reporte en %{report_url}. Si tiene alguna pregunta, por favor visite https://greasyfork.org/forum/ ."
+        subject: "Tu script %{script_name} no parece incumplir las normas de %{site_name}"
+        text: "Se ha revisado una denuncia en %{site_name} y tu script %{script_name} no parece incumplir las normas. Tu script seguirá activo. Puedes ver la denuncia en %{report_url}. Si tienes dudas puedes escribirnos en https://greasyfork.org/forum/."
       report_rebutted_reporter:
         subject: "Alguien ha contestado a tu denuncia de %{script_name} en %{site_name}"
         text: "Alguien ha contestado a tu denuncia de %{script_name} en %{site_name}. Puedes ver la respuesta en %{report_url}. Un moderador revisará el problema y verá si existe o no. Si tienes dudas puedes escribirnos en https://greasyfork.org/forum/."
       report_upheld_reporter:
-        subject: "Tu reporte de %{script_name} en %{site_name} ha sido confirmada"
-        text: "Tu reporte de %{script_name} en %{site_name} ha sido confirmado por un moderador y el script ha sido eliminado. Puede ver el reporte en %{report_url}. Si tiene alguna pregunta, por favor visite https://greasyfork.org/forum/ ."
+        subject: "Se ha confirmado tu denuncia de %{script_name} en %{site_name}"
+        text: "Un moderador ha confirmado tu denuncia de %{script_name} en %{site_name} y el script ha sido eliminado. Puedes ver la denuncia en %{report_url}. Si tienes dudas puedes escribirnos en https://greasyfork.org/forum/."
       report_script_deleted_reported:
-        subject: "Se ha cerrado el informe de %{script_name} en %{site_name}"
-        text: "Tu reporte de %{script_name} en %{site_name} ha sido cerrado porque ha sido eliminado por su autor. Puede ver su reporte en %{report_url}. Si tiene alguna pregunta, por favor visite https://greasyfork.org/forum/ ."
+        subject: "Se ha cerrado la denuncia de %{script_name} en %{site_name}"
+        text: "Se ha archivado tu denuncia de %{script_name} en %{site_name} porque el autor ha borrado el script. Puedes ver la denuncia en %{report_url}. Si tienes dudas puedes escribirnos en https://greasyfork.org/forum/."
       report_dismissed_reporter:
         subject: "Se ha revisado tu denuncia en %{site_name} y %{script_name} no parece incumplir las normas."
-        text: "Tu reporte en %{script_name} en %{site_name} ha sido ignorado por u moderador y el script que ha reportado seguirá activo. Puede ver su reporte en %{report_url}. Si tiene alguna pregunta, por favor visite https://greasyfork.org/forum/."
+        text: "Se ha revisado tu denuncia en %{site_name} y %{script_name} no parece incumplir las normas, por lo que el script seguirá activo. Puedes ver la denuncia en %{report_url}. Si tienes dudas puedes escribirnos en https://greasyfork.org/forum/."
+    consecutive_bad_ratings:
+      notify:
+        subject: "Tu script %{script_name} en %{site_name} ha recibido múltiples críticas negativas."
+        text: |
+            Tu script «%{script_name}» en %{site_name} (%{script_url}) ha recibido múltiples opiniones «malas» seguidas.
+
+            Las opiniones recibidas en %{feedback_url} pueden indicar un problema con tu script, un fallo temporal, o un cambio en el sitio en sí. Échale un vistazo a los comentarios, arregla los posibles problemas y responde en consonancia.
+
+            %{site_name} intenta mantener un grado alto de calidad en los scripts listados de forma pública. Para lidiar con scripts que estén rotos o abandonados, aquellos que reciban múltiples opiniones negativas de forma consecutiva se ocultarán. Para evitar que tu script sea invisible sube una versión actualizada o responde a los comentarios antes del día %{delete_date}. Si no haces nada por aquel entonces, seguirás teniendo oportunidad en el futuro para volverlo a hacer público en el futuro.
+    script_comment:
+      subject: "Alguien ha comentado en %{script_name} en %{site_name}."
+      text: |
+          «%{commenter_name}» ha comentado tu script «%{script_name}» en %{site_name} (%{script_url}):
+
+          ---
+          %{comment_text}
+          ---
+
+          Puedes ver y responder al comentario en %{comment_url}. Cambia tus preferencias sobre notificaciones en %{notification_preferences_url}.
+    subscribed_discussion:
+      subject: "La conversación «%{discussion_title}» en %{site_name} ha recibido un comentario."
+      text: |
+          La conversación «%{discussion_title}» en %{site_name} ha recibido un comentario de «%{commenter_name}»:
+
+          ---
+          %{comment_text}
+          ---
+
+          Puedes ver y responder al comentario en %{comment_url}.
+
+          Has recibido esta notificación porque te has suscrito a esta conversación. Visita %{conversation_url} para desuscribirte, o cambia tus preferencias sobre notificaciones en %{notification_preferences_url}.
     new_conversation:
       subject: "Alguien ha empezado una conversación nueva en %{site_name}"
       text: |

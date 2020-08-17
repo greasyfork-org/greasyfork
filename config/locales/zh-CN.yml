@@ -559,8 +559,15 @@ zh-CN:
         title: 论坛通知
         new_discussion: 默认订阅我发起的讨论帖
         new_comment: 默认订阅我回复过的讨论帖
+      conversation_defaults:
+        title: 私信通知
+        starter: 默认订阅你发起的私信
+        receiver: 默认订阅发送给你的私信
       save_button: 更新通知设置
       title: 通知
+      current_discussion_subscriptions:
+        other: 取消订阅你之前所订阅的 %{discussions_link:%{count} 条讨论}
+      save_success: 您的通知设定已更新。
   help:
     sections:
       usage: 使用
@@ -853,20 +860,20 @@ zh-CN:
     mark_all_read: 全部标为已读
   conversations:
     user_input_note: 输入用户名或者用户页面的URL。
-    new_title: 创建新的对话
-    new_link: 创建新的对话
-    new_button: 创建对话
+    new_title: 发送一条新的信息
+    new_link: 发送一条新的信息
+    new_button: 发送信息
     title_html:
-      other: 和%{users}的对话
+      other: 与 %{users} 的私信交流
     send_message: 发送消息
-    conversation_list_title: 对话
+    conversation_list_title: 私信
     conversation_link:
-      other: 和%{users}的对话。
+      other: 与%{users}的私信交流。
     conversation_info_html: 最新消息：%{user}发送于%{date}
-    no_conversations: 暂时没有对话
+    no_conversations: 暂时没有收到或发送信息。
     recent:
-      title: 最近对话
-      more: 查看所有对话
+      title: 近期私信
+      more: 查阅所有私信
   screenshots:
     requirements: "最多上传 %{number} 张 PNG、GIF 、 JPEG 、或 WEBP 图片，且每张图片不得超过 %{size}。"
   common:
@@ -993,7 +1000,35 @@ zh-CN:
           您可以在%{comment_url} 查看并回复该评论，或者在%{notification_preferences_url}调整通知设置。
     subscribed_discussion:
       subject: "站点%{site_name}的讨论%{discussion_title}收到了一条评论。"
+      text: |
+          %{site_name} 上的讨论 '%{discussion_title}' 收到了一条来自 '%{commenter_name}' 的回复：
+
+          ---
+          %{comment_text}
+          ---
+
+          你可以在 %{comment_url} 查看并回复这条信息。
+
+          您收到的这条通知基于这条讨论的订阅设定。你可以访问 %{discussion_url} 来取消订阅，或访问 %{notification_preferences_url} 来管理通知设定。
     new_conversation:
-      subject: "关于站点%{site_name}的新对话"
+      subject: "在 %{site_name}收到了一条信息"
+      text: |
+          %{site_name} 的用户 '%{user}' 对您发送了一条信息。
+
+          ---
+          %{message_text}
+          ---
+
+          您可以访问 %{conversation_url} 来查看或回复对方。
+
+          您收到的这条通知基于私信通知的订阅设定。你可以访问 %{conversation_url} 来取消订阅，或访问 %{notification_preferences_url} 来管理通知设定。
     new_message:
       subject: "关于站点%{site_name}的新消息"
+      text: |
+          %{site_name} 上的用户 '%{user}' 对您发送了一条信息。
+
+          ---
+          %{message_text}
+          ---
+
+          您收到的这条通知基于私信通知的订阅设定。你可以访问 %{conversation_url} 来取消订阅，或访问 %{notification_preferences_url} 来管理通知设定。
