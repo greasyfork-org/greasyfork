@@ -172,6 +172,7 @@ class UsersController < ApplicationController
     if params[:delete_comments] == '1'
       user.discussions.not_deleted.each { |comment| comment.soft_destroy!(by_user: current_user) }
       user.comments.not_deleted.each { |comment| comment.soft_destroy!(by_user: current_user) }
+      Report.unresolved.where(item: user.comments).each { |report| report.uphold!(moderator: current_user) }
     end
     redirect_to user
   end

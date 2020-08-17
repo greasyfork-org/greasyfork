@@ -29,7 +29,7 @@ class Report < ApplicationRecord
       item.ban!(moderator: moderator, reason: "In response to report ##{id}", ban_related: true)
     when Comment
       item.poster.ban!(moderator: moderator, reason: "In response to report ##{id}", ban_related: true) if variant == 'ban'
-      item.destroy!
+      item.soft_destroy!(by_user: moderator) unless soft_deleted?
     else
       raise "Unknown report item #{item}"
     end
