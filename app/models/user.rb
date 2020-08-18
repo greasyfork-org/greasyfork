@@ -179,11 +179,11 @@ class User < ApplicationRecord
   end
 
   def update_trusted_report!
-    resolved_count = script_reports.resolved.count
+    resolved_count = script_reports.resolved.count + reports_as_reporter.resolved.count
     if resolved_count < 3
       update(trusted_reports: false)
     else
-      upheld_count = script_reports.upheld.count
+      upheld_count = script_reports.upheld.count + reports_as_reporter.resolved.count
       update(trusted_reports: (upheld_count.to_f / resolved_count) >= 0.75)
     end
   end

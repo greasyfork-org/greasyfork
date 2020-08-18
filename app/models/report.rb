@@ -13,6 +13,8 @@ class Report < ApplicationRecord
   RESULT_UPHELD = 'upheld'.freeze
 
   scope :unresolved, -> { where(result: nil) }
+  scope :resolved, -> { where.not(result: nil) }
+  scope :upheld, -> { where(result: RESULT_UPHELD) }
 
   belongs_to :item, polymorphic: true
   belongs_to :reporter, class_name: 'User', inverse_of: :reports_as_reporter, optional: true
@@ -23,6 +25,7 @@ class Report < ApplicationRecord
   def dismiss!
     update!(result: RESULT_DISMISSED)
     item.update!(review_reason: nil) if item.is_a?(Discussion)
+    reporter&.update_trusted_report!
   end
 
   def uphold!(moderator:, variant: nil)
@@ -36,6 +39,7 @@ class Report < ApplicationRecord
       raise "Unknown report item #{item}"
     end
     update!(result: RESULT_UPHELD)
+    reporter&.update_trusted_report!
   end
 
   def reason_text
