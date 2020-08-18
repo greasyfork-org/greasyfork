@@ -1,5 +1,5 @@
 # config valid only for current version of Capistrano
-lock '3.13.0'
+lock '3.14.1'
 
 set :application, 'greasyfork'
 set :repo_url, 'https://github.com/JasonBarnabe/greasyfork.git'
