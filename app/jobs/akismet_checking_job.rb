@@ -20,6 +20,6 @@ class AkismetCheckingJob < ApplicationJob
     discussion.akismet_blatant = is_blatant
     discussion.review_reason = 'akismet' if is_spam
     discussion.save!
-    Report.create!(item: discussion, auto_reporter: 'akismet', reason: Report::REASON_SPAM) if is_spam
+    Report.create!(item: discussion.comments.first, auto_reporter: 'akismet', reason: Report::REASON_SPAM) if is_spam
   end
 end
