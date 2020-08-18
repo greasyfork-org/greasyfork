@@ -24,7 +24,7 @@ class Report < ApplicationRecord
 
   def dismiss!
     update!(result: RESULT_DISMISSED)
-    item.update!(review_reason: nil) if item.is_a?(Discussion)
+    item.update!(review_reason: nil) if item.is_a?(Comment)
     reporter&.update_trusted_report!
   end
 
