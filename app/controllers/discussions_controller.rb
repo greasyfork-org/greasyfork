@@ -13,7 +13,7 @@ class DiscussionsController < ApplicationController
 
   def index
     @discussions = Discussion
-                   .not_deleted
+                   .visible
                    .includes(:poster, :script, :discussion_category)
                    .order(stat_last_reply_date: :desc)
     case script_subset
@@ -36,7 +36,8 @@ class DiscussionsController < ApplicationController
   end
 
   def show
-    @discussion = discussion_scope.find(params[:id])
+    # Allow mods and the poster to see discussions under review.
+    @discussion = discussion_scope(permissive: true).find(params[:id])
 
     if @discussion.script
       return if handle_publicly_deleted(@discussion.script)
@@ -151,12 +152,17 @@ class DiscussionsController < ApplicationController
 
   private
 
-  def discussion_scope
-    if params[:script_id]
-      @script = Script.find(params[:script_id])
-      @script.discussions.not_deleted
+  def discussion_scope(permissive: false)
+    scope = if params[:script_id]
+              @script = Script.find(params[:script_id])
+              @script.discussions
+            else
+              Discussion
+            end
+    if permissive && current_user
+      scope.permissive_visible(current_user)
     else
-      Discussion.not_deleted
+      scope.visible
     end
   end
 

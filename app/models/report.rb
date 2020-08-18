@@ -15,12 +15,14 @@ class Report < ApplicationRecord
   scope :unresolved, -> { where(result: nil) }
 
   belongs_to :item, polymorphic: true
-  belongs_to :reporter, class_name: 'User', inverse_of: :reports_as_reporter
+  belongs_to :reporter, class_name: 'User', inverse_of: :reports_as_reporter, optional: true
 
   validates :reason, inclusion: { in: [REASON_SPAM, REASON_ABUSE, REASON_ILLEGAL] }, presence: true
+  validates :reporter, presence: true, if: -> { auto_reporter.nil? }
 
   def dismiss!
     update!(result: RESULT_DISMISSED)
+    item.update!(review_reason: nil) if item.is_a?(Discussion)
   end
 
   def uphold!(moderator:, variant: nil)

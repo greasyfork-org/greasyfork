@@ -16,6 +16,10 @@ class AkismetCheckingJob < ApplicationJob
                                           languages: Rails.application.config.available_locales.keys,
                                           env: {},
                                         })
-    discussion.update(akismet_spam: is_spam, akismet_blatant: is_blatant)
+    discussion.akismet_spam = is_spam
+    discussion.akismet_blatant = is_blatant
+    discussion.review_reason = 'akismet' if is_spam
+    discussion.save!
+    Report.create!(item: discussion, auto_reporter: 'akismet', reason: Report::REASON_SPAM) if is_spam
   end
 end

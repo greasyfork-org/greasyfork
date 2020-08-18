@@ -38,6 +38,10 @@
   <% end %>
 </div>
 
+<% if @discussion.review_reason %>
+  <p id="reported-note"><%= t('discussions.pending_moderator_review') %></p>
+<% end %>
+
 <% if @comment&.errors&.any? %>
   <div class="alert">
     <p><%=t('common.error_preamble')%></p>

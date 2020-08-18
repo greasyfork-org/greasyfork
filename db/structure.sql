@@ -1085,7 +1085,7 @@ CREATE TABLE `conversation_subscriptions` (
   KEY `index_conversation_subscriptions_on_user_id` (`user_id`),
   CONSTRAINT `fk_rails_40481fba1d` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_rails_b595b1fca2` FOREIGN KEY (`conversation_id`) REFERENCES `conversations` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `conversations`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1239,6 +1239,7 @@ CREATE TABLE `discussions` (
   `deleted_by_user_id` int(11) DEFAULT NULL,
   `akismet_spam` tinyint(1) DEFAULT NULL,
   `akismet_blatant` tinyint(1) DEFAULT NULL,
+  `review_reason` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_discussions_on_poster_id` (`poster_id`),
   KEY `fk_rails_a52537835c` (`script_id`),
@@ -1396,8 +1397,9 @@ CREATE TABLE `reports` (
   `item_id` bigint(20) NOT NULL,
   `reason` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   `explanation` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `reporter_id` int(11) NOT NULL,
+  `reporter_id` int(11) DEFAULT NULL,
   `result` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `auto_reporter` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_reports_on_item_type_and_item_id` (`item_type`,`item_id`),
   KEY `index_reports_on_reporter_id` (`reporter_id`),
@@ -2066,6 +2068,8 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20200814215855'),
 ('20200815014738'),
 ('20200815014922'),
-('20200815020841');
+('20200815020841'),
+('20200818014737'),
+('20200818021213');
 
 

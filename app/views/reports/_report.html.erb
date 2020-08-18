@@ -1,6 +1,6 @@
 <% i = 0 unless defined?(i) %>
 
-<h4 id="open-report-<%= i %>"><%= report_item_link(report) %> has been reported for <%= report.reason_text %> by <%= link_to(report.reporter.name, user_path(report.reporter)) %>.</h4>
+<h4 id="open-report-<%= i %>"><%= report_item_link(report) %> has been reported for <%= report.reason_text %> by <%= report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)) %>.</h4>
 
 <% if report.item.is_a?(Comment) %>
   <div><%= t('common.quote.prefix_html', user: render_user(reported_user(report), reported_user_id(report))) %></div>
@@ -25,14 +25,16 @@
   </blockquote>
 <% end %>
 
-<% reporter_stats = report.reporter.report_stats(ignore_report: report) %>
-<% if reporter_stats.values.any?{ |v| v > 0 } %>
-  <p>
-    <%= link_to(report.reporter.name, user_path(report.reporter)) %> has made
-    <%= reporter_stats[:pending] %> pending <%= 'report'.pluralize(reporter_stats[:pending]) %>,
-    <%= reporter_stats[:dismissed] %> dismissed <%= 'report'.pluralize(reporter_stats[:dismissed]) %>,
-    and <%= reporter_stats[:upheld] %> upheld <%= 'report'.pluralize(reporter_stats[:upheld]) %>.
-  </p>
+<% if report.reporter %>
+  <% reporter_stats = report.reporter.report_stats(ignore_report: report) %>
+  <% if reporter_stats.values.any?{ |v| v > 0 } %>
+    <p>
+      <%= link_to(report.reporter.name, user_path(report.reporter)) %> has made
+      <%= reporter_stats[:pending] %> pending <%= 'report'.pluralize(reporter_stats[:pending]) %>,
+      <%= reporter_stats[:dismissed] %> dismissed <%= 'report'.pluralize(reporter_stats[:dismissed]) %>,
+      and <%= reporter_stats[:upheld] %> upheld <%= 'report'.pluralize(reporter_stats[:upheld]) %>.
+    </p>
+  <% end %>
 <% end %>
 
 <% if reported_user(report) %>
