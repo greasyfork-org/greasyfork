@@ -185,8 +185,8 @@
     <% end %>
 
     <% # show deletions in a separate section if we're going to show any
-    deleted_script_list = @scripts.select{|s| s.deleted?}
-    script_list = @scripts - deleted_script_list %>
+    deleted_script_list = @scripts.select(&:deleted?)
+    script_list = @scripts.where.not(id: deleted_script_list.map(&:id)) %>
     <section id="user-script-list-section">
       <header>
         <h3><%=t('users.script_list')%></h3>
@@ -205,7 +205,7 @@
         </ol>
       <% end %>
 
-      <%= will_paginate @scripts %>
+      <%= will_paginate script_list %>
     </section>
 
     <% if !deleted_script_list.empty? %>
