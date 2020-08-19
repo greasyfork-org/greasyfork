@@ -1,1 +1,3 @@
-<li><%=t('users.list_display_html', user_link: link_to(user.name, user), count: script_counts[user.id] || 0)%></li>
+<li>
+  <%= t('users.list_display_html', user_link: render_user(user, user.id, force_author: script_counts[user.id].present?), count: script_counts[user.id] || 0) %>
+</li>
