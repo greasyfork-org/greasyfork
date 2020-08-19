@@ -1,21 +1,37 @@
 <div id="user-list-option-groups" class="list-option-groups">
 
 	<%= form_tag(users_path, class: 'sidebar-search', method: :get) do %>
-		<input type="hidden" name="sort" value="<%=params[:sort]%>">
-		<input id="user-search-field" type="search" name="q" value="<%=params[:q]%>" placeholder="<%=t('users.search_placeholder')%>"><input class="search-submit" type="submit" value="🔎">
+		<input type="hidden" name="sort" value="<%= params[:sort] %>">
+    <input type="hidden" name="banned" value="<%= params[:banned] %>">
+		<input id="user-search-field" type="search" name="q" value="<%= params[:q] %>" placeholder="<%= t('users.search_placeholder') %>"><input class="search-submit" type="submit" value="🔎">
 	<% end %>
 
-	<div id="user-list-sort" class="list-option-group"><%=t('scripts.listing_sort_label')%>
+	<div id="user-list-sort" class="list-option-group"><%= t('scripts.listing_sort_label') %>
 		<ul>
-			<%=user_list_link(t('users.listing_registration_date'), nil)%>
-			<%=user_list_link(t('scripts.listing_sort_name'), 'name')%>
-			<%=user_list_link(t('scripts.listing_sort_daily_installs'), 'daily_installs')%>
-			<%=user_list_link(t('scripts.listing_sort_total_installs'), 'total_installs')%>
-			<%=user_list_link(t('scripts.listing_sort_ratings'), 'ratings')%>
-			<%=user_list_link(t('users.listing_number_of_scripts'), 'scripts')%>
-			<%=user_list_link(t('users.listing_new_scripts'), 'created_script')%>
-			<%=user_list_link(t('users.listing_updated_scripts'), 'updated_script')%>
+			<%= user_list_link(t('users.listing_registration_date'), sort: nil) %>
+			<%= user_list_link(t('scripts.listing_sort_name'), sort: 'name') %>
+			<%= user_list_link(t('scripts.listing_sort_daily_installs'), sort: 'daily_installs') %>
+			<%= user_list_link(t('scripts.listing_sort_total_installs'), sort: 'total_installs') %>
+			<%= user_list_link(t('scripts.listing_sort_ratings'), sort: 'ratings') %>
+			<%= user_list_link(t('users.listing_number_of_scripts'), sort: 'scripts') %>
+			<%= user_list_link(t('users.listing_new_scripts'), sort: 'created_script') %>
+			<%= user_list_link(t('users.listing_updated_scripts'), sort: 'updated_script') %>
 		</ul>
 	</div>
 
+  <div id="user-banned-filter" class="list-option-group">
+    <ul>
+      <%= user_list_link(t('users.listing_banned_filter.all'), banned: nil) %>
+      <%= user_list_link(t('users.listing_banned_filter.banned'), banned: '1') %>
+      <%= user_list_link(t('users.listing_banned_filter.not_banned'), banned: '0') %>
+    </ul>
+  </div>
+
+  <div id="user-author-filter" class="list-option-group">
+    <ul>
+      <%= user_list_link(t('users.listing_author_filter.all'), author: nil) %>
+      <%= user_list_link(t('users.listing_author_filter.script_author'), author: '1') %>
+      <%= user_list_link(t('users.listing_author_filter.not_script_author'), author: '0') %>
+    </ul>
+  </div>
 </div>
