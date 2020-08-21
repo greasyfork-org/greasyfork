@@ -139,7 +139,7 @@ module ScriptListings
     respond_to do |format|
       format.html do
         @by_sites = TopSitesService.get_by_sites(script_subset: script_subset)
-        @by_sites = @by_sites.select { |k, _v| k.present? && k.include?(params[:q]) } if params[:q].present?
+        @by_sites = @by_sites.select { |k, _v| k.present? && k.include?(params[:q].downcase) } if params[:q].present?
         @by_sites = Hash[@by_sites.max_by(200) { |_k, v| v[:installs] }.sort_by { |k, _v| k || '' }]
         render layout: 'application'
       end
