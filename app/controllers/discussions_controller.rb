@@ -149,7 +149,8 @@ class DiscussionsController < ApplicationController
 
     if filter_result.category || filter_result.related_to_me || filter_result.by_user
       now = Time.now
-      DiscussionRead.upsert_all(filter_result.result.pluck(:id).map { |discussion_id| { discussion_id: discussion_id, user_id: current_user.id, read_at: now } })
+      ids = filter_result.result.pluck(:id)
+      DiscussionRead.upsert_all(ids.map { |discussion_id| { discussion_id: discussion_id, user_id: current_user.id, read_at: now } }) if ids.any?
     else
       current_user.update!(discussions_read_since: Time.now)
     end
