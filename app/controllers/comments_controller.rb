@@ -19,9 +19,10 @@ class CommentsController < ApplicationController
       else
         DiscussionSubscription.find_by(user: current_user, discussion: @discussion)&.destroy
       end
-
-      @comment.send_notifications!
     end
+
+    @comment.send_notifications!
+
     redirect_to @comment.path
   rescue ActiveRecord::Rollback
     if @discussion.script
