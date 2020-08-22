@@ -60,12 +60,19 @@ class DiscussionsController < ApplicationController
       end
     end
 
-    @comment = @discussion.comments.build(text_markup: current_user&.preferred_markup)
-    @subscribe = current_user&.subscribe_on_comment || current_user&.subscribed_to?(@discussion)
+    respond_to do |format|
+      format.html do
+        @comment = @discussion.comments.build(text_markup: current_user&.preferred_markup)
+        @subscribe = current_user&.subscribe_on_comment || current_user&.subscribed_to?(@discussion)
 
-    record_view(@discussion) if current_user
+        record_view(@discussion) if current_user
 
-    render layout: @script ? 'scripts' : 'application'
+        render layout: @script ? 'scripts' : 'application'
+      end
+      format.all do
+        head :unprocessable_entity
+      end
+    end
   end
 
   def new
