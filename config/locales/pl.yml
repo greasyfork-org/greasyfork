@@ -518,9 +518,9 @@ pl:
     add_external_sign_in_info: "Dodaj metodę logowania się"
     set_up_webhook: "Stwórz nowego webhooka"
     author_email_notification_type:
-      none: "Nie otrzymuj e-maili o nowych dyskusjach w Twoich skryptach"
-      discussion_only: "Otrzymuj maile o nowych dyskusjach na temat twoich skryptów"
-      discussion_and_comment: "Otrzymuj pocztówki elektroniczne o nowych dyskusjach w Twoich skryptach lub kiedy te dyskusję będą miały nowe komentarze."
+      none: "Nie otrzymuj e-maili o nowych dyskusjach na temat twoich skryptów"
+      discussion_only: "Otrzymuj e-maile o nowych dyskusjach na temat twoich skryptów"
+      discussion_and_comment: "Otrzymuj e-maile o nowych dyskusjach na temat twoich skryptów oraz gdy te dyskusje będą miały nowe komentarze."
     list_display_html:
       one: "%{user_link} — %{count} skrypt"
       few: "%{user_link} — %{count} skrypty"
@@ -531,6 +531,14 @@ pl:
     listing_updated_scripts: "Zaktualizowanych skryptów"
     listing_registration_date: "Daty rejestracji"
     listing_title: "Użytkownicy"
+    listing_banned_filter:
+      banned: "Zbanowani"
+      not_banned: "Niezbanowani"
+      all: "Wszyscy"
+    listing_author_filter:
+      script_author: "Autorzy skryptów"
+      not_script_author: "Bez autorów skryptów"
+      all: "Wszyscy"
     search_placeholder: "Szukaj użytkowników"
     locale_prompt: "(wybierz język)"
     show_ads_description: "Wspomóż %{site_name} poprzez zezwolenie na wyświetlanie reklam"
@@ -596,8 +604,18 @@ pl:
         title: Powiadomienia forum
         new_discussion: Domyślnie subskrybuj wszystkie rozpoczęte przez ciebie dyskusje
         new_comment: Domyślnie subskrybuj wszystkie dyskusje, które komentujesz
+      conversation_defaults:
+        title: Powiadomienia o rozmowach
+        starter: Domyślnie subskrybuj wszystkie rozpoczęte przez ciebie rozmowy
+        receiver: Domyślnie subskrybuj wszystkie rozmowy z twoim udziałem, które nie są rozpoczęte przez ciebie
       save_button: Zaktualizuj ustawienia powiadomień
       title: Powiadomienia
+      current_discussion_subscriptions:
+        one: Odsubskrybuj %{discussions_link:%{count} dyskusję}, którą subskrybujesz
+        few: Odsubskrybuj z %{discussions_link:%{count} dyskusji}, które subskrybujesz
+        many: Odsubskrybuj z %{discussions_link:%{count} dyskusji}, które subskrybujesz
+        other: Odsubskrybuj z %{discussions_link:%{count} dyskusji}, które subskrybujesz
+      save_success: Twoje ustawienia powiadomień zostały zaktualizowane
   help:
     sections:
       usage: Używanie
@@ -983,6 +1001,7 @@ pl:
     script_notice: Jeśli chcesz skomentować konkretny skrypt, przejdź do podstrony "Opinie" tego skryptu i rozpocznij dyskusję.
     no_discussions: Nie znaleziono dyskusji.
     mark_all_read: Oznacz wszystkie jako przeczytane
+    pending_moderator_review: Ta dyskusja jest niedostępna dla innych użytkowników, dopóki nie zostanie sprawdzona przez moderatora.
   conversations:
     user_input_note: Wprowadź nazwę użytkownika lub adres URL do jego profilu.
     new_title: Utwórz nową rozmowę
@@ -1131,7 +1150,35 @@ pl:
           Możesz zobaczyć ten komentarz i odpowiedzieć na %{comment_url}. Zarządzaj ustawieniami powiadomień na %{notification_preferences_url}.
     subscribed_discussion:
       subject: "Dyskusja o %{discussion_title} na %{site_name} otrzymała komentarz."
+      text: |
+          Dyskusja o '%{discussion_title}' na %{site_name} została skomentowana przez '%{commenter_name}':
+
+          ---
+          %{comment_text}
+          ---
+
+          Możesz zobaczyć ten komentarz i odpowiedzieć na %{comment_url}.
+
+          Otrzymano to powiadomienie, ponieważ subskrybujesz tę dyskusję. Odwiedź %{discussion_url} by odsubskrybować, lub zarządzaj ustawieniami powiadomień na %{notification_preferences_url}.
     new_conversation:
       subject: "Nowa rozmowa na %{site_name}"
+      text: |
+          Użytkownik '%{user}' na %{site_name} rozpoczął nową konwersację z tobą.
+
+          ---
+          %{message_text}
+          ---
+
+          Możesz zobaczyć tę konwersację i odpowiedzieć na %{conversation_url}.
+
+          Otrzymano to powiadomienie, ponieważ subskrybujesz tę dyskusję. Odwiedź %{conversation_url} by odsubskrybować, lub zarządzaj ustawieniami powiadomień na %{notification_preferences_url}.
     new_message:
       subject: "Nowa wiadomość na %{site_name}"
+      text: |
+          Użytkownik '%{user}' na %{site_name} wysłał ci wiadomość.
+
+          ---
+          %{message_text}
+          ---
+
+          Otrzymano to powiadomienie, ponieważ subskrybujesz tę dyskusję. Odwiedź %{conversation_url} by odsubskrybować, lub zarządzaj ustawieniami powiadomień na %{notification_preferences_url}.
