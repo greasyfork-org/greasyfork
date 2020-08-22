@@ -96,7 +96,7 @@ function markupPreview(p) {
   p.insertBefore(tabs, p.firstChild);
 
   var results = document.createElement("div");
-  results.className = "preview-results";
+  results.className = "preview-results user-content";
   results.style.display = "none";
   p.appendChild(results);
 
