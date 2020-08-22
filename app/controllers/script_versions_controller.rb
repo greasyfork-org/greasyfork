@@ -222,6 +222,8 @@ class ScriptVersionsController < ApplicationController
       else
         ScriptCheckerBanAndDeleteJob.set(wait: 5.minutes).perform_later(@script.id, script_check_results.to_json)
       end
+    elsif params[:script_id].nil?
+      AkismetScriptCheckingJob.perform_later(@script, request.ip, request.user_agent, request.referer)
     end
 
     redirect_to @script

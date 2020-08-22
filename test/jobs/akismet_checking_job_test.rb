@@ -8,7 +8,7 @@ class AkismetCheckingJobTest < ActiveSupport::TestCase
     Akismet.expects(:check).returns([false, false])
 
     assert_no_changes -> { Report.count } do
-      AkismetCheckingJob.perform_now(discussion, '1.1.1.1', 'User agent', nil)
+      AkismetDiscussionCheckingJob.perform_now(discussion, '1.1.1.1', 'User agent', nil)
     end
 
     discussion.reload
@@ -25,7 +25,7 @@ class AkismetCheckingJobTest < ActiveSupport::TestCase
     Akismet.expects(:check).returns([true, false])
 
     assert_difference -> { Report.count } => 1 do
-      AkismetCheckingJob.perform_now(discussion, '1.1.1.1', 'User agent', nil)
+      AkismetDiscussionCheckingJob.perform_now(discussion, '1.1.1.1', 'User agent', nil)
     end
 
     discussion.reload

@@ -23,7 +23,7 @@ when ScriptReport::TYPE_UNAUTHORIZED_CODE %>
 
 <% end %>
 
-<p><%= @script_report.reporter ? link_to(@script_report.reporter.name, @script_report.reporter) : '<i>(Deleted user)</i>'.html_safe %> says:</p>
+<p><%= render_user(@script_report.reporter, @script_report.reporter_id) %> says:</p>
 <blockquote><%= @script_report.details %></blockquote>
 
 <% if @script_report.additional_info.present? %>

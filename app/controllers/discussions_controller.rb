@@ -107,7 +107,7 @@ class DiscussionsController < ApplicationController
 
     DiscussionSubscription.find_or_create_by!(user: current_user, discussion: @discussion) if @subscribe
 
-    AkismetCheckingJob.perform_later(@discussion, request.ip, request.user_agent, request.referer)
+    AkismetDiscussionCheckingJob.perform_later(@discussion, request.ip, request.user_agent, request.referer)
 
     redirect_to @discussion.path
   end

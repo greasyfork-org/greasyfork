@@ -1,4 +1,4 @@
-class AkismetCheckingJob < ApplicationJob
+class AkismetDiscussionCheckingJob < ApplicationJob
   queue_as :low
 
   def perform(discussion, ip, user_agent, referrer)
