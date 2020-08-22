@@ -110,4 +110,12 @@ class CreateTest < ApplicationSystemTestCase
     visit new_script_version_url
     assert_content 'You may not post scripts if you use a disposable email address.'
   end
+
+  test 'rate limited' do
+    user = User.find(1)
+    user.update(created_at: Time.now)
+    login_as(user, scope: :user)
+    visit new_script_version_url
+    assert_content 'You have posted too many scripts recently. Please try again later.'
+  end
 end

@@ -31,19 +31,6 @@ class ScriptVersionsController < ApplicationController
       return
     end
 
-    # This is the trigger to do more stringent checking of the user.
-    case current_user.posting_permission
-    when :needs_confirmation, :blocked
-      # We're lying to spammers :(
-      render 'must_confirm'
-      return
-    end
-
-    unless EmailCheckingService.check_user(current_user)
-      render 'disposable_email'
-      return
-    end
-
     @script_version = ScriptVersion.new
 
     if !params[:script_id].nil?
@@ -55,14 +42,36 @@ class ScriptVersionsController < ApplicationController
       ensure_default_additional_info(@script_version, current_user.preferred_markup)
       @script_version.not_js_convertible_override = @script.not_js_convertible_override
       @current_screenshots = previous_script.screenshots
-      render layout: 'scripts'
     else
-      @script = Script.new(script_type_id: 1, language: params[:language] || 'js')
+      @script = Script.new(script_type_id: ScriptType::PUBLIC_TYPE_ID, language: params[:language] || 'js')
       @script.authors.build(user: current_user)
       @script_version.script = @script
       ensure_default_additional_info(@script_version, current_user.preferred_markup)
       @current_screenshots = []
     end
+
+    if @script.new_record?
+      case UserRestrictionService.new(current_user).new_script_restriction
+      when nil
+        # OK
+      when UserRestrictionService::NEEDS_CONFIRMATION, UserRestrictionService::BLOCKED
+        # We're lying to spammers :(
+        render 'must_confirm'
+        return
+      when UserRestrictionService::RATE_LIMITED
+        render 'rate_limited'
+        return
+      else
+        raise "Unknown restriction #{UserRestrictionService.new(current_user).new_script_restriction}"
+      end
+
+      unless EmailCheckingService.check_user(current_user)
+        render 'disposable_email'
+        return
+      end
+    end
+
+    render layout: 'scripts' unless @script.new_record?
   end
 
   def confirm_new_author
@@ -72,16 +81,7 @@ class ScriptVersionsController < ApplicationController
 
   def create
     @bots = 'noindex'
-
-    if current_user.posting_permission != :allowed
-      render status: 403
-      return
-    end
-
-    unless EmailCheckingService.check_user(current_user)
-      render status: 403
-      return
-    end
+    preview = params[:preview].present?
 
     @script_version = ScriptVersion.new
     @script_version.assign_attributes(script_version_params)
@@ -99,7 +99,21 @@ class ScriptVersionsController < ApplicationController
     @script.adult_content_self_report = params['script']['adult_content_self_report'] == '1'
     @script.not_adult_content_self_report_date = (Time.now if params['script']['not_adult_content_self_report'] == '1')
 
-    save_record = params[:preview].nil? && params['add-additional-info'].nil?
+    save_record = !preview && params['add-additional-info'].nil?
+
+    if save_record && @script.new_record?
+      # Check for restrictions. At this point, any restriction will just an error page as they should have seen the
+      # nice error on the new page already.
+      unless UserRestrictionService.new(current_user).new_script_restriction.nil?
+        @script.errors.add :base, 'You cannot currently post a script.'
+        return
+      end
+
+      unless EmailCheckingService.check_user(current_user)
+        @script.errors.add :base, 'You cannot currently post a script.'
+        return
+      end
+    end
 
     # Additional info - if we're saving, don't construct blank ones
     @script_version.localized_attributes(&:mark_for_destruction)
@@ -149,7 +163,7 @@ class ScriptVersionsController < ApplicationController
     script_check_results, script_check_result_code = ScriptCheckingService.check(@script_version)
 
     # support preview for JS disabled users
-    @preview = view_context.format_user_text(@script_version.additional_info, @script_version.additional_info_markup) unless params[:preview].nil?
+    @preview = view_context.format_user_text(@script_version.additional_info, @script_version.additional_info_markup) if preview
 
     @script_version.localized_attributes.build({ attribute_key: 'additional_info', attribute_default: false }) unless params['add-additional-info'].nil?
 
@@ -171,7 +185,7 @@ class ScriptVersionsController < ApplicationController
       @script_version.screenshots.build(screenshot: screenshot_param, caption: params['screenshot-captions'][i])
     end
 
-    recaptcha_ok = current_user.needs_to_recaptcha? ? verify_recaptcha : true
+    recaptcha_ok = !@script.new_record? || (UserRestrictionService.new(current_user).must_recaptcha? ? verify_recaptcha : true)
 
     # Don't save if this is a preview or if there's something invalid.
     # If we're attempting to save, ensure all validations are run - short circuit the OR.

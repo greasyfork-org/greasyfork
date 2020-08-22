@@ -198,7 +198,7 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
   <%= flash[:recaptcha_error] %>
 
   <p>
-    <% if current_user.needs_to_recaptcha? %>
+    <% if @script.new_record? && UserRestrictionService.new(current_user).must_recaptcha? %>
       <%= invisible_recaptcha_tags callback: 'submitInvisibleRecaptchaFormScriptVersion', text: script_version.script.new_record? ? t('scripts.post_new_script') : t('scripts.post_updated_script') %>
     <% else %>
       <%= submit_tag script_version.script.new_record? ? t('scripts.post_new_script') : t('scripts.post_updated_script') %>
