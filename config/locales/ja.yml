@@ -318,6 +318,9 @@ ja:
       title: "何をしようとしていますか？"
       install_link_html: "スクリプトを<b>インストールして使用したい</b>。"
       share_link_html: " スクリプトを<b>書いた</b>ので、他の人に<b>共有したい</b>。"
+    new_title:
+      js: "スクリプトを投稿"
+      css: "スタイルシートを投稿"
   script_sets:
     description: "「スクリプトセット」とは、Greasy Fork に投稿されているスクリプトのマイリストです。個々のスクリプトの追加だけでなく、他のスクリプトセットをリストに登録して一つのスクリプトセットとして表示することもでき、サイトやユーザーを指定した自動生成も可能です。また、同じようにして除外リストへの登録も行えます。"
     favorites_name: "お気に入り"
@@ -503,6 +506,10 @@ ja:
     listing_updated_scripts: "スクリプトの更新日"
     listing_registration_date: "登録日"
     listing_title: "ユーザー一覧"
+    listing_banned_filter:
+      all: "全て"
+    listing_author_filter:
+      script_author: "作者"
     search_placeholder: "ユーザーを検索"
     locale_prompt: "(ロケールを選んでください)"
     show_ads_description: "広告の表示を許可して %{site_name} を支援する"
@@ -649,6 +656,8 @@ ja:
           と %{jsdelivr_link:jsDelivr} は、広い範囲のライブラリを保持しています。</p> <p>読み込ませたいスクリプトが上記のサイトから利用できない場合、%{contact_link:ご連絡をいただければ}、私たちはそれを見つけることができます
           (またはそのスクリプトを私たちがホストします！)。</p> <p>読み込ませたいスクリプトが自分自身で書いたものならば、スクリプトの種類で「ライブラリ」を選択して
           %{site_name} に投稿すると、投稿したライブラリを他のスクリプトから読み込むことができるようになります。</p>
+      test_url:
+        label: URLテスト
     script_rewriting:
       title: "%{site_name} は投稿されたスクリプトをどのように書き直すか"
       content_html: >
@@ -805,6 +814,9 @@ ja:
     category_filter:
       label: カテゴリー
       all: 全てのカテゴリー
+    read_filter:
+      read: 既読
+      unread: 未読
     user_activity:
       title: "最近のコメント"
       no_recent_activity: "このユーザーは最近コメントを投稿していません。"
