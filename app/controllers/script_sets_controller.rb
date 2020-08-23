@@ -9,7 +9,7 @@ class ScriptSetsController < ApplicationController
     @set = ScriptSet.new
     @set.user = @user
     @set.favorite = !params[:fav].nil?
-    @set.add_child(Script.find(params[:script_id]), exclusive: false) unless params[:script_id].nil?
+    @set.add_child(Script.find(params[:script_id]), exclusion: false) unless params[:script_id].nil?
     @child_set_user = @user
   end
 
