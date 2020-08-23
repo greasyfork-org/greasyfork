@@ -27,7 +27,7 @@ class AkismetScriptCheckingJob < ApplicationJob
 
     is_spam, is_blatant = Akismet.check(*akismet_params)
 
-    AkismetSubmission.create!(item: discussion, akismet_params: akismet_params, result_spam: is_spam, result_blatant: is_blatant)
+    AkismetSubmission.create!(item: script, akismet_params: akismet_params, result_spam: is_spam, result_blatant: is_blatant)
 
     return unless is_spam
 
