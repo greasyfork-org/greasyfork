@@ -26,6 +26,7 @@ class Report < ApplicationRecord
     update!(result: RESULT_DISMISSED)
     item.discussion.update!(review_reason: nil) if item.is_a?(Comment) && item.first_comment?
     reporter&.update_trusted_report!
+    AkismetSubmission.mark_as_ham(item)
   end
 
   def uphold!(moderator:, variant: nil)

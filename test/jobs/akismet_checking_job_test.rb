@@ -7,14 +7,12 @@ class AkismetCheckingJobTest < ActiveSupport::TestCase
     Akismet.expects(:api_key).returns('123')
     Akismet.expects(:check).returns([false, false])
 
-    assert_no_changes -> { Report.count } do
+    assert_difference -> { Report.count } => 0, -> { AkismetSubmission.count } => 1 do
       AkismetDiscussionCheckingJob.perform_now(discussion, '1.1.1.1', 'User agent', nil)
     end
 
     discussion.reload
 
-    assert_equal false, discussion.akismet_spam
-    assert_equal false, discussion.akismet_blatant
     assert_nil discussion.review_reason
   end
 
@@ -24,14 +22,12 @@ class AkismetCheckingJobTest < ActiveSupport::TestCase
     Akismet.expects(:api_key).returns('123')
     Akismet.expects(:check).returns([true, false])
 
-    assert_difference -> { Report.count } => 1 do
+    assert_difference -> { Report.count } => 1, -> { AkismetSubmission.count } => 1 do
       AkismetDiscussionCheckingJob.perform_now(discussion, '1.1.1.1', 'User agent', nil)
     end
 
     discussion.reload
 
-    assert_equal true, discussion.akismet_spam
-    assert_equal false, discussion.akismet_blatant
     assert_equal 'akismet', discussion.review_reason
   end
 end

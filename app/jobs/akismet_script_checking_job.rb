@@ -10,19 +10,27 @@ class AkismetScriptCheckingJob < ApplicationJob
     content = additional_infos.map(&:attribute_value).join("\n\n")
     locales = additional_infos.map(&:locale).map(&:code)
 
-    is_spam, _is_blatant = Akismet.check(ip, user_agent, {
-                                           referrer: referrer,
-                                           post_url: Rails.application.routes.url_helpers.script_url(nil, script),
-                                           post_modified_at: script.updated_at,
-                                           type: 'blog-post',
-                                           text: content,
-                                           created_at: script.created_at,
-                                           author: script.users.first.name,
-                                           author_email: script.users.first.email,
-                                           languages: locales,
-                                           env: {},
-                                         })
+    akismet_params = [
+      ip, user_agent, {
+        referrer: referrer,
+        post_url: Rails.application.routes.url_helpers.script_url(nil, script),
+        post_modified_at: script.updated_at,
+        type: 'blog-post',
+        text: content,
+        created_at: script.created_at,
+        author: script.users.first.name,
+        author_email: script.users.first.email,
+        languages: locales,
+        env: {},
+      }
+    ]
 
-    ScriptReport.create!(script: script, report_type: ScriptReport::TYPE_SPAM, details: 'Auto-report by Akismet') if is_spam
+    is_spam, is_blatant = Akismet.check(*akismet_params)
+
+    AkismetSubmission.create!(item: discussion, akismet_params: akismet_params, result_spam: is_spam, result_blatant: is_blatant)
+
+    return unless is_spam
+
+    ScriptReport.create!(script: script, report_type: ScriptReport::TYPE_SPAM, details: 'Auto-report by Akismet')
   end
 end

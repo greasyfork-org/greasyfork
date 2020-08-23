@@ -43,6 +43,7 @@ class ScriptReport < ApplicationRecord
   def dismiss!(moderator_note = nil)
     update!(result: 'dismissed', moderator_note: moderator_note.presence)
     reporter&.update_trusted_report!
+    AkismetSubmission.mark_as_ham(script)
   end
 
   def actionable?

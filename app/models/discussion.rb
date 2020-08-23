@@ -1,6 +1,8 @@
 class Discussion < ApplicationRecord
   include SoftDeletable
 
+  self.ignored_columns = %w[akismet_spam akismet_blatant]
+
   RATING_QUESTION = 0
   RATING_BAD = 2
   RATING_OK = 3

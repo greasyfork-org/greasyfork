@@ -45,7 +45,7 @@ module UsersHelper
   end
 
   def render_user(user, user_id, skip_link: false, script: nil, force_author: false)
-    return content_tag(:i) { "No-one" } unless user_id
+    return content_tag(:i) { 'No-one' } unless user_id
     return content_tag(:i) { "Deleted user #{user_id}" } unless user
 
     badge = if user.banned?
