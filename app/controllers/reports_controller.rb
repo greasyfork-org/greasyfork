@@ -17,6 +17,9 @@ class ReportsController < ApplicationController
     @report.reporter = current_user
     @report.item = item
     @report.save!
+
+    item.discussion.update!(review_reason: 'trusted') if @report.item.is_a?(Comment) && @report.item.first_comment? && current_user.trusted_reports
+
     redirect_to report_path(@report), notice: t('reports.report_filed')
   end
 
