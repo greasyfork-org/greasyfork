@@ -105,7 +105,7 @@
     </h3>
   </header>
   <section class="text-content">
-    <% recent_comments = @user.comments.not_deleted.where(created_at: 1.month.ago..).includes(discussion: :script).order(created_at: :desc).limit(10).load %>
+    <% recent_comments = @user.comments.not_deleted.joins(:discussion).merge(Discussion.visible).where(created_at: 1.month.ago..).includes(discussion: :script).order(created_at: :desc).limit(10).load %>
     <% if recent_comments.any? %>
       <ul>
         <% recent_comments.each do |comment| %>
