@@ -23,7 +23,13 @@ when ScriptReport::TYPE_UNAUTHORIZED_CODE %>
 
 <% end %>
 
-<p><%= render_user(@script_report.reporter, @script_report.reporter_id) %> says:</p>
+<p>
+  <% if @script_report.auto_reporter %>
+    <%= @script_report.auto_reporter %>
+  <% else %>
+    <%= render_user(@script_report.reporter, @script_report.reporter_id) %> says:
+  <% end %>
+</p>
 <blockquote><%= @script_report.details %></blockquote>
 
 <% if @script_report.additional_info.present? %>

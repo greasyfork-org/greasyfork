@@ -1552,6 +1552,7 @@ CREATE TABLE `script_reports` (
   `reporter_id` int(11) DEFAULT NULL,
   `result` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `moderator_note` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `auto_reporter` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_script_reports_on_script_id` (`script_id`),
   KEY `index_script_reports_on_reference_script_id` (`reference_script_id`),
@@ -2085,6 +2086,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20200815020841'),
 ('20200818014737'),
 ('20200818021213'),
-('20200823013703');
+('20200823013703'),
+('20200824013239');
 
 

@@ -31,6 +31,6 @@ class AkismetScriptCheckingJob < ApplicationJob
 
     return unless is_spam
 
-    ScriptReport.create!(script: script, report_type: ScriptReport::TYPE_SPAM, details: 'Auto-report by Akismet')
+    ScriptReport.create!(script: script, auto_reporter: 'akismet', report_type: ScriptReport::TYPE_SPAM, details: 'Auto-report by Akismet')
   end
 end

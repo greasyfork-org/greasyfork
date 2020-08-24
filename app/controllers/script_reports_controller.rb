@@ -115,8 +115,14 @@ class ScriptReportsController < ApplicationController
       return
     end
     @script_report.dismiss!(current_user.moderator? ? params[:moderator_note] : nil)
-    ScriptReportMailer.report_dismissed_reporter(@script_report, site_name).deliver_later
-    ScriptReportMailer.report_dismissed_offender(@script_report, site_name).deliver_later
+
+    # If it's an auto-reporter then don't even tell the author that this happened. They didn't get a notice about it
+    # initially anyway.
+    unless @script_report.auto_reporter
+      ScriptReportMailer.report_dismissed_reporter(@script_report, site_name).deliver_later
+      ScriptReportMailer.report_dismissed_offender(@script_report, site_name).deliver_later
+    end
+
     flash[:notice] = 'Report has been dismissed.'
     redirect_to root_path
   end
