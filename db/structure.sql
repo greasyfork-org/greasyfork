@@ -1066,6 +1066,7 @@ CREATE TABLE `comments` (
   `deleted_by_user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_comments_on_discussion_id` (`discussion_id`),
+  KEY `index_comments_on_poster_id` (`poster_id`),
   CONSTRAINT `fk_rails_750d1a8a36` FOREIGN KEY (`discussion_id`) REFERENCES `discussions` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=32357 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2087,6 +2088,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20200818014737'),
 ('20200818021213'),
 ('20200823013703'),
-('20200824013239');
+('20200824013239'),
+('20200828200844');
 
 
