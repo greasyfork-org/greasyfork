@@ -13,7 +13,7 @@ module ShowsAds
     return nil unless eligible_for_ads?(script)
     return 'ca' if script.localized_attributes.where(attribute_key: 'additional_info').none?
 
-    script.adsense_approved ? 'ga' : 'ca'
+    script.adsense_approved ? 'ga' : %w[ca ea].sample
   end
 
   def choose_ad_method_for_scripts(scripts)
