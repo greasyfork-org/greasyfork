@@ -558,6 +558,7 @@ ja:
     notifications:
       save_button: 通知設定を更新
       title: 通知
+      save_success: 通知設定を更新しました。
   help:
     sections:
       usage: 利用法
@@ -773,8 +774,8 @@ ja:
     title: 議論
     comment_date: "投稿日: %{date}"
     comment_edit_date: "編集日: %{date}"
-    posted_by_html: "%{date}の%{user}"
-    last_comment: "最新：%{date}の%{user}"
+    posted_by_html: "%{user}、%{date}"
+    last_comment: "最新：%{user}、%{date}"
     new_discussion_heading: "審査やコメント、質問を投稿"
     new_discussion_submit: "コメントを投稿"
     new_comment_heading: "返信を投稿"
@@ -852,6 +853,7 @@ ja:
     new_button: 新しい議論
     script_notice: 特定のスクリプトについて議論したい場合は、スクリプトのフィードバックページにアクセスして、そこから議論を始めてください。
     no_discussions: 議論はありません。
+    pending_moderator_review: このスレッドはモデレーターによってレビューされるまで表示できません。
   screenshots:
     requirements: "画像は最大 %{number} 枚、PNG・GIF・JPEG・WebP のいずれか、それぞれ %{size} までです。"
   common:
@@ -865,7 +867,7 @@ ja:
     not_found_title: "404 – ページ未検出"
     not_found_link_home: "トップページに戻る。"
     suggest_locale: "%{site_name} は %{locale_name} で閲覧できます。"
-    incomplete_locale: "%{site_name} の %{locale_name} への翻訳は %{percent} しか完了していません。この状況は改善することができます。"
+    incomplete_locale: "%{site_name} の%{locale_name}訳は %{percent} しか完了していません。改善に参加しませんか？"
     expander_show_more: "さらに表示"
     expander_show_less: "隠す"
     advertisement_note: 広告

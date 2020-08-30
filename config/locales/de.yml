@@ -35,7 +35,7 @@ de:
     downgrade: "Auf Version %{version} zurückstufen"
     reinstall: "Version %{version} erneut installieren"
     old_version_warning: "Dies ist nicht die neueste Version dieses Skripts. Wenn Sie es installieren, werden Sie nie eine Aktualisierung auf eine neuere Version erhalten. Trotzdem installieren?"
-    promoted: "Angepriesenes Skript"
+    promoted: "Vorgeschlagenes Skript"
     author_promoted: "Vom Ersteller vorgeschlagenes Skript"
     promoted_text_html: "Ihnen könnte auch %{script_link} gefallen."
     library_instructions_html: "Dieses Skript sollte nicht direkt installiert werden. Es handelt sich hier um eine Bibliothek für andere Skripte, welche über folgenden Befehl in den Metadaten eines Skriptes eingebunden wird %{code}"
@@ -92,6 +92,7 @@ de:
       no_moderator_logs: "Gegen dieses Skript wurden keine Maßnahmen durch Moderatoren getroffen."
       compare_title: "Mit einem anderen Skript vergleichen"
       compare_button: "Vergleichen"
+      compare_must_be_local_url: "Vergleichsskript muss auf %{site_name} liegen"
     history_title: "%{script_name} - Versionsverlauf"
     history_only_code_changes_info: "Das sind Skriptversionen, bei denen der Quelltext aktualisiert wurde."
     history_all_changes_link: "Alle Versionen anzeigen."
@@ -127,6 +128,7 @@ de:
     derivatives_similar_heading: "Ähnliche Skripte"
     derivatives_similar_info: "Wir überprüfen regelmäßig die neueste Version aller anderen Skripte, um diejenigen zu finden, die den Ihren am ähnlichsten sind. Wir überprüfen auch immer dann, wenn Sie eine Aktualisierung Ihres Skripts veröffentlichen und auf Ihre Anfrage hin."
     derivatives_similar_last_check_soon: "Wir werden in Kürze nach ähnlichen Skripten wie Ihrem suchen."
+    derivatives_similar_check_now: "erneut überprüfen"
     listing_title_all_sites: "Benutzerskripte für alle Seiten"
     listing_description_all_sites: "Benutzerskripte, welche auf allen Seiten Funktionen hinzufügen und Fehler beheben"
     listing_title_for_site: "Benutzerskripte für %{site}"
@@ -159,6 +161,7 @@ de:
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
     import: "Skripte importieren"
+    new: "Veröffentliche ein Skript, welches Du geschrieben hast"
     support_site: "Die Hilfeseite des Autors besuchen."
     support_email: "Dem Autor eine E-Mail schreiben, um Unterstützung zu erhalten."
     contribution_no_amount: "Bedanken Sie sich mit einer Spende bei %{author}."
@@ -233,6 +236,7 @@ de:
     ok_rating_explanation: "Anzahl an Nutzern, die es mit »OK« bewertet haben."
     bad_rating_explanation: "Anzahl an Nutzern, die es mit »Schlecht« bewertet haben."
     write_your_own_html: "%{post_a_script_link} (oder %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "Veröffentliche ein Skript, welches Du geschrieben hast"
     learn_to_write_scripts_link_text: "lernen Sie eines zu schreiben"
     feedback_or_report: "%{feedback_link:Stellen Sie eine Frage, veröffentlichen Sie eine Bewertung} oder %{report_link:melden Sie das Skript}."
     support_feedback_or_report: "%{support_url:Besuchen Sie die Seite des Autors für Hilfe}, %{feedback_link:stellen Sie eine Frage, veröffentlichen Sie eine Bewertung} oder %{report_link:melden Sie das Skript}."
@@ -290,10 +294,14 @@ de:
       remove_confirm: "Sind Sie sicher, dass Sie %{user_name} als Autor entfernen möchten?"
       failure: "Konnte Autor nicht entfernen."
     no_disposable_email: "Sie können keine Skripte veröffentlichen, wenn sie eine Wegwerfemailadresse verwenden."
+    rate_limited: "Du hast kürzlich zu viele Skripts veröffentlicht, versuche es Später erneut."
     new_script_notice:
       title: "Was ist deine Absicht?"
       install_link_html: "Ich möchte ein Skript <b>installieren und benutzen</b>."
       share_link_html: "Ich habe ein Skript <b>geschrieben</b>und möchte es mit anderen <b>teilen</b>."
+    new_title:
+      js: "Neues Skript veröffentlichen"
+    update_title: "Neue Version von %{script} veröffentlichen"
   script_sets:
     description: "Mit Skriptsammlungen können individuelle Listen von Skripten angelegt werden, um Greasy Fork zu durchstöbern. Sie können Ihrer Sammlung einzelne Skripte, die Skripte anderer Nutzer und automatisch erzeugte Listen hinzufügen. Auf dem selben Weg können Sie auch Skripte aus Ihrer Sammlung entfernen."
     favorites_name: "Favoriten"
@@ -452,6 +460,7 @@ de:
     edit_sign_in: "Anmeldeverfahren bearbeiten"
     edit_sign_in_title: "Anmeldeverfahren bearbeiten"
     edit_sign_in_password: "Passwort"
+    edit_notifications: "Benachritigungen verwalten "
     no_password_set_info: "Ihr Konto ist nicht mit einem Passwort konfiguriert."
     set_password: "Passwort einstellen"
     update_password: "Passwort ändern"
@@ -489,6 +498,14 @@ de:
     listing_updated_scripts: "Aktualisierte Skripte"
     listing_registration_date: "Datum der Registrierung"
     listing_title: "Benutzer"
+    listing_banned_filter:
+      banned: "Gesperrt"
+      not_banned: "Nicht Gesperrt"
+      all: "Alle"
+    listing_author_filter:
+      script_author: "Skript Author"
+      not_script_author: "Nicht Skript Author"
+      all: "Alle"
     search_placeholder: "Benutzer suchen"
     locale_prompt: "(Sprache wählen)"
     show_ads_description: "Unterstützen Sie %{site_name}, indem Sie das Anzeigen von Werbung erlauben"
@@ -533,9 +550,16 @@ de:
       banned:
         short: Gesperrt
         long: Gesperrt
+      moderator:
+        short: Mod
+        long: Moderator
       author:
         short: Verfasser
         long: Verfasser dieses Skripts
+    notifications:
+      discussion_defaults:
+        title: Forumsbenachrichtigungen
+      title: Benachrichtigungen
   help:
     sections:
       usage: Nutzung
@@ -576,6 +600,10 @@ de:
       adult_content_rule_html: "<li>Skripte, welche nicht-jugendfreie Inhalte enthalten oder für Seiten mit nicht-jugendfreien Inhalten gemacht sind, müssen als solche gekennzeichnet werden, um anderen Nutzern die Wahlmöglichkeit zu geben ob sie diese sehen möchten.</li>"
     external_scripts:
       title: "%{site_name}s Richtlinie für externe Skripte"
+      test_url:
+        label: Teste eine URL
+        result_ok: URL ist erlaubt
+        result_not_ok: URL ist nicht erlaubt
     script_rewriting:
       title: "Wie %{site_name} veröffentlichte Skripte umschreibt"
       content_html: >
@@ -687,17 +715,30 @@ de:
   reports:
     report_filed: "Ihr Bericht wird von einem Moderator geprüft."
     new_report_title:
+      user: "%{user} melden "
       comment: "Einen Kommentar melden von %{user}"
     reason:
+      spam: "Spam"
       abuse: "Beleidigender oder hasserfüllter Inhalt"
       illegal: "Malware oder illegale Inhalte"
     explanation_placeholder: "Geben Sie zusätzliche Einzelheiten an (optional)"
+    create_button: "Meldung erstellen"
     report_user: "Benutzer melden"
     report_comment: "Kommentar melden"
+    report_message: "Nachricht melden "
+    result_dismissed: "Dein Bericht wurde von einem Moderator abgelehnt."
+    result_upheld: "Dein Bericht wurde von einem Moderator stattgegeben."
+    result_pending: "Dein Bericht wird erst von einem Moderator geprüft."
   discussions:
+    title: 'Diskussionen '
+    comment_date: "Veröffentlicht: %{date}"
+    comment_edit_date: "Bearbeitet: %{date}"
+    posted_by_html: "%{user} am %{date}"
+    last_comment: "Zuletzt: %{user} am %{date}"
     new_discussion_heading: "Eine Rezension, einen Kommentar oder eine Frage posten"
     new_discussion_submit: "Kommentar schreiben"
     new_comment_heading: "Antwort schreiben"
+    new_comment_submit: "Antworten"
     edit_comment_link: "bearbeiten"
     edit_comment_header: "bearbeite Kommentar"
     delete_comment: "löschen"
@@ -708,15 +749,36 @@ de:
     ratings:
       question: "Keine Bewertung - nur eine Frage/Kommentar"
       bad: "Fehler - Skript funktioniert nicht"
+      ok: "Ok, Skript funktioniert, könnte aber noch verbessert werden"
+      good: "Gut - Skript Funktioniert"
+    ratings_short:
+      bad: "Schlecht "
+      ok: "Ok"
+      good: "Gut"
     sign_in_to_post_discussion: "Melden Sie sich an, um eine Rezension, einen Kommentar oder eine Frage zu veröffentlichen."
     user_filter:
       label: "Diskussionen mit mir"
+      all: "Alle Diskussionen "
       discussion_by_me: "Von mir begonnen"
       subscribed: "Abonniert"
+    category_filter:
+      label: Kategorie
+      all: Alle Kategorien
+    read_filter:
+      all: Alle
+      read: Gelesen
+      unread: Ungelesen
     user_activity:
       title: "Neueste Kommentare"
       no_recent_activity: "Dieser Benutzer hat in letzter Zeit keine Kommentare veröffentlicht."
       see_all_activity: "Alle Benutzeraktivitäten anzeigen."
+    categories:
+      script-discussions:
+        name: Skriptdiskussionen
+    new_title: Neue Diskussion
+    new_button: Neue Diskussion
+  conversations:
+    send_message: Nachricht absenden
   common:
     error_preamble: "Es gab einige Probleme mit dem was Sie eingegeben haben …"
     allowed_elements_link: "(Erlaubte Elemente anzeigen.)"
@@ -734,6 +796,8 @@ de:
     preview_tab: Vorschau
     write_tab: Schreiben
     listing_options_title: "Suchoptionen"
+    quote:
+      prefix_html: "%{user}sagte:"
   activerecord:
     attributes:
       user:
@@ -760,8 +824,15 @@ de:
         name: "Name"
         description: "Beschreibung"
         default_sort: "Standardsortierung"
+      report:
+        reason: "Grund der Meldung "
       discussion:
         rating: "Bewertung"
+        title: Titel
+      conversation:
+        user_input: Benutzer
+      message:
+        content: Nachricht
   errors:
     messages:
       script_missing_name: "wird benötigt - bitte einen Namen mit @name angeben"

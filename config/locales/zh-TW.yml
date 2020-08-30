@@ -94,6 +94,7 @@ zh-TW:
     feedback_title: "%{script_name} - 反饋"
     feedback_has_reports: "這個脚本被舉報違反 %{site_name} 的條例。"
     feedback_no_discussions_html: "尚無相關討論，%{start_first_discussion_link}"
+    feedback_no_discussions_on_page_form: "尚未有相關討論"
     feedback_start_first_discussion_link: "成為第一個討論該腳本的人吧。"
     feedback_discussion_or_report: "%{new_discussion_link:新開一個關於該腳本的討論串} 或 %{report_link:檢舉並請求移除}。"
     feedback_favoriters_heading: "粉絲"
@@ -112,6 +113,8 @@ zh-TW:
     stats_no_data: "無"
     derivatives_title: "%{script_name} - 衍生腳本"
     derivatives_intro: "這些腳本可能衍生自您的腳本（或您的腳本可能衍生於他們的腳本）。如果您發現了未經授權使用您代碼的情況，請在腳本的反饋頁面中檢舉該腳本。"
+    derivatives_exact_copies_list_intro: "以下脚本的代碼與您的有雷同："
+    derivatives_similar_check_now: "重新檢查"
     listing_title_all_sites: "執行於所有網站的使用者腳本"
     listing_description_all_sites: "對所有網站新增功能或解決 bug 的使用者腳本"
     listing_title_for_site: "執行於 %{site} 的使用者腳本"
@@ -498,6 +501,17 @@ zh-TW:
         request_expired: "無法刪除使用者 - 請求過時"
         cancelled: "已取消刪除。"
         completed: "你的帳號已被刪除。"
+    badges:
+      author:
+        short: 作者
+        long: 脚本作者
+    notifications:
+      discussion_defaults:
+        title: 論壇通知
+      conversation_defaults:
+        title: 會話通知
+      save_button: 更新通知設定
+      title: 通知
   help:
     sections:
       usage: 使用量
@@ -637,6 +651,39 @@ zh-TW:
   notifications:
     consecutive_bad_ratings:
       other: "%{script_names}已連續收到不良評價。請查看您的腳本並回複評分中提出的問題。"
+  reports:
+    new_report_title:
+      user: "檢舉%{user}"
+      comment: "檢舉%{user}的留言"
+    reason:
+      abuse: "仇恨或具有冒犯性的内容"
+    report_user: "舉報用戶"
+    report_comment: "舉報留言"
+    report_message: "舉報訊息"
+  discussions:
+    title: 討論
+    comment_edit_date: "編輯:%{date}"
+    edit_comment_link: "編輯"
+    edit_comment_header: "編輯留言"
+    delete_comment: "刪除"
+    delete_discussion: "刪除"
+    update_comment_submit: "更新留言"
+    cancel_update_comment: "取消"
+    sign_in_to_post_discussion: "登入以評價/留言/評論"
+    sign_in_to_post_comment: "登入以回復"
+    user_filter:
+      all: "所有討論"
+      subscribed: "已關注"
+    other_user_filter:
+      comments_by: "%{user}的留言"
+  conversations:
+    new_link: 創建新會話
+    new_button: 創建會話
+    title_html:
+      other: 與%{users}的會話
+    recent:
+      title: 最近的會話
+      more: 查看全部會話
   common:
     error_preamble: "您所發表的帖子內容有點問題..."
     allowed_elements_link: "(檢視允許使用的 HTML/Markdown 代碼。)"
@@ -680,6 +727,12 @@ zh-TW:
         name: "名稱"
         description: "描述"
         default_sort: "預設排序"
+      discussion:
+        title: 標題
+      conversation:
+        user_input: 用戶
+      message:
+        content: 訊息
   errors:
     messages:
       script_missing_name: "必填 - 請透過 <code>@name</code> 指定。"
@@ -720,3 +773,5 @@ zh-TW:
         text: "您關於%{site_name}的%{script_name}的報告已收到回复。 您可以通過%{report_url}查看此回复。版主將審閱您的報告和此答复並決定結果。 如有任何疑問，請訪問https://greasyfork.org/forum/。"
       report_upheld_reporter:
         subject: "您關於%{site_name}上的腳本%{script_name}的報告已保留"
+    script_comment:
+      subject: "您在%{site_name}上的腳本%{script_name}已收到留言"
