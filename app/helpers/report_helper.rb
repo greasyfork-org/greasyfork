@@ -11,30 +11,4 @@ module ReportHelper
       raise 'Unknown type'
     end
   end
-
-  def reported_user(report)
-    case report.item
-    when User
-      report.item
-    when Comment
-      report.item.poster
-    when Message
-      report.item.poster
-    else
-      raise 'Unknown type'
-    end
-  end
-
-  def reported_user_id(report)
-    case report.item
-    when User
-      report.item.id
-    when Comment
-      report.item.poster_id
-    when Message
-      report.item.poster_id
-    else
-      raise 'Unknown type'
-    end
-  end
 end

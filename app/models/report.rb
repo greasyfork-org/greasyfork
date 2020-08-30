@@ -29,18 +29,26 @@ class Report < ApplicationRecord
     AkismetSubmission.mark_as_ham(item)
   end
 
-  def uphold!(moderator:, variant: nil)
-    case item
-    when User
-      item.ban!(moderator: moderator, reason: "In response to report ##{id}", ban_related: true)
-    when Comment
-      item.poster.ban!(moderator: moderator, reason: "In response to report ##{id}", ban_related: true) if variant == 'ban'
-      item.soft_destroy!(by_user: moderator) unless item.soft_deleted?
-    else
-      raise "Unknown report item #{item}"
+  def uphold!(moderator:, ban_user: false, delete_comments: false, delete_scripts: false)
+    Report.transaction do
+      delete_reason = "In response to report ##{id}"
+
+      case item
+      when User, Message
+        reported_user.ban!(moderator: moderator, reason: delete_reason, ban_related: true)
+      when Comment
+        reported_user.ban!(moderator: moderator, reason: delete_reason, ban_related: true) if ban_user
+        item.soft_destroy!(by_user: moderator) unless item.soft_deleted?
+      else
+        raise "Unknown report item #{item}"
+      end
+
+      reported_user.delete_all_comments!(by_user: moderator) if delete_comments
+      reported_user.lock_all_scripts!(reason: delete_reason, moderator: moderator, delete_type: ScriptDeleteType::BLANKED) if delete_scripts
+
+      update!(result: RESULT_UPHELD)
+      reporter&.update_trusted_report!
     end
-    update!(result: RESULT_UPHELD)
-    reporter&.update_trusted_report!
   end
 
   def reason_text
@@ -57,5 +65,27 @@ class Report < ApplicationRecord
 
   def upheld?
     result == RESULT_UPHELD
+  end
+
+  def reported_user
+    case item
+    when User
+      item
+    when Comment, Message
+      item.poster
+    else
+      raise 'Unknown type'
+    end
+  end
+
+  def reported_user_id
+    case item
+    when User
+      item_id
+    when Comment, Message
+      item.poster_id
+    else
+      raise 'Unknown type'
+    end
   end
 end

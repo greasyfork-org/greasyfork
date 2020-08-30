@@ -3,14 +3,14 @@
 <h4 id="open-report-<%= i %>"><%= report_item_link(report) %> has been reported for <%= report.reason_text %> by <%= report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)) %>.</h4>
 
 <% if report.item.is_a?(Comment) %>
-  <div><%= t('common.quote.prefix_html', user: render_user(reported_user(report), reported_user_id(report))) %></div>
+  <div><%= t('common.quote.prefix_html', user: render_user(report.reported_user, report.reported_user_id)) %></div>
   <blockquote>
     <div class="user-content">
       <%= format_user_text(report.item.text, report.item.text_markup) %>
     </div>
   </blockquote>
 <% elsif report.item.is_a?(Message) %>
-    <div><%= t('common.quote.prefix_html', user: render_user(reported_user(report), reported_user_id(report))) %></div>
+    <div><%= t('common.quote.prefix_html', user: render_user(report.reported_user, report.reported_user_id)) %></div>
     <blockquote>
       <div class="user-content">
         <%= format_user_text(report.item.content, report.item.content_markup) %>
@@ -37,11 +37,11 @@
   <% end %>
 <% end %>
 
-<% if reported_user(report) %>
+<% if report.reported_user %>
   <p>
-    <%= render_user(reported_user(report), reported_user_id(report)) %> has made
-    <%= link_to "#{reported_user(report).comments.not_deleted.count} #{'comment'.pluralize(reported_user(report).comments.not_deleted.count)}", discussions_path(user: reported_user(report).id) %>
-    and posted <%= reported_user(report).scripts.count %> <%= 'script'.pluralize(reported_user(report).scripts.count) %>.
+    <%= render_user(report.reported_user, report.reported_user_id) %> has made
+    <%= link_to "#{report.reported_user.comments.not_deleted.count} #{'comment'.pluralize(report.reported_user.comments.not_deleted.count)}", discussions_path(user: report.reported_user.id) %>
+    and posted <%= report.reported_user.scripts.count %> <%= 'script'.pluralize(report.reported_user.scripts.count) %>.
   </p>
 <% end %>
 
@@ -55,19 +55,34 @@
   </p>
 <% elsif current_user&.moderator? %>
   <%= button_to('Dismiss report', dismiss_report_path(report, index: i), method: 'POST', form_class: 'inline-form') %>
-  <% case report.item %>
-  <% when User %>
-    <%= button_to("Ban #{report.item.name}", uphold_report_path(report, index: i), method: 'POST', form_class: 'inline-form') %>
-  <% when Comment %>
-    <%= button_to("Delete comment", uphold_report_path(report, index: i), method: 'POST', form_class: 'inline-form') %>
-    <% if report.item.poster && !report.item.poster.banned? %>
-      <%= button_to("Delete comment and ban #{report.item.poster.name}", uphold_report_path(report, variant: 'ban', index: i), method: 'POST', form_class: 'inline-form') %>
+  <%= form_tag(uphold_report_path(report, index: i), method: 'POST', class: 'report-resolution-options') do %>
+
+    <% other_comments = report.reported_user.comments.not_deleted
+    other_comments = other_comments.where.not(id: report.item.id) if report.item.is_a?(Comment)
+    if other_comments.count > 0 %>
+      <%= check_box_tag :delete_comments, '1', false, id: "delete-comments-#{report.id}" %><%= label_tag "delete-comments-#{report.id}", "Delete #{report.reported_user.name}'s #{other_comments.count} #{(report.item.is_a?(Comment) ? 'other comment' : 'comment').pluralize(other_comments.count)}" %><br>
     <% end %>
-  <% when Message %>
-    <%= button_to("Ban #{report.item.poster.name}", uphold_report_path(report, index: i), method: 'POST', form_class: 'inline-form') %>
-  <% else
-       raise "Unknown item #{report.item}"
-     end %>
+
+    <% scripts = report.reported_user.scripts.not_deleted
+    if scripts.count > 0 %>
+      <%= check_box_tag :delete_scripts, '1', false, id: "delete-scripts-#{report.id}" %><%= label_tag "delete-scripts-#{report.id}", "Delete #{report.reported_user.name}'s #{scripts.count} #{'script'.pluralize(scripts.count)}" %><br>
+    <% end %>
+
+    <% if report.item.is_a?(Comment) && report.reported_user && !report.reported_user.banned? %>
+      <%= check_box_tag :ban, '1', false, id: "ban-#{report.id}" %><%= label_tag "ban-#{report.id}", "Ban #{report.reported_user.name}" %><br>
+    <% end %>
+
+    <% case report.item %>
+    <% when User %>
+      <%= submit_tag "Ban #{report.reported_user.name}" %>
+    <% when Comment %>
+      <%= submit_tag("Delete comment") %>
+    <% when Message %>
+      <%= submit_tag("Ban #{report.reported_user.name}") %>
+    <% else
+      raise "Unknown item #{report.item}"
+    end
+  end %>
 <% else %>
   <p>
     <%= t('reports.result_pending') %>

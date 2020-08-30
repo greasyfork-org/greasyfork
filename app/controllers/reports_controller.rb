@@ -35,7 +35,8 @@ class ReportsController < ApplicationController
 
   def uphold
     @report = Report.find(params[:id])
-    @report.uphold!(moderator: current_user, variant: params[:variant])
+
+    @report.uphold!(moderator: current_user, ban_user: params[:ban] == '1', delete_comments: params[:delete_comments] == '1', delete_scripts: params[:delete_scripts] == '1')
     redirect_to reports_path(anchor: "open-report-#{params[:index]}")
   end
 

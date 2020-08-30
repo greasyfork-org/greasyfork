@@ -261,6 +261,12 @@ class User < ApplicationRecord
     c.first
   end
 
+  def delete_all_comments!(by_user: nil)
+    discussions.not_deleted.each { |comment| comment.soft_destroy!(by_user: by_user) }
+    comments.not_deleted.each { |comment| comment.soft_destroy!(by_user: by_user) }
+    Report.unresolved.where(item: comments).each { |report| report.uphold!(moderator: by_user) }
+  end
+
   protected
 
   def password_required?
