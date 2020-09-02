@@ -4,11 +4,12 @@ class AkismetScriptCheckingJob < ApplicationJob
   def perform(script, ip, user_agent, referrer)
     return unless Akismet.api_key
 
+    descriptions = script.localized_descriptions.includes(:locale).load
     additional_infos = script.localized_additional_infos.includes(:locale).load
-    return if additional_infos.empty?
+    return if descriptions.empty? && additional_infos.empty?
 
-    content = additional_infos.map(&:attribute_value).join("\n\n")
-    locales = additional_infos.map(&:locale).map(&:code)
+    content = (descriptions + additional_infos).map(&:attribute_value).join("\n\n")
+    locales = (descriptions + additional_infos).map(&:locale).map(&:code).uniq
 
     akismet_params = [
       ip, user_agent, {
