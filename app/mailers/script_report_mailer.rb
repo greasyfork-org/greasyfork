@@ -20,7 +20,7 @@ class ScriptReportMailer < ApplicationMailer
       t('mailers.script_report.report_rebutted_reporter.subject', locale: locale, script_name: report.script.name(locale), site_name: site_name, report_url: script_script_report_url(report.script, report, locale: locale))
     }
     text_lambda = lambda { |locale|
-      t('mailers.script_report.report_rebutted_reporter.subject', locale: locale, script_name: report.script.name(locale), site_name: site_name, report_url: script_script_report_url(report.script, report, locale: locale))
+      t('mailers.script_report.report_rebutted_reporter.text', locale: locale, script_name: report.script.name(locale), site_name: site_name, report_url: script_script_report_url(report.script, report, locale: locale))
     }
     mail_to_reporter(report, subject_lambda, text_lambda)
   end
