@@ -78,11 +78,12 @@
           <%= link_to 'Ban', user_ban_path(@user) %>
         <% end %>
       </p>
-      <% if @user.email_domain %>
-        <p>
-          Email domain: <%= link_to @user.email_domain, users_path(email_domain: @user.email_domain) %>
-        </p>
-      <% end %>
+      <p>
+        <% if @user.email_domain %>
+          Email domain: <%= link_to @user.email_domain, users_path(email_domain: @user.email_domain) %><br>
+        <% end %>
+        <%= link_to 'Users with the same IP', users_path(same_ip: @user.id) %>
+      </p>
       <% report_count = @user.script_reports.count %>
       <p>This user has filed <%= report_count %> <%= 'report'.pluralize(report_count) %>.</p>
       <% if report_count > 0 %>

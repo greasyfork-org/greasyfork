@@ -41,6 +41,11 @@ class UsersController < ApplicationController
       @users = @users.where.not(id: Script.not_deleted.joins(:authors).pluck(:user_id))
     end
 
+    if current_user&.moderator? && params[:same_ip]
+      other_user = User.find(params[:same_ip])
+      @users = @users.where(current_sign_in_ip: other_user.current_sign_in_ip) if other_user&.current_sign_in_ip
+    end
+
     @users = self.class.apply_sort(@users, sort: params[:sort], script_subset: script_subset).paginate(page: params[:page], per_page: pp, total_entries: [@users.count, MAX_LIST_ENTRIES].min).load
     @user_script_counts = Script.listable(script_subset).joins(:authors).where(authors: { user_id: @users.map(&:id) }).group(:user_id).count
 
