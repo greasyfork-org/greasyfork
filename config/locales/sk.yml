@@ -1161,10 +1161,12 @@ sk:
     new_message:
       subject: "Nová správa na %{site_name}"
       text: |
-          Užívateľ "%{user}" na %{site_name}vám poslal správu.
+          Užívateľ "%{user}" na %{site_name} vám poslal správu.
 
           ---
           %{message_text}
           ---
+
+          Zobraziť správu a odpovedať na ňu môžete na %{conversation_url}.
 
           Toto upozornenie ste dostali, pretože ste prihlásený na odber tejto konverzácie. Pre odhlásenie prejdite na %{conversation_url}, alebo spravujte nastavenia upozornení na %{notification_preferences_url}.
