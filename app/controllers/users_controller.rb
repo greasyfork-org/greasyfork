@@ -29,9 +29,9 @@ class UsersController < ApplicationController
 
     case params[:banned]
     when '1'
-      @users = @users.where(banned: true)
+      @users = @users.banned
     when '0'
-      @users = @users.where(banned: false)
+      @users = @users.not_banned
     end
 
     case params[:author]

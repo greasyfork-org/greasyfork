@@ -17,7 +17,7 @@ class BlockTest < ApplicationSystemTestCase
       location.href = "https://example.com/unique-test-value"
     JS
     fill_in 'Code', with: code
-    assert_changes -> { user.reload.banned }, from: false, to: true do
+    assert_changes -> { user.reload.banned? }, from: false, to: true do
       assert_script_deleted_page do
         click_button 'Post script'
       end

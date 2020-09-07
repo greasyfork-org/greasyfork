@@ -2,6 +2,8 @@ require 'securerandom'
 require 'devise'
 
 class User < ApplicationRecord
+  self.ignored_columns = %w[banned]
+
   AUTHOR_NOTIFICATION_NONE = 1
   AUTHOR_NOTIFICATION_DISCUSSION = 2
   AUTHOR_NOTIFICATION_COMMENT = 3
@@ -10,6 +12,9 @@ class User < ApplicationRecord
 
   scope :moderators, -> { joins(:roles).where(roles: { name: 'moderator' }) }
   scope :administrators, -> { joins(:roles).where(roles: { name: 'administrator' }) }
+
+  scope :banned, -> { where.not(banned_at: nil) }
+  scope :not_banned, -> { where(banned_at: nil) }
 
   has_many :authors, dependent: :destroy
   has_many :scripts, through: :authors
@@ -69,7 +74,7 @@ class User < ApplicationRecord
   end
 
   validate do
-    errors.add(:base, 'This email has been banned.') if (new_record? || email_changed? || unconfirmed_email_changed?) && User.where(banned: true, canonical_email: canonical_email).any?
+    errors.add(:base, 'This email has been banned.') if (new_record? || email_changed? || unconfirmed_email_changed?) && User.banned.where(canonical_email: canonical_email).any?
   end
 
   # Devise runs this when password_required?, and we override that so
@@ -208,12 +213,12 @@ class User < ApplicationRecord
         reason: reason,
         private_reason: private_reason
       )
-      update_columns(banned: true)
+      update_columns(banned_at: Time.now)
       script_reports.unresolved.each(&:dismiss!)
     end
 
     if ban_related
-      User.where(canonical_email: canonical_email, banned: false).each do |user|
+      User.not_banned.where(canonical_email: canonical_email).each do |user|
         user.ban!(moderator: moderator, reason: reason, private_reason: private_reason, ban_related: false)
       end
     end
@@ -265,6 +270,10 @@ class User < ApplicationRecord
     discussions.not_deleted.each { |comment| comment.soft_destroy!(by_user: by_user) }
     comments.not_deleted.each { |comment| comment.soft_destroy!(by_user: by_user) }
     Report.unresolved.where(item: comments).each { |report| report.uphold!(moderator: by_user) }
+  end
+
+  def banned?
+    banned_at.present?
   end
 
   protected

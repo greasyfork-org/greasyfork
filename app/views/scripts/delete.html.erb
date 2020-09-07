@@ -13,7 +13,7 @@
           <label for="reason">Why are you undeleting this?</label><br>
           <textarea id="reason" name="reason" rows="5" cols="100" maxlength="500" required></textarea>
         </p>
-        <% users_to_unban = @script.users.select(&:banned) %>
+        <% users_to_unban = @script.users.select(&:banned?) %>
         <% if users_to_unban.any? %>
           <p>
             <label for="unbanned">Unban <%= users_to_unban.map { |u| link_to(u.name, u) }.to_sentence.html_safe %>?</label> <input type="checkbox" id="unbanned" name="unbanned" value="1">
@@ -69,7 +69,7 @@
         <label for="locked">Lock the script to prevent undelete by the <%= 'author'.pluralize(@script.users.count) %>?</label> <input type="checkbox" id="locked" name="locked" value="1" checked>
       </p>
 
-      <% banned_users, users_to_ban = @script.users.partition(&:banned) %>
+      <% banned_users, users_to_ban = @script.users.partition(&:banned?) %>
       <% if users_to_ban.any? %>
         <p>
           <label for="banned">Ban <%= users_to_ban.map { |u| link_to(u.name, u) }.to_sentence.html_safe %>?</label> <input type="checkbox" id="banned" name="banned" value="1">

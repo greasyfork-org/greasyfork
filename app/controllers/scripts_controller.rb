@@ -404,14 +404,14 @@ class ScriptsController < ApplicationController
       ma.save!
       @script.locked = false
       if params[:unbanned]
-        @script.users.select(&:banned).each do |user|
+        @script.users.select(&:banned?).each do |user|
           ma_ban = ModeratorAction.new
           ma_ban.moderator = current_user
           ma_ban.user = user
           ma_ban.action = 'Unban'
           ma_ban.reason = params[:reason]
           ma_ban.save!
-          user.banned = false
+          user.banned_at = nil
           user.save!
         end
       end
