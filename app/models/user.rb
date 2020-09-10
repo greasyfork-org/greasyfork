@@ -49,6 +49,10 @@ class User < ApplicationRecord
     self.canonical_email = EmailAddress.canonical(email)
   end
 
+  before_save do
+    self.email_domain = email ? email.split('@').last : nil
+  end
+
   after_update do
     # To clear partial caches
     scripts.touch_all if saved_change_to_name?
@@ -237,10 +241,6 @@ class User < ApplicationRecord
       dismissed: stats['dismissed'] || 0,
       upheld: stats['upheld'] || 0,
     }
-  end
-
-  def email_domain
-    email&.split('@')&.last
   end
 
   def subscribed_to?(discussion)

@@ -25,7 +25,7 @@ class UsersController < ApplicationController
 
     @users = @users.where(['name like ?', "%#{User.sanitize_sql_like(params[:q])}%"]) if params[:q].present?
 
-    @users = @users.where('email like ?', "%@#{User.sanitize_sql_like(params[:email_domain])}") if current_user&.moderator? && params[:email_domain]
+    @users = @users.where(email_domain: params[:email_domain]) if current_user&.moderator? && params[:email_domain]
 
     case params[:banned]
     when '1'

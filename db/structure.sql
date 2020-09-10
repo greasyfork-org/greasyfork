@@ -1867,6 +1867,7 @@ CREATE TABLE `users` (
   `subscribe_on_conversation_starter` tinyint(1) NOT NULL DEFAULT 1,
   `subscribe_on_conversation_receiver` tinyint(1) NOT NULL DEFAULT 1,
   `banned_at` datetime DEFAULT NULL,
+  `email_domain` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_users_on_email` (`email`),
   UNIQUE KEY `index_users_on_reset_password_token` (`reset_password_token`),
@@ -2092,6 +2093,8 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20200824013239'),
 ('20200828200844'),
 ('20200907200035'),
-('20200907200130');
+('20200907200130'),
+('20200910021353'),
+('20200910021433');
 
 
