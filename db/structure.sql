@@ -1873,7 +1873,8 @@ CREATE TABLE `users` (
   UNIQUE KEY `index_users_on_reset_password_token` (`reset_password_token`),
   UNIQUE KEY `index_users_on_confirmation_token` (`confirmation_token`),
   KEY `index_users_on_name` (`name`),
-  KEY `index_users_on_canonical_email` (`canonical_email`)
+  KEY `index_users_on_canonical_email` (`canonical_email`),
+  KEY `index_users_on_email_domain_and_current_sign_in_ip_and_banned_at` (`email_domain`,`current_sign_in_ip`,`banned_at`)
 ) ENGINE=InnoDB AUTO_INCREMENT=651458 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -2096,6 +2097,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20200907200130'),
 ('20200910021353'),
 ('20200910021433'),
-('20200910023621');
+('20200910023621'),
+('20200912211814');
 
 

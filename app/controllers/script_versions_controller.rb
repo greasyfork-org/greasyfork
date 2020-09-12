@@ -6,6 +6,7 @@ class ScriptVersionsController < ApplicationController
   before_action :check_for_deleted_by_script_id
   before_action :authorize_for_moderators_only, only: [:delete, :do_delete]
   before_action :check_read_only_mode, except: [:index, :show]
+  before_action :check_ip, only: :create
 
   layout 'scripts', only: [:index]
 

@@ -4,6 +4,7 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!, except: :old_redirect
   before_action :load_discussion, except: :old_redirect
   before_action :moderators_only, only: :destroy
+  before_action :check_ip, only: :create
 
   def create
     Comment.transaction do

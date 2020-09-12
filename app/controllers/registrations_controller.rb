@@ -4,6 +4,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   before_action :check_captcha, only: [:create]
   before_action :check_read_only_mode
+  before_action :check_ip_and_params_email, only: :create
 
   # https://github.com/plataformatec/devise/wiki/How-To%3a-Allow-users-to-edit-their-account-without-providing-a-password
   def update
@@ -47,6 +48,22 @@ class RegistrationsController < Devise::RegistrationsController
     resource.validate # Look for any other validation errors besides Recaptcha
     set_minimum_password_length
     respond_with_navigational(resource) { render :new }
+  end
+
+  def check_ip_and_params_email
+    email = params.dig('user', 'email')
+    return unless email
+
+    email_domain = email.split('@').last
+    return unless email_domain
+
+    if User.where(banned_at: 1.week.ago..)
+           .where(current_sign_in_ip: request.remote_ip)
+           .where(email_domain: email_domain)
+           .count >= 2
+      @text = 'Your IP address has been banned.'
+      render 'home/error', layout: 'application'
+    end
   end
 
   private

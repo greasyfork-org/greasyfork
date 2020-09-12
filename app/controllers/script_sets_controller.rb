@@ -3,6 +3,7 @@ class ScriptSetsController < ApplicationController
   before_action :authorize_by_user_id
   before_action :ensure_set_ownership, except: [:new, :create, :add_to_set]
   before_action :check_read_only_mode
+  before_action :check_ip, only: :create
 
   def new
     @user = User.find(params[:user_id])

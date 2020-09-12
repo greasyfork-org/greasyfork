@@ -260,4 +260,16 @@ class ApplicationController < ActionController::Base
   def administrators_only
     render_access_denied unless current_user&.administrator?
   end
+
+  def check_ip
+    return unless current_user&.email_domain
+
+    if User.where(banned_at: 1.week.ago..)
+           .where(current_sign_in_ip: request.remote_ip)
+           .where(email_domain: current_user&.email_domain)
+           .count >= 2
+      @text = 'Your IP address has been banned.'
+      render 'home/error', layout: 'application'
+    end
+  end
 end

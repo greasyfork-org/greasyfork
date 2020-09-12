@@ -7,6 +7,7 @@ class DiscussionsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :subscribe, :unsubscribe]
   before_action :moderators_only, only: :destroy
   before_action :greasy_only, only: :new
+  before_action :check_ip, only: :create
 
   layout 'discussions', only: :index
   layout 'application', only: [:new, :create]
