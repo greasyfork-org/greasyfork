@@ -99,7 +99,11 @@ class DiscussionsController < ApplicationController
 
     recaptcha_ok = current_user.needs_to_recaptcha? ? verify_recaptcha : true
     unless recaptcha_ok && @discussion.valid?
-      render :new
+      if @discussion.script
+        render :new, layout: 'scripts'
+      else
+        render :new
+      end
       return
     end
 

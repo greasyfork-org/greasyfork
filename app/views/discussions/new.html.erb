@@ -4,6 +4,8 @@
 <div class="post-discussion">
   <h3><%= t('discussions.new_title') %></h3>
 
+  <%= render partial: 'shared/errors', locals: { resource: @discussion } %>
+
   <% unless @discussion.script %>
     <p class="notice">
       <%= t('discussions.script_notice') %>

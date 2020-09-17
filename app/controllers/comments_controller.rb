@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
     @comment.send_notifications!
 
     redirect_to @comment.path
-  rescue ActiveRecord::Rollback
+  rescue ActiveRecord::RecordInvalid
     if @discussion.script
       @script = @discussion.script
       render 'discussions/show', layout: 'scripts'

@@ -43,9 +43,10 @@
 <% end %>
 <div class="post-reply">
   <h3><%= t('discussions.new_comment_heading') %></h3>
+  <%= render partial: 'shared/errors', locals: { resource: @message } %>
   <% if @conversation.users.include?(current_user) %>
     <%= form_with(model: @message, url: user_conversation_messages_path(current_user, @conversation), method: :POST) do |f| %>
-      <%= render partial: 'message_entry', locals: { f: f } %>
+      <%= render partial: 'conversations/message_entry', locals: { f: f } %>
       <%= f.submit t('discussions.new_comment_submit') %>
     <% end %>
   <% end %>

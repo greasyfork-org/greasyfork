@@ -17,6 +17,6 @@
 
 <% if f.object.new_record? && !f.object.discussion.new_record? && f.object.discussion.poster == current_user && f.object.discussion.script_id %>
   <%= f.fields_for f.object.discussion do |discussion_f| %>
-    <%= render partial: 'rating_entry', locals: { f: discussion_f, full_label: true } %>
+    <%= render partial: 'discussions/rating_entry', locals: { f: discussion_f, full_label: true } %>
   <% end %>
 <% end %>

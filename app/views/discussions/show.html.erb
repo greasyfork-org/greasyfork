@@ -44,17 +44,6 @@
   <p id="reported-note"><%= t('discussions.pending_moderator_review') %></p>
 <% end %>
 
-<% if @comment&.errors&.any? %>
-  <div class="alert">
-    <p><%=t('common.error_preamble')%></p>
-    <ul class="errors">
-      <% @comment.errors.full_messages.each do |m| %>
-        <li><%=m%></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
 <% @discussion.comments.not_deleted.reject(&:new_record?).each do |comment| %>
   <% by_current_user = comment.poster && current_user == comment.poster %>
   <div class="comment" id="comment-<%= comment.id %>">
@@ -129,10 +118,14 @@
     <% end %>
   </div>
 <% end %>
-<div class="post-reply">
+<div id="post-reply" class="post-reply">
   <h3><%= t('discussions.new_comment_heading') %></h3>
   <% if current_user && @comment %>
-    <%= form_with(model: @comment, url: scoped_comment_create_path(@discussion), method: :POST) do |f| %>
+
+    <%= render partial: 'shared/errors', locals: { resource: @comment } %>
+
+    <%# Use an anchor so that on failure (with no redirect, we scroll down here) %>
+    <%= form_with(model: @comment, url: scoped_comment_create_path(@discussion, anchor: 'post-reply'), method: :POST) do |f| %>
       <%= render partial: 'discussions/comment_entry', locals: { f: f } %>
       <% if @script && @script.users.include?(current_user) && current_user.author_email_notification_type_id == User::AUTHOR_NOTIFICATION_COMMENT %>
         <p class="form-note">

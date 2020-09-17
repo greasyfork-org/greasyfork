@@ -13,11 +13,11 @@ module DiscussionHelper
     text.truncate(200)
   end
 
-  def scoped_comment_create_path(discussion)
+  def scoped_comment_create_path(discussion, anchor: nil)
     if discussion.script
-      script_discussion_comments_path(discussion.script, discussion)
+      script_discussion_comments_path(discussion.script, discussion, anchor: anchor)
     else
-      category_discussion_comments_path(discussion, category: discussion.discussion_category)
+      category_discussion_comments_path(discussion, category: discussion.discussion_category, anchor: anchor)
     end
   end
 

@@ -31,7 +31,10 @@ class ConversationsController < ApplicationController
     @subscribe = params[:subscribe] == '1'
 
     @conversation.messages.last.poster = current_user
-    @conversation.save!
+    unless @conversation.save
+      render :new
+      return
+    end
 
     ConversationSubscription.find_or_create_by!(user: current_user, conversation: @conversation) if @subscribe
     ConversationSubscription.find_or_create_by!(user: other_user, conversation: @conversation) if other_user.subscribe_on_conversation_receiver
