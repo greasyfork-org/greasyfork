@@ -15,13 +15,6 @@ class SessionsController < Devise::SessionsController
     return super(resource)
   end
 
-  # delete Vanilla cookies too
-  def destroy
-    cookies.delete 'Vanilla'
-    cookies.delete 'Vanilla-Volatile'
-    super
-  end
-
   def omniauth_callback
     unless params[:failure].nil?
       handle_omniauth_failure
