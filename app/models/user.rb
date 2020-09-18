@@ -62,6 +62,16 @@ class User < ApplicationRecord
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
+  # Prevent session termination vulnerability
+  # https://makandracards.com/makandra/53562-devise-invalidating-all-sessions-for-a-user
+  def authenticatable_salt
+    "#{super}#{session_token}"
+  end
+
+  def invalidate_all_sessions!
+    self.session_token = SecureRandom.hex
+  end
+
   validates_presence_of :name, :profile_markup, :preferred_markup
   validates_uniqueness_of :name, case_sensitive: false
   validates_length_of :profile, maximum: 10_000
