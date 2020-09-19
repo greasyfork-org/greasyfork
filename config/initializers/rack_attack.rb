@@ -6,6 +6,10 @@ if Rails.env.production?
     req.ip if SIGNUP_PATH_PATTERN.match?(req.path) && req.post?
   end
 
+  Rack::Attack.throttle('limit registrations per email domain', limit: 3, period: 3600) do |req|
+    req.ip if SIGNUP_PATH_PATTERN.match?(req.path) && req.post? && req.params.dig('user', 'email')&.ends_with?('163.com')
+  end
+
   Rack::Attack.throttle('limit logins attempts per email', limit: 20, period: 300) do |req|
     req.params.dig('user', 'email') if LOGIN_PATH_PATTERN.match?(req.path) && req.post? && req.params.dig('user', 'email')
   end
