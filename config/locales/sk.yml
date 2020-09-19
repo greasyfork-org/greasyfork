@@ -425,24 +425,23 @@ sk:
 
         <ul>
 
-        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> or %{chrome_violentmonkey_link:Violentmonkey}</li>
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> alebo %{chrome_violentmonkey_link:Violentmonkey}</li>
 
         <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
-        or %{firefox_violentmonkey_link:Violentmonkey}</li>
+        alebo %{firefox_violentmonkey_link:Violentmonkey}</li>
 
-        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey} alebo %{safari_userscripts_link:Používateľské
+        skripty}</li>
 
         <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
 
-        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} or %{opera_violentmonkey_link:Violentmonkey}</li>
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} alebo %{opera_violentmonkey_link:Violentmonkey}</li>
 
         <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
 
         <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
 
         <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
-
-        <li>Qupzilla: (nie je potrebný žiadny ďalší softvér)</li>
 
         <li>AdGuard: (nie je potrebný žiadny ďalší softvér)</li>
 
@@ -1083,6 +1082,7 @@ sk:
       script_disallowed_require: "používa neschválených externý skript:% {code}"
       script_rate_limit: "Prekročili ste limit na odosielanie. Skúste to neskôr."
       missing_include_or_match: "musí obsahovať aspoň jeden kľúč @match alebo @include"
+      file_size_out_of_range: "veľkosť musí byť menšia ako 200KB"
   opensearch:
     short_name: "hľadať %{site_name}"
     description: "Hľadanie skriptov na %{site_name}."

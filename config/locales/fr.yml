@@ -14,7 +14,7 @@ fr:
     created_date: "Créé"
     updated_date: "Mis à jour"
     total_installs: "Installations (total)"
-    daily_installs: "Installations (jour)"
+    daily_installs: "Installations (par jour)"
     ratings: "Notes"
     author_name: "Auteur"
     version_number: "Version"
@@ -429,7 +429,7 @@ fr:
         <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
         ou %{firefox_violentmonkey_link:Violentmonkey}</li>
 
-        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey} ou %{safari_userscripts_link:Userscripts}</li>
 
         <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
 
@@ -440,8 +440,6 @@ fr:
         <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
 
         <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
-
-        <li>Qupzilla: (aucun logiciel supplémentaire requis)</li>
 
         <li>AdGuard: (aucun logiciel supplémentaire requis)</li>
 
@@ -529,6 +527,14 @@ fr:
     listing_updated_scripts: "Scripts mis à jour"
     listing_registration_date: "Date d'inscription"
     listing_title: "Utilisateurs"
+    listing_banned_filter:
+      banned: "Banni"
+      not_banned: "Pas banni"
+      all: "Tous"
+    listing_author_filter:
+      script_author: "Auteur de script"
+      not_script_author: "Pas auteur de script"
+      all: "Tous"
     search_placeholder: "Rechercher des utilisateurs"
     locale_prompt: "(Choisissez une région)"
     show_ads_description: "Soutenir %{site_name} en l'autorisant à vous afficher des publicités"
@@ -961,6 +967,7 @@ fr:
     notifying_on_script: Vous serez informé de toute réponse en raison de vos %{notifications_link:paramètres de notification}.
     categories:
       greasyfork:
+        name: Greasy Fork Feedback
         description: Rapports de bug, demandes de fonctionnalités et autres informations du site Greasy Fork.
       development:
         name: Développement
@@ -1071,6 +1078,7 @@ fr:
       script_disallowed_require: "utilise un script externe non approuvé: %{code}"
       script_rate_limit: "Vous avez atteint la limite d'envois. Essayez plus tard."
       missing_include_or_match: "doit inclure au moins une clé @match ou @include"
+      file_size_out_of_range: "la taille doit être inférieure à 200KB"
   opensearch:
     short_name: "%{site_name} recherche"
     description: "Recherche de scripts utilisateur sur %{site_name}."
@@ -1124,7 +1132,37 @@ fr:
           Vous pouvez voir et répondre à ce commentaire sur %{comment_url}. Gérez vos préférences de notification dans %{notification_preferences_url}.
     subscribed_discussion:
       subject: "La discussion %{discussion_title} sur %{site_name} a reçu un commentaire."
+      text: |
+          La discussion '%{discussion_title}' sur %{site_name} a reçu un commentaire de l'utilisateur '%{commenter_name}':
+
+          ---
+          %{comment_text}
+          ---
+
+          Vous pouvez lire et répondre à ce commentaire là: %{comment_url}.
+
+          Vous avez reçu cette notification car vous être inscrit à cette discussion. Visitez %{discussion_url} pour vous désinscrire, ou %{notification_preferences_url} pour régler vos préférences de notification.
     new_conversation:
       subject: "Une nouvelle conversation sur %{site_name}"
+      text: |
+          L'utilisateur '%{user}' sur %{site_name} a démarré une nouvelle conversation avec vous.
+
+          ---
+          %{message_text}
+          ---
+
+          Vous pouvez lire et répondre là: %{conversation_url}.
+
+          Vous avez reçu cette notification car vous être inscrit à cette conversation. Visitez %{conversation_url} pour vous désinscrire, ou %{notification_preferences_url} pour régler vos préférences de notification..
     new_message:
       subject: "Un nouveau message sur %{site_name}"
+      text: |
+          L'utilisateur '%{user}' sur %{site_name} vous a envoyé un message.
+
+          ---
+          %{message_text}
+          ---
+
+          Vous pouvez lire et répondre là: %{conversation_url}.
+
+          Vous avez reçu cette notification car vous être inscrit à cette conversation. Visitez %{conversation_url} pour vous désinscrire, ou %{notification_preferences_url} pour régler vos préférences de notification.

@@ -421,8 +421,7 @@ ru:
     installing_step1_caption: "Tampermonkey для Chrome"
     installing_step1_description_html: >
         <p>Для использования скриптов необходимо сначала установить менеджер скриптов.
-        Какой менеджер скриптов вам использовать, зависит от того, какой браузер вы
-        используете.</p>
+        Для браузеров доступны следующие менеджеры скриптов.</p>
 
         <ul>
 
@@ -431,7 +430,7 @@ ru:
         <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
         или %{firefox_violentmonkey_link:Violentmonkey}</li>
 
-        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey} или %{safari_userscripts_link:Userscripts}</li>
 
         <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
 
@@ -443,9 +442,7 @@ ru:
 
         <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
 
-        <li>Qupzilla: (дополнительное программное обеспечение не требуется)</li>
-
-        <li>AdGuard: (дополнительное программное обеспечение не требуется)</li>
+        <li>AdGuard: (дополнительного ПО не требуется)</li>
 
         </ul>
     installing_step2_header: "Шаг 2: установить скрипт"
@@ -1087,6 +1084,7 @@ ru:
       script_disallowed_require: "использует непроверенный внешний скрипт: %{code}"
       script_rate_limit: "Вы превысили количество сообщений. Попробуйте позже."
       missing_include_or_match: "должен иметь хотя бы одну директиву @match или @include"
+      file_size_out_of_range: "размер не должен превышать 200КБ"
   opensearch:
     short_name: "Поиск %{site_name}"
     description: "Поиск пользовательских скриптов на %{site_name}."

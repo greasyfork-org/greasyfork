@@ -407,31 +407,29 @@ zh-CN:
     installing_step1_header: "第一步：安装一个用户脚本管理器"
     installing_step1_caption: "Chrome 上的 Tampermonkey"
     installing_step1_description_html: >
-        <p>要使用用户脚本，您首先需要安装一个用户脚本管理器。根据您使用的浏览器不同，可用的用户脚本管理器也有所不同。</p>
+        <p>要使用用户脚本，您首先需要安装一个用户脚本管理器。您可以根据使用的浏览器来选择用户脚本管理器：</p>
 
         <ul>
 
-        <li>Chrome：%{chrome_tampermonkey_link:Tampermonkey}</a> 或 %{chrome_violentmonkey_link:Violent
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> 或 %{chrome_violentmonkey_link:Violent
         monkey}</li>
 
-        <li>Firefox：%{firefox_greasemonkey_link:Greasemonkey}、%{firefox_tampermonkey_link:Tampermonkey}</li>
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}、%{firefox_tampermonkey_link:Tampermonkey}</li>
         或 %{firefox_violentmonkey_link:Violentmonkey}
 
-        <li>Safari：%{safari_tampermonkey_link:Tampermonkey}</li>
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey} 或 %{safari_userscripts_link:Userscripts}</li>
 
-        <li>Microsoft Edge：%{edge_tampermonkey_link:Tampermonkey}</li>
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
 
-        <li>Opera：%{opera_tampermonkey_link:Tampermonkey}</li> 或 %{opera_violentmonkey_link:Violentmonkey}
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey}</li> 或 %{opera_violentmonkey_link:Violentmonkey}
 
-        <li>Maxthon：%{maxthon_violentmonkey_link:Violentmonkey}</li>
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
 
-        <li>Dolphin：%{dolphin_tampermonkey_link:Tampermonkey}</li>
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
 
-        <li>UC：%{uc_tampermonkey_link:Tampermonkey}</li>
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
 
-        <li>Qupzilla：（不需要额外软件）</li>
-
-        <li>AdGuard：（不需要额外软件）</li>
+        <li>AdGuard：(不需要额外软件)</li>
 
         </ul>
     installing_step2_header: "第二步：安装一个用户脚本"
@@ -957,6 +955,7 @@ zh-CN:
       script_disallowed_require: "使用了一个未经批准的外部脚本：%{code}"
       script_rate_limit: "您已超出脚本发布数量的限制。请稍后再试。"
       missing_include_or_match: "必须包含至少一个 @match 或 @include 规则"
+      file_size_out_of_range: "必须小于 200KB"
   opensearch:
     short_name: "%{site_name} 搜索"
     description: "搜索 %{site_name} 上的用户脚本。"
