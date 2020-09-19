@@ -96,4 +96,6 @@ Rails.application.configure do
   config.log_cache_misses = true
 
   config.eager_load_namespaces << I18n
+
+  config.hosts = %w[greasyfork.org sleazyfork.org]
 end
