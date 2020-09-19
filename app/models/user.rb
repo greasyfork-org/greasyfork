@@ -1,5 +1,6 @@
 require 'securerandom'
 require 'devise'
+require 'digest'
 
 class User < ApplicationRecord
   self.ignored_columns = %w[banned]
@@ -45,6 +46,23 @@ class User < ApplicationRecord
     scripts.select { |script| script.authors.where.not(user_id: id).none? }.each(&:destroy!)
   end
 
+  BANNED_EMAIL_SALT = '95b68f92d7f373b07dfe101a4b3b46708ae161739b263016eefa3d01762879936507ff2a55442e9a47c681d895de4d905565e2645caff432a987b07457bc005b'.freeze
+
+  after_destroy do
+    next unless canonical_email && banned_at
+
+    hash = Digest::SHA1.hexdigest(BANNED_EMAIL_SALT + canonical_email)
+    BannedEmailHash.create(email_hash: hash, deleted_at: Time.now, banned_at: banned_at) unless BannedEmailHash.where(email_hash: hash).any?
+  end
+
+  def self.email_previously_banned_and_deleted?(email)
+    return false unless email
+
+    email = EmailAddress.canonical(email)
+    hash = Digest::SHA1.hexdigest(BANNED_EMAIL_SALT + email)
+    BannedEmailHash.where(email_hash: hash).any?
+  end
+
   before_validation do
     self.canonical_email = EmailAddress.canonical(email)
   end
@@ -88,7 +106,7 @@ class User < ApplicationRecord
   end
 
   validate do
-    errors.add(:base, 'This email has been banned.') if (new_record? || email_changed? || unconfirmed_email_changed?) && User.banned.where(canonical_email: canonical_email).any?
+    errors.add(:base, 'This email has been banned.') if (new_record? || email_changed? || unconfirmed_email_changed?) && (User.banned.where(canonical_email: canonical_email).any? || User.email_previously_banned_and_deleted?(canonical_email))
   end
 
   # Devise runs this when password_required?, and we override that so
