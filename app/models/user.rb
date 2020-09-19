@@ -71,6 +71,10 @@ class User < ApplicationRecord
     self.email_domain = email ? email.split('@').last : nil
   end
 
+  after_create do
+    UserCheckingJob.perform_later(self)
+  end
+
   after_update do
     # To clear partial caches
     scripts.touch_all if saved_change_to_name?
