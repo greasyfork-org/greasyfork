@@ -11,7 +11,10 @@ class CodeSimilarityScorer
     # The "look-behind" only works for 32KB. If the code is longer than that then two copies of it won't get fully
     # compressed. This also means we're unlikely to find very similar scripts.
     # https://en.wikipedia.org/wiki/DEFLATE#Duplicate_string_elimination
-    compressed_length_if_identical = if base_length > 32.kilobytes
+    #
+    # 32505 is around 32KB - that seems like point things jump in size.
+    # ((31.7.kilobytes.to_i)..(31.8.kilobytes.to_i)).each { |i| puts "#{i} #{get_compressed_size(SecureRandom.alphanumeric(i) * 2)}" }
+    compressed_length_if_identical = if base_code.bytesize > 32_505
                                        base_compressed_length
                                      else
                                        get_compressed_size(base_code * 2)
