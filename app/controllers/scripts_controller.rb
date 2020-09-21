@@ -544,18 +544,24 @@ class ScriptsController < ApplicationController
     end
   end
 
+  DERIVATIVE_SCORES = [
+    [:high, 0.95],
+    [:medium, 0.85],
+    [:low, 0.75],
+  ].freeze
+
   def derivatives
     return if redirect_to_slug(@script, :id)
 
     # Include the inverse as well so that we can notice new/updated scripts that are similar to this. If we have the
     # relation both forward and backward, take the higher score.
     @similarities = []
-    @script.script_similarities.includes(:other_script).order(similarity: :desc, id: :asc).each do |ss|
+    @script.script_similarities.includes(:other_script).where(similarity: DERIVATIVE_SCORES.map(&:last).min..).order(similarity: :desc, id: :asc).each do |ss|
       @similarities << [ss.other_script, ss.similarity] unless ss.other_script.deleted?
     end
     # If we haven't run the forward, don't bother with the backward.
     if @similarities.any?
-      ScriptSimilarity.where(other_script: @script).order(similarity: :desc, id: :asc).each do |ss|
+      ScriptSimilarity.where(other_script: @script).where(similarity: DERIVATIVE_SCORES.map(&:last).min..).order(similarity: :desc, id: :asc).each do |ss|
         @similarities << [ss.script, ss.similarity] unless ss.script.deleted?
       end
       @similarities = @similarities.sort_by(&:last).reverse.uniq(&:first).first(100)

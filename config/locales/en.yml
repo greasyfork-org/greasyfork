@@ -210,8 +210,13 @@ en:
     derivatives_exact_copes_none: "There are no other scripts on %{site_name} that have the exact same code as this script."
     derivatives_similar_heading: "Similar scripts"
     derivatives_similar_info: "We periodically check the latest version of all other scripts to find the ones most similar to yours. We also check whenever you post an update to your script and upon your request."
-    derivatives_similar_score_info: "Scores range from 0.000 (completely different) to 1.000 (identical)."
-    derivatives_similar_item: "%{score} %{diff_link:[Diff]}: %{script}"
+    similarity_score:
+      high: Very similar
+      medium: Moderately similar
+      low: Somewhat similar
+      none: Not similar
+    derivatives_similar_none: "There are no scripts similar to yours."
+    derivatives_similar_item: "%{score}: %{diff_link:[Diff]} %{script}"
     derivatives_similar_last_check_html: "We last checked for scripts similar to yours on %{date}."
     derivatives_similar_last_check_soon: "We will check for scripts similar to yours shortly."
     derivatives_similar_last_check_again_soon_html: "We last checked for scripts similar to yours on %{date}. We will check again shortly."

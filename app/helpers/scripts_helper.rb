@@ -74,4 +74,9 @@ module ScriptsHelper
     # take this one out of the count if it's a listable
     return (by_sites[script_applies_to.text][:scripts] - (script.listable? ? 1 : 0))
   end
+
+  def similarity_string(score)
+    key = ScriptsController::DERIVATIVE_SCORES.find { |_key, min_score| score >= min_score }&.first || 'none'
+    t("scripts.similarity_score.#{key}")
+  end
 end
