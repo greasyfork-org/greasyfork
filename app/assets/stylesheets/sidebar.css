@@ -3,6 +3,8 @@
 }
 .sidebarred-main-content {
   flex: 1;
+  /* 224px is the sidebar width (including margin) */
+  max-width: calc(100% - 224px);
 }
 .sidebar {
   width: 200px;
