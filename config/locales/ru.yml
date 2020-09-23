@@ -132,8 +132,13 @@ ru:
     derivatives_exact_copes_none: "На сайте %{site_name} нет скриптов с точно таким же кодом, как и у вашего."
     derivatives_similar_heading: "Похожие скрипты"
     derivatives_similar_info: "Мы периодически проверяем последние версии скриптов, похожи ли они на ваш. Мы также проводим эту проверку после размещения вами обновления скрипта и по вашему запросу."
-    derivatives_similar_score_info: "Диапазон оценок от 0 (ничего общего) до 1 (точная копия)."
-    derivatives_similar_item: "%{score} %{diff_link:[Diff]}: %{script}"
+    similarity_score:
+      high: Очень сильно похож
+      medium: Сильно похож
+      low: Немного похож
+      none: Не похож
+    derivatives_similar_none: "Нет скриптов похожих на ваш."
+    derivatives_similar_item: "%{score}: %{diff_link:[Различия]} %{script}"
     derivatives_similar_last_check_html: "Последний раз мы искали похожие скрипты %{date}."
     derivatives_similar_last_check_soon: "Мы проведём поиск похожих скриптов в ближайшее время."
     derivatives_similar_last_check_again_soon_html: "Последний раз мы искали похожие скрипты %{date}. Мы повторим проверку в ближайшее время."

@@ -131,8 +131,6 @@ es:
     derivatives_exact_copes_none: "No hay ningún otro script en %{site_name} que coincida exactamente con el tuyo."
     derivatives_similar_heading: "Scripts similares"
     derivatives_similar_info: "Comprobamos de forma periódica las últimas versiones de todos los otros scripts alojados en la página para encontrar coincidencias con el tuyo. También lo comprobamos cuando actualizas to script o solicitas una comprobación manual."
-    derivatives_similar_score_info: "La puntuación oscila entre 0.000 (no se parece en nada) a 1.000 (idéntico)."
-    derivatives_similar_item: "%{score} %{diff_link:[Diferencias]}: %{script}"
     derivatives_similar_last_check_html: "La última vez que se hizo la comprobación de coincidencias fue el %{date}."
     derivatives_similar_last_check_soon: "Empezaremos a escanear scripts parecidos a los tuyos en breve."
     derivatives_similar_last_check_again_soon_html: "La última vez que se hizo la comprobación de coincidencias fue el %{date}. Y lo volveremos a comprobar otra vez en breve."
@@ -417,34 +415,6 @@ es:
     explain_user_scripts_html: "Los scripts de usuario son pequeñas porciones de código que añaden funcionalidad, eliminan molestias y en general mejoran las páginas que visitas. Los scripts de usuario alojados en %{site_name} son gratuitos y creados por una comunidad global de usuarios. %{site_name} aloja miles de scripts de usuario escritos por cientos de autores."
     installing_step1_header: "Primer paso: Instala un administrador de scripts de usuario"
     installing_step1_caption: "Tampermonkey en Chrome"
-    installing_step1_description_html: >
-        <p>Para usar scripts de usuario primero tienes que instalar un administrador
-        de scripts. La opción a elegir depende del navegador que utilices.</p>
-
-        <ul>
-
-        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> o %{chrome_violentmonkey_link:Violentmonkey}</li>
-
-        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
-        o %{firefox_violentmonkey_link:Violentmonkey}</li>
-
-        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
-
-        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
-
-        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} o %{opera_violentmonkey_link:Violentmonkey}</li>
-
-        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-
-        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
-
-        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
-
-        <li>Qupzilla: (no es necesario instalar nada más)</li>
-
-        <li>AdGuard: (no es necesario instalar nada más)</li>
-
-        </ul>
     installing_step2_header: "Segundo paso: Elige e instala un script"
     installing_step2_caption: "Botón de instalación de un script de usuario"
     installing_step2_description_html: >

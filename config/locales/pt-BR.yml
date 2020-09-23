@@ -130,8 +130,13 @@ pt-BR:
     derivatives_exact_copes_none: "Não existem outros scripts no %{site_name} quem tem o exato mesmo código que este script."
     derivatives_similar_heading: "Scripts similares"
     derivatives_similar_info: "Periodicamente nós checamos a última versão de todos os outros scripts para encontrar aqueles que são similares aos seus. Nós também verificamos sempre que você publica uma atualização de seus scripts e também caso você nos solicite."
-    derivatives_similar_score_info: "Pontuação varia de 0.000 (completamente diferente) até 1.000 (idêntico)."
-    derivatives_similar_item: "%{score} %{diff_link:[Diferença]}: %{script}"
+    similarity_score:
+      high: Muito similar
+      medium: Moderadamente similar
+      low: Similar de alguma forma
+      none: Nada similar
+    derivatives_similar_none: "Existem scripts similares aos seus."
+    derivatives_similar_item: "%{score}: %{diff_link:[Diff]} %{script}"
     derivatives_similar_last_check_html: "A última vez que verificamos a existência de scripts similares aos seus foi em %{date}."
     derivatives_similar_last_check_soon: "Iremos verificar se existem scripts similares aos seus em breve."
     derivatives_similar_last_check_again_soon_html: "A última vez que verificamos a existência de scripts similares aos seus foi em %{date}. Verificaremos novamente em breve."

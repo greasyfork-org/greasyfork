@@ -130,8 +130,6 @@ bg:
     derivatives_exact_copes_none: "Няма други скриптове на %{site_name}, които имат същия код както вашия скрипт."
     derivatives_similar_heading: "Подобни скриптове"
     derivatives_similar_info: "Ние периодично проверяваме последните версии на другите скриптове, за да намерим тези, които са подобни на вашия Проверката се извършва когато публикувате обновена версия на скрипта или при заявка."
-    derivatives_similar_score_info: "Обхват на точките от 0.000 (напълно различен) до 1.000 (идентичен)."
-    derivatives_similar_item: "%{score} %{diff_link:[Diff]}: %{script}"
     derivatives_similar_last_check_html: "Последно проверихме за подобни на вашия скрипт на %{date}."
     derivatives_similar_last_check_soon: "След малко започва проверка за сходни скриптове на вашия."
     derivatives_similar_last_check_again_soon_html: "Последно проверихме за подобни на вашия скрипт на %{date}. След малко започва нова проверка."
@@ -414,34 +412,6 @@ bg:
     explain_user_scripts_html: "Потребителските скриптове ви позволяват да контролирате сърфирането в мрежата. Веднъж инсталирани те автоматично правят посещаваните сайтове по-добри, добавяйки екстри, правейки ги по-лесни за употреба, или премахвайки досадни неща. Потребителските скриптове за %{site_name} са написани от други потребители и публикувани за споделяне с целия свят. Те се инсталират безплатно и са лесни за употреба."
     installing_step1_header: "Стъпка 1: инсталирайте скриптов мениджър"
     installing_step1_caption: "Tampermonkey за Chrome"
-    installing_step1_description_html: >
-        <p>За да използвате потребителски скриптове, първо трябва да инсталирате скриптов
-        мениджър. Кой ще използвате, това зависи от браузъра, с който работите.</p>
-
-        <ul>
-
-        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> or %{chrome_violentmonkey_link:Violentmonkey}</li>
-
-        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
-        или %{firefox_violentmonkey_link:Violentmonkey}</li>
-
-        <li>Safari: %{safari_tampermonkey_link:Tampermonkey}</li>
-
-        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
-
-        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} или %{opera_violentmonkey_link:Violentmonkey}</li>
-
-        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
-
-        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
-
-        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
-
-        <li>Qupzilla: (не се изисква допълнителен софтуер)</li>
-
-        <li>AdGuard: (не се изисква допълнителен софтуер)</li>
-
-        </ul>
     installing_step2_header: "Стъпка 2: инсталирайте потребителски скрипт"
     installing_step2_caption: "Бутон за инсталиране на скрипта"
     installing_step2_description_html: >

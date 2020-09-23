@@ -126,8 +126,13 @@ zh-CN:
     derivatives_exact_copes_none: "没有其他对于网站%{site_name}的脚本有和该脚本相似的代码。"
     derivatives_similar_heading: "相似脚本"
     derivatives_similar_info: "我们会周期性的检查所有其他脚本的最新版本，从而找出和您的脚本最相似的内容。我们也会在您对您的脚本发布更新的时候根据您的请求来检查。"
-    derivatives_similar_score_info: "分数从 0.000（完全不同）到 1.000（完全相同）。"
-    derivatives_similar_item: "%{score} %{diff_link:[对比]}: %{script}"
+    similarity_score:
+      high: 非常相似
+      medium: 比较相似
+      low: 稍微有点相似
+      none: 相似度不高
+    derivatives_similar_none: "没有与您的脚本相似的脚本。"
+    derivatives_similar_item: "%{score}: %{diff_link:[查看 diff]} %{script}"
     derivatives_similar_last_check_html: "上一次对您的脚本查重的时间为 %{date}。"
     derivatives_similar_last_check_soon: "我们将会稍后查询与您的脚本相似的脚本。"
     derivatives_similar_last_check_again_soon_html: "我们在%{date}查询了与您的脚本相似的脚本。我们稍后会再次检查。"

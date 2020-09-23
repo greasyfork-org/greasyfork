@@ -131,8 +131,13 @@ sk:
     derivatives_exact_copes_none: "Na %{site_name} nie sú žiadne ďalšie skripty, ktoré majú rovnaký kód ako tento skript."
     derivatives_similar_heading: "Podobné skripty"
     derivatives_similar_info: "Pravidelne kontrolujeme posledné verzie všetkých ďalších skriptov pre nájdenie podobných skriptov tým vašim. Tiež kontrolujeme odoslané aktualizácie vašich skriptov na vašu žiadosť."
-    derivatives_similar_score_info: "Rozsah skóre od 0.000 (úplne odlišné) do 1.000 (identické)."
-    derivatives_similar_item: "%{score} %{diff_link:[Rozdiel]}: %{script}"
+    similarity_score:
+      high: Veľmi podobné
+      medium: Stredne podobné
+      low: V niečom podobné
+      none: Nie sú podobné
+    derivatives_similar_none: "Neexistujú žiadne skripty podobné vašim."
+    derivatives_similar_item: "%{score}: %{diff_link:[Rozdiel]} %{script}"
     derivatives_similar_last_check_html: "Posledná kontrola podobnosti vašim skriptom prebehla %{date}."
     derivatives_similar_last_check_soon: "Čoskoro skontrolujeme skripty podobné vašim."
     derivatives_similar_last_check_again_soon_html: "Posledná kontrola podobnosti vašim skriptom prebehla %{date}. Čoskoro skontrolujeme skripty podobné vašim."
