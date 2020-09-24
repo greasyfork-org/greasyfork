@@ -14,10 +14,10 @@ class CommentsController < ApplicationController
       @comment = @discussion.comments.build(comments_params)
       @comment.poster = current_user
       @comment.save!
-
-      if params[:subscribe] == '1'
+      case params[:subscribe]
+      when '1'
         DiscussionSubscription.find_or_create_by!(user: current_user, discussion: @discussion)
-      else
+      when '0'
         DiscussionSubscription.find_by(user: current_user, discussion: @discussion)&.destroy
       end
     end
