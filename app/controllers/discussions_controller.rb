@@ -114,7 +114,7 @@ class DiscussionsController < ApplicationController
 
     AkismetDiscussionCheckingJob.perform_later(@discussion, request.ip, request.user_agent, request.referer)
 
-    redirect_to @discussion.path
+    redirect_to @discussion.path(locale: request_locale.code)
   end
 
   def destroy
@@ -123,7 +123,7 @@ class DiscussionsController < ApplicationController
     if discussion.script
       redirect_to script_path(discussion.script)
     else
-      redirect_to discussions_path
+      redirect_to discussions_path(locale: request_locale.code)
     end
   end
 
@@ -132,7 +132,7 @@ class DiscussionsController < ApplicationController
     DiscussionSubscription.find_or_create_by!(user: current_user, discussion: discussion)
     respond_to do |format|
       format.js { head 200 }
-      format.all { redirect_to discussion.path }
+      format.all { redirect_to discussion.path(locale: request_locale.code) }
     end
   end
 
@@ -141,12 +141,12 @@ class DiscussionsController < ApplicationController
     DiscussionSubscription.find_by(user: current_user, discussion: discussion)&.destroy
     respond_to do |format|
       format.js { head 200 }
-      format.all { redirect_to discussion.path }
+      format.all { redirect_to discussion.path(locale: request_locale.code) }
     end
   end
 
   def old_redirect
-    redirect_to Discussion.find_by!(migrated_from: params[:id]).url, status: 301
+    redirect_to Discussion.find_by!(migrated_from: params[:id]).url(locale: request_locale.code), status: 301
   end
 
   def mark_all_read

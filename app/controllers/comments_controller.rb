@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
 
     @comment.send_notifications!
 
-    redirect_to @comment.path
+    redirect_to @comment.path(locale: request_locale.code)
   rescue ActiveRecord::RecordInvalid
     if @discussion.script
       @script = @discussion.script
@@ -58,11 +58,11 @@ class CommentsController < ApplicationController
   def destroy
     comment = @discussion.comments.not_deleted.find(params[:id])
     comment.soft_destroy!(by_user: current_user)
-    redirect_to @discussion.path
+    redirect_to @discussion.path(locale: request_locale.code)
   end
 
   def old_redirect
-    redirect_to Discussion.find_by!(migrated_from: ForumComment.find(params[:id]).DiscussionID).url, status: 301
+    redirect_to Discussion.find_by!(migrated_from: ForumComment.find(params[:id]).DiscussionID).url(locale: request_locale.code), status: 301
   end
 
   private
