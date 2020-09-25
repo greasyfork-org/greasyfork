@@ -3,8 +3,6 @@
 }
 .sidebarred-main-content {
   flex: 1;
-  /* 224px is the sidebar width (including margin) */
-  max-width: calc(100% - 224px);
 }
 .sidebar {
   width: 200px;
@@ -66,5 +64,11 @@
   }
   .open-sidebar.sidebar-collapsed {
     display: block;
+  }
+}
+@media screen and (min-width: 800px) {
+  .sidebarred-main-content {
+    /* 224px is the sidebar width (including margin) */
+    max-width: calc(100% - 224px);
   }
 }
