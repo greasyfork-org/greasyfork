@@ -61,6 +61,7 @@ ar:
     delete_permanently_heading: "حذف دائم"
     delete_permanently_submit: "طلب الحذف الدائم"
     delete_permanently_immediate_submit: "حذف بشكل نهائي"
+    delete_permanently_notice: "تم تسجيل طلب الحذف الدائم. سيتم حذف البرنامج النصي الخاص بك بشكل دائم بعد 7 أيام."
     delete_permanently_notice_immediate: "تم حذف البرنامج النصي نهائيا."
     cancel_delete_permanently_submit: "إلغاء طلب الحذف النهائي."
     delete_permanently_rejected_locked: "هذا البرنامج النصي مقفل ولا يمكن حذفه نهائيا."
@@ -77,6 +78,7 @@ ar:
       locale_multiple_note: "لاحظ أن %{meta_keys_link: يمكن تعريف عدة لغات للسكربت}."
       update_locale: "تحديث اللغة"
       no_moderator_logs: "لم يتم اتخاذ أي إجراءات بواسطة المشرفين على هذا السكربت."
+      compare_button: "قارن"
     history_title: "%{script_name} - تاريخ الإصدار"
     history_only_code_changes_info: "هذه إصدارات لهذا البرنامج النصي حيث تم تحديث الكود."
     history_all_changes_link: "عرض كل الإصدارات."
@@ -87,6 +89,7 @@ ar:
     feedback_title: "%{script_name} - ردود الفعل"
     feedback_has_reports: "تم الإبلاغ عن هذا السكربت لأنتهاكة قواعد %{site_name}."
     feedback_no_discussions_html: "لا يوجد نقاش حتى الآن. %{start_first_discussion_link}"
+    feedback_no_discussions_on_page_form: "لم يتم نشر أي مناقشات حتى الآن."
     feedback_start_first_discussion_link: "كن أول من يناقش هذا البرنامج النصي."
     feedback_favoriters_heading: "من أضافوه للمفضلة"
     feedback_favoriters_user_list_intro: "تم تفضيل هذا البرنامج النصي من قبل:"
@@ -103,6 +106,12 @@ ar:
     stats_download_raw_data_html: "تنزيل كل البيانات كـ: %{links}"
     stats_no_data: "لا يوجد"
     derivatives_title: "%{script_name} - المشتقات"
+    derivatives_exact_copies_list_intro: "تحتوي البرامج النصية التالية على نفس التعليمات البرمجية الخاصة بك:"
+    similarity_score:
+      high: مشابه جدا
+      medium: متشابه إلى حد ما
+      none: لا تتشابه
+    derivatives_similar_check_now: "أعد الفحص الآن"
     listing_title_all_sites: "برامج نصية لكل المواقع"
     listing_description_all_sites: "البرامج النصية التي تضيف ميزات وتزيل الأخطاء على جميع المواقع"
     listing_title_for_site: "برامج نصية لـ %{site}"
@@ -123,11 +132,15 @@ ar:
     listing_filter_by_site_label: "عرض البرامج النصية لـ:"
     listing_filter_by_site_disable: "الكل"
     listing_filter_by_site_all_sites: "(كل المواقع)"
+    listing_filter_by_language_label: "لغة:"
     listing_filter_by_site_more_sites: "أكثر ..."
     listing_no_scripts: "لم يتم العثور على برامج نصية."
     listing_created_feed: "البرامج النصية الجديدة"
     listing_updated_feed: "البرامج النصية المحدثة"
     listing_none: "(لا يوجد)"
+    listing_language_all: "الكل"
+    listing_language_js: "جافا سكريبت"
+    listing_language_css: "سي إس إس"
     import: "استيراد البرامج النصية"
     support_site: "قم بزيارة موقع المؤلف."
     support_email: "إرسال بريد إلكتروني للمؤلف."
@@ -251,6 +264,8 @@ ar:
       remove_confirm: "هل انت متأكد من أزالة %{user_name} كمؤلف؟"
       failure: "فشل أزالة المؤلف."
     no_disposable_email: "لا يجوز لك نشر السكربتات إذا كنت تستخدم عنوان بريد إلكتروني يمكن التخلص منه."
+    new_script_notice:
+      title: "ماذا تحاول أن تفعل؟"
   script_sets:
     description: "مجموعات البرامج النصية تسمح لك بإنشاء قائمة برامج نصية مخصصة لتصفح النصية بها. يمكنك إضافة البرنامج النصية إلى مجموعة عن طريق إضافتها منفردة أو من مجموعات المستخدمين  الآخرين أو تلقائيا. يمكنك أيضا استثناء برامج نصية من مجموعتك بنفس الأساليب."
     favorites_name: "المفضلة"
@@ -380,6 +395,7 @@ ar:
     edit_sign_in: "تحرير طرق تسجيل الدخول"
     edit_sign_in_title: "تحرير طرق تسجيل الدخول"
     edit_sign_in_password: "كلمة المرور"
+    edit_notifications: "تحرير الإشعارات"
     no_password_set_info: "لم يتم تكوين كلمة مرور لحسابك."
     set_password: "تعيين كلمة مرور"
     update_password: "تحديث كلمة المرور"
@@ -420,6 +436,12 @@ ar:
     listing_updated_scripts: "البرامج النصية المحدثة"
     listing_registration_date: "تاريخ التسجيل"
     listing_title: "المستخدمون"
+    listing_banned_filter:
+      banned: "محظور"
+      not_banned: "غير محظور"
+      all: "الكل"
+    listing_author_filter:
+      all: "الكل"
     search_placeholder: "بحث المستخدمين"
     locale_prompt: "(اختر اللغة المحلية)"
     show_ads_description: "دعم %{site_name} عن طريق السماح له بعرض الإعلانات"
@@ -588,6 +610,71 @@ ar:
     item_script_html: "السكربت: %{script_link}"
     item_deleted_script: "أحذف السكربت %{id}"
     item_user_html: "المستخدم: %{user_link}"
+  discussions:
+    edit_comment_header: "تعديل التعليق"
+    delete_comment: "حذف"
+    delete_discussion: "حذف"
+    update_comment_submit: "تحديث التعليق"
+    cancel_update_comment: "إلغاء"
+    question_heading_html: "سؤال / تعليق"
+    review_heading_html: "مراجعة: %{rating}"
+    ratings_short:
+      question: "سؤال / تعليق"
+      bad: "سيئة"
+      ok: "حسنا"
+      good: "جيد"
+    sign_in_to_post_discussion: "قم بتسجيل الدخول لنشر مراجعة أو تعليق أو سؤال."
+    sign_in_to_post_comment: "تسجيل الدخول إلى مرحلة ما بعد الرد."
+    user_filter:
+      label: "مناقشات شاركت فيها"
+      all: "كل المناقشات"
+      subscribed: "مشترك"
+    other_user_filter:
+      all: "جميع المناقشات"
+      comments_by: "تعليقات بواسطة %{user}"
+    category_filter:
+      label: الفئة
+      all: جميع الفئات
+    read_filter:
+      all: الكل
+      read: مقروءة
+      unread: غير مقروءة
+    user_activity:
+      title: "التعليقات الأخيرة"
+      no_recent_activity: "هذا المستخدم لم ينشر أي تعليقات مؤخرا."
+      see_all_activity: "شاهد كل نشاط المستخدم."
+      script_review:
+        posted_html: "نشر مشاركة حول <i>%{script}</i>"
+      script_question:
+        posted_html: "نشر سؤال / تعليق حول <i>%{script}</i>"
+        replied_html: "رد على سؤال / تعليق حول <i>%{script}</i>"
+      discussion:
+        posted_html: "نشر مناقشة: <i>%{title}</i>"
+        replied_html: "رد على المناقشة: <i>%{title}</i>"
+    question_title: "سؤال حول %{script_name}"
+    subscribe: الإشتراك
+    unsubscribe: إلغاء الاشتراك
+    notify: أعلمني بأي ردود
+    categories:
+      development:
+        name: تطوير
+    new_title: مناقشة جديدة
+    new_button: مناقشة جديدة
+    no_discussions: لم يتم العثور على مناقشات.
+    mark_all_read: ضع علامة بأنه تم القراءة
+    pending_moderator_review: هذه المناقشة غير متاحة للمستخدمين الآخرين حتى تتم مراجعتها من قبل المشرف.
+  conversations:
+    user_input_note: أدخل اسم المستخدم أو عنوان URL إلى ملف التعريف الخاص به.
+    new_title: قم بإنشاء محادثة جديدة
+    new_link: قم بإنشاء محادثة جديدة
+    new_button: إنشاء محادثة
+    send_message: أرسل رسالة
+    conversation_list_title: المحادثات
+    conversation_info_html: آخر رسالة في%{date} بواسطة %{user}.
+    no_conversations: لم تجر أي محادثات بعد.
+    recent:
+      title: المحادثات الأخيرة
+      more: مشاهدة جميع المحادثات
   common:
     error_preamble: "هناك بعض المشاكل مع ما قمت بنشره ..."
     allowed_elements_link: "(مشاهدة الكود المسموح به)"
@@ -605,6 +692,8 @@ ar:
     preview_tab: معاينة
     write_tab: أكتب
     listing_options_title: "خيارات البحث"
+    quote:
+      prefix_html: "%{user}قال:"
   activerecord:
     attributes:
       user:
@@ -631,6 +720,16 @@ ar:
         name: "الاسم"
         description: "الوصف"
         default_sort: "الفرز الافتراضي "
+      report:
+        reason: "سبب التقرير"
+      discussion:
+        rating: "تقييم"
+        category: "الفئة"
+        title: عنوان
+      conversation:
+        user_input: المستعمل
+      message:
+        content: رسالة
   errors:
     messages:
       script_missing_name: "مطلوب - حدد واحد بـ @name"
@@ -645,8 +744,14 @@ ar:
       script_update_not_utf8: "المرفوع يجب أن يكون نص UTF-8"
       script_disallowed_require: "يستخدم برنامج نصي خارجي غير مصرح به: %{code}"
       script_rate_limit: "لقد تجاوزت حد النشر. حاول مجدداً في وقت لاحق."
+      file_size_out_of_range: "يجب أن يكون الحجم أقل من 200 كيلو بايت"
   opensearch:
     short_name: "بحث %{site_name}"
     description: "بحث عن البرامج النصية للمستخدم في %{site_name}."
     long_name: "%{site_name} بحث عن البرامج النصية"
     attribution: "حقوق التأليف والنشر لمؤلفي البرامج النصية، شاهد البرامج النصية بشكل منفصل من أجل الترخيص"
+  mailers:
+    new_conversation:
+      subject: "محادثة جديدة في%{site_name}"
+    new_message:
+      subject: "رسالة جديدة في%{site_name}"
