@@ -19,3 +19,4 @@ If you like Greasy Fork, consider making a donation to help pay for hosting. Sug
 ## License
 
 Greasy Fork is licensed under the [GPLv3](https://github.com/JasonBarnabe/greasyfork/blob/master/COPYING).
+[![Run on Repl.it](https://repl.it/badge/github/JasonBarnabe/greasyfork)](https://repl.it/github/JasonBarnabe/greasyfork)
