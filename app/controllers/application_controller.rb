@@ -130,7 +130,7 @@ class ApplicationController < ActionController::Base
   end
 
   def clean_redirect_param(param_name)
-    clean_redirect_param(params[param_name])
+    clean_redirect_value(params[param_name])
   end
 
   def clean_redirect_value(url)
