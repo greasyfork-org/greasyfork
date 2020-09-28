@@ -83,6 +83,16 @@ when ScriptReport::TYPE_UNAUTHORIZED_CODE %>
   </div>
 <% end %>
 
+<% other_reports = @script_report.script.script_reports.where.not(id: @script_report.id) %>
+<% if other_reports.any? %>
+  <p>This script has been reported before.</p>
+  <ul>
+    <% other_reports.each do |other_report| %>
+      <li><%= render other_report %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <hr>
 
 <% if @script_report.dismissed? %>
