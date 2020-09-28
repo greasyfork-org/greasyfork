@@ -121,7 +121,7 @@ class SessionsController < Devise::SessionsController
 
     # create a new user
     identity = Identity.new(provider: provider, uid: uid, syncing: true, url: url)
-    user = User.new(name: name, email: email, identities: [identity])
+    user = User.new(name: name, email: email, locale_id: session[:locale_id], identities: [identity])
     identity.user = user
     unless user.save
       handle_omniauth_failure(user.errors.full_messages.join(', '))

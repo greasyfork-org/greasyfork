@@ -58,7 +58,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :locale_id])
     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :profile, :profile_markup, :preferred_markup, :locale_id, :author_email_notification_type_id, :show_ads, :show_sensitive, :flattr_username])
   end
 
@@ -130,11 +130,14 @@ class ApplicationController < ActionController::Base
   end
 
   def clean_redirect_param(param_name)
-    v = params[param_name]
-    return nil if v.nil?
+    clean_redirect_param(params[param_name])
+  end
+
+  def clean_redirect_value(url)
+    return nil if url.nil?
 
     begin
-      u = URI.parse(v)
+      u = URI.parse(url)
       p = u.path
       q = u.query
       f = u.fragment

@@ -13,7 +13,7 @@
       <div>
         <% Rails.application.config.available_auths.keys.reverse.each do |provider| %>
           <span class="external-login-container">
-            <button formaction="/auth/<%= provider %>" class="external-login <%=provider%>-login">
+            <button formaction="/auth/<%= provider %>?locale_id=<%= request_locale.id %>" class="external-login <%=provider%>-login">
               <%=t('users.sign_in_with', provider: Identity.pretty_provider(provider)) %>
             </button>
           </span>

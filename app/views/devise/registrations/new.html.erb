@@ -1,5 +1,6 @@
 <h2><%= t('.sign_up') %></h2>
 
+<% resource.locale_id ||= request_locale.id %>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -25,6 +26,8 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off", required: true %>
   </div>
+
+  <%= f.hidden_field :locale_id %>
 
   <%= flash[:recaptcha_error] %>
   <div><%= invisible_recaptcha_tags callback: 'submitInvisibleRecaptchaForm', text: t('.sign_up') %></div>
