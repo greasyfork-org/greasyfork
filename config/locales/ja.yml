@@ -934,12 +934,12 @@ ja:
     script_comment:
       subject: "スクリプト %{script_name} (%{site_name}) にコメントがあります。"
       text: |
-          あなたのスクリプト「%{script_name}」( %{site_name}, %{script_url}) に対しユーザー %{commenter_name}」からのコメントがあります:
+          あなたのスクリプト「%{script_name}」 (%{site_name}, %{script_url}) に対して、ユーザー %{commenter_name} からのコメントがつきました：
 
           ---
           %{comment_text}
           ---
 
-          このコメントへ%{comment_url}から返信できます。通知設定の管理は%{notification_preferences_url}から行えます。
+          コメントの閲覧と返信は %{comment_url} で、通知設定の管理は %{notification_preferences_url} で行うことができます。
     subscribed_discussion:
-      subject: "%{site_name}での議論%{discussion_title}はコメントを受け付けてます。"
+      subject: "%{site_name} でスレッド「%{discussion_title}」にコメントがつきました。"
