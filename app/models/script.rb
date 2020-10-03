@@ -497,6 +497,10 @@ class Script < ApplicationRecord
     update(consecutive_bad_ratings_at: nil) if consecutive_bad_ratings_at
   end
 
+  def paperclip?
+    newest_saved_script_version&.screenshots&.any?
+  end
+
   private
 
   def url_helpers

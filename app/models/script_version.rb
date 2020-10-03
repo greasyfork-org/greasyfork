@@ -7,6 +7,7 @@ require 'css_parser'
 class ScriptVersion < ApplicationRecord
   include LocalizingModel
   include ScriptVersionJs
+  include HasAttachments
 
   # This needs to be before_save to run before the autosave callbacks.
   # It will actually only do anything when new_record?.
