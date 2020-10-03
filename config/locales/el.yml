@@ -102,6 +102,7 @@ el:
     feedback_title: "%{script_name} - Συζήτηση"
     feedback_has_reports: "Αυτός ο κώδικας έχει αναφερθεί ότι παραβιάζει τους κανόνες του %{site_name}."
     feedback_no_discussions_html: "Δεν υπάρχουν ακόμα δημοσιευμένες συζητήσεις. %{start_first_discussion_link}"
+    feedback_no_discussions_on_page_form: "Δεν έχουν δημοσιευτεί συζητήσεις ακόμα."
     feedback_start_first_discussion_link: "Γίνεται ο/η πρώτος/η που θα συζητήσετε αυτόν τον κώδικα."
     feedback_discussion_or_report: "%{new_discussion_link:Ξεκινήστε μια νέα συζήτηση σε αυτόν τον κώδικα} ή %{report_link:αναφέρτε τον για απομάκρυνση}."
     feedback_favoriters_heading: "Καταχωρούντες στα αγαπημένα"
@@ -121,6 +122,18 @@ el:
     derivatives_title: "%{script_name} - Παράγωγα"
     derivatives_intro: "Αυτοί οι κώδικες μπορούν να βασίζονται σε δικούς σας (ή οι δικοί σας μπορεί να βασίζονται σε αυτούς). Αν βρείτε μια μη εξουσιοδοτημένη χρήση του κώδικά σας, αναφέρετε το μέσω της καρτέλας σχολιασμού του κώδικα."
     derivatives_script_html: "%{script} από %{user}, άδεια: %{license} %{diff_link:[Διαφορές]}"
+    derivatives_exact_copies_heading: "Ακριβή αντίγραφα"
+    derivatives_exact_copies_list_intro: "Οι ακόλουθοι κώδικες έχουν τον ίδιο ακριβώς κώδικα με τον δικό σας:"
+    derivatives_similar_heading: "Παρόμοιοι κώδικες"
+    similarity_score:
+      high: Μεγάλη ομοιότητα
+      medium: Μέση ομοιότητα
+      low: Μικρή ομοιότητα
+      none: Καμία ομοιότητα
+    derivatives_similar_none: "Δεν υπάρχουν κώδικες όμοιοι με τον δικό σας."
+    derivatives_similar_item: "%{score}: %{diff_link:[Diff]} %{script}"
+    derivatives_similar_last_check_html: "Ο τελευταίος έλεγχος για κώδικες παρόμοιους με το δικό σας έγινε την %{date}."
+    derivatives_similar_check_now: "Επανέλεγχος τώρα"
     listing_title_all_sites: "Κώδικες χρηστών για όλες τις ιστοσελίδες"
     listing_description_all_sites: "Κώδικες χρηστών που προσθέτουν χαρακτηριστικά και απομακρύνουν σφάλματα σε όλους τους ιστοχώρους"
     listing_title_for_site: "Κώδικες χρηστών για τον ιστοχώρο %{site}"
@@ -153,6 +166,8 @@ el:
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
     import: "Εισαγωγή κώδικα"
+    new: "Δημοσιεύστε έναν κώδικα που έχετε γράψει"
+    new_css: "Δημοσιεύστε ένα στυλ που έχετε γράψει"
     support_site: "Επισκεφθείτε τον ιστοχώρο υποστήριξης του δημιουργού."
     support_email: "Στείλτε ηλεκτρονική επιστολή στο δημιουργό για υποστήριξη."
     contribution_no_amount: "Ευχαριστείστε τον/την %{author} κάνοντας μια δωρεά."
@@ -226,6 +241,7 @@ el:
     ok_rating_explanation: "Αριθμός ατόμων που το βαθμολόγησαν ως Εντάξει."
     bad_rating_explanation: "Αριθμός ατόμων που το βαθμολόγησαν ως Κακό."
     write_your_own_html: "%{post_a_script_link} (ή %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "Δημοσιεύστε έναν κώδικα που έχετε γράψει"
     learn_to_write_scripts_link_text: "μάθετε πως να γράψετε έναν"
     feedback_or_report: "%{feedback_link:Κάντε μια ερώτηση, δημοσιεύστε μια ανασκόπηση}, ή %{report_link:αναφέρτε τον κώδικα}."
     support_feedback_or_report: "%{support_url:Επισκεφθείτε τη σελίδα του δημιουργού για υποστήριξη}, %{feedback_link:κάντε μια ερώτηση, δημοσιεύστε μια ανασκόπηση}, ή %{report_link:αναφέρετε τον κώδικα}."
@@ -279,9 +295,14 @@ el:
       remove_confirm: "Θέλετε σίγουρα να απομακρύνετε τον χρήστη %{user_name} από διαχειριστή;"
       failure: "Αδύνατη η απομάκρυνση του δημιουργού."
     no_disposable_email: "Ίσως δεν μπορείτε να δημοσιεύσετε κώδικες αν χρησιμοποιείτε μια απορριφθείσα ηλεκτρονική διεύθυνση."
+    rate_limited: "Έχετε δημοσιεύσει πολλούς κώδικες τελευταία. Δοκιμάστε ξανά αργότερα."
     new_script_notice:
       title: "Τι προσπαθείτε να κάνετε;"
       install_link_html: "Θέλω να κάνω <b>εγκατάσταση και χρήση</b> του κώδικα."
+    new_title:
+      js: "Δημοσίευση νέου κώδικα"
+      css: "Δημοσίευση νέου στυλ"
+    update_title: "Δημοσίευση νέας έκδοσης του κωδικά %{script}"
   script_sets:
     description: "Τα σύνολα κώδικα σας επιτρέπουν να δημιουργήσετε μια προσαρμοσμένη λίστα για πλοήγηση στο Greasy Fork. Μπορείτε να προσθέσετε κωδικούς στο σύνολό σας περιλαμβάνοντας μεμονωμένους κώδικες, σύνολα άλλων χρηστών ή αυτόματα δημιουργούμενα σύνολα. Μπορείτε, επίσης, να αποκλείσετε κώδικες από το σύνολό σας με τις ίδιες μεθόδους."
     favorites_name: "Αγαπημένα"
@@ -410,6 +431,7 @@ el:
     edit_sign_in: "Επεξεργασία μεθόδων σύνδεσης"
     edit_sign_in_title: "Επεξεργασία μεθόδων σύνδεσης"
     edit_sign_in_password: "Κωδικός πρόσβασης"
+    edit_notifications: "Επεξεργασία ειδοποιήσεων"
     no_password_set_info: "Ο λογαριασμός σας δεν έχει ρυθμιστεί με κωδικό πρόσβασης."
     set_password: "Ορισμός κωδικού πρόσβασης"
     update_password: "Ενημέρωση κωδικού πρόσβασης"
@@ -447,6 +469,14 @@ el:
     listing_updated_scripts: "Ενημερωμένοι κώδικες"
     listing_registration_date: "Ημερομηνία εγγραφής"
     listing_title: "Χρήστες"
+    listing_banned_filter:
+      banned: "Αποκλεισμένοι"
+      not_banned: "Μη αποκλεισμένοι"
+      all: "Όλοι"
+    listing_author_filter:
+      script_author: "Δημιουργός κώδικα"
+      not_script_author: "Μη δημιουργός κώδικα"
+      all: "¨Ολοι"
     search_placeholder: "Αναζήτηση χρηστών"
     locale_prompt: "(Επιλογή γλώσσας)"
     show_ads_description: "Υποστηρίξτε το %{site_name} επιτρέποντάς του να σας δείχνει διαφημίσεις"
@@ -487,6 +517,31 @@ el:
         request_expired: "Αδύνατη η διαγραφή χρήστη - το αίτημα έληξε."
         cancelled: "Η διαγραφή ακυρώθηκε."
         completed: "Ο λογαριασμός σας έχει διαγραφεί."
+    badges:
+      banned:
+        short: Αποκλεισμένος
+        long: Αποκλεισμένος
+      moderator:
+        short: Συντονιστής
+        long: Συντονιστής
+      author:
+        short: Δημιουργός
+        long: Δημιουργός αυτού του κώδικα
+    notifications:
+      discussion_defaults:
+        title: Ειδοποιήσεις δημόσιας συζήτησης
+        new_discussion: Από προεπιλογή, εγγραφή σε κάθε συζήτηση που ξεκινάτε
+        new_comment: Από προεπιλογή, εγγραφή σε κάθε συζήτηση που σχολιάζετε
+      conversation_defaults:
+        title: Ειδοποιήσεις συνομιλίας
+        starter: Από προεπιλογή, εγγραφή σε κάθε συνομιλία που ξεκινάτε
+        receiver: Από προεπιλογή, εγγραφή σε κάθε συνομιλία που σας περιλαμβάνει και δεν έχετε ξεκινήσει
+      save_button: Ενημέρωση ρυθμίσεων ειδοποιήσεων
+      title: Ειδοποιήσεις
+      current_discussion_subscriptions:
+        one: Ακύρωση εγγραφής από τη %{discussions_link:%{count} συνομιλία} που έχετε εγγραφεί
+        other: Ακύρωση εγγραφής από τις %{discussions_link:%{count} συνομιλίες} που έχετε εγγραφεί
+      save_success: Οι προτιμήσεις ειδοποιήσεών σας έχουν ενημερωθεί.
   help:
     sections:
       usage: Χρήση
@@ -525,6 +580,10 @@ el:
       adult_content_rule_html: "<li>Κώδικες που περιλαμβάνουν περιεχόμενο για ενήλικες ή είναι για ιστοσελίδες με περιεχόμενο για ενήλικες πρέπει να επισημαίνονται ως τέτοιοι ώστε να επιτρέπουν στους χρήστες για το αν επιθυμούν να τους βλέπουν ή όχι.</li>"
     external_scripts:
       title: "Η πολιτική του %{site_name} για εξωτερικούς κώδικες"
+      test_url:
+        label: Έλεγχος URL
+        result_ok: Το URL επιτρέπεται
+        result_not_ok: Το URL δεν επιτρέπεται
     script_rewriting:
       title: "Πως το %{site_name} θα ξαναγράψει δημοσιευμένους κώδικες"
       content_html: >
@@ -630,6 +689,42 @@ el:
     item_script_html: "Κώδικας: %{script_link}"
     item_deleted_script: "Διαγραμμένος κώδικας %{id}"
     item_user_html: "Χρήστης: %{user_link}"
+  reports:
+    report_filed: "Η αναφορά έχει ελεγχθεί από συντονιστή."
+    new_report_title:
+      user: "Αναφορά %{user}"
+      comment: "Αναφορά σχολίου από %{user}"
+    reason:
+      spam: "Ανεπιθύμητο"
+      abuse: "Προσβλητικό περιεχόμενο ή μίσους"
+      illegal: "Κακόβουλο"
+    explanation_placeholder: "Παροχή πρόσθετων πληροφοριών (προαιρετικό)"
+    create_button: "Δημιουργία αναφοράς"
+    report_user: "Αναφορά χρήστη"
+    report_comment: "Αναφορά σχολίου"
+    report_message: "Αναφορά μηνύματος"
+    result_dismissed: "Αυτή η αναφορά έχει απόρριφθεί από συντονιστή."
+    result_upheld: "Αυτή η αναφορά έχει στηριχθεί από συντονιστή."
+    result_pending: "Αυτή η αναφορά αναμένει έλεγχο από συντονιστή."
+  discussions:
+    title: Συζητήσεις
+    comment_date: "Δημοσιεύτηκε: %{date}"
+    comment_edit_date: "Επεξεργάστηκε: %{date}"
+    posted_by_html: "%{user} την %{date}"
+    last_comment: "Τελευταία: %{user} την %{date}"
+    new_discussion_heading: "Δημοσίευση αναφοράς, σχολίου ή ερώτησης"
+    new_discussion_submit: "Δημοσίευση σχολίου"
+    new_comment_heading: "Δημοσίευση απάντησης"
+    new_comment_submit: "Δημοσίευση απάντησης"
+    back_to_feedback: "< Σχολιασμός για τον κώδικα %{script}"
+    edit_comment_link: "Επεξεργασία"
+    edit_comment_header: "Επεξεργασία σχολίου"
+    delete_comment: "Διαγραφή"
+    delete_discussion: "Διαγραφή"
+    update_comment_submit: "Ενημέρωση σχολίου"
+    cancel_update_comment: "Άκυρο"
+    question_heading_html: "Ερώτηση/σχόλιο"
+    review_heading_html: "Αναφορά: %{rating}"
   common:
     error_preamble: "Υπήρξαν κάποια προβλήματα με αυτά που δημοσιεύσατε..."
     allowed_elements_link: "(Δείτε τον επιτρεπτόμενο κώδικα.)"

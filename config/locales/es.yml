@@ -131,6 +131,13 @@ es:
     derivatives_exact_copes_none: "No hay ningún otro script en %{site_name} que coincida exactamente con el tuyo."
     derivatives_similar_heading: "Scripts similares"
     derivatives_similar_info: "Comprobamos de forma periódica las últimas versiones de todos los otros scripts alojados en la página para encontrar coincidencias con el tuyo. También lo comprobamos cuando actualizas to script o solicitas una comprobación manual."
+    similarity_score:
+      high: Casi iguales
+      medium: Parecidos
+      low: Se dan un aire
+      none: Distintos
+    derivatives_similar_none: "No parece que haya ningún script que se parezca al tuyo."
+    derivatives_similar_item: "%{score}: %{diff_link:[Diferencias]} %{script}"
     derivatives_similar_last_check_html: "La última vez que se hizo la comprobación de coincidencias fue el %{date}."
     derivatives_similar_last_check_soon: "Empezaremos a escanear scripts parecidos a los tuyos en breve."
     derivatives_similar_last_check_again_soon_html: "La última vez que se hizo la comprobación de coincidencias fue el %{date}. Y lo volveremos a comprobar otra vez en breve."
@@ -324,8 +331,9 @@ es:
       remove_confirm: "¿Seguro que quieres quitar a %{user_name} del equipo?"
       failure: "Este miembro del equipo no se puede eliminar."
     no_disposable_email: "No puedes publicar scripts si utilizas una dirección de correo electrónico de usar y tirar."
+    rate_limited: "Has publicado demasiados scripts a la vez, espera un poco y prueba dentro de un rato."
     new_script_notice:
-      title: "¿Qué estás intentando hacer?"
+      title: "¿Qué te propones?"
       install_link_html: "Quiero <b>instalar</b> un script ya existente."
       share_link_html: "He <b>escrito</b> un script y quiero <b>compartirlo</b> con otros."
     new_title:
@@ -412,9 +420,35 @@ es:
     search_placeholder: "Buscar scripts de usuario"
     scripts_for_label: "Scripts para:"
     explain_user_scripts_heading: "¿Qué son los scripts de usuario?"
-    explain_user_scripts_html: "Los scripts de usuario son pequeñas porciones de código que añaden funcionalidad, eliminan molestias y en general mejoran las páginas que visitas. Los scripts de usuario alojados en %{site_name} son gratuitos y creados por una comunidad global de usuarios. %{site_name} aloja miles de scripts de usuario escritos por cientos de autores."
+    explain_user_scripts_html: "Los scripts de usuario son pequeñas porciones de código que añaden funcionalidad, eliminan molestias y en general mejoran las páginas que visitas. Los scripts de usuario alojados en %{site_name} son gratuitos y creados por una comunidad global de voluntarios. %{site_name} aloja miles de scripts escritos por cientos de autores."
     installing_step1_header: "Primer paso: Instala un administrador de scripts de usuario"
     installing_step1_caption: "Tampermonkey en Chrome"
+    installing_step1_description_html: >
+        <p>Para usar scripts de usuario primero tienes que instalar un administrador
+        de scripts. La opción a elegir depende del navegador que utilices.</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> o %{chrome_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
+        o %{firefox_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey} o %{safari_userscripts_link:Userscripts}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} o %{opera_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>AdGuard: (no es necesario instalar nada más)</li>
+
+        </ul>
     installing_step2_header: "Segundo paso: Elige e instala un script"
     installing_step2_caption: "Botón de instalación de un script de usuario"
     installing_step2_description_html: >
@@ -497,6 +531,14 @@ es:
     listing_updated_scripts: "Scripts actualizados"
     listing_registration_date: "Fecha de registro"
     listing_title: "Usuarios"
+    listing_banned_filter:
+      banned: "Cuenta suspendida"
+      not_banned: "Sin suspender"
+      all: "Todo"
+    listing_author_filter:
+      script_author: "Creador de scripts"
+      not_script_author: "No ha creado scripts"
+      all: "Todo"
     search_placeholder: "Buscar usuarios"
     locale_prompt: "(Elige un idioma)"
     show_ads_description: "Apoya a %{site_name} permitiendo que se muestren anuncios"
@@ -945,6 +987,7 @@ es:
     script_notice: Si quieres hablar sobre un script en particular, ve a su página de opiniones y empieza una conversación.
     no_discussions: No se ha encontrado ninguna conversación que coincida con los parámetros.
     mark_all_read: Marcar todo como leído
+    pending_moderator_review: Se ha bloqueado el acceso a esta conversación hasta que la revise un moderador.
   conversations:
     user_input_note: Introduce el nombre de usuario o la dirección URL de su perfil
     new_title: Empezar una conversación nueva
@@ -1036,6 +1079,7 @@ es:
       script_disallowed_require: "usa un script externo no aprobado: %{code}"
       script_rate_limit: "Has subido demasiados scripts seguidos, prueba más tarde."
       missing_include_or_match: "es necesario incluir al menos una clave de tipo @match o @include"
+      file_size_out_of_range: "debe ocupar menos de 200KB"
   opensearch:
     short_name: "Buscar en %{site_name}"
     description: "Busca scripts de usuario en %{site_name}."
@@ -1113,3 +1157,13 @@ es:
           Has recibido esta notificación porque te has suscrito a esta conversación. Visita %{conversation_url} para desuscribirte, o cambia tus preferencias sobre notificaciones en %{notification_preferences_url}.
     new_message:
       subject: "Tienes un mensaje nuevo en %{site_name}"
+      text: |
+          El usuario «%{user}» de %{site_name} te ha enviado un mensaje.
+
+          ---
+          %{message_text}
+          ---
+
+          Puedes verlo y responder en %{conversation_url}.
+
+          Has recibido esta notificación porque te has suscrito a esta conversación. Visita %{conversation_url} para desuscribirte, o cambia tus preferencias sobre notificaciones en %{notification_preferences_url}.
