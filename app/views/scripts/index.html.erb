@@ -35,7 +35,7 @@
       <ol id="browse-script-list" class="script-list">
         <% if @ad_method == 'ea' %>
           <li class="ad-entry">
-            <div id="script-list-ea" class="flat" data-ea-publisher="greasyfork" data-ea-type="text"></div>
+            <div id="script-list-ea" class="flat ethical-ads" data-ea-publisher="greasyfork" data-ea-type="text"></div>
           </li>
         <% end %>
         <%= render partial: 'scripts/script', collection: @scripts, cached: params[:locale_override].nil? ? ->(script) { [script, request_locale] } : false %>

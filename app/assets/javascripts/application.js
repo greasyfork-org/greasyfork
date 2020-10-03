@@ -24,3 +24,4 @@
 //= require sidebar
 //= require announcements
 //= require forum
+//= require ethical-ads
