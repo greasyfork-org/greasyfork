@@ -5,7 +5,7 @@ function setupEthicalAdsFallback() {
   }
   ethicalads.wait.then((placements) => {
     if (placements.length > 0) {
-      //return;
+      return;
     }
 
     var carbonPlaceholder = document.getElementById("_carbonads_js");
