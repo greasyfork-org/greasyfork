@@ -24,7 +24,7 @@ class ScriptVersion < ApplicationRecord
 
   strip_attributes only: [:changelog]
 
-  validates :code, presence: true, length: { minimum: 20, maximum: 2_000_000 }
+  validates :code, presence: true, length: { minimum: 20, maximum: 2_000_000 }, on: :create
 
   # Code has to look code-y.
   validate on: :create do
