@@ -96,6 +96,8 @@ class ScriptVersion < ApplicationRecord
   end
 
   def warnings
+    return [] unless new_record?
+
     w = []
     w << :version_missing if version_missing?
     w << :version_not_incremented if version_not_incremented?
