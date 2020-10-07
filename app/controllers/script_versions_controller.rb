@@ -42,21 +42,13 @@ class ScriptVersionsController < ApplicationController
       previous_script.localized_attributes.each { |la| @script_version.build_localized_attribute(la) }
       ensure_default_additional_info(@script_version, current_user.preferred_markup)
       @script_version.not_js_convertible_override = @script.not_js_convertible_override
-      if @script.paperclip?
-        @current_screenshots = previous_script.screenshots
-      else
-        @current_attachments = previous_script.attachments
-      end
+      @current_attachments = previous_script.attachments
     else
       @script = Script.new(script_type_id: ScriptType::PUBLIC_TYPE_ID, language: params[:language] || 'js')
       @script.authors.build(user: current_user)
       @script_version.script = @script
       ensure_default_additional_info(@script_version, current_user.preferred_markup)
-      if @script.paperclip?
-        @current_screenshots = []
-      else
-        @current_attachments = []
-      end
+      @current_attachments = []
     end
 
     if @script.new_record?
@@ -141,11 +133,7 @@ class ScriptVersionsController < ApplicationController
 
         # Unfortunately, we can't retain what the user picked for screenshots
         nssv = @script.newest_saved_script_version
-        if @script.paperclip?
-          @current_screenshots = nssv&.screenshots || []
-        else
-          @current_attachments = nssv&.attachments || []
-        end
+        @current_attachments = nssv&.attachments || []
 
         render :new
         return
@@ -180,25 +168,7 @@ class ScriptVersionsController < ApplicationController
 
     @script_version.localized_attributes.build({ attribute_key: 'additional_info', attribute_default: false }) unless params['add-additional-info'].nil?
 
-    if @script.paperclip?
-      # Existing screenshots
-      @script.script_versions.last&.screenshots&.each_with_index do |screenshot, i|
-        screenshot.caption = params['edit-screenshot-captions'][i]
-        @script_version.screenshots << screenshot unless params["remove-screenshot-#{screenshot.id}"]
-      end
-      # New screenshots
-      # Try to handle really long file names
-      params[:screenshots]&.each_with_index do |screenshot_param, i|
-        # Try to handle really long file names
-        if screenshot_param.original_filename.length > 50
-          filename_parts = screenshot_param.original_filename.split('.', 2)
-          filename = filename_parts.first[0..50]
-          filename += ".#{filename_parts[1]}" if filename_parts.length > 1
-          screenshot_param.original_filename = filename
-        end
-        @script_version.screenshots.build(screenshot: screenshot_param, caption: params['screenshot-captions'][i])
-      end
-    elsif @script.newest_saved_script_version
+    if @script.newest_saved_script_version
       @script.newest_saved_script_version.attachments.reject { |attachment| params["remove-attachment-#{attachment.id}"] == '1' }.each do |attachment|
         @script_version.attachments << attachment.dup
       end
@@ -213,11 +183,7 @@ class ScriptVersionsController < ApplicationController
 
       # Unfortunately, we can't retain what the user picked for screenshots
       nssv = @script.newest_saved_script_version
-      if @script.paperclip?
-        @current_screenshots = nssv&.screenshots || []
-      else
-        @current_attachments = nssv&.attachments || []
-      end
+      @current_attachments = nssv&.attachments || []
 
       ensure_default_additional_info(@script_version, current_user.preferred_markup)
 
