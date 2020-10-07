@@ -498,7 +498,7 @@ class Script < ApplicationRecord
   end
 
   def paperclip?
-    newest_saved_script_version&.screenshots&.any?
+    newest_saved_script_version&.screenshots&.any? && newest_saved_script_version&.attachments&.none?
   end
 
   private
