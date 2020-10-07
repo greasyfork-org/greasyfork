@@ -27,23 +27,23 @@ class ScriptVersion < ApplicationRecord
   validates :code, presence: true, length: { minimum: 20, maximum: 2_000_000 }
 
   # Code has to look code-y.
-  validate do
+  validate on: :create do
     errors.add(:code, :invalid) unless code =~ /[=.:\[(]/
   end
 
-  validates_length_of :changelog, maximum: 500
+  validates_length_of :changelog, maximum: 500, on: :create
 
-  validate :number_of_screenshots
+  validate :number_of_screenshots, on: :create
   def number_of_screenshots
     errors.add(:base, I18n.t('errors.messages.script_too_many_screenshots', number: Rails.configuration.screenshot_max_count)) if screenshots.length > Rails.configuration.screenshot_max_count
   end
 
   # Warnings are separated because we need to show custom UI for them (including checkboxes to override)
-  validate do |record|
+  validate on: :create do |record|
     record.warnings.each { |w| record.errors.add(:base, "warning-#{w}") }
   end
 
-  validates_each :localized_attributes do |s, attr, children|
+  validates_each :localized_attributes, on: :create do |s, attr, children|
     s.errors[attr].clear
     children.each do |child|
       child.errors.keys.each { |key| s.errors["#{attr}.#{key}"].clear }
@@ -56,7 +56,7 @@ class ScriptVersion < ApplicationRecord
   end
 
   # Multiple additional infos in the same locale
-  validate do |record|
+  validate on: :create do |record|
     # The default will get set to the script's locale
     additional_info_locales = localized_attributes_for('additional_info').map { |la| (la.locale.nil? && la.attribute_default) ? script.locale : la.locale }.reject(&:nil?)
     duplicated_locales = additional_info_locales.select { |l| additional_info_locales.count(l) > 1 }.uniq
@@ -64,7 +64,7 @@ class ScriptVersion < ApplicationRecord
   end
 
   # Additional info where no @name for that locale exists. This is OK if the script locale matches, though.
-  validate do |record|
+  validate on: :create do |record|
     additional_info_locales = localized_attributes_for('additional_info').reject(&:attribute_default).map { |la| la.locale.nil? ? script.locale : la.locale }.reject(&:nil?).uniq
     meta_keys = record.parser_class.parse_meta(code)
     additional_info_locales.each do |l|
@@ -72,7 +72,7 @@ class ScriptVersion < ApplicationRecord
     end
   end
 
-  validate do |record|
+  validate on: :create do |record|
     next if record.script.library? || !record.js?
 
     meta = record.meta
@@ -96,8 +96,6 @@ class ScriptVersion < ApplicationRecord
   end
 
   def warnings
-    return [] unless new_record?
-
     w = []
     w << :version_missing if version_missing?
     w << :version_not_incremented if version_not_incremented?
