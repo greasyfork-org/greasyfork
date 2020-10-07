@@ -15,7 +15,7 @@ class MessagesController < ApplicationController
     if @subscribe
       ConversationSubscription.find_or_create_by!(user: current_user, conversation: @conversation)
     else
-      ConversationSubscription.where(user: current_user, conversation: @conversation).destroy!
+      ConversationSubscription.where(user: current_user, conversation: @conversation).destroy_all
     end
     @message.send_notifications!
 
