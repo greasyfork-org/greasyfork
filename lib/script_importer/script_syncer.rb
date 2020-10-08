@@ -38,8 +38,7 @@ module ScriptImporter
         sv.changelog = changelog.truncate(500) unless changelog.nil?
         sv.changelog_markup = changelog_markup
         sv.script = script
-        # Retain existing screenshots
-        sv.screenshots = last_saved_sv.screenshots
+        last_saved_sv.attachments.each { |a| sv.attachments << a.dup }
         sv.do_lenient_saving
         sv.calculate_all(script.description)
         script.apply_from_script_version(sv)

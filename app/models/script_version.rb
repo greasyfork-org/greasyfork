@@ -33,9 +33,9 @@ class ScriptVersion < ApplicationRecord
 
   validates_length_of :changelog, maximum: 500, on: :create
 
-  validate :number_of_screenshots, on: :create
-  def number_of_screenshots
-    errors.add(:base, I18n.t('errors.messages.script_too_many_screenshots', number: Rails.configuration.screenshot_max_count)) if screenshots.length > Rails.configuration.screenshot_max_count
+  validate :number_of_attachments, on: :create
+  def number_of_attachments
+    errors.add(:base, I18n.t('errors.messages.script_too_many_screenshots', number: Rails.configuration.screenshot_max_count)) if attachments.count > Rails.configuration.screenshot_max_count
   end
 
   # Warnings are separated because we need to show custom UI for them (including checkboxes to override)
