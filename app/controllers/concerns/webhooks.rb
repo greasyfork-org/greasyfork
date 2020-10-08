@@ -199,7 +199,7 @@ module Webhooks
         script.localized_attributes_for('additional_info').each do |la|
           sv.build_localized_attribute(la)
         end
-        sv.screenshots = last_saved_sv.screenshots
+        last_saved_sv.attachments.each { |a| sv.attachments << a.dup }
 
         sv.do_lenient_saving
         sv.calculate_all(script.description)
