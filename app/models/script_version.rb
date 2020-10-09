@@ -18,7 +18,6 @@ class ScriptVersion < ApplicationRecord
   belongs_to :rewritten_script_code, class_name: 'ScriptCode', autosave: true
 
   has_many :localized_attributes, class_name: 'LocalizedScriptVersionAttribute', autosave: true, dependent: :destroy
-  has_and_belongs_to_many :screenshots, autosave: true, dependent: :destroy
 
   delegate :js?, :css?, to: :script
 
