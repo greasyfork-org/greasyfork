@@ -131,6 +131,15 @@ it:
     derivatives_exact_copes_none: "Non ci sono script su %{site_name} che hanno esattamente lo stesso codice di questo."
     derivatives_similar_heading: "Script simili"
     derivatives_similar_info: "Periodicamente controlliamo l'ultima versione di tutti gli altri scripts per trovare quelli molto simili ai tuoi. Controlliamo anche quando pubblichi un aggiornamento del tuo script e su tua richiesta."
+    similarity_score:
+      high: Molto simile
+      medium: Moderatamente simile
+      low: Grossomodo simile
+      none: Non simile
+    derivatives_similar_none: "Non ci sono script simili al tuo."
+    derivatives_similar_last_check_html: "Abbiamo cercato script simili al tuo l'ultima volta il %{date}."
+    derivatives_similar_last_check_soon: "Cercheremo script simili al tuo a breve."
+    derivatives_similar_last_check_again_soon_html: "Abbiamo cercato script simili al tuo l'ultima volta il %{date}. Controlleremo di nuovo a breve."
     derivatives_similar_check_now: "Ricontrolla ora"
     listing_title_all_sites: "Script utente per tutti i siti"
     listing_description_all_sites: "Script che aggiungono funzioni e rimuovono bug in tutti i siti"
@@ -254,6 +263,7 @@ it:
     adult_content_on_greasy_not_logged_in_error: "Questo script non è più disponibile in modo anonimo su questo sito. %{login_link:Accedi} e controlla le tue impostazioni account di Greasy Fork."
     non_adult_content_on_sleazy: "Questo script non è disponibile su questo sito."
     not_js_convertible_override_header: "Conversione in JS"
+    not_js_convertible_override_label_html: "Questo <strong>non</strong> dovrebbe essere reso disponibile in formato user JS"
     adult_marker: "(Adulti)"
     deleted_marker: "(Eliminato)"
     locked_marker: "(Bloccato)"
@@ -531,8 +541,12 @@ it:
     notifications:
       discussion_defaults:
         title: Notifiche del forum
+        new_discussion: Come impostazione predefinita, iscriviti a tutte le discussioni che inizi
+        new_comment: Come impostazione predefinita, iscriviti a tutte le discussioni che commenti
       conversation_defaults:
         title: Notifiche conversazioni
+        starter: Come impostazione predefinita, iscriviti a tutte le conversazioni che inizi
+        receiver: Come impostazione predefinita, iscriviti a tutte le conversazioni in cui sei coinvolto, ma che non hai iniziato tu
       save_button: Aggiorna impostazioni notifiche
       title: Notifiche
       save_success: Le preferenze per le tue notifiche sono state aggiornate.
@@ -544,6 +558,8 @@ it:
     open_source: "%{site_name} è open source (con licenza GPLv3). Puoi %{github_link:vedere i suoi sorgenti su GitHub}."
     installing_user_scripts:
       title: 'Come installare gli script'
+    installing_user_styles:
+      title: 'Come installare gli user styles'
     meta_keys:
       title: "Meta key dello script lette da %{site_name}"
       intro_html: "Questa è una lista di <a href=\"http://wiki.greasespot.net/Metadata_Block\">meta key degli user script</a> che %{site_name} può leggere. Le meta key al di fuori di questa lista possono essere incluse nello script, ma non hanno effetto sull'interfaccia utente di %{site_name}."
@@ -573,6 +589,10 @@ it:
       adult_content_rule_html: "<li>Script che includono contenuti per adulti o sono per siti con contenuti per adulti devono essere contrassegnati come tali per dare agli altri utenti l'opzione di vederli oppure no.</li>"
     external_scripts:
       title: "Politiche di %{site_name} per gli script esterni"
+      test_url:
+        label: Prova un URL
+        result_ok: L'URL è consentito
+        result_not_ok: L'URL non è consentito
     script_rewriting:
       title: "Come %{site_name} riscriverà gli script postati"
       content_html: >
@@ -653,6 +673,8 @@ it:
           può includere codice di terze parti per raccogliere statistiche o mostrare
           pubblicità sul sito. Queste librerie potrebbero includere meccanismi di
           tracciamento.</p>
+    user_css_to_user_js:
+      title: Conversione da user CSS a user JS
   search:
     script_search:
       title: "Cerca script"
@@ -692,10 +714,12 @@ it:
     create_button: "Crea segnalazione"
     report_user: "Segnala utente"
     report_comment: "Segnala commento"
+    report_message: "Segnala messaggio"
     result_dismissed: "Questa segnalazione è stata rigettata da un moderatore."
     result_upheld: "Questa segnalazione è stata confermata da un moderatore."
     result_pending: "Questa segnalazione non è ancora stata controllata da un moderatore."
   discussions:
+    title: Discussioni
     comment_date: "Pubblicato: %{date}"
     comment_edit_date: "Modificato: %{date}"
     posted_by_html: "%{user} il %{date}"
@@ -713,6 +737,7 @@ it:
     cancel_update_comment: "Annulla"
     question_heading_html: "Domanda/commento"
     review_heading_html: "Recensione: %{rating}"
+    update_rating: "Aggiorna la tua valutazione di %{script_name}"
     ratings:
       question: "Nessuna valutazione - solo una domanda o commento"
       bad: "Male - lo script non funziona"
@@ -735,6 +760,14 @@ it:
     other_user_filter:
       all: "Tutte le discussioni"
       comments_by: "Commenti di %{user}"
+    category_filter:
+      label: Categoria
+      all: Tutte le categorie
+    read_filter:
+      label: Leggi stato
+      all: Tutte
+      read: Lette
+      unread: Non lette
     user_activity:
       title: "Commenti recenti"
       no_recent_activity: "Questo utente non ha pubblicato alcun commento di recente."
@@ -749,6 +782,10 @@ it:
     question_title: "Una domanda su %{script_name}"
     subscribe: Iscriviti
     unsubscribe: Disiscriviti
+    notify: Avvisami di ogni risposta
+    categories:
+      development:
+        name: Sviluppo
   common:
     error_preamble: "Ci sono alcuni problemi con quello che hai postato..."
     allowed_elements_link: "(Controlla codice permesso.)"
