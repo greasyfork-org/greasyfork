@@ -131,9 +131,38 @@ function checkForUpdates(installButton, retry) {
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-  var installButton = document.querySelector(".install-link");
+  var installButton = document.querySelector(".install-link[data-install-format=js]");
   if (!installButton) {
     return;
   }
   checkForUpdates(installButton, true);
 });
+
+window.addEventListener("message", function(event) {
+  if (event.origin !== "https://greasyfork.org" && event.origin !== "https://sleazyfork.org")
+    return;
+
+  if (event.data.type != "style-installed")
+    return;
+
+  var installButton = document.querySelector(".install-link[data-install-format=css]");
+  if (installButton == null)
+    return;
+
+  var version = installButton.getAttribute("data-script-version");
+
+  switch (compareVersions(event.data.version, version)) {
+    // Upgrade
+    case -1:
+      console.log("Stylus - Upgrade")
+      break;
+    // Downgrade
+    case 1:
+      console.log("Stylus - Downgrade")
+      break;
+    // Equal
+    case 0:
+      console.log("Stylus - Same")
+      break;
+  }
+}, false);

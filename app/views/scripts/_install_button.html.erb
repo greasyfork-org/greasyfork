@@ -10,15 +10,16 @@ else
 end
 %>
 <%= link_to install_as_js ? t('scripts.install') : 'Install as user style', code_url, {
-	class: 'install-link',
-	'data-ping-url' => install_ping_script_path(script, :authenticity_token => session[:_csrf_token], :locale_override => nil),
-	'data-is-previous-version' => version_param.present?,
-	'data-previous-version-warning' => t('scripts.old_version_warning'),
-	rel: 'nofollow',
-	'data-script-name' => script.default_name,
-	'data-script-namespace' => script.namespace,
-	'data-script-version' => script_version.version,
-	'data-update-label' => t('scripts.update', version: script_version.version),
-	'data-downgrade-label' => t('scripts.downgrade', version: script_version.version),
-	'data-reinstall-label' => t('scripts.reinstall', version: script_version.version),
+  class: 'install-link',
+  'data-install-format' => install_as_js ? 'js' : 'css',
+  'data-ping-url' => install_ping_script_path(script, :authenticity_token => session[:_csrf_token], :locale_override => nil),
+  'data-is-previous-version' => version_param.present?,
+  'data-previous-version-warning' => t('scripts.old_version_warning'),
+  rel: 'nofollow',
+  'data-script-name' => script.default_name,
+  'data-script-namespace' => script.namespace,
+  'data-script-version' => script_version.version,
+  'data-update-label' => t('scripts.update', version: script_version.version),
+  'data-downgrade-label' => t('scripts.downgrade', version: script_version.version),
+  'data-reinstall-label' => t('scripts.reinstall', version: script_version.version),
 } -%>
