@@ -136,6 +136,8 @@ GEM
     capistrano-rbenv (2.2.0)
       capistrano (~> 3.1)
       sshkit (~> 1.3)
+    capistrano-webpacker-precompile (0.2)
+      capistrano (~> 3.1)
     capistrano3-delayed-job (1.7.6)
       capistrano (~> 3.0, >= 3.0.0)
       daemons (~> 1.3)
@@ -266,6 +268,8 @@ GEM
     rack (2.2.3)
     rack-attack (6.3.1)
       rack (>= 1.0, < 3)
+    rack-proxy (0.6.5)
+      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (6.0.3.4)
@@ -352,6 +356,7 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    semantic_range (2.3.0)
     sidekiq (6.1.1)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
@@ -399,6 +404,11 @@ GEM
       nokogiri (~> 1.6)
       rubyzip (>= 1.3.0)
       selenium-webdriver (>= 3.0, < 4.0)
+    webpacker (5.2.1)
+      activesupport (>= 5.2)
+      rack-proxy (>= 0.6.1)
+      railties (>= 5.2)
+      semantic_range (>= 2.3.0)
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -427,6 +437,7 @@ DEPENDENCIES
   capistrano-rails
   capistrano-rbenv
   capistrano-sidekiq!
+  capistrano-webpacker-precompile
   capistrano3-delayed-job (~> 1.0)
   capybara
   daemons
@@ -475,6 +486,7 @@ DEPENDENCIES
   ts-delayed-delta
   uglifier
   webdrivers (~> 4.0)
+  webpacker (~> 5.x)
   will-paginate-i18n
   will_paginate
 

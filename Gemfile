@@ -25,6 +25,7 @@ gem 'thinking-sphinx'
 gem 'transifex-ruby', git: 'https://github.com/tmaesaka/transifex-ruby.git'
 gem 'ts-delayed-delta'
 gem 'uglifier'
+gem 'webpacker', '~> 5.x'
 gem 'will_paginate'
 gem 'will-paginate-i18n'
 
@@ -70,6 +71,7 @@ group :development do
   # capistrano-sidekiq 1.0.3 is marked as incompatible with Sidekiq 6, but really it is compatible, as long as you use the systemd stuff.
   gem 'capistrano3-delayed-job', '~> 1.0'
   gem 'capistrano-sidekiq', git: 'https://github.com/rwojnarowski/capistrano-sidekiq.git', ref: '8a8a2edf86dfcdebd69dafc4f96adc55745aecde'
+  gem 'capistrano-webpacker-precompile', require: false
   gem 'listen'
   gem 'rubocop'
 end
