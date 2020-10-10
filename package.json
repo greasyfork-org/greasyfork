@@ -4,6 +4,10 @@
     "chart.js": "^2.9.3"
   },
   "devDependencies": {
+    "webpack-bundle-analyzer": "^3.9.0",
     "webpack-dev-server": "^3.11.0"
+  },
+  "scripts": {
+    "webpack:analyze": "mkdir -p public/packs && node_modules/.bin/webpack --config config/webpack/production.js --profile --json > public/packs/stats.json && node_modules/.bin/webpack-bundle-analyzer public/packs/stats.json"
   }
 }
