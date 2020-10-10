@@ -96,7 +96,7 @@ function parseVersionPart(part) {
   ];
 }
 
-function checkForUpdates(installButton, retry) {
+function checkForUpdatesJS(installButton, retry) {
   var name = installButton.getAttribute("data-script-name");
   var namespace = installButton.getAttribute("data-script-namespace");
   var version = installButton.getAttribute("data-script-version");
@@ -122,7 +122,7 @@ function checkForUpdates(installButton, retry) {
     }
   }, function() {
     if (retry) {
-      setTimeout(function() { checkForUpdates(installButton, false) }, 1000);
+      setTimeout(function() { checkForUpdatesJS(installButton, false) }, 1000);
     }
   }).catch(function(error) {
     // Could not determine the installed version, assume it's not
@@ -130,24 +130,28 @@ function checkForUpdates(installButton, retry) {
   });
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-  var installButton = document.querySelector(".install-link[data-install-format=js]");
-  if (!installButton) {
-    return;
-  }
-  checkForUpdates(installButton, true);
-});
+function checkForUpdatesCSS(installButton) {
+  var name = installButton.getAttribute("data-script-name");
+  var namespace = installButton.getAttribute("data-script-namespace");
+  postMessage({ type: 'style-version-query', name: name, namespace: namespace, url: location.href }, location.origin);
+}
 
+// Response from Stylus
 window.addEventListener("message", function(event) {
   if (event.origin !== "https://greasyfork.org" && event.origin !== "https://sleazyfork.org")
     return;
 
-  if (event.data.type != "style-installed")
+  if (event.data.type != "style-version")
     return;
 
   var installButton = document.querySelector(".install-link[data-install-format=css]");
   if (installButton == null)
     return;
+
+  if (event.data.version == null) {
+    console.log("Stylus - not installed")
+    return;
+  }
 
   var version = installButton.getAttribute("data-script-version");
 
@@ -166,3 +170,14 @@ window.addEventListener("message", function(event) {
       break;
   }
 }, false);
+
+document.addEventListener("DOMContentLoaded", function() {
+  var installButtonJS = document.querySelector(".install-link[data-install-format=js]");
+  if (installButtonJS) {
+    checkForUpdatesJS(installButtonJS, true);
+  }
+  var installButtonCSS = document.querySelector(".install-link[data-install-format=css]");
+  if (installButtonCSS) {
+    checkForUpdatesCSS(installButtonCSS);
+  }
+});
