@@ -1,7 +1,9 @@
 <%- title t('scripts.stats_title', :script_name => @script.name(request_locale)) %>
 <%- description 'Install stats for ' + @script.name(request_locale) %>
 
-<%= javascript_pack_tag "stats" %>
+<% content_for(:head_bottom) do %>
+  <%= javascript_pack_tag "stats" %>
+<% end %>
 
 <%
 [:installs, :weekly_installs, :update_checks].each do |data_key|
