@@ -60,6 +60,8 @@ zh-TW:
     delete_update_behaviour_1: "保留當前版本。"
     delete_update_behaviour_2: "更新到一個空白腳本。該項適用於當腳本對網站產生負面影響時。"
     delete_permanently_heading: "永久刪除"
+    delete_permanently_explanation_html: >-
+        <p>永久刪除您的腳本將會刪除除「討論區文章、管理員操作紀錄」之外的所有資料。</p><p>您的腳本會在 7 日後永久刪除，在此期間若反悔可撤銷刪除。但期間過後，即使是管理員也無法還原您的腳本。</p>
     delete_permanently_confirm: "您確定要永久刪除腳本嗎？"
     delete_permanently_submit: "請求永久刪除"
     delete_permanently_immediate_submit: "永久刪除"
@@ -83,7 +85,9 @@ zh-TW:
       update_locale: "更新語系"
       no_moderator_logs: "管理員未對此腳本採取任何措施。"
       compare_title: "與其他腳本比較"
+      compare_to: "要比較的在網站%{site_name}上的腳本（網址）"
       compare_button: "比較"
+      compare_must_be_local_url: "比較的腳本須屬於%{site_name}的網址。"
     history_title: "%{script_name} - 版本歷史"
     history_only_code_changes_info: "這裡只顯示彼此間有代碼差異的版本。"
     history_all_changes_link: "顯示所有版本。"
@@ -95,6 +99,7 @@ zh-TW:
     feedback_has_reports: "這個脚本被舉報違反 %{site_name} 的條例。"
     feedback_no_discussions_html: "尚無相關討論，%{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "尚未有相關討論"
+    feedback_report_instead: "如果您覺得這個腳本違反了 %{rules_link: %{site_name} 的規則}, 請 %{report_link: 檢舉這個腳本}."
     feedback_start_first_discussion_link: "成為第一個討論該腳本的人吧。"
     feedback_discussion_or_report: "%{new_discussion_link:新開一個關於該腳本的討論串} 或 %{report_link:檢舉並請求移除}。"
     feedback_favoriters_heading: "粉絲"
@@ -113,7 +118,23 @@ zh-TW:
     stats_no_data: "無"
     derivatives_title: "%{script_name} - 衍生腳本"
     derivatives_intro: "這些腳本可能衍生自您的腳本（或您的腳本可能衍生於他們的腳本）。如果您發現了未經授權使用您代碼的情況，請在腳本的反饋頁面中檢舉該腳本。"
+    derivatives_script_html: "%{script}，作者 %{user}，授權: %{license} %{diff_link:[Diff]}"
+    derivatives_exact_copies_heading: "完全複製的副本"
     derivatives_exact_copies_list_intro: "以下脚本的代碼與您的有雷同："
+    derivatives_exact_copies_item_html: "%{author_links}發佈的%{script_link}，版本：%{version_list}"
+    derivatives_exact_copes_none: "沒有其他屬於網站%{site_name}的腳本有和此腳本相似的程式碼。"
+    derivatives_similar_heading: "相似腳本"
+    derivatives_similar_info: "我們會定期檢查所有其他腳本的最新版本，以找出和您的腳本最相似的內容。我們也會在您發佈更新的腳本時根據您的要求來檢查。"
+    similarity_score:
+      high: 相似度高
+      medium: 相似度中
+      low: 相似度低
+      none: 不相似
+    derivatives_similar_none: "沒有腳本與您的腳本相似"
+    derivatives_similar_item: "%{score}: %{diff_link:[檢視 diff]} %{script}"
+    derivatives_similar_last_check_html: "我們在%{date}檢查了與您的腳本相似的腳本。"
+    derivatives_similar_last_check_soon: "我們稍後會檢查與您的腳本相似的腳本。"
+    derivatives_similar_last_check_again_soon_html: "我們在%{date}檢查了與您的腳本相似的腳本。我們稍後會再次檢查。"
     derivatives_similar_check_now: "重新檢查"
     listing_title_all_sites: "執行於所有網站的使用者腳本"
     listing_description_all_sites: "對所有網站新增功能或解決 bug 的使用者腳本"
@@ -147,6 +168,8 @@ zh-TW:
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
     import: "匯入腳本"
+    new: "發佈你撰寫的腳本"
+    new_css: "發佈你撰寫的樣式表"
     support_site: "作者的技術支援網站"
     support_email: "寄郵件給作者以獲取技術支援"
     contribution_no_amount: "透過捐贈感謝 %{author}。"
@@ -220,6 +243,7 @@ zh-TW:
     ok_rating_explanation: "給予普評的使用者數目"
     bad_rating_explanation: "給予差評的使用者數目"
     write_your_own_html: "%{post_a_script_link}（或是 %{learn_to_write_scripts_link}）"
+    post_a_script_link_text: "發佈你撰寫的腳本"
     learn_to_write_scripts_link_text: "學習如何建立一個"
     feedback_or_report: "%{feedback_link:發表問題、評論}、或%{report_link:檢舉該腳本}。"
     support_feedback_or_report: "%{support_url:瀏覽作者的技術支援網站}、%{feedback_link:發表問題、評論}、或 %{report_link:檢舉該腳本}。"
@@ -253,6 +277,23 @@ zh-TW:
     must_confirm_email_button: "發送驗證郵件到%{email}"
     report:
       title: "檢舉 %{script_name}"
+      text_html: >-
+          <p>發佈在 %{site_name} 上的腳本必須遵守%{rules_link:其規則}。若是發現違反規定的腳本，您可以使用下方的連結來檢舉其違規行為。%{site_name}
+          的管理員將審核並處理您的報告。</p><ul>
+
+          <li>%{unauthorized_link:檢舉腳本包含未經授權的腳本副本}。</li>
+
+          <li>%{malware_link:檢舉腳本含有惡意代碼}。</li>
+
+          <li>%{spam_link:檢舉提交的腳本為垃圾內容或不是腳本的內容}。</li>
+
+          <li>%{feedback_link:報告腳本功能已經失效}。</li>
+
+          <li> %{other_report_link:檢舉腳本的其他違規項目，包括但不限於暗藏廣告或挖礦行為}。</li>
+
+          </ul>
+
+          <p>注意，失效或違反第三方的使用條款的腳本<em>並不違反</em> %{site_name} 的守則。若是遇到這種情況，請嘗試%{feedback_link:留下回應}與作者交流。</p>
     authors_heading: "作者列表"
     error_unauthorized_copy: "這份代碼中包含了 %{script} 的未授權代碼。請參考  %{site_name} 的 %{rules_link:腳本規範}。"
     invitations:
@@ -277,10 +318,15 @@ zh-TW:
       remove_confirm: "確定要將 %{user_name} 從作者列表中移除嗎？"
       failure: "無法移除作者。"
     no_disposable_email: "如果您使用一次性電子郵件地址，那您則不可以提交腳本。"
+    rate_limited: "您最近發布了太多腳本。請稍後再試。"
     new_script_notice:
       title: "你到底想做什麼？"
       install_link_html: "我想<b>安裝並使用</b>腳本。"
       share_link_html: "我已<b>編寫</b>一個腳本並想<b>分享</b>給其他人。"
+    new_title:
+      js: "發佈新腳本"
+      css: "發佈新樣式"
+    update_title: "發佈 %{script} 的新版本 "
   script_sets:
     description: "腳本收藏集讓你自訂一個腳本列表。你可以把單獨的腳本、其它使用者的收藏集、或自動產生的收藏集，加入包含列表。排除列表也是同樣的方式。"
     favorites_name: "我的最愛"
@@ -402,6 +448,7 @@ zh-TW:
     edit_sign_in: "登入方式設定"
     edit_sign_in_title: "登入方式設定"
     edit_sign_in_password: "密碼"
+    edit_notifications: "編輯通知"
     no_password_set_info: "您的帳號沒有設定密碼。"
     set_password: "設定密碼"
     update_password: "更新密碼"
@@ -438,6 +485,14 @@ zh-TW:
     listing_updated_scripts: "最近更新腳本時間"
     listing_registration_date: "註冊日期"
     listing_title: "使用者"
+    listing_banned_filter:
+      banned: "已封鎖"
+      not_banned: "未封鎖"
+      all: "全部"
+    listing_author_filter:
+      script_author: "腳本作者"
+      not_script_author: "非腳本作者"
+      all: "全部"
     search_placeholder: "搜尋使用者"
     locale_prompt: "(語言選擇)"
     show_ads_description: "顯示廣告以支援 %{site_name} 的網站經營"
@@ -474,16 +529,29 @@ zh-TW:
         cancelled: "已取消刪除。"
         completed: "你的帳號已被刪除。"
     badges:
+      banned:
+        short: 已封鎖
+        long: 已封鎖
+      moderator:
+        short: 管理員
+        long: 管理員
       author:
         short: 作者
         long: 脚本作者
     notifications:
       discussion_defaults:
         title: 論壇通知
+        new_discussion: 預設訂閱我發起的貼文
+        new_comment: 預設訂閱我回復過的貼文
       conversation_defaults:
         title: 會話通知
+        starter: 預設訂閱你發起的私訊
+        receiver: 預設訂閱傳送給你的私訊
       save_button: 更新通知設定
       title: 通知
+      current_discussion_subscriptions:
+        other: 取消訂閱你之前所訂閱的 %{discussions_link:%{count} 條討論}
+      save_success: 您的通知設定已更新。
   help:
     sections:
       usage: 使用量
@@ -524,6 +592,10 @@ zh-TW:
       adult_content_rule_html: "<li>腳本若是包含成人內容、或執行的網站中有成人內容，作者應將其標示正確讓使用者去選擇是否要顯示它們。</li>"
     external_scripts:
       title: "%{site_name} 對於外部程式碼的政策"
+      test_url:
+        label: 測試URL
+        result_ok: URL允許使用
+        result_not_ok: URL不允许使用
     script_rewriting:
       title: "%{site_name} 會如何改寫發表的腳本"
       content_html: >
@@ -624,44 +696,129 @@ zh-TW:
     consecutive_bad_ratings:
       other: "%{script_names}已連續收到不良評價。請查看您的腳本並回複評分中提出的問題。"
   reports:
+    report_filed: "您的檢舉將由管理員審核。"
     new_report_title:
       user: "檢舉%{user}"
       comment: "檢舉%{user}的留言"
     reason:
+      spam: "灌水"
       abuse: "仇恨或具有冒犯性的内容"
+      illegal: "濫用或反感內容"
+    explanation_placeholder: "提供額外資訊（可選）"
+    create_button: "新增檢舉"
     report_user: "舉報用戶"
     report_comment: "舉報留言"
     report_message: "舉報訊息"
+    result_dismissed: "該檢舉已被管理員駁回。"
+    result_upheld: "管理員已通過該檢舉。"
+    result_pending: "該檢舉尚待管理員檢視。"
   discussions:
     title: 討論
+    comment_date: "發表於：%{date}"
     comment_edit_date: "編輯:%{date}"
+    posted_by_html: "%{user} 於 %{date}"
+    last_comment: "最後討論: %{user} 於 %{date}"
+    new_discussion_heading: "發表評價、評論或提問"
+    new_discussion_submit: "發表評論"
+    new_comment_heading: "發表回覆"
+    new_comment_submit: "發表回覆"
+    back_to_feedback: "< 腳本%{script}的回應"
     edit_comment_link: "編輯"
     edit_comment_header: "編輯留言"
     delete_comment: "刪除"
     delete_discussion: "刪除"
     update_comment_submit: "更新留言"
     cancel_update_comment: "取消"
+    question_heading_html: "提問/評論"
+    review_heading_html: "評論：%{rating}"
+    update_rating: "更新您對 %{script_name} 的評價"
+    ratings:
+      question: "無評價 - 僅有詢問或評論"
+      bad: "負評 - 腳本失效或無法使用"
+      ok: "不錯 - 腳本有用，但還有一些問題"
+      good: "正評 - 腳本一切正常"
+    ratings_short:
+      question: "提問/評論"
+      bad: "負評"
+      ok: "不錯"
+      good: "正評"
     sign_in_to_post_discussion: "登入以評價/留言/評論"
     sign_in_to_post_comment: "登入以回復"
     user_filter:
+      label: "我參與的討論"
       all: "所有討論"
+      discussion_by_me: "我發起的"
+      comment_by_me: "我評論的"
+      on_my_scripts: "我的腳本"
       subscribed: "已關注"
     other_user_filter:
+      all: "所有討論"
       comments_by: "%{user}的留言"
+    category_filter:
+      label: 分類
+      all: 所有分類
+    read_filter:
+      label: 閱讀狀態
+      all: 全部
+      read: 已讀
+      unread: 未讀
+    user_activity:
+      title: "近期評論"
+      no_recent_activity: "該使用者最近沒有撰寫任何評論"
+      see_all_activity: "檢視所有使用者活動"
+    review_title: "%{script_name}的評論"
+    question_title: "關於%{script_name}的問題"
+    subscribe: 追蹤
+    unsubscribe: 取消追蹤
+    notify: 通知我所有在該討論的回覆
+    notifying_on_script: 基於您%{notifications_link:腳本的通知設定}，你會收到回覆的通知。
+    categories:
+      greasyfork:
+        name: Greasy Fork 回應
+        description: 有關 Greasy Fork 本身的錯誤報告、功能需求等事務。
+      development:
+        name: 開發
+        description: 有關使用者腳本和使用者樣式開發的技術討論。
+      requests:
+        name: 建立請求
+        description: 請求開發新的使用者腳本或使用者樣式。
+      script-discussions:
+        name: 腳本討論
+        description: 討論現有的使用者腳本和使用者樣式。
+      no-scripts:
+        name: 除腳本討論以外的其他討論
+    category_display: "%{name} - %{description}"
+    new_title: 建立討論
+    new_button: 建立討論
+    script_notice: 如果需要對一個特定腳本開始討論，請前往腳本的反應頁面開始討論。
+    no_discussions: 未找到貼文。
+    mark_all_read: 全部標為已讀
+    pending_moderator_review: 這篇貼文暫時不可用，請等候管理員審核通過。
   conversations:
+    user_input_note: 輸入使用者名稱或者使用者頁面的URL。
+    new_title: 建立新的對話
     new_link: 創建新會話
     new_button: 創建會話
     title_html:
       other: 與%{users}的會話
+    send_message: 傳送訊息
+    conversation_list_title: 對話
+    conversation_link_html:
+      other: 與 %{users} 對話
+    conversation_info_html: 最新訊息：%{user}傳送於%{date}
+    no_conversations: 您尚未擁有任何對話。
     recent:
       title: 最近的會話
       more: 查看全部會話
+  screenshots:
+    requirements: "最多上傳 %{number} 張 PNG、GIF 、 JPEG 、或 WEBP 圖片，且每張圖片不得超過 %{size}。"
   common:
     error_preamble: "您所發表的帖子內容有點問題..."
     allowed_elements_link: "(檢視允許使用的 HTML/Markdown 代碼。)"
     allowed_elements_and_attributes_title: "允許使用的 HTML 元素"
     allowed_elements_intro: "下列是允許使用的元素和屬性。它們可用於 HTML 和 Markdown (在轉化為HTML後)。"
     allowed_elements_extra_info: "空白字元將被轉換為 p 或 br 元素。網址將會自動轉為超連結。"
+    allowed_css_intro: "下列CSS屬性允許在所有元素使用。"
     not_found_text: "404 - 該網頁不存在。"
     not_found_title: "404 - 該網頁不存在。"
     not_found_link_home: "回到首頁。"
@@ -673,6 +830,8 @@ zh-TW:
     preview_tab: 預覽
     write_tab: 撰寫
     listing_options_title: "搜尋選項"
+    quote:
+      prefix_html: "%{user}說："
   activerecord:
     attributes:
       user:
@@ -698,7 +857,11 @@ zh-TW:
         name: "名稱"
         description: "描述"
         default_sort: "預設排序"
+      report:
+        reason: "檢舉原因"
       discussion:
+        rating: "評價"
+        category: "分類"
         title: 標題
       conversation:
         user_input: 用戶
@@ -719,6 +882,7 @@ zh-TW:
       script_disallowed_require: "使用了未經批準的外部腳本: %{code}"
       script_rate_limit: "超出發布限制，請稍後再試。"
       missing_include_or_match: "必須至少包含一個@match或@include密鑰"
+      file_size_out_of_range: "必須小於 200KB"
   opensearch:
     short_name: "%{site_name} 搜尋"
     description: "在 %{site_name} 上尋找腳本。"
@@ -744,5 +908,35 @@ zh-TW:
         text: "您關於%{site_name}的%{script_name}的報告已收到回复。 您可以通過%{report_url}查看此回复。版主將審閱您的報告和此答复並決定結果。 如有任何疑問，請訪問https://greasyfork.org/forum/。"
       report_upheld_reporter:
         subject: "您關於%{site_name}上的腳本%{script_name}的報告已保留"
+        text: "您在%{site_name}上檢舉的腳本 %{script_name}已被管理員判定違規並刪除，你可以在 %{report_url} 檢視具體的報告。如有疑問，請前往 https://greasyfork.org/forum/ 。"
+      report_script_deleted_reported:
+        subject: "您對於網站%{site_name}的腳本%{script_name}的檢舉已被關閉。"
+        text: "由於作者刪除了該腳本，您對於網站%{site_name}的腳本%{script_name}的檢舉已被關閉。您可以在%{report_url}重新檢視這個檢舉。如有任何問題請前往https://greasyfork.org/forum 。"
+      report_dismissed_reporter:
+        subject: "您在%{site_name}上對於%{script_name}腳本的檢舉被駁回"
+        text: "您在%{site_name}上對於%{script_name}腳本的檢舉已被管理員駁回，並且該腳本將繼續保留。 詳情查閱此報告:%{report_url}。如有疑問，請前往https://greasyfork.org/forum/。"
+    consecutive_bad_ratings:
+      notify:
+        subject: "您在 %{site_name}發佈的腳本 %{script_name} 收到了多個負評。"
+        text: |
+            你在 %{site_name} 發表的腳本 '%{script_name}'（網址 %{script_url}）在短時間內收到了多個負評。
+
+            你在 %{feedback_url} 收到的回應可能代表您的腳本發生了問題、臨時失效、或目標網站已經不再相容。請審閱收到的反應，修正錯誤，並回應相關問題。
+
+            %{site_name} 力求為使用者提供高品質的腳本。為了防止網站被不可用或已拋棄的腳本塞滿，收到大量建設性的負評卻未能在一定時間內回應的腳本將會被隱藏。為了防止這種事件發生，請在 %{delete_date} 或之前提交一個新的版本或做出回應。即使您未做出任何上述的動作，您也可以在此日期後手動取消隱藏狀態。
     script_comment:
       subject: "您在%{site_name}上的腳本%{script_name}已收到留言"
+      text: |
+          您對於網站%{site_name}的腳本'%{script_name}' (%{script_url}) 收到了一條來自使用者'%{commenter_name}'的評論:
+
+          ---
+          %{comment_text}
+          ---
+
+          您可以在%{comment_url} 檢視並回覆該評論，或者在%{notification_preferences_url}調整通知設定。
+    subscribed_discussion:
+      subject: "網站%{site_name}的討論%{discussion_title}收到了一個評論。"
+    new_conversation:
+      subject: "在 %{site_name}有一個新對話"
+    new_message:
+      subject: "關於網站%{site_name}的新訊息"

@@ -137,6 +137,7 @@ it:
       low: Grossomodo simile
       none: Non simile
     derivatives_similar_none: "Non ci sono script simili al tuo."
+    derivatives_similar_item: "%{score}: %{diff_link:[Diff]} %{script}"
     derivatives_similar_last_check_html: "Abbiamo cercato script simili al tuo l'ultima volta il %{date}."
     derivatives_similar_last_check_soon: "Cercheremo script simili al tuo a breve."
     derivatives_similar_last_check_again_soon_html: "Abbiamo cercato script simili al tuo l'ultima volta il %{date}. Controlleremo di nuovo a breve."
@@ -263,6 +264,7 @@ it:
     adult_content_on_greasy_not_logged_in_error: "Questo script non è più disponibile in modo anonimo su questo sito. %{login_link:Accedi} e controlla le tue impostazioni account di Greasy Fork."
     non_adult_content_on_sleazy: "Questo script non è disponibile su questo sito."
     not_js_convertible_override_header: "Conversione in JS"
+    not_js_convertible_override_explanation: "%{site_name} può automaticamente creare una %{help_link:conversione user JS}  del tuo user CSS. Poiché la conversione user JS e il tuo user CSS funzioneranno in qualche modo diversamente, ti raccomandiamo di testare la tua conversione user JS. Se trovi che non funzioni, puoi renderla non disponibile spuntando la casella qui sotto."
     not_js_convertible_override_label_html: "Questo <strong>non</strong> dovrebbe essere reso disponibile in formato user JS"
     adult_marker: "(Adulti)"
     deleted_marker: "(Eliminato)"
@@ -281,6 +283,28 @@ it:
     must_confirm_email_button: "Invia il link di conferma a %{email}"
     report:
       title: "Segnala %{script_name}"
+      text_html: >-
+          <p>Gli script postati su %{site_name} devono conformarsi alle %{rules_link:sue
+          regole}. Segnala le violazioni usando i collegamenti qui sotto e i moderatori
+          di %{site_name} verificheranno la tua segnalazione.</p><ul>
+
+          <li>%{unauthorized_link:Segnala copie non autorizzate del tuo script</li>
+
+          <li>%{malware_link:Segnala script malevoli.}</li>
+
+          <li>%{spam_link:Segnala spam o altri contenuti che non siano script.}</li>
+
+          <li>%{feedback_link:Segnala che lo script non funziona.}</li>
+
+          <li>%{other_report_link:Segnala altre violazioni, incluse pubblicità non
+          dichiarate o cryptominers.}</li>
+
+          </ul>
+
+          <p>Per favore nota che l'essere non funzionanti e contravvenire ai termini
+          d'uso di terze parti <em>non</em> sono violazioni delle regole di %{site_name}.
+          In questi casi, puoi invece %{feedback_link:lasciare una recensione} dello
+          script. </p>
     authors_heading: "Autori"
     error_unauthorized_copy: "Questo codice sembra essere una copia non autorizzata di%{script}. Fai riferimento a %{site_name} %{rules_link:regole} sulla pubblicazione degli script."
     invitations:
@@ -397,6 +421,36 @@ it:
     explain_user_scripts_html: "Gli script ti mettono al comando della tua esperienza di navigazione. Appena saranno installati aggiungeranno funzionalità ai siti su cui navighi, li renderanno più semplici da usare,oppure rimuoveranno cose che non ti piacciono. Gli script su %{site_name} sono stati prodotti da altri utenti e pubblicati per essere condivisi con tutti. Sono gratuiti e facili da usare."
     installing_step1_header: "Step 1: installa un gestore di script utente"
     installing_step1_caption: "Tampermonkey su Chrome"
+    installing_step1_description_html: >
+        <p>Per usare gli script utente hai prima bisogno di installare un gestore
+        di
+
+        script utente. Quale gestore script utente puoi usare dipende da quale
+
+        browser utilizzi.</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> o %{chrome_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
+        o %{firefox_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey} o %{safari_userscripts_link:Userscripts}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} o %{opera_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>AdGuard: (nessun software aggiuntivo richiesto)</li>
+
+        </ul>
     installing_step2_header: "Step 2: installa uno script utente"
     installing_step2_caption: "Il tasto di installazione di uno script utente"
     installing_step2_description_html: >
@@ -549,6 +603,9 @@ it:
         receiver: Come impostazione predefinita, iscriviti a tutte le conversazioni in cui sei coinvolto, ma che non hai iniziato tu
       save_button: Aggiorna impostazioni notifiche
       title: Notifiche
+      current_discussion_subscriptions:
+        one: Disiscriviti dalla %{discussions_link:%{count} discussione} a cui sei iscritto
+        other: Disiscriviti dalle %{discussions_link:%{count} discussioni} a cui sei iscritto
       save_success: Le preferenze per le tue notifiche sono state aggiornate.
   help:
     sections:
@@ -569,6 +626,7 @@ it:
       description_localized_html: "La descrizione dello script in una lingua specifica, dove XX è un <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">codice a due lettere ISO 639-1</a> e YY è un <a href=\"https://www.iso.org/obp/ui/#search\">codice Paese ISO 3166</a> facoltativo. Ha la precedenza su <code>@description</code> quando l'utente sfoglia il sito nella lingua corrispondente."
       namespace_html: "I gestori script utente utilizzano una combinazione di <code>@namespace</code> e <code>@name</code> per controllare se uno script è già installato. %{site_name} richiede questo campo ed emetterà un avviso se viene modificato durante un aggiornamento."
       version_html: "Identificatore per una versione specifica di uno script nel <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">formato versione di Mozilla</a>. La versione viene visualizzata nella pagina delle informazioni dello script. %{site_name} richiede questo campo ed emetterà un avviso se viene decrementato o se non viene incrementato ogniqualvolta il codice dello script venga modificato."
+      include_html: "Descrivi su quali pagine lo script lavorerà. Questa lista verrà processata, mostrata sulla pagina di informazioni dello script e usata per categorizzare gli scripts. Ogni script deve avere almeno un <code>@match</code> o un <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Leggi qui per quanto riguarda il formato.</a>"
       require_html: "Include codice JavaScript esterno allo script. Guarda %{external_script_link}."
       require_external_script_link_text: "regole per codice contenente script esterni"
       updateURL: "Descrive come i gestori script utente debbano ottenere gli aggiornamenti. %{site_name} rimuoverà queste chiavi, il che farà sì che ogni script installato da %{site_name} riceva gli aggiornamenti solo da %{site_name}."
@@ -778,14 +836,35 @@ it:
       script_question:
         posted_html: "Pubblicata una domanda/commento su <i>%{script}</i>"
         replied_html: "Riposto ad una domanda/commento su <i>%{script}</i>"
+      discussion:
+        posted_html: "Pubblicato una discussione: <i>%{title}</i>"
+        replied_html: "Risposto a una discussione: <i>%{title}</i>"
     review_title: "Una recensione su %{script_name}"
     question_title: "Una domanda su %{script_name}"
     subscribe: Iscriviti
     unsubscribe: Disiscriviti
     notify: Avvisami di ogni risposta
+    notifying_on_script: Sarai avvisato di qualsiasi risposta per via delle tue %{notifications_link:impostazioni sulle notifiche degli script}.
     categories:
+      greasyfork:
+        name: Feedback di Greasy Fork
+        description: Bug riportati, richieste di funzionalità aggiuntive e altro riguardo a Greasy Fork stesso.
       development:
         name: Sviluppo
+        description: Discussioni tecniche riguardo allo sviluppo di script utente e stili utente.
+      requests:
+        name: Richieste di creazione
+        description: Richiedi a qualcuno di fare uno script utente o uno stile utente per te.
+      script-discussions:
+        name: Discussioni sugli script
+        description: Discussioni su script utente e stili utente già esistenti.
+      no-scripts:
+        name: Tutto fuorché discussioni sugli script
+    category_display: "%{name} - %{description}"
+    new_title: Nuova discussione
+    new_button: Nuova discussione
+    script_notice: Se stai cercando di discutere di uno script specifico, vai nella pagina dei feedback dello script e avvia una discussione da lì.
+    no_discussions: Nessuna discussione trovata.
   common:
     error_preamble: "Ci sono alcuni problemi con quello che hai postato..."
     allowed_elements_link: "(Controlla codice permesso.)"
