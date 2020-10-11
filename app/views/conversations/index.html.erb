@@ -5,8 +5,8 @@
     <% @conversations.each do |conversation| %>
       <li>
         <% other_users = (conversation.users - [@user]) %>
-        <%= link_to t('conversations.conversation_link', users: other_users.map(&:name).to_sentence, count: other_users.count), user_conversation_path(@user, conversation) %>
-        <%= t('conversations.conversation_info_html', date: markup_date(conversation.stat_last_message_date), user: conversation.stat_last_poster.name) %>
+        <%= link_to t('conversations.conversation_link_html', users: other_users.map(&:name).to_sentence, count: other_users.count), user_conversation_path(@user, conversation) %>
+        <%= t('conversations.conversation_info_html', date: markup_date(conversation.stat_last_message_date), user: render_user(conversation.stat_last_poster, conversation.stat_last_poster_id)) %>
       </li>
     <% end %>
   </ul>
