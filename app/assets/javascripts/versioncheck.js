@@ -148,25 +148,26 @@ window.addEventListener("message", function(event) {
   if (installButton == null)
     return;
 
-  if (event.data.version == null) {
-    console.log("Stylus - not installed")
-    return;
-  }
-
   var version = installButton.getAttribute("data-script-version");
 
-  switch (compareVersions(event.data.version, version)) {
+  var installedVersion = event.data.version;
+
+  if (installedVersion == null) {
+    // Not installed, do nothing
+    return;
+  }
+  switch (compareVersions(installedVersion, version)) {
     // Upgrade
     case -1:
-      console.log("Stylus - Upgrade")
+      installButton.textContent = installButton.getAttribute("data-update-label");
       break;
     // Downgrade
     case 1:
-      console.log("Stylus - Downgrade")
+      installButton.textContent = installButton.getAttribute("data-downgrade-label");
       break;
     // Equal
     case 0:
-      console.log("Stylus - Same")
+      installButton.textContent = installButton.getAttribute("data-reinstall-label");
       break;
   }
 }, false);
