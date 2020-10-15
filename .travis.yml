@@ -25,7 +25,7 @@ before_script:
   - mysql -e 'create database greasyforktest'
   - mysql greasyforktest < db/structure.sql
   - mkdir -p tmp/sockets
-  - NODE_ENV=test bundle exec rails webpacker:compile
 script:
   - bundle install
+  - NODE_ENV=test bundle exec rails webpacker:compile
   - bundle exec rails db:environment:set test test:system
