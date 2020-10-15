@@ -644,6 +644,70 @@ it:
       post_new_script_link_text: 'posta un nuovo script'
     code_rules:
       title: "Le regole di %{site_name} per gli script postati"
+      content_html: >
+          <p>Questi sono i requisiti per gli scripts pubblicati su %{site_name}. Essi
+          hanno lo scopo di mantenere %{site_name} un luogo sicuro e utile per gli
+          script utente. Qualsiasi script che ricada al di fuori di questi requisiti
+          potrà essere rimosso dai moderatori di %{site_name}.</p> <h4>Funzionalità</h4>
+          <ul>
+
+          <li>Gli script devono includere una descrizione di quello che fanno e non
+          possono fare cose irragionevolmente al di fuori di quanto descritto. Gli
+          utenti devono sapere cosa uno script farà, prima di installarlo.</li>
+
+          <li>Gli script devono avere un motivo per essere script. Per esempio, uno
+          script che semplicemente rimanda l'utente a un sito non ha necessità di
+          essere tale; potrebbe essere un link.</li>
+
+          <li>Gli scripts non devono richiedere agli utenti di compiere azioni non
+          collegate, come inviare un pagamento, iscriversi a un canale o mettere un
+          like a una pagina affinché lo script funzioni.</li>
+
+          <li>Gli script con metodi di monetizzazione (tracciamento, pubblicità, mining,
+          ecc.) non sono proibiti, ma l'autore deve dichiararlo esplicitamente nella
+          descrizione dello script o nelle informazioni aggiuntive.</li>
+
+          </ul> <h4>Codice</h4> <ul>
+
+          <li>Il codice pubblicato su questo sito non deve essere offuscato o minimizzato.
+          Agli utenti dev'essere data l'opportunità di ispezionare e comprendere uno
+          script prima di installarlo. Se lo script è impacchettato da uno strumento
+          come webpack, dev'essere esportato in forma non minimizzata.</li>
+
+          <li>Le librerie usate da uno script dovrebbero essere inserite con<code>@require</code>,
+          a meno che non ci sia una valida ragione tecnica per non farlo. Nel caso
+          in cui una libreria sia inserita nel testo dello script, deve includere
+          le informazioni sull'origine della libreria (es. un commento che indichi
+          l'URL e/o nome e versione).</li>
+
+          <li>%{external_scripts_link:L'uso di JavaScript esterno è limitato.}</li>
+
+          </ul> <h4>Copyright</h4> <ul>
+
+          <li>Il tuo script deve rispettare il copyright altrui. Questo include lo
+          script stesso e qualsiasi risorsa (ad esempio immagini) esso utilizzi. Se
+          intendi fare uso di un contenuto di altri, rispetta i loro termini di licenza
+          o ottieni il loro permesso prima di farlo.</li>
+
+          <li>Anche nei casi che non vìolino le regole sul copyright, la ripubblicazione
+          di scripts che sono già su %{site_name} non è consentita salvo che non apporti
+          miglioramenti rispetto all'originale.</li>
+
+          </ul> <h4>Altro</h4> <ul>
+
+          %{adult_content_requirement}
+
+          <li>Gli scripts non devono verificare gli aggiornamenti a una frequenza
+          maggiore di una volta al giorno. Nota che la maggior parte dei gestori di
+          script utente si occupa automaticamente degli aggiornamenti, perciò farlo
+          all'interno dello script non è necessario.</li>
+
+          <li>Gli scripts non devono includere <code>@include</code>s, <code>@match</code>es
+          o altre parole chiave per siti per i quali non forniscono funzionalità.</li>
+
+          </ul> <p>Se noti uno script che ricada al di fuori di questi parametri,
+          per favore segnalalo andando sul collegamento "Feedback" di quello script
+          e scegli l'opzione "Segnala script".</p>
       adult_content_rule_html: "<li>Script che includono contenuti per adulti o sono per siti con contenuti per adulti devono essere contrassegnati come tali per dare agli altri utenti l'opzione di vederli oppure no.</li>"
     external_scripts:
       title: "Politiche di %{site_name} per gli script esterni"
@@ -865,12 +929,34 @@ it:
     new_button: Nuova discussione
     script_notice: Se stai cercando di discutere di uno script specifico, vai nella pagina dei feedback dello script e avvia una discussione da lì.
     no_discussions: Nessuna discussione trovata.
+    mark_all_read: Segna come letto tutto
+    pending_moderator_review: Questa discussione non è disponibile agli altri utenti finché non è approvata da un moderatore.
+  conversations:
+    user_input_note: Inserisci il nome utente o l'URL del profilo.
+    new_title: Crea una nuova conversazione
+    new_link: Crea una nuova conversazione
+    new_button: Crea conversazione
+    title_html:
+      one: Conversazione con%{users}
+      other: Conversazioni con %{users}
+    send_message: Invia messaggio
+    conversation_list_title: Conversazioni
+    conversation_link_html:
+      one: Conversazione con %{users}
+      other: Conversazioni con %{users}
+    conversation_info_html: Ultimo messaggio alle %{date} da %{user}
+    no_conversations: Non hai ancora avuto nessuna conversazione.
+    recent:
+      title: Conversazioni recenti
+  screenshots:
+    requirements: "Massimo %{number} immagini PNG, GIF, JPEG o WebP, più piccole di %{size} ciascuna."
   common:
     error_preamble: "Ci sono alcuni problemi con quello che hai postato..."
     allowed_elements_link: "(Controlla codice permesso.)"
     allowed_elements_and_attributes_title: "Elementi permessi per contenuti HTML"
     allowed_elements_intro: "I seguenti elementi e attributi sono permessi. Si applica sia a HTML che a Markdown (dopo la conversione in HTML)."
     allowed_elements_extra_info: "Gli spazi bianchi verrano convertiti in elementi p o br. Gli URL verranno trasformati in link automaticamente."
+    allowed_css_intro: "Le seguenti proprietà CSS sono consentite su tutti gli elementi."
     not_found_text: "404 - pagina non trovata."
     not_found_title: "404 - Pagina Non Trovata."
     not_found_link_home: "Vai alla home."
@@ -882,6 +968,8 @@ it:
     preview_tab: Anteprima
     write_tab: Scrivi
     listing_options_title: "Opzioni di ricerca"
+    quote:
+      prefix_html: "%{user} ha detto:"
   activerecord:
     attributes:
       user:
@@ -911,6 +999,12 @@ it:
         reason: "Motivo della segnalazione"
       discussion:
         rating: "Valutazione"
+        category: "Categoria"
+        title: Titolo
+      conversation:
+        user_input: Utente
+      message:
+        content: Messaggio
   errors:
     messages:
       script_missing_name: "è richiesto - specificane uno con @name"
@@ -926,6 +1020,7 @@ it:
       script_disallowed_require: "utilizza uno script esterno non ammesso: %{code}"
       script_rate_limit: "Hai superato il limite di caricamento. Riprova più tardi."
       missing_include_or_match: "deve includere almeno una chiave @match o @include"
+      file_size_out_of_range: "la dimensione dev'essere minore di 200KB"
   opensearch:
     short_name: "ricerca %{site_name}"
     description: "Ricerca per user script su %{site_name}."
@@ -939,3 +1034,11 @@ it:
         reason_malware: "Il tuo script %{script_name} su %{site_name} è stato segnalato come malware."
         reason_spam: "Il tuo script %{script_name} su %{site_name} è stato segnalato come spam."
         reason_other: "Il tuo script %{script_name} è stato segnalato violare le regole di %{site_name}."
+      report_upheld_offender:
+        subject: "Il tuo script %{script_name} su%{site_name} è stato eliminato"
+      report_rebutted_reporter:
+        subject: "La tua segnalazione di %{script_name} su %{site_name} ha ricevuto una risposta"
+    new_conversation:
+      subject: "Una nuova conversazione su %{site_name}"
+    new_message:
+      subject: "Un nuovo messaggio su %{site_name}"
