@@ -20,7 +20,7 @@ install:
   - tar -xvf sphinx-3.1.1-612d99f-linux-amd64.tar.gz
   - export PATH=$PATH:$PWD/sphinx-3.1.1/bin/
   - nvm install 10
-  - npm install --save-dev webpack
+  - npm install --save-dev webpack@4.44.2
   - npm install --save-dev webpack-cli
 before_script:
   - cp test/travisconfig/database.yml config/database.yml
