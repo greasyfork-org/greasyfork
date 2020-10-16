@@ -31,5 +31,5 @@ before_script:
 script:
   - bundle install
   - yarn install
-  - NODE_ENV=test bundle exec rails webpacker:compile
+  - NODE_ENV=test RAILS_ENV=test bundle exec rails webpacker:compile
   - bundle exec rails db:environment:set test test:system
