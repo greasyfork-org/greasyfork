@@ -30,5 +30,6 @@ before_script:
   - mkdir -p tmp/sockets
 script:
   - bundle install
+  - yarn install
   - NODE_ENV=test bundle exec rails webpacker:compile
   - bundle exec rails db:environment:set test test:system
