@@ -21,6 +21,7 @@ install:
   - export PATH=$PATH:$PWD/sphinx-3.1.1/bin/
   - nvm install 10
   - npm install --save-dev webpack
+  - npm install --save-dev webpack-cli
 before_script:
   - cp test/travisconfig/database.yml config/database.yml
   - cp test/travisconfig/secrets.yml config/secrets.yml
