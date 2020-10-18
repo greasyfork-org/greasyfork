@@ -19,6 +19,9 @@ install:
   - wget http://sphinxsearch.com/files/sphinx-3.1.1-612d99f-linux-amd64.tar.gz
   - tar -xvf sphinx-3.1.1-612d99f-linux-amd64.tar.gz
   - export PATH=$PATH:$PWD/sphinx-3.1.1/bin/
+  - nvm install 10
+  - npm install --save-dev webpack@4.44.2
+  - npm install --save-dev webpack-cli
 before_script:
   - cp test/travisconfig/database.yml config/database.yml
   - cp test/travisconfig/secrets.yml config/secrets.yml
@@ -27,4 +30,6 @@ before_script:
   - mkdir -p tmp/sockets
 script:
   - bundle install
+  - yarn install
+  - NODE_ENV=test RAILS_ENV=test bundle exec rails webpacker:compile
   - bundle exec rails db:environment:set test test:system
