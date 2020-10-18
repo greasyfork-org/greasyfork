@@ -647,21 +647,21 @@ it:
       content_html: >
           <p>Questi sono i requisiti per gli scripts pubblicati su %{site_name}. Essi
           hanno lo scopo di mantenere %{site_name} un luogo sicuro e utile per gli
-          script utente. Qualsiasi script che ricada al di fuori di questi requisiti
+          script utente. Qualsiasi script che non si conformasse a questi requisiti
           potrà essere rimosso dai moderatori di %{site_name}.</p> <h4>Funzionalità</h4>
           <ul>
 
           <li>Gli script devono includere una descrizione di quello che fanno e non
           possono fare cose irragionevolmente al di fuori di quanto descritto. Gli
-          utenti devono sapere cosa uno script farà, prima di installarlo.</li>
+          utenti devono sapere cosa uno script andrà a fare, prima di installarlo.</li>
 
           <li>Gli script devono avere un motivo per essere script. Per esempio, uno
           script che semplicemente rimanda l'utente a un sito non ha necessità di
           essere tale; potrebbe essere un link.</li>
 
-          <li>Gli scripts non devono richiedere agli utenti di compiere azioni non
-          collegate, come inviare un pagamento, iscriversi a un canale o mettere un
-          like a una pagina affinché lo script funzioni.</li>
+          <li>Gli scripts non devono richiedere agli utenti, affinché lo script funzioni,
+          di compiere azioni non collegate, come inviare un pagamento, iscriversi
+          a un canale o mettere un like a una pagina.</li>
 
           <li>Gli script con metodi di monetizzazione (tracciamento, pubblicità, mining,
           ecc.) non sono proibiti, ma l'autore deve dichiararlo esplicitamente nella
@@ -702,15 +702,51 @@ it:
           script utente si occupa automaticamente degli aggiornamenti, perciò farlo
           all'interno dello script non è necessario.</li>
 
-          <li>Gli scripts non devono includere <code>@include</code>s, <code>@match</code>es
+          <li>Gli scripts non devono includere <code>@include</code>, <code>@match</code>
           o altre parole chiave per siti per i quali non forniscono funzionalità.</li>
 
-          </ul> <p>Se noti uno script che ricada al di fuori di questi parametri,
-          per favore segnalalo andando sul collegamento "Feedback" di quello script
-          e scegli l'opzione "Segnala script".</p>
+          </ul> <p>Se noti uno script che non rispetta questi parametri, per favore
+          segnalalo andando sul collegamento "Feedback" di quello script e scegli
+          l'opzione "Segnala script".</p>
       adult_content_rule_html: "<li>Script che includono contenuti per adulti o sono per siti con contenuti per adulti devono essere contrassegnati come tali per dare agli altri utenti l'opzione di vederli oppure no.</li>"
     external_scripts:
       title: "Politiche di %{site_name} per gli script esterni"
+      content_html: >
+          <p>Gli script utente hanno l'abilità tecnica di caricare ed eseguire altri
+          scripts. La chiave %{require_doc_link:@require} è il modo più diretto per
+          farlo, ma gli scripts possono anche, ad esempio, usare una XmlHttpRequest
+          per scaricare uno script e poi iniettarlo nel DOM.</p> <p>Sebbene questa
+          sia una funzione utile e la maggior parte degli autori di script la usano
+          per scopi legittimi, essa può anche essere usata in modo malevolo. Uno dei
+          principî cardine di %{site_name} è che l'utente deve essere in grado di
+          ispezionare il codice in uno script. Gli scripts esterni possono aggirare
+          questo principio in diversi modi: possono cambiare senza avvertimenti o
+          storico delle modifiche, possono servire codice diverso a persone diverse,
+          e possono essere usati per nascondere codice malevolo nel mezzo di librerie
+          note. Anche se qualcuno controllasse uno script esterno e ne determinasse
+          la legittimità, ciò non fornirebbe la garanzia che quello script sia sempre
+          stato o sempre sarà legittimo.</p> <p>Per consentire agli autori di script
+          di continuare a usare scripts esterni, %{site_name} ha implementato una
+          lista di pattern di URL consentiti che possono essere inclusi in uno script.
+          Questa lista consiste in indirizzi di script che:</p> <ul>
+
+          <li>Sono pubblici</li>
+
+          <li>Non vedrà i suoi contenuti cambiare frequentemente</li>
+
+          <li>Sarà probabilmente utile a più di un autore di script</li>
+
+          </ul> <p>La lista attuale è:</p> %{allowed_require_list} <p>Se provi a pubblicare
+          uno script che usa un <code>@require</code> al di fuori di questi indirizzi,
+          non potrai salvare il tuo script.</p> <p>Se lo script che vuoi includere
+          è una libreria JavaScript (ad esempio jQuery o YUI), prova a cercarla in
+          uno dei siti elencati sopra. %{cdnjs_link:cdnjs} e %{jsdelivr_link:jsDelivr}
+          in particolare hanno un'ampia gamma di librerie disponibili.</p> <p>Se lo
+          script che vuoi includere non è disponibile nei siti sopraindicati, %{contact_link:faccelo
+          sapere} e potremo trovarlo da qualche parte (o ospitarlo direttamente noi!).</p>
+          <p>Se lo script che vuoi includere è stato scritto da te, puoi caricarlo
+          come una voce separata su %{site_name} scegliendo "Libreria" come tipo di
+          script. Potrai poi includere questa libreria pubblicata da te nel tuo script.</p>
       test_url:
         label: Prova un URL
         result_ok: L'URL è consentito
@@ -828,6 +864,30 @@ it:
     new_report_title:
       user: "Segnala %{user}"
       comment: "Segnala un commento di %{user}"
+    new_report_notes_html: >
+        <p>Prima di segnalare, per favore nota:</p><ul>
+
+        <li>Un moderatore valuterà la tua segnalazione e agirà di conseguenza.</li>
+
+        <li>Non approvare il contenuto o credere che non sia vero non è una valida
+        ragione per segnalare.</li>
+
+        <li>L'abuso di questa funzione di segnalazione potrebbe portare alla <i>tua</i>
+        espulsione.</li>
+
+        </ul>
+    new_user_report_notes_html: >
+        <p>Before reporting, please note:</p> <ul>
+
+        <li>Se stai facendo una segnalazione sulla base del contenuto di uno script
+        o di un commento, per favore segnala invece quello specifico script o commeno.</li>
+
+        <li>Un moderatore valuterà la tua segnalazione e agirà di conseguenza.</li>
+
+        <li>L'abuso di questa funzione di segnalazione potrebbe portare alla <i>tua</i>
+        espulsione.</li>
+
+        </ul>
     reason:
       spam: "Spam"
       abuse: "Contenuto non autorizzato o che incita all'odio"
@@ -948,6 +1008,7 @@ it:
     no_conversations: Non hai ancora avuto nessuna conversazione.
     recent:
       title: Conversazioni recenti
+      more: Vedi tutte le conversazioni
   screenshots:
     requirements: "Massimo %{number} immagini PNG, GIF, JPEG o WebP, più piccole di %{size} ciascuna."
   common:
