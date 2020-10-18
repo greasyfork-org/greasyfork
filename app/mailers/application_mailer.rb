@@ -1,3 +1,3 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'noreply@greasyfork.org'
+  default from: 'Greasy Fork <noreply@greasyfork.org>'
 end
