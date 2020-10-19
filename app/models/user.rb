@@ -3,7 +3,7 @@ require 'devise'
 require 'digest'
 
 class User < ApplicationRecord
-  self.ignored_columns = %w[banned]
+  self.ignored_columns = %w[banned flattr_username]
 
   AUTHOR_NOTIFICATION_NONE = 1
   AUTHOR_NOTIFICATION_DISCUSSION = 2
