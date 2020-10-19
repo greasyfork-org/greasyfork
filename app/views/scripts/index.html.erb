@@ -24,9 +24,17 @@
     <% end %>
 
     <% if @current_locale_filter %>
-      <p><%=it('scripts.listing_remove_locale_filter', language: @current_locale_filter.best_name, remove_filter_link: current_path_with_params(filter_locale: '0'))%></p>
+      <% if current_user && !current_user.filter_locale_default %>
+        <p><%= it('scripts.listing_remove_locale_filter', language: @current_locale_filter.best_name, remove_filter_link: current_path_with_params(filter_locale: nil)) %></p>
+      <% else %>
+        <p><%= it('scripts.listing_remove_locale_filter', language: @current_locale_filter.best_name, remove_filter_link: current_path_with_params(filter_locale: '0')) %></p>
+      <% end %>
     <% elsif @offer_filtered_results_for_locale %>
-      <p><%=it('scripts.listing_set_locale_filter', language: @offer_filtered_results_for_locale.best_name, set_filter_link: current_path_with_params(filter_locale: nil))%></p>
+      <% if current_user && !current_user.filter_locale_default %>
+        <p><%= it('scripts.listing_set_locale_filter', language: @offer_filtered_results_for_locale.best_name, set_filter_link: current_path_with_params(filter_locale: '1')) %></p>
+      <% else %>
+        <p><%= it('scripts.listing_set_locale_filter', language: @offer_filtered_results_for_locale.best_name, set_filter_link: current_path_with_params(filter_locale: nil)) %></p>
+      <% end %>
     <% end %>
 
     <% if @scripts.empty? %>

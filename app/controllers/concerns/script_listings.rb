@@ -15,7 +15,7 @@ module ScriptListings
 
     locale = request_locale
     if locale.scripts?(script_subset)
-      if params[:filter_locale] == '0'
+      if params[:filter_locale] == '0' || (params[:filter_locale].nil? && current_user && !current_user.filter_locale_default)
         @offer_filtered_results_for_locale = locale
       else
         @current_locale_filter = locale

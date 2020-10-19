@@ -74,13 +74,16 @@
   </div>
 
   <div>
+    <%= f.label :filter_locale_default %><br>
+    <%= f.check_box :filter_locale_default %><%= f.label :filter_locale_default, t('users.filter_locale_default_description') %>
+  </div>
+
+  <div>
     <%= f.label :flattr_username %>
     <span class="label-note"><%=t('users.flattr_username_description_html')%></span>
     <br>
     <%= f.text_field(:flattr_username)%>
   </div>
 
-  <div><%= f.submit t('.update') %></div>
+  <p><%= f.submit t('.update') %></p>
 <% end %>
-
-<%= link_to t('devise.shared.links.back'), :back %>
