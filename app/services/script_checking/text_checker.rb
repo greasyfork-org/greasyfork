@@ -12,7 +12,7 @@ module ScriptChecking
       end
 
       def attributes_to_check(script_version)
-        ([script_version.code] + script_version.active_localized_attributes.select { |aa| aa.attribute_key == 'additional_info' }.map(&:attribute_value)).compact.map(&:downcase)
+        ([script_version.code] + script_version.active_localized_attributes.map(&:attribute_value)).compact.map(&:downcase)
       end
     end
   end
