@@ -16,7 +16,7 @@ module ScriptChecking
           )
         end.compact
 
-        results.find { |r| r.code == ScriptChecking::Result::RESULT_CODE_BAN } || results.first || ScriptChecking::Result.new(ScriptChecking::Result::RESULT_CODE_OK)
+        ScriptChecking::Result.highest_result(results)
       end
     end
   end

@@ -5,6 +5,11 @@
   </div>
 
   <div class="form-control">
+    <%= f.label :result %>
+    <%= f.select :result, [BlockedScriptText::RESULT_CODE_REVIEW, BlockedScriptText::RESULT_CODE_BAN] %>
+  </div>
+
+  <div class="form-control">
     <%= f.label :public_reason %>
     <%= f.text_field :public_reason, required: true %>
   </div>

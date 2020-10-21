@@ -1037,6 +1037,7 @@ CREATE TABLE `blocked_script_texts` (
   `text` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `public_reason` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `private_reason` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `result` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2115,6 +2116,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20200912211814'),
 ('20200918221428'),
 ('20200919012810'),
-('20201019005046');
+('20201019005046'),
+('20201021010617');
 
 

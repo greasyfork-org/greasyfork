@@ -23,5 +23,9 @@ module ScriptChecking
         related_object_class: related_object&.class&.name,
       }
     end
+
+    def self.highest_result(results)
+      results.find { |r| r.code == ScriptChecking::Result::RESULT_CODE_BAN } || results.first || ScriptChecking::Result.new(ScriptChecking::Result::RESULT_CODE_OK)
+    end
   end
 end

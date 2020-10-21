@@ -43,7 +43,7 @@ module Admin
     private
 
     def blocked_script_text_params
-      params.require(:blocked_script_text).permit(:text, :public_reason, :private_reason)
+      params.require(:blocked_script_text).permit(:text, :public_reason, :private_reason, :result)
     end
   end
 end
