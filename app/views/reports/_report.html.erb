@@ -57,15 +57,17 @@
   <%= button_to('Dismiss report', dismiss_report_path(report, index: i), method: 'POST', form_class: 'inline-form') %>
   <%= form_tag(uphold_report_path(report, index: i), method: 'POST', class: 'report-resolution-options') do %>
 
-    <% other_comments = report.reported_user.comments.not_deleted
-    other_comments = other_comments.where.not(id: report.item.id) if report.item.is_a?(Comment)
-    if other_comments.count > 0 %>
-      <%= check_box_tag :delete_comments, '1', false, id: "delete-comments-#{report.id}" %><%= label_tag "delete-comments-#{report.id}", "Delete #{report.reported_user.name}'s #{other_comments.count} #{(report.item.is_a?(Comment) ? 'other comment' : 'comment').pluralize(other_comments.count)}" %><br>
-    <% end %>
+    <% if report.reported_user %>
+      <% other_comments = report.reported_user.comments.not_deleted
+      other_comments = other_comments.where.not(id: report.item.id) if report.item.is_a?(Comment)
+      if other_comments.count > 0 %>
+        <%= check_box_tag :delete_comments, '1', false, id: "delete-comments-#{report.id}" %><%= label_tag "delete-comments-#{report.id}", "Delete #{report.reported_user.name}'s #{other_comments.count} #{(report.item.is_a?(Comment) ? 'other comment' : 'comment').pluralize(other_comments.count)}" %><br>
+      <% end %>
 
-    <% scripts = report.reported_user.scripts.not_deleted
-    if scripts.count > 0 %>
-      <%= check_box_tag :delete_scripts, '1', false, id: "delete-scripts-#{report.id}" %><%= label_tag "delete-scripts-#{report.id}", "Delete #{report.reported_user.name}'s #{scripts.count} #{'script'.pluralize(scripts.count)}" %><br>
+      <% scripts = report.reported_user.scripts.not_deleted
+      if scripts.count > 0 %>
+        <%= check_box_tag :delete_scripts, '1', false, id: "delete-scripts-#{report.id}" %><%= label_tag "delete-scripts-#{report.id}", "Delete #{report.reported_user.name}'s #{scripts.count} #{'script'.pluralize(scripts.count)}" %><br>
+      <% end %>
     <% end %>
 
     <% if report.item.is_a?(Comment) && report.reported_user && !report.reported_user.banned? %>
