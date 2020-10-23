@@ -12,7 +12,7 @@ class ScriptCheckingServiceTest < ActiveSupport::TestCase
   end
 
   def check_script(url)
-    script_version = ScriptVersion.new(code: "location.href = '#{url}'")
+    script_version = ScriptVersion.new(code: "location.href = '#{url}'", script: Script.new)
     ScriptCheckingService.check(script_version)
   end
 end

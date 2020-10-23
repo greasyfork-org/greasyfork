@@ -90,13 +90,13 @@ class BlockTest < ApplicationSystemTestCase
     click_link "I've written a script and want to share it with others."
     code = <<~JS
       // ==UserScript==
-      // @name A Test!
+      // @name badguytext
       // @description Unit test.
       // @version 1.1
       // @namespace http://greasyfork.local/users/1
       // @include *
       // ==/UserScript==
-      location.href = "badguytext"
+      location.href = "something"
     JS
     fill_in 'Code', with: code
     assert_difference -> { Script.count } => 1 do
