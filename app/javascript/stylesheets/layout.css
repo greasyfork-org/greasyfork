@@ -1,17 +1,3 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require_self
- *= require_tree .
- */
-
 /* Prevent shifting on pages that don't need scrolling */
 html {
   overflow-y: scroll;
@@ -678,13 +664,13 @@ a.self-link, a.self-link:visited {
   margin-right: 5px;
 }
 .external-login-container .github-login {
-  background-image: url('<%=asset_path 'github-32.png'%>');
+  background-image: url('../images/github-32.png');
 }
 .external-login-container .gitlab-login {
-  background-image: url('<%=asset_path 'gitlab-32.png'%>');
+  background-image: url('../images/gitlab-32.png');
 }
 .external-login-container .google_oauth2-login {
-  background-image: url('<%=asset_path 'google-32.png'%>');
+  background-image: url('../images/google-32.png');
 }
 
 /* sign_up, sign_in and password/new */
