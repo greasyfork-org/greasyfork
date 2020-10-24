@@ -31,13 +31,7 @@
     </div>
     <div class="user-content">
       <%= format_user_text(message.content, message.content_markup) %>
-      <% if message.attachments.any? %>
-        <div class="user-screenshots">
-          <% message.attachments.each do |attachment| %>
-            <%= link_to attachment, data: { jslghtbx: url_for(attachment), jslghtbx_group: "screenshots-#{attachment.id}" } do %><%= image_tag attachment.variant(resize_to_limit: [200, 200]) %><% end %>
-          <% end %>
-        </div>
-      <% end %>
+      <%= render partial: 'screenshots/show', locals: { attachable: message } %>
     </div>
   </div>
 <% end %>

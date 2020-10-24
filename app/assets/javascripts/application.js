@@ -11,8 +11,6 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require jsonlylightbox
-//= require lightbox
 //= require everything
 //= require install
 //= require versioncheck

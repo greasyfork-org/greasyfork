@@ -103,12 +103,6 @@
 if localized_additional_info.present? || @script_version.attachments.any? %>
   <div id="additional-info" class="user-content" <% if !localized_additional_info.nil? %>lang="<%= localized_additional_info.locale.code %>"<% end %>>
     <%= format_user_text(localized_additional_info.attribute_value, localized_additional_info.value_markup) if localized_additional_info%>
-    <% if @script_version.attachments.any? %>
-      <div class="user-screenshots">
-        <% @script_version.attachments.each do |attachment| %>
-          <%= link_to attachment, data: { jslghtbx: url_for(attachment), jslghtbx_group: "screenshots-#{attachment.id}" } do %><%= image_tag attachment.variant(resize_to_limit: [200, 200]) %><% end %>
-        <% end %>
-      </div>
-    <% end %>
+    <%= render partial: 'screenshots/show', locals: { attachable: @script_version } %>
   </div>
 <% end %>
