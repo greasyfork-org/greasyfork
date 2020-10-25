@@ -12,6 +12,6 @@ class DeleteTest < ApplicationSystemTestCase
     click_on 'Delete'
     click_button 'Undelete'
     assert_content 'Daily installs'
-    assert !script.reload.deleted?
+    assert_not script.reload.deleted?
   end
 end

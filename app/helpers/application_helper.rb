@@ -10,8 +10,7 @@ module ApplicationHelper
   def markup_date(date)
     return '?' if date.nil?
 
-    # Take out "about" and "less than" to make it shorter. Obviously won't work in the other languages.
-    "<time datetime=\"#{date.to_datetime.rfc3339}\">#{I18n.l(date.to_date)}</time>".html_safe
+    tag.time(datetime: date.to_datetime.rfc3339) { I18n.l(date.to_date) }
   end
 
   def discussion_class(discussion)
@@ -30,7 +29,7 @@ module ApplicationHelper
   end
 
   def self_link(name, text)
-    "<span id=\"#{name}\">#{link_to('§', { anchor: name }, { class: 'self-link' })} #{text}</span>".html_safe
+    tag.span(id: name) { link_to('§', { anchor: name }, { class: 'self-link' }) + text }
   end
 
   # Translates an array of keys and returns a hash.

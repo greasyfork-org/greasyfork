@@ -37,7 +37,7 @@ module ShowsAds
   end
 
   def locale_allows_adsense?
-    !Rails.application.config.no_adsense_locales.include?(request_locale.code)
+    Rails.application.config.no_adsense_locales.exclude?(request_locale.code)
   end
 
   # FALLBACK_METHODS = ['ca', 'cf']

@@ -105,7 +105,7 @@ class CreateTest < ApplicationSystemTestCase
 
   test 'confirmed, disposable email' do
     user = User.first
-    user.update(email: 'test@example.com', confirmed_at: Time.now, disposable_email: true)
+    user.update(email: 'test@example.com', confirmed_at: Time.current, disposable_email: true)
     login_as(user, scope: :user)
     visit new_script_version_url
     assert_content 'You may not post scripts if you use a disposable email address.'
@@ -113,7 +113,7 @@ class CreateTest < ApplicationSystemTestCase
 
   test 'rate limited' do
     user = User.find(1)
-    user.update(created_at: Time.now)
+    user.update(created_at: Time.current)
     login_as(user, scope: :user)
     visit new_script_version_url
     assert_content 'You have posted too many scripts recently. Please try again later.'

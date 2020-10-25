@@ -152,7 +152,7 @@ module ScriptListings
   end
 
   def search
-    redirect_to params.permit(:page, :per_page, :site, :sort, :q).merge(action: :index), status: 301
+    redirect_to params.permit(:page, :per_page, :site, :sort, :q).merge(action: :index), status: :moved_permanently
   end
 
   def libraries
@@ -215,8 +215,8 @@ module ScriptListings
 
   def code_search
     @bots = 'noindex,nofollow'
-    if params[:c].nil? || params[:c].empty?
-      redirect_to search_path(anchor: 'code-search'), status: 301
+    if params[:c].blank?
+      redirect_to search_path(anchor: 'code-search'), status: :moved_permanently
       return
     end
 

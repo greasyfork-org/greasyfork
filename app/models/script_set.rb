@@ -1,14 +1,14 @@
 class ScriptSet < ApplicationRecord
   belongs_to :user
-  has_many :set_inclusions, class_name: 'ScriptSetSetInclusion', foreign_key: :parent_id, autosave: true
-  has_many :script_inclusions, class_name: 'ScriptSetScriptInclusion', foreign_key: :parent_id, autosave: true
-  has_many :automatic_set_inclusions, class_name: 'ScriptSetAutomaticSetInclusion', foreign_key: :parent_id, autosave: true
+  has_many :set_inclusions, class_name: 'ScriptSetSetInclusion', foreign_key: :parent_id, autosave: true, dependent: :destroy, inverse_of: :parent
+  has_many :script_inclusions, class_name: 'ScriptSetScriptInclusion', foreign_key: :parent_id, autosave: true, dependent: :destroy, inverse_of: :parent
+  has_many :automatic_set_inclusions, class_name: 'ScriptSetAutomaticSetInclusion', foreign_key: :parent_id, autosave: true, dependent: :destroy, inverse_of: :parent
 
-  validates_presence_of :name
-  validates_presence_of :description
+  validates :name, presence: true
+  validates :description, presence: true
 
-  validates_length_of :name, maximum: 100
-  validates_length_of :description, maximum: 500
+  validates :name, length: { maximum: 100 }
+  validates :description, length: { maximum: 500 }
 
   strip_attributes
 

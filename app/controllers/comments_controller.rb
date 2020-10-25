@@ -48,7 +48,7 @@ class CommentsController < ApplicationController
         @discussion.update!(title: title) if title && !@discussion.for_script?
         params[:comment].delete(:discussion)
       end
-      comment.edited_at = Time.now
+      comment.edited_at = Time.current
       comment.attachments.select { |attachment| params["remove-attachment-#{attachment.id}"] == '1' }.each(&:destroy!)
       comment.update!(comments_params)
     end
@@ -62,7 +62,7 @@ class CommentsController < ApplicationController
   end
 
   def old_redirect
-    redirect_to Discussion.find_by!(migrated_from: ForumComment.find(params[:id]).DiscussionID).url(locale: request_locale.code), status: 301
+    redirect_to Discussion.find_by!(migrated_from: ForumComment.find(params[:id]).DiscussionID).url(locale: request_locale.code), status: :moved_permanently
   end
 
   private

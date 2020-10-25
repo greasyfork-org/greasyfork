@@ -18,7 +18,7 @@ class UserTextHelperTest < ActionView::TestCase
   end
 
   test 'format_user_text html no hang on long text' do
-    text = File.read(Rails.root.join('test', 'fixtures', 'files', 'hamlet.txt'))
+    text = File.read(Rails.root.join('test/fixtures/files/hamlet.txt'))
     Timeout.timeout(1) do
       format_user_text(text, 'html')
     end

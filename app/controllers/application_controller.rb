@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   def routing_error
     respond_to do |format|
       format.html do
-        render 'home/routing_error', status: 404, layout: 'application'
+        render 'home/routing_error', status: :not_found, layout: 'application'
       end
       format.all do
         head 404, content_type: 'text/html'
@@ -63,7 +63,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize_by_script_id
-    return unless params[:script_id].present?
+    return if params[:script_id].blank?
 
     render_access_denied unless current_user && Script.find(params[:script_id]).users.include?(current_user)
   end
@@ -94,18 +94,18 @@ class ApplicationController < ActionController::Base
 
   def render_locked
     @text = 'Script has been locked.'
-    render 'home/error', status: 403, layout: 'application'
+    render 'home/error', status: :forbidden, layout: 'application'
   end
 
   def render_access_denied
     @text = 'Access denied.'
-    render 'home/error', status: 403, layout: 'application'
+    render 'home/error', status: :forbidden, layout: 'application'
   end
 
   def redirect_to_slug(resource, id_param_name)
     if resource.nil?
       # no good
-      render status: 404
+      render status: :not_found
       return
     end
     correct_id = resource.to_param
@@ -115,7 +115,7 @@ class ApplicationController < ActionController::Base
       retain_params << :callback if params[:format] == 'jsonp'
       retain_params << :version if params[:controller] == 'scripts'
       retain_params.each { |param_name| url_params[param_name] = params[param_name] }
-      redirect_to(url_params, status: 301)
+      redirect_to(url_params, status: :moved_permanently)
       return true
     end
     return false

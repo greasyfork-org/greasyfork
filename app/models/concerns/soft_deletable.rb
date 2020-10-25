@@ -13,7 +13,7 @@ module SoftDeletable
 
   def soft_destroy!(by_user: nil)
     _run_soft_destroy_callbacks do
-      update!(deleted_at: Time.now, deleted_by_user_id: by_user&.id)
+      update!(deleted_at: Time.current, deleted_by_user_id: by_user&.id)
     end
   end
 

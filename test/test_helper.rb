@@ -36,7 +36,7 @@ module ActiveSupport
       script_version.rewritten_code = script_version.code
       script.apply_from_script_version(script_version)
       script.authors.build(user: User.find(1))
-      script.code_updated_at = Time.now
+      script.code_updated_at = Time.current
       assert (script.valid? && script_version.valid?), (script.errors.full_messages + script_version.errors.full_messages + script_version.warnings).inspect
       return script
     end

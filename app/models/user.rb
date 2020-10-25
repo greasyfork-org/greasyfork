@@ -19,10 +19,10 @@ class User < ApplicationRecord
 
   has_many :authors, dependent: :destroy
   has_many :scripts, through: :authors
-  has_many :reports_as_reporter, foreign_key: :reporter_id, inverse_of: :reporter, class_name: 'Report'
-  has_many :script_reports, foreign_key: 'reporter_id'
-  has_many :discussions, foreign_key: 'poster_id', inverse_of: :poster
-  has_many :comments, foreign_key: 'poster_id', inverse_of: :poster
+  has_many :reports_as_reporter, foreign_key: :reporter_id, inverse_of: :reporter, class_name: 'Report', dependent: nil
+  has_many :script_reports, foreign_key: 'reporter_id', dependent: nil, inverse_of: :reporter
+  has_many :discussions, foreign_key: 'poster_id', inverse_of: :poster, dependent: nil
+  has_many :comments, foreign_key: 'poster_id', inverse_of: :poster, dependent: nil
   has_many :discussion_subscriptions, dependent: :destroy
 
   # Gotta to it this way because you can't pass a parameter to a has_many, and we need it has_many
@@ -52,7 +52,7 @@ class User < ApplicationRecord
     next unless canonical_email && banned_at
 
     hash = Digest::SHA1.hexdigest(BANNED_EMAIL_SALT + canonical_email)
-    BannedEmailHash.create(email_hash: hash, deleted_at: Time.now, banned_at: banned_at) unless BannedEmailHash.where(email_hash: hash).any?
+    BannedEmailHash.create(email_hash: hash, deleted_at: Time.current, banned_at: banned_at) unless BannedEmailHash.where(email_hash: hash).any?
   end
 
   def self.email_previously_banned_and_deleted?(email)
@@ -94,11 +94,11 @@ class User < ApplicationRecord
     self.session_token = SecureRandom.hex
   end
 
-  validates_presence_of :name, :profile_markup, :preferred_markup
-  validates_uniqueness_of :name, case_sensitive: false
-  validates_length_of :profile, maximum: 10_000
-  validates_inclusion_of :profile_markup, in: %w[html markdown]
-  validates_inclusion_of :preferred_markup, in: %w[html markdown]
+  validates :name, :profile_markup, :preferred_markup, presence: true
+  validates :name, uniqueness: { case_sensitive: false }
+  validates :profile, length: { maximum: 10_000 }
+  validates :profile_markup, inclusion: { in: %w[html markdown] }
+  validates :preferred_markup, inclusion: { in: %w[html markdown] }
   validates :author_email_notification_type_id, inclusion: { in: [AUTHOR_NOTIFICATION_NONE, AUTHOR_NOTIFICATION_DISCUSSION, AUTHOR_NOTIFICATION_COMMENT] }
 
   validate do
@@ -117,7 +117,7 @@ class User < ApplicationRecord
   # that users don't have to deal with passwords all the time. Add it
   # back when Devise won't run it and the user is actually setting the
   # password.
-  validates_confirmation_of :password, if: proc { |u| !u.password_required? && !u.password.nil? }
+  validates :password, confirmation: { if: proc { |u| !u.password_required? && !u.password.nil? } }
 
   strip_attributes
 
@@ -153,7 +153,7 @@ class User < ApplicationRecord
   end
 
   def favorite_script_set
-    return ScriptSet.where(favorite: true).where(user_id: id).first
+    return ScriptSet.where(favorite: true).find_by(user_id: id)
   end
 
   def serializable_hash(options = nil)
@@ -249,17 +249,17 @@ class User < ApplicationRecord
         reason: reason,
         private_reason: private_reason
       )
-      update_columns(banned_at: Time.now)
+      update_columns(banned_at: Time.current)
       script_reports.unresolved.each(&:dismiss!)
     end
 
     if ban_related
-      User.not_banned.where(canonical_email: canonical_email).each do |user|
+      User.not_banned.where(canonical_email: canonical_email).find_each do |user|
         user.ban!(moderator: moderator, reason: reason, private_reason: private_reason, ban_related: false)
       end
     end
 
-    Report.unresolved.where(item: self).each do |report|
+    Report.unresolved.where(item: self).find_each do |report|
       report.uphold!(moderator: moderator)
     end
   end
@@ -301,7 +301,7 @@ class User < ApplicationRecord
   def delete_all_comments!(by_user: nil)
     discussions.not_deleted.each { |comment| comment.soft_destroy!(by_user: by_user) }
     comments.not_deleted.each { |comment| comment.soft_destroy!(by_user: by_user) }
-    Report.unresolved.where(item: comments).each { |report| report.uphold!(moderator: by_user) }
+    Report.unresolved.where(item: comments).find_each { |report| report.uphold!(moderator: by_user) }
   end
 
   def banned?

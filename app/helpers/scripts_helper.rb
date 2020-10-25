@@ -26,7 +26,7 @@ module ScriptsHelper
     else
       l = link_to label, by_site_scripts_path(sort: sort_param_to_use, site: site, set: set, q: params[:q], language: language, filter_locale: filter_locale)
     end
-    return "<li class=\"list-option#{is_link ? '' : ' list-current'}\">#{l}</li>".html_safe
+    tag.li(class: "list-option#{is_link ? '' : ' list-current'}") { l }
   end
 
   def script_applies_to_list_contents(script, by_sites)
@@ -35,14 +35,14 @@ module ScriptsHelper
     sats_with_domains.map do |sat|
       content_for_script_applies_to_that_has_domain(sat, count_of_other_scripts_with_sat(sat, script, by_sites))
     end +
-    sats_without_domains.map { |sat| content_tag(:code, sat.text) }
+    sats_without_domains.map { |sat| tag.code(sat.text) }
   )
   end
 
   def license_display(script)
     return link_to(script.license.code, script.license.url, title: script.license.name) if script.license&.url
     return script.license.code if script.license
-    return "<i>#{I18n.t('scripts.no_license')}</i>".html_safe if script.license_text.nil?
+    return tag.i { I18n.t('scripts.no_license') } if script.license_text.nil?
 
     return script.license_text
   end

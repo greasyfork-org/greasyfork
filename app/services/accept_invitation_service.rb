@@ -31,7 +31,5 @@ class AcceptInvitationService
     true
   end
 
-  def accept!
-    invitation.accept!
-  end
+  delegate :accept!, to: :invitation
 end

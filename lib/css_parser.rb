@@ -175,7 +175,7 @@ class CssParser
           if uri.host.nil?
             return { text: css_document_match.value + (css_document_match.rule_type == 'url-prefix' ? '*' : ''), domain: false, tld_extra: false }
           end
-          if !uri.host.include?('.') || uri.host.include?('*')
+          if uri.host.exclude?('.') || uri.host.include?('*')
             # ensure the host is something sane
             return { text: css_document_match.value + (css_document_match.rule_type == 'url-prefix' ? '*' : ''), domain: false, tld_extra: false }
           end

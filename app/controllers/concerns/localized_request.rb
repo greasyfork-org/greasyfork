@@ -29,13 +29,13 @@ module LocalizedRequest
 
     # Redirect a logged-in user to their preferred locale, if it's available
     if !current_user.nil? && !current_user.locale.nil? && current_user.locale.ui_available && params[:locale] != current_user.locale.code && (params[:locale_override].nil? || params[:locale].nil?)
-      redirect_to current_path_with_params(locale: current_user.locale.code, locale_override: nil), status: 302
+      redirect_to current_path_with_params(locale: current_user.locale.code, locale_override: nil), status: :found
       return
     end
 
     # Redirect if locale is a request param and not part of the url
     unless request.GET[:locale].nil?
-      redirect_to current_path_with_params, status: 301
+      redirect_to current_path_with_params, status: :moved_permanently
       return
     end
 
@@ -48,11 +48,11 @@ module LocalizedRequest
         # Suggest a different locale if we think there's a better one.
         if current_user.nil?
           top, _preferred = detect_locale(current_user, request.headers['Accept-Language'])
-          flash.now[:notice] = "<b>#{view_context.link_to(t('common.suggest_locale', locale: top.code, locale_name: (top.native_name || top.english_name), site_name: site_name), { locale: top.code })}</b>".html_safe if top.code != params[:locale]
+          flash.now[:notice] = view_context.tag.b { view_context.link_to(t('common.suggest_locale', locale: top.code, locale_name: (top.native_name || top.english_name), site_name: site_name), { locale: top.code }) } if top.code != params[:locale]
         end
         if flash.now[:notice].nil?
           locale = Locale.where(code: params[:locale]).first
-          flash.now[:notice] = "<b><a href=\"#{Rails.configuration.help_translate_url}\" target=\"_new\">#{t('common.incomplete_locale', locale_name: (locale.native_name || locale.english_name), percent: view_context.number_to_percentage(locale.percent_complete, precision: 0), site_name: site_name)}</a></b>".html_safe if !locale.nil? && locale.percent_complete <= 95
+          flash.now[:notice] = view_context.tag.b { view_context.link_to(t('common.incomplete_locale', locale_name: (locale.native_name || locale.english_name), percent: view_context.number_to_percentage(locale.percent_complete, precision: 0), site_name: site_name), Rails.configuration.help_translate_url, target: '_new') } if !locale.nil? && locale.percent_complete <= 95
         end
       end
       return
@@ -60,8 +60,8 @@ module LocalizedRequest
 
     # Detect language
     top, preferred = detect_locale(current_user, request.headers['Accept-Language'])
-    flash[:notice] = "<b>Greasy Fork is not available in #{preferred.english_name}. <a href=\"#{Rails.configuration.help_translate_url}\" target=\"_new\">You can change that.</a></b>".html_safe unless preferred.nil?
-    redirect_to current_path_with_params(locale: top.code), status: 302
+    flash[:notice] = tag.b { "Greasy Fork is not available in #{preferred.english_name}. " + link_to('You can change that.', Rails.configuration.help_translate_url, target: '_new') } unless preferred.nil?
+    redirect_to current_path_with_params(locale: top.code), status: :found
   end
 
   def default_url_options(_options = {})

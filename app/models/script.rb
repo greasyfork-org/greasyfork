@@ -14,18 +14,19 @@ class Script < ApplicationRecord
   has_many :script_versions, dependent: :destroy
   has_many :script_applies_tos, dependent: :destroy, autosave: true
   has_many :site_applications, through: :script_applies_tos
-  has_many :discussions
-  has_many :script_set_script_inclusions, foreign_key: 'child_id', dependent: :destroy
+  has_many :discussions, dependent: nil
+  has_many :script_set_script_inclusions, foreign_key: 'child_id', dependent: :destroy, inverse_of: :child
   has_many :favorited_in_sets, -> { includes(:users).where('favorite = true') }, through: :script_set_script_inclusions, class_name: 'ScriptSet', source: 'parent'
   has_many :favoriters, through: :favorited_in_sets, class_name: 'User', source: 'user'
   has_many :localized_attributes, class_name: 'LocalizedScriptAttribute', autosave: true, dependent: :destroy
-  has_many :localized_names, -> { where(attribute_key: 'name') }, class_name: 'LocalizedScriptAttribute'
-  has_many :localized_descriptions, -> { where(attribute_key: 'description') }, class_name: 'LocalizedScriptAttribute'
-  has_many :localized_additional_infos, -> { where(attribute_key: 'additional_info') }, class_name: 'LocalizedScriptAttribute'
+  has_many :localized_names, -> { where(attribute_key: 'name') }, class_name: 'LocalizedScriptAttribute', inverse_of: :script
+  has_many :localized_descriptions, -> { where(attribute_key: 'description') }, class_name: 'LocalizedScriptAttribute', inverse_of: :script
+  has_many :localized_additional_infos, -> { where(attribute_key: 'additional_info') }, class_name: 'LocalizedScriptAttribute', inverse_of: :script
   has_many :compatibilities, autosave: true, dependent: :destroy
-  has_many :script_reports, inverse_of: :script
-  has_many :script_invitations
-  has_many :script_similarities
+  has_many :script_reports, inverse_of: :script, dependent: nil
+  has_many :script_invitations, dependent: :destroy
+  has_many :script_similarities, dependent: :destroy
+  has_many :forum_discussions, foreign_key: 'ScriptID', inverse_of: :script
 
   belongs_to :script_type
   belongs_to :script_sync_source, optional: true
@@ -57,16 +58,16 @@ class Script < ApplicationRecord
   scope :libraries, ->(script_subset) { active(script_subset).where(script_type_id: ScriptType::LIBRARY_TYPE_ID) }
   scope :listable_including_libraries, ->(script_subset) { active(script_subset).where(script_type_id: [1, 3]) }
   scope :reported, -> { not_deleted.joins(:script_reports).where(script_reports: { result: nil }).distinct }
-  scope :reported_not_adult, -> { not_deleted.includes(:users).where('not_adult_content_self_report_date IS NOT NULL') }
+  scope :reported_not_adult, -> { not_deleted.includes(:users).where.not(not_adult_content_self_report_date: nil) }
   scope :for_all_sites, -> { includes(:script_applies_tos).references(:script_applies_tos).where('script_applies_tos.id IS NULL') }
   scope :locked, -> { where(locked: true) }
   scope :not_locked, -> { where.not(locked: true) }
 
   # Must have a default name and description
-  validates_presence_of :default_name, message: :script_missing_name, unless: proc { |s| s.library? }
+  validates :default_name, presence: { message: :script_missing_name, unless: proc { |s| s.library? } }
   validates :name, presence: true, if: ->(s) { s.library? }
-  validates_presence_of :description, message: :script_missing_description, unless: proc { |r| r.deleted? || r.library? }
-  validates_presence_of :description, unless: proc { |r| r.deleted? || !r.library? }
+  validates :description, presence: { message: :script_missing_description, unless: proc { |r| r.deleted? || r.library? } }
+  validates :description, presence: { unless: proc { |r| r.deleted? || !r.library? } }
   validates :language, presence: true, inclusion: %w[js css]
 
   validate do |script|
@@ -130,11 +131,11 @@ class Script < ApplicationRecord
     end
   end
 
-  validates_presence_of :code_updated_at, :script_type
+  validates :code_updated_at, :script_type, presence: true
 
-  validates_format_of :sync_identifier, with: URI::DEFAULT_PARSER.make_regexp(%w[http https]), message: :script_sync_identifier_bad_protocol, if: proc { |r| r.script_sync_source_id == 1 }
+  validates :sync_identifier, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]), message: :script_sync_identifier_bad_protocol, if: proc { |r| r.script_sync_source_id == 1 } }
 
-  validates_length_of :sync_identifier, maximum: 500
+  validates :sync_identifier, length: { maximum: 500 }
 
   # Private use area unicode
   validates_each :name, :description, :additional_info do |script, attr, value|
@@ -155,7 +156,7 @@ class Script < ApplicationRecord
 
     # Try to avoid doing this for something that will be invalid anyway.
     # The API is limited.
-    return unless description.present?
+    return if description.blank?
 
     self.locale = detect_locale
     localized_attributes.select { |la| la.locale.nil? }.each { |la| la.locale = locale }
@@ -196,7 +197,7 @@ class Script < ApplicationRecord
 
   before_save do |script|
     if script.deleted?
-      script.deleted_at ||= Time.now
+      script.deleted_at ||= Time.current
     else
       script.deleted_at = nil
     end
@@ -238,10 +239,10 @@ class Script < ApplicationRecord
     end
 
     if new_record? || code_updated_at.nil?
-      self.code_updated_at = Time.now
+      self.code_updated_at = Time.current
     else
       newest_sv = newest_saved_script_version
-      self.code_updated_at = Time.now if newest_sv.nil? || (newest_sv.code != script_version.code)
+      self.code_updated_at = Time.current if newest_sv.nil? || (newest_sv.code != script_version.code)
     end
 
     update_license(meta['license']&.first)
@@ -280,7 +281,7 @@ class Script < ApplicationRecord
         browser_match = /\A([a-z]+).*/i.match(line)
         next if browser_match.nil?
 
-        browser = Browser.where(code: browser_match[1].downcase).first
+        browser = Browser.find_by(code: browser_match[1].downcase)
         next if browser.nil?
 
         comments_split = line.split(' ', 2)
@@ -375,7 +376,7 @@ class Script < ApplicationRecord
     return if ft.nil?
 
     if Greasyfork::Application.config.enable_detect_locale
-      Logger.new("#{Rails.root}/log/detectlanguage.log").info("Sending DetectLanguage request for #{id ? "script #{id}" : 'a new script'} - #{full_text[0..50]}...")
+      Logger.new(Rails.root.join('log/detectlanguage.log')).info("Sending DetectLanguage request for #{id ? "script #{id}" : 'a new script'} - #{full_text[0..50]}...")
       begin
         dl_lang_code = DetectLanguage.simple_detect(ft)
       rescue StandardError => e
@@ -439,7 +440,7 @@ class Script < ApplicationRecord
     la = localized_attributes.find { |l| l.attribute_key == 'additional_info' && l.attribute_default }
     unless la.nil?
       additional_text = ApplicationController.helpers.format_user_text_as_plain(la.attribute_value, la.value_markup)
-      parts << additional_text if !additional_text.nil? && !additional_text.empty?
+      parts << additional_text if additional_text.present?
     end
     return nil if parts.empty?
 
@@ -522,7 +523,7 @@ class Script < ApplicationRecord
 
     meta_keys.select { |n, _v| n.starts_with?("#{attr_name}:") }.each do |n, v|
       locale_code = n.split(':', 2).last
-      meta_locale = Locale.where(code: locale_code).first
+      meta_locale = Locale.find_by(code: locale_code)
       if meta_locale.nil?
         Rails.logger.error "Unknown locale code - #{locale_code}"
         next

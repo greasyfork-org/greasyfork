@@ -65,7 +65,7 @@ class ScriptDiscussionsTest < ApplicationSystemTestCase
       end
     end
 
-    assert !user.subscribed_to?(discussion)
+    assert_not user.subscribed_to?(discussion)
   end
 
   test 'subscribing to a discussion' do

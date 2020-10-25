@@ -60,7 +60,7 @@ class ScriptLocalizationTest < ActiveSupport::TestCase
     JS
     sv.calculate_all
     script.apply_from_script_version(sv)
-    assert !script.valid?, script.errors.full_messages.inspect
+    assert_not script.valid?, script.errors.full_messages.inspect
     assert_equal 1, script.errors.full_messages.length, script.errors.full_messages.inspect
     assert_equal ["can't be blank"], script.errors['@description:fr']
   end
@@ -85,7 +85,7 @@ class ScriptLocalizationTest < ActiveSupport::TestCase
     sv.calculate_all
     assert sv.valid?, sv.errors.full_messages.inspect
     sv.localized_attributes.build({ attribute_key: 'additional_info', attribute_value: 'Additional info in French', attribute_default: false, locale: Locale.where(code: 'fr').first, value_markup: 'html' })
-    assert !sv.valid?
+    assert_not sv.valid?
     assert_equal 1, sv.errors.full_messages.length
     assert sv.errors.full_messages.first.include?('Provide only one')
   end
@@ -108,7 +108,7 @@ class ScriptLocalizationTest < ActiveSupport::TestCase
     JS
     sv.localized_attributes.build({ attribute_key: 'additional_info', attribute_value: 'Additional info in Spanish', attribute_default: false, locale: Locale.where(code: 'es').first, value_markup: 'html' })
     sv.calculate_all
-    assert !sv.valid?
+    assert_not sv.valid?
     assert_equal 1, sv.errors.full_messages.length
     assert sv.errors.full_messages.first.include?('was specified for the \'es\' locale'), sv.errors.full_messages.first
   end

@@ -10,9 +10,9 @@ class ForumDiscussion < ApplicationRecord
   alias_attribute 'name', 'Name'
   alias_attribute 'rating', 'Rating'
 
-  belongs_to :script, foreign_key: 'ScriptID'
+  belongs_to :script, foreign_key: 'ScriptID', inverse_of: :forum_discussions
 
-  has_many :forum_comments, foreign_key: 'DiscussionID'
+  has_many :forum_comments, foreign_key: 'DiscussionID', dependent: :restrict_with_exception, inverse_of: :forum_discussion
 
   scope :open, -> { where(Closed: 0) }
   scope :for_script, -> { where.not(ScriptID: nil) }

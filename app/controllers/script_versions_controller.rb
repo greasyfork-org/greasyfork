@@ -5,7 +5,7 @@ class ScriptVersionsController < ApplicationController
   before_action :authorize_by_script_id, except: [:index, :delete, :do_delete]
   before_action :check_for_deleted_by_script_id
   before_action :authorize_for_moderators_only, only: [:delete, :do_delete]
-  before_action :check_read_only_mode, except: [:index, :show]
+  before_action :check_read_only_mode, except: :index
   before_action :check_ip, only: :create
 
   layout 'scripts', only: [:index]
@@ -98,7 +98,7 @@ class ScriptVersionsController < ApplicationController
     @script.script_type_id = params['script']['script_type_id']
     @script.locale_id = params['script']['locale_id'] if params['script'].key?('locale_id')
     @script.adult_content_self_report = params['script']['adult_content_self_report'] == '1'
-    @script.not_adult_content_self_report_date = (Time.now if params['script']['not_adult_content_self_report'] == '1')
+    @script.not_adult_content_self_report_date = (Time.current if params['script']['not_adult_content_self_report'] == '1')
 
     save_record = !preview && params['add-additional-info'].nil?
 

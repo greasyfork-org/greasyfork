@@ -188,7 +188,7 @@ class JsParser
           uri = URI(pre_wildcard)
           if uri.host.nil?
             applies_to_names << { text: original_pattern, domain: false, tld_extra: false }
-          elsif !uri.host.include?('.') || uri.host.include?('*')
+          elsif uri.host.exclude?('.') || uri.host.include?('*')
             # ensure the host is something sane
             applies_to_names << { text: original_pattern, domain: false, tld_extra: false }
           elsif uri.host.ends_with?('.tld')

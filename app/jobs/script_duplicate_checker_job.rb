@@ -6,7 +6,7 @@ class ScriptDuplicateCheckerJob < ApplicationJob
   DESIRED_RUN_COUNT = 2
 
   def perform(script_id)
-    now = Time.now
+    now = Time.current
 
     begin
       script = Script.find(script_id)

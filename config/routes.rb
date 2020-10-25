@@ -63,7 +63,7 @@ Rails.application.routes.draw do
         get 'admin'
         get 'code(.:format)', to: 'scripts#show_code', as: 'show_code', constraints: { format: /.*/ }
         get 'derivatives'
-        get 'diff', constraints: ->(req) { !req.params[:v1].blank? && !req.params[:v2].blank? }
+        get 'diff', constraints: ->(req) { req.params[:v1].present? && req.params[:v2].present? }
         get 'feedback'
         get 'report'
         get 'stats'

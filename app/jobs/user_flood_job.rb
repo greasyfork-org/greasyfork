@@ -17,7 +17,7 @@ class UserFloodJob < ApplicationJob
                        .sort_by(&:last)
                        .reverse
                        .first
-    if most_used_domain.last > THRESHOLD && !IGNORED_DOMAINS.include?(most_used_domain.first)
+    if most_used_domain.last > THRESHOLD && IGNORED_DOMAINS.exclude?(most_used_domain.first)
       ActionMailer::Base.mail(
         from: 'noreply@greasyfork.org',
         to: 'jason.barnabe@gmail.com',

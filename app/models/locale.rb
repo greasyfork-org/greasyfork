@@ -1,6 +1,6 @@
 class Locale < ApplicationRecord
-  has_many :scripts
-  has_many :locale_contributors
+  has_many :scripts, dependent: :restrict_with_exception
+  has_many :locale_contributors, dependent: :destroy
 
   scope :with_listable_scripts, ->(script_subset) { joins(:scripts).where(scripts: Script.listable(script_subset).where_values_hash).distinct.order(:code) }
 

@@ -96,7 +96,7 @@ class CssToJsConverter
                                else
                                  next true if uri.host.nil?
 
-                                 next !matches['domain'].include?(uri.host)
+                                 next matches['domain'].exclude?(uri.host)
         end
         js_includes += url_and_prefix_rules.map { |value| value + (rule_type == 'url-prefix' ? '*' : '') }
       end

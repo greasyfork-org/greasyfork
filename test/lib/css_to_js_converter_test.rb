@@ -346,7 +346,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
         }
       }
     CSS
-    assert !CssToJsConverter.convertible?(css)
+    assert_not CssToJsConverter.convertible?(css)
   end
 
   test 'not convertible with var' do
@@ -365,6 +365,6 @@ class CssToJsConverterTest < ActiveSupport::TestCase
         }
       }
     CSS
-    assert !CssToJsConverter.convertible?(css)
+    assert_not CssToJsConverter.convertible?(css)
   end
 end

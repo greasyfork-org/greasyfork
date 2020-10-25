@@ -17,7 +17,7 @@ class TopSitesService
                           ''
                         end
         user_clause = ("AND s.id IN (#{([0] + User.find(user_id).script_ids).join(',')})" if user_id)
-        sql = <<~SQL
+        sql = <<~SQL.squish
           SELECT
             text, SUM(daily_installs) install_count, COUNT(s.id) script_count
           FROM script_applies_tos
@@ -53,7 +53,7 @@ class TopSitesService
     end
 
     def all_sites_count
-      sql = <<-SQL
+      sql = <<-SQL.squish
       SELECT
         sum(daily_installs) install_count, count(distinct scripts.id) script_count
       FROM scripts

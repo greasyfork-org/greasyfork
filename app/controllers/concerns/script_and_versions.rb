@@ -4,7 +4,7 @@ module ScriptAndVersions
       render_404 I18n.t('scripts.non_adult_content_on_sleazy')
       return true
     end
-    if script.sensitive && script_subset == :greasyfork && !script.users.include?(current_user)
+    if script.sensitive && script_subset == :greasyfork && script.users.exclude?(current_user)
       message = current_user.nil? ? view_context.it('scripts.adult_content_on_greasy_not_logged_in_error', login_link: new_user_session_path) : view_context.it('scripts.adult_content_on_greasy_logged_in_error', edit_account_link: edit_user_registration_path)
       render_404 message
       return true
@@ -24,9 +24,9 @@ module ScriptAndVersions
       if script.replaced_by_script_id
         # Same action, different script.
         if params.include?(:script_id)
-          redirect_to script_id: script.replaced_by_script_id, status: 301
+          redirect_to script_id: script.replaced_by_script_id, status: :moved_permanently
         else
-          redirect_to id: script.replaced_by_script_id, status: 301
+          redirect_to id: script.replaced_by_script_id, status: :moved_permanently
         end
         return true
       end
@@ -118,7 +118,7 @@ module ScriptAndVersions
     respond_to do |format|
       format.html do
         @text = t('scripts.reported_notice', script_name: script.name(request_locale))
-        render 'home/error', status: 404, layout: 'application'
+        render 'home/error', status: :not_found, layout: 'application'
       end
       format.all do
         head 404
@@ -130,7 +130,7 @@ module ScriptAndVersions
     respond_to do |format|
       format.html do
         @text = t('scripts.reported_notice', script_name: script.name(request_locale))
-        render 'home/error', status: 404, layout: 'application'
+        render 'home/error', status: :not_found, layout: 'application'
       end
       format.all do
         head 404

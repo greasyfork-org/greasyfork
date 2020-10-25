@@ -146,18 +146,18 @@ class DiscussionsController < ApplicationController
   end
 
   def old_redirect
-    redirect_to Discussion.find_by!(migrated_from: params[:id]).url(locale: request_locale.code), status: 301
+    redirect_to Discussion.find_by!(migrated_from: params[:id]).url(locale: request_locale.code), status: :moved_permanently
   end
 
   def mark_all_read
     filter_result = apply_filters(Discussion.all)
 
     if filter_result.category || filter_result.related_to_me || filter_result.by_user
-      now = Time.now
+      now = Time.current
       ids = filter_result.result.pluck(:id)
       DiscussionRead.upsert_all(ids.map { |discussion_id| { discussion_id: discussion_id, user_id: current_user.id, read_at: now } }) if ids.any?
     else
-      current_user.update!(discussions_read_since: Time.now)
+      current_user.update!(discussions_read_since: Time.current)
     end
 
     redirect_back(fallback_location: discussions_path)
@@ -186,7 +186,7 @@ class DiscussionsController < ApplicationController
   end
 
   def record_view(discussion)
-    DiscussionRead.upsert({ user_id: current_user.id, discussion_id: discussion.id, read_at: Time.now })
+    DiscussionRead.upsert({ user_id: current_user.id, discussion_id: discussion.id, read_at: Time.current })
   end
 
   def apply_filters(discussions)

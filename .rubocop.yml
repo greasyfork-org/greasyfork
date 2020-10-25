@@ -1,3 +1,6 @@
+require:
+  - rubocop-rails
+
 AllCops:
   NewCops: enable
   Exclude:
@@ -48,6 +51,22 @@ Metrics/PerceivedComplexity:
 Naming/MethodParameterName:
   MinNameLength: 2
 
+Rails/HasAndBelongsToMany:
+  Enabled: false
+
+# https://github.com/rubocop-hq/rubocop-rails/issues/147
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+
+Rails/LexicallyScopedActionFilter:
+  Enabled: false
+
+Rails/OutputSafety:
+  Enabled: false
+
+Rails/SkipsModelValidations:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 
@@ -77,4 +96,12 @@ Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: comma
 
 Style/HashEachMethods:
+  Enabled: false
+
+#TBD:
+
+Rails/HelperInstanceVariable:
+  Enabled: false
+
+Rails/UniqueValidationWithoutIndex:
   Enabled: false

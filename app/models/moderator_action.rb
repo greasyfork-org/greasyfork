@@ -3,8 +3,8 @@ class ModeratorAction < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :moderator, class_name: 'User'
 
-  validates_presence_of :moderator, :action, :reason
+  validates :moderator, :action, :reason, presence: true
 
-  validates_length_of :action, maximum: 50
-  validates_length_of :reason, maximum: 500
+  validates :action, length: { maximum: 50 }
+  validates :reason, length: { maximum: 500 }
 end

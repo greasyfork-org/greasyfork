@@ -1,5 +1,5 @@
 class DiscussionCategory < ApplicationRecord
-  has_many :discussions
+  has_many :discussions, dependent: :restrict_with_exception
 
   def self.script_discussions
     find_by!(category_key: 'script-discussions')

@@ -29,9 +29,8 @@ class Comment < ApplicationRecord
     discussion_url
   end
 
-  def destroy
+  before_destroy do
     discussion.destroy if first_comment?
-    super
   end
 
   after_soft_destroy do

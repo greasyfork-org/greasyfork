@@ -9,6 +9,7 @@ class ScriptVersion < ApplicationRecord
   include ScriptVersionJs
   include HasAttachments
 
+  before_validation :set_locale
   # This needs to be before_save to run before the autosave callbacks.
   # It will actually only do anything when new_record?.
   before_save :reuse_script_codes
@@ -30,7 +31,7 @@ class ScriptVersion < ApplicationRecord
     errors.add(:code, :invalid) unless code =~ /[=.:\[(]/
   end
 
-  validates_length_of :changelog, maximum: 500, on: :create
+  validates :changelog, length: { maximum: 500, on: :create }
 
   validate :number_of_attachments, on: :create
   def number_of_attachments
@@ -67,7 +68,7 @@ class ScriptVersion < ApplicationRecord
     additional_info_locales = localized_attributes_for('additional_info').reject(&:attribute_default).map { |la| la.locale.nil? ? script.locale : la.locale }.reject(&:nil?).uniq
     meta_keys = record.parser_class.parse_meta(code)
     additional_info_locales.each do |l|
-      record.errors[:base] << I18n.t('scripts.localized_additional_info_with_no_name', { locale_code: l.code }) if !meta_keys.include?("name:#{l.code}") && (l != script.locale)
+      record.errors[:base] << I18n.t('scripts.localized_additional_info_with_no_name', { locale_code: l.code }) if meta_keys.exclude?("name:#{l.code}") && (l != script.locale)
     end
   end
 
@@ -78,7 +79,6 @@ class ScriptVersion < ApplicationRecord
     record.errors.add(:code, :missing_include_or_match) if !meta.key?('include') && !meta.key?('match')
   end
 
-  before_validation :set_locale
   before_save :set_locale
   def set_locale
     localized_attributes.select { |la| la.locale.nil? }.each { |la| la.locale = script.locale }
@@ -139,7 +139,7 @@ class ScriptVersion < ApplicationRecord
 
     # previous namespace will be used in calculate_rewritten_code if this one doesn't have one
     previous_namespace = get_meta_from_previous('namespace', use_rewritten: true)
-    return false if !previous_namespace.nil? && !previous_namespace.empty?
+    return false if previous_namespace.present?
 
     meta = parser_class.parse_meta(code)
     # handled elsewhere
@@ -160,12 +160,12 @@ class ScriptVersion < ApplicationRecord
 
     # handled in namespace_missing?
     namespaces = meta['namespace']
-    return false if namespaces.nil? || namespaces.empty?
+    return false if namespaces.blank?
 
     namespace = namespaces.first
 
     previous_namespace = get_meta_from_previous('namespace', use_rewritten: true)
-    previous_namespace = (previous_namespace.nil? || previous_namespace.empty?) ? nil : previous_namespace.first
+    previous_namespace = previous_namespace.blank? ? nil : previous_namespace.first
 
     # if there was no previous namespace, then anything new is fine
     return false if previous_namespace.nil?
@@ -191,7 +191,7 @@ class ScriptVersion < ApplicationRecord
   end
 
   def sensitive_domains
-    domain_names = calculate_applies_to_names.select { |atn| atn[:domain] && !atn[:tld_extra] }.map { |atn| atn[:text] }
+    domain_names = calculate_applies_to_names.select { |atn| atn[:domain] && !atn[:tld_extra] }.pluck(:text)
     return SensitiveSite.where(domain: domain_names).map(&:domain)
   end
 
@@ -371,7 +371,7 @@ class ScriptVersion < ApplicationRecord
   def calculate_backup_namespace
     # use the rewritten code as the previous one may have been a backup as well
     previous_namespace = get_meta_from_previous('namespace', use_rewritten: true)
-    return previous_namespace.first unless previous_namespace.nil? || previous_namespace.empty?
+    return previous_namespace.first if previous_namespace.present?
     return nil unless add_missing_namespace
 
     return Rails.application.routes.url_helpers.user_url(id: script.authors.first.user_id)

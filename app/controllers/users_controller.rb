@@ -38,9 +38,9 @@ class UsersController < ApplicationController
 
     case params[:author]
     when '1'
-      @users = @users.where(id: Script.not_deleted.joins(:authors).pluck(:user_id))
+      @users = @users.where(id: Script.not_deleted.joins(:authors).select(:user_id))
     when '0'
-      @users = @users.where.not(id: Script.not_deleted.joins(:authors).pluck(:user_id))
+      @users = @users.where.not(id: Script.not_deleted.joins(:authors).select(:user_id))
     end
 
     if current_user&.moderator? && params[:same_ip]
@@ -190,7 +190,7 @@ class UsersController < ApplicationController
   def do_ban
     user = User.find(params[:user_id])
     user.ban!(moderator: current_user, reason: params[:reason]) unless user.banned?
-    user.lock_all_scripts!(reason: params[:reason], moderator: current_user, delete_type: params[:script_delete_type_id]) unless params[:script_delete_type_id].blank?
+    user.lock_all_scripts!(reason: params[:reason], moderator: current_user, delete_type: params[:script_delete_type_id]) if params[:script_delete_type_id].present?
     user.delete_all_comments!(by_user: user) if params[:delete_comments] == '1'
     redirect_to user
   end
@@ -222,7 +222,7 @@ class UsersController < ApplicationController
   def delete_complete
     @user = current_user
     if params[:cancel].present?
-      @user.update_attributes(delete_confirmation_key: nil, delete_confirmation_expiry: nil)
+      @user.update(delete_confirmation_key: nil, delete_confirmation_expiry: nil)
       flash[:notice] = t('users.delete.confirmation.cancelled')
     elsif params[:key].blank? || @user.delete_confirmation_key.blank? || params[:key] != @user.delete_confirmation_key
       flash[:alert] = t('users.delete.confirmation.key_mismatch')

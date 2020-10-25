@@ -159,7 +159,7 @@ class ScriptSyncerTest < ActiveSupport::TestCase
   test 'keep attachments' do
     script = Script.find(17)
     assert_equal 1, script.script_versions.length
-    script.script_versions.first.attachments.attach(io: File.open(Rails.root.join('test/fixtures/files', 'blacklogo16.png')), filename: 'blacklogo16.png', content_type: 'image/png')
+    script.script_versions.first.attachments.attach(io: File.open(Rails.root.join('test/fixtures/files/blacklogo16.png')), filename: 'blacklogo16.png', content_type: 'image/png')
     assert_equal 1, script.script_versions.first.attachments.length
     assert_equal :success, ScriptSyncer.sync(script)
     assert_equal 2, script.script_versions.length

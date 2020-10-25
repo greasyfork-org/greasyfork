@@ -30,4 +30,4 @@ module Greasyfork
   end
 end
 
-ApplicationSettings = YAML.load_file(Rails.root.join('config', 'application.yml')) if Rails.root.join('config', 'application.yml').exist?
+ApplicationSettings = YAML.load_file(Rails.root.join('config/application.yml')) if Rails.root.join('config/application.yml').exist?

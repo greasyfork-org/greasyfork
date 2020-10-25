@@ -250,7 +250,7 @@ class ScriptSetsController < ApplicationController
     end
 
     # is it a name?
-    return User.find_by_name(value)
+    return User.find_by(name: value)
   end
 
   def script_set_params

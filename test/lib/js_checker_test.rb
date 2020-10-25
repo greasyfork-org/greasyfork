@@ -22,7 +22,7 @@ class JsCheckerTest < ActiveSupport::TestCase
 
   test 'invalid JS is in valid' do
     jsc = ::JsChecker.new('foo bar')
-    assert !jsc.check
+    assert_not jsc.check
     assert_not_empty jsc.errors
   end
 end

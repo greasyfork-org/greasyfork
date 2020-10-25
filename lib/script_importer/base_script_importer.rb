@@ -98,7 +98,7 @@ module ScriptImporter
 
       return [:notuserscript, script, 'Does not appear to be a user script.'] if script.name.nil?
 
-      return [:needsdescription, script, nil] if script.description.nil? || script.description.empty?
+      return [:needsdescription, script, nil] if script.description.blank?
 
       # prefer script_version error messages, but show script error messages if necessary
       return [:failure, script, (sv.errors.full_messages.empty? ? script.errors.full_messages : sv.errors.full_messages).join(', ')] if !script.valid? | !sv.valid?

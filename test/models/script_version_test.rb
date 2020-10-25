@@ -65,7 +65,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // ==/UserScript==
       var foo = "bar";
     JS
-    assert !script_version.valid?
+    assert_not script_version.valid?
     assert_equal 1, script_version.errors.size
     assert_equal [:code, 'uses an unapproved external script: @require http://example.com'], script_version.errors.first
   end
@@ -102,7 +102,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // ==/UserScript==
       syn tax error
     JS
-    assert !script_version.valid?
+    assert_not script_version.valid?
     assert_not_empty script_version.errors[:code]
   end
 
@@ -116,7 +116,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
         "this": "is json"
       }
     JS
-    assert !script_version.valid?
+    assert_not script_version.valid?
     assert_not_empty script_version.errors[:code]
   end
 
@@ -144,7 +144,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
     sv.script = script
     sv.calculate_all(script.description)
     script.apply_from_script_version(sv)
-    assert !sv.valid?
+    assert_not sv.valid?
   end
 
   test 'update code with changing version' do
@@ -165,7 +165,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
     sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @namespace http://greasyfork.local/users/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
     sv.script = script
     sv.calculate_all
-    assert !sv.valid?
+    assert_not sv.valid?
     assert_equal 1, sv.errors.to_a.length
   end
 
@@ -204,7 +204,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
     # invalid without
     sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @namespace http://greasyfork.local/users/1\n// ==/UserScript==\nvar foo = 2;"
     sv.calculate_all
-    assert !sv.valid?, sv.errors.full_messages.join(' ')
+    assert_not sv.valid?, sv.errors.full_messages.join(' ')
   end
 
   test 'add missing version' do
@@ -244,7 +244,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
     sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @namespace http://greasyfork.local/users/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
     sv.script = script
     sv.calculate_all
-    assert !sv.valid?
+    assert_not sv.valid?
     assert_equal 1, sv.errors.to_a.length, sv.errors.to_a.inspect
   end
 
@@ -260,7 +260,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
     # invalid without
     sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
     sv.calculate_all
-    assert !sv.valid?
+    assert_not sv.valid?
   end
 
   test 'add missing namespace' do
@@ -270,7 +270,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
     sv.script = script
     sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
     sv.calculate_all
-    assert !sv.valid?
+    assert_not sv.valid?
     sv.add_missing_namespace = true
     sv.calculate_all
     assert_equal "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @include *\n// @namespace http://localhost/users/1\n// ==/UserScript==\nvar foo = 2;", sv.rewritten_code
@@ -303,7 +303,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
     sv.script = script
     sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.2\n// @namespace http://example.com/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
     sv.calculate_all
-    assert !sv.valid?
+    assert_not sv.valid?
   end
 
   test 'change namespace with override' do
@@ -333,7 +333,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
     sv.calculate_all(script.description)
     script.apply_from_script_version(sv)
     assert_nil script.description
-    assert !script.valid?
+    assert_not script.valid?
   end
 
   test 'missing description previous had description' do
@@ -373,7 +373,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
     sv.calculate_all(script.description)
     script.apply_from_script_version(sv)
     assert_nil script.name
-    assert !script.valid?
+    assert_not script.valid?
   end
 
   test 'library missing name previous had name' do
@@ -406,7 +406,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
     sv.calculate_all
     sv.namespace_check_override = true
     sv.version_check_override = true
-    assert !sv.valid?
+    assert_not sv.valid?
     sv.allow_code_previously_posted = true
     assert sv.valid?
   end
@@ -480,14 +480,14 @@ class ScriptVersionTest < ActiveSupport::TestCase
     assert sv.valid?, sv.errors.full_messages
     # now minified
     sv.code += 'function a(){}' * 5000
-    assert !sv.valid?
+    assert_not sv.valid?
     # override
     sv.minified_confirmation = true
     assert sv.valid?
     # now an update
     sv.minified_confirmation = false
     script.save
-    assert !sv.valid?
+    assert_not sv.valid?
   end
 
   test 'use same script code between code and rewritten' do
@@ -692,7 +692,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
     sv.calculate_all
     script.apply_from_script_version(sv)
     assert script.description.length > 500
-    assert !script.valid?
+    assert_not script.valid?
     assert script.errors.to_a.length == 1, script.errors.full_messages
     assert script.errors.full_messages.first.include?('@description'), script.errors.full_messages
     sv.do_lenient_saving
@@ -739,14 +739,14 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // ==/UserScript==
       var foo = "bar";
     JS
-    assert !script_version.valid?
+    assert_not script_version.valid?
     assert_equal 1, script_version.errors.size
     assert_equal [:code, 'must include at least one @match or @include key'], script_version.errors.first
   end
 
   test 'creation resets consecutive bad reviews' do
     script = Script.find(3)
-    script.update(consecutive_bad_ratings_at: Time.now)
+    script.update(consecutive_bad_ratings_at: Time.current)
     assert script.valid? && script.script_versions.length == 1 && script.script_versions.first.valid?
     sv = ScriptVersion.new
     sv.code = script.script_versions.first.code

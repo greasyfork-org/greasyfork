@@ -4,5 +4,5 @@ class LocalizedScriptVersionAttribute < ApplicationRecord
 
   strip_attributes only: [:attribute_key, :attribute_value]
 
-  validates_presence_of :attribute_key, :attribute_value, :locale, :value_markup
+  validates :attribute_key, :attribute_value, :locale, :value_markup, presence: true
 end

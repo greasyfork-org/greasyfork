@@ -23,7 +23,7 @@ class AnnouncementsTest < ApplicationSystemTestCase
   end
 
   test 'can display dynamic announcements' do
-    @user.scripts.first.update(consecutive_bad_ratings_at: Time.now)
+    @user.scripts.first.update(consecutive_bad_ratings_at: Time.current)
     visit root_url
     assert_content 'has received consecutive bad ratings'
   end

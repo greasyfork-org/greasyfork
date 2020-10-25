@@ -41,12 +41,12 @@ module UsersHelper
              label
            end
 
-    "<li class=\"list-option#{is_link ? '' : ' list-current'}\">#{text}</li>".html_safe
+    tag.li(class: "list-option#{is_link ? '' : ' list-current'}") { text }
   end
 
   def render_user(user, user_id, skip_link: false, script: nil, force_author: false)
-    return content_tag(:i) { 'No-one' } unless user_id
-    return content_tag(:i) { "Deleted user #{user_id}" } unless user
+    return tag.i { 'No-one' } unless user_id
+    return tag.i { "Deleted user #{user_id}" } unless user
 
     badge = if user.banned?
               render_badge(:banned)
@@ -67,6 +67,6 @@ module UsersHelper
   def render_badge(key)
     text = t("users.badges.#{key}.short")
     title = t("users.badges.#{key}.long")
-    content_tag(:span, class: "badge badge-#{key}", title: text == title ? nil : title) { text }
+    tag.span(class: "badge badge-#{key}", title: text == title ? nil : title) { text }
   end
 end

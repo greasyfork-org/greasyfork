@@ -52,7 +52,7 @@ class SessionsController < Devise::SessionsController
           (o[:extra] && o[:extra][:raw_info] && o[:extra][:raw_info][:profile]) # Google
 
     # does the identity already exist?
-    identity = Identity.find_by_provider_and_uid(provider, uid)
+    identity = Identity.find_by(provider: provider, uid: uid)
     unless identity.nil?
       # existing user
       user = identity.user
@@ -94,7 +94,7 @@ class SessionsController < Devise::SessionsController
 
     # does another user already have that e-mail?
     unless email.nil?
-      @same_email_user = User.find_by_email(email)
+      @same_email_user = User.find_by(email: email)
       unless @same_email_user.nil?
         @provider = Identity.pretty_provider(provider)
         @email = email
@@ -111,7 +111,7 @@ class SessionsController < Devise::SessionsController
     end
 
     # does another user already have that name?
-    same_name_user = User.find_by_name(name)
+    same_name_user = User.find_by(name: name)
     unless same_name_user.nil?
       @provider = provider
       @name = name

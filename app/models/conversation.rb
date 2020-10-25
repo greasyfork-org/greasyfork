@@ -1,7 +1,7 @@
 class Conversation < ApplicationRecord
   belongs_to :stat_last_poster, class_name: 'User', optional: true
 
-  has_many :messages
+  has_many :messages, dependent: :destroy
 
   has_and_belongs_to_many :users, autosave: false
 

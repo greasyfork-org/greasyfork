@@ -6,7 +6,7 @@ atom_feed(root_url: current_path_with_params(host: request.host)) do |feed|
   @scripts.each do |script|
     feed.entry(script, updated: script.code_updated_at) do |entry|
       entry.title(script.name)
-      entry.content("<p>#{h(script.description)}</p>".html_safe + format_user_text(script.additional_info, script.additional_info_markup), type: 'html')
+      entry.content(tag.p(script.description) + format_user_text(script.additional_info, script.additional_info_markup), type: 'html')
       if script.license.nil?
         entry.rights(script.license_text, type: 'text') unless script.license_text.nil?
       else

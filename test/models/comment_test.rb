@@ -35,8 +35,8 @@ class CommentTest < ActiveSupport::TestCase
     comment2 = comments(:non_script_comment_2)
     discussion = comment1.discussion
     comment2.soft_destroy!
-    assert !discussion.reload.soft_deleted?
-    assert !comment1.reload.soft_deleted?
+    assert_not discussion.reload.soft_deleted?
+    assert_not comment1.reload.soft_deleted?
     assert comment2.reload.soft_deleted?
   end
 end

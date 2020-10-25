@@ -1,7 +1,7 @@
 require 'open3'
 class Git
   TMP_LOCATION = '/tmp/webhook'.freeze
-  GIT_PATH = Rails.root.join('bin', 'git').to_s
+  GIT_PATH = Rails.root.join('bin/git').to_s
 
   def self.get_contents(repo_url, file_paths_and_commits)
     with_repo(repo_url) do |directory|

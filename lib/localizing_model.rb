@@ -52,7 +52,7 @@ module LocalizingModel
     # if there's no locale lookup, the default will already be included
     unless lookup_locale.nil?
       d = default_localized_attribute_for(attr_name)
-      attrs << d if !d.nil? && !attrs.include?(d)
+      attrs << d if !d.nil? && attrs.exclude?(d)
     end
     return attrs
   end

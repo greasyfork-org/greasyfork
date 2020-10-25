@@ -237,7 +237,7 @@ class ScriptsController < ApplicationController
     @new_version = ScriptVersion.find(versions.max)
     if @old_version.nil? || @new_version.nil? || (@old_version.script_id != @script.id) || (@new_version.script_id != @script.id)
       @text = 'Invalid versions provided.'
-      render 'home/error', status: 400, layout: 'application'
+      render 'home/error', status: :bad_request, layout: 'application'
       return
     end
     @context = 3
@@ -372,7 +372,7 @@ class ScriptsController < ApplicationController
 
     @script.replaced_by_script = replaced_by
 
-    if current_user.moderator? && !@script.users.include?(current_user)
+    if current_user.moderator? && @script.users.exclude?(current_user)
       @script.locked = params[:locked].nil? ? false : params[:locked]
       ma = ModeratorAction.new
       ma.moderator = current_user
@@ -395,7 +395,7 @@ class ScriptsController < ApplicationController
       return
     end
 
-    if current_user.moderator? && !@script.users.include?(current_user)
+    if current_user.moderator? && @script.users.exclude?(current_user)
       ma = ModeratorAction.new
       ma.moderator = current_user
       ma.script = @script
@@ -493,7 +493,7 @@ class ScriptsController < ApplicationController
       @script.not_adult_content_self_report_date = nil
     else
       @text = "Can't do that!"
-      render 'home/error', status: 406, layout: 'application'
+      render 'home/error', status: :not_acceptable, layout: 'application'
       return
     end
 
@@ -578,7 +578,7 @@ class ScriptsController < ApplicationController
     @context = 3
     @context = params[:context].to_i if !params[:context].nil? && params[:context].to_i.between?(0, 10_000)
 
-    return unless params[:compare].present?
+    return if params[:compare].blank?
 
     diff_options = ["-U #{@context}"]
     diff_options << '-w' if !params[:w].nil? && params[:w] == '1'
@@ -637,7 +637,7 @@ class ScriptsController < ApplicationController
 
   def update_locale
     update_params = params.require(:script).permit(:locale_id)
-    if @script.update_attributes(update_params)
+    if @script.update(update_params)
       unless @script.users.include?(current_user)
         ModeratorAction.create!(script: @script, moderator: current_user, action: 'Update locale', reason: "Changed to #{@script.locale.code}#{update_params[:locale_id].blank? ? ' (auto-detected)' : ''}")
       end
@@ -741,7 +741,7 @@ class ScriptsController < ApplicationController
 
   def handle_replaced_script(script)
     if !script.replaced_by_script_id.nil? && script.replaced_by_script && script.script_delete_type_id == 1
-      redirect_to(user_js_script_path(script.replaced_by_script, name: script.replaced_by_script.url_name, locale_override: nil), status: 301)
+      redirect_to(user_js_script_path(script.replaced_by_script, name: script.replaced_by_script.url_name, locale_override: nil), status: :moved_permanently)
       return true
     end
     return false
@@ -786,7 +786,7 @@ class ScriptsController < ApplicationController
   def load_minimal_script_info(script_id, script_version_id)
     # Bypass ActiveRecord for performance
     sql = if script_version_id > 0
-            <<~SQL
+            <<~SQL.squish
               SELECT
                 scripts.language,
                 script_delete_type_id,
@@ -801,7 +801,7 @@ class ScriptsController < ApplicationController
               LIMIT 1
             SQL
           else
-            <<~SQL
+            <<~SQL.squish
               SELECT
                 scripts.language,
                 script_delete_type_id,
@@ -831,7 +831,7 @@ class ScriptsController < ApplicationController
     script_info = load_minimal_script_info(script_id, script_version_id)
 
     if !script_info.replaced_by_script_id.nil? && script_info.script_delete_type_id == ScriptDeleteType::KEEP
-      redirect_to(id: script_info.replaced_by_script_id, status: 301)
+      redirect_to(id: script_info.replaced_by_script_id, status: :moved_permanently)
       return
     end
 

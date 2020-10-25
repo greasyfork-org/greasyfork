@@ -68,10 +68,7 @@ group :development do
   gem 'capistrano-sidekiq', git: 'https://github.com/rwojnarowski/capistrano-sidekiq.git', ref: '8a8a2edf86dfcdebd69dafc4f96adc55745aecde'
   gem 'listen'
   gem 'rubocop'
-end
-
-group :profile do
-  gem 'ruby-prof'
+  gem 'rubocop-rails', require: false
 end
 
 group :test do

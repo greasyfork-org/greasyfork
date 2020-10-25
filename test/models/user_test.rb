@@ -23,7 +23,7 @@ class UserTest < ActiveSupport::TestCase
 
   test 'deleting a banned user' do
     user = User.find(1)
-    user.update!(banned_at: Time.now)
+    user.update!(banned_at: Time.current)
     assert_difference -> { BannedEmailHash.count } => 1 do
       assert_changes -> { User.email_previously_banned_and_deleted?(user.email) }, from: false, to: true do
         user.destroy!
