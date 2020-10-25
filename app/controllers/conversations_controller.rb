@@ -1,8 +1,11 @@
 class ConversationsController < ApplicationController
+  include BrowserCaching
+
   before_action :authenticate_user!
   before_action :find_user
   before_action :ensure_user_current, only: [:new, :create]
   before_action :find_conversation, only: [:show, :subscribe, :unsubscribe]
+  before_action :disable_browser_caching!
 
   def new
     @conversation = Conversation.new(user_input: params[:other_user])

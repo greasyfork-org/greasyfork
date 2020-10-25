@@ -6,12 +6,14 @@ class UsersController < ApplicationController
   MAX_LIST_ENTRIES = 1000
 
   include Webhooks
+  include BrowserCaching
 
   skip_before_action :verify_authenticity_token, only: [:webhook]
 
   before_action :authenticate_user!, except: [:show, :webhook, :index]
   before_action :authorize_for_moderators_only, only: [:ban, :do_ban]
   before_action :check_read_only_mode, except: [:index, :show]
+  before_action :disable_browser_caching!, only: [:edit_sign_in]
 
   def index
     # Limit to 1000 results. Otherwise bots get at it and load way far into the list, which has performance problems.

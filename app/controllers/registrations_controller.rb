@@ -1,10 +1,12 @@
 # per https://github.com/plataformatec/devise/wiki/How-To:-Customize-the-redirect-after-a-user-edits-their-profile
 class RegistrationsController < Devise::RegistrationsController
   include LoginMethods
+  include BrowserCaching
 
   before_action :check_captcha, only: [:create]
   before_action :check_read_only_mode
   before_action :check_ip_and_params_email, only: :create
+  before_action :disable_browser_caching!
 
   # https://github.com/plataformatec/devise/wiki/How-To%3a-Allow-users-to-edit-their-account-without-providing-a-password
   def update
