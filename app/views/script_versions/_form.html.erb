@@ -168,7 +168,7 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
   <% end %>
 
   <div class="form-control">
-    <button id="add-additional-info" name="add-additional-info" value="1" type="submit"><%=t('scripts.additional_info_add_localized')%></button>
+    <button id="add-additional-info" name="add-additional-info" value="1" type="submit" data-form-path="<%= script_version_additional_info_form_path %>"><%=t('scripts.additional_info_add_localized')%></button>
   </div>
 
   <div class="script-screenshot-control">

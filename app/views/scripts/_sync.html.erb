@@ -32,7 +32,7 @@
           <%=render :partial => 'sync_additional_info', :locals => {:la => la, :index => index, :preview => @preview.nil? ? nil : @preview[index]}%>
         <% end %>
         <div>
-          <button id="add-synced-additional-info" name="add-synced-additional-info" value="1" type="submit">Add a localized, synced additional info</button>
+          <button id="add-synced-additional-info" name="add-synced-additional-info" value="1" type="submit" data-form-path="<%= script_sync_additional_info_form_path %>">Add a localized, synced additional info</button>
         </div>
       </div>
     </div>

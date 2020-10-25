@@ -68,7 +68,7 @@
             <% user_with_locale = !current_user.nil? && !current_user.locale.nil?
             locale_with_override_param = user_with_locale ? '1' : nil
             switch_url_without_locale = current_path_with_params(locale: 'XX', locale_override: locale_with_override_param).sub(/\A\/XX/, '') %>
-            <select id="language-selector-locale" name="locale">
+            <select id="language-selector-locale" name="locale" data-translate-url="<%= Rails.configuration.help_translate_url %>">
               <% Rails.configuration.available_locales.each do |code, name|
                 if request.get? %>
                   <option data-language-url="/<%= code %><%= switch_url_without_locale %>" value="<%=code%>"<%if params[:locale] == code%> selected<%end%>>

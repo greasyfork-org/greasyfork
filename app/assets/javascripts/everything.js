@@ -32,7 +32,7 @@
 
 			var xhr = new XMLHttpRequest();
 			xhr.overrideMimeType("text/html");
-			xhr.open("get", "<%=Greasyfork::Application.routes.url_helpers.script_version_additional_info_form_path%>" + "?index=" + index);
+			xhr.open("get", button.getAttribute("data-form-path") + "?index=" + index);
 			xhr.onload = function() {
 				var frag = document.createElement("div");
 				frag.innerHTML = this.responseText;
@@ -60,7 +60,7 @@
 
 			var xhr = new XMLHttpRequest();
 			xhr.overrideMimeType("text/html");
-			xhr.open("get", "<%=Greasyfork::Application.routes.url_helpers.script_sync_additional_info_form_path%>" + "?index=" + index);
+			xhr.open("get", button.getAttribute("data-form-path") + "?index=" + index);
 			xhr.onload = function() {
 				var frag = document.createElement("div");
 				frag.innerHTML = this.responseText;
@@ -77,7 +77,7 @@
 		document.getElementById("language-selector-locale").addEventListener("change", function(event) {
 			var selectedOption = event.target.selectedOptions[0];
 			if (selectedOption.value == "help") {
-				location.href = "<%=Rails.configuration.help_translate_url%>";
+				location.href = event.target.getAttribute("data-translate-url");
 			} else {
 				location.href = selectedOption.getAttribute("data-language-url");
 			}
