@@ -1,5 +1,6 @@
 require:
   - rubocop-rails
+  - rubocop-minitest
 
 AllCops:
   NewCops: enable
@@ -46,6 +47,9 @@ Metrics/ParameterLists:
   Enabled: false
 
 Metrics/PerceivedComplexity:
+  Enabled: false
+
+Minitest/TestMethodName:
   Enabled: false
 
 Naming/MethodParameterName:

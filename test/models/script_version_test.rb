@@ -234,7 +234,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
     sv.calculate_all
     assert sv.valid?, sv.errors.full_messages.join(' ')
     assert(/^0\.0\.1\.[0-9]{14}$/ =~ sv.version)
-    assert sv.version != old_version
+    assert_not_equal sv.version, old_version
   end
 
   test 'update code without version previous had explicit version' do
@@ -693,8 +693,8 @@ class ScriptVersionTest < ActiveSupport::TestCase
     script.apply_from_script_version(sv)
     assert script.description.length > 500
     assert_not script.valid?
-    assert script.errors.to_a.length == 1, script.errors.full_messages
-    assert script.errors.full_messages.first.include?('@description'), script.errors.full_messages
+    assert_equal(1, script.errors.to_a.length, script.errors.full_messages)
+    assert_includes script.errors.full_messages.first, '@description', script.errors.full_messages
     sv.do_lenient_saving
     sv.calculate_all
     script.apply_from_script_version(sv)

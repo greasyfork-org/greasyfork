@@ -92,17 +92,17 @@ class JsParserAppliesToTest < ActiveSupport::TestCase
 
   test '.tld' do
     names = get_applies_to(['http://example.tld'])
-    assert names.include?({ text: 'example.com', domain: true, tld_extra: false }), names.inspect
+    assert_includes names, { text: 'example.com', domain: true, tld_extra: false }, names.inspect
   end
 
   test 'wildcard tld' do
     names = get_applies_to(['http://example.*'])
-    assert names.include?({ text: 'example.com', domain: true, tld_extra: false }), names.inspect
+    assert_includes names, { text: 'example.com', domain: true, tld_extra: false }, names.inspect
   end
 
   test 'wildcard in ip' do
     names = get_applies_to(['http://1.2.3.*'])
-    assert names.include?({ text: 'http://1.2.3.*', domain: false, tld_extra: false }), names.inspect
+    assert_includes names, { text: 'http://1.2.3.*', domain: false, tld_extra: false }, names.inspect
   end
 
   test 'wildcard before protocol' do

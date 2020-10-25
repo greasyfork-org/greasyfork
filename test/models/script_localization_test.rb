@@ -30,10 +30,10 @@ class ScriptLocalizationTest < ActiveSupport::TestCase
     assert_equal 'Unit test', script.description
     available_locale_codes = script.available_locales.map(&:code)
     assert_equal 4, available_locale_codes.length
-    assert available_locale_codes.include?('en')
-    assert available_locale_codes.include?('fr')
-    assert available_locale_codes.include?('es')
-    assert available_locale_codes.include?('zh-TW')
+    assert_includes available_locale_codes, 'en'
+    assert_includes available_locale_codes, 'fr'
+    assert_includes available_locale_codes, 'es'
+    assert_includes available_locale_codes, 'zh-TW'
     assert_equal 'Un test!', script.localized_value_for(:name, 'fr')
     assert_equal 'Info additionelle', script.localized_value_for(:additional_info, 'fr')
     assert_equal 'Unidad de prueba', script.localized_value_for(:description, 3)
@@ -87,7 +87,7 @@ class ScriptLocalizationTest < ActiveSupport::TestCase
     sv.localized_attributes.build({ attribute_key: 'additional_info', attribute_value: 'Additional info in French', attribute_default: false, locale: Locale.where(code: 'fr').first, value_markup: 'html' })
     assert_not sv.valid?
     assert_equal 1, sv.errors.full_messages.length
-    assert sv.errors.full_messages.first.include?('Provide only one')
+    assert_includes sv.errors.full_messages.first, 'Provide only one'
   end
 
   test 'additional info locale without name' do
@@ -110,7 +110,7 @@ class ScriptLocalizationTest < ActiveSupport::TestCase
     sv.calculate_all
     assert_not sv.valid?
     assert_equal 1, sv.errors.full_messages.length
-    assert sv.errors.full_messages.first.include?('was specified for the \'es\' locale'), sv.errors.full_messages.first
+    assert_includes sv.errors.full_messages.first, 'was specified for the \'es\' locale', sv.errors.full_messages.first
   end
 
   test 'additional info locale without name but script locale matches' do
@@ -161,7 +161,7 @@ class ScriptLocalizationTest < ActiveSupport::TestCase
     script.save!
 
     available_locale_codes = script.available_locales.map(&:code)
-    assert_equal available_locale_codes, %w[en fr]
+    assert_equal(%w[en fr], available_locale_codes)
 
     assert_equal 'Una prueba!', script.localized_value_for(:name, 'en')
     assert_equal 'Un test!', script.localized_value_for(:name, 'fr')
@@ -174,7 +174,7 @@ class ScriptLocalizationTest < ActiveSupport::TestCase
     script.save!
 
     available_locale_codes = script.available_locales.map(&:code)
-    assert_equal available_locale_codes, %w[es fr]
+    assert_equal(%w[es fr], available_locale_codes)
 
     assert_equal 'Una prueba!', script.localized_value_for(:name, 'es')
     assert_equal 'Un test!', script.localized_value_for(:name, 'fr')
@@ -217,6 +217,6 @@ class ScriptLocalizationTest < ActiveSupport::TestCase
 
     assert_equal 'es', script.locale.code
     available_locale_codes = script.available_locales.map(&:code)
-    assert_equal available_locale_codes, %w[es fr]
+    assert_equal(%w[es fr], available_locale_codes)
   end
 end

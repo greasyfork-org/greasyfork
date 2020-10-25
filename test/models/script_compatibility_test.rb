@@ -20,7 +20,7 @@ class ScriptCompatibilityTest < ActiveSupport::TestCase
     script.apply_from_script_version(sv)
     assert_equal 1, script.compatibilities.length
     c = script.compatibilities.first
-    assert_equal true, c.compatible
+    assert c.compatible
     assert_equal 'Firefox', c.browser.name
     assert_nil c.comments
     sv.save!
@@ -49,10 +49,10 @@ class ScriptCompatibilityTest < ActiveSupport::TestCase
     assert_equal 2, script.compatibilities.length, script.compatibilities.inspect
     fx = script.compatibilities[0]
     ch = script.compatibilities[1]
-    assert_equal true, fx.compatible
+    assert fx.compatible
     assert_equal 'Firefox', fx.browser.name
     assert_nil fx.comments
-    assert_equal true, ch.compatible
+    assert ch.compatible
     assert_equal 'Chrome', ch.browser.name
     assert_equal 'Except for X', ch.comments
     sv.save!
@@ -79,7 +79,7 @@ class ScriptCompatibilityTest < ActiveSupport::TestCase
     script.apply_from_script_version(sv)
     assert_equal 1, script.compatibilities.length
     c = script.compatibilities.first
-    assert_equal false, c.compatible
+    assert_not c.compatible
   end
 
   test 'with version' do
@@ -101,7 +101,7 @@ class ScriptCompatibilityTest < ActiveSupport::TestCase
     script.apply_from_script_version(sv)
     assert_equal 1, script.compatibilities.length
     c = script.compatibilities.first
-    assert_equal true, c.compatible
+    assert c.compatible
     assert_equal 'Firefox', c.browser.name
     assert_nil c.comments
   end
@@ -126,7 +126,7 @@ class ScriptCompatibilityTest < ActiveSupport::TestCase
     script.apply_from_script_version(sv)
     assert_equal 1, script.compatibilities.length
     c = script.compatibilities.first
-    assert_equal true, c.compatible
+    assert c.compatible
     assert_equal 'Firefox', c.browser.name
     assert_nil c.comments
   end
