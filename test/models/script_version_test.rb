@@ -221,7 +221,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
     sv.add_missing_version = true
     sv.calculate_all
     assert sv.valid?
-    assert(/0\.0\.1\.20/ =~ sv.version)
+    assert(/0\.0\.1\.20/.match?(sv.version))
   end
 
   test 'update code without version previous had generated version' do

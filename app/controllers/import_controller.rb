@@ -12,7 +12,7 @@ class ImportController < ApplicationController
   end
 
   def add
-    importer = ScriptImporter::IMPORTERS.select { |i| i.sync_source_id == params[:sync_source_id].to_i }.first
+    importer = ScriptImporter::IMPORTERS.find { |i| i.sync_source_id == params[:sync_source_id].to_i }
     @results = { new: [], failure: [], needsdescription: [], existing: [] }
     sync_ids = if params[:sync_ids].nil?
                  params[:sync_urls].split(/[\n\r]+/)

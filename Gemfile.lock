@@ -331,6 +331,9 @@ GEM
       parser (>= 2.7.1.5)
     rubocop-minitest (0.10.1)
       rubocop (>= 0.87)
+    rubocop-performance (1.8.1)
+      rubocop (>= 0.87.0)
+      rubocop-ast (>= 0.4.0)
     rubocop-rails (2.8.1)
       activesupport (>= 4.2.0)
       rack (>= 1.1)
@@ -473,6 +476,7 @@ DEPENDENCIES
   redis
   rubocop
   rubocop-minitest
+  rubocop-performance
   rubocop-rails
   sanitize
   sass-rails

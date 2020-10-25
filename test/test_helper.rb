@@ -41,11 +41,11 @@ module ActiveSupport
       return script
     end
 
-    def with_sphinx(&block)
+    def with_sphinx
       ThinkingSphinx::Test.init
       ThinkingSphinx::Test.start index: true
       ThinkingSphinx::Configuration.instance.settings['real_time_callbacks'] = true
-      block.call
+      yield
       ThinkingSphinx::Test.stop
       ThinkingSphinx::Test.clear
     end

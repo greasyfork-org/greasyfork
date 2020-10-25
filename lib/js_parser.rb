@@ -97,6 +97,8 @@ class JsParser
       return code_blocks[0] + meta_lines.join("\n") + code_blocks[1]
     end
 
+    APPLIES_TO_META_KEYS = %w[include match].freeze
+
     # Returns an object with:
     # - :text
     # - :domain - boolean - is text a domain?
@@ -104,7 +106,7 @@ class JsParser
     def calculate_applies_to_names(code)
       meta = parse_meta(code)
       patterns = []
-      meta.each { |k, v| patterns.concat(v) if %w[include match].include?(k) }
+      meta.each { |k, v| patterns.concat(v) if APPLIES_TO_META_KEYS.include?(k) }
 
       return [] if patterns.empty?
       return [] unless (patterns & APPLIES_TO_ALL_PATTERNS).empty?

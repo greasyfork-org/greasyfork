@@ -69,7 +69,7 @@ module UserTextHelper
         if href.nil?
           # missing the href, we don't want a rel here
           follow = true
-        elsif href =~ Sanitize::REGEX_PROTOCOL
+        elsif Sanitize::REGEX_PROTOCOL.match?(href)
           # external link, let's figure out the domain if it's http or https
           match = %r{https?://([^/]+).*}.match(href)
           # check domain against our list, including subdomains

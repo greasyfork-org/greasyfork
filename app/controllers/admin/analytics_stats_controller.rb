@@ -15,7 +15,7 @@ module Admin
         m = %r{.*/scripts/([0-9]+)-.*}.match(row[0])
         next if m.nil?
 
-        urls[m[1]] = (urls[m[1]] || 0) + row[1].gsub(',', '').to_i
+        urls[m[1]] = (urls[m[1]] || 0) + row[1].delete(',').to_i
       end
       urls.each do |script_id, page_views|
         Script.where(id: script_id).update_all(page_views: page_views)

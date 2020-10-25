@@ -2,9 +2,7 @@ require 'application_system_test_case'
 
 class ListTest < ApplicationSystemTestCase
   def around(&block)
-    with_sphinx do
-      block.call
-    end
+    with_sphinx(&block)
   end
 
   test 'script list' do

@@ -28,7 +28,7 @@ class ScriptVersion < ApplicationRecord
 
   # Code has to look code-y.
   validate on: :create do
-    errors.add(:code, :invalid) unless code =~ /[=.:\[(]/
+    errors.add(:code, :invalid) unless /[=.:\[(]/.match?(code)
   end
 
   validates :changelog, length: { maximum: 500, on: :create }
@@ -384,7 +384,7 @@ class ScriptVersion < ApplicationRecord
   def normalize_code
     self.code = '' if code.nil?
     # use \n for linefeeds
-    self.code = code.gsub("\r\n", "\n").gsub("\r", "\n")
+    self.code = code.gsub("\r\n", "\n").tr("\r", "\n")
   end
 
   def disallowed_requires_used
@@ -476,7 +476,7 @@ class ScriptVersion < ApplicationRecord
   end
 
   def additional_info_markup
-    la = localized_attributes_for('additional_info').select(&:attribute_default).first
+    la = localized_attributes_for('additional_info').find(&:attribute_default)
     return 'html' if la.nil?
 
     return la.value_markup

@@ -14,9 +14,8 @@ class UserFloodJob < ApplicationJob
                        .map { |email| email.split('@').last }
                        .group_by { |domain| domain }
                        .map { |domain, instances| [domain, instances.count] }
-                       .sort_by(&:last)
-                       .reverse
-                       .first
+                       .max_by(&:last)
+
     if most_used_domain.last > THRESHOLD && IGNORED_DOMAINS.exclude?(most_used_domain.first)
       ActionMailer::Base.mail(
         from: 'noreply@greasyfork.org',

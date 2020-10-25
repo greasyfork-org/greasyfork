@@ -136,7 +136,7 @@ module Webhooks
     end
 
     base_paths = [
-      "#{params[:repository][:git_http_url].gsub(/\.git\z/, '')}/raw/#{params[:ref].split('/').last}/",
+      "#{params[:repository][:git_http_url].delete_suffix('.git')}/raw/#{params[:ref].split('/').last}/",
     ]
 
     inject_script_info(user, changed_files, base_paths)

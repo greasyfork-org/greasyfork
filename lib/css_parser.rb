@@ -114,7 +114,7 @@ class CssParser
       next_block_start = 0
 
       while s.skip_until(/@-moz-document/)
-        matches << CssDocumentBlock.new([], next_block_start, s.charpos - '@-moz-document'.length - 1)
+        matches << CssDocumentBlock.new([], next_block_start, s.charpos - 15) # '@-moz-document'.length - 1
 
         block_matches = []
         s.skip(/\s*/)

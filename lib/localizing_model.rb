@@ -11,7 +11,7 @@ module LocalizingModel
   end
 
   def default_localized_attribute_for(attr_name)
-    return localized_attributes_for(attr_name, nil).select(&:attribute_default).first
+    return localized_attributes_for(attr_name, nil).find(&:attribute_default)
   end
 
   # Returns a localized value. locale can be a Locale, ID, code, or nil.

@@ -149,7 +149,7 @@ class ApplicationController < ActionController::Base
   end
 
   def clean_json_callback_param
-    return params[:callback] if /\A[a-zA-Z0-9_]{1,64}\z/ =~ params[:callback]
+    return params[:callback] if /\A[a-zA-Z0-9_]{1,64}\z/.match?(params[:callback])
 
     return 'callback'
   end

@@ -164,7 +164,7 @@ module ScriptListings
            else
              {}
            end
-    with.merge!(script_type_id: 3)
+    with[:script_type_id] = 3
 
     begin
       # :ranker => "expr('top(user_weight)')" means that it will be sorted on the top ranking match rather than

@@ -88,6 +88,7 @@ class Script < ApplicationRecord
   end
 
   MAX_LENGTHS = { name: 100, description: 500, additional_info: 50_000 }.freeze
+  LOCALIZED_ATTRIBUTES_FROM_META = [:name, :description].freeze
   validates_each(*MAX_LENGTHS.keys) do |script, attr, _|
     len = MAX_LENGTHS[attr]
     script.localized_attributes_for(attr)
@@ -95,7 +96,7 @@ class Script < ApplicationRecord
           .select { |la| la.attribute_value.length > len }
           .each do |la|
       # use @meta if this came from a meta
-      validation_key = if [:name, :description].include?(attr) && !script.library?
+      validation_key = if LOCALIZED_ATTRIBUTES_FROM_META.include?(attr) && !script.library?
                          la.localized_meta_key
                        else
                          attr
@@ -109,7 +110,7 @@ class Script < ApplicationRecord
     localized_names = script.localized_attributes_for('name')
     localized_descriptions = script.localized_attributes_for('description')
     localized_names.each do |ln|
-      matching_description = localized_descriptions.select { |ld| ld.locale == ln.locale }.first
+      matching_description = localized_descriptions.find { |ld| ld.locale == ln.locale }
       validation_key = script.library? ? :description : LocalizedScriptAttribute.localized_meta_key(:description, ln.locale, false)
       if matching_description.nil?
         script.errors.add(validation_key, I18n.t('errors.messages.blank'))
@@ -257,9 +258,9 @@ class Script < ApplicationRecord
                          meta['supportURL'].find do |url|
                            next false if url.size > 500
                            # mailto is always OK
-                           next true if URI::DEFAULT_PARSER.make_regexp(%w[mailto]) =~ url
+                           next true if URI::DEFAULT_PARSER.make_regexp(%w[mailto])&.match?(url)
                            # http(s) is also OK
-                           next false unless URI::DEFAULT_PARSER.make_regexp(%w[http https]) =~ url
+                           next false unless URI::DEFAULT_PARSER.make_regexp(%w[http https])&.match?(url)
 
                            # avoid self-linking, there's UI on the same page for discussions
                            begin
@@ -294,7 +295,7 @@ class Script < ApplicationRecord
 
   def newest_saved_script_version
     # get the most recently saved record
-    script_versions.reverse.each do |sv|
+    script_versions.reverse_each do |sv|
       return sv unless sv.new_record?
     end
     return nil
