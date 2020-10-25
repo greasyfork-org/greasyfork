@@ -11,6 +11,10 @@ Lint/EmptyWhen:
 Layout/LineLength:
   Enabled: false
 
+# https://github.com/rubocop-hq/rubocop/pull/8692#issuecomment-713772491
+Layout/TrailingWhitespace:
+  AllowInHeredoc: true
+
 Lint/SuppressedException:
   Enabled: false
 
