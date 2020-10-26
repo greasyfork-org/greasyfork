@@ -18,7 +18,6 @@ gem 'rails', '~> 6.0.2'
 gem 'rails-i18n'
 gem 'redcarpet'
 gem 'sanitize'
-gem 'sass-rails' # Just for the compressor
 gem 'sidekiq'
 gem 'strip_attributes'
 gem 'thinking-sphinx'
