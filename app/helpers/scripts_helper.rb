@@ -47,11 +47,11 @@ module ScriptsHelper
     return script.license_text
   end
 
-  def promoted_script
+  def promoted_script(for_script)
     return nil if sleazy?
-    return nil if @script&.sensitive
+    return nil if for_script.sensitive
     return nil if current_user && !current_user.show_ads
-    return @script.promoted_script if @script&.promoted_script
+    return for_script.promoted_script if for_script.promoted_script
     return nil unless Random.rand(Rails.application.config.promoted_script_divisor) == 0
 
     return Script.where(promoted: true).sample

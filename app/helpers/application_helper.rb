@@ -102,11 +102,11 @@ module ApplicationHelper
     highlighted_scripts_ids = cache_with_log("scripts/highlighted/#{script_subset}/#{I18n.locale}/#{restrict_to_ad_method}") do
       highlighted_script_ids_for_locale(locale: I18n.locale, script_subset: script_subset, restrict_to_ad_method: restrict_to_ad_method)
     end
-    @highlighted_scripts = Script.includes(localized_attributes: :locale).find(highlighted_scripts_ids.to_a)
+    Script.includes(localized_attributes: :locale).find(highlighted_scripts_ids.to_a)
   end
 
-  def canonical_url
-    canonical_param_names = (@canonical_params || []).push(:id, :locale)
+  def canonical_url(canonical_param_names)
+    canonical_param_names = (canonical_param_names || []).push(:id, :locale)
     canonical_params = params
                        .to_unsafe_h
                        .map { |k, v| canonical_param_names.include?(k.to_sym) ? [k, v] : [k, nil] }

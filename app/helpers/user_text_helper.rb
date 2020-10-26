@@ -27,8 +27,8 @@ module UserTextHelper
   end
 
   def html_sanitize_config
-    if @_html_sanitize_config.nil?
-      @_html_sanitize_config = markdown_sanitize_config.dup
+    @html_sanitize_config ||= begin
+      hsc = markdown_sanitize_config.dup
       fix_whitespace = lambda do |env|
         node = env[:node]
         return unless node.text?
@@ -42,21 +42,22 @@ module UserTextHelper
         replace_text_with_node(node, "\n", Nokogiri::XML::Node.new('br', node.document))
       end
 
-      @_html_sanitize_config[:transformers] = @_html_sanitize_config[:transformers] + [fix_whitespace]
+      hsc[:transformers] = hsc[:transformers] + [fix_whitespace]
+
+      hsc
     end
-    return @_html_sanitize_config
   end
 
   def markdown_sanitize_config
-    if @_markdown_sanitize_config.nil?
-      @_markdown_sanitize_config = Sanitize::Config::BASIC.dup
-      @_markdown_sanitize_config[:elements] = @_markdown_sanitize_config[:elements].dup
-      @_markdown_sanitize_config[:elements].concat(%w[h1 h2 h3 h4 h5 h6 img hr del ins table tr th td thead tbody tfoot span div tt center ruby rt rp video details summary])
-      @_markdown_sanitize_config[:attributes] = @_markdown_sanitize_config[:attributes].merge('img' => %w[src alt height width], 'video' => %w[src poster height width], 'details' => ['open'], :all => %w[title name style])
-      @_markdown_sanitize_config[:css] = { properties: %w[border background-color color] }
-      @_markdown_sanitize_config[:protocols] = @_markdown_sanitize_config[:protocols].merge('img' => { 'src' => ['https'] }, 'video' => { 'src' => ['https'] })
-      @_markdown_sanitize_config[:remove_contents] = %w[script style]
-      @_markdown_sanitize_config[:add_attributes] = @_markdown_sanitize_config[:add_attributes].merge('video' => { 'controls' => 'controls' })
+    @markdown_sanitize_config ||= begin
+      msc = Sanitize::Config::BASIC.dup
+      msc[:elements] = msc[:elements].dup
+      msc[:elements].concat(%w[h1 h2 h3 h4 h5 h6 img hr del ins table tr th td thead tbody tfoot span div tt center ruby rt rp video details summary])
+      msc[:attributes] = msc[:attributes].merge('img' => %w[src alt height width], 'video' => %w[src poster height width], 'details' => ['open'], :all => %w[title name style])
+      msc[:css] = { properties: %w[border background-color color] }
+      msc[:protocols] = msc[:protocols].merge('img' => { 'src' => ['https'] }, 'video' => { 'src' => ['https'] })
+      msc[:remove_contents] = %w[script style]
+      msc[:add_attributes] = msc[:add_attributes].merge('video' => { 'controls' => 'controls' })
 
       yes_follow = lambda do |env|
         follow_domains = ['mozillazine.org', 'mozilla.org', 'mozilla.com', 'userscripts.org', 'userstyles.org', 'mozdev.org', 'photobucket.com', 'facebook.com', 'chrome.google.com', 'github.com', 'greasyfork.org', 'openuserjs.org']
@@ -121,13 +122,11 @@ module UserTextHelper
         replace_text_with_link(node, url_reference[2], url_reference[2], url_reference[2])
       end
 
-      @_markdown_sanitize_config[:transformers] = [linkify_urls, yes_follow]
-    end
-    return @_markdown_sanitize_config
-  end
+      msc[:transformers] = [linkify_urls, yes_follow]
 
-  @_markdown_sanitize_config = nil
-  @_html_sanitize_config = nil
+      msc
+    end
+  end
 
   def replace_text_with_link(node, original_text, link_text, url)
     # the text itself becomes a link
