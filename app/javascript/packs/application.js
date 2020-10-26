@@ -20,3 +20,15 @@ require("@rails/ujs").start()
 import '../stylesheets/application.css'
 
 import 'lightbox'
+
+require("everything");
+require("install");
+require("versioncheck");
+require("recaptcha");
+require("markup-preview");
+require("submit-anchor");
+require("expandable-text");
+require("sidebar");
+require("announcements");
+require("forum");
+require("ethical-ads");
