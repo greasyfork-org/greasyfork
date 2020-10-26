@@ -17,7 +17,7 @@
   <% @actions.each do |action| %>
     <tr>
       <td><%=markup_date action.created_at%></td>
-      <td><%=link_to action.moderator.name, action.moderator%></td>
+      <td><%= render_user action.moderator, action.moderator_id, skip_badge: true %></td>
       <td>
         <% if !action.script.nil? %>
           <%= t('moderator_logs.item_script_html', script_link: link_to(action.script.name(request_locale), action.script)) %>

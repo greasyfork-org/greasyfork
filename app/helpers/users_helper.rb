@@ -44,11 +44,13 @@ module UsersHelper
     tag.li(class: "list-option#{is_link ? '' : ' list-current'}") { text }
   end
 
-  def render_user(user, user_id, skip_link: false, script: nil, force_author: false)
+  def render_user(user, user_id, skip_link: false, script: nil, force_author: false, skip_badge: false)
     return tag.i { 'No-one' } unless user_id
     return tag.i { "Deleted user #{user_id}" } unless user
 
-    badge = if user.banned?
+    badge = if skip_badge
+              ''
+            elsif user.banned?
               render_badge(:banned)
             elsif force_author || script&.users&.include?(user)
               render_badge(:author)
