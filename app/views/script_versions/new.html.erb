@@ -6,7 +6,7 @@ if @script.nil? || @script.new_record?
     title t('scripts.new_title.js')
   end
 else
-	title t('scripts.update_title', script: @script.name)
+  title t('scripts.update_title', script: @script.name)
 end %>
 
 <%= render :partial => 'script_versions/form', :locals => {:script_version => @script_version} %>

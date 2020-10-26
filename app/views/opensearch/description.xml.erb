@@ -2,23 +2,23 @@
 <% url_prefix = host + '/' + I18n.locale.to_s %>
 <?xml version="1.0" encoding="UTF-8"?>
 <OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
-	<ShortName><%=t('opensearch.short_name', site_name: site_name)%></ShortName>
-	<Description><%=t('opensearch.description', site_name: site_name)%></Description>
-	<Tags>user scripts userscripts greasemonkey</Tags>
-	<Contact>jason.barnabe@gmail.com</Contact>
-	<Url type="application/atom+xml" template="<%=url_prefix%>/scripts.atom?q={searchTerms}&amp;page={startPage?}"/>
-	<Url type="application/json" template="<%=url_prefix%>/scripts.json?q={searchTerms}&amp;page={startPage?}"/>
-	<Url type="application/javascript" template="<%=url_prefix%>/scripts.jsonp?q={searchTerms}&amp;page={startPage?}"/>
-	<Url type="text/html" template="<%=url_prefix%>/scripts?q={searchTerms}&amp;page={startPage?}"/>
-	<LongName><%=t('opensearch.long_name', site_name: site_name)%></LongName>
-	<Image height="512" width="512" type="image/png"><%=host%>/images/blacklogo512.png</Image>
-	<Image height="128" width="128" type="image/png"><%=host%>/images/blacklogo128.png</Image>
-	<Image height="96" width="96" type="image/png"><%=host%>/images/blacklogo96.png</Image>
-	<Image height="32" width="32" type="image/png"><%=host%>/images/blacklogo32.png</Image>
-	<Image height="16" width="16" type="image/png"><%=host%>/images/blacklogo16.png</Image>
-	<Query role="example" searchTerms="test" />
-	<Attribution><%=t('opensearch.attribution')%></Attribution>
-	<SyndicationRight>open</SyndicationRight>
-	<AdultContent><%=sleazy?%></AdultContent>
-	<Language>*</Language>
+  <ShortName><%=t('opensearch.short_name', site_name: site_name)%></ShortName>
+  <Description><%=t('opensearch.description', site_name: site_name)%></Description>
+  <Tags>user scripts userscripts greasemonkey</Tags>
+  <Contact>jason.barnabe@gmail.com</Contact>
+  <Url type="application/atom+xml" template="<%=url_prefix%>/scripts.atom?q={searchTerms}&amp;page={startPage?}"/>
+  <Url type="application/json" template="<%=url_prefix%>/scripts.json?q={searchTerms}&amp;page={startPage?}"/>
+  <Url type="application/javascript" template="<%=url_prefix%>/scripts.jsonp?q={searchTerms}&amp;page={startPage?}"/>
+  <Url type="text/html" template="<%=url_prefix%>/scripts?q={searchTerms}&amp;page={startPage?}"/>
+  <LongName><%=t('opensearch.long_name', site_name: site_name)%></LongName>
+  <Image height="512" width="512" type="image/png"><%=host%>/images/blacklogo512.png</Image>
+  <Image height="128" width="128" type="image/png"><%=host%>/images/blacklogo128.png</Image>
+  <Image height="96" width="96" type="image/png"><%=host%>/images/blacklogo96.png</Image>
+  <Image height="32" width="32" type="image/png"><%=host%>/images/blacklogo32.png</Image>
+  <Image height="16" width="16" type="image/png"><%=host%>/images/blacklogo16.png</Image>
+  <Query role="example" searchTerms="test" />
+  <Attribution><%=t('opensearch.attribution')%></Attribution>
+  <SyndicationRight>open</SyndicationRight>
+  <AdultContent><%=sleazy?%></AdultContent>
+  <Language>*</Language>
 </OpenSearchDescription>

@@ -1,15 +1,15 @@
 <%- title 'Import from URLs' %>
 
 <%=form_tag(import_add_path) do |f|%>
-	<input type="hidden" name="sync_source_id" value="1">
-	<p>
-		<label for="sync-urls">Provide URLs to import from, separated by newlines.</label><br>
-		<textarea id="sync-urls" name="sync_urls" cols="50" rows="10" required></textarea>
-	</p>
-	<p class="radio-group">
-		After the initial sync, the script(s) should be synced:<br>
-		<input name="sync-type" id="sync-type-2" type="radio" checked value="2"><label for="sync-type-2">Automatically (periodically update it from the URL(s) you provided)</label><br>
-		<input name="sync-type" id="sync-type-1" type="radio" value="1"><label for="sync-type-1">Manually (only when you trigger it)</label>
-	</p>
-	<%=submit_tag 'Import'%>
+  <input type="hidden" name="sync_source_id" value="1">
+  <p>
+    <label for="sync-urls">Provide URLs to import from, separated by newlines.</label><br>
+    <textarea id="sync-urls" name="sync_urls" cols="50" rows="10" required></textarea>
+  </p>
+  <p class="radio-group">
+    After the initial sync, the script(s) should be synced:<br>
+    <input name="sync-type" id="sync-type-2" type="radio" checked value="2"><label for="sync-type-2">Automatically (periodically update it from the URL(s) you provided)</label><br>
+    <input name="sync-type" id="sync-type-1" type="radio" value="1"><label for="sync-type-1">Manually (only when you trigger it)</label>
+  </p>
+  <%=submit_tag 'Import'%>
 <% end %>

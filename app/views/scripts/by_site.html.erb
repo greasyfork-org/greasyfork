@@ -4,18 +4,18 @@
 <p><%=t('scripts.by_site_list_description')%></p>
 
 <form>
-	<label for="filter-by-sites"><%=t('scripts.by_site_list_filter')%></label>
-	<input name="q" type="search" value="<%=params[:q]%>">
-	<input class="search-submit" type="submit" value="🔎">
+  <label for="filter-by-sites"><%=t('scripts.by_site_list_filter')%></label>
+  <input name="q" type="search" value="<%=params[:q]%>">
+  <input class="search-submit" type="submit" value="🔎">
 </form>
 
 <ol id="by-site-list">
-	<% max_install_count = @by_sites.values.map{|v| v[:installs]}.max
-	max_font_size = 5
-	min_font_size = 0.6
-	@by_sites.each do |dt, values|
-		install_count = values[:installs]
-		font_size = ((max_font_size - min_font_size).to_f * install_count / max_install_count + min_font_size).round(2) %>
-		<li style="font-size: <%=font_size%>em"><%=link_to dt.nil? ? t('scripts.listing_filter_by_site_all_sites') : dt, by_site_scripts_path(:site => dt.nil? ? '*' : dt)%></li>
-	<% end %>
+  <% max_install_count = @by_sites.values.map{|v| v[:installs]}.max
+  max_font_size = 5
+  min_font_size = 0.6
+  @by_sites.each do |dt, values|
+    install_count = values[:installs]
+    font_size = ((max_font_size - min_font_size).to_f * install_count / max_install_count + min_font_size).round(2) %>
+    <li style="font-size: <%=font_size%>em"><%=link_to dt.nil? ? t('scripts.listing_filter_by_site_all_sites') : dt, by_site_scripts_path(:site => dt.nil? ? '*' : dt)%></li>
+  <% end %>
 </ol>

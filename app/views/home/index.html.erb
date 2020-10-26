@@ -4,17 +4,17 @@
 <h2><%=t(sleazy? ? 'home.sleazy_welcome' : 'home.welcome', site_name: site_name)%></h2>
 
 <div id="home-script-nav">
-	<%= form_tag(scripts_path, class: 'home-search', method: :get) do %>
-		<input type="search" name="q" placeholder="<%=t('home.search_placeholder')%>">
-		<input type="submit" value="🔎" class="search-submit" >
-	<% end %>
-	<div id="home-top-sites">
-		<%=t('home.scripts_for_label')%>
-		<% TopSitesService.get_top_by_sites(script_subset: script_subset, locale_id: request_locale.id).map(&:first).compact.first(5).each do |site| %>
-			<%= link_to(site, by_site_scripts_path(site: site)) %>
-		<% end %>
-		<%= link_to t('scripts.listing_filter_by_site_more_sites'), site_list_scripts_path %>
-	</div>
+  <%= form_tag(scripts_path, class: 'home-search', method: :get) do %>
+    <input type="search" name="q" placeholder="<%=t('home.search_placeholder')%>">
+    <input type="submit" value="🔎" class="search-submit" >
+  <% end %>
+  <div id="home-top-sites">
+    <%=t('home.scripts_for_label')%>
+    <% TopSitesService.get_top_by_sites(script_subset: script_subset, locale_id: request_locale.id).map(&:first).compact.first(5).each do |site| %>
+      <%= link_to(site, by_site_scripts_path(site: site)) %>
+    <% end %>
+    <%= link_to t('scripts.listing_filter_by_site_more_sites'), site_list_scripts_path %>
+  </div>
 </div>
 
 <%= render partial: 'help/installing' %>

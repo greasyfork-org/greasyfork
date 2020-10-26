@@ -2,39 +2,39 @@
 <%-description 'List of actions taken by moderators' %>
 
 <table class="text-content log-table">
-	<thead>
-		<tr>
-			<th><%= t('moderator_logs.date_column') %></th>
-			<th><%= t('moderator_logs.moderator_column') %></th>
-			<th><%= t('moderator_logs.item_column') %></th>
-			<th><%= t('moderator_logs.action_column') %></th>
-			<th><%= t('moderator_logs.reason_column') %></th>
+  <thead>
+    <tr>
+      <th><%= t('moderator_logs.date_column') %></th>
+      <th><%= t('moderator_logs.moderator_column') %></th>
+      <th><%= t('moderator_logs.item_column') %></th>
+      <th><%= t('moderator_logs.action_column') %></th>
+      <th><%= t('moderator_logs.reason_column') %></th>
       <% if current_user&.moderator? %>
         <th></th>
       <% end %>
     </tr>
-	</thead>
-	<% @actions.each do |action| %>
-		<tr>
-			<td><%=markup_date action.created_at%></td>
-			<td><%=link_to action.moderator.name, action.moderator%></td>
-			<td>
-				<% if !action.script.nil? %>
-					<%= t('moderator_logs.item_script_html', script_link: link_to(action.script.name(request_locale), action.script)) %>
-				<% elsif !action.script_id.nil? %>
-					<%= t('moderator_logs.item_deleted_script', id: action.script_id) %>
-				<% end %>
-				<% if !action.user.nil?%>
-					<%= t('moderator_logs.item_user_html', user_link: link_to(action.user.name, action.user)) %>
-				<% end %>
-			</td>
-			<td><%=action.action%></td>
-			<td><div class="possibly-long-text"><%=action.reason%></div></td>
+  </thead>
+  <% @actions.each do |action| %>
+    <tr>
+      <td><%=markup_date action.created_at%></td>
+      <td><%=link_to action.moderator.name, action.moderator%></td>
+      <td>
+        <% if !action.script.nil? %>
+          <%= t('moderator_logs.item_script_html', script_link: link_to(action.script.name(request_locale), action.script)) %>
+        <% elsif !action.script_id.nil? %>
+          <%= t('moderator_logs.item_deleted_script', id: action.script_id) %>
+        <% end %>
+        <% if !action.user.nil?%>
+          <%= t('moderator_logs.item_user_html', user_link: link_to(action.user.name, action.user)) %>
+        <% end %>
+      </td>
+      <td><%=action.action%></td>
+      <td><div class="possibly-long-text"><%=action.reason%></div></td>
       <% if current_user&.moderator? %>
         <td><div class="possibly-long-text"><%=action.private_reason%></div></td>
       <% end %>
-		</tr>
-	<% end %>
+    </tr>
+  <% end %>
 </table>
 
 <%= will_paginate @actions %>

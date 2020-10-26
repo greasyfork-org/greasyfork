@@ -12,8 +12,8 @@
 
   <p><b><%=t('scripts.delete_permanently_already_requested', datetime: l(script.permanent_deletion_request_date))%></b></p>
 
-	<%= form_tag(action: 'unrequest_permanent_deletion') do %>
-		<input type="submit" value="<%=t('scripts.cancel_delete_permanently_submit')%>">
-	<% end %>
+  <%= form_tag(action: 'unrequest_permanent_deletion') do %>
+    <input type="submit" value="<%=t('scripts.cancel_delete_permanently_submit')%>">
+  <% end %>
 
 <% end %>
