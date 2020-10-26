@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_26_220007) do
+ActiveRecord::Schema.define(version: 2020_10_26_004235) do
 
   create_table "GDN_AccessToken", primary_key: "AccessTokenID", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "Token", limit: 100, null: false
@@ -708,6 +708,36 @@ ActiveRecord::Schema.define(version: 2019_12_26_220007) do
     t.index ["recordType"], name: "IX_reactionOwner_recordType"
   end
 
+  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "akismet_submissions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "item_type", null: false
+    t.bigint "item_id", null: false
+    t.text "akismet_params", size: :medium, null: false
+    t.boolean "result_spam", null: false
+    t.boolean "result_blatant", null: false
+    t.index ["item_type", "item_id"], name: "index_akismet_submissions_on_item_type_and_item_id"
+  end
+
   create_table "allowed_requires", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "pattern", null: false
     t.string "name", null: false
@@ -728,9 +758,53 @@ ActiveRecord::Schema.define(version: 2019_12_26_220007) do
     t.index ["user_id"], name: "fk_rails_46e884287b"
   end
 
+  create_table "banned_email_hashes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "email_hash", null: false
+    t.datetime "deleted_at", null: false
+    t.datetime "banned_at"
+    t.index ["email_hash"], name: "index_banned_email_hashes_on_email_hash", unique: true
+  end
+
+  create_table "blocked_script_codes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+    t.string "pattern", null: false
+    t.string "public_reason", null: false
+    t.string "private_reason", null: false
+    t.boolean "serious", default: false, null: false
+    t.integer "originating_script_id"
+    t.index ["originating_script_id"], name: "fk_rails_6f37f4eb64"
+  end
+
+  create_table "blocked_script_texts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+    t.string "text", null: false
+    t.string "public_reason", null: false
+    t.string "private_reason", null: false
+    t.string "result", limit: 10, null: false
+  end
+
+  create_table "blocked_script_urls", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+    t.string "url", null: false
+    t.string "public_reason", null: false
+    t.string "private_reason", null: false
+  end
+
   create_table "browsers", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "code", limit: 20, null: false
     t.string "name", limit: 20, null: false
+  end
+
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "discussion_id", null: false
+    t.integer "poster_id", null: false
+    t.text "text", null: false
+    t.string "text_markup", limit: 10, default: "html", null: false
+    t.datetime "edited_at"
+    t.boolean "first_comment", default: false, null: false
+    t.datetime "deleted_at"
+    t.integer "deleted_by_user_id"
+    t.index ["discussion_id"], name: "index_comments_on_discussion_id"
+    t.index ["poster_id"], name: "index_comments_on_poster_id"
   end
 
   create_table "compatibilities", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
@@ -740,6 +814,28 @@ ActiveRecord::Schema.define(version: 2019_12_26_220007) do
     t.string "comments", limit: 200
     t.index ["browser_id"], name: "fk_rails_d7eb310317"
     t.index ["script_id"], name: "index_compatibilities_on_script_id"
+  end
+
+  create_table "conversation_subscriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "conversation_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["conversation_id", "user_id"], name: "index_conversation_subscriptions_on_conversation_id_and_user_id", unique: true
+    t.index ["user_id"], name: "index_conversation_subscriptions_on_user_id"
+  end
+
+  create_table "conversations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "stat_last_message_date"
+    t.integer "stat_last_poster_id"
+  end
+
+  create_table "conversations_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "conversation_id", null: false
+    t.integer "user_id", null: false
+    t.index ["conversation_id"], name: "fk_rails_fa156dfe4c"
   end
 
   create_table "daily_install_counts", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
@@ -785,6 +881,49 @@ ActiveRecord::Schema.define(version: 2019_12_26_220007) do
     t.datetime "updated_at"
     t.integer "originating_script_id"
     t.boolean "slow_ban", default: false, null: false
+  end
+
+  create_table "discussion_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "category_key", limit: 20, null: false
+  end
+
+  create_table "discussion_reads", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.bigint "discussion_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "read_at", null: false
+    t.index ["discussion_id"], name: "index_discussion_reads_on_discussion_id"
+    t.index ["user_id", "discussion_id"], name: "index_discussion_reads_on_user_id_and_discussion_id", unique: true
+  end
+
+  create_table "discussion_subscriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+    t.bigint "discussion_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["discussion_id", "user_id"], name: "index_discussion_subscriptions_on_discussion_id_and_user_id", unique: true
+    t.index ["user_id"], name: "index_discussion_subscriptions_on_user_id"
+  end
+
+  create_table "discussions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "poster_id", null: false
+    t.integer "script_id"
+    t.integer "rating"
+    t.integer "stat_reply_count", default: 0, null: false
+    t.datetime "stat_last_reply_date"
+    t.integer "stat_last_replier_id"
+    t.integer "migrated_from"
+    t.integer "discussion_category_id", null: false
+    t.string "title"
+    t.datetime "deleted_at"
+    t.integer "deleted_by_user_id"
+    t.boolean "akismet_spam"
+    t.boolean "akismet_blatant"
+    t.string "review_reason", limit: 10
+    t.index ["poster_id"], name: "index_discussions_on_poster_id"
+    t.index ["script_id"], name: "fk_rails_a52537835c"
+    t.index ["stat_last_reply_date"], name: "index_discussions_on_stat_last_reply_date"
   end
 
   create_table "identities", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
@@ -850,6 +989,17 @@ ActiveRecord::Schema.define(version: 2019_12_26_220007) do
     t.index ["script_version_id"], name: "index_localized_script_version_attributes_on_script_version_id"
   end
 
+  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "conversation_id", null: false
+    t.integer "poster_id", null: false
+    t.string "content", limit: 10000, null: false
+    t.string "content_markup", limit: 10, default: "html", null: false
+    t.index ["conversation_id"], name: "fk_rails_7f927086d2"
+    t.index ["poster_id"], name: "index_messages_on_poster_id"
+  end
+
   create_table "moderator_actions", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.integer "script_id"
@@ -857,6 +1007,24 @@ ActiveRecord::Schema.define(version: 2019_12_26_220007) do
     t.string "action", null: false
     t.string "reason", null: false
     t.integer "user_id"
+    t.string "private_reason", limit: 500
+  end
+
+  create_table "redirect_service_domains", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+    t.string "domain", limit: 50, null: false
+  end
+
+  create_table "reports", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+    t.string "item_type", null: false
+    t.bigint "item_id", null: false
+    t.string "reason", limit: 20, null: false
+    t.text "explanation"
+    t.integer "reporter_id"
+    t.string "result", limit: 20
+    t.string "auto_reporter", limit: 10
+    t.index ["item_type", "item_id"], name: "index_reports_on_item_type_and_item_id"
+    t.index ["reporter_id"], name: "index_reports_on_reporter_id"
+    t.index ["result"], name: "index_reports_on_result"
   end
 
   create_table "roles", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
@@ -902,6 +1070,8 @@ ActiveRecord::Schema.define(version: 2019_12_26_220007) do
 
   create_table "script_codes", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPRESSED", force: :cascade do |t|
     t.text "code", size: :long, null: false
+    t.string "code_hash", limit: 40, null: false
+    t.index ["code_hash"], name: "index_script_codes_on_code_hash"
   end
 
   create_table "script_delete_types", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
@@ -927,6 +1097,8 @@ ActiveRecord::Schema.define(version: 2019_12_26_220007) do
     t.string "report_type", limit: 20, null: false
     t.integer "reporter_id"
     t.string "result", limit: 10
+    t.text "moderator_note"
+    t.string "auto_reporter", limit: 10
     t.index ["reference_script_id"], name: "index_script_reports_on_reference_script_id"
     t.index ["reporter_id"], name: "fk_rails_8cb0f3e455"
     t.index ["script_id"], name: "index_script_reports_on_script_id"
@@ -972,6 +1144,15 @@ ActiveRecord::Schema.define(version: 2019_12_26_220007) do
     t.index ["user_id"], name: "index_script_sets_on_user_id"
   end
 
+  create_table "script_similarities", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
+    t.integer "script_id", null: false
+    t.integer "other_script_id", null: false
+    t.decimal "similarity", precision: 4, scale: 3, null: false
+    t.datetime "checked_at", null: false
+    t.index ["other_script_id"], name: "fk_rails_3fba862a5b"
+    t.index ["script_id", "other_script_id"], name: "index_script_similarities_on_script_id_and_other_script_id", unique: true
+  end
+
   create_table "script_sync_sources", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "description", null: false
@@ -997,13 +1178,15 @@ ActiveRecord::Schema.define(version: 2019_12_26_220007) do
     t.datetime "updated_at"
     t.integer "script_code_id", null: false
     t.integer "rewritten_script_code_id", null: false
+    t.boolean "not_js_convertible_override", default: false, null: false
+    t.index ["rewritten_script_code_id"], name: "index_script_versions_on_rewritten_script_code_id"
+    t.index ["script_code_id"], name: "index_script_versions_on_script_code_id"
     t.index ["script_id"], name: "index_script_versions_on_script_id"
   end
 
   create_table "scripts", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer "userscripts_id"
     t.integer "daily_installs", default: 0, null: false
     t.integer "total_installs", default: 0, null: false
     t.datetime "code_updated_at", null: false
@@ -1032,7 +1215,6 @@ ActiveRecord::Schema.define(version: 2019_12_26_220007) do
     t.integer "bad_ratings", default: 0
     t.integer "replaced_by_script_id"
     t.string "version", limit: 200, null: false
-    t.boolean "approve_redistribution"
     t.boolean "sensitive", default: false, null: false
     t.datetime "not_adult_content_self_report_date"
     t.datetime "permanent_deletion_request_date"
@@ -1043,9 +1225,14 @@ ActiveRecord::Schema.define(version: 2019_12_26_220007) do
     t.boolean "has_syntax_error", default: false, null: false
     t.string "language", limit: 3, default: "js", null: false
     t.boolean "css_convertible_to_js", default: false, null: false
+    t.boolean "not_js_convertible_override", default: false, null: false
+    t.string "review_state", default: "not_required", null: false
+    t.datetime "deleted_at"
+    t.datetime "consecutive_bad_ratings_at"
     t.index ["delta"], name: "index_scripts_on_delta"
     t.index ["promoted"], name: "index_scripts_on_promoted"
     t.index ["promoted_script_id"], name: "fk_rails_f98f8b875c"
+    t.index ["review_state"], name: "index_scripts_on_review_state"
     t.index ["script_delete_type_id"], name: "index_scripts_on_script_delete_type_id"
     t.index ["script_type_id"], name: "index_scripts_on_script_type_id"
   end
@@ -1064,7 +1251,7 @@ ActiveRecord::Schema.define(version: 2019_12_26_220007) do
 
   create_table "spammy_email_domains", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "domain", limit: 20, null: false
-    t.boolean "complete_block", default: false, null: false
+    t.string "block_type", limit: 20, null: false
     t.index ["domain"], name: "index_spammy_email_domains_on_domain"
   end
 
@@ -1112,7 +1299,6 @@ ActiveRecord::Schema.define(version: 2019_12_26_220007) do
     t.boolean "show_ads", default: true, null: false
     t.string "preferred_markup", limit: 10, default: "html", null: false
     t.string "flattr_username", limit: 50
-    t.boolean "approve_redistribution"
     t.boolean "show_sensitive", default: false
     t.string "delete_confirmation_key"
     t.datetime "delete_confirmation_expiry"
@@ -1123,18 +1309,43 @@ ActiveRecord::Schema.define(version: 2019_12_26_220007) do
     t.boolean "disposable_email"
     t.boolean "trusted_reports", default: false, null: false
     t.string "announcements_seen"
-    t.string "canonical_email"
+    t.string "canonical_email", null: false
+    t.datetime "discussions_read_since"
+    t.boolean "subscribe_on_discussion", default: true, null: false
+    t.boolean "subscribe_on_comment", default: true, null: false
+    t.boolean "subscribe_on_conversation_starter", default: true, null: false
+    t.boolean "subscribe_on_conversation_receiver", default: true, null: false
+    t.datetime "banned_at"
+    t.string "email_domain", limit: 100
+    t.string "session_token", limit: 32
+    t.boolean "filter_locale_default", default: true, null: false
+    t.index ["canonical_email"], name: "index_users_on_canonical_email"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["email_domain", "current_sign_in_ip", "banned_at"], name: "index_users_on_email_domain_and_current_sign_in_ip_and_banned_at"
+    t.index ["name"], name: "index_users_on_name", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "authors", "scripts", on_delete: :cascade
   add_foreign_key "authors", "users", on_delete: :cascade
+  add_foreign_key "blocked_script_codes", "scripts", column: "originating_script_id", on_delete: :cascade
+  add_foreign_key "comments", "discussions", on_delete: :cascade
   add_foreign_key "compatibilities", "browsers", on_delete: :cascade
   add_foreign_key "compatibilities", "scripts", on_delete: :cascade
+  add_foreign_key "conversation_subscriptions", "conversations", on_delete: :cascade
+  add_foreign_key "conversation_subscriptions", "users", on_delete: :cascade
+  add_foreign_key "conversations_users", "conversations", on_delete: :cascade
+  add_foreign_key "discussion_reads", "discussions", on_delete: :cascade
+  add_foreign_key "discussion_reads", "users", on_delete: :cascade
+  add_foreign_key "discussion_subscriptions", "discussions", on_delete: :cascade
+  add_foreign_key "discussion_subscriptions", "users", on_delete: :cascade
+  add_foreign_key "discussions", "scripts", on_delete: :cascade
   add_foreign_key "identities", "users", on_delete: :cascade
   add_foreign_key "localized_script_version_attributes", "script_versions", on_delete: :cascade
+  add_foreign_key "messages", "conversations", on_delete: :cascade
+  add_foreign_key "reports", "users", column: "reporter_id", on_delete: :cascade
   add_foreign_key "roles_users", "users", on_delete: :cascade
   add_foreign_key "screenshots_script_versions", "script_versions", on_delete: :cascade
   add_foreign_key "script_applies_tos", "scripts", name: "fk_script_applies_tos_script_id"
@@ -1144,6 +1355,8 @@ ActiveRecord::Schema.define(version: 2019_12_26_220007) do
   add_foreign_key "script_reports", "scripts", on_delete: :cascade
   add_foreign_key "script_reports", "users", column: "reporter_id", on_delete: :nullify
   add_foreign_key "script_sets", "users", on_delete: :cascade
+  add_foreign_key "script_similarities", "scripts", column: "other_script_id", on_delete: :cascade
+  add_foreign_key "script_similarities", "scripts", on_delete: :cascade
   add_foreign_key "script_versions", "scripts", name: "fk_script_versions_script_id"
   add_foreign_key "scripts", "scripts", column: "promoted_script_id", on_delete: :nullify
 end
