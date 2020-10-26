@@ -53,18 +53,6 @@ module ApplicationHelper
     return url_for(current_url_with_params(other_params.merge(only_path: true)))
   end
 
-  def asset_exists?(path)
-    if Rails.configuration.assets.compile
-      Rails.application.precompiled_assets.include? path
-    else
-      Rails.application.assets_manifest.assets[path].present?
-    end
-  end
-
-  def asset_path_if_exists(path)
-    return asset_path(path) if asset_exists?(path)
-  end
-
   TOP_SCRIPTS_PERCENTAGE = 0.2
   TOP_SCRIPTS_COUNT = 5
 
@@ -116,5 +104,9 @@ module ApplicationHelper
     rescue StandardError
       request.url
     end
+  end
+
+  def image_pack_path(path)
+    asset_pack_path "media/images/#{path}"
   end
 end

@@ -11,7 +11,7 @@
     <meta name="robots" content="<%=@bots%>">
   <% end %>
   <link rel="canonical" href="<%= canonical_url(@canonical_params) %>">
-  <link rel="icon" href="<%=asset_path 'blacklogo16.png'%>">
+  <link rel="icon" href="<%= image_pack_path 'blacklogo16.png' %>">
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   <% if request.get?
     # https://support.google.com/webmasters/answer/189077
@@ -41,7 +41,7 @@
   <header id="main-header">
     <div class="width-constraint">
       <div id="site-name">
-        <%=link_to_unless_current "<img src=\"#{asset_path 'blacklogo96.png'}\" alt=\"\">".html_safe, root_path%>
+        <%=link_to_unless_current "<img src=\"#{  image_pack_path 'blacklogo96.png'}\" alt=\"\">".html_safe, root_path%>
         <div id="site-name-text">
           <h1><%=link_to_unless_current site_name, root_path%></h1>
         </div>

@@ -18,6 +18,7 @@
 require("@rails/ujs").start()
 
 import '../stylesheets/application.css'
+require.context('../images', true)
 
 import 'lightbox'
 

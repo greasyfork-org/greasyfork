@@ -71,9 +71,9 @@
           end
           # show icons for compatible and incompatible
           if status == 'incompatible' %>
-            <img src="<%=asset_path "browsericons/#{b.code}-incompatible.png"%>" alt="<%=t('scripts.incompatible_with_browser', browser: b.name)%>" title="<%=b_compatibilities.map{|c|c.comments}.join("\n")%>">
+            <img src="<%= image_pack_path "browsericons/#{b.code}-incompatible.png"%>" alt="<%=t('scripts.incompatible_with_browser', browser: b.name)%>" title="<%=b_compatibilities.map{|c|c.comments}.join("\n")%>">
           <% elsif status == 'compatible' %>
-            <img src="<%=asset_path "browsericons/#{b.code}.png"%>" alt="<%=t('scripts.compatible_with_browser', browser: b.name)%>" title="<%=b_compatibilities.map{|c|c.comments}.join("\n")%>">
+            <img src="<%= image_pack_path "browsericons/#{b.code}.png"%>" alt="<%=t('scripts.compatible_with_browser', browser: b.name)%>" title="<%=b_compatibilities.map{|c|c.comments}.join("\n")%>">
           <% end %>
         <% end %>
       </span></dd>
