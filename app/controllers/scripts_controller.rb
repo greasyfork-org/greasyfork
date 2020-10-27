@@ -473,9 +473,7 @@ class ScriptsController < ApplicationController
     redirect_to script
   end
 
-  def mark; end
-
-  def do_mark
+  def mark
     ma = ModeratorAction.new
     ma.moderator = current_user
     ma.script = @script
@@ -484,6 +482,7 @@ class ScriptsController < ApplicationController
     case params[:mark]
     when 'adult'
       @script.sensitive = true
+      @script.marked_adult_by_user = current_user
       ma.action = 'Mark as adult content'
     when 'not_adult'
       @script.sensitive = false

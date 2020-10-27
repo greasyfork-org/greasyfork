@@ -70,8 +70,7 @@ Rails.application.routes.draw do
 
         post 'install-ping', locale: nil
 
-        get 'mark'
-        post 'mark', to: 'scripts#do_mark', as: 'do_mark'
+        post 'mark'
 
         get 'delete'
         post 'delete', to: 'scripts#do_delete', as: 'do_delete'

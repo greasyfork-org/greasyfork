@@ -20,3 +20,7 @@
 <%= render partial: 'set_locale' %>
 <%= render partial: 'moderator_log' %>
 <%= render partial: 'compare' %>
+
+<% if current_user.moderator? %>
+  <%= render partial: 'mark_adult' %>
+<% end %>

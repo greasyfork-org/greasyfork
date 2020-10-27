@@ -35,6 +35,7 @@ class Script < ApplicationRecord
   belongs_to :license, optional: true
   belongs_to :locale
   belongs_to :replaced_by_script, class_name: 'Script', optional: true
+  belongs_to :marked_adult_by_user, class_name: 'User', optional: true
 
   attr_accessor :adult_content_self_report, :not_adult_content_self_report
 
@@ -174,16 +175,27 @@ class Script < ApplicationRecord
 
   before_validation :set_sensitive_flag
   def set_sensitive_flag
-    self.sensitive ||= (adult_content_self_report || for_sensitive_site?)
-    true
+    if sensitive
+      self.sensitive = false if not_adult_content_self_report_date && marked_adult_by_user && !marked_adult_by_user&.moderator?
+    elsif for_sensitive_site?(unsaved: true) || adult_content_self_report
+      self.sensitive = true
+    end
   end
 
-  def matching_sensitive_sites
-    SensitiveSite.where(domain: site_applications.where(domain: true).pluck(:text))
+  before_save do
+    unless sensitive
+      self.not_adult_content_self_report_date = nil
+      self.marked_adult_by_user = nil
+    end
   end
 
-  def for_sensitive_site?
-    return matching_sensitive_sites.any?
+  def matching_sensitive_sites(unsaved: false)
+    sa = unsaved ? script_applies_tos.map(&:site_application).select(&:domain).map(&:text) : site_applications.where(domain: true).pluck(:text)
+    SensitiveSite.where(domain: sa)
+  end
+
+  def for_sensitive_site?(unsaved: false)
+    return matching_sensitive_sites(unsaved: unsaved).any?
   end
 
   before_destroy do |script|

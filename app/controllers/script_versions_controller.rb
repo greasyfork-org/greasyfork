@@ -97,8 +97,13 @@ class ScriptVersionsController < ApplicationController
     @script_version.script = @script
     @script.script_type_id = params['script']['script_type_id']
     @script.locale_id = params['script']['locale_id'] if params['script'].key?('locale_id')
-    @script.adult_content_self_report = params['script']['adult_content_self_report'] == '1'
-    @script.not_adult_content_self_report_date = (Time.current if params['script']['not_adult_content_self_report'] == '1')
+
+    if !@script.sensitive? && params['script']['adult_content_self_report'] == '1'
+      @script.marked_adult_by_user = current_user
+      @script.adult_content_self_report = true
+    end
+
+    @script.not_adult_content_self_report_date = Time.current if @script.sensitive? && params['script']['not_adult_content_self_report'] == '1'
 
     save_record = !preview && params['add-additional-info'].nil?
 

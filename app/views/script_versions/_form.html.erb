@@ -82,7 +82,7 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
                 <label for="script_version_minified_confirmation"><%=t('scripts.override_warning_checkbox_label')%></label> <%=s.check_box(:minified_confirmation, {}, true, false)%>
               <% when :automatic_sensitive %>
                 <%=t('scripts.warning_automatic_sensitive_html', {sensitive_domains: script_version.sensitive_domains.to_sentence})%><br>
-                <label for="script_version_minified_confirmation"><%=t('scripts.override_warning_checkbox_label')%></label> <%=s.check_box(:sensitive_site_confirmation, {}, true, false)%>
+                <label for="script_version_sensitive_site_confirmation"><%=t('scripts.override_warning_checkbox_label')%></label> <%=s.check_box(:sensitive_site_confirmation, {}, true, false)%>
               <% when :code_previously_posted %>
                 <%= t('scripts.warning_code_previously_posted_html', { script_links: script_version.previously_posted_scripts.map { |s| link_to(s.name(I18n.locale), script_path(s)) }.to_sentence.html_safe}) %><br>
                 <label for="script_version_allow_code_previously_posted"><%=t('scripts.override_warning_checkbox_label')%></label> <%=s.check_box(:allow_code_previously_posted, {}, true, false)%>
@@ -137,7 +137,7 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
       <% else %>
         <%=t('scripts.not_adult_content_self_report_explanation', site_name: site_name)%><br>
         <%= check_box('script', :not_adult_content_self_report, checked: @script.not_adult_content_self_report_date.present?) %>
-        <label for="script_not_adult_content_self_report_date" class="radio-label"><%=t('scripts.not_adult_content_self_report_html')%></label>
+        <label for="script_not_adult_content_self_report" class="radio-label"><%=t('scripts.not_adult_content_self_report_html')%></label>
       <% end %>
     </div>
   <% end %>

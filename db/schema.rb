@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_26_004235) do
+ActiveRecord::Schema.define(version: 2020_10_27_010717) do
 
   create_table "GDN_AccessToken", primary_key: "AccessTokenID", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "Token", limit: 100, null: false
@@ -1229,6 +1229,7 @@ ActiveRecord::Schema.define(version: 2020_10_26_004235) do
     t.string "review_state", default: "not_required", null: false
     t.datetime "deleted_at"
     t.datetime "consecutive_bad_ratings_at"
+    t.integer "marked_adult_by_user_id"
     t.index ["delta"], name: "index_scripts_on_delta"
     t.index ["promoted"], name: "index_scripts_on_promoted"
     t.index ["promoted_script_id"], name: "fk_rails_f98f8b875c"

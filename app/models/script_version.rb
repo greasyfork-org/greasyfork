@@ -184,7 +184,7 @@ class ScriptVersion < ApplicationRecord
 
   def automatic_sensitive?
     return false if sensitive_site_confirmation
-    return false if script.sensitive
+    return false if script.sensitive_was
     return false if script.adult_content_self_report
 
     return sensitive_domains.any?

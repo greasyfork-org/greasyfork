@@ -1,8 +1,8 @@
 <h3>Adult Content</h3>
 
 <% if @script.sensitive
-  sensitive_sites = @script.matching_sensitive_sites.to_a
-  if sensitive_sites.any? %>
+     sensitive_sites = @script.matching_sensitive_sites.to_a
+     if sensitive_sites.any? %>
     <p>
       This script is marked as adult content because it's for <%=sensitive_sites.map(&:domain).to_sentence%>.
       <% if @script.not_adult_content_self_report_date.present? %>
@@ -14,7 +14,7 @@
     </p>
   <% else %>
     <p>
-      This script was marked as adult content by the author or a mod.
+      This script was marked as adult content by <%= @script.marked_adult_by_user ? render_user(@script.marked_adult_by_user, @script.marked_adult_by_user_id) : 'the author or a mod' %>.
       <% if @script.not_adult_content_self_report_date.nil? %>
         <%=form_tag(action: :mark, mark: 'not_adult') do %>
           <textarea name="reason" cols="100" rows="5" maxlength="500" required placeholder="Reason"></textarea><br>
