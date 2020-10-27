@@ -132,6 +132,13 @@ pl:
     derivatives_exact_copes_none: "Na %{site_name} nie znajdują się żadne skrypty, które mają dokładnie ten sam kod co ten skrypt."
     derivatives_similar_heading: "Podobne skrypty"
     derivatives_similar_info: "Okresowo sprawdzamy najnowsze wersje wszystkich innych skryptów, aby znaleźć najbardziej podobne do twojego. Sprawdzamy także przy każdej nowej aktualizacji oraz na twoją prośbę."
+    similarity_score:
+      high: Bardzo podobne
+      medium: Średnio podobne
+      low: Trochę podobne
+      none: Niepodobne
+    derivatives_similar_none: "Brak skryptów podobnych do twojego."
+    derivatives_similar_item: "%{score}: %{diff_link:[Diff]} %{script}"
     derivatives_similar_last_check_html: "Ostatnio sprawdziliśmy skrypty podobne do twojego %{date}."
     derivatives_similar_last_check_soon: "Wkrótce sprawdzimy skrypty podobne do twojego."
     derivatives_similar_last_check_again_soon_html: "Ostatnio sprawdziliśmy skrypty podobne do twojego %{date}. Za jakiś czas sprawdzimy ponownie."
@@ -415,9 +422,36 @@ pl:
     explain_user_scripts_heading: "Co to są skrypty użytkownika?"
     explain_user_scripts_html: "Skrypty użytkownika pozwalają kontrolować twoje doświadczenie przeglądania stron internetowych. Po zainstalowaniu, automatycznie czynią strony lepszymi poprzez dodanie nowych funkcji, sprawiając, że korzysta się z nich łatwiej lub usuwają niechciane treści z odwiedzanych stron. Skrypty użytkownika na %{site_name} zostały napisane przez innych użytkowników i zamieszczone, by podzielić się nimi ze światem. Są darmowe i łatwe w użyciu."
     installing_step1_header: "Krok 1: zainstaluj menedżera skryptów"
-    installing_step1_caption: "Tampermonkey na Chrome"
+    installing_step1_caption: "Tampermonkey w Chrome"
+    installing_step1_description_html: >
+        <p>Aby korzystać ze skryptów użytkownika, musisz najpierw zainstalować menedżera
+        skryptów. To, którego menedżera możesz użyć, zależy od posiadanej przez ciebie
+        przeglądarki.</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} lub %{chrome_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
+        lub %{firefox_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey} lub %{safari_userscripts_link:Userscripts}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} lub %{opera_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>AdGuard: (nie jest wymagane dodatkowe oprogramowanie)</li>
+
+        </ul>
     installing_step2_header: "Krok 2: zainstaluj skrypt użytkownika"
-    installing_step2_caption: "Przycisk 'zainstaluj skrypt użytkownika'"
+    installing_step2_caption: "Przycisk instalacji skryptu"
     installing_step2_description_html: >
         <p>%{browse_link:Przeglądaj tę witrynę}, by znaleźć skrypt użytkownika, który
         chcesz wypróbować. Oto przykłady najbardziej popularnych skryptów:</p>
@@ -513,6 +547,7 @@ pl:
     show_ads_description: "Wspomóż %{site_name} poprzez zezwolenie na wyświetlanie reklam"
     show_sensitive_description: "Pokaż skrypty z treścią dla dorosłych"
     preferred_markup_description: "Zostanie użyte dla nowych skryptów i postów."
+    filter_locale_default_description: "Domyślnie wyświetlaj treści dostępne tylko w bieżącym języku"
     greasy_fork_scripts_link:
       one: "%{user_name} ma %{count} skrypt na Greasy Fork."
       few: "%{user_name} ma %{count} skryptów na Greasy Fork."
@@ -1024,6 +1059,7 @@ pl:
         show_ads: "Pokaż reklamy"
         show_sensitive: "Zawartość dla pełnoletnich"
         preferred_markup: "Preferowany znacznik"
+        filter_locale_default: "Filtruj według języka"
       script:
         name: "Nazwa"
         description: "Opis"
@@ -1063,6 +1099,7 @@ pl:
       script_disallowed_require: "używa niezatwierdzonego zewnętrznego skryptu: %{code}"
       script_rate_limit: "Przekroczono limit udostępniania. Spróbuj ponownie później."
       missing_include_or_match: "musi zawierać co najmniej jeden klucz @match lub @include"
+      file_size_out_of_range: "rozmiar musi być mniejszy niż 200KB"
   opensearch:
     short_name: "%{site_name} wyszukaj"
     description: "Szukaj skryptów użytkownika na %{site_name}."
