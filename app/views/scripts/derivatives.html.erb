@@ -35,6 +35,7 @@
       <% @similarities.each do |other_script, score| %>
         <li title="<%= score %>">
           <%= it('scripts.derivatives_similar_item', score: similarity_string(score), diff_link: admin_script_path(@script, compare: script_path(other_script), anchor: 'script-comparison'), script: link_to(other_script.name(request_locale), other_script)) %>
+          <%= t('scripts.deleted_marker') if other_script.deleted? %>
         </li>
       <% end %>
     </ul>

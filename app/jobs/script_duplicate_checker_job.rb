@@ -14,7 +14,7 @@ class ScriptDuplicateCheckerJob < ApplicationJob
       return
     end
 
-    other_scripts = Script.not_deleted.where.not(id: script_id)
+    other_scripts = Script.where.not(id: script_id)
 
     last_run = ScriptSimilarity.where(script_id: script_id).maximum(:checked_at)
     if last_run && script.code_updated_at < last_run

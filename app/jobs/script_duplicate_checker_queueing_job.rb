@@ -21,7 +21,6 @@ class ScriptDuplicateCheckerQueueingJob < ApplicationJob
 
   def calculate_script_ids
     Script
-      .not_deleted
       .left_joins(:script_similarities)
       .group('scripts.id')
       .order('min(script_similarities.checked_at)', :id)
