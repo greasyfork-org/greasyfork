@@ -8,10 +8,10 @@ module UserTextHelper
   def format_user_text(text, markup_type)
     return '' if text.nil?
     return text if markup_type == 'text'
-    return format_user_text_html(text) if markup_type == 'html'
-    return format_user_text_markdown(text) if markup_type == 'markdown'
 
-    return ''
+    sanitize_config = sanitize_config_for_display(markup_type)
+    text = markdown.render(text) if markup_type == 'markdown'
+    Sanitize.clean(text, sanitize_config).html_safe
   end
 
   # Returns the plain text representation of the passed markup
@@ -21,13 +21,13 @@ module UserTextHelper
 
   private
 
-  def format_user_text_html(text)
-    Sanitize.clean(text, html_sanitize_config).html_safe
-  end
+  def sanitize_config_for_display(markup_type)
+    return html_sanitize_config if markup_type == 'html'
+    return markdown_sanitize_config if markup_type == 'markdown'
 
-  def format_user_text_markdown(text)
-    Sanitize.clean(markdown.render(text), markdown_sanitize_config).html_safe
+    raise "Unknown markup_type #{markup_type}."
   end
+  memoize :sanitize_config_for_display
 
   def html_sanitize_config
     hsc = markdown_sanitize_config.dup
@@ -48,7 +48,6 @@ module UserTextHelper
 
     hsc
   end
-  memoize :html_sanitize_config
 
   def markdown_sanitize_config
     msc = Sanitize::Config::BASIC.dup
@@ -127,7 +126,6 @@ module UserTextHelper
 
     msc
   end
-  memoize :markdown_sanitize_config
 
   def replace_text_with_link(node, original_text, link_text, url)
     # the text itself becomes a link
