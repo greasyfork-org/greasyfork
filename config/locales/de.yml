@@ -741,13 +741,21 @@ de:
       title: "Neueste Kommentare"
       no_recent_activity: "Dieser Benutzer hat in letzter Zeit keine Kommentare veröffentlicht."
       see_all_activity: "Alle Benutzeraktivitäten anzeigen."
+    subscribe: Abonnieren
+    unsubscribe: Abo beenden
     categories:
+      development:
+        name: Entwicklung
       script-discussions:
         name: Skriptdiskussionen
     new_title: Neue Diskussion
     new_button: Neue Diskussion
+    mark_all_read: Alle als Gelesen markieren
   conversations:
     send_message: Nachricht absenden
+    recent:
+      title: kürzliche Konversationen
+      more: alle Konversationen anzeigen
   common:
     error_preamble: "Es gab einige Probleme mit dem was Sie eingegeben haben …"
     allowed_elements_link: "(Erlaubte Elemente anzeigen.)"
@@ -795,6 +803,7 @@ de:
         reason: "Grund der Meldung "
       discussion:
         rating: "Bewertung"
+        category: "Kategorie"
         title: Titel
       conversation:
         user_input: Benutzer
@@ -815,6 +824,7 @@ de:
       script_disallowed_require: "benutzt ein nicht zugelassenes externes Skript: %{code}"
       script_rate_limit: "Sie haben das Beitragslimit überschritten. Versuchen Sie es später noch einmal."
       missing_include_or_match: "muss mindestens einen @match oder @include Eintrag enthalten"
+      file_size_out_of_range: "Größe muss kleiner als 200KB sein."
   opensearch:
     short_name: "%{site_name} Suche"
     description: "Auf %{site_name} nach Benutzerskripten suchen."

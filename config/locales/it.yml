@@ -421,6 +421,36 @@ it:
     explain_user_scripts_html: "Gli script ti mettono al comando della tua esperienza di navigazione. Appena saranno installati aggiungeranno funzionalità ai siti su cui navighi, li renderanno più semplici da usare,oppure rimuoveranno cose che non ti piacciono. Gli script su %{site_name} sono stati prodotti da altri utenti e pubblicati per essere condivisi con tutti. Sono gratuiti e facili da usare."
     installing_step1_header: "Step 1: installa un gestore di script utente"
     installing_step1_caption: "Tampermonkey su Chrome"
+    installing_step1_description_html: >
+        <p>Per usare gli script utente hai prima bisogno di installare un gestore
+        di
+
+        script utente. Quale gestore script utente puoi usare dipende da quale
+
+        browser utilizzi.</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> o %{chrome_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
+        o %{firefox_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey} o %{safari_userscripts_link:Userscripts}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} o %{opera_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>AdGuard: (nessun software aggiuntivo richiesto)</li>
+
+        </ul>
     installing_step2_header: "Step 2: installa uno script utente"
     installing_step2_caption: "Il tasto di installazione di uno script utente"
     installing_step2_description_html: >
@@ -517,6 +547,7 @@ it:
     show_ads_description: "Supporta %{site_name} dando il permesso di mostrare le pubblicità"
     show_sensitive_description: "Mostra script con contenuti per adulti"
     preferred_markup_description: "Verrà usato per i nuovi script ed i nuovi post"
+    filter_locale_default_description: "Per impostazione predefinita, mostra solo i contenuti nella lingua locale"
     greasy_fork_scripts_link:
       one: "%{user_name} ha altri %{count} script su Greasy Fork."
       other: "%{user_name} ha anche %{count} script su Greasy Fork."
@@ -1010,6 +1041,7 @@ it:
         show_ads: "Mostra ads"
         show_sensitive: "Contenuto per adulti"
         preferred_markup: "Markup preferito"
+        filter_locale_default: "Filtra per lingua"
       script:
         name: "Nome"
         description: "Descrizione"
@@ -1063,11 +1095,77 @@ it:
         reason_malware: "Il tuo script %{script_name} su %{site_name} è stato segnalato come malware."
         reason_spam: "Il tuo script %{script_name} su %{site_name} è stato segnalato come spam."
         reason_other: "Il tuo script %{script_name} è stato segnalato violare le regole di %{site_name}."
+        action: "Puoi consultare questa segnalazione su %{report_url} e inviare una confutazione. Se non invii una confutazione, il tuo script potrà essere eliminato dai moderatori. Se hai delle domande, per favore visita https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Il tuo script %{script_name} su%{site_name} è stato eliminato"
+        text: "Il tuo script %{script_name} su %{site_name} è stato eliminato da un moderatore. Puoi consultare la segnalazione su %{report_url}. Se hai delle domande, per favore visita https://greasyfork.org/forum/."
+      report_dismissed_offender:
+        subject: "Una segnalazione sul tuo script %{script_name} su %{site_name} è stata respinta"
+        text: "Una segnalazione sul tuo script %{script_name} su %{site_name} è stata respinta da un moderatore. Il tuo script rimarrà attivo. Puoi consultare questa segnalazione su %{report_url}. Se hai delle domande, per favore visita https://greasyfork.org/forum/."
       report_rebutted_reporter:
         subject: "La tua segnalazione di %{script_name} su %{site_name} ha ricevuto una risposta"
+        text: "La tua segnalazione a riguardo di %{script_name} su %{site_name} ha ricevuto una risposta. Puoi consultare questa risposta su %{report_url}. Un moderatore valuterà la tua segnalazione e questa risposta e deciderà il responso. Se hai delle domande, per favore visita https://greasyfork.org/forum/."
+      report_upheld_reporter:
+        subject: "La tua segnalazione a riguardo di %{script_name} su %{site_name} è stata supportata"
+        text: "La tua segnalazione a riguardo di %{script_name} su %{site_name} è stata supportata da un moderatore e lo script è stato eliminato. Puoi consultare la segnalazione su %{report_url}. Se hai delle domande, per favore visita https://greasyfork.org/forum/."
+      report_script_deleted_reported:
+        subject: "La tua segnalazione a riguardo di %{script_name} su %{site_name} è stata chiusa"
+        text: "La tua segnalazione a riguardo di%{script_name} su %{site_name} è stata chiusa poiché lo script è stato eliminato dal suo autore. Puoi consultare la segnalazione su %{report_url}. Se hai delle domande, per favore visita https://greasyfork.org/forum/."
+      report_dismissed_reporter:
+        subject: "La tua segnalazione a riguardo di %{script_name} su %{site_name} è stata respinta"
+        text: "La tua segnalazione a riguardo di %{script_name} su %{site_name} è stata respinta da un moderatore e lo script che hai segnalato rimarrà attivo. Puoi consultare la segnalazione su %{report_url}. Se hai delle domande, per favore visita https://greasyfork.org/forum/."
+    consecutive_bad_ratings:
+      notify:
+        subject: "Il tuo script %{script_name} su %{site_name} ha ricevuto molteplici segnalazioni come \"Cattivo\"."
+        text: |
+            Il tuo script %{script_name} su %{site_name} (%{script_url}) ha ricevuto molteplici segnalazioni di fila come "Cattivo".
+
+            Il riscontro che hai ricevuto su %{feedback_url} potrebbe indicare un problema con il tuo script, un malfunzionamento temporaneo, o un cambio nel sito su cui opera. Per favore consulta la recensione, risolvi ogni problema, e dai risposta alle preoccupazioni che sono sorte.
+
+            %{site_name} si impegna duramente per mantenere una lista di script di alta qualità per gli utenti. Per occuparsi degli script abbandonati e non funzionanti,  quelli che ricevono molteplici segnalazioni consecutive come "Cattivo" senza una pronta risposta diverranno nascosti. Per evitare che il tuo script diventi nascosto, pubblica una nuova versione o rispondi alle discussioni entro il %{delete_date}. Se non agirai, avrai ancora l'opzione di renderlo visibile nuovamente dopo questa data.
+    script_comment:
+      subject: "Il tuo script %{script_name} su %{site_name} ha ricevuto un commento."
+      text: |
+          Il tuo script '%{script_name}' su %{site_name} (%{script_url}) ha ricevuto un commento dall'utente '%{commenter_name}':
+
+          ---
+          %{comment_text}
+          ---
+
+          Puoi vedere questo commento e rispondere su %{comment_url}. Gestisci le tue preferenze per le notifiche su %{notification_preferences_url}.
+    subscribed_discussion:
+      subject: "La discussione %{discussion_title} su %{site_name} ha ricevuto un commento."
+      text: |
+          La discussione '%{discussion_title}' on %{site_name} ha ricevuto un commento dall'utente '%{commenter_name}':
+
+          ---
+          %{comment_text}
+          ---
+
+          Puoi vedere questo commento e rispondere su %{comment_url}.
+
+          Hai ricevuto questa notifica perché sei iscritto a questa discussione. Visita %{discussion_url} per disiscriverti, o gestisci le tue preferenze per le notifiche su %{notification_preferences_url}.
     new_conversation:
       subject: "Una nuova conversazione su %{site_name}"
+      text: |
+          L'utente '%{user}' su %{site_name} ha iniziato una nuova conversazione con te.
+
+          ---
+          %{message_text}
+          ---
+
+          Puoi leggere e rispondere su %{conversation_url}.
+
+          Hai ricevuto questa notifica perché sei iscritto a questa conversazione. Visita %{conversation_url} per disiscriverti, o gestisci le tue preferenze per le notifiche su %{notification_preferences_url}.
     new_message:
       subject: "Un nuovo messaggio su %{site_name}"
+      text: |
+          L'utente '%{user}' su %{site_name} ti ha inviato un messaggio.
+
+          ---
+          %{message_text}
+          ---
+
+          Puoi leggere e rispondere su %{conversation_url}.
+
+          Hai ricevuto questa notifica perché sei iscritto a questa conversazione. Visita %{conversation_url} per disiscriverti, o gestisci le tue preferenze per le notifiche su %{notification_preferences_url}.
