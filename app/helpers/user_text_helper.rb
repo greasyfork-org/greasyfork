@@ -5,11 +5,13 @@ require 'memoist'
 module UserTextHelper
   extend Memoist
 
-  def format_user_text(text, markup_type)
+  def format_user_text(text, markup_type, mentions: [])
     return '' if text.nil?
     return text if markup_type == 'text'
 
-    sanitize_config = sanitize_config_for_display(markup_type)
+    sanitize_config = sanitize_config_for_display(markup_type).dup
+    add_mention_transformer(sanitize_config, mentions) if mentions.any?
+
     text = markdown.render(text) if markup_type == 'markdown'
     Sanitize.clean(text, sanitize_config).html_safe
   end
@@ -19,7 +21,49 @@ module UserTextHelper
     Sanitize.clean(format_user_text(text, markup_type))
   end
 
+  def detect_possible_mentions(text, markup_type)
+    return [] unless %w[html markdown].include?(markup_type)
+
+    mentions = Set.new
+    sanitize_config = markup_type == 'html' ? html_sanitize_config : markdown_sanitize_config
+    add_detect_mention_transformer(sanitize_config, mentions)
+
+    text = markdown.render(text) if markup_type == 'markdown'
+    Sanitize.clean(text, sanitize_config).html_safe
+
+    mentions
+  end
+
   private
+
+  def add_mention_transformer(config, mentions)
+    linkify_mentions = lambda do |env|
+      node = env[:node]
+      return unless node.text?
+      return if node_has_ancestor?(node, 'a')
+      return if node_has_ancestor?(node, 'pre')
+
+      mentions.select { |mention| node.text.include?(mention.text) }.each do |mention|
+        replace_text_with_link(node, mention.text, mention.text, user_path(mention.user, locale: request_locale.code))
+      end
+    end
+
+    config[:transformers] += [linkify_mentions]
+  end
+
+  def add_detect_mention_transformer(config, mentions_out)
+    detect_user_references = lambda do |env|
+      node = env[:node]
+      return unless node.text?
+      return if node_has_ancestor?(node, 'a')
+      return if node_has_ancestor?(node, 'pre')
+
+      mentions_out.merge(node.text.scan(/(?<=\s|^)(@[^\s"][^\s]{0,49})(?=\s|$)/).flatten.compact)
+      mentions_out.merge(node.text.scan(/(?<=\s|^)(@"[^"]{1,50}")/).flatten.compact)
+    end
+
+    config[:transformers] << detect_user_references
+  end
 
   def sanitize_config_for_display(markup_type)
     return html_sanitize_config if markup_type == 'html'
@@ -44,7 +88,7 @@ module UserTextHelper
       replace_text_with_node(node, "\n", Nokogiri::XML::Node.new('br', node.document))
     end
 
-    hsc[:transformers] = hsc[:transformers] + [fix_whitespace]
+    hsc[:transformers] += [fix_whitespace]
 
     hsc
   end
@@ -110,6 +154,7 @@ module UserTextHelper
       # allow so the initial clean call doesn't strip the rel
       return { node_allowlist: [node] }
     end
+
     linkify_urls = lambda do |env|
       node = env[:node]
       return unless node.text?

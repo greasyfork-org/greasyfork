@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   include DiscussionHelper
+  include UserTextHelper
 
   before_action :authenticate_user!, except: :old_redirect
   before_action :load_discussion, except: :old_redirect
@@ -13,6 +14,7 @@ class CommentsController < ApplicationController
       @discussion.update!(rating: rating) if rating && @discussion.poster == current_user && @discussion.script
       @comment = @discussion.comments.build(comments_params)
       @comment.poster = current_user
+      @comment.construct_mentions(detect_possible_mentions(@comment.text, @comment.text_markup))
       @comment.save!
       case params[:subscribe]
       when '1'
@@ -50,8 +52,11 @@ class CommentsController < ApplicationController
       end
       comment.edited_at = Time.current
       comment.attachments.select { |attachment| params["remove-attachment-#{attachment.id}"] == '1' }.each(&:destroy!)
-      comment.update!(comments_params)
+      comment.assign_attributes(comments_params)
+      comment.construct_mentions(detect_possible_mentions(comment.text, comment.text_markup))
+      comment.save!
     end
+
     redirect_to comment.path(locale: request_locale.code)
   end
 

@@ -4,6 +4,7 @@ class Comment < ApplicationRecord
   extend Memoist
   include HasAttachments
   include SoftDeletable
+  include MentionsUsers
 
   belongs_to :discussion
   # Optional because the user may no longer exist.

@@ -1,5 +1,6 @@
 class Discussion < ApplicationRecord
   include SoftDeletable
+  include MentionsUsers
 
   self.ignored_columns = %w[akismet_spam akismet_blatant]
 

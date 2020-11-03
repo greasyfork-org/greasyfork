@@ -23,4 +23,36 @@ class UserTextHelperTest < ActionView::TestCase
       format_user_text(text, 'html')
     end
   end
+
+  test 'detect_possible_user_references simple' do
+    user_references = detect_possible_mentions(<<~TEXT, 'markdown')
+      @user1 @user2 @user1 @"user 3" @"too long to be a real user name too long to be a real user name"
+    TEXT
+    assert_equal ['@user1', '@user2', '@"user 3"'], user_references.to_a
+  end
+
+  test 'detect_possible_user_references start of line' do
+    user_references = detect_possible_mentions('@user1 is cool', 'markdown')
+    assert_equal ['@user1'], user_references.to_a
+  end
+
+  test 'detect_possible_user_references end of line' do
+    user_references = detect_possible_mentions("you know who's cool? @user1", 'markdown')
+    assert_equal ['@user1'], user_references.to_a
+  end
+
+  test 'detect_possible_user_references containing punctuation' do
+    user_references = detect_possible_mentions("hey @user.1 - what's up?", 'markdown')
+    assert_equal ['@user.1'], user_references.to_a
+  end
+
+  test 'detect_possible_user_references quoted user' do
+    user_references = detect_possible_mentions('hey @"user1" - what is up?', 'markdown')
+    assert_equal ['@"user1"'], user_references.to_a
+  end
+
+  test 'detect_possible_user_references quoted user with spaces' do
+    user_references = detect_possible_mentions('hey @"user 1" - what is up?', 'markdown')
+    assert_equal ['@"user 1"'], user_references.to_a
+  end
 end

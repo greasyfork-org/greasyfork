@@ -95,7 +95,7 @@ class User < ApplicationRecord
   end
 
   validates :name, :profile_markup, :preferred_markup, presence: true
-  validates :name, uniqueness: { case_sensitive: false }
+  validates :name, uniqueness: { case_sensitive: false }, length: { minimum: 1, maximum: 50 }
   validates :profile, length: { maximum: 10_000 }
   validates :profile_markup, inclusion: { in: %w[html markdown] }
   validates :preferred_markup, inclusion: { in: %w[html markdown] }

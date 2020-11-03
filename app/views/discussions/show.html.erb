@@ -84,7 +84,7 @@
       <% end %>
     </div>
     <div class="user-content">
-      <%= format_user_text(comment.text, comment.text_markup) %>
+      <%= format_user_text(comment.text, comment.text_markup, mentions: comment.mentions) %>
       <%= render partial: 'screenshots/show', locals: { attachable: comment } %>
     </div>
     <% if by_current_user %>

@@ -23,6 +23,29 @@ class DiscussionsTest < ApplicationSystemTestCase
     assert_content 'this is an updated reply'
   end
 
+  test 'adding a discussion mentioning a user' do
+    user = User.first
+    mentioned_user1 = users(:geoff)
+    mentioned_user2 = users(:junior)
+
+    login_as(user, scope: :user)
+    visit new_discussion_path(locale: :en)
+    fill_in 'Title', with: 'discussion title'
+    fill_in 'discussion_comments_attributes_0_text', with: 'Hey @Geoffrey what is up? I heard from @"Junior J. Junior, Sr." that you are named @Geoffrey!'
+    choose 'Greasy Fork Feedback'
+    assert_difference -> { Discussion.count } => 1 do
+      click_button 'Post comment'
+      assert_content 'Hey @Geoffrey what is up? I heard from @"Junior J. Junior, Sr." that you are named @Geoffrey!'
+    end
+    assert_selector("a[href='#{user_path(mentioned_user1, locale: :en)}']", text: '@Geoffrey', count: 2)
+    assert_link '@"Junior J. Junior, Sr."', href: user_path(mentioned_user2, locale: :en)
+
+    # Even if the user is renamed, the link persists.
+    mentioned_user2.update!(name: 'Someone Else now')
+    visit Discussion.last.url
+    assert_link '@"Junior J. Junior, Sr."', href: user_path(mentioned_user2, locale: :en)
+  end
+
   test 'commenting on a discussion' do
     user = User.first
     login_as(user, scope: :user)

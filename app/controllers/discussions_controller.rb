@@ -1,6 +1,7 @@
 class DiscussionsController < ApplicationController
   include DiscussionHelper
   include ScriptAndVersions
+  include UserTextHelper
 
   FILTER_RESULT = Struct.new(:category, :by_user, :related_to_me, :read_status, :result)
 
@@ -94,7 +95,8 @@ class DiscussionsController < ApplicationController
       @discussion.script = @script
       @discussion.discussion_category = DiscussionCategory.script_discussions
     end
-    @discussion.comments.first.first_comment = true
+    comment = @discussion.comments.first
+    comment.first_comment = true
     @subscribe = params[:subscribe] == '1'
 
     recaptcha_ok = current_user.needs_to_recaptcha? ? verify_recaptcha : true
@@ -107,6 +109,7 @@ class DiscussionsController < ApplicationController
       return
     end
 
+    comment.construct_mentions(detect_possible_mentions(comment.text, comment.text_markup))
     @discussion.save!
     @discussion.comments.first.send_notifications!
 

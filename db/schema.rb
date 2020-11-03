@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_27_010717) do
+ActiveRecord::Schema.define(version: 2020_10_31_192108) do
 
   create_table "GDN_AccessToken", primary_key: "AccessTokenID", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "Token", limit: 100, null: false
@@ -989,6 +989,15 @@ ActiveRecord::Schema.define(version: 2020_10_27_010717) do
     t.index ["script_version_id"], name: "index_localized_script_version_attributes_on_script_version_id"
   end
 
+  create_table "mentions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.string "mentioning_item_type", null: false
+    t.bigint "mentioning_item_id", null: false
+    t.integer "user_id", null: false
+    t.string "text", null: false
+    t.index ["mentioning_item_type", "mentioning_item_id", "user_id"], name: "mention_mentioning"
+    t.index ["user_id"], name: "fk_rails_1b711e94aa"
+  end
+
   create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -1345,6 +1354,7 @@ ActiveRecord::Schema.define(version: 2020_10_27_010717) do
   add_foreign_key "discussions", "scripts", on_delete: :cascade
   add_foreign_key "identities", "users", on_delete: :cascade
   add_foreign_key "localized_script_version_attributes", "script_versions", on_delete: :cascade
+  add_foreign_key "mentions", "users"
   add_foreign_key "messages", "conversations", on_delete: :cascade
   add_foreign_key "reports", "users", column: "reporter_id", on_delete: :cascade
   add_foreign_key "roles_users", "users", on_delete: :cascade
