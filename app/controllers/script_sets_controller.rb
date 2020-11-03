@@ -223,12 +223,17 @@ class ScriptSetsController < ApplicationController
     end
 
     recaptcha_ok = current_user.needs_to_recaptcha? ? verify_recaptcha : true
+    new_set = set.new_record?
 
     # Require recaptcha for creating non-favourite new sets
-    if set.errors.empty? && params[:save] == '1' && (!set.new_record? || set.favorite || recaptcha_ok)
+    if set.errors.empty? && params[:save] == '1' && (!new_set || set.favorite || recaptcha_ok)
       set.save!
       redirect_to set.user
       flash[:notice] = I18n.t('script_sets.saved')
+      if new_set
+        blocked_script_text = BlockedScriptText.bannable.find { |bst| set.name.include?(bst.text) || set.description.include?(bst.text) }
+        UserBanAndDeleteJob.set(wait: 5.minutes).perform_later(set.user.id, blocked_script_text.private_reason, blocked_script_text.public_reason) if blocked_script_text
+      end
       return true
     end
 
