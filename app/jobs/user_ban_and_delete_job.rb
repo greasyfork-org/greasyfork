@@ -8,6 +8,8 @@ class UserBanAndDeleteJob < ApplicationJob
       return
     end
 
+    return if user.banned?
+
     moderator = User.administrators.first
 
     user.ban!(moderator: moderator, reason: public_reason, private_reason: private_reason, ban_related: true)
