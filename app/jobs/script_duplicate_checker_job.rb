@@ -3,7 +3,7 @@ require 'zlib'
 class ScriptDuplicateCheckerJob < ApplicationJob
   queue_as :low
 
-  DESIRED_RUN_COUNT = 2
+  DESIRED_RUN_COUNT = 1
 
   def perform(script_id)
     now = Time.current
