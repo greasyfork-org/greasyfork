@@ -48,4 +48,29 @@ class ConversationsTest < ApplicationSystemTestCase
       assert_content "Conversation with #{to_user.name}"
     end
   end
+
+  test 'starting a conversation mentioning a user' do
+    user = User.first
+    login_as(user, scope: :user)
+
+    to_user = User.second
+    visit new_user_conversation_url(user, locale: :en)
+    mentioned_user1 = users(:geoff)
+    fill_in 'User', with: "https://greasyfork.org/users/#{to_user.id}"
+    fill_in 'Message', with: 'Hey @Geoffrey'
+    assert_difference -> { Conversation.count } => 1, -> { Message.count } => 1 do
+      click_button 'Create conversation'
+      assert_content "Conversation with #{to_user.name}"
+    end
+    assert_link '@Geoffrey', href: user_path(mentioned_user1, locale: :en)
+
+    assert_equal [user, to_user].sort, Conversation.last.users
+
+    mentioned_user2 = users(:consumer)
+    fill_in 'Message', with: 'Hello @"Gordon J. Canada"'
+    assert_difference -> { Conversation.count } => 0, -> { Message.count } => 1 do
+      click_button 'Post reply'
+      assert_link '@"Gordon J. Canada"', href: user_path(mentioned_user2, locale: :en)
+    end
+  end
 end

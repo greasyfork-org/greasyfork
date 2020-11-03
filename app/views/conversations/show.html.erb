@@ -30,7 +30,7 @@
       <% end %>
     </div>
     <div class="user-content">
-      <%= format_user_text(message.content, message.content_markup) %>
+      <%= format_user_text(message.content, message.content_markup, mentions: message.mentions) %>
       <%= render partial: 'screenshots/show', locals: { attachable: message } %>
     </div>
   </div>

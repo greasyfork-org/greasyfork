@@ -1,5 +1,6 @@
 class Message < ApplicationRecord
   include HasAttachments
+  include MentionsUsers
 
   belongs_to :conversation
   belongs_to :poster, class_name: 'User'

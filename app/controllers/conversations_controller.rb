@@ -1,5 +1,6 @@
 class ConversationsController < ApplicationController
   include BrowserCaching
+  include UserTextHelper
 
   before_action :authenticate_user!
   before_action :find_user
@@ -33,7 +34,10 @@ class ConversationsController < ApplicationController
     end
     @subscribe = params[:subscribe] == '1'
 
-    @conversation.messages.last.poster = current_user
+    message = @conversation.messages.last
+    message.poster = current_user
+    message.construct_mentions(detect_possible_mentions(message.content, message.content_markup))
+
     unless @conversation.save
       render :new
       return

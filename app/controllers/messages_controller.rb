@@ -1,4 +1,6 @@
 class MessagesController < ApplicationController
+  include UserTextHelper
+
   before_action :authenticate_user!
   before_action :find_conversation
 
@@ -6,6 +8,7 @@ class MessagesController < ApplicationController
     @message = @conversation.messages.build(message_params)
     @message.poster = current_user
     @subscribe = params[:subscribe] == '1'
+    @message.construct_mentions(detect_possible_mentions(@message.content, @message.content_markup))
 
     unless @message.save
       render 'conversations/show'
