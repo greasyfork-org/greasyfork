@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  include UserTextHelper
+
   def index
     @ad_method = choose_ad_method
   end
@@ -17,7 +19,12 @@ class HomeController < ApplicationController
     else
       text = params[:text]
     end
-    render html: view_context.format_user_text(text, params[:markup])
+
+    # Just using Comment as a container - it could really be anything.
+    comment = Comment.new(text: text, text_markup: params[:markup])
+    comment.construct_mentions(detect_possible_mentions(comment.text, comment.text_markup))
+
+    render html: format_user_text(comment.text, comment.text_markup, mentions: comment.mentions)
   end
 
   def search; end
