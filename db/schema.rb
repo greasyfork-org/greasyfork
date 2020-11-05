@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_31_192108) do
+ActiveRecord::Schema.define(version: 2020_11_05_015427) do
 
   create_table "GDN_AccessToken", primary_key: "AccessTokenID", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "Token", limit: 100, null: false
@@ -1301,14 +1301,12 @@ ActiveRecord::Schema.define(version: 2020_10_31_192108) do
     t.string "name", limit: 50, null: false
     t.string "profile", limit: 10000
     t.string "profile_markup", limit: 10, default: "html", null: false
-    t.boolean "banned", default: false, null: false
     t.string "webhook_secret", limit: 128
     t.integer "author_email_notification_type_id", default: 1, null: false
     t.string "remember_token", limit: 150
     t.integer "locale_id"
     t.boolean "show_ads", default: true, null: false
     t.string "preferred_markup", limit: 10, default: "html", null: false
-    t.string "flattr_username", limit: 50
     t.boolean "show_sensitive", default: false
     t.string "delete_confirmation_key"
     t.datetime "delete_confirmation_expiry"
