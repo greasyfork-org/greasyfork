@@ -24,6 +24,7 @@ class User < ApplicationRecord
   has_many :discussions, foreign_key: 'poster_id', inverse_of: :poster, dependent: nil
   has_many :comments, foreign_key: 'poster_id', inverse_of: :poster, dependent: nil
   has_many :discussion_subscriptions, dependent: :destroy
+  has_many :mentions, dependent: :destroy
 
   # Gotta to it this way because you can't pass a parameter to a has_many, and we need it has_many
   # to do eager loading.

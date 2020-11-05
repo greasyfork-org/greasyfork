@@ -4,7 +4,7 @@ module MentionsUsers
   extend ActiveSupport::Concern
 
   included do
-    has_many :mentions, autosave: true, as: :mentioning_item
+    has_many :mentions, autosave: true, as: :mentioning_item, dependent: :destroy
   end
 
   def construct_mentions(possible_mentions)
