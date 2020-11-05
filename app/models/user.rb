@@ -71,7 +71,7 @@ class User < ApplicationRecord
     self.email_domain = email ? email.split('@').last : nil
   end
 
-  after_create do
+  after_create_commit do
     UserCheckingJob.perform_later(self)
   end
 
