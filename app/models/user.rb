@@ -72,7 +72,9 @@ class User < ApplicationRecord
   end
 
   after_create_commit do
-    UserCheckingJob.perform_later(self)
+    job = UserCheckingJob
+    job = job.set(wait: 5.minutes) if Rails.env.production?
+    job.perform_later(self)
   end
 
   after_update do
