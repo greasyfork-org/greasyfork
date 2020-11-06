@@ -2,6 +2,7 @@
 class RegistrationsController < Devise::RegistrationsController
   include LoginMethods
   include BrowserCaching
+  include UserTextHelper
 
   before_action :check_captcha, only: [:create]
   before_action :check_read_only_mode
@@ -22,6 +23,9 @@ class RegistrationsController < Devise::RegistrationsController
                            end
 
     if successfully_updated
+      @user.construct_mentions(detect_possible_mentions(@user.profile, @user.profile_markup))
+      @user.save!
+
       # Sign in the user bypassing validation in case their password changed
       bypass_sign_in(@user)
       # Show the message in their new locale

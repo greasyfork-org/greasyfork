@@ -7,7 +7,9 @@
   <h2><%= render_user(@user, @user.id, skip_link: true) %></h2>
 
   <% if @user.profile.present? && (current_user&.moderator? || (!@user.banned? && @user.allow_posting_profile?))  %>
-    <section id="user-profile" class="user-content"><%=format_user_text(@user.profile, @user.profile_markup)%></section>
+    <section id="user-profile" class="user-content">
+      <%= format_user_text(@user.profile, @user.profile_markup, mentions: @user.mentions) %>
+    </section>
   <% end %>
 
   <% if current_user && !@same_user %>
