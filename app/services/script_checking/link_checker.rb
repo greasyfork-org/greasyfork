@@ -33,7 +33,7 @@ module ScriptChecking
       def checked_for_blocked_urls(urls)
         return nil if urls.empty?
 
-        bsu = BlockedScriptUrl.find_by(url: urls.map { |u| u.sub(/[?#&].*/, '') }.to_a)
+        bsu = BlockedScriptUrl.find_by(url: urls.map { |u| u.sub(/[?#&].*/, '') }.to_a) || BlockedScriptUrl.where(prefix: true).find { |b| urls.any? { |url| url.starts_with?(b.url) } }
         return nil if bsu.nil?
 
         return ScriptChecking::Result.new(ScriptChecking::Result::RESULT_CODE_BAN, bsu.public_reason, bsu.private_reason, bsu)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_08_022746) do
+ActiveRecord::Schema.define(version: 2020_11_08_034727) do
 
   create_table "GDN_AccessToken", primary_key: "AccessTokenID", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "Token", limit: 100, null: false
@@ -785,6 +785,7 @@ ActiveRecord::Schema.define(version: 2020_11_08_022746) do
     t.string "url", null: false
     t.string "public_reason", null: false
     t.string "private_reason", null: false
+    t.boolean "prefix", default: true, null: false
   end
 
   create_table "browsers", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|

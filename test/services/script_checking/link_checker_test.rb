@@ -27,6 +27,16 @@ module ScriptChecking
       assert_equal ScriptChecking::Result::RESULT_CODE_BAN, check_script_with_url_in_code('https://bit.ly/39soMRq').code
     end
 
+    test 'bit.ly blocked with prefix' do
+      blocked_script_urls(:first).update(url: 'http://exa', prefix: true)
+      assert_equal ScriptChecking::Result::RESULT_CODE_BAN, check_script_with_url_in_code('https://bit.ly/39soMRq').code
+    end
+
+    test 'bit.ly not blocked with prefix' do
+      blocked_script_urls(:first).update(url: 'http://hexa', prefix: true)
+      assert_equal ScriptChecking::Result::RESULT_CODE_OK, check_script_with_url_in_code('https://bit.ly/39soMRq').code
+    end
+
     test 'use in additional info not blocked' do
       assert_equal ScriptChecking::Result::RESULT_CODE_OK, check_script_with_url_in_additional_info('https://example.com/this-is-ok').code
     end
