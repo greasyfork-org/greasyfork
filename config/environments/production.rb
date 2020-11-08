@@ -83,8 +83,6 @@ Rails.application.configure do
   routes.default_url_options[:host] = 'greasyfork.org'
   routes.default_url_options[:protocol] = 'https'
 
-  config.verify_ownership_on_import = false
-  config.userscriptsorg_host = 'http://userscripts.org:8080'
   config.enable_detect_locale = true
   config.log_cache_misses = true
 

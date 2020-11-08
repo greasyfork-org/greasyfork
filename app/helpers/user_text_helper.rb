@@ -104,7 +104,7 @@ module UserTextHelper
     msc[:add_attributes] = msc[:add_attributes].merge('video' => { 'controls' => 'controls' })
 
     yes_follow = lambda do |env|
-      follow_domains = ['mozillazine.org', 'mozilla.org', 'mozilla.com', 'userscripts.org', 'userstyles.org', 'mozdev.org', 'photobucket.com', 'facebook.com', 'chrome.google.com', 'github.com', 'greasyfork.org', 'openuserjs.org']
+      follow_domains = ['mozillazine.org', 'mozilla.org', 'mozilla.com', 'mozdev.org', 'photobucket.com', 'facebook.com', 'chrome.google.com', 'github.com', 'greasyfork.org', 'openuserjs.org']
       return unless env[:node_name] == 'a'
 
       node = env[:node]

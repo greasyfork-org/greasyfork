@@ -48,9 +48,6 @@ Rails.application.configure do
   routes.default_url_options[:host] = 'localhost'
   routes.default_url_options[:protocol] = 'http'
 
-  config.verify_ownership_on_import = true
-  config.userscriptsorg_host = 'http://userscripts.org:8080'
-
   config.enable_detect_locale = false
   config.active_support.test_order = :random
 

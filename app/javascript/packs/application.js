@@ -22,7 +22,6 @@ require.context('../images', true)
 
 import 'lightbox'
 
-require("everything");
 require("install");
 require("versioncheck");
 require("recaptcha");
@@ -34,3 +33,4 @@ require("sidebar");
 require("announcements");
 require("forum");
 require("ethical-ads");
+require("locale-switcher");

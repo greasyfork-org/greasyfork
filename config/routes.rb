@@ -160,8 +160,6 @@ Rails.application.routes.draw do
     end
 
     get 'import', to: 'import#index', as: 'import_start'
-    get 'import/userscriptsorg', to: 'import#userscriptsorg', as: 'import_userscriptsorg'
-    post 'import/verify', to: 'import#verify', as: 'import_verify'
     post 'import/add', to: 'import#add', as: 'import_add'
     get 'import/url', to: 'import#url', as: 'import_url'
 
