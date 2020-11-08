@@ -3,7 +3,7 @@
  *    <textarea></textarea>
  *  </div>
  */
-function markupPreview(p) {
+window.markupPreview = function(p) {
   function getMarkupOptions(previewable) {
     return document.querySelectorAll('input[type=radio][name="' + previewable.getAttribute("data-markup-option-name") + '"]');
   }

@@ -26,6 +26,7 @@ require("everything");
 require("install");
 require("versioncheck");
 require("recaptcha");
+require("additional-info")
 require("markup-preview");
 require("submit-anchor");
 require("expandable-text");
