@@ -14,9 +14,9 @@ class ApplicationController < ActionController::Base
                       show_if: -> { params[:test] == '1' },
                       content: 'This is a test announcement'
   end
-  show_announcement key: :user_style_support,
-                    show_if: -> { current_user.scripts.where("created_at <= '2019-12-26'").any? },
-                    content: 'You can now post <a href="https://github.com/openstyles/stylus/wiki/UserCSS-authors">Stylus format</a> user CSS and we will also convert it to user JS format. <a href="/script_versions/new?language=css">Post your first user style!</a>'.html_safe
+  show_announcement key: :user_mentions,
+                    show_if: -> { current_user.created_at < Date.new(2020, 11, 7) && !Rails.env.test? },
+                    content: -> { "You can now mention other users with the @UserName in comments, messages, scripts, and your user profile, and #{link_to('you can be notified when other users mention you', notifications_user_path(current_user))}.".html_safe }
   show_announcement key: :consecutive_bad_ratings,
                     show_if: -> { current_user.scripts.not_deleted.where.not(consecutive_bad_ratings_at: nil).any? },
                     content: lambda {
