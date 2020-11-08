@@ -1049,7 +1049,7 @@ CREATE TABLE `blocked_script_urls` (
   `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `public_reason` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `private_reason` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `prefix` tinyint(1) NOT NULL DEFAULT 1,
+  `prefix` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2140,6 +2140,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20201031192108'),
 ('20201105015427'),
 ('20201108022746'),
-('20201108034727');
+('20201108034727'),
+('20201108041036');
 
 
