@@ -1,4 +1,6 @@
 class LocalizedScriptAttribute < ApplicationRecord
+  include MentionsUsers
+
   belongs_to :script
   belongs_to :locale
 

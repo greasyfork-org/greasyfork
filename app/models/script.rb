@@ -230,6 +230,9 @@ class Script < ApplicationRecord
         matching_osla.attribute_value = la.attribute_value
         # We've found this one, don't search for it any more.
         original_script_las.delete(matching_osla)
+        la.mentions.each do |mention|
+          matching_osla.mentions.build(user_id: mention.user_id, text: mention.text)
+        end
       end
     end
     # Delete any that are gone

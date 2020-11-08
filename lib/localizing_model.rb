@@ -74,6 +74,9 @@ module LocalizingModel
       la.sync_identifier = other_la.sync_identifier
       la.sync_source_id = other_la.sync_source_id
     end
+    other_la.mentions.each do |mention|
+      la.mentions.build(user_id: mention.user_id, text: mention.text)
+    end
     return la
   end
 

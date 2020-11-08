@@ -4,7 +4,7 @@
 #  - index: index of the additional info (to avoid duplicate names and IDs)
 %>
 <div class="form-control">
-  <label>
+  <label for="<%= "script-version-additional-info-#{index}" %>">
     <%=t('activerecord.attributes.script.additional_info')%>
     <input type="hidden" name="script_version[additional_info][<%=index%>][attribute_default]" value="<%=la.attribute_default%>">
     <% if !la.attribute_default %>
@@ -21,11 +21,11 @@
     <% end %>
   </label>
   <span class="label-note">
-    <%=t('scripts.additional_info_note_html', {:allowed_elements_link => link_to( t('common.allowed_elements_link'), help_allowed_markup_path, {:target => 'markup_choice'})})%>
-    <%=radio_button_tag("script_version[additional_info][#{index}][value_markup]", 'html', la.value_markup == 'html' || la.value_markup.nil?)%>HTML
-    <%=radio_button_tag("script_version[additional_info][#{index}][value_markup]", 'markdown', la.value_markup == 'markdown')%><%=link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', {:target => 'markup_choice'}%>
+    <%= t('scripts.additional_info_note_html', {:allowed_elements_link => link_to( t('common.allowed_elements_link'), help_allowed_markup_path, {:target => 'markup_choice'})}) %>
+    <%= radio_button_tag("script_version[additional_info][#{index}][value_markup]", 'html', la.value_markup == 'html' || la.value_markup.nil?) %>HTML
+    <%= radio_button_tag("script_version[additional_info][#{index}][value_markup]", 'markdown', la.value_markup == 'markdown')%><%=link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', {:target => 'markup_choice'} %>
   </span><br>
   <div class="previewable" data-markup-option-name="script_version[additional_info][<%=index%>][value_markup]" data-preview-label="<%=t('common.preview_tab')%>" data-write-label="<%=t('common.write_tab')%>">
-    <%=text_area_tag("script_version[additional_info][#{index}][attribute_value]", la.attribute_value, {:id => "script-version-additional-info-#{index}"})%>
+    <%= text_area_tag("script_version[additional_info][#{index}][attribute_value]", la.attribute_value, {:id => "script-version-additional-info-#{index}"}) %>
   </div>
 </div>

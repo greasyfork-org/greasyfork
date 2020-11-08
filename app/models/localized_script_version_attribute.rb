@@ -1,4 +1,6 @@
 class LocalizedScriptVersionAttribute < ApplicationRecord
+  include MentionsUsers
+
   belongs_to :script_version
   belongs_to :locale
 
