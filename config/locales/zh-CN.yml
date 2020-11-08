@@ -569,8 +569,9 @@ zh-CN:
         title: 论坛通知
         new_discussion: 默认订阅我发起的讨论帖
         new_comment: 默认订阅我回复过的讨论帖
+        mention: 当在讨论中被提及的时发送通知
       conversation_defaults:
-        title: 私信通知
+        title: 通知设定
         starter: 默认订阅你发起的私信
         receiver: 默认订阅发送给你的私信
       save_button: 更新通知设置
@@ -894,6 +895,7 @@ zh-CN:
     allowed_elements_intro: "可以使用下列元素和属性。此规则应用于 HTML 以及 Markdown (转换到 HTML 后的代码)。"
     allowed_elements_extra_info: "空行将会自动转化为 p 或 br 元素，链接文本会自动转换为可点击链接。"
     allowed_css_intro: "下列CSS属性允许在所有元素使用。"
+    user_references_html: "你现在可以在 %{site_name} 使用 <code>@用户名</code> 或 <code>@\"用 户 名\"</code>（如果用户名含有空格）。"
     not_found_text: "404 - 页面未找到"
     not_found_title: "404 - 页面未找到"
     not_found_link_home: "返回首页"
@@ -1021,6 +1023,18 @@ zh-CN:
           你可以在 %{comment_url} 查看并回复这条信息。
 
           您收到的这条通知基于这条讨论的订阅设定。你可以访问 %{discussion_url} 来取消订阅，或访问 %{notification_preferences_url} 来管理通知设定。
+    comment_mentioned:
+      subject: "%{site_name} 的用户“%{commenter_name}” 提到了你。"
+      text: |
+          %{site_name} 的用户“%{commenter_name}” 在%{discussion_title}提到了你：
+
+          ---
+          %{comment_text}
+          ---
+
+          你可以访问 %{comment_url} 来查阅或回复。
+
+          您收到的这条通知基于这条讨论的订阅设定。你可以访问 %{notification_preferences_url} 来管理通知设定。
     new_conversation:
       subject: "在 %{site_name}收到了一条信息"
       text: |

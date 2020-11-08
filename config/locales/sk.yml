@@ -608,6 +608,7 @@ sk:
         title: Upozornenia na fóre
         new_discussion: Predvolene, prihlásiť do každej diskusie, ktorú som začal
         new_comment: Predvolene, prihlásiť do každej diskusie, do ktorej som napísal komentár
+        mention: Dostávať upozornenie, keď sa o vás niekto zmieni v diskusii
       conversation_defaults:
         title: Upozornenia na konverzácie
         starter: Predvolene, prihlásiť k odberu konverzácie, ktoré som začal/a
@@ -1022,6 +1023,7 @@ sk:
     allowed_elements_intro: "Nasledujúce elementy a atribúty sú povolené. To platí pre HTML aj Markdown (po konverzii na HTML)."
     allowed_elements_extra_info: "Prázdne znaky budú nahradené P alebo BR elementami. URL adresy budú automaticky klikateľné."
     allowed_css_intro: "Tieto CSS vlastnosti sú povolené pre všetky elementy."
+    user_references_html: "Môžete odkazovať a linkovať na iných používateľov %{site_name} vo formáte <code>@PouzivatelskeMenot</code> alebo <code>@\"Používateľské Meno\"</code> (ak používateľské meno obsahuje medzery)"
     not_found_text: "404 - stránka nenájdená."
     not_found_title: "404 - stránka nenájdená"
     not_found_link_home: "Prejsť na hlavnú stránku."
@@ -1149,6 +1151,18 @@ sk:
           Zobraziť a odpovedať na tento komentár môžete na %{comment_url}.
 
           Toto upozornenie ste dostali, pretože ste prihlásení na odber tejto diskusie. Pre odhlásenie prejdite na %{discussion_url}, alebo spravujte nastavenia upozornení na%{notification_preferences_url}.
+    comment_mentioned:
+      subject: "Používateľ stránky '%{commenter_name}' sa o vás zmienil na %{site_name}."
+      text: |
+          Do diskusie '%{discussion_title}' na %{site_name} bol pridaný komentár používateľom '%{commenter_name}', ktorý sa o vás zmienil.
+
+          ---
+          %{comment_text}
+          ---
+
+          Zobraziť a reagovať na komentár môžete tu %{comment_url}.
+
+          Toto upozornenie ste dostali, lebo ste vybrali, že chcete byť upozornení, keď sa niekto o vás zmieni. Nastavenia upozornení môžete spravovať tu %{notification_preferences_url}.
     new_conversation:
       subject: "Nová konverzácia na %{site_name}"
       text: |
