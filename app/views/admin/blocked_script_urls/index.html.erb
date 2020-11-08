@@ -11,6 +11,7 @@
     <tr>
       <th>ID</th>
       <th>URL</th>
+      <th>Prefix</th>
       <th>Public Reason</th>
       <th>Private Reason</th>
       <th></th>
@@ -21,6 +22,7 @@
       <tr>
         <td><%= blocked_script_url.id %></td>
         <td><%= blocked_script_url.url %></td>
+        <td><%= blocked_script_url.prefix ? 'Yes' : 'No' %></td>
         <td><%= blocked_script_url.public_reason %></td>
         <td><%= blocked_script_url.private_reason %></td>
         <td>
