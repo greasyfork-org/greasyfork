@@ -863,6 +863,7 @@ en:
         title: Forum notifications
         new_discussion: By default, subscribe to any discussions you start
         new_comment: By default, subscribe to any discussions you comment in
+        mention: Notify when you are mentioned in a discussion
       conversation_defaults:
         title: Conversation notifications
         starter: By default, subscribe to any conversations you start
@@ -1393,6 +1394,18 @@ en:
         You can view and reply to this comment at %{comment_url}.
 
         You received this notification because you are subscribed to this discussion. Visit %{discussion_url} to unsubscribe, or manage your notification preferences at %{notification_preferences_url}.
+    comment_mentioned:
+      subject: "User '%{commenter_name}' mentioned you on %{site_name}."
+      text: |
+        The discussion '%{discussion_title}' on %{site_name} received a comment by user '%{commenter_name}' that mentioned you:
+
+        ---
+        %{comment_text}
+        ---
+
+        You can view and reply to this comment at %{comment_url}.
+
+        You received this notification because you chose to be notified when you are mentioned. Manage your notification preferences at %{notification_preferences_url}.
     new_conversation:
       subject: "A new conversation on %{site_name}"
       text: |

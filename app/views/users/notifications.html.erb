@@ -18,6 +18,10 @@
       <%= f.check_box :subscribe_on_comment %>
       <%= f.label :subscribe_on_comment, t('users.notifications.discussion_defaults.new_comment'), class: 'radio-label' %>
     </div>
+    <div>
+      <%= f.check_box :notify_on_mention %>
+      <%= f.label :notify_on_mention, t('users.notifications.discussion_defaults.mention'), class: 'radio-label' %>
+    </div>
     <% if @user.discussion_subscriptions.any? %>
       <div>
         <%= check_box_tag :unsubscribe_all_discussions, '1' %>

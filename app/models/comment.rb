@@ -47,15 +47,22 @@ class Comment < ApplicationRecord
   end
 
   def send_notifications!
-    satn = script_authors_to_notify
+    users_received_notification = Set.new([poster])
 
+    satn = script_authors_to_notify
     satn.each do |author_user|
       ForumMailer.comment_on_script(author_user, self).deliver_later
     end
+    users_received_notification.merge(satn)
 
-    # Don't double-notify.
-    discussion.discussion_subscriptions.where.not(user: [poster] + satn).includes(:user).map(&:user).each do |user|
+    subscribed_users = discussion.discussion_subscriptions.where.not(user: users_received_notification).includes(:user).map(&:user)
+    subscribed_users.each do |user|
       ForumMailer.comment_on_subscribed(user, self).deliver_later
+    end
+    users_received_notification.merge(subscribed_users)
+
+    mentions.where.not(user: users_received_notification).includes(:user).where(users: { notify_on_mention: true }).map(&:user).uniq.each do |user|
+      ForumMailer.comment_on_mentioned(user, self).deliver_later
     end
   end
 

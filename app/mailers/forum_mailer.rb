@@ -36,4 +36,22 @@ class ForumMailer < ApplicationMailer
       end
     end
   end
+
+  def comment_on_mentioned(user, comment)
+    site_name = 'Greasy Fork'
+    locale = user.available_locale_code
+    mail(to: user.email, subject: t('mailers.comment_mentioned.subject', discussion_title: comment.discussion.display_title(locale: locale), site_name: site_name, locale: locale, commenter_name: comment.poster.name)) do |format|
+      format.text do
+        render plain: t('mailers.comment_mentioned.text',
+                        discussion_title: comment.discussion.display_title(locale: locale),
+                        site_name: site_name,
+                        commenter_name: comment.poster.name,
+                        comment_text: format_user_text_as_plain(comment.text, comment.text_markup),
+                        comment_url: comment.url,
+                        discussion_url: comment.discussion.url,
+                        notification_preferences_url: notifications_user_url(user, locale: locale),
+                        locale: locale)
+      end
+    end
+  end
 end

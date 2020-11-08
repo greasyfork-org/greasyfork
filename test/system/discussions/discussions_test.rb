@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class DiscussionsTest < ApplicationSystemTestCase
+  include ActionMailer::TestHelper
+
   test 'adding a discussion' do
     user = User.first
     login_as(user, scope: :user)
@@ -27,15 +29,19 @@ class DiscussionsTest < ApplicationSystemTestCase
     user = User.first
     mentioned_user1 = users(:geoff)
     mentioned_user2 = users(:junior)
+    mentioned_user1.update!(notify_on_mention: false)
+    mentioned_user2.update!(notify_on_mention: false)
 
     login_as(user, scope: :user)
     visit new_discussion_path(locale: :en)
     fill_in 'Title', with: 'discussion title'
     fill_in 'discussion_comments_attributes_0_text', with: 'Hey @Geoffrey what is up? I heard from @"Junior J. Junior, Sr." that you are named @Geoffrey!'
     choose 'Greasy Fork Feedback'
-    assert_difference -> { Discussion.count } => 1 do
-      click_button 'Post comment'
-      assert_content 'Hey @Geoffrey what is up? I heard from @"Junior J. Junior, Sr." that you are named @Geoffrey!'
+    assert_no_emails do
+      assert_difference -> { Discussion.count } => 1 do
+        click_button 'Post comment'
+        assert_content 'Hey @Geoffrey what is up? I heard from @"Junior J. Junior, Sr." that you are named @Geoffrey!'
+      end
     end
     assert_selector("a[href='#{user_path(mentioned_user1, locale: :en)}']", text: '@Geoffrey', count: 2)
     assert_link '@"Junior J. Junior, Sr."', href: user_path(mentioned_user2, locale: :en)
@@ -44,6 +50,23 @@ class DiscussionsTest < ApplicationSystemTestCase
     mentioned_user2.update!(name: 'Someone Else now')
     visit Discussion.last.url
     assert_link '@"Junior J. Junior, Sr."', href: user_path(mentioned_user2, locale: :en)
+  end
+
+  test 'adding a discussion mentioning a user with notifications' do
+    user = User.first
+    mentioned_user = users(:geoff)
+    mentioned_user.update!(notify_on_mention: true)
+
+    login_as(user, scope: :user)
+    visit new_discussion_path(locale: :en)
+    fill_in 'Title', with: 'discussion title'
+    fill_in 'discussion_comments_attributes_0_text', with: 'Hey @Geoffrey'
+    choose 'Greasy Fork Feedback'
+    assert_difference -> { Discussion.count } => 1 do
+      click_button 'Post comment'
+      assert_content 'Hey @Geoffrey'
+    end
+    assert_enqueued_email_with ForumMailer, :comment_on_mentioned, args: [mentioned_user, Comment.last]
   end
 
   test 'commenting on a discussion' do
@@ -81,6 +104,22 @@ class DiscussionsTest < ApplicationSystemTestCase
     end
 
     assert_not user.subscribed_to?(discussion)
+  end
+
+  test 'commenting with mention with notify' do
+    user = User.first
+    login_as(user, scope: :user)
+
+    mentioned_user = users(:geoff)
+    mentioned_user.update!(notify_on_mention: true)
+
+    discussion = discussions(:non_script_discussion)
+    visit discussion.url
+    fill_in 'comment_text', with: 'Hey @Geoffrey'
+    click_button 'Post reply'
+    assert_content 'Hey @Geoffrey'
+
+    assert_enqueued_email_with ForumMailer, :comment_on_mentioned, args: [mentioned_user, Comment.last]
   end
 
   test 'subscribing to a discussion' do
