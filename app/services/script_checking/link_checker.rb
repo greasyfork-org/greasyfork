@@ -57,18 +57,42 @@ module ScriptChecking
       end
 
       def redirect_url_pattern
-        Regexp.new(%r{https?://}i.to_s + Regexp.union(*RedirectServiceDomain.pluck(:domain)).to_s + %r{/[a-z0-9\-]+}i.to_s)
+        Regexp.union([
+                       Regexp.new(%r{https?://}i.to_s + Regexp.union(*RedirectServiceDomain.pluck(:domain)).to_s + %r{/[a-z0-9\-]+}i.to_s),
+                       %r{https?://www\.baidu\.com/link\?url=[0-9a-z\-&=_]+}i,
+                     ])
       end
 
       def resolve(url, remaining_tries: 5)
-        res = Net::HTTP.get_response(URI(url))
-        return url if res['location'].nil? || remaining_tries == 0
+        return url if remaining_tries == 0
 
-        resolve(res['location'], remaining_tries: remaining_tries - 1)
+        res = Net::HTTP.get_response(URI(url))
+
+        return resolve(res['location'], remaining_tries: remaining_tries - 1) if res['location'].present?
+
+        meta_refresh_url = find_meta_refresh(res) if res['content-type'] == 'text/html'
+
+        meta_refresh_url || url
       end
 
       def check_with_google_safe_browsing(urls)
         GoogleSafeBrowsing.check(urls)
+      end
+
+      def find_meta_refresh(response)
+        begin
+          html_doc = Nokogiri::HTML(response.body)
+        rescue StandardError
+          return nil
+        end
+
+        meta_refresh = html_doc.at_css('meta[http-equiv="refresh"]')&.attr('content')
+        return nil unless meta_refresh
+
+        _seconds, url = meta_refresh.split(';', 2)
+        return nil unless url
+
+        url.sub(/\AURL=/i, '').delete_prefix("'").delete_suffix("'")
       end
     end
   end
