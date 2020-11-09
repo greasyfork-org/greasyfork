@@ -13,7 +13,7 @@
 <%= form_tag(code_search_scripts_path, id: 'code-search', method: :get) do %>
   <h3><%=t('search.code_search.title')%></h3>
   <p><%=t('search.code_search.description')%></p>
-  <input type="search" name="c"><input class="search-submit" type="submit" value="🔎">
+  <input type="search" name="c"><% if current_user&.moderator? %><input id="code-search-include-deleted" type="checkbox" name="include_deleted" value="1"><label for="code-search-include-deleted">Include deleted</label> <% end %><input class="search-submit" type="submit" value="🔎">
 <% end %>
 
 <%= form_tag(users_path, id: 'user-search', method: :get) do %>
