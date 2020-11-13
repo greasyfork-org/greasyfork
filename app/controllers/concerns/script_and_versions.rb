@@ -51,7 +51,7 @@ module ScriptAndVersions
     return nil if script_id.nil?
 
     script_id = script_id.to_i
-    current_script = Script.includes(users: {}, license: {}, localized_attributes: :locale, compatibilities: :browser).find(script_id)
+    current_script = Script.includes(users: {}, license: {}, localized_attributes: :locale, compatibilities: :browser, script_applies_tos: :site_application).find(script_id)
     return [current_script, current_script.newest_saved_script_version] if version_id.nil?
 
     version_id = version_id.to_i
