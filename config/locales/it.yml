@@ -597,6 +597,7 @@ it:
         title: Notifiche del forum
         new_discussion: Come impostazione predefinita, iscriviti a tutte le discussioni che inizi
         new_comment: Come impostazione predefinita, iscriviti a tutte le discussioni che commenti
+        mention: Ricevi una notifica quando sei menzionato in una discussione
       conversation_defaults:
         title: Notifiche conversazioni
         starter: Come impostazione predefinita, iscriviti a tutte le conversazioni che inizi
@@ -1018,6 +1019,7 @@ it:
     allowed_elements_intro: "I seguenti elementi e attributi sono permessi. Si applica sia a HTML che a Markdown (dopo la conversione in HTML)."
     allowed_elements_extra_info: "Gli spazi bianchi verrano convertiti in elementi p o br. Gli URL verranno trasformati in link automaticamente."
     allowed_css_intro: "Le seguenti proprietà CSS sono consentite su tutti gli elementi."
+    user_references_html: "Puoi creare un riferimento e rimandare ad altri utenti di %{site_name} con il formato <code>@UserName</code> o <code>@\"User Name\"</code> (se il nome utente ha spazi)."
     not_found_text: "404 - pagina non trovata."
     not_found_title: "404 - Pagina Non Trovata."
     not_found_link_home: "Vai alla home."
@@ -1145,6 +1147,18 @@ it:
           Puoi vedere questo commento e rispondere su %{comment_url}.
 
           Hai ricevuto questa notifica perché sei iscritto a questa discussione. Visita %{discussion_url} per disiscriverti, o gestisci le tue preferenze per le notifiche su %{notification_preferences_url}.
+    comment_mentioned:
+      subject: "L'utente '%{commenter_name}' ti ha menzionato su %{site_name}."
+      text: |
+          La discussione '%{discussion_title}' si %{site_name} ha ricevuto un commento dall'utente '%{commenter_name}' che ti ha menzionato:
+
+          ---
+          %{comment_text}
+          ---
+
+          Puoi visualizzare e rispondere a questo commento su %{comment_url}.
+
+          Hai ricevuto questa notifica perché hai scelto di essere notificato quando vieni menzionato. Gestisci le tue preferenze per le notifiche su %{notification_preferences_url}.
     new_conversation:
       subject: "Una nuova conversazione su %{site_name}"
       text: |

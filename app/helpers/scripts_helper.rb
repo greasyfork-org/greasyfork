@@ -10,21 +10,22 @@ module ScriptsHelper
     is_libraries = action_name == 'libraries'
     # sets can have a different default
     sort_param_to_use = (sort == default_sort) ? nil : sort
+    rel = (set.present? || filter_locale.present?) ? :nofollow : nil
     if sort == params[:sort] && site == params[:site] && set == params[:set] && language == params[:language]
       l = label
       is_link = false
     elsif is_libraries
-      l = link_to label, libraries_scripts_path(sort: sort_param_to_use, q: params[:q], set: set)
+      l = link_to label, libraries_scripts_path(sort: sort_param_to_use, q: params[:q], set: set), rel: rel
     elsif is_minified
-      l = link_to label, minified_scripts_path(sort: sort_param_to_use)
+      l = link_to label, minified_scripts_path(sort: sort_param_to_use), rel: rel
     elsif is_code_search
-      l = link_to label, code_search_scripts_path(sort: sort_param_to_use, c: params[:c])
+      l = link_to label, code_search_scripts_path(sort: sort_param_to_use, c: params[:c]), rel: rel
     elsif site.nil?
-      l = link_to label, { sort: sort_param_to_use, site: nil, set: set, q: params[:q], language: language, filter_locale: filter_locale }
+      l = link_to label, { sort: sort_param_to_use, site: nil, set: set, q: params[:q], language: language, filter_locale: filter_locale }, rel: rel
     elsif params[:controller] == 'users'
-      l = link_to label, { sort: sort_param_to_use, site: site, set: set, language: language, filter_locale: filter_locale }
+      l = link_to label, { sort: sort_param_to_use, site: site, set: set, language: language, filter_locale: filter_locale }, rel: rel
     else
-      l = link_to label, by_site_scripts_path(sort: sort_param_to_use, site: site, set: set, q: params[:q], language: language, filter_locale: filter_locale)
+      l = link_to label, by_site_scripts_path(sort: sort_param_to_use, site: site, set: set, q: params[:q], language: language, filter_locale: filter_locale), rel: rel
     end
     tag.li(class: "list-option#{is_link ? '' : ' list-current'}") { l }
   end
