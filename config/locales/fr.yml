@@ -14,7 +14,7 @@ fr:
     created_date: "Créé"
     updated_date: "Mis à jour"
     total_installs: "Installations (total)"
-    daily_installs: "Installations (par jour)"
+    daily_installs: "Installations quotidiennes"
     ratings: "Notes"
     author_name: "Auteur"
     version_number: "Version"
@@ -176,7 +176,7 @@ fr:
     import: "Importer des scripts"
     new: "Publiez un script que vous avez écrit"
     new_css: "Publiez un style que vous avez écrit"
-    support_site: "Visiter le site d'entraide de l'auteur."
+    support_site: "Visitez le site l'auteur pour obtenir de l'aide"
     support_email: "Envoyer un e-mail à l'auteur pour obtenir de l'aide."
     contribution_no_amount: "Remercier %{author} en faisant un don."
     contribution_with_amount: "Remercier %{author} en faisant un don. Le don suggéré est de %{amount}"
@@ -421,6 +421,33 @@ fr:
     explain_user_scripts_html: "Les scripts utilisateurs vous permettent d'être le maître de votre expérience de navigation. Une fois installés, ils améliorent automatiquement les sites que vous visitez en ajoutant des fonctionnalités, qui permettent de faciliter leur utilisation, ou en supprimant les éléments ennuyeux. Les scripts utilisateurs sur %{site_name} sont écrits par d'autres utilisateurs et postés pour être partagés avec tout le monde. Ils sont installables gratuitement et sont faciles à utiliser."
     installing_step1_header: "Étape 1: installer un gestionnaire de script utilisateur"
     installing_step1_caption: "Tampermonkey sur Chrome"
+    installing_step1_description_html: >
+        <p>Pour utiliser des scripts utilisateurs, vous devez d'abord installer un
+        gestionnaire de scripts utilisateur. Le gestionnaire de scripts utilisateur
+        que vous pouvez utiliser dépend du navigateur que vous utilisez.</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} or %{chrome_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
+        or %{firefox_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey} or %{safari_userscripts_link:Userscripts}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} or %{opera_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>AdGuard: (aucun logiciel supplémentaire requis)</li>
+
+        </ul>
     installing_step2_header: "Étape 2: installer un script utilisateur"
     installing_step2_caption: "Un bouton d'installation d'un script utilisateur"
     installing_step2_description_html: >
@@ -517,6 +544,7 @@ fr:
     show_ads_description: "Soutenir %{site_name} en l'autorisant à vous afficher des publicités"
     show_sensitive_description: "Afficher les scripts avec du contenu adulte"
     preferred_markup_description: "Sera utilisé pour les nouveaux script et posts."
+    filter_locale_default_description: "Par défaut, seul la liste contienne les paramètres actuels"
     greasy_fork_scripts_link:
       one: "%{user_name} a aussi %{count} script sur Greasy Fork."
       other: "%{user_name} a aussi %{count} scripts sur Greasy Fork."
@@ -566,6 +594,7 @@ fr:
         title: Notifications du forum
         new_discussion: Par défaut, abonnez-vous à toutes les discussions que vous démarrez
         new_comment: Par défaut, abonnez-vous à toutes les discussions dans lesquelles vous commentez
+        mention: Recevez une notification lorsque vous êtes mentionné dans une discussion
       conversation_defaults:
         title: Notifications des conversations
         starter: Par défaut, abonnez-vous à toutes les conversations que vous démarrez
@@ -990,6 +1019,7 @@ fr:
     allowed_elements_intro: "Les éléments et attributs suivants sont autorisés. Cela s'applique à la fois au HTML et au Markdown (après conversion en HTML)"
     allowed_elements_extra_info: "Les sauts de ligne seront transformés en éléments <p> ou <br>. Les URL seront automatiquement transformées en liens."
     allowed_css_intro: "Les propriétés CSS suivantes sont autorisées sur tous les éléments."
+    user_references_html: "Vous pouvez référencer et créer un lien vers d'autres utilisateurs %{site_name} au format <code>@ UserName</code> ou <code>@ \"User Name\" </code> (si le nom d'utilisateur comporte des espaces)."
     not_found_text: "404 - Page introuvable."
     not_found_title: "404 - Page introuvable"
     not_found_link_home: "Aller à la page d'accueil."
@@ -1013,6 +1043,7 @@ fr:
         show_ads: "Afficher les publicités"
         show_sensitive: "Contenu pour adulte"
         preferred_markup: "Mise en forme préférée"
+        filter_locale_default: "Filtre locale"
       script:
         name: "Nom"
         description: "Description"
@@ -1116,6 +1147,18 @@ fr:
           Vous pouvez lire et répondre à ce commentaire là: %{comment_url}.
 
           Vous avez reçu cette notification car vous être inscrit à cette discussion. Visitez %{discussion_url} pour vous désinscrire, ou %{notification_preferences_url} pour régler vos préférences de notification.
+    comment_mentioned:
+      subject: "L'utilisateur '%{commenter_name}' vous a mentionné sur %{site_name}."
+      text: |
+          La discussion '%{discussion_title}' sur %{site_name} a reçu un commentaire de l'utilisateur '%{commenter_name}' qui vous mentionnait:
+
+          ---
+          %{comment_text}
+          ---
+
+          Vous pouvez afficher et répondre à ce commentaire à %{comment_url}.
+
+          Vous avez reçu cette notification car vous avez choisi d'être notifié lorsque vous êtes mentionné. Gérez vos préférences de notification sur %{notification_preferences_url}.
     new_conversation:
       subject: "Une nouvelle conversation sur %{site_name}"
       text: |
