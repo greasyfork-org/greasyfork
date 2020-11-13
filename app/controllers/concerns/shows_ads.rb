@@ -19,7 +19,10 @@ module ShowsAds
 
   def choose_ad_method_for_scripts(scripts)
     return nil unless ads_enabled?
-    return nil if scripts.count < 3
+    # #size, not #count, here because #count does things wrong with will_paginate, which is used when this is filtered
+    # by a ScriptSet.
+    # https://github.com/mislav/will_paginate/issues/449
+    return nil if scripts.size < 3
     return nil if scripts.any?(&:sensitive?)
 
     # return 'ga' if scripts.all?(&:adsense_approved)

@@ -88,6 +88,8 @@ module ScriptListings
                  .includes({ users: {}, script_type: {}, localized_attributes: :locale, script_delete_type: {} })
                  .paginate(page: params[:page], per_page: per_page)
       @scripts = self.class.apply_filters(@scripts, params, script_subset)
+      # Force a load as will be doing empty?, size, etc. and don't want separate queries for each.
+      @scripts = @scripts.load
     end
 
     respond_to do |format|
@@ -292,32 +294,6 @@ module ScriptListings
   end
 
   protected
-
-  def render_script_list(scripts, options = {})
-    @scripts = scripts
-    unless options && options[:skip_filters]
-      @scripts = @scripts.paginate(page: params[:page], per_page: per_page)
-      @scripts = self.class.apply_filters(@scripts, params, script_subset)
-    end
-
-    respond_to do |format|
-      format.html do
-        @feeds = { t('scripts.listing_created_feed') => { sort: 'created' }, t('scripts.listing_updated_feed') => { sort: 'updated' } }
-        @canonical_params = [:q, :page, :per_page, :sort]
-        @link_alternates = listing_link_alternatives
-        render :index
-      end
-      format.atom do
-        render :index
-      end
-      format.json do
-        render json: params[:meta] == '1' ? { count: @scripts.count } : @scripts.as_json(include: :users)
-      end
-      format.jsonp do
-        render json: params[:meta] == '1' ? { count: @scripts.count } : @scripts.as_json(include: :users), callback: clean_json_callback_param
-      end
-    end
-  end
 
   def listing_link_alternatives
     [
