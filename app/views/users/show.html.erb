@@ -172,7 +172,7 @@
           <li><%=t('script_sets.favorites_name')%> <%=link_to 'Edit', new_user_script_set_path(@user, :fav =>  1)%></li>
         <% end
         @user.script_sets.order(:name).select{|ss| !ss.favorite}.each do |ss| %>
-          <li><%=ss.name%>: <%=ss.description%> <%=link_to 'View scripts', scripts_path(:set => ss.id)%> <% if @same_user %><%=link_to 'Edit', edit_user_script_set_path(@user, ss)%><% end %></li>
+          <li><%=ss.name%>: <%=ss.description%> <%= link_to 'View scripts', scripts_path(set: ss.id), rel: :nofollow %> <% if @same_user %><%=link_to 'Edit', edit_user_script_set_path(@user, ss)%><% end %></li>
         <% end %>
       </ul>
     </section>

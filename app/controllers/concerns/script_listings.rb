@@ -123,6 +123,7 @@ module ScriptListings
                              else
                                :set
                              end
+        @bots = 'noindex' if [:set, :filter_locale, :locale_override, :per_page].any? { |name| params[name].present? }
         @ad_method = choose_ad_method_for_scripts(@scripts)
       end
       format.atom
