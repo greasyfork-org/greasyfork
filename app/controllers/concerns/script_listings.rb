@@ -83,6 +83,12 @@ module ScriptListings
         @scripts = Script.none.paginate(page: 1)
       end
     else
+      set = ScriptSet.find(params[:set])
+      if !current_user&.moderator? && set.user&.banned?
+        redirect_to scripts_path(locale: request_locale.code), status: :moved_permanently
+        return
+      end
+
       @scripts = Script
                  .listable(script_subset)
                  .includes({ users: {}, script_type: {}, localized_attributes: :locale, script_delete_type: {} })
