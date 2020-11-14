@@ -43,7 +43,10 @@ module UserTextHelper
       return if node_has_ancestor?(node, 'a')
       return if node_has_ancestor?(node, 'pre')
 
-      mentions.select { |mention| node.text.include?(mention.text) }.each do |mention|
+      # We can't #select the used mentions as node.text will change when we do the replacements.
+      mentions.each do |mention|
+        next unless node.text.include?(mention.text)
+
         replace_text_with_link(node, mention.text, mention.text, user_path(mention.user, locale: request_locale.code))
       end
     end

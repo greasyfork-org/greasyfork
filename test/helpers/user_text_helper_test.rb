@@ -55,4 +55,18 @@ class UserTextHelperTest < ActionView::TestCase
     user_references = detect_possible_mentions('hey @"user 1" - what is up?', 'markdown')
     assert_equal ['@"user 1"'], user_references.to_a
   end
+
+  test 'rendering multiple mentions' do
+    comment = Comment.new(text: 'There are 3 users involved here - you, @Geoffrey, and @"Timmy O\'Toole".', text_markup: 'markdown')
+    comment.construct_mentions(detect_possible_mentions(comment.text, comment.text_markup))
+    rendered = format_user_text(comment.text, comment.text_markup, mentions: comment.mentions)
+    expected = <<~HTML
+      <p>There are 3 users involved here - you, <a href="/en/users/3-geoffrey">@Geoffrey</a>, and <a href="/en/users/1-timmy-o-toole">@"Timmy O'Toole"</a>.</p>
+    HTML
+    assert_equal expected, rendered
+  end
+
+  def request_locale
+    locales(:english)
+  end
 end
