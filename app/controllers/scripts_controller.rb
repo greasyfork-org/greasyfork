@@ -871,8 +871,8 @@ class ScriptsController < ApplicationController
     present_key = now - (now % 300)
     past_key = present_key - 300
     [
-      Rails.cache.fetch("install-key-#{present_key}") { SecureRandom.hex(10) },
-      Rails.cache.fetch("install-key-#{past_key}") { SecureRandom.hex(10) },
+      Rails.cache.fetch("install-key-#{present_key}", expires_in: 15.minutes) { SecureRandom.hex(10) },
+      Rails.cache.fetch("install-key-#{past_key}", expires_in: 15.minutes) { SecureRandom.hex(10) },
     ]
   end
   helper_method :install_keys
