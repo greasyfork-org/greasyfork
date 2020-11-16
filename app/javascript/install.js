@@ -1,3 +1,5 @@
+sha1 = require('js-sha1');
+
 (function() {
   function onInstallClick(event) {
     var installLink = event.target;
@@ -7,8 +9,10 @@
         return;
       }
     }
+    let ping_key = sha1(installLink.getAttribute("data-ip-address") + installLink.getAttribute("data-script-id") + installLink.getAttribute("data-ping-key"));
+
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", event.target.getAttribute("data-ping-url"), true);
+    xhr.open("POST", event.target.getAttribute("data-ping-url") + "&ping_key=" + encodeURIComponent(ping_key), true);
     xhr.overrideMimeType("text/plain");
     xhr.send();
 

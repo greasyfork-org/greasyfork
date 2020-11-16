@@ -5,6 +5,7 @@ require 'cgi'
 require 'css_to_js_converter'
 require 'css_parser'
 require 'js_parser'
+require 'digest'
 
 class ScriptsController < ApplicationController
   include ScriptAndVersions
@@ -225,7 +226,7 @@ class ScriptsController < ApplicationController
       head 422
       return
     end
-    Script.record_install(script_id, ip)
+    Script.record_install(script_id, ip) if install_keys.any? { |install_key| Digest::SHA1.hexdigest(request.remote_ip + script_id + install_key) == params[:ping_key] }
     head 204
   end
 
@@ -863,4 +864,16 @@ class ScriptsController < ApplicationController
       @bots = 'noindex,follow'
     end
   end
+
+  # Keys are good for at least 5 minutes and at most 10 minutes after use.
+  def install_keys
+    now = Time.now.to_i
+    present_key = now - (now % 300)
+    past_key = present_key - 300
+    [
+      Rails.cache.fetch("install-key-#{present_key}") { SecureRandom.hex(10) },
+      Rails.cache.fetch("install-key-#{past_key}") { SecureRandom.hex(10) },
+    ]
+  end
+  helper_method :install_keys
 end
