@@ -203,10 +203,7 @@ class JsParser
           else
             applies_to_names << { text: MatchURI.get_tld_plus_1(uri.host), domain: true, tld_extra: false }
           end
-        rescue ArgumentError
-          Rails.logger.warn "Unrecognized pattern '#{p}'"
-          applies_to_names << { text: original_pattern, domain: false, tld_extra: false }
-        rescue URI::InvalidURIError
+        rescue ArgumentError, URI::InvalidURIError
           Rails.logger.warn "Unrecognized pattern '#{p}'"
           applies_to_names << { text: original_pattern, domain: false, tld_extra: false }
         end

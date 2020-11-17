@@ -5,7 +5,7 @@ module UsersHelper
       sort: params[:sort],
       banned: params[:banned],
       author: params[:author],
-    }.reject { |_k, v| v.nil? }
+    }.compact
 
     new_options = current_options.dup
 

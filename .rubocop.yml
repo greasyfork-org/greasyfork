@@ -16,9 +16,8 @@ Lint/EmptyWhen:
 Layout/LineLength:
   Enabled: false
 
-# https://github.com/rubocop-hq/rubocop/pull/8692#issuecomment-713772491
-Layout/TrailingWhitespace:
-  AllowInHeredoc: true
+Lint/DuplicateBranch:
+  Enabled: false
 
 Lint/SuppressedException:
   Enabled: false
@@ -56,6 +55,9 @@ Minitest/TestMethodName:
 Naming/MethodParameterName:
   MinNameLength: 2
 
+Naming/VariableNumber:
+  Enabled: false
+
 Rails/HasAndBelongsToMany:
   Enabled: false
 
@@ -73,6 +75,9 @@ Rails/SkipsModelValidations:
   Enabled: false
 
 Style/Documentation:
+  Enabled: false
+
+Style/DocumentDynamicEvalDefinition:
   Enabled: false
 
 Style/FormatStringToken:

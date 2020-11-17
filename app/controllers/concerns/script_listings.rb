@@ -276,7 +276,7 @@ module ScriptListings
     def get_sort(params, for_sphinx: false, set: nil, default_sort: nil)
       # sphinx has these defined as attributes, outside of sphinx they're possibly ambiguous column names
       column_prefix = for_sphinx ? '' : 'scripts.'
-      sort = params[:sort] || (!set.nil? ? set.default_sort : nil) || default_sort
+      sort = params[:sort] || (set.nil? ? nil : set.default_sort) || default_sort
       case sort
       when 'total_installs'
         return "#{column_prefix}total_installs DESC, #{column_prefix}id"

@@ -236,7 +236,7 @@ class CssParserAppliesToTest < ActiveSupport::TestCase
       @updateURL   http://example.net
       @var         text ip 'router ip' 192.168.1.1
       ==/UserStyle== */
-      
+
       @-moz-document url-prefix(http:///*[[ip]]*//) {
         a { color: red; }
       }

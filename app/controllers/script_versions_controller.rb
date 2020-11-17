@@ -35,7 +35,13 @@ class ScriptVersionsController < ApplicationController
 
     @script_version = ScriptVersion.new
 
-    if !params[:script_id].nil?
+    if params[:script_id].nil?
+      @script = Script.new(script_type_id: ScriptType::PUBLIC_TYPE_ID, language: params[:language] || 'js')
+      @script.authors.build(user: current_user)
+      @script_version.script = @script
+      ensure_default_additional_info(@script_version, current_user.preferred_markup)
+      @current_attachments = []
+    else
       @script = Script.find(params[:script_id])
       @script_version.script = @script
       previous_script = @script.script_versions.last
@@ -44,12 +50,6 @@ class ScriptVersionsController < ApplicationController
       ensure_default_additional_info(@script_version, current_user.preferred_markup)
       @script_version.not_js_convertible_override = @script.not_js_convertible_override
       @current_attachments = previous_script.attachments
-    else
-      @script = Script.new(script_type_id: ScriptType::PUBLIC_TYPE_ID, language: params[:language] || 'js')
-      @script.authors.build(user: current_user)
-      @script_version.script = @script
-      ensure_default_additional_info(@script_version, current_user.preferred_markup)
-      @current_attachments = []
     end
 
     if @script.new_record?

@@ -273,7 +273,7 @@ class Script < ApplicationRecord
     self.version = script_version.version
     self.not_js_convertible_override = script_version.not_js_convertible_override
 
-    self.contribution_url = !meta.key?('contributionURL') ? nil : meta['contributionURL'].find { |url| URI::DEFAULT_PARSER.make_regexp(%w[http https bitcoin]) =~ url }
+    self.contribution_url = meta.key?('contributionURL') ? meta['contributionURL'].find { |url| URI::DEFAULT_PARSER.make_regexp(%w[http https bitcoin]) =~ url } : nil
     self.contribution_amount = (!contribution_url.nil? && meta.key?('contributionAmount')) ? meta['contributionAmount'].first : nil
 
     self.support_url = if meta.key?('supportURL')

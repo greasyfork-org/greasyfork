@@ -86,9 +86,7 @@ class ScriptSetsController < ApplicationController
       r = set.add_child(script, exclusion: false)
     when 'ae'
       r = set.add_child(script, exclusion: true)
-    when 'ri'
-      r = set.remove_child(script)
-    when 're'
+    when 'ri', 're'
       r = set.remove_child(script)
     end
 
