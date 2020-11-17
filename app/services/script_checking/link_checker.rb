@@ -66,7 +66,11 @@ module ScriptChecking
       def resolve(url, remaining_tries: 5)
         return url if remaining_tries == 0
 
-        res = Net::HTTP.get_response(URI(url))
+        begin
+          res = Net::HTTP.get_response(URI(url))
+        rescue Errno::ECONNREFUSED
+          return url
+        end
 
         return resolve(res['location'], remaining_tries: remaining_tries - 1) if res['location'].present?
 
