@@ -12,7 +12,7 @@ end
 <%= link_to install_as_js ? t('scripts.install') : 'Install as user style', code_url, {
   class: 'install-link',
   'data-install-format' => install_as_js ? 'js' : 'css',
-  'data-ping-url' => install_ping_script_path(script, authenticity_token: session[:_csrf_token], locale_override: nil, jbtest: 1),
+  'data-ping-url' => install_ping_script_path(script, authenticity_token: session[:_csrf_token], locale_override: nil),
   'data-ip-address' => request.remote_ip,
   'data-script-id' => script.id,
   'data-ping-key' => install_keys.first,

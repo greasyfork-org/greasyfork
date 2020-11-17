@@ -14,7 +14,7 @@ class ScriptsController < ApplicationController
   MEMBER_AUTHOR_OR_MODERATOR_ACTIONS = [:delete, :do_delete, :undelete, :do_undelete, :derivatives, :admin, :update_locale, :request_duplicate_check].freeze
   MEMBER_MODERATOR_ACTIONS = [:mark, :do_mark, :do_permanent_deletion, :reject_permanent_deletion, :approve].freeze
   MEMBER_PUBLIC_ACTIONS = [:diff, :report, :accept_invitation].freeze
-  MEMBER_PUBLIC_ACTIONS_WITH_SPECIAL_LOADING = [:show, :show_code, :user_js, :meta_js, :user_css, :meta_css, :feedback, :install_ping, :stats, :sync_additional_info_form].freeze
+  MEMBER_PUBLIC_ACTIONS_WITH_SPECIAL_LOADING = [:show, :show_code, :user_js, :meta_js, :user_css, :meta_css, :feedback, :install_ping, :stats, :sync_additional_info_form, :ting].freeze
 
   before_action do
     case action_name.to_sym
@@ -56,7 +56,7 @@ class ScriptsController < ApplicationController
 
   before_action :check_read_only_mode, except: [:show, :show_code, :user_js, :meta_js, :user_css, :meta_css, :feedback, :stats, :diff, :derivatives, :index, :by_site]
 
-  skip_before_action :verify_authenticity_token, only: [:install_ping, :user_js, :meta_js, :user_css, :meta_css, :show, :show_code]
+  skip_before_action :verify_authenticity_token, only: [:install_ping, :ting, :user_js, :meta_js, :user_css, :meta_css, :show, :show_code]
 
   # The value a syncing additional info will have after syncing is added but before the first sync succeeds
   ADDITIONAL_INFO_SYNC_PLACEHOLDER = '(Awaiting sync)'.freeze
@@ -213,6 +213,10 @@ class ScriptsController < ApplicationController
 
   def meta_css
     handle_meta_request(:css)
+  end
+
+  def ting
+    head 200
   end
 
   def install_ping

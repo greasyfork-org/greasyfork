@@ -12,7 +12,7 @@ sha1 = require('js-sha1');
     let ping_key = sha1(installLink.getAttribute("data-ip-address") + installLink.getAttribute("data-script-id") + installLink.getAttribute("data-ping-key"));
 
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", event.target.getAttribute("data-ping-url") + "&ping_key=" + encodeURIComponent(ping_key) + "&ua=" + encodeURIComponent(navigator.userAgent), true);
+    xhr.open("POST", event.target.getAttribute("data-ping-url") + "&ping_key=" + encodeURIComponent(ping_key), true);
     xhr.overrideMimeType("text/plain");
     xhr.send();
 
@@ -26,6 +26,13 @@ sha1 = require('js-sha1');
     event.preventDefault();
   }
 
+  function onInstallMouseOver(event) {
+    let url = event.target.getAttribute("data-ping-url");
+    if (!url.endsWith('&mo=1')) {
+      event.target.setAttribute("data-ping-url", url + "&mo=1");
+    }
+  }
+
   function showPostInstall() {
     let postInstall = document.querySelector(".post-install");
     if (!postInstall) {
@@ -37,6 +44,7 @@ sha1 = require('js-sha1');
   function init() {
     document.querySelectorAll(".install-link").forEach(function(installLink) {
       installLink.addEventListener("click", onInstallClick);
+      installLink.addEventListener("mouseover", onInstallMouseOver);
     });
   }
 

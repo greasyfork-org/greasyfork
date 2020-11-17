@@ -68,6 +68,7 @@ Rails.application.routes.draw do
         get 'report'
         get 'stats'
 
+        get 'ting', locale: nil
         post 'install-ping', locale: nil
 
         post 'mark'
