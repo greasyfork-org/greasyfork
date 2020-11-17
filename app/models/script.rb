@@ -85,7 +85,7 @@ class Script < ApplicationRecord
   validate on: :create do |script|
     next if Rails.env.test?
 
-    errors.add(:base, :script_rate_limit) if RATE_LIMITS.any? { |period, count| script.users.map { |u| u.scripts.where(['created_at > ?', period.ago]).count }.sum >= count }
+    errors.add(:base, :script_rate_limit) if RATE_LIMITS.any? { |period, count| script.users.sum { |u| u.scripts.where(['created_at > ?', period.ago]).count } >= count }
   end
 
   MAX_LENGTHS = { name: 100, description: 500, additional_info: 50_000 }.freeze
