@@ -14,7 +14,7 @@ class ScriptsController < ApplicationController
   MEMBER_AUTHOR_OR_MODERATOR_ACTIONS = [:delete, :do_delete, :undelete, :do_undelete, :derivatives, :admin, :update_locale, :request_duplicate_check].freeze
   MEMBER_MODERATOR_ACTIONS = [:mark, :do_mark, :do_permanent_deletion, :reject_permanent_deletion, :approve].freeze
   MEMBER_PUBLIC_ACTIONS = [:diff, :report, :accept_invitation].freeze
-  MEMBER_PUBLIC_ACTIONS_WITH_SPECIAL_LOADING = [:show, :show_code, :user_js, :meta_js, :user_css, :meta_css, :feedback, :install_ping, :stats, :sync_additional_info_form, :ting].freeze
+  MEMBER_PUBLIC_ACTIONS_WITH_SPECIAL_LOADING = [:show, :show_code, :user_js, :meta_js, :user_css, :meta_css, :feedback, :install_ping, :stats, :sync_additional_info_form].freeze
 
   before_action do
     case action_name.to_sym
@@ -56,7 +56,7 @@ class ScriptsController < ApplicationController
 
   before_action :check_read_only_mode, except: [:show, :show_code, :user_js, :meta_js, :user_css, :meta_css, :feedback, :stats, :diff, :derivatives, :index, :by_site]
 
-  skip_before_action :verify_authenticity_token, only: [:install_ping, :ting, :user_js, :meta_js, :user_css, :meta_css, :show, :show_code]
+  skip_before_action :verify_authenticity_token, only: [:install_ping, :user_js, :meta_js, :user_css, :meta_css, :show, :show_code]
 
   # The value a syncing additional info will have after syncing is added but before the first sync succeeds
   ADDITIONAL_INFO_SYNC_PLACEHOLDER = '(Awaiting sync)'.freeze
@@ -215,10 +215,6 @@ class ScriptsController < ApplicationController
     handle_meta_request(:css)
   end
 
-  def ting
-    head 200
-  end
-
   def install_ping
     # verify for CSRF, but do it in a way that avoids an exception. Prevents monitoring from going nuts.
     unless verified_request?
@@ -230,7 +226,15 @@ class ScriptsController < ApplicationController
       head 422
       return
     end
-    Script.record_install(script_id, ip) if install_keys.any? { |install_key| Digest::SHA1.hexdigest(request.remote_ip + script_id + install_key) == params[:ping_key] }
+    if install_keys.any? { |install_key| Digest::SHA1.hexdigest(request.remote_ip + script_id + install_key) == params[:ping_key] }
+      passed_checks = PingRequestCheckingService.check(request)
+      if passed_checks.count >= 2
+        Script.record_install(script_id, ip)
+      else
+        Rails.logger.warn("Not recorded for script #{script_id} and IP #{ip} - only passed ping checks: #{passed_checks.join(', ')}")
+      end
+    end
+
     head 204
   end
 
