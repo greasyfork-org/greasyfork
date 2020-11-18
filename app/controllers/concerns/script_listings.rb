@@ -11,6 +11,15 @@ module ScriptListings
   end
 
   def index
+    if [:set, :filter_locale, :locale_override, :per_page].any? { |name| params[name].present? }
+      # Yandex doesn't seem to listen to noindex
+      if request.user_agent&.include?('YandexBot')
+        redirect_to scripts_path
+      else
+        @bots = 'noindex'
+      end
+    end
+
     is_search = params[:q].present?
 
     locale = request_locale
@@ -131,7 +140,6 @@ module ScriptListings
                              else
                                :set
                              end
-        @bots = 'noindex' if [:set, :filter_locale, :locale_override, :per_page].any? { |name| params[name].present? }
         @ad_method = choose_ad_method_for_scripts(@scripts)
       end
       format.atom
