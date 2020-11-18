@@ -37,7 +37,6 @@ class TopSitesService
         SQL
         Rails.logger.warn('Loading by_sites') if Greasyfork::Application.config.log_cache_misses
         by_sites = Script.connection.select_rows(sql)
-        Rails.logger.warn('Loading all_sites') if Greasyfork::Application.config.log_cache_misses
         all_sites = all_sites_count.values.to_a
         Rails.logger.warn('Combining by_sites and all_sites') if Greasyfork::Application.config.log_cache_misses
         # combine with "All sites" number
@@ -53,16 +52,18 @@ class TopSitesService
     end
 
     def all_sites_count
-      sql = <<-SQL.squish
-      SELECT
-        sum(daily_installs) install_count, count(distinct scripts.id) script_count
-      FROM scripts
-      WHERE
-        script_type_id = 1
-        AND script_delete_type_id is null
-        AND NOT EXISTS (SELECT * FROM script_applies_tos WHERE script_id = scripts.id)
-      SQL
-      return Script.connection.select_all(sql).first
+      return ApplicationController.cache_with_log('all_sites_count', expires_in: 10.minutes) do
+        sql = <<-SQL.squish
+        SELECT
+          sum(daily_installs) install_count, count(distinct scripts.id) script_count
+        FROM scripts
+        WHERE
+          script_type_id = 1
+          AND script_delete_type_id is null
+          AND NOT EXISTS (SELECT * FROM script_applies_tos WHERE script_id = scripts.id)
+        SQL
+        Script.connection.select_all(sql).first
+      end
     end
   end
 end
