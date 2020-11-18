@@ -15,9 +15,9 @@ module ScriptListings
       # Yandex doesn't seem to listen to noindex
       if request.user_agent&.include?('YandexBot')
         redirect_to scripts_path
-      else
-        @bots = 'noindex'
+        return
       end
+      @bots = 'noindex'
     end
 
     is_search = params[:q].present?
