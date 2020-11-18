@@ -143,6 +143,11 @@ class SessionsController < Devise::SessionsController
     super unless performed?
   end
 
+  def new
+    @bots = 'noindex'
+    super
+  end
+
   # Prevent session termination vulnerability
   # https://makandracards.com/makandra/53562-devise-invalidating-all-sessions-for-a-user
   def destroy
