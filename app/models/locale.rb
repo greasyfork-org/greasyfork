@@ -18,18 +18,19 @@ class Locale < ApplicationRecord
 
   # Returns the matching locales for the passed locale code, with locales with UI available first.
   def self.matching_locales(locale_code)
-    l = where(code: locale_code).order([:ui_available, :code])
-    return l unless l.empty?
-
+    locale_codes_to_look_up = [locale_code]
     if locale_code.include?('-')
-      locale_code = locale_code.split('-').first
-      l = where(code: locale_code).order([:ui_available, :code])
-      return l unless l.empty?
+      language_part_only = locale_code.split('-').first
+      locale_codes_to_look_up << language_part_only if language_part_only
+    else
+      language_part_only = locale_code
     end
 
-    return Locale.none if locale_code.nil?
+    # The dashed one is last alphabetically but first in our hearts.
+    locales = where(code: locale_codes_to_look_up).order(ui_available: :asc, code: :desc).load
+    return locales if locales.any?
 
-    return where(['code like ?', "#{locale_code}-%"]).order([:ui_available, :code])
+    return where('code like ?', "#{language_part_only}-%").order(:ui_available, :code)
   end
 
   def scripts?(script_subset)

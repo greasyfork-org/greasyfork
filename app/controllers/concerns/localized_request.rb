@@ -1,5 +1,6 @@
 module LocalizedRequest
   extend ActiveSupport::Concern
+  extend Memoist
 
   included do
     before_action :set_locale
@@ -7,8 +8,9 @@ module LocalizedRequest
   end
 
   def request_locale
-    @request_locale ||= Locale.find_by(code: I18n.locale)
+    Locale.find_by(code: I18n.locale)
   end
+  memoize :request_locale
 
   def set_locale
     # User chose "Help us translate" in the locale picker
@@ -28,7 +30,7 @@ module LocalizedRequest
     end
 
     # Redirect a logged-in user to their preferred locale, if it's available
-    if !current_user.nil? && !current_user.locale.nil? && current_user.locale.ui_available && params[:locale] != current_user.locale.code && (params[:locale_override].nil? || params[:locale].nil?)
+    if current_user&.locale_id && current_user.locale.ui_available && params[:locale] != current_user.locale.code && (params[:locale_override].nil? || params[:locale].nil?)
       redirect_to current_path_with_params(locale: current_user.locale.code, locale_override: nil), status: :found
       return
     end
@@ -75,25 +77,24 @@ module LocalizedRequest
   #   The top locale we can display.
   #   A locale the user would prefer more, but we don't support (can be nil)
   def detect_locale(current_user, accept_language)
-    lookup_locales = if !current_user.nil? && !current_user.locale.nil?
-                       [current_user.locale.code]
-                     else
-                       parse_accept_language(accept_language)
-                     end
+    return [current_user.locale, nil] if current_user&.locale&.ui_available
+
     top_displayable_locale = nil
-    top_undisplayable_locale = nil
-    lookup_locales.each do |locale_code|
+    top_undisplayable_locale = current_user&.locale
+
+    parse_accept_language(accept_language).each do |locale_code|
       locales = Locale.matching_locales(locale_code)
       locales.each do |l|
         if l.ui_available
           top_displayable_locale = l
           break
         end
-        top_undisplayable_locale = l if top_undisplayable_locale.nil?
+        top_undisplayable_locale ||= l
       end
       break unless top_displayable_locale.nil?
     end
-    top_displayable_locale = Locale.where(code: 'en').first if top_displayable_locale.nil?
+
+    top_displayable_locale = Locale.english if top_displayable_locale.nil?
     return [top_displayable_locale, top_undisplayable_locale]
   end
 
