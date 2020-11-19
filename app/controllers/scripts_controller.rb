@@ -229,6 +229,7 @@ class ScriptsController < ApplicationController
     if install_keys.any? { |install_key| Digest::SHA1.hexdigest(request.remote_ip + script_id + install_key) == params[:ping_key] }
       passed_checks = PingRequestCheckingService.check(request)
       if passed_checks.count >= 2
+        Rails.logger.warn("Recorded for script #{script_id} and IP #{ip} - passed ping checks: #{passed_checks.join(', ')}")
         Script.record_install(script_id, ip)
       else
         Rails.logger.warn("Not recorded for script #{script_id} and IP #{ip} - only passed ping checks: #{passed_checks.join(', ')}")
