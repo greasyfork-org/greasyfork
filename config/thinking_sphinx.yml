@@ -4174,10 +4174,12 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  socket: tmp/sockets/sphinxdev
+  socket: <%= ApplicationSettings['sphinx']['socket'] %>-dev
 test:
   <<: *defaults
-  socket: tmp/sockets/sphinxtest
+  socket: <%= ApplicationSettings['sphinx']['socket'] %>-test
 production:
   <<: *defaults
-  socket: /www/greasyfork/shared/tmp/sockets/sphinx
+  address: <%= ApplicationSettings['sphinx']['address'] %>
+  mysql41: <%= ApplicationSettings['sphinx']['mysql21'] %>
+  socket: <%= ApplicationSettings['sphinx']['socket'] %>
