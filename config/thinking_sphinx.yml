@@ -4174,11 +4174,12 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  socket: tmp/sockets/sphinxdev
+  socket: <%= ApplicationSettings['sphinx']['socket'] %>-dev
 test:
   <<: *defaults
-  socket: tmp/sockets/sphinxtest
+  socket: <%= ApplicationSettings['sphinx']['socket'] %>-test
 production:
   <<: *defaults
-  address: 192.168.149.153
-  mysql41: 9306
+  address: <%= ApplicationSettings['sphinx']['address'] %>
+  mysql41: <%= ApplicationSettings['sphinx']['mysql21'] %>
+  socket: <%= ApplicationSettings['sphinx']['socket'] %>
