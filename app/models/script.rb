@@ -473,6 +473,7 @@ class Script < ApplicationRecord
   def ban_all_authors!(moderator:, reason:, private_reason: nil)
     users.each do |user|
       user.ban!(moderator: moderator, reason: reason, private_reason: private_reason)
+      user.lock_all_scripts!(reason: reason, moderator: moderator, delete_type: ScriptDeleteType::BLANKED)
     end
   end
 
