@@ -13,7 +13,6 @@
   <% if current_user.administrator? %>
     <li><%= link_to 'Ad Approval', pending_admin_ads_path %></li>
     <li><%= link_to 'Stats Upload', admin_analytics_stats_path %></li>
-    <li><%=Script.connection.select_value('SELECT COUNT(*) FROM delayed_jobs WHERE last_error IS NULL')%> delayed_jobs pending, <%=Script.connection.select_value('SELECT COUNT(*) FROM delayed_jobs WHERE last_error IS NOT NULL')%> failed.</li>
 <% end %>
 </ul>
 
