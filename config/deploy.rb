@@ -11,9 +11,10 @@ set :sidekiq_roles, %w[worker]
 set :sidekiq_config, "#{current_path}/config/sidekiq.yml"
 set :sidekiq_env, 'production'
 set :init_system, :systemd
+set :thinking_sphinx_roles, 'workers'
 
 set :default_env, {
-  'PATH' => '$PATH:/www/sphinx-3.1.1/bin',
+  'PATH' => '$PATH:/www/sphinx-3.2.1/bin',
 }
 # set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 # set :rbenv_map_bins, %w{rake gem bundle ruby rails}
