@@ -4180,4 +4180,5 @@ test:
   socket: tmp/sockets/sphinxtest
 production:
   <<: *defaults
-  socket: /www/greasyfork/shared/tmp/sockets/sphinx
+  address: 192.168.149.153
+  mysql41: 9306
