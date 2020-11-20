@@ -4,8 +4,6 @@ ruby '2.6.6'
 
 gem 'bootsnap'
 gem 'daemons'
-gem 'delayed_job'
-gem 'delayed_job_active_record'
 gem 'devise'
 gem 'devise-i18n', git: 'https://github.com/tigrish/devise-i18n.git'
 gem 'diffy'
