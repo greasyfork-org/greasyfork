@@ -23,6 +23,7 @@ install:
   - npm install --save-dev webpack@4.44.2
   - npm install --save-dev webpack-cli
 before_script:
+  - cp test/travisconfig/application.yml config/application.yml
   - cp test/travisconfig/database.yml config/database.yml
   - cp test/travisconfig/secrets.yml config/secrets.yml
   - mysql -e 'create database greasyforktest'
