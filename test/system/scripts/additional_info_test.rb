@@ -40,13 +40,15 @@ class AdditionalInfoTest < ApplicationSystemTestCase
   end
 
   test 'changing just additional info reindexes' do
-    script = Script.find(1)
+    script = Script.find(11)
     login_as(script.users.first, scope: :user)
     visit new_script_script_version_url(script_id: script.id)
     fill_in 'Additional info', with: 'New, different content'
     assert_reindexes do
-      click_button 'Post new version'
-      assert_content 'New, different content'
+      assert_difference -> { ScriptVersion.count } => 1 do
+        click_button 'Post new version'
+        assert_content 'New, different content'
+      end
     end
   end
 end
