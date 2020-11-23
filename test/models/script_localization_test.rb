@@ -207,12 +207,16 @@ class ScriptLocalizationTest < ActiveSupport::TestCase
     script.apply_from_script_version(sv)
     script.script_versions << sv
 
-    Greasyfork::Application.config.enable_detect_locale = true
-    DetectLanguage.stub(:simple_detect, 'es') do
-      script.valid?
-      sv.valid?
-      sv.save!
-      script.save!
+    begin
+      Greasyfork::Application.config.enable_detect_locale = true
+      DetectLanguage.stub(:simple_detect, 'es') do
+        script.valid?
+        sv.valid?
+        sv.save!
+        script.save!
+      end
+    ensure
+      Greasyfork::Application.config.enable_detect_locale = false
     end
 
     assert_equal 'es', script.locale.code
