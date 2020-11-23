@@ -24,6 +24,8 @@ class ScriptVersion < ApplicationRecord
 
   strip_attributes only: [:changelog]
 
+  ThinkingSphinx::Callbacks.append(self, :script, behaviours: [:sql, :deltas], path: [:script])
+
   validates :code, presence: true, length: { minimum: 20, maximum: 2_000_000 }, on: :create
 
   # Code has to look code-y.
