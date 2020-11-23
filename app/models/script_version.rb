@@ -347,7 +347,7 @@ class ScriptVersion < ApplicationRecord
     c = parser.get_meta_block(rewritten_code)
     return nil if c.nil?
 
-    current_version = ScriptVersion.get_first_meta(c, 'version')
+    current_version = ScriptVersion.get_first_meta(c, 'version') || '0.1'
     return parser.inject_meta(c, { description: 'This script was deleted from Greasy Fork, and due to its negative effects, it has been automatically removed from your browser.', version: ScriptVersion.get_next_version(current_version), require: nil, icon: nil, resource: nil })
   end
 
