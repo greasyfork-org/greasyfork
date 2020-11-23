@@ -16,8 +16,10 @@ class UpdateTest < ApplicationSystemTestCase
       var foo = 1;
     JS
     fill_in 'Code', with: code
-    click_button 'Post new version'
-    assert_selector 'h2', text: 'A Test Update!'
+    assert_reindexes do
+      click_button 'Post new version'
+      assert_selector 'h2', text: 'A Test Update!'
+    end
     assert_selector 'dd', text: '1.3'
   end
 

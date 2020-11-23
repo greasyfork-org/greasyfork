@@ -64,6 +64,8 @@ class Script < ApplicationRecord
   scope :locked, -> { where(locked: true) }
   scope :not_locked, -> { where.not(locked: true) }
 
+  ThinkingSphinx::Callbacks.append(self, behaviours: [:sql, :deltas])
+
   # Must have a default name and description
   validates :default_name, presence: { message: :script_missing_name, unless: proc { |s| s.library? } }
   validates :name, presence: true, if: ->(s) { s.library? }

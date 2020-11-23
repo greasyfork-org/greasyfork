@@ -43,6 +43,8 @@ class User < ApplicationRecord
   has_and_belongs_to_many :conversations
   has_many :conversation_subscriptions, dependent: :destroy
 
+  ThinkingSphinx::Callbacks.append(self, :script, behaviours: [:sql, :deltas], path: [:scripts])
+
   before_destroy(prepend: true) do
     scripts.select { |script| script.authors.where.not(user_id: id).none? }.each(&:destroy!)
   end

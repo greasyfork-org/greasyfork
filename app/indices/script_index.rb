@@ -1,4 +1,6 @@
-ThinkingSphinx::Index.define :script, with: :active_record, delta: Rails.env.test? ? false : ThinkingSphinx::Deltas::SidekiqDelta do
+require 'thinking_sphinx/deltas/test_delta'
+
+ThinkingSphinx::Index.define :script, with: :active_record, delta: Rails.env.test? ? ThinkingSphinx::Deltas::TestDelta : ThinkingSphinx::Deltas::SidekiqDelta do
   # fields
   # indexes localized_names.attribute_value, :as => 'name'
   # indexes localized_descriptions.attribute_value, :as => 'description'
