@@ -367,4 +367,40 @@ class CssToJsConverterTest < ActiveSupport::TestCase
     CSS
     assert_not CssToJsConverter.convertible?(css)
   end
+
+  test 'unclosed -moz-doc' do
+    css = <<~CSS
+      /* ==UserStyle==
+       @name Fanfou Refine
+       @homepageURL T.B.D
+       @description Fanfou Style
+       @author shinemoon
+       @namespace mooninsky
+       @version 1.01
+      ==/UserStyle== */
+      @-moz-document domain("fanfou.com") {
+          #container {
+             width:960px!important;
+             max-width:80%;
+          }
+          #stream li{
+             font-family: FZYouHeiS 501L!important;
+             font-size:12px!important;
+             line-height:20px!important;
+             width:80%!important;
+          }
+          .label {
+             font-size:12px!important;
+          }
+          #goodapp, .sect {
+             display:none;
+          }
+          #PopupUpdate textarea {
+             font-family: FZYouHeiS 501L!important;
+             font-size:12px!important;
+             line-height:20px!important;
+          }
+    CSS
+    CssToJsConverter.convert(css)
+  end
 end

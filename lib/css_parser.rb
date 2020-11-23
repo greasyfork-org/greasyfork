@@ -142,7 +142,10 @@ class CssParser
 
           until bracket_count == 0 || s.eos?
             # Count opening and closing brackets. Would get totally borked by comments or brackets in strings.
-            bracket = s.scan_until(/[{}]/)[-1]
+            up_to_next_bracket = s.scan_until(/[{}]/)
+            break if up_to_next_bracket.nil? # Unclosed bracket, move on.
+
+            bracket = up_to_next_bracket[-1]
             if bracket == '{'
               bracket_count += 1
             else
