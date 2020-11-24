@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_08_034727) do
+ActiveRecord::Schema.define(version: 2020_11_24_014943) do
 
   create_table "GDN_AccessToken", primary_key: "AccessTokenID", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "Token", limit: 100, null: false
@@ -785,7 +785,7 @@ ActiveRecord::Schema.define(version: 2020_11_08_034727) do
     t.string "url", null: false
     t.string "public_reason", null: false
     t.string "private_reason", null: false
-    t.boolean "prefix", default: true, null: false
+    t.boolean "prefix", default: false, null: false
   end
 
   create_table "browsers", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
@@ -851,21 +851,6 @@ ActiveRecord::Schema.define(version: 2020_11_08_034727) do
     t.datetime "update_date", null: false
     t.string "ip", limit: 15, null: false
     t.index ["script_id", "ip"], name: "update_script_id_and_ip", unique: true
-  end
-
-  create_table "delayed_jobs", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
-    t.integer "priority", default: 0, null: false
-    t.integer "attempts", default: 0, null: false
-    t.text "handler", size: :medium, null: false
-    t.text "last_error", size: :medium
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
-    t.string "locked_by"
-    t.string "queue"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
 
   create_table "disallowed_attributes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
