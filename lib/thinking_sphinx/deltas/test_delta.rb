@@ -5,8 +5,11 @@ module ThinkingSphinx
   module Deltas
     class TestDelta < ThinkingSphinx::Deltas::DefaultDelta
       class_attribute :index_count, default: 0
+      class_attribute :delete_count, default: 0
 
-      def delete(index, instance); end
+      def delete(index, instance)
+        self.class.delete_count += 1
+      end
 
       def index(_index)
         self.class.index_count += 1

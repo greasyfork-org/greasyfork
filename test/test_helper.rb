@@ -53,5 +53,9 @@ module ActiveSupport
     def assert_reindexes(&block)
       assert_changes -> { ThinkingSphinx::Deltas::TestDelta.index_count }, &block
     end
+
+    def assert_index_not_removed(&block)
+      assert_no_changes -> { ThinkingSphinx::Deltas::TestDelta.delete_count }, &block
+    end
   end
 end

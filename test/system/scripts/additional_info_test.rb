@@ -45,9 +45,11 @@ class AdditionalInfoTest < ApplicationSystemTestCase
     visit new_script_script_version_url(script_id: script.id)
     fill_in 'Additional info', with: 'New, different content'
     assert_reindexes do
-      assert_difference -> { ScriptVersion.count } => 1 do
-        click_button 'Post new version'
-        assert_content 'New, different content'
+      assert_index_not_removed do
+        assert_difference -> { ScriptVersion.count } => 1 do
+          click_button 'Post new version'
+          assert_content 'New, different content'
+        end
       end
     end
   end
