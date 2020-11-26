@@ -132,7 +132,7 @@ class User < ApplicationRecord
 
   def to_param
     slug = slugify(name)
-    return id if slug.blank?
+    return id.to_s if slug.blank?
 
     "#{id}-#{slug}"
   end
