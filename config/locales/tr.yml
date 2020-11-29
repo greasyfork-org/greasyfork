@@ -461,6 +461,8 @@ tr:
         request_expired: "Kullanıcı silinemedi - talep süresi geçti."
         cancelled: "Silme işlemi iptal edildi."
         completed: "Hesap silindi."
+    notifications:
+      title: Bildirimler
   help:
     installing_user_scripts:
       title: 'Kullanıcı scriptleri nasıl yüklenir?'
@@ -549,6 +551,45 @@ tr:
     item_script_html: "Script: %{script_link}"
     item_deleted_script: "Silinmiş script %{id}"
     item_user_html: "Kullanıcı: %{user_link}"
+  reports:
+    new_report_title:
+      user: "Raporla"
+      comment: "%{user}tarafından yapılan yorumu raporla"
+    create_button: "Rapor oluştur"
+    report_user: "Kullanıcı raporla"
+    report_comment: "Yorum raporla"
+    report_message: "Mesaj raporla"
+    result_dismissed: "Bu rapor moderatör tarafından reddedildi."
+    result_upheld: "Bu rapor moderatör tarafından onaylanmıştı"
+    result_pending: "Bu rapor moderatör tarafından incelenmeyi bekliyor."
+  discussions:
+    comment_date: "Gönderildi: %{date}"
+    comment_edit_date: "Düzenlendi: %{date}"
+    edit_comment_link: "Düzenle"
+    edit_comment_header: "Yorumu düzenle"
+    delete_comment: "Sil"
+    delete_discussion: "Sil"
+    update_comment_submit: "Yorumu güncelle"
+    cancel_update_comment: "İptal"
+    ratings_short:
+      ok: "Tamam"
+    user_filter:
+      subscribed: "Takip edildi"
+    category_filter:
+      label: Kategori
+    read_filter:
+      all: Tümü
+    user_activity:
+      title: "Son yorumlar"
+    subscribe: Takip et
+    unsubscribe: Takibi bırak
+  conversations:
+    send_message: Mesaj gönder
+    conversation_list_title: Konuşamalar
+    no_conversations: Henüz hiç konuşmanız yok.
+    recent:
+      title: Son konuşmalar
+      more: Tüm konuşmaları göster
   common:
     error_preamble: "Ne gönderdiğinizde bazı sorunlar oldu.."
     allowed_elements_link: "(İzin verilen kodları gör.)"
@@ -590,6 +631,15 @@ tr:
         name: "İsim"
         description: "Açıklama"
         default_sort: "Varsayılan sıralama"
+      report:
+        reason: "Raporlama sebebi"
+      discussion:
+        category: "Kategori"
+        title: Başlık
+      conversation:
+        user_input: Kullanıcı
+      message:
+        content: Mesaj
   errors:
     messages:
       script_missing_name: "Gerekli - Bir @isim belirle"
@@ -604,6 +654,7 @@ tr:
       script_update_not_utf8: "yüklenen UTF-8 biçiminde olmalıdır"
       script_disallowed_require: "onaylanmamış harici script kullanıyor: %{code}"
       script_rate_limit: "Yayınlama sınırını geçtiniz. Daha sonra tekrar deneyin."
+      file_size_out_of_range: "boyut 200KB'den düşük olmak zorundadır"
   opensearch:
     short_name: "%{site_name} ara"
     description: "%{site_name} sitesinde kullanıcı scriptleri için ara."
