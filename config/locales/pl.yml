@@ -523,7 +523,7 @@ pl:
     author_email_notification_type:
       none: "Nie otrzymuj e-maili o nowych dyskusjach na temat twoich skryptów"
       discussion_only: "Otrzymuj e-maile o nowych dyskusjach na temat twoich skryptów"
-      discussion_and_comment: "Otrzymuj e-maile o nowych dyskusjach na temat twoich skryptów oraz gdy te dyskusje będą miały nowe komentarze."
+      discussion_and_comment: "Otrzymuj e-maile o nowych dyskusjach na temat twoich skryptów oraz gdy te dyskusje będą miały nowe komentarze"
     list_display_html:
       one: "%{user_link} — %{count} skrypt"
       few: "%{user_link} — %{count} skrypty"
@@ -607,6 +607,7 @@ pl:
         title: Powiadomienia forum
         new_discussion: Domyślnie subskrybuj wszystkie rozpoczęte przez ciebie dyskusje
         new_comment: Domyślnie subskrybuj wszystkie dyskusje, które komentujesz
+        mention: Otrzymuj powiadomienie, gdy zostaniesz wspomniany w dyskusji
       conversation_defaults:
         title: Powiadomienia o rozmowach
         starter: Domyślnie subskrybuj wszystkie rozpoczęte przez ciebie rozmowy
@@ -656,69 +657,6 @@ pl:
       post_new_script_link_text: 'udostępnić nowy skrypt'
     code_rules:
       title: "Zasady publikacji skryptów na %{site_name}"
-      content_html: >
-          <p>Tutaj znajdują się wymagania dotyczące skryptów publikowanych w %{site_name}.
-          Mające na celu utrzymanie %{site_name} bezpiecznym i użytecznym miejscem
-          dla skryptów użytkownika. Skrypty niespełniające tych wymagań mogą zostać
-          usunięte przez moderatorów %{site_name}.</p> <h4>Funkcjonalność</h4> <ul>
-
-          <li>Skrypty muszą zawierać opis tego, co robią oraz nie powinny celowo robić
-          innych rzeczy niezawartych w opisie. Użytkownik powinien wiedzieć, co robi
-          skrypt przed jego instalacją.</li>
-
-          <li>Skrypt musi mieć powód do bycia skryptem. Na przykład skrypt, który
-          po prostu przekierowuje użytkownika na stronę internetową, nie musi być
-          skryptem; może to być link.</li>
-
-          <li>Skrypty nie mogą wymagać od użytkowników wykonywania niezwiązanych działań,
-          takich jak wysyłanie płatności, subskrybowanie kanału lub polubienie strony,
-          aby skrypt działał.</li>
-
-          <li>Skrypty z możliwością ich monetyzacji (śledzenie, reklamy, koparki kryptowalut,
-          itd.) nie są zabronione, ale takie działania muszą być wyraźnie zaznaczone
-          w opisie skryptu lub dodatkowych informacjach.</li>
-
-          </ul> <h4>Kod</h4> <ul>
-
-          <li>Kod zamieszczony na tej stronie nie może być zaciemniany ani zminifikowany.
-          Dotyczy to także bundlerów takich jak webpack. Użytkownicy muszą mieć możliwość
-          podejrzenia i zrozumienia skryptu, zanim go zainstalują.</li>
-
-          <li>Biblioteki, których używa skrypt, powinny zostać dodane poprzez <code>@require</code>,
-          chyba że istnieje wyraźny techniczny powód, by tego nie robić. Jeśli kod
-          źródłowy biblioteki jest zawarty w kodzie skryptu, należy również dodać
-          informację o źródle biblioteki (np. komentarz zawierający adres URL i/lub
-          nazwę oraz wersję).</li>
-
-          <li>%{external_scripts_link:Korzystanie z zewnętrznego kodu JavaScript jest
-          ograniczone.}</li>
-
-          </ul> <h4>Prawa autorskie</h4> <ul>
-
-          <li>Twój skrypt musi szanować prawa autorskie innych osób. Obejmuje to sam
-          skrypt i wszystkie zasoby (na przykład obrazy), których używa. Jeśli zamierzasz
-          korzystać z cudzej zawartości, przestrzegaj ich postanowień licencyjnych
-          lub uzyskaj ich zgodę.</li>
-
-          <li>Nawet jeśli prawa autorskie nie są naruszone to ponowne publikowanie
-          skryptów, które znajdują się na %{site_name}, jest zabronione, chyba że
-          wprowadzają usprawnienia różniące się od oryginału.</li>
-
-          </ul> <h4>Inne</h4> <ul>
-
-          %{adult_content_requirement}
-
-          <li>Skrypty nie powinny sprawdzać dostępności aktualizacji częściej niż
-          raz dziennie. Należy pamiętać, że większość menedżerów skryptów użytkownika
-          obsługuje automatyczne aktualizacje, więc wykonywanie tego w skrypcie nie
-          jest konieczne.</li>
-
-          <li>Skrypty nie mogą zawierać <code>@include</code>, <code>@match</code>,
-          lub słów kluczowych, do których stron nie wprowadzają żadnej funkcjonalności.</li>
-
-          </ul> <p>Jeśli zauważysz skrypt, który nie przestrzega wyżej wymienionych
-          zasad, zgłoś go na stronie skryptu, przechodząc na podstronę Opinie, a następnie
-          klikając "zgłoś ten skrypt'".</p>
       adult_content_rule_html: "<li>Skrypty które zawierają treści dla dorosłych oraz dla stron które zawierają treści dla dorosłych muszą być oznaczone jako takie, aby użytkownicy mogli zdecydować czy chcą to zobaczyć.</li>"
     external_scripts:
       title: "Polityka %{site_name} dot. zewnętrznych skryptów"
@@ -1163,6 +1101,8 @@ pl:
           Możesz zobaczyć ten komentarz i odpowiedzieć na %{comment_url}.
 
           Otrzymano to powiadomienie, ponieważ subskrybujesz tę dyskusję. Odwiedź %{discussion_url} by odsubskrybować, lub zarządzaj ustawieniami powiadomień na %{notification_preferences_url}.
+    comment_mentioned:
+      subject: "Użytkownik '%{commenter_name}' wspomniał o tobie na %{site_name}."
     new_conversation:
       subject: "Nowa rozmowa na %{site_name}"
       text: |
