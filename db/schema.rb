@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_24_014943) do
+ActiveRecord::Schema.define(version: 2020_11_29_210520) do
 
   create_table "GDN_AccessToken", primary_key: "AccessTokenID", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "Token", limit: 100, null: false
@@ -729,7 +729,7 @@ ActiveRecord::Schema.define(version: 2020_11_24_014943) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "akismet_submissions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "akismet_submissions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "item_type", null: false
     t.bigint "item_id", null: false
     t.text "akismet_params", size: :medium, null: false
@@ -746,6 +746,15 @@ ActiveRecord::Schema.define(version: 2020_11_24_014943) do
     t.string "url", limit: 500
   end
 
+  create_table "antifeatures", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+    t.integer "script_id", null: false
+    t.integer "locale_id"
+    t.integer "antifeature_type", null: false
+    t.text "description"
+    t.index ["locale_id"], name: "index_antifeatures_on_locale_id"
+    t.index ["script_id"], name: "index_antifeatures_on_script_id"
+  end
+
   create_table "author_email_notification_types", id: :integer, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name", limit: 20, null: false
     t.string "description", limit: 100, null: false
@@ -758,7 +767,7 @@ ActiveRecord::Schema.define(version: 2020_11_24_014943) do
     t.index ["user_id"], name: "fk_rails_46e884287b"
   end
 
-  create_table "banned_email_hashes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "banned_email_hashes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "email_hash", null: false
     t.datetime "deleted_at", null: false
     t.datetime "banned_at"
@@ -817,7 +826,7 @@ ActiveRecord::Schema.define(version: 2020_11_24_014943) do
     t.index ["script_id"], name: "index_compatibilities_on_script_id"
   end
 
-  create_table "conversation_subscriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "conversation_subscriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.bigint "conversation_id", null: false
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -826,14 +835,14 @@ ActiveRecord::Schema.define(version: 2020_11_24_014943) do
     t.index ["user_id"], name: "index_conversation_subscriptions_on_user_id"
   end
 
-  create_table "conversations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "conversations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "stat_last_message_date"
     t.integer "stat_last_poster_id"
   end
 
-  create_table "conversations_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "conversations_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.bigint "conversation_id", null: false
     t.integer "user_id", null: false
     t.index ["conversation_id"], name: "fk_rails_fa156dfe4c"
@@ -869,11 +878,11 @@ ActiveRecord::Schema.define(version: 2020_11_24_014943) do
     t.boolean "slow_ban", default: false, null: false
   end
 
-  create_table "discussion_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "discussion_categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "category_key", limit: 20, null: false
   end
 
-  create_table "discussion_reads", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "discussion_reads", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.bigint "discussion_id", null: false
     t.integer "user_id", null: false
     t.datetime "read_at", null: false
@@ -975,7 +984,7 @@ ActiveRecord::Schema.define(version: 2020_11_24_014943) do
     t.index ["script_version_id"], name: "index_localized_script_version_attributes_on_script_version_id"
   end
 
-  create_table "mentions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "mentions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "mentioning_item_type", null: false
     t.bigint "mentioning_item_id", null: false
     t.integer "user_id", null: false
@@ -984,7 +993,7 @@ ActiveRecord::Schema.define(version: 2020_11_24_014943) do
     t.index ["user_id"], name: "fk_rails_1b711e94aa"
   end
 
-  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4", force: :cascade do |t|
+  create_table "messages", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "conversation_id", null: false
@@ -1323,6 +1332,8 @@ ActiveRecord::Schema.define(version: 2020_11_24_014943) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "antifeatures", "locales"
+  add_foreign_key "antifeatures", "scripts", on_delete: :cascade
   add_foreign_key "authors", "scripts", on_delete: :cascade
   add_foreign_key "authors", "users", on_delete: :cascade
   add_foreign_key "blocked_script_codes", "scripts", column: "originating_script_id", on_delete: :cascade

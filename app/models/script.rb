@@ -27,6 +27,7 @@ class Script < ApplicationRecord
   has_many :script_invitations, dependent: :destroy
   has_many :script_similarities, dependent: :destroy
   has_many :forum_discussions, foreign_key: 'ScriptID', inverse_of: :script
+  has_many :antifeatures, dependent: :destroy, autosave: true
 
   belongs_to :script_type
   belongs_to :script_sync_source, optional: true
@@ -315,6 +316,19 @@ class Script < ApplicationRecord
       end
     end
     update_children(:compatibilities, new_compatibility_data)
+
+    new_antifeature_data = []
+    meta.select { |key, _values| key.starts_with?('antifeature') }.each do |key, values|
+      values.each do |value|
+        _, locale_key = key.split(':', 2)
+        locale = locale_key.presence && Locale.find_by(code: locale_key)
+        type, description = value.split(/\s+/, 2)
+        next unless Antifeature.antifeature_types.include?(type)
+
+        new_antifeature_data << { locale: locale, antifeature_type: type, description: description }
+      end
+    end
+    update_children(:antifeatures, new_antifeature_data)
   end
 
   def newest_saved_script_version
