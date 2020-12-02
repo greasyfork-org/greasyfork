@@ -32,3 +32,40 @@
       </p>
   <% end %>
 <% end %>
+
+<% if script.antifeatures.any? %>
+  <div id="preinstall-modal" class="modal micromodal-slide" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+      <div class="modal__container" role="dialog" aria-modal="true">
+        <header class="modal__header" aria-labelledby="preinstall-modal-title">
+          <h3 class="modal__title" id="preinstall-modal-title">
+            This script contains antifeatures
+          </h3>
+          <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+        </header>
+        <main class="modal__content" id="preinstall-modal-content">
+          <% script.antifeatures.each do |antifeature| %>
+            <p>
+              <% case antifeature.antifeature_type %>
+              <% when 'ads' %>
+                  This script will <b>inject ads</b> on the sites you visit.
+              <% when 'tracking' %>
+                  This script contains code that will <b>track your browsing</b>.
+              <% when 'miner' %>
+                  This script contains a cryptominer which will <b>use your device's resources</b> when active.
+              <% end %>
+              <% if antifeature.description %>
+                The author of this script explains:
+                <q><%= antifeature.description %></q>
+              <% end %>
+            </p>
+          <% end %>
+        </main>
+        <footer class="modal__footer">
+          <button class="modal__btn" data-micromodal-close aria-label="Close this dialog window">Cancel</button>
+          <button class="modal__btn modal__btn-primary" data-micromodal-close data-micromodal-accept>Install script</button>
+        </footer>
+      </div>
+    </div>
+  </div>
+<% end %>

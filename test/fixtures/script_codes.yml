@@ -227,3 +227,17 @@ copy_origin:
     // ==/UserScript==
     some.unique[value]
   code_hash: 281bb514bd0dc57cddb83702bf0fbeda28756701
+
+antifeatures:
+  id: 21
+  code: |
+    // ==UserScript==
+    // @name A Test Update!
+    // @description Unit test.
+    // @version 1.2
+    // @namespace http://greasyfork.local/users/1
+    // @include *
+    // @antifeature ads this has ads
+    // ==/UserScript==
+    var foo;
+  code_hash: 281bb514bd0dc57cddb83702bf0fbeda28756701
