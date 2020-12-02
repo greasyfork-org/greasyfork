@@ -44,7 +44,7 @@
           <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
         </header>
         <main class="modal__content" id="preinstall-modal-content">
-          <% script.antifeatures.each do |antifeature| %>
+          <% script.best_antifeatures_for_locale(request_locale).each do |antifeature| %>
             <p>
               <% case antifeature.antifeature_type %>
               <% when 'ads' %>

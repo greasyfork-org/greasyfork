@@ -538,6 +538,12 @@ class Script < ApplicationRecord
     update(consecutive_bad_ratings_at: nil) if consecutive_bad_ratings_at
   end
 
+  def best_antifeatures_for_locale(locale)
+    antifeatures.group_by(&:antifeature_type).values.map do |afs|
+      afs.find { |af| af.locale == locale } || afs.find { |af| af.locale.nil? } || afs.first
+    end
+  end
+
   private
 
   def url_helpers
