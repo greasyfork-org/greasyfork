@@ -35,16 +35,13 @@ class Report < ApplicationRecord
 
       case item
       when User, Message
-        reported_user.ban!(moderator: moderator, reason: delete_reason, ban_related: true)
+        reported_user.ban!(moderator: moderator, reason: delete_reason, delete_comments: delete_comments, delete_scripts: delete_scripts, ban_related: true)
       when Comment
-        reported_user.ban!(moderator: moderator, reason: delete_reason, ban_related: true) if ban_user
+        reported_user.ban!(moderator: moderator, reason: delete_reason, delete_comments: delete_comments, delete_scripts: delete_scripts, ban_related: true) if ban_user
         item.soft_destroy!(by_user: moderator) unless item.soft_deleted?
       else
         raise "Unknown report item #{item}"
       end
-
-      reported_user.delete_all_comments!(by_user: moderator) if delete_comments
-      reported_user.lock_all_scripts!(reason: delete_reason, moderator: moderator, delete_type: ScriptDeleteType::BLANKED) if delete_scripts
 
       update!(result: RESULT_UPHELD)
       reporter&.update_trusted_report!
