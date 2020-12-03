@@ -67,6 +67,19 @@ show_report_thread = defined?(show_report_thread) && show_report_thread
                 "<%= truncate(report.details, length: 100) %>"
               </i>
             <% end %>
+            <% if current_user&.moderator? && report.akismet? %>
+              <%= form_with(model: report, url: resolve_delete_script_script_report_path(report.script, report), method: :patch, local: true, html: {style: 'display: inline;'}) do |f| %>
+                <% report.script.users.each do |user| %>
+                  <% unless user.banned? %>
+                    <input id="ban-<%= user.id %>" name="ban_users[]" type="hidden" value="<%= user.id %>">
+                  <% end %>
+                  <input id="delete-<%= user.id %>" name="delete_users[]" type="hidden" value="<%= user.id %>">
+                  </p>
+                <% end %>
+                <%= hidden_field_tag :return_to, request.fullpath %>
+                <%= f.submit 'Delete and ban' %>
+              <% end %>
+            <% end %>
           </li>
         <% end %>
       </ul>

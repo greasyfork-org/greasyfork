@@ -49,4 +49,8 @@ class ScriptReport < ApplicationRecord
   def actionable?
     !unauthorized_code? || created_at < UNAUTHORIZED_CODE_WAIT_PERIOD.ago
   end
+
+  def akismet?
+    auto_reporter == 'akismet'
+  end
 end

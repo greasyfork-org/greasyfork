@@ -100,7 +100,7 @@ class ScriptReportsController < ApplicationController
     end
 
     flash[:notice] = 'Script has been deleted.'
-    redirect_to root_path
+    redirect_to clean_redirect_param(:return_to) || root_path
   end
 
   def dismiss
