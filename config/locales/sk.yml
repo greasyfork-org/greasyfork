@@ -658,67 +658,6 @@ sk:
       post_new_script_link_text: 'poslať nový skript'
     code_rules:
       title: "Pravidlá pre poslané skripty na %{site_name}"
-      content_html: >
-          <p>Toto sú požiadavky pre skripty zverejnené na %{site_name}. Tie sú určené
-          na udržanie %{site_name} ako bezpečné a užitočné miesto pre používateľské
-          skripty. Akýkoľvek skript, ktorý nespĺňa tieto požiadavky môže byť odstránený
-          moderátorom %{site_name}. </p> <h4>Funkčnosť</h4> <ul>
-
-          <li>Skripty musia obsahovať popis toho, čo robia a nemôžu robiť neprimerane
-          iné veci ako v popise. Používatelia musia vedieť čo skript robí ešte pred
-          jeho inštaláciou.</li>
-
-          </li>Skripty musia mať dôvod, prečo sú skriptami. Napríklad skript, ktorý
-          odkazuje používateľa na stránku nemusí byť skript, môže to byť odkaz.</li>
-
-          <li>Skripty nemôžu od používateľa, pre funkčnosť, vyžadovať nesúvisiace
-          akcie ako sú posielanie platby, prihlasovanie k odberu kanála alebo lajkovanie
-          stránky.</li>
-
-          <li>Skripty s monetizačnými metódami (sledovacie, reklamné, ťažobné, atď.)
-          nie sú zakázané, ale autor musí túto skutočnosť zverejniť viditeľne v popise
-          skriptu alebo doplňujúcich informáciách.</li>
-
-          </ul> <h4>Kód</h4> <ul>
-
-          <li>Kód odoslaný na túto stránku nemôže byť obfuskovaný alebo minifikovaný.
-          Používatelia musia mať možnosť preskúmať a pochopiť skript pred jeho inštaláciou.
-          Ak je skript zabalený  nástrojom ako je webpack, vo výsledku musí byť v
-          neminifikovanej podobe</li>
-
-          <li>Knižnice, ktoré skript používa by mali byť vyžiadané pomocou <code>@require</code>,
-          pokiaľ neexistuje opodstatnený technický dôvod, prečo to neurobiť. V prípade,
-          že knižnice sú zahrnuté inline, musia obsahovať informácie ako zdroj knižnice
-          (napr. komentár označujúci URL a/alebo názov a verziu).</li>
-
-          <li>%{external_scripts_link:Použitie externých JS je obmedzené.}</li>
-
-          </ul> <h4>Autorské práva</h4> <ul>
-
-          <li>Váš skript musí rešpektovať autorské práva ostatných. Teda skript samotný
-          aj jeho zdroje (napr. obrázky), ktoré využíva. Ak máte v úmysle použiť obsah
-          niekoho iného, riaďte sa licenčnými podmienkami alebo získajte jeho súhlas
-          predtým ako tak urobíte.</li>
-
-          <li>Aj v prípadoch, ktoré nie sú v rozpore s autorskými právami, zverejňovanie
-          skriptov, ktoré sa už nachádzajú na %{site_name} nie je povolené, aj keď
-          sú lepšie ako pôvodné.</li>
-
-          </ul> <h4>Ostatné</h4> <ul>
-
-          %{adult_content_requirement}
-
-          <li>Skripty nemôžu kontrolovať aktualizácie častejšie ako raz za deň. Uvedomte
-          si, že väčšina správcov používateľských skriptov riadi automatickú aktualizáciu,
-          takže to nie je potrebné robiť v skripte.</li>
-
-          <li>Skripty nemôžu obsahovať <code>@include</code> s, <code>@match</code>es,
-          alebo kľúčové slová pre stránky, ktoré neposkytujú funkčnosť.</li>
-
-          </ul> <p>Ak zbadáte skript, ktoré nespĺňa tieto parametre, prosím, nahláste
-          ho na stránke spätnej väzby pre tento skript, začatím diskusie a vyberte
-          voľbu "Nahlásiť skript".</p>
-      adult_content_rule_html: "<li>Skripty, ktoré majú obsah pre dospelých alebo stránky s obsahom pre dospelých musia byť takto označené a umožniť používateľom, či ich chcú vidieť.</li>"
     external_scripts:
       title: "Zásady %{site_name} používania externých skriptov"
       content_html: >
