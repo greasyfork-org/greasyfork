@@ -935,36 +935,24 @@ en:
     code_rules:
       # title for the rules page
       title: "%{site_name}'s rules for posted scripts"
-      # content of the rules page.
-      content_html: >
-        <p>These are the requirements for scripts posted to %{site_name}. These are intended to keep %{site_name} a safe and useful place for user scripts. Any script falling outside these requirements may be deleted by %{site_name} moderators.</p>
-        <h4>Functionality</h4>
-        <ul>
-          <li>Scripts must include a description of what they do and may not do things unreasonably outside of this description. Users must know what a script will do before installing it.</li>
-          <li>Scripts must have a reason to be a script. For example, a script that just directs a user to a website doesn't need to be a script; it could be a link.</li>
-          <li>Scripts must not require users to perform an unrelated action, such as sending a payment, subscribing to a channel, joining a group, or liking a page, for the script to be functional, in full or partially.</li>
-          <li>Scripts with monetization methods (tracking, ads, miners, etc.) are not forbidden, but the author must disclose this prominently in the script description or additional info.</li>
-        </ul>
-        <h4>Code</h4>
-        <ul>
-          <li>Code posted to this site must not be obfuscated or minified. Users must be given the opportunity to inspect and understand a script before installing it. If the script is bundled by a tool such as webpack, it must be output in non-minified form.</li>
-          <li>Libraries that a script uses should be <code>@require</code>-d, unless there's a valid technical reason not to do so. In the case that a library is included inline, it must include information as to the source of the library (e.g. a comment indicating URL and/or name and version).</li>
-          <li>%{external_scripts_link:Use of external JavaScript is limited.}</li>
-        </ul>
-        <h4>Copyright</h4>
-        <ul>
-          <li>Your script must respect others' copyrights. This includes the script itself and any resources (for example images) it uses. If you intend on using someone else's content, abide by their licensing terms or get their permission before doing so.</li>
-          <li>Even in cases not violating the copyright rule, reposts of scripts that are already on %{site_name} are not allowed unless they are improving upon the original.</li>
-        </ul>
-        <h4>Miscellaneous</h4>
-        <ul>
-          %{adult_content_requirement}
-          <li>Scripts must not check for updates at a rate higher than once per day. Note that most user script managers will handle automatic updates, so doing it in the script is unnecessary.</li>
-          <li>Scripts must not include <code>@include</code>s, <code>@match</code>es, or keywords for sites they do not provide functionality on.</li>
-        </ul>
-        <p>If you notice a script that falls outside of these parameters, please report it by going to the Feedback link for that script and choosing the "Report script" option.</p>
-      # optional part of the rules page content for sites that disallow adult content
-      adult_content_rule_html: "<li>Scripts that include adult content or are for sites with adult content must be marked as such to allow other users the option of whether to see them.</li>"
+      preamble: These are the requirements for scripts posted to %{site_name}. These are intended to keep %{site_name} a safe and useful place for user scripts. Any script falling outside these requirements may be deleted by %{site_name} moderators.
+      functionality_header: Functionality
+      description: Scripts must include a description of what they do and may not do things unreasonably outside of this description. Users must know what a script will do before installing it.
+      reason: Scripts must have a reason to be a script. For example, a script that just directs a user to a website doesn't need to be a script; it could be a link. Scripts that use a web service to perform an action on the current page (e.g. to convert it in some way) are allowed.
+      unrelated: Scripts must not require users to perform an unrelated action, such as sending a payment, subscribing to a channel, joining a group, or liking a page, for the script to be functional, in full or partially.
+      monetization: Scripts with monetization methods (tracking, ads, miners, etc.) are not forbidden, but the author must disclose this prominently in the script description or additional info.
+      code_header: Code
+      obfuscation: Code posted to %{site_name} must not be obfuscated or minified. Users must be given the opportunity to inspect and understand a script before installing it. If the script is bundled by a tool such as webpack, it must be output in non-minified form.
+      libraries_html: Libraries that a script uses should be <code>@require</code>-d, unless there's a valid technical reason not to do so. In the case that a library is included inline, it must include information as to the source of the library (e.g. a comment indicating URL and/or name and version).
+      updates: Scripts must not check for updates at a rate higher than once per day. Note that most user script managers will handle automatic updates, so doing it in the script is unnecessary. Scripts should also not dynamically inject another %{site_name}-hosted script into a page, as this bypasses caching in user script managers.
+      external_js: "%{external_scripts_link:Use of external JavaScript is limited.}"
+      copyright_header: Copyright
+      licensing: Your script must respect others' copyrights. This includes the code itself and any resources (for example images) it uses. If you intend on using someone else's content, abide by their licensing terms or get their permission before doing so.
+      reposts: Even in cases not violating the copyright rule, reposts of scripts that are already on %{site_name} are not allowed unless they are improving upon the original.
+      miscellaneous_header: Miscellaneous
+      keywords_html: Scripts must not include <code>@include</code>s, <code>@match</code>es, or keywords for sites they do not provide functionality on.
+      adult_content_rule: Scripts that include adult content or are for sites with adult content must be marked as such to allow other users the option of whether to see them.
+      reporting: If you notice a script that falls outside of these parameters, please report it by going to the Feedback link for that script and choosing the "Report script" option.
     external_scripts:
       # title of the external script rules page
       title: "%{site_name}'s policy on external scripts"
