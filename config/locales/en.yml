@@ -531,6 +531,21 @@ en:
       js: "Post a new script"
       css: "Post a new style"
     update_title: "Post a new version of %{script}"
+    antifeatures:
+      warning_title: This script contains antifeatures
+      author_explanation_intro: "The author of this script explains:"
+      types:
+        ads:
+          title: Ads
+          description_html: This script will <b>inject ads</b> on the sites you visit.
+        tracking:
+          title: Tracking
+          description_html: This script contains code that will <b>track your browsing</b>.
+        miner:
+          title: Cryptominer
+          description_html: This script contains a cryptominer which will <b>use your device's resources</b> when active.
+      install_anyway: Install script
+      cancel_install: Cancel
   script_sets:
     # description of script sets on edit page
     description: "Script sets let you create a customized list of scripts to browse Greasy Fork with. You can add scripts to your set by including individual scripts, other users' sets, or automatically generated sets. You can also exclude scripts from your set with the same methods."
