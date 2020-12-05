@@ -649,6 +649,8 @@ pl:
       contributionAmount_html: "Sugerowana kwota dotacji, używana wraz z <code>@contributionURL</code>."
       compatible_html: "Oznacza ten skrypt jako kompatybilny z przeglądarką. Informacje o zgodności zostaną pokazane na stronie skryptu. Uwagi dotyczące zgodności mogą zostać dołączone w formacie<code>@compatible firefox Należy wyłączyć blokowanie wyskakujących okien.</code>. Rozpoznawane przeglądarki to: %{browsers}."
       incompatible_html: "Oznacza ten skrypt jako niezgodny z przeglądarką. Informacje o kompatybilności zostaną wyświetlone na stronie skryptu. Opcjonalne komentarze dotyczące kompatybilności mogą zostać dołączone w formacie <code>@incompatible firefox Niezgodne od Firefox'a w wersji 23</code>. Rozpoznawane przeglądarki to: %{browsers}."
+      antifeature_html: "Ujawnia funkcje skryptu, które mają przynieść korzyść autorowi, a nie użytkownikowi. Format klucza to <code>@antifeature typ opis</code>. %{site_name} zrozumie następujące typy: <code>ads</code> (skrypt wyświetla reklamy użytkownikowi), <code>tracking</code> (skrypt śledzi aktywność użytkownika), and <code>miner</code> (skrypt zawiera koparkę kryptowalut). Inne typy są ignorowane, niemniej jednak skrypt musi przestrzegać %{code_rules_link:zasad %{site_name}}. Opis jest opcjonalny."
+      antifeature_localized_html: "<code>@antifeature</code> opisany w innym języku, gdzie XX oznacza <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">dwuliterowy kod ISO 639-1</a>, a YY jest opcjonalnym <a href=\"https://www.iso.org/obp/ui/#search\">kodem kraju ISO 3166</a>. Nadpisuje <code>@antifeature</code> gdy użytkownik przegląda w pasującym języku."
     writing_user_scripts:
       title: "Jak pisać skrypty użytkownika"
       content_html: "<p>Pisanie skryptów użytkownika wymaga znajomości JavaScriptu. <a href=\"http://wiki.greasespot.net/Tutorials\">Poradniki na Wiki GreaseSpot</a> powinny Ci dać rozbieg na JavaScript zarówno ogólnie, jak i relatywnie do skryptów użytkownika. Inspekcja skryptów innych osób może być pomocna. Zainteresuj się %{code_rules_link} i %{meta_keys_link}. Jeśli potrzebujesz pomocy z tworzeniem Twojego skryptu, możesz %{ask_in_forum_link}.</p><p>Aby udostępniać na %{site_name}, musisz stworzyć konto. Z Twojej %{user_page_link} możesz %{post_new_script_link}.</p>"
@@ -657,7 +659,26 @@ pl:
       post_new_script_link_text: 'udostępnić nowy skrypt'
     code_rules:
       title: "Zasady publikacji skryptów na %{site_name}"
-      adult_content_rule_html: "<li>Skrypty które zawierają treści dla dorosłych oraz dla stron które zawierają treści dla dorosłych muszą być oznaczone jako takie, aby użytkownicy mogli zdecydować czy chcą to zobaczyć.</li>"
+      preamble: 'Tutaj znajdują się wymagania dotyczące skryptów publikowanych na %{site_name}. Mające na celu utrzymanie %{site_name} bezpiecznym i użytecznym miejscem dla skryptów użytkownika. Skrypty niespełniające tych wymagań mogą zostać usunięte przez moderatorów %{site_name}. '
+      functionality_header: Funkcjonalność
+      description: Skrypty muszą zawierać opis tego, co robią oraz nie powinny celowo robić innych rzeczy niezawartych w opisie. Użytkownik powinien wiedzieć, co robi skrypt przed jego instalacją.
+      reason: 'Skrypt musi mieć powód do bycia skryptem. Na przykład skrypt, który
+
+        po prostu przekierowuje użytkownika na stronę internetową, nie musi być skryptem; może to być link. Dozwolone są skrypty, które wykorzystują usługę sieciową do wykonania akcji na bieżącej stronie (np. w celu jej konwersji).'
+      unrelated: Skrypty nie mogą wymagać od użytkowników wykonywania niezwiązanych działań, takich jak wysyłanie płatności, subskrybowanie kanału, dołączenie do grupy, lub polubienie strony, aby skrypt działał.
+      monetization: Skrypty z możliwością ich monetyzacji (śledzenie, reklamy, koparki kryptowalut, itd.) nie są zabronione, ale takie działania muszą być wyraźnie zaznaczone w opisie skryptu lub dodatkowych informacjach.
+      code_header: Kod
+      obfuscation: Kod zamieszczony na %{site_name} nie może być zaciemniany ani zminifikowany. Dotyczy to także bundlerów takich jak webpack. Użytkownicy muszą mieć możliwość podejrzenia i zrozumienia skryptu, zanim go zainstalują.
+      libraries_html: Biblioteki, których używa skrypt, powinny zostać dodane poprzez <code>@require</code>, chyba że istnieje wyraźny techniczny powód, by tego nie robić. Jeśli kod źródłowy biblioteki jest zawarty w kodzie skryptu, należy również dodać informację o źródle biblioteki (np. komentarz zawierający adres URL i/lub nazwę oraz wersję).
+      updates: Skrypty nie powinny sprawdzać dostępności aktualizacji częściej niż raz dziennie. Należy pamiętać, że większość menedżerów skryptów użytkownika obsługuje automatyczne aktualizacje, więc wykonywanie tego w skrypcie nie jest konieczne. Skrypty również nie powinny dynamicznie wstrzykiwać do strony innych skryptów hostowanych na %{site_name}, ponieważ omija to pamięć podręczną w menedżerach skryptów.
+      external_js: "%{external_scripts_link:Korzystanie z zewnętrznego kodu JavaScript jest ograniczone.}"
+      copyright_header: Prawa autorskie
+      licensing: Twój skrypt musi szanować prawa autorskie innych osób. Obejmuje to sam skrypt i wszystkie zasoby (na przykład obrazy), których używa. Jeśli zamierzasz korzystać z cudzej własności, przestrzegaj ich postanowień licencyjnych lub uzyskaj ich zgodę.
+      reposts: Nawet jeśli prawa autorskie nie są naruszone to ponowne publikowanie skryptów, które znajdują się na %{site_name}, jest zabronione, chyba że wprowadzają usprawnienia różniące się od oryginału.
+      miscellaneous_header: Inne
+      keywords_html: Skrypty nie mogą zawierać <code>@include</code>, <code>@match</code>, lub słów kluczowych, do których stron nie wprowadzają żadnej funkcjonalności.
+      adult_content_rule: Skrypty, które zawierają treści dla dorosłych lub są przeznaczone do stron dla dorosłych, muszą być oznaczone jako takie, aby użytkownicy mogli zdecydować czy chcą je zobaczyć.
+      reporting: Jeśli zauważysz skrypt, który nie przestrzega wyżej wymienionych zasad, zgłoś go na stronie skryptu, przechodząc na podstronę Opinie, a następnie klikając "zgłoś ten skrypt".
     external_scripts:
       title: "Polityka %{site_name} dot. zewnętrznych skryptów"
       content_html: >
@@ -974,6 +995,7 @@ pl:
     allowed_elements_intro: "Dozwolone są następujące elementy i atrybuty. Dotyczy to zarówno HTML jak i makr (po konwersji do HTML)"
     allowed_elements_extra_info: "Puste pola zostaną zamienione na elementy p lub br. Adresy URL będą automatycznie zamienione w linki."
     allowed_css_intro: "Następujące właściwości CSS są dozwolone we wszystkich elementach."
+    user_references_html: "Możesz oznaczać innych użytkowników %{site_name} poprzez <code>@UserName</code> lub <code>@\"User Name\"</code> (Jeśli ma spację w nazwie)."
     not_found_text: "Błąd 404 — nie znaleziono strony."
     not_found_title: "Błąd 404 — nie znaleziono strony"
     not_found_link_home: "Wróć do strony głównej."
@@ -1103,6 +1125,16 @@ pl:
           Otrzymano to powiadomienie, ponieważ subskrybujesz tę dyskusję. Odwiedź %{discussion_url} by odsubskrybować, lub zarządzaj ustawieniami powiadomień na %{notification_preferences_url}.
     comment_mentioned:
       subject: "Użytkownik '%{commenter_name}' wspomniał o tobie na %{site_name}."
+      text: |
+          Dyskusja o '%{discussion_title}' na %{site_name} została skomentowana przez '%{commenter_name}', który cię oznaczył:
+
+          ---
+          %{comment_text}
+          ---
+
+          Możesz zobaczyć ten komentarz i odpowiedzieć na %{comment_url}.
+
+          Otrzymano to powiadomienie, ponieważ masz włączone otrzymywanie wzmianek o tobie. Zarządzaj ustawieniami powiadomień na %{notification_preferences_url}.
     new_conversation:
       subject: "Nowa rozmowa na %{site_name}"
       text: |

@@ -608,6 +608,8 @@ zh-CN:
       contributionAmount_html: "建议捐赠金额，请配合 <code>@contributionURL</code> 使用。"
       compatible_html: "标记此脚本与某个浏览器兼容，兼容性信息将显示在脚本的简介页面上。您也可以添加额外的兼容说明，如 <code>@compatible firefox 火狐上必须关闭广告过滤器</code> 这样的格式。目前能被网站识别的浏览器名称有：%{browsers}。"
       incompatible_html: "标记此脚本与某个浏览器不兼容，兼容性信息将显示在脚本的简介页面上。您也可以添加额外的兼容说明，如 <code>@incompatible firefox 自火狐 23 开始不兼容</code> 这样的写法。目前能被网站识别的浏览器名称有：%{browsers}。"
+      antifeature_html: "披露会为脚本作者而非用户带来额外收益的功能。你可以通过在脚本的元数据中添加 <code>@antifeature <类型> <描述></code> 值的方法披露。%{site_name} 会解析这几种类型：<code>ads</code> （该脚本会展示广告给脚本使用者）、 <code>tracking</code> （该脚本会追踪用户的活动）、以及<code>miner</code>（该脚本含有虚拟货币挖矿代码），而其它类型的值将会被忽略。即便如此，脚本也必须遵守 %{code_rules_link:%{site_name} 的规则}。描述段可以留空。"
+      antifeature_localized_html: "你可以使用多种语言声明 <code>@antifeature</code> 属性，其中 XX 为 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 中定义的两个字符的代码</a>，而 YY 则是一个可选的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 中定义的国家代码</a>。在<code>@antifeature</code>中制定的每一个类型都可以自定义其本地化的说明。"
     writing_user_scripts:
       title: "如何编写用户脚本"
       content_html: "<p>编写用户脚本需要基础的 JavaScript 知识。<a href=\"http://wiki.greasespot.net/Tutorials\">GreaseSpot 百科上的教程</a>应该能让您开始了解如何编写一个通常脚本以及用户脚本。观摩、阅读前人编写的脚本可对您有所启发，您可能同样对 %{code_rules_link} 以及 %{meta_keys_link} 感兴趣。如果您希望得到帮助，您可以在 %{ask_in_forum_link}。</p>\n<p>为了在 %{site_name} 提交脚本，您需要建立一个账户，然后从您的 %{user_page_link}，选择 %{post_new_script_link} 即可发表新的脚本。</p>"
@@ -616,42 +618,24 @@ zh-CN:
       post_new_script_link_text: '发布新脚本'
     code_rules:
       title: "%{site_name} 有关发布脚本的规则"
-      content_html: >
-          <p>这里是在 %{site_name} 提交脚本的一些规定。只有这些规定的存在，%{site_name} 才能成为一个提供安全且有用的用户脚本站。任何违反这些要求的脚本将被
-          %{site_name} 的管理员移除。</p> <h4>功能性</h4> <ul>
-
-          <li>脚本必须包含一段描述来说明它们的功能，而脚本也不应含有超出所述功能的代码。必须让用户能在安装之前知晓该脚本会产生什么影响。</li>
-
-          <li>脚本必须有成为脚本的理由。例如，一个只是为了让用户访问某个网站的脚本不一定得是脚本，可以是一个链接。</li>
-
-          <li>脚本不得让用户进行无关的操作，包括但不限于需要付费、加群、订阅、关注或点赞才能正常使用脚本的部分或完整功能。</li>
-
-          <li>盈利项目（数据追踪、广告、挖矿脚本等）并非禁止，但是作者必须在脚本描述或额外信息栏明确说明。</li>
-
-          </ul> <h4>代码</h4> <ul>
-
-          <li>提交到本站的代码不得经过压缩或最小化处理。必须让用户有机会在安装脚本之前能够对代码进行审查并理解该脚本。如果脚本使用 WebPack 之类的工具进行打包，其打包后的脚本不得经过最小化处理。</li>
-
-          <li>需要引入的代码库应使用<code>@require</code> 元数据声明，除非这种方式会带来难以解决的技术性问题。如果因为某些原因代码库需要直接引入，它必须包含其来源地址（如一条指向原始地址、名称与版本的注释）。</li>
-
-          <li>%{external_scripts_link:允许使用的外部脚本有限。}</li>
-
-          </ul> <h4>版权</h4> <ul>
-
-          <li>您的脚本必须尊重他人的版权。这包括你所提交的脚本及其所引入的资源（如图像）。如果你希望使用他人的内容，请遵守其授权协议或提前获取作者的授权。</li>
-
-          <li>即便在未违反版权的情况下，重复提交已存在于 %{site_name} 但却未进行任何改进的脚本是禁止的。</li>
-
-          </ul> <h4>其它</h4> <ul>
-
-          %{adult_content_requirement}
-
-          <li>脚本不得以每日多于一次的频率进行更新检查。请注意大多数的用户脚本管理器会处理自动更新，没有必要在脚本内进行手动更新检查。</li>
-
-          <li>脚本不得在 <code>@include</code>、<code>@match</code> 或关键字提及脚本不提供功能的网站。</li>
-
-          </ul> <p>如果你发现任何违反了这些规定的脚本，请在提交反馈的页面选择“举报这个脚本”选项来提交举报。</p>
-      adult_content_rule_html: "<li>本站允许脚本中包含成人内容，但含有成人内容或者针对成人网站设计的脚本必须被「明确标注」，以便用户自主选择是否显示此类信息。</li>"
+      preamble: 以下则是提交脚本到 %{site_name} 的要求。这些要求是让 %{site_name} 成为一个提供安全且有用的用户脚本的网站。任何违反了这些要求的脚本将被 %{site_name} 的管理员移除。
+      functionality_header: 功能性
+      description: 脚本必须提供描述来说明这个脚本会做什么，而脚本也不应实现超过其描述的功能。用户必须提前知晓脚本会干的事情。
+      reason: 脚本必须有一个成为脚本的理由。例如，一个只是跳转到某个网页的脚本可以只是一个超链接而非脚本；使用第三方接口来为当前页面提供服务的脚本（如转换数据）是允许的。
+      unrelated: 脚本不得要求用户执行无关操作，例如支付、订阅频道、加群、或点赞，来使脚本部分或全部功能可用。
+      monetization: 带有盈利相关内容的脚本（追踪、广告、挖矿等）是允许的，但是作者必须在脚本说明或额外信息处披露。
+      code_header: 代码
+      obfuscation: 提交到 %{site_name} 的代码不得混淆或最小化。用户必须能有机会能在安装前审视并理解脚本的内容。如果脚本使用 WebPack 之类的工具打包，你必须在打包参数指定不进行最小化处理。
+      libraries_html: 库是应被 <code>@require</code> 的脚本，除非因为技术原因不能这么做。如果一个库被内嵌入了脚本，那么你必须一并提供库的来源（比如一行评论指向原始地址、名称以及版本）。
+      updates: 脚本不得以高于每日一次的频率检测更新。请注意用户脚本管理器都有内置的更新检查机制，请不要在脚本检查更新做无用功。脚本不得将在 %{site_name} 上传的脚本不应被动态插入到页面，因为这会绕过用户脚本管理器的缓存。
+      external_js: "%{external_scripts_link:能引用其他网站上托管的 JavaScript 脚本是有限制的}。"
+      copyright_header: 版权
+      licensing: 您的脚本必须遵守他人的版权。这包括代码本身以及所引用的资源（如图像）。如果你希望使用他人的内容，请遵守其授权规则或获得使用授权。
+      reposts: 即便没有违反版权商的规则，重复提交已经存在于 %{site_name} 的脚本也是不允许的，除非有做出改进。
+      miscellaneous_header: 其它
+      keywords_html: 脚本不得在 <code>@include</code>、<code>@match</code>、或关键字中包含脚本所不提供功能的页面。
+      adult_content_rule: 含有成人内容或在成人网站上运行的脚本必须做出相应标记，来让其他用户选择是否在网站上看到它们。
+      reporting: 如果你发现有脚本未能遵守上述规则，请访问脚本的反馈页面并选择“举报脚本”来举报。
     external_scripts:
       title: "%{site_name} 对外部脚本的政策"
       content_html: >

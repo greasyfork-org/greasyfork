@@ -91,7 +91,9 @@ el:
       update_locale: "Ενημέρωση γλώσσας"
       no_moderator_logs: "Καμιά ενέργεια δεν έχει λάβει χώρα από τους συντονιστές για αυτόν τον κώδικα."
       compare_title: "Σύγκριση με άλλο κώδικα"
+      compare_to: "Κώδικας %{site_name} σε σύγκριση με (URL)"
       compare_button: "Σύγκριση"
+      compare_must_be_local_url: "Σύγκριση κωδίκων πρέπει να είναι URL στο %{site_name}"
     history_title: "%{script_name} - Ιστορικό έκδοσης"
     history_only_code_changes_info: "Αυτές είναι εκδόσεις αυτού του κώδικα όπου ο κώδικας έχει ενημερωθεί."
     history_all_changes_link: "Προβολή όλων των εκδόσεων."
@@ -103,6 +105,7 @@ el:
     feedback_has_reports: "Αυτός ο κώδικας έχει αναφερθεί ότι παραβιάζει τους κανόνες του %{site_name}."
     feedback_no_discussions_html: "Δεν υπάρχουν ακόμα δημοσιευμένες συζητήσεις. %{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "Δεν έχουν δημοσιευτεί συζητήσεις ακόμα."
+    feedback_report_instead: "Αν νομίζεις ότι ο κώδικας σπάει %{rules_link:%{site_name}'s rules}, παρακαλώ {report_link:report για αφαίρεση}."
     feedback_start_first_discussion_link: "Γίνεται ο/η πρώτος/η που θα συζητήσετε αυτόν τον κώδικα."
     feedback_discussion_or_report: "%{new_discussion_link:Ξεκινήστε μια νέα συζήτηση σε αυτόν τον κώδικα} ή %{report_link:αναφέρτε τον για απομάκρυνση}."
     feedback_favoriters_heading: "Καταχωρούντες στα αγαπημένα"
@@ -124,7 +127,10 @@ el:
     derivatives_script_html: "%{script} από %{user}, άδεια: %{license} %{diff_link:[Διαφορές]}"
     derivatives_exact_copies_heading: "Ακριβή αντίγραφα"
     derivatives_exact_copies_list_intro: "Οι ακόλουθοι κώδικες έχουν τον ίδιο ακριβώς κώδικα με τον δικό σας:"
+    derivatives_exact_copies_item_html: "%{script_link} από %{author_links} - εκδόσεις : %{version_list}"
+    derivatives_exact_copes_none: "Δεν υπάρχουν άλλοι κώδικες στο %{site_name} που να έχουν ακριβώς τον ίδο κωδικό με τον κώδικα. "
     derivatives_similar_heading: "Παρόμοιοι κώδικες"
+    derivatives_similar_info: "Περιοδικά ελέγχουμε την τελευταία έκδοση από όλους τους κώδικες για να βρούμε αυτούς που είναι παρόμοιοι με τους δικούς σας. Επίσης ελέγχουμε κάθε πότε αναρτάτε μια αναβάθμιση του κώδικά σας και κατόπιν αιτήματος."
     similarity_score:
       high: Μεγάλη ομοιότητα
       medium: Μέση ομοιότητα
@@ -133,6 +139,8 @@ el:
     derivatives_similar_none: "Δεν υπάρχουν κώδικες όμοιοι με τον δικό σας."
     derivatives_similar_item: "%{score}: %{diff_link:[Diff]} %{script}"
     derivatives_similar_last_check_html: "Ο τελευταίος έλεγχος για κώδικες παρόμοιους με το δικό σας έγινε την %{date}."
+    derivatives_similar_last_check_soon: "Σύντομα θα ελέγξουμε για παρόμοιο κώδικα με τον δικό σας"
+    derivatives_similar_last_check_again_soon_html: "Ελέγξαμε πρόσφατα για κώδικες παρόμοιους με το δικό σας %{date}. Θα έλέγξουμε ξανά σύντομα."
     derivatives_similar_check_now: "Επανέλεγχος τώρα"
     listing_title_all_sites: "Κώδικες χρηστών για όλες τις ιστοσελίδες"
     listing_description_all_sites: "Κώδικες χρηστών που προσθέτουν χαρακτηριστικά και απομακρύνουν σφάλματα σε όλους τους ιστοχώρους"
@@ -207,6 +215,7 @@ el:
     warning_potentially_minified_html: "Ο κώδικάς σας φαίνεται ότι ίσως περιέχει ελαχιστοποιημένο (συμπιεσμένο) κώδικα. Αν χρησιμοποιείτε μια ελαχιστοποιημένη βιβλιοθήκη, χρησιμοποιήστε αντίθετα την ετικέτα <code>@require</code> με μια από την λίστα %{allowed_requires_link}. Κώδικες με ελαχιστοποιημένο κώδικα απομακρύνονται."
     warning_automatic_sensitive_html: "Ο κώδικάς σας είναι για %{sensitive_domains} και για αυτό θα επισημανθεί ως περιεχόμενο για ενήλικες."
     warning_potentially_minified_allowed_requires_link: "ένα από αυτά τα μέρη"
+    warning_code_previously_posted_html: "Ο κωδικός έχει αναρτηθεί ήδη στο %{script_links} . Κώδικες που αναδημοσιεύονται από άλλους εκτός του αρχικού συγγραφέα υπόκεινται σε αφαίρεση από τους συντονιστές."
     additional_info_locale_prompt: "(Επιλέξτε γλώσσα)"
     additional_info_add_localized: "Προσθήκη μιας πρόσθετης πληροφορίας για μια γλώσσα"
     additional_info_locale_repeated: "Παρέχετε μόνο μια πρόσθετη πληροφορία για τη γλώσσα «%{locale_code}»."
@@ -247,7 +256,7 @@ el:
     support_email_feedback_or_report: "%{support_url:Στείλτε ηλεκτρονική επιστολή στο δημιουργό για υποστήριξη}, %{feedback_link:κάντε μια ερώτηση, δημοσιεύστε μια ανασκόπηση}, ή %{report_link:αναφέρετε τον κώδικα}."
     adult_content: "Περιεχόμενο για ενήλικες"
     adult_content_self_report: "Αυτός ο κώδικας περιέχει περιεχόμενο για ενήλικες ή είναι για μια ιστοσελίδα που περιέχει περιεχόμενο για ενήλικες."
-    adult_content_self_report_explanation: "Το Grease Fork επιτρέπει κώδικες με περιεχόμενο για ενήλικες, αλλά πρέπει να επισημανθούν ως τέτοιοι ώστε οι χρήστες να επιλέξουν αν θα τα βλέπουν."
+    adult_content_self_report_explanation: "%{site_name}επιτρέπει κώδικες με περιεχόμενο για ενήλικες, αλλά πρέπει να επισημανθούν ως τέτοιοι ώστε οι χρήστες να επιλέξουν αν θα τα βλέπουν."
     not_adult_content_self_report_html: "Αυτός ο κώδικας <strong>δεν</strong> περιέχει περιεχόμενο για ενήλικες και <strong>δεν</strong> αφορά ιστοσελίδα που περιέχει περιεχόμενο για ενήλικες."
     not_adult_content_self_report_explanation: "Το %{site_name} επιτρέπει κώδικες με περιεχόμενο για ενήλικες, αλλά πρέπει να επισημανθούν ως τέτοιοι ώστε οι χρήστες να μπορούν να επιλέξουν αν θα το δουν. Ο κώδικάς σας έχει επισημανθεί ότι έχει περιεχόμενο για ενήλικές. Μπορείτε να αναφέρετε ότι δεν έχει έχει και αυτό να ελεγχθεί από έναν συντονιστή."
     not_adult_content_self_report_explanation_automatic: "Το %{site_name} επιτρέπει κώδικες με περιεχόμενο για ενήλικες, αλλά πρέπει να έχουν επισημανθεί ως τέτοιοι ώστε οι χρήστες να μπορούν να επιλέξουν αν θα τους δουν. Ο κώδικάς σας έχει επισημανθεί ότι έχει περιεχόμενο για ενήλικες λόγω του ότι αναφέρεται για τους ιστοχώρους %{domain_list}."
@@ -274,8 +283,10 @@ el:
     report:
       title: "Αναφορά του κώδικα %{script_name}"
     authors_heading: "Δημιουργοί"
+    error_unauthorized_copy: "Αυτός ο κωδικός εμφανίζεται να είναι μη εξουσιοδοτημένο αντίγραφο του %{script} . Παρακαλώ ανατρέξτε στο %{site_name} '%{rules_link:rules}  σχετικα με την ανάρτηση κωδίκων."
     invitations:
       form_title: "Προσκαλέστε άλλους δημιουργούς"
+      explanation: "Μπορείτε να προσθέσετε και άλλους χρήστες του Greasy Fork ως συγγραφείς κωδίκων. Θα έχουν τα ίδια δικαιώματα στον κώδικα όπως εσείς."
       invited_user_url_label: "Χρήστης για να προσκληθεί"
       invited_user_placeholder: "URL του προφίλ χρήστη στο %{site_name}"
       submit: "Αποστολή πρόσκλησης"
@@ -283,6 +294,7 @@ el:
       already_author: "Ο χρήστης που ορίσατε είναι ήδη δημιουργός αυτού του κώδικα."
       sent: "Η πρόσκληση εστάλει"
       subject: "Πρόσκληση για τον χρήστη %{script_name}"
+      body: "Έχετε προσκληθεί να γίνετε συγγραφέας του%{script_name}  (%{script_url}) στο%{site_name}. Για να αποδεχθείτε αυτή την πρόσκληση, παρακαλώ επισκεφθείτε %{accept_url}."
       current_user_already_author: "Είστε ήδη δημιουργός αυτού του κώδικα."
       invitation_not_found: "Η πρόσκληση δεν βρέθηκε."
       invitation_expired: "Η πρόσκληση έχει λήξει."
@@ -298,6 +310,7 @@ el:
     new_script_notice:
       title: "Τι προσπαθείτε να κάνετε;"
       install_link_html: "Θέλω να κάνω <b>εγκατάσταση και χρήση</b> του κώδικα."
+      share_link_html: "Έχω <b> γράψει </b> ένα κώδικα και θέλω να τον <b> μοιραστώ </b>  με άλλους."
     new_title:
       js: "Δημοσίευση νέου κώδικα"
       css: "Δημοσίευση νέου στυλ"
@@ -481,6 +494,7 @@ el:
     show_ads_description: "Υποστηρίξτε το %{site_name} επιτρέποντάς του να σας δείχνει διαφημίσεις"
     show_sensitive_description: "Προβολή κωδικών με περιεχόμενο για ενήλικες"
     preferred_markup_description: "Θα χρησιμοποιηθεί για νέους κώδικες και δημοσιεύσεις."
+    filter_locale_default_description: "Από προεπιλογή, μόνο λίστα περιεχομένων στον συγκεκριμένο τόπο"
     greasy_fork_scripts_link:
       one: "Ο χρήστης %{user_name} έχει επίσης %{count} κώδικα στο Greasy Fork."
       other: "Ο χρήστης %{user_name} έχει επίσης %{count} κώδικες στο Greasy Fork."
@@ -530,6 +544,7 @@ el:
         title: Ειδοποιήσεις δημόσιας συζήτησης
         new_discussion: Από προεπιλογή, εγγραφή σε κάθε συζήτηση που ξεκινάτε
         new_comment: Από προεπιλογή, εγγραφή σε κάθε συζήτηση που σχολιάζετε
+        mention: Λάβατε μια ειδοποίηση όταν αναφερθήκατε σε μια συζήτηση.
       conversation_defaults:
         title: Ειδοποιήσεις συνομιλίας
         starter: Από προεπιλογή, εγγραφή σε κάθε συνομιλία που ξεκινάτε
@@ -545,6 +560,7 @@ el:
       usage: Χρήση
       development: Ανάπτυξη
       miscellaneous: Διάφορα
+    open_source: "%{site_name} είναι ανοικτού κώδικα (GPLv3 licenced). Μπορείτε %{github_link:view τον πηγαίο κώδικα στο Github}."
     installing_user_scripts:
       title: 'Πως να εγκαταστήσετε κώδικες χρηστών'
     installing_user_styles:
@@ -558,6 +574,7 @@ el:
       description_localized_html: "Η περιγραφή του κώδικα σε συγκεκριμένη γλώσσα, όπου XX είναι ο <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">κωδικός ISO 639-1 2</a> και YY είναι ένας προαιρετικός <a href=\"https://www.iso.org/obp/ui/#search\">κωδικός χώρας ISO 3166</a>. Αντικαθιστά το <code>@description</code> όταν ο χρήστης πλοηγείται με τη γλώσσα που ταιριάζει."
       namespace_html: "Ένας συνδυασμός των <code>@namespace</code> και <code>@name</code> χρησιμοποιείται από τους διαχειριστές κώδικα χρήστη αν ένας κώδικας έχει ήδη εγκατασταθεί. Το %{site_name} απαιτεί αυτό το πεδίο και θα προειδοποιήσει αν έχει αλλαχτεί με την ενημέρωση."
       version_html: "Η αναγνώριση μιας συγκεκριμένης έκδοση ενός κώδικα σε <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">μόρφή έκδοσης Mozilla</a>. Η έκδοση εμφανίζεται στη σελίδα πληροφοριών του κώδικα. Το %{site_name} απαιτεί αυτό το πεδίο και θα προειδοποιήσει αν έχει απομακρυνθεί όταν ο κώδικας αλλαχτεί."
+      include_html: "Περιγράψτε σε ποιες σελίδες θα τρέξει ο κώδικας. Αυτή η λίστα θα επεξεργαστεί, προβληθεί στην σελίδα πληροφοριών του κώδικα, και θα χρησιμοποιηθεί για την κατηγοριοποίηση του κώδικα. Κάθε κώδικας πρέπει να έχει τουλάχιστον ένα <code> @match </code> ή <code> @include </code>. <code> Διαβάστε σχετικά με τη μορφή εδώ </code>"
       require_html: "Περιλαμβάνει εξωτερικό JavaScript μέσα στον κώδικα. Δείτε τον στο %{external_script_link}."
       require_external_script_link_text: "κανόνες για κώδικα που περιλαμβάνει εξωτερικούς κώδικες"
       updateURL: "Περιγράφει πως οι διαχειριστές κωδικών χρήστη πρέπει να λαμβάνουν ενημερώσεις. Το %{site_name} θα απομακρύνει αυτά τα κλειδιά, που κάνουν τον οποιοδήποτε κώδικα που έχει εγκατασταθεί από το %{site_name} να ενημερώνεται μόνο από το %{site_name}."
@@ -575,7 +592,6 @@ el:
       post_new_script_link_text: 'δημοσίευσης νέου κώδικα'
     code_rules:
       title: "Κανόνες του %{site_name} για δημοσιευμένους κώδικες"
-      adult_content_rule_html: "<li>Κώδικες που περιλαμβάνουν περιεχόμενο για ενήλικες ή είναι για ιστοσελίδες με περιεχόμενο για ενήλικες πρέπει να επισημαίνονται ως τέτοιοι ώστε να επιτρέπουν στους χρήστες για το αν επιθυμούν να τους βλέπουν ή όχι.</li>"
     external_scripts:
       title: "Η πολιτική του %{site_name} για εξωτερικούς κώδικες"
       test_url:
@@ -723,6 +739,10 @@ el:
     cancel_update_comment: "Άκυρο"
     question_heading_html: "Ερώτηση/σχόλιο"
     review_heading_html: "Αναφορά: %{rating}"
+    ratings_short:
+      question: "Ερώτηση/Σχόλιο"
+      bad: "Κακός"
+      good: "Καλός"
   common:
     error_preamble: "Υπήρξαν κάποια προβλήματα με αυτά που δημοσιεύσατε..."
     allowed_elements_link: "(Δείτε τον επιτρεπτόμενο κώδικα.)"
@@ -764,6 +784,12 @@ el:
         name: "Όνομα"
         description: "Περιγραφή"
         default_sort: "Προεπιλεγμένη ταξινόμηση"
+      discussion:
+        title: Τίτλος
+      conversation:
+        user_input: Χρήστης
+      message:
+        content: Μήνυμα
   errors:
     messages:
       script_missing_name: "απαιτείται - ορίστε ένα με την ετικέτα @name"
@@ -778,6 +804,8 @@ el:
       script_update_not_utf8: "ο κώδικας που στέλνετε πρέπει να είναι κείμενο UTF-8"
       script_disallowed_require: "χρησιμοποιείται ένας μη αποδεκτός εξωτερικός κώδικας: %{code}"
       script_rate_limit: "Έχετε υπερβεί το όριο δημοσιεύσεων. Δοκιμάστε ξανά αργότερα."
+      missing_include_or_match: "πρέπει να περιλαμβάνεται τουλάχιστον ένα @match ή @include κλειδί"
+      file_size_out_of_range: "Το μέγεθος πρέπει να είναι λιγότερο από 200KB"
   opensearch:
     short_name: "Αναζήτηση %{site_name}"
     description: "Αναζήτηση για κώδικες χρηστών στο %{site_name}."
@@ -787,3 +815,14 @@ el:
     script_report:
       report_created_offender:
         subject: "Ο κώδικάς σας %{script_name} στο %{site_name} έχει αναφερθεί"
+      report_rebutted_reporter:
+        subject: "Η αναφορά σας στο %{script_name} στο %{site_name}λάβει απάντηση"
+      report_upheld_reporter:
+        subject: "Η αναφορά σας στο%{script_name} στο %{site_name} έχει γίνει δεκτή"
+      report_script_deleted_reported:
+        subject: "Η αναφορά σας στο %{script_name}στο %{site_name}έχει κλείσει"
+      report_dismissed_reporter:
+        subject: "Η αναφορά σας%{script_name} στο %{site_name}έχει απορριφθεί"
+    consecutive_bad_ratings:
+      notify:
+        subject: "Ο κώδικάς σας %{script_name} στο %{site_name} έχει λάβει πολλές \"κακές\"  κριτικές"

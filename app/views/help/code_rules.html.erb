@@ -1,4 +1,40 @@
 <%- title t('help.code_rules.title', site_name: site_name) %>
 <%- description "Rules and restrictions for code posted to #{site_name}." %>
 
-<%=it('help.code_rules.content_html', external_scripts_link: help_external_scripts_path, site_name: site_name, adult_content_requirement: sleazy? ? '' : t('help.code_rules.adult_content_rule_html'))%>
+<p><%= t('help.code_rules.preamble', site_name: site_name) %></p>
+
+<h4><%= t('help.code_rules.functionality_header') %></h4>
+
+<ul>
+  <li><%= t('help.code_rules.description') %></li>
+  <li><%= t('help.code_rules.reason') %></li>
+  <li><%= t('help.code_rules.unrelated') %></li>
+  <li><%= t('help.code_rules.monetization') %></li>
+</ul>
+
+<h4><%= t('help.code_rules.code_header') %></h4>
+
+<ul>
+  <li><%= t('help.code_rules.obfuscation', site_name: site_name) %></li>
+  <li><%= t('help.code_rules.libraries_html') %></li>
+  <li><%= it('help.code_rules.external_js', external_scripts_link: help_external_scripts_path) %></li>
+  <li><%= t('help.code_rules.updates', site_name: site_name) %></li>
+</ul>
+
+<h4><%= t('help.code_rules.copyright_header') %></h4>
+
+<ul>
+  <li><%= t('help.code_rules.licensing') %></li>
+  <li><%= t('help.code_rules.reposts', site_name: site_name) %></li>
+</ul>
+
+<h4><%= t('help.code_rules.miscellaneous_header') %></h4>
+
+<ul>
+  <li><%= t('help.code_rules.keywords_html') %></li>
+  <% unless sleazy? %>
+    <li><%= t('help.code_rules.adult_content_rule') %></li>
+  <% end %>
+</ul>
+
+<p><%= t('help.code_rules.reporting') %></p>
