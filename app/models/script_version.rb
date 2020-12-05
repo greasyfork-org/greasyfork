@@ -454,10 +454,10 @@ class ScriptVersion < ApplicationRecord
     else
       a[14] = a[14].nil? ? 1 : a[14] + 1
     end
-    p1 = a[0..3].join('')
-    p2 = a[4..7].join('')
-    p3 = a[8..11].join('')
-    p4 = a[12..15].join('')
+    p1 = a[0..3].join
+    p2 = a[4..7].join
+    p3 = a[8..11].join
+    p4 = a[12..15].join
     return [p1, p2, p3, p4].map { |p| p.empty? ? '0' : p }.join('.')
   end
 
