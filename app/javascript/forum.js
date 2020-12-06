@@ -45,7 +45,7 @@ function getSelectedText(comment) {
       return selection.toString().trim()
     }
   }
-  return quoted.textContent.trim()
+  return quoted.innerText.trim()
 }
 
 function init() {
