@@ -461,10 +461,6 @@ class ScriptVersion < ApplicationRecord
     return [p1, p2, p3, p4].map { |p| p.empty? ? '0' : p }.join('.')
   end
 
-  def appears_minified
-    ScriptVersion.code_appears_minified(code)
-  end
-
   def self.code_appears_minified(value)
     return value.split("\n").any? { |s| (s.length > 5000) && s.include?('function') }
   end
