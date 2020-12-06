@@ -337,6 +337,21 @@ sk:
       js: "Pridať nový skript"
       css: "Pridať nový štýl"
     update_title: "Pridať novú verziu skriptu %{script}"
+    antifeatures:
+      warning_title: Tento skript obsahuje antifeatures
+      author_explanation_intro: "Vysvetlenie autora skriptu:"
+      types:
+        ads:
+          title: Reklama
+          description_html: Tento skript bude <b>vkladať reklamu</b> na stránky, ktoré navštívite.
+        tracking:
+          title: Sledovanie
+          description_html: Tento skript obsahuje kód, ktorý bude <b>sledovať vaše prehliadanie.
+        miner:
+          title: Kryptominer
+          description_html: Tento skript obsahuje kryptominer, ktorý využíva zdroje vášho zariadenia v čase jeho aktivity.
+      install_anyway: Inštalovať skript
+      cancel_install: Zrušiť
   script_sets:
     description: "Zbierka skriptov vám umožní vytvoriť vlastný zoznam skriptov pre prehliadanie s Greasy Fork. Skripty môžete pridať do vašej zbierky Vy, ďalší používatelia zbierky alebo automaticky generované zbierky."
     favorites_name: "Obľúbené"
@@ -878,6 +893,7 @@ sk:
     delete_discussion: "Odstrániť"
     update_comment_submit: "Upraviť komentár"
     cancel_update_comment: "Zrušiť"
+    quote_comment: "Citovať"
     question_heading_html: "Otázka/komentár"
     review_heading_html: "Hodnotenie: %{rating}"
     update_rating: "Aktualizovať hodnotenie %{script_name}"
@@ -1123,20 +1139,8 @@ sk:
           Zobraziť a reagovať na komentár môžete tu %{comment_url}.
 
           Toto upozornenie ste dostali, lebo ste vybrali, že chcete byť upozornení, keď sa niekto o vás zmieni. Nastavenia upozornení môžete spravovať tu %{notification_preferences_url}.
-    new_conversation:
-      subject: "Nová konverzácia na %{site_name}"
-      text: |
-          Používateľ "%{user}" na %{site_name} založil novú konverzáciu s vami.
-
-          ---
-          %{message_text}
-          ---
-
-          Zobraziť a odpovedať môžete na %{conversation_url}.
-
-          Toto upozornenie ste dostali, pretože ste prihlásený na odber tejto konverzácie. Pre odhlásenie prejdite na %{conversation_url}, alebo spravujte nastavenia upozornení na %{notification_preferences_url}.
     new_message:
-      subject: "Nová správa na %{site_name}"
+      subject: "Používateľ %{user} vám poslal správu na %{site_name}"
       text: |
           Používateľ "%{user}" na %{site_name} vám poslal správu.
 

@@ -840,8 +840,6 @@ it:
     title: Discussioni
     comment_date: "Pubblicato: %{date}"
     comment_edit_date: "Modificato: %{date}"
-    posted_by_html: "%{user} il %{date}"
-    last_comment: "Ultimo: %{user} il %{date}"
     new_discussion_heading: "Pubblica una recensione, un commento o una domanda"
     new_discussion_submit: "Pubblica commento"
     new_comment_heading: "Pubblica risposta"
@@ -1094,20 +1092,7 @@ it:
           Puoi visualizzare e rispondere a questo commento su %{comment_url}.
 
           Hai ricevuto questa notifica perché hai scelto di essere notificato quando vieni menzionato. Gestisci le tue preferenze per le notifiche su %{notification_preferences_url}.
-    new_conversation:
-      subject: "Una nuova conversazione su %{site_name}"
-      text: |
-          L'utente '%{user}' su %{site_name} ha iniziato una nuova conversazione con te.
-
-          ---
-          %{message_text}
-          ---
-
-          Puoi leggere e rispondere su %{conversation_url}.
-
-          Hai ricevuto questa notifica perché sei iscritto a questa conversazione. Visita %{conversation_url} per disiscriverti, o gestisci le tue preferenze per le notifiche su %{notification_preferences_url}.
     new_message:
-      subject: "Un nuovo messaggio su %{site_name}"
       text: |
           L'utente '%{user}' su %{site_name} ti ha inviato un messaggio.
 

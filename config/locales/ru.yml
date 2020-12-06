@@ -338,6 +338,21 @@ ru:
       js: "Опубликовать новый скрипт"
       css: "Опубликовать новый стиль"
     update_title: "Опубликовать новую версию %{script}"
+    antifeatures:
+      warning_title: Этот скрипт содержит нежелательные возможности
+      author_explanation_intro: "Объяснение автора этого скрипта:"
+      types:
+        ads:
+          title: Реклама
+          description_html: Этот скрипт <b>вставляет рекламу</b> на посещаемые вами сайты.
+        tracking:
+          title: Слежка
+          description_html: Этот скрипт <b>отслеживает вашу историю просмотра</b>.
+        miner:
+          title: Скриптовалюта
+          description_html: Этот скрипт <b>добывает криптовалюту</b> на вашем устройстве.
+      install_anyway: Установить скрипт
+      cancel_install: Не устанавливать скрипт
   script_sets:
     description: "Списки скриптов позволяют вам объединять произвольные скрипты в группы для более удобного их просмотра на сайте Greasy Fork. Вы можете добавлять в списки отдельные скрипты, другие списки, или автоматически создаваемые списки."
     favorites_name: "Избранное"
@@ -656,7 +671,7 @@ ru:
     code_rules:
       title: "Правила %{site_name} для опубликования скриптов"
     external_scripts:
-      title: "Политика %{site_name} по поводу внешних скриптов"
+      title: "Правила %{site_name} для внешних скриптов"
       content_html: >
           <p>Пользовательские скрипты имеют возможность загружать и выполнять другие,
           внешние, скрипты. Директива %{require_doc_link:<code>@require</code>} является
@@ -845,8 +860,8 @@ ru:
     title: Обсуждения
     comment_date: "Создано: %{date}"
     comment_edit_date: "Отредактировано: %{date}"
-    posted_by_html: "%{user}, %{date}"
-    last_comment: "Последний: %{user}, %{date}"
+    posted_by_html: "%{user} %{date}"
+    last_comment: "Последний: %{user} %{date}"
     new_discussion_heading: "Напишите отзыв, комментарий, или задайте вопрос"
     new_discussion_submit: "Создать комментарий"
     new_comment_heading: "Ответить"
@@ -858,6 +873,7 @@ ru:
     delete_discussion: "Удалить"
     update_comment_submit: "Обновить комментарий"
     cancel_update_comment: "Отменить"
+    quote_comment: "Цитата"
     question_heading_html: "Вопрос/комментарий"
     review_heading_html: "Отзыв: %{rating}"
     update_rating: "Обновить вашу оценку %{script_name}"
@@ -1103,20 +1119,8 @@ ru:
           Вы можете просмотреть комментарий и ответить на него по адресу %{comment_url}.
 
           Вы получили это уведомление, потому что в настройках включены уведомления при упоминании вас в обсуждении. Настройки уведомлений находятся по адресу %{notification_preferences_url}.
-    new_conversation:
-      subject: "Новый разговор на %{site_name}"
-      text: |
-          Пользователь '%{user}' на %{site_name} начал с вами разговор:
-
-          ---
-          %{message_text}
-          ---
-
-          Вы можете ответить по адресу %{conversation_url}.
-
-          Вы получили это сообщение, потому что подписаны на этот разговор. Вы можете отписаться по адресу %{conversation_url}, или настроить уведомления по адресу %{notification_preferences_url}.
     new_message:
-      subject: "Новое сообщение на %{site_name}"
+      subject: "Пользователь %{user} сайта %{site_name} прислал вам сообщение"
       text: |
           Пользователь '%{user}' на %{site_name} прислал вам следующее сообщение.
 
