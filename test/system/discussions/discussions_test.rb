@@ -122,6 +122,17 @@ class DiscussionsTest < ApplicationSystemTestCase
     assert_enqueued_email_with ForumMailer, :comment_on_mentioned, args: [mentioned_user, Comment.last]
   end
 
+  test 'quoting' do
+    user = User.first
+    login_as(user, scope: :user)
+    discussion = discussions(:non_script_discussion)
+    visit discussion.url
+    within '.discussion-header + .comment' do
+      click_link 'Quote'
+    end
+    assert_field('comment_text', with: "<blockquote>this is a test discussion</blockquote>\n\n")
+  end
+
   test 'subscribing to a discussion' do
     user = User.first
     login_as(user, scope: :user)
