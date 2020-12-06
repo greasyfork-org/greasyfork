@@ -19,7 +19,8 @@ function quoteComment(event) {
   if (htmlFormat) {
     text = "<blockquote>" + text + "</blockquote>\n\n"
   } else {
-    text = "> " + text + "\n\n"
+    // Two spaces after allow us to have single line breaks
+    text = text.split("\n").map(value => "> " + value + "  ").join("\n") + "\n\n"
   }
   let replyInput = replyForm.querySelector("#comment_text")
   replyInput.value += text
