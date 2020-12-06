@@ -265,7 +265,7 @@ class User < ApplicationRecord
     end
 
     delete_all_comments!(by_user: moderator) if delete_comments
-    lock_all_scripts!(reason: delete_reason, moderator: moderator, delete_type: ScriptDeleteType::BLANKED) if delete_scripts
+    lock_all_scripts!(reason: reason, moderator: moderator, delete_type: ScriptDeleteType::BLANKED) if delete_scripts
 
     Report.unresolved.where(item: self).find_each do |report|
       report.uphold!(moderator: moderator)
