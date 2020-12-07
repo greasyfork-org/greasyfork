@@ -336,6 +336,20 @@ pt-BR:
       js: "Postar um novo script"
       css: "Postar um novo estilo"
     update_title: "Postar uma nova versão do script %{script}"
+    antifeatures:
+      author_explanation_intro: "O autor deste script script explica:"
+      types:
+        ads:
+          title: Anúncios
+          description_html: Este script irá <b>inserir anúncios</b> nos sites que você visita.
+        tracking:
+          title: Rastreamento
+          description_html: Este script contém código que irá <b>rastrear sua navegação</b>.
+        miner:
+          title: Minerador de criptomoeda
+          description_html: Este script contém um minerador de criptomoedas que irá <b>usar os recursos do seu dispositivo</b> quando ativado.
+      install_anyway: Instalar script
+      cancel_install: Cancelar
   script_sets:
     description: "Coleções de scripts permitem a você criar uma lista personalizada de scripts dentro do Greasy Fork. Você pode adicionar scripts à sua coleção incluindo scripts individuais, coleções de outros usuários, ou coleções geradas automaticamente. Você também pode excluir scripts da sua coleção da mesma maneira."
     favorites_name: "Favoritos"
@@ -630,6 +644,8 @@ pt-BR:
       contributionAmount_html: "Doação sugerida, usado em conjunto com <code>@contributionURL</code>."
       compatible_html: "Marca esse script como compatível com um navegador. Informação de compatibilidade será mostrada na página do script. Comentários sobre compatibilidade podem ser incluídos no formato <code>@compatible firefox Must disable pop-up blocker</code>. Os navegadores reconhecidos são: %{browsers}."
       incompatible_html: "Marca esse script como incompatível com um navegador. Informação de compatibilidade será mostrada na página do script. Comentários sobre compatibilidade podem ser incluídos no formato <code>@incompatible firefox Broken since Firefox 23</code>. Os navegadores reconhecidos são: %{browsers}."
+      antifeature_html: "Expõe funcionalidades em um script que estão lá para beneficiar o autor, não o usuário. O formato desta chave é  <code>descrição do tipo de @antifeature</code>. O %{site_name} irá reconhecer os seguintes tipos: <code>ads</code> (o script mostra anúncios para o usuário), <code>tracking</code> (o script rastreia a atividade do usuário), e <code>miner</code> (o script contém um minerador de criptomoeda). Outros tipos serão ignorados, porém o script deve ainda assim seguir as %{code_rules_link:regras do %{site_name}}. Descrição é opcional."
+      antifeature_localized_html: "Uma <code>@antifeature</code> descrita em um idioma específico, onde XX é um <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">código ISO 639-1 de 2 dígitos</a> e YY é um <a href=\"https://www.iso.org/obp/ui/#search\">código ISO 3166 de país</a> opcional. Substitui <code>@antifeature</code>s do mesmo tipo quando o usuário estiver navegando em um idioma correspondente."
     writing_user_scripts:
       title: "Como escrever scripts de usuário"
       content_html: "<p>Escrever scripts de usuário requer conhecimento da linguagem JavaScript. Os <a href=\"http://wiki.greasespot.net/Tutorials\">tutoriais na Wiki do GreaseSpot</a> devem lhe dar um empurrão inicial em JavaScript, tanto em conceitos gerais como especificamente aos script de usuário. Olhar códigos de outros scripts pode te ajudar. Talvez você se interesse em %{code_rules_link} e %{meta_keys_link}. Se quiser ajuda durante o desenvolvimento do seu script, sinta-se a vontade para %{ask_in_forum_link}.</p><p>Para postar em %{site_name}, você precisará criar uma conta. A partir do seu %{user_page_link}, siga o link para %{post_new_script_link}.</p>"
@@ -638,6 +654,11 @@ pt-BR:
       post_new_script_link_text: 'Postar um script'
     code_rules:
       title: "Política do %{site_name} sobre scripts externos"
+      functionality_header: Funcionalidade
+      code_header: Código
+      external_js: "%{external_scripts_link:O uso de JavaScript externo é limitado.}"
+      copyright_header: Direito autoral
+      miscellaneous_header: Diversos
     external_scripts:
       title: "Política em scripts externo do %{site_name}"
       content_html: >
@@ -830,6 +851,8 @@ pt-BR:
     title: Discussões
     comment_date: "Publicado: %{date}"
     comment_edit_date: "Editado: %{date}"
+    posted_by_html: "%{user} %{date}"
+    last_comment: "Último: %{user} %{date}"
     new_discussion_heading: "Publique uma análise, comentário ou questionamento"
     new_discussion_submit: "Publicar comentário"
     new_comment_heading: "Publicar resposta"
@@ -841,6 +864,7 @@ pt-BR:
     delete_discussion: "Remover"
     update_comment_submit: "Atualizar comentário"
     cancel_update_comment: "Cancelar"
+    quote_comment: "Citação"
     question_heading_html: "Pergunta/comentário"
     review_heading_html: "Avaliação: %{rating}"
     update_rating: "Atualizar sua avaliação do script %{script_name}"
@@ -1083,6 +1107,7 @@ pt-BR:
 
           Você recebeu esta notificação pois escolheu ser notificado quando você fosse mencionado. Gerencie suas preferências de notificação em %{notification_preferences_url}.
     new_message:
+      subject: "%{user} te enviou uma mensagem no %{site_name}"
       text: |
           O usuário '%{user}' no %{site_name} te enviou uma mensagem.
 
