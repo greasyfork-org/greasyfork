@@ -15,19 +15,21 @@ function quoteComment(event) {
   let comment = event.target.closest(".comment")
   let replyForm = document.getElementById("post-reply")
   let htmlFormat = replyForm.querySelector("[name='comment[text_markup]']:checked").value == 'html'
-  let text = getSelectedText(comment)
-  if (htmlFormat) {
-    text = "<blockquote>" + text + "</blockquote>\n\n"
-  } else {
-    // Two spaces after allow us to have single line breaks
-    text = text.split("\n").map(value => "> " + value + "  ").join("\n") + "\n\n"
-  }
+  let text = getSelectedText(comment, htmlFormat)
   let replyInput = replyForm.querySelector("#comment_text")
-  replyInput.value += text
+  replyInput.value += blockquoteText(text, htmlFormat) + "\n\n"
   replyInput.focus()
 }
 
-function getSelectedText(comment) {
+function blockquoteText(text, htmlFormat) {
+  if (htmlFormat) {
+    return "<blockquote>" + text + "</blockquote>"
+  }
+  // Two spaces after allow us to have single line breaks
+  return text.split("\n").map(value => "> " + value + "  ").join("\n")
+}
+
+function getSelectedText(comment, htmlFormat) {
   let quoted = comment.querySelector(".user-content")
   let selection = window.getSelection()
   let startSelection = null;
@@ -45,7 +47,16 @@ function getSelectedText(comment) {
       return selection.toString().trim()
     }
   }
-  return quoted.innerText.trim()
+  if (htmlFormat) {
+    return quoted.innerHTML.trim()
+  }
+  // At this point we're converting HTML to Markdown. Don't care about any elements except blockquote.
+  let frag = quoted.cloneNode(true)
+  for (let blockquote of Array.from(frag.querySelectorAll("blockquote")).reverse()) {
+    blockquote.parentNode.insertBefore(document.createTextNode(blockquoteText(blockquote.innerText, htmlFormat)), blockquote)
+    blockquote.parentNode.removeChild(blockquote);
+  }
+  return frag.innerText.trim()
 }
 
 function init() {
