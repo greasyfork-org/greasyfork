@@ -315,6 +315,21 @@ el:
       js: "Δημοσίευση νέου κώδικα"
       css: "Δημοσίευση νέου στυλ"
     update_title: "Δημοσίευση νέας έκδοσης του κωδικά %{script}"
+    antifeatures:
+      warning_title: Ο κώδικας περιέχει αντιχαρακτηριστικά
+      author_explanation_intro: "Ο δημιουργός αυτού του κώδικα εξηγεί:"
+      types:
+        ads:
+          title: Διαφημίσεις
+          description_html: Αυτός ο κώδικας θα <b>απομακρύνει τις διαφημίσεις</b> στις ιστοσελίδες που επισκέπτεστε.
+        tracking:
+          title: Ιχνηλάτηση
+          description_html: Αυτός ο κώδικας περιέχει κώδικα που θα <b>ιχνηλατεί την πλοήγησή σας</b>.
+        miner:
+          title: Cryptominer
+          description_html: Αυτός ο κώδικας περιέχει cryptominer που θα <b>χρησιμοποιήσει τους πόρους της συσκευής σας</b> όταν είναι ενεργός.
+      install_anyway: Εγκατάσταση κώδικα
+      cancel_install: Άκυρο
   script_sets:
     description: "Τα σύνολα κώδικα σας επιτρέπουν να δημιουργήσετε μια προσαρμοσμένη λίστα για πλοήγηση στο Greasy Fork. Μπορείτε να προσθέσετε κωδικούς στο σύνολό σας περιλαμβάνοντας μεμονωμένους κώδικες, σύνολα άλλων χρηστών ή αυτόματα δημιουργούμενα σύνολα. Μπορείτε, επίσης, να αποκλείσετε κώδικες από το σύνολό σας με τις ίδιες μεθόδους."
     favorites_name: "Αγαπημένα"
@@ -592,6 +607,11 @@ el:
       post_new_script_link_text: 'δημοσίευσης νέου κώδικα'
     code_rules:
       title: "Κανόνες του %{site_name} για δημοσιευμένους κώδικες"
+      functionality_header: Λειτουργικότητα
+      code_header: Κώδικας
+      external_js: "%{external_scripts_link:Η χρήση εξωτερικού κώδικα JavaScript είναι περιορισμένη.}"
+      copyright_header: Πνευματικά Δικαιώματα
+      miscellaneous_header: Διάφοροι
     external_scripts:
       title: "Η πολιτική του %{site_name} για εξωτερικούς κώδικες"
       test_url:
@@ -724,6 +744,8 @@ el:
     title: Συζητήσεις
     comment_date: "Δημοσιεύτηκε: %{date}"
     comment_edit_date: "Επεξεργάστηκε: %{date}"
+    posted_by_html: "%{user} %{date}"
+    last_comment: "Τελευταίο: %{user} %{date}"
     new_discussion_heading: "Δημοσίευση αναφοράς, σχολίου ή ερώτησης"
     new_discussion_submit: "Δημοσίευση σχολίου"
     new_comment_heading: "Δημοσίευση απάντησης"
@@ -735,12 +757,81 @@ el:
     delete_discussion: "Διαγραφή"
     update_comment_submit: "Ενημέρωση σχολίου"
     cancel_update_comment: "Άκυρο"
+    quote_comment: "Παράθεση"
     question_heading_html: "Ερώτηση/σχόλιο"
     review_heading_html: "Αναφορά: %{rating}"
+    update_rating: "Ενημέρωση της αξιολόγησής σας του κώδικα %{script_name}"
+    ratings:
+      question: "Καμιά αξιολόγηση - απλά μια ερώτηση/σχόλιο"
+      bad: "Κακός - ο κώδικας δεν λειτουργεί"
+      ok: "Εντάξει - ο κώδικας λειτουργεί, αλλά επιδέχεται βελτιώσεων"
+      good: "Καλός - ο κώδικας λειτουργεί"
     ratings_short:
       question: "Ερώτηση/Σχόλιο"
       bad: "Κακός"
+      ok: "Εντάξει"
       good: "Καλός"
+    sign_in_to_post_discussion: "Συνδεθείτε για να δημοσιεύσετε μια αναφορά, ένα σχόλιο ή μια ερώτηση."
+    sign_in_to_post_comment: "Συνδεθείτε για να δημοσιεύσετε μια απάντηση."
+    user_filter:
+      label: "Συζητήσεις που με περιλαμβάνουν"
+      all: "Όλες οι συζητήσεις"
+      discussion_by_me: "Που ξεκίνησαν από εμένα"
+      comment_by_me: "Σχολιάστηκαν από εμένα"
+      on_my_scripts: "Στους κώδικές μου"
+      subscribed: "Εγγεγραμμένοι"
+    other_user_filter:
+      all: "Όλες οι συζητήσεις"
+      comments_by: "Σχόλια από τον χρήστη %{user}"
+    category_filter:
+      label: Κατηγορία
+      all: Όλες οι κατηγορίες
+    read_filter:
+      label: Κατάσταση ανάγνωσης
+      all: Όλες
+      read: Αναγνωσμένες
+      unread: Μη αναγνωσμένες
+    user_activity:
+      title: "Πρόσφατα σχόλια"
+      no_recent_activity: "Αυτός ο χρήστης δεν δημοσίευσε σχόλια πρόσφατα."
+      see_all_activity: "Δείτε όλη τη δραστηριότητα του χρήστη."
+      script_review:
+        posted_html: "Δημοσίευση μιας αναφοράς του κώδικα  <i>%{script}</i>"
+        replied_html: "Απάντηση σε μια αναφορά του κώδικα <i>%{script}</i>"
+      script_question:
+        posted_html: "Δημοσίευση μιας ερώτησης/σχολίου για τον κώδικα <i>%{script}</i>"
+        replied_html: "Απάντηση σε μια ερώτηση/σχόλιο για τον κώδικα  <i>%{script}</i>"
+      discussion:
+        posted_html: "Δημοσίευση μιας συζήτησης: <i>%{title}</i>"
+    categories:
+      development:
+        name: Ανάπτυξη
+      requests:
+        name: Αιτήματα Δημιουργίας
+      script-discussions:
+        name: Συζητήσεις κώδικα
+      no-scripts:
+        name: Όλες εκτός από τις Συζητήσεις Κώδικα
+    category_display: "%{name} - %{description}"
+    new_title: Νέα συζήτηση
+    new_button: Νέα συζήτηση
+    no_discussions: Δεν βρέθηκαν συζητήσεις.
+    mark_all_read: Σήμανση ως αναγνωσμένες
+  conversations:
+    new_title: Δημιουργία μιας νέας συνομιλίας
+    new_link: Δημιουργία μιας νέας συνομιλίας
+    new_button: Δημιουργία συνομιλίας
+    title_html:
+      one: Συνομιλίες με τον χρήστη %{users}
+      other: Συνομιλίες με τους χρήστες %{users}
+    send_message: Αποστολή μηνύματος
+    conversation_list_title: Συνομιλίες
+    conversation_link_html:
+      one: Συνομιλία με τον χρήστη %{users}.
+      other: Συνομιλία με τους χρήστες %{users}.
+    recent:
+      title: Πρόσφατες συνομιλίες
+      more: Δείτε όλες τις συνομιλίες
   common:
     error_preamble: "Υπήρξαν κάποια προβλήματα με αυτά που δημοσιεύσατε..."
     allowed_elements_link: "(Δείτε τον επιτρεπτόμενο κώδικα.)"
@@ -758,6 +849,8 @@ el:
     preview_tab: Προεπισκόπηση
     write_tab: Εγγραφή
     listing_options_title: "Επιλογές Αναζήτησης"
+    quote:
+      prefix_html: "Ο χρήστης %{user}είπε:"
   activerecord:
     attributes:
       user:
@@ -768,6 +861,7 @@ el:
         show_ads: "Προβολή διαφημίσεων"
         show_sensitive: "Περιεχόμενο για ενήλικες"
         preferred_markup: "Προτιμητέα χρήση ετικετών"
+        filter_locale_default: "Γλωσσικό φίλτρο"
       script:
         name: "Όνομα"
         description: "Περιγραφή"
@@ -782,7 +876,11 @@ el:
         name: "Όνομα"
         description: "Περιγραφή"
         default_sort: "Προεπιλεγμένη ταξινόμηση"
+      report:
+        reason: "Αιτία αναφοράς"
       discussion:
+        rating: "Αξιολόγηση"
+        category: "Κατηγορία"
         title: Τίτλος
       conversation:
         user_input: Χρήστης
