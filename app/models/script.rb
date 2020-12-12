@@ -95,10 +95,9 @@ class Script < ApplicationRecord
   LOCALIZED_ATTRIBUTES_FROM_META = [:name, :description].freeze
   validates_each(*MAX_LENGTHS.keys) do |script, attr, _|
     len = MAX_LENGTHS[attr]
-    script.localized_attributes_for(attr)
-          .reject { |la| la.attribute_value.nil? }
-          .select { |la| la.attribute_value.length > len }
-          .each do |la|
+    if script.localized_attributes_for(attr)
+             .reject { |la| la.attribute_value.nil? }
+             .find { |la| la.attribute_value.length > len }
       if LOCALIZED_ATTRIBUTES_FROM_META.include?(attr) && !script.library?
         script.errors.add(:base, :too_long, message: I18n.t('errors.messages.meta_too_long', { count: len, key: "@#{attr}" }))
       else

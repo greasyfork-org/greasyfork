@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class ScriptValidationTest < ActiveSupport::TestCase
-
   def get_script_with_code(code)
     script = valid_script
     sv = script.script_versions.first
@@ -48,7 +47,7 @@ class ScriptValidationTest < ActiveSupport::TestCase
   test 'additional info length' do
     script = valid_script
     sv = script.script_versions.first
-    sv.localized_attributes.build(attribute_key: 'additional_info', attribute_value: '1' * 60000, locale: Locale.english, value_markup: 'html')
+    sv.localized_attributes.build(attribute_key: 'additional_info', attribute_value: '1' * 60_000, locale: Locale.english, value_markup: 'html')
     sv.calculate_all
     script.apply_from_script_version(sv)
     assert_not script.valid?
