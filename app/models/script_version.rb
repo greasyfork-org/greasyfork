@@ -52,7 +52,7 @@ class ScriptVersion < ApplicationRecord
       next if child.marked_for_destruction? || child.valid?
 
       child.errors.each do |error|
-        s.errors.add(:base, erorr.type, message: "#{I18n.t("activerecord.attributes.script.#{child.attribute_key}")} - #{I18n.t("activerecord.attributes.script.#{error.attribute}", default: child_attr.to_s)} #{msg}")
+        s.errors.add(:base, error.type, message: "#{I18n.t("activerecord.attributes.script.#{child.attribute_key}")} - #{I18n.t("activerecord.attributes.script.#{error.attribute}", default: error.type.to_s)} #{error.message}")
       end
     end
   end

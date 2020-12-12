@@ -37,7 +37,9 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
       <p><%=t('common.error_preamble')%></p>
       <ul class="errors">
         <% displayed_errors = []
-        script_version.errors.each do |attr, msg|
+        script_version.errors.each do |error|
+          msg = error.message
+          attr = error.attribute
           # need custom handling for warnings
           next if msg.starts_with?('warning-') || attr.to_s.include?('screenshot')
           if attr == :base
