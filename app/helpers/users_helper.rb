@@ -62,7 +62,7 @@ module UsersHelper
     if skip_link
       ''.html_safe + user.name + badge
     else
-      link_to(user.name, user_path(user)) + badge
+      link_to(user.name, user_path(user), class: 'user-link') + badge
     end
   end
 
