@@ -27,7 +27,7 @@
   <% highlighted_scripts_html = capture do %>
     <ul>
       <% highlighted_scripts(restrict_to_ad_method: @ad_method == 'ga' ? @ad_method : nil).each do |script| %>
-        <li><%=link_to script.name(request_locale), script%> - <%=script.description(I18n.locale)%></li>
+        <li><%= render_script(script) %> - <span class="script-description"><%= script.description(I18n.locale) %></span></li>
       <% end %>
     </ul>
   <% end %>

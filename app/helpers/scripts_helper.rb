@@ -59,6 +59,10 @@ module ScriptsHelper
   end
   memoize :promoted_script
 
+  def render_script(script)
+    link_to(script.name(request_locale), script, class: 'script-link')
+  end
+
   private
 
   def content_for_script_applies_to_that_has_domain(sat, count_of_other_scripts)

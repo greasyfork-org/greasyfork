@@ -9,7 +9,7 @@
       <% if !discussion.for_script? || show_script %>
         <div class="discussion-meta-item discussion-meta-item-script-name">
           <% if discussion.script %>
-            <%= link_to discussion.script.name(request_locale), script_path(discussion.script) %>
+            <%= render_script(discussion.script) %>
           <% else %>
             <%= link_to t("discussions.categories.#{discussion.discussion_category.category_key}.name"), category_discussion_index_path(discussion.discussion_category) %>
           <% end %>

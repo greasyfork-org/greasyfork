@@ -13,7 +13,7 @@
     <% identical_svs.each do |svs| %>
       <li>
         <% script = svs.first.script %>
-        <%= t('scripts.derivatives_exact_copies_item_html', script_link: link_to(script.name(request_locale), script_path(script)), author_links: script.users.map { |u| link_to u.name, user_path(u) }.to_sentence.html_safe, version_list: svs.map(&:version).uniq.join(', ')) %>
+        <%= t('scripts.derivatives_exact_copies_item_html', script_link: render_script(script), author_links: script.users.map { |u| link_to u.name, user_path(u) }.to_sentence.html_safe, version_list: svs.map(&:version).uniq.join(', ')) %>
       </li>
     <% end %>
   </ul>
@@ -34,7 +34,7 @@
     <ul>
       <% @similarities.each do |other_script, score| %>
         <li title="<%= score %>">
-          <%= it('scripts.derivatives_similar_item', score: similarity_string(score), diff_link: admin_script_path(@script, compare: script_path(other_script), anchor: 'script-comparison'), script: link_to(other_script.name(request_locale), other_script)) %>
+          <%= it('scripts.derivatives_similar_item', score: similarity_string(score), diff_link: admin_script_path(@script, compare: script_path(other_script), anchor: 'script-comparison'), script: render_script(other_script)) %>
           <%= t('scripts.deleted_marker') if other_script.deleted? %>
         </li>
       <% end %>

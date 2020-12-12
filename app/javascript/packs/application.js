@@ -22,6 +22,8 @@ require.context('../images', true)
 
 import 'lightbox'
 
+require('relative-time');
+
 require("install");
 require("versioncheck");
 require("recaptcha");

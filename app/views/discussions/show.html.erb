@@ -68,6 +68,11 @@
           <%= link_to t('discussions.edit_comment_link'), '#', class: 'edit-comment', data: { comment_container: "comment-#{comment.id}" } %>
         </div>
       <% end %>
+      <% if current_user %>
+        <div class="comment-meta-item">
+          <%= link_to t('discussions.quote_comment'), '#', class: 'quote-comment' %>
+        </div>
+      <% end %>
       <% if current_user&.moderator? && !comment.new_record? %>
         <div class="comment-meta-item">
           <% if comment.first_comment? %>

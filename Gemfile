@@ -50,7 +50,10 @@ gem 'recaptcha', require: 'recaptcha/rails'
 # Rails gets support in https://github.com/rails/rails/pull/28297
 gem 'rails_same_site_cookie'
 
-gem 'byebug', group: [:development, :test]
+group :development, :test do
+  gem 'byebug'
+  gem 'puma'
+end
 
 group :development do
   gem 'better_errors'

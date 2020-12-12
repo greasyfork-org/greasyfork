@@ -85,12 +85,7 @@
       <dd class="script-antifeatures">
         <span>
           <%= safe_join(@script.best_antifeatures_for_locale(request_locale).map do |antifeature|
-            title = case antifeature.antifeature_type
-                    when 'ads'; 'This script will inject ads on the sites you visit.'
-                    when 'tracking'; 'This script contains code that will track your browsing.'
-                    when 'miner'; "This script contains a cryptominer which will use your device's resources when active."
-                    end
-            tag.span(title: title) { antifeature.antifeature_type.capitalize }
+            tag.span(title: strip_tags(t("scripts.antifeatures.types.#{antifeature.antifeature_type}.description_html"))) { t("scripts.antifeatures.types.#{antifeature.antifeature_type}.title") }
           end, ', ') %>
         </span>
       </dd>

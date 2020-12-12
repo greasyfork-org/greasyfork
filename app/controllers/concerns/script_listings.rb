@@ -2,12 +2,12 @@ module ScriptListings
   extend ActiveSupport::Concern
 
   COLLECTION_PUBLIC_ACTIONS = [:index, :search, :libraries, :by_site].freeze
-  COLLECTION_MODERATOR_ACTIONS = [:reported, :reported_not_adult, :minified].freeze
+  COLLECTION_MODERATOR_ACTIONS = [:reported, :reported_not_adult].freeze
   # We want to avoid bots on code_search as it's pretty expensive.
   COLLECTION_LOGGED_IN_ACTIONS = [:code_search].freeze
 
   included do
-    layout 'list', only: [:index, :search, :libraries, :reported, :reported_not_adult, :minified, :code_search]
+    layout 'list', only: [:index, :search, :libraries, :reported, :reported_not_adult, :code_search]
   end
 
   def index
@@ -216,18 +216,6 @@ module ScriptListings
   def reported_not_adult
     @scripts = Script.reported_not_adult
     render :reported
-  end
-
-  def minified
-    @scripts = []
-    Script.order(self.class.get_sort(params)).where(locked: false).each do |script|
-      sv = script.newest_saved_script_version
-      @scripts << script if sv.appears_minified
-    end
-    @paginate = false
-    @title = 'Potentially minified user scripts on Greasy Fork'
-    @include_script_sets = false
-    render action: 'index'
   end
 
   def code_search

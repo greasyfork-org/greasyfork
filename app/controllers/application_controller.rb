@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
                     content: lambda {
                       in_profile = current_user.profile&.include?('system/screenshots')
                       scripts = Script.where(id: LocalizedScriptAttribute.where(script: current_user.scripts.not_deleted).where('attribute_value LIKE "%system/screenshots%"').select(:script_id))
-                      "You are using old-format image URLs (/system/screenshots/) in #{(scripts.map { |script| link_to(script.name(request_locale), script) } + (in_profile ? [link_to('your profile', user_path(current_user))] : [])).to_sentence.html_safe}. Please update these image references as these URLs will stop working after December 14, 2020.".html_safe
+                      "You are using old-format image URLs (/system/screenshots/) in #{(scripts.map { |script| link_to(script.name(request_locale), script) } + (in_profile ? [link_to('your profile', user_path(current_user))] : [])).to_sentence.html_safe}. Please update these image references as these URLs will stop working after January 14, 2021.".html_safe
                     },
                     dismissable: false
 

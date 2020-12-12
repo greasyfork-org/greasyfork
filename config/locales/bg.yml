@@ -822,8 +822,6 @@ bg:
     title: Дискусии
     comment_date: "Публикуван на: %{date}"
     comment_edit_date: "Редактиран на: %{date}"
-    posted_by_html: "%{user} на %{date}"
-    last_comment: "Последен: %{user} на %{date}"
     new_discussion_heading: "Публикувайте отзив, коментар или въпрос"
     new_discussion_submit: "Публикувайте коментар"
     new_comment_heading: "Публикувайте отговор"
@@ -1076,20 +1074,7 @@ bg:
           Можете да видите коментара и да отговорите тук%{comment_url}.
 
           Получихте това известие, защото сте избрали да бъдете известявани когато някой ви спомене. Можете да промените настройките за известията тук: %{notification_preferences_url}.
-    new_conversation:
-      subject: "Нов разговор на %{site_name}"
-      text: |
-          Потребител '%{user}' от %{site_name} започна разговор с вас.
-
-          ---
-          %{message_text}
-          ---
-
-          Можете да го видите и да отговорите тук %{conversation_url}.
-
-          Вие получихте това известие, защото сте абонирани за разговора. Посетете %{conversation_url} за да се отпишете или да промените настройките за известията %{notification_preferences_url}.
     new_message:
-      subject: "Ново съобщение на %{site_name}"
       text: |
           Потребител '%{user}' от %{site_name} ви изпрати съобшение.
 

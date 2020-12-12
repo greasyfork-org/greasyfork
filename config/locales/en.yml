@@ -531,6 +531,21 @@ en:
       js: "Post a new script"
       css: "Post a new style"
     update_title: "Post a new version of %{script}"
+    antifeatures:
+      warning_title: This script contains antifeatures
+      author_explanation_intro: "The author of this script explains:"
+      types:
+        ads:
+          title: Ads
+          description_html: This script will <b>inject ads</b> on the sites you visit.
+        tracking:
+          title: Tracking
+          description_html: This script contains code that will <b>track your browsing</b>.
+        miner:
+          title: Cryptominer
+          description_html: This script contains a cryptominer which will <b>use your device's resources</b> when active.
+      install_anyway: Install script
+      cancel_install: Cancel
   script_sets:
     # description of script sets on edit page
     description: "Script sets let you create a customized list of scripts to browse Greasy Fork with. You can add scripts to your set by including individual scripts, other users' sets, or automatically generated sets. You can also exclude scripts from your set with the same methods."
@@ -1096,8 +1111,8 @@ en:
     title: Discussions
     comment_date: "Posted: %{date}"
     comment_edit_date: "Edited: %{date}"
-    posted_by_html: "%{user} on %{date}"
-    last_comment: "Last: %{user} on %{date}"
+    posted_by_html: "%{user} %{date}"
+    last_comment: "Last: %{user} %{date}"
     new_discussion_heading: "Post a review, comment, or question"
     new_discussion_submit: "Post comment"
     new_comment_heading: "Post reply"
@@ -1109,6 +1124,7 @@ en:
     delete_discussion: "Delete"
     update_comment_submit: "Update comment"
     cancel_update_comment: "Cancel"
+    quote_comment: "Quote"
     question_heading_html: "Question/comment"
     review_heading_html: "Review: %{rating}"
     update_rating: "Update your rating of %{script_name}"
@@ -1396,20 +1412,8 @@ en:
         You can view and reply to this comment at %{comment_url}.
 
         You received this notification because you chose to be notified when you are mentioned. Manage your notification preferences at %{notification_preferences_url}.
-    new_conversation:
-      subject: "A new conversation on %{site_name}"
-      text: |
-        User '%{user}' on %{site_name} has started a new conversation with you.
-
-        ---
-        %{message_text}
-        ---
-
-        You can view and reply at %{conversation_url}.
-
-        You received this notification because you are subscribed to this conversation. Visit %{conversation_url} to unsubscribe, or manage your notification preferences at %{notification_preferences_url}.
     new_message:
-      subject: "A new message on %{site_name}"
+      subject: "%{user} sent you a message on %{site_name}"
       text: |
         User '%{user}' on %{site_name} has sent you a message.
 

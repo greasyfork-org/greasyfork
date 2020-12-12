@@ -351,6 +351,10 @@ dt[title] > span {
   padding: 1em;
   margin: 1em 0;
 }
+.script-link, .script-description, .user-link {
+  /* Prevent e.g. RTL user name in LTR layout from showing punctuation on an unexpected side. */
+  unicode-bidi: isolate;
+}
 .list-option-groups ~ ol {
   width: calc(960px - 14em);
 }

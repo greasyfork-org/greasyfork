@@ -23,6 +23,10 @@
       <div class="comment-meta-item">
         <%= t('discussions.comment_date', date: markup_date(message.created_at)).html_safe %>
       </div>
+      <div class="comment-meta-spacer"></div>
+      <div class="comment-meta-item">
+        <%= link_to t('discussions.quote_comment'), '#', class: 'quote-comment' %>
+      </div>
       <% unless by_current_user %>
         <div class="comment-meta-item">
           <%= link_to t('reports.report_message'), new_report_path(item_class: 'message', item_id: message.id), class: 'report-link' %>
@@ -35,7 +39,7 @@
     </div>
   </div>
 <% end %>
-<div class="post-reply">
+<div id="post-reply" class="post-reply">
   <h3><%= t('discussions.new_comment_heading') %></h3>
   <%= render partial: 'shared/errors', locals: { resource: @message } %>
   <% if @conversation.users.include?(current_user) %>

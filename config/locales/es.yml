@@ -836,8 +836,6 @@ es:
     title: Conversaciones
     comment_date: "Publicado: %{date}"
     comment_edit_date: "Editado: %{date}"
-    posted_by_html: "%{user} en %{date}"
-    last_comment: "Último comentario: %{user} en %{date} "
     new_discussion_heading: "Pregunta tus dudas o ponle nota"
     new_discussion_submit: "Publicar comentario"
     new_comment_heading: "Publicar respuesta"
@@ -1077,20 +1075,7 @@ es:
           Puedes ver y responder al comentario en %{comment_url}.
 
           Has recibido esta notificación porque te has suscrito a esta conversación. Visita %{discussion_url} para desuscribirte, o cambia tus preferencias sobre notificaciones en %{notification_preferences_url}.
-    new_conversation:
-      subject: "Alguien ha empezado una conversación nueva en %{site_name}"
-      text: |
-          El usuario «%{user}» de %{site_name} ha empezado a conversar contigo.
-
-          ---
-          %{message_text}
-          ---
-
-          Puedes verla y responder en %{conversation_url}.
-
-          Has recibido esta notificación porque te has suscrito a esta conversación. Visita %{conversation_url} para desuscribirte, o cambia tus preferencias sobre notificaciones en %{notification_preferences_url}.
     new_message:
-      subject: "Tienes un mensaje nuevo en %{site_name}"
       text: |
           El usuario «%{user}» de %{site_name} te ha enviado un mensaje.
 

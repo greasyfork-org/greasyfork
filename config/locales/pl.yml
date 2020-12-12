@@ -877,8 +877,6 @@ pl:
     title: Dyskusje
     comment_date: "Napisano: %{date}"
     comment_edit_date: "Edytowano: %{date}"
-    posted_by_html: "%{user}, %{date}"
-    last_comment: "Ostatni: %{user}, %{date}"
     new_discussion_heading: "Napisz recenzję, komentarz lub pytanie"
     new_discussion_submit: "Opublikuj komentarz"
     new_comment_heading: "Odpowiedz"
@@ -1135,20 +1133,7 @@ pl:
           Możesz zobaczyć ten komentarz i odpowiedzieć na %{comment_url}.
 
           Otrzymano to powiadomienie, ponieważ masz włączone otrzymywanie wzmianek o tobie. Zarządzaj ustawieniami powiadomień na %{notification_preferences_url}.
-    new_conversation:
-      subject: "Nowa rozmowa na %{site_name}"
-      text: |
-          Użytkownik '%{user}' na %{site_name} rozpoczął nową konwersację z tobą.
-
-          ---
-          %{message_text}
-          ---
-
-          Możesz zobaczyć tę konwersację i odpowiedzieć na %{conversation_url}.
-
-          Otrzymano to powiadomienie, ponieważ subskrybujesz tę dyskusję. Odwiedź %{conversation_url} by odsubskrybować, lub zarządzaj ustawieniami powiadomień na %{notification_preferences_url}.
     new_message:
-      subject: "Nowa wiadomość na %{site_name}"
       text: |
           Użytkownik '%{user}' na %{site_name} wysłał ci wiadomość.
 

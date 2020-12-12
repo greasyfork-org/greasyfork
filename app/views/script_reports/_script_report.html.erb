@@ -1,6 +1,6 @@
 <% include_script = false unless defined?(include_script) %>
 <% if include_script %>
-  <%= link_to script_report.script.name(request_locale), script_path(script_report.script) %>
+  <%= link_to render_script(script_report.script) %>
   -
 <% end %>
 <% case script_report.report_type %>

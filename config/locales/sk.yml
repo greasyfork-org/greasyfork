@@ -191,7 +191,7 @@ sk:
     sets_add_inclusion: "Pridať do %{set_name}"
     sets_add_exclusion: "Vylúčiť z %{set_name}"
     sets_add_to_new: "Pridať do novej zbierky"
-    rules_summary_html: "Skript musí byť <strong>správne popísaný</strong>, nemôže byť <strong>zmätočný</strong> alebo <strong>komprimovaný</strong>, musí rešpektovať<strong>autorské právo</strong>, a používať minimálne množstvo <strong>externého kódu</strong>. %{full_rules_link}"
+    rules_summary_html: "Skript musí byť <strong>správne popísaný</strong>, nemôže byť <strong>zmätočný</strong> alebo <strong>minifikovaný</strong>, musí rešpektovať<strong>autorské právo</strong>, a používať minimálne množstvo <strong>externého kódu</strong>. %{full_rules_link}"
     rules_summary_link_to_full: "Prečítajte si plné znenie pravidiel."
     syncing_notice_html: "Tento skript je %{syncing_notice_sync_type}. Každá aktualizácia, ktorú vykonáte v kóde bude prepísaná počas synchronizácie."
     syncing_notice_sync_type_manual: "nastaviť manuálnu synchronizáciu z %{sync_identifier}"
@@ -337,6 +337,21 @@ sk:
       js: "Pridať nový skript"
       css: "Pridať nový štýl"
     update_title: "Pridať novú verziu skriptu %{script}"
+    antifeatures:
+      warning_title: Tento skript obsahuje antifeatures
+      author_explanation_intro: "Vysvetlenie autora skriptu:"
+      types:
+        ads:
+          title: Reklama
+          description_html: Tento skript bude <b>vkladať reklamu</b> na stránky, ktoré navštívite.
+        tracking:
+          title: Sledovanie
+          description_html: Tento skript obsahuje kód, ktorý bude <b>sledovať vaše prehliadanie.
+        miner:
+          title: Kryptominer
+          description_html: Tento skript obsahuje kryptominer, ktorý využíva zdroje vášho zariadenia v čase jeho aktivity.
+      install_anyway: Inštalovať skript
+      cancel_install: Zrušiť
   script_sets:
     description: "Zbierka skriptov vám umožní vytvoriť vlastný zoznam skriptov pre prehliadanie s Greasy Fork. Skripty môžete pridať do vašej zbierky Vy, ďalší používatelia zbierky alebo automaticky generované zbierky."
     favorites_name: "Obľúbené"
@@ -647,9 +662,11 @@ sk:
       license: "Licencia, ktorá opisuje, ako môžu ľudia kopírovať alebo upravovať skript. Odporúča sa použitie \"Celého názvu\" alebo \"Identifikátora\" zo zoznamu %{spdx_link:the SPDX License List}. Chýbajúca licencia znamená, že používatelia si môžu nainštalovať skript pre osobné použitie, ale nemôžu ho šíriť. Licencia sa zobrazí na stránke skriptu."
       supportURL: "Adresa stránky, kde používatelia môžu podporiť vývoj skriptu (napr. bug tracker, fórum, emailová adresa). URL adresa pre podporu je uvedená na stránke spätnej väzby skriptu."
       contributionURL_html: "URL adresa, kde používatelia môžu finančne podporiť autora skriptu. URL adresa pre prispievateľov je uvedená na stránke spätnej väzby skriptu. Adresy môžu používať  http, https, alebo BItcoin protokoly. Pre odkaz na stránku podpory PayPal, použite adresu vo formáte <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+podpora\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=vas.email@priklad.com&item_name=Greasy+Fork+podpora</a>, nahraďte ukážkovú emailovú adresu vašou."
-      contributionAmount_html: "Navrhnutá suma dotácie, spojená v súvislosti s <code>@contributionURL</code>."
-      compatible_html: "Označte tento skript ako kompatibilný s webovým prehliadačom. Informácie o kompatibilite budú zobrazené na stránke skriptu. Komentáre ohľadom kompatibility môžu byť zahrnuté vo formáte <code>@compatible firefox Musíte zakázať blokovanie nevyžiadaných vyskakovacích okien</code>. Overené prehliadače: %{browsers}."
-      incompatible_html: "Označte tento skript ako nekompatibilný s webovým prehliadačom. Informácie o kompatibilite budú zobrazené na stránke skriptu. Voliteľné komentáre ohľadom kompatiblity môžu byť zahrnuté vo formáte <code>@incompatible firefox Nefunguje od Firefox 23</code>. Overené prehliadače: %{browsers}."
+      contributionAmount_html: "Navrhnutá suma príspevku, spojená v súvislosti s <code>@contributionURL</code>."
+      compatible_html: "Označí tento skript ako kompatibilný s webovým prehliadačom. Informácie o kompatibilite budú zobrazené na stránke skriptu. Komentáre ohľadom kompatibility môžu byť zahrnuté vo formáte <code>@compatible firefox Musíte zakázať blokovanie nevyžiadaných vyskakovacích okien</code>. Overené prehliadače: %{browsers}."
+      incompatible_html: "Označí tento skript ako nekompatibilný s webovým prehliadačom. Informácie o kompatibilite budú zobrazené na stránke skriptu. Voliteľné komentáre ohľadom kompatiblity môžu byť zahrnuté vo formáte <code>@incompatible firefox Nefunguje od Firefox 23</code>. Overené prehliadače: %{browsers}."
+      antifeature_html: "Zverejňuje funkciu v skripte, ktorá je užitočná autora, nie pre používateľa. Formát tohto kľúča je <code>@antifeature type description</code>. %{site_name} prečíta nasledujúce typy: <code>reklama</code> (skript zobrazí používateľovi reklamu), <code>sledovanie</code> (skript sleduje aktivity používateľa) a <code>ťažiar</code> (skript obsahuje kryptominer). Ostatné typy sú ignorované, napriek tomu skript musí dodržiavať %{code_rules_link:%Pravidlá stránky %{site_name}}. Popis je voliteľný."
+      antifeature_localized_html: "Kľúč <code>@antifeature</code> popísaný pre špecifickú lokalitu, kde XX je <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-jazykový kód</a> a YY je voliteľný <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 kód krajiny</a>. Prepíše <code>@antifeature</code> s rovnakým typom, ak používateľ prehliada so zhodnou lokalitou."
     writing_user_scripts:
       title: "Ako napísať používateľský skript"
       content_html: "<p>Napísanie používateľského skriptu vyžaduje znalosť JavaScriptu. <a href=\"http://wiki.greasespot.net/Tutorials\">Tutoriály na GreaseSpot Wiki</a> by vám mali pomôcť so úvodom do JavaScriptu a tvorbou používateľských skriptov. Prezeranie ďalších skriptov vám môže tiež pomôcť. Možno vás bude zaujímať %{code_rules_link} a %{meta_keys_link}. Ak chcete pomôcť s vývojom vašeho skriptu, neváhajte sa %{ask_in_forum_link}.</p><p>Pre odoslanie skriptu na %{site_name}, si potrebujete vytvoriť účet. Na svojej %{user_page_link}, nájdete odkaz na %{post_new_script_link}.</p>"
@@ -658,6 +675,24 @@ sk:
       post_new_script_link_text: 'poslať nový skript'
     code_rules:
       title: "Pravidlá pre poslané skripty na %{site_name}"
+      preamble: Toto sú požiadavky na skripty odosielané do %{site_name}. Ich cieľom je udržať %{site_name} na bezpečnom a vhodnom mieste pre používateľské skripty. Akýkoľvek skript, ktorý nespadá do týchto požiadaviek, môžu moderátori %{site_name} vymazať.
+      functionality_header: Funkčnosť
+      description: Skripty musia obsahovať opis toho, čo robia, a nesmú robiť veci bezdôvodne mimo neho. Používatelia musia pred inštaláciou skriptu vedieť, čo urobí.
+      reason: Skripty musia mať dôvod na to, aby boli skriptom. Napríklad skript, ktorý iba nasmeruje používateľa na web, nemusí byť skript; môže to byť odkaz. Skripty, ktoré používajú webovú službu na vykonanie akcie na aktuálnej stránke (napr. prevod na iný formát), sú povolené.
+      unrelated: Skripty nesmú vyžadovať, aby používatelia vykonali nesúvisiacu akciu, ako je napríklad odoslanie platby, prihlásenie na odber kanála, pripojenie sa k skupine alebo označenie stránky, ktorá sa jej páči, aby bol skript úplne alebo čiastočne funkčný.
+      monetization: Skripty s metódami speňaženia (sledovanie, reklamy, ťažba atď.) nie sú zakázané, ale autor to musí zreteľne uviesť v popise skriptu alebo v dodatočných informáciách.
+      code_header: Kód
+      obfuscation: Kód zverejnený na webe %{site_name} nesmie byť zmätočný ani minifikovaný. Používateľom musí byť poskytnutá príležitosť skontrolovať a porozumieť skriptu pred jeho inštaláciou. Ak je skript zabalený s nástrojom, ako je webpack, musí byť vydaný v neminifikovanej podobe.
+      libraries_html: Knižnice, ktoré skript používa, by mali obsahovať <code>@require</code>, pokiaľ na to neexistuje opodstatnený technický dôvod. V prípade, že je knižnica priložená inline, musí obsahovať informácie o zdroji knižnice (napr. komentár označujúci URL a/alebo názov a verziu).
+      updates: Skripty nesmú kontrolovať dostupnosť aktualizácií rýchlejšie ako raz za deň. Upozorňujeme, že väčšina správcov používateľských skriptov bude pracovať s automatickými aktualizáciami, takže je to zbytočné. Skripty by tiež nemali dynamicky vkladať na stránku ďalší skript hostovaný na %{site_name}, pretože sa obchádza ukladanie do vyrovnávacej pamäte v správcoch používateľských skriptov.
+      external_js: "%{external_scripts_link:Použitie externých javscriptov je obmedzené.}"
+      copyright_header: Autorské práva
+      licensing: Váš skript musí rešpektovať autorské práva ostatných. Zahŕňa to samotný kód a všetky zdroje (napríklad obrázky), ktoré používa. Ak máte v úmysle použiť obsah niekoho iného, ​​riaďte sa jeho licenčnými podmienkami alebo pred tým získajte jeho povolenie.
+      reposts: Dokonca v prípadoch neporušovania autorského práva, preposielanie skriptov, ktoré už sú na %{site_name} nie je povolené, aj keď vylepšujú pôvodný skript
+      miscellaneous_header: Rôzne
+      keywords_html: Skripty nesmú obsahovať <code>@include</code>, <code>@match</code>,  ani kľúčové slová pre weby, na ktorých neposkytujú funkcie.
+      adult_content_rule: Skripty, ktoré obsahujú obsah pre dospelých, alebo sú určené pre stránky s obsahom pre dospelých, musia byť takto označené, aby mali ostatní používatelia možnosť ich zobraziť.
+      reporting: Ak spozorujete skript, ktorý nespĺňa tieto parametre, nahláste ho kliknutím na odkaz Spätná väzba pre tento skript a vyberte  možnosť "Nahlásiť skript".
     external_scripts:
       title: "Zásady %{site_name} používania externých skriptov"
       content_html: >
@@ -858,6 +893,7 @@ sk:
     delete_discussion: "Odstrániť"
     update_comment_submit: "Upraviť komentár"
     cancel_update_comment: "Zrušiť"
+    quote_comment: "Citovať"
     question_heading_html: "Otázka/komentár"
     review_heading_html: "Hodnotenie: %{rating}"
     update_rating: "Aktualizovať hodnotenie %{script_name}"
@@ -1103,20 +1139,8 @@ sk:
           Zobraziť a reagovať na komentár môžete tu %{comment_url}.
 
           Toto upozornenie ste dostali, lebo ste vybrali, že chcete byť upozornení, keď sa niekto o vás zmieni. Nastavenia upozornení môžete spravovať tu %{notification_preferences_url}.
-    new_conversation:
-      subject: "Nová konverzácia na %{site_name}"
-      text: |
-          Používateľ "%{user}" na %{site_name} založil novú konverzáciu s vami.
-
-          ---
-          %{message_text}
-          ---
-
-          Zobraziť a odpovedať môžete na %{conversation_url}.
-
-          Toto upozornenie ste dostali, pretože ste prihlásený na odber tejto konverzácie. Pre odhlásenie prejdite na %{conversation_url}, alebo spravujte nastavenia upozornení na %{notification_preferences_url}.
     new_message:
-      subject: "Nová správa na %{site_name}"
+      subject: "Používateľ %{user} vám poslal správu na %{site_name}"
       text: |
           Používateľ "%{user}" na %{site_name} vám poslal správu.
 

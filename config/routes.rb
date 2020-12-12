@@ -98,7 +98,6 @@ Rails.application.routes.draw do
         get 'reported_not_adult(.:format)', action: 'reported_not_adult', as: 'reported_not_adult'
         get 'libraries(.:format)', action: 'libraries', as: 'libraries'
         get 'search(.:format)', action: 'search', as: 'search'
-        get 'minified(.:format)', action: 'minified', as: 'minified'
         get 'code-search(.:format)', action: 'code_search', as: 'code_search'
       end
 
