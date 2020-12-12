@@ -99,13 +99,11 @@ class Script < ApplicationRecord
           .reject { |la| la.attribute_value.nil? }
           .select { |la| la.attribute_value.length > len }
           .each do |la|
-      # use @meta if this came from a meta
-      validation_key = if LOCALIZED_ATTRIBUTES_FROM_META.include?(attr) && !script.library?
-                         la.localized_meta_key
-                       else
-                         attr
-                       end
-      script.errors[validation_key] << I18n.t('errors.messages.too_long', { count: len })
+      if LOCALIZED_ATTRIBUTES_FROM_META.include?(attr) && !script.library?
+        script.errors.add(:base, :too_long, message: I18n.t('errors.messages.meta_too_long', { count: len, key: "@#{attr}" }))
+      else
+        script.errors.add(attr, :too_long, message: I18n.t('errors.messages.too_long', { count: len }))
+      end
     end
   end
 
@@ -125,13 +123,13 @@ class Script < ApplicationRecord
   end
 
   validates_each :localized_attributes do |s, attr, children|
-    s.errors[attr].clear
+    s.errors.delete(attr)
     children.each do |child|
-      child.errors.keys.each { |key| s.errors["#{attr}.#{key}"].clear }
+      child.errors.attribute_names.each { |key| s.errors.delete("#{attr}.#{key}") }
       next if child.marked_for_destruction? || child.valid?
 
-      child.errors.each do |child_attr, msg|
-        s.errors[:base] << "#{I18n.t("activerecord.attributes.script.#{child.attribute_key}")} - #{I18n.t("activerecord.attributes.script.#{child_attr}", default: child_attr.to_s)} #{msg}"
+      child.errors.each do |error|
+        s.errors.add(:base, error.type, message: "#{I18n.t("activerecord.attributes.script.#{child.attribute_key}")} - #{I18n.t("activerecord.attributes.script.#{error.attribute}", default: error.attribute.to_s)} #{error.message}")
       end
     end
   end

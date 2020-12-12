@@ -46,13 +46,13 @@ class ScriptVersion < ApplicationRecord
   end
 
   validates_each :localized_attributes, on: :create do |s, attr, children|
-    s.errors[attr].clear
+    s.errors.delete(attr)
     children.each do |child|
-      child.errors.keys.each { |key| s.errors["#{attr}.#{key}"].clear }
+      child.errors.attribute_names.each { |key| s.errors.delete("#{attr}.#{key}") }
       next if child.marked_for_destruction? || child.valid?
 
-      child.errors.each do |child_attr, msg|
-        s.errors[:base] << "#{I18n.t("activerecord.attributes.script.#{child.attribute_key}")} - #{I18n.t("activerecord.attributes.script.#{child_attr}", default: child_attr.to_s)} #{msg}"
+      child.errors.each do |error|
+        s.errors.add(:base, erorr.type, message: "#{I18n.t("activerecord.attributes.script.#{child.attribute_key}")} - #{I18n.t("activerecord.attributes.script.#{error.attribute}", default: child_attr.to_s)} #{msg}")
       end
     end
   end
@@ -62,7 +62,7 @@ class ScriptVersion < ApplicationRecord
     # The default will get set to the script's locale
     additional_info_locales = localized_attributes_for('additional_info').map { |la| (la.locale.nil? && la.attribute_default) ? script.locale : la.locale }.reject(&:nil?)
     duplicated_locales = additional_info_locales.select { |l| additional_info_locales.count(l) > 1 }.uniq
-    duplicated_locales.each { |l| record.errors[:base] << I18n.t('scripts.additional_info_locale_repeated', { locale_code: l.code }) }
+    duplicated_locales.each { |l| record.errors.add(:base, :additional_info_locale_repeated, message: I18n.t('scripts.additional_info_locale_repeated', { locale_code: l.code })) }
   end
 
   # Additional info where no @name for that locale exists. This is OK if the script locale matches, though.
@@ -70,7 +70,7 @@ class ScriptVersion < ApplicationRecord
     additional_info_locales = localized_attributes_for('additional_info').reject(&:attribute_default).map { |la| la.locale.nil? ? script.locale : la.locale }.reject(&:nil?).uniq
     meta_keys = record.parser_class.parse_meta(code)
     additional_info_locales.each do |l|
-      record.errors[:base] << I18n.t('scripts.localized_additional_info_with_no_name', { locale_code: l.code }) if meta_keys.exclude?("name:#{l.code}") && (l != script.locale)
+      record.errors.add(:base, :localized_additional_info_with_no_name, message: I18n.t('scripts.localized_additional_info_with_no_name', { locale_code: l.code })) if meta_keys.exclude?("name:#{l.code}") && (l != script.locale)
     end
   end
 

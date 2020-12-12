@@ -67,7 +67,8 @@ class ScriptVersionTest < ActiveSupport::TestCase
     JS
     assert_not script_version.valid?
     assert_equal 1, script_version.errors.size
-    assert_equal [:code, 'uses an unapproved external script: @require http://example.com'], script_version.errors.first
+    assert_equal :code, script_version.errors.first.attribute
+    assert_equal 'uses an unapproved external script: @require http://example.com', script_version.errors.first.type
   end
 
   test 'validate require exemption' do
@@ -741,7 +742,8 @@ class ScriptVersionTest < ActiveSupport::TestCase
     JS
     assert_not script_version.valid?
     assert_equal 1, script_version.errors.size
-    assert_equal [:code, 'must include at least one @match or @include key'], script_version.errors.first
+    assert_equal :code, script_version.errors.first.attribute
+    assert_equal 'must include at least one @match or @include key', script_version.errors.first.message
   end
 
   test 'creation resets consecutive bad reviews' do
