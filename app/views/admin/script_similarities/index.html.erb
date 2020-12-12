@@ -7,10 +7,10 @@
   <% @top_similarities.each do |s| %>
     <tr>
       <td>
-        <%= link_to s.script.name(request_locale), script_path(s.script)%>
+        <%= render_script(s.script) %>
       </td>
       <td>
-        <%= link_to s.other_script.name(request_locale), script_path(s.other_script) %>
+        <%= render_script(s.other_script) %>
       </td>
       <td>
         <%= number_with_precision(s.similarity, precision: 3) %>

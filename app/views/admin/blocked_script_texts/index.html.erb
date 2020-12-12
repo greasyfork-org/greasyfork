@@ -39,7 +39,7 @@
 <ul>
   <% Script.not_deleted.where(review_state: :required).each do |script| %>
     <li>
-      <%= link_to script.name(request_locale), script_path(script) %> - <%= script.users.map { |u| link_to(u.name, u) }.join(', ').html_safe %>
+      <%= render_script(script) %> - <%= script.users.map { |u| render_user(u) }.join(', ').html_safe %>
       <%= form_with(url: approve_script_path(script), method: :PATCH) do |f| %>
         <%= f.submit 'Approve' %>
       <% end %>

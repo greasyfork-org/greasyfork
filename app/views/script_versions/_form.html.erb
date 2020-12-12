@@ -43,7 +43,7 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
           if attr == :base
             if msg == "appears to be an unauthorized copy" && script_version.unauthorized_original
               displayed_errors << it('scripts.error_unauthorized_copy',
-                script: link_to(script_version.unauthorized_original.name(I18n.locale), script_path(script_version.unauthorized_original)),
+                script: render_script(script_version.unauthorized_original),
                 rules_link: help_code_rules_path,
                 site_name: site_name,
               )
@@ -84,7 +84,7 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
                 <%=t('scripts.warning_automatic_sensitive_html', {sensitive_domains: script_version.sensitive_domains.to_sentence})%><br>
                 <label for="script_version_sensitive_site_confirmation"><%=t('scripts.override_warning_checkbox_label')%></label> <%=s.check_box(:sensitive_site_confirmation, {}, true, false)%>
               <% when :code_previously_posted %>
-                <%= t('scripts.warning_code_previously_posted_html', { script_links: script_version.previously_posted_scripts.map { |s| link_to(s.name(I18n.locale), script_path(s)) }.to_sentence.html_safe}) %><br>
+                <%= t('scripts.warning_code_previously_posted_html', { script_links: script_version.previously_posted_scripts.map { |s| render_script(s) }.to_sentence.html_safe}) %><br>
                 <label for="script_version_allow_code_previously_posted"><%=t('scripts.override_warning_checkbox_label')%></label> <%=s.check_box(:allow_code_previously_posted, {}, true, false)%>
               <% else
                 raise "Unknown warning #{w}"

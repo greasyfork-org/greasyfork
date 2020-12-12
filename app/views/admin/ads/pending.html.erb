@@ -3,11 +3,11 @@
     <li>
       <article>
         <h2>
-          <%= link_to script.name(request_locale), script_path(script) %>
+          <%= render_script(script) %>
           (<%= script.page_views %>)
         </h2>
         <div>
-          <%= script.description(I18n.locale) %>
+          <span class="script-description"><%= script.description(I18n.locale) %></span>
           <%= link_to('Translate', "https://translate.google.com/#view=home&op=translate&sl=auto&tl=en&text=#{URI.encode_www_form_component(script.description(I18n.locale))}") %>
         </div>
         <p>
