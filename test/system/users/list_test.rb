@@ -6,5 +6,10 @@ module Users
       visit users_path
       assert_content 'Gordon J. Canada'
     end
+
+    test 'can list users by ratings' do
+      visit users_path(sort: 'ratings')
+      assert_content 'Gordon J. Canada'
+    end
   end
 end

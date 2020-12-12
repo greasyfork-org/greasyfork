@@ -284,7 +284,7 @@ class UsersController < ApplicationController
     when 'fans'
       return finder.order('sum(scripts.fan_score) DESC, users.id')
     when 'ratings'
-      return finder.order('sum(scripts.good_ratings + scripts.ok_ratings + scripts.bad_ratings) DESC, users.id')
+      return finder.order(Arel.sql('sum(scripts.good_ratings + scripts.ok_ratings + scripts.bad_ratings) DESC, users.id'))
     end
     finder.order(id: :desc)
   end
