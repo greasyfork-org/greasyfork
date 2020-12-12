@@ -114,7 +114,7 @@ module ScriptImporter
     end
 
     def self.separate_new_existing_scripts(scripts)
-      existing_ids = Script.select('sync_identifier').where(['script_sync_source_id = ?', sync_source_id]).where(['sync_identifier in (?)', scripts.keys]).map { |s| s.sync_identifier.to_i }
+      existing_ids = Script.select('sync_identifier').where(script_sync_source_id: sync_source_id).where(sync_identifier: scripts.keys).map { |s| s.sync_identifier.to_i }
       new = {}
       existing = {}
       scripts.each { |k, v| (existing_ids.include?(k) ? existing : new)[k] = v }

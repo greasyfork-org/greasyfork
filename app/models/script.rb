@@ -61,7 +61,7 @@ class Script < ApplicationRecord
   scope :listable_including_libraries, ->(script_subset) { active(script_subset).where(script_type_id: [1, 3]) }
   scope :reported, -> { not_deleted.joins(:script_reports).where(script_reports: { result: nil }).distinct }
   scope :reported_not_adult, -> { not_deleted.includes(:users).where.not(not_adult_content_self_report_date: nil) }
-  scope :for_all_sites, -> { includes(:script_applies_tos).references(:script_applies_tos).where('script_applies_tos.id IS NULL') }
+  scope :for_all_sites, -> { includes(:script_applies_tos).references(:script_applies_tos).where('script_applies_tos.id' => nil) }
   scope :locked, -> { where(locked: true) }
   scope :not_locked, -> { where.not(locked: true) }
 
