@@ -528,12 +528,33 @@ class ScriptsController < ApplicationController
 
     return if handle_wrong_url(@script, :id)
 
-    install_values = Hash[Script.connection.select_rows("SELECT install_date, installs FROM install_counts where script_id = #{@script.id}")]
-    daily_install_values = Hash[Script.connection.select_rows("SELECT DATE(install_date) d, COUNT(*) FROM daily_install_counts where script_id = #{@script.id} GROUP BY d")]
-    update_check_values = Hash[Script.connection.select_rows("SELECT update_check_date, update_checks FROM update_check_counts where script_id = #{@script.id}")]
+    if request.format.html?
+      @start_date = case params[:period]
+                    when 'year'
+                      1.year.ago.to_date
+                    when 'all'
+                      nil
+                    else
+                      30.days.ago.to_date
+                    end
+    end
+
+    install_sql = "SELECT install_date, installs FROM install_counts where script_id = #{Script.connection.quote(@script.id)}"
+    install_sql += " and install_date >= #{Script.connection.quote(@start_date)}" if @start_date
+    install_values = Hash[Script.connection.select_rows(install_sql)]
+
+    daily_install_sql = "SELECT DATE(install_date) d, COUNT(*) FROM daily_install_counts where script_id = #{Script.connection.quote(@script.id)}"
+    daily_install_sql += " and install_date >= #{Script.connection.quote(@start_date)}" if @start_date
+    daily_install_sql += ' GROUP BY d'
+    daily_install_values = Hash[Script.connection.select_rows(daily_install_sql)]
+
+    update_check_sql = "SELECT update_check_date, update_checks FROM update_check_counts where script_id = #{@script.id}"
+    update_check_sql += " and update_check_date >= #{Script.connection.quote(@start_date)}" if @start_date
+    update_check_values = Hash[Script.connection.select_rows(update_check_sql)]
+
     @stats = {}
     update_check_start_date = Date.parse('2014-10-23')
-    (@script.created_at.to_date..Time.now.utc.to_date).each do |d|
+    ([@start_date, @script.created_at.to_date].compact.max..Time.now.utc.to_date).each do |d|
       stat = {}
       stat[:installs] = install_values[d] || daily_install_values[d] || 0
       # this stat not available before that date

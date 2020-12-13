@@ -5,6 +5,22 @@
   <%= javascript_pack_tag "stats" %>
 <% end %>
 
+<% if @script.created_at < 30.days.ago %>
+  <p>
+    <%
+      filter_options = []
+      if params[:period].nil?
+        filter_options << t('scripts.stats_filter_options.month')
+      else
+        filter_options << link_to(t('scripts.stats_filter_options.month'), period: nil)
+      end
+      filter_options << link_to_unless_current(t('scripts.stats_filter_options.year'), period: 'year')
+      filter_options << link_to_unless_current(t('scripts.stats_filter_options.all'), period: 'all') if @script.created_at < 365.days.ago
+    %>
+    <%= it('scripts.stats_filters', filter_options: safe_join(filter_options, ' ')) %>
+  </p>
+<% end %>
+
 <%
 [:installs, :weekly_installs, :update_checks].each do |data_key|
 
@@ -25,7 +41,11 @@
 
   <%
   data = @stats.map{|k, v| [k, v[data_key == :weekly_installs ? :installs : data_key]]}.to_h
-  data = data.group_by{|k, v| k.beginning_of_week}.map{|k, vs| [k, vs.sum{|v| v.last || 0}]}.to_h if data_key == :weekly_installs
+  if data_key == :weekly_installs
+    data = data.group_by{|k, v| k.beginning_of_week}.map{|k, vs| [k, vs.sum{|v| v.last || 0}]}.to_h
+  else
+    data = data.select{|k, v| k >= @start_date } if @start_date
+  end
   %>
   <script>
   var data = {
@@ -77,7 +97,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @stats.to_a.reverse.take(30).to_h.each do |d, i| %>
+    <% @stats.to_a.last(30).each do |d, i| %>
       <tr>
         <th><%=d%></th>
         <td class="numeric"><%=number_with_delimiter(i[:installs])%></td>
