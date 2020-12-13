@@ -14,8 +14,8 @@
       else
         filter_options << link_to(t('scripts.stats_filter_options.month'), period: nil)
       end
-      filter_options << link_to_unless_current(t('scripts.stats_filter_options.year'), period: 'year')
-      filter_options << link_to_unless_current(t('scripts.stats_filter_options.all'), period: 'all') if @script.created_at < 365.days.ago
+      filter_options << link_to_unless_current(t('scripts.stats_filter_options.year'), { period: 'year' }, rel: :nofollow)
+      filter_options << link_to_unless_current(t('scripts.stats_filter_options.all'), { period: 'all' }, rel: :nofollow ) if @script.created_at < 365.days.ago
     %>
     <%= it('scripts.stats_filters', filter_options: safe_join(filter_options, ' ')) %>
   </p>
@@ -106,5 +106,5 @@
     <% end %>
   </tbody>
 </table>
-<% links = [:json, :csv].map{|f| link_to f.to_s.upcase, {:format => f} } %>
+<% links = [:json, :csv].map{|f| link_to f.to_s.upcase, { format: f }, rel: :nofollow } %>
 <%=t('scripts.stats_download_raw_data_html', :links => links.join(' ').html_safe)%>

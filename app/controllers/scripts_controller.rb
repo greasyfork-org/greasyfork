@@ -528,6 +528,8 @@ class ScriptsController < ApplicationController
 
     return if handle_wrong_url(@script, :id)
 
+    @bots = 'noindex' unless params[:period].nil?
+
     if request.format.html?
       @start_date = case params[:period]
                     when 'year'
