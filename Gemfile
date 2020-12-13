@@ -47,8 +47,6 @@ gem 'image_processing'
 gem 'rails-observers'
 gem 'rb-readline'
 gem 'recaptcha', require: 'recaptcha/rails'
-# Rails gets support in https://github.com/rails/rails/pull/28297
-gem 'rails_same_site_cookie'
 
 group :development, :test do
   gem 'byebug'
