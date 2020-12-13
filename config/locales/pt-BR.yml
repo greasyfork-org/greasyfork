@@ -121,6 +121,11 @@ pt-BR:
     stats_raw_data_header: "Dados brutos"
     stats_download_raw_data_html: "Baixar todos os dados como: %{links}"
     stats_no_data: "N/A"
+    stats_filters: "Filtro: %{filter_options}"
+    stats_filter_options:
+      month: Últimos 30 dias
+      year: Últimos 365 dias
+      all: Todo o período
     derivatives_title: "%{script_name} - Derivados"
     derivatives_intro: "Esses scripts podem ser baseados no seu (ou o seu pode ser baseados neles). Caso você detecte um uso não autorizado de seu código, denuncie através da aba feedback do script."
     derivatives_script_html: "%{script} feito por %{user}, sob a licença: %{license} %{diff_link:[Diff]}"
@@ -337,6 +342,7 @@ pt-BR:
       css: "Postar um novo estilo"
     update_title: "Postar uma nova versão do script %{script}"
     antifeatures:
+      warning_title: Este script contém antifuncionalidades
       author_explanation_intro: "O autor deste script script explica:"
       types:
         ads:
@@ -654,7 +660,10 @@ pt-BR:
       post_new_script_link_text: 'Postar um script'
     code_rules:
       title: "Política do %{site_name} sobre scripts externos"
+      preamble: Estes são os requisitos para scripts publicados no %{site_name}. Eles tem como objetivo manter o %{site_name} como um local seguro e útil para scripts de usuário. Qualquer script que fuja desses requisitos pode ser removido pelos moderadores do %{site_name}.
       functionality_header: Funcionalidade
+      description: Scripts devem ter uma descrição do que eles fazem e não podem fazer coisas fora do escopo da descrição sem uma razão. Os usuários devem saber o que o script fará antes de instalá-lo.
+      reason: Scripts deve ter um motivo para serem um script. Por exemplo, um script que apenas direciona um usuário para um site não precisa ser um script; poderia ser um link. Scripts que utilizam um web service para executar uma ação na página atual (para realizar uma conversão, por exemplo) são permitidos.
       code_header: Código
       external_js: "%{external_scripts_link:O uso de JavaScript externo é limitado.}"
       copyright_header: Direito autoral

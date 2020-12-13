@@ -123,6 +123,11 @@ ru:
     stats_raw_data_header: "Подробно"
     stats_download_raw_data_html: "Загрузить все данные в формате: %{links}"
     stats_no_data: "Недоступно"
+    stats_filters: "Фильтр: %{filter_options}"
+    stats_filter_options:
+      month: За последние 30 дней
+      year: За последние 365 дней
+      all: За всё время
     derivatives_title: "%{script_name} - Похожие скрипты"
     derivatives_intro: "Эти скрипты могут быть основаны на вашем (или наоборот). Если код используется без вашего разрешения, сообщите об этом на вкладке Обсуждения скрипта."
     derivatives_script_html: "%{script} автора %{user}, лицензия: %{license} %{diff_link:[Diff]}"
@@ -1070,6 +1075,7 @@ ru:
       script_rate_limit: "Вы превысили количество сообщений. Попробуйте позже."
       missing_include_or_match: "должен иметь хотя бы одну директиву @match или @include"
       file_size_out_of_range: "размер не должен превышать 200КБ"
+      meta_too_long: "Превышена длина %{key} (максимальная длина %{count} символов)"
   opensearch:
     short_name: "Поиск %{site_name}"
     description: "Поиск пользовательских скриптов на %{site_name}."

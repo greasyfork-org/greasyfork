@@ -122,6 +122,11 @@ sk:
     stats_raw_data_header: "Nespracované dáta"
     stats_download_raw_data_html: "Stiahnuť všetky dáta ako: %{links}"
     stats_no_data: "nedostupné"
+    stats_filters: "Filter: %{filter_options}"
+    stats_filter_options:
+      month: Posledných 30 dní
+      year: Posledných 365 dní
+      all: Celé obdobie
     derivatives_title: "%{script_name} - Odvodené skripty"
     derivatives_intro: "Tieto skripty môžu byť založené na vašich (alebo vaše môžu byť založené na ich). Ak zistíte neoprávnené použitie vášho kódu, nahláste ho na cez spätnú väzbu daného skriptu."
     derivatives_script_html: "%{script} od používateľa %{user}, licencia: %{license} %{diff_link:[Diff]}"
@@ -1064,6 +1069,7 @@ sk:
       script_rate_limit: "Prekročili ste limit na odosielanie. Skúste to neskôr."
       missing_include_or_match: "musí obsahovať aspoň jeden kľúč @match alebo @include"
       file_size_out_of_range: "veľkosť musí byť menšia ako 200KB"
+      meta_too_long: "%{key} je príliš dlhý (max. je %{count} znakov)"
   opensearch:
     short_name: "hľadať %{site_name}"
     description: "Hľadanie skriptov na %{site_name}."
