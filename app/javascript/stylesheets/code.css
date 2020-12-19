@@ -13,10 +13,26 @@ pre {
   padding: 1em;
 }
 .prettyprint {
+  width: max-content;
+}
+.code-container {
   /* Ensure when page is scrolled to bottom, the element is entirely in view. */
   max-height: calc(100vh - 54px);
   overflow-x: auto;
+  border-radius: 2px;
+  border: 1px solid #E6DDD6;
 }
+.code-container pre {
+  border: 0;
+  margin: 0;
+}
+
+/* Show all line numbers, not just mod 5 */
+li.L0, li.L1, li.L2, li.L3, li.L4,
+li.L5, li.L6, li.L7, li.L8, li.L9 {
+  list-style-type: decimal !important;
+}
+
 
 @media screen and (max-width: 440px) {
   /* show more code */
