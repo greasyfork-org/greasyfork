@@ -4,10 +4,9 @@ rvm:
 env:
   - DB=mysql
 sudo: required
-services:
-  - mysql
 addons:
   chrome: stable
+  mariadb: '10.3'
 before_install: gem install bundler
 install:
   - wget -N https://chromedriver.storage.googleapis.com/2.42/chromedriver_linux64.zip -P ~/
