@@ -104,7 +104,6 @@ zh-CN:
     feedback_start_first_discussion_link: "成为第一个发起讨论的人吧。"
     feedback_discussion_or_report: "%{new_discussion_link:针对此脚本发起一个新的讨论} 或者%{report_link:举报使此脚本被移除}。"
     feedback_favoriters_heading: "收藏者"
-    feedback_favoriters_user_list_intro: "此脚本已被他们收藏："
     feedback_no_favoriters: "还没有人收藏此脚本。"
     feedback_sign_in_to_favorite: "登录以添加到收藏夹。"
     stats_title: "%{script_name} - 统计"
@@ -643,7 +642,6 @@ zh-CN:
       description: 脚本必须提供描述来说明这个脚本会做什么，而脚本也不应实现超过其描述的功能。用户必须提前知晓脚本会干的事情。
       reason: 脚本必须有一个成为脚本的理由。例如，一个只是跳转到某个网页的脚本可以只是一个超链接而非脚本；使用第三方接口来为当前页面提供服务的脚本（如转换数据）是允许的。
       unrelated: 脚本不得要求用户执行无关操作，例如支付、订阅频道、加群、或点赞，来使脚本部分或全部功能可用。
-      monetization: 带有盈利相关内容的脚本（追踪、广告、挖矿等）是允许的，但是作者必须在脚本说明或额外信息处披露。
       code_header: 代码
       obfuscation: 提交到 %{site_name} 的代码不得混淆或最小化。用户必须能有机会能在安装前审视并理解脚本的内容。如果脚本使用 WebPack 之类的工具打包，你必须在打包参数指定不进行最小化处理。
       libraries_html: 库是应被 <code>@require</code> 的脚本，除非因为技术原因不能这么做。如果一个库被内嵌入了脚本，那么你必须一并提供库的来源（比如一行评论指向原始地址、名称以及版本）。
