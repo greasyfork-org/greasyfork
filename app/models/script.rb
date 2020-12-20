@@ -16,7 +16,7 @@ class Script < ApplicationRecord
   has_many :site_applications, through: :script_applies_tos
   has_many :discussions, dependent: nil
   has_many :script_set_script_inclusions, foreign_key: 'child_id', dependent: :destroy, inverse_of: :child
-  has_many :favorited_in_sets, -> { includes(:users).where('favorite = true') }, through: :script_set_script_inclusions, class_name: 'ScriptSet', source: 'parent'
+  has_many :favorited_in_sets, -> { includes(:users).where(favorite: true) }, through: :script_set_script_inclusions, class_name: 'ScriptSet', source: 'parent'
   has_many :favoriters, through: :favorited_in_sets, class_name: 'User', source: 'user'
   has_many :localized_attributes, class_name: 'LocalizedScriptAttribute', autosave: true, dependent: :destroy
   has_many :localized_names, -> { where(attribute_key: 'name') }, class_name: 'LocalizedScriptAttribute', inverse_of: :script

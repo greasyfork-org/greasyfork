@@ -80,11 +80,13 @@
 
   <h3 id="feedback-favoriters"><%=t('scripts.feedback_favoriters_heading')%></h3>
   <div>
-    <% if @script.favoriters.empty? %>
-      <%=t('scripts.feedback_no_favoriters')%>
+    <% favoriter_count = @script.favoriters.count %>
+    <% if favoriter_count == 0 %>
+      <%= t('scripts.feedback_no_favoriters') %>
+    <% elsif favoriter_count < 10 || params[:show_favoriters] == '1' %>
+      <%= t('scripts.feedback_favoriters_user_list_html', user_list: @script.favoriters.map{ |user| render_user(user, user.id, skip_badge: true) }.to_sentence.html_safe) %>
     <% else %>
-      <%=t('scripts.feedback_favoriters_user_list_intro')%>
-      <ul class="inline-list"><% @script.favoriters.each do |user| %><li><%=link_to user.name, user%></li><% end %></ul>.
+      <%= it('scripts.feedback_favoriters_lots', user_count: number_with_delimiter(favoriter_count), count: favoriter_count, full_link: It.link(url_for(show_favoriters: 1, anchor: 'feedback-favoriters'), rel: :nofollow)) %>
     <% end %>
   </div>
   <p>

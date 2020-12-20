@@ -173,7 +173,10 @@ en:
     # heading for list of people who favorited this script
     feedback_favoriters_heading: "Favoriters"
     # text before a comma separated list of users who favorited the script
-    feedback_favoriters_user_list_intro: "This script has been favorited by:"
+    feedback_favoriters_user_list_html: "This script has been favorited by %{user_list}."
+    feedback_favoriters_lots:
+      one: "This script has been favorited by %{user_count} user. %{full_link:See the full list.}"
+      other: "This script has been favorited by %{user_count} users. %{full_link:See the full list.}"
     # text when no one has favorited a script
     feedback_no_favoriters: "This script has not yet been favorited by anyone."
     # link to get the user to sign in to add the script to their favorites

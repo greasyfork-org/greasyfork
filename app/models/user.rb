@@ -138,6 +138,8 @@ class User < ApplicationRecord
   end
 
   def moderator?
+    return roles.any? { |role| role.name == 'Moderator' } if roles.loaded?
+
     roles.where(name: 'Moderator').any?
   end
 
