@@ -109,6 +109,10 @@ it:
     feedback_start_first_discussion_link: "Discuti per primo questo script"
     feedback_discussion_or_report: "%{new_discussion_link:Inizia una nuova discussione su questo script} oppure %{report_link:segnalalo per la rimozione}."
     feedback_favoriters_heading: "Preferiti"
+    feedback_favoriters_user_list_html: "Questo script è stato aggiunto ai preferiti da %{user_list}."
+    feedback_favoriters_lots:
+      one: "Questo script è stato aggiunto ai preferiti da %{user_count} utente. %{full_link:Vedi la lista completa.}"
+      other: "Questo script è stato aggiunto ai preferiti da %{user_count} utenti. %{full_link:Vedi la lista completa.}"
     feedback_no_favoriters: "Questo script non è ancora stato messo fra i preferiti da nessuno"
     feedback_sign_in_to_favorite: "Accedi per aggiungere ai preferiti"
     stats_title: "%{script_name} - Statistiche"
@@ -121,6 +125,11 @@ it:
     stats_raw_data_header: "Dati Raw"
     stats_download_raw_data_html: "Scarica tutti i dati come: %{links}"
     stats_no_data: "N/A"
+    stats_filters: "Filtro: %{filter_options}"
+    stats_filter_options:
+      month: Ultimi 30 giorni
+      year: Ultimi 365 giorni
+      all: Di sempre
     derivatives_title: "%{script_name} - Derivati"
     derivatives_intro: "Questi script potrebbero essere basati sui tuoi (o i tuoi su di loro). Se trovi un utilizzo illecito del tuo codice segnalalo dal tab dei feedback di quello script."
     derivatives_script_html: "%{script}di %{user}, licenza: %{license} %{diff_link:[Diff]}"
@@ -337,6 +346,21 @@ it:
       js: "Pubblica un nuovo script"
       css: "Pubblica un nuovo stile"
     update_title: "Pubblica una nuova versione di %{script}"
+    antifeatures:
+      warning_title: Questo script contiene antifunzionalità
+      author_explanation_intro: "L'autore di questo script spiega:"
+      types:
+        ads:
+          title: Pubblicità
+          description_html: Questo script <b>inietterà pubblicità</b> nei siti che visiti.
+        tracking:
+          title: Tracciamento
+          description_html: Questo script contiene codice che <b>traccerà la tua navigazione</b>.
+        miner:
+          title: Cryptominer
+          description_html: Questo script contiene un cryptominer che quando è attivo <b>userà le risorse del tuo dispositivo</b>.
+      install_anyway: Installa script
+      cancel_install: Annulla
   script_sets:
     description: "Gli insiemi di script ti permettono di creare una lista personalizzata di script con cui navigare su Greasy Fork. Puoi aggiungere script al tuo insieme includendo script individuali, insiemi di altri utenti, o insiemi generati automaticamente. Puoi inoltre escludere degli script dal tuo insieme con gli stessi metodi."
     favorites_name: "Preferiti"
@@ -636,6 +660,8 @@ it:
       contributionAmount_html: "Importo suggerito per le donazioni, usato in concomitanza con il tag <code>@contributionURL</code>."
       compatible_html: "Contrassegna questo script come compatibile con un browser. Le informazioni sulla compatibilità saranno visualizzate nella pagina dello script. I commenti sulla compatibilità possono essere inclusi nel formato <code>@compatible firefox Deve essere disabilitato il blocco pop-up</code>. I browser riconosciuti sono: %{browsers}."
       incompatible_html: "Contrassegna questo script come non compatibile con un browser. Le informazioni sulla compatibilità saranno visualizzate nella pagina dello script. I commenti (facoltativi) sulla compatibilità possono essere inclusi nel formato <code>@incompatible firefox Non funziona con Firefox 23 e successivi</code>. I browser riconosciuti sono: %{browsers}."
+      antifeature_html: "Fornisce funzioni in uno script che sono a beneficio dell'autore, non dell'utente. Il formato di questa chiave è <code>@antifeature descrizione del tipo</code>.\n%{site_name} leggerà i seguenti tipi: <code>ads</code> (lo script mostra pubblicità all'utente), <code>tracking</code> (lo script traccia l'attività dell'utente), e <code>miner</code> (lo script contiene un cryptominer). Eventuali altri tipi vengono ignorati, ma lo script deve immancabilmente seguire le %{code_rules_link:Regole di %{site_name}}. La descrizione è opzionale."
+      antifeature_localized_html: "Un'<code>@antifeature</code> descritta in una lingua specifica, dove XX è un <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">codice ISO 639-1 a due lettere</a> e YY è un <a href=\"https://www.iso.org/obp/ui/#search\">codice paese ISO 3166</a> opzionale. Rimpiazza <code> @antifeature</code>s dello stesso tipo quando l'utente naviga in una lingua corrispondente."
     writing_user_scripts:
       title: "Come scrivere script utente"
       content_html: "<p>Scrivere script utente richiede la conoscenza di JavaScript. I <a href=\"http://wiki.greasespot.net/Tutorials\">tutorial sul wiki GreaseSpot</a> dovrebbero avvantaggiarti sia per quanto riguarda JavaScript in generale, sia per gli aspetti correlati agli script utente. Esaminare gli script di altri potrebbe aiutarti. Potresti voler consultare %{code_rules_link} e %{meta_keys_link}. Se hai bisogno di aiuto per lo sviluppo del tuo script, sentiti libero di %{ask_in_forum_link}.</p><p>Per inviare un post a %{site_name} dovrai creare un account. Dalla tua %{user_page_link} segui il collegamento a %{post_new_script_link}.</p>"
@@ -644,6 +670,8 @@ it:
       post_new_script_link_text: 'posta un nuovo script'
     code_rules:
       title: "Le regole di %{site_name} per gli script postati"
+      preamble: Questi sono i requisiti per gli script pubblicati su %{site_name}. Questi sono fatti con l'intenzione di mantenere %{site_name} un luogo sicuro e utile per gli script utente. Ogni script che ricade al di fuori di questi requisiti potrebbe essere cancellato dai moderatori di %{site_name}.
+      functionality_header: Funzionalità
     external_scripts:
       title: "Politiche di %{site_name} per gli script esterni"
       content_html: >

@@ -109,6 +109,12 @@ sk:
     feedback_start_first_discussion_link: "Buďte prvý, kto začne diskusiu o tomto skripte."
     feedback_discussion_or_report: "%{new_discussion_link:Začať diskusiu pre tento skript} alebo %{report_link:nahlásiť ho na odstránenie}."
     feedback_favoriters_heading: "Obľúbené"
+    feedback_favoriters_user_list_html: "Títo používatelia označili tento skript ako obľúbený: %{user_list}."
+    feedback_favoriters_lots:
+      one: "%{user_count} používateľ označil tento skript ako obľúbený. %{full_link:Zobraziť celý zoznam.}"
+      few: "%{user_count} používatelia označili tento skript ako obľúbený. %{full_link:Zobraziť celý zoznam.}"
+      many: "%{user_count} používateľov označilo tento skript ako obľúbený. %{full_link:Zobraziť celý zoznam.}"
+      other: "%{user_count} používateľov označilo tento skript ako obľúbený. %{full_link:Zobraziť celý zoznam.}"
     feedback_no_favoriters: "Tento skript ešte nebol nikým označený ako obľúbený."
     feedback_sign_in_to_favorite: "Prihláste sa, aby ste mohli pridať ako obľúbené."
     stats_title: "%{script_name} - Štatistika"
@@ -684,6 +690,7 @@ sk:
       description: Skripty musia obsahovať opis toho, čo robia, a nesmú robiť veci bezdôvodne mimo neho. Používatelia musia pred inštaláciou skriptu vedieť, čo urobí.
       reason: Skripty musia mať dôvod na to, aby boli skriptom. Napríklad skript, ktorý iba nasmeruje používateľa na web, nemusí byť skript; môže to byť odkaz. Skripty, ktoré používajú webovú službu na vykonanie akcie na aktuálnej stránke (napr. prevod na iný formát), sú povolené.
       unrelated: Skripty nesmú vyžadovať, aby používatelia vykonali nesúvisiacu akciu, ako je napríklad odoslanie platby, prihlásenie na odber kanála, pripojenie sa k skupine alebo označenie stránky, ktorá sa jej páči, aby bol skript úplne alebo čiastočne funkčný.
+      monetization_html: Skripty s metódami speňaženia (sledovanie, reklamy, ťaženie, atď.) nie sú zakázané, ale autor to musí zverejniť pomocou %{antifeature_link:metakľúčov <code>@antifeature</code>}
       code_header: Kód
       obfuscation: Kód zverejnený na webe %{site_name} nesmie byť zmätočný ani minifikovaný. Používateľom musí byť poskytnutá príležitosť skontrolovať a porozumieť skriptu pred jeho inštaláciou. Ak je skript zabalený s nástrojom, ako je webpack, musí byť vydaný v neminifikovanej podobe.
       libraries_html: Knižnice, ktoré skript používa, by mali obsahovať <code>@require</code>, pokiaľ na to neexistuje opodstatnený technický dôvod. V prípade, že je knižnica priložená inline, musí obsahovať informácie o zdroji knižnice (napr. komentár označujúci URL a/alebo názov a verziu).
