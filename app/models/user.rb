@@ -138,9 +138,11 @@ class User < ApplicationRecord
   end
 
   def moderator?
-    return roles.any? { |role| role.name == 'Moderator' } if roles.loaded?
+    self.class.moderator_ids.include?(id)
+  end
 
-    roles.where(name: 'Moderator').any?
+  def self.moderator_ids
+    @moderator_ids ||= joins(:roles).where(roles: { name: 'Moderator' }).pluck(:id).to_set
   end
 
   def administrator?
