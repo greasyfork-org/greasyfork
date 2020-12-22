@@ -552,6 +552,9 @@ en:
         miner:
           title: Cryptominer
           description_html: This script contains a cryptominer which will <b>use your device's resources</b> when active.
+        referral-link:
+          title: Referral links
+          description_html: This script will <b>rewrite links</b> to include a referral or affiliate code.
       install_anyway: Install script
       cancel_install: Cancel
   script_sets:
@@ -944,7 +947,7 @@ en:
       compatible_html: "Flags this script as compatible with a browser. Compatibility information will be shown on a script's page. Comments on compatibility can be included in the format <code>@compatible firefox Must disable pop-up blocker</code>. Recognized browsers are: %{browsers}."
       # description of @incompatible. %{browsers} is a comma-separated list of browser codes. You can translate "Broken since Firefox 23", but do not translate "@compatible firefox".
       incompatible_html: "Flags this script as incompatible with a browser. Compatibility information will be shown on a script's page. Optional comments on compatibility can be included in the format <code>@incompatible firefox Broken since Firefox 23</code>. Recognized browsers are: %{browsers}."
-      antifeature_html: "Discloses features in a script that are there to benefit the author, not the user. The format of this key is <code>@antifeature type description</code>. %{site_name} will read the following types: <code>ads</code> (the script displays ads to the user), <code>tracking</code> (the script tracks the user's activity), and <code>miner</code> (the script contains a cryptominer). Other types are ignored, but the script must nonetheless follow %{code_rules_link:%{site_name}'s rules}. Description is optional."
+      antifeature_html: "Discloses features in a script that are there to benefit the author, not the user. The format of this key is <code>@antifeature type description</code>. %{site_name} will read the following types: <code>ads</code> (the script displays ads to the user), <code>tracking</code> (the script tracks the user's activity), <code>miner</code> (the script contains a cryptominer), and <code>referral-link</code> (the script rewrites links to add referral/affiliate tracking). Other types are ignored, but the script must nonetheless follow %{code_rules_link:%{site_name}'s rules}. Description is optional."
       antifeature_localized_html: "An <code>@antifeature</code> described in a specific locale, where XX is an <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-letter code</a> and YY is an optional <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 country code</a>. Overrides <code>@antifeature</code>s of the same type when the user is browsing in a matching locale."
     writing_user_scripts:
       # title for Writing user scripts help page
