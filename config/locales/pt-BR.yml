@@ -357,6 +357,9 @@ pt-BR:
         miner:
           title: Minerador de criptomoeda
           description_html: Este script contém um minerador de criptomoedas que irá <b>usar os recursos do seu dispositivo</b> quando ativado.
+        referral-link:
+          title: Links de referência
+          description_html: Este script irá <b>reescrever links</b> para incluir uma referência ou código de afiliado.
       install_anyway: Instalar script
       cancel_install: Cancelar
   script_sets:
@@ -653,7 +656,7 @@ pt-BR:
       contributionAmount_html: "Doação sugerida, usado em conjunto com <code>@contributionURL</code>."
       compatible_html: "Marca esse script como compatível com um navegador. Informação de compatibilidade será mostrada na página do script. Comentários sobre compatibilidade podem ser incluídos no formato <code>@compatible firefox Must disable pop-up blocker</code>. Os navegadores reconhecidos são: %{browsers}."
       incompatible_html: "Marca esse script como incompatível com um navegador. Informação de compatibilidade será mostrada na página do script. Comentários sobre compatibilidade podem ser incluídos no formato <code>@incompatible firefox Broken since Firefox 23</code>. Os navegadores reconhecidos são: %{browsers}."
-      antifeature_html: "Expõe funcionalidades em um script que estão lá para beneficiar o autor, não o usuário. O formato desta chave é  <code>descrição do tipo de @antifeature</code>. O %{site_name} irá reconhecer os seguintes tipos: <code>ads</code> (o script mostra anúncios para o usuário), <code>tracking</code> (o script rastreia a atividade do usuário), e <code>miner</code> (o script contém um minerador de criptomoeda). Outros tipos serão ignorados, porém o script deve ainda assim seguir as %{code_rules_link:regras do %{site_name}}. Descrição é opcional."
+      antifeature_html: "Expõe funcionalidades em um script que estão lá para beneficiar o autor, não o usuário. O formato desta chave é <code>descrição do tipo de @antifeature</code>. O %{site_name} irá reconhecer os seguintes tipos: <code>ads</code> (o script mostra anúncios para o usuário), <code>tracking</code> (o script rastreia a atividade do usuário), <code>miner</code> (o script contém um minerador de criptomoeda), e <code>referral-link</code> (o script reescreve links para adicionar rastreador de referência/afiliado). Outros tipos serão ignorados, porém o script deve ainda assim seguir as %{code_rules_link:regras do %{site_name}}. Descrição é opcional."
       antifeature_localized_html: "Uma <code>@antifeature</code> descrita em um idioma específico, onde XX é um <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">código ISO 639-1 de 2 dígitos</a> e YY é um <a href=\"https://www.iso.org/obp/ui/#search\">código ISO 3166 de país</a> opcional. Substitui <code>@antifeature</code>s do mesmo tipo quando o usuário estiver navegando em um idioma correspondente."
     writing_user_scripts:
       title: "Como escrever scripts de usuário"
@@ -672,9 +675,15 @@ pt-BR:
       code_header: Código
       obfuscation: Os códigos postados no %{site_name} não devem estar obfuscados ou minificados. Os usuários devem ter a chance de inspecionar e compreender o script antes de instalá-lo. Se o script for empacotado por ferramentas como webpack, ele deve ser exportado de forma não minificada.
       libraries_html: Bibliotecas que um script utiliza devem ser incluídas pela tag <code>@require</code>, a meos que haja um rasão técnica válida para isso. No caso da biblioteca ser incluída inline, deve ser incluída informação de sua fonte (um comentário indicando a URL e/ou nome e versão, por exemplo).
+      updates: Scripts não devem buscar atualizações mais de uma vez por dia. Perceba que a maioria dos gerenciadores de scripts de usuário irão cuidar automaticamente das atualizações, então fazer isso no script é desnecessário. Scripts também não devem injetar dinamicamente outro script do %{site_name} em uma página, uma vez que isso bypassa o cache dos gerenciadores de scripts de usuário.
       external_js: "%{external_scripts_link:O uso de JavaScript externo é limitado.}"
       copyright_header: Direito autoral
+      licensing: Seu script deve respeitar os direitos autorais de terceiros. Isso inclui o código em si e qualquer outro recurso (como imagens, por exemplo) que ele utilize. Caso você pretenda usar conteúdo de terceiros, siga seus termos de licença e tenha permissão deles antes de fazê-lo.
+      reposts: Mesmo nos casos em que não há violação dass regras de direitos autorais, repostagem de scripts que já estão no %{site_name} não é permitida a menos que hajam melhorias em relação ao original.
       miscellaneous_header: Diversos
+      keywords_html: Scripts não devem incluir tags <code>@include</code>, <code>@match</code>, ou palavras chave para sites para os quais não forneça funcionalidades.
+      adult_content_rule: Scripts que incluam conteúdo adulto ou que sejam destinados a sites de conteúdo adulto devem ser marcados como tal para que os usuários possam decidir vê-lo ou não.
+      reporting: Caso você encontre um script que fuja desses parâmetros, por favor reporte-o através do link de feedback daquele script e escolha a opção "Reportar script".
     external_scripts:
       title: "Política em scripts externo do %{site_name}"
       content_html: >
@@ -1047,6 +1056,7 @@ pt-BR:
       script_rate_limit: "Você atingiu o limite de postagens. Tente novamente mais tarde."
       missing_include_or_match: "deve incluir pelo menos uma chave @match ou @include"
       file_size_out_of_range: "tamanho deve ser menor que 200KB"
+      meta_too_long: "%{key} é muito longa (o máximo são %{count} caracteres)"
   opensearch:
     short_name: "%{site_name} busca"
     description: "Busca por scripts de usuário em %{site_name}."

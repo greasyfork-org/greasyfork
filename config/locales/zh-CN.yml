@@ -348,6 +348,9 @@ zh-CN:
         miner:
           title: 挖矿
           description_html: 这个脚本含有挖矿代码，启动时将<b>占用您的设备资源</b>。
+        referral-link:
+          title: 引荐链接
+          description_html: 此脚本将<b>重写或重定向</b>部分网页地址来添加推荐人或返利代码至链接。
       install_anyway: 安装脚本
       cancel_install: 取消
   script_sets:
@@ -630,7 +633,7 @@ zh-CN:
       contributionAmount_html: "建议捐赠金额，请配合 <code>@contributionURL</code> 使用。"
       compatible_html: "标记此脚本与某个浏览器兼容，兼容性信息将显示在脚本的简介页面上。您也可以添加额外的兼容说明，如 <code>@compatible firefox 火狐上必须关闭广告过滤器</code> 这样的格式。目前能被网站识别的浏览器名称有：%{browsers}。"
       incompatible_html: "标记此脚本与某个浏览器不兼容，兼容性信息将显示在脚本的简介页面上。您也可以添加额外的兼容说明，如 <code>@incompatible firefox 自火狐 23 开始不兼容</code> 这样的写法。目前能被网站识别的浏览器名称有：%{browsers}。"
-      antifeature_html: "披露会为脚本作者而非用户带来额外收益的功能。你可以通过在脚本的元数据中添加 <code>@antifeature <类型> <描述></code> 值的方法披露。%{site_name} 会解析这几种类型：<code>ads</code> （该脚本会展示广告给脚本使用者）、 <code>tracking</code> （该脚本会追踪用户的活动）、以及<code>miner</code>（该脚本含有虚拟货币挖矿代码），而其它类型的值将会被忽略。即便如此，脚本也必须遵守 %{code_rules_link:%{site_name} 的规则}。描述段可以留空。"
+      antifeature_html: "披露会为脚本作者而非用户带来额外收益的功能。你可以通过在脚本的元数据中添加 <code>@antifeature <类型> <描述></code> 值的方法披露。%{site_name} 会解析这几种类型：<code>ads</code> （该脚本会展示广告给脚本使用者）、 <code>tracking</code> （该脚本会追踪用户的活动）、<code>miner</code>（该脚本含有虚拟货币挖矿代码）以及<code>referral-link</code>（脚本会重写或重定向链接来添加推荐/返利代码），而其它类型的值将会被忽略。即便如此，脚本也必须遵守 %{code_rules_link:%{site_name} 的规则}。描述段可以留空。"
       antifeature_localized_html: "你可以使用多种语言声明 <code>@antifeature</code> 属性，其中 XX 为 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 中定义的两个字符的代码</a>，而 YY 则是一个可选的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 中定义的国家代码</a>。在<code>@antifeature</code>中制定的每一个类型都可以自定义其本地化的说明。"
     writing_user_scripts:
       title: "如何编写用户脚本"

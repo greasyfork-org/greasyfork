@@ -360,6 +360,9 @@ sk:
         miner:
           title: Kryptominer
           description_html: Tento skript obsahuje kryptominer, ktorý využíva zdroje vášho zariadenia v čase jeho aktivity.
+        referral-link:
+          title: Referral odkazy
+          description_html: Tento skript <b>prepíše odkazy</b> a doplní do nich refferal alebo affiliate kód.
       install_anyway: Inštalovať skript
       cancel_install: Zrušiť
   script_sets:
@@ -675,7 +678,7 @@ sk:
       contributionAmount_html: "Navrhnutá suma príspevku, spojená v súvislosti s <code>@contributionURL</code>."
       compatible_html: "Označí tento skript ako kompatibilný s webovým prehliadačom. Informácie o kompatibilite budú zobrazené na stránke skriptu. Komentáre ohľadom kompatibility môžu byť zahrnuté vo formáte <code>@compatible firefox Musíte zakázať blokovanie nevyžiadaných vyskakovacích okien</code>. Overené prehliadače: %{browsers}."
       incompatible_html: "Označí tento skript ako nekompatibilný s webovým prehliadačom. Informácie o kompatibilite budú zobrazené na stránke skriptu. Voliteľné komentáre ohľadom kompatiblity môžu byť zahrnuté vo formáte <code>@incompatible firefox Nefunguje od Firefox 23</code>. Overené prehliadače: %{browsers}."
-      antifeature_html: "Zverejňuje funkciu v skripte, ktorá je užitočná autora, nie pre používateľa. Formát tohto kľúča je <code>@antifeature type description</code>. %{site_name} prečíta nasledujúce typy: <code>reklama</code> (skript zobrazí používateľovi reklamu), <code>sledovanie</code> (skript sleduje aktivity používateľa) a <code>ťažiar</code> (skript obsahuje kryptominer). Ostatné typy sú ignorované, napriek tomu skript musí dodržiavať %{code_rules_link:%Pravidlá stránky %{site_name}}. Popis je voliteľný."
+      antifeature_html: "Zverejňuje funkciu v skripte, ktorá je užitočná autora, nie pre používateľa. Formát tohto kľúča je <code>@antifeature type description</code>. %{site_name} prečíta nasledujúce typy: <code>reklama</code> (skript zobrazí používateľovi reklamu), <code>sledovanie</code> (skript sleduje aktivity používateľa) a <code>miner</code> (skript obsahuje kryptominer) a <code>referral odkaz</code> (skript prepíše odkazy pridaním referral/affiliate sledovania). Ostatné typy sú ignorované, napriek tomu skript musí dodržiavať %{code_rules_link:%Pravidlá stránky %{site_name}}. Popis je voliteľný."
       antifeature_localized_html: "Kľúč <code>@antifeature</code> popísaný pre špecifickú lokalitu, kde XX je <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-jazykový kód</a> a YY je voliteľný <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 kód krajiny</a>. Prepíše <code>@antifeature</code> s rovnakým typom, ak používateľ prehliada so zhodnou lokalitou."
     writing_user_scripts:
       title: "Ako napísať používateľský skript"
