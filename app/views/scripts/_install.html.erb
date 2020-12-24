@@ -47,11 +47,15 @@
           <% script.best_antifeatures_for_locale(request_locale).each do |antifeature| %>
             <p>
               <%= t("scripts.antifeatures.types.#{antifeature.antifeature_type}.description_html") %>
-              <% if antifeature.description %>
-                <%= t('scripts.antifeatures.author_explanation_intro') %>
-                <q><%= antifeature.description %></q>
-              <% end %>
             </p>
+            <% if antifeature.description %>
+              <p>
+                <%= t('scripts.antifeatures.author_explanation_intro') %>
+              </p>
+              <p>
+                <q><%= antifeature.description %></q>
+              </p>
+            <% end %>
           <% end %>
         </main>
         <footer class="modal__footer">
