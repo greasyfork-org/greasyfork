@@ -916,6 +916,7 @@ el:
       script_rate_limit: "Έχετε υπερβεί το όριο δημοσιεύσεων. Δοκιμάστε ξανά αργότερα."
       missing_include_or_match: "πρέπει να περιλαμβάνεται τουλάχιστον ένα @match ή @include κλειδί"
       file_size_out_of_range: "Το μέγεθος πρέπει να είναι λιγότερο από 200KB"
+      meta_too_long: "%{key} είναι πολύ μεγάλο (μέγιστο είναι %{count} χαρακτήρες)"
   opensearch:
     short_name: "Αναζήτηση %{site_name}"
     description: "Αναζήτηση για κώδικες χρηστών στο %{site_name}."
@@ -925,6 +926,11 @@ el:
     script_report:
       report_created_offender:
         subject: "Ο κώδικάς σας %{script_name} στο %{site_name} έχει αναφερθεί"
+        reason_unauthorized: "Ο κώδικάς σας %{script_name} στο %{site_name} έχει αναφερθεί ότι είναι αντίγραφο  ή τροποποίηση άλλου κώδικα χωρίς άδεια ."
+        reason_spam: "Ο κώδικάς σας %{script_name} στο %{site_name} έχει αναφερθεί ως κακόβουλο λογισμικό."
+        reason_other: "Ο κώδικάς σας %{script_name} έχει αναφερθεί ότι παραβιάζει %{site_name} κανόνες."
+      report_upheld_offender:
+        subject: "Ο κώδικάς στο %{script_name} στο %{site_name}έχει διαγραφεί"
       report_rebutted_reporter:
         subject: "Η αναφορά σας στο %{script_name} στο %{site_name}λάβει απάντηση"
       report_upheld_reporter:
