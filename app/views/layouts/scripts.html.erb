@@ -47,4 +47,17 @@
     </div>
   </section>
 <% end %>
+
+<% content_for(:head_bottom) do %>
+  <meta property="og:title" content="<%= @script.default_name %>">
+  <meta property="og:url" content="<%= script_url(@script, locale: nil) %>">
+  <% if @script_version %>
+    <%# Same as in screenshots/_show.html.erb %>
+    <% attachments = @script_version.attachments.includes(:blob).load %>
+    <% if attachments.any? %>
+      <meta property="og:image" content="<%= attachments.first.blob.url %>">
+    <% end %>
+  <% end %>
+<% end %>
+
 <%= render template: 'layouts/base' %>
