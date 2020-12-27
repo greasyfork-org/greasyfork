@@ -12,7 +12,7 @@ class ConversationMailer < ApplicationMailer
                         site_name: site_name,
                         locale: locale,
                         notification_preferences_url: notifications_user_url(to_user, locale: locale),
-                        message_text: format_user_text_as_plain(conversation.messages.first.content, conversation.messages.first.content_markup))
+                        message_text: format_user_text_as_plain(conversation.messages.first.content, conversation.messages.first.content_markup, use_line_breaks: true))
       end
     end
   end
@@ -28,7 +28,7 @@ class ConversationMailer < ApplicationMailer
                         conversation_url: user_conversation_url(to_user, message.conversation, locale: locale, anchor: "message-#{message.id}"),
                         locale: locale,
                         notification_preferences_url: notifications_user_url(to_user, locale: locale),
-                        message_text: format_user_text_as_plain(message.content, message.content_markup))
+                        message_text: format_user_text_as_plain(message.content, message.content_markup, use_line_breaks: true))
       end
     end
   end

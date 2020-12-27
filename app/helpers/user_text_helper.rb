@@ -16,9 +16,41 @@ module UserTextHelper
     Sanitize.clean(text, sanitize_config).html_safe
   end
 
+  # Same as sanitize's default, but line breaks rather than spaces.
+  USE_LINE_BREAK_OPTIONS = {
+    whitespace_elements: {
+      'address' => { before: "\n", after: "\n" },
+      'article' => { before: "\n", after: "\n" },
+      'aside' => { before: "\n", after: "\n" },
+      'blockquote' => { before: "\n", after: "\n" },
+      'br' => { before: "\n", after: "\n" },
+      'dd' => { before: "\n", after: "\n" },
+      'div' => { before: "\n", after: "\n" },
+      'dl' => { before: "\n", after: "\n" },
+      'dt' => { before: "\n", after: "\n" },
+      'footer' => { before: "\n", after: "\n" },
+      'h1' => { before: "\n", after: "\n" },
+      'h2' => { before: "\n", after: "\n" },
+      'h3' => { before: "\n", after: "\n" },
+      'h4' => { before: "\n", after: "\n" },
+      'h5' => { before: "\n", after: "\n" },
+      'h6' => { before: "\n", after: "\n" },
+      'header' => { before: "\n", after: "\n" },
+      'hgroup' => { before: "\n", after: "\n" },
+      'hr' => { before: "\n", after: "\n" },
+      'li' => { before: "\n", after: "\n" },
+      'nav' => { before: "\n", after: "\n" },
+      'ol' => { before: "\n", after: "\n" },
+      'p' => { before: "\n", after: "\n" },
+      'pre' => { before: "\n", after: "\n" },
+      'section' => { before: "\n", after: "\n" },
+      'ul' => { before: "\n", after: "\n" },
+    },
+  }.freeze
+
   # Returns the plain text representation of the passed markup
-  def format_user_text_as_plain(text, markup_type)
-    Sanitize.clean(format_user_text(text, markup_type))
+  def format_user_text_as_plain(text, markup_type, use_line_breaks: false)
+    Sanitize.clean(format_user_text(text, markup_type), use_line_breaks ? USE_LINE_BREAK_OPTIONS : {}).strip
   end
 
   def detect_possible_mentions(text, markup_type)
