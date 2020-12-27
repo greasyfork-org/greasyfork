@@ -17,7 +17,8 @@ function quoteComment(event) {
   let htmlFormat = replyForm.querySelector("[name='comment[text_markup]']:checked, [name='message[content_markup]']:checked").value == 'html'
   let text = getSelectedText(comment, htmlFormat)
   let replyInput = replyForm.querySelector("#comment_text, #message_content")
-  replyInput.value += blockquoteText(text, htmlFormat) + "\n\n"
+  let prependWhitespace = replyInput.value != "" && !replyInput.value.endsWith("\n")
+  replyInput.value += (prependWhitespace ? "\n\n" : "") + blockquoteText(text, htmlFormat) + "\n\n"
   replyInput.focus()
 }
 
