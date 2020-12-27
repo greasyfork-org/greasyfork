@@ -818,12 +818,15 @@ el:
     unsubscribe: Ακύρωση εγγραφής
     notify: Ειδοποίηση για οποιαδήποτε απάντηση
     categories:
+      greasyfork:
+        name: Greasy Fork Ανατροφοδότηση .
       development:
         name: Ανάπτυξη
       requests:
         name: Αιτήματα Δημιουργίας
       script-discussions:
         name: Συζητήσεις κώδικα
+        description: Συνομιλίες για ήδη υπάρχον κώδικα και  στυλ  χρήστη .
       no-scripts:
         name: Όλες εκτός από τις Συζητήσεις Κώδικα
     category_display: "%{name} - %{description}"
@@ -831,7 +834,9 @@ el:
     new_button: Νέα συζήτηση
     no_discussions: Δεν βρέθηκαν συζητήσεις.
     mark_all_read: Σήμανση ως αναγνωσμένες
+    pending_moderator_review: Η συνομηλία δεν είναι διαθέσιμη σε άλλους χρήστες όσπου να ελεγχθεί από συντονιστή.
   conversations:
+    user_input_note: Εισάγετε το όνομα χρήστη ή την URL στο προφίλ του.
     new_title: Δημιουργία μιας νέας συνομιλίας
     new_link: Δημιουργία μιας νέας συνομιλίας
     new_button: Δημιουργία συνομιλίας
@@ -843,9 +848,13 @@ el:
     conversation_link_html:
       one: Συνομιλία με τον χρήστη %{users}.
       other: Συνομιλία με τους χρήστες %{users}.
+    conversation_info_html: Τελευταίο μήνυμα στο %{date} από %{user}.
+    no_conversations: Δεν έχετε καμία συνομιλία ακόμη.
     recent:
       title: Πρόσφατες συνομιλίες
       more: Δείτε όλες τις συνομιλίες
+  screenshots:
+    requirements: "Μέγιστο μέγεθος από %{number} PNG, GIF, JPEG, ή WebP εικόνες, μικρότερες από %{size} η καθεμιά."
   common:
     error_preamble: "Υπήρξαν κάποια προβλήματα με αυτά που δημοσιεύσατε..."
     allowed_elements_link: "(Δείτε τον επιτρεπτόμενο κώδικα.)"
@@ -931,6 +940,10 @@ el:
         reason_other: "Ο κώδικάς σας %{script_name} έχει αναφερθεί ότι παραβιάζει %{site_name} κανόνες."
       report_upheld_offender:
         subject: "Ο κώδικάς στο %{script_name} στο %{site_name}έχει διαγραφεί"
+        text: "Ο κώδικάς σας %{script_name} στο %{site_name} έχει διαγραφεί από συντονιστή. Μπορείτε να δείτε την αναφορά στο %{report_url}. Αν έχετε κάποια ερώτηση παρακαλούμε επισκεφθείτε https://greasyfork.org/forum/"
+      report_dismissed_offender:
+        subject: "Μια αναφορά για τον κώδικά σας %{script_name} στο %{site_name} έχει  αποριφθεί."
+        text: "Μια αναφορά για τον κώδικά σας %{script_name} στο %{site_name} έχει απορριφθεί από συντονιστή. Ο κώδικάς σας θα παραμείνει ενεργός. Μπορείτε να ελέγξετε την αναφορά στο %{report_url}. Αν έχετε οποιαδήποτε ερώτηση παρακαλούμε επισκεφθείτε https://greasyfork.org/forum/."
       report_rebutted_reporter:
         subject: "Η αναφορά σας στο %{script_name} στο %{site_name}λάβει απάντηση"
       report_upheld_reporter:
@@ -942,3 +955,11 @@ el:
     consecutive_bad_ratings:
       notify:
         subject: "Ο κώδικάς σας %{script_name} στο %{site_name} έχει λάβει πολλές \"κακές\"  κριτικές"
+    script_comment:
+      subject: "Ο κώδικάς σας %{script_name}στο %{site_name} έχει λάβει ένα σχόλιο."
+    subscribed_discussion:
+      subject: "Η συζήτηση %{discussion_title}  ατο %{site_name} έχει λάβει ένα σχόλιο."
+    comment_mentioned:
+      subject: "Ο χρήστης %{commenter_name} αναφέρθηκε σε εσάς στο %{site_name}."
+    new_message:
+      subject: "%{user}σας έστειλε ένα μήνυμα στο %{site_name}."
