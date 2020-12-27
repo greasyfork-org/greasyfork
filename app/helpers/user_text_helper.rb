@@ -260,6 +260,6 @@ module UserTextHelper
   end
 
   def markdown
-    @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML.new({ link_attributes: { rel: 'nofollow' } }), fenced_code_blocks: true, lax_spacing: true)
+    @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML.new({ link_attributes: { rel: 'nofollow' } }), fenced_code_blocks: true, lax_spacing: true, tables: true)
   end
 end
