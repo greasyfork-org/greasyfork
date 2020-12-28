@@ -189,18 +189,13 @@ class User < ApplicationRecord
     return scripts.not_locked
   end
 
-  def lock_all_scripts!(reason:, moderator:, delete_type:)
+  def lock_all_scripts!(moderator:, delete_type:, reason: nil, script_report: nil, report: nil)
     non_locked_scripts.each do |s|
       s.delete_reason = reason
       s.locked = true
       s.script_delete_type_id = delete_type
       s.save(validate: false)
-      ma_delete = ModeratorAction.new
-      ma_delete.moderator = moderator
-      ma_delete.script = s
-      ma_delete.action = 'Delete and lock'
-      ma_delete.reason = reason
-      ma_delete.save!
+      ModeratorAction.create!(moderator: moderator, script: s, action: 'Delete and lock', reason: reason, script_report: script_report, report: report)
     end
   end
 
@@ -247,7 +242,7 @@ class User < ApplicationRecord
     save!
   end
 
-  def ban!(moderator:, reason:, delete_comments: false, delete_scripts: false, private_reason: nil, ban_related: true)
+  def ban!(moderator:, reason: nil, script_report: nil, report: nil, delete_comments: false, delete_scripts: false, private_reason: nil, ban_related: true)
     return if banned?
 
     User.transaction do
@@ -256,7 +251,9 @@ class User < ApplicationRecord
         user: self,
         action: 'Ban',
         reason: reason,
-        private_reason: private_reason
+        private_reason: private_reason,
+        script_report: script_report,
+        report: report
       )
       update_columns(banned_at: Time.current)
       script_reports.unresolved.each(&:dismiss!)
@@ -264,15 +261,15 @@ class User < ApplicationRecord
 
     if ban_related
       User.not_banned.where(canonical_email: canonical_email).find_each do |user|
-        user.ban!(moderator: moderator, reason: reason, delete_comments: delete_scripts, delete_scripts: delete_scripts, private_reason: private_reason, ban_related: false)
+        user.ban!(moderator: moderator, reason: reason, delete_comments: delete_scripts, delete_scripts: delete_scripts, private_reason: private_reason, ban_related: false, script_report: script_report, report: report)
       end
     end
 
     delete_all_comments!(by_user: moderator) if delete_comments
-    lock_all_scripts!(reason: reason, moderator: moderator, delete_type: ScriptDeleteType::BLANKED) if delete_scripts
+    lock_all_scripts!(reason: reason, script_report: script_report, report: report, moderator: moderator, delete_type: ScriptDeleteType::BLANKED) if delete_scripts
 
-    Report.unresolved.where(item: self).find_each do |report|
-      report.uphold!(moderator: moderator)
+    Report.unresolved.where(item: self).find_each do |other_report|
+      other_report.uphold!(moderator: moderator)
     end
   end
 

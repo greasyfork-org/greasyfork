@@ -9,14 +9,11 @@
       <th><%= t('moderator_logs.item_column') %></th>
       <th><%= t('moderator_logs.action_column') %></th>
       <th><%= t('moderator_logs.reason_column') %></th>
-      <% if current_user&.moderator? %>
-        <th></th>
-      <% end %>
     </tr>
   </thead>
   <% @actions.each do |action| %>
     <tr>
-      <td><%=markup_date action.created_at%></td>
+      <td><%= markup_date action.created_at %></td>
       <td><%= render_user action.moderator, action.moderator_id, skip_badge: true %></td>
       <td>
         <% if !action.script.nil? %>
@@ -28,11 +25,20 @@
           <%= t('moderator_logs.item_user_html', user_link: link_to(action.user.name, action.user)) %>
         <% end %>
       </td>
-      <td><%=action.action%></td>
-      <td><div class="possibly-long-text"><%=action.reason%></div></td>
-      <% if current_user&.moderator? %>
-        <td><div class="possibly-long-text"><%=action.private_reason%></div></td>
-      <% end %>
+      <td><%= action.action %></td>
+      <td>
+        <div class="possibly-long-text">
+          <% if action.report %>
+            <%= link_to "Report ##{action.report.id}", report_path(action.report) %>
+          <% elsif action.script_report %>
+            <%= link_to "Script report ##{action.script_report.id}", script_script_report_path(action.script_report.script, action.script_report) %>
+          <% end %>
+          <%= action.reason %>
+        </div>
+        <% if current_user&.moderator? && action.private_reason %>
+          <div class="possibly-long-text"><%= action.private_reason %></div>
+        <% end %>
+      </td>
     </tr>
   <% end %>
 </table>

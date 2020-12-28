@@ -31,13 +31,11 @@ class Report < ApplicationRecord
 
   def uphold!(moderator:, ban_user: false, delete_comments: false, delete_scripts: false)
     Report.transaction do
-      delete_reason = "In response to report ##{id}"
-
       case item
       when User, Message
-        reported_user.ban!(moderator: moderator, reason: delete_reason, delete_comments: delete_comments, delete_scripts: delete_scripts, ban_related: true)
+        reported_user.ban!(moderator: moderator, delete_comments: delete_comments, delete_scripts: delete_scripts, ban_related: true, report: self)
       when Comment
-        reported_user.ban!(moderator: moderator, reason: delete_reason, delete_comments: delete_comments, delete_scripts: delete_scripts, ban_related: true) if ban_user
+        reported_user.ban!(moderator: moderator, delete_comments: delete_comments, delete_scripts: delete_scripts, ban_related: true, report: self) if ban_user
         item.soft_destroy!(by_user: moderator) unless item.soft_deleted?
       else
         raise "Unknown report item #{item}"

@@ -73,15 +73,7 @@ class ScriptReportsController < ApplicationController
     @script_report = @script.script_reports.find(params[:id])
     @script.update!(script_delete_type_id: 1, locked: true, replaced_by_script_id: @script_report.reference_script_id, delete_reason: "Deleted by #{is_author ? 'author' : 'moderator'} in response to report ##{@script_report.id}.")
 
-    mod_reason = "In response to report #{@script_report.id}"
-    if current_user.moderator?
-      ma = ModeratorAction.new
-      ma.moderator = current_user
-      ma.script = @script
-      ma.action = 'Delete and lock'
-      ma.reason = mod_reason
-      ma.save!
-    end
+    ModeratorAction.create!(moderator: current_user, script: @script, action: 'Delete and lock', script_report: @script_report) if current_user.moderator?
 
     @script_report.uphold!(current_user.moderator? ? params[:moderator_note] : nil)
     ScriptReportMailer.report_upheld_reporter(@script_report, is_author, site_name).deliver_later
@@ -90,12 +82,12 @@ class ScriptReportsController < ApplicationController
     if current_user.moderator?
       banned_user_ids = (params[:ban_users] || []).map(&:to_i)
       @script.users.select { |user| banned_user_ids.include?(user.id) }.each do |user|
-        user.ban!(moderator: current_user, reason: mod_reason)
+        user.ban!(moderator: current_user, script_report: @script_report)
       end
 
       delete_user_ids = (params[:delete_users] || []).map(&:to_i)
       @script.users.select { |user| delete_user_ids.include?(user.id) }.each do |user|
-        user.lock_all_scripts!(reason: mod_reason, moderator: current_user, delete_type: ScriptDeleteType::BLANKED)
+        user.lock_all_scripts!(moderator: current_user, script_report: @script_report, delete_type: ScriptDeleteType::BLANKED)
       end
     end
 
