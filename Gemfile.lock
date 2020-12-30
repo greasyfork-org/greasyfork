@@ -1,17 +1,4 @@
 GIT
-  remote: https://github.com/pat/thinking-sphinx
-  revision: 7d3bcdbf8508389d5fe7d15541f7e91149890767
-  branch: develop
-  specs:
-    thinking-sphinx (5.0.0)
-      activerecord (>= 4.2.0)
-      builder (>= 2.1.2)
-      innertube (>= 1.0.2)
-      joiner (>= 0.3.4)
-      middleware (>= 0.1.0)
-      riddle (~> 2.3)
-
-GIT
   remote: https://github.com/rwojnarowski/capistrano-sidekiq.git
   revision: 8a8a2edf86dfcdebd69dafc4f96adc55745aecde
   ref: 8a8a2edf86dfcdebd69dafc4f96adc55745aecde
@@ -381,6 +368,13 @@ GEM
       net-ssh (>= 2.8.0)
     strip_attributes (1.11.0)
       activemodel (>= 3.0, < 7.0)
+    thinking-sphinx (5.1.0)
+      activerecord (>= 4.2.0)
+      builder (>= 2.1.2)
+      innertube (>= 1.0.2)
+      joiner (>= 0.3.4)
+      middleware (>= 0.1.0)
+      riddle (~> 2.3)
     thor (1.0.1)
     ts-sidekiq-delta (0.3.0)
       sidekiq (>= 2.5.4)
@@ -471,7 +465,7 @@ DEPENDENCIES
   selenium-webdriver
   sidekiq
   strip_attributes
-  thinking-sphinx!
+  thinking-sphinx
   transifex-ruby!
   ts-sidekiq-delta
   user_agent_parser
