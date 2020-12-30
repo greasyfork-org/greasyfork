@@ -119,11 +119,11 @@
         <% end %>
       </div>
     <% end %>
-    <% if !notice.nil? %>
-      <p class="notice"><%=notice%></p>
+    <% if notice %>
+      <p class="notice"><%= flash[:html_safe] ? notice.html_safe : notice %></p>
     <% end %>
-    <% if !alert.nil? %>
-      <p class="alert"><%=alert%></p>
+    <% if alert %>
+      <p class="alert"><%= flash[:html_safe] ? alert.html_safe : alert %></p>
     <% end %>
 
     <%= content_for?(:content) ? yield(:content) : yield %>

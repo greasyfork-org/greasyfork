@@ -874,6 +874,13 @@ en:
         request_expired: "Could not delete user - request expired."
         cancelled: "Deletion cancelled."
         completed: "Your account has been deleted."
+    banned_notice:
+      no_report_no_reason: "Your account has been banned. You may %{delete_link:delete your account}, if you wish."
+      with_report: "Your account has been banned in response to %{report_link:this report}. You may %{delete_link:delete your account}, if you wish."
+      with_reason: "Your account has been banned. A moderator gave the following reason: \"%{reason}\". You may %{delete_link:delete your account}, if you wish."
+    banned_delete:
+      intro: "Deleting your account will also delete any scripts you posted. Any forum contributions you made will remain, but your username will be anonymized. Even after deleting, you will not be able to register again with the same email address. Sign in below to delete your account."
+      complete: "Your account has been deleted."
     badges:
       banned:
         short: Banned

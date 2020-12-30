@@ -1,7 +1,11 @@
 <%- title t('users.sign_in_title', site_name: site_name) %>
 <%- description 'Sign in page for Greasy Fork accounts.' %>
 
-<p><%=t('users.sign_in_description', site_name: site_name)%></p>
+<% if params[:return_to] == SessionsController::BANNED_DELETE_PATH %>
+  <p><%= t('users.banned_delete.intro') %></p>
+<% else %>
+  <p><%=t('users.sign_in_description', site_name: site_name)%></p>
+<% end %>
 
 <h3><%=t('users.sign_in_external')%></h3>
 
