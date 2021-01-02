@@ -975,7 +975,7 @@ en:
       description: Scripts must include a description of what they do and may not do things unreasonably outside of this description. Users must know what a script will do before installing it.
       reason: Scripts must have a reason to be a script. For example, a script that just directs a user to a website doesn't need to be a script; it could be a link. Scripts that use a web service to perform an action on the current page (e.g. to convert it in some way) are allowed.
       unrelated: Scripts must not require users to perform an unrelated action, such as sending a payment, subscribing to a channel, joining a group, or liking a page, for the script to be functional, in full or partially.
-      monetization_html: Scripts with monetization methods (tracking, ads, miners, etc.) are not forbidden, but the author must disclose this using %{antifeature_link:<code>@antifeature</code> meta keys}.
+      monetization_html: Scripts that contain features for the benefit of the <em>author</em> rather than the user (such as tracking, ads, and miners) are allowed, but these must be disclosed with %{antifeature_link:<code>@antifeature</code> meta keys}.
       code_header: Code
       obfuscation: Code posted to %{site_name} must not be obfuscated or minified. Users must be given the opportunity to inspect and understand a script before installing it. If the script is bundled by a tool such as webpack, it must be output in non-minified form.
       libraries_html: Libraries that a script uses should be <code>@require</code>-d, unless there's a valid technical reason not to do so. In the case that a library is included inline, it must include information as to the source of the library (e.g. a comment indicating URL and/or name and version).
