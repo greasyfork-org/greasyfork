@@ -359,6 +359,9 @@ it:
         miner:
           title: Cryptominer
           description_html: Questo script contiene un cryptominer che quando è attivo <b>userà le risorse del tuo dispositivo</b>.
+        referral-link:
+          title: Links di rimando
+          description_html: Questo script <b>riscriverà i links</b> per includere un rimando o un codice di affiliazione.
       install_anyway: Installa script
       cancel_install: Annulla
   script_sets:
@@ -605,6 +608,13 @@ it:
         request_expired: "Impossibile cancellare l'utente - richiesta scaduta."
         cancelled: "Cancellazione interrotta."
         completed: "Il tuo account è stato eliminato."
+    banned_notice:
+      no_report_no_reason: "Il tuo account è stato bannato. Puoi %{delete_link:eliminare il tuo account}, se desideri."
+      with_report: "Il tuo account è stato bannato in risposta a %{report_link:questa segnalazione}. Puoi %{delete_link:eliminare il tuo account}, se desideri."
+      with_reason: "Il tuo account è stato bannato. Un moderatore ha dato la seguente motivazione: \"%{reason}\". Puoi %{delete_link:eliminare il tuo account}, se \ndesideri."
+    banned_delete:
+      intro: "Eliminare il tuo account eliminerà anche qualunque script tu abbia pubblicato. Qualsiasi contributo al forum che tu abbia fatto rimarrà, ma il tuo nome utente sarà anonimizzato. Nemmeno dopo l'eliminazione avrai la possibilità di registrarti nuovamente con lo stesso indirizzo email. Conferma qui sotto per eliminare il tuo account."
+      complete: "Il tuo account è stato eliminato."
     badges:
       banned:
         short: Bannato
@@ -660,6 +670,7 @@ it:
       contributionAmount_html: "Importo suggerito per le donazioni, usato in concomitanza con il tag <code>@contributionURL</code>."
       compatible_html: "Contrassegna questo script come compatibile con un browser. Le informazioni sulla compatibilità saranno visualizzate nella pagina dello script. I commenti sulla compatibilità possono essere inclusi nel formato <code>@compatible firefox Deve essere disabilitato il blocco pop-up</code>. I browser riconosciuti sono: %{browsers}."
       incompatible_html: "Contrassegna questo script come non compatibile con un browser. Le informazioni sulla compatibilità saranno visualizzate nella pagina dello script. I commenti (facoltativi) sulla compatibilità possono essere inclusi nel formato <code>@incompatible firefox Non funziona con Firefox 23 e successivi</code>. I browser riconosciuti sono: %{browsers}."
+      antifeature_html: "Fornisce funzioni in uno script che sono a beneficio dell'autore, non dell'utente. Il formato di questa chiave è <code>@antifeature tipo descrizione</code>. %{site_name} leggerà i seguenti tipi: <code>ads</code> (lo script mostra pubblicità all'utente), <code>tracking</code> (lo script traccia l'attività dell'utente), <code>miner</code> (lo script contiene un cryptominer), e <code>referral-link</code> (lo script riscrive i collegamenti per aggiungere un tracciamento di rimando/affiliazione). Altri tipi sono ignorati, ma lo script deve comunque seguire le %{code_rules_link:regole di %{site_name}}. La descrizione è opzionale."
       antifeature_localized_html: "Un'<code>@antifeature</code> descritta in una lingua specifica, dove XX è un <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">codice ISO 639-1 a due lettere</a> e YY è un <a href=\"https://www.iso.org/obp/ui/#search\">codice paese ISO 3166</a> opzionale. Rimpiazza <code> @antifeature</code>s dello stesso tipo quando l'utente naviga in una lingua corrispondente."
     writing_user_scripts:
       title: "Come scrivere script utente"
@@ -671,6 +682,22 @@ it:
       title: "Le regole di %{site_name} per gli script postati"
       preamble: Questi sono i requisiti per gli script pubblicati su %{site_name}. Questi sono fatti con l'intenzione di mantenere %{site_name} un luogo sicuro e utile per gli script utente. Ogni script che ricade al di fuori di questi requisiti potrebbe essere cancellato dai moderatori di %{site_name}.
       functionality_header: Funzionalità
+      description: Gli scripts devono includere una descrizione di cosa fanno e non devono fare cose irragionevolmente al di fuori di questa descrizione. Gli utenti devono sapere cosa uno script farà, prima di installarlo.
+      reason: Gli scripts devono avere una ragione per essere script. Per esempio, uno script che semplicemente rimanda un utente a un sito non ha bisogno di essere uno script; potrebbe essere un link. Gli scripts che usano un servizio web per compiere un azione sulla pagina corrente (es. per convertirla in qualche maniera) sono consentiti.
+      unrelated: Gli scripts non devono richiedere agli utenti di compiere un'azione non correlata, come inviare un pagamento, iscriversi ad un canale, unirsi a un gruppo, o mettere "Mi piace" a una pagina, affinché lo script funzioni, completamente o in parte.
+      monetization_html: Gli scripts con metodi di monetizzazione (tracciamento, pubblicità, miners, ecc.) non sono proibiti, ma l'autore deve dichiararlo usando le %{antifeature_link:meta chiavi <code>@antifeature</code>}.
+      code_header: Codice
+      obfuscation: Il codice pubblicato su %{site_name} non deve essere offuscato o minimizzato. Agli utenti va data l'opportunità di ispezionare e comprendere uno script prima di installarlo. Se lo script è compresso da uno strumento come webpack, deve essere esportato in forma non minimizzata.
+      libraries_html: Le librerie che uno script utilizza devono essere inserite con <code>@require</code>, a meno che ci sia una valida ragione tecnica per non farlo. Nel caso in cui una libreria sia inclusa all'interno del testo dello script. essa deve includere le informazioni sulla provenienza della libreria (es. un commento che indichi l'URL e/o il nome e la versione).
+      updates: Gli scripts non devono verificare la presenza di aggiornamenti con una frequenza maggiore di una volta al giorno. È da notare che la maggior parte dei gestori di script utente si occupano autonomamente degli aggiornamenti, per cui farlo nello script non è necessario. Gli scripts non devono altresì iniettare dinamicamente un altro script ospitato su %{site_name} all'interno di una pagina, poiché questo bypassa la memorizzazione cache nei gestori di script utente.
+      external_js: "%{external_scripts_link:L'uso di JavaScript esterno è limitato.}"
+      copyright_header: Copyright
+      licensing: Il tuo script deve rispettare i copyrights degli altri. Questo include il codice stesso e qualsiasi risorsa (ad esempio immagini) che utilizza. Se intendi usare il contenuto di altri, conformati ai loro termini di licenza o ottieni il loro permesso prima di farlo.
+      reposts: Anche nei casi che non violano la regola sul copyright, la ripubblicazione di scripts che siano già su %{site_name} non è permessa a meno che non apportino dei miglioramenti rispetto all'originale.
+      miscellaneous_header: Miste
+      keywords_html: Gli scripts non devono contenere <code>@include</code>, <code>@match</code> o parole chiave per siti per i quali non forniscano funzionalità.
+      adult_content_rule: Gli scripts che includono contenuti per adulti o che sono per siti con contenuti per adulti devono essere segnati come tali per garantire agli altri utenti l'opzione di vederli o meno.
+      reporting: Se noti uno script che ricade al di fuori di questi parametri, per favore segnalalo andando sul collegamento Feedback per quello script e scegliendo l'opzione "Segnala lo script".
     external_scripts:
       title: "Politiche di %{site_name} per gli script esterni"
       content_html: >
@@ -866,6 +893,8 @@ it:
     title: Discussioni
     comment_date: "Pubblicato: %{date}"
     comment_edit_date: "Modificato: %{date}"
+    posted_by_html: "%{user} %{date}"
+    last_comment: "Ultimo: %{user} %{date}"
     new_discussion_heading: "Pubblica una recensione, un commento o una domanda"
     new_discussion_submit: "Pubblica commento"
     new_comment_heading: "Pubblica risposta"
@@ -877,6 +906,7 @@ it:
     delete_discussion: "Cancella"
     update_comment_submit: "Aggiorna commento"
     cancel_update_comment: "Annulla"
+    quote_comment: "Cita"
     question_heading_html: "Domanda/commento"
     review_heading_html: "Recensione: %{rating}"
     update_rating: "Aggiorna la tua valutazione di %{script_name}"
@@ -1043,6 +1073,7 @@ it:
       script_rate_limit: "Hai superato il limite di caricamento. Riprova più tardi."
       missing_include_or_match: "deve includere almeno una chiave @match o @include"
       file_size_out_of_range: "la dimensione dev'essere minore di 200KB"
+      meta_too_long: "%{key} è troppo lungo (il massimo è %{count} caratteri)"
   opensearch:
     short_name: "ricerca %{site_name}"
     description: "Ricerca per user script su %{site_name}."
@@ -1119,6 +1150,7 @@ it:
 
           Hai ricevuto questa notifica perché hai scelto di essere notificato quando vieni menzionato. Gestisci le tue preferenze per le notifiche su %{notification_preferences_url}.
     new_message:
+      subject: "%{user} ti ha inviato un messaggio su %{site_name}"
       text: |
           L'utente '%{user}' su %{site_name} ti ha inviato un messaggio.
 

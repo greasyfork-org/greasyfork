@@ -109,6 +109,10 @@ fr:
     feedback_start_first_discussion_link: "Soyez le premier à commenter ce script."
     feedback_discussion_or_report: "%{new_discussion_link:Démarrer une nouvelle discussion concernant ce script} ou %{report_link:demander sa suppression}."
     feedback_favoriters_heading: "Fans"
+    feedback_favoriters_user_list_html: "Ce script a été mis en favoris par %{user_list}."
+    feedback_favoriters_lots:
+      one: "Ce script a été mis en favoris par l'utilisateur %{user_count} fois. %{full_link:Voir la liste complète.}"
+      other: "Ce script a été mis en favoris par %{user_count} utilisateurs. %{full_link: Voir la liste complète.}"
     feedback_no_favoriters: "Personne n'a mis ce script dans ses favoris."
     feedback_sign_in_to_favorite: "Connectez-vous pour l'ajouter à vos favoris."
     stats_title: "%{script_name} - Stats"
@@ -121,6 +125,11 @@ fr:
     stats_raw_data_header: "Données brutes"
     stats_download_raw_data_html: "Télécharger toutes les données en : %{links}"
     stats_no_data: "N/A"
+    stats_filters: "Filtre: %{filter_options}"
+    stats_filter_options:
+      month: Moins de 30 jours
+      year: Moins 1 ans
+      all: Tout le temps
     derivatives_title: "%{script_name} - Scripts similaires"
     derivatives_intro: "Ces scripts peuvent être basés sur les vôtres (ou même les vôtres peuvent être basés sur d'autres). Si vous trouvez une utilisation non autorisée de votre code, signalez-le à partir de l'onglet du script que vous voulez signaler."
     derivatives_script_html: "%{script}de%{user},Licence:%{license}%{diff_link:[Diff]}"
@@ -350,6 +359,9 @@ fr:
         miner:
           title: Cryptominer
           description_html: Ce script contient un cryptominer qui <b>utilisera les ressources de votre appareil</b> lorsqu'il est actif.
+        referral-link:
+          title: Liens de parrainage
+          description_html: Ce script <b>réécrira des liens</b> pour inclure un code de parrainage ou d'affiliation.
       install_anyway: Installer le script
       cancel_install: Annuler
   script_sets:
@@ -593,6 +605,13 @@ fr:
         request_expired: "Suppression de l'utilisateur impossible - requête expirée"
         cancelled: "Suppression annulée"
         completed: "Votre compte a été supprimé"
+    banned_notice:
+      no_report_no_reason: "Votre compte a été banni. Vous pouvez %{delete_link:supprimer votre compte}, si vous le souhaitez."
+      with_report: "Votre compte a été banni en réponse à %{report_link:ce rapport}. Vous pouvez %{delete_link:supprimer votre compte}, si vous le souhaitez."
+      with_reason: "Votre compte a été banni. Un modérateur a donné la raison suivante: \"%{reason}\". Vous pouvez %{delete_link:supprimer votre compte}, si vous le souhaitez."
+    banned_delete:
+      intro: "La suppression de votre compte supprimera également tous les scripts que vous avez posté. Toutes les contributions que vous avez apportées au forum resteront et votre nom d'utilisateur sera anonymisé. Même après la suppression, vous ne pourrez plus vous enregistrer avec la même adresse email. Connectez-vous ci-dessous pour supprimer votre compte."
+      complete: "Votre compte a été supprimé."
     badges:
       banned:
         short: Banni
@@ -648,6 +667,8 @@ fr:
       contributionAmount_html: "Montant suggéré de don, utilisé en conjonction avec <code>@contributionURL</code>."
       compatible_html: "Marquer ce script comme compatible avec un navigateur. L'information de la compatibilité va être affichée sur la page du script. Les commentaires sur la compatibilité peuvent être inclus dans le format <code>@compatible firefox Bloqueur de pub doit être désactivé</code>. Les navigateurs reconnus sont : %{browsers}."
       incompatible_html: "Marquer ce script comme incompatible avec un navigateur. L'information de la compatibilité va être affichée sur la page du script. Les commentaires sur la compatibilité peuvent être inclus dans le format <code>@incompatible firefox depuis Firefox 23</code>. Les navigateurs reconnus sont : %{browsers}."
+      antifeature_html: "Décrire des fonctionnalités dans un script qui sont là pour profiter à l'auteur, pas à l'utilisateur. Le format de cette clé est <code>description du type @ antifeature</code>. %{site_name} lira les types suivants: <code>ads</code> (le script affiche des annonces à l'utilisateur), <code>tracking</code> (le script suit l'activité de l'utilisateur), <code>miner</code> (le script contient un cryptominer), et <code>referral-link</code> (le script réécrit les liens pour ajouter le suivi des références / affiliés). Les autres types sont ignorés, mais le script doit néanmoins suivre les règles de %{code_rules_link:%{site_name}}. La description est facultative."
+      antifeature_localized_html: "Un <code>@antifeature</code> décrit dans un environnement local spécifique, où XX est un code <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2letter</a> et YY est un code pays optionnel <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166</a>. Remplacés <code>@antifeature</code> du même type lorsque l'utilisateur navigue dans un environnement corresponde localement."
     writing_user_scripts:
       title: "Comment rédiger vos scripts"
       content_html: "<p>Rédiger des scripts scripts demande des connaissances en JavaScript. Les <a href=\"http://wiki.greasespot.net/Tutorials\">tutoriels du Wiki de GreaseSpot</a> devraient vous aider à débuter en JavaScript, pour un usage  général comme pour la rédaction de scripts personnels. Examiner le code des scripts écrits par d'autres peut également vous aider. Vous serez peut-être intéressé par les règles de codage %{code_rules_link} et les raccourcis %{meta_keys_link}. Si vous avez besoin d'aide, n'hésitez pas à la demander sur le forum %{ask_in_forum_link}.</p><p>Afin de poster sur le forum de %{site_name}, vous devrez préalablement vous y inscrire. Depuis votre compte %{user_page_link}, cliquez sur le lien %{post_new_script_link}.</p>"
@@ -661,11 +682,19 @@ fr:
       description: Les scripts doivent inclure une description de ce qu'ils font et ne doivent pas faire des choses de manière déraisonnable en dehors de cette description. Les utilisateurs doivent savoir ce qu'il fera avant de l'installer.
       reason: Les scripts doivent avoir une raison d'être un script. Par exemple, un script qui dirige simplement un utilisateur vers un site Web n'a pas besoin d'être un script; ça pourrait être un lien. Les scripts qui utilisent un service Web pour effectuer une action sur la page actuelle (par exemple pour la convertir d'une manière ou d'une autre) sont autorisés.
       unrelated: Les scripts ne doivent pas obliger les utilisateurs à effectuer une action indépendante, telle que l'envoi d'un paiement, l'abonnement à une chaîne, l'adhésion à un groupe ou le fait d'aimer une page, pour que le script soit fonctionnel, en totalité ou en partie.
+      monetization_html: Les scripts avec des méthodes de monétisation (tracking, ads/publicités, mineurs, etc.) ne sont pas interdits, mais l'auteur doit le divulguer à l'aide de la meta keys %{antifeature_link:<code>@antifeature</code>}.
       code_header: Code
+      obfuscation: Le code posté sur %{site_name} ne doit pas être obscurci ou minifiée. Les utilisateurs doivent avoir la possibilité d'inspecter et de comprendre un script avant de l'installer. Si le script est fourni par un outil tel que webpack, il doit être généré sous une forme non minifiée.
+      libraries_html: Les bibliothèques utilisées par un script doivent être <code>@require</code>, sauf s'il existe une raison technique valable de ne pas le faire. Dans le cas où une bibliothèque est incluse en ligne, elle doit inclure des informations sur la source de la bibliothèque (par exemple, un commentaire indiquant l'URL et / ou le nom et la version).
+      updates: Les scripts ne doivent pas vérifier les mises à jour à un taux supérieur à une fois par jour. Notez que la plupart des gestionnaires de scripts utilisateur gèrent les mises à jour automatiques, il n'est donc pas nécessaire de le faire dans le script. Les scripts ne doivent pas non plus injecter dynamiquement un autre script %{site_name} hébergé dans une page, car cela contourne la mise en cache dans les gestionnaires de scripts utilisateur.
       external_js: "%{external_scripts_link:L'utilisation de JavaScript externe est limitée.}"
       copyright_header: Droits d'auteur
       licensing: Votre script doit respecter les droits d'auteur des autres. Cela inclut le code lui-même et toutes les ressources (par exemple les images) qu'il utilise. Si vous avez l'intention d'utiliser le contenu de quelqu'un d'autre, respectez ses conditions de licence ou obtenez leur autorisation avant de le faire.
+      reposts: Même dans les cas ne violant pas la règle de copyright, les repositionnements de scripts qui sont déjà sur %{site_name} ne sont pas autorisés à moins qu'ils ne s'améliorent par rapport à l'original.
       miscellaneous_header: Divers
+      keywords_html: Les scripts ne doivent pas inclure de <code>@include</code>, <code>@match</code> ou des mots-clés pour les sites sur lesquels ils ne fournissent pas de fonctionnalités.
+      adult_content_rule: Les scripts incluant du contenu pour adulte ou sont destinés à des sites avec du contenu pour adulte doivent être marqués comme tels pour permettre aux autres utilisateurs de les voir ou non.
+      reporting: Si vous remarquez un script qui ne respecte pas ces paramètres, veuillez le signaler en accédant au lien Commentaires pour ce script et choisissez l'option "Signaler le script".
     external_scripts:
       title: "Politique de %{site_name} concernant les scripts externes"
       content_html: >
@@ -1044,6 +1073,7 @@ fr:
       script_rate_limit: "Vous avez atteint la limite d'envois. Essayez plus tard."
       missing_include_or_match: "doit inclure au moins une clé @match ou @include"
       file_size_out_of_range: "la taille doit être inférieure à 200KB"
+      meta_too_long: "%{key} est trop long (le maximum est de %{count} caractères)"
   opensearch:
     short_name: "%{site_name} recherche"
     description: "Recherche de scripts utilisateur sur %{site_name}."

@@ -262,8 +262,8 @@ zh-CN:
     not_adult_content_self_report_html: "这个脚本<strong>不包含</strong>成人内容，也<strong>不在</strong>成人网站上运行。"
     not_adult_content_self_report_explanation: "%{site_name} 允许脚本含有成人内容，但必须被「明确标注」，以便用户自主选择是否显示此类信息。您的脚本已经被网站自动标记为「包含和谐内容」；如果这是误判，您可以申请取消该标记，管理员将对您的申请进行审核。"
     not_adult_content_self_report_explanation_automatic: "%{site_name}允许脚本含有成人内容，但必须被「明确标注」，以便用户自主选择是否显示此类信息。您的脚本在成人网站%{domain_list}上运行，因此已被自动标注为包含成人内容。"
-    adult_content_on_greasy_logged_in_error: "根据您当前的 %{edit_account_link:Greasy Fork 账户设置}，此脚本不再在本网站上可用。"
-    adult_content_on_greasy_not_logged_in_error: "此脚本不再在本网站上匿名可用。请%{login_link:登录}并检查您的 Greasy Fork 账户设置。"
+    adult_content_on_greasy_logged_in_error: "根据您当前的 %{edit_account_link:Greasy Fork 账号设置}，此脚本不再在本网站上可用。"
+    adult_content_on_greasy_not_logged_in_error: "此脚本不再在本网站上匿名可用。请%{login_link:登录}并检查您的 Greasy Fork 账号设置。"
     non_adult_content_on_sleazy: "此脚本在本网站上不可用。"
     not_js_convertible_override_header: "转换为 JS"
     not_js_convertible_override_explanation: "%{site_name} 可以为您的用户样式 (user CSS) 自动创建一份 %{help_link:用户脚本 (User JS)  版本} 。两者的运行方式有所不同，我们建议您测试转换后的脚本。如果您发现转换的脚本不能使用，可以选中下方的复选框来禁用它。"
@@ -477,10 +477,10 @@ zh-CN:
     sign_in_external: "使用第三方账户登录"
     sign_in_with: "使用 %{provider} 登录"
     sign_in_password: "使用密码登录"
-    sign_in_email_used_no_external_services_html: "“%{email}”已被“%{user_name}”注册。如果您是该用户的持有者并希望连接账户至 %{provider}，请先 %{sign_in_link} 然后添加 %{provider} 至您的第三方登录。"
-    sign_in_email_used_with_external_services_html: "“%{email}”已被“%{user_name}”绑定至第三方登录服务 %{existing_providers}。如果您是该用户的持有者并希望连接账户至 %{provider}，请先 %{sign_in_link} 然后添加 %{provider} 至您的第三方登录。"
+    sign_in_email_used_no_external_services_html: "“%{email}”已被“%{user_name}”注册。如果这是你并希望连接该账号至 %{provider}，请先 %{sign_in_link} 然后添加 %{provider} 至您的第三方登录。"
+    sign_in_email_used_with_external_services_html: "“%{email}”已被“%{user_name}”绑定至第三方登录服务 %{existing_providers}。如果这是你并希望连接账号至 %{provider}，请先 %{sign_in_link} 然后添加 %{provider} 至您的第三方登录。"
     sign_in_email_used_sign_in_link: "登录"
-    sign_in_email_missing: "%{site_name} 需要一个电子邮件地址来建立新账户，但是您的 %{provider} 账号并未绑定邮箱。您可以到 %{provider} 上绑定一个邮箱，然后再在本网站用该账号登录；或者您可以直接在 %{site_name} 上创建一个常规的电子邮件/密码账户，然后在里面添加您的 %{provider} 账户。"
+    sign_in_email_missing: "%{site_name} 需要一个电子邮件地址来建立新账号，但您绑定的 %{provider} 账号未能提供该信息。你可以到 %{provider} 绑定邮箱，然后在本网站用该账号登录；或在 %{site_name} 上创建一个常规的使用电子邮件/密码登陆的账号，之后添加 %{provider} 的账号绑定。"
     sign_in_name_used: "用户名“%{name}”已存在，换一个吧。"
     sign_in_name_used_submit: "提交"
     control_panel: "控制台"
@@ -495,12 +495,12 @@ zh-CN:
     script_list_none_same_user_info_link_text: "想要学习如何编写吗?"
     deleted_script_list: "已删除的脚本"
     sign_out: "退出"
-    edit: "编辑账户信息"
+    edit: "编辑账号信息"
     edit_sign_in: "更改登录方式"
     edit_sign_in_title: "更改登录方式"
     edit_sign_in_password: "密码"
     edit_notifications: "编辑通知"
-    no_password_set_info: "该账户尚未配置密码。"
+    no_password_set_info: "您的账号尚未启用密码登录。"
     set_password: "设置密码"
     update_password: "更新密码"
     update_password_no_match: "密码不匹配。"
@@ -518,7 +518,7 @@ zh-CN:
     external_sign_in_removed: "已移除 %{provider} 账户绑定。"
     external_sign_in_failed: "%{provider} 登录失败：%{error}。"
     external_sign_in_already_used: "增加 %{provider} 账户失败：该登录信息已被用户“%{user_name}”使用。"
-    external_sign_in_confirmation: "一个新 %{site_name} 账号已基于您的 %{provider} 账号信息创建。您的公开用户名为 %{username}。"
+    external_sign_in_confirmation: "%{site_name} 已根据您在 %{provider} 提供账号信息建立了一个新的账号。您的公开用户名是 %{username}。"
     syncing_indicator: "(同步中)"
     enable_syncing: "开启同步"
     disable_syncing: "关闭同步"
@@ -554,31 +554,38 @@ zh-CN:
       other: "%{user_name} 还在 Greasy Fork 上发布了另外 %{count} 个脚本。"
     update_sync_warning:
       other: "您的用户名和电子邮件地址将在您用 %{providers} 登录时与该账户保持同步。如果您想永久设置自定义用户名或电子邮件地址，%{edit_sign_in_link:编辑您的登录方法以去除同步}。"
-    delete_link: "删除账户"
+    delete_link: "删除账号"
     delete:
-      intro: "删除您的 %{site_name} 账户「%{user_name}」将有如下效果："
+      intro: "删除您的 %{site_name} 账号「%{user_name}」将造成下述后果："
       password_effect: "您将不再能用您的密码登录。"
       identities_effect:
-        other: "通过 %{identities} 登录将产生一个新账户。"
+        other: "通过 %{identities} 登录将建立一个新的账号。"
       scripts_effect:
         other: "您的 %{count} 个脚本将被删除。"
       script_sets_effect:
         other: "您的 %{count} 个脚本集将被删除。"
       forum_effect: "您在论坛上的发言不会删除，但关联的用户将被更名为“%{user_name}”。"
-      email_confirmation: "在删除您的用户前，%{site_name} 将发送一封电子邮件至 %{email} 以确认您的请求。"
-      submit: "删除账户"
+      email_confirmation: "在删除您的账号前，%{site_name} 将发送一封电子邮件至 %{email} 来确认您的请求。"
+      submit: "删除账号"
       confirmation_email_sent: "确认删除邮件已发送。"
       confirmation_email:
-        subject: "%{site_name} 账户的删除确认"
-        body: "已有人请求删除您在 %{site_name} 上的账户「%{user_name}」。要确认此请求并删除您的账户，请访问 %{url} 。删除需在24小时内完成，否则删除请求自动取消。"
+        subject: "%{site_name} 账号的删除确认"
+        body: "%{site_name} 收到了一则关于删除账号「%{user_name}」的请求。如果这是你并删除您的账号，请访问 %{url}。删除请求需要在 24 小时内确认，否则将取消这个删除请求。"
       confirmation:
-        intro: "您即将删除账户 %{user_name}。此操作无法撤销。"
+        intro: "您即将删除账号 %{user_name}。该操作无法撤销。"
         confirm: "删除「%{user_name}」"
         cancel: "取消操作"
         key_mismatch: "无法删除用户 - 键值不匹配。"
         request_expired: "无法删除用户 - 请求已过期。"
         cancelled: "删除已取消。"
-        completed: "您的账户已删除。"
+        completed: "您的账号已删除。"
+    banned_notice:
+      no_report_no_reason: "您的账号已被封禁。如果需要，您可以%{delete_link:删除该账号}。"
+      with_report: "管理员在处理%{report_link:该则举报时}封禁了您的账号。如果需要，您可以%{delete_link:删除该账号}。"
+      with_reason: "您的账号已被封禁。管理员封禁的原因是：“%{reason}”。如果需要，您可以%{delete_link:删除该账号}。"
+    banned_delete:
+      intro: "删除您的账号将同时删除您所发布的任何脚本。您在论坛提交的内容将保留，但用户名将作匿名化处理。即便删除账户，您也不能使用同一电子邮件进行注册。请在下方登录然后删除您的账号。"
+      complete: "您的账号已经删除。"
     badges:
       banned:
         short: 封禁
@@ -637,7 +644,7 @@ zh-CN:
       antifeature_localized_html: "你可以使用多种语言声明 <code>@antifeature</code> 属性，其中 XX 为 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 中定义的两个字符的代码</a>，而 YY 则是一个可选的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 中定义的国家代码</a>。在<code>@antifeature</code>中制定的每一个类型都可以自定义其本地化的说明。"
     writing_user_scripts:
       title: "如何编写用户脚本"
-      content_html: "<p>编写用户脚本需要基础的 JavaScript 知识。<a href=\"http://wiki.greasespot.net/Tutorials\">GreaseSpot 百科上的教程</a>应该能让您开始了解如何编写一个通常脚本以及用户脚本。观摩、阅读前人编写的脚本可对您有所启发，您可能同样对 %{code_rules_link} 以及 %{meta_keys_link} 感兴趣。如果您希望得到帮助，您可以在 %{ask_in_forum_link}。</p>\n<p>为了在 %{site_name} 提交脚本，您需要建立一个账户，然后从您的 %{user_page_link}，选择 %{post_new_script_link} 即可发表新的脚本。</p>"
+      content_html: "<p>编写用户脚本需要了解 JavaScript。你可以造访 <a href=\"http://wiki.greasespot.net/Tutorials\">GreaseSpot 百科上的教程</a>来了解如何编写一个 JavaScript 脚本或用户脚本。观摩、阅读他人的脚本可能对您有所启发。您可能会对%{code_rules_link}与%{meta_keys_link}也感兴趣。如果你希望得到帮助，你也可以%{ask_in_forum_link}。</p>\n<p>您需要在 %{site_name} 建立一个账号才能提交脚本。您可以访问 %{user_page_link}并选择 %{post_new_script_link} 来发表新的脚本。</p>"
       ask_in_forum_link_text: '在论坛中询问'
       user_page_link_text: '用户页面'
       post_new_script_link_text: '发布新脚本'
@@ -710,24 +717,24 @@ zh-CN:
     contact:
       title: "联系某人"
       content_html: >
-          <p>有多种方式讨论 %{site_name} 本身以及在它上面的事物</p> <p>你对发布在本网站上的一个特定脚本有问题或者意见？如果是的，点击脚本页面的反馈选项卡进行反馈。脚本作者将在他们的账户页面获得讨论的通知。</p>
+          <p>有多种方式讨论 %{site_name} 本身以及在它上面的事物</p> <p>你对发布在本网站上的一个特定脚本有问题或者意见？如果是的，点击脚本页面的反馈选项卡进行反馈。脚本作者将在他们的账号页面获得讨论的通知。</p>
           <p>如果你对 %{site_name} 本身或者脚本的开发有任何问题或意见，或者希望有人能做出你想要的脚本，%{forum_link:在该论坛中发帖}
-          可以将你的讨论展示给最多的访客。</p> <p>有对 %{site_name} 本身的 bug 报告或者已经成型的想法？（不特定于<em>发布在</em>
+          可以将你的讨论展示给最多的访客。</p> <p>有对 %{site_name} 本身的错误报告或者已经成型的想法？（不特定于<em>发布在</em>
           %{site_name} 上的某个脚本）%{github_link:在 GitHub 页面发布它。}</p> <p>有一个私人的问题或者意见（只想给管理员看）？%{admin_email_link:发送电子邮件}。</p>
     privacy_policy:
       title: "隐私政策"
       content_html: >
           <p>本页面描述了 %{site_name} 如何记录和跟踪用户信息。如果您有任何顾虑，请 %{admin_email_link:发邮件至管理员}。</p>
           <h2>服务器日志</h2> <p>%{site_name} 会使用典型的服务器日志方式记录所有请求。记录的信息包括：被访问的页面，IP 地址，以及
-          User Agent 字段。这些日志用于调试和服务器分析目的。此数据将保留一周。此数据不会被分享或公开。</p> <h2>脚本的统计数据</h2>
+          User Agent 字段。这些日志用于调试和服务器分析目的。此数据将保留一周。此数据不会被分享或公开。</p> <h2>脚本统计数据</h2>
           <p>为了生成统计数据，%{site_name} 会记录带有 IP 地址信息的安装和更新请求。此信息保留一天，然后汇总为不包含 IP 地址的数据。特定
-          IP 地址的数据不会被分享或公开提供，但汇总数据会。</p> <h2>Cookie (未登录时)</h2> <p>%{site_name} 可能设置临时会话
-          Cookie 以实现某些网站功能。这些 Cookie 不设置为持久，并且可能在浏览器关闭时被清除（取决于浏览器设置）。</p> <h2>用户账户</h2>
-          <p>%{site_name} 需要用户创建一个账户以发布脚本、参与讨论和访问某些网站功能。在创建一个账户时，诸如 IP 地址、电子邮件地址，以及用户代理（User
-          Agent）的信息可能被永久存储。其中某些信息可能对其他用户可见。</p> <p>在登录时执行的操作，例如发布脚本或者评论，将可能对其他用户可见。</p>
-          <p>如果登录时选中了“记住我”的选项，%{site_name} 将设置一个持久的 Cookie 以保持登录状态。</p> <h2>发布在 %{site_name}
-          的脚本</h2> <p>%{site_name} 包含用户生成的内容，安装已发布的脚本有可能遇到被跟踪的情况。</p> <h2>第三方库</h2>
-          <p>%{site_name} 可能包含第三方代码以收集统计数据或者在网站上显示广告。这些库可能存在跟踪逻辑。</p>
+          IP 地址的数据不会被分享或公开提供，但汇总数据会。</p> <h2>Cookie（未登录时）</h2> <p>%{site_name} 可能设置临时会话
+          Cookie 以实现某些网站功能。这些 Cookie 不设置为持久，并且可能在浏览器关闭时被清除（取决于浏览器设置）。</p> <h2>用户账号</h2>
+          <p>%{site_name} 需要用户创建一个账号以发布脚本、参与讨论和访问某些网站功能。在创建账号时，诸如 IP 地址、电子邮件地址，以及用户代理信息可能被永久存储。其中某些信息可能对其他用户可见。</p>
+          <p>在登录时执行的操作，例如发布脚本或者评论，将可能对其他用户可见。</p> <p>如果登录时选中了“记住我”的选项，%{site_name}
+          将设置一个持久的 Cookie 以保持登录状态。</p> <h2>发布在 %{site_name} 的脚本</h2> <p>%{site_name}
+          由用户生成的内容组成，而脚本可能会包含追踪代码；安装此类脚本会导致用户信息被搜集。</p> <h2>第三方库</h2> <p>%{site_name}
+          可能包含第三方代码以收集统计数据或者在网站上显示广告。这些库可能存在跟踪逻辑。</p>
     user_css_to_user_js:
       title: 用户样式如何被转换为用户脚本
   search:
