@@ -34,13 +34,14 @@
   </tbody>
 </table>
 
-<h2>Scripts to Review</h2>
+<h2 id="to-review">Scripts to Review</h2>
 
 <ul>
   <% Script.not_deleted.where(review_state: :required).each do |script| %>
     <li>
       <%= render_script(script) %> - <%= script.users.map { |u| render_user(u, u.id) }.join(', ').html_safe %>
       <%= form_with(url: approve_script_path(script), method: :PATCH) do |f| %>
+        <%= hidden_field_tag :return_to, admin_blocked_script_texts_path(anchor: 'to-review') %>
         <%= f.submit 'Approve' %>
       <% end %>
     </li>

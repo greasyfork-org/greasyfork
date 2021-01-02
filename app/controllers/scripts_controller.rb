@@ -754,7 +754,7 @@ class ScriptsController < ApplicationController
   def approve
     @script.update!(review_state: 'approved')
     flash[:notice] = 'Marked as approved.'
-    redirect_to script_path(@script)
+    redirect_to clean_redirect_param(:return_to) || script_path(@script)
   end
 
   def request_duplicate_check
