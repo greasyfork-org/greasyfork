@@ -103,6 +103,9 @@ ja:
     feedback_start_first_discussion_link: "このスクリプトについて最初のスレッドを立てる。"
     feedback_discussion_or_report: "%{new_discussion_link:このスクリプトの新規の議論を開始} または %{report_link:削除のために報告}する。"
     feedback_favoriters_heading: "お気に入り"
+    feedback_favoriters_user_list_html: "このスクリプトをお気に入りに入れているユーザー: %{user_list}"
+    feedback_favoriters_lots:
+      other: "このスクリプトは%{user_count}人のユーザーがお気に入りに入れています。%{full_link:全員のリストを見る。}"
     feedback_no_favoriters: "まだ登録はありません。"
     feedback_sign_in_to_favorite: "お気に入りに追加するにはログインしてください。"
     stats_title: "%{script_name} のインストール数の統計"
@@ -446,7 +449,7 @@ ja:
     discussions_on_scripts_none: "まだ投稿はありません。"
     discussions_on_scripts_more: "さらに表示 ▸"
     script_list: "スクリプト一覧"
-    script_list_none: "また投稿していません。"
+    script_list_none: "まだ投稿していません。"
     script_list_none_for_filter: "指定した条件に一致するスクリプトはありません。"
     script_list_none_same_user_html: "まだスクリプトを書いていません。%{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "スクリプトの書き方を見てみますか？"
@@ -722,6 +725,8 @@ ja:
     title: 議論
     comment_date: "投稿日: %{date}"
     comment_edit_date: "編集日: %{date}"
+    posted_by_html: "%{user} %{date}"
+    last_comment: "最新: %{user} %{date}"
     new_discussion_heading: "審査やコメント、質問を投稿"
     new_discussion_submit: "コメントを投稿"
     new_comment_heading: "返信を投稿"
