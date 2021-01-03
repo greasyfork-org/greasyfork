@@ -14,6 +14,7 @@ gem 'public_suffix'
 gem 'rack-attack'
 gem 'rails', '~> 6.1.0'
 gem 'rails-i18n'
+gem 'i18n', '1.8.5' # https://github.com/ruby-i18n/i18n/issues/546
 gem 'redcarpet'
 gem 'sanitize'
 gem 'sidekiq'
