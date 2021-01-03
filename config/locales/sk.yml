@@ -518,6 +518,7 @@ sk:
     script_list_none_same_user_html: "Nanapísali ste žiaden skript. %{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "Chcete sa to naučiť?"
     deleted_script_list: "Odstránené skripty"
+    unlisted_script_list: "Neuvedené skripty"
     sign_out: "Odhlásiť sa"
     edit: "Upraviť účet"
     edit_sign_in: "Zmeniť spôsob prihlasovania"
@@ -700,6 +701,7 @@ sk:
       description: Skripty musia obsahovať opis toho, čo robia, a nesmú robiť veci bezdôvodne mimo neho. Používatelia musia pred inštaláciou skriptu vedieť, čo urobí.
       reason: Skripty musia mať dôvod na to, aby boli skriptom. Napríklad skript, ktorý iba nasmeruje používateľa na web, nemusí byť skript; môže to byť odkaz. Skripty, ktoré používajú webovú službu na vykonanie akcie na aktuálnej stránke (napr. prevod na iný formát), sú povolené.
       unrelated: Skripty nesmú vyžadovať, aby používatelia vykonali nesúvisiacu akciu, ako je napríklad odoslanie platby, prihlásenie na odber kanála, pripojenie sa k skupine alebo označenie stránky, ktorá sa jej páči, aby bol skript úplne alebo čiastočne funkčný.
+      monetization_html: Skripty obsahujúce funkcie viac prospešné pre <em>autora</em> ako pre používateľa (ako sledovanie, reklamy, ťaženie, atď.) sú povolené, ale autor to musí uviesť do %{antifeature_link:metakľúčov <code>@antifeature</code>}.
       code_header: Kód
       obfuscation: Kód zverejnený na webe %{site_name} nesmie byť zmätočný ani minifikovaný. Používateľom musí byť poskytnutá príležitosť skontrolovať a porozumieť skriptu pred jeho inštaláciou. Ak je skript zabalený s nástrojom, ako je webpack, musí byť vydaný v neminifikovanej podobe.
       libraries_html: Knižnice, ktoré skript používa, by mali obsahovať <code>@require</code>, pokiaľ na to neexistuje opodstatnený technický dôvod. V prípade, že je knižnica priložená inline, musí obsahovať informácie o zdroji knižnice (napr. komentár označujúci URL a/alebo názov a verziu).

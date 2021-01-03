@@ -222,6 +222,7 @@ zh-CN:
     additional_info_add_localized: "添加一个本地化的附加信息"
     additional_info_locale_repeated: "您只能对“%{locale_code}”提供一条附加信息。"
     localized_additional_info_with_no_name: "您提交了“%{locale_code}”的附加信息，但是没有指定 <code>@name:%{locale_code}</code>。"
+    localized_attribute_matches_default: "代码不应设定 %{meta_key}，因为「%{locale_code}」是默认的语系。"
     code_syncing_from_url_html: "脚本代码已设定为自动同步：%{field}"
     provide_code_syncing_from_url_html: "%{site_name} 可以从其它网站导入脚本，比如代码版本控制系统 (例：GitHub)、您自己的服务器或其它的用户脚本网站。若需启用脚本同步，提供安装链接即可：%{field}"
     sync_type_intro: "该脚本的同步方式："
@@ -494,6 +495,7 @@ zh-CN:
     script_list_none_same_user_html: "您还没有编写过用户脚本，%{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "想要学习如何编写吗?"
     deleted_script_list: "已删除的脚本"
+    unlisted_script_list: "未上架的脚本"
     sign_out: "退出"
     edit: "编辑账号信息"
     edit_sign_in: "更改登录方式"
@@ -655,6 +657,7 @@ zh-CN:
       description: 脚本必须提供描述来说明这个脚本会做什么，而脚本也不应实现超过其描述的功能。用户必须提前知晓脚本会干的事情。
       reason: 脚本必须有一个成为脚本的理由。例如，一个只是跳转到某个网页的脚本可以只是一个超链接而非脚本；使用第三方接口来为当前页面提供服务的脚本（如转换数据）是允许的。
       unrelated: 脚本不得要求用户执行无关操作，例如支付、订阅频道、加群、或点赞，来使脚本部分或全部功能可用。
+      monetization_html: 脚本含为作者而非用户获益的功能（如追踪、广告、挖矿等）非绝对禁止，但是其必须通过 %{antifeature_link:<code>@antifeature</code> 元属性} 公开披露。
       code_header: 代码
       obfuscation: 提交到 %{site_name} 的代码不得混淆或最小化。用户必须能有机会能在安装前审视并理解脚本的内容。如果脚本使用 WebPack 之类的工具打包，你必须在打包参数指定不进行最小化处理。
       libraries_html: 库是应被 <code>@require</code> 的脚本，除非因为技术原因不能这么做。如果一个库被内嵌入了脚本，那么你必须一并提供库的来源（比如一行评论指向原始地址、名称以及版本）。

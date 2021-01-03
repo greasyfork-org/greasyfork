@@ -313,6 +313,7 @@ ja:
       remove_confirm: "%{user_name}を作者から削除してもよろしいですか？"
       failure: "作者を解除できませんでした。"
     no_disposable_email: "使い捨ての電子メールアドレスを使用している場合は、スクリプトを投稿することはできません。"
+    rate_limited: "短期間に多くのスクリプトが投稿され過ぎました。しばらく後にまたお試しください。"
     new_script_notice:
       title: "何をしようとしていますか？"
       install_link_html: "スクリプトを<b>インストールして使用したい</b>。"
@@ -320,6 +321,7 @@ ja:
     new_title:
       js: "スクリプトを投稿"
       css: "スタイルシートを投稿"
+    update_title: "%{script}を更新する"
     antifeatures:
       warning_title: このスクリプトは反作用を含みます
       author_explanation_intro: "スクリプト作者による説明:"
@@ -420,6 +422,31 @@ ja:
     explain_user_scripts_html: "ユーザースクリプトは、Web ページを見たり使ったりするときの主導権をあなたに与えます。スクリプトをインストールすれば、ページの機能を使いやすくしたり、新たな機能を追加したり、迷惑なものを取り除いたりして、訪れたサイトをより便利にカスタマイズすることができます。%{site_name} では、ユーザーが開発・投稿したスクリプトを公開しています。これらのスクリプトは自由にインストールでき、使うのも簡単です。"
     installing_step1_header: "(1) ユーザースクリプトマネージャーをインストール"
     installing_step1_caption: "Tampermonkey (Chrome 版)"
+    installing_step1_description_html: >
+        <p>ユーザースクリプトを利用するには、まずユーザースクリプトマネージャーをインストールする必要があります。使用可能なユーザースクリプトマネージャーは、ブラウザにより異なります。</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} または %{chrome_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey} または %{firefox_tampermonkey_link:Tampermonkey}
+        または %{firefox_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey} または %{safari_userscripts_link:Userscripts}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} または %{opera_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>AdGuard: (追加のソフトウェアは不要)</li>
+
+        </ul>
     installing_step2_header: "(2) スクリプトをインストール"
     installing_step2_caption: "ユーザースクリプトのインストールボタン"
     installing_step2_description_html: >
@@ -427,7 +454,7 @@ ja:
 
         %{highlighted_scripts_list}
 
-        <p>スクリプトページにある緑色のインストールボタンをクリックすると、スクリプトをインストールするか確認するダイアログなどが、ユーザースクリプトマネージャーより表示されます。</p>
+        <p>スクリプトのページにある緑色のインストールボタンをクリックすると、インストールするかどうかの確認が、ユーザースクリプトマネージャーにより表示されます。</p>
     installing_step3_header: "(3) ユーザースクリプトを使う"
     installing_step3_description_html: >
         <p>これで、スクリプトは実行対象のページで動作するようになります。スクリプトを試したあと、インストールしたページに戻り、作者宛てにフィードバックを投稿することもできます。</p>

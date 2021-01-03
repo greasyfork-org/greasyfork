@@ -109,6 +109,10 @@ es:
     feedback_start_first_discussion_link: "Sé el primero en comentar este script."
     feedback_discussion_or_report: "%{new_discussion_link:Abre un hilo de conversación sobre el script} o %{report_link:notifica una posible infracción de las normas}."
     feedback_favoriters_heading: "Seguidores"
+    feedback_favoriters_user_list_html: "Este script ha sido marcado como favorito por %{user_list}."
+    feedback_favoriters_lots:
+      one: "Este script ha sido marcado como favorito por %{user_count} usuarios. %{full_link:Ver la lista completa.}"
+      other: "Este script ha sido marcado como favorito por %{user_count} usuarios. %{full_link:Ver la lista completa.}"
     feedback_no_favoriters: "Este script todavía no ha recibido favoritos."
     feedback_sign_in_to_favorite: "Inicia sesión para añadirlo a favoritos."
     stats_title: "%{script_name} - Estadísticas"
@@ -121,6 +125,11 @@ es:
     stats_raw_data_header: "Datos brutos"
     stats_download_raw_data_html: "Descargar todos los datos como: %{links}"
     stats_no_data: "N/D"
+    stats_filters: "Filtros: %{filter_options}"
+    stats_filter_options:
+      month: Últimos 30 días
+      year: Últimos 365 días
+      all: Todo el tiempo
     derivatives_title: "%{script_name} - Derivados"
     derivatives_intro: "Estos scripts pueden basarse en el tuyo (o viceversa). Si detectas un uso no autorizado de tu código, denuncia el script creando un nueva conversación en su perfil."
     derivatives_script_html: "%{script} por %{user}, licencia: %{license} %{diff_link:[Diferencias]}"
@@ -219,6 +228,7 @@ es:
     additional_info_add_localized: "Añadir información regional adicional"
     additional_info_locale_repeated: "Proporciona una sola información adicional para el idioma '%{locale_code}'."
     localized_additional_info_with_no_name: "Has añadido información adicional para el idioma '%{locale_code}', pero sin proporcionar el @name:%{locale_code}."
+    localized_attribute_matches_default: "El código no debe incluir %{meta_key}con '%{locale_code}' conjuntamente"
     code_syncing_from_url_html: "El código de este script está configurado para sincronizarse desde: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} puede importar scripts alojados en otro lugar, por ejemplo, en un sistema de control de versiones (como GitHub), tu propio servidor, o en cualquier otro sitio de alojamiento de scripts de usuario. Para sincronizar tu script proporciona una dirección URL: %{field}"
     sync_type_intro: "El script se sincronizará:"
@@ -338,6 +348,24 @@ es:
       js: "Publicar un nuevo script"
       css: "Publicar un nuevo estilo"
     update_title: "Publicar una nueva versión de %{script}"
+    antifeatures:
+      warning_title: Este script contiene características no permitidas
+      author_explanation_intro: "El autor de este script explica:"
+      types:
+        ads:
+          title: Anuncios
+          description_html: Este script añadirá <b>anuncios</b> en los lugares que visites
+        tracking:
+          title: Rastreo
+          description_html: Este script contiene código que <b>rastreará tus busquedas</b>.
+        miner:
+          title: Criptominero
+          description_html: Este script contiene un criptominero que <b>utilizara los recursos de tu dispositivo</b> cuando esté activo.
+        referral-link:
+          title: Link de referido
+          description_html: Este script <b>reescribirá los enlaces</b> para incluir un código de referido o afiliado.
+      install_anyway: Instalar script
+      cancel_install: Cancelar
   script_sets:
     description: "Los grupos permiten crear un listado personal de scripts con los que explorar Greasy Fork. Puedes agruparlos añadiendo scripts individuales, incluyendo grupos de otros usuarios, o incluso grupos generados automáticamente. También puedes excluir scripts de la misma forma."
     favorites_name: "Favoritos"
@@ -486,6 +514,7 @@ es:
     script_list_none_same_user_html: "Todavía no has escrito ningún script. %{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "¿Te gustaría aprender a hacerlos?"
     deleted_script_list: "Scripts borrados"
+    unlisted_script_list: "Scripts no listados"
     sign_out: "Desconectar"
     edit: "Editar cuenta"
     edit_sign_in: "Editar métodos de inicio de sesión"
@@ -577,6 +606,13 @@ es:
         request_expired: "El borrado de usuario no se pudo completar porque ha caducado la solicitud."
         cancelled: "Se ha cancelado el borrado."
         completed: "Has eliminado tu cuenta."
+    banned_notice:
+      no_report_no_reason: "Tu cuenta ha sido baneada. Puedes %{delete_link:borrar tu cuenta}, si lo deseas."
+      with_report: "Tu cuenta ha sido baneada debido a %{report_link:este reporte}. Puedes %{delete_link:borrar tu cuenta}, si lo deseas."
+      with_reason: "Tu cuenta ha sido baneada. Un moderador ha dado los siguientes motivos \"%{reason}\". Puedes %{delete_link:borrar tu cuenta}, si lo deseas."
+    banned_delete:
+      intro: "Borrar tu cuenta también borrará cualquier script que hayas creado. Las contribuciones al foro que hayas realizado se mantendrán, pero tu nombre de usuario será anonimizado. Incluso después del borrado, no te será permitido registrarte otra vez con la misma dirección de correo. Inicia sesión abajo para borrar tu cuenta."
+      complete: "Tu cuenta ha sido borrada."
     badges:
       banned:
         short: Suspendido
@@ -592,6 +628,7 @@ es:
         title: Notificaciones del foro
         new_discussion: Suscribirte de forma predeterminada a toda conversación que empieces
         new_comment: Suscribirte de forma predeterminada a toda conversación en la que comentes
+        mention: Recibe una notificación cuando seas mencionado en una discusión
       conversation_defaults:
         title: Notificaciones de conversación
         starter: Suscribirte de forma predeterminada a toda conversación que empieces
@@ -631,6 +668,8 @@ es:
       contributionAmount_html: "Cantidad a donar recomendada, utilizada junto con <code>@contributionURL</code>."
       compatible_html: "Marca este script como compatible con un navegador. La información de compatibilidad se mostrará en otra página del script. Es posible incluir comentarios adicionales usando el formato <code>@compatible firefox Se debe desactivar el bloqueador de ventanas emergentes</code>. Los navegadores reconocidos son: %{browsers}."
       incompatible_html: "Marca este script como incompatible con un navegador. La información de compatibilidad se mostrará en otra página del script. Es posible incluir comentarios adicionales usando el formato <code>@incompatible firefox Dejó de funcionar en Firefox 23</code>. Los navegadores reconocidos son: %{browsers}."
+      antifeature_html: "Algunas características en los scripts están ahí para beneficiar al autor, no al usuario. El formato de esta llave es <code>descripción de @anticaracteristicas</code> .%{site_name} leerá los siguientes tipos: <code>anuncios</code> (El script muestra anuncios al usuario), <code>rastreo</code> (el script rastrea la actividad del usuario), <code>minero</code> (el script contiene un criptominero), y <code>enlaces de referido</code> (El script reescribe el enlace para añadir enlaces de referido/afiliado). Otros tipos son ignorados pero el script debe seguir obligatoriamente %{code_rules_link: las reglas de %{site_name}}. La descripción es opcional."
+      antifeature_localized_html: "Una <code>@anticaracteristica</code> descrita de forma especifica, donde XX es un <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">código alfabético de dos letras respectivo a la norma ISO 639-1</a> e YY es un <a href=\"https://www.iso.org/obp/ui/#search\">código de ciudad respectivo a la norma ISO 3166</a> opcional. Reemplaza las <code>@anticaracteristicas</code> del mismo tipo cuando el usuario está navegando en una configuración regional coincidente."
     writing_user_scripts:
       title: "Cómo escribir scripts de usuario"
       content_html: "<p>Para escribir scripts de usuario es necesario saber JavaScript. Las <a href=\"http://wiki.greasespot.net/Tutorials\">guías en GreaseSpot Wiki</a> (en inglés) deberían ser buen punto de partida para ver como funciona JavaScript en general y su relación con los scripts de usuario en particular. Ver el código de los demás, inspeccionando como funcionan por dentro sus scripts, puede ser educativo y divertido. Puede que te interesen las %{code_rules_link} y las %{meta_keys_link}. Si necesitas ayuda creando tu script puedes %{ask_in_forum_link}.</p><p>Para publicarlo en %{site_name} necesitarás tener una cuenta. Una vez estés en tu %{user_page_link} sigue el enlace llamado «%{post_new_script_link}», y listo.</p>"
@@ -639,6 +678,24 @@ es:
       post_new_script_link_text: 'publicar un nuevo script'
     code_rules:
       title: "Normas de %{site_name} para scripts publicados"
+      preamble: Estos son los requisitos para los scripts publicados en %{site_name}. Estos pretenden mantener %{site_name} como un sitio seguro y útil para los scripts de usuario. Cualquier script que no cumpla estos requisitos puede ser borrado por los moderadores de %{site_name}.
+      functionality_header: Funcionalidades
+      description: Los scripts deben incluir una descripción de que hacen y no debe hacer nada fuera de lo razonable de la descripción. Los usuarios deben saber lo que hace un script antes de instalarlo.
+      reason: Los scripts tienen que tener una razón para ser un script. Por ejemplo, un script que solo dirige a un usuario a una pagina web no necesita ser un script; puede ser un link. Los scripts que utilicen un servicio web para realizar una acción en la página actual (p.e. para convertirla de alguna forma) son permitidos.
+      unrelated: Los scripts no deben requerir a los usuarios realizar alguna acción no relacionada, como enviar un pago, subscribirse a un canal, unirse a un grupo o dar me gusta en una página, para que el script sea funcional, total o parcialmente.
+      monetization_html: 'Los scripts que contengan características que beneficien al <em>autor</em> mas que al usuario (como rastreo, anuncios o mineros) son permitidos, pero deben ser marcados con %{antifeature_link: la palabra clave<code>@anticaracteristica</code>}.'
+      code_header: Código
+      obfuscation: El código publicado en %{site_name} no debe ser ofuscado o minificado. Los usuarios tienen que tener la oportunidad de inspeccionar y entender el script antes de instalarlo. Si el script esta conjuntado a alguna herramienta como un webpack, deberá ser exportado en forma no minificada.
+      libraries_html: Las librerías de usos de un script deben ser <code>@requeridas</code> a no ser que haya una razón técnica valida para no hacerlo. En caso de que una librería sea incluida en el código, debe incluir información del origen de la librería (p.e. un comentario indicando el enlace y/o nombre y versión).
+      updates: Lo scripts no deben comprobar actualizaciones a un rango mayor de una vez por día. Ten en cuenta que la mayoría de administradores de scripts pueden realizar actualizaciones automáticas, así que hacerlo en el script es innecesario. Los scripts tampoco deberían introducir otro script hospedado en %{site_name} en la página.
+      external_js: "%{external_scripts_link:El uso de JavaScript externo es limitado.}"
+      copyright_header: Derechos de autor
+      licensing: Tu código debe respetar los derechos de autor de los demás. Esto incluye el código en si mismo y cualquier recurso (por ejemplo imágenes) que utilice. Si pretendes usar el contenido de terceros, cumple con sus términos de licencia o consigue su permiso antes de hacerlo.
+      reposts: Incluso en casos de no violar la regla de los derechos de autor, las resubidas de scripts que ya están en %{site_name} no están permitidas, a no ser que mejoren al original.
+      miscellaneous_header: Miscelaneo
+      keywords_html: Los scripts no deben incluir <code>@inclusiones</code>,<code>@coincidencias</code> o palabras clave para sitios que no proveen dicha funcionalidad.
+      adult_content_rule: Los scripts que incluyan contenido para adultos o son para sitios con contenido para adultos deben ser marcados como tal para permitir que otros usuarios puedan decidir verlos o no.
+      reporting: Si ves un script que no cumple con estos parámetros, por favor repórtelo dirigiéndose al link de comentarios y opiniones del script y eligiendo la opción "Reportar script".
     external_scripts:
       title: "Política de %{site_name} sobre scripts externos"
       content_html: >
@@ -835,6 +892,8 @@ es:
     title: Conversaciones
     comment_date: "Publicado: %{date}"
     comment_edit_date: "Editado: %{date}"
+    posted_by_html: "Respuesta de %{user} el %{date}"
+    last_comment: "Ultimo comentario: %{user}el %{date}"
     new_discussion_heading: "Pregunta tus dudas o ponle nota"
     new_discussion_submit: "Publicar comentario"
     new_comment_heading: "Publicar respuesta"
@@ -846,6 +905,7 @@ es:
     delete_discussion: "Eliminar"
     update_comment_submit: "Actualizar comentario"
     cancel_update_comment: "Cancelar"
+    quote_comment: "Cita"
     question_heading_html: "Pregunta o comentario"
     review_heading_html: "Puntuación: %{rating}"
     update_rating: "Actualiza tu calificación de %{script_name}"
@@ -947,6 +1007,7 @@ es:
     allowed_elements_intro: "Se permiten los siguientes elementos y atributos. Esto se aplica tanto a HTML como a Markdown (después de la conversión a HTML)."
     allowed_elements_extra_info: "Los espacios en blanco se convertirán en elementos p o br. Las URLs se convertirán automáticamente en enlaces."
     allowed_css_intro: "Se permite utilizar las siguientes propiedades CSS."
+    user_references_html: "Puedes hacer referencias y enlazar a otro usuario de %{site_name} con el formato <code>@NombreDeUsuario</code> o <code>@\"Nombre de Usuario\"</code> (si el nombre de usuario contiene espacios)."
     not_found_text: "404 - página no encontrada."
     not_found_title: "404 - Página no encontrada"
     not_found_link_home: "Ir a la página principal."
@@ -1011,6 +1072,7 @@ es:
       script_rate_limit: "Has subido demasiados scripts seguidos, prueba más tarde."
       missing_include_or_match: "es necesario incluir al menos una clave de tipo @match o @include"
       file_size_out_of_range: "debe ocupar menos de 200KB"
+      meta_too_long: "%{key}es demasiado larga (El máximo de caracteres es %{count})"
   opensearch:
     short_name: "Buscar en %{site_name}"
     description: "Busca scripts de usuario en %{site_name}."
@@ -1074,7 +1136,20 @@ es:
           Puedes ver y responder al comentario en %{comment_url}.
 
           Has recibido esta notificación porque te has suscrito a esta conversación. Visita %{discussion_url} para desuscribirte, o cambia tus preferencias sobre notificaciones en %{notification_preferences_url}.
+    comment_mentioned:
+      subject: "El usuario '%{commenter_name}' te ha mencionado en %{site_name}."
+      text: |
+          La discusión '%{discussion_title}' en %{site_name} ha recibido un comentario del usuario '%{commenter_name}' que te ha mencionado
+
+          ---
+          %{comment_text}
+          ---
+
+          Puedes ver y responder a este comentario en %{comment_url}
+
+          Has recibido esta notificación porque has elegido ser notificado cuando eres mencionado. Administra tus preferencias de notificaciones en %{notification_preferences_url}.
     new_message:
+      subject: "El usuario %{user} te ha enviado un mensaje en %{site_name}"
       text: |
           El usuario «%{user}» de %{site_name} te ha enviado un mensaje.
 

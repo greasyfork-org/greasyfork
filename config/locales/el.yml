@@ -228,6 +228,7 @@ el:
     additional_info_add_localized: "Προσθήκη μιας πρόσθετης πληροφορίας για μια γλώσσα"
     additional_info_locale_repeated: "Παρέχετε μόνο μια πρόσθετη πληροφορία για τη γλώσσα «%{locale_code}»."
     localized_additional_info_with_no_name: "Η πρόσθετη πληροφορία ορίστηκε για τη γλώσσα «%{locale_code}», αλλά καμιά ετικέτα @name:%{locale_code} δεν παρέχεται."
+    localized_attribute_matches_default: "Ο κώδικας δεν μπορεί να ορίσει το %{meta_key} καθώς το «%{locale_code}» είναι η προεπιλεγμένη τοπική ρύθμιση."
     code_syncing_from_url_html: "Αυτός ο κώδικας έχει οριστεί να συγχρονίζεται από: %{field}"
     provide_code_syncing_from_url_html: "Το %{site_name} μπορεί να εισάγει κώδικες που φιλοξενούνται αλλού, για παράδειγμα σε ένα σύστημα ελέγχου εκδόσεων (όπως το GitHub), τον δικό σας διακομιστή ή σε άλλου χρήστη ιστοσελίδα φιλοξενίας κώδικα χρήστη. Για την ενεργοποίηση του συγχρονισμού, δώστε ένα URL: %{field}"
     sync_type_intro: "Ο κώδικας θα συγχρονίζεται:"
@@ -336,6 +337,9 @@ el:
         miner:
           title: Cryptominer
           description_html: Αυτός ο κώδικας περιέχει cryptominer που θα <b>χρησιμοποιήσει τους πόρους της συσκευής σας</b> όταν είναι ενεργός.
+        referral-link:
+          title: Σύνδεσμοι αναφοράς
+          description_html: Αυτός ο κώδικας θα <b>επαναγράψει συνδέσμους</b> για να συμπεριλάβει κώδικα αναφοράς ή συνεργάτη.
       install_anyway: Εγκατάσταση κώδικα
       cancel_install: Άκυρο
   script_sets:
@@ -461,6 +465,7 @@ el:
     script_list_none_same_user_html: "Δεν έχετε γράψει κανένα κώδικα. %{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "Θα θέλατε να μάθετε πως;"
     deleted_script_list: "Διαγραμμένοι κώδικες"
+    unlisted_script_list: "Κώδικες εκτός λίστας"
     sign_out: "Αποσύνδεση"
     edit: "Επεξεργασία λογαριασμού"
     edit_sign_in: "Επεξεργασία μεθόδων σύνδεσης"
@@ -552,6 +557,10 @@ el:
         request_expired: "Αδύνατη η διαγραφή χρήστη - το αίτημα έληξε."
         cancelled: "Η διαγραφή ακυρώθηκε."
         completed: "Ο λογαριασμός σας έχει διαγραφεί."
+    banned_notice:
+      no_report_no_reason: "Ο λογαριασμός σας έχει αποκλειστεί. Μπορείτε να %{delete_link:διαγράψετε τον λογαριασμό σας}, αν το επιθυμείτε."
+    banned_delete:
+      complete: "Ο λογαριασμός σας έχει διαγραφεί."
     badges:
       banned:
         short: Αποκλεισμένος
