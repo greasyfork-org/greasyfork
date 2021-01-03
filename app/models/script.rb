@@ -6,6 +6,7 @@ class Script < ApplicationRecord
 
   CONSECUTIVE_BAD_RATINGS_COUNT = 3
   CONSECUTIVE_BAD_RATINGS_GRACE_PERIOD = 2.weeks
+  CONSECUTIVE_BAD_RATINGS_NOTIFICATION_DELAY = 1.day
 
   belongs_to :promoted_script, class_name: 'Script', optional: true
 
@@ -523,12 +524,13 @@ class Script < ApplicationRecord
   def consecutive_bad_ratings?
     recent_ratings = discussions
                      .with_actual_rating
+                     .where('created_at < ? OR rating != ?', CONSECUTIVE_BAD_RATINGS_NOTIFICATION_DELAY.ago, Discussion::RATING_BAD)
                      .where(['created_at >= ?', code_updated_at])
                      .reorder(:created_at)
                      .last(CONSECUTIVE_BAD_RATINGS_COUNT)
                      .reject(&:author_posted?)
                      .map(&:rating)
-    recent_ratings.count == CONSECUTIVE_BAD_RATINGS_COUNT && recent_ratings.all? { |rr| rr == ForumDiscussion::RATING_BAD }
+    recent_ratings.count == CONSECUTIVE_BAD_RATINGS_COUNT && recent_ratings.all? { |rr| rr == Discussion::RATING_BAD }
   end
 
   def reset_consecutive_bad_ratings!
