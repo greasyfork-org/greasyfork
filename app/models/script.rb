@@ -358,11 +358,11 @@ class Script < ApplicationRecord
   end
 
   def public?
-    script_type_id == 1
+    script_type_id == ScriptType::PUBLIC_TYPE_ID
   end
 
   def unlisted?
-    script_type_id == 2
+    script_type_id == ScriptType::UNLISTED_TYPE_ID
   end
 
   def can_be_added_to_set?

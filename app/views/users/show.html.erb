@@ -187,9 +187,11 @@
       </div>
     <% end %>
 
-    <% # show deletions in a separate section if we're going to show any
+    <% # Show non-public in a separate section if we're going to show any
     deleted_script_list = @scripts.select(&:deleted?)
-    script_list = @scripts.where.not(id: deleted_script_list.map(&:id)) %>
+    unlisted_script_list = @scripts.select(&:unlisted?)
+    library_script_list = @scripts.select(&:library?)
+    script_list = @scripts.where.not(id: (deleted_script_list + unlisted_script_list + library_script_list).map(&:id)) %>
     <section id="user-script-list-section">
       <header>
         <h3><%=t('users.script_list')%></h3>
@@ -211,7 +213,29 @@
       <%= will_paginate script_list %>
     </section>
 
-    <% if !deleted_script_list.empty? %>
+    <% unless unlisted_script_list.empty? %>
+      <section id="user-unlisted-script-list-section">
+        <header>
+          <h3><%= t('users.unlisted_script_list') %></h3>
+        </header>
+        <ol id="user-unlisted-script-list" class="script-list">
+          <%= render partial: 'scripts/script', collection: unlisted_script_list %>
+        </ol>
+      </section>
+    <% end %>
+
+    <% unless library_script_list.empty? %>
+      <section id="user-library-list-section">
+        <header>
+          <h3><%= t('scripts.libraries_title') %></h3>
+        </header>
+        <ol id="user-library-script-list" class="script-list">
+          <%= render partial: 'scripts/script', collection: library_script_list %>
+        </ol>
+      </section>
+    <% end %>
+
+    <% unless deleted_script_list.empty? %>
       <section id="user-deleted-script-list-section">
         <header>
           <h3><%=t('users.deleted_script_list')%></h3>
