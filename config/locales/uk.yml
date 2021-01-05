@@ -55,10 +55,13 @@ uk:
     delete_permanently_heading: "Повне знищення"
     delete_permanently_submit: "Надіслати запит на повне знищення"
     delete_permanently_immediate_submit: "Повністю видалити"
+    delete_permanently_notice: "Запит на остаточне видалення було прийнято. Ваш скрипт буде повністю видалено через 7 днів."
     delete_permanently_notice_immediate: "Скрипт був повністю видалений."
     cancel_delete_permanently_submit: "Відмінити запит на повне знищення"
     delete_permanently_rejected_locked: "Цей скрипт заблокований і не може бути повністю видалений"
     admin_page: "Адміністратор"
+    admin:
+      compare_button: "Порівняти"
     history_title: "%{script_name} - Історія версій"
     history_only_code_changes_info: "Це версії цього скрипту, де код був змінений."
     history_all_changes_link: "Показати всі версії."
@@ -70,7 +73,13 @@ uk:
     feedback_no_discussions_html: "Ще не було опубліковано жодної дискусії. %{start_first_discussion_link}"
     feedback_start_first_discussion_link: "Будьте першим, хто напише про цей скрипт."
     feedback_favoriters_heading: "Прихильники"
-    feedback_no_favoriters: "Цей скрипт ще не був обраний ніким."
+    feedback_favoriters_user_list_html: "Цей скрипт сподобався:%{user_list}. "
+    feedback_favoriters_lots:
+      one: "Цей скрипт сподобався %{user_count} користувачу. %{full_link:Показати список.}"
+      few: "Цей скрипт сподобався %{user_count} користувачам. %{full_link:Показати список.}"
+      many: "Цей скрипт сподобався %{user_count} користувачам. %{full_link:Показати список.}"
+      other: "Цей скрипт сподобався %{user_count} користувачам. %{full_link:Показати список.}"
+    feedback_no_favoriters: "Цей скрипт ще не був вподобаний ніким."
     feedback_sign_in_to_favorite: "Увійдіть, щоб додати в улюбленні."
     stats_title: "%{script_name} - Статистика"
     stats_daily_installs_heading: "Щоденні встановлення"
@@ -82,7 +91,13 @@ uk:
     stats_raw_data_header: "Необроблені дані"
     stats_download_raw_data_html: "Завантажити всі дані як: %{links}"
     stats_no_data: "Н/Д"
+    stats_filter_options:
+      month: Останні 30 днів
+      year: Останні 365 днів
+      all: Увесь час
     derivatives_title: "%{script_name} - Подібні"
+    derivatives_exact_copies_heading: "Точні копії"
+    derivatives_similar_heading: "Схожі скрипти"
     listing_title_all_sites: "Скрипти користувачів для всіх сайтів"
     listing_description_all_sites: "Скрипти користувачів, що додають нові функції і видаляють помилки на всіх сайтах"
     listing_title_for_site: "Скрипти користувачів для %{site}"
@@ -103,11 +118,14 @@ uk:
     listing_filter_by_site_label: "Показати сценарії для:"
     listing_filter_by_site_disable: "Всі"
     listing_filter_by_site_all_sites: "(Всі сайти)"
+    listing_filter_by_language_label: "Мова:"
     listing_filter_by_site_more_sites: "Більше..."
     listing_no_scripts: "Скриптів не знайдено."
     listing_created_feed: "Нові скрипти"
     listing_updated_feed: "Оновлені скрипти"
     listing_none: "(Жодного)"
+    listing_language_js: "JavaScript"
+    listing_language_css: "CSS"
     import: "Імпортувати скрипти"
     support_site: "Відвідайте сайт підтримки автора."
     support_email: "Надішліть E-mail автору для підтримки."
@@ -189,13 +207,31 @@ uk:
     adult_content_on_greasy_logged_in_error: "Цей сценарій більше не доступні на цьому сайті з поточними %{edit_account_link: налаштуваннями облікового запису користувача Greasy Fork}."
     adult_content_on_greasy_not_logged_in_error: "Цей сценарій більше не доступний анонімно на цьому сайті. %{login_link:Увійдіть} і перевірте налаштування облікового запису Greasy Fork."
     non_adult_content_on_sleazy: "Цей сценарій не доступний на цьому сайті."
+    not_js_convertible_override_header: "Перетворення в JS"
     adult_marker: "(Для дорослих)"
     deleted_marker: "(Видалений)"
     locked_marker: "(Заблокований)"
     unlisted_marker: "(Прихований)"
     library_marker: "(Бібліотека)"
     libraries_title: "Бібліотеки"
+    search_placeholder: "Знайти скрипти"
+    updated: "Скрипт оновлено"
     preview_additional_info: "Перегляд"
+    authors_heading: "Автори"
+    remove_author:
+      remove_button: "Видалити"
+    new_script_notice:
+      title: "Що ви намагаєтеся зробити?"
+    antifeatures:
+      types:
+        ads:
+          title: Реклама
+        tracking:
+          title: Стеження
+        miner:
+          title: Криптомайнер
+      install_anyway: Встановити скрипт
+      cancel_install: Відмінити
   script_sets:
     favorites_name: "Улюблені"
     delete: "Видалити цей набір скриптів"
@@ -280,6 +316,10 @@ uk:
     listing_new_scripts: "Нові скрипти"
     listing_updated_scripts: "Оновлені скрипти"
     listing_registration_date: "Дата реєстрації"
+    listing_title: "Користувачі"
+    listing_author_filter:
+      script_author: "Автор скрипта"
+    search_placeholder: "Пошук користувачів"
     locale_prompt: "(Виберіть мову)"
     show_ads_description: "Підтримуйте %{site_name}, дозволяючи йому показувати вам рекламу"
     show_sensitive_description: "Показати скрипти з вмістом для дорослих"
@@ -289,7 +329,21 @@ uk:
       few: "%{user_name} також має %{count} скрипти на Greasy Fork'у."
       many: "%{user_name} також має %{count} скриптів на Greasy Fork'у."
       other: "%{user_name} також має %{count} скриптів на Greasy Fork'у."
+    delete_link: "Видалити аккаунт"
+    delete:
+      submit: "Видалити аккаунт"
+    badges:
+      moderator:
+        long: Модератор
+      author:
+        short: Автор
+        long: Автор цього скрипта
+    notifications:
+      title: Сповіщення
   help:
+    sections:
+      usage: Використання
+      development: Розробка
     meta_keys:
       title: "Мета ключі які розпізнає %{site_name}"
       intro_html: "Це <a href=\"http://wiki.greasespot.net/Metadata_Block\">список мета полів</a>, які %{site_name} буде читати в скриптах користувачів. Значення поза цим списком можуть бути включені в сценарії, і будуть присутні у встановленому скрипті, але не мають ніякого ефекту в інтерфейсі %{site_name}'у."
@@ -315,8 +369,11 @@ uk:
       post_new_script_link_text: 'публікації нового скрипту'
     code_rules:
       title: "правила для публікації скриптів на %{site_name}"
+      code_header: Код
     external_scripts:
       title: "Політика %{site_name}'у щодо зовнішніх сценаріїв"
+      test_url:
+        label: Протестувати URL
     script_rewriting:
       title: "Як %{site_name} буде переписувати опубліковані скрипти"
     site_feedback_link: "Повідомити про Проблему або Побажання на %{site_name}"
@@ -331,11 +388,36 @@ uk:
       title: "Сконтактуватись з кимось"
     privacy_policy:
       title: "Політика приватності"
+  moderator_logs:
+    date_column: "Дата"
+    moderator_column: "Модератор"
+    action_column: "Дія"
+    reason_column: "Причина"
+  reports:
+    reason:
+      spam: "Спам"
   discussions:
+    title: Обговорення
     back_to_feedback: "< Відгуки до %{script}"
+    edit_comment_link: "Редагувати"
+    ratings:
+      bad: "Погано - скрипт не працює"
+      ok: "Нормально - скрипт працює, але має певні недоліки"
+      good: "Добре - скрипт працює добре"
+    ratings_short:
+      question: "Запитання/коментар"
+      bad: "Погано"
+      ok: "Нормально"
+      good: "Добре"
+    subscribe: Підписатися
+    unsubscribe: Відписатися
     categories:
       greasyfork:
         name: Відгуки Greasy Fork
+    mark_all_read: Відмітити як прочитане
+  conversations:
+    new_button: Створити обговорення
+    send_message: Надіслати повідомлення
   common:
     error_preamble: "Були деякі проблеми з тим, що ви публікуєте..."
     allowed_elements_link: "(Переглянути дозволений код.)"

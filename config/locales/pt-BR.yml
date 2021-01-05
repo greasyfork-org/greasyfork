@@ -510,6 +510,7 @@ pt-BR:
     script_list_none_same_user_html: "Você não escreveu nenhum script. %{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "Você gostaria de saber como?"
     deleted_script_list: "Scripts deletados"
+    unlisted_script_list: "Scripts não listados"
     sign_out: "Sair"
     edit: "Editar conta"
     edit_sign_in: "Editar métodos de entrada"
@@ -601,6 +602,13 @@ pt-BR:
         request_expired: "Não foi possível apagar o usuário - a solicitação expirou."
         cancelled: "A remoção foi cancelada."
         completed: "Sua conta foi apagada."
+    banned_notice:
+      no_report_no_reason: "Sua conta foi banida. Você pode %{delete_link:deletar sua conta}, se desejar."
+      with_report: "Sua conta foi banida em resposta a %{report_link:esta denúncia}. Você pode %{delete_link:deletar sua conta}, se desejar."
+      with_reason: "Sua conta foi banida. Um moderador deu o seguinte motivo: \"%{reason}\". Você pode %{delete_link:deletar sua conta}, se desejar."
+    banned_delete:
+      intro: "Ao deletar sua conta, todos os seus scripts postados também serão removidos. Suas contribuições no forum ainda existirão, porém sem a informação do seu usuário. Mesmo após a remoção, você não poderá se registrar novamente com o mesmo endereço de email. Faça login abaixo para deletar sua conta."
+      complete: "Sua conta foi apagada."
     badges:
       banned:
         short: Banido
@@ -671,6 +679,7 @@ pt-BR:
       description: Scripts devem ter uma descrição do que eles fazem e não podem fazer coisas fora do escopo da descrição sem uma razão. Os usuários devem saber o que o script fará antes de instalá-lo.
       reason: Scripts deve ter um motivo para serem um script. Por exemplo, um script que apenas direciona um usuário para um site não precisa ser um script; poderia ser um link. Scripts que utilizam um web service para executar uma ação na página atual (para realizar uma conversão, por exemplo) são permitidos.
       unrelated: Scripts não podem solicitar que os usuários realizem ação não relacionadas para que o script funcione, completa ou parcialmente, como enviar pagamentos, inscrever-se em um canal, entrar em um grupo ou curtir uma página.
+      monetization_html: Scripts que contenham funcionalidades que beneficiem o <em>autor</em> em vez do usuário (como rastreadores,  anúncios e mineradores) são permitidos, mas devem informar isso através de %{antifeature_link:meta keys <code>@antifeature</code>}.
       code_header: Código
       obfuscation: Os códigos postados no %{site_name} não devem estar obfuscados ou minificados. Os usuários devem ter a chance de inspecionar e compreender o script antes de instalá-lo. Se o script for empacotado por ferramentas como webpack, ele deve ser exportado de forma não minificada.
       libraries_html: Bibliotecas que um script utiliza devem ser incluídas pela tag <code>@require</code>, a meos que haja um rasão técnica válida para isso. No caso da biblioteca ser incluída inline, deve ser incluída informação de sua fonte (um comentário indicando a URL e/ou nome e versão, por exemplo).
