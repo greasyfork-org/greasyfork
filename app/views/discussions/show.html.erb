@@ -63,7 +63,7 @@
         </div>
       <% end %>
       <div class="comment-meta-spacer"></div>
-      <% if by_current_user && !comment.new_record? %>
+      <% if comment.editable_by?(current_user) %>
         <div class="comment-meta-item">
           <%= link_to t('discussions.edit_comment_link'), '#', class: 'edit-comment', data: { comment_container: "comment-#{comment.id}" } %>
         </div>
@@ -92,7 +92,7 @@
       <%= format_user_text(comment.text, comment.text_markup, mentions: comment.mentions) %>
       <%= render partial: 'screenshots/show', locals: { attachable: comment } %>
     </div>
-    <% if by_current_user %>
+    <% if comment.editable_by?(current_user) %>
       <div class="edit-comment-form">
         <%= form_with(model: comment, url: scoped_comment_path(comment), method: :PATCH) do |f| %>
           <h3><%= t('discussions.edit_comment_header') %></h3>

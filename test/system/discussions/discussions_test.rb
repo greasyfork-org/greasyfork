@@ -62,9 +62,11 @@ class DiscussionsTest < ApplicationSystemTestCase
     fill_in 'Title', with: 'discussion title'
     fill_in 'discussion_comments_attributes_0_text', with: 'Hey @Geoffrey'
     choose 'Greasy Fork Feedback'
-    assert_difference -> { Discussion.count } => 1 do
-      click_button 'Post comment'
-      assert_content 'Hey @Geoffrey'
+    perform_enqueued_jobs(only: CommentNotificationJob) do
+      assert_difference -> { Discussion.count } => 1 do
+        click_button 'Post comment'
+        assert_content 'Hey @Geoffrey'
+      end
     end
     assert_enqueued_email_with ForumMailer, :comment_on_mentioned, args: [mentioned_user, Comment.last]
   end
@@ -113,11 +115,13 @@ class DiscussionsTest < ApplicationSystemTestCase
     mentioned_user = users(:geoff)
     mentioned_user.update!(notify_on_mention: true)
 
-    discussion = discussions(:non_script_discussion)
-    visit discussion.url
-    fill_in 'comment_text', with: 'Hey @Geoffrey'
-    click_button 'Post reply'
-    assert_content 'Hey @Geoffrey'
+    perform_enqueued_jobs(only: CommentNotificationJob) do
+      discussion = discussions(:non_script_discussion)
+      visit discussion.url
+      fill_in 'comment_text', with: 'Hey @Geoffrey'
+      click_button 'Post reply'
+      assert_content 'Hey @Geoffrey'
+    end
 
     assert_enqueued_email_with ForumMailer, :comment_on_mentioned, args: [mentioned_user, Comment.last]
   end

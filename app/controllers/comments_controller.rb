@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
       end
     end
 
-    @comment.send_notifications!
+    CommentNotificationJob.set(wait: Comment::EDITABLE_PERIOD).perform_later(@comment)
 
     redirect_to @comment.path(locale: request_locale.code)
   rescue ActiveRecord::RecordInvalid
@@ -38,7 +38,7 @@ class CommentsController < ApplicationController
 
   def update
     comment = @discussion.comments.not_deleted.find(params[:id])
-    unless comment.poster && comment.poster == current_user
+    unless comment.editable_by?(current_user)
       render_access_denied
       return
     end

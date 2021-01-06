@@ -90,4 +90,14 @@ class Comment < ApplicationRecord
       first_comment: discussion.comments.order(:id).first == self,
     }
   end
+
+  EDITABLE_PERIOD = 5.minutes
+
+  def editable_by?(user)
+    return false if new_record?
+    return false unless user
+    return false unless poster == user
+
+    created_at >= EDITABLE_PERIOD.ago
+  end
 end

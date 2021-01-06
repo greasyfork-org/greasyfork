@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class ScriptDiscussionsTest < ApplicationSystemTestCase
+  include ActionMailer::TestHelper
+
   test 'adding a discussion on a script' do
     user = User.first
     login_as(user, scope: :user)
@@ -25,6 +27,11 @@ class ScriptDiscussionsTest < ApplicationSystemTestCase
       click_button 'Update comment'
       assert_content 'this is an updated reply'
     end
+
+    travel_to(10.minutes.from_now) do
+      visit current_path
+      assert_no_link 'Edit'
+    end
   end
 
   test 'commenting on a discussion' do
@@ -36,9 +43,11 @@ class ScriptDiscussionsTest < ApplicationSystemTestCase
     fill_in 'comment_text', with: 'this is a reply'
     check 'Notify me of any replies'
 
-    assert_difference -> { Comment.count } => 1 do
-      click_button 'Post reply'
-      assert_content 'this is a reply'
+    perform_enqueued_jobs(only: CommentNotificationJob) do
+      assert_difference -> { Comment.count } => 1 do
+        click_button 'Post reply'
+        assert_content 'this is a reply'
+      end
     end
 
     assert user.subscribed_to?(discussion)
@@ -66,6 +75,11 @@ class ScriptDiscussionsTest < ApplicationSystemTestCase
     end
 
     assert_not user.subscribed_to?(discussion)
+
+    travel_to(10.minutes.from_now) do
+      visit current_path
+      assert_no_link 'Edit'
+    end
   end
 
   test 'subscribing to a discussion' do
