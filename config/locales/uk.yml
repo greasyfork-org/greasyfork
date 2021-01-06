@@ -71,9 +71,10 @@ uk:
     code_title: "%{script_name} - Початковий код"
     feedback_title: "%{script_name} - Відгуки"
     feedback_no_discussions_html: "Ще не було опубліковано жодної дискусії. %{start_first_discussion_link}"
+    feedback_no_discussions_on_page_form: "Жодного обговорення ще не опубліковано."
     feedback_start_first_discussion_link: "Будьте першим, хто напише про цей скрипт."
     feedback_favoriters_heading: "Прихильники"
-    feedback_favoriters_user_list_html: "Цей скрипт сподобався:%{user_list}. "
+    feedback_favoriters_user_list_html: "Цей скрипт сподобався: %{user_list}. "
     feedback_favoriters_lots:
       one: "Цей скрипт сподобався %{user_count} користувачу. %{full_link:Показати список.}"
       few: "Цей скрипт сподобався %{user_count} користувачам. %{full_link:Показати список.}"
@@ -91,6 +92,7 @@ uk:
     stats_raw_data_header: "Необроблені дані"
     stats_download_raw_data_html: "Завантажити всі дані як: %{links}"
     stats_no_data: "Н/Д"
+    stats_filters: "Фільтр: %{filter_options}"
     stats_filter_options:
       month: Останні 30 днів
       year: Останні 365 днів
@@ -124,9 +126,14 @@ uk:
     listing_created_feed: "Нові скрипти"
     listing_updated_feed: "Оновлені скрипти"
     listing_none: "(Жодного)"
+    listing_set_locale_filter: "Показано результати для всіх мов. %{set_filter_link: Показати результати лише: %{language} .}"
+    listing_remove_locale_filter: "Показано результати лише такою мовою: %{language}. %{remove_filter_link:Показати результати для всіх мов.}"
+    listing_language_all: "Всі"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
     import: "Імпортувати скрипти"
+    new: "Опублікуйте свій скрипт"
+    new_css: "Опублікуйте свій стиль"
     support_site: "Відвідайте сайт підтримки автора."
     support_email: "Надішліть E-mail автору для підтримки."
     contribution_no_amount: "Зробіть внесок, як подяку %{author}'у."
@@ -197,6 +204,7 @@ uk:
     ok_rating_explanation: "Кількість людей, які оцінили його як Непоганий."
     bad_rating_explanation: "Кількість людей, які оцінили його як Поганий."
     write_your_own_html: "%{post_a_script_link} (або %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "Опублікуйте свій скрипт"
     learn_to_write_scripts_link_text: "дізнайтесь як його створити"
     feedback_or_report: "%{feedback_link:Задати запитання, залишити відгук}, або %{report_link:повідомити про скрипт}."
     adult_content: "Вміст для дорослих"
@@ -217,11 +225,16 @@ uk:
     search_placeholder: "Знайти скрипти"
     updated: "Скрипт оновлено"
     preview_additional_info: "Перегляд"
+    must_confirm_email: "Ви повинні підтвердити свою електронну адресу, перш ніж публікувати сценарії."
     authors_heading: "Автори"
     remove_author:
       remove_button: "Видалити"
     new_script_notice:
       title: "Що ви намагаєтеся зробити?"
+    new_title:
+      js: "Додати новий скрипт"
+      css: "Додати новий стиль"
+    update_title: "Додати нову версію %{script}"
     antifeatures:
       types:
         ads:
@@ -231,7 +244,7 @@ uk:
         miner:
           title: Криптомайнер
       install_anyway: Встановити скрипт
-      cancel_install: Відмінити
+      cancel_install: Скасувати
   script_sets:
     favorites_name: "Улюблені"
     delete: "Видалити цей набір скриптів"
@@ -239,7 +252,16 @@ uk:
     site_default_sort: "(За замовчуванням сайту)"
     edit_scripts:
       heading: "Скрипти"
+      included_none: "(Жодного)"
+      remove_included: "Вилучити відмічені"
+      excluded_none: "(Жодного)"
+      remove_excluded: "Вилучити відмічені"
+    edit_sets:
+      heading: "Набори скриптів"
+      included_none: "(Жодного)"
+      remove_included: "Вилучити відмічені"
     save: "Зберегти"
+    saved: "Набір скриптів збережено."
   forum_discussions:
     listing_no_script_no_reply_html: "%{discussion_link} від %{original_poster_link} %{original_post_date}"
     listing_no_script_with_reply_html: "%{discussion_link} від %{original_poster_link} %{original_post_date}, останній коментар від %{last_commenter_link} %{last_comment_date}"
@@ -317,8 +339,11 @@ uk:
     listing_updated_scripts: "Оновлені скрипти"
     listing_registration_date: "Дата реєстрації"
     listing_title: "Користувачі"
+    listing_banned_filter:
+      all: "Всі"
     listing_author_filter:
       script_author: "Автор скрипта"
+      all: "Всі"
     search_placeholder: "Пошук користувачів"
     locale_prompt: "(Виберіть мову)"
     show_ads_description: "Підтримуйте %{site_name}, дозволяючи йому показувати вам рекламу"
@@ -332,6 +357,10 @@ uk:
     delete_link: "Видалити аккаунт"
     delete:
       submit: "Видалити аккаунт"
+      confirmation:
+        confirm: "Видалити '%{user_name}'"
+        cancel: "Скасувати видалення"
+        cancelled: "Видалення скасовано."
     badges:
       moderator:
         long: Модератор
@@ -339,6 +368,9 @@ uk:
         short: Автор
         long: Автор цього скрипта
     notifications:
+      discussion_defaults:
+        title: Сповіщення форуму
+      save_button: Оновити налаштування сповіщень
       title: Сповіщення
   help:
     sections:
@@ -393,14 +425,28 @@ uk:
     moderator_column: "Модератор"
     action_column: "Дія"
     reason_column: "Причина"
+    item_script_html: "Скрипт: %{script_link}"
   reports:
     reason:
       spam: "Спам"
   discussions:
     title: Обговорення
+    comment_date: "Опубліковано: %{date}"
+    last_comment: "Останній: %{user} %{date}"
+    new_discussion_heading: "Опублікувати відгук, коментар або запитання"
+    new_discussion_submit: "Опублікувати коментар"
+    new_comment_heading: "Опублікувати відповідь"
+    new_comment_submit: "Опублікувати відповідь"
     back_to_feedback: "< Відгуки до %{script}"
     edit_comment_link: "Редагувати"
+    edit_comment_header: "Редагувати коментар"
+    delete_comment: "Видалити"
+    delete_discussion: "Видалити"
+    cancel_update_comment: "Скасувати"
+    quote_comment: "Цитувати"
+    review_heading_html: "Відгук: %{rating}"
     ratings:
+      question: "Без рейтингу - просто запитання/коментар"
       bad: "Погано - скрипт не працює"
       ok: "Нормально - скрипт працює, але має певні недоліки"
       good: "Добре - скрипт працює добре"
@@ -409,15 +455,29 @@ uk:
       bad: "Погано"
       ok: "Нормально"
       good: "Добре"
+    read_filter:
+      all: Всі
+      read: Прочитано
+      unread: Не прочитано
+    user_activity:
+      title: "Останні коментарі"
     subscribe: Підписатися
     unsubscribe: Відписатися
+    notify: Повідомляти мене про будь-які відповіді
+    notifying_on_script: 'Ви отримаєте сповіщення про будь-які коментарі відповідно до %{notifications_link: ваших налаштувань сповіщень скриптів}.'
     categories:
       greasyfork:
         name: Відгуки Greasy Fork
+      development:
+        name: Розробка
+      script-discussions:
+        name: Обговорення скриптів
     mark_all_read: Відмітити як прочитане
   conversations:
     new_button: Створити обговорення
     send_message: Надіслати повідомлення
+  screenshots:
+    requirements: "Максимум %{number} PNG, GIF, JPEG, або WebP зображень, кожне з яких менше за %{size}."
   common:
     error_preamble: "Були деякі проблеми з тим, що ви публікуєте..."
     allowed_elements_link: "(Переглянути дозволений код.)"
@@ -452,6 +512,10 @@ uk:
         additional_info: "Додаткова інформація"
         screenshots: "Скріншоти"
         replaced_by_script_id: "Скрипт заміна"
+      script_set:
+        description: "Опис"
+      discussion:
+        rating: "Рейтинг"
   errors:
     messages:
       script_missing_name: "обов'язково - вкажіть, щоб було присутнє @name"
