@@ -49,6 +49,7 @@
 <% end %>
 
 <% content_for(:head_bottom) do %>
+  <meta name="twitter:card" content="summary">
   <meta property="og:title" content="<%= @script.default_name %>">
   <meta property="og:url" content="<%= script_url(@script, locale: nil) %>">
   <% if @script_version %>
