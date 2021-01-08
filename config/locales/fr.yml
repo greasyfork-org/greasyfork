@@ -105,7 +105,7 @@ fr:
     feedback_has_reports: "Ce script a été rapporté comme violent la règles %{site_name}."
     feedback_no_discussions_html: "Aucun commentaire. %{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "Aucune discussion n'a encore été posté."
-    feedback_report_instead: "Si vous pensez que ce script enfreint %{rules_link:les règles de%{site_name}}, veuillez %{report_link:signalez-le pour le retirer}."
+    feedback_report_instead: "Si vous pensez que ce script enfreint %{rules_link:les règles de%{site_name}}, veuillez %{report_link:le signaler pour le retirer}."
     feedback_start_first_discussion_link: "Soyez le premier à commenter ce script."
     feedback_discussion_or_report: "%{new_discussion_link:Démarrer une nouvelle discussion concernant ce script} ou %{report_link:demander sa suppression}."
     feedback_favoriters_heading: "Fans"
@@ -455,16 +455,16 @@ fr:
 
         <ul>
 
-        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} or %{chrome_violentmonkey_link:Violentmonkey}</li>
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} ou %{chrome_violentmonkey_link:Violentmonkey}</li>
 
         <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
-        or %{firefox_violentmonkey_link:Violentmonkey}</li>
+        ou %{firefox_violentmonkey_link:Violentmonkey}</li>
 
-        <li>Safari: %{safari_tampermonkey_link:Tampermonkey} or %{safari_userscripts_link:Userscripts}</li>
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey} ou %{safari_userscripts_link:Userscripts}</li>
 
         <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
 
-        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} or %{opera_violentmonkey_link:Violentmonkey}</li>
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} ou %{opera_violentmonkey_link:Violentmonkey}</li>
 
         <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
 
@@ -486,12 +486,12 @@ fr:
         <p>Une fois que vous avez trouvé un script utilisateur, cliquer sur le bouton
         d'installation vert sur la page du script, et votre gestionnaire de script
         va vous demandez une confirmation d'installation</p>
-    installing_step3_header: "Étape 3: utilise le script utilisateur"
+    installing_step3_header: "Étape 3: utiliser un script utilisateur"
     installing_step3_description_html: >
-        <p>Aller sur le site que le script utilisateur modifie. Il devrait faire son
-        travail automatiquement. Après avoir essayer le script utilisateur pendant
-        un moment, revenez là où vous l'avez téléchargé, et laissez quelques commentaires
-        pour le l'auteur du script</p>
+        <p>Accédez au site concerné par le script utilisateur. Il devrait faire automatiquement
+        son travail. Après avoir essayé le script utilisateur pendant un moment, revenez
+        à l'endroit où vous l'avez trouvé et laisser un commentaire à l'auteur du
+        script utilisateur.</p>
   users:
     sign_in_title: "S'identifier sur %{site_name}"
     sign_in_description: "S'identifier sur %{site_name} vous permet de poster des scripts et des commentaires sur d'autres scripts. Vous n'avez pas besoin d'être identifié pour parcourir ou installer les scripts."
@@ -768,7 +768,7 @@ fr:
     credits:
       title: "Crédits"
       authors_credit: "%{site_name} ne serait pas possible sans les auteurs de scripts qui contribuent."
-      developers_credit: "%{site_name} lui-même est réalisé par %{developers_link:these people} avec l'aide de tous ceux qui signalent des bugs et qui proposent des améliorations."
+      developers_credit: "%{site_name} lui-même est construit par %{developer_link:ces personnes} avec l'aide de tous ceux qui signalent des bugs et suggèrent des améliorations."
       translators_credit: "%{site_name} a été traduit par %{translators_link:la Greasy Translation Force sur Transifex}:"
       icons_credit: "Les icônes de discussion proviennent de %{vistastylebase} par %{iconsland}. Les icônes de navigateur viennent de %{browserlogos}."
     help_with_greasymonkey: "Aide avec Greasemonkey"
@@ -832,13 +832,13 @@ fr:
       description: "Recherche de scripts. Recherche des noms de script, des descriptions, des infos supplémentaires et des noms d'auteur. %{sphinx_link:Syntaxe de recherche avancée Sphinx.}"
     library_search:
       title: "Recherche dans la bibliothèque"
-      description: "Recherche de bibliothèques. Recherche des noms de bibliothèque, des descriptions, des infos supplémentaires, et des noms d'auteur. %{sphinx_link:Syntaxe de recherche avancée Sphinx.}"
+      description: "Recherche de bibliothèques. Recherche des noms de bibliothèques, des descriptions, des infos supplémentaires, et des noms d'auteur. %{sphinx_link:Syntaxe de recherche avancée Sphinx.}"
     code_search:
       title: "Recherche de code"
       description: "Rechercher le code de script. Il s'agit d'une case-insensible, la recherche en texte brut sans caractères génériques."
     user_search:
       title: "Recherche d'utilisateur"
-      description: "Rechercher des utilisateurs par nom. Recherche simple LIKE."
+      description: "Rechercher par nom d'utilisateurs. Recherche simple LIKE."
   moderator_logs:
     date_column: "Date"
     moderator_column: "Moderateur"

@@ -605,6 +605,8 @@ ja:
       contributionAmount_html: "提示する寄付金額。<code>@contributionURL</code> と共に使用します。"
       compatible_html: "スクリプトがどのブラウザと互換性があるか。互換性はスクリプトの情報ページに表示されます。<code>@compatible firefox ポップアップブロックの無効化が必須</code> のような形式で、互換性に関するコメントを含めることもできます。認識されるブラウザ: %{browsers}"
       incompatible_html: "スクリプトがどのブラウザと互換性がないか。互換性はスクリプトの情報ページに表示されます。<code>@incompatible firefox Firefox 23 以降で動作しない</code> のような形式で、互換性に関するコメントを含めることもできます。認識されるブラウザ: %{browsers}"
+      antifeature_html: "ユーザーではなく開発者にとっての利益となるような機能を、 <code>@antifeature type description</code> の形式で開示します。%{site_name}が認識するのは、 <code>ads</code> (スクリプトがユーザーに広告を表示する)、 <code>tracking</code> (スクリプトがユーザーの行動をたどる)、 <code>miner</code> (スクリプトが暗号通貨の採掘を含む)、 <code>referral-link</code> (スクリプトが紹介/アフィリエイト用にリンクを書き換える) の type です。他の type は無視されますが、どんな場合でも %{code_rules_link:%{site_name}のルール} に従わなければなりません。また、description を追加するかどうかは任意です。"
+      antifeature_localized_html: "<code>@antifeature</code> の説明を特定の言語で記述します。XX は <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-letter code</a> で、YY として <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 country code</a> を追加することもできます。ユーザーの使用言語にマッチした場合に、 <code>@antifeature</code> の内容を上書きします。"
     writing_user_scripts:
       title: "ユーザースクリプトの書き方"
       content_html: "<p>ユーザースクリプトを書くには、JavaScript の知識が必要です。<a href=\"http://wiki.greasespot.net/Tutorials\">GreaseSpot Wiki のチュートリアルリンク</a> は、一般的な JavaScript とユーザースクリプト関連の両方を勉強し始めたいときに便利です。他の人のスクリプトコードを見てみるのも良いでしょう。興味があれば、%{code_rules_link} や %{meta_keys_link} も参考にしてください。スクリプトの開発にあたって助けが必要であれば、お気軽に %{ask_in_forum_link}。</p><p>%{site_name} で投稿するには、アカウントの作成が必要です。自分の %{user_page_link} に %{post_new_script_link} へのリンクがあります。</p>"
@@ -613,6 +615,7 @@ ja:
       post_new_script_link_text: 'スクリプトの投稿'
     code_rules:
       title: "投稿されるスクリプトに関する %{site_name} のルール"
+      monetization_html: ユーザーではなく<em>開発者</em>にとっての利益となる機能(トラッキングや広告、マイニングなど)は認められていますが、それらは %{antifeature_link:<code>@antifeature</code> メタキー} で開示されなければなりません。
     external_scripts:
       title: "外部スクリプトにおける %{site_name} のポリシー"
       content_html: >
