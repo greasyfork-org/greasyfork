@@ -58,7 +58,7 @@
       <dt class="script-show-compatibility"><span><%=t('scripts.compatibility')%></span></dt>
       <dd class="script-show-compatibility"><span>
         <% Browser.all.each do |b|
-          b_compatibilities = @script.compatibilities.select{|c| c.browser == b}
+          b_compatibilities = @script.compatibilities.select{|c| c.browser == b }
           if b_compatibilities.empty?
             status = 'unknown'
           elsif b_compatibilities.all?{|c| c.compatible}
@@ -71,9 +71,10 @@
           end
           # show icons for compatible and incompatible
           if status == 'incompatible' %>
-            <img src="<%= image_pack_path "browsericons/#{b.code}-incompatible.png"%>" alt="<%=t('scripts.incompatible_with_browser', browser: b.name)%>" title="<%=b_compatibilities.map{|c|c.comments}.join("\n")%>">
+            <%= image_pack_tag 'x.svg', class: 'browser-incompatible-marker', alt: '' %>
+            <%= image_pack_tag "browsericons/#{b.code}.svg", class: 'browser-incompatible', alt: t('scripts.incompatible_with_browser', browser: b.name), title: b_compatibilities.map(&:comments).reject(&:blank?).join("\n").presence || t('scripts.incompatible_with_browser', browser: b.name) %>
           <% elsif status == 'compatible' %>
-            <img src="<%= image_pack_path "browsericons/#{b.code}.png"%>" alt="<%=t('scripts.compatible_with_browser', browser: b.name)%>" title="<%=b_compatibilities.map{|c|c.comments}.join("\n")%>">
+            <%= image_pack_tag "browsericons/#{b.code}.svg", class: 'browser-compatible', alt: t('scripts.compatible_with_browser', browser: b.name), title: b_compatibilities.map(&:comments).reject(&:blank?).join("\n").presence || t('scripts.compatible_with_browser', browser: b.name) %>
           <% end %>
         <% end %>
       </span></dd>

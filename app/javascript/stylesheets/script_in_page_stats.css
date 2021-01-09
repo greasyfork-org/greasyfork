@@ -71,3 +71,17 @@ body:lang(he) .inline-script-stats dt, body:lang(he) .inline-script-stats dd {
   text-decoration: underline;
   text-decoration-style: dotted;
 }
+
+.script-show-compatibility {
+  vertical-align: bottom;
+}
+.browser-compatible, .browser-incompatible, .browser-incompatible-marker {
+  width: 16px;
+  height: 16px;
+}
+.browser-incompatible {
+  opacity: 0.5;
+}
+.browser-incompatible-marker {
+  position: absolute;
+}
