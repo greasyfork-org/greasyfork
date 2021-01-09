@@ -597,7 +597,7 @@ ja:
       version_html: "<a href=\"https://developer.mozilla.org/docs/Toolkit_version_format\">Mozillaのバージョン書式</a>で記述された、スクリプトの特定バージョンを表す識別子。バージョンはスクリプトの情報ページに表示されます。%{site_name} ではこのキーを必須としており、スクリプトコードの変更時に下がっている、または上がっていない場合は警告を表示します。"
       include_html: "スクリプトを実行するページを指定します。この一覧は処理されてスクリプトの情報ページに表示され、またスクリプトの分類に使われます。各スクリプトには 1 回以上の<code>@match</code> か <code>@include</code> を含めてください。そのフォーマットについては <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">ここをお読みください。</a>"
       require_html: "スクリプトへの外部 JavaScript の読み込み。%{external_script_link}を参照してください。"
-      require_external_script_link_text: "外部スクリプトにおける%{site_name}のポリシー"
+      require_external_script_link_text: "コードに外部スクリプトを含める場合のルール"
       updateURL: "ユーザースクリプトマネージャーが更新を取得する方法の記述。%{site_name} はこれらのキーを取り除き、%{site_name}　からインストールされたすべてのスクリプトが　%{site_name}　から更新されるようにします。"
       license: "スクリプトのコピーや変更の許諾について記述されたライセンス。%{spdx_link:the SPDX License List}の「Full name」、または「Identifier」の記載を推奨します。ライセンスの欠如は、私的使用目的でスクリプトがインストールできることを意味しますが、再配布することはできません。ライセンスはスクリプトの情報ページに表示されます。"
       supportURL: "ユーザーがスクリプトのサポートを受けることができるページの URL (例: バグトラッカー、フォーラム、電子メールアドレス)。サポート URL はスクリプトのフィードバックページに表示されます。"
@@ -606,7 +606,7 @@ ja:
       compatible_html: "スクリプトがどのブラウザと互換性があるか。互換性はスクリプトの情報ページに表示されます。<code>@compatible firefox ポップアップブロックの無効化が必須</code> のような形式で、互換性に関するコメントを含めることもできます。認識されるブラウザ: %{browsers}"
       incompatible_html: "スクリプトがどのブラウザと互換性がないか。互換性はスクリプトの情報ページに表示されます。<code>@incompatible firefox Firefox 23 以降で動作しない</code> のような形式で、互換性に関するコメントを含めることもできます。認識されるブラウザ: %{browsers}"
       antifeature_html: "ユーザーではなく開発者にとっての利益となるような機能を、 <code>@antifeature type description</code> の形式で開示します。%{site_name}が認識するのは、 <code>ads</code> (スクリプトがユーザーに広告を表示する)、 <code>tracking</code> (スクリプトがユーザーの行動をたどる)、 <code>miner</code> (スクリプトが暗号通貨の採掘を含む)、 <code>referral-link</code> (スクリプトが紹介/アフィリエイト用にリンクを書き換える) の type です。他の type は無視されますが、どんな場合でも %{code_rules_link:%{site_name}のルール} に従わなければなりません。また、description を追加するかどうかは任意です。"
-      antifeature_localized_html: "<code>@antifeature</code> の説明を特定の言語で記述します。XX は <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-letter code</a> で、YY として <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 country code</a> を追加することもできます。ユーザーの使用言語にマッチした場合に、 <code>@antifeature</code> の内容を上書きします。"
+      antifeature_localized_html: "<code>@antifeature</code> の説明を特定の言語で記述します。XX は <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 の2文字コード</a> で、YY として <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 の国名コード</a> を追加することもできます。ユーザーの使用言語にマッチした場合に、 <code>@antifeature</code> の内容を上書きします。"
     writing_user_scripts:
       title: "ユーザースクリプトの書き方"
       content_html: "<p>ユーザースクリプトを書くには、JavaScript の知識が必要です。<a href=\"http://wiki.greasespot.net/Tutorials\">GreaseSpot Wiki のチュートリアルリンク</a> は、一般的な JavaScript とユーザースクリプト関連の両方を勉強し始めたいときに便利です。他の人のスクリプトコードを見てみるのも良いでしょう。興味があれば、%{code_rules_link} や %{meta_keys_link} も参考にしてください。スクリプトの開発にあたって助けが必要であれば、お気軽に %{ask_in_forum_link}。</p><p>%{site_name} で投稿するには、アカウントの作成が必要です。自分の %{user_page_link} に %{post_new_script_link} へのリンクがあります。</p>"
