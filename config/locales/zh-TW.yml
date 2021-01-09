@@ -103,6 +103,9 @@ zh-TW:
     feedback_start_first_discussion_link: "成為第一個討論該腳本的人吧。"
     feedback_discussion_or_report: "%{new_discussion_link:新開一個關於該腳本的討論串} 或 %{report_link:檢舉並請求移除}。"
     feedback_favoriters_heading: "粉絲"
+    feedback_favoriters_user_list_html: "這個腳本被 %{user_list} 加到我的最愛。"
+    feedback_favoriters_lots:
+      other: "這個腳本被 %{user_count} 個使用者加到我的最愛。%{full_link:檢視完整清單。}"
     feedback_no_favoriters: "暫時沒有人收藏這個腳本 :<"
     feedback_sign_in_to_favorite: "登入後即可將此腳本新增至我的最愛。"
     stats_title: "%{script_name} - 統計"
@@ -115,6 +118,7 @@ zh-TW:
     stats_raw_data_header: "原始資料"
     stats_download_raw_data_html: "統計資料下載: %{links}"
     stats_no_data: "無"
+    stats_filters: "過濾器：%{filter_options}"
     stats_filter_options:
       month: 最近 30 天
       year: 最近 365 年
@@ -253,9 +257,9 @@ zh-TW:
     support_email_feedback_or_report: "%{support_url:向作者寄送電子郵件以取得技術支援}、%{feedback_link:發表問題、評論}、或 %{report_link:檢舉該腳本}。"
     adult_content: "成人內容"
     adult_content_self_report: "這個腳本含有成人內容，或者它作用於含有成人內容的站點。"
-    adult_content_self_report_explanation: "%{site_name} 允許腳本含有成人內容，但是他們必須被標記；這樣用戶可以選擇是否顯示這類信息。"
+    adult_content_self_report_explanation: "%{site_name} 允許腳本含有成人內容，但是他們必須被標記；這樣使用者可以選擇是否顯示這類信息。"
     not_adult_content_self_report_html: "這個腳本 <strong>不包含</strong> 成人內容且 <strong>不作用於</strong> 包含成人內容的站點。"
-    not_adult_content_self_report_explanation: "%{site_name} 允許腳本含有成人內容，但是他們必須被標記；這樣用戶可以選擇是否顯示這類信息。這個腳本被自動標記為含有成人內容。您可以請求取消這個標記，該請求將由管理員進行審查。"
+    not_adult_content_self_report_explanation: "%{site_name} 允許腳本含有成人內容，但是他們必須被標記；這樣使用者可以選擇是否顯示這類信息。這個腳本被自動標記為含有成人內容。您可以請求取消這個標記，該請求將由管理員進行審查。"
     not_adult_content_self_report_explanation_automatic: "%{site_name} 允許腳本包含成人內容，但是必須被標記清楚所以使用者得以選擇是否要顯示它們。您的腳本已因 %{domain_list} 而被標記為包含成人內容。"
     adult_content_on_greasy_logged_in_error: "這個腳本對您當前的 %{edit_account_link:Greasy Fork 賬戶設定} 不合適。"
     adult_content_on_greasy_not_logged_in_error: "這個腳本不對遊客開放。請 %{login_link:登入} 並確認您的 Greasy Fork 帳戶設定。"
@@ -305,7 +309,7 @@ zh-TW:
       invited_user_url_label: "要邀請的使用者"
       invited_user_placeholder: "%{site_name} 上的使用者個人資料地址"
       submit: "發送邀請"
-      invalid_user_url: "邀請的用戶地址不可用。"
+      invalid_user_url: "邀請的使用者地址不可用。"
       already_author: "你指定的使用者已經是這個腳本的作者之一。"
       sent: "邀請已發送。"
       subject: "來自 %{script_name} 的邀請。"
@@ -334,6 +338,9 @@ zh-TW:
       types:
         ads:
           title: 廣告
+        tracking:
+          title: 追蹤
+      install_anyway: 安裝腳本
       cancel_install: 取消
   script_sets:
     description: "腳本收藏集讓你自訂一個腳本列表。你可以把單獨的腳本、其它使用者的收藏集、或自動產生的收藏集，加入包含列表。排除列表也是同樣的方式。"
@@ -415,8 +422,33 @@ zh-TW:
     scripts_for_label: "根據網域︰"
     explain_user_scripts_heading: "使用者腳本是什麼？"
     explain_user_scripts_html: "使用者腳本讓您控制您的瀏覽體驗。當您安裝後，使用者腳本可以為網頁增加功能、簡化使用方法、或移除煩人的東西。在 %{site_name} 上的腳本都是由其它使用者撰寫、和全世界分享的。所有的腳本都是免費安裝，而且容易使用。"
-    installing_step1_header: "第 1 步：安裝一個用戶腳本管理器"
+    installing_step1_header: "第 1 步：安裝一個使用者腳本管理器"
     installing_step1_caption: "Chrome 下使用 TamerMonkey 的截圖"
+    installing_step1_description_html: >
+        <p>要使用使用者腳本，您需要先安裝「使用者腳本管理器」。不同的瀏覽器所使用的腳本管理器也有所不同。</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} 或 %{chrome_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}、%{firefox_tampermonkey_link:Tampermonkey}、或
+        %{firefox_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey} 或 %{safari_userscripts_link:Userscripts}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} 或 %{opera_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>AdGuard: （無需安裝額外的管理器）</li>
+
+        </ul>
     installing_step2_header: "第 2 步：安裝一個使用者腳本"
     installing_step2_caption: "使用者腳本的安裝按鈕"
     installing_step2_description_html: >
@@ -451,6 +483,7 @@ zh-TW:
     script_list_none_same_user_html: "你還沒撰寫任何腳本。%{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "想要現在學習嗎？"
     deleted_script_list: "已刪除的腳本"
+    unlisted_script_list: "不公開的腳本"
     sign_out: "登出"
     edit: "帳號設定"
     edit_sign_in: "登入方式設定"
@@ -506,6 +539,7 @@ zh-TW:
     show_ads_description: "顯示廣告以支援 %{site_name} 的網站經營"
     show_sensitive_description: "顯示含有成人內容的腳本"
     preferred_markup_description: "該設定將會套用到新的腳本以及新的發言。"
+    filter_locale_default_description: "預設情況下，只列出目前語言的內容"
     greasy_fork_scripts_link:
       other: "%{user_name} 也有 %{count} 個腳本在 Greasy Fork 上。"
     update_sync_warning:
@@ -535,6 +569,10 @@ zh-TW:
         request_expired: "無法刪除使用者 - 請求過時"
         cancelled: "已取消刪除。"
         completed: "你的帳號已被刪除。"
+    banned_notice:
+      no_report_no_reason: "您的帳號已被封鎖。您想要的話，可以%{delete_link:刪除帳號}。"
+    banned_delete:
+      complete: "你的帳號已被刪除。"
     badges:
       banned:
         short: 已封鎖
@@ -550,6 +588,7 @@ zh-TW:
         title: 論壇通知
         new_discussion: 預設訂閱我發起的貼文
         new_comment: 預設訂閱我回復過的貼文
+        mention: 當您在討論中被提及時收到通知
       conversation_defaults:
         title: 會話通知
         starter: 預設訂閱你發起的私訊
@@ -675,7 +714,7 @@ zh-TW:
 
           <p>%{site_name} 使用第三方的程式碼來收集統計資料或放置廣告，這些函式庫可能會追蹤使用者。</p>
     user_css_to_user_js:
-      title: 用戶CSS到用戶JS的轉換
+      title: 使用者 CSS 到使用者 JS 的轉換
   search:
     script_search:
       title: "腳本搜尋"
@@ -697,7 +736,7 @@ zh-TW:
     reason_column: "原因"
     item_script_html: "腳本：%{script_link}"
     item_deleted_script: "刪除腳本%{id}"
-    item_user_html: "用戶：%{user_link}"
+    item_user_html: "使用者：%{user_link}"
   notifications:
     consecutive_bad_ratings:
       other: "%{script_names}已連續收到不良評價。請查看您的腳本並回複評分中提出的問題。"
@@ -712,7 +751,7 @@ zh-TW:
       illegal: "濫用或反感內容"
     explanation_placeholder: "提供額外資訊（可選）"
     create_button: "新增檢舉"
-    report_user: "舉報用戶"
+    report_user: "舉報使用者"
     report_comment: "舉報留言"
     report_message: "舉報訊息"
     result_dismissed: "該檢舉已被管理員駁回。"
@@ -722,6 +761,7 @@ zh-TW:
     title: 討論
     comment_date: "發表於：%{date}"
     comment_edit_date: "編輯:%{date}"
+    posted_by_html: "%{user} %{date}"
     new_discussion_heading: "發表評價、評論或提問"
     new_discussion_submit: "發表評論"
     new_comment_heading: "發表回覆"
@@ -733,11 +773,12 @@ zh-TW:
     delete_discussion: "刪除"
     update_comment_submit: "更新留言"
     cancel_update_comment: "取消"
+    quote_comment: "引用"
     question_heading_html: "提問/評論"
     review_heading_html: "評論：%{rating}"
     update_rating: "更新您對 %{script_name} 的評價"
     ratings:
-      question: "無評價 - 僅有詢問或評論"
+      question: "無評價 - 僅有提問或評論"
       bad: "負評 - 腳本失效或無法使用"
       ok: "不錯 - 腳本有用，但還有一些問題"
       good: "正評 - 腳本一切正常"
@@ -746,7 +787,7 @@ zh-TW:
       bad: "負評"
       ok: "不錯"
       good: "正評"
-    sign_in_to_post_discussion: "登入以評價/留言/評論"
+    sign_in_to_post_discussion: "登入以評價、評論或提問。"
     sign_in_to_post_comment: "登入以回復"
     user_filter:
       label: "我參與的討論"
@@ -770,6 +811,15 @@ zh-TW:
       title: "近期評論"
       no_recent_activity: "該使用者最近沒有撰寫任何評論"
       see_all_activity: "檢視所有使用者活動"
+      script_review:
+        posted_html: "發表 <i>%{script}</i> 的評論"
+        replied_html: "回覆 <i>%{script}</i> 的評論"
+      script_question:
+        posted_html: "發表 <i>%{script}</i> 的提問/評論"
+        replied_html: "回復 <i>%{script}</i> 的提問/評論"
+      discussion:
+        posted_html: "發表討論：<i>%{title}</i>"
+        replied_html: "回覆討論：<i>%{title}</i>"
     review_title: "%{script_name}的評論"
     question_title: "關於%{script_name}的問題"
     subscribe: 追蹤
@@ -846,6 +896,7 @@ zh-TW:
         show_ads: "顯示廣告"
         show_sensitive: "成人內容"
         preferred_markup: "預設文章格式"
+        filter_locale_default: "過濾語言"
       script:
         name: "名稱"
         description: "描述"
@@ -867,7 +918,7 @@ zh-TW:
         category: "分類"
         title: 標題
       conversation:
-        user_input: 用戶
+        user_input: 使用者
       message:
         content: 訊息
   errors:
@@ -886,6 +937,7 @@ zh-TW:
       script_rate_limit: "超出發布限制，請稍後再試。"
       missing_include_or_match: "必須至少包含一個@match或@include密鑰"
       file_size_out_of_range: "必須小於 200KB"
+      meta_too_long: "%{key} 太長（最大值是 %{count} 字元）"
   opensearch:
     short_name: "%{site_name} 搜尋"
     description: "在 %{site_name} 上尋找腳本。"
@@ -939,3 +991,7 @@ zh-TW:
           您可以在%{comment_url} 檢視並回覆該評論，或者在%{notification_preferences_url}調整通知設定。
     subscribed_discussion:
       subject: "網站%{site_name}的討論%{discussion_title}收到了一個評論。"
+    comment_mentioned:
+      subject: "使用者「%{commenter_name}」在 %{site_name} 提及您。"
+    new_message:
+      subject: "%{user} 在 %{site_name} 傳送訊息給您"
