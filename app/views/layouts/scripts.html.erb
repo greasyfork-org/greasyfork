@@ -52,6 +52,7 @@
   <meta name="twitter:card" content="summary">
   <meta property="og:title" content="<%= @script.default_name %>">
   <meta property="og:url" content="<%= script_url(@script, locale: nil) %>">
+  <meta property="og:description" content="<%= @script.description(I18n.locale) %>">
   <% if @script_version %>
     <%# Same as in screenshots/_show.html.erb %>
     <% attachments = @script_version.attachments.includes(:blob).load %>
