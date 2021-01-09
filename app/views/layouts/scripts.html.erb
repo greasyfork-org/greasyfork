@@ -23,8 +23,8 @@
       <% end %>
     </ul>
     <header>
-      <h2><%=@script.name(request_locale)%></h2>
-      <p id="script-description" class="script-description"><%=@script.description(I18n.locale)%></p>
+      <h2><%= @script.name(request_locale) %></h2>
+      <p id="script-description" class="script-description"><%= @script.description(request_locale) %></p>
       <% if !params[:version].nil?
         latest_version_link = link_to t('scripts.version_notice_latest_version_link'), {:version => nil}%>
         <p id="version-note"><%=t('scripts.version_notice_html', :date => @script.updated_at, :latest_version_link => latest_version_link.html_safe)%></p>
@@ -52,6 +52,7 @@
   <meta name="twitter:card" content="summary">
   <meta property="og:title" content="<%= @script.default_name %>">
   <meta property="og:url" content="<%= script_url(@script, locale: nil) %>">
+  <meta property="og:description" content="<%= @script.description(request_locale) %>">
   <% if @script_version %>
     <%# Same as in screenshots/_show.html.erb %>
     <% attachments = @script_version.attachments.includes(:blob).load %>
