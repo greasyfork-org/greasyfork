@@ -9,10 +9,10 @@ module ApplicationHelper
     content_for(:description) { page_description }
   end
 
-  def markup_date(date)
+  def markup_date(date, **html_options)
     return '?' if date.nil?
 
-    tag.gf_relative_time(datetime: date.to_datetime.rfc3339) { I18n.l(date.to_date) }
+    tag.gf_relative_time(datetime: date.to_datetime.rfc3339, **html_options) { I18n.l(date.to_date) }
   end
 
   def discussion_class(discussion)
