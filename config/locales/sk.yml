@@ -230,6 +230,7 @@ sk:
     additional_info_add_localized: "Pridať lokalizované dodatočné informácie"
     additional_info_locale_repeated: "Uveďte iba jednu dodatočnú informáciu pre jazyk '%{locale_code}'"
     localized_additional_info_with_no_name: "Dodatočné informácie boli uvedené pre jazyk '%{locale_code}', ale nebol doplnený parameter @name:%{locale_code}."
+    localized_attribute_matches_default: "Kód by nemal určovať %{meta_key} ako \"%{locale_code}\" je predvolený jazyk."
     code_syncing_from_url_html: "Tento kód skriptu je nastavený na synchronizáciu z: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} dokáže importovať skripty, ktoré sú hotovostné už niekde inde, napríklad na verziovacom systéme (ako GitHub), vlastnom serveri, alebo ďalšej stránke s používateľskými skriptami. Pre zapnutie synchronizácie vášho skriptu, zadajte URL: %{field}"
     sync_type_intro: "Skript bude synchronizovaný:"
@@ -365,6 +366,13 @@ sk:
           description_html: Tento skript <b>prepíše odkazy</b> a doplní do nich refferal alebo affiliate kód.
       install_anyway: Inštalovať skript
       cancel_install: Zrušiť
+    badges:
+      js:
+        short: JS
+        long: Používateľský skript
+      css:
+        short: CSS
+        long: Používateľský štýl
   script_sets:
     description: "Zbierka skriptov vám umožní vytvoriť vlastný zoznam skriptov pre prehliadanie s Greasy Fork. Skripty môžete pridať do vašej zbierky Vy, ďalší používatelia zbierky alebo automaticky generované zbierky."
     favorites_name: "Obľúbené"
@@ -779,7 +787,7 @@ sk:
       authors_credit: "%{site_name} by nemohol existovať bez autorov, ktorí pracujú na skriptoch."
       developers_credit: "Samotný %{site_name} je zostavený %{developers_link:týmito ľuďmi} spolu s pomocou  všetkých, ktorí nahlasujú chyby a zasielajú námety na vylepšenie."
       translators_credit: "%{site_name} je preložený %{translators_link:prekladateľmi Greasy Translation Force na Transifexe}:"
-      icons_credit: "Ikony diskusie sú z %{vistastylebase} od %{iconsland}. Ikony prehliadačov sú z %{browserlogos}."
+      icons_credit: "Ikony prehliadačov sú z %{browserlogos}."
     help_with_greasymonkey: "Pomoc s Greasemonkey"
     contact:
       title: "Kontakty"
