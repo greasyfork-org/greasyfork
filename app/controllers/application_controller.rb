@@ -124,6 +124,7 @@ class ApplicationController < ActionController::Base
       retain_params = [:format]
       retain_params << :callback if params[:format] == 'jsonp'
       retain_params << :version if params[:controller] == 'scripts'
+      retain_params.push(:v1, :v2) if params[:controller] == 'scripts' && params[:action] == 'diff'
       retain_params.each { |param_name| url_params[param_name] = params[param_name] }
       redirect_to(url_params, status: :moved_permanently)
       return true
