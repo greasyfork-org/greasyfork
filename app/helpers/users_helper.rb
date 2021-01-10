@@ -51,11 +51,11 @@ module UsersHelper
     badge = if skip_badge
               ''
             elsif user.banned?
-              render_badge(:banned)
+              render_user_badge(:banned)
             elsif force_author || script&.users&.include?(user)
-              render_badge(:author)
+              render_user_badge(:author)
             elsif user.moderator?
-              render_badge(:moderator)
+              render_user_badge(:moderator)
             else
               ''
             end
@@ -66,7 +66,7 @@ module UsersHelper
     end
   end
 
-  def render_badge(key)
+  def render_user_badge(key)
     text = t("users.badges.#{key}.short")
     title = t("users.badges.#{key}.long")
     tag.span(class: "badge badge-#{key}", title: text == title ? nil : title) { text }

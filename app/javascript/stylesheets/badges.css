@@ -19,3 +19,19 @@
   background-color: rgba(30, 151, 30, 0.9);
   color: white;
 }
+
+.badge-js {
+  background-color: #efd81d;
+  color: black;
+}
+.badge-css {
+  background-color: #254bdd;
+  color: white;
+}
+
+.badge-js, .badge-css {
+  display: none;
+}
+.showing-all-languages .badge-js, .showing-all-languages .badge-css {
+  display: inline;
+}

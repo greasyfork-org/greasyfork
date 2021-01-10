@@ -40,7 +40,7 @@
     <% if @scripts.empty? %>
       <p><%=t('scripts.listing_no_scripts')%></p>
     <% else %>
-      <ol id="browse-script-list" class="script-list">
+      <ol id="browse-script-list" class="script-list <%= 'showing-all-languages' if params[:language] == 'all' %>">
         <% if @ad_method == 'ea' %>
           <li class="ad-entry">
             <div id="script-list-ea" class="flat ethical-ads" data-ea-publisher="greasyfork" data-ea-type="text"></div>

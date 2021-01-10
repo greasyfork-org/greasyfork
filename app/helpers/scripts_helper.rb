@@ -84,4 +84,10 @@ module ScriptsHelper
     key = ScriptsController::DERIVATIVE_SCORES.find { |_key, min_score| score >= min_score }&.first || 'none'
     t("scripts.similarity_score.#{key}")
   end
+
+  def render_script_badge(key)
+    text = t("scripts.badges.#{key}.short")
+    title = t("scripts.badges.#{key}.long")
+    tag.span(class: "badge badge-#{key}", title: text == title ? nil : title) { text }
+  end
 end
