@@ -35,7 +35,7 @@ class ScriptDiscussionsTest < ApplicationSystemTestCase
   end
 
   test 'commenting on a discussion' do
-    user = User.first
+    user = users(:geoff)
     login_as(user, scope: :user)
     discussion = discussions(:script_discussion)
     visit feedback_script_url(discussion.script, locale: :en)
@@ -52,7 +52,9 @@ class ScriptDiscussionsTest < ApplicationSystemTestCase
 
     assert user.subscribed_to?(discussion)
 
-    click_link 'Edit'
+    within '.comment + .comment' do
+      click_link 'Edit'
+    end
     within '.edit-comment-form' do
       fill_in 'comment_text', with: 'this is an updated reply'
     end

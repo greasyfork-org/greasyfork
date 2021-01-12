@@ -100,4 +100,10 @@ class Comment < ApplicationRecord
 
     created_at >= EDITABLE_PERIOD.ago
   end
+
+  def deletable_by?(user)
+    return discussion.deletable_by?(user) if first_comment?
+
+    editable_by?(user)
+  end
 end

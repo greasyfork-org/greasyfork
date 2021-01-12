@@ -39,4 +39,21 @@ class CommentTest < ActiveSupport::TestCase
     assert_not comment1.reload.soft_deleted?
     assert comment2.reload.soft_deleted?
   end
+
+  test 'comment is deletable by user who posted it immediately after posting' do
+    comment = comments(:non_script_comment_2)
+    assert comment.deletable_by?(comment.poster)
+  end
+
+  test 'comment is not deletable by user who posted it long after posting' do
+    travel_to 1.hour.from_now do
+      comment = comments(:non_script_comment_2)
+      assert_not comment.deletable_by?(comment.poster)
+    end
+  end
+
+  test 'comment is not deletable by another user' do
+    comment = comments(:non_script_comment_2)
+    assert_not comment.deletable_by?(users(:one))
+  end
 end

@@ -23,6 +23,13 @@ class DiscussionsTest < ApplicationSystemTestCase
 
     click_button 'Update comment'
     assert_content 'this is an updated reply'
+
+    assert_difference -> { Discussion.not_deleted.count } => -1 do
+      accept_confirm do
+        click_link 'Delete'
+      end
+      assert_no_content 'this is an updated reply'
+    end
   end
 
   test 'adding a discussion mentioning a user' do
@@ -72,7 +79,7 @@ class DiscussionsTest < ApplicationSystemTestCase
   end
 
   test 'commenting on a discussion' do
-    user = User.first
+    user = users(:geoff)
     login_as(user, scope: :user)
     discussion = discussions(:non_script_discussion)
     visit discussion.url
@@ -106,6 +113,15 @@ class DiscussionsTest < ApplicationSystemTestCase
     end
 
     assert_not user.subscribed_to?(discussion)
+
+    assert_difference -> { Comment.not_deleted.count } => -1 do
+      accept_confirm do
+        within "#comment-#{Comment.last.id}" do
+          click_link 'Delete'
+        end
+      end
+      assert_no_content 'this is an another reply'
+    end
   end
 
   test 'commenting with mention with notify' do

@@ -129,4 +129,8 @@ class Discussion < ApplicationRecord
   def for_script?
     script_id.present?
   end
+
+  def deletable_by?(user)
+    user && user == poster && comments.where.not(poster: user).none? && created_at >= Comment::EDITABLE_PERIOD.ago
+  end
 end

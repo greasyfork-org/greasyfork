@@ -4,7 +4,6 @@ class CommentsController < ApplicationController
 
   before_action :authenticate_user!, except: :old_redirect
   before_action :load_discussion, except: :old_redirect
-  before_action :moderators_only, only: :destroy
   before_action :check_ip, only: :create
 
   def create
@@ -24,7 +23,9 @@ class CommentsController < ApplicationController
       end
     end
 
-    CommentNotificationJob.set(wait: Comment::EDITABLE_PERIOD).perform_later(@comment)
+    notification_job = CommentNotificationJob
+    notification_job = notification_job.set(wait: Comment::EDITABLE_PERIOD) unless Rails.env.development?
+    notification_job.perform_later(@comment)
 
     redirect_to @comment.path(locale: request_locale.code)
   rescue ActiveRecord::RecordInvalid
@@ -62,6 +63,10 @@ class CommentsController < ApplicationController
 
   def destroy
     comment = @discussion.comments.not_deleted.find(params[:id])
+    unless current_user&.moderator? || comment.deletable_by?(current_user)
+      render_access_denied
+      return
+    end
     comment.soft_destroy!(by_user: current_user)
     redirect_to @discussion.path(locale: request_locale.code)
   end

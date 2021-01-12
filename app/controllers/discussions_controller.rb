@@ -6,7 +6,6 @@ class DiscussionsController < ApplicationController
   FILTER_RESULT = Struct.new(:category, :by_user, :related_to_me, :read_status, :result)
 
   before_action :authenticate_user!, only: [:new, :create, :subscribe, :unsubscribe]
-  before_action :moderators_only, only: :destroy
   before_action :greasy_only, only: :new
   before_action :check_ip, only: :create
 
