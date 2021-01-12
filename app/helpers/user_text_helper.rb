@@ -68,12 +68,13 @@ module UserTextHelper
 
   private
 
+  MENTIONLESS_ELEMENTS = %w[a pre code].freeze
+
   def add_mention_transformer(config, mentions)
     linkify_mentions = lambda do |env|
       node = env[:node]
       return unless node.text?
-      return if node_has_ancestor?(node, 'a')
-      return if node_has_ancestor?(node, 'pre')
+      return if node_has_ancestor?(node, MENTIONLESS_ELEMENTS)
 
       # We can't #select the used mentions as node.text will change when we do the replacements.
       mentions.each do |mention|
@@ -90,8 +91,7 @@ module UserTextHelper
     detect_user_references = lambda do |env|
       node = env[:node]
       return unless node.text?
-      return if node_has_ancestor?(node, 'a')
-      return if node_has_ancestor?(node, 'pre')
+      return if node_has_ancestor?(node, MENTIONLESS_ELEMENTS)
 
       mentions_out.merge(node.text.scan(/(?<=\s|^)(@[^\s"][^\s]{0,49})(?=\s|$)/).flatten.compact)
       mentions_out.merge(node.text.scan(/(?<=\s|^)(@"[^"]{1,50}")/).flatten.compact)
@@ -242,9 +242,10 @@ module UserTextHelper
     node.add_next_sibling(fragment)
   end
 
-  def node_has_ancestor?(node, ancestor_node_name)
+  def node_has_ancestor?(node, ancestor_node_names)
+    ancestor_node_names = Array(ancestor_node_names)
     until node.nil?
-      return true if node.name == ancestor_node_name
+      return true if ancestor_node_names.include?(node.name)
 
       node = node.parent
     end

@@ -56,6 +56,11 @@ class UserTextHelperTest < ActionView::TestCase
     assert_equal ['@"user 1"'], user_references.to_a
   end
 
+  test 'detect_possible_user_references inside <code>' do
+    user_references = detect_possible_mentions('<code>@user1</code>', 'html')
+    assert_empty user_references.to_a
+  end
+
   test 'rendering multiple mentions' do
     comment = Comment.new(text: 'There are 3 users involved here - you, @Geoffrey, and @"Timmy O\'Toole".', text_markup: 'markdown')
     comment.construct_mentions(detect_possible_mentions(comment.text, comment.text_markup))
