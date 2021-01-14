@@ -118,6 +118,11 @@ ja:
     stats_raw_data_header: "生データ"
     stats_download_raw_data_html: "すべてのデータをダウンロードする: %{links}"
     stats_no_data: "(データなし)"
+    stats_filters: "絞り込み: %{filter_options}"
+    stats_filter_options:
+      month: 直近30日
+      year: 直近365日
+      all: 全期間
     derivatives_title: "%{script_name} に似ているスクリプト"
     derivatives_intro: "以下のスクリプトは、あなたのスクリプトを基にしている可能性があります (あるいはその逆)。ライセンス上の許可なくあなたのコードが使われている場合は、そのスクリプトのフィードバックタブから通報を行ってください。"
     derivatives_script_html: "%{script}  作者:%{user} ライセンス: %{license} %{diff_link:[Diff]}"
@@ -127,6 +132,12 @@ ja:
     derivatives_exact_copes_none: "%{site_name}には、このスクリプトと全く同じコードを持つスクリプトは他にありません。"
     derivatives_similar_heading: "似ているスクリプト"
     derivatives_similar_info: "他のスクリプトの最新バージョンを定期的にチェックして、あなたのスクリプトと最も類似しているものを見つけます。また、あなたがスクリプトの更新を投稿された場合や、あなたの要望に応じてチェックしています。"
+    similarity_score:
+      high: かなり類似性が高い
+      medium: やや類似性が高い
+      low: やや類似性がある
+      none: 類似性はない
+    derivatives_similar_none: "あなたのスクリプトに類似したものはありません。"
     derivatives_similar_last_check_html: "あなたのスクリプトと似たスクリプトがないか最後に確認したのは%{date}です。"
     derivatives_similar_last_check_soon: "あなたのスクリプトに似たスクリプトがないか、まもなくチェックします。"
     derivatives_similar_last_check_again_soon_html: "最後に確認したのは%{date}です。まもなく再確認します。"
@@ -340,6 +351,13 @@ ja:
           description_html: このスクリプトは、紹介やアフィリエイト用のコードを含むものに<b>リンクを書き換えます</b>。
       install_anyway: スクリプトをインストール
       cancel_install: キャンセル
+    badges:
+      js:
+        short: JS
+        long: ユーザースクリプト
+      css:
+        short: CSS
+        long: ユーザースタイル
   script_sets:
     description: "「スクリプトセット」とは、Greasy Fork に投稿されているスクリプトのマイリストです。個々のスクリプトの追加だけでなく、他のスクリプトセットをリストに登録して一つのスクリプトセットとして表示することもでき、サイトやユーザーを指定した自動生成も可能です。また、同じようにして除外リストへの登録も行えます。"
     favorites_name: "お気に入り"
@@ -533,6 +551,7 @@ ja:
     show_ads_description: "広告の表示を許可して %{site_name} を支援する"
     show_sensitive_description: "アダルトコンテンツに関するスクリプトを表示する"
     preferred_markup_description: "新しいスクリプトの投稿時、およびフィードバックなどの書き込み時に反映されます。"
+    filter_locale_default_description: "既定では、現在のロケール (言語・地域) の内容だけを表示します。"
     greasy_fork_scripts_link:
       other: "%{user_name} さんは Greasy Fork にも%{count}個のスクリプトを投稿しています。"
     update_sync_warning:
