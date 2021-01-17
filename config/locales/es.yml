@@ -366,6 +366,13 @@ es:
           description_html: Este script <b>reescribirá los enlaces</b> para incluir un código de referido o afiliado.
       install_anyway: Instalar script
       cancel_install: Cancelar
+    badges:
+      js:
+        short: JavaScript (JS)
+        long: Script de usuario
+      css:
+        short: Hoja de estilos en cascada (CSS)
+        long: Estilo de Usuario
   script_sets:
     description: "Los grupos permiten crear un listado personal de scripts con los que explorar Greasy Fork. Puedes agruparlos añadiendo scripts individuales, incluyendo grupos de otros usuarios, o incluso grupos generados automáticamente. También puedes excluir scripts de la misma forma."
     favorites_name: "Favoritos"
@@ -765,6 +772,7 @@ es:
       authors_credit: "%{site_name} no sería posible sin los autores que amablemente contribuyen sus scripts."
       developers_credit: "%{site_name} como plataforma ha sido desarrollada por %{developers_link:esta gente} con la inestimable ayuda de todos aquellos que notifican problemas y sugieren mejoras."
       translators_credit: "%{site_name} ha sido traducido por la %{translators_link: trabajadora Greasy-tradu-tropa en Transifex}:"
+      icons_credit: "Los iconos del navegador son de %{browserlogos}."
     help_with_greasymonkey: "Ayuda con Greasemonkey"
     contact:
       title: "Contactar con alguien"
@@ -901,7 +909,9 @@ es:
     edit_comment_link: "Editar"
     edit_comment_header: "Editar comentario"
     delete_comment: "Eliminar"
+    delete_comment_confirm: ¿Estás seguro de que quieres borrar este comentario?
     delete_discussion: "Eliminar"
+    delete_discussion_confirm: ¿Estás seguro de que quieres borrar esta discusión?
     update_comment_submit: "Actualizar comentario"
     cancel_update_comment: "Cancelar"
     quote_comment: "Cita"
