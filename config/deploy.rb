@@ -28,4 +28,5 @@ namespace :deploy do
   after :published, 'thinking_sphinx:index'
   after :published, 'transifex_update_stats'
   after :rollback, 'thinking_sphinx:index'
+  after :rollback, 'sidekiq:start'
 end
