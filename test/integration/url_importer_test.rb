@@ -10,4 +10,20 @@ class UrlImporterTest < ActiveSupport::TestCase
     assert_equal 'https://github.com/scintill/userscripts/raw/master/routey-on-home.user.js', script.sync_identifier
     assert_equal '1', script.script_sync_source_id.to_s
   end
+
+  test 'triggering script checking' do
+    ScriptImporter::UrlImporter.expects(:download).returns(<<~JS)
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.1
+      // @namespace http://greasyfork.local/users/1
+      // @include *
+      // ==/UserScript==
+      this.is.a.warn = true
+    JS
+    result, script, message = ScriptImporter::UrlImporter.generate_script('https://github.com/scintill/userscripts/raw/master/routey-on-home.user.js', nil, User.find(1))
+    assert_equal :failure, result
+    assert_equal "Warning", message
+  end
 end

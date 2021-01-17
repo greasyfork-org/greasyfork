@@ -101,6 +101,12 @@ module ScriptImporter
       # prefer script_version error messages, but show script error messages if necessary
       return [:failure, script, (sv.errors.full_messages.empty? ? script.errors.full_messages : sv.errors.full_messages).join(', ')] if !script.valid? | !sv.valid?
 
+      script_check_results, script_check_result_code = ScriptCheckingService.check(sv)
+
+      return [:failure, script, script_check_results.first.public_reason] if [ScriptChecking::Result::RESULT_CODE_BAN, ScriptChecking::Result::RESULT_CODE_BLOCK].include?(script_check_result_code)
+
+      script.review_state = 'required' if script_check_result_code == ScriptChecking::Result::RESULT_CODE_REVIEW
+
       return [:success, script, nil]
     end
 

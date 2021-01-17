@@ -1,4 +1,5 @@
 require 'script_importer/url_importer'
+require 'script_importer/script_syncer'
 
 class ImportController < ApplicationController
   include ScriptImporter
