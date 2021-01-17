@@ -23,14 +23,6 @@ class ApplicationController < ActionController::Base
                         count: scripts.count).html_safe
                     },
                     dismissable: false
-  show_announcement key: :old_screenshots,
-                    show_if: -> { current_user.profile&.include?('system/screenshots') || LocalizedScriptAttribute.where(script: current_user.scripts.not_deleted).where('attribute_value LIKE "%system/screenshots%"').any? },
-                    content: lambda {
-                      in_profile = current_user.profile&.include?('system/screenshots')
-                      scripts = Script.where(id: LocalizedScriptAttribute.where(script: current_user.scripts.not_deleted).where('attribute_value LIKE "%system/screenshots%"').select(:script_id))
-                      "You are using old-format image URLs (/system/screenshots/) in #{(scripts.map { |script| link_to(script.name(request_locale), script) } + (in_profile ? [link_to('your profile', user_path(current_user))] : [])).to_sentence.html_safe}. Please update these image references as these URLs will stop working after January 14, 2021.".html_safe
-                    },
-                    dismissable: false
   show_announcement key: :antifeatures,
                     show_if: -> { !Rails.env.test? && current_user&.scripts&.any? },
                     content: lambda {
