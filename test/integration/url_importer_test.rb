@@ -22,8 +22,8 @@ class UrlImporterTest < ActiveSupport::TestCase
       // ==/UserScript==
       this.is.a.warn = true
     JS
-    result, script, message = ScriptImporter::UrlImporter.generate_script('https://github.com/scintill/userscripts/raw/master/routey-on-home.user.js', nil, User.find(1))
+    result, _script, message = ScriptImporter::UrlImporter.generate_script('https://github.com/scintill/userscripts/raw/master/routey-on-home.user.js', nil, User.find(1))
     assert_equal :failure, result
-    assert_equal "Warning", message
+    assert_equal 'Warning', message
   end
 end
