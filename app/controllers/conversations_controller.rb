@@ -56,7 +56,7 @@ class ConversationsController < ApplicationController
   end
 
   def index
-    unless @user == current_user || current_user&.moderator?
+    unless @user == current_user || current_user&.administrator?
       render_404('You can only view your own conversations.')
       return
     end
@@ -90,11 +90,10 @@ class ConversationsController < ApplicationController
   end
 
   def find_conversation
-    unless @user == current_user || current_user&.moderator?
-      render_404('You can only view your own conversations.')
-      return
-    end
     @conversation = @user.conversations.find(params[:id])
+    return if @user == current_user || (Report.unresolved.where(item: @conversation.messages).any? && current_user&.moderator?) || current_user&.administrator?
+
+    render_404('You can only view your own conversations.')
   end
 
   def conversation_params
