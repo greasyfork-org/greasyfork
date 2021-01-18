@@ -25,7 +25,7 @@ jobs:
       - run:
           name: Install Sphinx
           command: |
-            wget http://sphinxsearch.com/downloads/sphinx-3.2.1-f152e0b-linux-amd64.tar.gz
+            wget http://sphinxsearch.com/files/sphinx-3.2.1-f152e0b-linux-amd64.tar.gz
             tar -xvf sphinx-3.2.1-f152e0b-linux-amd64.tar.gz
             export PATH=$PATH:$PWD/sphinx-3.2.1/bin/
       - checkout
