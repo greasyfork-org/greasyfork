@@ -18,9 +18,9 @@ jobs:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:3306 -timeout 1m
       - run:
-        name:
-        command: |
-          cp .circleci/application.yml .circleci/database.yml .circleci/secrets.yml config/
+          name:
+          command: |
+            cp .circleci/application.yml .circleci/database.yml .circleci/secrets.yml config/
       - run: RAILS_ENV=test bundle exec rake db:create
       - run: bin/rails db:schema:load
       - run: rails test:all
