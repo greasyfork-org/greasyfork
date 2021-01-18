@@ -28,7 +28,7 @@ jobs:
           name: Install Sphinx
           command: |
             cd ~
-            if [ ! -f sphinx-3.2.1-f152e0b-linux-amd64.tar.gz ]; then
+            if [ ! -f /home/circle/sphinx-3.2.1-f152e0b-linux-amd64.tar.gz ]; then
               wget http://sphinxsearch.com/files/sphinx-3.2.1-f152e0b-linux-amd64.tar.gz
             fi
             tar -xvf sphinx-3.2.1-f152e0b-linux-amd64.tar.gz
@@ -60,6 +60,6 @@ jobs:
           key: yarn-cache-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
-      - run: bin/rails assets:precompile
+      - run: bin/rails assets:precompile --trace
       - run: mkdir -p tmp/sockets
       - run: bin/rails test:all
