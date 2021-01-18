@@ -22,21 +22,13 @@ jobs:
     executor: ruby/default
     steps:
       - run: sudo apt install mariadb-client
-      - restore_cache:
-          key: sphinx-3.2.1
       - run:
           name: Install Sphinx
           command: |
             cd ~
-            if [ ! -f /home/circle/sphinx-3.2.1-f152e0b-linux-amd64.tar.gz ]; then
-              wget http://sphinxsearch.com/files/sphinx-3.2.1-f152e0b-linux-amd64.tar.gz
-            fi
+            wget http://sphinxsearch.com/files/sphinx-3.2.1-f152e0b-linux-amd64.tar.gz
             tar -xvf sphinx-3.2.1-f152e0b-linux-amd64.tar.gz
             echo "export PATH=$PATH:$PWD/sphinx-3.2.1/bin/" >> $BASH_ENV
-      - save_cache:
-          key: sphinx-3.2.1
-          paths:
-            - /home/circle/sphinx-3.2.1-f152e0b-linux-amd64.tar.gz
       - checkout
       - run:
           name: Which bundler?
@@ -60,6 +52,13 @@ jobs:
           key: yarn-cache-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
+      - restore_cache:
+          - keys:
+              - precompile-cache
       - run: bin/rails assets:precompile --trace
+      - save_cache:
+          key: precompile-cache
+          paths:
+            - public/packs-test
       - run: mkdir -p tmp/sockets
       - run: bin/rails test:all
