@@ -43,7 +43,7 @@ module ScriptImporter
     #   - :success
     # - The script
     # - An error message
-    def self.generate_script(sync_id, provided_description, user, sync_type_id = 1, localized_attribute_syncs = {}, locale = nil)
+    def self.generate_script(sync_id, provided_description, user, sync_type_id = 1, localized_attribute_syncs = {}, locale = nil, do_not_recheck_if_equal_to: nil)
       url = sync_id_to_url(sync_id)
       begin
         code = download(url)
@@ -101,11 +101,13 @@ module ScriptImporter
       # prefer script_version error messages, but show script error messages if necessary
       return [:failure, script, (sv.errors.full_messages.empty? ? script.errors.full_messages : sv.errors.full_messages).join(', ')] if !script.valid? | !sv.valid?
 
-      script_check_results, script_check_result_code = ScriptCheckingService.check(sv)
+      if do_not_recheck_if_equal_to.nil? || code != do_not_recheck_if_equal_to
+        script_check_results, script_check_result_code = ScriptCheckingService.check(sv)
 
-      return [:failure, script, script_check_results.first.public_reason] if [ScriptChecking::Result::RESULT_CODE_BAN, ScriptChecking::Result::RESULT_CODE_BLOCK].include?(script_check_result_code)
+        return [:failure, script, script_check_results.first.public_reason] if [ScriptChecking::Result::RESULT_CODE_BAN, ScriptChecking::Result::RESULT_CODE_BLOCK].include?(script_check_result_code)
 
-      script.review_state = 'required' if script_check_result_code == ScriptChecking::Result::RESULT_CODE_REVIEW
+        script.review_state = 'required' if script_check_result_code == ScriptChecking::Result::RESULT_CODE_REVIEW
+      end
 
       return [:success, script, nil]
     end
