@@ -21,6 +21,7 @@ jobs:
           MYSQL_PASSWORD: passw0rd
     executor: ruby/default
     steps:
+      - sudo apt install mariadb-client
       - checkout
       - run:
           name: Which bundler?
