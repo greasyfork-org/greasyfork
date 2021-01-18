@@ -5,7 +5,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.7.2-stretch-node-browsers
+      - image: circleci/ruby:2.7-node-browsers
       - image: circleci/mariadb:10.3.23
     executor: ruby/default
     steps:
