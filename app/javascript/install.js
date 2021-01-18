@@ -26,18 +26,22 @@ function onInstallClick(event) {
 }
 
 function doInstall(installLink) {
-  let ping_key = sha1(installLink.getAttribute("data-ip-address") + installLink.getAttribute("data-script-id") + installLink.getAttribute("data-ping-key"));
-
-  let xhr = new XMLHttpRequest();
   let pingUrl = installLink.getAttribute("data-ping-url")
-  xhr.open("POST", pingUrl + (pingUrl.includes('?') ? '&' : '?') + "ping_key=" + encodeURIComponent(ping_key), true);
-  xhr.overrideMimeType("text/plain");
-  xhr.send();
 
-  // Give time for the ping request to happen.
-  setTimeout(function() {
+  if (pingUrl) {
+    let ping_key = sha1(installLink.getAttribute("data-ip-address") + installLink.getAttribute("data-script-id") + installLink.getAttribute("data-ping-key"));
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", pingUrl + (pingUrl.includes('?') ? '&' : '?') + "ping_key=" + encodeURIComponent(ping_key), true);
+    xhr.overrideMimeType("text/plain");
+    xhr.send();
+
+    // Give time for the ping request to happen.
+    setTimeout(function () {
+      location.href = installLink.href;
+    }, 100);
+  } else {
     location.href = installLink.href;
-  }, 100);
+  }
 
   setTimeout(showPostInstall, 2000);
 }

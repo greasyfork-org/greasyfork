@@ -49,10 +49,10 @@ function compareVersions(a, b) {
   if (a == b) {
     return 0;
   }
-  var aParts = a.split('.');
-  var bParts = b.split('.');
-  for (var i = 0; i < aParts.length; i++) {
-    var result = compareVersionPart(aParts[i], bParts[i]);
+  let aParts = a.split('.');
+  let bParts = b.split('.');
+  for (let i = 0; i < aParts.length; i++) {
+    let result = compareVersionPart(aParts[i], bParts[i]);
     if (result != 0) {
       return result;
     }
@@ -61,9 +61,9 @@ function compareVersions(a, b) {
 }
 
 function compareVersionPart(partA, partB) {
-  var partAParts = parseVersionPart(partA);
-  var partBParts = parseVersionPart(partB);
-  for (var i = 0; i < partAParts.length; i++) {
+  let partAParts = parseVersionPart(partA);
+  let partBParts = parseVersionPart(partB);
+  for (let i = 0; i < partAParts.length; i++) {
     // "A string-part that exists is always less than a string-part that doesn't exist"
     if (partAParts[i].length > 0 && partBParts[i].length == 0) {
       return -1;
@@ -87,7 +87,7 @@ function parseVersionPart(part) {
   if (!part) {
     return [0, "", 0, ""];
   }
-  var partParts = /([0-9]*)([^0-9]*)([0-9]*)([^0-9]*)/.exec(part)
+  let partParts = /([0-9]*)([^0-9]*)([0-9]*)([^0-9]*)/.exec(part)
   return [
     partParts[1] ? parseInt(partParts[1]) : 0,
     partParts[2],
@@ -96,66 +96,14 @@ function parseVersionPart(part) {
   ];
 }
 
-function checkForUpdatesJS(installButton, retry) {
-  var name = installButton.getAttribute("data-script-name");
-  var namespace = installButton.getAttribute("data-script-namespace");
-  var version = installButton.getAttribute("data-script-version");
-
-  getInstalledVersion(name, namespace).then(function(installedVersion) {
-    if (installedVersion == null) {
-      // Not installed, do nothing
-      return;
-    }
-    switch (compareVersions(installedVersion, version)) {
-      // Upgrade
-      case -1:
-        installButton.textContent = installButton.getAttribute("data-update-label");
-        break;
-      // Downgrade
-      case 1:
-        installButton.textContent = installButton.getAttribute("data-downgrade-label");
-        break;
-      // Equal
-      case 0:
-        installButton.textContent = installButton.getAttribute("data-reinstall-label");
-        break;
-    }
-  }, function() {
-    if (retry) {
-      setTimeout(function() { checkForUpdatesJS(installButton, false) }, 1000);
-    }
-  }).catch(function(error) {
-    // Could not determine the installed version, assume it's not
-    // installed and do nothing.
-  });
-}
-
-function checkForUpdatesCSS(installButton) {
-  var name = installButton.getAttribute("data-script-name");
-  var namespace = installButton.getAttribute("data-script-namespace");
-  postMessage({ type: 'style-version-query', name: name, namespace: namespace, url: location.href }, location.origin);
-}
-
-// Response from Stylus
-window.addEventListener("message", function(event) {
-  if (event.origin !== "https://greasyfork.org" && event.origin !== "https://sleazyfork.org")
-    return;
-
-  if (event.data.type != "style-version")
-    return;
-
-  var installButton = document.querySelector(".install-link[data-install-format=css]");
-  if (installButton == null)
-    return;
-
-  var version = installButton.getAttribute("data-script-version");
-
-  var installedVersion = event.data.version;
-
+function handleInstallResult(installButton, installedVersion, version) {
   if (installedVersion == null) {
     // Not installed, do nothing
     return;
   }
+
+  installButton.removeAttribute("data-ping-url")
+
   switch (compareVersions(installedVersion, version)) {
     // Upgrade
     case -1:
@@ -170,14 +118,57 @@ window.addEventListener("message", function(event) {
       installButton.textContent = installButton.getAttribute("data-reinstall-label");
       break;
   }
+
+}
+
+function checkForUpdatesJS(installButton, retry) {
+  let name = installButton.getAttribute("data-script-name");
+  let namespace = installButton.getAttribute("data-script-namespace");
+  let version = installButton.getAttribute("data-script-version");
+
+  getInstalledVersion(name, namespace).then(function(installedVersion) {
+    handleInstallResult(installButton, installedVersion, version);
+  }, function() {
+    if (retry) {
+      setTimeout(function() { checkForUpdatesJS(installButton, false) }, 1000);
+    }
+  }).catch(function(error) {
+    // Could not determine the installed version, assume it's not
+    // installed and do nothing.
+  });
+}
+
+function checkForUpdatesCSS(installButton) {
+  let name = installButton.getAttribute("data-script-name");
+  let namespace = installButton.getAttribute("data-script-namespace");
+  postMessage({ type: 'style-version-query', name: name, namespace: namespace, url: location.href }, location.origin);
+}
+
+// Response from Stylus
+window.addEventListener("message", function(event) {
+  if (event.origin !== "https://greasyfork.org" && event.origin !== "https://sleazyfork.org")
+    return;
+
+  if (event.data.type != "style-version")
+    return;
+
+  let installButton = document.querySelector(".install-link[data-install-format=css]");
+  if (installButton == null)
+    return;
+
+  let version = installButton.getAttribute("data-script-version");
+
+  let installedVersion = event.data.version;
+
+  handleInstallResult(installButton, installedVersion, version);
 }, false);
 
 document.addEventListener("DOMContentLoaded", function() {
-  var installButtonJS = document.querySelector(".install-link[data-install-format=js]");
+  let installButtonJS = document.querySelector(".install-link[data-install-format=js]");
   if (installButtonJS) {
     checkForUpdatesJS(installButtonJS, true);
   }
-  var installButtonCSS = document.querySelector(".install-link[data-install-format=css]");
+  let installButtonCSS = document.querySelector(".install-link[data-install-format=css]");
   if (installButtonCSS) {
     checkForUpdatesCSS(installButtonCSS);
   }
