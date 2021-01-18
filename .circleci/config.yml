@@ -36,4 +36,4 @@ jobs:
             cp .circleci/application.yml .circleci/database.yml .circleci/secrets.yml config/
       - run: bundle exec rake db:create
       - run: bin/rails db:schema:load
-      - run: rails test:all
+      - run: bin/rails test:all
