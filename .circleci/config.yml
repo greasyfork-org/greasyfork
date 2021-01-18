@@ -1,0 +1,22 @@
+version: 2.1
+orbs:
+  ruby: circleci/ruby@1.1.2 
+
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.7.2-stretch-node-browsers
+      - image: circleci/mariadb:10.3.23
+    executor: ruby/default
+    steps:
+      - checkout
+      - run:
+          name: Which bundler?
+          command: bundle -v
+      - ruby/install-deps
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:3306 -timeout 1m
+      - run: RAILS_ENV=test bundle exec rake db:create
+      - run: bin/rails db:schema:load
+      - run: rails test:all
