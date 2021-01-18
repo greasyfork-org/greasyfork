@@ -6,10 +6,10 @@ class JsExecutor
 
       context = MiniRacer::Context.new(timeout: 500, max_memory: 20_000_000)
       context.attach 'greasyforkSetLogger', lambda { |property, value|
-        urls << value if URL_SETTERS.include?(property.join('.')) && value.is_a?(String)
+        urls << value if URL_SETTERS.include?(property.join('.'))
       }
-      context.attach 'greasyforkFunctionLogger', lambda { |property, args|
-        urls << args.first if URL_FUNCTIONS.include?(property.join('.')) && args.first.is_a?(String)
+      context.attach 'greasyforkFunctionLogger', lambda { |property, first_arg|
+        urls << first_arg if URL_FUNCTIONS.include?(property.join('.'))
       }
 
       begin
@@ -49,11 +49,15 @@ class JsExecutor
               return new GreasyforkProxy(reference.concat(prop));
             },
             set: function(obj, prop, val) {
-              greasyforkSetLogger(reference.concat(prop), val);
+              if (typeof val == 'string') {
+                greasyforkSetLogger(reference.concat(prop), val);
+              }
               return true;
             },
             apply: function(target, thisArg, argumentsList) {
-              greasyforkFunctionLogger(reference, argumentsList);
+              if (typeof argumentsList[0] == 'string') {
+                greasyforkFunctionLogger(reference, argumentsList[0]);
+              }
               return new GreasyforkProxy(reference);
             }
           });
