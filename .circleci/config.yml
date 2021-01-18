@@ -53,12 +53,13 @@ jobs:
           paths:
             - node_modules
       - restore_cache:
-          - keys:
-              - precompile-cache
+          keys:
+            - precompile-cache
       - run: bin/rails assets:precompile --trace
       - save_cache:
           key: precompile-cache
           paths:
             - public/packs-test
+            - tmp/cache/webpacker
       - run: mkdir -p tmp/sockets
       - run: bin/rails test:all
