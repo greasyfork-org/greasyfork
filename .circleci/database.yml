@@ -1,8 +1,10 @@
 test:
   adapter: mysql2
-  username: root
-  password:
-  database: greasyforktest
+  encoding: utf8mb4
+  database: <%= ENV['MYSQL_DATABASE'] %>
   pool: 5
   timeout: 5000
-  host: localhost
+  username: <%= ENV['MYSQL_USER'] %>
+  password: <%= ENV['MYSQL_PASSWORD'] %>
+  host: <%= ENV['MYSQL_HOST'] %>
+  port: <%= ENV['MYSQL_PORT'] %>

@@ -6,7 +6,19 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.7-node-browsers
+        environment:
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_PORT: 3306
+          MYSQL_USER: user
+          MYSQL_PASSWORD: passw0rd
+          MYSQL_DATABASE: greasyfork_test
+          RAILS_ENV: test
       - image: circleci/mariadb:10.3.23
+        environment:
+          MYSQL_ROOT_PASSWORD: rootpw
+          MYSQL_DATABASE: greasyfork_test
+          MYSQL_USER: user
+          MYSQL_PASSWORD: passw0rd
     executor: ruby/default
     steps:
       - checkout
@@ -21,6 +33,6 @@ jobs:
           name:
           command: |
             cp .circleci/application.yml .circleci/database.yml .circleci/secrets.yml config/
-      - run: RAILS_ENV=test bundle exec rake db:create
+      - run: bundle exec rake db:create
       - run: bin/rails db:schema:load
       - run: rails test:all
