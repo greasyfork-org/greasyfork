@@ -1,0 +1,10 @@
+test:
+  adapter: mysql2
+  encoding: utf8mb4
+  database: <%= ENV['MYSQL_DATABASE'] %>
+  pool: 5
+  timeout: 5000
+  username: <%= ENV['MYSQL_USER'] %>
+  password: <%= ENV['MYSQL_PASSWORD'] %>
+  host: <%= ENV['MYSQL_HOST'] %>
+  port: <%= ENV['MYSQL_PORT'] %>

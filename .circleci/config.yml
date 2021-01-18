@@ -1,0 +1,65 @@
+version: 2.1
+orbs:
+  ruby: circleci/ruby@1.1.2 
+
+jobs:
+  build:
+    docker:
+      - image: circleci/ruby:2.7-node-browsers
+        environment:
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_PORT: 3306
+          MYSQL_USER: user
+          MYSQL_PASSWORD: passw0rd
+          MYSQL_DATABASE: greasyfork_test
+          RAILS_ENV: test
+      - image: circleci/mariadb:10.3.23
+        environment:
+          MYSQL_ROOT_PASSWORD: rootpw
+          MYSQL_DATABASE: greasyfork_test
+          MYSQL_USER: user
+          MYSQL_PASSWORD: passw0rd
+    executor: ruby/default
+    steps:
+      - run: sudo apt install mariadb-client
+      - run:
+          name: Install Sphinx
+          command: |
+            cd ~
+            wget http://sphinxsearch.com/files/sphinx-3.2.1-f152e0b-linux-amd64.tar.gz
+            tar -xvf sphinx-3.2.1-f152e0b-linux-amd64.tar.gz
+            echo "export PATH=$PATH:$PWD/sphinx-3.2.1/bin/" >> $BASH_ENV
+      - checkout
+      - run:
+          name: Which bundler?
+          command: bundle -v
+      - ruby/install-deps
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:3306 -timeout 1m
+      - run:
+          name: Copy test config
+          command: |
+            cp .circleci/application.yml .circleci/database.yml .circleci/secrets.yml config/
+      - run: bundle exec rake db:create
+      - run: bin/rails db:schema:load
+      - restore_cache:
+          keys:
+            - yarn-cache-{{ checksum "yarn.lock" }}
+            - yarn-cache
+      - run: bin/yarn
+      - save_cache:
+          key: yarn-cache-{{ checksum "yarn.lock" }}
+          paths:
+            - node_modules
+      - restore_cache:
+          keys:
+            - precompile-cache
+      - run: bin/rails assets:precompile --trace
+      - save_cache:
+          key: precompile-cache
+          paths:
+            - public/packs-test
+            - tmp/cache/webpacker
+      - run: mkdir -p tmp/sockets
+      - run: bin/rails test:all
