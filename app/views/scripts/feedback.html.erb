@@ -86,7 +86,12 @@
     <% elsif favoriter_count < 10 || params[:show_favoriters] == '1' %>
       <%= t('scripts.feedback_favoriters_user_list_html', user_list: @script.favoriters.map{ |user| render_user(user, user.id, skip_badge: true) }.to_sentence.html_safe) %>
     <% else %>
-      <%= it('scripts.feedback_favoriters_lots', user_count: number_with_delimiter(favoriter_count), count: favoriter_count, full_link: It.link(url_for(show_favoriters: 1, anchor: 'feedback-favoriters'), rel: :nofollow)) %>
+      <% begin %>
+        <%= it('scripts.feedback_favoriters_lots', user_count: number_with_delimiter(favoriter_count), count: favoriter_count, full_link: It.link(url_for(show_favoriters: 1, anchor: 'feedback-favoriters'), rel: :nofollow)) %>
+      <% rescue I18n::InvalidPluralizationData %>
+        <%# https://github.com/iGEL/it/issues/30 %>
+        <%= it('scripts.feedback_favoriters_lots', user_count: number_with_delimiter(favoriter_count), count: favoriter_count, full_link: It.link(url_for(show_favoriters: 1, anchor: 'feedback-favoriters'), rel: :nofollow), locale: :en) %>
+      <% end %>
     <% end %>
   </div>
   <p>
