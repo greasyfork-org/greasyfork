@@ -55,6 +55,7 @@ module UserTextHelper
 
   def detect_possible_mentions(text, markup_type)
     return [] unless %w[html markdown].include?(markup_type)
+    return [] if text.blank?
 
     mentions = Set.new
     sanitize_config = markup_type == 'html' ? html_sanitize_config : markdown_sanitize_config
