@@ -251,7 +251,7 @@ zh-TW:
     bad_rating_explanation: "給予差評的使用者數目"
     write_your_own_html: "%{post_a_script_link}（或是 %{learn_to_write_scripts_link}）"
     post_a_script_link_text: "發佈你撰寫的腳本"
-    learn_to_write_scripts_link_text: "學習如何建立一個"
+    learn_to_write_scripts_link_text: "學習如何撰寫腳本"
     feedback_or_report: "%{feedback_link:發表問題、評論}、或%{report_link:檢舉該腳本}。"
     support_feedback_or_report: "%{support_url:瀏覽作者的技術支援網站}、%{feedback_link:發表問題、評論}、或 %{report_link:檢舉該腳本}。"
     support_email_feedback_or_report: "%{support_url:向作者寄送電子郵件以取得技術支援}、%{feedback_link:發表問題、評論}、或 %{report_link:檢舉該腳本}。"
@@ -335,6 +335,7 @@ zh-TW:
       css: "發佈新樣式"
     update_title: "發佈 %{script} 的新版本 "
     antifeatures:
+      author_explanation_intro: "腳本的作者解釋："
       types:
         ads:
           title: 廣告
@@ -342,6 +343,9 @@ zh-TW:
           title: 追蹤
       install_anyway: 安裝腳本
       cancel_install: 取消
+    badges:
+      js:
+        short: JS
   script_sets:
     description: "腳本收藏集讓你自訂一個腳本列表。你可以把單獨的腳本、其它使用者的收藏集、或自動產生的收藏集，加入包含列表。排除列表也是同樣的方式。"
     favorites_name: "我的最愛"
@@ -422,7 +426,7 @@ zh-TW:
     scripts_for_label: "根據網域︰"
     explain_user_scripts_heading: "使用者腳本是什麼？"
     explain_user_scripts_html: "使用者腳本讓您控制您的瀏覽體驗。當您安裝後，使用者腳本可以為網頁增加功能、簡化使用方法、或移除煩人的東西。在 %{site_name} 上的腳本都是由其它使用者撰寫、和全世界分享的。所有的腳本都是免費安裝，而且容易使用。"
-    installing_step1_header: "第 1 步：安裝一個使用者腳本管理器"
+    installing_step1_header: "第 1 步：安裝使用者腳本管理器"
     installing_step1_caption: "Chrome 下使用 TamerMonkey 的截圖"
     installing_step1_description_html: >
         <p>要使用使用者腳本，您需要先安裝「使用者腳本管理器」。不同的瀏覽器所使用的腳本管理器也有所不同。</p>
@@ -449,7 +453,7 @@ zh-TW:
         <li>AdGuard: （無需安裝額外的管理器）</li>
 
         </ul>
-    installing_step2_header: "第 2 步：安裝一個使用者腳本"
+    installing_step2_header: "第 2 步：安裝使用者腳本"
     installing_step2_caption: "使用者腳本的安裝按鈕"
     installing_step2_description_html: >
         <p>%{browse_link:打開索引}來尋找您想嘗試的使用者腳本吧。下方列舉了部分最熱門的腳本：</p>
@@ -761,6 +765,7 @@ zh-TW:
     comment_date: "發表於：%{date}"
     comment_edit_date: "編輯:%{date}"
     posted_by_html: "%{user} %{date}"
+    last_comment: "最後討論：%{user} %{date}"
     new_discussion_heading: "發表評價、評論或提問"
     new_discussion_submit: "發表評論"
     new_comment_heading: "發表回覆"
@@ -769,7 +774,9 @@ zh-TW:
     edit_comment_link: "編輯"
     edit_comment_header: "編輯留言"
     delete_comment: "刪除"
+    delete_comment_confirm: 您確定要刪除這個評論嗎？
     delete_discussion: "刪除"
+    delete_discussion_confirm: 您確定要刪除這個討論嗎？
     update_comment_submit: "更新留言"
     cancel_update_comment: "取消"
     quote_comment: "引用"
