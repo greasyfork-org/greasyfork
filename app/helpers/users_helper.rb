@@ -44,6 +44,10 @@ module UsersHelper
     tag.li(class: "list-option#{is_link ? '' : ' list-current'}") { text }
   end
 
+  def render_user_text(user, user_id)
+    user&.name || "(Deleted user #{user_id})"
+  end
+
   def render_user(user, user_id, skip_link: false, script: nil, force_author: false, skip_badge: false)
     return tag.i { 'No-one' } unless user_id
     return tag.i { "Deleted user #{user_id}" } unless user

@@ -1,5 +1,6 @@
 class ForumMailer < ApplicationMailer
   include UserTextHelper
+  include UsersHelper
 
   def comment_on_script(author_user, comment)
     site_name = 'Greasy Fork'
@@ -10,7 +11,7 @@ class ForumMailer < ApplicationMailer
                         script_name: comment.script.name(locale),
                         site_name: site_name,
                         script_url: script_url(comment.script, locale: locale),
-                        commenter_name: comment.poster.name,
+                        commenter_name: render_user_text(comment.poster, comment.poster_id),
                         comment_text: format_user_text_as_plain(comment.text, comment.text_markup, use_line_breaks: true),
                         comment_url: comment.url,
                         notification_preferences_url: notifications_user_url(author_user, locale: locale),
