@@ -53,7 +53,7 @@
   <meta property="og:title" content="<%= @script.default_name %>">
   <meta property="og:url" content="<%= script_url(@script, locale: nil) %>">
   <meta property="og:description" content="<%= @script.description(request_locale) %>">
-  <% if @script_version %>
+  <% if @script_version && !@script_version.new_record? %>
     <%# Same as in screenshots/_show.html.erb %>
     <% attachments = @script_version.attachments.includes(:blob).load %>
     <% if attachments.any? %>
