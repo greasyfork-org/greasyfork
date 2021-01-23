@@ -147,7 +147,11 @@
         <% if @more_conversations %>
           <p><%= link_to t('conversations.recent.more'), user_conversations_path(current_user) %></p>
         <% end %>
-        <p></p>
+      <% elsif @more_conversations %>
+        <p>
+          <%= t('conversations.no_recent_conversations') %>
+          <%= link_to t('conversations.recent.more'), user_conversations_path(current_user) %>
+        </p>
       <% else %>
         <p>
           <%= t('conversations.no_conversations') %>
