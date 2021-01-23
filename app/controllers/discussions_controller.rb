@@ -15,7 +15,7 @@ class DiscussionsController < ApplicationController
   def index
     @discussions = Discussion
                    .visible
-                   .includes(:poster, :script, :discussion_category, :first_comment, :stat_last_replier)
+                   .includes(:poster, :script, :discussion_category, :stat_first_comment, :stat_last_replier)
                    .order(stat_last_reply_date: :desc)
     case script_subset
     when :sleazyfork

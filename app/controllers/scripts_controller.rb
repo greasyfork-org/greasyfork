@@ -134,7 +134,7 @@ class ScriptsController < ApplicationController
 
     @discussions = @script.discussions
                           .visible
-                          .includes(:first_comment, :poster)
+                          .includes(:stat_first_comment, :poster)
                           .order(stat_last_reply_date: :desc)
                           .paginate(page: params[:page], per_page: 25)
     @discussion = @discussions.build(discussion_category: DiscussionCategory.script_discussions)

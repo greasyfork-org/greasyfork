@@ -12,6 +12,7 @@ class Discussion < ApplicationRecord
   # Optional because the user may no longer exist.
   belongs_to :poster, class_name: 'User', optional: true
   belongs_to :script, optional: true
+  belongs_to :stat_first_comment, class_name: 'Comment', optional: true
   belongs_to :stat_last_replier, class_name: 'User', optional: true
   belongs_to :discussion_category
   has_many :comments, dependent: :destroy
@@ -120,6 +121,7 @@ class Discussion < ApplicationRecord
 
   def calculate_stats
     {
+      stat_first_comment_id: comments.not_deleted.first.id,
       stat_reply_count: comments.not_deleted.count - 1,
       stat_last_reply_date: last_comment.created_at,
       stat_last_replier_id: last_comment.poster_id,
