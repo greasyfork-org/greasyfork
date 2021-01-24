@@ -342,6 +342,13 @@ el:
           description_html: Αυτός ο κώδικας θα <b>επαναγράψει συνδέσμους</b> για να συμπεριλάβει κώδικα αναφοράς ή συνεργάτη.
       install_anyway: Εγκατάσταση κώδικα
       cancel_install: Άκυρο
+    badges:
+      js:
+        short: JS
+        long: Κώδικας χρήστη
+      css:
+        short: CSS
+        long: Στυλ χρήστη
   script_sets:
     description: "Τα σύνολα κώδικα σας επιτρέπουν να δημιουργήσετε μια προσαρμοσμένη λίστα για πλοήγηση στο Greasy Fork. Μπορείτε να προσθέσετε κωδικούς στο σύνολό σας περιλαμβάνοντας μεμονωμένους κώδικες, σύνολα άλλων χρηστών ή αυτόματα δημιουργούμενα σύνολα. Μπορείτε, επίσης, να αποκλείσετε κώδικες από το σύνολό σας με τις ίδιες μεθόδους."
     favorites_name: "Αγαπημένα"
@@ -662,6 +669,7 @@ el:
       authors_credit: "Το %{site_name} δεν θα ήταν δυνατό χωρίς τους δημιουργούς που προσφέρουν κώδικες."
       developers_credit: "Το %{site_name} είναι φτιαγμένο από %{developers_link:these people} με την βοήθεια όλων αυτών που αναφέρουν σφάλματα και προτείνουν βελτιώσεις."
       translators_credit: "To %{site_name} έχει μεταφραστεί από %{translators_link:τη Ομάδα Μετάφρασης του Greasy στο Transifex}:"
+      icons_credit: "Τα εικονίδια φυλλομετρητή είναι από %{browserlogos}."
     help_with_greasymonkey: "Βοήθεια για το Greasemonkey"
     contact:
       title: "Επικοινωνήστε με κάποιον"
@@ -770,7 +778,9 @@ el:
     edit_comment_link: "Επεξεργασία"
     edit_comment_header: "Επεξεργασία σχολίου"
     delete_comment: "Διαγραφή"
+    delete_comment_confirm: Θέλετε σίγουρα να διαγράψετε αυτό το σχόλιο;
     delete_discussion: "Διαγραφή"
+    delete_discussion_confirm: Θέλετε σίγουρα να διαγράψετε αυτή τη συζήτηση;
     update_comment_submit: "Ενημέρωση σχολίου"
     cancel_update_comment: "Άκυρο"
     quote_comment: "Παράθεση"
@@ -830,8 +840,10 @@ el:
         name: Greasy Fork Ανατροφοδότηση .
       development:
         name: Ανάπτυξη
+        description: Τεχνική συζήτηση για την ανάπτυξη του κώδικα και του στυλ χρήστη.
       requests:
         name: Αιτήματα Δημιουργίας
+        description: Ζητήστε από κάποιον να γράψει έναν κώδικα ή ένα στυλ χρήστη για εσάς.
       script-discussions:
         name: Συζητήσεις κώδικα
         description: Συνομιλίες για ήδη υπάρχον κώδικα και  στυλ  χρήστη .
@@ -858,6 +870,7 @@ el:
       other: Συνομιλία με τους χρήστες %{users}.
     conversation_info_html: Τελευταίο μήνυμα στο %{date} από %{user}.
     no_conversations: Δεν έχετε καμία συνομιλία ακόμη.
+    no_recent_conversations: Δεν έχετε πρόσφατες συνομιλίες.
     recent:
       title: Πρόσφατες συνομιλίες
       more: Δείτε όλες τις συνομιλίες
