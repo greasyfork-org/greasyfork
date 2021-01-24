@@ -2,20 +2,26 @@ SIGNUP_PATH_PATTERN = Regexp.new("\\A/(#{Rails.application.config.available_loca
 LOGIN_PATH_PATTERN = Regexp.new("\\A/(#{Rails.application.config.available_locales.keys.map { |locale| Regexp.escape(locale) }.join('|')})/users/sign_in\\z")
 
 if Rails.env.production?
-  Rack::Attack.throttle('limit registrations per ip', limit: 3, period: 3600) do |req|
-    req.ip if SIGNUP_PATH_PATTERN.match?(req.path) && req.post?
+  if Rails.application.config.ip_address_tracking
+    Rack::Attack.throttle('limit registrations per ip', limit: 3, period: 3600) do |req|
+      req.ip if SIGNUP_PATH_PATTERN.match?(req.path) && req.post?
+    end
   end
 
-  Rack::Attack.throttle('limit registrations per email domain', limit: 3, period: 3600) do |req|
-    req.ip if SIGNUP_PATH_PATTERN.match?(req.path) && req.post? && req.params.dig('user', 'email')&.ends_with?('163.com')
+  if Rails.application.config.ip_address_tracking
+    Rack::Attack.throttle('limit registrations per email domain', limit: 3, period: 3600) do |req|
+      req.ip if SIGNUP_PATH_PATTERN.match?(req.path) && req.post? && req.params.dig('user', 'email')&.ends_with?('163.com')
+    end
   end
 
   Rack::Attack.throttle('limit logins attempts per email', limit: 20, period: 300) do |req|
     req.params.dig('user', 'email') if LOGIN_PATH_PATTERN.match?(req.path) && req.post? && req.params.dig('user', 'email')
   end
 
-  Rack::Attack.throttle('limit logins attempts per ip', limit: 20, period: 3600) do |req|
-    req.ip if LOGIN_PATH_PATTERN.match?(req.path) && req.post? && req.params.dig('user', 'email')
+  if Rails.application.config.ip_address_tracking
+    Rack::Attack.throttle('limit logins attempts per ip', limit: 20, period: 3600) do |req|
+      req.ip if LOGIN_PATH_PATTERN.match?(req.path) && req.post? && req.params.dig('user', 'email')
+    end
   end
 end
 

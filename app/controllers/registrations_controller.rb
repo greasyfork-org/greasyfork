@@ -63,6 +63,8 @@ class RegistrationsController < Devise::RegistrationsController
     email_domain = email.split('@').last
     return unless email_domain
 
+    return unless Rails.application.config.ip_address_tracking
+
     if User.where(banned_at: 1.week.ago..)
            .where(current_sign_in_ip: request.remote_ip)
            .where(email_domain: email_domain)

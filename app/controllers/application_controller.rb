@@ -270,6 +270,8 @@ class ApplicationController < ActionController::Base
   def check_ip
     return unless current_user&.email_domain
 
+    return unless Rails.application.config.ip_address_tracking
+
     if User.where(banned_at: 1.week.ago..)
            .where(current_sign_in_ip: request.remote_ip)
            .where(email_domain: current_user&.email_domain)

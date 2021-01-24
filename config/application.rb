@@ -42,6 +42,8 @@ module Greasyfork
 
     config.active_storage.replace_on_assign_to_many = false
     config.active_storage.variable_content_types << 'image/webp'
+
+    config.ip_address_tracking = true
   end
 end
 
