@@ -42,5 +42,10 @@
     </div>
   </div>
 
-  <div><%= f.submit t('users.notifications.save_button') %></div>
+  <div>
+    <%= f.submit t('users.notifications.save_button') %>
+    <% if @user.author_email_notification_type_id != User::AUTHOR_NOTIFICATION_NONE || @user.subscribe_on_discussion || @user.subscribe_on_comment || @user.subscribe_on_conversation_starter || @user.subscribe_on_conversation_receiver || @user.notify_on_mention || @user.discussion_subscriptions.any? %>
+      <%= f.submit t('users.notifications.unsubscribe_all'), formaction: unsubscribe_all_user_path(@user) %>
+    <% end %>
+  </div>
 <% end %>

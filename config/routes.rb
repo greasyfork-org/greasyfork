@@ -140,6 +140,7 @@ Rails.application.routes.draw do
       member do
         get :notifications
         patch :update_notifications
+        patch :unsubscribe_all
       end
     end
     post 'script_sets/add_to_set', to: 'script_sets#add_to_set', as: 'add_to_script_set'
