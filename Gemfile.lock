@@ -130,14 +130,16 @@ GEM
       sshkit (>= 1.9.0)
     capistrano-bundler (2.0.1)
       capistrano (~> 3.1)
-    capistrano-passenger (0.2.0)
-      capistrano (~> 3.0)
     capistrano-rails (1.6.1)
       capistrano (~> 3.1)
       capistrano-bundler (>= 1.1, < 3)
     capistrano-rbenv (2.2.0)
       capistrano (~> 3.1)
       sshkit (~> 1.3)
+    capistrano3-puma (5.0.2)
+      capistrano (~> 3.7)
+      capistrano-bundler
+      puma (>= 4.0, < 6.0)
     capybara (3.34.0)
       addressable
       mini_mime (>= 0.1.3)
@@ -426,10 +428,10 @@ DEPENDENCIES
   byebug
   capistrano (~> 3.7)
   capistrano-bundler
-  capistrano-passenger
   capistrano-rails
   capistrano-rbenv
   capistrano-sidekiq!
+  capistrano3-puma
   capybara
   daemons
   detect_language
