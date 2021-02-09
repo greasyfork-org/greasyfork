@@ -161,7 +161,9 @@ module ScriptListings
         render layout: 'application'
       end
       format.json do
-        result = ScriptAppliesTo.joins(:script, :site_application).where(scripts: { script_type_id: 1, script_delete_type_id: nil }, tld_extra: false, site_applications: { domain: true }).group('site_applications.text').count
+        result = self.class.cache_with_log('applies_to_counts', expires_in: 1.hour) do
+          ScriptAppliesTo.joins(:script, :site_application).where(scripts: { script_type_id: 1, script_delete_type_id: nil }, tld_extra: false, site_applications: { domain: true }).group('site_applications.text').count
+        end
         cache_request(result.to_json)
         render json: result
       end
