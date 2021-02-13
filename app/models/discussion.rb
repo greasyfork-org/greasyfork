@@ -1,6 +1,7 @@
 class Discussion < ApplicationRecord
   include SoftDeletable
   include MentionsUsers
+  include DetectsLocale
 
   self.ignored_columns = %w[akismet_spam akismet_blatant]
 
@@ -15,6 +16,7 @@ class Discussion < ApplicationRecord
   belongs_to :stat_first_comment, class_name: 'Comment', optional: true
   belongs_to :stat_last_replier, class_name: 'User', optional: true
   belongs_to :discussion_category
+  belongs_to :locale, optional: true
   has_many :comments, dependent: :destroy
   has_one :first_comment, -> { not_deleted.order(:id) }, class_name: 'Comment', foreign_key: :discussion_id, inverse_of: :discussion
   has_many :discussion_subscriptions, dependent: :destroy
@@ -40,6 +42,10 @@ class Discussion < ApplicationRecord
     elsif script_id
       errors.add(:category, :invalid)
     end
+  end
+
+  before_create do
+    self.locale ||= detect_locale
   end
 
   after_soft_destroy do
@@ -134,5 +140,12 @@ class Discussion < ApplicationRecord
 
   def deletable_by?(user)
     user && user == poster && comments.where.not(poster: user).none? && created_at >= Comment::EDITABLE_PERIOD.ago
+  end
+
+  def full_text
+    parts = [title]
+    comment = comments.first
+    parts << ApplicationController.helpers.format_user_text_as_plain(comment.text, comment.text_markup) if comment
+    parts.join("\n")
   end
 end

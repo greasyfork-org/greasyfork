@@ -3,6 +3,7 @@ require 'css_to_js_converter'
 
 class Script < ApplicationRecord
   include LocalizingModel
+  include DetectsLocale
 
   CONSECUTIVE_BAD_RATINGS_COUNT = 3
   CONSECUTIVE_BAD_RATINGS_GRACE_PERIOD = 2.weeks
@@ -406,28 +407,6 @@ class Script < ApplicationRecord
 
   def deleted_and_blanked?
     script_delete_type_id == ScriptDeleteType::BLANKED
-  end
-
-  def detect_locale
-    ft = full_text
-    return if ft.nil?
-
-    if Greasyfork::Application.config.enable_detect_locale
-      Logger.new(Rails.root.join('log/detectlanguage.log')).info("Sending DetectLanguage request for #{id ? "script #{id}" : 'a new script'} - #{full_text[0..50]}...")
-      begin
-        dl_lang_code = DetectLanguage.simple_detect(ft)
-      rescue StandardError => e
-        Rails.logger.error "Could not detect language - #{e}"
-      end
-      unless dl_lang_code.nil?
-        locales = Locale.where(detect_language_code: dl_lang_code)
-        return locales.first unless locales.empty?
-
-        Rails.logger.error "detect_language gave unrecognized code #{dl_lang_code}"
-      end
-    end
-    # assume english
-    return Locale.english
   end
 
   def update_license(text)
