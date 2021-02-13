@@ -1,0 +1,63 @@
+.list-option-groups {
+  font-size: smaller;
+}
+.list-option-group {
+  margin-bottom: 1em;
+}
+
+.list-option-group ul {
+  margin: .5em 0 0;
+  list-style-type: none;
+  padding: 1em 0;
+  box-shadow: 0 0 5px #DDDDDD;
+  border: 1px solid #BBBBBB;
+  border-radius: 5px;
+  background-color: white;
+}
+.list-option-group a {
+  padding: .35em 1em;
+  display: block;
+}
+.list-option-group a:hover, .list-option-group a:focus {
+  background: linear-gradient(white, #F6F6F6);
+  text-decoration: none;
+  box-shadow: inset 0 -1px #DDDDDD, inset 0 1px #EEEEEE;
+}
+.list-option-group .list-current {
+  border-left: 7px solid #800;
+  box-shadow: inset 0 1px rgba(0, 0, 0, 0.1), inset 0 -1px rgba(0, 0, 0, 0.1);
+  margin: 0 0 0 -4px;
+  padding: .4em 1em .4em calc(1em - 3px);
+  background: linear-gradient(white, #EEEEEE);
+}
+
+@media screen and (min-width: 440px) and (max-width: 960px) {
+  .list-option-group a,
+  .list-option-group .list-current {
+    padding-left: 1.2vw;
+    padding-right: 1.2vw;
+  }
+}
+
+.list-option-button {
+  display: block;
+  background-color: white;
+  text-align: center;
+  text-decoration: none;
+  color: black !important;
+  border: 1px solid #BBBBBB;
+  padding: 0.5em;
+  font-weight: bold;
+}
+.list-option-button:hover, .list-option-button:focus {
+  background: linear-gradient(white, #F6F6F6);
+  text-decoration: none;
+}
+
+.list-option:not(.list-current) select {
+  width: calc(100% - .4em - 1em + 3px);
+  margin: .4em 1em .4em calc(1em - 3px);
+}
+.list-option.list-current select {
+  width: 100%;
+}

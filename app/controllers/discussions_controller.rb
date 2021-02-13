@@ -3,7 +3,7 @@ class DiscussionsController < ApplicationController
   include ScriptAndVersions
   include UserTextHelper
 
-  FILTER_RESULT = Struct.new(:category, :by_user, :related_to_me, :read_status, :result)
+  FILTER_RESULT = Struct.new(:category, :by_user, :related_to_me, :read_status, :locale, :result)
 
   before_action :authenticate_user!, only: [:new, :create, :subscribe, :unsubscribe]
   before_action :greasy_only, only: :new
@@ -35,6 +35,8 @@ class DiscussionsController < ApplicationController
     @bots = 'noindex' unless params[:page].nil?
 
     @discussion_ids_read = DiscussionRead.read_ids_for(@discussions, current_user) if current_user
+
+    @possible_locales = Locale.with_discussions.order(:code)
   end
 
   def show
@@ -224,6 +226,11 @@ class DiscussionsController < ApplicationController
       discussions = discussions.with_comment_by(by_user) if by_user
     end
 
+    if params[:show_locale].present?
+      locale = Locale.find_by(code: params[:show_locale])
+      discussions = discussions.where(locale_id: locale) if locale
+    end
+
     # This needs to be the last.
     if current_user
       read_status = params[:read]
@@ -237,6 +244,6 @@ class DiscussionsController < ApplicationController
       end
     end
 
-    FILTER_RESULT.new(category, by_user, related_to_me, read_status, discussions)
+    FILTER_RESULT.new(category, by_user, related_to_me, read_status, locale, discussions)
   end
 end

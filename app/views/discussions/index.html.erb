@@ -128,6 +128,31 @@
           </ul>
         </div>
       <% end %>
+
+      <div class="list-option-group">
+        <%= t('discussions.locale_filter.label') %>
+        <ul>
+          <% if @filter_result.locale.nil? %>
+            <li class="list-option list-current"><%= t('discussions.locale_filter.all') %></li>
+          <% else %>
+            <li class="list-option"><%= link_to t('discussions.locale_filter.all'), current_path_with_params(show_locale: nil, page: nil) %></li>
+          <% end %>
+          <% showing_request_locale = @filter_result.locale && @filter_result.locale == request_locale %>
+          <% if showing_request_locale %>
+            <li class="list-option list-current"><%= request_locale.best_name %></li>
+          <% else %>
+            <li class="list-option"><%= link_to request_locale.best_name, current_path_with_params(show_locale: request_locale.code, page: nil) %></li>
+          <% end %>
+          <li class="list-option <%= 'list-current' if @filter_result.locale && !showing_request_locale %>">
+            <select id="discussion-locale">
+              <option></option>
+              <% @possible_locales.each do |l| %>
+                <option data-url="<%= current_path_with_params(show_locale: l.code, page: nil) %>" value="<%= l.code %>" <%= 'selected' if !showing_request_locale && @filter_result.locale && @filter_result.locale.id == l.id %>><%= l.display_text %></option>
+              <% end %>
+            </select>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

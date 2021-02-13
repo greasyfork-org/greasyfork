@@ -38,4 +38,11 @@ class Locale < ApplicationRecord
       Script.listable(script_subset).joins(:localized_attributes).where(locale_id: id).any?
     end
   end
+
+  def self.with_discussions
+    locale_ids = Rails.cache.fetch('locale_with_discussions') do
+      Discussion.visible.distinct.pluck(:locale_id)
+    end
+    where(id: locale_ids)
+  end
 end
