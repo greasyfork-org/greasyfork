@@ -84,6 +84,13 @@ function init() {
   for (let link of document.querySelectorAll(".quote-comment")) {
     link.addEventListener("click", quoteComment);
   }
-
+  let forumLocale = document.getElementById("discussion-locale")
+  if (forumLocale) {
+    forumLocale.addEventListener("change", function() {
+      if (this.selectedOptions[0] && this.selectedOptions[0].hasAttribute("data-url")) {
+        location.href = this.selectedOptions[0].getAttribute("data-url")
+      }
+    })
+  }
 }
 window.addEventListener("DOMContentLoaded", init);
