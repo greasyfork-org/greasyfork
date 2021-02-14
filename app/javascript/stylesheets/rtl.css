@@ -1,0 +1,25 @@
+body:lang(he), body:lang(ar), body:lang(ug) {
+  direction: rtl;
+}
+:not(:lang(he)):not(:lang(ar)):not(:lang(ug)) {
+  direction: ltr;
+}
+body:lang(he) #main-header, body:lang(ar) #main-header, body:lang(ug) #main-header {
+  direction: ltr;
+}
+body:lang(he) .sidebar-search input[type=submit], body:lang(he) .home-search input[type=submit],
+body:lang(ar) .sidebar-search input[type=submit], body:lang(ar) .home-search input[type=submit],
+body:lang(ug) .sidebar-search input[type=submit], body:lang(ug) .home-search input[type=submit] {
+  left: 0;
+  right: auto;
+}
+/* float: inline-start would be good but it's not widely supported. */
+body:lang(he) .inline-script-stats dt, body:lang(he) .inline-script-stats dd, body:lang(ug) .inline-script-stats dd {
+  float: right;
+}
+:lang(ar) #home-step-1 figure, :lang(he) #home-step-1 figure, :lang(ug) #home-step-1 figure {
+  float: left;
+}
+:lang(ar) #home-step-2 figure, :lang(he) #home-step-2 figure, :lang(ug) #home-step-2 figure {
+  float: right;
+}

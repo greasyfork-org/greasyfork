@@ -1,6 +1,7 @@
 ug:
   layouts:
     application:
+      script_list: "قوليازما تىزىملىكى"
       forum: "مۇنبەر"
       help: "ياردەم"
       sign_in: "كىرىش"
@@ -16,7 +17,45 @@ ug:
     daily_installs: "بۈگۈن ئورنىتىلغىنى"
     ratings: "نۇمۇر"
     author_name: "ئاپتور"
-    version_number: "نەشىرى"
+    version_number: "نەشرى"
     license: "ئىجازەت كېلىشىمى"
     no_license: "ماس كەلمەيدۇ"
     compatibility: "ماس كېلىدۇ"
+    compatible_with_browser: "ماسلىشالايدۇ%{browser}"
+    incompatible_with_browser: "ماس كەلمەيدۇ%{browser}"
+    applies_to: "ئىشلىتىشىكە ماس كېلىدۇ"
+    applies_to_link_title:
+      one: "باشقا%{count}قوليازمىلارنى كۆرۈش%{site}"
+      other: "باشقا%{count} قوليازمىلارنى كۆرۈش%{site}"
+    applies_to_all: "بارلىق تور بېكەتلەر"
+    install: "بۇ سكرىپتنى ئورنىتىش"
+    install_help: "؟"
+    install_help_title: "قانداق ئورنىتىدۇ"
+    history_page: "تارىخ"
+    stats_page: "Stats"
+    derivatives_page: "Derivatives"
+    update_page: "يېڭىلاش"
+    delete_page: "ئۆچۈرۈش"
+    delete_explanation: "قوليازمىڭىزنى ئۆچۈرسىڭىز ، سىز ۋە Greasy Fork رىياسەتچىلىرىدىن باشقا ھېچكىم ئۇنى زىيارەت قىلالمايدۇ. خالىغان ۋاقىتتا ئۆچۈرەلەيسىز."
+    delete_update_behaviour_2: "ئۇلار قۇرۇق قوليازمىغا يېڭىلىنىدۇ. بۇ قوليازما ئىجرا بولۇۋاتقان تور بېكەتلەرگە پاسسىپ تەسىر كۆرسەتكەندە ماس كېلىدۇ."
+    delete_permanently_heading: "مەڭگۈلۈك ئۆچۈرۈش"
+    delete_permanently_explanation_html: >-
+        <p>قوليازمىڭىزنى مەڭگۈلۈك ئۆچۈرسىڭىز مۇنبەر مۇنازىرىسى ۋە رىياسەتچى ھەرىكەت
+        خاتىرىسىنى ھېسابقا ئالمىغاندا ، ئۇنى ۋە مۇناسىۋەتلىك خاتىرىلەرنى ئۆچۈرۈۋېتىدۇ.
+        </p><p>تەلىپىڭىز 7 كۈندىن كېيىن مەڭگۈلۈك ئۆچۈرۈلىدۇ. بۇ ۋاقىتتا مەڭگۈلۈك ئۆچۈرۈشنى
+        بىكار قىلالايسىز. ئەگەر قىلمىسىڭىز ، ھېچكىم ، ھەتتا رىياسەتچىمۇ قوليازمىڭىزنى
+        ئەسلىگە كەلتۈرەلمەيدۇ.</p>
+    delete_permanently_immediate_submit: "مەڭگۈلۈك ئۆچۈرۈڭ"
+  script_sets:
+    edit_scripts:
+      heading: "سكرپت"
+  users:
+    edit_sign_in_password: "مەخپىي نومۇر"
+    author_email_notification_type:
+      discussion_and_comment: "قوليازمىلىرىڭىزغا مۇنازىرە يوللانغاندا ياكى بۇ مۇنازىرىلەر يېڭى باھالارغا ئېرىشكەندە ئېلېكترونلۇق خەت تاپشۇرۇۋېلىش"
+    listing_banned_filter:
+      all: "ھەممىسى"
+    listing_author_filter:
+      all: "ھەممىسى"
+    banned_delete:
+      intro: "ھېساباتىڭىزنى ئۆچۈرسىڭىز ، سىز يوللىغان ھەرپلەرنىمۇ ئۆچۈرۈۋېتىدۇ. سىز قىلغان ھەر قانداق مۇنبەر تۆھپىسى قالىدۇ ، ئەمما ئىشلەتكۈچى ئىسمىڭىز نامسىز بولىدۇ. ئۆچۈرۈلگەندىن كېيىنمۇ ئوخشاش ئېلېكترونلۇق خەت ئادرېسى بىلەن قايتا تىزىملاتمايسىز. ھېساباتىڭىزنى ئۆچۈرۈش ئۈچۈن ئاستىغا كىرىڭ."

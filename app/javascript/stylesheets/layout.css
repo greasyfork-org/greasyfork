@@ -16,15 +16,6 @@ body:lang(zh-CN), select:lang(zh-CN), input:lang(zh-CN) {
 body:lang(zh-TW), select:lang(zh-TW), input:lang(zh-TW) {
   font-family: "Open Sans", "Microsoft JHengHei UI", sans-serif, "Segoe UI Emoji";
 }
-body:lang(he), body:lang(ar) {
-  direction: rtl;
-}
-:not(:lang(he)):not(:lang(ar)) {
-  direction: ltr;
-}
-body:lang(he) #main-header, body:lang(ar) #main-header {
-  direction: ltr;
-}
 pre, code {
   direction: ltr !important;
 }
@@ -770,11 +761,6 @@ form.new_user + a {
   margin-right: 0;
   background: none;
   opacity: 0.5;
-}
-body:lang(he) .sidebar-search input[type=submit], body:lang(he) .home-search input[type=submit],
-body:lang(ar) .sidebar-search input[type=submit], body:lang(ar) .home-search input[type=submit] {
-  left: 0;
-  right: auto;
 }
 
 @media screen and (max-width: 680px) {
