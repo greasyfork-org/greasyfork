@@ -47,7 +47,7 @@ class ReportsController < ApplicationController
   private
 
   def report_params
-    params.require(:report).permit(:reason, :explanation)
+    params.require(:report).permit(:reason, :explanation, :explanation_markup)
   end
 
   def item

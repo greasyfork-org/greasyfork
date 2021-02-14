@@ -21,7 +21,9 @@
 <% if report.explanation.present? %>
   <div><%= t('common.quote.prefix_html', user: render_user(report.reporter, report.reporter_id)) %></div>
   <blockquote>
-    <%= report.explanation %>
+    <div class="user-content">
+      <%= format_user_text(report.explanation, report.explanation_markup) %>
+    </div>
   </blockquote>
 <% end %>
 
