@@ -21,6 +21,7 @@ class Report < ApplicationRecord
 
   validates :reason, inclusion: { in: [REASON_SPAM, REASON_ABUSE, REASON_ILLEGAL] }, presence: true
   validates :reporter, presence: true, if: -> { auto_reporter.nil? }
+  validates :explanation_markup, inclusion: { in: %w[html markdown text] }, presence: true
 
   def dismiss!
     update!(result: RESULT_DISMISSED)

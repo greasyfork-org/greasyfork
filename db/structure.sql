@@ -1464,6 +1464,7 @@ CREATE TABLE `reports` (
   `reporter_id` int(11) DEFAULT NULL,
   `result` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `auto_reporter` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `explanation_markup` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'html',
   PRIMARY KEY (`id`),
   KEY `index_reports_on_item_type_and_item_id` (`item_type`,`item_id`),
   KEY `index_reports_on_reporter_id` (`reporter_id`),
@@ -2176,6 +2177,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20210123022257'),
 ('20210213213755'),
 ('20210213222917'),
-('20210214165054');
+('20210214165054'),
+('20210214193805');
 
 
