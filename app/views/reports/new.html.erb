@@ -20,6 +20,8 @@
 <% end %>
 
 <%= form_with(model: @report) do |f| %>
+  <%= render partial: 'shared/errors', locals: { resource: @report } %>
+
   <div class="form-control radio-group">
     <%= f.label :reason %><br>
     <%= f.radio_button(:reason, Report::REASON_SPAM, required: true) %> <%= f.label :reason, t('reports.reason.spam'), class: 'radio-label', value: Report::REASON_SPAM %><br>
@@ -36,6 +38,10 @@
 
   <div class="previewable" data-markup-option-name="report[explanation_markup]" data-preview-label="<%= t('common.preview_tab') %>" data-write-label="<%= t('common.write_tab') %>">
     <%= f.text_area :explanation, placeholder: t('reports.explanation_placeholder') %>
+  </div>
+
+  <div class="report-screenshot-control">
+    <%= render partial: 'screenshots/entry', locals: { f: f } %>
   </div>
 
   <%= hidden_field_tag :item_class, @report.item.class.name.downcase %>

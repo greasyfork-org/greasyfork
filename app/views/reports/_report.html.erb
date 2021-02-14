@@ -23,6 +23,7 @@
   <blockquote>
     <div class="user-content">
       <%= format_user_text(report.explanation, report.explanation_markup) %>
+      <%= render partial: 'screenshots/show', locals: { attachable: report } %>
     </div>
   </blockquote>
 <% end %>
