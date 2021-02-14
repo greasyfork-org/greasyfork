@@ -16,7 +16,10 @@ class ReportsController < ApplicationController
     @report = Report.new(report_params)
     @report.reporter = current_user
     @report.item = item
-    @report.save!
+    unless @report.save
+      render :new
+      return
+    end
 
     item.discussion.update!(review_reason: 'trusted') if @report.item.is_a?(Comment) && @report.item.first_comment? && current_user.trusted_reports
 
@@ -47,7 +50,7 @@ class ReportsController < ApplicationController
   private
 
   def report_params
-    params.require(:report).permit(:reason, :explanation, :explanation_markup)
+    params.require(:report).permit(:reason, :explanation, :explanation_markup, attachments: [])
   end
 
   def item

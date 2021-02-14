@@ -1,4 +1,6 @@
 class Report < ApplicationRecord
+  include HasAttachments
+
   REASON_SPAM = 'spam'.freeze
   REASON_ABUSE = 'abuse'.freeze
   REASON_ILLEGAL = 'illegal'.freeze
