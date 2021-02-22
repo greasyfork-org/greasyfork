@@ -5,7 +5,6 @@
     <%= t('reports.report_intro_unauthorized_html', reported_script: report_item_link(report), other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow), reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter))) %>
   <% else %>
     <%= t('reports.report_intro_html', reported_item: report_item_link(report), reason: report.reason_text, reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter))) %>
-    <%= report_item_link(report) %> has been reported for <%= report.reason_text %> by <%= report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)) %>.
   <% end %>
 </h4>
 
@@ -25,7 +24,7 @@
   </blockquote>
 <% end %>
 
-<% if report.explanation.present? %>
+<% if !report.auto_reporter && report.explanation.present? %>
   <div><%= t('common.quote.prefix_html', user: render_user(report.reporter, report.reporter_id)) %></div>
   <blockquote>
     <div class="user-content">
