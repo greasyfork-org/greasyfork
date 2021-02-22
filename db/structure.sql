@@ -1459,7 +1459,7 @@ CREATE TABLE `reports` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `item_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `item_id` bigint(20) NOT NULL,
-  `reason` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `reason` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `explanation` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `reporter_id` int(11) DEFAULT NULL,
   `result` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -1474,7 +1474,7 @@ CREATE TABLE `reports` (
   KEY `index_reports_on_reporter_id` (`reporter_id`),
   KEY `index_reports_on_result` (`result`),
   CONSTRAINT `fk_rails_c4cb6e6463` FOREIGN KEY (`reporter_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2571 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2579 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `roles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1933,7 +1933,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `index_users_on_remember_token` (`remember_token`),
   KEY `index_users_on_canonical_email` (`canonical_email`),
   KEY `index_users_on_email_domain_and_current_sign_in_ip_and_banned_at` (`email_domain`,`current_sign_in_ip`,`banned_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=710047 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=710048 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -2186,6 +2186,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20210214193805'),
 ('20210216014727'),
 ('20210221225945'),
-('20210221233018');
+('20210221233018'),
+('20210222030536');
 
 
