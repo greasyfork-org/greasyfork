@@ -8,10 +8,9 @@ class FeedbackTest < ApplicationSystemTestCase
 
     visit script_url(Script.first, locale: :en)
     click_link 'report the script'
-    click_link 'Report unauthorized copies of your script.'
     fill_in 'Email', with: user.email
     fill_in 'Password', with: user.password
     click_button 'Log in'
-    assert_selector 'p', text: 'Use the form below for reporting a script'
+    assert_selector 'p', text: 'Before reporting, please note'
   end
 end

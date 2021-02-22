@@ -30,8 +30,6 @@
         <div class="possibly-long-text">
           <% if action.report %>
             <%= link_to "Report ##{action.report.id}", report_path(action.report) %>
-          <% elsif action.script_report %>
-            <%= link_to "Script report ##{action.script_report.id}", script_script_report_path(action.script_report.script, action.script_report) %>
           <% end %>
           <%= action.reason %>
         </div>

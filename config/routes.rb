@@ -65,7 +65,6 @@ Rails.application.routes.draw do
         get 'derivatives'
         get 'diff', constraints: ->(req) { req.params[:v1].present? && req.params[:v2].present? }
         get 'feedback'
-        get 'report'
         get 'stats'
 
         post 'install-ping', locale: nil
@@ -94,7 +93,6 @@ Rails.application.routes.draw do
         get 'by-site(.:format)', action: 'by_site', as: 'site_list'
         # :site can contain a dot, make sure site doesn't eat format or vice versa
         get 'by-site/:site(.:format)', action: 'index', as: 'by_site', constraints: { site: /.*?/, format: /|html|atom|json|jsonp/ }
-        get 'reported(.:format)', action: 'reported', as: 'reported'
         get 'reported_not_adult(.:format)', action: 'reported_not_adult', as: 'reported_not_adult'
         get 'libraries(.:format)', action: 'libraries', as: 'libraries'
         get 'search(.:format)', action: 'search', as: 'search'
@@ -104,14 +102,6 @@ Rails.application.routes.draw do
       resources :script_versions, only: [:create, :new, :index], path: 'versions' do
         get 'delete(.:format)', to: 'script_versions#delete', as: 'delete'
         post 'delete(.:format)', to: 'script_versions#do_delete', as: 'do_delete'
-      end
-
-      resources :script_reports, path: 'reports', only: [:new, :create, :show, :index] do
-        member do
-          patch :rebut
-          patch :resolve_delete
-          patch :dismiss
-        end
       end
 
       resources :discussions, only: [:show, :create, :show, :destroy] do
@@ -188,6 +178,7 @@ Rails.application.routes.draw do
       member do
         post :dismiss
         post :uphold
+        post :rebut
       end
     end
 

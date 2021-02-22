@@ -1,7 +1,3 @@
-<% reported_count = ScriptReport.unresolved_old.count %>
-<% if reported_count > 0 %>
-  <%= link_to "[#{reported_count}]", reported_scripts_path, title: 'Reported scripts' %>
-<% end %>
 <% requiring_review_count = Script.not_deleted.where(review_state: :required).count %>
 <% if requiring_review_count > 0 %>
   <%= link_to "[#{requiring_review_count}]", admin_blocked_script_texts_path, title: 'Requiring review' %>

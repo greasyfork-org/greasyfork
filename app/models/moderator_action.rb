@@ -3,7 +3,6 @@ class ModeratorAction < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :moderator, class_name: 'User'
   belongs_to :report, optional: true
-  belongs_to :script_report, optional: true
 
   validates :moderator, :action, presence: true
 

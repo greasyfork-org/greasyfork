@@ -1,9 +1,9 @@
-<%- title t('scripts.feedback_title', :script_name => @script.name(request_locale)) %>
+<%- title t('scripts.feedback_title', script_name: @script.name(request_locale)) %>
 <%- description 'Feedback on ' + @script.name(request_locale) %>
 
-<% if @script.script_reports.unresolved.any? %>
+<% if @script.reports.unresolved.any? %>
   <p>
-    <%= link_to t('scripts.feedback_has_reports', site_name: site_name), script_script_reports_path(@script), rel: :nofollow %>
+    <%= link_to t('scripts.feedback_has_reports', site_name: site_name), report_path(@script.reports.first), rel: :nofollow %>
   </p>
 <% end %>
 
@@ -40,7 +40,7 @@
   <% #if we're showing a lot of them, have a link on top too
      if @discussions.length > 10 %>
     <p>
-      <%= it('scripts.feedback_or_report', report_link: It.link(report_script_path(@script), rel: :nofollow), feedback_link: It.link("#post-discussion", rel: :nofollow)) %>
+      <%= it('scripts.feedback_or_report', report_link: It.link(new_report_path(item_class: 'script', item_id: @script.id), rel: :nofollow), feedback_link: It.link("#post-discussion", rel: :nofollow)) %>
     </p>
   <% end %>
   <% if @discussions.empty? %>
@@ -55,7 +55,7 @@
   <% end %>
   <h3 id="post-discussion"><%= t('discussions.new_discussion_heading') %></h3>
   <p>
-    <%= it('scripts.feedback_report_instead', site_name: site_name, rules_link: It.link(help_code_rules_path), report_link: It.link(report_script_path(@script), rel: :nofollow)) %>
+    <%= it('scripts.feedback_report_instead', site_name: site_name, rules_link: It.link(help_code_rules_path), report_link: It.link(new_report_path(item_class: 'script', item_id: @script.id), rel: :nofollow)) %>
   </p>
   <% if current_user %>
     <%= form_with(model: @discussion, url: script_discussions_path(@script), method: :POST, id: 'new-script-discussion') do |f| %>

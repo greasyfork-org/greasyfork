@@ -25,11 +25,11 @@ class Script < ApplicationRecord
   has_many :localized_descriptions, -> { where(attribute_key: 'description') }, class_name: 'LocalizedScriptAttribute', inverse_of: :script
   has_many :localized_additional_infos, -> { where(attribute_key: 'additional_info') }, class_name: 'LocalizedScriptAttribute', inverse_of: :script
   has_many :compatibilities, autosave: true, dependent: :destroy
-  has_many :script_reports, inverse_of: :script, dependent: nil
   has_many :script_invitations, dependent: :destroy
   has_many :script_similarities, dependent: :destroy
   has_many :forum_discussions, foreign_key: 'ScriptID', inverse_of: :script
   has_many :antifeatures, dependent: :destroy, autosave: true
+  has_many :reports, as: :item, dependent: :destroy
 
   belongs_to :script_type
   belongs_to :script_sync_source, optional: true
@@ -61,7 +61,7 @@ class Script < ApplicationRecord
   scope :listable, ->(script_subset) { active(script_subset).where(script_type_id: 1).where.not(review_state: 'required') }
   scope :libraries, ->(script_subset) { active(script_subset).where(script_type_id: ScriptType::LIBRARY_TYPE_ID) }
   scope :listable_including_libraries, ->(script_subset) { active(script_subset).where(script_type_id: [1, 3]) }
-  scope :reported, -> { not_deleted.joins(:script_reports).where(script_reports: { result: nil }).distinct }
+  scope :reported, -> { not_deleted.joins(:reports).where(reports: { result: nil }).distinct }
   scope :reported_not_adult, -> { not_deleted.includes(:users).where.not(not_adult_content_self_report_date: nil) }
   scope :for_all_sites, -> { includes(:script_applies_tos).references(:script_applies_tos).where('script_applies_tos.id' => nil) }
   scope :locked, -> { where(locked: true) }
@@ -479,7 +479,7 @@ class Script < ApplicationRecord
   end
 
   def pending_report_by_trusted_reporter?
-    script_reports.block_on_pending.any?
+    reports.block_on_pending.any?
   end
 
   def review_required?
