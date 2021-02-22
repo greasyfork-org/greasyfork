@@ -4,6 +4,10 @@
     <%= t('reports.new_report_title.user', user: report_item_link(@report)).html_safe %>
   <% when Comment %>
     <%= t('reports.new_report_title.comment', user: render_user(@report.item.poster, @report.item.poster_id)).html_safe %>
+  <% when Message %>
+    <%= t('reports.new_report_title.message', user: render_user(@report.item.poster, @report.item.poster_id)).html_safe %>
+  <% when Script %>
+    <%= t('reports.new_report_title.script', script: report_item_link(@report)).html_safe %>
   <% end %>
 </h3>
 
@@ -14,9 +18,11 @@
 <% end %>
 
 <% if @report.item.is_a?(User) %>
-  <%= t('reports.new_report_notes_html') %>
-<% else %>
   <%= t('reports.new_user_report_notes_html') %>
+<% elsif @report.item.is_a?(Script) %>
+  <%= it('reports.new_script_report_notes_html', feedback_link: feedback_script_path(@report.item), rules_link: help_code_rules_path, site_name: site_name) %>
+<% else %>
+  <%= t('reports.new_report_notes_html') %>
 <% end %>
 
 <%= form_with(model: @report) do |f| %>
@@ -24,9 +30,23 @@
 
   <div class="form-control radio-group">
     <%= f.label :reason %><br>
-    <%= f.radio_button(:reason, Report::REASON_SPAM, required: true) %> <%= f.label :reason, t('reports.reason.spam'), class: 'radio-label', value: Report::REASON_SPAM %><br>
-    <%= f.radio_button(:reason, Report::REASON_ABUSE, required: true) %> <%= f.label :reason, t('reports.reason.abuse'), class: 'radio-label', value: Report::REASON_ABUSE %><br>
-    <%= f.radio_button(:reason, Report::REASON_ILLEGAL, required: true) %> <%= f.label :reason, t('reports.reason.illegal'), class: 'radio-label', value: Report::REASON_ILLEGAL %><br>
+    <% possible_reasons = @report.item.is_a?(Script) ? Report::REASON_TEXT.keys : Report::NON_SCRIPT_REASONS %>
+    <% if @report.item.is_a?(Script) %>
+      <div>
+        <%= f.radio_button(:reason, 'non_functional', required: true) %> <%= f.label :reason, t("reports.reason.non_functional"), class: 'radio-label', value: 'non_functional' %><br>
+        <div class="after-radio-chosen alert"><%= it('reports.non_functional_feedback', feedback_link: feedback_script_path(@report.item)) %></div>
+      </div>
+    <% end %>
+    <% possible_reasons.each do |reason| %>
+      <div>
+        <%= f.radio_button(:reason, reason, required: true) %> <%= f.label :reason, t("reports.reason.#{reason}"), class: 'radio-label', value: reason %>
+        <% if reason == Report::REASON_UNAUTHORIZED_CODE %>
+          <div class="after-radio-chosen">
+            <%= f.url_field :script_url, placeholder: t('reports.unauthorized_code_original_placeholder') %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 
   <span class="label-note">

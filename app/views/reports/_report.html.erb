@@ -1,21 +1,28 @@
 <% i = 0 unless defined?(i) %>
 
-<h4 id="open-report-<%= i %>"><%= report_item_link(report) %> has been reported for <%= report.reason_text %> by <%= report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)) %>.</h4>
+<h4 id="open-report-<%= i %>">
+  <% if report.unauthorized_code? && (report.reference_script || report.script_url.present?) %>
+    <%= t('reports.report_intro_unauthorized_html', reported_script: report_item_link(report), other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow), reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter))) %>
+  <% else %>
+    <%= t('reports.report_intro_html', reported_item: report_item_link(report), reason: report.reason_text, reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter))) %>
+    <%= report_item_link(report) %> has been reported for <%= report.reason_text %> by <%= report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)) %>.
+  <% end %>
+</h4>
 
 <% if report.item.is_a?(Comment) %>
-  <div><%= t('common.quote.prefix_html', user: render_user(report.reported_user, report.reported_user_id)) %></div>
+  <div><%= t('common.quote.prefix_html', user: render_user(report.reported_users.first, report.reported_user_id)) %></div>
   <blockquote>
     <div class="user-content">
       <%= format_user_text(report.item.text, report.item.text_markup) %>
     </div>
   </blockquote>
 <% elsif report.item.is_a?(Message) %>
-    <div><%= t('common.quote.prefix_html', user: render_user(report.reported_user, report.reported_user_id)) %></div>
-    <blockquote>
-      <div class="user-content">
-        <%= format_user_text(report.item.content, report.item.content_markup) %>
-      </div>
-    </blockquote>
+  <div><%= t('common.quote.prefix_html', user: render_user(report.reported_users.first, report.reported_user_id)) %></div>
+  <blockquote>
+    <div class="user-content">
+      <%= format_user_text(report.item.content, report.item.content_markup) %>
+    </div>
+  </blockquote>
 <% end %>
 
 <% if report.explanation.present? %>
@@ -26,6 +33,61 @@
       <%= render partial: 'screenshots/show', locals: { attachable: report } %>
     </div>
   </blockquote>
+<% end %>
+
+<% if report.rebuttal.present? %>
+  <div><%= t('common.quote.prefix_html', user: render_user(report.rebuttal_by_user, report.rebuttal_by_user_id)) %></div>
+  <blockquote>
+    <div class="user-content">
+      <%= format_user_text(report.rebuttal, 'text') %>
+    </div>
+  </blockquote>
+<% end %>
+
+<% if report.unauthorized_code? && report.reference_script %>
+  <table>
+    <thead>
+    <tr>
+      <th></th>
+      <th>Script</th>
+      <th>License</th>
+      <th>Created</th>
+      <th>Updated</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>Reported</td>
+      <td><%= render_script(report.item) %></td>
+      <td><%= license_display(report.item) %></td>
+      <td><%= report.item.created_at %></td>
+      <td><%= report.item.code_updated_at %></td>
+    </tr>
+    <tr>
+      <td>Original</td>
+      <% if report.reference_script %>
+        <td><%= render_script(report.reference_script) %></td>
+        <td><%= license_display(report.reference_script) %></td>
+        <td><%= report.reference_script.created_at %></td>
+        <td><%= report.reference_script.code_updated_at %></td>
+      <% else %>
+        <td><%= link_to report.script_url %></td>
+      <% end %>
+    </tr>
+    </tbody>
+  </table>
+
+  <% if report.reference_script %>
+    <div class="report-diff">
+      <% original_code = report.reference_script.script_versions.last.code
+         new_code = report.item.newest_saved_script_version.code %>
+      <% if original_code == new_code %>
+        <p>The scripts are identical.</p>
+      <% else %>
+        <%= Diffy::Diff.new(original_code, new_code, include_plus_and_minus_in_html: true).to_s(:html).html_safe %>
+      <% end %>
+    </div>
+  <% end %>
 <% end %>
 
 <% if report.reporter %>
@@ -40,11 +102,11 @@
   <% end %>
 <% end %>
 
-<% if report.reported_user %>
+<% report.reported_users.each do |reported_user| %>
   <p>
-    <%= render_user(report.reported_user, report.reported_user_id) %> has made
-    <%= link_to "#{report.reported_user.comments.not_deleted.count} #{'comment'.pluralize(report.reported_user.comments.not_deleted.count)}", discussions_path(user: report.reported_user.id) %>
-    and posted <%= report.reported_user.scripts.count %> <%= 'script'.pluralize(report.reported_user.scripts.count) %>.
+    <%= render_user(reported_user, reported_user.id) %> has made
+    <%= link_to "#{reported_user.comments.not_deleted.count} #{'comment'.pluralize(reported_user.comments.not_deleted.count)}", discussions_path(user: reported_user.id) %>
+    and posted <%= reported_user.scripts.count %> <%= 'script'.pluralize(reported_user.scripts.count) %>.
   </p>
 <% end %>
 
@@ -56,34 +118,47 @@
   <p>
     <%= t('reports.result_dismissed') %>
   </p>
+<% elsif current_user && report.item.is_a?(Script) && report.item.users.include?(current_user) %>
+  <% unless @report.rebuttal.present? %>
+    <%= form_with(model: report, url: rebut_report_path(report), method: 'POST') do |f| %>
+      <%= f.text_area :rebuttal, required: true, placeholder: t('reports.rebuttal_placeholder'), maxlength: 10000 %>
+      <br>
+      <%= f.submit t('reports.submit_rebuttal') %>
+    <% end %>
+  <% end %>
+  <%= form_tag(uphold_report_path(report), method: 'POST') do %>
+    <%= submit_tag(t('reports.delete_script')) %>
+  <% end %>
+  <p>
+    <%= t('reports.result_pending') %>
+  </p>
 <% elsif current_user&.moderator? %>
   <%= button_to('Dismiss report', dismiss_report_path(report, index: i), method: 'POST', form_class: 'inline-form') %>
   <%= form_tag(uphold_report_path(report, index: i), method: 'POST', class: 'report-resolution-options') do %>
 
-    <% if report.reported_user %>
-      <% other_comments = report.reported_user.comments.not_deleted
-      other_comments = other_comments.where.not(id: report.item.id) if report.item.is_a?(Comment)
-      if other_comments.count > 0 %>
-        <%= check_box_tag :delete_comments, '1', false, id: "delete-comments-#{report.id}" %><%= label_tag "delete-comments-#{report.id}", "Delete #{report.reported_user.name}'s #{other_comments.count} #{(report.item.is_a?(Comment) ? 'other comment' : 'comment').pluralize(other_comments.count)}" %><br>
-      <% end %>
-
-      <% scripts = report.reported_user.scripts.not_deleted
-      if scripts.count > 0 %>
-        <%= check_box_tag :delete_scripts, '1', false, id: "delete-scripts-#{report.id}" %><%= label_tag "delete-scripts-#{report.id}", "Delete #{report.reported_user.name}'s #{scripts.count} #{'script'.pluralize(scripts.count)}" %><br>
-      <% end %>
+    <% other_comments = report.reported_users.map{|user| comments = user.comments.not_deleted; comments = comments.where.not(id: report.item.id) if report.item.is_a?(Comment); [user, comments.count] }.to_h
+    if other_comments.values.sum > 0 %>
+      <%= check_box_tag :delete_comments, '1', false, id: "delete-comments-#{report.id}" %><%= label_tag "delete-comments-#{report.id}", "Delete #{other_comments.select{|user, count| count > 0}.map{|user, comments_count| "#{user.name}'s #{comments_count} #{(report.item.is_a?(Comment) ? 'other comment' : 'comment').pluralize(comments_count)}" }.to_sentence}" %><br>
     <% end %>
 
-    <% if report.item.is_a?(Comment) && report.reported_user && !report.reported_user.banned? %>
-      <%= check_box_tag :ban, '1', false, id: "ban-#{report.id}" %><%= label_tag "ban-#{report.id}", "Ban #{report.reported_user.name}" %><br>
+    <% other_scripts = report.reported_users.map{|user| scripts = user.scripts.not_deleted; scripts = scripts.where.not(id: report.item.id) if report.item.is_a?(Script); [user, scripts.count] }.to_h
+    if other_scripts.values.sum > 0 %>
+      <%= check_box_tag :delete_scripts, '1', false, id: "delete-scripts-#{report.id}" %><%= label_tag "delete-scripts-#{report.id}", "Delete #{other_scripts.select{|user, count| count > 0}.map{|user, scripts_count| "#{user.name}'s #{scripts_count} #{(report.item.is_a?(Comment) ? 'other script' : 'script').pluralize(scripts_count)}" }.to_sentence}" %><br>
+    <% end %>
+
+    <% if (report.item.is_a?(Comment) || report.item.is_a?(Script)) && report.reported_users.reject(&:banned?).any? %>
+      <%= check_box_tag :ban, '1', false, id: "ban-#{report.id}" %><%= label_tag "ban-#{report.id}", "Ban #{report.reported_users.reject(&:banned?).map(&:name).to_sentence}" %><br>
     <% end %>
 
     <% case report.item %>
     <% when User %>
-      <%= submit_tag "Ban #{report.reported_user.name}" %>
+      <%= submit_tag "Ban #{report.reported_users.first.name}" %>
     <% when Comment %>
       <%= submit_tag("Delete comment") %>
+    <% when Script %>
+      <%= submit_tag(t('reports.delete_script')) %>
     <% when Message %>
-      <%= submit_tag("Ban #{report.reported_user.name}") %>
+      <%= submit_tag("Ban #{report.reported_users.first.name}") %>
     <% else
       raise "Unknown item #{report.item}"
     end

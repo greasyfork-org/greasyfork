@@ -12,7 +12,9 @@
   <% end %>
   <link rel="canonical" href="<%= canonical_url(@canonical_params) %>">
   <link rel="icon" href="<%= image_pack_path 'blacklogo16.png' %>">
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <% unless Rails.env.test? %>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <% end %>
   <% if request.get?
     # https://support.google.com/webmasters/answer/189077
     alternate_url_without_locale = current_path_with_params(locale: 'XX').sub(/\A\/XX/, '') %>

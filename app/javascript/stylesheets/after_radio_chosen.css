@@ -1,0 +1,6 @@
+.after-radio-chosen {
+  display: none;
+}
+input[type=radio]:checked ~ .after-radio-chosen {
+  display: block;
+}

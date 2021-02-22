@@ -495,18 +495,6 @@ en:
     preview_additional_info: "Preview"
     must_confirm_email: "You must confirm your email before posting scripts."
     must_confirm_email_button: "Send confirmation link to %{email}"
-    report:
-      title: "Report %{script_name}"
-      text_html: >-
-        <p>Scripts posted on %{site_name} must abide by %{rules_link:its rules}. Report violations using the links below and %{site_name} moderators will review your report.</p>
-        <ul>
-          <li>%{unauthorized_link:Report unauthorized copies of your script.}</li>
-          <li>%{malware_link:Report malware.}</li>
-          <li>%{spam_link:Report spam or other non-script content.}</li>
-          <li>%{feedback_link:Report that the script doesn't work.}</li>
-          <li>%{other_report_link:Report other violations, including undisclosed ads or cryptominers.}</li>
-         </ul>
-        <p>Please note that being non-functional and contravening a third party's terms of use are <em>not</em> violations of %{site_name}'s rules. In these cases, you can instead %{feedback_link:leave feedback} on the script.</p>
     authors_heading: "Authors"
     error_unauthorized_copy: "This code appears to be an unauthorized copy of %{script}. Please refer to %{site_name}'s %{rules_link:rules} on posting scripts."
     invitations:
@@ -1110,11 +1098,20 @@ en:
     new_report_title:
       user: "Report %{user}"
       comment: "Report a comment by %{user}"
+      message: "Report a message by %{user}"
+      script: "Report %{script}"
     new_report_notes_html: >
       <p>Before reporting, please note:</p>
       <ul>
         <li>A moderator will review your report and act on it accordingly.</li>
         <li>Disagreeing with the content or believing it to be untrue is not a valid reason for reporting.</li>
+        <li>Abuse of this reporting feature may lead to <i>you</i> being banned.</li>
+      </ul>
+    new_script_report_notes_html: >
+      <p>Before reporting, please note:</p>
+      <ul>
+        <li>Scripts will only be removed due to them violating %{rules_link:%{site_name}'s rules}. If the script is broken or non-functional, %{feedback_link:leave feedback instead.}</li>
+        <li>A moderator will review your report and act on it accordingly.</li>
         <li>Abuse of this reporting feature may lead to <i>you</i> being banned.</li>
       </ul>
     new_user_report_notes_html: >
@@ -1125,9 +1122,20 @@ en:
         <li>Abuse of this reporting feature may lead to <i>you</i> being banned.</li>
       </ul>
     reason:
+      non_functional: "Script does not work"
       spam: "Spam"
       abuse: "Abusive or hateful content"
-      illegal: "Malware or illegal content"
+      illegal: "Illegal content"
+      unauthorized_code: "Unauthorized copy"
+      malware: "Malware"
+      minified: "Minified code"
+      external_code: "Disallowed external code"
+      undisclosed_antifeature: "Undisclosed antifeature (e.g. ad, tracking, miner)"
+      other: "Other"
+    report_intro_html: "%{reported_item} has been reported for %{reason} by %{reporter}"
+    report_intro_unauthorized_html: "%{reported_script} has been reported as an unauthorized copy of %{other_script} by %{reporter}."
+    non_functional_feedback: "Please report non-functional scripts as %{feedback_link:feedback} on the script instead."
+    unauthorized_code_original_placeholder: "URL of original code"
     explanation_placeholder: "Provide additional details (optional)"
     create_button: "Create report"
     report_user: "Report user"
@@ -1136,6 +1144,9 @@ en:
     result_dismissed: "This report has been dismissed by a moderator."
     result_upheld: "This report has been upheld by a moderator."
     result_pending: "This report is pending review by a moderator."
+    rebuttal_placeholder: 'Explain to a moderator why this script should not be deleted.'
+    submit_rebuttal: "Submit rebuttal"
+    delete_script: "Delete script"
   discussions:
     title: Discussions
     comment_date: "Posted: %{date}"
@@ -1381,11 +1392,7 @@ en:
     script_report:
       report_created_offender:
         subject: "Your script %{script_name} on %{site_name} has been reported"
-        reason_unauthorized: "Your script %{script_name} on %{site_name} has been reported as being an unauthorized copy or modification of another script."
-        reason_malware: "Your script %{script_name} on %{site_name} has been reported as malware."
-        reason_spam: "Your script %{script_name} on %{site_name} has been reported as spam."
-        reason_other: "Your script %{script_name} has been reported as violating %{site_name}'s rules."
-        action: "You can review this report at %{report_url} and submit a rebuttal. If you do not submit a rebuttal, your script may be deleted by moderators. If you have any questions, please visit https://greasyfork.org/forum/."
+        text: "Your script %{script_name} has been reported as violating %{site_name}'s rules. The specific reason given: %{reason}. You can review this report at %{report_url} and submit a rebuttal. If you do not submit a rebuttal, your script may be deleted by moderators. If you have any questions, please visit https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Your script %{script_name} on %{site_name} has been deleted"
         text: "Your script %{script_name} on %{site_name} has been deleted by a moderator. You can review the report at %{report_url}. If you have any questions, please visit https://greasyfork.org/forum/."

@@ -22,14 +22,13 @@ class SessionsController < Devise::SessionsController
       moderator_action = ModeratorAction.order(id: :desc).find_by(user: resource)
       delete_link = new_user_session_path(return_to: BANNED_DELETE_PATH)
       flash[:html_safe] = true
-      if moderator_action&.report || moderator_action&.script_report
-        report_link = moderator_action.report ? report_path(moderator_action.report) : script_script_report_path(moderator_action.script_report.script, moderator_action.script_report)
-        flash[:alert] = It.it('users.banned_notice.with_report', report_link: report_link, delete_link: delete_link)
-      elsif moderator_action&.reason.present?
-        flash[:alert] = It.it('users.banned_notice.with_reason', reason: moderator_action.reason, delete_link: delete_link)
-      else
-        flash[:alert] = It.it('users.banned_notice.no_report_no_reason', delete_link: delete_link)
-      end
+      flash[:alert] = if moderator_action&.report
+                        It.it('users.banned_notice.with_report', report_link: report_path(moderator_action.report), delete_link: delete_link)
+                      elsif moderator_action&.reason.present?
+                        It.it('users.banned_notice.with_reason', reason: moderator_action.reason, delete_link: delete_link)
+                      else
+                        It.it('users.banned_notice.no_report_no_reason', delete_link: delete_link)
+                      end
       return root_path
     end
     return super(resource)

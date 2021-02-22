@@ -34,7 +34,7 @@ module ScriptAndVersions
       return true
     end
 
-    if script.pending_report_by_trusted_reporter? && !(current_user && script.script_reports.where(reporter: current_user).any?)
+    if script.pending_report_by_trusted_reporter? && !(current_user && script.reports.where(reporter: current_user).any?)
       render_pending_report(script)
       return true
     end

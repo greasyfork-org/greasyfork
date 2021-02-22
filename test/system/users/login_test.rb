@@ -41,15 +41,6 @@ module Users
       assert_content 'Your account has been banned in response to this report.'
     end
 
-    test 'can see banning script report' do
-      user = users(:one)
-      user.update!(banned_at: Time.zone.now)
-      report = ScriptReport.create!(reporter: users(:admin), script: Script.first, details: 'blah blah', report_type: ScriptReport::TYPE_MALWARE)
-      ModeratorAction.create!(user: user, reason: 'You suck', action: 'ban', moderator: users(:admin), script_report: report)
-      log_in(user)
-      assert_content 'Your account has been banned in response to this report.'
-    end
-
     test 'can delete account when banned' do
       with_sphinx do
         user = users(:one)
