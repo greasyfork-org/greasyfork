@@ -36,6 +36,7 @@ uk:
     update: "Оновитися до версії %{version}"
     downgrade: "Відкотитися до версії %{version}"
     reinstall: "Перевстановити версію %{version}"
+    promoted: "Розкручений сценарій"
     library_instructions_html: "Цей скрипт не слід встановлювати безпосередньо. Це - бібліотека для інших скриптів для включення в мета директиву %{code}"
     deleted_notice: "Цей скрипт було видалено."
     version_notice_html: "Від %{date}. Дивіться %{latest_version_link}."
@@ -58,9 +59,12 @@ uk:
     delete_permanently_notice: "Запит на остаточне видалення було прийнято. Ваш скрипт буде повністю видалено через 7 днів."
     delete_permanently_notice_immediate: "Скрипт був повністю видалений."
     cancel_delete_permanently_submit: "Відмінити запит на повне знищення"
+    cancel_delete_permanently_notice: "Ваш запит на повне знищення був скасований. Ваш сценарій досі не видно для інших."
     delete_permanently_rejected_locked: "Цей скрипт заблокований і не може бути повністю видалений"
     admin_page: "Адміністратор"
     admin:
+      promoted_heading: "Розкручений сценарій"
+      promoted_submit: "Встановити розкручений сценарій"
       compare_button: "Порівняти"
     history_title: "%{script_name} - Історія версій"
     history_only_code_changes_info: "Це версії цього скрипту, де код був змінений."
@@ -245,6 +249,13 @@ uk:
           title: Криптомайнер
       install_anyway: Встановити скрипт
       cancel_install: Скасувати
+    badges:
+      js:
+        short: JS
+        long: Сценарій користувача
+      css:
+        short: CSS
+        long: Стиль користувача
   script_sets:
     favorites_name: "Улюблені"
     delete: "Видалити цей набір скриптів"
@@ -297,6 +308,7 @@ uk:
     script_list_none_same_user_html: "Ви ще не створили жодного скрипту. %{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "Хочете дізнатись як?"
     deleted_script_list: "Видалені скрипти"
+    unlisted_script_list: "Недоступні сценарії"
     sign_out: "Вийти"
     edit: "Змінити обліковий запис"
     edit_sign_in: "Змінити методи входу"
@@ -372,6 +384,8 @@ uk:
         title: Сповіщення форуму
       save_button: Оновити налаштування сповіщень
       title: Сповіщення
+      unsubscribe_all: Скасувати підписку на усі сповіщення
+      unsubscribe_all_success: Ви скасували підписку на всі сповіщення.
   help:
     sections:
       usage: Використання
@@ -440,7 +454,9 @@ uk:
     edit_comment_link: "Редагувати"
     edit_comment_header: "Редагувати коментар"
     delete_comment: "Видалити"
+    delete_comment_confirm: Ви впевнені, що хочете видалити цей коментар?
     delete_discussion: "Видалити"
+    delete_discussion_confirm: Ви впевнені, що хочете видалити цю розмову?
     cancel_update_comment: "Скасувати"
     quote_comment: "Цитувати"
     review_heading_html: "Відгук: %{rating}"
@@ -458,6 +474,9 @@ uk:
       all: Всі
       read: Прочитано
       unread: Не прочитано
+    locale_filter:
+      label: Мова
+      all: Всі
     user_activity:
       title: "Останні коментарі"
     subscribe: Підписатися
@@ -475,6 +494,7 @@ uk:
   conversations:
     new_button: Створити обговорення
     send_message: Надіслати повідомлення
+    no_recent_conversations: У вас немає недавніх розмов.
   screenshots:
     requirements: "Максимум %{number} PNG, GIF, JPEG, або WebP зображень, кожне з яких менше за %{size}."
   common:
