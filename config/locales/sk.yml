@@ -292,29 +292,6 @@ sk:
     preview_additional_info: "Náhľad"
     must_confirm_email: "Pred odoslaním skriptu musíte potvrdiť váš email."
     must_confirm_email_button: "Poslať potvrdzovací odkaz na %{email}"
-    report:
-      title: "Nahlásiť %{script_name}"
-      text_html: >-
-          <p>Skripty odoslané na %{site_name} musia dodržiavať %{rules_link:jeho pravidlá}.
-          Porušenia pravidiel nahlasujte pomocou odkazov nižšie a moderátori %{site_name}
-          skontrolujú vaše hlásenie.</p> <ul>
-
-          <li>%{unauthorized_link:Nahlásiť neautorizovanú kópiu vášho skriptu.}</li>
-
-          <li>%{malware_link:Nahlásiť malvér.}</li>
-
-          <li>%{spam_link:Nahlásiť spam alebo iný neskriptový obsah.}</li>
-
-          <li>%{feedback_link:Nahlásiť nefunkčnosť skriptu.}</li>
-
-          <li>%{other_report_link:Nahlásiť iné porušenie, vrátane nezverejnených reklám
-          alebo ťaženie kryptomien.}</li>
-
-          </ul>
-
-          <p>Upozorňujeme, že nefunkčnosť a porušenie podmienok tretích strán <em>nie
-          je</em> porušením pravidiel %{site_name}. V týchto prípadoch môžete použiť
-          %{feedback_link:zanechať spätnú väzbu} skriptu.</p>
     authors_heading: "Autori"
     error_unauthorized_copy: "Tento kód sa zdá byť neoprávnenou kópiou skriptu %{script}. Prosím, pozrite si pravidlá posielania skriptov na %{site_name}%{rules_link:pravidlá}"
     invitations:
@@ -898,7 +875,6 @@ sk:
     reason:
       spam: "Spam"
       abuse: "Urážlivý alebo nenávistný obsah"
-      illegal: "Škodlivý alebo nezákonný obsah"
     explanation_placeholder: "Uveďte ďalšie podrobnosti (voliteľné)"
     create_button: "Nahlásiť"
     report_user: "Nahlásiť používateľa"
@@ -1111,11 +1087,6 @@ sk:
     script_report:
       report_created_offender:
         subject: "Váš skript %{script_name} na %{site_name} bol nahlásený"
-        reason_unauthorized: "Váš skript %{script_name} na %{site_name}bol nahlásený ako neautorizovaná kópia alebo modifikácia iného skriptu."
-        reason_malware: "Váš skript %{script_name} na %{site_name} bol nahlásený ako malvér."
-        reason_spam: "Váš skript %{script_name} na %{site_name} bol nahlásený ako spam."
-        reason_other: "Váš skript %{script_name} bol nahlásený pre porušovanie pravidiel stránky %{site_name}."
-        action: "Toto hlásenie si môžete prezrieť na %{report_url} a odoslať protiargumenty. Ak nepošlete dôkazy o neopodstatnenosti, váš skript môže byť moderátorom odstránený. Ak máte nejaké otázky, prosím, navštívte https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Váš skript %{script_name} na %{site_name} bol odstránený"
         text: "Váš skript %{script_name} na %{site_name} bol odstránený moderátorom. Správu o hlásení si môžete pozrieť na %{report_url}. Ak máte nejaké otázky, prosím, navštívte https://greasyfork.org/forum/."

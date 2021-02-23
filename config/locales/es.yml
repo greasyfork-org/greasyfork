@@ -290,31 +290,6 @@ es:
     preview_additional_info: "Vista previa"
     must_confirm_email: "Tienes que verificar tu dirección de correo electrónico antes de subir scripts."
     must_confirm_email_button: "Enviar un enlace de confirmación a %{email}"
-    report:
-      title: "%{script_name} incumple las normas"
-      text_html: >-
-          <p>Los scripts de %{site_name} deben cumplir %{rules_link:las normas}. Puedes
-          informar de los problemas enumerados a continuación, los moderadores de
-          %{site_name} lo revisaran a su debido tiempo:</p><ul>
-
-          <li>%[unauthorized_link:Contiene un posible uso de código copiado sin la
-          debida autorización.]</li>
-
-          <li>%[malware_link:Contiene software malicioso.]</li>
-
-          <li>%[spam_link:Contiene spam u otros tipos de contenido extraño.]</li>
-
-          <li>%[other_report_link:Contiene scripts con anuncios, explotación de criptomonedas
-          u otros métodos con los que sacar rédito económico sin avisar a los usuarios.
-          Otras cosas.]</li>
-
-          </ul>
-
-
-          <p>Ten en cuenta que ni contravenir las normas de otros sitios ni que el
-          script no funcione incumple las normas de %{site_name}. En esos casos puedes
-          %{feedback_link:comentarlo en el foro} del propio script, pero en principio
-          no es un problema.</p>
     authors_heading: "Miembros del equipo"
     error_unauthorized_copy: "Parece que este script era una copia no autorizada de %{script}. Échale un vistazo a %{rules_link:las normas de contenido} de %{site_name} para ver lo que se puede y no puede hacer."
     invitations:
@@ -886,7 +861,6 @@ es:
     reason:
       spam: "Spam"
       abuse: "Abusos, perjuicios o discurso del odio"
-      illegal: "Malware o contenido ilegal"
     explanation_placeholder: "Proporciona más detalles (opcional)"
     create_button: "Denunciar"
     report_user: "Denunciar usuario"
@@ -1091,11 +1065,6 @@ es:
     script_report:
       report_created_offender:
         subject: "Alguien ha denunciado tu script %{script_name} en %{site_name}"
-        reason_unauthorized: "Han denunciado tu script «%{script_name}» en %{site_name} por ser una copia o modificación no autorizada de otro script."
-        reason_malware: "Han denunciado tu script «%{script_name}» en %{site_name} por incluir malware, virus o software malicioso."
-        reason_spam: "Han denunciado tu script «%{script_name}» en %{site_name} por incluir spam o material publicitario no deseado."
-        reason_other: "Han denunciado tu script «%{script_name}» por incumplir las normas de %{site_name}."
-        action: "Puedes revisar la denuncia en %{report_url} y enviar una justificación o refutarla. Si no respondes a tiempo los moderadores podrían borrarlo en el futuro. Si tienes dudas puedes visitar el foro: https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Tu script %{script_name} en %{site_name} ha sido eliminado."
         text: "Un moderador ha confirmado una denuncia y tu script %{script_name} en %{site_name} ha sido eliminado. Puedes ver la denuncia en %{report_url}. Si tienes dudas puedes escribirnos en https://greasyfork.org/forum/."

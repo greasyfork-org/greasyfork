@@ -290,30 +290,6 @@ fr:
     preview_additional_info: "Prévisualisation"
     must_confirm_email: "Vous devez confirmer votre adresse email avant de poster des scripts."
     must_confirm_email_button: "Envoyer le lien de confirmation à %{email}"
-    report:
-      title: "Signaler %{script_name}"
-      text_html: >-
-          <p>Les scripts posté sur %{site_name} doivent respecter %{rules_link:ses
-          règles}. Signalez les violations en utilisant les liens ci-dessous et %{site_name}
-          modérateurs examineront votre rapport.</p> <ul>
-
-          <li>%{unauthorized_link:Signalez les copies non autorisées de votre script.}</li>
-
-          <li>%{malware_link:Signalez les logiciels malveillants.}</li>
-
-          <li>%{spam_link:Signalez le spam ou tout autre contenu non scripté.}</li>
-
-          <li>%{feedback_link:Signalez que le script ne fonctionne pas .} </li>
-
-          <li>%{other_report_link:Signalez d'autres violations, y compris les publicités
-          non divulguées ou les cryptomineurs.}</li>
-
-          </ul>
-
-          <p>Veuillez noter qu'un dis-fonctionnement et une infraction des conditions
-          d'utilisation d'un tiers ne constitue <em>pas</em> une violation des règles
-          de %{site_name}. Dans ces cas, vous pouvez à la place %{feedback_link: laisser
-          des commentaires} sur le script.</p>
     authors_heading: "Auteurs"
     error_unauthorized_copy: "Ce code source a l'air d'être une reproduction interdite de %{script}. Veuillez vous référer aux %{rules_link:règles} de %{site_name} sur la soumission de scripts."
     invitations:
@@ -891,7 +867,6 @@ fr:
     reason:
       spam: "Spam"
       abuse: "Contenu abusif ou haineux"
-      illegal: "Contenu malveillant ou illégal"
     explanation_placeholder: "Ajouter des détails supplémentaires (optionnel)"
     create_button: "Créer un rapport"
     report_user: "Signaler l'utilisateur"
@@ -1100,11 +1075,6 @@ fr:
     script_report:
       report_created_offender:
         subject: "Votre script %{script_name} par %{site_name}  a été signalé"
-        reason_unauthorized: "Votre script %{script_name} par %{site_name} a été signalé comme étant une copie ou une modification non autorisée d'un autre script."
-        reason_malware: "Votre script %{script_name} par %{site_name} a été signalé comme malware."
-        reason_spam: "Votre script %{script_name} par %{site_name} a été signalé comme spam."
-        reason_other: "Votre script %{script_name} a été signalé comme enfreignant les règles de%{site_name}."
-        action: "Vous pouvez consulter ce rapport sur %{report_url}  et soumettre une réfutation. Si vous ne soumettez pas de réfutation, votre script peut être supprimé par les modérateurs. Si vous avez des questions, visiter https://greasyfork.org/fr/forum/."
       report_upheld_offender:
         subject: "Votre script %{script_name} par %{site_name} a été supprimé"
         text: "Votre script %{script_name} par %{site_name} a été supprimé par un modérateur. Vous pouvez consulter le rapport sur %{report_url}. Si vous avez des questions, visiter https://greasyfork.org/fr/forum/."

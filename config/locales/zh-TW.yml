@@ -282,25 +282,6 @@ zh-TW:
     preview_additional_info: "預覽"
     must_confirm_email: "發布腳本之前，必須驗證您的電子郵件。"
     must_confirm_email_button: "發送驗證郵件到%{email}"
-    report:
-      title: "檢舉 %{script_name}"
-      text_html: >-
-          <p>發佈在 %{site_name} 上的腳本必須遵守%{rules_link:其規則}。若是發現違反規定的腳本，您可以使用下方的連結來檢舉其違規行為。%{site_name}
-          的管理員將審核並處理您的報告。</p><ul>
-
-          <li>%{unauthorized_link:檢舉腳本包含未經授權的腳本副本}。</li>
-
-          <li>%{malware_link:檢舉腳本含有惡意代碼}。</li>
-
-          <li>%{spam_link:檢舉提交的腳本為垃圾內容或不是腳本的內容}。</li>
-
-          <li>%{feedback_link:報告腳本功能已經失效}。</li>
-
-          <li> %{other_report_link:檢舉腳本的其他違規項目，包括但不限於暗藏廣告或挖礦行為}。</li>
-
-          </ul>
-
-          <p>注意，失效或違反第三方的使用條款的腳本<em>並不違反</em> %{site_name} 的守則。若是遇到這種情況，請嘗試%{feedback_link:留下回應}與作者交流。</p>
     authors_heading: "作者列表"
     error_unauthorized_copy: "這份代碼中包含了 %{script} 的未授權代碼。請參考  %{site_name} 的 %{rules_link:腳本規範}。"
     invitations:
@@ -752,7 +733,6 @@ zh-TW:
     reason:
       spam: "灌水"
       abuse: "仇恨或具有冒犯性的内容"
-      illegal: "濫用或反感內容"
     explanation_placeholder: "提供額外資訊（可選）"
     create_button: "新增檢舉"
     report_user: "舉報使用者"
@@ -954,11 +934,6 @@ zh-TW:
     script_report:
       report_created_offender:
         subject: "您在%{site_name}的腳本%{script_name}已被舉報。"
-        reason_unauthorized: "您在%{site_name}的腳本%{script_name}已被舉報是未經授權複製或修改自另一個腳本。"
-        reason_malware: "您在%{site_name}的腳本%{script_name}已被舉報為惡意軟件。"
-        reason_spam: "您在%{site_name}的腳本%{script_name}已被舉報為垃圾郵件。"
-        reason_other: "您的腳本%{script_name}被報告違反了%{site_name}的規則。"
-        action: "您可以在%{report_url}上查看此報告並提出反駁。如果您不提交反駁，版主可能會刪除您的腳本。如有任何疑問，請訪問https://greasyfork.org/forum/。"
       report_upheld_offender:
         subject: "您在%{site_name}的腳本%{script_name}已被刪除。"
         text: "版主已刪除您在%{site_name}上的腳本%{script_name}。您可以通過%{report_url}查看該報告。如有任何疑問，請訪問https://greasyfork.org/forum/。"

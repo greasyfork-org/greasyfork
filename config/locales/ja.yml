@@ -281,25 +281,6 @@ ja:
     preview_additional_info: "プレビュー"
     must_confirm_email: "スクリプトを投稿するには、メールアドレスの確認を行う必要があります。"
     must_confirm_email_button: "確認リンクを %{email} に送信"
-    report:
-      title: "%{script_name}を通報"
-      text_html: >-
-          <p>%{site_name} に投稿されるスクリプトは、 %{rules_link:サイトのルール} に従う必要があります。以下のリンクから違反を通報すると、
-          %{site_name} のモデレーターが報告を審査します。</p> <ul>
-
-          <li>%{unauthorized_link:あなたのスクリプトの不正コピーを通報する}</li>
-
-          <li>%{malware_link:マルウェアを通報する}</li>
-
-          <li>%{spam_link:スパムなど、スクリプトではないコンテンツを通報する}</li>
-
-          <li>%{feedback_link:スクリプトが動作しないことを報告する}</li>
-
-          <li>%{other_report_link:その他の違反を通報する（明示のない広告掲載や、マイニング:採掘、他）}</li>
-
-          </ul>
-
-          <p>くれぐれも、単に機能していないスクリプトや第三者の規約に違反するスクリプトは、%{site_name} の規約違反<em>ではない</em>ことにご注意ください。そのような場合には、通報ではなく%{feedback_link:フィードバック}を行うことをおすすめします。</p>
     authors_heading: "共同の作者"
     error_unauthorized_copy: "このコードは %{script} の不正コピーのようです。投稿されるスクリプトに関する %{site_name} の %{rules_link:ルール} を確認してください。"
     invitations:
@@ -761,7 +742,6 @@ ja:
     reason:
       spam: "スパム"
       abuse: "虐待や増悪に満ちた内容"
-      illegal: "マルウェアや違法な内容"
     explanation_placeholder: "追加の詳細を提供 (任意)"
     create_button: "通報を作成"
     report_user: "ユーザーを通報"
@@ -933,11 +913,6 @@ ja:
     script_report:
       report_created_offender:
         subject: "あなたのスクリプト%{script_name} (%{site_name}) に通報があります"
-        reason_unauthorized: "あなたのスクリプト%{script_name} (%{site_name}) は、許可のない複製または別のスクリプトの改変版として通報されました。"
-        reason_malware: " あなたのスクリプト%{script_name} ( %{site_name} ) は、マルウェアとして通報されました。"
-        reason_spam: "あなたのスクリプト %{script_name}(%{site_name}) はスパムとして通報されました。"
-        reason_other: "あなたのスクリプト %{script_name} は、%{site_name}の規約違反として通報されました。"
-        action: "%{report_url}にて、通報内容の閲覧と異議の申し立てを行うことができます。異議を申し立てない場合、管理担当者がスクリプトを削除する可能性があります。疑問があれば https://greasyfork.org/forum/ にアクセスしてください。"
       report_upheld_offender:
         subject: "あなたのスクリプト %{script_name} (%{site_name}) は削除されました。"
         text: "あなたのスクリプト %{script_name} (%{site_name}) は管理担当者によって削除されました。通報内容は %{report_url} で閲覧できます。疑問があれば https://greasyfork.org/forum/ にアクセスしてください。"
