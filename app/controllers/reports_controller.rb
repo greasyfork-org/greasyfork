@@ -17,7 +17,7 @@ class ReportsController < ApplicationController
     @report.reporter = current_user
     @report.item = item
     if @report.item.is_a?(Script) && @report.script_url.present?
-      script_from_input = get_script_from_input(@report.script_url)
+      script_from_input = get_script_from_input(@report.script_url, allow_deleted: true)
       @report.reference_script = script_from_input if script_from_input.is_a?(Script)
     end
     unless @report.save
@@ -97,6 +97,7 @@ class ReportsController < ApplicationController
 
   def show
     @report = Report.find(params[:id])
+    render_404 unless @report.item
   end
 
   private
