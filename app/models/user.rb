@@ -245,6 +245,8 @@ class User < ApplicationRecord
   def ban!(moderator:, reason: nil, report: nil, delete_comments: false, delete_scripts: false, private_reason: nil, ban_related: true)
     return if banned?
 
+    reason ||= "Report ##{report.id}" if report
+
     User.transaction do
       ModeratorAction.create!(
         moderator: moderator,

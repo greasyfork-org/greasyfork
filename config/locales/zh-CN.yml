@@ -284,25 +284,6 @@ zh-CN:
     preview_additional_info: "预览"
     must_confirm_email: "发布脚本前您必须验证电子邮件地址。"
     must_confirm_email_button: "发送确认链接至 %{email}"
-    report:
-      title: "举报 %{script_name}"
-      text_html: >-
-          <p>发布在 %{site_name} 上的脚本必须遵守%{rules_link:其守则}。若是发现违反规定的脚本，您可以使用下方的链接来举报其违规行为。%{site_name}
-          的管理员将审核并处理您的报告。</p> <ul>
-
-          <li>%{unauthorized_link:举报脚本包含未经授权的脚本副本}。</li>
-
-          <li>%{malware_link:举报脚本含有恶意代码}。</li>
-
-          <li>%{spam_link:举报提交的脚本为垃圾内容或不是脚本的内容}。</li>
-
-          <li>%{feedback_link:报告脚本功能已经失效}。</li>
-
-          <li>  %{other_report_link:举报脚本的其他违规项目，包括但不限于暗藏广告或挖矿行为}。</li>
-
-          </ul>
-
-          <p>注意，失效或违反第三方的使用条款的脚本<em>并不违反</em> %{site_name} 的守则。若是遇到这种情况，请尝试%{feedback_link:留下反馈}与作者交流。</p>
     authors_heading: "作者"
     error_unauthorized_copy: "此代码似乎未经授权地复制了 %{script}。发布脚本时请参考 %{site_name} 的 %{rules_link:rules}。"
     invitations:
@@ -797,7 +778,6 @@ zh-CN:
     reason:
       spam: "灌水"
       abuse: "滥用或反感内容"
-      illegal: "恶意程序或违法内容"
     explanation_placeholder: "提供额外信息（可选）"
     create_button: "创建举报"
     report_user: "举报用户"
@@ -1004,11 +984,6 @@ zh-CN:
     script_report:
       report_created_offender:
         subject: "您的脚本 %{script_name} 在 %{site_name} 上被举报"
-        reason_unauthorized: "您的脚本 %{script_name} 在 %{site_name} 上被报告是另一个脚本的未授权副本或修改。"
-        reason_malware: "您的脚本 %{script_name} 在 %{site_name} 上被举报为恶意软件"
-        reason_spam: "您的脚本 %{script_name} 在 %{site_name} 上被举报为垃圾内容"
-        reason_other: "您的脚本 %{script_name} 已被报告违反了 %{site_name} 的准则。"
-        action: "您可以访问 %{report_url} 查阅该举报，并提交反驳意见。如果您没有提交反驳，管理员可能删除您的脚本。如有疑问，请访问 https://greasyfork.org/forum/。"
       report_upheld_offender:
         subject: "您的脚本 %{script_name} 在 %{site_name} 上已被删除"
         text: "您在 %{site_name} 上的%{script_name}脚本已由管理员删除。详情查阅此报告: %{report_url}。如有疑问，请访问 https://greasyfork.org/forum/。"

@@ -289,29 +289,6 @@ pt-BR:
     preview_additional_info: "Previsualizar"
     must_confirm_email: "Você deve confirmar seu e-mail para poder postar scripts."
     must_confirm_email_button: "Enviar link de confirmação para  %{email}"
-    report:
-      title: "Denunciar %{script_name}"
-      text_html: >-
-          <p>Scripts postados no %{site_name} devem estar de acordo com %{rules_link:suas
-          regras}. Denuncie violações usando os links abaixo e os moderadores do %{site_name}
-          irão revisar sua denúncia.</p> <ul>
-
-          <li>%{unauthorized_link:Denunciar cópias não autorizadas do seu script.}</li>
-
-          <li>%{malware_link:Denunciar malware.}</li>
-
-          <li>%{spam_link:Denunciar spam ou outros conteúdos que não são scripts.}</li>
-
-          <li>%{feedback_link:Reportar que o script não funciona.}</li>
-
-          <li>%{other_report_link:Reportar outras violações, incluindo propagandas
-          ocultas ou mineradores de criptomoedas.}</li>
-
-          </ul>
-
-          <p>Por favor perceba que não ser funcional e violar os termos de uso de
-          terceiros <em>não</em> são violações das regras do %{site_name}. Nestes
-          casos, você pode, em vez disso, %{feedback_link:deixar um feedback} no script.</p>
     authors_heading: "Autores"
     error_unauthorized_copy: "Este código parece ser um cópia não autorizada de %{script}. Por favor cheque as %{rules_link:regras} do  %{site_name} ao postar scripts."
     invitations:
@@ -881,7 +858,6 @@ pt-BR:
     reason:
       spam: "Spam"
       abuse: "Conteúdo de ódio ou abusivo"
-      illegal: "Malware ou conteúdo ilegal"
     explanation_placeholder: "Forneça detalhes adicionais (opicional)"
     create_button: "Criar denúncia"
     report_user: "Denunciar usuário"
@@ -1090,11 +1066,6 @@ pt-BR:
     script_report:
       report_created_offender:
         subject: "O seu script %{script_name} no %{site_name} foi denunciado"
-        reason_unauthorized: "Seu script %{script_name} no %{site_name} foi denunciado como sendo uma cópia não autorizada ou modificação de outro script."
-        reason_malware: "Seu script %{script_name} no %{site_name} foi denunciado como sendo um malware."
-        reason_spam: "Seu script %{script_name} no %{site_name} foi denunciado como sendo spam."
-        reason_other: "Seu script %{script_name} foi denunciado por violar as regras do %{site_name}."
-        action: "Você pode rever este relatório em %{report_url} e enviar uma réplica. Caso você não envie uma réplica, seu script pode ser removido pelos moderadores. Se você tiver alguma dúvida, por favor visite https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Seu script %{script_name} no %{site_name} foi removido"
         text: "Seu script %{script_name} no %{site_name} foi removido por um moderador. Você pode rever esta denúncia em %{report_url}. Se você tiver alguma dúvida, por favor visite https://greasyfork.org/forum/."

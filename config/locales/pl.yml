@@ -287,29 +287,6 @@ pl:
     preview_additional_info: "Podgląd"
     must_confirm_email: "Musisz potwierdzić swój email zanim zaczniesz udostępniać skrypty."
     must_confirm_email_button: "Wyślij link potwierdzający na adres %{email}"
-    report:
-      title: "Zgłoś %{script_name}"
-      text_html: >-
-          <p>Skrypty zamieszczone na %{site_name} muszą przestrzegać jego %{rules_link:regulamin}.
-          Zgłoś nadużycie za pomocą linków poniżej, a moderatorzy %{site_name} rozpatrzą
-          twoje zgłoszenie.</p> <ul>
-
-          <li>%{unauthorized_link:Zgłoś nieautoryzowane kopie twojego skryptu.}</li>
-
-          <li>%{malware_link:Zgłoś malware.}</li>
-
-          <li>%{spam_link:Spam lub inna treść niezwiązana ze skryptem.}</li>
-
-          <li>%{feedback_link:Niedziałający skrypt.}</li>
-
-          <li>%{other_report_link:Zgłoś inne naruszenia, w tym niejawne reklamy lub
-          kopanie kryptowalut.}</li>
-
-          </ul>
-
-          <p>Proszę pamiętać, że niefunkcjonalny skrypt lub naruszenie warunków stron
-          trzecich, <em>nie</em> stanowią naruszenia regulaminu %{site_name}'s. W
-          takim przypadku należy %{feedback_link:zostawić opinię} na stronie skryptu.</p>
     authors_heading: "Autorzy"
     error_unauthorized_copy: "Ten kod wydaje się być nieautoryzowaną kopią %{script}. Zapoznaj się z %{rules_link:rules} o zamieszczaniu skryptów na %{site_name}."
     invitations:
@@ -866,7 +843,6 @@ pl:
     reason:
       spam: "Spam"
       abuse: "Obraźliwe lub nienawistne treści"
-      illegal: "Złośliwe oprogramowanie lub nielegalne treści"
     explanation_placeholder: "Podaj dodatkowe szczegóły (opcjonalne)"
     create_button: "Utwórz zgłoszenie"
     report_user: "Zgłoś użytkownika"
@@ -1069,11 +1045,6 @@ pl:
     script_report:
       report_created_offender:
         subject: "Twój skrypt %{script_name} dla %{site_name} został zgłoszony"
-        reason_unauthorized: "Twój skrypt %{script_name} dla %{site_name} został zgłoszony jako nieautoryzowana kopia lub modyfikacja innego skryptu."
-        reason_malware: "Twój skrypt %{script_name} dla %{site_name} został zgłoszony jako szkodliwe oprogramowanie."
-        reason_spam: "Twój skrypt %{script_name} dla %{site_name} został zgłoszony jako spam."
-        reason_other: "Twój skrypt %{script_name} został zgłoszony jako naruszający zasady %{site_name}."
-        action: "Możesz zapoznać się z tym zgłoszeniem pod %{report_url} oraz przesłać swoje sprostowanie. Jeśli nie odniesiesz się do zgłoszenia, Twój skrypt może zostać usunięty przez moderatorów. Jeśli masz jakieś pytania, odwiedź https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Twój skrypt %{script_name} dla %{site_name} został usunięty"
         text: "Twój skrypt %{script_name} dla %{site_name} został usunięty przez moderatora. Możesz zapoznać się ze zgłoszeniem pod %{report_url}. Jeśli masz jakieś pytania, odwiedź https://greasyfork.org/forum/."
