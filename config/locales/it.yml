@@ -228,6 +228,7 @@ it:
     additional_info_add_localized: "Aggiungi informazione aggiuntiva sul luogo"
     additional_info_locale_repeated: "Fornisci solo un informazione aggiuntiva per la lingua '%{locale_code}'."
     localized_additional_info_with_no_name: "Sono state specificate altre informazioni per la lingua  '%{locale_code}', ma nessun non è stato fornito nessun @name:%{locale_code}."
+    localized_attribute_matches_default: "Il codice non dovrebbe specificare %{meta_key} poiché '%{locale_code}' è la lingua predefinita."
     code_syncing_from_url_html: "Il codice dello script è impostato per sincronizzarsi da: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} può importare script che sono già hostati da altre parti, per esempio in un sistema di controllo versioni (come GitHub), il tuo server, o un altro sito di script hosting. Per abilitare la sincronizzazione per il tuo script, fornisci un URL: %{field}"
     sync_type_intro: "Lo script verrà sincronizzato: "
@@ -340,6 +341,13 @@ it:
           description_html: Questo script <b>riscriverà i links</b> per includere un rimando o un codice di affiliazione.
       install_anyway: Installa script
       cancel_install: Annulla
+    badges:
+      js:
+        short: JS
+        long: Script utente
+      css:
+        short: CSS
+        long: Stile utente
   script_sets:
     description: "Gli insiemi di script ti permettono di creare una lista personalizzata di script con cui navigare su Greasy Fork. Puoi aggiungere script al tuo insieme includendo script individuali, insiemi di altri utenti, o insiemi generati automaticamente. Puoi inoltre escludere degli script dal tuo insieme con gli stessi metodi."
     favorites_name: "Preferiti"
@@ -493,6 +501,7 @@ it:
     script_list_none_same_user_html: "Non scritto nessuno script ancora.\n%{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "Voui sapere come?"
     deleted_script_list: "Script eliminati"
+    unlisted_script_list: "Scripts non elencati"
     sign_out: "Esci"
     edit: "Modifica profilo"
     edit_sign_in: "Modifica il metodo di accesso"
@@ -617,6 +626,8 @@ it:
         one: Disiscriviti dalla %{discussions_link:%{count} discussione} a cui sei iscritto
         other: Disiscriviti dalle %{discussions_link:%{count} discussioni} a cui sei iscritto
       save_success: Le preferenze per le tue notifiche sono state aggiornate.
+      unsubscribe_all: Disiscriviti da tutte le notifiche
+      unsubscribe_all_success: Ti sei disiscritto da tutte le notifiche.
   help:
     sections:
       usage: Utilizzo
@@ -661,6 +672,7 @@ it:
       description: Gli scripts devono includere una descrizione di cosa fanno e non devono fare cose irragionevolmente al di fuori di questa descrizione. Gli utenti devono sapere cosa uno script farà, prima di installarlo.
       reason: Gli scripts devono avere una ragione per essere script. Per esempio, uno script che semplicemente rimanda un utente a un sito non ha bisogno di essere uno script; potrebbe essere un link. Gli scripts che usano un servizio web per compiere un azione sulla pagina corrente (es. per convertirla in qualche maniera) sono consentiti.
       unrelated: Gli scripts non devono richiedere agli utenti di compiere un'azione non correlata, come inviare un pagamento, iscriversi ad un canale, unirsi a un gruppo, o mettere "Mi piace" a una pagina, affinché lo script funzioni, completamente o in parte.
+      monetization_html: Gli scripts che contengono funzioni a beneficio dell'<em>autore</em> piuttosto che dell'utente (come tracciamento, pubblicità e miners) sono consentite, ma queste devono essere dichiarate con le %{antifeature_link:<code>@antifeature</code> meta keys}.
       code_header: Codice
       obfuscation: Il codice pubblicato su %{site_name} non deve essere offuscato o minimizzato. Agli utenti va data l'opportunità di ispezionare e comprendere uno script prima di installarlo. Se lo script è compresso da uno strumento come webpack, deve essere esportato in forma non minimizzata.
       libraries_html: Le librerie che uno script utilizza devono essere inserite con <code>@require</code>, a meno che ci sia una valida ragione tecnica per non farlo. Nel caso in cui una libreria sia inclusa all'interno del testo dello script. essa deve includere le informazioni sulla provenienza della libreria (es. un commento che indichi l'URL e/o il nome e la versione).
@@ -742,6 +754,7 @@ it:
       authors_credit: "%{site_name} non sarebbe nulla senza gli utenti che contribuiscono condividendo i loro script."
       developers_credit: "%{site_name} esiste grazie a %{developers_link:queste persone} le quali con l'aiuto di tutti quelli che segnalano bug e suggeriscono miglioramenti rendono %{site_name} unico."
       translators_credit: "%{site_name} è stato tradotto da %{translators_link:Greasy Translation Force su Transifex}:"
+      icons_credit: "Le icone dei browser provengono da %{browserlogos}."
     help_with_greasymonkey: "Aiuto con Greasemonkey"
     contact:
       title: "Contatta qualcuno"
@@ -827,6 +840,8 @@ it:
     new_report_title:
       user: "Segnala %{user}"
       comment: "Segnala un commento di %{user}"
+      message: "Segnala un messaggio di %{user}"
+      script: "Segnala %{script}"
     new_report_notes_html: >
         <p>Prima di segnalare, per favore nota:</p><ul>
 
@@ -834,6 +849,19 @@ it:
 
         <li>Non approvare il contenuto o credere che non sia vero non è una valida
         ragione per segnalare.</li>
+
+        <li>L'abuso di questa funzione di segnalazione potrebbe portare alla <i>tua</i>
+        espulsione.</li>
+
+        </ul>
+    new_script_report_notes_html: >
+        <p>Prima di segnalare, per favore considera che:</p><ul>
+
+        <li>Gli scripts saranno rimossi solo se violano le %{rules_link:regole di
+        %{site_name}}. Se lo script non è funzionale o non funziona, %{feedback_link:lascia
+        un feedback piuttosto}</li>
+
+        <li>Un moderatore verificherà la tua segnalazione e agirà in base a essa.</li>
 
         <li>L'abuso di questa funzione di segnalazione potrebbe portare alla <i>tua</i>
         espulsione.</li>
@@ -852,8 +880,20 @@ it:
 
         </ul>
     reason:
+      non_functional: "Lo script non funziona"
       spam: "Spam"
       abuse: "Contenuto non autorizzato o che incita all'odio"
+      illegal: "Contenuto illegale"
+      unauthorized_code: "Copia non autorizzata"
+      malware: "Malware"
+      minified: "Codice minimizzato"
+      external_code: "Codice esterno non consentito"
+      undisclosed_antifeature: "Antifeature non dichiarata (es. pubblicità, tracciamento, miner)"
+      other: "Altro"
+    report_intro_html: "%{reported_item} è stato segnalato per %{reason} da %{reporter}."
+    report_intro_unauthorized_html: "%{reported_script} è stato segnalato come copia non autorizzata di %{other_script} di%{reporter}."
+    non_functional_feedback: "Per favore segnala gli script non funzionali come %{feedback_link:feedback} sullo script invece."
+    unauthorized_code_original_placeholder: "URL del codice originale"
     explanation_placeholder: "Fornisci ulteriori dettagli (opzionale)"
     create_button: "Crea segnalazione"
     report_user: "Segnala utente"
@@ -862,6 +902,9 @@ it:
     result_dismissed: "Questa segnalazione è stata rigettata da un moderatore."
     result_upheld: "Questa segnalazione è stata confermata da un moderatore."
     result_pending: "Questa segnalazione non è ancora stata controllata da un moderatore."
+    rebuttal_placeholder: 'Spiega a un moderatore perché questo script non dovrebbe essere cancellato.'
+    submit_rebuttal: "Invia una contestazione"
+    delete_script: "Elimina lo script"
   discussions:
     title: Discussioni
     comment_date: "Pubblicato: %{date}"
@@ -876,7 +919,9 @@ it:
     edit_comment_link: "Modifica"
     edit_comment_header: "Modifica commento"
     delete_comment: "Cancella"
+    delete_comment_confirm: Sei sicuro di voler eliminare questo commento?
     delete_discussion: "Cancella"
+    delete_discussion_confirm: Sei sicuro di voler eliminare questa discussione?
     update_comment_submit: "Aggiorna commento"
     cancel_update_comment: "Annulla"
     quote_comment: "Cita"
@@ -913,6 +958,9 @@ it:
       all: Tutte
       read: Lette
       unread: Non lette
+    locale_filter:
+      label: Lingua
+      all: Tutte
     user_activity:
       title: "Commenti recenti"
       no_recent_activity: "Questo utente non ha pubblicato alcun commento di recente."
@@ -969,6 +1017,7 @@ it:
       other: Conversazioni con %{users}
     conversation_info_html: Ultimo messaggio alle %{date} da %{user}
     no_conversations: Non hai ancora avuto nessuna conversazione.
+    no_recent_conversations: Non hai nessuna conversazione recente.
     recent:
       title: Conversazioni recenti
       more: Vedi tutte le conversazioni
@@ -1056,6 +1105,7 @@ it:
     script_report:
       report_created_offender:
         subject: "Il tuo script %{script_name} su %{site_name} è stato segnalato"
+        text: "Il tuo script %{script_name} è stato segnalato per una violazione delle regole di %{site_name}. La ragione specifica data è: %{reason}. Puoi analizzare la segnalazione su %{report_url} e inviare una contestazione. Se non invii una contestazione, il tuo script potrà essere eliminato dai moderatori. Se hai qualsiasi domanda, per favore visita https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Il tuo script %{script_name} su%{site_name} è stato eliminato"
         text: "Il tuo script %{script_name} su %{site_name} è stato eliminato da un moderatore. Puoi consultare la segnalazione su %{report_url}. Se hai delle domande, per favore visita https://greasyfork.org/forum/."
