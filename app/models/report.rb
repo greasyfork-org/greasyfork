@@ -77,6 +77,11 @@ class Report < ApplicationRecord
       update!(result: RESULT_UPHELD, moderator_notes: moderator_notes)
       reporter&.update_trusted_report!
     end
+
+    Report.unresolved.where(item: item).find_each do |other_report|
+      other_report.update!(result: RESULT_UPHELD)
+      other_report.reporter&.update_trusted_report!
+    end
   end
 
   def rebut!(rebuttal:, by:)
