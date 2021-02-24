@@ -842,6 +842,8 @@ fr:
     new_report_title:
       user: "Signaler%{user}"
       comment: "Signaler un commentaire de %{user}"
+      message: "Signaler un message de %{user}"
+      script: "Signaler %{script}"
     new_report_notes_html: >
         <p>Avant de signaler, veuillez noter que:</p> <ul>
 
@@ -865,8 +867,20 @@ fr:
 
         </ul>
     reason:
+      non_functional: "Le script ne fonctionne pas"
       spam: "Spam"
       abuse: "Contenu abusif ou haineux"
+      illegal: "Contenu illégal"
+      unauthorized_code: "Copie non autorisée"
+      malware: "Malware"
+      minified: "Code minifié"
+      external_code: "Code externe non autorisé"
+      undisclosed_antifeature: "Antifeature non divulguée (par exemple, ad/publicité, tracking/suivi, miner/mineur de cryptomonnaies)"
+      other: "Autre"
+    report_intro_html: "%{reported_item} a été signalé pour %{reason} par %{reporter}"
+    report_intro_unauthorized_html: "%{reported_script} a été signalé comme une copie non autorisée du %{other_script} par %{reporter}."
+    non_functional_feedback: "Veuillez plutôt signaler les scripts non fonctionnels en tant que %{feedback_link:commentaire} sur le script."
+    unauthorized_code_original_placeholder: "URL du code d'origine"
     explanation_placeholder: "Ajouter des détails supplémentaires (optionnel)"
     create_button: "Créer un rapport"
     report_user: "Signaler l'utilisateur"
@@ -875,6 +889,9 @@ fr:
     result_dismissed: "Ce rapport a été rejeté par un modérateur."
     result_upheld: "signalerCe rapport a été approuver par un modérateur."
     result_pending: "Ce rapport est en attente d'examen par un modérateur."
+    rebuttal_placeholder: 'Expliquez à un modérateur pourquoi ce script ne doit pas être supprimé.'
+    submit_rebuttal: "Soumettre une réfutation"
+    delete_script: "Supprimer le script"
   discussions:
     title: Discussions
     comment_date: "Posté le: %{date}"
@@ -1075,6 +1092,7 @@ fr:
     script_report:
       report_created_offender:
         subject: "Votre script %{script_name} par %{site_name}  a été signalé"
+        text: "Votre script %{script_name} a été signalé comme non conforme aux règles de %{site_name}. La raison spécifique évoquée: %{reason}. Vous pouvez consulter ce rapport à l'adresse %{report_url} et soumettre une réfutation. Si vous ne soumettez pas de réfutation, votre script peut être supprimé par les modérateurs. Si vous avez des questions, veuillez visiter https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Votre script %{script_name} par %{site_name} a été supprimé"
         text: "Votre script %{script_name} par %{site_name} a été supprimé par un modérateur. Vous pouvez consulter le rapport sur %{report_url}. Si vous avez des questions, visiter https://greasyfork.org/fr/forum/."

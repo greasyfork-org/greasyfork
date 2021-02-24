@@ -90,7 +90,7 @@
       <p>This user has filed <%= report_count %> <%= 'report'.pluralize(report_count) %>.</p>
       <% if report_count > 0 %>
         <ul>
-          <% @user.reports.each do |report| %>
+          <% @user.reports_as_reporter.each do |report| %>
             <li>
               <%= render partial: 'reports/report', locals: { report: report } %>
             </li>

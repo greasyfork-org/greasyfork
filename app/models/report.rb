@@ -44,14 +44,14 @@ class Report < ApplicationRecord
   validates :reporter, presence: true, if: -> { auto_reporter.nil? }
   validates :explanation_markup, inclusion: { in: %w[html markdown text] }, presence: true
 
-  def dismiss!
-    update!(result: RESULT_DISMISSED)
+  def dismiss!(moderator_notes:)
+    update!(result: RESULT_DISMISSED, moderator_notes: moderator_notes)
     item.discussion.update!(review_reason: nil) if item.is_a?(Comment) && item.first_comment?
     reporter&.update_trusted_report!
     AkismetSubmission.mark_as_ham(item)
   end
 
-  def uphold!(moderator:, ban_user: false, delete_comments: false, delete_scripts: false)
+  def uphold!(moderator:, moderator_notes: nil, ban_user: false, delete_comments: false, delete_scripts: false)
     Report.transaction do
       case item
       when User, Message
@@ -61,9 +61,9 @@ class Report < ApplicationRecord
         item.soft_destroy!(by_user: moderator) unless item.soft_deleted?
       when Script
         if unauthorized_code? && reference_script
-          item.update!(script_delete_type_id: ScriptDeleteType::KEEP, locked: true, replaced_by_script: reference_script, self_deleted: moderator.nil?)
+          item.update!(script_delete_type_id: ScriptDeleteType::KEEP, locked: true, replaced_by_script: reference_script, self_deleted: moderator.nil?, delete_reason: "Report ##{id}")
         else
-          item.update!(script_delete_type_id: ScriptDeleteType::BLANKED, locked: true, self_deleted: moderator.nil?)
+          item.update!(script_delete_type_id: ScriptDeleteType::BLANKED, locked: true, self_deleted: moderator.nil?, delete_reason: "Report ##{id}")
         end
         if ban_user
           reported_users.each { |user| user.ban!(moderator: moderator, delete_comments: delete_comments, delete_scripts: delete_scripts, ban_related: true, report: self) }
@@ -74,7 +74,7 @@ class Report < ApplicationRecord
         raise "Unknown report item #{item}"
       end
 
-      update!(result: RESULT_UPHELD)
+      update!(result: RESULT_UPHELD, moderator_notes: moderator_notes)
       reporter&.update_trusted_report!
     end
   end

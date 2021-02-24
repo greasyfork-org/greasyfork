@@ -38,7 +38,7 @@ class ReportsController < ApplicationController
 
   def dismiss
     @report = Report.find(params[:id])
-    @report.dismiss!
+    @report.dismiss!(moderator_notes: params[:moderator_notes].presence)
     if @report.item.is_a?(Script) && !@report.auto_reporter
       ScriptReportMailer.report_dismissed_offender(@report, site_name).deliver_later
       ScriptReportMailer.report_dismissed_reporter(@report, site_name).deliver_later
@@ -59,7 +59,8 @@ class ReportsController < ApplicationController
       @report.uphold!(moderator: nil)
     else
       @report.uphold!(
-        moderator: user_is_script_author ? nil : current_user,
+        moderator: current_user,
+        moderator_notes: params[:moderator_notes],
         ban_user: params[:ban] == '1',
         delete_comments: params[:delete_comments] == '1',
         delete_scripts: params[:delete_scripts] == '1'
