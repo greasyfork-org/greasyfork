@@ -23,9 +23,17 @@
 }
 .report-resolution-options {
   display: inline-block;
+  vertical-align: top;
+  min-width: 30%;
+}
+.report-resolution-options + .report-resolution-options {
+  margin-left: 1em;
 }
 .report-resolution-options input[type=submit] {
   margin-top: 0.5em;
+}
+.report-resolution-options textarea {
+  width: 100%;
 }
 .report-screenshot-control {
   font-size: smaller;

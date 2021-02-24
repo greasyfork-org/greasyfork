@@ -3,7 +3,7 @@
 
 <% if @script.reports.unresolved.any? %>
   <p>
-    <%= link_to t('scripts.feedback_has_reports', site_name: site_name), report_path(@script.reports.first), rel: :nofollow %>
+    <%= link_to t('scripts.feedback_has_reports', site_name: site_name), report_path(@script.reports.unresolved.first), rel: :nofollow %>
   </p>
 <% end %>
 

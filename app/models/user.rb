@@ -245,8 +245,6 @@ class User < ApplicationRecord
   def ban!(moderator:, reason: nil, report: nil, delete_comments: false, delete_scripts: false, private_reason: nil, ban_related: true)
     return if banned?
 
-    reason ||= "Report ##{report.id}" if report
-
     User.transaction do
       ModeratorAction.create!(
         moderator: moderator,
@@ -257,7 +255,7 @@ class User < ApplicationRecord
         report: report
       )
       update_columns(banned_at: Time.current)
-      reports_as_reporter.unresolved.each(&:dismiss!)
+      reports_as_reporter.unresolved.each { |reported_reports| reported_reports.dismiss!(moderator_notes: 'User banned.') }
     end
 
     if ban_related

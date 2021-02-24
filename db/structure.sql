@@ -1469,6 +1469,7 @@ CREATE TABLE `reports` (
   `reference_script_id` int(11) DEFAULT NULL,
   `rebuttal` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `rebuttal_by_user_id` int(11) DEFAULT NULL,
+  `moderator_notes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_reports_on_item_type_and_item_id` (`item_type`,`item_id`),
   KEY `index_reports_on_reporter_id` (`reporter_id`),
@@ -2187,6 +2188,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20210216014727'),
 ('20210221225945'),
 ('20210221233018'),
-('20210222030536');
+('20210222030536'),
+('20210223233743');
 
 

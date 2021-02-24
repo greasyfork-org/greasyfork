@@ -113,6 +113,13 @@
   <p>
     <%= t('reports.result_upheld') %>
   </p>
+  <% if report.moderator_notes %>
+    <blockquote>
+      <div class="user-content">
+        <%= format_user_text(report.moderator_notes, 'text') %>
+      </div>
+    </blockquote>
+  <% end %>
 <% elsif report.dismissed? %>
   <p>
     <%= t('reports.result_dismissed') %>
@@ -132,8 +139,15 @@
     <%= t('reports.result_pending') %>
   </p>
 <% elsif current_user&.moderator? %>
-  <%= button_to('Dismiss report', dismiss_report_path(report, index: i), method: 'POST', form_class: 'inline-form') %>
+  <%= form_tag(dismiss_report_path(report, index: i), method: 'POST', class: 'report-resolution-options') do %>
+    <%= text_area_tag :moderator_notes, nil, rows: 3, placeholder: 'Moderator notes (optional)' %>
+    <br>
+
+    <%= submit_tag 'Dismiss report' %>
+  <% end %>
   <%= form_tag(uphold_report_path(report, index: i), method: 'POST', class: 'report-resolution-options') do %>
+    <%= text_area_tag :moderator_notes, nil, rows: 3, placeholder: 'Moderator notes (optional)' %>
+    <br>
 
     <% other_comments = report.reported_users.map{|user| comments = user.comments.not_deleted; comments = comments.where.not(id: report.item.id) if report.item.is_a?(Comment); [user, comments.count] }.to_h
     if other_comments.values.sum > 0 %>
