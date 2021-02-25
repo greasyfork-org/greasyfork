@@ -826,6 +826,8 @@ bg:
     new_report_title:
       user: "Докладвай %{user}"
       comment: "Докладвайте коментар от %{user}"
+      message: "Докладвай съобщение от %{user}"
+      script: "Докладвай %{script}"
     new_report_notes_html: >
         <p>Преди да докладвате обърнете внимание:</p> <ul>
 
@@ -835,6 +837,17 @@ bg:
         причина за доклад.</li>
 
         <li>Злоупотребата с тази функция може да доведе  <i>вие</i> да получите бан.</li>
+
+        </ul>
+    new_script_report_notes_html: >
+        <p>Преди да докладвате, обърнете внимание:</p> <ul>
+
+        <li>Скриптове ще бъдат премахвани само ако нарушават правилата на %{rules_link:%{site_name}}.
+        Ако скриптът не работи, %{feedback_link: по-добре оставете обратна връзка.}</li>
+
+        <li>Модератор ще прегледа доклада ви и ще предприеме съответните действия.</li>
+
+        <li>Злоупотребата с докладите може да доведе до <i>вашето</i> блокиране.</li>
 
         </ul>
     new_user_report_notes_html: >
@@ -850,8 +863,20 @@ bg:
 
         </ul>
     reason:
+      non_functional: "Скриптът не работи"
       spam: "Спам"
       abuse: "Обидно или омразно съдържание"
+      illegal: "Нелегално съдържание"
+      unauthorized_code: "Неоторизирано копие"
+      malware: "Зловреден скрипт"
+      minified: "Минифициран код"
+      external_code: "Неразрешен външен код"
+      undisclosed_antifeature: "Необявен антифичър (например реклама, проследяване, майнър)"
+      other: "Друго"
+    report_intro_html: "%{reported_item} беше докладван за %{reason} от %{reporter}"
+    report_intro_unauthorized_html: "%{reported_script} беше докладван от %{reporter}като неоторизирано копие на %{other_script}."
+    non_functional_feedback: "Моля, докладвайте не работещите скриптове чрез %{feedback_link:обратна връзка}."
+    unauthorized_code_original_placeholder: "URL на оригиналния код"
     explanation_placeholder: "Напишете допълнителни подробности (по желание)"
     create_button: "Изпратете доклад"
     report_user: "Докладвайте потребителя"
@@ -860,6 +885,9 @@ bg:
     result_dismissed: "Този доклад е отхвърлен от модератор."
     result_upheld: "Този доклад е одобрен от модератор."
     result_pending: "Този доклад очаква да бъде прегледан от модератор."
+    rebuttal_placeholder: 'Обяснете на модератора защо този скрипт не трябва да бъде изтрит.'
+    submit_rebuttal: "Изпратете опровержение "
+    delete_script: "Изтрийте скрипта"
   discussions:
     title: Дискусии
     comment_date: "Публикуван на: %{date}"
@@ -1060,6 +1088,7 @@ bg:
     script_report:
       report_created_offender:
         subject: "Скриптът ви %{script_name} на %{site_name} беше докладван"
+        text: "Вашият скрипт %{script_name} беше докладван за нарушаване на правилата на %{site_name}. Указаната причина е: %{reason}. Можете да прегледате доклада на %{report_url} и да изпратите опровержение. Ако не изпратите опровержение, скриптът ви може да бъде изтрит от модератор. Ако имате някакви въпроси, моля, посетете https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Скриптът ви %{script_name} на %{site_name} беше изтрит"
         text: "Вашият скрипт %{script_name} на %{site_name} беше изтрит от модератор. Можете да прегледате доклада на %{report_url}. Ако имате някакви въпроси, моля посетете https://greasyfork.org/forum/."
