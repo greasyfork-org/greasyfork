@@ -833,6 +833,8 @@ pt-BR:
     new_report_title:
       user: "Denunciar %{user}"
       comment: "Denunciar um comentário por %{user}"
+      message: "Reportar uma mensagem de %{user}"
+      script: "Reportar %{script}"
     new_report_notes_html: >
         <p>Antes de denunciar, saiba que:</p> <ul>
 
@@ -842,6 +844,19 @@ pt-BR:
         motivo válido para fazer uma denúncia.</li>
 
         <li>Abusar da função de denúncia pode fazer com que <i>você</i> seja banido.</li>
+
+        </ul>
+    new_script_report_notes_html: >
+        <p>Antes de reportar, tenha em mente que:</p> <ul>
+
+        <li>Scripts apenas serão removidos por violações às %{rules_link:regras do
+        %{site_name}}. Se o script estiver quebrado ou não funcional, %{feedback_link:em
+        vez disso deixe um feedback.}</li>
+
+        <li>Um moderador irá analisar seu reporte e agirá de acordo.</li>
+
+        <li>O abuso desta ferramenta de reporte pode fazer com que <i>você</i> seja
+        banido.</li>
 
         </ul>
     new_user_report_notes_html: >
@@ -856,8 +871,20 @@ pt-BR:
 
         </ul>
     reason:
+      non_functional: "O script não funciona"
       spam: "Spam"
       abuse: "Conteúdo de ódio ou abusivo"
+      illegal: "Conteúdo ilegal"
+      unauthorized_code: "Cópia não autorizada"
+      malware: "Malware"
+      minified: "Código minificado"
+      external_code: "Código externo não permitido"
+      undisclosed_antifeature: "Antifeature oculta (anúncio, rastreamento, minerador, por exemplo)"
+      other: "Outro"
+    report_intro_html: "%{reported_item} foi reportado pela razão %{reason} por %{reporter}"
+    report_intro_unauthorized_html: "%{reported_script} foi reportado como uma cópia não autorizada de %{other_script} por %{reporter}."
+    non_functional_feedback: "Por favor, reporte scripts não funcionais por meio de %{feedback_link:feedback} na página do script em vez disso."
+    unauthorized_code_original_placeholder: "URL do código original"
     explanation_placeholder: "Forneça detalhes adicionais (opicional)"
     create_button: "Criar denúncia"
     report_user: "Denunciar usuário"
@@ -866,6 +893,9 @@ pt-BR:
     result_dismissed: "Essa denúncia foi desconsiderada por um moderador."
     result_upheld: "Essa denúncia foi confirmada por um moderador."
     result_pending: "Essa denúncia está aguardando avaliação de um moderador."
+    rebuttal_placeholder: 'Explique para um moderador por que este script deve ser removido'
+    submit_rebuttal: "Enviar refutação"
+    delete_script: "Remover script"
   discussions:
     title: Discussões
     comment_date: "Publicado: %{date}"
@@ -1066,6 +1096,7 @@ pt-BR:
     script_report:
       report_created_offender:
         subject: "O seu script %{script_name} no %{site_name} foi denunciado"
+        text: "O seu script %{script_name} foi reportado por violar as regras do %{site_name}. O motivo específico foi: %{reason}. Você pode analisar este reporte em %{report_url} e refutá-lo. Caso não seja enviada uma refutação, seu script pode ser removido pelos moderadores. Se tiver alguma dúvida, por favor visite https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Seu script %{script_name} no %{site_name} foi removido"
         text: "Seu script %{script_name} no %{site_name} foi removido por um moderador. Você pode rever esta denúncia em %{report_url}. Se você tiver alguma dúvida, por favor visite https://greasyfork.org/forum/."

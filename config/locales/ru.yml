@@ -856,6 +856,8 @@ ru:
     new_report_title:
       user: "Пожаловаться на %{user}"
       comment: "Пожаловаться на комментарий %{user}"
+      message: "Пожаловаться на сообщение пользователя %{user}"
+      script: "Пожаловаться на %{script}"
     new_report_notes_html: >
         <p>Обратите внимание:</p> <ul>
 
@@ -863,6 +865,17 @@ ru:
 
         <li>Несогласие с чужой точкой зрения, даже ложной, не является основанием
         для жалобы.</li>
+
+        <li>За злоупотребление жалобами забанить могут <i>вас</i>.</li>
+
+        </ul>
+    new_script_report_notes_html: >
+        <p>Обратите внимание:</p> <ul>
+
+        <li>Скрипт будет удален только если он нарушает %{rules_link:правила %{site_name}}.
+        Если скрипт не работает, то сообщите об этом %{feedback_link:здесь}.</li>
+
+        <li>Модератор рассмотрит вашу жалобу и примет соответствующие меры.</li>
 
         <li>За злоупотребление жалобами забанить могут <i>вас</i>.</li>
 
@@ -879,8 +892,20 @@ ru:
 
         </ul>
     reason:
+      non_functional: "Скрипт не работает"
       spam: "Спам"
       abuse: "Оскорбление или ненависть"
+      illegal: "Нелегальное содержимое"
+      unauthorized_code: "Нелегальная копия"
+      malware: "Вредоносный код"
+      minified: "Зашифрованный или сжатый (minified) код"
+      external_code: "Запрещённый исходный код из внешнего источника"
+      undisclosed_antifeature: "Сокрытие нежелательных возможностей (слежка, добыча криптовалюты и т.д.)"
+      other: "Другое"
+    report_intro_html: "%{reporter} пожаловался на %{reported_item} по причине %{reason}"
+    report_intro_unauthorized_html: "На скрипт %{reported_script} поступила жалоба от %{reporter} о том, что он является нелегальной копией скрипта %{other_script}."
+    non_functional_feedback: "Пожалуйста, сообщите о неработоспособном скрипте %{feedback_link:здесь}."
+    unauthorized_code_original_placeholder: "URL оригинального кода"
     explanation_placeholder: "Сообщите дополнительные подробности (не обязательно)"
     create_button: "Создать жалобу"
     report_user: "Пожаловаться на пользователя"
@@ -889,6 +914,9 @@ ru:
     result_dismissed: "Это жалоба была отклонена модератором."
     result_upheld: "Это жалоба была поддержана модератором."
     result_pending: "Это жалоба ожидает рассмотрения модератором."
+    rebuttal_placeholder: 'Объясните модератору, почему этот скрипт не должен быть удален.'
+    submit_rebuttal: "Отправить опровержение"
+    delete_script: "Удалить скрипт"
   discussions:
     title: Обсуждения
     comment_date: "Создано: %{date}"
@@ -1093,6 +1121,7 @@ ru:
     script_report:
       report_created_offender:
         subject: "На ваш скрипт %{script_name} на %{site_name} поступила жалоба"
+        text: "На ваш скрипт %{script_name} поступила жалоба о том, что он нарушает правила %{site_name}, а именно: %{reason}. Вы можете просмотреть жалобу по адресу %{report_url} и отправить опровержение. Если вы не отправите опровержение, то ваш скрипт может быть удалён модератором. Если у вас есть вопросы, пожалуйста посетите https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Ваш скрипт %{script_name} на %{site_name} был удалён"
         text: "Ваш скрипт %{script_name} на %{site_name} был удалён модератором. Вы можете просмотреть жалобу по адресу %{report_url}. Если у вас есть вопросы, пожалуйста посетите https://greasyfork.org/forum/."

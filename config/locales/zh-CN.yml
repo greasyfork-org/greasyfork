@@ -759,6 +759,8 @@ zh-CN:
     new_report_title:
       user: "举报%{user}"
       comment: "举报%{user}的评论"
+      message: "举报一则 %{user} 的私信"
+      script: "举报 %{script}"
     new_report_notes_html: >
         <p>举报之前请注意：</p>
 
@@ -767,6 +769,16 @@ zh-CN:
         <li>反对内容或认为内容不真实不能作为举报的合理理由。</li>
 
         <li>滥用举报功能可能会导致<i>您</i>被封号。</li></ul>
+    new_script_report_notes_html: >
+        <p>举报之前，请注意：</p> <ul>
+
+        <li>只有违反了 %{rules_link:%{site_name} 规则}的脚本会被移除。如果脚本只是失效或不兼容，请%{feedback_link:在反馈处留言}。</li>
+
+        <li>管理员将审核你提交的举报并处理。</li>
+
+        <li>滥用举报功能可能会导致<i>你的账号</i>被封禁。</li>
+
+        </ul>
     new_user_report_notes_html: >
         <p>举报之前请注意：</p>
 
@@ -776,8 +788,20 @@ zh-CN:
 
         <li>滥用举报功能可能会导致<i>您</i>被封号</li></ul>。
     reason:
+      non_functional: "脚本用不了"
       spam: "灌水"
       abuse: "滥用或反感内容"
+      illegal: "违法内容"
+      unauthorized_code: "未授权的副本"
+      malware: "恶意软件或代码"
+      minified: "代码经过最小化处理"
+      external_code: "未允许的外部代码引用"
+      undisclosed_antifeature: "未声明的反用户功能（如广告、追踪、挖矿等)"
+      other: "其它"
+    report_intro_html: "%{reported_item} 被 %{reporter} 举报，原因是 %{reason}"
+    report_intro_unauthorized_html: "%{reported_script} 被 %{reporter} 举报含有未授权的副本，原脚本为 %{other_script}。"
+    non_functional_feedback: "请在%{feedback_link:脚本反馈区}来举报失效的脚本。"
+    unauthorized_code_original_placeholder: "原始代码的地址"
     explanation_placeholder: "提供额外信息（可选）"
     create_button: "创建举报"
     report_user: "举报用户"
@@ -786,6 +810,9 @@ zh-CN:
     result_dismissed: "该举报已被管理员忽略。"
     result_upheld: "管理员已通过该举报。"
     result_pending: "该举报尚待管理员查看。"
+    rebuttal_placeholder: '向管理员解释为什么这个脚本不应被删除。'
+    submit_rebuttal: "申诉"
+    delete_script: "删除脚本"
   discussions:
     title: 讨论
     comment_date: "发表于：%{date}"
@@ -984,6 +1011,7 @@ zh-CN:
     script_report:
       report_created_offender:
         subject: "您的脚本 %{script_name} 在 %{site_name} 上被举报"
+        text: "你的脚本 %{script_name} 被举报违反 %{site_name} 的站点条例。具体的理由是：%{reason}。你可以在 %{report_url} 查看该则举报并提交申诉。如果不进行申诉，你的脚本可能会被管理员删除。如果有任何问题，请访问论坛 https://greasyfork.org/forum/ 。"
       report_upheld_offender:
         subject: "您的脚本 %{script_name} 在 %{site_name} 上已被删除"
         text: "您在 %{site_name} 上的%{script_name}脚本已由管理员删除。详情查阅此报告: %{report_url}。如有疑问，请访问 https://greasyfork.org/forum/。"

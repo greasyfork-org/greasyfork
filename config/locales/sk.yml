@@ -849,6 +849,8 @@ sk:
     new_report_title:
       user: "Nahlásiť %{user}"
       comment: "Nahlásiť komentár od %{user}"
+      message: "Nahlásiť správu používateľa %{user} "
+      script: "Nahlásiť %{script}"
     new_report_notes_html: >
         <p>Pred nahlásením, si uvedomte, že: <ul>
 
@@ -857,6 +859,17 @@ sk:
         <li>Nesúhlas s obsahom alebo jeho pravdivosťou nie je dôvod pre jeho nahlásenie.</li>
 
         <li>Zneužitie tejto funkcie nahlasovania môže viesť k <i>vášmu</i> zablokovaniu.</li>
+
+        </ul>
+    new_script_report_notes_html: >
+        <p>Pred nahlásením si uvedomte, že:</p> <ul>
+
+        <li>Skripty budú odstránené iba pri porušení %{rules_link:pravidiel%{site_name}}.
+        Ak je skript nefunkčný, %{feedback_link:zanechajte spätnú odozvu.}</li>
+
+        <li>Moderátor skontroluje vašu správu a bude podľa nej konať.</li>
+
+        <li>Zneužívanie funkcie nahlasovania môže viesť k <i>vášmu</i> zablokovaniu.</li>
 
         </ul>
     new_user_report_notes_html: >
@@ -873,8 +886,20 @@ sk:
 
         </ul>
     reason:
+      non_functional: "Skript nefunguje"
       spam: "Spam"
       abuse: "Urážlivý alebo nenávistný obsah"
+      illegal: "Nelegálny obsah"
+      unauthorized_code: "Neautorizovaná kópia"
+      malware: "Malvér"
+      minified: "Minifikovaný kód"
+      external_code: "Nepovolený externý kód"
+      undisclosed_antifeature: "Utajená funkcia (napr. reklama, sledovanie, ťaženie)"
+      other: "Iné"
+    report_intro_html: "%{reporter} nahlásil %{reported_item} z dôvodu %{reason}"
+    report_intro_unauthorized_html: "%{reported_script} bol nahlásený ako neautorizovaná kópia skriptu %{other_script} od %{reporter}."
+    non_functional_feedback: "Namiesto toho nahláste nefunkčné skripty cez %{feedback_link:spätná odozva} v skripte."
+    unauthorized_code_original_placeholder: "Odkaz na pôvodný kód"
     explanation_placeholder: "Uveďte ďalšie podrobnosti (voliteľné)"
     create_button: "Nahlásiť"
     report_user: "Nahlásiť používateľa"
@@ -883,6 +908,9 @@ sk:
     result_dismissed: "Táto sťažnosť bola moderátorom zamietnutá."
     result_upheld: "Táto sťažnosť bola moderátorom schválená."
     result_pending: "Táto sťažnosť čaká na schválenie moderátorom."
+    rebuttal_placeholder: 'Vysvetlite moderátorovi, prečo by tento skript nemal byť odstránený.'
+    submit_rebuttal: "Odoslať obhajobu"
+    delete_script: "Odstrániť skript"
   discussions:
     title: Diskusie
     comment_date: "Pridaný: %{date}"
@@ -1087,6 +1115,7 @@ sk:
     script_report:
       report_created_offender:
         subject: "Váš skript %{script_name} na %{site_name} bol nahlásený"
+        text: "Váš skript %{script_name} bol nahlásený pre porušovanie pravidiel %{site_name}. Konkrétny dôvod: %{reason}. Túto sťažnosť si môžete pozrieť na %{report_url} a odoslať obhajobu. Ak neodošlete obhajobu, váš skript môže byť moderátorom odstránený. Ak máte nejaké otázky, prejdite na https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Váš skript %{script_name} na %{site_name} bol odstránený"
         text: "Váš skript %{script_name} na %{site_name} bol odstránený moderátorom. Správu o hlásení si môžete pozrieť na %{report_url}. Ak máte nejaké otázky, prosím, navštívte https://greasyfork.org/forum/."
