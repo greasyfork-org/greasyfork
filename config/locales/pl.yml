@@ -128,6 +128,11 @@ pl:
     stats_raw_data_header: "Dane źródłowe"
     stats_download_raw_data_html: "Pobierz wszystkie dane jako: %{links}"
     stats_no_data: "Brak danych"
+    stats_filters: "Filtrowanie: %{filter_options}"
+    stats_filter_options:
+      month: Ostatnie 30 dni
+      year: Ostatnie 365 dni
+      all: Cały czas
     derivatives_title: "%{script_name} — pochodne"
     derivatives_intro: "Te skrypty mogą być bazowane na twoim skrypcie (lub twój może być bazowany na ich). Jeśli znajdziesz nieautoryzowane użycie twojego kodu, zgłoś go poprzez kartę opinii tego skryptu."
     derivatives_script_html: "%{script}, autor: %{user}, licencja: %{license} %{diff_link:[Diff]}"
@@ -226,6 +231,7 @@ pl:
     additional_info_add_localized: "Dodaj dodatkową zlokalizowaną informację"
     additional_info_locale_repeated: "Zapewnienie tylko jedno dodatkowe informacje dla '% {locale_key} \"locale."
     localized_additional_info_with_no_name: "Dodatkowa informacja została określona dla tłumaczenia '%{locale_code}', ale linia @name:%{locale_code} nie została wprowadzona."
+    localized_attribute_matches_default: "Kod nie powinien zawierać osobnej definicji %{meta_key}, kiedy '%{locale_code}' jest domyślną wersją językową."
     code_syncing_from_url_html: "Kod tego skryptu został ustawiony, by synchronizować się z: %{field}"
     provide_code_syncing_from_url_html: "% {Nazwa_Strony} może importować skrypty, które gościło już w innym miejscu, na przykład w systemie kontroli wersji (jak GitHub), swój własny serwer lub inny skrypt użytkownika Hosting strony. Aby włączyć synchronizację dla skryptu podaj adres URL:% {}"
     sync_type_intro: "Ten skrypt będzie synchronizowany:"
@@ -320,6 +326,31 @@ pl:
       js: "Opublikuj nowy skrypt"
       css: "Opublikuj nowy styl"
     update_title: "Opublikuj nową wersję %{script}"
+    antifeatures:
+      warning_title: Ten skrypt zawiera antyfunkcjonalności
+      author_explanation_intro: "Autor tego skryptu wyjaśnia:"
+      types:
+        ads:
+          title: Reklamy
+          description_html: Ten skrypt <b>wstrzykuje reklamy</b> na odwiedzanych przez ciebie stronach.
+        tracking:
+          title: Śledzenie
+          description_html: Ten skrypt zawiera kod, który <b>śledzi twoje przeglądanie</b>.
+        miner:
+          title: Koparka kryptowalut
+          description_html: Ten skrypt zawiera koparkę kryptowalut, która <b>wykorzystuje zasoby twojego urządzenia</b> podczas aktywności.
+        referral-link:
+          title: Linki partnerskie
+          description_html: Ten skrypt <b>modyfikuje linki</b> na odwiedzanych stronach, dodając do nich kody programów afiliacyjnych i partnerskich.
+      install_anyway: Zainstaluj skrypt
+      cancel_install: Anuluj
+    badges:
+      js:
+        short: JS
+        long: Skrypt użytkownika
+      css:
+        short: CSS
+        long: Styl użytkownika
   script_sets:
     description: "Zestawy skryptów umożliwiają Ci stworzenie zmodyfikowanej listy skryptów do przeglądania Greasy Fork'a. Możesz dodać skrypty do Twojego zestawu poprzez dołączanie pojedynczych skryptów, zestawów innych użytkowników lub automatycznie generowanych zestawów. Możesz także usunąć skrypty z Twojego zestawów w taki sam sposób."
     favorites_name: "Ulubione"
@@ -471,6 +502,7 @@ pl:
     script_list_none_same_user_html: "Nie napisałeś jeszcze żadnych skryptów. %{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "Chcesz dowiedzieć się, jak to zrobić?"
     deleted_script_list: "Usunięte skrypty"
+    unlisted_script_list: "Nie katalogowane skrypty"
     sign_out: "Wyloguj się"
     edit: "Edytuj konto"
     edit_sign_in: "Edytuj metody zalogowania się"
@@ -574,6 +606,13 @@ pl:
         request_expired: "Nie można usunąć użytkownika - żądanie wygasło."
         cancelled: "Usunięcie anulowane."
         completed: "Twoje konto zostało usunięte."
+    banned_notice:
+      no_report_no_reason: "Twoje konto zostało zablokowane. Możesz %{delete_link:usunąć swoje konto}, jeśli tego chcesz."
+      with_report: "Twoje konto zostało zablokowane w odpowiedzi na %{report_link:przesłane zgłoszenie}. Możesz %{delete_link:usunąć swoje konto}, jeśli tego chcesz."
+      with_reason: "Twoje konto zostało zablokowane. Moderator przedstawił następujący powód: \"%{reason}\". Możesz %{delete_link:usunąć swoje konto}, jeśli tego chcesz."
+    banned_delete:
+      intro: "Usunięcie twojego konta spowoduje również usunięcie wszystkich udostępnionych przez ciebie skryptów. Twoja aktywność na forach pozostanie dostępna, ale nazwa użytkownika zostanie zanonimizowana. Nawet po usunięciu nie będzie możliwości ponownej rejestracji konta z tym samym adresem email. Zaloguj się poniżej, aby usunąć konto."
+      complete: "Twoje konto zostało usunięte."
     badges:
       banned:
         short: Zbanowany
@@ -602,6 +641,8 @@ pl:
         many: Odsubskrybuj z %{discussions_link:%{count} dyskusji}, które subskrybujesz
         other: Odsubskrybuj z %{discussions_link:%{count} dyskusji}, które subskrybujesz
       save_success: Twoje ustawienia powiadomień zostały zaktualizowane
+      unsubscribe_all: Wypisz się z wszystkich powiadomień
+      unsubscribe_all_success: Zostałeś wypisany ze wszystkich powiadomień
   help:
     sections:
       usage: Używanie
@@ -631,6 +672,7 @@ pl:
       contributionAmount_html: "Sugerowana kwota dotacji, używana wraz z <code>@contributionURL</code>."
       compatible_html: "Oznacza ten skrypt jako kompatybilny z przeglądarką. Informacje o zgodności zostaną pokazane na stronie skryptu. Uwagi dotyczące zgodności mogą zostać dołączone w formacie<code>@compatible firefox Należy wyłączyć blokowanie wyskakujących okien.</code>. Rozpoznawane przeglądarki to: %{browsers}."
       incompatible_html: "Oznacza ten skrypt jako niezgodny z przeglądarką. Informacje o kompatybilności zostaną wyświetlone na stronie skryptu. Opcjonalne komentarze dotyczące kompatybilności mogą zostać dołączone w formacie <code>@incompatible firefox Niezgodne od Firefox'a w wersji 23</code>. Rozpoznawane przeglądarki to: %{browsers}."
+      antifeature_html: "Ujawnia funkcje skryptu, które mają przynieść korzyść autorowi, a nie użytkownikowi. Format klucza to <code>@antifeature typ opis</code>. %{site_name} odczyta następujące typy: <code>ads</code> (skrypt wyświetla reklamy użytkownikowi), <code>tracking</code> (skrypt śledzi aktywność użytkownika), <code>miner</code> (skrypt zawiera koparkę kryptowalut), oraz <code>referral-link</code> (skrypt podmienia odnośniki na stronach, dodając kody programów afiliacyjnych). Inne typy są ignorowane, niemniej jednak skrypt musi przestrzegać %{code_rules_link:zasad %{site_name}}. Opis jest opcjonalny."
       antifeature_localized_html: "<code>@antifeature</code> opisany w innym języku, gdzie XX oznacza <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">dwuliterowy kod ISO 639-1</a>, a YY jest opcjonalnym <a href=\"https://www.iso.org/obp/ui/#search\">kodem kraju ISO 3166</a>. Nadpisuje <code>@antifeature</code> gdy użytkownik przegląda w pasującym języku."
     writing_user_scripts:
       title: "Jak pisać skrypty użytkownika"
@@ -647,6 +689,7 @@ pl:
 
         po prostu przekierowuje użytkownika na stronę internetową, nie musi być skryptem; może to być link. Dozwolone są skrypty, które wykorzystują usługę sieciową do wykonania akcji na bieżącej stronie (np. w celu jej konwersji).'
       unrelated: Skrypty nie mogą wymagać od użytkowników wykonywania niezwiązanych działań, takich jak wysyłanie płatności, subskrybowanie kanału, dołączenie do grupy, lub polubienie strony, aby skrypt działał.
+      monetization_html: 'Skrypty, które zawierają funkcje przynoszące korzyść <em>autorowi</em>, nie użytkownikowi (jak skrypty śledzące, reklamy, koparki kryptowalut) są dozwolone, jednak muszą zostać oznaczone %{antifeature_link: kluczem <code>@antifeature</code>}.'
       code_header: Kod
       obfuscation: Kod zamieszczony na %{site_name} nie może być zaciemniany ani zminifikowany. Dotyczy to także bundlerów takich jak webpack. Użytkownicy muszą mieć możliwość podejrzenia i zrozumienia skryptu, zanim go zainstalują.
       libraries_html: Biblioteki, których używa skrypt, powinny zostać dodane poprzez <code>@require</code>, chyba że istnieje wyraźny techniczny powód, by tego nie robić. Jeśli kod źródłowy biblioteki jest zawarty w kodzie skryptu, należy również dodać informację o źródle biblioteki (np. komentarz zawierający adres URL i/lub nazwę oraz wersję).
@@ -726,6 +769,7 @@ pl:
       authors_credit: "%{site_name} nie byłby możliwy bez twórców dodających swoje skrypty."
       developers_credit: "Sam %{site_name} jest tworzony przez %{developers_link:tych ludzi} razem z pomocą wszystkich, którzy zgłaszają błędy i proponują poprawki."
       translators_credit: "%{site_name} został przetłumaczony przez %{translators_link:Zespół Greasy Tłumaczy na Transifex}:"
+      icons_credit: "Ikony przeglądarek pochodzą z %{browserlogos}."
     help_with_greasymonkey: "Pomoc z Greasemonkey"
     contact:
       title: "Skontaktuj się z kimś"
@@ -818,6 +862,8 @@ pl:
     new_report_title:
       user: "Zgłoś %{user}"
       comment: "Zgłoś komentarz użytkownika %{user}"
+      message: "Zgłoś wiadomość użytkownika %{user}"
+      script: "Zgłoś %{script}"
     new_report_notes_html: >
         <p>Przed zgłoszeniem należy pamiętać, że:</p> <ul>
 
@@ -825,6 +871,18 @@ pl:
 
         <li>Niezgadzanie się z treścią lub uważanie, że jest nieprawdziwe, nie jest
         uzasadnionym powodem do zgłoszenia.</li>
+
+        <li>Nadużywanie opcji zgłaszania może doprowadzić <i>cię</i> do bana.</li>
+
+        </ul>
+    new_script_report_notes_html: >
+        <p>Przed zgłoszeniem należy pamiętać, że:</p> <ul>
+
+        <li>Skrypt zostanie usunięty wyłącznie z powodu naruszenia %{rules_link:zasad
+        %{site_name}}. Jeśli skrypt jest zepsuty albo niefunkcjonalny, %{feedback_link:prześlij
+        zamiast tego opinię.}.</li>
+
+        <li>Moderator sprawdzi twoje zgłoszenie i odpowiednio się do niego odniesie.</li>
 
         <li>Nadużywanie opcji zgłaszania może doprowadzić <i>cię</i> do bana.</li>
 
@@ -841,8 +899,20 @@ pl:
 
         </ul>
     reason:
+      non_functional: "Skrypt nie działa"
       spam: "Spam"
       abuse: "Obraźliwe lub nienawistne treści"
+      illegal: "Nielegalne treści"
+      unauthorized_code: "Nieautoryzowana kopia"
+      malware: "Szkodliwy kod"
+      minified: "Zminifikowany kod"
+      external_code: "Niedozwolony zewnętrzny kod"
+      undisclosed_antifeature: "Nieujawniona antyfunkcjonalność (np reklamy, śledzenie, koparka)"
+      other: "Inne"
+    report_intro_html: "%{reported_item} został zgłoszony za %{reason} przez %{reporter}"
+    report_intro_unauthorized_html: "%{reported_script} został zgłoszony jako nieautoryzowana kopia %{other_script} przez %{reporter}."
+    non_functional_feedback: "Prosimy o zgłaszanie niefunkcjonalnych skryptów korzystając z opcji %{feedback_link:pozostawienia opinii} o skrypcie."
+    unauthorized_code_original_placeholder: "Adres URL oryginalnego kodu"
     explanation_placeholder: "Podaj dodatkowe szczegóły (opcjonalne)"
     create_button: "Utwórz zgłoszenie"
     report_user: "Zgłoś użytkownika"
@@ -851,10 +921,15 @@ pl:
     result_dismissed: "Twoje zgłoszenie zostało odrzucone przez moderatora."
     result_upheld: "Twoje zgłoszenie zostało uznane przez moderatora."
     result_pending: "Twoje zgłoszenie oczekuje na sprawdzenie przez moderatora."
+    rebuttal_placeholder: 'Wyjaśnij moderatorowi, dlaczego ten skrypt nie powinien zostać usunięty.'
+    submit_rebuttal: "Prześlij odwołanie"
+    delete_script: "Usuń skrypt"
   discussions:
     title: Dyskusje
     comment_date: "Napisano: %{date}"
     comment_edit_date: "Edytowano: %{date}"
+    posted_by_html: "%{user} %{date}"
+    last_comment: "Ostatni: %{user} %{date}"
     new_discussion_heading: "Napisz recenzję, komentarz lub pytanie"
     new_discussion_submit: "Opublikuj komentarz"
     new_comment_heading: "Odpowiedz"
@@ -863,9 +938,12 @@ pl:
     edit_comment_link: "Edytuj"
     edit_comment_header: "Edytuj komentarz"
     delete_comment: "Usuń"
+    delete_comment_confirm: Czy na pewno chcesz usunąć ten komentarz?
     delete_discussion: "Usuń"
+    delete_discussion_confirm: Czy na pewno chcesz usunąć tę dyskusję?
     update_comment_submit: "Zaktualizuj komentarz"
     cancel_update_comment: "Anuluj"
+    quote_comment: "Cytat"
     question_heading_html: "Pytanie/komentarz"
     review_heading_html: "Ocena: %{rating}"
     update_rating: "Zaktualizuj swoją ocenę o %{script_name}"
@@ -899,6 +977,9 @@ pl:
       all: Wszystkie
       read: Przeczytane
       unread: Nieprzeczytane
+    locale_filter:
+      label: Język
+      all: Wszystkie
     user_activity:
       title: "Ostatnie komentarze"
       no_recent_activity: "Ten użytkownik nie opublikował ostatnio żadnych komentarzy."
@@ -959,6 +1040,7 @@ pl:
       other: Rozmowa z %{users}.
     conversation_info_html: Ostatnia wiadomość o %{date} od %{user}.
     no_conversations: Nie masz jeszcze żadnych rozmów.
+    no_recent_conversations: Nie masz żadnych ostatnio przeprowadzanych rozmów.
     recent:
       title: Ostatnie rozmowy
       more: Zobacz wszystkie rozmowy
@@ -1036,6 +1118,7 @@ pl:
       script_rate_limit: "Przekroczono limit udostępniania. Spróbuj ponownie później."
       missing_include_or_match: "musi zawierać co najmniej jeden klucz @match lub @include"
       file_size_out_of_range: "rozmiar musi być mniejszy niż 200KB"
+      meta_too_long: "%{key} jest zbyt długi (maksymalna dozwolona ilość znaków to %{count})"
   opensearch:
     short_name: "%{site_name} wyszukaj"
     description: "Szukaj skryptów użytkownika na %{site_name}."
@@ -1045,6 +1128,7 @@ pl:
     script_report:
       report_created_offender:
         subject: "Twój skrypt %{script_name} dla %{site_name} został zgłoszony"
+        text: "Twój skrypt %{script_name} został zgłoszony jako stanowiący naruszenie zasad %{site_name}. Przedstawiony powód: %{reason}. Możesz zapoznać się z tym zgłoszeniem pod %{report_url}, oraz przesłać odwołanie. Jeśli masz jakieś pytania, odwiedź https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Twój skrypt %{script_name} dla %{site_name} został usunięty"
         text: "Twój skrypt %{script_name} dla %{site_name} został usunięty przez moderatora. Możesz zapoznać się ze zgłoszeniem pod %{report_url}. Jeśli masz jakieś pytania, odwiedź https://greasyfork.org/forum/."
@@ -1107,6 +1191,7 @@ pl:
 
           Otrzymano to powiadomienie, ponieważ masz włączone otrzymywanie wzmianek o tobie. Zarządzaj ustawieniami powiadomień na %{notification_preferences_url}.
     new_message:
+      subject: "Użytkownik %{user} wysłał ci wiadomość na %{site_name}"
       text: |
           Użytkownik '%{user}' na %{site_name} wysłał ci wiadomość.
 
