@@ -11,6 +11,7 @@ set :sidekiq_roles, %w[worker]
 set :sidekiq_config, "#{current_path}/config/sidekiq.yml"
 set :sidekiq_env, 'production'
 set :init_system, :systemd
+set :puma_service_unit_name, 'puma'
 set :thinking_sphinx_roles, 'workers'
 
 set :default_env, {
