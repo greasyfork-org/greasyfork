@@ -41,7 +41,7 @@ class TopSitesService
         Rails.logger.warn('Combining by_sites and all_sites') if Greasyfork::Application.config.log_cache_misses
         # combine with "All sites" number
         a = ([[nil] + all_sites] + by_sites)
-        Hash[a.map { |key, install_count, script_count| [key, { installs: install_count.to_i, scripts: script_count.to_i }] }]
+        a.map { |key, install_count, script_count| [key, { installs: install_count.to_i, scripts: script_count.to_i }] }.to_h
       end
     end
 

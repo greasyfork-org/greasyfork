@@ -544,16 +544,16 @@ class ScriptsController < ApplicationController
 
     install_sql = "SELECT install_date, installs FROM install_counts where script_id = #{Script.connection.quote(@script.id)}"
     install_sql += " and install_date >= #{Script.connection.quote(@start_date)}" if @start_date
-    install_values = Hash[Script.connection.select_rows(install_sql)]
+    install_values = Script.connection.select_rows(install_sql).to_h
 
     daily_install_sql = "SELECT DATE(install_date) d, COUNT(*) FROM daily_install_counts where script_id = #{Script.connection.quote(@script.id)}"
     daily_install_sql += " and install_date >= #{Script.connection.quote(@start_date)}" if @start_date
     daily_install_sql += ' GROUP BY d'
-    daily_install_values = Hash[Script.connection.select_rows(daily_install_sql)]
+    daily_install_values = Script.connection.select_rows(daily_install_sql).to_h
 
     update_check_sql = "SELECT update_check_date, update_checks FROM update_check_counts where script_id = #{@script.id}"
     update_check_sql += " and update_check_date >= #{Script.connection.quote(@start_date)}" if @start_date
-    update_check_values = Hash[Script.connection.select_rows(update_check_sql)]
+    update_check_values = Script.connection.select_rows(update_check_sql).to_h
 
     @stats = {}
     update_check_start_date = Date.parse('2014-10-23')
