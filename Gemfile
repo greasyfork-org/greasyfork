@@ -59,8 +59,8 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'capistrano', '~> 3.7'
-  gem 'capistrano-bundler'
   gem 'capistrano3-puma'
+  gem 'capistrano-bundler'
   gem 'capistrano-rails'
   gem 'capistrano-rbenv'
   # capistrano-sidekiq 1.0.3 is marked as incompatible with Sidekiq 6, but really it is compatible, as long as you use the systemd stuff.

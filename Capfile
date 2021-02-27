@@ -22,4 +22,4 @@ install_plugin Capistrano::SCM::Git
 Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
 
 # workaround for https://github.com/capistrano/rails/issues/235
-Rake::Task["deploy:assets:backup_manifest"].clear_actions
+Rake::Task['deploy:assets:backup_manifest'].clear_actions
