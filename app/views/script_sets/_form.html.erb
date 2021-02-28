@@ -26,12 +26,12 @@
     <% else %>
       <div class="form-control">
         <%=s.label(:name)%><br>
-        <%=s.text_field(:name, :maxlength => 100, :size => nil)%>
+        <%=s.text_field(:name, maxlength: 100, size: nil)%>
       </div>
 
       <div class="form-control">
         <%=s.label(:description)%><br>
-        <%=s.text_area(:description, :maxlength => 500, :size => nil)%>
+        <%=s.text_area(:description, maxlength: 500, size: nil)%>
       </div>
 
       <div class="form-control">
@@ -43,7 +43,7 @@
           [t('scripts.listing_sort_ratings'), 'ratings'],
           [t('scripts.listing_sort_created_date'), 'created'],
           [t('scripts.listing_sort_updated_date'), 'updated'],
-          [t('scripts.listing_sort_name'), 'name']
+          [t('scripts.listing_sort_name'), 'name'],
         ])%>
       </div>
     <% end %>
@@ -227,9 +227,9 @@
         <div class="form-control add-automatic-script-set-4">
           <label for="add-automatic-script-set-value-4"><%=t('script_sets.edit_auto_sets.for_language_label')%></label>
           <% current_locale = nil
-          current_locale = Locale.where(:code => params[:locale]).first if !params[:locale].nil?
-          current_locale = Locale.where(:code => 'en').first if current_locale.nil? %>
-          <%=select_tag('add-automatic-script-set-value-4', options_from_collection_for_select(Locale.with_listable_scripts(script_subset), "id", "display_text", current_locale.id), {:id => 'add-automatic-script-set-value-4', :multiple => true})%> <button name="add-automatic-script-set-4" value="i" data-submit-anchor="script-set-auto-script-sets"><%=t('script_sets.edit_auto_sets.for_language_include')%></button> <button name="add-automatic-script-set-4" value="e" data-submit-anchor="script-set-auto-script-sets"><%=t('script_sets.edit_auto_sets.for_language_exclude')%></button>
+          current_locale = Locale.where(code: params[:locale]).first unless params[:locale].nil?
+          current_locale = Locale.where(code: 'en').first if current_locale.nil? %>
+          <%=select_tag('add-automatic-script-set-value-4', options_from_collection_for_select(Locale.with_listable_scripts(script_subset), 'id', 'display_text', current_locale.id), {id: 'add-automatic-script-set-value-4', multiple: true})%> <button name="add-automatic-script-set-4" value="i" data-submit-anchor="script-set-auto-script-sets"><%=t('script_sets.edit_auto_sets.for_language_include')%></button> <button name="add-automatic-script-set-4" value="e" data-submit-anchor="script-set-auto-script-sets"><%=t('script_sets.edit_auto_sets.for_language_exclude')%></button>
         </div>
       </div>
       <% @set.child_automatic_set_inclusions.each do |set| %>

@@ -1,5 +1,5 @@
-<%- title t('scripts.history_title', :script_name => @script.name(request_locale)) %>
-<%- description 'Version history for ' + @script.name(request_locale) %>
+<%- title t('scripts.history_title', script_name: @script.name(request_locale)) %>
+<%- description "Version history for #{@script.name(request_locale)}" %>
 
 <%
 show_diff = @script.script_versions.length > 1
@@ -8,14 +8,14 @@ visible_version_index = 0
 svs = @script.script_versions.reverse
 if show_diff
   if !show_all_versions %>
-    <p><%=t('scripts.history_only_code_changes_info')%> <%=link_to t('scripts.history_all_changes_link'), :show_all_versions => 1%></p>
+    <p><%=t('scripts.history_only_code_changes_info')%> <%=link_to t('scripts.history_all_changes_link'), show_all_versions: 1%></p>
   <% else %>
-    <p><%=t('scripts.history_all_changes_info')%> <%=link_to t('scripts.history_only_code_changes_link'), :show_all_versions => nil%></p>
+    <p><%=t('scripts.history_all_changes_info')%> <%=link_to t('scripts.history_only_code_changes_link'), show_all_versions: nil%></p>
   <% end
 end %>
 <form action="<%=diff_script_path(params[:script_id])%>">
   <% if show_diff %>
-    <%= submit_tag t('scripts.diff_button'), :name => nil%>
+    <%= submit_tag t('scripts.diff_button'), name: nil%>
   <% end %>
   <ul class="history_versions">
     <% svs.each_with_index do |sv, i|
@@ -29,7 +29,7 @@ end %>
           <% end
           visible_version_index += 1 %>
           <span class="version-number">
-            <%= link_to 'v' + sv.version, script_path(sv.script, version: sv.id), rel: :nofollow %>
+            <%= link_to "v#{sv.version}", script_path(sv.script, version: sv.id), rel: :nofollow %>
             <% if !current_user.nil? && current_user.moderator? %>
               <%=link_to 'Delete', script_script_version_delete_path(script_id: sv.script.id, script_version_id: sv.id) %>
             <% end %>
@@ -45,6 +45,6 @@ end %>
     end %>
   </ul>
   <% if show_diff %>
-    <%= submit_tag t('scripts.diff_button'), :name => nil%>
+    <%= submit_tag t('scripts.diff_button'), name: nil%>
   <% end %>
 </form>

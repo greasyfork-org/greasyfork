@@ -3,7 +3,7 @@
 <h2><%= t('.title', resource: resource_name.to_s.humanize) %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= render 'devise/shared/error_messages', resource: resource %>
 
   <% syncing_identities = current_user.identities.select(&:syncing)
   if syncing_identities.any? %>
@@ -19,7 +19,7 @@
   </div>
 
   <div><%= f.label :email %><br />
-  <%= f.email_field :email, autocomplete: "email" %></div>
+  <%= f.email_field :email, autocomplete: 'email' %></div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
@@ -29,9 +29,9 @@
     <div class="form-control">
       <%= f.label :profile %>
       <span class="label-note">
-        <%=link_to t('common.allowed_elements_link'), help_allowed_markup_path, {:target => 'markup_choice'}%>
+        <%=link_to t('common.allowed_elements_link'), help_allowed_markup_path, {target: 'markup_choice'}%>
         <%=f.radio_button(:profile_markup, 'html')%>HTML
-        <%=f.radio_button(:profile_markup, 'markdown')%><%=link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', {:target => 'markup_choice'}%>
+        <%=f.radio_button(:profile_markup, 'markdown')%><%=link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', {target: 'markup_choice'}%>
       </span>
       <br>
       <div class="previewable" data-markup-option-name="user[profile_markup]" data-preview-label="<%=t('common.preview_tab')%>" data-write-label="<%=t('common.write_tab')%>">
@@ -44,7 +44,7 @@
     <label><%=t('activerecord.attributes.user.locale')%></label><br>
     <select name="user[locale_id]">
       <option value="" <%if @user.locale_id.nil?%>selected<%end%>><%=t('users.locale_prompt')%></option>
-      <% Locale.where(:ui_available => true).each do |locale| %>
+      <% Locale.where(ui_available: true).each do |locale| %>
         <option value="<%=locale.id%>" <%if @user.locale_id == locale.id%>selected<%end%>><%=locale.display_text%></option>
       <% end %>
       <option disabled>---</option>
@@ -60,7 +60,7 @@
       <%=t('users.preferred_markup_description')%>
     </span><br>
     <%=f.radio_button(:preferred_markup, 'html')%>HTML<br>
-    <%=f.radio_button(:preferred_markup, 'markdown')%><%=link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', {:target => 'markup_choice'}%>
+    <%=f.radio_button(:preferred_markup, 'markdown')%><%=link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', {target: 'markup_choice'}%>
   </div>
 
   <div>

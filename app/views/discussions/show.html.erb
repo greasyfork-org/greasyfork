@@ -1,6 +1,6 @@
 <% if @script %>
   <%- title t('scripts.feedback_title', script_name: @script.name(request_locale)) %>
-  <%- description 'Feedback on ' + @script.name(request_locale) %>
+  <%- description "Feedback on #{@script.name(request_locale)}" %>
 <% else %>
   <%- title @discussion.title %>
 <% end %>

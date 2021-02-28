@@ -2,7 +2,7 @@
 <%= t('screenshots.requirements', size: number_to_human_size(Rails.configuration.screenshot_max_size), number: Rails.configuration.screenshot_max_count ) %>
 <div>
   <%= f.label :attachments, t('scripts.screenshots_add') %>
-  <%= f.file_field :attachments, multiple: true, accept: HasAttachments::ALLOWED_CONTENT_TYPES.join(",") %>
+  <%= f.file_field :attachments, multiple: true, accept: HasAttachments::ALLOWED_CONTENT_TYPES.join(',') %>
 </div>
 <% if current_attachments.any? %>
   <div class="remove-attachments">

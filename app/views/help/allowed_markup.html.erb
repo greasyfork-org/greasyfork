@@ -9,7 +9,7 @@
     <% attrs = markdown_sanitize_config[:attributes][el] %>
     <% protocols = markdown_sanitize_config[:protocols][el] %>
     <% if el == 'iframe'
-         attrs = %w(allowfullscreen frameborder height src width)
+         attrs = %w[allowfullscreen frameborder height src width]
          protocols = { 'src' => ['https://www.youtube.com/', 'https://www.youtube-nocookie.com/'] }
        end
     %>

@@ -1,11 +1,11 @@
 <%
 include_script_sets = true if !defined?(include_script_sets) || include_script_sets.nil?
-by_sites = nil if !defined?(by_sites)
+by_sites = nil unless defined?(by_sites)
 include_search = false if !defined?(include_search) || include_search.nil?
-sort_options = ['daily_installs', 'total_installs', 'ratings', 'created', 'updated', 'name'] if !defined?(sort_options) || sort_options.nil?
+sort_options = %w[daily_installs total_installs ratings created updated name] if !defined?(sort_options) || sort_options.nil?
 default_sort = @set&.default_sort || sort_options.first
 current_options = params.to_unsafe_h.slice(:sort, :site, :set, :language, :filter_locale).map {|k, v| [k.to_sym, v] }.to_h.merge(default_sort: default_sort)
-skip_all_sites_link = false if !defined?(skip_all_sites_link)
+skip_all_sites_link = false unless defined?(skip_all_sites_link)
 %>
 
 <div id="script-list-option-groups" class="list-option-groups">

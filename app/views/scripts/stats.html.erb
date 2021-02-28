@@ -1,19 +1,19 @@
-<%- title t('scripts.stats_title', :script_name => @script.name(request_locale)) %>
-<%- description 'Install stats for ' + @script.name(request_locale) %>
+<%- title t('scripts.stats_title', script_name: @script.name(request_locale)) %>
+<%- description "Install stats for #{@script.name(request_locale)}" %>
 
 <% content_for(:head_bottom) do %>
-  <%= javascript_pack_tag "stats" %>
+  <%= javascript_pack_tag 'stats' %>
 <% end %>
 
 <% if @script.created_at < 30.days.ago %>
   <p>
     <%
       filter_options = []
-      if params[:period].nil?
-        filter_options << t('scripts.stats_filter_options.month')
+      filter_options << if params[:period].nil?
+        t('scripts.stats_filter_options.month')
       else
-        filter_options << link_to(t('scripts.stats_filter_options.month'), period: nil)
-      end
+        link_to(t('scripts.stats_filter_options.month'), period: nil)
+                        end
       filter_options << link_to_unless_current(t('scripts.stats_filter_options.year'), { period: 'year' }, rel: :nofollow)
       filter_options << link_to_unless_current(t('scripts.stats_filter_options.all'), { period: 'all' }, rel: :nofollow ) if @script.created_at < 365.days.ago
     %>
@@ -40,16 +40,16 @@
   <div id="<%=container_id%>"></div>
 
   <%
-  data = @stats.map{|k, v| [k, v[data_key == :weekly_installs ? :installs : data_key]]}.to_h
+  data = @stats.transform_values{|v| v[data_key == :weekly_installs ? :installs : data_key]}
   if data_key == :weekly_installs
-    data = data.group_by{|k, v| k.beginning_of_week}.map{|k, vs| [k, vs.sum{|v| v.last || 0}]}.to_h
-  else
-    data = data.select{|k, v| k >= @start_date } if @start_date
-  end
+    data = data.group_by{|k, _v| k.beginning_of_week}.transform_values{|vs| vs.sum{|v| v.last || 0}}
+  elsif @start_date
+    data = data.select{|k, _v| k >= @start_date }
+end
   %>
   <script>
   var data = {
-    labels: [<%=data.keys.each.map{|d| '"' + escape_javascript(d.to_s) + '"'}.join(',').html_safe%>],
+    labels: [<%=data.keys.each.map{|d| "\"#{escape_javascript(d.to_s)}\""}.join(',').html_safe%>],
     datasets: [{
         fillColor : "rgba(220,220,220,0.5)",
         strokeColor : "rgba(220,220,220,1)",
@@ -107,4 +107,4 @@
   </tbody>
 </table>
 <% links = [:json, :csv].map{|f| link_to f.to_s.upcase, { format: f }, rel: :nofollow } %>
-<%=t('scripts.stats_download_raw_data_html', :links => links.join(' ').html_safe)%>
+<%=t('scripts.stats_download_raw_data_html', links: links.join(' ').html_safe)%>

@@ -1,6 +1,6 @@
 <%- title "Delete #{@script.name}" %>
 
-<% moderator_view = current_user.moderator? && !@script.user_ids.include?(current_user.id) %>
+<% moderator_view = current_user.moderator? && @script.user_ids.exclude?(current_user.id) %>
 
 <% if @script.deleted? %>
 

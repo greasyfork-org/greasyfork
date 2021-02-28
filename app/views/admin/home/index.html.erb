@@ -6,7 +6,7 @@
   <li><%= link_to 'Blocked URLs', admin_blocked_script_urls_path %></li>
   <li><%= link_to 'Redirect Service Domains', admin_redirect_service_domains_path %></li>
   <li><%= link_to 'Spammy Email Domains', admin_spammy_email_domains_path %></li>
-  <li><%= link_to "Similarities", admin_script_similarities_path %></li>
+  <li><%= link_to 'Similarities', admin_script_similarities_path %></li>
   <li><%= link_to "Reported: #{Report.unresolved.count}", reports_path %></li>
   <li><%= link_to "Reported as not adult content: #{Script.reported_not_adult.count}", reported_not_adult_scripts_path %></li>
   <% if current_user.administrator? %>

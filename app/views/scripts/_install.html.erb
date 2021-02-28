@@ -4,11 +4,11 @@
       <div id="install-area">
         <% if script.css? %>
           <% if script.css_convertible_to_js? %>
-            <%= render partial: 'install_button', locals: {script_version: script_version, version_param: params[:version], format_override: 'js'}%><%=link_to t('scripts.install_help'), help_installing_user_scripts_path, {:class => 'install-help-link', :title => t('scripts.install_help_title'), :rel => 'nofollow'}%>
+            <%= render partial: 'install_button', locals: {script_version: script_version, version_param: params[:version], format_override: 'js'}%><%=link_to t('scripts.install_help'), help_installing_user_scripts_path, {class: 'install-help-link', title: t('scripts.install_help_title'), rel: 'nofollow'}%>
           <% end %>
-          <%= render partial: 'install_button', locals: {script_version: script_version, version_param: params[:version]}%><%=link_to t('scripts.install_help'), help_installing_user_styles_path, {:class => 'install-help-link', :title => t('scripts.install_help_title'), :rel => 'nofollow'}%>
+          <%= render partial: 'install_button', locals: {script_version: script_version, version_param: params[:version]}%><%=link_to t('scripts.install_help'), help_installing_user_styles_path, {class: 'install-help-link', title: t('scripts.install_help_title'), rel: 'nofollow'}%>
         <% else %>
-          <%= render partial: 'install_button', locals: {script_version: script_version, version_param: params[:version]}%><%=link_to t('scripts.install_help'), help_installing_user_scripts_path, {:class => 'install-help-link', :title => t('scripts.install_help_title'), :rel => 'nofollow'}%>
+          <%= render partial: 'install_button', locals: {script_version: script_version, version_param: params[:version]}%><%=link_to t('scripts.install_help'), help_installing_user_scripts_path, {class: 'install-help-link', title: t('scripts.install_help_title'), rel: 'nofollow'}%>
         <% end %>
         <% if promoted_script(@script) %>
           <div class="post-install">
@@ -23,12 +23,12 @@
 
     <% when 3 %>
       <p>
-        <% if params[:version].nil?
-          library_code_snippet = "<code>// @require #{library_js_script_url(script, version: script_version.id, name: script.url_name, locale_override: nil)}</code>"
+        <% library_code_snippet = if params[:version].nil?
+          "<code>// @require #{library_js_script_url(script, version: script_version.id, name: script.url_name, locale_override: nil)}</code>"
         else
-          library_code_snippet = "<code>// @require #{library_js_script_url(script, version: params[:version], name: script.url_name, locale_override: nil)}</code>"
-        end %>
-        <%=t('scripts.library_instructions_html', :code => library_code_snippet.html_safe)%>
+          "<code>// @require #{library_js_script_url(script, version: params[:version], name: script.url_name, locale_override: nil)}</code>"
+                               end %>
+        <%=t('scripts.library_instructions_html', code: library_code_snippet.html_safe)%>
       </p>
   <% end %>
 <% end %>

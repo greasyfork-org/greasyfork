@@ -99,9 +99,9 @@
             <% end %>
           <% end %>
           <% if @filter_result.category == 'no-scripts' %>
-            <li class="list-option list-current"><%= t("discussions.categories.no-scripts.name") %></li>
+            <li class="list-option list-current"><%= t('discussions.categories.no-scripts.name') %></li>
           <% else %>
-            <li class="list-option"><%= link_to t("discussions.categories.no-scripts.name"), category_discussion_index_path(category: 'no-scripts', **other_params_for_category) %></li>
+            <li class="list-option"><%= link_to t('discussions.categories.no-scripts.name'), category_discussion_index_path(category: 'no-scripts', **other_params_for_category) %></li>
           <% end %>
         </ul>
       </div>
@@ -116,14 +116,14 @@
               <li class="list-option"><%= link_to t('discussions.read_filter.all'), current_path_with_params(read: nil, page: nil) %></li>
             <% end %>
             <% if @filter_result.read_status == 'read' %>
-              <li class="list-option list-current"><%= t("discussions.read_filter.read") %></li>
+              <li class="list-option list-current"><%= t('discussions.read_filter.read') %></li>
             <% else %>
-              <li class="list-option"><%= link_to t("discussions.read_filter.read"), current_path_with_params(read: 'read', page: nil) %></li>
+              <li class="list-option"><%= link_to t('discussions.read_filter.read'), current_path_with_params(read: 'read', page: nil) %></li>
             <% end %>
             <% if @filter_result.read_status == 'unread' %>
-              <li class="list-option list-current"><%= t("discussions.read_filter.unread") %></li>
+              <li class="list-option list-current"><%= t('discussions.read_filter.unread') %></li>
             <% else %>
-              <li class="list-option"><%= link_to t("discussions.read_filter.unread"), current_path_with_params(read: 'unread', page: nil) %></li>
+              <li class="list-option"><%= link_to t('discussions.read_filter.unread'), current_path_with_params(read: 'unread', page: nil) %></li>
             <% end %>
           </ul>
         </div>

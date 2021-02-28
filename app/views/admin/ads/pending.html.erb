@@ -11,7 +11,7 @@
           <%= link_to('Translate', "https://translate.google.com/#view=home&op=translate&sl=auto&tl=en&text=#{URI.encode_www_form_component(script.description(I18n.locale))}") %>
         </div>
         <p>
-          <%= script.site_applications.map { |s| s.domain? ? link_to(s.text, "http://#{s.text}") : s.text}.join(", ").html_safe %>
+          <%= script.site_applications.map { |s| s.domain? ? link_to(s.text, "http://#{s.text}") : s.text}.join(', ').html_safe %>
         </p>
         <p style="padding: 0.5em 0">
           <%= form_with(model: @script, url: approve_admin_ad_path(script), method: :patch, html: { style: 'display: inline;' }) do %>

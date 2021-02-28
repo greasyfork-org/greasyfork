@@ -38,7 +38,7 @@
         <li><%= link_to t('users.edit_sign_in'), user_edit_sign_in_path%></li>
         <li><%= link_to t('users.edit_notifications'), notifications_user_path(@user) %></li>
         <li><%= link_to t('users.delete_link'), user_delete_info_path%></li>
-        <li><%= link_to t('users.sign_out'), destroy_user_session_path, :method => :delete %></li>
+        <li><%= link_to t('users.sign_out'), destroy_user_session_path, method: :delete %></li>
       </ul>
     </section>
   <% end %>
@@ -173,7 +173,7 @@
         if !favorites_set.nil? %>
           <li><%= t('script_sets.favorites_name') %> <%= link_to 'View scripts', scripts_path(set: favorites_set.id), rel: :nofollow %> <% if @same_user %><%=link_to 'Edit', edit_user_script_set_path(@user, favorites_set)%><% end %></li>
         <% elsif @same_user %>
-          <li><%=t('script_sets.favorites_name')%> <%=link_to 'Edit', new_user_script_set_path(@user, :fav =>  1)%></li>
+          <li><%=t('script_sets.favorites_name')%> <%=link_to 'Edit', new_user_script_set_path(@user, fav: 1)%></li>
         <% end
         @user.script_sets.order(:name).select{|ss| !ss.favorite}.each do |ss| %>
           <li><%=ss.name%>: <%=ss.description%> <%= link_to 'View scripts', scripts_path(set: ss.id), rel: :nofollow %> <% if @same_user %><%=link_to 'Edit', edit_user_script_set_path(@user, ss)%><% end %></li>

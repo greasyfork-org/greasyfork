@@ -1,4 +1,4 @@
-<% markup_name = 'comment[text_markup]' unless markup_name.present? %>
+<% markup_name = 'comment[text_markup]' if markup_name.blank? %>
 
 <span class="label-note">
   <%= link_to t('common.allowed_elements_link'), help_allowed_markup_path, { target:  'markup_choice' } %>

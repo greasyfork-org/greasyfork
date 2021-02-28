@@ -1,12 +1,12 @@
 <section class="multiform-page">
   <h3><%= t('scripts.admin.sync_heading') %></h3>
 
-  <%=form_for(@script, :url => sync_update_script_path) do |s|%>
+  <%=form_for(@script, url: sync_update_script_path) do |s|%>
 
     <% case @script.script_sync_source_id 
       when 1 %>
         <p>
-          <%=t('scripts.code_syncing_from_url_html', :field => s.url_field(:sync_identifier, :size => 50, :placeholder => t('scripts.sync_url_placeholder')))%>
+          <%=t('scripts.code_syncing_from_url_html', field: s.url_field(:sync_identifier, size: 50, placeholder: t('scripts.sync_url_placeholder')))%>
         </p>
       <% when nil %>
         <p>
@@ -29,7 +29,7 @@
       <div class="indented">
         <% localized_additional_infos = @script.localized_attributes_for('additional_info').select{|la| la.attribute_default || !la.sync_identifier.nil? || la.new_record?}
         localized_additional_infos.each_with_index do |la, index| %>
-          <%=render :partial => 'sync_additional_info', :locals => {:la => la, :index => index, :preview => @preview.nil? ? nil : @preview[index]}%>
+          <%=render partial: 'sync_additional_info', locals: {la: la, index: index, preview: @preview.nil? ? nil : @preview[index]}%>
         <% end %>
         <div>
           <button id="add-synced-additional-info" name="add-synced-additional-info" value="1" type="submit" data-form-path="<%= script_sync_additional_info_form_path %>">Add a localized, synced additional info</button>
@@ -40,12 +40,12 @@
     <% if !@script.script_sync_source_id.nil? %>
       <p>
         <% if !@script_sync_error.nil? %>
-          <%=t('scripts.sync_failed_info_html', {:date => markup_date(@script.last_attempted_sync_date), :error => @script.sync_error})%>
+          <%=t('scripts.sync_failed_info_html', {date: markup_date(@script.last_attempted_sync_date), error: @script.sync_error})%>
         <% end %>
         <% if @script.last_successful_sync_date.nil? %>
           <%=t('scripts.sync_never_succeeded')%>
         <% else %>
-          <%=t('scripts.sync_success_info_html', {:date => markup_date(@script.last_successful_sync_date)})%>
+          <%=t('scripts.sync_success_info_html', {date: markup_date(@script.last_successful_sync_date)})%>
         <% end %>
       </p>
     <% end %>

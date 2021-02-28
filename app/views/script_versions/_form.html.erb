@@ -3,25 +3,25 @@
 <% end %>
 
 <p>
-  <%=t('scripts.rules_summary_html', {:full_rules_link => link_to(t('scripts.rules_summary_link_to_full'), help_code_rules_path)})%>
+  <%=t('scripts.rules_summary_html', {full_rules_link: link_to(t('scripts.rules_summary_link_to_full'), help_code_rules_path)})%>
 </p>
 
 <% # ignore userscripts.org sync
 if !script_version.script.script_sync_type_id.nil? and script_version.script.script_sync_source_id != 2 %>
   <p>
     <%=t('scripts.syncing_notice_html', {
-      :syncing_notice_sync_type => link_to(
+      syncing_notice_sync_type: link_to(
         t(
           script_version.script.script_sync_type_id == 1 ? 'scripts.syncing_notice_sync_type_manual' : 'scripts.syncing_notice_sync_type_automatic',
-          {:sync_identifier => script_version.script.sync_identifier}
+          {sync_identifier: script_version.script.sync_identifier}
         ),
         admin_script_path(script_version.script_id)
-      )
+      ),
     })%>
   </p>
 <% end %>
 
-<%=form_for(script_version.script.new_record? ? script_version : [script_version.script, script_version], {:html => {:enctype => 'multipart/form-data'}}) do |s| %>
+<%=form_for(script_version.script.new_record? ? script_version : [script_version.script, script_version], {html: {enctype: 'multipart/form-data'}}) do |s| %>
 
   <% # remember previously chosen overrides
   [:version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation, :allow_code_previously_posted].each do |override|
@@ -42,21 +42,21 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
           attr = error.attribute
           # need custom handling for warnings
           next if msg.starts_with?('warning-') || attr.to_s.include?('screenshot')
-          if attr == :base
-            if msg == "appears to be an unauthorized copy" && script_version.unauthorized_original
-              displayed_errors << it('scripts.error_unauthorized_copy',
+          displayed_errors << if attr == :base
+            if msg == 'appears to be an unauthorized copy' && script_version.unauthorized_original
+              it('scripts.error_unauthorized_copy',
                 script: render_script(script_version.unauthorized_original),
                 rules_link: help_code_rules_path,
-                site_name: site_name,
+                site_name: site_name
               )
             else
-              displayed_errors << msg
-            end
+              msg
+                                end
           elsif msg.is_a?(String)
-            displayed_errors << "#{attr.to_s.capitalize} #{msg}"
+            "#{attr.to_s.capitalize} #{msg}"
           else
-            displayed_errors << script_version.errors.generate_message(attr, msg)
-          end
+            script_version.errors.generate_message(attr, msg)
+                              end
         end
         script_version.script.errors.full_messages.each do |m|
           displayed_errors << m
@@ -80,7 +80,7 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
                 <%=t('scripts.warning_namespace_changed_html')%><br>
                 <label for="script_version_namespace_check_override"><%=t('scripts.override_warning_checkbox_label')%></label> <%=s.check_box(:namespace_check_override, {}, true, false)%>
               <% when :potentially_minified %>
-                <%=t('scripts.warning_potentially_minified_html', {:allowed_requires_link => link_to(t('scripts.warning_potentially_minified_allowed_requires_link'), help_external_scripts_path())})%><br>
+                <%=t('scripts.warning_potentially_minified_html', {allowed_requires_link: link_to(t('scripts.warning_potentially_minified_allowed_requires_link'), help_external_scripts_path)})%><br>
                 <label for="script_version_minified_confirmation"><%=t('scripts.override_warning_checkbox_label')%></label> <%=s.check_box(:minified_confirmation, {}, true, false)%>
               <% when :automatic_sensitive %>
                 <%=t('scripts.warning_automatic_sensitive_html', {sensitive_domains: script_version.sensitive_domains.to_sentence})%><br>
@@ -115,7 +115,7 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
   <% if !script_version.script.new_record? %>
     <div class="form-control">
       <label for="changelog"><%=t('activerecord.attributes.script.changelog')%></label> <span class="label-note"><%=t('scripts.changelog_note')%></span><br>
-      <%=s.text_field(:changelog, :maxlength => 500, :size => nil)%>
+      <%=s.text_field(:changelog, maxlength: 500, size: nil)%>
     </div>
   <% end %>
   <div class="form-control radio-group">
@@ -161,12 +161,12 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
   <% end %>
 
   <% # default first
-  script_version.localized_attributes_for('additional_info').sort{|a,b|
+  script_version.localized_attributes_for('additional_info').sort do |a,b|
     next -1 if a.attribute_default && !b.attribute_default
     next 1 if !a.attribute_default && b.attribute_default
     next 0
-  }.each_with_index do |la, index| %>
-    <%=render :partial => 'additional_info', :locals => {:la => la, :index => index}%>
+  end.each_with_index do |la, index| %>
+    <%=render partial: 'additional_info', locals: {la: la, index: index}%>
   <% end %>
 
   <div class="form-control">

@@ -16,6 +16,6 @@
   @by_sites.each do |dt, values|
     install_count = values[:installs]
     font_size = ((max_font_size - min_font_size).to_f * install_count / max_install_count + min_font_size).round(2) %>
-    <li style="font-size: <%=font_size%>em"><%=link_to dt.nil? ? t('scripts.listing_filter_by_site_all_sites') : dt, by_site_scripts_path(:site => dt.nil? ? '*' : dt)%></li>
+    <li style="font-size: <%=font_size%>em"><%=link_to dt.nil? ? t('scripts.listing_filter_by_site_all_sites') : dt, by_site_scripts_path(site: dt.nil? ? '*' : dt)%></li>
   <% end %>
 </ol>

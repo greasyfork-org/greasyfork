@@ -33,7 +33,7 @@
     <% possible_reasons = @report.item.is_a?(Script) ? Report::REASON_TEXT.keys : Report::NON_SCRIPT_REASONS %>
     <% if @report.item.is_a?(Script) %>
       <div>
-        <%= f.radio_button(:reason, 'non_functional', required: true) %> <%= f.label :reason, t("reports.reason.non_functional"), class: 'radio-label', value: 'non_functional' %><br>
+        <%= f.radio_button(:reason, 'non_functional', required: true) %> <%= f.label :reason, t('reports.reason.non_functional'), class: 'radio-label', value: 'non_functional' %><br>
         <div class="after-radio-chosen alert"><%= it('reports.non_functional_feedback', feedback_link: feedback_script_path(@report.item)) %></div>
       </div>
     <% end %>

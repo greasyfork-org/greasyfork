@@ -1,0 +1,20 @@
+---
+EnableDefaultLinters: false
+glob: "**/*.{html,text,js}{+*,}.erb"
+exclude:
+  - '**/vendor/**/*'
+  - '**/node_modules/**/*'
+linters:
+  Rubocop:
+    enabled: true
+    rubocop_config:
+      inherit_from:
+        - .rubocop.yml
+      Layout:
+        Enabled: false
+      Lint/UselessAssignment:
+        Enabled: false
+      Style/HashTransformKeys:
+        Enabled: false
+      Style/IfUnlessModifierOfIfUnless:
+        Enabled: false

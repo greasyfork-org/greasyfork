@@ -37,7 +37,7 @@ show_author_details = defined?(show_author_details) && show_author_details
         <dt class="script-list-total-installs"><span><%=t('scripts.total_installs')%></span></dt>
         <dd class="script-list-total-installs"><span><%=number_with_delimiter(script.total_installs)%></span></dd>
         <dt class="script-list-ratings"><span><%=t('scripts.ratings')%></span></dt>
-        <dd class="script-list-ratings" data-rating-score="<%=script.fan_score%>"><span><%=render :partial => 'scripts/ratings', :locals => {:script => script}%></span></dd>
+        <dd class="script-list-ratings" data-rating-score="<%=script.fan_score%>"><span><%=render partial: 'scripts/ratings', locals: {script: script}%></span></dd>
       <% end %>
       <dt class="script-list-created-date"><span><%=t('scripts.created_date')%></span></dt>
       <dd class="script-list-created-date"><span><%=markup_date(script.created_at)%></span></dd>

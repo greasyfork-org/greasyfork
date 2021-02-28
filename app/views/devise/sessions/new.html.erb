@@ -15,7 +15,7 @@
   <% else %>
     <%= form_tag '', class: 'inline-form external-login-form' do %>
       <div>
-        <% Rails.application.config.available_auths.keys.reverse.each do |provider| %>
+        <% Rails.application.config.available_auths.keys.reverse_each do |provider| %>
           <span class="external-login-container">
             <button formaction="/auth/<%= provider %>?locale_id=<%= request_locale.id %>" class="external-login <%=provider%>-login">
               <%=t('users.sign_in_with', provider: Identity.pretty_provider(provider)) %>
@@ -36,12 +36,12 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: 'email' %>
   </div>
 
   <div class="field">
     <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, autocomplete: 'off' %>
   </div>
 
   <% if devise_mapping.rememberable? -%>
@@ -56,4 +56,4 @@
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%= render 'devise/shared/links' %>

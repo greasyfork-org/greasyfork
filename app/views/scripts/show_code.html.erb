@@ -1,12 +1,16 @@
-<%- title t('scripts.code_title', :script_name => @script.name(request_locale)) %>
-<%- description 'Source code for ' + @script.name(request_locale) %>
+<%- title t('scripts.code_title', script_name: @script.name(request_locale)) %>
+<%- description "Source code for #{@script.name(request_locale)}" %>
 
-<%=render :partial => 'install', :locals => {:script => @script, :script_version => @script_version}%>
+<%=render partial: 'install', locals: {script: @script, script_version: @script_version}%>
 
 <%=render partial: 'feedback_suggestion', locals: {script: @script} %>
 
 <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=css"></script>
 
 <div class="code-container">
-  <%= tag.pre(class: (@code.length <= Rails.configuration.syntax_highlighting_limit) ? ['prettyprint', 'linenums', @script.css? ? 'lang-css' : 'lang-js'] : ['uglyprint'] ) { @code } %>
+  <%= tag.pre(class: if @code.length <= Rails.configuration.syntax_highlighting_limit
+  ['prettyprint', 'linenums', @script.css? ? 'lang-css' : 'lang-js']
+else
+  ['uglyprint']
+end ) { @code } %>
 </div>
