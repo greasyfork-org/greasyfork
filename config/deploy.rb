@@ -32,3 +32,14 @@ namespace :deploy do
   after :rollback, 'thinking_sphinx:index'
   after :rollback, 'sidekiq:start'
 end
+
+# Reload, not restart https://github.com/seuros/capistrano-puma/issues/303
+Rake::Task['puma:restart'].clear_actions
+namespace :puma do
+  desc 'Restart Puma service via systemd'
+  task :restart do
+    on roles(fetch(:puma_role)) do
+      sudo "#{fetch(:puma_systemctl_bin)} reload #{fetch(:puma_service_unit_name)}"
+    end
+  end
+end
