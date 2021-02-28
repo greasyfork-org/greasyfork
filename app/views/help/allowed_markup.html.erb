@@ -1,33 +1,34 @@
 <%- title t('common.allowed_elements_and_attributes_title') %>
 <%- description 'Elements and attributes allowed when posting to Greasy Fork.' %>
 
-<p><%=t('common.allowed_elements_intro')%></p>
+<p><%= t('common.allowed_elements_intro') %></p>
 
 <ul id="help-allowed-elements">
-  <li>&lt;* <%= markdown_sanitize_config[:attributes][:all].join('&#8203;|').html_safe%>&gt;</li>
+  <li>&lt;* <%= markdown_sanitize_config[:attributes][:all].join('&#8203;|').html_safe %>&gt;</li>
   <% (markdown_sanitize_config[:elements] + ['iframe']).sort.each do |el| %>
     <% attrs = markdown_sanitize_config[:attributes][el] %>
     <% protocols = markdown_sanitize_config[:protocols][el] %>
     <% if el == 'iframe'
          attrs = %w[allowfullscreen frameborder height src width]
          protocols = { 'src' => ['https://www.youtube.com/', 'https://www.youtube-nocookie.com/'] }
-       end
-    %>
+       end %>
     <li>
-      &lt;<%=el%><%
+      &lt;<%= el %><%
       if !attrs.nil?
-        attrs.each do |attr| %>
-          <%=attr%><%
+        attrs.each do |attr|
+                   %>
+          <%= attr %><%
           if protocols.present? && protocols[attr]
-            %>=(<%=protocols[attr].join('&#8203;|').html_safe%>)<%
+                     %>=(<%= protocols[attr].join('&#8203;|').html_safe %>)<%
           end
         end
-      end %>&gt;
+      end
+                                                                           %>&gt;
     </li>
   <% end %>
 </ul>
 
-<p><%=t('common.allowed_elements_extra_info')%></p>
+<p><%= t('common.allowed_elements_extra_info') %></p>
 
 <p><%= t('common.allowed_css_intro') %></p>
 

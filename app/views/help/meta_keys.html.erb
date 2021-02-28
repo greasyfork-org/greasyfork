@@ -1,54 +1,54 @@
 <%- title t('help.meta_keys.title', site_name: site_name) %>
 <%- description 'List of user script meta keys that mean something to Greasy Fork.' %>
 
-<p><%=t('help.meta_keys.intro_html', site_name: site_name)%></p>
+<p><%= t('help.meta_keys.intro_html', site_name: site_name) %></p>
 
 <dl>
-  <dt><%=self_link('meta-name', tag.code { '@name' }) %></dt>
-  <dd><%=t('help.meta_keys.name')%></dd>
+  <dt><%= self_link('meta-name', tag.code { '@name' }) %></dt>
+  <dd><%= t('help.meta_keys.name') %></dd>
 
   <dt><%= self_link('meta-name-localized', tag.code { '@name:XX-YY' }) %></dt>
-  <dd><%=t('help.meta_keys.name_localized_html')%></dd>
+  <dd><%= t('help.meta_keys.name_localized_html') %></dd>
 
   <dt><%= self_link('meta-description', tag.code { '@description' }) %></dt>
-  <dd><%=t('help.meta_keys.description')%></dd>
+  <dd><%= t('help.meta_keys.description') %></dd>
 
   <dt><%= self_link('meta-name-description', tag.code { '@description:XX-YY' }) %></dt>
-  <dd><%=t('help.meta_keys.description_localized_html')%></dd>
+  <dd><%= t('help.meta_keys.description_localized_html') %></dd>
 
   <dt><%= self_link('meta-namespace', tag.code { '@namespace' }) %></dt>
-  <dd><%=t('help.meta_keys.namespace_html', site_name: site_name)%></dd>
+  <dd><%= t('help.meta_keys.namespace_html', site_name: site_name) %></dd>
 
   <dt><%= self_link('meta-version', tag.code { '@version' }) %></dt>
-  <dd><%=t('help.meta_keys.version_html', site_name: site_name)%></dd>
+  <dd><%= t('help.meta_keys.version_html', site_name: site_name) %></dd>
 
   <dt><%= self_link('meta-include', safe_join([tag.code { '@include' }, tag.code { '@exclude' }, tag.code { '@match' }], ', ')) %></dt>
-  <dd><%=t('help.meta_keys.include_html')%></dd>
+  <dd><%= t('help.meta_keys.include_html') %></dd>
 
   <dt><%= self_link('meta-require', tag.code { '@require' }) %></dt>
-  <dd><%=t('help.meta_keys.require_html', external_script_link: link_to(t('help.meta_keys.require_external_script_link_text'), help_external_scripts_path))%></dd>
+  <dd><%= t('help.meta_keys.require_html', external_script_link: link_to(t('help.meta_keys.require_external_script_link_text'), help_external_scripts_path)) %></dd>
 
   <dt><%= self_link('meta-updateURL', safe_join([tag.code { '@updateURL' }, tag.code { '@installURL' }, tag.code { '@downloadURL' }], ', ')) %></dt>
-  <dd><%=t('help.meta_keys.updateURL', site_name: site_name)%></dd>
+  <dd><%= t('help.meta_keys.updateURL', site_name: site_name) %></dd>
 
   <dt><%= self_link('meta-license', tag.code { '@license' }) %></dt>
-  <dd><%=it('help.meta_keys.license', spdx_link: 'https://spdx.org/licenses/')%></dd>
+  <dd><%= it('help.meta_keys.license', spdx_link: 'https://spdx.org/licenses/') %></dd>
 
   <dt><%= self_link('meta-supportURL', tag.code { '@supportURL' }) %></dt>
-  <dd><%=t('help.meta_keys.supportURL')%></dd>
+  <dd><%= t('help.meta_keys.supportURL') %></dd>
 
   <dt><%= self_link('meta-contributionURL', tag.code { '@contributionURL' }) %></dt>
-  <dd><%=t('help.meta_keys.contributionURL_html')%></dd>
+  <dd><%= t('help.meta_keys.contributionURL_html') %></dd>
 
   <dt><%= self_link('meta-contributionAmount', tag.code { '@contributionAmount' }) %></dt>
-  <dd><%=t('help.meta_keys.contributionAmount_html')%></dd>
+  <dd><%= t('help.meta_keys.contributionAmount_html') %></dd>
 
   <% browsers = Browser.select(:code).all.map{|b|"<code>#{b.code}</code>"}.join(', ').html_safe %>
   <dt><%= self_link('meta-compatible', tag.code { '@compatible' }) %></dt>
-  <dd><%=t('help.meta_keys.compatible_html', browsers: browsers)%></dd>
+  <dd><%= t('help.meta_keys.compatible_html', browsers: browsers) %></dd>
 
   <dt><%= self_link('meta-incompatible', tag.code { '@incompatible' }) %></dt>
-  <dd><%=t('help.meta_keys.incompatible_html', browsers: browsers)%></dd>
+  <dd><%= t('help.meta_keys.incompatible_html', browsers: browsers) %></dd>
 
   <dt><%= self_link('meta-antifeature', tag.code { '@antifeature' }) %></dt>
   <dd><%= it('help.meta_keys.antifeature_html', site_name: site_name, code_rules_link: help_code_rules_path) %></dd>

@@ -1,10 +1,10 @@
-<%= form_with(url: "/auth/#{@provider}", method: :post) do |f|%>
-  <input type="hidden" name="origin" value="<%=request.env['omniauth.origin']%>">
+<%= form_with(url: "/auth/#{@provider}", method: :post) do |f| %>
+  <input type="hidden" name="origin" value="<%= request.env['omniauth.origin'] %>">
   <p>
-    <%=t('users.sign_in_name_used', name: @name)%>
+    <%= t('users.sign_in_name_used', name: @name) %>
   </p>
 
   <p>
-    <input required name="chosen_name"><input type="submit" value="<%=t('users.sign_in_name_used_submit')%>">
+    <input required name="chosen_name"><input type="submit" value="<%= t('users.sign_in_name_used_submit') %>">
   </p>
 <% end %>

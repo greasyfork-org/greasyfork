@@ -1,27 +1,27 @@
 <section>
-  <h3><%=t('home.explain_user_scripts_heading')%></h3>
+  <h3><%= t('home.explain_user_scripts_heading') %></h3>
 
-  <p><%=t('home.explain_user_scripts_html', site_name: site_name)%></p>
+  <p><%= t('home.explain_user_scripts_html', site_name: site_name) %></p>
 </section>
 
 <section id="home-step-1">
-  <h3><%=t('home.installing_step1_header')%></h3>
+  <h3><%= t('home.installing_step1_header') %></h3>
 
   <figure>
     <%= image_pack_tag('tampermonkey-manage.png') %>
-    <figcaption><%=t('home.installing_step1_caption')%></figcaption>
+    <figcaption><%= t('home.installing_step1_caption') %></figcaption>
   </figure>
 
-  <%=it('home.installing_step1_description_html', chrome_tampermonkey_link: 'https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo', chrome_violentmonkey_link: 'https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag', firefox_greasemonkey_link: 'https://addons.mozilla.org/firefox/addon/greasemonkey/', firefox_tampermonkey_link: 'https://addons.mozilla.org/firefox/addon/tampermonkey/', firefox_violentmonkey_link: 'https://addons.mozilla.org/firefox/addon/violentmonkey/', safari_tampermonkey_link: 'http://tampermonkey.net/?browser=safari', edge_tampermonkey_link: 'https://www.microsoft.com/store/p/tampermonkey/9nblggh5162s', opera_tampermonkey_link: 'https://addons.opera.com/extensions/details/tampermonkey-beta/', opera_violentmonkey_link: 'https://violentmonkey.github.io/get-it/', maxthon_violentmonkey_link: 'http://extension.maxthon.com/detail/index.php?view_id=1680', dolphin_tampermonkey_link: 'https://play.google.com/store/apps/details?id=net.tampermonkey.dolphin', uc_tampermonkey_link: 'https://www.tampermonkey.net/?browser=ucweb&ext=dhdg', safari_userscripts_link: 'https://apps.apple.com/app/userscripts/id1463298887')%>
+  <%= it('home.installing_step1_description_html', chrome_tampermonkey_link: 'https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo', chrome_violentmonkey_link: 'https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag', firefox_greasemonkey_link: 'https://addons.mozilla.org/firefox/addon/greasemonkey/', firefox_tampermonkey_link: 'https://addons.mozilla.org/firefox/addon/tampermonkey/', firefox_violentmonkey_link: 'https://addons.mozilla.org/firefox/addon/violentmonkey/', safari_tampermonkey_link: 'http://tampermonkey.net/?browser=safari', edge_tampermonkey_link: 'https://www.microsoft.com/store/p/tampermonkey/9nblggh5162s', opera_tampermonkey_link: 'https://addons.opera.com/extensions/details/tampermonkey-beta/', opera_violentmonkey_link: 'https://violentmonkey.github.io/get-it/', maxthon_violentmonkey_link: 'http://extension.maxthon.com/detail/index.php?view_id=1680', dolphin_tampermonkey_link: 'https://play.google.com/store/apps/details?id=net.tampermonkey.dolphin', uc_tampermonkey_link: 'https://www.tampermonkey.net/?browser=ucweb&ext=dhdg', safari_userscripts_link: 'https://apps.apple.com/app/userscripts/id1463298887') %>
 
 </section>
 
 <section id="home-step-2">
-  <h3><%=t('home.installing_step2_header')%></h3>
+  <h3><%= t('home.installing_step2_header') %></h3>
 
   <figure>
     <%= image_pack_tag('install-button-example.png') %>
-    <figcaption><%=t('home.installing_step2_caption')%></figcaption>
+    <figcaption><%= t('home.installing_step2_caption') %></figcaption>
   </figure>
 
   <% highlighted_scripts_html = capture do %>
@@ -31,18 +31,18 @@
       <% end %>
     </ul>
   <% end %>
-  <%=it('home.installing_step2_description_html', browse_link: scripts_path, highlighted_scripts_list: highlighted_scripts_html)%>
+  <%= it('home.installing_step2_description_html', browse_link: scripts_path, highlighted_scripts_list: highlighted_scripts_html) %>
 
 </section>
 
 <section id="home-step-3">
-  <h3><%=t('home.installing_step3_header')%></h3>
+  <h3><%= t('home.installing_step3_header') %></h3>
 
-  <%=t('home.installing_step3_description_html')%>
+  <%= t('home.installing_step3_description_html') %>
 </section>
 
 <% if @ad_method %>
-  <div class="ad ad-<%=@ad_method%>" id="home-ad">
+  <div class="ad ad-<%= @ad_method %>" id="home-ad">
     <div class="ad-content">
       <% case @ad_method
       when 'ga' %>

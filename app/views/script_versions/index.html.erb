@@ -7,15 +7,16 @@ show_all_versions = !params[:show_all_versions].nil?
 visible_version_index = 0
 svs = @script.script_versions.reverse
 if show_diff
-  if !show_all_versions %>
-    <p><%=t('scripts.history_only_code_changes_info')%> <%=link_to t('scripts.history_all_changes_link'), show_all_versions: 1%></p>
+  if !show_all_versions
+%>
+    <p><%= t('scripts.history_only_code_changes_info') %> <%= link_to t('scripts.history_all_changes_link'), show_all_versions: 1 %></p>
   <% else %>
-    <p><%=t('scripts.history_all_changes_info')%> <%=link_to t('scripts.history_only_code_changes_link'), show_all_versions: nil%></p>
+    <p><%= t('scripts.history_all_changes_info') %> <%= link_to t('scripts.history_only_code_changes_link'), show_all_versions: nil %></p>
   <% end
 end %>
-<form action="<%=diff_script_path(params[:script_id])%>">
+<form action="<%= diff_script_path(params[:script_id]) %>">
   <% if show_diff %>
-    <%= submit_tag t('scripts.diff_button'), name: nil%>
+    <%= submit_tag t('scripts.diff_button'), name: nil %>
   <% end %>
   <ul class="history_versions">
     <% svs.each_with_index do |sv, i|
@@ -24,14 +25,14 @@ end %>
         <li>
           <% if show_diff %>
             <span class="diff-controls">
-              <input required type="radio" name="v1" value="<%=sv.id%>"<% if visible_version_index == 0%> checked<%end%>><input required type="radio" name="v2" value="<%=sv.id%>"<% if visible_version_index == 1%> checked<%end%>>
+              <input required type="radio" name="v1" value="<%= sv.id %>"<% if visible_version_index == 0 %> checked<% end %>><input required type="radio" name="v2" value="<%= sv.id %>"<% if visible_version_index == 1 %> checked<% end %>>
             </span>
           <% end
           visible_version_index += 1 %>
           <span class="version-number">
             <%= link_to "v#{sv.version}", script_path(sv.script, version: sv.id), rel: :nofollow %>
             <% if !current_user.nil? && current_user.moderator? %>
-              <%=link_to 'Delete', script_script_version_delete_path(script_id: sv.script.id, script_version_id: sv.id) %>
+              <%= link_to 'Delete', script_script_version_delete_path(script_id: sv.script.id, script_version_id: sv.id) %>
             <% end %>
           </span>
           <%= markup_date(sv.created_at, class: 'version-date') %>
@@ -45,6 +46,6 @@ end %>
     end %>
   </ul>
   <% if show_diff %>
-    <%= submit_tag t('scripts.diff_button'), name: nil%>
+    <%= submit_tag t('scripts.diff_button'), name: nil %>
   <% end %>
 </form>

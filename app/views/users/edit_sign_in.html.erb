@@ -1,27 +1,27 @@
 <%- title t('users.edit_sign_in_title') %>
 
-<h3><%=t('users.edit_sign_in_password')%></h3>
+<h3><%= t('users.edit_sign_in_password') %></h3>
 
 <% if !current_user.errors.empty? %>
-  <%=t('common.error_preamble')%>
+  <%= t('common.error_preamble') %>
   <ul>
     <% current_user.errors.full_messages.each do |msg| %>
-      <li><%=msg%></li>
+      <li><%= msg %></li>
     <% end %>
   </ul>
 <% end %>
 
 <% if current_user.encrypted_password.nil? %>
-  <p><%=t('users.no_password_set_info')%></p>
+  <p><%= t('users.no_password_set_info') %></p>
 <% end %>
 
-<%=form_tag(user_update_password_path, method: :put) do |f|%>
+<%= form_tag(user_update_password_path, method: :put) do |f| %>
 
   <div><%= label_tag t('activerecord.attributes.user.password') %><br>
   <%= password_field_tag :password, nil, autocomplete: 'off', required: true %></div>
 
   <% # this is provided in an updated devise-i18n-views %>
-  <div><%= label_tag t('activerecord.attributes.user.password_confirmation', default: 'Password confirmation') %><br />
+  <div><%= label_tag t('activerecord.attributes.user.password_confirmation', default: 'Password confirmation') %><br>
   <%= password_field_tag :password_confirmation, nil, required: true %></div>
 
   <% if current_user.encrypted_password.nil? %>
@@ -32,43 +32,43 @@
 <% end %>
 
 <% if !current_user.encrypted_password.nil? and !current_user.identities.empty? %>
-  <%=form_tag(user_remove_password_path, method: :put, class: 'inline-form') do |f|%>
-    <p><%=t('users.remove_password_info')%> <input type="submit" value="<%=t('users.remove_password')%>"></p>
+  <%= form_tag(user_remove_password_path, method: :put, class: 'inline-form') do |f| %>
+    <p><%= t('users.remove_password_info') %> <input type="submit" value="<%= t('users.remove_password') %>"></p>
   <% end %>
 <% end %>
 
-<h3><%=t('users.edit_sign_in_external')%></h3>
+<h3><%= t('users.edit_sign_in_external') %></h3>
 
 <% if current_user.identities.empty? %>
-  <p><%=t('users.external_sign_in_info_no_sign_ins', site_name: site_name)%></p>
+  <p><%= t('users.external_sign_in_info_no_sign_ins', site_name: site_name) %></p>
 <% else %>
-  <p><%=t('users.external_sign_in_info_with_sign_ins', site_name: site_name)%></p>
+  <p><%= t('users.external_sign_in_info_with_sign_ins', site_name: site_name) %></p>
   <ul>
     <% current_user.identities.each do |id| %>
       <li>
         <% if !id.url.nil? %>
-          <%=link_to id.pretty_provider, id.url%>
+          <%= link_to id.pretty_provider, id.url %>
         <% else %>
-          <%=id.pretty_provider%>
+          <%= id.pretty_provider %>
         <% end %>
         <% if id.syncing %>
-          <%=t('users.syncing_indicator')%>
-          <%=form_tag(user_update_identity_path, method: :put, class: 'inline-form') do |f|%>
-            <input type="hidden" name="provider" value="<%=id.provider%>">
+          <%= t('users.syncing_indicator') %>
+          <%= form_tag(user_update_identity_path, method: :put, class: 'inline-form') do |f| %>
+            <input type="hidden" name="provider" value="<%= id.provider %>">
             <input type="hidden" name="syncing" value="0">
-            <input type="Submit" value="<%=t('users.disable_syncing')%>">
+            <input type="Submit" value="<%= t('users.disable_syncing') %>">
           <% end %>
         <% else %>
-          <%=form_tag(user_update_identity_path, method: :put, class: 'inline-form') do |f|%>
-            <input type="hidden" name="provider" value="<%=id.provider%>">
+          <%= form_tag(user_update_identity_path, method: :put, class: 'inline-form') do |f| %>
+            <input type="hidden" name="provider" value="<%= id.provider %>">
             <input type="hidden" name="syncing" value="1">
-            <input type="Submit" value="<%=t('users.enable_syncing')%>">
+            <input type="Submit" value="<%= t('users.enable_syncing') %>">
           <% end %>
         <% end %>
         <% if current_user.identities.size > 1 or !current_user.encrypted_password.nil? %>
-          <%=form_tag(user_delete_identity_path, method: :delete, class: 'inline-form') do |f|%>
-            <input type="hidden" name="provider" value="<%=id.provider%>">
-            <input type="Submit" value="<%=t('users.remove_external_sign_in')%>">
+          <%= form_tag(user_delete_identity_path, method: :delete, class: 'inline-form') do |f| %>
+            <input type="hidden" name="provider" value="<%= id.provider %>">
+            <input type="Submit" value="<%= t('users.remove_external_sign_in') %>">
           <% end %>
         <% end %>
       </li>
@@ -78,12 +78,12 @@
 
 <% available_providers = (Rails.application.config.available_auths.keys - current_user.identity_providers_used) %>
 <% if !available_providers.empty? %>
-  <p><%=t('users.add_external_sign_in_info')%></p>
+  <p><%= t('users.add_external_sign_in_info') %></p>
   <% available_providers.each do |provider| %>
     <span class="external-login-container">
       <%= form_with(url: "/auth/#{provider}") do %>
-        <button class="external-login <%=provider%>-login">
-          <%=t('users.sign_in_with', provider: Identity.pretty_provider(provider)) %>
+        <button class="external-login <%= provider %>-login">
+          <%= t('users.sign_in_with', provider: Identity.pretty_provider(provider)) %>
         </button>
       <% end %>
     </span>

@@ -29,7 +29,7 @@
         <td><%= blocked_script_code.public_reason %></td>
         <td><%= blocked_script_code.private_reason %></td>
         <td><%= blocked_script_code.serious ? 'Delete and ban' : 'Rejected' %></td>
-        <td><%= link_to(blocked_script_code.originating_script.default_name, blocked_script_code.originating_script) if blocked_script_code.originating_script%></td>
+        <td><%= link_to(blocked_script_code.originating_script.default_name, blocked_script_code.originating_script) if blocked_script_code.originating_script %></td>
         <td>
           <%= link_to('Edit', edit_admin_blocked_script_code_path(blocked_script_code)) if current_user.administrator? %>
           <%= link_to('Delete', admin_blocked_script_code_path(blocked_script_code), method: :delete) if current_user.administrator? %>

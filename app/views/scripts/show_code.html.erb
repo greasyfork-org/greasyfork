@@ -1,9 +1,9 @@
 <%- title t('scripts.code_title', script_name: @script.name(request_locale)) %>
 <%- description "Source code for #{@script.name(request_locale)}" %>
 
-<%=render partial: 'install', locals: {script: @script, script_version: @script_version}%>
+<%= render partial: 'install', locals: {script: @script, script_version: @script_version} %>
 
-<%=render partial: 'feedback_suggestion', locals: {script: @script} %>
+<%= render partial: 'feedback_suggestion', locals: {script: @script} %>
 
 <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js?lang=css"></script>
 

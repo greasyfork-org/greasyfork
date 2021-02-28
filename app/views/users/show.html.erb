@@ -6,7 +6,7 @@
 
   <h2><%= render_user(@user, @user.id, skip_link: true) %></h2>
 
-  <% if @user.profile.present? && (current_user&.moderator? || (!@user.banned? && @user.allow_posting_profile?))  %>
+  <% if @user.profile.present? && (current_user&.moderator? || (!@user.banned? && @user.allow_posting_profile?)) %>
     <section id="user-profile" class="user-content">
       <%= format_user_text(@user.profile, @user.profile_markup, mentions: @user.mentions) %>
     </section>
@@ -26,18 +26,18 @@
   <% if @same_user %>
     <section id="control-panel">
       <header>
-        <h3><%=t('users.control_panel')%></h3>
+        <h3><%= t('users.control_panel') %></h3>
       </header>
       <ul id="user-control-panel">
-        <li><%= link_to t('scripts.new'), new_script_version_path%></li>
-        <li><%= link_to t('scripts.new_css'), new_script_version_path(language: 'css')%></li>
-        <li><%= link_to 'New script set', new_user_script_set_path(@user)%></li>
-        <li><%= link_to t('scripts.import'), import_start_path%></li>
-        <li><%= link_to t('users.set_up_webhook'), user_webhook_info_path%></li>
-        <li><%= link_to t('users.edit'), edit_user_registration_path%></li>
-        <li><%= link_to t('users.edit_sign_in'), user_edit_sign_in_path%></li>
+        <li><%= link_to t('scripts.new'), new_script_version_path %></li>
+        <li><%= link_to t('scripts.new_css'), new_script_version_path(language: 'css') %></li>
+        <li><%= link_to 'New script set', new_user_script_set_path(@user) %></li>
+        <li><%= link_to t('scripts.import'), import_start_path %></li>
+        <li><%= link_to t('users.set_up_webhook'), user_webhook_info_path %></li>
+        <li><%= link_to t('users.edit'), edit_user_registration_path %></li>
+        <li><%= link_to t('users.edit_sign_in'), user_edit_sign_in_path %></li>
         <li><%= link_to t('users.edit_notifications'), notifications_user_path(@user) %></li>
-        <li><%= link_to t('users.delete_link'), user_delete_info_path%></li>
+        <li><%= link_to t('users.delete_link'), user_delete_info_path %></li>
         <li><%= link_to t('users.sign_out'), destroy_user_session_path, method: :delete %></li>
       </ul>
     </section>
@@ -45,14 +45,14 @@
 </section>
 
 <% if @same_user && @user.scripts.any?
-     dosr = @user.discussions_on_scripts_written  %>
+     dosr = @user.discussions_on_scripts_written %>
   <section id="user-discussions-on-scripts-written">
     <header>
       <h3><%= t('users.discussions_on_scripts') %></h3>
     </header>
     <section class="text-content">
       <% if dosr.empty? %>
-        <p><%=t('users.discussions_on_scripts_none')%></p>
+        <p><%= t('users.discussions_on_scripts_none') %></p>
       <% else %>
         <%= render collection: dosr.first(10), partial: 'discussions/discussion', locals: { show_script: true } %>
         <% if dosr.length > 10 %>
@@ -162,7 +162,7 @@
   </section>
 <% end %>
 
-<% if @same_user || (@user.script_sets.any? && (current_user&.moderator? || (!@user.banned? && @user.allow_posting_profile?)))  %>
+<% if @same_user || (@user.script_sets.any? && (current_user&.moderator? || (!@user.banned? && @user.allow_posting_profile?))) %>
   <section id="user-script-sets-section">
     <header>
       <h3>Script Sets</h3>
@@ -171,12 +171,12 @@
       <ul id="user-script-sets">
         <% favorites_set = @user.script_sets.find{|ss| ss.favorite}
         if !favorites_set.nil? %>
-          <li><%= t('script_sets.favorites_name') %> <%= link_to 'View scripts', scripts_path(set: favorites_set.id), rel: :nofollow %> <% if @same_user %><%=link_to 'Edit', edit_user_script_set_path(@user, favorites_set)%><% end %></li>
+          <li><%= t('script_sets.favorites_name') %> <%= link_to 'View scripts', scripts_path(set: favorites_set.id), rel: :nofollow %> <% if @same_user %><%= link_to 'Edit', edit_user_script_set_path(@user, favorites_set) %><% end %></li>
         <% elsif @same_user %>
-          <li><%=t('script_sets.favorites_name')%> <%=link_to 'Edit', new_user_script_set_path(@user, fav: 1)%></li>
+          <li><%= t('script_sets.favorites_name') %> <%= link_to 'Edit', new_user_script_set_path(@user, fav: 1) %></li>
         <% end
         @user.script_sets.order(:name).select{|ss| !ss.favorite}.each do |ss| %>
-          <li><%=ss.name%>: <%=ss.description%> <%= link_to 'View scripts', scripts_path(set: ss.id), rel: :nofollow %> <% if @same_user %><%=link_to 'Edit', edit_user_script_set_path(@user, ss)%><% end %></li>
+          <li><%= ss.name %>: <%= ss.description %> <%= link_to 'View scripts', scripts_path(set: ss.id), rel: :nofollow %> <% if @same_user %><%= link_to 'Edit', edit_user_script_set_path(@user, ss) %><% end %></li>
         <% end %>
       </ul>
     </section>
@@ -198,16 +198,16 @@
     script_list = @scripts.where.not(id: (deleted_script_list + unlisted_script_list + library_script_list).map(&:id)) %>
     <section id="user-script-list-section">
       <header>
-        <h3><%=t('users.script_list')%></h3>
+        <h3><%= t('users.script_list') %></h3>
       </header>
       <% if !@user_has_scripts
         if @same_user %>
-          <p><%=t('users.script_list_none_same_user_html', script_list_none_same_user_info_link: link_to(t('users.script_list_none_same_user_info_link_text'), help_writing_user_scripts_path))%></p>
+          <p><%= t('users.script_list_none_same_user_html', script_list_none_same_user_info_link: link_to(t('users.script_list_none_same_user_info_link_text'), help_writing_user_scripts_path)) %></p>
         <% else %>
-          <p><%=t('users.script_list_none')%></p>
+          <p><%= t('users.script_list_none') %></p>
         <% end
       elsif script_list.empty? %>
-        <p><%=t('users.script_list_none_for_filter')%></p>
+        <p><%= t('users.script_list_none_for_filter') %></p>
       <% else %>
         <ol id="user-script-list" class="script-list <%= 'showing-all-languages' if params[:language].nil? %>">
           <%= render partial: 'scripts/script', collection: script_list, locals: {show_author_details: true}, cached: params[:locale_override].nil? ? ->(script) { ['user', script, I18n.locale] } : false %>
@@ -242,7 +242,7 @@
     <% unless deleted_script_list.empty? %>
       <section id="user-deleted-script-list-section">
         <header>
-          <h3><%=t('users.deleted_script_list')%></h3>
+          <h3><%= t('users.deleted_script_list') %></h3>
         </header>
         <ol id="user-deleted-script-list" class="script-list">
           <%= render partial: 'scripts/script', collection: deleted_script_list %>
@@ -251,7 +251,7 @@
     <% end %>
 
     <% if @other_site_scripts > 0 %>
-      <p><%=link_to(t('users.greasy_fork_scripts_link', user_name: @user.name, count: @other_site_scripts), user_url(@user, host: 'greasyfork.org'))%></p>
+      <p><%= link_to(t('users.greasy_fork_scripts_link', user_name: @user.name, count: @other_site_scripts), user_url(@user, host: 'greasyfork.org')) %></p>
     <% end %>
   </div>
 

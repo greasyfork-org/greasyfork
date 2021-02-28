@@ -9,18 +9,18 @@
 
     <% if defined?(@set) and !@set.nil? %>
       <h3>
-        <%=@set.display_name%> by <%=link_to @set.user.name, @set.user%>
-        <% if user_signed_in? and current_user == @set.user%>
-          <%=link_to('Edit', edit_user_script_set_path(current_user, @set))%>
+        <%= @set.display_name %> by <%= link_to @set.user.name, @set.user %>
+        <% if user_signed_in? and current_user == @set.user %>
+          <%= link_to('Edit', edit_user_script_set_path(current_user, @set)) %>
         <% end %>
       </h3>
       <% if !@set.favorite %>
-        <p><%=@set.description%></p>
+        <p><%= @set.description %></p>
       <% end %>
     <% end %>
 
     <% if defined?(@page_description) %>
-      <p><%=@page_description%></p>
+      <p><%= @page_description %></p>
     <% end %>
 
     <% if @current_locale_filter %>
@@ -38,7 +38,7 @@
     <% end %>
 
     <% if @scripts.empty? %>
-      <p><%=t('scripts.listing_no_scripts')%></p>
+      <p><%= t('scripts.listing_no_scripts') %></p>
     <% else %>
       <ol id="browse-script-list" class="script-list <%= 'showing-all-languages' if params[:language] == 'all' %>">
         <% if @ad_method == 'ea' %>
@@ -54,7 +54,7 @@
       <%= will_paginate(@scripts, renderer: @bots == 'noindex' ? WillPaginate::ActionView::LinkRendererWithNoFollow : nil) %>
     <% end %>
 
-    <p><%=t('scripts.write_your_own_html', post_a_script_link: link_to(t('scripts.post_a_script_link_text'), new_script_version_path), learn_to_write_scripts_link: link_to(t('scripts.learn_to_write_scripts_link_text'), help_writing_user_scripts_path)) %></p>
+    <p><%= t('scripts.write_your_own_html', post_a_script_link: link_to(t('scripts.post_a_script_link_text'), new_script_version_path), learn_to_write_scripts_link: link_to(t('scripts.learn_to_write_scripts_link_text'), help_writing_user_scripts_path)) %></p>
   </div>
 
   <% if !defined?(@skip_search_options) || !@skip_search_options %>
@@ -63,7 +63,7 @@
         <div class="sidebar-title"><%= t('common.listing_options_title') %></div>
         <div>☰</div>
       </div>
-      <%= render partial: 'list_options', locals: {by_sites: @by_sites, scripts: @scripts, sort_options: @sort_options, include_script_sets: @include_script_sets.nil? ? true : @include_script_sets, include_search: true}%>
+      <%= render partial: 'list_options', locals: {by_sites: @by_sites, scripts: @scripts, sort_options: @sort_options, include_script_sets: @include_script_sets.nil? ? true : @include_script_sets, include_search: true} %>
     </div>
   <% end %>
 </div>

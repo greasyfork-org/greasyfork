@@ -4,24 +4,24 @@
   <p>The following scripts were successfully imported:</p>
   <ul>
     <% @results[:new].each do |script| %>
-      <li><%=link_to script.name, script%></li>
+      <li><%= link_to script.name, script %></li>
     <% end %>
   </ul>
 <% end %>
 
 <% if !@results[:needsdescription].empty? %>
-  <%=form_tag(import_add_path) do |f|%>
-    <input type="hidden" name="sync_source_id" value="<%=params[:sync_source_id]%>">
+  <%= form_tag(import_add_path) do |f| %>
+    <input type="hidden" name="sync_source_id" value="<%= params[:sync_source_id] %>">
     <p>The following scripts need a description to be imported:</p>
     <ul>
       <% @results[:needsdescription].each do |script| %>
         <li>
-          <%=script.name%> <input maxlength="500" size="50" name="needsdescription-<%=script.sync_identifier%>">
-          <input id="script-<%=script.sync_identifier%>" type="hidden" name="sync_ids[]" value="<%=script.sync_identifier%>">
+          <%= script.name %> <input maxlength="500" size="50" name="needsdescription-<%= script.sync_identifier %>">
+          <input id="script-<%= script.sync_identifier %>" type="hidden" name="sync_ids[]" value="<%= script.sync_identifier %>">
         </li>
       <% end %>
     </ul>
-    <%=submit_tag 'Import'%>
+    <%= submit_tag 'Import' %>
   <% end %>
 <% end %>
 
@@ -29,7 +29,7 @@
   <p>The following scripts had already been imported:</p>
   <ul>
     <% @results[:existing].each do |script| %>
-      <li><%=link_to script.name, script%></li>
+      <li><%= link_to script.name, script %></li>
     <% end %>
   </ul>
 <% end %>
@@ -38,7 +38,7 @@
   <p>The following scripts could not be imported:</p>
   <ul>
     <% @results[:failure].each do |name| %>
-      <li><%=name%></li>
+      <li><%= name %></li>
     <% end %>
   </ul>
 <% end %>

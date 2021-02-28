@@ -1,7 +1,7 @@
 <%- title t('scripts.derivatives_title', script_name: @script.name) %>
 <%- description "Potential derivatives of #{@script.name}" %>
 
-<p><%=t('scripts.derivatives_intro')%></p>
+<p><%= t('scripts.derivatives_intro') %></p>
 
 <h3><%= t('scripts.derivatives_exact_copies_heading') %></h3>
 
@@ -20,7 +20,6 @@
 <% else %>
   <p><%= t('scripts.derivatives_exact_copes_none', site_name: site_name) %></p>
 <% end %>
-
 
 <h3><%= t('scripts.derivatives_similar_heading') %></h3>
 

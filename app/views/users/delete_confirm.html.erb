@@ -1,10 +1,10 @@
 <% if @error %>
-  <p><%=@error%></p>
+  <p><%= @error %></p>
 <% else %>
   <%= form_tag user_delete_complete_path do %>
     <p><%= t('users.delete.confirmation.intro', user_name: @user.name) %>
     <p>
-      <input type="hidden" name="key" value="<%=params[:key]%>">
+      <input type="hidden" name="key" value="<%= params[:key] %>">
       <input type="submit" name="confirm" value="<%= t('users.delete.confirmation.confirm', user_name: @user.name) %>">
       <input type="submit" name="cancel" value="<%= t('users.delete.confirmation.cancel') %>">
     </p>

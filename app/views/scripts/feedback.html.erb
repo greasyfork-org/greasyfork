@@ -12,15 +12,15 @@
   <p id="contribution">
     <% if @script.contribution_amount.nil? %>
       <% if is_bitcoin %>
-        <%=t('scripts.contribution_bitcoin_no_amount_html', {author: @script.users.map(&:name).to_sentence, address: link_to(@script.contribution_url.sub('bitcoin:', ''), @script.contribution_url, {rel: 'nofollow'})})%>
+        <%= t('scripts.contribution_bitcoin_no_amount_html', {author: @script.users.map(&:name).to_sentence, address: link_to(@script.contribution_url.sub('bitcoin:', ''), @script.contribution_url, {rel: 'nofollow'})}) %>
       <% else %>
-        <%=link_to t('scripts.contribution_no_amount', {author: @script.users.map(&:name).to_sentence}), @script.contribution_url, {rel: 'nofollow'}%>
+        <%= link_to t('scripts.contribution_no_amount', {author: @script.users.map(&:name).to_sentence}), @script.contribution_url, {rel: 'nofollow'} %>
       <% end %>
     <% else %>
       <% if is_bitcoin %>
-        <%=t('scripts.contribution_bitcoin_with_amount_html', {author: @script.users.map(&:name).to_sentence, amount: @script.contribution_amount, address: link_to(@script.contribution_url.sub('bitcoin:', ''), @script.contribution_url, {rel: 'nofollow'})})%>
+        <%= t('scripts.contribution_bitcoin_with_amount_html', {author: @script.users.map(&:name).to_sentence, amount: @script.contribution_amount, address: link_to(@script.contribution_url.sub('bitcoin:', ''), @script.contribution_url, {rel: 'nofollow'})}) %>
       <% else %>
-        <%=link_to t('scripts.contribution_with_amount', {author: @script.users.map(&:name).to_sentence, amount: @script.contribution_amount}), @script.contribution_url, {rel: 'nofollow'}%>
+        <%= link_to t('scripts.contribution_with_amount', {author: @script.users.map(&:name).to_sentence, amount: @script.contribution_amount}), @script.contribution_url, {rel: 'nofollow'} %>
       <% end %>
     <% end %>
   </p>
@@ -29,9 +29,9 @@
 <% if !@script.support_url.nil? %>
   <p id="support-url">
     <% if @script.support_url.start_with?('mailto') %>
-      <%=link_to t('scripts.support_email'), @script.support_url, {rel: :nofollow}%>
+      <%= link_to t('scripts.support_email'), @script.support_url, {rel: :nofollow} %>
     <% else %>
-      <%=link_to t('scripts.support_site'), @script.support_url, {rel: :nofollow}%>
+      <%= link_to t('scripts.support_site'), @script.support_url, {rel: :nofollow} %>
     <% end %>
   </p>
 <% end %>
@@ -78,7 +78,7 @@
     </p>
   <% end %>
 
-  <h3 id="feedback-favoriters"><%=t('scripts.feedback_favoriters_heading')%></h3>
+  <h3 id="feedback-favoriters"><%= t('scripts.feedback_favoriters_heading') %></h3>
   <div>
     <% favoriter_count = @script.favoriters.count %>
     <% if favoriter_count == 0 %>
@@ -96,19 +96,19 @@
   </div>
   <p>
     <% if user_signed_in? %>
-      <%=form_tag(add_to_script_set_path) do |f| %>
-        <input type="hidden" name="script_id" value="<%=@script.id%>">
-        <input type="hidden" name="return_to" value="<%=url_for(anchor: 'feedback-favoriters')%>">
+      <%= form_tag(add_to_script_set_path) do |f| %>
+        <input type="hidden" name="script_id" value="<%= @script.id %>">
+        <input type="hidden" name="return_to" value="<%= url_for(anchor: 'feedback-favoriters') %>">
         <% if @script.favoriters.find{|f| f.id == current_user.id}.nil? %>
           <input type="hidden" name="action-set" value="ai-fav">
-          <input type="submit" value="<%=t('scripts.sets_add_inclusion', set_name: t('script_sets.favorites_name'))%>">
+          <input type="submit" value="<%= t('scripts.sets_add_inclusion', set_name: t('script_sets.favorites_name')) %>">
         <% else %>
           <input type="hidden" name="action-set" value="ri-fav">
-          <input type="submit" value="<%=t('scripts.sets_remove_inclusion', set_name: t('script_sets.favorites_name'))%>">
+          <input type="submit" value="<%= t('scripts.sets_remove_inclusion', set_name: t('script_sets.favorites_name')) %>">
         <% end %>
       <% end %>
     <% else %>
-      <%=link_to(t('scripts.feedback_sign_in_to_favorite'), new_user_session_path(return_to: url_for(anchor: 'feedback-favoriters')), {rel: :nofollow})%>
+      <%= link_to(t('scripts.feedback_sign_in_to_favorite'), new_user_session_path(return_to: url_for(anchor: 'feedback-favoriters')), {rel: :nofollow}) %>
     <% end %>
   </p>
 </div>

@@ -4,14 +4,14 @@
 <p>A webhook connected with <%= site_name %> makes it so any push to repository automatically updates your scripts on <%= site_name %> in a matter of minutes. <%= site_name %> currently supports GitHub, Bitbucket, and GitLab webhooks.</p>
 
 <p>
-  To use this feature, you must have scripts on Greasy Fork set up to sync by URL to your repository. You can add new scripts by <%= link_to 'importing new scripts into Greasy Fork', import_start_path%>, or you can set previously posted scripts to sync by accessing the "Sync" tab from the script's page.
+  To use this feature, you must have scripts on Greasy Fork set up to sync by URL to your repository. You can add new scripts by <%= link_to 'importing new scripts into Greasy Fork', import_start_path %>, or you can set previously posted scripts to sync by accessing the "Sync" tab from the script's page.
 </p>
 
-<% if @webhook_scripts.any? %> 
+<% if @webhook_scripts.any? %>
   <p>Here are the scripts you have already set up to sync from a supported provider:</p>
   <ul>
     <% @webhook_scripts.each do |s| %>
-      <li><%=link_to s.name, s%> - <%=s.script_sync_type.name.downcase%> syncing from <%=link_to s.sync_identifier, s.sync_identifier%></li>
+      <li><%= link_to s.name, s %> - <%= s.script_sync_type.name.downcase %> syncing from <%= link_to s.sync_identifier, s.sync_identifier %></li>
     <% end %>
   </ul>
 <% end %>

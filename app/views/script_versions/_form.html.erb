@@ -3,13 +3,13 @@
 <% end %>
 
 <p>
-  <%=t('scripts.rules_summary_html', {full_rules_link: link_to(t('scripts.rules_summary_link_to_full'), help_code_rules_path)})%>
+  <%= t('scripts.rules_summary_html', {full_rules_link: link_to(t('scripts.rules_summary_link_to_full'), help_code_rules_path)}) %>
 </p>
 
 <% # ignore userscripts.org sync
 if !script_version.script.script_sync_type_id.nil? and script_version.script.script_sync_source_id != 2 %>
   <p>
-    <%=t('scripts.syncing_notice_html', {
+    <%= t('scripts.syncing_notice_html', {
       syncing_notice_sync_type: link_to(
         t(
           script_version.script.script_sync_type_id == 1 ? 'scripts.syncing_notice_sync_type_manual' : 'scripts.syncing_notice_sync_type_automatic',
@@ -17,16 +17,16 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
         ),
         admin_script_path(script_version.script_id)
       ),
-    })%>
+    }) %>
   </p>
 <% end %>
 
-<%=form_for(script_version.script.new_record? ? script_version : [script_version.script, script_version], {html: {enctype: 'multipart/form-data'}}) do |s| %>
+<%= form_for(script_version.script.new_record? ? script_version : [script_version.script, script_version], {html: {enctype: 'multipart/form-data'}}) do |s| %>
 
   <% # remember previously chosen overrides
   [:version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace, :minified_confirmation, :allow_code_previously_posted].each do |override|
     if script_version.send(override) %>
-      <%=s.hidden_field(override)%>
+      <%= s.hidden_field(override) %>
     <% end
   end %>
 
@@ -34,7 +34,7 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
 
   <% if !script_version.errors.empty? or !script_version.script.errors.empty? %>
     <div class="alert">
-      <p><%=t('common.error_preamble')%></p>
+      <p><%= t('common.error_preamble') %></p>
       <ul class="errors">
         <% displayed_errors = []
         script_version.errors.each do |error|
@@ -62,92 +62,94 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
           displayed_errors << m
         end
         displayed_errors.uniq.each do |err| %>
-          <li><%=err%></li>
+          <li><%= err %></li>
         <% end
         script_version.warnings.each do |w| %>
           <li><%
             case w
-              when :version_not_incremented %>
-                <%=t('scripts.warning_version_not_incremented_html')%><br>
-                <label for="script_version_version_check_override"><%=t('scripts.override_warning_checkbox_label')%></label> <%=s.check_box(:version_check_override, {}, true, false)%>
+              when :version_not_incremented
+              %>
+                <%= t('scripts.warning_version_not_incremented_html') %><br>
+                <label for="script_version_version_check_override"><%= t('scripts.override_warning_checkbox_label') %></label> <%= s.check_box(:version_check_override, {}, true, false) %>
               <% when :version_missing %>
-                <%=t('scripts.warning_version_missing_html')%><br>
-                <label for="script_version_add_missing_version"><%=t('scripts.warning_version_missing_generate_automatically_html')%></label> <%=s.check_box(:add_missing_version, {}, true, false)%>
+                <%= t('scripts.warning_version_missing_html') %><br>
+                <label for="script_version_add_missing_version"><%= t('scripts.warning_version_missing_generate_automatically_html') %></label> <%= s.check_box(:add_missing_version, {}, true, false) %>
               <% when :namespace_missing %>
-                <%=t('scripts.warning_namespace_missing_html')%><br>
-                <label for="script_version_add_missing_namespace"><%=t('scripts.warning_namespace_missing_generate_automatically_html')%></label> <%=s.check_box(:add_missing_namespace, {}, true, false)%>
+                <%= t('scripts.warning_namespace_missing_html') %><br>
+                <label for="script_version_add_missing_namespace"><%= t('scripts.warning_namespace_missing_generate_automatically_html') %></label> <%= s.check_box(:add_missing_namespace, {}, true, false) %>
               <% when :namespace_changed %>
-                <%=t('scripts.warning_namespace_changed_html')%><br>
-                <label for="script_version_namespace_check_override"><%=t('scripts.override_warning_checkbox_label')%></label> <%=s.check_box(:namespace_check_override, {}, true, false)%>
+                <%= t('scripts.warning_namespace_changed_html') %><br>
+                <label for="script_version_namespace_check_override"><%= t('scripts.override_warning_checkbox_label') %></label> <%= s.check_box(:namespace_check_override, {}, true, false) %>
               <% when :potentially_minified %>
-                <%=t('scripts.warning_potentially_minified_html', {allowed_requires_link: link_to(t('scripts.warning_potentially_minified_allowed_requires_link'), help_external_scripts_path)})%><br>
-                <label for="script_version_minified_confirmation"><%=t('scripts.override_warning_checkbox_label')%></label> <%=s.check_box(:minified_confirmation, {}, true, false)%>
+                <%= t('scripts.warning_potentially_minified_html', {allowed_requires_link: link_to(t('scripts.warning_potentially_minified_allowed_requires_link'), help_external_scripts_path)}) %><br>
+                <label for="script_version_minified_confirmation"><%= t('scripts.override_warning_checkbox_label') %></label> <%= s.check_box(:minified_confirmation, {}, true, false) %>
               <% when :automatic_sensitive %>
-                <%=t('scripts.warning_automatic_sensitive_html', {sensitive_domains: script_version.sensitive_domains.to_sentence})%><br>
-                <label for="script_version_sensitive_site_confirmation"><%=t('scripts.override_warning_checkbox_label')%></label> <%=s.check_box(:sensitive_site_confirmation, {}, true, false)%>
+                <%= t('scripts.warning_automatic_sensitive_html', {sensitive_domains: script_version.sensitive_domains.to_sentence}) %><br>
+                <label for="script_version_sensitive_site_confirmation"><%= t('scripts.override_warning_checkbox_label') %></label> <%= s.check_box(:sensitive_site_confirmation, {}, true, false) %>
               <% when :code_previously_posted %>
                 <%= t('scripts.warning_code_previously_posted_html', { script_links: script_version.previously_posted_scripts.map { |s| render_script(s) }.to_sentence.html_safe}) %><br>
-                <label for="script_version_allow_code_previously_posted"><%=t('scripts.override_warning_checkbox_label')%></label> <%=s.check_box(:allow_code_previously_posted, {}, true, false)%>
+                <label for="script_version_allow_code_previously_posted"><%= t('scripts.override_warning_checkbox_label') %></label> <%= s.check_box(:allow_code_previously_posted, {}, true, false) %>
               <% else
                 raise "Unknown warning #{w}"
             end %>
           </li><%
-        end %>
+        end
+               %>
       </ul>
     </div>
   <% end %>
 
   <% if @script.library? %>
     <div class="form-control">
-      <label for="library-name"><%=t('activerecord.attributes.script.name')%></label><br>
-      <input id="library-name" name="name" value="<%=@script.name%>" maxlength="100">
+      <label for="library-name"><%= t('activerecord.attributes.script.name') %></label><br>
+      <input id="library-name" name="name" value="<%= @script.name %>" maxlength="100">
     </div>
     <div class="form-control">
-      <label for="library-description"><%=t('activerecord.attributes.script.description')%></label><br>
-      <input id="library-description" name="description" value="<%=@script.description%>" maxlength="500">
+      <label for="library-description"><%= t('activerecord.attributes.script.description') %></label><br>
+      <input id="library-description" name="description" value="<%= @script.description %>" maxlength="500">
     </div>
   <% end %>
   <div class="form-control">
-    <label for="script_version_code"><%=t('activerecord.attributes.script.code')%></label> <span class="label-note" style="display: none"><input type="checkbox" id="enable-source-editor-code" name="enable-source-editor-code" <%if params['enable-source-editor-code']%>checked<%end%> class="enable-source-editor" data-related-editor="script_version_code" data-editor-language="<%= script_version.css? ? 'css' : 'javascript' %>"><label for="enable-source-editor-code" class="checkbox-label"><%=t('scripts.enable_source_code_editor_label')%></label></span><br>
-    <%=s.text_area(:code)%>
-    <div><%=t('scripts.upload_label')%> <input type="file" name="code_upload" id="code-upload" accept="text/javascript,application/javascript"></div>
+    <label for="script_version_code"><%= t('activerecord.attributes.script.code') %></label> <span class="label-note" style="display: none"><input type="checkbox" id="enable-source-editor-code" name="enable-source-editor-code" <% if params['enable-source-editor-code'] %> checked<% end %> class="enable-source-editor" data-related-editor="script_version_code" data-editor-language="<%= script_version.css? ? 'css' : 'javascript' %>"><label for="enable-source-editor-code" class="checkbox-label"><%= t('scripts.enable_source_code_editor_label') %></label></span><br>
+    <%= s.text_area(:code) %>
+    <div><%= t('scripts.upload_label') %> <input type="file" name="code_upload" id="code-upload" accept="text/javascript,application/javascript"></div>
   </div>
   <% if !script_version.script.new_record? %>
     <div class="form-control">
-      <label for="changelog"><%=t('activerecord.attributes.script.changelog')%></label> <span class="label-note"><%=t('scripts.changelog_note')%></span><br>
-      <%=s.text_field(:changelog, maxlength: 500, size: nil)%>
+      <label for="changelog"><%= t('activerecord.attributes.script.changelog') %></label> <span class="label-note"><%= t('scripts.changelog_note') %></span><br>
+      <%= s.text_field(:changelog, maxlength: 500, size: nil) %>
     </div>
   <% end %>
   <div class="form-control radio-group">
-    <label><%=t('activerecord.attributes.script.type')%></label><br>
+    <label><%= t('activerecord.attributes.script.type') %></label><br>
     <% ScriptType.for_language(script_version.script.language).each do |st| %>
-      <%=radio_button('script', 'script_type_id', st.id)%> <label class="radio-label" for="script_script_type_id_<%=st.id%>"><%=t("scripts.type_#{st.id}_html", site_name: site_name)%></label><br>
+      <%= radio_button('script', 'script_type_id', st.id) %> <label class="radio-label" for="script_script_type_id_<%= st.id %>"><%= t("scripts.type_#{st.id}_html", site_name: site_name) %></label><br>
     <% end %>
   </div>
   <% if !script_version.script.sensitive || script_version.script.adult_content_self_report %>
     <div class="form-control radio-group">
-      <label><%=t('scripts.adult_content')%></label><br>
-      <%=t('scripts.adult_content_self_report_explanation', site_name: site_name)%><br>
+      <label><%= t('scripts.adult_content') %></label><br>
+      <%= t('scripts.adult_content_self_report_explanation', site_name: site_name) %><br>
       <%= check_box('script', :adult_content_self_report) %>
-      <label for="script_adult_content_self_report" class="radio-label"><%=t('scripts.adult_content_self_report')%></label>
+      <label for="script_adult_content_self_report" class="radio-label"><%= t('scripts.adult_content_self_report') %></label>
     </div>
   <% else %>
     <div class="form-control radio-group">
-      <label><%=t('scripts.adult_content')%></label><br>
+      <label><%= t('scripts.adult_content') %></label><br>
       <% if @script.for_sensitive_site? %>
-        <%=t('scripts.not_adult_content_self_report_explanation_automatic', site_name: site_name, domain_list: @script.matching_sensitive_sites.pluck(:domain).to_sentence)%><br>
+        <%= t('scripts.not_adult_content_self_report_explanation_automatic', site_name: site_name, domain_list: @script.matching_sensitive_sites.pluck(:domain).to_sentence) %><br>
       <% else %>
-        <%=t('scripts.not_adult_content_self_report_explanation', site_name: site_name)%><br>
+        <%= t('scripts.not_adult_content_self_report_explanation', site_name: site_name) %><br>
         <%= check_box('script', :not_adult_content_self_report, checked: @script.not_adult_content_self_report_date.present?) %>
-        <label for="script_not_adult_content_self_report" class="radio-label"><%=t('scripts.not_adult_content_self_report_html')%></label>
+        <label for="script_not_adult_content_self_report" class="radio-label"><%= t('scripts.not_adult_content_self_report_html') %></label>
       <% end %>
     </div>
   <% end %>
 
   <% if @script.css? %>
     <div class="form-control radio-group">
-      <label><%=t('scripts.not_js_convertible_override_header')%></label><br>
-      <%= it('scripts.not_js_convertible_override_explanation', site_name: site_name, help_link: help_user_js_conversions_path)%><br>
+      <label><%= t('scripts.not_js_convertible_override_header') %></label><br>
+      <%= it('scripts.not_js_convertible_override_explanation', site_name: site_name, help_link: help_user_js_conversions_path) %><br>
       <%= s.check_box :not_js_convertible_override %>
       <%= s.label :not_js_convertible_override, t('scripts.not_js_convertible_override_label_html'), class: 'radio-label' %>
     </div>
@@ -155,7 +157,7 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
 
   <% if @script.new_record? %>
     <div class="form-control radio-group">
-      <label><%=t('activerecord.attributes.script.locale')%></label> <span class="label-note"><%=t('scripts.locale_explanation_html')%></span><br>
+      <label><%= t('activerecord.attributes.script.locale') %></label> <span class="label-note"><%= t('scripts.locale_explanation_html') %></span><br>
       <%= render partial: 'scripts/default_locale_selector', locals: {script: @script} %>
     </div>
   <% end %>
@@ -166,11 +168,11 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
     next 1 if !a.attribute_default && b.attribute_default
     next 0
   end.each_with_index do |la, index| %>
-    <%=render partial: 'additional_info', locals: {la: la, index: index}%>
+    <%= render partial: 'additional_info', locals: {la: la, index: index} %>
   <% end %>
 
   <div class="form-control">
-    <button id="add-additional-info" name="add-additional-info" value="1" type="submit" data-form-path="<%= script_version_additional_info_form_path %>"><%=t('scripts.additional_info_add_localized')%></button>
+    <button id="add-additional-info" name="add-additional-info" value="1" type="submit" data-form-path="<%= script_version_additional_info_form_path %>"><%= t('scripts.additional_info_add_localized') %></button>
   </div>
 
   <div class="script-screenshot-control">

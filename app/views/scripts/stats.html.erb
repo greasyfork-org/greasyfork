@@ -34,10 +34,11 @@
     when :update_checks
       container_id = 'update-check-stats-chart-container'
       heading_key = 'scripts.stats_daily_update_checks_heading'
-  end %>
+  end
+%>
 
-  <h3><%=t(heading_key)%></h3>
-  <div id="<%=container_id%>"></div>
+  <h3><%= t(heading_key) %></h3>
+  <div id="<%= container_id %>"></div>
 
   <%
   data = @stats.transform_values{|v| v[data_key == :weekly_installs ? :installs : data_key]}
@@ -49,17 +50,17 @@ end
   %>
   <script>
   var data = {
-    labels: [<%=data.keys.each.map{|d| "\"#{escape_javascript(d.to_s)}\""}.join(',').html_safe%>],
+    labels: [<%= data.keys.each.map{|d| "\"#{escape_javascript(d.to_s)}\""}.join(',').html_safe %>],
     datasets: [{
         fillColor : "rgba(220,220,220,0.5)",
         strokeColor : "rgba(220,220,220,1)",
-        data: [<%=data.values.join(',')%>]
+        data: [<%= data.values.join(',') %>]
     }]
   }
 
-  var container = document.getElementById("<%=container_id%>");
+  var container = document.getElementById("<%= container_id %>");
   var canvas = document.createElement("canvas")
-  canvas.id = "<%=container_id%>-canvas";
+  canvas.id = "<%= container_id %>-canvas";
   canvas.width = parseInt(getComputedStyle(container).width.replace("px", ""), 10) - 5;
   canvas.height = 400;
   container.appendChild(canvas)
@@ -87,24 +88,24 @@ end
   </script>
 <% end %>
 
-<h3><%=t('scripts.stats_raw_data_header')%></h3>
+<h3><%= t('scripts.stats_raw_data_header') %></h3>
 <table class="stats-table">
   <thead>
     <tr>
-      <th><%=t('scripts.stats_daily_installs_date_column_heading')%></th>
-      <th class="numeric"><%=t('scripts.stats_daily_installs_install_count_column_heading')%></th>
-      <th class="numeric"><%=t('scripts.stats_daily_installs_update_check_count_column_heading')%></th>
+      <th><%= t('scripts.stats_daily_installs_date_column_heading') %></th>
+      <th class="numeric"><%= t('scripts.stats_daily_installs_install_count_column_heading') %></th>
+      <th class="numeric"><%= t('scripts.stats_daily_installs_update_check_count_column_heading') %></th>
     </tr>
   </thead>
   <tbody>
     <% @stats.to_a.last(30).each do |d, i| %>
       <tr>
-        <th><%=d%></th>
-        <td class="numeric"><%=number_with_delimiter(i[:installs])%></td>
-        <td class="numeric"><%=i[:update_checks].nil? ? t('scripts.stats_no_data') : number_with_delimiter(i[:update_checks])%></td>
+        <th><%= d %></th>
+        <td class="numeric"><%= number_with_delimiter(i[:installs]) %></td>
+        <td class="numeric"><%= i[:update_checks].nil? ? t('scripts.stats_no_data') : number_with_delimiter(i[:update_checks]) %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <% links = [:json, :csv].map{|f| link_to f.to_s.upcase, { format: f }, rel: :nofollow } %>
-<%=t('scripts.stats_download_raw_data_html', links: links.join(' ').html_safe)%>
+<%= t('scripts.stats_download_raw_data_html', links: links.join(' ').html_safe) %>

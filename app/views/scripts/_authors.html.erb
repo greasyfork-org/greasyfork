@@ -7,10 +7,10 @@
 
   <p><%= t('scripts.invitations.explanation', site_name: site_name) %></p>
 
-  <%=form_tag(invite_script_path, method: :post) do |f|%>
+  <%= form_tag(invite_script_path, method: :post) do |f| %>
     <div class="form-control">
-      <label for="invited_user"><%=t('scripts.invitations.invited_user_url_label')%></label>
-      <input id="invited_user" name="invited_user_url" type="url" placeholder="<%= t('scripts.invitations.invited_user_placeholder', site_name: site_name) %>" value="<%=params[:invited_user_url]%>" required>
+      <label for="invited_user"><%= t('scripts.invitations.invited_user_url_label') %></label>
+      <input id="invited_user" name="invited_user_url" type="url" placeholder="<%= t('scripts.invitations.invited_user_placeholder', site_name: site_name) %>" value="<%= params[:invited_user_url] %>" required>
     </div>
 
     <input type="submit" value="<%= t('scripts.invitations.submit') %>">

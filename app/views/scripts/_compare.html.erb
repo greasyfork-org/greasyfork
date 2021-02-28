@@ -12,7 +12,7 @@
 
   <% unless @diff.nil? %>
     <p>
-      <%= link_to(@other_script.name(request_locale), show_code_script_path(@other_script))%><br>
+      <%= link_to(@other_script.name(request_locale), show_code_script_path(@other_script)) %><br>
     </p>
 
     <% if current_user.moderator? %>
@@ -28,7 +28,7 @@
     <% end %>
 
     <% if @diff.empty? %>
-      <p><%=t('scripts.diff_no_change')%></p>
+      <p><%= t('scripts.diff_no_change') %></p>
     <% else %>
       <%= @diff %>
     <% end %>

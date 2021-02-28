@@ -13,16 +13,16 @@ skip_all_sites_link = false unless defined?(skip_all_sites_link)
   <% if include_search %>
     <form class="sidebar-search">
       <% [:sort, :site, :language].each do |p| %>
-        <% if params[p] %><input type="hidden" name="<%=p%>" value="<%=params[p]%>"><% end %>
+        <% if params[p] %><input type="hidden" name="<%= p %>" value="<%= params[p] %>"><% end %>
       <% end %>
-      <input type="search" name="q" value="<%=params[:q]%>" placeholder="<%=t('scripts.search_placeholder')%>"><input class="search-submit" type="submit" value="🔎">
+      <input type="search" name="q" value="<%= params[:q] %>" placeholder="<%= t('scripts.search_placeholder') %>"><input class="search-submit" type="submit" value="🔎">
     </form>
   <% end %>
 
-  <div id="script-list-sort" class="list-option-group"><%=t('scripts.listing_sort_label')%>
+  <div id="script-list-sort" class="list-option-group"><%= t('scripts.listing_sort_label') %>
     <ul>
       <% sort_options.each do |sort_option| %>
-        <%=script_list_link(t("scripts.listing_sort_#{sort_option}"), **current_options.merge(sort: default_sort == sort_option ? nil : sort_option))%>
+        <%= script_list_link(t("scripts.listing_sort_#{sort_option}"), **current_options.merge(sort: default_sort == sort_option ? nil : sort_option)) %>
       <% end %>
     </ul>
   </div>
@@ -49,31 +49,31 @@ skip_all_sites_link = false unless defined?(skip_all_sites_link)
   <% end %>
 
   <% if !by_sites.nil? %>
-    <div id="script-list-filter" class="list-option-group"><%=t('scripts.listing_filter_by_site_label')%>
+    <div id="script-list-filter" class="list-option-group"><%= t('scripts.listing_filter_by_site_label') %>
       <ul>
-        <%=script_list_link(t('scripts.listing_filter_by_site_disable'), current_options.merge(site: nil))%>
+        <%= script_list_link(t('scripts.listing_filter_by_site_disable'), current_options.merge(site: nil)) %>
         <% current_site_is_top = false
         (0..9).each do |i|
           break if by_sites[i].nil?
           dt = by_sites[i][0]
           if dt.nil?
             current_site_is_top = true if params[:site] == '*' %>
-            <%=script_list_link(t('scripts.listing_filter_by_site_all_sites'), current_options.merge(site: '*'))%>
+            <%= script_list_link(t('scripts.listing_filter_by_site_all_sites'), current_options.merge(site: '*')) %>
           <% else
             current_site_is_top = true if dt == params[:site] %>
-            <%=script_list_link(dt, current_options.merge(site: dt))%>
+            <%= script_list_link(dt, current_options.merge(site: dt)) %>
           <% end %>
         <% end
         # Include the currrent site if it was not displayed as one of the top ones
         if !current_site_is_top and !params[:site].nil? and !scripts.empty? %>
-          <%=script_list_link(params[:site], current_options)%>
+          <%= script_list_link(params[:site], current_options) %>
         <% end %>
         <li><%= link_to(t('scripts.listing_filter_by_site_more_sites'), site_list_scripts_path) unless skip_all_sites_link %></li>
       </ul>
     </div>
   <% end %>
 
-  <div id="script-language-filter" class="list-option-group"><%=t('scripts.listing_filter_by_language_label')%>
+  <div id="script-language-filter" class="list-option-group"><%= t('scripts.listing_filter_by_language_label') %>
     <ul>
       <% default_language_option = controller.is_a?(UsersController) ? 'all' : 'js' %>
       <% { t('scripts.listing_language_all') => 'all', t('scripts.listing_language_js') => 'js', t('scripts.listing_language_css') => 'css' }.each do |language_option, key| %>
@@ -86,13 +86,12 @@ skip_all_sites_link = false unless defined?(skip_all_sites_link)
   if include_script_sets && (action_name != 'index' || params[:q].blank?)  && user_signed_in? && !current_user.script_sets.empty? %>
     <div id="script-list-set" class="list-option-group">Script set:
       <ul>
-        <%=script_list_link('All', current_options.merge(set: nil))%>
+        <%= script_list_link('All', current_options.merge(set: nil)) %>
         <% ScriptSet.favorites_first(current_user.script_sets).each do |set| %>
-          <%=script_list_link(set.display_name, current_options.merge(set: set.id.to_s))%>
+          <%= script_list_link(set.display_name, current_options.merge(set: set.id.to_s)) %>
         <% end %>
       </ul>
     </div>
 
   <% end %>
 </div>
-

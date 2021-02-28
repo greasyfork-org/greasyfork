@@ -4,10 +4,10 @@
 <% if params[:return_to] == SessionsController::BANNED_DELETE_PATH %>
   <p><%= t('users.banned_delete.intro') %></p>
 <% else %>
-  <p><%=t('users.sign_in_description', site_name: site_name)%></p>
+  <p><%= t('users.sign_in_description', site_name: site_name) %></p>
 <% end %>
 
-<h3><%=t('users.sign_in_external')%></h3>
+<h3><%= t('users.sign_in_external') %></h3>
 
 <div>
   <% if Rails.application.config.available_auths.empty? %>
@@ -17,8 +17,8 @@
       <div>
         <% Rails.application.config.available_auths.keys.reverse_each do |provider| %>
           <span class="external-login-container">
-            <button formaction="/auth/<%= provider %>?locale_id=<%= request_locale.id %>" class="external-login <%=provider%>-login">
-              <%=t('users.sign_in_with', provider: Identity.pretty_provider(provider)) %>
+            <button formaction="/auth/<%= provider %>?locale_id=<%= request_locale.id %>" class="external-login <%= provider %>-login">
+              <%= t('users.sign_in_with', provider: Identity.pretty_provider(provider)) %>
             </button>
           </span>
         <% end %>
@@ -31,16 +31,16 @@
   <% end %>
 </div>
 
-<h3><%=t('users.sign_in_password')%></h3>
+<h3><%= t('users.sign_in_password') %></h3>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email %><br>
     <%= f.email_field :email, autofocus: true, autocomplete: 'email' %>
   </div>
 
   <div class="field">
-    <%= f.label :password %><br />
+    <%= f.label :password %><br>
     <%= f.password_field :password, autocomplete: 'off' %>
   </div>
 

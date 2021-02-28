@@ -17,12 +17,12 @@
       </thead>
       <% actions.each do |action| %>
         <tr>
-          <td><%=markup_date action.created_at%></td>
-          <td><%=link_to action.moderator.name, action.moderator%></td>
-          <td><%=action.action%></td>
-          <td><div class="possibly-long-text"><%=action.reason%></div></td>
+          <td><%= markup_date action.created_at %></td>
+          <td><%= link_to action.moderator.name, action.moderator %></td>
+          <td><%= action.action %></td>
+          <td><div class="possibly-long-text"><%= action.reason %></div></td>
           <% if current_user&.moderator? %>
-            <td><div class="possibly-long-text"><%=action.private_reason%></div></td>
+            <td><div class="possibly-long-text"><%= action.private_reason %></div></td>
           <% end %>
         </tr>
       <% end %>

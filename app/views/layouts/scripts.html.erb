@@ -1,33 +1,33 @@
 <% content_for :content do %>
   <section id="script-info">
     <ul id="script-links" class="tabs">
-      <li<%=current_page?(script_path(@script, version: params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.info_page')}</span>".html_safe, script_path(@script, version: params[:version])%></li>
-      <li<%=current_page?(show_code_script_path(@script, version: params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.code_page')}</span>".html_safe, show_code_script_path(@script, version: params[:version])%></li>
-      <li<%=((controller_name == 'script_versions' && action_name == 'index') || (controller_name == 'scripts' && action_name == 'diff')) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.history_page')}</span>".html_safe, script_script_versions_path(@script, version: params[:version])%></li>
-      <li<%=(current_page?(feedback_script_path(@script, version: params[:version])) || controller_name == 'discussions')? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.feedback_page', count: @script.discussions.visible.count)}</span>".html_safe, feedback_script_path(@script, version: params[:version])%></li>
-      <li<%=current_page?(stats_script_path(@script, version: params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.stats_page')}</span>".html_safe, stats_script_path(@script, version: params[:version])%></li>
+      <li<%= current_page?(script_path(@script, version: params[:version])) ? ' class="current"'.html_safe : '' %>><%= link_to_unless_current "<span>#{t('scripts.info_page')}</span>".html_safe, script_path(@script, version: params[:version]) %></li>
+      <li<%= current_page?(show_code_script_path(@script, version: params[:version])) ? ' class="current"'.html_safe : '' %>><%= link_to_unless_current "<span>#{t('scripts.code_page')}</span>".html_safe, show_code_script_path(@script, version: params[:version]) %></li>
+      <li<%= ((controller_name == 'script_versions' && action_name == 'index') || (controller_name == 'scripts' && action_name == 'diff')) ? ' class="current"'.html_safe : '' %>><%= link_to_unless_current "<span>#{t('scripts.history_page')}</span>".html_safe, script_script_versions_path(@script, version: params[:version]) %></li>
+      <li<%= (current_page?(feedback_script_path(@script, version: params[:version])) || controller_name == 'discussions')? ' class="current"'.html_safe : '' %>><%= link_to_unless_current "<span>#{t('scripts.feedback_page', count: @script.discussions.visible.count)}</span>".html_safe, feedback_script_path(@script, version: params[:version]) %></li>
+      <li<%= current_page?(stats_script_path(@script, version: params[:version])) ? ' class="current"'.html_safe : '' %>><%= link_to_unless_current "<span>#{t('scripts.stats_page')}</span>".html_safe, stats_script_path(@script, version: params[:version]) %></li>
       <% same_user = current_user && @script.user_ids.include?(current_user.id)
       user_is_mod = !current_user.nil? && current_user.moderator? %>
       <% if same_user || user_is_mod %>
-        <li<%=current_page?(derivatives_script_path(@script, version: params[:version])) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.derivatives_page')}</span>".html_safe, derivatives_script_path(@script, version: params[:version])%></li>
+        <li<%= current_page?(derivatives_script_path(@script, version: params[:version])) ? ' class="current"'.html_safe : '' %>><%= link_to_unless_current "<span>#{t('scripts.derivatives_page')}</span>".html_safe, derivatives_script_path(@script, version: params[:version]) %></li>
       <% end %>
       <% if same_user %>
-        <li<%=current_page?(new_script_script_version_path(@script.id)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.update_page')}</span>".html_safe, new_script_script_version_path(@script.id)%></li>
+        <li<%= current_page?(new_script_script_version_path(@script.id)) ? ' class="current"'.html_safe : '' %>><%= link_to_unless_current "<span>#{t('scripts.update_page')}</span>".html_safe, new_script_script_version_path(@script.id) %></li>
       <% end %>
       <% if same_user || user_is_mod %>
-        <li<%=current_page?(delete_script_path(@script)) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.delete_page')}</span>".html_safe, delete_script_path(@script)%></li>
-        <li<%=(
-          current_page?(admin_script_path(@script)) || 
+        <li<%= current_page?(delete_script_path(@script)) ? ' class="current"'.html_safe : '' %>><%= link_to_unless_current "<span>#{t('scripts.delete_page')}</span>".html_safe, delete_script_path(@script) %></li>
+        <li<%= (
+          current_page?(admin_script_path(@script)) ||
           action_name == 'sync_update'
-         ) ? ' class="current"'.html_safe : ''%>><%= link_to_unless_current "<span>#{t('scripts.admin_page')}</span>".html_safe, admin_script_path(@script)%></li>
+         ) ? ' class="current"'.html_safe : '' %>><%= link_to_unless_current "<span>#{t('scripts.admin_page')}</span>".html_safe, admin_script_path(@script) %></li>
       <% end %>
     </ul>
     <header>
       <h2><%= @script.name(request_locale) %></h2>
       <p id="script-description" class="script-description"><%= @script.description(request_locale) %></p>
       <% if !params[:version].nil?
-        latest_version_link = link_to t('scripts.version_notice_latest_version_link'), {:version => nil}%>
-        <p id="version-note"><%=t('scripts.version_notice_html', date: @script.updated_at, latest_version_link: latest_version_link.html_safe)%></p>
+        latest_version_link = link_to t('scripts.version_notice_latest_version_link'), {:version => nil} %>
+        <p id="version-note"><%= t('scripts.version_notice_html', date: @script.updated_at, latest_version_link: latest_version_link.html_safe) %></p>
       <% end %>
       <% if (@script.pending_report_by_trusted_reporter? || @script.review_required?) && !@script.deleted? %>
         <p id="reported-note"><%= t('scripts.reported_notice_for_author') %></p>

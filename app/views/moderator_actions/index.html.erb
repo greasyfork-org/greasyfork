@@ -1,5 +1,5 @@
-<%-title t('layouts.application.moderator_log') %>
-<%-description 'List of actions taken by moderators' %>
+<%- title t('layouts.application.moderator_log') %>
+<%- description 'List of actions taken by moderators' %>
 
 <table class="text-content log-table">
   <thead>
@@ -21,7 +21,7 @@
         <% elsif !action.script_id.nil? %>
           <%= t('moderator_logs.item_deleted_script', id: action.script_id) %>
         <% end %>
-        <% if !action.user.nil?%>
+        <% if !action.user.nil? %>
           <%= t('moderator_logs.item_user_html', user_link: link_to(action.user.name, action.user)) %>
         <% end %>
       </td>

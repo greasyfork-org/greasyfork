@@ -3,10 +3,10 @@
 
   <p><%= t('scripts.admin.promoted_explanation', site_name: site_name) %></p>
 
-  <%=form_tag(update_promoted_script_path, method: :patch) do |f|%>
+  <%= form_tag(update_promoted_script_path, method: :patch) do |f| %>
     <div class="form-control">
-      <label for="promoted_script_id"><%=t('scripts.admin.promoted_script_label')%></label>
-      <input id="promoted_script_id" name="promoted_script_id" type="url" value="<%=params[:promoted_script_id] || (@script.promoted_script ? script_url(@script.promoted_script) : nil)%>">
+      <label for="promoted_script_id"><%= t('scripts.admin.promoted_script_label') %></label>
+      <input id="promoted_script_id" name="promoted_script_id" type="url" value="<%= params[:promoted_script_id] || (@script.promoted_script ? script_url(@script.promoted_script) : nil) %>">
     </div>
 
     <input type="submit" value="<%= t('scripts.admin.promoted_submit') %>">

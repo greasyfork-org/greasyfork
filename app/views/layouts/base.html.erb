@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="<%=params[:locale]%>">
+<html lang="<%= params[:locale] %>">
 <head>
   <title><%= content_for?(:title) ? content_for(:title) : site_name %></title>
-  <% if content_for?(:description) %><meta name="description" value="<%=content_for(:description)%>"><% end %>
+  <% if content_for?(:description) %><meta name="description" value="<%= content_for(:description) %>"><% end %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_pack_tag 'application', media: 'all' %>
   <%= javascript_pack_tag 'application' %>
   <%= csrf_meta_tags %>
   <% if defined?(@bots) %>
-    <meta name="robots" content="<%=@bots%>">
+    <meta name="robots" content="<%= @bots %>">
   <% end %>
   <link rel="canonical" href="<%= canonical_url(@canonical_params) %>">
   <link rel="icon" href="<%= image_pack_path 'blacklogo16.png' %>">
@@ -18,34 +18,34 @@
   <% if request.get?
     # https://support.google.com/webmasters/answer/189077
     alternate_url_without_locale = current_path_with_params(locale: 'XX').sub(/\A\/XX/, '') %>
-    <link rel="alternate" hreflang="x-default" href="<%=current_path_with_params(locale: nil)%>">
+    <link rel="alternate" hreflang="x-default" href="<%= current_path_with_params(locale: nil) %>">
     <% Rails.configuration.available_locales.each do |code, name| %>
-      <link rel="alternate" hreflang="<%=code%>" href="/<%= code %><%= alternate_url_without_locale %>">
+      <link rel="alternate" hreflang="<%= code %>" href="/<%= code %><%= alternate_url_without_locale %>">
     <% end
   end %>
 
   <% if defined?(@link_alternates)
     @link_alternates.each do |la| %>
-      <link rel="alternate" type="<%=la[:type]%>" href="<%=la[:url]%>" <%if !la[:title].nil?%>title="<%=la[:title]%>"<%end%>>
+      <link rel="alternate" type="<%= la[:type] %>" href="<%= la[:url] %>" <% if !la[:title].nil? %> title="<%= la[:title] %>"<% end %>>
     <% end
   end %>
 
-  <link rel="search" href="<%=opensearch_description_path%>" type="application/opensearchdescription+xml" title="<%=t('opensearch.short_name', site_name: site_name, default: t('opensearch.short_name', site_name: site_name, locale: 'en'))%>" hreflang="<%=I18n.locale%>">
+  <link rel="search" href="<%= opensearch_description_path %>" type="application/opensearchdescription+xml" title="<%= t('opensearch.short_name', site_name: site_name, default: t('opensearch.short_name', site_name: site_name, locale: 'en')) %>" hreflang="<%= I18n.locale %>">
 
   <% if @ad_method == 'ea' %>
     <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
   <% end %>
 
-  <% if content_for(:head_bottom) %><%=yield(:head_bottom)%><% end %>
+  <% if content_for(:head_bottom) %><%= yield(:head_bottom) %><% end %>
 </head>
 <body>
 
   <header id="main-header">
     <div class="width-constraint">
       <div id="site-name">
-        <%=link_to_unless_current "<img src=\"#{  image_pack_path 'blacklogo96.png'}\" alt=\"\">".html_safe, root_path%>
+        <%= link_to_unless_current "<img src=\"#{  image_pack_path 'blacklogo96.png'}\" alt=\"\">".html_safe, root_path %>
         <div id="site-name-text">
-          <h1><%=link_to_unless_current site_name, root_path%></h1>
+          <h1><%= link_to_unless_current site_name, root_path %></h1>
         </div>
       </div>
       <div id="site-nav">
@@ -54,10 +54,10 @@
             <% if current_user.moderator? %>
               <%= render partial: 'layouts/moderator_notices' %>
             <% end %>
-            <span class="user-profile-link"><%=link_to(current_user.name, current_user)%></span>
+            <span class="user-profile-link"><%= link_to(current_user.name, current_user) %></span>
             <span class="sign-out-link">[ <%= link_to t('users.sign_out'), destroy_user_session_path, method: :delete %> ]</span>
           <% else %>
-            <span class="sign-in-link"><%=link_to(t('layouts.application.sign_in'), new_user_session_path(request.get? ? {return_to: request.fullpath} : {}), {rel: 'nofollow'})%></span>
+            <span class="sign-in-link"><%= link_to(t('layouts.application.sign_in'), new_user_session_path(request.get? ? {return_to: request.fullpath} : {}), {rel: 'nofollow'}) %></span>
           <% end %>
 
           <% form_action = if request.get?
@@ -65,19 +65,19 @@
           else
             root_path({locale: nil})
                         end %>
-          <form id="language-selector" action="<%=form_action%>">
+          <form id="language-selector" action="<%= form_action %>">
             <% user_with_locale = !current_user.nil? && !current_user.locale.nil?
             locale_with_override_param = user_with_locale ? '1' : nil
             switch_url_without_locale = current_path_with_params(locale: 'XX', locale_override: locale_with_override_param).delete_prefix('/XX') %>
             <select id="language-selector-locale" name="locale" data-translate-url="<%= Rails.configuration.help_translate_url %>">
               <% Rails.configuration.available_locales.each do |code, name|
                 if request.get? %>
-                  <option data-language-url="/<%= code %><%= switch_url_without_locale %>" value="<%=code%>"<%if params[:locale] == code%> selected<%end%>>
-                    <%=name%> (<%=code%>)
+                  <option data-language-url="/<%= code %><%= switch_url_without_locale %>" value="<%= code %>"<% if params[:locale] == code %> selected<% end %>>
+                    <%= name %> (<%= code %>)
                   </option>
                 <% else %>
-                  <option data-language-url="<%=root_path({locale: code, locale_override: locale_with_override_param})%>" value="<%=code%>"<%if params[:locale] == code%> selected<%end%>>
-                    <%=name%> (<%=code%>)
+                  <option data-language-url="<%= root_path({locale: code, locale_override: locale_with_override_param}) %>" value="<%= code %>"<% if params[:locale] == code %> selected<% end %>>
+                    <%= name %> (<%= code %>)
                   </option>
                 <% end
               end %>
@@ -93,16 +93,16 @@
           </form>
         </div>
         <nav>
-          <li class="scripts-index-link"><%=link_to(t('layouts.application.script_list'), scripts_path)%></li>
-          <li class="forum-link"><%=link_to(t('layouts.application.forum'), discussions_path)%></li>
-          <li class="help-link"><%=link_to_unless_current(t('layouts.application.help'), help_path)%></li>
+          <li class="scripts-index-link"><%= link_to(t('layouts.application.script_list'), scripts_path) %></li>
+          <li class="forum-link"><%= link_to(t('layouts.application.forum'), discussions_path) %></li>
+          <li class="help-link"><%= link_to_unless_current(t('layouts.application.help'), help_path) %></li>
           <li class="with-submenu">
-            <a href="#" onclick="return false"><%=t('layouts.application.submenu')%></a>
+            <a href="#" onclick="return false"><%= t('layouts.application.submenu') %></a>
             <nav>
-              <li><%=link_to t('layouts.application.advanced_search'), search_path%></li>
-              <li><%=link_to t('layouts.application.user_list'), users_path%></li>
-              <li><%=link_to t('layouts.application.libraries'), libraries_scripts_path%></li>
-              <li><%=link_to t('layouts.application.moderator_log'), moderator_actions_path%></li>
+              <li><%= link_to t('layouts.application.advanced_search'), search_path %></li>
+              <li><%= link_to t('layouts.application.user_list'), users_path %></li>
+              <li><%= link_to t('layouts.application.libraries'), libraries_scripts_path %></li>
+              <li><%= link_to t('layouts.application.moderator_log'), moderator_actions_path %></li>
             </nav>
           </li>
         </nav>
