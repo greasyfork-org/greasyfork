@@ -625,16 +625,6 @@ en:
       all_sites: "All sites"
       user: "Scripts by user %{user}"
       locale: "Scripts in %{locale_name}"
-  forum_discussions:
-    # forum discussion lists with 2 * 2 = 4 options:
-    # 1. with_script: includes the script name, for example for "Discussions on your scripts" on a user's page
-    # 1. no_script: no script name, for example when viewing feedback for the script and the name's already on the page
-    # 2. with_reply: where someone has made a reply to the discussion
-    # 2. no_reply: no replies to the discussion
-    listing_no_script_no_reply_html: "%{discussion_link} by %{original_poster_link} %{original_post_date}"
-    listing_no_script_with_reply_html: "%{discussion_link} by %{original_poster_link} %{original_post_date}, last comment by %{last_commenter_link} %{last_comment_date}"
-    listing_with_script_no_reply_html: "%{script_link}: %{discussion_link} by %{original_poster_link} %{original_post_date}"
-    listing_with_script_with_reply_html: "%{script_link}: %{discussion_link} by %{original_poster_link} %{original_post_date}, last comment by %{last_commenter_link} %{last_comment_date}"
   home:
     # html title of the homepage
     title: "%{site_name} - safe and useful user scripts"
