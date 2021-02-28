@@ -5,9 +5,14 @@
 
 <ul id="help-allowed-elements">
   <li>&lt;* <%= markdown_sanitize_config[:attributes][:all].join('&#8203;|').html_safe%>&gt;</li>
-  <% markdown_sanitize_config[:elements].sort.each do |el| %>
+  <% (markdown_sanitize_config[:elements] + ['iframe']).sort.each do |el| %>
     <% attrs = markdown_sanitize_config[:attributes][el] %>
     <% protocols = markdown_sanitize_config[:protocols][el] %>
+    <% if el == 'iframe'
+         attrs = %w(allowfullscreen frameborder height src width)
+         protocols = { 'src' => ['https://www.youtube.com/', 'https://www.youtube-nocookie.com/'] }
+       end
+    %>
     <li>
       &lt;<%=el%><%
       if !attrs.nil?
