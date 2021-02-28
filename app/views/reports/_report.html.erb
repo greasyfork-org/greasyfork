@@ -8,6 +8,11 @@
   <% end %>
 </h4>
 
+<% if current_user&.moderator? && report.awaiting_response? %>
+  <p><b>(Awaiting response from author)</b></p>
+<% end %>
+
+
 <% if report.item.is_a?(Comment) %>
   <div><%= t('common.quote.prefix_html', user: render_user(report.reported_users.first, report.reported_user_id)) %></div>
   <blockquote>
@@ -125,7 +130,7 @@
     <%= t('reports.result_dismissed') %>
   </p>
 <% elsif current_user && report.item.is_a?(Script) && report.item.users.include?(current_user) %>
-  <% unless @report.rebuttal.present? %>
+  <% unless report.rebuttal.present? %>
     <%= form_with(model: report, url: rebut_report_path(report), method: 'POST') do |f| %>
       <%= f.text_area :rebuttal, required: true, placeholder: t('reports.rebuttal_placeholder'), maxlength: 10_000 %>
       <br>

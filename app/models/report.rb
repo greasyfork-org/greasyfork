@@ -25,6 +25,9 @@ class Report < ApplicationRecord
 
   NON_SCRIPT_REASONS = [REASON_SPAM, REASON_ABUSE, REASON_ILLEGAL].freeze
 
+  GRACE_PERIOD = 3.days
+  GRACE_PERIOD_REASONS = [REASON_UNAUTHORIZED_CODE, REASON_UNDISCLOSED_ANTIFEATURE].freeze
+
   RESULT_DISMISSED = 'dismissed'.freeze
   RESULT_UPHELD = 'upheld'.freeze
 
@@ -132,5 +135,13 @@ class Report < ApplicationRecord
 
   def unauthorized_code?
     reason == REASON_UNAUTHORIZED_CODE
+  end
+
+  def in_grace_period?
+    GRACE_PERIOD_REASONS.include?(reason) && created_at > GRACE_PERIOD.ago
+  end
+
+  def awaiting_response?
+    in_grace_period? && rebuttal.blank?
   end
 end

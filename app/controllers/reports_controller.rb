@@ -33,7 +33,7 @@ class ReportsController < ApplicationController
   end
 
   def index
-    @reports = Report.unresolved.reject { |report| report.item.nil? }
+    @reports = Report.unresolved.reject { |report| report.item.nil? }.sort_by { |r| [r.awaiting_response? ? 1 : 0, r.created_at] }
   end
 
   def dismiss
