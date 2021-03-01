@@ -30,6 +30,8 @@ class ScriptDuplicateCheckerJob < ApplicationJob
     ScriptSimilarity.where(script_id: script_id).delete_all
     bulk_data = results.sort_by(&:last).last(100).map { |other_script_id, similarity| { script_id: script_id, other_script_id: other_script_id, similarity: similarity.round(3), checked_at: now } }
     ScriptSimilarity.upsert_all(bulk_data)
+
+    ScriptPreviouslyDeletedChecker.perform_later(script_id) if last_run.nil?
   end
 
   def self.currently_queued_script_ids
