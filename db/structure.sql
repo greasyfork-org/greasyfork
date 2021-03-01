@@ -1477,7 +1477,7 @@ CREATE TABLE `reports` (
   KEY `index_reports_on_reporter_id` (`reporter_id`),
   KEY `index_reports_on_result` (`result`),
   CONSTRAINT `fk_rails_c4cb6e6463` FOREIGN KEY (`reporter_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2579 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18959 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `roles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2192,6 +2192,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20210221233018'),
 ('20210222030536'),
 ('20210223233743'),
-('20210228215935');
+('20210228215935'),
+('20210301011817');
 
 
