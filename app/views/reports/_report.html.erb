@@ -29,8 +29,8 @@
   </blockquote>
 <% end %>
 
-<% if !report.auto_reporter && report.explanation.present? %>
-  <div><%= t('common.quote.prefix_html', user: render_user(report.reporter, report.reporter_id)) %></div>
+<% if report.explanation.present? %>
+  <div><%= t('common.quote.prefix_html', user: report.auto_reporter || render_user(report.reporter, report.reporter_id)) %></div>
   <blockquote>
     <div class="user-content">
       <%= format_user_text(report.explanation, report.explanation_markup) %>
