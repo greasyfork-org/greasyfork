@@ -20,7 +20,6 @@ class User < ApplicationRecord
   has_many :authors, dependent: :destroy
   has_many :scripts, through: :authors
   has_many :reports_as_reporter, foreign_key: :reporter_id, inverse_of: :reporter, class_name: 'Report', dependent: nil
-  has_many :script_reports, foreign_key: 'reporter_id', dependent: nil, inverse_of: :reporter
   has_many :discussions, foreign_key: 'poster_id', inverse_of: :poster, dependent: nil
   has_many :comments, foreign_key: 'poster_id', inverse_of: :poster, dependent: nil
   has_many :discussion_subscriptions, dependent: :destroy
@@ -224,11 +223,11 @@ class User < ApplicationRecord
   end
 
   def update_trusted_report!
-    resolved_count = script_reports.resolved.count + reports_as_reporter.resolved.count
+    resolved_count = reports_as_reporter.resolved.count
     if resolved_count < 3
       update(trusted_reports: false)
     else
-      upheld_count = script_reports.upheld.count + reports_as_reporter.resolved.count
+      upheld_count = reports_as_reporter.upheld.count
       update(trusted_reports: (upheld_count.to_f / resolved_count) >= 0.75)
     end
   end
