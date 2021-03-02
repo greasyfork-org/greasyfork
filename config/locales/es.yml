@@ -616,6 +616,8 @@ es:
         one: Desuscribirte de %{discussions_link:%{count} conversación} a la que estás suscrito
         other: Desuscribirte de %{discussions_link:%{count} conversaciones} a las que estás suscrito
       save_success: Se han actualizado tus preferencias de notificaciones
+      unsubscribe_all: Anular la suscripción para todas las notificaciones
+      unsubscribe_all_success: Se ha cancelado la suscripción de todas las notificaciones.
   help:
     sections:
       usage: Uso
@@ -829,6 +831,8 @@ es:
     new_report_title:
       user: "Denunciar a %{user}"
       comment: "Denunciar un comentario de %{user}"
+      message: "Denunciar un mensaje de %{user}"
+      script: "Denunciar %{script}"
     new_report_notes_html: >
         <p>Antes de denunciar ten en cuenta que:</p> <ul>
 
@@ -854,8 +858,19 @@ es:
 
         </ul>
     reason:
+      non_functional: "El script no funciona"
       spam: "Spam"
       abuse: "Abusos, perjuicios o discurso del odio"
+      illegal: "Contenido ilegal"
+      unauthorized_code: "Copia no autorizada"
+      malware: "Software malicioso"
+      minified: "Código minimizado"
+      external_code: "Código externo no permitido"
+      undisclosed_antifeature: "Característica adversa no revelada (por ejemplo, un anuncio, un rastreador, minería de criptomonedas)"
+      other: "Otros"
+    report_intro_html: "%{reported_item} ha sido denunciado por %{reason} por %{reporter}"
+    report_intro_unauthorized_html: "%{reported_script} ha sido denunciado como copia no autorizada de %{other_script} por %{reporter}."
+    unauthorized_code_original_placeholder: "URL del código original"
     explanation_placeholder: "Proporciona más detalles (opcional)"
     create_button: "Denunciar"
     report_user: "Denunciar usuario"
@@ -864,6 +879,9 @@ es:
     result_dismissed: "Se ha revisado tu denuncia y no parece incumplir las normas."
     result_upheld: "Se ha confirmado tu denuncia y ha sido eliminado."
     result_pending: "Pendiente de que lo revise un moderador. "
+    rebuttal_placeholder: 'Explica a un moderador por qué este script no debe ser eliminado.'
+    submit_rebuttal: "Presentar reclamación"
+    delete_script: "Eliminar script"
   discussions:
     title: Conversaciones
     comment_date: "Publicado: %{date}"
@@ -917,6 +935,9 @@ es:
       all: Todas
       read: Leídas
       unread: Sin leer
+    locale_filter:
+      label: Idioma
+      all: Todos
     user_activity:
       title: "Comentarios recientes"
       no_recent_activity: "Este usuario no ha comentado últimamente."
@@ -973,6 +994,7 @@ es:
       other: Conversación con %{users}
     conversation_info_html: Último mensaje en %{date} por %{user}.
     no_conversations: Todavía no has empezado a conversar.
+    no_recent_conversations: No tienes ninguna conversación reciente.
     recent:
       title: Conversaciones recientes
       more: Ver todas las conversaciones
@@ -1060,6 +1082,7 @@ es:
     script_report:
       report_created_offender:
         subject: "Alguien ha denunciado tu script %{script_name} en %{site_name}"
+        text: "Tu script %{script_name} ha sido denunciado por incumplir las normas de %{site_name}. El motivo específico es: %{reason}. Puedes revisar la denuncia en %{report_url} y enviar una reclamación. Si no envías una reclamación, tu script puede que sea eliminado por los moderadores. Si tienes preguntas, echa un vistazo en https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Tu script %{script_name} en %{site_name} ha sido eliminado."
         text: "Un moderador ha confirmado una denuncia y tu script %{script_name} en %{site_name} ha sido eliminado. Puedes ver la denuncia en %{report_url}. Si tienes dudas puedes escribirnos en https://greasyfork.org/forum/."
