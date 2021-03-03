@@ -135,7 +135,7 @@ Rails.application.routes.draw do
     end
     post 'script_sets/add_to_set', to: 'script_sets#add_to_set', as: 'add_to_script_set'
 
-    resources :discussions, path: 'discussions/:category', category: /greasyfork|development|requests|script-discussions|no-scripts/, only: [:index, :show, :destroy], as: 'category_discussion' do
+    resources :discussions, path: 'discussions/:category', category: /greasyfork|development|requests|script-discussions|no-scripts|moderators/, only: [:index, :show, :destroy], as: 'category_discussion' do
       member do
         post :subscribe
         post :unsubscribe

@@ -14,7 +14,7 @@ class Comment < ApplicationRecord
   validates :text, presence: true
   validates :text_markup, inclusion: { in: %w[html markdown] }, presence: true
 
-  delegate :script, to: :discussion
+  delegate :script, :discussion_category, to: :discussion
 
   strip_attributes only: :text
 
@@ -55,13 +55,25 @@ class Comment < ApplicationRecord
     end
     users_received_notification.merge(satn)
 
-    subscribed_users = discussion.discussion_subscriptions.where.not(user: users_received_notification).includes(:user).map(&:user)
+    subscribed_users = discussion
+                       .discussion_subscriptions
+                       .where.not(user: users_received_notification)
+                       .includes(:user)
+                       .map(&:user)
+    subscribed_users = subscribed_users.select(&:moderator?) if discussion_category.moderators_only?
     subscribed_users.each do |user|
       ForumMailer.comment_on_subscribed(user, self).deliver_later
     end
     users_received_notification.merge(subscribed_users)
 
-    mentions.where.not(user: users_received_notification).includes(:user).where(users: { notify_on_mention: true }).map(&:user).uniq.each do |user|
+    mentioned_users = mentions
+                      .where.not(user: users_received_notification)
+                      .includes(:user)
+                      .where(users: { notify_on_mention: true })
+                      .map(&:user)
+                      .uniq
+    mentioned_users = mentioned_users.select(&:moderator?) if discussion_category.moderators_only?
+    mentioned_users.each do |user|
       ForumMailer.comment_on_mentioned(user, self).deliver_later
     end
   end

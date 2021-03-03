@@ -44,6 +44,10 @@ class Discussion < ApplicationRecord
     end
   end
 
+  validate do
+    errors.add(:category, :invalid) unless DiscussionCategory.visible_to_user(poster).where(id: discussion_category_id).any?
+  end
+
   before_create do
     self.locale ||= detect_locale
   end

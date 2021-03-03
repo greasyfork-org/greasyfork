@@ -177,6 +177,7 @@ class DiscussionsController < ApplicationController
             else
               Discussion
             end
+    scope = scope.where(discussion_category: DiscussionCategory.visible_to_user(current_user))
     if permissive && current_user
       scope.permissive_visible(current_user)
     else
@@ -195,14 +196,16 @@ class DiscussionsController < ApplicationController
   end
 
   def apply_filters(discussions)
-    if params[:category]
-      if params[:category] == 'no-scripts'
-        category = params[:category]
-        discussions = discussions.where(discussion_category: DiscussionCategory.non_script)
-      else
-        category = DiscussionCategory.find_by(category_key: params[:category])
-        discussions = discussions.where(discussion_category: category) if category
-      end
+    category_scope = DiscussionCategory.visible_to_user(current_user)
+    case params[:category]
+    when 'no-scripts'
+      category = params[:category]
+      discussions = discussions.where(discussion_category: category_scope.non_script)
+    when nil
+      discussions = discussions.where(discussion_category: category_scope)
+    else
+      category = params[:category]
+      discussions = discussions.where(discussion_category: category_scope.find_by!(category_key: category))
     end
 
     if current_user

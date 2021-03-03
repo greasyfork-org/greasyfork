@@ -1223,8 +1223,9 @@ DROP TABLE IF EXISTS `discussion_categories`;
 CREATE TABLE `discussion_categories` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `category_key` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `moderators_only` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `discussion_reads`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2193,6 +2194,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20210222030536'),
 ('20210223233743'),
 ('20210228215935'),
-('20210301011817');
+('20210301011817'),
+('20210303004355');
 
 

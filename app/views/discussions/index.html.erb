@@ -91,7 +91,7 @@
           <% else %>
             <li class="list-option"><%= link_to t('discussions.category_filter.all'), discussions_path(safe_params(category: nil, **other_params_for_category)) %></li>
           <% end %>
-          <% DiscussionCategory.all.each do |dc| %>
+          <% DiscussionCategory.visible_to_user(current_user).each do |dc| %>
             <% if dc == @filter_result.category %>
               <li class="list-option list-current"><%= t("discussions.categories.#{dc.category_key}.name") %></li>
             <% else %>
