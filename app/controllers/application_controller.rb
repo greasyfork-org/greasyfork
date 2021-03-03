@@ -23,11 +23,6 @@ class ApplicationController < ActionController::Base
                         count: scripts.count).html_safe
                     },
                     dismissable: false
-  show_announcement key: :antifeatures,
-                    show_if: -> { !Rails.env.test? && current_user&.scripts&.any? },
-                    content: lambda {
-                      "If your script contains monetization methods such as tracking, ads, or miners, you must now disclose these using #{link_to('the <code>@antifeature</code> meta key'.html_safe, help_meta_keys_path(anchor: 'meta-antifeature'))}. Scripts with monetization methods not disclosed with <code>@antifeature</code> are subject to deletion after February 1, 2021.".html_safe
-                    }
 
   rescue_from ActiveRecord::RecordNotFound, with: :routing_error
   def routing_error
