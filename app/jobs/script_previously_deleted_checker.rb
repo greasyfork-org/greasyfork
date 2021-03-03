@@ -16,7 +16,7 @@ class ScriptPreviouslyDeletedChecker < ApplicationJob
     return unless similar_locked_scripts.count > 1
 
     other_reports = Report.upheld.where(item: similar_locked_scripts)
-    scripts_and_reports = similar_locked_scripts.map { |similar_script| [similar_script, other_reports.select { |report| script == report.item }] }
+    scripts_and_reports = similar_locked_scripts.map { |similar_script| [similar_script, other_reports.select { |report| similar_script == report.item }] }
 
     Report.create!(
       item: script,

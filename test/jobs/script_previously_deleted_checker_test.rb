@@ -35,8 +35,8 @@ class ScriptPreviouslyDeletedCheckerTest < ActiveSupport::TestCase
     end
     new_report = Report.last
     assert_equal Report::REASON_MALWARE, new_report.reason
-    assert_includes script_url(script_2), new_report.explanation
-    assert_includes script_url(script_3), new_report.explanation
-    assert_includes report_url(initial_report), new_report.explanation
+    assert_includes new_report.explanation, script_url(script_2, locale: nil)
+    assert_includes new_report.explanation, script_url(script_3, locale: nil)
+    assert_includes new_report.explanation, report_url(initial_report, locale: nil)
   end
 end
