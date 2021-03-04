@@ -10,7 +10,7 @@
     <% protocols = markdown_sanitize_config[:protocols][el] %>
     <% if el == 'iframe'
          attrs = %w[allowfullscreen frameborder height src width]
-         protocols = { 'src' => ['https://www.youtube.com/', 'https://www.youtube-nocookie.com/'] }
+         protocols = { 'src' => ['https://www.youtube.com/', 'https://www.youtube-nocookie.com/', 'https://player.bilibili.com/player.html'] }
        end %>
     <li>
       &lt;<%= el %><%

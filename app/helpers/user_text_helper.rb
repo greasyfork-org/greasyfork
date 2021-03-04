@@ -214,7 +214,7 @@ module UserTextHelper
       return unless node_name == 'iframe'
 
       # Verify that the video URL is actually a valid YouTube video URL.
-      return unless %r{\A(?:https:)?//(?:www\.)?youtube(?:-nocookie)?\.com/}.match?(node['src'])
+      return unless %r{\A(?:https:)?//(?:www\.)?youtube(?:-nocookie)?\.com/}.match?(node['src']) || %r{\A(?:https:)?//player\.bilibili\.com/player\.html}.match?(node['src'])
 
       # We're now certain that this is a YouTube embed, but we still need to run
       # it through a special Sanitize step to ensure that no unwanted elements or
