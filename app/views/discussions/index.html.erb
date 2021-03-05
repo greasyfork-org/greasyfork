@@ -33,7 +33,7 @@
 
     <div class="list-option-groups">
       <p>
-        <%= link_to t('discussions.new_button'), new_discussion_path, class: 'list-option-button' %>
+        <%= link_to t('discussions.new_button'), new_discussion_path(category: (@filter_result.category unless [DiscussionCategory::SCRIPT_DISCUSSIONS_KEY, DiscussionCategory::NO_SCRIPTS_KEY].include?(@filter_result.category))), class: 'list-option-button' %>
       </p>
 
       <% if current_user %>
@@ -92,16 +92,16 @@
             <li class="list-option"><%= link_to t('discussions.category_filter.all'), discussions_path(safe_params(category: nil, **other_params_for_category)) %></li>
           <% end %>
           <% DiscussionCategory.visible_to_user(current_user).each do |dc| %>
-            <% if dc == @filter_result.category %>
+            <% if dc.category_key == @filter_result.category %>
               <li class="list-option list-current"><%= t("discussions.categories.#{dc.category_key}.name") %></li>
             <% else %>
               <li class="list-option"><%= link_to t("discussions.categories.#{dc.category_key}.name"), category_discussion_index_path(category: dc, **other_params_for_category) %></li>
             <% end %>
           <% end %>
-          <% if @filter_result.category == 'no-scripts' %>
+          <% if @filter_result.category == DiscussionCategory::NO_SCRIPTS_KEY %>
             <li class="list-option list-current"><%= t('discussions.categories.no-scripts.name') %></li>
           <% else %>
-            <li class="list-option"><%= link_to t('discussions.categories.no-scripts.name'), category_discussion_index_path(category: 'no-scripts', **other_params_for_category) %></li>
+            <li class="list-option"><%= link_to t('discussions.categories.no-scripts.name'), category_discussion_index_path(category: DiscussionCategory::NO_SCRIPTS_KEY, **other_params_for_category) %></li>
           <% end %>
         </ul>
       </div>

@@ -81,6 +81,7 @@ class DiscussionsController < ApplicationController
 
   def new
     @discussion = Discussion.new(poster: current_user)
+    @discussion.discussion_category = DiscussionCategory.find_by(category_key: params[:category]) if params[:category] && params[:category] != DiscussionCategory::SCRIPT_DISCUSSIONS_KEY
     @discussion.comments.build(poster: current_user, text_markup: current_user&.preferred_markup)
     @subscribe = current_user.subscribe_on_discussion
   end
@@ -198,7 +199,7 @@ class DiscussionsController < ApplicationController
   def apply_filters(discussions)
     category_scope = DiscussionCategory.visible_to_user(current_user)
     case params[:category]
-    when 'no-scripts'
+    when DiscussionCategory::NO_SCRIPTS_KEY
       category = params[:category]
       discussions = discussions.where(discussion_category: category_scope.non_script)
     when nil
