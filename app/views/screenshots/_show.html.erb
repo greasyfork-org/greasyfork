@@ -2,7 +2,8 @@
 <% if attachments.any? %>
   <div class="user-screenshots">
     <% attachments.each do |attachment| %>
-      <%= link_to attachment.blob.url do %><%= image_tag attachment.variant(resize_to_limit: [200, 200]).url %><% end %>
+      <%# .url will be the AWS URL if we've created the variant already. %>
+      <%= link_to attachment.blob.url do %><%= image_tag attachment.variant(resize_to_limit: [200, 200]).url || attachment.variant(resize_to_limit: [200, 200]) %><% end %>
     <% end %>
   </div>
 <% end %>
