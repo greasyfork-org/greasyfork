@@ -2,7 +2,7 @@
 <% if attachments.any? %>
   <div class="user-screenshots">
     <% attachments.each do |attachment| %>
-      <%= link_to attachment.blob.url do %><%= image_tag attachment.variant(resize_to_limit: [200, 200]).blob.url %><% end %>
+      <%= link_to attachment.blob.url do %><%= image_tag attachment.variant(resize_to_limit: [200, 200]).url %><% end %>
     <% end %>
   </div>
 <% end %>
