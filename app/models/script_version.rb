@@ -33,8 +33,6 @@ class ScriptVersion < ApplicationRecord
     errors.add(:code, :invalid) unless /[=.:\[(]/.match?(code)
   end
 
-  validates :changelog, length: { maximum: 500, on: :create }
-
   validate :number_of_attachments, on: :create
   def number_of_attachments
     errors.add(:base, I18n.t('errors.messages.script_too_many_screenshots', number: Rails.configuration.screenshot_max_count)) if attachments.count > Rails.configuration.screenshot_max_count

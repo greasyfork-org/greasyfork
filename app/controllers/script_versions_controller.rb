@@ -33,7 +33,7 @@ class ScriptVersionsController < ApplicationController
       return
     end
 
-    @script_version = ScriptVersion.new
+    @script_version = ScriptVersion.new(changelog_markup: current_user.preferred_markup)
 
     if params[:script_id].nil?
       @script = Script.new(script_type_id: ScriptType::PUBLIC_TYPE_ID, language: params[:language] || 'js')
@@ -267,7 +267,7 @@ class ScriptVersionsController < ApplicationController
   def script_version_params
     params
       .require(:script_version)
-      .permit(:code, :changelog, :version_check_override, :add_missing_version, :namespace_check_override,
+      .permit(:code, :changelog, :changelog_markup, :version_check_override, :add_missing_version, :namespace_check_override,
               :add_missing_namespace, :minified_confirmation, :sensitive_site_confirmation,
               :not_js_convertible_override, :allow_code_previously_posted, attachments: [])
   end

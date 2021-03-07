@@ -100,84 +100,112 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
   <% end %>
 
   <% if @script.library? %>
-    <div class="form-control">
-      <label for="library-name"><%= t('activerecord.attributes.script.name') %></label><br>
-      <input id="library-name" name="name" value="<%= @script.name %>" maxlength="100">
-    </div>
-    <div class="form-control">
-      <label for="library-description"><%= t('activerecord.attributes.script.description') %></label><br>
-      <input id="library-description" name="description" value="<%= @script.description %>" maxlength="500">
-    </div>
-  <% end %>
-  <div class="form-control">
-    <label for="script_version_code"><%= t('activerecord.attributes.script.code') %></label> <span class="label-note" style="display: none"><input type="checkbox" id="enable-source-editor-code" name="enable-source-editor-code" <% if params['enable-source-editor-code'] %> checked<% end %> class="enable-source-editor" data-related-editor="script_version_code" data-editor-language="<%= script_version.css? ? 'css' : 'javascript' %>"><label for="enable-source-editor-code" class="checkbox-label"><%= t('scripts.enable_source_code_editor_label') %></label></span><br>
-    <%= s.text_area(:code) %>
-    <div><%= t('scripts.upload_label') %> <input type="file" name="code_upload" id="code-upload" accept="text/javascript,application/javascript"></div>
-  </div>
-  <% if !script_version.script.new_record? %>
-    <div class="form-control">
-      <label for="changelog"><%= t('activerecord.attributes.script.changelog') %></label> <span class="label-note"><%= t('scripts.changelog_note') %></span><br>
-      <%= s.text_field(:changelog, maxlength: 500, size: nil) %>
-    </div>
-  <% end %>
-  <div class="form-control radio-group">
-    <label><%= t('activerecord.attributes.script.type') %></label><br>
-    <% ScriptType.for_language(script_version.script.language).each do |st| %>
-      <%= radio_button('script', 'script_type_id', st.id) %> <label class="radio-label" for="script_script_type_id_<%= st.id %>"><%= t("scripts.type_#{st.id}_html", site_name: site_name) %></label><br>
-    <% end %>
-  </div>
-  <% if !script_version.script.sensitive || script_version.script.adult_content_self_report %>
-    <div class="form-control radio-group">
-      <label><%= t('scripts.adult_content') %></label><br>
-      <%= t('scripts.adult_content_self_report_explanation', site_name: site_name) %><br>
-      <%= check_box('script', :adult_content_self_report) %>
-      <label for="script_adult_content_self_report" class="radio-label"><%= t('scripts.adult_content_self_report') %></label>
-    </div>
-  <% else %>
-    <div class="form-control radio-group">
-      <label><%= t('scripts.adult_content') %></label><br>
-      <% if @script.for_sensitive_site? %>
-        <%= t('scripts.not_adult_content_self_report_explanation_automatic', site_name: site_name, domain_list: @script.matching_sensitive_sites.pluck(:domain).to_sentence) %><br>
-      <% else %>
-        <%= t('scripts.not_adult_content_self_report_explanation', site_name: site_name) %><br>
-        <%= check_box('script', :not_adult_content_self_report, checked: @script.not_adult_content_self_report_date.present?) %>
-        <label for="script_not_adult_content_self_report" class="radio-label"><%= t('scripts.not_adult_content_self_report_html') %></label>
-      <% end %>
+    <div class="form-section">
+      <div class="form-control">
+        <label for="library-name"><%= t('activerecord.attributes.script.name') %></label><br>
+        <input id="library-name" name="name" value="<%= @script.name %>" maxlength="100">
+      </div>
+      <div class="form-control">
+        <label for="library-description"><%= t('activerecord.attributes.script.description') %></label><br>
+        <input id="library-description" name="description" value="<%= @script.description %>" maxlength="500">
+      </div>
     </div>
   <% end %>
 
-  <% if @script.css? %>
+  <div class="form-section">
+    <div class="form-control">
+      <label for="script_version_code"><%= t('activerecord.attributes.script.code') %></label> <span class="label-note" style="display: none"><input type="checkbox" id="enable-source-editor-code" name="enable-source-editor-code" <% if params['enable-source-editor-code'] %> checked<% end %> class="enable-source-editor" data-related-editor="script_version_code" data-editor-language="<%= script_version.css? ? 'css' : 'javascript' %>"><label for="enable-source-editor-code" class="checkbox-label"><%= t('scripts.enable_source_code_editor_label') %></label></span><br>
+      <%= s.text_area(:code) %>
+      <div><%= t('scripts.upload_label') %> <input type="file" name="code_upload" id="code-upload" accept="text/javascript,application/javascript"></div>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <% # default first
+       script_version.localized_attributes_for('additional_info').sort do |a,b|
+         next -1 if a.attribute_default && !b.attribute_default
+         next 1 if !a.attribute_default && b.attribute_default
+         next 0
+       end.each_with_index do |la, index| %>
+      <%= render partial: 'additional_info', locals: {la: la, index: index} %>
+    <% end %>
+
+    <div class="form-control">
+      <button id="add-additional-info" name="add-additional-info" value="1" type="submit" data-form-path="<%= script_version_additional_info_form_path %>"><%= t('scripts.additional_info_add_localized') %></button>
+    </div>
+
+    <div class="script-screenshot-control">
+      <%= render partial: 'screenshots/entry', locals: { f: s, current_attachments: @current_attachments } %>
+    </div>
+  </div>
+
+  <% if !script_version.script.new_record? %>
+    <div class="form-section">
+      <div class="form-control">
+        <label for="changelog"><%= t('activerecord.attributes.script.changelog') %></label> <span class="label-note"><%= t('scripts.changelog_note') %></span><br>
+        <span class="label-note">
+          <%= link_to t('common.allowed_elements_link'), help_allowed_markup_path, { target:  'markup_choice' } %>
+          <%= s.radio_button(:changelog_markup, 'html') %>HTML
+          <%= s.radio_button(:changelog_markup, 'markdown') %><%= link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', { target: 'markup_choice' } %>
+        </span>
+        <br>
+        <div class="previewable" data-markup-option-name="script_version[changelog_markup]" data-preview-label="<%= t('common.preview_tab') %>" data-write-label="<%= t('common.write_tab') %>">
+          <%= s.text_area :changelog, rows: 5 %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-section">
     <div class="form-control radio-group">
-      <label><%= t('scripts.not_js_convertible_override_header') %></label><br>
-      <%= it('scripts.not_js_convertible_override_explanation', site_name: site_name, help_link: help_user_js_conversions_path) %><br>
-      <%= s.check_box :not_js_convertible_override %>
-      <%= s.label :not_js_convertible_override, t('scripts.not_js_convertible_override_label_html'), class: 'radio-label' %>
+      <label><%= t('activerecord.attributes.script.type') %></label><br>
+      <% ScriptType.for_language(script_version.script.language).each do |st| %>
+        <%= radio_button('script', 'script_type_id', st.id) %> <label class="radio-label" for="script_script_type_id_<%= st.id %>"><%= t("scripts.type_#{st.id}_html", site_name: site_name) %></label><br>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <% if !script_version.script.sensitive || script_version.script.adult_content_self_report %>
+      <div class="form-control radio-group">
+        <label><%= t('scripts.adult_content') %></label><br>
+        <%= t('scripts.adult_content_self_report_explanation', site_name: site_name) %><br>
+        <%= check_box('script', :adult_content_self_report) %>
+        <label for="script_adult_content_self_report" class="radio-label"><%= t('scripts.adult_content_self_report') %></label>
+      </div>
+    <% else %>
+      <div class="form-control radio-group">
+        <label><%= t('scripts.adult_content') %></label><br>
+        <% if @script.for_sensitive_site? %>
+          <%= t('scripts.not_adult_content_self_report_explanation_automatic', site_name: site_name, domain_list: @script.matching_sensitive_sites.pluck(:domain).to_sentence) %><br>
+        <% else %>
+          <%= t('scripts.not_adult_content_self_report_explanation', site_name: site_name) %><br>
+          <%= check_box('script', :not_adult_content_self_report, checked: @script.not_adult_content_self_report_date.present?) %>
+          <label for="script_not_adult_content_self_report" class="radio-label"><%= t('scripts.not_adult_content_self_report_html') %></label>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <% if @script.css? %>
+    <div class="form-section">
+      <div class="form-control radio-group">
+        <label><%= t('scripts.not_js_convertible_override_header') %></label><br>
+        <%= it('scripts.not_js_convertible_override_explanation', site_name: site_name, help_link: help_user_js_conversions_path) %><br>
+        <%= s.check_box :not_js_convertible_override %>
+        <%= s.label :not_js_convertible_override, t('scripts.not_js_convertible_override_label_html'), class: 'radio-label' %>
+      </div>
     </div>
   <% end %>
 
   <% if @script.new_record? %>
-    <div class="form-control radio-group">
-      <label><%= t('activerecord.attributes.script.locale') %></label> <span class="label-note"><%= t('scripts.locale_explanation_html') %></span><br>
-      <%= render partial: 'scripts/default_locale_selector', locals: {script: @script} %>
+    <div class="form-section">
+      <div class="form-control radio-group">
+        <label><%= t('activerecord.attributes.script.locale') %></label> <span class="label-note"><%= t('scripts.locale_explanation_html') %></span><br>
+        <%= render partial: 'scripts/default_locale_selector', locals: {script: @script} %>
+      </div>
     </div>
   <% end %>
-
-  <% # default first
-  script_version.localized_attributes_for('additional_info').sort do |a,b|
-    next -1 if a.attribute_default && !b.attribute_default
-    next 1 if !a.attribute_default && b.attribute_default
-    next 0
-  end.each_with_index do |la, index| %>
-    <%= render partial: 'additional_info', locals: {la: la, index: index} %>
-  <% end %>
-
-  <div class="form-control">
-    <button id="add-additional-info" name="add-additional-info" value="1" type="submit" data-form-path="<%= script_version_additional_info_form_path %>"><%= t('scripts.additional_info_add_localized') %></button>
-  </div>
-
-  <div class="script-screenshot-control">
-    <%= render partial: 'screenshots/entry', locals: { f: s, current_attachments: @current_attachments } %>
-  </div>
 
   <%= flash[:recaptcha_error] %>
 

@@ -270,15 +270,20 @@ dt[title] > span {
   border-bottom: 1px dotted black;
 }
 
+.form-section {
+  margin-bottom: 2em;
+}
 .form-control {
   margin-bottom: 1em;
 }
 .form-control textarea, #ace-editor {
   width: 100%;
-  height: 20em;
   box-sizing: border-box;
   margin-top: 1px;
   margin-bottom: 1px;
+}
+.form-control textarea:not([rows]), #ace-editor {
+  height: 20em;
 }
 #ace-editor {
   border: 1px solid #BBB;
