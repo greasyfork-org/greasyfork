@@ -38,14 +38,14 @@ class Discussion < ApplicationRecord
 
   validate do
     if discussion_category_id == DiscussionCategory.script_discussions.id
-      errors.add(:category, :invalid) unless script_id
+      errors.add(:discussion_category, :invalid) unless script_id
     elsif script_id
-      errors.add(:category, :invalid)
+      errors.add(:discussion_category, :invalid)
     end
   end
 
   validate do
-    errors.add(:category, :invalid) unless DiscussionCategory.visible_to_user(poster).where(id: discussion_category_id).any?
+    errors.add(:discussion_category, :invalid) unless DiscussionCategory.visible_to_user(poster).where(id: discussion_category_id).any?
   end
 
   before_create do
