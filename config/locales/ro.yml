@@ -23,7 +23,7 @@ ro:
     compatibility: "Compatibilitate"
     compatible_with_browser: "Compatibil cu %{browser}"
     incompatible_with_browser: "Incompatibil cu %{browser}"
-    applies_to: "Se aplică și la"
+    applies_to: "Se aplică la"
     applies_to_link_title:
       one: "Vezi încă %{count} script pentru %{site}"
       few: "Vezi alte %{count} scripturi pentru %{site}"
@@ -33,11 +33,11 @@ ro:
     install_help: "?"
     install_help_title: "Cum se instalează"
     update: "Actualizează la versiunea %{version}"
-    downgrade: "Reîntoarce versiunea %{version}"
+    downgrade: "Reîntoarce la versiunea %{version}"
     reinstall: "Reinstalează versiunea %{version}"
     old_version_warning: "Aceasta nu e cea mai recenta versiune de script. Dacă îl vei instala, nu va fi niciodata actualizat la o versiune mai noua. Instalezi oricum?"
     promoted: "Script promovat"
-    author_promoted: "Scripturi sugerate de autor"
+    author_promoted: "Script-uri sugerate de autor"
     promoted_text_html: "Poate îți vor plăcea%{script_link}."
     library_instructions_html: "Acest script nu ar trebui instalat direct. Aceasta este o bibliotecă pentru alte scripturi care este inclusă prin directiva meta a %{code}"
     deleted_notice: "Acest script a fost șters."
@@ -46,7 +46,7 @@ ro:
     deleted_locked_author_notice_html: "Acest script a fost sters de un moderator si nu poate fi accesat de altii. Motivul prevazut este: \"<i>%{delete_reason}</i>\"."
     deleted_author_notice: "Acest script a fost sters si nu poate fi accesat de altii. Poti restabili script-ul din tab-ul Delete."
     version_notice_html: "La data de %{date}. Vezi %{latest_version_link}."
-    version_notice_latest_version_link: "Ultima versiune"
+    version_notice_latest_version_link: "ultima versiune"
     reported_notice: "\"%{script_name}\" a fost raportat si asteapa verificarea unui moderator."
     reported_notice_for_author: "Acest script nu este valabil celorlalti utilizatori pana cand este verificat de un moderator."
     info_page: "Informații"
@@ -105,9 +105,11 @@ ro:
     feedback_has_reports: "Acest script a fost raportat pentru incalcarea regulamentului de pe %{site_name}."
     feedback_no_discussions_html: "Nici o discuție deocamdată. %{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "Nici o discutie inca."
+    feedback_report_instead: "Daca crezi ca acest script incalca regulile site-ului %{rules_link:%{site_name}'s rules}, te rog %{report_link:report it for removal}."
     feedback_start_first_discussion_link: "Fii primul care discută despre acest script."
-    feedback_discussion_or_report: "%{noua_discutie_link:Porneste o noua discute pe acest script} sau %{raporteaza_link:raporteazal pentru a fi eliminat}."
+    feedback_discussion_or_report: "%{new_discussion_link:Start a new discussion on this script} or %{report_link:report it for removal}."
     feedback_favoriters_heading: "Preferanți"
+    feedback_favoriters_user_list_html: "Acest script a fost aduagta la favorite de %{user_list}."
     feedback_no_favoriters: "Acest script nu a fost marcat ca favorit de nimeni."
     feedback_sign_in_to_favorite: "Logheaza-te pentru a adauga la favorite."
     stats_title: "%{script_name} - Statistici"
@@ -120,14 +122,20 @@ ro:
     stats_raw_data_header: "Raw data"
     stats_download_raw_data_html: "Descarcă tot ca: %{links}"
     stats_no_data: "N/A"
+    stats_filters: "Filtru: %{filter_options}"
     stats_filter_options:
       month: Ultimele 30 de zile
       year: Ultimele 365 de zile
       all: Din totdeauna
     derivatives_title: "%{script_name} - Derivate"
+    derivatives_intro: "Aceste scripturi pot fi bazate pe al tau (sau al tau bazat pe ale lor). Daca observi o utilizare neautorziata a codului tau, raporteaza-l din casuta de feedback a scriptului."
+    derivatives_script_html: "%{script} facut de %{user}, licenta: %{license}%{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "Copii exacte"
     derivatives_exact_copies_list_intro: "Urmatoarele script-uri au exact acelasi cod sursa ca al tau:"
+    derivatives_exact_copies_item_html: "%{script_link} facut de %{author_links} - versiuni: %{version_list}"
+    derivatives_exact_copes_none: "Nu sunt alte scripturi pe %{site_name} care sa aiba excat acelasi cod ca acest script."
     derivatives_similar_heading: "Script-uri similare:"
+    derivatives_similar_info: "Verificam periodic ultimele versiuni a tuturor celorlalte scripturi pentru a gasi cele mai similare tie. Verificam si cand postezi o actualizare script-ului tau si la cererea ta."
     similarity_score:
       high: Foarte similar
       medium: Similar
@@ -135,12 +143,19 @@ ro:
       none: Deloc similar
     derivatives_similar_none: "Nu sunt script-uri similare cu al tau."
     derivatives_similar_item: "%{score}: %{diff_link:[Diff]}  %{script}"
+    derivatives_similar_last_check_html: "Ultima oara am cautat script-uri asemanatoare cu al tau in %{date}."
+    derivatives_similar_last_check_soon: "O sa cautam script-uri similare cu al tau in scurt timp."
+    derivatives_similar_last_check_again_soon_html: "Ultima oara am cautat script-uri asemanatoare cu al tau in %{date}. O sa cautam iarasi in scurt timp."
     derivatives_similar_check_now: "Verifica din nou acum"
     listing_title_all_sites: "Scripturi pentru toate site-urile"
     listing_description_all_sites: "Scripturi de utilizator care adaugă caracteristici și rezolvă bug-uri pe toate siteurile"
     listing_title_for_site: "Scripturi pentru %{site}"
+    listing_description_for_site: "Script-uri ale utilizatorilor care adauga caracteristici si rezolva bug-uri pe %{site}"
+    listing_title_for_search: "'%{search_string}' scripturi ale utilizatorilor"
+    listing_title_for_code_search: "'%{search_string}' scripturi ale utilizatorilor"
     listing_title_generic: "Script-uri utilizator"
     listing_title_for_favorites: "Setul %{set_name} al lui %{user_name}"
+    listing_description_generic: "Script-uri ale utilizatorilor care adauga caracteristici si rezolva bug-uri pe site-urile folosite de tine"
     listing_sort_label: "Sortare după:"
     listing_sort_relevance: "Relevanță"
     listing_sort_daily_installs: "Instalări zilnice"
@@ -158,6 +173,8 @@ ro:
     listing_created_feed: "Scripturi noi"
     listing_updated_feed: "Scripturi actualizate"
     listing_none: "(Nimic)"
+    listing_set_locale_filter: "Aratam rezultate pentru toate limbile.  %{set_filter_link:Show%{language}results only.}"
+    listing_remove_locale_filter: "Aratam rezultate doar pentru limba %{language}. %{remove_filter_link:Show results for all languages.}"
     listing_language_all: "Tot"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
@@ -167,6 +184,9 @@ ro:
     support_site: "Verifica si-teul autorului de suport."
     support_email: "Trimite un e-mail autorului pentru ajutor."
     contribution_no_amount: "Mulțumește-i lui %{author} făcând o donație."
+    contribution_with_amount: "Multumeste-i lui %{author} facand o donatie. Suma sugerata: %{amount}."
+    contribution_bitcoin_no_amount_html: "Multumeste-i lui %{author} facand o donatie in Bitcoin la adresa %{address}."
+    contribution_bitcoin_with_amount_html: "Multumeste-i lui %{author} facand o donatie in Bitcoin la adresa %{address}.  Suma sugerata: %{amount}."
     locale_auto_select: "(Detectat automat)"
     sets_label: "În seturi de scripturi:"
     sets_label_no_sets: "Seturi de scripturi:"
@@ -174,16 +194,38 @@ ro:
     sets_add_inclusion: "Adaugă la %{set_name}"
     sets_add_exclusion: "Exclude din %{set_name}"
     sets_add_to_new: "Adaugă la un set nou"
+    rules_summary_html: "Scrip-urile trebuia sa fie <strong>descrise corect</strong>, codul sursa nu poate fi<strong>ascuns</strong> sau <strong>micsorat</strong>, trebuie sa respecte <strong>drepturile de autor</strong>, si sunt limitate la <strong>codul extern</strong> folsit. %{full_rules_link}"
     rules_summary_link_to_full: "Citeste toate regulile."
+    syncing_notice_html: "Script-ul este %{syncing_notice_sync_type}. Orice actualizare facuta codului va fi suprascrisa la sincronizare."
+    syncing_notice_sync_type_manual: "seteaza sa sincronizeze manual din %{sync_identifier}"
+    syncing_notice_sync_type_automatic: "seteaza sa sincronizeze automat din %{sync_identifier}"
     upload_label: "Sau încarcă:"
+    enable_source_code_editor_label: "Activeaza sublinerea-sintaxei a editorului de cod"
+    changelog_note: "Ce e schimbat in aceasta versiune?"
+    additional_info_note: "O descriere, instructiuni, etc. mai detaliate"
     post_new_script: "Postează scriptul"
     post_updated_script: "Postează o versiune nouă"
+    type_1_html: "Script al utilizatorului public - un script al utilizatorului pentru toti sa vedem si sa folosim."
+    type_2_html: "Script al utilizatorului nelistat - un script al utilizatorului pentru folosire semi(-privata). Valabil cu acces direct, dar nu esti trimis la el de nicaieri de pe %{site_name}."
+    type_3_html: "Librarie - un script creat sa fie <code>@folosit</code> -d de alte scripturi si nu instalat direct."
     override_warning_checkbox_label: "Salvează oricum?"
-    warning_version_not_incremented_html: "Ați actualizat codul dar nu ați majorat numărul <code>@version</code>. Acei care au instalat anterioar scriptul dvs. ar putea să nu obțină codul actualizat."
+    warning_version_not_incremented_html: "Ați actualizat codul dar nu ați majorat numărul <code>@version</code>. Acei care au instalat anterior scriptul dvs. ar putea să nu obțină codul actualizat."
+    warning_version_missing_html: "Nu ai specificat <code>@versiunea</code>. O <code>@versiune</code> cheie de meta iti da libertatea de a cauta actualizari a script-ului tau in manager-ul de scripturi ale utilizatorului."
     warning_version_missing_generate_automatically_html: "Generează o <code>@version</code> automat?"
+    warning_namespace_missing_html: "Nu ai specificat <code>@namespace</code>. O <code>@namespace</code> cheie meta da libertatea utilizatorilor de a re-instala script-ul sa il actualizeze."
     warning_namespace_missing_generate_automatically_html: "Generează un <code>@namespace</code> automat?"
+    warning_namespace_changed_html: "<code>@namespace</code> a fost schimbat. Un <code>@namespace</code> consistent da libertatea utilizatorilor de a re-instala scirpt-ul sa il updateze."
+    warning_potentially_minified_html: "Script-ul tau pare ca ar contine cod micsorat (compresat). Daca folosesti o librarie micosrata, te rog in loc de <code>@require</code> de pe %{allowed_requires_link}. Script-urile micsorate sunt supuse stergerii."
+    warning_automatic_sensitive_html: "Script-ul tau este pentru %{sensitive_domains} si va fi marcat ca fiind continut pentru adulti."
     warning_potentially_minified_allowed_requires_link: "unul din aceste locuri"
+    warning_code_previously_posted_html: "Script-ul tau a fost anterior postat in %{script_links}. Script-urile care sunt repostate de cei care nu sunt autorul original sunt supuse stergerii de catre moderatori."
     additional_info_locale_prompt: "(Alege o limbă)"
+    additional_info_add_localized: "Adauga informatii aditionale bazate pe o limba anume"
+    sync_type_intro: "Script-ul va fi sincronizat:"
+    sync_type_1: "Manual - va cauta update-uri doar cand il activezi."
+    sync_type_2: "Automat - va cauta periodic update-uri."
+    sync_success_info_html: "Ultima sincronizare cu succes a avut loc la %{date}."
+    sync_never_succeeded: "Sincronizarea nu a fost niciodata completata cu succes."
     update_and_sync: "Actualizează și sincronizează acum"
     update_no_sync: "Update"
     turn_off_syncing: "Dezactivează sincronizarea pentru acest script"
@@ -196,12 +238,24 @@ ro:
     diff_lines_of_context: "Linii de context:"
     diff_ignore_whitespace: "Ignoră modificările de spații albe"
     diff_refresh: "Reîmprospătează"
-    diff_no_change: "Nici o diferenta gasita,"
+    diff_no_change: "Nici o diferenta gasita."
     good_rating_explanation: "Numărul de persoane care l-au apreciat ca Bun sau l-au adăugat în favorite."
     ok_rating_explanation: "Numărul de persoane care l-au apreciat ca fiind OK."
     bad_rating_explanation: "Numărul de persoane care l-au apreciat ca fiind Rău."
+    post_a_script_link_text: "Publica un script pe care l-ai scris"
     learn_to_write_scripts_link_text: "învață a scrie unul"
+    feedback_or_report: "%{feedback_link:Ask a question, post a review}, or %{report_link:report the script}."
+    support_feedback_or_report: "%{support_url:Visit the author's site for support}, %{feedback_link:ask a question, post a review}, or %{report_link:report the script}."
+    support_email_feedback_or_report: "%{support_url:Email the author for support}, %{feedback_link:ask a question, post a review}, or %{report_link:report the script}."
     adult_content: "Conținut pentru adulți"
+    adult_content_self_report: "Script-ul contine continut pentru adulti sau este destinat unui site care contine continut pentru adulti."
+    adult_content_self_report_explanation: "%{site_name} aproba scripturi care contin continut pentru adulti, dar trebuie marcate ca atare pentru a da optiunea utilizatorilor de a le vedea sau nu."
+    not_adult_content_self_report_html: "Acest script <strong>nu</strong> contine continut pentru adulti, si <strong>nu</strong> este pentru un site care contine continut pentru adulti"
+    not_adult_content_self_report_explanation: "%{site_name} aproba scripturi care contin continut pentru adulti, dar trebuie marcate ca atare pentru a da optiunea utilizatorilor de a le vedea sau nu. Script-ul tau a fost marcat avand continut pentru adulti. Poti raporta daca crezi ca nu contine, acesta va fi verificat de un moderator."
+    not_adult_content_self_report_explanation_automatic: "%{site_name} proba scripturi care contin continut pentru adulti, dar trebuie marcate ca atare pentru a da optiunea utilizatorilor de a le vedea sau nu. Script-ul tau a fost marcat avand continut pentru adulti fiind destinat %{domain_list}."
+    non_adult_content_on_sleazy: "Acets script nu este valabil pe acest site."
+    not_js_convertible_override_header: "Conversie la JS"
+    not_js_convertible_override_label_html: "Acesta <strong>nu</strong> ar trebui sa fie facut valabil in format JS."
     adult_marker: "(Adult)"
     deleted_marker: "(Șters)"
     locked_marker: "(Închis)"
@@ -212,11 +266,16 @@ ro:
     search_placeholder: "Caută script-uri"
     updated: "Script actualizat."
     preview_additional_info: "Previzualizare"
+    must_confirm_email: "Trebuie sa iti confirmi e-mail-ul inainte de a posta script-uri."
+    must_confirm_email_button: "Trimite link de confirmare catre %{email}"
     authors_heading: "Autori:"
     invitations:
+      form_title: "Invita alti autori"
       invited_user_url_label: "Utilizatori de invitat"
       submit: "Trimitie invitatie"
+      invalid_user_url: "URL-ul utilizatorului invitat nu este valid."
       sent: "Invitatia a fost trimisa."
+      subject: "Invitatie pentru %{script_name}"
       current_user_already_author: "Esti deja un autor al acestui script."
       invitation_not_found: "Invitatia nu a fost gasita."
       invitation_expired: "Invitatia a expirat."
@@ -224,22 +283,31 @@ ro:
     remove_author:
       heading: "Sterge autori"
       remove_button: "Sterge"
+      remove_confirm: "Esti sigur ca vrei sa il sterge pe %{user_name} din lista autorilor?"
       failure: "Acest autor nu poate fi sters."
+    no_disposable_email: "Nu poti posta script-uri daca folosesi o adresa de e-mail temporara."
     new_script_notice:
       title: "Ce incerci sa faci?"
+      install_link_html: "Vreau sa <b>instalez si sa folosesc</b> un script."
     new_title:
       js: "Posteaza un nou script"
       css: "Posteaza un nou stil"
+    update_title: "Posteaza o noua versiune de %{script}"
     antifeatures:
+      author_explanation_intro: "Autorul scriptului explica:"
       types:
         ads:
           title: Reclame
+          description_html: Acest script va <b>injecta reclame</b> pe site-urile care le vizitezi.
         tracking:
           title: Urmareste
+          description_html: Acest script contine cod care va <b>urmari browsingul</b>.
         miner:
           title: Cryptominer
+          description_html: Acest script contine un cryptominer care va <b>folosi resursele device-ului tau</b> cand este activ.
         referral-link:
           title: Link-uri de afiliere
+          description_html: Acets script va <b>modifica link-uri</b> pentru a include refferal sau coduri de afiliere.
       install_anyway: Instaleaza script
       cancel_install: Anuleaza
     badges:
@@ -250,6 +318,7 @@ ro:
         short: CSS
         long: Stil-ul utilizatorului
   script_sets:
+    description: "Seturile de script-uri te lasa sa customizezi lista de script-uri care de ajuta sa rasfoiesti Greasy Fork. Poti adauga script-uri setului tau adaugandu-le individual, poti adauga seturile altora, sau sa generezi automat seturi. Poti si sa excluzi script-uri din setul tua folosind aceeasi metoda."
     favorites_name: "Favorite"
     delete: "Șterge set de scripturi"
     delete_confirmation: "Sunteți sigur că doriți să ștergeți acest set de scripturi?"
@@ -295,6 +364,7 @@ ro:
       for_language_exclude: "Exclude"
     calculated_list_none: "(Niciunul)"
     save: "Salvează"
+    saved: "Set de script-uri salvat."
     auto_set_types:
       all_scripts: "Toate script-urile"
       site: "Script-uri pentru %{site}"
@@ -307,7 +377,8 @@ ro:
     search_placeholder: "Cauta script-uri ale utilizatorilor."
     scripts_for_label: "Script-uri pentru:"
     explain_user_scripts_heading: "Ce este un user script?"
-    explain_user_scripts_html: "Scripturile utilizatorilor te pun in controlul experientei tale de browsing. Odata instalate, fac autmat site-urile pe care le vizitezi mai bune, adaugand caracteristici noi, facandu-le mai usor de folosit, sau scoaterea partilor enervante. Script-urile utilizatorilor de pe %{site_name}au fost scrise de alti utilizatori si postate pentru a le impartasi cu lumea. Sunt gratuit de instalat si usor de folosit."
+    explain_user_scripts_html: "Scripturile utilizatorilor te pun in controlul experientei tale de browsing. Odata instalate, fac automat site-urile pe care le vizitezi mai bune, adaugand caracteristici noi, facandu-le mai usor de folosit, sau scoaterea partilor enervante. Script-urile utilizatorilor de pe %{site_name} au fost scrise de alti utilizatori si postate pentru a le impartasi cu lumea. Sunt gratuit de instalat si usor de folosit."
+    installing_step1_header: "Pasul 1: Instaleaza un manager de script-uri"
     installing_step1_caption: "Tampermonkey pentru Chrome"
     installing_step1_description_html: >
         <p>Pentru a utiliza script-uri ale utilizatorilor, mai intai ai nevoie de
@@ -316,16 +387,16 @@ ro:
 
         <ul>
 
-        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} or %{chrome_violentmonkey_link:Violentmonkey}</li>
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} sau %{chrome_violentmonkey_link:Violentmonkey}</li>
 
         <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
-        or %{firefox_violentmonkey_link:Violentmonkey}</li>
+        sau %{firefox_violentmonkey_link:Violentmonkey}</li>
 
-        <li>Safari: %{safari_tampermonkey_link:Tampermonkey} or %{safari_userscripts_link:Userscripts}</li>
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey} sau %{safari_userscripts_link:Userscripts}</li>
 
         <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
 
-        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} or %{opera_violentmonkey_link:Violentmonkey}</li>
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} sau %{opera_violentmonkey_link:Violentmonkey}</li>
 
         <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
 
@@ -333,14 +404,30 @@ ro:
 
         <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
 
-        <li>AdGuard: (no additional software required)</li>
+        <li>AdGuard: (nu ai nevoie de nici un program aditional)</li>
 
         </ul>
+    installing_step2_header: "Pasul 2: Instaleaza un script al utilizatorului"
+    installing_step2_description_html: >
+        <p>%{browse_link:Rasfoieste site-ul} pentru a gasi scripturi ale utilizatorului
+        ce vrei sa le incerci. Aici de exemplu sunt cele mai populare script-uri:</p>
+
+        %{highlighted_scripts_list}
+
+        <p>Dupa ce ai gasit un script al utilizatorului, da click pe butonul verde
+        de instalare pe pagina script-ului utilizatorului, si managerul de script-uri
+        te va inreba daca mergi mai departe.</p>
+    installing_step3_header: "Pasul 3: Foloseste script-ul utilizatorului"
+    installing_step3_description_html: >
+        <p>Du-te pe site-ul care script-ul utilizatorului il afecteaza. Ar trebui
+        sa faca automat ce e facut sa faca. Dupa ce incerci script-ul utilizatorului
+        o perioada, du-te inapoi de unde ai luat script-ul si lasa o ceva pareri pentru
+        autorului scirpt-ului.</p>
   users:
     sign_in_title: "Autentificare în %{site_name}"
     sign_in_external: "Autentificare printr-un serviciu extern"
     sign_in_with: "Autentifică-te cu %{provider}"
-    sign_in_password: "Autentificare prin parolă"
+    sign_in_password: "Autentifica-te cu o parola"
     sign_in_email_used_sign_in_link: "logare"
     sign_in_name_used_submit: "Trimite"
     control_panel: "Panou de control"
@@ -348,6 +435,7 @@ ro:
     discussions_on_scripts_none: "Niciunul încă!"
     discussions_on_scripts_more: "Mai multe discuții..."
     script_list: "Scripturi"
+    script_list_none: "Nici un script postat."
     deleted_script_list: "Scripturi șterse"
     sign_out: "Închide sesiunea"
     edit: "Editează preferințe"
@@ -410,10 +498,10 @@ ro:
     allowed_elements_link: "(Vezi codul permis.)"
     allowed_elements_and_attributes_title: "Elements permise pentru conținut HTML"
     suggest_locale: "%{site_name} este disponibil în %{locale_name}."
-    incomplete_locale: "Traducerea în %{locale_name} pentru %{site_name} este completă doar la %{percent}. Puteți contribui."
+    incomplete_locale: "Traducerea în %{locale_name} a site-ului %{site_name} este completa doar in proportie de %{percent}. Puteti contribui."
     expander_show_more: "Arată mai mult"
     expander_show_less: "Arată mai puțin"
-    advertisement_note: Reclame
+    advertisement_note: Reclama
   activerecord:
     attributes:
       user:
@@ -434,8 +522,8 @@ ro:
         screenshots: "Capturi de ecran"
   errors:
     messages:
-      script_name_same_as_description: "Nu trebuie să fie același cu numele"
-      script_sync_identifier_bad_protocol: "Trebuie să fie un URL HTTP sau HTTPS"
-      script_too_many_screenshots: "Prea multe screenshot-uri incluse - maximum permis este de %{number}"
-      cannot_be_self_reference: "Nu poate fi același script"
-      cannot_be_deleted_reference: "Nu poate fi un script șters"
+      script_name_same_as_description: "nu trebuie să fie același cu numele"
+      script_sync_identifier_bad_protocol: "trebuie să fie un URL HTTP sau HTTPS"
+      script_too_many_screenshots: "Prea multe capturi de ecran incluse - maximum permis este de %{number}"
+      cannot_be_self_reference: "nu poate fi același script"
+      cannot_be_deleted_reference: "nu poate fi un script șters"
