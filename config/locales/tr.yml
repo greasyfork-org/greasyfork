@@ -36,14 +36,14 @@ tr:
     reinstall: "%{version} sürümünü tekrar yükle"
     old_version_warning: "Bu, betiğin en son sürümü değil. Yüklerseniz, yeni sürüme güncelleyemezsiniz. Yine de yüklensin mi?"
     promoted: "Desteklenen betik"
-    author_promoted: "Yazar'ın tavsiye betiği"
+    author_promoted: "Yazar'ın tavsiye ettiği betik"
     promoted_text_html: "Şunu da %{script_link} sevebilirsiniz."
     library_instructions_html: "Bu script direkt olarak kurulamaz. Başka scriptler için bir kütüphanedir ve meta yönergeleri içerir %{code}"
     deleted_notice: "Bu script silinmiş."
-    deleted_notice_with_related: "Baktığınız script silinmiş, ama burada benzer scriptleri bulabilirsiniz"
-    deleted_undelete_notice_html: "Bu script bir moderatör tarafından kilitlenmiş ve geri alınamaz.\nGerekçe: \"<i>%{delete_reason}</i>\"."
+    deleted_notice_with_related: "Baktığınız betik silinmiş, ama burada benzer betikleri bulabilirsiniz"
+    deleted_undelete_notice_html: "Bu betik bir moderatör tarafından kilitlenmiş ve geri alınamaz.\nGerekçe: \"<i>%{delete_reason}</i>\"."
     deleted_locked_author_notice_html: "Bu script bir moderatör tarafından silinmiş ve erişebilir değil.\nGerekçe: \"<i>%{delete_reason}</i>\"."
-    deleted_author_notice: "Bu script silinmiş ve diğerleri tarafından erişilemez. Silme sekmesinden geri alabilirsin."
+    deleted_author_notice: "Bu komut dosyası silinmiş ve diğerleri tarafından erişilemez. Silme sekmesinden geri alabilirsin."
     version_notice_html: "%{date} itibariyledir. %{latest_version_link} görün."
     version_notice_latest_version_link: "En son verisyonu"
     reported_notice: "\"%{script_name}\" rapor edildi ve bir moderatör tarafından incelenmeyi bekliyor."
@@ -62,22 +62,22 @@ tr:
     delete_update_behaviour_2: "Boş bir scriptle yer değiştirsin. Bu seçenek scriptiniz bir sitede olumsuz bir davranış sergiliyorsa kullanılabilir."
     delete_permanently_heading: "Kalıcı olarak silme"
     delete_permanently_explanation_html: >-
-        Kalıcı olarak silme işlemi, scriptinizi ve ona ait tüm kayıtları forum tartışmaları
+        Kalıcı olarak silme işlemi, betiğinizi ve ona ait tüm kayıtları forum tartışmaları
         ve yönetici müdahaleleri hariç siler. Bu işlem sistem yöneticileri tarafından
         bile geri alınamaz.
-    delete_permanently_confirm: "Scripti kalıcı olarak silmek istediğinizden emin misiniz? Bu işlem geri alınamaz!"
+    delete_permanently_confirm: "Betiği kalıcı olarak silmek istediğinizden emin misiniz? Bu işlem geri alınamaz!"
     delete_permanently_submit: "Kalıcı olarak silme isteğinde bulun"
     delete_permanently_immediate_submit: "Kalıcı olarak sil"
-    delete_permanently_notice: "Kalıcı olarak silme isteğiniz kaydedilmiştir. 7 gün içerisinde scriptiniz kalıcı olarak silinecektir."
+    delete_permanently_notice: "Kalıcı olarak silme isteğiniz kaydedilmiştir. 7 gün içerisinde betiğiniz kalıcı olarak silinecektir."
     delete_permanently_already_requested: "%{datetime} tarihinde kalıcı silme isteğinde bulundunuz."
     delete_permanently_notice_immediate: "Script kalıcı olarak silindi."
     cancel_delete_permanently_submit: "Kalıcı silme isteğini iptal et"
-    cancel_delete_permanently_notice: "Kalıcı silme talebiniz iptal edildi. Komut dosyanız hala başkaları tarafından görülemiyor."
+    cancel_delete_permanently_notice: "Kalıcı silme talebiniz iptal edildi. Betiğiniz hala başkaları tarafından görülemiyor."
     delete_permanently_rejected_locked: "Bu script kilitlidir ve kalıcı olarak silinemez."
     admin_page: "Yönetici"
     admin:
       title: "%{script_name} - Yönetici"
-      promoted_heading: "Desteklenen script "
+      promoted_heading: "Desteklenen betik"
       promoted_explanation: "Bu betiği yükledikten sonra, %{site_name} tercihinize uyan başka bir betik tavsiye edebilir."
       promoted_script_label: "Promosyon için script URL'si"
       promoted_submit: "Scripti ayarla"
@@ -122,13 +122,13 @@ tr:
       year: Son 365 gün
       all: Tüm zamanlar
     derivatives_title: "%{script_name} - Türevleri"
-    derivatives_intro: "Bu scriptler sizinkine dayalı olabilir (veya sizinki bunlara dayalı olabilir). Kodunuzun izinsiz kullanıldığını fark ederseniz, o komut dosyasının geri besleme sekmesinden bunu bildirin."
+    derivatives_intro: "Bu sbetikler sizinkine dayalı olabilir (veya sizinki bunlara dayalı olabilir). Kodunuzun izinsiz kullanıldığını fark ederseniz, o komut dosyasının geri besleme sekmesinden bunu bildirin."
     derivatives_script_html: "%{user}tarafından %{script}, lisans: %{license}%{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "Tam kopyalar"
-    derivatives_exact_copies_list_intro: "Aşağıdaki scripts, sizinkiyle tam olarak aynı koda sahiptir:"
+    derivatives_exact_copies_list_intro: "Aşağıdaki betikler, sizinkiyle tam olarak aynı koda sahiptir:"
     derivatives_exact_copies_item_html: "%{author_links}tarafından %{script_link}-versions: %{version_list} "
-    derivatives_exact_copes_none: "Üzerinde bu komut dosyasıyla %{site_name} tam olarak aynı koda sahip başka komut dosyası yok."
-    derivatives_similar_heading: "Benzer scriptler"
+    derivatives_exact_copes_none: "Üzerinde bu betik %{site_name} tam olarak aynı koda sahip başka betik yok."
+    derivatives_similar_heading: "Benzer komut dosyaları"
     derivatives_similar_info: "Sizinkine en çok benzeyenleri bulmak için diğer tüm komut dosyalarının en son sürümünü periyodik olarak kontrol ederiz. Ayrıca komut dosyanıza bir güncelleme gönderdiğinizde ve isteğiniz üzerine kontrol ederiz."
     similarity_score:
       high: Çok benzer
@@ -197,6 +197,7 @@ tr:
     upload_label: "Ya da yükle:"
     enable_source_code_editor_label: "Syntax-highlighting editörünü etkinleştir"
     changelog_note: "Bu versiyonda ne değişti?"
+    additional_info_note: "Daha ayrıntılı bir açıklama, talimatlar vb."
     post_new_script: "Script gönder"
     post_updated_script: "Yeni versiyon gönder"
     type_1_html: "Herkese açık kullanıcı scripti - herkesin görmesi ve kullanması için bir kullanıcı scripti ."

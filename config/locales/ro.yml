@@ -41,8 +41,14 @@ ro:
     promoted_text_html: "Poate îți vor plăcea%{script_link}."
     library_instructions_html: "Acest script nu ar trebui instalat direct. Aceasta este o bibliotecă pentru alte scripturi care este inclusă prin directiva meta a %{code}"
     deleted_notice: "Acest script a fost șters."
+    deleted_notice_with_related: "Script-ul pe care il cauti a fost sters, dar aici sunt cateva script-uri asemanatoare."
+    deleted_undelete_notice_html: "Acest script a fost blocat de un moderator si nu poate fi sters. Motivul prevazut este: \"<i>%{delete_reason}</i>\"."
+    deleted_locked_author_notice_html: "Acest script a fost sters de un moderator si nu poate fi accesat de altii. Motivul prevazut este: \"<i>%{delete_reason}</i>\"."
+    deleted_author_notice: "Acest script a fost sters si nu poate fi accesat de altii. Poti restabili script-ul din tab-ul Delete."
     version_notice_html: "La data de %{date}. Vezi %{latest_version_link}."
     version_notice_latest_version_link: "Ultima versiune"
+    reported_notice: "\"%{script_name}\" a fost raportat si asteapa verificarea unui moderator."
+    reported_notice_for_author: "Acest script nu este valabil celorlalti utilizatori pana cand este verificat de un moderator."
     info_page: "Informații"
     code_page: "Cod"
     history_page: "Istoric"
@@ -56,10 +62,20 @@ ro:
     delete_update_behaviour_1: "Îl păstrează ca atare."
     delete_update_behaviour_2: "Scriptul va fi actualizat cu unul gol. Opțiunea este adecvată în cazul în care scriptul are un efect negativ pe site-ul pe care rulează."
     delete_permanently_heading: "Șterge-l permanent"
+    delete_permanently_explanation_html: >-
+        <p>Stergerea permanenta a script-ului tau va sterge si inregistrarile asociate
+        acestuia, cu exceptia discutiilor de pe forum si log-ul de actiuni al moderatorului.</p><p>Script-ul
+        tau va fi sters permanent dupa 7 zile de la cerere. Poti anula stergerea permanenta
+        in acest timp. Daca nu o faci, nimeni, nici macar moderatorii nu iti pot recupera
+        script-ul.</p>
+    delete_permanently_confirm: "Esti sigur ca vrei sa iti stergi permanent script-ul?"
     delete_permanently_submit: "Solicit ștergerea permanentă"
     delete_permanently_immediate_submit: "Șterge permanent"
+    delete_permanently_notice: "Cererea de stergere permanenta a fost inregistrata. Script-ul tau va fi sters permanent in 7 zile."
+    delete_permanently_already_requested: "Cererea de stergere permanenta se va onora in:%{datetime}."
     delete_permanently_notice_immediate: "Scriptul a fost șters definitiv."
     cancel_delete_permanently_submit: "Anulează solicitarea de ștergere permanentă"
+    cancel_delete_permanently_notice: "Cererea de stergere permanenta a fost anulata. Script-ul tau inca nu este vizibil celorlalti utilizatori."
     delete_permanently_rejected_locked: "Acest script este blocat și nu poate fi șters permanent"
     admin_page: "Administrator"
     admin:
@@ -74,6 +90,10 @@ ro:
       locale_multiple_note: "Notează asta %{meta_keys_link:multiple locales can be defined for a script}."
       update_locale: "Actualizează Localele"
       no_moderator_logs: "Nicio acțiune nu a fost luata de către moderatori pe acest script."
+      compare_title: "Compara cu alt script"
+      compare_to: "Scriptul de pe %{site_name}pentru a se compara cu (URL)"
+      compare_button: "Compara"
+      compare_must_be_local_url: "Script-ul de comparatie trebuie sa fie un URL pe %{site_name}."
     history_title: "%{script_name} - Istoricul versiunilor"
     history_only_code_changes_info: "Acestea sunt versiunile scriptului în care codul a fost actualizat."
     history_all_changes_link: "Arată toate versiunile."
@@ -82,7 +102,9 @@ ro:
     diff_button: "Versiuni diferite selectate"
     code_title: "%{script_name} - Codul sursă"
     feedback_title: "%{script_name} - Feedback"
+    feedback_has_reports: "Acest script a fost raportat pentru incalcarea regulamentului de pe %{site_name}."
     feedback_no_discussions_html: "Nici o discuție deocamdată. %{start_first_discussion_link}"
+    feedback_no_discussions_on_page_form: "Nici o discutie inca."
     feedback_start_first_discussion_link: "Fii primul care discută despre acest script."
     feedback_discussion_or_report: "%{noua_discutie_link:Porneste o noua discute pe acest script} sau %{raporteaza_link:raporteazal pentru a fi eliminat}."
     feedback_favoriters_heading: "Preferanți"
@@ -98,7 +120,22 @@ ro:
     stats_raw_data_header: "Raw data"
     stats_download_raw_data_html: "Descarcă tot ca: %{links}"
     stats_no_data: "N/A"
+    stats_filter_options:
+      month: Ultimele 30 de zile
+      year: Ultimele 365 de zile
+      all: Din totdeauna
     derivatives_title: "%{script_name} - Derivate"
+    derivatives_exact_copies_heading: "Copii exacte"
+    derivatives_exact_copies_list_intro: "Urmatoarele script-uri au exact acelasi cod sursa ca al tau:"
+    derivatives_similar_heading: "Script-uri similare:"
+    similarity_score:
+      high: Foarte similar
+      medium: Similar
+      low: Oarecum similar
+      none: Deloc similar
+    derivatives_similar_none: "Nu sunt script-uri similare cu al tau."
+    derivatives_similar_item: "%{score}: %{diff_link:[Diff]}  %{script}"
+    derivatives_similar_check_now: "Verifica din nou acum"
     listing_title_all_sites: "Scripturi pentru toate site-urile"
     listing_description_all_sites: "Scripturi de utilizator care adaugă caracteristici și rezolvă bug-uri pe toate siteurile"
     listing_title_for_site: "Scripturi pentru %{site}"
@@ -115,12 +152,19 @@ ro:
     listing_filter_by_site_label: "Afișare scripturi pentru:"
     listing_filter_by_site_disable: "Toate"
     listing_filter_by_site_all_sites: "(Toate site-urile)"
+    listing_filter_by_language_label: "Limba:"
     listing_filter_by_site_more_sites: "Mai multe…"
     listing_no_scripts: "Nu a fost găsit niciun script."
     listing_created_feed: "Scripturi noi"
     listing_updated_feed: "Scripturi actualizate"
     listing_none: "(Nimic)"
+    listing_language_all: "Tot"
+    listing_language_js: "JavaScript"
+    listing_language_css: "CSS"
     import: "Importă scripturi"
+    new: "Publica un script scris de tine"
+    new_css: "Publica un stil scris de tine"
+    support_site: "Verifica si-teul autorului de suport."
     support_email: "Trimite un e-mail autorului pentru ajutor."
     contribution_no_amount: "Mulțumește-i lui %{author} făcând o donație."
     locale_auto_select: "(Detectat automat)"
@@ -130,6 +174,7 @@ ro:
     sets_add_inclusion: "Adaugă la %{set_name}"
     sets_add_exclusion: "Exclude din %{set_name}"
     sets_add_to_new: "Adaugă la un set nou"
+    rules_summary_link_to_full: "Citeste toate regulile."
     upload_label: "Sau încarcă:"
     post_new_script: "Postează scriptul"
     post_updated_script: "Postează o versiune nouă"
@@ -151,6 +196,7 @@ ro:
     diff_lines_of_context: "Linii de context:"
     diff_ignore_whitespace: "Ignoră modificările de spații albe"
     diff_refresh: "Reîmprospătează"
+    diff_no_change: "Nici o diferenta gasita,"
     good_rating_explanation: "Numărul de persoane care l-au apreciat ca Bun sau l-au adăugat în favorite."
     ok_rating_explanation: "Numărul de persoane care l-au apreciat ca fiind OK."
     bad_rating_explanation: "Numărul de persoane care l-au apreciat ca fiind Rău."
@@ -162,7 +208,47 @@ ro:
     unlisted_marker: "(Nelistat)"
     library_marker: "(Bibliotecă)"
     libraries_title: "Biblioteci"
+    by_site_list_filter: "Filtreaza dupa numele site-ului:"
     search_placeholder: "Caută script-uri"
+    updated: "Script actualizat."
+    preview_additional_info: "Previzualizare"
+    authors_heading: "Autori:"
+    invitations:
+      invited_user_url_label: "Utilizatori de invitat"
+      submit: "Trimitie invitatie"
+      sent: "Invitatia a fost trimisa."
+      current_user_already_author: "Esti deja un autor al acestui script."
+      invitation_not_found: "Invitatia nu a fost gasita."
+      invitation_expired: "Invitatia a expirat."
+      invitation_accepted: "Acum esti un autor al acestui script."
+    remove_author:
+      heading: "Sterge autori"
+      remove_button: "Sterge"
+      failure: "Acest autor nu poate fi sters."
+    new_script_notice:
+      title: "Ce incerci sa faci?"
+    new_title:
+      js: "Posteaza un nou script"
+      css: "Posteaza un nou stil"
+    antifeatures:
+      types:
+        ads:
+          title: Reclame
+        tracking:
+          title: Urmareste
+        miner:
+          title: Cryptominer
+        referral-link:
+          title: Link-uri de afiliere
+      install_anyway: Instaleaza script
+      cancel_install: Anuleaza
+    badges:
+      js:
+        short: JS
+        long: Script-ul utilizatorului
+      css:
+        short: CSS
+        long: Stil-ul utilizatorului
   script_sets:
     favorites_name: "Favorite"
     delete: "Șterge set de scripturi"
@@ -172,17 +258,27 @@ ro:
       heading: "Script-uri"
       description: "Includeți sau excludeți script-uri individuale în setul dvs. de script-uri."
       included: "Incluse"
+      included_none: "(Nimic)"
+      remove_included: "Sterge ce ai selectat"
       excluded: "Excluse"
+      excluded_none: "(Nimic)"
+      remove_excluded: "Sterge ce ai selectat"
       add_include: "Include"
       add_exclude: "Exclude"
     edit_sets:
+      heading: "Seturi de script-uri"
       included: "Incluse"
+      included_none: "(Nimic)"
+      remove_included: "Sterge ce ai selectat"
       excluded: "Excluse"
       excluded_none: "(Niciunul)"
       remove_excluded: "Șterge selectate"
       add_include: "Include"
       add_exclude: "Exclude"
+      user_no_sets: "(User-ul nu are seturi)"
+      user_no_other_sets: "(User-ul nu are alte seturi)"
     edit_auto_sets:
+      heading: "Seturi automate de script-uri"
       included: "Incluse"
       included_none: "(Niciunul)"
       remove_included: "Șterge selectate"
@@ -208,8 +304,38 @@ ro:
   home:
     welcome: "Bun venit pe %{site_name}, un site pentru scripturi de utilizator."
     sleazy_welcome: "Bun venit pe %{site_name}, un site pentru scripturi de adulți."
+    search_placeholder: "Cauta script-uri ale utilizatorilor."
+    scripts_for_label: "Script-uri pentru:"
     explain_user_scripts_heading: "Ce este un user script?"
+    explain_user_scripts_html: "Scripturile utilizatorilor te pun in controlul experientei tale de browsing. Odata instalate, fac autmat site-urile pe care le vizitezi mai bune, adaugand caracteristici noi, facandu-le mai usor de folosit, sau scoaterea partilor enervante. Script-urile utilizatorilor de pe %{site_name}au fost scrise de alti utilizatori si postate pentru a le impartasi cu lumea. Sunt gratuit de instalat si usor de folosit."
     installing_step1_caption: "Tampermonkey pentru Chrome"
+    installing_step1_description_html: >
+        <p>Pentru a utiliza script-uri ale utilizatorilor, mai intai ai nevoie de
+        un manager de scripturi. Ce script manager poti folosi depinde de ce browser
+        folosesti.</p>
+
+        <ul>
+
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} or %{chrome_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
+        or %{firefox_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey} or %{safari_userscripts_link:Userscripts}</li>
+
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} or %{opera_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+
+        <li>AdGuard: (no additional software required)</li>
+
+        </ul>
   users:
     sign_in_title: "Autentificare în %{site_name}"
     sign_in_external: "Autentificare printr-un serviciu extern"

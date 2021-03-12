@@ -206,6 +206,7 @@ pt-BR:
     upload_label: "Ou envie:"
     enable_source_code_editor_label: "Habilitar destacador de sintaxe no editor de código"
     changelog_note: "O que mudou nesta versão?"
+    additional_info_note: "Uma descrição mais detalhada, instruções, etc."
     post_new_script: "Postar script"
     post_updated_script: "Postar nova versão"
     type_1_html: "Script de usuário público - um script de usuário para todos verem e usarem."
@@ -875,6 +876,8 @@ pt-BR:
       external_code: "Código externo não permitido"
       undisclosed_antifeature: "Antifeature oculta (anúncio, rastreamento, minerador, por exemplo)"
       other: "Outro"
+    report_intro_html: "%{reported_item} foi reportado %{report_date} por %{reporter} por %{reason}"
+    report_intro_unauthorized_html: "%{reported_script} foi reportado %{report_date} por %{reporter} como uma cópia não autorizada de %{other_script}."
     non_functional_feedback: "Por favor, reporte scripts não funcionais por meio de %{feedback_link:feedback} na página do script em vez disso."
     unauthorized_code_original_placeholder: "URL do código original"
     explanation_placeholder: "Forneça detalhes adicionais (opicional)"
@@ -978,6 +981,9 @@ pt-BR:
         description: Discussões sobre scripts e estilos de usuários existentes.
       no-scripts:
         name: Tudo menos Discussões de Scripts
+      moderators:
+        name: Moderadores
+        description: Discussão privada para moderadores.
     category_display: "%{name} - %{description}"
     new_title: Nova discussão
     new_button: Nova discussão

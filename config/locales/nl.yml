@@ -41,6 +41,7 @@ nl:
     library_instructions_html: "Dit script moet niet direct worden geïnstalleerd. Het is een bibliotheek voor andere scripts om op te nemen met de meta-richtlijn %{code}"
     deleted_notice: "Dit script is verwijderd."
     deleted_notice_with_related: "Het script dat u hebt aangevraagd is verwijderd, maar hier zijn enkele verwante scripts."
+    deleted_undelete_notice_html: "Dit script is op slot gezet door een moderator en kan niet teruggehaald worden. Opgegeven reden: \"<i>%{delete_reason}</i>\""
     version_notice_html: "Per %{date}. Zie %{latest_version_link}."
     version_notice_latest_version_link: "de nieuwste versie"
     reported_notice_for_author: "Dit script is niet beschikbaar voor andere gebruikers tot het door een moderator is goedgekeurd."
@@ -88,6 +89,7 @@ nl:
     code_title: "%{script_name} - Broncode"
     feedback_title: "%{script_name} - Feedback"
     feedback_no_discussions_html: "Er zijn nog geen discussies geplaatst. %{start_first_discussion_link}"
+    feedback_no_discussions_on_page_form: "Er zijn nog geen discussies geplaatst."
     feedback_start_first_discussion_link: "Wees de eerste om een discussie te beginnen over dit script."
     feedback_discussion_or_report: "%{new_discussion_link:Start een discussie over dit script} of %{report_link:verzoek tot verwijdering}."
     feedback_favoriters_heading: "Personen die dit script hebben toegevoegd aan hun favorieten"
@@ -103,13 +105,19 @@ nl:
     stats_raw_data_header: "Onbewerkte gegevens"
     stats_download_raw_data_html: "Alle gegevens downloaden als: %{links}"
     stats_no_data: "N.v.t."
+    stats_filter_options:
+      month: Laatste 30 dagen
+      year: Laatste 365 dagen
     derivatives_title: "%{script_name} - Afgeleiden"
+    derivatives_exact_copies_heading: "Exacte kopieën"
+    derivatives_exact_copies_list_intro: "De volgende scripten hebben exact dezelfde code als die van jou:"
     derivatives_similar_heading: "Gelijkaardige scripts"
     similarity_score:
       high: Zeer gelijkaardig
       medium: Middelmatig gelijkaardig
       low: Enigszins gelijkaardig
       none: Niet gelijkaardig
+    derivatives_similar_none: "Er zijn geen scripten hetzelfde als die van jou."
     listing_title_all_sites: "Gebruikersscripts voor alle websites"
     listing_description_all_sites: "Gebruikersscripts die op alle websites functies toevoegen en bugs verwijderen"
     listing_title_for_site: "Gebruikersscripts voor %{site}"
@@ -138,6 +146,7 @@ nl:
     listing_none: "(Geen)"
     listing_set_locale_filter: "Resultaten weergeven voor alle talen. %{set_filter_link:Geef alleen resultaten uit het  %{language} weer.}"
     listing_remove_locale_filter: "Alleen resultaten uit het %{language} aan het weergeven. %{remove_filter_link:Geef resultaten voor alle talen weer.}"
+    listing_language_all: "Alles"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
     import: "Scripts importeren"
@@ -243,18 +252,35 @@ nl:
     authors_heading: "Auteurs"
     invitations:
       form_title: "Nodig andere auteurs uit"
+      invited_user_url_label: "Gebruiker om uit te nodigen"
       submit: "Stuur uitnodiging"
       sent: "Uitnodiging is verstuurd."
+      subject: "Uitnodiging voor %{script_name}"
       invitation_not_found: "Uitnodiging niet gevonden."
       invitation_expired: "Uitnodiging is vervallen."
     remove_author:
       heading: "Verwijder Auteurs"
+      remove_button: "Verwijderen"
       failure: "Kon auteur niet verwijderen."
+    new_script_notice:
+      title: "Wat probeer je te doen?"
+      install_link_html: "Ik wil een script <b>installeren en gebruiken</b>."
+      share_link_html: "Ik heb een script <b>geschreven</b> en wil het <b>delen</b> met anderen."
+    new_title:
+      js: "Publiceer een nieuw script"
+      css: "Publiceer een nieuw stijl"
+    update_title: "Nieuwe versie plaatsen van %{script}"
     antifeatures:
       types:
         ads:
           title: Advertenties
+      install_anyway: Installeer script
       cancel_install: Annuleer
+    badges:
+      js:
+        short: JS
+      css:
+        short: CSS
   script_sets:
     description: "Script-sets stellen je in staat om een gepersonaliseerde lijst met scripts met Greasy Fork door te bladeren. Je kunt scripts toevoegen aan je set door individuele scripts op te nemen, sets van andere gebruikers of automatisch gegenereerde sets. Je kunt ook scripts uit je set verwijderen met dezelfde methode."
     favorites_name: "Favorieten"
@@ -418,6 +444,9 @@ nl:
     listing_banned_filter:
       banned: "Verbannen"
       not_banned: "Niet verbannen"
+      all: "Alles"
+    listing_author_filter:
+      all: "Alles"
     search_placeholder: "Zoek gebruikers"
     locale_prompt: "(Kies een taal0"
     show_ads_description: "Ondersteun %{site_name} door toe te staan dat advertenties worden weergegeven"
@@ -461,6 +490,15 @@ nl:
       banned:
         short: Verbannen
         long: Verbannen
+      moderator:
+        short: Mod
+        long: Moderator
+      author:
+        short: Auteur
+    notifications:
+      discussion_defaults:
+        title: Forum notificaties
+      title: Notificaties
   help:
     sections:
       usage: Gebruik
@@ -494,6 +532,10 @@ nl:
       post_new_script_link_text: 'publiceer een nieuw script'
     code_rules:
       title: "%{site_name}'s regels voor gepubliceerde scripts"
+      functionality_header: Functionaliteit
+      code_header: Code
+      copyright_header: Copyright
+      miscellaneous_header: Overig
     external_scripts:
       title: "%{site_name}'s beleid voor externe scripts."
     script_rewriting:
@@ -589,6 +631,30 @@ nl:
     item_script_html: "Script: %{script_link}"
     item_deleted_script: "Verwijderd: script %{id}"
     item_user_html: "Gebruiker: %{user_link}"
+  reports:
+    new_report_title:
+      user: "Maak melding van %{user}"
+      comment: "Maak melding van de reactie van %{user}"
+      message: "Maak melding van het bericht van %{user}"
+      script: "Melding maken van %{script}"
+    reason:
+      non_functional: "Script werkt niet"
+      spam: "Spam"
+      other: "Anders"
+    create_button: "Maak een melding"
+    report_user: "Gebruiker melden"
+    report_comment: "Reactie melden"
+    report_message: "Bericht melden"
+    delete_script: "Verwijder script"
+  discussions:
+    title: Discussies
+    comment_date: "Geplaatst: %{date}"
+    comment_edit_date: "Bijgewerkt: %{date}"
+    posted_by_html: "%{user}%{date}"
+    last_comment: "Laatst: %{user} %{date}"
+    delete_comment: "Verwijderen"
+    delete_discussion: "Verwijderen"
+    cancel_update_comment: "Annuleren"
   common:
     error_preamble: "Er zijn enkele problemen met wat u trachtte te plaatsen..."
     allowed_elements_link: "(Zie de toegestane code.)"
