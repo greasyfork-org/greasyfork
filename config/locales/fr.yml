@@ -21,7 +21,7 @@ fr:
     license: "Licence"
     no_license: "N/A"
     compatibility: "Compatibilité"
-    compatible_with_browser: "Compatible avec %[browser]"
+    compatible_with_browser: "Compatible avec %{browser}"
     incompatible_with_browser: "Incompatible avec %{browser}"
     applies_to: "S'applique à"
     applies_to_link_title:
@@ -93,7 +93,7 @@ fr:
       compare_title: "Comparer à d'autre script"
       compare_to: "Le script %{site_name} est comparable à (URL)"
       compare_button: "Comparer"
-      compare_must_be_local_url: "Le script de comparaison doit être un URL de %{site_name}."
+      compare_must_be_local_url: "Le script de comparaison doit être une URL de %{site_name}."
     history_title: "%{script_name} - Historique des versions"
     history_only_code_changes_info: "Voici les versions de ce script où le code a été modifié."
     history_all_changes_link: "Voir toutes les versions."
@@ -296,7 +296,7 @@ fr:
       form_title: "Inviter d'autres auteurs"
       explanation: "Vous pouvez ajouter d'autres utilisateurs de Greasy Fork en tant qu'auteurs de ce script. Ils auront les mêmes droits que vous sur ce script."
       invited_user_url_label: "Utilisateur à inviter"
-      invited_user_placeholder: "URL du profile de l'utilisateur sur %{site_name}"
+      invited_user_placeholder: "URL du profil de l'utilisateur sur %{site_name}"
       submit: "Envoyer une invitation"
       invalid_user_url: "L'URL de l'utilisateur invité n'est pas valide."
       already_author: "L'utilisateur que vous avez spécifié est déjà un auteur de ce script."
@@ -719,7 +719,7 @@ fr:
           type de script. Vous serez alors capable d'inclure cette librairie publiée
           dans votre script.</p>
       test_url:
-        label: Testé un URL
+        label: Tester une URL
         result_ok: L'URL est autorisée
         result_not_ok: L'URL n'est pas autorisée
     script_rewriting:
@@ -1046,7 +1046,7 @@ fr:
     attributes:
       user:
         name: "Nom"
-        profile: "Description"
+        profile: "Profil"
         locale: "Région préférée"
         author_email_notification_type_id: "Notifications de discussion sur vos scripts"
         show_ads: "Afficher les publicités"
