@@ -1,22 +1,20 @@
-<%- title 'Setting up a webhook' %>
+<%- title t('webhooks.info.title') %>
 <%- description "Setting up a webook to update scripts on #{site_name} automatically." %>
 
-<p>A webhook connected with <%= site_name %> makes it so any push to repository automatically updates your scripts on <%= site_name %> in a matter of minutes. <%= site_name %> currently supports GitHub, Bitbucket, and GitLab webhooks.</p>
-
-<p>
-  To use this feature, you must have scripts on Greasy Fork set up to sync by URL to your repository. You can add new scripts by <%= link_to 'importing new scripts into Greasy Fork', import_start_path %>, or you can set previously posted scripts to sync by accessing the "Sync" tab from the script's page.
-</p>
+<%= it('webhooks.info.intro_html', site_name: site_name, import_link: import_start_path) %>
 
 <% if @webhook_scripts.any? %>
-  <p>Here are the scripts you have already set up to sync from a supported provider:</p>
+  <p><%= t('webhooks.info.already_syncing_list') %></p>
   <ul>
     <% @webhook_scripts.each do |s| %>
-      <li><%= link_to s.name, s %> - <%= s.script_sync_type.name.downcase %> syncing from <%= link_to s.sync_identifier, s.sync_identifier %></li>
+      <li><%= t('webhooks.info.synced_item_html', script_name: link_to(s.name, s), sync_type: t("scripts.sync_type_#{s.script_sync_type_id}.name"), sync_url: link_to(s.sync_identifier, s.sync_identifier)) %></li>
     <% end %>
   </ul>
 <% end %>
 
-<p>Your scripts will continue to show a sync type of "Automatic" or "Manual" until the first push happens, and then they'll be set to "Webhook".</p>
+<% unless I18n.locale == :en %>
+  <p><%= t('webhooks.info.language_note') %></p>
+<% end %>
 
 <h4>GitHub</h4>
 

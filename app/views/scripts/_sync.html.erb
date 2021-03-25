@@ -16,23 +16,23 @@
 
     <div class="radio-group">
       <%= t('scripts.sync_type_intro') %><br>
-      <%= s.radio_button(:script_sync_type_id, 2) %> <label for="script_script_sync_type_id_2"><%= t('scripts.sync_type_2') %></label><br>
-      <%= s.radio_button(:script_sync_type_id, 1) %> <label for="script_script_sync_type_id_1"><%= t('scripts.sync_type_1') %></label><br>
+      <%= s.radio_button(:script_sync_type_id, 2) %> <label for="script_script_sync_type_id_2"><%= t('scripts.sync_name_and_description', name: t('scripts.sync_type_2.name'), description: t('scripts.sync_type_2.description')) %></label><br>
+      <%= s.radio_button(:script_sync_type_id, 1) %> <label for="script_script_sync_type_id_1"><%= t('scripts.sync_name_and_description', name: t('scripts.sync_type_1.name'), description: t('scripts.sync_type_1.description')) %></label><br>
       <% # only allow changing *off* of Webhook - setting it to Webhook is done when a push comes in
       if @script.script_sync_type_id == 3 %>
-        <%= s.radio_button(:script_sync_type_id, 3) %> <label for="script_script_sync_type_id_3"><%= t('scripts.sync_type_3') %></label><br>
+        <%= s.radio_button(:script_sync_type_id, 3) %> <label for="script_script_sync_type_id_3"><%= t('scripts.sync_name_and_description', name: t('scripts.sync_type_3.name'), description: t('scripts.sync_type_3.description')) %></label><br>
       <% end %>
     </div>
 
     <div>
-      <p>You can optionally sync your script's additional info.</p>
+      <p><%= t('scripts.sync_additional_info') %></p>
       <div class="indented">
         <% localized_additional_infos = @script.localized_attributes_for('additional_info').select{|la| la.attribute_default || !la.sync_identifier.nil? || la.new_record?}
         localized_additional_infos.each_with_index do |la, index| %>
           <%= render partial: 'sync_additional_info', locals: {la: la, index: index, preview: @preview.nil? ? nil : @preview[index]} %>
         <% end %>
         <div>
-          <button id="add-synced-additional-info" name="add-synced-additional-info" value="1" type="submit" data-form-path="<%= script_sync_additional_info_form_path %>">Add a localized, synced additional info</button>
+          <button id="add-synced-additional-info" name="add-synced-additional-info" value="1" type="submit" data-form-path="<%= script_sync_additional_info_form_path %>"><%= t('scripts.add_synced_additional_info') %></button>
         </div>
       </div>
     </div>

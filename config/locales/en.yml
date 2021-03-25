@@ -387,17 +387,26 @@ en:
     # text before the sync type options
     sync_type_intro: "The script will be synced:"
     # label for radio button for manual syncing
-    sync_type_1: "Manually - it will be checked for updates only when you trigger it"
+    sync_type_1:
+      name: Manual
+      description: it will be checked for updates only when you trigger it
     # label for radio button for automatic syncing
-    sync_type_2: "Automatically - it will be periodically checked for updates"
+    sync_type_2:
+      name: Automatic
+      description: it will be periodically checked for updates
     # label for radio button for webhook syncing
-    sync_type_3: "By webhook - it will be updated when you push changes to this file on your repository"
+    sync_type_3:
+      name: Webhook
+      description: it will be updated when you push changes to this file on your repository
+    sync_name_and_description: "%{name} - %{description}"
     # text when the last attempted sync failed. date is the date of the error run through markup_date. error is the technical error.
     sync_failed_info_html: "Last attempted sync was %{date}, which resulted in %{error}."
     # text indicating the date of the last successful sync. date is the date of the sync run through markup_date
     sync_success_info_html: "Last successful sync was %{date}."
     # text if the sync never succeeded
     sync_never_succeeded: "Sync never completed successfully."
+    sync_additional_info: You can optionally sync your script's additional info.
+    add_synced_additional_info: Add a localized, synced additional info
     # button to update sync settings and run sync immediately
     update_and_sync: "Update and sync now"
     # button to update sync settings but not sync immediately
@@ -895,6 +904,16 @@ en:
       save_success: Your notification preferences have been updated.
       unsubscribe_all: Unsubscribe from all notifications
       unsubscribe_all_success: You have been unsubscribed from all notifications.
+  webhooks:
+    info:
+      title: Setting up a webhook
+      intro_html: |
+        <p>A webhook connected with %{site_name} makes it so you can automatically update %{site_name} based on what happens in your repository. %{site_name} supports "push" webhooks for GitHub, GitLab, and Bitbucket, and "release" webhooks for GitHub and GitLab.</p>
+        <p>To use this feature, you must have scripts on %{site_name} set up to sync by URL to your repository. You can add new scripts by %{import_link: importing new scripts into %{site_name}}, or you can set previously posted scripts to sync by accessing the "Admin" tab from the script's page.</p>
+        <p>Your scripts will continue to show a sync type of "Automatic" or "Manual" until the first webhook happens.</p>
+      already_syncing_list: "Here are the scripts you have already set up to sync from a supported provider:"
+      synced_item_html: "%{script_name} - %{sync_type} syncing from %{sync_url}"
+      language_note: As GitHub, GitLab, and Bitbucket's UI are in English, the instructions below will be provided in English as well.
   help:
     sections:
       usage: Usage
