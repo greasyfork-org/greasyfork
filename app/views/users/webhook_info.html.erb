@@ -33,19 +33,21 @@
       <% if @user.webhook_secret.nil? %>
         <input type="submit" value="Generate">
       <% else %>
-        <textarea cols="64" rows="2"><%= @user.webhook_secret %></textarea> <input type="submit" value="Regenerate">
+        <textarea cols="64" rows="2" readonly><%= @user.webhook_secret %></textarea> <input type="submit" value="Regenerate">
       <% end %>
     <% end %>
   </dd>
   <dt>Which events would you like to trigger this webhook?</dt>
-  <dd>Just the push event.</dd>
+  <dd>
+    To update <%= site_name %> on all pushes, choose "Just the push event".<br>
+    To update <%= site_name %> only on releases, choose "Let me select individual events", uncheck "Pushes", and check "Releases".</dd>
   <dt>Active</dt>
   <dd>(Checked)</dd>
 </dl>
 
 <h4>Bitbucket</h4>
 
-<p>To set up the webhook on Bitbucket, access your Bitbucket repository and go to Settings, Webhooks, Add webhook, then enter the data below.</p>
+<p>To set up the webhook on Bitbucket, access your Bitbucket repository and go to Repository Settings, Webhooks, Add webhook, then enter the data below.</p>
 
 <dl>
   <dt>Title</dt>
@@ -56,7 +58,7 @@
       <% if @user.webhook_secret.nil? %>
         <input type="submit" value="Generate">
       <% else %>
-        <textarea cols="64" rows="2"><%= user_webhook_url(@user, secret: @user.webhook_secret) %></textarea> <input type="submit" value="Regenerate">
+        <textarea cols="64" rows="2" readonly><%= user_webhook_url(@user, secret: @user.webhook_secret) %></textarea> <input type="submit" value="Regenerate">
       <% end %>
     <% end %>
   </dd>
@@ -66,7 +68,7 @@
   <dd>(Unchecked)</dd>
   <dt>Enable request history collection</dt>
   <dd>(Unchecked)</dd>
-  <dt>Trigger</dt>
+  <dt>Triggers</dt>
   <dd>Repository push</dd>
 </dl>
 
@@ -83,12 +85,15 @@
       <% if @user.webhook_secret.nil? %>
         <input type="submit" value="Generate">
       <% else %>
-        <textarea cols="64" rows="2"><%= @user.webhook_secret %></textarea> <input type="submit" value="Regenerate">
+        <textarea cols="64" rows="2" readonly><%= @user.webhook_secret %></textarea> <input type="submit" value="Regenerate">
       <% end %>
     <% end %>
   </dd>
   <dt>Trigger</dt>
-  <dd>(Push events only)</dd>
+  <dd>
+    To update <%= site_name %> on all pushes, choose "Push events".<br>
+    To update <%= site_name %> only on releases, choose "Releases events".</dd>
+  </dd>
   <dt>Enable SSL Verification</dt>
   <dd>(Checked)</dd>
 </dl>

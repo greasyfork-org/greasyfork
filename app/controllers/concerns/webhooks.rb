@@ -1,5 +1,8 @@
 require 'active_support/concern'
+require 'bitbucket'
 require 'git'
+require 'github'
+require 'gitlab'
 
 module Webhooks
   extend ActiveSupport::Concern
@@ -21,43 +24,29 @@ module Webhooks
       return nil, nil
     end
 
-    if request.headers['X-GitHub-Event'] == 'ping'
+    case request.headers['X-GitHub-Event']
+    when 'ping'
       render json: { message: 'Webhook successfully configured.' }
       return nil, nil
-    end
-
-    if request.headers['X-GitHub-Event'] != 'push'
+    when 'push'
+      changed_files = Github.info_from_push_event(params)
+    when 'release'
+      unless request.request_parameters[:action] == 'published'
+        render json: { message: "Nothing to do on action '#{request.request_parameters[:action]}'." }
+        return nil, nil
+      end
+      changed_files = Github.info_from_release_event(params)
+    else
       head 406
       return nil, nil
     end
 
-    if params[:commits].nil?
+    if changed_files.empty?
       render json: { message: 'No commits found in this push.' }
       return nil, nil
     end
 
-    # Get a list of changed files and the commit info that goes with them.
-    # We will keep all commit messages but only the most recent commit.
-    changed_files = {}
-    params[:commits].each do |c|
-      next if c[:modified].nil?
-
-      c[:modified].each do |m|
-        changed_files[m] ||= {}
-        changed_files[m][:commit] = c[:id]
-        (changed_files[m][:messages] ||= []) << c[:message]
-      end
-    end
-
-    # construct the raw URLs from the provided info. raw URLs are in the format:
-    # (repository url)/raw/(branch)/(path) OR
-    # https://raw.githubusercontent.com/(user)/(repo)/(branch)/(path)
-    # This will be used to find the related scripts.
-    base_paths = [
-      "#{params[:repository][:url]}/raw/#{params[:ref].split('/').last}/", "https://raw.githubusercontent.com/#{params[:repository][:url].split('/')[3..4].join('/')}/#{params[:ref].split('/').last}/"
-    ]
-
-    inject_script_info(user, changed_files, base_paths)
+    inject_script_info(user, changed_files)
 
     return changed_files, params[:repository][:git_url]
   end
@@ -73,35 +62,15 @@ module Webhooks
       return nil, nil
     end
 
-    # Hash of commit hash to Array of commit messages
-    commits = {}
-    params[:push][:changes].each do |change|
-      change[:commits].each do |commit|
-        (commits[commit[:hash]] ||= []) << commit[:summary][:raw]
-      end
-    end
-
-    if commits.empty?
+    changed_files = Bitbucket.info_from_push_event(params)
+    if changed_files.empty?
       render json: { message: 'No commits found in this push.' }
       return nil, nil
     end
 
     repo_url = "https://bitbucket.org/#{params[:repository][:full_name]}.git"
-    branch = params[:push][:changes].first[:new][:name]
-    base_paths = [
-      "https://bitbucket.org/#{params[:repository][:full_name]}/raw/#{branch}/",
-    ]
 
-    changed_files = {}
-    Git.get_files_changed(repo_url, commits.keys.uniq) do |commit, files|
-      files.each do |file|
-        changed_files[file] ||= { messages: [] }
-        changed_files[file][:commit] = commit
-        changed_files[file][:messages].concat(commits[commit])
-      end
-    end
-
-    inject_script_info(user, changed_files, base_paths)
+    inject_script_info(user, changed_files)
 
     return changed_files, repo_url
   end
@@ -112,54 +81,37 @@ module Webhooks
       return nil, nil
     end
 
-    if request.headers['X-Gitlab-Event'] != 'Push Hook'
+    case request.headers['X-Gitlab-Event']
+    when 'Push Hook'
+      changed_files = Gitlab.info_from_push_event(params)
+    when 'Release Hook'
+      changed_files = Gitlab.info_from_release_event(params)
+    else
       head 406
       return nil, nil
     end
 
-    if params[:commits].nil?
+    if changed_files.empty?
       render json: { message: 'No commits found in this push.' }
       return nil, nil
     end
 
-    # Get a list of changed files and the commit info that goes with them.
-    # We will keep all commit messages but only the most recent commit.
-    changed_files = {}
-    params[:commits].each do |c|
-      next if c[:modified].nil?
+    inject_script_info(user, changed_files)
 
-      c[:modified].each do |m|
-        changed_files[m] ||= {}
-        changed_files[m][:commit] = c[:id]
-        (changed_files[m][:messages] ||= []) << c[:message]
-      end
-    end
-
-    base_paths = [
-      "#{params[:repository][:git_http_url].delete_suffix('.git')}/raw/#{params[:ref].split('/').last}/",
-    ]
-
-    inject_script_info(user, changed_files, base_paths)
-
-    return changed_files, params[:repository][:git_http_url]
+    return changed_files, params[:project][:git_http_url]
   end
 
   # Adds scripts and script_attributes keys to changed_files.
   # - user
-  # - changed_files - a Hash of filename to Hash
-  # - base_paths - paths to add to to start of the filename to find scripts by URL
-  def inject_script_info(user, changed_files, base_paths)
+  # - changed_files - a Hash of URL to Hash
+  def inject_script_info(user, changed_files)
     # Associate scripts to each file.
-    changed_files.each do |filename, info|
-      urls = base_paths.map do |bp|
-        bp + self.class.urlify_webhook_path_segment(filename)
-      end
-
+    changed_files.each do |_file, info|
       # Scripts syncing code to this file
-      info[:scripts] = user.scripts.not_deleted.where(sync_identifier: urls)
+      info[:scripts] = user.scripts.not_deleted.where(sync_identifier: info[:urls])
 
       # Scripts syncing additional info to this file
-      info[:script_attributes] = LocalizedScriptAttribute.where(sync_identifier: urls).joins(script: :authors).where(authors: { user_id: user.id })
+      info[:script_attributes] = LocalizedScriptAttribute.where(sync_identifier: info[:urls]).joins(script: :authors).where(authors: { user_id: user.id })
     end
   end
 
@@ -178,7 +130,7 @@ module Webhooks
     end
 
     # Get the contents of the files.
-    Git.get_contents(git_url, changed_files.transform_values { |info| info[:commit] }) do |file_path, _commit, content|
+    Git.get_contents(git_url, changed_files.transform_values { |info| info[:commit] || info[:ref] }) do |file_path, _commit, content|
       changed_files[file_path][:content] = content
     end
 
