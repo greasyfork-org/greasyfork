@@ -320,13 +320,25 @@ zh-TW:
       types:
         ads:
           title: 廣告
+          description_html: 此腳本會在您造訪的網站<b>插入廣告</b>。
         tracking:
           title: 追蹤
+          description_html: 此腳本內的代碼會<b>追蹤您的瀏覽行為</b>。
+        miner:
+          title: 挖礦
+          description_html: 此腳本含有挖礦代碼，啟動時將會<b>使用您裝置上的計算資源</b>。
+        referral-link:
+          title: 推薦連結
+          description_html: 以腳本將會透過<b>修改連結內容</b>以加入推薦連結或是會員代碼。
       install_anyway: 安裝腳本
       cancel_install: 取消
     badges:
       js:
         short: JS
+        long: 使用者腳本
+      css:
+        short: CSS
+        long: 使用者樣式
   script_sets:
     description: "腳本收藏集讓你自訂一個腳本列表。你可以把單獨的腳本、其它使用者的收藏集、或自動產生的收藏集，加入包含列表。排除列表也是同樣的方式。"
     favorites_name: "我的最愛"
@@ -551,7 +563,10 @@ zh-TW:
         completed: "你的帳號已被刪除。"
     banned_notice:
       no_report_no_reason: "您的帳號已被封鎖。您想要的話，可以%{delete_link:刪除帳號}。"
+      with_report: "您的帳戶因%{report_link:此檢舉}已被封鎖。您想要的話，可以%{delete_link:刪除帳戶}。"
+      with_reason: "您的帳戶已被封鎖，管理員給出以下理由：「%{reason}」。您想要的話，可以%{delete_link:刪除帳戶}。"
     banned_delete:
+      intro: "刪除您的帳戶將一併刪除您曾經上傳的腳本。您在論壇上的貢獻不會被刪除，但您的使用者名稱會被遮蔽。即使刪除帳戶，該帳戶的電子郵件將不能被用於重新註冊。若確定要刪除帳戶，請在下方登入。"
       complete: "你的帳號已被刪除。"
     badges:
       banned:
@@ -578,6 +593,8 @@ zh-TW:
       current_discussion_subscriptions:
         other: 取消訂閱你之前所訂閱的 %{discussions_link:%{count} 條討論}
       save_success: 您的通知設定已更新。
+      unsubscribe_all: 停止所有的通知
+      unsubscribe_all_success: 您已停用所有通知。
   help:
     sections:
       usage: 使用量
@@ -615,6 +632,14 @@ zh-TW:
       post_new_script_link_text: '新增腳本'
     code_rules:
       title: "%{site_name} 的腳本規定"
+      preamble: 這些是張貼在%{site_name}上的腳本需要符合的條件。這是用來確保%{site_name}對使用者腳本會是一個安全且有幫助的地方。若是腳本違反這些要求，那將可能被%{site_name}的管理員刪除。
+      description: 腳本皆必須包含一段描述其功能的敘述，且腳本不得做出明顯超出該敘述的行為。使用者都應該在安裝腳本前了解它會做些什麼。
+      reason: 腳本必須要有被編寫為腳本的理由。例如：只會將使用者導向到一個網站的腳本沒有必要被編寫為腳本，它可以是個連結。而在當前頁面使用其他網站服務的腳本（例如透過某些方式將其轉換）是被允許的。
+      unrelated: 腳本不得要求使用者執行不相關的行為以啟用腳本全部或部分的功能，例如付款、訂閱某個頻道、加入某個社團，或是按讚某個專頁。
+      monetization_html: 對<em>作者</em>而非使用者有利的腳本（例如追蹤、廣告及挖礦等）是被允許的，但必須標註為%{antifeature_link:2@antifeature2 meta keys}。
+      code_header: 代碼
+      copyright_header: 版權
+      miscellaneous_header: 雜項
     external_scripts:
       title: "%{site_name} 對於外部程式碼的政策"
       test_url:
@@ -724,9 +749,23 @@ zh-TW:
     new_report_title:
       user: "檢舉%{user}"
       comment: "檢舉%{user}的留言"
+      message: "檢舉%{user}的訊息"
+      script: "檢舉%{script}"
     reason:
+      non_functional: "腳本失效或無法使用"
       spam: "灌水"
       abuse: "仇恨或具有冒犯性的内容"
+      illegal: "違法內容"
+      unauthorized_code: "未授權的副本"
+      malware: "惡意軟體"
+      minified: "極簡化代碼"
+      external_code: "未允許的外部代碼"
+      undisclosed_antifeature: "未標註的反特徵（例如廣告、挖礦等）"
+      other: "其他"
+    report_intro_html: "%{reported_item}於%{report_date}因%{reason}被%{reporter}檢舉。"
+    report_intro_unauthorized_html: "%{reported_script}於%{report_date}被%{reporter}檢舉為%{other_script}的未授權副本。"
+    non_functional_feedback: "請在腳本頁面的%{feedback_link:意見回饋}回報無效的腳本。"
+    unauthorized_code_original_placeholder: "原始代碼的連結"
     explanation_placeholder: "提供額外資訊（可選）"
     create_button: "新增檢舉"
     report_user: "舉報使用者"
@@ -735,6 +774,8 @@ zh-TW:
     result_dismissed: "該檢舉已被管理員駁回。"
     result_upheld: "管理員已通過該檢舉。"
     result_pending: "該檢舉尚待管理員檢視。"
+    rebuttal_placeholder: '向管理員解釋為何此腳本不應該被刪除。'
+    submit_rebuttal: "提交上訴"
   discussions:
     title: 討論
     comment_date: "發表於：%{date}"
@@ -788,6 +829,9 @@ zh-TW:
       all: 全部
       read: 已讀
       unread: 未讀
+    locale_filter:
+      label: 語言 Language
+      all: 全部
     user_activity:
       title: "近期評論"
       no_recent_activity: "該使用者最近沒有撰寫任何評論"
@@ -822,6 +866,9 @@ zh-TW:
         description: 討論現有的使用者腳本和使用者樣式。
       no-scripts:
         name: 除腳本討論以外的其他討論
+      moderators:
+        name: 管理員
+        description: 管理員的私密討論。
     category_display: "%{name} - %{description}"
     new_title: 建立討論
     new_button: 建立討論
@@ -842,6 +889,7 @@ zh-TW:
       other: 與 %{users} 對話
     conversation_info_html: 最新訊息：%{user}傳送於%{date}
     no_conversations: 您尚未擁有任何對話。
+    no_recent_conversations: 您沒有最近的對話。
     recent:
       title: 最近的會話
       more: 查看全部會話

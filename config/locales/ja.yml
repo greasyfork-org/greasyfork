@@ -474,6 +474,7 @@ ja:
     script_list_none_same_user_html: "まだスクリプトを書いていません。%{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "スクリプトの書き方を見てみますか？"
     deleted_script_list: "削除したスクリプト"
+    unlisted_script_list: "非公開スクリプト"
     sign_out: "ログアウト"
     edit: "アカウント設定"
     edit_sign_in: "ログイン方法の設定"
@@ -556,6 +557,8 @@ ja:
         request_expired: "ユーザーを削除できません — ページの有効期限が切れています。"
         cancelled: "削除申請はキャンセルされました。"
         completed: "あなたのアカウントは削除されました。"
+    banned_delete:
+      complete: "あなたのアカウントは削除されました"
     badges:
       banned:
         short: BANされました
@@ -567,6 +570,8 @@ ja:
         short: 作者
         long: このスクリプトの作者
     notifications:
+      discussion_defaults:
+        title: 掲示板通知
       save_button: 通知設定を更新
       title: 通知
       save_success: 通知設定を更新しました。
@@ -610,6 +615,7 @@ ja:
     code_rules:
       title: "投稿されるスクリプトに関する %{site_name} のルール"
       monetization_html: ユーザーではなく<em>開発者</em>にとっての利益となる機能(トラッキングや広告、マイニングなど)は認められていますが、それらは %{antifeature_link:<code>@antifeature</code> メタキー} で開示されなければなりません。
+      code_header: コード
     external_scripts:
       title: "外部スクリプトにおける %{site_name} のポリシー"
       content_html: >
@@ -713,6 +719,7 @@ ja:
     new_report_title:
       user: "%{user} を通報"
       comment: "%{user} によるコメントを通報"
+      script: "通報"
     new_report_notes_html: >
         <p>通報前にご確認ください：</p> <ul>
 
@@ -736,13 +743,20 @@ ja:
     reason:
       spam: "スパム"
       abuse: "虐待や増悪に満ちた内容"
+      illegal: "違法な内容"
+      unauthorized_code: "不正コピー"
+      malware: "マルウェア"
+      minified: "ミニファイされたコード"
+      other: "その他"
     explanation_placeholder: "追加の詳細を提供 (任意)"
     create_button: "通報を作成"
     report_user: "ユーザーを通報"
     report_comment: "コメントを通報"
+    report_message: "メッセージを通報"
     result_dismissed: "この通報はモデレーターに拒否されました。"
     result_upheld: "この通報はモデレーターに承認されました。"
     result_pending: "この通報はモデレーターによる審査待ちです。"
+    delete_script: "スクリプトを削除"
   discussions:
     title: 議論
     comment_date: "投稿日: %{date}"
@@ -760,6 +774,7 @@ ja:
     delete_discussion: "削除"
     update_comment_submit: "コメントの更新"
     cancel_update_comment: "キャンセル"
+    quote_comment: "引用"
     question_heading_html: "質問/コメント"
     review_heading_html: "レート：%{rating}"
     update_rating: "%{script_name}の評価を更新する"
@@ -792,6 +807,9 @@ ja:
       all: すべて
       read: 既読
       unread: 未読
+    locale_filter:
+      label: 言語
+      all: 全て
     user_activity:
       title: "最近のコメント"
       no_recent_activity: "このユーザーは最近コメントを投稿していません。"
@@ -830,6 +848,12 @@ ja:
     mark_all_read: すべて既読に
     pending_moderator_review: このスレッドはモデレーターによってレビューされるまで表示できません。
   conversations:
+    new_title: 新規スレッド
+    new_button: 新規スレッド
+    title_html:
+      other: '%{users}との会話'
+    send_message: 送信
+    conversation_list_title: 会話
     recent:
       title: 最近の会話
       more: すべての会話を見る
