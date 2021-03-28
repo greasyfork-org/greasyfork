@@ -209,6 +209,7 @@ sk:
     upload_label: "Alebo nahrať:"
     enable_source_code_editor_label: "Povoliť zvýraznenie syntaxe v editore zdrojového kódu"
     changelog_note: "Čo je nové v tejto verzii?"
+    additional_info_note: "Podrobný popis, návody, atď."
     post_new_script: "Odoslať skript"
     post_updated_script: "Odoslať novú verziu"
     type_1_html: "Verejný používateľský skript - používateľský skript pre všetkých"
@@ -233,12 +234,21 @@ sk:
     code_syncing_from_url_html: "Tento kód skriptu je nastavený na synchronizáciu z: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} dokáže importovať skripty, ktoré sú hotovostné už niekde inde, napríklad na verziovacom systéme (ako GitHub), vlastnom serveri, alebo ďalšej stránke s používateľskými skriptami. Pre zapnutie synchronizácie vášho skriptu, zadajte URL: %{field}"
     sync_type_intro: "Skript bude synchronizovaný:"
-    sync_type_1: "Manuálne - kontrola aktualizácií prebehne len na váš pokyn"
-    sync_type_2: "Automaticky - pravidelná kontrola aktualizácií"
-    sync_type_3: "Webhook - bude aktualizovaný po odoslaní zmien cez push príkaz vo vašom repozitári"
+    sync_type_1:
+      name: Manuálne
+      description: aktualizácie sa skontrolujú, až keď ich spustíte
+    sync_type_2:
+      name: Automaticky
+      description: pravidelne sa bude kontrolovať dostupnosť aktualizácií
+    sync_type_3:
+      name: Webhook
+      description: aktualizuje sa, ak odošlete zmeny do tohto súboru vo svojom repozitári
+    sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "Posledný pokus o synchronizáciu prebehol %{date}, s výsledkom %{error}."
     sync_success_info_html: "Posledná úspešná synchronizácia prebehla %{date}."
     sync_never_succeeded: "Synchronizácia nikdy neprebehla úspešne."
+    sync_additional_info: Voliteľne môžete synchronizovať ďalšie informácie o skripte.
+    add_synced_additional_info: Pridať lokalizované a synchronizované ďalšie informácie
     update_and_sync: "Aktualizovať a synchronizovať teraz"
     update_no_sync: "Aktualizovať"
     turn_off_syncing: "Vypnúť synchronizáciu tohto skriptu"
@@ -638,6 +648,16 @@ sk:
       save_success: Vaše nastavenia upozornení boli aktualizované.
       unsubscribe_all: Odhlásiť zo všetkých upozornení
       unsubscribe_all_success: Odhlásili ste sa zo všetkých upozornení.
+  webhooks:
+    info:
+      title: Nastavenie webhooku
+      intro_html: |
+          <p>Webook prepojený s %{site_name} umožňuje, aby ste sa mohli automaticky aktualizovať %{site_name}na základe toho, čo sa deje vo vašom repozitári. %{site_name} podporuje "push" webooky pre GitHub, GitLab a Bitbucket, a "release" webhooky pre GitHub a GitLab.</p>
+          <p>Ak chcete používať túto funkciu, musíte mať zapnuté skripty %{site_name} nastavte synchronizáciu pomocou adresy URL do svojho repozitára. Nové skripty môžete pridávať pomocou %{import_link: importovanie nových skriptov na %{site_name}}, alebo môžete nastaviť synchronizáciu predtým zverejnených skriptov na karte "Správca" na stránke skriptu.</p>
+          <p>Vaše skripty budú naďalej zobrazovať typ synchronizácie "Automaticky" alebo "Manuálne", kým sa nestane prvý webhook.</p>
+      already_syncing_list: "Tu sú skripty, ktoré ste už nastavili na synchronizáciu s podporovaným poskytovateľom:"
+      synced_item_html: "%{script_name} - %{sync_type} synchrozizuje sa z %{sync_url}"
+      language_note: Pretože používateľské rozhranie GitHub, GitLab a Bitbucket je v angličtine, nižšie uvedené pokyny budú poskytované aj v angličtine.
   help:
     sections:
       usage: Použitie
@@ -890,6 +910,8 @@ sk:
       external_code: "Nepovolený externý kód"
       undisclosed_antifeature: "Utajená funkcia (napr. reklama, sledovanie, ťaženie)"
       other: "Iné"
+    report_intro_html: "%{reported_item} bol nahlásený %{report_date} používateľom %{reporter} z dôvodu %{reason}"
+    report_intro_unauthorized_html: "%{reported_script} bol nahlásený %{report_date}používateľom %{reporter}ako neautorizovaná kópia skriptu %{other_script}."
     non_functional_feedback: "Namiesto toho nahláste nefunkčné skripty cez %{feedback_link:spätná odozva} v skripte."
     unauthorized_code_original_placeholder: "Odkaz na pôvodný kód"
     explanation_placeholder: "Uveďte ďalšie podrobnosti (voliteľné)"
@@ -993,6 +1015,9 @@ sk:
         description: Diskusia o existujúcich používateľských skriptoch a štýloch.
       no-scripts:
         name: Všetky diskusie o skripte
+      moderators:
+        name: Moderátori
+        description: Súkromná diskusia pre moderátorov.
     category_display: "%{name} - %{description}"
     new_title: Nová diskusia
     new_button: Nová diskusia

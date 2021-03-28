@@ -232,12 +232,21 @@ fr:
     code_syncing_from_url_html: "Le code de ce script est configuré pour se synchroniser depuis : %{field}"
     provide_code_syncing_from_url_html: "%{site_name} peut importer des scripts déjà hébergés autre part, par exemple depuis un gestionnaire de version (comme Github), votre propre serveur, ou un autre site d'hébergement de scripts utilisateur. Pour activer la synchronisation de votre script, spécifiez une URL : %{field}"
     sync_type_intro: "Le script va être synchronisé :"
-    sync_type_1: "Manuellement - la vérification de mises à jour sera effectuée uniquement lorsque vous la déclencherez"
-    sync_type_2: "Automatiquement - la vérification de mises à jour sera faite régulièrement"
-    sync_type_3: "Par Webhook - il sera mis à jour quand vous poussez les modifications à ce fichier sur votre dépôt."
+    sync_type_1:
+      name: Manuel
+      description: les mises à jour serons vérifié seulement lorsque vous le déclencherez
+    sync_type_2:
+      name: Automatique
+      description: il sera périodiquement vérifié pour les mises à jour
+    sync_type_3:
+      name: Webhook
+      description: il sera mis à jour lorsque vous enverrez des modifications à ce fichier sur votre référentiel
+    sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "Dernière tentative de synchronisation le %{date}, interrompue par %{error}."
     sync_success_info_html: "La dernière synchronisation réussie a été faite le %{date}."
     sync_never_succeeded: "La synchronisation n'a jamais réussi."
+    sync_additional_info: Vous pouvez éventuellement synchroniser les informations supplémentaires dans votre script.
+    add_synced_additional_info: Ajouter une source, synchronisées des informations supplémentaires
     update_and_sync: "Mettre à jour et synchroniser maintenant"
     update_no_sync: "Mettre à jour"
     turn_off_syncing: "Désactiver la synchronisation de ce script"
@@ -620,6 +629,16 @@ fr:
       save_success: Vos préférences de notification ont été mises à jour.
       unsubscribe_all: Se désabonner de toutes les notifications
       unsubscribe_all_success: Vous avez été désabonné de toutes les notifications.
+  webhooks:
+    info:
+      title: Configurer un webhook
+      intro_html: |
+          <p>Un webhook connecté à %{site_name} vous permet de vous mettre à jour automatiquement %{site_name} en fonction de ce qui se passe dans votre référentiel. %{site_name} prend en charge les webhooks "push" pour GitHub, GitLab et Bitbucket, et les webhooks "release" pour GitHub et GitLab.</p>
+          <p>Pour utiliser cette fonctionnalité, vous devez avoir des scripts sur %{site_name} configurés pour se synchroniser par URL avec votre référentiel. Vous pouvez ajouter de nouveaux scripts en %{import_link: important de nouveaux scripts dans %{site_name}}, ou vous pouvez définir la synchronisation des scripts précédemment publiés en accédant à l'onglet "Admin" depuis la page du script.</p>
+          <p>Vos scripts continueront d'afficher un type de synchronisation "Automatique" ou "Manuel" jusqu'à ce que le premier webhook se produise.</p>
+      already_syncing_list: "Voici les scripts que vous avez déjà configurés pour la synchronisation à partir d'un fournisseur pris en charge:"
+      synced_item_html: "%{script_name} - %{sync_type}  synchronisation depuis %{sync_url}"
+      language_note: Comme GitHub, GitLab et Bitbucket leurs interfaces sont en anglais, les instructions ci-dessous seront également fournies en anglais.
   help:
     sections:
       usage: Utilisation

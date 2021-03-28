@@ -226,12 +226,21 @@ zh-CN:
     code_syncing_from_url_html: "脚本代码已设定为自动同步：%{field}"
     provide_code_syncing_from_url_html: "%{site_name} 可以从其它网站导入脚本，比如代码版本控制系统 (例：GitHub)、您自己的服务器或其它的用户脚本网站。若需启用脚本同步，提供安装链接即可：%{field}"
     sync_type_intro: "该脚本的同步方式："
-    sync_type_1: "手动 - 仅在您手动检查更新时同步"
-    sync_type_2: "自动 - 将定期检查更新并进行同步"
-    sync_type_3: "通过 webhook - 将在您推送更改到存储库中的此文件时更新"
+    sync_type_1:
+      name: 手动
+      description: 仅在您手动检查更新时同步
+    sync_type_2:
+      name: 自动
+      description: 将定期检查更新并进行同步
+    sync_type_3:
+      name: 网络钩子
+      description: 将在您推送更改到存储库中的此文件时更新
+    sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "最后同步于 %{date}，发生了错误：%{error}。"
     sync_success_info_html: "最后一次成功同步于 %{date}。"
     sync_never_succeeded: "脚本从未成功同步。"
+    sync_additional_info: 您可以选择同步脚本的其他信息。
+    add_synced_additional_info: 添加一个本地化的、同步的附加信息
     update_and_sync: "更新设置并立即同步"
     update_no_sync: "更新设置"
     turn_off_syncing: "关闭对此脚本的同步"
@@ -598,6 +607,12 @@ zh-CN:
       save_success: 您的通知设定已更新。
       unsubscribe_all: 取消接收所有通知
       unsubscribe_all_success: 您已取消接收所有通知。
+  webhooks:
+    info:
+      title: 设置网络钩子
+      already_syncing_list: "以下是您已设置从支持的提供方同步的脚本："
+      synced_item_html: "%{script_name} - %{sync_type} 同步，从 %{sync_url}"
+      language_note: 因为 GitHub、GitLab 和 Bitbucket 是英语界面，下列操作说明也以英语提供。
   help:
     sections:
       usage: 使用

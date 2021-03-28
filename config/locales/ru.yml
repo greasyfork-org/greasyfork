@@ -210,6 +210,7 @@ ru:
     upload_label: "Или загрузить:"
     enable_source_code_editor_label: "Включить подсветку синтаксиса в редакторе кода"
     changelog_note: "Что изменилось в этой версии?"
+    additional_info_note: "Более подробное описание, инструкции и т.д."
     post_new_script: "Опубликовать скрипт"
     post_updated_script: "Опубликовать новую версию"
     type_1_html: "Публичный скрипт - все его видят и могут использовать."
@@ -234,12 +235,21 @@ ru:
     code_syncing_from_url_html: "Этот скрипт синхронизируется с %{field}"
     provide_code_syncing_from_url_html: "%{site_name} может импортировать скрипты, размещенные в другом месте, например, в системе управления версиями (вроде GitHub), на вашем собственном сервере, или на другом сайте по распространению скриптов. Для включения синхронизации скрипта укажите URL: %{field}"
     sync_type_intro: "Способ синхронизации:"
-    sync_type_1: "Вручную - проверять обновления только по вашему указанию"
-    sync_type_2: "Автоматически - периодически проверять обновления"
-    sync_type_3: "Webhook - будет обновлен после изменения этого файла в вашем репозитории"
+    sync_type_1:
+      name: Вручную
+      description: проверять обновления только по вашему указанию
+    sync_type_2:
+      name: Автоматически
+      description: периодически проверять обновления
+    sync_type_3:
+      name: Webhook
+      description: обновлять после изменения этого файла в вашем репозитории
+    sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "Последняя попытка синхронизации была %{date}, её результат: %{error}."
     sync_success_info_html: "Последняя успешная синхронизация была %{date}."
     sync_never_succeeded: "Синхронизация ни разу не была успешно завершена."
+    sync_additional_info: Вы также можете синхронизировать дополнительную информацию о вашем скрипте
+    add_synced_additional_info: Добавить синхронизируемую дополнительную информацию на любом языке
     update_and_sync: "Обновить и запустить синхронизацию"
     update_no_sync: "Обновить"
     turn_off_syncing: "Отключить синхронизацию этого скрипта"
@@ -635,6 +645,16 @@ ru:
       save_success: Ваши настройки уведомления были обновлены.
       unsubscribe_all: Отписаться от всех уведомлений
       unsubscribe_all_success: Вы отписаны от всех уведомлений.
+  webhooks:
+    info:
+      title: Настройка webhook
+      intro_html: |
+          <p>Webhook позволяет автоматически обновлять %{site_name} по событиям в вашем репозитории. %{site_name} поддерживает "push" webhooks для GitHub, GitLab и Bitbucket, и "release" webhooks для GitHub и GitLab.</p>
+          <p>Для использования webhook, ваши скрипты на %{site_name} должны быть настроены для синхронизации по URL с вашим репозиторием. Вы можете добавить новые скрипты %{import_link: импортировав их на %{site_name}}, или включив синхронизацию в уже размещённых скриптах на вкладке "Управление" на странице скрипта.</p>
+          <p>Ваши скрипты будут показывать тип синхронизации "Вручную" или "Автоматически" до первого события webhook.</p>
+      already_syncing_list: "Скрипты, настроенные на синхронизацию с поддерживаемым провайдером:"
+      synced_item_html: "%{script_name} - %{sync_type} синхронизируется с %{sync_url}"
+      language_note: Так как интерфейс GitHub, GitLab и Bitbucket на английском, инструкции ниже также на английском.
   help:
     sections:
       usage: Использование
@@ -896,6 +916,8 @@ ru:
       external_code: "Запрещённый исходный код из внешнего источника"
       undisclosed_antifeature: "Сокрытие нежелательных возможностей (слежка, добыча криптовалюты и т.д.)"
       other: "Другое"
+    report_intro_html: "На %{reported_item} поступила жалоба %{report_date} от %{reporter} по причине %{reason}"
+    report_intro_unauthorized_html: "На %{reported_script} поступила жалоба %{report_date} от %{reporter} о том, что скрипт является нелегальной копией %{other_script}."
     non_functional_feedback: "Пожалуйста, сообщите о неработоспособном скрипте %{feedback_link:здесь}."
     unauthorized_code_original_placeholder: "URL оригинального кода"
     explanation_placeholder: "Сообщите дополнительные подробности (не обязательно)"
