@@ -130,19 +130,19 @@ class JsParserAppliesToTest < ActiveSupport::TestCase
   end
 
   test 'simple regexp' do
-    assert_equal [{ text: 'example.com', domain: true, tld_extra: false }], get_applies_to(['/http://www.example.com/.+/'])
+    assert_equal [{ text: 'example.com', domain: true, tld_extra: false }], get_applies_to(['/http://www\.example\.com/.+/'])
   end
 
   test 'regexp with escaped slashes' do
-    assert_equal [{ text: 'example.com', domain: true, tld_extra: false }], get_applies_to(['/http:\/\/www.example.com\/.+/'])
+    assert_equal [{ text: 'example.com', domain: true, tld_extra: false }], get_applies_to(['/http:\/\/www\.example\.com\/.+/'])
   end
 
   test 'regexp with https?' do
-    assert_equal [{ text: 'example.com', domain: true, tld_extra: false }], get_applies_to(['/https?://www.example.com/.+/'])
+    assert_equal [{ text: 'example.com', domain: true, tld_extra: false }], get_applies_to(['/https?://www\.example\.com/.+/'])
   end
 
   test 'regexp with https*' do
-    assert_equal [{ text: 'example.com', domain: true, tld_extra: false }], get_applies_to(['/https*://www.example.com/.+/'])
+    assert_equal [{ text: 'example.com', domain: true, tld_extra: false }], get_applies_to(['/https*://www\.example\.com/.+/'])
   end
 
   test 'non-domain regexp?' do
@@ -150,11 +150,11 @@ class JsParserAppliesToTest < ActiveSupport::TestCase
   end
 
   test 'regexp with start of line' do
-    assert_equal [{ text: 'example.com', domain: true, tld_extra: false }], get_applies_to(['/^http://www.example.com/.+/'])
+    assert_equal [{ text: 'example.com', domain: true, tld_extra: false }], get_applies_to(['/^http://www\.example\.com/.+/'])
   end
 
   test 'regexp with wildcard subdomain of line' do
-    assert_equal [{ text: 'example.com', domain: true, tld_extra: false }], get_applies_to(['/http://.*example.com/.+/'])
+    assert_equal [{ text: 'example.com', domain: true, tld_extra: false }], get_applies_to(['/http://.*example\.com/.+/'])
   end
 
   test 'regexp with escaped periods' do
@@ -162,10 +162,38 @@ class JsParserAppliesToTest < ActiveSupport::TestCase
   end
 
   test 'regexp with optional groups' do
-    assert_equal [{ text: 'example.com', domain: true, tld_extra: false }], get_applies_to(['/http://(www\.)?example.com//'])
+    assert_equal [{ text: 'example.com', domain: true, tld_extra: false }], get_applies_to(['/http://(www\.)?example\.com//'])
   end
 
   test 'regexp non-optional path group' do
-    assert_equal [{ text: '/http:\/\/example.com(\/|\/foo)/', domain: false, tld_extra: false }], get_applies_to(['/http:\/\/example.com(\/|\/foo)/'])
+    assert_equal [{ text: 'example.com', domain: true, tld_extra: false }], get_applies_to(['/http:\/\/example\.com(\/|\/foo)/'])
+  end
+
+  test 'regexp non-optional domain group' do
+    assert_equal [{ text: 'example.com', domain: true, tld_extra: false }, { text: 'sample.com', domain: true, tld_extra: false }], get_applies_to(['/(https?:\/\/)+(example|sample)(\.com)(\/.*)?/'])
+  end
+
+  test 'protocol match' do
+    assert_equal [{ text: '/^(https?|ftp|unmht):.*/', domain: false, tld_extra: false }], get_applies_to(['/^(https?|ftp|unmht):.*/'])
+  end
+
+  test '0-min quantifier' do
+    assert_equal [{ text: 'baidu.com', domain: true, tld_extra: false }], get_applies_to(['/^https?://tieba\\.baidu\\.com/((f\?kz=.*)|(p/.*))/'])
+  end
+
+  test 'look-ahead' do
+    assert_equal [{ text: 'baidu.com', domain: true, tld_extra: false }], get_applies_to(['/^https?\:\/\/www\.baidu\.com\/(?=(s|baidu)\?|$)/'])
+  end
+
+  test 'character set' do
+    assert_equal [{ text: 'baidu.com', domain: true, tld_extra: false }], get_applies_to(['/^https?\:\/\/www\.[bc]aidu\.com\//'])
+  end
+
+  test 'character range' do
+    assert_equal [{ text: 'baidu.com', domain: true, tld_extra: false }], get_applies_to(['/^https?\:\/\/www\.[b-h]aidu\.com\//'])
+  end
+
+  test 'character type in character set' do
+    assert_equal [{ text: 'aaidu.com', domain: true, tld_extra: false }], get_applies_to(['/^https?\:\/\/www\.[\w]aidu\.com\//'])
   end
 end

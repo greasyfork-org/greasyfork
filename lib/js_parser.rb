@@ -1,4 +1,5 @@
 require 'match_uri'
+require 'url_regexp'
 
 class JsParser
   META_START_COMMENT = '// ==UserScript=='.freeze
@@ -115,40 +116,18 @@ class JsParser
       patterns.each do |p|
         original_pattern = p
 
+        pre_wildcards = []
         # regexp - starts and ends with /
         if p.match(%r{^/.*/$}).present?
-
-          # unescape slashes, then grab between the first slash (start of regexp) and the fourth (after domain)
-          slash_parts = p.gsub(%r{\\/}, '/').split('/')
-
-          if slash_parts.length < 4
-            # not a full url regexp
-            pre_wildcard = nil
-          else
-            pre_wildcard = slash_parts[1..3].join('/')
-
-            # get rid of escape sequences
-            pre_wildcard.gsub!(/\\(.)/, '\1')
-
-            # start of string
-            pre_wildcard.gsub!(/^\^/, '')
-
-            # https?:
-            pre_wildcard.gsub!(/^https\?:/, 'http:')
-
-            # https*:
-            pre_wildcard.gsub!(/^https\*:/, 'http:')
-
-            # wildcarded subdomain ://.*
-            pre_wildcard.gsub!(%r{://\.\*}, '://')
-
-            # remove optional groups
-            pre_wildcard.gsub!(/\([^)]+\)[?*]/, '')
-
-            # if there's weird characters left, it's no good
-            pre_wildcard = nil if /[\[\]*{}\^+?()]/.match(pre_wildcard).present?
+          begin
+            Timeout.timeout(0.1) do
+              pre_wildcards = UrlRegexp.expand(p[1..-2])
+            end
+          rescue Timeout::Error
+            Rails.logger.error("Timeout parsing regexp #{p}")
+          rescue StandardError => e
+            Rails.logger.error("Error parsing regexp #{p}: #{e}")
           end
-
         else
 
           # senseless wildcard before protocol
@@ -180,13 +159,13 @@ class JsParser
           if !m.nil? && m[2].match(/\A([0-9]+\.){2,}\z/).nil?
             p = "#{m[1]}tld#{m[3]}"
             # grab up to the first *
-            pre_wildcard = p.split('*').first
+            pre_wildcards = [p.split('*').first]
           else
-            pre_wildcard = p
+            pre_wildcards = [p]
           end
         end
 
-        begin
+        pre_wildcards.each do |pre_wildcard|
           uri = URI(pre_wildcard)
           if uri.host.nil?
             applies_to_names << { text: original_pattern, domain: false, tld_extra: false }
