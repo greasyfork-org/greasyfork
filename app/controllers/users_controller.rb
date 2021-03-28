@@ -97,6 +97,8 @@ class UsersController < ApplicationController
           @more_conversations = conversation_scope.count > @recent_conversations.count
         end
 
+        @show_profile = !@user.banned? && UserRestrictionService.new(@user).allow_posting_profile?
+
         render layout: 'base'
       end
       format.json { render json: @user.as_json(include: @same_user ? :scripts : :all_listable_scripts) }

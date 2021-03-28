@@ -198,28 +198,12 @@ class User < ApplicationRecord
     end
   end
 
-  def posting_permission
-    # Assume identity providers are good at stopping bots.
-    return :allowed if identities.any?
-    return :allowed if email.blank?
-
-    sed = SpammyEmailDomain.find_by(domain: email.split('@').last)
-    if sed
-      return :blocked if sed.blocked_script_posting?
-      return :needs_confirmation if in_confirmation_period?
-    end
-
-    return :needs_confirmation unless confirmed?
-
-    :allowed
+  def confirmed_or_identidied?
+    confirmed? || identities.any?
   end
 
   def in_confirmation_period?
     created_at > 5.minutes.ago
-  end
-
-  def allow_posting_profile?
-    posting_permission == :allowed && (scripts.not_deleted.any? || comments.any?)
   end
 
   def update_trusted_report!

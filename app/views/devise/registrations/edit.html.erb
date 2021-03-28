@@ -25,7 +25,7 @@
     <div><%= t('.currently_waiting_confirmation_for_email', email: resource.unconfirmed_email) %></div>
   <% end %>
 
-  <% if current_user.allow_posting_profile? %>
+  <% if UserRestrictionService.new(current_user).allow_posting_profile? %>
     <div class="form-control">
       <%= f.label :profile %>
       <span class="label-note">

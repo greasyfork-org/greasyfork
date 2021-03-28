@@ -6,7 +6,7 @@
 
   <h2><%= render_user(@user, @user.id, skip_link: true) %></h2>
 
-  <% if @user.profile.present? && (current_user&.moderator? || (!@user.banned? && @user.allow_posting_profile?)) %>
+  <% if @user.profile.present? && (current_user&.moderator? || @show_profile) %>
     <section id="user-profile" class="user-content">
       <%= format_user_text(@user.profile, @user.profile_markup, mentions: @user.mentions) %>
     </section>
@@ -162,7 +162,7 @@
   </section>
 <% end %>
 
-<% if @same_user || (@user.script_sets.any? && (current_user&.moderator? || (!@user.banned? && @user.allow_posting_profile?))) %>
+<% if @same_user || (@user.script_sets.any? && (current_user&.moderator? || @show_profile)) %>
   <section id="user-script-sets-section">
     <header>
       <h3>Script Sets</h3>
