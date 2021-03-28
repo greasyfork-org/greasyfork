@@ -1,6 +1,12 @@
 <p>
-  <%= t('scripts.must_confirm_email') %>
-  <%= form_tag(controller: 'users', action: 'send_confirmation_email', method: :post) do %>
-    <input type="submit" value="<%= t('scripts.must_confirm_email_button', email: current_user.email) %>">
-  <% end %>
+  <%= t('scripts.must_confirm') %>
 </p>
+
+<%= render partial: 'users/add_external_sign_in', locals: { return_to: request.path } %>
+
+<%= form_tag(controller: 'users', action: 'send_confirmation_email', method: :post) do %>
+  <p>
+    <input type="submit" value="<%= t('scripts.must_confirm_email_button', email: current_user.email) %>">
+  </p>
+<% end %>
+

@@ -80,16 +80,4 @@
   </ul>
 <% end %>
 
-<% available_providers = (Rails.application.config.available_auths.keys - current_user.identity_providers_used) %>
-<% if !available_providers.empty? %>
-  <p><%= t('users.add_external_sign_in_info') %></p>
-  <% available_providers.each do |provider| %>
-    <span class="external-login-container">
-      <%= form_with(url: "/auth/#{provider}") do %>
-        <button class="external-login <%= provider %>-login">
-          <%= t('users.sign_in_with', provider: Identity.pretty_provider(provider)) %>
-        </button>
-      <% end %>
-    </span>
-  <% end %>
-<% end %>
+<%= render partial: 'add_external_sign_in' %>

@@ -91,7 +91,7 @@ class CreateTest < ApplicationSystemTestCase
     user.update(email: 'ich@derspamhaus.de')
     login_as(user, scope: :user)
     visit new_script_version_url
-    assert_content 'You must confirm your email before posting scripts.'
+    assert_content 'You must confirm your account before you can post scripts.'
   end
 
   test 'suspicious email domain, not confirmed' do
@@ -100,7 +100,7 @@ class CreateTest < ApplicationSystemTestCase
     user.update(email: 'salomon@fishy.hut', confirmed_at: nil)
     login_as(user, scope: :user)
     visit new_script_version_url
-    assert_content 'You must confirm your email before posting scripts.'
+    assert_content 'You must confirm your account before you can post scripts.'
   end
 
   test 'confirmed, disposable email' do
