@@ -6,6 +6,6 @@ class Identity < ApplicationRecord
   end
 
   def self.pretty_provider(provider)
-    Rails.application.config.available_auths[provider]
+    Rails.application.config.available_auths[provider] || "#{provider} (non-functional)"
   end
 end

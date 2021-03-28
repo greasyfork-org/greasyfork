@@ -128,19 +128,33 @@ class UsersController < ApplicationController
   def edit_sign_in; end
 
   def update_password
-    current_user.password = params[:password]
-    current_user.password_confirmation = params[:password_confirmation]
-    # prevent empty and invalid passwords
-    if !current_user.valid? || params[:password].nil? || params[:password].empty?
+    if current_user.encrypted_password && !current_user.valid_password?(params[:password])
+      current_user.errors.add(:current_password, :invalid)
       current_user.reload
       render :edit_sign_in
       return
     end
-    current_user.save!
+
+    if params[:new_password].blank?
+      current_user.errors.add(:new_password, :invalid)
+      current_user.reload
+      render :edit_sign_in
+      return
+    end
+
+    current_user.password = params[:new_password]
+    current_user.password_confirmation = params[:new_password_confirmation]
+
+    unless current_user.save
+      current_user.reload
+      render :edit_sign_in
+      return
+    end
+
     # password changed, have to sign in again
     bypass_sign_in(current_user)
     flash[:notice] = t('users.password_updated')
-    redirect_to user_edit_sign_in_path
+    redirect_to user_path(current_user)
   end
 
   def remove_password

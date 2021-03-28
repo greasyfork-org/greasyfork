@@ -16,13 +16,17 @@
 <% end %>
 
 <%= form_tag(user_update_password_path, method: :put) do |f| %>
+  <% if current_user.encrypted_password.present? %>
+    <div><%= label_tag t('activerecord.attributes.user.current_password') %><br>
+    <%= password_field_tag :password, nil, autocomplete: 'current-password', required: true %></div>
+  <% end %>
 
-  <div><%= label_tag t('activerecord.attributes.user.password') %><br>
-  <%= password_field_tag :password, nil, autocomplete: 'off', required: true %></div>
+  <div><%= label_tag t('activerecord.attributes.user.new_password') %><br>
+  <%= password_field_tag :new_password, nil, autocomplete: 'new-password', required: true, minlength: 8 %></div>
 
   <% # this is provided in an updated devise-i18n-views %>
-  <div><%= label_tag t('activerecord.attributes.user.password_confirmation', default: 'Password confirmation') %><br>
-  <%= password_field_tag :password_confirmation, nil, required: true %></div>
+  <div><%= label_tag t('activerecord.attributes.user.new_password_confirmation', default: 'Password confirmation') %><br>
+  <%= password_field_tag :new_password_confirmation, nil, autocomplete: 'new-password', required: true, minlength: 8 %></div>
 
   <% if current_user.encrypted_password.nil? %>
     <div><%= submit_tag t('users.set_password') %></div>
