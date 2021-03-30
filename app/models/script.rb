@@ -74,6 +74,7 @@ class Script < ApplicationRecord
   validates :name, presence: true, if: ->(s) { s.library? }
   validates :description, presence: { message: :script_missing_description, unless: proc { |r| r.deleted? || r.library? } }
   validates :description, presence: { unless: proc { |r| r.deleted? || !r.library? } }
+  validates :description, exclusion: { in: ['try to take over the world!'], message: :invalid }, on: :create
   validates :language, presence: true, inclusion: %w[js css]
 
   validate do |script|
