@@ -291,6 +291,7 @@ zh-CN:
     search_placeholder: "搜索脚本"
     updated: "脚本已更新。"
     preview_additional_info: "预览"
+    must_confirm: "你必须在确定你的账号后才能发布脚本。你可以通过下述两种方法确认账号：绑定第三方登录或点击确认邮件里的链接。"
     must_confirm_email_button: "发送确认链接至 %{email}"
     authors_heading: "作者"
     error_unauthorized_copy: "此代码似乎未经授权地复制了 %{script}。发布脚本时请参考 %{site_name} 的 %{rules_link:rules}。"
@@ -609,6 +610,11 @@ zh-CN:
   webhooks:
     info:
       title: 设置网络钩子
+      intro_html: |+
+          <p>与 %{site_name} 绑定的 Webhook （网页通知事件）可以基于代码仓库的更新而自动更新 %{site_name} 上对应的脚本。%{site_name} 支持 GitHub、GitLab 与 Bitbucket 的 "push（推送）" 事件和 GitHub 与 GitLab 的 "release（发布）" 事件。</p>
+          <p>要使用该功能，你必须在 %{site_name} 设定通过地址同步脚本的功能。你可以通过 %{import_link: 导入脚本到 %{site_name}} 来添加，或从已提交脚本的“管理”页面来设定同步。</p>
+          <p>你的脚本在收到第一次自动推送的事件之前，脚本的同步类型还是会显示为“自动”或“手动”。</p>
+
       already_syncing_list: "以下是您已设置从支持的提供方同步的脚本："
       synced_item_html: "%{script_name} - %{sync_type} 同步，从 %{sync_url}"
       language_note: 因为 GitHub、GitLab 和 Bitbucket 是英语界面，下列操作说明也以英语提供。
@@ -973,6 +979,9 @@ zh-CN:
         show_sensitive: "成人内容"
         preferred_markup: "首选标记语言"
         filter_locale_default: "语系过滤"
+        current_password: "当前密码"
+        new_password: "新的密码"
+        new_password_confirmation: "确认新密码"
       script:
         name: "名称"
         description: "描述"

@@ -232,6 +232,14 @@ it:
     code_syncing_from_url_html: "Il codice dello script è impostato per sincronizzarsi da: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} può importare script che sono già hostati da altre parti, per esempio in un sistema di controllo versioni (come GitHub), il tuo server, o un altro sito di script hosting. Per abilitare la sincronizzazione per il tuo script, fornisci un URL: %{field}"
     sync_type_intro: "Lo script verrà sincronizzato: "
+    sync_type_1:
+      name: Manuale
+      description: Verranno controllati gli aggiornamenti solo quando lo richiedi.
+    sync_type_2:
+      name: Automatico
+      description: Verranno controllati periodicamente gli aggiornamenti
+    sync_type_3:
+      name: Webhook
     sync_failed_info_html: "L'ultimo tentativo di sincronizzazione è stato in data  %{date}, con il seguente risultato: %{error}."
     sync_success_info_html: "Ultima sincronizzazione avvenuta il %{date}."
     sync_never_succeeded: "Sincronizzazione mai totalmente completata "
