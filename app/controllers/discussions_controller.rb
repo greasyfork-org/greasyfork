@@ -201,12 +201,12 @@ class DiscussionsController < ApplicationController
     case params[:category]
     when DiscussionCategory::NO_SCRIPTS_KEY
       category = params[:category]
-      discussions = discussions.where(discussion_category: category_scope.non_script)
+      discussions = discussions.where(discussion_category_id: category_scope.non_script.pluck(:id))
     when nil
-      discussions = discussions.where(discussion_category: category_scope)
+      discussions = discussions.where(discussion_category_id: category_scope.pluck(:id))
     else
       category = params[:category]
-      discussions = discussions.where(discussion_category: category_scope.find_by!(category_key: category))
+      discussions = discussions.where(discussion_category_id: category_scope.find_by!(category_key: category).id)
     end
 
     if current_user
