@@ -72,7 +72,12 @@ module ScriptChecking
           return url
         end
 
-        return resolve(res['location'], remaining_tries: remaining_tries - 1) if res['location'].present?
+        begin
+          return resolve(res['location'], remaining_tries: remaining_tries - 1) if res['location'].present?
+        rescue ArgumentError
+          # An invalid URI?
+          return url
+        end
 
         meta_refresh_url = find_meta_refresh(res) if res['content-type'] == 'text/html'
 
