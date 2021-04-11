@@ -63,11 +63,19 @@ cs:
     delete_update_behaviour_1: "Ponechat beze změny."
     delete_update_behaviour_2: "Aktualizovat na prázdný skript. Tato volba je vhodná v případě, že skript měl negativní efekt při prohlížení předmětných stránek."
     delete_permanently_heading: "Trvalé smazání"
+    delete_permanently_explanation_html: >-
+        <p>Trvalé smazání skriptu vede k jeho odstranění a smazání souvisejících záznamů,
+        s výjimkou diskuze na fóru a logu moderátorských akcí.</p><p>Váš skript bude
+        trvale smazán 7 dní po vašem požadavku. Během této doby můžete smazání zrušit.
+        Pokud tak neučiníte, nikdo, ani moderátoři, ho nebudou schopni obnovit.</p>
     delete_permanently_confirm: "Opravdu chcete trvale smazat váš skript? "
     delete_permanently_submit: "Vyžádat trvalé smazání"
     delete_permanently_immediate_submit: "Trvale smazat"
+    delete_permanently_notice: "Požadavek na trvalé smazání byl zaznamenán. Váš skript bude trvale odstraněn za 7 dní."
+    delete_permanently_already_requested: "Vámi požadované trvalé smazání nastane %{datetime}."
     delete_permanently_notice_immediate: "Skript byl trvale smazán."
     cancel_delete_permanently_submit: "Stornovat požadavek na trvalé smazání"
+    cancel_delete_permanently_notice: "Váš požadavek na trvalé smazání byl zrušen. Váš skript stále není viditelný pro ostatní."
     delete_permanently_rejected_locked: "Tento skript je uzamčený a nelze ho trvale smazat"
     admin_page: "Správce"
     admin:
@@ -79,9 +87,13 @@ cs:
       sync_heading: "Synchronizace zdroje"
       locale_heading: "Výchozí jazyk"
       locale_example_html: "Jazyk tohoto textu <i>%{text}</i>"
+      locale_multiple_note: "Pro skript může být definováno %{meta_keys_link:více jazykových mutací}."
       update_locale: "Aktualizovat jazyk"
+      no_moderator_logs: "Na tomto skriptu moderátoři neprovedli žádnou akci."
       compare_title: "Porovnat s jiným skriptem"
+      compare_to: "Skript na %{site_name} k porovnání s (URL)"
       compare_button: "Porovnat"
+      compare_must_be_local_url: "Porovnávací skript musí být URL na %{site_name}."
     history_title: "%{script_name} - Historie verzí"
     history_only_code_changes_info: "Seznam verzí skriptu, při kterých došlo ke změnám v kódu."
     history_all_changes_link: "Zobrazit všechny verze."
@@ -90,9 +102,19 @@ cs:
     diff_button: "Porovnat vybrané verze"
     code_title: "%{script_name} - Zdrojový kód"
     feedback_title: "%{script_name} - Zpětná vazba"
+    feedback_has_reports: "Bylo nahlášeno, že tento skript porušuje pravidla %{site_name}."
     feedback_no_discussions_html: "Dosud žádná diskuse. %{start_first_discussion_link}"
+    feedback_no_discussions_on_page_form: "Dosud žádná diskuse."
+    feedback_report_instead: "Pokud se domníváte, že skript porušuje %{rules_link:pravidla %{site_name}}, prosíme %{report_link:nahlašte jej k odstranění}."
     feedback_start_first_discussion_link: "Zahájit první diskusi o skriptu."
+    feedback_discussion_or_report: "%{new_discussion_link:Začněte diskusi k tomuto skriptu} nebo ho %{report_link:nahlašte k odstranění}."
     feedback_favoriters_heading: "Oblíbené"
+    feedback_favoriters_user_list_html: "Tento skript označili jako oblíbený %{user_list}."
+    feedback_favoriters_lots:
+      one: "Tento skript označil jako oblíbený %{user_count} uživatel. %{full_link:Prohlédněte si celý seznam.}"
+      few: "Tento skript označili jako oblíbený %{user_count} uživatelé. %{full_link:Prohlédněte si celý seznam.}"
+      many: "Tento skript označilo jako oblíbený %{user_count} uživatelů. %{full_link:Prohlédněte si celý seznam.}"
+      other: "Tento skript označilo jako oblíbený %{user_count} uživatelů. %{full_link:Prohlédněte si celý seznam.}"
     feedback_no_favoriters: "Skript nebyl nikým označen jako oblíbený."
     feedback_sign_in_to_favorite: "Pro označení jako oblíbený se musíte přihlásit."
     stats_title: "%{script_name} - Statistiky"
@@ -105,7 +127,31 @@ cs:
     stats_raw_data_header: "Data"
     stats_download_raw_data_html: "Uložit data jako: %{links}"
     stats_no_data: "neuvedeno"
+    stats_filters: "Filtrovat: %{filter_options}"
+    stats_filter_options:
+      month: Posledních 30 dní
+      year: Posledních 365 dní
+      all: Celkem
     derivatives_title: "%{script_name} - Odvozené skripty"
+    derivatives_intro: "Tyto skripty mohou být založeny na vašem (nebo váš může být založen na nich). Pokud zaznamenáte neautorizované použití vašeho kódu, nahlašte ho na tabu zpětné vazby daného skriptu."
+    derivatives_script_html: "%{script} od %{user}, licence: %{license} %{diff_link:[Rozdíl]}"
+    derivatives_exact_copies_heading: "Přesné kopie"
+    derivatives_exact_copies_list_intro: "Následující skripty mají přesně stejný kód, jako váš skript:"
+    derivatives_exact_copies_item_html: "%{script_link} od %{author_links} - verze: %{version_list}"
+    derivatives_exact_copes_none: "Na %{site_name} nejsou žádné další skripty, které mají přesně stejný kód jako tento skript."
+    derivatives_similar_heading: "Podobné skripty"
+    derivatives_similar_info: "Pravidelně kontrolujeme nejnovější verze všech ostatních skriptů abychom nalezli ty, které jsou vašim skriptům nejpodobnější. Kontrolu také provádíme vždy když zveřejníte aktualizaci vašeho skriptu, nebo na Váš požadavek."
+    similarity_score:
+      high: Velmi podobné
+      medium: Středně podobné
+      low: Trochu podobné
+      none: Nepodobné
+    derivatives_similar_none: "Žádné skripty nejsou podobné vašemu."
+    derivatives_similar_item: "%{score}: %{diff_link:[Rozdíl]} %{script}"
+    derivatives_similar_last_check_html: "Poslední kontrola na podobnost s vaším skriptem proběhla %{date}."
+    derivatives_similar_last_check_soon: "Brzy provedeme kontrolu na podobnost s vaším skriptem."
+    derivatives_similar_last_check_again_soon_html: "Poslední kontrola na podobnost s vaším skriptem proběhla %{date}. Další kontrolu provedeme brzy."
+    derivatives_similar_check_now: "Zkontrolovat nyní."
     listing_title_all_sites: "Uživatelské skripty pro všechny stránky"
     listing_description_all_sites: "Uživatelské skripty, které přidávají funkcionality a řeší chyby na všech stránkách"
     listing_title_for_site: "Uživatelské skripty pro %{site}"

@@ -231,9 +231,21 @@ pt-BR:
     code_syncing_from_url_html: "O código de script foi configurado para sincronia de: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} pode importar scripts que já foram hospedados em outro lugar, p. ex. num sistema de controle de versão (como GitHub), seu próprio servidor, ou outro site de hospedagem de scripts de usuário. Para habilitar sincronização com seu scrpit, digite a URL: %{field}"
     sync_type_intro: "O script será sincronizado:"
+    sync_type_1:
+      name: Manual
+      description: Será verificado se há atualizações apenas quando você acioná-lo
+    sync_type_2:
+      name: Automático
+      description: será verificado periodicamente por atualizações
+    sync_type_3:
+      name: Webhook
+      description: ele será atualizado quando você enviar alterações para este arquivo em seu repositório
+    sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "Última tentativa de sincronia foi %{date}, que resultou em %{error}."
     sync_success_info_html: "Úlitma sincronia com sucesso foi %{date}."
     sync_never_succeeded: "Sincronia nunca completada com sucesso."
+    sync_additional_info: Você pode, opcionalmente, sincronizar as informações adicionais dos seus scripts.
+    add_synced_additional_info: Adicione uma informação adicional localizada e sincronizada
     update_and_sync: "Atualizar e sincronizar agora"
     update_no_sync: "Atualizar"
     turn_off_syncing: "Desativar sincronia deste script"
@@ -284,6 +296,7 @@ pt-BR:
     search_placeholder: "Pesquisar scripts"
     updated: "Script atualizado."
     preview_additional_info: "Previsualizar"
+    must_confirm: "Você deve ativar sua conta antes de postar scripts. Você tem duas opções de ativação  - realizar um login externo ou confirmando o seu e-mail."
     must_confirm_email_button: "Enviar link de confirmação para  %{email}"
     authors_heading: "Autores"
     error_unauthorized_copy: "Este código parece ser um cópia não autorizada de %{script}. Por favor cheque as %{rules_link:regras} do  %{site_name} ao postar scripts."
@@ -613,6 +626,16 @@ pt-BR:
       save_success: Suas preferências de notificação foram atualizadas
       unsubscribe_all: Desinscrever-se de todas as notificações
       unsubscribe_all_success: Você foi desinscrito de todas as notificações.
+  webhooks:
+    info:
+      title: Configurando um webhook
+      intro_html: |
+          <p>Um webhook conectado com %{site_name} faz com que você possa atualizar automaticamente%{site_name} com base no que acontece em seu repositório. %{site_name} suporta webhooks "push" para GitHub, GitLab e Bitbucket, e webhooks "release" para GitHub e GitLab.</p>
+          <p>Para usar este recurso, você deve ter scripts em %{site_name} configurado para sincronizar por URL com o seu repositório. Você pode adicionar novos scripts %{import_link: importando novos scripts para %{site_name}}, ou você pode definir scripts postados anteriormente para sincronizar acessando a guia "Admin" da página do script.</p>
+          <p>Seus scripts continuarão a mostrar um tipo de sincronização "Automática" ou "Manual" até que o primeiro webhook aconteça.</p>
+      already_syncing_list: "Aqui estão os scripts que você já configurou para sincronizar com um provedor compatível:"
+      synced_item_html: "%{script_name} - %{sync_type} sincronizando de %{sync_url}"
+      language_note: Como GitHub, GitLab e a IU do Bitbucket estão em inglês, as instruções abaixo também serão fornecidas em inglês.
   help:
     sections:
       usage: Uso
@@ -1040,6 +1063,9 @@ pt-BR:
         show_sensitive: "Conteúdo adulto"
         preferred_markup: "Marcação preferencial"
         filter_locale_default: "Filtrar idioma"
+        current_password: "Senha atual"
+        new_password: "Nova Senha"
+        new_password_confirmation: "Confirme a nova senha"
       script:
         name: "Nome"
         description: "Descrição"
