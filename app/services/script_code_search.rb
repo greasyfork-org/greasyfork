@@ -1,10 +1,9 @@
 require 'open3'
 
 class ScriptCodeSearch
-  BASE_PATH = Rails.root.join('tmp', 'gfcodesearch').to_s
+  BASE_PATH = Rails.root.join('tmp/gfcodesearch').to_s
 
   class << self
-
     def index(script_id)
       code = Script.find_by(id: script_id)&.current_code
       return unindex(script_id) unless code
@@ -33,7 +32,7 @@ class ScriptCodeSearch
 
     def search(text)
       content, _stderr, _status = Open3.capture3('grep', '-R', '-F', '-l', text, BASE_PATH)
-      content.split("\n").map{|line| line.delete_prefix(BASE_PATH + '/')}.map(&:to_i)
+      content.split("\n").map { |line| line.delete_prefix("#{BASE_PATH}/") }.map(&:to_i)
     end
 
     private
