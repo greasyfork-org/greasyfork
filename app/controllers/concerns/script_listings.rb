@@ -227,17 +227,7 @@ module ScriptListings
       return
     end
 
-    if params[:fastermaybe] == '1'
-      script_ids = ScriptCodeSearch.search(params[:c])
-    else
-      # get latest version for each script
-      script_version_ids = Rails.cache.fetch('latest_script_version_ids', expires_in: 5.minutes) { Script.connection.select_values('SELECT MAX(id) FROM script_versions GROUP BY script_id') }
-
-      # check the code for the search text
-      # using the escape character doesn't seem to work, yet it works from the command line. so choose something unlikely to be used as our escape character
-      script_ids = Script.connection.select_values("SELECT DISTINCT script_id FROM script_versions JOIN script_codes ON rewritten_script_code_id = script_codes.id WHERE script_versions.id IN (#{script_version_ids.join(',')}) AND code LIKE '%#{Script.connection.quote_string(params[:c].gsub('É', 'ÉÉ').gsub('%', 'É%').gsub('_', 'É_'))}%' ESCAPE 'É'")
-    end
-
+    script_ids = ScriptCodeSearch.search(params[:c])
     @scripts = Script.order(self.class.get_sort(params)).includes(:users, :script_type, :script_delete_type, :localized_attributes).where(id: script_ids)
     include_deleted = current_user&.moderator? && params[:include_deleted] == '1'
     @scripts = @scripts.listable(script_subset) unless include_deleted
