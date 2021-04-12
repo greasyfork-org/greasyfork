@@ -15,6 +15,6 @@ class DependenciesTest < ActiveSupport::TestCase
   end
 
   def vulnerability_string(vulnerabilities)
-    vulnerabilities.map { |r| r.is_a?(Bundler::Audit::Scanner::UnpatchedGem) ? "#{r.gem}, #{r.advisory}" : r.to_s }.join('; ')
+    vulnerabilities.map { |r| r.is_a?(Bundler::Audit::Results::UnpatchedGem) ? "#{r.gem}, #{r.advisory}" : r.to_s }.join('; ')
   end
 end
