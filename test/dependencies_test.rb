@@ -5,8 +5,9 @@ class DependenciesTest < ActiveSupport::TestCase
   IGNORED_VULNERABILITIES = ['CVE-2015-9284'].freeze
 
   test 'for gem vulnerabilities' do
-    Bundler::Audit::Database.update!(quiet: true)
-    vulnerabilities = Bundler::Audit::Scanner.new.scan.to_a
+    scanner = Bundler::Audit::Scanner.new
+    scanner.database.update!(quiet: true)
+    vulnerabilities = scanner.scan.to_a
 
     ignored_vulnerabilities, reported_vulnerabilities = vulnerabilities.partition { |r| r.respond_to?(:advisory) && IGNORED_VULNERABILITIES.include?(r.advisory.id) }
     skip "Ignored advisories: #{vulnerability_string(ignored_vulnerabilities)}" if ignored_vulnerabilities.any? && reported_vulnerabilities.none?
