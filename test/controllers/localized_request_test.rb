@@ -13,7 +13,7 @@ class LocalizedRequestTest < ActionController::TestCase
   end
 
   test 'parse accept-language no header' do
-    assert_equal [], parse_accept_language(nil)
+    assert_empty parse_accept_language(nil)
   end
 
   test 'detect locale' do

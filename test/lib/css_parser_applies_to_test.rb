@@ -9,7 +9,7 @@ class CssParserAppliesToTest < ActiveSupport::TestCase
     css = <<~CSS
       a { color: red; }
     CSS
-    assert_equal [], get_applies_tos(css)
+    assert_empty get_applies_tos(css)
   end
 
   test 'applies to single domain' do

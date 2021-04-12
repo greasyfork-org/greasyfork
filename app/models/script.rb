@@ -510,7 +510,7 @@ class Script < ApplicationRecord
                      .last(CONSECUTIVE_BAD_RATINGS_COUNT)
                      .reject(&:author_posted?)
                      .map(&:rating)
-    recent_ratings.count == CONSECUTIVE_BAD_RATINGS_COUNT && recent_ratings.all? { |rr| rr == Discussion::RATING_BAD }
+    recent_ratings.count == CONSECUTIVE_BAD_RATINGS_COUNT && recent_ratings.all?(Discussion::RATING_BAD)
   end
 
   def reset_consecutive_bad_ratings!
