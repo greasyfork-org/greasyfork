@@ -86,11 +86,11 @@
         <% end %>
         <%= link_to 'Users with the same IP', users_path(same_ip: @user.id) %>
       </p>
-      <% report_count = @user.reports_as_reporter.count %>
-      <p>This user has filed <%= report_count %> <%= 'report'.pluralize(report_count) %>.</p>
-      <% if report_count > 0 %>
+      <% reports = @user.reports_as_reporter.select{ |r| r.item.present? } %>
+      <p>This user has filed <%= reports.count %> <%= 'report'.pluralize(reports.count) %>.</p>
+      <% if reports.any? %>
         <ul>
-          <% @user.reports_as_reporter.each do |report| %>
+          <% reports.each do |report| %>
             <li>
               <%= render partial: 'reports/report', locals: { report: report } %>
             </li>
