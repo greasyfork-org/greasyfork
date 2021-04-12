@@ -240,9 +240,13 @@ it:
       description: Verranno controllati periodicamente gli aggiornamenti
     sync_type_3:
       name: Webhook
+      description: sarà aggiornato quando invii delle modifiche a questo file sulla tua repository
+    sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "L'ultimo tentativo di sincronizzazione è stato in data  %{date}, con il seguente risultato: %{error}."
     sync_success_info_html: "Ultima sincronizzazione avvenuta il %{date}."
     sync_never_succeeded: "Sincronizzazione mai totalmente completata "
+    sync_additional_info: Puoi scegliere di sincronizzare le informazioni aggiuntive del tuo script.
+    add_synced_additional_info: Aggiungi una informazione aggiuntiva localizzata, sincronizzata.
     update_and_sync: "Aggiorna e sincronizza ora"
     update_no_sync: "Aggiorna"
     turn_off_syncing: "Disattiva sincronizzazione di questo script"
@@ -293,6 +297,7 @@ it:
     search_placeholder: "Ricerca script"
     updated: "Script aggiornato."
     preview_additional_info: "Anteprima"
+    must_confirm: "Devi confermare il tuo account prima di poter pubblicare degli scripts. Hai due opzioni di conferma - aggiungi un accreditamento esterno o invia un'email di conferma."
     must_confirm_email_button: "Invia il link di conferma a %{email}"
     authors_heading: "Autori"
     error_unauthorized_copy: "Questo codice sembra essere una copia non autorizzata di%{script}. Fai riferimento a %{site_name} %{rules_link:regole} sulla pubblicazione degli script."
@@ -627,6 +632,16 @@ it:
       save_success: Le preferenze per le tue notifiche sono state aggiornate.
       unsubscribe_all: Disiscriviti da tutte le notifiche
       unsubscribe_all_success: Ti sei disiscritto da tutte le notifiche.
+  webhooks:
+    info:
+      title: Impostare un webhook
+      intro_html: |
+          <p>Un webhook connesso con %{site_name} fa sì che tu possa automaticamente aggiornare %{site_name} in base a ciò che avviene sulla tua repository. %{site_name} supporta webhooks "push" per GitHub e GitLab.</p>
+          <p>Per usare questa funzione, devi avere i tuoi script su %{site_name} impostati per sincronizzarsi tramite URL alla tua repository. Puoi aggiungere nuovi scripts %{import_link:importandoli in %{site_name}}, o puoi impostare degli script precedentemente pubblicati per sincronizzarsi accedendo alla scheda "Amministratore" dalla pagina dello script.</p>
+          <p>I tuoi scripts continueranno a mostrare un tipo di sincronizzazione "Automatico" o "Manuale" finché non avviene il primo webhook.
+      already_syncing_list: "Qui ci sono gli scripts che hai già impostato per sincronizzarsi da un fornitore supportato:"
+      synced_item_html: "%{script_name} - %{sync_type} sincronizza da %{sync_url}"
+      language_note: Poiché le interfacce utente di GitHub, GitLab e Bitbucket sono in inglese, le istruzioni qui sotto saranno fornite anch'esse in inglese.
   help:
     sections:
       usage: Utilizzo
@@ -1057,6 +1072,9 @@ it:
         show_sensitive: "Contenuto per adulti"
         preferred_markup: "Markup preferito"
         filter_locale_default: "Filtra per lingua"
+        current_password: "Password attuale"
+        new_password: "Nuova password"
+        new_password_confirmation: "Conferma nuova password"
       script:
         name: "Nome"
         description: "Descrizione"
