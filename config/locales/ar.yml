@@ -1,29 +1,50 @@
 ar:
   layouts:
     application:
+      # link to the list of scripts
       script_list: "البرامج النصية"
+      # link to the forum
       forum: "المنتدى"
+      # link to the help docs
       help: "المساعدة"
+      # link to sign in
       sign_in: "تسجيل دخول"
+      # label for nav submenu
       submenu: "أكثر"
+      # link to advanced search
       advanced_search: "بحث متقدم"
+      # link to user list
       user_list: "قائمة المستخدمين"
+      # link to libraries
       libraries: "المكتبات"
+      # link to moderator log
       moderator_log: "سجل المشرف"
   scripts:
+    # label for created date of a script
     created_date: "تم إنشاؤه"
+    # label for updated date of a script
     updated_date: "تم تحديثه"
+    # label for total install count of a script
     total_installs: "إجمالي التثبيت"
+    # label for daily install count of a script
     daily_installs: "التثبيت اليومي"
+    # label for the ratings of a script
     ratings: "التقييمات"
+    # label for author name of a script
     author_name: "المؤلف"
+    # label for version number of a script
     version_number: "الإصدار"
+    # label for the legal license a script is released under (e.g. GPL)
     license: "الترخيص"
+    # what is shown as the license when no license is provided in a script
     no_license: "لا يوجد"
+    # label for the browser compatibility for a script
     compatibility: "التوافق"
     compatible_with_browser: "متوافق مع %{browser}"
     incompatible_with_browser: "غير متوافق مع %{browser}"
+    # label for the list of sites or patterns a script applies to
     applies_to: "ينطبق على"
+    # a title (tooltip) for the links in the "applies to" section going to a list of scripts for that site. count is the number of other scripts, site is the name of the site. add subkeys for your language per http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
     applies_to_link_title:
       zero: "شاهد %{count} برنامج نصي آخر لـ %{site}"
       one: "شاهد برنامج نصي آخر لـ %{site}"
@@ -31,39 +52,85 @@ ar:
       few: "شاهد %{count} برامج نصية آخرى لـ %{site}"
       many: "شاهد %{count} برنامج نصي آخر لـ %{site}"
       other: "شاهد %{count} برنامج نصي آخر لـ %{site}"
+    # what is shown as the applies to when a script applies to all sites
     applies_to_all: "جميع المواقع"
+    # link that makes the user install the script
     install: "تثبيت هذا البرنامج النصي"
+    # text for link that gives information on how to install scripts. should be very short.
     install_help: "؟"
+    # title (tooltip) for link that gives information on how to install scripts
     install_help_title: "كيفية التثبيت"
+    # link that makes the user update the script
     update: "تحديث لنسخة %{version}"
+    # link that makes the user downgrade the script
     downgrade: "رجوع لنسخة %{version}"
+    # link that makes the user reinstall the script
     reinstall: "إعادة تثبيت نسخة %{version}"
+    # warning when installing an old version of a script
     old_version_warning: "هذا البرنامج النصي ليس أحدث اصدار. إذا قمت بتثبيته ، فلن يتم تحديثه إلى إصدار أحدث. تثبيت على أي حال؟"
+    # label for a promoted script
     promoted: "برنامج نصي ترويجي"
     author_promoted: "سكربت موصى به للمؤلف"
+    # text for promoted script
     promoted_text_html: "ربما يعجبك أيضا %{script_link}."
+    # instructions on a script library. code will be a <code> element. Don't use punctuation around the code element if possible so that people don't accidentally include that when copying.
     library_instructions_html: "لا ينبغي أن لا يتم تثبيت هذا السكريت مباشرة. هو مكتبة لسكبتات لتشمل مع التوجيه الفوقية %{code}"
+    # text displayed for deleted scripts
     deleted_notice: "لقد تم حذف هذا البرنامج النصي."
+    deleted_notice_with_related: ""
+    deleted_undelete_notice_html: ""
+    deleted_locked_author_notice_html: ""
+    deleted_author_notice: ""
+    # test displayed when viewing a previous version. date is a date and time (no "ago"), latest_version_link is a link to the newest version whose text is version_notice_latest_version_link
     version_notice_html: "اعتبارا من %{date}. شاهد %{latest_version_link}."
     version_notice_latest_version_link: "أحدث إصدار"
+    reported_notice: ""
+    reported_notice_for_author: ""
+    # link to the script's info page, containing script meta and author's description
     info_page: "معلومات"
+    # link to the script's code page
     code_page: "الكود"
+    # link to the script's history page, listing all versions of the code
     history_page: "التاريخ"
+    # link to the script's feedback page, listing discussions on the script. count is the number of discussions
     feedback_page: "ردود الفعل (%{count})"
+    # link to the script's install statistics page
     stats_page: "إحصائيات"
+    # link to the script's derivatives page, which shows similar scripts
     derivatives_page: "المشتقات"
+    # link to the page that lets the author update the script
     update_page: "تحديث"
+    # link to the page that lets the author delete a script
     delete_page: "حذف"
+    # explanation of what deleting does
     delete_explanation: "حذف برنامجك النصي يجعل الوصول له فقط متاح لك ولمشرفي Greasy Fork. بإمكانك التراجع عن حذفه في أي وقت."
+    # intro text to radio options for choosing update behaviour after deletion
     delete_update_behaviour: "مالذي تريد حصوله مع المستخدمين الذين ثبتوا برنامجك النصي سابقا ؟"
+    # label for the option allowing users to retain the script after delete
     delete_update_behaviour_1: "سيحتفظون به كما هو."
+    # label for the option where users get a blanked script after delete 
     delete_update_behaviour_2: "سيقومون بالتحديث إلى برنامج نصي فارغ. هذا مناسب عندما يكون للبرنامج النصي تأثير سلبي على المواقع التي يعمل عليها."
+    # heading for permanent deletion section
     delete_permanently_heading: "حذف دائم"
+    # explanation of permanent deletion
+    delete_permanently_explanation_html: >
+    # confirmation on pressing the permanent deletion button
+    delete_permanently_confirm: ""
+    # text for the permanent deletion button
     delete_permanently_submit: "طلب الحذف الدائم"
+    # text for the permanent deletion button when it would take effect immediately
     delete_permanently_immediate_submit: "حذف بشكل نهائي"
+    # notice after requesting permanent deletion
     delete_permanently_notice: "تم تسجيل طلب الحذف الدائم. سيتم حذف البرنامج النصي الخاص بك بشكل دائم بعد 7 أيام."
+    # text on the delete page after permanently deletion was requested
+    delete_permanently_already_requested: ""
+    # notice after permanently deletion
     delete_permanently_notice_immediate: "تم حذف البرنامج النصي نهائيا."
+    # text for cancelling a permanent deletion request
     cancel_delete_permanently_submit: "إلغاء طلب الحذف النهائي."
+    # notice after cancelling a permanent deletion request
+    cancel_delete_permanently_notice: ""
+    # error when attempting to delete a locked script
     delete_permanently_rejected_locked: "هذا البرنامج النصي مقفل ولا يمكن حذفه نهائيا."
     admin_page: "مسؤول"
     admin:
@@ -78,162 +145,373 @@ ar:
       locale_multiple_note: "لاحظ أن %{meta_keys_link: يمكن تعريف عدة لغات للسكربت}."
       update_locale: "تحديث اللغة"
       no_moderator_logs: "لم يتم اتخاذ أي إجراءات بواسطة المشرفين على هذا السكربت."
+      compare_title: ""
+      compare_to: ""
       compare_button: "قارن"
+      compare_must_be_local_url: ""
+    # HTML title for the history page for a script
     history_title: "%{script_name} - تاريخ الإصدار"
+    # text explaining that we're only showing versions where the code changed
     history_only_code_changes_info: "هذه إصدارات لهذا البرنامج النصي حيث تم تحديث الكود."
+    # link to the list of all versions
     history_all_changes_link: "عرض كل الإصدارات."
+    # text explaining that we're showing all versions
     history_all_changes_info: "هنا كل إصدارات هذا البرنامج النصي."
+    # link to the list of version where the code changed
     history_only_code_changes_link: "إظهار الإصدارات حيث تغيير الكود فقط."
+    # button that shows changes (a diff) of the selected versions
     diff_button: "الفرق بين الإصدارات المختارة"
+    # HTML title of the script source code page
     code_title: "%{script_name} - كود المصدر"
+    # HTML title of the script feedback page
     feedback_title: "%{script_name} - ردود الفعل"
     feedback_has_reports: "تم الإبلاغ عن هذا السكربت لأنتهاكة قواعد %{site_name}."
+    # text to show when no discussions are posted. start_discussion_first_link is a link with the text from feedback_start_first_discussion_link
     feedback_no_discussions_html: "لا يوجد نقاش حتى الآن. %{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "لم يتم نشر أي مناقشات حتى الآن."
+    feedback_report_instead: ""
     feedback_start_first_discussion_link: "كن أول من يناقش هذا البرنامج النصي."
+    feedback_discussion_or_report: ""
+    # heading for list of people who favorited this script
     feedback_favoriters_heading: "من أضافوه للمفضلة"
+    # text before a comma separated list of users who favorited the script
+    feedback_favoriters_user_list_html: ""
+    feedback_favoriters_lots:
+      zero: ""
+      one: ""
+      two: ""
+      few: ""
+      many: ""
+      other: ""
+    # text when no one has favorited a script
     feedback_no_favoriters: "لم يتم حتى الآن تفضيل هذا البرنامج النصي من قبل أي شخص."
+    # link to get the user to sign in to add the script to their favorites
     feedback_sign_in_to_favorite: "قم بتسجيل الدخول لإضافته إلى المفضلة."
+    # html title for script stats page
     stats_title: "%{script_name} - إحصائيات"
+    # heading for daily install stats on stats page
     stats_daily_installs_heading: "التثبيت اليومي"
+    # heading for weekly install stats on stats page
     stats_weekly_installs_heading: "التثبيت الأسبوعي"
+    # heading for daily update check stats on stats page
     stats_daily_update_checks_heading: "التـأكد من التحديث اليومي"
+    # date column heading for a script's daily install stats table
     stats_daily_installs_date_column_heading: "التاريخ"
+    # install count column heading for a script's stats table
     stats_daily_installs_install_count_column_heading: "التثبيتات"
+    # update check count column heading for a script's stats table
     stats_daily_installs_update_check_count_column_heading: "التـأكد من التحديث"
+    # header for the raw data table for stats
     stats_raw_data_header: "البيانات الخام"
+    # text before links to download raw stats data. links will be space separated links to the format name (e.g. CSV and JSON)
     stats_download_raw_data_html: "تنزيل كل البيانات كـ: %{links}"
+    # text to show when a stat is not available
     stats_no_data: "لا يوجد"
+    stats_filters: ""
+    stats_filter_options:
+      month: ""
+      year: ""
+      all: ""
+    # HTML title for derivatives page
     derivatives_title: "%{script_name} - المشتقات"
+    # text explaining the derivatives page and what to do if the user finds unauthorized copies
+    derivatives_intro: ""
+    # format for scripts listed on the derivatives page. script_link is a link to the derivative's page, user_link is a link to the user who created the derivative, license is text, link to the license, or scripts.no_license
+    derivatives_script_html: ""
+    derivatives_exact_copies_heading: ""
     derivatives_exact_copies_list_intro: "تحتوي البرامج النصية التالية على نفس التعليمات البرمجية الخاصة بك:"
+    derivatives_exact_copies_item_html: ""
+    derivatives_exact_copes_none: ""
+    derivatives_similar_heading: ""
+    derivatives_similar_info: ""
     similarity_score:
       high: مشابه جدا
       medium: متشابه إلى حد ما
+      low: ""
       none: لا تتشابه
+    derivatives_similar_none: ""
+    derivatives_similar_item: ""
+    derivatives_similar_last_check_html: ""
+    derivatives_similar_last_check_soon: ""
+    derivatives_similar_last_check_again_soon_html: ""
     derivatives_similar_check_now: "أعد الفحص الآن"
+    # html title for script list page when showing scripts that affect all sites
     listing_title_all_sites: "برامج نصية لكل المواقع"
+    # meta description and feed subtitle when showing scripts that affect all sites
     listing_description_all_sites: "البرامج النصية التي تضيف ميزات وتزيل الأخطاء على جميع المواقع"
+    # html title for script list page when showing scripts for a particular site. 'site' will be in the form 'example.com'
     listing_title_for_site: "برامج نصية لـ %{site}"
+    # meta description and feed subtitle when showing scripts that affect a particular site
     listing_description_for_site: "البرامج النصية التي تضيف ميزات وتزيل الأخطاء على  %{site}"
+    # html title for script list page for search results.
     listing_title_for_search: "'%{search_string}' البرامج النصية"
+    # html title for script list page for code search results.
     listing_title_for_code_search: "'%{search_string}' البرامج النصية"
+    # html title for script list page when no other situation applies
     listing_title_generic: "البرامج النصية"
+    # html title for script list page for a user's favorites. set_name is script_sets.favorites_name
     listing_title_for_favorites: "%{user_name} %{set_name}"
+    # meta description and feed subtitle for script list page when no other situation applies
     listing_description_generic: "البرامج النصية التي تضيف ميزات وتزيل الأخطاء على مواقع تستخدمها أنت"
+    # label for sorting links on script list page
     listing_sort_label: "فرز حسب:"
+    # link for relevance (most matching the search terms) sort on a script list
     listing_sort_relevance: "العلاقة"
+    # link for daily install sort on a script list
     listing_sort_daily_installs: "مرات التثبيت اليومية"
+    # link for daily install sort on a script list
     listing_sort_total_installs: "إجمالي مرات التثبيت"
+    # link for rating sort on a script list
     listing_sort_ratings: "التقييمات"
+    # link for created date sort on a script list
     listing_sort_created: "تاريخ الإنشاء"
+    # link for updated date sort on a script list
     listing_sort_updated: "تاريخ التحديث"
+    # link for name sort on a script list
     listing_sort_name: "الاسم"
+    # label for filtering by-site links on script list page
     listing_filter_by_site_label: "عرض البرامج النصية لـ:"
+    # link for turning off by-site filtering on script list page
     listing_filter_by_site_disable: "الكل"
+    # link for filtering script list by scripts that affect all sites
     listing_filter_by_site_all_sites: "(كل المواقع)"
     listing_filter_by_language_label: "لغة:"
+    # link to see a full list of sites that scripts on %{site_name} affect
     listing_filter_by_site_more_sites: "أكثر ..."
+    # text that shows when no scripts were found with the used parameters
     listing_no_scripts: "لم يتم العثور على برامج نصية."
+    # feed title for the listing, ordered by created date
     listing_created_feed: "البرامج النصية الجديدة"
+    # feed title for the listing, ordered by updated date
     listing_updated_feed: "البرامج النصية المحدثة"
+    # when a list has nothing to show
     listing_none: "(لا يوجد)"
+    # link to filter search results by the current locale
+    listing_set_locale_filter: ""
+    # link to remove locale filter
+    listing_remove_locale_filter: ""
     listing_language_all: "الكل"
     listing_language_js: "جافا سكريبت"
     listing_language_css: "سي إس إس"
+    # link to start the process of importing (creating from an external place) scripts
     import: "استيراد البرامج النصية"
+    # link to create a new script
+    new: ""
+    new_css: ""
+    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support site
     support_site: "قم بزيارة موقع المؤلف."
+    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support email address
     support_email: "إرسال بريد إلكتروني للمؤلف."
+    # link to a site where the user can donate to the author, when the author didn't provide a suggested donation amount
     contribution_no_amount: "شكر %{author} عن طريق التبرع."
+    # link to a site where the user can donate to the author, when the author provided a suggested donation amount
     contribution_with_amount: "شكر %{author} عن طريق التبرع. مقدار التبرع المقترح هو %{amount}."
+    # text for donating to the author via bitcoin, when the author didn't provide a suggested donation amount
     contribution_bitcoin_no_amount_html: "شكر %{author} بالتبرع عن طريق بيتكوين إلى %{address}."
+    # text for donating to the author via bitcoin, when the author provided a suggested donation amount
     contribution_bitcoin_with_amount_html: "شكر %{author} عن طريق التبرع بـ بتكوين إلى %{address}. المقدار المقترح هو %{amount}."
+    # explanation of language chooser when editing script
     locale_explanation_html: "يجب مطابقة لغة <code>@name</code>, <code>@description</code>, والمعلومة الإضافية الأولى."
+    # the default value for the locale box, if submitted the site will attempt to detect the language of the entry
     locale_auto_select: "(كشف تلقائي)"
+    # label which lists the sets this script is in, which is followed by controls to change its inclusions
     sets_label: "في مجموعة البرامج النصية:"
+    # label for when the script is not in any sets, which is followed by controls to change its inclusions
     sets_label_no_sets: "مجموعات البرامج النصية"
+    # option to remove the script from the set
     sets_remove_inclusion: "إزالة من %{set_name}"
+    # option to remove the script's exclusion from the set
     sets_remove_exclusion: "إزالة الاستبعاد من %{set_name}"
+    # option to add the script to the set
     sets_add_inclusion: "إضافة إلى %{set_name}"
+    # option to exclude the script from the set (when it's been included as part of a sub set)
     sets_add_exclusion: "استبعاد من %{set_name}"
+    # option to add the script to a new set
     sets_add_to_new: "إضافة إلى مجموعة جديدة"
+    # summary of %{site_name}'s rules for posting scripts. full_rules_link is a link to the full rules with text of rules_summary_link_to_full
     rules_summary_html: "البرامج النصية يجب أن تكون <strong>موصوفة بشكل جيد</strong>، لا يجب أن تكون <strong>غامضة</strong> أو <strong>مصغرة</strong>، يجب احترام <strong>حقوق النشر</strong>، محدودة في <strong>الكود الخارجي</strong> المستخدم. %{full_rules_link}"
+    # full rules link text used in the rules summary
     rules_summary_link_to_full: "قراءة كامل الشروط."
+    # warning when on the edit screen for a script set up to sync. syncing_notice_sync_type will be a link to the sync screen with text from syncing_notice_sync_type_manual or syncing_notice_sync_type_automatic
     syncing_notice_html: "هذا البرنامج النصي %{syncing_notice_sync_type}. سيتم الكتابة فوق أية تحديثات تجريها على الكود هنا عندما تتم المزامنة."
+    # used in syncing_notice_html when a script syncs only when the author requests it
     syncing_notice_sync_type_manual: "جعله يزامن يدويا من %{sync_identifier}"
+    # used in syncing_notice_html when a script syncs automatically
     syncing_notice_sync_type_automatic: "جعله يزامن تلقائيا من %{sync_identifier}"
+    # label for uploading a script under the code textarea
     upload_label: "أو رفع:"
+    # label for checkbox to enable or disable syntax highlighting code editor
     enable_source_code_editor_label: "تمكين تظليل الكود المصدري في المحرر"
+    # descriptive text for the changelog field
     changelog_note: "ما الذي تغير في هذا الإصدار؟"
+    additional_info_note: ""
+    # button text for previewing additional info
+    # button text for submitting a new script
     post_new_script: "إضافة البرنامج النصي"
+    # button text for submitting an update to an existing script
     post_updated_script: "إضافة إصدار جديد"
+    # label for radio button for public-type user script
     type_1_html: "برنامج نصي عام - برنامج نصي يراه ويستخدمه الجميع."
+    # label for radio button for unlisted-type user script
     type_2_html: "برنامج نصي غير مدرج - برنامج نصي (شبه) خاص.  متوفر للوصول المباشر، ولكن لا يوضع له أي رابط في أي مكان على %{site_name}."
+    # label for radio button for library-type script
     type_3_html: "المكتبة - برنامج نصي للإستخدام كـ <code>@require</code>-d من قبل البرامج النصية.الأخرى ولا يتم تثبيته مباشرة."
+    # label for checkbox to override script save warnings
     override_warning_checkbox_label: "حفظ على أي حال؟"
+    # script warning for not increasing the version number when updating the code
     warning_version_not_incremented_html: "أنت قمت بتحديث الكود لكن لم تقم بزيادة رقم الإصدار <code>@version</code>. هؤلاء الذين ثبتوا البرنامج النصي سابقا قد لا يحصلون على التحديث.."
+    # script warning for when a version number is not provided
     warning_version_missing_html: "لم تحدد <code>@version</code>. مفتاح <code>@version</code> يسمح بالبحث عن تحديث لبرنامجك النصي عبر برامج إدارة البرامج النصية."
+    # label for checkbox for the site to automatically handle version numbers
     warning_version_missing_generate_automatically_html: "إنشاء <code>@version</code> تلقائيا؟"
+    # script warning for when a namespace is not provided
     warning_namespace_missing_html: "لم تحدد <code>@namespace</code>. مفتاح <code>@namespace</code> يسمح للمستخدمين بإعادة تثبيت برنامجك النصي لتحديثه."
+    # label for checkbox for the site to automatically add a namespace
     warning_namespace_missing_generate_automatically_html: "إنشاء a <code>@namespace</code> تلقائيا؟"
+    # script warning for when a namespace changed on update
     warning_namespace_changed_html: "<code>@namespace</code> الخاص بك تغير. <code>@namespace</code> ثابت سمح للمستخدمين بإعادة تثبيت برنامجك النصي لتحديثه."
+    # script warning for when a script's code appears minified. allowed_requires_link is a link to the allowed @require list, with text of warning_potentially_minified_allowed_requires_link
     warning_potentially_minified_html: "يبدو أنا برنامجك النصي يحتوي كود مصغر (مضغوط). إذا كنت تستخدم مكتبة مضغوطة رجاء استبدلها <code>@require</code> من %{allowed_requires_link}. البرامج النصية التي تحوي كود مضغوط هي عرضة للحذف."
+    # script warning for when a script's code is for adult sites. sensitive_domains is a list of domains
     warning_automatic_sensitive_html: "السكربت الخاص بك مخصص لـ %{sensitive_domains} وسيتم تمييزه على أنه محتوى للبالغين."
+    # used in warning_potentially_minified_html
     warning_potentially_minified_allowed_requires_link: "واحد من هذه الأماكن"
+    warning_code_previously_posted_html: ""
+    # default option for the locale of a localized additional info
     additional_info_locale_prompt: "(اختر اللغة المحلية)"
+    # text for the button to add another additional info section for a different language
     additional_info_add_localized: "إضافة معلومات إضافية بلغة محلية أخرى"
+    # validation when more than one additional info is specified for a locale. "locale_code" is the locale code (e.g. "en") that has more than one additional info
     additional_info_locale_repeated: "تزويد معلومة إضافية للغة المحلية '%{locale_code}'"
+    # validation when an additional info in a locale is provided but no name was provided in that locale. "locale_code" is the locale code (e.g. "en") that is missing a name
     localized_additional_info_with_no_name: "تم تعيين معلومات إضافية لـ '%{locale_code}' لكن لم يتم تزويد name:%{locale_code}."
+    localized_attribute_matches_default: ""
+    # text to edit a code syncing URL. field is the text field to enter the url.
     code_syncing_from_url_html: "هذا البرنامج النصي وضع للمزامنة من: %{field}"
+    # text to add a code syncing URL. field is the text field to enter the url.
     provide_code_syncing_from_url_html: "%{site_name} بإمكانه استيراد البرامج النصية المستضافة في مكان آخر. مثلا في أنظمة إدارة الإصدارات (مثل GitHub)، خادومك الخاص أو موقع آخر لاستضافة البرامج النصية. لتمكين مزامنة برنامج النصي قم بإضافة وصلة: %{field}"
+    # text before the sync type options
     sync_type_intro: "سيتم مزامن البرنامج النصي:"
+    # label for radio button for manual syncing
+    sync_type_1:
+      name: ""
+      description: ""
+    # label for radio button for automatic syncing
+    sync_type_2:
+      name: ""
+      description: ""
+    # label for radio button for webhook syncing
+    sync_type_3:
+      name: ""
+      description: ""
+    sync_name_and_description: ""
+    # text when the last attempted sync failed. date is the date of the error run through markup_date. error is the technical error.
     sync_failed_info_html: "آخر محاولة مزامنة كانت %{date}, وكانت نتيجتها %{error}."
+    # text indicating the date of the last successful sync. date is the date of the sync run through markup_date
     sync_success_info_html: "آخر مزامنة ناجحة كانت %{date}."
+    # text if the sync never succeeded
     sync_never_succeeded: "لم تكتمل المزامنة بنجاح."
+    sync_additional_info: ""
+    add_synced_additional_info: ""
+    # button to update sync settings and run sync immediately
     update_and_sync: "تحديث ومزامنة الآن"
+    # button to update sync settings but not sync immediately
     update_no_sync: "تحديث"
+    # button to disable syncing of the script
     turn_off_syncing: "إيقاف تشغيل المزامنة لهذا البرنامج النصي"
+    # label for syncing the default additional info
     additional_info_default_sync_html: "معلومات إضافية افتراضية  (language matches <code>@name</code>)"
+    # label for syncing localized additional infos
     additional_info_localized_sync_html: "للغة المحلية (يطابق <code>@name:XX</code>)"
+    # HTML placeholder for sync fields
     sync_url_placeholder: "(رابط)"
+    # label for adding a new screenshot
     screenshots_add: "إضافة:"
+    # label for checkbox to remove a screenshot
     screenshots_remove: "حذف"
+    # explains what a replacement script when deleting is
     replacement_script_explanation: "(اختياري) اختر برنامج نصي آخر ليحل محل هذا البرنامج النصي. سيتم تحديث المستخدمين وإعادة توجيههم إلى هذا البرنامج النصي. أدخل عنوان البرنامج النصي البديل:"
+    # title for diff page
     diff_title: "%{script} - فرق الإصدار"
+    # label for older version being diffed
     diff_old_version: "قديم:"
+    # label for newer version being diffed
     diff_new_version: "جديد:"
+    # label for input for lines to show around each change when doing a diff
     diff_lines_of_context: "أسطر السياق:"
+    # label for checkbox on whether to ignore whitespace changes
     diff_ignore_whitespace: "تجاهل المسافات الفارغة"
+    # button to refresh diff after changing diff options
     diff_refresh: "تحديث"
+    # text shown when compared versions are the same
     diff_no_change: "لم يتم العثور على فرق"
+    # tooltip for good rating number - "Good" should match the word used in RatingGood in the PHP localization
     good_rating_explanation: "عدد الأشخاص الذين قيموه أنه جيد أو أضافوه إلى المفضلة."
+    # tooltip for ok rating number - "OK" should match the word used in RatingGood in the PHP localization
     ok_rating_explanation: "عدد الأشخاص الذين قيموه بـ لا بأس."
+    # tooltip for bad rating number - "Bad" should match the word used in RatingGood in the PHP localization
     bad_rating_explanation: "عدد الأشخاص الذين قيموه أنه سيئ."
+    # link at the bottom of the scripts list suggesting people post a script or learn how. post_a_script_link is a link with text post_a_script_link_text that goes to the new script form. learn_to_write_scripts_link is a link with text learn_to_write_scripts_link_text that goes to the help document for writing scrupts
     write_your_own_html: "%{post_a_script_link} (أو %{learn_to_write_scripts_link})"
+    # link text for the new script form, used in write_your_own_html
+    post_a_script_link_text: ""
+    # link text for the writing a user script help doc, used in write_your_own_html
     learn_to_write_scripts_link_text: "تعلم كيفية كتابة واحد"
+    # a suggestion below the install button that users provide feedback
+    feedback_or_report: ""
+    # a suggestion below the install button that users provide feedback or get support from the author's site. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
+    support_feedback_or_report: ""
+    # a suggestion below the install button that users provide feedback or get support from the author's via email. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
+    support_email_feedback_or_report: ""
+    # heading for section relating to adult content when posting new script or script version
     adult_content: "محتوى للبالغين"
+    # label for checkbox letting authors report their script as containing adult content
     adult_content_self_report: "يتضمن هذا البرنامج النصي محتوى للبالغين أو أنه لموقع يحتوي على محتوى للبالغين."
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script not flagged as having adult content
     adult_content_self_report_explanation: "%{site_name} يسمح بالبرامج النصية ذات محتوى للبالغين، ولكنها يجب أن يشار إليها على هذا النحو بحيث يمكن للمستخدمين اختيار ما إذا كان يريدون رؤيتها."
+    # label for checkbox letting authors report their script as not containing adult content
     not_adult_content_self_report_html: "هذا البرنامج النصي <strong>لا</strong> يحتوي محتوى للبالغين و <strong>ليس</strong> ليس لموقع ذو محتويات للبالغين."
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content
     not_adult_content_self_report_explanation: "%{site_name} يسمح بالبرامج النصية ذات محتوى للبالغين، ولكنها يجب أن يشار إليها على هذا النحو بحيث يمكن للمستخدمين اختيار ما إذا كان يريدون رؤيتها. تم وسم برنامجك النصي بأنه يحوي محتوى للبالغين. يمكنك الإبلاغ عن أنه ليس كذلك. وسيتم مراجعة ذلك عن طريق أحد المشروفين."
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content due to automatic checking
     not_adult_content_self_report_explanation_automatic: " %{site_name} يسمح بالسكربتات التي تحتوي على محتوى للبالغين ، ولكن يجب تمييزها على هذا النحو بحيث يمكن للمستخدمين اختيار ما إذا كانوا يريدون رؤيتها. تم تمييز السكربت الخاص بك على أنه يحتوي على محتوى للبالغين نظراً لأنه مخصص للعمل على %{domain_list}"
+    # the error you see when accessing a adult content script when logged in with the adult content setting off
     adult_content_on_greasy_logged_in_error: "هذا البرنامج النصي لم يعد متوفرا على هذا الموقع %{edit_account_link:Greasy Fork account settings}."
+    # the error you see when accessing a adult content script when not logged in
     adult_content_on_greasy_not_logged_in_error: "هذا البرنامج النصي لم يعد متوفرا بشكل مجهول على هذا الموقع. %{login_link:سجل دخولك} وتفحص إعدادات حسابك في موقع Greasy Fork."
+    # the error you see when access a non-adult content script on sleazy fork
     non_adult_content_on_sleazy: "هذا البرنامج النصي غير متوفر على هذا الموقع."
+    not_js_convertible_override_header: ""
+    not_js_convertible_override_explanation: ""
+    not_js_convertible_override_label_html: ""
+    # marker after script name shown to authors indicating their adult scripts
     adult_marker: "(بالغين)"
+    # marker after script name if it's deleted
     deleted_marker: "(محذوف)"
+    # marker after script name if it's locked
     locked_marker: "(مقفل)"
+    # marker after script name if it's unlisted
     unlisted_marker: "(غير مدرج)"
+    # marker after script name if it's a library
     library_marker: "(المكتبة)"
+    # title for libraries listing page
     libraries_title: "المكتبات"
+    # description for libraries listing page
     libraries_description_html: "هناك مكتبات تم وضعها بواسطة مستخدمي %{site_name} يمكنك <code>@require</code> في برنامجك النصي. لأنواع المكتبات الأخرى يمكنك <code>@require</code>, اقرأ سياسة %{policy_link:%{site_name} حول <code>@require</code>}."
+    # title of the listing of top sites to script
     by_site_list_title: "برامج نصية لـ %{site_name} مجمعة حسب الموقع"
+    # description of the listing for top sites to script
     by_site_list_description: "هذه هي المواقع المتأثرة من البرامج النصية الأكثر شعبية. حجم خط أكبر يدل على البرامج النصية الأكثر شعبية."
     by_site_list_filter: "تصفية حسب اسم الموقع:"
+    # placeholder for script search box
     search_placeholder: "بحث في البرامج النصية"
     updated: "تم تحديث السكربت."
     preview_additional_info: "معاينة"
+    must_confirm: ""
+    must_confirm_external_sign_in: ""
     must_confirm_email_button: "أرسل رابط التأكيد إلى %{email}"
     authors_heading: "المؤلفين"
+    error_unauthorized_copy: ""
     invitations:
       form_title: "أدعُ مؤلفين آخرين"
       explanation: "يمكنك إضافة مستخدمي Greasy Fork الآخرين كمؤلفين لهذا السكربت. سيكون لديهم نفس الحقوق التي تملكها لهذا السكربت."
@@ -256,13 +534,50 @@ ar:
       remove_confirm: "هل انت متأكد من أزالة %{user_name} كمؤلف؟"
       failure: "فشل أزالة المؤلف."
     no_disposable_email: "لا يجوز لك نشر السكربتات إذا كنت تستخدم عنوان بريد إلكتروني يمكن التخلص منه."
+    rate_limited: ""
     new_script_notice:
       title: "ماذا تحاول أن تفعل؟"
+      install_link_html: ""
+      share_link_html: ""
+    new_title:
+      js: ""
+      css: ""
+    update_title: ""
+    antifeatures:
+      warning_title: ""
+      author_explanation_intro: ""
+      types:
+        ads:
+          title: ""
+          description_html: ""
+        tracking:
+          title: ""
+          description_html: ""
+        miner:
+          title: ""
+          description_html: ""
+        referral-link:
+          title: ""
+          description_html: ""
+      install_anyway: ""
+      cancel_install: ""
+    badges:
+      js:
+        short: ""
+        long: ""
+      css:
+        short: ""
+        long: ""
   script_sets:
+    # description of script sets on edit page
     description: "مجموعات البرامج النصية تسمح لك بإنشاء قائمة برامج نصية مخصصة لتصفح النصية بها. يمكنك إضافة البرنامج النصية إلى مجموعة عن طريق إضافتها منفردة أو من مجموعات المستخدمين  الآخرين أو تلقائيا. يمكنك أيضا استثناء برامج نصية من مجموعتك بنفس الأساليب."
+    # name for the favorites set
     favorites_name: "المفضلة"
+    # delete button text for a script set
     delete: "حذف مجموعة البرامج النصية"
+    # delete confirmation for a script set
     delete_confirmation: "هل أنت متأكد أنك تريد حذف مجموعة البرامج النصية هذه؟"
+    # option for choosing to sort the set by the default sort the site uses
     site_default_sort: "(افتراضي الموقع)"
     edit_scripts:
       heading: "البرامج النصية"
@@ -330,87 +645,159 @@ ar:
       user: "برامج نصية حسب المستخدم %{user}"
       locale: "برامج نصية باللغة %{locale_name}"
   home:
+    # html title of the homepage
     title: "%{site_name} - برامج نصية آمنة ومفيدة."
+    # text at the top of the homepage.
     welcome: "مرحبا في %{site_name}، موقع للبرامج النصية التي ينشئها المستخدمون"
+    # html title of the sleazy fork homepage
     sleazy_title: "%{site_name} - برامج نصية آمنة ومفيدة للبالغين"
+    # text at the top of the sleazy fork homepage.
     sleazy_welcome: "مرحبا لك في %{site_name}، وهو موقع للبرامج النصية ذات محتوى للبالغين."
+    # placeholder for home page search box
     search_placeholder: "بحث عن البرامج النصية"
     scripts_for_label: "برامج نصية لـ:"
+    # heading for the paragraph explaining what user scripts are
     explain_user_scripts_heading: "ما هي البرامج النصية ؟"
+    # text explaining what user scripts are.
     explain_user_scripts_html: "البرامج النصية تتيح لك التحكم بتجربة التصفح الخاص بك. بمجرد تركيبها، سوف تجعل المواقع التي تزورها أفضل من خلال إضافة ميزات، مما يجعلها أسهل للاستخدام، أو تزيل الأشياء تلقائيا. تم كتابة البرامج النصية على %{site_name} من قبل المستخدمين الآخرين ونشرت لمشاركتها مع العالم. إنها مجانية للتثبيت وسهلة الاستخدام."
+    # header for step 1 - how to install a user script manager
     installing_step1_header: "الخطوة 1: قم بتثبيت برنامج إدارة البرامج النصية"
+    # caption in step 1 - screenshot of tampermonkey on chrome
     installing_step1_caption: "Tampermonkey على Chrome"
+    # text for step 1, listing options for user script managers based on browsers
+    installing_step1_description_html: >
+    # header for step 2 - how to install a user script
     installing_step2_header: "خطوة 2: قم بتثبيت برنامج نصي"
+    # caption for step 2 - showing the install button for user scripts
     installing_step2_caption: "زر تثبيت برنامج نصي"
+    # text for step 2 - describing how to find and install user scripts
     installing_step2_description_html: >
-        <p>%{browse_link:تصفح هذا الموقع} لإيجاد برنامج نصي تريد تجربته. هنا عينة
-        من البرامج النصية المحبوبة:</p>
+      <p>%{browse_link:تصفح هذا الموقع} لإيجاد برنامج نصي تريد تجربته. هنا عينة من البرامج النصية المحبوبة:</p>
 
-        %{highlighted_scripts_list}
+      %{highlighted_scripts_list}
 
-        <p>بمجرد العثور على برنامج نصي اضغط زر التثبيت الأخضر وسوف يطلب منك مدير البرامج
-        النصية تأكيد التثبيت.</p>
+      <p>بمجرد العثور على برنامج نصي اضغط زر التثبيت الأخضر وسوف يطلب منك مدير البرامج النصية تأكيد التثبيت.</p>
+    # header for step 3 - how to use a user script
     installing_step3_header: "خطوة 3: استخدم البرنامج النصي"
+    # description for step 3, describing browsing to the site and having the user script apply
     installing_step3_description_html: >
-        <p>اذهب إلى الموقع الذي يؤثر عليه البرنامج النصي. وسوف يقوم البرنامج النصي
-        بالعمل. بعد تجربتك للبرنامج النصي عد إلى صفحته وأخبر المؤلف بملاحظاتك.</p>
+      <p>اذهب إلى الموقع الذي يؤثر عليه البرنامج النصي. وسوف يقوم البرنامج النصي بالعمل. بعد تجربتك للبرنامج النصي عد إلى صفحته وأخبر المؤلف بملاحظاتك.</p>
   users:
+    # html title for the sign in page
     sign_in_title: "تسجيل دخول إلى جريسي فورك"
+    # what signing in lets people od
     sign_in_description: "تسجيل الدخول في %{site_name} يتيح لك إضافة البرامج النصية وردود الفعل على البرامج النصية للآخرين.  لكنك لا تحتاج لتسجيل الدخول لتصفح أو تثبيت البرامج النصية."
+    # heading for signing in with an external service (Google, GitHub, etc.)
     sign_in_external: "تسجيل الدخول بواسطة خدمة خارجية"
+    # button for signing in with an external service (Google, GitHub, etc.)
     sign_in_with: "سجل الدخول بـ %{provider}"
+    # heading for signing in with a password
     sign_in_password: "تسجيل دخول مع كلمة مرور"
+    # when a user attempts to sign in with an external service and a user already exists with the same email, this is the message shown. email: provided e-mail, user_name: existing user's name, provider: what the user tried to sign in with (e.g. GitHub), sign_in_link: a link to the sign in page with text from sign_in_email_used_sign_in_link
     sign_in_email_used_no_external_services_html: "%{email}' مستخدم بالفعل من قبل '%{user_name}'. إذا كان هذا أنت وتريد إضافة معلومات تسجيل دخول إضافية بـ %{provider}, %{sign_in_link} فقم بإضافة معلوماتك دخول بـ %{provider}."
+    # same as above, but when the existing user uses other providers. also includes existing_providers, which is a list of the existing user's sign ins, run through to_sentence (http://apidock.com/rails/Array/to_sentence)
     sign_in_email_used_with_external_services_html: "'%{email}' مستخدم بالفعل بواسطة '%{user_name}'، والذي يقوم بتسجيل الدخول عبر %{existing_providers}. إذا كان هذا أنت وتريد إضافة معلومات تسجيل دخول إضافية بـ %{provider}, %{sign_in_link} فقم بإضافة معلوماتك دخول بـ %{provider}."
+    # sign in link for email_used messages
     sign_in_email_used_sign_in_link: "تسجيل دخول"
+    # when a user attempts to create an account with an external service, but an email was not provided by that service
     sign_in_email_missing: "%{site_name} يتطلب بريد إلكتروني لإنشاء حساب جديد، لكن %{site_name} لم يقدم حسابا بالنسبة لك. يمكنك إما تحديث حساب %{provider} الخاص بك. أو قم إنشاء حساب البريد الإلكتروني / كلمة المرور المعتاد على %{site_name}، ثم أضف حساب %{provider} إليه."
+    # this shows when signing in for the first time with an external sign in but the name received is already in use. the user is prompted to enter a different name.
     sign_in_name_used: "الاسم '%{name}' مستخدم بالفعل. اختر اسما آخر."
+    # the button when submitting the name form per above
     sign_in_name_used_submit: "إرسال"
+    # Button to preview a user's profile before saving
+    # heading for the user's control panel, which contains links such as post script and edit account
     control_panel: "لوحة التحكم"
+    # heading for the list of discussions about a user's own scripts
     discussions_on_scripts: "مناقشات حول برامجك النصية"
+    # alt text for the RSS feed icon for discussions about a user's own scripts
     discussions_on_scripts_feed_alt: "RSS تغذية"
+    # text to show in the section for discussions about a user's own scripts if there are no discussions yet
     discussions_on_scripts_none: "لا شيء حتى الآن!"
+    # link to more discussions on a user's own scripts, as the initial list is limited in number
     discussions_on_scripts_more: "المزيد من المناقشات ..."
+    # heading for the list of scripts on a user's page
     script_list: "برامج نصية"
+    # text to show in a user's script section when they have created no scripts
     script_list_none: "لم يتم إضافة برامج نصية"
+    # text to show in a user's script section when they have created scripts, but they are not shown due to the filters active
     script_list_none_for_filter: "لا توجد برامج نصية حسب عامل الترشيح الحالي"
+    # text to show in a user's own script section when they have created no scripts. script_list_none_same_user_info_link is a link to a tutorial with text of script_list_none_same_user_info_link_text
     script_list_none_same_user_html: "لم تقم بإضافة أي برنامج نصي. %{script_list_none_same_user_info_link}"
+    # text used for link in script_list_none_same_user_html
     script_list_none_same_user_info_link_text: "هل ترغب في معرفة كيف؟"
+    # heading for the list of a user's deleted scripts (visible to only that user and mods)
     deleted_script_list: "البرامج النصية المحذوفة"
+    unlisted_script_list: ""
+    # link to log out
     sign_out: "تسخيل خروج"
+    # link to edit an account
     edit: "تعديل الحساب"
+    # link to edit how the user signs in
     edit_sign_in: "تحرير طرق تسجيل الدخول"
+    # html title for the edit sign in page
     edit_sign_in_title: "تحرير طرق تسجيل الدخول"
+    # heading for the password section of the edit sign in methods page
     edit_sign_in_password: "كلمة المرور"
+    # informational text telling the user they're not using a password
     edit_notifications: "تحرير الإشعارات"
     no_password_set_info: "لم يتم تكوين كلمة مرور لحسابك."
+    # button to set a password when one is not already set
     set_password: "تعيين كلمة مرور"
+    # button to set a password when one is already set
     update_password: "تحديث كلمة المرور"
+    # error message when the password and the confirmation don't match
     update_password_no_match: "كلمات المرور غير متطابقة."
+    # notice after a password was updated successfully
     password_updated: "تم تحديث كلمة المرور."
+    # information text saying the user can unset their password and use just external sign ins
     remove_password_info: "يمكنك إزالة كلمة المرور وتعتمد فقط على تسجيل الدخول الخارجي."
+    # button to remove the password from the user's account
     remove_password: "حذف كلمة المرور"
+    # error message to show if the user attempts to remove a password but have no external sign ins. This is normally not possible with the interface.
     cant_remove_password: "لا يمكن إزالة كلمة المرور - لأنك لن تمتلك وسيلة لتسجيل الدخول!"
+    # error message to show if the user attempts to remove a sign in but has no password or other sign ins. This is normally not possible with the interface. provider is the external site's name, like GitHub or Google
     cant_remove_sign_in: "لا يمكنك إزالة %{provider} لأنك لن تمتلك وسيلة لتسجيل الدخول!"
+    # notice after a password was removed successfully
     password_removed: "تمت إزالة كلمة المرور."
+    # heading for the external sign ins section of the edit sign in methods page
     edit_sign_in_external: "تسجيل الدخول الخارجي"
+    # information text about how they can use external sign ins, shown when the user has not set any yet
     external_sign_in_info_no_sign_ins: "يمكنك استخدام حسابك على مواقع أخرى لتسجيل الدخول إلى %{site_name}."
+    # information text about how they can use external sign ins, shown when the user already has some set. should describe the concept of syncing, where account details on %{site_name} will be updated to match the external service on sign in
     external_sign_in_info_with_sign_ins: "أنت تستخدم حاليا تسجيل دخول خارجي موضح أدناه. تسجيل دخول \"متزامن\" يعني أن معلومات  %{site_name} الخاصة بك (مثل اسم المستخدم والبريد الإلكتروني) سيتم تحديثها لتتطابق عند تسجيل الدخول."
+    # notice after a sign in is added. provider is the external site's name, like GitHub or Google
     external_sign_in_added: "%{provider} تمت إضافته لتسجيل الدخول."
+    # notice after a sign in is updated (from syncing to not or opposite). provider is the external site's name, like GitHub or Google
     external_sign_in_updated: "%{provider} تم تحديثه لتسجيل الدخول.."
+    # notice after a sign in is removed. provider is the external site's name, like GitHub or Google
     external_sign_in_removed: "%{provider} تم حذف تسجيل الدخول هذا."
+    # notice after a sign in fails
     external_sign_in_failed: "%{provider} فشل تسجيل الدخول: %{error}."
+    # notice after a user tries to add a sign in to their account, but that sign in is already in use by another user
     external_sign_in_already_used: "إضافة تسجيل دخول عبر %{provider} فشل: يتم بالفعل استخدام هذا الدخول من قبل المستخدم '%{user_name}'."
+    # notice after successfully creating a new user based on external login
     external_sign_in_confirmation: "حساب %{site_name} تم إنشاؤه بناء على تفاصيل حسابك في  %{provider}. اسم المستخدم الخاص بك هو %{username}."
+    # an indicator beside the sign in provider's name if the user chose to enable syncing
     syncing_indicator: "(المزامنة)"
+    # button to set a sign in provider to sync
     enable_syncing: "تشغيل المزامنة"
+    # button to set a sign in provider to not sync
     disable_syncing: "إيقاف المزامنة"
+    # button to remove a sign in provider
     remove_external_sign_in: "حذف"
+    # information text indicating that the list of links below it are for addding an external sign in
     add_external_sign_in_info: "إضافة تسجيل دخول:"
+    # link to docs on how to set up a webhook for script syncing
+    set_up_webhook: ""
     author_email_notification_type:
+      # notification option: don't send the user e-mails
       none: "عدم تلقي بريد إلكتروني عن المناقشات حول البرامج النصية الخاصة بك"
+      # notification option: send e-mails on new discussions but not new posts on existing discussions
       discussion_only: "تلقي بريد إلكتروني عندما يتم نشر مناقشات حول البرامج النصية الخاصة بك"
+      # notification option: send e-mails on new discussoins and on new posts on existing discussions
       discussion_and_comment: "تلقي بريد إلكتروني عندما يتم نشر مناقشات حول البرامج النصية أو عندما توجد تعليقات جديدة"
+    # display of a single user when displaying a list of users. user_link is a link to the user's page with text of the user name, count is the number of public scripts authored
     list_display_html:
       zero: "%{user_link} - %{count} برنامج نصي"
       one: "%{user_link} - %{count} برنامج نصي واحد"
@@ -418,22 +805,36 @@ ar:
       few: "%{user_link} - %{count} برامج نصية"
       many: "%{user_link} - %{count} برنامج نصي"
       other: "%{user_link} - %{count} برنامج نصي"
+    # sort link for sorting users by number of scripts they've posted
     listing_number_of_scripts: "عدد البرامج النصية"
+    # sort link for sorting users by the creation date of their scripts
     listing_new_scripts: "البرامج النصية الجديدة"
+    # sort link for sorting users by the updated date of their scripts
     listing_updated_scripts: "البرامج النصية المحدثة"
+    # sort link for sorting users by when they signed up
     listing_registration_date: "تاريخ التسجيل"
+    # title for page showing list of users
     listing_title: "المستخدمون"
     listing_banned_filter:
       banned: "محظور"
       not_banned: "غير محظور"
       all: "الكل"
     listing_author_filter:
+      script_author: ""
+      not_script_author: ""
       all: "الكل"
+    # placeholder for user search box
     search_placeholder: "بحث المستخدمين"
+    # default option for the user's preferred locale
     locale_prompt: "(اختر اللغة المحلية)"
+    # text describing what the show ads checkbox does
     show_ads_description: "دعم %{site_name} عن طريق السماح له بعرض الإعلانات"
+    # text describing what the show sensitive checkbox does
     show_sensitive_description: "إظهار البرامج النصية ذات محتوى للبالغين"
+    # text describing what the preferred markup setting does
     preferred_markup_description: "ستستخدم للبرامج النصية والمشاركات الجديدة."
+    filter_locale_default_description: ""
+    # link from sleazy fork to greasy fork on user page
     greasy_fork_scripts_link:
       zero: "%{user_name} لديه أيضا %{count} برنامج نصي على Greasy Fork."
       one: "%{user_name} لديه أيضا %{count} برنامج نصي واحد على Greasy Fork."
@@ -441,6 +842,7 @@ ar:
       few: "%{user_name} لديه أيضا %{count} برامج نصية على Greasy Fork."
       many: "%{user_name} لديه أيضا %{count} برنامج نصي على Greasy Fork."
       other: "%{user_name} لديه أيضا %{count} برنامج نصي على Greasy Fork."
+    # displays when the user is editing their account but syncing is on
     update_sync_warning:
       zero: "تم إعداد اسم المستخدم والبريد الإلكتروني الخاصين بك للمزامنة عند دخولك بواسطة %{providers}. %{edit_sign_in_link:عدل طرق تسجيل الدخول لحذف المزامنة} إذا كنت تريد وضع اسم مستخدم أو بريد مخصص بشكل دائم."
       one: "تم إعداد اسم المستخدم والبريد الإلكتروني الخاصين بك للمزامنة عند دخولك بواسطة %{providers}. %{edit_sign_in_link:عدل طرق تسجيل الدخول لحذف المزامنة} إذا كنت تريد وضع اسم مستخدم أو بريد مخصص بشكل دائم."
@@ -448,8 +850,18 @@ ar:
       few: "تم إعداد اسم المستخدم والبريد الإلكتروني الخاصين بك للمزامنة عند دخولك بواسطة %{providers}. %{edit_sign_in_link:عدل طرق تسجيل الدخول لحذف المزامنة} إذا كنت تريد وضع اسم مستخدم أو بريد مخصص بشكل دائم."
       many: "تم إعداد اسم المستخدم والبريد الإلكتروني الخاصين بك للمزامنة عند دخولك بواسطة %{providers}. %{edit_sign_in_link:عدل طرق تسجيل الدخول لحذف المزامنة} إذا كنت تريد وضع اسم مستخدم أو بريد مخصص بشكل دائم."
       other: "تم إعداد اسم المستخدم والبريد الإلكتروني الخاصين بك للمزامنة عند دخولك بواسطة %{providers}. %{edit_sign_in_link:عدل طرق تسجيل الدخول لحذف المزامنة} إذا كنت تريد وضع اسم مستخدم أو بريد مخصص بشكل دائم."
+    # link on the user page to go to the delete page
     delete_link: "أحذف الحساب"
     delete:
+      intro: ""
+      password_effect: ""
+      identities_effect:
+        zero: ""
+        one: ""
+        two: ""
+        few: ""
+        many: ""
+        other: ""
       scripts_effect:
         zero: "سيتم حذف سكربت من %{count}."
         one: "سيتم حذف سكربت من %{count}."
@@ -464,10 +876,13 @@ ar:
         few: "سيتم حذف سكربتات من %{count}."
         many: "سيتم حذف سكربتات من %{count}."
         other: "سيتم حذف سكربتات من %{count}."
+      forum_effect: ""
+      email_confirmation: ""
       submit: "أحذف الحساب"
       confirmation_email_sent: "تم إرسال بريد إلكتروني لتأكيد الحذف."
       confirmation_email:
         subject: "تأكيد حذف الحساب %{site_name}"
+        body: ""
       confirmation:
         intro: "أنت على وشك حذف الحساب '%{user_name}'. لا يمكن التراجع عن هذا الإجراء."
         confirm: "أحذف '%{user_name}'"
@@ -476,109 +891,194 @@ ar:
         request_expired: "لا يمكن حذف المستخدم - انتهت صلاحية الطلب."
         cancelled: "تم الغاء عملية الحذف."
         completed: "لقد تم حذف حسابك."
+    banned_notice:
+      no_report_no_reason: ""
+      with_report: ""
+      with_reason: ""
+    banned_delete:
+      intro: ""
+      complete: ""
+    badges:
+      banned:
+        short: ""
+        long: ""
+      moderator:
+        short: ""
+        long: ""
+      author:
+        short: ""
+        long: ""
+    notifications:
+      discussion_defaults:
+        title: ""
+        new_discussion: ""
+        new_comment: ""
+        mention: ""
+      conversation_defaults:
+        title: ""
+        starter: ""
+        receiver: ""
+      save_button: ""
+      title: ""
+      current_discussion_subscriptions:
+        zero: ''
+        one: ''
+        two: ''
+        few: ''
+        many: ''
+        other: ''
+      save_success: ""
+      unsubscribe_all: ""
+      unsubscribe_all_success: ""
+  webhooks:
+    info:
+      title: ""
+      intro_html: |
+      already_syncing_list: ""
+      synced_item_html: ""
+      language_note: ""
   help:
+    sections:
+      usage: ""
+      development: ""
+      miscellaneous: ""
+    open_source: ""
     installing_user_scripts:
       title: 'كيفية تثبيت البرامج النصية'
+    installing_user_styles:
+      title: ''
     meta_keys:
+      # title of the help document describing script meta keys (e.g. @name).
       title: "مفاتيح ميتا للبرامج النصية تقرأ بواسطة %{site_name}"
+      # introductory paragraph. If the URL has a localized version, use that.
       intro_html: "هذه قائمة <a href=\"http://wiki.greasespot.net/Metadata_Block\"> مفاتيح ميتا</a> يستطيع %{site_name} قرائتها، المفاتيح الني خارج القائمة يمكن تضمينها في البرنامج النصي وستكون موجودة لكن ليس لها تأثير على واجهة %{site_name}'."
+      # description of @name
       name: "اسم البرنامج النصي، مستخدم كعنوان وفي الروابط. مطلوب."
+      # description of @name:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
       name_localized_html: "اسم البرنامج النصي المحدد بلغة محلية بحيث أن XX هي <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-letter code</a> وYY هي <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 country code</a> اختياري. تستبدل <code>@name</code> عندما يتصفح المستخدم من منطقة مطابقة."
+      # description of @description
       description: "وصف للبرنامج النصي. يعرض كنص تحت اسم البرنامج النصي. مطلوب."
+      # description of @description:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
       description_localized_html: "وضف البرنامج النصي بلغة محلية حيث أن XX <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-letter code</a> وYY هي <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 country code</a> اختياري. تستبدل <code>@description</code> عندما يتصفح المستخدم من منطقة مطابقة."
+      # description of @namespace. Do not translate content inside <code>.
       namespace_html: "تركيبة من <code>@namespace</code> و <code>@name</code> تستخدم من قبل إضافات إدارة البرامج النصية لمعرفة إذا كان البرنامج النصي مثبت. %{site_name} يطلب هذا الحقل، وسوف ينبهك إذا حصل تتغير أثناء التحديث."
+      # description of @description:XX-YY. developer.mozilla.org may have localized content; use it if available.
       version_html: "معرف لنسخة معينة للبرنامج النصي بـ<a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">صيغة الإصدارات من موزيلا</a>. يتم عرض الإصدار على صفحة معلومات البرنامج النصي. ل. %{site_name} يطلب هذا الحقل، وسوف ينبهك اذا تم إنقاصه أو لم تتم زيادته عندما يحصل تغيير على كود البرنامج النصي."
+      # description of @include
+      include_html: ""
+      # description of @require. %{external_script_link} is a link to the document describing allowed external scripts and has a link of key "require_external_script_link_text"
       require_html: "يتضمن جافاسكربت خارجية في البرنامج النصي. اقرأ %{external_script_link}."
+      # used in required_html
       require_external_script_link_text: "قواعد استخدام أكواد تتضمن برامج نصية خارجية."
+      # description of @updateURL
       updateURL: "يوصف كيفية حصول إضافات إدارة البرامج النصية على التحديثات. %{site_name} سيقوم بتجريد هذه المفاتيح، الأمر الذي يجعل أي برنامج نصي مثبت من %{site_name} يحصل على التحديث فقط من %{site_name}."
+      # description of @license
+      license: ""
+      # description of @supportURL
       supportURL: "وصلة لصفحة حيث يمكن للمستخدمين الحصول على الدعم للبرنامج النصي (مثل تعقب الأخطاء، منتدى، عنوان بريد إلكتروني). يتم عرض وصلة الدعم على صفحة الملاحظات للبرنامج النصي."
+      # description of @contributionURL. You can replace the sample "business" and "item_name" parameters in the URLs with localized versions.
       contributionURL_html: "وصلة لصفحة حيث يمكن للمستخدمين التبرع لمؤلف البرنامج النصي. يتم عرض وصلة المساهمة في الصفحة الخاصة بردود الفعل على البرنامج النصي. يمكن أن تكون عنوان  HTTP و HTTPS أو بروتوكولات بيتكوين. لوضع رابط إلى صفحة تبرع باي بال استخدم التنسيق <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a>، استبدل مثال اسم البريد ببريدك الإلكتروني."
+      # description of @contributionAmount. Do not translate content inside <code>.
       contributionAmount_html: "مقدار التبرع المقترح، يستخدم مع <code>@contributionURL</code>."
+      # description of @compatible. %{browsers} is a comma-separated list of browser codes. You can translate "Must disable pop-up blocker", but do not translate "@compatible firefox". 
       compatible_html: "قم بوسم هذا البرنامج النصي كمتوافق مع مستعرض. سيتم عرض معلومات التوافق على صفحة برنامج البرنامج النصي. يمكن تضمين تعليقات على التوافق في شكل <code>@compatible firefox Must disable pop-up blocker</code>. المتصفحات التعرف عليها هي %{browsers}."
+      # description of @incompatible. %{browsers} is a comma-separated list of browser codes. You can translate "Broken since Firefox 23", but do not translate "@compatible firefox".
       incompatible_html: "قم بوسم هذا البرنامج النصي كغير متوافق مع مستعرض ما. سيتم عرض معلومات التوافق على صفحة البرنامج النصي. تعليقات اختيارية على التوافق يمكن تضمينها في الشكل <code>@incompatible firefox Broken since Firefox 23</code>. المتصفحات المتعرف عليها هي %{browsers}."
+      antifeature_html: ""
+      antifeature_localized_html: ""
     writing_user_scripts:
+      # title for Writing user scripts help page
       title: "كيفية كتابة برامج نصية"
+      # content of the page. The link to greasespot can be updated to a better resource if one is available in your language. code_rules_link and meta_keys_link are links to those help pages, with text of those page's titles. ask_in_forum_link is a link to the forum with text of ask_in_forum_link_text. user_page_link is a link to the user's page if the user is signed in, or plain text if they're not; in either case, the text is user_page_link_text. post_new_script_link is a link to the new script page, with text of post_new_script_link_text
       content_html: "<p>كتابة برنامج نصي يتطلب معرفة بجافاسكربت. <a href=\"http://wiki.greasespot.net/Tutorials\">دروس غريسبوت ويكي</a> سوف تساعدك على البدء في التعلم حول جافاسكربت بشكل عام وبشكل خاص عن البرامج النصية. مشاهدة البرامج النصية الأخرى قد يكون مفيدا. ربما تكون مهتما بـ %{code_rules_link} و %{meta_keys_link}. إذا أردت المساعدة في تطوير البرنامج النصي الخاص بك قم السؤال في %{ask_in_forum_link}.</p><p>للكتابة في %{site_name}, أنت تحتاج لإنشاء حساب من %{user_page_link}, اتبع الرابط إلى %{post_new_script_link}.</p>"
+      # link text used in content_html
       ask_in_forum_link_text: 'اسأل في المنتدى'
+      # link text used in content_html
       user_page_link_text: 'صفحة المستخدم'
+      # link text used in content_html
       post_new_script_link_text: 'أضف برنامج نصي جديد'
     code_rules:
+      # title for the rules page
       title: "قواعد %{site_name} من أجل إضافة برامج نصية"
+      preamble: ""
+      functionality_header: ""
+      description: ""
+      reason: ""
+      unrelated: ""
+      monetization_html: ""
+      code_header: ""
+      obfuscation: ""
+      libraries_html: ""
+      updates: ""
+      external_js: ""
+      copyright_header: ""
+      licensing: ""
+      reposts: ""
+      miscellaneous_header: ""
+      keywords_html: ""
+      adult_content_rule: ""
+      reporting: ""
     external_scripts:
+      # title of the external script rules page
       title: "سياسة %{site_name} حول البرامج النصية الخارجية"
-    script_rewriting:
-      title: "كيف سيقوم %{site_name} بإعادة كتابة البرامج النصية المضافة"
+      # content of the external script rules page
       content_html: >
-          <p>البرامج النصية المضافة إلى %{site_name} سيتم إعادة كتابتها بالطريقة التالية:</p>
-          <ul>
+      test_url:
+        label: ""
+        result_ok: ""
+        result_not_ok: ""
+    script_rewriting:
+      # title of the rewriting page
+      title: "كيف سيقوم %{site_name} بإعادة كتابة البرامج النصية المضافة"
+      # content of the rewriting page
+      content_html: >
+        <p>البرامج النصية المضافة إلى %{site_name} سيتم إعادة كتابتها بالطريقة التالية:</p> <ul>
 
-          <li>موجهات <code>@updateURL</code>, <code>@installURL</code>, و <code>@downloadURL</code>
-          سيتم تجريدها إذا  كانت موجودة. عدم وجود هذه الموجهات يعني أن أي برنامج نصي
-          مثبت من %{site_name} سيتم تحديثه من %{site_name}.</li>
+        <li>موجهات <code>@updateURL</code>, <code>@installURL</code>, و <code>@downloadURL</code> سيتم تجريدها إذا  كانت موجودة. عدم وجود هذه الموجهات يعني أن أي برنامج نصي مثبت من %{site_name} سيتم تحديثه من %{site_name}.</li>
 
-          <li>موجهات <code>@version</code> و <code>@namespace</code> سيتم إدراجها
-          إذا لم تكن موجودة. هذه الموجهات مطلوبة من أجل تحديث سليم.</li>
+        <li>موجهات <code>@version</code> و <code>@namespace</code> سيتم إدراجها إذا لم تكن موجودة. هذه الموجهات مطلوبة من أجل تحديث سليم.</li>
 
-          <li><code>@description</code> سيتم إدراجه إذا كان الإصدار الجديد من البرنامج
-          النصي يفتقده والإصدار السابق منه يحتويه .</li>
+        <li><code>@description</code> سيتم إدراجه إذا كان الإصدار الجديد من البرنامج النصي يفتقده والإصدار السابق منه يحتويه .</li>
 
-          <li>علامات إنهاء السطرCRLF و CR سيتم تحويلها إلى تنسيق يونيكس.</li>
+        <li>علامات إنهاء السطرCRLF و CR سيتم تحويلها إلى تنسيق يونيكس.</li>
 
-          </ul>
+        </ul>
+    # link to github
     site_feedback_link: "بلغ عن مشكلة أو شارك فكرة حول %{site_name} نفسه."
     credits:
+      # title for the credits page
       title: "الاعتماد"
+      # give credit to authors
       authors_credit: "%{site_name} لم يكن ليكون ممكنا دون المؤلفين الذين ساهموا بالبرامج النصية.."
+      # give credit to developers. link goes to github.
       developers_credit: "%{site_name} بني نفسه بواسطة %{developers_link:هؤلاء الأشخاص} بمساعدة كل أولئك الذين يبلغون عن الخلل ويققترحون التحسينات."
+      # give credit to translators. link to goes to transifex. after this text, there's a list of languages and the contributors to each.
       translators_credit: "%{site_name} تمت ترجمته بواسطة %{translators_link:the Greasy Translation Force on Transifex}:"
+      # give credit to icon makers. all links are proper names so are not translated.
+      icons_credit: ""
+    # link to greasemonkey docs
     help_with_greasymonkey: "مساعدة Greasemonkey"
     contact:
+      # title of contact page
       title: "تواصل مع شخص ما"
+      # content of contact page
       content_html: >
-          <p>وهناك عدد من الطرق للحديث ع %{site_name} والأشياء فيه.</p> <p>هل لديك
-          سؤال أو تعليق حول برنامج نصي محدد منشور على الموقع؟ إذا كان الأمر كذلك،
-          أضف مناقشة من الوصلة فيعلامة التبويب للملاحظات على صفحة البرنامج النصي.
-          مؤلفو البرامج النصية يحصلون على إخطارات على صفحات حساباتهم في أي مناقشات
-          حول برامجهم النصية.</p> <p>هل لديك سؤال أو تعليق حول %{site_name} أو تطوير
-          البرامج النصية, أو تريد من شخص ما صنع برنامج نصي لك؟ %{forum_link:الكتابة
-          في المنتدى} سوف يوصلك نقاشك لجمهور عريض.</p> <p>هل لديك تقرير عن أخطاء أو
-          فكرة كاملة لـ %{site_name} (وليس عن برنامج نصي محدد <em>منشور على</em> %{site_name})؟
-          %{github_link:قم بكتابته في صفحة GitHub .}</p> <p>هل لديك سؤال خاص أو تعليق
-          ترغب فقط من المشرف معرفته؟ %{admin_email_link:أرسل بريد إلكتروني.}</p>
+        <p>وهناك عدد من الطرق للحديث ع %{site_name} والأشياء فيه.</p> <p>هل لديك سؤال أو تعليق حول برنامج نصي محدد منشور على الموقع؟ إذا كان الأمر كذلك، أضف مناقشة من الوصلة فيعلامة التبويب للملاحظات على صفحة البرنامج النصي. مؤلفو البرامج النصية يحصلون على إخطارات على صفحات حساباتهم في أي مناقشات حول برامجهم النصية.</p> <p>هل لديك سؤال أو تعليق حول %{site_name} أو تطوير البرامج النصية, أو تريد من شخص ما صنع برنامج نصي لك؟ %{forum_link:الكتابة في المنتدى} سوف يوصلك نقاشك لجمهور عريض.</p> <p>هل لديك تقرير عن أخطاء أو فكرة كاملة لـ %{site_name} (وليس عن برنامج نصي محدد <em>منشور على</em> %{site_name})؟ %{github_link:قم بكتابته في صفحة GitHub .}</p> <p>هل لديك سؤال خاص أو تعليق ترغب فقط من المشرف معرفته؟ %{admin_email_link:أرسل بريد إلكتروني.}</p>
     privacy_policy:
       title: "سياسة الخصوصية"
       content_html: >
-          <p>هذه الصفحة تصف كيفية قيام %{site_name} بتتبع المستخدمين. إذا كان لديك
-          أية مخاوف، %{admin_email_link:أرسل بريد للمدير}.</p> <h2>سجلات الخادوم</h2>
-          <p>%{site_name} يسجل كل الطلبات في نموذج سجل الخادم المعتاد. المعلومات المسجلة
-          تشمل الصفحات المزارة، عنوان الآيبي، وسلسلة عميل المستخدم. هذه السجلات هي
-          من أجل تصحيح الأخطاء وتحليل الخادم. يتم الاحتفاظ بالبيانات لمدة أسبوع واحد.
-          هذه البيانات غير مشتركة وغير متاحة للجمهور.</p> <h2>إحصائيات البرامج النصية</h2>
-          <p>لأغراض توليد إحصاءات، %{site_name} يسجل طلبات التثبيت والتحديث مع معلومات
-          عنوان الآيبي. يتم الاحتفاظ بهذه المعلومات ليوم واحد، ومن ثم يتم تجميعها
-          لكي لا تحتوي عنوان الآيبي. بيانات عنوان الآيبي المعينة غير مشتركة وغير علنية،
-          ولكن البيانات المجمعة هي كذلك.</p> <h2>الكوكيز (عند عدم تسجيل الدخول)</h2>
-          <p>%{site_name} قد توضع ملفات تعريف الإرتباط أو الكوكيز لجلسة مؤقتة للسماح
-          لبعض ميزات الموقع بالعمل. لم يتم تعيين هذه الملفات لأن تكون دائمة ويمكن
-          مسحها عند إغلاق المتصفح (حسب إعدادات المتصفح).</p> <h2>حسابات المستخدم</h2>
-          <p>%{site_name} يتطلب من المستخدمين إنشاء حساب للنشر البرامج النصية، والمشاركة
-          في المناقشات، والوصول إلى بعض ميزات الموقع الأخرى. عند إنشاء حساب، معلومات
-          مثل عنوان الآيبي، وعنوان البريد الإلكتروني، وكيل المستخدم قد تكون مخزنة
-          بشكل دائم. ربما بعض من هذه المعلومات مرئية للمستخدمين الآخرين.</p> <p>الإجراءات
-          التي يتم تنفيذها عند تسجيل الدخول، على سبيل المثال نشر الكتابات والتعليقات،
-          ستكون مرئية للمستخدمين الآخرين.</p> <p>
+        <p>هذه الصفحة تصف كيفية قيام %{site_name} بتتبع المستخدمين. إذا كان لديك أية مخاوف، %{admin_email_link:أرسل بريد للمدير}.</p> <h2>سجلات الخادوم</h2> <p>%{site_name} يسجل كل الطلبات في نموذج سجل الخادم المعتاد. المعلومات المسجلة تشمل الصفحات المزارة، عنوان الآيبي، وسلسلة عميل المستخدم. هذه السجلات هي من أجل تصحيح الأخطاء وتحليل الخادم. يتم الاحتفاظ بالبيانات لمدة أسبوع واحد. هذه البيانات غير مشتركة وغير متاحة للجمهور.</p> <h2>إحصائيات البرامج النصية</h2> <p>لأغراض توليد إحصاءات، %{site_name} يسجل طلبات التثبيت والتحديث مع معلومات عنوان الآيبي. يتم الاحتفاظ بهذه المعلومات ليوم واحد، ومن ثم يتم تجميعها لكي لا تحتوي عنوان الآيبي. بيانات عنوان الآيبي المعينة غير مشتركة وغير علنية، ولكن البيانات المجمعة هي كذلك.</p> <h2>الكوكيز (عند عدم تسجيل الدخول)</h2> <p>%{site_name} قد توضع ملفات تعريف الإرتباط أو الكوكيز لجلسة مؤقتة للسماح لبعض ميزات الموقع بالعمل. لم يتم تعيين هذه الملفات لأن تكون دائمة ويمكن مسحها عند إغلاق المتصفح (حسب إعدادات المتصفح).</p> <h2>حسابات المستخدم</h2> <p>%{site_name} يتطلب من المستخدمين إنشاء حساب للنشر البرامج النصية، والمشاركة في المناقشات، والوصول إلى بعض ميزات الموقع الأخرى. عند إنشاء حساب، معلومات مثل عنوان الآيبي، وعنوان البريد الإلكتروني، وكيل المستخدم قد تكون مخزنة بشكل دائم. ربما بعض من هذه المعلومات مرئية للمستخدمين الآخرين.</p> <p>الإجراءات التي يتم تنفيذها عند تسجيل الدخول، على سبيل المثال نشر الكتابات والتعليقات، ستكون مرئية للمستخدمين الآخرين.</p> <p>
 
-          واذا كان خيار "تذكرني" محدد عند تسجيل الدخول إلى حساب، %{site_name} سيحفظ
-          ملفات تعريف ارتباط دائمة للاحتفاظ بحالة تسجيل الدخول.</p> <h2>البرامج النصية
-          المنشورة على %{site_name}</h2> <p>%{site_name} يحتوي على محتوى مقدم من المستخدمين،
-          والبرامج النصية المنشورة قد تكون قادرة على تعقب المستخدمين إذا تم تثبيتها.</p>
-          <h2>مكتبات الطرف الثالث</h2> <p>%{site_name} يمكن أن يشمل كود طرف ثالث لجمع
-          إحصاءات أو عرض الإعلانات على الموقع. ويمكن أن تشمل هذه المكتبات منطق تتبع.</p>
+        واذا كان خيار "تذكرني" محدد عند تسجيل الدخول إلى حساب، %{site_name} سيحفظ ملفات تعريف ارتباط دائمة للاحتفاظ بحالة تسجيل الدخول.</p> <h2>البرامج النصية المنشورة على %{site_name}</h2> <p>%{site_name} يحتوي على محتوى مقدم من المستخدمين، والبرامج النصية المنشورة قد تكون قادرة على تعقب المستخدمين إذا تم تثبيتها.</p> <h2>مكتبات الطرف الثالث</h2> <p>%{site_name} يمكن أن يشمل كود طرف ثالث لجمع إحصاءات أو عرض الإعلانات على الموقع. ويمكن أن تشمل هذه المكتبات منطق تتبع.</p>
+    user_css_to_user_js:
+      title: ""
   search:
     script_search:
       title: "بحث البرامج النصية "
+      description: ""
     library_search:
       title: "بحث المكتبات "
+      description: ""
     code_search:
       title: "بحث الكود المصدري"
       description: "بحث في الكود المصدري لبرنامج نصي. يتم البحث بتجاهل حالة الأحرف وبنص مباشر."
@@ -594,14 +1094,78 @@ ar:
     item_script_html: "السكربت: %{script_link}"
     item_deleted_script: "أحذف السكربت %{id}"
     item_user_html: "المستخدم: %{user_link}"
+  notifications:
+    consecutive_bad_ratings:
+      zero: ""
+      one: ""
+      two: ""
+      few: ""
+      many: ""
+      other: ""
+  reports:
+    report_filed: ""
+    new_report_title:
+      user: ""
+      comment: ""
+      message: ""
+      script: ""
+    new_report_notes_html: >
+    new_script_report_notes_html: >
+    new_user_report_notes_html: >
+    reason:
+      non_functional: ""
+      spam: ""
+      abuse: ""
+      illegal: ""
+      unauthorized_code: ""
+      malware: ""
+      minified: ""
+      external_code: ""
+      undisclosed_antifeature: ""
+      other: ""
+    report_intro_html: ""
+    report_intro_unauthorized_html: ""
+    non_functional_feedback: ""
+    unauthorized_code_original_placeholder: ""
+    explanation_placeholder: ""
+    create_button: ""
+    report_user: ""
+    report_comment: ""
+    report_message: ""
+    result_dismissed: ""
+    result_upheld: ""
+    result_pending: ""
+    rebuttal_placeholder: ''
+    submit_rebuttal: ""
+    delete_script: ""
   discussions:
+    title: ""
+    comment_date: ""
+    comment_edit_date: ""
+    posted_by_html: ""
+    last_comment: ""
+    new_discussion_heading: ""
+    new_discussion_submit: ""
+    new_comment_heading: ""
+    new_comment_submit: ""
+    back_to_feedback: ""
+    edit_comment_link: ""
     edit_comment_header: "تعديل التعليق"
     delete_comment: "حذف"
+    delete_comment_confirm: ""
     delete_discussion: "حذف"
+    delete_discussion_confirm: ""
     update_comment_submit: "تحديث التعليق"
     cancel_update_comment: "إلغاء"
+    quote_comment: ""
     question_heading_html: "سؤال / تعليق"
     review_heading_html: "مراجعة: %{rating}"
+    update_rating: ""
+    ratings:
+      question: ""
+      bad: ""
+      ok: ""
+      good: ""
     ratings_short:
       question: "سؤال / تعليق"
       bad: "سيئة"
@@ -612,6 +1176,9 @@ ar:
     user_filter:
       label: "مناقشات شاركت فيها"
       all: "كل المناقشات"
+      discussion_by_me: ""
+      comment_by_me: ""
+      on_my_scripts: ""
       subscribed: "مشترك"
     other_user_filter:
       all: "جميع المناقشات"
@@ -620,30 +1187,54 @@ ar:
       label: الفئة
       all: جميع الفئات
     read_filter:
+      label: ""
       all: الكل
       read: مقروءة
       unread: غير مقروءة
+    locale_filter:
+      label: ""
+      all: ""
     user_activity:
       title: "التعليقات الأخيرة"
       no_recent_activity: "هذا المستخدم لم ينشر أي تعليقات مؤخرا."
       see_all_activity: "شاهد كل نشاط المستخدم."
       script_review:
         posted_html: "نشر مشاركة حول <i>%{script}</i>"
+        replied_html: ""
       script_question:
         posted_html: "نشر سؤال / تعليق حول <i>%{script}</i>"
         replied_html: "رد على سؤال / تعليق حول <i>%{script}</i>"
       discussion:
         posted_html: "نشر مناقشة: <i>%{title}</i>"
         replied_html: "رد على المناقشة: <i>%{title}</i>"
+    review_title: ""
     question_title: "سؤال حول %{script_name}"
     subscribe: الإشتراك
     unsubscribe: إلغاء الاشتراك
     notify: أعلمني بأي ردود
+    notifying_on_script: ""
     categories:
+      greasyfork:
+        name: ""
+        description: ""
       development:
         name: تطوير
+        description: ""
+      requests:
+        name: ""
+        description: ""
+      script-discussions:
+        name: ""
+        description: ""
+      no-scripts:
+        name: ""
+      moderators:
+        name: ""
+        description: ""
+    category_display: ""
     new_title: مناقشة جديدة
     new_button: مناقشة جديدة
+    script_notice: ""
     no_discussions: لم يتم العثور على مناقشات.
     mark_all_read: ضع علامة بأنه تم القراءة
     pending_moderator_review: هذه المناقشة غير متاحة للمستخدمين الآخرين حتى تتم مراجعتها من قبل المشرف.
@@ -652,28 +1243,59 @@ ar:
     new_title: قم بإنشاء محادثة جديدة
     new_link: قم بإنشاء محادثة جديدة
     new_button: إنشاء محادثة
+    title_html:
+      zero: ''
+      one: ''
+      two: ''
+      few: ''
+      many: ''
+      other: ''
     send_message: أرسل رسالة
     conversation_list_title: المحادثات
-    conversation_info_html: آخر رسالة في%{date} بواسطة %{user}.
+    conversation_link_html:
+      zero: ''
+      one: ''
+      two: ''
+      few: ''
+      many: ''
+      other: ''
+    conversation_info_html: "آخر رسالة في%{date} بواسطة %{user}."
     no_conversations: لم تجر أي محادثات بعد.
+    no_recent_conversations: ""
     recent:
       title: المحادثات الأخيرة
       more: مشاهدة جميع المحادثات
+  screenshots:
+    requirements: ""
   common:
+    # text to show before listing errors in a submission
     error_preamble: "هناك بعض المشاكل مع ما قمت بنشره ..."
+    # link to the list of allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_link: "(مشاهدة الكود المسموح به)"
+    # title of the page showing allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_and_attributes_title: "العناصر المسموحة لمحتوى HTML "
+    # text to introduce the list of allowed HTML elements and attributes
     allowed_elements_intro: "العناصر والخصائص التالية مسموح بها. هذا ينطبق على كل من HTML و Markdown (بعد تحويلها إلى HTML)"
+    # additional info for the allowed HTML elements, explaining additional changes made to content
     allowed_elements_extra_info: "المسافات البيضاء سيتم تحويلها إلى عنصر p او br . الوصلات سيتم تفعيلها بشكل تلقائي."
+    allowed_css_intro: ""
+    user_references_html: ""
     not_found_text: "404 - الصفحة غير موجودة."
     not_found_title: "404 - الصفحة غير موجودة"
     not_found_link_home: "الذهاب للصفحة الرئيسية"
+    # shown on the first page a user sees if, based on the user's Accept-Language header, we think we have a better locale than what the first page shows. "locale_name" is the name of the locale in that language (matching the name in the locale drop down)
     suggest_locale: "%{site_name} متوفر بـ %{locale_name}."
+    # shown on the first page a users sees if the locale they're on is less than a certain amount translated. links to the docs on how to help with localization
     incomplete_locale: "ترجمة %{site_name} باللغة %{locale_name} مكتملة فقط بنسبة %{percent}. بإمكانك تغيير ذلك."
+    # text for a button that expands a block of text
     expander_show_more: "عرض المزيد"
+    # text for a button that contracts a block of text
     expander_show_less: "عرض أقل"
+    # note denoting what are ads
     advertisement_note: الإعلانات
+    # label on tab allowing for previewing input
     preview_tab: معاينة
+    # label on tab for entering input
     write_tab: أكتب
     listing_options_title: "خيارات البحث"
     quote:
@@ -681,26 +1303,49 @@ ar:
   activerecord:
     attributes:
       user:
+        # user field: display name
         name: "الاسم"
+        # user field: profile (HTML content describing themselves)
         profile: "الملف الشخصي"
+        # user field: locale
         locale: "اللغة المحلية المفضلة"
+        # user field: setting to send e-mails when discussions or comments are posted to a user's scripts. options are under users.author_email_notification_type
         author_email_notification_type_id: "إخطارات مناقشة البرنامج النصي"
+        # user field: show ads
         show_ads: "عرض الإعلانات"
+        # user field: show sensitive
         show_sensitive: "محتوى للبالغين"
+        # user field: preferred markup (html or markdown)
         preferred_markup: "العلامات المفضلة"
+        filter_locale_default: ""
+        current_password: ""
+        new_password: ""
+        new_password_confirmation: ""
       script:
+        # name of the script
         name: "الاسم"
+        # description of the script
         description: "الوصف"
+        # locale the script is in. see also scripts.locale_explanation
         locale: "اللغة المحلية"
+        # the JS code of the script
         code: "الكود"
+        # description of changes for an update
         changelog: "سجل التغييرات"
+        # the type of script - public, unlisted, or library
         type: "نوع البرنامج النصي"
+        # additional descriptive text outside of @description
         additional_info: "معلومات إضافية"
+        # screenshots attached to the script
         screenshots: "لقطات الشاشة"
+        # when deleting, which script to redirect to
         replaced_by_script_id: "البرنامج النصي للاستبدال"
       script_set:
+        # name of the script set
         name: "الاسم"
+        # description of the script set
         description: "الوصف"
+        # default sort of the script set
         default_sort: "الفرز الافتراضي "
       report:
         reason: "سبب التقرير"
@@ -714,21 +1359,76 @@ ar:
         content: رسالة
   errors:
     messages:
+      # validation for when a script name is not provided
       script_missing_name: "مطلوب - حدد واحد بـ @name"
+      # validation for when a script description is not provided
       script_missing_description: "مطلوب - حدد واحد بـ @description"
+      # validation for when a script description is the same as name
       script_name_same_as_description: "يجب ألا يكون نفس الاسم"
+      # validation for sync URL
       script_sync_identifier_bad_protocol: "يجب أن يكون رابط HTTP أو HTTPS"
+      # validation for number of screenshots
       script_too_many_screenshots: "كثير من لقطات الشاشة - الحد الأقصى هو %{number}"
+      # validation for "deleted and replaced by" when the user says the script is replaced by itself
       cannot_be_self_reference: "لا يمكن أن يكون نفس البرنامج النصي"
+      # validation for "deleted and replaced by" when the user says the script is replaced by a deleted script
       cannot_be_deleted_reference: "لا يمكن أن يكون برنامج نصي محذوف"
       cannot_be_used_with_this_script: "لا يمكن استخدامة مع هذا السكربت"
+      # validation for "deleted and replaced by" when the user provides a non-%{site_name} URL
       must_be_greasy_fork_script: "يجب أن يكون الرابط لبرنامج نصي على %{site_name}"
+      # validation when the user uploads code that's not UTF-8 text
       script_update_not_utf8: "المرفوع يجب أن يكون نص UTF-8"
+      # validation when user uploads code that contains a disallowed @require
       script_disallowed_require: "يستخدم برنامج نصي خارجي غير مصرح به: %{code}"
       script_rate_limit: "لقد تجاوزت حد النشر. حاول مجدداً في وقت لاحق."
+      missing_include_or_match: ""
       file_size_out_of_range: "يجب أن يكون الحجم أقل من 200 كيلو بايت"
+      meta_too_long: ""
   opensearch:
+    # short name for opensearch.xml
     short_name: "بحث %{site_name}"
+    # description for opensearch.xml
     description: "بحث عن البرامج النصية للمستخدم في %{site_name}."
+    # long name for opensearch.xml
     long_name: "%{site_name} بحث عن البرامج النصية"
+    # attribution for opensearch.xml
     attribution: "حقوق التأليف والنشر لمؤلفي البرامج النصية، شاهد البرامج النصية بشكل منفصل من أجل الترخيص"
+  mailers:
+    script_report:
+      report_created_offender:
+        subject: ""
+        text: ""
+      report_upheld_offender:
+        subject: ""
+        text: ""
+      report_dismissed_offender:
+        subject: ""
+        text: ""
+      report_rebutted_reporter:
+        subject: ""
+        text: ""
+      report_upheld_reporter:
+        subject: ""
+        text: ""
+      report_script_deleted_reported:
+        subject: ""
+        text: ""
+      report_dismissed_reporter:
+        subject: ""
+        text: ""
+    consecutive_bad_ratings:
+      notify:
+        subject: ""
+        text: |
+    script_comment:
+      subject: ""
+      text: |
+    subscribed_discussion:
+      subject: ""
+      text: |
+    comment_mentioned:
+      subject: ""
+      text: |
+    new_message:
+      subject: ""
+      text: |
