@@ -1,81 +1,133 @@
 el:
   layouts:
     application:
+      # link to the list of scripts
       script_list: "Κώδικες"
+      # link to the forum
       forum: "Δημόσια Συζήτηση"
+      # link to the help docs
       help: "Βοήθεια"
+      # link to sign in
       sign_in: "Σύνδεση"
+      # label for nav submenu
       submenu: "Περισσότερα"
+      # link to advanced search
       advanced_search: "Αναζήτηση για προχωρημένους"
+      # link to user list
       user_list: "Λίστα χρηστών"
+      # link to libraries
       libraries: "Βιβλιοθήκες"
+      # link to moderator log
       moderator_log: "Καταγραφή διαχειριστών"
   scripts:
+    # label for created date of a script
     created_date: "Δημιουργήθηκε την"
+    # label for updated date of a script
     updated_date: "Ενημερώθηκε την"
+    # label for total install count of a script
     total_installs: "Σύνολο εγκαταστάσεων"
+    # label for daily install count of a script
     daily_installs: "Ημερήσιες εγκαταστάσεις"
+    # label for the ratings of a script
     ratings: "Βαθμολογίες"
+    # label for author name of a script
     author_name: "Δημιουργός"
+    # label for version number of a script
     version_number: "Έκδοση"
+    # label for the legal license a script is released under (e.g. GPL)
     license: "Άδεια"
+    # what is shown as the license when no license is provided in a script
     no_license: "Μη διαθέσιμη"
+    # label for the browser compatibility for a script
     compatibility: "Συμβατότητα"
     compatible_with_browser: "Συμβατό με %{browser}"
     incompatible_with_browser: "Ασύμβατο με %{browser}"
+    # label for the list of sites or patterns a script applies to
     applies_to: "Εφαρμόζεται σε"
+    # a title (tooltip) for the links in the "applies to" section going to a list of scripts for that site. count is the number of other scripts, site is the name of the site. add subkeys for your language per http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
     applies_to_link_title:
       one: "Δείτε %{count} άλλο κώδικα για %{site}"
       other: "Δείτε %{count} άλλους κώδικες για %{site}"
+    # what is shown as the applies to when a script applies to all sites
     applies_to_all: "Όλοι οι ιστοχώροι"
+    # link that makes the user install the script
     install: "Εγκατάσταση αυτού του κώδικα"
+    # text for link that gives information on how to install scripts. should be very short.
     install_help: "Βοήθεια"
+    # title (tooltip) for link that gives information on how to install scripts
     install_help_title: "Πώς γίνεται η εγκατάσταση"
+    # link that makes the user update the script
     update: "Αναβάθμιση στην έκδοση %{version}"
+    # link that makes the user downgrade the script
     downgrade: "Υποβάθμιση στην έκδοση %{version}"
+    # link that makes the user reinstall the script
     reinstall: "Επανεγκατάσταση έκδοσης %{version}"
+    # warning when installing an old version of a script
     old_version_warning: "Αυτή δεν είναι η τελευταία έκδοση αυτού του κώδικα. Αν την εγκαταστήσετε, δεν θα ενημερωθείτε ξανά για νέα έκδοση. Θέλετε να την εγκαταστήσετε, παρόλα αυτά;"
+    # label for a promoted script
     promoted: "Προωθούμενος κώδικας"
     author_promoted: "Κώδικας προτεινόμενος από τον δημιιουργό"
+    # text for promoted script
     promoted_text_html: "Μπορεί, επίσης, να σας αρέσει ο κώδικας %{script_link}."
+    # instructions on a script library. code will be a <code> element. Don't use punctuation around the code element if possible so that people don't accidentally include that when copying.
     library_instructions_html: "Αυτός ο κώδικας δεν πρέπει να εγκατασταθεί άμεσα. Είναι μια βιβλιοθήκη για όλους κώδικες που περιλαμβάνεται μέσω της οδηγίας meta %{code}"
+    # text displayed for deleted scripts
     deleted_notice: "Αυτός ο κώδικας έχει διαγραφεί."
     deleted_notice_with_related: "Ο κώδικας που ζητήσατε έχει διαγραφεί, αλλά υπάρχουν κάποιοι σχετικοί κώδικες."
     deleted_undelete_notice_html: "Αυτός ο κώδικας έχει κλειδωθεί από κάποιον συντονιστή και δεν μπορεί να διαγραφεί. Η αιτία της ενέργειας αυτής είναι: « <i>%{delete_reason}</i>»."
     deleted_locked_author_notice_html: "Αυτός ο κώδικας έχει διαγραφεί από κάποιον συντονιστή και δεν είναι προσβάσιμος από άλλους. Η αιτία της ενέργειας αυτής είναι: «<i>%{delete_reason}</i>»."
     deleted_author_notice: "Αυτός ο κώδικας έχει διαγραφεί και δεν είναι προσβάσιμος από άλλους. Μπορείτε να αναιρέσετε τη διαγραφή από την καρτέλα Διαγραφή."
+    # test displayed when viewing a previous version. date is a date and time (no "ago"), latest_version_link is a link to the newest version whose text is version_notice_latest_version_link
     version_notice_html: "Από την %{date}. Δείτε %{latest_version_link}."
     version_notice_latest_version_link: "την τελευταία έκδοση"
     reported_notice: "Ο κώδικας «%{script_name}» έχει αναφερθεί και αναμένεται έλεγχος από συντονιστή."
     reported_notice_for_author: "Αυτός ο κώδικας δεν είναι διαθέσιμος σε άλλους χρήστες μέχρι να ελεγχθεί από συντονιστή."
+    # link to the script's info page, containing script meta and author's description
     info_page: "Πληροφορίες"
+    # link to the script's code page
     code_page: "Κωδικός"
+    # link to the script's history page, listing all versions of the code
     history_page: "Ιστορικό"
+    # link to the script's feedback page, listing discussions on the script. count is the number of discussions
     feedback_page: "Συζήτηση (%{count})"
+    # link to the script's install statistics page
     stats_page: "Στατιστικά"
+    # link to the script's derivatives page, which shows similar scripts
     derivatives_page: "Παράγωγα"
+    # link to the page that lets the author update the script
     update_page: "Ενημέρωση"
+    # link to the page that lets the author delete a script
     delete_page: "Διαγραφή"
+    # explanation of what deleting does
     delete_explanation: "Διαγράφοντας τον κώδικά σας, τον κάνει μη προσβάσιμο στον οποιοδήποτε εκτός από εσάς και τους διαχειριστές του Grease Fork. Μπορείτε να αναιρέσετε τη διαγραφή οποτεδήποτε."
+    # intro text to radio options for choosing update behaviour after deletion
     delete_update_behaviour: "Τι θα θέλατε να συμβεί στους χρήστες είχαν εγκαταστήσει τον κώδικά σας;"
+    # label for the option allowing users to retain the script after delete
     delete_update_behaviour_1: "Θα το κρατήσουν ως έχει."
+    # label for the option where users get a blanked script after delete 
     delete_update_behaviour_2: "Θα αναβαθμιστούν σε ένα κενό κώδικα. Αυτό είναι κατάλληλο όταν ο κώδικας έχει αρνητική επίδραση στις ιστοσελίδες που τρέχει."
+    # heading for permanent deletion section
     delete_permanently_heading: "Μόνιμη διαγραφή"
+    # explanation of permanent deletion
     delete_permanently_explanation_html: >-
-        <p>Η μόνιμή διαγραφή του κώδικά σας θα τον διαγράψει καθώς και όλες τις σχετικές
-        εγγραφές, με εξαίρεση τις συζητήσεις στη δημόσια συζήτηση και την καταγραφή
-        των ενεργειών των συντονιστών.</p><p>Ο κώδικάς σας θα διαγραφεί ολοκληρωτικά
-        7 ημέρες από το αίτημά σας. Μπορείτε να ακυρώσετε τη μόνιμη διαγραφή κατά
-        την περιόδο αυτή. Αν δεν το πράξετε, κανείς, ούτε οι συντονιστές δεν θα μπορούν
-        να ανακτήσουν τον κώδικά σας.</p>
+      <p>Η μόνιμή διαγραφή του κώδικά σας θα τον διαγράψει καθώς και όλες τις σχετικές εγγραφές, με εξαίρεση τις συζητήσεις στη δημόσια συζήτηση και την καταγραφή των ενεργειών των συντονιστών.</p><p>Ο κώδικάς σας θα διαγραφεί ολοκληρωτικά 7 ημέρες από το αίτημά σας. Μπορείτε να ακυρώσετε τη μόνιμη διαγραφή κατά την περιόδο αυτή. Αν δεν το πράξετε, κανείς, ούτε οι συντονιστές δεν θα μπορούν να ανακτήσουν τον κώδικά σας.</p>
+    # confirmation on pressing the permanent deletion button
     delete_permanently_confirm: "Θέλετε σίγουρα να διαγράψετε τον κώδικά σας;"
+    # text for the permanent deletion button
     delete_permanently_submit: "Αίτημα μόνιμης διαγραφής"
+    # text for the permanent deletion button when it would take effect immediately
     delete_permanently_immediate_submit: "Μόνιμη διαγραφή"
+    # notice after requesting permanent deletion
     delete_permanently_notice: "Το αίτημα για ολοκλήρωση της διαγραφής έχει καταγραφεί. Ο κώδικάς σας θα διαγραφεί μόνιμα σε 7 ημέρες."
+    # text on the delete page after permanently deletion was requested
     delete_permanently_already_requested: "Αιτηθήκατε ολοκλήρωση της διαγραφής στις %{datetime}."
+    # notice after permanently deletion
     delete_permanently_notice_immediate: "Ο κώδικας διαγράφτηκε μόνιμα."
+    # text for cancelling a permanent deletion request
     cancel_delete_permanently_submit: "Ακύρωση αιτήματος μόνιμης διαγραφής"
+    # notice after cancelling a permanent deletion request
     cancel_delete_permanently_notice: "Το αίτημά σας για μόνιμη διαγραφή έχει ακυρωθεί. Ο κώδικάς σας δεν είναι ακόμα ορατός σε άλλους."
+    # error when attempting to delete a locked script
     delete_permanently_rejected_locked: "Αυτός ο κώδικας έχει κλειδωθεί και δεν μπορεί να διαγραφεί μόνιμα"
     admin_page: "Διαχειριστής"
     admin:
@@ -94,44 +146,70 @@ el:
       compare_to: "Κώδικας %{site_name} σε σύγκριση με (URL)"
       compare_button: "Σύγκριση"
       compare_must_be_local_url: "Σύγκριση κωδίκων πρέπει να είναι URL στο %{site_name}"
+    # HTML title for the history page for a script
     history_title: "%{script_name} - Ιστορικό έκδοσης"
+    # text explaining that we're only showing versions where the code changed
     history_only_code_changes_info: "Αυτές είναι εκδόσεις αυτού του κώδικα όπου ο κώδικας έχει ενημερωθεί."
+    # link to the list of all versions
     history_all_changes_link: "Προβολή όλων των εκδόσεων."
+    # text explaining that we're showing all versions
     history_all_changes_info: "Αυτές είναι όλες οι εκδόσεις αυτού του κώδικα."
+    # link to the list of version where the code changed
     history_only_code_changes_link: "Προβολή μόνο των εκδόσεων όπου άλλαξε ο κώδικας."
+    # button that shows changes (a diff) of the selected versions
     diff_button: "Διαφορές μεταξύ επιλεγμένων εκδόσεων"
+    # HTML title of the script source code page
     code_title: "%{script_name} - Κώδικας προέλευσης"
+    # HTML title of the script feedback page
     feedback_title: "%{script_name} - Συζήτηση"
     feedback_has_reports: "Αυτός ο κώδικας έχει αναφερθεί ότι παραβιάζει τους κανόνες του %{site_name}."
+    # text to show when no discussions are posted. start_discussion_first_link is a link with the text from feedback_start_first_discussion_link
     feedback_no_discussions_html: "Δεν υπάρχουν ακόμα δημοσιευμένες συζητήσεις. %{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "Δεν έχουν δημοσιευτεί συζητήσεις ακόμα."
     feedback_report_instead: "Αν νομίζεις ότι ο κώδικας σπάει %{rules_link:%{site_name}'s rules}, παρακαλώ {report_link:report για αφαίρεση}."
     feedback_start_first_discussion_link: "Γίνεται ο/η πρώτος/η που θα συζητήσετε αυτόν τον κώδικα."
     feedback_discussion_or_report: "%{new_discussion_link:Ξεκινήστε μια νέα συζήτηση σε αυτόν τον κώδικα} ή %{report_link:αναφέρτε τον για απομάκρυνση}."
+    # heading for list of people who favorited this script
     feedback_favoriters_heading: "Καταχωρούντες στα αγαπημένα"
+    # text before a comma separated list of users who favorited the script
     feedback_favoriters_user_list_html: "Αυτός ο κώδικας έχει τεθεί στα Αγαπημένα από: %{user_list}."
     feedback_favoriters_lots:
       one: "Αυτός ο κώδικας έχει τεθεί στα Αγαπημένα από %{user_count} χρήστη. %{full_link:Δείτε την πλήρη λίστα.}"
       other: "Αυτός ο κώδικας έχει τεθεί στα Αγαπημένα από %{user_count} χρήστες. %{full_link:Δείτε την πλήρη λίστα.}"
+    # text when no one has favorited a script
     feedback_no_favoriters: "Αυτός ο κώδικας δεν έχει καταχωρηθεί στα αγαπημένα από κανένα."
+    # link to get the user to sign in to add the script to their favorites
     feedback_sign_in_to_favorite: "Συνδεθείτε για να προσθέσετε στα αγαπημένα."
+    # html title for script stats page
     stats_title: "%{script_name} - Στατιστικά"
+    # heading for daily install stats on stats page
     stats_daily_installs_heading: "Ημερήσιες εγκαταστάσεις"
+    # heading for weekly install stats on stats page
     stats_weekly_installs_heading: "Εβδομαδιαίες εγκαταστάσεις"
+    # heading for daily update check stats on stats page
     stats_daily_update_checks_heading: "Ημερήσιοι έλεγχοι ενημέρωσης"
+    # date column heading for a script's daily install stats table
     stats_daily_installs_date_column_heading: "Ημερομηνία"
+    # install count column heading for a script's stats table
     stats_daily_installs_install_count_column_heading: "Εγκαταστάσεις"
+    # update check count column heading for a script's stats table
     stats_daily_installs_update_check_count_column_heading: "Έλεγχοι ενημέρωσης"
+    # header for the raw data table for stats
     stats_raw_data_header: "Πρωτογενή δεδομένα"
+    # text before links to download raw stats data. links will be space separated links to the format name (e.g. CSV and JSON)
     stats_download_raw_data_html: "Λήψη όλων των δεδομένων ως: %{links}"
+    # text to show when a stat is not available
     stats_no_data: "Μη διαθέσιμο"
     stats_filters: "Φίλτρο: %{filter_options}"
     stats_filter_options:
       month: Τελευταίες 30 ημέρες
       year: Τελευταίες 365 ημέρες
       all: Οποιαδήποτε χρονική στιγμή
+    # HTML title for derivatives page
     derivatives_title: "%{script_name} - Παράγωγα"
+    # text explaining the derivatives page and what to do if the user finds unauthorized copies
     derivatives_intro: "Αυτοί οι κώδικες μπορούν να βασίζονται σε δικούς σας (ή οι δικοί σας μπορεί να βασίζονται σε αυτούς). Αν βρείτε μια μη εξουσιοδοτημένη χρήση του κώδικά σας, αναφέρετε το μέσω της καρτέλας σχολιασμού του κώδικα."
+    # format for scripts listed on the derivatives page. script_link is a link to the derivative's page, user_link is a link to the user who created the derivative, license is text, link to the license, or scripts.no_license
     derivatives_script_html: "%{script} από %{user}, άδεια: %{license} %{diff_link:[Διαφορές]}"
     derivatives_exact_copies_heading: "Ακριβή αντίγραφα"
     derivatives_exact_copies_list_intro: "Οι ακόλουθοι κώδικες έχουν τον ίδιο ακριβώς κώδικα με τον δικό σας:"
@@ -150,147 +228,280 @@ el:
     derivatives_similar_last_check_soon: "Σύντομα θα ελέγξουμε για παρόμοιο κώδικα με τον δικό σας"
     derivatives_similar_last_check_again_soon_html: "Ελέγξαμε πρόσφατα για κώδικες παρόμοιους με το δικό σας %{date}. Θα έλέγξουμε ξανά σύντομα."
     derivatives_similar_check_now: "Επανέλεγχος τώρα"
+    # html title for script list page when showing scripts that affect all sites
     listing_title_all_sites: "Κώδικες χρηστών για όλες τις ιστοσελίδες"
+    # meta description and feed subtitle when showing scripts that affect all sites
     listing_description_all_sites: "Κώδικες χρηστών που προσθέτουν χαρακτηριστικά και απομακρύνουν σφάλματα σε όλους τους ιστοχώρους"
+    # html title for script list page when showing scripts for a particular site. 'site' will be in the form 'example.com'
     listing_title_for_site: "Κώδικες χρηστών για τον ιστοχώρο %{site}"
+    # meta description and feed subtitle when showing scripts that affect a particular site
     listing_description_for_site: "Κώδικες χρηστών που προσθέτουν χαρακτηριστικά και απομακρύνουν σφάλματα στον ιστοχώρο %{site}"
+    # html title for script list page for search results.
     listing_title_for_search: "Κώδικες χρηστών με το κείμενο «%{search_string}»"
+    # html title for script list page for code search results.
     listing_title_for_code_search: "Κώδικες χρηστών με το κείμενο «%{search_string}»"
+    # html title for script list page when no other situation applies
     listing_title_generic: "Κώδικες χρηστών"
+    # html title for script list page for a user's favorites. set_name is script_sets.favorites_name
     listing_title_for_favorites: "%{set_name} του/της %{user_name}"
+    # meta description and feed subtitle for script list page when no other situation applies
     listing_description_generic: "Κώδικες χρηστών που προσθέτουν χαρακτηριστικά και απομακρύνουν σφάλματα στους ιστοχώρους που χρησιμοποιείτε"
+    # label for sorting links on script list page
     listing_sort_label: "Ταξινόμηση κατά:"
+    # link for relevance (most matching the search terms) sort on a script list
     listing_sort_relevance: "Συνάφεια"
+    # link for daily install sort on a script list
     listing_sort_daily_installs: "Ημερήσιες εγκαταστάσεις"
+    # link for daily install sort on a script list
     listing_sort_total_installs: "Συνολικές εγκαταστάσεις"
+    # link for rating sort on a script list
     listing_sort_ratings: "Βαθμολογίες"
+    # link for created date sort on a script list
     listing_sort_created: "Ημερομηνία δημιουργίας"
+    # link for updated date sort on a script list
     listing_sort_updated: "Ημερομηνία ενημέρωσης"
+    # link for name sort on a script list
     listing_sort_name: "Όνομα"
+    # label for filtering by-site links on script list page
     listing_filter_by_site_label: "Προβολή κώδικα για:"
+    # link for turning off by-site filtering on script list page
     listing_filter_by_site_disable: "Όλα"
+    # link for filtering script list by scripts that affect all sites
     listing_filter_by_site_all_sites: "(Όλοι οι ιστοχώροι)"
     listing_filter_by_language_label: "Γλώσσα:"
+    # link to see a full list of sites that scripts on %{site_name} affect
     listing_filter_by_site_more_sites: "Περισσότερα…"
+    # text that shows when no scripts were found with the used parameters
     listing_no_scripts: "Δεν βρέθηκαν κώδικες."
+    # feed title for the listing, ordered by created date
     listing_created_feed: "Νέοι κώδικες"
+    # feed title for the listing, ordered by updated date
     listing_updated_feed: "Ενημερωμένοι κώδικες"
+    # when a list has nothing to show
     listing_none: "(Κανένα)"
+    # link to filter search results by the current locale
     listing_set_locale_filter: "Προβολή αποτελεσμάτων από όλες τις γλώσσες. . %{set_filter_link:Προβολή αποτελεσμάτων μόνο από την %{language}.}"
+    # link to remove locale filter
     listing_remove_locale_filter: "Προβολή αποτελεσμάτων μόνο από την %{language}. %{remove_filter_link:Προβολή αποτελεσμάτων από όλες τις γλώσσες.}"
     listing_language_all: "Όλες"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    # link to start the process of importing (creating from an external place) scripts
     import: "Εισαγωγή κώδικα"
+    # link to create a new script
     new: "Δημοσιεύστε έναν κώδικα που έχετε γράψει"
     new_css: "Δημοσιεύστε ένα στυλ που έχετε γράψει"
+    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support site
     support_site: "Επισκεφθείτε τον ιστοχώρο υποστήριξης του δημιουργού."
+    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support email address
     support_email: "Στείλτε ηλεκτρονική επιστολή στο δημιουργό για υποστήριξη."
+    # link to a site where the user can donate to the author, when the author didn't provide a suggested donation amount
     contribution_no_amount: "Ευχαριστείστε τον/την %{author} κάνοντας μια δωρεά."
+    # link to a site where the user can donate to the author, when the author provided a suggested donation amount
     contribution_with_amount: "Ευχαριστείστε τον/την %{author} κάνοντας μια δωρεά. Προτεινόμενη δωρεά είναι το ποσό των %{amount}."
+    # text for donating to the author via bitcoin, when the author didn't provide a suggested donation amount
     contribution_bitcoin_no_amount_html: "Ευχαριστείστε τον/την %{author} κάνοντας μια δωρεά Bitcoin στη διεύθυνση %{address}."
+    # text for donating to the author via bitcoin, when the author provided a suggested donation amount
     contribution_bitcoin_with_amount_html: "Ευχαριστείστε τον/την %{author} κάνοντας μια δωρεά Bitcoin στη διεύθυνση %{address}. Προτεινόμενη δωρεά είναι το ποσό των %{amount}."
+    # explanation of language chooser when editing script
     locale_explanation_html: "Πρέπει να ταιριάζει με τη γλώσσα του <code>@name</code>, <code>@description</code>, και των πρώτων πρόσθετων πληροφοριών."
+    # the default value for the locale box, if submitted the site will attempt to detect the language of the entry
     locale_auto_select: "(Αυτόματη ανίχνευση)"
+    # label which lists the sets this script is in, which is followed by controls to change its inclusions
     sets_label: "Σύνολα εντός του κώδικα:"
+    # label for when the script is not in any sets, which is followed by controls to change its inclusions
     sets_label_no_sets: "Σύνολα κώδικα:"
+    # option to remove the script from the set
     sets_remove_inclusion: "Απομάκρυνση από το σύνολο %{set_name}"
+    # option to remove the script's exclusion from the set
     sets_remove_exclusion: "Απομάκρυνση εξαίρεσης από το σύνολο %{set_name}"
+    # option to add the script to the set
     sets_add_inclusion: "Προσθήκη στο σύνολο %{set_name}"
+    # option to exclude the script from the set (when it's been included as part of a sub set)
     sets_add_exclusion: "Εξαίρεση από το σύνολο %{set_name}"
+    # option to add the script to a new set
     sets_add_to_new: "Προσθήκη σε νέο σύνολο"
+    # summary of %{site_name}'s rules for posting scripts. full_rules_link is a link to the full rules with text of rules_summary_link_to_full
     rules_summary_html: "Οι κώδικες πρέπει να <strong>περιγράφονται επαρκώς</strong>, δεν πρέπει να είναι <strong>ασαφείς</strong> ή <strong>ελαχιστοποιημένα</strong>, πρέπει να σέβονται τα <strong>πνευματικά δικαιώματα</strong>, και περιορίζονται στον <strong>εξωτερικό κώδικα</strong> που χρησιμοποιούν. %{full_rules_link}"
+    # full rules link text used in the rules summary
     rules_summary_link_to_full: "Διαβάστε τους πλήρεις κανόνες."
+    # warning when on the edit screen for a script set up to sync. syncing_notice_sync_type will be a link to the sync screen with text from syncing_notice_sync_type_manual or syncing_notice_sync_type_automatic
     syncing_notice_html: "Αυτός ο κώδικας είναι %{syncing_notice_sync_type}. Οποιεσδήποτε ενημερώσεις κάνετε στον κώδικα εδώ θα αντικατασταθούν κατά τον συγχρονισμό."
+    # used in syncing_notice_html when a script syncs only when the author requests it
     syncing_notice_sync_type_manual: "ορισμένος να συγχρονίζεται χειροκίνητα από %{sync_identifier}"
+    # used in syncing_notice_html when a script syncs automatically
     syncing_notice_sync_type_automatic: "ορισμένος να συγχρονίζεται αυτόματα από %{sync_identifier}"
+    # label for uploading a script under the code textarea
     upload_label: "Ή αποστολή:"
+    # label for checkbox to enable or disable syntax highlighting code editor
     enable_source_code_editor_label: "Ενεργοποιήση επεξεργαστή προέλευσης με επισήμανση σύνταξης"
+    # descriptive text for the changelog field
     changelog_note: "Τι έχει αλλάξει σε αυτή την έκδοση;"
+    additional_info_note: ""
+    # button text for previewing additional info
+    # button text for submitting a new script
     post_new_script: "Δημοσίευση κώδικα"
+    # button text for submitting an update to an existing script
     post_updated_script: "Δημοσίευση νέας έκδοσης"
+    # label for radio button for public-type user script
     type_1_html: "Δημόσιος κώδικας χρήστη - ένας κώδικας χρήστη για όλους να τον βλέπουν και να τον χρησιμοποιούν."
+    # label for radio button for unlisted-type user script
     type_2_html: "Αταξινόμητος κώδικας χρήστη - ένας κώδικας χρήστη για (ημί)ιδιωτική χρήση. Διαθέσιμος μέσω άμεσης πρόσβασης, αλλά όχι με δημοσιευμένη σύνδεσή του οπουδήποτε στο %{site_name}."
+    # label for radio button for library-type script
     type_3_html: "Βιβλιοθήκη - ένας κώδικας που προκειται να είναι προαπαιτούμενος <code>@require</code> από άλλους κώδικες και δεν θα εγκαθίσταται άμεσα."
+    # label for checkbox to override script save warnings
     override_warning_checkbox_label: "Αποθήκευση παρά τις ειδοποιήσεις;"
+    # script warning for not increasing the version number when updating the code
     warning_version_not_incremented_html: "Ενημερώσατε τον κώδικα αλλά δεν αυξήσατε τον αριθμό της έκδοσης <code>@version</code>. Αυτοί που προηγούμενα εγκατέστησαν τον κώδικά σας ίσως δεν λάβουν τον ενημερωμένο κώδικα."
+    # script warning for when a version number is not provided
     warning_version_missing_html: "Δεν ορίσατε την ετικέτα <code>@version</code>. Μια ετικέτα <code>@version</code> επιτρέπει τον έλεγχο ενημερώσεων του κώδικά σας από τους διαχειριστές κώδικα χρηστών."
+    # label for checkbox for the site to automatically handle version numbers
     warning_version_missing_generate_automatically_html: "Αυτόματη δημιουργία ετικέτας <code>@version</code>;"
+    # script warning for when a namespace is not provided
     warning_namespace_missing_html: "Δεν ορίσατε την ετικέτα <code>@namespace</code>. Μια ετικέτα <code>@namespace</code> επιτρέπει στους χρήστες να επανεγκαταστήσουν ή να τον ενημερώσουν."
+    # label for checkbox for the site to automatically add a namespace
     warning_namespace_missing_generate_automatically_html: "Αυτόματη δημιουργία ετικέτας <code>@namespace</code>;"
+    # script warning for when a namespace changed on update
     warning_namespace_changed_html: "Η ετικέτα <code>@namespace</code> έχει αλλάξει. Μια σταθερή ετικέτα <code>@namespace</code> επιτρέπει στους χρήστες να επανεγκαταστήσουν ή να τον ενημερώσουν."
+    # script warning for when a script's code appears minified. allowed_requires_link is a link to the allowed @require list, with text of warning_potentially_minified_allowed_requires_link
     warning_potentially_minified_html: "Ο κώδικάς σας φαίνεται ότι ίσως περιέχει ελαχιστοποιημένο (συμπιεσμένο) κώδικα. Αν χρησιμοποιείτε μια ελαχιστοποιημένη βιβλιοθήκη, χρησιμοποιήστε αντίθετα την ετικέτα <code>@require</code> με μια από την λίστα %{allowed_requires_link}. Κώδικες με ελαχιστοποιημένο κώδικα απομακρύνονται."
+    # script warning for when a script's code is for adult sites. sensitive_domains is a list of domains
     warning_automatic_sensitive_html: "Ο κώδικάς σας είναι για %{sensitive_domains} και για αυτό θα επισημανθεί ως περιεχόμενο για ενήλικες."
+    # used in warning_potentially_minified_html
     warning_potentially_minified_allowed_requires_link: "ένα από αυτά τα μέρη"
     warning_code_previously_posted_html: "Ο κωδικός έχει αναρτηθεί ήδη στο %{script_links} . Κώδικες που αναδημοσιεύονται από άλλους εκτός του αρχικού συγγραφέα υπόκεινται σε αφαίρεση από τους συντονιστές."
+    # default option for the locale of a localized additional info
     additional_info_locale_prompt: "(Επιλέξτε γλώσσα)"
+    # text for the button to add another additional info section for a different language
     additional_info_add_localized: "Προσθήκη μιας πρόσθετης πληροφορίας για μια γλώσσα"
+    # validation when more than one additional info is specified for a locale. "locale_code" is the locale code (e.g. "en") that has more than one additional info
     additional_info_locale_repeated: "Παρέχετε μόνο μια πρόσθετη πληροφορία για τη γλώσσα «%{locale_code}»."
+    # validation when an additional info in a locale is provided but no name was provided in that locale. "locale_code" is the locale code (e.g. "en") that is missing a name
     localized_additional_info_with_no_name: "Η πρόσθετη πληροφορία ορίστηκε για τη γλώσσα «%{locale_code}», αλλά καμιά ετικέτα @name:%{locale_code} δεν παρέχεται."
     localized_attribute_matches_default: "Ο κώδικας δεν μπορεί να ορίσει το %{meta_key} καθώς το «%{locale_code}» είναι η προεπιλεγμένη τοπική ρύθμιση."
+    # text to edit a code syncing URL. field is the text field to enter the url.
     code_syncing_from_url_html: "Αυτός ο κώδικας έχει οριστεί να συγχρονίζεται από: %{field}"
+    # text to add a code syncing URL. field is the text field to enter the url.
     provide_code_syncing_from_url_html: "Το %{site_name} μπορεί να εισάγει κώδικες που φιλοξενούνται αλλού, για παράδειγμα σε ένα σύστημα ελέγχου εκδόσεων (όπως το GitHub), τον δικό σας διακομιστή ή σε άλλου χρήστη ιστοσελίδα φιλοξενίας κώδικα χρήστη. Για την ενεργοποίηση του συγχρονισμού, δώστε ένα URL: %{field}"
+    # text before the sync type options
     sync_type_intro: "Ο κώδικας θα συγχρονίζεται:"
+    # label for radio button for manual syncing
     sync_type_1:
       name: Χειροκίνητος
       description: θα γίνεται έλεγχος για ενημερώσεις όταν εσείς το ζητήσετε
+    # label for radio button for automatic syncing
     sync_type_2:
       name: Αυτόματος
       description: θα γίνεται περιοδικός έλεγχος για ενημερώσεις
+    # label for radio button for webhook syncing
     sync_type_3:
       name: Webhook
+      description: ""
+    sync_name_and_description: ""
+    # text when the last attempted sync failed. date is the date of the error run through markup_date. error is the technical error.
     sync_failed_info_html: "Η τελευταία προσπάθεια συγχρονισμού ήταν την %{date}, και είχε ως αποτέλεσμα στο σφάλμα %{error}."
+    # text indicating the date of the last successful sync. date is the date of the sync run through markup_date
     sync_success_info_html: "Ο τελευταίος επιτυχής συγχρονισμός ήταν την %{date}."
+    # text if the sync never succeeded
     sync_never_succeeded: "Ο συγχρονισμός δεν ολοκληρώθηκε ποτέ επιτυχώς."
+    sync_additional_info: ""
+    add_synced_additional_info: ""
+    # button to update sync settings and run sync immediately
     update_and_sync: "Ενημέρωση και συγχρονισμός τώρα"
+    # button to update sync settings but not sync immediately
     update_no_sync: "Ενημέρωση"
+    # button to disable syncing of the script
     turn_off_syncing: "Απενεργοποίηση συγχρονισμού για αυτόν τον κώδικα"
+    # label for syncing the default additional info
     additional_info_default_sync_html: "Προεπιλεγμένη πρόσθετη πληροφορία (ταίριασμα γλώσσας <code>@name</code>)"
+    # label for syncing localized additional infos
     additional_info_localized_sync_html: "Για τη γλώσσα (ταίριασμα <code>@name:XX</code>)"
+    # HTML placeholder for sync fields
     sync_url_placeholder: "(URL)"
+    # label for adding a new screenshot
     screenshots_add: "Προσθήκη:"
+    # label for checkbox to remove a screenshot
     screenshots_remove: "Απομάκρυνση"
+    # explains what a replacement script when deleting is
     replacement_script_explanation: "(Προαιρετικό) Επιλέξτε έναν άλλον κώδικα που θα αντικαταστήσει τον υπάρχων . Οι χρήστες θα ενημερώνονται και θα ανακατευθύνονται σε αυτόν τον κώδικα. Εισάγετε το URL του κώδικα αντικατάστασης:"
+    # title for diff page
     diff_title: "%{script} - Διαφορές έκδοσης"
+    # label for older version being diffed
     diff_old_version: "Παλαιά:"
+    # label for newer version being diffed
     diff_new_version: "Νέα:"
+    # label for input for lines to show around each change when doing a diff
     diff_lines_of_context: "Γραμμές περιεχομένου:"
+    # label for checkbox on whether to ignore whitespace changes
     diff_ignore_whitespace: "Αγνόηση αλλαγών λευκών διαστημάτων"
+    # button to refresh diff after changing diff options
     diff_refresh: "Ανανέωση"
+    # text shown when compared versions are the same
     diff_no_change: "Δεν βρέθηκαν διαφορές."
+    # tooltip for good rating number - "Good" should match the word used in RatingGood in the PHP localization
     good_rating_explanation: "Αριθμός ατόμων που το βαθμολόγησαν Καλό ή το πρόσθεσαν στα Αγαπημένα."
+    # tooltip for ok rating number - "OK" should match the word used in RatingGood in the PHP localization
     ok_rating_explanation: "Αριθμός ατόμων που το βαθμολόγησαν ως Εντάξει."
+    # tooltip for bad rating number - "Bad" should match the word used in RatingGood in the PHP localization
     bad_rating_explanation: "Αριθμός ατόμων που το βαθμολόγησαν ως Κακό."
+    # link at the bottom of the scripts list suggesting people post a script or learn how. post_a_script_link is a link with text post_a_script_link_text that goes to the new script form. learn_to_write_scripts_link is a link with text learn_to_write_scripts_link_text that goes to the help document for writing scrupts
     write_your_own_html: "%{post_a_script_link} (ή %{learn_to_write_scripts_link})"
+    # link text for the new script form, used in write_your_own_html
     post_a_script_link_text: "Δημοσιεύστε έναν κώδικα που έχετε γράψει"
+    # link text for the writing a user script help doc, used in write_your_own_html
     learn_to_write_scripts_link_text: "μάθετε πως να γράψετε έναν"
+    # a suggestion below the install button that users provide feedback
     feedback_or_report: "%{feedback_link:Κάντε μια ερώτηση, δημοσιεύστε μια ανασκόπηση}, ή %{report_link:αναφέρτε τον κώδικα}."
+    # a suggestion below the install button that users provide feedback or get support from the author's site. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
     support_feedback_or_report: "%{support_url:Επισκεφθείτε τη σελίδα του δημιουργού για υποστήριξη}, %{feedback_link:κάντε μια ερώτηση, δημοσιεύστε μια ανασκόπηση}, ή %{report_link:αναφέρετε τον κώδικα}."
+    # a suggestion below the install button that users provide feedback or get support from the author's via email. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
     support_email_feedback_or_report: "%{support_url:Στείλτε ηλεκτρονική επιστολή στο δημιουργό για υποστήριξη}, %{feedback_link:κάντε μια ερώτηση, δημοσιεύστε μια ανασκόπηση}, ή %{report_link:αναφέρετε τον κώδικα}."
+    # heading for section relating to adult content when posting new script or script version
     adult_content: "Περιεχόμενο για ενήλικες"
+    # label for checkbox letting authors report their script as containing adult content
     adult_content_self_report: "Αυτός ο κώδικας περιέχει περιεχόμενο για ενήλικες ή είναι για μια ιστοσελίδα που περιέχει περιεχόμενο για ενήλικες."
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script not flagged as having adult content
     adult_content_self_report_explanation: "%{site_name}επιτρέπει κώδικες με περιεχόμενο για ενήλικες, αλλά πρέπει να επισημανθούν ως τέτοιοι ώστε οι χρήστες να επιλέξουν αν θα τα βλέπουν."
+    # label for checkbox letting authors report their script as not containing adult content
     not_adult_content_self_report_html: "Αυτός ο κώδικας <strong>δεν</strong> περιέχει περιεχόμενο για ενήλικες και <strong>δεν</strong> αφορά ιστοσελίδα που περιέχει περιεχόμενο για ενήλικες."
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content
     not_adult_content_self_report_explanation: "Το %{site_name} επιτρέπει κώδικες με περιεχόμενο για ενήλικες, αλλά πρέπει να επισημανθούν ως τέτοιοι ώστε οι χρήστες να μπορούν να επιλέξουν αν θα το δουν. Ο κώδικάς σας έχει επισημανθεί ότι έχει περιεχόμενο για ενήλικές. Μπορείτε να αναφέρετε ότι δεν έχει έχει και αυτό να ελεγχθεί από έναν συντονιστή."
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content due to automatic checking
     not_adult_content_self_report_explanation_automatic: "Το %{site_name} επιτρέπει κώδικες με περιεχόμενο για ενήλικες, αλλά πρέπει να έχουν επισημανθεί ως τέτοιοι ώστε οι χρήστες να μπορούν να επιλέξουν αν θα τους δουν. Ο κώδικάς σας έχει επισημανθεί ότι έχει περιεχόμενο για ενήλικες λόγω του ότι αναφέρεται για τους ιστοχώρους %{domain_list}."
+    # the error you see when accessing a adult content script when logged in with the adult content setting off
     adult_content_on_greasy_logged_in_error: "Αυτός ο κώδικας δεν είναι πλέον διαθέσιμος σε αυτή την ιστοσελίδα με τις %{edit_account_link:ρυθμίσεις λογαριασμού Greasy Fork}."
+    # the error you see when accessing a adult content script when not logged in
     adult_content_on_greasy_not_logged_in_error: "Αυτός ο κώδικας δεν είναι πλέον διαθέσιμος ανωνύμως σε αυτή την ιστοσελίδα. %{login_link:Συνδεθείτε} και ελέγξτε τις ρυθμίσεις λογαριασμού Greasy Fork."
+    # the error you see when access a non-adult content script on sleazy fork
     non_adult_content_on_sleazy: "Αυτός ο κώδικας δεν είναι διαθέσιμος σε αυτή την ιστοσελίδα."
     not_js_convertible_override_header: "Μετατροπή σε JS"
+    not_js_convertible_override_explanation: ""
     not_js_convertible_override_label_html: "Αυτό <strong>δεν</strong> πρέπει να είναι διαθέσιμο σε μορφή JS χρήστη"
+    # marker after script name shown to authors indicating their adult scripts
     adult_marker: "(Μόνο για ενήλικες)"
+    # marker after script name if it's deleted
     deleted_marker: "(Διαγραμμένο)"
+    # marker after script name if it's locked
     locked_marker: "(Κλειδωμένο)"
+    # marker after script name if it's unlisted
     unlisted_marker: "(Εκτός λίστας)"
+    # marker after script name if it's a library
     library_marker: "(Βιβλιοθήκη)"
+    # title for libraries listing page
     libraries_title: "Βιβλιοθήκες"
+    # description for libraries listing page
     libraries_description_html: "Υπάρχουν βιβλιοθήκες που δημοσιεύονται από χρήστες του %{site_name} που μπορείτε να τις απαιτήσετε <code>@require</code> στους κώδικές σας. Για άλλα είδη βιβλιοθηκών, μπορείτε να τις απαιτήσετε <code>@require</code>, διαβάστε την πολιτική %{policy_link:%{site_name}'s για την απαίτηση <code>@require</code>}."
+    # title of the listing of top sites to script
     by_site_list_title: "Κώδικες χρηστών στο %{site_name} ομαδοποιημένες ανά χώρο"
+    # description of the listing for top sites to script
     by_site_list_description: "Αυτές είναι οι σελίδες που επηρεάζονται από τους πιο δημοφιλείς κώδικες χρηστών. Μεγαλύτερο μέγεθος γραμματοσειράς σημαίνει περισσότερους δημοφιλείς κώδικες χρηστών."
     by_site_list_filter: "Φιλτράρισμα ανά όνομα σελίδας:"
+    # placeholder for script search box
     search_placeholder: "Αναζήτηση κώδικα"
     updated: "Ο κώδικας ενημερώθηκε."
     preview_additional_info: "Προεπισκόπηση"
+    must_confirm: ""
+    must_confirm_external_sign_in: ""
     must_confirm_email_button: "Αποστολή συνδέσμου επιβεβαίωσης στο %{email}"
     authors_heading: "Δημιουργοί"
     error_unauthorized_copy: "Αυτός ο κωδικός εμφανίζεται να είναι μη εξουσιοδοτημένο αντίγραφο του %{script} . Παρακαλώ ανατρέξτε στο %{site_name} '%{rules_link:rules}  σχετικα με την ανάρτηση κωδίκων."
@@ -351,10 +562,15 @@ el:
         short: CSS
         long: Στυλ χρήστη
   script_sets:
+    # description of script sets on edit page
     description: "Τα σύνολα κώδικα σας επιτρέπουν να δημιουργήσετε μια προσαρμοσμένη λίστα για πλοήγηση στο Greasy Fork. Μπορείτε να προσθέσετε κωδικούς στο σύνολό σας περιλαμβάνοντας μεμονωμένους κώδικες, σύνολα άλλων χρηστών ή αυτόματα δημιουργούμενα σύνολα. Μπορείτε, επίσης, να αποκλείσετε κώδικες από το σύνολό σας με τις ίδιες μεθόδους."
+    # name for the favorites set
     favorites_name: "Αγαπημένα"
+    # delete button text for a script set
     delete: "Διαγραφή συνόλου κώδικα"
+    # delete confirmation for a script set
     delete_confirmation: "Θέλετε σίγουρα να διαγράψετε αυτό το σύνολο κώδικα;"
+    # option for choosing to sort the set by the default sort the site uses
     site_default_sort: "(Προεπιλογή ιστοχώρου)"
     edit_scripts:
       heading: "Κώδικες"
@@ -418,99 +634,171 @@ el:
       user: "Κώδικες ανά χρήστη %{user}"
       locale: "Κώδικες στα %{locale_name}"
   home:
+    # html title of the homepage
     title: "%{site_name} - ασφαλείς και χρήσιμοι κώδικες χρηστών"
+    # text at the top of the homepage.
     welcome: "Καλώς ήρθατε στο %{site_name}, έναν ιστοχώρο για κώδικες χρηστών."
+    # html title of the sleazy fork homepage
     sleazy_title: "%{site_name} - ασφαλείς και χρήσιμοι κώδικες χρηστών για ενηλίκους"
+    # text at the top of the sleazy fork homepage.
     sleazy_welcome: "Καλώς ήρθατε στο %{site_name}, μια ιστοσελίδα για κώδικες χρηστών για ενήλικες."
+    # placeholder for home page search box
     search_placeholder: "Αναζήτηση κώδικα χρηστών"
     scripts_for_label: "Κώδικες για:"
+    # heading for the paragraph explaining what user scripts are
     explain_user_scripts_heading: "Τι είναι οι κώδικες χρηστών;"
+    # text explaining what user scripts are.
     explain_user_scripts_html: "Οι κώδικες χρηστών σας δίνουν τον έλεγχο της εμπειρίας πλοήγησής. Μόλις εγκατασταθούν, κάνουν αυτόματα τις ιστοσελίδες που επισκέπτεστε καλύτερες προσθέτοντας χαρακτηριστικά, ευκολότερες στη χρήση ή απομακρύνουν ενοχλητικά χαρακτηριστικά. Οι κώδικες χρηστών στο %{site_name} γράφτηκαν από άλλους χρήστες και δημοσιεύτηκαν για κοινή χρήση από όλο τον κόσμο. Είναι δωρεάν η εγκατάστασή τους και εύκολοι στη χρήση."
+    # header for step 1 - how to install a user script manager
     installing_step1_header: "Βήμα 1: Εγκατάσταση ενός διαχειριστή κώδικα χρήστη"
+    # caption in step 1 - screenshot of tampermonkey on chrome
     installing_step1_caption: "Tampermonkey στο Chrome"
+    # text for step 1, listing options for user script managers based on browsers
+    installing_step1_description_html: >
+    # header for step 2 - how to install a user script
     installing_step2_header: "Βήμα 2: Εγκατάσταση ενός κώδικα χρήστη"
+    # caption for step 2 - showing the install button for user scripts
     installing_step2_caption: "Ένα κουμπί εγκατάστασης κώδικα χρήστη"
+    # text for step 2 - describing how to find and install user scripts
     installing_step2_description_html: >
-        <p>%{browse_link:Πλοηγηθείτε σε αυτόν τον ιστοχώρο} για να βρείτε ένα κώδικα
-        χρήστη που θέλετε να δοκιμάσετεt. Εδώ είναι ένα δείγμα των πιο δημοφιλών κωδικών:</p>
+      <p>%{browse_link:Πλοηγηθείτε σε αυτόν τον ιστοχώρο} για να βρείτε ένα κώδικα χρήστη που θέλετε να δοκιμάσετεt. Εδώ είναι ένα δείγμα των πιο δημοφιλών κωδικών:</p>
 
-        %{highlighted_scripts_list}
+      %{highlighted_scripts_list}
 
-        <p>Μόλις βρείτε ένα κώδικα χρήστη, πατήστε το πράσινο κουμπί εγκατάστασης
-        στη σελίδα κώδικα χρήστη και ο διαχειριστής κωδικών χρήστων θα σας ζητήσει
-        να επιβεβαιώσετε την εγκατάσταση.</p>
+      <p>Μόλις βρείτε ένα κώδικα χρήστη, πατήστε το πράσινο κουμπί εγκατάστασης στη σελίδα κώδικα χρήστη και ο διαχειριστής κωδικών χρήστων θα σας ζητήσει να επιβεβαιώσετε την εγκατάσταση.</p>
+    # header for step 3 - how to use a user script
     installing_step3_header: "Βήμα 3: χρήση του κώδικα χρήστη"
+    # description for step 3, describing browsing to the site and having the user script apply
     installing_step3_description_html: >
-        <p>Μεταβείτε στον ιστοχώρο που επηρεάζει ο κώδικας χρήστη. Θα πρέπει να κάνει
-        αυτόματα τις δικές του ενέργειες. Αφού δοκιμάστε τον κώδικα χρήστη για λίγο,
-        μεταβείτε πίσω εκεί που εγκαταστήσατε τον κωδικό χρήστη και αφήστε κάποια
-        σχόλια για τον δημιουργό του κώδικα χρήστη.</p>
+      <p>Μεταβείτε στον ιστοχώρο που επηρεάζει ο κώδικας χρήστη. Θα πρέπει να κάνει αυτόματα τις δικές του ενέργειες. Αφού δοκιμάστε τον κώδικα χρήστη για λίγο, μεταβείτε πίσω εκεί που εγκαταστήσατε τον κωδικό χρήστη και αφήστε κάποια σχόλια για τον δημιουργό του κώδικα χρήστη.</p>
   users:
+    # html title for the sign in page
     sign_in_title: "Συνδεθείτε στο %{site_name}"
+    # what signing in lets people od
     sign_in_description: "Η σύνδεσή σας στο %{site_name} σας επιτρέπει να δημοσιεύετε κώδικες και να δίνετε τα σχόλιά σας σε κώδικες άλλων. Δεν χρειάζεται να συνδεθείτε για αναζήτηση ή εγκατάσταση κωδίκων."
+    # heading for signing in with an external service (Google, GitHub, etc.)
     sign_in_external: "Συνδεθείτε με μια εξωτερική υπηρεσία"
+    # button for signing in with an external service (Google, GitHub, etc.)
     sign_in_with: "Συνδεθείτε με το %{provider}"
+    # heading for signing in with a password
     sign_in_password: "Συνδεθείτε με έναν κωδικό πρόσβασης"
+    # when a user attempts to sign in with an external service and a user already exists with the same email, this is the message shown. email: provided e-mail, user_name: existing user's name, provider: what the user tried to sign in with (e.g. GitHub), sign_in_link: a link to the sign in page with text from sign_in_email_used_sign_in_link
     sign_in_email_used_no_external_services_html: "Η ηλεκτρονική διεύθυνση «%{email}» χρησιμοποιείται ήδη από το χρήστη «%{user_name}». Αν αυτός/ή είστε εσείς και θέλετε να προσθέσετε τη σύνδεση με τον πάροχο %{provider}, %{sign_in_link} πρώτα στο λογαριασμό σας, μετά προσθέστε τη σύνδεση του παρόχου %{provider}."
+    # same as above, but when the existing user uses other providers. also includes existing_providers, which is a list of the existing user's sign ins, run through to_sentence (http://apidock.com/rails/Array/to_sentence)
     sign_in_email_used_with_external_services_html: "Η ηλεκτρονική διεύθυνση «%{email}» χρησιμοποιείται ήδη από το χρήστη «%{user_name}», που συνδέεται με τους παρόχους %{existing_providers}. Αν αυτός/ή είστε εσείς και θέλετε να προσθέσετε τη σύνδεση με τον πάροχο %{provider}, %{sign_in_link} πρώτα στο λογαριασμό σας, μετά προσθέστε τη σύνδεση του παρόχου %{provider}."
+    # sign in link for email_used messages
     sign_in_email_used_sign_in_link: "συνδεθείτε"
+    # when a user attempts to create an account with an external service, but an email was not provided by that service
     sign_in_email_missing: "Το %{site_name} απαιτεί μια ηλεκτρονική διεύθυνση για να κάνει ένα νέο λογαριασμό, αλλά ο παρόχος %{provider} δεν παρέχει ένα για εσάς. Μπορείτε να ενημερώσετε το λογαριασμό του παρόχου σας %{provider} για να έχετε ένα, μετά δοκιμάστε να συνδεθείτε ξανά ή δημιουργήστε ένα κανονικό λογαριασμό %{site_name} με ηλεκτρονική διεύθυνση και κωδικό πρόσβασης και μετά προσθέστε το λογαριασμό παρόχου %{provider} σε αυτό."
+    # this shows when signing in for the first time with an external sign in but the name received is already in use. the user is prompted to enter a different name.
     sign_in_name_used: "Το όνομα «%{name}» χρησιμοποιείται ήδη. Επιλέξτε ένα άλλο."
+    # the button when submitting the name form per above
     sign_in_name_used_submit: "Υποβολή"
+    # Button to preview a user's profile before saving
+    # heading for the user's control panel, which contains links such as post script and edit account
     control_panel: "Πίνακας ελέγχου"
+    # heading for the list of discussions about a user's own scripts
     discussions_on_scripts: "Συζητήσεις για τους κώδικές σας"
+    # alt text for the RSS feed icon for discussions about a user's own scripts
     discussions_on_scripts_feed_alt: "Τροφοδοσία RSS"
+    # text to show in the section for discussions about a user's own scripts if there are no discussions yet
     discussions_on_scripts_none: "Καμιά συζήτηση διαθέσιμη!"
+    # link to more discussions on a user's own scripts, as the initial list is limited in number
     discussions_on_scripts_more: "Περισσότερες συζητήσεις…"
+    # heading for the list of scripts on a user's page
     script_list: "Κώδικες"
+    # text to show in a user's script section when they have created no scripts
     script_list_none: "Κανένας δημοσιευμένος κώδικας."
+    # text to show in a user's script section when they have created scripts, but they are not shown due to the filters active
     script_list_none_for_filter: "Κανένας κώδικας για τα τρέχοντα φίλτρα."
+    # text to show in a user's own script section when they have created no scripts. script_list_none_same_user_info_link is a link to a tutorial with text of script_list_none_same_user_info_link_text
     script_list_none_same_user_html: "Δεν έχετε γράψει κανένα κώδικα. %{script_list_none_same_user_info_link}"
+    # text used for link in script_list_none_same_user_html
     script_list_none_same_user_info_link_text: "Θα θέλατε να μάθετε πως;"
+    # heading for the list of a user's deleted scripts (visible to only that user and mods)
     deleted_script_list: "Διαγραμμένοι κώδικες"
     unlisted_script_list: "Κώδικες εκτός λίστας"
+    # link to log out
     sign_out: "Αποσύνδεση"
+    # link to edit an account
     edit: "Επεξεργασία λογαριασμού"
+    # link to edit how the user signs in
     edit_sign_in: "Επεξεργασία μεθόδων σύνδεσης"
+    # html title for the edit sign in page
     edit_sign_in_title: "Επεξεργασία μεθόδων σύνδεσης"
+    # heading for the password section of the edit sign in methods page
     edit_sign_in_password: "Κωδικός πρόσβασης"
+    # informational text telling the user they're not using a password
     edit_notifications: "Επεξεργασία ειδοποιήσεων"
     no_password_set_info: "Ο λογαριασμός σας δεν έχει ρυθμιστεί με κωδικό πρόσβασης."
+    # button to set a password when one is not already set
     set_password: "Ορισμός κωδικού πρόσβασης"
+    # button to set a password when one is already set
     update_password: "Ενημέρωση κωδικού πρόσβασης"
+    # error message when the password and the confirmation don't match
     update_password_no_match: "Ο κωδικός πρόσβασης δεν ταιριάζει."
+    # notice after a password was updated successfully
     password_updated: "Ο κωδικός πρόσβασης ενημερώθηκε."
+    # information text saying the user can unset their password and use just external sign ins
     remove_password_info: "Μπορείτε να απομακρύνεται τον κωδικό πρόσβασής σας και να βασιστείτε μόνο στις εξωτερικές σας συνδέσεις."
+    # button to remove the password from the user's account
     remove_password: "Απομάκρυνση κωδικού πρόσβασης"
+    # error message to show if the user attempts to remove a password but have no external sign ins. This is normally not possible with the interface.
     cant_remove_password: "Αδύνατη η απομάκρυνση του κωδικού πρόσβασης - δεν θα έχετε κανένα τρόπο να συνδεθείτε!"
+    # error message to show if the user attempts to remove a sign in but has no password or other sign ins. This is normally not possible with the interface. provider is the external site's name, like GitHub or Google
     cant_remove_sign_in: "Αδύνατη η απομάκρυνση της σύνδεσης παρόχου %{provider} - δεν θα έχετε κανένα τρόπο να συνδεθείτε!"
+    # notice after a password was removed successfully
     password_removed: "Ο κωδικός πρόσβασης απομακρύνθηκε."
+    # heading for the external sign ins section of the edit sign in methods page
     edit_sign_in_external: "Εξωτερικές συνδέσεις"
+    # information text about how they can use external sign ins, shown when the user has not set any yet
     external_sign_in_info_no_sign_ins: "Μπορείτε να χρησιμοποιήσετε το λογαριασμό σας σε άλλες ιστοσελίδες για να συνδεθείτε στο %{site_name}."
+    # information text about how they can use external sign ins, shown when the user already has some set. should describe the concept of syncing, where account details on %{site_name} will be updated to match the external service on sign in
     external_sign_in_info_with_sign_ins: "Χρησιμοποιείτε τις εξωτερικές συνδέσεις που φαίνονται παρακάτω. Μια «συγχρονισμένη» σύνδεση σημαίνει ότι οι πληροφορίες του %{site_name} (όπως το όνομα χρήστη και η ηλεκτρονική διεύθυνση) θα ενημερώνονται για να ταιριάζουν όταν συνδέεστε."
+    # notice after a sign in is added. provider is the external site's name, like GitHub or Google
     external_sign_in_added: "Η σύνδεση παρόχου %{provider} προστέθηκε."
+    # notice after a sign in is updated (from syncing to not or opposite). provider is the external site's name, like GitHub or Google
     external_sign_in_updated: "Η σύνδεση παρόχου %{provider} ενημερώθηκε."
+    # notice after a sign in is removed. provider is the external site's name, like GitHub or Google
     external_sign_in_removed: "Η σύνδεση παρόχου %{provider} απομακρύνθηκε."
+    # notice after a sign in fails
     external_sign_in_failed: "Η σύνδεση παρόχου %{provider} απέτυχε: %{error}."
+    # notice after a user tries to add a sign in to their account, but that sign in is already in use by another user
     external_sign_in_already_used: "Η προσθήκη της σύνδεσης παρόχου %{provider} απέτυχε: αυτή η σύνδεση χρησιμοποιείται ήδη από το χρήστη «%{user_name}»."
+    # notice after successfully creating a new user based on external login
     external_sign_in_confirmation: "Ένας νέος λογαριασμός %{site_name} έχει δημιουργηθεί με βάση τις λεπτομέρειες λογαριασμού σας %{provider}. Το δημόσιο όνομά σας είναι %{username}."
+    # an indicator beside the sign in provider's name if the user chose to enable syncing
     syncing_indicator: "(σε συγχρονισμό)"
+    # button to set a sign in provider to sync
     enable_syncing: "Ενεργοποίηση συγχρονισμού"
+    # button to set a sign in provider to not sync
     disable_syncing: "Απενεργοποίηση συγχρονισμού"
+    # button to remove a sign in provider
     remove_external_sign_in: "Απομάκρυνση"
+    # information text indicating that the list of links below it are for addding an external sign in
     add_external_sign_in_info: "Προσθήκη μιας σύνδεσης:"
+    # link to docs on how to set up a webhook for script syncing
     set_up_webhook: "Ορισμός ενός ιστοάγκιστρου"
     author_email_notification_type:
+      # notification option: don't send the user e-mails
       none: "Να μην λαμβάνονται ηλεκτρονικές επιστολές για τις συζητήσεις των κωδικών σας."
+      # notification option: send e-mails on new discussions but not new posts on existing discussions
       discussion_only: "Να λαμβάνεται ηλεκτρονική επιστολη όταν δημοσιεύονται συζητήσεις για τους κώδικές σας"
+      # notification option: send e-mails on new discussoins and on new posts on existing discussions
       discussion_and_comment: "Να λαμβάνεται ηλεκτρονική επιστολη όταν δημοσιεύονται συζητήσεις για τους κώδικές σας ή όταν αυτές οι συζητήσεις λαμβάνουν νέα σχόλια"
+    # display of a single user when displaying a list of users. user_link is a link to the user's page with text of the user name, count is the number of public scripts authored
     list_display_html:
       one: "%{user_link} - %{count} κώδικας"
       other: "%{user_link} - %{count} κώδικες"
+    # sort link for sorting users by number of scripts they've posted
     listing_number_of_scripts: "Πλήθος κώδικα"
+    # sort link for sorting users by the creation date of their scripts
     listing_new_scripts: "Νέοι κώδικες"
+    # sort link for sorting users by the updated date of their scripts
     listing_updated_scripts: "Ενημερωμένοι κώδικες"
+    # sort link for sorting users by when they signed up
     listing_registration_date: "Ημερομηνία εγγραφής"
+    # title for page showing list of users
     listing_title: "Χρήστες"
     listing_banned_filter:
       banned: "Αποκλεισμένοι"
@@ -520,18 +808,26 @@ el:
       script_author: "Δημιουργός κώδικα"
       not_script_author: "Μη δημιουργός κώδικα"
       all: "¨Ολοι"
+    # placeholder for user search box
     search_placeholder: "Αναζήτηση χρηστών"
+    # default option for the user's preferred locale
     locale_prompt: "(Επιλογή γλώσσας)"
+    # text describing what the show ads checkbox does
     show_ads_description: "Υποστηρίξτε το %{site_name} επιτρέποντάς του να σας δείχνει διαφημίσεις"
+    # text describing what the show sensitive checkbox does
     show_sensitive_description: "Προβολή κωδικών με περιεχόμενο για ενήλικες"
+    # text describing what the preferred markup setting does
     preferred_markup_description: "Θα χρησιμοποιηθεί για νέους κώδικες και δημοσιεύσεις."
     filter_locale_default_description: "Από προεπιλογή, μόνο λίστα περιεχομένων στον συγκεκριμένο τόπο"
+    # link from sleazy fork to greasy fork on user page
     greasy_fork_scripts_link:
       one: "Ο χρήστης %{user_name} έχει επίσης %{count} κώδικα στο Greasy Fork."
       other: "Ο χρήστης %{user_name} έχει επίσης %{count} κώδικες στο Greasy Fork."
+    # displays when the user is editing their account but syncing is on
     update_sync_warning:
       one: "Το όνομα χρήστη και η ηλεκτρονική σας διεύθυνση έχουν οριστεί να συγχρονίζονται όταν συνδέεστε με το %{providers}. %{edit_sign_in_link:Επεξεργαστεί τις μεθόδους σύνδεσής σας για να απομακρύνετε το συγχρονισμό} αν θέλετε να ορίσετε μόνιμα ένα προσαρμοσμένο όνομα χρήστη ή ηλεκτρονική διεύθυνση."
       other: "Το όνομα χρήστη σας και η ηλεκτρονική σας διεύθυνση έχουν οριστεί να συγχρονίζονται όταν συνδέεστε με %{providers}. %{edit_sign_in_link:Επεξεργαστείτε τις μεθόδους σύνδεσής σας για απομάκρυνση του συγχρονισμού} αν θέλετε να ορίσετε μόνιμα ένα προσαρμοσμένο όνομα ή ηλεκτρονική διεύθυνση."
+    # link on the user page to go to the delete page
     delete_link: "Διαγραφή λογαριασμού"
     delete:
       intro: "Η διαγραφή του λογαριασμού %{site_name} «%{user_name}» θα έχει τις παρακάτω επιπτώσεις:"
@@ -562,7 +858,10 @@ el:
         completed: "Ο λογαριασμός σας έχει διαγραφεί."
     banned_notice:
       no_report_no_reason: "Ο λογαριασμός σας έχει αποκλειστεί. Μπορείτε να %{delete_link:διαγράψετε τον λογαριασμό σας}, αν το επιθυμείτε."
+      with_report: ""
+      with_reason: ""
     banned_delete:
+      intro: ""
       complete: "Ο λογαριασμός σας έχει διαγραφεί."
     badges:
       banned:
@@ -577,19 +876,28 @@ el:
     notifications:
       discussion_defaults:
         title: Ειδοποιήσεις δημόσιας συζήτησης
-        new_discussion: Από προεπιλογή, εγγραφή σε κάθε συζήτηση που ξεκινάτε
-        new_comment: Από προεπιλογή, εγγραφή σε κάθε συζήτηση που σχολιάζετε
+        new_discussion: "Από προεπιλογή, εγγραφή σε κάθε συζήτηση που ξεκινάτε"
+        new_comment: "Από προεπιλογή, εγγραφή σε κάθε συζήτηση που σχολιάζετε"
         mention: Λάβατε μια ειδοποίηση όταν αναφερθήκατε σε μια συζήτηση.
       conversation_defaults:
         title: Ειδοποιήσεις συνομιλίας
-        starter: Από προεπιλογή, εγγραφή σε κάθε συνομιλία που ξεκινάτε
-        receiver: Από προεπιλογή, εγγραφή σε κάθε συνομιλία που σας περιλαμβάνει και δεν έχετε ξεκινήσει
+        starter: "Από προεπιλογή, εγγραφή σε κάθε συνομιλία που ξεκινάτε"
+        receiver: "Από προεπιλογή, εγγραφή σε κάθε συνομιλία που σας περιλαμβάνει και δεν έχετε ξεκινήσει"
       save_button: Ενημέρωση ρυθμίσεων ειδοποιήσεων
       title: Ειδοποιήσεις
       current_discussion_subscriptions:
         one: Ακύρωση εγγραφής από τη %{discussions_link:%{count} συνομιλία} που έχετε εγγραφεί
         other: Ακύρωση εγγραφής από τις %{discussions_link:%{count} συνομιλίες} που έχετε εγγραφεί
       save_success: Οι προτιμήσεις ειδοποιήσεών σας έχουν ενημερωθεί.
+      unsubscribe_all: ""
+      unsubscribe_all_success: ""
+  webhooks:
+    info:
+      title: ""
+      intro_html: |
+      already_syncing_list: ""
+      synced_item_html: ""
+      language_note: ""
   help:
     sections:
       usage: Χρήση
@@ -601,124 +909,126 @@ el:
     installing_user_styles:
       title: 'Πως να εγκαταστήσετε στυλ χρήστη'
     meta_keys:
+      # title of the help document describing script meta keys (e.g. @name).
       title: "Τα μετα-κλειδιά του κώδικα που διαβάζει το %{site_name}"
+      # introductory paragraph. If the URL has a localized version, use that.
       intro_html: "Αυτή είναι μια λίστα με τα <a href=\"http://wiki.greasespot.net/Metadata_Block\">μετά-κλειδιά των κωδικών χρήστη</a> που το %{site_name} θα διαβάζει. Τα κλειδιά εκτός αυτής της λίστας μπορούν να περιλαμβάνονται στους κώδικες και θα είναι παρόντα στον εγκατεστημένο κώδικα, αλλά δεν θα έχουν καμιά επίδραση στο περιβάλλον του %{site_name}."
+      # description of @name
       name: "Το όνομα του κώδικα, χρησιμοποιείται ως κεφαλίδα και στους συνδέσμους. Απαιτείται."
+      # description of @name:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
       name_localized_html: "Το όνομα του κώδικα σε συγκεκριμένη γλώσσα, όπου XX είναι ο <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">κωδικός ISO 639-1 2</a> και YY είναι ένας προαιρετικός <a href=\"https://www.iso.org/obp/ui/#search\">κωδικός χώρας ISO 3166</a>. Αντικαθιστά το <code>@name</code> όταν ο χρήστης πλοηγείται με τη γλώσσα που ταιριάζει."
+      # description of @description
       description: "Μια περιγραφή του τι κάνει ο κώδικας. Εμφανίζεται ως κείμενο κάτω από το όνομα του κωδικα. Απαιτείται."
+      # description of @description:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
       description_localized_html: "Η περιγραφή του κώδικα σε συγκεκριμένη γλώσσα, όπου XX είναι ο <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">κωδικός ISO 639-1 2</a> και YY είναι ένας προαιρετικός <a href=\"https://www.iso.org/obp/ui/#search\">κωδικός χώρας ISO 3166</a>. Αντικαθιστά το <code>@description</code> όταν ο χρήστης πλοηγείται με τη γλώσσα που ταιριάζει."
+      # description of @namespace. Do not translate content inside <code>.
       namespace_html: "Ένας συνδυασμός των <code>@namespace</code> και <code>@name</code> χρησιμοποιείται από τους διαχειριστές κώδικα χρήστη αν ένας κώδικας έχει ήδη εγκατασταθεί. Το %{site_name} απαιτεί αυτό το πεδίο και θα προειδοποιήσει αν έχει αλλαχτεί με την ενημέρωση."
+      # description of @description:XX-YY. developer.mozilla.org may have localized content; use it if available.
       version_html: "Η αναγνώριση μιας συγκεκριμένης έκδοση ενός κώδικα σε <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">μόρφή έκδοσης Mozilla</a>. Η έκδοση εμφανίζεται στη σελίδα πληροφοριών του κώδικα. Το %{site_name} απαιτεί αυτό το πεδίο και θα προειδοποιήσει αν έχει απομακρυνθεί όταν ο κώδικας αλλαχτεί."
+      # description of @include
       include_html: "Περιγράψτε σε ποιες σελίδες θα τρέξει ο κώδικας. Αυτή η λίστα θα επεξεργαστεί, προβληθεί στην σελίδα πληροφοριών του κώδικα, και θα χρησιμοποιηθεί για την κατηγοριοποίηση του κώδικα. Κάθε κώδικας πρέπει να έχει τουλάχιστον ένα <code> @match </code> ή <code> @include </code>. <code> Διαβάστε σχετικά με τη μορφή εδώ </code>"
+      # description of @require. %{external_script_link} is a link to the document describing allowed external scripts and has a link of key "require_external_script_link_text"
       require_html: "Περιλαμβάνει εξωτερικό JavaScript μέσα στον κώδικα. Δείτε τον στο %{external_script_link}."
+      # used in required_html
       require_external_script_link_text: "κανόνες για κώδικα που περιλαμβάνει εξωτερικούς κώδικες"
+      # description of @updateURL
       updateURL: "Περιγράφει πως οι διαχειριστές κωδικών χρήστη πρέπει να λαμβάνουν ενημερώσεις. Το %{site_name} θα απομακρύνει αυτά τα κλειδιά, που κάνουν τον οποιοδήποτε κώδικα που έχει εγκατασταθεί από το %{site_name} να ενημερώνεται μόνο από το %{site_name}."
+      # description of @license
       license: "Η άδεια που περιγράφει πως επιτρέπεται στους χρήστες να αντιγράφουν ή να αλλάζουν έναν κώδικα. Προτείνεται να χρησιμοποιήσετε ένα «Πλήρες όνομα» ή ένα «Αναγνωριστικό» από %{spdx_link:την Λίστα Αδειών SPDX}. Η έλλειψη άδειας σημαίνει ότι οι χρήστες μπορούν να εγκαταστήσουν τον κώδικα για προσωπική χρήση, αλλά δεν μπορούν να το διανέμουν. Η άδεια προβάλεται στη σελίδα πληροφοριών του κώδικα."
+      # description of @supportURL
       supportURL: "Το URL για μια σελίδα όπου οι χρήστες μπορούν να έχουν υποστήριξη για ένα κώδικα (π.χ. ένα καταγραφέας σφαλμάτων, μια δημόσια συζήτηση, μια ηλεκτρονική διεύθυνση). Το URL υποστήριξης εμφανίζεται στη σελίδα συζήτησης του κώδικα."
+      # description of @contributionURL. You can replace the sample "business" and "item_name" parameters in the URLs with localized versions.
       contributionURL_html: "Το URL για μια σελίδα, όπου οι χρήστες μπορούν να κάνουν μια δωρεά στο δημιουργό του κώδικα. Η διανομή του URL εμφανίζεται στη σελίδα συζήτησης του κώδικα. Τα URLs μπορούν να είναι πρωτόκολλα http, https ή Bitcoin. Για σύνδεσμό σε σελίδα δωρεάς PayPal, χρησιμοποιείστε ένα URL της μόρφής <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a>, αντικαθιστώντας το δείγμα ηλεκτρονικής διεύθυνσης τη δική σας."
+      # description of @contributionAmount. Do not translate content inside <code>.
       contributionAmount_html: "Προτεινόμενο ποσό δωρεάς, χρησιμοποιείται σε συνδυασμό με το <code>@contributionURL</code>."
+      # description of @compatible. %{browsers} is a comma-separated list of browser codes. You can translate "Must disable pop-up blocker", but do not translate "@compatible firefox". 
       compatible_html: "Επισημαίνει αυτόν τον κώδικα ως συμβατό με έναν φυλλομετρητή. Οι πληροφορίες συμβατότητας θα εμφανίζονται στη σελίδα του κώδικα. Τα σχόλια για τη συμβατότητα μπορούν να περιληφθούν με τη μορφή <code>@compatible firefox Πρέπει να απενεργοποιηθεί το μπλοκάρισμα αναδυόμενων παραθύρων</code>. Αναγνωρισμένοι φυλλομετρητές είναι: %{browsers}."
+      # description of @incompatible. %{browsers} is a comma-separated list of browser codes. You can translate "Broken since Firefox 23", but do not translate "@compatible firefox".
       incompatible_html: "Επισημαίνει αυτόν τον κώδικα ως μη συμβατό με έναν φυλλομετρητή. Οι πληροφορίες συμβατότητας θα εμφανίζονται στη σελίδα του κώδικα. Προαιρετικά σχόλια στη συμβατότητα μπορούν να συμπεριληφθούν στη μορφή <code>@incompatible firefox Δεν λειτουργεί μέχρι τον Firefox 23</code>. Αναγνωρισμένοι φυλλομετρητές είναι: %{browsers}."
+      antifeature_html: ""
+      antifeature_localized_html: ""
     writing_user_scripts:
+      # title for Writing user scripts help page
       title: "Πως να γράψετε κώδικες χρηστών"
+      # content of the page. The link to greasespot can be updated to a better resource if one is available in your language. code_rules_link and meta_keys_link are links to those help pages, with text of those page's titles. ask_in_forum_link is a link to the forum with text of ask_in_forum_link_text. user_page_link is a link to the user's page if the user is signed in, or plain text if they're not; in either case, the text is user_page_link_text. post_new_script_link is a link to the new script page, with text of post_new_script_link_text
       content_html: "<p>Η δημιουργία κωδικών χρήστη απαιτεί γνώση JavaScript. Τα <a href=\"http://wiki.greasespot.net/Tutorials\">μαθήματα του GreaseSpot Wiki</a> μπορούν να σας δώσουν μια γεύση από JavaScript τόσο γενικά όσο και σε ότι αφορά τους κώδικες χρηστών. Η παρακολούθηση άλλων κωδικών μπορεί να σας είναι χρήσιμη. Μπορεί να ενδιαφέρεστε για τους %{code_rules_link} και τα %{meta_keys_link}. Αν θέλετε βοήθεια για να αναπτύξετε τον κώδικά σας, μην διστάσετε να %{ask_in_forum_link}.</p><p>Για να δημοσιεύσετε στο %{site_name}, θα χρειαστείτε έναν λογαριασμό. Από τη %{user_page_link}, μεταβείτε στον σύνδεσμο της %{post_new_script_link}.</p>"
+      # link text used in content_html
       ask_in_forum_link_text: 'ρωτήσετε στη δημόσια συζήτηση'
+      # link text used in content_html
       user_page_link_text: 'σελίδα χρήστη'
+      # link text used in content_html
       post_new_script_link_text: 'δημοσίευσης νέου κώδικα'
     code_rules:
+      # title for the rules page
       title: "Κανόνες του %{site_name} για δημοσιευμένους κώδικες"
+      preamble: ""
       functionality_header: Λειτουργικότητα
+      description: ""
+      reason: ""
+      unrelated: ""
+      monetization_html: ""
       code_header: Κώδικας
+      obfuscation: ""
+      libraries_html: ""
+      updates: ""
       external_js: "%{external_scripts_link:Η χρήση εξωτερικού κώδικα JavaScript είναι περιορισμένη.}"
       copyright_header: Πνευματικά Δικαιώματα
+      licensing: ""
+      reposts: ""
       miscellaneous_header: Διάφοροι
+      keywords_html: ""
+      adult_content_rule: ""
+      reporting: ""
     external_scripts:
+      # title of the external script rules page
       title: "Η πολιτική του %{site_name} για εξωτερικούς κώδικες"
+      # content of the external script rules page
+      content_html: >
       test_url:
         label: Έλεγχος URL
         result_ok: Το URL επιτρέπεται
         result_not_ok: Το URL δεν επιτρέπεται
     script_rewriting:
+      # title of the rewriting page
       title: "Πως το %{site_name} θα ξαναγράψει δημοσιευμένους κώδικες"
+      # content of the rewriting page
       content_html: >
-          <p>Οι κώδικες που δημοσιεύονται στο %{site_name} θα ξαναγραφτούν με τους
-          ακόλουθους τρόπους:</p> <ul>
+        <p>Οι κώδικες που δημοσιεύονται στο %{site_name} θα ξαναγραφτούν με τους ακόλουθους τρόπους:</p> <ul>
 
-          <li>οι οδηγίες <code>@updateURL</code>, <code>@installURL</code>, και<code>@downloadURL</code>
-          θα απομακρύνονται, αν υπάρχουν. Η έλλειψη αυτών σημαίνει ότι οποιοσδήποτε
-          κώδικας που εγκαθίσταται από το %{site_name} θα ενημερώνονται από το %{site_name}.</li>
+        <li>οι οδηγίες <code>@updateURL</code>, <code>@installURL</code>, και<code>@downloadURL</code> θα απομακρύνονται, αν υπάρχουν. Η έλλειψη αυτών σημαίνει ότι οποιοσδήποτε κώδικας που εγκαθίσταται από το %{site_name} θα ενημερώνονται από το %{site_name}.</li>
 
-          <li>οι οδηγίες <code>@version</code> και<code>@namespace</code> θα εισάγονται
-          αν ο κώδικας δεν τις έχει. Αυτές οι οδηγίες είναι απαραίτητες για σωστή
-          ενημέρωση.</li>
+        <li>οι οδηγίες <code>@version</code> και<code>@namespace</code> θα εισάγονται αν ο κώδικας δεν τις έχει. Αυτές οι οδηγίες είναι απαραίτητες για σωστή ενημέρωση.</li>
 
-          <li>η οδηγία <code>@description</code> θα εισάγεται αν μια νέα έκδοση του
-          κώδικα λείπει και μια προηγούμενη την έχει.</li>
+        <li>η οδηγία <code>@description</code> θα εισάγεται αν μια νέα έκδοση του κώδικα λείπει και μια προηγούμενη την έχει.</li>
 
-          <li>οι αλλαγές γραμμής CRLF και CR θα μετατρέπονται σε αλλαγές γραμμής βασικού/Unix
-          στυλ.</li>
+        <li>οι αλλαγές γραμμής CRLF και CR θα μετατρέπονται σε αλλαγές γραμμής βασικού/Unix στυλ.</li>
 
-          </ul>
+        </ul>
+    # link to github
     site_feedback_link: "Αναφορά θέματος ή δημοσίευση ιδέας το ίδιο το %{site_name}"
     credits:
+      # title for the credits page
       title: "Συντελεστές"
+      # give credit to authors
       authors_credit: "Το %{site_name} δεν θα ήταν δυνατό χωρίς τους δημιουργούς που προσφέρουν κώδικες."
+      # give credit to developers. link goes to github.
       developers_credit: "Το %{site_name} είναι φτιαγμένο από %{developers_link:these people} με την βοήθεια όλων αυτών που αναφέρουν σφάλματα και προτείνουν βελτιώσεις."
+      # give credit to translators. link to goes to transifex. after this text, there's a list of languages and the contributors to each.
       translators_credit: "To %{site_name} έχει μεταφραστεί από %{translators_link:τη Ομάδα Μετάφρασης του Greasy στο Transifex}:"
+      # give credit to icon makers. all links are proper names so are not translated.
       icons_credit: "Τα εικονίδια φυλλομετρητή είναι από %{browserlogos}."
+    # link to greasemonkey docs
     help_with_greasymonkey: "Βοήθεια για το Greasemonkey"
     contact:
+      # title of contact page
       title: "Επικοινωνήστε με κάποιον"
+      # content of contact page
       content_html: >
-          <p>Υπάρχουν τρόποι για να μιλήσετε για το  %{site_name} και για τα πράγματα
-          σε αυτό.</p> <p>Έχετε κάποια ερώτηση ή σχόλιο για κάποιο συγκεκριμένο κώδικα
-          που δημοσιεύεται σε αυτή τη σελίδα; Αν ναι, δημοσιεύστε μια συζήτηση από
-          τον σύνδεσμο στην καρτέλα Συζήτηση στη σελίδα του κώδικα. Οι δημιουργοί
-          του κώδικα λαμβάνουν ειδοποιήσεις στη σελίδα του λογαριασμού τους για οποιαδήποτε
-          συζήτηση σχετικά με τους κώδικές τους.</p> <p>Έχετε μια ερώτηση ή σχόλιο
-          για το %{site_name} ή για την ανάπτυξη κώδικα ή θέλετε κάποιος να σας γράψει
-          κάποιο κώδικα; Η %{forum_link:Δημοσίευση στη δημόσια συζήτηση} θα σας δώσει
-          το πιο ευρύ κοινό για την συζήτησή σας.</p> <p>Έχετε να αναφέρετε κάποιο
-          σφάλμα ή μια ολοκληρωμένη ιδέα για το %{site_name} (και όχι για συγκεκριμένο
-          κώδικα  <em>που έχει δημοσιευτεί στο </em> %{site_name}); %{github_link:Δημοσιεύστε
-          το στη σελίδα GitHub.}</p> <p>Έχετε μια ιδιωτική ερώτηση ή σχόλιο που θα
-          θέλατε μόνο ο διαχειριστής να δει; %{admin_email_link:Στείλτε μια ηλεκτρονική
-          επιστολή.}</p>
+        <p>Υπάρχουν τρόποι για να μιλήσετε για το  %{site_name} και για τα πράγματα σε αυτό.</p> <p>Έχετε κάποια ερώτηση ή σχόλιο για κάποιο συγκεκριμένο κώδικα που δημοσιεύεται σε αυτή τη σελίδα; Αν ναι, δημοσιεύστε μια συζήτηση από τον σύνδεσμο στην καρτέλα Συζήτηση στη σελίδα του κώδικα. Οι δημιουργοί του κώδικα λαμβάνουν ειδοποιήσεις στη σελίδα του λογαριασμού τους για οποιαδήποτε συζήτηση σχετικά με τους κώδικές τους.</p> <p>Έχετε μια ερώτηση ή σχόλιο για το %{site_name} ή για την ανάπτυξη κώδικα ή θέλετε κάποιος να σας γράψει κάποιο κώδικα; Η %{forum_link:Δημοσίευση στη δημόσια συζήτηση} θα σας δώσει το πιο ευρύ κοινό για την συζήτησή σας.</p> <p>Έχετε να αναφέρετε κάποιο σφάλμα ή μια ολοκληρωμένη ιδέα για το %{site_name} (και όχι για συγκεκριμένο κώδικα  <em>που έχει δημοσιευτεί στο </em> %{site_name}); %{github_link:Δημοσιεύστε το στη σελίδα GitHub.}</p> <p>Έχετε μια ιδιωτική ερώτηση ή σχόλιο που θα θέλατε μόνο ο διαχειριστής να δει; %{admin_email_link:Στείλτε μια ηλεκτρονική επιστολή.}</p>
     privacy_policy:
       title: "Πολιτική ιδιωτικού απορρήτου"
       content_html: >
-          <p>Αυτή η σελίδα περιγράφει πως το %{site_name} θα καταγράφει τους χρήστες.
-          Αν έχετε κάποιες ανησυχίες, %{admin_email_link:επικοινωνήστε με τον διαχειριστή}.</p>
-          <h2>Καταγραφές διακομιστή</h2> Το <p>%{site_name} καταγράφει όλα τα αιτήματα
-          σε μια τυπική μορφή καταγραφής διακομιστή. Οι πληροφορίες που καταγράφονται
-          περιλαμβάνει επισκεφθείσες σελίδες, διευθύνσεις IP και φυλλομετρητές χρήστη.
-          Αυτές οι καταγραφές είναι για αποσφαλμάτωση και ανάλυση του διακομιστή.
-          Τα δεδομένα διατηρούνται για μια εβδομάδα. Αυτά τα δεδομένα δεν κοινολογούνται
-          ή δημοσιεύονται.</p> <h2>Στατιστικά κώδικα</h2> <p>Για λόγους γενικής στατιστικής,
-          το %{site_name} καταγράφει αιτήματα εγκατάστασης και ενημέρωσης με πληροφορίες
-          διεύθυνσης IP. Αυτές οι πληροφορίες παραμένουν για μια ημέρα και μετά διαμορφώνονται
-          για να μην περιέχουν τη διεύθυνση IP. Τα δεδομένα που αφορούν τη διεύθυνση
-          IP δεν κοινολογούνται ούτε δημοσιοποιούνται αλλά τα υπόλοιπα ναι.</p> <h2>Cookies
-          (όταν δεν υπάρχει σύνδεση)</h2> Το <p>%{site_name} μπορεί να ορίσει προσωρινά
-          cookies συνεδρίας για να επιτρέπονται ορισμένα χαρακτηριστικά της σελίδας.
-          Αυτά τα cookies δεν έχουν οριστεί για να διατηρηθούν μπορούν να καθαριστούν
-          όταν ο φυλλομετρητής κλείνει (εξαρτάται από τις ρυθμίσεις του φυλλομετρητή).</p>
-          <h2>Λογαριασμοί χρήστη</h2> Το <p>%{site_name} απαιτεί από τους χρήστες
-          να δημιουργήσουν ένα λογαριασμό για να δημοσιεύουν κώδικες, να λαμβάνουν
-          μέρος σε συζητήσεις και να έχουν πρόσβαση σε κάποια άλλα χαρακτηριστικά
-          της σελίδας. Όταν δημιουργείται ένας λογαριασμός, πληροφορίες όπως η διεύθυνση
-          IP, η ηλεκτρονική διεύθυνση και ο φυλλομετρητής αποθηκεύονται μόνιμα. Μερικές
-          από αυτές τις πληροφορίες μπορεί να είναι ορατές σε άλλους χρήστες.</p>
-          <p>Οι ενέργειες που πραγματοποιούνται κατά τη διάρκεια της σύνδεσης, για
-          παράδειγμα η δημοσίευση κώδικα και σχολίως, θα είναι ορατές σε άλλους χρήστες.</p>
-          <p>Αν η επιλογή «Απομνημόνευση» επιλεγεί όταν συνδέεστε σε ένα λογαριασμό,
-          το %{site_name} θα ορίσει ένα μόνιμο cookie για διατήρηση της κατάστασης
-          σύνδεσης.</p> <h2>Κώδικες που δημοσιεύονται στο %{site_name}</h2> <p>Το
-          %{site_name} περιέχει γενικό περιεχόμενο που αφορά το χρήστη και οι κώδικες
-          που δημοσιεύονται μπορούν να καταγράφουν χρήστες, αν εγκαταστήσουν αυτόν
-          τον κώδικα.</p> <h2>Βιβλιοθήκες τρίτων</h2> <p>Το %{site_name} μπορεί να
-          περιλαμβάνει κώδικα τρίτων για συλλογή στατιστικών ή προβολής διαφημίσεων
-          στην ιστοσελίδα. Αυτές οι βιβλιοθήκες μπορεί να περιλαμβάνουν λογική καταγραφής.</p>
+        <p>Αυτή η σελίδα περιγράφει πως το %{site_name} θα καταγράφει τους χρήστες. Αν έχετε κάποιες ανησυχίες, %{admin_email_link:επικοινωνήστε με τον διαχειριστή}.</p> <h2>Καταγραφές διακομιστή</h2> Το <p>%{site_name} καταγράφει όλα τα αιτήματα σε μια τυπική μορφή καταγραφής διακομιστή. Οι πληροφορίες που καταγράφονται περιλαμβάνει επισκεφθείσες σελίδες, διευθύνσεις IP και φυλλομετρητές χρήστη. Αυτές οι καταγραφές είναι για αποσφαλμάτωση και ανάλυση του διακομιστή. Τα δεδομένα διατηρούνται για μια εβδομάδα. Αυτά τα δεδομένα δεν κοινολογούνται ή δημοσιεύονται.</p> <h2>Στατιστικά κώδικα</h2> <p>Για λόγους γενικής στατιστικής, το %{site_name} καταγράφει αιτήματα εγκατάστασης και ενημέρωσης με πληροφορίες διεύθυνσης IP. Αυτές οι πληροφορίες παραμένουν για μια ημέρα και μετά διαμορφώνονται για να μην περιέχουν τη διεύθυνση IP. Τα δεδομένα που αφορούν τη διεύθυνση IP δεν κοινολογούνται ούτε δημοσιοποιούνται αλλά τα υπόλοιπα ναι.</p> <h2>Cookies (όταν δεν υπάρχει σύνδεση)</h2> Το <p>%{site_name} μπορεί να ορίσει προσωρινά cookies συνεδρίας για να επιτρέπονται ορισμένα χαρακτηριστικά της σελίδας. Αυτά τα cookies δεν έχουν οριστεί για να διατηρηθούν μπορούν να καθαριστούν όταν ο φυλλομετρητής κλείνει (εξαρτάται από τις ρυθμίσεις του φυλλομετρητή).</p> <h2>Λογαριασμοί χρήστη</h2> Το <p>%{site_name} απαιτεί από τους χρήστες να δημιουργήσουν ένα λογαριασμό για να δημοσιεύουν κώδικες, να λαμβάνουν μέρος σε συζητήσεις και να έχουν πρόσβαση σε κάποια άλλα χαρακτηριστικά της σελίδας. Όταν δημιουργείται ένας λογαριασμός, πληροφορίες όπως η διεύθυνση IP, η ηλεκτρονική διεύθυνση και ο φυλλομετρητής αποθηκεύονται μόνιμα. Μερικές από αυτές τις πληροφορίες μπορεί να είναι ορατές σε άλλους χρήστες.</p> <p>Οι ενέργειες που πραγματοποιούνται κατά τη διάρκεια της σύνδεσης, για παράδειγμα η δημοσίευση κώδικα και σχολίως, θα είναι ορατές σε άλλους χρήστες.</p> <p>Αν η επιλογή «Απομνημόνευση» επιλεγεί όταν συνδέεστε σε ένα λογαριασμό, το %{site_name} θα ορίσει ένα μόνιμο cookie για διατήρηση της κατάστασης σύνδεσης.</p> <h2>Κώδικες που δημοσιεύονται στο %{site_name}</h2> <p>Το %{site_name} περιέχει γενικό περιεχόμενο που αφορά το χρήστη και οι κώδικες που δημοσιεύονται μπορούν να καταγράφουν χρήστες, αν εγκαταστήσουν αυτόν τον κώδικα.</p> <h2>Βιβλιοθήκες τρίτων</h2> <p>Το %{site_name} μπορεί να περιλαμβάνει κώδικα τρίτων για συλλογή στατιστικών ή προβολής διαφημίσεων στην ιστοσελίδα. Αυτές οι βιβλιοθήκες μπορεί να περιλαμβάνουν λογική καταγραφής.</p>
     user_css_to_user_js:
       title: Μετατροπή CSS χρήστη σε JS χρήστη
   search:
@@ -743,14 +1053,35 @@ el:
     item_script_html: "Κώδικας: %{script_link}"
     item_deleted_script: "Διαγραμμένος κώδικας %{id}"
     item_user_html: "Χρήστης: %{user_link}"
+  notifications:
+    consecutive_bad_ratings:
+      one: ""
+      other: ""
   reports:
     report_filed: "Η αναφορά έχει ελεγχθεί από συντονιστή."
     new_report_title:
       user: "Αναφορά %{user}"
       comment: "Αναφορά σχολίου από %{user}"
+      message: ""
+      script: ""
+    new_report_notes_html: >
+    new_script_report_notes_html: >
+    new_user_report_notes_html: >
     reason:
+      non_functional: ""
       spam: "Ανεπιθύμητο"
       abuse: "Προσβλητικό περιεχόμενο ή μίσους"
+      illegal: ""
+      unauthorized_code: ""
+      malware: ""
+      minified: ""
+      external_code: ""
+      undisclosed_antifeature: ""
+      other: ""
+    report_intro_html: ""
+    report_intro_unauthorized_html: ""
+    non_functional_feedback: ""
+    unauthorized_code_original_placeholder: ""
     explanation_placeholder: "Παροχή πρόσθετων πληροφοριών (προαιρετικό)"
     create_button: "Δημιουργία αναφοράς"
     report_user: "Αναφορά χρήστη"
@@ -759,6 +1090,9 @@ el:
     result_dismissed: "Αυτή η αναφορά έχει απόρριφθεί από συντονιστή."
     result_upheld: "Αυτή η αναφορά έχει στηριχθεί από συντονιστή."
     result_pending: "Αυτή η αναφορά αναμένει έλεγχο από συντονιστή."
+    rebuttal_placeholder: ''
+    submit_rebuttal: ""
+    delete_script: ""
   discussions:
     title: Συζητήσεις
     comment_date: "Δημοσιεύτηκε: %{date}"
@@ -812,6 +1146,9 @@ el:
       all: Όλες
       read: Αναγνωσμένες
       unread: Μη αναγνωσμένες
+    locale_filter:
+      label: ""
+      all: ""
     user_activity:
       title: "Πρόσφατα σχόλια"
       no_recent_activity: "Αυτός ο χρήστης δεν δημοσίευσε σχόλια πρόσφατα."
@@ -830,9 +1167,11 @@ el:
     subscribe: Εγγραφή
     unsubscribe: Ακύρωση εγγραφής
     notify: Ειδοποίηση για οποιαδήποτε απάντηση
+    notifying_on_script: ""
     categories:
       greasyfork:
         name: Greasy Fork Ανατροφοδότηση .
+        description: ""
       development:
         name: Ανάπτυξη
         description: Τεχνική συζήτηση για την ανάπτυξη του κώδικα και του στυλ χρήστη.
@@ -844,9 +1183,13 @@ el:
         description: Συνομιλίες για ήδη υπάρχον κώδικα και  στυλ  χρήστη .
       no-scripts:
         name: Όλες εκτός από τις Συζητήσεις Κώδικα
+      moderators:
+        name: ""
+        description: ""
     category_display: "%{name} - %{description}"
     new_title: Νέα συζήτηση
     new_button: Νέα συζήτηση
+    script_notice: ""
     no_discussions: Δεν βρέθηκαν συζητήσεις.
     mark_all_read: Σήμανση ως αναγνωσμένες
     pending_moderator_review: Η συνομηλία δεν είναι διαθέσιμη σε άλλους χρήστες όσπου να ελεγχθεί από συντονιστή.
@@ -863,7 +1206,7 @@ el:
     conversation_link_html:
       one: Συνομιλία με τον χρήστη %{users}.
       other: Συνομιλία με τους χρήστες %{users}.
-    conversation_info_html: Τελευταίο μήνυμα στο %{date} από %{user}.
+    conversation_info_html: "Τελευταίο μήνυμα στο %{date} από %{user}."
     no_conversations: Δεν έχετε καμία συνομιλία ακόμη.
     no_recent_conversations: Δεν έχετε πρόσφατες συνομιλίες.
     recent:
@@ -872,20 +1215,34 @@ el:
   screenshots:
     requirements: "Μέγιστο μέγεθος από %{number} PNG, GIF, JPEG, ή WebP εικόνες, μικρότερες από %{size} η καθεμιά."
   common:
+    # text to show before listing errors in a submission
     error_preamble: "Υπήρξαν κάποια προβλήματα με αυτά που δημοσιεύσατε..."
+    # link to the list of allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_link: "(Δείτε τον επιτρεπτόμενο κώδικα.)"
+    # title of the page showing allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_and_attributes_title: "Επιτρεπτά αντικείμενα για περιεχόμενο HTML"
+    # text to introduce the list of allowed HTML elements and attributes
     allowed_elements_intro: "Τα ακόλουθα αντικείμενα και χαρακτηριστικά επιτρέπονται. Αυτό εφαρμόζεται σε αμφότερα HTML και Markdown (μετά τη μετατροπή στο HTML)."
+    # additional info for the allowed HTML elements, explaining additional changes made to content
     allowed_elements_extra_info: "Το λευκό κενό θα μετατραπεί σε αντικείμενο p ή br. Τα URLs θα γίνουν σύνδεσμοι αυτόματα."
+    allowed_css_intro: ""
+    user_references_html: ""
     not_found_text: "404 - η σελίδα δεν βρέθηκε."
     not_found_title: "404 - Η Σελίδα Δεν Βρέθηκε"
     not_found_link_home: "Μετάβαση στην αρχική."
+    # shown on the first page a user sees if, based on the user's Accept-Language header, we think we have a better locale than what the first page shows. "locale_name" is the name of the locale in that language (matching the name in the locale drop down)
     suggest_locale: "Το %{site_name} είναι διαθέσιμο στη γλώσσα %{locale_name}."
+    # shown on the first page a users sees if the locale they're on is less than a certain amount translated. links to the docs on how to help with localization
     incomplete_locale: "Η μετάφραση της γλώσσας %{locale_name} %{site_name} είναι μόνο κατά %{percent} ολοκληρωμένη. Μπορείτε να το αλλάξετε αυτό."
+    # text for a button that expands a block of text
     expander_show_more: "Εμφάνιση περισσότερων"
+    # text for a button that contracts a block of text
     expander_show_less: "Εμφάνιση λιγότερων"
+    # note denoting what are ads
     advertisement_note: Διαφήμιση
+    # label on tab allowing for previewing input
     preview_tab: Προεπισκόπηση
+    # label on tab for entering input
     write_tab: Εγγραφή
     listing_options_title: "Επιλογές Αναζήτησης"
     quote:
@@ -893,27 +1250,49 @@ el:
   activerecord:
     attributes:
       user:
+        # user field: display name
         name: "Όνομα"
+        # user field: profile (HTML content describing themselves)
         profile: "Προφίλ"
+        # user field: locale
         locale: "Προτιμώμενη γλώσσα"
+        # user field: setting to send e-mails when discussions or comments are posted to a user's scripts. options are under users.author_email_notification_type
         author_email_notification_type_id: "Ειδοποιήσεις συζητήσεων κώδικα"
+        # user field: show ads
         show_ads: "Προβολή διαφημίσεων"
+        # user field: show sensitive
         show_sensitive: "Περιεχόμενο για ενήλικες"
+        # user field: preferred markup (html or markdown)
         preferred_markup: "Προτιμητέα χρήση ετικετών"
         filter_locale_default: "Γλωσσικό φίλτρο"
+        current_password: ""
+        new_password: ""
+        new_password_confirmation: ""
       script:
+        # name of the script
         name: "Όνομα"
+        # description of the script
         description: "Περιγραφή"
+        # locale the script is in. see also scripts.locale_explanation
         locale: "Γλώσσα"
+        # the JS code of the script
         code: "Κώδικας"
+        # description of changes for an update
         changelog: "Καταγραφή αλλαγών"
+        # the type of script - public, unlisted, or library
         type: "Τύπος κώδικα"
+        # additional descriptive text outside of @description
         additional_info: "Πρόσθετες πληροφορίες"
+        # screenshots attached to the script
         screenshots: "Στιγμιότυπα"
+        # when deleting, which script to redirect to
         replaced_by_script_id: "Κώδικας αντικατάστασης"
       script_set:
+        # name of the script set
         name: "Όνομα"
+        # description of the script set
         description: "Περιγραφή"
+        # default sort of the script set
         default_sort: "Προεπιλεγμένη ταξινόμηση"
       report:
         reason: "Αιτία αναφοράς"
@@ -927,30 +1306,45 @@ el:
         content: Μήνυμα
   errors:
     messages:
+      # validation for when a script name is not provided
       script_missing_name: "απαιτείται - ορίστε ένα με την ετικέτα @name"
+      # validation for when a script description is not provided
       script_missing_description: "απαιτείται - ορίστε μια με την ετικέτα @description"
+      # validation for when a script description is the same as name
       script_name_same_as_description: "δεν πρέπει να είναι το ίδιο με το όνομα"
+      # validation for sync URL
       script_sync_identifier_bad_protocol: "πρέπει να είναι ένα HTTP ή HTTPS URL"
+      # validation for number of screenshots
       script_too_many_screenshots: "Πολλά στιγμιότυπα περιλήφθηκαν - το μέγιστο είναι %{number}"
+      # validation for "deleted and replaced by" when the user says the script is replaced by itself
       cannot_be_self_reference: "Δεν μπορεί να είναι ο ίδιος κώδικας"
+      # validation for "deleted and replaced by" when the user says the script is replaced by a deleted script
       cannot_be_deleted_reference: "Δεν μπορεί να είναι κώδικας που έχει διαγραφεί"
       cannot_be_used_with_this_script: "δεν μπορεί να χρησιμοποιηθεί με αυτόν τον κώδικα"
+      # validation for "deleted and replaced by" when the user provides a non-%{site_name} URL
       must_be_greasy_fork_script: "Πρέπει να είναι το URL για έναν κώδικα στο %{site_name}"
+      # validation when the user uploads code that's not UTF-8 text
       script_update_not_utf8: "ο κώδικας που στέλνετε πρέπει να είναι κείμενο UTF-8"
+      # validation when user uploads code that contains a disallowed @require
       script_disallowed_require: "χρησιμοποιείται ένας μη αποδεκτός εξωτερικός κώδικας: %{code}"
       script_rate_limit: "Έχετε υπερβεί το όριο δημοσιεύσεων. Δοκιμάστε ξανά αργότερα."
       missing_include_or_match: "πρέπει να περιλαμβάνεται τουλάχιστον ένα @match ή @include κλειδί"
       file_size_out_of_range: "Το μέγεθος πρέπει να είναι λιγότερο από 200KB"
       meta_too_long: "%{key} είναι πολύ μεγάλο (μέγιστο είναι %{count} χαρακτήρες)"
   opensearch:
+    # short name for opensearch.xml
     short_name: "Αναζήτηση %{site_name}"
+    # description for opensearch.xml
     description: "Αναζήτηση για κώδικες χρηστών στο %{site_name}."
+    # long name for opensearch.xml
     long_name: "Αναζήτηση κώδικα χρήστη του %{site_name}"
+    # attribution for opensearch.xml
     attribution: "Για τα πνευματικά δικαιώματα των δημιουργών των κωδικών, δείτε κάθε ξεχωριστό κώδικα για την αδειοδότηση"
   mailers:
     script_report:
       report_created_offender:
         subject: "Ο κώδικάς σας %{script_name} στο %{site_name} έχει αναφερθεί"
+        text: ""
       report_upheld_offender:
         subject: "Ο κώδικάς στο %{script_name} στο %{site_name}έχει διαγραφεί"
         text: "Ο κώδικάς σας %{script_name} στο %{site_name} έχει διαγραφεί από συντονιστή. Μπορείτε να δείτε την αναφορά στο %{report_url}. Αν έχετε κάποια ερώτηση παρακαλούμε επισκεφθείτε https://greasyfork.org/forum/"
@@ -959,20 +1353,29 @@ el:
         text: "Μια αναφορά για τον κώδικά σας %{script_name} στο %{site_name} έχει απορριφθεί από συντονιστή. Ο κώδικάς σας θα παραμείνει ενεργός. Μπορείτε να ελέγξετε την αναφορά στο %{report_url}. Αν έχετε οποιαδήποτε ερώτηση παρακαλούμε επισκεφθείτε https://greasyfork.org/forum/."
       report_rebutted_reporter:
         subject: "Η αναφορά σας στο %{script_name} στο %{site_name}λάβει απάντηση"
+        text: ""
       report_upheld_reporter:
         subject: "Η αναφορά σας στο%{script_name} στο %{site_name} έχει γίνει δεκτή"
+        text: ""
       report_script_deleted_reported:
         subject: "Η αναφορά σας στο %{script_name}στο %{site_name}έχει κλείσει"
+        text: ""
       report_dismissed_reporter:
         subject: "Η αναφορά σας%{script_name} στο %{site_name}έχει απορριφθεί"
+        text: ""
     consecutive_bad_ratings:
       notify:
         subject: "Ο κώδικάς σας %{script_name} στο %{site_name} έχει λάβει πολλές \"κακές\"  κριτικές"
+        text: |
     script_comment:
       subject: "Ο κώδικάς σας %{script_name}στο %{site_name} έχει λάβει ένα σχόλιο."
+      text: |
     subscribed_discussion:
       subject: "Η συζήτηση %{discussion_title}  ατο %{site_name} έχει λάβει ένα σχόλιο."
+      text: |
     comment_mentioned:
       subject: "Ο χρήστης %{commenter_name} αναφέρθηκε σε εσάς στο %{site_name}."
+      text: |
     new_message:
       subject: "%{user}σας έστειλε ένα μήνυμα στο %{site_name}."
+      text: |
