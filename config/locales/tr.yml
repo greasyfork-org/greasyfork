@@ -1,78 +1,133 @@
 tr:
   layouts:
     application:
+      # link to the list of scripts
       script_list: "Scriptler"
+      # link to the forum
       forum: "Forum"
+      # link to the help docs
       help: "Yardım"
+      # link to sign in
       sign_in: "Oturum aç"
+      # label for nav submenu
       submenu: "Daha fazla"
+      # link to advanced search
       advanced_search: "Gelişmiş arama"
+      # link to user list
       user_list: "Kullanıcı listesi"
+      # link to libraries
       libraries: "Kütüphaneler"
+      # link to moderator log
       moderator_log: "Denetleyici günlüğü"
   scripts:
+    # label for created date of a script
     created_date: "Oluşturulma"
+    # label for updated date of a script
     updated_date: "Güncellenme"
+    # label for total install count of a script
     total_installs: "Toplam kurulumlar"
+    # label for daily install count of a script
     daily_installs: "Günlük kurulumlar"
+    # label for the ratings of a script
     ratings: "Değerlendirmeler"
+    # label for author name of a script
     author_name: "Yazar"
+    # label for version number of a script
     version_number: "Versiyon"
+    # label for the legal license a script is released under (e.g. GPL)
     license: "Lisans"
+    # what is shown as the license when no license is provided in a script
     no_license: "N/A"
+    # label for the browser compatibility for a script
     compatibility: "Uyumluluk"
     compatible_with_browser: "%{browser} ile uyumluluk"
     incompatible_with_browser: "%{browser} ile uyumsuzluk"
+    # label for the list of sites or patterns a script applies to
     applies_to: "Geçerli"
+    # a title (tooltip) for the links in the "applies to" section going to a list of scripts for that site. count is the number of other scripts, site is the name of the site. add subkeys for your language per http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
     applies_to_link_title:
       one: "%{site} için %{count} başka script gör"
       other: "%{site} için %{count} başka scriptler gör"
+    # what is shown as the applies to when a script applies to all sites
     applies_to_all: "Tüm siteler"
+    # link that makes the user install the script
     install: "Bu scripti kur"
+    # text for link that gives information on how to install scripts. should be very short.
     install_help: "?"
+    # title (tooltip) for link that gives information on how to install scripts
     install_help_title: "Nasıl kurarım"
+    # link that makes the user update the script
     update: "%{version} sürümüne yükselt"
+    # link that makes the user downgrade the script
     downgrade: "%{version} sürümüne düşür"
+    # link that makes the user reinstall the script
     reinstall: "%{version} sürümünü tekrar yükle"
+    # warning when installing an old version of a script
     old_version_warning: "Bu, betiğin en son sürümü değil. Yüklerseniz, yeni sürüme güncelleyemezsiniz. Yine de yüklensin mi?"
+    # label for a promoted script
     promoted: "Desteklenen betik"
     author_promoted: "Yazar'ın tavsiye ettiği betik"
+    # text for promoted script
     promoted_text_html: "Şunu da %{script_link} sevebilirsiniz."
+    # instructions on a script library. code will be a <code> element. Don't use punctuation around the code element if possible so that people don't accidentally include that when copying.
     library_instructions_html: "Bu script direkt olarak kurulamaz. Başka scriptler için bir kütüphanedir ve meta yönergeleri içerir %{code}"
+    # text displayed for deleted scripts
     deleted_notice: "Bu script silinmiş."
     deleted_notice_with_related: "Baktığınız betik silinmiş, ama burada benzer betikleri bulabilirsiniz"
     deleted_undelete_notice_html: "Bu betik bir moderatör tarafından kilitlenmiş ve geri alınamaz.\nGerekçe: \"<i>%{delete_reason}</i>\"."
     deleted_locked_author_notice_html: "Bu script bir moderatör tarafından silinmiş ve erişebilir değil.\nGerekçe: \"<i>%{delete_reason}</i>\"."
     deleted_author_notice: "Bu komut dosyası silinmiş ve diğerleri tarafından erişilemez. Silme sekmesinden geri alabilirsin."
+    # test displayed when viewing a previous version. date is a date and time (no "ago"), latest_version_link is a link to the newest version whose text is version_notice_latest_version_link
     version_notice_html: "%{date} itibariyledir. %{latest_version_link} görün."
     version_notice_latest_version_link: "En son verisyonu"
     reported_notice: "\"%{script_name}\" rapor edildi ve bir moderatör tarafından incelenmeyi bekliyor."
     reported_notice_for_author: "Bu betiğin, bir moderatör tarafından incelenene kadar diğer kullanıcılara erişimi olmayacaktır."
+    # link to the script's info page, containing script meta and author's description
     info_page: "Bilgi"
+    # link to the script's code page
     code_page: "Kod"
+    # link to the script's history page, listing all versions of the code
     history_page: "Geçmiş"
+    # link to the script's feedback page, listing discussions on the script. count is the number of discussions
     feedback_page: "Geribildirim (%{count})"
+    # link to the script's install statistics page
     stats_page: "İstatistikler"
+    # link to the script's derivatives page, which shows similar scripts
     derivatives_page: "Türevleri"
+    # link to the page that lets the author update the script
     update_page: "Güncelle"
+    # link to the page that lets the author delete a script
     delete_page: "Sil"
+    # explanation of what deleting does
     delete_explanation: "Scriptinizi silmek bu scripti siz ve Greasy Fork yöneticileri dışındaki herkes için erişilmez yapar. Dilerseniz istediğiniz zaman silme işlemini geri alabilirsiniz."
+    # intro text to radio options for choosing update behaviour after deletion
     delete_update_behaviour: "Scriptinizi daha önce yüklemiş kullanıcılara ne olmasını istersiniz?"
+    # label for the option allowing users to retain the script after delete
     delete_update_behaviour_1: "Olduğu gibi saklasınlar."
+    # label for the option where users get a blanked script after delete 
     delete_update_behaviour_2: "Boş bir scriptle yer değiştirsin. Bu seçenek scriptiniz bir sitede olumsuz bir davranış sergiliyorsa kullanılabilir."
+    # heading for permanent deletion section
     delete_permanently_heading: "Kalıcı olarak silme"
+    # explanation of permanent deletion
     delete_permanently_explanation_html: >-
-        Kalıcı olarak silme işlemi, betiğinizi ve ona ait tüm kayıtları forum tartışmaları
-        ve yönetici müdahaleleri hariç siler. Bu işlem sistem yöneticileri tarafından
-        bile geri alınamaz.
+      Kalıcı olarak silme işlemi, betiğinizi ve ona ait tüm kayıtları forum tartışmaları ve yönetici müdahaleleri hariç siler. Bu işlem sistem yöneticileri tarafından bile geri alınamaz.
+    # confirmation on pressing the permanent deletion button
     delete_permanently_confirm: "Betiği kalıcı olarak silmek istediğinizden emin misiniz? Bu işlem geri alınamaz!"
+    # text for the permanent deletion button
     delete_permanently_submit: "Kalıcı olarak silme isteğinde bulun"
+    # text for the permanent deletion button when it would take effect immediately
     delete_permanently_immediate_submit: "Kalıcı olarak sil"
+    # notice after requesting permanent deletion
     delete_permanently_notice: "Kalıcı olarak silme isteğiniz kaydedilmiştir. 7 gün içerisinde betiğiniz kalıcı olarak silinecektir."
+    # text on the delete page after permanently deletion was requested
     delete_permanently_already_requested: "%{datetime} tarihinde kalıcı silme isteğinde bulundunuz."
+    # notice after permanently deletion
     delete_permanently_notice_immediate: "Script kalıcı olarak silindi."
+    # text for cancelling a permanent deletion request
     cancel_delete_permanently_submit: "Kalıcı silme isteğini iptal et"
+    # notice after cancelling a permanent deletion request
     cancel_delete_permanently_notice: "Kalıcı silme talebiniz iptal edildi. Betiğiniz hala başkaları tarafından görülemiyor."
+    # error when attempting to delete a locked script
     delete_permanently_rejected_locked: "Bu script kilitlidir ve kalıcı olarak silinemez."
     admin_page: "Yönetici"
     admin:
@@ -88,41 +143,73 @@ tr:
       update_locale: "Yerel Ayarı Kaydet"
       no_moderator_logs: "Bu script üzerinde moderatör etkinliği yok."
       compare_title: "Başka bir betikle karşılaştır"
+      compare_to: ""
       compare_button: "Karşılaştır"
+      compare_must_be_local_url: ""
+    # HTML title for the history page for a script
     history_title: "%{script_name} - Versiyon geçmişi"
+    # text explaining that we're only showing versions where the code changed
     history_only_code_changes_info: "Bunlar bu scriptin güncellenmiş kod versiyonlarıdır."
+    # link to the list of all versions
     history_all_changes_link: "Bütün versiyonları göster."
+    # text explaining that we're showing all versions
     history_all_changes_info: "Bunlar scriptin tüm versiyonlarıdır."
+    # link to the list of version where the code changed
     history_only_code_changes_link: "Versiyonların sadece değişen kodlarını göster."
+    # button that shows changes (a diff) of the selected versions
     diff_button: "Seçilen versiyonların farklılıkları"
+    # HTML title of the script source code page
     code_title: "%{script_name} - Kaynak kodu"
+    # HTML title of the script feedback page
     feedback_title: "%{script_name} - Geribildirim"
     feedback_has_reports: "Bu betik %{site_name}'in kurallarını çiğnediği için rapor edildi."
+    # text to show when no discussions are posted. start_discussion_first_link is a link with the text from feedback_start_first_discussion_link
     feedback_no_discussions_html: "Henüz tartışmalar yapılmamış.  %{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "Henüz hiçbir gönderi gönderilmedi."
+    feedback_report_instead: ""
     feedback_start_first_discussion_link: "Bu script hakkındaki tartışmayı ilk siz başlatın."
     feedback_discussion_or_report: "% {new_discussion_link: Bu script ile ilgili yeni bir tartışma başlatınız} veya% {report_link: kaldırılmak üzere raporlayın}."
+    # heading for list of people who favorited this script
     feedback_favoriters_heading: "Favorilerine ekleyenler"
+    # text before a comma separated list of users who favorited the script
     feedback_favoriters_user_list_html: "Bu script, 1%{user_list} tarafından favorilere eklendi"
+    feedback_favoriters_lots:
+      one: ""
+      other: ""
+    # text when no one has favorited a script
     feedback_no_favoriters: "Bu scripti henüz kimse favorilerine eklemedi."
+    # link to get the user to sign in to add the script to their favorites
     feedback_sign_in_to_favorite: "Favorilere eklemek için oturum aç."
+    # html title for script stats page
     stats_title: "%{script_name} - İstatistik"
+    # heading for daily install stats on stats page
     stats_daily_installs_heading: "Günlük kurulumlar"
+    # heading for weekly install stats on stats page
     stats_weekly_installs_heading: "Haftalık kurulumlar"
+    # heading for daily update check stats on stats page
     stats_daily_update_checks_heading: "Günlük güncelleme kontrolleri"
+    # date column heading for a script's daily install stats table
     stats_daily_installs_date_column_heading: "Tarih"
+    # install count column heading for a script's stats table
     stats_daily_installs_install_count_column_heading: "Kurulumlar"
+    # update check count column heading for a script's stats table
     stats_daily_installs_update_check_count_column_heading: "Güncelleme kontrolleri"
+    # header for the raw data table for stats
     stats_raw_data_header: "İşlenmemiş veri"
+    # text before links to download raw stats data. links will be space separated links to the format name (e.g. CSV and JSON)
     stats_download_raw_data_html: "Verileri şu şekilde indir: %{links}"
+    # text to show when a stat is not available
     stats_no_data: "N/A"
     stats_filters: "Filtre: %{filter_options}"
     stats_filter_options:
       month: Son 30 gün
       year: Son 365 gün
       all: Tüm zamanlar
+    # HTML title for derivatives page
     derivatives_title: "%{script_name} - Türevleri"
+    # text explaining the derivatives page and what to do if the user finds unauthorized copies
     derivatives_intro: "Bu sbetikler sizinkine dayalı olabilir (veya sizinki bunlara dayalı olabilir). Kodunuzun izinsiz kullanıldığını fark ederseniz, o komut dosyasının geri besleme sekmesinden bunu bildirin."
+    # format for scripts listed on the derivatives page. script_link is a link to the derivative's page, user_link is a link to the user who created the derivative, license is text, link to the license, or scripts.no_license
     derivatives_script_html: "%{user}tarafından %{script}, lisans: %{license}%{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "Tam kopyalar"
     derivatives_exact_copies_list_intro: "Aşağıdaki betikler, sizinkiyle tam olarak aynı koda sahiptir:"
@@ -136,148 +223,291 @@ tr:
       low: Biraz benzerler
       none: benzer değil
     derivatives_similar_none: "Sizinkine benzer hiçbir komut dosyası yok."
+    derivatives_similar_item: ""
     derivatives_similar_last_check_html: "En son tarihinde %{date}sizinkine benzer komut dosyalarını kontrol ettik."
     derivatives_similar_last_check_soon: "Kısa süre içinde sizinkine benzer komut dosyalarını kontrol edeceğiz."
     derivatives_similar_last_check_again_soon_html: "En son tarihinde %{date}sizinkine benzer komut dosyalarını kontrol ettik. Kısa süre sonra tekrar kontrol edeceğiz."
     derivatives_similar_check_now: "Şimdi tekrar kontrol edin"
+    # html title for script list page when showing scripts that affect all sites
     listing_title_all_sites: "Tüm siteler için üye scriptleri"
+    # meta description and feed subtitle when showing scripts that affect all sites
     listing_description_all_sites: "Tüm sitelerde özellikler ekleyen ve bugları kaldıran scriptler."
+    # html title for script list page when showing scripts for a particular site. 'site' will be in the form 'example.com'
     listing_title_for_site: "%{site} için kullanıcı scriptleri"
+    # meta description and feed subtitle when showing scripts that affect a particular site
     listing_description_for_site: "%{site} sitesine özellikler ekleyen ve buglarını kaldıran scriptler."
+    # html title for script list page for search results.
     listing_title_for_search: "'%{search_string}' kullanıcı scriptleri"
+    # html title for script list page for code search results.
     listing_title_for_code_search: "'%{search_string}' kullanıcı scriptleri"
+    # html title for script list page when no other situation applies
     listing_title_generic: "Kullanıcı scriptleri"
+    # html title for script list page for a user's favorites. set_name is script_sets.favorites_name
     listing_title_for_favorites: "%{user_name} kullanıcısının %{set_name}"
+    # meta description and feed subtitle for script list page when no other situation applies
     listing_description_generic: "Senin kullandığın sitelere özellikler ekleyen ve buglarını kaldıran scriptler."
+    # label for sorting links on script list page
     listing_sort_label: "Sınıflandır:"
+    # link for relevance (most matching the search terms) sort on a script list
     listing_sort_relevance: "İlgi"
+    # link for daily install sort on a script list
     listing_sort_daily_installs: "Günlük kurulumlar"
+    # link for daily install sort on a script list
     listing_sort_total_installs: "Toplam kurulumlar"
+    # link for rating sort on a script list
     listing_sort_ratings: "Değerlendirmeler"
+    # link for created date sort on a script list
     listing_sort_created: "Oluşturma tarihi"
+    # link for updated date sort on a script list
     listing_sort_updated: "Güncellenme tarihi"
+    # link for name sort on a script list
     listing_sort_name: "İsim"
+    # label for filtering by-site links on script list page
     listing_filter_by_site_label: "Şunun için scriptler gösteriliyor:"
+    # link for turning off by-site filtering on script list page
     listing_filter_by_site_disable: "Tümü"
+    # link for filtering script list by scripts that affect all sites
     listing_filter_by_site_all_sites: "(Tüm siteler)"
     listing_filter_by_language_label: "Dil:"
+    # link to see a full list of sites that scripts on %{site_name} affect
     listing_filter_by_site_more_sites: "Daha fazla.."
+    # text that shows when no scripts were found with the used parameters
     listing_no_scripts: "Script bulunamadı."
+    # feed title for the listing, ordered by created date
     listing_created_feed: "Yeni scriptler"
+    # feed title for the listing, ordered by updated date
     listing_updated_feed: "Güncellenmiş scriptler"
+    # when a list has nothing to show
     listing_none: "(Hiç)"
+    # link to filter search results by the current locale
     listing_set_locale_filter: "Tüm dillerdeki sonuçlar gösteriliyor. %{set_filter_link:Yalnızca %{language}dilini göster}"
+    # link to remove locale filter
     listing_remove_locale_filter: "Yalnızca %{language}dili gösteriliyor. %{remove_filter_link:Tüm dillerdeki sonuçları göster.}"
     listing_language_all: "Tümü"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    # link to start the process of importing (creating from an external place) scripts
     import: "Scriptleri içe aktar"
+    # link to create a new script
     new: "Yazdığınız bir komut dosyasını yayınlayın"
     new_css: "Yazdığınız bir stili yayınlayın"
+    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support site
     support_site: "Yazarın destek sitesini ziyaret et."
+    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support email address
     support_email: "Destek için yazara e-posta gönder."
+    # link to a site where the user can donate to the author, when the author didn't provide a suggested donation amount
     contribution_no_amount: "%{author} yazarına bağış yaparak teşekkür et."
+    # link to a site where the user can donate to the author, when the author provided a suggested donation amount
     contribution_with_amount: "%{author} yazarına bağış yaparak teşekkür et. Önerilen bağış %{amount}. "
+    # text for donating to the author via bitcoin, when the author didn't provide a suggested donation amount
     contribution_bitcoin_no_amount_html: "%{author} yazarı için %{address} Bitcoin'ine bağış yaparak teşekkür et.."
+    # text for donating to the author via bitcoin, when the author provided a suggested donation amount
     contribution_bitcoin_with_amount_html: "%{author} yazarı için %{address} Bitcoin'ine bağış yaparak teşekkür et. Önerilen bağış %{amount}. "
+    # explanation of language chooser when editing script
     locale_explanation_html: "<code>@name</code>, <code>@description</code>, ve ilk ek bilgisi aynı dilde olmalıdır."
+    # the default value for the locale box, if submitted the site will attempt to detect the language of the entry
     locale_auto_select: "(Otomatik tespit)"
+    # label which lists the sets this script is in, which is followed by controls to change its inclusions
     sets_label: "Script setlerinde:"
+    # label for when the script is not in any sets, which is followed by controls to change its inclusions
     sets_label_no_sets: "Script setleri:"
+    # option to remove the script from the set
     sets_remove_inclusion: "%{set_name} setinden sil"
+    # option to remove the script's exclusion from the set
     sets_remove_exclusion: "%{set_name} seti haricinde sil"
+    # option to add the script to the set
     sets_add_inclusion: "%{set_name} setine ekle"
+    # option to exclude the script from the set (when it's been included as part of a sub set)
     sets_add_exclusion: "%{set_name} seti hariç"
+    # option to add the script to a new set
     sets_add_to_new: "Yeni sete ekle"
+    # summary of %{site_name}'s rules for posting scripts. full_rules_link is a link to the full rules with text of rules_summary_link_to_full
     rules_summary_html: "Scriptler, <strong>uygun tarif edilmiş</strong>, <strong>karartılmış</strong> ya da <strong>küçültülmüş</strong> olmayan, <strong>telif haklarına</strong> saygılı, ve <strong>dış kodu</strong> limitli kullanımlı olmalıdır. %{full_rules_link}"
+    # full rules link text used in the rules summary
     rules_summary_link_to_full: "Tüm kuralları oku."
+    # warning when on the edit screen for a script set up to sync. syncing_notice_sync_type will be a link to the sync screen with text from syncing_notice_sync_type_manual or syncing_notice_sync_type_automatic
     syncing_notice_html: "Bu script, %{syncing_notice_sync_type}.  Eğer senkronizasyon yapılıyorsa yaptığın güncellemelerin üzerine yazılır."
+    # used in syncing_notice_html when a script syncs only when the author requests it
     syncing_notice_sync_type_manual: "buradan senkronizasyonu elle ayarla %{sync_identifier}"
+    # used in syncing_notice_html when a script syncs automatically
     syncing_notice_sync_type_automatic: "buradan senkronizasyonu otomatik ayarla %{sync_identifier}"
+    # label for uploading a script under the code textarea
     upload_label: "Ya da yükle:"
+    # label for checkbox to enable or disable syntax highlighting code editor
     enable_source_code_editor_label: "Syntax-highlighting editörünü etkinleştir"
+    # descriptive text for the changelog field
     changelog_note: "Bu versiyonda ne değişti?"
     additional_info_note: "Daha ayrıntılı bir açıklama, talimatlar vb."
+    # button text for previewing additional info
+    # button text for submitting a new script
     post_new_script: "Script gönder"
+    # button text for submitting an update to an existing script
     post_updated_script: "Yeni versiyon gönder"
+    # label for radio button for public-type user script
     type_1_html: "Herkese açık kullanıcı scripti - herkesin görmesi ve kullanması için bir kullanıcı scripti ."
+    # label for radio button for unlisted-type user script
     type_2_html: "Liste dışı kullanıcı scripti  (yarı)-özel kullanım için bir kullanıcı scripti.  Direkt erişim mümkün ancak %{site_name}'ta linki bulunmaz."
+    # label for radio button for library-type script
     type_3_html: "Kütüphane - Script sadece <code>@require</code> ile kullanılır ve direkt olarak kurulmaz."
+    # label for checkbox to override script save warnings
     override_warning_checkbox_label: "Yine de kaydet?"
+    # script warning for not increasing the version number when updating the code
     warning_version_not_incremented_html: "Kodu güncelledin fakat <code>@version</code> numarasını arttırmadın. Önceden senin scriptini yüklemiş olanlar güncelleme alamayabilir."
+    # script warning for when a version number is not provided
     warning_version_missing_html: "Sen <code>@version</code> kullanmamışsın. <code>@version</code> meta etiketi script yöneticileri tarafından scriptinin güncelleme kontolü için gereklidir."
+    # label for checkbox for the site to automatically handle version numbers
     warning_version_missing_generate_automatically_html: "Otomatik <code>@version</code> oluştur?"
+    # script warning for when a namespace is not provided
     warning_namespace_missing_html: "Sen <code>@namespace</code> kullanmamışsın. <code>@namespace</code> meta etiketi  kullanıcıların scriptini güncellemek amaçlı yeniden yükleyebilmesi için gereklidir."
+    # label for checkbox for the site to automatically add a namespace
     warning_namespace_missing_generate_automatically_html: "Otomatik bir <code>@namespace</code> oluştur?"
+    # script warning for when a namespace changed on update
     warning_namespace_changed_html: "Senin <code>@namespace</code> değişmiş.Tutarlı bir  <code>@namespace</code>  kullanıcıların scriptini güncellemek amaçlı yeniden yükleyebilmesi için gereklidir."
+    # script warning for when a script's code appears minified. allowed_requires_link is a link to the allowed @require list, with text of warning_potentially_minified_allowed_requires_link
     warning_potentially_minified_html: "Senin script kodun küçültülmüş (kompreslenmiş) gibi görünüyor. Eğer küçültülmüş kütüphane kullanıyorsan, bunun yerine <code>@require</code> buradan %{allowed_requires_link}.  Scriptten küçültülmüş kodun çıkarılması gerekir."
+    # script warning for when a script's code is for adult sites. sensitive_domains is a list of domains
     warning_automatic_sensitive_html: "Scriptiniz %{sensitive_domains}, bu yüzden yetişkin içeriği olarak işaretlenecek."
+    # used in warning_potentially_minified_html
     warning_potentially_minified_allowed_requires_link: "bu yerlerden biri"
     warning_code_previously_posted_html: "Bu kod daha önce postalanmış %{script_links}. Orijinal yazar dışındaki kişiler tarafından yeniden yayınlanan komut dosyaları, moderatörler tarafından kaldırılabilir."
+    # default option for the locale of a localized additional info
     additional_info_locale_prompt: "(Bir yer seç)"
+    # text for the button to add another additional info section for a different language
     additional_info_add_localized: "Yerel ek bilgi ekle"
+    # validation when more than one additional info is specified for a locale. "locale_code" is the locale code (e.g. "en") that has more than one additional info
     additional_info_locale_repeated: "'%{locale_code}' yeri için bir ek bilgi sağlayın."
+    # validation when an additional info in a locale is provided but no name was provided in that locale. "locale_code" is the locale code (e.g. "en") that is missing a name
     localized_additional_info_with_no_name: " '%{locale_code}' yeri için ek bilgi belirtildi, ancak @name:%{locale_code} sağlanmadı."
     localized_attribute_matches_default: "Kod, varsayılan yerel ayardır %{meta_key}'%{locale_code}' olarak belirtilmemelidir."
+    # text to edit a code syncing URL. field is the text field to enter the url.
     code_syncing_from_url_html: "Bu scriptin kodun senkronizasyonu şuraya ayarlanmış: %{field}"
+    # text to add a code syncing URL. field is the text field to enter the url.
     provide_code_syncing_from_url_html: "%{site_name}'a başka yerlerde barındırılan scriptleri aktarabilirsin, örnek olarak versiyon kontrol sisteminden (GitHub gibi), senin serverından, ya da başka user script hosting sitelerinden. Scriptlerinin senkronizasyonunu etkinleştirmek için ihtiyacını sağlayacak bir URL: %{field}"
+    # text before the sync type options
     sync_type_intro: "Script senkronize olacak:"
+    # label for radio button for manual syncing
+    sync_type_1:
+      name: ""
+      description: ""
+    # label for radio button for automatic syncing
+    sync_type_2:
+      name: ""
+      description: ""
+    # label for radio button for webhook syncing
+    sync_type_3:
+      name: ""
+      description: ""
+    sync_name_and_description: ""
+    # text when the last attempted sync failed. date is the date of the error run through markup_date. error is the technical error.
     sync_failed_info_html: "Son senkronizasyon teşebbüsü %{date} oldu, %{error} ile sonuçlandı."
+    # text indicating the date of the last successful sync. date is the date of the sync run through markup_date
     sync_success_info_html: "Son başarılı senkronizasyon %{date} tarihinde yapıldı."
+    # text if the sync never succeeded
     sync_never_succeeded: "Hiç bir zaman başarılı senksonizasyon yapılmadı."
+    sync_additional_info: ""
+    add_synced_additional_info: ""
+    # button to update sync settings and run sync immediately
     update_and_sync: "Güncelle ve şimdi senkronize et"
+    # button to update sync settings but not sync immediately
     update_no_sync: "Güncelle"
+    # button to disable syncing of the script
     turn_off_syncing: "Bu script için senkronize olmayı kapat"
+    # label for syncing the default additional info
     additional_info_default_sync_html: "Varsayılan ek bilgi (<code>@name</code> ile eşleşmiş dil)"
+    # label for syncing localized additional infos
     additional_info_localized_sync_html: "Sadece yerel (<code>@name:XX</code> ile eşleşmiş dil)"
+    # HTML placeholder for sync fields
     sync_url_placeholder: "(URL)"
+    # label for adding a new screenshot
     screenshots_add: "Ekle:"
+    # label for checkbox to remove a screenshot
     screenshots_remove: "Kaldır"
+    # explains what a replacement script when deleting is
     replacement_script_explanation: "(İsteğe bağlı) Bu script yerine başka bir script seçin. Kullanıcılar güncellediği zaman bu script buraya yönlendirilecek. Yerine gelecek scriptin URL'sini giriniz:"
+    # title for diff page
     diff_title: "%{script} - Versiyon farkı"
+    # label for older version being diffed
     diff_old_version: "Eski:"
+    # label for newer version being diffed
     diff_new_version: "Yeni:"
+    # label for input for lines to show around each change when doing a diff
     diff_lines_of_context: "Context hataları:"
+    # label for checkbox on whether to ignore whitespace changes
     diff_ignore_whitespace: "Boşluk hatalarını önemseme"
+    # button to refresh diff after changing diff options
     diff_refresh: "Yenile"
+    # text shown when compared versions are the same
     diff_no_change: "Farklılıklar bulunamadı."
+    # tooltip for good rating number - "Good" should match the word used in RatingGood in the PHP localization
     good_rating_explanation: "İyi oylayan ve favorilere ekleyen kullanıcı sayısı."
+    # tooltip for ok rating number - "OK" should match the word used in RatingGood in the PHP localization
     ok_rating_explanation: "İyi oylayan kullanıcı sayısı."
+    # tooltip for bad rating number - "Bad" should match the word used in RatingGood in the PHP localization
     bad_rating_explanation: "Kötü oylayan kullanıcı sayısı."
+    # link at the bottom of the scripts list suggesting people post a script or learn how. post_a_script_link is a link with text post_a_script_link_text that goes to the new script form. learn_to_write_scripts_link is a link with text learn_to_write_scripts_link_text that goes to the help document for writing scrupts
     write_your_own_html: "%{post_a_script_link} (ya da %{learn_to_write_scripts_link})"
+    # link text for the new script form, used in write_your_own_html
     post_a_script_link_text: "Yazdığınız bir scripti gönderin"
+    # link text for the writing a user script help doc, used in write_your_own_html
     learn_to_write_scripts_link_text: "nasıl bir tane yazılır öğren"
+    # a suggestion below the install button that users provide feedback
     feedback_or_report: "%{feedback_link: Bir soru sorun, yorum yayınlayın} veya %{report_link: komut dosyasını bildirin}."
+    # a suggestion below the install button that users provide feedback or get support from the author's site. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
     support_feedback_or_report: "%{support_url: Destek için yazarın sitesini ziyaret edin}, %{feedback_link: bir soru sorun, yorum gönderin} veya %{report_link: komut dosyasını bildirin}."
+    # a suggestion below the install button that users provide feedback or get support from the author's via email. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
     support_email_feedback_or_report: "%{support_url: Destek için yazara e-posta gönderin}, %{feedback_link: bir soru sorun, yorum gönderin} veya %{report_link: komut dosyasını bildirin}."
+    # heading for section relating to adult content when posting new script or script version
     adult_content: "Yetişkin içerik"
+    # label for checkbox letting authors report their script as containing adult content
     adult_content_self_report: "Bu script içinde yetişkin içerikleri barındırıyor veya yetişkin içerik barındıran bir site için hazırlanmış."
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script not flagged as having adult content
     adult_content_self_report_explanation: "%{site_name} yetişkin içerikli scriptlere izin verir, ancak bunlar kullanıcıların görmek isteyip istemediklerini seçebileceği bir şekilde işaretlenmelidir. "
+    # label for checkbox letting authors report their script as not containing adult content
     not_adult_content_self_report_html: "Bu script içinde yetişkin içerikleri  <strong>barındırmıyor</strong> ve yetişkin içerik barındıran bir site için <strong>hazırlanmamış.</strong>"
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content
     not_adult_content_self_report_explanation: " %{site_name} sitesi yetişkin içerikli scriptlere izin verir, ancak bu kullanıcıların görmek isteyip istemedikleri bir şekilde işaretlenmelidir. Senin kodun yetişkin içeriği olarak işaretlendi. Bunu geri bildirebilrsiniz, bir moderatör tarafından incelenecektir."
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content due to automatic checking
     not_adult_content_self_report_explanation_automatic: "%{site_name}yetişkin içerikli scriptlere izin verir, ancak bunlar kullanıcıların görmek isteyip istemediklerini seçebileceği bir şekilde işaretlenmelidir. Oluşturduğunuz script %{domain_list} sitesi ile ilişkili olduğundan yetişkin içerikli olarak işaretlendi."
+    # the error you see when accessing a adult content script when logged in with the adult content setting off
     adult_content_on_greasy_logged_in_error: "Bu script artık sizin geçerli %{edit_account_link:Greasy Fork account settings} üyeliğiniz için kullanılabilir değil."
+    # the error you see when accessing a adult content script when not logged in
     adult_content_on_greasy_not_logged_in_error: "Bu script artık kullanıcı girişi yapılmadan kullanılamaz. Lütfen {login_link:Log in} linkinden giriş yapın ve hesap ayarlarınızı kontrol edin"
+    # the error you see when access a non-adult content script on sleazy fork
     non_adult_content_on_sleazy: "Bu script bu sitede mevcut değil."
     not_js_convertible_override_header: "JS'ye dönüşüm"
     not_js_convertible_override_explanation: "%{site_name} otomatik olarak CSS'nizin %{help_link:user JS conversion} gerçekleştirebilir. Kullanıcı JS dönüşümü ve sizin kullanıcı CSS'niz farklı çalışacağından, kullanıcı JS dönüşümünü denemenizi öneririz. Eğer çalışmadığını görürseniz, aşağıdaki kutuyu seçerek onu geçersiz kılabilirsiniz."
     not_js_convertible_override_label_html: "Bu, kullanıcı JS formatında erişilebilir <strong>olmamalı</strong>"
+    # marker after script name shown to authors indicating their adult scripts
     adult_marker: "(Yetişkin)"
+    # marker after script name if it's deleted
     deleted_marker: "(Silindi)"
+    # marker after script name if it's locked
     locked_marker: "(Kilitli)"
+    # marker after script name if it's unlisted
     unlisted_marker: "(Liste dışı)"
+    # marker after script name if it's a library
     library_marker: "(Kitaplık)"
+    # title for libraries listing page
     libraries_title: "Kütüphaneler"
+    # description for libraries listing page
+    libraries_description_html: ""
+    # title of the listing of top sites to script
     by_site_list_title: "Kullanıcı Scriptleri %{site_name} göre gruplandırılmış"
+    # description of the listing for top sites to script
     by_site_list_description: "Bunlar, en popüler kullanıcıların ürettiği scriptlerinden etkilenen sitelerdir. Büyük yazı tipi boyutu daha popüler kullanıcı yapımı script anlamına gelir."
     by_site_list_filter: "Site ismine göre filtrele:"
+    # placeholder for script search box
     search_placeholder: "Arama scriptleri"
     updated: "Betik güncellendi."
     preview_additional_info: "Önizle"
+    must_confirm: ""
+    must_confirm_external_sign_in: ""
     must_confirm_email_button: "%{email} adresine doğrulama e-postası yolla"
     authors_heading: "Yazarlar"
+    error_unauthorized_copy: ""
     invitations:
       form_title: "Diğer yazarları davet edin"
+      explanation: ""
       invited_user_url_label: "Davet için kullanıcı"
       invited_user_placeholder: "Kullanıcının %{site_name}sitesinde ki profili"
       submit: "Davet gönder"
@@ -285,6 +515,7 @@ tr:
       already_author: "Belirttiğin kullanıcı zaten script sahiplerinden biri."
       sent: "Davet gönderildi"
       subject: "%{script_name}için davet"
+      body: ""
       current_user_already_author: "Sen zaten bu script 'in yazarısın"
       invitation_not_found: "Davet bulunamadı"
       invitation_expired: "Davet süresi doldu"
@@ -296,11 +527,50 @@ tr:
       remove_confirm: "%{user_name}'i sahip bilgilerinden kaldırmak istediğine eminmisin?"
       failure: "Sahip bilgisi kaldırılamıyor."
     no_disposable_email: "Geçici email adresi kullanırsanız script oluşturamazsınız."
+    rate_limited: ""
+    new_script_notice:
+      title: ""
+      install_link_html: ""
+      share_link_html: ""
+    new_title:
+      js: ""
+      css: ""
+    update_title: ""
+    antifeatures:
+      warning_title: ""
+      author_explanation_intro: ""
+      types:
+        ads:
+          title: ""
+          description_html: ""
+        tracking:
+          title: ""
+          description_html: ""
+        miner:
+          title: ""
+          description_html: ""
+        referral-link:
+          title: ""
+          description_html: ""
+      install_anyway: ""
+      cancel_install: ""
+    badges:
+      js:
+        short: ""
+        long: ""
+      css:
+        short: ""
+        long: ""
   script_sets:
+    # description of script sets on edit page
     description: "Komut dizileri, Greasey Fork ile göz atmak için özelleştirilmiş bir komut listesi oluşturmanıza izin verir. Tek tek komut dosyalarını, diğer kullanıcıların kümelerini veya otomatik olarak oluşturulan setleri ekleyerek kümenize komut dosyaları ekleyebilirsiniz. Komut dosyalarını da kümenizden aynı yöntemlerle hariç tutabilirsiniz."
+    # name for the favorites set
     favorites_name: "Favoriler"
+    # delete button text for a script set
     delete: "Script setini sil"
+    # delete confirmation for a script set
     delete_confirmation: "Script setini silmek istediğinden emin misin?"
+    # option for choosing to sort the set by the default sort the site uses
     site_default_sort: "(Site varsayılan)"
     edit_scripts:
       heading: "Scriptler"
@@ -364,101 +634,202 @@ tr:
       user: "%{user} kullanıcısı tarafından oluşturulan scriptler"
       locale: "%{locale_name} içindeki scriptler"
   home:
+    # html title of the homepage
     title: "%{site_name} - güvenli ve kullanışlı scriptler"
+    # text at the top of the homepage.
     welcome: "Hoşgeldin, %{site_name} bir kullanıcı scriptleri sitesidir."
+    # html title of the sleazy fork homepage
     sleazy_title: "%{site_name} - güvenli ve kullanışlı yetişkin kullanıcı scriptleri"
+    # text at the top of the sleazy fork homepage.
     sleazy_welcome: "%{site_name}'e hoşgeldiniz, yetişkin kullanıcı scriptleri için bir site."
+    # placeholder for home page search box
     search_placeholder: "Kullanıcı Scriptleri ara"
     scripts_for_label: "İçin Scriptler:"
+    # heading for the paragraph explaining what user scripts are
     explain_user_scripts_heading: "Kullanıcı scriptleri nedir?"
+    # text explaining what user scripts are.
     explain_user_scripts_html: "Kullanıcı scriptleri göz atma deneyiminizi kontrol etmenizi sağlar. Yüklendikten sonra, özellikler ekleyerek, onları daha kolay kullanmanızı sağlayarak veya rahatsız edici bitleri çıkartarak ziyaret ettiğiniz siteleri otomatik olarak daha iyi hale getirirler. %{site_name} alanındaki kullanıcı scriptler diğer kullanıcılar tarafından yazılmış ve dünyayla paylaşımda bulunmak için gönderilmiştir. Kurulumu kolay ve kullanımı kolaydır."
+    # header for step 1 - how to install a user script manager
     installing_step1_header: "Adım 1: Bir kullanıcı script yöneticisi kur"
+    # caption in step 1 - screenshot of tampermonkey on chrome
     installing_step1_caption: "Chrome için Tampermonkey "
+    # text for step 1, listing options for user script managers based on browsers
+    installing_step1_description_html: >
+    # header for step 2 - how to install a user script
     installing_step2_header: "Adım 2: Bir kullanıcı skripti kur"
+    # caption for step 2 - showing the install button for user scripts
     installing_step2_caption: "Bir kullanıcı scriptinin yükleme düğmesi"
+    # text for step 2 - describing how to find and install user scripts
+    installing_step2_description_html: >
+    # header for step 3 - how to use a user script
     installing_step3_header: "Adım 3: Kullanıcı scripti kullan"
+    # description for step 3, describing browsing to the site and having the user script apply
     installing_step3_description_html: >
-        <p>Kullanıcı komut dosyasının etkilediği siteye gidin. İşini otomatik olarak
-        yapmalı. Kullanıcı komut dosyasını bir süre denedikten sonra, kullanıcı komut
-        dosyasını yüklediğiniz yere geri dönün ve kullanıcı komut dosyasının yazarı
-        için geri bildirim bırakın.</p>
+      <p>Kullanıcı komut dosyasının etkilediği siteye gidin. İşini otomatik olarak yapmalı. Kullanıcı komut dosyasını bir süre denedikten sonra, kullanıcı komut dosyasını yüklediğiniz yere geri dönün ve kullanıcı komut dosyasının yazarı için geri bildirim bırakın.</p>
   users:
+    # html title for the sign in page
     sign_in_title: "%{site_name}'ta oturum aç"
+    # what signing in lets people od
     sign_in_description: "Daha fazla..Daha fazla..%{site_name}'ta oturum aç%{site_name}'ta oturum aç%{site_name}'da scriptlerini göndermek ya da başa scriptlere geribesleme yapmak için oturum açılır. Script bulmak ya da kurmak için oturum açmana gerek yok."
+    # heading for signing in with an external service (Google, GitHub, etc.)
     sign_in_external: "Dış servisler ile oturum aç"
+    # button for signing in with an external service (Google, GitHub, etc.)
     sign_in_with: "%{provider} ile giriş yap"
+    # heading for signing in with a password
     sign_in_password: "Şifren ile oturum aç"
+    # when a user attempts to sign in with an external service and a user already exists with the same email, this is the message shown. email: provided e-mail, user_name: existing user's name, provider: what the user tried to sign in with (e.g. GitHub), sign_in_link: a link to the sign in page with text from sign_in_email_used_sign_in_link
     sign_in_email_used_no_external_services_html: "'%{email}' zaten kullanılıyor '%{user_name}' kullanıcısı tarafından. Eğer bu sen isen ve %{provider} ile ek bir oturum açmak istersen, %{sign_in_link} hesabınıza girerek, kendinize %{provider} oturum açma yöntemini ekleyin."
+    # same as above, but when the existing user uses other providers. also includes existing_providers, which is a list of the existing user's sign ins, run through to_sentence (http://apidock.com/rails/Array/to_sentence)
     sign_in_email_used_with_external_services_html: "'%{email}' zaten kullanılıyor '%{user_name}' kullanıcısı tarafından, %{existing_providers} ile. Eğer bu sen isen ve %{provider} ile ek bir oturum açmak istersen, %{sign_in_link} hesabınıza girerek, kendinize %{provider} oturum açma yöntemini ekleyin."
+    # sign in link for email_used messages
     sign_in_email_used_sign_in_link: "oturum aç"
+    # when a user attempts to create an account with an external service, but an email was not provided by that service
     sign_in_email_missing: "%{site_name}'ta yeni hesap yaratmak için e-posta gereklidir, ama %{provider} senin için bir tane vermedi. Sen %{provider} hesabını güncelleyebilirsin bir tane sahipsen, tekrar oturum açmayı deneyebilirsin, ya da %{site_name}'ta normal e-posta/şifre oluşturarak hesap yarattıktan sonra %{provider} hesabı ekleyebilirsin."
+    # this shows when signing in for the first time with an external sign in but the name received is already in use. the user is prompted to enter a different name.
     sign_in_name_used: "İsim '%{name}' zaten kullanılıyor. Başka bir tane seçin."
+    # the button when submitting the name form per above
     sign_in_name_used_submit: "Gönder"
+    # Button to preview a user's profile before saving
+    # heading for the user's control panel, which contains links such as post script and edit account
     control_panel: "Kontrol panel"
+    # heading for the list of discussions about a user's own scripts
     discussions_on_scripts: "Senin scriptlerindeki tartışmalar"
+    # alt text for the RSS feed icon for discussions about a user's own scripts
     discussions_on_scripts_feed_alt: "RSS Besleme"
+    # text to show in the section for discussions about a user's own scripts if there are no discussions yet
     discussions_on_scripts_none: "Henüz yok!"
+    # link to more discussions on a user's own scripts, as the initial list is limited in number
     discussions_on_scripts_more: "Diğer tartışmalar..."
+    # heading for the list of scripts on a user's page
     script_list: "Scriptler"
+    # text to show in a user's script section when they have created no scripts
     script_list_none: "Script gönderilmemiş."
+    # text to show in a user's script section when they have created scripts, but they are not shown due to the filters active
     script_list_none_for_filter: "Mevcut filitreler için script yok."
+    # text to show in a user's own script section when they have created no scripts. script_list_none_same_user_info_link is a link to a tutorial with text of script_list_none_same_user_info_link_text
     script_list_none_same_user_html: "Sen herhangi bir script yazmamışsın. %{script_list_none_same_user_info_link}"
+    # text used for link in script_list_none_same_user_html
     script_list_none_same_user_info_link_text: "Nasıl olduğunu öğrenmek ister misin?"
+    # heading for the list of a user's deleted scripts (visible to only that user and mods)
     deleted_script_list: "Silinmiş scriptler"
+    unlisted_script_list: ""
+    # link to log out
     sign_out: "Oturumu kapat"
+    # link to edit an account
     edit: "Hesap düzenleme"
+    # link to edit how the user signs in
     edit_sign_in: "Oturum metodlarını düzelt"
+    # html title for the edit sign in page
     edit_sign_in_title: "Oturum metodlarını düzelt"
+    # heading for the password section of the edit sign in methods page
     edit_sign_in_password: "Şifre"
+    # informational text telling the user they're not using a password
+    edit_notifications: ""
     no_password_set_info: "Hesabın bir şifre ile yapılandırılmamış."
+    # button to set a password when one is not already set
     set_password: "Şifre oluştur"
+    # button to set a password when one is already set
     update_password: "Şifre güncelle"
+    # error message when the password and the confirmation don't match
     update_password_no_match: "Şifreler eşleşmiyor."
+    # notice after a password was updated successfully
     password_updated: "Şifre güncellendi."
+    # information text saying the user can unset their password and use just external sign ins
     remove_password_info: "Sadece güvendiğiniz dış oturum açmalarında şifrenizi kaldırabilirsiniz."
+    # button to remove the password from the user's account
     remove_password: "Şifreyi kaldır"
+    # error message to show if the user attempts to remove a password but have no external sign ins. This is normally not possible with the interface.
     cant_remove_password: "Şifreyi kaldıramazsın - hiç bir şekilde oturum açamazsın!"
+    # error message to show if the user attempts to remove a sign in but has no password or other sign ins. This is normally not possible with the interface. provider is the external site's name, like GitHub or Google
     cant_remove_sign_in: "%{provider} oturum açmasını silemezsin - hiç bir şekilde oturum açamazsınız!"
+    # notice after a password was removed successfully
     password_removed: "Şifre kaldırıldı."
+    # heading for the external sign ins section of the edit sign in methods page
     edit_sign_in_external: "Dış oturum açma biçimleri"
+    # information text about how they can use external sign ins, shown when the user has not set any yet
     external_sign_in_info_no_sign_ins: "Başka sitelerde %{site_name} oturumu açarak hesabınızı kullanabilirsiniz."
+    # information text about how they can use external sign ins, shown when the user already has some set. should describe the concept of syncing, where account details on %{site_name} will be updated to match the external service on sign in
     external_sign_in_info_with_sign_ins: "You're currently using the external sign ins listed below. A \"syncing\" sign in means your %{site_name} info (like user name and email) will be updated to match when you sign in."
+    # notice after a sign in is added. provider is the external site's name, like GitHub or Google
     external_sign_in_added: "%{provider} oturum açma eklendi."
+    # notice after a sign in is updated (from syncing to not or opposite). provider is the external site's name, like GitHub or Google
     external_sign_in_updated: "%{provider} oturum açma güncellendi."
+    # notice after a sign in is removed. provider is the external site's name, like GitHub or Google
     external_sign_in_removed: "%{provider} oturum açma kaldırıldı."
+    # notice after a sign in fails
     external_sign_in_failed: "%{provider} oturum açma hatası: %{error}."
+    # notice after a user tries to add a sign in to their account, but that sign in is already in use by another user
     external_sign_in_already_used: "Ek %{provider} oturum açma başarısız: bu oturum hesabı zaten '%{user_name}' kullanıcı tarafından kullanılıyor."
+    # notice after successfully creating a new user based on external login
     external_sign_in_confirmation: "%{provider} hesap ayrıntılarınıza dayalı yeni %{site_name} hesap oluşturuldu. Herkese açık kullanıcı adınız %{username} 'dır."
+    # an indicator beside the sign in provider's name if the user chose to enable syncing
     syncing_indicator: "(senkronize oluyor)"
+    # button to set a sign in provider to sync
     enable_syncing: "Senkronizeyi aç"
+    # button to set a sign in provider to not sync
     disable_syncing: "Senkronizeyi kapat"
+    # button to remove a sign in provider
     remove_external_sign_in: "Kaldır"
+    # information text indicating that the list of links below it are for addding an external sign in
     add_external_sign_in_info: "Bir oturum ekle:"
+    # link to docs on how to set up a webhook for script syncing
     set_up_webhook: "Webhook kur"
     author_email_notification_type:
+      # notification option: don't send the user e-mails
       none: "Scriptlerin hakkındaki tartışmalardan e-postalar gönderme"
+      # notification option: send e-mails on new discussions but not new posts on existing discussions
       discussion_only: "Scriptlerin hakkında tartışma gönderildiğinde e-posta gönder"
+      # notification option: send e-mails on new discussoins and on new posts on existing discussions
       discussion_and_comment: "Scriptlerine tartışma gönderildiğinde ya da tartışmalara yeni cevap yazıldığında e-posta gönder."
+    # display of a single user when displaying a list of users. user_link is a link to the user's page with text of the user name, count is the number of public scripts authored
     list_display_html:
       one: "%{user_link} - %{count} script"
       other: "%{user_link} - %{count} scriptler"
+    # sort link for sorting users by number of scripts they've posted
     listing_number_of_scripts: "Scriptlerin sayısı"
+    # sort link for sorting users by the creation date of their scripts
     listing_new_scripts: "Yeni scriptler"
+    # sort link for sorting users by the updated date of their scripts
     listing_updated_scripts: "Güncellenmiş scriptler"
+    # sort link for sorting users by when they signed up
     listing_registration_date: "Kayıt tarihi"
+    # title for page showing list of users
     listing_title: "Kullanıcılar"
+    listing_banned_filter:
+      banned: ""
+      not_banned: ""
+      all: ""
+    listing_author_filter:
+      script_author: ""
+      not_script_author: ""
+      all: ""
+    # placeholder for user search box
     search_placeholder: "Kullanıcıları ara"
+    # default option for the user's preferred locale
     locale_prompt: "(Bir yer seç)"
+    # text describing what the show ads checkbox does
     show_ads_description: "%{site_name}'u reklamların görünmelerine izin vererek destekleyin"
+    # text describing what the show sensitive checkbox does
     show_sensitive_description: "Yetişkin içerikli scriptleri göster"
+    # text describing what the preferred markup setting does
     preferred_markup_description: "Yeni scriptler ve gönderiler için kullanılacak."
+    filter_locale_default_description: ""
+    # link from sleazy fork to greasy fork on user page
     greasy_fork_scripts_link:
       one: "%{user_name}'nin ayrıca Greasy Fork'da %{count} scripti var."
       other: "%{user_name}'nin ayrıca Greasy Fork'da %{count} scripti var."
+    # displays when the user is editing their account but syncing is on
+    update_sync_warning:
+      one: ""
+      other: ""
+    # link on the user page to go to the delete page
     delete_link: "Hesap Sil"
     delete:
       intro: "Sizin %{site_name}, %{user_name}hesap silmeniz şu sonuçlara sebep olur:"
       password_effect: "Şifrenizle girişiniz artık mümkün olmayacak."
+      identities_effect:
+        one: ""
+        other: ""
       scripts_effect:
         one: "Size ait %{count} script silinecek."
         other: "Size ait %{count}scriptleriniz silinecek."
@@ -480,72 +851,171 @@ tr:
         request_expired: "Kullanıcı silinemedi - talep süresi geçti."
         cancelled: "Silme işlemi iptal edildi."
         completed: "Hesap silindi."
+    banned_notice:
+      no_report_no_reason: ""
+      with_report: ""
+      with_reason: ""
+    banned_delete:
+      intro: ""
+      complete: ""
+    badges:
+      banned:
+        short: ""
+        long: ""
+      moderator:
+        short: ""
+        long: ""
+      author:
+        short: ""
+        long: ""
     notifications:
+      discussion_defaults:
+        title: ""
+        new_discussion: ""
+        new_comment: ""
+        mention: ""
+      conversation_defaults:
+        title: ""
+        starter: ""
+        receiver: ""
+      save_button: ""
       title: Bildirimler
+      current_discussion_subscriptions:
+        one: ''
+        other: ''
+      save_success: ""
+      unsubscribe_all: ""
+      unsubscribe_all_success: ""
+  webhooks:
+    info:
+      title: ""
+      intro_html: |
+      already_syncing_list: ""
+      synced_item_html: ""
+      language_note: ""
   help:
+    sections:
+      usage: ""
+      development: ""
+      miscellaneous: ""
+    open_source: ""
     installing_user_scripts:
       title: 'Kullanıcı scriptleri nasıl yüklenir?'
+    installing_user_styles:
+      title: ''
     meta_keys:
+      # title of the help document describing script meta keys (e.g. @name).
       title: "Script meta anahtarları %{site_name} tarafından okundu"
+      # introductory paragraph. If the URL has a localized version, use that.
       intro_html: "Bu, %{site_name} sitesinin okuyacağı bir <a href=\"http://wiki.greasespot.net/Metadata_Block\">kullanıcı betiği meta anahtarları </a> listesi. Bu listenin dışındaki anahtarlar, betiğe eklenmiş olabilir, ve yüklenmiş betikte bulunabilir, fakat %{site_name}sitesinin Kullanıcı Arayüzü'nde bulunmayabilir."
+      # description of @name
       name: "Scriptin ismi, başlıkta ve linklerde kullanılacak. Gerekli."
+      # description of @name:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
+      name_localized_html: ""
+      # description of @description
       description: "Script ne işe yarıyor açıklaması. Başlık altında gösterilecektir. Gerekli."
+      # description of @description:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
+      description_localized_html: ""
+      # description of @namespace. Do not translate content inside <code>.
+      namespace_html: ""
+      # description of @description:XX-YY. developer.mozilla.org may have localized content; use it if available.
+      version_html: ""
+      # description of @include
+      include_html: ""
+      # description of @require. %{external_script_link} is a link to the document describing allowed external scripts and has a link of key "require_external_script_link_text"
       require_html: "Kodlar harici Java kodları içermektedir. Bakınız %{external_script_link}."
+      # used in required_html
       require_external_script_link_text: "kod kuralları harici komut içermektedir"
+      # description of @updateURL
+      updateURL: ""
+      # description of @license
+      license: ""
+      # description of @supportURL
       supportURL: "Kullanıcıların bir komut dosyasında destek alabileceği bir sayfanın URL'si (ör. Bir hata izleyici, bir forum, bir e-posta adresi). Destek URL'si bir komut dosyasının geribildirim sayfasında görüntülenir."
+      # description of @contributionURL. You can replace the sample "business" and "item_name" parameters in the URLs with localized versions.
+      contributionURL_html: ""
+      # description of @contributionAmount. Do not translate content inside <code>.
       contributionAmount_html: "Önerilen bağış miktarı, <code>@contributionURL</code>'ya bağlı kullanılır"
+      # description of @compatible. %{browsers} is a comma-separated list of browser codes. You can translate "Must disable pop-up blocker", but do not translate "@compatible firefox". 
+      compatible_html: ""
+      # description of @incompatible. %{browsers} is a comma-separated list of browser codes. You can translate "Broken since Firefox 23", but do not translate "@compatible firefox".
+      incompatible_html: ""
+      antifeature_html: ""
+      antifeature_localized_html: ""
     writing_user_scripts:
+      # title for Writing user scripts help page
       title: "Nasıl kullanıcı scripti yazarım"
+      # content of the page. The link to greasespot can be updated to a better resource if one is available in your language. code_rules_link and meta_keys_link are links to those help pages, with text of those page's titles. ask_in_forum_link is a link to the forum with text of ask_in_forum_link_text. user_page_link is a link to the user's page if the user is signed in, or plain text if they're not; in either case, the text is user_page_link_text. post_new_script_link is a link to the new script page, with text of post_new_script_link_text
+      content_html: ""
+      # link text used in content_html
       ask_in_forum_link_text: 'forumda sor'
+      # link text used in content_html
       user_page_link_text: 'kullanıcı sayfası'
+      # link text used in content_html
       post_new_script_link_text: 'yeni script gönder'
     code_rules:
+      # title for the rules page
       title: "Gönderilmiş scriptler için %{site_name}'un kuralları"
+      preamble: ""
+      functionality_header: ""
+      description: ""
+      reason: ""
+      unrelated: ""
+      monetization_html: ""
+      code_header: ""
+      obfuscation: ""
+      libraries_html: ""
+      updates: ""
+      external_js: ""
+      copyright_header: ""
+      licensing: ""
+      reposts: ""
+      miscellaneous_header: ""
+      keywords_html: ""
+      adult_content_rule: ""
+      reporting: ""
     external_scripts:
+      # title of the external script rules page
       title: "%{site_name} sitesinin harici scriptlerdeki politikası"
+      # content of the external script rules page
+      content_html: >
+      test_url:
+        label: ""
+        result_ok: ""
+        result_not_ok: ""
     script_rewriting:
+      # title of the rewriting page
       title: "%{site_name}, gönderilen scriptleri nasıl yeniden yazacak"
+      # content of the rewriting page
+      content_html: >
+    # link to github
     site_feedback_link: "%{site_name} için bir sorun bildir veya birşetler söyle"
     credits:
+      # title for the credits page
       title: "Künye"
+      # give credit to authors
       authors_credit: "%{site_name} kod destekçileri olmadan var olamazdı."
+      # give credit to developers. link goes to github.
       developers_credit: "%{site_name} scripti %{developers_link:these people}  tarafından bütün hata raporu gönderenm ve önerilen veren insanların yardımıyla yazılmıştır."
+      # give credit to translators. link to goes to transifex. after this text, there's a list of languages and the contributors to each.
       translators_credit: "Grasy Fork, %{translators_link:Transifex çeviri sayfasından}: çevrilmiştr."
+      # give credit to icon makers. all links are proper names so are not translated.
+      icons_credit: ""
+    # link to greasemonkey docs
     help_with_greasymonkey: "Greasemonkey'de yardım"
     contact:
+      # title of contact page
       title: "Birileriyle iletişime geçin"
+      # content of contact page
+      content_html: >
     privacy_policy:
       title: "Gizlilik sözleşmesi"
       content_html: >
-          <p>Bu sayfa %{site_name} scriptinin nasıl kullanıcı kaydettiğini veya takip
-          ettiğini açıklar. Bu konuyla ilgili şüpheleriniz için, %{admin_email_link:e-mail
-          the admin} adresine mail atınız.</p>
+        <p>Bu sayfa %{site_name} scriptinin nasıl kullanıcı kaydettiğini veya takip ettiğini açıklar. Bu konuyla ilgili şüpheleriniz için, %{admin_email_link:e-mail the admin} adresine mail atınız.</p>
 
-          <h2>Server logs</h2> <p>%{site_name} logs all requests in a typical server
-          log fashion. Information logged includes pages visited, IP address, and
-          user agent string. These logs are for debugging and server analysis. The
-          data is retained for one week. This data is not shared or made publicly
-          available.</p> <h2>Script statistics</h2> <p>For the purposes of generating
-          statistics, %{site_name} records install and update requests with IP address
-          information. This information is retained for one day, and then is aggregated
-          to no longer include the IP address. The IP-address-specific data is not
-          shared or made publicly available, but the aggregated data is.</p> <h2>Cookies
-          (when not logged in)</h2> <p>%{site_name} may set temporary session cookies
-          to allow for some site features. These cookies are not set to persist and
-          may cleared when the browser is closed (depending on browser settings).</p>
-          <h2>User accounts</h2> <p>%{site_name} requires users to create an account
-          to post scripts, take part in discussions, and access some other site features.
-          When creating an account, information such as IP address, e-mail address,
-          and user agent may be permanently stored. Some of this information may be
-          made visible to other users.</p> <p>Actions performed when logged in, for
-          example posting scripts and comments, will be made viewable to other users.</p>
-          <p>If the "Remember me" option is checked when logging in to an account,
-          %{site_name} will set a persistent cookie to retain login state.</p> <h2>Scripts
-          posted on %{site_name}</h2> <p>%{site_name} contains user-generated content,
-          and scripts posted may be able to track users if they install that script.</p>
-          <h2>Third party libraries</h2> <p>%{site_name} may include third party code
-          to collect statistics or display advertisements on the site. These libraries
-          may include tracking logic.</p>
+        <h2>Server logs</h2> <p>%{site_name} logs all requests in a typical server log fashion. Information logged includes pages visited, IP address, and user agent string. These logs are for debugging and server analysis. The data is retained for one week. This data is not shared or made publicly available.</p> <h2>Script statistics</h2> <p>For the purposes of generating statistics, %{site_name} records install and update requests with IP address information. This information is retained for one day, and then is aggregated to no longer include the IP address. The IP-address-specific data is not shared or made publicly available, but the aggregated data is.</p> <h2>Cookies (when not logged in)</h2> <p>%{site_name} may set temporary session cookies to allow for some site features. These cookies are not set to persist and may cleared when the browser is closed (depending on browser settings).</p> <h2>User accounts</h2> <p>%{site_name} requires users to create an account to post scripts, take part in discussions, and access some other site features. When creating an account, information such as IP address, e-mail address, and user agent may be permanently stored. Some of this information may be made visible to other users.</p> <p>Actions performed when logged in, for example posting scripts and comments, will be made viewable to other users.</p> <p>If the "Remember me" option is checked when logging in to an account, %{site_name} will set a persistent cookie to retain login state.</p> <h2>Scripts posted on %{site_name}</h2> <p>%{site_name} contains user-generated content, and scripts posted may be able to track users if they install that script.</p> <h2>Third party libraries</h2> <p>%{site_name} may include third party code to collect statistics or display advertisements on the site. These libraries may include tracking logic.</p>
+    user_css_to_user_js:
+      title: ""
   search:
     script_search:
       title: "Script Ara"
@@ -568,10 +1038,36 @@ tr:
     item_script_html: "Script: %{script_link}"
     item_deleted_script: "Silinmiş script %{id}"
     item_user_html: "Kullanıcı: %{user_link}"
+  notifications:
+    consecutive_bad_ratings:
+      one: ""
+      other: ""
   reports:
+    report_filed: ""
     new_report_title:
       user: "Raporla"
       comment: "%{user}tarafından yapılan yorumu raporla"
+      message: ""
+      script: ""
+    new_report_notes_html: >
+    new_script_report_notes_html: >
+    new_user_report_notes_html: >
+    reason:
+      non_functional: ""
+      spam: ""
+      abuse: ""
+      illegal: ""
+      unauthorized_code: ""
+      malware: ""
+      minified: ""
+      external_code: ""
+      undisclosed_antifeature: ""
+      other: ""
+    report_intro_html: ""
+    report_intro_unauthorized_html: ""
+    non_functional_feedback: ""
+    unauthorized_code_original_placeholder: ""
+    explanation_placeholder: ""
     create_button: "Rapor oluştur"
     report_user: "Kullanıcı raporla"
     report_comment: "Yorum raporla"
@@ -579,78 +1075,214 @@ tr:
     result_dismissed: "Bu rapor moderatör tarafından reddedildi."
     result_upheld: "Bu rapor moderatör tarafından onaylanmıştı"
     result_pending: "Bu rapor moderatör tarafından incelenmeyi bekliyor."
+    rebuttal_placeholder: ''
+    submit_rebuttal: ""
+    delete_script: ""
   discussions:
+    title: ""
     comment_date: "Gönderildi: %{date}"
     comment_edit_date: "Düzenlendi: %{date}"
+    posted_by_html: ""
+    last_comment: ""
+    new_discussion_heading: ""
+    new_discussion_submit: ""
+    new_comment_heading: ""
+    new_comment_submit: ""
+    back_to_feedback: ""
     edit_comment_link: "Düzenle"
     edit_comment_header: "Yorumu düzenle"
     delete_comment: "Sil"
+    delete_comment_confirm: ""
     delete_discussion: "Sil"
+    delete_discussion_confirm: ""
     update_comment_submit: "Yorumu güncelle"
     cancel_update_comment: "İptal"
+    quote_comment: ""
+    question_heading_html: ""
+    review_heading_html: ""
+    update_rating: ""
+    ratings:
+      question: ""
+      bad: ""
+      ok: ""
+      good: ""
     ratings_short:
+      question: ""
+      bad: ""
       ok: "Tamam"
+      good: ""
+    sign_in_to_post_discussion: ""
+    sign_in_to_post_comment: ""
     user_filter:
+      label: ""
+      all: ""
+      discussion_by_me: ""
+      comment_by_me: ""
+      on_my_scripts: ""
       subscribed: "Takip edildi"
+    other_user_filter:
+      all: ""
+      comments_by: ""
     category_filter:
       label: Kategori
+      all: ""
     read_filter:
+      label: ""
       all: Tümü
+      read: ""
+      unread: ""
+    locale_filter:
+      label: ""
+      all: ""
     user_activity:
       title: "Son yorumlar"
+      no_recent_activity: ""
+      see_all_activity: ""
+      script_review:
+        posted_html: ""
+        replied_html: ""
+      script_question:
+        posted_html: ""
+        replied_html: ""
+      discussion:
+        posted_html: ""
+        replied_html: ""
+    review_title: ""
+    question_title: ""
     subscribe: Takip et
     unsubscribe: Takibi bırak
+    notify: ""
+    notifying_on_script: ""
+    categories:
+      greasyfork:
+        name: ""
+        description: ""
+      development:
+        name: ""
+        description: ""
+      requests:
+        name: ""
+        description: ""
+      script-discussions:
+        name: ""
+        description: ""
+      no-scripts:
+        name: ""
+      moderators:
+        name: ""
+        description: ""
+    category_display: ""
+    new_title: ""
+    new_button: ""
+    script_notice: ""
+    no_discussions: ""
+    mark_all_read: ""
+    pending_moderator_review: ""
   conversations:
+    user_input_note: ""
+    new_title: ""
+    new_link: ""
+    new_button: ""
+    title_html:
+      one: ''
+      other: ''
     send_message: Mesaj gönder
     conversation_list_title: Konuşamalar
+    conversation_link_html:
+      one: ''
+      other: ''
+    conversation_info_html: ""
     no_conversations: Henüz hiç konuşmanız yok.
+    no_recent_conversations: ""
     recent:
       title: Son konuşmalar
       more: Tüm konuşmaları göster
+  screenshots:
+    requirements: ""
   common:
+    # text to show before listing errors in a submission
     error_preamble: "Ne gönderdiğinizde bazı sorunlar oldu.."
+    # link to the list of allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_link: "(İzin verilen kodları gör.)"
+    # title of the page showing allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_and_attributes_title: "HTML içerik için izin verilen elementler"
+    # text to introduce the list of allowed HTML elements and attributes
     allowed_elements_intro: "Aşağıdaki unsurlar ve nitelikleri izin verilir. Bu her ikisi için HTML ve Markdown (daha sonra HTML'ye dönüştürülmesi) geçerlidir."
+    # additional info for the allowed HTML elements, explaining additional changes made to content
     allowed_elements_extra_info: "Boşluklar p ya da br elementlerine dönüşecektir. URL'ler otomatik olarak linklenecektir."
+    allowed_css_intro: ""
+    user_references_html: ""
     not_found_text: "404 - sayfa bulunamadı."
     not_found_title: "404 - Sayfa Bulunamadı"
     not_found_link_home: "Anasayfaya git."
+    # shown on the first page a user sees if, based on the user's Accept-Language header, we think we have a better locale than what the first page shows. "locale_name" is the name of the locale in that language (matching the name in the locale drop down)
     suggest_locale: "%{site_name} %{locale_name} içinde kullanılabilir."
+    # shown on the first page a users sees if the locale they're on is less than a certain amount translated. links to the docs on how to help with localization
     incomplete_locale: "%{site_name}'un %{locale_name} çevirisi yalnızca %{percent} tamamlanmış. Bunu değiştirebilirsin."
+    # text for a button that expands a block of text
     expander_show_more: "Daha fazla göster"
+    # text for a button that contracts a block of text
     expander_show_less: "Daha az göster"
+    # note denoting what are ads
     advertisement_note: Reklamlar
+    # label on tab allowing for previewing input
     preview_tab: Görüntüle
+    # label on tab for entering input
     write_tab: Yaz
     listing_options_title: "Ayarları Ayarlayın"
+    quote:
+      prefix_html: ""
   activerecord:
     attributes:
       user:
+        # user field: display name
         name: "İsim"
+        # user field: profile (HTML content describing themselves)
         profile: "Profil"
+        # user field: locale
         locale: "Yerel tercih"
+        # user field: setting to send e-mails when discussions or comments are posted to a user's scripts. options are under users.author_email_notification_type
         author_email_notification_type_id: "Script tartışma bildirimleri"
+        # user field: show ads
         show_ads: "Reklamları göster"
+        # user field: show sensitive
         show_sensitive: "Yetişkin içerik"
+        # user field: preferred markup (html or markdown)
         preferred_markup: "Tercih biçimlendir"
+        filter_locale_default: ""
+        current_password: ""
+        new_password: ""
+        new_password_confirmation: ""
       script:
+        # name of the script
         name: "İsim"
+        # description of the script
         description: "Açıklama"
+        # locale the script is in. see also scripts.locale_explanation
         locale: "Yer"
+        # the JS code of the script
         code: "Kod"
+        # description of changes for an update
         changelog: "Geliştirmeler"
+        # the type of script - public, unlisted, or library
         type: "Script tipi"
+        # additional descriptive text outside of @description
         additional_info: "Ek bilgi"
+        # screenshots attached to the script
         screenshots: "Ekran görüntüleri"
+        # when deleting, which script to redirect to
         replaced_by_script_id: "Değiştirilmiş script"
       script_set:
+        # name of the script set
         name: "İsim"
+        # description of the script set
         description: "Açıklama"
+        # default sort of the script set
         default_sort: "Varsayılan sıralama"
       report:
         reason: "Raporlama sebebi"
       discussion:
+        rating: ""
         category: "Kategori"
         title: Başlık
       conversation:
@@ -659,21 +1291,76 @@ tr:
         content: Mesaj
   errors:
     messages:
+      # validation for when a script name is not provided
       script_missing_name: "Gerekli - Bir @isim belirle"
+      # validation for when a script description is not provided
       script_missing_description: "Gerekli - Bir @açıklama belirle"
+      # validation for when a script description is the same as name
       script_name_same_as_description: "isim ile aynı olmamalıdır"
+      # validation for sync URL
       script_sync_identifier_bad_protocol: "HTTP ya da HTTPS URL olmalıdır"
+      # validation for number of screenshots
       script_too_many_screenshots: "Çok fazla ekran görüntüsü içeriyor. En fazla %{number} adet eklenebilir."
+      # validation for "deleted and replaced by" when the user says the script is replaced by itself
       cannot_be_self_reference: "aynı script olamaz"
+      # validation for "deleted and replaced by" when the user says the script is replaced by a deleted script
       cannot_be_deleted_reference: "silinmiş script olamaz"
       cannot_be_used_with_this_script: "bu script ile kullanılamaz"
+      # validation for "deleted and replaced by" when the user provides a non-%{site_name} URL
       must_be_greasy_fork_script: "%{site_name}'ta bulunan script URL'si olmalıdır"
+      # validation when the user uploads code that's not UTF-8 text
       script_update_not_utf8: "yüklenen UTF-8 biçiminde olmalıdır"
+      # validation when user uploads code that contains a disallowed @require
       script_disallowed_require: "onaylanmamış harici script kullanıyor: %{code}"
       script_rate_limit: "Yayınlama sınırını geçtiniz. Daha sonra tekrar deneyin."
+      missing_include_or_match: ""
       file_size_out_of_range: "boyut 200KB'den düşük olmak zorundadır"
+      meta_too_long: ""
   opensearch:
+    # short name for opensearch.xml
     short_name: "%{site_name} ara"
+    # description for opensearch.xml
     description: "%{site_name} sitesinde kullanıcı scriptleri için ara."
+    # long name for opensearch.xml
     long_name: "%{site_name} kullanıcı scripti ara"
+    # attribution for opensearch.xml
     attribution: "Yazarlar kendi scriptinin telifine sahiptir, lisans için her scripte bakınız."
+  mailers:
+    script_report:
+      report_created_offender:
+        subject: ""
+        text: ""
+      report_upheld_offender:
+        subject: ""
+        text: ""
+      report_dismissed_offender:
+        subject: ""
+        text: ""
+      report_rebutted_reporter:
+        subject: ""
+        text: ""
+      report_upheld_reporter:
+        subject: ""
+        text: ""
+      report_script_deleted_reported:
+        subject: ""
+        text: ""
+      report_dismissed_reporter:
+        subject: ""
+        text: ""
+    consecutive_bad_ratings:
+      notify:
+        subject: ""
+        text: |
+    script_comment:
+      subject: ""
+      text: |
+    subscribed_discussion:
+      subject: ""
+      text: |
+    comment_mentioned:
+      subject: ""
+      text: |
+    new_message:
+      subject: ""
+      text: |
