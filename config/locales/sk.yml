@@ -1,135 +1,81 @@
 sk:
   layouts:
     application:
-      # link to the list of scripts
       script_list: "Skripty"
-      # link to the forum
       forum: "Fórum"
-      # link to the help docs
       help: "Pomocník"
-      # link to sign in
       sign_in: "Prihlásiť sa"
-      # label for nav submenu
       submenu: "Viac"
-      # link to advanced search
       advanced_search: "Pokročilé vyhľadávanie"
-      # link to user list
       user_list: "Zoznam používateľov"
-      # link to libraries
       libraries: "Knižnice"
-      # link to moderator log
       moderator_log: "Záznam moderátora"
   scripts:
-    # label for created date of a script
     created_date: "Vytvorené"
-    # label for updated date of a script
     updated_date: "Aktualizované"
-    # label for total install count of a script
     total_installs: "Celkový počet inštalácií"
-    # label for daily install count of a script
     daily_installs: "Denne inštalácií"
-    # label for the ratings of a script
     ratings: "Hodnotenie"
-    # label for author name of a script
     author_name: "Autor"
-    # label for version number of a script
     version_number: "Verzia"
-    # label for the legal license a script is released under (e.g. GPL)
     license: "Licencia"
-    # what is shown as the license when no license is provided in a script
     no_license: "neuvedené"
-    # label for the browser compatibility for a script
     compatibility: "Kompatibilita"
     compatible_with_browser: "Kompatibilné s %{browser}"
     incompatible_with_browser: "Nekompatibilný s %{browser}"
-    # label for the list of sites or patterns a script applies to
     applies_to: "Spustiť na"
-    # a title (tooltip) for the links in the "applies to" section going to a list of scripts for that site. count is the number of other scripts, site is the name of the site. add subkeys for your language per http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
     applies_to_link_title:
       one: "Zobraziť %{count} ďalší skript pre %{site}"
       few: "Zobraziť %{count} ďalšie skripty pre %{site}"
       many: "Zobraziť %{count} ďalších skriptov pre %{site}"
       other: "Zobraziť %{count} ďalších skriptov pre %{site}"
-    # what is shown as the applies to when a script applies to all sites
     applies_to_all: "Všetkých stránkach"
-    # link that makes the user install the script
     install: "Nainštalovať tento skript"
-    # text for link that gives information on how to install scripts. should be very short.
     install_help: "?"
-    # title (tooltip) for link that gives information on how to install scripts
     install_help_title: "Ako nainštalovať"
-    # link that makes the user update the script
     update: "Aktualizovať na verziu %{version}"
-    # link that makes the user downgrade the script
     downgrade: "Prejsť na verziu %{version}"
-    # link that makes the user reinstall the script
     reinstall: "Preinštalovať verziu %{version}"
-    # warning when installing an old version of a script
     old_version_warning: "Toto nie je posledná verzia tohto skriptu. Ak ju nainštalujete, už nikdy viac nebude aktualizovaná na najnovšiu verziu. Aj tak nainštalovať?"
-    # label for a promoted script
     promoted: "Propagovaný skript"
     author_promoted: "Autor skriptu navrhuje"
-    # text for promoted script
     promoted_text_html: "Tiež sa vám môže páčiť %{script_link}."
-    # instructions on a script library. code will be a <code> element. Don't use punctuation around the code element if possible so that people don't accidentally include that when copying.
     library_instructions_html: "Tento skript by nemal byť nainštalovaný priamo. Je to knižnica pre ďalšie skripty, ktorú by mali používať cez meta príkaz  %{code}"
-    # text displayed for deleted scripts
     deleted_notice: "Tento skript bol odstránený."
     deleted_notice_with_related: "Skript, ktorý požadujete bol odstránený, ale tu sú podobné skripty."
     deleted_undelete_notice_html: "Tento skript bol zamknutý moderátorom a nemôže byť obnovený. Uvedený dôvod je \"<i>%{delete_reason}</i>\"."
     deleted_locked_author_notice_html: "Tento skript bol odstránený moderátorom a nie je ostatným prístupný. Uvedený dôvod je \"<i>%{delete_reason}</i>\"."
     deleted_author_notice: "Tento skript bol odstránený moderátorom a nie je ostatným prístupný. Môžete ho obnoviť zo záložky Odstrániť."
-    # test displayed when viewing a previous version. date is a date and time (no "ago"), latest_version_link is a link to the newest version whose text is version_notice_latest_version_link
     version_notice_html: "Verzia zo dňa %{date}. Pozri %{latest_version_link}."
     version_notice_latest_version_link: "najnovšiu verziu"
     reported_notice: "Skript \"%{script_name}\" bol nahlásený a čaká na kontrolu moderátorom"
     reported_notice_for_author: "Tento skript je nedostupný pre ostatných používateľov do vykonania kontroly moderátorom."
-    # link to the script's info page, containing script meta and author's description
     info_page: "Info"
-    # link to the script's code page
     code_page: "Kód"
-    # link to the script's history page, listing all versions of the code
     history_page: "História"
-    # link to the script's feedback page, listing discussions on the script. count is the number of discussions
     feedback_page: "Spätná väzba (%{count})"
-    # link to the script's install statistics page
     stats_page: "Štatistika"
-    # link to the script's derivatives page, which shows similar scripts
     derivatives_page: "Odvodené skripty"
-    # link to the page that lets the author update the script
     update_page: "Aktualizácia"
-    # link to the page that lets the author delete a script
     delete_page: "Odstrániť"
-    # explanation of what deleting does
     delete_explanation: "Vymazanie vášho skriptu znamená, že nebude dostupný nikomu, okrem Vás a moderátorov Greasy Forku. Skript môžete kedykoľvek obnoviť."
-    # intro text to radio options for choosing update behaviour after deletion
     delete_update_behaviour: "Ako sa má prejaviť vymazanie skriptu pre používateľov, ktorí ho už majú nainštalovaný?"
-    # label for the option allowing users to retain the script after delete
     delete_update_behaviour_1: "Ponechať tak ako je."
-    # label for the option where users get a blanked script after delete 
     delete_update_behaviour_2: "Aktualizovať na prázdny skript. Vhodné pre skripty, ktoré negatívne ovplyvňujú chod stránky."
-    # heading for permanent deletion section
     delete_permanently_heading: "Trvalé vymazanie"
-    # explanation of permanent deletion
     delete_permanently_explanation_html: >-
-      <p>Trvalé odstránenie skriptu odstráni skript a všetky jeho záznamy, okrem diskusie na fóre a záznamov akcií moderátora.</p> <p>Skript bude natrvalo odstránený po 7 dňoch od žiadosti. Počas tejto doby môžete žiadosť o odstránenie zrušiť. Ak tak neurobíte, nikto, ani moderátor, nebude môcť skript obnoviť.</p>
-    # confirmation on pressing the permanent deletion button
+        <p>Trvalé odstránenie skriptu odstráni skript a všetky jeho záznamy, okrem
+        diskusie na fóre a záznamov akcií moderátora.</p> <p>Skript bude natrvalo
+        odstránený po 7 dňoch od žiadosti. Počas tejto doby môžete žiadosť o odstránenie
+        zrušiť. Ak tak neurobíte, nikto, ani moderátor, nebude môcť skript obnoviť.</p>
     delete_permanently_confirm: "Naozaj chcete natrvalo odstrániť skript?"
-    # text for the permanent deletion button
     delete_permanently_submit: "Žiadosť o trvalé vymazanie"
-    # text for the permanent deletion button when it would take effect immediately
     delete_permanently_immediate_submit: "Trvale vymazať"
-    # notice after requesting permanent deletion
     delete_permanently_notice: "Žiadosť o trvalé odstránenie bola zaznamenaná. Skript bude natrvalo odstránený o 7 dní."
-    # text on the delete page after permanently deletion was requested
     delete_permanently_already_requested: "Žiadosť o trvalé odstránenie zo dňa %{datetime}."
-    # notice after permanently deletion
     delete_permanently_notice_immediate: "Skript bol trvale vymazaný."
-    # text for cancelling a permanent deletion request
     cancel_delete_permanently_submit: "Zrušiť žiadosť o trvalé vymazanie"
-    # notice after cancelling a permanent deletion request
     cancel_delete_permanently_notice: "Žiadosť o trvalé odstránenie bola zrušená. Skript sa nebude naďalej ostatným zobrazovať."
-    # error when attempting to delete a locked script
     delete_permanently_rejected_locked: "Tento skript je uzamknutý a nemôže byť trvalo odstránený"
     admin_page: "Správca"
     admin:
@@ -148,72 +94,46 @@ sk:
       compare_to: "Porovnať skript na %{site_name} s (URL)"
       compare_button: "Porovnať"
       compare_must_be_local_url: "Porovnávaný skript musí byť URL na %{site_name}."
-    # HTML title for the history page for a script
     history_title: "%{script_name} - História verzií"
-    # text explaining that we're only showing versions where the code changed
     history_only_code_changes_info: "Zoznam verzií skriptu, ktorých kód bol aktualizovaný."
-    # link to the list of all versions
     history_all_changes_link: "Zobraziť všetky verzie."
-    # text explaining that we're showing all versions
     history_all_changes_info: "Zoznam všetkých verzií tohto skriptu."
-    # link to the list of version where the code changed
     history_only_code_changes_link: "Zobraziť iba verzie skriptu, u ktorých došlo k zmene."
-    # button that shows changes (a diff) of the selected versions
     diff_button: "Porovnať vybrané verzie"
-    # HTML title of the script source code page
     code_title: "%{script_name} - Zdrojový kód"
-    # HTML title of the script feedback page
     feedback_title: "%{script_name} - Spätná väzba"
     feedback_has_reports: "Tento skript bol nahlásený, že porušuje pravidlá stránky %{site_name}."
-    # text to show when no discussions are posted. start_discussion_first_link is a link with the text from feedback_start_first_discussion_link
     feedback_no_discussions_html: "Zatiaľ žiadna diskusia. %{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "Zatiaľ nie sú zverejnené žiadne diskusie."
     feedback_report_instead: "Ak si myslíte, že skript porušuje %{rules_link:Pravidlá %{site_name}}, prosím, %{report_link:nahláste ho na odstránenie}."
     feedback_start_first_discussion_link: "Buďte prvý, kto začne diskusiu o tomto skripte."
     feedback_discussion_or_report: "%{new_discussion_link:Začať diskusiu pre tento skript} alebo %{report_link:nahlásiť ho na odstránenie}."
-    # heading for list of people who favorited this script
     feedback_favoriters_heading: "Obľúbené"
-    # text before a comma separated list of users who favorited the script
     feedback_favoriters_user_list_html: "Títo používatelia označili tento skript ako obľúbený: %{user_list}."
     feedback_favoriters_lots:
       one: "%{user_count} používateľ označil tento skript ako obľúbený. %{full_link:Zobraziť celý zoznam.}"
       few: "%{user_count} používatelia označili tento skript ako obľúbený. %{full_link:Zobraziť celý zoznam.}"
       many: "%{user_count} používateľov označilo tento skript ako obľúbený. %{full_link:Zobraziť celý zoznam.}"
       other: "%{user_count} používateľov označilo tento skript ako obľúbený. %{full_link:Zobraziť celý zoznam.}"
-    # text when no one has favorited a script
     feedback_no_favoriters: "Tento skript ešte nebol nikým označený ako obľúbený."
-    # link to get the user to sign in to add the script to their favorites
     feedback_sign_in_to_favorite: "Prihláste sa, aby ste mohli pridať ako obľúbené."
-    # html title for script stats page
     stats_title: "%{script_name} - Štatistika"
-    # heading for daily install stats on stats page
     stats_daily_installs_heading: "Denne inštalácií"
-    # heading for weekly install stats on stats page
     stats_weekly_installs_heading: "Počet inštalácií za týždeň"
-    # heading for daily update check stats on stats page
     stats_daily_update_checks_heading: "Denne kontrol aktualizácií"
-    # date column heading for a script's daily install stats table
     stats_daily_installs_date_column_heading: "Dátum"
-    # install count column heading for a script's stats table
     stats_daily_installs_install_count_column_heading: "Inštalácií"
-    # update check count column heading for a script's stats table
     stats_daily_installs_update_check_count_column_heading: "Kontrola aktualizácií"
-    # header for the raw data table for stats
     stats_raw_data_header: "Nespracované dáta"
-    # text before links to download raw stats data. links will be space separated links to the format name (e.g. CSV and JSON)
     stats_download_raw_data_html: "Stiahnuť všetky dáta ako: %{links}"
-    # text to show when a stat is not available
     stats_no_data: "nedostupné"
     stats_filters: "Filter: %{filter_options}"
     stats_filter_options:
       month: Posledných 30 dní
       year: Posledných 365 dní
       all: Celé obdobie
-    # HTML title for derivatives page
     derivatives_title: "%{script_name} - Odvodené skripty"
-    # text explaining the derivatives page and what to do if the user finds unauthorized copies
     derivatives_intro: "Tieto skripty môžu byť založené na vašich (alebo vaše môžu byť založené na ich). Ak zistíte neoprávnené použitie vášho kódu, nahláste ho na cez spätnú väzbu daného skriptu."
-    # format for scripts listed on the derivatives page. script_link is a link to the derivative's page, user_link is a link to the user who created the derivative, license is text, link to the license, or scripts.no_license
     derivatives_script_html: "%{script} od používateľa %{user}, licencia: %{license} %{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "Presné kópie"
     derivatives_exact_copies_list_intro: "Nasledujúce skripty majú rovnaký kód ako vaše:"
@@ -232,280 +152,154 @@ sk:
     derivatives_similar_last_check_soon: "Čoskoro skontrolujeme skripty podobné vašim."
     derivatives_similar_last_check_again_soon_html: "Posledná kontrola podobnosti vašim skriptom prebehla %{date}. Čoskoro skontrolujeme skripty podobné vašim."
     derivatives_similar_check_now: "Skontrolovať teraz"
-    # html title for script list page when showing scripts that affect all sites
     listing_title_all_sites: "Používateľské skripty pre všetky stránky"
-    # meta description and feed subtitle when showing scripts that affect all sites
     listing_description_all_sites: "Používateľské skripty, ktoré pridávajú funkcie a odstraňujú chyby na všetkých stránkach"
-    # html title for script list page when showing scripts for a particular site. 'site' will be in the form 'example.com'
     listing_title_for_site: "Používateľské skripty pre %{site}"
-    # meta description and feed subtitle when showing scripts that affect a particular site
     listing_description_for_site: "Používateľské skripty, ktoré pridávajú funkcie a odstraňujú chyby na stránke %{site}"
-    # html title for script list page for search results.
     listing_title_for_search: "Používateľské skripty pre '%{search_string}'"
-    # html title for script list page for code search results.
     listing_title_for_code_search: "Používateľské skripty pre '%{search_string}'"
-    # html title for script list page when no other situation applies
     listing_title_generic: "Používateľské skripty"
-    # html title for script list page for a user's favorites. set_name is script_sets.favorites_name
     listing_title_for_favorites: "používateľ %{user_name} má obľúbené %{set_name}"
-    # meta description and feed subtitle for script list page when no other situation applies
     listing_description_generic: "Používateľské skripty, ktoré pridávajú funkcie a odstraňujú chyby na stránkach, ktoré používate"
-    # label for sorting links on script list page
     listing_sort_label: "Zoradiť podľa:"
-    # link for relevance (most matching the search terms) sort on a script list
     listing_sort_relevance: "Relevancie"
-    # link for daily install sort on a script list
     listing_sort_daily_installs: "Denných inštalácií"
-    # link for daily install sort on a script list
     listing_sort_total_installs: "Celkových inštalácií"
-    # link for rating sort on a script list
     listing_sort_ratings: "Hodnotenia"
-    # link for created date sort on a script list
     listing_sort_created: "Dátumu vytvorenia"
-    # link for updated date sort on a script list
     listing_sort_updated: "Dátumu aktualizovania"
-    # link for name sort on a script list
     listing_sort_name: "Názvu"
-    # label for filtering by-site links on script list page
     listing_filter_by_site_label: "Zobrazenie skriptov pre:"
-    # link for turning off by-site filtering on script list page
     listing_filter_by_site_disable: "Všetky"
-    # link for filtering script list by scripts that affect all sites
     listing_filter_by_site_all_sites: "(Všetky stránky)"
     listing_filter_by_language_label: "Jazyk:"
-    # link to see a full list of sites that scripts on %{site_name} affect
     listing_filter_by_site_more_sites: "Viac..."
-    # text that shows when no scripts were found with the used parameters
     listing_no_scripts: "Nenašli sa žiadne skripty."
-    # feed title for the listing, ordered by created date
     listing_created_feed: "Nové skripty"
-    # feed title for the listing, ordered by updated date
     listing_updated_feed: "Aktualizované skripty"
-    # when a list has nothing to show
     listing_none: "(Žiadne)"
-    # link to filter search results by the current locale
     listing_set_locale_filter: "Zobrazujú sa výsledky pre všetky jazyky. %{set_filter_link:Zobraziť iba výsledky pre %{language}.}"
-    # link to remove locale filter
     listing_remove_locale_filter: "Zobrazujú sa výsledky iba pre %{language}. %{remove_filter_link:Zobraziť výsledky pre všetky jazyky.}"
     listing_language_all: "Všetky"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
-    # link to start the process of importing (creating from an external place) scripts
     import: "Importovať skripty"
-    # link to create a new script
     new: "Zverejniť skript, ktorý ste napísali"
     new_css: "Zverejniť štýl, ktorý ste napísali"
-    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support site
     support_site: "Navštíviť stránky autora skriptu pre podporu."
-    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support email address
     support_email: "E-mail podpory autora skriptu."
-    # link to a site where the user can donate to the author, when the author didn't provide a suggested donation amount
     contribution_no_amount: "Poďakovať %{author} odoslaním finančného príspevku."
-    # link to a site where the user can donate to the author, when the author provided a suggested donation amount
     contribution_with_amount: "Poďakovať %{author} odoslaním finančného príspevku. Navrhovaná čiastka je %{amount}."
-    # text for donating to the author via bitcoin, when the author didn't provide a suggested donation amount
     contribution_bitcoin_no_amount_html: "Poďakovať %{author} odoslaním finančného príspevku cez Bitcoin na %{address}."
-    # text for donating to the author via bitcoin, when the author provided a suggested donation amount
     contribution_bitcoin_with_amount_html: "Poďakovať %{author} odoslaním finančného príspevku cez Bitcoin na %{address}. Navrhovaná čiastka je %{amount}."
-    # explanation of language chooser when editing script
     locale_explanation_html: "Hodnota by mala zodpovedať jazyku <code>@name</code>, <code>@description</code>, a prvej doplňujúcej informácii."
-    # the default value for the locale box, if submitted the site will attempt to detect the language of the entry
     locale_auto_select: "(Automaticky detegovať)"
-    # label which lists the sets this script is in, which is followed by controls to change its inclusions
     sets_label: "V zbierke skriptov:"
-    # label for when the script is not in any sets, which is followed by controls to change its inclusions
     sets_label_no_sets: "Zbierka skriptov:"
-    # option to remove the script from the set
     sets_remove_inclusion: "Odobrať z %{set_name}"
-    # option to remove the script's exclusion from the set
     sets_remove_exclusion: "Odobrať výnimku z %{set_name}"
-    # option to add the script to the set
     sets_add_inclusion: "Pridať do %{set_name}"
-    # option to exclude the script from the set (when it's been included as part of a sub set)
     sets_add_exclusion: "Vylúčiť z %{set_name}"
-    # option to add the script to a new set
     sets_add_to_new: "Pridať do novej zbierky"
-    # summary of %{site_name}'s rules for posting scripts. full_rules_link is a link to the full rules with text of rules_summary_link_to_full
     rules_summary_html: "Skript musí byť <strong>správne popísaný</strong>, nemôže byť <strong>zmätočný</strong> alebo <strong>minifikovaný</strong>, musí rešpektovať<strong>autorské právo</strong>, a používať minimálne množstvo <strong>externého kódu</strong>. %{full_rules_link}"
-    # full rules link text used in the rules summary
     rules_summary_link_to_full: "Prečítajte si plné znenie pravidiel."
-    # warning when on the edit screen for a script set up to sync. syncing_notice_sync_type will be a link to the sync screen with text from syncing_notice_sync_type_manual or syncing_notice_sync_type_automatic
     syncing_notice_html: "Tento skript je %{syncing_notice_sync_type}. Každá aktualizácia, ktorú vykonáte v kóde bude prepísaná počas synchronizácie."
-    # used in syncing_notice_html when a script syncs only when the author requests it
     syncing_notice_sync_type_manual: "nastaviť manuálnu synchronizáciu z %{sync_identifier}"
-    # used in syncing_notice_html when a script syncs automatically
     syncing_notice_sync_type_automatic: "nastaviť automatickú synchronizáciu z %{sync_identifier}"
-    # label for uploading a script under the code textarea
     upload_label: "Alebo nahrať:"
-    # label for checkbox to enable or disable syntax highlighting code editor
     enable_source_code_editor_label: "Povoliť zvýraznenie syntaxe v editore zdrojového kódu"
-    # descriptive text for the changelog field
     changelog_note: "Čo je nové v tejto verzii?"
     additional_info_note: "Podrobný popis, návody, atď."
-    # button text for previewing additional info
-    # button text for submitting a new script
     post_new_script: "Odoslať skript"
-    # button text for submitting an update to an existing script
     post_updated_script: "Odoslať novú verziu"
-    # label for radio button for public-type user script
     type_1_html: "Verejný používateľský skript - používateľský skript pre všetkých"
-    # label for radio button for unlisted-type user script
     type_2_html: "Používateľský skript vyradený zo zoznamu - používateľský skript pre (polo)súkromné použite. Dostupný len cez priamy odkaz, ale nenachádza sa na zozname %{site_name}."
-    # label for radio button for library-type script
     type_3_html: "Knižnica - skript určený pre <code>@require</code> v iných skriptoch a neinštaluje sa priamo."
-    # label for checkbox to override script save warnings
     override_warning_checkbox_label: "Napriek tomu uložiť?"
-    # script warning for not increasing the version number when updating the code
     warning_version_not_incremented_html: "Aktualizovali ste kód, ale nepovýšili ste <code>@version</code>. Tí, ktorí si predtým nainštalovali váš skript nemusia dostať aktualizáciu."
-    # script warning for when a version number is not provided
     warning_version_missing_html: "Nezadali ste <code>@version</code>. Metakľúč <code>@version</code> umožňuje kontrolu aktualizácie v správcovi používateľských skriptov."
-    # label for checkbox for the site to automatically handle version numbers
     warning_version_missing_generate_automatically_html: "Vygenerovať <code>@version</code> automaticky?"
-    # script warning for when a namespace is not provided
     warning_namespace_missing_html: "Nezadali ste <code>@namespace</code>. Metakľúč <code>@namespace</code> umožňuje používateľom preinštalovať skript pre jeho aktualizáciu."
-    # label for checkbox for the site to automatically add a namespace
     warning_namespace_missing_generate_automatically_html: "Vygenerovať <code>@namespace</code> automaticky?"
-    # script warning for when a namespace changed on update
     warning_namespace_changed_html: "Váš <code>@namespace</code> sa zmenil. Konzistentný <code>@namespace</code> umožňuje používateľom preinštalovať skript pre jeho aktualizáciu."
-    # script warning for when a script's code appears minified. allowed_requires_link is a link to the allowed @require list, with text of warning_potentially_minified_allowed_requires_link
     warning_potentially_minified_html: "Zdá sa, že váš skript obsahuje (zmenšený) komprimovaný kód. Ak používate komprimovanú knižnicu, prosím, vložte ju pomocou <code>@require</code> z %{allowed_requires_link}. Skripty s komprimovaným kódom nie sú povolené a budú odstránené."
-    # script warning for when a script's code is for adult sites. sensitive_domains is a list of domains
     warning_automatic_sensitive_html: "Váš skript je pre %{sensitive_domains} a tak bude označený ako obsah pre dospelých."
-    # used in warning_potentially_minified_html
     warning_potentially_minified_allowed_requires_link: "jedno z týchto miest"
     warning_code_previously_posted_html: "Tento kód bol predtým uverejnený v %{script_links}. Skripty, ktoré sú zverejnené niekým iným, ako je pôvodný autor, môžu moderátori odstrániť."
-    # default option for the locale of a localized additional info
     additional_info_locale_prompt: "(Zvoľte jazyk)"
-    # text for the button to add another additional info section for a different language
     additional_info_add_localized: "Pridať lokalizované dodatočné informácie"
-    # validation when more than one additional info is specified for a locale. "locale_code" is the locale code (e.g. "en") that has more than one additional info
     additional_info_locale_repeated: "Uveďte iba jednu dodatočnú informáciu pre jazyk '%{locale_code}'"
-    # validation when an additional info in a locale is provided but no name was provided in that locale. "locale_code" is the locale code (e.g. "en") that is missing a name
     localized_additional_info_with_no_name: "Dodatočné informácie boli uvedené pre jazyk '%{locale_code}', ale nebol doplnený parameter @name:%{locale_code}."
     localized_attribute_matches_default: "Kód by nemal určovať %{meta_key} ako \"%{locale_code}\" je predvolený jazyk."
-    # text to edit a code syncing URL. field is the text field to enter the url.
     code_syncing_from_url_html: "Tento kód skriptu je nastavený na synchronizáciu z: %{field}"
-    # text to add a code syncing URL. field is the text field to enter the url.
     provide_code_syncing_from_url_html: "%{site_name} dokáže importovať skripty, ktoré sú hotovostné už niekde inde, napríklad na verziovacom systéme (ako GitHub), vlastnom serveri, alebo ďalšej stránke s používateľskými skriptami. Pre zapnutie synchronizácie vášho skriptu, zadajte URL: %{field}"
-    # text before the sync type options
     sync_type_intro: "Skript bude synchronizovaný:"
-    # label for radio button for manual syncing
     sync_type_1:
       name: Manuálne
-      description: "aktualizácie sa skontrolujú, až keď ich spustíte"
-    # label for radio button for automatic syncing
+      description: aktualizácie sa skontrolujú, až keď ich spustíte
     sync_type_2:
       name: Automaticky
       description: pravidelne sa bude kontrolovať dostupnosť aktualizácií
-    # label for radio button for webhook syncing
     sync_type_3:
       name: Webhook
-      description: "aktualizuje sa, ak odošlete zmeny do tohto súboru vo svojom repozitári"
+      description: aktualizuje sa, ak odošlete zmeny do tohto súboru vo svojom repozitári
     sync_name_and_description: "%{name} - %{description}"
-    # text when the last attempted sync failed. date is the date of the error run through markup_date. error is the technical error.
     sync_failed_info_html: "Posledný pokus o synchronizáciu prebehol %{date}, s výsledkom %{error}."
-    # text indicating the date of the last successful sync. date is the date of the sync run through markup_date
     sync_success_info_html: "Posledná úspešná synchronizácia prebehla %{date}."
-    # text if the sync never succeeded
     sync_never_succeeded: "Synchronizácia nikdy neprebehla úspešne."
     sync_additional_info: Voliteľne môžete synchronizovať ďalšie informácie o skripte.
     add_synced_additional_info: Pridať lokalizované a synchronizované ďalšie informácie
-    # button to update sync settings and run sync immediately
     update_and_sync: "Aktualizovať a synchronizovať teraz"
-    # button to update sync settings but not sync immediately
     update_no_sync: "Aktualizovať"
-    # button to disable syncing of the script
     turn_off_syncing: "Vypnúť synchronizáciu tohto skriptu"
-    # label for syncing the default additional info
     additional_info_default_sync_html: "Predvolené dodatočné informácie (jazyk zodpovedá <code>@name</code>)"
-    # label for syncing localized additional infos
     additional_info_localized_sync_html: "Pre jazyk (zodpovedá <code>@name:XX</code>)"
-    # HTML placeholder for sync fields
     sync_url_placeholder: "(URL)"
-    # label for adding a new screenshot
     screenshots_add: "Pridať:"
-    # label for checkbox to remove a screenshot
     screenshots_remove: "Odstrániť"
-    # explains what a replacement script when deleting is
     replacement_script_explanation: "(Voliteľné) Vyberte ďalší skript, ktorý nahradí tento skript. Používatelia budú pri aktualizácii presmerovaní na tento skript. Zadajte URL náhradného skriptu:"
-    # title for diff page
     diff_title: "%{script} - Rozdiel verzií"
-    # label for older version being diffed
     diff_old_version: "Stará:"
-    # label for newer version being diffed
     diff_new_version: "Nová:"
-    # label for input for lines to show around each change when doing a diff
     diff_lines_of_context: "Riadky kontextu:"
-    # label for checkbox on whether to ignore whitespace changes
     diff_ignore_whitespace: "Ignorovať zmeny medzier"
-    # button to refresh diff after changing diff options
     diff_refresh: "Obnoviť"
-    # text shown when compared versions are the same
     diff_no_change: "Žiadne rozdiely."
-    # tooltip for good rating number - "Good" should match the word used in RatingGood in the PHP localization
     good_rating_explanation: "Počet ľudí, ktorí ho hodnotili ako Dobrý alebo si ho pridali medzi obľúbené."
-    # tooltip for ok rating number - "OK" should match the word used in RatingGood in the PHP localization
     ok_rating_explanation: "Počet ľudí, ktorí ho hodnotili ako OK."
-    # tooltip for bad rating number - "Bad" should match the word used in RatingGood in the PHP localization
     bad_rating_explanation: "Počet ľudí, ktorí ho hodnotili ako zlý."
-    # link at the bottom of the scripts list suggesting people post a script or learn how. post_a_script_link is a link with text post_a_script_link_text that goes to the new script form. learn_to_write_scripts_link is a link with text learn_to_write_scripts_link_text that goes to the help document for writing scrupts
     write_your_own_html: "%{post_a_script_link} (alebo %{learn_to_write_scripts_link})"
-    # link text for the new script form, used in write_your_own_html
     post_a_script_link_text: "Zverejniť skript, ktorý ste napísali"
-    # link text for the writing a user script help doc, used in write_your_own_html
     learn_to_write_scripts_link_text: "naučiť sa ako ho napísať"
-    # a suggestion below the install button that users provide feedback
     feedback_or_report: "%{feedback_link:Spýtať sa otázku, uverejniť recenziu}, alebo %{report_link:nahlásiť skript}."
-    # a suggestion below the install button that users provide feedback or get support from the author's site. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
     support_feedback_or_report: "%{support_url:Navštíviť stránky autora skriptu pre podporu}, %{feedback_link::spýtať sa otázku, uverejniť recenziu}, alebo %{report_link:nahlásiť skript}."
-    # a suggestion below the install button that users provide feedback or get support from the author's via email. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
     support_email_feedback_or_report: "%{support_url:Napísať email autorovi pre podporu}, %{feedback_link:spýtať sa otázku, uverejniť recenziu}, alebo %{report_link:nahlásiť skript}."
-    # heading for section relating to adult content when posting new script or script version
     adult_content: "Obsah pre dospelých"
-    # label for checkbox letting authors report their script as containing adult content
     adult_content_self_report: "Tento skript obsahuje obsah pre dospelých alebo je určený pre stránky s takýmto obsahom."
-    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script not flagged as having adult content
     adult_content_self_report_explanation: "%{site_name} povoľuje skripty s obsahom pre dospelých, ale musia byť označené tak, aby používatelia si mohli vybrať, či ich chcú zobraziť."
-    # label for checkbox letting authors report their script as not containing adult content
     not_adult_content_self_report_html: "Tento skript <strong>neobsahuje</strong> obsah pre dospelých a  <strong>nie je</strong> určený pre stránky s takýmto obsahom."
-    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content
     not_adult_content_self_report_explanation: "%{site_name} povoľuje skripty s obsahom pre dospelých, ale musia byť označené tak, aby používatelia si mohli vybrať, či ich chcú zobraziť. Váš skript bol označený, že obsahuje mládeži neprístupný obsah. Môžete nahlásiť, že to tak nie je; hlásenie bude posúdené moderátorom. "
-    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content due to automatic checking
     not_adult_content_self_report_explanation_automatic: "%{site_name} povoľuje skripty s obsahom pre dospelých, ale musia byť takto označené, aby si používatelia mohli vybrať, či ho chcú vidieť. Váš skript bol označený ako s obsahom pre dospelých pretože je pre %{domain_list}."
-    # the error you see when accessing a adult content script when logged in with the adult content setting off
     adult_content_on_greasy_logged_in_error: "Tento skript už nie je dostupný na tejto stránke s vaším aktuálnym %{edit_account_link:nastavením účtu Greasy Fork}."
-    # the error you see when accessing a adult content script when not logged in
     adult_content_on_greasy_not_logged_in_error: "Tento skript už nie je dostupný anonymne. %{login_link:Prihláste sa} a skontroluje nastavenie svojho účtu na Greasy Fork."
-    # the error you see when access a non-adult content script on sleazy fork
     non_adult_content_on_sleazy: "Tento skript nie je dostupný na tejto stránke."
     not_js_convertible_override_header: "Prevod na JS"
     not_js_convertible_override_explanation: "%{site_name} môže automaticky vytvoriť %{help_link:prevod používateľského JS} vášho používateľského CSS. Aj keď prevod používateľského JS a používateľského CSS bude fungovať trochu inak, odporúčame vyskúšať prevod používateľského JS. Ak zistíte, že nefunguje, môžete ho zrušiť zaškrtnutím políčka nižšie."
     not_js_convertible_override_label_html: "Toto <strong>nemusí byť</strong> dostupné v používateľskom formáte JS"
-    # marker after script name shown to authors indicating their adult scripts
     adult_marker: "(Pre dospelých)"
-    # marker after script name if it's deleted
     deleted_marker: "(Odstránený)"
-    # marker after script name if it's locked
     locked_marker: "(Uzamknutý)"
-    # marker after script name if it's unlisted
     unlisted_marker: "(Vyradený zo zoznamu)"
-    # marker after script name if it's a library
     library_marker: "(Knižnica)"
-    # title for libraries listing page
     libraries_title: "Knižnice"
-    # description for libraries listing page
     libraries_description_html: "Niektoré knižnice používateľov %{site_name} môžete <code>@require</code> vo vašich skriptoch. Pre ostatné typy knižníc môžete <code>@require</code>, prečítajte si  zásady používania %{policy_link:%{site_name} na <code>@require</code>}."
-    # title of the listing of top sites to script
     by_site_list_title: "Používateľské skripty na %{site_name} zoskupené podľa stránky"
-    # description of the listing for top sites to script
     by_site_list_description: "Toto sú stránky najviac ovplyvnené najobľúbenejšími používateľskými skriptami. Väčšie písmo znamená obľúbenejšie používateľské skripty."
     by_site_list_filter: "Filtrovať podľa názvu stránky:"
-    # placeholder for script search box
     search_placeholder: "Hľadať skripty"
     updated: "Skript bol aktualizovaný."
     preview_additional_info: "Náhľad"
     must_confirm: "Pred odoslaním skriptov musíte potvrdiť váš účet. Máte 2 možnosti – externé prihlásenie alebo odoslanie potvrdzujúceho e-mailu."
-    must_confirm_external_sign_in: ""
     must_confirm_email_button: "Poslať potvrdzovací odkaz na %{email}"
     authors_heading: "Autori"
     error_unauthorized_copy: "Tento kód sa zdá byť neoprávnenou kópiou skriptu %{script}. Prosím, pozrite si pravidlá posielania skriptov na %{site_name}%{rules_link:pravidlá}"
@@ -546,13 +340,13 @@ sk:
       types:
         ads:
           title: Reklama
-          description_html: "Tento skript bude <b>vkladať reklamu</b> na stránky, ktoré navštívite."
+          description_html: Tento skript bude <b>vkladať reklamu</b> na stránky, ktoré navštívite.
         tracking:
           title: Sledovanie
-          description_html: "Tento skript obsahuje kód, ktorý bude <b>sledovať vaše prehliadanie."
+          description_html: Tento skript obsahuje kód, ktorý bude <b>sledovať vaše prehliadanie.
         miner:
           title: Kryptominer
-          description_html: "Tento skript obsahuje kryptominer, ktorý využíva zdroje vášho zariadenia v čase jeho aktivity."
+          description_html: Tento skript obsahuje kryptominer, ktorý využíva zdroje vášho zariadenia v čase jeho aktivity.
         referral-link:
           title: Referral odkazy
           description_html: Tento skript <b>prepíše odkazy</b> a doplní do nich refferal alebo affiliate kód.
@@ -566,15 +360,10 @@ sk:
         short: CSS
         long: Používateľský štýl
   script_sets:
-    # description of script sets on edit page
     description: "Zbierka skriptov vám umožní vytvoriť vlastný zoznam skriptov pre prehliadanie s Greasy Fork. Skripty môžete pridať do vašej zbierky Vy, ďalší používatelia zbierky alebo automaticky generované zbierky."
-    # name for the favorites set
     favorites_name: "Obľúbené"
-    # delete button text for a script set
     delete: "Odstrániť zbierku skriptov"
-    # delete confirmation for a script set
     delete_confirmation: "Naozaj chcete odstrániť túto zbierku skriptov?"
-    # option for choosing to sort the set by the default sort the site uses
     site_default_sort: "(Predvolené)"
     edit_scripts:
       heading: "Skripty"
@@ -640,196 +429,129 @@ sk:
       user: "Skripty od používateľa %{user}"
       locale: "Skripty v %{locale_name}"
   home:
-    # html title of the homepage
     title: "%{site_name} - bezpečné a užitočné používateľské skripty"
-    # text at the top of the homepage.
     welcome: "Vitajte na %{site_name}, stránke pre používateľské skripty."
-    # html title of the sleazy fork homepage
     sleazy_title: "%{site_name} - bezpečné a užitočné používateľské skripty pre dospelých"
-    # text at the top of the sleazy fork homepage.
     sleazy_welcome: "Vitajte na %{site_name}, stránke pre používateľské skripty pre dospelých."
-    # placeholder for home page search box
     search_placeholder: "Hľadať používateľské skripty"
     scripts_for_label: "Skripty pre:"
-    # heading for the paragraph explaining what user scripts are
     explain_user_scripts_heading: "Čo sú to používateľské skripty?"
-    # text explaining what user scripts are.
     explain_user_scripts_html: "Používateľské skripty vám dávajú kontrolu nad vašim webovým prehliadačom. Akonáhle sa nainštalujú, automaticky vylepšujú stránky, ktoré navštevujete a pridávajú im funkcie, zjednodušujú ich ovládanie alebo odstraňujú zbytočné prvky. Používateľské skripty na %{site_name} boli napísané ďalšími používateľmi a odoslané na zdieľanie pre celý svet. Sú zadarmo a ich inštalácia a používanie je jednoduché."
-    # header for step 1 - how to install a user script manager
     installing_step1_header: "1. krok: Inštalácia správcu používateľských skriptov"
-    # caption in step 1 - screenshot of tampermonkey on chrome
     installing_step1_caption: "Tampermonkey pre Chrome"
-    # text for step 1, listing options for user script managers based on browsers
     installing_step1_description_html: >
-      <p>Pre používanie skriptov potrebujete najprv nainštalovať správcu používateľských skriptov. Výber správcu používateľských skriptov záleží od prehliadača, ktorý používate.</p>
+        <p>Pre používanie skriptov potrebujete najprv nainštalovať správcu používateľských
+        skriptov. Výber správcu používateľských skriptov záleží od prehliadača, ktorý
+        používate.</p>
 
-      <ul>
+        <ul>
 
-      <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> alebo %{chrome_violentmonkey_link:Violentmonkey}</li>
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> alebo %{chrome_violentmonkey_link:Violentmonkey}</li>
 
-      <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, alebo %{firefox_violentmonkey_link:Violentmonkey}</li>
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
+        alebo %{firefox_violentmonkey_link:Violentmonkey}</li>
 
-      <li>Safari: %{safari_tampermonkey_link:Tampermonkey} alebo %{safari_userscripts_link:Používateľské skripty}</li>
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey} alebo %{safari_userscripts_link:Používateľské
+        skripty}</li>
 
-      <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
 
-      <li>Opera: %{opera_tampermonkey_link:Tampermonkey} alebo %{opera_violentmonkey_link:Violentmonkey}</li>
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} alebo %{opera_violentmonkey_link:Violentmonkey}</li>
 
-      <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
 
-      <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
 
-      <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
 
-      <li>AdGuard: (nie je potrebný žiadny ďalší softvér)</li>
+        <li>AdGuard: (nie je potrebný žiadny ďalší softvér)</li>
 
-      </ul>
-    # header for step 2 - how to install a user script
+        </ul>
     installing_step2_header: "2. krok: Inštalácia používateľského skriptu"
-    # caption for step 2 - showing the install button for user scripts
     installing_step2_caption: "Tlačidlo pre nainštalovanie používateľského skriptu"
-    # text for step 2 - describing how to find and install user scripts
     installing_step2_description_html: >
-      <p>%{browse_link:Prehliadať túto stránku} pre nájdenie užívateľského skriptu, ktorý chcete vyskúšať. Tu sú ukážky najobľúbenejších skriptov:</p>
+        <p>%{browse_link:Prehliadať túto stránku} pre nájdenie užívateľského skriptu,
+        ktorý chcete vyskúšať. Tu sú ukážky najobľúbenejších skriptov:</p>
 
-      %{highlighted_scripts_list}
+        %{highlighted_scripts_list}
 
-      <p>Potom, čo nájdete užívateľský skript, kliknite na zelené inštalačné tlačidlo na stránke s užívateľským skriptom a váš správca používateľských skriptov vás požiada o inštaláciu .</p>
-    # header for step 3 - how to use a user script
+        <p>Potom, čo nájdete užívateľský skript, kliknite na zelené inštalačné tlačidlo
+        na stránke s užívateľským skriptom a váš správca používateľských skriptov
+        vás požiada o inštaláciu .</p>
     installing_step3_header: "3. krok: použite užívateľského skriptu"
-    # description for step 3, describing browsing to the site and having the user script apply
     installing_step3_description_html: >
-      <p>Prejdite na stránku, ktorú skript ovplyvňuje. Skript by mal automaticky urobiť to, čo má. Po nejakom čase skúšania skriptu sa vráťte na stránku, kde ste skript inštalovali a zanechajte nejakú spätnú odozvu pre autora používateľského skriptu.</p>
+        <p>Prejdite na stránku, ktorú skript ovplyvňuje. Skript by mal automaticky
+        urobiť to, čo má. Po nejakom čase skúšania skriptu sa vráťte na stránku, kde
+        ste skript inštalovali a zanechajte nejakú spätnú odozvu pre autora používateľského
+        skriptu.</p>
   users:
-    # html title for the sign in page
     sign_in_title: "Prihlásiť sa na %{site_name}"
-    # what signing in lets people od
     sign_in_description: "Prihlásiť sa na %{site_name} vám umožní pridávať skripty a zanechať spätnú väzbu na ďalšie skripty. Nie je potrebné byť prihlásený na prehliadanie a inštalovanie skriptov."
-    # heading for signing in with an external service (Google, GitHub, etc.)
     sign_in_external: "Prihlásiť sa cez externú službu"
-    # button for signing in with an external service (Google, GitHub, etc.)
     sign_in_with: "Prihlásiť sa cez %{provider}"
-    # heading for signing in with a password
     sign_in_password: "Prihlásiť sa s heslom"
-    # when a user attempts to sign in with an external service and a user already exists with the same email, this is the message shown. email: provided e-mail, user_name: existing user's name, provider: what the user tried to sign in with (e.g. GitHub), sign_in_link: a link to the sign in page with text from sign_in_email_used_sign_in_link
     sign_in_email_used_no_external_services_html: "'%{email}' už používa iný používateľ '%{user_name}'. Ak ste to Vy, a prajete si pridať ďalšie prihlásenie cez %{provider}, %{sign_in_link} k vášmu účtu, a potom pridajte prihlásenie cez %{provider}."
-    # same as above, but when the existing user uses other providers. also includes existing_providers, which is a list of the existing user's sign ins, run through to_sentence (http://apidock.com/rails/Array/to_sentence)
     sign_in_email_used_with_external_services_html: "'%{email}' už používa používateľ '%{user_name}', ktorý sa prihlásil cez %{existing_providers}. Ak ste to Vy, a prajete si pridať ďalšie prihlásenie cez %{provider}, %{sign_in_link} k vášmu účtu, a potom pridajte prihlásenie cez %{provider}."
-    # sign in link for email_used messages
     sign_in_email_used_sign_in_link: "prihlásiť sa"
-    # when a user attempts to create an account with an external service, but an email was not provided by that service
     sign_in_email_missing: "%{site_name} potrebuje pre vytvorenie nového účtu email, ale %{provider} žiadnu adresu neposkytol. Môžete buď pridať účet k vášmu %{provider} účtu, a potom sa skúsiť prihlásiť znova, alebo vytvoriť normálny účet email/heslo na %{site_name}, a potom naň pridať %{provider} účet."
-    # this shows when signing in for the first time with an external sign in but the name received is already in use. the user is prompted to enter a different name.
     sign_in_name_used: "Meno '%{name}' sa už používa. Zvoľte iné."
-    # the button when submitting the name form per above
     sign_in_name_used_submit: "Odoslať"
-    # Button to preview a user's profile before saving
-    # heading for the user's control panel, which contains links such as post script and edit account
     control_panel: "Ovládací panel"
-    # heading for the list of discussions about a user's own scripts
     discussions_on_scripts: "Diskusia o vašich skriptoch"
-    # alt text for the RSS feed icon for discussions about a user's own scripts
     discussions_on_scripts_feed_alt: "RSS zdroj"
-    # text to show in the section for discussions about a user's own scripts if there are no discussions yet
     discussions_on_scripts_none: "Zatiaľ žiadna!"
-    # link to more discussions on a user's own scripts, as the initial list is limited in number
     discussions_on_scripts_more: "Viac diskusií..."
-    # heading for the list of scripts on a user's page
     script_list: "Skripty"
-    # text to show in a user's script section when they have created no scripts
     script_list_none: "Žiadne odoslané skripty."
-    # text to show in a user's script section when they have created scripts, but they are not shown due to the filters active
     script_list_none_for_filter: "Žiadne skripty nevyhovujú nastavenému filtru."
-    # text to show in a user's own script section when they have created no scripts. script_list_none_same_user_info_link is a link to a tutorial with text of script_list_none_same_user_info_link_text
     script_list_none_same_user_html: "Nanapísali ste žiaden skript. %{script_list_none_same_user_info_link}"
-    # text used for link in script_list_none_same_user_html
     script_list_none_same_user_info_link_text: "Chcete sa to naučiť?"
-    # heading for the list of a user's deleted scripts (visible to only that user and mods)
     deleted_script_list: "Odstránené skripty"
     unlisted_script_list: "Neuvedené skripty"
-    # link to log out
     sign_out: "Odhlásiť sa"
-    # link to edit an account
     edit: "Upraviť účet"
-    # link to edit how the user signs in
     edit_sign_in: "Zmeniť spôsob prihlasovania"
-    # html title for the edit sign in page
     edit_sign_in_title: "Zmeniť spôsob prihlasovania"
-    # heading for the password section of the edit sign in methods page
     edit_sign_in_password: "Heslo"
-    # informational text telling the user they're not using a password
     edit_notifications: "Upraviť upozornenia"
     no_password_set_info: "Váš účet nepoužíva heslo."
-    # button to set a password when one is not already set
     set_password: "Nastaviť heslo"
-    # button to set a password when one is already set
     update_password: "Aktualizovať heslo"
-    # error message when the password and the confirmation don't match
     update_password_no_match: "Heslá sa nezhodujú."
-    # notice after a password was updated successfully
     password_updated: "Heslo bolo aktualizované."
-    # information text saying the user can unset their password and use just external sign ins
     remove_password_info: "Heslo môžete odstrániť a spoliehať sa na prihlásenie cez externé služby."
-    # button to remove the password from the user's account
     remove_password: "Odstrániť heslo"
-    # error message to show if the user attempts to remove a password but have no external sign ins. This is normally not possible with the interface.
     cant_remove_password: "Heslo nemôžete odstrániť - nemáte nastavené žiadne alternatívne prihlasovanie!"
-    # error message to show if the user attempts to remove a sign in but has no password or other sign ins. This is normally not possible with the interface. provider is the external site's name, like GitHub or Google
     cant_remove_sign_in: "Nemôžete odstrániť prihlasovanie cez %{provider} - nemáte nastavené žiadne alternatívne prihlasovanie!"
-    # notice after a password was removed successfully
     password_removed: "Heslo bolo odstránené."
-    # heading for the external sign ins section of the edit sign in methods page
     edit_sign_in_external: "Externé prihlasovanie"
-    # information text about how they can use external sign ins, shown when the user has not set any yet
     external_sign_in_info_no_sign_ins: "Na prihlásenie sa na %{site_name} môžete použiť váš účet na iných stránkach."
-    # information text about how they can use external sign ins, shown when the user already has some set. should describe the concept of syncing, where account details on %{site_name} will be updated to match the external service on sign in
     external_sign_in_info_with_sign_ins: "Momentálne používate tieto externé účty na prihlásenie. Možnosť \"synchronizovať\" znamená, že sa pri prihlásení na %{site_name} aktualizujú údaje (ako je meno a email)."
-    # notice after a sign in is added. provider is the external site's name, like GitHub or Google
     external_sign_in_added: "Pridané prihlásenie cez %{provider}."
-    # notice after a sign in is updated (from syncing to not or opposite). provider is the external site's name, like GitHub or Google
     external_sign_in_updated: "Prihlásenie cez %{provider} bolo aktualizované."
-    # notice after a sign in is removed. provider is the external site's name, like GitHub or Google
     external_sign_in_removed: "Prihlásenie cez %{provider} bolo odstránené."
-    # notice after a sign in fails
     external_sign_in_failed: "Prihlásenie cez %{provider} zlyhalo: %{error}."
-    # notice after a user tries to add a sign in to their account, but that sign in is already in use by another user
     external_sign_in_already_used: "Pridanie prihlásenia cez %{provider} zlyhalo: to znamená, že už ho používa iný používateľ '%{user_name}'."
-    # notice after successfully creating a new user based on external login
     external_sign_in_confirmation: "Nový účet na %{site_name} bol vytvorený na základe detailov z %{provider}. Vaše verejné používateľské meno je %{username}."
-    # an indicator beside the sign in provider's name if the user chose to enable syncing
     syncing_indicator: "(synchronizácia)"
-    # button to set a sign in provider to sync
     enable_syncing: "Zapnúť synchronizáciu"
-    # button to set a sign in provider to not sync
     disable_syncing: "Vypnúť synchronizáciu"
-    # button to remove a sign in provider
     remove_external_sign_in: "Odstrániť"
-    # information text indicating that the list of links below it are for addding an external sign in
     add_external_sign_in_info: "Pridať prihlásenie:"
-    # link to docs on how to set up a webhook for script syncing
     set_up_webhook: "Nastaviť webook"
     author_email_notification_type:
-      # notification option: don't send the user e-mails
       none: "Nezasielať emaily o diskusiách pre vaše skripty"
-      # notification option: send e-mails on new discussions but not new posts on existing discussions
       discussion_only: "Nezasielať emaily o novej diskusii pre vaše skripty"
-      # notification option: send e-mails on new discussoins and on new posts on existing discussions
       discussion_and_comment: "Nezasielať emaily o nových diskusiách pre vaše skripty alebo nových komentároch v diskusiách"
-    # display of a single user when displaying a list of users. user_link is a link to the user's page with text of the user name, count is the number of public scripts authored
     list_display_html:
       one: "%{user_link} - %{count} skript"
       few: "%{user_link} - %{count} skripty"
       many: "%{user_link} - %{count} skriptov"
       other: "%{user_link} - %{count} skriptov"
-    # sort link for sorting users by number of scripts they've posted
     listing_number_of_scripts: "Počet skriptov"
-    # sort link for sorting users by the creation date of their scripts
     listing_new_scripts: "Nové skripty"
-    # sort link for sorting users by the updated date of their scripts
     listing_updated_scripts: "Aktualizované skripty"
-    # sort link for sorting users by when they signed up
     listing_registration_date: "Dátum registrácie"
-    # title for page showing list of users
     listing_title: "Používatelia"
     listing_banned_filter:
       banned: "Zblokovaný"
@@ -839,30 +561,22 @@ sk:
       script_author: "Autor skriptu"
       not_script_author: "Nie je autorom skriptu"
       all: "Všetci"
-    # placeholder for user search box
     search_placeholder: "Hľadať používateľov"
-    # default option for the user's preferred locale
     locale_prompt: "(Vyberte jazyk)"
-    # text describing what the show ads checkbox does
     show_ads_description: "Podporiť %{site_name} povolením zobrazovania reklamy"
-    # text describing what the show sensitive checkbox does
     show_sensitive_description: "Zobraziť skripty s obsahom pre dospelých"
-    # text describing what the preferred markup setting does
     preferred_markup_description: "Použije sa pre nové skripty a príspevky."
     filter_locale_default_description: "Predvolene iba zoznam z daného regiónu"
-    # link from sleazy fork to greasy fork on user page
     greasy_fork_scripts_link:
       one: "%{user_name} má tiež %{count} skript na Greasy Fork."
       few: "%{user_name} má tiež %{count} skripty na Greasy Fork."
       many: "%{user_name} má tiež %{count} skriptov na Greasy Fork."
       other: "%{user_name} má tiež %{count} skriptov na Greasy Fork."
-    # displays when the user is editing their account but syncing is on
     update_sync_warning:
       one: "Vaše používateľské meno a email sú nastavené na synchronizáciu po prihlásení sa na %{providers}. %{edit_sign_in_link:Upravte spôsob prihlasovania pre odstránenie synchronizácie} ak chcete natrvalo zmeniť používateľské meno alebo email."
       few: "Vaše používateľské meno a email sú nastavené na synchronizáciu po prihlásení sa na %{providers}. %{edit_sign_in_link:Upravte spôsob prihlasovania pre odstránenie synchronizácie} ak chcete natrvalo zmeniť používateľské meno alebo email."
       many: "Vaše používateľské meno a email sú nastavené na synchronizáciu po prihlásení sa na %{providers}. %{edit_sign_in_link:Upravte spôsob prihlasovania pre odstránenie synchronizácie} ak chcete natrvalo zmeniť používateľské meno alebo email."
       other: "Vaše používateľské meno a email sú nastavené na synchronizáciu po prihlásení sa na %{providers}. %{edit_sign_in_link:Upravte spôsob prihlasovania pre odstránenie synchronizácie} ak chcete natrvalo zmeniť používateľské meno alebo email."
-    # link on the user page to go to the delete page
     delete_link: "Odstrániť účet"
     delete:
       intro: "Odstránenie vášho účtu %{user_name} na %{site_name} spôsobí:"
@@ -917,13 +631,13 @@ sk:
     notifications:
       discussion_defaults:
         title: Upozornenia na fóre
-        new_discussion: "Predvolene, prihlásiť do každej diskusie, ktorú som začal"
-        new_comment: "Predvolene, prihlásiť do každej diskusie, do ktorej som napísal komentár"
-        mention: "Dostávať upozornenie, keď sa o vás niekto zmieni v diskusii"
+        new_discussion: Predvolene, prihlásiť do každej diskusie, ktorú som začal
+        new_comment: Predvolene, prihlásiť do každej diskusie, do ktorej som napísal komentár
+        mention: Dostávať upozornenie, keď sa o vás niekto zmieni v diskusii
       conversation_defaults:
         title: Upozornenia na konverzácie
-        starter: "Predvolene, prihlásiť k odberu konverzácie, ktoré som začal/a"
-        receiver: "Predvolene, prihlásiť k odberu konverzácie, do ktorých som sa zapojil/a a nezačal/a som ich"
+        starter: Predvolene, prihlásiť k odberu konverzácie, ktoré som začal/a
+        receiver: Predvolene, prihlásiť k odberu konverzácie, do ktorých som sa zapojil/a a nezačal/a som ich
       save_button: Aktualizovať nastavenia upozornenia
       title: Upozornenia
       current_discussion_subscriptions:
@@ -938,12 +652,12 @@ sk:
     info:
       title: Nastavenie webhooku
       intro_html: |
-        <p>Webook prepojený s %{site_name} umožňuje, aby ste sa mohli automaticky aktualizovať %{site_name}na základe toho, čo sa deje vo vašom repozitári. %{site_name} podporuje "push" webooky pre GitHub, GitLab a Bitbucket, a "release" webhooky pre GitHub a GitLab.</p>
-        <p>Ak chcete používať túto funkciu, musíte mať zapnuté skripty %{site_name} nastavte synchronizáciu pomocou adresy URL do svojho repozitára. Nové skripty môžete pridávať pomocou %{import_link: importovanie nových skriptov na %{site_name}}, alebo môžete nastaviť synchronizáciu predtým zverejnených skriptov na karte "Správca" na stránke skriptu.</p>
-        <p>Vaše skripty budú naďalej zobrazovať typ synchronizácie "Automaticky" alebo "Manuálne", kým sa nestane prvý webhook.</p>
+          <p>Webook prepojený s %{site_name} umožňuje, aby ste sa mohli automaticky aktualizovať %{site_name}na základe toho, čo sa deje vo vašom repozitári. %{site_name} podporuje "push" webooky pre GitHub, GitLab a Bitbucket, a "release" webhooky pre GitHub a GitLab.</p>
+          <p>Ak chcete používať túto funkciu, musíte mať zapnuté skripty %{site_name} nastavte synchronizáciu pomocou adresy URL do svojho repozitára. Nové skripty môžete pridávať pomocou %{import_link: importovanie nových skriptov na %{site_name}}, alebo môžete nastaviť synchronizáciu predtým zverejnených skriptov na karte "Správca" na stránke skriptu.</p>
+          <p>Vaše skripty budú naďalej zobrazovať typ synchronizácie "Automaticky" alebo "Manuálne", kým sa nestane prvý webhook.</p>
       already_syncing_list: "Tu sú skripty, ktoré ste už nastavili na synchronizáciu s podporovaným poskytovateľom:"
       synced_item_html: "%{script_name} - %{sync_type} synchrozizuje sa z %{sync_url}"
-      language_note: "Pretože používateľské rozhranie GitHub, GitLab a Bitbucket je v angličtine, nižšie uvedené pokyny budú poskytované aj v angličtine."
+      language_note: Pretože používateľské rozhranie GitHub, GitLab a Bitbucket je v angličtine, nižšie uvedené pokyny budú poskytované aj v angličtine.
   help:
     sections:
       usage: Použitie
@@ -955,137 +669,165 @@ sk:
     installing_user_styles:
       title: 'Ako nainštalovať používateľské štýly'
     meta_keys:
-      # title of the help document describing script meta keys (e.g. @name).
       title: "Metakľúče skriptu spracované %{site_name}"
-      # introductory paragraph. If the URL has a localized version, use that.
       intro_html: "Toto je zoznam <a href=\"http://wiki.greasespot.net/Metadata_Block\">metakľúčov používateľského skriptu</a>, ktoré %{site_name} rozpozná. Kľúče mimo tohto zoznamu môžu byť zahrnuté v skriptoch a budú v nainštalovanom skripte prítomné, ale nebudú mať efekt na UI %{site_name}."
-      # description of @name
       name: "Názov skriptu, použité ako nadpis a v odkazoch. Povinné."
-      # description of @name:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
       name_localized_html: "Názov skriptu v konkrétnom jazyku, kde XX je <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-znakový kód</a> a YY je voliteľný <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 kód krajiny</a>. Ignoruje<code>@name</code> ak používateľ prehliada vo vybranom jazyku."
-      # description of @description
       description: "Popis funkcie skriptu. Zobrazuje sa ako text pod názvom skriptu. Povinné."
-      # description of @description:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
       description_localized_html: "Popis skriptu vo vybranom jazyku, kde XX je <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-znakový kód</a> a YY je voliteľný <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 kód krajiny</a>. Ignoruje <code>@description</code> ak používateľ prehliada vo vybranom jazyku."
-      # description of @namespace. Do not translate content inside <code>.
       namespace_html: "Kombinácia <code>@namespace</code> a <code>@name</code> sa používa správcami skriptov na to, aby zistili, či je už skript nainštalovaný. %{site_name} vyžaduje toto pole a upozorní ak sa zmení po aktualizácii."
-      # description of @description:XX-YY. developer.mozilla.org may have localized content; use it if available.
       version_html: "Identifikátor pre konkrétnu verziu skriptu vo <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">formáte Mozilla version format</a>. Verzia sa zobrazí na stránke skriptu. %{site_name} vyžaduje toto pole a upozorní, ak sa zníži alebo ak sa nezvýši pri zmene kódu skriptu."
-      # description of @include
       include_html: "Vypíšte stránky, na ktorých skript pobeží. Tento zoznam bude spracovaný, zobrazený na stránke skriptu a použitý na kategorizovanie skriptu. Každý skript musí mať aspoň jeden kľúč<code>@match</code> alebo <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">O formátoch si prečítajte tu.</a>"
-      # description of @require. %{external_script_link} is a link to the document describing allowed external scripts and has a link of key "require_external_script_link_text"
       require_html: "Skript obsahuje externý JavaScript. Pozri %{external_script_link}."
-      # used in required_html
       require_external_script_link_text: "pravidlá pre kód obsahujúci externé skripty"
-      # description of @updateURL
       updateURL: "Popis ako správcovia používateľských skriptov môžu získať aktualizácie. %{site_name} vymaže tieto kľúče, všetky skripty z %{site_name} musia byť aktualizované cez %{site_name}."
-      # description of @license
       license: "Licencia, ktorá opisuje, ako môžu ľudia kopírovať alebo upravovať skript. Odporúča sa použitie \"Celého názvu\" alebo \"Identifikátora\" zo zoznamu %{spdx_link:the SPDX License List}. Chýbajúca licencia znamená, že používatelia si môžu nainštalovať skript pre osobné použitie, ale nemôžu ho šíriť. Licencia sa zobrazí na stránke skriptu."
-      # description of @supportURL
       supportURL: "Adresa stránky, kde používatelia môžu podporiť vývoj skriptu (napr. bug tracker, fórum, emailová adresa). URL adresa pre podporu je uvedená na stránke spätnej väzby skriptu."
-      # description of @contributionURL. You can replace the sample "business" and "item_name" parameters in the URLs with localized versions.
       contributionURL_html: "URL adresa, kde používatelia môžu finančne podporiť autora skriptu. URL adresa pre prispievateľov je uvedená na stránke spätnej väzby skriptu. Adresy môžu používať  http, https, alebo BItcoin protokoly. Pre odkaz na stránku podpory PayPal, použite adresu vo formáte <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+podpora\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=vas.email@priklad.com&item_name=Greasy+Fork+podpora</a>, nahraďte ukážkovú emailovú adresu vašou."
-      # description of @contributionAmount. Do not translate content inside <code>.
       contributionAmount_html: "Navrhnutá suma príspevku, spojená v súvislosti s <code>@contributionURL</code>."
-      # description of @compatible. %{browsers} is a comma-separated list of browser codes. You can translate "Must disable pop-up blocker", but do not translate "@compatible firefox". 
       compatible_html: "Označí tento skript ako kompatibilný s webovým prehliadačom. Informácie o kompatibilite budú zobrazené na stránke skriptu. Komentáre ohľadom kompatibility môžu byť zahrnuté vo formáte <code>@compatible firefox Musíte zakázať blokovanie nevyžiadaných vyskakovacích okien</code>. Overené prehliadače: %{browsers}."
-      # description of @incompatible. %{browsers} is a comma-separated list of browser codes. You can translate "Broken since Firefox 23", but do not translate "@compatible firefox".
       incompatible_html: "Označí tento skript ako nekompatibilný s webovým prehliadačom. Informácie o kompatibilite budú zobrazené na stránke skriptu. Voliteľné komentáre ohľadom kompatiblity môžu byť zahrnuté vo formáte <code>@incompatible firefox Nefunguje od Firefox 23</code>. Overené prehliadače: %{browsers}."
       antifeature_html: "Zverejňuje funkciu v skripte, ktorá je užitočná autora, nie pre používateľa. Formát tohto kľúča je <code>@antifeature type description</code>. %{site_name} prečíta nasledujúce typy: <code>reklama</code> (skript zobrazí používateľovi reklamu), <code>sledovanie</code> (skript sleduje aktivity používateľa) a <code>miner</code> (skript obsahuje kryptominer) a <code>referral odkaz</code> (skript prepíše odkazy pridaním referral/affiliate sledovania). Ostatné typy sú ignorované, napriek tomu skript musí dodržiavať %{code_rules_link:%Pravidlá stránky %{site_name}}. Popis je voliteľný."
       antifeature_localized_html: "Kľúč <code>@antifeature</code> popísaný pre špecifickú lokalitu, kde XX je <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-jazykový kód</a> a YY je voliteľný <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 kód krajiny</a>. Prepíše <code>@antifeature</code> s rovnakým typom, ak používateľ prehliada so zhodnou lokalitou."
     writing_user_scripts:
-      # title for Writing user scripts help page
       title: "Ako napísať používateľský skript"
-      # content of the page. The link to greasespot can be updated to a better resource if one is available in your language. code_rules_link and meta_keys_link are links to those help pages, with text of those page's titles. ask_in_forum_link is a link to the forum with text of ask_in_forum_link_text. user_page_link is a link to the user's page if the user is signed in, or plain text if they're not; in either case, the text is user_page_link_text. post_new_script_link is a link to the new script page, with text of post_new_script_link_text
       content_html: "<p>Napísanie používateľského skriptu vyžaduje znalosť JavaScriptu. <a href=\"http://wiki.greasespot.net/Tutorials\">Tutoriály na GreaseSpot Wiki</a> by vám mali pomôcť so úvodom do JavaScriptu a tvorbou používateľských skriptov. Prezeranie ďalších skriptov vám môže tiež pomôcť. Možno vás bude zaujímať %{code_rules_link} a %{meta_keys_link}. Ak chcete pomôcť s vývojom vašeho skriptu, neváhajte sa %{ask_in_forum_link}.</p><p>Pre odoslanie skriptu na %{site_name}, si potrebujete vytvoriť účet. Na svojej %{user_page_link}, nájdete odkaz na %{post_new_script_link}.</p>"
-      # link text used in content_html
       ask_in_forum_link_text: 'opýtať na fóre'
-      # link text used in content_html
       user_page_link_text: 'stránke používateľa'
-      # link text used in content_html
       post_new_script_link_text: 'poslať nový skript'
     code_rules:
-      # title for the rules page
       title: "Pravidlá pre poslané skripty na %{site_name}"
-      preamble: "Toto sú požiadavky na skripty odosielané do %{site_name}. Ich cieľom je udržať %{site_name} na bezpečnom a vhodnom mieste pre používateľské skripty. Akýkoľvek skript, ktorý nespadá do týchto požiadaviek, môžu moderátori %{site_name} vymazať."
+      preamble: Toto sú požiadavky na skripty odosielané do %{site_name}. Ich cieľom je udržať %{site_name} na bezpečnom a vhodnom mieste pre používateľské skripty. Akýkoľvek skript, ktorý nespadá do týchto požiadaviek, môžu moderátori %{site_name} vymazať.
       functionality_header: Funkčnosť
-      description: "Skripty musia obsahovať opis toho, čo robia, a nesmú robiť veci bezdôvodne mimo neho. Používatelia musia pred inštaláciou skriptu vedieť, čo urobí."
-      reason: "Skripty musia mať dôvod na to, aby boli skriptom. Napríklad skript, ktorý iba nasmeruje používateľa na web, nemusí byť skript; môže to byť odkaz. Skripty, ktoré používajú webovú službu na vykonanie akcie na aktuálnej stránke (napr. prevod na iný formát), sú povolené."
-      unrelated: "Skripty nesmú vyžadovať, aby používatelia vykonali nesúvisiacu akciu, ako je napríklad odoslanie platby, prihlásenie na odber kanála, pripojenie sa k skupine alebo označenie stránky, ktorá sa jej páči, aby bol skript úplne alebo čiastočne funkčný."
-      monetization_html: "Skripty obsahujúce funkcie viac prospešné pre <em>autora</em> ako pre používateľa (ako sledovanie, reklamy, ťaženie, atď.) sú povolené, ale autor to musí uviesť do %{antifeature_link:metakľúčov <code>@antifeature</code>}."
+      description: Skripty musia obsahovať opis toho, čo robia, a nesmú robiť veci bezdôvodne mimo neho. Používatelia musia pred inštaláciou skriptu vedieť, čo urobí.
+      reason: Skripty musia mať dôvod na to, aby boli skriptom. Napríklad skript, ktorý iba nasmeruje používateľa na web, nemusí byť skript; môže to byť odkaz. Skripty, ktoré používajú webovú službu na vykonanie akcie na aktuálnej stránke (napr. prevod na iný formát), sú povolené.
+      unrelated: Skripty nesmú vyžadovať, aby používatelia vykonali nesúvisiacu akciu, ako je napríklad odoslanie platby, prihlásenie na odber kanála, pripojenie sa k skupine alebo označenie stránky, ktorá sa jej páči, aby bol skript úplne alebo čiastočne funkčný.
+      monetization_html: Skripty obsahujúce funkcie viac prospešné pre <em>autora</em> ako pre používateľa (ako sledovanie, reklamy, ťaženie, atď.) sú povolené, ale autor to musí uviesť do %{antifeature_link:metakľúčov <code>@antifeature</code>}.
       code_header: Kód
-      obfuscation: "Kód zverejnený na webe %{site_name} nesmie byť zmätočný ani minifikovaný. Používateľom musí byť poskytnutá príležitosť skontrolovať a porozumieť skriptu pred jeho inštaláciou. Ak je skript zabalený s nástrojom, ako je webpack, musí byť vydaný v neminifikovanej podobe."
-      libraries_html: "Knižnice, ktoré skript používa, by mali obsahovať <code>@require</code>, pokiaľ na to neexistuje opodstatnený technický dôvod. V prípade, že je knižnica priložená inline, musí obsahovať informácie o zdroji knižnice (napr. komentár označujúci URL a/alebo názov a verziu)."
-      updates: "Skripty nesmú kontrolovať dostupnosť aktualizácií rýchlejšie ako raz za deň. Upozorňujeme, že väčšina správcov používateľských skriptov bude pracovať s automatickými aktualizáciami, takže je to zbytočné. Skripty by tiež nemali dynamicky vkladať na stránku ďalší skript hostovaný na %{site_name}, pretože sa obchádza ukladanie do vyrovnávacej pamäte v správcoch používateľských skriptov."
+      obfuscation: Kód zverejnený na webe %{site_name} nesmie byť zmätočný ani minifikovaný. Používateľom musí byť poskytnutá príležitosť skontrolovať a porozumieť skriptu pred jeho inštaláciou. Ak je skript zabalený s nástrojom, ako je webpack, musí byť vydaný v neminifikovanej podobe.
+      libraries_html: Knižnice, ktoré skript používa, by mali obsahovať <code>@require</code>, pokiaľ na to neexistuje opodstatnený technický dôvod. V prípade, že je knižnica priložená inline, musí obsahovať informácie o zdroji knižnice (napr. komentár označujúci URL a/alebo názov a verziu).
+      updates: Skripty nesmú kontrolovať dostupnosť aktualizácií rýchlejšie ako raz za deň. Upozorňujeme, že väčšina správcov používateľských skriptov bude pracovať s automatickými aktualizáciami, takže je to zbytočné. Skripty by tiež nemali dynamicky vkladať na stránku ďalší skript hostovaný na %{site_name}, pretože sa obchádza ukladanie do vyrovnávacej pamäte v správcoch používateľských skriptov.
       external_js: "%{external_scripts_link:Použitie externých javscriptov je obmedzené.}"
       copyright_header: Autorské práva
-      licensing: "Váš skript musí rešpektovať autorské práva ostatných. Zahŕňa to samotný kód a všetky zdroje (napríklad obrázky), ktoré používa. Ak máte v úmysle použiť obsah niekoho iného, ​​riaďte sa jeho licenčnými podmienkami alebo pred tým získajte jeho povolenie."
-      reposts: "Dokonca v prípadoch neporušovania autorského práva, preposielanie skriptov, ktoré už sú na %{site_name} nie je povolené, aj keď vylepšujú pôvodný skript"
+      licensing: Váš skript musí rešpektovať autorské práva ostatných. Zahŕňa to samotný kód a všetky zdroje (napríklad obrázky), ktoré používa. Ak máte v úmysle použiť obsah niekoho iného, ​​riaďte sa jeho licenčnými podmienkami alebo pred tým získajte jeho povolenie.
+      reposts: Dokonca v prípadoch neporušovania autorského práva, preposielanie skriptov, ktoré už sú na %{site_name} nie je povolené, aj keď vylepšujú pôvodný skript
       miscellaneous_header: Rôzne
-      keywords_html: "Skripty nesmú obsahovať <code>@include</code>, <code>@match</code>,  ani kľúčové slová pre weby, na ktorých neposkytujú funkcie."
-      adult_content_rule: "Skripty, ktoré obsahujú obsah pre dospelých, alebo sú určené pre stránky s obsahom pre dospelých, musia byť takto označené, aby mali ostatní používatelia možnosť ich zobraziť."
-      reporting: "Ak spozorujete skript, ktorý nespĺňa tieto parametre, nahláste ho kliknutím na odkaz Spätná väzba pre tento skript a vyberte  možnosť \"Nahlásiť skript\"."
+      keywords_html: Skripty nesmú obsahovať <code>@include</code>, <code>@match</code>,  ani kľúčové slová pre weby, na ktorých neposkytujú funkcie.
+      adult_content_rule: Skripty, ktoré obsahujú obsah pre dospelých, alebo sú určené pre stránky s obsahom pre dospelých, musia byť takto označené, aby mali ostatní používatelia možnosť ich zobraziť.
+      reporting: Ak spozorujete skript, ktorý nespĺňa tieto parametre, nahláste ho kliknutím na odkaz Spätná väzba pre tento skript a vyberte  možnosť "Nahlásiť skript".
     external_scripts:
-      # title of the external script rules page
       title: "Zásady %{site_name} používania externých skriptov"
-      # content of the external script rules page
       content_html: >
-        <p>Používateľské skripty majú schopnosť načítať a vykonať ďalšie skripty. %{require_doc_link:<code>@require</code>} Kľúč metadát je najjednoduchší spôsob, ako to dosiahnuť, ale skripty tiež môžu, napríklad, použiť XmlHttpRequest pre stiahnutie skriptu a vložiť do DOM.</p> <p>Ak keď je to užitočná vlastnosť a väčšina autorov skriptov ju používa na legitímne účely, ale tiež môže byť zneužitá na podvod. Jedným zo základných princípov %{site_name} je, že používateľ musí mať možnosť skontrolovať kód v skripte. Externé skripty môžu obchádzať tento princíp niekoľkým spôsobmi: môžu zmeniť históriu bez upozornenia, vykonávať rôzny kód pre rôznych používateľov a môžu byť použité na skrytie podvodného kódu vo vnútri známych knižníc. Aj keď niekto skontroluje externý skript a prehlási ho za legitímny, to nie je garancia, že skript bude vždy legitímny.</p> <p>Ak chcete umožniť autorom skriptov, aby aj naďalej používali externé skripty, %{site_name} môže implementovať biely zoznam vzorov URL, ktoré môžu byť priložené k skriptu. Tento biely zoznam obsahuje umiestenia, ktoré:</p> <ul>
+          <p>Používateľské skripty majú schopnosť načítať a vykonať ďalšie skripty.
+          %{require_doc_link:<code>@require</code>} Kľúč metadát je najjednoduchší
+          spôsob, ako to dosiahnuť, ale skripty tiež môžu, napríklad, použiť XmlHttpRequest
+          pre stiahnutie skriptu a vložiť do DOM.</p> <p>Ak keď je to užitočná vlastnosť
+          a väčšina autorov skriptov ju používa na legitímne účely, ale tiež môže
+          byť zneužitá na podvod. Jedným zo základných princípov %{site_name} je,
+          že používateľ musí mať možnosť skontrolovať kód v skripte. Externé skripty
+          môžu obchádzať tento princíp niekoľkým spôsobmi: môžu zmeniť históriu bez
+          upozornenia, vykonávať rôzny kód pre rôznych používateľov a môžu byť použité
+          na skrytie podvodného kódu vo vnútri známych knižníc. Aj keď niekto skontroluje
+          externý skript a prehlási ho za legitímny, to nie je garancia, že skript
+          bude vždy legitímny.</p> <p>Ak chcete umožniť autorom skriptov, aby aj naďalej
+          používali externé skripty, %{site_name} môže implementovať biely zoznam
+          vzorov URL, ktoré môžu byť priložené k skriptu. Tento biely zoznam obsahuje
+          umiestenia, ktoré:</p> <ul>
 
-        <li>Sú verejné</li>
+          <li>Sú verejné</li>
 
-        <li>Ich obsah sa často nemení</li>
+          <li>Ich obsah sa často nemení</li>
 
-        <li>Môže ich využiť viacero autorov</li>
+          <li>Môže ich využiť viacero autorov</li>
 
-        </ul> <p>Aktuálny zoznam je:</p> %{allowed_require_list} <p>Ak sa pokúsite pridať skript, ktorý používa <code>@require</code> mimo týchto umiestnení, nebudete môcť skript uložiť.</p> <p>Ak skript, ktorý chcete priložiť je JavaScriptová knižnica (napríklad  jQuery alebo YUI), skúste ju nájsť na jednom z umiestnení uvedených vyššie. %{cdnjs_link:cdnjs} a %{jsdelivr_link:jsDelivr} majú k dispozícii obzvlášť širokú škálu knižníc.</p> <p>Ak skript, ktorý chcete priložiť sa nenachádza na vyššie uvedenom zozname, %{contact_link:dajte nám vedieť} a môžeme ho niekde nájsť (alebo umiestniť na našom serveri!).</p> <p>Ak skript, ktorý chcete priložiť ste napísali Vy, môžete ho poslať ako samostatnú položku na %{site_name} vybraním typu skriptu "Knižnica". Potom budete môcť priložiť túto knižnicu do vášho skriptu.</p>
+          </ul> <p>Aktuálny zoznam je:</p> %{allowed_require_list} <p>Ak sa pokúsite
+          pridať skript, ktorý používa <code>@require</code> mimo týchto umiestnení,
+          nebudete môcť skript uložiť.</p> <p>Ak skript, ktorý chcete priložiť je
+          JavaScriptová knižnica (napríklad  jQuery alebo YUI), skúste ju nájsť na
+          jednom z umiestnení uvedených vyššie. %{cdnjs_link:cdnjs} a %{jsdelivr_link:jsDelivr}
+          majú k dispozícii obzvlášť širokú škálu knižníc.</p> <p>Ak skript, ktorý
+          chcete priložiť sa nenachádza na vyššie uvedenom zozname, %{contact_link:dajte
+          nám vedieť} a môžeme ho niekde nájsť (alebo umiestniť na našom serveri!).</p>
+          <p>Ak skript, ktorý chcete priložiť ste napísali Vy, môžete ho poslať ako
+          samostatnú položku na %{site_name} vybraním typu skriptu "Knižnica". Potom
+          budete môcť priložiť túto knižnicu do vášho skriptu.</p>
       test_url:
         label: Skúška adresy URL
         result_ok: Adresa URL je povolená
         result_not_ok: Adresa URL nie je povolená
     script_rewriting:
-      # title of the rewriting page
       title: "Ako budú prepísané skripty odoslané na %{site_name}"
-      # content of the rewriting page
       content_html: >
-        <p>Skripty poslané na %{site_name} budú prepísané nasledovným spôsobom:</p> <ul>
+          <p>Skripty poslané na %{site_name} budú prepísané nasledovným spôsobom:</p>
+          <ul>
 
-        <li><code>@updateURL</code>, <code>@installURL</code>, a <code>@downloadURL</code> tieto príkazy budú odstránené, ak existujú. Absencia týchto príkazov bude znamenať, že skript nainštalovaný z %{site_name} bude aktualizovaný z %{site_name}.</li>
+          <li><code>@updateURL</code>, <code>@installURL</code>, a <code>@downloadURL</code>
+          tieto príkazy budú odstránené, ak existujú. Absencia týchto príkazov bude
+          znamenať, že skript nainštalovaný z %{site_name} bude aktualizovaný z %{site_name}.</li>
 
-        <li><code>@version</code> a <code>@namespace</code> tieto príkazy budú vložené do skriptu, ak chýbajú. Tieto skripty sú potrebné pre správnu aktualizáciu.</li>
+          <li><code>@version</code> a <code>@namespace</code> tieto príkazy budú vložené
+          do skriptu, ak chýbajú. Tieto skripty sú potrebné pre správnu aktualizáciu.</li>
 
-        <li><code>@description</code> tento príkaz bude vložený, ak nová verzia skriptu chýba a predchádzajúca verzia ju mala.</li>
+          <li><code>@description</code> tento príkaz bude vložený, ak nová verzia
+          skriptu chýba a predchádzajúca verzia ju mala.</li>
 
-        <li>Zalomenie riadkov CRLF a CR bude prevedené na štandardný štýl Unixu.</li>
+          <li>Zalomenie riadkov CRLF a CR bude prevedené na štandardný štýl Unixu.</li>
 
-        </ul>
-    # link to github
+          </ul>
     site_feedback_link: "Nahlásenie problému alebo pridanie nápadu pre %{site_name}"
     credits:
-      # title for the credits page
       title: "Poďakovanie"
-      # give credit to authors
       authors_credit: "%{site_name} by nemohol existovať bez autorov, ktorí pracujú na skriptoch."
-      # give credit to developers. link goes to github.
       developers_credit: "Samotný %{site_name} je zostavený %{developers_link:týmito ľuďmi} spolu s pomocou  všetkých, ktorí nahlasujú chyby a zasielajú námety na vylepšenie."
-      # give credit to translators. link to goes to transifex. after this text, there's a list of languages and the contributors to each.
       translators_credit: "%{site_name} je preložený %{translators_link:prekladateľmi Greasy Translation Force na Transifexe}:"
-      # give credit to icon makers. all links are proper names so are not translated.
       icons_credit: "Ikony prehliadačov sú z %{browserlogos}."
-    # link to greasemonkey docs
     help_with_greasymonkey: "Pomoc s Greasemonkey"
     contact:
-      # title of contact page
       title: "Kontakty"
-      # content of contact page
       content_html: >
-        <p>Existuje viacero spôsobov ako sa rozprávať o %{site_name} a jeho obsahu.</p> <p>Máte otázku alebo komentár ku konkrétnemu skriptu na stránke? Ak áno, použite diskusiu cez záložku z odkazu na spätnú väzbu na stránke skriptu. Autori skriptu dostanú upozornenie na ich účet stránky alebo v diskusii k ich skriptu.</p> <p>Máte otázku alebo komentár k stránke %{site_name} alebo k vývoju skriptu, alebo chcete niekoho požiadať o vytvorenie skriptu? %{forum_link:Prispievanie vo fóre} ti poskytuje najširšie publikum na diskusiu.</p> <p>Chcete nahlásiť chybu alebo máte skvelý nápad pre %{site_name} (a nie konkrétny skript <em>pridaný na</em> %{site_name})? %{github_link:Pridajte ich na stránku GitHub.}</p> <p>Máte súkromnú otázku alebo komentár, ktoré by mal vidieť iba administrátor? %{admin_email_link:Poslať email.}</p>
+          <p>Existuje viacero spôsobov ako sa rozprávať o %{site_name} a jeho obsahu.</p>
+          <p>Máte otázku alebo komentár ku konkrétnemu skriptu na stránke? Ak áno,
+          použite diskusiu cez záložku z odkazu na spätnú väzbu na stránke skriptu.
+          Autori skriptu dostanú upozornenie na ich účet stránky alebo v diskusii
+          k ich skriptu.</p> <p>Máte otázku alebo komentár k stránke %{site_name}
+          alebo k vývoju skriptu, alebo chcete niekoho požiadať o vytvorenie skriptu?
+          %{forum_link:Prispievanie vo fóre} ti poskytuje najširšie publikum na diskusiu.</p>
+          <p>Chcete nahlásiť chybu alebo máte skvelý nápad pre %{site_name} (a nie
+          konkrétny skript <em>pridaný na</em> %{site_name})? %{github_link:Pridajte
+          ich na stránku GitHub.}</p> <p>Máte súkromnú otázku alebo komentár, ktoré
+          by mal vidieť iba administrátor? %{admin_email_link:Poslať email.}</p>
     privacy_policy:
       title: "Zásady ochrany osobných údajov"
       content_html: >
-        <p>Táto stránka popisuje ako %{site_name} zaznamenáva alebo sleduje používateľov. Ak máte akékoľvek obavy, %{admin_email_link:napíšte administrátorovi}.</p> <h2>Záznamy servera</h2> <p>%{site_name} zaznamenáva všetky požiadavky v typickom tvare protokolov servera. Zaznamenané informácie obsahujú navštívené stránky, IP adresu a identifikátor prehliadača. Tieto záznamy slúžia na ladenie a analýzu servera. Dáta sú uchovávané po dobu jedného týždňa. Tieto dáta nie sú zdieľané ani sprístupnené verejnosti.</p> <h2>Štatistiky skriptov</h2> <p>Na účely generovania štatistík, %{site_name} zaznamenáva inštalačné a aktualizačné požiadavky s informáciou o IP adrese. Tieto informácie sú uchovávané po dobu jedného dňa, a potom sú zhromaždené bez uvedenia IP adresy. Špecifické dáta o IP adrese nie sú zdieľané alebo sprístupnené verejnosti , ale zhromaždené dáta áno
+          <p>Táto stránka popisuje ako %{site_name} zaznamenáva alebo sleduje používateľov.
+          Ak máte akékoľvek obavy, %{admin_email_link:napíšte administrátorovi}.</p>
+          <h2>Záznamy servera</h2> <p>%{site_name} zaznamenáva všetky požiadavky v
+          typickom tvare protokolov servera. Zaznamenané informácie obsahujú navštívené
+          stránky, IP adresu a identifikátor prehliadača. Tieto záznamy slúžia na
+          ladenie a analýzu servera. Dáta sú uchovávané po dobu jedného týždňa. Tieto
+          dáta nie sú zdieľané ani sprístupnené verejnosti.</p> <h2>Štatistiky skriptov</h2>
+          <p>Na účely generovania štatistík, %{site_name} zaznamenáva inštalačné a
+          aktualizačné požiadavky s informáciou o IP adrese. Tieto informácie sú uchovávané
+          po dobu jedného dňa, a potom sú zhromaždené bez uvedenia IP adresy. Špecifické
+          dáta o IP adrese nie sú zdieľané alebo sprístupnené verejnosti , ale zhromaždené
+          dáta áno
 
-        .</p> <h2>Cookies (bez prihlásenia)</h2> <p>%{site_name} môže nastaviť dočasnú reláciu cookies na povolenie niektorých funkcií stránky. Tieto cookies nie sú trvalé a môžu byť vymazané po ukončení prehliadača (v závislosti na nastavení prehliadača).</p> <h2>Používateľské účty</h2> <p>%{site_name} vyžaduje vytvorenie používateľského účtu na pridávanie skriptov, zúčastňovaní sa na diskusii a na prístup k niektorým funkciám stránky. Pri vytváraní účtu, informácie ako sú IP adresy, emailové adresy a identifikátor prehliadača môžu byť trvalo uložené. Niektoré z týchto informácií môžu byť viditeľné pre iných používateľom.</p> <p>Akcie vykonávané po prihlásení, napríklad pridávanie skriptov a komentárov, budú viditeľné ostatným používateľom.</p> <p>Ak možnosť "Zapamätať si ma" je vybraná pri prihlasovaní účtu, %{site_name} nastaví trvalé cookie na udržanie prihlásenia.</p> <h2>Skripty pridané na %{site_name}</h2> <p>%{site_name} obsahujú používateľsky generovaný obsah, a tieto skripty môžu sledovať používateľov, ktorí si skript nainštalovali.</p> <h2>Knižnice tretích strán</h2> <p>%{site_name} môžu obsahovať kód tretích strán za účelom štatistiky alebo zobrazenia reklamy na stránke. Tieto knižnice môžu obsahovať sledovaciu logiku.</p>
+          .</p> <h2>Cookies (bez prihlásenia)</h2> <p>%{site_name} môže nastaviť dočasnú
+          reláciu cookies na povolenie niektorých funkcií stránky. Tieto cookies nie
+          sú trvalé a môžu byť vymazané po ukončení prehliadača (v závislosti na nastavení
+          prehliadača).</p> <h2>Používateľské účty</h2> <p>%{site_name} vyžaduje vytvorenie
+          používateľského účtu na pridávanie skriptov, zúčastňovaní sa na diskusii
+          a na prístup k niektorým funkciám stránky. Pri vytváraní účtu, informácie
+          ako sú IP adresy, emailové adresy a identifikátor prehliadača môžu byť trvalo
+          uložené. Niektoré z týchto informácií môžu byť viditeľné pre iných používateľom.</p>
+          <p>Akcie vykonávané po prihlásení, napríklad pridávanie skriptov a komentárov,
+          budú viditeľné ostatným používateľom.</p> <p>Ak možnosť "Zapamätať si ma"
+          je vybraná pri prihlasovaní účtu, %{site_name} nastaví trvalé cookie na
+          udržanie prihlásenia.</p> <h2>Skripty pridané na %{site_name}</h2> <p>%{site_name}
+          obsahujú používateľsky generovaný obsah, a tieto skripty môžu sledovať používateľov,
+          ktorí si skript nainštalovali.</p> <h2>Knižnice tretích strán</h2> <p>%{site_name}
+          môžu obsahovať kód tretích strán za účelom štatistiky alebo zobrazenia reklamy
+          na stránke. Tieto knižnice môžu obsahovať sledovaciu logiku.</p>
     user_css_to_user_js:
       title: Prevod používateľského CSS na JS
   search:
@@ -1124,37 +866,39 @@ sk:
       message: "Nahlásiť správu používateľa %{user} "
       script: "Nahlásiť %{script}"
     new_report_notes_html: >
-      <p>Pred nahlásením, si uvedomte, že: <ul>
+        <p>Pred nahlásením, si uvedomte, že: <ul>
 
-      <li>Moderátor posúdi vašu sťažnosť a podľa toho bude konať.</li>
+        <li>Moderátor posúdi vašu sťažnosť a podľa toho bude konať.</li>
 
-      <li>Nesúhlas s obsahom alebo jeho pravdivosťou nie je dôvod pre jeho nahlásenie.</li>
+        <li>Nesúhlas s obsahom alebo jeho pravdivosťou nie je dôvod pre jeho nahlásenie.</li>
 
-      <li>Zneužitie tejto funkcie nahlasovania môže viesť k <i>vášmu</i> zablokovaniu.</li>
+        <li>Zneužitie tejto funkcie nahlasovania môže viesť k <i>vášmu</i> zablokovaniu.</li>
 
-      </ul>
+        </ul>
     new_script_report_notes_html: >
-      <p>Pred nahlásením si uvedomte, že:</p> <ul>
+        <p>Pred nahlásením si uvedomte, že:</p> <ul>
 
-      <li>Skripty budú odstránené iba pri porušení %{rules_link:pravidiel%{site_name}}. Ak je skript nefunkčný, %{feedback_link:zanechajte spätnú odozvu.}</li>
+        <li>Skripty budú odstránené iba pri porušení %{rules_link:pravidiel%{site_name}}.
+        Ak je skript nefunkčný, %{feedback_link:zanechajte spätnú odozvu.}</li>
 
-      <li>Moderátor skontroluje vašu správu a bude podľa nej konať.</li>
+        <li>Moderátor skontroluje vašu správu a bude podľa nej konať.</li>
 
-      <li>Zneužívanie funkcie nahlasovania môže viesť k <i>vášmu</i> zablokovaniu.</li>
+        <li>Zneužívanie funkcie nahlasovania môže viesť k <i>vášmu</i> zablokovaniu.</li>
 
-      </ul>
+        </ul>
     new_user_report_notes_html: >
-      <p>Pred nahlásením, si uvedomte, že: <ul>
+        <p>Pred nahlásením, si uvedomte, že: <ul>
 
-      <li>Ak nahlasujete na základe obsahu skriptu alebo komentára, namiesto toho nahláste tento konkrétny skript alebo komentár.</li>
+        <li>Ak nahlasujete na základe obsahu skriptu alebo komentára, namiesto toho
+        nahláste tento konkrétny skript alebo komentár.</li>
 
-      <li>Moderátor posúdi vašu sťažnosť a podľa toho bude konať.</li>
+        <li>Moderátor posúdi vašu sťažnosť a podľa toho bude konať.</li>
 
-      <li>Nesúhlas s obsahom alebo jeho pravdivosťou nie je dôvod pre jeho nahlásenie.</li>
+        <li>Nesúhlas s obsahom alebo jeho pravdivosťou nie je dôvod pre jeho nahlásenie.</li>
 
-      <li>Zneužitie tejto funkcie nahlasovania môže viesť k <i>vášmu</i> zablokovaniu.</li>
+        <li>Zneužitie tejto funkcie nahlasovania môže viesť k <i>vášmu</i> zablokovaniu.</li>
 
-      </ul>
+        </ul>
     reason:
       non_functional: "Skript nefunguje"
       spam: "Spam"
@@ -1195,9 +939,9 @@ sk:
     edit_comment_link: "Upraviť"
     edit_comment_header: "Upraviť komentár"
     delete_comment: "Odstrániť"
-    delete_comment_confirm: "Naozaj chcete odstrániť tento komentár?"
+    delete_comment_confirm: Naozaj chcete odstrániť tento komentár?
     delete_discussion: "Odstrániť"
-    delete_discussion_confirm: "Naozaj chcete odstrániť túto diskusiu?"
+    delete_discussion_confirm: Naozaj chcete odstrániť túto diskusiu?
     update_comment_submit: "Upraviť komentár"
     cancel_update_comment: "Zrušiť"
     quote_comment: "Citovať"
@@ -1255,17 +999,17 @@ sk:
     subscribe: Prihlásiť na odber
     unsubscribe: Odhlásiť z odberu
     notify: Upozorniť ma na každú odpoveď
-    notifying_on_script: "Na všetky odpovede budete upozornený podľa %{notifications_link:nastavenia upozornenia skriptu}."
+    notifying_on_script: Na všetky odpovede budete upozornený podľa %{notifications_link:nastavenia upozornenia skriptu}.
     categories:
       greasyfork:
         name: Spätná väzba ku Greasy Fork
-        description: "Hlásenie chýb, žiadosti o funkcie a ostatné veci ohľadom Greasy Fork."
+        description: Hlásenie chýb, žiadosti o funkcie a ostatné veci ohľadom Greasy Fork.
       development:
         name: Vývoj
         description: Technická diskusia o vývoji používateľského skriptu a štýlu.
       requests:
         name: Žiadosť o vytvorenie
-        description: "Požiadať niekoho, aby vám napísal používateľský skript alebo štýl."
+        description: Požiadať niekoho, aby vám napísal používateľský skript alebo štýl.
       script-discussions:
         name: Diskusia o skripte
         description: Diskusia o existujúcich používateľských skriptoch a štýloch.
@@ -1277,10 +1021,10 @@ sk:
     category_display: "%{name} - %{description}"
     new_title: Nová diskusia
     new_button: Nová diskusia
-    script_notice: "Ak chcete diskutovať o konkrétnom skripte, prejdite na stránku spätnej väzby skriptu a začnite diskusiu odtiaľ ."
+    script_notice: Ak chcete diskutovať o konkrétnom skripte, prejdite na stránku spätnej väzby skriptu a začnite diskusiu odtiaľ .
     no_discussions: Žiadna diskusia.
     mark_all_read: Označiť ako prečítané
-    pending_moderator_review: "Táto diskusia nie je dostupná pre ostatných používateľov, kým ju neskontroluje moderátor."
+    pending_moderator_review: Táto diskusia nie je dostupná pre ostatných používateľov, kým ju neskontroluje moderátor.
   conversations:
     user_input_note: Zadajte meno používateľa alebo adresu URL na jeho profil.
     new_title: Založiť novú konverzáciu
@@ -1298,7 +1042,7 @@ sk:
       few: Konverzácia s %{users}.
       many: Konverzácia s %{users}.
       other: Konverzácia s %{users}.
-    conversation_info_html: "Posledná správa %{date} od %{user}."
+    conversation_info_html: Posledná správa %{date} od %{user}.
     no_conversations: Zatiaľ ste nemali žiadne rozhovory.
     no_recent_conversations: Nemáte žiadne nedávne konverzácie.
     recent:
@@ -1307,34 +1051,22 @@ sk:
   screenshots:
     requirements: "Maximálne %{number} PNG, GIF, JPEG, alebo WebP obrázkov, každý menší ako %{size}."
   common:
-    # text to show before listing errors in a submission
     error_preamble: "Boli zistené problémy s tým, čo ste poslali."
-    # link to the list of allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_link: "(Pozri zoznam povolených značiek.)"
-    # title of the page showing allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_and_attributes_title: "Povolené elementy pre HTML obsah"
-    # text to introduce the list of allowed HTML elements and attributes
     allowed_elements_intro: "Nasledujúce elementy a atribúty sú povolené. To platí pre HTML aj Markdown (po konverzii na HTML)."
-    # additional info for the allowed HTML elements, explaining additional changes made to content
     allowed_elements_extra_info: "Prázdne znaky budú nahradené P alebo BR elementami. URL adresy budú automaticky klikateľné."
     allowed_css_intro: "Tieto CSS vlastnosti sú povolené pre všetky elementy."
     user_references_html: "Môžete odkazovať a linkovať na iných používateľov %{site_name} vo formáte <code>@PouzivatelskeMeno</code> alebo <code>@\"Používateľské Meno\"</code> (ak používateľské meno obsahuje medzery)"
     not_found_text: "404 - stránka nenájdená."
     not_found_title: "404 - stránka nenájdená"
     not_found_link_home: "Prejsť na hlavnú stránku."
-    # shown on the first page a user sees if, based on the user's Accept-Language header, we think we have a better locale than what the first page shows. "locale_name" is the name of the locale in that language (matching the name in the locale drop down)
     suggest_locale: "Stránka %{site_name} je dostupná v %{locale_name}."
-    # shown on the first page a users sees if the locale they're on is less than a certain amount translated. links to the docs on how to help with localization
     incomplete_locale: "%{site_name} je preložená do %{locale_name} na %{percent}. Môžete to zmeniť."
-    # text for a button that expands a block of text
     expander_show_more: "Zobraziť viac"
-    # text for a button that contracts a block of text
     expander_show_less: "Zobraziť menej"
-    # note denoting what are ads
     advertisement_note: Reklama
-    # label on tab allowing for previewing input
     preview_tab: Náhľad
-    # label on tab for entering input
     write_tab: Napísať
     listing_options_title: "Možnosti vyhľadávania"
     quote:
@@ -1342,49 +1074,30 @@ sk:
   activerecord:
     attributes:
       user:
-        # user field: display name
         name: "Meno"
-        # user field: profile (HTML content describing themselves)
         profile: "Profil"
-        # user field: locale
         locale: "Preferovaný jazyk"
-        # user field: setting to send e-mails when discussions or comments are posted to a user's scripts. options are under users.author_email_notification_type
         author_email_notification_type_id: "Notifikácie na diskusiu k skriptu"
-        # user field: show ads
         show_ads: "Zobraziť reklamu"
-        # user field: show sensitive
         show_sensitive: "Obsah pre dospelých"
-        # user field: preferred markup (html or markdown)
         preferred_markup: "Preferované značky"
         filter_locale_default: "Regionálny filter"
         current_password: "Súčasné heslo"
         new_password: "Nové heslo"
         new_password_confirmation: "Potvrdiť nové heslo"
       script:
-        # name of the script
         name: "Názov skriptu"
-        # description of the script
         description: "Popis"
-        # locale the script is in. see also scripts.locale_explanation
         locale: "Jazyk"
-        # the JS code of the script
         code: "Kód"
-        # description of changes for an update
         changelog: "Zoznam zmien"
-        # the type of script - public, unlisted, or library
         type: "Typ skriptu"
-        # additional descriptive text outside of @description
         additional_info: "Dodatočné informácie"
-        # screenshots attached to the script
         screenshots: "Ukážky"
-        # when deleting, which script to redirect to
         replaced_by_script_id: "Nahradenie skriptu"
       script_set:
-        # name of the script set
         name: "Názov"
-        # description of the script set
         description: "Popis"
-        # default sort of the script set
         default_sort: "Predvolené zoradenie"
       report:
         reason: "Dôvod nahlásenia"
@@ -1398,39 +1111,25 @@ sk:
         content: Správa
   errors:
     messages:
-      # validation for when a script name is not provided
       script_missing_name: "potrebné - uveďte v @name"
-      # validation for when a script description is not provided
       script_missing_description: "potrebné - uveďte v @description"
-      # validation for when a script description is the same as name
       script_name_same_as_description: "nesmie byť rovnaký ako názov skriptu"
-      # validation for sync URL
       script_sync_identifier_bad_protocol: "musí to byť HTTP alebo HTTPS"
-      # validation for number of screenshots
       script_too_many_screenshots: "Priveľa ukážok - maximum je %{number}"
-      # validation for "deleted and replaced by" when the user says the script is replaced by itself
       cannot_be_self_reference: "nemôže nahradiť sám seba"
-      # validation for "deleted and replaced by" when the user says the script is replaced by a deleted script
       cannot_be_deleted_reference: "nemôže byť nahradený odstráneným skriptom"
       cannot_be_used_with_this_script: "nemôže byť použitý s týmto skriptom"
-      # validation for "deleted and replaced by" when the user provides a non-%{site_name} URL
       must_be_greasy_fork_script: "musí to byť URL skriptu na %{site_name}"
-      # validation when the user uploads code that's not UTF-8 text
       script_update_not_utf8: "kód nie je v UTF-8 text"
-      # validation when user uploads code that contains a disallowed @require
       script_disallowed_require: "používa neschválených externý skript:% {code}"
       script_rate_limit: "Prekročili ste limit na odosielanie. Skúste to neskôr."
       missing_include_or_match: "musí obsahovať aspoň jeden kľúč @match alebo @include"
       file_size_out_of_range: "veľkosť musí byť menšia ako 200KB"
       meta_too_long: "%{key} je príliš dlhý (max. je %{count} znakov)"
   opensearch:
-    # short name for opensearch.xml
     short_name: "hľadať %{site_name}"
-    # description for opensearch.xml
     description: "Hľadanie skriptov na %{site_name}."
-    # long name for opensearch.xml
     long_name: "Hľadanie skriptov na %{site_name}"
-    # attribution for opensearch.xml
     attribution: "Autorské práva autorov skriptov nájdete na jednotlivých stránkach skriptov"
   mailers:
     script_report:
@@ -1459,54 +1158,54 @@ sk:
       notify:
         subject: "Váš skript %{script_name} na %{site_name} dostal viacero \"zlých\" hodnotení."
         text: |
-          Váš skript "%{script_name}" na %{site_name} (%{script_url}) dostal viacero "zlých" hodnotení za sebou.
+            Váš skript "%{script_name}" na %{site_name} (%{script_url}) dostal viacero "zlých" hodnotení za sebou.
 
-          Spätnú väzbu, ktorú ste dostali na %{feedback_url} naznačuje problém s vašim skriptom, dočasný výpadok alebo zmenu základnej stránky. Prosím, skontrolujte spätnú väzbu, opravte problémy a odpovedzte na vznesené obavy.
+            Spätnú väzbu, ktorú ste dostali na %{feedback_url} naznačuje problém s vašim skriptom, dočasný výpadok alebo zmenu základnej stránky. Prosím, skontrolujte spätnú väzbu, opravte problémy a odpovedzte na vznesené obavy.
 
-          %{site_name} sa udržiavať kvalitný zoznam skriptov pre používateľov. Nefunkčné, zanedbané, skripty s po sebe idúcimi "zlými" hodnoteniami bez včasnej odozvy budú skryté. Ak chcete zabrániť skrytiu vášho skriptu pridajte novú verziu alebo odpoveď do diskusie do %{delete_date}. Ak nič neurobíte, stále budete mať možnosť skript zviditeľniť aj po tomto dátume.
+            %{site_name} sa udržiavať kvalitný zoznam skriptov pre používateľov. Nefunkčné, zanedbané, skripty s po sebe idúcimi "zlými" hodnoteniami bez včasnej odozvy budú skryté. Ak chcete zabrániť skrytiu vášho skriptu pridajte novú verziu alebo odpoveď do diskusie do %{delete_date}. Ak nič neurobíte, stále budete mať možnosť skript zviditeľniť aj po tomto dátume.
     script_comment:
       subject: "Váš skript %{script_name} na %{site_name} bol komentovaný."
       text: |
-        Váš skript '%{script_name}' na %{site_name} (%{script_url}) bol komentovaný používateľom '%{commenter_name}':
+          Váš skript '%{script_name}' na %{site_name} (%{script_url}) bol komentovaný používateľom '%{commenter_name}':
 
-        ---
-        %{comment_text}
-        ---
+          ---
+          %{comment_text}
+          ---
 
-        Komentár môžete zobraziť a odpovedať naň na %{comment_url}. Spravujte svoje predvoľby upozornení na stránke %{notification_preferences_url}.
+          Komentár môžete zobraziť a odpovedať naň na %{comment_url}. Spravujte svoje predvoľby upozornení na stránke %{notification_preferences_url}.
     subscribed_discussion:
       subject: "Do diskusie %{discussion_title} na %{site_name} bol pridaný komentár."
       text: |
-        V diskusii "%{discussion_title}" na %{site_name} pribudol komentár od používateľa "%{commenter_name}":
+          V diskusii "%{discussion_title}" na %{site_name} pribudol komentár od používateľa "%{commenter_name}":
 
-        ---
-        %{comment_text}
-        ---
+          ---
+          %{comment_text}
+          ---
 
-        Zobraziť a odpovedať na tento komentár môžete na %{comment_url}.
+          Zobraziť a odpovedať na tento komentár môžete na %{comment_url}.
 
-        Toto upozornenie ste dostali, pretože ste prihlásení na odber tejto diskusie. Pre odhlásenie prejdite na %{discussion_url}, alebo spravujte nastavenia upozornení na%{notification_preferences_url}.
+          Toto upozornenie ste dostali, pretože ste prihlásení na odber tejto diskusie. Pre odhlásenie prejdite na %{discussion_url}, alebo spravujte nastavenia upozornení na%{notification_preferences_url}.
     comment_mentioned:
       subject: "Používateľ stránky '%{commenter_name}' sa o vás zmienil na %{site_name}."
       text: |
-        Do diskusie '%{discussion_title}' na %{site_name} bol pridaný komentár používateľom '%{commenter_name}', ktorý sa o vás zmienil.
+          Do diskusie '%{discussion_title}' na %{site_name} bol pridaný komentár používateľom '%{commenter_name}', ktorý sa o vás zmienil.
 
-        ---
-        %{comment_text}
-        ---
+          ---
+          %{comment_text}
+          ---
 
-        Zobraziť a reagovať na komentár môžete tu %{comment_url}.
+          Zobraziť a reagovať na komentár môžete tu %{comment_url}.
 
-        Toto upozornenie ste dostali, lebo ste vybrali, že chcete byť upozornení, keď sa niekto o vás zmieni. Nastavenia upozornení môžete spravovať tu %{notification_preferences_url}.
+          Toto upozornenie ste dostali, lebo ste vybrali, že chcete byť upozornení, keď sa niekto o vás zmieni. Nastavenia upozornení môžete spravovať tu %{notification_preferences_url}.
     new_message:
       subject: "Používateľ %{user} vám poslal správu na %{site_name}"
       text: |
-        Používateľ "%{user}" na %{site_name} vám poslal správu.
+          Používateľ "%{user}" na %{site_name} vám poslal správu.
 
-        ---
-        %{message_text}
-        ---
+          ---
+          %{message_text}
+          ---
 
-        Zobraziť správu a odpovedať na ňu môžete na %{conversation_url}.
+          Zobraziť správu a odpovedať na ňu môžete na %{conversation_url}.
 
-        Toto upozornenie ste dostali, pretože ste prihlásený na odber tejto konverzácie. Pre odhlásenie prejdite na %{conversation_url}, alebo spravujte nastavenia upozornení na %{notification_preferences_url}.
+          Toto upozornenie ste dostali, pretože ste prihlásený na odber tejto konverzácie. Pre odhlásenie prejdite na %{conversation_url}, alebo spravujte nastavenia upozornení na %{notification_preferences_url}.
