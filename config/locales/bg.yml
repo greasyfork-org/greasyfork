@@ -1,80 +1,133 @@
 bg:
   layouts:
     application:
+      # link to the list of scripts
       script_list: "Скриптове"
+      # link to the forum
       forum: "Форум"
+      # link to the help docs
       help: "Помощ"
+      # link to sign in
       sign_in: "Вход"
+      # label for nav submenu
       submenu: "Още"
+      # link to advanced search
       advanced_search: "Разширено търсене"
+      # link to user list
       user_list: "Потребителски списък"
+      # link to libraries
       libraries: "Библиотеки"
+      # link to moderator log
       moderator_log: "Модераторски дневник"
   scripts:
+    # label for created date of a script
     created_date: "Създаден"
+    # label for updated date of a script
     updated_date: "Обновен"
+    # label for total install count of a script
     total_installs: "Инсталации общо"
+    # label for daily install count of a script
     daily_installs: "Инсталации дневно"
+    # label for the ratings of a script
     ratings: "Рейтинг"
+    # label for author name of a script
     author_name: "Автор"
+    # label for version number of a script
     version_number: "Версия"
+    # label for the legal license a script is released under (e.g. GPL)
     license: "Лиценз"
+    # what is shown as the license when no license is provided in a script
     no_license: "Няма"
+    # label for the browser compatibility for a script
     compatibility: "Съвместимост"
     compatible_with_browser: "Съвместим с %{browser}"
     incompatible_with_browser: "Несъвместим с %{browser}"
+    # label for the list of sites or patterns a script applies to
     applies_to: "Работи на"
+    # a title (tooltip) for the links in the "applies to" section going to a list of scripts for that site. count is the number of other scripts, site is the name of the site. add subkeys for your language per http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
     applies_to_link_title:
       one: "Виж %{count} скрипт за %{site}"
       other: "Виж други %{count} скрипта за %{site}"
+    # what is shown as the applies to when a script applies to all sites
     applies_to_all: "Всички сайтове"
+    # link that makes the user install the script
     install: "Инсталирай този скрипт"
+    # text for link that gives information on how to install scripts. should be very short.
     install_help: "?"
+    # title (tooltip) for link that gives information on how to install scripts
     install_help_title: "Как да се инсталира"
+    # link that makes the user update the script
     update: "Обновете до версия %{version}"
+    # link that makes the user downgrade the script
     downgrade: "Върнете версия %{version}"
+    # link that makes the user reinstall the script
     reinstall: "Преинсталирайте %{version}"
+    # warning when installing an old version of a script
     old_version_warning: "Това не е последната версия на този скрипт. Ако я инсталирате, тя никога няма да бъде обновена до по-нова версия. Инсталиране въпреки това?"
+    # label for a promoted script
     promoted: "Рекламиран скрипт"
     author_promoted: "Препоръчано от автора"
+    # text for promoted script
     promoted_text_html: "Може да харесате и %{script_link}."
+    # instructions on a script library. code will be a <code> element. Don't use punctuation around the code element if possible so that people don't accidentally include that when copying.
     library_instructions_html: "Този скрипт не може да бъде инсталиран директно. Това е библиотека за други скриптове и може да бъде използвана с мета-директива %{code}"
+    # text displayed for deleted scripts
     deleted_notice: "Този скрипт беше изтрит."
     deleted_notice_with_related: "Скриптът, който поискахте, беше изтрит, но имаме други подобни скриптове."
     deleted_undelete_notice_html: "Този скрипт е заключен от модератор и не може да бъде възстановен. Причината за заключване е: \"<i>%{delete_reason}</i>\"."
     deleted_locked_author_notice_html: "Този скрипт е изтрит от модератор и не е достъпен за останалите. Причината за изтриване е: \"<i>%{delete_reason}</i>\"."
     deleted_author_notice: "Този скрипт е изтри и не е достъпен за останалите. Можете да го възстановите от поле Изтриване."
+    # test displayed when viewing a previous version. date is a date and time (no "ago"), latest_version_link is a link to the newest version whose text is version_notice_latest_version_link
     version_notice_html: "От %{date}. Виж %{latest_version_link}."
     version_notice_latest_version_link: "последната версия"
     reported_notice: "\"%{script_name}\" беше докладван и очаква преглед от модератор."
     reported_notice_for_author: "Този скрипт е недостъпен за другите потребители докато не бъде прегледан от модератор."
+    # link to the script's info page, containing script meta and author's description
     info_page: "Информация"
+    # link to the script's code page
     code_page: "Код"
+    # link to the script's history page, listing all versions of the code
     history_page: "История"
+    # link to the script's feedback page, listing discussions on the script. count is the number of discussions
     feedback_page: "Отзиви (%{count})"
+    # link to the script's install statistics page
     stats_page: "Статистика"
+    # link to the script's derivatives page, which shows similar scripts
     derivatives_page: "Производни"
+    # link to the page that lets the author update the script
     update_page: "Обновяване"
+    # link to the page that lets the author delete a script
     delete_page: "Изтриване"
+    # explanation of what deleting does
     delete_explanation: "Изтриването на вашия скрипт ще го направи недостъпен за потребителите. Ще можете да го виждате вие и модераторите. Скриптът може да бъде възстановен по всяко време."
+    # intro text to radio options for choosing update behaviour after deletion
     delete_update_behaviour: "Какво желаете да се случи с потребителите, които вече са инсталирали вашия скрипт?"
+    # label for the option allowing users to retain the script after delete
     delete_update_behaviour_1: "Те ще го запазят както е в момента."
+    # label for the option where users get a blanked script after delete 
     delete_update_behaviour_2: "Те ще получат празен скрипт. Това е удобно, когато скриптът има отрицателен ефект върху сайтовете, за които е предназначен."
+    # heading for permanent deletion section
     delete_permanently_heading: "Окончателно изтриване"
+    # explanation of permanent deletion
     delete_permanently_explanation_html: >-
-        <p>Пълното изтриване ще изтрие вашия скрипт и съответстващите му записи, с
-        изключение на дискусиите във форума и дневника на модераторските действия.</p>
-        <p>Вашият скрипт ще бъде напълно изтрит 7 дни след подаване на заявката. В
-        рамките на този период можете да откажете изтриването. В противен случай никой,
-        нито дори модераторите биха могли да възстановят скрипта.</p>
+      <p>Пълното изтриване ще изтрие вашия скрипт и съответстващите му записи, с изключение на дискусиите във форума и дневника на модераторските действия.</p> <p>Вашият скрипт ще бъде напълно изтрит 7 дни след подаване на заявката. В рамките на този период можете да откажете изтриването. В противен случай никой, нито дори модераторите биха могли да възстановят скрипта.</p>
+    # confirmation on pressing the permanent deletion button
     delete_permanently_confirm: "Наистина ли искате да изтриете напълно вашия скрипт?"
+    # text for the permanent deletion button
     delete_permanently_submit: "Заявка за окончателно изтриване"
+    # text for the permanent deletion button when it would take effect immediately
     delete_permanently_immediate_submit: "Окончателно изтриване"
+    # notice after requesting permanent deletion
     delete_permanently_notice: "Заявката за напълно изтриване беше записана. След 7 дни вашият скрипт ще бъде напълно изтрит."
+    # text on the delete page after permanently deletion was requested
     delete_permanently_already_requested: "Вие заявихте напълно изтриване на %{datetime}."
+    # notice after permanently deletion
     delete_permanently_notice_immediate: "Скриптът беше изтрит окончателно."
+    # text for cancelling a permanent deletion request
     cancel_delete_permanently_submit: "Заявка за отмяна на окончателно изтриване"
+    # notice after cancelling a permanent deletion request
     cancel_delete_permanently_notice: "Вашата заявка за напълно изтриване беше отказана. Вашият скрипт все още не е видим за останалите."
+    # error when attempting to delete a locked script
     delete_permanently_rejected_locked: "Скриптът е заключен и не може да бъде изтрит окончателно."
     admin_page: "Админ"
     admin:
@@ -93,44 +146,70 @@ bg:
       compare_to: "Скрипт от%{site_name} с който да бъде сравнен (URL)"
       compare_button: "Сравни"
       compare_must_be_local_url: "Скриптът за сравняване трябва да бъде на %{site_name}."
+    # HTML title for the history page for a script
     history_title: "%{script_name} - История на версиите"
+    # text explaining that we're only showing versions where the code changed
     history_only_code_changes_info: "Има други версии на този скрипт, където кодът е обновен."
+    # link to the list of all versions
     history_all_changes_link: "Покажи всички версии."
+    # text explaining that we're showing all versions
     history_all_changes_info: "Това са всички версии на скрипта."
+    # link to the list of version where the code changed
     history_only_code_changes_link: "Покажи само тези версии, където кодът е променен."
+    # button that shows changes (a diff) of the selected versions
     diff_button: "Diff на избраните версии"
+    # HTML title of the script source code page
     code_title: "%{script_name} - Изходен код"
+    # HTML title of the script feedback page
     feedback_title: "%{script_name} - Отзиви"
     feedback_has_reports: "Този скрипт беше докладван като нарушаващ правилата на %{site_name}."
+    # text to show when no discussions are posted. start_discussion_first_link is a link with the text from feedback_start_first_discussion_link
     feedback_no_discussions_html: "Все още няма дискусии. %{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "Все още няма започната дискусия."
     feedback_report_instead: "Ако мислите, че този скрипт нарушава %{rules_link: правилата на%{site_name}}, моля %{report_link:докладвайте го за премахване}."
     feedback_start_first_discussion_link: "Бъди първи, който ще дискутира скрипта."
     feedback_discussion_or_report: "%{new_discussion_link:Започни ново обсъждане за скрипта} или %{report_link:докладвай за премахване}."
+    # heading for list of people who favorited this script
     feedback_favoriters_heading: "В любими"
+    # text before a comma separated list of users who favorited the script
     feedback_favoriters_user_list_html: "Скриптът е любим на %{user_list}."
     feedback_favoriters_lots:
       one: "Скриптът е любим на %{user_count} потребител. %{full_link:Виж пълния списък.}"
       other: "Скриптът е любим на %{user_count} потребителя. %{full_link:Виж пълния списък.}"
+    # text when no one has favorited a script
     feedback_no_favoriters: "Все още никой не е избрал скрипта за любим."
+    # link to get the user to sign in to add the script to their favorites
     feedback_sign_in_to_favorite: "Влез, за да го добавиш в любими."
+    # html title for script stats page
     stats_title: "%{script_name} - Статистика"
+    # heading for daily install stats on stats page
     stats_daily_installs_heading: "Инсталации дневно"
+    # heading for weekly install stats on stats page
     stats_weekly_installs_heading: "Инсталации седмично"
+    # heading for daily update check stats on stats page
     stats_daily_update_checks_heading: "Ежедневни проверки за обновяване"
+    # date column heading for a script's daily install stats table
     stats_daily_installs_date_column_heading: "Дата"
+    # install count column heading for a script's stats table
     stats_daily_installs_install_count_column_heading: "Инсталации"
+    # update check count column heading for a script's stats table
     stats_daily_installs_update_check_count_column_heading: "Проверка за обновяване"
+    # header for the raw data table for stats
     stats_raw_data_header: "Необработени данни"
+    # text before links to download raw stats data. links will be space separated links to the format name (e.g. CSV and JSON)
     stats_download_raw_data_html: "Сваляне на всички данни като: %{links}"
+    # text to show when a stat is not available
     stats_no_data: "Няма"
     stats_filters: "Филтър: %{filter_options}"
     stats_filter_options:
       month: Последните 30 дни
       year: Последните 365 дни
       all: Цялото време
+    # HTML title for derivatives page
     derivatives_title: "%{script_name} - Производни"
+    # text explaining the derivatives page and what to do if the user finds unauthorized copies
     derivatives_intro: "Тези скриптове може да са базирани на вашия (или вашите може да са базирани на тях). Ако намерите не оторизирана употреба на ваш код, докладвайте го чрез обратната връзка за скрипта."
+    # format for scripts listed on the derivatives page. script_link is a link to the derivative's page, user_link is a link to the user who created the derivative, license is text, link to the license, or scripts.no_license
     derivatives_script_html: "%{script} от %{user}, лиценз: %{license} %{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "Точни копия"
     derivatives_exact_copies_list_intro: "Тези скриптове имат точно същия код както вашия:"
@@ -149,140 +228,280 @@ bg:
     derivatives_similar_last_check_soon: "След малко започва проверка за сходни скриптове на вашия."
     derivatives_similar_last_check_again_soon_html: "Последно проверихме за подобни на вашия скрипт на %{date}. След малко започва нова проверка."
     derivatives_similar_check_now: "Провери отново сега"
+    # html title for script list page when showing scripts that affect all sites
     listing_title_all_sites: "Скриптове, работещи на всички сайтове"
+    # meta description and feed subtitle when showing scripts that affect all sites
     listing_description_all_sites: "Скриптове, добавящи екстри или отстраняващи бъгове за всички сайтове"
+    # html title for script list page when showing scripts for a particular site. 'site' will be in the form 'example.com'
     listing_title_for_site: "Скриптове за %{site}"
+    # meta description and feed subtitle when showing scripts that affect a particular site
     listing_description_for_site: "Скриптове, които добавят екстри или отстраняват бъгове за %{site}"
+    # html title for script list page for search results.
     listing_title_for_search: "'%{search_string}' скриптове"
+    # html title for script list page for code search results.
     listing_title_for_code_search: "'%{search_string}' скриптове"
+    # html title for script list page when no other situation applies
     listing_title_generic: "Потребителски скриптове"
+    # html title for script list page for a user's favorites. set_name is script_sets.favorites_name
     listing_title_for_favorites: "%{set_name} на %{user_name}"
+    # meta description and feed subtitle for script list page when no other situation applies
     listing_description_generic: "Скриптове, добавящи екстри и отстраняващи бъгове в сайтовете, които ползвате"
+    # label for sorting links on script list page
     listing_sort_label: "Подреждане по"
+    # link for relevance (most matching the search terms) sort on a script list
     listing_sort_relevance: "Връзка"
+    # link for daily install sort on a script list
     listing_sort_daily_installs: "Дневни инсталации"
+    # link for daily install sort on a script list
     listing_sort_total_installs: "Инсталации общо"
+    # link for rating sort on a script list
     listing_sort_ratings: "Рейтинг"
+    # link for created date sort on a script list
     listing_sort_created: "Дата на създаване"
+    # link for updated date sort on a script list
     listing_sort_updated: "Дата на обновяване"
+    # link for name sort on a script list
     listing_sort_name: "Име"
+    # label for filtering by-site links on script list page
     listing_filter_by_site_label: "Показване на скриптове за:"
+    # link for turning off by-site filtering on script list page
     listing_filter_by_site_disable: "Всички"
+    # link for filtering script list by scripts that affect all sites
     listing_filter_by_site_all_sites: "(Всички сайтове)"
     listing_filter_by_language_label: "Език:"
+    # link to see a full list of sites that scripts on %{site_name} affect
     listing_filter_by_site_more_sites: "Още..."
+    # text that shows when no scripts were found with the used parameters
     listing_no_scripts: "Няма намерени скриптове."
+    # feed title for the listing, ordered by created date
     listing_created_feed: "Нови скриптове"
+    # feed title for the listing, ordered by updated date
     listing_updated_feed: "Обновени скриптове"
+    # when a list has nothing to show
     listing_none: "(Нищо)"
+    # link to filter search results by the current locale
     listing_set_locale_filter: "Това са резултатите за всички езици. %{set_filter_link:Show %{language} results only.}"
+    # link to remove locale filter
     listing_remove_locale_filter: "Това са резултатите за %{language}. %{remove_filter_link:Покажи резултатите за всички езици.}"
     listing_language_all: "Всички"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    # link to start the process of importing (creating from an external place) scripts
     import: "Импортиране на скриптове"
+    # link to create a new script
     new: "Публикувай написан от теб скрипт"
     new_css: "Публикувай създаден от теб стил"
+    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support site
     support_site: "Посетете сайта за поддръжка."
+    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support email address
     support_email: "Изпратете e-mail на автора за поддръжка."
+    # link to a site where the user can donate to the author, when the author didn't provide a suggested donation amount
     contribution_no_amount: "Благодарете на %{author}, като направите дарение."
+    # link to a site where the user can donate to the author, when the author provided a suggested donation amount
     contribution_with_amount: "Благодарете на %{author}, като направите дарение. Препоръчваната сума е %{amount}."
+    # text for donating to the author via bitcoin, when the author didn't provide a suggested donation amount
     contribution_bitcoin_no_amount_html: "Благодарим на %{author} за направеното Bitcoin дарение на %{address}."
+    # text for donating to the author via bitcoin, when the author provided a suggested donation amount
     contribution_bitcoin_with_amount_html: "Благодарим на %{author} за направеното Bitcoin дарение на %{address}. Препоръчваната сума е %{amount}."
+    # explanation of language chooser when editing script
     locale_explanation_html: "Трябва да съвпадат езиците на <code>@name</code>, <code>@description</code>, и първата допълнителна информация."
+    # the default value for the locale box, if submitted the site will attempt to detect the language of the entry
     locale_auto_select: "(Автоматично открито)"
+    # label which lists the sets this script is in, which is followed by controls to change its inclusions
     sets_label: "В групи:"
+    # label for when the script is not in any sets, which is followed by controls to change its inclusions
     sets_label_no_sets: "Групи скриптове:"
+    # option to remove the script from the set
     sets_remove_inclusion: "Премахни от %{set_name}"
+    # option to remove the script's exclusion from the set
     sets_remove_exclusion: "Премахване на изключението от %{set_name}"
+    # option to add the script to the set
     sets_add_inclusion: "Добави към %{set_name}"
+    # option to exclude the script from the set (when it's been included as part of a sub set)
     sets_add_exclusion: "Изключи от %{set_name}"
+    # option to add the script to a new set
     sets_add_to_new: "Добавяне към нова група"
+    # summary of %{site_name}'s rules for posting scripts. full_rules_link is a link to the full rules with text of rules_summary_link_to_full
     rules_summary_html: "Скриптовете трябва да бъдат <strong>подходящо описани</strong>, не могат да са  <strong>завоалирани</strong> или <strong>минимизирани</strong>, трябва да уважават <strong>авторското право</strong>, и са ограничени откъм използването на <strong>външен код</strong>. %{full_rules_link}"
+    # full rules link text used in the rules summary
     rules_summary_link_to_full: "Прочетете пълните правила."
+    # warning when on the edit screen for a script set up to sync. syncing_notice_sync_type will be a link to the sync screen with text from syncing_notice_sync_type_manual or syncing_notice_sync_type_automatic
     syncing_notice_html: "Този скрипт е %{syncing_notice_sync_type}. Всички направени промени тук ще бъдат презаписани при извършване на синхронизация."
+    # used in syncing_notice_html when a script syncs only when the author requests it
     syncing_notice_sync_type_manual: "настроен за ръчна синхронизация от %{sync_identifier}"
+    # used in syncing_notice_html when a script syncs automatically
     syncing_notice_sync_type_automatic: "настроен за автоматична синхронизация от %{sync_identifier}"
+    # label for uploading a script under the code textarea
     upload_label: "Или качете:"
+    # label for checkbox to enable or disable syntax highlighting code editor
     enable_source_code_editor_label: "Разреши syntax-highlighting за редактора"
+    # descriptive text for the changelog field
     changelog_note: "Какво е променено в тази версия?"
+    additional_info_note: ""
+    # button text for previewing additional info
+    # button text for submitting a new script
     post_new_script: "Публикуване на скрипт"
+    # button text for submitting an update to an existing script
     post_updated_script: "Публикуване на нова версия"
+    # label for radio button for public-type user script
     type_1_html: "Публичен скрипт - скрипт, който всички могат да видят и използват."
+    # label for radio button for unlisted-type user script
     type_2_html: "Скрипт извън списъка - скрипт, за (полу-)частна употреба. Достъпен чрез директна връзка, но не се показва никъде на %{site_name}."
+    # label for radio button for library-type script
     type_3_html: "Библиотека - скрипт, чието предназначение е да бъде <code>@require</code> от други скриптове, а не директна инсталация."
+    # label for checkbox to override script save warnings
     override_warning_checkbox_label: "Запис въпреки това?"
+    # script warning for not increasing the version number when updating the code
     warning_version_not_incremented_html: "Обновихте кода, но не увеличихте <code>@version</code> номера. Тези, които преди това са инсталирали скрипта, може да не получат обновения код."
+    # script warning for when a version number is not provided
     warning_version_missing_html: "Не е указан номер на <code>@version</code>. Мета ключ <code>@version</code> позволява проверка за обновяване на вашия скрипт."
+    # label for checkbox for the site to automatically handle version numbers
     warning_version_missing_generate_automatically_html: "Да бъде генериран автоматично <code>@version</code>?"
+    # script warning for when a namespace is not provided
     warning_namespace_missing_html: "Не сте указали <code>@namespace</code>. Мета ключове <code>@namespace</code> позволяват на потребителите да преинсталират скрипта, за да го обновят."
+    # label for checkbox for the site to automatically add a namespace
     warning_namespace_missing_generate_automatically_html: "Да бъде генериран <code>@namespace</code> автоматично?"
+    # script warning for when a namespace changed on update
     warning_namespace_changed_html: "Вашият <code>@namespace</code> беше променен. Коректен <code>@namespace</code> позволява на потребителите да преинсталират скрипта, за да го обновят."
+    # script warning for when a script's code appears minified. allowed_requires_link is a link to the allowed @require list, with text of warning_potentially_minified_allowed_requires_link
     warning_potentially_minified_html: "Вашият скрипт изглежда, че съдържа минимизиран (компресиран) код. Ако използвате минимизирана библиотека, моля <code>@require</code> я от %{allowed_requires_link}. Скриптовете с минимизиран код ще бъдат премахвани."
+    # script warning for when a script's code is for adult sites. sensitive_domains is a list of domains
     warning_automatic_sensitive_html: "Вашият скрипт е за %{sensitive_domains} и ще бъде маркиран като съдържание за възрастни."
+    # used in warning_potentially_minified_html
     warning_potentially_minified_allowed_requires_link: "едно от тези места"
     warning_code_previously_posted_html: "Този код преди това е бил публикуван тук %{script_links}. Скриптовете, които са копирани и публикувани не от оригиналния автор, ще бъдат премахвани от модераторите."
+    # default option for the locale of a localized additional info
     additional_info_locale_prompt: "(Изберете локализация)"
+    # text for the button to add another additional info section for a different language
     additional_info_add_localized: "Добавяне на допълнителна локализация"
+    # validation when more than one additional info is specified for a locale. "locale_code" is the locale code (e.g. "en") that has more than one additional info
     additional_info_locale_repeated: "Предложете само една допълнителна информация за локализацията '%{locale_code}'."
+    # validation when an additional info in a locale is provided but no name was provided in that locale. "locale_code" is the locale code (e.g. "en") that is missing a name
     localized_additional_info_with_no_name: "Указана е допълнителна информация за локализация '%{locale_code}' locale, но не и @name:%{locale_code} "
     localized_attribute_matches_default: "Кодът не трябва да съдържа%{meta_key} защото'%{locale_code}' е локализация по подразбиране."
+    # text to edit a code syncing URL. field is the text field to enter the url.
     code_syncing_from_url_html: "Кодът на скрипта е настроен да се синхронизира от: %{field}"
+    # text to add a code syncing URL. field is the text field to enter the url.
     provide_code_syncing_from_url_html: "%{site_name} може да импортира скриптове, които се хостват където и да е, като например - система за контрол на версиите (като GitHub), ваш, собствен сървър, или друг сайт за хостване на скриптове. За да разрешите синхронизацията на вашия скрипт, укажете URL: %{field}"
+    # text before the sync type options
     sync_type_intro: "Скриптът ще бъде синхронизиран:"
+    # label for radio button for manual syncing
+    sync_type_1:
+      name: ""
+      description: ""
+    # label for radio button for automatic syncing
+    sync_type_2:
+      name: ""
+      description: ""
+    # label for radio button for webhook syncing
+    sync_type_3:
+      name: ""
+      description: ""
+    sync_name_and_description: ""
+    # text when the last attempted sync failed. date is the date of the error run through markup_date. error is the technical error.
     sync_failed_info_html: "Последният опит за синхронизация беше %{date}, резултатът от който е %{error}."
+    # text indicating the date of the last successful sync. date is the date of the sync run through markup_date
     sync_success_info_html: "Последната успешна синхронизация беше на %{date}."
+    # text if the sync never succeeded
     sync_never_succeeded: "Синхронизацията никога не е била успешна."
+    sync_additional_info: ""
+    add_synced_additional_info: ""
+    # button to update sync settings and run sync immediately
     update_and_sync: "Обновяване и синхронизация сега"
+    # button to update sync settings but not sync immediately
     update_no_sync: "Обновяване"
+    # button to disable syncing of the script
     turn_off_syncing: "Изключи синхронизацията за този скрипт"
+    # label for syncing the default additional info
     additional_info_default_sync_html: "Допълнителна информация по подразбиране (езикът съвпада с <code>@name</code>)"
+    # label for syncing localized additional infos
     additional_info_localized_sync_html: "За локализация (съвпада с <code>@name:XX</code>)"
+    # HTML placeholder for sync fields
     sync_url_placeholder: "(URL)"
+    # label for adding a new screenshot
     screenshots_add: "Добави:"
+    # label for checkbox to remove a screenshot
     screenshots_remove: "Премахни"
+    # explains what a replacement script when deleting is
     replacement_script_explanation: "(По желание) Изберете друг скрипт, който заменя този. Потребителите ще получат обновление и ще бъдат пренасочени към него. Въведете адреса (URL) на заменящия скрипт."
+    # title for diff page
     diff_title: "%{script} - Разлики във версиите"
+    # label for older version being diffed
     diff_old_version: "Стара:"
+    # label for newer version being diffed
     diff_new_version: "Нова:"
+    # label for input for lines to show around each change when doing a diff
     diff_lines_of_context: "Контекст, редове:"
+    # label for checkbox on whether to ignore whitespace changes
     diff_ignore_whitespace: "Игнорирай промени в whitespace"
+    # button to refresh diff after changing diff options
     diff_refresh: "Опресни"
+    # text shown when compared versions are the same
     diff_no_change: "Няма намерени разлики."
+    # tooltip for good rating number - "Good" should match the word used in RatingGood in the PHP localization
     good_rating_explanation: "Брой потребители, които са гласували Добър или са го добавили в Любими."
+    # tooltip for ok rating number - "OK" should match the word used in RatingGood in the PHP localization
     ok_rating_explanation: "Брой потребители, гласували с ОК."
+    # tooltip for bad rating number - "Bad" should match the word used in RatingGood in the PHP localization
     bad_rating_explanation: "Брой потребители, гласували с Лош."
+    # link at the bottom of the scripts list suggesting people post a script or learn how. post_a_script_link is a link with text post_a_script_link_text that goes to the new script form. learn_to_write_scripts_link is a link with text learn_to_write_scripts_link_text that goes to the help document for writing scrupts
     write_your_own_html: "%{post_a_script_link} (или %{learn_to_write_scripts_link})"
+    # link text for the new script form, used in write_your_own_html
     post_a_script_link_text: "Публикувай написан от теб скрипт"
+    # link text for the writing a user script help doc, used in write_your_own_html
     learn_to_write_scripts_link_text: "научете как да напишете"
+    # a suggestion below the install button that users provide feedback
     feedback_or_report: "%{feedback_link:Задай въпрос, напиши отзив }, или %{report_link:докладвай скрипта}."
+    # a suggestion below the install button that users provide feedback or get support from the author's site. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
     support_feedback_or_report: "%{support_url:За поддръжка посети сайта на автора}, %{feedback_link:задай въпрос, напиши отзив}, или %{report_link:докладвай скрипта}."
+    # a suggestion below the install button that users provide feedback or get support from the author's via email. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
     support_email_feedback_or_report: "%{support_url:За поддръжка напиши имейл на автора}, %{feedback_link:задай въпрос, напиши отзив}, или %{report_link:докладвай скрипта}."
+    # heading for section relating to adult content when posting new script or script version
     adult_content: "Съдържание за възрастни"
+    # label for checkbox letting authors report their script as containing adult content
     adult_content_self_report: "Този скрипт съдържа съдържание за възрастни, или е за такъв сайт."
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script not flagged as having adult content
     adult_content_self_report_explanation: "%{site_name} позволява скриптове със съдържание за възрастни, но те трябва да бъдат маркирани като такива, така че потребителите да могат да избират дали да ги видят."
+    # label for checkbox letting authors report their script as not containing adult content
     not_adult_content_self_report_html: "Този скрипт <strong>не</strong> съдържа съдържание за възрастни и <strong>не</strong> е за сайтове със съдържание за възрастни."
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content
     not_adult_content_self_report_explanation: "%{site_name} позволява скриптове със съдържание за възрастни, но те трябва да бъдат маркирани като такива, така че потребителите да могат да избират дали да ги видят. Вашият скрипт беше маркиран, че има съдържание за възрастни. Можете да го докладвате, че не е такъв; това ще бъде прегледано от модератор."
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content due to automatic checking
     not_adult_content_self_report_explanation_automatic: "%{site_name} позволява скриптове със съдържание за възрастни, но те трябва да маркират по такъв начин, че потребителите да могат да избират дали да ги виждат. Вашият скрипт е маркиран, че има съдържание за възрастни, заради принадлежността си към  %{domain_list}."
+    # the error you see when accessing a adult content script when logged in with the adult content setting off
     adult_content_on_greasy_logged_in_error: "Скриптът вече не достъпен на този сайт с вашите текущи %{edit_account_link:Greasy Fork настройки на акаунта}."
+    # the error you see when accessing a adult content script when not logged in
     adult_content_on_greasy_not_logged_in_error: "Този скрипт повече не е достъпен анонимно на сайта. %{login_link:Влезте} и проверете вашите настройки за профила в Greasy Fork."
+    # the error you see when access a non-adult content script on sleazy fork
     non_adult_content_on_sleazy: "Скриптът не е достъпен на този сайт."
     not_js_convertible_override_header: "Конвертиране до JS"
     not_js_convertible_override_explanation: "%{site_name} автоматично може да създаде %{help_link:JS конвертиране} на вашия CSS. Понеже JS преработката може да се държи различно от вашия CSS, препоръчваме да тествате резултата. Ако се вижда, че не работи, можете да го направите недостъпен чрез отметката по-долу."
     not_js_convertible_override_label_html: "Това <strong>не</strong> трябва да бъде достъпно в потребителски JS формат."
+    # marker after script name shown to authors indicating their adult scripts
     adult_marker: "(За възрастни)"
+    # marker after script name if it's deleted
     deleted_marker: "(Изтрит)"
+    # marker after script name if it's locked
     locked_marker: "(Заключен)"
+    # marker after script name if it's unlisted
     unlisted_marker: "(Не се показва)"
+    # marker after script name if it's a library
     library_marker: "(Библиотека)"
+    # title for libraries listing page
     libraries_title: "Библиотеки"
+    # description for libraries listing page
     libraries_description_html: "На %{site_name} има публикувани от потребители библиотеки, които можете да <code>@require</code> във вашите скриптове. За другите видове библиотеки, които можете да <code>@require</code>, прочетете политиката %{policy_link:%{site_name} за <code>@require</code>}."
+    # title of the listing of top sites to script
     by_site_list_title: "Потребителски скриптове за %{site_name}, групирани по сайт"
+    # description of the listing for top sites to script
     by_site_list_description: "Това са сайтовете, за които има популярни скриптове. По-голям шрифт означава по-популярни потребителски скриптове."
     by_site_list_filter: "Филтър по име на сайта:"
+    # placeholder for script search box
     search_placeholder: "Търсене на скриптове"
     updated: "Скриптът е обновен."
     preview_additional_info: "Преглед"
+    must_confirm: ""
+    must_confirm_external_sign_in: ""
     must_confirm_email_button: "Изпрати връзка за потвърждение до %{email}"
     authors_heading: "Автори"
     error_unauthorized_copy: "Този код изглежда е неоторизирано копие на %{script}. Моля, прочетете %{rules_link:правилата} на%{site_name}за публикуване на скриптове."
@@ -326,10 +545,10 @@ bg:
           description_html: Този скрипт ще <b>вмъква реклами</b> в посетените от вас сайтове.
         tracking:
           title: Проследяване
-          description_html: Този скрипт съдържа код, който ще <b>следи посетените от вас сайтове</b>.
+          description_html: "Този скрипт съдържа код, който ще <b>следи посетените от вас сайтове</b>."
         miner:
           title: Криптокопачка
-          description_html: Този скрипт съдържа криптокопачка, която ще <b>използва ресурсите на устройството ви</b> когато е активен.
+          description_html: "Този скрипт съдържа криптокопачка, която ще <b>използва ресурсите на устройството ви</b> когато е активен."
         referral-link:
           title: Реферални връзки
           description_html: Скриптът ще <b>презапише връзките</b> за да вмъкне реферален или афилиейт код.
@@ -343,10 +562,15 @@ bg:
         short: CSS
         long: Потребителски стил
   script_sets:
+    # description of script sets on edit page
     description: "Групите позволяват да създадете подбран списък от скриптове, с които да разглеждате Greasy Fork. Можете да добавяте към групата индивидуални скриптове, групи на други потребители или автоматично генерирани групи. С помощта на същите методи можете да изключвате скриптове от вашата група."
+    # name for the favorites set
     favorites_name: "Любими"
+    # delete button text for a script set
     delete: "Изтриване на група скриптове"
+    # delete confirmation for a script set
     delete_confirmation: "Наистина ли искате да изтриете тази група скриптове?"
+    # option for choosing to sort the set by the default sort the site uses
     site_default_sort: "(по подразбиране)"
     edit_scripts:
       heading: "Скриптове"
@@ -410,123 +634,194 @@ bg:
       user: "Скриптове от потребител %{user}"
       locale: "Скриптове на %{locale_name}"
   home:
+    # html title of the homepage
     title: "%{site_name} - сигурни и полезни потребителски скриптове"
+    # text at the top of the homepage.
     welcome: "Добре дошли на %{site_name}, сайт за потребителски скриптове."
+    # html title of the sleazy fork homepage
     sleazy_title: "%{site_name} - сигурни и полезни потребителски скриптове за възрастни"
+    # text at the top of the sleazy fork homepage.
     sleazy_welcome: "Добре дошли на %{site_name}, сайт за потребителски скриптове за възрастни."
+    # placeholder for home page search box
     search_placeholder: "Търсене за потребителски скриптове"
     scripts_for_label: "Скриптове за:"
+    # heading for the paragraph explaining what user scripts are
     explain_user_scripts_heading: "Какво са потребителските скриптове?"
+    # text explaining what user scripts are.
     explain_user_scripts_html: "Потребителските скриптове ви позволяват да контролирате сърфирането в мрежата. Веднъж инсталирани те автоматично правят посещаваните сайтове по-добри, добавяйки екстри, правейки ги по-лесни за употреба, или премахвайки досадни неща. Потребителските скриптове за %{site_name} са написани от други потребители и публикувани за споделяне с целия свят. Те се инсталират безплатно и са лесни за употреба."
+    # header for step 1 - how to install a user script manager
     installing_step1_header: "Стъпка 1: инсталирайте скриптов мениджър"
+    # caption in step 1 - screenshot of tampermonkey on chrome
     installing_step1_caption: "Tampermonkey за Chrome"
+    # text for step 1, listing options for user script managers based on browsers
     installing_step1_description_html: >
-        <p>За да използвате потребителски скриптове, първо трябва да инсталирате скриптов
-        мениджър. Кой ще използвате, това зависи от използвания от вас браузър.</p>
+      <p>За да използвате потребителски скриптове, първо трябва да инсталирате скриптов мениджър. Кой ще използвате, това зависи от използвания от вас браузър.</p>
 
-        <ul>
+      <ul>
 
-        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} или %{chrome_violentmonkey_link:Violentmonkey}</li>
+      <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} или %{chrome_violentmonkey_link:Violentmonkey}</li>
 
-        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
-        или %{firefox_violentmonkey_link:Violentmonkey}</li>
+      <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, или %{firefox_violentmonkey_link:Violentmonkey}</li>
 
-        <li>Safari: %{safari_tampermonkey_link:Tampermonkey} или %{safari_userscripts_link:Userscripts}</li>
+      <li>Safari: %{safari_tampermonkey_link:Tampermonkey} или %{safari_userscripts_link:Userscripts}</li>
 
-        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+      <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
 
-        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} или %{opera_violentmonkey_link:Violentmonkey}</li>
+      <li>Opera: %{opera_tampermonkey_link:Tampermonkey} или %{opera_violentmonkey_link:Violentmonkey}</li>
 
-        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+      <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
 
-        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+      <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
 
-        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+      <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
 
-        <li>AdGuard: (не е нужен допълнителен софтуер)</li>
+      <li>AdGuard: (не е нужен допълнителен софтуер)</li>
 
-        </ul>
+      </ul>
+    # header for step 2 - how to install a user script
     installing_step2_header: "Стъпка 2: инсталирайте потребителски скрипт"
+    # caption for step 2 - showing the install button for user scripts
     installing_step2_caption: "Бутон за инсталиране на скрипта"
+    # text for step 2 - describing how to find and install user scripts
     installing_step2_description_html: >
-        <p>%{browse_link:Разгледайте сайта} за да откриете потребителски скрипт, който
-        искате да пробвате. Например, ето няколко от най-популярните скриптове:</p>
+      <p>%{browse_link:Разгледайте сайта} за да откриете потребителски скрипт, който искате да пробвате. Например, ето няколко от най-популярните скриптове:</p>
 
-        %{highlighted_scripts_list}
+      %{highlighted_scripts_list}
 
-        <p>След като намерите скрипта, от страницата му натиснете зеления бутон за
-        инсталиране и вашият скриптов мениджър ще поиска разрешение за инсталиране.</p>
+      <p>След като намерите скрипта, от страницата му натиснете зеления бутон за инсталиране и вашият скриптов мениджър ще поиска разрешение за инсталиране.</p>
+    # header for step 3 - how to use a user script
     installing_step3_header: "Стъпка 3: използвайте скрипта"
+    # description for step 3, describing browsing to the site and having the user script apply
     installing_step3_description_html: >
-        <p>Отидете на сайта, за който е предназначен потребителския скрипт. Той автоматично
-        би трябвало да си свърши работата. След като видите действията му, върнете
-        се на страницата му и оставете някакъв отзив за автора.</p>
+      <p>Отидете на сайта, за който е предназначен потребителския скрипт. Той автоматично би трябвало да си свърши работата. След като видите действията му, върнете се на страницата му и оставете някакъв отзив за автора.</p>
   users:
+    # html title for the sign in page
     sign_in_title: "Влизане в %{site_name}"
+    # what signing in lets people od
     sign_in_description: "Входът в %{site_name} позволява качването на скриптове и отзиви за скриптове от други автори. За да преглеждане и инсталиране на скриптове, не е нужен вход."
+    # heading for signing in with an external service (Google, GitHub, etc.)
     sign_in_external: "Влизане с оторизация във външен сайт"
+    # button for signing in with an external service (Google, GitHub, etc.)
     sign_in_with: "Влизане с %{provider}"
+    # heading for signing in with a password
     sign_in_password: "Влизане с парола"
+    # when a user attempts to sign in with an external service and a user already exists with the same email, this is the message shown. email: provided e-mail, user_name: existing user's name, provider: what the user tried to sign in with (e.g. GitHub), sign_in_link: a link to the sign in page with text from sign_in_email_used_sign_in_link
     sign_in_email_used_no_external_services_html: "'%{email}' вече е регистриран от потребител '%{user_name}'. Ако това сте вие и желаете да добавите допълнителен вход с %{provider}, първо %{sign_in_link} във вашия профил, а после добавете %{provider}."
+    # same as above, but when the existing user uses other providers. also includes existing_providers, which is a list of the existing user's sign ins, run through to_sentence (http://apidock.com/rails/Array/to_sentence)
     sign_in_email_used_with_external_services_html: "'%{email}' вече е регистриран от потребител '%{user_name}', който влиза с %{existing_providers}. Ако това сте вие и желаете да добавите допълнителен вход с %{provider}, първо %{sign_in_link} във вашия профил, а после добавете %{provider}."
+    # sign in link for email_used messages
     sign_in_email_used_sign_in_link: "влезте"
+    # when a user attempts to create an account with an external service, but an email was not provided by that service
     sign_in_email_missing: "За създаването на нов профил, %{site_name} изисква email, какъвто %{provider} не предоставя. Можете или да обновите профила си в %{provider} и да влезете отново, или да създадете нормален email/парола профил в %{site_name}, а после да добавите %{provider} там."
+    # this shows when signing in for the first time with an external sign in but the name received is already in use. the user is prompted to enter a different name.
     sign_in_name_used: "Името '%{name}' вече е заето. Изберете друго."
+    # the button when submitting the name form per above
     sign_in_name_used_submit: "Изпрати"
+    # Button to preview a user's profile before saving
+    # heading for the user's control panel, which contains links such as post script and edit account
     control_panel: "Контролен панел"
+    # heading for the list of discussions about a user's own scripts
     discussions_on_scripts: "Обсъждане на вашите скриптове"
+    # alt text for the RSS feed icon for discussions about a user's own scripts
     discussions_on_scripts_feed_alt: "RSS Feed"
+    # text to show in the section for discussions about a user's own scripts if there are no discussions yet
     discussions_on_scripts_none: "Все още няма!"
+    # link to more discussions on a user's own scripts, as the initial list is limited in number
     discussions_on_scripts_more: "Още обсъждания..."
+    # heading for the list of scripts on a user's page
     script_list: "Скриптове"
+    # text to show in a user's script section when they have created no scripts
     script_list_none: "Няма публикувани скриптове."
+    # text to show in a user's script section when they have created scripts, but they are not shown due to the filters active
     script_list_none_for_filter: "Няма скриптове според избраните филтри."
+    # text to show in a user's own script section when they have created no scripts. script_list_none_same_user_info_link is a link to a tutorial with text of script_list_none_same_user_info_link_text
     script_list_none_same_user_html: "Нямате нито един написан скрипт. %{script_list_none_same_user_info_link}"
+    # text used for link in script_list_none_same_user_html
     script_list_none_same_user_info_link_text: "Искате ли да научите как?"
+    # heading for the list of a user's deleted scripts (visible to only that user and mods)
     deleted_script_list: "Изтрити скриптове"
     unlisted_script_list: "Скриптове извън списъка"
+    # link to log out
     sign_out: "Изход"
+    # link to edit an account
     edit: "Промяна на профила"
+    # link to edit how the user signs in
     edit_sign_in: "Промяна на начините за вход"
+    # html title for the edit sign in page
     edit_sign_in_title: "Промяна на начините за вход"
+    # heading for the password section of the edit sign in methods page
     edit_sign_in_password: "Парола"
+    # informational text telling the user they're not using a password
     edit_notifications: "Промени известията"
     no_password_set_info: "Вашият профил не е конфигуриран с парола."
+    # button to set a password when one is not already set
     set_password: "Сложете парола"
+    # button to set a password when one is already set
     update_password: "Обновете паролата"
+    # error message when the password and the confirmation don't match
     update_password_no_match: "Паролите не съвпадат."
+    # notice after a password was updated successfully
     password_updated: "Паролата е обновена."
+    # information text saying the user can unset their password and use just external sign ins
     remove_password_info: "Можете да премахнете паролата и да разчитате единствено на вход с външна оторизация."
+    # button to remove the password from the user's account
     remove_password: "Премахване на паролата"
+    # error message to show if the user attempts to remove a password but have no external sign ins. This is normally not possible with the interface.
     cant_remove_password: "Паролата не може да бъде премахната - нямате друг начин за влизане."
+    # error message to show if the user attempts to remove a sign in but has no password or other sign ins. This is normally not possible with the interface. provider is the external site's name, like GitHub or Google
     cant_remove_sign_in: "Входът с %{provider} не може да бъде премахнат - нямате друг начин за влизане."
+    # notice after a password was removed successfully
     password_removed: "Паролата е премахната."
+    # heading for the external sign ins section of the edit sign in methods page
     edit_sign_in_external: "Външен вход"
+    # information text about how they can use external sign ins, shown when the user has not set any yet
     external_sign_in_info_no_sign_ins: "Можете да използвате вашия профил от други сайтове, за да влезете в %{site_name}."
+    # information text about how they can use external sign ins, shown when the user already has some set. should describe the concept of syncing, where account details on %{site_name} will be updated to match the external service on sign in
     external_sign_in_info_with_sign_ins: "В момента използвате вход чрез външна оторизация. Знакът за \"синхронизация\" означава, че вашата информация в %{site_name}  (потребителско име и email) ще бъдат обновени при влизане."
+    # notice after a sign in is added. provider is the external site's name, like GitHub or Google
     external_sign_in_added: "Добавен вход чрез %{provider}."
+    # notice after a sign in is updated (from syncing to not or opposite). provider is the external site's name, like GitHub or Google
     external_sign_in_updated: "Обновен е входът чрез %{provider}."
+    # notice after a sign in is removed. provider is the external site's name, like GitHub or Google
     external_sign_in_removed: "Премахнат вход чрез %{provider}."
+    # notice after a sign in fails
     external_sign_in_failed: "Влизането чрез %{provider} неуспешно: %{error}."
+    # notice after a user tries to add a sign in to their account, but that sign in is already in use by another user
     external_sign_in_already_used: "Добавянето на вход чрез %{provider} е неуспешно: вече се използва от потребител '%{user_name}'."
+    # notice after successfully creating a new user based on external login
     external_sign_in_confirmation: "Беше създаден нов %{site_name} акаунт, базиран на детайлите от %{provider}. Вашето публично потребителско име е %{username}."
+    # an indicator beside the sign in provider's name if the user chose to enable syncing
     syncing_indicator: "(синхронизация)"
+    # button to set a sign in provider to sync
     enable_syncing: "Включване на синхронизацията"
+    # button to set a sign in provider to not sync
     disable_syncing: "Изключване синхронизацията"
+    # button to remove a sign in provider
     remove_external_sign_in: "Премахване"
+    # information text indicating that the list of links below it are for addding an external sign in
     add_external_sign_in_info: "Добавяне на вход:"
+    # link to docs on how to set up a webhook for script syncing
     set_up_webhook: "Настройте webhook"
     author_email_notification_type:
+      # notification option: don't send the user e-mails
       none: "Изключване на email-и при обсъждане на скриптовете ви"
+      # notification option: send e-mails on new discussions but not new posts on existing discussions
       discussion_only: "Получаване на email когато някой остави коментар за ваш скрипт"
+      # notification option: send e-mails on new discussoins and on new posts on existing discussions
       discussion_and_comment: "Получаване на email когато е създадено обсъждане за ваш скрипт, или е пуснат нов коментар."
+    # display of a single user when displaying a list of users. user_link is a link to the user's page with text of the user name, count is the number of public scripts authored
     list_display_html:
       one: "%{user_link} - %{count} скрипт"
       other: "%{user_link} - %{count} скрипта"
+    # sort link for sorting users by number of scripts they've posted
     listing_number_of_scripts: "Брой скриптове"
+    # sort link for sorting users by the creation date of their scripts
     listing_new_scripts: "Нови скриптове"
+    # sort link for sorting users by the updated date of their scripts
     listing_updated_scripts: "Обновени скриптове"
+    # sort link for sorting users by when they signed up
     listing_registration_date: "Дата на регистрация"
+    # title for page showing list of users
     listing_title: "Потребители"
     listing_banned_filter:
       banned: "Забранени"
@@ -536,18 +831,26 @@ bg:
       script_author: "Автор на скрипта"
       not_script_author: "Не автор на скрипта"
       all: "Всички"
+    # placeholder for user search box
     search_placeholder: "Търсене по потребители"
+    # default option for the user's preferred locale
     locale_prompt: "(Изберете локализация)"
+    # text describing what the show ads checkbox does
     show_ads_description: "Подкрепете %{site_name}, като разрешите да се появяват рекламите."
+    # text describing what the show sensitive checkbox does
     show_sensitive_description: "Покажи скриптове със съдържание за възрастни"
+    # text describing what the preferred markup setting does
     preferred_markup_description: "Ще се използва за нови скриптове и публикации."
     filter_locale_default_description: "По подразбиране, показвай само съдържание в текущата локализация"
+    # link from sleazy fork to greasy fork on user page
     greasy_fork_scripts_link:
       one: "%{user_name} има %{count} скрипта на Greasy Fork."
       other: "%{user_name} има %{count} скрипта на Greasy Fork."
+    # displays when the user is editing their account but syncing is on
     update_sync_warning:
       one: "Вашето потребителско име и email са настроени да се синхронизират, когато влизате чрез %{providers}. %{edit_sign_in_link:Edit your sign in methods to remove syncing} Ако желаете да създадете постоянно потребителско име или email."
       other: "Вашето потребителско име и email са настроени да се синхронизират, когато влизате чрез %{providers}. %{edit_sign_in_link:Edit your sign in methods to remove syncing} Ако желаете да създадете постоянно потребителско име или email."
+    # link on the user page to go to the delete page
     delete_link: "Изтриване на профила"
     delete:
       intro: "Изтриването на профила  '%{user_name}' в %{site_name}ще има тези последици:"
@@ -596,13 +899,13 @@ bg:
     notifications:
       discussion_defaults:
         title: Известия от форума
-        new_discussion: По подразбиране, абонирай се за всички започнати от теб дискусии
-        new_comment: По подразбиране, абонирай се за всички дискусии, в които коментираш
-        mention: 'Получаване на известие когато някой Ви спомене в дискусия. '
+        new_discussion: "По подразбиране, абонирай се за всички започнати от теб дискусии"
+        new_comment: "По подразбиране, абонирай се за всички дискусии, в които коментираш"
+        mention: "Получаване на известие когато някой Ви спомене в дискусия. "
       conversation_defaults:
         title: Известия за разговори
-        starter: По подразбиране, абонирай се за всички започнати от теб разговори
-        receiver: По подразбиране, абонирай се за всички разговори, в които те споменават
+        starter: "По подразбиране, абонирай се за всички започнати от теб разговори"
+        receiver: "По подразбиране, абонирай се за всички разговори, в които те споменават"
       save_button: Промени настройките за известия
       title: Известия
       current_discussion_subscriptions:
@@ -611,6 +914,13 @@ bg:
       save_success: Настройките за известията бяха обновени.
       unsubscribe_all: Отпиши се от всички известия
       unsubscribe_all_success: Отписа се от всички известия.
+  webhooks:
+    info:
+      title: ""
+      intro_html: |
+      already_syncing_list: ""
+      synced_item_html: ""
+      language_note: ""
   help:
     sections:
       usage: Употреба
@@ -622,167 +932,135 @@ bg:
     installing_user_styles:
       title: 'Как да инсталирате потребителски стилове'
     meta_keys:
+      # title of the help document describing script meta keys (e.g. @name).
       title: "Meta keys, четени от %{site_name}"
+      # introductory paragraph. If the URL has a localized version, use that.
       intro_html: "Това е списък с <a href=\"http://wiki.greasespot.net/Metadata_Block\">user script мета данни</a>, които %{site_name} ще прочете. Данните, които не са включени в този списък, могат да са включени в, и ще се ползват в инсталираните скриптове, но няма да имат ефект върху интерфейса на %{site_name}'s."
+      # description of @name
       name: "Името на скрипта, използвано като заглавие и връзки. Задължително."
+      # description of @name:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
       name_localized_html: "Името на скрипта в специфична локализация, където XX е <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 двубуквен код</a>, а YY е незадължителен <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 код за държавата</a>. Когато потребителят браузва в съответната локализация, презаписва <code>@name</code>."
+      # description of @description
       description: "Описание какво прави скриптът. Показва се като текст под името на скрипта. Задължително."
+      # description of @description:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
       description_localized_html: "Описанието на скрипта в специфична локализация, където XX е <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 двубуквен код</a>, а YY е незадължителен <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 код за държавата</a>. Когато потребителят браузва в съответната локализация, презаписва <code>@description</code>."
+      # description of @namespace. Do not translate content inside <code>.
       namespace_html: "Скрипт мениджърите използват комбинация от <code>@namespace</code> и <code>@name</code>, за да разберат дали скриптът вече е инсталиран. %{site_name} изисква това поле и ще предупреди ако то е променено при обновяване."
+      # description of @description:XX-YY. developer.mozilla.org may have localized content; use it if available.
       version_html: "Идентификатор за конкретна версия на скрипта в <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">Mozilla version format</a>. Версията се показва в страницата на скрипта. %{site_name} изисква наличието на това поле и ще предупреди ако стойността му се намали, или ако не се увеличи при промяна на кода на скрипта."
+      # description of @include
       include_html: "Опишете на кои страници ще се изпълнява скриптът. Списъкът ще бъде обработен, ще бъде показан на страницата на скрипта, и ще бъде използван за категоризиране на скриптовете. Всеки скрипт трябва да има поне един <code>@match</code> или <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Повече за формата можете да прочетете тук.</a>"
+      # description of @require. %{external_script_link} is a link to the document describing allowed external scripts and has a link of key "require_external_script_link_text"
       require_html: "Включва външен JavaScript в скрипта. Виж %{external_script_link}."
+      # used in required_html
       require_external_script_link_text: "правила за вмъкване на код от външни скриптове"
+      # description of @updateURL
       updateURL: "Описва как скриптовите мениджъри могат да получат обновленията. %{site_name} ще премахне тези ключове, за да могат скриптовете, инсталирани от %{site_name}, да получават обновления само от %{site_name}."
+      # description of @license
       license: "Лицензът, който описва правата как хората да копират или променят скрипта. Препоръчително е използването на \"Пълно име\" или \"Идентификатор\" от %{spdx_link:the SPDX License List}. Липсата на лиценз предполагам, че потребителите могат да инсталират скрипта за лична употреба, но не могат да го разпространяват. Лицензът се показва на информационната страница на скрипта."
+      # description of @supportURL
       supportURL: "URL на страница, където потребители могат да получат поддръжка за скрипта (например бъг тракер, форум, e-mail адрес). Адресът ще се показва на страницата за обратна връзка на скрипта."
+      # description of @contributionURL. You can replace the sample "business" and "item_name" parameters in the URLs with localized versions.
       contributionURL_html: "URL на страница, където потребителите могат да правят дарения на автора на скрипта. Връзката се показва на страницата за обратна връзка. URLите могат да бдат http, https, или Bitcoin протоколи. За да сложите връзка към страница на PayPal за дарения, използвайте URL във формата <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a>, като подмените примерния e-mail адрес с вашия."
+      # description of @contributionAmount. Do not translate content inside <code>.
       contributionAmount_html: "Препоръчана сума за дарение, използвана заедно с <code>@contributionURL</code>."
+      # description of @compatible. %{browsers} is a comma-separated list of browser codes. You can translate "Must disable pop-up blocker", but do not translate "@compatible firefox". 
       compatible_html: "Маркира този скрипт като съвместим с браузър. Информацията за съвместимост ще се показва на страницата на скрипта. Коментарите могат да бъдат вмъкнати във формата <code>@compatible firefox Must disable pop-up blocker</code>. Разпознатите браузъри са: %{browsers}."
+      # description of @incompatible. %{browsers} is a comma-separated list of browser codes. You can translate "Broken since Firefox 23", but do not translate "@compatible firefox".
       incompatible_html: "Маркира този скрипт като несъвместим с браузър. Информацията за съвместимост ще се показва на страницата на скрипта. Незадължителни коментари могат да бъдат вмъкнати във формата <code>@incompatible firefox Broken since Firefox 23</code>. Разпознатите браузъри са: %{browsers}."
       antifeature_html: "Разкрива особености на скрипта, които облагодетелстват автора, а не потребителя. Форматът е следния <code>@antifeature тип описание</code>. %{site_name} ще разпознае следните типове: <code>ads</code> (скриптът показва реклама на потребителя), <code>tracking</code> (скриптът проследява активността на потребителя), <code>miner</code> (скриптът съдържа криптокопачка), и<code>referral-link</code> (скриптът презаписва връзките с реферал/афилиейт проследяване). Другите типове се игнорират, но независимо от това скриптът трябва да спазва %{code_rules_link: Правилата на%{site_name}}. Описанието не е задължително."
       antifeature_localized_html: "<code>@antifeature</code> описано в специфична локализация, където XX е<a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-буквен код</a> и YY не е задължителен <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 код на държавата</a>. Показва се вместо оригинална<code>@antifeature</code>, когато потребителят разглежда сайта в съответната локализация."
     writing_user_scripts:
+      # title for Writing user scripts help page
       title: "Как да пишем потребителски скриптове"
+      # content of the page. The link to greasespot can be updated to a better resource if one is available in your language. code_rules_link and meta_keys_link are links to those help pages, with text of those page's titles. ask_in_forum_link is a link to the forum with text of ask_in_forum_link_text. user_page_link is a link to the user's page if the user is signed in, or plain text if they're not; in either case, the text is user_page_link_text. post_new_script_link is a link to the new script page, with text of post_new_script_link_text
       content_html: "<p>Писането на user scripts изисква познаването на JavaScript. <a href=\"http://wiki.greasespot.net/Tutorials\">Ръководствата в GreaseSpot Wiki</a> ще ви дадат начален тласък за JavaScript като цяло, и каква е връзката му с потребителски скриптове. Ще ви бъде от полза и разглеждането на скриптовете от другите автори. Може да ви е интересно %{code_rules_link} и %{meta_keys_link}. Ако се нуждаете от помощ за разработката на вашия скрипт, не се притеснявайте да %{ask_in_forum_link}.</p><p>За да публикувате на %{site_name}, трябва да си направите профил. От вашата %{user_page_link}, последвайте връзката %{post_new_script_link}.</p>"
+      # link text used in content_html
       ask_in_forum_link_text: 'попитате във форума'
+      # link text used in content_html
       user_page_link_text: 'потребителска страница'
+      # link text used in content_html
       post_new_script_link_text: 'публикувате нов скрипт'
     code_rules:
+      # title for the rules page
       title: "Правила на %{site_name} за публикуване на скриптове"
-      preamble: Това са изискванията за скриптове, публикувани на %{site_name}. Те имат за цел да запазят %{site_name} безопасно и полезно място за потребителски скриптове. Всеки скрипт, попадащ извън тези изисквания, може да бъде изтрит от модераторите на %{site_name}.
+      preamble: "Това са изискванията за скриптове, публикувани на %{site_name}. Те имат за цел да запазят %{site_name} безопасно и полезно място за потребителски скриптове. Всеки скрипт, попадащ извън тези изисквания, може да бъде изтрит от модераторите на %{site_name}."
       functionality_header: Функционалност
-      description: Скриптовете трябва да включват описание на това, което правят, и не могат да правят неща извън него. Потребителите трябва да знаят какво ще направи скриптът, преди да го инсталират.
-      reason: Скриптовете трябва да имат причина да бъдат скриптове. Например скрипт, който просто насочва потребителя към уебсайт, не е необходимо да бъде скрипт, може да е връзка. Разрешени са скриптове, които използват уеб услуга за извършване на действие върху текущата страница (напр. За да я преобразуват по някакъв начин).
-      unrelated: Скриптовете не трябва да изискват от потребителите да извършват несвързани действия, като изпращане на пари, абониране за канал, присъединяване към група или харесване на страница, за да може скриптът да функционира напълно или частично.
-      monetization_html: Скриптове, които по-скоро са полезни на <em>автора</em> отколкото на потребителите (например проследяване, реклами и майнъри) са позволени, но все пак те трябва да бъдат описани с %{antifeature_link:<code>@antifeature</code> мета ключове}.
+      description: "Скриптовете трябва да включват описание на това, което правят, и не могат да правят неща извън него. Потребителите трябва да знаят какво ще направи скриптът, преди да го инсталират."
+      reason: "Скриптовете трябва да имат причина да бъдат скриптове. Например скрипт, който просто насочва потребителя към уебсайт, не е необходимо да бъде скрипт, може да е връзка. Разрешени са скриптове, които използват уеб услуга за извършване на действие върху текущата страница (напр. За да я преобразуват по някакъв начин)."
+      unrelated: "Скриптовете не трябва да изискват от потребителите да извършват несвързани действия, като изпращане на пари, абониране за канал, присъединяване към група или харесване на страница, за да може скриптът да функционира напълно или частично."
+      monetization_html: "Скриптове, които по-скоро са полезни на <em>автора</em> отколкото на потребителите (например проследяване, реклами и майнъри) са позволени, но все пак те трябва да бъдат описани с %{antifeature_link:<code>@antifeature</code> мета ключове}."
       code_header: Код
-      obfuscation: Кодът, публикуван на %{site_name} не трябва да бъде завоалиран или минифициран. Потребителите трябва да имат възможност да разгледат и разберат как работи скрипта преди да го инсталират. Ако скриптът е включен в пакет от инструмент като webpack, той трябва да бъде показан и в не минифициран формат.
-      libraries_html: Скриптът трябва да <code>@require</code>-ва използваните библиотеки, освен ако няма валидна техническа причина. В такъв случай библиотеката трябва да бъде вмъкната в скрипта и да включва информация за източника и (например коментар, включваш адрес и/или името и версията).
-      updates: Скриптовете не трябва да проверяват за актуализация по-често от веднъж на ден. Имайте предвид, че повечето потребителски скриптови мениджъри отговарят за автоматичната актуализация, така че обикновено няма смисъл това да бъде извършвано от скрипта. Също така, скриптовете не трябва да инжектират динамично други скриптове, хоствани на %{site_name}, защото това пречи на кеширането от скриптовия мениджър.
+      obfuscation: "Кодът, публикуван на %{site_name} не трябва да бъде завоалиран или минифициран. Потребителите трябва да имат възможност да разгледат и разберат как работи скрипта преди да го инсталират. Ако скриптът е включен в пакет от инструмент като webpack, той трябва да бъде показан и в не минифициран формат."
+      libraries_html: "Скриптът трябва да <code>@require</code>-ва използваните библиотеки, освен ако няма валидна техническа причина. В такъв случай библиотеката трябва да бъде вмъкната в скрипта и да включва информация за източника и (например коментар, включваш адрес и/или името и версията)."
+      updates: "Скриптовете не трябва да проверяват за актуализация по-често от веднъж на ден. Имайте предвид, че повечето потребителски скриптови мениджъри отговарят за автоматичната актуализация, така че обикновено няма смисъл това да бъде извършвано от скрипта. Също така, скриптовете не трябва да инжектират динамично други скриптове, хоствани на %{site_name}, защото това пречи на кеширането от скриптовия мениджър."
       external_js: "%{external_scripts_link:Използването на външен JavaScript е ограничено.}"
       copyright_header: Авторски права
-      licensing: Вашият скрипт трябва да уважава авторските права на другите. Това включва самия код и всички ресурси (например изображения), които използва. Ако възнамерявате да използвате чуждо съдържание, спазвайте техните лицензионни условия или предварително поискайте разрешение от авторите.
-      reposts: 'Дори в случаите, които не се нарушават авторски права, повторните публикации на скриптове, които вече са на %{site_name} , не са разрешени, освен ако те не подобряват оригинала.
-
-        .'
+      licensing: "Вашият скрипт трябва да уважава авторските права на другите. Това включва самия код и всички ресурси (например изображения), които използва. Ако възнамерявате да използвате чуждо съдържание, спазвайте техните лицензионни условия или предварително поискайте разрешение от авторите."
+      reposts: "Дори в случаите, които не се нарушават авторски права, повторните публикации на скриптове, които вече са на %{site_name} , не са разрешени, освен ако те не подобряват оригинала.\n."
       miscellaneous_header: Разни
-      keywords_html: Скриптовете не трябва да вкючват <code>@include</code>, <code>@match</code>, или ключови думи за сайтове, за които не предлагат функционалност.
-      adult_content_rule: Скриптовете, които включват съдържание за възрастни или са за сайтове със съдържание за възрастни, трябва да бъдат маркирани като такива, за да позволят на другите потребители да преценят дали да ги виждат.
-      reporting: Ако забележите скрипт, който попада извън тези параметри, моля, докладвайте го чрез обратната връзка и изберете „Докладване на скрипт“.
+      keywords_html: "Скриптовете не трябва да вкючват <code>@include</code>, <code>@match</code>, или ключови думи за сайтове, за които не предлагат функционалност."
+      adult_content_rule: "Скриптовете, които включват съдържание за възрастни или са за сайтове със съдържание за възрастни, трябва да бъдат маркирани като такива, за да позволят на другите потребители да преценят дали да ги виждат."
+      reporting: "Ако забележите скрипт, който попада извън тези параметри, моля, докладвайте го чрез обратната връзка и изберете „Докладване на скрипт“."
     external_scripts:
+      # title of the external script rules page
       title: "Политика на %{site_name} за външни скриптове"
+      # content of the external script rules page
       content_html: >
-          <p>Потребителските скриптове имат техническата възможност да включват и
-          изпълняват други скриптове. Най-правилният начин за това е ключът %{require_doc_link:<code>@require</code>},
-          но скриптовете също могат да направят XmlHttpRequest да свалят друг скрипт
-          и да го вмъкнат в DOM.</p> <p>Най-често това е полезна екстра и повечето
-          автори го използват разумно, това също може да бъде изпълнено за зловредни
-          цели. Един от основните принципи на  %{site_name} е това, че потребителят
-          трябва да може да провери кода на скрипта. Външните скриптове могат да заобиколят
-          този принцип по няколко начина: те могат да бъдат променени без предупреждение
-          и следа, те могат да вмъкват различен код за различни хора, и те могат да
-          бъдат използвани да скриват зловреден код, включен в кода на познати библиотеки.
-          Дори някой да провери външния скрипт, и да установи че отговаря на условията,
-          това не може да гарантира, че този скрипт е бил и винаги ще бъде такъв.</p>
-          <p>За да разреши на авторите да използват външни скриптове, %{site_name}
-          създаде списък от сайтове и шаблони, които могат да бъдат включвани в скрипта.
-          Този списък се състои от адреси, които:</p> <ul>
+        <p>Потребителските скриптове имат техническата възможност да включват и изпълняват други скриптове. Най-правилният начин за това е ключът %{require_doc_link:<code>@require</code>}, но скриптовете също могат да направят XmlHttpRequest да свалят друг скрипт и да го вмъкнат в DOM.</p> <p>Най-често това е полезна екстра и повечето автори го използват разумно, това също може да бъде изпълнено за зловредни цели. Един от основните принципи на  %{site_name} е това, че потребителят трябва да може да провери кода на скрипта. Външните скриптове могат да заобиколят този принцип по няколко начина: те могат да бъдат променени без предупреждение и следа, те могат да вмъкват различен код за различни хора, и те могат да бъдат използвани да скриват зловреден код, включен в кода на познати библиотеки. Дори някой да провери външния скрипт, и да установи че отговаря на условията, това не може да гарантира, че този скрипт е бил и винаги ще бъде такъв.</p> <p>За да разреши на авторите да използват външни скриптове, %{site_name} създаде списък от сайтове и шаблони, които могат да бъдат включвани в скрипта. Този списък се състои от адреси, които:</p> <ul>
 
-          <li>Са публични</li>
+        <li>Са публични</li>
 
-          <li>Не си променят често съдържанието</li>
+        <li>Не си променят често съдържанието</li>
 
-          <li>Са полезни за повече хора, освен автора на скрипта</li>
+        <li>Са полезни за повече хора, освен автора на скрипта</li>
 
-          </ul> <p>В момента списъкът е:</p> %{allowed_require_list} <p>Ако се опитате
-          да публикувате скрипт, който използва <code>@require</code> извън тези адреси,
-          то той няма да може да бъде записан.</p> <p>Ако скриптът, който искате да
-          включите е JavaScript библиотека (например jQuery или YUI), опитайте да
-          го намерите в някой от по-горе изброените сайтове. В частност %{cdnjs_link:cdnjs}
-          и %{jsdelivr_link:jsDelivr} съдържат широк набор от библиотеки.</p> <p>Ако
-          все пак скриптът, който желаете да използвате не е наличен там, %{contact_link:let
-          us know} и ще опитаме да го намерим някъде другаде (или да го хостваме самите
-          ние!).</p> <p>Ако вие сте написали скрипта, който искате да включите, можете
-          да го публикувате отделно на %{site_name}, избирайки "Библиотека" за типа
-          му. След това можете да го използвате във вашия скрипт.</p>
+        </ul> <p>В момента списъкът е:</p> %{allowed_require_list} <p>Ако се опитате да публикувате скрипт, който използва <code>@require</code> извън тези адреси, то той няма да може да бъде записан.</p> <p>Ако скриптът, който искате да включите е JavaScript библиотека (например jQuery или YUI), опитайте да го намерите в някой от по-горе изброените сайтове. В частност %{cdnjs_link:cdnjs} и %{jsdelivr_link:jsDelivr} съдържат широк набор от библиотеки.</p> <p>Ако все пак скриптът, който желаете да използвате не е наличен там, %{contact_link:let us know} и ще опитаме да го намерим някъде другаде (или да го хостваме самите ние!).</p> <p>Ако вие сте написали скрипта, който искате да включите, можете да го публикувате отделно на %{site_name}, избирайки "Библиотека" за типа му. След това можете да го използвате във вашия скрипт.</p>
       test_url:
         label: Тествай URL
         result_ok: URL-ът е позволен
         result_not_ok: URL-ът не е позволен
     script_rewriting:
+      # title of the rewriting page
       title: "Как %{site_name} ще презапише публикуваните скриптове"
+      # content of the rewriting page
       content_html: >
-          <p>Скриптовете, публикувани на %{site_name}, ще бъдат презаписани по следните
-          начини:</p> <ul>
+        <p>Скриптовете, публикувани на %{site_name}, ще бъдат презаписани по следните начини:</p> <ul>
 
-          <li>Ако съществуват, директивите <code>@updateURL</code>, <code>@installURL</code>,
-          и <code>@downloadURL</code> ще бъдат премахнати. Липсата им оанзачава, че
-          всеки скрипт, инсталиран от %{site_name} ще бъде обновяван от %{site_name}.</li>
+        <li>Ако съществуват, директивите <code>@updateURL</code>, <code>@installURL</code>, и <code>@downloadURL</code> ще бъдат премахнати. Липсата им оанзачава, че всеки скрипт, инсталиран от %{site_name} ще бъде обновяван от %{site_name}.</li>
 
-          <li>Директивите <code>@version</code> и <code>@namespace</code> ще бъдат
-          добавени ако липсват в скрипта. Те са нужни за правилно обновяване.</li>
+        <li>Директивите <code>@version</code> и <code>@namespace</code> ще бъдат добавени ако липсват в скрипта. Те са нужни за правилно обновяване.</li>
 
-          <li>Ако не присъства в новата версия на скрипта, <code>@description</code>
-          ще бъде добавена ако в старата версия я е имало.</li>
+        <li>Ако не присъства в новата версия на скрипта, <code>@description</code> ще бъде добавена ако в старата версия я е имало.</li>
 
-          <li>CRLF и CR ще бъдат конвертирани до стандартните Unix-style край на ред.</li>
+        <li>CRLF и CR ще бъдат конвертирани до стандартните Unix-style край на ред.</li>
 
-          </ul>
+        </ul>
+    # link to github
     site_feedback_link: "Докладвайте нередност или споделете идея за самия %{site_name}"
     credits:
+      # title for the credits page
       title: "Кредити"
+      # give credit to authors
       authors_credit: "%{site_name} нямаше да съществува без авторите, които допринасят със скриптовете си."
+      # give credit to developers. link goes to github.
       developers_credit: "%{site_name} е създаден от %{developers_link:тези автори} с помощта на всички, които докладват бъгове и препоръчват подобрения."
+      # give credit to translators. link to goes to transifex. after this text, there's a list of languages and the contributors to each.
       translators_credit: "%{site_name} беше преведен с помощта на %{translators_link:the Greasy Translation Force не Transifex}:"
+      # give credit to icon makers. all links are proper names so are not translated.
       icons_credit: "Иконите за браузъра са от %{browserlogos}."
+    # link to greasemonkey docs
     help_with_greasymonkey: "Помощ за Greasemonkey"
     contact:
+      # title of contact page
       title: "Свържете се с някого"
+      # content of contact page
       content_html: >
-          <p>Има няколко начина да обсъдите %{site_name} и нещата на него..</p> <p>Имате
-          въпрос за конкретен скрипт, публикуван на сайта? Ако е така, започнете дискусия
-          от връзката в полето Отзиви. При каквато и да е дискусия за скрипт, авторите
-          им получават известия в профилите си.</p> <p>Имате някакви въпроси или коментари
-          за самия %{site_name}, или за разработката на скриптове, или търсите някого
-          да напише скрипт за вас? %{forum_link:Posting in the forum} ще ви осигури
-          широка аудитория за вашата дискусия.</p> <p>Искате да направите доклад за
-          бъг или напълно оформена идея за самия %{site_name} (а не за конкретен скрипт
-          <em>публикуван на</em> %{site_name})? %{github_link:Post it on the GitHub
-          page.}</p> <p>Имате лични въпроси или коментари, които желаете да бъдат
-          видяни само от админ? %{admin_email_link:Send an e-mail.}</p>
+        <p>Има няколко начина да обсъдите %{site_name} и нещата на него..</p> <p>Имате въпрос за конкретен скрипт, публикуван на сайта? Ако е така, започнете дискусия от връзката в полето Отзиви. При каквато и да е дискусия за скрипт, авторите им получават известия в профилите си.</p> <p>Имате някакви въпроси или коментари за самия %{site_name}, или за разработката на скриптове, или търсите някого да напише скрипт за вас? %{forum_link:Posting in the forum} ще ви осигури широка аудитория за вашата дискусия.</p> <p>Искате да направите доклад за бъг или напълно оформена идея за самия %{site_name} (а не за конкретен скрипт <em>публикуван на</em> %{site_name})? %{github_link:Post it on the GitHub page.}</p> <p>Имате лични въпроси или коментари, които желаете да бъдат видяни само от админ? %{admin_email_link:Send an e-mail.}</p>
     privacy_policy:
       title: "Политика за поверителност"
       content_html: >
-          <p>В тази страница е описано как %{site_name} записва или проследява потребителите.
-          Ако имате някакви притеснения, %{admin_email_link:напишете имейл до админа}.</p>
-          <h2>Записи на сървъра</h2> <p>%{site_name} записва всички заявки, по начин,
-          подобен на останалите сървъри. Съхраняваната информация включва IP адресите
-          и user agent на браузъра. Записите се използват с цел дебъгване и анализ
-          на сървъра, и се запазват за една седмица. Информацията не се споделя и
-          не е публично достъпна.</p> <h2>Статистика за скриптовете</h2> <p>С цел
-          генериране на статистики, %{site_name} съхранява инсталации, обновяванията
-          и съответните IP адреси. Тази информация се запазва за един ден, а после
-          се натрупва, но вече без IP адреса. IP адрес специфичните данни не се споделят
-          и не са достъпни публично, но събраните данни са. </p> <h2>Бисквитки (когато
-          не сте влезли)</h2> <p>%{site_name} може да изпрати временни бисквитки със
-          сесийна променлива, за да могат да се използват някои функции на сайта.  Те
-          не се запазват за постоянно и могат да бъдат изтривани при затваряне на
-          браузъра (в зависимост от настройките на браузъра).</p> <h2>Потребителски
-          профили</h2> <p>%{site_name} изисква потребителите да създадат профил, за
-          да могат да публикуват скриптове, да бъдат част от дискусиите или да имат
-          достъп до други функции на сайта. При създаване на профила в сайта се записва
-          за постоянно информация за IP адреса, email адреса и User Agent на браузъра.
-          Част от нея може да бъде видима за останалите потребители.</p> <p>Действията,
-          извършвани след вход, като например публикуване на скриптове и коментиране,
-          ще бъдат видими от другите потребители.</p> <p>Ако е отметката "Запомни
-          ме" е маркирана при влизане в профила, %{site_name} ще изпрати постоянна
-          бисквитка, за да запази състоянието на вход. </p> <h2>Публикувани скриптове
-          на %{site_name}</h2> <p>%{site_name} притежава съдържание, генерирано от
-          членовете, и скриптовете могат да съдържат код за проследяване на инсталиралите
-          ги потребители.</p> <h2>Библиотеки от трети лица</h2> <p>%{site_name} може
-          да съдържа код от трети лица, за да показва рекламите на сайта. Тези библиотеки
-          могат да съдържат проследяващи функции.</p>
+        <p>В тази страница е описано как %{site_name} записва или проследява потребителите. Ако имате някакви притеснения, %{admin_email_link:напишете имейл до админа}.</p> <h2>Записи на сървъра</h2> <p>%{site_name} записва всички заявки, по начин, подобен на останалите сървъри. Съхраняваната информация включва IP адресите и user agent на браузъра. Записите се използват с цел дебъгване и анализ на сървъра, и се запазват за една седмица. Информацията не се споделя и не е публично достъпна.</p> <h2>Статистика за скриптовете</h2> <p>С цел генериране на статистики, %{site_name} съхранява инсталации, обновяванията и съответните IP адреси. Тази информация се запазва за един ден, а после се натрупва, но вече без IP адреса. IP адрес специфичните данни не се споделят и не са достъпни публично, но събраните данни са. </p> <h2>Бисквитки (когато не сте влезли)</h2> <p>%{site_name} може да изпрати временни бисквитки със сесийна променлива, за да могат да се използват някои функции на сайта.  Те не се запазват за постоянно и могат да бъдат изтривани при затваряне на браузъра (в зависимост от настройките на браузъра).</p> <h2>Потребителски профили</h2> <p>%{site_name} изисква потребителите да създадат профил, за да могат да публикуват скриптове, да бъдат част от дискусиите или да имат достъп до други функции на сайта. При създаване на профила в сайта се записва за постоянно информация за IP адреса, email адреса и User Agent на браузъра. Част от нея може да бъде видима за останалите потребители.</p> <p>Действията, извършвани след вход, като например публикуване на скриптове и коментиране, ще бъдат видими от другите потребители.</p> <p>Ако е отметката "Запомни ме" е маркирана при влизане в профила, %{site_name} ще изпрати постоянна бисквитка, за да запази състоянието на вход. </p> <h2>Публикувани скриптове на %{site_name}</h2> <p>%{site_name} притежава съдържание, генерирано от членовете, и скриптовете могат да съдържат код за проследяване на инсталиралите ги потребители.</p> <h2>Библиотеки от трети лица</h2> <p>%{site_name} може да съдържа код от трети лица, за да показва рекламите на сайта. Тези библиотеки могат да съдържат проследяващи функции.</p>
     user_css_to_user_js:
       title: Преобразуване на потребителски CSS до потребителски JS
   search:
@@ -819,39 +1097,35 @@ bg:
       message: "Докладвай съобщение от %{user}"
       script: "Докладвай %{script}"
     new_report_notes_html: >
-        <p>Преди да докладвате обърнете внимание:</p> <ul>
+      <p>Преди да докладвате обърнете внимание:</p> <ul>
 
-        <li>Модератор ще прегледа доклада ви и ще вземе съответните мерки.</li>
+      <li>Модератор ще прегледа доклада ви и ще вземе съответните мерки.</li>
 
-        <li>Неодобрение на съдържанието или мнението ви, че не е вярно, не е валидна
-        причина за доклад.</li>
+      <li>Неодобрение на съдържанието или мнението ви, че не е вярно, не е валидна причина за доклад.</li>
 
-        <li>Злоупотребата с тази функция може да доведе  <i>вие</i> да получите бан.</li>
+      <li>Злоупотребата с тази функция може да доведе  <i>вие</i> да получите бан.</li>
 
-        </ul>
+      </ul>
     new_script_report_notes_html: >
-        <p>Преди да докладвате, обърнете внимание:</p> <ul>
+      <p>Преди да докладвате, обърнете внимание:</p> <ul>
 
-        <li>Скриптове ще бъдат премахвани само ако нарушават правилата на %{rules_link:%{site_name}}.
-        Ако скриптът не работи, %{feedback_link: по-добре оставете обратна връзка.}</li>
+      <li>Скриптове ще бъдат премахвани само ако нарушават правилата на %{rules_link:%{site_name}}. Ако скриптът не работи, %{feedback_link: по-добре оставете обратна връзка.}</li>
 
-        <li>Модератор ще прегледа доклада ви и ще предприеме съответните действия.</li>
+      <li>Модератор ще прегледа доклада ви и ще предприеме съответните действия.</li>
 
-        <li>Злоупотребата с докладите може да доведе до <i>вашето</i> блокиране.</li>
+      <li>Злоупотребата с докладите може да доведе до <i>вашето</i> блокиране.</li>
 
-        </ul>
+      </ul>
     new_user_report_notes_html: >
-        <p>Преди да докладвате, моля преценете:</p> <ul>
+      <p>Преди да докладвате, моля преценете:</p> <ul>
 
-        <li>Ако докладът е заради съдържанието на скрипт или коментар, моля докладвайте
-        конкретния скрипт или коментар.</li>
+      <li>Ако докладът е заради съдържанието на скрипт или коментар, моля докладвайте конкретния скрипт или коментар.</li>
 
-        <li>Модератор ще прегледа вашия доклад  и ще предприеме съответните действия.</li>
+      <li>Модератор ще прегледа вашия доклад  и ще предприеме съответните действия.</li>
 
-        <li>Злоупотребата със системата за доклади може да доведе до <i>вашето</i>
-        наказание.</li>
+      <li>Злоупотребата със системата за доклади може да доведе до <i>вашето</i> наказание.</li>
 
-        </ul>
+      </ul>
     reason:
       non_functional: "Скриптът не работи"
       spam: "Спам"
@@ -863,6 +1137,8 @@ bg:
       external_code: "Неразрешен външен код"
       undisclosed_antifeature: "Необявен антифичър (например реклама, проследяване, майнър)"
       other: "Друго"
+    report_intro_html: ""
+    report_intro_unauthorized_html: ""
     non_functional_feedback: "Моля, докладвайте не работещите скриптове чрез %{feedback_link:обратна връзка}."
     unauthorized_code_original_placeholder: "URL на оригиналния код"
     explanation_placeholder: "Напишете допълнителни подробности (по желание)"
@@ -890,9 +1166,9 @@ bg:
     edit_comment_link: "Редакция"
     edit_comment_header: "Редактирайте коментар"
     delete_comment: "Изтриване"
-    delete_comment_confirm: Наистина ли искате да изтриете коментара?
+    delete_comment_confirm: "Наистина ли искате да изтриете коментара?"
     delete_discussion: "Изтрийте"
-    delete_discussion_confirm: Наистина ли искате да изтриете дискусията?
+    delete_discussion_confirm: "Наистина ли искате да изтриете дискусията?"
     update_comment_submit: "Обновете коментара"
     cancel_update_comment: "Отказ"
     quote_comment: "Цитат"
@@ -950,11 +1226,11 @@ bg:
     subscribe: Абонирай се
     unsubscribe: Премахни абонамент
     notify: Извести ме за всеки отговор
-    notifying_on_script: Ще бъдеш известяван за всички отговори, заради %{notifications_link:настройките за известия}.
+    notifying_on_script: "Ще бъдеш известяван за всички отговори, заради %{notifications_link:настройките за известия}."
     categories:
       greasyfork:
         name: Обратна връзка за Greasy Fork
-        description: Доклади за бъгове, заявки за нови функции и други неща в самия Greasy Fork.
+        description: "Доклади за бъгове, заявки за нови функции и други неща в самия Greasy Fork."
       development:
         name: Разработка
         description: Технически разговори за разработка на потребителски скриптове и потребителски стилове.
@@ -965,11 +1241,14 @@ bg:
         name: Дискусии за скриптове
         description: Дискусии относно съществуващи потребителски скриптове и потребителски стилове.
       no-scripts:
-        name: Дискусии за всичко друго, но не скриптове
+        name: "Дискусии за всичко друго, но не скриптове"
+      moderators:
+        name: ""
+        description: ""
     category_display: "%{name} - %{description}"
     new_title: Нова дискусия
     new_button: Нова дискусия
-    script_notice: Ако искате да дискутирате конкретен скрипт, идете до страницата му за отзиви и започнете дискусията там.
+    script_notice: "Ако искате да дискутирате конкретен скрипт, идете до страницата му за отзиви и започнете дискусията там."
     no_discussions: Няма намерени дискусии.
     mark_all_read: Маркирай като прочетени
     pending_moderator_review: Дискусията е недостъпна за другите потребители докато не бъде прегледана от модератор.
@@ -986,7 +1265,7 @@ bg:
     conversation_link_html:
       one: Разговор с %{users}
       other: Разговор с %{users}
-    conversation_info_html: Последно съобщение на %{date} от %{user}.
+    conversation_info_html: "Последно съобщение на %{date} от %{user}."
     no_conversations: Все още няма разговори.
     no_recent_conversations: Нямате скорошни разговори.
     recent:
@@ -995,22 +1274,34 @@ bg:
   screenshots:
     requirements: "Не повече от %{number} PNG, GIF, JPEG, или WebP изображения, по-малки от %{size} всяко."
   common:
+    # text to show before listing errors in a submission
     error_preamble: "Има някои проблеми с това, което публикувате..."
+    # link to the list of allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_link: "(Вижте разрешения код.)"
+    # title of the page showing allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_and_attributes_title: "Разрешени елементи за HTML съдържание"
+    # text to introduce the list of allowed HTML elements and attributes
     allowed_elements_intro: "Разрешени са следните елементи и атрибути. Това се отнася до HTML и Markdown (след конвертиране до HTML)."
+    # additional info for the allowed HTML elements, explaining additional changes made to content
     allowed_elements_extra_info: "Празните символи ще бъдат преобразувани до p или br елементи. URL-ите автоматично ще бъдат направени на връзка."
     allowed_css_intro: "Следните CSS свойства са разрешени на всички елементи."
     user_references_html: "Можете да споменавате и да слагате връзки към други потребители на %{site_name}чрез формата <code>@UserName</code> или <code>@\"User Name\"</code> (ако има интервал в името)."
     not_found_text: "404 - страницата не е намерена."
     not_found_title: "404 - Страницата не е намерена"
     not_found_link_home: "Към началото."
+    # shown on the first page a user sees if, based on the user's Accept-Language header, we think we have a better locale than what the first page shows. "locale_name" is the name of the locale in that language (matching the name in the locale drop down)
     suggest_locale: "%{site_name} е достъпна на %{locale_name}."
+    # shown on the first page a users sees if the locale they're on is less than a certain amount translated. links to the docs on how to help with localization
     incomplete_locale: "Преводът на %{site_name} на %{locale_name} е завършен само %{percent}. Ти можеш да промениш това."
+    # text for a button that expands a block of text
     expander_show_more: "Покажи повече"
+    # text for a button that contracts a block of text
     expander_show_less: "Покажи по-малко"
+    # note denoting what are ads
     advertisement_note: Реклама
+    # label on tab allowing for previewing input
     preview_tab: Преглед
+    # label on tab for entering input
     write_tab: Напишете
     listing_options_title: "Настройки за търсене"
     quote:
@@ -1018,27 +1309,49 @@ bg:
   activerecord:
     attributes:
       user:
+        # user field: display name
         name: "Име"
+        # user field: profile (HTML content describing themselves)
         profile: "Профил"
+        # user field: locale
         locale: "Предпочитана локализация"
+        # user field: setting to send e-mails when discussions or comments are posted to a user's scripts. options are under users.author_email_notification_type
         author_email_notification_type_id: "Известия при обсъждане на скриптовете"
+        # user field: show ads
         show_ads: "Покажи рекламите"
+        # user field: show sensitive
         show_sensitive: "Съдържание за възрастни"
+        # user field: preferred markup (html or markdown)
         preferred_markup: "Предпочитан код"
         filter_locale_default: "Филтрирай локализация"
+        current_password: ""
+        new_password: ""
+        new_password_confirmation: ""
       script:
+        # name of the script
         name: "Име"
+        # description of the script
         description: "Описание"
+        # locale the script is in. see also scripts.locale_explanation
         locale: "Локализация"
+        # the JS code of the script
         code: "Код"
+        # description of changes for an update
         changelog: "Дневник на промените"
+        # the type of script - public, unlisted, or library
         type: "Тип на скрипта"
+        # additional descriptive text outside of @description
         additional_info: "Допълнителна информация"
+        # screenshots attached to the script
         screenshots: "Снимки"
+        # when deleting, which script to redirect to
         replaced_by_script_id: "Заменящ скрипт"
       script_set:
+        # name of the script set
         name: "Име"
+        # description of the script set
         description: "Описание"
+        # default sort of the script set
         default_sort: "Сортиране по подразбиране"
       report:
         reason: "Причина за доклада"
@@ -1052,25 +1365,39 @@ bg:
         content: Съобщение
   errors:
     messages:
+      # validation for when a script name is not provided
       script_missing_name: "е задължително - укажете с @name"
+      # validation for when a script description is not provided
       script_missing_description: "е задължителна - укажи с @description"
+      # validation for when a script description is the same as name
       script_name_same_as_description: "не може да бъде като името"
+      # validation for sync URL
       script_sync_identifier_bad_protocol: "трябва да бъде HTTP или HTTPS URL"
+      # validation for number of screenshots
       script_too_many_screenshots: "Включени са прекалено много снимки - максимумът е %{number}"
+      # validation for "deleted and replaced by" when the user says the script is replaced by itself
       cannot_be_self_reference: "не може да бъде същият скрипт"
+      # validation for "deleted and replaced by" when the user says the script is replaced by a deleted script
       cannot_be_deleted_reference: "не може да бъде изтрит скрипт"
       cannot_be_used_with_this_script: "не може да се използва с този скрипт"
+      # validation for "deleted and replaced by" when the user provides a non-%{site_name} URL
       must_be_greasy_fork_script: "трябва да бъде адрес (URL) на скрипт в %{site_name}"
+      # validation when the user uploads code that's not UTF-8 text
       script_update_not_utf8: "трябва да използвате UTF-8 кодировка"
+      # validation when user uploads code that contains a disallowed @require
       script_disallowed_require: "използва неодобрен външен скрипт: %{code}"
       script_rate_limit: "Надхвърлили сте лимита за публикуване. Опитайте отново по-късно."
       missing_include_or_match: "трябва да съдържа поне един @match или @include"
       file_size_out_of_range: "размерът трябва да е под 200KB"
       meta_too_long: "%{key} е прекалено дълъг (максимумът е %{count} символа)"
   opensearch:
+    # short name for opensearch.xml
     short_name: "%{site_name} търсене"
+    # description for opensearch.xml
     description: "Търсене на потребителски скриптове в %{site_name}."
+    # long name for opensearch.xml
     long_name: "%{site_name} търсене на потребителски скриптове"
+    # attribution for opensearch.xml
     attribution: "Авторски права на скриптовете, вижте лицензите на всеки един скрипт "
   mailers:
     script_report:
@@ -1099,54 +1426,54 @@ bg:
       notify:
         subject: "Твоят скрипт %{script_name} на %{site_name} е получил множество \"Лоши\" отзиви."
         text: |
-            Вашият скрипт '%{script_name}' на %{site_name} (%{script_url}) е получил няколко последователни лоши оценки.
+          Вашият скрипт '%{script_name}' на %{site_name} (%{script_url}) е получил няколко последователни лоши оценки.
 
-            Отзивите, които са оставени тук %{feedback_url} могат да показват проблем, временно прекъсване или промяна на работния сайт. Моля, прегледайте отзивите, отстранете проблемите и отговорете на споменатите теми.
+          Отзивите, които са оставени тук %{feedback_url} могат да показват проблем, временно прекъсване или промяна на работния сайт. Моля, прегледайте отзивите, отстранете проблемите и отговорете на споменатите теми.
 
-            %{site_name} се стреми да поддържа качествен списък със скриптове. За да се справим със счупените, изоставени скриптове, тези, които получават множество последователни „Лоши“ отзиви без навременен отговор, ще бъдат скрити. За да избегнете скриването на скрипта си, публикувайте нова версия или отговорете на дискусиите до %{delete_date}. Ако не предприемете никакви действия, пак ще имате възможност да го направите отново видим след тази дата.
+          %{site_name} се стреми да поддържа качествен списък със скриптове. За да се справим със счупените, изоставени скриптове, тези, които получават множество последователни „Лоши“ отзиви без навременен отговор, ще бъдат скрити. За да избегнете скриването на скрипта си, публикувайте нова версия или отговорете на дискусиите до %{delete_date}. Ако не предприемете никакви действия, пак ще имате възможност да го направите отново видим след тази дата.
     script_comment:
       subject: "Получихте коментар за вашия скрипт %{script_name} на %{site_name}."
       text: |
-          Вашият скрипт '%{script_name}' на %{site_name} (%{script_url}) е коментиран от потребител '%{commenter_name}':
+        Вашият скрипт '%{script_name}' на %{site_name} (%{script_url}) е коментиран от потребител '%{commenter_name}':
 
-          ---
-          %{comment_text}
-          ---
+        ---
+        %{comment_text}
+        ---
 
-          Можете да видите и отговорите на коментара тук: %{comment_url}. Управлявайте настройките за известията тук: %{notification_preferences_url}.
+        Можете да видите и отговорите на коментара тук: %{comment_url}. Управлявайте настройките за известията тук: %{notification_preferences_url}.
     subscribed_discussion:
       subject: "В дискусията %{discussion_title} на %{site_name} има получен коментар."
       text: |
-          В дискусията '%{discussion_title}' на %{site_name} има коментар от потребител '%{commenter_name}':
+        В дискусията '%{discussion_title}' на %{site_name} има коментар от потребител '%{commenter_name}':
 
-          ---
-          %{comment_text}
-          ---
+        ---
+        %{comment_text}
+        ---
 
-          Можете да видите коментара и да отговорите тук: %{comment_url}.
+        Можете да видите коментара и да отговорите тук: %{comment_url}.
 
-          Вие получихте това известие, защото сте абонирани за дискусията. Посетете %{discussion_url} за да се отпишете или да промените настройките за известията %{notification_preferences_url}.
+        Вие получихте това известие, защото сте абонирани за дискусията. Посетете %{discussion_url} за да се отпишете или да промените настройките за известията %{notification_preferences_url}.
     comment_mentioned:
       subject: "Потребителя '%{commenter_name}' Ви спомена в %{site_name}"
       text: |
-          В дискусията '%{discussion_title}' на %{site_name} има коментар от потребител '%{commenter_name}', който ви спомена:
+        В дискусията '%{discussion_title}' на %{site_name} има коментар от потребител '%{commenter_name}', който ви спомена:
 
-          ---
-          %{comment_text}
-          ---
+        ---
+        %{comment_text}
+        ---
 
-          Можете да видите коментара и да отговорите тук%{comment_url}.
+        Можете да видите коментара и да отговорите тук%{comment_url}.
 
-          Получихте това известие, защото сте избрали да бъдете известявани когато някой ви спомене. Можете да промените настройките за известията тук: %{notification_preferences_url}.
+        Получихте това известие, защото сте избрали да бъдете известявани когато някой ви спомене. Можете да промените настройките за известията тук: %{notification_preferences_url}.
     new_message:
       subject: "%{user} ви изпрати съобщение относно %{site_name}"
       text: |
-          Потребител '%{user}' от %{site_name} ви изпрати съобшение.
+        Потребител '%{user}' от %{site_name} ви изпрати съобшение.
 
-          ---
-          %{message_text}
-          ---
+        ---
+        %{message_text}
+        ---
 
-          Можете да го видите и да отговорите тук %{conversation_url}.
+        Можете да го видите и да отговорите тук %{conversation_url}.
 
-          Вие получихте това известие, защото сте абонирани за разговора. Посетете %{conversation_url} за да се отпишете или да промените настройките за известията %{notification_preferences_url}.
+        Вие получихте това известие, защото сте абонирани за разговора. Посетете %{conversation_url} за да се отпишете или да промените настройките за известията %{notification_preferences_url}.
