@@ -1,81 +1,135 @@
 cs:
   layouts:
     application:
+      # link to the list of scripts
       script_list: "Skripty"
+      # link to the forum
       forum: "Fórum"
+      # link to the help docs
       help: "Nápověda"
+      # link to sign in
       sign_in: "Přihlásit se"
+      # label for nav submenu
       submenu: "Více"
+      # link to advanced search
       advanced_search: "Pokročilé hledání"
+      # link to user list
       user_list: "Seznam uživatelů"
+      # link to libraries
       libraries: "Knihovny"
+      # link to moderator log
       moderator_log: "Záznamy moderátora"
   scripts:
+    # label for created date of a script
     created_date: "Vytvořeno"
+    # label for updated date of a script
     updated_date: "Aktualizováno"
+    # label for total install count of a script
     total_installs: "Celkem instalací"
+    # label for daily install count of a script
     daily_installs: "Denně instalací"
+    # label for the ratings of a script
     ratings: "Hodnocení"
+    # label for author name of a script
     author_name: "Autor"
+    # label for version number of a script
     version_number: "Verze"
+    # label for the legal license a script is released under (e.g. GPL)
     license: "Licence"
+    # what is shown as the license when no license is provided in a script
     no_license: "neuvedeno"
+    # label for the browser compatibility for a script
     compatibility: "Kompatibilita"
     compatible_with_browser: "Kompatibilní s %{browser}"
     incompatible_with_browser: "Není kompatibilní s %{browser}"
+    # label for the list of sites or patterns a script applies to
     applies_to: "Spustit na"
+    # a title (tooltip) for the links in the "applies to" section going to a list of scripts for that site. count is the number of other scripts, site is the name of the site. add subkeys for your language per http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
     applies_to_link_title:
       one: "Zobrazit %{count} další skript pro %{site}"
       few: "Zobrazit %{count} další skripty pro %{site}"
       many: "Zobrazit %{count} dalších skriptů pro %{site}"
       other: "Zobrazit %{count} dalších skriptů pro %{site}"
+    # what is shown as the applies to when a script applies to all sites
     applies_to_all: "všech stránkách"
+    # link that makes the user install the script
     install: "Nainstalovat skript"
+    # text for link that gives information on how to install scripts. should be very short.
     install_help: "?"
+    # title (tooltip) for link that gives information on how to install scripts
     install_help_title: "Jak nainstalovat"
+    # link that makes the user update the script
     update: "Aktualizovat na verzi %{version}"
+    # link that makes the user downgrade the script
     downgrade: "Návrat k verzi %{version}"
+    # link that makes the user reinstall the script
     reinstall: "Přeinstalovat verzi %{version}"
+    # warning when installing an old version of a script
     old_version_warning: "Toto není poslední verze skriptu. Po instalaci nebude funkční aktualizace na nejnovější verzi. Přejete si přesto provést instalaci?"
+    # label for a promoted script
     promoted: "Doporučený skript"
     author_promoted: "Skript doporučený autorem"
+    # text for promoted script
     promoted_text_html: "Mohl by se vám také líbit %{script_link}"
+    # instructions on a script library. code will be a <code> element. Don't use punctuation around the code element if possible so that people don't accidentally include that when copying.
     library_instructions_html: "Tento skript by neměl být instalován přímo. Jedná se o knihovnu, kterou by měly jiné skripty využívat pomocí meta příkazu %{code}"
+    # text displayed for deleted scripts
     deleted_notice: "Tento skript byl smazán."
     deleted_notice_with_related: "Požadovaný skript byl odstraněn, ale jsou zde podobné skripty."
     deleted_undelete_notice_html: "Tento skript byl uzamčen moderátorem a nemůže být obnoven. Uvedený důvod je „<i>%{delete_reason}</i>“."
     deleted_locked_author_notice_html: "Tento skript byl odstraněn moderátorem a není přístupný. Uvedený důvod je „<i>%{delete_reason}</i>“."
     deleted_author_notice: "Tento skript byl odstraněn a není přístupný ostatním. Můžete ho obnovit v kartě Smazáno. "
+    # test displayed when viewing a previous version. date is a date and time (no "ago"), latest_version_link is a link to the newest version whose text is version_notice_latest_version_link
     version_notice_html: "Verze ze dne %{date}. Zobrazit %{latest_version_link}."
     version_notice_latest_version_link: "nejnovější verzi"
     reported_notice: "Skript „%{script_name}“ byl nahlášen a čeká na kontrolu moderátorem."
     reported_notice_for_author: "Tento skript je nedostupný ostatním uživatelům dokud ho neposoudí moderátor."
+    # link to the script's info page, containing script meta and author's description
     info_page: "Info"
+    # link to the script's code page
     code_page: "Kód"
+    # link to the script's history page, listing all versions of the code
     history_page: "Historie"
+    # link to the script's feedback page, listing discussions on the script. count is the number of discussions
     feedback_page: "Zpětná vazba (%{count})"
+    # link to the script's install statistics page
     stats_page: "Statistiky"
+    # link to the script's derivatives page, which shows similar scripts
     derivatives_page: "Odvozené skripty"
+    # link to the page that lets the author update the script
     update_page: "Aktualizovat"
+    # link to the page that lets the author delete a script
     delete_page: "Smazat"
+    # explanation of what deleting does
     delete_explanation: "Smazaný skript bude nedostupný pro všechny uživatele kromě vás a moderátorů Greasy Fork. Skript můžete kdykoliv obnovit."
+    # intro text to radio options for choosing update behaviour after deletion
     delete_update_behaviour: "Jak se má smazání projevit u uživatelů, kteří si již skript nainstalovali?"
+    # label for the option allowing users to retain the script after delete
     delete_update_behaviour_1: "Ponechat beze změny."
+    # label for the option where users get a blanked script after delete 
     delete_update_behaviour_2: "Aktualizovat na prázdný skript. Tato volba je vhodná v případě, že skript měl negativní efekt při prohlížení předmětných stránek."
+    # heading for permanent deletion section
     delete_permanently_heading: "Trvalé smazání"
+    # explanation of permanent deletion
     delete_permanently_explanation_html: >-
-        <p>Trvalé smazání skriptu vede k jeho odstranění a smazání souvisejících záznamů,
-        s výjimkou diskuze na fóru a logu moderátorských akcí.</p><p>Váš skript bude
-        trvale smazán 7 dní po vašem požadavku. Během této doby můžete smazání zrušit.
-        Pokud tak neučiníte, nikdo, ani moderátoři, ho nebudou schopni obnovit.</p>
+      <p>Trvalé smazání skriptu vede k jeho odstranění a smazání souvisejících záznamů, s výjimkou diskuze na fóru a logu moderátorských akcí.</p><p>Váš skript bude trvale smazán 7 dní po vašem požadavku. Během této doby můžete smazání zrušit. Pokud tak neučiníte, nikdo, ani moderátoři, ho nebudou schopni obnovit.</p>
+    # confirmation on pressing the permanent deletion button
     delete_permanently_confirm: "Opravdu chcete trvale smazat váš skript? "
+    # text for the permanent deletion button
     delete_permanently_submit: "Vyžádat trvalé smazání"
+    # text for the permanent deletion button when it would take effect immediately
     delete_permanently_immediate_submit: "Trvale smazat"
+    # notice after requesting permanent deletion
     delete_permanently_notice: "Požadavek na trvalé smazání byl zaznamenán. Váš skript bude trvale odstraněn za 7 dní."
+    # text on the delete page after permanently deletion was requested
     delete_permanently_already_requested: "Vámi požadované trvalé smazání nastane %{datetime}."
+    # notice after permanently deletion
     delete_permanently_notice_immediate: "Skript byl trvale smazán."
+    # text for cancelling a permanent deletion request
     cancel_delete_permanently_submit: "Stornovat požadavek na trvalé smazání"
+    # notice after cancelling a permanent deletion request
     cancel_delete_permanently_notice: "Váš požadavek na trvalé smazání byl zrušen. Váš skript stále není viditelný pro ostatní."
+    # error when attempting to delete a locked script
     delete_permanently_rejected_locked: "Tento skript je uzamčený a nelze ho trvale smazat"
     admin_page: "Správce"
     admin:
@@ -94,46 +148,72 @@ cs:
       compare_to: "Skript na %{site_name} k porovnání s (URL)"
       compare_button: "Porovnat"
       compare_must_be_local_url: "Porovnávací skript musí být URL na %{site_name}."
+    # HTML title for the history page for a script
     history_title: "%{script_name} - Historie verzí"
+    # text explaining that we're only showing versions where the code changed
     history_only_code_changes_info: "Seznam verzí skriptu, při kterých došlo ke změnám v kódu."
+    # link to the list of all versions
     history_all_changes_link: "Zobrazit všechny verze."
+    # text explaining that we're showing all versions
     history_all_changes_info: "Seznam všech verzí skriptu."
+    # link to the list of version where the code changed
     history_only_code_changes_link: "Zobrazit pouze verze, při kterých došlo ke změně v kódu."
+    # button that shows changes (a diff) of the selected versions
     diff_button: "Porovnat vybrané verze"
+    # HTML title of the script source code page
     code_title: "%{script_name} - Zdrojový kód"
+    # HTML title of the script feedback page
     feedback_title: "%{script_name} - Zpětná vazba"
     feedback_has_reports: "Bylo nahlášeno, že tento skript porušuje pravidla %{site_name}."
+    # text to show when no discussions are posted. start_discussion_first_link is a link with the text from feedback_start_first_discussion_link
     feedback_no_discussions_html: "Dosud žádná diskuse. %{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "Dosud žádná diskuse."
     feedback_report_instead: "Pokud se domníváte, že skript porušuje %{rules_link:pravidla %{site_name}}, prosíme %{report_link:nahlašte jej k odstranění}."
     feedback_start_first_discussion_link: "Zahájit první diskusi o skriptu."
     feedback_discussion_or_report: "%{new_discussion_link:Začněte diskusi k tomuto skriptu} nebo ho %{report_link:nahlašte k odstranění}."
+    # heading for list of people who favorited this script
     feedback_favoriters_heading: "Oblíbené"
+    # text before a comma separated list of users who favorited the script
     feedback_favoriters_user_list_html: "Tento skript označili jako oblíbený %{user_list}."
     feedback_favoriters_lots:
       one: "Tento skript označil jako oblíbený %{user_count} uživatel. %{full_link:Prohlédněte si celý seznam.}"
       few: "Tento skript označili jako oblíbený %{user_count} uživatelé. %{full_link:Prohlédněte si celý seznam.}"
       many: "Tento skript označilo jako oblíbený %{user_count} uživatelů. %{full_link:Prohlédněte si celý seznam.}"
       other: "Tento skript označilo jako oblíbený %{user_count} uživatelů. %{full_link:Prohlédněte si celý seznam.}"
+    # text when no one has favorited a script
     feedback_no_favoriters: "Skript nebyl nikým označen jako oblíbený."
+    # link to get the user to sign in to add the script to their favorites
     feedback_sign_in_to_favorite: "Pro označení jako oblíbený se musíte přihlásit."
+    # html title for script stats page
     stats_title: "%{script_name} - Statistiky"
+    # heading for daily install stats on stats page
     stats_daily_installs_heading: "Denně instalací"
+    # heading for weekly install stats on stats page
     stats_weekly_installs_heading: "Instalací týdně"
+    # heading for daily update check stats on stats page
     stats_daily_update_checks_heading: "Denně kontrol aktualizací"
+    # date column heading for a script's daily install stats table
     stats_daily_installs_date_column_heading: "Datum"
+    # install count column heading for a script's stats table
     stats_daily_installs_install_count_column_heading: "Instalace"
+    # update check count column heading for a script's stats table
     stats_daily_installs_update_check_count_column_heading: "Kontroly aktualizací"
+    # header for the raw data table for stats
     stats_raw_data_header: "Data"
+    # text before links to download raw stats data. links will be space separated links to the format name (e.g. CSV and JSON)
     stats_download_raw_data_html: "Uložit data jako: %{links}"
+    # text to show when a stat is not available
     stats_no_data: "neuvedeno"
     stats_filters: "Filtrovat: %{filter_options}"
     stats_filter_options:
       month: Posledních 30 dní
       year: Posledních 365 dní
       all: Celkem
+    # HTML title for derivatives page
     derivatives_title: "%{script_name} - Odvozené skripty"
+    # text explaining the derivatives page and what to do if the user finds unauthorized copies
     derivatives_intro: "Tyto skripty mohou být založeny na vašem (nebo váš může být založen na nich). Pokud zaznamenáte neautorizované použití vašeho kódu, nahlašte ho na tabu zpětné vazby daného skriptu."
+    # format for scripts listed on the derivatives page. script_link is a link to the derivative's page, user_link is a link to the user who created the derivative, license is text, link to the license, or scripts.no_license
     derivatives_script_html: "%{script} od %{user}, licence: %{license} %{diff_link:[Rozdíl]}"
     derivatives_exact_copies_heading: "Přesné kopie"
     derivatives_exact_copies_list_intro: "Následující skripty mají přesně stejný kód, jako váš skript:"
@@ -152,128 +232,295 @@ cs:
     derivatives_similar_last_check_soon: "Brzy provedeme kontrolu na podobnost s vaším skriptem."
     derivatives_similar_last_check_again_soon_html: "Poslední kontrola na podobnost s vaším skriptem proběhla %{date}. Další kontrolu provedeme brzy."
     derivatives_similar_check_now: "Zkontrolovat nyní."
+    # html title for script list page when showing scripts that affect all sites
     listing_title_all_sites: "Uživatelské skripty pro všechny stránky"
+    # meta description and feed subtitle when showing scripts that affect all sites
     listing_description_all_sites: "Uživatelské skripty, které přidávají funkcionality a řeší chyby na všech stránkách"
+    # html title for script list page when showing scripts for a particular site. 'site' will be in the form 'example.com'
     listing_title_for_site: "Uživatelské skripty pro %{site}"
+    # meta description and feed subtitle when showing scripts that affect a particular site
     listing_description_for_site: "Uživatelské skripty, které přidávají funkcionality a řeší chyby na %{site}"
+    # html title for script list page for search results.
     listing_title_for_search: "Uživatelské skripty '%{search_string}'"
+    # html title for script list page for code search results.
     listing_title_for_code_search: "Uživatelské skripty '%{search_string}'"
+    # html title for script list page when no other situation applies
     listing_title_generic: "Uživatelské skripty"
+    # html title for script list page for a user's favorites. set_name is script_sets.favorites_name
     listing_title_for_favorites: "%{set_name} uživatele %{user_name}"
+    # meta description and feed subtitle for script list page when no other situation applies
     listing_description_generic: "Uživatelské skripty, které přidávají funkcionality a řeší chyby na vašich oblíbených stránkách"
+    # label for sorting links on script list page
     listing_sort_label: "Seřadit podle:"
+    # link for relevance (most matching the search terms) sort on a script list
     listing_sort_relevance: "Relevance"
+    # link for daily install sort on a script list
     listing_sort_daily_installs: "Instalací denně"
+    # link for daily install sort on a script list
     listing_sort_total_installs: "Instalací celkem"
+    # link for rating sort on a script list
     listing_sort_ratings: "Hodnocení"
+    # link for created date sort on a script list
     listing_sort_created: "Data vytvoření"
+    # link for updated date sort on a script list
     listing_sort_updated: "Data aktualizace"
+    # link for name sort on a script list
     listing_sort_name: "Jména"
+    # label for filtering by-site links on script list page
     listing_filter_by_site_label: "Zobrazuji skripty pro:"
+    # link for turning off by-site filtering on script list page
     listing_filter_by_site_disable: "Zobrazit vše"
+    # link for filtering script list by scripts that affect all sites
     listing_filter_by_site_all_sites: "(Všechny stránky)"
     listing_filter_by_language_label: "Jazyk:"
+    # link to see a full list of sites that scripts on %{site_name} affect
     listing_filter_by_site_more_sites: "Více..."
+    # text that shows when no scripts were found with the used parameters
     listing_no_scripts: "Nenalezen žádný skript."
+    # feed title for the listing, ordered by created date
     listing_created_feed: "Nové skripty"
+    # feed title for the listing, ordered by updated date
     listing_updated_feed: "Aktualizované skripty"
+    # when a list has nothing to show
     listing_none: "(žádný)"
+    # link to filter search results by the current locale
+    listing_set_locale_filter: ""
+    # link to remove locale filter
+    listing_remove_locale_filter: ""
     listing_language_all: "Vše"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    # link to start the process of importing (creating from an external place) scripts
     import: "Importovat skripty"
+    # link to create a new script
+    new: ""
+    new_css: ""
+    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support site
     support_site: "Navštívit stránku podpory autora."
+    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support email address
     support_email: "Zaslat e-mail na podporu autora."
+    # link to a site where the user can donate to the author, when the author didn't provide a suggested donation amount
     contribution_no_amount: "Poděkovat %{author} zasláním finančního příspěvku."
+    # link to a site where the user can donate to the author, when the author provided a suggested donation amount
     contribution_with_amount: "Poděkovat %{author} zasláním finančního příspěvku. Navrhovaná částka je %{amount}."
+    # text for donating to the author via bitcoin, when the author didn't provide a suggested donation amount
     contribution_bitcoin_no_amount_html: "Poděkovat %{author} zasláním Bitcoin příspěvku na %{address}."
+    # text for donating to the author via bitcoin, when the author provided a suggested donation amount
     contribution_bitcoin_with_amount_html: "Poděkovat %{author} zasláním Bitcoin příspěvku na %{address}. Navrhovaná částka je %{amount}."
+    # explanation of language chooser when editing script
     locale_explanation_html: "Hodnota by měla odpovídat jazyku <code>@name</code>, <code>@description</code> a prvního doplňujícího popisu."
+    # the default value for the locale box, if submitted the site will attempt to detect the language of the entry
     locale_auto_select: "(Detekovat automaticky)"
+    # label which lists the sets this script is in, which is followed by controls to change its inclusions
     sets_label: "V sadě skriptů:"
+    # label for when the script is not in any sets, which is followed by controls to change its inclusions
     sets_label_no_sets: "Sady skriptů:"
+    # option to remove the script from the set
     sets_remove_inclusion: "Odebrat ze sady %{set_name}"
+    # option to remove the script's exclusion from the set
     sets_remove_exclusion: "Odebrat výjimku ze sady %{set_name}"
+    # option to add the script to the set
     sets_add_inclusion: "Přidat do sady %{set_name}"
+    # option to exclude the script from the set (when it's been included as part of a sub set)
     sets_add_exclusion: "Nastavit výjimku ze sady %{set_name}"
+    # option to add the script to a new set
     sets_add_to_new: "Přidat do nové sady"
+    # summary of %{site_name}'s rules for posting scripts. full_rules_link is a link to the full rules with text of rules_summary_link_to_full
     rules_summary_html: "Skripty musí být <strong>správně popsány</strong>, nesmí být <strong>zmatečné</strong> nebo <strong>komprimované</strong>, musí respektovat <strong>autorská práva</strong> a využívat pouze nezbytné množství <strong>externího kódu</strong>. %{full_rules_link}"
+    # full rules link text used in the rules summary
     rules_summary_link_to_full: "Přečtěte si kompletní podmínky."
+    # warning when on the edit screen for a script set up to sync. syncing_notice_sync_type will be a link to the sync screen with text from syncing_notice_sync_type_manual or syncing_notice_sync_type_automatic
     syncing_notice_html: "Tento skript je %{syncing_notice_sync_type}. Jakékoliv změny zde provedené v kódu budou při příští synchronizaci ztraceny."
+    # used in syncing_notice_html when a script syncs only when the author requests it
     syncing_notice_sync_type_manual: "ručně synchronizován z %{sync_identifier}"
+    # used in syncing_notice_html when a script syncs automatically
     syncing_notice_sync_type_automatic: "automaticky synchronizován z %{sync_identifier}"
+    # label for uploading a script under the code textarea
     upload_label: "Nebo nahrát:"
+    # label for checkbox to enable or disable syntax highlighting code editor
     enable_source_code_editor_label: "Povolit editor se zvýrazněním syntaxe zdrojového kódu"
+    # descriptive text for the changelog field
     changelog_note: "Co se v této verzi změnilo?"
+    additional_info_note: ""
+    # button text for previewing additional info
+    # button text for submitting a new script
     post_new_script: "Vytvořit skript"
+    # button text for submitting an update to an existing script
     post_updated_script: "Vytvořit novou verzi"
+    # label for radio button for public-type user script
     type_1_html: "Veřejný uživatelský skript - zobrazeno všem."
+    # label for radio button for unlisted-type user script
     type_2_html: "Neveřejný uživatelský skript - skript pro soukromé použití. Je dostupný pouze pomocí přímého odkazu a není uveden v žádném seznamu %{site_name}."
+    # label for radio button for library-type script
     type_3_html: "Knihovna - skript užívaný prostřednictvím <code>@require</code> v jiných skriptech. Neměl by být instalován přímo."
+    # label for checkbox to override script save warnings
     override_warning_checkbox_label: "Přesto uložit?"
+    # script warning for not increasing the version number when updating the code
     warning_version_not_incremented_html: "Změnili jste kód, ale nezvýšili jste číslo <code>@version</code>. Uživatelům, kteří používají váš skript, se kód neaktualizuje."
+    # script warning for when a version number is not provided
     warning_version_missing_html: "Neuvedli jste parametr <code>@version</code>. Meta parametr <code>@version</code> umožňuje provádět kontrolu aktualizace vašeho skriptu."
+    # label for checkbox for the site to automatically handle version numbers
     warning_version_missing_generate_automatically_html: "Generovat <code>@version</code> automaticky?"
+    # script warning for when a namespace is not provided
     warning_namespace_missing_html: "Neuvedli jste parametr <code>@namespace</code>. Meta parametr <code>@namespace</code> umožňuje uživatelům reinstalovat skript pro jeho aktualizaci."
+    # label for checkbox for the site to automatically add a namespace
     warning_namespace_missing_generate_automatically_html: "Generovat <code>@namespace</code> automaticky?"
+    # script warning for when a namespace changed on update
     warning_namespace_changed_html: "Parametr <code>@namespace</code> se změnil. Neměnné <code>@namespace</code> umožňuje uživatelům reinstalovat skript pro jeho aktualizaci."
+    # script warning for when a script's code appears minified. allowed_requires_link is a link to the allowed @require list, with text of warning_potentially_minified_allowed_requires_link
     warning_potentially_minified_html: "Zdá se, že váš skript obsahuje komprimovaný kód. Pokud používáte komprimovanou knihovnu, vložte ji pomocí <code>@require</code> z %{allowed_requires_link}. Komprimované skripty jsou v rozporu s podmínkami a budou vymazány."
+    # script warning for when a script's code is for adult sites. sensitive_domains is a list of domains
     warning_automatic_sensitive_html: "Váš skript je pro %{sensitive_domains} a proto bude označen jako obsah pro dospělé."
+    # used in warning_potentially_minified_html
     warning_potentially_minified_allowed_requires_link: "některého z těchto umístění"
+    warning_code_previously_posted_html: ""
+    # default option for the locale of a localized additional info
     additional_info_locale_prompt: "(Vybrat jazyk)"
+    # text for the button to add another additional info section for a different language
     additional_info_add_localized: "Přidat lokalizovaný doplňující popis"
+    # validation when more than one additional info is specified for a locale. "locale_code" is the locale code (e.g. "en") that has more than one additional info
     additional_info_locale_repeated: "Uveďte pouze jeden dodatečný popis pro jazyk '%{locale_code}'."
+    # validation when an additional info in a locale is provided but no name was provided in that locale. "locale_code" is the locale code (e.g. "en") that is missing a name
     localized_additional_info_with_no_name: "Pro jazyk '%{locale_code}' byl vložen doplňující popis, ale nebyl doplněn parametr @name:%{locale_code}."
+    localized_attribute_matches_default: ""
+    # text to edit a code syncing URL. field is the text field to enter the url.
     code_syncing_from_url_html: "Tento skript bude aktualizován z: %{field}"
+    # text to add a code syncing URL. field is the text field to enter the url.
     provide_code_syncing_from_url_html: "%{site_name} může importovat skripty, které jsou uloženy jinde, například na verzovacím systému (jako je GitHub), na vašem serveru nebo na jiném úložišti uživatelských skriptů. Pro zapnutí synchronizace vložte URL: %{field}"
+    # text before the sync type options
     sync_type_intro: "Tento skript bude synchronizován:"
+    # label for radio button for manual syncing
+    sync_type_1:
+      name: ""
+      description: ""
+    # label for radio button for automatic syncing
+    sync_type_2:
+      name: ""
+      description: ""
+    # label for radio button for webhook syncing
+    sync_type_3:
+      name: ""
+      description: ""
+    sync_name_and_description: ""
+    # text when the last attempted sync failed. date is the date of the error run through markup_date. error is the technical error.
     sync_failed_info_html: "Poslední pokus o synchronizaci proběhl %{date}, výsledkem byla chyba %{error}."
+    # text indicating the date of the last successful sync. date is the date of the sync run through markup_date
     sync_success_info_html: "Poslední úspěšná aktualizace proběhla %{date}."
+    # text if the sync never succeeded
     sync_never_succeeded: "Synchronizace dosud nikdy neproběhla úspěšně."
+    sync_additional_info: ""
+    add_synced_additional_info: ""
+    # button to update sync settings and run sync immediately
     update_and_sync: "Aktualizovat a synchronizovat nyní"
+    # button to update sync settings but not sync immediately
     update_no_sync: "Aktualizovat"
+    # button to disable syncing of the script
     turn_off_syncing: "Vypnout synchronizaci tohoto skriptu"
+    # label for syncing the default additional info
     additional_info_default_sync_html: "Výchozí doplňující popis (jazyk odpovídá <code>@name</code>)"
+    # label for syncing localized additional infos
     additional_info_localized_sync_html: "Pro jazyk (odpovídá <code>@name:XX</code>)"
+    # HTML placeholder for sync fields
     sync_url_placeholder: "(URL)"
+    # label for adding a new screenshot
     screenshots_add: "Přidat:"
+    # label for checkbox to remove a screenshot
     screenshots_remove: "Odebrat"
+    # explains what a replacement script when deleting is
     replacement_script_explanation: "(Volitelné) Vyberte jiný skript, který nahrazuje tento skript. Uživatelé budou při aktualizaci přesměrováni na nový skript. Zadejte URL náhradního skriptu:"
+    # title for diff page
     diff_title: "%{script} - Rozdíl verzí"
+    # label for older version being diffed
     diff_old_version: "Stará:"
+    # label for newer version being diffed
     diff_new_version: "Nová:"
+    # label for input for lines to show around each change when doing a diff
     diff_lines_of_context: "Řádky kontextu:"
+    # label for checkbox on whether to ignore whitespace changes
     diff_ignore_whitespace: "Ignorovat změny počtu mezer"
+    # button to refresh diff after changing diff options
     diff_refresh: "Obnovit výpis"
+    # text shown when compared versions are the same
     diff_no_change: "Nenalezeny rozdíly."
+    # tooltip for good rating number - "Good" should match the word used in RatingGood in the PHP localization
     good_rating_explanation: "Počet lidí, kteří dali hodnocení \"Výborný\" nebo si skript přidali do oblíbených."
+    # tooltip for ok rating number - "OK" should match the word used in RatingGood in the PHP localization
     ok_rating_explanation: "Počet lidí, kteří dali hodnocení \"OK\"."
+    # tooltip for bad rating number - "Bad" should match the word used in RatingGood in the PHP localization
     bad_rating_explanation: "Počet lidí, kteří dali hodnocení \"Špatný\"."
+    # link at the bottom of the scripts list suggesting people post a script or learn how. post_a_script_link is a link with text post_a_script_link_text that goes to the new script form. learn_to_write_scripts_link is a link with text learn_to_write_scripts_link_text that goes to the help document for writing scrupts
     write_your_own_html: "%{post_a_script_link} (nebo %{learn_to_write_scripts_link})"
+    # link text for the new script form, used in write_your_own_html
+    post_a_script_link_text: ""
+    # link text for the writing a user script help doc, used in write_your_own_html
     learn_to_write_scripts_link_text: "naučit se napsat skript"
+    # a suggestion below the install button that users provide feedback
+    feedback_or_report: ""
+    # a suggestion below the install button that users provide feedback or get support from the author's site. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
+    support_feedback_or_report: ""
+    # a suggestion below the install button that users provide feedback or get support from the author's via email. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
+    support_email_feedback_or_report: ""
+    # heading for section relating to adult content when posting new script or script version
     adult_content: "Obsah pro dospělé"
+    # label for checkbox letting authors report their script as containing adult content
     adult_content_self_report: "Tento skript obsahuje mládeži nepřístupný materiál nebo je určen pro stránku přístupnoou od 18 let."
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script not flagged as having adult content
     adult_content_self_report_explanation: "%{site_name} povoluje skripty s obsahem pro dospělé, ale pouze za podmínky, že jsou tyto skripty označeny a uživatelé si mohou zvolit, zda budou zobrazeny."
+    # label for checkbox letting authors report their script as not containing adult content
     not_adult_content_self_report_html: "Tento skript <strong>neobsahuje</strong> mládeži nepřístupný materiál a <strong>není</strong> určen pro stránky přístupné od 18 let."
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content
     not_adult_content_self_report_explanation: "%{site_name} povoluje skripty s obsahem pro dospělé, ale pouze za podmínky, že jsou tyto skripty označeny a uživatelé si mohou zvolit, zda budou zobrazeny. Vaš skript byl označen jako mládeži nepřístupný. Pokud s tímto označením nesouhlasíte, můžete požádat moderátora o přezkoumání."
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content due to automatic checking
+    not_adult_content_self_report_explanation_automatic: ""
+    # the error you see when accessing a adult content script when logged in with the adult content setting off
     adult_content_on_greasy_logged_in_error: "Skript již není na této stránce dostupný s vaším současným %{edit_account_link:nastavením účtu Greasy Fork}."
+    # the error you see when accessing a adult content script when not logged in
     adult_content_on_greasy_not_logged_in_error: "Tento skript již není dostupný anonymně. %{login_link:Přihlaste se} a zkontrolujte nastavení účtu Greasy Fork."
+    # the error you see when access a non-adult content script on sleazy fork
     non_adult_content_on_sleazy: "Skript není na této stránce k dispozici."
+    not_js_convertible_override_header: ""
+    not_js_convertible_override_explanation: ""
+    not_js_convertible_override_label_html: ""
+    # marker after script name shown to authors indicating their adult scripts
     adult_marker: "(18+)"
+    # marker after script name if it's deleted
     deleted_marker: "(Smazaný)"
+    # marker after script name if it's locked
     locked_marker: "(Uzamčený)"
+    # marker after script name if it's unlisted
     unlisted_marker: "(Neveřejný)"
+    # marker after script name if it's a library
     library_marker: "(Knihovna)"
+    # title for libraries listing page
     libraries_title: "Knihovny"
+    # description for libraries listing page
+    libraries_description_html: ""
+    # title of the listing of top sites to script
+    by_site_list_title: ""
+    # description of the listing for top sites to script
+    by_site_list_description: ""
     by_site_list_filter: "Řadit podle názvu stránky"
+    # placeholder for script search box
     search_placeholder: "Hledat skripty"
+    updated: ""
     preview_additional_info: "Náhled"
+    must_confirm: ""
+    must_confirm_external_sign_in: ""
     must_confirm_email_button: "Odeslat ověřovací email na %{email}"
     authors_heading: "Autoři"
+    error_unauthorized_copy: ""
     invitations:
       form_title: "Pozvat další autory"
+      explanation: ""
+      invited_user_url_label: ""
+      invited_user_placeholder: ""
       submit: "Poslat pozvánku"
+      invalid_user_url: ""
+      already_author: ""
       sent: "Pozvánka byla odeslána."
+      subject: ""
+      body: ""
+      current_user_already_author: ""
       invitation_not_found: "Pozvánka nebyla nalezena."
       invitation_expired: "Pozvánka vypršela."
       invitation_accepted: "Nyní jsi autor tohoto skriptu."
@@ -282,13 +529,57 @@ cs:
       success: "%{user_name} byl odstraněn jako autor."
       remove_button: "Odebrat"
       remove_confirm: "Opravdu chcete smazat %{user_name} jako autora?"
+      failure: ""
+    no_disposable_email: ""
+    rate_limited: ""
+    new_script_notice:
+      title: ""
+      install_link_html: ""
+      share_link_html: ""
+    new_title:
+      js: ""
+      css: ""
+    update_title: ""
+    antifeatures:
+      warning_title: ""
+      author_explanation_intro: ""
+      types:
+        ads:
+          title: ""
+          description_html: ""
+        tracking:
+          title: ""
+          description_html: ""
+        miner:
+          title: ""
+          description_html: ""
+        referral-link:
+          title: ""
+          description_html: ""
+      install_anyway: ""
+      cancel_install: ""
+    badges:
+      js:
+        short: ""
+        long: ""
+      css:
+        short: ""
+        long: ""
   script_sets:
+    # description of script sets on edit page
+    description: ""
+    # name for the favorites set
     favorites_name: "Oblíbené"
+    # delete button text for a script set
     delete: "Smazat sadu skriptů"
+    # delete confirmation for a script set
     delete_confirmation: "Jste si jist, že chcete smazat tuto sadu skriptů?"
+    # option for choosing to sort the set by the default sort the site uses
     site_default_sort: "(Výchozí)"
     edit_scripts:
       heading: "Skripty"
+      description: ""
+      included: ""
       included_none: "(Žádný)"
       remove_included: "Smazat vybrané"
       excluded: "Vynechané"
@@ -298,114 +589,251 @@ cs:
       add_include: "Zahrnout"
       add_exclude: "Vynechat"
     edit_sets:
+      heading: ""
+      description: ""
+      included: ""
       included_none: "(Žádný)"
       remove_included: "Smazat vybrané"
+      excluded: ""
       excluded_none: "(Žádný)"
       remove_excluded: "Smazat vybrané"
+      add_label: ""
       add_include: "Zahrnout"
       add_exclude: "Vynechat"
+      user_label: ""
+      user_no_sets: ""
+      user_no_other_sets: ""
     edit_auto_sets:
+      heading: ""
+      description: ""
+      included: ""
       included_none: "(Žádný)"
       remove_included: "Smazat vybrané"
+      excluded: ""
       excluded_none: "(Žádný)"
       all_scripts_label: "Všechny skripty"
+      all_scripts_include: ""
       for_sites_label: "Skripty pro stránku (např. priklad.com, nechejte prázdné pro „všechny stránky“)"
+      for_sites_include: ""
+      for_sites_exclude: ""
+      for_user_label: ""
       for_user_include: "Zahrnout"
       for_user_exclude: "Vynechat"
+      for_language_label: ""
       for_language_include: "Zahrnout"
       for_language_exclude: "Vynechat"
+    calculated_list: ""
+    calculated_list_none: ""
+    calculated_list_more:
+      one: ""
+      few: ""
+      many: ""
+      other: ""
+    already_included: ""
+    could_not_parse_script: ""
     save: "Uložit"
+    saved: ""
     auto_set_types:
       all_scripts: "Všechny skripty"
       site: "Skripty pro %{site}"
       all_sites: "Všechny stránky"
+      user: ""
+      locale: ""
   home:
+    # html title of the homepage
     title: "%{site_name} - bezpečné a užitečné uživatelské skripty"
+    # text at the top of the homepage.
     welcome: "Vítejte na %{site_name}, úložišti pro uživatelské skripty."
+    # html title of the sleazy fork homepage
     sleazy_title: "%{site_name} - bezpečné a užitečné uživatelské skripty pro dospělé"
+    # text at the top of the sleazy fork homepage.
     sleazy_welcome: "Vítejte na %{site_name}, úložišti pro uživatelské skripty pro dospělé."
+    # placeholder for home page search box
+    search_placeholder: ""
     scripts_for_label: "Skripty pro:"
+    # heading for the paragraph explaining what user scripts are
     explain_user_scripts_heading: "Co jsou uživatelské skripty?"
+    # text explaining what user scripts are.
     explain_user_scripts_html: "Uživatelské skripty vám umožňují mít kontrolou nad prohlížením webu. Jakmile se nainstalují, automaticky vylepšují navštívené stránky přidáváním funkcí, zjednodušním ovládání nebo vynecháním obtěžujících částí. Uživatelské skripty na %{site_name} byly napsány jinými uživateli a poskytnuty ke sdílení celému světu. Jsou zdarma k instalaci a snadno se používají."
+    # header for step 1 - how to install a user script manager
     installing_step1_header: "Krok 1: nainstalujte manažer skriptů"
+    # caption in step 1 - screenshot of tampermonkey on chrome
     installing_step1_caption: "Tampermonkey pro Chrome"
+    # text for step 1, listing options for user script managers based on browsers
+    installing_step1_description_html: >
+    # header for step 2 - how to install a user script
     installing_step2_header: "Krok 2: nainstalujte uživatelký skript"
+    # caption for step 2 - showing the install button for user scripts
+    installing_step2_caption: ""
+    # text for step 2 - describing how to find and install user scripts
+    installing_step2_description_html: >
+    # header for step 3 - how to use a user script
     installing_step3_header: "Krok 3: použijte uživatelský skript"
+    # description for step 3, describing browsing to the site and having the user script apply
+    installing_step3_description_html: >
   users:
+    # html title for the sign in page
     sign_in_title: "Přihlásit se do %{site_name}"
+    # what signing in lets people od
     sign_in_description: "Přihlášení do %{site_name} vám umožní vytvářet skripty a vkládat komentáře ke skriptům ostatních autorů. Není třeba se přihlašovat pro procházení nebo instalaci skriptů."
+    # heading for signing in with an external service (Google, GitHub, etc.)
     sign_in_external: "Přihlásit se externím účtem"
+    # button for signing in with an external service (Google, GitHub, etc.)
     sign_in_with: "Přihlásit se pomocí %{provider}"
+    # heading for signing in with a password
     sign_in_password: "Přihlásit se pomocí hesla"
+    # when a user attempts to sign in with an external service and a user already exists with the same email, this is the message shown. email: provided e-mail, user_name: existing user's name, provider: what the user tried to sign in with (e.g. GitHub), sign_in_link: a link to the sign in page with text from sign_in_email_used_sign_in_link
     sign_in_email_used_no_external_services_html: "Adresa '%{email}' je již využívána uživatelem '%{user_name}'. Pokud jste to vy a snažíte se přidat další přihlášení pomocí %{provider}, %{sign_in_link} k vašemu externímu účtu a poté přidejte přihlášení pomocí %{provider}."
+    # same as above, but when the existing user uses other providers. also includes existing_providers, which is a list of the existing user's sign ins, run through to_sentence (http://apidock.com/rails/Array/to_sentence)
     sign_in_email_used_with_external_services_html: "Adresa '%{email}' je již využívána uživatelem '%{user_name}', který se přihlašuje pomocí  %{existing_providers}. Pokud jste to vy a snažíte se přidat další přihlášení pomocí %{provider}, %{sign_in_link} k vašemu externímu účtu a poté přidejte přihlášení pomocí %{provider}."
+    # sign in link for email_used messages
     sign_in_email_used_sign_in_link: "přihlaste se"
+    # when a user attempts to create an account with an external service, but an email was not provided by that service
     sign_in_email_missing: "%{site_name} vyžaduje pro vytvoření nového účtu e-mailovou adresu, ale %{provider} žádnou adresu neposkytl. Můžete buď přidat e-mail k vašemu %{provider} účtu a znovu se přihlásit, nebo vytvořit %{site_name} účet pomocí e-mailu a hesla a poré jej spárovat s %{provider} účtem."
+    # this shows when signing in for the first time with an external sign in but the name received is already in use. the user is prompted to enter a different name.
     sign_in_name_used: "Jméno '%{name}' je již obsazeno. Zvolte si prosím jiné."
+    # the button when submitting the name form per above
     sign_in_name_used_submit: "Uložit"
+    # Button to preview a user's profile before saving
+    # heading for the user's control panel, which contains links such as post script and edit account
     control_panel: "Ovládací panel"
+    # heading for the list of discussions about a user's own scripts
     discussions_on_scripts: "Diskuse o vašich skriptech"
+    # alt text for the RSS feed icon for discussions about a user's own scripts
     discussions_on_scripts_feed_alt: "RSS Feed"
+    # text to show in the section for discussions about a user's own scripts if there are no discussions yet
     discussions_on_scripts_none: "Zatím žádné!"
+    # link to more discussions on a user's own scripts, as the initial list is limited in number
     discussions_on_scripts_more: "Více diskusí..."
+    # heading for the list of scripts on a user's page
     script_list: "Skripty"
+    # text to show in a user's script section when they have created no scripts
     script_list_none: "Žádné uložené skripty."
+    # text to show in a user's script section when they have created scripts, but they are not shown due to the filters active
     script_list_none_for_filter: "Žádný skript neodpovídá nastaveným filtrům."
+    # text to show in a user's own script section when they have created no scripts. script_list_none_same_user_info_link is a link to a tutorial with text of script_list_none_same_user_info_link_text
     script_list_none_same_user_html: "Dosud jste nenapsali žádný skipt. %{script_list_none_same_user_info_link}"
+    # text used for link in script_list_none_same_user_html
     script_list_none_same_user_info_link_text: "Chcete se naučit jak na to?"
+    # heading for the list of a user's deleted scripts (visible to only that user and mods)
     deleted_script_list: "Smazané skripty"
+    unlisted_script_list: ""
+    # link to log out
     sign_out: "Odhlásit se"
+    # link to edit an account
     edit: "Změny účtu"
+    # link to edit how the user signs in
     edit_sign_in: "Změna způsobu přihlášení"
+    # html title for the edit sign in page
     edit_sign_in_title: "Změna způsobu přihlášení"
+    # heading for the password section of the edit sign in methods page
     edit_sign_in_password: "Heslo"
+    # informational text telling the user they're not using a password
+    edit_notifications: ""
     no_password_set_info: "Váš účet není konfigurován s heslem."
+    # button to set a password when one is not already set
     set_password: "Nastavit heslo"
+    # button to set a password when one is already set
     update_password: "Změnit heslo"
+    # error message when the password and the confirmation don't match
     update_password_no_match: "Hesla se neshodují."
+    # notice after a password was updated successfully
     password_updated: "Změna hesla provedena."
+    # information text saying the user can unset their password and use just external sign ins
     remove_password_info: "Můžete heslo odebrat a přihlašovat se výhradně pomocí externích účtů."
+    # button to remove the password from the user's account
     remove_password: "Odebrat heslo"
+    # error message to show if the user attempts to remove a password but have no external sign ins. This is normally not possible with the interface.
     cant_remove_password: "Heslo nelze odebrat - neexistuje jiný způsob přihlášení!"
+    # error message to show if the user attempts to remove a sign in but has no password or other sign ins. This is normally not possible with the interface. provider is the external site's name, like GitHub or Google
     cant_remove_sign_in: "Nelze odebrat přihlášení pomocí %{provider} - neexistuje jiný způsob přihlášení!"
+    # notice after a password was removed successfully
     password_removed: "Heslo odebráno"
+    # heading for the external sign ins section of the edit sign in methods page
     edit_sign_in_external: "Přihlášení externími účty"
+    # information text about how they can use external sign ins, shown when the user has not set any yet
     external_sign_in_info_no_sign_ins: "Pro přihlášení do %{site_name} lze použít účty na jiných stránkách."
+    # information text about how they can use external sign ins, shown when the user already has some set. should describe the concept of syncing, where account details on %{site_name} will be updated to match the external service on sign in
     external_sign_in_info_with_sign_ins: "V současnosti používáte následující účty pro přihlášení. Volba „synchronizovat“ znamená, že při přihlášení pomocí tohoto účtu budou na %{site_name} aktualizovány vaše údaje (např. jméno nebo e-mail)."
+    # notice after a sign in is added. provider is the external site's name, like GitHub or Google
     external_sign_in_added: "Přidáno přihlášení pomocí %{provider}."
+    # notice after a sign in is updated (from syncing to not or opposite). provider is the external site's name, like GitHub or Google
     external_sign_in_updated: "Přihlášení pomocí %{provider} bylo upraveno."
+    # notice after a sign in is removed. provider is the external site's name, like GitHub or Google
     external_sign_in_removed: "Odebráno přihlášení pomocí %{provider}."
+    # notice after a sign in fails
     external_sign_in_failed: "Přihlášení do %{provider} selhalo: %{error}."
+    # notice after a user tries to add a sign in to their account, but that sign in is already in use by another user
     external_sign_in_already_used: "Přidání přihlášení pomocí %{provider} selhalo: tento účet již používá uživatel '%{user_name}'."
+    # notice after successfully creating a new user based on external login
+    external_sign_in_confirmation: ""
+    # an indicator beside the sign in provider's name if the user chose to enable syncing
     syncing_indicator: "(synchronizovat)"
+    # button to set a sign in provider to sync
     enable_syncing: "Zapnout synchronizaci"
+    # button to set a sign in provider to not sync
     disable_syncing: "Vypnout synchronizaci"
+    # button to remove a sign in provider
     remove_external_sign_in: "Odebrat"
+    # information text indicating that the list of links below it are for addding an external sign in
     add_external_sign_in_info: "Přidat přihlášení:"
+    # link to docs on how to set up a webhook for script syncing
+    set_up_webhook: ""
     author_email_notification_type:
+      # notification option: don't send the user e-mails
       none: "Nedostávat e-maily týkající se diskusí o vašich skriptech"
+      # notification option: send e-mails on new discussions but not new posts on existing discussions
       discussion_only: "Zaslat e-mail pokud je zahájena nová diskuse o vašem skriptu"
+      # notification option: send e-mails on new discussoins and on new posts on existing discussions
       discussion_and_comment: "Zaslat e-mail pokud je zahájena nová diskuse o vašem skriptu nebo je vložen nový komentář do diskuse."
+    # display of a single user when displaying a list of users. user_link is a link to the user's page with text of the user name, count is the number of public scripts authored
     list_display_html:
       one: "%{user_link} - %{count} skript"
       few: "%{user_link} - %{count} skripty"
       many: "%{user_link} - %{count} skriptů"
       other: "%{user_link} - %{count} skriptů"
+    # sort link for sorting users by number of scripts they've posted
     listing_number_of_scripts: "Počet skriptů"
+    # sort link for sorting users by the creation date of their scripts
     listing_new_scripts: "Nové skripty"
+    # sort link for sorting users by the updated date of their scripts
     listing_updated_scripts: "Aktualizované skripty"
+    # sort link for sorting users by when they signed up
     listing_registration_date: "Datum registrace"
+    # title for page showing list of users
     listing_title: "Uživatelé"
+    listing_banned_filter:
+      banned: ""
+      not_banned: ""
+      all: ""
+    listing_author_filter:
+      script_author: ""
+      not_script_author: ""
+      all: ""
+    # placeholder for user search box
     search_placeholder: "Hledat uživatele"
+    # default option for the user's preferred locale
     locale_prompt: "(Vybrat jazyk)"
+    # text describing what the show ads checkbox does
     show_ads_description: "Podpořte %{site_name} povolením zobrazení reklam"
+    # text describing what the show sensitive checkbox does
     show_sensitive_description: "Zobrazovat skripty s obsahem pro dospělé"
+    # text describing what the preferred markup setting does
     preferred_markup_description: "Bude použito pro nové skripty a komentáře."
+    filter_locale_default_description: ""
+    # link from sleazy fork to greasy fork on user page
     greasy_fork_scripts_link:
       one: "%{user_name} má %{count} další skript na Greasy Fork."
       few: "%{user_name} má %{count} další skripty na Greasy Fork."
       many: "%{user_name} má %{count} dalších skriptů na Greasy Fork."
       other: "%{user_name} má %{count} dalších skriptů na Greasy Fork."
+    # displays when the user is editing their account but syncing is on
+    update_sync_warning:
+      one: ""
+      few: ""
+      many: ""
+      other: ""
+    # link on the user page to go to the delete page
     delete_link: "Smazat účet"
     delete:
       intro: "Smazání účtu '%{user_name}' služby %{site_name} bude mít následující důsledky:"
@@ -440,92 +868,521 @@ cs:
         request_expired: "Nelze smazat účet – platnost požadavku vypršela. "
         cancelled: "Požadavek stornován."
         completed: "Váš účet byl smazán."
+    banned_notice:
+      no_report_no_reason: ""
+      with_report: ""
+      with_reason: ""
+    banned_delete:
+      intro: ""
+      complete: ""
+    badges:
+      banned:
+        short: ""
+        long: ""
+      moderator:
+        short: ""
+        long: ""
+      author:
+        short: ""
+        long: ""
+    notifications:
+      discussion_defaults:
+        title: ""
+        new_discussion: ""
+        new_comment: ""
+        mention: ""
+      conversation_defaults:
+        title: ""
+        starter: ""
+        receiver: ""
+      save_button: ""
+      title: ""
+      current_discussion_subscriptions:
+        one: ''
+        few: ''
+        many: ''
+        other: ''
+      save_success: ""
+      unsubscribe_all: ""
+      unsubscribe_all_success: ""
+  webhooks:
+    info:
+      title: ""
+      intro_html: |
+      already_syncing_list: ""
+      synced_item_html: ""
+      language_note: ""
   help:
+    sections:
+      usage: ""
+      development: ""
+      miscellaneous: ""
+    open_source: ""
     installing_user_scripts:
       title: 'Jak nainstalovat uživatelsé skripty'
+    installing_user_styles:
+      title: ''
     meta_keys:
+      # title of the help document describing script meta keys (e.g. @name).
       title: "Meta parametry skriptu zpracovávané %{site_name}em"
+      # introductory paragraph. If the URL has a localized version, use that.
       intro_html: "Toto je seznam <a href=\"http://wiki.greasespot.net/Metadata_Block\">meta klíčů uživatelského skriptu</a>, které %{site_name} rozpozná. Klíče mimo tento seznam mohou být obsaženy ve skriptu, budou v instalovaném skriptu přítomny, ale nebudou mít efekt v uživatelském rozhraní %{site_name}."
+      # description of @name
       name: "Název skriptu, používaný v záhlaví a odkazech. Povinná položka."
+      # description of @name:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
+      name_localized_html: ""
+      # description of @description
       description: "Popis funkce skriptu. Zobrazuje se pod názvem skriptu. Povinná položka"
+      # description of @description:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
+      description_localized_html: ""
+      # description of @namespace. Do not translate content inside <code>.
+      namespace_html: ""
+      # description of @description:XX-YY. developer.mozilla.org may have localized content; use it if available.
+      version_html: ""
+      # description of @include
+      include_html: ""
+      # description of @require. %{external_script_link} is a link to the document describing allowed external scripts and has a link of key "require_external_script_link_text"
       require_html: "Skript obsahuje externí JavaScript. Více viz %{external_script_link}."
+      # used in required_html
       require_external_script_link_text: "pravidla pro kód obsahující externí skripty"
+      # description of @updateURL
       updateURL: "Popis, jak mohou správci skriptů získat aktualizace. %{site_name} tyto klíče vymazává, všechny skripty instalované z %{site_name} musejí být aktualizovány pomocí %{site_name}."
+      # description of @license
+      license: ""
+      # description of @supportURL
       supportURL: "URL stránky, kde mohou uživatelé získat podporu (např. bug tracker, fórum, e-mailová adresa). URL podpory se zobrazí na stránce skriptu."
+      # description of @contributionURL. You can replace the sample "business" and "item_name" parameters in the URLs with localized versions.
+      contributionURL_html: ""
+      # description of @contributionAmount. Do not translate content inside <code>.
       contributionAmount_html: "Navrhovaná výše příspěvku, použito ve spojení s <code>@contributionURL</code>."
+      # description of @compatible. %{browsers} is a comma-separated list of browser codes. You can translate "Must disable pop-up blocker", but do not translate "@compatible firefox". 
       compatible_html: "Označit skript jako kompatibilní s browserem. Informace o kompatibilitě bude zobrazena na stránce skriptu. Komentáře ke kompatibilitě mohou být uvedeny ve formátu <code>@compatible firefox Must disable pop-up blocker</code>. Rozpoznané browsery: %{browsers}."
+      # description of @incompatible. %{browsers} is a comma-separated list of browser codes. You can translate "Broken since Firefox 23", but do not translate "@compatible firefox".
       incompatible_html: "Označit skript jako nekompatibilní s browserem. Informace o kompatibilitě bude zobrazena na stránce skriptu. Komentáře ke kompatibilitě mohou být uvedeny ve formátu <code>@incompatible firefox Broken since Firefox 23</code>. Rozpoznané browsery: %{browsers}."
+      antifeature_html: ""
+      antifeature_localized_html: ""
     writing_user_scripts:
+      # title for Writing user scripts help page
       title: "Jak psát uživatelské skripty"
+      # content of the page. The link to greasespot can be updated to a better resource if one is available in your language. code_rules_link and meta_keys_link are links to those help pages, with text of those page's titles. ask_in_forum_link is a link to the forum with text of ask_in_forum_link_text. user_page_link is a link to the user's page if the user is signed in, or plain text if they're not; in either case, the text is user_page_link_text. post_new_script_link is a link to the new script page, with text of post_new_script_link_text
       content_html: "<p>Tvorba uživatelských skriptů vyžaduje znalost JavaScriptu. <a href=\"http://wiki.greasespot.net/Tutorials\">Ukázky na GreaseSpot Wiki</a> by vám mohly pomoci s úvodem do JavaScriptu a tvorby uživatelských skriptů. Rovněž může být vhodné studium skriptů ostatních autorů. Doporučujeme přečíst si %{code_rules_link} a %{meta_keys_link}. Pokud potřebujete pomoc s vytvořením skriptu. %{ask_in_forum_link}.</p><p>Pro vložení skriptu do %{site_name} potřebujete uživatelský účet. Na své %{user_page_link} naleznete odkaz pro %{post_new_script_link}.</p>"
+      # link text used in content_html
       ask_in_forum_link_text: 'položte dotaz na fóru'
+      # link text used in content_html
       user_page_link_text: 'uživatelské stránce'
+      # link text used in content_html
       post_new_script_link_text: 'vytvoření nového skriptu'
     code_rules:
+      # title for the rules page
       title: "Pravidla %{site_name} pro skripty"
+      preamble: ""
+      functionality_header: ""
+      description: ""
+      reason: ""
+      unrelated: ""
+      monetization_html: ""
+      code_header: ""
+      obfuscation: ""
+      libraries_html: ""
+      updates: ""
+      external_js: ""
+      copyright_header: ""
+      licensing: ""
+      reposts: ""
+      miscellaneous_header: ""
+      keywords_html: ""
+      adult_content_rule: ""
+      reporting: ""
     external_scripts:
+      # title of the external script rules page
       title: "Pravidla %{site_name} o používání externích skriptů"
+      # content of the external script rules page
+      content_html: >
+      test_url:
+        label: ""
+        result_ok: ""
+        result_not_ok: ""
+    script_rewriting:
+      # title of the rewriting page
+      title: ""
+      # content of the rewriting page
+      content_html: >
+    # link to github
+    site_feedback_link: ""
     credits:
+      # title for the credits page
       title: "Autoři"
+      # give credit to authors
       authors_credit: "%{site_name} by nemohl existovat bez autorů, kteří pracují na skriptech."
+      # give credit to developers. link goes to github.
       developers_credit: "Samotný %{site_name} je budován %{developers_link:těmito lidmi} společně s pomocí ostatních, kdo hlásí chyby nebo zasílají náměty na vylepšení."
+      # give credit to translators. link to goes to transifex. after this text, there's a list of languages and the contributors to each.
       translators_credit: "%{site_name} je překládán %{translators_link:předkladatelskou skupinou Greasy Translation Force na Transifexu}:"
+      # give credit to icon makers. all links are proper names so are not translated.
+      icons_credit: ""
+    # link to greasemonkey docs
     help_with_greasymonkey: "Pomoc s Greasymonkey"
     contact:
+      # title of contact page
       title: "Kontaktovat někoho"
+      # content of contact page
+      content_html: >
     privacy_policy:
       title: "Ochrana soukromí"
+      content_html: >
+    user_css_to_user_js:
+      title: ""
+  search:
+    script_search:
+      title: ""
+      description: ""
+    library_search:
+      title: ""
+      description: ""
+    code_search:
+      title: ""
+      description: ""
+    user_search:
+      title: ""
+      description: ""
   moderator_logs:
     date_column: "Datum"
     moderator_column: "Moderátor"
+    item_column: ""
+    action_column: ""
     reason_column: "Důvod"
+    item_script_html: ""
+    item_deleted_script: ""
+    item_user_html: ""
+  notifications:
+    consecutive_bad_ratings:
+      one: ""
+      few: ""
+      many: ""
+      other: ""
+  reports:
+    report_filed: ""
+    new_report_title:
+      user: ""
+      comment: ""
+      message: ""
+      script: ""
+    new_report_notes_html: >
+    new_script_report_notes_html: >
+    new_user_report_notes_html: >
+    reason:
+      non_functional: ""
+      spam: ""
+      abuse: ""
+      illegal: ""
+      unauthorized_code: ""
+      malware: ""
+      minified: ""
+      external_code: ""
+      undisclosed_antifeature: ""
+      other: ""
+    report_intro_html: ""
+    report_intro_unauthorized_html: ""
+    non_functional_feedback: ""
+    unauthorized_code_original_placeholder: ""
+    explanation_placeholder: ""
+    create_button: ""
+    report_user: ""
+    report_comment: ""
+    report_message: ""
+    result_dismissed: ""
+    result_upheld: ""
+    result_pending: ""
+    rebuttal_placeholder: ''
+    submit_rebuttal: ""
+    delete_script: ""
+  discussions:
+    title: ""
+    comment_date: ""
+    comment_edit_date: ""
+    posted_by_html: ""
+    last_comment: ""
+    new_discussion_heading: ""
+    new_discussion_submit: ""
+    new_comment_heading: ""
+    new_comment_submit: ""
+    back_to_feedback: ""
+    edit_comment_link: ""
+    edit_comment_header: ""
+    delete_comment: ""
+    delete_comment_confirm: ""
+    delete_discussion: ""
+    delete_discussion_confirm: ""
+    update_comment_submit: ""
+    cancel_update_comment: ""
+    quote_comment: ""
+    question_heading_html: ""
+    review_heading_html: ""
+    update_rating: ""
+    ratings:
+      question: ""
+      bad: ""
+      ok: ""
+      good: ""
+    ratings_short:
+      question: ""
+      bad: ""
+      ok: ""
+      good: ""
+    sign_in_to_post_discussion: ""
+    sign_in_to_post_comment: ""
+    user_filter:
+      label: ""
+      all: ""
+      discussion_by_me: ""
+      comment_by_me: ""
+      on_my_scripts: ""
+      subscribed: ""
+    other_user_filter:
+      all: ""
+      comments_by: ""
+    category_filter:
+      label: ""
+      all: ""
+    read_filter:
+      label: ""
+      all: ""
+      read: ""
+      unread: ""
+    locale_filter:
+      label: ""
+      all: ""
+    user_activity:
+      title: ""
+      no_recent_activity: ""
+      see_all_activity: ""
+      script_review:
+        posted_html: ""
+        replied_html: ""
+      script_question:
+        posted_html: ""
+        replied_html: ""
+      discussion:
+        posted_html: ""
+        replied_html: ""
+    review_title: ""
+    question_title: ""
+    subscribe: ""
+    unsubscribe: ""
+    notify: ""
+    notifying_on_script: ""
+    categories:
+      greasyfork:
+        name: ""
+        description: ""
+      development:
+        name: ""
+        description: ""
+      requests:
+        name: ""
+        description: ""
+      script-discussions:
+        name: ""
+        description: ""
+      no-scripts:
+        name: ""
+      moderators:
+        name: ""
+        description: ""
+    category_display: ""
+    new_title: ""
+    new_button: ""
+    script_notice: ""
+    no_discussions: ""
+    mark_all_read: ""
+    pending_moderator_review: ""
+  conversations:
+    user_input_note: ""
+    new_title: ""
+    new_link: ""
+    new_button: ""
+    title_html:
+      one: ''
+      few: ''
+      many: ''
+      other: ''
+    send_message: ""
+    conversation_list_title: ""
+    conversation_link_html:
+      one: ''
+      few: ''
+      many: ''
+      other: ''
+    conversation_info_html: ""
+    no_conversations: ""
+    no_recent_conversations: ""
+    recent:
+      title: ""
+      more: ""
+  screenshots:
+    requirements: ""
   common:
+    # text to show before listing errors in a submission
     error_preamble: "S vloženým obsahem není vše v pořádku..."
+    # link to the list of allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_link: "(Zobrazit povolené elementy.)"
+    # title of the page showing allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_and_attributes_title: "Povolené elementy pro HTML obsah"
+    # text to introduce the list of allowed HTML elements and attributes
     allowed_elements_intro: "Následující elementy a atributy jsou povoleny. To se týká HTML i Markdown (po konverzi do HTML)."
+    # additional info for the allowed HTML elements, explaining additional changes made to content
     allowed_elements_extra_info: "Konce řádků budou převedeny na elementy P nebo BR. Všechny URL budou převedeny na odkazy."
+    allowed_css_intro: ""
+    user_references_html: ""
     not_found_text: "404 - stránka nenalezena."
     not_found_title: "404 - stránka nenalezena"
     not_found_link_home: "Na domovskou stránku."
+    # shown on the first page a user sees if, based on the user's Accept-Language header, we think we have a better locale than what the first page shows. "locale_name" is the name of the locale in that language (matching the name in the locale drop down)
     suggest_locale: "%{site_name} je k dispozici v %{locale_name}."
+    # shown on the first page a users sees if the locale they're on is less than a certain amount translated. links to the docs on how to help with localization
     incomplete_locale: "Překlad %{site_name} do %{locale_name} je hotov z %{percent}. Můžete to změnit."
+    # text for a button that expands a block of text
     expander_show_more: "Zobrazit více"
+    # text for a button that contracts a block of text
     expander_show_less: "Zobrazit méně"
+    # note denoting what are ads
     advertisement_note: Reklama
+    # label on tab allowing for previewing input
     preview_tab: Náhled
+    # label on tab for entering input
+    write_tab: ""
+    listing_options_title: ""
+    quote:
+      prefix_html: ""
   activerecord:
     attributes:
       user:
+        # user field: display name
         name: "Jméno"
+        # user field: profile (HTML content describing themselves)
         profile: "Profil"
+        # user field: locale
         locale: "Preferovaný jazyk"
+        # user field: setting to send e-mails when discussions or comments are posted to a user's scripts. options are under users.author_email_notification_type
         author_email_notification_type_id: "Notifikace diskusí o skriptech"
+        # user field: show ads
         show_ads: "Zobrazit reklamy"
+        # user field: show sensitive
         show_sensitive: "Obsah pro dospělé"
+        # user field: preferred markup (html or markdown)
         preferred_markup: "Preferované značkování"
+        filter_locale_default: ""
+        current_password: ""
+        new_password: ""
+        new_password_confirmation: ""
       script:
+        # name of the script
         name: "Jméno"
+        # description of the script
         description: "Popis"
+        # locale the script is in. see also scripts.locale_explanation
         locale: "Jazyk"
+        # the JS code of the script
         code: "Kód"
+        # description of changes for an update
         changelog: "Přehled změn"
+        # the type of script - public, unlisted, or library
         type: "Typ skriptu"
+        # additional descriptive text outside of @description
         additional_info: "Doplňující popis"
+        # screenshots attached to the script
         screenshots: "Snímky obrazovky"
+        # when deleting, which script to redirect to
         replaced_by_script_id: "Náhradní skript"
       script_set:
+        # name of the script set
         name: "Název"
+        # description of the script set
         description: "Popis"
+        # default sort of the script set
+        default_sort: ""
+      report:
+        reason: ""
+      discussion:
+        rating: ""
+        category: ""
+        title: ""
+      conversation:
+        user_input: ""
+      message:
+        content: ""
   errors:
     messages:
+      # validation for when a script name is not provided
       script_missing_name: "je vyžadováno - použijte parametr @name"
+      # validation for when a script description is not provided
       script_missing_description: "je vyžadováno - použijte parametr @description"
+      # validation for when a script description is the same as name
       script_name_same_as_description: "nesmí být stejné jako jméno"
+      # validation for sync URL
       script_sync_identifier_bad_protocol: "URL musí být HTTP nebo HTTPS"
+      # validation for number of screenshots
       script_too_many_screenshots: "Vloženo příliš mnoho snímků obrazovky. Maximum je %{number}"
+      # validation for "deleted and replaced by" when the user says the script is replaced by itself
       cannot_be_self_reference: "nemůže nahrazovat sám sebe"
+      # validation for "deleted and replaced by" when the user says the script is replaced by a deleted script
       cannot_be_deleted_reference: "nemůže být smazaný skript"
+      cannot_be_used_with_this_script: ""
+      # validation for "deleted and replaced by" when the user provides a non-%{site_name} URL
       must_be_greasy_fork_script: "musí být umístěn na %{site_name}"
+      # validation when the user uploads code that's not UTF-8 text
       script_update_not_utf8: "nahraný text musí mít kódování UTF-8"
+      # validation when user uploads code that contains a disallowed @require
       script_disallowed_require: "využívá neschválený externí skript: %{code}"
+      script_rate_limit: ""
+      missing_include_or_match: ""
+      file_size_out_of_range: ""
+      meta_too_long: ""
+  opensearch:
+    # short name for opensearch.xml
+    short_name: ""
+    # description for opensearch.xml
+    description: ""
+    # long name for opensearch.xml
+    long_name: ""
+    # attribution for opensearch.xml
+    attribution: ""
+  mailers:
+    script_report:
+      report_created_offender:
+        subject: ""
+        text: ""
+      report_upheld_offender:
+        subject: ""
+        text: ""
+      report_dismissed_offender:
+        subject: ""
+        text: ""
+      report_rebutted_reporter:
+        subject: ""
+        text: ""
+      report_upheld_reporter:
+        subject: ""
+        text: ""
+      report_script_deleted_reported:
+        subject: ""
+        text: ""
+      report_dismissed_reporter:
+        subject: ""
+        text: ""
+    consecutive_bad_ratings:
+      notify:
+        subject: ""
+        text: |
+    script_comment:
+      subject: ""
+      text: |
+    subscribed_discussion:
+      subject: ""
+      text: |
+    comment_mentioned:
+      subject: ""
+      text: |
+    new_message:
+      subject: ""
+      text: |
