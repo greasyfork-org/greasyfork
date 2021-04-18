@@ -3,21 +3,21 @@
 <% end %>
 
 <p>
-  <%= t('scripts.rules_summary_html', {full_rules_link: link_to(t('scripts.rules_summary_link_to_full'), help_code_rules_path)}) %>
+  <%= t('scripts.rules_summary_html', full_rules_link: link_to(t('scripts.rules_summary_link_to_full'), help_code_rules_path)) %>
 </p>
 
 <% # ignore userscripts.org sync
 if !script_version.script.script_sync_type_id.nil? and script_version.script.script_sync_source_id != 2 %>
   <p>
-    <%= t('scripts.syncing_notice_html', {
+    <%= t('scripts.syncing_notice_html',
       syncing_notice_sync_type: link_to(
         t(
           script_version.script.script_sync_type_id == 1 ? 'scripts.syncing_notice_sync_type_manual' : 'scripts.syncing_notice_sync_type_automatic',
           {sync_identifier: script_version.script.sync_identifier}
         ),
         admin_script_path(script_version.script_id)
-      ),
-    }) %>
+      )
+    ) %>
   </p>
 <% end %>
 
@@ -81,13 +81,13 @@ if !script_version.script.script_sync_type_id.nil? and script_version.script.scr
                 <%= t('scripts.warning_namespace_changed_html') %><br>
                 <label for="script_version_namespace_check_override"><%= t('scripts.override_warning_checkbox_label') %></label> <%= s.check_box(:namespace_check_override, {}, true, false) %>
               <% when :potentially_minified %>
-                <%= t('scripts.warning_potentially_minified_html', {allowed_requires_link: link_to(t('scripts.warning_potentially_minified_allowed_requires_link'), help_external_scripts_path)}) %><br>
+                <%= t('scripts.warning_potentially_minified_html', allowed_requires_link: link_to(t('scripts.warning_potentially_minified_allowed_requires_link'), help_external_scripts_path)) %><br>
                 <label for="script_version_minified_confirmation"><%= t('scripts.override_warning_checkbox_label') %></label> <%= s.check_box(:minified_confirmation, {}, true, false) %>
               <% when :automatic_sensitive %>
-                <%= t('scripts.warning_automatic_sensitive_html', {sensitive_domains: script_version.sensitive_domains.to_sentence}) %><br>
+                <%= t('scripts.warning_automatic_sensitive_html', sensitive_domains: script_version.sensitive_domains.to_sentence) %><br>
                 <label for="script_version_sensitive_site_confirmation"><%= t('scripts.override_warning_checkbox_label') %></label> <%= s.check_box(:sensitive_site_confirmation, {}, true, false) %>
               <% when :code_previously_posted %>
-                <%= t('scripts.warning_code_previously_posted_html', { script_links: script_version.previously_posted_scripts.map { |s| render_script(s) }.to_sentence.html_safe}) %><br>
+                <%= t('scripts.warning_code_previously_posted_html', script_links: script_version.previously_posted_scripts.map { |s| render_script(s) }.to_sentence.html_safe) %><br>
                 <label for="script_version_allow_code_previously_posted"><%= t('scripts.override_warning_checkbox_label') %></label> <%= s.check_box(:allow_code_previously_posted, {}, true, false) %>
               <% else
                 raise "Unknown warning #{w}"

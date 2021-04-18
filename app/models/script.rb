@@ -102,9 +102,9 @@ class Script < ApplicationRecord
              .reject { |la| la.attribute_value.nil? }
              .find { |la| la.attribute_value.length > len }
       if LOCALIZED_ATTRIBUTES_FROM_META.include?(attr) && !script.library?
-        script.errors.add(:base, :too_long, message: I18n.t('errors.messages.meta_too_long', { count: len, key: "@#{attr}" }))
+        script.errors.add(:base, :too_long, message: I18n.t('errors.messages.meta_too_long', count: len, key: "@#{attr}"))
       else
-        script.errors.add(attr, :too_long, message: I18n.t('errors.messages.too_long', { count: len }))
+        script.errors.add(attr, :too_long, message: I18n.t('errors.messages.too_long', count: len))
       end
     end
   end

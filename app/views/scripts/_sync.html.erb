@@ -40,12 +40,12 @@
     <% if !@script.script_sync_source_id.nil? %>
       <p>
         <% if !@script_sync_error.nil? %>
-          <%= t('scripts.sync_failed_info_html', {date: markup_date(@script.last_attempted_sync_date), error: @script.sync_error}) %>
+          <%= t('scripts.sync_failed_info_html', date: markup_date(@script.last_attempted_sync_date), error: @script.sync_error) %>
         <% end %>
         <% if @script.last_successful_sync_date.nil? %>
           <%= t('scripts.sync_never_succeeded') %>
         <% else %>
-          <%= t('scripts.sync_success_info_html', {date: markup_date(@script.last_successful_sync_date)}) %>
+          <%= t('scripts.sync_success_info_html', date: markup_date(@script.last_successful_sync_date)) %>
         <% end %>
       </p>
     <% end %>
