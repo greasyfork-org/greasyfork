@@ -13,6 +13,7 @@ jobs:
           MYSQL_PASSWORD: passw0rd
           MYSQL_DATABASE: greasyfork_test
           RAILS_ENV: test
+          BUNDLER_AUDIT_DB: /home/circleci/ruby-advisory-db
       - image: circleci/mariadb:10.3.23
         environment:
           MYSQL_ROOT_PASSWORD: rootpw
