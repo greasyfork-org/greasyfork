@@ -1,66 +1,134 @@
 he:
   layouts:
     application:
+      # link to the list of scripts
       script_list: "סקריפטים"
+      # link to the forum
       forum: "פורום"
+      # link to the help docs
       help: "עזרה"
+      # link to sign in
       sign_in: "התחבר"
+      # label for nav submenu
       submenu: "עוד"
+      # link to advanced search
       advanced_search: "חיפוש מתקדם"
+      # link to user list
       user_list: "רשימת משתמשים"
+      # link to libraries
       libraries: "ספריות"
+      # link to moderator log
       moderator_log: "יומן מנהל"
   scripts:
+    # label for created date of a script
     created_date: "נוצר"
+    # label for updated date of a script
     updated_date: "עודכן"
+    # label for total install count of a script
     total_installs: "סה\"כ התקנות"
+    # label for daily install count of a script
     daily_installs: "התקנות יומיות"
+    # label for the ratings of a script
     ratings: "דירוגים"
+    # label for author name of a script
     author_name: "יוצר"
+    # label for version number of a script
     version_number: "גרסה"
+    # label for the legal license a script is released under (e.g. GPL)
     license: "רישיון"
+    # what is shown as the license when no license is provided in a script
     no_license: "לא זמין"
+    # label for the browser compatibility for a script
     compatibility: "תאימות"
     compatible_with_browser: "תאימות ל-%{browser}"
     incompatible_with_browser: "ללא תאימות ל-%{browser}"
+    # label for the list of sites or patterns a script applies to
     applies_to: "חל על"
+    # a title (tooltip) for the links in the "applies to" section going to a list of scripts for that site. count is the number of other scripts, site is the name of the site. add subkeys for your language per http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
     applies_to_link_title:
       one: "ראה  %{count} סקריפטים אחרים בשביל %{site}"
       two: "ראה  %{count} סקריפטים אחרים בשביל %{site}"
       many: "ראה  %{count} סקריפטים אחרים בשביל %{site}"
       other: "ראה  %{count} סקריפטים אחרים בשביל %{site}"
+    # what is shown as the applies to when a script applies to all sites
     applies_to_all: "כל האתרים"
+    # link that makes the user install the script
     install: "התקן את הסקריפט"
+    # text for link that gives information on how to install scripts. should be very short.
     install_help: "?"
+    # title (tooltip) for link that gives information on how to install scripts
     install_help_title: "איך להתקין"
+    # link that makes the user update the script
     update: "עדכן לגרסה %{version}"
+    # link that makes the user downgrade the script
     downgrade: "שנמך לגרסה %{version}"
+    # link that makes the user reinstall the script
     reinstall: "התקן מחדש גרסה %{version}"
+    # warning when installing an old version of a script
     old_version_warning: "זוהי אינה הגרסא העדכנית ביותר של הסקריפט. אם תתקין אותה, היא לעולם לא תתעדכן לגרסא חדשה יותר. האם להתקין בכל זאת?"
+    # label for a promoted script
     promoted: "סקריפטים מקודמים"
     author_promoted: "סקריפטים מומלצים של יוצר זה"
+    # text for promoted script
     promoted_text_html: "אולי תאהב גם את  %{script_link}."
+    # instructions on a script library. code will be a <code> element. Don't use punctuation around the code element if possible so that people don't accidentally include that when copying.
     library_instructions_html: "אין להתקין סקריפט זה ישירות. זוהי ספריה עבור סקריפטים אחרים %{code}"
+    # text displayed for deleted scripts
     deleted_notice: "סקריפט זה נמחק."
+    deleted_notice_with_related: ""
+    deleted_undelete_notice_html: ""
+    deleted_locked_author_notice_html: ""
+    deleted_author_notice: ""
+    # test displayed when viewing a previous version. date is a date and time (no "ago"), latest_version_link is a link to the newest version whose text is version_notice_latest_version_link
     version_notice_html: "נכון ליום %{date}. ראה %{latest_version_link}."
     version_notice_latest_version_link: "הגרסה האחרונה"
+    reported_notice: ""
+    reported_notice_for_author: ""
+    # link to the script's info page, containing script meta and author's description
     info_page: "מידע"
+    # link to the script's code page
     code_page: "קוד"
+    # link to the script's history page, listing all versions of the code
     history_page: "היסטוריה"
+    # link to the script's feedback page, listing discussions on the script. count is the number of discussions
     feedback_page: "ביקורות (%{count})"
+    # link to the script's install statistics page
     stats_page: "סטטיסטיקה"
+    # link to the script's derivatives page, which shows similar scripts
     derivatives_page: "נגזרים"
+    # link to the page that lets the author update the script
     update_page: "עדכון"
+    # link to the page that lets the author delete a script
     delete_page: "מחק"
+    # explanation of what deleting does
     delete_explanation: "מחיקת הסקריפט שלך תהפוך אותו לבלתי זמין לכולם, למעט לך ולמנהלי Greasy Fork. אתה יכול לבטל את המחיקה בכל עת."
+    # intro text to radio options for choosing update behaviour after deletion
     delete_update_behaviour: "מה תרצה שיקרה למשתמשים שכבר התקינו את הסקריפט שלך?"
+    # label for the option allowing users to retain the script after delete
     delete_update_behaviour_1: "הם ימשיכו להשתמש בו כפי שהם משתמשים בו כיום."
+    # label for the option where users get a blanked script after delete 
     delete_update_behaviour_2: "הם יועדכנו לסקריפט ריק. זה מתאים כאשר לסקריפט יש השפעה שלילית על האתר עליו הוא פועל."
+    # heading for permanent deletion section
     delete_permanently_heading: "מחיקה לצמיתות"
+    # explanation of permanent deletion
+    delete_permanently_explanation_html: >
+    # confirmation on pressing the permanent deletion button
+    delete_permanently_confirm: ""
+    # text for the permanent deletion button
     delete_permanently_submit: "בקשת מחיקה לצמיתות"
+    # text for the permanent deletion button when it would take effect immediately
     delete_permanently_immediate_submit: "למחוק לצמיתות"
+    # notice after requesting permanent deletion
+    delete_permanently_notice: ""
+    # text on the delete page after permanently deletion was requested
+    delete_permanently_already_requested: ""
+    # notice after permanently deletion
     delete_permanently_notice_immediate: "הסקריפט נמחק לצמיתות."
+    # text for cancelling a permanent deletion request
     cancel_delete_permanently_submit: "בטל בקשה למחיקה לצמיתות"
+    # notice after cancelling a permanent deletion request
+    cancel_delete_permanently_notice: ""
+    # error when attempting to delete a locked script
     delete_permanently_rejected_locked: "סקריפט זה נעול ואינו ניתן למחיקה לצמיתות"
     admin_page: "מנהל"
     admin:
@@ -75,157 +143,368 @@ he:
       locale_multiple_note: "שים לב כי %{meta_keys_link:ניתן להגדיר מספר שפות לסקריפט}."
       update_locale: "שפה מעודכנת"
       no_moderator_logs: "אף פעולה לא נעשתה על ידי מנהל על סקריפט זה."
+      compare_title: ""
+      compare_to: ""
+      compare_button: ""
+      compare_must_be_local_url: ""
+    # HTML title for the history page for a script
     history_title: "%{script_name} - היסטורית גרסאות"
+    # text explaining that we're only showing versions where the code changed
     history_only_code_changes_info: "יש גרסאות של סקריפט זה עם קוד מעודכן."
+    # link to the list of all versions
     history_all_changes_link: "הצג את כל הגרסאות"
+    # text explaining that we're showing all versions
     history_all_changes_info: "אלו כל גרסאות הסקריפט"
+    # link to the list of version where the code changed
     history_only_code_changes_link: "הראה רק גרסאות בהן בוצע שינוי קוד"
+    # button that shows changes (a diff) of the selected versions
     diff_button: "הבדל בין גרסאות נבחרות"
+    # HTML title of the script source code page
     code_title: "%{script_name} - קוד מקור"
+    # HTML title of the script feedback page
     feedback_title: "%{script_name} - משוב"
     feedback_has_reports: "דווח על סקריפט זה שהוא מפר את חוקי %{site_name}."
+    # text to show when no discussions are posted. start_discussion_first_link is a link with the text from feedback_start_first_discussion_link
     feedback_no_discussions_html: "אין דיונים שפורסמו עדיין. %{start_first_discussion_link}"
+    feedback_no_discussions_on_page_form: ""
+    feedback_report_instead: ""
     feedback_start_first_discussion_link: "היה הראשון לדון בסקריפט זה"
     feedback_discussion_or_report: "%{new_discussion_link:פרסם דיון חדש על סקריפט זה} או %{report_link:דווח עליו כדי להסירו}."
+    # heading for list of people who favorited this script
     feedback_favoriters_heading: "מועדפים"
+    # text before a comma separated list of users who favorited the script
+    feedback_favoriters_user_list_html: ""
+    feedback_favoriters_lots:
+      one: ""
+      two: ""
+      many: ""
+      other: ""
+    # text when no one has favorited a script
     feedback_no_favoriters: "הסקריפט טרם הוגדר כמועדף על ידי מישהו."
+    # link to get the user to sign in to add the script to their favorites
     feedback_sign_in_to_favorite: "התחבר ע\"מ להוסיף מועדפים"
+    # html title for script stats page
     stats_title: "%{script_name} - סטטיסטיקה"
+    # heading for daily install stats on stats page
     stats_daily_installs_heading: "התקנות יומיות"
+    # heading for weekly install stats on stats page
     stats_weekly_installs_heading: "התקנות שבועיות"
+    # heading for daily update check stats on stats page
     stats_daily_update_checks_heading: "בדיקות עדכון יומיות"
+    # date column heading for a script's daily install stats table
     stats_daily_installs_date_column_heading: "תאריך"
+    # install count column heading for a script's stats table
     stats_daily_installs_install_count_column_heading: "התקנות"
+    # update check count column heading for a script's stats table
     stats_daily_installs_update_check_count_column_heading: "בדיקות עדכון"
+    # header for the raw data table for stats
     stats_raw_data_header: "מידע גולמי"
+    # text before links to download raw stats data. links will be space separated links to the format name (e.g. CSV and JSON)
     stats_download_raw_data_html: "הורד את כל הנתונים כ: %{links}"
+    # text to show when a stat is not available
     stats_no_data: "לא זמין"
+    stats_filters: ""
+    stats_filter_options:
+      month: ""
+      year: ""
+      all: ""
+    # HTML title for derivatives page
     derivatives_title: "%{script_name} - נגזרים"
+    # text explaining the derivatives page and what to do if the user finds unauthorized copies
+    derivatives_intro: ""
+    # format for scripts listed on the derivatives page. script_link is a link to the derivative's page, user_link is a link to the user who created the derivative, license is text, link to the license, or scripts.no_license
+    derivatives_script_html: ""
+    derivatives_exact_copies_heading: ""
+    derivatives_exact_copies_list_intro: ""
+    derivatives_exact_copies_item_html: ""
+    derivatives_exact_copes_none: ""
+    derivatives_similar_heading: ""
+    derivatives_similar_info: ""
+    similarity_score:
+      high: ""
+      medium: ""
+      low: ""
+      none: ""
+    derivatives_similar_none: ""
+    derivatives_similar_item: ""
+    derivatives_similar_last_check_html: ""
+    derivatives_similar_last_check_soon: ""
+    derivatives_similar_last_check_again_soon_html: ""
+    derivatives_similar_check_now: ""
+    # html title for script list page when showing scripts that affect all sites
     listing_title_all_sites: "סקריפט משתמש לכל האתרים"
+    # meta description and feed subtitle when showing scripts that affect all sites
     listing_description_all_sites: "סקריפטי משתמש שמוסיפים תכונות ומסירים באגים בכל האתרים"
+    # html title for script list page when showing scripts for a particular site. 'site' will be in the form 'example.com'
     listing_title_for_site: "סקריפטי משתמש ל-%{site}"
+    # meta description and feed subtitle when showing scripts that affect a particular site
     listing_description_for_site: "סקריפטי משתמש שמוסיפים תכונות ומסירים באגים ב-%{site}"
+    # html title for script list page for search results.
     listing_title_for_search: "סקריפטי משתמש ל-'%{search_string}'"
+    # html title for script list page for code search results.
     listing_title_for_code_search: "סקריפטי משתמש ל-'%{search_string}'"
+    # html title for script list page when no other situation applies
     listing_title_generic: "סקריפטי משתמש"
+    # html title for script list page for a user's favorites. set_name is script_sets.favorites_name
     listing_title_for_favorites: "%{set_name} של %{user_name}"
+    # meta description and feed subtitle for script list page when no other situation applies
     listing_description_generic: "סקריפטי משתמש שמוסיפים תכונות ומסירים באגים באתרים בהם אתה משתמש"
+    # label for sorting links on script list page
     listing_sort_label: "מיין לפי:"
+    # link for relevance (most matching the search terms) sort on a script list
     listing_sort_relevance: "רלוונטיות"
+    # link for daily install sort on a script list
     listing_sort_daily_installs: "התקנות יומיות"
+    # link for daily install sort on a script list
     listing_sort_total_installs: "סה\"כ התקנות"
+    # link for rating sort on a script list
     listing_sort_ratings: "דירוגים"
+    # link for created date sort on a script list
     listing_sort_created: "תאריך יצירה"
+    # link for updated date sort on a script list
     listing_sort_updated: "תאריך עדכון "
+    # link for name sort on a script list
     listing_sort_name: "שם "
+    # label for filtering by-site links on script list page
     listing_filter_by_site_label: "מציג סקריפטים עבור:"
+    # link for turning off by-site filtering on script list page
     listing_filter_by_site_disable: "הכל"
+    # link for filtering script list by scripts that affect all sites
     listing_filter_by_site_all_sites: "(כל האתרים)"
     listing_filter_by_language_label: "שפה:"
+    # link to see a full list of sites that scripts on %{site_name} affect
     listing_filter_by_site_more_sites: "עוד..."
+    # text that shows when no scripts were found with the used parameters
     listing_no_scripts: "לא נמצאו סקריפטים."
+    # feed title for the listing, ordered by created date
     listing_created_feed: "סקריפטים חדשים"
+    # feed title for the listing, ordered by updated date
     listing_updated_feed: "סקריפטים שעודכנו"
+    # when a list has nothing to show
     listing_none: "(אין)"
+    # link to filter search results by the current locale
     listing_set_locale_filter: "מראה את התוצאות לכל השפות. %{set_filter_link: הראה רק תוצאות בשפה ה%{language}.}"
+    # link to remove locale filter
     listing_remove_locale_filter: "מראה רק תוצאות בשפה ה%{language}. %{remove_filter_link: הראה תוצאות בכל השפות.}"
+    listing_language_all: ""
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    # link to start the process of importing (creating from an external place) scripts
     import: "ייבא סקריפטים."
+    # link to create a new script
+    new: ""
+    new_css: ""
+    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support site
     support_site: "בקר באתר התמיכה של היוצר"
+    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support email address
     support_email: "שלח דוא\"ל ליוצר לשם תמיכה"
+    # link to a site where the user can donate to the author, when the author didn't provide a suggested donation amount
     contribution_no_amount: "הודה ל%{author} באמצעות תרומה"
+    # link to a site where the user can donate to the author, when the author provided a suggested donation amount
     contribution_with_amount: "הודה ל-%{author} על-ידי מתן תרומה. סכום תרומה אפשרי הינו %{amount}."
+    # text for donating to the author via bitcoin, when the author didn't provide a suggested donation amount
     contribution_bitcoin_no_amount_html: "הודה ל-%{author} על-ידי מתן תרומת ביטקוין ל-%{address}."
+    # text for donating to the author via bitcoin, when the author provided a suggested donation amount
     contribution_bitcoin_with_amount_html: "הודה ל-%{author} על-ידי מתן תרומת ביט-קוין ל-%{address}. סכום תרומה אפשרי הינו %{amount}."
+    # explanation of language chooser when editing script
     locale_explanation_html: "צריך שיתאים לשפת ה<code>@name</code>, <code>@description</code>, וכן למידע הנוסף הראשוני."
+    # the default value for the locale box, if submitted the site will attempt to detect the language of the entry
     locale_auto_select: "(זהה באופן אוטומטי)"
+    # label which lists the sets this script is in, which is followed by controls to change its inclusions
     sets_label: "בסטי הסקריפטים:"
+    # label for when the script is not in any sets, which is followed by controls to change its inclusions
     sets_label_no_sets: "סטי סקריפטים:"
+    # option to remove the script from the set
     sets_remove_inclusion: "הסר מ-%{set_name}"
+    # option to remove the script's exclusion from the set
     sets_remove_exclusion: "הסר יוצא-מן-הכלל מ-%{set_name}"
+    # option to add the script to the set
     sets_add_inclusion: "הוסף ל-%{set_name}"
+    # option to exclude the script from the set (when it's been included as part of a sub set)
     sets_add_exclusion: "אל תכלול ב-%{set_name}"
+    # option to add the script to a new set
     sets_add_to_new: "הוסף לסט חדש"
+    # summary of %{site_name}'s rules for posting scripts. full_rules_link is a link to the full rules with text of rules_summary_link_to_full
     rules_summary_html: "על הסקריפטים להיות <strong>מתוארים היטב</strong>, אינם יכולים להיות <strong>מעורפלים</strong> או <strong>מצומצמים</strong>, עליהם לכבד <strong>זכויות יוצרים</strong>, ועליהם להיות מוגבלים ב<strong>קוד החיצוני</strong> בהם הם משתמשים. %{full_rules_link}"
+    # full rules link text used in the rules summary
     rules_summary_link_to_full: "קרא את כל החוקים."
+    # warning when on the edit screen for a script set up to sync. syncing_notice_sync_type will be a link to the sync screen with text from syncing_notice_sync_type_manual or syncing_notice_sync_type_automatic
     syncing_notice_html: "סקריפט זה הוא %{syncing_notice_sync_type}. כל עדכון שתערוך בקוד כאן יידרס כאשר יתבצע סנכרון."
+    # used in syncing_notice_html when a script syncs only when the author requests it
     syncing_notice_sync_type_manual: "הגדר שיתעדכן ידנית מ-%{sync_identifier}"
+    # used in syncing_notice_html when a script syncs automatically
     syncing_notice_sync_type_automatic: "הגדר שיתעדכן אוטומטית מ-%{sync_identifier}"
+    # label for uploading a script under the code textarea
     upload_label: "או העלה:"
+    # label for checkbox to enable or disable syntax highlighting code editor
     enable_source_code_editor_label: "אפשר הדגשת-תחביר בעורך הקוד"
+    # descriptive text for the changelog field
     changelog_note: "מה עודכן בגרסה זו?"
+    additional_info_note: ""
+    # button text for previewing additional info
+    # button text for submitting a new script
     post_new_script: "העלה סקריפט"
+    # button text for submitting an update to an existing script
     post_updated_script: "העלה גרסה חדשה"
+    # label for radio button for public-type user script
     type_1_html: "סקריפט משתמש פומבי - סקריפט משתמש שכולם יוכלו לראות ולהשתמש בו."
+    # label for radio button for unlisted-type user script
     type_2_html: "סקריפט משתמש לא-רשום - סקריפט משתמש לשימוש (חצי-)פרטי. זמין רק בגישה ישירה, אבל לא מקושר מאף מקום ב-%{site_name}."
+    # label for radio button for library-type script
     type_3_html: "ספריה - סקריפט שיעודו להיות <code>@require</code>(מוכלל) על-ידי סקריפטים אחרים, ולא להיות מותקן ישירות."
+    # label for checkbox to override script save warnings
     override_warning_checkbox_label: "לשמור בכל זאת?"
+    # script warning for not increasing the version number when updating the code
     warning_version_not_incremented_html: "עדכנת את הקוד אבל לא הגדלת את מספר ה<code>@version</code>. המתקינים הקודמים של הסקריפט שלך אולי לא יקבלו את העדכון לקוד."
+    # script warning for when a version number is not provided
     warning_version_missing_html: "לא ציינת מספר <code>@version</code>. מפתח <code>@version</code> מאפשר לבדיקת עדכונים עבור הסקריפט שלך במנהלי סקריפטי משתמש."
+    # label for checkbox for the site to automatically handle version numbers
     warning_version_missing_generate_automatically_html: "האם לייצר <code>@version</code> באופן אוטומטי?"
+    # script warning for when a namespace is not provided
     warning_namespace_missing_html: "לא ציינת <code>@namespace</code>. מפתח <code>@namespace</code> מאפשר למשתמשים להתקין מחדש את הסקריפט שלך ולעדכן אותו."
+    # label for checkbox for the site to automatically add a namespace
     warning_namespace_missing_generate_automatically_html: "האם לייצר <code>@namespace</code> באופן אוטומטי?"
+    # script warning for when a namespace changed on update
     warning_namespace_changed_html: "ה<code>@namespace</code> שלך השתנה. <code>@namespace2</code> קבוע מאפשר למשתמשים להתקין מחדש את הסקריפט שלך ולעדכן אותו."
+    # script warning for when a script's code appears minified. allowed_requires_link is a link to the allowed @require list, with text of warning_potentially_minified_allowed_requires_link
     warning_potentially_minified_html: "נראה שהסקריפט שלך אולי מכיל קוד מצומצם (דחוס). אם הינך משתמש בספריה דחוסה, בבקשה <code>@require</code> אותה מ%{allowed_requires_link}. סקריפטים עם קוד מצומצם הם מועמדים להסרה."
+    # script warning for when a script's code is for adult sites. sensitive_domains is a list of domains
     warning_automatic_sensitive_html: "הסקריפט שלך עבור %{sensitive_domains} ולכן יסומן כסקריפט עם תוכן למבוגרים."
+    # used in warning_potentially_minified_html
     warning_potentially_minified_allowed_requires_link: "אחד ממקומות אלו"
+    warning_code_previously_posted_html: ""
+    # default option for the locale of a localized additional info
     additional_info_locale_prompt: "(בחר שפה)"
+    # text for the button to add another additional info section for a different language
     additional_info_add_localized: "הוסף מידע נוסף המתאים לשפה"
+    # validation when more than one additional info is specified for a locale. "locale_code" is the locale code (e.g. "en") that has more than one additional info
     additional_info_locale_repeated: "בבקשה ספק רק מידע נוסף יחיד עבור השפה '%{locale_code}'."
+    # validation when an additional info in a locale is provided but no name was provided in that locale. "locale_code" is the locale code (e.g. "en") that is missing a name
     localized_additional_info_with_no_name: "מידע נוסף סופק עבור השפה '%{locale_code}', אבל לא סופק @name:%{locale_code}."
+    localized_attribute_matches_default: ""
+    # text to edit a code syncing URL. field is the text field to enter the url.
     code_syncing_from_url_html: "הקוד של סקריפט זה מכוונן להתעדכן מ: %{field}"
+    # text to add a code syncing URL. field is the text field to enter the url.
     provide_code_syncing_from_url_html: "%{site_name} יכול ליבא סקריפטים שמאחוסנים במקום אחר, לדוגמא במערכת לשמירת גרסאות (כמו GitHub), השרת שלך, או אתר אחר לאחסון סקריפטי משתמש. כדי לאפשר סנכרון של הסקריפט שלך, ספק קישור: %{field}"
+    # text before the sync type options
     sync_type_intro: "סקריפט זה יסונכרן:"
+    # label for radio button for manual syncing
+    sync_type_1:
+      name: ""
+      description: ""
+    # label for radio button for automatic syncing
+    sync_type_2:
+      name: ""
+      description: ""
+    # label for radio button for webhook syncing
+    sync_type_3:
+      name: ""
+      description: ""
+    sync_name_and_description: ""
+    # text when the last attempted sync failed. date is the date of the error run through markup_date. error is the technical error.
     sync_failed_info_html: "הניסיון האחרון לעדכון היה ב-%{date}, שגרם ל-%{error} שגיאות."
+    # text indicating the date of the last successful sync. date is the date of the sync run through markup_date
     sync_success_info_html: "עדכון מוצלח אחרון היה ב-%{date}."
+    # text if the sync never succeeded
     sync_never_succeeded: "הסנכרון לעולם לא הושלם בהצלחה. "
+    sync_additional_info: ""
+    add_synced_additional_info: ""
+    # button to update sync settings and run sync immediately
     update_and_sync: "עדכן וסנכרן כעת"
+    # button to update sync settings but not sync immediately
     update_no_sync: "עדכן"
+    # button to disable syncing of the script
     turn_off_syncing: "כבה עדכונים עבור סקריפט זה"
+    # label for syncing the default additional info
     additional_info_default_sync_html: "ברירת המחדל למידע נוסף (השפה מתאימה ל<code>@name</code>)"
+    # label for syncing localized additional infos
     additional_info_localized_sync_html: "לשפה (מתאים ל<code>@name:XX</code>)"
+    # HTML placeholder for sync fields
     sync_url_placeholder: "(קישור)"
+    # label for adding a new screenshot
     screenshots_add: "הוסף:"
+    # label for checkbox to remove a screenshot
     screenshots_remove: "הסר"
+    # explains what a replacement script when deleting is
     replacement_script_explanation: "(אופציונלי) בחר סקריפט אחר שיחליף סקריפט זה. משתמשים יופנו ויעודכנו לסקריפט זה. הכנס את קישור הסקריפט החלופי: "
+    # title for diff page
     diff_title: "%{script} - הבדלי גרסא"
+    # label for older version being diffed
     diff_old_version: "ישן:"
+    # label for newer version being diffed
     diff_new_version: "חדש:"
+    # label for input for lines to show around each change when doing a diff
     diff_lines_of_context: "שורות הסבר:"
+    # label for checkbox on whether to ignore whitespace changes
     diff_ignore_whitespace: "התעלם משינויים בריווח"
+    # button to refresh diff after changing diff options
     diff_refresh: "רענן"
+    # text shown when compared versions are the same
     diff_no_change: "לא נמצאו הבדלים."
+    # tooltip for good rating number - "Good" should match the word used in RatingGood in the PHP localization
     good_rating_explanation: "מספר האנשים שדירגו אותו טוב או הוסיפו אותו למועדפים שלהם."
+    # tooltip for ok rating number - "OK" should match the word used in RatingGood in the PHP localization
     ok_rating_explanation: "מספר האנשים שדירגו אותו בסדר."
+    # tooltip for bad rating number - "Bad" should match the word used in RatingGood in the PHP localization
     bad_rating_explanation: "מספר האנשים שדירגו אותו גרוע."
+    # link at the bottom of the scripts list suggesting people post a script or learn how. post_a_script_link is a link with text post_a_script_link_text that goes to the new script form. learn_to_write_scripts_link is a link with text learn_to_write_scripts_link_text that goes to the help document for writing scrupts
     write_your_own_html: "%{post_a_script_link} (או %{learn_to_write_scripts_link})"
+    # link text for the new script form, used in write_your_own_html
+    post_a_script_link_text: ""
+    # link text for the writing a user script help doc, used in write_your_own_html
     learn_to_write_scripts_link_text: "למד איך לכתוב אחד"
+    # a suggestion below the install button that users provide feedback
     feedback_or_report: "%{feedback_link:שאל שאלה, פרסם ביקורת}, או %{report_link:דווח על הסקריפט}."
+    # a suggestion below the install button that users provide feedback or get support from the author's site. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
     support_feedback_or_report: "%{support_url:בקר באתר היוצר עבור תמיכה}, %{feedback_link:שאל שאלה או פרסם ביקורת}, או %{report_link:דווח על הסקריפט}."
+    # a suggestion below the install button that users provide feedback or get support from the author's via email. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
     support_email_feedback_or_report: "%{support_url:שלח מייל ליוצר עבור תמיכה}, %{feedback_link:שאל שאלה או פרסם ביקורת}, או %{report_link:דווח על הסקריפט}."
+    # heading for section relating to adult content when posting new script or script version
     adult_content: "תוכן למבוגרים"
+    # label for checkbox letting authors report their script as containing adult content
     adult_content_self_report: "סקריפט זה מכיל תוכן למבוגרים או לאתר שמכיל תוכן למבוגרים"
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script not flagged as having adult content
     adult_content_self_report_explanation: "%{site_name} מאפשר סקריפטים עם תוכן למבוגרים, אבל הם חייבים להיות מסומנים שהם כאלה כדי שמשתמשים יוכלו לבחור עם הם רוצים לראות אותם. "
+    # label for checkbox letting authors report their script as not containing adult content
     not_adult_content_self_report_html: "סקריפט זה <strong>אינו</strong> מכיל תוכן למבוגרים ו<strong>לא</strong> עבור אתר המכיל תוכן למבוגרים."
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content
     not_adult_content_self_report_explanation: "%{site_name} מאפשר סקריפטים עם תוכן למבוגרים, אבל הם חייבים להיות מסומנים שהם כאלה כדי שמשתמשים יוכלו לבחור עם הם רוצים לראות אותם. הסקריפט שלך סומן כמכיל תוכן למבוגרים. אינך יכול לדווח שהוא לא מכיל; דבר זה יבדק על-ידי מנהל."
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content due to automatic checking
     not_adult_content_self_report_explanation_automatic: "%{site_name} מאפשר סקריפטים עם תוכן למבוגרים, אבל הם חייבים להיות מסומנים שהם כאלה כדי שמשתמשים יוכלו לבחור עם הם רוצים לראות אותם. הסקריפט שלך סומן כמכיל תוכן למבוגרים מאחר והוא עבור %{domain_list}."
+    # the error you see when accessing a adult content script when logged in with the adult content setting off
     adult_content_on_greasy_logged_in_error: "סקריפט זה כבר לא זמן באתר זה תחת %{edit_account_link:הגדרות המשתמש} הנוכחיות שלך ל-Greasy Fork."
+    # the error you see when accessing a adult content script when not logged in
     adult_content_on_greasy_not_logged_in_error: "סקריפט זה כבר לא זמין באופן אנונימי באתר זה. %{login_link:התחבר} ובדוק את הגדרות המשתמש שלך לאתר Greasy Fork."
+    # the error you see when access a non-adult content script on sleazy fork
     non_adult_content_on_sleazy: "סקריפט זה לא ניתן באתר זה."
+    not_js_convertible_override_header: ""
+    not_js_convertible_override_explanation: ""
+    not_js_convertible_override_label_html: ""
+    # marker after script name shown to authors indicating their adult scripts
     adult_marker: "(מבוגרים)"
+    # marker after script name if it's deleted
     deleted_marker: "(נמחק)"
+    # marker after script name if it's locked
     locked_marker: "(ננעל)"
+    # marker after script name if it's unlisted
     unlisted_marker: "(לא-רשום)"
+    # marker after script name if it's a library
     library_marker: "(ספריה)"
+    # title for libraries listing page
     libraries_title: "ספריות"
+    # description for libraries listing page
     libraries_description_html: "קיימות ספריות שפורסמו על-ידי משתמשי %{site_name} שתוכל לכלול באמצעות <code>@require</code> בסקריפטים שלך. עבור סוגים  אחרים של ספריות שהינך יכול לכלול באמצעות <code>@require</code>, קרא %{policy_link:את חוקי %{site_name} על <code>@require</code>}."
+    # title of the listing of top sites to script
     by_site_list_title: "סקריפטי משתמש ב-%{site_name}, מקובצים לפי אתר"
+    # description of the listing for top sites to script
     by_site_list_description: "אלו האתרים המושפעים על-ידי הסקריפטים הפופולאריים ביותר. גודל גופן גדול יותר אומר שהסקריפטים יותר פופולאריים."
     by_site_list_filter: "סנן לפי שם אתר:"
+    # placeholder for script search box
     search_placeholder: "חפש סקריפטים"
     updated: "הסקריפט עודכן."
     preview_additional_info: "תצוגה מקדימה"
+    must_confirm: ""
+    must_confirm_external_sign_in: ""
     must_confirm_email_button: "שלח מייל אישור ל-%{email}"
     authors_heading: "יוצרים"
     error_unauthorized_copy: "נראה כי קוד זה הינו העתק בלתי-מאושר של %{script}. בבקשה פנה ל%{rules_link:חוקי} %{site_name} על פרסום סקריפטים."
@@ -251,11 +530,50 @@ he:
       remove_confirm: "האם אתה בטוח שהינך רוצה להסיר את %{user_name} כיוצר?"
       failure: "לא ניתן להסיר יוצר."
     no_disposable_email: "לא ניתן לפרסם סקריפטים אם אתה משתמש בכתובת מייל חד פעמית."
+    rate_limited: ""
+    new_script_notice:
+      title: ""
+      install_link_html: ""
+      share_link_html: ""
+    new_title:
+      js: ""
+      css: ""
+    update_title: ""
+    antifeatures:
+      warning_title: ""
+      author_explanation_intro: ""
+      types:
+        ads:
+          title: ""
+          description_html: ""
+        tracking:
+          title: ""
+          description_html: ""
+        miner:
+          title: ""
+          description_html: ""
+        referral-link:
+          title: ""
+          description_html: ""
+      install_anyway: ""
+      cancel_install: ""
+    badges:
+      js:
+        short: ""
+        long: ""
+      css:
+        short: ""
+        long: ""
   script_sets:
+    # description of script sets on edit page
     description: "סטי סקריפטים נותנים לך ליצור רשימה מותאמת אישית של סקריפטים כדי לעיין באמצעותה ב-Greasy Fork. אתה יכול להוסיף סקריפטים לסט שלך על-ידי הוספת סקריפטים פרטניים, הוספת סטי סקריפטים של משתמשים אחרים, או יצירת אוטומטית של סטים. אתה יכול גם לציין סקריפטים שאין לכלול בסט שלך באותה שיטה."
+    # name for the favorites set
     favorites_name: "מועדפים"
+    # delete button text for a script set
     delete: "מחק סט סקריפטים"
+    # delete confirmation for a script set
     delete_confirmation: "האם אתה בטוח שהינך רוצה למחוק סט סקריפטים זה?"
+    # option for choosing to sort the set by the default sort the site uses
     site_default_sort: "(ברירת מחדל האתר)"
     edit_scripts:
       heading: "סקריפטים"
@@ -321,113 +639,206 @@ he:
       user: "סקריפטים של המשתמש %{user}"
       locale: "סקריפטים ב-%{locale_name}"
   home:
+    # html title of the homepage
     title: "%{site_name} - סקריפטי משתמש בטוחים ושימושיים"
+    # text at the top of the homepage.
     welcome: "ברוכים הבאים ל-%{site_name}, אתר לסקריפטי משתמש."
+    # html title of the sleazy fork homepage
     sleazy_title: "%{site_name} - סקריפטי משתמש בטוחים ושימושיים למבוגרים"
+    # text at the top of the sleazy fork homepage.
     sleazy_welcome: "ברוכים הבאים ל-%{site_name}, אתר לסקריפטי משתמש למבוגרים."
+    # placeholder for home page search box
     search_placeholder: "חפש סקריפטי משתמש"
     scripts_for_label: "סקריפטים עבור:"
+    # heading for the paragraph explaining what user scripts are
     explain_user_scripts_heading: "מה הם סקריפטי משתמש?"
+    # text explaining what user scripts are.
     explain_user_scripts_html: "סקריפטי משתמש מאפשרים לך לשלוט בחווית הגלישה שלך. ברגע שהם מותקנים, הם אוטומטית הופכים את האתרים בהם אתה מבקר לטובים יותר על-ידי הוספת תכונות, הפיכתם ליותר קלים לשימוש, או הסרת החלקים המעצבנים. סקריפטי המשתמש ב-%{site_name} נכתבו על ידי משתמשים אחרים ופורסמו כדי לחלוק אותם עם העולם. ניתן להתקין אותם בחינם ולהשתמש בהם בקלות."
+    # header for step 1 - how to install a user script manager
     installing_step1_header: "שלב 1: התקנת מנהל סקריפטי משתמש"
+    # caption in step 1 - screenshot of tampermonkey on chrome
     installing_step1_caption: "Tampermonkey בגוגל כרום"
+    # text for step 1, listing options for user script managers based on browsers
+    installing_step1_description_html: >
+    # header for step 2 - how to install a user script
     installing_step2_header: "שלב 2: התקנת סקריפט משתמש"
+    # caption for step 2 - showing the install button for user scripts
     installing_step2_caption: "כפתור להתקנת סקריפט משתמש"
+    # text for step 2 - describing how to find and install user scripts
     installing_step2_description_html: >
-        <p>%{browse_link:סייר באתר זה} למציאת סקריפט משתמש שאתה רוצה לנסות. הנה כמה
-        מהסקריפטים הפופולאריים ביותר: </p>
+      <p>%{browse_link:סייר באתר זה} למציאת סקריפט משתמש שאתה רוצה לנסות. הנה כמה מהסקריפטים הפופולאריים ביותר: </p>
 
-        %{highlighted_scripts_list}
+      %{highlighted_scripts_list}
 
-        <p>ברגע שמצאת סקריפט משתמש, לחץ על כפתור ההתקנה הירוק בעמוד של סקריפט משתמש
-        זה, ומנהל סקריפטי המשתמש שלך ישאל אותך אם ברצונך לאשר את ההתקנה.</p>
+      <p>ברגע שמצאת סקריפט משתמש, לחץ על כפתור ההתקנה הירוק בעמוד של סקריפט משתמש זה, ומנהל סקריפטי המשתמש שלך ישאל אותך אם ברצונך לאשר את ההתקנה.</p>
+    # header for step 3 - how to use a user script
     installing_step3_header: "שלב 3: השתמש בסקריפט המשתמש"
+    # description for step 3, describing browsing to the site and having the user script apply
     installing_step3_description_html: >
-        <p>לך לאתר שעליו סקריפט המשתמש משפיע. הוא אמור אוטומטית לעשות את שלו. לאחר
-        שניסית את סקריפט המשתמש למשך כמה זמן, חזור להיכן שהתקנת את הסקריפט והשאר משוב
-        לכותב הסקריפט.</p>
+      <p>לך לאתר שעליו סקריפט המשתמש משפיע. הוא אמור אוטומטית לעשות את שלו. לאחר שניסית את סקריפט המשתמש למשך כמה זמן, חזור להיכן שהתקנת את הסקריפט והשאר משוב לכותב הסקריפט.</p>
   users:
+    # html title for the sign in page
     sign_in_title: "התחבר ל-%{site_name}"
+    # what signing in lets people od
     sign_in_description: "התחברות ל-%{site_name} נותנת לך לפרסם סקריפטים ומשוב על סקריפטים אחרים. אינך צריך להתחבר כדי לסייר באתר או להתקין סקריפטים."
+    # heading for signing in with an external service (Google, GitHub, etc.)
     sign_in_external: "התחבר עם מכשיר חיצוני"
+    # button for signing in with an external service (Google, GitHub, etc.)
     sign_in_with: "התחבר עם %{provider}"
+    # heading for signing in with a password
     sign_in_password: "התחבר עם סיסמא"
+    # when a user attempts to sign in with an external service and a user already exists with the same email, this is the message shown. email: provided e-mail, user_name: existing user's name, provider: what the user tried to sign in with (e.g. GitHub), sign_in_link: a link to the sign in page with text from sign_in_email_used_sign_in_link
     sign_in_email_used_no_external_services_html: "'%{email}' כבר תפוס ע\"י המשתמש '%{user_name}'. אם זהו אתה ואתה רוצה להוסיף יכולת התחברות עם %{provider}, %{sign_in_link} למשתמש שלך קודם, ואז הוסף את יכולת ההתחברות דרך %{provider}."
+    # same as above, but when the existing user uses other providers. also includes existing_providers, which is a list of the existing user's sign ins, run through to_sentence (http://apidock.com/rails/Array/to_sentence)
     sign_in_email_used_with_external_services_html: "'%{email}' כבר תפוס ע\"י המשתמש '%{user_name}', שמתחבר באמצעות %{existing_providers}. אם זהו אתה ואתה רוצה להוסיף יכולת התחברות עם %{provider}, %{sign_in_link} למשתמש שלך קודם, ואז הוסף את יכולת ההתחברות דרך %{provider}."
+    # sign in link for email_used messages
     sign_in_email_used_sign_in_link: "התחבר"
+    # when a user attempts to create an account with an external service, but an email was not provided by that service
     sign_in_email_missing: "%{site_name} חייב כתובת מייל ליצירת משתמש חדש, אבל %{provider} לא סיפק אחד עבורך. הינך יכול או לעדכן את משתמש ה-%{provider} שלך כדי שיכיל אחד ואז לנסות להרשם שוב, או ליצור משתמש רגיל עם מייל וסיסמא ב-%{site_name}, ואחרי כן להוסיף את משתמש ה-%{provider} שלך אליו."
+    # this shows when signing in for the first time with an external sign in but the name received is already in use. the user is prompted to enter a different name.
     sign_in_name_used: "שם המשתמש '%{name}' כבר תפוס. בחר שם אחר."
+    # the button when submitting the name form per above
     sign_in_name_used_submit: "שלח"
+    # Button to preview a user's profile before saving
+    # heading for the user's control panel, which contains links such as post script and edit account
     control_panel: "לוח בקרה"
+    # heading for the list of discussions about a user's own scripts
     discussions_on_scripts: "דיונים על הסקריפטים שלך"
+    # alt text for the RSS feed icon for discussions about a user's own scripts
     discussions_on_scripts_feed_alt: "רשומות RSS"
+    # text to show in the section for discussions about a user's own scripts if there are no discussions yet
     discussions_on_scripts_none: "עדיין ריק!"
+    # link to more discussions on a user's own scripts, as the initial list is limited in number
     discussions_on_scripts_more: "עוד דיונים..."
+    # heading for the list of scripts on a user's page
     script_list: "סקריפטים"
+    # text to show in a user's script section when they have created no scripts
     script_list_none: "לא פורסמו סקריפטים."
+    # text to show in a user's script section when they have created scripts, but they are not shown due to the filters active
     script_list_none_for_filter: "אין סקריפטים עבור המסננים הנוכחיים."
+    # text to show in a user's own script section when they have created no scripts. script_list_none_same_user_info_link is a link to a tutorial with text of script_list_none_same_user_info_link_text
     script_list_none_same_user_html: "עוד לא כתבת אף סקריפט. %{script_list_none_same_user_info_link}"
+    # text used for link in script_list_none_same_user_html
     script_list_none_same_user_info_link_text: "האם תרצה ללמוד איך?"
+    # heading for the list of a user's deleted scripts (visible to only that user and mods)
     deleted_script_list: "סקריפטים שנמחקו"
+    unlisted_script_list: ""
+    # link to log out
     sign_out: "התנתק"
+    # link to edit an account
     edit: "ערוך את המשתמש שלך"
+    # link to edit how the user signs in
     edit_sign_in: "ערוך את דרכי ההתחברות"
+    # html title for the edit sign in page
     edit_sign_in_title: "ערוך את דרכי ההתחברות"
+    # heading for the password section of the edit sign in methods page
     edit_sign_in_password: "סיסמא"
+    # informational text telling the user they're not using a password
+    edit_notifications: ""
     no_password_set_info: "המשתמש שלך לא הוגדר עם סיסמא"
+    # button to set a password when one is not already set
     set_password: "קבע סיסמא"
+    # button to set a password when one is already set
     update_password: "עדכן סיסמא"
+    # error message when the password and the confirmation don't match
     update_password_no_match: "הסיסמאות לא תואמות."
+    # notice after a password was updated successfully
     password_updated: "סיסמא עודכנה."
+    # information text saying the user can unset their password and use just external sign ins
     remove_password_info: "הינך יכול להסיר את סיסמתך ולהסתמך על התחברויות חיצוניות בלבד"
+    # button to remove the password from the user's account
     remove_password: "הסר סיסמא"
+    # error message to show if the user attempts to remove a password but have no external sign ins. This is normally not possible with the interface.
     cant_remove_password: "לא יכול להסיר סיסמא - לא תהיה לך דרך להתחבר!"
+    # error message to show if the user attempts to remove a sign in but has no password or other sign ins. This is normally not possible with the interface. provider is the external site's name, like GitHub or Google
     cant_remove_sign_in: "לא ניתן להסיר את ההתחברות דרך %{provider} - לא תהיה לך דרך להתחבר!"
+    # notice after a password was removed successfully
     password_removed: "סיסמא הוסרה."
+    # heading for the external sign ins section of the edit sign in methods page
     edit_sign_in_external: "דרכי התחברות חיצוניות"
+    # information text about how they can use external sign ins, shown when the user has not set any yet
     external_sign_in_info_no_sign_ins: "ניתן להשתמש במשתמש שלך מאתרים אחרים כדי להתחבר ל-%{site_name}."
+    # information text about how they can use external sign ins, shown when the user already has some set. should describe the concept of syncing, where account details on %{site_name} will be updated to match the external service on sign in
     external_sign_in_info_with_sign_ins: "הינך כרגע משתמש בדרך ההתחברות החיצונית הרשומה מטה. התחברות \"מסונכרנת\" אומרת שהמידע שלך מ-%{site_name} (כמו שם משתמש וכתובת מייל) יעודכנו פעם הבאה שאתה מתחבר."
+    # notice after a sign in is added. provider is the external site's name, like GitHub or Google
     external_sign_in_added: "נוספה התחברות דרך %{provider}."
+    # notice after a sign in is updated (from syncing to not or opposite). provider is the external site's name, like GitHub or Google
     external_sign_in_updated: "עודכנה התחברות דרך %{provider}."
+    # notice after a sign in is removed. provider is the external site's name, like GitHub or Google
     external_sign_in_removed: "הוסרה ההתחברות דרך %{provider}."
+    # notice after a sign in fails
     external_sign_in_failed: "התחברות דרך %{provider} נכשלה: %{error}."
+    # notice after a user tries to add a sign in to their account, but that sign in is already in use by another user
     external_sign_in_already_used: "הוספת התחברות דרך %{provider} נכשלה: דרך התחברות זו כבר בשימוש על-ידי המשתמש '%{user_name}'."
+    # notice after successfully creating a new user based on external login
     external_sign_in_confirmation: "משתמש חדש ב-%{site_name} נוצר עבורך בהתאם לפרטי המשתמש ב-%{provider}. שם המשתמש הפומבי שלך הוא %{username}."
+    # an indicator beside the sign in provider's name if the user chose to enable syncing
     syncing_indicator: "(מסנכרן)"
+    # button to set a sign in provider to sync
     enable_syncing: "הפעל סנכרון"
+    # button to set a sign in provider to not sync
     disable_syncing: "כבה סנכרון"
+    # button to remove a sign in provider
     remove_external_sign_in: "הסר"
+    # information text indicating that the list of links below it are for addding an external sign in
     add_external_sign_in_info: "הוסף דרך התחברות:"
+    # link to docs on how to set up a webhook for script syncing
     set_up_webhook: "יצירת webhook"
     author_email_notification_type:
+      # notification option: don't send the user e-mails
       none: "אל תשלח מיילים על דיונים על הסקריפטים שלך"
+      # notification option: send e-mails on new discussions but not new posts on existing discussions
       discussion_only: "קבל מיילים כאשר מתפרסמים דיונים על הסקריפטים שלך"
+      # notification option: send e-mails on new discussoins and on new posts on existing discussions
       discussion_and_comment: "קבל מייל כאשר דיונים מתפרסמים על הסקריפטים שלך או כאשר בדיונים אלו מתפרסמות תגובות חדשות"
+    # display of a single user when displaying a list of users. user_link is a link to the user's page with text of the user name, count is the number of public scripts authored
     list_display_html:
       one: "%{user_link} - סקריפט %{count}"
       two: "%{user_link} - %{count} סקריפטים"
       many: "%{user_link} - %{count} סקריפטים"
       other: "%{user_link} - %{count} סקריפטים"
+    # sort link for sorting users by number of scripts they've posted
     listing_number_of_scripts: "מספר הסקריפטים"
+    # sort link for sorting users by the creation date of their scripts
     listing_new_scripts: "סקריפטים חדשים"
+    # sort link for sorting users by the updated date of their scripts
     listing_updated_scripts: "סקריפטים שעודכנו"
+    # sort link for sorting users by when they signed up
     listing_registration_date: "תאריך הרשמה"
+    # title for page showing list of users
     listing_title: "משתמשים"
+    listing_banned_filter:
+      banned: ""
+      not_banned: ""
+      all: ""
+    listing_author_filter:
+      script_author: ""
+      not_script_author: ""
+      all: ""
+    # placeholder for user search box
     search_placeholder: "חפש משתמשים"
+    # default option for the user's preferred locale
     locale_prompt: "(בחר שפה)"
+    # text describing what the show ads checkbox does
     show_ads_description: "תמוך ב-%{site_name} על-ידי אפשור פרסומות"
+    # text describing what the show sensitive checkbox does
     show_sensitive_description: "הראה סקריפטים עם תוכן למבוגרים"
+    # text describing what the preferred markup setting does
     preferred_markup_description: "ישומש עבור סקריפטים ופוסטים חדשים."
+    filter_locale_default_description: ""
+    # link from sleazy fork to greasy fork on user page
     greasy_fork_scripts_link:
       one: "ל-%{user_name} יש גם סקריפט %{count} ב-GreasyFork"
       two: "ל-%{user_name} יש גם %{count} סקריפטים ב-GreasyFork"
       many: "ל-%{user_name} יש גם %{count} סקריפטים ב-GreasyFork"
       other: "ל-%{user_name} יש גם %{count} סקריפטים ב-GreasyFork"
+    # displays when the user is editing their account but syncing is on
     update_sync_warning:
       one: "מוגדר כרגע ששם המשתמש וכתובת המייל שלך יסתנכרנו כאשר אתה מתחבר באמצעות %{providers}. %{edit_sign_in_link:ערוך את שיטות ההתחברות שלך כדי להסיר סנכרון} אם ברצונך לקבוע שם משתמש או מייל אחר לצמיתות."
       two: "מוגדר כרגע ששם המשתמש וכתובת המייל שלך יסתנכרנו כאשר אתה מתחבר באמצעות %{providers}. %{edit_sign_in_link:ערוך את שיטות ההתחברות שלך כדי להסיר סנכרון} אם ברצונך לקבוע שם משתמש או מייל אחר לצמיתות."
       many: "מוגדר כרגע ששם המשתמש וכתובת המייל שלך יסתנכרנו כאשר אתה מתחבר באמצעות %{providers}. %{edit_sign_in_link:ערוך את שיטות ההתחברות שלך כדי להסיר סנכרון} אם ברצונך לקבוע שם משתמש או מייל אחר לצמיתות."
       other: "מוגדר כרגע ששם המשתמש וכתובת המייל שלך יסתנכרנו כאשר אתה מתחבר באמצעות %{providers}. %{edit_sign_in_link:ערוך את שיטות ההתחברות שלך כדי להסיר סנכרון} אם ברצונך לקבוע שם משתמש או מייל אחר לצמיתות."
+    # link on the user page to go to the delete page
     delete_link: "מחק את המשתמש שלך"
     delete:
       intro: "מחיקת המשתמש '%{user_name}' ב-%{site_name} יגרום לדברים הבאים:"
@@ -462,78 +873,183 @@ he:
         request_expired: "לא ניתן למחוק משתמש - פג תוקף הבקשה."
         cancelled: "מחיקה בוטלה."
         completed: "המשתמש שלך נמחק."
+    banned_notice:
+      no_report_no_reason: ""
+      with_report: ""
+      with_reason: ""
+    banned_delete:
+      intro: ""
+      complete: ""
+    badges:
+      banned:
+        short: ""
+        long: ""
+      moderator:
+        short: ""
+        long: ""
+      author:
+        short: ""
+        long: ""
+    notifications:
+      discussion_defaults:
+        title: ""
+        new_discussion: ""
+        new_comment: ""
+        mention: ""
+      conversation_defaults:
+        title: ""
+        starter: ""
+        receiver: ""
+      save_button: ""
+      title: ""
+      current_discussion_subscriptions:
+        one: ''
+        two: ''
+        many: ''
+        other: ''
+      save_success: ""
+      unsubscribe_all: ""
+      unsubscribe_all_success: ""
+  webhooks:
+    info:
+      title: ""
+      intro_html: |
+      already_syncing_list: ""
+      synced_item_html: ""
+      language_note: ""
   help:
+    sections:
+      usage: ""
+      development: ""
+      miscellaneous: ""
+    open_source: ""
     installing_user_scripts:
       title: 'איך להתקין סקריפטי משתמש'
+    installing_user_styles:
+      title: ''
     meta_keys:
+      # title of the help document describing script meta keys (e.g. @name).
       title: "מפתחות הסקריפט שיקראו על-ידי %{site_name}"
+      # introductory paragraph. If the URL has a localized version, use that.
       intro_html: "זוהי רשימת <a href=\"http://wiki.greasespot.net/Metadata_Block\">מפתחות סקריפט המשתמש</a> ש-%{site_name} יקרא. המפתחות מחוץ לרשימה זו אולי כלולים בסקריפט, ויהיו נוכחים בסקריפט המותקן, אבל לא ישפיעו על ממשק המשתמש של %{site_name}."
+      # description of @name
       name: "שם הסקריפט, בכותרת ובקישורים. נחוץ."
+      # description of @name:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
       name_localized_html: "שם הסקריפט בשפה מסויימת, כאשר XX הוא <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">קוד השפה לפי ISO 639-12</a> ו-YY הוא <a href=\"https://www.iso.org/obp/ui/#search\">קוד המדינה לפי ISO 3166</a>, ואופציונלי. דורס את <code>@name</code> כאשר המשתמש מחפש בשפה המתאימה. "
+      # description of @description
       description: "תיאור של מה הסקריפט עושה. יראה כטקסט מתחת לשם הסקריפט. נחוץ."
+      # description of @description:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
       description_localized_html: "תיאור הסקריפט בשפה מסויימת, כאשר XX הוא <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">קוד השפה לפי ISO 639-12</a> ו-YY הוא <a href=\"https://www.iso.org/obp/ui/#search\">קוד המדינה לפי ISO 3166</a>, ואופציונלי. דורס את <code>@description</code> כאשר המשתמש מחפש בשפה המתאימה. "
+      # description of @namespace. Do not translate content inside <code>.
       namespace_html: "מנהלי סקריפטי משתמש משתמשים בשילוב של <code>@namespace</code> ו<code>@name</code> כדי לראות אם סקריפט כבר מותקן. %{site_name} מחייב את קיום שדה זה ויזהיר אם הוא שונה בעת עדכון."
+      # description of @description:XX-YY. developer.mozilla.org may have localized content; use it if available.
       version_html: "מזהה לגרסת סקריפט מסויימת ב<a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">פורמט הגרסאות של מוזילה</a>. הגרסא מוצגת בעמוד המידע של הסקריפט. %{site_name} דורש את מילוי שדה זה ומזהיר אם הוא יורד או לא עולה כאשר קוד סקריפט משתנה."
+      # description of @include
+      include_html: ""
+      # description of @require. %{external_script_link} is a link to the document describing allowed external scripts and has a link of key "require_external_script_link_text"
       require_html: "כלול JavaScript חיצוני בסקריפט. ראה %{external_script_link}."
+      # used in required_html
       require_external_script_link_text: "חוקים לקוד הכולל סקריפטים חיצוניים"
+      # description of @updateURL
       updateURL: "תאר איך מנהלי סקריפטי המשתמש צריכים לקבל את העדכונים. %{site_name} יסיר את המפתחות האלו, מה שיגרום לכל סקריפט שהותקן מ-%{site_name} להתעדכן רק מ-%{site_name}."
+      # description of @license
       license: "הרשיון שמתאר איך מותר לאנשים להעתיק או לשנות סקריפט. מומלץ שימווש ב-\"Full name\" או \"Identifier\" מ-%{spdx_link:רשימת רשיונות SPDX}. חוסר ברשיון מעיד שהמשתמש יכול להתקין את הסקריפט לשימוש אישי, אבל עליו לא להפיץ אותו מחדש. הרשיון יוצג בעמוד המידע של סקריפט."
+      # description of @supportURL
       supportURL: "קישור לעמוד בו המשתמשים יכולים לקבל תמיכה בסקריפט (לדוגמא רשימת תקלות ידועות, פורום, כתובת מייל). קישור תמיכה מוצג בעמוד הביקורות של הסקריפט."
+      # description of @contributionURL. You can replace the sample "business" and "item_name" parameters in the URLs with localized versions.
       contributionURL_html: "קישור לעמוד בו המשתמשים יכולים לתרום ליוצר הסקריפט. קישור תרומות מוצג בעמוד הביקורת של הסקריפט. הקישור יכול להיות HTTP, HTTPS, או פרוטוקול ביטקוין. כדי לקשר לעמוד תרומות ב-PayPal,  השתמש בקישור מהפורמט <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a> כאשר תחליף את כתובת המייל לדוגמה בכתובת המייל שלך."
+      # description of @contributionAmount. Do not translate content inside <code>.
       contributionAmount_html: "סכום תרומה מומלץ, שימוש יחד עם <code>@contributionURL</code>."
+      # description of @compatible. %{browsers} is a comma-separated list of browser codes. You can translate "Must disable pop-up blocker", but do not translate "@compatible firefox". 
       compatible_html: "סמן את סקריפט זה כמתאים לדפדפן מסויים. מידע על תאימות יופיע בעמוד הסקריפט. הערות על תאימות יכולות להכלל בפורמט <code>@compatible firefox Must disable pop-up blocker</code>. הדפדפנים המוכרים הם: %{browsers}."
+      # description of @incompatible. %{browsers} is a comma-separated list of browser codes. You can translate "Broken since Firefox 23", but do not translate "@compatible firefox".
       incompatible_html: "סמן את סקריפט זה כלא מתאים לדפדפן מסויים. מידע על תאימות יופיע בעמוד הסקריפט. הערות נוספות על תאימות יכולות להכלל בפורמט <code>@incompatible firefox Broken since Firefox 23</code>. הדפדפנים המוכרים הם: %{browsers}."
+      antifeature_html: ""
+      antifeature_localized_html: ""
     writing_user_scripts:
+      # title for Writing user scripts help page
       title: "איך לכתוב סקריפטי משתמש"
+      # content of the page. The link to greasespot can be updated to a better resource if one is available in your language. code_rules_link and meta_keys_link are links to those help pages, with text of those page's titles. ask_in_forum_link is a link to the forum with text of ask_in_forum_link_text. user_page_link is a link to the user's page if the user is signed in, or plain text if they're not; in either case, the text is user_page_link_text. post_new_script_link is a link to the new script page, with text of post_new_script_link_text
       content_html: "<p>כתיבת סקריפטי משתמש דורשת ידע ב-JavaScript. ה<a href=\"http://wiki.greasespot.net/Tutorials\">מדריכים בויקי GreaseSpot</a> אמורים להוות קרש קפיצה ל-JavaScript גם באופן כללי וגם באופן בו היא מתקשרת לסקריפטי משתמש. בדיקת סקריפטי משתמש של אחרים יכולה להיות יעילה. ייתכן ותתעניין ב-%{code_rules_link} וב-%{meta_keys_link}. אם אתה רוצה עזרה בפיתוח הסקריפט שלך, הרגש חופשי ל%{ask_in_forum_link}.</p> <p>כדי לפרסם ב-%{site_name}, עליך ליצור משתמש. מ%{user_page_link}, בחר בלינק ל%{post_new_script_link}.</p> "
+      # link text used in content_html
       ask_in_forum_link_text: 'שאול בפורום'
+      # link text used in content_html
       user_page_link_text: 'דף משתמש'
+      # link text used in content_html
       post_new_script_link_text: 'העלה סקריפט חדש'
     code_rules:
+      # title for the rules page
       title: "חוקי %{site_name} לסקריפטים שפורסמו"
+      preamble: ""
+      functionality_header: ""
+      description: ""
+      reason: ""
+      unrelated: ""
+      monetization_html: ""
+      code_header: ""
+      obfuscation: ""
+      libraries_html: ""
+      updates: ""
+      external_js: ""
+      copyright_header: ""
+      licensing: ""
+      reposts: ""
+      miscellaneous_header: ""
+      keywords_html: ""
+      adult_content_rule: ""
+      reporting: ""
     external_scripts:
+      # title of the external script rules page
       title: "תקנות %{site_name} על סקריפטים חיצוניים"
-    script_rewriting:
-      title: "איך %{site_name} יכתוב מחדש סקריפטים שפורסמו"
+      # content of the external script rules page
       content_html: >
-          <p>סקריפטים שמפורסמים ל-%{site_name} יכתבו מחדש בדרכים הבאות:</p><ul>
+      test_url:
+        label: ""
+        result_ok: ""
+        result_not_ok: ""
+    script_rewriting:
+      # title of the rewriting page
+      title: "איך %{site_name} יכתוב מחדש סקריפטים שפורסמו"
+      # content of the rewriting page
+      content_html: >
+        <p>סקריפטים שמפורסמים ל-%{site_name} יכתבו מחדש בדרכים הבאות:</p><ul>
 
-          <li>תגי ה<code>@updateURL</code>, <code>@installURL</code>, ו-<code>@downloadURL</code>
-          יוסרו, אם קיימים. החוסר בתגים אלו גורם לכך שכל סקריפט שהותקן מ-%{site_name}
-          יעודכן מ-%{site_name}.</li>
+        <li>תגי ה<code>@updateURL</code>, <code>@installURL</code>, ו-<code>@downloadURL</code> יוסרו, אם קיימים. החוסר בתגים אלו גורם לכך שכל סקריפט שהותקן מ-%{site_name} יעודכן מ-%{site_name}.</li>
 
-          <li>תגי ה-<code>@version</code> ו<code>@namespace</code> יוכנסו אם הם חסרים
-          בסקריפט. תגים אלו נחוצים לעדכון נכון.</li>
+        <li>תגי ה-<code>@version</code> ו<code>@namespace</code> יוכנסו אם הם חסרים בסקריפט. תגים אלו נחוצים לעדכון נכון.</li>
 
-          <li>תג ה -<code>@description</code> יוכנס אם הוא חסר בגרסה חדשה של סקריפט
-          והיה קיים בגרסה קודמת.</li>
+        <li>תג ה -<code>@description</code> יוכנס אם הוא חסר בגרסה חדשה של סקריפט והיה קיים בגרסה קודמת.</li>
 
-          <li>ירידת שורות מסוג  CR ו-CRLF יומרו לירידת שורות תקנית/בסגנון-יוניקס.</li>
+        <li>ירידת שורות מסוג  CR ו-CRLF יומרו לירידת שורות תקנית/בסגנון-יוניקס.</li>
 
-          </ul>
+        </ul>
+    # link to github
     site_feedback_link: "דווח על בעיה או שלח רעיון ל-%{site_name} עצמו"
     credits:
+      # title for the credits page
       title: "קרדיטים"
+      # give credit to authors
       authors_credit: "%{site_name} לא היה אפשרי ללא היוצרים שתורמים סקריפטים."
+      # give credit to developers. link goes to github.
       developers_credit: "%{site_name} נכתב על-ידי %{developers_link:אנשים אלו} ועם עזרת כל אלו שדיווחו על תקלות והציעו שיפורים."
+      # give credit to translators. link to goes to transifex. after this text, there's a list of languages and the contributors to each.
       translators_credit: "%{site_name} תורגם על-ידי %{translators_link:חטיבת תרגום Greasy ב-Transifex}: "
+      # give credit to icon makers. all links are proper names so are not translated.
+      icons_credit: ""
+    # link to greasemonkey docs
     help_with_greasymonkey: "עזרו ל-Greasemonkey"
     contact:
+      # title of contact page
       title: "צור קשר"
+      # content of contact page
       content_html: >+
-          <p>קיימות מספר דרכים לדבר על %{site_name} ועל הדברים בו.</p> <p>האם יש לך
-          שאלה או ביקורת על סקריפט מסויים שפורסם באתר? אם כן, פרסם דיון דרך הקישור
-          בחלקת הביקורות בעמוד הסקריפט. יוצרי הסקריפט מקבלים התראות בעמוד המשתמש שלהם
-          על כל דיון על סקריפטים שהם פרסמו.</p> <p>האם יש לך שאלה או ביקורת על %{site_name}
-          עצמו או על פיתוח סקריפטים, או שאתה רוצה שמישהו יכתוב עבורך סקריפט? %{forum_link:פרסום
-          בפורום} ייתן לך את הקהל הרחב ביותר לדיון שלך.</p> <p>האם יש לך דיווח על
-          תקלה או רעיון שלם ומגובש ל-%{site_name} עצמו (ולא לסקריפט מסויים <em>שפורסם</em>
-          ב-%{site_name}?%{github_link:פרסם אותו בעמוד ה-GitHub.}</p> <p>האם יש לך
-          שאלה פרטית או ביקורת שברצונך שרק המנהלים יראו? %{admin_email_link:שלח מייל.}
-          </p>
+        <p>קיימות מספר דרכים לדבר על %{site_name} ועל הדברים בו.</p> <p>האם יש לך שאלה או ביקורת על סקריפט מסויים שפורסם באתר? אם כן, פרסם דיון דרך הקישור בחלקת הביקורות בעמוד הסקריפט. יוצרי הסקריפט מקבלים התראות בעמוד המשתמש שלהם על כל דיון על סקריפטים שהם פרסמו.</p> <p>האם יש לך שאלה או ביקורת על %{site_name} עצמו או על פיתוח סקריפטים, או שאתה רוצה שמישהו יכתוב עבורך סקריפט? %{forum_link:פרסום בפורום} ייתן לך את הקהל הרחב ביותר לדיון שלך.</p> <p>האם יש לך דיווח על תקלה או רעיון שלם ומגובש ל-%{site_name} עצמו (ולא לסקריפט מסויים <em>שפורסם</em> ב-%{site_name}?%{github_link:פרסם אותו בעמוד ה-GitHub.}</p> <p>האם יש לך שאלה פרטית או ביקורת שברצונך שרק המנהלים יראו? %{admin_email_link:שלח מייל.} </p>
 
     privacy_policy:
       title: "הצהרת פרטיות"
+      content_html: >
+    user_css_to_user_js:
+      title: ""
   search:
     script_search:
       title: "חיפוש סקריפטים"
@@ -556,63 +1072,335 @@ he:
     item_script_html: "סקריפט: %{script_link}"
     item_deleted_script: "סקריפט מחוק %{id}"
     item_user_html: "משתמש: %{user_link}"
+  notifications:
+    consecutive_bad_ratings:
+      one: ""
+      two: ""
+      many: ""
+      other: ""
+  reports:
+    report_filed: ""
+    new_report_title:
+      user: ""
+      comment: ""
+      message: ""
+      script: ""
+    new_report_notes_html: >
+    new_script_report_notes_html: >
+    new_user_report_notes_html: >
+    reason:
+      non_functional: ""
+      spam: ""
+      abuse: ""
+      illegal: ""
+      unauthorized_code: ""
+      malware: ""
+      minified: ""
+      external_code: ""
+      undisclosed_antifeature: ""
+      other: ""
+    report_intro_html: ""
+    report_intro_unauthorized_html: ""
+    non_functional_feedback: ""
+    unauthorized_code_original_placeholder: ""
+    explanation_placeholder: ""
+    create_button: ""
+    report_user: ""
+    report_comment: ""
+    report_message: ""
+    result_dismissed: ""
+    result_upheld: ""
+    result_pending: ""
+    rebuttal_placeholder: ''
+    submit_rebuttal: ""
+    delete_script: ""
+  discussions:
+    title: ""
+    comment_date: ""
+    comment_edit_date: ""
+    posted_by_html: ""
+    last_comment: ""
+    new_discussion_heading: ""
+    new_discussion_submit: ""
+    new_comment_heading: ""
+    new_comment_submit: ""
+    back_to_feedback: ""
+    edit_comment_link: ""
+    edit_comment_header: ""
+    delete_comment: ""
+    delete_comment_confirm: ""
+    delete_discussion: ""
+    delete_discussion_confirm: ""
+    update_comment_submit: ""
+    cancel_update_comment: ""
+    quote_comment: ""
+    question_heading_html: ""
+    review_heading_html: ""
+    update_rating: ""
+    ratings:
+      question: ""
+      bad: ""
+      ok: ""
+      good: ""
+    ratings_short:
+      question: ""
+      bad: ""
+      ok: ""
+      good: ""
+    sign_in_to_post_discussion: ""
+    sign_in_to_post_comment: ""
+    user_filter:
+      label: ""
+      all: ""
+      discussion_by_me: ""
+      comment_by_me: ""
+      on_my_scripts: ""
+      subscribed: ""
+    other_user_filter:
+      all: ""
+      comments_by: ""
+    category_filter:
+      label: ""
+      all: ""
+    read_filter:
+      label: ""
+      all: ""
+      read: ""
+      unread: ""
+    locale_filter:
+      label: ""
+      all: ""
+    user_activity:
+      title: ""
+      no_recent_activity: ""
+      see_all_activity: ""
+      script_review:
+        posted_html: ""
+        replied_html: ""
+      script_question:
+        posted_html: ""
+        replied_html: ""
+      discussion:
+        posted_html: ""
+        replied_html: ""
+    review_title: ""
+    question_title: ""
+    subscribe: ""
+    unsubscribe: ""
+    notify: ""
+    notifying_on_script: ""
+    categories:
+      greasyfork:
+        name: ""
+        description: ""
+      development:
+        name: ""
+        description: ""
+      requests:
+        name: ""
+        description: ""
+      script-discussions:
+        name: ""
+        description: ""
+      no-scripts:
+        name: ""
+      moderators:
+        name: ""
+        description: ""
+    category_display: ""
+    new_title: ""
+    new_button: ""
+    script_notice: ""
+    no_discussions: ""
+    mark_all_read: ""
+    pending_moderator_review: ""
+  conversations:
+    user_input_note: ""
+    new_title: ""
+    new_link: ""
+    new_button: ""
+    title_html:
+      one: ''
+      two: ''
+      many: ''
+      other: ''
+    send_message: ""
+    conversation_list_title: ""
+    conversation_link_html:
+      one: ''
+      two: ''
+      many: ''
+      other: ''
+    conversation_info_html: ""
+    no_conversations: ""
+    no_recent_conversations: ""
+    recent:
+      title: ""
+      more: ""
+  screenshots:
+    requirements: ""
   common:
+    # text to show before listing errors in a submission
     error_preamble: "היו בעיות עם מה שפירסמת..."
+    # link to the list of allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_link: "(ראה קוד חוקי.)"
+    # title of the page showing allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_and_attributes_title: "אלמנטי תוכן HTML חוקיים"
+    # text to introduce the list of allowed HTML elements and attributes
     allowed_elements_intro: "האלמנטים והמאפיינים הבאים חוקיים. הדבר נכון גם לגבי HTML וגם לגבי סימון (לאחר המרתו ל-HTML)."
+    # additional info for the allowed HTML elements, explaining additional changes made to content
     allowed_elements_extra_info: "ריווחים יהפכו לאלמנטי p או br. כתובות אינטרנט אוטומטית יהפכו לקישורים."
+    allowed_css_intro: ""
+    user_references_html: ""
     not_found_text: "404 - הדף לא קיים"
     not_found_title: "404 - הדף לא קיים"
     not_found_link_home: "חזור לדף הבית"
+    # shown on the first page a user sees if, based on the user's Accept-Language header, we think we have a better locale than what the first page shows. "locale_name" is the name of the locale in that language (matching the name in the locale drop down)
     suggest_locale: "%{site_name} זמין גם ב-%{locale_name}."
+    # shown on the first page a users sees if the locale they're on is less than a certain amount translated. links to the docs on how to help with localization
     incomplete_locale: "קיים רק %{percent} תרגום ל-%{locale_name} של %{site_name}. אתה יכול לשנות זאת."
+    # text for a button that expands a block of text
     expander_show_more: "הצג עוד"
+    # text for a button that contracts a block of text
     expander_show_less: "הצג פחות"
+    # note denoting what are ads
     advertisement_note: פרסומת
+    # label on tab allowing for previewing input
     preview_tab: תצודה מקדימה
+    # label on tab for entering input
     write_tab: כתוב
     listing_options_title: "אפשרויות חיפוש"
+    quote:
+      prefix_html: ""
   activerecord:
     attributes:
       user:
+        # user field: display name
         name: "שם"
+        # user field: profile (HTML content describing themselves)
         profile: "פרופיל"
+        # user field: locale
         locale: "שפה מועדפת"
+        # user field: setting to send e-mails when discussions or comments are posted to a user's scripts. options are under users.author_email_notification_type
         author_email_notification_type_id: "הודעות על דיוני סקריפטים"
+        # user field: show ads
         show_ads: "הצג פרסומות"
+        # user field: show sensitive
         show_sensitive: "תוכן למבוגרים"
+        # user field: preferred markup (html or markdown)
         preferred_markup: "סימון מועדף"
+        filter_locale_default: ""
+        current_password: ""
+        new_password: ""
+        new_password_confirmation: ""
       script:
+        # name of the script
         name: "שם"
+        # description of the script
         description: "תיאור"
+        # locale the script is in. see also scripts.locale_explanation
         locale: "שפה"
+        # the JS code of the script
         code: "קוד"
+        # description of changes for an update
         changelog: "יומן שינויים"
+        # the type of script - public, unlisted, or library
         type: "סוג הסקריפט"
+        # additional descriptive text outside of @description
         additional_info: "מידע נוסף"
+        # screenshots attached to the script
         screenshots: "צילומי מסך"
+        # when deleting, which script to redirect to
         replaced_by_script_id: "סקריפט חליפי"
       script_set:
+        # name of the script set
         name: "שם"
+        # description of the script set
         description: "תיאור"
+        # default sort of the script set
         default_sort: "מיון ברירת מחדל"
+      report:
+        reason: ""
+      discussion:
+        rating: ""
+        category: ""
+        title: ""
+      conversation:
+        user_input: ""
+      message:
+        content: ""
   errors:
     messages:
+      # validation for when a script name is not provided
       script_missing_name: "נחוץ - ציין אחד באמצעות @name"
+      # validation for when a script description is not provided
       script_missing_description: "נחוץ - ציין אחד באמצעות @description"
+      # validation for when a script description is the same as name
       script_name_same_as_description: "לא אפשרי שיהיה זהה לשם."
+      # validation for sync URL
       script_sync_identifier_bad_protocol: "חייב להיות קישור HTTP או HTTPS"
+      # validation for number of screenshots
       script_too_many_screenshots: "נכללו יותר מידי צילומי מסך - המקסימום הינו %{number}"
+      # validation for "deleted and replaced by" when the user says the script is replaced by itself
       cannot_be_self_reference: "לא יכול להיות אותו הסקריפט"
+      # validation for "deleted and replaced by" when the user says the script is replaced by a deleted script
       cannot_be_deleted_reference: "לא יכול להיות סקריפט מחוק"
       cannot_be_used_with_this_script: "לא ניתן לשימוש עם סקריפט זה"
+      # validation for "deleted and replaced by" when the user provides a non-%{site_name} URL
       must_be_greasy_fork_script: "חייב להיות קישור לסקריפט ב-%{site_name}"
+      # validation when the user uploads code that's not UTF-8 text
       script_update_not_utf8: "ההעלאה חייבת להיות טקסט בפורמט UTF-8"
+      # validation when user uploads code that contains a disallowed @require
       script_disallowed_require: "משתמש בקוד חיצוני לא-מאושר: %{code}"
       script_rate_limit: "פרסמת מעבר למגבלה המותרת. נסה שוב מאוחר יותר."
+      missing_include_or_match: ""
+      file_size_out_of_range: ""
+      meta_too_long: ""
   opensearch:
+    # short name for opensearch.xml
     short_name: "חיפוש ב-%{site_name}"
+    # description for opensearch.xml
     description: "חפש סקריפטי משתמש ב-%{site_name}."
+    # long name for opensearch.xml
     long_name: "חיפושי סקריפטי משתמש ב-%{site_name}"
+    # attribution for opensearch.xml
     attribution: "זכויות היוצרים של הסקריפטים, ראה כל סקריפט באופן פרטני עבור רשיון"
+  mailers:
+    script_report:
+      report_created_offender:
+        subject: ""
+        text: ""
+      report_upheld_offender:
+        subject: ""
+        text: ""
+      report_dismissed_offender:
+        subject: ""
+        text: ""
+      report_rebutted_reporter:
+        subject: ""
+        text: ""
+      report_upheld_reporter:
+        subject: ""
+        text: ""
+      report_script_deleted_reported:
+        subject: ""
+        text: ""
+      report_dismissed_reporter:
+        subject: ""
+        text: ""
+    consecutive_bad_ratings:
+      notify:
+        subject: ""
+        text: |
+    script_comment:
+      subject: ""
+      text: |
+    subscribed_discussion:
+      subject: ""
+      text: |
+    comment_mentioned:
+      subject: ""
+      text: |
+    new_message:
+      subject: ""
+      text: |
