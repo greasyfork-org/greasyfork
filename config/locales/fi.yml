@@ -1,1363 +1,392 @@
 fi:
   layouts:
     application:
-      # link to the list of scripts
       script_list: "Skriptit"
-      # link to the forum
       forum: "Foorumi"
-      # link to the help docs
       help: "Ohje"
-      # link to sign in
       sign_in: "Kirjaudu sisään"
-      # label for nav submenu
-      submenu: ""
-      # link to advanced search
-      advanced_search: ""
-      # link to user list
-      user_list: ""
-      # link to libraries
-      libraries: ""
-      # link to moderator log
-      moderator_log: ""
   scripts:
-    # label for created date of a script
     created_date: "Luotu"
-    # label for updated date of a script
     updated_date: "Päivitetty"
-    # label for total install count of a script
     total_installs: "Asennuskerrat"
-    # label for daily install count of a script
     daily_installs: "Päivittäiset asennukset"
-    # label for the ratings of a script
     ratings: "Arvostelut"
-    # label for author name of a script
     author_name: "Tekijä"
-    # label for version number of a script
     version_number: "Versio"
-    # label for the legal license a script is released under (e.g. GPL)
     license: "Lisenssi"
-    # what is shown as the license when no license is provided in a script
     no_license: "N/A"
-    # label for the browser compatibility for a script
     compatibility: "Yhteensopivuus"
     compatible_with_browser: "Yhteensopiva selaimen %{browser} kanssa"
     incompatible_with_browser: "Epäyhteensopiva selaimen %{browser} kanssa"
-    # label for the list of sites or patterns a script applies to
     applies_to: "Käytössä"
-    # a title (tooltip) for the links in the "applies to" section going to a list of scripts for that site. count is the number of other scripts, site is the name of the site. add subkeys for your language per http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
     applies_to_link_title:
       one: "Katso %{count} muu skripti sivustolle %{site}"
       other: "Katso %{count} muuta skriptiä sivustolle %{site}"
-    # what is shown as the applies to when a script applies to all sites
     applies_to_all: "Kaikki sivustot"
-    # link that makes the user install the script
     install: "Asenna tämä skripti"
-    # text for link that gives information on how to install scripts. should be very short.
     install_help: "?"
-    # title (tooltip) for link that gives information on how to install scripts
     install_help_title: "Asennusohje"
-    # link that makes the user update the script
-    update: ""
-    # link that makes the user downgrade the script
-    downgrade: ""
-    # link that makes the user reinstall the script
-    reinstall: ""
-    # warning when installing an old version of a script
-    old_version_warning: ""
-    # label for a promoted script
-    promoted: ""
-    author_promoted: ""
-    # text for promoted script
-    promoted_text_html: ""
-    # instructions on a script library. code will be a <code> element. Don't use punctuation around the code element if possible so that people don't accidentally include that when copying.
     library_instructions_html: "Tätä skriptiä ei tulisi asentaa suoraan. Se on kirjasto muita skriptejä varten sisällytettäväksi metadirektiivillä %{code}."
-    # text displayed for deleted scripts
     deleted_notice: "Tämä skripti on poistettu."
-    deleted_notice_with_related: ""
-    deleted_undelete_notice_html: ""
-    deleted_locked_author_notice_html: ""
-    deleted_author_notice: ""
-    # test displayed when viewing a previous version. date is a date and time (no "ago"), latest_version_link is a link to the newest version whose text is version_notice_latest_version_link
     version_notice_html: "Ajankohdalta %{date}. Katso %{latest_version_link}."
     version_notice_latest_version_link: "uusin versio"
-    reported_notice: ""
-    reported_notice_for_author: ""
-    # link to the script's info page, containing script meta and author's description
     info_page: "Tiedot"
-    # link to the script's code page
     code_page: "Lähdekoodi"
-    # link to the script's history page, listing all versions of the code
     history_page: "Historia"
-    # link to the script's feedback page, listing discussions on the script. count is the number of discussions
     feedback_page: "Palaute (%{count})"
-    # link to the script's install statistics page
     stats_page: "Tilastot"
-    # link to the script's derivatives page, which shows similar scripts
     derivatives_page: "Johdannaiset"
-    # link to the page that lets the author update the script
     update_page: "Päivitä"
-    # link to the page that lets the author delete a script
     delete_page: "Poista"
-    # explanation of what deleting does
     delete_explanation: "Skriptin poistaminen estää pääsyn siihen kaikilta paitsi sinulta ja Greasy Forkin moderaattoreilta. Voit kumota poiston koska tahansa."
-    # intro text to radio options for choosing update behaviour after deletion
     delete_update_behaviour: "Mitä haluat tapahtuvan käyttäjille, jotka ovat aikaisemmin asentaneet skriptisi?"
-    # label for the option allowing users to retain the script after delete
     delete_update_behaviour_1: "Skripti jää heille muuttumattomana."
-    # label for the option where users get a blanked script after delete 
     delete_update_behaviour_2: "Heille päivitetään tyhjä skripti. Tämä on sopivaa, kun skriptillä on negatiivinen vaikutus sivustoihin, joilla se suoritetaan."
-    # heading for permanent deletion section
     delete_permanently_heading: "Pysyvä poisto"
-    # explanation of permanent deletion
-    delete_permanently_explanation_html: >
-    # confirmation on pressing the permanent deletion button
-    delete_permanently_confirm: ""
-    # text for the permanent deletion button
     delete_permanently_submit: "Pyydä pysyvää poistoa"
-    # text for the permanent deletion button when it would take effect immediately
     delete_permanently_immediate_submit: "Poista pysyvästi"
-    # notice after requesting permanent deletion
-    delete_permanently_notice: ""
-    # text on the delete page after permanently deletion was requested
-    delete_permanently_already_requested: ""
-    # notice after permanently deletion
     delete_permanently_notice_immediate: "Skripti poistettu pysyvästi."
-    # text for cancelling a permanent deletion request
     cancel_delete_permanently_submit: "Peruuta pyyntö pysyvästä poistosta"
-    # notice after cancelling a permanent deletion request
-    cancel_delete_permanently_notice: ""
-    # error when attempting to delete a locked script
     delete_permanently_rejected_locked: "Tämä skripti on lukittu eikä sitä voida poistaa pysyvästi."
-    admin_page: ""
-    admin:
-      title: ""
-      promoted_heading: ""
-      promoted_explanation: ""
-      promoted_script_label: ""
-      promoted_submit: ""
-      sync_heading: ""
-      locale_heading: ""
-      locale_example_html: ""
-      locale_multiple_note: ""
-      update_locale: ""
-      no_moderator_logs: ""
-      compare_title: ""
-      compare_to: ""
-      compare_button: ""
-      compare_must_be_local_url: ""
-    # HTML title for the history page for a script
     history_title: "%{script_name} - Versiohistoria"
-    # text explaining that we're only showing versions where the code changed
     history_only_code_changes_info: "Tästä skriptistä on versioita, joissa koodia päivitettiin."
-    # link to the list of all versions
     history_all_changes_link: "Näytä kaikki versiot."
-    # text explaining that we're showing all versions
     history_all_changes_info: "Tässä ovat skriptin kaikki versiot."
-    # link to the list of version where the code changed
     history_only_code_changes_link: "Näytä vain versiot, joissa koodi muuttui."
-    # button that shows changes (a diff) of the selected versions
     diff_button: "Vertaa valittuja versioita"
-    # HTML title of the script source code page
     code_title: "%{script_name} - Lähdekoodi"
-    # HTML title of the script feedback page
     feedback_title: "%{script_name} - Palaute"
-    feedback_has_reports: ""
-    # text to show when no discussions are posted. start_discussion_first_link is a link with the text from feedback_start_first_discussion_link
     feedback_no_discussions_html: "Ei keskusteluja lähetetty vielä. "
-    feedback_no_discussions_on_page_form: ""
-    feedback_report_instead: ""
     feedback_start_first_discussion_link: "Ole ensimmäinen, joka keskustelee tästä skriptistä."
-    feedback_discussion_or_report: ""
-    # heading for list of people who favorited this script
     feedback_favoriters_heading: "Suosikkeihin lisänneet"
-    # text before a comma separated list of users who favorited the script
-    feedback_favoriters_user_list_html: ""
-    feedback_favoriters_lots:
-      one: ""
-      other: ""
-    # text when no one has favorited a script
     feedback_no_favoriters: "Kukaan ei ole vielä lisännyt tätä skriptiä suosikkeihinsa."
-    # link to get the user to sign in to add the script to their favorites
     feedback_sign_in_to_favorite: "Kirjaudu sisään lisätäksesi suosikkeja."
-    # html title for script stats page
     stats_title: "%{script_name} - Tilastot"
-    # heading for daily install stats on stats page
     stats_daily_installs_heading: "Päivittäiset asennukset"
-    # heading for weekly install stats on stats page
-    stats_weekly_installs_heading: ""
-    # heading for daily update check stats on stats page
     stats_daily_update_checks_heading: "Päivittäiset päivitystarkastukset"
-    # date column heading for a script's daily install stats table
     stats_daily_installs_date_column_heading: "Päiväys"
-    # install count column heading for a script's stats table
     stats_daily_installs_install_count_column_heading: "Asennuskerrat"
-    # update check count column heading for a script's stats table
     stats_daily_installs_update_check_count_column_heading: "Päivitystarkastukset"
-    # header for the raw data table for stats
     stats_raw_data_header: "Raakadata"
-    # text before links to download raw stats data. links will be space separated links to the format name (e.g. CSV and JSON)
     stats_download_raw_data_html: "Lataa kaikki data: %{links}"
-    # text to show when a stat is not available
     stats_no_data: "N/A"
-    stats_filters: ""
-    stats_filter_options:
-      month: ""
-      year: ""
-      all: ""
-    # HTML title for derivatives page
     derivatives_title: "%{script_name} - Johdannaiset"
-    # text explaining the derivatives page and what to do if the user finds unauthorized copies
-    derivatives_intro: ""
-    # format for scripts listed on the derivatives page. script_link is a link to the derivative's page, user_link is a link to the user who created the derivative, license is text, link to the license, or scripts.no_license
-    derivatives_script_html: ""
-    derivatives_exact_copies_heading: ""
-    derivatives_exact_copies_list_intro: ""
-    derivatives_exact_copies_item_html: ""
-    derivatives_exact_copes_none: ""
-    derivatives_similar_heading: ""
-    derivatives_similar_info: ""
-    similarity_score:
-      high: ""
-      medium: ""
-      low: ""
-      none: ""
-    derivatives_similar_none: ""
-    derivatives_similar_item: ""
-    derivatives_similar_last_check_html: ""
-    derivatives_similar_last_check_soon: ""
-    derivatives_similar_last_check_again_soon_html: ""
-    derivatives_similar_check_now: ""
-    # html title for script list page when showing scripts that affect all sites
     listing_title_all_sites: "Userscriptit kaikille sivustoille"
-    # meta description and feed subtitle when showing scripts that affect all sites
     listing_description_all_sites: "Userscriptit jotka lisäävät ominaisuuksia ja poistavat bugeja kaikilla sivustoilla"
-    # html title for script list page when showing scripts for a particular site. 'site' will be in the form 'example.com'
     listing_title_for_site: "Userscriptit sivustolle %{site}"
-    # meta description and feed subtitle when showing scripts that affect a particular site
     listing_description_for_site: "Userscriptit jotka lisäävät ominaisuuksia ja poistavat bugeja sivustolla %{site}"
-    # html title for script list page for search results.
     listing_title_for_search: "'%{search_string}' userscriptit"
-    # html title for script list page for code search results.
     listing_title_for_code_search: "'%{search_string}' userscriptit"
-    # html title for script list page when no other situation applies
     listing_title_generic: "Userscriptit"
-    # html title for script list page for a user's favorites. set_name is script_sets.favorites_name
     listing_title_for_favorites: "%{user_name}:n %{set_name}"
-    # meta description and feed subtitle for script list page when no other situation applies
     listing_description_generic: "Userscriptit jotka lisäävät ominaisuuksia ja poistavat bugeja käyttämilläsi sivustoilla"
-    # label for sorting links on script list page
     listing_sort_label: "Lajitteluperuste:"
-    # link for relevance (most matching the search terms) sort on a script list
     listing_sort_relevance: "Osuvuus"
-    # link for daily install sort on a script list
     listing_sort_daily_installs: "Päivittäiset asennukset"
-    # link for daily install sort on a script list
     listing_sort_total_installs: "Asennuskerrat"
-    # link for rating sort on a script list
     listing_sort_ratings: "Arvostelut"
-    # link for created date sort on a script list
     listing_sort_created: "Luomispäivä"
-    # link for updated date sort on a script list
     listing_sort_updated: "Päivityspäivä"
-    # link for name sort on a script list
     listing_sort_name: "Nimi"
-    # label for filtering by-site links on script list page
     listing_filter_by_site_label: "Näytetään skriptit sivustolle:"
-    # link for turning off by-site filtering on script list page
     listing_filter_by_site_disable: "Kaikki"
-    # link for filtering script list by scripts that affect all sites
     listing_filter_by_site_all_sites: "(Kaikki sivustot)"
-    listing_filter_by_language_label: ""
-    # link to see a full list of sites that scripts on %{site_name} affect
     listing_filter_by_site_more_sites: "Lisää..."
-    # text that shows when no scripts were found with the used parameters
     listing_no_scripts: "Skriptejä ei löytynyt."
-    # feed title for the listing, ordered by created date
     listing_created_feed: "Uudet skriptit"
-    # feed title for the listing, ordered by updated date
     listing_updated_feed: "Päivitetyt skriptit"
-    # when a list has nothing to show
     listing_none: "(Ei mitään)"
-    # link to filter search results by the current locale
-    listing_set_locale_filter: ""
-    # link to remove locale filter
-    listing_remove_locale_filter: ""
-    listing_language_all: ""
-    listing_language_js: ""
-    listing_language_css: ""
-    # link to start the process of importing (creating from an external place) scripts
     import: "Tuo skriptejä"
-    # link to create a new script
-    new: ""
-    new_css: ""
-    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support site
     support_site: "Käy tekijän tukisivustolla"
-    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support email address
     support_email: "Lähetä tekijälle sähköpostia saadaksesi tukea."
-    # link to a site where the user can donate to the author, when the author didn't provide a suggested donation amount
     contribution_no_amount: "Kiitä %{author}:a tekemällä lahjoitus."
-    # link to a site where the user can donate to the author, when the author provided a suggested donation amount
     contribution_with_amount: "Kiitä %{author}:a tekemällä lahjoitus. Suositeltu määrä on %{amount}."
-    # text for donating to the author via bitcoin, when the author didn't provide a suggested donation amount
     contribution_bitcoin_no_amount_html: "Kiitä %{author}:a tekemällä Bitcoin-lahjoitus osoitteeseen %{address}."
-    # text for donating to the author via bitcoin, when the author provided a suggested donation amount
     contribution_bitcoin_with_amount_html: "Kiitä %{author}:a tekemällä Bitcoin-lahjoitus osoitteeseen %{address}. Suositeltu määrä on %{amount}."
-    # explanation of language chooser when editing script
     locale_explanation_html: "Pitäisi vastata <code>@name</code>:n, <code>@description</code>:n ja ensimmäisten lisätietojen kieltä."
-    # the default value for the locale box, if submitted the site will attempt to detect the language of the entry
     locale_auto_select: "(Tunnista automaattisesti)"
-    # label which lists the sets this script is in, which is followed by controls to change its inclusions
     sets_label: "Skriptijoukoissa:"
-    # label for when the script is not in any sets, which is followed by controls to change its inclusions
     sets_label_no_sets: "Skriptijoukot:"
-    # option to remove the script from the set
     sets_remove_inclusion: "Poista joukosta %{set_name}"
-    # option to remove the script's exclusion from the set
     sets_remove_exclusion: "Poista erotus joukosta %{set_name}"
-    # option to add the script to the set
     sets_add_inclusion: "Lisää joukkoon %{set_name}"
-    # option to exclude the script from the set (when it's been included as part of a sub set)
     sets_add_exclusion: "Erota joukosta %{set_name}"
-    # option to add the script to a new set
     sets_add_to_new: "Lisää uuteen joukkoon"
-    # summary of %{site_name}'s rules for posting scripts. full_rules_link is a link to the full rules with text of rules_summary_link_to_full
     rules_summary_html: "Skriptit täytyy <strong>kuvailla kunnolla</strong> eivätkä ne voi olla <strong>obfuskoituja</strong>, <strong>minifioituja</strong>, rikkoa <strong>tekijänoikeuksia</strong> ja <strong>ulkoisen koodin</strong> määrää on rajoitettu. %{full_rules_link}"
-    # full rules link text used in the rules summary
     rules_summary_link_to_full: "Lue täydelliset säännöt."
-    # warning when on the edit screen for a script set up to sync. syncing_notice_sync_type will be a link to the sync screen with text from syncing_notice_sync_type_manual or syncing_notice_sync_type_automatic
     syncing_notice_html: "Tämä skripti on %{syncing_notice_sync_type}. Kaikki koodiin tekemäsi muutokset kumotaan synkronoinnin yhteydessä."
-    # used in syncing_notice_html when a script syncs only when the author requests it
     syncing_notice_sync_type_manual: "aseta synkronoitumaan manuaalisesti kohteesta %{sync_identifier}"
-    # used in syncing_notice_html when a script syncs automatically
     syncing_notice_sync_type_automatic: "aseta synkronoitumaan automaattisesti kohteesta %{sync_identifier}"
-    # label for uploading a script under the code textarea
     upload_label: "Tai lähetä tiedosto:"
-    # label for checkbox to enable or disable syntax highlighting code editor
     enable_source_code_editor_label: "Käytä syntaksin korostusta editorissa"
-    # descriptive text for the changelog field
     changelog_note: "Mitä muuttui tässä versiossa?"
-    additional_info_note: ""
-    # button text for previewing additional info
-    # button text for submitting a new script
     post_new_script: "Lähetä skripti"
-    # button text for submitting an update to an existing script
     post_updated_script: "Lähetä uusi versio"
-    # label for radio button for public-type user script
     type_1_html: "Julkinen skripti - skripti kaikkien nähtäväksi ja käytettäväksi."
-    # label for radio button for unlisted-type user script
     type_2_html: "Listaamaton skripti - skripti (melko) yksityiseen käyttöön. Käytettävissä suoraan, muttei linkitetä mistään muualta %{site_name}issa."
-    # label for radio button for library-type script
     type_3_html: "Kirjasto - skripti, joka on tarkoitettu <code>@require</code>ttavaksi muista skripteistä eikä asennettavaksi suoraan."
-    # label for checkbox to override script save warnings
     override_warning_checkbox_label: "Tallenna silti?"
-    # script warning for not increasing the version number when updating the code
     warning_version_not_incremented_html: "Päivitit koodia, muttet kasvattanut <code>@version</code>-numeroa. Skriptisi jo asentaneet eivät ehkä saa päivitettyä versiota."
-    # script warning for when a version number is not provided
     warning_version_missing_html: "Et määrittänyt <code>@version</code>:a. <code>@version</code> -metadirektiivi mahdollistaa päivitysten tarkastamisen userscript-sovelluksissa."
-    # label for checkbox for the site to automatically handle version numbers
     warning_version_missing_generate_automatically_html: "Generoidaanko <code>@version</code> automaattisesti?"
-    # script warning for when a namespace is not provided
     warning_namespace_missing_html: "Et määritellyt <code>@namespace</code>a. <code>@namespace</code> -metadirektiivi sallii käyttäjiesi uudelleenasentaa skriptin päivittääkseen sen."
-    # label for checkbox for the site to automatically add a namespace
     warning_namespace_missing_generate_automatically_html: "Generoidaanko <code>@namespace</code> automaattisesti?"
-    # script warning for when a namespace changed on update
     warning_namespace_changed_html: "<code>@namespace</code>si on vaihtunut. Pysyvä <code>@namespace</code> -metadirektiivi sallii käyttäjiesi uudelleenasentaa skriptin päivittääkseen sen."
-    # script warning for when a script's code appears minified. allowed_requires_link is a link to the allowed @require list, with text of warning_potentially_minified_allowed_requires_link
     warning_potentially_minified_html: "Skriptisi näyttää sisältävän minifioitua (pakattua) koodia. Jos käytät minifioitua kirjastoa, ole hyvä ja <code>@require</code>a se  %{allowed_requires_link}. Minifioitua koodia sisältävät skriptit tulevat poistetuiksi."
-    # script warning for when a script's code is for adult sites. sensitive_domains is a list of domains
-    warning_automatic_sensitive_html: ""
-    # used in warning_potentially_minified_html
     warning_potentially_minified_allowed_requires_link: "jostakin näistä paikoista"
-    warning_code_previously_posted_html: ""
-    # default option for the locale of a localized additional info
     additional_info_locale_prompt: "(Valitse lokalisaatio)"
-    # text for the button to add another additional info section for a different language
     additional_info_add_localized: "Lisää lokalisoitua lisätietoa"
-    # validation when more than one additional info is specified for a locale. "locale_code" is the locale code (e.g. "en") that has more than one additional info
     additional_info_locale_repeated: "Anna vain yhdet lisätiedot lokalisaatiolle '%{locale_code}'."
-    # validation when an additional info in a locale is provided but no name was provided in that locale. "locale_code" is the locale code (e.g. "en") that is missing a name
     localized_additional_info_with_no_name: "Lisätietoja annettiin lokalisaatiolle '%{locale_code}', mutta @name:%{locale_code} ei annettu."
-    localized_attribute_matches_default: ""
-    # text to edit a code syncing URL. field is the text field to enter the url.
     code_syncing_from_url_html: "Tämän skriptin koodi on asetettu synkronoitumaan kohteesta: %{field}"
-    # text to add a code syncing URL. field is the text field to enter the url.
     provide_code_syncing_from_url_html: "%{site_name} voi tuoda skriptejä, joita säilytetään jo muualla, kuten versionhallintajärjestelmässä (kuten GitHub), omalla palvelimellasi, tai toisella userscript-sivustolla. Ottaaksesi käyttöön synkronoinnin skriptillesi, syötä URL: %{field}"
-    # text before the sync type options
     sync_type_intro: "Skripti synkronoidaan:"
-    # label for radio button for manual syncing
-    sync_type_1:
-      name: ""
-      description: ""
-    # label for radio button for automatic syncing
-    sync_type_2:
-      name: ""
-      description: ""
-    # label for radio button for webhook syncing
-    sync_type_3:
-      name: ""
-      description: ""
-    sync_name_and_description: ""
-    # text when the last attempted sync failed. date is the date of the error run through markup_date. error is the technical error.
     sync_failed_info_html: "Viimeisin synkronointiyritys oli %{date}, jolloin lopputulos oli %{error}."
-    # text indicating the date of the last successful sync. date is the date of the sync run through markup_date
     sync_success_info_html: "Viimeisin onnistunut synkronointi tapahtui %{date}."
-    # text if the sync never succeeded
     sync_never_succeeded: "Synkronointi ei ole koskaan onnistunut."
-    sync_additional_info: ""
-    add_synced_additional_info: ""
-    # button to update sync settings and run sync immediately
     update_and_sync: "Päivitä ja synkronoi nyt"
-    # button to update sync settings but not sync immediately
     update_no_sync: "Päivitä"
-    # button to disable syncing of the script
     turn_off_syncing: "Poista synkronointi käytöstä tälle skriptille"
-    # label for syncing the default additional info
     additional_info_default_sync_html: "Oletuslisätiedot (kieli on <code>@name</code>)"
-    # label for syncing localized additional infos
     additional_info_localized_sync_html: "Tietylle lokalisaatiolle (<code>@name:XX</code>)"
-    # HTML placeholder for sync fields
     sync_url_placeholder: "(URL)"
-    # label for adding a new screenshot
     screenshots_add: "Lisää:"
-    # label for checkbox to remove a screenshot
     screenshots_remove: "Poista"
-    # explains what a replacement script when deleting is
     replacement_script_explanation: "(Valinnainen) Valitse toinen skripti, joka korvaa tämän skriptin. Käyttäjille päivitetään uusi skripti ja heidät uudelleenohjataan siihen. Syötä korvaavan skriptin URL:"
-    # title for diff page
     diff_title: "%{script} - Versioiden ero"
-    # label for older version being diffed
     diff_old_version: "Vanha:"
-    # label for newer version being diffed
     diff_new_version: "Uusi:"
-    # label for input for lines to show around each change when doing a diff
     diff_lines_of_context: "Liittyvät rivit:"
-    # label for checkbox on whether to ignore whitespace changes
     diff_ignore_whitespace: "Ohita tyhjämerkkien muutokset"
-    # button to refresh diff after changing diff options
     diff_refresh: "Päivitä"
-    # text shown when compared versions are the same
     diff_no_change: "Eroja ei löydetty."
-    # tooltip for good rating number - "Good" should match the word used in RatingGood in the PHP localization
     good_rating_explanation: "Ihmiset, jotka arvostelivat sen \"Hyvä\" tai lisäsivät sen suosikkeihin."
-    # tooltip for ok rating number - "OK" should match the word used in RatingGood in the PHP localization
     ok_rating_explanation: "Ihmiset, jotka arvostelivat sen \"OK\"."
-    # tooltip for bad rating number - "Bad" should match the word used in RatingGood in the PHP localization
     bad_rating_explanation: "Ihmiset, jotka arvostelivat sen \"Huono\"."
-    # link at the bottom of the scripts list suggesting people post a script or learn how. post_a_script_link is a link with text post_a_script_link_text that goes to the new script form. learn_to_write_scripts_link is a link with text learn_to_write_scripts_link_text that goes to the help document for writing scrupts
     write_your_own_html: "%{post_a_script_link} (tai %{learn_to_write_scripts_link})"
-    # link text for the new script form, used in write_your_own_html
-    post_a_script_link_text: ""
-    # link text for the writing a user script help doc, used in write_your_own_html
     learn_to_write_scripts_link_text: "opi tekemään sellainen"
-    # a suggestion below the install button that users provide feedback
-    feedback_or_report: ""
-    # a suggestion below the install button that users provide feedback or get support from the author's site. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
-    support_feedback_or_report: ""
-    # a suggestion below the install button that users provide feedback or get support from the author's via email. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
-    support_email_feedback_or_report: ""
-    # heading for section relating to adult content when posting new script or script version
     adult_content: "Aikuisille suunnattu sisältö"
-    # label for checkbox letting authors report their script as containing adult content
     adult_content_self_report: "Tämä skripti sisältää aikuisille suunnattua sisältöä tai on aikuissisältöä sisältävää sivustoa varten."
-    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script not flagged as having adult content
     adult_content_self_report_explanation: "%{site_name} sallii skriptit, joissa on aikuisille suunnattua sisältöä, mutta ne täytyy merkitä sellaisiksi, jotta käyttäjät voivat valita näkevätkö sisällön."
-    # label for checkbox letting authors report their script as not containing adult content
     not_adult_content_self_report_html: "Tämä skripti <strong>ei</strong> sisällä aikuisille suunnattua sisältöä ja <strong>ei</strong> ole aikuissisältöä sisältävää sivustoa varten."
-    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content
     not_adult_content_self_report_explanation: "%{site_name} sallii skriptit, joissa on aikuisille suunnattua sisältöä, mutta ne täytyy merkitä sellaisiksi, jotta käyttäjät voivat valita näkevätkö sisällön. Skriptisi on merkitty aikuisille suunnattua sisältöä sisältäväksi. Voit ilmoittaa, ettei näin ole; moderaattori tulee tarkistamaan asian."
-    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content due to automatic checking
-    not_adult_content_self_report_explanation_automatic: ""
-    # the error you see when accessing a adult content script when logged in with the adult content setting off
     adult_content_on_greasy_logged_in_error: "Tämä skripti ei ole enää saatavilla tällä sivustolla %{edit_account_link:Greasy Fork -tilisi nykyisillä asetuksilla}."
-    # the error you see when accessing a adult content script when not logged in
     adult_content_on_greasy_not_logged_in_error: "Tämä skripti ei ole enää saatavilla anonyymisti tällä sivustolla. %{login_link:Kirjaudu sisään} ja tarkista Greasy Fork -tilisi asetukset."
-    # the error you see when access a non-adult content script on sleazy fork
     non_adult_content_on_sleazy: "Tämä skripti ei ole saatavilla tällä sivustolla."
-    not_js_convertible_override_header: ""
-    not_js_convertible_override_explanation: ""
-    not_js_convertible_override_label_html: ""
-    # marker after script name shown to authors indicating their adult scripts
     adult_marker: "(Aikuissisältö)"
-    # marker after script name if it's deleted
     deleted_marker: "(Poistettu)"
-    # marker after script name if it's locked
     locked_marker: "(Lukittu)"
-    # marker after script name if it's unlisted
     unlisted_marker: "(Piilotettu)"
-    # marker after script name if it's a library
     library_marker: "(Kirjasto)"
-    # title for libraries listing page
-    libraries_title: ""
-    # description for libraries listing page
-    libraries_description_html: ""
-    # title of the listing of top sites to script
-    by_site_list_title: ""
-    # description of the listing for top sites to script
-    by_site_list_description: ""
-    by_site_list_filter: ""
-    # placeholder for script search box
-    search_placeholder: ""
-    updated: ""
-    preview_additional_info: ""
-    must_confirm: ""
-    must_confirm_external_sign_in: ""
-    must_confirm_email_button: ""
-    authors_heading: ""
-    error_unauthorized_copy: ""
-    invitations:
-      form_title: ""
-      explanation: ""
-      invited_user_url_label: ""
-      invited_user_placeholder: ""
-      submit: ""
-      invalid_user_url: ""
-      already_author: ""
-      sent: ""
-      subject: ""
-      body: ""
-      current_user_already_author: ""
-      invitation_not_found: ""
-      invitation_expired: ""
-      invitation_accepted: ""
-    remove_author:
-      heading: ""
-      success: ""
-      remove_button: ""
-      remove_confirm: ""
-      failure: ""
-    no_disposable_email: ""
-    rate_limited: ""
-    new_script_notice:
-      title: ""
-      install_link_html: ""
-      share_link_html: ""
-    new_title:
-      js: ""
-      css: ""
-    update_title: ""
-    antifeatures:
-      warning_title: ""
-      author_explanation_intro: ""
-      types:
-        ads:
-          title: ""
-          description_html: ""
-        tracking:
-          title: ""
-          description_html: ""
-        miner:
-          title: ""
-          description_html: ""
-        referral-link:
-          title: ""
-          description_html: ""
-      install_anyway: ""
-      cancel_install: ""
-    badges:
-      js:
-        short: ""
-        long: ""
-      css:
-        short: ""
-        long: ""
   script_sets:
-    # description of script sets on edit page
-    description: ""
-    # name for the favorites set
     favorites_name: "Suosikit"
-    # delete button text for a script set
     delete: "Poista skriptijoukko"
-    # delete confirmation for a script set
     delete_confirmation: "Haluatko varmasti poistaa tämän skriptijoukon?"
-    # option for choosing to sort the set by the default sort the site uses
     site_default_sort: "(Sivuston oletus)"
-    edit_scripts:
-      heading: ""
-      description: ""
-      included: ""
-      included_none: ""
-      remove_included: ""
-      excluded: ""
-      excluded_none: ""
-      remove_excluded: ""
-      add_label: ""
-      add_include: ""
-      add_exclude: ""
-    edit_sets:
-      heading: ""
-      description: ""
-      included: ""
-      included_none: ""
-      remove_included: ""
-      excluded: ""
-      excluded_none: ""
-      remove_excluded: ""
-      add_label: ""
-      add_include: ""
-      add_exclude: ""
-      user_label: ""
-      user_no_sets: ""
-      user_no_other_sets: ""
-    edit_auto_sets:
-      heading: ""
-      description: ""
-      included: ""
-      included_none: ""
-      remove_included: ""
-      excluded: ""
-      excluded_none: ""
-      all_scripts_label: ""
-      all_scripts_include: ""
-      for_sites_label: ""
-      for_sites_include: ""
-      for_sites_exclude: ""
-      for_user_label: ""
-      for_user_include: ""
-      for_user_exclude: ""
-      for_language_label: ""
-      for_language_include: ""
-      for_language_exclude: ""
-    calculated_list: ""
-    calculated_list_none: ""
-    calculated_list_more:
-      one: ""
-      other: ""
-    already_included: ""
-    could_not_parse_script: ""
-    save: ""
-    saved: ""
-    auto_set_types:
-      all_scripts: ""
-      site: ""
-      all_sites: ""
-      user: ""
-      locale: ""
   home:
-    # html title of the homepage
     title: "%{site_name} - turvallisia ja hyödyllisiä userscriptejä"
-    # text at the top of the homepage.
     welcome: "Tervetuloa %{site_name}in, sivustolle userscriptejä varten."
-    # html title of the sleazy fork homepage
     sleazy_title: "%{site_name} - turvallisia ja hyödyllisiä aikuisten userscriptejä"
-    # text at the top of the sleazy fork homepage.
     sleazy_welcome: "Tervetuloa %{site_name}in, sivustolle aikusten userscriptejä varten."
-    # placeholder for home page search box
-    search_placeholder: ""
-    scripts_for_label: ""
-    # heading for the paragraph explaining what user scripts are
     explain_user_scripts_heading: "Mitä ovat userscriptit?"
-    # text explaining what user scripts are.
     explain_user_scripts_html: "Userscriptit antavat sinun hallita selauskokemustasi. Asennuksen jälkeen ne parantavat automaattisesti vierailemiasi sivustoja lisäämällä ominaisuuksia, tekemällä sivuista helppokäyttöisempiä tai poistamalla ärsyttäviä osia. %{site_name}in userscriptit ovat muiden käyttäjien kirjoittamia ja julkaisemia. Ne ovat ilmaisia asentaa ja helppoja käyttää."
-    # header for step 1 - how to install a user script manager
-    installing_step1_header: ""
-    # caption in step 1 - screenshot of tampermonkey on chrome
-    installing_step1_caption: ""
-    # text for step 1, listing options for user script managers based on browsers
-    installing_step1_description_html: >
-    # header for step 2 - how to install a user script
-    installing_step2_header: ""
-    # caption for step 2 - showing the install button for user scripts
-    installing_step2_caption: ""
-    # text for step 2 - describing how to find and install user scripts
-    installing_step2_description_html: >
-    # header for step 3 - how to use a user script
-    installing_step3_header: ""
-    # description for step 3, describing browsing to the site and having the user script apply
-    installing_step3_description_html: >
   users:
-    # html title for the sign in page
     sign_in_title: "Kirjaudu sisään %{site_name}iin"
-    # what signing in lets people od
     sign_in_description: "Sisäänkirjautuminen %{site_name}iin sallii sinun lähettää skriptejäsi ja palautetta muiden skripteille. Sinun ei tarvitse kirjautua sisään selataksesi tai asentaaksesi skriptejä."
-    # heading for signing in with an external service (Google, GitHub, etc.)
     sign_in_external: "Kirjaudu sisään ulkoisella palvelulla"
-    # button for signing in with an external service (Google, GitHub, etc.)
-    sign_in_with: ""
-    # heading for signing in with a password
     sign_in_password: "Kirjaudu sisään salasanalla"
-    # when a user attempts to sign in with an external service and a user already exists with the same email, this is the message shown. email: provided e-mail, user_name: existing user's name, provider: what the user tried to sign in with (e.g. GitHub), sign_in_link: a link to the sign in page with text from sign_in_email_used_sign_in_link
     sign_in_email_used_no_external_services_html: "'%{email}' on jo käytössä käyttäjällä '%{user_name}'. Jos tämä olet sinä ja haluat lisätä kirjautumisen palvelulla %{provider}, %{sign_in_link} tilillesi ensin, sitten lisää %{provider}-kirjautumisesi."
-    # same as above, but when the existing user uses other providers. also includes existing_providers, which is a list of the existing user's sign ins, run through to_sentence (http://apidock.com/rails/Array/to_sentence)
     sign_in_email_used_with_external_services_html: "'%{email}' on jo käytössä käyttäjällä '%{user_name}', joka kirjautuu sisään palveluilla %{existing_providers}. Jos tämä olet sinä ja haluat lisätä kirjautumisen palvelulla %{provider}, %{sign_in_link} tilillesi ensin, sitten lisää %{provider}-kirjautumisesi."
-    # sign in link for email_used messages
     sign_in_email_used_sign_in_link: "kirjaudu sisään"
-    # when a user attempts to create an account with an external service, but an email was not provided by that service
     sign_in_email_missing: "%{site_name} vaatii sähköpostiosoitteen uuden tilin luontia varten, mutta %{provider} ei antanut sellaista puolestasi. Voit joko lisätä %{provider}-tiliisi sellaisen ja yrittää uudelleen, tai luoda normaalin sähköposti/salasana-tunnuksen %{site_name}iin ja sitten lisätä %{provider}-tilisi siihen."
-    # this shows when signing in for the first time with an external sign in but the name received is already in use. the user is prompted to enter a different name.
     sign_in_name_used: "Nimi '%{name}' on jo käytössä. Valitse jokin muu."
-    # the button when submitting the name form per above
     sign_in_name_used_submit: "Lähetä"
-    # Button to preview a user's profile before saving
-    # heading for the user's control panel, which contains links such as post script and edit account
     control_panel: "Hallintapaneeli"
-    # heading for the list of discussions about a user's own scripts
     discussions_on_scripts: "Keskustelut skripteistäsi"
-    # alt text for the RSS feed icon for discussions about a user's own scripts
     discussions_on_scripts_feed_alt: "RSS-syöte"
-    # text to show in the section for discussions about a user's own scripts if there are no discussions yet
     discussions_on_scripts_none: "Ei mitään vielä!"
-    # link to more discussions on a user's own scripts, as the initial list is limited in number
     discussions_on_scripts_more: "Lisää keskusteluja..."
-    # heading for the list of scripts on a user's page
     script_list: "Skriptit"
-    # text to show in a user's script section when they have created no scripts
     script_list_none: "Ei lähetettyjä skriptejä."
-    # text to show in a user's script section when they have created scripts, but they are not shown due to the filters active
     script_list_none_for_filter: "Ei skriptejä nykyisillä suodattimilla."
-    # text to show in a user's own script section when they have created no scripts. script_list_none_same_user_info_link is a link to a tutorial with text of script_list_none_same_user_info_link_text
     script_list_none_same_user_html: "Et ole tehnyt skriptejä. %{script_list_none_same_user_info_link}"
-    # text used for link in script_list_none_same_user_html
     script_list_none_same_user_info_link_text: "Haluaisitko oppia tekemään?"
-    # heading for the list of a user's deleted scripts (visible to only that user and mods)
     deleted_script_list: "Poistetut skriptit"
-    unlisted_script_list: ""
-    # link to log out
     sign_out: "Kirjaudu ulos"
-    # link to edit an account
     edit: "Muokkaa tiliä"
-    # link to edit how the user signs in
     edit_sign_in: "Muokkaa kirjautumistapoja"
-    # html title for the edit sign in page
     edit_sign_in_title: "Muokkaa kirjautumistapoja"
-    # heading for the password section of the edit sign in methods page
     edit_sign_in_password: "Salasana"
-    # informational text telling the user they're not using a password
-    edit_notifications: ""
     no_password_set_info: "Tilillesi ei ole määritetty salasanaa."
-    # button to set a password when one is not already set
     set_password: "Aseta salasana"
-    # button to set a password when one is already set
     update_password: "Päivitä salasana"
-    # error message when the password and the confirmation don't match
     update_password_no_match: "Salasanat eivät täsmää."
-    # notice after a password was updated successfully
     password_updated: "Salasana päivitetty."
-    # information text saying the user can unset their password and use just external sign ins
     remove_password_info: "Voit poistaa salasanasi ja käyttää pelkästään ulkoisia palveluita sisäänkirjatumiseen."
-    # button to remove the password from the user's account
     remove_password: "Poista salasana"
-    # error message to show if the user attempts to remove a password but have no external sign ins. This is normally not possible with the interface.
     cant_remove_password: "Ei voida poistaa salasanaa - et voisi kirjautua sisään!"
-    # error message to show if the user attempts to remove a sign in but has no password or other sign ins. This is normally not possible with the interface. provider is the external site's name, like GitHub or Google
     cant_remove_sign_in: "Ei voida poistaa %{provider}-kirjautumista - et voisi kirjautua sisään!"
-    # notice after a password was removed successfully
     password_removed: "Salasana poistettu."
-    # heading for the external sign ins section of the edit sign in methods page
     edit_sign_in_external: "Ulkoiset sisäänkirjautumispalvelut"
-    # information text about how they can use external sign ins, shown when the user has not set any yet
     external_sign_in_info_no_sign_ins: "Voit käyttää muiden sivustojen tilejäsi sisäänkirjautumiseen %{site_name}issa."
-    # information text about how they can use external sign ins, shown when the user already has some set. should describe the concept of syncing, where account details on %{site_name} will be updated to match the external service on sign in
     external_sign_in_info_with_sign_ins: "Käytät tällä hetkellä alla listattuja sisäänkirjautumispalveluja. \"Synkronoiva\" sisäänkirjautuminen tarkoittaa, että %{site_name} -tilisi tiedot (kuten nimi ja sähköpostiosoite) päivitetään, kun kirjaudut sisään."
-    # notice after a sign in is added. provider is the external site's name, like GitHub or Google
     external_sign_in_added: "%{provider}-sisäänkirjautuminen lisätty."
-    # notice after a sign in is updated (from syncing to not or opposite). provider is the external site's name, like GitHub or Google
     external_sign_in_updated: "%{provider}-sisäänkirjautuminen päivitetty."
-    # notice after a sign in is removed. provider is the external site's name, like GitHub or Google
     external_sign_in_removed: "%{provider}-sisäänkirjautuminen poistettu."
-    # notice after a sign in fails
     external_sign_in_failed: "%{provider}-sisäänkirjautuminen epäonnistui: %{error}."
-    # notice after a user tries to add a sign in to their account, but that sign in is already in use by another user
     external_sign_in_already_used: "%{provider}-sisäänkirjautumisen lisääminen epäonnistui: tuota sisäänkirjautumista käyttää jo '%{user_name}'."
-    # notice after successfully creating a new user based on external login
-    external_sign_in_confirmation: ""
-    # an indicator beside the sign in provider's name if the user chose to enable syncing
     syncing_indicator: "(synkronoiva)"
-    # button to set a sign in provider to sync
     enable_syncing: "Kytke synkronointi päälle"
-    # button to set a sign in provider to not sync
     disable_syncing: "Kytke synkronointi pois"
-    # button to remove a sign in provider
     remove_external_sign_in: "Poista"
-    # information text indicating that the list of links below it are for addding an external sign in
     add_external_sign_in_info: "Lisää sisäänkirjautuminen"
-    # link to docs on how to set up a webhook for script syncing
-    set_up_webhook: ""
     author_email_notification_type:
-      # notification option: don't send the user e-mails
       none: "Älä vastaanota sähköposteja keskusteluista skripteistäsi"
-      # notification option: send e-mails on new discussions but not new posts on existing discussions
       discussion_only: "Vastaanota sähköposteja, kun keskusteluja luodaan skripteistäsi"
-      # notification option: send e-mails on new discussoins and on new posts on existing discussions
       discussion_and_comment: "Vastaanota sähköposteja, kun keskusteluja luodaan skripteistäsi tai niihin lisätään uusia kommentteja"
-    # display of a single user when displaying a list of users. user_link is a link to the user's page with text of the user name, count is the number of public scripts authored
     list_display_html:
       one: "%{user_link} - %{count} skripti"
       other: "%{user_link} - %{count} skriptiä"
-    # sort link for sorting users by number of scripts they've posted
     listing_number_of_scripts: "Skriptien määrä"
-    # sort link for sorting users by the creation date of their scripts
     listing_new_scripts: "Uudet skriptit"
-    # sort link for sorting users by the updated date of their scripts
     listing_updated_scripts: "Päivitetyt skriptit"
-    # sort link for sorting users by when they signed up
     listing_registration_date: "Rekisteröitymispäivä"
-    # title for page showing list of users
-    listing_title: ""
-    listing_banned_filter:
-      banned: ""
-      not_banned: ""
-      all: ""
-    listing_author_filter:
-      script_author: ""
-      not_script_author: ""
-      all: ""
-    # placeholder for user search box
-    search_placeholder: ""
-    # default option for the user's preferred locale
     locale_prompt: "(Valitse lokalisaatio)"
-    # text describing what the show ads checkbox does
     show_ads_description: "Tue %{site_name}ia antamalla sen näyttää mainoksia"
-    # text describing what the show sensitive checkbox does
     show_sensitive_description: "Näytä aikuisille suunnattua sisältöä sisältävät skriptit"
-    # text describing what the preferred markup setting does
     preferred_markup_description: "Käytetään uusiin skripteihin ja viesteihin."
-    filter_locale_default_description: ""
-    # link from sleazy fork to greasy fork on user page
     greasy_fork_scripts_link:
       one: "Käyttäjällä %{user_name} on myös %{count} skripti Greasy Forkissa."
       other: "Käyttäjällä %{user_name} on myös %{count} skriptiä Greasy Forkissa."
-    # displays when the user is editing their account but syncing is on
-    update_sync_warning:
-      one: ""
-      other: ""
-    # link on the user page to go to the delete page
-    delete_link: ""
-    delete:
-      intro: ""
-      password_effect: ""
-      identities_effect:
-        one: ""
-        other: ""
-      scripts_effect:
-        one: ""
-        other: ""
-      script_sets_effect:
-        one: ""
-        other: ""
-      forum_effect: ""
-      email_confirmation: ""
-      submit: ""
-      confirmation_email_sent: ""
-      confirmation_email:
-        subject: ""
-        body: ""
-      confirmation:
-        intro: ""
-        confirm: ""
-        cancel: ""
-        key_mismatch: ""
-        request_expired: ""
-        cancelled: ""
-        completed: ""
-    banned_notice:
-      no_report_no_reason: ""
-      with_report: ""
-      with_reason: ""
-    banned_delete:
-      intro: ""
-      complete: ""
-    badges:
-      banned:
-        short: ""
-        long: ""
-      moderator:
-        short: ""
-        long: ""
-      author:
-        short: ""
-        long: ""
-    notifications:
-      discussion_defaults:
-        title: ""
-        new_discussion: ""
-        new_comment: ""
-        mention: ""
-      conversation_defaults:
-        title: ""
-        starter: ""
-        receiver: ""
-      save_button: ""
-      title: ""
-      current_discussion_subscriptions:
-        one: ''
-        other: ''
-      save_success: ""
-      unsubscribe_all: ""
-      unsubscribe_all_success: ""
-  webhooks:
-    info:
-      title: ""
-      intro_html: |
-      already_syncing_list: ""
-      synced_item_html: ""
-      language_note: ""
   help:
-    sections:
-      usage: ""
-      development: ""
-      miscellaneous: ""
-    open_source: ""
-    installing_user_scripts:
-      title: ''
-    installing_user_styles:
-      title: ''
     meta_keys:
-      # title of the help document describing script meta keys (e.g. @name).
       title: "%{site_name}in lukemat metatiedot skripteissä"
-      # introductory paragraph. If the URL has a localized version, use that.
       intro_html: "Tämä on lista <a href=\"http://wiki.greasespot.net/Metadata_Block\">metatiedoista</a>, jotka %{site_name} lukee. Skriptit voivat sisältää listaan kuulumattomia metatietoja, mutta ne eivät vaikuta %{site_name}in tietoihin."
-      # description of @name
       name: "Skriptin nimi, jota käytetään otsikkona ja linkeissä. Pakollinen."
-      # description of @name:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
       name_localized_html: "Skriptin nimi tietyssä lokalisaatiossa, missä XX on <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">2-kirjaiminen ISO 639-1 -koodi</a> ja YY on vapaaehtoinen <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 -maakoodi</a>. Korvaa <code>@name</code>:n, kun käyttäjä käyttää vastaavaa lokalisaatiota."
-      # description of @description
       description: "Kuvaus skriptin toiminnasta. Näytetään tekstinä skriptin nimen alla. Pakollinen."
-      # description of @description:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
       description_localized_html: "Skriptin kuvaus tietyssä lokalisaatiossa, missä XX on <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">2-kirjaiminen ISO 639-1 -koodi</a> ja YY on vapaaehtoinen <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 -maakoodi</a>. Korvaa <code>@description</code>:n, kun käyttäjä käyttää vastaavaa lokalisaatiota."
-      # description of @namespace. Do not translate content inside <code>.
       namespace_html: "Skriptien hallintaohjelmat käyttävät <code>@namespace</code>:n ja <code>@name</code>:n yhdistelmää havaitakseen, onko skripti jo asennettu. %{site_name} vaatii tämän kentän ja varoittaa, jos sitä muutetaan päivityksen yhteydessä."
-      # description of @description:XX-YY. developer.mozilla.org may have localized content; use it if available.
       version_html: "Skriptin tietyn version tunniste <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">Mozillan versioformaatissa</a>. Versio näytetään skriptin tietosivulla. %{site_name} vaatii tämän kentän ja varoittaa, jos sitä pienennetään tai ei muuteta, kun skriptin koodi muuttuu."
-      # description of @include
-      include_html: ""
-      # description of @require. %{external_script_link} is a link to the document describing allowed external scripts and has a link of key "require_external_script_link_text"
       require_html: "Sisällyttää ulkoista JavaScript-koodia skriptiin. Katso %{external_script_link}."
-      # used in required_html
       require_external_script_link_text: "ulkoisen koodin sisällyttämistä koskevat säännöt"
-      # description of @updateURL
       updateURL: "Määrittää osoitteen, josta skriptien hallintaohjelmat hakevat päivityksiä. %{site_name} poistaa nämä tiedot, jolloin %{site_name}ista asennetut skriptit päivittyvät vain %{site_name}in kautta."
-      # description of @license
-      license: ""
-      # description of @supportURL
       supportURL: "URL-osoite sivulle, jolta käyttäjät voivat saada tukea skriptille (esim. bugilistaus, foorumi, sähköpostiosoite). Tukiosoite näytetään skriptin tietosivulla."
-      # description of @contributionURL. You can replace the sample "business" and "item_name" parameters in the URLs with localized versions.
       contributionURL_html: "URL-osoite sivulle, jolla käyttäjät voivat tehdä lahjoituksia skriptin tekijälle. Avustus-URL näytetään skriptin tietosivulla. URL-osoitteet voivat käyttää http-, https-, tai Bitcoin-protokollaa. Linkittääksesi PayPal-lahjoitussivulle, käytä URL-osoitetta, joka on muotoa <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=sahkopostiosoitteesi@esimerkki.com&item_name=Greasy+Fork+-lahjoitus\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=sahkopostiosoitteesi@esimerkki.com&item_name=Greasy+Fork+-lahjoitus</a>, ja korvata esimerkkisähköpostiosoitteen omallasi."
-      # description of @contributionAmount. Do not translate content inside <code>.
       contributionAmount_html: "Ehdotettu lahjoituksen suuruus, käytetään yhdessä <code>@contributionURL</code>:n kanssa."
-      # description of @compatible. %{browsers} is a comma-separated list of browser codes. You can translate "Must disable pop-up blocker", but do not translate "@compatible firefox". 
       compatible_html: "Merkitsee skriptin yhteensopivaksi selaimen kanssa. Yhteensopivuustiedot näytetään skriptin sivulla. Kommentteja yhteensopivuudesta voi lisätä muodossa <code>@compatible firefox Ponnahdusikkunoiden esto tulee poistaa käytöstä</code>. Tunnistetut selaimet: %{browsers}."
-      # description of @incompatible. %{browsers} is a comma-separated list of browser codes. You can translate "Broken since Firefox 23", but do not translate "@compatible firefox".
       incompatible_html: "Merkitsee skriptin epäyhteensopivaksi selaimen kanssa. Yhteensopivuustiedot näytetään skriptin sivulla. Kommentteja yhteensopivuudesta voi lisätä muodossa <code>@compatible firefox Toimimaton Firefox 23:sta alkaen</code>. Tunnistetut selaimet: %{browsers}."
-      antifeature_html: ""
-      antifeature_localized_html: ""
     writing_user_scripts:
-      # title for Writing user scripts help page
       title: "Miten kirjoittaa skriptejä"
-      # content of the page. The link to greasespot can be updated to a better resource if one is available in your language. code_rules_link and meta_keys_link are links to those help pages, with text of those page's titles. ask_in_forum_link is a link to the forum with text of ask_in_forum_link_text. user_page_link is a link to the user's page if the user is signed in, or plain text if they're not; in either case, the text is user_page_link_text. post_new_script_link is a link to the new script page, with text of post_new_script_link_text
       content_html: "<p>Skriptien kirjoittaminen vaatii JavaScriptin tuntemusta. <a href=\"http://wiki.greasespot.net/Tutorials\">GreaseSpot Wikin tutoriaalien</a> pitäisi auttaa sinut alkuun sekä JavaScriptin yleisessä käytössä että skriptien kirjoittamisessa. Muiden skriptien tutkiminen voi olla hyödyllistä. Saatat ehkä haluta lukea %{code_rules_link} ja %{meta_keys_link}. Jos haluat apua skriptin tekemiseen, %{ask_in_forum_link}.</p><p>Lähettääksesi skriptejä %{site_name}iin, sinun täytyy luoda tunnus. Seuraa linkkiä %{user_page_link} %{post_new_script_link}.</p>"
-      # link text used in content_html
       ask_in_forum_link_text: 'kysy vain foorumilla'
-      # link text used in content_html
       user_page_link_text: 'käyttäjäsivultasi'
-      # link text used in content_html
       post_new_script_link_text: 'lähettämään uusi skripti'
     code_rules:
-      # title for the rules page
       title: "%{site_name}in skriptejä koskevat säännöt"
-      preamble: ""
-      functionality_header: ""
-      description: ""
-      reason: ""
-      unrelated: ""
-      monetization_html: ""
-      code_header: ""
-      obfuscation: ""
-      libraries_html: ""
-      updates: ""
-      external_js: ""
-      copyright_header: ""
-      licensing: ""
-      reposts: ""
-      miscellaneous_header: ""
-      keywords_html: ""
-      adult_content_rule: ""
-      reporting: ""
     external_scripts:
-      # title of the external script rules page
       title: "%{site_name}in käytäntö ulkoisista skripteistä"
-      # content of the external script rules page
-      content_html: >
-      test_url:
-        label: ""
-        result_ok: ""
-        result_not_ok: ""
     script_rewriting:
-      # title of the rewriting page
       title: "Miten %{site_name} uudelleenkirjoittaa lähetetyt skriptit"
-      # content of the rewriting page
-      content_html: >
-    # link to github
     site_feedback_link: "Ilmoita ongelmasta tai kerro idea %{site_name}ista itsestään"
     credits:
-      # title for the credits page
       title: "Tekijät"
-      # give credit to authors
       authors_credit: "%{site_name}in olemassaolo ei olisi mahdollista ilman skriptien tekijöitä."
-      # give credit to developers. link goes to github.
       developers_credit: "%{site_name}in itse ovat rakentaneet %{developers_link:nämä henkilöt}, apunaan kaikki bugeista ilmoittavat ja parannuksia ehdottavat."
-      # give credit to translators. link to goes to transifex. after this text, there's a list of languages and the contributors to each.
       translators_credit: "%{site_name}in on kääntänyt %{translators_link:Greasy Translation Force Transifexissa}:"
-      # give credit to icon makers. all links are proper names so are not translated.
-      icons_credit: ""
-    # link to greasemonkey docs
     help_with_greasymonkey: "Ohjeet Greasemonkeylle"
     contact:
-      # title of contact page
       title: "Ota yhteyttä johonkuhun"
-      # content of contact page
       content_html: >
-        <p>On muutama tapa keskustella %{site_name}ista ja siellä olevista asioista.</p> <p>Onko sinulla kysymys tai kommentti tietystä skriptistä sivustolla? Jos on, luo keskustelu tuon skriptin sivun Palaute-osioista. Skriptien tekijät saavat tilisivulleen ilmoituksen skripteistään käydyistä keskusteluista.</p> <p>Onko sinulla kysymys tai kommentti %{site_name}ista itsestään tai skriptien kehittämisestä, tai haluaisitko, että joku tekee skriptin sinulle? %{forum_link:Foorumille postaaminen} antaisi sinulle laajimman yleisön keskustelullesi.</p> <p>Onko sinulla bugiraportti tai valmis idea %{site_name}ista itsestään (ja ei tietystä %{site_name}in <em>lähetetystä</em> skriptistä)? %{github_link:Lähetä se GitHub-sivulle.}</p> <p>Onko sinulla yksityinen kysymys tai kommentti, jonka haluaisit vain ylläpitäjän näkevän? %{admin_email_link:Lähetä sähköposti.}</p>
+          <p>On muutama tapa keskustella %{site_name}ista ja siellä olevista asioista.</p>
+          <p>Onko sinulla kysymys tai kommentti tietystä skriptistä sivustolla? Jos
+          on, luo keskustelu tuon skriptin sivun Palaute-osioista. Skriptien tekijät
+          saavat tilisivulleen ilmoituksen skripteistään käydyistä keskusteluista.</p>
+          <p>Onko sinulla kysymys tai kommentti %{site_name}ista itsestään tai skriptien
+          kehittämisestä, tai haluaisitko, että joku tekee skriptin sinulle? %{forum_link:Foorumille
+          postaaminen} antaisi sinulle laajimman yleisön keskustelullesi.</p> <p>Onko
+          sinulla bugiraportti tai valmis idea %{site_name}ista itsestään (ja ei tietystä
+          %{site_name}in <em>lähetetystä</em> skriptistä)? %{github_link:Lähetä se
+          GitHub-sivulle.}</p> <p>Onko sinulla yksityinen kysymys tai kommentti, jonka
+          haluaisit vain ylläpitäjän näkevän? %{admin_email_link:Lähetä sähköposti.}</p>
     privacy_policy:
       title: "Tietosuoja"
       content_html: >
-        <p>Tämä sivu kertoo, miten %{site_name} tallentaa käyttäjätietoja tai seuraa käyttäjiä. Jos sinulla on huolenaiheita, %{admin_email_link:lähetä ylläpitäjälle sähköpostia}.</p> <h2>Palvelimen lokit</h2> <p>%{site_name} tallentaa kaikki pyynnöt tyypillisen palvelinlokin tapaan. Tallennettu tieto sisältää vieraillut sivut, IP-osoitteen ja user agent -merkkijonon. Nämä lokit ovat vianetsintää ja palvelimen analysointia varten. Data säilytetään viikon ajan. Tätä dataa ei jaeta tai julkaista.</p> <h2>Skriptien tilastot</h2> <p>%{site_name} tallentaa kaikki asennus- ja päivityspyynnöt IP-osoitteiden kera tilastojen generoimista varten. Tiedot säilytetään päivän ajan, minkä jälkeen ne kerätään ja IP-osoitteet poistetaan. IP-osoitetitoja ei jaeta tai julkaista, mutta muut kerätyt tiedot julkaistaan.</p> <h2>Evästeet (kun ei sisäänkirjautuneena)</h2> <p>%{site_name} voi asettaa tilapäisiä istuntoevästeitä mahdollistaakseen jotkin sivuston ominaisuudet. Näitä evästeitä ei aseteta säilymään ja ne voivat poistua, kun selain suljetaan (riippuen selaimen asetuksista).</p> <h2>Käyttäjätilit</h2> <p>%{site_name} vaatii käyttäjiä luomaan tilin skriptien lähettämistä, keskusteluihin osallistumista ja joidenkin muiden sivuston ominaisuuksien käyttöä varten. Tunnusta luodessa tietoja kuten IP-osoite, sähköpostiosoite ja user agent -merkkijono voidaan tallentaa pysyvästi. Joitakin näistä tiedoista voidaan näyttää muille käyttäjille.</p> <p>Sisäänkirjautuneena suoritetut toiminnot, kuten skriptien ja kommenttien lähettäminen, näytetään muille käyttäjille.</p> <p>Jos "Muista minut" -valinta on päällä sisäänkirjauduttaessa, %{site_name} asettaa pysyvän evästeen säilyttämään sisäänkirjautumistiedot.</p> <h2>%{site_name}iin lähetetyt skriptit</h2> <p>%{site_name} sisältää käyttäjien luomaa sisältöä, ja lähetetyt skriptit saattavat seurata käyttäjää, jos ne asennetaan.</p> <h2>Kolmannen osapuolen kirjastot</h2> <p>%{site_name} voi sisällyttää kolmannen osapuolen koodia kerätäkseen tilastoja tai näyttääkseen mainoksia sivustolla. Nämä kirjastot saattavat sisältää seurantalogiikkaa.</p>
-    user_css_to_user_js:
-      title: ""
-  search:
-    script_search:
-      title: ""
-      description: ""
-    library_search:
-      title: ""
-      description: ""
-    code_search:
-      title: ""
-      description: ""
-    user_search:
-      title: ""
-      description: ""
-  moderator_logs:
-    date_column: ""
-    moderator_column: ""
-    item_column: ""
-    action_column: ""
-    reason_column: ""
-    item_script_html: ""
-    item_deleted_script: ""
-    item_user_html: ""
-  notifications:
-    consecutive_bad_ratings:
-      one: ""
-      other: ""
-  reports:
-    report_filed: ""
-    new_report_title:
-      user: ""
-      comment: ""
-      message: ""
-      script: ""
-    new_report_notes_html: >
-    new_script_report_notes_html: >
-    new_user_report_notes_html: >
-    reason:
-      non_functional: ""
-      spam: ""
-      abuse: ""
-      illegal: ""
-      unauthorized_code: ""
-      malware: ""
-      minified: ""
-      external_code: ""
-      undisclosed_antifeature: ""
-      other: ""
-    report_intro_html: ""
-    report_intro_unauthorized_html: ""
-    non_functional_feedback: ""
-    unauthorized_code_original_placeholder: ""
-    explanation_placeholder: ""
-    create_button: ""
-    report_user: ""
-    report_comment: ""
-    report_message: ""
-    result_dismissed: ""
-    result_upheld: ""
-    result_pending: ""
-    rebuttal_placeholder: ''
-    submit_rebuttal: ""
-    delete_script: ""
-  discussions:
-    title: ""
-    comment_date: ""
-    comment_edit_date: ""
-    posted_by_html: ""
-    last_comment: ""
-    new_discussion_heading: ""
-    new_discussion_submit: ""
-    new_comment_heading: ""
-    new_comment_submit: ""
-    back_to_feedback: ""
-    edit_comment_link: ""
-    edit_comment_header: ""
-    delete_comment: ""
-    delete_comment_confirm: ""
-    delete_discussion: ""
-    delete_discussion_confirm: ""
-    update_comment_submit: ""
-    cancel_update_comment: ""
-    quote_comment: ""
-    question_heading_html: ""
-    review_heading_html: ""
-    update_rating: ""
-    ratings:
-      question: ""
-      bad: ""
-      ok: ""
-      good: ""
-    ratings_short:
-      question: ""
-      bad: ""
-      ok: ""
-      good: ""
-    sign_in_to_post_discussion: ""
-    sign_in_to_post_comment: ""
-    user_filter:
-      label: ""
-      all: ""
-      discussion_by_me: ""
-      comment_by_me: ""
-      on_my_scripts: ""
-      subscribed: ""
-    other_user_filter:
-      all: ""
-      comments_by: ""
-    category_filter:
-      label: ""
-      all: ""
-    read_filter:
-      label: ""
-      all: ""
-      read: ""
-      unread: ""
-    locale_filter:
-      label: ""
-      all: ""
-    user_activity:
-      title: ""
-      no_recent_activity: ""
-      see_all_activity: ""
-      script_review:
-        posted_html: ""
-        replied_html: ""
-      script_question:
-        posted_html: ""
-        replied_html: ""
-      discussion:
-        posted_html: ""
-        replied_html: ""
-    review_title: ""
-    question_title: ""
-    subscribe: ""
-    unsubscribe: ""
-    notify: ""
-    notifying_on_script: ""
-    categories:
-      greasyfork:
-        name: ""
-        description: ""
-      development:
-        name: ""
-        description: ""
-      requests:
-        name: ""
-        description: ""
-      script-discussions:
-        name: ""
-        description: ""
-      no-scripts:
-        name: ""
-      moderators:
-        name: ""
-        description: ""
-    category_display: ""
-    new_title: ""
-    new_button: ""
-    script_notice: ""
-    no_discussions: ""
-    mark_all_read: ""
-    pending_moderator_review: ""
-  conversations:
-    user_input_note: ""
-    new_title: ""
-    new_link: ""
-    new_button: ""
-    title_html:
-      one: ''
-      other: ''
-    send_message: ""
-    conversation_list_title: ""
-    conversation_link_html:
-      one: ''
-      other: ''
-    conversation_info_html: ""
-    no_conversations: ""
-    no_recent_conversations: ""
-    recent:
-      title: ""
-      more: ""
-  screenshots:
-    requirements: ""
+          <p>Tämä sivu kertoo, miten %{site_name} tallentaa käyttäjätietoja tai seuraa
+          käyttäjiä. Jos sinulla on huolenaiheita, %{admin_email_link:lähetä ylläpitäjälle
+          sähköpostia}.</p> <h2>Palvelimen lokit</h2> <p>%{site_name} tallentaa kaikki
+          pyynnöt tyypillisen palvelinlokin tapaan. Tallennettu tieto sisältää vieraillut
+          sivut, IP-osoitteen ja user agent -merkkijonon. Nämä lokit ovat vianetsintää
+          ja palvelimen analysointia varten. Data säilytetään viikon ajan. Tätä dataa
+          ei jaeta tai julkaista.</p> <h2>Skriptien tilastot</h2> <p>%{site_name}
+          tallentaa kaikki asennus- ja päivityspyynnöt IP-osoitteiden kera tilastojen
+          generoimista varten. Tiedot säilytetään päivän ajan, minkä jälkeen ne kerätään
+          ja IP-osoitteet poistetaan. IP-osoitetitoja ei jaeta tai julkaista, mutta
+          muut kerätyt tiedot julkaistaan.</p> <h2>Evästeet (kun ei sisäänkirjautuneena)</h2>
+          <p>%{site_name} voi asettaa tilapäisiä istuntoevästeitä mahdollistaakseen
+          jotkin sivuston ominaisuudet. Näitä evästeitä ei aseteta säilymään ja ne
+          voivat poistua, kun selain suljetaan (riippuen selaimen asetuksista).</p>
+          <h2>Käyttäjätilit</h2> <p>%{site_name} vaatii käyttäjiä luomaan tilin skriptien
+          lähettämistä, keskusteluihin osallistumista ja joidenkin muiden sivuston
+          ominaisuuksien käyttöä varten. Tunnusta luodessa tietoja kuten IP-osoite,
+          sähköpostiosoite ja user agent -merkkijono voidaan tallentaa pysyvästi.
+          Joitakin näistä tiedoista voidaan näyttää muille käyttäjille.</p> <p>Sisäänkirjautuneena
+          suoritetut toiminnot, kuten skriptien ja kommenttien lähettäminen, näytetään
+          muille käyttäjille.</p> <p>Jos "Muista minut" -valinta on päällä sisäänkirjauduttaessa,
+          %{site_name} asettaa pysyvän evästeen säilyttämään sisäänkirjautumistiedot.</p>
+          <h2>%{site_name}iin lähetetyt skriptit</h2> <p>%{site_name} sisältää käyttäjien
+          luomaa sisältöä, ja lähetetyt skriptit saattavat seurata käyttäjää, jos
+          ne asennetaan.</p> <h2>Kolmannen osapuolen kirjastot</h2> <p>%{site_name}
+          voi sisällyttää kolmannen osapuolen koodia kerätäkseen tilastoja tai näyttääkseen
+          mainoksia sivustolla. Nämä kirjastot saattavat sisältää seurantalogiikkaa.</p>
   common:
-    # text to show before listing errors in a submission
     error_preamble: "Lähettämissäsi tiedoissa oli ongelmia..."
-    # link to the list of allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_link: "(Katso sallittu koodi.)"
-    # title of the page showing allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_and_attributes_title: "Sallitut elementit HTML-sisällölle"
-    # text to introduce the list of allowed HTML elements and attributes
     allowed_elements_intro: "Seuraavat elementit ja attribuutit sallitaan. Tämä koskee sekä HTML:ää että Markdownia (HTML-muunnoksen jälkeen)."
-    # additional info for the allowed HTML elements, explaining additional changes made to content
     allowed_elements_extra_info: "Tyhjämerkit muunnetaan p- tai br-elementeiksi. URLit muutetaan automaattisesti linkeiksi."
-    allowed_css_intro: ""
-    user_references_html: ""
     not_found_text: "404 - sivua ei löydy."
     not_found_title: "404 - Sivua ei löydy"
     not_found_link_home: "Mene kotiin."
-    # shown on the first page a user sees if, based on the user's Accept-Language header, we think we have a better locale than what the first page shows. "locale_name" is the name of the locale in that language (matching the name in the locale drop down)
     suggest_locale: "%{site_name} on saatavilla kielellä %{locale_name}."
-    # shown on the first page a users sees if the locale they're on is less than a certain amount translated. links to the docs on how to help with localization
     incomplete_locale: "%{site_name}in käännös kielelle %{locale_name} on vain %{percent} valmis. Voit muuttaa asian."
-    # text for a button that expands a block of text
     expander_show_more: "Näytä lisää"
-    # text for a button that contracts a block of text
     expander_show_less: "Näytä vähemmän"
-    # note denoting what are ads
     advertisement_note: Mainos
-    # label on tab allowing for previewing input
-    preview_tab: ""
-    # label on tab for entering input
-    write_tab: ""
-    listing_options_title: ""
-    quote:
-      prefix_html: ""
   activerecord:
     attributes:
       user:
-        # user field: display name
         name: "Nimi"
-        # user field: profile (HTML content describing themselves)
         profile: "Profiili"
-        # user field: locale
         locale: "Lokalisaatio"
-        # user field: setting to send e-mails when discussions or comments are posted to a user's scripts. options are under users.author_email_notification_type
         author_email_notification_type_id: "Ilmoitukset skriptikeskusteluista"
-        # user field: show ads
         show_ads: "Näytä mainokset"
-        # user field: show sensitive
         show_sensitive: "Aikuisille suunnattu sisältö"
-        # user field: preferred markup (html or markdown)
         preferred_markup: "Merkkaustapa"
-        filter_locale_default: ""
-        current_password: ""
-        new_password: ""
-        new_password_confirmation: ""
       script:
-        # name of the script
         name: "Nimi"
-        # description of the script
         description: "Kuvaus"
-        # locale the script is in. see also scripts.locale_explanation
         locale: "Lokalisaatio"
-        # the JS code of the script
         code: "Koodi"
-        # description of changes for an update
         changelog: "Muokkauksen tiedot"
-        # the type of script - public, unlisted, or library
         type: "Skriptin tyyppi"
-        # additional descriptive text outside of @description
         additional_info: "Lisätiedot"
-        # screenshots attached to the script
         screenshots: "Kuvakaappaukset"
-        # when deleting, which script to redirect to
         replaced_by_script_id: "Korvaava skripti"
-      script_set:
-        # name of the script set
-        name: ""
-        # description of the script set
-        description: ""
-        # default sort of the script set
-        default_sort: ""
-      report:
-        reason: ""
-      discussion:
-        rating: ""
-        category: ""
-        title: ""
-      conversation:
-        user_input: ""
-      message:
-        content: ""
   errors:
     messages:
-      # validation for when a script name is not provided
       script_missing_name: "pakollinen - määritä @name:lla"
-      # validation for when a script description is not provided
       script_missing_description: "pakollinen - määritä @description:lla"
-      # validation for when a script description is the same as name
       script_name_same_as_description: "ei voi olla sama kuin nimi"
-      # validation for sync URL
       script_sync_identifier_bad_protocol: "täytyy olla HTTP- tai HTTPS-URL"
-      # validation for number of screenshots
       script_too_many_screenshots: "Liikaa kuvakaappauksia - enintään %{number}"
-      # validation for "deleted and replaced by" when the user says the script is replaced by itself
       cannot_be_self_reference: "ei voi olla sama skripti"
-      # validation for "deleted and replaced by" when the user says the script is replaced by a deleted script
       cannot_be_deleted_reference: "ei voi olla poistettu skripti"
-      cannot_be_used_with_this_script: ""
-      # validation for "deleted and replaced by" when the user provides a non-%{site_name} URL
       must_be_greasy_fork_script: "täytyy olla %{site_name}issa olevan skriptin URL"
-      # validation when the user uploads code that's not UTF-8 text
       script_update_not_utf8: "ladatun tiedoston täytyy olla UTF-8-tekstiä"
-      # validation when user uploads code that contains a disallowed @require
       script_disallowed_require: "käyttää hyväksymätöntä ulkoista skriptiä: %{code}"
-      script_rate_limit: ""
-      missing_include_or_match: ""
-      file_size_out_of_range: ""
-      meta_too_long: ""
   opensearch:
-    # short name for opensearch.xml
     short_name: "%{site_name} -haku"
-    # description for opensearch.xml
     description: "Etsi userscriptejä %{site_name}ista."
-    # long name for opensearch.xml
     long_name: "%{site_name} -userscripthaku"
-    # attribution for opensearch.xml
     attribution: "Copyright skriptien tekijöillä, katso lisenssiehdot kunkin skriptin tiedoista"
-  mailers:
-    script_report:
-      report_created_offender:
-        subject: ""
-        text: ""
-      report_upheld_offender:
-        subject: ""
-        text: ""
-      report_dismissed_offender:
-        subject: ""
-        text: ""
-      report_rebutted_reporter:
-        subject: ""
-        text: ""
-      report_upheld_reporter:
-        subject: ""
-        text: ""
-      report_script_deleted_reported:
-        subject: ""
-        text: ""
-      report_dismissed_reporter:
-        subject: ""
-        text: ""
-    consecutive_bad_ratings:
-      notify:
-        subject: ""
-        text: |
-    script_comment:
-      subject: ""
-      text: |
-    subscribed_discussion:
-      subject: ""
-      text: |
-    comment_mentioned:
-      subject: ""
-      text: |
-    new_message:
-      subject: ""
-      text: |
