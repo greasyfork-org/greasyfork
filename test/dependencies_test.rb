@@ -3,7 +3,7 @@ require 'bundler/audit/scanner'
 require 'fileutils'
 
 class DependenciesTest < ActiveSupport::TestCase
-  IGNORED_VULNERABILITIES = ['CVE-2015-9284'].freeze
+  IGNORED_VULNERABILITIES = [].freeze
 
   test 'for gem vulnerabilities' do
     FileUtils.mkdir_p(Bundler::Audit::Database::USER_PATH)
