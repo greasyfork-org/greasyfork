@@ -1,573 +1,216 @@
 ko:
   layouts:
     application:
-      # link to the list of scripts
       script_list: "스크립트"
-      # link to the forum
       forum: "포럼"
-      # link to the help docs
       help: "도움말"
-      # link to sign in
       sign_in: "로그인"
-      # label for nav submenu
       submenu: "더 보기..."
-      # link to advanced search
       advanced_search: "상세 검색"
-      # link to user list
       user_list: "유저 목록"
-      # link to libraries
       libraries: "라이브러리"
-      # link to moderator log
       moderator_log: "관리자 로그"
   scripts:
-    # label for created date of a script
     created_date: "생성"
-    # label for updated date of a script
     updated_date: "갱신"
-    # label for total install count of a script
     total_installs: "총 설치수"
-    # label for daily install count of a script
     daily_installs: "일일 설치수"
-    # label for the ratings of a script
     ratings: "평점"
-    # label for author name of a script
     author_name: "작성자"
-    # label for version number of a script
     version_number: "버전"
-    # label for the legal license a script is released under (e.g. GPL)
     license: "라이센스"
-    # what is shown as the license when no license is provided in a script
     no_license: "없음"
-    # label for the browser compatibility for a script
     compatibility: "호환성"
     compatible_with_browser: "%{browser}와 호환됨."
     incompatible_with_browser: "%{browser}와 호환되지 않음."
-    # label for the list of sites or patterns a script applies to
     applies_to: "적용되는 사이트"
-    # a title (tooltip) for the links in the "applies to" section going to a list of scripts for that site. count is the number of other scripts, site is the name of the site. add subkeys for your language per http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
     applies_to_link_title:
       other: "%{site}에 적용되는 %{count}개의 다른 스크립트도 확인해보세요"
-    # what is shown as the applies to when a script applies to all sites
     applies_to_all: "모든 사이트"
-    # link that makes the user install the script
     install: "이 스크립트 설치"
-    # text for link that gives information on how to install scripts. should be very short.
     install_help: "?"
-    # title (tooltip) for link that gives information on how to install scripts
     install_help_title: "스크립트 설치방법"
-    # link that makes the user update the script
     update: "%{version}으로 업데이트"
-    # link that makes the user downgrade the script
     downgrade: "%{version} 버전으로 다운그레이드"
-    # link that makes the user reinstall the script
     reinstall: "%{version} 버전 재설치"
-    # warning when installing an old version of a script
     old_version_warning: "이 스크립트는 최신 버전이 아닙니다. 만약 이 스크립트를 설치한다면, 새로운 버전으로 업데이트 되지 않을 것입니다. 정말 설치하시겠습니까?"
-    # label for a promoted script
-    promoted: ""
     author_promoted: "개발자의 추천 스크립트"
-    # text for promoted script
-    promoted_text_html: ""
-    # instructions on a script library. code will be a <code> element. Don't use punctuation around the code element if possible so that people don't accidentally include that when copying.
     library_instructions_html: "이 스크립트는 직접 설치해서 쓰는 게 아닙니다. 다른 스크립트가 메타 명령 %{code}로 포함하여 쓰는 라이브러리입니다."
-    # text displayed for deleted scripts
     deleted_notice: "해당 스크립트는 삭제되었습니다."
-    deleted_notice_with_related: ""
-    deleted_undelete_notice_html: ""
-    deleted_locked_author_notice_html: ""
-    deleted_author_notice: ""
-    # test displayed when viewing a previous version. date is a date and time (no "ago"), latest_version_link is a link to the newest version whose text is version_notice_latest_version_link
     version_notice_html: "%{date} 일자. %{latest_version_link} 확인 바람."
     version_notice_latest_version_link: "최신 버전"
-    reported_notice: ""
-    reported_notice_for_author: ""
-    # link to the script's info page, containing script meta and author's description
     info_page: "정보"
-    # link to the script's code page
     code_page: "코드"
-    # link to the script's history page, listing all versions of the code
     history_page: "역사"
-    # link to the script's feedback page, listing discussions on the script. count is the number of discussions
     feedback_page: "리뷰 (%{count})"
-    # link to the script's install statistics page
     stats_page: "통계"
-    # link to the script's derivatives page, which shows similar scripts
     derivatives_page: "파생"
-    # link to the page that lets the author update the script
     update_page: "업데이트"
-    # link to the page that lets the author delete a script
     delete_page: "삭제"
-    # explanation of what deleting does
     delete_explanation: "당신의 스크립트를 삭제한다면 당신과 Greasy Fork의 관리자를 제외하곤 접근할 수 없습니다. 당신은 언제든 삭제를 취소할 수 있습니다."
-    # intro text to radio options for choosing update behaviour after deletion
-    delete_update_behaviour: ""
-    # label for the option allowing users to retain the script after delete
     delete_update_behaviour_1: "그것들은 그대로 유지될 것입니다."
-    # label for the option where users get a blanked script after delete 
     delete_update_behaviour_2: "그것들은 빈 스크립트로 업데이트 될 것입니다. 이것은 스크립트가 사이트들에 부정적인 영향이 계속될 경우 적합합니다."
-    # heading for permanent deletion section
     delete_permanently_heading: "영구 삭제"
-    # explanation of permanent deletion
-    delete_permanently_explanation_html: >
-    # confirmation on pressing the permanent deletion button
-    delete_permanently_confirm: ""
-    # text for the permanent deletion button
     delete_permanently_submit: "영구 삭제 요청"
-    # text for the permanent deletion button when it would take effect immediately
     delete_permanently_immediate_submit: "영구 삭제"
-    # notice after requesting permanent deletion
-    delete_permanently_notice: ""
-    # text on the delete page after permanently deletion was requested
-    delete_permanently_already_requested: ""
-    # notice after permanently deletion
     delete_permanently_notice_immediate: "스크립트 영구 삭제"
-    # text for cancelling a permanent deletion request
     cancel_delete_permanently_submit: "영구 삭제 요청 취소"
-    # notice after cancelling a permanent deletion request
-    cancel_delete_permanently_notice: ""
-    # error when attempting to delete a locked script
     delete_permanently_rejected_locked: "이 스크립트는 잠겨있으므로 영구 삭제 할 수 없습니다"
     admin_page: "관리자"
     admin:
       title: "%{script_name} - 관리자"
-      promoted_heading: ""
-      promoted_explanation: ""
-      promoted_script_label: ""
-      promoted_submit: ""
-      sync_heading: ""
-      locale_heading: ""
-      locale_example_html: ""
-      locale_multiple_note: ""
-      update_locale: ""
-      no_moderator_logs: ""
-      compare_title: ""
-      compare_to: ""
-      compare_button: ""
-      compare_must_be_local_url: ""
-    # HTML title for the history page for a script
     history_title: "%{script_name} - 버전 기록"
-    # text explaining that we're only showing versions where the code changed
     history_only_code_changes_info: "코드가 바뀐 버전들입니다."
-    # link to the list of all versions
     history_all_changes_link: "모든 버전 보기"
-    # text explaining that we're showing all versions
     history_all_changes_info: "이 스크립트의 모든 버전들입니다."
-    # link to the list of version where the code changed
     history_only_code_changes_link: "코드가 바뀐 버전들만 보기"
-    # button that shows changes (a diff) of the selected versions
     diff_button: "선택된 다른 버전"
-    # HTML title of the script source code page
     code_title: "%{script_name} - 소스 코드"
-    # HTML title of the script feedback page
     feedback_title: "%{script_name} - 리뷰"
-    feedback_has_reports: ""
-    # text to show when no discussions are posted. start_discussion_first_link is a link with the text from feedback_start_first_discussion_link
     feedback_no_discussions_html: "아무 의논도 없습니다. %{start_first_discussion_link}"
-    feedback_no_discussions_on_page_form: ""
-    feedback_report_instead: ""
     feedback_start_first_discussion_link: "해당 스크립트에 대해 먼저 의논해보세요."
-    feedback_discussion_or_report: ""
-    # heading for list of people who favorited this script
     feedback_favoriters_heading: "즐겨 찾기한 사람들"
-    # text before a comma separated list of users who favorited the script
-    feedback_favoriters_user_list_html: ""
-    feedback_favoriters_lots:
-      other: ""
-    # text when no one has favorited a script
     feedback_no_favoriters: "아무도 이 스크립트를 즐겨 찾지 않습니다."
-    # link to get the user to sign in to add the script to their favorites
     feedback_sign_in_to_favorite: "즐겨 찾기 하려면 로그인하세요."
-    # html title for script stats page
     stats_title: "%{script_name} - 통계"
-    # heading for daily install stats on stats page
     stats_daily_installs_heading: "일일 설치 수"
-    # heading for weekly install stats on stats page
     stats_weekly_installs_heading: "주간 설치수"
-    # heading for daily update check stats on stats page
     stats_daily_update_checks_heading: "일일 업데이트 확인수"
-    # date column heading for a script's daily install stats table
     stats_daily_installs_date_column_heading: "날짜"
-    # install count column heading for a script's stats table
     stats_daily_installs_install_count_column_heading: "설치수"
-    # update check count column heading for a script's stats table
     stats_daily_installs_update_check_count_column_heading: "업데이트 확인수"
-    # header for the raw data table for stats
     stats_raw_data_header: "비가공 데이터"
-    # text before links to download raw stats data. links will be space separated links to the format name (e.g. CSV and JSON)
     stats_download_raw_data_html: "모든 데이터 다운로드: %{links}"
-    # text to show when a stat is not available
     stats_no_data: "통계 사용불가"
-    stats_filters: ""
-    stats_filter_options:
-      month: ""
-      year: ""
-      all: ""
-    # HTML title for derivatives page
     derivatives_title: "%{script_name} - 파생"
-    # text explaining the derivatives page and what to do if the user finds unauthorized copies
-    derivatives_intro: ""
-    # format for scripts listed on the derivatives page. script_link is a link to the derivative's page, user_link is a link to the user who created the derivative, license is text, link to the license, or scripts.no_license
-    derivatives_script_html: ""
-    derivatives_exact_copies_heading: ""
-    derivatives_exact_copies_list_intro: ""
-    derivatives_exact_copies_item_html: ""
-    derivatives_exact_copes_none: ""
-    derivatives_similar_heading: ""
-    derivatives_similar_info: ""
-    similarity_score:
-      high: ""
-      medium: ""
-      low: ""
-      none: ""
-    derivatives_similar_none: ""
-    derivatives_similar_item: ""
-    derivatives_similar_last_check_html: ""
-    derivatives_similar_last_check_soon: ""
-    derivatives_similar_last_check_again_soon_html: ""
-    derivatives_similar_check_now: ""
-    # html title for script list page when showing scripts that affect all sites
     listing_title_all_sites: "모든 사이트에 적용되는 유저스크립트"
-    # meta description and feed subtitle when showing scripts that affect all sites
     listing_description_all_sites: "모든 사이트에서 기능을 추가하고 버그를 제거하는 유저스크립트"
-    # html title for script list page when showing scripts for a particular site. 'site' will be in the form 'example.com'
     listing_title_for_site: "%{site}에 적용되는 유저스크립트"
-    # meta description and feed subtitle when showing scripts that affect a particular site
     listing_description_for_site: "%{site}에서 기능을 추가하고 버그를 제거하는 유저스크립트"
-    # html title for script list page for search results.
     listing_title_for_search: "'%{search_string}' 유저스크립트"
-    # html title for script list page for code search results.
     listing_title_for_code_search: "'%{search_string}' 유저스크립트"
-    # html title for script list page when no other situation applies
     listing_title_generic: "유저스크립트"
-    # html title for script list page for a user's favorites. set_name is script_sets.favorites_name
     listing_title_for_favorites: "%{user_name}'의 %{set_name}"
-    # meta description and feed subtitle for script list page when no other situation applies
     listing_description_generic: "당신이 가는 사이트에서 기능을 추가하고 버그를 제거하는 유저스크립트"
-    # label for sorting links on script list page
     listing_sort_label: "정렬:"
-    # link for relevance (most matching the search terms) sort on a script list
     listing_sort_relevance: "관련성"
-    # link for daily install sort on a script list
     listing_sort_daily_installs: "일일 설치수"
-    # link for daily install sort on a script list
     listing_sort_total_installs: "총 설치수"
-    # link for rating sort on a script list
     listing_sort_ratings: "평점"
-    # link for created date sort on a script list
     listing_sort_created: "생성된 날짜"
-    # link for updated date sort on a script list
     listing_sort_updated: "업데이트된 날짜"
-    # link for name sort on a script list
     listing_sort_name: "이름"
-    # label for filtering by-site links on script list page
     listing_filter_by_site_label: "다음 사이트에 적용되는 스크립트들:"
-    # link for turning off by-site filtering on script list page
     listing_filter_by_site_disable: "모두"
-    # link for filtering script list by scripts that affect all sites
     listing_filter_by_site_all_sites: "(모든 사이트)"
-    listing_filter_by_language_label: ""
-    # link to see a full list of sites that scripts on %{site_name} affect
     listing_filter_by_site_more_sites: "더 보기..."
-    # text that shows when no scripts were found with the used parameters
     listing_no_scripts: "스크립트 없음."
-    # feed title for the listing, ordered by created date
     listing_created_feed: "새로운 스크립트"
-    # feed title for the listing, ordered by updated date
     listing_updated_feed: "업데이트된 스크립트"
-    # when a list has nothing to show
     listing_none: "(없음)"
-    # link to filter search results by the current locale
     listing_set_locale_filter: "모든 언어 검색 결과를 표시하고 있습니다. %{set_filter_link:%{language} 검색 결과만 표시하기}"
-    # link to remove locale filter
     listing_remove_locale_filter: "%{language} 검색 결과만 표시하고 있습니다. %{remove_filter_link:모든 언어 검색 결과 표시하기}"
-    listing_language_all: ""
-    listing_language_js: ""
-    listing_language_css: ""
-    # link to start the process of importing (creating from an external place) scripts
     import: "스크립트 불러오기"
-    # link to create a new script
-    new: ""
-    new_css: ""
-    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support site
     support_site: "개발자의 지원 사이트 방문"
-    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support email address
     support_email: "개발자에게 이메일로 지원 요청"
-    # link to a site where the user can donate to the author, when the author didn't provide a suggested donation amount
     contribution_no_amount: "기부로 %{author}에게 감사를 표현하세요."
-    # link to a site where the user can donate to the author, when the author provided a suggested donation amount
     contribution_with_amount: "기부로 %{author}에게 감사를 표현하세요. %{amount}를 추천합니다."
-    # text for donating to the author via bitcoin, when the author didn't provide a suggested donation amount
     contribution_bitcoin_no_amount_html: "%{address}로 비트코인 기부를 해 %{author}에게 감사를 표현하세요."
-    # text for donating to the author via bitcoin, when the author provided a suggested donation amount
     contribution_bitcoin_with_amount_html: "%{address}로 비트코인 기부를 해 %{author}에게 감사를 표현하세요. %{amount}를 추천합니다."
-    # explanation of language chooser when editing script
     locale_explanation_html: "<code>@name</code>,<code>@description</code> 그리고 첫번째 추가 정보에 쓰인 언어와 일치해야 합니다."
-    # the default value for the locale box, if submitted the site will attempt to detect the language of the entry
     locale_auto_select: "(자동으로 감지)"
-    # label which lists the sets this script is in, which is followed by controls to change its inclusions
     sets_label: "포함된 스크립트 모음:"
-    # label for when the script is not in any sets, which is followed by controls to change its inclusions
     sets_label_no_sets: "스크립트 모음들:"
-    # option to remove the script from the set
     sets_remove_inclusion: "${set_name}에서 제거"
-    # option to remove the script's exclusion from the set
     sets_remove_exclusion: "@{set_name}에서 제외 제거"
-    # option to add the script to the set
     sets_add_inclusion: "%{set_name}에 추가"
-    # option to exclude the script from the set (when it's been included as part of a sub set)
     sets_add_exclusion: "#{set_name}에서 제외"
-    # option to add the script to a new set
     sets_add_to_new: "새로운 모음에 추가"
-    # summary of %{site_name}'s rules for posting scripts. full_rules_link is a link to the full rules with text of rules_summary_link_to_full
     rules_summary_html: "스크립트에 대해 <strong>제대로 서술</strong>하고, 난독화되거나 압축되어선 <strong>아니하며</strong>, 무조건 <strong>저작권을 존중</strong>해야 하며 외부 코드의 사용은 <strong>제한됩니다.</strong> %{full_rules_link}"
-    # full rules link text used in the rules summary
     rules_summary_link_to_full: "규칙 전체 읽기"
-    # warning when on the edit screen for a script set up to sync. syncing_notice_sync_type will be a link to the sync screen with text from syncing_notice_sync_type_manual or syncing_notice_sync_type_automatic
     syncing_notice_html: "이 스크립트는 %{syncing_notice_sync_type}됩니다. 여기서 갱신된 내용은 동기화시에 덮어씌워 질 수 있습니다."
-    # used in syncing_notice_html when a script syncs only when the author requests it
     syncing_notice_sync_type_manual: "수동으로 %{sync_identifier}에서 동기화"
-    # used in syncing_notice_html when a script syncs automatically
     syncing_notice_sync_type_automatic: "자동으로 %{sync_identifier}에서 동기화"
-    # label for uploading a script under the code textarea
     upload_label: "업로드:"
-    # label for checkbox to enable or disable syntax highlighting code editor
     enable_source_code_editor_label: "구문 강조된 소스 에디터 활성화"
-    # descriptive text for the changelog field
     changelog_note: "이 버전의 변경 사항"
-    additional_info_note: ""
-    # button text for previewing additional info
-    # button text for submitting a new script
     post_new_script: "스크립트 게시"
-    # button text for submitting an update to an existing script
     post_updated_script: "새 버전 게시"
-    # label for radio button for public-type user script
     type_1_html: "공개된 유저스크립트 - 모두가 사용할 수 있고 모두에게 공개된 유저스크립트"
-    # label for radio button for unlisted-type user script
     type_2_html: "목록에 표시되지 않는 유저스크립트 - (半-)사적으로 사용하는 유저스크립트, 직접 접근으로 사용가능하나, %{site_name} 어디에도 링크가 없음. "
-    # label for radio button for library-type script
     type_3_html: "라이브러리 - 다른 스크립트에서 <code>@require</code>로 사용하고 직접 설치되지 않는 스크립트"
-    # label for checkbox to override script save warnings
     override_warning_checkbox_label: "그래도 저장할까요?"
-    # script warning for not increasing the version number when updating the code
     warning_version_not_incremented_html: "코드는 갱신됬으나 <code>@version</code> 번호는 올라가지 아니하였습니다. 이전에 스크립트를 설치한 사람은 업데이트를 못 할 수 있습니다."
-    # script warning for when a version number is not provided
     warning_version_missing_html: "<code>@version</code>이 지정되지 않았습니다. <code>@version</code> 메타 키는 유저스크립트 관리 프로그램에서 스크립트의 업데이트를 확인하는 데 사용됩니다."
-    # label for checkbox for the site to automatically handle version numbers
     warning_version_missing_generate_automatically_html: "<code>@version</code>을 자동으로 생성할까요?"
-    # script warning for when a namespace is not provided
     warning_namespace_missing_html: "<code>@namespace</code>가 지정되지 않았습니다. <code>@namespace</code> 메타키는 사용자들이 업데이트 과정에서 스크립트를 재설치할 수 있도록 합니다."
-    # label for checkbox for the site to automatically add a namespace
     warning_namespace_missing_generate_automatically_html: "<code>@namespace</code>를 자동으로 생성할까요?"
-    # script warning for when a namespace changed on update
     warning_namespace_changed_html: "<code>@namespace</code>가 변경됬습니다. 일관된 <code>@namespace</code>는 유저들이 업데이트 중에 스크립트를 재설치 할 수 있도록 합니다."
-    # script warning for when a script's code appears minified. allowed_requires_link is a link to the allowed @require list, with text of warning_potentially_minified_allowed_requires_link
     warning_potentially_minified_html: "당신의 스크립트 코드는 압축된 것 같습니다. 만약 압축된 라이브러리를 사용중이라면, 그 대신 %{allowed_requires_link}에서 <code>@require</code> 해주세요. 압축된 코드를 포함하는 스크립트는 삭제될 수 있습니다."
-    # script warning for when a script's code is for adult sites. sensitive_domains is a list of domains
-    warning_automatic_sensitive_html: ""
-    # used in warning_potentially_minified_html
     warning_potentially_minified_allowed_requires_link: "이들 중 한 곳"
-    warning_code_previously_posted_html: ""
-    # default option for the locale of a localized additional info
     additional_info_locale_prompt: "(로케일을 선택하세요)"
-    # text for the button to add another additional info section for a different language
     additional_info_add_localized: "현지화된 추가 정보 추가"
-    # validation when more than one additional info is specified for a locale. "locale_code" is the locale code (e.g. "en") that has more than one additional info
     additional_info_locale_repeated: "'%{locale_code}'에서 추가 정보 하나만 제공하세요."
-    # validation when an additional info in a locale is provided but no name was provided in that locale. "locale_code" is the locale code (e.g. "en") that is missing a name
     localized_additional_info_with_no_name: "'%{locale_code}'의 추가 정보는 명시되었으나, @name:%{locale_code} 는 제공되지 않았습니다."
-    localized_attribute_matches_default: ""
-    # text to edit a code syncing URL. field is the text field to enter the url.
     code_syncing_from_url_html: "해당 스크립트의 코드와 동기화되는 곳: %{field}"
-    # text to add a code syncing URL. field is the text field to enter the url.
     provide_code_syncing_from_url_html: "Gresay Fork는 버전 관리 시스템 (GitHub 같은 거), 당신의 개인 서버, 또는 또 다른 유저스크립트 호스팅 사이트와 같은 다른 곳 에서 이미 호스팅하고 잇는 스크립트를 불러 올 수 있습니다. 동기화를 설정하려면 URL을 입력하세요: %{field}"
-    # text before the sync type options
     sync_type_intro: "동기화될 스크립트:"
-    # label for radio button for manual syncing
-    sync_type_1:
-      name: ""
-      description: ""
-    # label for radio button for automatic syncing
-    sync_type_2:
-      name: ""
-      description: ""
-    # label for radio button for webhook syncing
-    sync_type_3:
-      name: ""
-      description: ""
-    sync_name_and_description: ""
-    # text when the last attempted sync failed. date is the date of the error run through markup_date. error is the technical error.
     sync_failed_info_html: "마지막으로 %{date}에 업데이트를 시도하였으나 결과는 %{error}입니다."
-    # text indicating the date of the last successful sync. date is the date of the sync run through markup_date
     sync_success_info_html: "%{date}에 성공적으로 동기화하였습니다."
-    # text if the sync never succeeded
     sync_never_succeeded: "성공적으로 동기화된 적이 없습니다."
-    sync_additional_info: ""
-    add_synced_additional_info: ""
-    # button to update sync settings and run sync immediately
     update_and_sync: "업데이트하고 지금 동기화"
-    # button to update sync settings but not sync immediately
     update_no_sync: "업데이트"
-    # button to disable syncing of the script
     turn_off_syncing: "스크립트 동기화 해제"
-    # label for syncing the default additional info
     additional_info_default_sync_html: "기본 추가 정보 (<code>@name</code>의 언어와 일치하는 언어)"
-    # label for syncing localized additional infos
     additional_info_localized_sync_html: "로케일 (<code>@name:XX</code>와 일치)"
-    # HTML placeholder for sync fields
     sync_url_placeholder: "(주소)"
-    # label for adding a new screenshot
     screenshots_add: "추가:"
-    # label for checkbox to remove a screenshot
     screenshots_remove: "제거"
-    # explains what a replacement script when deleting is
     replacement_script_explanation: "(선택) 이 스크립트를 대체할 다른 스크립트를 선택하세요. 사용자들은 이 스크립트로 업데이트되고, 리다이렉트될 것입니다. 다른 스크립트의 URL을 입력하세요:"
-    # title for diff page
     diff_title: "%{script} - 버전 비교"
-    # label for older version being diffed
     diff_old_version: "구버전:"
-    # label for newer version being diffed
     diff_new_version: "신버전:"
-    # label for input for lines to show around each change when doing a diff
     diff_lines_of_context: "콘텐츠 줄수:"
-    # label for checkbox on whether to ignore whitespace changes
     diff_ignore_whitespace: "공백 변경 무시"
-    # button to refresh diff after changing diff options
     diff_refresh: "새로고침"
-    # text shown when compared versions are the same
     diff_no_change: "차이 없음."
-    # tooltip for good rating number - "Good" should match the word used in RatingGood in the PHP localization
     good_rating_explanation: "좋다고 평가하거나 즐겨찾기한 사람들의 수"
-    # tooltip for ok rating number - "OK" should match the word used in RatingGood in the PHP localization
     ok_rating_explanation: "OK로 평가한 사람들의 수"
-    # tooltip for bad rating number - "Bad" should match the word used in RatingGood in the PHP localization
     bad_rating_explanation: "나쁘다고 평가한 사람들 수"
-    # link at the bottom of the scripts list suggesting people post a script or learn how. post_a_script_link is a link with text post_a_script_link_text that goes to the new script form. learn_to_write_scripts_link is a link with text learn_to_write_scripts_link_text that goes to the help document for writing scrupts
     write_your_own_html: "%{post_a_script_link} (또는 %{learn_to_write_scripts_link})"
-    # link text for the new script form, used in write_your_own_html
-    post_a_script_link_text: ""
-    # link text for the writing a user script help doc, used in write_your_own_html
     learn_to_write_scripts_link_text: "작성 방법 배우기"
-    # a suggestion below the install button that users provide feedback
     feedback_or_report: "%{feedback_link:질문을 하거나, 리뷰를 작성하거나}, %{report_link:이 스크립트를 신고하세요}."
-    # a suggestion below the install button that users provide feedback or get support from the author's site. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
     support_feedback_or_report: "%{support_url:개발자의 홈페이지에 방문하기}, %{feedback_link:질문을 하거나, 리뷰를 작성하거나}, %{report_link:이 스크립트를 신고하세요}."
-    # a suggestion below the install button that users provide feedback or get support from the author's via email. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
     support_email_feedback_or_report: "%{support_url:작성자에게 이메일 보내기}, %{feedback_link:질문을 하거나, 리뷰를 작성하거나}, %{report_link:이 스크립트를 신고하세요}."
-    # heading for section relating to adult content when posting new script or script version
     adult_content: "성인물"
-    # label for checkbox letting authors report their script as containing adult content
     adult_content_self_report: "이 스크립트는 성인물을 포함하거나 성인 사이트에서 동작합니다."
-    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script not flagged as having adult content
     adult_content_self_report_explanation: "%{site_name}는 성인물이 포함된 스크립트를 허용하나,  사용자들이 스스로 선택할 수 있도록 성인물이 포함되거나 성인 사이트에서 동작함을 표시해야 합니다."
-    # label for checkbox letting authors report their script as not containing adult content
     not_adult_content_self_report_html: "이 스크립트는 성인물을 포함하지 <strong>않으며</strong> 성인 사이트에서 동작하지 <strong>않습니다.</strong>"
-    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content
     not_adult_content_self_report_explanation: "%{site_name}는 성인물이 포함된 스크립트를 허용하나,  사용자들이 스스로 선택할 수 있도록 성인물이 포함되거나 성인 사이트에서 동작함을 표시해야 합니다. 이 스크립트가 성인물을 포함한다고 표시했으며, 만약 아니라면 포함하지 아니한다고 보고한 후 운영자의 검토를 기다릴 수 있습니다."
-    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content due to automatic checking
-    not_adult_content_self_report_explanation_automatic: ""
-    # the error you see when accessing a adult content script when logged in with the adult content setting off
     adult_content_on_greasy_logged_in_error: "이 스크립트는 더 이상 당신의 현재 %{edit_account_link:Greasy Fork account settings} 사이트에서 유효하지 않습니다."
-    # the error you see when accessing a adult content script when not logged in
     adult_content_on_greasy_not_logged_in_error: "이 스크립트는 이 사이트에서 더 이상 익명으로 사용되지 않습니다.\n%{login_link:Log in} 과 당신의 Greasy Fork 계정 설정을 확인하십시오."
-    # the error you see when access a non-adult content script on sleazy fork
     non_adult_content_on_sleazy: "이 스크립트는 이 사이트에서 사용할 수 없습니다."
-    not_js_convertible_override_header: ""
-    not_js_convertible_override_explanation: ""
-    not_js_convertible_override_label_html: ""
-    # marker after script name shown to authors indicating their adult scripts
     adult_marker: "(성인)"
-    # marker after script name if it's deleted
     deleted_marker: "(제거됨)"
-    # marker after script name if it's locked
     locked_marker: "(잠김)"
-    # marker after script name if it's unlisted
     unlisted_marker: "(미등록)"
-    # marker after script name if it's a library
     library_marker: "(라이브러리)"
-    # title for libraries listing page
     libraries_title: "라이브러리"
-    # description for libraries listing page
-    libraries_description_html: ""
-    # title of the listing of top sites to script
-    by_site_list_title: ""
-    # description of the listing for top sites to script
     by_site_list_description: "유저 스크립트의 인기가 높은 순으로 정렬된 사이트 목록입니다. 글자가 클 수록 유저 스크립트의 인기가 높습니다."
     by_site_list_filter: "사이트 이름 제한:"
-    # placeholder for script search box
     search_placeholder: "스크립트 검색"
     updated: "스크립트가 업데이트 되었습니다."
     preview_additional_info: "미리보기"
-    must_confirm: ""
-    must_confirm_external_sign_in: ""
-    must_confirm_email_button: ""
     authors_heading: "작성자"
-    error_unauthorized_copy: ""
     invitations:
-      form_title: ""
-      explanation: ""
       invited_user_url_label: "초대할 유저"
       invited_user_placeholder: "유저의 %{site_name}에서의 프로필 URL"
       submit: "초대 보내기"
       invalid_user_url: "초대된 유저의 URL이 유효하지 않습니다."
-      already_author: ""
-      sent: ""
-      subject: ""
-      body: ""
-      current_user_already_author: ""
-      invitation_not_found: ""
-      invitation_expired: ""
-      invitation_accepted: ""
-    remove_author:
-      heading: ""
-      success: ""
-      remove_button: ""
-      remove_confirm: ""
-      failure: ""
-    no_disposable_email: ""
-    rate_limited: ""
-    new_script_notice:
-      title: ""
-      install_link_html: ""
-      share_link_html: ""
-    new_title:
-      js: ""
-      css: ""
-    update_title: ""
-    antifeatures:
-      warning_title: ""
-      author_explanation_intro: ""
-      types:
-        ads:
-          title: ""
-          description_html: ""
-        tracking:
-          title: ""
-          description_html: ""
-        miner:
-          title: ""
-          description_html: ""
-        referral-link:
-          title: ""
-          description_html: ""
-      install_anyway: ""
-      cancel_install: ""
-    badges:
-      js:
-        short: ""
-        long: ""
-      css:
-        short: ""
-        long: ""
   script_sets:
-    # description of script sets on edit page
-    description: ""
-    # name for the favorites set
     favorites_name: "즐겨찾기"
-    # delete button text for a script set
     delete: "스크립트 모음 삭제"
-    # delete confirmation for a script set
     delete_confirmation: "정말로 이 스크립트 모음을 삭제하시겠습니까?"
-    # option for choosing to sort the set by the default sort the site uses
     site_default_sort: "(사이트 기본값)"
     edit_scripts:
       heading: "스크립트"
@@ -583,40 +226,17 @@ ko:
       add_exclude: "제외됨"
     edit_sets:
       heading: "스크립트 세트"
-      description: ""
       included: "포함된"
-      included_none: ""
       remove_included: "선택된 항목 삭제"
       excluded: "제외된"
-      excluded_none: ""
       remove_excluded: "선택된 항목 삭제"
       add_label: "스크립트 추가 (공백으로 구분된 URL 혹은 ID 목록)"
       add_include: "포함된"
       add_exclude: "제외된"
-      user_label: ""
       user_no_sets: "(유저의 세트 없음)"
       user_no_other_sets: "(유저의 다른 세트 없음)"
     edit_auto_sets:
-      heading: ""
-      description: ""
-      included: ""
-      included_none: ""
       remove_included: "선택된 항목 삭제"
-      excluded: ""
-      excluded_none: ""
-      all_scripts_label: ""
-      all_scripts_include: ""
-      for_sites_label: ""
-      for_sites_include: ""
-      for_sites_exclude: ""
-      for_user_label: ""
-      for_user_include: ""
-      for_user_exclude: ""
-      for_language_label: ""
-      for_language_include: ""
-      for_language_exclude: ""
-    calculated_list: ""
-    calculated_list_none: ""
     calculated_list_more:
       other: "그리고 %{count}개 더..."
     already_included: "\"%{name}\"은 이미 포함되어있습니다."
@@ -630,396 +250,156 @@ ko:
       user: "%{user}의 스크립트"
       locale: "%{locale_name} 언어로 된 스크립트"
   home:
-    # html title of the homepage
     title: "%{site_name} - 안전하고 유용한 유저스크립트"
-    # text at the top of the homepage.
     welcome: "유저 스크립트 사이트, %{site_name}에 오신 것을 환영합니다!"
-    # html title of the sleazy fork homepage
     sleazy_title: "%{site_name} - 인잔하고 유용한 성인용 유저스크립트"
-    # text at the top of the sleazy fork homepage.
     sleazy_welcome: "성인용 유저스크립트 사이트, %{site_name}에 오신 것을 환영합니다!"
-    # placeholder for home page search box
     search_placeholder: "유저 스크립트 검색"
     scripts_for_label: "다음 사이트에 적용되는 스크립트:"
-    # heading for the paragraph explaining what user scripts are
     explain_user_scripts_heading: "유저 스크립트가 무엇인가요?"
-    # text explaining what user scripts are.
     explain_user_scripts_html: "유저 스크립트를 사용하면 새로운 경험을 누릴 수 있습니다. 유저 스크립트를 한 번 설치만 하면 자동으로 기능을 추가하고, 짜증나는 요소도 없애줍니다. %{site_name}에 있는 유저 스크립트들은 다른 사용자에 의해 작성되고 전 세계에 공유되고 있습니다. 유저 스크립트는 무료이며, 사용하기도 쉽습니다!"
-    # header for step 1 - how to install a user script manager
     installing_step1_header: "1. 유저 스크립트 관리자 설치"
-    # caption in step 1 - screenshot of tampermonkey on chrome
     installing_step1_caption: "크롬의 Tampermonkey"
-    # text for step 1, listing options for user script managers based on browsers
-    installing_step1_description_html: >
-    # header for step 2 - how to install a user script
     installing_step2_header: "2. 유저 스크립트 설치"
-    # caption for step 2 - showing the install button for user scripts
     installing_step2_caption: "유저 스크립트의 설치 버튼"
-    # text for step 2 - describing how to find and install user scripts
     installing_step2_description_html: >
-      <p>%{browse_link:Greasy Fork에서 검색}하여 유용한 유저 스크립트를 찾으세요. 다음은 인기 있는 스크립트 목록입니다.</p>
+        <p>%{browse_link:Greasy Fork에서 검색}하여 유용한 유저 스크립트를 찾으세요. 다음은 인기 있는 스크립트 목록입니다.</p>
 
-      %{highlighted_scripts_list}
+        %{highlighted_scripts_list}
 
-      <p>설치하고자 하는 스크립트를 찾으면 초록색의 '유저 스크립트 설치' 버튼을 누르세요. 그러면 유저 스크립트 관리자가 설치 확인을 요청할 것입니다.</p>
-    # header for step 3 - how to use a user script
+        <p>설치하고자 하는 스크립트를 찾으면 초록색의 '유저 스크립트 설치' 버튼을 누르세요. 그러면 유저 스크립트 관리자가 설치 확인을
+        요청할 것입니다.</p>
     installing_step3_header: "3. 유저 스크립트 사용하기"
-    # description for step 3, describing browsing to the site and having the user script apply
     installing_step3_description_html: >
-      <p>유저 스크립트의 대상 사이트로 가면 자동으로 스크립트가 작동할 것입니다. 유저 스크립트를 이용하신 후 리뷰를 남겨보세요!</p>
+        <p>유저 스크립트의 대상 사이트로 가면 자동으로 스크립트가 작동할 것입니다. 유저 스크립트를 이용하신 후 리뷰를 남겨보세요!</p>
   users:
-    # html title for the sign in page
     sign_in_title: "%{site_name}에 로그인"
-    # what signing in lets people od
     sign_in_description: "%{site_name}에 로그인하면 스크립트를 게시하고 다른 스크립트에 리뷰를 남길 수 있습니다. 스크립트 탐색 및 설치에는 로그인이 필요 없습니다."
-    # heading for signing in with an external service (Google, GitHub, etc.)
     sign_in_external: "외부 서비스로 로그인"
-    # button for signing in with an external service (Google, GitHub, etc.)
     sign_in_with: "%{provider}으로 로그인"
-    # heading for signing in with a password
     sign_in_password: "비밀번호로 로그인"
-    # when a user attempts to sign in with an external service and a user already exists with the same email, this is the message shown. email: provided e-mail, user_name: existing user's name, provider: what the user tried to sign in with (e.g. GitHub), sign_in_link: a link to the sign in page with text from sign_in_email_used_sign_in_link
     sign_in_email_used_no_external_services_html: "'%{email}'은 이미 '%{user_name}' 유저가 사용하고 있습니다. 만약 이는 당신이고 '%{provider}'로 자동으로 로그인하고 싶다면, 당신의 계정으로 %{sign_in_link}하여 당신의 %{provider} 로그인을 추가하세요."
-    # same as above, but when the existing user uses other providers. also includes existing_providers, which is a list of the existing user's sign ins, run through to_sentence (http://apidock.com/rails/Array/to_sentence)
     sign_in_email_used_with_external_services_html: "'%{email}'은 이미 %{existing_providers}로 로그인하는 유저 %{user_name}이 사용하고 있습니다. 만약 이는 당신이고 자동으로 %{provider}로 로그인하기를 바란다면, 당신의 계정에 %{sign_in_link}하고 %{provider} 로그인을 추가하세요."
-    # sign in link for email_used messages
     sign_in_email_used_sign_in_link: "로그인"
-    # when a user attempts to create an account with an external service, but an email was not provided by that service
     sign_in_email_missing: "새로운 %{site_name} 계정을 만드려면 이메일이 필요하나, %{provider}는 제공하지 않았습니다. %{provider} 계정을 편집하고 다시 로그인을 시도하거나 평범한 %{site_name} 이메일/비밀번호 계정을 생성하고 %{provider} 계정을 연결할 수 있습니다."
-    # this shows when signing in for the first time with an external sign in but the name received is already in use. the user is prompted to enter a different name.
     sign_in_name_used: "이름 '%{name}'은 이미 사용중입니다. 다른 이름을 선택하세요."
-    # the button when submitting the name form per above
     sign_in_name_used_submit: "제출"
-    # Button to preview a user's profile before saving
-    # heading for the user's control panel, which contains links such as post script and edit account
     control_panel: "제어판"
-    # heading for the list of discussions about a user's own scripts
     discussions_on_scripts: "내 스크립트에 대한 의논"
-    # alt text for the RSS feed icon for discussions about a user's own scripts
     discussions_on_scripts_feed_alt: "RSS 피드"
-    # text to show in the section for discussions about a user's own scripts if there are no discussions yet
     discussions_on_scripts_none: "아직 없어요!"
-    # link to more discussions on a user's own scripts, as the initial list is limited in number
     discussions_on_scripts_more: "의논 더 보기..."
-    # heading for the list of scripts on a user's page
     script_list: "스크립트"
-    # text to show in a user's script section when they have created no scripts
     script_list_none: "게시한 스크립트 없음."
-    # text to show in a user's script section when they have created scripts, but they are not shown due to the filters active
     script_list_none_for_filter: "현 필터를 만족하는 스크립트 없음."
-    # text to show in a user's own script section when they have created no scripts. script_list_none_same_user_info_link is a link to a tutorial with text of script_list_none_same_user_info_link_text
     script_list_none_same_user_html: "작성하신 스크립트가 없습니다. %{script_list_none_same_user_info_link}"
-    # text used for link in script_list_none_same_user_html
     script_list_none_same_user_info_link_text: "어떻게 하는지 배우시겠습니까?"
-    # heading for the list of a user's deleted scripts (visible to only that user and mods)
     deleted_script_list: "삭제된 스크립트"
-    unlisted_script_list: ""
-    # link to log out
     sign_out: "로그아웃"
-    # link to edit an account
     edit: "계정 편집"
-    # link to edit how the user signs in
     edit_sign_in: "로그인 방법 편집"
-    # html title for the edit sign in page
     edit_sign_in_title: "로그인 방법 편집"
-    # heading for the password section of the edit sign in methods page
     edit_sign_in_password: "비밀번호"
-    # informational text telling the user they're not using a password
-    edit_notifications: ""
     no_password_set_info: "당신의 계정은 비밀번호가 설정되지 않았습니다."
-    # button to set a password when one is not already set
     set_password: "비밀번호 설정"
-    # button to set a password when one is already set
     update_password: "비밀번호 변경"
-    # error message when the password and the confirmation don't match
     update_password_no_match: "비밀번호가 일치하지 않습니다."
-    # notice after a password was updated successfully
     password_updated: "비밀번호 변경됨."
-    # information text saying the user can unset their password and use just external sign ins
     remove_password_info: "비밀번호를 제거하고 단독으로 외부 로그인만 이용할 수 있습니다."
-    # button to remove the password from the user's account
     remove_password: "비밀번호 제거"
-    # error message to show if the user attempts to remove a password but have no external sign ins. This is normally not possible with the interface.
     cant_remove_password: "비밀번호 제거 불가 - 다른 로그인 방법이 없습니다!"
-    # error message to show if the user attempts to remove a sign in but has no password or other sign ins. This is normally not possible with the interface. provider is the external site's name, like GitHub or Google
     cant_remove_sign_in: "${provider} 로그인 연결 해제 불가 - 로그인할 방법이 없어집니다!"
-    # notice after a password was removed successfully
     password_removed: "비밀번호 제거됨."
-    # heading for the external sign ins section of the edit sign in methods page
     edit_sign_in_external: "외부 로그인"
-    # information text about how they can use external sign ins, shown when the user has not set any yet
     external_sign_in_info_no_sign_ins: "%{site_name}에 로그인하는데 다른 사이트 계정을 사용할 수 있습니다."
-    # information text about how they can use external sign ins, shown when the user already has some set. should describe the concept of syncing, where account details on %{site_name} will be updated to match the external service on sign in
     external_sign_in_info_with_sign_ins: "아래에 열거된 외부 로그인을 사용하고 있습니다. \"동기화중\"인 로그인은 Gresay Fork 정보 (유저이름 및 이메일 같은거)가 로그인시에 일치하도록 변경되는 것을 의미합니다."
-    # notice after a sign in is added. provider is the external site's name, like GitHub or Google
     external_sign_in_added: "%{provider} 로그인 추가됨."
-    # notice after a sign in is updated (from syncing to not or opposite). provider is the external site's name, like GitHub or Google
     external_sign_in_updated: "%{provider} 로그인 변경됨."
-    # notice after a sign in is removed. provider is the external site's name, like GitHub or Google
     external_sign_in_removed: "%{provider} 로그인 제거됨."
-    # notice after a sign in fails
     external_sign_in_failed: "%{provider} 로그인 실패: %{error}"
-    # notice after a user tries to add a sign in to their account, but that sign in is already in use by another user
     external_sign_in_already_used: "%{provider} 로그인 추가 실패: 이미 '%{user_name}'이 사용중임."
-    # notice after successfully creating a new user based on external login
     external_sign_in_confirmation: "%{provider} 계정으로 새 %{site_name} 계정이 생성되었습니다. 당신의 유저명은 %{username}입니다."
-    # an indicator beside the sign in provider's name if the user chose to enable syncing
     syncing_indicator: "(동기화중)"
-    # button to set a sign in provider to sync
     enable_syncing: "동기화 사용"
-    # button to set a sign in provider to not sync
     disable_syncing: "동기화 해제"
-    # button to remove a sign in provider
     remove_external_sign_in: "제거"
-    # information text indicating that the list of links below it are for addding an external sign in
     add_external_sign_in_info: "로그인 추가:"
-    # link to docs on how to set up a webhook for script syncing
-    set_up_webhook: ""
     author_email_notification_type:
-      # notification option: don't send the user e-mails
       none: "당신의 스크립트에 대한 의논에 관한 이메일을 받지 아니합니다"
-      # notification option: send e-mails on new discussions but not new posts on existing discussions
       discussion_only: "당신의 스크립트에 대해 의논이 올라오면 이메일을 받습니다"
-      # notification option: send e-mails on new discussoins and on new posts on existing discussions
       discussion_and_comment: "당신의 스크립트에 대해 의논이 올라오거나 거기에 댓글이 달리면 이메일을 받습니다"
-    # display of a single user when displaying a list of users. user_link is a link to the user's page with text of the user name, count is the number of public scripts authored
     list_display_html:
       other: "%{user_link} - %{count}개의 스크립트"
-    # sort link for sorting users by number of scripts they've posted
     listing_number_of_scripts: "스크립트 갯수"
-    # sort link for sorting users by the creation date of their scripts
     listing_new_scripts: "새로운 스크립트"
-    # sort link for sorting users by the updated date of their scripts
     listing_updated_scripts: "판올림된 스크립트"
-    # sort link for sorting users by when they signed up
     listing_registration_date: "등록 일자"
-    # title for page showing list of users
     listing_title: "유저"
-    listing_banned_filter:
-      banned: ""
-      not_banned: ""
-      all: ""
-    listing_author_filter:
-      script_author: ""
-      not_script_author: ""
-      all: ""
-    # placeholder for user search box
     search_placeholder: "유저 검색"
-    # default option for the user's preferred locale
     locale_prompt: "(지역이나 언어 선택)"
-    # text describing what the show ads checkbox does
     show_ads_description: "광고 차단을 해제해 %{site_name}를 지원해주세요"
-    # text describing what the show sensitive checkbox does
     show_sensitive_description: "성인물이 포함된 유저스크립트 표시"
-    # text describing what the preferred markup setting does
     preferred_markup_description: "다음에 보는 스크립트와 게시물에 적용됩니다"
-    filter_locale_default_description: ""
-    # link from sleazy fork to greasy fork on user page
     greasy_fork_scripts_link:
       other: "%{user_name} 또한 Greasy Fork에  %{count} 개의 스크립트를 가지고 있습니다."
-    # displays when the user is editing their account but syncing is on
-    update_sync_warning:
-      other: ""
-    # link on the user page to go to the delete page
     delete_link: "계정 삭제"
     delete:
       intro: "너의 %{site_name} 계정 '%{user_name}'를 삭제하는 것은 다음의 영향이 있을 것이다:"
-      password_effect: ""
-      identities_effect:
-        other: ""
       scripts_effect:
         other: "너의 %{count}개의 스크립트들이 삭제될 것이다."
-      script_sets_effect:
-        other: ""
-      forum_effect: ""
-      email_confirmation: ""
       submit: "계정 삭제"
-      confirmation_email_sent: ""
-      confirmation_email:
-        subject: ""
-        body: ""
       confirmation:
-        intro: ""
         confirm: "'%{user_name}' 삭제"
         cancel: "삭제 취소"
-        key_mismatch: ""
-        request_expired: ""
         cancelled: "삭제가 취소되었습니다."
         completed: "계쩡이 삭제되었습니다."
-    banned_notice:
-      no_report_no_reason: ""
-      with_report: ""
-      with_reason: ""
-    banned_delete:
-      intro: ""
-      complete: ""
-    badges:
-      banned:
-        short: ""
-        long: ""
-      moderator:
-        short: ""
-        long: ""
-      author:
-        short: ""
-        long: ""
-    notifications:
-      discussion_defaults:
-        title: ""
-        new_discussion: ""
-        new_comment: ""
-        mention: ""
-      conversation_defaults:
-        title: ""
-        starter: ""
-        receiver: ""
-      save_button: ""
-      title: ""
-      current_discussion_subscriptions:
-        other: ''
-      save_success: ""
-      unsubscribe_all: ""
-      unsubscribe_all_success: ""
-  webhooks:
-    info:
-      title: ""
-      intro_html: |
-      already_syncing_list: ""
-      synced_item_html: ""
-      language_note: ""
   help:
-    sections:
-      usage: ""
-      development: ""
-      miscellaneous: ""
-    open_source: ""
     installing_user_scripts:
       title: '유저 스크립트 설치 방법'
-    installing_user_styles:
-      title: ''
     meta_keys:
-      # title of the help document describing script meta keys (e.g. @name).
       title: "스크립트 메타 키는 %{site_name} 에 의해 읽힙니다."
-      # introductory paragraph. If the URL has a localized version, use that.
       intro_html: "%{site_name}에서 읽는 <a href=\"http://wiki.greasespot.net/Metadata_Block\">유저스크립트 메타블럭</a>들입니다. 이 중에 없는 블럭은 스크립트내에 포함되나 %{site_name}의 UI에 아무런 영향도 주지 않습니다."
-      # description of @name
       name: "스크립트의 이름, 제목 링크 내에서 사용됩니다. 필수."
-      # description of @name:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
       name_localized_html: "지정된 로케일에서의 스크립트 이름. XX는 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-letter code</a>에서, YY는 필수적이지 않은 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 country code</a>입니다. 일치하는 로케일내에서 유저가 탐색할때 <code>@name</code>는 무시됩니다."
-      # description of @description
       description: "스크립트가 뭐 하는지에 대한 설명. 스크립트 이름 아래에서 텍스트로 보여집니다. 필수."
-      # description of @description:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
       description_localized_html: "지정된 로케일에서의 스크립트 설명입니다, XX는 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-letter code</a>이며 YY는 필수가 아닌 선택으로, <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 country code</a>입니다. 유저가 해당 로케일에서 보고 있을 시 <code>@description</code>는 무시됩니다.."
-      # description of @namespace. Do not translate content inside <code>.
       namespace_html: "<code>@namespace</code>와 <code>@name</code>의 조합은 스크립트가 이미 설치됬 을 시에 유저스크립트 매니저에서 사용됩니다. Greay Fork는 %{site_name}에서는 이 필드는 필수이며, 업데이트시에 변경됬을 시 경고합니다."
-      # description of @description:XX-YY. developer.mozilla.org may have localized content; use it if available.
       version_html: "<a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">모질라 번역 포맷</a>을 준수하는 해당 스크립트 버전의 식별자입니다. 버전은 스크립트 정보 페이지에서 표시됩니다. %{site_name}에서 이 필드는 필수이며 스크립트 코드가 변경 됬을때 줄어들거나 늘지 않았을 때 경고됩니다."
-      # description of @include
-      include_html: ""
-      # description of @require. %{external_script_link} is a link to the document describing allowed external scripts and has a link of key "require_external_script_link_text"
       require_html: "스크립트에 외부 JavaScript를 포함시킵니다. %{external_script_link}를 확인하세요."
-      # used in required_html
       require_external_script_link_text: "외부 스크립트를 포함하는 코드에 대한 규칙"
-      # description of @updateURL
       updateURL: "스크립트 매니저가 어떻게 업데이트할 지 서수랍니다. %{site_name}는 이 키들을 키들을 제거해 %{site_name}에서 설치한 스크립트는 오직 %{site_name}에서만 업데이트하도록 합니다."
-      # description of @license
-      license: ""
-      # description of @supportURL
       supportURL: "유저들이 스크립트에 대한 지원을 받을 수 있는 URL입니다. (예시. 버그 신고, 포럼, 이메일 주소). 지원 URL은 스크립트의 피드백 페이지에 표시됩니다."
-      # description of @contributionURL. You can replace the sample "business" and "item_name" parameters in the URLs with localized versions.
       contributionURL_html: "유저들이 스크립트 개발자에게 기부할 수 있는 페이지의 URL입니다. 기부 URL은 스크립트의 피드백 페이지에 표시됩니다. URL들은 http, https, 또는 비토코인 프로토콜로 가능합니다. PayPal 기부 페이지로 링크하려면, <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a>에서 샘플 이메일을 당신의 이메일로 바꾼 URL을 사용합시요."
-      # description of @contributionAmount. Do not translate content inside <code>.
       contributionAmount_html: "추천하는 기부금 가격입니다, <code>@contributionURL</code>과 결합하여 사용합니다."
-      # description of @compatible. %{browsers} is a comma-separated list of browser codes. You can translate "Must disable pop-up blocker", but do not translate "@compatible firefox". 
       compatible_html: "이 스크립트가 어느 브라우저랑 호환됨을 표시합니다. 호환성 정보는 스크립트 페이지에 표시됩니다. 호환성에 관한 주석은 <code>@copmatible firefox 팝업 차단을 반드시 해제해야 함</code>의 형식에 맞춰 포함 될 수 있습니다. 인식되는 브라우저들은 다음과 같습니다: %{browsers}."
-      # description of @incompatible. %{browsers} is a comma-separated list of browser codes. You can translate "Broken since Firefox 23", but do not translate "@compatible firefox".
       incompatible_html: "이 스크립트가 어느 브라우저랑 호환되지 않음을 표시합니다. 호환성 정보는 스크립트 페이지에 표시됩니다. 선택적으로, <code>@incompatible firefox 23 버전부터 작동 안됨</code>의 형식에 맞추어 호환성에 대한 주석을 포함할 수 있습니다. 인식되는 브라우저들은 다음과 같습니다: @{browsers}."
-      antifeature_html: ""
-      antifeature_localized_html: ""
     writing_user_scripts:
-      # title for Writing user scripts help page
       title: "유저스크립트 작성 방법"
-      # content of the page. The link to greasespot can be updated to a better resource if one is available in your language. code_rules_link and meta_keys_link are links to those help pages, with text of those page's titles. ask_in_forum_link is a link to the forum with text of ask_in_forum_link_text. user_page_link is a link to the user's page if the user is signed in, or plain text if they're not; in either case, the text is user_page_link_text. post_new_script_link is a link to the new script page, with text of post_new_script_link_text
       content_html: "<p>유저스크립트 작성에는 자바 스크립트 지식이 필요합니다. GreaseSpot 위키에 있는 <a href=\"http://wiki.greasespot.net/Tutorials\">튜토리얼</a>에서 기초적인 자바 스크립트 지식과 유저 스크립트 연관성을 통해 도움을 받으실 수 있습니다. %{code_rules_link} 와 %{meta_keys_link} 을 참고하시는 것도 좋습니다. 스크립트 개발에 도움을 받고 싶으시면 %{ask_in_forum_link}.</p><p> %{site_name} 에 게시물을 작성해보세요. 게시물을 작성하시려면 계정이 필요합니다. 그리고 준비가 되셨다면 당신의 %{user_page_link}에서, %{post_new_script_link}로 들어가보세요.</p>"
-      # link text used in content_html
       ask_in_forum_link_text: '포럼에 질문하기'
-      # link text used in content_html
       user_page_link_text: '유저 페이지'
-      # link text used in content_html
       post_new_script_link_text: '새로운 스크립트 게시'
     code_rules:
-      # title for the rules page
       title: "외부 스크립트에 관한 Gresay Fork 정책"
-      preamble: ""
-      functionality_header: ""
-      description: ""
-      reason: ""
-      unrelated: ""
-      monetization_html: ""
-      code_header: ""
-      obfuscation: ""
-      libraries_html: ""
-      updates: ""
-      external_js: ""
-      copyright_header: ""
-      licensing: ""
-      reposts: ""
-      miscellaneous_header: ""
-      keywords_html: ""
-      adult_content_rule: ""
-      reporting: ""
     external_scripts:
-      # title of the external script rules page
       title: "%{site_name}의 외부 스크립트 정책"
-      # content of the external script rules page
-      content_html: >
-      test_url:
-        label: ""
-        result_ok: ""
-        result_not_ok: ""
-    script_rewriting:
-      # title of the rewriting page
-      title: ""
-      # content of the rewriting page
-      content_html: >
-    # link to github
-    site_feedback_link: ""
     credits:
-      # title for the credits page
       title: "제작자"
-      # give credit to authors
       authors_credit: "만약 스크립트를 기여해주는 개발자분들이 없어진다면, %{site_name}는 사라질 겁니다."
-      # give credit to developers. link goes to github.
       developers_credit: "%{site_name}는 %{developers_link:이 사람들}이 제안하시고 버그를 신고해주신 분들의 도움과 함께 만들었습니다."
-      # give credit to translators. link to goes to transifex. after this text, there's a list of languages and the contributors to each.
       translators_credit: "%{site_name}는 %{translators_link:Transifex에서 Greasy 번역 팀}이 번역하였습니다."
-      # give credit to icon makers. all links are proper names so are not translated.
-      icons_credit: ""
-    # link to greasemonkey docs
     help_with_greasymonkey: "Greasemonkey 도움말"
-    contact:
-      # title of contact page
-      title: ""
-      # content of contact page
-      content_html: >
     privacy_policy:
       title: "개인정보보호정책"
-      content_html: >
-    user_css_to_user_js:
-      title: ""
   search:
     script_search:
       title: "스크립트 검색"
-      description: ""
     library_search:
       title: "라이브러리 검색"
-      description: ""
     code_search:
       title: "코드 검색"
-      description: ""
     user_search:
       title: "사용자 검색"
-      description: ""
   moderator_logs:
     date_column: "날짜"
     moderator_column: "관리자"
@@ -1029,326 +409,59 @@ ko:
     item_script_html: "스크립트: %{script_link} "
     item_deleted_script: "삭제된 스크립트 %{id}"
     item_user_html: "유저: %{user_link}"
-  notifications:
-    consecutive_bad_ratings:
-      other: ""
-  reports:
-    report_filed: ""
-    new_report_title:
-      user: ""
-      comment: ""
-      message: ""
-      script: ""
-    new_report_notes_html: >
-    new_script_report_notes_html: >
-    new_user_report_notes_html: >
-    reason:
-      non_functional: ""
-      spam: ""
-      abuse: ""
-      illegal: ""
-      unauthorized_code: ""
-      malware: ""
-      minified: ""
-      external_code: ""
-      undisclosed_antifeature: ""
-      other: ""
-    report_intro_html: ""
-    report_intro_unauthorized_html: ""
-    non_functional_feedback: ""
-    unauthorized_code_original_placeholder: ""
-    explanation_placeholder: ""
-    create_button: ""
-    report_user: ""
-    report_comment: ""
-    report_message: ""
-    result_dismissed: ""
-    result_upheld: ""
-    result_pending: ""
-    rebuttal_placeholder: ''
-    submit_rebuttal: ""
-    delete_script: ""
-  discussions:
-    title: ""
-    comment_date: ""
-    comment_edit_date: ""
-    posted_by_html: ""
-    last_comment: ""
-    new_discussion_heading: ""
-    new_discussion_submit: ""
-    new_comment_heading: ""
-    new_comment_submit: ""
-    back_to_feedback: ""
-    edit_comment_link: ""
-    edit_comment_header: ""
-    delete_comment: ""
-    delete_comment_confirm: ""
-    delete_discussion: ""
-    delete_discussion_confirm: ""
-    update_comment_submit: ""
-    cancel_update_comment: ""
-    quote_comment: ""
-    question_heading_html: ""
-    review_heading_html: ""
-    update_rating: ""
-    ratings:
-      question: ""
-      bad: ""
-      ok: ""
-      good: ""
-    ratings_short:
-      question: ""
-      bad: ""
-      ok: ""
-      good: ""
-    sign_in_to_post_discussion: ""
-    sign_in_to_post_comment: ""
-    user_filter:
-      label: ""
-      all: ""
-      discussion_by_me: ""
-      comment_by_me: ""
-      on_my_scripts: ""
-      subscribed: ""
-    other_user_filter:
-      all: ""
-      comments_by: ""
-    category_filter:
-      label: ""
-      all: ""
-    read_filter:
-      label: ""
-      all: ""
-      read: ""
-      unread: ""
-    locale_filter:
-      label: ""
-      all: ""
-    user_activity:
-      title: ""
-      no_recent_activity: ""
-      see_all_activity: ""
-      script_review:
-        posted_html: ""
-        replied_html: ""
-      script_question:
-        posted_html: ""
-        replied_html: ""
-      discussion:
-        posted_html: ""
-        replied_html: ""
-    review_title: ""
-    question_title: ""
-    subscribe: ""
-    unsubscribe: ""
-    notify: ""
-    notifying_on_script: ""
-    categories:
-      greasyfork:
-        name: ""
-        description: ""
-      development:
-        name: ""
-        description: ""
-      requests:
-        name: ""
-        description: ""
-      script-discussions:
-        name: ""
-        description: ""
-      no-scripts:
-        name: ""
-      moderators:
-        name: ""
-        description: ""
-    category_display: ""
-    new_title: ""
-    new_button: ""
-    script_notice: ""
-    no_discussions: ""
-    mark_all_read: ""
-    pending_moderator_review: ""
-  conversations:
-    user_input_note: ""
-    new_title: ""
-    new_link: ""
-    new_button: ""
-    title_html:
-      other: ''
-    send_message: ""
-    conversation_list_title: ""
-    conversation_link_html:
-      other: ''
-    conversation_info_html: ""
-    no_conversations: ""
-    no_recent_conversations: ""
-    recent:
-      title: ""
-      more: ""
-  screenshots:
-    requirements: ""
   common:
-    # text to show before listing errors in a submission
     error_preamble: "당신이 올린 거에 몇몇 문제들이 있습니다...."
-    # link to the list of allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_link: "(허용된 코드 보기)"
-    # title of the page showing allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_and_attributes_title: "HTML 콘텐츠에서 허용된 요소 보기"
-    # text to introduce the list of allowed HTML elements and attributes
     allowed_elements_intro: "이 요소들과 속성들은 허용되었습니다. HTML과 Markdown(HTML로 변환 후) 둘 다 적용됩니다."
-    # additional info for the allowed HTML elements, explaining additional changes made to content
     allowed_elements_extra_info: "여백은 p나 br 요소로 바뀔 것이고 URL은 자동으로 링크됩니다."
-    allowed_css_intro: ""
-    user_references_html: ""
     not_found_text: "404 - 페이지 미존재"
     not_found_title: "404 - 페이지 미존재"
     not_found_link_home: "홈페이지로"
-    # shown on the first page a user sees if, based on the user's Accept-Language header, we think we have a better locale than what the first page shows. "locale_name" is the name of the locale in that language (matching the name in the locale drop down)
     suggest_locale: "%{site_name}는 %{locale_name} 로케일로 사용 가능합니다."
-    # shown on the first page a users sees if the locale they're on is less than a certain amount translated. links to the docs on how to help with localization
     incomplete_locale: "%{site_name}의  %{locale_name} 번역은 %{percent} 완료되었습니다. 번역을 도와주세요!"
-    # text for a button that expands a block of text
     expander_show_more: "더 보기"
-    # text for a button that contracts a block of text
     expander_show_less: "덜 보기"
-    # note denoting what are ads
     advertisement_note: 광고
-    # label on tab allowing for previewing input
     preview_tab: 미리보기
-    # label on tab for entering input
     write_tab: 작성
     listing_options_title: "검색 옵션"
-    quote:
-      prefix_html: ""
   activerecord:
     attributes:
       user:
-        # user field: display name
         name: "이름"
-        # user field: profile (HTML content describing themselves)
         profile: "프로파일"
-        # user field: locale
         locale: "우선되는 로케일"
-        # user field: setting to send e-mails when discussions or comments are posted to a user's scripts. options are under users.author_email_notification_type
         author_email_notification_type_id: "스크립트 의논 알림"
-        # user field: show ads
         show_ads: "광고 보기"
-        # user field: show sensitive
         show_sensitive: "성인물"
-        # user field: preferred markup (html or markdown)
         preferred_markup: "우선되는 마크업"
-        filter_locale_default: ""
-        current_password: ""
-        new_password: ""
-        new_password_confirmation: ""
       script:
-        # name of the script
         name: "이름"
-        # description of the script
         description: "설명"
-        # locale the script is in. see also scripts.locale_explanation
         locale: "로케일"
-        # the JS code of the script
         code: "코드"
-        # description of changes for an update
         changelog: "변경사항"
-        # the type of script - public, unlisted, or library
         type: "스크립트 유형"
-        # additional descriptive text outside of @description
         additional_info: "추가 정보"
-        # screenshots attached to the script
         screenshots: "스크린샷"
-        # when deleting, which script to redirect to
         replaced_by_script_id: "대체 스크립트"
       script_set:
-        # name of the script set
         name: "이름"
-        # description of the script set
         description: "설명"
-        # default sort of the script set
         default_sort: "기본 정렬"
-      report:
-        reason: ""
-      discussion:
-        rating: ""
-        category: ""
-        title: ""
-      conversation:
-        user_input: ""
-      message:
-        content: ""
   errors:
     messages:
-      # validation for when a script name is not provided
       script_missing_name: "필요함 - @name으로 지정하세요."
-      # validation for when a script description is not provided
       script_missing_description: "필요함 - @description으로 지정하세요."
-      # validation for when a script description is the same as name
       script_name_same_as_description: "이름과 똑같으면 안됨"
-      # validation for sync URL
       script_sync_identifier_bad_protocol: "HTTP 또는 HTTPS로 시작하는 주소여야 함."
-      # validation for number of screenshots
       script_too_many_screenshots: "너무 많은 스크린샷이 첨부됨 - 최대 %{number}개까지 가능"
-      # validation for "deleted and replaced by" when the user says the script is replaced by itself
       cannot_be_self_reference: "똑같은 스크립트는 불가"
-      # validation for "deleted and replaced by" when the user says the script is replaced by a deleted script
       cannot_be_deleted_reference: "삭제된 스크립트는 불가"
-      cannot_be_used_with_this_script: ""
-      # validation for "deleted and replaced by" when the user provides a non-%{site_name} URL
       must_be_greasy_fork_script: "반드시 %{site_name}에 있는 스크립트 URL이어야 함"
-      # validation when the user uploads code that's not UTF-8 text
       script_update_not_utf8: "업로드된 건 반드시 UTF-8 텍스트여야함."
-      # validation when user uploads code that contains a disallowed @require
-      script_disallowed_require: ""
-      script_rate_limit: ""
-      missing_include_or_match: ""
-      file_size_out_of_range: ""
-      meta_too_long: ""
   opensearch:
-    # short name for opensearch.xml
     short_name: "%{site_name} 검색"
-    # description for opensearch.xml
-    description: ""
-    # long name for opensearch.xml
     long_name: "%{site_name} 유저 스크립트 검색"
-    # attribution for opensearch.xml
     attribution: "저작권은 스크립트의 저자에게 있으며 라이센스는 각 스크립트를 확인하세요"
-  mailers:
-    script_report:
-      report_created_offender:
-        subject: ""
-        text: ""
-      report_upheld_offender:
-        subject: ""
-        text: ""
-      report_dismissed_offender:
-        subject: ""
-        text: ""
-      report_rebutted_reporter:
-        subject: ""
-        text: ""
-      report_upheld_reporter:
-        subject: ""
-        text: ""
-      report_script_deleted_reported:
-        subject: ""
-        text: ""
-      report_dismissed_reporter:
-        subject: ""
-        text: ""
-    consecutive_bad_ratings:
-      notify:
-        subject: ""
-        text: |
-    script_comment:
-      subject: ""
-      text: |
-    subscribed_discussion:
-      subject: ""
-      text: |
-    comment_mentioned:
-      subject: ""
-      text: |
-    new_message:
-      subject: ""
-      text: |
