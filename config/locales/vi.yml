@@ -1,131 +1,63 @@
 vi:
   layouts:
     application:
-      # link to the list of scripts
       script_list: "Scripts"
-      # link to the forum
       forum: "Diễn đàn"
-      # link to the help docs
       help: "Hướng dẫn"
-      # link to sign in
       sign_in: "Đăng nhập"
-      # label for nav submenu
       submenu: "Thêm"
-      # link to advanced search
       advanced_search: "TÌm kiếm nâng cao"
-      # link to user list
       user_list: "Danh sách người dùng"
-      # link to libraries
       libraries: "Các thư viện"
-      # link to moderator log
       moderator_log: "Nhật ký điều hành"
   scripts:
-    # label for created date of a script
     created_date: "Đã tạo"
-    # label for updated date of a script
     updated_date: "Đã cập nhật"
-    # label for total install count of a script
     total_installs: "Số lần cài đặt"
-    # label for daily install count of a script
     daily_installs: "Cài đặt hàng ngày"
-    # label for the ratings of a script
     ratings: "Đánh giá"
-    # label for author name of a script
     author_name: "Tác giả"
-    # label for version number of a script
     version_number: "Phiên bản"
-    # label for the legal license a script is released under (e.g. GPL)
     license: "Giấy phép"
-    # what is shown as the license when no license is provided in a script
     no_license: "N/A"
-    # label for the browser compatibility for a script
     compatibility: "Sự tương thích"
     compatible_with_browser: "Tương thích với %{browser}"
     incompatible_with_browser: "Không tương thích với %{browser}"
-    # label for the list of sites or patterns a script applies to
     applies_to: "Áp dụng cho"
-    # a title (tooltip) for the links in the "applies to" section going to a list of scripts for that site. count is the number of other scripts, site is the name of the site. add subkeys for your language per http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
     applies_to_link_title:
       other: "Xem %{count} các script khác cho %{site}"
-    # what is shown as the applies to when a script applies to all sites
     applies_to_all: "Tất cả trang web"
-    # link that makes the user install the script
     install: "Cài đặt script này"
-    # text for link that gives information on how to install scripts. should be very short.
     install_help: "?"
-    # title (tooltip) for link that gives information on how to install scripts
     install_help_title: "Làm thế nào để cài đặt"
-    # link that makes the user update the script
     update: "Cập nhật lên phiên bản %{version}"
-    # link that makes the user downgrade the script
     downgrade: "Hạ xuống phiên bản %{version}"
-    # link that makes the user reinstall the script
     reinstall: "Cài đặt lại phiên bản %{version}"
-    # warning when installing an old version of a script
     old_version_warning: "Đây không phải phiên bản mới nhất của script. Nếu bạn cài đặt nó, bạn sẽ không được cập nhật lên phiên bản mới nhất. Bạn chắc chắn muốn cài đặt?"
-    # label for a promoted script
     promoted: "Script được khuyến cáo"
     author_promoted: "Script gợi ý của tác giả"
-    # text for promoted script
     promoted_text_html: "Bạn có thế thích %{script_link}"
-    # instructions on a script library. code will be a <code> element. Don't use punctuation around the code element if possible so that people don't accidentally include that when copying.
     library_instructions_html: "Script này sẽ không được không được cài đặt trực tiếp. Nó là một thư viện cho các script khác để bao gồm các chỉ thị meta\n%{code}"
-    # text displayed for deleted scripts
     deleted_notice: "Script này đã bị xóa."
-    deleted_notice_with_related: ""
-    deleted_undelete_notice_html: ""
-    deleted_locked_author_notice_html: ""
-    deleted_author_notice: ""
-    # test displayed when viewing a previous version. date is a date and time (no "ago"), latest_version_link is a link to the newest version whose text is version_notice_latest_version_link
     version_notice_html: "Tính đến %{date}. Xem %{latest_version_link}."
     version_notice_latest_version_link: "phiên bản mới nhất"
-    reported_notice: ""
-    reported_notice_for_author: ""
-    # link to the script's info page, containing script meta and author's description
     info_page: "Thông tin"
-    # link to the script's code page
     code_page: "Mã nguồn"
-    # link to the script's history page, listing all versions of the code
     history_page: "Lịch sử"
-    # link to the script's feedback page, listing discussions on the script. count is the number of discussions
     feedback_page: "Phản hồi (%{count})"
-    # link to the script's install statistics page
     stats_page: "Thống kê"
-    # link to the script's derivatives page, which shows similar scripts
     derivatives_page: "Các dẫn xuất"
-    # link to the page that lets the author update the script
     update_page: "Cập nhật"
-    # link to the page that lets the author delete a script
     delete_page: "Xóa"
-    # explanation of what deleting does
     delete_explanation: "Xóa script của bạn làm cho nó không thể truy cập với bất cứ ai trừ bạn và điều hành viên Greasy Fork. Bạn có thể lấy lại bất cứ lúc nào."
-    # intro text to radio options for choosing update behaviour after deletion
     delete_update_behaviour: "Bạn muốn xảy ra với những người sử dụng cài đặt trước đó script của bạn?"
-    # label for the option allowing users to retain the script after delete
     delete_update_behaviour_1: "Họ sẽ giữ nó như nó được."
-    # label for the option where users get a blanked script after delete 
     delete_update_behaviour_2: "Họ sẽ được cập nhật vào trong một script trống. Điều này là phù hợp khi script có một tác động tiêu cực trên các trang web nó chạy trên."
-    # heading for permanent deletion section
     delete_permanently_heading: "Xóa vĩnh viễn"
-    # explanation of permanent deletion
-    delete_permanently_explanation_html: >
-    # confirmation on pressing the permanent deletion button
-    delete_permanently_confirm: ""
-    # text for the permanent deletion button
     delete_permanently_submit: "Xin xóa vĩnh viễn"
-    # text for the permanent deletion button when it would take effect immediately
     delete_permanently_immediate_submit: "Xóa vĩnh viễn"
-    # notice after requesting permanent deletion
-    delete_permanently_notice: ""
-    # text on the delete page after permanently deletion was requested
-    delete_permanently_already_requested: ""
-    # notice after permanently deletion
     delete_permanently_notice_immediate: "Script đã bị xóa vĩnh viễn."
-    # text for cancelling a permanent deletion request
     cancel_delete_permanently_submit: "Hủy bỏ yêu cầu xóa vĩnh viễn."
-    # notice after cancelling a permanent deletion request
-    cancel_delete_permanently_notice: ""
-    # error when attempting to delete a locked script
     delete_permanently_rejected_locked: "Script này đã bị khóa và không thể xóa vĩnh viễn."
     admin_page: "Quản trị"
     admin:
@@ -140,434 +72,155 @@ vi:
       locale_multiple_note: "Hãy nhớ rằng  %{meta_keys_link:script có thể định nghĩa theo nhiều ngôn ngữ}."
       update_locale: "Cập nhật ngôn ngữ"
       no_moderator_logs: "Không có hành động nào được thực hiện bởi người quản lý script này"
-      compare_title: ""
-      compare_to: ""
-      compare_button: ""
-      compare_must_be_local_url: ""
-    # HTML title for the history page for a script
     history_title: "%{script_name} - Lược sử Phiên bản"
-    # text explaining that we're only showing versions where the code changed
     history_only_code_changes_info: "Đây là phiên bản của script này, nơi mã nguồn đã được cập nhật."
-    # link to the list of all versions
     history_all_changes_link: "Hiện tất cả các phiên bản."
-    # text explaining that we're showing all versions
     history_all_changes_info: "Đây là tất cả phiên bản của script này."
-    # link to the list of version where the code changed
     history_only_code_changes_link: "Chỉ hiển thị các phiên bản mà mã nguồn thay đổi."
-    # button that shows changes (a diff) of the selected versions
     diff_button: "Lịch sử chỉnh sửa phiên bản đã chọn"
-    # HTML title of the script source code page
     code_title: "%{script_name} - Mã nguồn"
-    # HTML title of the script feedback page
     feedback_title: "%{script_name} - Phản hồi"
-    feedback_has_reports: ""
-    # text to show when no discussions are posted. start_discussion_first_link is a link with the text from feedback_start_first_discussion_link
     feedback_no_discussions_html: "Không có cuộc thảo luận nào được đăng. %{start_first_discussion_link}"
-    feedback_no_discussions_on_page_form: ""
-    feedback_report_instead: ""
     feedback_start_first_discussion_link: "Hãy là người đầu tiên để thảo luận về script này."
-    feedback_discussion_or_report: ""
-    # heading for list of people who favorited this script
     feedback_favoriters_heading: "Người yêu thích"
-    # text before a comma separated list of users who favorited the script
-    feedback_favoriters_user_list_html: ""
-    feedback_favoriters_lots:
-      other: ""
-    # text when no one has favorited a script
     feedback_no_favoriters: "Script này vẫn chưa được đã ưa thích bởi bất cứ ai."
-    # link to get the user to sign in to add the script to their favorites
     feedback_sign_in_to_favorite: "Đăng nhập để thêm vào mục yêu thích."
-    # html title for script stats page
     stats_title: "%{script_name} - Thống kê"
-    # heading for daily install stats on stats page
     stats_daily_installs_heading: "Cài đặt hàng ngày"
-    # heading for weekly install stats on stats page
     stats_weekly_installs_heading: "Cài đặt hàng tuần"
-    # heading for daily update check stats on stats page
     stats_daily_update_checks_heading: "Kiểm tra cập nhật hàng ngày"
-    # date column heading for a script's daily install stats table
     stats_daily_installs_date_column_heading: "Ngày"
-    # install count column heading for a script's stats table
     stats_daily_installs_install_count_column_heading: "Cài đặt"
-    # update check count column heading for a script's stats table
     stats_daily_installs_update_check_count_column_heading: "Cập nhật"
-    # header for the raw data table for stats
     stats_raw_data_header: "Bản gốc"
-    # text before links to download raw stats data. links will be space separated links to the format name (e.g. CSV and JSON)
     stats_download_raw_data_html: "Tải về tất cả các dữ liệu như: %{links}"
-    # text to show when a stat is not available
     stats_no_data: "N/A"
-    stats_filters: ""
-    stats_filter_options:
-      month: ""
-      year: ""
-      all: ""
-    # HTML title for derivatives page
     derivatives_title: "%{script_name} - Các dẫn xuất"
-    # text explaining the derivatives page and what to do if the user finds unauthorized copies
-    derivatives_intro: ""
-    # format for scripts listed on the derivatives page. script_link is a link to the derivative's page, user_link is a link to the user who created the derivative, license is text, link to the license, or scripts.no_license
-    derivatives_script_html: ""
-    derivatives_exact_copies_heading: ""
-    derivatives_exact_copies_list_intro: ""
-    derivatives_exact_copies_item_html: ""
-    derivatives_exact_copes_none: ""
-    derivatives_similar_heading: ""
-    derivatives_similar_info: ""
-    similarity_score:
-      high: ""
-      medium: ""
-      low: ""
-      none: ""
-    derivatives_similar_none: ""
-    derivatives_similar_item: ""
-    derivatives_similar_last_check_html: ""
-    derivatives_similar_last_check_soon: ""
-    derivatives_similar_last_check_again_soon_html: ""
-    derivatives_similar_check_now: ""
-    # html title for script list page when showing scripts that affect all sites
     listing_title_all_sites: "User scripts cho tất cả các trang"
-    # meta description and feed subtitle when showing scripts that affect all sites
     listing_description_all_sites: "User scripts giúp thêm các tính năng và loại bỏ lỗi trên các trang web"
-    # html title for script list page when showing scripts for a particular site. 'site' will be in the form 'example.com'
     listing_title_for_site: "Scripts sử dụng cho %{site}"
-    # meta description and feed subtitle when showing scripts that affect a particular site
     listing_description_for_site: "Các scripts sử dụng thêm tính năng và loại bỏ các lỗi trên %{site}"
-    # html title for script list page for search results.
     listing_title_for_search: "'%{search_string}' scripts"
-    # html title for script list page for code search results.
     listing_title_for_code_search: "'%{search_string}' scripts"
-    # html title for script list page when no other situation applies
     listing_title_generic: "User scripts"
-    # html title for script list page for a user's favorites. set_name is script_sets.favorites_name
     listing_title_for_favorites: "%{user_name}'s %{set_name}"
-    # meta description and feed subtitle for script list page when no other situation applies
     listing_description_generic: "Script sử dụng thêm tính năng và loại bỏ các lỗi trên các trang web mà bạn sử dụng"
-    # label for sorting links on script list page
     listing_sort_label: "Sắp xếp bởi:"
-    # link for relevance (most matching the search terms) sort on a script list
     listing_sort_relevance: "Mức độ phù hợp"
-    # link for daily install sort on a script list
     listing_sort_daily_installs: "Cài đặt hàng ngày"
-    # link for daily install sort on a script list
     listing_sort_total_installs: "Số lần cài đặt"
-    # link for rating sort on a script list
     listing_sort_ratings: "Đánh giá"
-    # link for created date sort on a script list
     listing_sort_created: "Đã tạo"
-    # link for updated date sort on a script list
     listing_sort_updated: "Đã cập nhật"
-    # link for name sort on a script list
     listing_sort_name: "Tên"
-    # label for filtering by-site links on script list page
     listing_filter_by_site_label: "Hiện script cho:"
-    # link for turning off by-site filtering on script list page
     listing_filter_by_site_disable: "Tất cả"
-    # link for filtering script list by scripts that affect all sites
     listing_filter_by_site_all_sites: "(Tất cả trang)"
-    listing_filter_by_language_label: ""
-    # link to see a full list of sites that scripts on %{site_name} affect
     listing_filter_by_site_more_sites: "Thêm..."
-    # text that shows when no scripts were found with the used parameters
     listing_no_scripts: "Không có script nào."
-    # feed title for the listing, ordered by created date
     listing_created_feed: "Scripts mới"
-    # feed title for the listing, ordered by updated date
     listing_updated_feed: "Scripts đã cập nhật"
-    # when a list has nothing to show
     listing_none: "(Rỗng)"
-    # link to filter search results by the current locale
     listing_set_locale_filter: "Đang hiển thị kết quả cho tất cả ngôn ngữ. %{set_filter_link:Chỉ hiển thị %{language} kết quả.}"
-    # link to remove locale filter
     listing_remove_locale_filter: "Đang hiển thị kết quả cho %{language}. %{remove_filter_link:Hiển thị kết quả cho mọi ngôn ngữ.}"
-    listing_language_all: ""
-    listing_language_js: ""
-    listing_language_css: ""
-    # link to start the process of importing (creating from an external place) scripts
     import: "Nhập script"
-    # link to create a new script
-    new: ""
-    new_css: ""
-    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support site
     support_site: "Ghé thăm trang hỗ trợ của tác giả."
-    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support email address
     support_email: "Gửi E-mail đến tác giả để được hỗ trợ."
-    # link to a site where the user can donate to the author, when the author didn't provide a suggested donation amount
     contribution_no_amount: "Cảm ơn %{author} đã ủng hộ."
-    # link to a site where the user can donate to the author, when the author provided a suggested donation amount
     contribution_with_amount: "Cảm ơn %{author} đã ủng hộ. Đề nghị ủng hộ là %{amount}."
-    # text for donating to the author via bitcoin, when the author didn't provide a suggested donation amount
     contribution_bitcoin_no_amount_html: "Cảm ơn %{author} đã ủng hộ Bitcoin từ %{address}."
-    # text for donating to the author via bitcoin, when the author provided a suggested donation amount
     contribution_bitcoin_with_amount_html: "Cảm ơn %{author} đã ủng hộ Bitcoin từ %{address}. Đề nghị ủng hộ là %{amount}."
-    # explanation of language chooser when editing script
     locale_explanation_html: "Nên trùng khớp ngôn ngữ của<code>@name</code>, <code>@description</code>, và thông tin bổ sung đầu tiên"
-    # the default value for the locale box, if submitted the site will attempt to detect the language of the entry
     locale_auto_select: "(Tự động phát hiện)"
-    # label which lists the sets this script is in, which is followed by controls to change its inclusions
     sets_label: "Trong các bộ script:"
-    # label for when the script is not in any sets, which is followed by controls to change its inclusions
     sets_label_no_sets: "Các bộ script:"
-    # option to remove the script from the set
     sets_remove_inclusion: "Gỡ bỏ từ %{set_name}"
-    # option to remove the script's exclusion from the set
     sets_remove_exclusion: "Gỡ bỏ loại trừ từ %{set_name}"
-    # option to add the script to the set
     sets_add_inclusion: "Thêm vào %{set_name}"
-    # option to exclude the script from the set (when it's been included as part of a sub set)
     sets_add_exclusion: "Loại trừ từ %{set_name}"
-    # option to add the script to a new set
     sets_add_to_new: "Thêm vào bộ mới"
-    # summary of %{site_name}'s rules for posting scripts. full_rules_link is a link to the full rules with text of rules_summary_link_to_full
     rules_summary_html: "Scripts phải <strong>mô tả đúng cách</strong>, không được <strong>khó hiểu</strong> hay <strong>giảm bớt</strong>, phải tôn trọng <strong>bản quyền</strong>, và được giới hạn trong <strong>mã nguồn ngoài</strong> được sử dụng. %{full_rules_link}"
-    # full rules link text used in the rules summary
     rules_summary_link_to_full: "Đọc toàn bộ quy định."
-    # warning when on the edit screen for a script set up to sync. syncing_notice_sync_type will be a link to the sync screen with text from syncing_notice_sync_type_manual or syncing_notice_sync_type_automatic
     syncing_notice_html: "Script này là %{syncing_notice_sync_type}. Mọi thứ bạn cập nhật tới mã nguồn tại đây sẽ ghi đè khi đồng bộ"
-    # used in syncing_notice_html when a script syncs only when the author requests it
     syncing_notice_sync_type_manual: "thiết lập để đồng bộ hóa thủ công từ %{sync_identifier}"
-    # used in syncing_notice_html when a script syncs automatically
     syncing_notice_sync_type_automatic: "thiết lập để tự động đồng bộ từ %{sync_identifier}"
-    # label for uploading a script under the code textarea
     upload_label: "Hoặc tải lên:"
-    # label for checkbox to enable or disable syntax highlighting code editor
     enable_source_code_editor_label: "Bật chỉnh sửa tô sáng mã nguồn"
-    # descriptive text for the changelog field
     changelog_note: "Có gì thay đổi ở phiên bản này?"
-    additional_info_note: ""
-    # button text for previewing additional info
-    # button text for submitting a new script
     post_new_script: "Đăng script"
-    # button text for submitting an update to an existing script
     post_updated_script: "Đăng phiên bản mới"
-    # label for radio button for public-type user script
     type_1_html: "Công khai user script - một user script tất cả đều có thể thấy và dùng."
-    # label for radio button for unlisted-type user script
     type_2_html: "Scripts chưa niêm yết - một kịch bản sử dụng cho (bán) sử dụng cá nhân. Sẵn bằng cách truy cập trực tiếp, nhưng không liên quan đến từ bất cứ nơi nào trên %{site_name}."
-    # label for radio button for library-type script
     type_3_html: "Thư viện - là script xây dựng cho <code>@require</code>-d từ script khác và không được cài đặt trực tiếp"
-    # label for checkbox to override script save warnings
     override_warning_checkbox_label: "Lưu lại dù sao đi nữa?"
-    # script warning for not increasing the version number when updating the code
     warning_version_not_incremented_html: "Bạn cập nhật code nhưng không tăng số  <code>@version</code>. Do đó những người đã cài đặt script của bạn từ trước có thể không nhận được cập nhật"
-    # script warning for when a version number is not provided
     warning_version_missing_html: "Bạn không cụ thể  <code>@version</code>. Thuộc tính <code>@version</code> là thẻ mô tả cho phép kiểm tra cập nhật script của bạn trong các trình quản lý user script"
-    # label for checkbox for the site to automatically handle version numbers
     warning_version_missing_generate_automatically_html: "Tạo <code>@version</code> một cách tự động?"
-    # script warning for when a namespace is not provided
     warning_namespace_missing_html: "Bạn không cụ thể  <code>@namespace</code>. Thuộc tính <code>@namespace</code> là thẻ mô tả cho phép người dùng cài đặt lại script của bạn để cập nhật"
-    # label for checkbox for the site to automatically add a namespace
     warning_namespace_missing_generate_automatically_html: "Tạo một <code>@namespace</code> một cách tự động?"
-    # script warning for when a namespace changed on update
     warning_namespace_changed_html: "<code>@namespace</code> của bạn đã được thay đổi. Một <code>@namespace</code> trùng khớp cho phép người dùng cài đặt lại script của bạn để cập nhật"
-    # script warning for when a script's code appears minified. allowed_requires_link is a link to the allowed @require list, with text of warning_potentially_minified_allowed_requires_link
     warning_potentially_minified_html: "Script của bạn có vẻ đã được tối ưu (đã nén) code. Nếu bạn đang sử dụng một thư viện đã tối ưu, Hãy đưa <code>@require</code> nó từ %{allowed_requires_link}. Những script đã tối ưu hóa code sẽ được miễn xóa."
-    # script warning for when a script's code is for adult sites. sensitive_domains is a list of domains
     warning_automatic_sensitive_html: "Script của bản dành cho %{sensitive_domains} và sẽ được dánh dấu có nội dung người lớn"
-    # used in warning_potentially_minified_html
     warning_potentially_minified_allowed_requires_link: "một trong những chỗ này"
-    warning_code_previously_posted_html: ""
-    # default option for the locale of a localized additional info
     additional_info_locale_prompt: "(Chọn một khu vực)"
-    # text for the button to add another additional info section for a different language
     additional_info_add_localized: "Thêm một thông tin bổ sung cục bộ"
-    # validation when more than one additional info is specified for a locale. "locale_code" is the locale code (e.g. "en") that has more than one additional info
     additional_info_locale_repeated: "Cung cấp thêm duy nhất một thông tin '%{locale_code}' khu vực"
-    # validation when an additional info in a locale is provided but no name was provided in that locale. "locale_code" is the locale code (e.g. "en") that is missing a name
     localized_additional_info_with_no_name: "Thông tin bổ sung dành cho khu vực  '%{locale_code}', nhưng không có @name:%{locale_code} được cung cấp"
-    localized_attribute_matches_default: ""
-    # text to edit a code syncing URL. field is the text field to enter the url.
     code_syncing_from_url_html: "Với mã script này được thiết lập để đồng bộ từ: %{field}"
-    # text to add a code syncing URL. field is the text field to enter the url.
     provide_code_syncing_from_url_html: "%{site_name} có thể lấy những script đã được lưu trữ ở bất kỳ đâu. Ví dụ như một hệ thống quản lý phiên bản (tương tự GitHub), máy chủ của bạn, hoặc dịch vụ lưu trữ script khác. Để bật tính năng đồng bộ script của bạn, Hãy cung cấp liên kết: %{field}"
-    # text before the sync type options
     sync_type_intro: "Script sẽ được đồng bộ:"
-    # label for radio button for manual syncing
-    sync_type_1:
-      name: ""
-      description: ""
-    # label for radio button for automatic syncing
-    sync_type_2:
-      name: ""
-      description: ""
-    # label for radio button for webhook syncing
-    sync_type_3:
-      name: ""
-      description: ""
-    sync_name_and_description: ""
-    # text when the last attempted sync failed. date is the date of the error run through markup_date. error is the technical error.
     sync_failed_info_html: "Lần đồng bộ cuối là %{date}, kết quả %{error}"
-    # text indicating the date of the last successful sync. date is the date of the sync run through markup_date
     sync_success_info_html: "Lần đồng bộ thành công cuối là %{date}."
-    # text if the sync never succeeded
     sync_never_succeeded: "Đồng bộ chưa bao giờ hoàn thành tốt đẹp."
-    sync_additional_info: ""
-    add_synced_additional_info: ""
-    # button to update sync settings and run sync immediately
     update_and_sync: "Cập nhật và đồng bộ ngay bây giờ"
-    # button to update sync settings but not sync immediately
     update_no_sync: "Cập nhật"
-    # button to disable syncing of the script
     turn_off_syncing: "Tắt đồng bộ hóa cho script này"
-    # label for syncing the default additional info
     additional_info_default_sync_html: "Thông tin bổ sung mặc định (ngôn ngữ trùng khớp <code>@name</code>)"
-    # label for syncing localized additional infos
     additional_info_localized_sync_html: "Cho khu vực  (trùng khớp <code>@name:XX</code>)"
-    # HTML placeholder for sync fields
     sync_url_placeholder: "(Địa chỉ)"
-    # label for adding a new screenshot
     screenshots_add: "Thêm:"
-    # label for checkbox to remove a screenshot
     screenshots_remove: "Gỡ bỏ"
-    # explains what a replacement script when deleting is
     replacement_script_explanation: "(Tùy chọn) Chọn script khác thay thế script này. Người dùng cập nhật sẽ được chuyển hướng tới script này. Nhập đường dẫn của script thay thế"
-    # title for diff page
     diff_title: "%{script} - Lịch sử phiên bản"
-    # label for older version being diffed
     diff_old_version: "Cũ:"
-    # label for newer version being diffed
     diff_new_version: "Mới:"
-    # label for input for lines to show around each change when doing a diff
     diff_lines_of_context: "Những dòng của nội dung:"
-    # label for checkbox on whether to ignore whitespace changes
     diff_ignore_whitespace: "Bỏ qua thay đổi khoảng trắng."
-    # button to refresh diff after changing diff options
     diff_refresh: "Làm mới"
-    # text shown when compared versions are the same
     diff_no_change: "Không tìm thấy khác biệt."
-    # tooltip for good rating number - "Good" should match the word used in RatingGood in the PHP localization
     good_rating_explanation: "Số lượng những người đã đánh giá Tốt hoặc thêm vào yêu thích."
-    # tooltip for ok rating number - "OK" should match the word used in RatingGood in the PHP localization
     ok_rating_explanation: "Số lượng những người đã đánh giá OK."
-    # tooltip for bad rating number - "Bad" should match the word used in RatingGood in the PHP localization
     bad_rating_explanation: "Số lượn những người đã đánh giá Tệ."
-    # link at the bottom of the scripts list suggesting people post a script or learn how. post_a_script_link is a link with text post_a_script_link_text that goes to the new script form. learn_to_write_scripts_link is a link with text learn_to_write_scripts_link_text that goes to the help document for writing scrupts
     write_your_own_html: "%{post_a_script_link} (hoặc %{learn_to_write_scripts_link})"
-    # link text for the new script form, used in write_your_own_html
-    post_a_script_link_text: ""
-    # link text for the writing a user script help doc, used in write_your_own_html
     learn_to_write_scripts_link_text: "Học cách để viết một cái"
-    # a suggestion below the install button that users provide feedback
-    feedback_or_report: ""
-    # a suggestion below the install button that users provide feedback or get support from the author's site. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
-    support_feedback_or_report: ""
-    # a suggestion below the install button that users provide feedback or get support from the author's via email. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
-    support_email_feedback_or_report: ""
-    # heading for section relating to adult content when posting new script or script version
     adult_content: "Nội dung người lớn"
-    # label for checkbox letting authors report their script as containing adult content
     adult_content_self_report: "Script này chứa nội dung người lớn hoặc được dành cho trang có nội dung người lớn"
-    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script not flagged as having adult content
     adult_content_self_report_explanation: "%{site_name}  cho phép script với nội dung người lớn, nhưng họ phải đánh dấu để người dùng lựa chọn có thấy nó hay không"
-    # label for checkbox letting authors report their script as not containing adult content
     not_adult_content_self_report_html: "Scripnt này <strong>không</strong> chứa nội dung người lớn và <strong>không</strong> dành cho trang có nội dung người lớn"
-    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content
     not_adult_content_self_report_explanation: "%{site_name} cho phép các script với nội dung nhạy cảm, nhưng nó phải được đánh dấu để người dụng lựa chọn có xem nó hay không. Script của bạn đã bị đánh dấu có nội dung nhạy cảm. Bạn có thể báo cáo sai sót để được quản trị viên xem xét."
-    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content due to automatic checking
     not_adult_content_self_report_explanation_automatic: "%{site_name}cho phép những script với nội dung người lớn, nhưng họ buộc phải dánh đấu chúng để người dùng có thể lựa chọn khi thấy nó. Script của bạn được dánh dấu là có nội dung người lớn do dành cho %{domain_list}"
-    # the error you see when accessing a adult content script when logged in with the adult content setting off
     adult_content_on_greasy_logged_in_error: "Script này không còn khả dụng với thiết lập tài khoản của bạn :%{edit_account_link:Greasy Fork account settings}."
-    # the error you see when accessing a adult content script when not logged in
     adult_content_on_greasy_not_logged_in_error: "Script này không còn ẩn danh trên trang. %{login_link:Log in} vui lòng kiểm tra thiết lập tài khoản của bạn."
-    # the error you see when access a non-adult content script on sleazy fork
     non_adult_content_on_sleazy: "Script không có sẵn trên trang web này."
-    not_js_convertible_override_header: ""
-    not_js_convertible_override_explanation: ""
-    not_js_convertible_override_label_html: ""
-    # marker after script name shown to authors indicating their adult scripts
     adult_marker: "(Dành cho người lớn)"
-    # marker after script name if it's deleted
     deleted_marker: "(Đã xóa)"
-    # marker after script name if it's locked
     locked_marker: "(Đã khóa)"
-    # marker after script name if it's unlisted
     unlisted_marker: "(Chưa xem)"
-    # marker after script name if it's a library
     library_marker: "(Thư Viện)"
-    # title for libraries listing page
     libraries_title: "Thư viện"
-    # description for libraries listing page
     libraries_description_html: "Danh sách thư viện được đăng bởi người dùng %{site_name}mà bản có thể <code>@require</code> ở script của bạn. Với cách thể loại thư viện khác bạn có thể<code>@require</code>, vui lòng đọc chính sách của %{policy_link:%{site_name}  cho <code>@require</code>}."
-    # title of the listing of top sites to script
     by_site_list_title: "User scripts trên %{site_name}được gộp trên trang "
-    # description of the listing for top sites to script
     by_site_list_description: "Đây là những trang web được tác động bởi những user scripts phổ biến nhất. Phông chữ lớn hơn nghĩa là những user scripts này phổ biến hơn."
     by_site_list_filter: "Lọc theo tên trang:"
-    # placeholder for script search box
     search_placeholder: "Tìm script"
     updated: "Script đã được cập nhật."
     preview_additional_info: "Xem trước"
-    must_confirm: ""
-    must_confirm_external_sign_in: ""
     must_confirm_email_button: "Gửi liên kết xác nhận đến %{email}"
-    authors_heading: ""
-    error_unauthorized_copy: ""
-    invitations:
-      form_title: ""
-      explanation: ""
-      invited_user_url_label: ""
-      invited_user_placeholder: ""
-      submit: ""
-      invalid_user_url: ""
-      already_author: ""
-      sent: ""
-      subject: ""
-      body: ""
-      current_user_already_author: ""
-      invitation_not_found: ""
-      invitation_expired: ""
-      invitation_accepted: ""
-    remove_author:
-      heading: ""
-      success: ""
-      remove_button: ""
-      remove_confirm: ""
-      failure: ""
-    no_disposable_email: ""
-    rate_limited: ""
-    new_script_notice:
-      title: ""
-      install_link_html: ""
-      share_link_html: ""
-    new_title:
-      js: ""
-      css: ""
-    update_title: ""
-    antifeatures:
-      warning_title: ""
-      author_explanation_intro: ""
-      types:
-        ads:
-          title: ""
-          description_html: ""
-        tracking:
-          title: ""
-          description_html: ""
-        miner:
-          title: ""
-          description_html: ""
-        referral-link:
-          title: ""
-          description_html: ""
-      install_anyway: ""
-      cancel_install: ""
-    badges:
-      js:
-        short: ""
-        long: ""
-      css:
-        short: ""
-        long: ""
   script_sets:
-    # description of script sets on edit page
     description: "Bộ sưu tập Script giúp bạn tạo và chỉnh sửa danh sách các scripts để tìm kiếm với Greasy Fork. Bạn có thể thêm scripts này vào bộ sưu tập bao gồm cả script cá nhân, hoặc cho người dùng khác, hoặc là tạo một cách tự động một bộ sưa tập. Bạn cũng có thể hủy bỏ script từ bộ sưu tập của bạn bằng cách tương tự."
-    # name for the favorites set
     favorites_name: "Mục ưa thích"
-    # delete button text for a script set
     delete: "Xóa bộ script"
-    # delete confirmation for a script set
     delete_confirmation: "Bạn có chắc rằng bạn muốn xóa bộ script này?"
-    # option for choosing to sort the set by the default sort the site uses
     site_default_sort: "(Trang mặc định)"
     edit_scripts:
       heading: "Những Script"
@@ -630,200 +283,105 @@ vi:
       user: "Các bộ script bởi người dùng %{user}"
       locale: "Các script trong %{locale_name}"
   home:
-    # html title of the homepage
     title: "%{site_name} - những user script an toàn và hữu dụng"
-    # text at the top of the homepage.
     welcome: "Chào mừng đến %{site_name}, trang web về các user script."
-    # html title of the sleazy fork homepage
     sleazy_title: "%{site_name} - Những script dành cho người lớn an toàn và hữu ích"
-    # text at the top of the sleazy fork homepage.
     sleazy_welcome: "Chào mừng tới %{site_name}, một trang web dành cho những user script \"người lớn\""
-    # placeholder for home page search box
     search_placeholder: "Tìm kiếm cho các script người dùng"
     scripts_for_label: "Các scripts dành cho:"
-    # heading for the paragraph explaining what user scripts are
     explain_user_scripts_heading: "Các user script là gì?"
-    # text explaining what user scripts are.
     explain_user_scripts_html: "Script của người dùng giúp bạn có những trải nghiệm mới với trình duyệt.Khi được cài đặt, chúng biến những trang bạn truy cập duyệt vời hơn bằng việc thêm những tính năng mới, dễ sử dụng hơn hay loại bỏ những chi tiết làm bạn khó chịu. Script trên %{site_name} được viết bởi những người dùng khác và được đăng để chia sẻ vpis mọi người. Chúng hoàn toàn miễn phis và dễ sử dụng."
-    # header for step 1 - how to install a user script manager
     installing_step1_header: "Bước 1: cài đặt một bộ quản lý script người dùng"
-    # caption in step 1 - screenshot of tampermonkey on chrome
     installing_step1_caption: "Tampermonkey trên Chrome"
-    # text for step 1, listing options for user script managers based on browsers
-    installing_step1_description_html: >
-    # header for step 2 - how to install a user script
     installing_step2_header: "Bước 2: cài đặt một script người dùng"
-    # caption for step 2 - showing the install button for user scripts
     installing_step2_caption: "Nút cài đặt của một script người dùng"
-    # text for step 2 - describing how to find and install user scripts
     installing_step2_description_html: >
-      <p>%{browse_link:Duyệt trang này} để tìm một script người dùng bạn muốn thử. Đây là một ví dụ tiêu biểu cho những script phổ biến nhất:</p>
+        <p>%{browse_link:Duyệt trang này} để tìm một script người dùng bạn muốn thử.
+        Đây là một ví dụ tiêu biểu cho những script phổ biến nhất:</p>
 
-      %{highlighted_scripts_list}
+        %{highlighted_scripts_list}
 
-      <p>Khi bạn đã tìm thấy một script người dùng, hãy nhấp vào nút cài đặt màu xanh lá cây trên trang của script người dùng và bộ quản lý script người dùng của bạn sẽ yêu cầu bạn xác nhận cài đặt.</p>
-    # header for step 3 - how to use a user script
+        <p>Khi bạn đã tìm thấy một script người dùng, hãy nhấp vào nút cài đặt màu
+        xanh lá cây trên trang của script người dùng và bộ quản lý script người dùng
+        của bạn sẽ yêu cầu bạn xác nhận cài đặt.</p>
     installing_step3_header: "Bước 3: sử dụng script người dùng"
-    # description for step 3, describing browsing to the site and having the user script apply
     installing_step3_description_html: >
-      <p>Truy cập trang web mà script người dùng tác động. Nó sẽ tự động làm việc của nó. Sau khi thử script người dùng một lúc, quay trở lại nơi bạn đã cài đặt script người dùng và để lại một số phản hồi cho tác giả của script người dùng.</p>
+        <p>Truy cập trang web mà script người dùng tác động. Nó sẽ tự động làm việc
+        của nó. Sau khi thử script người dùng một lúc, quay trở lại nơi bạn đã cài
+        đặt script người dùng và để lại một số phản hồi cho tác giả của script người
+        dùng.</p>
   users:
-    # html title for the sign in page
     sign_in_title: "Đăng nhập vào %{site_name}"
-    # what signing in lets people od
     sign_in_description: "Đăng nhập vào %{site_name} để bạn có thể đăng script và gửi phản hồi trên script của những người khác. Bạn không cần đăng nhập để duyệt hoặc cài đặt script."
-    # heading for signing in with an external service (Google, GitHub, etc.)
     sign_in_external: "Đăng nhập bằng một dịch vụ ngoài"
-    # button for signing in with an external service (Google, GitHub, etc.)
     sign_in_with: "Đăng nhập với %{provider}"
-    # heading for signing in with a password
     sign_in_password: "Đăng nhập với một mật khẩu"
-    # when a user attempts to sign in with an external service and a user already exists with the same email, this is the message shown. email: provided e-mail, user_name: existing user's name, provider: what the user tried to sign in with (e.g. GitHub), sign_in_link: a link to the sign in page with text from sign_in_email_used_sign_in_link
     sign_in_email_used_no_external_services_html: "'%{email}' đã được tài khoản '%{user_name}' sử dụng. Nếu đó là bạn và bạn muốn thêm đăng nhập với %{provider}, %{sign_in_link} vào tài khoản của bạn trước, sau đó thêm đăng nhập với %{provider}."
-    # same as above, but when the existing user uses other providers. also includes existing_providers, which is a list of the existing user's sign ins, run through to_sentence (http://apidock.com/rails/Array/to_sentence)
     sign_in_email_used_with_external_services_html: "%{email}' đã được tài khoản '%{user_name}' sử dụng, ai đó đã đăng nhập với %{existing_providers}. Nếu đó là bạn và bạn muốn thêm đăng nhập với %{provider}, %{sign_in_link} vào tài khoản của bạn trước, sau đó thêm đăng nhập với %{provider}."
-    # sign in link for email_used messages
     sign_in_email_used_sign_in_link: "đăng nhập"
-    # when a user attempts to create an account with an external service, but an email was not provided by that service
     sign_in_email_missing: "%{site_name} yêu cầu một email để tạo một tài khoản mới, nhưng %{provider} không cung cấp cho bạn. Bạn có thể cập nhật %{provider} tài khoản của bạn để có một, sau đó thử đăng nhập lại, hoặc tạo một tài khoản email / mật khẩu thông thường trên %{site_name}, sau đó thêm %{provider} tào khoản của bạn vào nó."
-    # this shows when signing in for the first time with an external sign in but the name received is already in use. the user is prompted to enter a different name.
     sign_in_name_used: "Cái tên '%{name}' đã được sử dụng. Hãy chọn cái khác."
-    # the button when submitting the name form per above
     sign_in_name_used_submit: "Gửi"
-    # Button to preview a user's profile before saving
-    # heading for the user's control panel, which contains links such as post script and edit account
     control_panel: "Bảng điều khiển"
-    # heading for the list of discussions about a user's own scripts
     discussions_on_scripts: "Thảo luận về các script của bạn"
-    # alt text for the RSS feed icon for discussions about a user's own scripts
     discussions_on_scripts_feed_alt: "Nguồn cấp RSS"
-    # text to show in the section for discussions about a user's own scripts if there are no discussions yet
     discussions_on_scripts_none: "Chưa có gì hết!"
-    # link to more discussions on a user's own scripts, as the initial list is limited in number
     discussions_on_scripts_more: "Xem thêm các cuộc thảo luận..."
-    # heading for the list of scripts on a user's page
     script_list: "Scripts"
-    # text to show in a user's script section when they have created no scripts
     script_list_none: "Không có script nào đã đăng."
-    # text to show in a user's script section when they have created scripts, but they are not shown due to the filters active
     script_list_none_for_filter: "Không có script cho các bộ lọc hiện tại."
-    # text to show in a user's own script section when they have created no scripts. script_list_none_same_user_info_link is a link to a tutorial with text of script_list_none_same_user_info_link_text
     script_list_none_same_user_html: "Bạn chưa viết script nào. %{script_list_none_same_user_info_link}"
-    # text used for link in script_list_none_same_user_html
     script_list_none_same_user_info_link_text: "Bạn muốn học như thế nào?"
-    # heading for the list of a user's deleted scripts (visible to only that user and mods)
     deleted_script_list: "Scripts bị xóa"
-    unlisted_script_list: ""
-    # link to log out
     sign_out: "Đăng xuất"
-    # link to edit an account
     edit: "Chỉnh sửa tài khoản"
-    # link to edit how the user signs in
     edit_sign_in: "Sửa phương pháp đăng nhập"
-    # html title for the edit sign in page
     edit_sign_in_title: "Sửa phương pháp đăng nhập"
-    # heading for the password section of the edit sign in methods page
     edit_sign_in_password: "Mật khẩu"
-    # informational text telling the user they're not using a password
-    edit_notifications: ""
     no_password_set_info: "Tài khoản của bạn không được cấu hình với một mật khẩu."
-    # button to set a password when one is not already set
     set_password: "Đặt mật khẩu"
-    # button to set a password when one is already set
     update_password: "Cập nhật mật khẩu"
-    # error message when the password and the confirmation don't match
     update_password_no_match: "Sai mật khẩu"
-    # notice after a password was updated successfully
     password_updated: "Mật khẩu đã cập nhật."
-    # information text saying the user can unset their password and use just external sign ins
     remove_password_info: "Bạn có thể loại bỏ mật khẩu của bạn và chỉ dựa vào đăng nhập bên ngoài."
-    # button to remove the password from the user's account
     remove_password: "Xóa mật khẩu"
-    # error message to show if the user attempts to remove a password but have no external sign ins. This is normally not possible with the interface.
     cant_remove_password: "Không thể xóa bỏ mật khẩu - bạn sẽ không có cách nào đăng nhập được!"
-    # error message to show if the user attempts to remove a sign in but has no password or other sign ins. This is normally not possible with the interface. provider is the external site's name, like GitHub or Google
     cant_remove_sign_in: "Không thể gỡ %{provider} đăng nhập - bạn sẽ không có cách nào để đăng nhập!"
-    # notice after a password was removed successfully
     password_removed: "Mật khẩu đã xóa."
-    # heading for the external sign ins section of the edit sign in methods page
     edit_sign_in_external: "Đăng nhập ngoài"
-    # information text about how they can use external sign ins, shown when the user has not set any yet
     external_sign_in_info_no_sign_ins: "Bạn có thể sử dụng tài khoản của bạn trên các trang web khác để đăng nhập vào %{site_name}."
-    # information text about how they can use external sign ins, shown when the user already has some set. should describe the concept of syncing, where account details on %{site_name} will be updated to match the external service on sign in
     external_sign_in_info_with_sign_ins: "Bạn hiện đang sử dụng các kiểu đăng nhập được liệt kê dưới đây. Một \"đồng bộ\" có nghĩa là thông tin đăng nhập %{site_name} của bạn (như tên người dùng và email) sẽ được cập nhật để phù hợp khi bạn đăng nhập."
-    # notice after a sign in is added. provider is the external site's name, like GitHub or Google
     external_sign_in_added: "%{provider} đã thêm đăng nhập."
-    # notice after a sign in is updated (from syncing to not or opposite). provider is the external site's name, like GitHub or Google
     external_sign_in_updated: "%{provider} đã cập nhật đăng nhập."
-    # notice after a sign in is removed. provider is the external site's name, like GitHub or Google
     external_sign_in_removed: "%{provider} đã xóa đăng nhập."
-    # notice after a sign in fails
     external_sign_in_failed: "%{provider} đăng nhập thất bại: %{error}."
-    # notice after a user tries to add a sign in to their account, but that sign in is already in use by another user
     external_sign_in_already_used: "Không thể đăng nhập bằng tài khoản %{provider}. Thông tin tài khoản này đã được sử dụng bởi '%{user_name}'."
-    # notice after successfully creating a new user based on external login
     external_sign_in_confirmation: "Một tài khoản %{site_name} mới đã được tạo dựa trên những chi tiết tài khoản %{provider} của bạn. Tên người dùng công khai của bạn là %{username}."
-    # an indicator beside the sign in provider's name if the user chose to enable syncing
     syncing_indicator: "(đang đồng bộ)"
-    # button to set a sign in provider to sync
     enable_syncing: "Bật đồng bộ hóa"
-    # button to set a sign in provider to not sync
     disable_syncing: "Tắt đồng bộ hóa"
-    # button to remove a sign in provider
     remove_external_sign_in: "Gỡ bỏ"
-    # information text indicating that the list of links below it are for addding an external sign in
     add_external_sign_in_info: "Thêm một dấu hiệu trong:"
-    # link to docs on how to set up a webhook for script syncing
-    set_up_webhook: ""
     author_email_notification_type:
-      # notification option: don't send the user e-mails
       none: "Không nhận email về những thảo luận trong các script của bạn"
-      # notification option: send e-mails on new discussions but not new posts on existing discussions
       discussion_only: "Nhận email khi có thảo luận trong các script của bạn"
-      # notification option: send e-mails on new discussoins and on new posts on existing discussions
       discussion_and_comment: "Nhận email khi có thảo luận trong các script của bạn hoặc những thảo luận đó có bình luận mới"
-    # display of a single user when displaying a list of users. user_link is a link to the user's page with text of the user name, count is the number of public scripts authored
     list_display_html:
       other: "%{user_link} - %{count} scripts"
-    # sort link for sorting users by number of scripts they've posted
     listing_number_of_scripts: "Số scripts"
-    # sort link for sorting users by the creation date of their scripts
     listing_new_scripts: "Script mới"
-    # sort link for sorting users by the updated date of their scripts
     listing_updated_scripts: "Script được cập nhật"
-    # sort link for sorting users by when they signed up
     listing_registration_date: "Thời gian đăng ký"
-    # title for page showing list of users
     listing_title: "Người dùng"
-    listing_banned_filter:
-      banned: ""
-      not_banned: ""
-      all: ""
-    listing_author_filter:
-      script_author: ""
-      not_script_author: ""
-      all: ""
-    # placeholder for user search box
     search_placeholder: "Tìm người dùng"
-    # default option for the user's preferred locale
     locale_prompt: "(Chọn một khu vực)"
-    # text describing what the show ads checkbox does
     show_ads_description: "Ủng hộ %{site_name} bằng cách cho phép nó hiển thị quảng cáo"
-    # text describing what the show sensitive checkbox does
     show_sensitive_description: "Hiện script có nội dung nhạy cảm"
-    # text describing what the preferred markup setting does
     preferred_markup_description: "Sẽ được sử dụng cho các script và bài viết mới."
-    filter_locale_default_description: ""
-    # link from sleazy fork to greasy fork on user page
     greasy_fork_scripts_link:
       other: "%{user_name} cũng có  %{count} script trên Greasy Fork."
-    # displays when the user is editing their account but syncing is on
-    update_sync_warning:
-      other: ""
-    # link on the user page to go to the delete page
     delete_link: "Xoá tài khoản"
     delete:
-      intro: ""
       password_effect: "Bạn sẽ không thể đăng nhập bằng mật khẩu của mình"
       identities_effect:
         other: "Đăng nhập với %{identities}sẽ tạo tài khoản mới"
@@ -837,7 +395,6 @@ vi:
       confirmation_email_sent: "Email xác nhận xoá tài khoản đã được gửi đi"
       confirmation_email:
         subject: "Xác nhận xoá tài khoản %{site_name}"
-        body: ""
       confirmation:
         intro: "Bạn đang thực hiện xoá tài khoản '%{user_name}'. Hành động này là không thể hoàn tác."
         confirm: "Xoá '%{user_name}'"
@@ -846,167 +403,48 @@ vi:
         request_expired: "Không thể xoá người dùng - yêu cầu đã hết hạn"
         cancelled: "Đã huỷ xoá"
         completed: "Tài khoản của bạn đã bị xoá"
-    banned_notice:
-      no_report_no_reason: ""
-      with_report: ""
-      with_reason: ""
-    banned_delete:
-      intro: ""
-      complete: ""
-    badges:
-      banned:
-        short: ""
-        long: ""
-      moderator:
-        short: ""
-        long: ""
-      author:
-        short: ""
-        long: ""
-    notifications:
-      discussion_defaults:
-        title: ""
-        new_discussion: ""
-        new_comment: ""
-        mention: ""
-      conversation_defaults:
-        title: ""
-        starter: ""
-        receiver: ""
-      save_button: ""
-      title: ""
-      current_discussion_subscriptions:
-        other: ''
-      save_success: ""
-      unsubscribe_all: ""
-      unsubscribe_all_success: ""
-  webhooks:
-    info:
-      title: ""
-      intro_html: |
-      already_syncing_list: ""
-      synced_item_html: ""
-      language_note: ""
   help:
-    sections:
-      usage: ""
-      development: ""
-      miscellaneous: ""
-    open_source: ""
     installing_user_scripts:
       title: 'Làm sao để cài đặt các user script?'
-    installing_user_styles:
-      title: ''
     meta_keys:
-      # title of the help document describing script meta keys (e.g. @name).
       title: "Thẻ mô tả Scripts đọc bởi %{site_name}"
-      # introductory paragraph. If the URL has a localized version, use that.
-      intro_html: ""
-      # description of @name
       name: "Tên của script, sử dụng như đầu đề và trên liên kết. Bắt buộc"
-      # description of @name:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
       name_localized_html: "Tên của script trong một khu vực cụ thể, XX là một <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-letter code</a> và YY là một tùy chọn <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 country code</a>. Ghi đè <code>@name</code>code</a> khi người dùng đang duyệt web ở khu vực trùng khớp."
-      # description of @description
       description: "Thông tin mô tả những gì script sẽ thực hiện. Hiển thị phía dưới tên script. Bắt buộc"
-      # description of @description:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
       description_localized_html: "Mô tả của script nằm trong một khu vực cụ thể. Nơi XX là một <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-letter code</a> và YY là một tùy chọn and YY is an optional <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 country code</a>. Ghi đè <code>@description</code> khi người dùng đang duyệt web ở khu vực trùng khớp."
-      # description of @namespace. Do not translate content inside <code>.
       namespace_html: "Một sự phối hợp của <code>@namespace</code> và <code>@name</code> được sử dụng bởi trình quản lý script để xem những script đã cài đặt. %{site_name} yêu cầu trường này và sẽ cảnh bảo nếu nó được thay đổi khi cập nhật"
-      # description of @description:XX-YY. developer.mozilla.org may have localized content; use it if available.
       version_html: "Nhận dạng cụ thể phiên bản của một script tại  <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">Định dạng phiên bản Mozilla</a>. Phiên bản hiển thị trên trang thông tin script. %{site_name} yêu cầu trường này và sẽ cảnh báo nếu nó giảm đi hoặc không tăng khi script thay đổi code của script"
-      # description of @include
-      include_html: ""
-      # description of @require. %{external_script_link} is a link to the document describing allowed external scripts and has a link of key "require_external_script_link_text"
       require_html: "Liệt kê Javascript bên ngoài cần sử dụng trong script. Tham khảo %{external_script_link}."
-      # used in required_html
       require_external_script_link_text: "Quy tắc liệt kê những scripts bên ngoài"
-      # description of @updateURL
       updateURL: "Mô tả cách các trình quản lý script sẽ nhận được thông tin cập nhật. %{site_name} lấy hết những mô tả này, Nó đảm bảo script cài đặt từ %{site_name} chỉ cập nhật từ %{site_name}"
-      # description of @license
-      license: ""
-      # description of @supportURL
       supportURL: "Liên kết cho một trang nơi người dùng có thể tìm kiếm sự hỗ trợ cho một script (Vì dụ: một máy chủ ghi lỗi, một diễn đàn, một email). Địa chỉ hỗ trợ được hiển thị ở trang phản hồi của script."
-      # description of @contributionURL. You can replace the sample "business" and "item_name" parameters in the URLs with localized versions.
       contributionURL_html: "Liên kết tới một trang người dùng có thể đóng góp cho tác giả của một script. Liên kết đóng góp được hiển thị trên trang phản hổi của script. Liên kết có thể là http, https, hoặc giao thức Bitcoin. Để chuyển tới trang đóng góp PayPal, hãy sử dụng liên kết có định dạng <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a>. thay thế địa chỉ email ví dụ bằng địa chỉ email của bạn."
-      # description of @contributionAmount. Do not translate content inside <code>.
       contributionAmount_html: "Để đề xuất một khoản đóng góp hãy kết hợp với<code>@contributionURL</code>."
-      # description of @compatible. %{browsers} is a comma-separated list of browser codes. You can translate "Must disable pop-up blocker", but do not translate "@compatible firefox". 
       compatible_html: "Đánh dấu script tương thích với trình duyệt. Thông tin tương thích sẽ hiển thị ở trang của script. Thông tin tương thích có thể được liệt kê với dịnh dạng  <code>@compatible firefox Must disable pop-up blocker</code>. Trình duyệt được công nhận: %{browsers}"
-      # description of @incompatible. %{browsers} is a comma-separated list of browser codes. You can translate "Broken since Firefox 23", but do not translate "@compatible firefox".
       incompatible_html: "Đánh dấu script không tương thích với một trình duyệt. Thông tin tương thích sẽ được hiện thị ở trang của script. Tùy chọn chú thích về tương thích có thể được liệt kê với định dạng <code>@incompatible firefox Broken since Firefox 23</code>. Trình duyệt được công nhận: %{browsers}."
-      antifeature_html: ""
-      antifeature_localized_html: ""
     writing_user_scripts:
-      # title for Writing user scripts help page
       title: "Cách viết user script"
-      # content of the page. The link to greasespot can be updated to a better resource if one is available in your language. code_rules_link and meta_keys_link are links to those help pages, with text of those page's titles. ask_in_forum_link is a link to the forum with text of ask_in_forum_link_text. user_page_link is a link to the user's page if the user is signed in, or plain text if they're not; in either case, the text is user_page_link_text. post_new_script_link is a link to the new script page, with text of post_new_script_link_text
       content_html: "<p>Viết một user script đòi hỏi kiến thức về JavaScript. Những <a href=\"http://wiki.greasespot.net/Tutorials\">bài hướng dẫn trên GreaseSpot Wiki</a> sẽ giúp bạn biết về JavaScript một cách tổng quan nhất và đưa nó vào các user script. Tham khảo các scripts khác có thể giúp bạn. Bạn có thể cảm thấy hào hứng ở %{code_rules_link} và %{meta_keys_link}. Nếu bạn muốn có sự giúp đỡ để tạo ra script của bạn, dừng ngại hỏi %{ask_in_forum_link}.</p><p>Để đăng script lên %{site_name}, bạn sẽ cần tạo một tài khoản. Từ  %{user_page_link} của bạn, bấm vào liên kết %{post_new_script_link}.</p>"
-      # link text used in content_html
       ask_in_forum_link_text: 'hỏi trên diễn đàn'
-      # link text used in content_html
       user_page_link_text: 'Trang cá nhân'
-      # link text used in content_html
       post_new_script_link_text: 'Đăng script mới'
     code_rules:
-      # title for the rules page
       title: "Quy định của %{site_name} cho script đã đăng"
-      preamble: ""
-      functionality_header: ""
-      description: ""
-      reason: ""
-      unrelated: ""
-      monetization_html: ""
-      code_header: ""
-      obfuscation: ""
-      libraries_html: ""
-      updates: ""
-      external_js: ""
-      copyright_header: ""
-      licensing: ""
-      reposts: ""
-      miscellaneous_header: ""
-      keywords_html: ""
-      adult_content_rule: ""
-      reporting: ""
     external_scripts:
-      # title of the external script rules page
       title: "Điều khoản của %{site_name}' về script mở rộng"
-      # content of the external script rules page
-      content_html: >
-      test_url:
-        label: ""
-        result_ok: ""
-        result_not_ok: ""
     script_rewriting:
-      # title of the rewriting page
       title: "Làm thế nào %{site_name} sẽ viết lại các script đã đăng"
-      # content of the rewriting page
-      content_html: >
-    # link to github
     site_feedback_link: "Báo cáo vấn đề hoặc ý tưởng bài viết cho chính %{site_name}"
     credits:
-      # title for the credits page
       title: "Cảm ơn tới"
-      # give credit to authors
       authors_credit: "%{site_name} sẽ không thể có nếu không có các tác giả đóng góp script."
-      # give credit to developers. link goes to github.
       developers_credit: "%{site_name} được tự xây dựng bởi %{developers_link:these people} với sự giúp đỡ của những người báo lỗi và góp ý."
-      # give credit to translators. link to goes to transifex. after this text, there's a list of languages and the contributors to each.
       translators_credit: "%{site_name} đã được dịch bởi %{translators_link:the Greasy Translation Force on Transifex}:"
-      # give credit to icon makers. all links are proper names so are not translated.
-      icons_credit: ""
-    # link to greasemonkey docs
     help_with_greasymonkey: "Trợ giúp với Greasemonkey"
     contact:
-      # title of contact page
       title: "Liên hệ một ai đó"
-      # content of contact page
-      content_html: >
     privacy_policy:
       title: "Chính sách bảo mật"
-      content_html: >
-    user_css_to_user_js:
-      title: ""
   search:
     script_search:
       title: "Tim kiếm Script"
@@ -1029,326 +467,62 @@ vi:
     item_script_html: "Script: %{script_link}"
     item_deleted_script: "Đã xoá script %{id}"
     item_user_html: "Người dùng: %{user_link}"
-  notifications:
-    consecutive_bad_ratings:
-      other: ""
-  reports:
-    report_filed: ""
-    new_report_title:
-      user: ""
-      comment: ""
-      message: ""
-      script: ""
-    new_report_notes_html: >
-    new_script_report_notes_html: >
-    new_user_report_notes_html: >
-    reason:
-      non_functional: ""
-      spam: ""
-      abuse: ""
-      illegal: ""
-      unauthorized_code: ""
-      malware: ""
-      minified: ""
-      external_code: ""
-      undisclosed_antifeature: ""
-      other: ""
-    report_intro_html: ""
-    report_intro_unauthorized_html: ""
-    non_functional_feedback: ""
-    unauthorized_code_original_placeholder: ""
-    explanation_placeholder: ""
-    create_button: ""
-    report_user: ""
-    report_comment: ""
-    report_message: ""
-    result_dismissed: ""
-    result_upheld: ""
-    result_pending: ""
-    rebuttal_placeholder: ''
-    submit_rebuttal: ""
-    delete_script: ""
-  discussions:
-    title: ""
-    comment_date: ""
-    comment_edit_date: ""
-    posted_by_html: ""
-    last_comment: ""
-    new_discussion_heading: ""
-    new_discussion_submit: ""
-    new_comment_heading: ""
-    new_comment_submit: ""
-    back_to_feedback: ""
-    edit_comment_link: ""
-    edit_comment_header: ""
-    delete_comment: ""
-    delete_comment_confirm: ""
-    delete_discussion: ""
-    delete_discussion_confirm: ""
-    update_comment_submit: ""
-    cancel_update_comment: ""
-    quote_comment: ""
-    question_heading_html: ""
-    review_heading_html: ""
-    update_rating: ""
-    ratings:
-      question: ""
-      bad: ""
-      ok: ""
-      good: ""
-    ratings_short:
-      question: ""
-      bad: ""
-      ok: ""
-      good: ""
-    sign_in_to_post_discussion: ""
-    sign_in_to_post_comment: ""
-    user_filter:
-      label: ""
-      all: ""
-      discussion_by_me: ""
-      comment_by_me: ""
-      on_my_scripts: ""
-      subscribed: ""
-    other_user_filter:
-      all: ""
-      comments_by: ""
-    category_filter:
-      label: ""
-      all: ""
-    read_filter:
-      label: ""
-      all: ""
-      read: ""
-      unread: ""
-    locale_filter:
-      label: ""
-      all: ""
-    user_activity:
-      title: ""
-      no_recent_activity: ""
-      see_all_activity: ""
-      script_review:
-        posted_html: ""
-        replied_html: ""
-      script_question:
-        posted_html: ""
-        replied_html: ""
-      discussion:
-        posted_html: ""
-        replied_html: ""
-    review_title: ""
-    question_title: ""
-    subscribe: ""
-    unsubscribe: ""
-    notify: ""
-    notifying_on_script: ""
-    categories:
-      greasyfork:
-        name: ""
-        description: ""
-      development:
-        name: ""
-        description: ""
-      requests:
-        name: ""
-        description: ""
-      script-discussions:
-        name: ""
-        description: ""
-      no-scripts:
-        name: ""
-      moderators:
-        name: ""
-        description: ""
-    category_display: ""
-    new_title: ""
-    new_button: ""
-    script_notice: ""
-    no_discussions: ""
-    mark_all_read: ""
-    pending_moderator_review: ""
-  conversations:
-    user_input_note: ""
-    new_title: ""
-    new_link: ""
-    new_button: ""
-    title_html:
-      other: ''
-    send_message: ""
-    conversation_list_title: ""
-    conversation_link_html:
-      other: ''
-    conversation_info_html: ""
-    no_conversations: ""
-    no_recent_conversations: ""
-    recent:
-      title: ""
-      more: ""
-  screenshots:
-    requirements: ""
   common:
-    # text to show before listing errors in a submission
     error_preamble: "Có vài trục trặc với cái bạn vừa đăng.."
-    # link to the list of allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_link: "(Xem mã cho phép.)"
-    # title of the page showing allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_and_attributes_title: "Cho phép phần tử mang nội dung HTML"
-    # text to introduce the list of allowed HTML elements and attributes
     allowed_elements_intro: "Các yếu tố và các thuộc tính sau đây được phép. Điều này áp dụng cho cả HTML và Markdown (sau khi chuyển đổi sang HTML)."
-    # additional info for the allowed HTML elements, explaining additional changes made to content
     allowed_elements_extra_info: "Khoảng trắng sẽ được biến thành p hoặc br phần tử. URL sẽ được tự động linkified."
-    allowed_css_intro: ""
-    user_references_html: ""
     not_found_text: "404 - không thấy trang."
     not_found_title: "404 - Không thấy trang"
     not_found_link_home: "Về trang chính"
-    # shown on the first page a user sees if, based on the user's Accept-Language header, we think we have a better locale than what the first page shows. "locale_name" is the name of the locale in that language (matching the name in the locale drop down)
     suggest_locale: "%{site_name} đã có ngôn ngữ %{locale_name}."
-    # shown on the first page a users sees if the locale they're on is less than a certain amount translated. links to the docs on how to help with localization
     incomplete_locale: "%{site_name} đã dịch từ ngôn ngữ %{locale_name} đã được %{percent}. Bạn có thể thay đổi nó."
-    # text for a button that expands a block of text
     expander_show_more: "Hiển thị thêm"
-    # text for a button that contracts a block of text
     expander_show_less: "Hiển thị bớt lại"
-    # note denoting what are ads
     advertisement_note: Quảng cáo
-    # label on tab allowing for previewing input
     preview_tab: Xem trước
-    # label on tab for entering input
     write_tab: Viết
-    listing_options_title: ""
-    quote:
-      prefix_html: ""
   activerecord:
     attributes:
       user:
-        # user field: display name
         name: "Tên"
-        # user field: profile (HTML content describing themselves)
         profile: "Hồ sơ"
-        # user field: locale
         locale: "ngôn ngữ ưa thích"
-        # user field: setting to send e-mails when discussions or comments are posted to a user's scripts. options are under users.author_email_notification_type
         author_email_notification_type_id: "Thông báo về thảo luận script"
-        # user field: show ads
         show_ads: "Hiện quảng cáo"
-        # user field: show sensitive
         show_sensitive: "Nội dung người lớn"
-        # user field: preferred markup (html or markdown)
         preferred_markup: "Đánh dấu ưa thích"
-        filter_locale_default: ""
-        current_password: ""
-        new_password: ""
-        new_password_confirmation: ""
       script:
-        # name of the script
         name: "Tên"
-        # description of the script
         description: "Mô tả"
-        # locale the script is in. see also scripts.locale_explanation
         locale: "Đặt tại"
-        # the JS code of the script
         code: "Mã nguồn"
-        # description of changes for an update
         changelog: "Lược sử các thay đổi"
-        # the type of script - public, unlisted, or library
         type: "Dạng script"
-        # additional descriptive text outside of @description
         additional_info: "Thông tin bổ sung"
-        # screenshots attached to the script
         screenshots: "Ảnh chụp nhanh"
-        # when deleting, which script to redirect to
         replaced_by_script_id: "Script thay thế"
       script_set:
-        # name of the script set
         name: "Tên"
-        # description of the script set
         description: "Mô tả"
-        # default sort of the script set
         default_sort: "Sắp xếp mặc định"
-      report:
-        reason: ""
-      discussion:
-        rating: ""
-        category: ""
-        title: ""
-      conversation:
-        user_input: ""
-      message:
-        content: ""
   errors:
     messages:
-      # validation for when a script name is not provided
       script_missing_name: "là cần thiết - xác định rõ bằng @tên"
-      # validation for when a script description is not provided
       script_missing_description: "được yêu cầu - chỉ rõ với @description"
-      # validation for when a script description is the same as name
       script_name_same_as_description: "không được giống tên đã tồn tại"
-      # validation for sync URL
       script_sync_identifier_bad_protocol: "phải là một HTTP hoặc HTTPS URL"
-      # validation for number of screenshots
       script_too_many_screenshots: "Quá nhiều ảnh chụp nhanh - nhiều nhất là %{number}"
-      # validation for "deleted and replaced by" when the user says the script is replaced by itself
       cannot_be_self_reference: "không thể là cùng một script"
-      # validation for "deleted and replaced by" when the user says the script is replaced by a deleted script
       cannot_be_deleted_reference: "không thể là script đã bị xóa"
       cannot_be_used_with_this_script: "Không thể sử dụng với script này"
-      # validation for "deleted and replaced by" when the user provides a non-%{site_name} URL
       must_be_greasy_fork_script: "phải là URL cho một script trên %{site_name}"
-      # validation when the user uploads code that's not UTF-8 text
       script_update_not_utf8: "văn bản upload phải có định dạng UTF-8"
-      # validation when user uploads code that contains a disallowed @require
       script_disallowed_require: "Dùng một script không được chấp nhật bên ngoài %{code}"
       script_rate_limit: "Bạn đã đạt giới hạn đăng. Vui lòng thử lại sau"
-      missing_include_or_match: ""
-      file_size_out_of_range: ""
-      meta_too_long: ""
   opensearch:
-    # short name for opensearch.xml
     short_name: "%{site_name} tìm kiếm"
-    # description for opensearch.xml
     description: "Tìm kiếm cho các script người dùng trên %{site_name}."
-    # long name for opensearch.xml
     long_name: "%{site_name} tìm kiếm script người dùng"
-    # attribution for opensearch.xml
     attribution: "Bản quyền thuộc về tác giả script, xem từng script để biết thông tin giấy phép"
-  mailers:
-    script_report:
-      report_created_offender:
-        subject: ""
-        text: ""
-      report_upheld_offender:
-        subject: ""
-        text: ""
-      report_dismissed_offender:
-        subject: ""
-        text: ""
-      report_rebutted_reporter:
-        subject: ""
-        text: ""
-      report_upheld_reporter:
-        subject: ""
-        text: ""
-      report_script_deleted_reported:
-        subject: ""
-        text: ""
-      report_dismissed_reporter:
-        subject: ""
-        text: ""
-    consecutive_bad_ratings:
-      notify:
-        subject: ""
-        text: |
-    script_comment:
-      subject: ""
-      text: |
-    subscribed_discussion:
-      subject: ""
-      text: |
-    comment_mentioned:
-      subject: ""
-      text: |
-    new_message:
-      subject: ""
-      text: |
