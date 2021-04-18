@@ -1,134 +1,81 @@
 ro:
   layouts:
     application:
-      # link to the list of scripts
       script_list: "Scripturi"
-      # link to the forum
       forum: "Forum"
-      # link to the help docs
       help: "Ajutor"
-      # link to sign in
       sign_in: "Autentificare"
-      # label for nav submenu
       submenu: "Mai mult"
-      # link to advanced search
       advanced_search: "Căutare avansată"
-      # link to user list
       user_list: "Lista utilizatorilor"
-      # link to libraries
       libraries: "Biblioteci"
-      # link to moderator log
       moderator_log: "Jurnalul moderatorului"
   scripts:
-    # label for created date of a script
     created_date: "Creat"
-    # label for updated date of a script
     updated_date: "Actualizat"
-    # label for total install count of a script
     total_installs: "Total instalări"
-    # label for daily install count of a script
     daily_installs: "Instalări zilnice"
-    # label for the ratings of a script
     ratings: "Rating-uri"
-    # label for author name of a script
     author_name: "Autor"
-    # label for version number of a script
     version_number: "Versiune"
-    # label for the legal license a script is released under (e.g. GPL)
     license: "Licență"
-    # what is shown as the license when no license is provided in a script
     no_license: "N/A"
-    # label for the browser compatibility for a script
     compatibility: "Compatibilitate"
     compatible_with_browser: "Compatibil cu %{browser}"
     incompatible_with_browser: "Incompatibil cu %{browser}"
-    # label for the list of sites or patterns a script applies to
     applies_to: "Se aplică pe"
-    # a title (tooltip) for the links in the "applies to" section going to a list of scripts for that site. count is the number of other scripts, site is the name of the site. add subkeys for your language per http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
     applies_to_link_title:
       one: "Vezi încă %{count} script pentru %{site}"
       few: "Vezi alte %{count} scripturi pentru %{site}"
       other: "Vezi alte %{count} scripturi pentru %{site}"
-    # what is shown as the applies to when a script applies to all sites
     applies_to_all: "Toate site-urile"
-    # link that makes the user install the script
     install: "Instalează acest script"
-    # text for link that gives information on how to install scripts. should be very short.
     install_help: "?"
-    # title (tooltip) for link that gives information on how to install scripts
     install_help_title: "Cum se instalează"
-    # link that makes the user update the script
     update: "Actualizează la versiunea %{version}"
-    # link that makes the user downgrade the script
     downgrade: "Reîntoarce la versiunea %{version}"
-    # link that makes the user reinstall the script
     reinstall: "Reinstalează versiunea %{version}"
-    # warning when installing an old version of a script
     old_version_warning: "Aceasta nu este cea mai recentă versiune a acestui script. Dacă îl vei instala, nu va fi niciodată actualizat la o versiune mai noua. Instalezi oricum?"
-    # label for a promoted script
     promoted: "Script promovat"
     author_promoted: "Script sugerat de autor"
-    # text for promoted script
     promoted_text_html: "Poate îți va plăcea și%{script_link}."
-    # instructions on a script library. code will be a <code> element. Don't use punctuation around the code element if possible so that people don't accidentally include that when copying.
     library_instructions_html: "Acest script nu ar trebui instalat direct. Aceasta este o bibliotecă pentru alte scripturi care este inclusă prin directiva meta a %{code}"
-    # text displayed for deleted scripts
     deleted_notice: "Acest script a fost șters."
     deleted_notice_with_related: "Script-ul pe care îl cauți a fost șters, dar aici sunt cateva script-uri asemănătoare."
     deleted_undelete_notice_html: "Acest script a fost blocat de un moderator și nu poate fi șters. Motivul prevăzut este: \"<i>%{delete_reason}</i>\"."
     deleted_locked_author_notice_html: "Acest script a fost șters de un moderator și nu poate fi accesat de alții. Motivul prevăzut este: \"<i>%{delete_reason}</i>\"."
     deleted_author_notice: "Acest script a fost șters si nu poate fi accesat de alții. Poti restabili script-ul din casuța de Ștergere."
-    # test displayed when viewing a previous version. date is a date and time (no "ago"), latest_version_link is a link to the newest version whose text is version_notice_latest_version_link
     version_notice_html: "La data de %{date}. Vezi %{latest_version_link}."
     version_notice_latest_version_link: "ultima versiune"
     reported_notice: "\"%{script_name}\" a fost raportat și așteapa verificarea unui moderator."
     reported_notice_for_author: "Acest script nu este valabil celorlalți utilizatori până cand este verificat de un moderator."
-    # link to the script's info page, containing script meta and author's description
     info_page: "Informații"
-    # link to the script's code page
     code_page: "Cod"
-    # link to the script's history page, listing all versions of the code
     history_page: "Istoric"
-    # link to the script's feedback page, listing discussions on the script. count is the number of discussions
     feedback_page: "Păreri (%{count})"
-    # link to the script's install statistics page
     stats_page: "Statistici"
-    # link to the script's derivatives page, which shows similar scripts
     derivatives_page: "Derivate"
-    # link to the page that lets the author update the script
     update_page: "Actualizează"
-    # link to the page that lets the author delete a script
     delete_page: "Șterge"
-    # explanation of what deleting does
     delete_explanation: "Ștergerea scriptului îl face inaccesibil oricui în afara de tine și de a moderatorilor Greasy Fork. Îl vei putea restaura oricând."
-    # intro text to radio options for choosing update behaviour after deletion
     delete_update_behaviour: "Ce dorești să se întâmple utilizatorilor care au instalat deja scriptul tău?"
-    # label for the option allowing users to retain the script after delete
     delete_update_behaviour_1: "Îl vor păstra ca atare."
-    # label for the option where users get a blanked script after delete 
     delete_update_behaviour_2: "Vor fi actualizați la un script gol. Opțiunea este adecvată în cazul în care scriptul are un efect negativ pe site-ul pe care rulează."
-    # heading for permanent deletion section
     delete_permanently_heading: "Șterge-l permanent"
-    # explanation of permanent deletion
     delete_permanently_explanation_html: >-
-      <p>Ștergerea permanentă a script-ului tau va șterge și înregistrările asociate acestuia, cu excepția discuțiilor de pe forum și jurnalul de acțiuni al moderatorului.</p><p>Script-ul tau va fi șters permanent dupa 7 zile de la cerere. Poți anula ștergerea permanentă in acest timp. Daca nu o faci, nimeni, nici macar moderatorii nu iți pot recupera script-ul.</p>
-    # confirmation on pressing the permanent deletion button
+        <p>Ștergerea permanentă a script-ului tau va șterge și înregistrările asociate
+        acestuia, cu excepția discuțiilor de pe forum și jurnalul de acțiuni al moderatorului.</p><p>Script-ul
+        tau va fi șters permanent dupa 7 zile de la cerere. Poți anula ștergerea permanentă
+        in acest timp. Daca nu o faci, nimeni, nici macar moderatorii nu iți pot recupera
+        script-ul.</p>
     delete_permanently_confirm: "Ești sigur că vrei să iți ștergi permanent script-ul?"
-    # text for the permanent deletion button
     delete_permanently_submit: "Solicit ștergerea permanentă"
-    # text for the permanent deletion button when it would take effect immediately
     delete_permanently_immediate_submit: "Șterge permanent"
-    # notice after requesting permanent deletion
     delete_permanently_notice: "Cererea de ștergere permanentă a fost înregistrata. Script-ul tau va fi șters permanent in 7 zile."
-    # text on the delete page after permanently deletion was requested
     delete_permanently_already_requested: "Cererea de ștergere permanenta se va onora în:%{datetime}."
-    # notice after permanently deletion
     delete_permanently_notice_immediate: "Scriptul a fost șters definitiv."
-    # text for cancelling a permanent deletion request
     cancel_delete_permanently_submit: "Anulează solicitarea de ștergere permanentă"
-    # notice after cancelling a permanent deletion request
     cancel_delete_permanently_notice: "Cererea de ștergere permanentă a fost anulată. Script-ul tau inca nu este vizibil celorlalți utilizatori."
-    # error when attempting to delete a locked script
     delete_permanently_rejected_locked: "Acest script este blocat și nu poate fi șters permanent"
     admin_page: "Administrator"
     admin:
@@ -147,71 +94,45 @@ ro:
       compare_to: "Scriptul de pe %{site_name} pentru a se compara cu (URL)"
       compare_button: "Compară"
       compare_must_be_local_url: "Script-ul de comparație trebuie sa fie un URL pe %{site_name}."
-    # HTML title for the history page for a script
     history_title: "%{script_name} - Istoricul versiunilor"
-    # text explaining that we're only showing versions where the code changed
     history_only_code_changes_info: "Acestea sunt versiunile scriptului în care codul a fost actualizat."
-    # link to the list of all versions
     history_all_changes_link: "Arată toate versiunile."
-    # text explaining that we're showing all versions
     history_all_changes_info: "Acestea sunt toate versiunile scriptului."
-    # link to the list of version where the code changed
     history_only_code_changes_link: "Arată doar versiunile unde codul a fost schimbat."
-    # button that shows changes (a diff) of the selected versions
     diff_button: "Versiuni diferite selectate"
-    # HTML title of the script source code page
     code_title: "%{script_name} - Codul sursă"
-    # HTML title of the script feedback page
     feedback_title: "%{script_name} - Păreri"
     feedback_has_reports: "Acest script a fost raportat pentru încalcarea regulamentului de pe %{site_name}."
-    # text to show when no discussions are posted. start_discussion_first_link is a link with the text from feedback_start_first_discussion_link
     feedback_no_discussions_html: "Nici o discuție deocamdată. %{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "Nici o discuție deocamdată."
     feedback_report_instead: "Dacă crezi că acest script încalcă regulile site-ului %{rules_link:%{site_name}}, te rog %{report_link:raporteaza-l pentru a fi șters}."
     feedback_start_first_discussion_link: "Fii primul care discută despre acest script."
     feedback_discussion_or_report: "%{new_discussion_link:Începe o nouă discuție pe baza acestui script} sau %{report_link:raporteaza-l pentru a fi șters}."
-    # heading for list of people who favorited this script
     feedback_favoriters_heading: "Preferanți"
-    # text before a comma separated list of users who favorited the script
     feedback_favoriters_user_list_html: "Acest script a fost adăugat la favorite de %{user_list}."
     feedback_favoriters_lots:
       one: "Script-ul a fost adaugat la favorite de catre %{user_count} utilizator. %{full_link:Vezi toata lista.}"
       few: "Script-ul a fost adaugat la favorite de catre %{user_count} utilizatori. %{full_link:Vezi toata lista.}"
       other: "Script-ul a fost adăugat la favorite de către %{user_count} utilizatori. %{full_link:Vezi toată lista.}"
-    # text when no one has favorited a script
     feedback_no_favoriters: "Acest script nu a fost marcat ca favorit de nimeni."
-    # link to get the user to sign in to add the script to their favorites
     feedback_sign_in_to_favorite: "Autentifica-te pentru a adăuga la favorite."
-    # html title for script stats page
     stats_title: "%{script_name} - Statistici"
-    # heading for daily install stats on stats page
     stats_daily_installs_heading: "Instalări zilnice"
-    # heading for weekly install stats on stats page
     stats_weekly_installs_heading: "Instalări săptămânale"
-    # heading for daily update check stats on stats page
     stats_daily_update_checks_heading: "Verificare actualizări zilnice"
-    # date column heading for a script's daily install stats table
     stats_daily_installs_date_column_heading: "Data"
-    # install count column heading for a script's stats table
     stats_daily_installs_install_count_column_heading: "Instalări"
-    # update check count column heading for a script's stats table
     stats_daily_installs_update_check_count_column_heading: "Verificări actualizări"
-    # header for the raw data table for stats
     stats_raw_data_header: "Date nemodificate"
-    # text before links to download raw stats data. links will be space separated links to the format name (e.g. CSV and JSON)
     stats_download_raw_data_html: "Descarcă tot ca: %{links}"
-    # text to show when a stat is not available
     stats_no_data: "N/A"
     stats_filters: "Filtru: %{filter_options}"
     stats_filter_options:
       month: Ultimele 30 de zile
       year: Ultimele 365 de zile
       all: Din totdeauna
-    # HTML title for derivatives page
     derivatives_title: "%{script_name} - Derivate"
-    # text explaining the derivatives page and what to do if the user finds unauthorized copies
     derivatives_intro: "Aceste scripturi pot fi bazate pe al tau (sau al tău bazat pe ale lor). Dacă observi o utilizare neautorziată a codului tău, raporteaza-l din casuța de păreri a scriptului."
-    # format for scripts listed on the derivatives page. script_link is a link to the derivative's page, user_link is a link to the user who created the derivative, license is text, link to the license, or scripts.no_license
     derivatives_script_html: "%{script} făcut de %{user}, licența: %{license}%{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "Copii exacte"
     derivatives_exact_copies_list_intro: "Urmatoarele script-uri au exact acelasi cod sursă ca al tău:"
@@ -230,280 +151,141 @@ ro:
     derivatives_similar_last_check_soon: "O sa cautam script-uri similare cu al tău in scurt timp."
     derivatives_similar_last_check_again_soon_html: "Ultima oara am cautat script-uri asemănătoare cu al tău în %{date}. O să cautăm iarăși în scurt timp."
     derivatives_similar_check_now: "Verifică din nou acum"
-    # html title for script list page when showing scripts that affect all sites
     listing_title_all_sites: "Scripturi pentru toate site-urile"
-    # meta description and feed subtitle when showing scripts that affect all sites
     listing_description_all_sites: "Scripturi de utilizator care adaugă caracteristici și rezolvă bug-uri pe toate siteurile"
-    # html title for script list page when showing scripts for a particular site. 'site' will be in the form 'example.com'
     listing_title_for_site: "Scripturi pentru %{site}"
-    # meta description and feed subtitle when showing scripts that affect a particular site
     listing_description_for_site: "Script-uri ale utilizatorilor care adaugă caracteristici si rezolvă bug-uri pe %{site}"
-    # html title for script list page for search results.
     listing_title_for_search: "'%{search_string}' scripturi ale utilizatorilor"
-    # html title for script list page for code search results.
     listing_title_for_code_search: "'%{search_string}' scripturi ale utilizatorilor"
-    # html title for script list page when no other situation applies
     listing_title_generic: "Script-uri ale utilizator"
-    # html title for script list page for a user's favorites. set_name is script_sets.favorites_name
     listing_title_for_favorites: "Setul %{set_name} al lui %{user_name}"
-    # meta description and feed subtitle for script list page when no other situation applies
     listing_description_generic: "Script-uri ale utilizatorilor care adaugă caracteristici si rezolvă bug-uri pe site-urile folosite de tine"
-    # label for sorting links on script list page
     listing_sort_label: "Sortare după:"
-    # link for relevance (most matching the search terms) sort on a script list
     listing_sort_relevance: "Relevanță"
-    # link for daily install sort on a script list
     listing_sort_daily_installs: "Instalări zilnice"
-    # link for daily install sort on a script list
     listing_sort_total_installs: "Total instalări"
-    # link for rating sort on a script list
     listing_sort_ratings: "Note"
-    # link for created date sort on a script list
     listing_sort_created: "Data creării"
-    # link for updated date sort on a script list
     listing_sort_updated: "Data actualizării"
-    # link for name sort on a script list
     listing_sort_name: "Nume"
-    # label for filtering by-site links on script list page
     listing_filter_by_site_label: "Afișare scripturi pentru:"
-    # link for turning off by-site filtering on script list page
     listing_filter_by_site_disable: "Toate"
-    # link for filtering script list by scripts that affect all sites
     listing_filter_by_site_all_sites: "(Toate site-urile)"
     listing_filter_by_language_label: "Limbă:"
-    # link to see a full list of sites that scripts on %{site_name} affect
     listing_filter_by_site_more_sites: "Mai multe…"
-    # text that shows when no scripts were found with the used parameters
     listing_no_scripts: "Nu a fost găsit nici un script."
-    # feed title for the listing, ordered by created date
     listing_created_feed: "Scripturi noi"
-    # feed title for the listing, ordered by updated date
     listing_updated_feed: "Scripturi actualizate"
-    # when a list has nothing to show
     listing_none: "(Nimic)"
-    # link to filter search results by the current locale
     listing_set_locale_filter: "Arătăm rezultate pentru toate limbile.  %{set_filter_link:Arată doar rezultate în limba %{language}.}"
-    # link to remove locale filter
     listing_remove_locale_filter: "Arătăm rezultate doar pentru limba %{language}. %{remove_filter_link:Arată rezultate în toate limbile.}"
     listing_language_all: "Tot"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
-    # link to start the process of importing (creating from an external place) scripts
     import: "Importă scripturi"
-    # link to create a new script
     new: "Publică un script scris de tine"
     new_css: "Publică un stil scris de tine"
-    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support site
     support_site: "Verifică site-ul autorului de suport."
-    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support email address
     support_email: "Trimite un e-mail autorului pentru ajutor."
-    # link to a site where the user can donate to the author, when the author didn't provide a suggested donation amount
     contribution_no_amount: "Mulțumește-i lui %{author} făcând o donație."
-    # link to a site where the user can donate to the author, when the author provided a suggested donation amount
     contribution_with_amount: "Mulțumește-i lui %{author} făcand o donație. Suma sugerată: %{amount}."
-    # text for donating to the author via bitcoin, when the author didn't provide a suggested donation amount
     contribution_bitcoin_no_amount_html: "Mulțumește-i lui %{author} făcand o donație in Bitcoin la adresa %{address}."
-    # text for donating to the author via bitcoin, when the author provided a suggested donation amount
     contribution_bitcoin_with_amount_html: "Mulțumește-i lui %{author} făcand o donație in Bitcoin la adresa %{address}.  Suma sugerată: %{amount}."
-    # explanation of language chooser when editing script
     locale_explanation_html: "Limba scriptului ar trebui sa fie identică cu <code>@numele</code>, <code>@descrierea</code> si primele informații adiționale."
-    # the default value for the locale box, if submitted the site will attempt to detect the language of the entry
     locale_auto_select: "(Detectat automat)"
-    # label which lists the sets this script is in, which is followed by controls to change its inclusions
     sets_label: "În seturi de scripturi:"
-    # label for when the script is not in any sets, which is followed by controls to change its inclusions
     sets_label_no_sets: "Seturi de scripturi:"
-    # option to remove the script from the set
     sets_remove_inclusion: "Șterge din %{set_name}"
-    # option to remove the script's exclusion from the set
     sets_remove_exclusion: "Șterge excluderea din %{set_name}"
-    # option to add the script to the set
     sets_add_inclusion: "Adaugă la %{set_name}"
-    # option to exclude the script from the set (when it's been included as part of a sub set)
     sets_add_exclusion: "Exclude din %{set_name}"
-    # option to add the script to a new set
     sets_add_to_new: "Adaugă la un set nou"
-    # summary of %{site_name}'s rules for posting scripts. full_rules_link is a link to the full rules with text of rules_summary_link_to_full
     rules_summary_html: "Script-urile trebuie să fie <strong>descrise corect</strong>, codul sursă nu poate fi<strong>ascuns</strong> sau <strong>micșorat</strong>, trebuie sa respecte <strong>drepturile de autor</strong>, și sunt limitate la <strong>codul extern</strong> folosit. %{full_rules_link}"
-    # full rules link text used in the rules summary
     rules_summary_link_to_full: "Citește toate regulile."
-    # warning when on the edit screen for a script set up to sync. syncing_notice_sync_type will be a link to the sync screen with text from syncing_notice_sync_type_manual or syncing_notice_sync_type_automatic
     syncing_notice_html: "Script-ul este %{syncing_notice_sync_type}. Orice actualizare facută codului va fi suprascrisă la sincronizare."
-    # used in syncing_notice_html when a script syncs only when the author requests it
     syncing_notice_sync_type_manual: "setează sa sincronizeze manual din %{sync_identifier}"
-    # used in syncing_notice_html when a script syncs automatically
     syncing_notice_sync_type_automatic: "setează sa sincronizeze automat din %{sync_identifier}"
-    # label for uploading a script under the code textarea
     upload_label: "Sau încarcă:"
-    # label for checkbox to enable or disable syntax highlighting code editor
     enable_source_code_editor_label: "Activeaza sublinerea-sintaxei a editorului de cod"
-    # descriptive text for the changelog field
     changelog_note: "Ce e schimbat in această versiune?"
     additional_info_note: "O descriere, instrucțiuni, etc. mai detaliate"
-    # button text for previewing additional info
-    # button text for submitting a new script
     post_new_script: "Postează scriptul"
-    # button text for submitting an update to an existing script
     post_updated_script: "Postează o versiune nouă"
-    # label for radio button for public-type user script
     type_1_html: "Script al utilizatorului public - un script al utilizatorului pentru toți sa vedem și să folosim."
-    # label for radio button for unlisted-type user script
     type_2_html: "Script al utilizatorului nelistat - un script al utilizatorului pentru folosire semi(-privată). Valabil cu acces direct, dar nu ești trimis la el de nicăieri de pe %{site_name}."
-    # label for radio button for library-type script
     type_3_html: "Librarie - un script creat sa fie <code>@folosit</code> de alte scripturi și nu instalat direct."
-    # label for checkbox to override script save warnings
     override_warning_checkbox_label: "Salvează oricum?"
-    # script warning for not increasing the version number when updating the code
     warning_version_not_incremented_html: "Ați actualizat codul dar nu ați crescut numărul de <code>@versiune</code>. Acei care au instalat anterior scriptul dvs. ar putea să nu obțină codul actualizat."
-    # script warning for when a version number is not provided
     warning_version_missing_html: "Nu ai specificat <code>@versiunea</code>. O cheie de meta a unei <code>@versiuni</code> dă libertatea de a cauta actualizări a script-ului tau in manager-ul de scripturi ale utilizatorului."
-    # label for checkbox for the site to automatically handle version numbers
     warning_version_missing_generate_automatically_html: "Generează o <code>@versiune</code> automat?"
-    # script warning for when a namespace is not provided
     warning_namespace_missing_html: "Nu ai specificat un <code>@namespace</code>. O cheie de meta a unui <code>@namespace</code> dă libertatea utilizatorilor de a re-instala script-ul sa îl actualizeze."
-    # label for checkbox for the site to automatically add a namespace
     warning_namespace_missing_generate_automatically_html: "Generează un <code>@namespace</code> automat?"
-    # script warning for when a namespace changed on update
     warning_namespace_changed_html: "<code>@namespace</code> a fost schimbat. Un <code>@namespace</code> consistent dă libertatea utilizatorilor de a re-instala script-ul sa iî actualizeze."
-    # script warning for when a script's code appears minified. allowed_requires_link is a link to the allowed @require list, with text of warning_potentially_minified_allowed_requires_link
     warning_potentially_minified_html: "Script-ul tău pare ca ar conține cod micșorat (compresat). Dacă folosești o librărie micoșrată, te rog în loc de <code>@cere</code> de pe %{allowed_requires_link}. Script-urile micșorate sunt supuse ștergerii."
-    # script warning for when a script's code is for adult sites. sensitive_domains is a list of domains
     warning_automatic_sensitive_html: "Script-ul tau este pentru %{sensitive_domains} și va fi marcat ca fiind conținut pentru adulți."
-    # used in warning_potentially_minified_html
     warning_potentially_minified_allowed_requires_link: "unul din aceste locuri"
     warning_code_previously_posted_html: "Script-ul tau a fost anterior postat în %{script_links}. Script-urile care sunt repostate de cei care nu sunt autorul original sunt supuse ștergerii de către moderatori."
-    # default option for the locale of a localized additional info
     additional_info_locale_prompt: "(Alege o limbă)"
-    # text for the button to add another additional info section for a different language
     additional_info_add_localized: "Adaugă informații adiționale bazate pe o limbă anume"
-    # validation when more than one additional info is specified for a locale. "locale_code" is the locale code (e.g. "en") that has more than one additional info
     additional_info_locale_repeated: "Furnizează doar o informație adițională pentru locala '%{locale_code}'."
-    # validation when an additional info in a locale is provided but no name was provided in that locale. "locale_code" is the locale code (e.g. "en") that is missing a name
     localized_additional_info_with_no_name: "Au fost specificate informații pentru locala '%{locale_code}', dar nici un @nume:%{locale_code} nu a fost specificat."
     localized_attribute_matches_default: "Codul nu ar trebui să specifice un %{meta_key} pentru că locala '%{locale_code}' este cea implicită."
-    # text to edit a code syncing URL. field is the text field to enter the url.
     code_syncing_from_url_html: "Codul scriptului este setat să sincronizeze din: %{field}"
-    # text to add a code syncing URL. field is the text field to enter the url.
     provide_code_syncing_from_url_html: "%{site_name} poate importa scripturi care sunt deja gazduite în altă parte, de exemplu un sistem de controlare al versiunilor (cum ar fi GitHub), server-ul tau sau alt site care gazduiește scripturi de utilizator. Pentru a activa sincronizarea, furnizeaza-ne un URL: %{field}"
-    # text before the sync type options
     sync_type_intro: "Script-ul va fi sincronizat:"
-    # label for radio button for manual syncing
-    sync_type_1:
-      name: ""
-      description: ""
-    # label for radio button for automatic syncing
-    sync_type_2:
-      name: ""
-      description: ""
-    # label for radio button for webhook syncing
-    sync_type_3:
-      name: ""
-      description: ""
-    sync_name_and_description: ""
-    # text when the last attempted sync failed. date is the date of the error run through markup_date. error is the technical error.
     sync_failed_info_html: "Ultima sincronizare incercată a fost pe data de %{date}, care a rezultat in eroarea %{error}."
-    # text indicating the date of the last successful sync. date is the date of the sync run through markup_date
     sync_success_info_html: "Ultima sincronizare cu succes a avut loc la %{date}."
-    # text if the sync never succeeded
     sync_never_succeeded: "Sincronizarea nu a fost niciodată completată cu succes."
-    sync_additional_info: ""
-    add_synced_additional_info: ""
-    # button to update sync settings and run sync immediately
     update_and_sync: "Actualizează și sincronizează acum"
-    # button to update sync settings but not sync immediately
     update_no_sync: "Actualizare"
-    # button to disable syncing of the script
     turn_off_syncing: "Dezactivează sincronizarea pentru acest script"
-    # label for syncing the default additional info
     additional_info_default_sync_html: "Informații adiționale implicite (limba să fie identică cu <code>@numele</code>)"
-    # label for syncing localized additional infos
     additional_info_localized_sync_html: "Pentru locale (sa fie identică cu <code>@numele:XX</code>)"
-    # HTML placeholder for sync fields
     sync_url_placeholder: "(URL)"
-    # label for adding a new screenshot
     screenshots_add: "Adaugă:"
-    # label for checkbox to remove a screenshot
     screenshots_remove: "Șterge"
-    # explains what a replacement script when deleting is
     replacement_script_explanation: "(Optional) Alege alt script care înlocuiește acest script. Utilizatorii vor fi actualizați si duși către acest script. Pune URL-ul scriptului înlocuitor aici:"
-    # title for diff page
     diff_title: "%{script} - diferențe versiune"
-    # label for older version being diffed
     diff_old_version: "Veche:"
-    # label for newer version being diffed
     diff_new_version: "Nouă:"
-    # label for input for lines to show around each change when doing a diff
     diff_lines_of_context: "Linii de context:"
-    # label for checkbox on whether to ignore whitespace changes
     diff_ignore_whitespace: "Ignoră modificările de spații albe"
-    # button to refresh diff after changing diff options
     diff_refresh: "Reîmprospătează"
-    # text shown when compared versions are the same
     diff_no_change: "Nici o diferența gasită."
-    # tooltip for good rating number - "Good" should match the word used in RatingGood in the PHP localization
     good_rating_explanation: "Numărul de persoane care au avut o parere Bună sau l-au adăugat la favorite."
-    # tooltip for ok rating number - "OK" should match the word used in RatingGood in the PHP localization
     ok_rating_explanation: "Numărul de persoane care au avut o parere OK."
-    # tooltip for bad rating number - "Bad" should match the word used in RatingGood in the PHP localization
     bad_rating_explanation: "Numărul de persoane care au avut o parere Bună."
-    # link at the bottom of the scripts list suggesting people post a script or learn how. post_a_script_link is a link with text post_a_script_link_text that goes to the new script form. learn_to_write_scripts_link is a link with text learn_to_write_scripts_link_text that goes to the help document for writing scrupts
     write_your_own_html: "%{post_a_script_link} (sau %{learn_to_write_scripts_link})"
-    # link text for the new script form, used in write_your_own_html
     post_a_script_link_text: "Publică un script pe care l-ai scris"
-    # link text for the writing a user script help doc, used in write_your_own_html
     learn_to_write_scripts_link_text: "învață a scrie unul"
-    # a suggestion below the install button that users provide feedback
     feedback_or_report: "%{feedback_link:Pune o întrebare, postează o recenzie}, sau %{report_link:raportează-l}."
-    # a suggestion below the install button that users provide feedback or get support from the author's site. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
     support_feedback_or_report: "%{support_url:Vizitează site-ul autorului pentru ajutor}, %{feedback_link:pune o întrebare, posteaza o recenzie}, sau  %{report_link:raportează-l}."
-    # a suggestion below the install button that users provide feedback or get support from the author's via email. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
     support_email_feedback_or_report: "%{support_url:Tirmite un e-mail autorului pentru ajutor}, %{feedback_link:pune o întrebare, postează o recenzie}, sau %{report_link:raportează-l}."
-    # heading for section relating to adult content when posting new script or script version
     adult_content: "Conținut pentru adulți"
-    # label for checkbox letting authors report their script as containing adult content
     adult_content_self_report: "Script-ul conține conținut pentru adulți sau este destinat unui site care conține conținut pentru adulți."
-    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script not flagged as having adult content
     adult_content_self_report_explanation: "%{site_name} aprobă scripturi care conțin conținut pentru adulți, dar trebuie marcate ca atare pentru a da opțiunea utilizatorilor de a le vedea sau nu."
-    # label for checkbox letting authors report their script as not containing adult content
     not_adult_content_self_report_html: "Acest script <strong>nu</strong> conține conținut pentru adulți, și <strong>nu</strong> este pentru un site care conține conținut pentru adulți"
-    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content
     not_adult_content_self_report_explanation: "%{site_name} aprobă scripturi care conțin conținut pentru adulți, dar trebuie marcate ca atare pentru a da opțiunea utilizatorilor de a le vedea sau nu. Script-ul tau a fost marcat având conținut pentru adulți. Poți raporta daca crezi ca nu conține, acesta va fi verificat de un moderator."
-    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content due to automatic checking
     not_adult_content_self_report_explanation_automatic: "%{site_name} aprobă scripturi care conțin conținut pentru adulți, dar trebuie marcate ca atare pentru a da opțiunea utilizatorilor de a le vedea sau nu. Script-ul tau a fost marcat având conținut pentru adulți fiind destinat %{domain_list}."
-    # the error you see when accessing a adult content script when logged in with the adult content setting off
     adult_content_on_greasy_logged_in_error: "Script-ul nu este valabil pe site cu {edit_account_link:setările tale actuale de cont}."
-    # the error you see when accessing a adult content script when not logged in
     adult_content_on_greasy_not_logged_in_error: "Acest script nu mai este ascuns pe site. %{login_link:Autentifică-te} si verifica-ți setările de cont."
-    # the error you see when access a non-adult content script on sleazy fork
     non_adult_content_on_sleazy: "Acest script nu este valabil pe acest site."
     not_js_convertible_override_header: "Conversie la JS"
     not_js_convertible_override_explanation: "%{site_name} poate crea automat o %{help_link:conversie la JS} a fișierului tău CSS. Dacă conversia la JS va funcționa cumva diferit față de versiunea CSS, iti recomandam să testezi înainte. Daca nu este funcțională, poți sa o dezactivezi prin a bifa casuța de mai jos."
     not_js_convertible_override_label_html: "Acesta <strong>nu</strong> ar trebui să fie facut valabil in format JS."
-    # marker after script name shown to authors indicating their adult scripts
     adult_marker: "(Adult)"
-    # marker after script name if it's deleted
     deleted_marker: "(Șters)"
-    # marker after script name if it's locked
     locked_marker: "(Închis)"
-    # marker after script name if it's unlisted
     unlisted_marker: "(Nelistat)"
-    # marker after script name if it's a library
     library_marker: "(Bibliotecă)"
-    # title for libraries listing page
     libraries_title: "Biblioteci"
-    # description for libraries listing page
     libraries_description_html: "Sunt librării postate pe %{site_name} pe care utilizatorii le pot <code>@cere</code> in scripturile lor. Pentru alt tip de librării pe care le poți <code>@cere</code>, citește %{policy_link:politica site-ului %{site_name} cu privire la <code>@cere</code>}."
-    # title of the listing of top sites to script
     by_site_list_title: "Scripturi ale utilizatorului pe %{site_name} grupate pe site-uri"
-    # description of the listing for top sites to script
     by_site_list_description: "Acestea sunt site-urile afectate de cele mai populare scripturi ale utilizatorului. Mai mare fontul, mai popular scriptul utilizatorului."
     by_site_list_filter: "Filtreaza după numele site-ului:"
-    # placeholder for script search box
     search_placeholder: "Caută script-uri"
     updated: "Script actualizat."
     preview_additional_info: "Previzualizare"
-    must_confirm: ""
-    must_confirm_external_sign_in: ""
     must_confirm_email_button: "Trimite link de confirmare către %{email}"
     authors_heading: "Autori:"
     error_unauthorized_copy: "Acest cod pare ca și cum ar fi o copie neatorizată a scriptului %{script}. Te rog să citești %{rules_link:regulamentul} site-ului %{site_name} cu privire la postatul de scripturi."
@@ -564,15 +346,10 @@ ro:
         short: CSS
         long: Stil-ul utilizatorului
   script_sets:
-    # description of script sets on edit page
     description: "Seturile de script-uri te lasă să customizezi lista de script-uri care te ajută să rasfoiești Greasy Fork. Poți adăuga script-uri setului tău adăugându-le individual, poți adăuga seturile altora, sau să generezi automat seturi. Poți și să excluzi script-uri din setul tau folosind aceeasi metodă."
-    # name for the favorites set
     favorites_name: "Favorite"
-    # delete button text for a script set
     delete: "Șterge set de scripturi"
-    # delete confirmation for a script set
     delete_confirmation: "Sunteți sigur că doriți să ștergeți acest set de scripturi?"
-    # option for choosing to sort the set by the default sort the site uses
     site_default_sort: "(implicit)"
     edit_scripts:
       heading: "Script-uri"
@@ -637,195 +414,127 @@ ro:
       user: "Script-uri ale lui %{user}"
       locale: "Script-uri în %{locale_name}"
   home:
-    # html title of the homepage
     title: "%{site_name} - script-uri are uilizatorului sigure și utile"
-    # text at the top of the homepage.
     welcome: "Bun venit pe %{site_name}, un site pentru scripturi de utilizator."
-    # html title of the sleazy fork homepage
     sleazy_title: "%{site_name} - script-uri pentru adulți sigure si utile"
-    # text at the top of the sleazy fork homepage.
     sleazy_welcome: "Bun venit pe %{site_name}, un site pentru scripturi de adulți."
-    # placeholder for home page search box
     search_placeholder: "Cauta script-uri ale utilizatorilor."
     scripts_for_label: "Script-uri pentru:"
-    # heading for the paragraph explaining what user scripts are
     explain_user_scripts_heading: "Ce este un user script?"
-    # text explaining what user scripts are.
     explain_user_scripts_html: "Scripturile utilizatorilor te pun in controlul experienței tale de browsing. Odată instalate, fac automat site-urile pe care le vizitezi mai bune, adăugând caracteristici noi, facându-le mai ușor de folosit, sau scoaterea parțior enervante. Script-urile utilizatorilor de pe %{site_name} au fost scrise de alți utilizatori si postate pentru a le împartași cu lumea. Sunt gratuit de instalat și ușor de folosit."
-    # header for step 1 - how to install a user script manager
     installing_step1_header: "Pasul 1: Instalează un manager de script-uri"
-    # caption in step 1 - screenshot of tampermonkey on chrome
     installing_step1_caption: "Tampermonkey pentru Chrome"
-    # text for step 1, listing options for user script managers based on browsers
     installing_step1_description_html: >
-      <p>Pentru a utiliza script-uri ale utilizatorilor, mai întâi ai nevoie de un manager de scripturi. Ce script manager poți folosi depinde de ce browser folosești.</p>
+        <p>Pentru a utiliza script-uri ale utilizatorilor, mai întâi ai nevoie de
+        un manager de scripturi. Ce script manager poți folosi depinde de ce browser
+        folosești.</p>
 
-      <ul>
+        <ul>
 
-      <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} sau %{chrome_violentmonkey_link:Violentmonkey}</li>
+        <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} sau %{chrome_violentmonkey_link:Violentmonkey}</li>
 
-      <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, sau %{firefox_violentmonkey_link:Violentmonkey}</li>
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
+        sau %{firefox_violentmonkey_link:Violentmonkey}</li>
 
-      <li>Safari: %{safari_tampermonkey_link:Tampermonkey} sau %{safari_userscripts_link:Userscripts}</li>
+        <li>Safari: %{safari_tampermonkey_link:Tampermonkey} sau %{safari_userscripts_link:Userscripts}</li>
 
-      <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+        <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
 
-      <li>Opera: %{opera_tampermonkey_link:Tampermonkey} sau %{opera_violentmonkey_link:Violentmonkey}</li>
+        <li>Opera: %{opera_tampermonkey_link:Tampermonkey} sau %{opera_violentmonkey_link:Violentmonkey}</li>
 
-      <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+        <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
 
-      <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+        <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
 
-      <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+        <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
 
-      <li>AdGuard: (nu ai nevoie de nici un program adițional)</li>
+        <li>AdGuard: (nu ai nevoie de nici un program adițional)</li>
 
-      </ul>
-    # header for step 2 - how to install a user script
+        </ul>
     installing_step2_header: "Pasul 2: Instalează un script al utilizatorului"
-    # caption for step 2 - showing the install button for user scripts
     installing_step2_caption: "Un buton de instalare a scriptului utilizatorului"
-    # text for step 2 - describing how to find and install user scripts
     installing_step2_description_html: >
-      <p>%{browse_link:Rasfoiește site-ul} pentru a gasi scripturi ale utilizatorului ce vrei sa le încerci. Aici de exemplu sunt cele mai populare script-uri:</p>
+        <p>%{browse_link:Rasfoiește site-ul} pentru a gasi scripturi ale utilizatorului
+        ce vrei sa le încerci. Aici de exemplu sunt cele mai populare script-uri:</p>
 
-      %{highlighted_scripts_list}
+        %{highlighted_scripts_list}
 
-      <p>Dupa ce ai gasit un script al utilizatorului, dă click pe butonul verde de instalare pe pagina script-ului utilizatorului, și managerul de script-uri te va întreba daca mergi mai departe.</p>
-    # header for step 3 - how to use a user script
+        <p>Dupa ce ai gasit un script al utilizatorului, dă click pe butonul verde
+        de instalare pe pagina script-ului utilizatorului, și managerul de script-uri
+        te va întreba daca mergi mai departe.</p>
     installing_step3_header: "Pasul 3: Folosește script-ul utilizatorului"
-    # description for step 3, describing browsing to the site and having the user script apply
     installing_step3_description_html: >
-      <p>Du-te pe site-ul care script-ul utilizatorului îl afectează. Ar trebui să facă automat ce e făcut să facă. Dupa ce incerci script-ul utilizatorului o perioadă, du-te înapoi de unde ai luat script-ul și lasă ceva păreri pentru autorului script-ului.</p>
+        <p>Du-te pe site-ul care script-ul utilizatorului îl afectează. Ar trebui
+        să facă automat ce e făcut să facă. Dupa ce incerci script-ul utilizatorului
+        o perioadă, du-te înapoi de unde ai luat script-ul și lasă ceva păreri pentru
+        autorului script-ului.</p>
   users:
-    # html title for the sign in page
     sign_in_title: "Autentificare în %{site_name}"
-    # what signing in lets people od
     sign_in_description: "Fa-ți cont pe %{site_name} pentru a putea posta script-uri si a lasă recenzii. Nu trebuie să iți faci cont pentru a putea rasfoi site-ul sau să iți poți instala script-uri."
-    # heading for signing in with an external service (Google, GitHub, etc.)
     sign_in_external: "Autentificare printr-un serviciu extern"
-    # button for signing in with an external service (Google, GitHub, etc.)
     sign_in_with: "Autentifică-te cu %{provider}"
-    # heading for signing in with a password
     sign_in_password: "Autentifică-te cu o parolă"
-    # when a user attempts to sign in with an external service and a user already exists with the same email, this is the message shown. email: provided e-mail, user_name: existing user's name, provider: what the user tried to sign in with (e.g. GitHub), sign_in_link: a link to the sign in page with text from sign_in_email_used_sign_in_link
     sign_in_email_used_no_external_services_html: "E-mail-ul '%{email}' este deja folosit de utilizatorul '%{user_name}'. Dacă acesta ești tu și vrei să adaugi o metoda adițională de autentificare cu %{provider},  autentifică-te %{sign_in_link} pe cont prima dată, apoi adauga-ți autentificare cu %{provider}."
-    # same as above, but when the existing user uses other providers. also includes existing_providers, which is a list of the existing user's sign ins, run through to_sentence (http://apidock.com/rails/Array/to_sentence)
     sign_in_email_used_with_external_services_html: "E-mail-ul '%{email}' este deja folosit de utilizatorul '%{user_name}', care se autentifică cu %{existing_providers}. Dacă acesta ești tu și vrei să adaugi o metodă adițională de autentificare cu %{provider}, autentifică-te %{sign_in_link} pe cont prima dată, apoi adauga-ți autentificare cu %{provider}."
-    # sign in link for email_used messages
     sign_in_email_used_sign_in_link: "autentificare"
-    # when a user attempts to create an account with an external service, but an email was not provided by that service
     sign_in_email_missing: "Site-ul %{site_name} are nevoie de o adresă de e-mail pentru a-ți crea un cont, dar %{provider} nu ți-a dat unul. Poți ori să-ți actualizezi contul de pe %{provider} să poți avea unul, și după să te autentifici iar, sau creaza un cont normal cu e-mail/parola pe %{site_name}, apoi adaugă-ți contul de pe %{provider} pe el."
-    # this shows when signing in for the first time with an external sign in but the name received is already in use. the user is prompted to enter a different name.
     sign_in_name_used: "Numele '%{name}' este deja folosit. Alege unul diferit."
-    # the button when submitting the name form per above
     sign_in_name_used_submit: "Trimite"
-    # Button to preview a user's profile before saving
-    # heading for the user's control panel, which contains links such as post script and edit account
     control_panel: "Panou de control"
-    # heading for the list of discussions about a user's own scripts
     discussions_on_scripts: "Dsicuții pe baza scripturilor tale"
-    # alt text for the RSS feed icon for discussions about a user's own scripts
     discussions_on_scripts_feed_alt: "Flux RSS"
-    # text to show in the section for discussions about a user's own scripts if there are no discussions yet
     discussions_on_scripts_none: "Niciunul încă!"
-    # link to more discussions on a user's own scripts, as the initial list is limited in number
     discussions_on_scripts_more: "Mai multe discuții..."
-    # heading for the list of scripts on a user's page
     script_list: "Scripturi"
-    # text to show in a user's script section when they have created no scripts
     script_list_none: "Nici un script postat."
-    # text to show in a user's script section when they have created scripts, but they are not shown due to the filters active
     script_list_none_for_filter: "Nici un script pentru filtrele actuale."
-    # text to show in a user's own script section when they have created no scripts. script_list_none_same_user_info_link is a link to a tutorial with text of script_list_none_same_user_info_link_text
     script_list_none_same_user_html: "Nu ai scris nici un script. %{script_list_none_same_user_info_link}"
-    # text used for link in script_list_none_same_user_html
     script_list_none_same_user_info_link_text: "Vrei să afli cum?"
-    # heading for the list of a user's deleted scripts (visible to only that user and mods)
     deleted_script_list: "Scripturi șterse"
     unlisted_script_list: "Script-uri nelistate"
-    # link to log out
     sign_out: "Închide sesiunea"
-    # link to edit an account
     edit: "Editează preferințe"
-    # link to edit how the user signs in
     edit_sign_in: "Modifică metodele de autentificare"
-    # html title for the edit sign in page
     edit_sign_in_title: "Modifică metodele de autentificare"
-    # heading for the password section of the edit sign in methods page
     edit_sign_in_password: "Parolă"
-    # informational text telling the user they're not using a password
     edit_notifications: "Modifică notificarile"
     no_password_set_info: "Contul dvs. nu are setată o parolă."
-    # button to set a password when one is not already set
     set_password: "Setează parola"
-    # button to set a password when one is already set
     update_password: "Actualizează parola"
-    # error message when the password and the confirmation don't match
     update_password_no_match: "Parola nu coincide."
-    # notice after a password was updated successfully
     password_updated: "Parolă actualizată."
-    # information text saying the user can unset their password and use just external sign ins
     remove_password_info: "Poti sa-ți ștergi parola si sa te bazezi pe metode de autentificare externă."
-    # button to remove the password from the user's account
     remove_password: "Șterge parola"
-    # error message to show if the user attempts to remove a password but have no external sign ins. This is normally not possible with the interface.
     cant_remove_password: "Nu se poate ștege parola - nu ai avea cum să te autentifici!"
-    # error message to show if the user attempts to remove a sign in but has no password or other sign ins. This is normally not possible with the interface. provider is the external site's name, like GitHub or Google
     cant_remove_sign_in: "Nu se poate șterge autentificare cu %{provider} - nu ai avea cum să te autentifici."
-    # notice after a password was removed successfully
     password_removed: "Parola a fost ștearsă."
-    # heading for the external sign ins section of the edit sign in methods page
     edit_sign_in_external: "Metode de autentificare externă"
-    # information text about how they can use external sign ins, shown when the user has not set any yet
     external_sign_in_info_no_sign_ins: "Îti poți folosi contul de pe alte site-uri pentru a-ți face cont pe %{site_name}."
-    # information text about how they can use external sign ins, shown when the user already has some set. should describe the concept of syncing, where account details on %{site_name} will be updated to match the external service on sign in
     external_sign_in_info_with_sign_ins: "Folosești in momentul actual o metodă externă pentru a te putea loga. O autentificare care se \"sincronizează\" înseamnă că informațiile de pe %{site_name} (cum ar fi numele de utilizator sau e-mail-ul) vor fi actualizate să fie asemănătoare când te vei autentifica."
-    # notice after a sign in is added. provider is the external site's name, like GitHub or Google
     external_sign_in_added: "Metoda de autentificare cu %{provider} adaugată."
-    # notice after a sign in is updated (from syncing to not or opposite). provider is the external site's name, like GitHub or Google
     external_sign_in_updated: "Metoda de autentificare cu %{provider} actualizată."
-    # notice after a sign in is removed. provider is the external site's name, like GitHub or Google
     external_sign_in_removed: "Metoda de autentificare cu %{provider} stearsă."
-    # notice after a sign in fails
     external_sign_in_failed: "Metoda de autentificare cu %{provider} a eșuat pe motiv: %{error}."
-    # notice after a user tries to add a sign in to their account, but that sign in is already in use by another user
     external_sign_in_already_used: "Adăugarea de autentificare cu %{provider} a eșuat: acea metodă de autentificare este deja folosită de utilizatorul '%{user_name}'."
-    # notice after successfully creating a new user based on external login
     external_sign_in_confirmation: "Un nou cont pe %{site_name} a fost creat bazat pe detaliile de pe contul tău de %{provider}. Numele tău de utilizator public este %{username}."
-    # an indicator beside the sign in provider's name if the user chose to enable syncing
     syncing_indicator: "(sincronizare)"
-    # button to set a sign in provider to sync
     enable_syncing: "Pornește sincronizarea"
-    # button to set a sign in provider to not sync
     disable_syncing: "Oprește sincronizarea"
-    # button to remove a sign in provider
     remove_external_sign_in: "Șterge"
-    # information text indicating that the list of links below it are for addding an external sign in
     add_external_sign_in_info: "Adaugă o metodă de autentificare:"
-    # link to docs on how to set up a webhook for script syncing
     set_up_webhook: "Setează un weebhook"
     author_email_notification_type:
-      # notification option: don't send the user e-mails
       none: "Nu primi e-mail-uri cu discuțiile bazate pe script-urile tale"
-      # notification option: send e-mails on new discussions but not new posts on existing discussions
       discussion_only: "Primește e-mail-uri cu discuțiile bazate pe script-urile tale"
-      # notification option: send e-mails on new discussoins and on new posts on existing discussions
       discussion_and_comment: "Primește e-mail-uri cu discuțiile bazate pe script-urile tale, sau când acele discuții primesc comentarii noi"
-    # display of a single user when displaying a list of users. user_link is a link to the user's page with text of the user name, count is the number of public scripts authored
     list_display_html:
       one: "%{user_link} - %{count} script"
       few: "%{user_link} - %{count} scripturi"
       other: "%{user_link} - %{count} de scripturi"
-    # sort link for sorting users by number of scripts they've posted
     listing_number_of_scripts: "Numărul scripturilor"
-    # sort link for sorting users by the creation date of their scripts
     listing_new_scripts: "Scripturi noi"
-    # sort link for sorting users by the updated date of their scripts
     listing_updated_scripts: "Scripturi actualizate"
-    # sort link for sorting users by when they signed up
     listing_registration_date: "Data înregistrării"
-    # title for page showing list of users
     listing_title: "Utilizatori"
     listing_banned_filter:
       banned: "Banat"
@@ -835,28 +544,20 @@ ro:
       script_author: "Autorul script-ului"
       not_script_author: "Nu este autorul script-ului"
       all: "Toate"
-    # placeholder for user search box
     search_placeholder: "Caută utilizatori"
-    # default option for the user's preferred locale
     locale_prompt: "(Alege o limbă)"
-    # text describing what the show ads checkbox does
     show_ads_description: "Ajută site-ul %{site_name} prin permiterea lui să-ți afișeze reclame"
-    # text describing what the show sensitive checkbox does
     show_sensitive_description: "Arată scripturi cu conținut pentru adulți"
-    # text describing what the preferred markup setting does
     preferred_markup_description: "Va fi folosit pentru noi scripturi sau postări."
     filter_locale_default_description: "Implicit, puneți conținut doar în locala curentă"
-    # link from sleazy fork to greasy fork on user page
     greasy_fork_scripts_link:
       one: "%{user_name} mai are de asemenea un %{count} script pe Greasy Fork."
       few: "%{user_name} mai are de asemenea %{count} script-uri pe Greasy Fork."
       other: "%{user_name} mai are de asemenea %{count} de script-uri pe Greasy Fork."
-    # displays when the user is editing their account but syncing is on
     update_sync_warning:
       one: "Numele tau de utilizator si e-mail-ul sunt setate sa se sincronizeze cand te autentifici cu %{providers}. %{edit_sign_in_link:Modifica-ti metoda de autentificare pentru a scoate sincronizarea} daca vrei sa iti setezi un nume de utilizator si e-mail permanent."
       few: "Numele tau de utilizator si e-mail-ul sunt setate sa se sincronizeze cand te autentifici cu %{providers}. %{edit_sign_in_link:Modifica-ti metoda de autentificare pentru a scoate sincronizarea} daca vrei sa iti setezi un nume de utilizator si e-mail permanent."
       other: "Numele tău de utilizator si e-mail-ul sunt setate sa se sincronizeze când te autentifici cu %{providers}. %{edit_sign_in_link:Modifica-ți metoda de autentificare pentru a scoate sincronizarea} dacă vrei să îți setezi un nume de utilizator și e-mail permanent."
-    # link on the user page to go to the delete page
     delete_link: "Șterge contul"
     delete:
       intro: "Ștergandu-ti contul pe %{site_name} cu numele de utilizator '%{user_name}' va avea următoarele efecte:"
@@ -908,13 +609,13 @@ ro:
     notifications:
       discussion_defaults:
         title: Notificările forum-ului
-        new_discussion: "Implicit, abonează-te la fiecare discuție începută de tine"
-        new_comment: "Implicit, abonează-te la fiecare discuție la care ai comentat"
+        new_discussion: Implicit, abonează-te la fiecare discuție începută de tine
+        new_comment: Implicit, abonează-te la fiecare discuție la care ai comentat
         mention: Primeste o notificare când ești menționat într-o discuție
       conversation_defaults:
         title: Notificări conversații
-        starter: "Implicit, abonează-te la fiecare conversație incepută de tine"
-        receiver: "Implicit, abonează-te la fiecare conversație în care ești menționat, pe care nu ai început-o tu"
+        starter: Implicit, abonează-te la fiecare conversație incepută de tine
+        receiver: Implicit, abonează-te la fiecare conversație în care ești menționat, pe care nu ai început-o tu
       save_button: Actualizează setările de notificări
       title: Notificări
       current_discussion_subscriptions:
@@ -924,13 +625,6 @@ ro:
       save_success: Preferințele notificărilor au fost actualizate.
       unsubscribe_all: Dezabonează-te de la toate notificările
       unsubscribe_all_success: Te-ai dezabonat de la toate notificările.
-  webhooks:
-    info:
-      title: ""
-      intro_html: |
-      already_syncing_list: ""
-      synced_item_html: ""
-      language_note: ""
   help:
     sections:
       usage: Uz
@@ -942,135 +636,171 @@ ro:
     installing_user_styles:
       title: 'Cum se instalează stiluri de utilizator'
     meta_keys:
-      # title of the help document describing script meta keys (e.g. @name).
       title: "Cheia metadata citită de %{site_name}"
-      # introductory paragraph. If the URL has a localized version, use that.
       intro_html: "Aceasta este o lista a <a href=\"http://wiki.greasespot.net/Metadata_Block\">meta chei de folosit pentru scripturile utilizatorului</a> care %{site_name} le va citi. Cheile înafara celor de pe această lista pot fi incluse în scripturi, și vor fi prezente în scriptul instalat, dar, nu vor avea nici un efect pe UI-ul site-ului %{site_name}."
-      # description of @name
       name: "Numele scriptului, folosit ca titlu și in link-uri. Necesar."
-      # description of @name:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
       name_localized_html: "Numele scriptului într-o locală specifică, unde XX este un <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">cod 2 de literă ISO639-1 </a> și YY este opțional <a href=\"https://www.iso.org/obp/ui/#search\">codul de țara ISO 3166</a>. Suprascrie <code>@numele</code> unde utilizatorul răsfoiește o locală identică."
-      # description of @description
       description: "O descriere despre ce face scriptul. Se va vedea sub formă de text sub numele lui. Necesar."
-      # description of @description:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
       description_localized_html: "Numele scriptului într-o locală specifică, unde XX este un <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">cod 2 de literă ISO639-1 </a> și YY este opțional 2<a href=\"https://www.iso.org/obp/ui/#search\">codul de țara ISO 3166</a>. Suprascrie <code>@descrierea</code> unde utilizatorul răsfoiește o locală identică."
-      # description of @namespace. Do not translate content inside <code>.
       namespace_html: "O combinație de <code>@namespace</code> și <code>@nume</code> sunt folosite de managerul de scripturi pentru a putea vedea dacă un script este instalat. Site-ul %{site_name} are nevoie de aceste informații și va anunța dacă acestea s-au schimbat sau actualizat."
-      # description of @description:XX-YY. developer.mozilla.org may have localized content; use it if available.
       version_html: "Identificatorul pentru o versiune specifica a scriptului in <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">format de versiune pentru Mozzila</a>.  Versiunea este scrisă pe pagina scriptului. Site-ul %{site_name} necesită acesta informație și va anunța daca este descrescătoare sau dacă nu este crescută când codul scriptului se schimbă."
-      # description of @include
       include_html: "Descrie pe ce pagini va rula scriptul. Lista va fi procesată, scrisă pe pagina de informații a scriptului și utilizată să adauge scriptul într-o categorie. Fiecare script trebuie să aibă măcar o <code>@asemanare</code> sau <code>@includere</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Citește despre acest format aici.</a>"
-      # description of @require. %{external_script_link} is a link to the document describing allowed external scripts and has a link of key "require_external_script_link_text"
       require_html: "Include JavaScript extern în script. Vezi %{external_script_link}."
-      # used in required_html
       require_external_script_link_text: "reguli de cod incluzând scripturile externe"
-      # description of @updateURL
       updateURL: "Descrie cum ar trebui managerele de scripturi să primească actualizări. %{site_name} va scoate aceste chei, ceea ce face ca orice script instalat de pe %{site_name} să primească actualizări doar de pe %{site_name}."
-      # description of @license
       license: "Licența care descrie cum ar trebui ca oamenii să aibă dreptul de a copia sau modifica un script. Folosind un \"Nume complet\" sau un \"Identificator\" din %{spdx_link:Lista de licențe SPDX} este recomandat. Lipsa licenței înseamnă că utilizatorii pot instala scriptul pentru uz personal, dar nu ar trebui să îl redistribuiască. Licența este scrisă pe pagina de informații a scriptului."
-      # description of @supportURL
       supportURL: "URL-ul pentru o pagină unde utilizatorii pot primi suport la un script (de ex un urmăritor de buguri, un forum, o adresă de e-mail). URL-ul de suport este scris pe pagina de păreri a scriptului."
-      # description of @contributionURL. You can replace the sample "business" and "item_name" parameters in the URLs with localized versions.
       contributionURL_html: "Un URL catre o pagină în care utilizatorii pot dona catre autorul scriptului. URL-ul de contribuție se poate găsi la pagina de păreri al scriptului. URL-ul poate fi http, https sau protocoale Bitcoin. Pentru a lega la o pagină de donații PayPal, folosește un format URL <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=emailul.tau.aici@examplu.com&item_name=Greasy+Fork+donation</a>, modifică e-mail-ul de exemplu cu al tău."
-      # description of @contributionAmount. Do not translate content inside <code>.
       contributionAmount_html: "Suma sugerată de donații, folosit in conjunctură cu <code>@URLcontributie</code>."
-      # description of @compatible. %{browsers} is a comma-separated list of browser codes. You can translate "Must disable pop-up blocker", but do not translate "@compatible firefox". 
       compatible_html: "Marchează scriptul compatibil cu un browser. Informațiile de compatibilitate vor fi scrise pe pagina scriptului. Comentariile despre compatibilitate pot fi incluse în format. <code>@compatible firefox Trebuie dezactivat blocajul de ferestre</code>. Browserurile recunoscute sunt: %{browsers}."
-      # description of @incompatible. %{browsers} is a comma-separated list of browser codes. You can translate "Broken since Firefox 23", but do not translate "@compatible firefox".
       incompatible_html: "Marchează scriptul compatibil cu un browser. Informațiile de compatibilitate vor fi scrise pe pagina scriptului. Comentariile opționale despre compatibilitate pot fi incluse in format. <code>@cinompatible firefox Stricat din Firefox 23</code>. Browserurile recunoscute sunt: %{browsers}."
       antifeature_html: "Dezvaluie caracteristici într-un script care sunt acolo în beneficiul autorului, nu al utilizatorului. Formatul cheie este: <code>descriere de tip @anticaracteristică</code>. Site-ul %{site_name} va citi următoarele tipuri:  <code>reclamă</code> (scriptul arată o reclamă utilizatorului), <code>urmărire</code> (scriptul urmăreste activitatea utilizatorului), <code>miner</code> (scriptul conține un miner de cryptomonede) și <code>link-de-afiliere</code> (scriptul rescrie linkuri pentru a adăuga urmăritor de afiliere). Alte tipuri sunt ignorate, dar scriptul trebuie fară doar și poate să respecte %{code_rules_link:regulamentul site-ului %{site_name}}. Descrierea este opțională."
       antifeature_localized_html: "O <code>@anticaracteristica</code> descrie cum o locală specifică, unde XX este un <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">litera 2 de cod ISO 639-1</a> și YY este un <a href=\"https://www.iso.org/obp/ui/#search\">număr de țară opțional ISO 3166</a>. Modifică <code>@anticaracteristica</code>s de același tip când utilizatorul răsfoiește într-o locală asemanătoare. "
     writing_user_scripts:
-      # title for Writing user scripts help page
       title: "Cum să creezi scripturi"
-      # content of the page. The link to greasespot can be updated to a better resource if one is available in your language. code_rules_link and meta_keys_link are links to those help pages, with text of those page's titles. ask_in_forum_link is a link to the forum with text of ask_in_forum_link_text. user_page_link is a link to the user's page if the user is signed in, or plain text if they're not; in either case, the text is user_page_link_text. post_new_script_link is a link to the new script page, with text of post_new_script_link_text
       content_html: "<p>Pentru a scrie un script de utilizator ai nevoie de cunoștințe in JavaScript. Pagina de <a href=\"http://wiki.greasespot.net/Tutorials\">tutoriale de pe Wiki-ul GreaseSpot</a> ar trebui să iți dea niște informații de baza despre JavaScript in mod general și cum relaționează cu alte scripturi are utilizatorului. Poate ești interesat în %{code_rules_link} și %{meta_keys_link}. Dacă vrei ajutor in a scrie un script, nu te sfii în a cere ajutor pe forumul nostru %{ask_in_forum_link}.</p><p>Pentru a posta pe %{site_name}, iți va trebui un cont. De pe pagina %{user_page_link}, urmărește link-ul către %{post_new_script_link}.</p>"
-      # link text used in content_html
       ask_in_forum_link_text: 'întreabă pe forum'
-      # link text used in content_html
       user_page_link_text: 'pagina de utilizator'
-      # link text used in content_html
       post_new_script_link_text: 'postează un script nou'
     code_rules:
-      # title for the rules page
       title: "Regulile site-ului %{site_name} pentru postatul de scripturi"
-      preamble: "Sunt anumite cerințe pentru scripturile postate pe %{site_name}. Sunt făcute să țina siteul %{site_name} un loc sigur și folositor pentru scripturile de utilizator. Orice script care nu respectă aceste cerințe va fi șters de moderatori %{site_name}."
+      preamble: Sunt anumite cerințe pentru scripturile postate pe %{site_name}. Sunt făcute să țina siteul %{site_name} un loc sigur și folositor pentru scripturile de utilizator. Orice script care nu respectă aceste cerințe va fi șters de moderatori %{site_name}.
       functionality_header: Funcționalitate
       description: Scripturile trebuie să includă o descriere cu privire la ce anume face scriptul și să nu facă lucruri ce nu sunt rezonabile și nu sunt trecute în descriere. Utilizatorii trebuie să știe ce face un script înainte de a-l instala.
-      reason: "Scripturile trebuie să aibă un motiv pentru care exista. De exemplu, un script care doar redirecționează utilizatorii catre un site nu trebuie să fie un script; poate fi un link. Scripturile care folosesc un serviciu web pentru a face un lucru pe pagina curentă (de ex să îl convertească într-un fel) sunt permise."
-      unrelated: "Scripturile nu trebuie să oblige utilizatorii să facă un lucru care nu are nici un sens, cum ar fi trimiterea unei plați, abonarea la un canal, intratul într-un grup sau să atașeze o pagină, pentru ca scriptul să funcționeze, complet sau parțial."
-      monetization_html: "Scripturile care conțin caracteristici în beneficiul <em>autorului</em> și nu a utilizatorului (cum ar fi urmărire, reclame sau mineri) sunt permise, dar acestea trebuie să fie precizate cu %{antifeature_link:chei meta <code>@anticaracteristici</code>}."
+      reason: Scripturile trebuie să aibă un motiv pentru care exista. De exemplu, un script care doar redirecționează utilizatorii catre un site nu trebuie să fie un script; poate fi un link. Scripturile care folosesc un serviciu web pentru a face un lucru pe pagina curentă (de ex să îl convertească într-un fel) sunt permise.
+      unrelated: Scripturile nu trebuie să oblige utilizatorii să facă un lucru care nu are nici un sens, cum ar fi trimiterea unei plați, abonarea la un canal, intratul într-un grup sau să atașeze o pagină, pentru ca scriptul să funcționeze, complet sau parțial.
+      monetization_html: Scripturile care conțin caracteristici în beneficiul <em>autorului</em> și nu a utilizatorului (cum ar fi urmărire, reclame sau mineri) sunt permise, dar acestea trebuie să fie precizate cu %{antifeature_link:chei meta <code>@anticaracteristici</code>}.
       code_header: Cod
-      obfuscation: "Codul postat pe %{site_name} nu trebuie să fie ascuns sau micșorat. Utilizatorii trebuie să aibă oportunitatea de a inspecta și de a înțelege un script înainte de a-l instala. Daca scriptul este împachetat de o unealtă cum ar fi webpack, trebuie să fie scos ne-micșorat."
-      libraries_html: "Librăriile pe care un script le folosește nu ar trebui să fie <code>@cere</code>-d, doar dacă este un motiv tehnic valid pentru a nu o face. În cazul în care este inclusă o librărie pe linie, trebuie să includă informații cum ar fi sursa librăriei (de ex un comentariu care indică URL-ul și/sau un nume sau o versiune)."
-      updates: "Scripturile nu trebuie să caute actualizări la o rată mai mare decât o dată pe zi. Ține minte că majoritatea utilizatorilor folosesc un manager de scripturi și li se vor face actualizări automat, deci să se facă un script nu este necesar. Scripturile nu ar trebui să injecteze dinamic alt script găzduit de pe %{site_name} în pagină, pentru că asta sare peste stocarea in managerul de scripturi."
+      obfuscation: Codul postat pe %{site_name} nu trebuie să fie ascuns sau micșorat. Utilizatorii trebuie să aibă oportunitatea de a inspecta și de a înțelege un script înainte de a-l instala. Daca scriptul este împachetat de o unealtă cum ar fi webpack, trebuie să fie scos ne-micșorat.
+      libraries_html: Librăriile pe care un script le folosește nu ar trebui să fie <code>@cere</code>-d, doar dacă este un motiv tehnic valid pentru a nu o face. În cazul în care este inclusă o librărie pe linie, trebuie să includă informații cum ar fi sursa librăriei (de ex un comentariu care indică URL-ul și/sau un nume sau o versiune).
+      updates: Scripturile nu trebuie să caute actualizări la o rată mai mare decât o dată pe zi. Ține minte că majoritatea utilizatorilor folosesc un manager de scripturi și li se vor face actualizări automat, deci să se facă un script nu este necesar. Scripturile nu ar trebui să injecteze dinamic alt script găzduit de pe %{site_name} în pagină, pentru că asta sare peste stocarea in managerul de scripturi.
       external_js: "%{external_scripts_link:Uzul de JavaScript extern este limitat.}"
       copyright_header: Drepturi de autor
-      licensing: "Scriptul tău trebuie să respecte drepturile de autor a altora. Asta include codul în sine și orice altă resursa (de exemplu imagini) folosită. Dacă intetionezi să folosești conținutul altcuiva, respectă-le termenii de licență sau fă rost de permisiunea lor înainte de a face-o."
-      reposts: "Chiar și în cazurile care nu se incalcă regulamentul drepturilor de autor, repostarea de scripturi care sunt deja pe %{site_name} nu este permisă decât dacă sunt mai îmbunatațite față de original."
+      licensing: Scriptul tău trebuie să respecte drepturile de autor a altora. Asta include codul în sine și orice altă resursa (de exemplu imagini) folosită. Dacă intetionezi să folosești conținutul altcuiva, respectă-le termenii de licență sau fă rost de permisiunea lor înainte de a face-o.
+      reposts: Chiar și în cazurile care nu se incalcă regulamentul drepturilor de autor, repostarea de scripturi care sunt deja pe %{site_name} nu este permisă decât dacă sunt mai îmbunatațite față de original.
       miscellaneous_header: Diverse
-      keywords_html: "Scripturile nu trebuie să includă <code>@inclus</code>s, <code>asemănare</code>es, sau cuvinte cheie pentru siteuri care nu au nici o funcționalitate."
+      keywords_html: Scripturile nu trebuie să includă <code>@inclus</code>s, <code>asemănare</code>es, sau cuvinte cheie pentru siteuri care nu au nici o funcționalitate.
       adult_content_rule: Scripturile care includ conținut pentru adulți sau sunt destinate siteurilor care includ conținut pentru adulți trebuie marcate ca atare pentru a le da utilizatorilor opțiunea de a le vedea sau nu.
-      reporting: "Dacă observi un script care nu respectă acești parametri, te rog să-l raportezi pe link-ul de pe pagina de Păreri al scriptului și alege opțiunea de \"Raportează script\"."
+      reporting: Dacă observi un script care nu respectă acești parametri, te rog să-l raportezi pe link-ul de pe pagina de Păreri al scriptului și alege opțiunea de "Raportează script".
     external_scripts:
-      # title of the external script rules page
       title: "Politicile site-ului %{site_name} despre scripturile externe"
-      # content of the external script rules page
       content_html: >
-        <p>Script-urile ale utilizatorului au abilitatea tehnică de a încărca și executa alte scripturi. Cheia metadata de pe %{require_doc_link:<code>@require</code>} este cea mai ușoară metodă de a face asta, dar scripturile pot și, de exemplu, să folosească un XmlHttpRequest pentru a descărca un script și apoi de a-l injecta in DOM.</p> <p>Deși asta este o caracteristică folositoare si mulți autori o folosesc cu motive legitime, poate fi folosit și în mod dăunator. Unul dintre principiile de bază de pe site-ul %{site_name} este ca utilizatorii să poată inspecta codul unui script. Script-urile externe pot sări peste el cu tot felul de metode: pot schimba fară avertisment sau istoric, pot servii cod diferit la diferiți utilizatori, și pot fi folosite să ascundă cod dăuntor în librării cunoscute. Chiar dacă ar fi ca cineva să verifice scripturile externe, și să determine că este legitim, nu este nici o garantare că mereu a fost, sau va fi legitim.</p> <p>Pentru a permite utilizatorilor să folosească în continuare scripturi externe, %{site_name} a implementat o listă de formate URL care pot fi incluse cu un script. Lista consistă in scripturi din locații care:</p> <ul>
+          <p>Script-urile ale utilizatorului au abilitatea tehnică de a încărca și
+          executa alte scripturi. Cheia metadata de pe %{require_doc_link:<code>@require</code>}
+          este cea mai ușoară metodă de a face asta, dar scripturile pot și, de exemplu,
+          să folosească un XmlHttpRequest pentru a descărca un script și apoi de a-l
+          injecta in DOM.</p> <p>Deși asta este o caracteristică folositoare si mulți
+          autori o folosesc cu motive legitime, poate fi folosit și în mod dăunator.
+          Unul dintre principiile de bază de pe site-ul %{site_name} este ca utilizatorii
+          să poată inspecta codul unui script. Script-urile externe pot sări peste
+          el cu tot felul de metode: pot schimba fară avertisment sau istoric, pot
+          servii cod diferit la diferiți utilizatori, și pot fi folosite să ascundă
+          cod dăuntor în librării cunoscute. Chiar dacă ar fi ca cineva să verifice
+          scripturile externe, și să determine că este legitim, nu este nici o garantare
+          că mereu a fost, sau va fi legitim.</p> <p>Pentru a permite utilizatorilor
+          să folosească în continuare scripturi externe, %{site_name} a implementat
+          o listă de formate URL care pot fi incluse cu un script. Lista consistă
+          in scripturi din locații care:</p> <ul>
 
-        <li>Sunt publice</li>
+          <li>Sunt publice</li>
 
-        <li>Nu au conținutul modificat frecvent</li>
+          <li>Nu au conținutul modificat frecvent</li>
 
-        <li>Va fi de folos la mai mult de un autor</li>
+          <li>Va fi de folos la mai mult de un autor</li>
 
-        </ul> <p>Lista curentă este:</p> %{allowed_require_list} <p>Dacă încerci sa postezi un script care folosește un <code> @script-extern </code> înafara acestor locații, nu îți vei putea salva scriptul.</p> <p>Dacă scriptul pe care vrei să îl incluzi este o librărie JavaScript (de exemplu JQuerry sau YUI), încearcă să o gasești pe unul din lista de site-uri de mai sus. %{cdnjs_link:cdnjs} și %{jsdelivr_link:jsDelivr} in particular au o gamă variată de librării valabile.</p> <p>Dacă scriptul pe care vrei să îl incluzi nu se află pe unul din site-urile prezentate mai sus, %{contact_link:spune-ne} și vom găsi undeva unde este (sau chiar să îl găzduim noi!).</p> <p>Daca scriptul pe care vrei să îl incluzi este scris de tine îl poți posta separat pe %{site_name} prin a alege tipul scriptului ca Librărie. O să poți include această librarie postatâ în scriptul tău.
+          </ul> <p>Lista curentă este:</p> %{allowed_require_list} <p>Dacă încerci
+          sa postezi un script care folosește un <code> @script-extern </code> înafara
+          acestor locații, nu îți vei putea salva scriptul.</p> <p>Dacă scriptul pe
+          care vrei să îl incluzi este o librărie JavaScript (de exemplu JQuerry sau
+          YUI), încearcă să o gasești pe unul din lista de site-uri de mai sus. %{cdnjs_link:cdnjs}
+          și %{jsdelivr_link:jsDelivr} in particular au o gamă variată de librării
+          valabile.</p> <p>Dacă scriptul pe care vrei să îl incluzi nu se află pe
+          unul din site-urile prezentate mai sus, %{contact_link:spune-ne} și vom
+          găsi undeva unde este (sau chiar să îl găzduim noi!).</p> <p>Daca scriptul
+          pe care vrei să îl incluzi este scris de tine îl poți posta separat pe %{site_name}
+          prin a alege tipul scriptului ca Librărie. O să poți include această librarie
+          postatâ în scriptul tău.
       test_url:
         label: Testează un URL
         result_ok: URL-ul este permis
         result_not_ok: URL-ul nu este permis
     script_rewriting:
-      # title of the rewriting page
       title: "Cum va rescrie site-ul %{site_name} scripturile postate"
-      # content of the rewriting page
       content_html: >
-        <p>Script-urile postate pe %{site_name} vor fi rescrise în următoarele metode:</p><ul>
+          <p>Script-urile postate pe %{site_name} vor fi rescrise în următoarele metode:</p><ul>
 
-        <li>directivele<code>@updateURL</code>, <code>@installURL</code>. și <code>@downloadURL</code> vor fi scoase, daca vor fi prezente. Lipsa lor va însemna ca orice script instalat de pe %{site_name} va ramâne actualizat de pe %{site_name}.</li>
+          <li>directivele<code>@updateURL</code>, <code>@installURL</code>. și <code>@downloadURL</code>
+          vor fi scoase, daca vor fi prezente. Lipsa lor va însemna ca orice script
+          instalat de pe %{site_name} va ramâne actualizat de pe %{site_name}.</li>
 
-        <li>directivele <code>@versiunea</code> și <code>@namespace</code> vor fi adăugate daca scriptul nu le are. Aceste directive vor fi necesare pentru o actualizare corectă</li>
+          <li>directivele <code>@versiunea</code> și <code>@namespace</code> vor fi
+          adăugate daca scriptul nu le are. Aceste directive vor fi necesare pentru
+          o actualizare corectă</li>
 
-        <li><code>@descrierea</code> va fi inserată dacă o nouă versiune nu le are și o versiune anterioară le-a avut.</li>
+          <li><code>@descrierea</code> va fi inserată dacă o nouă versiune nu le are
+          și o versiune anterioară le-a avut.</li>
 
-        <li>Pauzele între linii CRLF și CF vor fi convertite la pauzele între linii în format standard/Unix.</li>
+          <li>Pauzele între linii CRLF și CF vor fi convertite la pauzele între linii
+          în format standard/Unix.</li>
 
-        </ul>
-    # link to github
+          </ul>
     site_feedback_link: "Raportează o problemă sau postează o idee pentru site-ul %{site_name}."
     credits:
-      # title for the credits page
       title: "Credite"
-      # give credit to authors
       authors_credit: "Site-ul %{site_name} nu ar fi fost aici fară autorii care contribuie cu scripturi."
-      # give credit to developers. link goes to github.
       developers_credit: "Site-ul %{site_name} în sine a fost facut de %{developers_link:acești oameni} cu ajutorul celor care raportează bug-uri și ajută cu sugestii."
-      # give credit to translators. link to goes to transifex. after this text, there's a list of languages and the contributors to each.
       translators_credit: "Site-ul %{site_name} a fost tradus de %{translators_link:forța de traducere de pe Transifex}:"
-      # give credit to icon makers. all links are proper names so are not translated.
       icons_credit: "Iconițele de browser sunt de pe %{browserlogos}."
-    # link to greasemonkey docs
     help_with_greasymonkey: "Ajutor Greasemonkey"
     contact:
-      # title of contact page
       title: "Contactează pe cineva"
-      # content of contact page
       content_html: >
-        <p>Sunt nenumărate metode de a vorbi despre %{site_name} și chestiile de pe el.</p> <p>Ai o întrebare sau ai vrea să comentezi despre un script specific de pe site? Dacă da, postează o discuție de pe link-ul din pagina de Pareri a scriptului. Autorii de scripturi sunt anunțați pe pagina lor de profil dacă sunt noi discuții despre script.</p> <p>Ai vreo întrebare sau vrei să lași un comentariu despre site-ul %{site_name} în sine, sau despre developarea de scripturi, sau vrei ca cineva să iți faca un script? %{forum_link:Postând pe forum} iți va oferi cea mai mare audiența pentru discuția ta.</p> <p>Ai de raportat un bug sau o idee bine formată pentru site-ul %{site_name} in sine (și nu pentru un script specific <em>postat pe</em> %{site_name})? %{github_link:Postează pe pagina de GitHub.}</p> <p>Ai vreo întrebare privata sau vrei să lași un comentariu doar pentru admini să vada? %{admin_email_link:Trimite un e-mail.}</p>
+          <p>Sunt nenumărate metode de a vorbi despre %{site_name} și chestiile de
+          pe el.</p> <p>Ai o întrebare sau ai vrea să comentezi despre un script specific
+          de pe site? Dacă da, postează o discuție de pe link-ul din pagina de Pareri
+          a scriptului. Autorii de scripturi sunt anunțați pe pagina lor de profil
+          dacă sunt noi discuții despre script.</p> <p>Ai vreo întrebare sau vrei
+          să lași un comentariu despre site-ul %{site_name} în sine, sau despre developarea
+          de scripturi, sau vrei ca cineva să iți faca un script? %{forum_link:Postând
+          pe forum} iți va oferi cea mai mare audiența pentru discuția ta.</p> <p>Ai
+          de raportat un bug sau o idee bine formată pentru site-ul %{site_name} in
+          sine (și nu pentru un script specific <em>postat pe</em> %{site_name})?
+          %{github_link:Postează pe pagina de GitHub.}</p> <p>Ai vreo întrebare privata
+          sau vrei să lași un comentariu doar pentru admini să vada? %{admin_email_link:Trimite
+          un e-mail.}</p>
     privacy_policy:
       title: "Politica de confidențialitate"
       content_html: >
-        Această pagină descrie cum %{site_name} va înregistra sau urmări utilizatorii. Daca ai vreo nelămurire, %{admin_email_link:trimite un e-mail administratorului}.<p> <h2>Jurnalul serverului</h2> <p>%{site_name} înregistreaza toate cererile intr-o metodă tipică al jurnalului serverului. Înformațiile înregistrate includ paginile vizitate, adresa de IP și texte al agentului utilizatorului. Aceste înregistrări sunt pentru remedierea unor probleme și analiza de server. Datele sunt reținute pentru o săptămână. Aceste date nu sunt împartașite sau facute public valabile.</p> <h2>Statistici despre scripturi</h2> <p>Pentru a genera statistici, %{site_name} înregistrează instalarile si actualizarile cerute de adresa de IP-ul. Datele specifice adresei de IP nu sunt împartașite sau facute public valabile, dar datele generate de el, sunt.</p> <h2>Cookie-uri (când nu ești autentificat)</h2> <p>%{site_name} poate seta temporar cookie-uri de sesiune pentru a permite anumite caracteristici ale siteului. Aceste cookie-uri nu sunt setate să persiste și pot fi șterse cand browserul este închis (depinde de setarile browserului).</p> <h2>Conturile de utilizator</h2> <p>Site-ul %{site_name} le cere utilizatorilor să-și creeze un cont pentru a putea posta scripturi, pentru a lua parte la discuții și să acceseze alte caracteristici ale siteului. Când iți faci un cont, informații gen adresa de IP, adresa de e-mail și agentul utilizatorului pot fi stocate permanent. Câteva din aceste informații pot fi vizibile altor utilizatori.</p> <p>Acțiunile realizate cand ești autentificat, de exemplu postatul de scripturi sau lâsatul de comentarii, vor fi facute vizibile altor utilizatori.</p> <p>Daca opțiunea de "Ține minte" este bifată cand te autentifici pe un cont, %{site_name} va seta un cookie persistent care va reține detaliile de autentificare.</p> <h2>Scripturile postate pe %{site_name}</h2> <p>Site-ul %{site_name} conține conținut generat de utilizatori, și scripturile postate pot fi capabile de a urmări utilizatorii daca le vor instala.</p> <h2>Librăriile externe</h2> <p>Site-ul %{site_name} poate include cod extern pentru a putea colecta statistici sau să arate reclame pe site. Aceste librării pot include și logica de urmărire.</p>
+          Această pagină descrie cum %{site_name} va înregistra sau urmări utilizatorii.
+          Daca ai vreo nelămurire, %{admin_email_link:trimite un e-mail administratorului}.<p>
+          <h2>Jurnalul serverului</h2> <p>%{site_name} înregistreaza toate cererile
+          intr-o metodă tipică al jurnalului serverului. Înformațiile înregistrate
+          includ paginile vizitate, adresa de IP și texte al agentului utilizatorului.
+          Aceste înregistrări sunt pentru remedierea unor probleme și analiza de server.
+          Datele sunt reținute pentru o săptămână. Aceste date nu sunt împartașite
+          sau facute public valabile.</p> <h2>Statistici despre scripturi</h2> <p>Pentru
+          a genera statistici, %{site_name} înregistrează instalarile si actualizarile
+          cerute de adresa de IP-ul. Datele specifice adresei de IP nu sunt împartașite
+          sau facute public valabile, dar datele generate de el, sunt.</p> <h2>Cookie-uri
+          (când nu ești autentificat)</h2> <p>%{site_name} poate seta temporar cookie-uri
+          de sesiune pentru a permite anumite caracteristici ale siteului. Aceste
+          cookie-uri nu sunt setate să persiste și pot fi șterse cand browserul este
+          închis (depinde de setarile browserului).</p> <h2>Conturile de utilizator</h2>
+          <p>Site-ul %{site_name} le cere utilizatorilor să-și creeze un cont pentru
+          a putea posta scripturi, pentru a lua parte la discuții și să acceseze alte
+          caracteristici ale siteului. Când iți faci un cont, informații gen adresa
+          de IP, adresa de e-mail și agentul utilizatorului pot fi stocate permanent.
+          Câteva din aceste informații pot fi vizibile altor utilizatori.</p> <p>Acțiunile
+          realizate cand ești autentificat, de exemplu postatul de scripturi sau lâsatul
+          de comentarii, vor fi facute vizibile altor utilizatori.</p> <p>Daca opțiunea
+          de "Ține minte" este bifată cand te autentifici pe un cont, %{site_name}
+          va seta un cookie persistent care va reține detaliile de autentificare.</p>
+          <h2>Scripturile postate pe %{site_name}</h2> <p>Site-ul %{site_name} conține
+          conținut generat de utilizatori, și scripturile postate pot fi capabile
+          de a urmări utilizatorii daca le vor instala.</p> <h2>Librăriile externe</h2>
+          <p>Site-ul %{site_name} poate include cod extern pentru a putea colecta
+          statistici sau să arate reclame pe site. Aceste librării pot include și
+          logica de urmărire.</p>
     user_css_to_user_js:
       title: Coversie de la format CSS la format JS
   search:
@@ -1108,35 +838,39 @@ ro:
       message: "Raportează un mesaj trimis de %{user}"
       script: "Raportează script-ul %{script}"
     new_report_notes_html: >
-      <p>Înainte de a raporta, te rog să ții minte:</p> <ul>
+        <p>Înainte de a raporta, te rog să ții minte:</p> <ul>
 
-      <li>Un moderator va verifica raportul tau și va lua o decizie pe măsură.</li>
+        <li>Un moderator va verifica raportul tau și va lua o decizie pe măsură.</li>
 
-      <li>Dacă nu ești de acord cu conținutul sau ți se pare că nu este adevărat nu este un motiv valid de a raporta.</li>
+        <li>Dacă nu ești de acord cu conținutul sau ți se pare că nu este adevărat
+        nu este un motiv valid de a raporta.</li>
 
-      <li>Abuzul de raporturi poate duce la banarea contului <i>tău</i>.</li>
+        <li>Abuzul de raporturi poate duce la banarea contului <i>tău</i>.</li>
 
-      </ul>
+        </ul>
     new_script_report_notes_html: >
-      <p>Înainte de a raporta, te rog să ții minte:</p> <ul>
+        <p>Înainte de a raporta, te rog să ții minte:</p> <ul>
 
-      <li>Scriptul va fi șters doar dacă încalcă %{rules_link:regulamentul siteului %{site_name}}. Dacă scriptul este stricat sau nu funcționează, {feedback_link:lasă o părere întâi.}</li>
+        <li>Scriptul va fi șters doar dacă încalcă %{rules_link:regulamentul siteului
+        %{site_name}}. Dacă scriptul este stricat sau nu funcționează, {feedback_link:lasă
+        o părere întâi.}</li>
 
-      <li>Un moderator va verifica scriptul și va lua o decizie pe măsura.</li>
+        <li>Un moderator va verifica scriptul și va lua o decizie pe măsura.</li>
 
-      <li>Abuzul de raporturi poate duce la banarea contului <i>tău</i>.
+        <li>Abuzul de raporturi poate duce la banarea contului <i>tău</i>.
 
-      </ul>
+        </ul>
     new_user_report_notes_html: >
-      <p>Înainte de a raporta, te rog să ții minte că:</p> <ul>
+        <p>Înainte de a raporta, te rog să ții minte că:</p> <ul>
 
-      <li>Dacă raportezi conținutul unui script sau comentariu, te rog raportează acel script sau comentariu specific.</li>
+        <li>Dacă raportezi conținutul unui script sau comentariu, te rog raportează
+        acel script sau comentariu specific.</li>
 
-      <li>Un moderator se va uita la raportul tău și va lua o decizie pe masură.</li>
+        <li>Un moderator se va uita la raportul tău și va lua o decizie pe masură.</li>
 
-      <li>Abuzul de raporturi poate duce la banarea contului <i>tău</i>.
+        <li>Abuzul de raporturi poate duce la banarea contului <i>tău</i>.
 
-      </ul>
+        </ul>
     reason:
       non_functional: "Script-ul nu merge"
       spam: "Spam"
@@ -1177,9 +911,9 @@ ro:
     edit_comment_link: "Editează"
     edit_comment_header: "Editează comentariul"
     delete_comment: "Șterge"
-    delete_comment_confirm: "Ești sigur că vrei să ștergi acest comentariu?"
+    delete_comment_confirm: Ești sigur că vrei să ștergi acest comentariu?
     delete_discussion: "Șterge"
-    delete_discussion_confirm: "Ești sigur că vrei să ștergi acestă discuție?"
+    delete_discussion_confirm: Ești sigur că vrei să ștergi acestă discuție?
     update_comment_submit: "Actualizează comentariul"
     cancel_update_comment: "Anulează"
     quote_comment: "Citează"
@@ -1237,11 +971,11 @@ ro:
     subscribe: Abonează-te
     unsubscribe: Dezbonează-te
     notify: Notifică-mă despre orice răspuns
-    notifying_on_script: "O sa fii anunțat când vor fi răspunsuri noi din motivul %{notifications_link:setărilor tale de anunțari}."
+    notifying_on_script: O sa fii anunțat când vor fi răspunsuri noi din motivul %{notifications_link:setărilor tale de anunțari}.
     categories:
       greasyfork:
         name: Parere despre Geasy Fork
-        description: "Raportări de buguri, cereri de adăugare de noi caracteristici, și alte chestii despre site-ul GreasyFork în sine."
+        description: Raportări de buguri, cereri de adăugare de noi caracteristici, și alte chestii despre site-ul GreasyFork în sine.
       development:
         name: Dezvoltare
         description: Conversație tehnică despre scripturile de utilizator și developarea de stiluri de utilizator.
@@ -1252,14 +986,14 @@ ro:
         name: Discuții despre script-uri
         description: Discuții despre script-uri sau stil-uri deja existente.
       no-scripts:
-        name: "Toate, cu excepția discuțiilor despre script-uri"
+        name: Toate, cu excepția discuțiilor despre script-uri
       moderators:
         name: Moderatori
         description: Discuții private pentru moderatori.
     category_display: "%{name} - %{description}"
     new_title: Discuții noi
     new_button: Discuții noi
-    script_notice: "Daca urmărești sa discuți despre un script specific, du-te la pagina de păreri a scriptului și incepe o discuție de acolo."
+    script_notice: Daca urmărești sa discuți despre un script specific, du-te la pagina de păreri a scriptului și incepe o discuție de acolo.
     no_discussions: Nici o discuție găsită.
     mark_all_read: Marcheaza tot ca citit
     pending_moderator_review: Discuția nu este valabilă altor utilizatori până când nu este verificată de un moderator.
@@ -1278,7 +1012,7 @@ ro:
       one: Conversatie cu %{users}
       few: Conversatie cu %{users}
       other: Conversație cu %{users}
-    conversation_info_html: "Ultimul mesaj trimis la %{date} de %{user}."
+    conversation_info_html: Ultimul mesaj trimis la %{date} de %{user}.
     no_conversations: Nu ai avut nici o conversație înca.
     no_recent_conversations: Nu ai nici o conversație curentă.
     recent:
@@ -1287,34 +1021,22 @@ ro:
   screenshots:
     requirements: "Poți posta un maxim de %{number} de PNG-uri, GIF-uri, JPEG-uri, sau imagini WebP nu mai mare de %{size} fiecare."
   common:
-    # text to show before listing errors in a submission
     error_preamble: "Au fost ceva probleme cu ce ai postat..."
-    # link to the list of allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_link: "(Vezi codul permis.)"
-    # title of the page showing allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_and_attributes_title: "Elemente permise pentru conținut HTML"
-    # text to introduce the list of allowed HTML elements and attributes
     allowed_elements_intro: "Următoarele elemente și atribuții sunt permise. Asta se aplică la amândoua HTML și Markdown (după conversia la HTML)."
-    # additional info for the allowed HTML elements, explaining additional changes made to content
     allowed_elements_extra_info: "Spațiul liber va fi transformat in elemente p sau br. URL-urile vor fi automat legate."
     allowed_css_intro: "Urmatoarele proprietați CSS sunt permise pe toate elementele."
     user_references_html: "Te poți referi sau să te legi la alt utilizator %{site_name} cu formatul <code>@NumeUtilizator</code> sau <code>@\"Nume Utilizator\"</code> (dacă numele utilizatorul are spații)."
     not_found_text: "404 - pagina nu a fost gasită"
     not_found_title: "404 - Pagina Nu A Fost Gasită"
     not_found_link_home: "Du-te acasă."
-    # shown on the first page a user sees if, based on the user's Accept-Language header, we think we have a better locale than what the first page shows. "locale_name" is the name of the locale in that language (matching the name in the locale drop down)
     suggest_locale: "%{site_name} este disponibil în %{locale_name}."
-    # shown on the first page a users sees if the locale they're on is less than a certain amount translated. links to the docs on how to help with localization
     incomplete_locale: "Traducerea în %{locale_name} a site-ului %{site_name} este completă doar în proporție de %{percent}. Puteți contribui."
-    # text for a button that expands a block of text
     expander_show_more: "Arată mai mult"
-    # text for a button that contracts a block of text
     expander_show_less: "Arată mai puțin"
-    # note denoting what are ads
     advertisement_note: Reclamă
-    # label on tab allowing for previewing input
     preview_tab: Previzualizare
-    # label on tab for entering input
     write_tab: Scrie
     listing_options_title: "Opțiuni de căutare"
     quote:
@@ -1322,49 +1044,27 @@ ro:
   activerecord:
     attributes:
       user:
-        # user field: display name
         name: "Nume"
-        # user field: profile (HTML content describing themselves)
         profile: "Profil"
-        # user field: locale
         locale: "Limbă preferată"
-        # user field: setting to send e-mails when discussions or comments are posted to a user's scripts. options are under users.author_email_notification_type
         author_email_notification_type_id: "Notificări discuții scripturi"
-        # user field: show ads
         show_ads: "Arată reclame"
-        # user field: show sensitive
         show_sensitive: "Conținut pentru adulți"
-        # user field: preferred markup (html or markdown)
         preferred_markup: "Markup preferat"
         filter_locale_default: "Filtrează localele"
-        current_password: ""
-        new_password: ""
-        new_password_confirmation: ""
       script:
-        # name of the script
         name: "Nume"
-        # description of the script
         description: "Descriere"
-        # locale the script is in. see also scripts.locale_explanation
         locale: "Limbă"
-        # the JS code of the script
         code: "Cod"
-        # description of changes for an update
         changelog: "Jurnal de schimbări"
-        # the type of script - public, unlisted, or library
         type: "Tip de script"
-        # additional descriptive text outside of @description
         additional_info: "Informații adiționale"
-        # screenshots attached to the script
         screenshots: "Capturi de ecran"
-        # when deleting, which script to redirect to
         replaced_by_script_id: "Script înlocuitor"
       script_set:
-        # name of the script set
         name: "Nume"
-        # description of the script set
         description: "Descriere"
-        # default sort of the script set
         default_sort: "Sortare implicită"
       report:
         reason: "Motiv de raportare"
@@ -1378,39 +1078,25 @@ ro:
         content: Mesaj
   errors:
     messages:
-      # validation for when a script name is not provided
       script_missing_name: "este necesar - specifică unul cu @nume"
-      # validation for when a script description is not provided
       script_missing_description: "este necesar - specifică una cu @descriere"
-      # validation for when a script description is the same as name
       script_name_same_as_description: "nu trebuie să fie același cu numele"
-      # validation for sync URL
       script_sync_identifier_bad_protocol: "trebuie să fie un URL HTTP sau HTTPS"
-      # validation for number of screenshots
       script_too_many_screenshots: "Prea multe capturi de ecran incluse - maximum permis este de %{number}"
-      # validation for "deleted and replaced by" when the user says the script is replaced by itself
       cannot_be_self_reference: "nu poate fi același script"
-      # validation for "deleted and replaced by" when the user says the script is replaced by a deleted script
       cannot_be_deleted_reference: "nu poate fi un script șters"
       cannot_be_used_with_this_script: "nu poate fi folosit cu acest script"
-      # validation for "deleted and replaced by" when the user provides a non-%{site_name} URL
       must_be_greasy_fork_script: "trebuie să fie un URL de la un script de pe %{site_name}"
-      # validation when the user uploads code that's not UTF-8 text
       script_update_not_utf8: "trebuie să fie încarcat un text în format UTF-8"
-      # validation when user uploads code that contains a disallowed @require
       script_disallowed_require: "folosește un script extern neaprobat: %{code}"
       script_rate_limit: "Ai întrecut limita de postări. Încearcă mai târziu."
       missing_include_or_match: "trebuie să includă măcar un @match sau @include cheie"
       file_size_out_of_range: "marimea trebuie să fie mai mică de 200KB"
       meta_too_long: "%{key} este prea mare (maximul de caractere este %{count})"
   opensearch:
-    # short name for opensearch.xml
     short_name: "%{site_name} căutare"
-    # description for opensearch.xml
     description: "Cauta script-uri are utilizatorului pe %{site_name}."
-    # long name for opensearch.xml
     long_name: "%{site_name} căutarea de script-uri ale utilizatorului"
-    # attribution for opensearch.xml
     attribution: "Dă-le drepturi de autor autorilor scriptului, vezi fiecare script individual pentru a-l licenția"
   mailers:
     script_report:
@@ -1439,55 +1125,55 @@ ro:
       notify:
         subject: "Script-ul tau %{script_name} de pe %{site_name} a primit multiple păreri \"Rau\"."
         text: |
-          Scriptul tău '%{script_name}' de pe %{site_name} (%{script_url}) a primit mai multe păreri consecutive ca fiind "Rău".
+            Scriptul tău '%{script_name}' de pe %{site_name} (%{script_url}) a primit mai multe păreri consecutive ca fiind "Rău".
 
-          Parerile pe care le-ai primit pe %{feedback_url} pot să indice o problemă cu scriptul tău, o criză temporară sau o schimbare pe site. Te rog să citești părerile, să rezolvi problemele și să răspunzi la nelămuririle create.
+            Parerile pe care le-ai primit pe %{feedback_url} pot să indice o problemă cu scriptul tău, o criză temporară sau o schimbare pe site. Te rog să citești părerile, să rezolvi problemele și să răspunzi la nelămuririle create.
 
-          %{site_name}  se chinuie să mențină o listă de scripturi de mare calitate pentru utilizatori. Pentru a lupta cu scripturile stricate sau abandonate, cele care primesc pareri consecutive de "Rău" fară un raspuns imediat vor fi ascunse. Pentru a evita ca scriptul tău să devină ascuns, publică o nouă versiune sau răspunde la discuții pâna pe %{delete_date}. Dacă nu iei nici o măsură, vei avea oricum și după opțiunea de a-l face vizibil din nou dupa expirarea timpului.
+            %{site_name}  se chinuie să mențină o listă de scripturi de mare calitate pentru utilizatori. Pentru a lupta cu scripturile stricate sau abandonate, cele care primesc pareri consecutive de "Rău" fară un raspuns imediat vor fi ascunse. Pentru a evita ca scriptul tău să devină ascuns, publică o nouă versiune sau răspunde la discuții pâna pe %{delete_date}. Dacă nu iei nici o măsură, vei avea oricum și după opțiunea de a-l face vizibil din nou dupa expirarea timpului.
     script_comment:
       subject: "Scriptul tău %{script_name} de pe %{site_name} a primit un comentariu."
       text: |
-        Scriptul tau '%{script_name}' de pe %{site_name} (%{script_url}) a primitu n comentariu de la utilizatorul '%{commenter_name}':
+          Scriptul tau '%{script_name}' de pe %{site_name} (%{script_url}) a primitu n comentariu de la utilizatorul '%{commenter_name}':
 
-        ---
-        %{comment_text}
-        ---
+          ---
+          %{comment_text}
+          ---
 
-        Poți vedea și raspunde comentariului pe %{comment_url}.
-        Modifica-ți setarile de notificări pe %{notification_preferences_url}.
+          Poți vedea și raspunde comentariului pe %{comment_url}.
+          Modifica-ți setarile de notificări pe %{notification_preferences_url}.
     subscribed_discussion:
       subject: "Discuția cu titlul %{discussion_title} de pe site-ul %{site_name} a primit un comentariu."
       text: |
-        Discuția cu titlul '%{discussion_title}' de pe site-ul %{site_name} a primit un comentariu de la utilizatorul '%{commenter_name}'
+          Discuția cu titlul '%{discussion_title}' de pe site-ul %{site_name} a primit un comentariu de la utilizatorul '%{commenter_name}'
 
-        ---
-        %{comment_text}
-        ---
+          ---
+          %{comment_text}
+          ---
 
-        Poți vizualiza si răspunde comentariului pe %{comment_url}.
+          Poți vizualiza si răspunde comentariului pe %{comment_url}.
 
-        Ai primit un anunț pentru că ești abonat la această discuție. Vizitează url-ul %{discussion_url} pentru a te dezabona, sau schimbă-ți setările de notificări pe %{notification_preferences_url}.
+          Ai primit un anunț pentru că ești abonat la această discuție. Vizitează url-ul %{discussion_url} pentru a te dezabona, sau schimbă-ți setările de notificări pe %{notification_preferences_url}.
     comment_mentioned:
       subject: "Utilizatorul '%{commenter_name}' te-a menționat pe %{site_name}."
       text: |
-        Discuția cu titlul '%{discussion_title}' de pe site-ul %{site_name} a primit un comentariu de la utilizatorul '%{commenter_name}' care te-a menționat
+          Discuția cu titlul '%{discussion_title}' de pe site-ul %{site_name} a primit un comentariu de la utilizatorul '%{commenter_name}' care te-a menționat
 
-        ---
-        %{comment_text}
-        ---
+          ---
+          %{comment_text}
+          ---
 
-        Poți vizualiza și răspunde comentariului pe %{comment_url}.
+          Poți vizualiza și răspunde comentariului pe %{comment_url}.
 
-        Ai primit un anunț pentru ca ai setat să fii notificat cand ești menționat. Schimbă-ți setarile de notificări pe %{notification_preferences_url}.
+          Ai primit un anunț pentru ca ai setat să fii notificat cand ești menționat. Schimbă-ți setarile de notificări pe %{notification_preferences_url}.
     new_message:
       subject: "Utilizatorul %{user} ți-a trimis un mesaj pe site-ul %{site_name}"
       text: |
-        Utilizatorul '%{user}' de pe %{site_name} ți-a trimis un mesaj.
+          Utilizatorul '%{user}' de pe %{site_name} ți-a trimis un mesaj.
 
-        ---
-        %{message_text}
-        ---
+          ---
+          %{message_text}
+          ---
 
-        Poți vedea și raspunde pe %{conversation_url}.
+          Poți vedea și raspunde pe %{conversation_url}.
 
-        Ai primit aceasta notificare pentru că esti abonat la această conersație. Viziteaza %{conversation_url} pentru a te dezabona, sau pentru a-ți modifica setările de notificari pe %{notification_preferences_url}.
+          Ai primit aceasta notificare pentru că esti abonat la această conersație. Viziteaza %{conversation_url} pentru a te dezabona, sau pentru a-ți modifica setările de notificari pe %{notification_preferences_url}.
