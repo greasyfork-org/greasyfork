@@ -1,64 +1,132 @@
 nb:
   layouts:
     application:
+      # link to the list of scripts
       script_list: "Skript"
+      # link to the forum
       forum: "Forum"
+      # link to the help docs
       help: "Hjelp"
+      # link to sign in
       sign_in: "Logg inn"
+      # label for nav submenu
       submenu: "Mer"
+      # link to advanced search
       advanced_search: "Avansert søk"
+      # link to user list
       user_list: "Brukerliste"
+      # link to libraries
       libraries: "Biblioteker"
+      # link to moderator log
       moderator_log: "Moderatorloggbok"
   scripts:
+    # label for created date of a script
     created_date: "Lagd"
+    # label for updated date of a script
     updated_date: "Oppdatert"
+    # label for total install count of a script
     total_installs: "Totale installasjoner"
+    # label for daily install count of a script
     daily_installs: "Daglige installasjoner"
+    # label for the ratings of a script
     ratings: "Vurderinger"
+    # label for author name of a script
     author_name: "Forfatter"
+    # label for version number of a script
     version_number: "Versjon"
+    # label for the legal license a script is released under (e.g. GPL)
     license: "Lisens"
+    # what is shown as the license when no license is provided in a script
     no_license: "I/T"
+    # label for the browser compatibility for a script
     compatibility: "Kompatibilitet"
     compatible_with_browser: "Kompatibel med %{browser}"
     incompatible_with_browser: "Inkompatibel med %{browser}"
+    # label for the list of sites or patterns a script applies to
     applies_to: "Gjelder"
+    # a title (tooltip) for the links in the "applies to" section going to a list of scripts for that site. count is the number of other scripts, site is the name of the site. add subkeys for your language per http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
     applies_to_link_title:
       one: "Se %{count} andre skript for %{site}"
       other: "Se %{count} andre skript for %{site}"
+    # what is shown as the applies to when a script applies to all sites
     applies_to_all: "Alle sider"
+    # link that makes the user install the script
     install: "Installer dette scriptet"
+    # text for link that gives information on how to install scripts. should be very short.
     install_help: "?"
+    # title (tooltip) for link that gives information on how to install scripts
     install_help_title: "Hvordan installere"
+    # link that makes the user update the script
     update: "Oppdater til versjon %{version}"
+    # link that makes the user downgrade the script
     downgrade: "Nedgrader til versjon %{version}"
+    # link that makes the user reinstall the script
     reinstall: "Re-installer versjon %{version}"
+    # warning when installing an old version of a script
     old_version_warning: "Dette er ikke den nyeste versjonen av dette skriptet. Dersom du installerer den, vil du aldri bli oppdatert til dens nyere versjoner. Vil du installere den likevel?"
+    # label for a promoted script
     promoted: "Fremhevet skript"
     author_promoted: "Skaperens foreslåtte skript"
+    # text for promoted script
     promoted_text_html: "Du vil kanskje også like %{script_link}."
+    # instructions on a script library. code will be a <code> element. Don't use punctuation around the code element if possible so that people don't accidentally include that when copying.
     library_instructions_html: "Dette scriptet burde ikke installeres direkte. Det er et bibliotek for andre script å inkludere med det nye metadirektivet %{code}"
+    # text displayed for deleted scripts
     deleted_notice: "Dette scriptet har blitt slettet."
+    deleted_notice_with_related: ""
+    deleted_undelete_notice_html: ""
+    deleted_locked_author_notice_html: ""
+    deleted_author_notice: ""
+    # test displayed when viewing a previous version. date is a date and time (no "ago"), latest_version_link is a link to the newest version whose text is version_notice_latest_version_link
     version_notice_html: "Fra %{date}. Se %{latest_version_link}."
     version_notice_latest_version_link: "den seneste versjonen"
+    reported_notice: ""
+    reported_notice_for_author: ""
+    # link to the script's info page, containing script meta and author's description
     info_page: "Info"
+    # link to the script's code page
     code_page: "Kode"
+    # link to the script's history page, listing all versions of the code
     history_page: "Logg"
+    # link to the script's feedback page, listing discussions on the script. count is the number of discussions
     feedback_page: "Tilbakemeldinger (%{count})"
+    # link to the script's install statistics page
     stats_page: "Statistikk"
+    # link to the script's derivatives page, which shows similar scripts
     derivatives_page: "Avledninger"
+    # link to the page that lets the author update the script
     update_page: "Oppdater"
+    # link to the page that lets the author delete a script
     delete_page: "Slett"
+    # explanation of what deleting does
     delete_explanation: "Sletting av skriptet ditt gjør det utilgjengelig for alle unntatt deg og Greasy Fork-moderatorer. Du kan angre slettingen når som helst."
+    # intro text to radio options for choosing update behaviour after deletion
     delete_update_behaviour: "Hva ønsker du at skal skje for brukere som allerede har installert skriptet ditt?"
+    # label for the option allowing users to retain the script after delete
     delete_update_behaviour_1: "De beholder det som det er."
+    # label for the option where users get a blanked script after delete 
     delete_update_behaviour_2: "De blir oppdatert med et tomt skript. Dette er passende når skriptet har negativ effekt på siden det kjører på."
+    # heading for permanent deletion section
     delete_permanently_heading: "Permanent sletting"
+    # explanation of permanent deletion
+    delete_permanently_explanation_html: >
+    # confirmation on pressing the permanent deletion button
+    delete_permanently_confirm: ""
+    # text for the permanent deletion button
     delete_permanently_submit: "Be om permanent sletting"
+    # text for the permanent deletion button when it would take effect immediately
     delete_permanently_immediate_submit: "Slett permanent"
+    # notice after requesting permanent deletion
+    delete_permanently_notice: ""
+    # text on the delete page after permanently deletion was requested
+    delete_permanently_already_requested: ""
+    # notice after permanently deletion
     delete_permanently_notice_immediate: "Skript slettet permanent"
+    # text for cancelling a permanent deletion request
     cancel_delete_permanently_submit: "Avbryt forespørsel om permanent sletting"
+    # notice after cancelling a permanent deletion request
+    cancel_delete_permanently_notice: ""
+    # error when attempting to delete a locked script
     delete_permanently_rejected_locked: "Skriptet er låst og kan ikke bli slettet permanent"
     admin_page: "Admin"
     admin:
@@ -73,155 +141,435 @@ nb:
       locale_multiple_note: "Bemerk at %{meta_keys_link:flere geografiske områder kan bli tilegnet til et skript}."
       update_locale: "Oppdater området"
       no_moderator_logs: "Ingen handlinger har blitt tatt av moderatorene mot dette skriptet."
+      compare_title: ""
+      compare_to: ""
+      compare_button: ""
+      compare_must_be_local_url: ""
+    # HTML title for the history page for a script
     history_title: "%{script_name} - Versjonshistorikk"
+    # text explaining that we're only showing versions where the code changed
     history_only_code_changes_info: "Dette er versjoner av dette scriptet hvor koden ble oppdatert."
+    # link to the list of all versions
     history_all_changes_link: "Vis alle versjoner."
+    # text explaining that we're showing all versions
     history_all_changes_info: "Dette er alle versjonene av dette scriptet."
+    # link to the list of version where the code changed
     history_only_code_changes_link: "Vis kun versjoner hvor koden er endret."
+    # button that shows changes (a diff) of the selected versions
     diff_button: "Diff for valgte versjoner"
+    # HTML title of the script source code page
     code_title: "%{script_name} - Kildekode"
+    # HTML title of the script feedback page
     feedback_title: "%{script_name} - Tilbakemelding"
+    feedback_has_reports: ""
+    # text to show when no discussions are posted. start_discussion_first_link is a link with the text from feedback_start_first_discussion_link
     feedback_no_discussions_html: "Ingen diskusjoner publisert ennå. %{start_first_discussion_link}"
+    feedback_no_discussions_on_page_form: ""
+    feedback_report_instead: ""
     feedback_start_first_discussion_link: "Bli den første til å diskutere dette scriptet."
+    feedback_discussion_or_report: ""
+    # heading for list of people who favorited this script
     feedback_favoriters_heading: "Favorittmerket dette"
+    # text before a comma separated list of users who favorited the script
+    feedback_favoriters_user_list_html: ""
+    feedback_favoriters_lots:
+      one: ""
+      other: ""
+    # text when no one has favorited a script
     feedback_no_favoriters: "Dette scriptet har enda ikke blitt favoritisert av noen."
+    # link to get the user to sign in to add the script to their favorites
     feedback_sign_in_to_favorite: "Logg inn for å legge til favoritter"
+    # html title for script stats page
     stats_title: "%{script_name} - Statistikk"
+    # heading for daily install stats on stats page
     stats_daily_installs_heading: "Daglige installasjoner"
+    # heading for weekly install stats on stats page
     stats_weekly_installs_heading: "Ukentlige installeringer"
+    # heading for daily update check stats on stats page
     stats_daily_update_checks_heading: "Daglige oppdatteringssjekker"
+    # date column heading for a script's daily install stats table
     stats_daily_installs_date_column_heading: "Dato"
+    # install count column heading for a script's stats table
     stats_daily_installs_install_count_column_heading: "Installasjoner"
+    # update check count column heading for a script's stats table
     stats_daily_installs_update_check_count_column_heading: "Oppdateringssjekker"
+    # header for the raw data table for stats
     stats_raw_data_header: "Rådata"
+    # text before links to download raw stats data. links will be space separated links to the format name (e.g. CSV and JSON)
     stats_download_raw_data_html: "Last ned alle data som: %{links}"
+    # text to show when a stat is not available
     stats_no_data: "N/A"
+    stats_filters: ""
+    stats_filter_options:
+      month: ""
+      year: ""
+      all: ""
+    # HTML title for derivatives page
     derivatives_title: "%{script_name} - Derivativer"
+    # text explaining the derivatives page and what to do if the user finds unauthorized copies
+    derivatives_intro: ""
+    # format for scripts listed on the derivatives page. script_link is a link to the derivative's page, user_link is a link to the user who created the derivative, license is text, link to the license, or scripts.no_license
+    derivatives_script_html: ""
+    derivatives_exact_copies_heading: ""
+    derivatives_exact_copies_list_intro: ""
+    derivatives_exact_copies_item_html: ""
+    derivatives_exact_copes_none: ""
+    derivatives_similar_heading: ""
+    derivatives_similar_info: ""
+    similarity_score:
+      high: ""
+      medium: ""
+      low: ""
+      none: ""
+    derivatives_similar_none: ""
+    derivatives_similar_item: ""
+    derivatives_similar_last_check_html: ""
+    derivatives_similar_last_check_soon: ""
+    derivatives_similar_last_check_again_soon_html: ""
+    derivatives_similar_check_now: ""
+    # html title for script list page when showing scripts that affect all sites
     listing_title_all_sites: "Brukerskript for alle sider"
+    # meta description and feed subtitle when showing scripts that affect all sites
     listing_description_all_sites: "Brukerskript som legger til funksjoner eller fjerner programvarefeil på alle sider."
+    # html title for script list page when showing scripts for a particular site. 'site' will be in the form 'example.com'
     listing_title_for_site: "Brukerskript for %{site}"
+    # meta description and feed subtitle when showing scripts that affect a particular site
     listing_description_for_site: "Brukerskript som legger til funksjoner og fjerner programvarefeil ved %{site}"
+    # html title for script list page for search results.
     listing_title_for_search: "'%{search_string}' brukerskript"
+    # html title for script list page for code search results.
     listing_title_for_code_search: "'%{search_string}' brukerscript"
+    # html title for script list page when no other situation applies
     listing_title_generic: "Brukerskript"
+    # html title for script list page for a user's favorites. set_name is script_sets.favorites_name
     listing_title_for_favorites: "%{user_name}s %{set_name}"
+    # meta description and feed subtitle for script list page when no other situation applies
     listing_description_generic: "Brukerskript som legger til funksjoner og fjerner programvarefeil på sider du bruker"
+    # label for sorting links on script list page
     listing_sort_label: "Sorterer etter:"
+    # link for relevance (most matching the search terms) sort on a script list
     listing_sort_relevance: "Relevans"
+    # link for daily install sort on a script list
     listing_sort_daily_installs: "Daglige installasjoner"
+    # link for daily install sort on a script list
     listing_sort_total_installs: "Totale installasjoner"
+    # link for rating sort on a script list
     listing_sort_ratings: "Vurderinger"
+    # link for created date sort on a script list
     listing_sort_created: "Lagd"
+    # link for updated date sort on a script list
     listing_sort_updated: "Oppdatert"
+    # link for name sort on a script list
     listing_sort_name: "Navn"
+    # label for filtering by-site links on script list page
     listing_filter_by_site_label: "Viser script for:"
+    # link for turning off by-site filtering on script list page
     listing_filter_by_site_disable: "Alle"
+    # link for filtering script list by scripts that affect all sites
     listing_filter_by_site_all_sites: "(Alle sider)"
+    listing_filter_by_language_label: ""
+    # link to see a full list of sites that scripts on %{site_name} affect
     listing_filter_by_site_more_sites: "Mer..."
+    # text that shows when no scripts were found with the used parameters
     listing_no_scripts: "Ingen script funnet."
+    # feed title for the listing, ordered by created date
     listing_created_feed: "Nye script"
+    # feed title for the listing, ordered by updated date
     listing_updated_feed: "Oppdaterte script"
+    # when a list has nothing to show
     listing_none: "(Ingen)"
+    # link to filter search results by the current locale
     listing_set_locale_filter: "Viser resultater for alle språk. %{set_filter_link:Bare vis resultater på %{language}.}"
+    # link to remove locale filter
     listing_remove_locale_filter: "Viser bare resultater på %{language}. %{remove_filter_link:Vis resultater for alle språk.}"
+    listing_language_all: ""
+    listing_language_js: ""
+    listing_language_css: ""
+    # link to start the process of importing (creating from an external place) scripts
     import: "Importer script"
+    # link to create a new script
+    new: ""
+    new_css: ""
+    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support site
     support_site: "Besøk forfatterens støtteside."
+    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support email address
     support_email: "Send e-post til forfatteren for støtte."
+    # link to a site where the user can donate to the author, when the author didn't provide a suggested donation amount
     contribution_no_amount: "Takk %{author} ved å donere."
+    # link to a site where the user can donate to the author, when the author provided a suggested donation amount
     contribution_with_amount: "Takk %{author} ved å gi en donasjon. Foreslått donasjon er %{amount}."
+    # text for donating to the author via bitcoin, when the author didn't provide a suggested donation amount
     contribution_bitcoin_no_amount_html: "Takk %{author} ved å gi en Bitcoin-donasjon til %{address}."
+    # text for donating to the author via bitcoin, when the author provided a suggested donation amount
     contribution_bitcoin_with_amount_html: "Takk %{author} ved å gi en Bitcoin-donasjon til %{address}. Foreslått donasjon er %{amount}."
+    # explanation of language chooser when editing script
     locale_explanation_html: "Bør stemme overens med språket til <code>@name</code>, <code>@description</code>, og den første tilleggsinformasjonen."
+    # the default value for the locale box, if submitted the site will attempt to detect the language of the entry
     locale_auto_select: "(Oppdag automatisk)"
+    # label which lists the sets this script is in, which is followed by controls to change its inclusions
     sets_label: "I scripsett:"
+    # label for when the script is not in any sets, which is followed by controls to change its inclusions
     sets_label_no_sets: "Scriptsett:"
+    # option to remove the script from the set
     sets_remove_inclusion: "Fjern fra %{set_name}"
+    # option to remove the script's exclusion from the set
     sets_remove_exclusion: "Fjern eksludering fra %{set_name}"
+    # option to add the script to the set
     sets_add_inclusion: "Legg til i %{set_name}"
+    # option to exclude the script from the set (when it's been included as part of a sub set)
     sets_add_exclusion: "Eksluder fra %{set_name}"
+    # option to add the script to a new set
     sets_add_to_new: "Legg til nytt sett"
+    # summary of %{site_name}'s rules for posting scripts. full_rules_link is a link to the full rules with text of rules_summary_link_to_full
     rules_summary_html: "q"
+    # full rules link text used in the rules summary
     rules_summary_link_to_full: "Les alle regler."
+    # warning when on the edit screen for a script set up to sync. syncing_notice_sync_type will be a link to the sync screen with text from syncing_notice_sync_type_manual or syncing_notice_sync_type_automatic
     syncing_notice_html: "Dette scriptet er %{syncing_notice_sync_type}. Alle oppdateringer du gjør til koden her vil bli overskrevet ved synkronisering."
+    # used in syncing_notice_html when a script syncs only when the author requests it
     syncing_notice_sync_type_manual: "sett til å synkroniser manuelt fra %{sync_identifier}"
+    # used in syncing_notice_html when a script syncs automatically
     syncing_notice_sync_type_automatic: "sett til å automatisk synkronisere fra %{sync_identifier}"
+    # label for uploading a script under the code textarea
     upload_label: "Eller last opp:"
+    # label for checkbox to enable or disable syntax highlighting code editor
     enable_source_code_editor_label: "Aktiver syntaksmerkende kildebehandler"
+    # descriptive text for the changelog field
     changelog_note: "Hva har endret seg i denne versjonen?"
+    additional_info_note: ""
+    # button text for previewing additional info
+    # button text for submitting a new script
     post_new_script: "Send inn skript"
+    # button text for submitting an update to an existing script
     post_updated_script: "Send inn ny versjon"
+    # label for radio button for public-type user script
     type_1_html: "Offentlig brukerscript - et brukerscript som alle kan se og bruke."
+    # label for radio button for unlisted-type user script
     type_2_html: "Ulistet brukerskript - et brukerscript for (semi)privat bruk. Tilgjengelig ved direkte tilgang, men er ikke linket til fra andre steder hos %{site_name}."
+    # label for radio button for library-type script
     type_3_html: "Bibliotek - et script tenkt å være <code>@require</code>-et fra andre script og ikke installert direkte."
+    # label for checkbox to override script save warnings
     override_warning_checkbox_label: "Lagre likevel?"
+    # script warning for not increasing the version number when updating the code
     warning_version_not_incremented_html: "Du oppdaterte koden, men økte ikke <code>@version</code>nummer. De som har tidligere installert ditt script vil kanskje ikke få den oppdaterte koden."
+    # script warning for when a version number is not provided
     warning_version_missing_html: "Du har ikke angitt <code>@version</code>. En <code>@version</code>-nøkkel lar brukerskriptsystemer sjekke om skriptet ditt er oppdatert."
+    # label for checkbox for the site to automatically handle version numbers
     warning_version_missing_generate_automatically_html: "Generer <code>@version</code> automatisk?"
+    # script warning for when a namespace is not provided
     warning_namespace_missing_html: "Du har ikke angitt <code>@namespace</code>. En <code>@namespace</code>-nøkkel lar brukere reinstallere skriptet ditt for å oppdatere det."
+    # label for checkbox for the site to automatically add a namespace
     warning_namespace_missing_generate_automatically_html: "Generer <code>@namespace</code> automatisk?"
+    # script warning for when a namespace changed on update
     warning_namespace_changed_html: "Ditt <code>@namespace</code> er endret. Et konsistent <code>@namespace</code> lar brukere reinstallere skriptet ditt for å oppdatere det."
+    # script warning for when a script's code appears minified. allowed_requires_link is a link to the allowed @require list, with text of warning_potentially_minified_allowed_requires_link
     warning_potentially_minified_html: "Det ser ut til at skriptet ditt inneholder minifled (komprimert) kode. Hvis du bruker et minifled-bibliotek, vennligst <code>@require</code> koden fra %{allowed_requires_link} i stedet.  Skript med minified-kode kan bli fjernet."
+    # script warning for when a script's code is for adult sites. sensitive_domains is a list of domains
     warning_automatic_sensitive_html: "Ditt skript er for %{sensitive_domains}, og den vil derfor bli merket som voksent innhold."
+    # used in warning_potentially_minified_html
     warning_potentially_minified_allowed_requires_link: "ett av disse stedene"
+    warning_code_previously_posted_html: ""
+    # default option for the locale of a localized additional info
     additional_info_locale_prompt: "(Velg lokale)"
+    # text for the button to add another additional info section for a different language
     additional_info_add_localized: "Legg til lokalisert tilleggsinformasjon"
+    # validation when more than one additional info is specified for a locale. "locale_code" is the locale code (e.g. "en") that has more than one additional info
     additional_info_locale_repeated: "Vennligst oppgi tilleggsinformasjon for valgt lokale: '%{locale_code}'."
+    # validation when an additional info in a locale is provided but no name was provided in that locale. "locale_code" is the locale code (e.g. "en") that is missing a name
     localized_additional_info_with_no_name: "Tilleggsinfo er oppgitt for lokale '%{locale_code}', men ingen @name:%{locale_code} er oppgitt."
+    localized_attribute_matches_default: ""
+    # text to edit a code syncing URL. field is the text field to enter the url.
     code_syncing_from_url_html: "Dette skriptets kode er satt opp til å synkronisere fra: %{field}"
+    # text to add a code syncing URL. field is the text field to enter the url.
     provide_code_syncing_from_url_html: "%{site_name} kan importere skript som allerede er lagret andre steder, for eksempel i et versjonskontrollsystem (som GitHub), din egen server, eller en annen brukersskriptside. For å aktivere synkronisering for ditt skript kan du oppgi en URL: %{field}"
+    # text before the sync type options
     sync_type_intro: "Skriptet vil bli synkronisert:"
+    # label for radio button for manual syncing
+    sync_type_1:
+      name: ""
+      description: ""
+    # label for radio button for automatic syncing
+    sync_type_2:
+      name: ""
+      description: ""
+    # label for radio button for webhook syncing
+    sync_type_3:
+      name: ""
+      description: ""
+    sync_name_and_description: ""
+    # text when the last attempted sync failed. date is the date of the error run through markup_date. error is the technical error.
     sync_failed_info_html: "Siste synkroniseringsforsøk var %{date}, som resulterte i %{error}."
+    # text indicating the date of the last successful sync. date is the date of the sync run through markup_date
     sync_success_info_html: "Siste vellykkede synkronisering var %{date}"
+    # text if the sync never succeeded
     sync_never_succeeded: "Synkronisering ble aldri suksessfullt fullført."
+    sync_additional_info: ""
+    add_synced_additional_info: ""
+    # button to update sync settings and run sync immediately
     update_and_sync: "Oppdater og synkroniser nå"
+    # button to update sync settings but not sync immediately
     update_no_sync: "Oppdater"
+    # button to disable syncing of the script
     turn_off_syncing: "Skru av synkronisering for dette scriptet"
+    # label for syncing the default additional info
     additional_info_default_sync_html: "Standard tilleggsinfo (språk matcher <code>@name</code>)"
+    # label for syncing localized additional infos
     additional_info_localized_sync_html: "For lokale (matcher <code>@name:XX</code>)"
+    # HTML placeholder for sync fields
     sync_url_placeholder: "(URL)"
+    # label for adding a new screenshot
     screenshots_add: "Legg til:"
+    # label for checkbox to remove a screenshot
     screenshots_remove: "Fjern"
+    # explains what a replacement script when deleting is
     replacement_script_explanation: "(Valgfritt) Velg et annet skript som erstatter dette skriptet. Brukere vil bli oppdatert til og omdirigert til dette skriptet. Oppgi URL til erstatningsskriptet:"
+    # title for diff page
     diff_title: "%{script} - Differanse mellom versjoner"
+    # label for older version being diffed
     diff_old_version: "Gammel:"
+    # label for newer version being diffed
     diff_new_version: "Ny:"
+    # label for input for lines to show around each change when doing a diff
     diff_lines_of_context: "Kontekstlinjer:"
+    # label for checkbox on whether to ignore whitespace changes
     diff_ignore_whitespace: "Ignorer blanktegnendringer"
+    # button to refresh diff after changing diff options
     diff_refresh: "Oppdater"
+    # text shown when compared versions are the same
     diff_no_change: "Ingen forskjeller funnet."
+    # tooltip for good rating number - "Good" should match the word used in RatingGood in the PHP localization
     good_rating_explanation: "Antall personer som har gitt karakteren Bra eller lagt det til i favoritter"
+    # tooltip for ok rating number - "OK" should match the word used in RatingGood in the PHP localization
     ok_rating_explanation: "Antall personer som har gitt karakteren OK"
+    # tooltip for bad rating number - "Bad" should match the word used in RatingGood in the PHP localization
     bad_rating_explanation: "Antall personer som har gitt karakteren Ikke bra"
+    # link at the bottom of the scripts list suggesting people post a script or learn how. post_a_script_link is a link with text post_a_script_link_text that goes to the new script form. learn_to_write_scripts_link is a link with text learn_to_write_scripts_link_text that goes to the help document for writing scrupts
     write_your_own_html: "%{post_a_script_link} (eller %{learn_to_write_scripts_link})"
+    # link text for the new script form, used in write_your_own_html
+    post_a_script_link_text: ""
+    # link text for the writing a user script help doc, used in write_your_own_html
     learn_to_write_scripts_link_text: "lær hvordan du skriver et"
+    # a suggestion below the install button that users provide feedback
+    feedback_or_report: ""
+    # a suggestion below the install button that users provide feedback or get support from the author's site. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
+    support_feedback_or_report: ""
+    # a suggestion below the install button that users provide feedback or get support from the author's via email. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
+    support_email_feedback_or_report: ""
+    # heading for section relating to adult content when posting new script or script version
     adult_content: "Innhold for voksne"
+    # label for checkbox letting authors report their script as containing adult content
     adult_content_self_report: "Dette skriptet har innhold for voksne eller er laget for sider med innhold for voksne"
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script not flagged as having adult content
     adult_content_self_report_explanation: "%{site_name} tillater skript med innhold for voksne, men de må merkes slik at brukere kan velge om de ønsker å se dem."
+    # label for checkbox letting authors report their script as not containing adult content
     not_adult_content_self_report_html: "Dette skriptet inneholder <strong>ikke</strong> innhold for voksne og er <strong>ikke</strong> laget for en side med innhold for voksne."
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content
     not_adult_content_self_report_explanation: "%{site_name} tillater skript med innhold for voksne, men de må merkes slik at brukere kan velge om de ønsker å se dem. Ditt skript har blitt merket som innhold for voksne. Du kan rapportere at det ikke stemmer, så vil det bli vurdert av en moderator."
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content due to automatic checking
     not_adult_content_self_report_explanation_automatic: "%{site_name} tillater skript med voksent innhold, men de må bli merket som sådan sånn at brukere kan velge om de ønsker å se det. Ditt skript har blitt markert som at den inneholder voksent innhold, ettersom den er for %{domain_list}."
+    # the error you see when accessing a adult content script when logged in with the adult content setting off
     adult_content_on_greasy_logged_in_error: "Dette skriptet er ikke tilgjengelig på denne siden med din nåværende %{edit_account_link:Greasy Fork kontoinnstillinger}."
+    # the error you see when accessing a adult content script when not logged in
     adult_content_on_greasy_not_logged_in_error: "Dette skriptet er ikke lenger tilgjengelig anonymt på denne siden. %{login_link:Logg inn} og sjekk dine kontoinnstillinger for Greasy Fork."
+    # the error you see when access a non-adult content script on sleazy fork
     non_adult_content_on_sleazy: "Dette skriptet er ikke tilgjengelig på denne siden."
+    not_js_convertible_override_header: ""
+    not_js_convertible_override_explanation: ""
+    not_js_convertible_override_label_html: ""
+    # marker after script name shown to authors indicating their adult scripts
     adult_marker: "(Voksen)"
+    # marker after script name if it's deleted
     deleted_marker: "(Slettet)"
+    # marker after script name if it's locked
     locked_marker: "(Låst)"
+    # marker after script name if it's unlisted
     unlisted_marker: "(Ulistet)"
+    # marker after script name if it's a library
     library_marker: "(Bibliotek)"
+    # title for libraries listing page
     libraries_title: "Biblioteker"
+    # description for libraries listing page
     libraries_description_html: "Det finnes biblioteker som er lagt ut av %{site_name}-brukere, som du kan kreve i skriptene dine med <code>@require<code>-verdien, les %{policy_link:%{site_name} sine retningslinjer for <code>@require</code>}."
+    # title of the listing of top sites to script
     by_site_list_title: "Brukerskript for %{site_name} gruppert etter nettsted"
+    # description of the listing for top sites to script
     by_site_list_description: "Disse er nettstedene som er påvirket av de mest populære brukerskriptene. En større skriftstørrelse betyr mer populære brukerskript."
     by_site_list_filter: "Filtrer etter nettstedsnavn:"
+    # placeholder for script search box
     search_placeholder: "Søk blant skript"
     updated: "Skript oppdatert."
     preview_additional_info: "Forhåndsvisning"
+    must_confirm: ""
+    must_confirm_external_sign_in: ""
     must_confirm_email_button: "Send en bekreftelseslenke til %{email}"
+    authors_heading: ""
+    error_unauthorized_copy: ""
+    invitations:
+      form_title: ""
+      explanation: ""
+      invited_user_url_label: ""
+      invited_user_placeholder: ""
+      submit: ""
+      invalid_user_url: ""
+      already_author: ""
+      sent: ""
+      subject: ""
+      body: ""
+      current_user_already_author: ""
+      invitation_not_found: ""
+      invitation_expired: ""
+      invitation_accepted: ""
+    remove_author:
+      heading: ""
+      success: ""
+      remove_button: ""
+      remove_confirm: ""
+      failure: ""
+    no_disposable_email: ""
+    rate_limited: ""
+    new_script_notice:
+      title: ""
+      install_link_html: ""
+      share_link_html: ""
+    new_title:
+      js: ""
+      css: ""
+    update_title: ""
+    antifeatures:
+      warning_title: ""
+      author_explanation_intro: ""
+      types:
+        ads:
+          title: ""
+          description_html: ""
+        tracking:
+          title: ""
+          description_html: ""
+        miner:
+          title: ""
+          description_html: ""
+        referral-link:
+          title: ""
+          description_html: ""
+      install_anyway: ""
+      cancel_install: ""
+    badges:
+      js:
+        short: ""
+        long: ""
+      css:
+        short: ""
+        long: ""
   script_sets:
+    # description of script sets on edit page
     description: "Skriptsett lar deg lage en tilpasset skriptliste som du kan bli i Greasy Fork med. Du kan legge til skripter i settet det ved å inkludere individuelle skripter, andre brukeres sett, eller automatisk genererte sett. Du kan også ekskludere skripter fra settet ditt på de samme måtene."
+    # name for the favorites set
     favorites_name: "Favoritter"
+    # delete button text for a script set
     delete: "Slett scriptsett"
+    # delete confirmation for a script set
     delete_confirmation: "Er du sikker på at du vil slette scriptsettet?"
+    # option for choosing to sort the set by the default sort the site uses
     site_default_sort: "(Standard)"
     edit_scripts:
       heading: "Skript"
@@ -285,105 +633,200 @@ nb:
       user: "Skript laget av brukeren%{user}"
       locale: "Skript i %{locale_name}"
   home:
+    # html title of the homepage
     title: "%{site_name} - trygge og nyttige brukerskript"
+    # text at the top of the homepage.
     welcome: "Velkommen til %{site_name}, en side for brukerskript."
+    # html title of the sleazy fork homepage
     sleazy_title: "%{site_name} - trygge og nyttige brukerskript for voksne"
+    # text at the top of the sleazy fork homepage.
     sleazy_welcome: "Velkommen til %{site_name}, en side for brukerskript for voksne."
+    # placeholder for home page search box
     search_placeholder: "Søk etter brukerskript"
     scripts_for_label: "Skript for:"
+    # heading for the paragraph explaining what user scripts are
     explain_user_scripts_heading: "Hva er brukerskript?"
+    # text explaining what user scripts are.
     explain_user_scripts_html: "Brukerskript gir deg kontroll over surfeopplevelsen din. Når de er installert vil de automatisk gjøre nettstedene du besøker bedre ved å legge til funksjoner, gjøre dem enklere å bruke, eller fjerne irriterende elementer. Brukerskriptene på %{site_name} er skrevet av andre brukere og er lagt ut for å deles med resten av verden. De er gratis å installere og lette å bruke."
+    # header for step 1 - how to install a user script manager
     installing_step1_header: "Trinn 1: installer en brukerskriptbehandler"
+    # caption in step 1 - screenshot of tampermonkey on chrome
     installing_step1_caption: "Tampermonkey på Chrome"
+    # text for step 1, listing options for user script managers based on browsers
+    installing_step1_description_html: >
+    # header for step 2 - how to install a user script
     installing_step2_header: "Trinn 2: installer et brukerskript"
+    # caption for step 2 - showing the install button for user scripts
     installing_step2_caption: "Et brukerskript sin installeringsknapp"
+    # text for step 2 - describing how to find and install user scripts
     installing_step2_description_html: >
-        <p>%{browse_link:Bla rundt på dette nettstedet} for å finne et brukerskript
-        som du vil prøve ut. Her er et utdrag av de mest populære skriptene:</p>
+      <p>%{browse_link:Bla rundt på dette nettstedet} for å finne et brukerskript som du vil prøve ut. Her er et utdrag av de mest populære skriptene:</p>
 
-        %{highlighted_scripts_list}
+      %{highlighted_scripts_list}
 
-        <p>Når du har funnet et brukerskript, klikk på den grønne installasjonsknappen
-        på brukerskriptets side, og din brukerskriptbehandler vil spørre deg om å
-        bekrefte installasjonen.</p>
+      <p>Når du har funnet et brukerskript, klikk på den grønne installasjonsknappen på brukerskriptets side, og din brukerskriptbehandler vil spørre deg om å bekrefte installasjonen.</p>
+    # header for step 3 - how to use a user script
     installing_step3_header: "Trinn 3: bruk brukerskriptet"
+    # description for step 3, describing browsing to the site and having the user script apply
     installing_step3_description_html: >
-        <p>Gå til nettstedet som brukerskriptet påvirker. Den burde automatisk gjøre
-        greien dens. Etter å ha prøvd ut brukerskriptet en stund, gå tilbake til dit
-        du installerte brukerskriptet ifra, og legg igjen litt tilbakemelding til
-        brukerskriptets skaper.</p>
+      <p>Gå til nettstedet som brukerskriptet påvirker. Den burde automatisk gjøre greien dens. Etter å ha prøvd ut brukerskriptet en stund, gå tilbake til dit du installerte brukerskriptet ifra, og legg igjen litt tilbakemelding til brukerskriptets skaper.</p>
   users:
+    # html title for the sign in page
     sign_in_title: "Logg inn hos %{site_name}"
+    # what signing in lets people od
     sign_in_description: "Innlogging på %{site_name} lar deg poste skript og tilbakemeldinger på andres skript. Du trenger ikke å logge inn for å søke etter eller installere skript."
+    # heading for signing in with an external service (Google, GitHub, etc.)
     sign_in_external: "Logg inn ved hjelp av en ekstern tjeneste"
+    # button for signing in with an external service (Google, GitHub, etc.)
     sign_in_with: "Logg på med %{provider}"
+    # heading for signing in with a password
     sign_in_password: "Logg inn med et passord"
+    # when a user attempts to sign in with an external service and a user already exists with the same email, this is the message shown. email: provided e-mail, user_name: existing user's name, provider: what the user tried to sign in with (e.g. GitHub), sign_in_link: a link to the sign in page with text from sign_in_email_used_sign_in_link
     sign_in_email_used_no_external_services_html: "'%{email}' er allerede i bruk av '%{user_name}'. Hvis dette er deg og du ønsker å legge til innlogging med %{provider}, %{sign_in_link} på din konto, og deretter legg til innlogging med %{provider}."
+    # same as above, but when the existing user uses other providers. also includes existing_providers, which is a list of the existing user's sign ins, run through to_sentence (http://apidock.com/rails/Array/to_sentence)
     sign_in_email_used_with_external_services_html: "'%{email}' er allerede i bruk av '%{user_name}', som logger inn med %{existing_providers}. Hvis dette er deg og du ønsker å legge til innlogging med %{provider}, %{sign_in_link} på din konto, og deretter legg til innlogging med %{provider}."
+    # sign in link for email_used messages
     sign_in_email_used_sign_in_link: "logg inn"
+    # when a user attempts to create an account with an external service, but an email was not provided by that service
     sign_in_email_missing: "%{site_name} krever en e-postadresse for å lage en ny konto, men %{provider} oppga ingen e-postadresse for deg. Du kan enten oppdatere din %{provider}-konto eller prøve å logge inn på nytt og lage en vanlig e-post/passord-konto på %{site_name}, og deretter legge til din %{provider}-konto."
+    # this shows when signing in for the first time with an external sign in but the name received is already in use. the user is prompted to enter a different name.
     sign_in_name_used: "Navnet '%{name}' er allerede i bruk. Velg et annet."
+    # the button when submitting the name form per above
     sign_in_name_used_submit: "Send inn"
+    # Button to preview a user's profile before saving
+    # heading for the user's control panel, which contains links such as post script and edit account
     control_panel: "Kontrollpanel"
+    # heading for the list of discussions about a user's own scripts
     discussions_on_scripts: "Diskusjoner om dette scriptet"
+    # alt text for the RSS feed icon for discussions about a user's own scripts
     discussions_on_scripts_feed_alt: "RSS Feed"
+    # text to show in the section for discussions about a user's own scripts if there are no discussions yet
     discussions_on_scripts_none: "Ingen ennå!"
+    # link to more discussions on a user's own scripts, as the initial list is limited in number
     discussions_on_scripts_more: "Flere diskusjoner..."
+    # heading for the list of scripts on a user's page
     script_list: "Script"
+    # text to show in a user's script section when they have created no scripts
     script_list_none: "Ingen script postet."
+    # text to show in a user's script section when they have created scripts, but they are not shown due to the filters active
     script_list_none_for_filter: "Ingen script med nåværende filter."
+    # text to show in a user's own script section when they have created no scripts. script_list_none_same_user_info_link is a link to a tutorial with text of script_list_none_same_user_info_link_text
     script_list_none_same_user_html: "Du har ikke skrevet noen skript. %{script_list_none_same_user_info_link}"
+    # text used for link in script_list_none_same_user_html
     script_list_none_same_user_info_link_text: "Vil du lære hvordan?"
+    # heading for the list of a user's deleted scripts (visible to only that user and mods)
     deleted_script_list: "Slettede script"
+    unlisted_script_list: ""
+    # link to log out
     sign_out: "Logg ut"
+    # link to edit an account
     edit: "Endre konto"
+    # link to edit how the user signs in
     edit_sign_in: "Endre innloggingsmetoder"
+    # html title for the edit sign in page
     edit_sign_in_title: "Endre innloggingsmetoder"
+    # heading for the password section of the edit sign in methods page
     edit_sign_in_password: "Passord"
+    # informational text telling the user they're not using a password
+    edit_notifications: ""
     no_password_set_info: "Du har ikke satt opp et passord for kontoen din."
+    # button to set a password when one is not already set
     set_password: "Sett opp passord"
+    # button to set a password when one is already set
     update_password: "Oppdater passord"
+    # error message when the password and the confirmation don't match
     update_password_no_match: "Passordene stemmer ikke overens."
+    # notice after a password was updated successfully
     password_updated: "Passord oppdatert"
+    # information text saying the user can unset their password and use just external sign ins
     remove_password_info: "Du kan fjerne ditt passord og utelukkende basere deg på ekstern innlogging."
+    # button to remove the password from the user's account
     remove_password: "Fjern passord"
+    # error message to show if the user attempts to remove a password but have no external sign ins. This is normally not possible with the interface.
     cant_remove_password: "Kan ikke fjerne passord - du ville ikke kunne logge inn!"
+    # error message to show if the user attempts to remove a sign in but has no password or other sign ins. This is normally not possible with the interface. provider is the external site's name, like GitHub or Google
     cant_remove_sign_in: "Kan ikke fjerne %{provider}-innlogging  - du ville ikke kunne logge inn!"
+    # notice after a password was removed successfully
     password_removed: "Passord fjernet."
+    # heading for the external sign ins section of the edit sign in methods page
     edit_sign_in_external: "Eksterne innlogginger"
+    # information text about how they can use external sign ins, shown when the user has not set any yet
     external_sign_in_info_no_sign_ins: "Du kan bruke din konto fra andre tjenester for å logge inn på %{site_name}."
+    # information text about how they can use external sign ins, shown when the user already has some set. should describe the concept of syncing, where account details on %{site_name} will be updated to match the external service on sign in
     external_sign_in_info_with_sign_ins: "Du bruker for tiden følgende eksterne innlogginger. Et synkroniseringssymbol betyr at %{site_name}-opplysninger (som brukernavn og e-post) vil bli oppdatert når du logger inn."
+    # notice after a sign in is added. provider is the external site's name, like GitHub or Google
     external_sign_in_added: "%{provider}-innlogging lagt til."
+    # notice after a sign in is updated (from syncing to not or opposite). provider is the external site's name, like GitHub or Google
     external_sign_in_updated: "%{provider}-innlogging oppdatert."
+    # notice after a sign in is removed. provider is the external site's name, like GitHub or Google
     external_sign_in_removed: "%{provider}-innlogging fjernet."
+    # notice after a sign in fails
     external_sign_in_failed: "%{provider}-innlogging feilet: %{error}."
+    # notice after a user tries to add a sign in to their account, but that sign in is already in use by another user
     external_sign_in_already_used: "Innlogging med %{provider} feilet: innloggingen er allerede i bruk av '%{user_name}'."
+    # notice after successfully creating a new user based on external login
     external_sign_in_confirmation: "En ny %{site_name}-konto har blitt laget, basert på dine %{provider}-kontodetaljer. Ditt offentlige brukernavn er %{username}."
+    # an indicator beside the sign in provider's name if the user chose to enable syncing
     syncing_indicator: "(synkroniseres)"
+    # button to set a sign in provider to sync
     enable_syncing: "Slå på synkronisering"
+    # button to set a sign in provider to not sync
     disable_syncing: "Slå av synkronisering"
+    # button to remove a sign in provider
     remove_external_sign_in: "Fjern"
+    # information text indicating that the list of links below it are for addding an external sign in
     add_external_sign_in_info: "Legg til innlogging:"
+    # link to docs on how to set up a webhook for script syncing
+    set_up_webhook: ""
     author_email_notification_type:
+      # notification option: don't send the user e-mails
       none: "Ikke motta e-post om diskusjoner om dine skript"
+      # notification option: send e-mails on new discussions but not new posts on existing discussions
       discussion_only: "Motta e-post når diskusjoner opprettes på dine skript"
+      # notification option: send e-mails on new discussoins and on new posts on existing discussions
       discussion_and_comment: "Motta e-post når diskusjoner opprettes på dine skript, eller når det kommer nye kommentarer i diskusjonene"
+    # display of a single user when displaying a list of users. user_link is a link to the user's page with text of the user name, count is the number of public scripts authored
     list_display_html:
       one: "%{user_link} - %{count} skript"
       other: "%{user_link} - %{count} skript"
+    # sort link for sorting users by number of scripts they've posted
     listing_number_of_scripts: "Antall script"
+    # sort link for sorting users by the creation date of their scripts
     listing_new_scripts: "Nye script"
+    # sort link for sorting users by the updated date of their scripts
     listing_updated_scripts: "Oppdaterte script"
+    # sort link for sorting users by when they signed up
     listing_registration_date: "Registreringsdato"
+    # title for page showing list of users
     listing_title: "Brukere"
+    listing_banned_filter:
+      banned: ""
+      not_banned: ""
+      all: ""
+    listing_author_filter:
+      script_author: ""
+      not_script_author: ""
+      all: ""
+    # placeholder for user search box
     search_placeholder: "Søk blant brukere"
+    # default option for the user's preferred locale
     locale_prompt: "(Velg lokale)"
+    # text describing what the show ads checkbox does
     show_ads_description: "Støtt %{site_name} ved å tillate dem å vise deg reklame"
+    # text describing what the show sensitive checkbox does
     show_sensitive_description: "Vis skript med innhold for voksne"
+    # text describing what the preferred markup setting does
     preferred_markup_description: "Vil bli brukt for nye skript og innlegg"
+    filter_locale_default_description: ""
+    # link from sleazy fork to greasy fork on user page
     greasy_fork_scripts_link:
       one: "%{user_name} har også %{count} skript på Greasy Fork."
       other: "%{user_name} har også %{count} skript på Greasy Fork."
+    # displays when the user is editing their account but syncing is on
+    update_sync_warning:
+      one: ""
+      other: ""
+    # link on the user page to go to the delete page
     delete_link: "Slett konto"
     delete:
       intro: "Å slette din '%{user_name}'-%{site_name}-konto vil ha følgende effekter:"
@@ -412,42 +855,168 @@ nb:
         request_expired: "Kunne ikke slette brukeren - forespørselen utløp."
         cancelled: "Slettingen har blitt avbrutt."
         completed: "Kontoen din har blitt slettet."
+    banned_notice:
+      no_report_no_reason: ""
+      with_report: ""
+      with_reason: ""
+    banned_delete:
+      intro: ""
+      complete: ""
+    badges:
+      banned:
+        short: ""
+        long: ""
+      moderator:
+        short: ""
+        long: ""
+      author:
+        short: ""
+        long: ""
+    notifications:
+      discussion_defaults:
+        title: ""
+        new_discussion: ""
+        new_comment: ""
+        mention: ""
+      conversation_defaults:
+        title: ""
+        starter: ""
+        receiver: ""
+      save_button: ""
+      title: ""
+      current_discussion_subscriptions:
+        one: ''
+        other: ''
+      save_success: ""
+      unsubscribe_all: ""
+      unsubscribe_all_success: ""
+  webhooks:
+    info:
+      title: ""
+      intro_html: |
+      already_syncing_list: ""
+      synced_item_html: ""
+      language_note: ""
   help:
+    sections:
+      usage: ""
+      development: ""
+      miscellaneous: ""
+    open_source: ""
     installing_user_scripts:
       title: 'Hvordan installere brukerskript'
+    installing_user_styles:
+      title: ''
     meta_keys:
+      # title of the help document describing script meta keys (e.g. @name).
       title: "Metadata om skript som brukes av %{site_name}"
+      # introductory paragraph. If the URL has a localized version, use that.
+      intro_html: ""
+      # description of @name
       name: "Navnet på skriptet, som brukes i tittel og lenker. Obligatorisk."
+      # description of @name:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
       name_localized_html: "Navnet til skriptet for et spesifikt område, hvor XX er en <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-bokstaverskode</a> og YY er et <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166-landskode</a> som er valgfritt å inkludere. Overstyrer <code>@description</code> når brukeren blar i et samsvarende område."
+      # description of @description
       description: "Beskrivelse av hva skriptet gjør. Vises som tekst under skriptnavnet. Obligatorisk."
+      # description of @description:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
       description_localized_html: "Beskrivelsen av skriptet for et spesifikt område, hvor XX er en <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-bokstaverskode</a> og YY er et <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166-landskode</a> som er valgfritt å inkludere. Overstyrer <code>@description</code> når brukeren blar i et samsvarende område."
+      # description of @namespace. Do not translate content inside <code>.
+      namespace_html: ""
+      # description of @description:XX-YY. developer.mozilla.org may have localized content; use it if available.
+      version_html: ""
+      # description of @include
+      include_html: ""
+      # description of @require. %{external_script_link} is a link to the document describing allowed external scripts and has a link of key "require_external_script_link_text"
       require_html: "Inkluderer ekstern JavaScript i et skript. Se %{external_script_link}."
+      # used in required_html
       require_external_script_link_text: "regler for kode som inkluderer eksterne skript"
+      # description of @updateURL
       updateURL: "Beskriv hvordan brukerskriptsystemer skal få oppdateringer. %{site_name} vil bruke disse nøklene, slik at skript installert fra %{site_name} kun oppdateres fra %{site_name}."
+      # description of @license
+      license: ""
+      # description of @supportURL
+      supportURL: ""
+      # description of @contributionURL. You can replace the sample "business" and "item_name" parameters in the URLs with localized versions.
       contributionURL_html: "URLen til en side hvor brukere kan donere til skaperen av et skript. Bidrags-URL vises på et skript sin tilbakemeldingsside. URLer kan være https, http, eller Bitcoin-protokoller. For å lenke til en PayPal-donasjonsside, bruk en URL i formatet<a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=din.epostadresse.her@example.com&item_name=Greasy+Fork+donation</a>, ved å erstatte eksempel-E-postadressen med din egen."
+      # description of @contributionAmount. Do not translate content inside <code>.
       contributionAmount_html: "Foreslått donasjon, brukes sammen med <code>@contributionURL</code>."
+      # description of @compatible. %{browsers} is a comma-separated list of browser codes. You can translate "Must disable pop-up blocker", but do not translate "@compatible firefox". 
+      compatible_html: ""
+      # description of @incompatible. %{browsers} is a comma-separated list of browser codes. You can translate "Broken since Firefox 23", but do not translate "@compatible firefox".
+      incompatible_html: ""
+      antifeature_html: ""
+      antifeature_localized_html: ""
     writing_user_scripts:
+      # title for Writing user scripts help page
       title: "Hvordan skrive brukerskript"
+      # content of the page. The link to greasespot can be updated to a better resource if one is available in your language. code_rules_link and meta_keys_link are links to those help pages, with text of those page's titles. ask_in_forum_link is a link to the forum with text of ask_in_forum_link_text. user_page_link is a link to the user's page if the user is signed in, or plain text if they're not; in either case, the text is user_page_link_text. post_new_script_link is a link to the new script page, with text of post_new_script_link_text
+      content_html: ""
+      # link text used in content_html
       ask_in_forum_link_text: 'spør på forumet'
+      # link text used in content_html
       user_page_link_text: 'brukerside'
+      # link text used in content_html
       post_new_script_link_text: 'send inn et nytt skript'
     code_rules:
+      # title for the rules page
       title: "%{site_name}s regler for innsendte skript"
+      preamble: ""
+      functionality_header: ""
+      description: ""
+      reason: ""
+      unrelated: ""
+      monetization_html: ""
+      code_header: ""
+      obfuscation: ""
+      libraries_html: ""
+      updates: ""
+      external_js: ""
+      copyright_header: ""
+      licensing: ""
+      reposts: ""
+      miscellaneous_header: ""
+      keywords_html: ""
+      adult_content_rule: ""
+      reporting: ""
     external_scripts:
+      # title of the external script rules page
       title: "%{site_name}s policy for eksterne script"
+      # content of the external script rules page
+      content_html: >
+      test_url:
+        label: ""
+        result_ok: ""
+        result_not_ok: ""
     script_rewriting:
+      # title of the rewriting page
       title: "Hvordan %{site_name} vil skrive om innsendte skript"
+      # content of the rewriting page
+      content_html: >
+    # link to github
     site_feedback_link: "Meld inn problemer eller ideer til %{site_name}"
     credits:
+      # title for the credits page
       title: "Bidragsytere"
+      # give credit to authors
       authors_credit: "%{site_name} ville ikke vært mulig uten forfatterne som bidrar med skript."
+      # give credit to developers. link goes to github.
       developers_credit: "%{site_name} er bygget av %{developers_link:disse menneskene} med hjelp fra alle de som melder om feil og foreslår forbedringer."
+      # give credit to translators. link to goes to transifex. after this text, there's a list of languages and the contributors to each.
       translators_credit: "%{site_name} er oversatt av %{translators_link:Greasy Translation Force på Transifex}:"
+      # give credit to icon makers. all links are proper names so are not translated.
+      icons_credit: ""
+    # link to greasemonkey docs
     help_with_greasymonkey: "Hjelp med Greasemonkey"
     contact:
+      # title of contact page
       title: "Kontakt noen"
+      # content of contact page
+      content_html: >
     privacy_policy:
       title: "Personvernregler"
+      content_html: >
+    user_css_to_user_js:
+      title: ""
   search:
     script_search:
       title: "Skriptsøk"
@@ -470,62 +1039,329 @@ nb:
     item_script_html: "Skript: %{script_link}"
     item_deleted_script: "Slettet skriptet %{id}"
     item_user_html: "Bruker: %{user_link}"
+  notifications:
+    consecutive_bad_ratings:
+      one: ""
+      other: ""
+  reports:
+    report_filed: ""
+    new_report_title:
+      user: ""
+      comment: ""
+      message: ""
+      script: ""
+    new_report_notes_html: >
+    new_script_report_notes_html: >
+    new_user_report_notes_html: >
+    reason:
+      non_functional: ""
+      spam: ""
+      abuse: ""
+      illegal: ""
+      unauthorized_code: ""
+      malware: ""
+      minified: ""
+      external_code: ""
+      undisclosed_antifeature: ""
+      other: ""
+    report_intro_html: ""
+    report_intro_unauthorized_html: ""
+    non_functional_feedback: ""
+    unauthorized_code_original_placeholder: ""
+    explanation_placeholder: ""
+    create_button: ""
+    report_user: ""
+    report_comment: ""
+    report_message: ""
+    result_dismissed: ""
+    result_upheld: ""
+    result_pending: ""
+    rebuttal_placeholder: ''
+    submit_rebuttal: ""
+    delete_script: ""
+  discussions:
+    title: ""
+    comment_date: ""
+    comment_edit_date: ""
+    posted_by_html: ""
+    last_comment: ""
+    new_discussion_heading: ""
+    new_discussion_submit: ""
+    new_comment_heading: ""
+    new_comment_submit: ""
+    back_to_feedback: ""
+    edit_comment_link: ""
+    edit_comment_header: ""
+    delete_comment: ""
+    delete_comment_confirm: ""
+    delete_discussion: ""
+    delete_discussion_confirm: ""
+    update_comment_submit: ""
+    cancel_update_comment: ""
+    quote_comment: ""
+    question_heading_html: ""
+    review_heading_html: ""
+    update_rating: ""
+    ratings:
+      question: ""
+      bad: ""
+      ok: ""
+      good: ""
+    ratings_short:
+      question: ""
+      bad: ""
+      ok: ""
+      good: ""
+    sign_in_to_post_discussion: ""
+    sign_in_to_post_comment: ""
+    user_filter:
+      label: ""
+      all: ""
+      discussion_by_me: ""
+      comment_by_me: ""
+      on_my_scripts: ""
+      subscribed: ""
+    other_user_filter:
+      all: ""
+      comments_by: ""
+    category_filter:
+      label: ""
+      all: ""
+    read_filter:
+      label: ""
+      all: ""
+      read: ""
+      unread: ""
+    locale_filter:
+      label: ""
+      all: ""
+    user_activity:
+      title: ""
+      no_recent_activity: ""
+      see_all_activity: ""
+      script_review:
+        posted_html: ""
+        replied_html: ""
+      script_question:
+        posted_html: ""
+        replied_html: ""
+      discussion:
+        posted_html: ""
+        replied_html: ""
+    review_title: ""
+    question_title: ""
+    subscribe: ""
+    unsubscribe: ""
+    notify: ""
+    notifying_on_script: ""
+    categories:
+      greasyfork:
+        name: ""
+        description: ""
+      development:
+        name: ""
+        description: ""
+      requests:
+        name: ""
+        description: ""
+      script-discussions:
+        name: ""
+        description: ""
+      no-scripts:
+        name: ""
+      moderators:
+        name: ""
+        description: ""
+    category_display: ""
+    new_title: ""
+    new_button: ""
+    script_notice: ""
+    no_discussions: ""
+    mark_all_read: ""
+    pending_moderator_review: ""
+  conversations:
+    user_input_note: ""
+    new_title: ""
+    new_link: ""
+    new_button: ""
+    title_html:
+      one: ''
+      other: ''
+    send_message: ""
+    conversation_list_title: ""
+    conversation_link_html:
+      one: ''
+      other: ''
+    conversation_info_html: ""
+    no_conversations: ""
+    no_recent_conversations: ""
+    recent:
+      title: ""
+      more: ""
+  screenshots:
+    requirements: ""
   common:
+    # text to show before listing errors in a submission
     error_preamble: "Det var noen problemer med det du sendte inn..."
+    # link to the list of allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_link: "(Se lovlig kode)"
+    # title of the page showing allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_and_attributes_title: "Tillat HTML-innhold"
+    # text to introduce the list of allowed HTML elements and attributes
     allowed_elements_intro: "Følgende elementer og attributter er tillat. Dette gjelder både HTML og Markdown (etter konvertering til HTML)."
+    # additional info for the allowed HTML elements, explaining additional changes made to content
     allowed_elements_extra_info: "Blank tekst vil blir konvertert til p- og br-elementer. URL-er vil automatisk bli linkifisert."
+    allowed_css_intro: ""
+    user_references_html: ""
     not_found_text: "404 - side ikke funnet."
     not_found_title: "404 - Side Ikke Funnet"
     not_found_link_home: "Gå hjem."
+    # shown on the first page a user sees if, based on the user's Accept-Language header, we think we have a better locale than what the first page shows. "locale_name" is the name of the locale in that language (matching the name in the locale drop down)
     suggest_locale: "%{site_name} er tilgjengelig i %{locale_name}."
+    # shown on the first page a users sees if the locale they're on is less than a certain amount translated. links to the docs on how to help with localization
     incomplete_locale: "%{site_name}s %{locale_name}-oversettelse er bare %{percent} fullført. Du kan forandre på det."
+    # text for a button that expands a block of text
     expander_show_more: "Vis mer"
+    # text for a button that contracts a block of text
     expander_show_less: "Vis mindre"
+    # note denoting what are ads
     advertisement_note: Reklame
+    # label on tab allowing for previewing input
     preview_tab: Forhåndsvisning
+    # label on tab for entering input
     write_tab: Skriv
+    listing_options_title: ""
+    quote:
+      prefix_html: ""
   activerecord:
     attributes:
       user:
+        # user field: display name
         name: "Navn"
+        # user field: profile (HTML content describing themselves)
         profile: "Profil"
+        # user field: locale
         locale: "Foretrukket lokale"
+        # user field: setting to send e-mails when discussions or comments are posted to a user's scripts. options are under users.author_email_notification_type
         author_email_notification_type_id: "Melding om skriptdiskusjoner"
+        # user field: show ads
         show_ads: "Vis reklamer"
+        # user field: show sensitive
         show_sensitive: "Innhold for voksne"
+        # user field: preferred markup (html or markdown)
         preferred_markup: "Foretrukket markup"
+        filter_locale_default: ""
+        current_password: ""
+        new_password: ""
+        new_password_confirmation: ""
       script:
+        # name of the script
         name: "Navn"
+        # description of the script
         description: "Beskrivelse"
+        # locale the script is in. see also scripts.locale_explanation
         locale: "Lokale"
+        # the JS code of the script
         code: "Kode"
+        # description of changes for an update
         changelog: "Endringslogg"
+        # the type of script - public, unlisted, or library
         type: "Scripttype"
+        # additional descriptive text outside of @description
         additional_info: "Mer informasjon"
+        # screenshots attached to the script
         screenshots: "Skjermdumper"
+        # when deleting, which script to redirect to
         replaced_by_script_id: "Erstatningsskript"
       script_set:
+        # name of the script set
         name: "Navn"
+        # description of the script set
         description: "Beskrivelse"
+        # default sort of the script set
         default_sort: "Standard sortering"
+      report:
+        reason: ""
+      discussion:
+        rating: ""
+        category: ""
+        title: ""
+      conversation:
+        user_input: ""
+      message:
+        content: ""
   errors:
     messages:
+      # validation for when a script name is not provided
       script_missing_name: "obligatorisk - spesifiser et med @name"
+      # validation for when a script description is not provided
       script_missing_description: "obligatorisk - spesifiser et med @description"
+      # validation for when a script description is the same as name
       script_name_same_as_description: "kan ikke være det samme som navnet"
+      # validation for sync URL
       script_sync_identifier_bad_protocol: "må være en HTTP- eller HTTPS-URL"
+      # validation for number of screenshots
       script_too_many_screenshots: "For mange skjermbilder inkludert - maksimum er %{number}"
+      # validation for "deleted and replaced by" when the user says the script is replaced by itself
       cannot_be_self_reference: "kan ikke være det samme skriptet"
+      # validation for "deleted and replaced by" when the user says the script is replaced by a deleted script
       cannot_be_deleted_reference: "kan ikke velge et slettet skript"
       cannot_be_used_with_this_script: "kan ikke bli brukt med dette skriptet"
+      # validation for "deleted and replaced by" when the user provides a non-%{site_name} URL
       must_be_greasy_fork_script: "å være URL-en til et skript på %{site_name}"
+      # validation when the user uploads code that's not UTF-8 text
       script_update_not_utf8: "opplastingen må være UTF-8-tekst"
+      # validation when user uploads code that contains a disallowed @require
       script_disallowed_require: "bruker et ikke godkjent eksternt skript: %{code}"
       script_rate_limit: "Du har overgått postegrensen. Prøv igjen senere."
+      missing_include_or_match: ""
+      file_size_out_of_range: ""
+      meta_too_long: ""
   opensearch:
+    # short name for opensearch.xml
     short_name: "%{site_name} søk"
+    # description for opensearch.xml
     description: "Søke etter brukerskript på %{site_name}"
+    # long name for opensearch.xml
     long_name: "%{site_name} brukerskriptsøk"
+    # attribution for opensearch.xml
     attribution: "Krediter opphavsrett til skriptenes skapere, se hvert individuelle skript for lisensieringsdetaljer"
+  mailers:
+    script_report:
+      report_created_offender:
+        subject: ""
+        text: ""
+      report_upheld_offender:
+        subject: ""
+        text: ""
+      report_dismissed_offender:
+        subject: ""
+        text: ""
+      report_rebutted_reporter:
+        subject: ""
+        text: ""
+      report_upheld_reporter:
+        subject: ""
+        text: ""
+      report_script_deleted_reported:
+        subject: ""
+        text: ""
+      report_dismissed_reporter:
+        subject: ""
+        text: ""
+    consecutive_bad_ratings:
+      notify:
+        subject: ""
+        text: |
+    script_comment:
+      subject: ""
+      text: |
+    subscribed_discussion:
+      subject: ""
+      text: |
+    comment_mentioned:
+      subject: ""
+      text: |
+    new_message:
+      subject: ""
+      text: |
