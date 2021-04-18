@@ -1,1348 +1,415 @@
 id:
   layouts:
     application:
-      # link to the list of scripts
       script_list: "Skrip"
-      # link to the forum
       forum: "Forum"
-      # link to the help docs
       help: "Bantuan"
-      # link to sign in
       sign_in: "Masuk"
-      # label for nav submenu
       submenu: "Lainnya"
-      # link to advanced search
       advanced_search: "Pencarian Lanjutan"
-      # link to user list
       user_list: "Daftar Pengguna"
-      # link to libraries
       libraries: "Pustaka"
-      # link to moderator log
       moderator_log: "Riwayat moderator"
   scripts:
-    # label for created date of a script
     created_date: "Dibuat"
-    # label for updated date of a script
     updated_date: "Diperbarui"
-    # label for total install count of a script
     total_installs: "Total pemasangan"
-    # label for daily install count of a script
     daily_installs: "Pemasangan harian"
-    # label for the ratings of a script
     ratings: "Nilai"
-    # label for author name of a script
     author_name: "Penulis"
-    # label for version number of a script
     version_number: "Versi"
-    # label for the legal license a script is released under (e.g. GPL)
     license: "Lisensi"
-    # what is shown as the license when no license is provided in a script
     no_license: "N/A"
-    # label for the browser compatibility for a script
     compatibility: "Kompatibilitas"
     compatible_with_browser: "Kompatibel dengan %{browser}"
     incompatible_with_browser: "Tidak kompatibel dengan %{browser}"
-    # label for the list of sites or patterns a script applies to
     applies_to: "Berlaku untuk"
-    # a title (tooltip) for the links in the "applies to" section going to a list of scripts for that site. count is the number of other scripts, site is the name of the site. add subkeys for your language per http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
     applies_to_link_title:
       other: "Lihat %{count} skrip lain untuk %{site}"
-    # what is shown as the applies to when a script applies to all sites
     applies_to_all: "Semua situs"
-    # link that makes the user install the script
     install: "Pasang skrip ini"
-    # text for link that gives information on how to install scripts. should be very short.
     install_help: "?"
-    # title (tooltip) for link that gives information on how to install scripts
     install_help_title: "Cara pemasangan"
-    # link that makes the user update the script
     update: "Perbarui ke versi %{version}"
-    # link that makes the user downgrade the script
     downgrade: "Turunkan ke versi %{version}"
-    # link that makes the user reinstall the script
     reinstall: "Pasang ulang versi %{version}"
-    # warning when installing an old version of a script
     old_version_warning: "Ini bukan skrip versi terbaru. jika kamu pasang, kamu tidak akan pernah memperbarui ke versi terbaru. tetap pasang?"
-    # label for a promoted script
     promoted: "Skrip dipromosikan"
     author_promoted: "Sugesti pemilik skrip"
-    # text for promoted script
     promoted_text_html: "Kamu mungkin juga suka %{script_link}."
-    # instructions on a script library. code will be a <code> element. Don't use punctuation around the code element if possible so that people don't accidentally include that when copying.
     library_instructions_html: "Skrip ini tidak untuk dipasang secara langsung. Ini adalah pustaka skrip lain untuk disertakan dengan direktif meta %{code}"
-    # text displayed for deleted scripts
     deleted_notice: "Skrip ini telah dihapus."
-    deleted_notice_with_related: ""
-    deleted_undelete_notice_html: ""
-    deleted_locked_author_notice_html: ""
-    deleted_author_notice: ""
-    # test displayed when viewing a previous version. date is a date and time (no "ago"), latest_version_link is a link to the newest version whose text is version_notice_latest_version_link
     version_notice_html: "Pada tanggal %{date}. Lihat %(latest_version_link)."
     version_notice_latest_version_link: "versi terakhir"
-    reported_notice: ""
-    reported_notice_for_author: ""
-    # link to the script's info page, containing script meta and author's description
     info_page: "Info"
-    # link to the script's code page
     code_page: "Kode"
-    # link to the script's history page, listing all versions of the code
     history_page: "Riwayat"
-    # link to the script's feedback page, listing discussions on the script. count is the number of discussions
     feedback_page: "Umpanbalik (%{count})"
-    # link to the script's install statistics page
     stats_page: "Stat"
-    # link to the script's derivatives page, which shows similar scripts
     derivatives_page: "Turunan"
-    # link to the page that lets the author update the script
     update_page: "Perbarui"
-    # link to the page that lets the author delete a script
     delete_page: "Hapus"
-    # explanation of what deleting does
     delete_explanation: "Menghapus skrip akan membuatnya tidak dapat diakses oleh siapapun kecuali Anda dan moderator Greasy Fork. Anda bisa membatalkan penghapusan kapan saja."
-    # intro text to radio options for choosing update behaviour after deletion
     delete_update_behaviour: "Apa yang Anda inginkan terjadi pada skrip pengguna yang sebelumnya telah memasang skrip Anda?"
-    # label for the option allowing users to retain the script after delete
     delete_update_behaviour_1: "Mereka dapat menyimpannya apa adanya."
-    # label for the option where users get a blanked script after delete 
     delete_update_behaviour_2: "Skrip mereka akan diganti dengan skrip kosong. Hal ini cocok ketika skrip memiliki efek negatif pada situs skrip tersebut berjalan."
-    # heading for permanent deletion section
     delete_permanently_heading: "Dihapus secara permanen"
-    # explanation of permanent deletion
-    delete_permanently_explanation_html: >
-    # confirmation on pressing the permanent deletion button
-    delete_permanently_confirm: ""
-    # text for the permanent deletion button
     delete_permanently_submit: "Minta penghapusan permanen"
-    # text for the permanent deletion button when it would take effect immediately
     delete_permanently_immediate_submit: "Dihapus secara permanen"
-    # notice after requesting permanent deletion
-    delete_permanently_notice: ""
-    # text on the delete page after permanently deletion was requested
-    delete_permanently_already_requested: ""
-    # notice after permanently deletion
     delete_permanently_notice_immediate: "Skrip telah dihapus secara permanen."
-    # text for cancelling a permanent deletion request
     cancel_delete_permanently_submit: "Batalkan permintaan penghapusan permanen"
-    # notice after cancelling a permanent deletion request
-    cancel_delete_permanently_notice: ""
-    # error when attempting to delete a locked script
     delete_permanently_rejected_locked: "Skrip ini sedang dikunci dan tidak dapat dihapus secara permanen"
-    admin_page: ""
     admin:
-      title: ""
       promoted_heading: "Skrip dipromosikan"
-      promoted_explanation: ""
       promoted_script_label: "URL skrip untuk dipromosikan"
-      promoted_submit: ""
-      sync_heading: ""
-      locale_heading: ""
-      locale_example_html: ""
-      locale_multiple_note: ""
-      update_locale: ""
-      no_moderator_logs: ""
-      compare_title: ""
-      compare_to: ""
-      compare_button: ""
-      compare_must_be_local_url: ""
-    # HTML title for the history page for a script
     history_title: "%{script_name} - Riwayat versi"
-    # text explaining that we're only showing versions where the code changed
     history_only_code_changes_info: "Ini adalah versi dari skrip ini yang kodenya telah diperbarui."
-    # link to the list of all versions
     history_all_changes_link: "Tampilkan semua versi."
-    # text explaining that we're showing all versions
     history_all_changes_info: "Ini adalah semua versi dari skrip ini."
-    # link to the list of version where the code changed
     history_only_code_changes_link: "Hanya tampilkan versi yang kodenya telah diubah."
-    # button that shows changes (a diff) of the selected versions
     diff_button: "Perbedaan versi yang dipilih"
-    # HTML title of the script source code page
     code_title: "%{script_name} - Kode sumber"
-    # HTML title of the script feedback page
     feedback_title: "%{script_name} - Umpanbalik"
-    feedback_has_reports: ""
-    # text to show when no discussions are posted. start_discussion_first_link is a link with the text from feedback_start_first_discussion_link
     feedback_no_discussions_html: "Belum ada diskusi yang dikirimkan. %{start_first_discussion_link}"
-    feedback_no_discussions_on_page_form: ""
-    feedback_report_instead: ""
     feedback_start_first_discussion_link: "Jadilah orang pertama yang mendiskusikan skrip ini."
-    feedback_discussion_or_report: ""
-    # heading for list of people who favorited this script
     feedback_favoriters_heading: "Yang memfavoritkan"
-    # text before a comma separated list of users who favorited the script
-    feedback_favoriters_user_list_html: ""
-    feedback_favoriters_lots:
-      other: ""
-    # text when no one has favorited a script
     feedback_no_favoriters: "Skrip ini belum difavoritkan oleh siapapun."
-    # link to get the user to sign in to add the script to their favorites
     feedback_sign_in_to_favorite: "Masuk untuk menambahkan ke favorit."
-    # html title for script stats page
     stats_title: "%{script_name} - Statistik"
-    # heading for daily install stats on stats page
     stats_daily_installs_heading: "Pemasangan harian"
-    # heading for weekly install stats on stats page
     stats_weekly_installs_heading: "Pemasangan Mingguan"
-    # heading for daily update check stats on stats page
     stats_daily_update_checks_heading: "Pemeriksaan pembaruan harian"
-    # date column heading for a script's daily install stats table
     stats_daily_installs_date_column_heading: "Tanggal"
-    # install count column heading for a script's stats table
     stats_daily_installs_install_count_column_heading: "Pemasangan"
-    # update check count column heading for a script's stats table
     stats_daily_installs_update_check_count_column_heading: "Pemeriksaan Pembaruan"
-    # header for the raw data table for stats
     stats_raw_data_header: "Data mentah"
-    # text before links to download raw stats data. links will be space separated links to the format name (e.g. CSV and JSON)
     stats_download_raw_data_html: "Unduh semua data sebagai: %{links}"
-    # text to show when a stat is not available
     stats_no_data: "N/A"
-    stats_filters: ""
-    stats_filter_options:
-      month: ""
-      year: ""
-      all: ""
-    # HTML title for derivatives page
     derivatives_title: "%{script_name} - Turunan"
-    # text explaining the derivatives page and what to do if the user finds unauthorized copies
-    derivatives_intro: ""
-    # format for scripts listed on the derivatives page. script_link is a link to the derivative's page, user_link is a link to the user who created the derivative, license is text, link to the license, or scripts.no_license
-    derivatives_script_html: ""
-    derivatives_exact_copies_heading: ""
-    derivatives_exact_copies_list_intro: ""
-    derivatives_exact_copies_item_html: ""
-    derivatives_exact_copes_none: ""
-    derivatives_similar_heading: ""
-    derivatives_similar_info: ""
-    similarity_score:
-      high: ""
-      medium: ""
-      low: ""
-      none: ""
-    derivatives_similar_none: ""
-    derivatives_similar_item: ""
-    derivatives_similar_last_check_html: ""
-    derivatives_similar_last_check_soon: ""
-    derivatives_similar_last_check_again_soon_html: ""
-    derivatives_similar_check_now: ""
-    # html title for script list page when showing scripts that affect all sites
     listing_title_all_sites: "Skrip untuk semua situs"
-    # meta description and feed subtitle when showing scripts that affect all sites
     listing_description_all_sites: "Skrip yang menambah fitur dan membuang bug pada semua situs"
-    # html title for script list page when showing scripts for a particular site. 'site' will be in the form 'example.com'
     listing_title_for_site: "Skrip untuk %{site}"
-    # meta description and feed subtitle when showing scripts that affect a particular site
     listing_description_for_site: "Skrip yang menambah fitur dan membuang bug pada %{site}"
-    # html title for script list page for search results.
     listing_title_for_search: "Skrip '%{search_string}'"
-    # html title for script list page for code search results.
     listing_title_for_code_search: "Skrip '%{search_string}'"
-    # html title for script list page when no other situation applies
     listing_title_generic: "Skrip pengguna"
-    # html title for script list page for a user's favorites. set_name is script_sets.favorites_name
     listing_title_for_favorites: "%{set_name} %{user_name}"
-    # meta description and feed subtitle for script list page when no other situation applies
     listing_description_generic: "Skrip yang menambah fitur dan membuang bug pada situs yang anda gunakan"
-    # label for sorting links on script list page
     listing_sort_label: "Susun berdasar:"
-    # link for relevance (most matching the search terms) sort on a script list
     listing_sort_relevance: "Relevan"
-    # link for daily install sort on a script list
     listing_sort_daily_installs: "Pemasangan harian"
-    # link for daily install sort on a script list
     listing_sort_total_installs: "Total pemasangan"
-    # link for rating sort on a script list
     listing_sort_ratings: "Nilai"
-    # link for created date sort on a script list
     listing_sort_created: "Tanggal dibuat"
-    # link for updated date sort on a script list
     listing_sort_updated: "Tanggal diperbarui"
-    # link for name sort on a script list
     listing_sort_name: "Nama"
-    # label for filtering by-site links on script list page
     listing_filter_by_site_label: "Menampilkan skrip untuk:"
-    # link for turning off by-site filtering on script list page
     listing_filter_by_site_disable: "Semua"
-    # link for filtering script list by scripts that affect all sites
     listing_filter_by_site_all_sites: "(Semua situs)"
-    listing_filter_by_language_label: ""
-    # link to see a full list of sites that scripts on %{site_name} affect
     listing_filter_by_site_more_sites: "Lebih banyak..."
-    # text that shows when no scripts were found with the used parameters
     listing_no_scripts: "Skrip tidak ditemukan."
-    # feed title for the listing, ordered by created date
     listing_created_feed: "Skrip baru"
-    # feed title for the listing, ordered by updated date
     listing_updated_feed: "Skrip terbaru"
-    # when a list has nothing to show
     listing_none: "(Kosong)"
-    # link to filter search results by the current locale
-    listing_set_locale_filter: ""
-    # link to remove locale filter
-    listing_remove_locale_filter: ""
-    listing_language_all: ""
-    listing_language_js: ""
-    listing_language_css: ""
-    # link to start the process of importing (creating from an external place) scripts
     import: "Impor skrip"
-    # link to create a new script
-    new: ""
-    new_css: ""
-    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support site
     support_site: "Kunjungi situs dukungan penulis."
-    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support email address
     support_email: "Kirim surel ke penulis untuk dukungan."
-    # link to a site where the user can donate to the author, when the author didn't provide a suggested donation amount
     contribution_no_amount: "Berterima kasihlah pada %{author} dengan memberikan donasi."
-    # link to a site where the user can donate to the author, when the author provided a suggested donation amount
     contribution_with_amount: "Berterima kasihlah pada %{author} dengan memberikan donasi. Donasi yang disarankan sebesar %{amount}."
-    # text for donating to the author via bitcoin, when the author didn't provide a suggested donation amount
     contribution_bitcoin_no_amount_html: "Berterima kasihlah pada %{author} dengan memberikan donasi Bitcoin ke %{address}."
-    # text for donating to the author via bitcoin, when the author provided a suggested donation amount
     contribution_bitcoin_with_amount_html: "Berterima kasihlah pada %{author} dengan memberikan donasi Bitcoin ke %{address}. Donasi yang disarankan sebesar %{amount}."
-    # explanation of language chooser when editing script
     locale_explanation_html: "Harus sesuai dengan bahasa <code>@name</code>, <code>@description</code>, dan info tambahan pertama."
-    # the default value for the locale box, if submitted the site will attempt to detect the language of the entry
     locale_auto_select: "(Terdeteksi secara otomatis)"
-    # label which lists the sets this script is in, which is followed by controls to change its inclusions
     sets_label: "Dalam set skrip:"
-    # label for when the script is not in any sets, which is followed by controls to change its inclusions
     sets_label_no_sets: "Set skrip:"
-    # option to remove the script from the set
     sets_remove_inclusion: "Buang dari %{set_name}"
-    # option to remove the script's exclusion from the set
     sets_remove_exclusion: "Buang pengecualian dari %{set_name}"
-    # option to add the script to the set
     sets_add_inclusion: "Tambah ke %{set_name}"
-    # option to exclude the script from the set (when it's been included as part of a sub set)
     sets_add_exclusion: "Tiadakan dari %{set_name}"
-    # option to add the script to a new set
     sets_add_to_new: "Tambahkan ke set baru"
-    # summary of %{site_name}'s rules for posting scripts. full_rules_link is a link to the full rules with text of rules_summary_link_to_full
     rules_summary_html: "Skrip harus <strong>dijelaskan sebagaimana mestinya</strong>, tidak boleh <strong>dikaburkan</strong> atau <strong>dimampatkan</strong>, harus menghormati <strong>hak cipta</strong>, dan terbatas dalam penggunaan <strong>kode eksternal</strong>. %{full_rules_link}"
-    # full rules link text used in the rules summary
     rules_summary_link_to_full: "Baca aturan lengkapnya."
-    # warning when on the edit screen for a script set up to sync. syncing_notice_sync_type will be a link to the sync screen with text from syncing_notice_sync_type_manual or syncing_notice_sync_type_automatic
     syncing_notice_html: "Skrip ini %{syncing_notice_sync_type}. Pembaruan apapun terhadap kode yang anda buat disini akan ditimpa ulang ketika peyingkronan."
-    # used in syncing_notice_html when a script syncs only when the author requests it
     syncing_notice_sync_type_manual: "tetapkan penyingkronan secara manual dari %{sync_identifier}"
-    # used in syncing_notice_html when a script syncs automatically
     syncing_notice_sync_type_automatic: "menetapkan penyelarasan secara otomatis dari %{sync_identifier}"
-    # label for uploading a script under the code textarea
     upload_label: "Atau unggah:"
-    # label for checkbox to enable or disable syntax highlighting code editor
     enable_source_code_editor_label: "Aktifkan fungsi sorot sintaksis penyunting sumber"
-    # descriptive text for the changelog field
     changelog_note: "Apa yang berubah pada versi ini?"
-    additional_info_note: ""
-    # button text for previewing additional info
-    # button text for submitting a new script
     post_new_script: "Kirimkan skrip"
-    # button text for submitting an update to an existing script
     post_updated_script: "Kirimkan versi baru"
-    # label for radio button for public-type user script
     type_1_html: "Skrip publik - untuk semua orang lihat dan gunakan."
-    # label for radio button for unlisted-type user script
     type_2_html: "Skrip tidak terdaftar - untuk penggunaan (semi-)pribadi. Tersedia melalui akses langsung, tetapi tidak ditautkan dari manapun di %{site_name}."
-    # label for radio button for library-type script
     type_3_html: "Pustaka - skrip yang dibutuhkan <code>@require</code> oleh / dari skrip lain dan tidak untuk dipasang secara langsung."
-    # label for checkbox to override script save warnings
     override_warning_checkbox_label: "Tetap menyimpan?"
-    # script warning for not increasing the version number when updating the code
     warning_version_not_incremented_html: "Anda memperbarui kode tetapi tidak meningkatkan angka <code>@version</code>. Siapapun yang sebelumnya memasang skrip anda kemungkinan tidak akan mendapatkan kode yang terbarui."
-    # script warning for when a version number is not provided
     warning_version_missing_html: "Anda tidak menetapkan <code>@version</code>. Kunci meta <code>@version</code> dapat membuat pengelola userscript untuk memeriksa pembaruan skrip anda."
-    # label for checkbox for the site to automatically handle version numbers
     warning_version_missing_generate_automatically_html: "Hasilkan <code>@version</code> secara otomatis?"
-    # script warning for when a namespace is not provided
     warning_namespace_missing_html: "Anda tidak menetapkan <code>@namespace</code>. Kunci meta <code>@namespace</code> membuat pengguna dapat memasang ulang skrip anda untuk memperbaruinya."
-    # label for checkbox for the site to automatically add a namespace
     warning_namespace_missing_generate_automatically_html: "Hasilkan <code>@namespace</code> secara otomatis?"
-    # script warning for when a namespace changed on update
     warning_namespace_changed_html: "<code>@namespace</code> anda telah berubah. <code>@namespace</code> yang konsisten mengizinkan pengguna memasang ulang skrip anda untuk memperbaruinya."
-    # script warning for when a script's code appears minified. allowed_requires_link is a link to the allowed @require list, with text of warning_potentially_minified_allowed_requires_link
     warning_potentially_minified_html: "Skrip anda sepertinya mengandung kode yang diminimalkan (dimampatkan). Jika anda menggunakan pustaka yang diminimalkan, mohon gunakan <code>@require</code> dari %{allowed_requires_link}. Skrip dengan kode yang diminimalkan akan dibuang."
-    # script warning for when a script's code is for adult sites. sensitive_domains is a list of domains
-    warning_automatic_sensitive_html: ""
-    # used in warning_potentially_minified_html
     warning_potentially_minified_allowed_requires_link: "salah satu dari tempat ini"
-    warning_code_previously_posted_html: ""
-    # default option for the locale of a localized additional info
     additional_info_locale_prompt: "(Pilih lokal)"
-    # text for the button to add another additional info section for a different language
     additional_info_add_localized: "Tambah info tambahan yang dilokalkan"
-    # validation when more than one additional info is specified for a locale. "locale_code" is the locale code (e.g. "en") that has more than one additional info
     additional_info_locale_repeated: "Berikan satu saja info tambahan untuk lokal '%{locale_code}'."
-    # validation when an additional info in a locale is provided but no name was provided in that locale. "locale_code" is the locale code (e.g. "en") that is missing a name
     localized_additional_info_with_no_name: "Info tambahan telah ditetapkan untuk lokal '%{locale_code}', tetapi tidak ada @name:%{locale_code} yang diberikan."
-    localized_attribute_matches_default: ""
-    # text to edit a code syncing URL. field is the text field to enter the url.
     code_syncing_from_url_html: "Kode skrip ini dipersiapkan untuk diselaraskan dari: %{field}"
-    # text to add a code syncing URL. field is the text field to enter the url.
     provide_code_syncing_from_url_html: "%{site_name} dapat mengimpor skrip yang telah menginang di tempat lain, misalnya di sistem pengelolaan versi (seperti GitHub), server anda sendiri, atau situs inang skrip lainnya. Untuk mengaktifkan penyelarasan, berikan sebuah URL: %{field}"
-    # text before the sync type options
     sync_type_intro: "Skrip akan diselaraskan:"
-    # label for radio button for manual syncing
-    sync_type_1:
-      name: ""
-      description: ""
-    # label for radio button for automatic syncing
-    sync_type_2:
-      name: ""
-      description: ""
-    # label for radio button for webhook syncing
-    sync_type_3:
-      name: ""
-      description: ""
-    sync_name_and_description: ""
-    # text when the last attempted sync failed. date is the date of the error run through markup_date. error is the technical error.
     sync_failed_info_html: "Pengusahaan penyelarasan terakhir pada %{date}, yang mengakibatkan %{error}."
-    # text indicating the date of the last successful sync. date is the date of the sync run through markup_date
     sync_success_info_html: "Penyelarasan sukses yang terakhir pada %{date}."
-    # text if the sync never succeeded
     sync_never_succeeded: "Penyelarasan tidak pernah selesai dengan sukses."
-    sync_additional_info: ""
-    add_synced_additional_info: ""
-    # button to update sync settings and run sync immediately
     update_and_sync: "Perbarui dan selaraskan sekarang"
-    # button to update sync settings but not sync immediately
     update_no_sync: "Perbarui"
-    # button to disable syncing of the script
     turn_off_syncing: "Matikan penyelarasan untuk skrip ini"
-    # label for syncing the default additional info
     additional_info_default_sync_html: "Info tambahan bawaan (bahasa sesuai <code>@name</code>)"
-    # label for syncing localized additional infos
     additional_info_localized_sync_html: "Untuk lokal (sesuai <code>@name:XX</code>)"
-    # HTML placeholder for sync fields
     sync_url_placeholder: "(URL)"
-    # label for adding a new screenshot
     screenshots_add: "Tambah:"
-    # label for checkbox to remove a screenshot
     screenshots_remove: "Buang"
-    # explains what a replacement script when deleting is
     replacement_script_explanation: "(Opsional) Pilih skrip lain yang menggantikan skrip ini. Pengguna akan dimutakhirkan dan dialihkan ke skrip ini. Masukkan URL pengganti skrip:"
-    # title for diff page
     diff_title: "%{script} - Perbedaan versi"
-    # label for older version being diffed
     diff_old_version: "Lama:"
-    # label for newer version being diffed
     diff_new_version: "Baru:"
-    # label for input for lines to show around each change when doing a diff
     diff_lines_of_context: "Baris konteks:"
-    # label for checkbox on whether to ignore whitespace changes
     diff_ignore_whitespace: "Abaikan perubahan whitespace"
-    # button to refresh diff after changing diff options
     diff_refresh: "Segarkan"
-    # text shown when compared versions are the same
     diff_no_change: "Perbedaan tidak ditemukan."
-    # tooltip for good rating number - "Good" should match the word used in RatingGood in the PHP localization
     good_rating_explanation: "Jumlah orang yang menilai ini Baik atau menambahkannya ke favorit."
-    # tooltip for ok rating number - "OK" should match the word used in RatingGood in the PHP localization
     ok_rating_explanation: "Jumlah orang yang menilai ini OK."
-    # tooltip for bad rating number - "Bad" should match the word used in RatingGood in the PHP localization
     bad_rating_explanation: "Jumlah orang yang menilai ini Buruk."
-    # link at the bottom of the scripts list suggesting people post a script or learn how. post_a_script_link is a link with text post_a_script_link_text that goes to the new script form. learn_to_write_scripts_link is a link with text learn_to_write_scripts_link_text that goes to the help document for writing scrupts
     write_your_own_html: "%{post_a_script_link} (atau %{learn_to_write_scripts_link})"
-    # link text for the new script form, used in write_your_own_html
-    post_a_script_link_text: ""
-    # link text for the writing a user script help doc, used in write_your_own_html
     learn_to_write_scripts_link_text: "pelajari bagaimana cara membuatnya"
-    # a suggestion below the install button that users provide feedback
-    feedback_or_report: ""
-    # a suggestion below the install button that users provide feedback or get support from the author's site. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
-    support_feedback_or_report: ""
-    # a suggestion below the install button that users provide feedback or get support from the author's via email. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
-    support_email_feedback_or_report: ""
-    # heading for section relating to adult content when posting new script or script version
     adult_content: "Konten dewasa"
-    # label for checkbox letting authors report their script as containing adult content
     adult_content_self_report: "Skrip ini memuat konten dewasa atau untuk situs yang memuat konten dewasa."
-    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script not flagged as having adult content
     adult_content_self_report_explanation: "%{site_name} mengizinkan skrip dengan konten dewasa, tetapi mereka harus ditandai sehingga pengguna dapat memilih untuk melihatnya atau tidak."
-    # label for checkbox letting authors report their script as not containing adult content
     not_adult_content_self_report_html: "Skrip ini <strong>tidak</strong> memuat konten dewasa dan <strong>tidak</strong> untuk situs yang mengandung konten dewasa."
-    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content
     not_adult_content_self_report_explanation: "%{site_name} mengizinkan skrip dengan konten dewasa, tetapi mereka harus ditandai sehingga pengguna dapat memilih untuk melihatnya atau tidak. Skrip Anda telah ditandai memuat konten dewasa. Anda dapat melaporkannya jika tidak mengandung konten dewasa, dan akan ditinjau oleh moderator."
-    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content due to automatic checking
-    not_adult_content_self_report_explanation_automatic: ""
-    # the error you see when accessing a adult content script when logged in with the adult content setting off
     adult_content_on_greasy_logged_in_error: "Skrip ini tidak lagi tersedia di situs ini sesuai dengan %{edit_account_link:Pengaturan akun Greasy Fork}."
-    # the error you see when accessing a adult content script when not logged in
     adult_content_on_greasy_not_logged_in_error: "Skrip ini tidak lagi secara anonim tersedia di situs ini. %{login_link:Masuk} dan periksa pengaturan akun Greasy Fork Anda."
-    # the error you see when access a non-adult content script on sleazy fork
     non_adult_content_on_sleazy: "Skrip ini tidak tersedia di situs ini."
-    not_js_convertible_override_header: ""
-    not_js_convertible_override_explanation: ""
-    not_js_convertible_override_label_html: ""
-    # marker after script name shown to authors indicating their adult scripts
     adult_marker: "(Dewasa)"
-    # marker after script name if it's deleted
     deleted_marker: "(Dihapus)"
-    # marker after script name if it's locked
     locked_marker: "(Dikunci)"
-    # marker after script name if it's unlisted
     unlisted_marker: "(Tak terdaftar)"
-    # marker after script name if it's a library
     library_marker: "(Pustaka)"
-    # title for libraries listing page
     libraries_title: "Pustaka"
-    # description for libraries listing page
-    libraries_description_html: ""
-    # title of the listing of top sites to script
-    by_site_list_title: ""
-    # description of the listing for top sites to script
-    by_site_list_description: ""
     by_site_list_filter: "Saring menurut nama situs:"
-    # placeholder for script search box
     search_placeholder: "Cari Skrip"
     updated: "Skrip diperbarui"
-    preview_additional_info: ""
-    must_confirm: ""
-    must_confirm_external_sign_in: ""
-    must_confirm_email_button: ""
-    authors_heading: ""
-    error_unauthorized_copy: ""
-    invitations:
-      form_title: ""
-      explanation: ""
-      invited_user_url_label: ""
-      invited_user_placeholder: ""
-      submit: ""
-      invalid_user_url: ""
-      already_author: ""
-      sent: ""
-      subject: ""
-      body: ""
-      current_user_already_author: ""
-      invitation_not_found: ""
-      invitation_expired: ""
-      invitation_accepted: ""
-    remove_author:
-      heading: ""
-      success: ""
-      remove_button: ""
-      remove_confirm: ""
-      failure: ""
-    no_disposable_email: ""
-    rate_limited: ""
-    new_script_notice:
-      title: ""
-      install_link_html: ""
-      share_link_html: ""
-    new_title:
-      js: ""
-      css: ""
-    update_title: ""
-    antifeatures:
-      warning_title: ""
-      author_explanation_intro: ""
-      types:
-        ads:
-          title: ""
-          description_html: ""
-        tracking:
-          title: ""
-          description_html: ""
-        miner:
-          title: ""
-          description_html: ""
-        referral-link:
-          title: ""
-          description_html: ""
-      install_anyway: ""
-      cancel_install: ""
-    badges:
-      js:
-        short: ""
-        long: ""
-      css:
-        short: ""
-        long: ""
   script_sets:
-    # description of script sets on edit page
-    description: ""
-    # name for the favorites set
     favorites_name: "Favorit"
-    # delete button text for a script set
     delete: "Hapus set skrip"
-    # delete confirmation for a script set
     delete_confirmation: "Apakah anda yakin ingin menghapus set skrip ini?"
-    # option for choosing to sort the set by the default sort the site uses
     site_default_sort: "(Bawaan situs)"
     edit_scripts:
       heading: "Skrip"
-      description: ""
-      included: ""
-      included_none: ""
       remove_included: "Hilangkan yang dipilih"
-      excluded: ""
-      excluded_none: ""
       remove_excluded: "Hilangkan yang dipilih"
-      add_label: ""
-      add_include: ""
-      add_exclude: ""
     edit_sets:
-      heading: ""
-      description: ""
-      included: ""
-      included_none: ""
       remove_included: "Hilangkan yang dipilih"
-      excluded: ""
-      excluded_none: ""
       remove_excluded: "Hilangkan yang dipilih"
-      add_label: ""
-      add_include: ""
-      add_exclude: ""
-      user_label: ""
-      user_no_sets: ""
-      user_no_other_sets: ""
     edit_auto_sets:
-      heading: ""
-      description: ""
-      included: ""
-      included_none: ""
       remove_included: "Hilangkan yang dipilih"
-      excluded: ""
-      excluded_none: ""
       all_scripts_label: "Semua skrip"
-      all_scripts_include: ""
-      for_sites_label: ""
-      for_sites_include: ""
-      for_sites_exclude: ""
-      for_user_label: ""
-      for_user_include: ""
-      for_user_exclude: ""
-      for_language_label: ""
-      for_language_include: ""
-      for_language_exclude: ""
     calculated_list: "Menghitung daftar skrip"
-    calculated_list_none: ""
-    calculated_list_more:
-      other: ""
-    already_included: ""
-    could_not_parse_script: ""
     save: "Simpan"
     saved: "Skrip disimpan"
     auto_set_types:
       all_scripts: "Semua skrip"
-      site: ""
       all_sites: "Semua situs"
-      user: ""
-      locale: ""
   home:
-    # html title of the homepage
     title: "%{site_name} - skrip yang aman dan berguna"
-    # text at the top of the homepage.
     welcome: "Selamat datang di %{site_name}, situs untuk semua skrip."
-    # html title of the sleazy fork homepage
     sleazy_title: "%{site_name} - skrip konten dewasa yang aman dan berguna"
-    # text at the top of the sleazy fork homepage.
     sleazy_welcome: "Selamat datang di %{site_name}, situs untuk skrip konten dewasa."
-    # placeholder for home page search box
-    search_placeholder: ""
     scripts_for_label: "Skrip untuk"
-    # heading for the paragraph explaining what user scripts are
     explain_user_scripts_heading: "Apakah itu skrip pengguna?"
-    # text explaining what user scripts are.
     explain_user_scripts_html: "Skrip membantu Anda mengontrol pengalaman menjelajah internet. Sekali dipasang, mereka secara otomatis membuat situs yang Anda kunjungi lebih baik dengan menambahkan fitur, membuat situs lebih mudah digunakan, atau menyingkirkan hal-hal yang mengganggu. Skrip pada situs %{site_name} dibuat oleh pengguna lainnya dan dikirimkan untuk dibagikan ke seluruh dunia. Mereka gratisdan bebas untuk dipasang dan mudah digunakan."
-    # header for step 1 - how to install a user script manager
-    installing_step1_header: ""
-    # caption in step 1 - screenshot of tampermonkey on chrome
     installing_step1_caption: "Tampermonkey di Chrome"
-    # text for step 1, listing options for user script managers based on browsers
-    installing_step1_description_html: >
-    # header for step 2 - how to install a user script
-    installing_step2_header: ""
-    # caption for step 2 - showing the install button for user scripts
-    installing_step2_caption: ""
-    # text for step 2 - describing how to find and install user scripts
-    installing_step2_description_html: >
-    # header for step 3 - how to use a user script
-    installing_step3_header: ""
-    # description for step 3, describing browsing to the site and having the user script apply
-    installing_step3_description_html: >
   users:
-    # html title for the sign in page
     sign_in_title: "Masuk ke %{site_name}"
-    # what signing in lets people od
     sign_in_description: "Masuk ke %{site_name} memungkinkan anda mengirimkan skrip dan memberi umpanbalik pada skrip lain. Anda tidak perlu masuk untuk menjelajah atau memasang skrip."
-    # heading for signing in with an external service (Google, GitHub, etc.)
     sign_in_external: "Masuk dengan layanan eksternal"
-    # button for signing in with an external service (Google, GitHub, etc.)
     sign_in_with: "Masuk dengan %{provider}"
-    # heading for signing in with a password
     sign_in_password: "Masuk dengan sandi lewat"
-    # when a user attempts to sign in with an external service and a user already exists with the same email, this is the message shown. email: provided e-mail, user_name: existing user's name, provider: what the user tried to sign in with (e.g. GitHub), sign_in_link: a link to the sign in page with text from sign_in_email_used_sign_in_link
     sign_in_email_used_no_external_services_html: "'%{email}' telah digunakan oleh '%{user_name}'. Jika ini benar-benar anda dan anda ingin menambahkan opsi masuk tambahan dengan %{provider}, %{sign_in_link} ke akun anda terlebih dahulu, lalu tambahkan opsi masuk %{provider} anda."
-    # same as above, but when the existing user uses other providers. also includes existing_providers, which is a list of the existing user's sign ins, run through to_sentence (http://apidock.com/rails/Array/to_sentence)
     sign_in_email_used_with_external_services_html: "'%{email}' telah digunakan oleh '%{user_name}', yang masuk dengan %{existing_providers}. Jika ini benar-benar anda dan anda ingin menambahkan opsi masuk tambahan dengan %{provider}, %{sign_in_link} ke akun anda terlebih dahulu, lalu tambahkan opsi masuk %{provider} anda."
-    # sign in link for email_used messages
     sign_in_email_used_sign_in_link: "masuk"
-    # when a user attempts to create an account with an external service, but an email was not provided by that service
     sign_in_email_missing: "%{site_name} membutuhkan sebuah surel untuk membuat akun baru, tetapi %{provider} tidak menyediakannya untuk anda. Anda dapat memperbarui %{provider} anda untuk memilikinya, lalu coba masuk lagi, atau buat akun surel/sandi lewat secara normal di %{site_name}, lalu tambahkan akun %{provider} anda ke dalamnya."
-    # this shows when signing in for the first time with an external sign in but the name received is already in use. the user is prompted to enter a different name.
     sign_in_name_used: "Nama '%{name}' telah digunakan. Pilih yang lain."
-    # the button when submitting the name form per above
     sign_in_name_used_submit: "Kirim"
-    # Button to preview a user's profile before saving
-    # heading for the user's control panel, which contains links such as post script and edit account
     control_panel: "Panel kontrol"
-    # heading for the list of discussions about a user's own scripts
     discussions_on_scripts: "Diskusi pada skrip anda"
-    # alt text for the RSS feed icon for discussions about a user's own scripts
     discussions_on_scripts_feed_alt: "Umpan RSS"
-    # text to show in the section for discussions about a user's own scripts if there are no discussions yet
     discussions_on_scripts_none: "Belum ada!"
-    # link to more discussions on a user's own scripts, as the initial list is limited in number
     discussions_on_scripts_more: "Diskusi lainnya..."
-    # heading for the list of scripts on a user's page
     script_list: "Skrip"
-    # text to show in a user's script section when they have created no scripts
     script_list_none: "Tidak ada skrip yang dikirimkan."
-    # text to show in a user's script section when they have created scripts, but they are not shown due to the filters active
     script_list_none_for_filter: "Tidak ada skrip untuk penyaringan saat ini."
-    # text to show in a user's own script section when they have created no scripts. script_list_none_same_user_info_link is a link to a tutorial with text of script_list_none_same_user_info_link_text
     script_list_none_same_user_html: "Anda sama sekali belum pernah membuat skrip. %{script_list_none_same_user_info_link}"
-    # text used for link in script_list_none_same_user_html
     script_list_none_same_user_info_link_text: "Maukah anda mempelajarinya?"
-    # heading for the list of a user's deleted scripts (visible to only that user and mods)
     deleted_script_list: "Skrip terhapus"
-    unlisted_script_list: ""
-    # link to log out
     sign_out: "Keluar"
-    # link to edit an account
     edit: "Sunting akun"
-    # link to edit how the user signs in
     edit_sign_in: "Sunting metode masuk"
-    # html title for the edit sign in page
     edit_sign_in_title: "Sunting metode masuk"
-    # heading for the password section of the edit sign in methods page
     edit_sign_in_password: "Sandi lewat"
-    # informational text telling the user they're not using a password
-    edit_notifications: ""
     no_password_set_info: "Akun anda tidak dikonfigurasi menggunakan sandi lewat"
-    # button to set a password when one is not already set
     set_password: "Tetapkan sandi lewat"
-    # button to set a password when one is already set
     update_password: "Perbarui sandi lewat"
-    # error message when the password and the confirmation don't match
     update_password_no_match: "Sandi lewat tidak sama."
-    # notice after a password was updated successfully
     password_updated: "Sandi lewat diperbarui."
-    # information text saying the user can unset their password and use just external sign ins
     remove_password_info: "Anda dapat membuang sandi lewat anda dan sepenuhnya bergantung pada opsi masuk eksternal."
-    # button to remove the password from the user's account
     remove_password: "Buang sandi lewat"
-    # error message to show if the user attempts to remove a password but have no external sign ins. This is normally not possible with the interface.
     cant_remove_password: "Tidak dapat membuang sandi lewat - anda tidak akan bisa masuk!"
-    # error message to show if the user attempts to remove a sign in but has no password or other sign ins. This is normally not possible with the interface. provider is the external site's name, like GitHub or Google
     cant_remove_sign_in: "Tidak dapat membuang opsi masuk %{provider} - anda tidak akan bisa masuk!"
-    # notice after a password was removed successfully
     password_removed: "Sandi lewat dibuang."
-    # heading for the external sign ins section of the edit sign in methods page
     edit_sign_in_external: "Opsi masuk eksternal"
-    # information text about how they can use external sign ins, shown when the user has not set any yet
     external_sign_in_info_no_sign_ins: "Anda dapat menggunakan akun anda di situs lain untuk masuk ke %{site_name}."
-    # information text about how they can use external sign ins, shown when the user already has some set. should describe the concept of syncing, where account details on %{site_name} will be updated to match the external service on sign in
     external_sign_in_info_with_sign_ins: "Anda saat ini menggunkan opsi masuk eksternal yang terdaftar di bawah. Opsi masuk \"selaras\" berarti info %{site_name} anda (seperti nama pengguna dan surel) akan diperbarui sehingga sesuai satu sama lain ketika anda masuk."
-    # notice after a sign in is added. provider is the external site's name, like GitHub or Google
     external_sign_in_added: "Opsi masuk %{provider} ditambahkan."
-    # notice after a sign in is updated (from syncing to not or opposite). provider is the external site's name, like GitHub or Google
     external_sign_in_updated: "Opsi masuk %{provider} diperbarui."
-    # notice after a sign in is removed. provider is the external site's name, like GitHub or Google
     external_sign_in_removed: "Opsi masuk %{provider} dibuang."
-    # notice after a sign in fails
     external_sign_in_failed: "Opsi masuk %{provider} gagal: %{error}."
-    # notice after a user tries to add a sign in to their account, but that sign in is already in use by another user
     external_sign_in_already_used: "Tambahan opsi masuk %{provider} gagal: opsi masuk tersebut telah digunakan oleh '%{user_name}'."
-    # notice after successfully creating a new user based on external login
-    external_sign_in_confirmation: ""
-    # an indicator beside the sign in provider's name if the user chose to enable syncing
     syncing_indicator: "(penyelarasan)"
-    # button to set a sign in provider to sync
     enable_syncing: "Nyalakan penyelarasan"
-    # button to set a sign in provider to not sync
     disable_syncing: "Matikan penyelarasan"
-    # button to remove a sign in provider
     remove_external_sign_in: "Buang"
-    # information text indicating that the list of links below it are for addding an external sign in
     add_external_sign_in_info: "Tambah opsi masuk:"
-    # link to docs on how to set up a webhook for script syncing
-    set_up_webhook: ""
     author_email_notification_type:
-      # notification option: don't send the user e-mails
       none: "Jangan dapatkan surel tentang diskusi pada skrip anda."
-      # notification option: send e-mails on new discussions but not new posts on existing discussions
       discussion_only: "Dapatkan surel ketika diskusi dikirimkan untuk skrip anda"
-      # notification option: send e-mails on new discussoins and on new posts on existing discussions
       discussion_and_comment: "Dapatkan surel ketika diskusi dikirimkan pada skrip anda atau ketika diskusi tersebut mendapatkan komentar baru"
-    # display of a single user when displaying a list of users. user_link is a link to the user's page with text of the user name, count is the number of public scripts authored
     list_display_html:
       other: "%{user_link} - %{count} skrip"
-    # sort link for sorting users by number of scripts they've posted
     listing_number_of_scripts: "Jumlah skrip"
-    # sort link for sorting users by the creation date of their scripts
     listing_new_scripts: "Skrip baru"
-    # sort link for sorting users by the updated date of their scripts
     listing_updated_scripts: "Skrip terbaru"
-    # sort link for sorting users by when they signed up
     listing_registration_date: "Tanggal pendaftaran"
-    # title for page showing list of users
     listing_title: "Pengguna"
-    listing_banned_filter:
-      banned: ""
-      not_banned: ""
-      all: ""
-    listing_author_filter:
-      script_author: ""
-      not_script_author: ""
-      all: ""
-    # placeholder for user search box
     search_placeholder: "Cari pengguna"
-    # default option for the user's preferred locale
     locale_prompt: "(Pilih lokal)"
-    # text describing what the show ads checkbox does
     show_ads_description: "Dukung %{site_name} dengan mengizinkannya menampilkan iklan"
-    # text describing what the show sensitive checkbox does
     show_sensitive_description: "Tampilkan skrip dengan konten dewasa"
-    # text describing what the preferred markup setting does
     preferred_markup_description: "Akan digunakan untuk skrip dan tulisan baru"
-    filter_locale_default_description: ""
-    # link from sleazy fork to greasy fork on user page
     greasy_fork_scripts_link:
       other: "%{user_name} juga memiliki %{count} skrip di Greasy Fork."
-    # displays when the user is editing their account but syncing is on
-    update_sync_warning:
-      other: ""
-    # link on the user page to go to the delete page
     delete_link: "Hapus akun"
     delete:
-      intro: ""
-      password_effect: ""
-      identities_effect:
-        other: ""
-      scripts_effect:
-        other: ""
-      script_sets_effect:
-        other: ""
-      forum_effect: ""
-      email_confirmation: ""
       submit: "Hapus akun"
       confirmation_email_sent: "Email konfirmasi penghapusan telah dikirim"
-      confirmation_email:
-        subject: ""
-        body: ""
       confirmation:
-        intro: ""
         confirm: "Hapus ' %{user_name}'"
         cancel: "Batalkan Penghapusan"
-        key_mismatch: ""
-        request_expired: ""
         cancelled: "Penghapusan dibatalkan"
         completed: "Akunmu telah dihapus"
-    banned_notice:
-      no_report_no_reason: ""
-      with_report: ""
-      with_reason: ""
-    banned_delete:
-      intro: ""
-      complete: ""
-    badges:
-      banned:
-        short: ""
-        long: ""
-      moderator:
-        short: ""
-        long: ""
-      author:
-        short: ""
-        long: ""
-    notifications:
-      discussion_defaults:
-        title: ""
-        new_discussion: ""
-        new_comment: ""
-        mention: ""
-      conversation_defaults:
-        title: ""
-        starter: ""
-        receiver: ""
-      save_button: ""
-      title: ""
-      current_discussion_subscriptions:
-        other: ''
-      save_success: ""
-      unsubscribe_all: ""
-      unsubscribe_all_success: ""
-  webhooks:
-    info:
-      title: ""
-      intro_html: |
-      already_syncing_list: ""
-      synced_item_html: ""
-      language_note: ""
   help:
-    sections:
-      usage: ""
-      development: ""
-      miscellaneous: ""
-    open_source: ""
     installing_user_scripts:
       title: 'Bagaimana cara memasang skrip pengguna'
-    installing_user_styles:
-      title: ''
     meta_keys:
-      # title of the help document describing script meta keys (e.g. @name).
       title: "Kunci meta skrip dibaca oleh %{site_name}"
-      # introductory paragraph. If the URL has a localized version, use that.
       intro_html: "Berikut adalah daftar <a href=\"http://wiki.greasespot.net/Metadata_Block\">kunci meta skrip</a> yang %{site_name} akan baca. Kunci di luar daftar ini boleh disertakan dalam skrip, dan akan tersedia dalam skrip yang terpasang, tetapi tidak akan memiliki pengaruh pada UI %{site_name}."
-      # description of @name
       name: "Nama skrip, digunakan sebagai tajuk dan dalam tautan. Diwajibkan."
-      # description of @name:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
       name_localized_html: "Nama skrip dalam lokal yang spesifik dimana XX adalah <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">kode 2-huruf ISO 639-1</a> dan YY adalah opsional <a href=\"https://www.iso.org/obp/ui/#search\">kode negara ISO 3166</a>. Akan menimpa <code>@name</code> ketika pengguna menjelajah dengan lokal yang sama."
-      # description of @description
       description: "Deskripsi tentang kegunaan skrip. Ditampilkan sebagai teks di bawah nama skrip. Diwajibkan."
-      # description of @description:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
       description_localized_html: "Deskripsi skrip dalam lokal yang spesifik, dimana XX adalah <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">kode 2-huruf ISO 639-1</a> dan YY adalah opsional <a href=\"https://www.iso.org/obp/ui/#search\">kode negara ISO 3166</a>. Akan menimpa <code>@description</code> ketika pengguna menjelajah dengan lokal yang sama."
-      # description of @namespace. Do not translate content inside <code>.
       namespace_html: "Kombinasi dari <code>@namespace</code> dan <code>@name</code> digunakan oleh pengelola skrip untuk memastikan apakah skrip telah dipasang. %{site_name} memerlukan ruas ini dan akan memperingatkan jika berubah ketika pembaruan."
-      # description of @description:XX-YY. developer.mozilla.org may have localized content; use it if available.
       version_html: "Identifikasi untuk versi spesifik dari skrip dalam <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">format versi Mozilla</a>. Versi akan ditampilkan di halaman info skrip. %{site_name} membutuhkan ruas ini dan akan mengingatkan jika angka versi tidak berkurang atau bertambah ketika kode skrip berubah."
-      # description of @include
-      include_html: ""
-      # description of @require. %{external_script_link} is a link to the document describing allowed external scripts and has a link of key "require_external_script_link_text"
       require_html: "Sertakan JavaScript eksternal ke dalam skrip. Lihat %{external_script_link}."
-      # used in required_html
       require_external_script_link_text: "aturan untuk kode termasuk skrip eksternal"
-      # description of @updateURL
       updateURL: "Jelaskan bagaimana pengelola skrip mendapatkan pembaruan. %{site_name} akan mengabaikan kunci ini, yang membuat skrip yang dipasang dari %{site_name} hanya diperbarui dari %{site_name}."
-      # description of @license
-      license: ""
-      # description of @supportURL
       supportURL: "URL halaman untuk pengguna mendapatkan dukungan skrip (mis, pelacakan kutu, forum, alamat surel). URL dukungan akan ditampilkan di halaman umpanbalik skrip."
-      # description of @contributionURL. You can replace the sample "business" and "item_name" parameters in the URLs with localized versions.
       contributionURL_html: "URL halaman untuk pengguna memberikan donasi untuk penulis skrip. URL kontribusi ditampilkan di halaman umpanbalik skrip. URL dalam format http, https, atau protokol Bitcoin. Untuk menautkan ke halaman donasi PayPal, gunakan URL dalam format <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=surel+anda@contoh.com&item_name=Donasi+Greasy+Fork\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=surel+anda@contoh.com&item_name=Donasi+Greasy+Fork</a>, ganti contoh surel dengan surel anda sendiri."
-      # description of @contributionAmount. Do not translate content inside <code>.
       contributionAmount_html: "Besar donasi yang dianjurkan, digunakan berkaitan dengan <code>@contributionURL</code>."
-      # description of @compatible. %{browsers} is a comma-separated list of browser codes. You can translate "Must disable pop-up blocker", but do not translate "@compatible firefox". 
       compatible_html: "Tandai skrip ini kompatibel dengan sebuah peramban. Informasi kompatibilitas akan ditampilkan di halaman skrip. Komentar kompatibilitas dapat disertakan dalam format <code>@compatible firefox Harus menonaktifkan pemblokir jendela muncul</code>. Peramban yang didukung adalah: %{browsers}."
-      # description of @incompatible. %{browsers} is a comma-separated list of browser codes. You can translate "Broken since Firefox 23", but do not translate "@compatible firefox".
       incompatible_html: "Tandai skrip ini tidak kompatibel dengan sebuah peramban. Informasi kompatibilitas akan ditampilkan di halaman skrip. Komentar opsional kompatibilitas dapat disertakan dalam format <code>@incompatible firefox Rusak sejak Firefox 23</code>. Peramban yang terdampak adalah: %{browsers}."
-      antifeature_html: ""
-      antifeature_localized_html: ""
     writing_user_scripts:
-      # title for Writing user scripts help page
       title: "Bagaimana cara menulis skrip"
-      # content of the page. The link to greasespot can be updated to a better resource if one is available in your language. code_rules_link and meta_keys_link are links to those help pages, with text of those page's titles. ask_in_forum_link is a link to the forum with text of ask_in_forum_link_text. user_page_link is a link to the user's page if the user is signed in, or plain text if they're not; in either case, the text is user_page_link_text. post_new_script_link is a link to the new script page, with text of post_new_script_link_text
       content_html: "<p>Menulis skrip membutuhkan pengetahuan tentang JavaScript. <a href=\"http://wiki.greasespot.net/Tutorials\">Tutorial di wiki GreaseSpot</a> akan memberi anda langkah awal JavaScript baik secara umum dan kaitannya dengan skrip. Memeriksa skrip lain dapat sangat membantu. Anda mungkin tertarik dengan %{code_rules_link} dan %{meta_keys_link}. Jika anda ingin bantuan membuat skrip, kunjungi %{ask_in_forum_link}.</p><p>Untuk mengirim ke %{site_name}, anda perlu membuat akun. Dari %{user_page_link} anda, ikuti tautan ke %{post_new_script_link}.</p>"
-      # link text used in content_html
       ask_in_forum_link_text: 'tanyakan di forum'
-      # link text used in content_html
       user_page_link_text: 'halaman pengguna'
-      # link text used in content_html
       post_new_script_link_text: 'kirim skrip baru'
     code_rules:
-      # title for the rules page
       title: "Aturan %{site_name} untuk skrip yang dikirim"
-      preamble: ""
-      functionality_header: ""
-      description: ""
-      reason: ""
-      unrelated: ""
-      monetization_html: ""
-      code_header: ""
-      obfuscation: ""
-      libraries_html: ""
-      updates: ""
-      external_js: ""
-      copyright_header: ""
-      licensing: ""
-      reposts: ""
-      miscellaneous_header: ""
-      keywords_html: ""
-      adult_content_rule: ""
-      reporting: ""
     external_scripts:
-      # title of the external script rules page
       title: "Kebijakan %{site_name} pada skrip eksternal"
-      # content of the external script rules page
-      content_html: >
-      test_url:
-        label: ""
-        result_ok: ""
-        result_not_ok: ""
     script_rewriting:
-      # title of the rewriting page
       title: "Bagaimana %{site_name} akan menulis ulang skrip yang dikirimkan"
-      # content of the rewriting page
-      content_html: >
-    # link to github
     site_feedback_link: "Laporkan masalah atau kirimkan ide untuk %{site_name}"
     credits:
-      # title for the credits page
       title: "Kredit"
-      # give credit to authors
       authors_credit: "%{site_name} tidak mungkin terwujud tanpa adanya kontribusi dari para penulis skrip."
-      # give credit to developers. link goes to github.
       developers_credit: "%{site_name} sendiri dibangun dan dikembangkan oleh %{developers_link:orang ini} dengan bantuan semua orang yang mengirimkan laporan kutu dan saran-saran perbaikan."
-      # give credit to translators. link to goes to transifex. after this text, there's a list of languages and the contributors to each.
       translators_credit: "%{site_name} diterjemahkan oleh %{translators_link:Pasukan Transliterasi Greasy di Transifex}:"
-      # give credit to icon makers. all links are proper names so are not translated.
-      icons_credit: ""
-    # link to greasemonkey docs
     help_with_greasymonkey: "Bantuan Greasemonkey"
     contact:
-      # title of contact page
       title: "Hubungi seseorang"
-      # content of contact page
-      content_html: >
     privacy_policy:
       title: "Kebijakan privasi"
-      content_html: >
-    user_css_to_user_js:
-      title: ""
   search:
-    script_search:
-      title: ""
-      description: ""
-    library_search:
-      title: ""
-      description: ""
     code_search:
       title: "Kode pencarian"
-      description: ""
-    user_search:
-      title: ""
-      description: ""
   moderator_logs:
     date_column: "Tanggal"
-    moderator_column: ""
-    item_column: ""
-    action_column: ""
     reason_column: "Alasan"
     item_script_html: "Skrip: %{script_link}"
     item_deleted_script: "Skrip terhapus %{id}"
     item_user_html: "Pengguna: %{user_link}"
-  notifications:
-    consecutive_bad_ratings:
-      other: ""
-  reports:
-    report_filed: ""
-    new_report_title:
-      user: ""
-      comment: ""
-      message: ""
-      script: ""
-    new_report_notes_html: >
-    new_script_report_notes_html: >
-    new_user_report_notes_html: >
-    reason:
-      non_functional: ""
-      spam: ""
-      abuse: ""
-      illegal: ""
-      unauthorized_code: ""
-      malware: ""
-      minified: ""
-      external_code: ""
-      undisclosed_antifeature: ""
-      other: ""
-    report_intro_html: ""
-    report_intro_unauthorized_html: ""
-    non_functional_feedback: ""
-    unauthorized_code_original_placeholder: ""
-    explanation_placeholder: ""
-    create_button: ""
-    report_user: ""
-    report_comment: ""
-    report_message: ""
-    result_dismissed: ""
-    result_upheld: ""
-    result_pending: ""
-    rebuttal_placeholder: ''
-    submit_rebuttal: ""
-    delete_script: ""
-  discussions:
-    title: ""
-    comment_date: ""
-    comment_edit_date: ""
-    posted_by_html: ""
-    last_comment: ""
-    new_discussion_heading: ""
-    new_discussion_submit: ""
-    new_comment_heading: ""
-    new_comment_submit: ""
-    back_to_feedback: ""
-    edit_comment_link: ""
-    edit_comment_header: ""
-    delete_comment: ""
-    delete_comment_confirm: ""
-    delete_discussion: ""
-    delete_discussion_confirm: ""
-    update_comment_submit: ""
-    cancel_update_comment: ""
-    quote_comment: ""
-    question_heading_html: ""
-    review_heading_html: ""
-    update_rating: ""
-    ratings:
-      question: ""
-      bad: ""
-      ok: ""
-      good: ""
-    ratings_short:
-      question: ""
-      bad: ""
-      ok: ""
-      good: ""
-    sign_in_to_post_discussion: ""
-    sign_in_to_post_comment: ""
-    user_filter:
-      label: ""
-      all: ""
-      discussion_by_me: ""
-      comment_by_me: ""
-      on_my_scripts: ""
-      subscribed: ""
-    other_user_filter:
-      all: ""
-      comments_by: ""
-    category_filter:
-      label: ""
-      all: ""
-    read_filter:
-      label: ""
-      all: ""
-      read: ""
-      unread: ""
-    locale_filter:
-      label: ""
-      all: ""
-    user_activity:
-      title: ""
-      no_recent_activity: ""
-      see_all_activity: ""
-      script_review:
-        posted_html: ""
-        replied_html: ""
-      script_question:
-        posted_html: ""
-        replied_html: ""
-      discussion:
-        posted_html: ""
-        replied_html: ""
-    review_title: ""
-    question_title: ""
-    subscribe: ""
-    unsubscribe: ""
-    notify: ""
-    notifying_on_script: ""
-    categories:
-      greasyfork:
-        name: ""
-        description: ""
-      development:
-        name: ""
-        description: ""
-      requests:
-        name: ""
-        description: ""
-      script-discussions:
-        name: ""
-        description: ""
-      no-scripts:
-        name: ""
-      moderators:
-        name: ""
-        description: ""
-    category_display: ""
-    new_title: ""
-    new_button: ""
-    script_notice: ""
-    no_discussions: ""
-    mark_all_read: ""
-    pending_moderator_review: ""
-  conversations:
-    user_input_note: ""
-    new_title: ""
-    new_link: ""
-    new_button: ""
-    title_html:
-      other: ''
-    send_message: ""
-    conversation_list_title: ""
-    conversation_link_html:
-      other: ''
-    conversation_info_html: ""
-    no_conversations: ""
-    no_recent_conversations: ""
-    recent:
-      title: ""
-      more: ""
-  screenshots:
-    requirements: ""
   common:
-    # text to show before listing errors in a submission
     error_preamble: "Ada beberapa masalah dengan apa yang anda kirimkan..."
-    # link to the list of allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_link: "(Lihat kode yang diizinkan.)"
-    # title of the page showing allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_and_attributes_title: "Elemen yang diizinkan untuk konten HTML"
-    # text to introduce the list of allowed HTML elements and attributes
     allowed_elements_intro: "Elemen dan atribut berikut diperbolehkan. Ini berlaku untuk HTML dan Markdown (setelah dikonversi ke HTML)."
-    # additional info for the allowed HTML elements, explaining additional changes made to content
     allowed_elements_extra_info: "Whitespace akan diubah menjadi elemen p atau br. URL akan ditautkan secara otomatis."
-    allowed_css_intro: ""
-    user_references_html: ""
     not_found_text: "404 - halaman tidak ditemukan."
     not_found_title: "404 - Halaman Tidak Ditemukan"
     not_found_link_home: "Ke beranda."
-    # shown on the first page a user sees if, based on the user's Accept-Language header, we think we have a better locale than what the first page shows. "locale_name" is the name of the locale in that language (matching the name in the locale drop down)
     suggest_locale: "%{site_name} tersedia dalam %{locale_name}."
-    # shown on the first page a users sees if the locale they're on is less than a certain amount translated. links to the docs on how to help with localization
     incomplete_locale: "Transliterasi situs %{site_name} ke %{locale_name} baru mencapai %{percent}. Anda bisa merubah itu."
-    # text for a button that expands a block of text
     expander_show_more: "Tampilkan lebih banyak"
-    # text for a button that contracts a block of text
     expander_show_less: "Tampilkan lebih sedikit"
-    # note denoting what are ads
     advertisement_note: Periklanan
-    # label on tab allowing for previewing input
-    preview_tab: ""
-    # label on tab for entering input
     write_tab: Tulis
-    listing_options_title: ""
-    quote:
-      prefix_html: ""
   activerecord:
     attributes:
       user:
-        # user field: display name
         name: "Nama"
-        # user field: profile (HTML content describing themselves)
         profile: "Profil"
-        # user field: locale
         locale: "Lokal pilihan"
-        # user field: setting to send e-mails when discussions or comments are posted to a user's scripts. options are under users.author_email_notification_type
         author_email_notification_type_id: "Notifikasi diskusi skrip"
-        # user field: show ads
         show_ads: "Tampilkan iklan"
-        # user field: show sensitive
         show_sensitive: "Konten dewasa"
-        # user field: preferred markup (html or markdown)
         preferred_markup: "Markup pilihan"
-        filter_locale_default: ""
-        current_password: ""
-        new_password: ""
-        new_password_confirmation: ""
       script:
-        # name of the script
         name: "Nama"
-        # description of the script
         description: "Deskripsi"
-        # locale the script is in. see also scripts.locale_explanation
         locale: "Lokal"
-        # the JS code of the script
         code: "Kode"
-        # description of changes for an update
         changelog: "Catatan perubahan"
-        # the type of script - public, unlisted, or library
         type: "Tipe skrip"
-        # additional descriptive text outside of @description
         additional_info: "Info tambahan"
-        # screenshots attached to the script
         screenshots: "Tangkapan layar"
-        # when deleting, which script to redirect to
         replaced_by_script_id: "Skrip pengganti"
       script_set:
-        # name of the script set
         name: "Nama"
-        # description of the script set
         description: "Deskripsi"
-        # default sort of the script set
-        default_sort: ""
-      report:
-        reason: ""
-      discussion:
-        rating: ""
-        category: ""
-        title: ""
-      conversation:
-        user_input: ""
-      message:
-        content: ""
   errors:
     messages:
-      # validation for when a script name is not provided
       script_missing_name: "dibutuhkan - tetapkan satu dengan @name"
-      # validation for when a script description is not provided
       script_missing_description: "dibutuhkan - tetapkan satu dengan @description"
-      # validation for when a script description is the same as name
       script_name_same_as_description: "tidak boleh sama dengan nama"
-      # validation for sync URL
       script_sync_identifier_bad_protocol: "harus URL HTTP atau HTTPS"
-      # validation for number of screenshots
       script_too_many_screenshots: "Terlalu banyak tangkapan layar disertakan - maksimal %{number}"
-      # validation for "deleted and replaced by" when the user says the script is replaced by itself
       cannot_be_self_reference: "tidak boleh skrip yang sama"
-      # validation for "deleted and replaced by" when the user says the script is replaced by a deleted script
       cannot_be_deleted_reference: "tidak boleh skrip yang telah dihapus"
       cannot_be_used_with_this_script: "Tidak dapat digunakan dengan skrip ini"
-      # validation for "deleted and replaced by" when the user provides a non-%{site_name} URL
       must_be_greasy_fork_script: "harus URL untuk skrip di %{site_name}"
-      # validation when the user uploads code that's not UTF-8 text
       script_update_not_utf8: "pengunggahan harus format teks UTF-8"
-      # validation when user uploads code that contains a disallowed @require
       script_disallowed_require: "menggunakan skrip eksternal yang tidak disetujui: %{code}"
-      script_rate_limit: ""
-      missing_include_or_match: ""
-      file_size_out_of_range: ""
-      meta_too_long: ""
   opensearch:
-    # short name for opensearch.xml
     short_name: "Pencarian %{site_name}"
-    # description for opensearch.xml
     description: "Cari skrip di %{site_name}."
-    # long name for opensearch.xml
     long_name: "Pencarian skrip %{site_name}"
-    # attribution for opensearch.xml
     attribution: "Hak cipta dari pengembang skrip, lihat masing-masing skrip untuk lisensi"
-  mailers:
-    script_report:
-      report_created_offender:
-        subject: ""
-        text: ""
-      report_upheld_offender:
-        subject: ""
-        text: ""
-      report_dismissed_offender:
-        subject: ""
-        text: ""
-      report_rebutted_reporter:
-        subject: ""
-        text: ""
-      report_upheld_reporter:
-        subject: ""
-        text: ""
-      report_script_deleted_reported:
-        subject: ""
-        text: ""
-      report_dismissed_reporter:
-        subject: ""
-        text: ""
-    consecutive_bad_ratings:
-      notify:
-        subject: ""
-        text: |
-    script_comment:
-      subject: ""
-      text: |
-    subscribed_discussion:
-      subject: ""
-      text: |
-    comment_mentioned:
-      subject: ""
-      text: |
-    new_message:
-      subject: ""
-      text: |
