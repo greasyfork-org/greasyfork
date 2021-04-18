@@ -1,248 +1,560 @@
 uk:
   layouts:
     application:
+      # link to the list of scripts
       script_list: "Скрипти"
+      # link to the forum
       forum: "Форум"
+      # link to the help docs
       help: "Допомога"
+      # link to sign in
       sign_in: "Увійти"
+      # label for nav submenu
       submenu: "Більше"
+      # link to advanced search
       advanced_search: "Розширений пошук"
+      # link to user list
       user_list: "Список користувача"
+      # link to libraries
       libraries: "Бібліотеки"
+      # link to moderator log
       moderator_log: "Лог модератора"
   scripts:
+    # label for created date of a script
     created_date: "Створено"
+    # label for updated date of a script
     updated_date: "Оновлено"
+    # label for total install count of a script
     total_installs: "Всього встановлень"
+    # label for daily install count of a script
     daily_installs: "Щоденних встановлень"
+    # label for the ratings of a script
     ratings: "Рейтинги"
+    # label for author name of a script
     author_name: "Автор"
+    # label for version number of a script
     version_number: "Версія"
+    # label for the legal license a script is released under (e.g. GPL)
     license: "Ліцензія"
+    # what is shown as the license when no license is provided in a script
     no_license: "Н/Д"
+    # label for the browser compatibility for a script
     compatibility: "Сумісність"
     compatible_with_browser: "Сумісний з %{browser}"
     incompatible_with_browser: "Несумісний з %{browser}"
+    # label for the list of sites or patterns a script applies to
     applies_to: "Відноситься до"
+    # a title (tooltip) for the links in the "applies to" section going to a list of scripts for that site. count is the number of other scripts, site is the name of the site. add subkeys for your language per http://unicode.org/repos/cldr-tmp/trunk/diff/supplemental/language_plural_rules.html
     applies_to_link_title:
       one: "Подивіть ще %{count} скрипт для %{site}"
       few: "Подивіть ще %{count} скрипта для %{site}"
       many: "Подивіть ще %{count} скриптів для %{site}"
       other: "Подивіть ще %{count} скриптів для %{site}"
+    # what is shown as the applies to when a script applies to all sites
     applies_to_all: "Всі сайти"
+    # link that makes the user install the script
     install: "Встановити цей скрипт"
+    # text for link that gives information on how to install scripts. should be very short.
     install_help: "?"
+    # title (tooltip) for link that gives information on how to install scripts
     install_help_title: "Як встановити"
+    # link that makes the user update the script
     update: "Оновитися до версії %{version}"
+    # link that makes the user downgrade the script
     downgrade: "Відкотитися до версії %{version}"
+    # link that makes the user reinstall the script
     reinstall: "Перевстановити версію %{version}"
+    # warning when installing an old version of a script
+    old_version_warning: ""
+    # label for a promoted script
     promoted: "Розкручений сценарій"
+    author_promoted: ""
+    # text for promoted script
+    promoted_text_html: ""
+    # instructions on a script library. code will be a <code> element. Don't use punctuation around the code element if possible so that people don't accidentally include that when copying.
     library_instructions_html: "Цей скрипт не слід встановлювати безпосередньо. Це - бібліотека для інших скриптів для включення в мета директиву %{code}"
+    # text displayed for deleted scripts
     deleted_notice: "Цей скрипт було видалено."
+    deleted_notice_with_related: ""
+    deleted_undelete_notice_html: ""
+    deleted_locked_author_notice_html: ""
+    deleted_author_notice: ""
+    # test displayed when viewing a previous version. date is a date and time (no "ago"), latest_version_link is a link to the newest version whose text is version_notice_latest_version_link
     version_notice_html: "Від %{date}. Дивіться %{latest_version_link}."
     version_notice_latest_version_link: "остання версія"
+    reported_notice: ""
+    reported_notice_for_author: ""
+    # link to the script's info page, containing script meta and author's description
     info_page: "Інформація"
+    # link to the script's code page
     code_page: "Код"
+    # link to the script's history page, listing all versions of the code
     history_page: "Історія"
+    # link to the script's feedback page, listing discussions on the script. count is the number of discussions
     feedback_page: "Відгуки (%{count})"
+    # link to the script's install statistics page
     stats_page: "Статистика"
+    # link to the script's derivatives page, which shows similar scripts
     derivatives_page: "Подібні"
+    # link to the page that lets the author update the script
     update_page: "Оновити"
+    # link to the page that lets the author delete a script
     delete_page: "Видалити"
+    # explanation of what deleting does
     delete_explanation: "Видалення скрипту робить його недоступним для всіх окрім вас і модераторів Greasy Fork'у. Ви можете його повернути будь-коли."
+    # intro text to radio options for choosing update behaviour after deletion
     delete_update_behaviour: "Що ви хочете, щоб трапилось вже зі встановленими версіями вашого скрипту?"
+    # label for the option allowing users to retain the script after delete
     delete_update_behaviour_1: "Вони залишаться таким як є."
+    # label for the option where users get a blanked script after delete 
     delete_update_behaviour_2: "Хочу, щоб вони оновились до пустого скрипту. Ця дія є корисною, коли скрипт має негативний ефект на сайтах для яких він призначений."
+    # heading for permanent deletion section
     delete_permanently_heading: "Повне знищення"
+    # explanation of permanent deletion
+    delete_permanently_explanation_html: >
+    # confirmation on pressing the permanent deletion button
+    delete_permanently_confirm: ""
+    # text for the permanent deletion button
     delete_permanently_submit: "Надіслати запит на повне знищення"
+    # text for the permanent deletion button when it would take effect immediately
     delete_permanently_immediate_submit: "Повністю видалити"
+    # notice after requesting permanent deletion
     delete_permanently_notice: "Запит на остаточне видалення було прийнято. Ваш скрипт буде повністю видалено через 7 днів."
+    # text on the delete page after permanently deletion was requested
+    delete_permanently_already_requested: ""
+    # notice after permanently deletion
     delete_permanently_notice_immediate: "Скрипт був повністю видалений."
+    # text for cancelling a permanent deletion request
     cancel_delete_permanently_submit: "Відмінити запит на повне знищення"
+    # notice after cancelling a permanent deletion request
     cancel_delete_permanently_notice: "Ваш запит на повне знищення був скасований. Ваш сценарій досі не видно для інших."
+    # error when attempting to delete a locked script
     delete_permanently_rejected_locked: "Цей скрипт заблокований і не може бути повністю видалений"
     admin_page: "Адміністратор"
     admin:
+      title: ""
       promoted_heading: "Розкручений сценарій"
+      promoted_explanation: ""
+      promoted_script_label: ""
       promoted_submit: "Встановити розкручений сценарій"
+      sync_heading: ""
+      locale_heading: ""
+      locale_example_html: ""
+      locale_multiple_note: ""
+      update_locale: ""
+      no_moderator_logs: ""
+      compare_title: ""
+      compare_to: ""
       compare_button: "Порівняти"
+      compare_must_be_local_url: ""
+    # HTML title for the history page for a script
     history_title: "%{script_name} - Історія версій"
+    # text explaining that we're only showing versions where the code changed
     history_only_code_changes_info: "Це версії цього скрипту, де код був змінений."
+    # link to the list of all versions
     history_all_changes_link: "Показати всі версії."
+    # text explaining that we're showing all versions
     history_all_changes_info: "Це всі версії цього скрипту."
+    # link to the list of version where the code changed
     history_only_code_changes_link: "Показати тільки версії, де присутні зміни в коді."
+    # button that shows changes (a diff) of the selected versions
     diff_button: "Порівняти обрані версії"
+    # HTML title of the script source code page
     code_title: "%{script_name} - Початковий код"
+    # HTML title of the script feedback page
     feedback_title: "%{script_name} - Відгуки"
+    feedback_has_reports: ""
+    # text to show when no discussions are posted. start_discussion_first_link is a link with the text from feedback_start_first_discussion_link
     feedback_no_discussions_html: "Ще не було опубліковано жодної дискусії. %{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "Жодного обговорення ще не опубліковано."
+    feedback_report_instead: ""
     feedback_start_first_discussion_link: "Будьте першим, хто напише про цей скрипт."
+    feedback_discussion_or_report: ""
+    # heading for list of people who favorited this script
     feedback_favoriters_heading: "Прихильники"
+    # text before a comma separated list of users who favorited the script
     feedback_favoriters_user_list_html: "Цей скрипт сподобався: %{user_list}. "
     feedback_favoriters_lots:
       one: "Цей скрипт сподобався %{user_count} користувачу. %{full_link:Показати список.}"
       few: "Цей скрипт сподобався %{user_count} користувачам. %{full_link:Показати список.}"
       many: "Цей скрипт сподобався %{user_count} користувачам. %{full_link:Показати список.}"
       other: "Цей скрипт сподобався %{user_count} користувачам. %{full_link:Показати список.}"
+    # text when no one has favorited a script
     feedback_no_favoriters: "Цей скрипт ще не був вподобаний ніким."
+    # link to get the user to sign in to add the script to their favorites
     feedback_sign_in_to_favorite: "Увійдіть, щоб додати в улюбленні."
+    # html title for script stats page
     stats_title: "%{script_name} - Статистика"
+    # heading for daily install stats on stats page
     stats_daily_installs_heading: "Щоденні встановлення"
+    # heading for weekly install stats on stats page
     stats_weekly_installs_heading: "Тижневі встановлення"
+    # heading for daily update check stats on stats page
     stats_daily_update_checks_heading: "Щоденні перевірки оновлень"
+    # date column heading for a script's daily install stats table
     stats_daily_installs_date_column_heading: "Дата"
+    # install count column heading for a script's stats table
     stats_daily_installs_install_count_column_heading: "Встановлень"
+    # update check count column heading for a script's stats table
     stats_daily_installs_update_check_count_column_heading: "Перевірки оновлень"
+    # header for the raw data table for stats
     stats_raw_data_header: "Необроблені дані"
+    # text before links to download raw stats data. links will be space separated links to the format name (e.g. CSV and JSON)
     stats_download_raw_data_html: "Завантажити всі дані як: %{links}"
+    # text to show when a stat is not available
     stats_no_data: "Н/Д"
     stats_filters: "Фільтр: %{filter_options}"
     stats_filter_options:
       month: Останні 30 днів
       year: Останні 365 днів
       all: Увесь час
+    # HTML title for derivatives page
     derivatives_title: "%{script_name} - Подібні"
+    # text explaining the derivatives page and what to do if the user finds unauthorized copies
+    derivatives_intro: ""
+    # format for scripts listed on the derivatives page. script_link is a link to the derivative's page, user_link is a link to the user who created the derivative, license is text, link to the license, or scripts.no_license
+    derivatives_script_html: ""
     derivatives_exact_copies_heading: "Точні копії"
+    derivatives_exact_copies_list_intro: ""
+    derivatives_exact_copies_item_html: ""
+    derivatives_exact_copes_none: ""
     derivatives_similar_heading: "Схожі скрипти"
+    derivatives_similar_info: ""
+    similarity_score:
+      high: ""
+      medium: ""
+      low: ""
+      none: ""
+    derivatives_similar_none: ""
+    derivatives_similar_item: ""
+    derivatives_similar_last_check_html: ""
+    derivatives_similar_last_check_soon: ""
+    derivatives_similar_last_check_again_soon_html: ""
+    derivatives_similar_check_now: ""
+    # html title for script list page when showing scripts that affect all sites
     listing_title_all_sites: "Скрипти користувачів для всіх сайтів"
+    # meta description and feed subtitle when showing scripts that affect all sites
     listing_description_all_sites: "Скрипти користувачів, що додають нові функції і видаляють помилки на всіх сайтах"
+    # html title for script list page when showing scripts for a particular site. 'site' will be in the form 'example.com'
     listing_title_for_site: "Скрипти користувачів для %{site}"
+    # meta description and feed subtitle when showing scripts that affect a particular site
     listing_description_for_site: "Скрипти користувачів, що додають нові функції і видаляють помилки на %{site}"
+    # html title for script list page for search results.
     listing_title_for_search: "'%{search_string}' скрипти користувачів"
+    # html title for script list page for code search results.
     listing_title_for_code_search: "'%{search_string}' скрипти користувачів"
+    # html title for script list page when no other situation applies
     listing_title_generic: "Скрипти Користувачів"
+    # html title for script list page for a user's favorites. set_name is script_sets.favorites_name
     listing_title_for_favorites: "%{set_name} (Від %{user_name})"
+    # meta description and feed subtitle for script list page when no other situation applies
     listing_description_generic: "Скрипти користувачів, що додають нові функції і видаляють помилки на сайтах якими ви користуєтесь"
+    # label for sorting links on script list page
     listing_sort_label: "Сортувати по:"
+    # link for relevance (most matching the search terms) sort on a script list
     listing_sort_relevance: "Доречності"
+    # link for daily install sort on a script list
     listing_sort_daily_installs: "Кількості щоденних встановлень"
+    # link for daily install sort on a script list
     listing_sort_total_installs: "Кількості встановлень загалом"
+    # link for rating sort on a script list
     listing_sort_ratings: "Рейтингах"
+    # link for created date sort on a script list
     listing_sort_created: "Даті створення"
+    # link for updated date sort on a script list
     listing_sort_updated: "Даті оновлення"
+    # link for name sort on a script list
     listing_sort_name: "Назві"
+    # label for filtering by-site links on script list page
     listing_filter_by_site_label: "Показати сценарії для:"
+    # link for turning off by-site filtering on script list page
     listing_filter_by_site_disable: "Всі"
+    # link for filtering script list by scripts that affect all sites
     listing_filter_by_site_all_sites: "(Всі сайти)"
     listing_filter_by_language_label: "Мова:"
+    # link to see a full list of sites that scripts on %{site_name} affect
     listing_filter_by_site_more_sites: "Більше..."
+    # text that shows when no scripts were found with the used parameters
     listing_no_scripts: "Скриптів не знайдено."
+    # feed title for the listing, ordered by created date
     listing_created_feed: "Нові скрипти"
+    # feed title for the listing, ordered by updated date
     listing_updated_feed: "Оновлені скрипти"
+    # when a list has nothing to show
     listing_none: "(Жодного)"
+    # link to filter search results by the current locale
     listing_set_locale_filter: "Показано результати для всіх мов. %{set_filter_link: Показати результати лише: %{language} .}"
+    # link to remove locale filter
     listing_remove_locale_filter: "Показано результати лише такою мовою: %{language}. %{remove_filter_link:Показати результати для всіх мов.}"
     listing_language_all: "Всі"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
+    # link to start the process of importing (creating from an external place) scripts
     import: "Імпортувати скрипти"
+    # link to create a new script
     new: "Опублікуйте свій скрипт"
     new_css: "Опублікуйте свій стиль"
+    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support site
     support_site: "Відвідайте сайт підтримки автора."
+    # when a user supplies a script with supportURL, the text of the link we'll use pointing to their support email address
     support_email: "Надішліть E-mail автору для підтримки."
+    # link to a site where the user can donate to the author, when the author didn't provide a suggested donation amount
     contribution_no_amount: "Зробіть внесок, як подяку %{author}'у."
+    # link to a site where the user can donate to the author, when the author provided a suggested donation amount
     contribution_with_amount: "Зробіть внесок, як подяку %{author}'у. Пропонований внесок %{amount}."
+    # text for donating to the author via bitcoin, when the author didn't provide a suggested donation amount
     contribution_bitcoin_no_amount_html: "Подякуйте %{author}'у надіславши Bitcoin на %{address}."
+    # text for donating to the author via bitcoin, when the author provided a suggested donation amount
     contribution_bitcoin_with_amount_html: "Подякуйте %{author}'у надіславши Bitcoin на %{address}. Пропонований внесок %{amount}."
+    # explanation of language chooser when editing script
     locale_explanation_html: "Повинен підходити до мови полів <code>@name</code> та <code>@description</code>, і першої додаткової інформації."
+    # the default value for the locale box, if submitted the site will attempt to detect the language of the entry
     locale_auto_select: "(Автоматичне визначення)"
+    # label which lists the sets this script is in, which is followed by controls to change its inclusions
     sets_label: "В наборах скриптів:"
+    # label for when the script is not in any sets, which is followed by controls to change its inclusions
     sets_label_no_sets: "Набори скриптів:"
+    # option to remove the script from the set
     sets_remove_inclusion: "Видалити з %{set_name}"
+    # option to remove the script's exclusion from the set
     sets_remove_exclusion: "Видалити виключення з %{set_name}"
+    # option to add the script to the set
     sets_add_inclusion: "Додати до %{set_name}"
+    # option to exclude the script from the set (when it's been included as part of a sub set)
     sets_add_exclusion: "Додати виключення з %{set_name}"
+    # option to add the script to a new set
     sets_add_to_new: "Створити новий набір"
+    # summary of %{site_name}'s rules for posting scripts. full_rules_link is a link to the full rules with text of rules_summary_link_to_full
     rules_summary_html: "Скрипт повинен бути <strong>належним чином описаний</strong>, не може бути <strong>закодований</strong> або <strong>стиснутий</strong>, повинен відповідати <strong>авторському праву</strong>, і обмеженим в використанні <strong>зовнішнього коду</strong>. %{full_rules_link}"
+    # full rules link text used in the rules summary
     rules_summary_link_to_full: "Прочитати всі правила."
+    # warning when on the edit screen for a script set up to sync. syncing_notice_sync_type will be a link to the sync screen with text from syncing_notice_sync_type_manual or syncing_notice_sync_type_automatic
     syncing_notice_html: "Цей скрипт використовує %{syncing_notice_sync_type}. Будь-які оновлення, внесені в код тут будуть перезаписані при синхронізації."
+    # used in syncing_notice_html when a script syncs only when the author requests it
     syncing_notice_sync_type_manual: "ручну синхронізацію з %{sync_identifier}"
+    # used in syncing_notice_html when a script syncs automatically
     syncing_notice_sync_type_automatic: "автоматичну синхронізацію з %{sync_identifier}"
+    # label for uploading a script under the code textarea
     upload_label: "Або завантажте:"
+    # label for checkbox to enable or disable syntax highlighting code editor
     enable_source_code_editor_label: "Ввімкнути редактор коду з підсвічуванням синтаксису"
+    # descriptive text for the changelog field
     changelog_note: "Які зміни відбулись в цій версії?"
+    additional_info_note: ""
+    # button text for previewing additional info
+    # button text for submitting a new script
     post_new_script: "Опублікувати скрипт"
+    # button text for submitting an update to an existing script
     post_updated_script: "Опублікувати нову версію"
+    # label for radio button for public-type user script
     type_1_html: "Загальний скрипт користувачів - скрипт який всі користувачі можуть бачити і використовувати."
+    # label for radio button for unlisted-type user script
     type_2_html: "Приватні скрипти користувачів - скрипт користувача для (напів-)приватного використання. Доступні за прямим посиланням, проте не показані на жодній сторінці %{site_name}'у."
+    # label for radio button for library-type script
     type_3_html: "Бібліотека - скрипт, може бути підключений за допомогою <code>@require</code> з іншого скрипта, але не встановлюється безпосередньо."
+    # label for checkbox to override script save warnings
     override_warning_checkbox_label: "Всеодно зберегти?"
+    # script warning for not increasing the version number when updating the code
     warning_version_not_incremented_html: "Ви оновили код, але не збільшили номер <code>@version</code>. Користувачі, які раніше встановили ваш скрипт не отримають оновлення коду."
+    # script warning for when a version number is not provided
     warning_version_missing_html: "Ви не вказали <code>@version</code>. <code>@version</code> мета поле дозволяє перевірку оновлень скриптів в менеджерах скриптів користувачів."
+    # label for checkbox for the site to automatically handle version numbers
     warning_version_missing_generate_automatically_html: "Генерувати <code>@version</code> автоматично?"
+    # script warning for when a namespace is not provided
     warning_namespace_missing_html: "Ви не вказали <code>@namespace</code>. Поле <code>@namespace</code> дозволяє користувачам повторно встановивши ваш скрипт, оновити його."
+    # label for checkbox for the site to automatically add a namespace
     warning_namespace_missing_generate_automatically_html: "Генерувати <code>@namespace</code> автоматично?"
+    # script warning for when a namespace changed on update
     warning_namespace_changed_html: "Ваше <code>@namespace</code> змінилося. Незмінний <code>@namespace</code> дозволяє користувачам повторно встановивши ваш скрипт, оновити його."
+    # script warning for when a script's code appears minified. allowed_requires_link is a link to the allowed @require list, with text of warning_potentially_minified_allowed_requires_link
     warning_potentially_minified_html: "Ваш сценарій виглядає неначе він може містити стиснений (minified) код. Якщо ви використовуєте стиснуту бібліотеку, будь ласка замість коду приєднайте її за допомогою поля <code>@require</code> з %{allowed_requires_link}. Скрипти з мінімізованим кодом підлягають видаленню."
+    # script warning for when a script's code is for adult sites. sensitive_domains is a list of domains
+    warning_automatic_sensitive_html: ""
+    # used in warning_potentially_minified_html
     warning_potentially_minified_allowed_requires_link: "одному з цих місць"
+    warning_code_previously_posted_html: ""
+    # default option for the locale of a localized additional info
     additional_info_locale_prompt: "(Виберіть мову)"
+    # text for the button to add another additional info section for a different language
     additional_info_add_localized: "Додати перекладену додаткову інформацію"
+    # validation when more than one additional info is specified for a locale. "locale_code" is the locale code (e.g. "en") that has more than one additional info
     additional_info_locale_repeated: "Надайте тільки одну додаткову інформацію для '%{locale_code}' мови."
+    # validation when an additional info in a locale is provided but no name was provided in that locale. "locale_code" is the locale code (e.g. "en") that is missing a name
     localized_additional_info_with_no_name: "Додаткова інформація була вказана для '%{locale_code}' мови, але при цьому @name:%{locale_code} не було вказано."
+    localized_attribute_matches_default: ""
+    # text to edit a code syncing URL. field is the text field to enter the url.
     code_syncing_from_url_html: "Код скрипту налаштовано на синхронізацію з: %{field}"
+    # text to add a code syncing URL. field is the text field to enter the url.
     provide_code_syncing_from_url_html: "%{site_name} може імпортувати скрипти, які вже розміщених в іншому місці, наприклад, у системі контролю версій (як GitHub), ваш власний сервер або інший хостинг сайт користувацьких сценаріїв. Щоб включити синхронізацію для вашого сценарію, надайте URL: %{field}"
+    # text before the sync type options
     sync_type_intro: "Скрипт буде синхронізовано:"
+    # label for radio button for manual syncing
+    sync_type_1:
+      name: ""
+      description: ""
+    # label for radio button for automatic syncing
+    sync_type_2:
+      name: ""
+      description: ""
+    # label for radio button for webhook syncing
+    sync_type_3:
+      name: ""
+      description: ""
+    sync_name_and_description: ""
+    # text when the last attempted sync failed. date is the date of the error run through markup_date. error is the technical error.
     sync_failed_info_html: "Остання спроба синхронізації відбулась %{date}, і в результаті неї трапилась %{error}."
+    # text indicating the date of the last successful sync. date is the date of the sync run through markup_date
     sync_success_info_html: "Остання успішна спроба синхронізації відбулась %{date}."
+    # text if the sync never succeeded
     sync_never_succeeded: "Синхронізації ніколи не завершилась успішно."
+    sync_additional_info: ""
+    add_synced_additional_info: ""
+    # button to update sync settings and run sync immediately
     update_and_sync: "Оновити та синхронізувати зараз"
+    # button to update sync settings but not sync immediately
     update_no_sync: "Оновити"
+    # button to disable syncing of the script
     turn_off_syncing: "Вимкнути синхронізацію для цього скрипту"
+    # label for syncing the default additional info
     additional_info_default_sync_html: "Додаткова інформація за замовчуванням (мова повинна відповідати <code>@name</code>)"
+    # label for syncing localized additional infos
     additional_info_localized_sync_html: "Для мови (повинні відповідати <code>@name:XX</code>)"
+    # HTML placeholder for sync fields
     sync_url_placeholder: "(URL)"
+    # label for adding a new screenshot
     screenshots_add: "Додати:"
+    # label for checkbox to remove a screenshot
     screenshots_remove: "Видалити"
+    # explains what a replacement script when deleting is
     replacement_script_explanation: "(Необов'язково) Виберіть інший скрипт, який заміняє цей. Люди будуть оновлені і перенаправлятимуться на цей скрипт. Введіть URL на скрипт заміну:"
+    # title for diff page
     diff_title: "%{script} - Різниця версій"
+    # label for older version being diffed
     diff_old_version: "Стара:"
+    # label for newer version being diffed
     diff_new_version: "Нова:"
+    # label for input for lines to show around each change when doing a diff
     diff_lines_of_context: "Рядки змін:"
+    # label for checkbox on whether to ignore whitespace changes
     diff_ignore_whitespace: "Ігнорувати зміни в табуляції"
+    # button to refresh diff after changing diff options
     diff_refresh: "Оновити"
+    # text shown when compared versions are the same
     diff_no_change: "Не знайдено відмінностей."
+    # tooltip for good rating number - "Good" should match the word used in RatingGood in the PHP localization
     good_rating_explanation: "Кількість людей, які оцінили його як Хороший, чи додали в улюблені."
+    # tooltip for ok rating number - "OK" should match the word used in RatingGood in the PHP localization
     ok_rating_explanation: "Кількість людей, які оцінили його як Непоганий."
+    # tooltip for bad rating number - "Bad" should match the word used in RatingGood in the PHP localization
     bad_rating_explanation: "Кількість людей, які оцінили його як Поганий."
+    # link at the bottom of the scripts list suggesting people post a script or learn how. post_a_script_link is a link with text post_a_script_link_text that goes to the new script form. learn_to_write_scripts_link is a link with text learn_to_write_scripts_link_text that goes to the help document for writing scrupts
     write_your_own_html: "%{post_a_script_link} (або %{learn_to_write_scripts_link})"
+    # link text for the new script form, used in write_your_own_html
     post_a_script_link_text: "Опублікуйте свій скрипт"
+    # link text for the writing a user script help doc, used in write_your_own_html
     learn_to_write_scripts_link_text: "дізнайтесь як його створити"
+    # a suggestion below the install button that users provide feedback
     feedback_or_report: "%{feedback_link:Задати запитання, залишити відгук}, або %{report_link:повідомити про скрипт}."
+    # a suggestion below the install button that users provide feedback or get support from the author's site. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
+    support_feedback_or_report: ""
+    # a suggestion below the install button that users provide feedback or get support from the author's via email. support_url is the author's specified support URL. feedback_link is a link to starting a new discussion on the script
+    support_email_feedback_or_report: ""
+    # heading for section relating to adult content when posting new script or script version
     adult_content: "Вміст для дорослих"
+    # label for checkbox letting authors report their script as containing adult content
     adult_content_self_report: "Цей сценарій містить вміст для дорослих або для сайту, який містить вміст для дорослих."
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script not flagged as having adult content
     adult_content_self_report_explanation: "%{site_name} дозволяє сценарії з вмістом для дорослих, але вони повинні бути відзначені, як такі, так що користувачі можуть вибрати чи шукати їм це."
+    # label for checkbox letting authors report their script as not containing adult content
     not_adult_content_self_report_html: "Це скрипт <strong>не</strong> містить вміст для дорослих і <strong>не</strong> для сайту, який містить вміст для дорослих."
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content
     not_adult_content_self_report_explanation: "%{site_name} дозволяє сценарії з вмістом для дорослих, але вони повинні бути відзначені, як такі, так що користувачі можуть вибрати чи шукати їм це. Сценарій був відзначений як такий, що має вміст для дорослих. Ви можете повідомити, що це не так; це буде розглянуто модератором."
+    # text describing how adult content is handled on %{site_name}, shown when posting a new version of a script flagged as having adult content due to automatic checking
+    not_adult_content_self_report_explanation_automatic: ""
+    # the error you see when accessing a adult content script when logged in with the adult content setting off
     adult_content_on_greasy_logged_in_error: "Цей сценарій більше не доступні на цьому сайті з поточними %{edit_account_link: налаштуваннями облікового запису користувача Greasy Fork}."
+    # the error you see when accessing a adult content script when not logged in
     adult_content_on_greasy_not_logged_in_error: "Цей сценарій більше не доступний анонімно на цьому сайті. %{login_link:Увійдіть} і перевірте налаштування облікового запису Greasy Fork."
+    # the error you see when access a non-adult content script on sleazy fork
     non_adult_content_on_sleazy: "Цей сценарій не доступний на цьому сайті."
     not_js_convertible_override_header: "Перетворення в JS"
+    not_js_convertible_override_explanation: ""
+    not_js_convertible_override_label_html: ""
+    # marker after script name shown to authors indicating their adult scripts
     adult_marker: "(Для дорослих)"
+    # marker after script name if it's deleted
     deleted_marker: "(Видалений)"
+    # marker after script name if it's locked
     locked_marker: "(Заблокований)"
+    # marker after script name if it's unlisted
     unlisted_marker: "(Прихований)"
+    # marker after script name if it's a library
     library_marker: "(Бібліотека)"
+    # title for libraries listing page
     libraries_title: "Бібліотеки"
+    # description for libraries listing page
+    libraries_description_html: ""
+    # title of the listing of top sites to script
+    by_site_list_title: ""
+    # description of the listing for top sites to script
+    by_site_list_description: ""
+    by_site_list_filter: ""
+    # placeholder for script search box
     search_placeholder: "Знайти скрипти"
     updated: "Скрипт оновлено"
     preview_additional_info: "Перегляд"
+    must_confirm: ""
+    must_confirm_external_sign_in: ""
+    must_confirm_email_button: ""
     authors_heading: "Автори"
+    error_unauthorized_copy: ""
+    invitations:
+      form_title: ""
+      explanation: ""
+      invited_user_url_label: ""
+      invited_user_placeholder: ""
+      submit: ""
+      invalid_user_url: ""
+      already_author: ""
+      sent: ""
+      subject: ""
+      body: ""
+      current_user_already_author: ""
+      invitation_not_found: ""
+      invitation_expired: ""
+      invitation_accepted: ""
     remove_author:
+      heading: ""
+      success: ""
       remove_button: "Видалити"
+      remove_confirm: ""
+      failure: ""
+    no_disposable_email: ""
+    rate_limited: ""
     new_script_notice:
       title: "Що ви намагаєтеся зробити?"
+      install_link_html: ""
+      share_link_html: ""
     new_title:
       js: "Додати новий скрипт"
       css: "Додати новий стиль"
     update_title: "Додати нову версію %{script}"
     antifeatures:
+      warning_title: ""
+      author_explanation_intro: ""
       types:
         ads:
           title: Реклама
+          description_html: ""
         tracking:
           title: Стеження
+          description_html: ""
         miner:
           title: Криптомайнер
+          description_html: ""
+        referral-link:
+          title: ""
+          description_html: ""
       install_anyway: Встановити скрипт
       cancel_install: Скасувати
     badges:
@@ -253,119 +565,321 @@ uk:
         short: CSS
         long: Стиль користувача
   script_sets:
+    # description of script sets on edit page
+    description: ""
+    # name for the favorites set
     favorites_name: "Улюблені"
+    # delete button text for a script set
     delete: "Видалити цей набір скриптів"
+    # delete confirmation for a script set
     delete_confirmation: "Ви впевнені, що хочете видалити цей набір скриптів?"
+    # option for choosing to sort the set by the default sort the site uses
     site_default_sort: "(За замовчуванням сайту)"
     edit_scripts:
       heading: "Скрипти"
+      description: ""
+      included: ""
       included_none: "(Жодного)"
       remove_included: "Вилучити відмічені"
+      excluded: ""
       excluded_none: "(Жодного)"
       remove_excluded: "Вилучити відмічені"
+      add_label: ""
+      add_include: ""
+      add_exclude: ""
     edit_sets:
       heading: "Набори скриптів"
+      description: ""
+      included: ""
       included_none: "(Жодного)"
       remove_included: "Вилучити відмічені"
+      excluded: ""
+      excluded_none: ""
+      remove_excluded: ""
+      add_label: ""
+      add_include: ""
+      add_exclude: ""
+      user_label: ""
+      user_no_sets: ""
+      user_no_other_sets: ""
+    edit_auto_sets:
+      heading: ""
+      description: ""
+      included: ""
+      included_none: ""
+      remove_included: ""
+      excluded: ""
+      excluded_none: ""
+      all_scripts_label: ""
+      all_scripts_include: ""
+      for_sites_label: ""
+      for_sites_include: ""
+      for_sites_exclude: ""
+      for_user_label: ""
+      for_user_include: ""
+      for_user_exclude: ""
+      for_language_label: ""
+      for_language_include: ""
+      for_language_exclude: ""
+    calculated_list: ""
+    calculated_list_none: ""
+    calculated_list_more:
+      one: ""
+      few: ""
+      many: ""
+      other: ""
+    already_included: ""
+    could_not_parse_script: ""
     save: "Зберегти"
     saved: "Набір скриптів збережено."
+    auto_set_types:
+      all_scripts: ""
+      site: ""
+      all_sites: ""
+      user: ""
+      locale: ""
   home:
+    # html title of the homepage
     title: "%{site_name} - безпечні і корисні скрипти користувачів"
+    # text at the top of the homepage.
     welcome: "Ласкаво просимо на %{site_name}, сайт для Користувацьких скриптів (user scripts)."
+    # html title of the sleazy fork homepage
     sleazy_title: "%{site_name} - безпечні і корисні скрипти користувачів для дорслих"
+    # text at the top of the sleazy fork homepage.
     sleazy_welcome: "Ласкаво просимо на %{site_name}, сайт для скриптів користувачів для дорослих."
+    # placeholder for home page search box
+    search_placeholder: ""
+    scripts_for_label: ""
+    # heading for the paragraph explaining what user scripts are
     explain_user_scripts_heading: "Що таке скрипти користувачів?"
+    # text explaining what user scripts are.
     explain_user_scripts_html: "Скрипти користувачів дають вам в контроль над переглядом вебсторінок. Після встановлення вони покращують сайти додаючи функціонал, роблять їх легшими для користування, або усувають дратівливі деталі. Скрипти користувачів на %{site_name} були написані іншими користувачами, які діляться ними зі світом. Вони відкриті для встановлення і прості у використанні."
+    # header for step 1 - how to install a user script manager
+    installing_step1_header: ""
+    # caption in step 1 - screenshot of tampermonkey on chrome
+    installing_step1_caption: ""
+    # text for step 1, listing options for user script managers based on browsers
+    installing_step1_description_html: >
+    # header for step 2 - how to install a user script
+    installing_step2_header: ""
+    # caption for step 2 - showing the install button for user scripts
+    installing_step2_caption: ""
+    # text for step 2 - describing how to find and install user scripts
+    installing_step2_description_html: >
+    # header for step 3 - how to use a user script
+    installing_step3_header: ""
+    # description for step 3, describing browsing to the site and having the user script apply
+    installing_step3_description_html: >
   users:
+    # html title for the sign in page
     sign_in_title: "Увійти в %{site_name}"
+    # what signing in lets people od
     sign_in_description: "Увійшовши в %{site_name} дозволяє створювати свої скрипти та залишати відгуки про скрипти інших користувачів. Щоб переглядати і встановлювати скрипти вам не обов'язково входити."
+    # heading for signing in with an external service (Google, GitHub, etc.)
     sign_in_external: "Увійти за допомогою зовнішнього сервісу"
+    # button for signing in with an external service (Google, GitHub, etc.)
     sign_in_with: "Увійти за допомогою %{provider}"
+    # heading for signing in with a password
     sign_in_password: "Увійти за допомогою паролю"
+    # when a user attempts to sign in with an external service and a user already exists with the same email, this is the message shown. email: provided e-mail, user_name: existing user's name, provider: what the user tried to sign in with (e.g. GitHub), sign_in_link: a link to the sign in page with text from sign_in_email_used_sign_in_link
     sign_in_email_used_no_external_services_html: "'%{email}' вже використовується користувачем '%{user_name}'. Якщо це ви, і ви хочете додати можливість входу за допомогою %{provider}, %{sign_in_link} на свій обліковий запис, а потім додати метод входу %{provider} ."
+    # same as above, but when the existing user uses other providers. also includes existing_providers, which is a list of the existing user's sign ins, run through to_sentence (http://apidock.com/rails/Array/to_sentence)
     sign_in_email_used_with_external_services_html: "'%{email}' вже використовується користувачем '%{user_name}', який ввійшов з використанням %{existing_providers}. Якщо це ви, і ви хочете, щоб додати метод входу %{provider}, спочатку %{sign_in_link} на свій обліковий запис, а потім додайте новий метод входу %{provider}."
+    # sign in link for email_used messages
     sign_in_email_used_sign_in_link: "увійти"
+    # when a user attempts to create an account with an external service, but an email was not provided by that service
     sign_in_email_missing: "%{site_name} потребує електронну пошту, щоб створити новий обліковий запис, але %{provider} не надав нам її. Ви можете додати її до %{provider}, та спробувати увійти знову, або створити нормальний обліковий запис з електронною поштою/паролем на %{site_name}, а пізніше додати %{provider} до вашого облікового запису."
+    # this shows when signing in for the first time with an external sign in but the name received is already in use. the user is prompted to enter a different name.
     sign_in_name_used: "Ім'я '%{name}' вже зайняте. Прохання вибрати інше."
+    # the button when submitting the name form per above
     sign_in_name_used_submit: "Надіслати"
+    # Button to preview a user's profile before saving
+    # heading for the user's control panel, which contains links such as post script and edit account
     control_panel: "Панель керування"
+    # heading for the list of discussions about a user's own scripts
     discussions_on_scripts: "Обговорення ваших скриптів"
+    # alt text for the RSS feed icon for discussions about a user's own scripts
     discussions_on_scripts_feed_alt: "RSS Потік"
+    # text to show in the section for discussions about a user's own scripts if there are no discussions yet
     discussions_on_scripts_none: "Ще немає!"
+    # link to more discussions on a user's own scripts, as the initial list is limited in number
     discussions_on_scripts_more: "Більше обговорень..."
+    # heading for the list of scripts on a user's page
     script_list: "Скрипти"
+    # text to show in a user's script section when they have created no scripts
     script_list_none: "Жоден скрипт ще не опубліковано."
+    # text to show in a user's script section when they have created scripts, but they are not shown due to the filters active
     script_list_none_for_filter: "За даним фільтром скриптів не знайдено."
+    # text to show in a user's own script section when they have created no scripts. script_list_none_same_user_info_link is a link to a tutorial with text of script_list_none_same_user_info_link_text
     script_list_none_same_user_html: "Ви ще не створили жодного скрипту. %{script_list_none_same_user_info_link}"
+    # text used for link in script_list_none_same_user_html
     script_list_none_same_user_info_link_text: "Хочете дізнатись як?"
+    # heading for the list of a user's deleted scripts (visible to only that user and mods)
     deleted_script_list: "Видалені скрипти"
     unlisted_script_list: "Недоступні сценарії"
+    # link to log out
     sign_out: "Вийти"
+    # link to edit an account
     edit: "Змінити обліковий запис"
+    # link to edit how the user signs in
     edit_sign_in: "Змінити методи входу"
+    # html title for the edit sign in page
     edit_sign_in_title: "Змінити методи входу"
+    # heading for the password section of the edit sign in methods page
     edit_sign_in_password: "Пароль"
+    # informational text telling the user they're not using a password
+    edit_notifications: ""
     no_password_set_info: "В вашому обліковому записі не налаштований пароль."
+    # button to set a password when one is not already set
     set_password: "Встановити пароль"
+    # button to set a password when one is already set
     update_password: "Оновити пароль"
+    # error message when the password and the confirmation don't match
     update_password_no_match: "Паролі не співпадають."
+    # notice after a password was updated successfully
     password_updated: "Пароль оновлено."
+    # information text saying the user can unset their password and use just external sign ins
     remove_password_info: "Ви можете видалити свій пароль і покладатися виключно на зовнішні методи входу."
+    # button to remove the password from the user's account
     remove_password: "Видалити пароль"
+    # error message to show if the user attempts to remove a password but have no external sign ins. This is normally not possible with the interface.
     cant_remove_password: "Ми не можемо видалити пароль - ви не будете мати змоги увійти!"
+    # error message to show if the user attempts to remove a sign in but has no password or other sign ins. This is normally not possible with the interface. provider is the external site's name, like GitHub or Google
     cant_remove_sign_in: "Ми не можемо видалити %{provider} - ви не будете мати змоги увійти!"
+    # notice after a password was removed successfully
     password_removed: "Пароль видалено."
+    # heading for the external sign ins section of the edit sign in methods page
     edit_sign_in_external: "Зовнішні методи входу"
+    # information text about how they can use external sign ins, shown when the user has not set any yet
     external_sign_in_info_no_sign_ins: "Ви можете використовувати свої облікові записи на інших сайтах, щоб увійти в %{site_name}."
+    # information text about how they can use external sign ins, shown when the user already has some set. should describe the concept of syncing, where account details on %{site_name} will be updated to match the external service on sign in
     external_sign_in_info_with_sign_ins: "Ви в даний момент ввійшли за допомогою зовнішніх модулів, перерахованих нижче. \"Синхронізації\" входу означає, що вашу інформацію в %{site_name} (наприклад, ім'я користувача та адресу електронної пошти), буде оновлено відповідно до методу входу."
+    # notice after a sign in is added. provider is the external site's name, like GitHub or Google
     external_sign_in_added: "%{provider} метод входу додано."
+    # notice after a sign in is updated (from syncing to not or opposite). provider is the external site's name, like GitHub or Google
     external_sign_in_updated: "%{provider} метод входу оновлено."
+    # notice after a sign in is removed. provider is the external site's name, like GitHub or Google
     external_sign_in_removed: "%{provider} метод входу видалено."
+    # notice after a sign in fails
     external_sign_in_failed: "%{provider} похибка входу: %{error}."
+    # notice after a user tries to add a sign in to their account, but that sign in is already in use by another user
     external_sign_in_already_used: "Додавання %{provider} видало помилку: цей метод вже використовується користувачем '%{user_name}'."
+    # notice after successfully creating a new user based on external login
+    external_sign_in_confirmation: ""
+    # an indicator beside the sign in provider's name if the user chose to enable syncing
     syncing_indicator: "(синхронізація)"
+    # button to set a sign in provider to sync
     enable_syncing: "Ввімкнути синхронізацію"
+    # button to set a sign in provider to not sync
     disable_syncing: "Вимкнути синхронізацію"
+    # button to remove a sign in provider
     remove_external_sign_in: "Видалити"
+    # information text indicating that the list of links below it are for addding an external sign in
     add_external_sign_in_info: "Додати метод входу:"
+    # link to docs on how to set up a webhook for script syncing
+    set_up_webhook: ""
     author_email_notification_type:
+      # notification option: don't send the user e-mails
       none: "Не отримую листи про обговорення ваших скриптів"
+      # notification option: send e-mails on new discussions but not new posts on existing discussions
       discussion_only: "Отримати лист, коли розпочинається обговорення ваших скриптів"
+      # notification option: send e-mails on new discussoins and on new posts on existing discussions
       discussion_and_comment: "Отримати лист, коли розпочинається обговорення ваших скриптів, або коли в цих обговореннях з'являються нові коментарі."
+    # display of a single user when displaying a list of users. user_link is a link to the user's page with text of the user name, count is the number of public scripts authored
     list_display_html:
       one: "%{user_link} - %{count} скрипт"
       few: "%{user_link} - %{count} скрипта"
       many: "%{user_link} - %{count} скриптів"
       other: "%{user_link} - %{count} скриптів"
+    # sort link for sorting users by number of scripts they've posted
     listing_number_of_scripts: "Кількість скриптів"
+    # sort link for sorting users by the creation date of their scripts
     listing_new_scripts: "Нові скрипти"
+    # sort link for sorting users by the updated date of their scripts
     listing_updated_scripts: "Оновлені скрипти"
+    # sort link for sorting users by when they signed up
     listing_registration_date: "Дата реєстрації"
+    # title for page showing list of users
     listing_title: "Користувачі"
     listing_banned_filter:
+      banned: ""
+      not_banned: ""
       all: "Всі"
     listing_author_filter:
       script_author: "Автор скрипта"
+      not_script_author: ""
       all: "Всі"
+    # placeholder for user search box
     search_placeholder: "Пошук користувачів"
+    # default option for the user's preferred locale
     locale_prompt: "(Виберіть мову)"
+    # text describing what the show ads checkbox does
     show_ads_description: "Підтримуйте %{site_name}, дозволяючи йому показувати вам рекламу"
+    # text describing what the show sensitive checkbox does
     show_sensitive_description: "Показати скрипти з вмістом для дорослих"
+    # text describing what the preferred markup setting does
     preferred_markup_description: "Буде використовуватися для нових сценаріїв та повідомлень."
+    filter_locale_default_description: ""
+    # link from sleazy fork to greasy fork on user page
     greasy_fork_scripts_link:
       one: "%{user_name} також має %{count} скрипт на Greasy Fork'у."
       few: "%{user_name} також має %{count} скрипти на Greasy Fork'у."
       many: "%{user_name} також має %{count} скриптів на Greasy Fork'у."
       other: "%{user_name} також має %{count} скриптів на Greasy Fork'у."
+    # displays when the user is editing their account but syncing is on
+    update_sync_warning:
+      one: ""
+      few: ""
+      many: ""
+      other: ""
+    # link on the user page to go to the delete page
     delete_link: "Видалити аккаунт"
     delete:
+      intro: ""
+      password_effect: ""
+      identities_effect:
+        one: ""
+        few: ""
+        many: ""
+        other: ""
+      scripts_effect:
+        one: ""
+        few: ""
+        many: ""
+        other: ""
+      script_sets_effect:
+        one: ""
+        few: ""
+        many: ""
+        other: ""
+      forum_effect: ""
+      email_confirmation: ""
       submit: "Видалити аккаунт"
+      confirmation_email_sent: ""
+      confirmation_email:
+        subject: ""
+        body: ""
       confirmation:
+        intro: ""
         confirm: "Видалити '%{user_name}'"
         cancel: "Скасувати видалення"
+        key_mismatch: ""
+        request_expired: ""
         cancelled: "Видалення скасовано."
+        completed: ""
+    banned_notice:
+      no_report_no_reason: ""
+      with_report: ""
+      with_reason: ""
+    banned_delete:
+      intro: ""
+      complete: ""
     badges:
+      banned:
+        short: ""
+        long: ""
       moderator:
+        short: ""
         long: Модератор
       author:
         short: Автор
@@ -373,69 +887,219 @@ uk:
     notifications:
       discussion_defaults:
         title: Сповіщення форуму
+        new_discussion: ""
+        new_comment: ""
+        mention: ""
+      conversation_defaults:
+        title: ""
+        starter: ""
+        receiver: ""
       save_button: Оновити налаштування сповіщень
       title: Сповіщення
+      current_discussion_subscriptions:
+        one: ''
+        few: ''
+        many: ''
+        other: ''
+      save_success: ""
       unsubscribe_all: Скасувати підписку на усі сповіщення
       unsubscribe_all_success: Ви скасували підписку на всі сповіщення.
+  webhooks:
+    info:
+      title: ""
+      intro_html: |
+      already_syncing_list: ""
+      synced_item_html: ""
+      language_note: ""
   help:
     sections:
       usage: Використання
       development: Розробка
+      miscellaneous: ""
+    open_source: ""
+    installing_user_scripts:
+      title: ''
+    installing_user_styles:
+      title: ''
     meta_keys:
+      # title of the help document describing script meta keys (e.g. @name).
       title: "Мета ключі які розпізнає %{site_name}"
+      # introductory paragraph. If the URL has a localized version, use that.
       intro_html: "Це <a href=\"http://wiki.greasespot.net/Metadata_Block\">список мета полів</a>, які %{site_name} буде читати в скриптах користувачів. Значення поза цим списком можуть бути включені в сценарії, і будуть присутні у встановленому скрипті, але не мають ніякого ефекту в інтерфейсі %{site_name}'у."
+      # description of @name
       name: "Назва скрипту, яка використовується в якості заголовка та в посиланнях. Обов'язкове поле."
+      # description of @name:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
       name_localized_html: "Ім'я скрипта в певній мові, де XX <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-х літерний код</a>, а YY додатковий <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 код країни</a>. Заміняє <code>@name</code>, коли користувач перемикає на відповідну мову."
+      # description of @description
       description: "Опис того, що робить скрипт. Показано як текст під назвою скрипта. Обов'язкове поле."
+      # description of @description:XX-YY. Do not translate content inside <code>. Feel free to substitute the URLs for ones in your language.
       description_localized_html: "Опис скрипта в певній мові, де XX <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-х літерний код</a>, а YY додатковий <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 код країни</a>. Заміняє <code>@description</code>, коли користувач перемикає на відповідну мову."
+      # description of @namespace. Do not translate content inside <code>.
       namespace_html: "Поєднання <code>@namespace</code> і <code>@name</code> використовується менеджерами скриптів користувачів, щоб побачити, чи вже встановлений скрипт. Для %{site_name} важливі ці області і буде попереджати, якщо вони змінились при оновленні."
+      # description of @description:XX-YY. developer.mozilla.org may have localized content; use it if available.
       version_html: "Ідентифікатор для конкретної версії скрипта в <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">форматі версій Mozilla</a>. Версія відображається на інформаційній сторінці скрипта. %{site_name} потрібно це поле і буде попереджати, якщо воно зменшується або, якщо не збільшуватись при змінах в коді скрипта."
+      # description of @include
+      include_html: ""
+      # description of @require. %{external_script_link} is a link to the document describing allowed external scripts and has a link of key "require_external_script_link_text"
       require_html: "Скрипт приєднує до себе зовнішній JavaScript. Прочитайте %{external_script_link}."
+      # used in required_html
       require_external_script_link_text: "правила для коду, що приєднує зовнішні скрипти"
+      # description of @updateURL
       updateURL: "Опишіть, як менеджери скриптів користувачів повинні отримувати оновлення. %{site_name} очистить ці поля, щоб змусити будь-який сценарій, встановлений з %{site_name} оновлюватись з %{site_name}."
+      # description of @license
+      license: ""
+      # description of @supportURL
       supportURL: "URL для сторінки, де користувачі можуть отримати підтримку до вашого скрипту (наприклад трекер помилок, форум, адреса електронної пошти). URL підтримки відображається на сторінці зворотного зв'язку скрипту."
+      # description of @contributionURL. You can replace the sample "business" and "item_name" parameters in the URLs with localized versions.
       contributionURL_html: "URL для сторінки, де користувачі можуть внести пожертву автору скрипта. Внесок URL відображається на сторінці зворотного зв'язку скрипта. URL-адреси можуть бути HTTP, HTTPS, або протоколи Bitcoin. Щоб додати посилання на сторінку PayPal для пожертвувань, використовуйте URL у форматі <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a>, замініть приклад адреси електронної пошти вашим власним."
+      # description of @contributionAmount. Do not translate content inside <code>.
       contributionAmount_html: "Пропонована кількість пожертви, використовується в поєднанні з <code>@contributionURL</code>."
+      # description of @compatible. %{browsers} is a comma-separated list of browser codes. You can translate "Must disable pop-up blocker", but do not translate "@compatible firefox". 
       compatible_html: "Позначити цей скрипт як сумісний з браузером. Інформація про сумісність буде показана на сторінці скрипту. Додаткові коментарі про сумісності, можуть бути включені у форматі <code>@compatible firefox Must disable pop-up blocker</code>. Відомі браузери: %{browsers}."
+      # description of @incompatible. %{browsers} is a comma-separated list of browser codes. You can translate "Broken since Firefox 23", but do not translate "@compatible firefox".
       incompatible_html: "Позначити цей скрипт як несумісний з браузером. Інформація про сумісність буде показана на сторінці скрипта. Додаткові коментарі про сумісності, можуть бути включені у форматі <code>@incompatible firefox Broken since Firefox 23</code>. Відомі браузери: %{browsers}."
+      antifeature_html: ""
+      antifeature_localized_html: ""
     writing_user_scripts:
+      # title for Writing user scripts help page
       title: "Як писати користувацькі скрипти"
+      # content of the page. The link to greasespot can be updated to a better resource if one is available in your language. code_rules_link and meta_keys_link are links to those help pages, with text of those page's titles. ask_in_forum_link is a link to the forum with text of ask_in_forum_link_text. user_page_link is a link to the user's page if the user is signed in, or plain text if they're not; in either case, the text is user_page_link_text. post_new_script_link is a link to the new script page, with text of post_new_script_link_text
       content_html: "<p>Написання користувацьких скриптів вимагає знання JavaScript. \n<a href=\"http://wiki.greasespot.net/Tutorials\">Статті з GreaseSpot Wiki</a> повинні дати вам початковий поштовх як в цілому, так і як він деталях до написання користувацьких скриптів на JavaScript. Перевірка чужих скриптів може бути корисною. Вас також може зацікавити %{code_rules_link} та %{meta_keys_link}. Якщо вам потрібна допомога з написання скрипту, не соромтесь і %{ask_in_forum_link}.</p><p>Щоб публікувати на %{site_name}, вам потрібно зареєструватись. Тоді з вашої %{user_page_link}, перейдіть по посиланню по %{post_new_script_link}.</p>"
+      # link text used in content_html
       ask_in_forum_link_text: 'задайте питання на форумі'
+      # link text used in content_html
       user_page_link_text: 'сторінки користувача'
+      # link text used in content_html
       post_new_script_link_text: 'публікації нового скрипту'
     code_rules:
+      # title for the rules page
       title: "правила для публікації скриптів на %{site_name}"
+      preamble: ""
+      functionality_header: ""
+      description: ""
+      reason: ""
+      unrelated: ""
+      monetization_html: ""
       code_header: Код
+      obfuscation: ""
+      libraries_html: ""
+      updates: ""
+      external_js: ""
+      copyright_header: ""
+      licensing: ""
+      reposts: ""
+      miscellaneous_header: ""
+      keywords_html: ""
+      adult_content_rule: ""
+      reporting: ""
     external_scripts:
+      # title of the external script rules page
       title: "Політика %{site_name}'у щодо зовнішніх сценаріїв"
+      # content of the external script rules page
+      content_html: >
       test_url:
         label: Протестувати URL
+        result_ok: ""
+        result_not_ok: ""
     script_rewriting:
+      # title of the rewriting page
       title: "Як %{site_name} буде переписувати опубліковані скрипти"
+      # content of the rewriting page
+      content_html: >
+    # link to github
     site_feedback_link: "Повідомити про Проблему або Побажання на %{site_name}"
     credits:
+      # title for the credits page
       title: "Подяка"
+      # give credit to authors
       authors_credit: "%{site_name} не було б можливим без авторів, які вносять вклад в розвиток цього ресурсу написанням скриптів."
+      # give credit to developers. link goes to github.
       developers_credit: "%{site_name} був побудований завдяки %{developers_link:цим людям}, а також всім, хто повідомляє про помилки та вносить пропозиції щодо покращення роботи ресурсу."
+      # give credit to translators. link to goes to transifex. after this text, there's a list of languages and the contributors to each.
       translators_credit: "%{site_name} був перекладений зусиллями %{translators_link:перекладачів Greasy Translation Force на Transifex'і}:"
+      # give credit to icon makers. all links are proper names so are not translated.
+      icons_credit: ""
+    # link to greasemonkey docs
     help_with_greasymonkey: "Допомога з Greasemonkey"
     contact:
+      # title of contact page
       title: "Сконтактуватись з кимось"
+      # content of contact page
+      content_html: >
     privacy_policy:
       title: "Політика приватності"
+      content_html: >
+    user_css_to_user_js:
+      title: ""
+  search:
+    script_search:
+      title: ""
+      description: ""
+    library_search:
+      title: ""
+      description: ""
+    code_search:
+      title: ""
+      description: ""
+    user_search:
+      title: ""
+      description: ""
   moderator_logs:
     date_column: "Дата"
     moderator_column: "Модератор"
+    item_column: ""
     action_column: "Дія"
     reason_column: "Причина"
     item_script_html: "Скрипт: %{script_link}"
+    item_deleted_script: ""
+    item_user_html: ""
+  notifications:
+    consecutive_bad_ratings:
+      one: ""
+      few: ""
+      many: ""
+      other: ""
   reports:
+    report_filed: ""
+    new_report_title:
+      user: ""
+      comment: ""
+      message: ""
+      script: ""
+    new_report_notes_html: >
+    new_script_report_notes_html: >
+    new_user_report_notes_html: >
     reason:
+      non_functional: ""
       spam: "Спам"
+      abuse: ""
+      illegal: ""
+      unauthorized_code: ""
+      malware: ""
+      minified: ""
+      external_code: ""
+      undisclosed_antifeature: ""
+      other: ""
+    report_intro_html: ""
+    report_intro_unauthorized_html: ""
+    non_functional_feedback: ""
+    unauthorized_code_original_placeholder: ""
+    explanation_placeholder: ""
+    create_button: ""
+    report_user: ""
+    report_comment: ""
+    report_message: ""
+    result_dismissed: ""
+    result_upheld: ""
+    result_pending: ""
+    rebuttal_placeholder: ''
+    submit_rebuttal: ""
+    delete_script: ""
   discussions:
     title: Обговорення
     comment_date: "Опубліковано: %{date}"
+    comment_edit_date: ""
+    posted_by_html: ""
     last_comment: "Останній: %{user} %{date}"
     new_discussion_heading: "Опублікувати відгук, коментар або запитання"
     new_discussion_submit: "Опублікувати коментар"
@@ -445,12 +1109,15 @@ uk:
     edit_comment_link: "Редагувати"
     edit_comment_header: "Редагувати коментар"
     delete_comment: "Видалити"
-    delete_comment_confirm: Ви впевнені, що хочете видалити цей коментар?
+    delete_comment_confirm: "Ви впевнені, що хочете видалити цей коментар?"
     delete_discussion: "Видалити"
-    delete_discussion_confirm: Ви впевнені, що хочете видалити цю розмову?
+    delete_discussion_confirm: "Ви впевнені, що хочете видалити цю розмову?"
+    update_comment_submit: ""
     cancel_update_comment: "Скасувати"
     quote_comment: "Цитувати"
+    question_heading_html: ""
     review_heading_html: "Відгук: %{rating}"
+    update_rating: ""
     ratings:
       question: "Без рейтингу - просто запитання/коментар"
       bad: "Погано - скрипт не працює"
@@ -461,7 +1128,23 @@ uk:
       bad: "Погано"
       ok: "Нормально"
       good: "Добре"
+    sign_in_to_post_discussion: ""
+    sign_in_to_post_comment: ""
+    user_filter:
+      label: ""
+      all: ""
+      discussion_by_me: ""
+      comment_by_me: ""
+      on_my_scripts: ""
+      subscribed: ""
+    other_user_filter:
+      all: ""
+      comments_by: ""
+    category_filter:
+      label: ""
+      all: ""
     read_filter:
+      label: ""
       all: Всі
       read: Прочитано
       unread: Не прочитано
@@ -470,76 +1153,235 @@ uk:
       all: Всі
     user_activity:
       title: "Останні коментарі"
+      no_recent_activity: ""
+      see_all_activity: ""
+      script_review:
+        posted_html: ""
+        replied_html: ""
+      script_question:
+        posted_html: ""
+        replied_html: ""
+      discussion:
+        posted_html: ""
+        replied_html: ""
+    review_title: ""
+    question_title: ""
     subscribe: Підписатися
     unsubscribe: Відписатися
     notify: Повідомляти мене про будь-які відповіді
-    notifying_on_script: 'Ви отримаєте сповіщення про будь-які коментарі відповідно до %{notifications_link: ваших налаштувань сповіщень скриптів}.'
+    notifying_on_script: "Ви отримаєте сповіщення про будь-які коментарі відповідно до %{notifications_link: ваших налаштувань сповіщень скриптів}."
     categories:
       greasyfork:
         name: Відгуки Greasy Fork
+        description: ""
       development:
         name: Розробка
+        description: ""
+      requests:
+        name: ""
+        description: ""
       script-discussions:
         name: Обговорення скриптів
+        description: ""
+      no-scripts:
+        name: ""
+      moderators:
+        name: ""
+        description: ""
+    category_display: ""
+    new_title: ""
+    new_button: ""
+    script_notice: ""
+    no_discussions: ""
     mark_all_read: Відмітити як прочитане
+    pending_moderator_review: ""
   conversations:
+    user_input_note: ""
+    new_title: ""
+    new_link: ""
     new_button: Створити обговорення
+    title_html:
+      one: ''
+      few: ''
+      many: ''
+      other: ''
     send_message: Надіслати повідомлення
+    conversation_list_title: ""
+    conversation_link_html:
+      one: ''
+      few: ''
+      many: ''
+      other: ''
+    conversation_info_html: ""
+    no_conversations: ""
     no_recent_conversations: У вас немає недавніх розмов.
+    recent:
+      title: ""
+      more: ""
   screenshots:
     requirements: "Максимум %{number} PNG, GIF, JPEG, або WebP зображень, кожне з яких менше за %{size}."
   common:
+    # text to show before listing errors in a submission
     error_preamble: "Були деякі проблеми з тим, що ви публікуєте..."
+    # link to the list of allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_link: "(Переглянути дозволений код.)"
+    # title of the page showing allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_and_attributes_title: "Допустимі елементи HTML"
+    # text to introduce the list of allowed HTML elements and attributes
     allowed_elements_intro: "Наступні елементи і атрибути допускаються. Це відноситься як до HTML так і до Markdown (після перетворення в HTML)."
+    # additional info for the allowed HTML elements, explaining additional changes made to content
     allowed_elements_extra_info: "Проміжки будуть перетворені на р або br елементи. URL-адреси будуть автоматично перетворені в посилання."
+    allowed_css_intro: ""
+    user_references_html: ""
     not_found_text: "404 - сторінку не знайдено."
     not_found_title: "404 - Сторінку Не Знайдено"
     not_found_link_home: "Додому."
+    # shown on the first page a user sees if, based on the user's Accept-Language header, we think we have a better locale than what the first page shows. "locale_name" is the name of the locale in that language (matching the name in the locale drop down)
     suggest_locale: "%{site_name} доступна на %{locale_name}."
+    # shown on the first page a users sees if the locale they're on is less than a certain amount translated. links to the docs on how to help with localization
     incomplete_locale: "%{locale_name} переклад %{site_name}'у завершений тільки на %{percent}. Ви можете це змінити."
+    # text for a button that expands a block of text
     expander_show_more: "Показати більше"
+    # text for a button that contracts a block of text
     expander_show_less: "Показати менше"
+    # note denoting what are ads
     advertisement_note: Реклама
+    # label on tab allowing for previewing input
+    preview_tab: ""
+    # label on tab for entering input
+    write_tab: ""
+    listing_options_title: ""
+    quote:
+      prefix_html: ""
   activerecord:
     attributes:
       user:
+        # user field: display name
         name: "Назва"
+        # user field: profile (HTML content describing themselves)
         profile: "Профіль"
+        # user field: locale
         locale: "Бажана мова"
+        # user field: setting to send e-mails when discussions or comments are posted to a user's scripts. options are under users.author_email_notification_type
         author_email_notification_type_id: "Попередження обговорення скриптів"
+        # user field: show ads
         show_ads: "Показувати рекламу"
+        # user field: show sensitive
         show_sensitive: "Вміст для дорослих"
+        # user field: preferred markup (html or markdown)
         preferred_markup: "Бажана розмітка"
+        filter_locale_default: ""
+        current_password: ""
+        new_password: ""
+        new_password_confirmation: ""
       script:
+        # name of the script
         name: "Назва"
+        # description of the script
         description: "Опис"
+        # locale the script is in. see also scripts.locale_explanation
         locale: "Мова"
+        # the JS code of the script
         code: "Код"
+        # description of changes for an update
         changelog: "Зміни версій"
+        # the type of script - public, unlisted, or library
         type: "Тип скрипту"
+        # additional descriptive text outside of @description
         additional_info: "Додаткова інформація"
+        # screenshots attached to the script
         screenshots: "Скріншоти"
+        # when deleting, which script to redirect to
         replaced_by_script_id: "Скрипт заміна"
       script_set:
+        # name of the script set
+        name: ""
+        # description of the script set
         description: "Опис"
+        # default sort of the script set
+        default_sort: ""
+      report:
+        reason: ""
       discussion:
         rating: "Рейтинг"
+        category: ""
+        title: ""
+      conversation:
+        user_input: ""
+      message:
+        content: ""
   errors:
     messages:
+      # validation for when a script name is not provided
       script_missing_name: "обов'язково - вкажіть, щоб було присутнє @name"
+      # validation for when a script description is not provided
       script_missing_description: "обов'язково - вкажіть, щоб був присутній @description"
+      # validation for when a script description is the same as name
       script_name_same_as_description: "повинно відрізнятись від імені"
+      # validation for sync URL
       script_sync_identifier_bad_protocol: "повинно бути посиланням HTTP або HTTPS"
+      # validation for number of screenshots
       script_too_many_screenshots: "Прикріплено забагато скріншотів - максимальна кількість %{number}"
+      # validation for "deleted and replaced by" when the user says the script is replaced by itself
       cannot_be_self_reference: "не може бути тим же скриптом"
+      # validation for "deleted and replaced by" when the user says the script is replaced by a deleted script
       cannot_be_deleted_reference: "не може бути видаленим скриптом"
+      cannot_be_used_with_this_script: ""
+      # validation for "deleted and replaced by" when the user provides a non-%{site_name} URL
       must_be_greasy_fork_script: "повинно бути посиланням на скрипт в %{site_name}"
+      # validation when the user uploads code that's not UTF-8 text
       script_update_not_utf8: "завантажений текст повинен бути UTF-8"
+      # validation when user uploads code that contains a disallowed @require
       script_disallowed_require: "використовує незатверджений сторонній скрипт: %{code}"
+      script_rate_limit: ""
+      missing_include_or_match: ""
+      file_size_out_of_range: ""
+      meta_too_long: ""
   opensearch:
+    # short name for opensearch.xml
     short_name: "%{site_name} пошук"
+    # description for opensearch.xml
     description: "Шукати користувацькі скрипти на %{site_name}."
+    # long name for opensearch.xml
     long_name: "%{site_name} пошук скриптів користувачів"
+    # attribution for opensearch.xml
     attribution: "Авторське право належить авторам скриптів, див. сторінку кожного скрипта за інформацією про ліцензування"
+  mailers:
+    script_report:
+      report_created_offender:
+        subject: ""
+        text: ""
+      report_upheld_offender:
+        subject: ""
+        text: ""
+      report_dismissed_offender:
+        subject: ""
+        text: ""
+      report_rebutted_reporter:
+        subject: ""
+        text: ""
+      report_upheld_reporter:
+        subject: ""
+        text: ""
+      report_script_deleted_reported:
+        subject: ""
+        text: ""
+      report_dismissed_reporter:
+        subject: ""
+        text: ""
+    consecutive_bad_ratings:
+      notify:
+        subject: ""
+        text: |
+    script_comment:
+      subject: ""
+      text: |
+    subscribed_discussion:
+      subject: ""
+      text: |
+    comment_mentioned:
+      subject: ""
+      text: |
+    new_message:
+      subject: ""
+      text: |
