@@ -835,7 +835,7 @@ it:
       description: "Cerca nel codice dello script. Questa è una ricerca che non distingue tra maiuscole e minuscole, nel solo testo, senza caratteri jolly."
     user_search:
       title: "Cerca utente"
-      description: "Cerca gli utenti dal nome. Solo testo come una ricerca normale."
+      description: "Cerca gli utenti dal nome. Ricerca LIKE con testo in chiaro."
   moderator_logs:
     date_column: "Data"
     moderator_column: "Moderatore"
@@ -1052,7 +1052,7 @@ it:
     not_found_title: "404 - Pagina Non Trovata."
     not_found_link_home: "Vai alla home."
     suggest_locale: "%{site_name} è disponibile in %{locale_name}."
-    incomplete_locale: "%{site_name} è tradotto in %{locale_name} solo al %{percent}. Puoi dare una mano."
+    incomplete_locale: "La traduzione di %{site_name} in %{locale_name} è solo al %{percent}. Puoi dare una mano."
     expander_show_more: "Mostra di più"
     expander_show_less: "Mostra meno"
     advertisement_note: Pubblicità
