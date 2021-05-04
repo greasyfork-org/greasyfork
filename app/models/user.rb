@@ -153,7 +153,7 @@ class User < ApplicationRecord
   end
 
   def pretty_signin_methods
-    return identity_providers_used.map { |p| Identity.pretty_provider(p) }.compact
+    return identity_providers_used.filter_map { |p| Identity.pretty_provider(p) }
   end
 
   def identity_providers_used

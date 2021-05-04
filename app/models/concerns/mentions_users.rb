@@ -33,12 +33,12 @@ module MentionsUsers
     possible_users = User.where(name: mention_data.map(&:first).flatten).order(Arel.sql('LENGTH(name) DESC'))
 
     # Associate each match with a user, or get rid of it.
-    mention_data = mention_data.map do |mention_texts, with_quotes|
+    mention_data = mention_data.filter_map do |mention_texts, with_quotes|
       mentioned_user = possible_users.find { |user| mention_texts.include?(user.name) }
       next nil if mentioned_user.nil?
 
       [mentioned_user, with_quotes]
-    end.compact
+    end
 
     # Find any exact matches already in use
     existing_mentions = mentions.to_a

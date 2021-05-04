@@ -4,7 +4,7 @@ module ScriptChecking
       def check(script_version)
         code = script_version.code
 
-        results = BlockedScriptCode.all.map do |bc|
+        results = BlockedScriptCode.all.filter_map do |bc|
           next unless bc.match?(code)
           next unless bc.originating_script_id.nil? || (bc.originating_script.authors.map(&:user_id) & script_version.script.authors.map(&:user_id)).none?
 
@@ -14,7 +14,7 @@ module ScriptChecking
             bc.private_reason,
             bc
           )
-        end.compact
+        end
 
         ScriptChecking::Result.highest_result(results)
       end

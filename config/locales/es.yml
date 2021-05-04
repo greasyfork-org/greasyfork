@@ -207,6 +207,7 @@ es:
     upload_label: "O súbelo:"
     enable_source_code_editor_label: "Habilitar editor de código fuente con resaltado de sintaxis"
     changelog_note: "¿Qué ha cambiado en esta versión?"
+    additional_info_note: "Una descripción más detallada, con instrucciones y otras cosas."
     post_new_script: "Publicar script"
     post_updated_script: "Publicar nueva versión"
     type_1_html: "Script de usuario público; un script de usuario que todos puedan ver y utilizar."
@@ -231,9 +232,21 @@ es:
     code_syncing_from_url_html: "El código de este script está configurado para sincronizarse desde: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} puede importar scripts alojados en otro lugar, por ejemplo, en un sistema de control de versiones (como GitHub), tu propio servidor, o en cualquier otro sitio de alojamiento de scripts de usuario. Para sincronizar tu script proporciona una dirección URL: %{field}"
     sync_type_intro: "El script se sincronizará:"
+    sync_type_1:
+      name: Manualmente
+      description: se comprobará si hay actualizaciones sólo cuando tú lo pidas
+    sync_type_2:
+      name: Automáticamente
+      description: las actualizaciones se comprobarán periódicamente
+    sync_type_3:
+      name: Por «webhook»
+      description: se actualizará cuando hagas cambios a este archivo en su repositorio
+    sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "El último intento de sincronización fue el %{date}, y resultó en %{error}."
     sync_success_info_html: "La última actualización satisfactoria fue el %{date}."
     sync_never_succeeded: "La sincronización nunca se ha completado con éxito."
+    sync_additional_info: Si quieres, también puedes sincronizar la información adicional.
+    add_synced_additional_info: Añadir información regional adicional sincronizada
     update_and_sync: "Actualizar y sincronizar ahora"
     update_no_sync: "Actualizar"
     turn_off_syncing: "Desactivar la sincronización de este script"
@@ -284,6 +297,7 @@ es:
     search_placeholder: "Buscar scripts"
     updated: "Se ha actualizado el script."
     preview_additional_info: "Vista previa"
+    must_confirm: "Para poder publicar scripts primero tienes que confirmar tu cuenta. Tienes la opción de añadir un proveedor de inicio de sesión externo o la de recibir un correo electrónico de confirmación."
     must_confirm_email_button: "Enviar un enlace de confirmación a %{email}"
     authors_heading: "Miembros del equipo"
     error_unauthorized_copy: "Parece que este script era una copia no autorizada de %{script}. Échale un vistazo a %{rules_link:las normas de contenido} de %{site_name} para ver lo que se puede y no puede hacer."
@@ -429,7 +443,7 @@ es:
 
         <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} o %{chrome_violentmonkey_link:Violentmonkey}</li>
 
-        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey},
+        <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}
         o %{firefox_violentmonkey_link:Violentmonkey}</li>
 
         <li>Safari: %{safari_tampermonkey_link:Tampermonkey} o %{safari_userscripts_link:Userscripts}</li>
@@ -613,6 +627,16 @@ es:
       save_success: Se han actualizado tus preferencias de notificaciones
       unsubscribe_all: Anular la suscripción para todas las notificaciones
       unsubscribe_all_success: Se ha cancelado la suscripción de todas las notificaciones.
+  webhooks:
+    info:
+      title: Configurar un «webhook»
+      intro_html: |
+          <p>Crear un «webhook» con %{site_name} hace que puedas actualizar desde un solo punto, publicando nuevas versiones de forma automática y sin tocar nada en %{site_name} con los cambios que hagas directamente en tu repositorio. %{site_name} admite los de tipo «push» en GitHub, GitLab y Bitbucket, y los de tipo «release» en GitHub y GitLab.</p>
+          <p>Para utilizar la sincronía en %{site_name} pon una dirección URL que enlace con tu repositorio. Puedes añadir scripts nuevos al %{import_link:importar scripts en %{site_name}}, o puedes reconfigurar los scripts que ya tengas mediante la pestaña de «administrador».</p>
+          <p>Ten en cuenta que tus scripts seguirán apareciendo como de tipo «automático» o «manual» hasta que se produzca la primera sincronización.</p>
+      already_syncing_list: "Aquí están los scripts que ya estás sincronizando con un proveedor externo:"
+      synced_item_html: "%{script_name} - %{sync_type} sincronizado desde %{sync_url}"
+      language_note: Las instrucciones se proporcionan en inglés porque la interfaz de GitHub, GitLab y Bitbucket están en el idioma anglosajón.
   help:
     sections:
       usage: Uso
@@ -840,6 +864,19 @@ es:
         hacer que te juegues <i>tu cuenta</i>.</li>
 
         </ul>
+    new_script_report_notes_html: >
+        <p>Antes de denunciar ten en cuenta que:</p> <ul>
+
+        <li>Los scripts solo se retiran si incumplen %{rules_link:las normas}. Si
+        por el contrario el script viene roto de serie o ya no funciona, %{feedback_link:deja
+        un comentario.}</li>
+
+        <li>Un moderador revisará tu denuncia y actuará en consonancia.</li>
+
+        <li>Abusar de la funcionalidad de denuncia, o utilizarla sin ton ni son puede
+        hacer que te juegues <i>tu cuenta</i>.</li>
+
+        </ul>
     new_user_report_notes_html: >
         <p>Antes de denunciar ten en cuenta que:</p> <ul>
 
@@ -863,6 +900,9 @@ es:
       external_code: "Código externo no permitido"
       undisclosed_antifeature: "Característica adversa no revelada (por ejemplo, un anuncio, un rastreador, minería de criptomonedas)"
       other: "Otros"
+    report_intro_html: "%{reported_item} ha sido denunciado el %{report_date} por %{reason} por %{reporter}"
+    report_intro_unauthorized_html: "%{reported_script} ha sido denunciado el %{report_date} como copia no autorizada de %{other_script} por %{reporter}."
+    non_functional_feedback: "Si el script viene roto de serie o ya no funciona, %{feedback_link:deja un comentario} en su página."
     unauthorized_code_original_placeholder: "URL del código original"
     explanation_placeholder: "Proporciona más detalles (opcional)"
     create_button: "Denunciar"
@@ -965,6 +1005,9 @@ es:
         description: Hablar sobre scripts de usuario y estilos que ya existan.
       no-scripts:
         name: Todo lo demás
+      moderators:
+        name: Moderadores
+        description: Conversaciones privadas para los moderadores.
     category_display: "%{name} - %{description}"
     new_title: Nueva conversación
     new_button: Nueva conversación
@@ -1025,6 +1068,9 @@ es:
         show_sensitive: "Contenido para adultos"
         preferred_markup: "Formato de texto preferido"
         filter_locale_default: "Filtrar idioma"
+        current_password: "Contraseña actual"
+        new_password: "Contraseña nueva"
+        new_password_confirmation: "Confirmar la contraseña nueva"
       script:
         name: "Nombre"
         description: "Descripción"

@@ -56,7 +56,7 @@ pl:
     feedback_page: "Opinie (%{count})"
     stats_page: "Statystyki"
     derivatives_page: "Pochodne"
-    update_page: "Aktualizacja"
+    update_page: "Aktualizuj"
     delete_page: "Usuń"
     delete_explanation: "Usunięcie skryptu spowoduje jego niedostępność dla wszystkich poza Tobą i moderatorami Greasy Fork. Możesz to cofnąć w dowolnym momencie."
     delete_update_behaviour: "Co ma się stać z osobami, które wcześniej zainstalowały Twój skrypt?"
@@ -78,18 +78,18 @@ pl:
     cancel_delete_permanently_submit: "Wycofaj prośbę o trwałe usunięcie"
     cancel_delete_permanently_notice: "Twoja prośba o trwałe usunięcie została anulowana. Twój skrypt nadal nie jest widoczny dla innych."
     delete_permanently_rejected_locked: "Ten skrypt jest zablokowany i nie może być permanentnie usunięty"
-    admin_page: "Administrator"
+    admin_page: "Admin"
     admin:
-      title: "%{script_name} - Administrator"
+      title: "%{script_name} - Admin"
       promoted_heading: "Promowany skrypt"
       promoted_explanation: "Po instalacji tego skryptu, %{site_name}może sugerować użytkownikowi, aby sprawdził inny skrypt, który wybierzesz."
       promoted_script_label: "URL skryptu do promowania"
       promoted_submit: "Ustaw promowany skrypt"
       sync_heading: "Synchronizacja ze źródłem"
-      locale_heading: "Domyślna lokalizacja"
-      locale_example_html: "Lokalizacja tego tekstu: <i>%{text}</i>"
-      locale_multiple_note: "Zauważ, że %{meta_keys_link:możesz zdefiniować wielokrotne ustawienia regionalne dla swojego skryptu}."
-      update_locale: "Zaktualizuj ustawienia regionalne"
+      locale_heading: "Domyślny język"
+      locale_example_html: "Język tego tekstu: <i>%{text}</i>"
+      locale_multiple_note: "Zauważ, że %{meta_keys_link:możesz przetłumaczyć swój skrypt na wiele języków}."
+      update_locale: "Zaktualizuj język"
       no_moderator_logs: "Moderatorzy nie podjęli żadnej akcji w sprawie tego skryptu."
       compare_title: "Porównaj z innym skryptem"
       compare_to: "Skrypt na %{site_name} do porównania (URL)"
@@ -210,6 +210,7 @@ pl:
     upload_label: "Lub prześlij:"
     enable_source_code_editor_label: "Włącz podświetlanie składni w edytorze kodu"
     changelog_note: "Jakie zmiany zaszły w tej wersji?"
+    additional_info_note: "Bardziej szczegółowy opis, instrukcje, itd."
     post_new_script: "Opublikuj skrypt"
     post_updated_script: "Udostępnij nową wersję"
     type_1_html: "Publiczny skrypt użytkownika - wszyscy mogą go zobaczyć i używać."
@@ -227,13 +228,20 @@ pl:
     warning_potentially_minified_allowed_requires_link: "jedno z tych miejsc"
     warning_code_previously_posted_html: "Ten kod został poprzednio opublikowany pod adresem %{script_links}. Skrypty publikowane przez inne osoby od oryginalnego ich autora mogą zostać usunięte przez moderatorów."
     additional_info_locale_prompt: "(wybierz język)"
-    additional_info_add_localized: "Dodaj dodatkową zlokalizowaną informację"
+    additional_info_add_localized: "Dodaj dodatkowe informacje w innym języku"
     additional_info_locale_repeated: "Zapewnienie tylko jedno dodatkowe informacje dla '% {locale_key} \"locale."
     localized_additional_info_with_no_name: "Dodatkowa informacja została określona dla tłumaczenia '%{locale_code}', ale linia @name:%{locale_code} nie została wprowadzona."
     localized_attribute_matches_default: "Kod nie powinien zawierać osobnej definicji %{meta_key}, kiedy '%{locale_code}' jest domyślną wersją językową."
     code_syncing_from_url_html: "Kod tego skryptu został ustawiony, by synchronizować się z: %{field}"
     provide_code_syncing_from_url_html: "% {Nazwa_Strony} może importować skrypty, które gościło już w innym miejscu, na przykład w systemie kontroli wersji (jak GitHub), swój własny serwer lub inny skrypt użytkownika Hosting strony. Aby włączyć synchronizację dla skryptu podaj adres URL:% {}"
     sync_type_intro: "Ten skrypt będzie synchronizowany:"
+    sync_type_1:
+      name: Ręcznie
+    sync_type_2:
+      name: Automatycznie
+    sync_type_3:
+      name: Webhook
+    sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "Synchronizacji próbowano ostatnio %{date}, co przyczyniło się do %{error}."
     sync_success_info_html: "Ostatnia sukcesywna synchronizacja była %{date}."
     sync_never_succeeded: "Synchronizacja nigdy nie zakończyła się sukcesem."
@@ -287,6 +295,7 @@ pl:
     search_placeholder: "Szukaj skryptów"
     updated: "Skrypt zaktualizowany."
     preview_additional_info: "Podgląd"
+    must_confirm: "Musisz najpierw potwierdzić swoje konto, zanim zaczniesz publikować skrypty. Masz dwie opcje - dodaj logowanie zewnętrznym serwisem lub wyślij wiadomość e-mail z potwierdzeniem."
     must_confirm_email_button: "Wyślij link potwierdzający na adres %{email}"
     authors_heading: "Autorzy"
     error_unauthorized_copy: "Ten kod wydaje się być nieautoryzowaną kopią %{script}. Zapoznaj się z %{rules_link:rules} o zamieszczaniu skryptów na %{site_name}."
@@ -495,8 +504,8 @@ pl:
     unlisted_script_list: "Nie katalogowane skrypty"
     sign_out: "Wyloguj się"
     edit: "Edytuj konto"
-    edit_sign_in: "Edytuj metody zalogowania się"
-    edit_sign_in_title: "Edytuj metody zalogowania się"
+    edit_sign_in: "Edytuj metody logowania"
+    edit_sign_in_title: "Edytuj metody logowania"
     edit_sign_in_password: "Hasło"
     edit_notifications: "Edytuj powiadomienia"
     no_password_set_info: "Twoje konto nie posiada skonfigurowanego hasła."
@@ -522,7 +531,7 @@ pl:
     enable_syncing: "Włącz synchronizację"
     disable_syncing: "Wyłącz synchronizację"
     remove_external_sign_in: "Usuń"
-    add_external_sign_in_info: "Dodaj metodę logowania się"
+    add_external_sign_in_info: "Dodaj metodę logowania:"
     set_up_webhook: "Stwórz nowego webhooka"
     author_email_notification_type:
       none: "Nie otrzymuj e-maili o nowych dyskusjach na temat twoich skryptów"
@@ -1002,6 +1011,9 @@ pl:
         description: Dyskusje na temat istniejących skryptów i stylów użytkownika.
       no-scripts:
         name: Wszystko oprócz dyskusji o skryptach
+      moderators:
+        name: Moderatorzy
+        description: Prywatna dyskusja dla moderatorów.
     category_display: "%{name} - %{description}"
     new_title: Nowa dyskusja
     new_button: Nowa dyskusja
@@ -1066,6 +1078,9 @@ pl:
         show_sensitive: "Zawartość dla pełnoletnich"
         preferred_markup: "Preferowany znacznik"
         filter_locale_default: "Filtruj według języka"
+        current_password: "Aktualne hasło"
+        new_password: "Nowe hasło"
+        new_password_confirmation: "Potwierdź nowe hasło"
       script:
         name: "Nazwa"
         description: "Opis"

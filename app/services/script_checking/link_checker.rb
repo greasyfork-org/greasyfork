@@ -11,7 +11,7 @@ module ScriptChecking
         return result if result
 
         redirect_urls = scan_for_redirect_urls(script_version)
-        redirect_destinations = redirect_urls.map { |url| resolve(url) }.compact.to_set
+        redirect_destinations = redirect_urls.filter_map { |url| resolve(url) }.to_set
         result = checked_for_blocked_urls(redirect_destinations)
         return result if result
 
@@ -20,7 +20,7 @@ module ScriptChecking
         return result if result
 
         redirect_urls_from_execution = urls_from_execution.select { |url| redirect_url_pattern.match?(url) }
-        redirect_destinations_from_execution = redirect_urls_from_execution.map { |url| resolve(url) }.compact.to_set
+        redirect_destinations_from_execution = redirect_urls_from_execution.filter_map { |url| resolve(url) }.to_set
         result = checked_for_blocked_urls(redirect_destinations_from_execution)
         return result if result
 
@@ -49,7 +49,7 @@ module ScriptChecking
       end
 
       def scan_for_redirect_urls(script_version)
-        attributes_to_check(script_version).map { |thing_to_check| thing_to_check.scan(redirect_url_pattern) }.compact.flatten.to_set
+        attributes_to_check(script_version).filter_map { |thing_to_check| thing_to_check.scan(redirect_url_pattern) }.flatten.to_set
       end
 
       def attributes_to_check(script_version)
