@@ -210,14 +210,9 @@ module ScriptListings
     end
   end
 
-  def reported
-    @scripts = Script.reported
-    render :reported
-  end
-
   def reported_not_adult
-    @scripts = Script.reported_not_adult
-    render :reported
+    @scripts = Script.reported_not_adult.paginate(page: params[:page], per_page: per_page)
+    render :index
   end
 
   def code_search
