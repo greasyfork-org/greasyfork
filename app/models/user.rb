@@ -263,6 +263,7 @@ class User < ApplicationRecord
       pending: stats[nil] || 0,
       dismissed: stats['dismissed'] || 0,
       upheld: stats['upheld'] || 0,
+      fixed: stats['fixed'] || 0,
     }
   end
 
