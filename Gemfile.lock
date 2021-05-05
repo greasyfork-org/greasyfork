@@ -1,13 +1,4 @@
 GIT
-  remote: https://github.com/rwojnarowski/capistrano-sidekiq.git
-  revision: 8a8a2edf86dfcdebd69dafc4f96adc55745aecde
-  ref: 8a8a2edf86dfcdebd69dafc4f96adc55745aecde
-  specs:
-    capistrano-sidekiq (1.0.3)
-      capistrano (>= 3.9.0)
-      sidekiq (>= 6.0.3)
-
-GIT
   remote: https://github.com/tigrish/devise-i18n.git
   revision: af8fa96525c0ffb21d20aa180ce7305bb47da181
   specs:
@@ -147,6 +138,10 @@ GEM
     capistrano-rbenv (2.2.0)
       capistrano (~> 3.1)
       sshkit (~> 1.3)
+    capistrano-sidekiq (2.0.0)
+      capistrano (>= 3.9.0)
+      capistrano-bundler
+      sidekiq (>= 6.0)
     capistrano3-puma (5.0.3)
       capistrano (~> 3.7)
       capistrano-bundler
@@ -462,7 +457,7 @@ DEPENDENCIES
   capistrano-bundler
   capistrano-rails
   capistrano-rbenv
-  capistrano-sidekiq!
+  capistrano-sidekiq
   capistrano3-puma
   capybara
   daemons
