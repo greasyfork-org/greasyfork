@@ -86,16 +86,24 @@
         <% end %>
         <%= link_to 'Users with the same IP', users_path(same_ip: @user.id) %>
       </p>
-      <% reports = @user.reports_as_reporter.select{ |r| r.item.present? } %>
-      <p>This user has filed <%= reports.count %> <%= 'report'.pluralize(reports.count) %>.</p>
-      <% if reports.any? %>
+
+      <% all_reports = @user.reports_as_reporter %>
+      <p>This user has filed <%= all_reports.count %> <%= 'report'.pluralize(all_reports.count) %>.</p>
+      <% reports = params[:all_reports] == '1' ? all_reports : all_reports.limit(10) %>
+      <% reports_with_item = reports.select{ |r| r.item.present? } %>
+      <% if reports_with_item.any? %>
         <ul>
-          <% reports.each do |report| %>
+          <% reports_with_item.each do |report| %>
             <li>
               <%= render partial: 'reports/report', locals: { report: report } %>
             </li>
           <% end %>
         </ul>
+        <% if all_reports.count > 10 && params[:all_reports] != '1' %>
+          <p>
+            <%= link_to "See all #{all_reports.count} reports.", all_reports: 1 %>
+          </p>
+        <% end %>
       <% end %>
     </section>
   </section>
