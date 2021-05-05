@@ -1,6 +1,6 @@
 class MatchURI
   DONT_STRIP_TLD_SITES = ['del.icio.us'].freeze
-  IP_PATTERN = /^([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}):?[0-9]*$/.freeze
+  IP_PATTERN = /^([0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}):?[0-9]*$/
 
   def self.get_tld_plus_1(domain)
     return domain unless domain.include?('.')
