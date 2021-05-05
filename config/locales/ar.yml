@@ -104,11 +104,17 @@ ar:
     stats_raw_data_header: "البيانات الخام"
     stats_download_raw_data_html: "تنزيل كل البيانات كـ: %{links}"
     stats_no_data: "لا يوجد"
+    stats_filter_options:
+      month: آخر 30 يوم
+      year: آخر 365 يوم
+      all: كل الوقت
     derivatives_title: "%{script_name} - المشتقات"
+    derivatives_exact_copies_heading: "نسخ مطابقة"
     derivatives_exact_copies_list_intro: "تحتوي البرامج النصية التالية على نفس التعليمات البرمجية الخاصة بك:"
     similarity_score:
       high: مشابه جدا
       medium: متشابه إلى حد ما
+      low: مشابهة إلى حد ما
       none: لا تتشابه
     derivatives_similar_check_now: "أعد الفحص الآن"
     listing_title_all_sites: "برامج نصية لكل المواقع"
@@ -186,9 +192,18 @@ ar:
     code_syncing_from_url_html: "هذا البرنامج النصي وضع للمزامنة من: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} بإمكانه استيراد البرامج النصية المستضافة في مكان آخر. مثلا في أنظمة إدارة الإصدارات (مثل GitHub)، خادومك الخاص أو موقع آخر لاستضافة البرامج النصية. لتمكين مزامنة برنامج النصي قم بإضافة وصلة: %{field}"
     sync_type_intro: "سيتم مزامن البرنامج النصي:"
+    sync_type_1:
+      name: يدوي
+      description: سيتم التحقق من وجود تحديثات فقط عند تشغيله
+    sync_type_2:
+      name: تلقائي
+      description: سيتم فحصه بشكل دوري للحصول على التحديثات
+    sync_type_3:
+      name: عناوين الويب
     sync_failed_info_html: "آخر محاولة مزامنة كانت %{date}, وكانت نتيجتها %{error}."
     sync_success_info_html: "آخر مزامنة ناجحة كانت %{date}."
     sync_never_succeeded: "لم تكتمل المزامنة بنجاح."
+    add_synced_additional_info: إضافة مترجم ،ومعلومات إضافية متزامنة
     update_and_sync: "تحديث ومزامنة الآن"
     update_no_sync: "تحديث"
     turn_off_syncing: "إيقاف تشغيل المزامنة لهذا البرنامج النصي"
@@ -258,6 +273,16 @@ ar:
     no_disposable_email: "لا يجوز لك نشر السكربتات إذا كنت تستخدم عنوان بريد إلكتروني يمكن التخلص منه."
     new_script_notice:
       title: "ماذا تحاول أن تفعل؟"
+    antifeatures:
+      types:
+        ads:
+          title: إعلانات
+        tracking:
+          title: تتبع
+      cancel_install: إلغاء
+    badges:
+      css:
+        short: سي إس إس
   script_sets:
     description: "مجموعات البرامج النصية تسمح لك بإنشاء قائمة برامج نصية مخصصة لتصفح النصية بها. يمكنك إضافة البرنامج النصية إلى مجموعة عن طريق إضافتها منفردة أو من مجموعات المستخدمين  الآخرين أو تلقائيا. يمكنك أيضا استثناء برامج نصية من مجموعتك بنفس الأساليب."
     favorites_name: "المفضلة"
@@ -407,6 +432,7 @@ ar:
     disable_syncing: "إيقاف المزامنة"
     remove_external_sign_in: "حذف"
     add_external_sign_in_info: "إضافة تسجيل دخول:"
+    set_up_webhook: "قم بإعداد عناوين الويب"
     author_email_notification_type:
       none: "عدم تلقي بريد إلكتروني عن المناقشات حول البرامج النصية الخاصة بك"
       discussion_only: "تلقي بريد إلكتروني عندما يتم نشر مناقشات حول البرامج النصية الخاصة بك"
@@ -428,12 +454,15 @@ ar:
       not_banned: "غير محظور"
       all: "الكل"
     listing_author_filter:
+      script_author: "مؤلف السيناريو"
+      not_script_author: "ليس مؤلف السيناريو"
       all: "الكل"
     search_placeholder: "بحث المستخدمين"
     locale_prompt: "(اختر اللغة المحلية)"
     show_ads_description: "دعم %{site_name} عن طريق السماح له بعرض الإعلانات"
     show_sensitive_description: "إظهار البرامج النصية ذات محتوى للبالغين"
     preferred_markup_description: "ستستخدم للبرامج النصية والمشاركات الجديدة."
+    filter_locale_default_description: "بشكل افتراضي، قائمة المحتوى فقط في الإعدادات المحلية الحالية"
     greasy_fork_scripts_link:
       zero: "%{user_name} لديه أيضا %{count} برنامج نصي على Greasy Fork."
       one: "%{user_name} لديه أيضا %{count} برنامج نصي واحد على Greasy Fork."
@@ -450,6 +479,7 @@ ar:
       other: "تم إعداد اسم المستخدم والبريد الإلكتروني الخاصين بك للمزامنة عند دخولك بواسطة %{providers}. %{edit_sign_in_link:عدل طرق تسجيل الدخول لحذف المزامنة} إذا كنت تريد وضع اسم مستخدم أو بريد مخصص بشكل دائم."
     delete_link: "أحذف الحساب"
     delete:
+      password_effect: "لن تتمكن بعد الآن من تسجيل الدخول باستخدام كلمة المرور الخاصة بك."
       scripts_effect:
         zero: "سيتم حذف سكربت من %{count}."
         one: "سيتم حذف سكربت من %{count}."
@@ -476,6 +506,10 @@ ar:
         request_expired: "لا يمكن حذف المستخدم - انتهت صلاحية الطلب."
         cancelled: "تم الغاء عملية الحذف."
         completed: "لقد تم حذف حسابك."
+    badges:
+      author:
+        short: مؤلف
+        long: مؤلف هذا النص
   help:
     installing_user_scripts:
       title: 'كيفية تثبيت البرامج النصية'
