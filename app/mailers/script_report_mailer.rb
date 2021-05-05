@@ -68,6 +68,26 @@ class ScriptReportMailer < ApplicationMailer
     mail_to_reporter(report, subject_lambda, text_lambda)
   end
 
+  def report_fixed_offender(report, site_name)
+    subject_lambda = lambda { |locale|
+      t('mailers.script_report.report_fixed_offender.subject', locale: locale, report_url: report_url(report, locale: locale), script_name: report.item.name(locale), site_name: site_name)
+    }
+    text_lambda = lambda { |locale|
+      t('mailers.script_report.report_fixed_offender.text', locale: locale, report_url: report_url(report, locale: locale), script_name: report.item.name(locale), site_name: site_name)
+    }
+    mail_to_offender(report, subject_lambda, text_lambda)
+  end
+
+  def report_fixed_reporter(report, site_name)
+    subject_lambda = lambda { |locale|
+      t('mailers.script_report.report_fixed_reporter.subject', locale: locale, report_url: report_url(report, locale: locale), script_name: report.item.name(locale), site_name: site_name)
+    }
+    text_lambda = lambda { |locale|
+      t('mailers.script_report.report_fixed_reporter.text', locale: locale, report_url: report_url(report, locale: locale), script_name: report.item.name(locale), site_name: site_name)
+    }
+    mail_to_reporter(report, subject_lambda, text_lambda)
+  end
+
   def mail_to_reporter(report, subject_lambda, text_lambda)
     reporters = [report.reporter]
     reporters += report.reference_script.users if report.reference_script

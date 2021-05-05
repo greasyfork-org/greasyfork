@@ -30,10 +30,12 @@ class Report < ApplicationRecord
 
   RESULT_DISMISSED = 'dismissed'.freeze
   RESULT_UPHELD = 'upheld'.freeze
+  RESULT_FIXED = 'fixed'.freeze
 
   scope :unresolved, -> { where(result: nil) }
   scope :resolved, -> { where.not(result: nil) }
   scope :upheld, -> { where(result: RESULT_UPHELD) }
+  scope :resolved_and_valid, -> { where(result: [RESULT_UPHELD, RESULT_FIXED]) }
   scope :block_on_pending, -> { unresolved.trusted_reporter }
   scope :trusted_reporter, -> { joins(:reporter).where(users: { trusted_reports: true }) }
 
@@ -52,6 +54,12 @@ class Report < ApplicationRecord
     item.discussion.update!(review_reason: nil) if item.is_a?(Comment) && item.first_comment?
     reporter&.update_trusted_report!
     AkismetSubmission.mark_as_ham(item)
+  end
+
+  def fixed!(moderator_notes:)
+    update!(result: RESULT_FIXED, moderator_notes: moderator_notes)
+    item.discussion.update!(review_reason: nil) if item.is_a?(Comment) && item.first_comment?
+    reporter&.update_trusted_report!
   end
 
   def uphold!(moderator:, moderator_notes: nil, ban_user: false, delete_comments: false, delete_scripts: false)
@@ -96,7 +104,7 @@ class Report < ApplicationRecord
   end
 
   def resolved?
-    result.nil?
+    result.present?
   end
 
   def dismissed?
@@ -105,6 +113,10 @@ class Report < ApplicationRecord
 
   def upheld?
     result == RESULT_UPHELD
+  end
+
+  def fixed?
+    result == RESULT_FIXED
   end
 
   def reported_users

@@ -8,7 +8,7 @@
   <% end %>
 </h4>
 
-<% if current_user&.moderator? && report.awaiting_response? %>
+<% if current_user&.moderator? && report.awaiting_response? && !report.resolved? %>
   <p><b>(Awaiting response from author)</b></p>
 <% end %>
 
@@ -125,6 +125,10 @@
       </div>
     </blockquote>
   <% end %>
+<% elsif report.fixed? %>
+  <p>
+    <%= t('reports.result_fixed') %>
+  </p>
 <% elsif report.dismissed? %>
   <p>
     <%= t('reports.result_dismissed') %>
@@ -149,6 +153,12 @@
     <br>
 
     <%= submit_tag 'Dismiss report' %>
+  <% end %>
+  <%= form_tag(mark_fixed_report_path(report, index: i), method: 'POST', class: 'report-resolution-options') do %>
+    <%= text_area_tag :moderator_notes, nil, rows: 3, placeholder: 'Moderator notes (optional)' %>
+    <br>
+
+    <%= submit_tag 'Mark as fixed' %>
   <% end %>
   <%= form_tag(uphold_report_path(report, index: i), method: 'POST', class: 'report-resolution-options') do %>
     <%= text_area_tag :moderator_notes, nil, rows: 3, placeholder: 'Moderator notes (optional)' %>

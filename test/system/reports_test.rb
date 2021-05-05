@@ -80,6 +80,22 @@ class ReportsTest < ApplicationSystemTestCase
     end
   end
 
+  test 'marking a report as fixed for a script' do
+    report = reports(:derivative_with_same_name_report)
+    moderator = users(:mod)
+    login_as(moderator, scope: :user)
+    visit reports_url(locale: :en)
+    assert_content 'This is total spam!'
+    assert_changes -> { report.reload.result }, from: nil, to: 'fixed' do
+      assert_no_changes -> { report.item.reload.deleted? } do
+        assert_enqueued_emails(2) do
+          click_button 'Mark as fixed'
+          assert_content 'There are currently no pending reports.'
+        end
+      end
+    end
+  end
+
   test 'moderator upholding a report for a script' do
     report = reports(:derivative_with_same_name_report)
     moderator = users(:mod)

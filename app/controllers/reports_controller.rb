@@ -46,6 +46,16 @@ class ReportsController < ApplicationController
     redirect_to reports_path(anchor: "open-report-#{params[:index]}")
   end
 
+  def mark_fixed
+    @report = Report.find(params[:id])
+    @report.fixed!(moderator_notes: params[:moderator_notes].presence)
+    if @report.item.is_a?(Script) && !@report.auto_reporter
+      ScriptReportMailer.report_fixed_offender(@report, site_name).deliver_later
+      ScriptReportMailer.report_fixed_reporter(@report, site_name).deliver_later
+    end
+    redirect_to reports_path(anchor: "open-report-#{params[:index]}")
+  end
+
   def uphold
     @report = Report.find(params[:id])
     user_is_script_author = user_is_script_author?(@report)

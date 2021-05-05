@@ -1152,6 +1152,7 @@ en:
     report_message: "Report message"
     result_dismissed: "This report has been dismissed by a moderator."
     result_upheld: "This report has been upheld by a moderator."
+    result_fixed: "This report has been resolved by a moderator as they believe the author has fixed the issue."
     result_pending: "This report is pending review by a moderator."
     rebuttal_placeholder: 'Explain to a moderator why this script should not be deleted.'
     submit_rebuttal: "Submit rebuttal"
@@ -1414,6 +1415,9 @@ en:
       report_dismissed_offender:
         subject: "A report on your script %{script_name} on %{site_name} has been dismissed"
         text: "A report on your script %{script_name} on %{site_name} has been dismissed by a moderator. Your script will remain active. You can review this report at %{report_url}. If you have any questions, please visit https://greasyfork.org/forum/."
+      report_fixed_offender:
+        subject: "A report on your script %{script_name} on %{site_name} has been marked as resolved"
+        text: "A report on your script %{script_name} on %{site_name} has been marked resolved by a moderator as they believe you have fixed the issue. Your script will remain active. You can review this report at %{report_url}. If you have any questions, please visit https://greasyfork.org/forum/."
       report_rebutted_reporter:
         subject: "Your report on %{script_name} on %{site_name} has received a reply"
         text: "Your report on %{script_name} on %{site_name} has received a reply. You can review this reply at %{report_url}. A moderator will review your report and this reply and decide on the result. If you have any questions, please visit https://greasyfork.org/forum/."
@@ -1426,6 +1430,9 @@ en:
       report_dismissed_reporter:
         subject: "Your report on %{script_name} on %{site_name} has been dismissed"
         text: "Your report on %{script_name} on %{site_name} has been dismissed by a moderator and the script you reported will remain active. You can review the report at %{report_url}. If you have any questions, please visit https://greasyfork.org/forum/."
+      report_fixed_reporter:
+        subject: "Your report on %{script_name} on %{site_name} has been marked as resolved"
+        text: "Your report on %{script_name} on %{site_name} has been marked as resolved by a moderator as they believe the author has fixed the issue. The script will remain active. You can review the report at %{report_url}. If you have any questions, please visit https://greasyfork.org/forum/."
     consecutive_bad_ratings:
       notify:
         subject: "Your script %{script_name} on %{site_name} has received multiple \"Bad\" reviews."

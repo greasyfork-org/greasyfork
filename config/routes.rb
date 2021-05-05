@@ -177,6 +177,7 @@ Rails.application.routes.draw do
     resources :reports, only: [:new, :create, :index, :show] do
       member do
         post :dismiss
+        post :mark_fixed
         post :uphold
         post :rebut
       end

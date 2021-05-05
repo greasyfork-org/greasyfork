@@ -211,7 +211,7 @@ class User < ApplicationRecord
     if resolved_count < 3
       update(trusted_reports: false)
     else
-      upheld_count = reports_as_reporter.upheld.count
+      upheld_count = reports_as_reporter.resolved_and_valid.count
       update(trusted_reports: (upheld_count.to_f / resolved_count) >= 0.75)
     end
   end
