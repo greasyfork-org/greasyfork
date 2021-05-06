@@ -200,6 +200,7 @@ zh-TW:
     upload_label: "或上傳："
     enable_source_code_editor_label: "啟用具有語法色彩標示的原始碼編輯器"
     changelog_note: "該版本的更新内容："
+    additional_info_note: "更詳細的說明、操作指示等等。"
     post_new_script: "發佈腳本"
     post_updated_script: "發佈新版本"
     type_1_html: "公開的使用者腳本 - 所有人都能瀏覽與使用。"
@@ -220,12 +221,25 @@ zh-TW:
     additional_info_add_localized: "新增別的語言的「其他資訊」欄位"
     additional_info_locale_repeated: "對於 '%{locale_code}' 語言，請勿提供多個其他資訊。"
     localized_additional_info_with_no_name: "您為 '%{locale_code}' 提供了其他資訊，但是腳本沒有指定 <code>@name:%{locale_code}</code>。"
+    localized_attribute_matches_default: "由於「%{locale_code}」是預設語系，程式碼中不應指定%{meta_key}。"
     code_syncing_from_url_html: "此腳本代碼已設定同步自：%{field}"
     provide_code_syncing_from_url_html: "%{site_name} 可以匯入您在其他網站託管的腳本，例如版本控制系統 (如 GitHub)、您自己的伺服器、或其他使用者腳本託管網站。要使用該功能，請提供一個網址：%{field}"
     sync_type_intro: "此腳本將會被同步："
+    sync_type_1:
+      name: 手動
+      description: 只在您觸發時才會檢查腳本是否有更新
+    sync_type_2:
+      name: 自動
+      description: 定時檢查更新
+    sync_type_3:
+      name: Webhook
+      description: 當您推送更新到倉庫的這個檔案時才更新
+    sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "上次嘗試同步於 %{date}，發生了錯誤：%{error}。"
     sync_success_info_html: "上次成功同步於 %{date}。"
     sync_never_succeeded: "從未成功同步過。"
+    sync_additional_info: 您還可以同步腳本的其他相關資訊（非必要）。
+    add_synced_additional_info: 新增翻譯過、同步過的其他資訊
     update_and_sync: "更新設定並同步腳本"
     update_no_sync: "更新設定"
     turn_off_syncing: "停用腳本同步功能"
@@ -276,6 +290,7 @@ zh-TW:
     search_placeholder: "搜尋腳本"
     updated: "腳本已更新。"
     preview_additional_info: "預覽"
+    must_confirm: "必須先確認帳號才可以張貼腳本。您可以用兩種方式進行確認：加上外部登入資訊，或是發一封確認郵件。"
     must_confirm_email_button: "發送驗證郵件到%{email}"
     authors_heading: "作者列表"
     error_unauthorized_copy: "這份代碼中包含了 %{script} 的未授權代碼。請參考  %{site_name} 的 %{rules_link:腳本規範}。"
@@ -591,6 +606,11 @@ zh-TW:
       save_success: 您的通知設定已更新。
       unsubscribe_all: 停止所有的通知
       unsubscribe_all_success: 您已停用所有通知。
+  webhooks:
+    info:
+      title: 建立 Webhook
+      already_syncing_list: "以下是您已經設定好要與支援的供應商進行同步的腳本："
+      language_note: 由於 GitHub、GitLab 及 Bitbucket 都只有英文版介面，下方的操作教學將不做翻譯。
   help:
     sections:
       usage: 使用量
@@ -629,6 +649,7 @@ zh-TW:
     code_rules:
       title: "%{site_name} 的腳本規定"
       preamble: 這些是張貼在%{site_name}上的腳本需要符合的條件。這是用來確保%{site_name}對使用者腳本會是一個安全且有幫助的地方。若是腳本違反這些要求，那將可能被%{site_name}的管理員刪除。
+      functionality_header: 功能
       description: 腳本皆必須包含一段描述其功能的敘述，且腳本不得做出明顯超出該敘述的行為。使用者都應該在安裝腳本前了解它會做些什麼。
       reason: 腳本必須要有被編寫為腳本的理由。例如：只會將使用者導向到一個網站的腳本沒有必要被編寫為腳本，它可以是個連結。而在當前頁面使用其他網站服務的腳本（例如透過某些方式將其轉換）是被允許的。
       unrelated: 腳本不得要求使用者執行不相關的行為以啟用腳本全部或部分的功能，例如付款、訂閱某個頻道、加入某個社團，或是按讚某個專頁。
@@ -663,6 +684,7 @@ zh-TW:
       authors_credit: "貢獻腳本的作者，%{site_name} 不能沒有他們。"
       developers_credit: "%{site_name} 網站是由 %{developers_link:這些開發者}，與那些回報錯誤、提供建議的使用者所建立。"
       translators_credit: "%{site_name} 的翻譯來自 %{translators_link:Greasy Translation Force @ Transifex}︰"
+      icons_credit: "瀏覽器圖示是來自 %{browserlogos}。"
     help_with_greasymonkey: "Greasemonkey 疑難排解"
     contact:
       title: "聯繫某人"
@@ -772,6 +794,7 @@ zh-TW:
     result_pending: "該檢舉尚待管理員檢視。"
     rebuttal_placeholder: '向管理員解釋為何此腳本不應該被刪除。'
     submit_rebuttal: "提交上訴"
+    delete_script: "刪除腳本"
   discussions:
     title: 討論
     comment_date: "發表於：%{date}"
