@@ -915,6 +915,7 @@ it:
     report_message: "Segnala messaggio"
     result_dismissed: "Questa segnalazione è stata rigettata da un moderatore."
     result_upheld: "Questa segnalazione è stata confermata da un moderatore."
+    result_fixed: "Questa segnalazione è stata risolta da un moderatore poiché ritiene che l'autore abbia risolto il problema."
     result_pending: "Questa segnalazione non è ancora stata controllata da un moderatore."
     rebuttal_placeholder: 'Spiega a un moderatore perché questo script non dovrebbe essere cancellato.'
     submit_rebuttal: "Invia una contestazione"
@@ -1132,6 +1133,9 @@ it:
       report_dismissed_offender:
         subject: "Una segnalazione sul tuo script %{script_name} su %{site_name} è stata respinta"
         text: "Una segnalazione sul tuo script %{script_name} su %{site_name} è stata respinta da un moderatore. Il tuo script rimarrà attivo. Puoi consultare questa segnalazione su %{report_url}. Se hai delle domande, per favore visita https://greasyfork.org/forum/."
+      report_fixed_offender:
+        subject: "Una segnalazione relativa al tuo script %{script_name} su%{site_name} è stata contrassegnata come risolta"
+        text: "Una segnalazione relativa al tuo script %{script_name} su%{site_name} è stata contrassegnata come risolta da un moderatore poiché ritiene che tu abbia risolto il problema. Il tuo script rimarrà attivo. Puoi esaminare questa segnalazione su %{report_url}. Se hai qualche domanda, puoi visitare https://greasyfork.org/forum/."
       report_rebutted_reporter:
         subject: "La tua segnalazione di %{script_name} su %{site_name} ha ricevuto una risposta"
         text: "La tua segnalazione a riguardo di %{script_name} su %{site_name} ha ricevuto una risposta. Puoi consultare questa risposta su %{report_url}. Un moderatore valuterà la tua segnalazione e questa risposta e deciderà il responso. Se hai delle domande, per favore visita https://greasyfork.org/forum/."
@@ -1144,6 +1148,9 @@ it:
       report_dismissed_reporter:
         subject: "La tua segnalazione a riguardo di %{script_name} su %{site_name} è stata respinta"
         text: "La tua segnalazione a riguardo di %{script_name} su %{site_name} è stata respinta da un moderatore e lo script che hai segnalato rimarrà attivo. Puoi consultare la segnalazione su %{report_url}. Se hai delle domande, per favore visita https://greasyfork.org/forum/."
+      report_fixed_reporter:
+        subject: "La tua segnalazione relativa a %{script_name} su%{site_name} è stata contrassegnata come risolta"
+        text: "La tua segnalazione relativa a %{script_name} su%{site_name} è stata contrassegnata come risolta da un moderatore poiché ritiene che l'autore abbia risolto il problema. Lo script rimarrà attivo. Puoi esaminare la segnalazione su %{report_url}. Se hai qualche domanda, visita https://greasyfork.org/forum/."
     consecutive_bad_ratings:
       notify:
         subject: "Il tuo script %{script_name} su %{site_name} ha ricevuto molteplici segnalazioni come \"Cattivo\"."

@@ -129,7 +129,7 @@ es:
     stats_filter_options:
       month: Últimos 30 días
       year: Últimos 365 días
-      all: Todo el tiempo
+      all: Cualquier día
     derivatives_title: "%{script_name} - Derivados"
     derivatives_intro: "Estos scripts pueden basarse en el tuyo (o viceversa). Si detectas un uso no autorizado de tu código, denuncia el script creando un nueva conversación en su perfil."
     derivatives_script_html: "%{script} por %{user}, licencia: %{license} %{diff_link:[Diferencias]}"
@@ -228,7 +228,7 @@ es:
     additional_info_add_localized: "Añadir información regional adicional"
     additional_info_locale_repeated: "Proporciona una sola información adicional para el idioma '%{locale_code}'."
     localized_additional_info_with_no_name: "Has añadido información adicional para el idioma '%{locale_code}', pero sin proporcionar el @name:%{locale_code}."
-    localized_attribute_matches_default: "El código no debe incluir %{meta_key}con '%{locale_code}' conjuntamente"
+    localized_attribute_matches_default: "El código no debe incluir %{meta_key} porque «%{locale_code}» es el ifioma predeterminado."
     code_syncing_from_url_html: "El código de este script está configurado para sincronizarse desde: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} puede importar scripts alojados en otro lugar, por ejemplo, en un sistema de control de versiones (como GitHub), tu propio servidor, o en cualquier otro sitio de alojamiento de scripts de usuario. Para sincronizar tu script proporciona una dirección URL: %{field}"
     sync_type_intro: "El script se sincronizará:"
@@ -333,21 +333,21 @@ es:
       css: "Publicar un nuevo estilo"
     update_title: "Publicar una nueva versión de %{script}"
     antifeatures:
-      warning_title: Este script contiene características no permitidas
-      author_explanation_intro: "El autor de este script explica:"
+      warning_title: Este script incluye características indeseables
+      author_explanation_intro: "El autor de este script dice que contiene:"
       types:
         ads:
           title: Anuncios
           description_html: Este script añadirá <b>anuncios</b> en los lugares que visites
         tracking:
           title: Rastreo
-          description_html: Este script contiene código que <b>rastreará tus busquedas</b>.
+          description_html: Este script contiene código que <b>rastreará tus búsquedas</b>.
         miner:
-          title: Criptominero
-          description_html: Este script contiene un criptominero que <b>utilizara los recursos de tu dispositivo</b> cuando esté activo.
+          title: Minería de criptomonedas
+          description_html: Este script contiene un «criptominero» que <b>utilizará los recursos de tu dispositivo</b> cuando esté activo. Gastando tu electricidad y enriqueciendo al autor recabando monedas virtuales.
         referral-link:
-          title: Link de referido
-          description_html: Este script <b>reescribirá los enlaces</b> para incluir un código de referido o afiliado.
+          title: Enlaces de afiliados o recomendación
+          description_html: Este script <b>reescribirá los enlaces</b> para incluir un código de afiliación con el que lucrarse económicamente.
       install_anyway: Instalar script
       cancel_install: Cancelar
     badges:
@@ -356,7 +356,7 @@ es:
         long: Script de usuario
       css:
         short: Hoja de estilos en cascada (CSS)
-        long: Estilo de Usuario
+        long: Estilo de usuario
   script_sets:
     description: "Los grupos permiten crear un listado personal de scripts con los que explorar Greasy Fork. Puedes agruparlos añadiendo scripts individuales, incluyendo grupos de otros usuarios, o incluso grupos generados automáticamente. También puedes excluir scripts de la misma forma."
     favorites_name: "Favoritos"
@@ -593,9 +593,9 @@ es:
         cancelled: "Se ha cancelado el borrado."
         completed: "Has eliminado tu cuenta."
     banned_notice:
-      no_report_no_reason: "Tu cuenta ha sido baneada. Puedes %{delete_link:borrar tu cuenta}, si lo deseas."
-      with_report: "Tu cuenta ha sido baneada debido a %{report_link:este reporte}. Puedes %{delete_link:borrar tu cuenta}, si lo deseas."
-      with_reason: "Tu cuenta ha sido baneada. Un moderador ha dado los siguientes motivos \"%{reason}\". Puedes %{delete_link:borrar tu cuenta}, si lo deseas."
+      no_report_no_reason: "Te han suspendido la cuenta por una infracción grave. Si quieres puedes %{delete_link:borrarla}."
+      with_report: "Tu cuenta ha sido suspendida debido a %{report_link:esta denuncia}. Si quieres puedes %{delete_link:borrar tu cuenta}."
+      with_reason: "Te han suspendido la cuenta por infracciones graves. Un moderador ha dado los siguientes motivos de peso para echarte: «%{reason}». Si quieres puedes %{delete_link:borrar tu cuenta}."
     banned_delete:
       intro: "Borrar tu cuenta también borrará cualquier script que hayas creado. Las contribuciones al foro que hayas realizado se mantendrán, pero tu nombre de usuario será anonimizado. Incluso después del borrado, no te será permitido registrarte otra vez con la misma dirección de correo. Inicia sesión abajo para borrar tu cuenta."
       complete: "Tu cuenta ha sido borrada."
@@ -614,7 +614,7 @@ es:
         title: Notificaciones del foro
         new_discussion: Suscribirte de forma predeterminada a toda conversación que empieces
         new_comment: Suscribirte de forma predeterminada a toda conversación en la que comentes
-        mention: Recibe una notificación cuando seas mencionado en una discusión
+        mention: Recibe una notificación cuando se te mencione en una conversación
       conversation_defaults:
         title: Notificaciones de conversación
         starter: Suscribirte de forma predeterminada a toda conversación que empieces
@@ -666,8 +666,8 @@ es:
       contributionAmount_html: "Cantidad a donar recomendada, utilizada junto con <code>@contributionURL</code>."
       compatible_html: "Marca este script como compatible con un navegador. La información de compatibilidad se mostrará en otra página del script. Es posible incluir comentarios adicionales usando el formato <code>@compatible firefox Se debe desactivar el bloqueador de ventanas emergentes</code>. Los navegadores reconocidos son: %{browsers}."
       incompatible_html: "Marca este script como incompatible con un navegador. La información de compatibilidad se mostrará en otra página del script. Es posible incluir comentarios adicionales usando el formato <code>@incompatible firefox Dejó de funcionar en Firefox 23</code>. Los navegadores reconocidos son: %{browsers}."
-      antifeature_html: "Algunas características en los scripts están ahí para beneficiar al autor, no al usuario. El formato de esta llave es <code>descripción de @anticaracteristicas</code> .%{site_name} leerá los siguientes tipos: <code>anuncios</code> (El script muestra anuncios al usuario), <code>rastreo</code> (el script rastrea la actividad del usuario), <code>minero</code> (el script contiene un criptominero), y <code>enlaces de referido</code> (El script reescribe el enlace para añadir enlaces de referido/afiliado). Otros tipos son ignorados pero el script debe seguir obligatoriamente %{code_rules_link: las reglas de %{site_name}}. La descripción es opcional."
-      antifeature_localized_html: "Una <code>@anticaracteristica</code> descrita de forma especifica, donde XX es un <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">código alfabético de dos letras respectivo a la norma ISO 639-1</a> e YY es un <a href=\"https://www.iso.org/obp/ui/#search\">código de ciudad respectivo a la norma ISO 3166</a> opcional. Reemplaza las <code>@anticaracteristicas</code> del mismo tipo cuando el usuario está navegando en una configuración regional coincidente."
+      antifeature_html: "Describe de forma honesta si algunas características en tus scripts están ahí para beneficiar al autor, no al usuario. El formato de esta clave es <code>@antifeature «tipo» «descripción»</code>. De momento %{site_name} interpreta los siguientes tipos: <code>ads</code> (el script muestra anuncios al usuario), <code>tracking</code> (el script rastrea la actividad del usuario), <code>miner</code> (el script hace uso y abuso de recursos y electricidad para recabar u obtener criptomonedas), y <code>referral-link</code> (El script reescribe enlaces para redirigir a productos o servicios remunerados o de afiliación). Cualquier otro tipo de clave se ignora sin más problema, pero ten en cuenta que el script siempre debe seguir obligatoriamente %{code_rules_link:las normas de %{site_name}}. Las descripciones de cada entrada son opcionales."
+      antifeature_localized_html: "Una <code>@antifeature</code> descrita en un idioma cualquiera, en el que XX es un <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">código alfabético de dos letras basado en la norma ISO 639-1</a> e YY es un <a href=\"https://www.iso.org/obp/ui/#search\">código opcional de país basado en ISO 3166</a>. Reemplaza las otras claves de tipo <code>@antifeature</code> idénticas cuando el usuario utiliza un navegador con ese mismo idioma."
     writing_user_scripts:
       title: "Cómo escribir scripts de usuario"
       content_html: "<p>Para escribir scripts de usuario es necesario saber JavaScript. Las <a href=\"http://wiki.greasespot.net/Tutorials\">guías en GreaseSpot Wiki</a> (en inglés) deberían ser buen punto de partida para ver como funciona JavaScript en general y su relación con los scripts de usuario en particular. Ver el código de los demás, inspeccionando como funcionan por dentro sus scripts, puede ser educativo y divertido. Puede que te interesen las %{code_rules_link} y las %{meta_keys_link}. Si necesitas ayuda creando tu script puedes %{ask_in_forum_link}.</p><p>Para publicarlo en %{site_name} necesitarás tener una cuenta. Una vez estés en tu %{user_page_link} sigue el enlace llamado «%{post_new_script_link}», y listo.</p>"
@@ -911,6 +911,7 @@ es:
     report_message: "Incumple las normas"
     result_dismissed: "Se ha revisado tu denuncia y no parece incumplir las normas."
     result_upheld: "Se ha confirmado tu denuncia y ha sido eliminado."
+    result_fixed: "Se ha cerrado está denuncia porque un moderador asevera que los problemas que has encontrado se han resuelto."
     result_pending: "Pendiente de que lo revise un moderador. "
     rebuttal_placeholder: 'Explica a un moderador por qué este script no debe ser eliminado.'
     submit_rebuttal: "Presentar reclamación"
@@ -920,7 +921,7 @@ es:
     comment_date: "Publicado: %{date}"
     comment_edit_date: "Editado: %{date}"
     posted_by_html: "Respuesta de %{user} el %{date}"
-    last_comment: "Ultimo comentario: %{user}el %{date}"
+    last_comment: "Último comentario: %{user}, %{date} "
     new_discussion_heading: "Pregunta tus dudas o ponle nota"
     new_discussion_submit: "Publicar comentario"
     new_comment_heading: "Publicar respuesta"
@@ -931,7 +932,7 @@ es:
     delete_comment: "Eliminar"
     delete_comment_confirm: ¿Estás seguro de que quieres borrar este comentario?
     delete_discussion: "Eliminar"
-    delete_discussion_confirm: ¿Estás seguro de que quieres borrar esta discusión?
+    delete_discussion_confirm: ¿Estás seguro de que quieres borrar el hilo de conversación entero?
     update_comment_submit: "Actualizar comentario"
     cancel_update_comment: "Cancelar"
     quote_comment: "Cita"
@@ -1128,6 +1129,9 @@ es:
       report_dismissed_offender:
         subject: "Tu script %{script_name} no parece incumplir las normas de %{site_name}"
         text: "Se ha revisado una denuncia en %{site_name} y tu script %{script_name} no parece incumplir las normas. Tu script seguirá activo. Puedes ver la denuncia en %{report_url}. Si tienes dudas puedes escribirnos en https://greasyfork.org/forum/."
+      report_fixed_offender:
+        subject: "Se ha revisado tu script en %{site_name} y %{script_name} y una vez corregidos los problemas se ha marcado la denuncia como resuelta."
+        text: "Se ha revisado una denuncia en %{site_name} y tu script %{script_name} parece haber solucionado los problemas denunciados. Tu script seguirá activo. Puedes ver la denuncia en %{report_url}. Si tienes dudas puedes escribirnos en https://greasyfork.org/forum/."
       report_rebutted_reporter:
         subject: "Alguien ha contestado a tu denuncia de %{script_name} en %{site_name}"
         text: "Alguien ha contestado a tu denuncia de %{script_name} en %{site_name}. Puedes ver la respuesta en %{report_url}. Un moderador revisará el problema y verá si existe o no. Si tienes dudas puedes escribirnos en https://greasyfork.org/forum/."
@@ -1140,6 +1144,9 @@ es:
       report_dismissed_reporter:
         subject: "Se ha revisado tu denuncia en %{site_name} y %{script_name} no parece incumplir las normas."
         text: "Se ha revisado tu denuncia en %{site_name} y %{script_name} no parece incumplir las normas, por lo que el script seguirá activo. Puedes ver la denuncia en %{report_url}. Si tienes dudas puedes escribirnos en https://greasyfork.org/forum/."
+      report_fixed_reporter:
+        subject: "Se ha revisado tu denuncia en %{site_name} y %{script_name} y una vez corregidos los problemas se ha marcado como resuelta."
+        text: "Se ha revisado tu denuncia en %{site_name} y el script %{script_name} parece haber solucionado los problemas denunciados. El script seguirá activo. Puedes ver la denuncia en %{report_url}. Si tienes dudas puedes escribirnos en https://greasyfork.org/forum/."
     consecutive_bad_ratings:
       notify:
         subject: "Tu script %{script_name} en %{site_name} ha recibido múltiples críticas negativas."
