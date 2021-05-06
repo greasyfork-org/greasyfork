@@ -34,7 +34,7 @@ class ReportsController < ApplicationController
 
   def index
     reports = Report.unresolved.includes(:item, :reference_script, :reporter, :rebuttal_by_user).order(:created_at).reject { |report| report.item.nil? }
-    @actionable_reports, @waiting_reports = reports.partition(&:awaiting_response?)
+    @waiting_reports, @actionable_reports = reports.partition(&:awaiting_response?)
   end
 
   def dismiss
