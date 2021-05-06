@@ -8,12 +8,11 @@ class ImportController < ApplicationController
   before_action :check_read_only_mode, except: [:index]
 
   def index
-    @scripts_by_source = Script.joins(:authors).where(authors: { user_id: current_user.id }).where.not(script_sync_source_id: nil).includes([:script_sync_source, :script_sync_type])
-    @scripts_by_source = @scripts_by_source.group_by(&:script_sync_source)
+    @syncing_scripts = Script.joins(:authors).where(authors: { user_id: current_user.id }).where.not(script_sync_type_id: nil).includes(:script_sync_type)
   end
 
   def add
-    importer = ScriptImporter::IMPORTERS.find { |i| i.sync_source_id == params[:sync_source_id].to_i }
+    importer = ScriptSyncer.choose_importer
     @results = { new: [], failure: [], needsdescription: [], existing: [] }
     sync_ids = if params[:sync_ids].nil?
                  params[:sync_urls].split(/[\n\r]+/)
@@ -27,9 +26,9 @@ class ImportController < ApplicationController
       when :needsdescription
         @results[:needsdescription] << script
       when :failure, :notuserscript
-        @results[:failure] << "#{importer.sync_id_to_url(sync_id)} - #{message}"
+        @results[:failure] << "#{sync_id} - #{message}"
       when :success
-        existing_scripts = Script.where(['script_sync_source_id = ? and sync_identifier = ?', importer.sync_source_id, sync_id])
+        existing_scripts = Script.where(sync_identifier: sync_id)
         if !existing_scripts.empty?
           @results[:existing] << existing_scripts.first
         elsif script.save

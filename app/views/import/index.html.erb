@@ -3,7 +3,6 @@
 <p><%= site_name %> can import scripts that already hosted elsewhere, for example in a version control system (like GitHub), your own server, or another user script hosting site.</p>
 
 <%= form_tag(import_add_path) do |f| %>
-  <input type="hidden" name="sync_source_id" value="1">
   <p>
     <label for="sync-urls">Provide URLs to import from, separated by newlines. These should be URLs to the raw .user.js files.</label><br>
     <textarea id="sync-urls" name="sync_urls" rows="5" required style="width: 75%"></textarea>
@@ -21,18 +20,15 @@
   <%= submit_tag 'Import' %>
 <% end %>
 
-<% if !@scripts_by_source.empty? %>
+<% if @syncing_scripts.any? %>
   <h3>Previously imported scripts</h3>
-  <% @scripts_by_source.each do |script_sync_source, scripts| %>
-    <h4>From <%= script_sync_source.name %></h4>
-    <ul>
-      <% scripts.each do |script| %>
-        <% if script.sync_error.nil? %>
-          <li class="successful-sync"><%= link_to script.name, script %> - <%= script.script_sync_type.name %> syncing, last synced <%= script.last_successful_sync_date.nil? ? '(unknown)' : markup_date(script.last_successful_sync_date) %></li>
-        <% else %>
-          <li class="failed-sync"><%= link_to script.name, script %> - <%= script.script_sync_type.name %> syncing, last sync attempt <%= script.last_attempted_sync_date.nil? ? '(unknown)' : markup_date(script.last_attempted_sync_date) %>, <%= script.sync_error %></li>
-        <% end %>
+  <ul>
+    <% @syncing_scripts.each do |script| %>
+      <% if script.sync_error.nil? %>
+        <li class="successful-sync"><%= link_to script.name, script %> - <%= script.script_sync_type.name %> syncing, last synced <%= script.last_successful_sync_date.nil? ? '(unknown)' : markup_date(script.last_successful_sync_date) %></li>
+      <% else %>
+        <li class="failed-sync"><%= link_to script.name, script %> - <%= script.script_sync_type.name %> syncing, last sync attempt <%= script.last_attempted_sync_date.nil? ? '(unknown)' : markup_date(script.last_attempted_sync_date) %>, <%= script.sync_error %></li>
       <% end %>
-    </ul>
-  <% end %>
+    <% end %>
+  </ul>
 <% end %>

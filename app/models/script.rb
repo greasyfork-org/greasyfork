@@ -2,6 +2,8 @@ require 'localizing_model'
 require 'css_to_js_converter'
 
 class Script < ApplicationRecord
+  self.ignored_columns = ['script_sync_source_id']
+
   include LocalizingModel
   include DetectsLocale
 
@@ -32,7 +34,6 @@ class Script < ApplicationRecord
   has_many :reports, as: :item, dependent: :destroy
 
   belongs_to :script_type
-  belongs_to :script_sync_source, optional: true
   belongs_to :script_sync_type, optional: true
   belongs_to :script_delete_type, optional: true
   belongs_to :license, optional: true
@@ -138,7 +139,7 @@ class Script < ApplicationRecord
 
   validates :code_updated_at, :script_type, presence: true
 
-  validates :sync_identifier, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]), message: :script_sync_identifier_bad_protocol, if: proc { |r| r.script_sync_source_id == 1 } }
+  validates :sync_identifier, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]), message: :script_sync_identifier_bad_protocol }, allow_nil: true, unless: -> { Rails.env.test? }
 
   validates :sync_identifier, length: { maximum: 500 }
 

@@ -272,13 +272,11 @@ class ScriptsController < ApplicationController
   def sync_update
     unless params['stop-syncing'].nil?
       @script.script_sync_type_id = nil
-      @script.script_sync_source_id = nil
       @script.last_attempted_sync_date = nil
       @script.last_successful_sync_date = nil
       @script.sync_identifier = nil
       @script.sync_error = nil
       @script.localized_attributes_for('additional_info').each do |la|
-        la.sync_source_id = nil
         la.sync_identifier = nil
       end
       @script.save(validate: false)
@@ -288,7 +286,6 @@ class ScriptsController < ApplicationController
     end
 
     @script.assign_attributes(params.require(:script).permit(:script_sync_type_id, :sync_identifier))
-    @script.script_sync_source_id = ScriptImporter::ScriptSyncer.get_sync_source_id_for_url(params[:sync_identifier]) if @script.script_sync_source_id.nil?
 
     # additional info syncs. and new ones and update existing ones to add/update sync_identifiers
     if params['additional_info_sync']
@@ -303,12 +300,11 @@ class ScriptsController < ApplicationController
           next if form_is_blank
 
           attribute_default = (sync_params['attribute_default'] == 'true')
-          @script.localized_attributes.build(attribute_key: 'additional_info', sync_identifier: sync_params['sync_identifier'], value_markup: sync_params['value_markup'], sync_source_id: 1, locale_id: attribute_default ? @script.locale_id : sync_params['locale'], attribute_value: ADDITIONAL_INFO_SYNC_PLACEHOLDER, attribute_default: attribute_default)
+          @script.localized_attributes.build(attribute_key: 'additional_info', sync_identifier: sync_params['sync_identifier'], value_markup: sync_params['value_markup'], locale_id: attribute_default ? @script.locale_id : sync_params['locale'], attribute_value: ADDITIONAL_INFO_SYNC_PLACEHOLDER, attribute_default: attribute_default)
         else
           unless form_is_blank
             unused_additional_infos.delete(existing)
             existing.sync_identifier = sync_params['sync_identifier']
-            existing.sync_source_id = 1
             existing.value_markup = sync_params['value_markup']
           end
         end
@@ -319,7 +315,6 @@ class ScriptsController < ApplicationController
           la.mark_for_destruction
         else
           la.sync_identifier = nil
-          la.sync_source_id = nil
         end
       end
     end
@@ -613,7 +608,6 @@ class ScriptsController < ApplicationController
 
   def admin
     # For sync section
-    @script.script_sync_type_id = 1 if @script.script_sync_source_id.nil?
     @script.localized_attributes.build({ attribute_key: 'additional_info', attribute_default: true }) if @script.localized_attributes_for('additional_info').empty?
 
     @context = 3

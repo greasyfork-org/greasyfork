@@ -708,7 +708,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
     assert script.valid?, script.errors.full_messages
     assert_equal 1, script.script_versions.length
     assert script.script_versions.first.valid?, script.script_versions.first.errors.full_messages
-    assert script.localized_attributes_for('additional_info').all? { |la| !la.sync_identifier.nil? && !la.sync_source_id.nil? }, script.localized_attributes_for('additional_info').inspect
+    assert script.localized_attributes_for('additional_info').all? { |la| !la.sync_identifier.nil? }, script.localized_attributes_for('additional_info').inspect
 
     sv = ScriptVersion.new
     sv.script = script
@@ -725,7 +725,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
     # new values should be applied...
     assert %w[New Nouveau].all? { |ai| script.localized_attributes_for('additional_info').any? { |la| la.attribute_value == ai } }, script.localized_attributes_for('additional_info').inspect
     # but sync stuff should be retained!
-    assert script.localized_attributes_for('additional_info').all? { |la| !la.sync_identifier.nil? && !la.sync_source_id.nil? }, script.localized_attributes_for('additional_info').inspect
+    assert script.localized_attributes_for('additional_info').all? { |la| !la.sync_identifier.nil? }, script.localized_attributes_for('additional_info').inspect
   end
 
   test 'validate missing include' do

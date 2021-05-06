@@ -1,4 +1,6 @@
 class LocalizedScriptAttribute < ApplicationRecord
+  self.ignored_columns = ['sync_source_id']
+
   include MentionsUsers
 
   belongs_to :script
@@ -8,7 +10,7 @@ class LocalizedScriptAttribute < ApplicationRecord
 
   validates :attribute_key, :attribute_value, :locale, :value_markup, presence: true
 
-  validates :sync_identifier, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]), message: :script_sync_identifier_bad_protocol, if: proc { |r| r.sync_source_id == 1 } }
+  validates :sync_identifier, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]), message: :script_sync_identifier_bad_protocol }, allow_nil: true, unless: -> { Rails.env.test? }
 
   def localized_meta_key
     return LocalizedScriptAttribute.localized_meta_key(attribute_key, locale, attribute_default)

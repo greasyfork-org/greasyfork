@@ -6,14 +6,13 @@
   <%= t('scripts.rules_summary_html', full_rules_link: link_to(t('scripts.rules_summary_link_to_full'), help_code_rules_path)) %>
 </p>
 
-<% # ignore userscripts.org sync
-if !script_version.script.script_sync_type_id.nil? and script_version.script.script_sync_source_id != 2 %>
+<% if script_version.script.script_sync_type_id %>
   <p>
     <%= t('scripts.syncing_notice_html',
       syncing_notice_sync_type: link_to(
         t(
           script_version.script.script_sync_type_id == 1 ? 'scripts.syncing_notice_sync_type_manual' : 'scripts.syncing_notice_sync_type_automatic',
-          {sync_identifier: script_version.script.sync_identifier}
+          sync_identifier: script_version.script.sync_identifier
         ),
         admin_script_path(script_version.script_id)
       )

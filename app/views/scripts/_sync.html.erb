@@ -3,7 +3,7 @@
 
   <%= form_for(@script, url: sync_update_script_path) do |s| %>
 
-    <% case @script.script_sync_source_id
+    <% case @script.script_sync_type_id
       when 1 %>
         <p>
           <%= t('scripts.code_syncing_from_url_html', field: s.url_field(:sync_identifier, size: 50, placeholder: t('scripts.sync_url_placeholder'))) %>
@@ -37,7 +37,7 @@
       </div>
     </div>
 
-    <% if !@script.script_sync_source_id.nil? %>
+    <% if !@script.script_sync_type_id %>
       <p>
         <% if !@script_sync_error.nil? %>
           <%= t('scripts.sync_failed_info_html', date: markup_date(@script.last_attempted_sync_date), error: @script.sync_error) %>
@@ -50,7 +50,7 @@
       </p>
     <% end %>
     <p>
-      <% if @script.script_sync_source_id.nil? %>
+      <% if @script.script_sync_type_id.nil? %>
         <input type="submit" name="update-and-sync" value="<%= t('scripts.update_and_sync') %>">
       <% else %>
         <input type="submit" name="update-only" value="<%= t('scripts.update_no_sync') %>">

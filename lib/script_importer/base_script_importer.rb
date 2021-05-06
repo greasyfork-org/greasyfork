@@ -2,19 +2,11 @@ require 'open-uri'
 
 module ScriptImporter
   class BaseScriptImporter
-    def self.sync_source_id
-      raise 'Missing'
-    end
-
     def self.can_handle_url(_url)
       raise 'Missing'
     end
 
     def self.import_source_name
-      raise 'Missing'
-    end
-
-    def self.sync_id_to_url(_url)
       raise 'Missing'
     end
 
@@ -44,7 +36,7 @@ module ScriptImporter
     # - The script
     # - An error message
     def self.generate_script(sync_id, provided_description, user, sync_type_id = 1, localized_attribute_syncs = {}, locale = nil, do_not_recheck_if_equal_to: nil)
-      url = sync_id_to_url(sync_id)
+      url = sync_id
       begin
         code = download(url)
       rescue OpenURI::HTTPError, Errno::ETIMEDOUT => e
@@ -64,7 +56,6 @@ module ScriptImporter
       script = Script.new
       script.authors.build(user: user)
       script.script_type_id = 1
-      script.script_sync_source_id = sync_source_id
       script.script_sync_type_id = sync_type_id
       script.language = url.ends_with?('.css') ? 'css' : 'js'
       script.locale = locale
@@ -75,10 +66,10 @@ module ScriptImporter
       # now get the additional infos
       localized_attribute_syncs.each do |la|
         new_la = sv.build_localized_attribute(la)
-        next if la.sync_identifier.nil? || la.sync_source_id.nil?
+        next if la.sync_identifier.nil?
 
         begin
-          ai = ScriptSyncer.get_importer_for_sync_source_id(la.sync_source_id).download(la.sync_identifier)
+          ai = ScriptSyncer.choose_importer.download(la.sync_identifier)
           absolute_ai = absolutize_references(ai, la.sync_identifier)
           ai = absolute_ai unless absolute_ai.nil?
           new_la.attribute_value = ai
@@ -119,14 +110,6 @@ module ScriptImporter
       Timeout.timeout(11) do
         return uri.read({ read_timeout: 10 })
       end
-    end
-
-    def self.separate_new_existing_scripts(scripts)
-      existing_ids = Script.select('sync_identifier').where(script_sync_source_id: sync_source_id).where(sync_identifier: scripts.keys).map { |s| s.sync_identifier.to_i }
-      new = {}
-      existing = {}
-      scripts.each { |k, v| (existing_ids.include?(k) ? existing : new)[k] = v }
-      return [new, existing]
     end
 
     # updates the URL to the working version

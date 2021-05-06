@@ -2,12 +2,14 @@ require 'script_importer/url_importer'
 require 'script_importer/test_importer'
 
 module ScriptImporter
-  IMPORTERS = Rails.env.test? ? [UrlImporter, TestImporter] : [UrlImporter]
-
   class ScriptSyncer
+    def self.choose_importer
+      Rails.env.test? ? TestImporter : UrlImporter
+    end
+
     # Syncs the script and returns :success, :unchanged, or :failure
     def self.sync(script, changelog = nil, changelog_markup = 'text')
-      importer = get_importer_for_sync_source_id(script.script_sync_source_id)
+      importer = ScriptSyncer.choose_importer
       # pass the description in so we retain it if it's missing
       begin
         status, new_script, message = importer.generate_script(script.sync_identifier, script.description, script.users.first, 1, script.localized_attributes_for('additional_info'), script.locale, do_not_recheck_if_equal_to: script.current_code)
@@ -69,14 +71,6 @@ module ScriptImporter
       script.last_attempted_sync_date = DateTime.now
       script.sync_error = error
       script.save(validate: false)
-    end
-
-    def self.get_sync_source_id_for_url(url)
-      return IMPORTERS.find { |i| i.can_handle_url(url) }.sync_source_id
-    end
-
-    def self.get_importer_for_sync_source_id(id)
-      return IMPORTERS.find { |i| i.sync_source_id == id }
     end
 
     # For the synced additional infos in the script, is anything we got in the new version different?
