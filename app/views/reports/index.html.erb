@@ -1,9 +1,18 @@
-<% if @reports.any? %>
-  <% @reports.each_with_index do |report, i| %>
+<% if @actionable_reports.any? %>
+  <% @actionable_reports.each_with_index do |report, i| %>
     <section class="report-list-item">
       <%= render partial: report, locals: { i: i } %>
     </section>
   <% end %>
 <% else %>
-  <p>There are currently no pending reports.</p>
+  <p>There are currently no actionable reports.</p>
+<% end %>
+
+<% if @waiting_reports.any? %>
+  <h2>Waiting for author response</h2>
+  <% @waiting_reports.each_with_index do |report, i| %>
+    <section class="report-list-item">
+      <%= render partial: report, locals: { i: 1000 + i } %>
+    </section>
+  <% end %>
 <% end %>

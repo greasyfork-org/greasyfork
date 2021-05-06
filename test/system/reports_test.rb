@@ -74,7 +74,7 @@ class ReportsTest < ApplicationSystemTestCase
       assert_no_changes -> { report.item.reload.deleted? } do
         assert_enqueued_emails(2) do
           click_button 'Dismiss'
-          assert_content 'There are currently no pending reports.'
+          assert_content 'There are currently no actionable reports.'
         end
       end
     end
@@ -90,7 +90,7 @@ class ReportsTest < ApplicationSystemTestCase
       assert_no_changes -> { report.item.reload.deleted? } do
         assert_enqueued_emails(2) do
           click_button 'Mark as fixed'
-          assert_content 'There are currently no pending reports.'
+          assert_content 'There are currently no actionable reports.'
         end
       end
     end
@@ -106,7 +106,7 @@ class ReportsTest < ApplicationSystemTestCase
       assert_changes -> { report.item.reload.deleted? }, from: false, to: true do
         assert_enqueued_emails(2) do
           click_button 'Delete script'
-          assert_content 'There are currently no pending reports.'
+          assert_content 'There are currently no actionable reports.'
         end
       end
     end
