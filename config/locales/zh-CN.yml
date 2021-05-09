@@ -824,6 +824,7 @@ zh-CN:
     report_message: "举报消息"
     result_dismissed: "该举报已被管理员忽略。"
     result_upheld: "管理员已通过该举报。"
+    result_fixed: "管理员已经关闭了该则举报，因为管理员认为作者已经修正了报告的问题。"
     result_pending: "该举报尚待管理员查看。"
     rebuttal_placeholder: '向管理员解释为什么这个脚本不应被删除。'
     submit_rebuttal: "申诉"
@@ -1039,6 +1040,9 @@ zh-CN:
       report_dismissed_offender:
         subject: "%{site_name} 上的一则针对您的 %{script_name} 脚本的举报已被驳回"
         text: "%{site_name} 上的一则针对您的 %{script_name} 脚本的举报已由管理员驳回，您的脚本继续保留。详情查阅此报告: %{report_url}。如有疑问，请访问 https://greasyfork.org/forum/。"
+      report_fixed_offender:
+        subject: "一则针对你在 %{site_name} 发布的脚本 %{script_name} 的举报已关闭"
+        text: "管理员关闭了 %{site_name}上的一则关于脚本 %{script_name} 的举报，因为管理员认为你已经解决了报告的问题。该脚本已恢复正常访问。关于该则举报的详情可以在 %{report_url}阅读。如果你有任何问题，请访问论坛 https://greasyfork.org/forum/ 。"
       report_rebutted_reporter:
         subject: "您在%{site_name}上对于%{script_name}脚本的举报收到了一条回复"
         text: "您在 %{site_name} 上针对 %{script_name} 的举报收到了一则回应，你可以访问 %{report_url} 来查看。管理员将同时参考您的报告与原作者的回应来判定脚本是否违规。如有疑问，请访问 https://greasyfork.org/forum/ 。"
@@ -1051,6 +1055,9 @@ zh-CN:
       report_dismissed_reporter:
         subject: "您在%{site_name}上对于%{script_name}脚本的举报被驳回"
         text: "您在%{site_name}上对于%{script_name}脚本的举报已被管理员驳回，并且该脚本将继续保留。 详情查阅此报告:%{report_url}。如有疑问，请访问https://greasyfork.org/forum/。"
+      report_fixed_reporter:
+        subject: "你在 %{site_name} 针对 %{script_name} 提交的一则举报已关闭"
+        text: "你在 %{site_name} 针对 %{script_name} 提交的举报已被一位管理员关闭，因为该管理员认为作者已经解决了报告的问题。该脚本已恢复正常访问。关于该则举报的详情可以在%{report_url}阅读。如果你有任何问题，请访问论坛 https://greasyfork.org/forum/ 。"
     consecutive_bad_ratings:
       notify:
         subject: "您在 %{site_name}发布的脚本 %{script_name} 收到了多条差评。"

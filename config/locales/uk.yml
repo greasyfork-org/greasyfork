@@ -36,9 +36,11 @@ uk:
     update: "Оновитися до версії %{version}"
     downgrade: "Відкотитися до версії %{version}"
     reinstall: "Перевстановити версію %{version}"
+    old_version_warning: "Це застаріла версія скрипта. Якщо її встановити, новіша версія ніколи не буде встановлена. Все одно встановити?"
     promoted: "Розкручений сценарій"
     library_instructions_html: "Цей скрипт не слід встановлювати безпосередньо. Це - бібліотека для інших скриптів для включення в мета директиву %{code}"
     deleted_notice: "Цей скрипт було видалено."
+    deleted_notice_with_related: "Скрип, який ви запитуєте, був видалений. Але ось деякі пов'язані скрипти."
     version_notice_html: "Від %{date}. Дивіться %{latest_version_link}."
     version_notice_latest_version_link: "остання версія"
     info_page: "Інформація"
@@ -65,6 +67,7 @@ uk:
     admin:
       promoted_heading: "Розкручений сценарій"
       promoted_submit: "Встановити розкручений сценарій"
+      compare_title: "Повірняти з іншим скриптом."
       compare_button: "Порівняти"
     history_title: "%{script_name} - Історія версій"
     history_only_code_changes_info: "Це версії цього скрипту, де код був змінений."
@@ -103,7 +106,20 @@ uk:
       all: Увесь час
     derivatives_title: "%{script_name} - Подібні"
     derivatives_exact_copies_heading: "Точні копії"
+    derivatives_exact_copies_list_intro: "Наступні скрипти мають такий самий код, як і ваш:"
+    derivatives_exact_copies_item_html: "%{script_link} від %{author_links} - версії: %{version_list}"
+    derivatives_exact_copes_none: "Більше немає скриптів на %{site_name}, що мають такий самий код, як і цей скрипт."
     derivatives_similar_heading: "Схожі скрипти"
+    similarity_score:
+      high: Дуже схожі
+      medium: Помірно схожі
+      low: Дещо схожі
+      none: Не схожі
+    derivatives_similar_none: "Немає скриптів, схожих до вашого."
+    derivatives_similar_item: "%{score}: %{diff_link:[Diff]} %{script}"
+    derivatives_similar_last_check_html: "Ми востаннє перевірили подібні скрипти до вашого %{date}."
+    derivatives_similar_last_check_soon: "Ми скоро перевіримо скрипти, подібні до вашого."
+    derivatives_similar_check_now: "Перевірити зараз"
     listing_title_all_sites: "Скрипти користувачів для всіх сайтів"
     listing_description_all_sites: "Скрипти користувачів, що додають нові функції і видаляють помилки на всіх сайтах"
     listing_title_for_site: "Скрипти користувачів для %{site}"
@@ -226,9 +242,30 @@ uk:
     search_placeholder: "Знайти скрипти"
     updated: "Скрипт оновлено"
     preview_additional_info: "Перегляд"
+    must_confirm_email_button: "Надіслати посилання для підтвердження на %{email}"
     authors_heading: "Автори"
+    error_unauthorized_copy: "Схоже цей код є неавторизованою копією %{script}. Будь ласка, зверніться до %{site_name} %{rules_link:rules} про публікацію скриптів."
+    invitations:
+      form_title: "Запросити інших авторів"
+      explanation: "Ви можете додати інших користувачів Greasy Fork як авторів цього скрипта. Вони матимуть такі ж права на нього, як і ви."
+      invited_user_url_label: "Користувач, якого можна запросити"
+      invited_user_placeholder: "URL профілю користувача на %{site_name}"
+      submit: "Надіслати запрошення"
+      invalid_user_url: "URL-адреса запрошеного користувача недійсна."
+      already_author: "Користувач, якого ви вказали, вже є автором цього скрипта."
+      sent: "Запрошення надіслано."
+      subject: "Запрошення для %{script_name}"
+      body: "Вас запросили стати автором %{script_name} (%{script_url}) на %{site_name}. Щоб підтвердити запрошення, перейдіть за посиланням %{accept_url} ."
+      current_user_already_author: "Ви вже є автором цього скрипта."
+      invitation_not_found: "Запрошення не знайдено."
+      invitation_expired: "Закінчився термін дії запрошення."
+      invitation_accepted: "Тепер ви є автором цього скрипта."
     remove_author:
+      heading: "Видалити авторів"
+      success: "%{user_name} був видалений як автор."
       remove_button: "Видалити"
+      remove_confirm: "Ви впевнені, що хочете видалити %{user_name} як автора?"
+      failure: "Неможливо видалити автора."
     new_script_notice:
       title: "Що ви намагаєтеся зробити?"
     new_title:

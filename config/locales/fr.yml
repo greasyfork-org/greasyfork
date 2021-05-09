@@ -915,6 +915,7 @@ fr:
     report_message: "Signaler un message"
     result_dismissed: "Ce rapport a été rejeté par un modérateur."
     result_upheld: "signalerCe rapport a été approuver par un modérateur."
+    result_fixed: "Ce rapport a été résolu par un modérateur car ils pensent que l'auteur a résolu le problème."
     result_pending: "Ce rapport est en attente d'examen par un modérateur."
     rebuttal_placeholder: 'Expliquez à un modérateur pourquoi ce script ne doit pas être supprimé.'
     submit_rebuttal: "Soumettre une réfutation"
@@ -1132,6 +1133,9 @@ fr:
       report_dismissed_offender:
         subject: "Un rapport sur votre script %{script_name} par %{site_name} a été rejeté"
         text: "Un rapport sur votre script %{script_name} par %{site_name} a été rejeté par un modérateur. Votre script restera actif. Vous pouvez consulter le rapport sur %{report_url}. Si vous avez des questions, visiter https://greasyfork.org/fr/forum/."
+      report_fixed_offender:
+        subject: "Un rapport sur votre script %{script_name} sur %{site_name} a été marqué comme résolu"
+        text: "Un rapport sur votre script %{script_name} sur %{site_name} a été marqué comme résolu par un modérateur car il pense que vous avez résolu le problème. Votre script restera actif. Vous pouvez consulter ce rapport à l'adresse %{report_url}. Si vous avez des questions, veuillez visiter https://greasyfork.org/forum/."
       report_rebutted_reporter:
         subject: "Votre rapport sur%{script_name} par %{site_name}a reçu une réponse"
         text: "Votre rapport sur %{script_name} par %{site_name} a reçu une réponse. Vous pouvez consulter cette réponse sur %{report_url}. Un modérateur examinera votre rapport et cette réponse et décidera du résultat. Si vous avez des questions, visiter https://greasyfork.org/fr/forum/."
@@ -1144,6 +1148,9 @@ fr:
       report_dismissed_reporter:
         subject: "Votre rapport sur%{script_name}par%{site_name}a été rejeté"
         text: "Votre rapport sur %{script_name} par %{site_name} a été rejeté par un modérateur et le script que vous avez signalé restera actif. Vous pouvez consulter le rapport sur %{report_url}. Si vous avez des questions, visiter https://greasyfork.org/fr/forum/."
+      report_fixed_reporter:
+        subject: "Votre rapport sur %{script_name} sur %{site_name} a été marqué comme résolu"
+        text: "Votre rapport %{script_name} sur %{site_name} a été marqué comme résolu par un modérateur, car il pense que l'auteur a résolu le problème. Le script restera actif. Vous pouvez consulter le rapport à l'adresse %{report_url}. Si vous avez des questions, veuillez visiter https://greasyfork.org/forum/."
     consecutive_bad_ratings:
       notify:
         subject: "Votre script %{script_name} sur %{site_name} a reçu plusieurs \"mauvraises\" critiques."
