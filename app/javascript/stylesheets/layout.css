@@ -633,19 +633,21 @@ a.self-link, a.self-link:visited {
 }
 
 /* sign_up, sign_in and password/new */
-body .width-constraint > .text-content > h2,
-body .width-constraint > .text-content > h3 {
+.centered-sections h2, .centered-sections h3 {
   text-align: center;
 }
 form.external-login-form {
   position: relative;
-  display: block;
+  display: table;
   margin: 0 auto;
   padding: 1em;
   background-color: #fff;
   border: 1px solid #d8dee2;
   border-radius: 5px;
   text-align: center;
+}
+form.external-login-form .remember-me {
+  margin-top: 12px;
 }
 form.new_user {
   position: relative;

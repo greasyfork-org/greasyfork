@@ -1,0 +1,60 @@
+<% title 'Antifeatures' %>
+
+<p>Antifeatures are things added to scripts to benefit the authors rather than users, such as ads or tracking. Scripts with antifeatures are allowed according to <%= link_to "#{site_name}'s rules", help_code_rules_path %>, but they must be marked with <code>@antifeature</code> in the script's metadata block. Doing so will ensure the user is aware of the antifeature prior to installing.</p>
+
+<p>Antifeatures are described with the format <code>@antifeature <i>type</i> <i>description</i></code>. <i>type</i> is required and <i>description</i> is optional.</p>
+
+<p>This page describes the types of <code>@antifeature</code> recognized by <%= site_name %>. Other types may be used, but the presence of the antifeature must not be against <%= link_to "#{site_name}'s rules", help_code_rules_path %>.</p>
+
+<h3><code>@antifeature ads</code></h3>
+
+<p>The script inserts advertisements on pages the user visits.</p>
+
+<p>The following do <i>not</i> require the use of <code>@antifeature ads</code>:</p>
+
+<ul>
+  <li>A script that affects a website that contains ads.</li>
+  <li>A script links or otherwise directs the user to a website that contains ads, as long as that website provides some functionality when integrated with the script.</li>
+  <li>Promotion of the script author's homepage, code repository, Discord, WeChat, etc.</li>
+</ul>
+
+
+<h3><code>@antifeature membership</code></h3>
+
+<p>The script requires the user to subscribe to a channel, join a group, like a page, etc. for the script to be fully functional.</p>
+
+<p>The following do <i>not</i> require the use of <code>@antifeature membership</code>:</p>
+
+<ul>
+  <li>A script that affects the logged-in area of a website, but the script itself does not require additional logging in.</li>
+  <li>A script where support is provided via a platform that requires membership, as long as such support is not required for the user to have full functionality.</li>
+  <li>Links to the author's channel, group, page, etc. that do not affect the script's functionality.</li>
+</ul>
+
+
+<h3><code>@antifeature miner</code></h3>
+
+<p>The script contains a cryptominer or other code that uses the user's resources to perform some task for the script author.</p>
+
+
+<h3><code>@antifeature payment</code></h3>
+
+<p>The script requires the user pay the script author for the script to be fully functional.</p>
+
+<p>The following do <i>not</i> require the use of <code>@antifeature payment</code>:</p>
+
+<ul>
+  <li>A script that affects a website that requires payment, but the script itself does not require payment.</li>
+  <li>A script that asks for donations, as long as the donation does not unlock additional functionality.</li>
+</ul>
+
+
+<h3><code>@antifeature referral-link</code></h3>
+
+<p>The script performs some action that earns the author commission on purchases. This includes the script containing referral/affiliate links, rewriting existing links to be referral/affiliate links, or providing coupon codes that earn the script author commission.</p>
+
+
+<h3><code>@antifeature tracking</code></h3>
+
+<p>The script includes code to track user activity. This includes trackers such as Google Analytics or custom tracking code that reports user activity to the script author.</p>
+
