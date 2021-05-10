@@ -119,7 +119,7 @@
   <p>
     <%= t('reports.result_upheld') %>
   </p>
-  <% if report.moderator_notes %>
+  <% if report.moderator_notes.present? %>
     <blockquote>
       <div class="user-content">
         <%= format_user_text(report.moderator_notes, 'text') %>
@@ -130,10 +130,24 @@
   <p>
     <%= t('reports.result_fixed') %>
   </p>
+  <% if report.moderator_notes.present? %>
+    <blockquote>
+      <div class="user-content">
+        <%= format_user_text(report.moderator_notes, 'text') %>
+      </div>
+    </blockquote>
+  <% end %>
 <% elsif report.dismissed? %>
   <p>
     <%= t('reports.result_dismissed') %>
   </p>
+  <% if report.moderator_notes.present? %>
+    <blockquote>
+      <div class="user-content">
+        <%= format_user_text(report.moderator_notes, 'text') %>
+      </div>
+    </blockquote>
+  <% end %>
 <% elsif current_user && report.item.is_a?(Script) && report.item.users.include?(current_user) %>
   <% unless report.rebuttal.present? %>
     <%= form_with(model: report, url: rebut_report_path(report), method: 'POST') do |f| %>
