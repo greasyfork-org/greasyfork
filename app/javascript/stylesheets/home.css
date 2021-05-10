@@ -1,53 +1,56 @@
 #home-script-nav {
-	max-width: 700px;
-	margin: 0 auto;
-	padding-bottom: 20px;
-	border-bottom: 1px solid #BBBBBB;
-	margin-bottom: 15px;
+  max-width: 700px;
+  margin: 0 auto;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #BBBBBB;
+  margin-bottom: 15px;
 }
 .home-search input {
-	font-size: large;
+  font-size: large;
 }
 .home-search input[type=search]{
-	width: 100%;
+  width: 100%;
 }
 #home-top-sites {
-	overflow: hidden;
-	margin-top: 5px;
+  overflow: hidden;
+  margin-top: 5px;
 }
 #home-top-sites a {
-	margin: 0 5px;
+  margin: 0 5px;
 }
 #home-step-1, #home-step-2, #home-step-3 {
-	/* So they expand to fit the floats */
-	overflow: auto;
+  /* So they expand to fit the floats */
+  overflow: auto;
 }
 #home-step-1 figure {
-	float: right;
-	max-width: 50%;
-	margin-inline-end: 10px;
-	margin-top: 0;
+  float: right;
+  max-width: 50%;
+  margin-inline-end: 10px;
+  margin-top: 0;
 }
 #home-step-2 figure {
-	float: left;
-	max-width: 50%;
-	margin-inline-start: 7px;
-	margin-top: 0;
+  float: left;
+  max-width: 50%;
+  margin-inline-start: 7px;
+  margin-top: 0;
 }
 #home-step-2 li {
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 @media screen and (max-width: 680px) {
-	/* make image in home page to fill width */
-	#home-step-1 figure, #home-step-2 figure, #home-step-3 figure {
-		float: unset;
-		max-width: unset;
-		margin: unset;
-	}
-	[id^='home-step-'] figure img {
-		width: 100%;
-	}
+  /* make image in home page to fill width */
+  #home-step-1 figure, #home-step-2 figure, #home-step-3 figure {
+    float: unset;
+    max-width: unset;
+    margin: unset;
+  }
+  [id^='home-step-'] figure img {
+    width: 100%;
+  }
+}
+.super-title {
+  text-align: center;
 }

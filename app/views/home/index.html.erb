@@ -1,7 +1,7 @@
 <%- title t(sleazy? ? 'home.sleazy_title' : 'home.title', site_name: site_name) %>
 <%- description "#{site_name} is a free site providing user scripts to improve your web browsing experience." %>
 
-<h2><%= t(sleazy? ? 'home.sleazy_welcome' : 'home.welcome', site_name: site_name) %></h2>
+<h2 class="super-title"><%= t(sleazy? ? 'home.sleazy_welcome' : 'home.welcome', site_name: site_name) %></h2>
 
 <div id="home-script-nav">
   <%= form_tag(scripts_path, class: 'home-search', method: :get) do %>
