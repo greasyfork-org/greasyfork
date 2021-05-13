@@ -82,7 +82,7 @@
         </div>
       <% end %>
 
-      <% other_params_for_category = { read: @filter_result.read_status, page: nil } %>
+      <% other_params_for_category = { read: @filter_result.read_status, page: nil, user: @filter_result.by_user&.id, me: @filter_result.related_to_me } %>
       <div class="list-option-group">
         <%= t('discussions.category_filter.label') %>
         <ul>
