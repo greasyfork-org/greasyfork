@@ -23,6 +23,15 @@ class UsersController < ApplicationController
       return
     end
 
+    # Pagination with search is also slow.
+    if params[:q].present?
+      if params[:page].to_i > 1
+        redirect_to current_path_with_params(page: nil, per_page: nil)
+        return
+      end
+      @paginate = false
+    end
+
     @users = User
 
     @users = @users.where(['name like ?', "%#{User.sanitize_sql_like(params[:q])}%"]) if params[:q].present?

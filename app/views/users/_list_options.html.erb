@@ -1,8 +1,12 @@
 <div id="user-list-option-groups" class="list-option-groups">
 
   <%= form_tag(users_path, class: 'sidebar-search', method: :get) do %>
-    <input type="hidden" name="sort" value="<%= params[:sort] %>">
-    <input type="hidden" name="banned" value="<%= params[:banned] %>">
+    <% if params[:sort].present? %>
+      <input type="hidden" name="sort" value="<%= params[:sort] %>">
+    <% end %>
+    <% if params[:banned].present? %>
+      <input type="hidden" name="banned" value="<%= params[:banned] %>">
+    <% end %>
     <input id="user-search-field" type="search" name="q" value="<%= params[:q] %>" placeholder="<%= t('users.search_placeholder') %>"><input class="search-submit" type="submit" value="🔎">
   <% end %>
 
