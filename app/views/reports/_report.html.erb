@@ -2,9 +2,39 @@
 
 <h4 id="open-report-<%= i %>">
   <% if report.unauthorized_code? && (report.reference_script || report.script_url.present?) %>
-    <%= t('reports.report_intro_unauthorized_html', reported_script: report_item_link(report), other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow), reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)), report_date: markup_date(report.created_at)) %>
+    <% if report.reference_script %>
+      <% if report.reference_script.license&.url %>
+        <%= it('reports.report_intro_unauthorized_license_html',
+               reported_script: report_item_link(report),
+               other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow),
+               reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)),
+               report_date: markup_date(report.created_at),
+               license_link: report.reference_script.license.url,
+               license_name: report.reference_script.license.name,
+               tldr_legal_link: It.link("https://tldrlegal.com/search?q=#{URI.encode_www_form_component(report.reference_script.license.code)}", target: 'tldrlegal'))
+        %>
+      <% elsif report.reference_script.license || report.reference_script.license_text %>
+        <%= it('reports.report_intro_unauthorized_license_no_url_html',
+               reported_script: report_item_link(report),
+               other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow),
+               reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)),
+               report_date: markup_date(report.created_at),
+               license_name: report.reference_script.license&.name || report.reference_script.license_text,
+               tldr_legal_link: It.link("https://tldrlegal.com/search?q=#{URI.encode_www_form_component(report.reference_script.license&.name || report.reference_script.license_text)}", target: 'tldrlegal'))
+        %>
+      <% else %>
+        <%= it('reports.report_intro_unauthorized_no_license_html',
+               reported_script: report_item_link(report),
+               other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow),
+               reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)),
+               report_date: markup_date(report.created_at))
+        %>
+      <% end %>
+    <% else %>
+      <%= t('reports.report_intro_unauthorized_html', reported_script: report_item_link(report), other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow), reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)), report_date: markup_date(report.created_at)) %>
+    <% end %>
   <% else %>
-    <%= t('reports.report_intro_html', reported_item: report_item_link(report), reason: report.reason_text, reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)), report_date: markup_date(report.created_at)) %>
+    <%= it('reports.report_intro_html', reported_item: report_item_link(report), reason: report.reason_text, reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)), report_date: markup_date(report.created_at)) %>
   <% end %>
 </h4>
 
@@ -151,13 +181,16 @@
 <% elsif current_user && report.item.is_a?(Script) && report.item.users.include?(current_user) %>
   <% unless report.rebuttal.present? %>
     <%= form_with(model: report, url: rebut_report_path(report), method: 'POST') do |f| %>
-      <%= f.text_area :rebuttal, required: true, placeholder: t('reports.rebuttal_placeholder'), maxlength: 10_000 %>
-      <br>
+      <div class="form-control">
+        <%= f.text_area :rebuttal, required: true, placeholder: t('reports.rebuttal_placeholder'), maxlength: 10_000 %>
+      </div>
       <%= f.submit t('reports.submit_rebuttal') %>
     <% end %>
   <% end %>
   <%= form_tag(uphold_report_path(report), method: 'POST') do %>
-    <%= submit_tag(t('reports.delete_script')) %>
+    <p>
+      <%= submit_tag(t('reports.delete_script')) %>
+    </p>
   <% end %>
   <p>
     <%= t('reports.result_pending') %>

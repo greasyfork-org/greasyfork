@@ -100,7 +100,7 @@ class Report < ApplicationRecord
   end
 
   def reason_text
-    REASON_TEXT[reason]
+    It.it("reports.reason.#{reason}", antifeature_link: Rails.application.routes.url_helpers.help_antifeatures_path)
   end
 
   def resolved?

@@ -990,7 +990,7 @@ en:
       updates: Scripts must not check for updates at a rate higher than once per day. Note that most user script managers will handle automatic updates, so doing it in the script is unnecessary. Scripts should also not dynamically inject another %{site_name}-hosted script into a page, as this bypasses caching in user script managers.
       external_js: "%{external_scripts_link:Use of external JavaScript is limited.}"
       copyright_header: Copyright
-      licensing: Your script must respect others' copyrights. This includes the code itself and any resources (for example images) it uses. If you intend on using someone else's content, abide by their licensing terms or get their permission before doing so.
+      licensing: Your script must respect others' copyrights. This includes the code itself and any resources (for example images) it uses. If you intend on using someone else's content, abide by their licensing terms or get their permission before doing so. Licenses on scripts are specified by the <code>@license</code> meta key, and you can learn about what you can and cannot do by using %{tldr_legal_link:tldrlegal.com}.
       reposts: Even in cases not violating the copyright rule, reposts of scripts that are already on %{site_name} are not allowed unless they are improving upon the original.
       miscellaneous_header: Miscellaneous
       keywords_html: Scripts must not include <code>@include</code>s, <code>@match</code>es, or keywords for sites they do not provide functionality on.
@@ -1178,10 +1178,13 @@ en:
       malware: "Malware"
       minified: "Minified code"
       external_code: "Disallowed external code"
-      undisclosed_antifeature: "Undisclosed %{antifeature_link:antifeature} (e.g. ad, tracking, miner)"
+      undisclosed_antifeature: "Undisclosed %{antifeature_link:antifeature} (e.g. ad, tracking, miner, etc.)"
       other: "Other"
     report_intro_html: "%{reported_item} was reported %{report_date} by %{reporter} for %{reason}"
     report_intro_unauthorized_html: "%{reported_script} was reported %{report_date} by %{reporter} as an unauthorized copy of %{other_script}."
+    report_intro_unauthorized_license_html: "%{reported_script} was reported %{report_date} by %{reporter} as an unauthorized copy of %{other_script}. %{other_script} uses the %{license_link: %{license_name}} license. Visit %{tldr_legal_link:tldrlegal.com} for help understanding what this license means."
+    report_intro_unauthorized_license_no_url_html: "%{reported_script} was reported %{report_date} by %{reporter} as an unauthorized copy of %{other_script}. %{other_script} uses the %{license_name} license. Visit %{tldr_legal_link:tldrlegal.com} for help understanding what this license means."
+    report_intro_unauthorized_no_license_html: "%{reported_script} was reported %{report_date} by %{reporter} as an unauthorized copy of %{other_script}. %{other_script} does not specify a license, which means distributing copies is not allowed unless explicit permission is given."
     non_functional_feedback: "Please report non-functional scripts as %{feedback_link:feedback} on the script instead."
     unauthorized_code_original_placeholder: "URL of original code"
     explanation_placeholder: "Provide additional details (optional)"
