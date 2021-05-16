@@ -687,6 +687,8 @@ sk:
       contributionAmount_html: "Navrhnutá suma príspevku, spojená v súvislosti s <code>@contributionURL</code>."
       compatible_html: "Označí tento skript ako kompatibilný s webovým prehliadačom. Informácie o kompatibilite budú zobrazené na stránke skriptu. Komentáre ohľadom kompatibility môžu byť zahrnuté vo formáte <code>@compatible firefox Musíte zakázať blokovanie nevyžiadaných vyskakovacích okien</code>. Overené prehliadače: %{browsers}."
       incompatible_html: "Označí tento skript ako nekompatibilný s webovým prehliadačom. Informácie o kompatibilite budú zobrazené na stránke skriptu. Voliteľné komentáre ohľadom kompatiblity môžu byť zahrnuté vo formáte <code>@incompatible firefox Nefunguje od Firefox 23</code>. Overené prehliadače: %{browsers}."
+      antifeature_html: |
+          Zverejňuje funkciu v skripte, ktorá je užitočná pre autora, nie pre používateľa. Formát tohto kľúča je <code>@antifeature popis</code>.  <i>typ</i> je povinný, <i>popis</i> je voliteľný. %{antifeatures_link:Čítajte tu} pre viac informácií o type na %{site_name}.
       antifeature_localized_html: "Kľúč <code>@antifeature</code> popísaný pre špecifickú lokalitu, kde XX je <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-jazykový kód</a> a YY je voliteľný <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 kód krajiny</a>. Prepíše <code>@antifeature</code> s rovnakým typom, ak používateľ prehliada so zhodnou lokalitou."
     writing_user_scripts:
       title: "Ako napísať používateľský skript"
@@ -707,6 +709,7 @@ sk:
       updates: Skripty nesmú kontrolovať dostupnosť aktualizácií rýchlejšie ako raz za deň. Upozorňujeme, že väčšina správcov používateľských skriptov bude pracovať s automatickými aktualizáciami, takže je to zbytočné. Skripty by tiež nemali dynamicky vkladať na stránku ďalší skript hostovaný na %{site_name}, pretože sa obchádza ukladanie do vyrovnávacej pamäte v správcoch používateľských skriptov.
       external_js: "%{external_scripts_link:Použitie externých javscriptov je obmedzené.}"
       copyright_header: Autorské práva
+      licensing: Váš skript musí rešpektovať autorské práva ostatných. Zahŕňa to samotný kód a všetky zdroje (napríklad obrázky), ktoré používa. Ak máte v úmysle použiť obsah niekoho iného, ​​riaďte sa jeho licenčnými podmienkami alebo pred tým získajte jeho povolenie. Licencie na skripty sa udávajú do metakľúča <code>@license</code> a to, čo môžete a čo nemôžete robiť sa môžete dozvedieť na %{tldr_legal_link:tldrlegal.com}.
       reposts: Dokonca v prípadoch neporušovania autorského práva, preposielanie skriptov, ktoré už sú na %{site_name} nie je povolené, aj keď vylepšujú pôvodný skript
       miscellaneous_header: Rôzne
       keywords_html: Skripty nesmú obsahovať <code>@include</code>, <code>@match</code>,  ani kľúčové slová pre weby, na ktorých neposkytujú funkcie.
@@ -827,6 +830,45 @@ sk:
           na stránke. Tieto knižnice môžu obsahovať sledovaciu logiku.</p>
     user_css_to_user_js:
       title: Prevod používateľského CSS na JS
+    antifeatures:
+      title: Antifunkcie
+      intro_html: |
+          <p>Antifeatures sú veci pridávané do skriptov, ktoré sú prospešné skôr pre autorov ako pre používateľov, ako napríklad reklamy alebo sledovanie. Skripty s antifunkciami sú povolené podľa %{rules_link:%pravidlá %{site_name}}, ale musia byť označené ako <code>@antifeature</code> v bloku metaúdajov skriptu. Týmto spôsobom zaistíte, že používateľ bude vedieť o antifunkiách pred inštaláciou.</p>
+          <p>Antifunkcie sú špecifikované ako %{meta_keys_link:metakľúče skriptu} vo formáte <code>@antifeature<i>typ</i><i>popis</i></code>.<i>typ</i> je povinný a <i>popis</i> je voliteľný.</p>
+          <p>Táto strana popisuje typy <code>@antifeature</code>uznávané %{site_name}. Ostatný typu môžu byť použité, ale prítomnosť antifunkcie nesmie byť proti %{rules_link:pravidlám %{site_name}}. </p>
+      ads_html: |
+          <p>Skript vkladá reklamu na stránky, ktoré navštivujete.</p>
+          <p>Nasledujúce <i>nevyžaduje</i> použitie <code>@antifeature ads</code>:</p>
+          <ul>
+          <li>Skript ovplyvňujúci web, ktorý obsahuje reklamy.</li>
+          <li>Skript odkazuje alebo inak nasmeruje používateľa na web, ktorý obsahuje reklamy, pokiaľ tento web poskytuje niektoré funkcie, keď je integrovaný do skriptu.</li>
+          <li>Propagácia domovskej stránky autora skriptu, úložiska kódov, Discord, WeChat atď.</li>
+          </ul>
+      membership_html: |
+          <p>Skript vyžaduje pre plnú funkčnosť, aby sa používateľ prihlásil na odber kanála, pripojil sa k skupine, lajkol stránku atď.</p>
+
+          <p>Nasledujúce <i>nevyžaduje</i>použitie <code>@antifeature membership</code>:</p>
+
+          <ul>
+          <li>Skript ovplyvňuje časť stránky dostupnej po prihlásení, ale samotný skript nevyžaduje prihlásenie.</li>
+          <li>Skript, v ktorom je podpora poskytovaná prostredníctvom platformy, ktorá vyžaduje členstvo, pokiaľ takáto podpora nie je vyžadovaná, aby mal používateľ úplnú funkčnosť.</li>
+          <li>Odkazy na kanál, skupinu, stránku, atď. autora, ktoré neovplyvňujú funkčnosť skriptu.</li>
+          </ul>
+      miner_html: |
+          <p>Skript obsahuje kryptomenu alebo iný kód, ktorý využíva zdroje používateľa na vykonávanie niektorých úloh pre autora skriptu.</p>
+      payment_html: |
+          <p>Skript vyžaduje, aby používateľ platil autorovi skriptu, aby bol skript plne funkčný.</p>
+
+          <p>Nasledujúce <i>nevyžaduje</i> použitie <code>@antifeature payment</code>:</p>
+
+          <ul>
+          <li>Skript ovplyvňujúci web, ktorý vyžaduje platbu, ale samotný skript nevyžaduje platbu.</li>
+          <li>Skript, ktorý vyzýva na darovanie, pokiaľ dary neodomknú ďalšie funkcie.</li>
+          </ul>
+      referral_link_html: |
+          <p>Skript vykoná určitú akciu, ktorá autorovi prinesie províziu z nákupov. To zahŕňa skript obsahujúci referral/affiliate odkazy, prepísanie existujúcich odkazov na referral/affiliate odkazy alebo poskytnutie kupónových kódov, ktoré autorovi skriptu prinášajú províziu.</p>
+      tracking_html: |
+          <p>Skript obsahuje kód na sledovanie aktivity používateľa. Patria sem sledovacie nástroje, ako napríklad Google Analytics, alebo vlastný sledovací kód, ktorý autorovi skriptu hlási aktivitu používateľa.</p>
   search:
     script_search:
       title: "Hľadať skript"
@@ -901,13 +943,17 @@ sk:
       spam: "Spam"
       abuse: "Urážlivý alebo nenávistný obsah"
       illegal: "Nelegálny obsah"
-      unauthorized_code: "Neautorizovaná kópia"
+      unauthorized_code: "Neoprávnená kópia"
       malware: "Malvér"
       minified: "Minifikovaný kód"
       external_code: "Nepovolený externý kód"
+      undisclosed_antifeature: "Utajená %{antifeature_link:antifunkcia} (napr. reklama, sledovanie, ťaženie, atď.)"
       other: "Iné"
     report_intro_html: "%{reported_item} bol nahlásený %{report_date} používateľom %{reporter} z dôvodu %{reason}"
-    report_intro_unauthorized_html: "%{reported_script} bol nahlásený %{report_date}používateľom %{reporter}ako neautorizovaná kópia skriptu %{other_script}."
+    report_intro_unauthorized_html: "%{reported_script} bol nahlásený %{report_date}používateľom %{reporter}ako neoprávnená kópia skriptu %{other_script}."
+    report_intro_unauthorized_license_html: "%{reported_script} bol nahlásený %{report_date} používateľom %{reporter} ako neoprávnená kópia skriptu %{other_script}. %{other_script} používa licenciu %{license_link: %{license_name}}. Pre lepšie pochopenie, čo táto licencia znamená navštívte {tldr_legal_link:tldrlegal.com}."
+    report_intro_unauthorized_license_no_url_html: "%{reported_script} bol nahlásený %{report_date} používateľom %{reporter} ako neoprávnená kópia skriptu %{other_script}. %{other_script} používa licenciu %{license_name}. Pre lepšie pochopenie, čo táto licencia znamená, navštívte {tldr_legal_link:tldrlegal.com}."
+    report_intro_unauthorized_no_license_html: "%{reported_script} bol nahlásený %{report_date} používateľom %{reporter} ako neoprávnená kópia skriptu %{other_script}. %{other_script} neuvádza licenciu, čo znamená, že distribúcia kópií nie je povolená, pokiaľ na to nie je výslovne udelený súhlas."
     non_functional_feedback: "Namiesto toho nahláste nefunkčné skripty cez %{feedback_link:spätná odozva} v skripte."
     unauthorized_code_original_placeholder: "Odkaz na pôvodný kód"
     explanation_placeholder: "Uveďte ďalšie podrobnosti (voliteľné)"
