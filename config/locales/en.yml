@@ -962,7 +962,8 @@ en:
       compatible_html: "Flags this script as compatible with a browser. Compatibility information will be shown on a script's page. Comments on compatibility can be included in the format <code>@compatible firefox Must disable pop-up blocker</code>. Recognized browsers are: %{browsers}."
       # description of @incompatible. %{browsers} is a comma-separated list of browser codes. You can translate "Broken since Firefox 23", but do not translate "@compatible firefox".
       incompatible_html: "Flags this script as incompatible with a browser. Compatibility information will be shown on a script's page. Optional comments on compatibility can be included in the format <code>@incompatible firefox Broken since Firefox 23</code>. Recognized browsers are: %{browsers}."
-      antifeature_html: "Discloses features in a script that are there to benefit the author, not the user. The format of this key is <code>@antifeature type description</code>. %{site_name} will read the following types: <code>ads</code> (the script displays ads to the user), <code>tracking</code> (the script tracks the user's activity), <code>miner</code> (the script contains a cryptominer), and <code>referral-link</code> (the script rewrites links to add referral/affiliate tracking). Other types are ignored, but the script must nonetheless follow %{code_rules_link:%{site_name}'s rules}. Description is optional."
+      antifeature_html: |
+        Discloses features in a script that are there to benefit the author, not the user. The format of this key is <code>@antifeature type description</code>. <i>type</i> is required, <i>description</i> is optional. %{antifeatures_link:Read here} for info on the <i>type</i>s read by %{site_name}.
       antifeature_localized_html: "An <code>@antifeature</code> described in a specific locale, where XX is an <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-letter code</a> and YY is an optional <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 country code</a>. Overrides <code>@antifeature</code>s of the same type when the user is browsing in a matching locale."
     writing_user_scripts:
       # title for Writing user scripts help page
@@ -982,7 +983,6 @@ en:
       functionality_header: Functionality
       description: Scripts must include a description of what they do and may not do things unreasonably outside of this description. Users must know what a script will do before installing it.
       reason: Scripts must have a reason to be a script. For example, a script that just directs a user to a website doesn't need to be a script; it could be a link. Scripts that use a web service to perform an action on the current page (e.g. to convert it in some way) are allowed.
-      unrelated: Scripts must not require users to perform an unrelated action, such as sending a payment, subscribing to a channel, joining a group, or liking a page, for the script to be functional, in full or partially.
       monetization_html: Scripts that contain features for the benefit of the <em>author</em> rather than the user (such as tracking, ads, and miners) are allowed, but these must be disclosed with %{antifeature_link:<code>@antifeature</code> meta keys}.
       code_header: Code
       obfuscation: Code posted to %{site_name} must not be obfuscated or minified. Users must be given the opportunity to inspect and understand a script before installing it. If the script is bundled by a tool such as webpack, it must be output in non-minified form.
@@ -1076,6 +1076,45 @@ en:
         <p>%{site_name} may include third party code to collect statistics or display advertisements on the site. These libraries may include tracking logic.</p>
     user_css_to_user_js:
       title: Conversion of user CSS to user JS
+    antifeatures:
+      title: Antifeatures
+      intro_html: |
+        <p>Antifeatures are things added to scripts to benefit the authors rather than users, such as ads or tracking. Scripts with antifeatures are allowed according to %{rules_link:%{site_name}'s rules} but they must be marked with <code>@antifeature</code> in the script's metadata block. Doing so will ensure the user is aware of the antifeature prior to installing.</p>
+        <p>Antifeatures are specified as %{meta_keys_link:script meta keys} with the format <code>@antifeature <i>type</i> <i>description</i></code>. <i>type</i> is required and <i>description</i> is optional.</p>
+        <p>This page describes the types of <code>@antifeature</code> recognized by %{site_name}. Other types may be used, but the presence of the antifeature must not be against %{rules_link:%{site_name}'s rules}.</p>
+      ads_html: |
+        <p>The script inserts advertisements on pages the user visits.</p>
+        <p>The following do <i>not</i> require the use of <code>@antifeature ads</code>:</p>
+        <ul>
+          <li>A script that affects a website that contains ads.</li>
+          <li>A script links or otherwise directs the user to a website that contains ads, as long as that website provides some functionality when integrated with the script.</li>
+          <li>Promotion of the script author's homepage, code repository, Discord, WeChat, etc.</li>
+        </ul>
+      membership_html: |
+        <p>The script requires the user to subscribe to a channel, join a group, like a page, etc. for the script to be fully functional.</p>
+
+        <p>The following do <i>not</i> require the use of <code>@antifeature membership</code>:</p>
+
+        <ul>
+          <li>A script that affects the logged-in area of a website, but the script itself does not require additional logging in.</li>
+          <li>A script where support is provided via a platform that requires membership, as long as such support is not required for the user to have full functionality.</li>
+          <li>Links to the author's channel, group, page, etc. that do not affect the script's functionality.</li>
+        </ul>
+      miner_html: |
+        <p>The script contains a cryptominer or other code that uses the user's resources to perform some task for the script author.</p>
+      payment_html: |
+        <p>The script requires the user pay the script author for the script to be fully functional.</p>
+
+        <p>The following do <i>not</i> require the use of <code>@antifeature payment</code>:</p>
+
+        <ul>
+          <li>A script that affects a website that requires payment, but the script itself does not require payment.</li>
+          <li>A script that asks for donations, as long as the donation does not unlock additional functionality.</li>
+        </ul>
+      referral_link_html: |
+        <p>The script performs some action that earns the author commission on purchases. This includes the script containing referral/affiliate links, rewriting existing links to be referral/affiliate links, or providing coupon codes that earn the script author commission.</p>
+      tracking_html: |
+        <p>The script includes code to track user activity. This includes trackers such as Google Analytics or custom tracking code that reports user activity to the script author.</p>
   search:
     script_search:
       title: "Script Search"
@@ -1139,7 +1178,7 @@ en:
       malware: "Malware"
       minified: "Minified code"
       external_code: "Disallowed external code"
-      undisclosed_antifeature: "Undisclosed antifeature (e.g. ad, tracking, miner)"
+      undisclosed_antifeature: "Undisclosed %{antifeature_link:antifeature} (e.g. ad, tracking, miner)"
       other: "Other"
     report_intro_html: "%{reported_item} was reported %{report_date} by %{reporter} for %{reason}"
     report_intro_unauthorized_html: "%{reported_script} was reported %{report_date} by %{reporter} as an unauthorized copy of %{other_script}."
