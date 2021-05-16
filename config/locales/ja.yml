@@ -600,7 +600,6 @@ ja:
       contributionAmount_html: "提示する寄付金額。<code>@contributionURL</code> と共に使用します。"
       compatible_html: "スクリプトがどのブラウザと互換性があるか。互換性はスクリプトの情報ページに表示されます。<code>@compatible firefox ポップアップブロックの無効化が必須</code> のような形式で、互換性に関するコメントを含めることもできます。認識されるブラウザ: %{browsers}"
       incompatible_html: "スクリプトがどのブラウザと互換性がないか。互換性はスクリプトの情報ページに表示されます。<code>@incompatible firefox Firefox 23 以降で動作しない</code> のような形式で、互換性に関するコメントを含めることもできます。認識されるブラウザ: %{browsers}"
-      antifeature_html: "ユーザーではなく開発者にとっての利益となるような機能を、 <code>@antifeature type description</code> の形式で開示します。%{site_name}が認識するのは、 <code>ads</code> (スクリプトがユーザーに広告を表示する)、 <code>tracking</code> (スクリプトがユーザーの行動をたどる)、 <code>miner</code> (スクリプトが暗号通貨の採掘を含む)、 <code>referral-link</code> (スクリプトが紹介/アフィリエイト用にリンクを書き換える) の type です。他の type は無視されますが、どんな場合でも %{code_rules_link:%{site_name}のルール} に従わなければなりません。また、description を追加するかどうかは任意です。"
       antifeature_localized_html: "<code>@antifeature</code> の説明を特定の言語で記述します。XX は <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 の2文字コード</a> で、YY として <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 の国名コード</a> を追加することもできます。ユーザーの使用言語にマッチした場合に、 <code>@antifeature</code> の内容を上書きします。"
     writing_user_scripts:
       title: "ユーザースクリプトの書き方"

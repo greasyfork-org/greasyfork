@@ -687,7 +687,6 @@ sk:
       contributionAmount_html: "Navrhnutá suma príspevku, spojená v súvislosti s <code>@contributionURL</code>."
       compatible_html: "Označí tento skript ako kompatibilný s webovým prehliadačom. Informácie o kompatibilite budú zobrazené na stránke skriptu. Komentáre ohľadom kompatibility môžu byť zahrnuté vo formáte <code>@compatible firefox Musíte zakázať blokovanie nevyžiadaných vyskakovacích okien</code>. Overené prehliadače: %{browsers}."
       incompatible_html: "Označí tento skript ako nekompatibilný s webovým prehliadačom. Informácie o kompatibilite budú zobrazené na stránke skriptu. Voliteľné komentáre ohľadom kompatiblity môžu byť zahrnuté vo formáte <code>@incompatible firefox Nefunguje od Firefox 23</code>. Overené prehliadače: %{browsers}."
-      antifeature_html: "Zverejňuje funkciu v skripte, ktorá je užitočná autora, nie pre používateľa. Formát tohto kľúča je <code>@antifeature type description</code>. %{site_name} prečíta nasledujúce typy: <code>reklama</code> (skript zobrazí používateľovi reklamu), <code>sledovanie</code> (skript sleduje aktivity používateľa) a <code>miner</code> (skript obsahuje kryptominer) a <code>referral odkaz</code> (skript prepíše odkazy pridaním referral/affiliate sledovania). Ostatné typy sú ignorované, napriek tomu skript musí dodržiavať %{code_rules_link:%Pravidlá stránky %{site_name}}. Popis je voliteľný."
       antifeature_localized_html: "Kľúč <code>@antifeature</code> popísaný pre špecifickú lokalitu, kde XX je <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-jazykový kód</a> a YY je voliteľný <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 kód krajiny</a>. Prepíše <code>@antifeature</code> s rovnakým typom, ak používateľ prehliada so zhodnou lokalitou."
     writing_user_scripts:
       title: "Ako napísať používateľský skript"
@@ -701,7 +700,6 @@ sk:
       functionality_header: Funkčnosť
       description: Skripty musia obsahovať opis toho, čo robia, a nesmú robiť veci bezdôvodne mimo neho. Používatelia musia pred inštaláciou skriptu vedieť, čo urobí.
       reason: Skripty musia mať dôvod na to, aby boli skriptom. Napríklad skript, ktorý iba nasmeruje používateľa na web, nemusí byť skript; môže to byť odkaz. Skripty, ktoré používajú webovú službu na vykonanie akcie na aktuálnej stránke (napr. prevod na iný formát), sú povolené.
-      unrelated: Skripty nesmú vyžadovať, aby používatelia vykonali nesúvisiacu akciu, ako je napríklad odoslanie platby, prihlásenie na odber kanála, pripojenie sa k skupine alebo označenie stránky, ktorá sa jej páči, aby bol skript úplne alebo čiastočne funkčný.
       monetization_html: Skripty obsahujúce funkcie viac prospešné pre <em>autora</em> ako pre používateľa (ako sledovanie, reklamy, ťaženie, atď.) sú povolené, ale autor to musí uviesť do %{antifeature_link:metakľúčov <code>@antifeature</code>}.
       code_header: Kód
       obfuscation: Kód zverejnený na webe %{site_name} nesmie byť zmätočný ani minifikovaný. Používateľom musí byť poskytnutá príležitosť skontrolovať a porozumieť skriptu pred jeho inštaláciou. Ak je skript zabalený s nástrojom, ako je webpack, musí byť vydaný v neminifikovanej podobe.
@@ -709,7 +707,6 @@ sk:
       updates: Skripty nesmú kontrolovať dostupnosť aktualizácií rýchlejšie ako raz za deň. Upozorňujeme, že väčšina správcov používateľských skriptov bude pracovať s automatickými aktualizáciami, takže je to zbytočné. Skripty by tiež nemali dynamicky vkladať na stránku ďalší skript hostovaný na %{site_name}, pretože sa obchádza ukladanie do vyrovnávacej pamäte v správcoch používateľských skriptov.
       external_js: "%{external_scripts_link:Použitie externých javscriptov je obmedzené.}"
       copyright_header: Autorské práva
-      licensing: Váš skript musí rešpektovať autorské práva ostatných. Zahŕňa to samotný kód a všetky zdroje (napríklad obrázky), ktoré používa. Ak máte v úmysle použiť obsah niekoho iného, ​​riaďte sa jeho licenčnými podmienkami alebo pred tým získajte jeho povolenie.
       reposts: Dokonca v prípadoch neporušovania autorského práva, preposielanie skriptov, ktoré už sú na %{site_name} nie je povolené, aj keď vylepšujú pôvodný skript
       miscellaneous_header: Rôzne
       keywords_html: Skripty nesmú obsahovať <code>@include</code>, <code>@match</code>,  ani kľúčové slová pre weby, na ktorých neposkytujú funkcie.
@@ -908,7 +905,6 @@ sk:
       malware: "Malvér"
       minified: "Minifikovaný kód"
       external_code: "Nepovolený externý kód"
-      undisclosed_antifeature: "Utajená funkcia (napr. reklama, sledovanie, ťaženie)"
       other: "Iné"
     report_intro_html: "%{reported_item} bol nahlásený %{report_date} používateľom %{reporter} z dôvodu %{reason}"
     report_intro_unauthorized_html: "%{reported_script} bol nahlásený %{report_date}používateľom %{reporter}ako neautorizovaná kópia skriptu %{other_script}."

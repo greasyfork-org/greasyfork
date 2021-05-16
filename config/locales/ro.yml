@@ -654,7 +654,6 @@ ro:
       contributionAmount_html: "Suma sugerată de donații, folosit in conjunctură cu <code>@URLcontributie</code>."
       compatible_html: "Marchează scriptul compatibil cu un browser. Informațiile de compatibilitate vor fi scrise pe pagina scriptului. Comentariile despre compatibilitate pot fi incluse în format. <code>@compatible firefox Trebuie dezactivat blocajul de ferestre</code>. Browserurile recunoscute sunt: %{browsers}."
       incompatible_html: "Marchează scriptul compatibil cu un browser. Informațiile de compatibilitate vor fi scrise pe pagina scriptului. Comentariile opționale despre compatibilitate pot fi incluse in format. <code>@cinompatible firefox Stricat din Firefox 23</code>. Browserurile recunoscute sunt: %{browsers}."
-      antifeature_html: "Dezvaluie caracteristici într-un script care sunt acolo în beneficiul autorului, nu al utilizatorului. Formatul cheie este: <code>descriere de tip @anticaracteristică</code>. Site-ul %{site_name} va citi următoarele tipuri:  <code>reclamă</code> (scriptul arată o reclamă utilizatorului), <code>urmărire</code> (scriptul urmăreste activitatea utilizatorului), <code>miner</code> (scriptul conține un miner de cryptomonede) și <code>link-de-afiliere</code> (scriptul rescrie linkuri pentru a adăuga urmăritor de afiliere). Alte tipuri sunt ignorate, dar scriptul trebuie fară doar și poate să respecte %{code_rules_link:regulamentul site-ului %{site_name}}. Descrierea este opțională."
       antifeature_localized_html: "O <code>@anticaracteristica</code> descrie cum o locală specifică, unde XX este un <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">litera 2 de cod ISO 639-1</a> și YY este un <a href=\"https://www.iso.org/obp/ui/#search\">număr de țară opțional ISO 3166</a>. Modifică <code>@anticaracteristica</code>s de același tip când utilizatorul răsfoiește într-o locală asemanătoare. "
     writing_user_scripts:
       title: "Cum să creezi scripturi"
@@ -668,7 +667,6 @@ ro:
       functionality_header: Funcționalitate
       description: Scripturile trebuie să includă o descriere cu privire la ce anume face scriptul și să nu facă lucruri ce nu sunt rezonabile și nu sunt trecute în descriere. Utilizatorii trebuie să știe ce face un script înainte de a-l instala.
       reason: Scripturile trebuie să aibă un motiv pentru care exista. De exemplu, un script care doar redirecționează utilizatorii catre un site nu trebuie să fie un script; poate fi un link. Scripturile care folosesc un serviciu web pentru a face un lucru pe pagina curentă (de ex să îl convertească într-un fel) sunt permise.
-      unrelated: Scripturile nu trebuie să oblige utilizatorii să facă un lucru care nu are nici un sens, cum ar fi trimiterea unei plați, abonarea la un canal, intratul într-un grup sau să atașeze o pagină, pentru ca scriptul să funcționeze, complet sau parțial.
       monetization_html: Scripturile care conțin caracteristici în beneficiul <em>autorului</em> și nu a utilizatorului (cum ar fi urmărire, reclame sau mineri) sunt permise, dar acestea trebuie să fie precizate cu %{antifeature_link:chei meta <code>@anticaracteristici</code>}.
       code_header: Cod
       obfuscation: Codul postat pe %{site_name} nu trebuie să fie ascuns sau micșorat. Utilizatorii trebuie să aibă oportunitatea de a inspecta și de a înțelege un script înainte de a-l instala. Daca scriptul este împachetat de o unealtă cum ar fi webpack, trebuie să fie scos ne-micșorat.
@@ -676,7 +674,6 @@ ro:
       updates: Scripturile nu trebuie să caute actualizări la o rată mai mare decât o dată pe zi. Ține minte că majoritatea utilizatorilor folosesc un manager de scripturi și li se vor face actualizări automat, deci să se facă un script nu este necesar. Scripturile nu ar trebui să injecteze dinamic alt script găzduit de pe %{site_name} în pagină, pentru că asta sare peste stocarea in managerul de scripturi.
       external_js: "%{external_scripts_link:Uzul de JavaScript extern este limitat.}"
       copyright_header: Drepturi de autor
-      licensing: Scriptul tău trebuie să respecte drepturile de autor a altora. Asta include codul în sine și orice altă resursa (de exemplu imagini) folosită. Dacă intetionezi să folosești conținutul altcuiva, respectă-le termenii de licență sau fă rost de permisiunea lor înainte de a face-o.
       reposts: Chiar și în cazurile care nu se incalcă regulamentul drepturilor de autor, repostarea de scripturi care sunt deja pe %{site_name} nu este permisă decât dacă sunt mai îmbunatațite față de original.
       miscellaneous_header: Diverse
       keywords_html: Scripturile nu trebuie să includă <code>@inclus</code>s, <code>asemănare</code>es, sau cuvinte cheie pentru siteuri care nu au nici o funcționalitate.
@@ -880,7 +877,6 @@ ro:
       malware: "Malware"
       minified: "Cod micșorat"
       external_code: "Cod extern nepermis"
-      undisclosed_antifeature: "Anticaracteristicâ neprevazutâ (de ex reclamă, urmărire, miner)"
       other: "Altele"
     report_intro_html: "Obiectul %{reported_item} a fost raportat la data de %{report_date} de către %{reporter} pentru motivul %{reason}"
     report_intro_unauthorized_html: "Script-ul %{reported_script} a fost raportat la data de %{report_date} de către %{reporter} ca fiind o copie neautorizată a scriptului %{other_script}."

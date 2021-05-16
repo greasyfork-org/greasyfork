@@ -671,7 +671,6 @@ it:
       contributionAmount_html: "Importo suggerito per le donazioni, usato in concomitanza con il tag <code>@contributionURL</code>."
       compatible_html: "Contrassegna questo script come compatibile con un browser. Le informazioni sulla compatibilità saranno visualizzate nella pagina dello script. I commenti sulla compatibilità possono essere inclusi nel formato <code>@compatible firefox Deve essere disabilitato il blocco pop-up</code>. I browser riconosciuti sono: %{browsers}."
       incompatible_html: "Contrassegna questo script come non compatibile con un browser. Le informazioni sulla compatibilità saranno visualizzate nella pagina dello script. I commenti (facoltativi) sulla compatibilità possono essere inclusi nel formato <code>@incompatible firefox Non funziona con Firefox 23 e successivi</code>. I browser riconosciuti sono: %{browsers}."
-      antifeature_html: "Fornisce funzioni in uno script che sono a beneficio dell'autore, non dell'utente. Il formato di questa chiave è <code>@antifeature tipo descrizione</code>. %{site_name} leggerà i seguenti tipi: <code>ads</code> (lo script mostra pubblicità all'utente), <code>tracking</code> (lo script traccia l'attività dell'utente), <code>miner</code> (lo script contiene un cryptominer), e <code>referral-link</code> (lo script riscrive i collegamenti per aggiungere un tracciamento di rimando/affiliazione). Altri tipi sono ignorati, ma lo script deve comunque seguire le %{code_rules_link:regole di %{site_name}}. La descrizione è opzionale."
       antifeature_localized_html: "Un'<code>@antifeature</code> descritta in una lingua specifica, dove XX è un <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">codice ISO 639-1 a due lettere</a> e YY è un <a href=\"https://www.iso.org/obp/ui/#search\">codice paese ISO 3166</a> opzionale. Rimpiazza <code> @antifeature</code>s dello stesso tipo quando l'utente naviga in una lingua corrispondente."
     writing_user_scripts:
       title: "Come scrivere script utente"
@@ -685,7 +684,6 @@ it:
       functionality_header: Funzionalità
       description: Gli scripts devono includere una descrizione di cosa fanno e non devono fare cose irragionevolmente al di fuori di questa descrizione. Gli utenti devono sapere cosa uno script farà, prima di installarlo.
       reason: Gli scripts devono avere una ragione per essere script. Per esempio, uno script che semplicemente rimanda un utente a un sito non ha bisogno di essere uno script; potrebbe essere un link. Gli scripts che usano un servizio web per compiere un azione sulla pagina corrente (es. per convertirla in qualche maniera) sono consentiti.
-      unrelated: Gli scripts non devono richiedere agli utenti di compiere un'azione non correlata, come inviare un pagamento, iscriversi ad un canale, unirsi a un gruppo, o mettere "Mi piace" a una pagina, affinché lo script funzioni, completamente o in parte.
       monetization_html: Gli scripts che contengono funzioni a beneficio dell'<em>autore</em> piuttosto che dell'utente (come tracciamento, pubblicità e miners) sono consentite, ma queste devono essere dichiarate con le %{antifeature_link:<code>@antifeature</code> meta keys}.
       code_header: Codice
       obfuscation: Il codice pubblicato su %{site_name} non deve essere offuscato o minimizzato. Agli utenti va data l'opportunità di ispezionare e comprendere uno script prima di installarlo. Se lo script è compresso da uno strumento come webpack, deve essere esportato in forma non minimizzata.
@@ -693,7 +691,6 @@ it:
       updates: Gli scripts non devono verificare la presenza di aggiornamenti con una frequenza maggiore di una volta al giorno. È da notare che la maggior parte dei gestori di script utente si occupano autonomamente degli aggiornamenti, per cui farlo nello script non è necessario. Gli scripts non devono altresì iniettare dinamicamente un altro script ospitato su %{site_name} all'interno di una pagina, poiché questo bypassa la memorizzazione cache nei gestori di script utente.
       external_js: "%{external_scripts_link:L'uso di JavaScript esterno è limitato.}"
       copyright_header: Copyright
-      licensing: Il tuo script deve rispettare i copyrights degli altri. Questo include il codice stesso e qualsiasi risorsa (ad esempio immagini) che utilizza. Se intendi usare il contenuto di altri, conformati ai loro termini di licenza o ottieni il loro permesso prima di farlo.
       reposts: Anche nei casi che non violano la regola sul copyright, la ripubblicazione di scripts che siano già su %{site_name} non è permessa a meno che non apportino dei miglioramenti rispetto all'originale.
       miscellaneous_header: Miste
       keywords_html: Gli scripts non devono contenere <code>@include</code>, <code>@match</code> o parole chiave per siti per i quali non forniscano funzionalità.
@@ -902,7 +899,6 @@ it:
       malware: "Malware"
       minified: "Codice minimizzato"
       external_code: "Codice esterno non consentito"
-      undisclosed_antifeature: "Antifeature non dichiarata (es. pubblicità, tracciamento, miner)"
       other: "Altro"
     report_intro_html: "%{reported_item}è stato segnalato il %{report_date} da%{reporter}per %{reason}"
     report_intro_unauthorized_html: "%{reported_script} è stato segnalato il %{report_date} da %{reporter} come una copia non autorizzata di %{other_script}"

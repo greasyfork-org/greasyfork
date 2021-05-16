@@ -671,7 +671,6 @@ pl:
       contributionAmount_html: "Sugerowana kwota dotacji, używana wraz z <code>@contributionURL</code>."
       compatible_html: "Oznacza ten skrypt jako kompatybilny z przeglądarką. Informacje o zgodności zostaną pokazane na stronie skryptu. Uwagi dotyczące zgodności mogą zostać dołączone w formacie<code>@compatible firefox Należy wyłączyć blokowanie wyskakujących okien.</code>. Rozpoznawane przeglądarki to: %{browsers}."
       incompatible_html: "Oznacza ten skrypt jako niezgodny z przeglądarką. Informacje o kompatybilności zostaną wyświetlone na stronie skryptu. Opcjonalne komentarze dotyczące kompatybilności mogą zostać dołączone w formacie <code>@incompatible firefox Niezgodne od Firefox'a w wersji 23</code>. Rozpoznawane przeglądarki to: %{browsers}."
-      antifeature_html: "Ujawnia funkcje skryptu, które mają przynieść korzyść autorowi, a nie użytkownikowi. Format klucza to <code>@antifeature typ opis</code>. %{site_name} odczyta następujące typy: <code>ads</code> (skrypt wyświetla reklamy użytkownikowi), <code>tracking</code> (skrypt śledzi aktywność użytkownika), <code>miner</code> (skrypt zawiera koparkę kryptowalut), oraz <code>referral-link</code> (skrypt podmienia odnośniki na stronach, dodając kody programów afiliacyjnych). Inne typy są ignorowane, niemniej jednak skrypt musi przestrzegać %{code_rules_link:zasad %{site_name}}. Opis jest opcjonalny."
       antifeature_localized_html: "<code>@antifeature</code> opisany w innym języku, gdzie XX oznacza <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">dwuliterowy kod ISO 639-1</a>, a YY jest opcjonalnym <a href=\"https://www.iso.org/obp/ui/#search\">kodem kraju ISO 3166</a>. Nadpisuje <code>@antifeature</code> gdy użytkownik przegląda w pasującym języku."
     writing_user_scripts:
       title: "Jak pisać skrypty użytkownika"
@@ -687,7 +686,6 @@ pl:
       reason: 'Skrypt musi mieć powód do bycia skryptem. Na przykład skrypt, który
 
         po prostu przekierowuje użytkownika na stronę internetową, nie musi być skryptem; może to być link. Dozwolone są skrypty, które wykorzystują usługę sieciową do wykonania akcji na bieżącej stronie (np. w celu jej konwersji).'
-      unrelated: Skrypty nie mogą wymagać od użytkowników wykonywania niezwiązanych działań, takich jak wysyłanie płatności, subskrybowanie kanału, dołączenie do grupy, lub polubienie strony, aby skrypt działał.
       monetization_html: 'Skrypty, które zawierają funkcje przynoszące korzyść <em>autorowi</em>, nie użytkownikowi (jak skrypty śledzące, reklamy, koparki kryptowalut) są dozwolone, jednak muszą zostać oznaczone %{antifeature_link: kluczem <code>@antifeature</code>}.'
       code_header: Kod
       obfuscation: Kod zamieszczony na %{site_name} nie może być zaciemniany ani zminifikowany. Dotyczy to także bundlerów takich jak webpack. Użytkownicy muszą mieć możliwość podejrzenia i zrozumienia skryptu, zanim go zainstalują.
@@ -695,7 +693,6 @@ pl:
       updates: Skrypty nie powinny sprawdzać dostępności aktualizacji częściej niż raz dziennie. Należy pamiętać, że większość menedżerów skryptów użytkownika obsługuje automatyczne aktualizacje, więc wykonywanie tego w skrypcie nie jest konieczne. Skrypty również nie powinny dynamicznie wstrzykiwać do strony innych skryptów hostowanych na %{site_name}, ponieważ omija to pamięć podręczną w menedżerach skryptów.
       external_js: "%{external_scripts_link:Korzystanie z zewnętrznego kodu JavaScript jest ograniczone.}"
       copyright_header: Prawa autorskie
-      licensing: Twój skrypt musi szanować prawa autorskie innych osób. Obejmuje to sam skrypt i wszystkie zasoby (na przykład obrazy), których używa. Jeśli zamierzasz korzystać z cudzej własności, przestrzegaj ich postanowień licencyjnych lub uzyskaj ich zgodę.
       reposts: Nawet jeśli prawa autorskie nie są naruszone to ponowne publikowanie skryptów, które znajdują się na %{site_name}, jest zabronione, chyba że wprowadzają usprawnienia różniące się od oryginału.
       miscellaneous_header: Inne
       keywords_html: Skrypty nie mogą zawierać <code>@include</code>, <code>@match</code>, lub słów kluczowych, do których stron nie wprowadzają żadnej funkcjonalności.
@@ -906,7 +903,6 @@ pl:
       malware: "Szkodliwy kod"
       minified: "Zminifikowany kod"
       external_code: "Niedozwolony zewnętrzny kod"
-      undisclosed_antifeature: "Nieujawniona antyfunkcjonalność (np reklamy, śledzenie, koparka)"
       other: "Inne"
     non_functional_feedback: "Prosimy o zgłaszanie niefunkcjonalnych skryptów korzystając z opcji %{feedback_link:pozostawienia opinii} o skrypcie."
     unauthorized_code_original_placeholder: "Adres URL oryginalnego kodu"

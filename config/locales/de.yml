@@ -669,7 +669,6 @@ de:
       contributionAmount_html: "Vorgeschlagener Spendenbetrag; genutzt in Verbindung mit <code>@contributionURL</code>."
       compatible_html: "Markiert das Skript als kompatibel mit einem Browser. Kompatibilitätsinformationen werden auf der Seite eines Skriptes angezeigt. Kommentare zu der Kompatibilität können im Format <code>@compatible firefox Popup-Blocker muss deaktiviert werden</code> eingebunden werden. Erkannte Browser sind: %{browsers}"
       incompatible_html: "Markiert das Skript als inkompatibel mit einem Browser. Kompatibilitätsinformationen werden auf der Seite eines Skriptes angezeigt. Optionale Kommentare zu der Kompatibilität können im Format <code>@incompatible firefox Kaputt seit Firefox 23</code> eingebunden werden. Erkannte Browser sind: %{browsers}"
-      antifeature_html: "Zeigt Funktionen in einem Skript an, die dem Autor und nicht dem Benutzer zugute kommen sollen. Das Format dieses Schlüssels ist <code>@antifeature Typ Beschreibung</code>. %{site_name} liest die folgenden Typen: <code>ads</code> (das Skript zeigt dem Benutzer Werbung an), <code>tracking</code> (das Skript verfolgt die Aktivität des Benutzers), <code>miner</code> (das Skript enthält einen Kryptominer) und <code>referral-link</code> (das Skript schreibt Links um, um Referral/Affiliate-Tracking hinzuzufügen). Andere Typen werden ignoriert, aber das Skript muss trotzdem die %{code_rules_link:Regeln von %{site_name}} befolgen. Die Beschreibung ist optional."
       antifeature_localized_html: "Ein <code>@antifeature</code>, das in einem bestimmten Gebietsschema beschrieben ist, wobei XX ein <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1-Code</a> mit zwei Buchstaben und YY ein optionaler <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166-Ländercode</a> ist. Überschreibt <code>@antifeature</code>s desselben Typs, wenn der Benutzer in einem passenden Gebietsschema browst."
     writing_user_scripts:
       title: "Wie Benutzerskripte geschrieben werden"
@@ -683,7 +682,6 @@ de:
       functionality_header: Funktionalität
       description: Skripte müssen eine Beschreibung dessen enthalten, was sie tun, und dürfen keine unangemessenen Dinge außerhalb dieser Beschreibung tun. Benutzer müssen wissen, was ein Skript tut, bevor sie es installieren.
       reason: Skripte müssen einen Grund haben, ein Skript zu sein. Zum Beispiel muss ein Skript, das einen Benutzer nur auf eine Website verweist, kein Skript sein; es könnte ein Link sein. Skripte, die einen Webdienst verwenden, um eine Aktion auf der aktuellen Seite durchzuführen (z. B. um sie in irgendeiner Weise zu konvertieren), sind erlaubt.
-      unrelated: Skripte dürfen nicht verlangen, dass Benutzer eine nicht damit zusammenhängende Aktion ausführen, z. B. eine Zahlung senden, einen Kanal abonnieren, einer Gruppe beitreten oder eine Seite liken, damit das Skript ganz oder teilweise funktioniert.
       monetization_html: Skripte, die Funktionen enthalten, die eher dem <em>Autor</em> als dem Benutzer zugute kommen (z. B. Tracking, Werbung und Miner), sind erlaubt, müssen aber mit %{antifeature_link:<code>@antifeature</code>-Meta-Schlüsseln} offengelegt werden.
       code_header: Quelltext
       obfuscation: Code, der auf %{site_name} gepostet wird, darf nicht verschleiert oder minimiert sein. Benutzer müssen die Möglichkeit haben, ein Skript zu prüfen und zu verstehen, bevor sie es installieren. Wenn das Skript von einem Tool wie Webpack gebündelt wird, muss es in nicht-minifizierter Form ausgegeben werden.
@@ -691,7 +689,6 @@ de:
       updates: Skripte dürfen nicht häufiger als einmal pro Tag nach Updates suchen. Beachten Sie, dass die meisten Benutzerskript-Manager automatische Aktualisierungen durchführen, so dass es nicht notwendig ist, dies im Skript zu tun. Skripte sollten auch nicht dynamisch ein anderes von %{site_name} gehostetes Skript in eine Seite einfügen, da dies die Zwischenspeicherung in Benutzerskript-Managern umgeht.
       external_js: "%{external_scripts_link:Die Benutzung von externem JavaScript ist eingeschränkt.}"
       copyright_header: Urheberrecht
-      licensing: Ihr Skript muss die Urheberrechte anderer respektieren. Dies gilt für den Code selbst und alle verwendeten Ressourcen (z. B. Bilder). Wenn Sie beabsichtigen, den Inhalt eines anderen zu verwenden, halten Sie sich an dessen Lizenzbedingungen oder holen Sie dessen Erlaubnis ein, bevor Sie dies tun.
       reposts: Selbst in Fällen, die nicht gegen die Copyright-Regel verstoßen, ist das Wiederveröffentlichen von Skripten, die bereits auf %{site_name} vorhanden sind, nicht erlaubt, es sei denn, sie verbessern das Original.
       miscellaneous_header: Verschiedenes
       keywords_html: Skripte dürfen keine <code>@include</code>s, <code>@match</code>es oder Schlüsselwörter für Sites enthalten, auf denen sie keine Funktionalität bieten.
@@ -909,7 +906,6 @@ de:
       malware: "Schadsoftware"
       minified: "Minimierter Code"
       external_code: "Nicht erlaubter externer Code"
-      undisclosed_antifeature: "Nicht angegebenes Antifeature (z. B. Werbung, Tracking, Miner)"
       other: "Sonstiges"
     report_intro_html: "%{reported_item} wurde am %{report_date} von %{reporter} wegen %{reason} gemeldet "
     report_intro_unauthorized_html: "%{reported_script} wurde am %{report_date} von %{reporter} als eine nicht genehmigte Kopie von %{other_script} gemeldet."
