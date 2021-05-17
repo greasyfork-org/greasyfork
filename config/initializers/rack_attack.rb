@@ -4,8 +4,8 @@ LOGIN_PATH_PATTERN = Regexp.new("\\A/(#{Rails.application.config.available_local
 PENTESTER_QUERY_STRINGS = [
   '/etc/passwd',
   'bxss.me',
-  'gethostbyname'
-]
+  'gethostbyname',
+].freeze
 
 if Rails.env.production?
   if Rails.application.config.ip_address_tracking
