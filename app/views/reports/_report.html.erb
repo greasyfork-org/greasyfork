@@ -2,9 +2,17 @@
 
 <h4 id="open-report-<%= i %>">
   <% if report.unauthorized_code? && (report.reference_script || report.script_url.present?) %>
+    <%= t('reports.report_intro_unauthorized_html', reported_script: report_item_link(report), other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow), reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)), report_date: markup_date(report.created_at)) %>
+  <% else %>
+    <%= it('reports.report_intro', reported_item: report_item_link(report), reason: report.reason_text, reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)), report_date: markup_date(report.created_at)) %>
+  <% end %>
+</h4>
+
+<% if report.unauthorized_code? && (report.reference_script || report.script_url.present?) %>
+  <p>
     <% if report.reference_script %>
       <% if report.reference_script.license&.url %>
-        <%= it('reports.report_intro_unauthorized_license_html',
+        <%= it('reports.report_intro_unauthorized_license',
                reported_script: report_item_link(report),
                other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow),
                reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)),
@@ -14,7 +22,7 @@
                tldr_legal_link: It.link("https://tldrlegal.com/search?q=#{URI.encode_www_form_component(report.reference_script.license.code)}", target: 'tldrlegal'))
         %>
       <% elsif report.reference_script.license || report.reference_script.license_text %>
-        <%= it('reports.report_intro_unauthorized_license_no_url_html',
+        <%= it('reports.report_intro_unauthorized_license_no_url',
                reported_script: report_item_link(report),
                other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow),
                reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)),
@@ -23,7 +31,7 @@
                tldr_legal_link: It.link("https://tldrlegal.com/search?q=#{URI.encode_www_form_component(report.reference_script.license&.name || report.reference_script.license_text)}", target: 'tldrlegal'))
         %>
       <% else %>
-        <%= it('reports.report_intro_unauthorized_no_license_html',
+        <%= it('reports.report_intro_unauthorized_no_license',
                reported_script: report_item_link(report),
                other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow),
                reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)),
@@ -33,10 +41,8 @@
     <% else %>
       <%= t('reports.report_intro_unauthorized_html', reported_script: report_item_link(report), other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow), reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)), report_date: markup_date(report.created_at)) %>
     <% end %>
-  <% else %>
-    <%= it('reports.report_intro_html', reported_item: report_item_link(report), reason: report.reason_text, reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)), report_date: markup_date(report.created_at)) %>
-  <% end %>
-</h4>
+  </p>
+<% end %>
 
 <% if current_user&.moderator? && report.awaiting_response? && !report.resolved? %>
   <p><b>(Awaiting response from author)</b></p>
