@@ -327,7 +327,7 @@ zh-CN:
       css: "发布新样式"
     update_title: "发布 %{script} 的新版本 "
     antifeatures:
-      warning_title: 这个脚本含有不受欢迎的功能
+      warning_title: 这个脚本含有可能不受欢迎的功能
       author_explanation_intro: "脚本作者的说明："
       types:
         ads:
@@ -646,6 +646,8 @@ zh-CN:
       contributionAmount_html: "建议捐赠金额，请配合 <code>@contributionURL</code> 使用。"
       compatible_html: "标记此脚本与某个浏览器兼容，兼容性信息将显示在脚本的简介页面上。您也可以添加额外的兼容说明，如 <code>@compatible firefox 火狐上必须关闭广告过滤器</code> 这样的格式。目前能被网站识别的浏览器名称有：%{browsers}。"
       incompatible_html: "标记此脚本与某个浏览器不兼容，兼容性信息将显示在脚本的简介页面上。您也可以添加额外的兼容说明，如 <code>@incompatible firefox 自火狐 23 开始不兼容</code> 这样的写法。目前能被网站识别的浏览器名称有：%{browsers}。"
+      antifeature_html: |
+          披露会为脚本作者而非用户带来额外收益的功能。你可以通过在脚本的元数据中添加 <code>@antifeature type description</code> 值的方法披露。其中<i>type</i>（类型）是必须填写的内容，而 <i>description</i>（描述）则可以留空。更多信息可以%{antifeatures_link:点击此处}阅读 %{site_name} 上关于 <i>type</i>的说明。
       antifeature_localized_html: "你可以使用多种语言声明 <code>@antifeature</code> 属性，其中 XX 为 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 中定义的两个字符的代码</a>，而 YY 则是一个可选的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 中定义的国家代码</a>。在<code>@antifeature</code>中制定的每一个类型都可以自定义其本地化的说明。"
     writing_user_scripts:
       title: "如何编写用户脚本"
@@ -666,6 +668,7 @@ zh-CN:
       updates: 脚本不得以高于每日一次的频率检测更新。请注意用户脚本管理器都有内置的更新检查机制，请不要在脚本检查更新做无用功。脚本不得将在 %{site_name} 上传的脚本不应被动态插入到页面，因为这会绕过用户脚本管理器的缓存。
       external_js: "%{external_scripts_link:能引用其他网站上托管的 JavaScript 脚本是有限制的}。"
       copyright_header: 版权
+      licensing: 您的脚本必须遵守他人的版权，这包括代码本身以及所引用的资源（例如图像）。如果你希望使用他人的内容，请遵守其授权规则或获得使用授权。你可以使用 <code>@license</code> 元信息名称来指定脚本使用的授权协议，并通过 %{tldr_legal_link:tldrlegal.com}（英文）获得更多关于该授权协议的限制。
       reposts: 即便没有违反版权商的规则，重复提交已经存在于 %{site_name} 的脚本也是不允许的，除非有做出改进。
       miscellaneous_header: 其它
       keywords_html: 脚本不得在 <code>@include</code>、<code>@match</code>、或关键字中包含脚本所不提供功能的页面。
@@ -740,6 +743,45 @@ zh-CN:
           可能包含第三方代码以收集统计数据或者在网站上显示广告。这些库可能存在跟踪逻辑。</p>
     user_css_to_user_js:
       title: 用户样式如何被转换为用户脚本
+    antifeatures:
+      title: 可能不受欢迎的功能
+      intro_html: |
+          <p>脚本作者可以添加可能不受欢迎的功能来让作者而非使用者获得收益，例如广告或追踪行为。脚本作者可以在遵守 %{rules_link:%{site_name} 脚本准则}的前提下提交含有可能不受欢迎的功能的脚本，但必须在脚本元信息内使用 <code>@antifeature</code> 来明确标记。这样是为了让用户在安装之前知晓该脚本所含有的可能不受欢迎的功能。</p>
+          <p>可能不受欢迎的功能使用%{meta_keys_link:脚本的元信息名称}指定，其格式为 <code>@antifeature <i>类型</i> <i>描述</i></code>。其中 <i>类型</i> 是必须填写的，而 <i>描述</i> 则可以留空。</p>
+          <p>这个页面描述了能被 %{site_name} 所识别的 <code>@antifeature</code> 类型。你也可以使用其他类型，但你所使用的类型必须遵守 %{rules_link:%{site_name} 脚本准则}。</p>
+      ads_html: |
+          <p>这个脚本在用户访问的页面插入广告。</p>
+          <p>请注意下述情况 <i>不需要</i>  声明 <code>@antifeature ads</code>：</p>
+          <ul>
+          <li>脚本运作的网站本身含有广告的情况；</li>
+          <li>脚本链接或跳转到含有广告的第三方网站，前提是这个网站为脚本提供某种功能上的集成或服务。</li>
+          <li>宣传脚本作者的主页、代码仓库、Discord 语音群、微信等信息。</li>
+          </ul>
+      membership_html: |
+          <p>这个脚本要求用户订阅频道、加入群组、点赞等行为后才能使用脚本的完整功能。</p>
+
+          <p>请注意下述情况 <i>不需要</i> 声明 <code>@antifeature membership</code>：</p>
+
+          <ul>
+          <li>脚本运作于需要由会员登入后的网站，但是脚本自己不需要额外登入。</li>
+          <li>在不影响用户使用全部功能的前提下提供付费支持，即用户可以在不付费支持的情况下使用脚本的完整功能。</li>
+          <li>在不影响脚本功能的前提下添加作者频道、群或页面等链接。</li>
+          </ul>
+      miner_html: |
+          <p>这个脚本含有挖矿软件或其他能够使用用户资源来为作者执行某些任务代码的脚本。</p>
+      payment_html: |
+          <p>这个脚本要求用户支付脚本作者后才能使用脚本的全部功能。</p>
+
+          <p>请注意下述情况 <i>不需要</i> 声明 <code>@antifeature payment</code>：</p>
+
+          <ul>
+          <li>脚本在需要支付的网站上运行，但是脚本自身不要求付费；</li>
+          <li>在捐助不会解锁脚本额外功能的前提下询问用户捐赠。</li>
+          </ul>
+      referral_link_html: |
+          <p>这个脚本的部分行为会让作者在用户购买时获得佣金抽成。这包括内置推荐或联盟链接、重写现有链接到推荐或联盟链接、或能为脚本作者提供佣金抽成的优惠券代码的脚本。</p>
+      tracking_html: |
+          <p>这个脚本含有追踪用户信息的代码。这包括 Google Analytics 在内的服务商与其它使用自定义代码来报告用户信息给脚本作者的代码。</p>
   search:
     script_search:
       title: "脚本搜索"
@@ -807,8 +849,8 @@ zh-CN:
       malware: "恶意软件或代码"
       minified: "代码经过最小化处理"
       external_code: "未允许的外部代码引用"
+      undisclosed_antifeature: "未声明的%{antifeature_link:可能不受欢迎的功能}（包括但不限于广告、用户追踪、挖矿等功能）"
       other: "其它"
-    report_intro_html: "%{reported_item} 在 %{report_date} 被 %{reporter} 举报，原因是  %{reason}"
     report_intro_unauthorized_html: "%{reported_script} 在 %{report_date} 被 %{reporter} 举报含有未授权的副本，原脚本为 %{other_script}。"
     non_functional_feedback: "请在%{feedback_link:脚本反馈区}来举报失效的脚本。"
     unauthorized_code_original_placeholder: "原始代码的地址"
