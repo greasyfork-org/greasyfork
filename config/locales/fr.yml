@@ -891,6 +891,7 @@ fr:
       one: "%{script_names} a reçu plusieurs mauvaises notes consécutives. Veuillez revoir votre script et répondre aux préoccupations soulevées dans les évaluations."
       other: "%{script_names} ont reçu plusieurs mauvaises notes consécutives. Veuillez revoir vos scripts et répondre aux préoccupations soulevées dans les évaluations."
   reports:
+    name: "Signaler #%{id}"
     report_filed: "Votre rapport sera examiné par un modérateur."
     new_report_title:
       user: "Signaler%{user}"
@@ -943,7 +944,11 @@ fr:
       external_code: "Code externe non autorisé"
       undisclosed_antifeature: "Non divulguation %{antifeature_link:antifeature} (par exemple, annonce/ad, suivi/tracking, minage de cryptomonnaie, etc.)"
       other: "Autre"
+    report_intro: "%{reported_item} a été signalé le %{report_date} par %{reporter} pour %{reason}"
     report_intro_unauthorized_html: "%{reported_script} a été signalé à %{report_date} par %{reporter} comme une copie non autorisée de %{other_script}."
+    report_intro_unauthorized_license: "%{other_script} utilise la licence %{license_link: %{license_name}}. Visitez %{tldr_legal_link:tldrlegal.com} pour savoir ce que signifie cette licence."
+    report_intro_unauthorized_license_no_url: "%{other_script} utilise la licence %{license_name}. Visitez %{tldr_legal_link:tldrlegal.com} pour savoir ce que signifie cette licence."
+    report_intro_unauthorized_no_license: "%{other_script} ne spécifie pas de licence, ce qui signifie que la distribution de copies n'est pas autorisée à moins qu'une autorisation explicite ne soit donnée."
     non_functional_feedback: "Veuillez plutôt signaler les scripts non fonctionnels en tant que %{feedback_link:commentaire} sur le script."
     unauthorized_code_original_placeholder: "URL du code d'origine"
     explanation_placeholder: "Ajouter des détails supplémentaires (optionnel)"
