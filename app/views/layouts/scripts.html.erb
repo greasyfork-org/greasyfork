@@ -35,7 +35,13 @@
       <% if @script.deleted? %>
         <p id="deleted-note">
           <% if @script.locked? && !@script.self_deleted %>
-            <%= t('scripts.deleted_locked_author_notice_html', delete_reason: @script.delete_reason) %>
+            <% upheld_reports = @script.reports.upheld %>
+            <% reason = upheld_reports.map { |report| link_to(t('reports.name', id: report.id), report_path(report)) }.join(' ').html_safe %>
+            <% if @script.delete_reason.present? %>
+              <% reason += ' ' if reason.present? %>
+              <% reason += @script.delete_reason %>
+            <% end %>
+            <%= t('scripts.deleted_locked_author_notice_html', delete_reason: reason) %>
           <% else %>
             <%= t('scripts.deleted_author_notice') %>
           <% end %>
