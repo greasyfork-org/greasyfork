@@ -81,8 +81,15 @@ class DiscussionsController < ApplicationController
 
   def new
     @discussion = Discussion.new(poster: current_user)
-    @discussion.discussion_category = DiscussionCategory.find_by(category_key: params[:category]) if params[:category] && params[:category] != DiscussionCategory::SCRIPT_DISCUSSIONS_KEY
-    @discussion.comments.build(poster: current_user, text_markup: current_user&.preferred_markup)
+    if current_user&.moderator? && params[:report_id]
+      report = Report.find(params[:report_id])
+      @discussion.report = report
+      users_to_mention = (report.item.users + [report.reporter]).map {|user| user.name.match?(/\s+/) ? "@\"\#{user.name}\"" : "@#{user.name}"}
+      text = users_to_mention.join(' ')
+    else
+      @discussion.discussion_category = DiscussionCategory.find_by(category_key: params[:category]) if params[:category] && params[:category] != DiscussionCategory::SCRIPT_DISCUSSIONS_KEY
+    end
+    @discussion.comments.build(poster: current_user, text_markup: current_user&.preferred_markup, text: text)
     @subscribe = current_user.subscribe_on_discussion
   end
 
@@ -98,13 +105,20 @@ class DiscussionsController < ApplicationController
       @discussion.script = @script
       @discussion.discussion_category = DiscussionCategory.script_discussions
     end
+
+    if @discussion.report
+      @discussion.script = @discussion.report.item
+      @discussion.rating = Discussion::RATING_QUESTION
+      @discussion.discussion_category = DiscussionCategory.script_discussions
+    end
+
     comment = @discussion.comments.first
     comment.first_comment = true
     @subscribe = params[:subscribe] == '1'
 
     recaptcha_ok = current_user.needs_to_recaptcha? ? verify_recaptcha : true
     unless recaptcha_ok && @discussion.valid?
-      if @discussion.script
+      if @discussion.script && !@discussion.report
         render :new, layout: 'scripts'
       else
         render :new
@@ -187,9 +201,11 @@ class DiscussionsController < ApplicationController
   end
 
   def discussion_params
+    attrs = [:rating, :title, :discussion_category_id, :report_id, comments_attributes: [:text, :text_markup, { attachments: [] }]]
+    attrs += [:report_id] if current_user&.moderator?
     params
       .require(:discussion)
-      .permit(:rating, :title, :discussion_category_id, comments_attributes: [:text, :text_markup, { attachments: [] }])
+      .permit(attrs)
   end
 
   def record_view(discussion)

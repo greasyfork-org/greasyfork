@@ -44,6 +44,8 @@ class Report < ApplicationRecord
   belongs_to :reference_script, class_name: 'Script', optional: true
   belongs_to :rebuttal_by_user, class_name: 'User', optional: true
 
+  has_many :discussions
+
   validates :reason, inclusion: { in: NON_SCRIPT_REASONS }, presence: true, unless: -> { item.is_a?(Script) }
   validates :reason, inclusion: { in: REASON_TEXT.keys, message: :invalid }, presence: true, if: -> { item.is_a?(Script) }
   validates :reporter, presence: true, if: -> { auto_reporter.nil? }

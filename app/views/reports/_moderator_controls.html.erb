@@ -1,0 +1,43 @@
+<%= form_tag(dismiss_report_path(report, index: i), method: 'POST', class: 'report-resolution-options') do %>
+  <%= text_area_tag :moderator_notes, nil, rows: 3, placeholder: 'Moderator notes (optional)' %>
+  <br>
+
+  <%= submit_tag 'Dismiss report' %>
+<% end %>
+<%= form_tag(mark_fixed_report_path(report, index: i), method: 'POST', class: 'report-resolution-options') do %>
+  <%= text_area_tag :moderator_notes, nil, rows: 3, placeholder: 'Moderator notes (optional)' %>
+  <br>
+
+  <%= submit_tag 'Mark as fixed' %>
+<% end %>
+<%= form_tag(uphold_report_path(report, index: i), method: 'POST', class: 'report-resolution-options') do %>
+  <%= text_area_tag :moderator_notes, nil, rows: 3, placeholder: 'Moderator notes (optional)' %>
+  <br>
+
+  <% other_comments = report.reported_users.map{|user| comments = user.comments.not_deleted; comments = comments.where.not(id: report.item.id) if report.item.is_a?(Comment); [user, comments.count] }.to_h
+     if other_comments.values.sum > 0 %>
+    <%= check_box_tag :delete_comments, '1', false, id: "delete-comments-#{report.id}" %><%= label_tag "delete-comments-#{report.id}", "Delete #{other_comments.select{|_user, count| count > 0}.map{|user, comments_count| "#{user.name}'s #{comments_count} #{(report.item.is_a?(Comment) ? 'other comment' : 'comment').pluralize(comments_count)}" }.to_sentence}" %><br>
+  <% end %>
+
+  <% other_scripts = report.reported_users.map{|user| scripts = user.scripts.not_deleted; scripts = scripts.where.not(id: report.item.id) if report.item.is_a?(Script); [user, scripts.count] }.to_h
+     if other_scripts.values.sum > 0 %>
+    <%= check_box_tag :delete_scripts, '1', false, id: "delete-scripts-#{report.id}" %><%= label_tag "delete-scripts-#{report.id}", "Delete #{other_scripts.select{|_user, count| count > 0}.map{|user, scripts_count| "#{user.name}'s #{scripts_count} #{(report.item.is_a?(Comment) ? 'other script' : 'script').pluralize(scripts_count)}" }.to_sentence}" %><br>
+  <% end %>
+
+  <% if (report.item.is_a?(Comment) || report.item.is_a?(Script)) && report.reported_users.reject(&:banned?).any? %>
+    <%= check_box_tag :ban, '1', false, id: "ban-#{report.id}" %><%= label_tag "ban-#{report.id}", "Ban #{report.reported_users.reject(&:banned?).map(&:name).to_sentence}" %><br>
+  <% end %>
+
+  <% case report.item %>
+<% when User %>
+    <%= submit_tag "Ban #{report.reported_users.first.name}" %>
+  <% when Comment %>
+    <%= submit_tag('Delete comment') %>
+  <% when Script %>
+    <%= submit_tag(t('reports.delete_script')) %>
+  <% when Message %>
+    <%= submit_tag("Ban #{report.reported_users.first.name}") %>
+  <% else
+       raise "Unknown item #{report.item}"
+     end
+ end %>

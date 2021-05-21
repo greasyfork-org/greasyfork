@@ -1144,6 +1144,7 @@ en:
   reports:
     name: "Report #%{id}"
     report_filed: "Your report will be reviewed by a moderator."
+
     new_report_title:
       user: "Report %{user}"
       comment: "Report a comment by %{user}"
@@ -1197,9 +1198,18 @@ en:
     result_upheld: "This report has been upheld by a moderator."
     result_fixed: "This report has been resolved by a moderator as they believe the author has fixed the issue."
     result_pending: "This report is pending review by a moderator."
+    result_pending_author_html: |
+      <p>Your options are:</p>
+      <ol>
+        <li>If you agree with the report, fix the issue, then submit a rebuttal explaining what you've fixed.</li>
+        <li>If you don't agree with the report, submit a rebuttal explaining your side.</li>
+        <li>Delete your script.</li>
+        <li>Do nothing and let a moderator decide.</li>
+      </ol>
     rebuttal_placeholder: 'Explain to a moderator why this script should not be deleted.'
     submit_rebuttal: "Submit rebuttal"
     delete_script: "Delete script"
+    view_discussion: "View discussion"
   discussions:
     title: Discussions
     comment_date: "Posted: %{date}"

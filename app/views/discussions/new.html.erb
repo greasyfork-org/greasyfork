@@ -6,14 +6,14 @@
 
   <%= render partial: 'shared/errors', locals: { resource: @discussion } %>
 
-  <% unless @discussion.script %>
+  <% unless @discussion.script || @discussion.report %>
     <p class="notice">
       <%= t('discussions.script_notice') %>
     </p>
   <% end %>
 
   <%= form_with(model: @discussion, url: @discussion.script ? script_discussions_path(@discussion.script) : discussions_path, method: :POST, id: 'new-discussion') do |f| %>
-    <% unless @discussion.script %>
+    <% unless @discussion.script || @discussion.report %>
       <div class="form-control">
         <%= f.label :title %>
         <%= f.text_field :title, required: true, maxlength: 255, size: nil %>
@@ -24,10 +24,14 @@
       <%= render partial: 'discussions/comment_entry', locals: { f: cf, markup_name: 'discussion[comments_attributes][0][text_markup]' } %>
     <% end %>
 
-    <% if @discussion.script %>
-      <%= render partial: 'discussions/rating_entry', locals: { f: f } %>
+    <% if @discussion.report %>
+      <%= f.hidden_field :report_id %>
     <% else %>
-      <%= render partial: 'discussions/category_entry', locals: { f: f} %>
+      <% if @discussion.script %>
+        <%= render partial: 'discussions/rating_entry', locals: { f: f } %>
+      <% else %>
+        <%= render partial: 'discussions/category_entry', locals: { f: f} %>
+      <% end %>
     <% end %>
 
     <%= render partial: 'discussions/subscribe', locals: { subscribe: @subscribe } %>

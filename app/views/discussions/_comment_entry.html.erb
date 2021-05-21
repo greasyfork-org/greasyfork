@@ -15,7 +15,7 @@
   <%= render partial: 'screenshots/entry', locals: { f: f } %>
 </div>
 
-<% if f.object.new_record? && !f.object.discussion.new_record? && f.object.discussion.poster == current_user && f.object.discussion.script_id %>
+<% if f.object.new_record? && !f.object.discussion.new_record? && f.object.discussion.poster == current_user && f.object.discussion.script_id && !f.object.discussion.report %>
   <%= f.fields_for f.object.discussion do |discussion_f| %>
     <%= render partial: 'discussions/rating_entry', locals: { f: discussion_f, full_label: true } %>
   <% end %>

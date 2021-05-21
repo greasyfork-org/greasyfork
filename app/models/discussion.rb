@@ -13,6 +13,7 @@ class Discussion < ApplicationRecord
   # Optional because the user may no longer exist.
   belongs_to :poster, class_name: 'User', optional: true
   belongs_to :script, optional: true
+  belongs_to :report, optional: true
   belongs_to :stat_first_comment, class_name: 'Comment', optional: true
   belongs_to :stat_last_replier, class_name: 'User', optional: true
   belongs_to :discussion_category

@@ -105,7 +105,7 @@
             <% end %>
           <% end %>
           <%= render partial: 'discussions/comment_entry', locals: { f: f } %>
-          <% if comment.first_comment? && comment.discussion.for_script? %>
+          <% if comment.first_comment? && comment.discussion.for_script? && !comment.discussion.report %>
             <%= f.fields_for comment.discussion do |df| %>
               <%= render partial: 'discussions/rating_entry', locals: { f: df } %>
             <% end %>
