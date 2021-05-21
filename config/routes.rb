@@ -181,6 +181,7 @@ Rails.application.routes.draw do
         post :mark_fixed
         post :uphold
         post :rebut
+        get :diff
       end
     end
 

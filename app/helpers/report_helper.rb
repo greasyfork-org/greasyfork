@@ -13,4 +13,12 @@ module ReportHelper
       raise 'Unknown type'
     end
   end
+
+  def report_diff(report)
+    original_code = report.reference_script.script_versions.last.code
+    new_code = report.item.newest_saved_script_version.code
+    return tag.p('The scripts are identical.') if original_code == new_code
+
+    Diffy::Diff.new(original_code, new_code, include_plus_and_minus_in_html: true, diff: ['-U 3', '-w']).to_s(:html).html_safe
+  end
 end

@@ -37,3 +37,4 @@ require("forum");
 require("ethical-ads");
 require("locale-switcher");
 require("attachments");
+require("reports")

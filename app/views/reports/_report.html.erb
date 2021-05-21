@@ -1,4 +1,5 @@
 <% i = 0 unless defined?(i) %>
+<% lazy_load_diffs = false unless defined?(lazy_load_diffs) %>
 
 <h4 id="open-report-<%= i %>">
   <% if report.unauthorized_code? && (report.reference_script || report.script_url.present?) %>
@@ -119,12 +120,10 @@
 
   <% if report.reference_script %>
     <div class="report-diff">
-      <% original_code = report.reference_script.script_versions.last.code
-         new_code = report.item.newest_saved_script_version.code %>
-      <% if original_code == new_code %>
-        <p>The scripts are identical.</p>
+      <% if lazy_load_diffs %>
+        <%= button_to t('reports.load_diff'), diff_report_path(report), method: :get, remote: true, class: 'lazy-load-diff', data: { disable_with: t('reports.loading_diff') } %>
       <% else %>
-        <%= Diffy::Diff.new(original_code, new_code, include_plus_and_minus_in_html: true, diff: ['-U 3', '-w']).to_s(:html).html_safe %>
+        <%= report_diff(report) %>
       <% end %>
     </div>
   <% end %>

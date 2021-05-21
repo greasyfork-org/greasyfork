@@ -84,10 +84,10 @@ class DiscussionsController < ApplicationController
     if current_user&.moderator? && params[:report_id]
       report = Report.find(params[:report_id])
       @discussion.report = report
-      users_to_mention = (report.item.users + [report.reporter]).map {|user| user.name.match?(/\s+/) ? "@\"\#{user.name}\"" : "@#{user.name}"}
+      users_to_mention = (report.item.users + [report.reporter]).map { |user| user.name.match?(/\s+/) ? "@\"\#{user.name}\"" : "@#{user.name}" }
       text = users_to_mention.join(' ')
-    else
-      @discussion.discussion_category = DiscussionCategory.find_by(category_key: params[:category]) if params[:category] && params[:category] != DiscussionCategory::SCRIPT_DISCUSSIONS_KEY
+    elsif params[:category] && params[:category] != DiscussionCategory::SCRIPT_DISCUSSIONS_KEY
+      @discussion.discussion_category = DiscussionCategory.find_by(category_key: params[:category])
     end
     @discussion.comments.build(poster: current_user, text_markup: current_user&.preferred_markup, text: text)
     @subscribe = current_user.subscribe_on_discussion
@@ -201,7 +201,7 @@ class DiscussionsController < ApplicationController
   end
 
   def discussion_params
-    attrs = [:rating, :title, :discussion_category_id, :report_id, comments_attributes: [:text, :text_markup, { attachments: [] }]]
+    attrs = [:rating, :title, :discussion_category_id, :report_id, { comments_attributes: [:text, :text_markup, { attachments: [] }] }]
     attrs += [:report_id] if current_user&.moderator?
     params
       .require(:discussion)

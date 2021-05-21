@@ -112,6 +112,11 @@ class ReportsController < ApplicationController
     render_404 unless @report.item
   end
 
+  def diff
+    report = Report.find(params[:id])
+    render html: helpers.report_diff(report)
+  end
+
   private
 
   def report_params
