@@ -808,6 +808,7 @@ zh-CN:
     consecutive_bad_ratings:
       other: "%{script_names} 已连续收到差评。请检查您的脚本和回复评价中提出的问题。"
   reports:
+    name: "举报 #%{id}"
     report_filed: "您提交的举报将由管理员审核。"
     new_report_title:
       user: "举报 %{user}"
@@ -851,7 +852,11 @@ zh-CN:
       external_code: "未允许的外部代码引用"
       undisclosed_antifeature: "未声明的%{antifeature_link:可能不受欢迎的功能}（包括但不限于广告、用户追踪、挖矿等功能）"
       other: "其它"
+    report_intro: "%{reporter} 在 %{report_date} 举报了 %{reported_item}，原因是：%{reason}"
     report_intro_unauthorized_html: "%{reported_script} 在 %{report_date} 被 %{reporter} 举报含有未授权的副本，原脚本为 %{other_script}。"
+    report_intro_unauthorized_license: "%{other_script} 使用 %{license_link: %{license_name}} 授权协议。请访问 %{tldr_legal_link:tldrlegal.com}（英文）来帮助理解该授权协议。"
+    report_intro_unauthorized_license_no_url: "%{other_script} 使用 %{license_name} 授权协议。请访问 %{tldr_legal_link:tldrlegal.com}（英文）来帮助理解该授权协议。"
+    report_intro_unauthorized_no_license: "%{other_script} 未明确指定所使用的授权协议，即只有在明确表示获得授权的情况下才允许分发副本。"
     non_functional_feedback: "请在%{feedback_link:脚本反馈区}来举报失效的脚本。"
     unauthorized_code_original_placeholder: "原始代码的地址"
     explanation_placeholder: "提供额外信息（可选）"
@@ -863,9 +868,20 @@ zh-CN:
     result_upheld: "管理员已通过该举报。"
     result_fixed: "管理员已经关闭了该则举报，因为管理员认为作者已经修正了报告的问题。"
     result_pending: "该举报尚待管理员查看。"
+    result_pending_author_html: |
+        <p>你可以选择：</p>
+        <ol>
+        <li>如果你认同这个举报的内容，请根据举报的内容修正问题，然后提交申诉阐述你所做的更改。</li>
+        <li>如果你不认同该则举报的内容，请提交申诉阐述你的理由。</li>
+        <li>删除这个脚本。</li>
+        <li>什么都不做，等待管理员决定。</li>
+        </ol>
     rebuttal_placeholder: '向管理员解释为什么这个脚本不应被删除。'
     submit_rebuttal: "申诉"
     delete_script: "删除脚本"
+    view_discussion: "查看讨论"
+    load_diff: "查看对比（diff 格式）"
+    loading_diff: "加载中…"
   discussions:
     title: 讨论
     comment_date: "发表于：%{date}"
