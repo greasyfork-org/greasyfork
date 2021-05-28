@@ -128,7 +128,10 @@ class DiscussionsController < ApplicationController
 
     comment.construct_mentions(detect_possible_mentions(comment.text, comment.text_markup))
     @discussion.save!
-    @discussion.comments.first.send_notifications!
+
+    notification_job = CommentNotificationJob
+    notification_job = notification_job.set(wait: Comment::EDITABLE_PERIOD) unless Rails.env.development?
+    notification_job.perform_later(@discussion.comments.first)
 
     DiscussionSubscription.find_or_create_by!(user: current_user, discussion: @discussion) if @subscribe
 
