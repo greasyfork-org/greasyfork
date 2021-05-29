@@ -210,7 +210,7 @@
     <%= submit_tag(t('reports.delete_script')) %>
   <% end %>
 <% elsif current_user&.moderator? %>
-  <%= render partial: 'moderator_controls', locals: { report: report, i: i } %>
+  <%= render partial: 'reports/moderator_controls', locals: { report: report, i: i } %>
 <% else %>
   <p>
     <%= t('reports.result_pending') %>
