@@ -960,9 +960,20 @@ fr:
     result_upheld: "signalerCe rapport a été approuver par un modérateur."
     result_fixed: "Ce rapport a été résolu par un modérateur car ils pensent que l'auteur a résolu le problème."
     result_pending: "Ce rapport est en attente d'examen par un modérateur."
+    result_pending_author_html: |
+        <p>Vos options sont:
+        <ol>
+        <li>Si vous êtes d'accord avec le rapport, résolvez le problème, puis soumettez une réfutation expliquant ce que vous avez résolu.</li>
+        <li>Si vous n'êtes pas d'accord avec le rapport, soumettez une réfutation expliquant votre point de vue.</li>
+        <li>Supprimez votre script.</li>
+        <li>Ne faites rien et laissez un modérateur décider.</li>
+        </ol>
     rebuttal_placeholder: 'Expliquez à un modérateur pourquoi ce script ne doit pas être supprimé.'
     submit_rebuttal: "Soumettre une réfutation"
     delete_script: "Supprimer le script"
+    view_discussion: "Voir la discussion"
+    load_diff: "Chargement différer "
+    loading_diff: "Chargement…"
   discussions:
     title: Discussions
     comment_date: "Posté le: %{date}"
