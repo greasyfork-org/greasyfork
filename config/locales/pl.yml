@@ -82,7 +82,7 @@ pl:
     admin:
       title: "%{script_name} - Admin"
       promoted_heading: "Promowany skrypt"
-      promoted_explanation: "Po instalacji tego skryptu, %{site_name}może sugerować użytkownikowi, aby sprawdził inny skrypt, który wybierzesz."
+      promoted_explanation: "Po instalacji tego skryptu, %{site_name} może zaproponować użytkownikowi wypróbowanie innego wybranego przez ciebie skryptu."
       promoted_script_label: "URL skryptu do promowania"
       promoted_submit: "Ustaw promowany skrypt"
       sync_heading: "Synchronizacja ze źródłem"
@@ -237,14 +237,19 @@ pl:
     sync_type_intro: "Ten skrypt będzie synchronizowany:"
     sync_type_1:
       name: Ręcznie
+      description: aktualizacje będą sprawdzane, tylko gdy je wymusisz
     sync_type_2:
       name: Automatycznie
+      description: aktualizacje będą sprawdzane okresowo
     sync_type_3:
       name: Webhook
+      description: zostanie zaktualizowany po wprowadzeniu zmian do tego pliku w repozytorium
     sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "Synchronizacji próbowano ostatnio %{date}, co przyczyniło się do %{error}."
     sync_success_info_html: "Ostatnia sukcesywna synchronizacja była %{date}."
     sync_never_succeeded: "Synchronizacja nigdy nie zakończyła się sukcesem."
+    sync_additional_info: Opcjonalnie możesz też zsynchronizować dodatkowe informacje o skrypcie.
+    add_synced_additional_info: Dodaj synchronizowane dodatkowe informacje w innym języku
     update_and_sync: "Zaktualizuj i zsynchronizuj teraz"
     update_no_sync: "Zaktualizuj"
     turn_off_syncing: "Wyłącz synchronizację dla tego skryptu"
@@ -642,6 +647,10 @@ pl:
       save_success: Twoje ustawienia powiadomień zostały zaktualizowane
       unsubscribe_all: Wypisz się z wszystkich powiadomień
       unsubscribe_all_success: Zostałeś wypisany ze wszystkich powiadomień
+  webhooks:
+    info:
+      title: Konfiguracja webhooka
+      synced_item_html: "%{script_name} - %{sync_type} synchronizuje się z %{sync_url}"
   help:
     sections:
       usage: Używanie
@@ -856,6 +865,7 @@ pl:
       many: "%{script_names} otrzymały konsekwentnie negatywne oceny. Prosimy, przejrzyj swoje skrypty oraz ustosunkuj się do zarzutów podniesionych w opiniach."
       other: "%{script_names}otrzymały konsekwentnie negatywne oceny. Prosimy, przejrzyj swoje skrypty oraz ustosunkuj się do zarzutów podniesionych w opiniach."
   reports:
+    name: "Zgłoszenie #%{id}"
     report_filed: "Twoje zgłoszenie zostanie sprawdzone przez moderatora."
     new_report_title:
       user: "Zgłoś %{user}"
