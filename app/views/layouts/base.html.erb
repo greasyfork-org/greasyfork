@@ -36,6 +36,19 @@
     <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
   <% end %>
 
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-48197018-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    <% if sleazy? %>
+      gtag('config', 'UA-48197018-2');
+    <% else %>
+      gtag('config', 'UA-48197018-1');
+    <% end %>
+  </script>
+
   <% if content_for(:head_bottom) %><%= yield(:head_bottom) %><% end %>
 </head>
 <body>
@@ -130,30 +143,5 @@
 
     <%= content_for?(:content) ? yield(:content) : yield %>
   </div>
-
-  <% if sleazy? %>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-48197018-2', 'auto');
-      ga('send', 'pageview');
-
-    </script>
-  <% else %>
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-48197018-1', 'greasyfork.org');
-      ga('send', 'pageview');
-
-    </script>
-  <% end %>
-
 </body>
 </html>
