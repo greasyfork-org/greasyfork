@@ -1,30 +1,4 @@
-function getTampermonkey() {
-  return new Promise(function(resolve, reject) {
-    if (!window.external) {
-      reject('Tampermonkey is not installed.');
-      return;
-    }
-    if (window.external.Tampermonkey) {
-      resolve(window.external.Tampermonkey);
-      return;
-    }
-    reject('Tampermonkey is not installed.');
-  });
-}
-
-function getViolentmonkey() {
-  return new Promise(function(resolve, reject) {
-    if (!window.external) {
-      reject('Violentmonkey is not installed.');
-      return;
-    }
-    if (window.external.Violentmonkey) {
-      resolve(window.external.Violentmonkey);
-      return;
-    }
-    reject('Violentmonkey is not installed.');
-  });
-}
+import {getTampermonkey, getViolentmonkey} from "./managers";
 
 function getInstalledVersion(name, namespace) {
   return new Promise(function(resolve, reject) {
