@@ -10,21 +10,20 @@
     <input id="user-search-field" type="search" name="q" value="<%= params[:q] %>" placeholder="<%= t('users.search_placeholder') %>"><input class="search-submit" type="submit" value="🔎">
   <% end %>
 
-    <div id="user-list-sort" class="list-option-group"><%= t('scripts.listing_sort_label') %>
-      <ul>
-        <%= user_list_link(t('users.listing_registration_date'), sort: nil) %>
-        <%= user_list_link(t('scripts.listing_sort_name'), sort: 'name') %>
-        <% if false %>
-          <%= user_list_link(t('scripts.listing_sort_daily_installs'), sort: 'daily_installs') %>
-          <%= user_list_link(t('scripts.listing_sort_total_installs'), sort: 'total_installs') %>
-          <%= user_list_link(t('scripts.listing_sort_ratings'), sort: 'ratings') %>
-          <%= user_list_link(t('users.listing_number_of_scripts'), sort: 'scripts') %>
-          <%= user_list_link(t('users.listing_new_scripts'), sort: 'created_script') %>
-          <%= user_list_link(t('users.listing_updated_scripts'), sort: 'updated_script') %>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <div id="user-list-sort" class="list-option-group"><%= t('scripts.listing_sort_label') %>
+    <ul>
+      <%= user_list_link(t('users.listing_registration_date'), sort: nil) %>
+      <%= user_list_link(t('scripts.listing_sort_name'), sort: 'name') %>
+      <% if false %>
+        <%= user_list_link(t('scripts.listing_sort_daily_installs'), sort: 'daily_installs') %>
+        <%= user_list_link(t('scripts.listing_sort_total_installs'), sort: 'total_installs') %>
+        <%= user_list_link(t('scripts.listing_sort_ratings'), sort: 'ratings') %>
+        <%= user_list_link(t('users.listing_number_of_scripts'), sort: 'scripts') %>
+        <%= user_list_link(t('users.listing_new_scripts'), sort: 'created_script') %>
+        <%= user_list_link(t('users.listing_updated_scripts'), sort: 'updated_script') %>
+      <% end %>
+    </ul>
+  </div>
 
   <div id="user-banned-filter" class="list-option-group">
     <ul>
