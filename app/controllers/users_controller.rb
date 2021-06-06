@@ -3,7 +3,7 @@ require 'uri'
 require 'securerandom'
 
 class UsersController < ApplicationController
-  MAX_LIST_ENTRIES = 50
+  MAX_LIST_ENTRIES = 1000
 
   include Webhooks
   include BrowserCaching
@@ -305,11 +305,11 @@ class UsersController < ApplicationController
   end
 
   def self.apply_sort(finder, script_subset:, sort:)
-    # Temporary disable
-    return finder.order(id: :desc)
-
     return finder.order(id: :desc) if sort.blank?
     return finder.order(:name, :id) if sort == 'name'
+
+    # Temporary disable
+    return finder.order(id: :desc)
 
     finder = finder.joins("#{script_subset}_listable_scripts".to_sym).group('users.id')
     case sort
