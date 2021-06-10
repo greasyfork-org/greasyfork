@@ -46,7 +46,7 @@
         <main class="modal__content" id="preinstall-modal-content">
           <% script.best_antifeatures_for_locale(request_locale).each do |antifeature| %>
             <p>
-              <%= t("scripts.antifeatures.types.#{antifeature.antifeature_type}.description_html") %>
+              <%= t("scripts.antifeatures.types.#{antifeature.antifeature_type}.description_html", site_name: site_name) %>
               <% if antifeature.description %>
                 <%= t('scripts.antifeatures.author_explanation_intro') %>
                 <q><%= antifeature.description %></q>
