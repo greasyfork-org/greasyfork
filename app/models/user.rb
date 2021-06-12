@@ -319,7 +319,7 @@ class User < ApplicationRecord
   ].freeze
 
   def calculate_stats
-    script_stat_results = scripts.not_deleted.pick(*SCRIPT_STAT_QUERIES.map(&:last).map { |v| Arel.sql(v) })
+    script_stat_results = scripts.listable(:all).pick(*SCRIPT_STAT_QUERIES.map(&:last).map { |v| Arel.sql(v) })
     script_stat_results = SCRIPT_STAT_QUERIES.map(&:first).each_with_index.map { |k, i| [k, script_stat_results[i]] }.to_h
     {
       stats_script_count: script_stat_results[:count],
