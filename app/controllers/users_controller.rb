@@ -57,7 +57,7 @@ class UsersController < ApplicationController
       @users = @users.where(current_sign_in_ip: other_user.current_sign_in_ip) if other_user&.current_sign_in_ip
     end
 
-    @users = self.class.apply_sort(@users, sort: params[:sort], script_subset: script_subset).paginate(page: params[:page], per_page: pp, total_entries: [@users.count, MAX_LIST_ENTRIES].min).load
+    @users = self.class.apply_sort(@users, sort: params[:sort]).paginate(page: params[:page], per_page: pp, total_entries: [@users.count, MAX_LIST_ENTRIES].min).load
     @user_script_counts = Script.listable(script_subset).joins(:authors).where(authors: { user_id: @users.map(&:id) }).group(:user_id).count
 
     @bots = 'noindex,follow' if !params[:sort].nil? || !params[:q].nil?
@@ -304,30 +304,26 @@ class UsersController < ApplicationController
     redirect_to user_path(current_user)
   end
 
-  def self.apply_sort(finder, script_subset:, sort:)
-    return finder.order(id: :desc) if sort.blank?
-    return finder.order(:name, :id) if sort == 'name'
-
-    # Temporary disable
-    return finder.order(id: :desc)
-
-    finder = finder.joins("#{script_subset}_listable_scripts".to_sym).group('users.id')
+  def self.apply_sort(finder, sort:)
     case sort
+    when 'name'
+      finder.order(:name, :id) if sort == 'name'
     when 'scripts'
-      return finder.order('count(scripts.id) DESC, users.id')
+      finder.order('stats_script_count DESC, users.id')
     when 'total_installs'
-      return finder.order('sum(scripts.total_installs) DESC, users.id')
+      finder.order('stats_script_total_installs DESC, users.id')
     when 'created_script'
-      return finder.order('max(scripts.created_at) DESC, users.id')
+      finder.order('stats_script_last_created DESC, users.id')
     when 'updated_script'
-      return finder.order('max(scripts.code_updated_at) DESC, users.id')
+      finder.order('stats_script_last_updated DESC, users.id')
     when 'daily_installs'
-      return finder.order('sum(scripts.daily_installs) DESC, users.id')
+      finder.order('stats_script_daily_installs DESC, users.id')
     when 'fans'
-      return finder.order('sum(scripts.fan_score) DESC, users.id')
+      finder.order('stats_script_fan_score DESC, users.id')
     when 'ratings'
-      return finder.order(Arel.sql('sum(scripts.good_ratings + scripts.ok_ratings + scripts.bad_ratings) DESC, users.id'))
+      finder.order('stats_script_ratings DESC, users.id')
+    else
+      finder.order(id: :desc)
     end
-    finder.order(id: :desc)
   end
 end
