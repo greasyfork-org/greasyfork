@@ -222,6 +222,12 @@ tr:
     code_syncing_from_url_html: "Bu scriptin kodun senkronizasyonu şuraya ayarlanmış: %{field}"
     provide_code_syncing_from_url_html: "%{site_name}'a başka yerlerde barındırılan scriptleri aktarabilirsin, örnek olarak versiyon kontrol sisteminden (GitHub gibi), senin serverından, ya da başka user script hosting sitelerinden. Scriptlerinin senkronizasyonunu etkinleştirmek için ihtiyacını sağlayacak bir URL: %{field}"
     sync_type_intro: "Script senkronize olacak:"
+    sync_type_1:
+      name: Manuel
+      description: yalnızca tetiklediğinizde güncellemeler kontrol edilecek.
+    sync_type_2:
+      name: Otomatik
+      description: güncellemeler periyodik olarak kontrol edilecek
     sync_failed_info_html: "Son senkronizasyon teşebbüsü %{date} oldu, %{error} ile sonuçlandı."
     sync_success_info_html: "Son başarılı senkronizasyon %{date} tarihinde yapıldı."
     sync_never_succeeded: "Hiç bir zaman başarılı senksonizasyon yapılmadı."
