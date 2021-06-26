@@ -1,7 +1,7 @@
 it:
   layouts:
     application:
-      script_list: "Script"
+      script_list: "Scripts"
       forum: "Forum"
       help: "Aiuto"
       sign_in: "Entra"
@@ -348,6 +348,12 @@ it:
         referral-link:
           title: Links di rimando
           description_html: Questo script <b>riscriverà i links</b> per includere un rimando o un codice di affiliazione.
+        membership:
+          title: Sottoscrizione
+          description_html: Questo script è completamente funzionale solo dopo che ti <b>iscrivi per qualcosa</b>, come per unirti a un gruppo, iscriverti a un canale, o votare una pagina.
+        payment:
+          title: Pagamento
+          description_html: Questo script è completamente funzionante solo dopo che <b>avrai fatto un pagamento</b>. %{site_name} non è coinvolto nel pagamento, quindi non può verificare che tu ottenga qualsiasi cosa di valore o aiutarti a ottenere un rimborso.
       install_anyway: Installa script
       cancel_install: Annulla
     badges:
@@ -847,6 +853,7 @@ it:
       one: "%{script_names} ha ricevuto una serie di valutazioni negative. Rivedi il tuo script e rispondi ai problemi fatti presente nelle valutazioni."
       other: "%{script_names} hanno ricevuto una serie di valutazioni negative. Rivedi i tuoi script e rispondi ai problemi fatti presente nelle valutazioni."
   reports:
+    name: "Rapporto #%{id}"
     report_filed: "La tua segnalazione sarà presa in carico da un moderatore."
     new_report_title:
       user: "Segnala %{user}"
@@ -899,8 +906,13 @@ it:
       malware: "Malware"
       minified: "Codice minimizzato"
       external_code: "Codice esterno non consentito"
+      undisclosed_antifeature: "%{antifeature_link:Antifunzionalità} (es. pubblicità, tracciamento, mining, ecc.) non dichiarata"
       other: "Altro"
+    report_intro: "%{reported_item} è stato segnalato %{report_date} da %{reporter} per %{reason}"
     report_intro_unauthorized_html: "%{reported_script} è stato segnalato il %{report_date} da %{reporter} come una copia non autorizzata di %{other_script}"
+    report_intro_unauthorized_license: "%{other_script} usa la licenza %{license_link: %{license_name}}. Visita %{tldr_legal_link:tldrlegal.com}  per un aiuto alla comprensione di ciò che questa licenza significa."
+    report_intro_unauthorized_license_no_url: "%{other_script} usa la licenza %{license_name}. Visita %{tldr_legal_link:tldrlegal.com}  per un aiuto alla comprensione di ciò che questa licenza significa."
+    report_intro_unauthorized_no_license: "%{other_script} non specifica una licenza, che significa che distribuire copie non è consentito a meno che un permesso esplicito non sia concesso."
     non_functional_feedback: "Per favore segnala gli script non funzionali come %{feedback_link:feedback} sullo script invece."
     unauthorized_code_original_placeholder: "URL del codice originale"
     explanation_placeholder: "Fornisci ulteriori dettagli (opzionale)"
@@ -915,6 +927,9 @@ it:
     rebuttal_placeholder: 'Spiega a un moderatore perché questo script non dovrebbe essere cancellato.'
     submit_rebuttal: "Invia una contestazione"
     delete_script: "Elimina lo script"
+    view_discussion: "Visualizza discussione"
+    load_diff: "Carica diff"
+    loading_diff: "Caricamento..."
   discussions:
     title: Discussioni
     comment_date: "Pubblicato: %{date}"

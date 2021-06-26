@@ -222,6 +222,10 @@ ja:
     code_syncing_from_url_html: "このスクリプトは次のURLと同期するように設定されています: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} は、GitHub のようなバージョン管理システム、自分のサーバー、他のユーザースクリプト公開サイトなどで公開しているスクリプトをインポートすることができます。URL を設定して、スクリプトの同期を有効化します: %{field}"
     sync_type_intro: "スクリプトの同期方法:"
+    sync_type_1:
+      name: 説明書
+    sync_type_2:
+      name: 自動
     sync_failed_info_html: "%{date} に同期に失敗しました。結果: %{error}"
     sync_success_info_html: "%{date} に同期に成功しました。"
     sync_never_succeeded: "まだ一度も同期に成功していません。"
@@ -325,6 +329,8 @@ ja:
         referral-link:
           title: 紹介リンク
           description_html: このスクリプトは、紹介やアフィリエイト用のコードを含むものに<b>リンクを書き換えます</b>。
+        payment:
+          title: お支払い
       install_anyway: スクリプトをインストール
       cancel_install: キャンセル
     badges:
@@ -514,6 +520,7 @@ ja:
     listing_registration_date: "登録日"
     listing_title: "ユーザー一覧"
     listing_banned_filter:
+      banned: "規制中"
       all: "すべて"
     listing_author_filter:
       script_author: "作者"

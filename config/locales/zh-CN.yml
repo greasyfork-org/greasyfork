@@ -66,7 +66,7 @@ zh-CN:
     delete_permanently_confirm: "您确定要永久删除您的脚本？"
     delete_permanently_submit: "请求永久删除"
     delete_permanently_immediate_submit: "永久删除"
-    delete_permanently_notice: "已记录您的永久删除请求。您的脚本将在7天后永久删除。"
+    delete_permanently_notice: "已记录您的永久删除请求。您的脚本将在 7 天后永久删除。"
     delete_permanently_already_requested: "您已于 %{datetime} 请求永久删除。"
     delete_permanently_notice_immediate: "该脚本已永久删除。"
     cancel_delete_permanently_submit: "取消永久删除的请求"
@@ -100,9 +100,9 @@ zh-CN:
     feedback_has_reports: "此脚本已被报告违反 %{site_name} 守则。"
     feedback_no_discussions_html: "暂无相关讨论。%{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "现在还没有已发布的讨论。"
-    feedback_report_instead: "如果您觉得这个脚本违反了 %{rules_link: %{site_name} 的规则}, 请 %{report_link: 举报这个脚本}."
+    feedback_report_instead: "如果您觉得这个脚本违反了 %{rules_link: %{site_name} 的规则}, 请 %{report_link: 举报这个脚本}。"
     feedback_start_first_discussion_link: "成为第一个发起讨论的人吧。"
-    feedback_discussion_or_report: "%{new_discussion_link:针对此脚本发起一个新的讨论} 或者%{report_link:举报使此脚本被移除}。"
+    feedback_discussion_or_report: "%{new_discussion_link:针对此脚本发起一个新的讨论} 或者%{report_link:举报这个脚本}。"
     feedback_favoriters_heading: "收藏者"
     feedback_favoriters_user_list_html: "该脚本已被 %{user_list} 收藏。"
     feedback_favoriters_lots:
@@ -263,9 +263,9 @@ zh-CN:
     write_your_own_html: "%{post_a_script_link}(或 %{learn_to_write_scripts_link})"
     post_a_script_link_text: "发布你编写的脚本"
     learn_to_write_scripts_link_text: "了解如何编写脚本"
-    feedback_or_report: "%{feedback_link:询问，评论}，或者%{report_link:举报这个脚本}."
-    support_feedback_or_report: "%{support_url:访问作者的支持站点}, %{feedback_link:询问，评论}，或者%{report_link:举报此脚本}。"
-    support_email_feedback_or_report: "%{support_url:发送邮件给作者以获取帮助}，%{feedback_link:咨询问题，发布评价}，或者 %{report_link:举报此脚本}。"
+    feedback_or_report: "%{feedback_link:询问，评论}，或者 %{report_link:举报这个脚本}。"
+    support_feedback_or_report: "%{support_url:访问作者的支持站点}，%{feedback_link:询问，评论}，或者 %{report_link:举报此脚本}。"
+    support_email_feedback_or_report: "%{support_url:给作者发送电子邮件来获取支持}，%{feedback_link:询问，评价}，或者 %{report_link:举报此脚本}。"
     adult_content: "成人内容"
     adult_content_self_report: "此脚本包含成人内容，或者适用于一个含有成人内容的网站。"
     adult_content_self_report_explanation: "%{site_name} 允许脚本带有成人内容，但必须被明确标注使用户可以选择是否查看此类内容。"
@@ -316,7 +316,7 @@ zh-CN:
       remove_button: "移除"
       remove_confirm: "确定要将 %{user_name} 从作者列表中移除吗？"
       failure: "无法移除该作者。"
-    no_disposable_email: "如果您使用一次性电子邮件地址, 则不能发布脚本。"
+    no_disposable_email: "如果您使用一次性电子邮箱地址，则不能发布脚本。"
     rate_limited: "您近期提交了太多脚本。请稍后再试。"
     new_script_notice:
       title: "想要做什么？"
@@ -342,6 +342,12 @@ zh-CN:
         referral-link:
           title: 引荐链接
           description_html: 此脚本将<b>重写或重定向</b>部分网页地址来添加推荐人或返利代码至链接。
+        membership:
+          title: 会员内容
+          description_html: 脚本只有在使用者 <b>主动登记后</b> 才能使用完整功能，如加入群组、订阅频道或在某页点赞等。
+        payment:
+          title: 付费内容
+          description_html: 脚本只有在使用者 <b>支付后</b>才能使用完整功能。 %{site_name} 未参与到支付的流程，因此不保证该支付的有效性，亦无法对退款行为进行帮助。
       install_anyway: 安装脚本
       cancel_install: 取消
     badges:
@@ -578,7 +584,7 @@ zh-CN:
       with_report: "管理员在处理%{report_link:该则举报时}封禁了您的账号。如果需要，您可以%{delete_link:删除该账号}。"
       with_reason: "您的账号已被封禁。管理员封禁的原因是：“%{reason}”。如果需要，您可以%{delete_link:删除该账号}。"
     banned_delete:
-      intro: "删除您的账号将同时删除您所发布的任何脚本。您在论坛提交的内容将保留，但用户名将作匿名化处理。即便删除账户，您也不能使用同一电子邮件进行注册。请在下方登录然后删除您的账号。"
+      intro: "删除您的账号将同时删除您所发布的任何脚本。您在论坛提交的内容将保留，但用户名将作匿名化处理。删除账户后，您不能再使用同一电子邮箱地址进行注册。请在下方登录然后删除您的账号。"
       complete: "您的账号已经删除。"
     badges:
       banned:
@@ -641,8 +647,8 @@ zh-CN:
       require_external_script_link_text: "包含外部脚本的使用规定"
       updateURL: "告知用户脚本管理器应该在哪个地址获取脚本更新。%{site_name} 将自动修改该属性使其永远通过 %{site_name} 进行更新。"
       license: "许可协议描述的是您是否允许别人以某些形式复制或修改您的脚本。建议从 %{spdx_link:SPDX 许可协议列表} 中选择「Full name」或「Identifier」填至此处。若您不提供许可协议，则表示仅允许个人使用且不得二次分发。许可协议将在脚本的简介页面显示。"
-      supportURL: "该脚本的技术支持链接（如：错误反馈系统、论坛、电子邮件等），该链接将显示在脚本的反馈页面。"
-      contributionURL_html: "用于捐赠脚本作者的链接，该链接将显示在脚本的反馈页面。网址可以为 http、https 或比特币协议的网址。如果您需要链接到贝宝捐赠页面，请使用例如 <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a> 这样的格式，替换为您自己的邮箱即可。"
+      supportURL: "该脚本的技术支持链接（如：错误反馈系统、论坛、电子邮箱地址等），该链接将显示在脚本的反馈页面。"
+      contributionURL_html: "用于捐赠脚本作者的链接，该链接将显示在脚本的反馈页面。网址可以为 http、https 或比特币协议的网址。如果您需要链接到贝宝捐赠页面，请使用例如 <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a> 这样的格式，替换为您自己的邮箱地址即可。"
       contributionAmount_html: "建议捐赠金额，请配合 <code>@contributionURL</code> 使用。"
       compatible_html: "标记此脚本与某个浏览器兼容，兼容性信息将显示在脚本的简介页面上。您也可以添加额外的兼容说明，如 <code>@compatible firefox 火狐上必须关闭广告过滤器</code> 这样的格式。目前能被网站识别的浏览器名称有：%{browsers}。"
       incompatible_html: "标记此脚本与某个浏览器不兼容，兼容性信息将显示在脚本的简介页面上。您也可以添加额外的兼容说明，如 <code>@incompatible firefox 自火狐 23 开始不兼容</code> 这样的写法。目前能被网站识别的浏览器名称有：%{browsers}。"
@@ -736,7 +742,7 @@ zh-CN:
           <p>为了生成统计数据，%{site_name} 会记录带有 IP 地址信息的安装和更新请求。此信息保留一天，然后汇总为不包含 IP 地址的数据。特定
           IP 地址的数据不会被分享或公开提供，但汇总数据会。</p> <h2>Cookie（未登录时）</h2> <p>%{site_name} 可能设置临时会话
           Cookie 以实现某些网站功能。这些 Cookie 不设置为持久，并且可能在浏览器关闭时被清除（取决于浏览器设置）。</p> <h2>用户账号</h2>
-          <p>%{site_name} 需要用户创建一个账号以发布脚本、参与讨论和访问某些网站功能。在创建账号时，诸如 IP 地址、电子邮件地址，以及用户代理信息可能被永久存储。其中某些信息可能对其他用户可见。</p>
+          <p>%{site_name} 需要用户创建一个账号以发布脚本、参与讨论和访问某些网站功能。在创建账号时，诸如 IP 地址、电子邮箱地址，以及用户代理信息可能被永久存储。其中某些信息可能对其他用户可见。</p>
           <p>在登录时执行的操作，例如发布脚本或者评论，将可能对其他用户可见。</p> <p>如果登录时选中了“记住我”的选项，%{site_name}
           将设置一个持久的 Cookie 以保持登录状态。</p> <h2>发布在 %{site_name} 的脚本</h2> <p>%{site_name}
           由用户生成的内容组成，而脚本可能会包含追踪代码；安装此类脚本会导致用户信息被搜集。</p> <h2>第三方库</h2> <p>%{site_name}
@@ -746,7 +752,7 @@ zh-CN:
     antifeatures:
       title: 可能不受欢迎的功能
       intro_html: |
-          <p>脚本作者可以添加可能不受欢迎的功能来让作者而非使用者获得收益，例如广告或追踪行为。脚本作者可以在遵守 %{rules_link:%{site_name} 脚本准则}的前提下提交含有可能不受欢迎的功能的脚本，但必须在脚本元信息内使用 <code>@antifeature</code> 来明确标记。这样是为了让用户在安装之前知晓该脚本所含有的可能不受欢迎的功能。</p>
+          <p>脚本作者可以添加可能不受欢迎的功能来让作者而非使用者获得收益，例如广告或追踪行为。脚本作者可以在遵守 %{rules_link:%{site_name} 脚本准则} 的前提下提交含有可能不受欢迎的功能的脚本，但必须在脚本元信息内使用 <code>@antifeature</code> 来明确标记。这样是为了让用户在安装之前知晓该脚本所含有的可能不受欢迎的功能。</p>
           <p>可能不受欢迎的功能使用%{meta_keys_link:脚本的元信息名称}指定，其格式为 <code>@antifeature <i>类型</i> <i>描述</i></code>。其中 <i>类型</i> 是必须填写的，而 <i>描述</i> 则可以留空。</p>
           <p>这个页面描述了能被 %{site_name} 所识别的 <code>@antifeature</code> 类型。你也可以使用其他类型，但你所使用的类型必须遵守 %{rules_link:%{site_name} 脚本准则}。</p>
       ads_html: |
@@ -826,7 +832,7 @@ zh-CN:
     new_script_report_notes_html: >
         <p>举报之前，请注意：</p> <ul>
 
-        <li>只有违反了 %{rules_link:%{site_name} 规则}的脚本会被移除。如果脚本只是失效或不兼容，请%{feedback_link:在反馈处留言}。</li>
+        <li>只有违反了 %{rules_link:%{site_name} 规则} 的脚本会被移除。如果脚本只是失效或不兼容，请 %{feedback_link:在反馈处留言}。</li>
 
         <li>管理员将审核你提交的举报并处理。</li>
 
@@ -850,7 +856,7 @@ zh-CN:
       malware: "恶意软件或代码"
       minified: "代码经过最小化处理"
       external_code: "未允许的外部代码引用"
-      undisclosed_antifeature: "未声明的%{antifeature_link:可能不受欢迎的功能}（包括但不限于广告、用户追踪、挖矿等功能）"
+      undisclosed_antifeature: "未声明的 %{antifeature_link:可能不受欢迎的功能}（包括但不限于广告、用户追踪、挖矿等功能）"
       other: "其它"
     report_intro: "%{reporter} 在 %{report_date} 举报了 %{reported_item}，原因是：%{reason}"
     report_intro_unauthorized_html: "%{reported_script} 在 %{report_date} 被 %{reporter} 举报含有未授权的副本，原脚本为 %{other_script}。"

@@ -219,6 +219,10 @@ class Script < ApplicationRecord
     @_run_duplicate_checker = false
   end
 
+  after_commit do |script|
+    script.users.each(&:update_stats!)
+  end
+
   before_save do |script|
     if script.deleted?
       script.deleted_at ||= Time.current

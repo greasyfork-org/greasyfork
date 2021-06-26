@@ -300,6 +300,38 @@ class User < ApplicationRecord
     banned_at.present?
   end
 
+  def update_stats!
+    update_columns(calculate_stats)
+  end
+
+  def assign_stats
+    assign_attributes(calculate_stats)
+  end
+
+  SCRIPT_STAT_QUERIES = [
+    [:count, 'count(scripts.id)'],
+    [:total_installs, 'coalesce(sum(scripts.total_installs), 0)'],
+    [:daily_installs, 'coalesce(sum(scripts.daily_installs), 0)'],
+    [:fan_score, 'coalesce(sum(scripts.fan_score), 0)'],
+    [:last_created, 'max(scripts.created_at)'],
+    [:last_updated, 'max(scripts.code_updated_at)'],
+    [:ratings, 'coalesce(sum(scripts.good_ratings + scripts.ok_ratings + scripts.bad_ratings), 0)'],
+  ].freeze
+
+  def calculate_stats
+    script_stat_results = scripts.listable(:all).pick(*SCRIPT_STAT_QUERIES.map(&:last).map { |v| Arel.sql(v) })
+    script_stat_results = SCRIPT_STAT_QUERIES.map(&:first).each_with_index.map { |k, i| [k, script_stat_results[i]] }.to_h
+    {
+      stats_script_count: script_stat_results[:count],
+      stats_script_total_installs: script_stat_results[:total_installs],
+      stats_script_daily_installs: script_stat_results[:daily_installs],
+      stats_script_fan_score: script_stat_results[:fan_score],
+      stats_script_ratings: script_stat_results[:ratings],
+      stats_script_last_created: script_stat_results[:last_created],
+      stats_script_last_updated: script_stat_results[:last_updated],
+    }
+  end
+
   protected
 
   def password_required?

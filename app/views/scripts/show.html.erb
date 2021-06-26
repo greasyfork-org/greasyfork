@@ -86,7 +86,7 @@
       <dd class="script-antifeatures">
         <span>
           <%= safe_join(@script.best_antifeatures_for_locale(request_locale).map do |antifeature|
-            tag.span(title: strip_tags(t("scripts.antifeatures.types.#{antifeature.antifeature_type}.description_html"))) { t("scripts.antifeatures.types.#{antifeature.antifeature_type}.title") }
+            tag.span(title: strip_tags(t("scripts.antifeatures.types.#{antifeature.antifeature_type}.description_html", site_name: site_name))) { t("scripts.antifeatures.types.#{antifeature.antifeature_type}.title") }
           end, ', ') %>
         </span>
       </dd>
