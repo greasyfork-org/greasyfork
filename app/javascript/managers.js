@@ -17,11 +17,11 @@ export async function canInstallUserCSS() {
   postMessage({ type: 'style-version-query', name: "whatever", namespace: "whatever", url: location.href }, location.origin);
   return new Promise(resolve => setTimeout(function() {
     resolve(localStorage.getItem('stylusDetected') == '1')
-  }, ms));
+  }, 200));
 }
 
 window.addEventListener("message", function(event) {
-  if (event.origin !== "https://greasyfork.org" && event.origin !== "https://sleazyfork.org")
+  if (event.origin !== location.origin)
     return;
 
   if (event.data.type != "style-version")

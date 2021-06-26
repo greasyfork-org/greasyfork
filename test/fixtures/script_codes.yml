@@ -241,3 +241,35 @@ antifeatures:
     // ==/UserScript==
     var foo;
   code_hash: 281bb514bd0dc57cddb83702bf0fbeda28756701
+
+style:
+  id: 22
+  code: |
+    /* ==UserStyle==
+    @name A Test Update!
+    @description Unit test.
+    @version 1.2
+    @namespace http://greasyfork.local/users/1
+    @include *
+    @antifeature ads this has ads
+    ==/UserStyle== */
+    @-moz-document domain(example.com) {
+      a { color: blue }
+    }
+  code_hash: 281bb514bd0dc57cddb83702bf0fbeda28756701
+
+style_antifeatures:
+  id: 23
+  code: |
+    /* ==UserStyle==
+    @name A Test Update!
+    @description Unit test.
+    @version 1.2
+    @namespace http://greasyfork.local/users/1
+    @include *
+    @antifeature ads this has ads
+    ==/UserStyle== */
+    @-moz-document domain(example.com) {
+      a { color: blue }
+    }
+  code_hash: 281bb514bd0dc57cddb83702bf0fbeda28756701

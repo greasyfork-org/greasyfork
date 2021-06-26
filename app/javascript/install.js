@@ -72,7 +72,6 @@ async function showPreviousVersionWarning(installLink) {
 
 async function showAntifeatureWarning() {
   return new Promise((resolve) => {
-    console.log('showAntifeatureWarning')
     if (document.getElementById("preinstall-modal")) {
       MicroModal.show('preinstall-modal', {
         onClose: function (modal, button, event) {
