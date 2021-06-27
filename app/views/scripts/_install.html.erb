@@ -68,32 +68,47 @@
     <div class="modal__container" role="dialog" aria-modal="true">
       <header class="modal__header" aria-labelledby="installation-instructions-modal-title">
         <h3 class="modal__title" id="installation-instructions-modal-title">
-          How to install
+          <%= t('scripts.install_help_title') %>
         </h3>
         <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
       </header>
       <main class="modal__content" id="installation-instructions-modal-content">
         <p class="installation-instructions-modal-content-firefox">
-          You will need to install an extension such as <a href="https://addons.mozilla.org/en-CA/firefox/addon/tampermonkey/" target="tampermonkey">Tampermonkey</a>, <a href="https://addons.mozilla.org/en-CA/firefox/addon/greasemonkey/" target="greasemonkey">Greasemonkey</a>, or <a href="https://addons.mozilla.org/en-CA/firefox/addon/violentmonkey/" target="violentmonkey">Violentmonkey</a> to install this script.
+          <%= it('scripts.install_help_dialog.js.firefox',
+                 tampermonkey_link: It.link('https://addons.mozilla.org/firefox/addon/tampermonkey/', target: 'tampermonkey'),
+                 greasemonkey_link: It.link('https://addons.mozilla.org/firefox/addon/greasemonkey/', target: 'greasemonkey'),
+                 violentmonkey_link: It.link('https://addons.mozilla.org/firefox/addon/violentmonkey/', target: 'violentmonkey'))
+          %>
         </p>
         <p class="installation-instructions-modal-content-chrome">
-          You will need to install an extension such as <a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo" target="tampermonkey">Tampermonkey</a> or <a href="https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag" target="violentmonkey">Violentmonkey</a> to install this script.
+          <%= it('scripts.install_help_dialog.js.chrome',
+                 tampermonkey_link: It.link('https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo', target: 'tampermonkey'),
+                 violentmonkey_link: It.link('https://chrome.google.com/webstore/detail/violent-monkey/jinjaccalgkegednnccohejagnlnfdag', target: 'violentmonkey'))
+          %>
         </p>
         <p class="installation-instructions-modal-content-opera">
-          You will need to install an extension such as <a href="https://addons.opera.com/extensions/details/tampermonkey-beta/" target="tampermonkey">Tampermonkey</a>, or <a href="https://violentmonkey.github.io/get-it/" target="violentmonkey">Violentmonkey</a> to install this script.
+          <%= it('scripts.install_help_dialog.js.opera',
+                 tampermonkey_link: It.link('https://addons.opera.com/extensions/details/tampermonkey-beta/', target: 'tampermonkey'),
+                 violentmonkey_link: It.link('https://violentmonkey.github.io/get-it/', target: 'violentmonkey'))
+          %>
         </p>
         <p class="installation-instructions-modal-content-safari">
-          You will need to install an extension such as <a href="https://www.tampermonkey.net/?browser=safari" target="tampermonkey">Tampermonkey</a> or<a href="https://apps.apple.com/app/userscripts/id1463298887" target="userscripts">Userscripts</a> to install this script.
+          <%= it('scripts.install_help_dialog.js.safari',
+                 tampermonkey_link: It.link('https://addons.opera.com/extensions/details/tampermonkey-beta/', target: 'tampermonkey'),
+                 userscripts_link: It.link('https://apps.apple.com/app/userscripts/id1463298887', target: 'Userscripts'))
+          %>
         </p>
         <p class="installation-instructions-modal-content-other">
-          You will need to install a user script manager extension to install this script.
+          <%= t('scripts.install_help_dialog.js.other') %>
         </p>
         <p class="installation-instructions-modal-content-bypass">
-          <%= link_to '(I already have a user script manager, let me install it!)', '#' %>
+          <%= link_to t('scripts.install_help_dialog.js.bypass'), '#' %>
         </p>
       </main>
       <footer class="modal__footer">
-        <button class="modal__btn modal__btn-primary" data-micromodal-close data-micromodal-accept>OK</button>
+        <button class="modal__btn modal__btn-primary" data-micromodal-close data-micromodal-accept>
+          <%= t('scripts.install_help_dialog.close_dialog') %>
+        </button>
       </footer>
     </div>
   </div>
@@ -104,32 +119,40 @@
     <div class="modal__container" role="dialog" aria-modal="true">
       <header class="modal__header" aria-labelledby="installation-instructions-modal-title">
         <h3 class="modal__title" id="installation-instructions-modal-title">
-          How to install
+          <%= t('scripts.install_help_title') %>
         </h3>
         <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
       </header>
       <main class="modal__content" id="installation-instructions-modal-content">
         <p class="installation-instructions-modal-content-firefox">
-          You will need to install an extension such as <a href="https://addons.mozilla.org/firefox/addon/styl-us/" target="stylus">Stylus</a> to install this style.
+          <%= it('scripts.install_help_dialog.css.firefox',
+                 stylus_link: It.link('https://addons.mozilla.org/firefox/addon/styl-us/', target: 'stylus'))
+          %>
         </p>
         <p class="installation-instructions-modal-content-chrome">
-          You will need to install an extension such as <a href="https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne" target="stylus">Stylus</a> to install this style.
+          <%= it('scripts.install_help_dialog.css.chrome',
+                 stylus_link: It.link('https://chrome.google.com/webstore/detail/stylus/clngdbkpkpeebahjckkjfobafhncgmne', target: 'stylus'))
+          %>
         </p>
         <p class="installation-instructions-modal-content-opera">
-          You will need to install an extension such as <a href="https://addons.opera.com/extensions/details/stylus/" target="stylus">Stylus</a> to install this style.
+          <%= it('scripts.install_help_dialog.css.opera',
+                 stylus_link: It.link('https://addons.opera.com/extensions/details/stylus/', target: 'stylus'))
+          %>
         </p>
         <p class="installation-instructions-modal-content-safari">
-          You will need to install a user style manager extension to install this script.
+          <%= t('scripts.install_help_dialog.css.safari') %>
         </p>
         <p class="installation-instructions-modal-content-other">
-          You will need to install a user style manager extension to install this script.
+          <%= t('scripts.install_help_dialog.css.other') %>
         </p>
         <p class="installation-instructions-modal-content-bypass">
-          <%= link_to '(I already have a user style manager, let me install it!)', '#' %>
+          <%= link_to t('scripts.install_help_dialog.css.bypass'), '#' %>
         </p>
       </main>
       <footer class="modal__footer">
-        <button class="modal__btn modal__btn-primary" data-micromodal-close data-micromodal-accept>OK</button>
+        <button class="modal__btn modal__btn-primary" data-micromodal-close data-micromodal-accept>
+          <%= t('scripts.install_help_dialog.close_dialog') %>
+        </button>
       </footer>
     </div>
   </div>
