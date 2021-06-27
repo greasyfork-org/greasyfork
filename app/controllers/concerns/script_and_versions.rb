@@ -121,7 +121,7 @@ module ScriptAndVersions
         render 'home/error', status: :not_found, layout: 'application'
       end
       format.all do
-        head 404
+        head :not_found
       end
     end
   end
@@ -133,7 +133,7 @@ module ScriptAndVersions
         render 'home/error', status: :not_found, layout: 'application'
       end
       format.all do
-        head 404
+        head :not_found
       end
     end
   end

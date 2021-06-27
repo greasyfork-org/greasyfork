@@ -66,7 +66,7 @@ class ConversationsController < ApplicationController
   def subscribe
     ConversationSubscription.find_or_create_by!(user: current_user, conversation: @conversation)
     respond_to do |format|
-      format.js { head 200 }
+      format.js { head :ok }
       format.all { redirect_to @conversation.path }
     end
   end
@@ -74,7 +74,7 @@ class ConversationsController < ApplicationController
   def unsubscribe
     ConversationSubscription.where(user: current_user, conversation: @conversation).destroy_all
     respond_to do |format|
-      format.js { head 200 }
+      format.js { head :ok }
       format.all { redirect_to @conversation.path }
     end
   end

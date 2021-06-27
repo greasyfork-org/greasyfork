@@ -31,14 +31,14 @@ class ApplicationController < ActionController::Base
         render 'home/routing_error', status: :not_found, layout: 'application'
       end
       format.all do
-        head 404, content_type: 'text/html'
+        head :not_found, content_type: 'text/html'
       end
     end
   end
 
   rescue_from ActionController::UnknownFormat, with: :unknown_format
   def unknown_format
-    head 406, content_type: 'text/plain'
+    head :not_acceptable, content_type: 'text/plain'
   end
 
   def self.cache_with_log(key, options = {})

@@ -160,7 +160,7 @@ class ScriptsController < ApplicationController
                          script_version.generate_blanked_code
                        elsif script.css?
                          unless script.css_convertible_to_js?
-                           head 404
+                           head :not_found
                            return
                          end
                          CssToJsConverter.convert(script_version.rewritten_code)
@@ -220,18 +220,18 @@ class ScriptsController < ApplicationController
     if Rails.env.test?
       ip, script_id = ScriptsController.per_user_stat_params(request, params)
       Script.record_install(script_id, ip)
-      head 204
+      head :no_content
       return
     end
 
     # verify for CSRF, but do it in a way that avoids an exception. Prevents monitoring from going nuts.
     unless verified_request?
-      head 422
+      head :unprocessable_entity
       return
     end
     ip, script_id = ScriptsController.per_user_stat_params(request, params)
     if ip.nil? || script_id.nil?
-      head 422
+      head :unprocessable_entity
       return
     end
 
@@ -246,7 +246,7 @@ class ScriptsController < ApplicationController
       end
     end
 
-    head 204
+    head :no_content
   end
 
   def diff
@@ -873,7 +873,7 @@ class ScriptsController < ApplicationController
 
     # A style can serve out either JS or CSS. A script can only serve out JS.
     if script_info.language == 'js' && is_css
-      head 404
+      head :not_found
       return
     end
 

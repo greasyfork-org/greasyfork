@@ -20,7 +20,7 @@ module Webhooks
     # using the secret, see if this is good
     body = request.body.read
     if user.webhook_secret.nil? || request.headers['X-Hub-Signature'] != "sha1=#{OpenSSL::HMAC.hexdigest(HMAC_DIGEST, user.webhook_secret, body)}"
-      head 403
+      head :forbidden
       return nil, nil
     end
 
@@ -37,7 +37,7 @@ module Webhooks
       end
       changed_files = Github.info_from_release_event(params)
     else
-      head 406
+      head :not_acceptable
       return nil, nil
     end
 
@@ -53,12 +53,12 @@ module Webhooks
 
   def process_bitbucket_webhook(user)
     if user.webhook_secret.nil? || user.webhook_secret != params[:secret]
-      head 403
+      head :forbidden
       return nil, nil
     end
 
     if request.headers['X-Event-Key'] != 'repo:push'
-      head 406
+      head :not_acceptable
       return nil, nil
     end
 
@@ -77,7 +77,7 @@ module Webhooks
 
   def process_gitlab_webhook(user)
     if user.webhook_secret.nil? || user.webhook_secret != request.headers['X-Gitlab-Token']
-      head 403
+      head :forbidden
       return nil, nil
     end
 
@@ -87,7 +87,7 @@ module Webhooks
     when 'Release Hook'
       changed_files = Gitlab.info_from_release_event(params)
     else
-      head 406
+      head :not_acceptable
       return nil, nil
     end
 

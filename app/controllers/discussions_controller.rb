@@ -154,7 +154,7 @@ class DiscussionsController < ApplicationController
     discussion = discussion_scope.find(params[:id])
     DiscussionSubscription.find_or_create_by!(user: current_user, discussion: discussion)
     respond_to do |format|
-      format.js { head 200 }
+      format.js { head :ok }
       format.all { redirect_to discussion.path(locale: request_locale.code) }
     end
   end
@@ -163,7 +163,7 @@ class DiscussionsController < ApplicationController
     discussion = discussion_scope.find(params[:id])
     DiscussionSubscription.find_by(user: current_user, discussion: discussion)&.destroy
     respond_to do |format|
-      format.js { head 200 }
+      format.js { head :ok }
       format.all { redirect_to discussion.path(locale: request_locale.code) }
     end
   end
