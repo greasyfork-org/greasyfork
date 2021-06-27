@@ -170,7 +170,7 @@ es:
     listing_filter_by_site_label: "Mostrando scripts para:"
     listing_filter_by_site_disable: "Todos"
     listing_filter_by_site_all_sites: "(Todos los sitios)"
-    listing_filter_by_language_label: "Idioma:"
+    listing_filter_by_language_label: "Tipo de script:"
     listing_filter_by_site_more_sites: "Más…"
     listing_no_scripts: "No se ha encontrado ningún script que coincida con los parámetros."
     listing_created_feed: "Scripts nuevos"
@@ -348,6 +348,12 @@ es:
         referral-link:
           title: Enlaces de afiliados o recomendación
           description_html: Este script <b>reescribirá los enlaces</b> para incluir un código de afiliación con el que lucrarse económicamente.
+        membership:
+          title: Tener una cuenta
+          description_html: Este script solo funciona una vez <b>te das de alta en algún servicio</b>, forzándote a unirte a un grupo, suscribirte a un canal o hacer «me gusta» en una página.
+        payment:
+          title: Previo pago
+          description_html: Este script solo funciona una vez <b>has pagado dinero</b>. %{site_name} no tiene vinculación ninguna con entre las partes, así que no podemos validar o asegurar nada, ni que te devuelvan el dinero. Ten cuidado.
       install_anyway: Instalar script
       cancel_install: Cancelar
     badges:
@@ -675,9 +681,9 @@ es:
       post_new_script_link_text: 'publicar un nuevo script'
     code_rules:
       title: "Normas de %{site_name} para scripts publicados"
-      preamble: Estos son los requisitos para los scripts publicados en %{site_name}. Estos pretenden mantener %{site_name} como un sitio seguro y útil para los scripts de usuario. Cualquier script que no cumpla estos requisitos puede ser borrado por los moderadores de %{site_name}.
+      preamble: Estos son los requisitos para los scripts publicados en %{site_name}. Con estas normas intentamos mantener tanto %{site_name} como sus scripts útiles y seguros. Ten en cuenta que los moderadores podrán borrar cualquier script que incumpla las normas de %{site_name}.
       functionality_header: Funcionalidades
-      description: Los scripts deben incluir una descripción de que hacen y no debe hacer nada fuera de lo razonable de la descripción. Los usuarios deben saber lo que hace un script antes de instalarlo.
+      description: Los scripts deben incluir una descripción honesta con su cometido y no deben hacer nada fuera de lo razonable. Los usuarios deben saber lo que hace un script antes de instalarlo.
       reason: Los scripts tienen que tener una razón para ser un script. Por ejemplo, un script que solo dirige a un usuario a una pagina web no necesita ser un script; puede ser un link. Los scripts que utilicen un servicio web para realizar una acción en la página actual (p.e. para convertirla de alguna forma) son permitidos.
       monetization_html: 'Los scripts que contengan características que beneficien al <em>autor</em> mas que al usuario (como rastreo, anuncios o mineros) son permitidos, pero deben ser marcados con %{antifeature_link: la palabra clave<code>@anticaracteristica</code>}.'
       code_header: Código
@@ -688,7 +694,7 @@ es:
       copyright_header: Derechos de autor
       reposts: Incluso en casos de no violar la regla de los derechos de autor, las resubidas de scripts que ya están en %{site_name} no están permitidas, a no ser que mejoren al original.
       miscellaneous_header: Miscelaneo
-      keywords_html: Los scripts no deben incluir <code>@inclusiones</code>,<code>@coincidencias</code> o palabras clave para sitios que no proveen dicha funcionalidad.
+      keywords_html: Los scripts no deben funcionar con <code>@include</code>,<code>@match</code> si no ofrecen ninguna funcionalidad en esas otras páginas. Mantén la lista de direcciones URL lo más ajustada posible.
       adult_content_rule: Los scripts que incluyan contenido para adultos o son para sitios con contenido para adultos deben ser marcados como tal para permitir que otros usuarios puedan decidir verlos o no.
       reporting: Si ves un script que no cumple con estos parámetros, por favor repórtelo dirigiéndose al link de comentarios y opiniones del script y eligiendo la opción "Reportar script".
     external_scripts:
@@ -898,8 +904,13 @@ es:
       malware: "Software malicioso"
       minified: "Código minimizado"
       external_code: "Código externo no permitido"
+      undisclosed_antifeature: "Característica %{antifeature_link:adversa no revelada} (por ejemplo, un anuncio, un rastreador, minería de criptomonedas)"
       other: "Otros"
+    report_intro: "%{reported_item} ha sido denunciado el %{report_date} por %{reason} por %{reporter}"
     report_intro_unauthorized_html: "%{reported_script} ha sido denunciado el %{report_date} como copia no autorizada de %{other_script} por %{reporter}."
+    report_intro_unauthorized_license: "%{other_script} utiliza la licencia %{license_link: %{license_name}}. Visita %{tldr_legal_link:tldrlegal.com} (en inglés) para ayudarte a entender lo que puedes y no puedes hacer."
+    report_intro_unauthorized_license_no_url: "%{other_script} utiliza la licencia %{license_name}. Visita %{tldr_legal_link:tldrlegal.com} (en inglés) para ayudarte a entender lo que puedes y no puedes hacer."
+    report_intro_unauthorized_no_license: "%{other_script} no lleva asociado ninguna licencia, por lo que no es posible copiarlo si no tienes permiso expreso del autor."
     non_functional_feedback: "Si el script viene roto de serie o ya no funciona, %{feedback_link:deja un comentario} en su página."
     unauthorized_code_original_placeholder: "URL del código original"
     explanation_placeholder: "Proporciona más detalles (opcional)"
@@ -914,6 +925,9 @@ es:
     rebuttal_placeholder: 'Explica a un moderador por qué este script no debe ser eliminado.'
     submit_rebuttal: "Presentar reclamación"
     delete_script: "Eliminar script"
+    view_discussion: "Ver conversación"
+    load_diff: "Cargar diferencias"
+    loading_diff: "Cargando..."
   discussions:
     title: Conversaciones
     comment_date: "Publicado: %{date}"
