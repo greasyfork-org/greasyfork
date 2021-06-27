@@ -99,7 +99,7 @@ zh-CN:
     feedback_title: "%{script_name} - 反馈"
     feedback_has_reports: "此脚本已被报告违反 %{site_name} 守则。"
     feedback_no_discussions_html: "暂无相关讨论。%{start_first_discussion_link}"
-    feedback_no_discussions_on_page_form: "现在还没有已发布的讨论。"
+    feedback_no_discussions_on_page_form: "暂无相关讨论。"
     feedback_report_instead: "如果您觉得这个脚本违反了 %{rules_link: %{site_name} 的规则}, 请 %{report_link: 举报这个脚本}。"
     feedback_start_first_discussion_link: "成为第一个发起讨论的人吧。"
     feedback_discussion_or_report: "%{new_discussion_link:针对此脚本发起一个新的讨论} 或者%{report_link:举报这个脚本}。"
@@ -326,6 +326,22 @@ zh-CN:
       js: "发布新脚本"
       css: "发布新样式"
     update_title: "发布 %{script} 的新版本 "
+    install_help_dialog:
+      js:
+        firefox: 您需要先安装一个用户脚本管理器扩展，如 %{tampermonkey_link:Tampermonkey}、%{greasemonkey_link:Greasemonkey} 或 %{violentmonkey_link:Violentmonkey} 后才能安装该脚本。
+        chrome: 您需要先安装一个用户脚本管理器扩展，如 %{tampermonkey_link:Tampermonkey} 或 %{violentmonkey_link:Violentmonkey} 后才能安装该脚本。
+        opera: 您需要先安装一个用户脚本管理器扩展，如 %{tampermonkey_link:Tampermonkey} 或 %{violentmonkey_link:Violentmonkey} 后才能安装该脚本。
+        safari: 您需要先安装一个用户脚本管理器扩展，如 %{tampermonkey_link:Tampermonkey} 或 %{userscripts_link:Userscripts} 后才能安装该脚本。
+        other: 您需要先安装一个用户脚本管理器扩展后才能安装该脚本。
+        bypass: （我已经安装了用户脚本管理器，让我安装！）
+      css:
+        firefox: 您需要先安装一个用户样式管理器扩展，如 %{stylus_link:Stylus} 后才能安装该脚本。
+        chrome: 您需要先安装一个用户样式管理器扩展，如 %{stylus_link:Stylus} 后才能安装该脚本。
+        opera: 您需要先安装一个用户样式管理器扩展，如 %{stylus_link:Stylus} 后才能安装该脚本。
+        safari: 您需要先安装一个用户样式管理器扩展后才能安装该脚本。
+        other: 您需要先安装一个用户样式管理器扩展后才能安装该脚本。
+        bypass: （我已经安装了用户样式管理器，让我安装！）
+      close_dialog: 确定
     antifeatures:
       warning_title: 这个脚本含有可能不受欢迎的功能
       author_explanation_intro: "脚本作者的说明："
@@ -435,7 +451,7 @@ zh-CN:
     installing_step1_header: "第一步：安装一个用户脚本管理器"
     installing_step1_caption: "Chrome 上的 Tampermonkey"
     installing_step1_description_html: >
-        <p>要使用用户脚本，您首先需要安装一个用户脚本管理器。您可以根据使用的浏览器来选择用户脚本管理器：</p>
+        <p>要使用用户脚本，您首先需要安装一个用户脚本管理器。您可以根据当前使用的浏览器来选择一个用户脚本管理器：</p>
 
         <ul>
 
@@ -456,7 +472,7 @@ zh-CN:
 
         <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
 
-        <li>AdGuard：(不需要额外软件)</li>
+        <li>AdGuard：（不需要额外软件）</li>
 
         </ul>
     installing_step2_header: "第二步：安装一个用户脚本"
@@ -511,7 +527,7 @@ zh-CN:
     cant_remove_sign_in: "无法移除第三方登录 %{provider}：这是您唯一的登录方式！"
     password_removed: "密码已移除。"
     edit_sign_in_external: "第三方用户登录"
-    external_sign_in_info_no_sign_ins: "您可以使用第三方网站的帐号登录 %{site_name}。"
+    external_sign_in_info_no_sign_ins: "您可以使用第三方网站账号登录 %{site_name}。"
     external_sign_in_info_with_sign_ins: "您目前可以使用下列第三方登录系统登录。“同步中” 标志表示您的 %{site_name} 信息（如：用户名、电子邮件）将在您下次登录时自动更新。"
     external_sign_in_added: "成功连接 %{provider}。"
     external_sign_in_updated: "成功从 %{provider} 更新登录信息。"
@@ -729,10 +745,10 @@ zh-CN:
     contact:
       title: "联系某人"
       content_html: >
-          <p>有多种方式讨论 %{site_name} 本身以及在它上面的事物</p> <p>你对发布在本网站上的一个特定脚本有问题或者意见？如果是的，点击脚本页面的反馈选项卡进行反馈。脚本作者将在他们的账号页面获得讨论的通知。</p>
-          <p>如果你对 %{site_name} 本身或者脚本的开发有任何问题或意见，或者希望有人能做出你想要的脚本，%{forum_link:在该论坛中发帖}
-          可以将你的讨论展示给最多的访客。</p> <p>有对 %{site_name} 本身的错误报告或者已经成型的想法？（不特定于<em>发布在</em>
-          %{site_name} 上的某个脚本）%{github_link:在 GitHub 页面发布它。}</p> <p>有一个私人的问题或者意见（只想给管理员看）？%{admin_email_link:发送电子邮件}。</p>
+          <p>你有多种方式来对 %{site_name} 本身以及它的内容进行讨论。</p> <p>对发布在本站上的某个脚本有问题或者意见？使用脚本页的反馈选项卡进行反馈，脚本作者会在他们的账号页面收到其脚本相关讨论的通知；</p>
+          <p>对 %{site_name} 本身、需要寻求脚本开发的帮助或意见、或是希望有人能做出你想要的脚本？你可以%{forum_link:在论坛发帖}来吸引更多人参与讨论；</p>
+          <p>对 %{site_name} 本身（而不是<em>发布</em>在 %{site_name} 上的某个脚本）的错误报告或者一些想法？%{github_link:通过
+          GitHub 提交反馈}。</p> <p>有一个只希望管理员能看到的私人问题或意见？%{admin_email_link:你可以发送电子邮件}。</p>
     privacy_policy:
       title: "隐私政策"
       content_html: >

@@ -331,6 +331,22 @@ bg:
       js: "Публикувай нов скрипт"
       css: "Публикувай нов стил"
     update_title: "Публикувай нова версия на %{script}"
+    install_help_dialog:
+      js:
+        firefox: За да инсталирате този скрипт, трябва да имате инсталирано разширение като %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} или %{violentmonkey_link:Violentmonkey}.
+        chrome: За да инсталирате този скрипт, трябва да имате инсталирано разширение като  %{tampermonkey_link:Tampermonkey} или %{violentmonkey_link:Violentmonkey}.
+        opera: За да инсталирате този скрипт, трябва да имате инсталирано разширение като  %{tampermonkey_link:Tampermonkey} или %{violentmonkey_link:Violentmonkey}.
+        safari: За да инсталирате този скрипт, трябва да имате инсталирано разширение като  %{tampermonkey_link:Tampermonkey} или %{userscripts_link:Userscripts}.
+        other: За да инсталирате този скрипт, трябва да имате инсталиран скриптов мениджър.
+        bypass: (Вече имам скриптов мениджър, искам да го инсталирам!)
+      css:
+        firefox: За да инсталирате този скрипт, трябва да имате инсталирано разширение като  %{stylus_link:Stylus}.
+        chrome: За да инсталирате този скрипт, трябва да имате инсталирано разширение като %{stylus_link:Stylus}.
+        opera: За да инсталирате този скрипт, трябва да имате инсталирано разширение като %{stylus_link:Stylus}.
+        safari: За да инсталирате този скрипт, трябва да имате инсталиран мениджър на потребителските стилове.
+        other: За да инсталирате този скрипт, трябва да имате инсталиран мениджър на потребителските стилове.
+        bypass: (Вече имам инсталиран мениджър на стиловете, искам да го инсталирам!)
+      close_dialog: ОК
     antifeatures:
       warning_title: Този скрипт съдържа нежелани особености
       author_explanation_intro: "Обяснение от автора на скрипта:"

@@ -334,6 +334,22 @@ sk:
       js: "Pridať nový skript"
       css: "Pridať nový štýl"
     update_title: "Pridať novú verziu skriptu %{script}"
+    install_help_dialog:
+      js:
+        firefox: Na nainštalovanie skriptu si budete musieť nainštalovať rozšírenie, ako napríklad %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} alebo %{violentmonkey_link:Violentmonkey}.
+        chrome: Na nainštalovanie skriptu si budete musieť nainštalovať rozšírenie, ako napríklad %{tampermonkey_link:Tampermonkey}, % alebo %{violentmonkey_link:Violentmonkey}.
+        opera: Na nainštalovanie skriptu si budete musieť nainštalovať rozšírenie, ako napríklad %{tampermonkey_link:Tampermonkey}, % alebo %{violentmonkey_link:Violentmonkey}.
+        safari: Na nainštalovanie skriptu si budete musieť nainštalovať rozšírenie, ako napríklad %{tampermonkey_link:Tampermonkey} alebo %{userscripts_link:Userscripts}.
+        other: Na inštaláciu tohto skriptu je potrebné nainštalovať rozšírenie správcu používateľských skriptov.
+        bypass: (Už mám správcu používateľských skriptov, nechajte ma ho nainštalovať!)
+      css:
+        firefox: Na inštaláciu tohto skriptu je potrebné nainštalovať rozšírenie, ako napríklad %{stylus_link:Stylus}.
+        chrome: Na inštaláciu tohto skriptu je potrebné nainštalovať rozšírenie, ako napríklad %{stylus_link:Stylus}.
+        opera: Na inštaláciu tohto skriptu je potrebné nainštalovať rozšírenie, ako napríklad %{stylus_link:Stylus}.
+        safari: Na inštaláciu tohto skriptu je potrebné nainštalovať rozšírenie správcu používateľských štýlov.
+        other: Na inštaláciu tohto skriptu je potrebné nainštalovať rozšírenie správcu používateľských štýlov.
+        bypass: (Už mám správcu používateľských štýlov, nechajte ma ho nainštalovať!)
+      close_dialog: OK
     antifeatures:
       warning_title: Tento skript obsahuje antifeatures
       author_explanation_intro: "Vysvetlenie autora skriptu:"

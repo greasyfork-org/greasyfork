@@ -332,6 +332,22 @@ fr:
       js: "Publier un nouveau script"
       css: "Publier un nouveau style"
     update_title: "Publier une nouvelle version de %{script}"
+    install_help_dialog:
+      js:
+        firefox: Vous devrez installer une extension telle que %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} ou %{violentmonkey_link:Violentmonkey} pour installer ce script.
+        chrome: Vous devrez installer une extension telle que %{tampermonkey_link:Tampermonkey} ou %{violentmonkey_link:Violentmonkey} pour installer ce script.
+        opera: Vous devrez installer une extension telle que %{tampermonkey_link:Tampermonkey} ou %{violentmonkey_link:Violentmonkey} pour installer ce script.
+        safari: Vous devrez installer une extension telle que %{tampermonkey_link:Tampermonkey} ou %{userscripts_link:Userscripts} pour installer ce script.
+        other: Vous devrez installer une extension de gestionnaire de script utilisateur pour installer ce script.
+        bypass: (J'ai déjà un gestionnaire de scripts utilisateur, laissez-moi l'installer !)
+      css:
+        firefox: Vous devrez installer une extension telle que %{stylus_link:Stylus} pour installer ce script.
+        chrome: Vous devrez installer une extension telle que %{stylus_link:Stylus} pour installer ce script.
+        opera: Vous devrez installer une extension telle que %{stylus_link:Stylus} pour installer ce script.
+        safari: Vous devrez installer une extension de gestionnaire de style utilisateur pour installer ce script.
+        other: Vous devrez installer une extension de gestionnaire de style utilisateur pour installer ce script.
+        bypass: (J'ai déjà un gestionnaire de style utilisateur, laissez-moi l'installer!)
+      close_dialog: OK
     antifeatures:
       warning_title: Ce script contient des anti-fonctionnalités
       author_explanation_intro: "L'auteur de ce script explique:"
@@ -348,6 +364,11 @@ fr:
         referral-link:
           title: Liens de parrainage
           description_html: Ce script <b>réécrira des liens</b> pour inclure un code de parrainage ou d'affiliation.
+        membership:
+          description_html: Ce script n'est pleinement fonctionnel qu'une fois que vous <b>vous serez inscrit à quelque chose</b>, comme rejoindre un groupe, vous abonner à une chaîne ou aimer une page.
+        payment:
+          title: Paiement
+          description_html: Ce script n'est pleinement fonctionnel qu'une fois que vous avez <b>effectué un paiement</b>. %{site_name} n'est pas impliqué dans le paiement, donc ne peut pas valider que vous obtiendrez quoi que ce soit de valeur ou vous aider à obtenir un remboursement.
       install_anyway: Installer le script
       cancel_install: Annuler
     badges:
