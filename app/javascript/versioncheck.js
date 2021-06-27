@@ -2,19 +2,25 @@ import {getTampermonkey, getViolentmonkey} from "./managers";
 
 function getInstalledVersion(name, namespace) {
   return new Promise(function(resolve, reject) {
-    getTampermonkey().then(function(tm) {
-      tm.isInstalled(name, namespace, function(i) {
+    let tm = getTampermonkey()
+    if (tm) {
+      tm.isInstalled(name, namespace, function (i) {
         if (i.installed) {
           resolve(i.version);
         } else {
           resolve(null);
         }
       });
-    }, function() {
-      getViolentmonkey().then(function(vm) {
-        vm.isInstalled(name, namespace).then(resolve);
-      }, reject)
-    });
+      return;
+    }
+
+    let vm = getViolentmonkey();
+    if (vm) {
+      vm.isInstalled(name, namespace).then(resolve);
+      return;
+    };
+
+    reject()
   });
 }
 
