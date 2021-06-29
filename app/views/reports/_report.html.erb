@@ -2,10 +2,19 @@
 <% lazy_load_diffs = false unless defined?(lazy_load_diffs) %>
 
 <h4 id="open-report-<%= i %>">
+  <% show_reporter = report.auto_reporter || (current_user && (current_user.moderator? || current_user == report.reporter)) %>
   <% if report.unauthorized_code? && (report.reference_script || report.script_url.present?) %>
-    <%= t('reports.report_intro_unauthorized_html', reported_script: report_item_link(report), other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow), reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)), report_date: markup_date(report.created_at)) %>
+    <% if show_reporter %>
+      <%= t('reports.report_intro_unauthorized_html', reported_script: report_item_link(report), other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow), reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)), report_date: markup_date(report.created_at)) %>
+    <% else %>
+      <%= t('reports.report_intro_unauthorized_no_reporter_html', reported_script: report_item_link(report), other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow), reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)), report_date: markup_date(report.created_at)) %>
+    <% end %>
   <% else %>
-    <%= it('reports.report_intro', reported_item: report_item_link(report), reason: report.reason_text, reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)), report_date: markup_date(report.created_at)) %>
+    <% if show_reporter %>
+      <%= it('reports.report_intro', reported_item: report_item_link(report), reason: report.reason_text, reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)), report_date: markup_date(report.created_at)) %>
+    <% else %>
+      <%= it('reports.report_intro_no_reporter', reported_item: report_item_link(report), reason: report.reason_text, report_date: markup_date(report.created_at)) %>
+    <% end %>
   <% end %>
 </h4>
 
