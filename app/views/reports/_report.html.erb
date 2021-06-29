@@ -1,13 +1,13 @@
 <% i = 0 unless defined?(i) %>
 <% lazy_load_diffs = false unless defined?(lazy_load_diffs) %>
+<% show_reporter = report.auto_reporter || (current_user && (current_user.moderator? || current_user == report.reporter)) %>
 
 <h4 id="open-report-<%= i %>">
-  <% show_reporter = report.auto_reporter || (current_user && (current_user.moderator? || current_user == report.reporter)) %>
   <% if report.unauthorized_code? && (report.reference_script || report.script_url.present?) %>
     <% if show_reporter %>
       <%= t('reports.report_intro_unauthorized_html', reported_script: report_item_link(report), other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow), reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)), report_date: markup_date(report.created_at)) %>
     <% else %>
-      <%= t('reports.report_intro_unauthorized_no_reporter_html', reported_script: report_item_link(report), other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow), reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)), report_date: markup_date(report.created_at)) %>
+      <%= t('reports.report_intro_unauthorized_no_reporter_html', reported_script: report_item_link(report), other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow), report_date: markup_date(report.created_at)) %>
     <% end %>
   <% else %>
     <% if show_reporter %>
@@ -23,29 +23,20 @@
     <% if report.reference_script %>
       <% if report.reference_script.license&.url %>
         <%= it('reports.report_intro_unauthorized_license',
-               reported_script: report_item_link(report),
                other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow),
-               reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)),
-               report_date: markup_date(report.created_at),
                license_link: report.reference_script.license.url,
                license_name: report.reference_script.license.name,
                tldr_legal_link: It.link("https://tldrlegal.com/search?q=#{URI.encode_www_form_component(report.reference_script.license.code)}", target: 'tldrlegal'))
         %>
       <% elsif report.reference_script.license || report.reference_script.license_text %>
         <%= it('reports.report_intro_unauthorized_license_no_url',
-               reported_script: report_item_link(report),
                other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow),
-               reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)),
-               report_date: markup_date(report.created_at),
                license_name: report.reference_script.license&.name || report.reference_script.license_text,
                tldr_legal_link: It.link("https://tldrlegal.com/search?q=#{URI.encode_www_form_component(report.reference_script.license&.name || report.reference_script.license_text)}", target: 'tldrlegal'))
         %>
       <% else %>
         <%= it('reports.report_intro_unauthorized_no_license',
-               reported_script: report_item_link(report),
-               other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow),
-               reporter: report.auto_reporter || link_to(report.reporter.name, user_path(report.reporter)),
-               report_date: markup_date(report.created_at))
+               other_script: report.reference_script ? render_script(report.reference_script) : link_to(report.script_url, report.script_url, rel: :nofollow))
         %>
       <% end %>
     <% else %>
@@ -76,7 +67,9 @@
 <% end %>
 
 <% if report.explanation.present? %>
-  <div><%= t('common.quote.prefix_html', user: report.auto_reporter || render_user(report.reporter, report.reporter_id)) %></div>
+  <% if show_reporter %>
+    <div><%= t('common.quote.prefix_html', user: report.auto_reporter || render_user(report.reporter, report.reporter_id)) %></div>
+  <% end %>
   <blockquote>
     <div class="user-content">
       <%= format_user_text(report.explanation, report.explanation_markup) %>
