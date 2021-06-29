@@ -332,6 +332,14 @@ es:
       js: "Publicar un nuevo script"
       css: "Publicar un nuevo estilo"
     update_title: "Publicar una nueva versión de %{script}"
+    install_help_dialog:
+      js:
+        firefox: Tendrás que instalar una extensión para tu navegador como %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} o %{violentmonkey_link:Violentmonkey} si quieres utilizar este script.
+        other: Necesitarás instalar una extensión para administrar scripts de usuario si quieres instalar este script.
+        bypass: (Ya tengo un administrador de scripts de usuario, déjame instalarlo)
+      css:
+        bypass: (Ya tengo un administrador de estilos de usuario, déjame instalarlo)
+      close_dialog: Aceptar
     antifeatures:
       warning_title: Este script incluye características indeseables
       author_explanation_intro: "El autor de este script dice que contiene:"
