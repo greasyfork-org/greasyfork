@@ -69,6 +69,8 @@
 <% if report.explanation.present? %>
   <% if show_reporter %>
     <div><%= t('common.quote.prefix_html', user: report.auto_reporter || render_user(report.reporter, report.reporter_id)) %></div>
+  <% else %>
+    <div><%= t('common.quote.anonymous_reporter_html') %></div>
   <% end %>
   <blockquote>
     <div class="user-content">
