@@ -87,9 +87,9 @@
         <%= link_to 'Users with the same IP', users_path(same_ip: @user.id) %>
       </p>
 
-      <% all_reports = @user.reports_as_reporter %>
+      <% all_reports = @user.reports_as_reporter.order(id: :desc) %>
       <p>This user has filed <%= all_reports.count %> <%= 'report'.pluralize(all_reports.count) %>.</p>
-      <% reports = params[:all_reports] == '1' ? all_reports : all_reports.limit(10) %>
+      <% reports = params[:all_reports] == '1' ? all_reports : all_reports.limit(5) %>
       <% reports_with_item = reports.select{ |r| r.item.present? } %>
       <% if reports_with_item.any? %>
         <ul>
@@ -99,7 +99,7 @@
             </li>
           <% end %>
         </ul>
-        <% if all_reports.count > 10 && params[:all_reports] != '1' %>
+        <% if all_reports.count > 5 && params[:all_reports] != '1' %>
           <p>
             <%= link_to "See all #{all_reports.count} reports.", all_reports: 1 %>
           </p>
