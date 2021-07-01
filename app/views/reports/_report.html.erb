@@ -146,14 +146,16 @@
       </p>
     <% end %>
   <% end %>
+<% end %>
 
-  <% report.reported_users.each do |reported_user| %>
-    <p>
-      <%= render_user(reported_user, reported_user.id) %> (author) has made
-      <%= link_to "#{reported_user.comments.not_deleted.count} #{'comment'.pluralize(reported_user.comments.not_deleted.count)}", discussions_path(user: reported_user.id) %>
-      and posted <%= reported_user.scripts.count %> <%= 'script'.pluralize(reported_user.scripts.count) %>.
-    </p>
-  <% end %>
+<% report.reported_users.each do |reported_user| %>
+  <p>
+    <%= t('reports.reported_user_activity_html', user: render_user(reported_user, reported_user.id)) %>
+  </p>
+  <ul>
+    <li><%= link_to t('activerecord.models.script', count: reported_user.scripts.not_deleted.count), user_path(reported_user.id, anchor: 'user-script-list') %></li>
+    <li><%= link_to t('activerecord.models.comment', count: reported_user.comments.not_deleted.count), discussions_path(user: reported_user.id) %></li>
+  </ul>
 <% end %>
 
 <% if report.discussions.any? %>
