@@ -100,13 +100,13 @@ zh-CN:
     feedback_has_reports: "此脚本已被报告违反 %{site_name} 守则。"
     feedback_no_discussions_html: "暂无相关讨论。%{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "暂无相关讨论。"
-    feedback_report_instead: "如果您觉得这个脚本违反了 %{rules_link: %{site_name} 的规则}, 请 %{report_link: 举报这个脚本}。"
+    feedback_report_instead: "如果您觉得这个脚本违反了 %{rules_link: %{site_name} 的规则}，请 %{report_link: 举报这个脚本}。"
     feedback_start_first_discussion_link: "成为第一个发起讨论的人吧。"
     feedback_discussion_or_report: "%{new_discussion_link:针对此脚本发起一个新的讨论} 或者%{report_link:举报这个脚本}。"
     feedback_favoriters_heading: "收藏者"
-    feedback_favoriters_user_list_html: "该脚本已被 %{user_list} 收藏。"
+    feedback_favoriters_user_list_html: "%{user_list} 收藏了该脚本。"
     feedback_favoriters_lots:
-      other: "该脚本共被 %{user_count} 位用户收藏。%{full_link:查看完整列表}。"
+      other: "%{user_count} 位用户收藏了该脚本。%{full_link:查看完整列表}。"
     feedback_no_favoriters: "还没有人收藏此脚本。"
     feedback_sign_in_to_favorite: "登录以添加到收藏夹。"
     stats_title: "%{script_name} - 统计"
@@ -875,7 +875,9 @@ zh-CN:
       undisclosed_antifeature: "未声明的 %{antifeature_link:可能不受欢迎的功能}（包括但不限于广告、用户追踪、挖矿等功能）"
       other: "其它"
     report_intro: "%{reporter} 在 %{report_date} 举报了 %{reported_item}，原因是：%{reason}"
-    report_intro_unauthorized_html: "%{reported_script} 在 %{report_date} 被 %{reporter} 举报含有未授权的副本，原脚本为 %{other_script}。"
+    report_intro_no_reporter: "%{reported_item} %{report_date} 被举报，原因是：%{reason}"
+    report_intro_unauthorized_html: "%{reporter} 在 %{report_date} 举报 %{reported_script} 含有未授权的副本，原脚本为 %{other_script}。"
+    report_intro_unauthorized_no_reporter_html: "%{reported_script} 在 %{report_date} 被举报含有未授权的副本，原脚本为 %{other_script}。"
     report_intro_unauthorized_license: "%{other_script} 使用 %{license_link: %{license_name}} 授权协议。请访问 %{tldr_legal_link:tldrlegal.com}（英文）来帮助理解该授权协议。"
     report_intro_unauthorized_license_no_url: "%{other_script} 使用 %{license_name} 授权协议。请访问 %{tldr_legal_link:tldrlegal.com}（英文）来帮助理解该授权协议。"
     report_intro_unauthorized_no_license: "%{other_script} 未明确指定所使用的授权协议，即只有在明确表示获得授权的情况下才允许分发副本。"
@@ -1022,7 +1024,7 @@ zh-CN:
       title: 近期私信
       more: 查阅所有私信
   screenshots:
-    requirements: "最多上传 %{number} 张 PNG、GIF 、 JPEG 、或 WEBP 图片，且每张图片不得超过 %{size}。"
+    requirements: "最多上传 %{number} 张 PNG、GIF、JPEG、或 WebP 图片，且每张图片不得超过 %{size}。"
   common:
     error_preamble: "很抱歉，您提交的内容有点问题…"
     allowed_elements_link: "(查看允许使用的代码)"
@@ -1044,7 +1046,13 @@ zh-CN:
     listing_options_title: "搜索选项"
     quote:
       prefix_html: "%{user} 说："
+      anonymous_reporter_html: "举报者说："
   activerecord:
+    models:
+      script:
+        other: "%{count} 个脚本"
+      comment:
+        other: "%{count} 条评论"
     attributes:
       user:
         name: "账户名"
