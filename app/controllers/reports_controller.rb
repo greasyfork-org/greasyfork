@@ -18,7 +18,10 @@ class ReportsController < ApplicationController
     @report.item = item
     if @report.item.is_a?(Script) && @report.script_url.present?
       script_from_input = get_script_from_input(@report.script_url, allow_deleted: true)
-      @report.reference_script = script_from_input if script_from_input.is_a?(Script)
+      if script_from_input.is_a?(Script)
+        @report.reference_script = script_from_input
+        @report.script_url = nil
+      end
     end
     unless @report.save
       render :new

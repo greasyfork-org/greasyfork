@@ -42,7 +42,7 @@
         <%= f.radio_button(:reason, reason, required: true) %> <%= f.label :reason, it("reports.reason.#{reason}", antifeature_link: help_antifeatures_path), class: 'radio-label', value: reason %>
         <% if reason == Report::REASON_UNAUTHORIZED_CODE %>
           <div class="after-radio-chosen">
-            <%= f.url_field :script_url, placeholder: t('reports.unauthorized_code_original_placeholder') %>
+            <%= f.url_field :script_url, placeholder: t('reports.unauthorized_code_original_placeholder'), maxlength: 255, size: nil %>
           </div>
         <% end %>
       </div>
