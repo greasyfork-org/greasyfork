@@ -125,6 +125,8 @@ module ScriptImporter
       doc.search(tags.keys.join(',')).each do |node|
         url_param = tags[node.name]
         url_text = node[url_param]
+        next unless url_text
+
         new_url = base_url.merge(url_text)
         if url_text != new_url.to_s
           changed = true
