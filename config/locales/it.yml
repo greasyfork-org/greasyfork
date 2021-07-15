@@ -332,6 +332,22 @@ it:
       js: "Pubblica un nuovo script"
       css: "Pubblica un nuovo stile"
     update_title: "Pubblica una nuova versione di %{script}"
+    install_help_dialog:
+      js:
+        firefox: Dovrai installare un'estensione come %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} o %{violentmonkey_link:Violentmonkey} per installare questo script.
+        chrome: Dovrai installare un'estensione come %{tampermonkey_link:Tampermonkey} o %{violentmonkey_link:Violentmonkey} per installare questo script.
+        opera: Dovrai installare un'estensione come %{tampermonkey_link:Tampermonkey} o %{violentmonkey_link:Violentmonkey} per installare questo script.
+        safari: Dovrai installare un'estensione come %{tampermonkey_link:Tampermonkey} o %{userscripts_link:Userscripts} per installare questo script.
+        other: Dovrai installare un gestore di script utente per installare questo script.
+        bypass: (Ho già un gestore di script utente, lasciamelo installare!)
+      css:
+        firefox: Dovrai installare un'estensione come  %{stylus_link:Stylus}  per installare questo script.
+        chrome: Dovrai installare un'estensione come  %{stylus_link:Stylus}  per installare questo script.
+        opera: Dovrai installare un'estensione come  %{stylus_link:Stylus}  per installare questo script.
+        safari: Dovrai installare un gestore di stile utente per installare questo script.
+        other: Dovrai installare un gestore di stile utente per installare questo script.
+        bypass: (Ho già un gestore di stile utente, lasciamelo installare!)
+      close_dialog: OK
     antifeatures:
       warning_title: Questo script contiene antifunzionalità
       author_explanation_intro: "L'autore di questo script spiega:"
@@ -677,6 +693,8 @@ it:
       contributionAmount_html: "Importo suggerito per le donazioni, usato in concomitanza con il tag <code>@contributionURL</code>."
       compatible_html: "Contrassegna questo script come compatibile con un browser. Le informazioni sulla compatibilità saranno visualizzate nella pagina dello script. I commenti sulla compatibilità possono essere inclusi nel formato <code>@compatible firefox Deve essere disabilitato il blocco pop-up</code>. I browser riconosciuti sono: %{browsers}."
       incompatible_html: "Contrassegna questo script come non compatibile con un browser. Le informazioni sulla compatibilità saranno visualizzate nella pagina dello script. I commenti (facoltativi) sulla compatibilità possono essere inclusi nel formato <code>@incompatible firefox Non funziona con Firefox 23 e successivi</code>. I browser riconosciuti sono: %{browsers}."
+      antifeature_html: |
+          Fornisce funzioni in uno script che sono a beneficio dell'autore, non dell'utente. Il formato di questa chiave è <code>@antifeature tipo descrizione</code>.  Il <i>tipo</i> è richiesto, la <i>descrizione</i> è opzionale.  %{antifeatures_link:Leggi qui} per informazioni sui <i>tipi</i> letti da %{site_name}.
       antifeature_localized_html: "Un'<code>@antifeature</code> descritta in una lingua specifica, dove XX è un <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">codice ISO 639-1 a due lettere</a> e YY è un <a href=\"https://www.iso.org/obp/ui/#search\">codice paese ISO 3166</a> opzionale. Rimpiazza <code> @antifeature</code>s dello stesso tipo quando l'utente naviga in una lingua corrispondente."
     writing_user_scripts:
       title: "Come scrivere script utente"
@@ -697,6 +715,7 @@ it:
       updates: Gli scripts non devono verificare la presenza di aggiornamenti con una frequenza maggiore di una volta al giorno. È da notare che la maggior parte dei gestori di script utente si occupano autonomamente degli aggiornamenti, per cui farlo nello script non è necessario. Gli scripts non devono altresì iniettare dinamicamente un altro script ospitato su %{site_name} all'interno di una pagina, poiché questo bypassa la memorizzazione cache nei gestori di script utente.
       external_js: "%{external_scripts_link:L'uso di JavaScript esterno è limitato.}"
       copyright_header: Copyright
+      licensing_html: Il tuo script deve rispettare i copyrights degli altri. Questo include il codice stesso e qualsiasi risorsa (ad esempio immagini) che utilizza. Se intendi usare il contenuto di altri, conformati ai loro termini di licenza o ottieni il loro permesso prima di farlo. Le licenze per gli script sono specificate dalla meta key <code>@license</code>, e puoi apprendere cosa puoi e non puoi fare usando %{tldr_legal_link:tldrlegal.com}.
       reposts: Anche nei casi che non violano la regola sul copyright, la ripubblicazione di scripts che siano già su %{site_name} non è permessa a meno che non apportino dei miglioramenti rispetto all'originale.
       miscellaneous_header: Miste
       keywords_html: Gli scripts non devono contenere <code>@include</code>, <code>@match</code> o parole chiave per siti per i quali non forniscano funzionalità.
@@ -826,6 +845,8 @@ it:
           tracciamento.</p>
     user_css_to_user_js:
       title: Conversione da user CSS a user JS
+    antifeatures:
+      title: Antifunzionalità
   search:
     script_search:
       title: "Cerca script"
@@ -909,7 +930,9 @@ it:
       undisclosed_antifeature: "%{antifeature_link:Antifunzionalità} (es. pubblicità, tracciamento, mining, ecc.) non dichiarata"
       other: "Altro"
     report_intro: "%{reported_item} è stato segnalato %{report_date} da %{reporter} per %{reason}"
+    report_intro_no_reporter: "%{reported_item} è stato segnalato il %{report_date} per %{reason}"
     report_intro_unauthorized_html: "%{reported_script} è stato segnalato il %{report_date} da %{reporter} come una copia non autorizzata di %{other_script}"
+    report_intro_unauthorized_no_reporter_html: "%{reported_script} è stato segnalato il %{report_date} come una copia non autorizzata di %{other_script}."
     report_intro_unauthorized_license: "%{other_script} usa la licenza %{license_link: %{license_name}}. Visita %{tldr_legal_link:tldrlegal.com}  per un aiuto alla comprensione di ciò che questa licenza significa."
     report_intro_unauthorized_license_no_url: "%{other_script} usa la licenza %{license_name}. Visita %{tldr_legal_link:tldrlegal.com}  per un aiuto alla comprensione di ciò che questa licenza significa."
     report_intro_unauthorized_no_license: "%{other_script} non specifica una licenza, che significa che distribuire copie non è consentito a meno che un permesso esplicito non sia concesso."
@@ -924,12 +947,21 @@ it:
     result_upheld: "Questa segnalazione è stata confermata da un moderatore."
     result_fixed: "Questa segnalazione è stata risolta da un moderatore poiché ritiene che l'autore abbia risolto il problema."
     result_pending: "Questa segnalazione non è ancora stata controllata da un moderatore."
+    result_pending_author_html: |
+        <p>Le tue opzioni sono:</p>
+        <ol>
+        <li>Se sei d'accordo con la segnalazione, risolvi il problema, quindi invia una contestazione spiegando cosa hai sistemato.</li>
+        <li>Se non sei d'accordo con la segnalazione, invia una contestazione spiegando la tua opinione.</li>
+        <li>Elimina il tuo script.</li>
+        <li>Non fare nulla e lascia che un moderatore decida.</li>
+        </ol>
     rebuttal_placeholder: 'Spiega a un moderatore perché questo script non dovrebbe essere cancellato.'
     submit_rebuttal: "Invia una contestazione"
     delete_script: "Elimina lo script"
     view_discussion: "Visualizza discussione"
     load_diff: "Carica diff"
     loading_diff: "Caricamento..."
+    reported_user_activity_html: "%{user} (l'utente segnalato) ha fatto:"
   discussions:
     title: Discussioni
     comment_date: "Pubblicato: %{date}"
@@ -954,9 +986,9 @@ it:
     review_heading_html: "Recensione: %{rating}"
     update_rating: "Aggiorna la tua valutazione di %{script_name}"
     ratings:
-      question: "Nessuna valutazione - solo una domanda o commento"
+      question: "Nessuna valutazione - solo una domanda, commento o richiesta di funzione"
       bad: "Male - lo script non funziona"
-      ok: "OK - lo script funziona ma può essere migliorato"
+      ok: "OK - lo script funziona, ma ha degli errori."
       good: "Bene - lo script funziona"
     ratings_short:
       question: "Domanda/commento"
@@ -1072,7 +1104,15 @@ it:
     listing_options_title: "Opzioni di ricerca"
     quote:
       prefix_html: "%{user} ha detto:"
+      anonymous_reporter_html: "Chi ha segnalato ha detto:"
   activerecord:
+    models:
+      script:
+        one: "%{count} script"
+        other: "%{count} script"
+      comment:
+        one: "%{count} commento"
+        other: "%{count} commenti"
     attributes:
       user:
         name: "Nome"
