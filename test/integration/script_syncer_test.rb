@@ -149,6 +149,16 @@ class ScriptSyncerTest < ActiveSupport::TestCase
     script.sync_identifier = script.script_versions.first.code
 
     assert_equal :success, ScriptSyncer.sync(script), script.sync_error
+
+    en_ai = script.localized_attributes_for('additional_info').find { |la| la.locale == Locale.where(code: 'en').first }
+    assert_not_nil en_ai
+    assert_equal 'MyNewText', en_ai.attribute_value
+    assert_not_nil en_ai.sync_identifier
+
+    fr_ai = script.localized_attributes_for('additional_info').find { |la| la.locale == Locale.where(code: 'fr').first }
+    assert_not_nil fr_ai
+    assert_equal 'MonNouveauTexte', fr_ai.attribute_value
+    assert_not_nil fr_ai.sync_identifier
   end
 
   test 'keep attachments' do

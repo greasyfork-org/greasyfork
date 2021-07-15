@@ -8,8 +8,13 @@ class BaseScriptImporterTest < ActiveSupport::TestCase
   end
 
   test 'absolutized references no change' do
-    new_html = ScriptImporter::BaseScriptImporter.absolutize_references('<b><img src="http://www.example2.com/relative.png"></b>', 'http://www.example.com')
-    assert_nil new_html
+    html = <<~HTML
+      <b>
+        <img src="http://www.example2.com/relative.png">
+      </b>
+    HTML
+    new_html = ScriptImporter::BaseScriptImporter.absolutize_references(html, 'http://www.example.com')
+    assert_equal html, new_html
   end
 
   test 'absolutized references one changed one not' do

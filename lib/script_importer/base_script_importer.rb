@@ -131,7 +131,7 @@ module ScriptImporter
           node[url_param] = new_url
         end
       end
-      return nil unless changed
+      return html unless changed
 
       return doc.to_html
     end
