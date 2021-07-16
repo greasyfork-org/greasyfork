@@ -21,7 +21,7 @@ class ShowTest < ApplicationSystemTestCase
 
   test 'deleted script not replaced' do
     script = Script.find(2)
-    script.update!(script_delete_type_id: 1)
+    script.update!(delete_type: 'keep')
     assert_script_deleted_page do
       visit script_path(script, locale: :en)
     end
@@ -30,7 +30,7 @@ class ShowTest < ApplicationSystemTestCase
   test 'deleted script replaced' do
     script = Script.find(2)
     replacing_script = Script.find(1)
-    script.update!(script_delete_type_id: 1, replaced_by_script: replacing_script)
+    script.update!(delete_type: 'redirect', replaced_by_script: replacing_script)
     visit script_path(script, locale: :en)
     assert_current_path script_path(replacing_script, locale: :en)
   end

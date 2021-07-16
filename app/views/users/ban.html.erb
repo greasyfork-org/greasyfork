@@ -25,11 +25,11 @@
       </ul>
       <p>
         <% unless @user.banned? %>
-          <input type="radio" required id="script_delete_type_id_0" name="script_delete_type_id" value="" checked> <label for="script_delete_type_id_0">Don't delete</label><br>
+          <input type="radio" required id="delete_type_0" name="delete_type" value="" checked> <label for="delete_type_0">Don't delete</label><br>
         <% end %>
-        <% ScriptDeleteType.all.each do |sdt| %>
-          <input type="radio" required id="script_delete_type_id_<%= sdt.id %>" name="script_delete_type_id" value="<%= sdt.id %>" <% if @user.banned? && sdt.keep? %> checked<% end %>>
-          <label for="script_delete_type_id_<%= sdt.id %>">Delete. <%= sdt.description %></label><br>
+        <% Script.delete_types.keys.except('redirect').each do |k| %>
+          <input type="radio" required id="delete_type_<%= k %>" name="delete_type" value="<%= k %>" <% if @user.banned? && k == 'keep' %> checked<% end %>>
+          <label for="delete_type_<%= k %>"><%= t("scripts.delete_update_behaviours.#{k}") %></label><br>
         <% end %>
       </p>
     <% end %>

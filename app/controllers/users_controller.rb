@@ -72,9 +72,9 @@ class UsersController < ApplicationController
     user = User.order('scripts.default_name')
     # current user will display discussions
     user = if !current_user.nil? && (current_user.id == params[:id].to_i)
-             user.includes(scripts: [:discussions, :script_type, :script_delete_type, { localized_attributes: :locale }])
+             user.includes(scripts: [:discussions, :script_type, { localized_attributes: :locale }])
            else
-             user.includes(scripts: [:script_type, :script_delete_type, { localized_attributes: :locale }])
+             user.includes(scripts: [:script_type, { localized_attributes: :locale }])
            end
     @user = user.find(params[:id])
 
@@ -215,7 +215,7 @@ class UsersController < ApplicationController
   def do_ban
     user = User.find(params[:user_id])
     user.ban!(moderator: current_user, reason: params[:reason]) unless user.banned?
-    user.lock_all_scripts!(reason: params[:reason], moderator: current_user, delete_type: params[:script_delete_type_id]) if params[:script_delete_type_id].present?
+    user.lock_all_scripts!(reason: params[:reason], moderator: current_user, delete_type: params[:delete_type]) if params[:delete_type].present?
     user.delete_all_comments!(by_user: user) if params[:delete_comments] == '1'
     redirect_to user
   end

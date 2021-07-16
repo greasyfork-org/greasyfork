@@ -74,9 +74,9 @@ class Report < ApplicationRecord
         item.soft_destroy!(by_user: moderator) unless item.soft_deleted?
       when Script
         if unauthorized_code? && reference_script
-          item.update!(script_delete_type_id: ScriptDeleteType::KEEP, locked: true, replaced_by_script: reference_script, self_deleted: moderator.nil?)
+          item.update!(delete_type: 'keep', locked: true, replaced_by_script: reference_script, self_deleted: moderator.nil?)
         else
-          item.update!(script_delete_type_id: ScriptDeleteType::BLANKED, locked: true, self_deleted: moderator.nil?)
+          item.update!(delete_type: 'blanked', locked: true, self_deleted: moderator.nil?)
         end
         if ban_user
           reported_users.each { |user| user.ban!(moderator: moderator, delete_comments: delete_comments, delete_scripts: delete_scripts, ban_related: true, report: self) }

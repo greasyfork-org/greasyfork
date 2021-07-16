@@ -6,7 +6,7 @@ module Admin
 
       @top_similarities = ScriptSimilarity
                           .joins(:script, :other_script)
-                          .where(scripts: { script_delete_type_id: nil }, other_scripts_script_similarities: { script_delete_type_id: nil })
+                          .where(scripts: { delete_type: nil }, other_scripts_script_similarities: { delete_type: nil })
                           .order(similarity: :desc, script_id: :asc, other_script_id: :asc)
                           .limit(100)
                           .offset(@page * 100)
