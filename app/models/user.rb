@@ -192,7 +192,7 @@ class User < ApplicationRecord
     non_locked_scripts.each do |s|
       s.delete_reason = reason
       s.locked = true
-      s.script_delete_type_id = delete_type
+      s.delete_type = delete_type
       s.save(validate: false)
       ModeratorAction.create!(moderator: moderator, script: s, action: 'Delete and lock', reason: reason, report: report)
     end
@@ -248,7 +248,7 @@ class User < ApplicationRecord
     end
 
     delete_all_comments!(by_user: moderator) if delete_comments
-    lock_all_scripts!(reason: reason, report: report, moderator: moderator, delete_type: ScriptDeleteType::BLANKED) if delete_scripts
+    lock_all_scripts!(reason: reason, report: report, moderator: moderator, delete_type: 'blanked') if delete_scripts
 
     Report.unresolved.where(item: self).find_each do |other_report|
       other_report.uphold!(moderator: moderator)

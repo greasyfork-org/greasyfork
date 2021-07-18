@@ -20,7 +20,7 @@ class ScriptCheckerBanAndDeleteJob < ApplicationJob
 
     script.locked = true
     script.delete_reason = reason
-    script.script_delete_type_id = 2
+    script.delete_type = 'blanked'
     script.save(validate: false)
 
     ModeratorAction.create!(

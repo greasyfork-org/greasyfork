@@ -102,10 +102,10 @@ en:
     delete_explanation: "Deleting your script makes it inaccessible to anyone but you and Greasy Fork moderators. You can undelete at any time."
     # intro text to radio options for choosing update behaviour after deletion
     delete_update_behaviour: "What would you like to happen to users who previously installed your script?"
-    # label for the option allowing users to retain the script after delete
-    delete_update_behaviour_1: "They will keep it as it is."
-    # label for the option where users get a blanked script after delete 
-    delete_update_behaviour_2: "They will be updated to a blank script. This is suitable when the script has a negative effect on the sites it runs on."
+    delete_update_behaviours:
+      keep: "They will keep it as it is."
+      blanked: "They will be updated to a blank script. This is suitable when the script has a negative effect on the sites it runs on."
+      redirect: "They will be be redirected and updated to the script you specify below."
     # heading for permanent deletion section
     delete_permanently_heading: "Permanent deletion"
     # explanation of permanent deletion
@@ -425,7 +425,7 @@ en:
     # label for checkbox to remove a screenshot
     screenshots_remove: "Remove"
     # explains what a replacement script when deleting is
-    replacement_script_explanation: "(Optional) Choose another script that replaces this script. Users will be updated to and redirected to this script. Enter the replacement script's URL:"
+    replacement_script_explanation: "(Optional) Choose another script that replaces this script. Enter the replacement script's URL:"
     # title for diff page
     diff_title: "%{script} - Version diff"
     # label for older version being diffed

@@ -8,7 +8,7 @@ class ConsecutiveBadRatingsJob < ApplicationJob
     # Delete those that are old.
     Script.not_deleted.where(['consecutive_bad_ratings_at < ?', Script::CONSECUTIVE_BAD_RATINGS_GRACE_PERIOD.ago]).each do |script|
       script.update(
-        script_delete_type_id: ScriptDeleteType::KEEP,
+        delete_type: 'keep',
         delete_reason: "Script received #{Script::CONSECUTIVE_BAD_RATINGS_COUNT} bad ratings without an author response.",
         consecutive_bad_ratings_at: nil
       )

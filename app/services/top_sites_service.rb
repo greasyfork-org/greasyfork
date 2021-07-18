@@ -27,7 +27,7 @@ class TopSitesService
             domain
             AND blocked = 0
             AND script_type_id = 1
-            AND script_delete_type_id IS NULL
+            AND delete_type IS NULL
             AND !tld_extra
             #{subset_clause}
             #{locale_clause}
@@ -59,7 +59,7 @@ class TopSitesService
         FROM scripts
         WHERE
           script_type_id = 1
-          AND script_delete_type_id is null
+          AND delete_type is null
           AND NOT EXISTS (SELECT * FROM script_applies_tos WHERE script_id = scripts.id)
         SQL
         Script.connection.select_all(sql).first

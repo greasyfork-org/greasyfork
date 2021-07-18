@@ -2,7 +2,7 @@ require 'localizing_model'
 require 'css_to_js_converter'
 
 class Script < ApplicationRecord
-  self.ignored_columns = ['script_sync_source_id']
+  self.ignored_columns = ['script_sync_source_id', 'script_delete_type_id']
 
   include LocalizingModel
   include DetectsLocale
@@ -10,6 +10,8 @@ class Script < ApplicationRecord
   CONSECUTIVE_BAD_RATINGS_COUNT = 3
   CONSECUTIVE_BAD_RATINGS_GRACE_PERIOD = 2.weeks
   CONSECUTIVE_BAD_RATINGS_NOTIFICATION_DELAY = 1.day
+
+  enum delete_type: { 'keep' => 1, 'blanked' => 2, 'redirect' => 3 }, _prefix: true
 
   belongs_to :promoted_script, class_name: 'Script', optional: true
 
@@ -35,7 +37,6 @@ class Script < ApplicationRecord
 
   belongs_to :script_type
   belongs_to :script_sync_type, optional: true
-  belongs_to :script_delete_type, optional: true
   belongs_to :license, optional: true
   belongs_to :locale
   belongs_to :replaced_by_script, class_name: 'Script', optional: true
@@ -45,7 +46,7 @@ class Script < ApplicationRecord
 
   delegate :meta, to: :newest_saved_script_version
 
-  scope :not_deleted, -> { where(script_delete_type_id: nil) }
+  scope :not_deleted, -> { where(delete_type: nil) }
   scope :active, lambda { |script_subset|
     f = not_deleted
     case script_subset
@@ -408,11 +409,7 @@ class Script < ApplicationRecord
   end
 
   def deleted?
-    !script_delete_type.nil?
-  end
-
-  def deleted_and_blanked?
-    script_delete_type_id == ScriptDeleteType::BLANKED
+    !delete_type.nil?
   end
 
   def update_license(text)
@@ -472,7 +469,7 @@ class Script < ApplicationRecord
   def ban_all_authors!(moderator:, reason:, private_reason: nil)
     users.each do |user|
       user.ban!(moderator: moderator, reason: reason, private_reason: private_reason)
-      user.lock_all_scripts!(reason: reason, moderator: moderator, delete_type: ScriptDeleteType::BLANKED)
+      user.lock_all_scripts!(reason: reason, moderator: moderator, delete_type: 'blanked')
     end
   end
 

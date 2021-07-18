@@ -156,7 +156,7 @@ class ScriptsController < ApplicationController
         script, script_version = minimal_versionned_script(script_id, script_version_id)
         return if handle_replaced_script(script)
 
-        user_js_code = if script.deleted_and_blanked?
+        user_js_code = if script.delete_type_blanked?
                          script_version.generate_blanked_code
                        elsif script.css?
                          unless script.css_convertible_to_js?
@@ -193,7 +193,7 @@ class ScriptsController < ApplicationController
         script, script_version = minimal_versionned_script(script_id, script_version_id)
         return if handle_replaced_script(script)
 
-        user_js_code = script.script_delete_type_id == 2 ? script_version.generate_blanked_code : script_version.rewritten_code
+        user_js_code = script.delete_type_blanked? ? script_version.generate_blanked_code : script_version.rewritten_code
 
         # If the request specifies a specific version, the code will never change, so inform the manager not to check for updates.
         user_js_code = script_version.parser_class.inject_meta(user_js_code, downloadURL: 'none') if params[:version].present? && !script.library?
@@ -399,7 +399,7 @@ class ScriptsController < ApplicationController
       @script.ban_all_authors!(moderator: current_user, reason: params[:reason]) if params[:banned]
     end
     @script.permanent_deletion_request_date = nil if @script.locked
-    @script.script_delete_type_id = params[:script_delete_type_id]
+    @script.delete_type = params[:delete_type]
     @script.save(validate: false)
     redirect_to @script
   end
@@ -431,7 +431,7 @@ class ScriptsController < ApplicationController
         end
       end
     end
-    @script.script_delete_type_id = nil
+    @script.delete_type = nil
     @script.replaced_by_script_id = nil
     @script.delete_reason = nil
     @script.permanent_deletion_request_date = nil
@@ -445,7 +445,7 @@ class ScriptsController < ApplicationController
       redirect_to root_path
       return
     end
-    @script.script_delete_type_id = ScriptDeleteType::KEEP
+    @script.delete_type = 'keep'
     @script.permanent_deletion_request_date = DateTime.now
     @script.save(validate: false)
     flash[:notice] = I18n.t('scripts.delete_permanently_notice')
@@ -776,7 +776,7 @@ class ScriptsController < ApplicationController
   private
 
   def handle_replaced_script(script)
-    if !script.replaced_by_script_id.nil? && script.replaced_by_script && script.script_delete_type_id == 1
+    if !script.replaced_by_script_id.nil? && script.replaced_by_script && script.delete_type_redirect?
       redirect_to(user_js_script_path(script.replaced_by_script, name: script.replaced_by_script.url_name, locale_override: nil), status: :moved_permanently)
       return true
     end
@@ -825,7 +825,7 @@ class ScriptsController < ApplicationController
             <<~SQL.squish
               SELECT
                 scripts.language,
-                script_delete_type_id,
+                delete_type,
                 scripts.replaced_by_script_id,
                 script_codes.code
               FROM scripts
@@ -840,7 +840,7 @@ class ScriptsController < ApplicationController
             <<~SQL.squish
               SELECT
                 scripts.language,
-                script_delete_type_id,
+                delete_type,
                 scripts.replaced_by_script_id,
                 script_codes.code
               FROM scripts
@@ -856,7 +856,7 @@ class ScriptsController < ApplicationController
 
     raise ActiveRecord::RecordNotFound if script_info.nil?
 
-    Struct.new(:language, :script_delete_type_id, :replaced_by_script_id, :code).new(*script_info.values)
+    Struct.new(:language, :delete_type, :replaced_by_script_id, :code).new(*script_info.values)
   end
 
   def handle_meta_request(language)
@@ -866,7 +866,7 @@ class ScriptsController < ApplicationController
 
     script_info = load_minimal_script_info(script_id, script_version_id)
 
-    if !script_info.replaced_by_script_id.nil? && script_info.script_delete_type_id == ScriptDeleteType::KEEP
+    if script_info.replaced_by_script_id && script_info.delete_type_redirect?
       redirect_to(id: script_info.replaced_by_script_id, status: :moved_permanently)
       return
     end
@@ -881,7 +881,7 @@ class ScriptsController < ApplicationController
 
     parser = is_css ? CssParser : JsParser
     # Strip out some thing that could contain a lot of data (data: URIs). get_blanked_code already does this.
-    meta_js_code = script_info.script_delete_type_id == ScriptDeleteType::BLANKED ? ScriptVersion.generate_blanked_code(script_info.code, parser) : parser.inject_meta(parser.get_meta_block(script_info.code), { icon: nil, resource: nil })
+    meta_js_code = script_info.delete_type_blanked? ? ScriptVersion.generate_blanked_code(script_info.code, parser) : parser.inject_meta(parser.get_meta_block(script_info.code), { icon: nil, resource: nil })
 
     # Only cache if:
     # - It's not for a specific version (as the caching does not work with query params)

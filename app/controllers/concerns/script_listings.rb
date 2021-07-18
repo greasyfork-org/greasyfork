@@ -100,7 +100,7 @@ module ScriptListings
 
       @scripts = Script
                  .listable(script_subset)
-                 .includes({ users: {}, script_type: {}, localized_attributes: :locale, script_delete_type: {} })
+                 .includes({ users: {}, script_type: {}, localized_attributes: :locale })
                  .paginate(page: params[:page], per_page: per_page)
       @scripts = self.class.apply_filters(@scripts, params, script_subset)
       # Force a load as will be doing empty?, size, etc. and don't want separate queries for each.
@@ -162,7 +162,7 @@ module ScriptListings
       end
       format.json do
         result = self.class.cache_with_log('applies_to_counts', expires_in: 1.hour) do
-          ScriptAppliesTo.joins(:script, :site_application).where(scripts: { script_type_id: 1, script_delete_type_id: nil }, tld_extra: false, site_applications: { domain: true }).group('site_applications.text').count
+          ScriptAppliesTo.joins(:script, :site_application).where(scripts: { script_type_id: 1, delete_type: nil }, tld_extra: false, site_applications: { domain: true }).group('site_applications.text').count
         end
         cache_request(result.to_json)
         render json: result
@@ -223,7 +223,7 @@ module ScriptListings
     end
 
     script_ids = ScriptCodeSearch.search(params[:c])
-    @scripts = Script.order(self.class.get_sort(params)).includes(:users, :script_type, :script_delete_type, :localized_attributes).where(id: script_ids)
+    @scripts = Script.order(self.class.get_sort(params)).includes(:users, :script_type, :localized_attributes).where(id: script_ids)
     include_deleted = current_user&.moderator? && params[:include_deleted] == '1'
     @scripts = @scripts.listable(script_subset) unless include_deleted
     if current_user&.moderator?

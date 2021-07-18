@@ -28,7 +28,7 @@ class DiscussionsController < ApplicationController
       raise "Unknown subset #{script_subset}"
     end
 
-    @discussions = @discussions.where(scripts: { script_delete_type_id: nil }).where(report_id: nil) unless current_user&.moderator?
+    @discussions = @discussions.where(scripts: { delete_type: nil }).where(report_id: nil) unless current_user&.moderator?
 
     @filter_result = apply_filters(@discussions)
 
