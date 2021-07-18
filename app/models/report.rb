@@ -64,7 +64,7 @@ class Report < ApplicationRecord
     reporter&.update_trusted_report!
   end
 
-  def uphold!(moderator:, moderator_notes: nil, ban_user: false, delete_comments: false, delete_scripts: false)
+  def uphold!(moderator:, moderator_notes: nil, ban_user: false, delete_comments: false, delete_scripts: false, redirect: false)
     Report.transaction do
       case item
       when User, Message
@@ -74,7 +74,7 @@ class Report < ApplicationRecord
         item.soft_destroy!(by_user: moderator) unless item.soft_deleted?
       when Script
         if unauthorized_code? && reference_script
-          item.update!(delete_type: 'keep', locked: true, replaced_by_script: reference_script, self_deleted: moderator.nil?)
+          item.update!(delete_type: redirect ? 'redirect' : 'keep', locked: true, replaced_by_script: reference_script, self_deleted: moderator.nil?)
         else
           item.update!(delete_type: 'blanked', locked: true, self_deleted: moderator.nil?)
         end
