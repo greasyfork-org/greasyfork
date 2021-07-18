@@ -156,7 +156,7 @@
 
 <% if report.discussions.any? %>
   <p>
-    <%= link_to t('reports.view_discussion'), report.discussions.first.path(locale: request_locale.code) %>
+    <b><%= link_to t('reports.view_discussion'), report.discussions.first.path(locale: request_locale.code) %></b>
   </p>
 <% elsif current_user&.moderator? %>
   <p>
