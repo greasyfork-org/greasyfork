@@ -170,7 +170,7 @@ it:
     listing_filter_by_site_label: "Visualizza script per:"
     listing_filter_by_site_disable: "Tutti"
     listing_filter_by_site_all_sites: "(tutti i siti)"
-    listing_filter_by_language_label: "Lingua:"
+    listing_filter_by_language_label: "Linguaggio:"
     listing_filter_by_site_more_sites: "Più..."
     listing_no_scripts: "Nessuno script trovato"
     listing_created_feed: "Nuovi script"
@@ -210,7 +210,7 @@ it:
     additional_info_note: "Una descrizione più dettagliata, istruzioni, ecc."
     post_new_script: "Posta uno script"
     post_updated_script: "Posta la nuova versione"
-    type_1_html: "Pubblica lo script - script che tutti posso vedere e usare"
+    type_1_html: "Script pubblico - script che tutti posso vedere e usare"
     type_2_html: "Script utente non indicizzato - script utente per uso (semi-)privato. Disponibile attraverso un accesso diretto, ma non linkato all'interno di %{site_name}."
     type_3_html: "Libreria - uno script creato con lo scopo di essere usato con il tag <code>@require</code> da altri script e non per essere installato drettamente."
     override_warning_checkbox_label: "Salvare comunque?"
@@ -576,8 +576,8 @@ it:
       not_banned: "Non bannato"
       all: "Tutti"
     listing_author_filter:
-      script_author: "Autore dello script"
-      not_script_author: "Non l'autore dello script"
+      script_author: "Autore di script"
+      not_script_author: "Non autore di script"
       all: "Tutti"
     search_placeholder: "Cerca utenti"
     locale_prompt: "(Scegli un luogo)"
@@ -701,7 +701,7 @@ it:
       content_html: "<p>Scrivere script utente richiede la conoscenza di JavaScript. I <a href=\"http://wiki.greasespot.net/Tutorials\">tutorial sul wiki GreaseSpot</a> dovrebbero avvantaggiarti sia per quanto riguarda JavaScript in generale, sia per gli aspetti correlati agli script utente. Esaminare gli script di altri potrebbe aiutarti. Potresti voler consultare %{code_rules_link} e %{meta_keys_link}. Se hai bisogno di aiuto per lo sviluppo del tuo script, sentiti libero di %{ask_in_forum_link}.</p><p>Per inviare un post a %{site_name} dovrai creare un account. Dalla tua %{user_page_link} segui il collegamento a %{post_new_script_link}.</p>"
       ask_in_forum_link_text: 'chiedi nel forum'
       user_page_link_text: 'pagina utente'
-      post_new_script_link_text: 'posta un nuovo script'
+      post_new_script_link_text: 'pubblica un nuovo script'
     code_rules:
       title: "Le regole di %{site_name} per gli script postati"
       preamble: Questi sono i requisiti per gli script pubblicati su %{site_name}. Questi sono fatti con l'intenzione di mantenere %{site_name} un luogo sicuro e utile per gli script utente. Ogni script che ricade al di fuori di questi requisiti potrebbe essere cancellato dai moderatori di %{site_name}.
@@ -847,6 +847,43 @@ it:
       title: Conversione da user CSS a user JS
     antifeatures:
       title: Antifunzionalità
+      intro_html: |
+          <p>Le antifunzionalità sono cose aggiunte allo script a beneficio degli autori piuttosto che degli utenti, come pubblicità o tracciamento. Gli scripts con antifunzionalità sono permessi in accordo con le %{rules_link:regole di %{site_name}}, ma devono essere marcati con <code>@antifeature</code> nel blocco dei metadati dello script. Fare ciò assicurerà che l'utente sia consapevole delle antifunzionalità prima dell'installazione.</p>
+          <p>Le antifunzionalità sono specificate come %{meta_keys_link:metadati dello script}  con il formato <code>@antifeature <i>tipo</i> <i>descrizione</i></code>.<i>tipo</i> è richiesto e <i>descrizione</i> è opzionale</p>
+          <p>Questa pagina descrive i tipi di <code>@antifeature</code> riconosciuti da %{site_name}. Altri tipi possono essere usati, ma la presenza dell'antifunzionalità non deve essere contraria alle %{rules_link:regole di%{site_name}}.</p>
+      ads_html: |
+          <p>Lo script inserisce pubblicità nelle pagine che l'utente visita.</p>
+          <p>Quanto segue <i>non</i> richiede l'uso di <code>@antifeature ads</code>:</p>
+          <ul>
+          <li>Uno script che ha effetto su un sito che contiene pubblicità.</li>
+          <li>Uno script che collega o in altro modo indirizza l'utente a un sito che contiene pubblicità, fintanto che quel sito fornisce qualche funzionalità quando integrato con lo script.</li>
+          <li>Promozine della homepage dell'autore dello script, repository di codice, Discord, WeChat, ecc.</li>
+          </ul>
+      membership_html: |
+          <p>Lo script richiede che l'utente si abboni a un canale, si unisca a un gruppo, metta "Mi piace" a una pagina, ecc. affinché lo script sia completamente funzionale.</p>
+
+          <p>Quanto segue <i>non</i> richiede l'uso di <code>@antifeature membership</code>:</p>
+
+          <ul>
+          <li>Uno script che abbia effetto nell'area riservata di un sito,  senza che però lo script stesso richieda un accesso aggiuntivo.</li>
+          <li>Uno script dove il supporto è fornito tramite una piattaforma che richiede l'iscrizione, fintanto che questo supporto non è necessario per l'utente per avere la piena funzionalità.</li>
+          <li>Collegamenti al canale, gurppo, pagina, ecc. dell'autore che non abbiano effetto sulla funzionalità dello script.</li>
+          </ul>
+      miner_html: |
+          <p>Lo script contiene un cryptominer o altro codice che usa le risorse dell'utente per eseguire dei compiti per l'autore dello script.</p>
+      payment_html: |
+          <p>Lo script richiede che l'utente paghi l'autore dello script affinché lo script sia pienamente funzionale.</p>
+
+          <p>Quanto segue <i>non</i> richiede l'uso di <code>@antifeature payment</code>:</p>
+
+          <ul>
+          <li>Uno script che abbia effetto su un sito che richiede un pagamento, fintanto che non è lo script stesso a richiedere un pagamento.</li>
+          <li>Uno script che richiede donazioni, fintanto che le donazioni non sbloccano funzionalità aggiuntive.</li>
+          </ul>
+      referral_link_html: |
+          <p>Lo script esegue determinate azioni che assicurano all'autore delle commissioni sugli acquisti. Questo include il fatto che lo script contenga collegamenti di referenza/affiliazione, riscriva i collegamenti esistenti per farli diventare collegamenti di referenza/affiliazione, o che fornisca codici coupon che garantiscano una commissione all'autore dello script.</p>
+      tracking_html: |
+          <p>Lo script include codice per tracciare l'attività dell'utente. Questo include tracciatori come Google Analytics o codice di tracciamento personalizzato che riporta l'attività dell'utente all'autore dello script.</p>
   search:
     script_search:
       title: "Cerca script"
@@ -882,7 +919,7 @@ it:
       message: "Segnala un messaggio di %{user}"
       script: "Segnala %{script}"
     new_report_notes_html: >
-        <p>Prima di segnalare, per favore nota:</p><ul>
+        <p>Prima di segnalare, per favore nota che:</p><ul>
 
         <li>Un moderatore valuterà la tua segnalazione e agirà di conseguenza.</li>
 

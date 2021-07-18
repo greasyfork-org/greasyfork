@@ -76,7 +76,7 @@ ko:
     admin:
       title: "%{script_name} - 관리자"
       promoted_heading: "추천 스크립트"
-      promoted_explanation: "이 스크립트를 설치한 후 %{site_name}가 유저에게 이 스크립트를 보여줄 수 있습니다."
+      promoted_explanation: "이 스크립트를 설치한 후 %{site_name}가 유저에게 추천 스크립트를 보여줄 수 있습니다."
       promoted_script_label: "추천할 스크립트 URL"
       promoted_submit: "추천 스크립트 설정"
       sync_heading: "소스 동기화"
@@ -112,10 +112,10 @@ ko:
     stats_title: "%{script_name} - 통계"
     stats_daily_installs_heading: "일일 설치 수"
     stats_weekly_installs_heading: "주간 설치수"
-    stats_daily_update_checks_heading: "일일 업데이트 확인수"
+    stats_daily_update_checks_heading: "일일 업데이트 확인 수"
     stats_daily_installs_date_column_heading: "날짜"
     stats_daily_installs_install_count_column_heading: "설치수"
-    stats_daily_installs_update_check_count_column_heading: "업데이트 확인수"
+    stats_daily_installs_update_check_count_column_heading: "업데이트 확인 수"
     stats_raw_data_header: "비가공 데이터"
     stats_download_raw_data_html: "모든 데이터 다운로드: %{links}"
     stats_no_data: "통계 사용불가"
@@ -228,10 +228,10 @@ ko:
     sync_type_intro: "동기화될 스크립트:"
     sync_type_1:
       name: 수동
-      description: 직접 요청할 때만 업데이트 확인을 합니다.
+      description: 직접 요청할 때만 업데이트합니다.
     sync_type_2:
       name: 자동
-      description: 주기적으로 업데이트 확인을 합니다.
+      description: 주기적으로 업데이트합니다.
     sync_type_3:
       name: 웹훅
       description: 저장소에 푸시하면 업데이트합니다.
@@ -318,22 +318,63 @@ ko:
       failure: "개발자 목록에서 삭제할 수 없습니다."
     no_disposable_email: "일회용 이메일을 쓰는 경우 스크립트를 업로드할 수 없습니다."
     rate_limited: "최근에 너무 많이 업로드하셨습니다. 나중에 다시 시도하세요."
+    new_script_notice:
+      title: "뭘 하고 싶나요?"
+      install_link_html: "스크립트를 <b>설치하고 사용</b>하기."
+      share_link_html: "스크립트를 <b>작성</b>했고 다른 사람과 <b>공유</b>하기."
     new_title:
       js: "새 스크립트 업로드"
       css: "새 스타일 업로드"
     update_title: "%{script}의 새 버전 업로드"
+    install_help_dialog:
+      js:
+        firefox: 스크립트를 설치하려면 %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey}, %{violentmonkey_link:Violentmonkey} 같은 확장을 설치해야합니다.
+        chrome: 스크립트를 설치하려면 %{tampermonkey_link:Tampermonkey}나 %{violentmonkey_link:Violentmonkey} 같은 확장을 설치해야 합니다.
+        opera: 스크립트를 설치하려면 %{tampermonkey_link:Tampermonkey}나 %{violentmonkey_link:Violentmonkey} 같은 확장을 설치해야 합니다.
+        safari: 스크립트를 설치하려면 %{tampermonkey_link:Tampermonkey}나 %{userscripts_link:Userscripts} 같은 확장을 설치해야 합니다.
+        other: 스크립트를 설치하려면 유저 스크립트 관리자 확장을 설치해야 합니다.
+        bypass: (이미 유저 스크립트 관리자가 있으니 설치 링크나 주세요!)
+      css:
+        firefox: 이 스타일을 설치하려면 %{stylus_link:Stylus} 같은 확장을 설치해야 합니다.
+        chrome: 이 스타일을 설치하려면 %{stylus_link:Stylus} 같은 확장을 설치해야 합니다.
+        opera: 이 스타일을 설치하려면 %{stylus_link:Stylus} 같은 확장을 설치해야 합니다.
+        safari: 스타일을 설치하려면 유저 스타일 관리자 확장을 설치해야 합니다.
+        other: 스타일을 설치하려면 유저 스타일 관리자 확장을 설치해야 합니다.
+        bypass: (이미 유저 스타일 관리자가 있으니 설치 링크나 주세요!)
+      close_dialog: 확인
     antifeatures:
       warning_title: 이 스크립트는 역기능이 있습니다.
+      author_explanation_intro: "스크립트 개발자가 적은 바로는"
       types:
         ads:
           title: 광고
+          description_html: 이 스크립트는 사용자가 방문하는 사이트에 <b>광고를 삽입</b>합니다.
         tracking:
           title: 추적
+          description_html: 이 스크립트는 </b>사용자의 웹 서핑을 추적</b>하는 코드를 담고 있습니다.
         miner:
+          title: 암호화폐 채굴기
           description_html: 이 스크립트는 활성화 시 <b>컴퓨터 자원을 소모하는</b> 암호화폐 채굴을 포함하고 있습니다.
+        referral-link:
+          title: 초대 링크
+          description_html: 이 스크립트는 초대나 제휴 목적의 코드로 <b>링크를 수정합니다</b>.
+        membership:
+          title: 멤버십
+          description_html: 그룹에 가입하거나, 채널을 구독하거나, 페이지에 추천을 하는 등 <b>어딘가 에 등록</b>해야 스크립트를 제한없이 쓸 수 있습니다.
         payment:
           title: 결제
+          description_html: <b>결제를 해야</b> 스크립트를 제한없이 쓸 수 있습니다. %{site_name}는 결제와 무관하기에 스크립트의 설명이나 환불에 대해 책임지지 않습니다.
+      install_anyway: 스크립트 설치
+      cancel_install: 취소
+    badges:
+      js:
+        short: JS
+        long: 유저 스크립트
+      css:
+        short: CSS
+        long: 유저 스타일
   script_sets:
+    description: "Greasy Fork에서 스크립트를 골라 스크립트 모음을 만들 수 있습니다. 개별 스크립트나 다른 사용자의 모음, 자동 생성된 모음을 추가할 수 있습니다. 마찬가지로 스크립트를 모음에서 제외할 수도 있습니다."
     favorites_name: "즐겨찾기"
     delete: "스크립트 모음 삭제"
     delete_confirmation: "정말로 이 스크립트 모음을 삭제하시겠습니까?"
@@ -352,6 +393,7 @@ ko:
       add_exclude: "제외됨"
     edit_sets:
       heading: "스크립트 세트"
+      description: "모음에서 다른 스크립트 모음을 추가 또는 제거하기"
       included: "포함된"
       included_none: "(없음)"
       remove_included: "선택된 항목 삭제"
@@ -361,9 +403,11 @@ ko:
       add_label: "스크립트 추가 (공백으로 구분된 URL 혹은 ID 목록)"
       add_include: "포함된"
       add_exclude: "제외된"
+      user_label: "사용자의 스크립트 모음 조회 (URL, ID, 이름)"
       user_no_sets: "(유저의 세트 없음)"
       user_no_other_sets: "(유저의 다른 세트 없음)"
     edit_auto_sets:
+      heading: "자동 생성된 스크립트 모음"
       included_none: "(없음)"
       remove_included: "선택된 항목 삭제"
       excluded_none: "(없음)"
@@ -514,9 +558,24 @@ ko:
         cancel: "삭제 취소"
         cancelled: "삭제가 취소되었습니다."
         completed: "계쩡이 삭제되었습니다."
+    banned_delete:
+      complete: "이 계정은 삭제됐습니다."
+    badges:
+      author:
+        long: 이 스크립트의 개발자
+    notifications:
+      unsubscribe_all: 모든 알림 해제
+      unsubscribe_all_success: 모든 알림을 해제했습니다.
   webhooks:
     info:
       title: 웹훅 설정
+      intro_html: |
+          <p>저장소 이벤트에 따라 %{site_name} 스크립트를 업데이트하도록 웹훅을 연결할 수 있습니다. %{site_name}는 Github, Gitlab, Bitbucket에 대해 "푸시" 웹훅을 지원하고 Github, Gitlab에 대해 "릴리즈" 웹훅을 지원합니다.</p>
+          <p>이 기능을 쓰려면 %{site_name} 스크립트가 사용자의 저장소 URL과 동기화 하도록 설정해야 합니다. %{import_link:스크립트 가져오기}나 이전에 업로드한 스크립트의 "관리" 탭에서 동기화하도록 설정할 수 있습니다,</p>
+          <p>동기화 설정은 처음 웹훅이 실행되기 전까지 "자동"이나 "수동"으로 표시됩니다.</p>
+      already_syncing_list: "다음은 이미 웹훅을 설정한 스크립트입니다."
+      synced_item_html: "%{script_name} - %{sync_url}에서 %{sync_type} 동기화"
+      language_note: Github, Gitlab, Bitbucket의 UI는 영어이므로 웹훅 설정 방법도 영어로 설명합니다.
   help:
     installing_user_scripts:
       title: '유저 스크립트 설치 방법'
@@ -545,6 +604,7 @@ ko:
       post_new_script_link_text: '새로운 스크립트 게시'
     code_rules:
       title: "외부 스크립트에 관한 Gresay Fork 정책"
+      obfuscation: '%{site_name}에 업로드하는 코드는 난독화, 최소화하면 안 됩니다. 사용자는 설치하기 전에 스크립트를 이해할 기회가 있어야 합니다. 스크립트를 webpack 같은 툴로 번들링하고 있다면 최소화를 적용하지 말아야 합니다.'
     external_scripts:
       title: "%{site_name}의 외부 스크립트 정책"
     credits:
@@ -555,6 +615,8 @@ ko:
     help_with_greasymonkey: "Greasemonkey 도움말"
     privacy_policy:
       title: "개인정보보호정책"
+    antifeatures:
+      title: 역기능
   search:
     script_search:
       title: "스크립트 검색"
@@ -574,8 +636,30 @@ ko:
     item_deleted_script: "삭제된 스크립트 %{id}"
     item_user_html: "유저: %{user_link}"
   reports:
+    reason:
+      spam: "스팸"
+      abuse: "모욕적 또는 혐오성 내용"
+      illegal: "불법적 내용"
+      unauthorized_code: "표절본"
+      malware: "악성 코드"
+      minified: "최소화된 코드"
+      external_code: "금지된 외부 코드"
+      undisclosed_antifeature: "숨겨진 %{antifeature_link:역기능} (광고, 추적, 채굴 등)"
+      other: "기타"
     report_user: "유저 신고"
   discussions:
+    delete_comment_confirm: 정말 이 댓글을 지울 건가요?
+    delete_discussion: "삭제"
+    update_comment_submit: "댓글 수정"
+    ratings:
+      question: "평점 없음 - 질문, 댓글이나 기능 요구"
+      bad: "나쁨 - 동작하지 않음"
+      ok: "보통 - 동작하나 버그 있음"
+      good: "좋음 - 잘 동작함"
+    ratings_short:
+      bad: "나쁨"
+      ok: "보통"
+      good: "좋음"
     user_activity:
       title: "최근 댓글"
       no_recent_activity: "최근에 단 댓글이 없습니다."
@@ -637,6 +721,7 @@ ko:
       cannot_be_deleted_reference: "삭제된 스크립트는 불가"
       must_be_greasy_fork_script: "반드시 %{site_name}에 있는 스크립트 URL이어야 함"
       script_update_not_utf8: "업로드된 건 반드시 UTF-8 텍스트여야함."
+      file_size_out_of_range: "200KB 이하여야 합니다"
   opensearch:
     short_name: "%{site_name} 검색"
     long_name: "%{site_name} 유저 스크립트 검색"
