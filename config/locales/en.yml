@@ -1099,6 +1099,25 @@ en:
         <p>%{site_name} may include third party code to collect statistics or display advertisements on the site. These libraries may include tracking logic.</p>
     user_css_to_user_js:
       title: Conversion of user CSS to user JS
+      content_html: |
+        <p>%{site_name} can convert user CSS to user JS format. <code>@-moz-document</code> rules are converted into JavaScript <code>if</code> statements, building the CSS to apply. This CSS is appended to <code>&lt;head&gt;</code> in a <code>&lt;style&gt;</code> element.</p>
+
+        <p>The presence of some user CSS features precludes conversion to user JS format. When these features are detected, user JS conversion will not be done.</p>
+
+        <ul>
+        <li><code>@preprocessor</code> meta keys other than <code>default</code></li>
+        <li><code>@var</code> meta keys</li>
+        </ul>
+
+        <p>%{site_name}'s user JS may load the CSS somewhat differently than user CSS does.</p>
+
+        <ul>
+        <li>In user JS, the CSS inserted as the last element of <code>&lt;head&gt;</code>. In user CSS, this may depend on the extension used. It's recommended to use <code>!important</code> to mitigate this issue.</li>
+        <li>In user JS, the CSS will be calculated and applied once on page load. The page's use of the JavaScript history API may result in the CSS not being applied as expected.</li>
+        <li>User JS may not apply the CSS to frames or iframes.</li>
+        </ul>
+
+        <p>If you find the user JS conversion doesn't work, you should choose the option to make it unavailable when you update your user CSS.</p>
     antifeatures:
       title: Antifeatures
       intro_html: |
