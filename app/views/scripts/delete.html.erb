@@ -45,21 +45,21 @@
 
     <p><%= t('scripts.delete_explanation') %></p>
 
-    <p>
-    <%= t('scripts.delete_update_behaviour') %><br>
-      <% Script.delete_types.keys.each do |k|
-        if params[:delete_type].nil?
-          selected = k == 'blanked' && moderator_view
-        else
-          selected = params[:delete_type] == k
-        end %>
-        <input type="radio" required id="delete_type_<%= k %>" name="delete_type" value="<%= k %>" <% if selected %> checked<% end %>> <label for="delete_type_<%= k %>"><%= t("scripts.delete_update_behaviours.#{k}") %></label><br>
-      <% end %>
-    </p>
-    <p>
+    <div class="form-control">
+      <%= t('scripts.delete_update_behaviour') %><br>
+        <% Script.delete_types.keys.each do |k|
+          if params[:delete_type].nil?
+            selected = k == 'blanked' && moderator_view
+          else
+            selected = params[:delete_type] == k
+          end %>
+          <input type="radio" required id="delete_type_<%= k %>" name="delete_type" value="<%= k %>" <% if selected %> checked<% end %>> <label for="delete_type_<%= k %>" class="radio-label"><%= t("scripts.delete_update_behaviours.#{k}") %></label><br>
+        <% end %>
+    </div>
+    <div class="form-control">
       <label for="replaced_by_script_id"><%= t('scripts.replacement_script_explanation') %></label>
       <input id="replaced_by_script_id" name="replaced_by_script_id" value="<%= params[:replaced_by_script_id] || @script.replaced_by_script_id %>">
-    </p>
+    </div>
     <% if moderator_view %>
       <p>
         <label for="reason">Why are you deleting this?</label><br>
