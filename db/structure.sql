@@ -1806,6 +1806,7 @@ CREATE TABLE `scripts` (
   KEY `fk_rails_f98f8b875c` (`promoted_script_id`),
   KEY `index_scripts_on_promoted` (`promoted`),
   KEY `index_scripts_on_review_state` (`review_state`),
+  KEY `index_scripts_on_delete_type` (`delete_type`),
   CONSTRAINT `fk_rails_f98f8b875c` FOREIGN KEY (`promoted_script_id`) REFERENCES `scripts` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=422456 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2201,6 +2202,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20210506151411'),
 ('20210520013942'),
 ('20210606234319'),
-('20210716011206');
+('20210716011206'),
+('20210718002238');
 
 
