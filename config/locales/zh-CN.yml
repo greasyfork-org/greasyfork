@@ -57,8 +57,10 @@ zh-CN:
     delete_page: "删除脚本"
     delete_explanation: "当你选择删除脚本之后，这个脚本将只能被你以及 Greasy Fork 的管理员访问。你可以之后撤销这个删除操作。"
     delete_update_behaviour: "您想如何对待已经安装这个脚本的用户？"
-    delete_update_behaviour_1: "这将保持原样不变。"
-    delete_update_behaviour_2: "用户将通过自动更新功能变成一个无代码的脚本。当脚本对其所运行的网站产生了负面作用时选择此项。"
+    delete_update_behaviours:
+      keep: "保留脚本当前内容。"
+      blanked: "用户将通过自动更新功能变成一个无代码的脚本。当脚本对其所运行的网站产生了负面作用时选择此项。"
+      redirect: "脚本将会被删除并重定向到你所指定的一个脚本。"
     delete_permanently_heading: "永久删除"
     delete_permanently_explanation_html: >-
         <p>永久删除您的脚本将删除「管理员操作记录」与「论坛讨论帖」以外的所有数据。</p> <p>您的脚本会在 7 日后永久删除，如果反悔，您可以在此期间内撤销删除；反之，若是在
@@ -249,7 +251,7 @@ zh-CN:
     sync_url_placeholder: "(链接)"
     screenshots_add: "添加："
     screenshots_remove: "移除"
-    replacement_script_explanation: "(可选) 输入替换用的脚本。当用户请求更新脚本时将自动重定向到您指定脚本。请输入替代脚本的网址："
+    replacement_script_explanation: "（可选）选择另一个可替代此脚本的脚本。用户将被更新并重定向到此脚本。请输入替代脚本的网址："
     diff_title: "%{script} - 版本差异"
     diff_old_version: "旧版："
     diff_new_version: "新版："
@@ -765,6 +767,25 @@ zh-CN:
           可能包含第三方代码以收集统计数据或者在网站上显示广告。这些库可能存在跟踪逻辑。</p>
     user_css_to_user_js:
       title: 用户样式如何被转换为用户脚本
+      content_html: |
+          <p>%{site_name} 可以转换 UserCSS 到 UserJS 格式。<code>@-moz-document</code> 规则将会转换到 JavaScript 的 <code>if</code> 语句，并构建最终的 CSS。这段 CSS 内容然后会被插入到 <code>&lt;head&gt;</code> 下的一个 <code>&lt;style&gt;</code> 元素内。</p>
+
+          <p>有些 UserCSS 特性不支持转换到 UserJS。当检测到这些特性的时候，则不会换转到 UserJS 格式。</p>
+
+          <ul>
+          <li><code>@preprocessor</code> 元信息在不是 <code>default</code> 的情况；</li>
+          <li><code>@var</code> 元信息；</li>
+          </ul>
+
+          <p>%{site_name} 的 UserJS 的行为可能与 UserCSS 有所差异。</p>
+
+          <ul>
+          <li>当使用转换的 UserJS 格式时，CSS 是插入到 <code>&lt;head&gt;</code> 元素的尾部。根据使用的 UserCSS 插件不同，这个行为可能造成预期外的后果。建议使用 <code>!important</code> 来绕过可能的问题。</li>
+          <li>当使用 UserJS 时，CSS 的生成与插入只会执行一次。当页面使用 History API 时，添加的 CSS 规则可能会消失。</li>
+          <li>转换的 UserJS 不会应用 CSS 规则到框架或 iframe 内。</li>
+          </ul>
+
+          <p>当你发现 UserJS 转换后的代码不能正常工作后，你应当选择相应的选项来禁用该转换。</p>
     antifeatures:
       title: 可能不受欢迎的功能
       intro_html: |

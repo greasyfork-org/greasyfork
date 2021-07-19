@@ -58,8 +58,10 @@ bg:
     delete_page: "Изтриване"
     delete_explanation: "Изтриването на вашия скрипт ще го направи недостъпен за потребителите. Ще можете да го виждате вие и модераторите. Скриптът може да бъде възстановен по всяко време."
     delete_update_behaviour: "Какво желаете да се случи с потребителите, които вече са инсталирали вашия скрипт?"
-    delete_update_behaviour_1: "Те ще го запазят както е в момента."
-    delete_update_behaviour_2: "Те ще получат празен скрипт. Това е удобно, когато скриптът има отрицателен ефект върху сайтовете, за които е предназначен."
+    delete_update_behaviours:
+      keep: "Ще бъде запазен както си е."
+      blanked: "Ще бъде обновен с празен скрипт. Това е подходящо, когато скриптът има отрицателен ефект върху сайтовете, с които работи. "
+      redirect: "Ще бъдат пренасочени и актуализирани със скрипта, който посочите по-долу. "
     delete_permanently_heading: "Окончателно изтриване"
     delete_permanently_explanation_html: >-
         <p>Пълното изтриване ще изтрие вашия скрипт и съответстващите му записи, с
@@ -254,7 +256,7 @@ bg:
     sync_url_placeholder: "(URL)"
     screenshots_add: "Добави:"
     screenshots_remove: "Премахни"
-    replacement_script_explanation: "(По желание) Изберете друг скрипт, който заменя този. Потребителите ще получат обновление и ще бъдат пренасочени към него. Въведете адреса (URL) на заменящия скрипт."
+    replacement_script_explanation: "(По желание) Изберете друг скрипт, който заменя този. Въведете адреса (URL) на заменящия скрипт."
     diff_title: "%{script} - Разлики във версиите"
     diff_old_version: "Стара:"
     diff_new_version: "Нова:"
@@ -831,6 +833,25 @@ bg:
           могат да съдържат проследяващи функции.</p>
     user_css_to_user_js:
       title: Преобразуване на потребителски CSS до потребителски JS
+      content_html: |
+          <p>%{site_name} може да конвертира потребителски CSS в потребителски JS формат. <code>@-moz-document</code> правилата се конвертират до JavaScript <code>ако</code> са изрази, прилагащи CSS. Тези CSS се добавят към <code>&lt;head&gt;</code> в <code>&lt;style&gt;</code> елемент.</p>
+
+          <p>Присъствието на някои потребителски CSS функции ще предотврати конвертирането към потребителски JS формат. Когато бъде открита такава функция, няма се извърши конвертиране към потребителски JS.</p>
+
+          <ul>
+          <li><code>@preprocessor</code> мета ключове, различни от <code>подразбиращите се</code></li>
+          <li><code>@var</code> мета ключове</li>
+          </ul>
+
+          <p>Потребителските JS от%{site_name}могат да зареждат CSS малко по-различно от зареждането на потребителските CSS.</p>
+
+          <ul>
+          <li>В потребителските JS, CSS се вмъкват като последен елемент от <code>&lt;head&gt;</code>. В потребителските CSS, това може да зависи от използваното разширение. Препоръчваме използването на <code>!important</code> за решаване на проблема.</li>
+          <li>В потребителски JS, CSS ще бъде изчислен и приложен след като се зареди страницата. Използването на JavaScript history API от страницата може да доведе до прилагане на CSS не както се очаква.</li>
+          <li>Потребителски JS може да не успее да приложи CSS към фреймове или iframes.</li>
+          </ul>
+
+          <p>Ако установите, че преобразуването до потребителски JS не работи, трябва да изберете опцията да го направите недостъпно, когато актуализирате потребителския си CSS.</p>
     antifeatures:
       title: Антиособености
       intro_html: |
@@ -950,7 +971,9 @@ bg:
       undisclosed_antifeature: "Неописана %{antifeature_link:антифункция} (напр. реклама, проследяване, копачка, и т.н..)"
       other: "Друго"
     report_intro: "%{reported_item} беше докладван на %{report_date} от %{reporter} за %{reason}"
+    report_intro_no_reporter: "%{reported_item} беше докладван %{report_date} за %{reason}"
     report_intro_unauthorized_html: "%{reported_script} е бил докладван %{report_date} от %{reporter} като неоторизирано копие на %{other_script}."
+    report_intro_unauthorized_no_reporter_html: "%{reported_script} беше докладван %{report_date}, че е неоторизирано копие на %{other_script}."
     report_intro_unauthorized_license: "%{other_script} използва лиценз %{license_link: %{license_name}}. Посетете %{tldr_legal_link:tldrlegal.com} за да разберете същността на лиценза."
     report_intro_unauthorized_license_no_url: "%{other_script} използва лиценз %{license_name}. Посетете %{tldr_legal_link:tldrlegal.com} за да разберете същността на лиценза"
     report_intro_unauthorized_no_license: "%{other_script} няма указан лиценз, което означава, че разпространението на копия не е позволено, освен ако не е дадено изрично разрешение. "
@@ -979,6 +1002,7 @@ bg:
     view_discussion: "Вижте дискусията"
     load_diff: "Заредете diff"
     loading_diff: "Зареждане..."
+    reported_user_activity_html: "%{user} (докладваният потребите) направи:"
   discussions:
     title: Дискусии
     comment_date: "Публикуван на: %{date}"
@@ -1003,7 +1027,9 @@ bg:
     review_heading_html: "Отзив: %{rating}"
     update_rating: "Обнови рейтинга си за %{script_name}"
     ratings:
+      question: "Не е рейтинг - просто въпрос, коментар или заявка за функция"
       bad: "Лошо - скриптът не работи"
+      ok: "ОК - скриптът работи, но има бъгове"
       good: "Отлично - скриптът работи"
     ratings_short:
       question: "Въпрос/коментар"
@@ -1119,7 +1145,15 @@ bg:
     listing_options_title: "Настройки за търсене"
     quote:
       prefix_html: "%{user} каза:"
+      anonymous_reporter_html: "Докладващият каза:"
   activerecord:
+    models:
+      script:
+        one: "%{count} скрипт"
+        other: "%{count} скрипта"
+      comment:
+        one: "%{count} коментар"
+        other: "%{count} коментара"
     attributes:
       user:
         name: "Име"
