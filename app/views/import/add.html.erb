@@ -1,7 +1,7 @@
-<%- title 'Import results' %>
+<%- title t('importing.results.title') %>
 
 <% if !@results[:new].empty? %>
-  <p>The following scripts were successfully imported:</p>
+  <p><%= t('importing.results.success') %></p>
   <ul>
     <% @results[:new].each do |script| %>
       <li><%= link_to script.name, script %></li>
@@ -11,7 +11,7 @@
 
 <% if !@results[:needsdescription].empty? %>
   <%= form_tag(import_add_path) do |f| %>
-    <p>The following scripts need a description to be imported:</p>
+    <p><%= t('importing.results.needs_description') %></p>
     <ul>
       <% @results[:needsdescription].each do |script| %>
         <li>
@@ -20,12 +20,12 @@
         </li>
       <% end %>
     </ul>
-    <%= submit_tag 'Import' %>
+    <%= submit_tag t('importing.submit') %>
   <% end %>
 <% end %>
 
 <% if !@results[:existing].empty? %>
-  <p>The following scripts had already been imported:</p>
+  <p><%= t('importing.results.existing') %></p>
   <ul>
     <% @results[:existing].each do |script| %>
       <li><%= link_to script.name, script %></li>
@@ -34,7 +34,7 @@
 <% end %>
 
 <% if !@results[:failure].empty? %>
-  <p>The following scripts could not be imported:</p>
+  <p><%= t('importing.results.failure') %></p>
   <ul>
     <% @results[:failure].each do |name| %>
       <li><%= name %></li>

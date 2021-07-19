@@ -1516,6 +1516,26 @@ en:
     long_name: "%{site_name} user script search"
     # attribution for opensearch.xml
     attribution: "Copyright the authors of the scripts, see each individual script for licensing"
+  importing:
+    title: Import scripts
+    intro: "%{site_name} can import scripts that already hosted elsewhere, for example in a version control system (like GitHub), your own server, or another user script hosting site."
+    url_entry_label: Provide URLs to import from, separated by newlines. These should be URLs to the raw JS or CSS files.
+    sync_type_label: "After the initial import, the script(s) should be synced:"
+    additional_info_html: |
+      <p>For scripts from source control, ensure that the URL you use refers to a branch and not a specific commit, otherwise it will never get updated. For example, <code>https://bitbucket.org/username/reponame/raw/<b>branch-name</b>/script.user.js</code> rather than <code>https://bitbucket.org/username/reponame/raw/<b>commit-hash</b>/script.user.js</code>.</p>
+      <p>Scripts imported from GitHub, Bitbucket, or GitLab can also be set up to sync using a webhook. A webhook will make it so your scripts are immediately updated on %{site_name} when you push to your repository. If you want to use a webhook but haven't set it up yet, do the import first, then %{webhook_info_link:set up the webhook after}.</p>
+    submit: Import
+    previously_imported:
+      heading: Previously imported scripts
+      successful_entry_html: "%{script_link} - %{sync_type} syncing, last synced %{last_sync_date}."
+      unknown_date: "(unknown)"
+      failed_entry_html: "%{script_link} - %{sync_type} syncing, last sync attempt %{last_sync_attempt_date}, %{sync_error}"
+    results:
+      title: "Import result"
+      success: "The following scripts were successfully imported:"
+      needs_description: "The following scripts need a description to be imported:"
+      existing: "The following scripts had already been imported:"
+      failure: "The following scripts could not be imported:"
   mailers:
     script_report:
       report_created_offender:

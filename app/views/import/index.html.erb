@@ -1,33 +1,31 @@
-<%- title 'Import scripts' %>
+<%- title t('importing.title') %>
 
-<p><%= site_name %> can import scripts that already hosted elsewhere, for example in a version control system (like GitHub), your own server, or another user script hosting site.</p>
+<p><%= t('importing.intro', site_name: site_name) %></p>
 
 <%= form_tag(import_add_path) do |f| %>
   <p>
-    <label for="sync-urls">Provide URLs to import from, separated by newlines. These should be URLs to the raw .user.js files.</label><br>
+    <label for="sync-urls"><%= t('importing.url_entry_label') %></label><br>
     <textarea id="sync-urls" name="sync_urls" rows="5" required style="width: 75%"></textarea>
   </p>
   <p class="radio-group">
-    After the initial import, the script(s) should be synced:<br>
-    <input name="sync-type" id="sync-type-2" type="radio" checked value="2"><label for="sync-type-2">Automatically - periodically update it from the URL you provided</label><br>
-    <input name="sync-type" id="sync-type-1" type="radio" value="1"><label for="sync-type-1">Manually - only when you trigger it</label>
+    <%= t('importing.sync_type_label') %><br>
+    <input name="sync-type" id="sync-type-2" type="radio" checked value="2"><label for="sync-type-2"><%= t('scripts.sync_type_2.name') %> - <%= t('scripts.sync_type_2.description') %></label><br>
+    <input name="sync-type" id="sync-type-1" type="radio" value="1"><label for="sync-type-1"><%= t('scripts.sync_type_1.name') %> - <%= t('scripts.sync_type_1.description') %></label>
   </p>
 
-  <p>For scripts from source control, ensure that the URL you use refers to a branch and not a specific commit, otherwise it will never get updated. For example, <code>https://bitbucket.org/username/reponame/raw/<b>branch-name</b>/script.user.js</code> rather than <code>https://bitbucket.org/username/reponame/raw/<b>commit-hash</b>/script.user.js</code>.</p>
+  <%= it('importing.additional_info_html', webhook_info_link: user_webhook_info_path, site_name: site_name) %>
 
-  <p>Scripts imported from GitHub, Bitbucket, or GitLab can also be set up to sync using a webhook. A webhook will make it so your scripts are immediately updated on <%= site_name %> when you push to your repository. If you want to use a webhook but haven't set it up yet, do the import first, then <%= link_to 'set up the webhook after', user_webhook_info_path %>.</p>
-
-  <%= submit_tag 'Import' %>
+  <%= submit_tag t('importing.submit') %>
 <% end %>
 
 <% if @syncing_scripts.any? %>
-  <h3>Previously imported scripts</h3>
+  <h3><%= t('importing.previously_imported.heading') %></h3>
   <ul>
     <% @syncing_scripts.each do |script| %>
       <% if script.sync_error.nil? %>
-        <li class="successful-sync"><%= link_to script.name, script %> - <%= script.script_sync_type.name %> syncing, last synced <%= script.last_successful_sync_date.nil? ? '(unknown)' : markup_date(script.last_successful_sync_date) %></li>
+        <li class="successful-sync"><%= t('importing.previously_imported.successful_entry_html', script_link: link_to(script.name, script), sync_type: ("scripts.sync_type_#{script.script_sync_type_id}.name"), last_sync_date: script.last_successful_sync_date.nil? ? t('importing.previously_imported.unknown_date') : markup_date(script.last_successful_sync_date)) %></li>
       <% else %>
-        <li class="failed-sync"><%= link_to script.name, script %> - <%= script.script_sync_type.name %> syncing, last sync attempt <%= script.last_attempted_sync_date.nil? ? '(unknown)' : markup_date(script.last_attempted_sync_date) %>, <%= script.sync_error %></li>
+        <li class="failed-sync"><%= t('importing.previously_imported.failed_entry_html', script_link: link_to(script.name, script), sync_type: ("scripts.sync_type_#{script.script_sync_type_id}.name"), last_sync_attempt_date: script.last_attempted_sync_date.nil? ? t('importing.previously_imported.unknown_date') : markup_date(script.last_attempted_sync_date), sync_error: script.sync_error) %></li>
       <% end %>
     <% end %>
   </ul>
