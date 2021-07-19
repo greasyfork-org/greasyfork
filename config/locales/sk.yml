@@ -60,8 +60,10 @@ sk:
     delete_page: "Odstrániť"
     delete_explanation: "Vymazanie vášho skriptu znamená, že nebude dostupný nikomu, okrem Vás a moderátorov Greasy Forku. Skript môžete kedykoľvek obnoviť."
     delete_update_behaviour: "Ako sa má prejaviť vymazanie skriptu pre používateľov, ktorí ho už majú nainštalovaný?"
-    delete_update_behaviour_1: "Ponechať tak ako je."
-    delete_update_behaviour_2: "Aktualizovať na prázdny skript. Vhodné pre skripty, ktoré negatívne ovplyvňujú chod stránky."
+    delete_update_behaviours:
+      keep: "Ponechať to tak, ako to je."
+      blanked: "Aktualizovať na prázdny skript. Vhodné pre skripty, ktoré negatívne ovplyvňujú chod stránky."
+      redirect: "Budú presmerovaní a aktualizovaní na skript, ktorý zadáte nižšie."
     delete_permanently_heading: "Trvalé vymazanie"
     delete_permanently_explanation_html: >-
         <p>Trvalé odstránenie skriptu odstráni skript a všetky jeho záznamy, okrem
@@ -257,7 +259,7 @@ sk:
     sync_url_placeholder: "(URL)"
     screenshots_add: "Pridať:"
     screenshots_remove: "Odstrániť"
-    replacement_script_explanation: "(Voliteľné) Vyberte ďalší skript, ktorý nahradí tento skript. Používatelia budú pri aktualizácii presmerovaní na tento skript. Zadajte URL náhradného skriptu:"
+    replacement_script_explanation: "(Voliteľné) Vyberte ďalší skript, ktorý nahradí tento skript. Zadajte URL náhradného skriptu:"
     diff_title: "%{script} - Rozdiel verzií"
     diff_old_version: "Stará:"
     diff_new_version: "Nová:"
@@ -852,6 +854,25 @@ sk:
           na stránke. Tieto knižnice môžu obsahovať sledovaciu logiku.</p>
     user_css_to_user_js:
       title: Prevod používateľského CSS na JS
+      content_html: |
+          <p>%{site_name} môže konvertovať používateľské CSS do používateľského formátu JS. Pravidlá <code>@-moz-document</code> sa konvertujú na príkazy <code>if</code> v jazyku JavaScript a vytvárajú CSS, ktoré sa majú použiť. Toto CSS sa pripojí k <code>&lt;head&gt;</code> v prvku <code>&lt;style&gt;</code>.</p>
+
+          <p>Prítomnosť niektorých používateľských funkcií CSS vylučuje prevod do používateľského formátu JS. Ak sa tieto prvky zistia, konverzia používateľského JS sa nevykoná.</p>
+
+          <ul>
+          <li><code>@preprocessor</code> meta kľúče iné ako <code>predvolené</code></li>.
+          <li><code>@var</code> meta kľúče</li>
+          </ul>
+
+          <p>Používateľský JS %{site_name} môže načítať CSS trochu inak ako používateľský CSS.</p>
+
+          <ul>
+          <li>V používateľskom JS sa CSS vloží ako posledný prvok <code>&lt;head&gt;</code>. V používateľskom CSS to môže závisieť od použitého rozšírenia. Na zmiernenie tohto problému sa odporúča používať <code>!important</code>.</li>
+          <li>V používateľskom JS sa CSS vypočíta a použije raz pri načítaní stránky. Používanie rozhrania API histórie JavaScriptu na stránke môže mať za následok, že CSS sa nepoužije podľa očakávania.</li>
+          <li>Používateľský JS nemusí aplikovať CSS na rámy alebo iframe.</li>
+          </ul>
+
+          <p>Ak zistíte, že konverzia používateľského JS nefunguje, mali by ste vybrať možnosť, aby nebol dostupný pri aktualizácii používateľského CSS.</p>
     antifeatures:
       title: Antifunkcie
       intro_html: |
@@ -973,7 +994,9 @@ sk:
       undisclosed_antifeature: "Utajená %{antifeature_link:antifunkcia} (napr. reklama, sledovanie, ťaženie, atď.)"
       other: "Iné"
     report_intro: "%{reported_item} bol nahlásený %{report_date} používateľom %{reporter} z dôvodu %{reason}"
+    report_intro_no_reporter: "%{reported_item} bol nahlásený %{report_date} z dôvodu %{reason}"
     report_intro_unauthorized_html: "%{reported_script} bol nahlásený %{report_date}používateľom %{reporter}ako neoprávnená kópia skriptu %{other_script}."
+    report_intro_unauthorized_no_reporter_html: "%{reported_script} bol nahlásený %{report_date} ako neoprávnená kópia skriptu %{other_script}."
     report_intro_unauthorized_license: "%{other_script} používa licenciu %{license_link: %{license_name}}. Pre lepšie pochopenie, čo táto licencia znamená navštívte {tldr_legal_link:tldrlegal.com}."
     report_intro_unauthorized_license_no_url: "%{other_script} používa licenciu %{license_name}. Pre lepšie pochopenie, čo táto licencia znamená, navštívte {tldr_legal_link:tldrlegal.com}."
     report_intro_unauthorized_no_license: "%{other_script} neuvádza licenciu, čo znamená, že distribúcia kópií nie je povolená, pokiaľ na to nie je výslovne udelený súhlas."
@@ -1002,6 +1025,7 @@ sk:
     view_discussion: "Zobraziť diskusiu"
     load_diff: "Načítať rozdiel"
     loading_diff: "Načítava sa…"
+    reported_user_activity_html: "%{user} (nahlásený používateľ) urobil:"
   discussions:
     title: Diskusie
     comment_date: "Pridaný: %{date}"
@@ -1026,7 +1050,9 @@ sk:
     review_heading_html: "Hodnotenie: %{rating}"
     update_rating: "Aktualizovať hodnotenie %{script_name}"
     ratings:
+      question: "Žiadne hodnotenie - len otázka, komentár, žiadosť o funkciu"
       bad: "Zlé - skript nefunguje"
+      ok: "OK - skript funguje, ale má chyby"
       good: "Dobré - skript funguje"
     ratings_short:
       question: "Otázka/komentár"
@@ -1146,7 +1172,19 @@ sk:
     listing_options_title: "Možnosti vyhľadávania"
     quote:
       prefix_html: "%{user} napísal:"
+      anonymous_reporter_html: "Nahlasovateľ povedal:"
   activerecord:
+    models:
+      script:
+        one: "%{count} skript"
+        few: "%{count} skripty"
+        many: "%{count} skriptov"
+        other: "%{count} skriptov"
+      comment:
+        one: "%{count} komentár"
+        few: "%{count} komentáre"
+        many: "%{count} komentárov"
+        other: "%{count} komentárov"
     attributes:
       user:
         name: "Meno"

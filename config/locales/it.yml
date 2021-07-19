@@ -58,8 +58,10 @@ it:
     delete_page: "Elimina"
     delete_explanation: "Eliminando il tuo script lo rendi inaccessibile a tutti ad eccezione di te e dei moderatori di Greasy Fork. Puoi annullare l'eliminazione in qualsiasi momento."
     delete_update_behaviour: "Cosa vuoi che accada agli utenti che hanno precedentemente installato il tuo script?"
-    delete_update_behaviour_1: "Lo manterranno così com'è."
-    delete_update_behaviour_2: "Sarà loro offerto un aggiornamento a uno script vuoto. Quest'opzione è adatta al caso in cui lo script abbia un effetto negativo sui siti su cui viene eseguito."
+    delete_update_behaviours:
+      keep: "Lo manterranno così com'è."
+      blanked: "Riceveranno un aggiornamento a uno script vuoto. Questo è appropriato quando lo script ha un effetto negativo sui siti sui quali viene eseguito."
+      redirect: "Saranno reindirizzati e riceveranno gli aggiornamenti dallo script che specifichi sotto."
     delete_permanently_heading: "Elimina definitivamente"
     delete_permanently_explanation_html: >-
         <p>L'eliminazione definitiva del tuo script lo cancellerà insieme a tutti
@@ -255,7 +257,7 @@ it:
     sync_url_placeholder: "(URL)"
     screenshots_add: "Aggiungi:"
     screenshots_remove: "Rimuovi"
-    replacement_script_explanation: "(Opzionale) Scegli un altro script che sostituisce questo script. Gli utenti saranno aggiornati e redirezionati a questo script. Inserisci l'URL dello script sostitutivo:"
+    replacement_script_explanation: "(Opzionale) Scegli un altro script che sostituisce questo script. Inserisci l'URL dello script sostitutivo:"
     diff_title: "%{script} - Differenza versione"
     diff_old_version: "Precedente:"
     diff_new_version: "Nuova:"
@@ -845,6 +847,25 @@ it:
           tracciamento.</p>
     user_css_to_user_js:
       title: Conversione da user CSS a user JS
+      content_html: |
+          <p>%{site_name} può convertire dal formato CSS utente al JS utente. Le regole <code>@-moz-document</code> sono convertite in dichiarazioni <code>if</code> JavaScript, costruendo il CSS da applicare. Questo CSS è accodato a <code>&lt;head&gt;</code> in un elemento <code>&lt;style&gt;</code>.</p>
+
+          <p>La presenza di alcune funzionalità del CSS utente preclude la conversione nel formato JS utente. Quando queste funzionalità sono rilevate, la conversione in JS utente non verrà compiuta.</p>
+
+          <ul>
+          <li>Metadati <code>@preprocessor</code> diverse da <code>default</code></li>
+          <li>Metadati <code>@var</code> </li>
+          </ul>
+
+          <p>Il JS utente di %{site_name} potrebbe caricare il CSS in qualche modo diversamente da come il CSS utente fa.</p>
+
+          <ul>
+          <li>Nel JS utente, il CSS è inserito come ultimo elemento di <code>&lt;head&gt;</code>. Nel CSS utente, questo potrebbe dipendere dall'estensione usata.  È raccomandato l'uso di <code>!important</code> per mitigare il problema.</li>
+          <li>Nel JS utente, il CSS verrà calcolato e applicato una volta al caricamento della pagina. L'uso dell'History API di JavaScript da parte della pagina potrebbe risultare nel fatto che il CSS non venga applicato come ci si aspetterebbe.</li>
+          <li>Il JS utente potrebbe non applicare il CSS ai frames o agli iframes.</li>
+          </ul>
+
+          <p>Se trovi che la conversione a JS utente non funziona, dovresti scegliere l'opzione per renderla non disponibile quando aggiorni il tuo CSS utente.</p>
     antifeatures:
       title: Antifunzionalità
       intro_html: |

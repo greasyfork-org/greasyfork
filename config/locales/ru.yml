@@ -60,8 +60,10 @@ ru:
     delete_page: "Удалить"
     delete_explanation: "Удаление вашего скрипта делает его недоступным всем кроме вас и модераторов. Вы можете в любое время отменить удаление."
     delete_update_behaviour: "Что делать с уже установленными скриптами?"
-    delete_update_behaviour_1: "Оставить."
-    delete_update_behaviour_2: "Заменить пустым скриптом. Используйте этот вариант, чтобы быстро отключить неисправный скрипт до появления работающей версии."
+    delete_update_behaviours:
+      keep: "Оставить без изменений."
+      blanked: "Заменить пустым скриптом. Это полезно, если скрипт портит сайты, на которых запущен."
+      redirect: "Во время обновления заменить на скрипт, указанный вами ниже."
     delete_permanently_heading: "Безвозвратное удаление"
     delete_permanently_explanation_html: >-
         <p>Безвозвратное удаление вашего скрипта удалит скрипт и все связанные с ним
@@ -258,7 +260,7 @@ ru:
     sync_url_placeholder: "(URL-адрес)"
     screenshots_add: "Добавить:"
     screenshots_remove: "Удалить"
-    replacement_script_explanation: "(Необязательно) Заменить на другой скрипт, на который пользователи будут перенаправлены автоматически, в том числе и при обновлениях. Введите URL скрипта-замены:"
+    replacement_script_explanation: "(Необязательно) Укажите адрес другого скрипта, который заменит этот скрипт:"
     diff_title: "%{script} - Сравнение версий"
     diff_old_version: "Старая:"
     diff_new_version: "Новая:"
@@ -804,7 +806,7 @@ ru:
     credits:
       title: "Благодарности"
       authors_credit: "Проект %{site_name} не существовал бы без авторов, которые создают скрипты"
-      developers_credit: "Движок сайта %{site_name} создан %{developers_link:вот этими людьми} при участии всех тех, кто сообщал об ошибках и предлагал улучшения."
+      developers_credit: "Сайт %{site_name} был создан %{developers_link:этими людьми} при участии всех тех, кто сообщал об ошибках и предлагал улучшения."
       translators_credit: "Перевод %{site_name} выполнен командой %{translators_link:Greasy Translation Force на Transifex}:"
       icons_credit: "Значки браузера взяты с %{browserlogos}."
     help_with_greasymonkey: "Помощь Greasemonkey"
@@ -859,6 +861,25 @@ ru:
           на сайте. Эти библиотеки могут включать логику отслеживания.</p>
     user_css_to_user_js:
       title: Преобразование пользовательских CSS в пользовательские JS
+      content_html: |
+          <p>%{site_name} может преобразовать пользовательский CSS в пользовательский JS. Правила <code>@-moz-document</code> заменяются на инструкции JavaScript <code>if</code>, создающие CSS перед его применением. Этот CSS помещается в элемент <code>&lt;style&gt;</code>, который в свою очередь добавляется в элемент <code>&lt;head&gt;</code>.</p>
+
+          <p>Некоторые возможности пользовательского CSS не совместимы с преобразованием в пользовательский JS. Если такие возможности будут обнаружены, преобразование выполнено не будет.</p>
+
+          <ul>
+          <li>Мета-ключи <code>@preprocessor</code>, кроме <code>default</code></li>
+          <li>Мета-ключи <code>@var</code></li>
+          </ul>
+
+          <p>Пользовательский JS, который создал %{site_name}, может загружаться несколько иначе, чем пользовательский CSS.</p>
+
+          <ul>
+          <li>В пользовательском JS, CSS вставляется в конец <code>&lt;head&gt;</code>. В пользовательском CSS, местонахождение зависит от используемого расширения. Чтобы обойти эти расхождения, рекомендуется использовать <code>!important</code>.</li>
+          <li>В пользовательском JS, CSS создается и вставляется только один раз, во время загрузки страницы. Если страница использует JavaScript History API, то CSS может применяться не так, как задумано.</li>
+          <li>Пользовательский JS может не применять CSS к frame и iframe.</li>
+          </ul>
+
+          <p>Если созданный пользовательский JS не работает, то во время обновления CSS вы должны запретить преобразование.</p>
     antifeatures:
       title: Нежелательные возможности
       intro_html: |
@@ -979,7 +1000,9 @@ ru:
       undisclosed_antifeature: "Сокрытие %{antifeature_link:нежелательных возможностей}, таких как реклама, слежка, добыча криптовалюты."
       other: "Другое"
     report_intro: "%{report_date} на %{reported_item} поступила жалоба от %{reporter} по причине %{reason}"
+    report_intro_no_reporter: "%{report_date} на %{reported_item} поступила жалоба по причине %{reason}"
     report_intro_unauthorized_html: "На %{reported_script} поступила жалоба %{report_date} от %{reporter} о том, что скрипт является нелегальной копией %{other_script}."
+    report_intro_unauthorized_no_reporter_html: "%{report_date} на %{reported_script} поступила жалоба, что он является нелегальной копией скрипта %{other_script}."
     report_intro_unauthorized_license: "%{other_script} использует лицензию %{license_link: %{license_name}}. Посетите %{tldr_legal_link:tldrlegal.com}, чтобы ознакомиться с этой лицензией."
     report_intro_unauthorized_license_no_url: "%{other_script} использует лицензию %{license_name}. Посетите %{tldr_legal_link:tldrlegal.com}, чтобы ознакомиться с этой лицензией."
     report_intro_unauthorized_no_license: "Для %{other_script} не указана лицензия, поэтому распространение копий без явного разрешения запрещено."
@@ -1008,6 +1031,7 @@ ru:
     view_discussion: "Просмотр обсуждения"
     load_diff: "Загрузить различия (diff)"
     loading_diff: "Загрузка…"
+    reported_user_activity_html: "Действия %{user}, на которого поступила жалоба:"
   discussions:
     title: Обсуждения
     comment_date: "Создано: %{date}"
@@ -1032,7 +1056,9 @@ ru:
     review_heading_html: "Отзыв: %{rating}"
     update_rating: "Обновить вашу оценку %{script_name}"
     ratings:
+      question: "Без оценки — задать вопрос, оставить комментарий, предложить улучшение"
       bad: "Плохой — скрипт не работает"
+      ok: "Нормальный — скрипт работает, но имеет существенные недостатки"
       good: "Хороший — скрипт работает как нужно"
     ratings_short:
       question: "Вопрос/комментарий"
@@ -1152,7 +1178,19 @@ ru:
     listing_options_title: "Настройки поиска"
     quote:
       prefix_html: "%{user} сказал:"
+      anonymous_reporter_html: "Отправитель жалобы сказал:"
   activerecord:
+    models:
+      script:
+        one: "%{count} скрипт"
+        few: "%{count} скрипта"
+        many: "%{count} скриптов"
+        other: "%{count} скрипта"
+      comment:
+        one: "%{count} комментарий"
+        few: "%{count} комментария"
+        many: "%{count} комментариев"
+        other: "%{count} комментария"
     attributes:
       user:
         name: "Имя"
