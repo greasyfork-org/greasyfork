@@ -68,13 +68,13 @@ module ScriptAndVersions
 
     script.apply_from_script_version(script_version)
     script.id = script_id
-    script.updated_at = script_version.updated_at
+    script.updated_at = script_version.created_at
     script.user_ids = script_version.script.user_ids
     script.created_at = current_script.created_at
-    script.updated_at = script_version.updated_at
+    script.updated_at = script_version.created_at
     script.set_default_name
     # this is not necessarily accurate, as the revision the user picked may not have involved a code update
-    script.code_updated_at = script_version.updated_at
+    script.code_updated_at = script_version.created_at
     return [script, script_version]
   end
 
