@@ -329,6 +329,8 @@ de:
       js: "Neues Skript veröffentlichen"
       css: "Neuen Style hochladen"
     update_title: "Neue Version von %{script} veröffentlichen"
+    install_help_dialog:
+      close_dialog: OK
     antifeatures:
       warning_title: Dieses Skript enthält Antifeatures
       author_explanation_intro: "Der Autor dieses Skriptes erklärt:"
@@ -345,6 +347,10 @@ de:
         referral-link:
           title: Empfehlungslinks
           description_html: Dieses Skript wird <b>Links umschreiben</b>, um eine Empfehlungs- oder Partner-ID einzufügen.
+        membership:
+          title: Mitgliedschaft
+        payment:
+          title: Bezahlung
       install_anyway: Skript installieren
       cancel_install: Abbrechen
     badges:
@@ -851,6 +857,7 @@ de:
       one: "%{script_names} hat fortlaufend schlechte Bewertungen erhalten. Bitte überprüfen Sie Ihr Skript und antworten Sie auf die Sorgen aus den Bewertungen."
       other: "%{script_names} hat fortlaufend schlechte Bewertungen erhalten. Bitte überprüfen Sie Ihre Skripte und antworten Sie auf die Sorgen aus den Bewertungen."
   reports:
+    name: "Bericht #%{id}"
     report_filed: "Ihr Bericht wird von einem Moderator geprüft."
     new_report_title:
       user: "%{user} melden "
@@ -919,6 +926,9 @@ de:
     rebuttal_placeholder: 'Erklären Sie einem Moderator, warum dieses Skript nicht gelöscht werden sollte.'
     submit_rebuttal: "Gegendarstellung senden"
     delete_script: "Skript löschen"
+    view_discussion: "Zeige Diskussion"
+    load_diff: "Lade Unterschiede"
+    loading_diff: "Lädt..."
   discussions:
     title: 'Diskussionen '
     comment_date: "Veröffentlicht: %{date}"
@@ -943,8 +953,10 @@ de:
     review_heading_html: "Rezension: %{rating}"
     update_rating: "Ihre Bewertung von %{script_name} aktualisieren"
     ratings:
+      question: "Ohne Bewertung - nur eine Frage, Kommentar oder Funktionsanfrage"
       bad: "Fehler - Skript funktioniert nicht"
-      good: "Gut - Skript Funktioniert"
+      ok: "OK - Skript funktioniert, hat aber Fehler"
+      good: "Gut - Skript funktioniert"
     ratings_short:
       question: "Frage/Kommentar"
       bad: "Schlecht "

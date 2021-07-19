@@ -50,7 +50,7 @@ ko:
     info_page: "정보"
     code_page: "코드"
     history_page: "이력"
-    feedback_page: "리뷰 (%{count})"
+    feedback_page: "피드백 (%{count})"
     stats_page: "통계"
     derivatives_page: "파생"
     update_page: "업데이트"
@@ -98,7 +98,7 @@ ko:
     history_only_code_changes_link: "코드가 바뀐 버전들만 보기"
     diff_button: "선택된 다른 버전"
     code_title: "%{script_name} - 소스 코드"
-    feedback_title: "%{script_name} - 리뷰"
+    feedback_title: "%{script_name} - 피드백"
     feedback_has_reports: "이 스크립트는 %{site_name} 규칙 위반으로 신고되었습니다."
     feedback_no_discussions_html: "아무 의논도 없습니다. %{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "아직 게시글이 없습니다."
@@ -216,7 +216,7 @@ ko:
     warning_namespace_missing_html: "<code>@namespace</code>가 지정되지 않았습니다. <code>@namespace</code> 메타키는 사용자들이 업데이트 과정에서 스크립트를 재설치할 수 있도록 합니다."
     warning_namespace_missing_generate_automatically_html: "<code>@namespace</code>를 자동으로 생성할까요?"
     warning_namespace_changed_html: "<code>@namespace</code>가 변경됬습니다. 일관된 <code>@namespace</code>는 유저들이 업데이트 중에 스크립트를 재설치 할 수 있도록 합니다."
-    warning_potentially_minified_html: "당신의 스크립트 코드는 압축된 것 같습니다. 만약 압축된 라이브러리를 사용중이라면, 그 대신 %{allowed_requires_link}에서 <code>@require</code> 해주세요. 압축된 코드를 포함하는 스크립트는 삭제될 수 있습니다."
+    warning_potentially_minified_html: "이 스크립트 코드는 최소화(압축)된 듯 합니다. 만약 최소화된 라이브러리를 사용 중이라면, 그 대신 %{allowed_requires_link}에서 <code>@require</code> 해주세요. 최소화된 코드를 포함하는 스크립트는 삭제될 수 있습니다."
     warning_automatic_sensitive_html: "이 스크립트는 %{sensitive_domains}에서 동작하기에 성인 컨텐츠로 설정되었습니다."
     warning_potentially_minified_allowed_requires_link: "이들 중 한 곳"
     warning_code_previously_posted_html: "전에 %{script_links}에 업로드된 코드입니다. 원개발자 이외의 사람이 재업로드한 스크립트는 관리자가 삭제할 수도 있습니다."
@@ -387,24 +387,24 @@ ko:
       included: "추가"
       included_none: "(없음)"
       remove_included: "선택된 항목 제거"
-      excluded: "제외됨"
+      excluded: "제외"
       excluded_none: "(없음)"
       remove_excluded: "선택된 항목 제거"
       add_label: "스크립트 추가 (URL 또는 ID, 공백으로 구분됨)"
       add_include: "추가"
-      add_exclude: "제외됨"
+      add_exclude: "제외"
     edit_sets:
       heading: "스크립트 모음"
       description: "모음에서 다른 스크립트 모음을 추가 또는 제거하기"
       included: "추가"
       included_none: "(없음)"
       remove_included: "선택된 항목 삭제"
-      excluded: "제외된"
+      excluded: "제외"
       excluded_none: "(없음)"
       remove_excluded: "선택된 항목 삭제"
       add_label: "스크립트 추가 (공백으로 구분된 URL 혹은 ID 목록)"
       add_include: "추가"
-      add_exclude: "제외된"
+      add_exclude: "제외"
       user_label: "사용자의 스크립트 모음 조회 (URL, ID, 이름)"
       user_no_sets: "(이 사용자의 모음이 없습니다)"
       user_no_other_sets: "(이 사용자의 다른 모음이 없습니다)"
@@ -416,6 +416,18 @@ ko:
       remove_included: "선택된 항목 삭제"
       excluded: "제외"
       excluded_none: "(없음)"
+      all_scripts_label: "모든 스크립트"
+      all_scripts_include: "추가"
+      for_sites_label: "특정 사이트의 스크립트 (비워두면 모든 사이트를 의미합니다)"
+      for_sites_include: "추가"
+      for_sites_exclude: "제외"
+      for_user_label: "사용자의 스크립트 (URL, ID, 이름)"
+      for_user_include: "추가"
+      for_user_exclude: "제외"
+      for_language_label: "해당 언어로 된 스크립트"
+      for_language_include: "추가"
+      for_language_exclude: "제외"
+    calculated_list: "결과 스크립트 목록"
     calculated_list_none: "(없음)"
     calculated_list_more:
       other: "그리고 %{count}개 더..."
@@ -431,13 +443,13 @@ ko:
       locale: "%{locale_name} 언어로 된 스크립트"
   home:
     title: "%{site_name} - 안전하고 유용한 유저스크립트"
-    welcome: "유저 스크립트 사이트, %{site_name}에 오신 것을 환영합니다!"
+    welcome: "유저 스크립트 사이트 %{site_name}에 어서오세요!"
     sleazy_title: "%{site_name} - 인잔하고 유용한 성인용 유저스크립트"
-    sleazy_welcome: "성인용 유저스크립트 사이트, %{site_name}에 오신 것을 환영합니다!"
+    sleazy_welcome: "성인용 유저 스크립트 사이트 %{site_name}에 어서오세요!"
     search_placeholder: "유저 스크립트 검색"
     scripts_for_label: "다음 사이트에 적용되는 스크립트:"
-    explain_user_scripts_heading: "유저 스크립트가 무엇인가요?"
-    explain_user_scripts_html: "유저 스크립트를 사용하면 새로운 경험을 누릴 수 있습니다. 유저 스크립트를 한 번 설치만 하면 자동으로 기능을 추가하고, 짜증나는 요소도 없애줍니다. %{site_name}에 있는 유저 스크립트들은 다른 사용자에 의해 작성되고 전 세계에 공유되고 있습니다. 유저 스크립트는 무료이며, 사용하기도 쉽습니다!"
+    explain_user_scripts_heading: "유저 스크립트가 뭔가요?"
+    explain_user_scripts_html: "유저 스크립트로 웹 서핑을 더 마음대로 할 수 있습니다. 설치해서 사이트에 기능을 추가하거나, 원래 있던 기능을 더 편하게 하거나, 거슬리는 걸 치울 수 있습니다. %{site_name}의 유저 스크립트는 다른 사용자들이 만들어 공유한 겁니다. 마음대로 설치할 수 있고 쓰기도 쉬워요."
     installing_step1_header: "1. 유저 스크립트 관리자 설치"
     installing_step1_caption: "크롬의 Tampermonkey"
     installing_step1_description_html: >
@@ -479,7 +491,7 @@ ko:
         <p>유저 스크립트의 대상 사이트로 가면 자동으로 스크립트가 작동할 것입니다. 유저 스크립트를 이용하신 후 리뷰를 남겨보세요!</p>
   users:
     sign_in_title: "%{site_name}에 로그인"
-    sign_in_description: "%{site_name}에 로그인하면 스크립트를 게시하고 다른 스크립트에 리뷰를 남길 수 있습니다. 스크립트 탐색 및 설치에는 로그인이 필요 없습니다."
+    sign_in_description: "%{site_name}에 로그인하면 스크립트를 업로드하고 다른 스크립트에 피드백을 남길 수 있습니다. 스크립트 검색·설치는 로그인하지 않아도 됩니다."
     sign_in_external: "외부 서비스로 로그인"
     sign_in_with: "%{provider}으로 로그인"
     sign_in_password: "비밀번호로 로그인"
@@ -500,6 +512,7 @@ ko:
     script_list_none_same_user_html: "작성하신 스크립트가 없습니다. %{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "어떻게 하는지 배우시겠습니까?"
     deleted_script_list: "삭제된 스크립트"
+    unlisted_script_list: "일부 공개 스크립트"
     sign_out: "로그아웃"
     edit: "계정 설정"
     edit_sign_in: "인증 설정"
@@ -542,33 +555,81 @@ ko:
     listing_updated_scripts: "판올림된 스크립트"
     listing_registration_date: "등록 일자"
     listing_title: "유저"
+    listing_banned_filter:
+      banned: "차단 사용자"
+      not_banned: "정상 사용자"
+      all: "전부"
+    listing_author_filter:
+      script_author: "개발자"
+      not_script_author: "개발자 새싹"
+      all: "전부"
     search_placeholder: "유저 검색"
     locale_prompt: "(지역이나 언어 선택)"
     show_ads_description: "광고 차단을 해제해 %{site_name}를 지원해주세요"
     show_sensitive_description: "성인 컨텐츠 유저 스크립트 표시"
     preferred_markup_description: "다음에 보는 스크립트와 게시물에 적용됩니다"
+    filter_locale_default_description: "기본적으로 선택한 언어의 컨텐츠만 보입니다."
     greasy_fork_scripts_link:
       other: "%{user_name} 또한 Greasy Fork에  %{count} 개의 스크립트를 가지고 있습니다."
+    update_sync_warning:
+      other: "%{providers}로 로그인할 때 닉네임과 이메일이 동기화됩니다. 다른 닉네임과 이메일을 쓰려면 %{edit_sign_in_link:로그인 방법을 바꿔주세요}."
     delete_link: "계정 삭제"
     delete:
       intro: "%{site_name}에서 '%{user_name}' 계정 삭제 시 아래 효과가 발생합니다."
+      password_effect: "앞으로 비밀번호로 로그인할 수 없습니다."
       identities_effect:
         other: "%{identities} 로그인 시 새 계정이 생깁니다."
       scripts_effect:
         other: "업로드한 스크립트 %{count}개가 삭제됩니다."
+      script_sets_effect:
+        other: "스크립트 모음 %{count}개를 삭제합니다."
+      forum_effect: "게시판에 작성한 건 유지되지만 \"%{user_name}\" 닉네임으로 바뀝니다."
       email_confirmation: "계정 삭제 전에 %{site_name}에서 %{email} 주소로 확인 메일을 보냅니다."
       submit: "계정 삭제"
+      confirmation_email_sent: "삭제 확인 이메일을 보냈습니다."
+      confirmation_email:
+        subject: "%{site_name} 계정 삭제 확인"
+        body: "%{site_name} %{user_name} 계정 삭제 요청을 받았습니다. 정말 이 계정을 삭제하며면 %{url}을 열어주세요.  24시간 내에 열지 않으면 삭제 요청은 취소됩니다."
       confirmation:
+        intro: "'%{user_name}' 계정을 삭제합니다. 앞으로 무를 수 없습니다."
         confirm: "'%{user_name}' 삭제"
         cancel: "삭제 취소"
+        key_mismatch: "사용자를 삭제할 수 없습니다 - 키가 불일치합니다."
+        request_expired: "사용자를 삭제할 수 없습니다 - 만료된 요청입니다."
         cancelled: "삭제가 취소되었습니다."
         completed: "계쩡이 삭제되었습니다."
+    banned_notice:
+      no_report_no_reason: "이 계정은 차단되었습니다. 원한다면 %{delete_link:이 계정을 지울 수 있습니다}."
+      with_report: "이 계정은 %{report_link:이 신고}로 차단되었습니다. 원한다면 %{delete_link:이 계정을 지울 수 있습니다}."
+      with_reason: "이 계정은 차단되었습니다. 관리자 사유: \"%{reason}\".\n원한다면 %{delete_link:이 계정을 지울 수 있습니다}."
     banned_delete:
+      intro: "계정을 지우면 업로드한 스크립트도 삭제됩니다. 게시판에 적은 것들은 남지만 닉네임은 익명으로 바뀝니다. 계정 삭제 후에도 같은 이메일 주소로 다시 가입할 수 없습니다. 삭제하려면 아래 입력란에 로그인해주세요."
       complete: "이 계정은 삭제됐습니다."
     badges:
+      banned:
+        short: 차단
+        long: 차단 사용자
+      moderator:
+        short: 관리자
+        long: 관리자
       author:
+        short: 개발자
         long: 이 스크립트의 개발자
     notifications:
+      discussion_defaults:
+        title: 게시판 알림
+        new_discussion: 게시글을 올릴 때 알림 설정을 켜둡니다.
+        new_comment: 댓글을 달 때 알림 설정을 켜둡니다.
+        mention: 누가 나를 언급할 때 알림을 받습니다.
+      conversation_defaults:
+        title: 메시지 알림
+        starter: 메시지를 보낼 때 알림 설정을 켜 둡니다.
+        receiver: 메시지를 받거나 연관되었을 때 알림을 받습니다.
+      save_button: 알림 설정 변경
+      title: 알림
+      current_discussion_subscriptions:
+        other: 현재 구독 중인 글 %{count}개의 알림을 해제합니다.
+      save_success: 알림 설정을 반영했습니다.
       unsubscribe_all: 모든 알림 해제
       unsubscribe_all_success: 모든 알림을 해제했습니다.
   webhooks:
@@ -582,8 +643,15 @@ ko:
       synced_item_html: "%{script_name} - %{sync_url}에서 %{sync_type} 동기화"
       language_note: Github, Gitlab, Bitbucket의 UI는 영어이므로 웹훅 설정 방법도 영어로 설명합니다.
   help:
+    sections:
+      usage: 스크립트 사용법
+      development: 개발
+      miscellaneous: 기타
+    open_source: "%{site_name}는 오픈 소스(GPLv3) 입니다. %{github_link:깃헙 소스}도 볼 수 있어요."
     installing_user_scripts:
       title: '유저 스크립트 설치 방법'
+    installing_user_styles:
+      title: '유저 스타일 설치 방법'
     meta_keys:
       title: "스크립트 메타 키는 %{site_name} 에 의해 읽힙니다."
       intro_html: "%{site_name}에서 읽는 <a href=\"http://wiki.greasespot.net/Metadata_Block\">유저스크립트 메타블럭</a>들입니다. 이 중에 없는 블럭은 스크립트내에 포함되나 %{site_name}의 UI에 아무런 영향도 주지 않습니다."
@@ -593,14 +661,19 @@ ko:
       description_localized_html: "지정된 로케일에서의 스크립트 설명입니다, XX는 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-letter code</a>이며 YY는 필수가 아닌 선택으로, <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 country code</a>입니다. 유저가 해당 로케일에서 보고 있을 시 <code>@description</code>는 무시됩니다.."
       namespace_html: "<code>@namespace</code>와 <code>@name</code>의 조합은 스크립트가 이미 설치됬 을 시에 유저스크립트 매니저에서 사용됩니다. Greay Fork는 %{site_name}에서는 이 필드는 필수이며, 업데이트시에 변경됬을 시 경고합니다."
       version_html: "<a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">모질라 번역 포맷</a>을 준수하는 해당 스크립트 버전의 식별자입니다. 버전은 스크립트 정보 페이지에서 표시됩니다. %{site_name}에서 이 필드는 필수이며 스크립트 코드가 변경 됬을때 줄어들거나 늘지 않았을 때 경고됩니다."
+      include_html: "어떤 페이지에서 스크립트가 동작할지 나타냅니다. 스크립트 정보 페이지에 이 필드가 보이고 스크립트를 분류하는 데도 씁니다. 스크립트는 <code>@match</code>나 <code>@include</code>가 적어도 하나 이상 있어야 합니다. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">양식은 여기를 참고하세요</a>."
       require_html: "스크립트에 외부 JavaScript를 포함시킵니다. %{external_script_link}를 확인하세요."
       require_external_script_link_text: "외부 스크립트를 포함하는 코드에 대한 규칙"
       updateURL: "스크립트 매니저가 어떻게 업데이트할 지 서수랍니다. %{site_name}는 이 키들을 키들을 제거해 %{site_name}에서 설치한 스크립트는 오직 %{site_name}에서만 업데이트하도록 합니다."
+      license: "스크립트의 복제 및 변경 허락 범위에 관한 라이선스입니다. 라이선스의 완전한 이름이나  %{spdx_link:SPDX 라이선스 목록}의 식별자를 쓰는 걸 추천합니다. 라이선스가 없으면 다른 사용자가 스크립트를 개인적 용도로 쓸 수 있지만 재배포할 수 없다고 간주합니다. 라이선스는 스크립트 정보 페이지에 노출됩니다."
       supportURL: "유저들이 스크립트에 대한 지원을 받을 수 있는 URL입니다. (예시. 버그 신고, 게시판, 이메일 주소). 지원 URL은 스크립트의 피드백 페이지에 표시됩니다."
       contributionURL_html: "유저들이 스크립트 개발자에게 기부할 수 있는 페이지의 URL입니다. 기부 URL은 스크립트의 피드백 페이지에 표시됩니다. URL들은 http, https, 또는 비토코인 프로토콜로 가능합니다. PayPal 기부 페이지로 링크하려면, <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a>에서 샘플 이메일을 당신의 이메일로 바꾼 URL을 사용합시요."
       contributionAmount_html: "추천하는 기부금 가격입니다, <code>@contributionURL</code>과 결합하여 사용합니다."
       compatible_html: "이 스크립트가 어느 브라우저랑 호환됨을 표시합니다. 호환성 정보는 스크립트 페이지에 표시됩니다. 호환성에 관한 주석은 <code>@copmatible firefox 팝업 차단을 반드시 해제해야 함</code>의 형식에 맞춰 포함 될 수 있습니다. 인식되는 브라우저들은 다음과 같습니다: %{browsers}."
       incompatible_html: "이 스크립트가 어느 브라우저랑 호환되지 않음을 표시합니다. 호환성 정보는 스크립트 페이지에 표시됩니다. 선택적으로, <code>@incompatible firefox 23 버전부터 작동 안됨</code>의 형식에 맞추어 호환성에 대한 주석을 포함할 수 있습니다. 인식되는 브라우저들은 다음과 같습니다: @{browsers}."
+      antifeature_html: |
+          사용자가 아니라 개발자에게 이득인 기능을 명시합니다. 형식은 <code>@antifeature 종류 설명</code>입니다. <i>종류</i>는 필수고 <i>설명</i>은 선택입니다. %{site_name}가 지원하는 <i>종류</i>는 %{antifeatures_link:여기를 봐주세요}.
+      antifeature_localized_html: "특정 언어로 설명한 <code>@antifeature</code>입니다. XX는 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2문자 코드</a>고 YY는 선택 사항인 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 지역 코드</a>입니다. 사용자 로케일이 일치할 때 같은 종류의 <code>@antifeature</code>를 덮어씁니다."
     writing_user_scripts:
       title: "유저스크립트 작성 방법"
       content_html: "<p>유저스크립트 작성에는 자바 스크립트 지식이 필요합니다. GreaseSpot 위키에 있는 <a href=\"http://wiki.greasespot.net/Tutorials\">튜토리얼</a>에서 기초적인 자바 스크립트 지식과 유저 스크립트 연관성을 통해 도움을 받으실 수 있습니다. %{code_rules_link} 와 %{meta_keys_link} 을 참고하시는 것도 좋습니다. 스크립트 개발에 도움을 받고 싶으시면 %{ask_in_forum_link}.</p><p> %{site_name} 에 게시물을 작성해보세요. 게시물을 작성하시려면 계정이 필요합니다. 그리고 준비가 되셨다면 당신의 %{user_page_link}에서, %{post_new_script_link}로 들어가보세요.</p>"
@@ -608,10 +681,49 @@ ko:
       user_page_link_text: '유저 페이지'
       post_new_script_link_text: '새로운 스크립트 게시'
     code_rules:
-      title: "외부 스크립트에 관한 Gresay Fork 정책"
+      title: "%{site_name}업로드 규칙"
+      preamble: 다음은 %{site_name}에 업로드되는 스크립트에 관한 요구사항입니다. %{site_name}를 유저 스크립트 관리에 안전하고 유용하게 만드는 것을 목표로 합니다. 이 요구사항을 지키지 못하는 스크립트는 %{site_name} 관리자가 삭제할 수 있습니다.
+      functionality_header: 기능
+      description: 스크립트는 뭘 하는지에 대한 설명을 반드시 포함해야 하고 이 설명을 이유없이 벗어나는 행위를 하면 안 됩니다. 사용자는 스크립트를 설치하기 전에 이 스크립트가 뭘 할지 알아야 합니다.
+      reason: 스크립트는 스크립트일 이유가 있어야 합니다. 가령 사용자를 웹사이트로 유도하기만 하는 스크립트는 스크립트일 이유가 없습니다. 링크로 충분하니까요. 현재 페이지에 동작을 수행하기 위해 웹 서비스를 사용하는 (가령 무언가 변환하는) 스크립트는 허용됩니다.
+      monetization_html: 사용자가 아니라 개발자의 이익을 위한 기능(추적, 광고, 채굴 등)을 담은 스크립트는 허용되지만 반드시 그 기능을 %{antifeature_link:<code>@antifeature</code> 메타 정보}로 명시해야 합니다.
+      code_header: 코드
       obfuscation: '%{site_name}에 업로드하는 코드는 난독화, 최소화하면 안 됩니다. 사용자는 설치하기 전에 스크립트를 이해할 기회가 있어야 합니다. 스크립트를 webpack 같은 툴로 번들링하고 있다면 최소화를 적용하지 말아야 합니다.'
+      libraries_html: 스크립트가 사용하는 라이브러리는 그러지 않을 기술적인 이유가 없다면 반드시 <code>@require</code>되어야 합니다. 라이브러리를 인라인으로 포함하는 경우 반드시 라이브러리 소스에 관한 정보를 (URL이나 이름, 버전에 관한 코멘트 등으로) 담아야 합니다.
+      updates: 스크립트는 업데이트 체크를 하루에 한 번 넘게 하면 안 됩니다. 스크립트 관리자 대부분 업데이트 체크를 자동으로 해 주므로 스크립트가 체크할 필요가 없습니다. 유저 스크립트 관리자의 캐싱을 우회하기 때문에 다른 %{site_name} 스크립트믈 동적으로 주입해서도 안 됩니다.
+      external_js: "%{external_scripts_link:외부 스크립트 사용엔 제한이 있습니다.}"
+      copyright_header: 저작권
+      licensing_html: 스크립트는 다른 사람들의 저작권을 지켜야 합니다. 코드 자체와 사용하는 리소스 전부(예시 이미지 등)를 포함해서요. 다른 사람의 컨텐츠를 사용하려면 라이선스를 지키거나 허락을 구하세요. 스크립트의 라이선스는 <code>@license</code> 메타 정보로 명시할 수 있습니다. 그리고 무엇을 할 수 없는지는 %{tldr_legal_link:tldrlegal.com}에서 배울 수 있습니다.
+      reposts: 저작권을 침해하지 않았어도 %{site_name}에 이미 올라온 원본에 비해 개선이 없는 스크립트를 재업로드하는 건 허용되지 않습니다.
+      miscellaneous_header: 기타
+      keywords_html: 스크립트는 기능을 제공하지 않는 사이트에 대한 <code>@include</code>, <code>@match</code>, 키워드를 포함해선 안 됩니다.
+      adult_content_rule: 성인 컨텐츠를 포함하거나 성인 사이트에서 동작하는 스크립트는 해당 설정을 켜서 다른 사용자가 필터링할 수 있도록 해야 합니다.
+      reporting: 만약 이 조항들을 위반하는 스크립트를 발견하면 스크립트의 피드백 탭에서 스크립트를 신고해주세요.
     external_scripts:
       title: "%{site_name}의 외부 스크립트 정책"
+      content_html: >
+          <p>유저 스크립트는 기술적으론 다른 스크립트를 불러와 실행할 수 있습니다. %{require_doc_link:<code>@require</code>}
+          메타 정보는 가장 대표적인 방법이지만 예를 들어 XmlHttpRequest로 스크립트를 다운로드 해 DOM에 주입할 수도 있습니다.</p>
+          <p>이건 유용하고 개발자 대부분은 떳떳한 목적으로 사용하지만 악용될 수도 있습니다. %{site_name}의 핵심 원칙 중 하나는
+          사용자가 스크립트 코드를 조사할 수 있어야 한다는 겁니다. 외부 스크립트는 이 원칙을 여러 가지로 우회할 수 있습니다. 경고나 이력
+          없이 바뀔 수 있고, 사용자마다 다른 코드가 전달될 수 있고, 유명한 라이브러리 안에 악성 코드를 심는 데에 활용될 수도 있습니다.
+          누군가 외부 스크립트가 문제가 없다고 판단했어도 그 스크립트가 항상 문제가 없을 거란 보장은 없습니다.</p> <p>개발자가 외부
+          스크립트를 사용하는 걸 허용하기 위해 %{site_name}는 스크립트가 포함할 수 있는 URL 패턴 목록을 제공합니다. 이 목록은
+          아래와 같은 배포처로 구성되었습니다.</p> <ul>
+
+          <li>공개적이고</li>
+
+          <li>내용 변경이 그다지 없고</li>
+
+          <li>여러 개발자에게 유용해 보이는 곳</li>
+
+          </ul> <p>아래는 현재 목록입니다.</p>%{allowed_require_list}<p>이 목록 외에서 <code>@require</code>를
+          사용하는 스크립트를 업로드하면 막힐 것입니다.</p> <p>(jQuery나 YUI같은) 라이브러리를 포함하길 원한다면 위 사이트
+          목록에서 찾아보세요, %{cdnjs_link:cdnjs}나 %{jsdelivr_link:jsDelivr}는 특히 다양한 라이브러리를
+          제공합니다.</p> <p>만약 포함하려는 스크립트가 위 목록의 사이트에서 쓸 수 없다면 %{contact_link:운영자에게 연락}해서
+          그 스크립트가 어디 있는지 알려주세요. (직접 호스팅할 수도 있겠죠!) </p> <p>만약 포함하려는 스크립트가 직접 작성한 거라면
+          %{site_name}에 "라이브러리" 타입을 골라 별개로 업로드할 수 있습니다. 그러면 이 업로드한 라이브러리를 스크립트에서 쓸
+          수 있겠죠.</p>
     credits:
       title: "제작자"
       authors_credit: "만약 스크립트를 기여해주는 개발자분들이 없어진다면, %{site_name}는 사라질 겁니다."
