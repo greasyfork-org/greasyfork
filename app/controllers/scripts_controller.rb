@@ -866,7 +866,7 @@ class ScriptsController < ApplicationController
 
     script_info = load_minimal_script_info(script_id, script_version_id)
 
-    if script_info.replaced_by_script_id && script_info.delete_type_redirect?
+    if script_info.replaced_by_script_id && script_info.delete_type == Script.delete_types[:redirect]
       redirect_to(id: script_info.replaced_by_script_id, status: :moved_permanently)
       return
     end
@@ -881,7 +881,7 @@ class ScriptsController < ApplicationController
 
     parser = is_css ? CssParser : JsParser
     # Strip out some thing that could contain a lot of data (data: URIs). get_blanked_code already does this.
-    meta_js_code = script_info.delete_type_blanked? ? ScriptVersion.generate_blanked_code(script_info.code, parser) : parser.inject_meta(parser.get_meta_block(script_info.code), { icon: nil, resource: nil })
+    meta_js_code = script_info.delete_type == Script.delete_types[:blanked] ? ScriptVersion.generate_blanked_code(script_info.code, parser) : parser.inject_meta(parser.get_meta_block(script_info.code), { icon: nil, resource: nil })
 
     # Only cache if:
     # - It's not for a specific version (as the caching does not work with query params)
