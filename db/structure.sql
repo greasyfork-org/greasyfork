@@ -1179,7 +1179,7 @@ CREATE TABLE `daily_install_counts` (
   `install_date` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_daily_install_counts_on_script_id_and_ip` (`script_id`,`ip`)
-) ENGINE=InnoDB AUTO_INCREMENT=168102141 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=168102142 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `daily_update_check_counts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1276,8 +1276,6 @@ CREATE TABLE `discussions` (
   `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `deleted_at` datetime DEFAULT NULL,
   `deleted_by_user_id` int(11) DEFAULT NULL,
-  `akismet_spam` tinyint(1) DEFAULT NULL,
-  `akismet_blatant` tinyint(1) DEFAULT NULL,
   `review_reason` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `stat_first_comment_id` int(11) DEFAULT NULL,
   `locale_id` int(11) DEFAULT NULL,
@@ -1368,7 +1366,6 @@ CREATE TABLE `localized_script_attributes` (
   `attribute_value` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `attribute_default` tinyint(1) NOT NULL,
   `sync_identifier` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `sync_source_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_localized_script_attributes_on_script_id` (`script_id`),
   KEY `index_localized_script_attributes_on_locale_id` (`locale_id`)
@@ -1443,7 +1440,7 @@ CREATE TABLE `moderator_actions` (
   KEY `index_moderator_actions_on_user_id` (`user_id`),
   CONSTRAINT `fk_rails_982b48b755` FOREIGN KEY (`report_id`) REFERENCES `reports` (`id`) ON DELETE SET NULL,
   CONSTRAINT `fk_rails_de8c1b0dd2` FOREIGN KEY (`script_report_id`) REFERENCES `script_reports` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=46001 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=46004 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `redirect_service_domains`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1758,7 +1755,6 @@ CREATE TABLE `scripts` (
   `code_updated_at` datetime NOT NULL,
   `script_type_id` int(11) NOT NULL DEFAULT 1,
   `script_sync_type_id` int(11) DEFAULT NULL,
-  `script_sync_source_id` int(11) DEFAULT NULL,
   `sync_identifier` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sync_error` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `last_attempted_sync_date` datetime DEFAULT NULL,
@@ -1766,7 +1762,6 @@ CREATE TABLE `scripts` (
   `delta` tinyint(1) NOT NULL DEFAULT 1,
   `license_text` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `license_id` int(11) DEFAULT NULL,
-  `script_delete_type_id` int(11) DEFAULT NULL,
   `locked` tinyint(1) NOT NULL DEFAULT 0,
   `support_url` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `locale_id` int(11) DEFAULT NULL,
@@ -1801,7 +1796,6 @@ CREATE TABLE `scripts` (
   `delete_type` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_scripts_on_delta` (`delta`),
-  KEY `index_scripts_on_script_delete_type_id` (`script_delete_type_id`),
   KEY `index_scripts_on_script_type_id` (`script_type_id`),
   KEY `fk_rails_f98f8b875c` (`promoted_script_id`),
   KEY `index_scripts_on_promoted` (`promoted`),
@@ -2203,6 +2197,9 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20210520013942'),
 ('20210606234319'),
 ('20210716011206'),
-('20210718002238');
+('20210718002238'),
+('20210720001120'),
+('20210720001211'),
+('20210720001400');
 
 
