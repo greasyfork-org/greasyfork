@@ -71,7 +71,7 @@ class UserTextHelperTest < ActionView::TestCase
     comment.construct_mentions(detect_possible_mentions(comment.text, comment.text_markup))
     rendered = format_user_text(comment.text, comment.text_markup, mentions: comment.mentions)
     expected = <<~HTML
-      <p>There are 3 users involved here - you, <a href="/en/users/3-geoffrey">@Geoffrey</a>, and <a href="/en/users/1-timmy-o-toole">@"Timmy O'Toole"</a>.</p>
+      <p>There are 3 users involved here - you, <a href="/en/users/3-geoffrey">@Geoffrey</a>, and <a href="/en/users/1-timmy-o-toole">@Timmy O'Toole</a>.</p>
     HTML
     assert_equal expected, rendered
   end

@@ -30,13 +30,13 @@ class AdditionalInfoTest < ApplicationSystemTestCase
     fill_in 'Additional info', with: 'Hey @"Gordon J. Canada" this is for you!'
     click_button 'Post new version'
     assert_selector 'h2', text: 'A Test!'
-    assert_link '@"Gordon J. Canada"', href: user_path(mentioned_user2, locale: :en)
+    assert_link '@Gordon J. Canada', href: user_path(mentioned_user2, locale: :en)
 
     visit script_path(script, version: script.script_versions.first.id, locale: :en)
     assert_link '@Geoffrey', href: user_path(mentioned_user1, locale: :en)
 
     visit script_path(script, version: script.script_versions.last.id, locale: :en)
-    assert_link '@"Gordon J. Canada"', href: user_path(mentioned_user2, locale: :en)
+    assert_link '@Gordon J. Canada', href: user_path(mentioned_user2, locale: :en)
   end
 
   test 'changing just additional info reindexes' do

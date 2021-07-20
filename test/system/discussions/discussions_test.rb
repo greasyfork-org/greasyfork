@@ -47,16 +47,16 @@ class DiscussionsTest < ApplicationSystemTestCase
     assert_no_emails do
       assert_difference -> { Discussion.count } => 1 do
         click_button 'Post comment'
-        assert_content 'Hey @Geoffrey what is up? I heard from @"Junior J. Junior, Sr." that you are named @Geoffrey!'
+        assert_content 'Hey @Geoffrey what is up? I heard from @Junior J. Junior, Sr. that you are named @Geoffrey!'
       end
     end
     assert_selector("a[href='#{user_path(mentioned_user1, locale: :en)}']", text: '@Geoffrey', count: 2)
-    assert_link '@"Junior J. Junior, Sr."', href: user_path(mentioned_user2, locale: :en)
+    assert_link '@Junior J. Junior, Sr.', href: user_path(mentioned_user2, locale: :en)
 
     # Even if the user is renamed, the link persists.
     mentioned_user2.update!(name: 'Someone Else now')
     visit Discussion.last.url
-    assert_link '@"Junior J. Junior, Sr."', href: user_path(mentioned_user2, locale: :en)
+    assert_link '@Junior J. Junior, Sr.', href: user_path(mentioned_user2, locale: :en)
   end
 
   test 'adding a discussion mentioning a user with notifications' do

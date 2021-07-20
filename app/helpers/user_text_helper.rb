@@ -81,7 +81,12 @@ module UserTextHelper
       mentions.each do |mention|
         next unless node.text.include?(mention.text)
 
-        replace_text_with_link(node, mention.text, mention.text, user_path(mention.user, locale: request_locale.code))
+        # Link text should not include beginning/trailing quotes.
+        link_text = mention.text
+        link_text_match = /\A@"(.*)"\z/.match(link_text)
+        link_text = "@#{link_text_match[1]}" if link_text_match
+
+        replace_text_with_link(node, mention.text, link_text, user_path(mention.user, locale: request_locale.code))
       end
     end
 

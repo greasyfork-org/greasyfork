@@ -70,7 +70,7 @@ class ConversationsTest < ApplicationSystemTestCase
     fill_in 'Message', with: 'Hello @"Gordon J. Canada"'
     assert_difference -> { Conversation.count } => 0, -> { Message.count } => 1 do
       click_button 'Post reply'
-      assert_link '@"Gordon J. Canada"', href: user_path(mentioned_user2, locale: :en)
+      assert_link '@Gordon J. Canada', href: user_path(mentioned_user2, locale: :en)
     end
   end
 end
