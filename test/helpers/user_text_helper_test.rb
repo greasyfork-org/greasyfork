@@ -17,6 +17,11 @@ class UserTextHelperTest < ActionView::TestCase
     assert_equal 'my url is <a href="https://example.com" rel="nofollow">https://example.com</a> yes', format_user_text(text, 'html')
   end
 
+  test 'format_user_text html links are linkified but without punctuation' do
+    text = 'my url is https://example.com.'
+    assert_equal 'my url is <a href="https://example.com" rel="nofollow">https://example.com</a>.', format_user_text(text, 'html')
+  end
+
   test 'format_user_text html no hang on long text' do
     text = File.read(Rails.root.join('test/fixtures/files/hamlet.txt'))
     Timeout.timeout(1) do

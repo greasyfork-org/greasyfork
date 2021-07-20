@@ -200,7 +200,10 @@ module UserTextHelper
       url_reference = node.text.match(%r{(\s|^|\()(https?://[^\s)\]]*)}i)
       return if url_reference.nil?
 
-      replace_text_with_link(node, url_reference[2], url_reference[2], url_reference[2])
+      url_reference = url_reference[2]
+      url_reference.gsub!(/[[:punct:]]+\z/u, '')
+
+      replace_text_with_link(node, url_reference, url_reference, url_reference)
     end
 
     youtube_transformer = lambda do |env|
