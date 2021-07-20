@@ -77,25 +77,4 @@ class ScriptValidationTest < ActiveSupport::TestCase
     assert_equal(1, sv.errors.to_a.length, sv.errors.full_messages)
     assert_includes sv.errors.full_messages.first, 'Provide only one additional info', sv.errors.full_messages
   end
-
-  test 'localized meta duplicates default' do
-    script = get_script_with_code(<<~JS)
-      // ==UserScript==
-      // @name		My script name
-      // @name:en My script name in English
-      // @description		My description
-      // @description:en My description in English
-      // @version 1.0
-      // @namespace http://greasyfork.local/users/1
-      // @include *
-      // ==/UserScript==
-      foo.baz();
-    JS
-    sv = script.script_versions.first
-    sv.calculate_all
-    script.apply_from_script_version(sv)
-    assert_not sv.valid?
-    assert_includes sv.errors.full_messages.first, "Code should not specify @name:en as 'en' is the default locale.", sv.errors.full_messages
-    assert_includes sv.errors.full_messages.second, "Code should not specify @description:en as 'en' is the default locale.", sv.errors.full_messages
-  end
 end

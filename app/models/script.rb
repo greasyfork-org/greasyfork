@@ -2,7 +2,7 @@ require 'localizing_model'
 require 'css_to_js_converter'
 
 class Script < ApplicationRecord
-  self.ignored_columns = ['script_sync_source_id', 'script_delete_type_id']
+  self.ignored_columns = %w[script_sync_source_id script_delete_type_id]
 
   include LocalizingModel
   include DetectsLocale
@@ -555,6 +555,10 @@ class Script < ApplicationRecord
         Rails.logger.error "Unknown locale code - #{locale_code}"
         next
       end
+
+      # Ignore if we match the default locale
+      next if meta_locale == locale
+
       matching_la = existing_localized_attributes.find { |la| la.locale == meta_locale && la.attribute_key == attr_name }
       if matching_la.nil?
         matching_la = localized_attributes.build({ attribute_key: attr_name, locale: meta_locale })

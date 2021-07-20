@@ -223,4 +223,31 @@ class ScriptLocalizationTest < ActiveSupport::TestCase
     available_locale_codes = script.available_locales.map(&:code)
     assert_equal(%w[es fr], available_locale_codes)
   end
+
+  test 'localized meta duplicates default' do
+    script = Script.new(locale: Locale.find_by(code: :en))
+    script.authors.build(user: User.find(1))
+    sv = ScriptVersion.new
+    sv.script = script
+    sv.code = <<~JS
+      // ==UserScript==
+      // @name		My script name
+      // @name:en My script name in English
+      // @description		My description
+      // @description:en My description in English
+      // @version 1.0
+      // @namespace http://greasyfork.local/users/1
+      // @include *
+      // ==/UserScript==
+      foo.baz();
+    JS
+    sv.calculate_all
+    script.apply_from_script_version(sv)
+    script.script_versions << sv
+    sv.save!
+    script.save!
+
+    assert_equal 1, script.localized_names.count
+    assert_equal 'My script name', script.localized_value_for(:name, 'en')
+  end
 end

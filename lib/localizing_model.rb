@@ -80,7 +80,4 @@ module LocalizingModel
   def delete_localized_attributes(key)
     localized_attributes_for(key).each(&:mark_for_destruction)
   end
-
-  module ClassMethods
-  end
 end

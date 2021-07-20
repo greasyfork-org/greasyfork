@@ -72,15 +72,6 @@ class ScriptVersion < ApplicationRecord
     end
   end
 
-  # Additional info where no @name for that locale exists. This is OK if the script locale matches, though.
-  validate on: :create do |record|
-    next unless record.script.locale
-
-    meta = parser_class.parse_meta(record.code)
-    record.errors.add(:base, :localized_name_matches_default_locale, message: I18n.t('scripts.localized_attribute_matches_default', meta_key: "@name:#{record.script.locale.code}", locale_code: record.script.locale.code)) if meta["name:#{record.script.locale.code}"]
-    record.errors.add(:base, :localized_description_matches_default_locale, message: I18n.t('scripts.localized_attribute_matches_default', meta_key: "@description:#{record.script.locale.code}", locale_code: record.script.locale.code)) if meta["description:#{record.script.locale.code}"]
-  end
-
   validate on: :create do |record|
     next if record.script.library? || !record.js?
 
