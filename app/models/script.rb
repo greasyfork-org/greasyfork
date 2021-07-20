@@ -2,8 +2,6 @@ require 'localizing_model'
 require 'css_to_js_converter'
 
 class Script < ApplicationRecord
-  self.ignored_columns = %w[script_sync_source_id script_delete_type_id]
-
   include LocalizingModel
   include DetectsLocale
 

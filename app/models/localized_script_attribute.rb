@@ -1,6 +1,4 @@
 class LocalizedScriptAttribute < ApplicationRecord
-  self.ignored_columns = ['sync_source_id']
-
   include MentionsUsers
 
   belongs_to :script
