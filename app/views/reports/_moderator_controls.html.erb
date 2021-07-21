@@ -25,7 +25,7 @@
 
   <% other_scripts = report.reported_users.map{|user| scripts = user.scripts.not_deleted; scripts = scripts.where.not(id: report.item.id) if report.item.is_a?(Script); [user, scripts.count] }.to_h
      if other_scripts.values.sum > 0 %>
-    <%= check_box_tag :delete_scripts, '1', false, id: "delete-scripts-#{report.id}" %><%= label_tag "delete-scripts-#{report.id}", "Delete #{other_scripts.select{|_user, count| count > 0}.map{|user, scripts_count| "#{user.name}'s #{scripts_count} #{(report.item.is_a?(Comment) ? 'other script' : 'script').pluralize(scripts_count)}" }.to_sentence}" %><br>
+    <%= check_box_tag :delete_scripts, '1', false, id: "delete-scripts-#{report.id}" %><%= label_tag "delete-scripts-#{report.id}", "Delete #{other_scripts.select{|_user, count| count > 0}.map{|user, scripts_count| "#{user.name}'s #{scripts_count} #{(report.item.is_a?(Script) ? 'other script' : 'script').pluralize(scripts_count)}" }.to_sentence}" %><br>
   <% end %>
 
   <% if (report.item.is_a?(Comment) || report.item.is_a?(Script)) && report.reported_users.reject(&:banned?).any? %>
