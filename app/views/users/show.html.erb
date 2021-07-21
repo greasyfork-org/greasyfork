@@ -31,7 +31,7 @@
       <ul id="user-control-panel">
         <li><%= link_to t('scripts.new'), new_script_version_path %></li>
         <li><%= link_to t('scripts.new_css'), new_script_version_path(language: 'css') %></li>
-        <li><%= link_to 'New script set', new_user_script_set_path(@user) %></li>
+        <li><%= link_to t('script_sets.new'), new_user_script_set_path(@user) %></li>
         <li><%= link_to t('scripts.import'), import_start_path %></li>
         <li><%= link_to t('users.set_up_webhook'), user_webhook_info_path %></li>
         <li><%= link_to t('users.edit'), edit_user_registration_path %></li>

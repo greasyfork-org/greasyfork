@@ -3,7 +3,7 @@
     <%= t('script_sets.description') %></p>
   </p>
 <% else %>
-  <p>Favorite scripts</p>
+  <p><%= t('script_sets.favorites_name') %></p>
 <% end %>
 
 <%= form_for([@set.user, @set], html: {class: 'change-script-set'}) do |s| %>
