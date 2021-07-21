@@ -1027,23 +1027,49 @@ en:
       # title of the external script rules page
       title: "%{site_name}'s policy on external scripts"
       # content of the external script rules page
-      content_html: >
-        <p>User scripts have the technical ability to load and execute other scripts. The %{require_doc_link:<code>@require</code>} metadata key is the most straightforward way to accomplish this, but scripts can also, for example, use an XmlHttpRequest to download a script and then inject it into the DOM.</p>
-        <p>While this is a useful feature and most script authors use this for legitimate purposes, it can also be used maliciously. One of the core principles of %{site_name} is that the user must be able to inspect the code in a script. External scripts can bypass this principle in a number of ways: they can change without warning or history, they can serve up different code to different people, and they can be used to hide malicious code in the middle of known libraries. Even if someone were to check an external script and determine it to be legitimate, that would be no guarantee that that script always has been or always will be legitimate.</p>
-        <p>To allow script authors to continue to use external scripts, %{site_name} has implemented a list of allowed URL patterns that can be included with a script. This list consists of script locations that:</p>
+      intro_html: |
+        <p>User scripts have the technical ability to load and execute other scripts. This can be done in a few different ways, including:</p>
         <ul>
-          <li>Are public</li>
-          <li>Will not have their contents change frequently</li>
-          <li>Would likely be useful to more than one script author</li>
+          <li>The %{require_doc_link:<code>@require</code>} metadata key.</li>
+          <li><code>XmlHttpRequest</code> to download the script, then <code>eval</code> to execute.</li>
+          <li>Adding a <code>&lt;script&gt;</code> tag dynamically.</li>
         </ul>
-        <p>The current list is:</p>
-        %{allowed_require_list}
-        <p>If you try to post a script that uses a <code>@require</code> outside of these locations, you will not be able to save your script.</p>
-        <p>If the script you wish to include is a JavaScript library (for example jQuery or YUI), try to find it on one of the sites listed above. %{cdnjs_link:cdnjs} and %{jsdelivr_link:jsDelivr} in particular have a wide range of libraries available.</p>
-        <p>If the script you wish to include is not available on the sites above, %{contact_link:let us know} and we can find somewhere it is (or host it ourselves!).</p>
-        <p>If the script you wish to include was written by you, you can submit it as a separate entry on %{site_name} by choosing the "Library" script type. You will then be able to include this posted library in your script.</p>
+        <p>While this is a useful feature and most script authors use this for legitimate purposes, it can also be used maliciously. One of the core principles of %{site_name} is that the user must be able to inspect the code in a script. External scripts can bypass this principle in a number of ways: they can change without warning or history, they can serve up different code to different people, and they can be used to hide malicious code in the middle of known libraries. Even if someone were to check an external script and determine it to be legitimate, that would be no guarantee that that script always has been or always will be legitimate.</p>
+      allowed_external_codes:
+        heading: Allowed external code
+        content_html: |
+          <p>To allow script authors to continue to use external scripts, %{site_name} has implemented a list of allowed URL patterns that can be included with a script. This list consists of script locations that:</p>
+          <ul>
+            <li>Are public</li>
+            <li>Will not have their contents change frequently</li>
+            <li>Would likely be useful to more than one script author</li>
+          </ul>
+          <p>If the script you wish to include is a JavaScript library (for example jQuery or YUI), try to find it on one of the sites listed below. %{cdnjs_link:cdnjs} and %{jsdelivr_link:jsDelivr} in particular have a wide range of libraries available.</p>
+          <p>The current list is:</p>
+          %{allowed_require_list}
+      other_allowed_codes:
+        heading: Special cases
+        content_html: |
+          <p>In addition to the list above, the following uses are also allowed:</p>
+          <ul>
+            <li>Loading a site's existing code for use on the same site (e.g. using example.com/script.js on example.com).</li>
+            <li>Loading a resource that is data only, for example a JSON file, without executing any of it.</li>
+          </ul>
+          <p>The following uses are also disallowed:</p>
+          <ul>
+            <li>Loading updates to the script from an external URL.</li>
+          </ul>
+      add_to_list:
+        heading: Adding to the list
+        content_html: |
+          <p>If the script you wish to include is not available on the sites above, %{contact_link:let us know} and we can find somewhere it is (or host it ourselves!).</p>
+          <p>If the script you wish to include was written by you, you can submit it as a separate entry on %{site_name} by choosing the "Library" script type. You will then be able to include this posted library in your script.</p>
+      enforcement:
+        heading: Enforcement
+        content_html: |
+          <p>Any script found to be including external code outside of what is permitted is subject to be deleted.</p>
       test_url:
-        label: Test an URL
+        label: Test a URL
         result_ok: URL is allowed
         result_not_ok: URL is not allowed
     script_rewriting:
