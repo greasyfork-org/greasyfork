@@ -233,7 +233,6 @@ ru:
     additional_info_add_localized: "Добавить дополнительную информацию на другом языке"
     additional_info_locale_repeated: "Дополнительная информация на языке '%{locale_code}' уже существует."
     localized_additional_info_with_no_name: "Для добавления дополнительной информации на языке '%{locale_code}' в метаданных скрипта должна быть строка @name:%{locale_code}."
-    localized_attribute_matches_default: "Код не должен указывать %{meta_key}, потому что '%{locale_code}' является языком по умолчанию."
     code_syncing_from_url_html: "Этот скрипт синхронизируется с %{field}"
     provide_code_syncing_from_url_html: "%{site_name} может импортировать скрипты, размещенные в другом месте, например, в системе управления версиями (вроде GitHub), на вашем собственном сервере, или на другом сайте по распространению скриптов. Для включения синхронизации скрипта укажите URL: %{field}"
     sync_type_intro: "Способ синхронизации:"
@@ -689,6 +688,10 @@ ru:
       title: 'Как установить пользовательские скрипты'
     installing_user_styles:
       title: 'Как установить пользовательские стили'
+      content_html: |
+          <p>Некоторые скрипты на %{site_name} могут быть установлены как пользовательские стили.</p>
+          <p>Пользовательские стили могут быть установлены с помощью расширений %{stylus_firefox_link:Stylus для Firefox}, %{stylus_chrome_link:Stylus для Chrome}, и %{stylus_opera_link:Stylus для Opera}.</p>
+          <p>%{styles_link:Посмотреть все доступные пользовательские стили}</p>.
     meta_keys:
       title: "Мета-ключи для %{site_name}"
       intro_html: "Список <a href=\"http://wiki.greasespot.net/Metadata_Block\">мета-ключей в скрипте</a>, анализируемых %{site_name}. Кроме перечисленных, можно использовать любые другие ключи, они сохранятся в неизменном виде при установке скрипта, но не возымеют эффекта на интерфейс %{site_name}."
@@ -1250,6 +1253,26 @@ ru:
     description: "Поиск пользовательских скриптов на %{site_name}."
     long_name: "Поиск пользовательских скриптов на %{site_name}."
     attribution: "Авторские лицензии скриптов - указана на странице информации каждого скрипта."
+  importing:
+    title: Импорт скриптов
+    intro: "%{site_name} может импортировать скрипты, размещённые в другом месте, например, в системе управления версиями (вроде GitHub), на вашем собственном сервере, или на другом сайте по распространению скриптов."
+    url_entry_label: Введите адреса импортируемых файлов. Каждый адрес должен находиться на отдельной строке. Адреса должны указывать на обычные JS и CSS файлы.
+    sync_type_label: "После импорта, скрипты нужно синхронизировать:"
+    additional_info_html: |
+        <p>Для систем управления версиями, убедитесь, что URL указывает на ветку, а не на конкретный коммит, иначе обновление не будет работать. Например, <code>https://bitbucket.org/username/reponame/raw/<b>имя-ветки</b>/script.user.js</code>, но не <code>https://bitbucket.org/username/reponame/raw/<b>хэш-коммита</b>/script.user.js</code>.</p>
+        <p>Скрипты, импортированные из GitHub, Bitbucket, и GitLab, могут синхронизироваться с помощью webhook. Webhook позволяет обновить ваш скрипт на %{site_name} сразу после изменения его в репозитории. Вы можете %{webhook_info_link:настроить webhook} после завершения импорта.</p>
+    submit: Импортировать
+    previously_imported:
+      heading: Ранее импортированные скрипты
+      successful_entry_html: "%{script_link} - тип синхронизации: %{sync_type}, последняя синхронизация: %{last_sync_date}."
+      unknown_date: "(не известна)"
+      failed_entry_html: "%{script_link} - тип синхронизации: %{sync_type}, последняя попытка синхронизации: %{last_sync_attempt_date}, %{sync_error}"
+    results:
+      title: "Результат импорта"
+      success: "Следующие скрипты были успешно импортированы:"
+      needs_description: "У следующих скриптов не хватает описания для завершения импорта:"
+      existing: "Следующие скрипты были импортированы ранее:"
+      failure: "Следующие скрипты не могут быть импортированы:"
   mailers:
     script_report:
       report_created_offender:

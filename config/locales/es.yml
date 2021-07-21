@@ -58,6 +58,9 @@ es:
     delete_page: "Borrar"
     delete_explanation: "Borrar tu script lo hace inaccesible para todos excepto para ti y los moderadores de Greasy Fork. Puedes recuperarlo en cualquier momento."
     delete_update_behaviour: "¿Qué te gustaría que pasara con los usuarios que ya han instalado tu script?"
+    delete_update_behaviours:
+      keep: "Dejarlo tal cual."
+      blanked: "La próxima vez que actualicen se les proporcionará un script en blanco. Útil cuando el script tiene efectos negativos en los sitios en los que normalmente funciona."
     delete_permanently_heading: "Borrado permanente"
     delete_permanently_explanation_html: >-
         <p>Borrar de forma permanente tu script hará que se elimine todo el código
@@ -226,7 +229,6 @@ es:
     additional_info_add_localized: "Añadir información regional adicional"
     additional_info_locale_repeated: "Proporciona una sola información adicional para el idioma '%{locale_code}'."
     localized_additional_info_with_no_name: "Has añadido información adicional para el idioma '%{locale_code}', pero sin proporcionar el @name:%{locale_code}."
-    localized_attribute_matches_default: "El código no debe incluir %{meta_key} porque «%{locale_code}» es el ifioma predeterminado."
     code_syncing_from_url_html: "El código de este script está configurado para sincronizarse desde: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} puede importar scripts alojados en otro lugar, por ejemplo, en un sistema de control de versiones (como GitHub), tu propio servidor, o en cualquier otro sitio de alojamiento de scripts de usuario. Para sincronizar tu script proporciona una dirección URL: %{field}"
     sync_type_intro: "El script se sincronizará:"
@@ -253,6 +255,7 @@ es:
     sync_url_placeholder: "(URL)"
     screenshots_add: "Añadir:"
     screenshots_remove: "Eliminar"
+    replacement_script_explanation: "(Opcional) Elige otro script que reemplace este script. Ingresa la URL de los scripts de reemplazo:"
     diff_title: "%{script} - Comparar versiones"
     diff_old_version: "Anterior:"
     diff_new_version: "Nueva:"
@@ -332,9 +335,17 @@ es:
     install_help_dialog:
       js:
         firefox: Tendrás que instalar una extensión para tu navegador como %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} o %{violentmonkey_link:Violentmonkey} si quieres utilizar este script.
+        chrome: Necesitarás instalar una extensión como %{tampermonkey_link:Tampermonkey} o %{violentmonkey_link:Violentmonkey} para instalar este script.
+        opera: Necesitarás instalar una extensión como %{tampermonkey_link:Tampermonkey} o %{violentmonkey_link:Violentmonkey} para instalar este script.
+        safari: Necesitarás instalar una extensión como %{tampermonkey_link:Tampermonkey} o %{userscripts_link:Userscripts} para instalar este script.
         other: Necesitarás instalar una extensión para administrar scripts de usuario si quieres instalar este script.
         bypass: (Ya tengo un administrador de scripts de usuario, déjame instalarlo)
       css:
+        firefox: Necesitarás instalar una extensión como %{stylus_link:Stylus} para instalar este script.
+        chrome: Necesitarás instalar una extensión como %{stylus_link:Stylus} para instalar este script.
+        opera: Necesitarás instalar una extensión como %{stylus_link:Stylus} para instalar este script.
+        safari: Necesitarás instalar una extensión de administrador de estilo de usuario para instalar este script.
+        other: Necesitarás instalar una extensión de administrador de estilo de usuario para instalar este script.
         bypass: (Ya tengo un administrador de estilos de usuario, déjame instalarlo)
       close_dialog: Aceptar
     antifeatures:
@@ -829,6 +840,8 @@ es:
       title: Convertir CSS en un script de usuario JS
     antifeatures:
       title: Características indeseables
+      miner_html: |
+          <p>El script contiene un cryptominer u otro código que utiliza los recursos del usuario para realizar alguna tarea para el autor del script.
   search:
     script_search:
       title: "Buscar scripts"
@@ -912,7 +925,9 @@ es:
       undisclosed_antifeature: "Característica %{antifeature_link:adversa no revelada} (por ejemplo, un anuncio, un rastreador, minería de criptomonedas)"
       other: "Otros"
     report_intro: "%{reported_item} ha sido denunciado el %{report_date} por %{reason} por %{reporter}"
+    report_intro_no_reporter: "%{reported_item}fue reportado %{report_date} por %{reason}"
     report_intro_unauthorized_html: "%{reported_script} ha sido denunciado el %{report_date} como copia no autorizada de %{other_script} por %{reporter}."
+    report_intro_unauthorized_no_reporter_html: "%{reported_script} fue reportado %{report_date} como una copia no autorizada de %{other_script}"
     report_intro_unauthorized_license: "%{other_script} utiliza la licencia %{license_link: %{license_name}}. Visita %{tldr_legal_link:tldrlegal.com} (en inglés) para ayudarte a entender lo que puedes y no puedes hacer."
     report_intro_unauthorized_license_no_url: "%{other_script} utiliza la licencia %{license_name}. Visita %{tldr_legal_link:tldrlegal.com} (en inglés) para ayudarte a entender lo que puedes y no puedes hacer."
     report_intro_unauthorized_no_license: "%{other_script} no lleva asociado ninguna licencia, por lo que no es posible copiarlo si no tienes permiso expreso del autor."
@@ -933,6 +948,7 @@ es:
     view_discussion: "Ver conversación"
     load_diff: "Cargar diferencias"
     loading_diff: "Cargando..."
+    reported_user_activity_html: "%{user} (el usuario denunciado) ha hecho:"
   discussions:
     title: Conversaciones
     comment_date: "Publicado: %{date}"
@@ -958,6 +974,7 @@ es:
     update_rating: "Actualiza tu calificación de %{script_name}"
     ratings:
       bad: "Malo; el script no funciona"
+      ok: "OK - el script funciona pero tiene errores"
       good: "Bueno; el script funciona tal y como promete"
     ratings_short:
       question: "Pregunta o comentario"
@@ -1074,6 +1091,13 @@ es:
     quote:
       prefix_html: "%{user} dijo:"
   activerecord:
+    models:
+      script:
+        one: "%{count} script"
+        other: "%{count} scripts"
+      comment:
+        one: "%{count} comentario"
+        other: "%{count} comentarios"
     attributes:
       user:
         name: "Nombre"
@@ -1133,6 +1157,20 @@ es:
     description: "Busca scripts de usuario en %{site_name}."
     long_name: "Búsqueda de scripts de usuario en %{site_name}"
     attribution: "Propiedad de los autores de cada script, para ver las distintas licencias abre cada script de forma individual."
+  importing:
+    title: Importar scripts
+    submit: Importar
+    previously_imported:
+      heading: Scripts importados previamente
+      successful_entry_html: "%{script_link} - %{sync_type} sincronizando, última sincronización %{last_sync_date}."
+      unknown_date: "(desconocido)"
+      failed_entry_html: "%{script_link} - %{sync_type} sincronizando, último intento de sincronización %{last_sync_attempt_date}, %{sync_error}"
+    results:
+      title: "Importar resultado"
+      success: "Los siguientes scripts se importaron correctamente:"
+      needs_description: "Los siguientes scripts necesitan una descripción para ser importados:"
+      existing: "Los siguientes scripts ya habían sido importados:"
+      failure: "No se pudieron importar los siguientes scripts:"
   mailers:
     script_report:
       report_created_offender:

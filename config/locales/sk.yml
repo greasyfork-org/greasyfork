@@ -232,7 +232,6 @@ sk:
     additional_info_add_localized: "Pridať lokalizované dodatočné informácie"
     additional_info_locale_repeated: "Uveďte iba jednu dodatočnú informáciu pre jazyk '%{locale_code}'"
     localized_additional_info_with_no_name: "Dodatočné informácie boli uvedené pre jazyk '%{locale_code}', ale nebol doplnený parameter @name:%{locale_code}."
-    localized_attribute_matches_default: "Kód by nemal určovať %{meta_key} ako \"%{locale_code}\" je predvolený jazyk."
     code_syncing_from_url_html: "Tento kód skriptu je nastavený na synchronizáciu z: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} dokáže importovať skripty, ktoré sú hotovostné už niekde inde, napríklad na verziovacom systéme (ako GitHub), vlastnom serveri, alebo ďalšej stránke s používateľskými skriptami. Pre zapnutie synchronizácie vášho skriptu, zadajte URL: %{field}"
     sync_type_intro: "Skript bude synchronizovaný:"
@@ -692,6 +691,10 @@ sk:
       title: 'Ako nainštalovať používateľské skripty'
     installing_user_styles:
       title: 'Ako nainštalovať používateľské štýly'
+      content_html: |
+          <p>Niektkoré skripty na %{site_name} môžu byť nainštalované ako používateľské štýly.</p>
+          <p>Používateľské štýly môžu byť nainštalované cez %{stylus_firefox_link:Stylus pre Firefox}, %{stylus_chrome_link:Stylus pre Chrome}, a %{stylus_opera_link:Stylus pre Operu}.</p>
+          <p>%{styles_link:Zobraziť všetky dostupné používateľské štýly}</p>.
     meta_keys:
       title: "Metakľúče skriptu spracované %{site_name}"
       intro_html: "Toto je zoznam <a href=\"http://wiki.greasespot.net/Metadata_Block\">metakľúčov používateľského skriptu</a>, ktoré %{site_name} rozpozná. Kľúče mimo tohto zoznamu môžu byť zahrnuté v skriptoch a budú v nainštalovanom skripte prítomné, ale nebudú mať efekt na UI %{site_name}."
@@ -1244,6 +1247,27 @@ sk:
     description: "Hľadanie skriptov na %{site_name}."
     long_name: "Hľadanie skriptov na %{site_name}"
     attribution: "Autorské práva autorov skriptov nájdete na jednotlivých stránkach skriptov"
+  importing:
+    title: Importovať skripty
+    intro: "%{site_name} dokáže importovať skripty, ktoré už sú hostované niekde inde, napríklad v systéme správy verzií (ako GitHub), vlastnom serveri, alebo ďalšej stránke s používateľskými skriptami."
+    url_entry_label: Zadajte URL adresy, z ktorých sa majú importovať, oddelené novými riadkami. Mali by to byť URL na neupravené JS-y alebo CSS súbory.
+    sync_type_label: "Po úvodnom importe by sa mal(-i) skript(-y) synchronizovať:"
+    additional_info_html: |+
+        <p>V prípade skriptov zo systému správy zdrojov sa uistite, že použitá URL odkazuje na vetvu, a nie na konkrétnu revíziu, inak sa nikdy neaktualizuje. Napríklad: <code>https://bitbucket.org/username/reponame/raw/<b>nazov-vetvy</b>/script.user.js<code>.</p>
+        <p>Skripty importované zo služieb GitHub, Bitbucket alebo GitLab možno nastaviť na synchronizáciu pomocou webhooku. Webhook zabezpečí, že vaše skripty budú okamžite aktualizované na %{site_name}pri odoslaní do vášho úložiska. Ak chcete použiť webhook, ale ešte ste ho nenastavili, najprv urobte import a až potom %{webhook_info_link:nastavte webhook}.</p>
+
+    submit: Importovať
+    previously_imported:
+      heading: Predchádzajúce importované skripty
+      successful_entry_html: "%{script_link} – %{sync_type} sa synchronizuje, posledná synchronizácia %{last_sync_date}."
+      unknown_date: "(neznámy)"
+      failed_entry_html: "%{script_link} – %{sync_type} sa synchronizuje, posledný pokus o synchronizáciu %{last_sync_attempt_date}, %{sync_error}"
+    results:
+      title: "Výsledok importu"
+      success: "Nasledujúce skripty boli úspešne importované:"
+      needs_description: "Nasledujúce skripty potrebujú na importovanie popis:"
+      existing: "Nasledujúce skripty už boli importované:"
+      failure: "Nasledujúce skripty sa nepodarilo importovať:"
   mailers:
     script_report:
       report_created_offender:
