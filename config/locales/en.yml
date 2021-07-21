@@ -968,7 +968,7 @@ en:
       # description of @namespace. Do not translate content inside <code>.
       namespace_html: "A combination of <code>@namespace</code> and <code>@name</code> is used by user script managers to see if a script is already installed. %{site_name} requires this field and will warn if it's changed on update."
       # description of @description:XX-YY. developer.mozilla.org may have localized content; use it if available.
-      version_html: "Identifier for a specific version of a script in <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">Mozilla version format</a>. Version is displayed on a script's info page. %{site_name} requires this field and will warn if it's decremented or if it's not incremented when the script's code changes."
+      version: "Identifier for a specific version of a script in %{version_format_link:Mozilla version format}. Version is displayed on a script's info page. %{site_name} requires this field and will warn if it's decremented or if it's not incremented when the script's code changes."
       # description of @include
       include_html: "Describe what pages the script will run on. This list will be processed, displayed on the script's info page, and used to categorize scripts. Every script must have at least one <code>@match</code> or <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Read about the format here.</a>"
       # description of @require. %{external_script_link} is a link to the document describing allowed external scripts and has a link of key "require_external_script_link_text"

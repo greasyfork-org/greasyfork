@@ -20,7 +20,7 @@
   <dd><%= t('help.meta_keys.namespace_html', site_name: site_name) %></dd>
 
   <dt><%= self_link('meta-version', tag.code { '@version' }) %></dt>
-  <dd><%= t('help.meta_keys.version_html', site_name: site_name) %></dd>
+  <dd><%= it('help.meta_keys.version', site_name: site_name, version_format_link: 'https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/manifest.json/version/format') %></dd>
 
   <dt><%= self_link('meta-include', safe_join([tag.code { '@include' }, tag.code { '@exclude' }, tag.code { '@match' }], ', ')) %></dt>
   <dd><%= t('help.meta_keys.include_html') %></dd>
