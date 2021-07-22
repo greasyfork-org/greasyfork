@@ -345,7 +345,6 @@ de:
           description_html: Dieses Skript enthält einen Kryptominer, welcher <b>die Ressourcen Ihres Geräts nutzt</b>, wenn aktiviert.
         referral-link:
           title: Empfehlungslinks
-          description_html: Dieses Skript wird <b>Links umschreiben</b>, um eine Empfehlungs- oder Partner-ID einzufügen.
         membership:
           title: Mitgliedschaft
         payment:
@@ -660,7 +659,6 @@ de:
       description: "Die Beschreibung was das Skript macht. Wird als Text unter dem Skriptnamen angezeigt. Erforderlich."
       description_localized_html: "Die Beschreibung des Skriptes in einer bestimmten Sprache, wobei XX ein <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-Buchstaben-Kürzel</a> und YY ein optionales <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 Länderkürzel</a> ist. Überschreibt <code>@description</code> wenn der Nutzer die passende Sprache verwendet."
       namespace_html: "Eine Kombination aus <code>@namespace</code> und <code>@name</code> wird von Benutzerskriptverwaltungen genutzt, um zu prüfen, ob ein Skript schon installiert ist. %{site_name} benötigt dieses Feld und warnt, wenn es bei einer Aktualisierung geändert wird."
-      version_html: "Kennung für eine bestimmte Version eines Skriptes im <a href=\"https://developer.mozilla.org/de/docs/Toolkit_version_format\">Mozilla-Versionsformat</a>. Die Version wird auf der Informationsseite eines Benutzerskriptes angezeigt. %{site_name} benötigt dieses Feld und warnt, wenn es verringert oder nicht erhöht wird, wenn der Skript-Quelltext geädert wird."
       include_html: "Beschreibe auf welchen Seiten das Skript läuft. Die Liste wird auf der Skript Info-Seite anzeigt und zum kategorisieren verwendet. Jedes Skript muss mindestens ein <code>@match</code> oder <code>@include</code> enthalten. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Hier finden sich die Formatierungsregeln.</a>"
       require_html: "Bindet externes JavaScript in einem Skript ein. Siehe %{external_script_link}."
       require_external_script_link_text: "die Regeln zum Einbinden von Quelltext externer Skripte"
@@ -698,49 +696,7 @@ de:
       reporting: Wenn Ihnen auffällt, dass ein Skript aus den Parametern herausfällt, melden Sie es bitte über den Feedback-Link für das Skript und dort über die "Skript melden"-Option.
     external_scripts:
       title: "%{site_name}s Richtlinie für externe Skripte"
-      content_html: >
-          <p>Benutzerskripte haben die technische Möglichkeit andere Skripte zu laden
-          und auszuführen. Der %{require_doc_link:<code>@require</code>} Meta-Key
-          ist der einfachste Weg, dies zu erreichen, aber Skripte können beispielsweise
-          auch einen XmlHttpRequest nutzen, um ein anderes Skript herunterzuladen
-          und in den DOM einzufügen.</p> <p>Während dies eine nützliche Funktion ist
-          und die meisten Skriptautoren diese für seriöse Zwecke nutzen, kann sie
-          aber auch schadhaaft genutzt werden. Eines der Kernprinzipien von %{site_name}
-          ist es, dass Nutzer in der Lage sein müssen den Code eines Skriptes zu inspizieren.
-          Externe Skripte können dieses Prinzip auf verschiedene Arten umgehen: sie
-          können sich ohne Warnung oder Historie ändern, sie können verschiedenen
-          Quelltext an verschiedene Personen ausliefern und sie können genutzt werden,
-          um schadhaften Quellcode inmitten von bekannten Bibliotheken zu verstecken.
-          Selbst wenn jemand eine externes Skript überprüfen würde und es als seriös
-          einstuft, wäre dies keine Garantie, dass das Skript auch schon immer seriös
-          war oder sein wird.</p> <p>Um Skriptautoren die Nutzung externer Skripte
-          weiterhin zu erlauben, hat %{site_name} eine Positivliste von URL-Mustern
-          eingebaut, welche in einem Skript eingebunden werden dürfen. Diese Positivliste
-          besteht aus Skriptorten welche:</p> <ul>
-
-          <li>öffentlich sind</li>
-
-          <li>ihre Inhalte nicht laufend ändern</li>
-
-          <li>für mehr als einen Skriptautoren nützlich sind</li>
-
-          </ul> <p>Die aktuelle Liste besteht aus:</p> %{allowed_require_list} <p>Falls
-          Sie versuchen ein Skript zu erstellen, welches ein <code>@require</code>
-          außerhalb dieser Orte beinhaltet, sind Sie nicht in der Lage Ihr Skript
-          zu speichern.</p> <p>Falls das Skript, welches sie einbinden möchten eine
-          Java Script Bibliothek ist (beispielsweise JQuery oder YUI), dann versuchen
-          Sie bitte diese auf einer der oben aufgeführten Seiten zu finden. Insbesondere
-          %{cdnjs_link:cdnjs} und %{jsdelivr_link:jsDelivr} stellen eine große Zahl
-          an Bibliotheken bereit.</p> <p>Falls das Skript, welches Sie verwenden möchten,
-          nicht auf einer der oben aufgeführten Seiten zu finden ist, dann %{contact_link:informieren
-          Sie uns darüber} und wir können eine Seite finden, auf der es zu finden
-          ist (oder es selbst speichern!).</p> <p>Falls das Skript, welches Sie einbinden
-          möchten auch von Ihnen geschrieben wurde, dann können Sie es als eigenes
-          Skript auf %{site_name} übermitteln indem sie den "Bibliothek" Skripttyp
-          verwenden. Sie sind dann in der Lage diese Bibliothek auch in Ihrem Skript
-          zu verwenden.</p>
       test_url:
-        label: Teste eine URL
         result_ok: URL ist erlaubt
         result_not_ok: URL ist nicht erlaubt
     script_rewriting:

@@ -359,7 +359,6 @@ fr:
           description_html: Ce script contient un cryptominer qui <b>utilisera les ressources de votre appareil</b> lorsqu'il est actif.
         referral-link:
           title: Liens de parrainage
-          description_html: Ce script <b>réécrira des liens</b> pour inclure un code de parrainage ou d'affiliation.
         membership:
           description_html: Ce script n'est pleinement fonctionnel qu'une fois que vous <b>vous serez inscrit à quelque chose</b>, comme rejoindre un groupe, vous abonner à une chaîne ou aimer une page.
         payment:
@@ -674,7 +673,6 @@ fr:
       description: "Une description de ce que le script fait. Affichée sous forme de texte sous le nom du script. Requis."
       description_localized_html: "La description du script dans une langue spécifique, où XX est un <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">code à 2 lettres ISO 639-1</a> et YY ( optionnel ) est un <a href=\"https://www.iso.org/obp/ui/#search\">code du pays ISO 3166</a>. Remplace <code>@description</code> quand l'utilisateur navigue dans une langue correspondante."
       namespace_html: "Une combinaison de <code>@namespace</code> et de <code>@name</code> est utilisée par les outils de gestion de scripts pour déterminé si un script est déjà installé. %{site_name} a besoin de ce champ et montrera une alerte en cas de changement lors de la mise à jour."
-      version_html: "Identifiant pour une version spécifique d'un script dans <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">Format de version Mozilla</a>. La version est affichée sur la page d'info d'un script. %{site_name} requiert ce champ et avertira si il est décrémenté ou si il n'est pas incrémenté quand le code source d'un script change."
       include_html: "Décrivez sur quelles pages le script s'exécutera. Cette liste sera traitée, affichée sur la page d'informations du script et utilisée pour classer les scripts. Chaque script doit avoir au moins un <code>@match</code> ou <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Découvrez le format ici.</a>"
       require_html: "Inclut du JavaScript externe dans un script. Voir %{external_script_link}."
       require_external_script_link_text: "Règles pour les codes incluant des scripts externes."
@@ -715,47 +713,7 @@ fr:
       reporting: Si vous remarquez un script qui ne respecte pas ces paramètres, veuillez le signaler en accédant au lien Commentaires pour ce script et choisissez l'option "Signaler le script".
     external_scripts:
       title: "Politique de %{site_name} concernant les scripts externes"
-      content_html: >
-          <p>Les scripts utilisateur ont la capacité technique de charger et exécuter
-          d'autres scripts. La clé %{require_doc_link:<code>@require</code>} est la
-          plus indiquée pour cela, mais les scripts peuvent aussi, par exemple, utiliser
-          une requête XmlHttpRequest pour télécharger un script et l'injecter dans
-          le DOM.</p> <p>Bien que cette fonctionnalité soit très pratique et utilisée
-          par la plupart des auteurs de scripts, elle peut aussi être utilisé de façon
-          malicieuse. Un des principes fondamentaux de %{site_name} est que l'utilisateur
-          doit être capable d'inspecter le code source du script. Les scripts externes
-          peuvent contourner ce principe de plusieurs façons: ils peuvent changer
-          sans avertissement ou historique, ils peuvent servir un code différent à
-          des personnes différentes, et ils peuvent être utilisés pour cacher du code
-          malicieux au coeur de bibliothèques connues. Même si quelqu'un prenait le
-          soin de vérifier un script externe et déterminer qu'il est légitime, cela
-          ne garantirait pas que le script a toujours été ou sera toujours légitime.</p>
-          <p>Afin de permettre aux auteurs de scripts de continuer à utiliser des
-          scripts externes, %{site_name} a mis en place une liste de modèles d'URL
-          autorisés pour une inclusion dans un script. Cette liste comprend des emplacements
-          de script qui :</p> <ul>
-
-          <li>Sont publics</li>
-
-          <li>N'auront pas leur contenu modifié fréquement</li>
-
-          <li>Seraient probablement utiles à plus d'un auteur de script</li>
-
-          </ul> <p>La liste actuelle est :</p> %{allowed_require_list} <p>Si vous
-          tentez de publier un script qui utilise un <code>@require</code> en dehors
-          de ces emplacements, vous serez incapable de sauvegarder votre script.</p>
-          <p>Si le script que vous désirez inclure est une librairie JavaScript (par
-          exemple jQuery ou YUI), essayez de la trouver sur l'un des sites listés
-          çi-dessus. %{cdnjs_link:cdnjs} et %{jsdelivr_link:jsDelivr} en particulier,
-          ont un large assortiment de librairies à disposition.</p> <p>Si le script
-          que vous désirez inclure n'est pas disponible sur les sites çi-dessus, %{contact_link:faites-le
-          nous savoir} et nous pourrons le rechercher (ou l'héberger nous-même !).</p>
-          <p>Si vous être l'auteur du script que vous désirez inclure, vous pouvez
-          le soumettre séparément sur %{site_name} en choisissant "Librairie" comme
-          type de script. Vous serez alors capable d'inclure cette librairie publiée
-          dans votre script.</p>
       test_url:
-        label: Tester une URL
         result_ok: L'URL est autorisée
         result_not_ok: L'URL n'est pas autorisée
     script_rewriting:

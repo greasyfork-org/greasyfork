@@ -358,7 +358,6 @@ zh-CN:
           description_html: 这个脚本含有挖矿代码，启动时将<b>占用您的设备资源</b>。
         referral-link:
           title: 引荐链接
-          description_html: 此脚本将<b>重写或重定向</b>部分网页地址来添加推荐人或返利代码至链接。
         membership:
           title: 会员内容
           description_html: 脚本只有在使用者 <b>主动登记后</b> 才能使用完整功能，如加入群组、订阅频道或在某页点赞等。
@@ -658,7 +657,6 @@ zh-CN:
       description: "脚本功能的描述，显示在脚本标题下面，必填项。"
       description_localized_html: "用某门语言写成的脚本描述。XX 指 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 国家代码</a> 以及 YY 指可选的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 地区代码</a>。该选项用于提供多语言的<code>@description</code> 脚本介绍。"
       namespace_html: "<code>@namespace</code> 与 <code>@name</code> 这两个属性被作为脚本的唯一标识符，用户脚本管理器根据它们来判断一个脚本是否已安装。%{site_name} 也需要这些属性，若用户在更新脚本时改变了两者中的任意一项，将发出警告。"
-      version_html: "脚本的版本标记将使用 <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">Mozilla 版本格式</a> 并显示于脚本的简介页面。%{site_name} 要求填写该属性，且当用户更新脚本时没有更新版本号或降低了版本号时将发出警告。"
       include_html: "描述脚本会在哪些网站上运行。该列表会被解析和展示到脚本的简介页面，并用于脚本的分类。每个脚本须有至少一个 <code>@match</code> 或 <code>@include</code>。<a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">了解格式细则</a>。"
       require_html: "在您的脚本中引用其他外部脚本。请参见 %{external_script_link}。"
       require_external_script_link_text: "包含外部脚本的使用规定"
@@ -699,25 +697,7 @@ zh-CN:
       reporting: 如果你发现有脚本未能遵守上述规则，请访问脚本的反馈页面并选择“举报脚本”来举报。
     external_scripts:
       title: "%{site_name} 对外部脚本的政策"
-      content_html: >
-          <p>用户脚本有能力加载和执行其他脚本。最直接的方法是通过 %{require_doc_link:<code>@require</code>}
-          来加载，但也有其他的途径——例如用 XmlHttpRequest 来下载外部脚本，并将其注入 DOM。</p> <p>虽然这是一个很有用的功能，并且大多数脚本作者将其用在合法目的，但它也可以被恶意使用。%{site_name}
-          的一项核心原则就是，必须能让用户阅读和检查脚本代码。而外部脚本可能用多种方法绕过这一原则：它们可以在用户不知情的情况下悄悄改变，而不留下历史记录；它们可以对不同的用户采用不同的代码；它们还可以在知名的库之中插入恶意的代码，以期逃避用户的检查。因此，即便某位用户检查了一个外部脚本，并确定它此时是安全的，他也无法保证该脚本在过去和将来不会包含恶意代码。</p>
-          <p>为了允许脚本作者继续使用外部脚本，%{site_name} 有一个 URL 形式的白名单，只允许引用白名单中的外部脚本。白名单中包含的网站应该是：</p>
-          <ul>
-
-          <li>公开的</li>
-
-          <li>内容不会经常改变的</li>
-
-          <li>对多位脚本作者有帮助的</li>
-
-          </ul> <p>目前的白名单包括：</p> %{allowed_require_list} <p>如果您尝试发布的一个脚本用 <code>@require</code>包含了此名单之外的外部脚本，您将无法保存您的脚本。</p>
-          <p>如果您想加载的外部脚本是一个 JavaScript 库（例如 jQuery 或者 YUI），请访问上面列出的网站，看看是否能找到它的链接。%{cdnjs_link:cdnjs}
-          和 %{jsdelivr_link:jsDelivr} 提供了大量的常用库。</p> <p>如果以上网站均没有您想引用的外部脚本，请%{contact_link:告知我们}，以便我们查找它的链接（乃至我们自己托管）。</p>
-          <p>如果您想包含的脚本是你自己写的，你可以在 %{site_name} 上将它提交为一个单独的项目，选择“库”作为它的类型，然后你就可以在你的脚本中引入自己发布的这个库了。</p>
       test_url:
-        label: 测试一个 URL
         result_ok: URL 允许使用
         result_not_ok: URL 不允许使用
     script_rewriting:
@@ -1133,6 +1113,9 @@ zh-CN:
     description: "搜索 %{site_name} 上的用户脚本。"
     long_name: "%{site_name} 用户脚本搜索"
     attribution: "脚本作者保留所有权利，详见各脚本许可协议"
+  importing:
+    title: 导入脚本
+    submit: 导入
   mailers:
     script_report:
       report_created_offender:

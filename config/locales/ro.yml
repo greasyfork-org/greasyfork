@@ -331,7 +331,6 @@ ro:
           description_html: Acest script conține un cryptominer care va <b>folosi resursele device-ului tău</b> cand este activ.
         referral-link:
           title: Link-uri de afiliere
-          description_html: Acest script va <b>modifica link-uri</b> pentru a include refferal sau coduri de afiliere.
       install_anyway: Instalează script
       cancel_install: Anulează
     badges:
@@ -639,7 +638,6 @@ ro:
       description: "O descriere despre ce face scriptul. Se va vedea sub formă de text sub numele lui. Necesar."
       description_localized_html: "Numele scriptului într-o locală specifică, unde XX este un <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">cod 2 de literă ISO639-1 </a> și YY este opțional 2<a href=\"https://www.iso.org/obp/ui/#search\">codul de țara ISO 3166</a>. Suprascrie <code>@descrierea</code> unde utilizatorul răsfoiește o locală identică."
       namespace_html: "O combinație de <code>@namespace</code> și <code>@nume</code> sunt folosite de managerul de scripturi pentru a putea vedea dacă un script este instalat. Site-ul %{site_name} are nevoie de aceste informații și va anunța dacă acestea s-au schimbat sau actualizat."
-      version_html: "Identificatorul pentru o versiune specifica a scriptului in <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">format de versiune pentru Mozzila</a>.  Versiunea este scrisă pe pagina scriptului. Site-ul %{site_name} necesită acesta informație și va anunța daca este descrescătoare sau dacă nu este crescută când codul scriptului se schimbă."
       include_html: "Descrie pe ce pagini va rula scriptul. Lista va fi procesată, scrisă pe pagina de informații a scriptului și utilizată să adauge scriptul într-o categorie. Fiecare script trebuie să aibă măcar o <code>@asemanare</code> sau <code>@includere</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Citește despre acest format aici.</a>"
       require_html: "Include JavaScript extern în script. Vezi %{external_script_link}."
       require_external_script_link_text: "reguli de cod incluzând scripturile externe"
@@ -677,44 +675,7 @@ ro:
       reporting: Dacă observi un script care nu respectă acești parametri, te rog să-l raportezi pe link-ul de pe pagina de Păreri al scriptului și alege opțiunea de "Raportează script".
     external_scripts:
       title: "Politicile site-ului %{site_name} despre scripturile externe"
-      content_html: >
-          <p>Script-urile ale utilizatorului au abilitatea tehnică de a încărca și
-          executa alte scripturi. Cheia metadata de pe %{require_doc_link:<code>@require</code>}
-          este cea mai ușoară metodă de a face asta, dar scripturile pot și, de exemplu,
-          să folosească un XmlHttpRequest pentru a descărca un script și apoi de a-l
-          injecta in DOM.</p> <p>Deși asta este o caracteristică folositoare si mulți
-          autori o folosesc cu motive legitime, poate fi folosit și în mod dăunator.
-          Unul dintre principiile de bază de pe site-ul %{site_name} este ca utilizatorii
-          să poată inspecta codul unui script. Script-urile externe pot sări peste
-          el cu tot felul de metode: pot schimba fară avertisment sau istoric, pot
-          servii cod diferit la diferiți utilizatori, și pot fi folosite să ascundă
-          cod dăuntor în librării cunoscute. Chiar dacă ar fi ca cineva să verifice
-          scripturile externe, și să determine că este legitim, nu este nici o garantare
-          că mereu a fost, sau va fi legitim.</p> <p>Pentru a permite utilizatorilor
-          să folosească în continuare scripturi externe, %{site_name} a implementat
-          o listă de formate URL care pot fi incluse cu un script. Lista consistă
-          in scripturi din locații care:</p> <ul>
-
-          <li>Sunt publice</li>
-
-          <li>Nu au conținutul modificat frecvent</li>
-
-          <li>Va fi de folos la mai mult de un autor</li>
-
-          </ul> <p>Lista curentă este:</p> %{allowed_require_list} <p>Dacă încerci
-          sa postezi un script care folosește un <code> @script-extern </code> înafara
-          acestor locații, nu îți vei putea salva scriptul.</p> <p>Dacă scriptul pe
-          care vrei să îl incluzi este o librărie JavaScript (de exemplu JQuerry sau
-          YUI), încearcă să o gasești pe unul din lista de site-uri de mai sus. %{cdnjs_link:cdnjs}
-          și %{jsdelivr_link:jsDelivr} in particular au o gamă variată de librării
-          valabile.</p> <p>Dacă scriptul pe care vrei să îl incluzi nu se află pe
-          unul din site-urile prezentate mai sus, %{contact_link:spune-ne} și vom
-          găsi undeva unde este (sau chiar să îl găzduim noi!).</p> <p>Daca scriptul
-          pe care vrei să îl incluzi este scris de tine îl poți posta separat pe %{site_name}
-          prin a alege tipul scriptului ca Librărie. O să poți include această librarie
-          postatâ în scriptul tău.
       test_url:
-        label: Testează un URL
         result_ok: URL-ul este permis
         result_not_ok: URL-ul nu este permis
     script_rewriting:

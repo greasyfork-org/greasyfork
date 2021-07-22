@@ -423,7 +423,6 @@ uk:
       description: "Опис того, що робить скрипт. Показано як текст під назвою скрипта. Обов'язкове поле."
       description_localized_html: "Опис скрипта в певній мові, де XX <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-х літерний код</a>, а YY додатковий <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 код країни</a>. Заміняє <code>@description</code>, коли користувач перемикає на відповідну мову."
       namespace_html: "Поєднання <code>@namespace</code> і <code>@name</code> використовується менеджерами скриптів користувачів, щоб побачити, чи вже встановлений скрипт. Для %{site_name} важливі ці області і буде попереджати, якщо вони змінились при оновленні."
-      version_html: "Ідентифікатор для конкретної версії скрипта в <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">форматі версій Mozilla</a>. Версія відображається на інформаційній сторінці скрипта. %{site_name} потрібно це поле і буде попереджати, якщо воно зменшується або, якщо не збільшуватись при змінах в коді скрипта."
       require_html: "Скрипт приєднує до себе зовнішній JavaScript. Прочитайте %{external_script_link}."
       require_external_script_link_text: "правила для коду, що приєднує зовнішні скрипти"
       updateURL: "Опишіть, як менеджери скриптів користувачів повинні отримувати оновлення. %{site_name} очистить ці поля, щоб змусити будь-який сценарій, встановлений з %{site_name} оновлюватись з %{site_name}."
@@ -443,8 +442,6 @@ uk:
       code_header: Код
     external_scripts:
       title: "Політика %{site_name}'у щодо зовнішніх сценаріїв"
-      test_url:
-        label: Протестувати URL
     script_rewriting:
       title: "Як %{site_name} буде переписувати опубліковані скрипти"
     site_feedback_link: "Повідомити про Проблему або Побажання на %{site_name}"

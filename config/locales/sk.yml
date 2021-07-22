@@ -366,7 +366,6 @@ sk:
           description_html: Tento skript obsahuje kryptominer, ktorý využíva zdroje vášho zariadenia v čase jeho aktivity.
         referral-link:
           title: Referral odkazy
-          description_html: Tento skript <b>prepíše odkazy</b> a doplní do nich refferal alebo affiliate kód.
         membership:
           title: Členstvo
           description_html: Tento skript je plne funkčný iba po </b>prihlásení k niečomu</b>, ako pridanie sa do skupiny, prihlásenie ku kanálu, alebo lajknutie stránky.
@@ -703,7 +702,6 @@ sk:
       description: "Popis funkcie skriptu. Zobrazuje sa ako text pod názvom skriptu. Povinné."
       description_localized_html: "Popis skriptu vo vybranom jazyku, kde XX je <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-znakový kód</a> a YY je voliteľný <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 kód krajiny</a>. Ignoruje <code>@description</code> ak používateľ prehliada vo vybranom jazyku."
       namespace_html: "Kombinácia <code>@namespace</code> a <code>@name</code> sa používa správcami skriptov na to, aby zistili, či je už skript nainštalovaný. %{site_name} vyžaduje toto pole a upozorní ak sa zmení po aktualizácii."
-      version_html: "Identifikátor pre konkrétnu verziu skriptu vo <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">formáte Mozilla version format</a>. Verzia sa zobrazí na stránke skriptu. %{site_name} vyžaduje toto pole a upozorní, ak sa zníži alebo ak sa nezvýši pri zmene kódu skriptu."
       include_html: "Vypíšte stránky, na ktorých skript pobeží. Tento zoznam bude spracovaný, zobrazený na stránke skriptu a použitý na kategorizovanie skriptu. Každý skript musí mať aspoň jeden kľúč<code>@match</code> alebo <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">O formátoch si prečítajte tu.</a>"
       require_html: "Skript obsahuje externý JavaScript. Pozri %{external_script_link}."
       require_external_script_link_text: "pravidlá pre kód obsahujúci externé skripty"
@@ -744,42 +742,7 @@ sk:
       reporting: Ak spozorujete skript, ktorý nespĺňa tieto parametre, nahláste ho kliknutím na odkaz Spätná väzba pre tento skript a vyberte  možnosť "Nahlásiť skript".
     external_scripts:
       title: "Zásady %{site_name} používania externých skriptov"
-      content_html: >
-          <p>Používateľské skripty majú schopnosť načítať a vykonať ďalšie skripty.
-          %{require_doc_link:<code>@require</code>} Kľúč metadát je najjednoduchší
-          spôsob, ako to dosiahnuť, ale skripty tiež môžu, napríklad, použiť XmlHttpRequest
-          pre stiahnutie skriptu a vložiť do DOM.</p> <p>Ak keď je to užitočná vlastnosť
-          a väčšina autorov skriptov ju používa na legitímne účely, ale tiež môže
-          byť zneužitá na podvod. Jedným zo základných princípov %{site_name} je,
-          že používateľ musí mať možnosť skontrolovať kód v skripte. Externé skripty
-          môžu obchádzať tento princíp niekoľkým spôsobmi: môžu zmeniť históriu bez
-          upozornenia, vykonávať rôzny kód pre rôznych používateľov a môžu byť použité
-          na skrytie podvodného kódu vo vnútri známych knižníc. Aj keď niekto skontroluje
-          externý skript a prehlási ho za legitímny, to nie je garancia, že skript
-          bude vždy legitímny.</p> <p>Ak chcete umožniť autorom skriptov, aby aj naďalej
-          používali externé skripty, %{site_name} môže implementovať biely zoznam
-          vzorov URL, ktoré môžu byť priložené k skriptu. Tento biely zoznam obsahuje
-          umiestenia, ktoré:</p> <ul>
-
-          <li>Sú verejné</li>
-
-          <li>Ich obsah sa často nemení</li>
-
-          <li>Môže ich využiť viacero autorov</li>
-
-          </ul> <p>Aktuálny zoznam je:</p> %{allowed_require_list} <p>Ak sa pokúsite
-          pridať skript, ktorý používa <code>@require</code> mimo týchto umiestnení,
-          nebudete môcť skript uložiť.</p> <p>Ak skript, ktorý chcete priložiť je
-          JavaScriptová knižnica (napríklad  jQuery alebo YUI), skúste ju nájsť na
-          jednom z umiestnení uvedených vyššie. %{cdnjs_link:cdnjs} a %{jsdelivr_link:jsDelivr}
-          majú k dispozícii obzvlášť širokú škálu knižníc.</p> <p>Ak skript, ktorý
-          chcete priložiť sa nenachádza na vyššie uvedenom zozname, %{contact_link:dajte
-          nám vedieť} a môžeme ho niekde nájsť (alebo umiestniť na našom serveri!).</p>
-          <p>Ak skript, ktorý chcete priložiť ste napísali Vy, môžete ho poslať ako
-          samostatnú položku na %{site_name} vybraním typu skriptu "Knižnica". Potom
-          budete môcť priložiť túto knižnicu do vášho skriptu.</p>
       test_url:
-        label: Skúška adresy URL
         result_ok: Adresa URL je povolená
         result_not_ok: Adresa URL nie je povolená
     script_rewriting:

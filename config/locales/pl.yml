@@ -346,7 +346,6 @@ pl:
           description_html: Ten skrypt zawiera koparkę kryptowalut, która <b>wykorzystuje zasoby twojego urządzenia</b> podczas aktywności.
         referral-link:
           title: Linki partnerskie
-          description_html: Ten skrypt <b>modyfikuje linki</b> na odwiedzanych stronach, dodając do nich kody programów afiliacyjnych i partnerskich.
       install_anyway: Zainstaluj skrypt
       cancel_install: Anuluj
     badges:
@@ -665,7 +664,6 @@ pl:
       description: "Opis funkcji skryptu.  Wyświetlany jako tekst pod nazwą skryptu. Wymagane."
       description_localized_html: "Opis w specyficznym języku, gdzie XX oznacza <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\"> kod dwuliterowy ISO 639-1 </a>, a YY jest opcjonalnym <a href=\"https://www.iso.org/obp/ui/#search\"> kodem kraju ISO 3166 </a>.  Zastępuje <code>@description</code>, kiedy użytkownik przegląda z wybranym językiem."
       namespace_html: "Kombinacja <code>@namespace</code> i <code>@name</code> jest używana przez menedżerów skryptów użytkownika aby sprawdzić czy skrypt został już zainstalowany. %{site_name} wymaga tego pola i będzie ostrzegać jeżeli zostanie zmienione przy aktualizacji."
-      version_html: "Identyfikator dla specyficznej wersji skryptu w <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">formacie wersji Mozilli</a>. Wersja jest wyświetlana na stronie informacyjnej skryptu. %{site_name} wymaga tego pola i będzie ostrzegać jeżeli zostanie zmniejszone lub nie zostanie powiększone po zmianach w kodzie skryptu."
       include_html: "Określa, na jakich stronach zostanie uruchomiony dany skrypt. Ich lista zostanie wyświetlona na stronie listingu skryptu, oraz użyta do ich kategoryzacji. Każdy skrypt musi posiadać co najmniej jedną deklarację <code>@match</code> lub <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Więcej informacji o wymaganym formacie znajdziesz tutaj.</a>"
       require_html: "Zawiera zewnętrzny JavaScript w skrypcie. Zobacz %{external_script_link}."
       require_external_script_link_text: "zasady dla kodu zawierającego zewnętrzne skrypty"
@@ -705,42 +703,7 @@ pl:
       reporting: Jeśli zauważysz skrypt, który nie przestrzega wyżej wymienionych zasad, zgłoś go na stronie skryptu, przechodząc na podstronę Opinie, a następnie klikając "zgłoś ten skrypt".
     external_scripts:
       title: "Polityka %{site_name} dot. zewnętrznych skryptów"
-      content_html: >
-          <p>Skrypty użytkownika mają techniczną możliwość do ładowania i wykonywania
-          innych skryptów. Klucz metadanych %{require_doc_link:<code>@require</code>}
-          jest najprostszym sposobem, by to osiągnąć, lecz skrypty także mogą na przykład
-          użyć XmlHttpRequest do pobrania skryptu i wstrzyknięcia go w DOM.</p> <p>Mimo
-          że jest to przydatna funkcja i większość autorów skryptów używa jej do uzasadnionych
-          celów, może być również użyta złośliwie. Jedną z głównych zasad %{site_name}
-          jest to, że użytkownik powinien mieć możliwość sprawdzenia kodu skryptu.
-          Zewnętrzne skrypty mogą ominąć tę zasadę na kilka sposobów: mogą się zmieniać
-          bez żadnego ostrzeżenia i śladu, mogą udostępniać inny kod dla innych użytkowników
-          oraz mogą być użyte do ukrycia złośliwego kodu w znanych bibliotekach. Nawet
-          jeśli ktoś sprawdził zewnętrzny skrypt i uważa, że nie ma w nim nic nieprawidłowego,
-          to nie znaczy, że zawsze tak będzie.</p> <p>Aby umożliwić autorom skryptów
-          dalsze używanie zewnętrznych skryptów, %{site_name} zaimplementowało białą
-          listę wzorców adresów URL, które mogą być zawarte w skrypcie. Lista zawiera
-          lokalizacje skryptów, które:</p> <ul>
-
-          <li>Są publiczne</li>
-
-          <li>Nie będą często zmieniać ich zawartości</li>
-
-          <li>Będą prawdopodobnie przydatne więcej niż jednemu autorowi skryptu</li>
-
-          </ul> <p>Obecna lista:</p> %{allowed_require_list} <p>Jeśli spróbujesz opublikować
-          skrypt, który używa <code>@require</code> spoza tej listy, nie będziesz
-          w stanie zapisać skryptu.</p> <p>Jeśli skrypt, który chcesz dołączyć, jest
-          biblioteką JavaScript (na przykład jQuery lub YUI), spróbuj znaleźć ją na
-          wyżej wymienionych stronach. W szczególności %{cdnjs_link:cdnjs} i %{jsdelivr_link:jsDelivr}
-          mają szeroki wybór dostępnych bibliotek.</p> <p>Jeśli skrypt, który chcesz
-          dołączyć, nie jest dostępny na powyższych stronach, %{contact_link:daj nam
-          znać}, a spróbujemy go znaleźć (lub zamieść go sam!).</p> <p>Jeśli skrypt,
-          który chcesz dołączyć, jest napisany przez ciebie, możesz go zamieścić na
-          %{site_name} jako oddzielny wpis, wybierając typ skryptu "Biblioteka". Następnie
-          możesz dołączyć tę bibliotekę do skryptu.</p>
       test_url:
-        label: Testuj adres URL
         result_ok: URL jest dozwolony
         result_not_ok: URL jest niedozwolony
     script_rewriting:

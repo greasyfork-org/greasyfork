@@ -342,7 +342,6 @@ pt-BR:
           description_html: Este script contém um minerador de criptomoedas que irá <b>usar os recursos do seu dispositivo</b> quando ativado.
         referral-link:
           title: Links de referência
-          description_html: Este script irá <b>reescrever links</b> para incluir uma referência ou código de afiliado.
       install_anyway: Instalar script
       cancel_install: Cancelar
     badges:
@@ -650,7 +649,6 @@ pt-BR:
       description: "Uma descrição do que o script faz. Mostrado como texto sob o nome de script. Requerido."
       description_localized_html: "A descrição do script em um idioma específico, onde XX é um <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">código de caracter ISO 639-1 2</a> e YY é um <a href=\"https://www.iso.org/obp/ui/#search\">código de país ISO 3166</a>, opcional. Substitui <code>@description</code> quando o usuário estiver navegando em um idioma correspondente."
       namespace_html: "É usada uma combinação de <code>@namespace</code> e <code>@name</code> pelos gerenciadores de scripts de usuário para verificar se o script já está instalado. %{site_name} requer este campo e irá informar se não sofreu nenhuma mudança na atualização."
-      version_html: "Identificador para uma versão específica de um script em <a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">formato de versão do Mozilla</a>. A versão é exibida na página de informações do script. %{site_name} requer este campo e irá informar se estiver decrementado ou se não estiver incrementado quando o código do script mudar."
       include_html: "Descreve em quais páginas o script irá rodar. Esta lista será processada, exibida na página de informações do script e utilizada para categorizar os scripts. Todo script deve ter ao menos uma chave <code>@match</code> ou <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Leia sobre o formato aqui.</a>"
       require_html: "Incluir JavaScript externo em um script. Ver %{external_script_link}."
       require_external_script_link_text: "Política do %{site_name} sobre scripts externos"
@@ -688,45 +686,7 @@ pt-BR:
       reporting: Caso você encontre um script que fuja desses parâmetros, por favor reporte-o através do link de feedback daquele script e escolha a opção "Reportar script".
     external_scripts:
       title: "Política em scripts externo do %{site_name}"
-      content_html: >
-          <p>Scripts de usuário possuem a capacidade técnica de carregar e executar
-          outros scripts. A chave de meta dados %{require_doc_link:<code>@require</code>}
-          é a maneira mais direta de fazer isso, mas os scripts também podem, por
-          exemplo, usar um XmlHttpRequest para baixar um script ou então injetá-lo
-          no DOM.</p> <p>Da mesma forma que isso é uma ferramenta útil e a maioria
-          dos autores de scripts a usem para propósitos legítimos, também pode ser
-          usada para fins maliciosos. Um dos princípios do %{site_name} é que o usuário
-          deve poder inspecionar o código de um script. Scripts externos podem não
-          cumprir este princípio de diversas maneiras: eles podem mudar sem aviso
-          ou histórico, podem servir para diferentes códigos de diferentes pessoas,
-          e podem ser usados para esconder códigos maliciosos entre bibliotecas conhecidas.
-          Mesmo se alguém checar um script externo e determinar que ele é legítimo,
-          isso não garantirá que esse script sempre tenha sido ou sempre será legítimo.</p>
-          <p>Para permitir que autores de script continuem usando scripts externos,
-          o %{site_name} implementou uma lista de padrões de URL permitidas que podem
-          ser incluídas com um script. Essa lista consiste em scripts vindos de locais
-          que:</p> <ul>
-
-          <li>São públicos</li>
-
-          <li>Não tem seu conteúdo atualizado com frequência</li>
-
-          <li>São úteis para mais de um autor de scripts</li>
-
-          </ul> <p>A lista atual é:</p> %{allowed_require_list} <p>Se você tentar
-          publicar um script que usa um <code>@require</code> de fora desses lugares,
-          você não conseguirá salvar seu script.</p> <p>Se o script que você deseja
-          incluir é uma biblioteca JavaScript (jQuery ou YUI, por exemplo), tente
-          encontrá-la em um dos sites listados acima. %{cdnjs_link:cdnjs} e %{jsdelivr_link:jsDelivr}
-          em particular possuem um grande número de bibliotecas disponíveis.</p> <p>Se
-          o script que você deseja incluir não estiver disponível nos sites acima,
-          %{contact_link:fale conosco} e iremos encontrar algum outro lugar em que
-          ela esteja (ou a hospedarmos nós mesmo!).</p> <p>Se o script que deseja
-          incluir foi escrito por você, você pode enviá-lo como um script separado
-          no %{site_name} escolhendo o tipo de script "Biblioteca". Com isso você
-          poderá incluir esta nova biblioteca no seu script.</p>
       test_url:
-        label: Testar uma URL
         result_ok: A URL é permitida
         result_not_ok: A URL não é permitida
     script_rewriting:

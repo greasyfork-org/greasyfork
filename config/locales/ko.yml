@@ -358,7 +358,6 @@ ko:
           description_html: 이 스크립트는 활성화 시 <b>컴퓨터 자원을 소모하는</b> 암호화폐 채굴을 포함하고 있습니다.
         referral-link:
           title: 초대 링크
-          description_html: 이 스크립트는 초대나 제휴 목적의 코드로 <b>링크를 수정합니다</b>.
         membership:
           title: 멤버십
           description_html: 그룹에 가입하거나, 채널을 구독하거나, 페이지에 추천을 하는 등 <b>어딘가 에 등록</b>해야 스크립트를 제한없이 쓸 수 있습니다.
@@ -659,7 +658,6 @@ ko:
       description: "스크립트가 뭐 하는지에 대한 설명. 스크립트 이름 아래에서 텍스트로 보여집니다. 필수."
       description_localized_html: "지정된 로케일에서의 스크립트 설명입니다, XX는 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-letter code</a>이며 YY는 필수가 아닌 선택으로, <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 country code</a>입니다. 유저가 해당 로케일에서 보고 있을 시 <code>@description</code>는 무시됩니다.."
       namespace_html: "<code>@namespace</code>와 <code>@name</code>의 조합은 스크립트가 이미 설치됬 을 시에 유저스크립트 매니저에서 사용됩니다. Greay Fork는 %{site_name}에서는 이 필드는 필수이며, 업데이트시에 변경됬을 시 경고합니다."
-      version_html: "<a href=\"https://developer.mozilla.org/en/docs/Toolkit_version_format\">모질라 번역 포맷</a>을 준수하는 해당 스크립트 버전의 식별자입니다. 버전은 스크립트 정보 페이지에서 표시됩니다. %{site_name}에서 이 필드는 필수이며 스크립트 코드가 변경 됬을때 줄어들거나 늘지 않았을 때 경고됩니다."
       include_html: "어떤 페이지에서 스크립트가 동작할지 나타냅니다. 스크립트 정보 페이지에 이 필드가 보이고 스크립트를 분류하는 데도 씁니다. 스크립트는 <code>@match</code>나 <code>@include</code>가 적어도 하나 이상 있어야 합니다. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">양식은 여기를 참고하세요</a>."
       require_html: "스크립트에 외부 JavaScript를 포함시킵니다. %{external_script_link}를 확인하세요."
       require_external_script_link_text: "외부 스크립트를 포함하는 코드에 대한 규칙"
@@ -700,29 +698,6 @@ ko:
       reporting: 만약 이 조항들을 위반하는 스크립트를 발견하면 스크립트의 피드백 탭에서 스크립트를 신고해주세요.
     external_scripts:
       title: "%{site_name}의 외부 스크립트 정책"
-      content_html: >
-          <p>유저 스크립트는 기술적으론 다른 스크립트를 불러와 실행할 수 있습니다. %{require_doc_link:<code>@require</code>}
-          메타 정보는 가장 대표적인 방법이지만 예를 들어 XmlHttpRequest로 스크립트를 다운로드 해 DOM에 주입할 수도 있습니다.</p>
-          <p>이건 유용하고 개발자 대부분은 떳떳한 목적으로 사용하지만 악용될 수도 있습니다. %{site_name}의 핵심 원칙 중 하나는
-          사용자가 스크립트 코드를 조사할 수 있어야 한다는 겁니다. 외부 스크립트는 이 원칙을 여러 가지로 우회할 수 있습니다. 경고나 이력
-          없이 바뀔 수 있고, 사용자마다 다른 코드가 전달될 수 있고, 유명한 라이브러리 안에 악성 코드를 심는 데에 활용될 수도 있습니다.
-          누군가 외부 스크립트가 문제가 없다고 판단했어도 그 스크립트가 항상 문제가 없을 거란 보장은 없습니다.</p> <p>개발자가 외부
-          스크립트를 사용하는 걸 허용하기 위해 %{site_name}는 스크립트가 포함할 수 있는 URL 패턴 목록을 제공합니다. 이 목록은
-          아래와 같은 배포처로 구성되었습니다.</p> <ul>
-
-          <li>공개적이고</li>
-
-          <li>내용 변경이 그다지 없고</li>
-
-          <li>여러 개발자에게 유용해 보이는 곳</li>
-
-          </ul> <p>아래는 현재 목록입니다.</p>%{allowed_require_list}<p>이 목록 외에서 <code>@require</code>를
-          사용하는 스크립트를 업로드하면 막힐 것입니다.</p> <p>(jQuery나 YUI같은) 라이브러리를 포함하길 원한다면 위 사이트
-          목록에서 찾아보세요, %{cdnjs_link:cdnjs}나 %{jsdelivr_link:jsDelivr}는 특히 다양한 라이브러리를
-          제공합니다.</p> <p>만약 포함하려는 스크립트가 위 목록의 사이트에서 쓸 수 없다면 %{contact_link:운영자에게 연락}해서
-          그 스크립트가 어디 있는지 알려주세요. (직접 호스팅할 수도 있겠죠!) </p> <p>만약 포함하려는 스크립트가 직접 작성한 거라면
-          %{site_name}에 "라이브러리" 타입을 골라 별개로 업로드할 수 있습니다. 그러면 이 업로드한 라이브러리를 스크립트에서 쓸
-          수 있겠죠.</p>
     credits:
       title: "제작자"
       authors_credit: "만약 스크립트를 기여해주는 개발자분들이 없어진다면, %{site_name}는 사라질 겁니다."
