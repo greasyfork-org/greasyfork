@@ -977,6 +977,7 @@ CREATE TABLE `allowed_requires` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `url` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `comment` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -2200,6 +2201,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20210718002238'),
 ('20210720001120'),
 ('20210720001211'),
-('20210720001400');
+('20210720001400'),
+('20210722011850');
 
 

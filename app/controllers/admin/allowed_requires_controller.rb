@@ -39,7 +39,7 @@ module Admin
     private
 
     def allowed_require_params
-      params.require(:allowed_require).permit(:name, :url, :pattern)
+      params.require(:allowed_require).permit(:name, :url, :pattern, :comment)
     end
   end
 end

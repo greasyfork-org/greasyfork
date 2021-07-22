@@ -12,6 +12,9 @@
         <td>
           <code><%= ar.pattern %></code>
         </td>
+        <td>
+          <%= ar.comment %>
+        </td>
         <% if current_user&.administrator? %>
           <td>
             <%= link_to 'Edit', edit_admin_allowed_require_path(ar) %>
