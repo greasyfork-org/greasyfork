@@ -18,7 +18,7 @@ ko:
     ratings: "평점"
     author_name: "개발자"
     version_number: "버전"
-    license: "라이센스"
+    license: "라이선스"
     no_license: "없음"
     compatibility: "호환성"
     compatible_with_browser: "%{browser}와 호환됨."
@@ -88,7 +88,7 @@ ko:
       update_locale: "로케일 변경"
       no_moderator_logs: "관리자 조치 이력이 없습니다."
       compare_title: "다른 스크립트와 비교"
-      compare_to: "(URL)과 비교할 %{site_name} 스크립트"
+      compare_to: "비교할 %{site_name} 스크립트 URL:"
       compare_button: "비교"
       compare_must_be_local_url: "비교할 스크립트는 %{site_name}의 URL이어야 합니다."
     history_title: "%{script_name} - 버전 기록"
@@ -190,10 +190,10 @@ ko:
     locale_auto_select: "(자동으로 감지)"
     sets_label: "포함된 스크립트 모음:"
     sets_label_no_sets: "스크립트 모음:"
-    sets_remove_inclusion: "${set_name}에서 제거"
-    sets_remove_exclusion: "@{set_name}에서 제외 안 함"
+    sets_remove_inclusion: "%{set_name}에서 제거"
+    sets_remove_exclusion: "%{set_name}에서 제외 안 함"
     sets_add_inclusion: "%{set_name}에 추가"
-    sets_add_exclusion: "#{set_name}에서 제외"
+    sets_add_exclusion: "%{set_name}에서 제외"
     sets_add_to_new: "새로운 모음에 추가"
     rules_summary_html: "스크립트는 <strong>적절한 설명을 포함</strong>해야 하고, <strong>난독화</strong>나 <strong>최소화</strong>될 수 없고, 반드시 <strong>저작권</strong>을 지켜야 합니다. 또한 <strong>외부 코드</strong> 사용에 제약이 있습니다. %{full_rules_link}"
     rules_summary_link_to_full: "전체 규칙 읽기"
@@ -266,7 +266,7 @@ ko:
     learn_to_write_scripts_link_text: "작성 방법 배우기"
     feedback_or_report: "%{feedback_link:질문, 리뷰}하거나, 이 스크립트를 %{report_link:신고하세요}."
     support_feedback_or_report: "%{support_url:개발자 홈페이지를 방문하거나}, %{feedback_link:질문, 리뷰하거나}, 이 스크립트를 %{report_link:신고하세요}."
-    support_email_feedback_or_report: "%{support_url:개발자에게 이메일}을 보내거나, %{feedback_link:질문, 리뷰하거나}, 이 스크립트를 %{report_link:신고하세요}."
+    support_email_feedback_or_report: "%{support_url:개발자에게 이메일}을 보내거나, %{feedback_link:질문, 피드백하거나}, 이 스크립트를 %{report_link:신고하세요}."
     adult_content: "성인물"
     adult_content_self_report: "이 스크립트는 성인물을 포함하거나 성인 사이트에서 동작합니다."
     adult_content_self_report_explanation: "%{site_name}는 성인물이 포함된 스크립트를 허용하지만 사용자들이 필터링할 수 있도록 성인물을 포함했거나 성인 사이트에서 동작함을 표시해야 합니다."
@@ -478,17 +478,16 @@ ko:
 
         </ul>
     installing_step2_header: "2. 유저 스크립트 설치"
-    installing_step2_caption: "유저 스크립트의 설치 버튼"
+    installing_step2_caption: "유저 스크립트 설치 버튼"
     installing_step2_description_html: >
-        <p>%{browse_link:아 사이트에서 검색}해서 유용한 유저 스크립트를 찾으세요. 다음은 인기 있는 스크립트 목록입니다.</p>
+        <p>%{browse_link:사이트에서} 유용한 유저 스크립트를 찾으세요. 다음은 인기 있는 스크립트입니다.</p>
 
         %{highlighted_scripts_list}
 
-        <p>설치하고자 하는 스크립트를 찾으면 초록색의 '유저 스크립트 설치' 버튼을 누르세요. 그러면 유저 스크립트 관리자가 설치 확인을
-        요청할 것입니다.</p>
+        <p>스크립트를 찾으면 초록색의 '스크립트 설치' 버튼을 누르세요. 그러면 유저 스크립트 관리자가 설치 확인을 요청할 것입니다.</p>
     installing_step3_header: "3. 유저 스크립트 사용하기"
     installing_step3_description_html: >
-        <p>유저 스크립트의 대상 사이트로 가면 자동으로 스크립트가 작동할 것입니다. 유저 스크립트를 이용하신 후 리뷰를 남겨보세요!</p>
+        <p>유저 스크립트 동작 사이트로 가면 자동으로 스크립트가 동작합니다. 충분히 써 보시고 개발자에게 피드백을 남겨보세요!</p>
   users:
     sign_in_title: "%{site_name}에 로그인"
     sign_in_description: "%{site_name}에 로그인하면 스크립트를 업로드하고 다른 스크립트에 피드백을 남길 수 있습니다. 스크립트 검색·설치는 로그인하지 않아도 됩니다."
@@ -527,7 +526,7 @@ ko:
     remove_password_info: "비밀번호를 제거하고 단독으로 외부 로그인만 이용할 수 있습니다."
     remove_password: "비밀번호 제거"
     cant_remove_password: "비밀번호 제거 불가 - 다른 로그인 방법이 없습니다!"
-    cant_remove_sign_in: "${provider} 로그인 연결 해제 불가 - 로그인할 방법이 없어집니다!"
+    cant_remove_sign_in: "%{provider} 로그인 연결 해제 불가 - 로그인할 방법이 없어집니다!"
     password_removed: "비밀번호 제거됨."
     edit_sign_in_external: "외부 로그인"
     external_sign_in_info_no_sign_ins: "%{site_name}에 로그인하는데 다른 사이트 계정을 사용할 수 있습니다."
@@ -674,7 +673,7 @@ ko:
       contributionURL_html: "유저들이 스크립트 개발자에게 기부할 수 있는 페이지의 URL입니다. 기부 URL은 스크립트의 피드백 페이지에 표시됩니다. URL들은 http, https, 또는 비토코인 프로토콜로 가능합니다. PayPal 기부 페이지로 링크하려면, <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a>에서 샘플 이메일을 당신의 이메일로 바꾼 URL을 사용합시요."
       contributionAmount_html: "추천하는 기부금 가격입니다, <code>@contributionURL</code>과 결합하여 사용합니다."
       compatible_html: "이 스크립트가 어느 브라우저랑 호환됨을 표시합니다. 호환성 정보는 스크립트 페이지에 표시됩니다. 호환성에 관한 주석은 <code>@copmatible firefox 팝업 차단을 반드시 해제해야 함</code>의 형식에 맞춰 포함 될 수 있습니다. 인식되는 브라우저들은 다음과 같습니다: %{browsers}."
-      incompatible_html: "이 스크립트가 어느 브라우저랑 호환되지 않음을 표시합니다. 호환성 정보는 스크립트 페이지에 표시됩니다. 선택적으로, <code>@incompatible firefox 23 버전부터 작동 안됨</code>의 형식에 맞추어 호환성에 대한 주석을 포함할 수 있습니다. 인식되는 브라우저들은 다음과 같습니다: @{browsers}."
+      incompatible_html: "이 스크립트가 어느 브라우저랑 호환되지 않음을 표시합니다. 호환성 정보는 스크립트 페이지에 표시됩니다. 선택적으로, <code>@incompatible firefox 23 버전부터 작동 안됨</code>의 형식에 맞추어 호환성에 대한 주석을 포함할 수 있습니다. 인식되는 브라우저들은 다음과 같습니다: %{browsers}."
       antifeature_html: |
           사용자가 아니라 개발자에게 이득인 기능을 명시합니다. 형식은 <code>@antifeature 종류 설명</code>입니다. <i>종류</i>는 필수고 <i>설명</i>은 선택입니다. %{site_name}가 지원하는 <i>종류</i>는 %{antifeatures_link:여기를 봐주세요}.
       antifeature_localized_html: "특정 언어로 설명한 <code>@antifeature</code>입니다. XX는 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2문자 코드</a>고 YY는 선택 사항인 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 지역 코드</a>입니다. 사용자 로케일이 일치할 때 같은 종류의 <code>@antifeature</code>를 덮어씁니다."
@@ -685,7 +684,7 @@ ko:
       user_page_link_text: '유저 페이지'
       post_new_script_link_text: '새로운 스크립트 게시'
     code_rules:
-      title: "%{site_name}업로드 규칙"
+      title: "%{site_name} 업로드 규칙"
       preamble: 다음은 %{site_name}에 업로드되는 스크립트에 관한 요구사항입니다. %{site_name}를 유저 스크립트 관리에 안전하고 유용하게 만드는 것을 목표로 합니다. 이 요구사항을 지키지 못하는 스크립트는 %{site_name} 관리자가 삭제할 수 있습니다.
       functionality_header: 기능
       description: 스크립트는 뭘 하는지에 대한 설명을 반드시 포함해야 하고 이 설명을 이유없이 벗어나는 행위를 하면 안 됩니다. 사용자는 스크립트를 설치하기 전에 이 스크립트가 뭘 할지 알아야 합니다.
@@ -1009,12 +1008,12 @@ ko:
     reported_user_activity_html: "%{user} (신고된 사용자)의 행동:"
   discussions:
     title: 게시판
-    comment_date: "작성: ${date}"
-    comment_edit_date: "수정: ${date}"
-    posted_by_html: "%{user} %{date}"
-    last_comment: "마지막: %{user} %{date}"
+    comment_date: "작성: %{date}"
+    comment_edit_date: "수정: %{date}"
+    posted_by_html: "%{user}님이 %{date} 게시 "
+    last_comment: "%{user}님이 %{date} 댓글"
     new_discussion_heading: "리뷰, 댓글, 질문 남기기"
-    new_discussion_submit: "댓글 작성"
+    new_discussion_submit: "스레드 열기"
     new_comment_heading: "댓글 남기기"
     new_comment_submit: "댓글 작성"
     back_to_feedback: "< %{script} 피드백"
@@ -1051,7 +1050,7 @@ ko:
       subscribed: "구독한 스레드"
     other_user_filter:
       all: "전부"
-      comments_by: "${user} 코멘트 스레드"
+      comments_by: "%{user} 코멘트 스레드"
     category_filter:
       label: 분류
       all: 전부

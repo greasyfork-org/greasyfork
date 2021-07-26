@@ -364,6 +364,7 @@ it:
           description_html: Questo script contiene un cryptominer che quando è attivo <b>userà le risorse del tuo dispositivo</b>.
         referral-link:
           title: Links di rimando
+          description_html: Questo script <b>ottiene commissioni</b> per l'autore, ad esempio riscrivendo i collegamenti o fornendo codici coupon per includere un codice di riferimento o di affiliazione.
         membership:
           title: Sottoscrizione
           description_html: Questo script è completamente funzionale solo dopo che ti <b>iscrivi per qualcosa</b>, come per unirti a un gruppo, iscriverti a un canale, o votare una pagina.
@@ -446,6 +447,7 @@ it:
       all_sites: "Tutti i siti"
       user: "Script dell'utente %{user}"
       locale: "Script in %{locale_name}"
+    new: Nuovo gruppo di script
   home:
     title: "%{site_name} - script utente sicuro e utile"
     welcome: "Benvenuto su %{site_name}, un sito per gli user script."
@@ -674,6 +676,10 @@ it:
       title: 'Come installare gli script'
     installing_user_styles:
       title: 'Come installare gli user styles'
+      content_html: |
+          <p>Alcuni scripts su %{site_name} possono essere installati come stili utente.</p>
+          <p>Gli stili utente possono essere installati con %{stylus_firefox_link:Stylus per Firefox}, %{stylus_chrome_link:Stylus per Chrome}, e %{stylus_opera_link:Stylus per Opera}.</p>
+          <p>%{styles_link:Visualizza tutti gli stili utente disponibili}</p>.
     meta_keys:
       title: "Meta key dello script lette da %{site_name}"
       intro_html: "Questa è una lista di <a href=\"http://wiki.greasespot.net/Metadata_Block\">meta key degli user script</a> che %{site_name} può leggere. Le meta key al di fuori di questa lista possono essere incluse nello script, ma non hanno effetto sull'interfaccia utente di %{site_name}."
@@ -682,6 +688,7 @@ it:
       description: "Breve descrizione dello script. Mostrata come testo semplice sotto il nome dello script. Richiesto."
       description_localized_html: "La descrizione dello script in una lingua specifica, dove XX è un <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">codice a due lettere ISO 639-1</a> e YY è un <a href=\"https://www.iso.org/obp/ui/#search\">codice Paese ISO 3166</a> facoltativo. Ha la precedenza su <code>@description</code> quando l'utente sfoglia il sito nella lingua corrispondente."
       namespace_html: "I gestori script utente utilizzano una combinazione di <code>@namespace</code> e <code>@name</code> per controllare se uno script è già installato. %{site_name} richiede questo campo ed emetterà un avviso se viene modificato durante un aggiornamento."
+      version: "Identificatore per una versione specifica di uno script nel %{version_format_link:formato versione Mozilla}. La versione è mostrata nella pagina di informazioni dello script. %{site_name} richiede questo campo e avviserà se è stato decrementato o se non è stato incrementato quando il codice dello script viene cambiato."
       include_html: "Descrivi su quali pagine lo script lavorerà. Questa lista verrà processata, mostrata sulla pagina di informazioni dello script e usata per categorizzare gli scripts. Ogni script deve avere almeno un <code>@match</code> o un <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Leggi qui per quanto riguarda il formato.</a>"
       require_html: "Include codice JavaScript esterno allo script. Guarda %{external_script_link}."
       require_external_script_link_text: "regole per codice contenente script esterni"
@@ -722,7 +729,49 @@ it:
       reporting: Se noti uno script che ricade al di fuori di questi parametri, per favore segnalalo andando sul collegamento Feedback per quello script e scegliendo l'opzione "Segnala lo script".
     external_scripts:
       title: "Politiche di %{site_name} per gli script esterni"
+      intro_html: |
+          <p>Gli script utente hanno l'abilità tecnica di caricare ed eseguire altri scripts. Questo può essere fatto in diversi modi, inclusi:</p>
+
+          <li>La chiave %{require_doc_link:<code>@require</code>} nei metadati.</li>
+          <li><code>XmlHttpRequest</code> per scaricare lo script, e poi <code>eval</code> per eseguirlo.</li>
+          <li>Aggiungendo un tag <code>&lt;script&gt;</code> dinamicamente.</li>
+
+          <p>Sebbene questa sia una funzione utile e la maggioranza degli autori di script la usino per scopi legittimi, può anche essere usata in modo malevolo. Uno dei principî di %{site_name} è che l'utente deve avere la possibilità di ispezionare il codice in uno script. Gli script esterni possono aggirare questo principio in svariati modi: possono cambiare senza avvertimenti o storico delle modifiche, possono fornire codice diverso a persone diverse, e possono essere usati per nascondere codice malevolo nel mezzo di librerie note. Anche se qualcuno controllasse uno script esterno e determinasse che è legittimo, questo non garantirebbe che lo script sia sempre stato o che sempre sarà legittimo.</p>
+      allowed_external_codes:
+        heading: Codice esterno consentito
+        content_html: |
+            <p>Per consentire agli autori degli scripts di continuare a usare scripts esterni, %{site_name} ha implementato una lista di schemi di URL consentiti che possono essere inclusi in uno script. Questa lista consiste di indirizzi di scripts che:</p>
+            <ul>
+            <li>Sono pubblici</li>
+            <li>I cui contenuti non vengono modificati spesso</li>
+            <li>Siano possibilmente utili a più di un autore di script</li>
+            </ul>
+            <p>Se lo script che vuoi includere è una libreria JavaScript (ad esempio jQuery o YUI), prova a cercarlo in uno dei siti elencati qui sotto. %{cdnjs_link:cdnjs} e %{jsdelivr_link:jsDelivr} in particolare hanno un'ampia gamma di librerie disponibili.</p>
+            <p>La lista attuale è:</p>
+            %{allowed_require_list}
+      other_allowed_codes:
+        heading: Casi speciali
+        content_html: |
+            <p>In aggiunta alla lista qui sopra, i seguenti usi sono altresì consentiti:</p>
+            <ul>
+            <li>Caricare un codice già presente su un sito per usarlo sullo stesso sito (es. usare example.com/script.js su example.com).</li>
+            <li>Caricare una risorsa esclusivamente fatta di dati, ad esempio un file JSON, senza eseguirne nessuna parte.</li>
+            </ul>
+            <p>I seguenti usi non sono invece permessi:</p>
+            <ul>
+            <li>Caricare aggiornamenti dello script da un URL esterno.</li>
+            </ul>
+      add_to_list:
+        heading: Aggiungere alla lista
+        content_html: |
+            <p>Se lo script che desideri includere non è disponibile nei siti qui sopra, %{contact_link:faccelo sapere} e potremo cercare dove si trova (o ospitarlo noi stessi!).</p>
+            <p>Se lo script che desideri includere è stato scritto da te, puoi caricarlo come una voce separata su %{site_name} scegliendo "Libreria" come tipo di script. Avrai quindi la possiblilità di includere nel tuo script questa libreria che hai pubblicato.</p>
+      enforcement:
+        heading: Applicazione delle regole
+        content_html: |
+            <p>Qualsiasi script che venga trovato a includere del codice esterno al di fuori di quanto permesso sarà soggetto all'eliminazione.</p>
       test_url:
+        label: Verifica un URL
         result_ok: L'URL è consentito
         result_not_ok: L'URL non è consentito
     script_rewriting:
@@ -1190,6 +1239,23 @@ it:
     description: "Ricerca per user script su %{site_name}."
     long_name: "ricerca user script %{site_name}"
     attribution: "Copyright degli autori degli script, vedere ogni singolo script per le licenze"
+  importing:
+    title: Importa scripts
+    intro: "%{site_name} può importare scripts che sono già caricati da altre parti, per esempio in un sistema di controllo di versione (come GitHub), un tuo server, o un altro sito che ospita scripts."
+    url_entry_label: Fornisci gli URL da cui importare, separati andando a capo. Questi dovrebbero essere URL che puntano al puro file JS o CSS.
+    sync_type_label: "Dopo l'importazione iniziale, lo/gli script(s) dovrebbero essere sincronizzati:"
+    submit: Importa
+    previously_imported:
+      heading: Scripts precedentemente importati
+      successful_entry_html: "%{script_link} - sincronizzazione %{sync_type}, ultima sincronizzazione %{last_sync_date}."
+      unknown_date: "(sconosciuta)"
+      failed_entry_html: "%{script_link} - sincronizzazione %{sync_type} , ultimo tentativo di sincronizzazione %{last_sync_attempt_date}, %{sync_error}"
+    results:
+      title: "Risultato dell'importazione"
+      success: "I seguenti scripts sono stati importati con successo:"
+      needs_description: "I seguenti scripts hanno bisogno di una descrizione per essere importati:"
+      existing: "I seguenti scripts sono già stati importati:"
+      failure: "Non è stato possibile importare i seguenti scripts:"
   mailers:
     script_report:
       report_created_offender:

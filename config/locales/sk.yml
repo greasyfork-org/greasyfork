@@ -366,6 +366,7 @@ sk:
           description_html: Tento skript obsahuje kryptominer, ktorý využíva zdroje vášho zariadenia v čase jeho aktivity.
         referral-link:
           title: Referral odkazy
+          description_html: Tento skript <b>získava províziu</b> pre autora, napríklad prepisovaním odkazov alebo poskytovaním kupónových kódov tak, aby obsahovali odkazujúci alebo pridružený kód.
         membership:
           title: Členstvo
           description_html: Tento skript je plne funkčný iba po </b>prihlásení k niečomu</b>, ako pridanie sa do skupiny, prihlásenie ku kanálu, alebo lajknutie stránky.
@@ -450,6 +451,7 @@ sk:
       all_sites: "Všetky stránky"
       user: "Skripty od používateľa %{user}"
       locale: "Skripty v %{locale_name}"
+    new: Nový zbierka skriptov
   home:
     title: "%{site_name} - bezpečné a užitočné používateľské skripty"
     welcome: "Vitajte na %{site_name}, stránke pre používateľské skripty."
@@ -702,6 +704,7 @@ sk:
       description: "Popis funkcie skriptu. Zobrazuje sa ako text pod názvom skriptu. Povinné."
       description_localized_html: "Popis skriptu vo vybranom jazyku, kde XX je <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-znakový kód</a> a YY je voliteľný <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 kód krajiny</a>. Ignoruje <code>@description</code> ak používateľ prehliada vo vybranom jazyku."
       namespace_html: "Kombinácia <code>@namespace</code> a <code>@name</code> sa používa správcami skriptov na to, aby zistili, či je už skript nainštalovaný. %{site_name} vyžaduje toto pole a upozorní ak sa zmení po aktualizácii."
+      version: "Identifikátor konkrétnej verzie skriptu v jazyku vo %{version_format_link:Formát verzie Mozilla}. Verzia sa zobrazuje na informačnej stránke skriptu. %{site_name} vyžaduje toto pole a upozorní, ak je znížené alebo ak nie je zvýšené, keď sa zmení kód skriptu."
       include_html: "Vypíšte stránky, na ktorých skript pobeží. Tento zoznam bude spracovaný, zobrazený na stránke skriptu a použitý na kategorizovanie skriptu. Každý skript musí mať aspoň jeden kľúč<code>@match</code> alebo <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">O formátoch si prečítajte tu.</a>"
       require_html: "Skript obsahuje externý JavaScript. Pozri %{external_script_link}."
       require_external_script_link_text: "pravidlá pre kód obsahujúci externé skripty"
@@ -742,7 +745,50 @@ sk:
       reporting: Ak spozorujete skript, ktorý nespĺňa tieto parametre, nahláste ho kliknutím na odkaz Spätná väzba pre tento skript a vyberte  možnosť "Nahlásiť skript".
     external_scripts:
       title: "Zásady %{site_name} používania externých skriptov"
+      intro_html: |
+          <p>Používateľské skripty majú technickú schopnosť načítať a vykonávať iné skripty. To možno vykonať niekoľkými rôznymi spôsobmi a to: </p>
+          <ul>
+          <li>Metadátový kľúč %{require_doc_link:<code>@require</code>}.</li>
+          <li><code>XmlHttpRequest</code> na stiahnutie skriptu, potom <code>eval</code> na vykonanie.</li>
+          <li>Pridanie značky <code>&lt;script&gt;</code> dynamicky.</li>
+          </ul>
+          <p>Aj ked je to užitočná funkcia a väčšina autorov skriptov ju používa na legitímne účely, môže byť aj zneužitá. Jednou zo základných zásad %{site_name} je, že používateľ musí mať možnosť kontrolovať kód v skripte. Externé skripty môžu túto zásadu obchádzať viacerými spôsobmi: môžu sa meniť bez varovania alebo histórie, môžu slúžiť na zobrazenie rôzneho kódu rôznym ľuďom a môžu sa používať na skrývanie škodlivého kódu uprostred známych knižníc. Aj keby niekto skontroloval externý skript a určil ho ako legitímny, nebola by to žiadna záruka, že tento skript vždy bol alebo vždy bude legitímny.</p>
+      allowed_external_codes:
+        heading: Povolený externý kód
+        content_html: |
+            <p>Aby autori skriptov mohli naďalej používať externé skripty, %{site_name} zaviedol zoznam povolených vzorov URL, ktoré môžu byť súčasťou skriptu. Tento zoznam obsahuje umiestnenia skriptov, ktoré::</p>
+            <ul>
+            <li>Sú verejné</li>
+            <li>Nebude sa ich obsah často meniť</li>
+            <li>Budú pravdepodobne užitočné pre viac ako jedného autora skriptu</li>
+            </ul>
+            <p>Ak je skript, ktorý chcete zahrnúť, knižnica JavaScriptu (napríklad jQuery alebo YUI), skúste ju nájsť na niektorej z nižšie uvedených lokalít. Najmä %{cdnjs_link:cdnjs} a %{jsdelivr_link:jsDelivr} majú k dispozícii širokú škálu knižníc.</p>
+            <p>Aktuálny zoznam je nasledovný:</p>
+            %{zoznam_povolených_požiadaviek}
+      other_allowed_codes:
+        heading: Špeciálne prípady
+        content_html: |+
+            <p>Podľa vyššie uvedeného zoznamu sú povolené aj tieto spôsoby použitia:</p>
+            <ul>
+            <li>Načítanie existujúceho kódu stránky na použitie na tej istej stránke (napr. použitie example.com/script.js na stránke example.com).</li>
+            <li>Načítanie zdroja, ktorý je len dátový, napríklad súbor JSON, bez toho, aby sa čokoľvek z neho vykonalo.</li>
+            </ul>
+            <p>Nasledujúce použitia sú tiež zakázané:</p>
+            <ul>
+            <li>Načítanie aktualizácií skriptu z externej adresy URL.</li>
+            </ul>
+
+      add_to_list:
+        heading: Pridane na zoznam
+        content_html: |
+            <p>Ak skript, ktorý chcete zahrnúť, nie je dostupný na vyššie uvedených stránkach, %{contact_link:dajte nám vedieť} a my ho môžeme nájsť (alebo ho umiestniť sami!).</p>
+            <p>Ak ste skript, ktorý chcete zaradiť, napísali vy, môžete ho odoslať ako samostatnú položku na %{site_name} výberom typu skriptu "Knižnica". Potom budete môcť túto zverejnenú knižnicu zahrnúť do svojho skriptu.</p>
+      enforcement:
+        heading: Presadzovanie práva
+        content_html: |
+            <p>Akýkoľvek skript, o ktorom sa zistí, že obsahuje externý kód mimo povoleného rozsahu, bude odstránený.</p>
       test_url:
+        label: Test adresy URL
         result_ok: Adresa URL je povolená
         result_not_ok: Adresa URL nie je povolená
     script_rewriting:
