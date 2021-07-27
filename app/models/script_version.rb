@@ -345,7 +345,7 @@ class ScriptVersion < ApplicationRecord
     c = parser.get_meta_block(rewritten_code)
     return nil if c.nil?
 
-    current_version = ScriptVersion.get_first_meta(c, 'version') || '0.1'
+    current_version = ScriptVersion.get_first_meta(parser, c, 'version') || '0.1'
     return parser.inject_meta(c, { description: 'This script was deleted from Greasy Fork, and due to its negative effects, it has been automatically removed from your browser.', version: ScriptVersion.get_next_version(current_version), require: nil, icon: nil, resource: nil })
   end
 
@@ -432,8 +432,8 @@ class ScriptVersion < ApplicationRecord
   end
 
   # Returns the first meta value matching the passed code, or nil
-  def self.get_first_meta(code, meta_name)
-    meta = JsParser.parse_meta(code)
+  def self.get_first_meta(parser_class, code, meta_name)
+    meta = parser_class.parse_meta(code)
     return meta[meta_name].first if meta.key?(meta_name)
 
     return nil

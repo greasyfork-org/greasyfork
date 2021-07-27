@@ -25,8 +25,9 @@ namespace :licenses do
   desc 'update script licenses'
   task update_scripts: :environment do
     Script.find_each do |script|
-      script.update_license(ScriptVersion.parse_meta(script.script_versions.last.rewritten_code)['license']&.first)
-      script.save(validate: false)
+      sv = script.script_versions.last
+      script.update_license(sv.meta['license']&.first)
+      script.save(validate: false) if script.changed?
     end
   end
 end
