@@ -27,7 +27,7 @@
       <p id="script-description" class="script-description"><%= @script.description(request_locale) %></p>
       <% if !params[:version].nil?
         latest_version_link = link_to t('scripts.version_notice_latest_version_link'), {:version => nil} %>
-        <p id="version-note"><%= t('scripts.version_notice_html', date: @script.updated_at, latest_version_link: latest_version_link.html_safe) %></p>
+        <p id="version-note"><%= t('scripts.version_notice_html', date: markup_date(@script.updated_at), latest_version_link: latest_version_link.html_safe) %></p>
       <% end %>
       <% if (@script.pending_report_by_trusted_reporter? || @script.review_required?) && !@script.deleted? %>
         <p id="reported-note"><%= t('scripts.reported_notice_for_author') %></p>
