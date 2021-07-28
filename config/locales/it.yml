@@ -1244,6 +1244,9 @@ it:
     intro: "%{site_name} può importare scripts che sono già caricati da altre parti, per esempio in un sistema di controllo di versione (come GitHub), un tuo server, o un altro sito che ospita scripts."
     url_entry_label: Fornisci gli URL da cui importare, separati andando a capo. Questi dovrebbero essere URL che puntano al puro file JS o CSS.
     sync_type_label: "Dopo l'importazione iniziale, lo/gli script(s) dovrebbero essere sincronizzati:"
+    additional_info_html: |
+        <p>Per gli script dal controllo sorgente, assicurati che l'URL che usi si riferisca a un branch e non a uno specifico commit, alrimenti non verrà mai aggiornato. Per esempio, <code>https://bitbucket.org/username/reponame/raw/<b>branch-name</b>/script.user.js</code> piuttosto che <code>https://bitbucket.org/username/reponame/raw/<b>commit-hash</b>/script.user.js</code>.</p>
+        <p>Gli scripts importati da GitHub, Bitbucket, o GitLab possono anche essere impostati per sincronizzarsi usando un webhook. Un webhook farà sì che i tuoi scripts siano immediatamente aggiornati su %{site_name} quando li pubblichi nella tua repository. Se vuoi usare un webhook, ma non l'hai ancora impostato, fai prima l'importazione, poi %{webhook_info_link:imposta in seguito il webhook}.</p>
     submit: Importa
     previously_imported:
       heading: Scripts precedentemente importati

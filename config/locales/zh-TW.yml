@@ -57,6 +57,10 @@ zh-TW:
     delete_page: "刪除"
     delete_explanation: "若您刪除腳本，腳本將只有您以及管理員能查看。刪除後可以隨時復原。"
     delete_update_behaviour: "對於已安裝此腳本的使用者，您希望如何處理他們手中的腳本？"
+    delete_update_behaviours:
+      keep: "他們會保持原本的樣子。"
+      blanked: "當腳本對其運行的站點有負面影響時，它們將更新為空白腳本。"
+      redirect: "它們將被重定向並更新為您在下面指定的腳本。"
     delete_permanently_heading: "永久刪除"
     delete_permanently_explanation_html: >-
         <p>永久刪除您的腳本將會刪除除「討論區文章、管理員操作記錄」以外的所有資料。</p><p>您的腳本將會於 7 天後永久刪除，在此期間若反悔可取消刪除請求。但期間過後，即使是管理員也無法復原您的腳本。</p>
@@ -245,6 +249,7 @@ zh-TW:
     sync_url_placeholder: "(網址)"
     screenshots_add: "新增："
     screenshots_remove: "移除"
+    replacement_script_explanation: "(可選)選擇另一個可替代此腳本的腳本。用戶將被更新並生成到此腳本。請輸入替代腳本的網址："
     diff_title: "%{script} - 版本差異"
     diff_old_version: "之前:"
     diff_new_version: "之後:"
@@ -321,6 +326,10 @@ zh-TW:
       js: "發佈新腳本"
       css: "發佈新樣式"
     update_title: "發佈 %{script} 的新版本 "
+    install_help_dialog:
+      js:
+        firefox: 您需要先安裝一個用戶腳本管理器擴展，如 %{tampermonkey_link:Tampermonkey}、%{greasemonkey_link:Greasemonkey} 或 %{violentmonkey_link:Violentmonkey} 之後才能安裝該腳本。
+        chrome: 您需要先安装一个用户脚本管理器扩展，如 %{tampermonkey_link:Tampermonkey} 或 %{violentmonkey_link:Violentmonkey} 后才能安装该脚本。
     antifeatures:
       warning_title: 該腳本包含反功能
       author_explanation_intro: "腳本的作者解釋："
