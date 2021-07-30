@@ -225,6 +225,7 @@ tr:
     sync_type_2:
       name: Otomatik
       description: güncellemeler periyodik olarak kontrol edilecek
+    sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "Son senkronizasyon teşebbüsü %{date} oldu, %{error} ile sonuçlandı."
     sync_success_info_html: "Son başarılı senkronizasyon %{date} tarihinde yapıldı."
     sync_never_succeeded: "Hiç bir zaman başarılı senksonizasyon yapılmadı."
@@ -236,6 +237,7 @@ tr:
     sync_url_placeholder: "(URL)"
     screenshots_add: "Ekle:"
     screenshots_remove: "Kaldır"
+    replacement_script_explanation: "(İsteğe bağlı) Bu script yerine başka bir script seçin. Yerine gelecek scriptin URL'sini giriniz:"
     diff_title: "%{script} - Versiyon farkı"
     diff_old_version: "Eski:"
     diff_new_version: "Yeni:"
@@ -276,6 +278,7 @@ tr:
     search_placeholder: "Arama scriptleri"
     updated: "Betik güncellendi."
     preview_additional_info: "Önizle"
+    must_confirm: "Script paylaşabilmek için hesabınızı onaylamanız gerekmektedir. İki onaylama seçeneği bulunmakta - harici bir giriş yöntemi ekleyin veya bir onay epostası gönderin"
     must_confirm_email_button: "%{email} adresine doğrulama e-postası yolla"
     authors_heading: "Yazarlar"
     invitations:
@@ -298,6 +301,44 @@ tr:
       remove_confirm: "%{user_name}'i sahip bilgilerinden kaldırmak istediğine eminmisin?"
       failure: "Sahip bilgisi kaldırılamıyor."
     no_disposable_email: "Geçici email adresi kullanırsanız script oluşturamazsınız."
+    new_script_notice:
+      title: "Ne yapmak istiyorsunuz?"
+      install_link_html: "Bir script <b>yüklemek ve kullanmak</b> istiyorum."
+      share_link_html: "Bir script <b>yazdım</b> ve bunu diğerleriyle <b>paylaşmak</b> istiyorum. "
+    new_title:
+      js: "Yeni script paylaş"
+      css: "Yeni stil paylaş"
+    update_title: "%{script} scriptinin yeni sürümünü paylaş"
+    install_help_dialog:
+      close_dialog: Tamam
+    antifeatures:
+      warning_title: Bu script bazı istenmeyecek içerikler barındırıyor
+      author_explanation_intro: "Script sahibi şöyle açıklıyor:"
+      types:
+        ads:
+          title: Reklamlar
+          description_html: Bu script ziyaret ettiğiniz sitelere <b>reklam kodu yükler</b>.
+        tracking:
+          title: Hareket izleme
+          description_html: Bu script <b>internette gezinme hareketlerinizi izleyen</b> kod içeriyor.
+        miner:
+          title: Kripto madencilik
+          description_html: Bu script <b>cihazınızın kaynaklarını kullanarak kripto para madenciliği</b> yapan kod içeriyor.
+        membership:
+          title: Üyelik
+          description_html: Bu scriptin tüm özelliklerini kullanabilmek için <b>bir şeylere kayıt olmanız</b> gerekiyor. Örneğin bir gruba katılmak, bir kanala abone olmak veya bir sayfayı beğenmek...
+        payment:
+          title: Ücretli içerik
+          description_html: Bu scriptin tüm özelliklerini kullanabilmek için <b>ödeme yapmanız</b> isteniyor. %{site_name} ödeme işleminden sorumlu değildir, bu sebeple ödediğiniz ücretin karşılığını alacağınızın veya ücret iadesi alabileceğinizin garantisini veremiyor.
+      install_anyway: Script yükle
+      cancel_install: İptal
+    badges:
+      js:
+        short: JS
+        long: Kullanıcı scripti
+      css:
+        short: CSS
+        long: Kullanıcı görünümü
   script_sets:
     description: "Komut dizileri, Greasey Fork ile göz atmak için özelleştirilmiş bir komut listesi oluşturmanıza izin verir. Tek tek komut dosyalarını, diğer kullanıcıların kümelerini veya otomatik olarak oluşturulan setleri ekleyerek kümenize komut dosyaları ekleyebilirsiniz. Komut dosyalarını da kümenizden aynı yöntemlerle hariç tutabilirsiniz."
     favorites_name: "Favoriler"
@@ -365,6 +406,7 @@ tr:
       all_sites: "Bütün siteler"
       user: "%{user} kullanıcısı tarafından oluşturulan scriptler"
       locale: "%{locale_name} içindeki scriptler"
+    new: Yeni script seti
   home:
     title: "%{site_name} - güvenli ve kullanışlı scriptler"
     welcome: "Hoşgeldin, %{site_name} bir kullanıcı scriptleri sitesidir."
@@ -407,11 +449,13 @@ tr:
     script_list_none_same_user_html: "Sen herhangi bir script yazmamışsın. %{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "Nasıl olduğunu öğrenmek ister misin?"
     deleted_script_list: "Silinmiş scriptler"
+    unlisted_script_list: "Listelenmeyen scriptler"
     sign_out: "Oturumu kapat"
     edit: "Hesap düzenleme"
     edit_sign_in: "Oturum metodlarını düzelt"
     edit_sign_in_title: "Oturum metodlarını düzelt"
     edit_sign_in_password: "Şifre"
+    edit_notifications: "Bildirimleri düzenle"
     no_password_set_info: "Hesabın bir şifre ile yapılandırılmamış."
     set_password: "Şifre oluştur"
     update_password: "Şifre güncelle"
@@ -449,6 +493,14 @@ tr:
     listing_updated_scripts: "Güncellenmiş scriptler"
     listing_registration_date: "Kayıt tarihi"
     listing_title: "Kullanıcılar"
+    listing_banned_filter:
+      banned: "Yasaklı"
+      not_banned: "Yasaklı değil"
+      all: "Tümü"
+    listing_author_filter:
+      script_author: "Script sahibi"
+      not_script_author: "Script sahibi değil"
+      all: "Tümü"
     search_placeholder: "Kullanıcıları ara"
     locale_prompt: "(Bir yer seç)"
     show_ads_description: "%{site_name}'u reklamların görünmelerine izin vererek destekleyin"
@@ -461,6 +513,9 @@ tr:
     delete:
       intro: "Sizin %{site_name}, %{user_name}hesap silmeniz şu sonuçlara sebep olur:"
       password_effect: "Şifrenizle girişiniz artık mümkün olmayacak."
+      identities_effect:
+        one: "%{identities} ile giriş yapmak yeni bir hesap oluşturacak."
+        other: "%{identities} ile giriş yapmak yeni bir hesap oluşturacak."
       scripts_effect:
         one: "Size ait %{count} script silinecek."
         other: "Size ait %{count}scriptleriniz silinecek."
@@ -482,9 +537,33 @@ tr:
         request_expired: "Kullanıcı silinemedi - talep süresi geçti."
         cancelled: "Silme işlemi iptal edildi."
         completed: "Hesap silindi."
+    banned_notice:
+      no_report_no_reason: "Hesabınızın yasaklanmış. İsterseniz %{delete_link:hesabınızı silebilirsiniz}."
+    banned_delete:
+      complete: "Hesabınız silindi."
+    badges:
+      banned:
+        short: Yasaklı
+        long: Yasaklı
+      moderator:
+        short: Mod
+        long: Moderatör
+      author:
+        short: Sahip
+        long: Script sahibi
     notifications:
+      discussion_defaults:
+        title: Forum bildirimleri
+      save_button: Bildirim ayarlarını güncelle
       title: Bildirimler
+      save_success: Bildirim tercihleriniz güncellendi.
+      unsubscribe_all: Tüm bildirim aboneliklerinden ayrıl
+      unsubscribe_all_success: Tüm bildirim aboneliklerinden ayrıldınız.
   help:
+    sections:
+      usage: Kullanım
+      development: Geliştirme
+      miscellaneous: Çeşitli
     installing_user_scripts:
       title: 'Kullanıcı scriptleri nasıl yüklenir?'
     meta_keys:
@@ -503,8 +582,17 @@ tr:
       post_new_script_link_text: 'yeni script gönder'
     code_rules:
       title: "Gönderilmiş scriptler için %{site_name}'un kuralları"
+      functionality_header: İşlevsellik
+      code_header: Kod
+      external_js: "%{external_scripts_link:Harici JavaScript kullanımı kısıtlıdır.}"
+      copyright_header: Telif hakkı
+      miscellaneous_header: Çeşitli
     external_scripts:
       title: "%{site_name} sitesinin harici scriptlerdeki politikası"
+      allowed_external_codes:
+        heading: İzin verilen harici kodlar
+      other_allowed_codes:
+        heading: Özel durumlar
     script_rewriting:
       title: "%{site_name}, gönderilen scriptleri nasıl yeniden yazacak"
     site_feedback_link: "%{site_name} için bir sorun bildir veya birşetler söyle"
@@ -513,6 +601,7 @@ tr:
       authors_credit: "%{site_name} kod destekçileri olmadan var olamazdı."
       developers_credit: "%{site_name} scripti %{developers_link:these people}  tarafından bütün hata raporu gönderenm ve önerilen veren insanların yardımıyla yazılmıştır."
       translators_credit: "Grasy Fork, %{translators_link:Transifex çeviri sayfasından}: çevrilmiştr."
+      icons_credit: "İkon sahibi %{browserlogos}."
     help_with_greasymonkey: "Greasemonkey'de yardım"
     contact:
       title: "Birileriyle iletişime geçin"
@@ -548,6 +637,8 @@ tr:
           <h2>Third party libraries</h2> <p>%{site_name} may include third party code
           to collect statistics or display advertisements on the site. These libraries
           may include tracking logic.</p>
+    antifeatures:
+      title: İstenmeyen Özellikler
   search:
     script_search:
       title: "Script Ara"
@@ -571,9 +662,25 @@ tr:
     item_deleted_script: "Silinmiş script %{id}"
     item_user_html: "Kullanıcı: %{user_link}"
   reports:
+    name: "#%{id} şikayet et"
+    report_filed: "Şikayetiniz bir moderatör tarafından incelenecek."
     new_report_title:
       user: "Raporla"
       comment: "%{user}tarafından yapılan yorumu raporla"
+      message: "%{user} kullanıcısının mesajını şikayet et"
+      script: "%{script} scriptini şikayet et"
+    reason:
+      non_functional: "Script çalışmıyor"
+      spam: "Spam"
+      abuse: "Nefret söylemine sahip içerik"
+      illegal: "Yasadışı içerik"
+      unauthorized_code: "İzinsiz kopya"
+      malware: "Zararlı yazılım"
+      minified: "Sıkıştırılmış kod"
+      external_code: "İzin verilmeyen harici kod"
+      undisclosed_antifeature: "Belirtilmeyen %{antifeature_link:istenmeyen özellik} (örn. reklam, izleme, madencilik vs.)"
+      other: "Diğer"
+    explanation_placeholder: "İlave detaylar paylaşın (isteğe bağlı)"
     create_button: "Rapor oluştur"
     report_user: "Kullanıcı raporla"
     report_comment: "Yorum raporla"
@@ -581,31 +688,76 @@ tr:
     result_dismissed: "Bu rapor moderatör tarafından reddedildi."
     result_upheld: "Bu rapor moderatör tarafından onaylanmıştı"
     result_pending: "Bu rapor moderatör tarafından incelenmeyi bekliyor."
+    delete_script: "Scripti sil"
+    loading_diff: "Yükleniyor…"
   discussions:
     comment_date: "Gönderildi: %{date}"
     comment_edit_date: "Düzenlendi: %{date}"
+    posted_by_html: "%{user} %{date}"
+    last_comment: "Son: %{user} %{date}"
+    new_discussion_heading: "Değerlendirme, yorum veya soru paylaş"
+    new_discussion_submit: "Yorum paylaş"
+    new_comment_heading: "Cevap paylaş"
+    new_comment_submit: "Cevap paylaş"
     edit_comment_link: "Düzenle"
     edit_comment_header: "Yorumu düzenle"
     delete_comment: "Sil"
+    delete_comment_confirm: Bu yorumu silmek istediğinize emin misiniz?
     delete_discussion: "Sil"
     update_comment_submit: "Yorumu güncelle"
     cancel_update_comment: "İptal"
+    question_heading_html: "Soru/yorum"
+    review_heading_html: "Değerlendirme: %{rating}"
+    ratings:
+      question: "Değerlendirme yok - sadece bir soru, yorum veya özellik isteği var"
+      bad: "Kötü - script çalışmıyor"
+      ok: "İdare eder - script çalışıyor ama hataları var"
+      good: "İyi - script çalışıyor"
     ratings_short:
+      question: "Soru/yorum"
+      bad: "Kötü"
       ok: "Tamam"
+      good: "İyi"
+    sign_in_to_post_discussion: "Değerlendirme yapabilmek, yorum veya soru paylaşabilmek için giriş yapın."
     user_filter:
+      discussion_by_me: "Benim tarafımdan başlatılan"
+      comment_by_me: "Benim yorumlarım"
+      on_my_scripts: "Scriptlerimde"
       subscribed: "Takip edildi"
+    other_user_filter:
+      comments_by: "%{user} tarafından yorumlar"
     category_filter:
       label: Kategori
+      all: Tüm kategoriler
     read_filter:
+      label: Okunma durumu
+      all: Tümü
+      read: Okunmuş
+      unread: Okunmamış
+    locale_filter:
+      label: Dil
       all: Tümü
     user_activity:
       title: "Son yorumlar"
+      no_recent_activity: "Bu kullanıcı son zamanlarda herhangi bir yorum paylaşmadı."
+      see_all_activity: "Tüm kullanıcı hareketlerini gör."
+    review_title: "%{script_name} hakkında bir değerlendirme var"
+    question_title: "%{script_name} hakkında bir soru var"
     subscribe: Takip et
     unsubscribe: Takibi bırak
+    notify: Herhangi bir cevapta beni bilgilendir
+    categories:
+      development:
+        name: Geliştirme
+      moderators:
+        name: Moderatörler
+    mark_all_read: Tümünü okundu işaretle
   conversations:
+    new_button: Konuşma başlat
     send_message: Mesaj gönder
     conversation_list_title: Konuşamalar
     no_conversations: Henüz hiç konuşmanız yok.
+    no_recent_conversations: Son zamanlarda bir konuşmanız yok.
     recent:
       title: Son konuşmalar
       more: Tüm konuşmaları göster
@@ -626,7 +778,16 @@ tr:
     preview_tab: Görüntüle
     write_tab: Yaz
     listing_options_title: "Ayarları Ayarlayın"
+    quote:
+      prefix_html: "%{user}: "
   activerecord:
+    models:
+      script:
+        one: "%{count} script"
+        other: "%{count} script"
+      comment:
+        one: "%{count} yorum"
+        other: "%{count} yorum"
     attributes:
       user:
         name: "İsim"
@@ -636,6 +797,9 @@ tr:
         show_ads: "Reklamları göster"
         show_sensitive: "Yetişkin içerik"
         preferred_markup: "Tercih biçimlendir"
+        current_password: "Mevcut şifre"
+        new_password: "Yeni şifre"
+        new_password_confirmation: "Yeni şifreyi onayla"
       script:
         name: "İsim"
         description: "Açıklama"
@@ -653,6 +817,7 @@ tr:
       report:
         reason: "Raporlama sebebi"
       discussion:
+        rating: "Değerlendirme"
         category: "Kategori"
         title: Başlık
       conversation:
@@ -679,3 +844,25 @@ tr:
     description: "%{site_name} sitesinde kullanıcı scriptleri için ara."
     long_name: "%{site_name} kullanıcı scripti ara"
     attribution: "Yazarlar kendi scriptinin telifine sahiptir, lisans için her scripte bakınız."
+  importing:
+    title: Scriptleri içe aktar
+    submit: İçe aktar
+    previously_imported:
+      heading: Önceki scriptler
+      unknown_date: "(bilinmiyor)"
+    results:
+      title: "Aktarma sonucu"
+      success: "Aşağıdaki scriptler başarıyla içe aktarıldı:"
+      needs_description: "Aşağıdaki scriptler içe aktarabilmek için bir açıklamaya ihtiyaç duyuyor:"
+      existing: "Aşağıdaki scriptler zaten içe aktarıldı:"
+      failure: "Aşağıdaki scriptler içe aktarılamıyor:"
+  mailers:
+    consecutive_bad_ratings:
+      notify:
+        subject: "%{script_name} scriptinize %{site_name} sitesinde bir çok \"Kötü\" yorum yapıldı."
+    script_comment:
+      subject: "%{script_name} scriptinize %{site_name} sitesinde bir yorum yapıldı."
+    comment_mentioned:
+      subject: "%{site_name} sitesinde '%{commenter_name}' adlı kullanıcı sizden bahsetti."
+    new_message:
+      subject: "%{site_name} sitesinde %{user} size bir mesaj yolladı"
