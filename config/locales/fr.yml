@@ -58,6 +58,8 @@ fr:
     delete_page: "Supprimer"
     delete_explanation: "Supprimer votre script le rend inaccessible à qui que ce soit sauf à vous et aux modérateurs de Greasy Fork. Vous pouvez restaurer votre script à n'importe quel moment."
     delete_update_behaviour: "Que voudriez-vous qu'il se passe aux utilisateurs qui ont précédemment installé votre script ? "
+    delete_update_behaviours:
+      keep: "Ils le garderont comme tel."
     delete_permanently_heading: "Suppression définitive"
     delete_permanently_explanation_html: >-
         <p>La suppression définitive de votre script le supprimera ainsi que tous
@@ -440,6 +442,7 @@ fr:
       all_sites: "Tous les sites"
       user: "Scripts par utilisateur %{user}"
       locale: "Scripts en %{locale_name}."
+    new: Nouveau jeu de scripts
   home:
     title: "%{site_name} - scripts utilisateurs sûrs et utiles"
     welcome: "Bienvenue sur %{site_name}, un site pour les scripts utilisateurs."
@@ -713,7 +716,14 @@ fr:
       reporting: Si vous remarquez un script qui ne respecte pas ces paramètres, veuillez le signaler en accédant au lien Commentaires pour ce script et choisissez l'option "Signaler le script".
     external_scripts:
       title: "Politique de %{site_name} concernant les scripts externes"
+      allowed_external_codes:
+        heading: Code externe autorisé
+      other_allowed_codes:
+        heading: Cas spéciaux
+      add_to_list:
+        heading: Ajoutée à la liste
       test_url:
+        label: Tester une URL
         result_ok: L'URL est autorisée
         result_not_ok: L'URL n'est pas autorisée
     script_rewriting:
@@ -973,7 +983,9 @@ fr:
     review_heading_html: "Avis: %{rating}"
     update_rating: "Mettez à jour votre note de %{script_name}"
     ratings:
+      question: "Pas de note - juste une question, un commentaire ou une requête d'ajout de fonction"
       bad: "Mauvais - le script ne fonctionne pas"
+      ok: "OK - le script fonctionne, mais souffre de quelques problèmes"
       good: "Bon - le script fonctionne correctement"
     ratings_short:
       question: "Question / commentaire"
@@ -1089,7 +1101,15 @@ fr:
     listing_options_title: "Options de recherche"
     quote:
       prefix_html: "%{user} a dit:"
+      anonymous_reporter_html: "Le rapport dit :"
   activerecord:
+    models:
+      script:
+        one: "%{count} script"
+        other: "%{count} scripts"
+      comment:
+        one: "%{count} commentaire"
+        other: "%{count} commentaires"
     attributes:
       user:
         name: "Nom"
@@ -1149,6 +1169,14 @@ fr:
     description: "Recherche de scripts utilisateur sur %{site_name}."
     long_name: "%{site_name} recherche de script utilisateur"
     attribution: "Copyright des auteurs des scripts, voir chaque script individuel pour les licences"
+  importing:
+    title: Importer des scripts
+    submit: Importer
+    previously_imported:
+      heading: Scripts précédemment importés
+      unknown_date: "(inconnu)"
+    results:
+      title: "Importer le résultat"
   mailers:
     script_report:
       report_created_offender:
