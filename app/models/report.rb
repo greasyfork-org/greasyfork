@@ -74,10 +74,11 @@ class Report < ApplicationRecord
         item.soft_destroy!(by_user: moderator) unless item.soft_deleted?
       when Script
         if unauthorized_code? && reference_script
-          item.update!(delete_type: redirect ? 'redirect' : 'keep', locked: true, replaced_by_script: reference_script, self_deleted: moderator.nil?)
+          item.assign_attributes(delete_type: redirect ? 'redirect' : 'keep', locked: true, replaced_by_script: reference_script, self_deleted: moderator.nil?)
         else
-          item.update!(delete_type: 'blanked', locked: true, self_deleted: moderator.nil?)
+          item.assign_attributes(delete_type: 'blanked', locked: true, self_deleted: moderator.nil?)
         end
+        item.save(validate: false)
         if ban_user
           reported_users.each { |user| user.ban!(moderator: moderator, delete_comments: delete_comments, delete_scripts: delete_scripts, ban_related: true, report: self) }
         elsif moderator
