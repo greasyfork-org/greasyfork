@@ -36,8 +36,17 @@ class ReportsController < ApplicationController
   end
 
   def index
-    reports = Report.unresolved.includes(:item, :reference_script, :reporter, :rebuttal_by_user).order(:created_at).reject { |report| report.item.nil? }
-    @waiting_reports, @actionable_reports = reports.partition(&:awaiting_response?)
+    report_ids = Report
+                 .unresolved
+                 .includes(:item)
+                 .order(:created_at)
+                 .sort_by { |r| [r.awaiting_response? ? 1 : 0, r.created_at] }
+                 .map(&:id)
+    @reports = Report
+                 .where(id: report_ids)
+                 .includes(:item, :reference_script, :reporter, :rebuttal_by_user)
+                 .order(:created_at)
+                 .paginate(page: params[:page], per_page: per_page)
   end
 
   def dismiss

@@ -1,18 +1,15 @@
-<% if @actionable_reports.any? %>
-  <% @actionable_reports.each_with_index do |report, i| %>
+<% previous_has_response = true %>
+<% if @reports.any? %>
+  <% @reports.each_with_index do |report, i| %>
+    <% if previous_has_response && report.awaiting_response? %>
+      <h2>Waiting for author response</h2>
+      <% previous_has_response = true %>
+    <% end %>
     <section class="report-list-item">
       <%= render partial: report, locals: { i: i, lazy_load_diffs: true } %>
     </section>
   <% end %>
+  <%= will_paginate(@reports) %>
 <% else %>
   <p>There are currently no actionable reports.</p>
-<% end %>
-
-<% if @waiting_reports.any? %>
-  <h2>Waiting for author response</h2>
-  <% @waiting_reports.each_with_index do |report, i| %>
-    <section class="report-list-item">
-      <%= render partial: report, locals: { i: 1000 + i, lazy_load_diffs: true } %>
-    </section>
-  <% end %>
 <% end %>
