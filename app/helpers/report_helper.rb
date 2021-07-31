@@ -9,6 +9,8 @@ module ReportHelper
       "A message by #{report.item.poster&.name || "Deleted user #{report.item.poster_id}"}"
     when Script
       render_script(report.item)
+    when nil
+      "Deleted #{report.item_type} #{report.item_id}"
     else
       raise 'Unknown type'
     end

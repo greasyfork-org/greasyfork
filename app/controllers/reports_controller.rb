@@ -47,12 +47,13 @@ class ReportsController < ApplicationController
     end
     report_ids = scope
                    .sort_by { |r| [r.awaiting_response? ? 1 : 0, r.created_at] }
+                   .reject {|r| r.item.nil? }
                    .map(&:id)
     @reports = Report
                  .where(id: report_ids)
                  .includes(:item, :reference_script, :reporter, :rebuttal_by_user)
-                 .order(:created_at)
-                 .paginate(page: params[:page], per_page: per_page)
+    @reports = @reports.order(Arel.sql("FIELD(id, #{report_ids.join(',')})")) if report_ids.any?
+    @reports = @reports.paginate(page: params[:page], per_page: per_page)
   end
 
   def dismiss
