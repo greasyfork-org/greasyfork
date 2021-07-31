@@ -1,9 +1,9 @@
 <% previous_has_response = true %>
 <% if @reports.any? %>
   <% @reports.each_with_index do |report, i| %>
-    <% if previous_has_response && report.awaiting_response? %>
+    <% if @show_separator && previous_has_response && report.awaiting_response? %>
       <h2>Waiting for author response</h2>
-      <% previous_has_response = true %>
+      <% previous_has_response = false %>
     <% end %>
     <section class="report-list-item">
       <%= render partial: report, locals: { i: i, lazy_load_diffs: true } %>

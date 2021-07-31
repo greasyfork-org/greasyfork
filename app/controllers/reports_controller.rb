@@ -36,12 +36,18 @@ class ReportsController < ApplicationController
   end
 
   def index
-    report_ids = Report
-                 .unresolved
-                 .includes(:item)
-                 .order(:created_at)
-                 .sort_by { |r| [r.awaiting_response? ? 1 : 0, r.created_at] }
-                 .map(&:id)
+    scope = Report
+              .includes(:item)
+              .order(:created_at)
+    if params[:user_id].present?
+      scope = scope.where(reporter_id: params[:user_id])
+    else
+      @show_separator = true
+      scope = scope.unresolved
+    end
+    report_ids = scope
+                   .sort_by { |r| [r.awaiting_response? ? 1 : 0, r.created_at] }
+                   .map(&:id)
     @reports = Report
                  .where(id: report_ids)
                  .includes(:item, :reference_script, :reporter, :rebuttal_by_user)

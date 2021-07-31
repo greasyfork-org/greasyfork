@@ -89,7 +89,7 @@
 
       <% all_reports = @user.reports_as_reporter.order(id: :desc) %>
       <p>This user has filed <%= all_reports.count %> <%= 'report'.pluralize(all_reports.count) %>.</p>
-      <% reports = params[:all_reports] == '1' ? all_reports : all_reports.limit(5) %>
+      <% reports = all_reports.limit(5) %>
       <% reports_with_item = reports.select{ |r| r.item.present? } %>
       <% if reports_with_item.any? %>
         <ul>
@@ -101,7 +101,7 @@
         </ul>
         <% if all_reports.count > 5 && params[:all_reports] != '1' %>
           <p>
-            <%= link_to "See all #{all_reports.count} reports.", all_reports: 1 %>
+            <%= link_to "See all #{all_reports.count} reports.", reports_path(user_id: @user.id) %>
           </p>
         <% end %>
       <% end %>
