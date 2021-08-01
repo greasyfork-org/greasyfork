@@ -84,7 +84,7 @@
     <% end %>
     <dt class="script-show-license"><span><%= t('scripts.license') %></span></dt>
     <dd class="script-show-license"><span><%= license_display(@script) %></span></dd>
-    <% if !@script.antifeatures.any? %>
+    <% if @script.antifeatures.any? %>
       <dt class="script-antifeatures"><span>Antifeatures</span></dt>
       <dd class="script-antifeatures">
         <span>
