@@ -503,6 +503,7 @@ class Script < ApplicationRecord
 
   def consecutive_bad_ratings?
     recent_ratings = discussions
+                     .not_deleted
                      .with_actual_rating
                      .where('created_at < ? OR rating != ?', CONSECUTIVE_BAD_RATINGS_NOTIFICATION_DELAY.ago, Discussion::RATING_BAD)
                      .where(['created_at >= ?', code_updated_at])
