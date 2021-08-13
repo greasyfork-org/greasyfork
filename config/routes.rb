@@ -76,8 +76,6 @@ Rails.application.routes.draw do
         post 'undelete', to: 'scripts#do_undelete', as: 'do_undelete'
         post 'request_permanent_deletion'
         post 'unrequest_permanent_deletion'
-        post 'do_permanent_deletion', to: 'scripts#do_permanent_deletion', as: 'do_permanent_deletion'
-        post 'reject_permanent_deletion', to: 'scripts#reject_permanent_deletion', as: 'reject_permanent_deletion'
         patch 'approve'
 
         patch 'sync_update'

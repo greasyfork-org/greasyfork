@@ -98,25 +98,7 @@
 <% end %>
 
 <% if moderator_view && !@script.permanent_deletion_request_date.nil? %>
-
   <h3>Permanent deletion</h3>
 
-  <p>The <%= 'author'.pluralize(@script.users.count) %> requested this script be permanently deleted at <%= @script.permanent_deletion_request_date %>. Verify that this script does not contain malware, as permanently deleting would not allow us to blank it out for those who already installed it.</p>
-
-  <%= form_tag(action: 'do_permanent_deletion') do %>
-    <p>
-      <input type="submit" value="Permanently delete script">
-    </p>
-  <% end %>
-
-  <p>or...</p>
-
-  <%= form_tag(action: 'reject_permanent_deletion') do %>
-    <p>
-      <label for="reject_permanent_deletion_reason">Why are you rejecting the request to permanently delete?</label><br>
-      <textarea id="reject_permanent_deletion_reason" name="reason" rows="5" cols="100" maxlength="500" required></textarea>
-      <input type="submit" value="Reject permanent deletion request">
-    </p>
-  <% end %>
-
+  <p>The <%= 'author'.pluralize(@script.users.count) %> requested permanent deletion for this script. It will be permanently deleted <%= markup_date(@script.permanent_deletion_request_date + ScriptDeleteJob::PERMANENT_DELETION_DELAY) %>.</p>
 <% end %>

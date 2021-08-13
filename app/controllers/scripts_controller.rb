@@ -12,7 +12,7 @@ class ScriptsController < ApplicationController
 
   MEMBER_AUTHOR_ACTIONS = [:sync_update, :update_promoted, :request_permanent_deletion, :unrequest_permanent_deletion, :update_promoted, :invite, :remove_author].freeze
   MEMBER_AUTHOR_OR_MODERATOR_ACTIONS = [:delete, :do_delete, :undelete, :do_undelete, :derivatives, :admin, :update_locale, :request_duplicate_check].freeze
-  MEMBER_MODERATOR_ACTIONS = [:mark, :do_mark, :do_permanent_deletion, :reject_permanent_deletion, :approve].freeze
+  MEMBER_MODERATOR_ACTIONS = [:mark, :do_mark, :approve].freeze
   MEMBER_PUBLIC_ACTIONS = [:diff, :report, :accept_invitation].freeze
   MEMBER_PUBLIC_ACTIONS_WITH_SPECIAL_LOADING = [:show, :show_code, :user_js, :meta_js, :user_css, :meta_css, :feedback, :install_ping, :stats, :sync_additional_info_form].freeze
 
@@ -462,35 +462,6 @@ class ScriptsController < ApplicationController
     @script.save(validate: false)
     flash[:notice] = I18n.t('scripts.cancel_delete_permanently_notice')
     redirect_to @script
-  end
-
-  def do_permanent_deletion
-    Script.transaction do
-      @script.destroy!
-      ma = ModeratorAction.new
-      ma.moderator = current_user
-      ma.script = @script
-      ma.action = 'Permanent deletion'
-      ma.reason = 'Author request'
-      ma.save!
-    end
-    flash[:notice] = I18n.t('scripts.delete_permanently_notice_immediate')
-    redirect_to root_path
-  end
-
-  def reject_permanent_deletion
-    Script.transaction do
-      ma = ModeratorAction.new
-      ma.moderator = current_user
-      ma.script = @script
-      ma.action = 'Permanent deletion denied'
-      ma.reason = params[:reason]
-      ma.save!
-      @script.permanent_deletion_request_date = nil
-      @script.save(validate: false)
-    end
-    flash[:notice] = 'Permanent deletion request rejected.'
-    redirect_to script
   end
 
   def mark
