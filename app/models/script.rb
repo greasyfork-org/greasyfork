@@ -234,19 +234,27 @@ class Script < ApplicationRecord
     # Copy additional_info from script versions. Retain syncing info.
     original_script_las = localized_attributes_for('additional_info').to_a
     # Try to retain the records - search by locale
-    script_version.localized_attributes_for('additional_info').each do |la|
-      matching_osla = original_script_las.find { |osla| osla.locale_id == la.locale_id }
+    script_version.localized_attributes_for('additional_info').each do |sv_la|
+      matching_osla = original_script_las.find { |osla| osla.locale_id == sv_la.locale_id }
       if matching_osla.nil?
         # New
-        build_localized_attribute(la)
+        build_localized_attribute(sv_la)
       else
-        matching_osla.value_markup = la.value_markup
-        matching_osla.attribute_value = la.attribute_value
+        matching_osla.value_markup = sv_la.value_markup
+        matching_osla.attribute_value = sv_la.attribute_value
         # We've found this one, don't search for it any more.
         original_script_las.delete(matching_osla)
-        la.mentions.each do |mention|
-          matching_osla.mentions.build(user_id: mention.user_id, text: mention.text)
+
+        # Add any missing mentions
+        sv_la.mentions.each do |mention|
+          matching_osla.mentions.build(user_id: mention.user_id, text: mention.text) if matching_osla.mentions.none? { |matching_mention| matching_mention.user_id == mention.user_id && matching_mention.text == mention.text }
         end
+
+        # Remove any unneeded mentions
+        matching_osla.mentions
+                     .reject(&:new_record?)
+                     .reject { |mention| sv_la.mentions.any? { |matching_mention| matching_mention.user_id == mention.user_id && matching_mention.text == mention.text } }
+                     .each(&:mark_for_destruction)
       end
     end
     # Delete any that are gone

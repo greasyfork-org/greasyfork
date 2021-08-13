@@ -39,6 +39,79 @@ class AdditionalInfoTest < ApplicationSystemTestCase
     assert_link '@Gordon J. Canada', href: user_path(mentioned_user2, locale: :en)
   end
 
+  test 'mention retention and deletion' do
+    user = User.first
+    login_as(user, scope: :user)
+
+    visit new_script_version_url
+    code = <<~JS
+      // ==UserScript==
+      // @name A Test!
+      // @description Unit test.
+      // @version 1.1
+      // @namespace http://greasyfork.local/users/1
+      // @include *
+      // ==/UserScript==
+      var foo = 1;
+    JS
+    fill_in 'Code', with: code
+    fill_in 'Additional info', with: 'Hey @Geoffrey this is for you!'
+    click_button 'Post script'
+    assert_selector 'h2', text: 'A Test!'
+    script = Script.last
+    script_version = script.script_versions.last
+    [script, script_version].each do |o|
+      assert_equal 1, o.localized_attribute_for('additional_info').mentions.count
+      assert_equal '@Geoffrey', o.localized_attribute_for('additional_info').mentions.first.text
+    end
+
+    # No update
+    visit new_script_script_version_url(script_id: script.id)
+    click_button 'Post new version'
+    assert_selector 'h2', text: 'A Test!'
+    script.reload
+    script_version = script.script_versions.last
+    [script, script_version].each do |o|
+      assert_equal 1, o.localized_attribute_for('additional_info').mentions.count
+      assert_equal '@Geoffrey', o.localized_attribute_for('additional_info').mentions.first.text
+    end
+
+    # Update the additional info, but retain the mention
+    visit new_script_script_version_url(script_id: script.id)
+    fill_in 'Additional info', with: 'Hey @Geoffrey this is for you!!!!!!'
+    click_button 'Post new version'
+    assert_selector 'h2', text: 'A Test!'
+    script.reload
+    script_version = script.script_versions.last
+    [script, script_version].each do |o|
+      assert_equal 1, o.localized_attribute_for('additional_info').mentions.count
+      assert_equal '@Geoffrey', o.localized_attribute_for('additional_info').mentions.first.text
+    end
+
+    # Update the additional info, mentioning a different user
+    visit new_script_script_version_url(script_id: script.id)
+    fill_in 'Additional info', with: 'Hey @"Gordon J. Canada" this is for you!'
+    click_button 'Post new version'
+    assert_selector 'h2', text: 'A Test!'
+    script.reload
+    script_version = script.script_versions.last
+    [script, script_version].each do |o|
+      assert_equal 1, o.localized_attribute_for('additional_info').mentions.count
+      assert_equal '@"Gordon J. Canada"', o.localized_attribute_for('additional_info').mentions.first.text
+    end
+
+    # No longer mention anyone
+    visit new_script_script_version_url(script_id: script.id)
+    fill_in 'Additional info', with: 'This is for no one'
+    click_button 'Post new version'
+    assert_selector 'h2', text: 'A Test!'
+    script.reload
+    script_version = script.script_versions.last
+    [script, script_version].each do |o|
+      assert_empty o.localized_attribute_for('additional_info').mentions
+    end
+  end
+
   test 'changing just additional info reindexes' do
     script = Script.find(11)
     login_as(script.users.first, scope: :user)

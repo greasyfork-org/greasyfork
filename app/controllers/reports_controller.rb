@@ -37,8 +37,8 @@ class ReportsController < ApplicationController
 
   def index
     scope = Report
-              .includes(:item)
-              .order(:created_at)
+            .includes(:item)
+            .order(:created_at)
     if params[:user_id].present?
       scope = scope.where(reporter_id: params[:user_id])
     else
@@ -46,12 +46,12 @@ class ReportsController < ApplicationController
       scope = scope.unresolved
     end
     report_ids = scope
-                   .sort_by { |r| [r.awaiting_response? ? 1 : 0, r.created_at] }
-                   .reject {|r| r.item.nil? }
-                   .map(&:id)
+                 .sort_by { |r| [r.awaiting_response? ? 1 : 0, r.created_at] }
+                 .reject { |r| r.item.nil? }
+                 .map(&:id)
     @reports = Report
-                 .where(id: report_ids)
-                 .includes(:item, :reference_script, :reporter, :rebuttal_by_user)
+               .where(id: report_ids)
+               .includes(:item, :reference_script, :reporter, :rebuttal_by_user)
     @reports = @reports.order(Arel.sql("FIELD(id, #{report_ids.join(',')})")) if report_ids.any?
     @reports = @reports.paginate(page: params[:page], per_page: per_page)
   end
