@@ -1,7 +1,7 @@
 <%- title t('help.external_scripts.title', site_name: site_name) %>
 <%- description "#{site_name}'s policy on external scripts included in submitted user scripts, for example with @require." %>
 
-<%= it('help.external_scripts.intro_html', require_doc_link: 'https://wiki.greasespot.net/Metadata_Block#.40require', site_name: site_name) %>
+<%= it('help.external_scripts.intro_html', require_doc_link: 'https://wiki.greasespot.net/Metadata_Block#.40require', site_name: site_name, webpack_externals_link: 'https://webpack.js.org/configuration/externals/') %>
 
 <h3><%= t('help.external_scripts.allowed_external_codes.heading') %></h3>
 <%= it('help.external_scripts.allowed_external_codes.content_html', allowed_require_list: controller.render_to_string(partial: 'allowed_require_list'), site_name: site_name, cdnjs_link: 'https://cdnjs.com/', jsdelivr_link: 'https://www.jsdelivr.com/') %>

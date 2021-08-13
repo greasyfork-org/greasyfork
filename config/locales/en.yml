@@ -1012,7 +1012,13 @@ en:
       reason: Scripts must have a reason to be a script. For example, a script that just directs a user to a website doesn't need to be a script; it could be a link. Scripts that use a web service to perform an action on the current page (e.g. to convert it in some way) are allowed.
       monetization_html: Scripts that contain features for the benefit of the <em>author</em> rather than the user (such as tracking, ads, and miners) are allowed, but these must be disclosed with %{antifeature_link:<code>@antifeature</code> meta keys}.
       code_header: Code
-      obfuscation: Code posted to %{site_name} must not be obfuscated or minified. Users must be given the opportunity to inspect and understand a script before installing it. If the script is bundled by a tool such as webpack, it must be output in non-minified form.
+      obfuscation: Code posted to %{site_name} must not be obfuscated or minified. Users must be given the opportunity to inspect and understand a script before installing it. If the script is bundled by a tool such as webpack, it must be output in non-minified form, with whitespace and variable names retained.
+      size_html: |
+        Scripts are limited to a size of %{max_code_size}. Scripts may not be minified to fit under this limit. If your script is nearing this limit, you may want to consider:
+        <ul>
+          <li>Moving non-code data such as data URIs or JSON outside of the script.</li>
+          <li>Loading libraries using <code>@require</code> or with %{webpack_externals_link:webpack's <code>externals</code> option}.</li>
+        </ul>
       libraries_html: Libraries that a script uses should be <code>@require</code>-d, unless there's a valid technical reason not to do so. In the case that a library is included inline, it must include information as to the source of the library (e.g. a comment indicating URL and/or name and version).
       updates: Scripts must not check for updates at a rate higher than once per day. Note that most user script managers will handle automatic updates, so doing it in the script is unnecessary. Scripts should also not dynamically inject another %{site_name}-hosted script into a page, as this bypasses caching in user script managers.
       external_js: "%{external_scripts_link:Use of external JavaScript is limited.}"
@@ -1033,6 +1039,7 @@ en:
           <li>The %{require_doc_link:<code>@require</code>} metadata key.</li>
           <li><code>XmlHttpRequest</code> to download the script, then <code>eval</code> to execute.</li>
           <li>Adding a <code>&lt;script&gt;</code> tag dynamically.</li>
+          <li>Webpack's %{webpack_externals_link:<code>externals</code>} option.</li>
         </ul>
         <p>While this is a useful feature and most script authors use this for legitimate purposes, it can also be used maliciously. One of the core principles of %{site_name} is that the user must be able to inspect the code in a script. External scripts can bypass this principle in a number of ways: they can change without warning or history, they can serve up different code to different people, and they can be used to hide malicious code in the middle of known libraries. Even if someone were to check an external script and determine it to be legitimate, that would be no guarantee that that script always has been or always will be legitimate.</p>
       allowed_external_codes:

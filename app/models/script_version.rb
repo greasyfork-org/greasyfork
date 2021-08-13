@@ -26,7 +26,9 @@ class ScriptVersion < ApplicationRecord
 
   ThinkingSphinx::Callbacks.append(self, :script, behaviours: [:sql, :deltas], path: [:script])
 
-  validates :code, presence: true, length: { minimum: 20, maximum: 2_000_000 }, on: :create
+  MAX_CODE_LENGTH = 2.megabytes
+
+  validates :code, presence: true, length: { minimum: 20, maximum: MAX_CODE_LENGTH }, on: :create
 
   # Code has to look code-y.
   validate on: :create do

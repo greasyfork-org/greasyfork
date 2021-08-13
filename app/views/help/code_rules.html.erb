@@ -15,6 +15,7 @@
 
 <ul>
   <li><%= t('help.code_rules.obfuscation', site_name: site_name) %></li>
+  <li><%= it('help.code_rules.size_html', max_code_size: number_to_human_size(ScriptVersion::MAX_CODE_LENGTH), webpack_externals_link: 'https://webpack.js.org/configuration/externals/') %></li>
   <li><%= t('help.code_rules.libraries_html') %></li>
   <li><%= it('help.code_rules.external_js', external_scripts_link: help_external_scripts_path) %></li>
   <li><%= t('help.code_rules.updates', site_name: site_name) %></li>
