@@ -156,6 +156,11 @@ class ScriptsController < ApplicationController
         script, script_version = minimal_versionned_script(script_id, script_version_id)
         return if handle_replaced_script(script)
 
+        if script.library? && request.path.ends_with?('.user.js')
+          head 404
+          return
+        end
+
         user_js_code = if script.delete_type_blanked?
                          script_version.generate_blanked_code
                        elsif script.css?
