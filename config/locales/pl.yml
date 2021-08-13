@@ -331,6 +331,10 @@ pl:
       js: "Opublikuj nowy skrypt"
       css: "Opublikuj nowy styl"
     update_title: "Opublikuj nową wersję %{script}"
+    install_help_dialog:
+      css:
+        safari: Aby zainstalować ten skrypt, potrzebujesz menedżera stylu.
+      close_dialog: OK
     antifeatures:
       warning_title: Ten skrypt zawiera antyfunkcjonalności
       author_explanation_intro: "Autor tego skryptu wyjaśnia:"
@@ -346,6 +350,10 @@ pl:
           description_html: Ten skrypt zawiera koparkę kryptowalut, która <b>wykorzystuje zasoby twojego urządzenia</b> podczas aktywności.
         referral-link:
           title: Linki partnerskie
+        membership:
+          title: Członkostwo
+        payment:
+          title: Płatność
       install_anyway: Zainstaluj skrypt
       cancel_install: Anuluj
     badges:
@@ -691,7 +699,6 @@ pl:
         po prostu przekierowuje użytkownika na stronę internetową, nie musi być skryptem; może to być link. Dozwolone są skrypty, które wykorzystują usługę sieciową do wykonania akcji na bieżącej stronie (np. w celu jej konwersji).'
       monetization_html: 'Skrypty, które zawierają funkcje przynoszące korzyść <em>autorowi</em>, nie użytkownikowi (jak skrypty śledzące, reklamy, koparki kryptowalut) są dozwolone, jednak muszą zostać oznaczone %{antifeature_link: kluczem <code>@antifeature</code>}.'
       code_header: Kod
-      obfuscation: Kod zamieszczony na %{site_name} nie może być zaciemniany ani zminifikowany. Dotyczy to także bundlerów takich jak webpack. Użytkownicy muszą mieć możliwość podejrzenia i zrozumienia skryptu, zanim go zainstalują.
       libraries_html: Biblioteki, których używa skrypt, powinny zostać dodane poprzez <code>@require</code>, chyba że istnieje wyraźny techniczny powód, by tego nie robić. Jeśli kod źródłowy biblioteki jest zawarty w kodzie skryptu, należy również dodać informację o źródle biblioteki (np. komentarz zawierający adres URL i/lub nazwę oraz wersję).
       updates: Skrypty nie powinny sprawdzać dostępności aktualizacji częściej niż raz dziennie. Należy pamiętać, że większość menedżerów skryptów użytkownika obsługuje automatyczne aktualizacje, więc wykonywanie tego w skrypcie nie jest konieczne. Skrypty również nie powinny dynamicznie wstrzykiwać do strony innych skryptów hostowanych na %{site_name}, ponieważ omija to pamięć podręczną w menedżerach skryptów.
       external_js: "%{external_scripts_link:Korzystanie z zewnętrznego kodu JavaScript jest ograniczone.}"

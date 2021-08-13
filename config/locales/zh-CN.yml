@@ -8,7 +8,7 @@ zh-CN:
       submenu: "更多"
       advanced_search: "高级搜索"
       user_list: "用户列表"
-      libraries: "库"
+      libraries: "列"
       moderator_log: "管理日志"
   scripts:
     created_date: "创建日期"
@@ -127,7 +127,7 @@ zh-CN:
       year: 最近 365 日
       all: 所有时间
     derivatives_title: "%{script_name} - 类似脚本"
-    derivatives_intro: "这些脚本与您的脚本相似。如果有脚本违反授权使用了您的代码，可在那个脚本的反馈面板中举报。"
+    derivatives_intro: "这些脚本与您的脚本相似（或你的与他们的脚本相似）。如果有脚本违反授权使用了您的代码，可在那个脚本的反馈面板中举报。"
     derivatives_script_html: "%{script}，作者 %{user}，许可协议: %{license} %{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "完整拷贝的副本"
     derivatives_exact_copies_list_intro: "以下这些脚本有与你的脚本有着完全一致的代码："
@@ -292,7 +292,7 @@ zh-CN:
     search_placeholder: "搜索脚本"
     updated: "脚本已更新。"
     preview_additional_info: "预览"
-    must_confirm: "你必须在确定你的账号后才能发布脚本。你可以通过下述两种方法确认账号：绑定第三方登录或点击确认邮件里的链接。"
+    must_confirm: "你必须在确定你的账号后才能发布脚本。你可以通过下述两种方法确认账号：绑定第三方登录或点击确认电子邮件里的链接。"
     must_confirm_email_button: "发送确认链接至 %{email}"
     authors_heading: "作者"
     error_unauthorized_copy: "此代码似乎未经授权地复制了 %{script}。发布脚本时请参考 %{site_name} 的 %{rules_link:rules}。"
@@ -317,7 +317,7 @@ zh-CN:
       remove_button: "移除"
       remove_confirm: "确定要将 %{user_name} 从作者列表中移除吗？"
       failure: "无法移除该作者。"
-    no_disposable_email: "如果您使用一次性电子邮箱地址，则不能发布脚本。"
+    no_disposable_email: "如果您使用一次性电子邮件地址，则不能发布脚本。"
     rate_limited: "您近期提交了太多脚本。请稍后再试。"
     new_script_notice:
       title: "想要做什么？"
@@ -358,6 +358,7 @@ zh-CN:
           description_html: 这个脚本含有挖矿代码，启动时将<b>占用您的设备资源</b>。
         referral-link:
           title: 引荐链接
+          description_html: 作者从这份脚本<b>获得佣金</b>，例如透过改写链接或提供优惠券代码以包含推荐或附属代码。
         membership:
           title: 会员内容
           description_html: 脚本只有在使用者 <b>主动登记后</b> 才能使用完整功能，如加入群组、订阅频道或在某页点赞等。
@@ -584,7 +585,7 @@ zh-CN:
       forum_effect: "您在论坛上的发言不会删除，但关联的用户将被更名为“%{user_name}”。"
       email_confirmation: "在删除您的账号前，%{site_name} 将发送一封电子邮件至 %{email} 来确认您的请求。"
       submit: "删除账号"
-      confirmation_email_sent: "确认删除邮件已发送。"
+      confirmation_email_sent: "确认删除电子邮件已发送。"
       confirmation_email:
         subject: "%{site_name} 账号的删除确认"
         body: "%{site_name} 收到了一则关于删除账号「%{user_name}」的请求。如果这是你并删除您的账号，请访问 %{url}。删除请求需要在 24 小时内确认，否则将取消这个删除请求。"
@@ -601,7 +602,7 @@ zh-CN:
       with_report: "管理员在处理%{report_link:该则举报时}封禁了您的账号。如果需要，您可以%{delete_link:删除该账号}。"
       with_reason: "您的账号已被封禁。管理员封禁的原因是：“%{reason}”。如果需要，您可以%{delete_link:删除该账号}。"
     banned_delete:
-      intro: "删除您的账号将同时删除您所发布的任何脚本。您在论坛提交的内容将保留，但用户名将作匿名化处理。删除账户后，您不能再使用同一电子邮箱地址进行注册。请在下方登录然后删除您的账号。"
+      intro: "删除您的账号将同时删除您所发布的任何脚本。您在论坛提交的内容将保留，但用户名将作匿名化处理。删除账户后，您不能再使用同一电子邮件地址进行注册。请在下方登录然后删除您的账号。"
       complete: "您的账号已经删除。"
     badges:
       banned:
@@ -620,7 +621,7 @@ zh-CN:
         new_comment: 默认订阅我回复过的讨论帖
         mention: 当在讨论中被提及的时发送通知
       conversation_defaults:
-        title: 通知设定
+        title: 对话设定
         starter: 默认订阅你发起的私信
         receiver: 默认订阅发送给你的私信
       save_button: 更新通知设置
@@ -637,7 +638,7 @@ zh-CN:
           <p>与 %{site_name} 绑定的 Webhook（网页通知事件）可以基于代码仓库的更新而自动更新 %{site_name} 上对应的脚本。%{site_name} 支持 GitHub、GitLab 与 Bitbucket 的“push（推送）”事件和 GitHub 与 GitLab 的“release（发布）”事件。</p>
           <p>要使用该功能，你必须在 %{site_name} 设定通过地址同步脚本的功能。你可以通过 %{import_link: 导入脚本到 %{site_name}} 来添加，或从已提交脚本的“管理”页面来设定同步。</p>
           <p>你的脚本在收到第一次自动推送的事件之前，脚本的同步类型还是会显示为“自动”或“手动”。</p>
-      already_syncing_list: "以下是您已设置从支持的提供方同步的脚本："
+      already_syncing_list: "以下是您已设定从支持的提供方同步的脚本："
       synced_item_html: "%{script_name} - %{sync_type} 同步，从 %{sync_url}"
       language_note: 因为 GitHub、GitLab 和 Bitbucket 是英语界面，下列操作说明也以英语提供。
   help:
@@ -645,11 +646,15 @@ zh-CN:
       usage: 使用
       development: 开发
       miscellaneous: 其他
-    open_source: "%{site_name} 采用开源的 GPLv3 许可证。可以 %{github_link:在 GitHub 上查看源码}。"
+    open_source: "%{site_name} 是开放的来源（GPLv3 许可证）。您可以 %{github_link:在 GitHub 上查看源码}。"
     installing_user_scripts:
       title: '如何安装用户脚本'
     installing_user_styles:
       title: '如何安装用户样式'
+      content_html: |
+          <p>某些脚本可以在%{site_name}安裝為使用者格式。</p>
+          <p>使用者可以透過 %{stylus_firefox_link:Stylus for Firefox}，%{stylus_chrome_link:Stylus for Chrome}，以及 %{stylus_opera_link:Stylus for Opera}。</p>
+          <p>%{styles_link:View all available user styles}</p>。
     meta_keys:
       title: "%{site_name} 要读取的脚本元属性值"
       intro_html: "这是 %{site_name} 将读取的 <a href=\"http://wiki.greasespot.net/Metadata_Block\">用户脚本属性值</a> 的一个列表。不在此列表的属性也可以写在脚本中，那些不在此列表的属性值也会包含在用户安装的脚本中，但是并不会对 %{site_name} 上的脚本页面做任何变动。"
@@ -662,7 +667,7 @@ zh-CN:
       require_html: "在您的脚本中引用其他外部脚本。请参见 %{external_script_link}。"
       require_external_script_link_text: "包含外部脚本的使用规定"
       updateURL: "告知用户脚本管理器应该在哪个地址获取脚本更新。%{site_name} 将自动修改该属性使其永远通过 %{site_name} 进行更新。"
-      license: "许可协议描述的是您是否允许别人以某些形式复制或修改您的脚本。建议从 %{spdx_link:SPDX 许可协议列表} 中选择「Full name」或「Identifier」填至此处。若您不提供许可协议，则表示仅允许个人使用且不得二次分发。许可协议将在脚本的简介页面显示。"
+      license: "许可协议描述的是您是否允许别人以某些形式复制或修改您的脚本。建议从 %{spdx_link:SPDX 许可协议列表} 中选择「Full name」或「Identifier」填至此处。若您不提供许可协议，则表示脚本仅允许个人使用且不得二次分发。许可协议将在脚本的简介页面显示。"
       supportURL: "该脚本的技术支持链接（如：错误反馈系统、论坛、电子邮箱地址等），该链接将显示在脚本的反馈页面。"
       contributionURL_html: "用于捐赠脚本作者的链接，该链接将显示在脚本的反馈页面。网址可以为 http、https 或比特币协议的网址。如果您需要链接到贝宝捐赠页面，请使用例如 <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a> 这样的格式，替换为您自己的邮箱地址即可。"
       contributionAmount_html: "建议捐赠金额，请配合 <code>@contributionURL</code> 使用。"
@@ -685,7 +690,6 @@ zh-CN:
       reason: 脚本必须有一个成为脚本的理由。例如，一个只是跳转到某个网页的脚本可以只是一个超链接而非脚本；使用第三方接口来为当前页面提供服务的脚本（如转换数据）是允许的。
       monetization_html: 脚本含为作者而非用户获益的功能（如追踪、广告、挖矿等）非绝对禁止，但是其必须通过 %{antifeature_link:<code>@antifeature</code> 元属性} 公开披露。
       code_header: 代码
-      obfuscation: 提交到 %{site_name} 的代码不得混淆或最小化。用户必须能有机会能在安装前审视并理解脚本的内容。如果脚本使用 WebPack 之类的工具打包，你必须在打包参数指定不进行最小化处理。
       libraries_html: 库是应被 <code>@require</code> 的脚本，除非因为技术原因不能这么做。如果一个库被内嵌入了脚本，那么你必须一并提供库的来源（比如一行评论指向原始地址、名称以及版本）。
       updates: 脚本不得以高于每日一次的频率检测更新。请注意用户脚本管理器都有内置的更新检查机制，请不要在脚本检查更新做无用功。脚本不得将在 %{site_name} 上传的脚本不应被动态插入到页面，因为这会绕过用户脚本管理器的缓存。
       external_js: "%{external_scripts_link:能引用其他网站上托管的 JavaScript 脚本是有限制的}。"
@@ -698,7 +702,16 @@ zh-CN:
       reporting: 如果你发现有脚本未能遵守上述规则，请访问脚本的反馈页面并选择“举报脚本”来举报。
     external_scripts:
       title: "%{site_name} 对外部脚本的政策"
+      allowed_external_codes:
+        heading: 允许的外部代码
+      other_allowed_codes:
+        heading: 特殊情況
+      add_to_list:
+        heading: 添加至列表
+      enforcement:
+        heading: 執法
       test_url:
+        label: 測試 URL
         result_ok: URL 允许使用
         result_not_ok: URL 不允许使用
     script_rewriting:
@@ -935,7 +948,7 @@ zh-CN:
       question: "不评分 - 只是一个询问或评论"
       bad: "差评 - 脚本失效或无法使用"
       ok: "一般 - 脚本有用，但还有一些问题"
-      good: "好评 - 一切运行良好"
+      good: "好评 - 脚本一切运行良好"
     ratings_short:
       question: "提问/评论"
       bad: "差评"
@@ -1117,6 +1130,17 @@ zh-CN:
   importing:
     title: 导入脚本
     submit: 导入
+    previously_imported:
+      heading: 以前导入的脚本
+      successful_entry_html: "%{script_link} - %{sync_type} 同步中，上次於%{last_sync_date}同步。"
+      unknown_date: "（未知）"
+      failed_entry_html: "%{script_link} - %{sync_type} 同步中 ，最後同步嘗試 %{last_sync_attempt_date}，%{sync_error}"
+    results:
+      title: "導入結果："
+      success: "以下的脚本已经成功被导入："
+      needs_description: "以下的脚本需要说明段落才能被导入："
+      existing: "以下的脚本已经导入："
+      failure: "以下的脚本无法被导入："
   mailers:
     script_report:
       report_created_offender:

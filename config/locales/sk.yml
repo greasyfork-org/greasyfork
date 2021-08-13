@@ -732,7 +732,13 @@ sk:
       reason: Skripty musia mať dôvod na to, aby boli skriptom. Napríklad skript, ktorý iba nasmeruje používateľa na web, nemusí byť skript; môže to byť odkaz. Skripty, ktoré používajú webovú službu na vykonanie akcie na aktuálnej stránke (napr. prevod na iný formát), sú povolené.
       monetization_html: Skripty obsahujúce funkcie viac prospešné pre <em>autora</em> ako pre používateľa (ako sledovanie, reklamy, ťaženie, atď.) sú povolené, ale autor to musí uviesť do %{antifeature_link:metakľúčov <code>@antifeature</code>}.
       code_header: Kód
-      obfuscation: Kód zverejnený na webe %{site_name} nesmie byť zmätočný ani minifikovaný. Používateľom musí byť poskytnutá príležitosť skontrolovať a porozumieť skriptu pred jeho inštaláciou. Ak je skript zabalený s nástrojom, ako je webpack, musí byť vydaný v neminifikovanej podobe.
+      obfuscation: Kód zverejnený na webe %{site_name} nesmie byť zmätočný ani minifikovaný. Používateľom musí byť poskytnutá príležitosť skontrolovať a porozumieť skriptu pred jeho inštaláciou. Ak je skript zabalený s nástrojom, ako je webpack, musí byť vydaný v neminifikovanej podobe, so zachovaním medzier a názvov premenných.
+      size_html: |
+          Veľkosť skriptov je obmedzená na %{max_code_size}. Skripty nemôžete minifikovať, aby spĺňali limit. Ak sa váš skript blíži limitu, mali by ste zvážiť:
+          <ul>
+          <li>Presun nekódových údajov, ako sú dátové URI alebo JSON, mimo skript.</li>
+          <li>Načítanie knižníc cez <code>@require</code> alebo cez %{webpack_externals_link:možnosť webpack's <code>externals</code>}.</li>
+          </ul>
       libraries_html: Knižnice, ktoré skript používa, by mali obsahovať <code>@require</code>, pokiaľ na to neexistuje opodstatnený technický dôvod. V prípade, že je knižnica priložená inline, musí obsahovať informácie o zdroji knižnice (napr. komentár označujúci URL a/alebo názov a verziu).
       updates: Skripty nesmú kontrolovať dostupnosť aktualizácií rýchlejšie ako raz za deň. Upozorňujeme, že väčšina správcov používateľských skriptov bude pracovať s automatickými aktualizáciami, takže je to zbytočné. Skripty by tiež nemali dynamicky vkladať na stránku ďalší skript hostovaný na %{site_name}, pretože sa obchádza ukladanie do vyrovnávacej pamäte v správcoch používateľských skriptov.
       external_js: "%{external_scripts_link:Použitie externých javscriptov je obmedzené.}"
@@ -751,6 +757,7 @@ sk:
           <li>Metadátový kľúč %{require_doc_link:<code>@require</code>}.</li>
           <li><code>XmlHttpRequest</code> na stiahnutie skriptu, potom <code>eval</code> na vykonanie.</li>
           <li>Pridanie značky <code>&lt;script&gt;</code> dynamicky.</li>
+          <li>Možnosť Webpack's %{webpack_externals_link:<code>externals</code>}.</li>
           </ul>
           <p>Aj ked je to užitočná funkcia a väčšina autorov skriptov ju používa na legitímne účely, môže byť aj zneužitá. Jednou zo základných zásad %{site_name} je, že používateľ musí mať možnosť kontrolovať kód v skripte. Externé skripty môžu túto zásadu obchádzať viacerými spôsobmi: môžu sa meniť bez varovania alebo histórie, môžu slúžiť na zobrazenie rôzneho kódu rôznym ľuďom a môžu sa používať na skrývanie škodlivého kódu uprostred známych knižníc. Aj keby niekto skontroloval externý skript a určil ho ako legitímny, nebola by to žiadna záruka, že tento skript vždy bol alebo vždy bude legitímny.</p>
       allowed_external_codes:

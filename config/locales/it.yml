@@ -716,7 +716,6 @@ it:
       reason: Gli scripts devono avere una ragione per essere script. Per esempio, uno script che semplicemente rimanda un utente a un sito non ha bisogno di essere uno script; potrebbe essere un link. Gli scripts che usano un servizio web per compiere un azione sulla pagina corrente (es. per convertirla in qualche maniera) sono consentiti.
       monetization_html: Gli scripts che contengono funzioni a beneficio dell'<em>autore</em> piuttosto che dell'utente (come tracciamento, pubblicità e miners) sono consentite, ma queste devono essere dichiarate con le %{antifeature_link:<code>@antifeature</code> meta keys}.
       code_header: Codice
-      obfuscation: Il codice pubblicato su %{site_name} non deve essere offuscato o minimizzato. Agli utenti va data l'opportunità di ispezionare e comprendere uno script prima di installarlo. Se lo script è compresso da uno strumento come webpack, deve essere esportato in forma non minimizzata.
       libraries_html: Le librerie che uno script utilizza devono essere inserite con <code>@require</code>, a meno che ci sia una valida ragione tecnica per non farlo. Nel caso in cui una libreria sia inclusa all'interno del testo dello script. essa deve includere le informazioni sulla provenienza della libreria (es. un commento che indichi l'URL e/o il nome e la versione).
       updates: Gli scripts non devono verificare la presenza di aggiornamenti con una frequenza maggiore di una volta al giorno. È da notare che la maggior parte dei gestori di script utente si occupano autonomamente degli aggiornamenti, per cui farlo nello script non è necessario. Gli scripts non devono altresì iniettare dinamicamente un altro script ospitato su %{site_name} all'interno di una pagina, poiché questo bypassa la memorizzazione cache nei gestori di script utente.
       external_js: "%{external_scripts_link:L'uso di JavaScript esterno è limitato.}"
@@ -729,14 +728,6 @@ it:
       reporting: Se noti uno script che ricade al di fuori di questi parametri, per favore segnalalo andando sul collegamento Feedback per quello script e scegliendo l'opzione "Segnala lo script".
     external_scripts:
       title: "Politiche di %{site_name} per gli script esterni"
-      intro_html: |
-          <p>Gli script utente hanno l'abilità tecnica di caricare ed eseguire altri scripts. Questo può essere fatto in diversi modi, inclusi:</p>
-
-          <li>La chiave %{require_doc_link:<code>@require</code>} nei metadati.</li>
-          <li><code>XmlHttpRequest</code> per scaricare lo script, e poi <code>eval</code> per eseguirlo.</li>
-          <li>Aggiungendo un tag <code>&lt;script&gt;</code> dinamicamente.</li>
-
-          <p>Sebbene questa sia una funzione utile e la maggioranza degli autori di script la usino per scopi legittimi, può anche essere usata in modo malevolo. Uno dei principî di %{site_name} è che l'utente deve avere la possibilità di ispezionare il codice in uno script. Gli script esterni possono aggirare questo principio in svariati modi: possono cambiare senza avvertimenti o storico delle modifiche, possono fornire codice diverso a persone diverse, e possono essere usati per nascondere codice malevolo nel mezzo di librerie note. Anche se qualcuno controllasse uno script esterno e determinasse che è legittimo, questo non garantirebbe che lo script sia sempre stato o che sempre sarà legittimo.</p>
       allowed_external_codes:
         heading: Codice esterno consentito
         content_html: |
