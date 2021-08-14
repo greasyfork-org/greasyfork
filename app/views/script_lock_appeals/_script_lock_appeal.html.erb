@@ -1,0 +1,23 @@
+<p>This script was deleted due to: <%= delete_reason(script_lock_appeal.script) %>.</p>
+
+<p>Appeal submitted by the author:</p>
+
+<div class="user-content">
+  <%= format_user_text(script_lock_appeal.text, script_lock_appeal.text_markup) %>
+</div>
+
+<% case script_lock_appeal.resolution %>
+<% when 'unresolved' %>
+  <% if current_user&.moderator? %>
+    <div class="script-lock-appeal-actions">
+      <%= button_to('Dismiss appeal', dismiss_script_script_lock_appeal_path(script_lock_appeal.script, script_lock_appeal)) %>
+      <%= button_to('Undelete script', unlock_script_script_lock_appeal_path(script_lock_appeal.script, script_lock_appeal)) %>
+    </div>
+  <% else %>
+    <p>This appeal is pending review by a moderator.</p>
+  <% end %>
+<% when 'dismissed' %>
+  <p>A moderator has dismissed this appeal.</p>
+<% when 'unlocked' %>
+  <p>As a result of this appeal, a moderator undeleted this script.</p>
+<% end %>

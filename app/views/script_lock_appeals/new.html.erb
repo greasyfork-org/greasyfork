@@ -1,0 +1,20 @@
+<% title 'New script lock appeal' %>
+
+<p>Your script was deleted due to: "<%= delete_reason(@script) %>". If you believe this was in error, or if you have additional information to provide, or if you have updated your script to address the issue, you can submit an appeal. If a moderator is satisfied by your updates and by the information you provided, they will restore access to your script.</p>
+
+<%= form_with(model: @script_lock_appeal, url: script_script_lock_appeals_path(script_id: @script_lock_appeal.script_id)) do |f| %>
+  <div class="form-control">
+    <%= f.label :text, 'Appeal' %>
+    <span class="label-note">
+      <%= link_to t('common.allowed_elements_link'), help_allowed_markup_path, { target: 'markup_choice' } %>
+      <%= f.radio_button(:text_markup, 'html', required: true) %>HTML
+      <%= f.radio_button(:text_markup, 'markdown', required: true) %><%= link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', {target: 'markup_choice'} %>
+    </span>
+    <br>
+    <div class="previewable" data-markup-option-name="<%= f.name_for(:text_markup) %>" data-preview-label="<%= t('common.preview_tab') %>" data-write-label="<%= t('common.write_tab') %>">
+      <%= f.text_area :text, required: true %>
+    </div>
+  </div>
+  <%= f.hidden_field :report_id %>
+  <%= f.submit 'Submit appeal' %>
+<% end %>

@@ -10,3 +10,7 @@
 <% if generic_reported_count > 0 %>
   <%= link_to "[#{generic_reported_count}]", reports_path, title: 'Reported' %>
 <% end %>
+<% appeal_count = ScriptLockAppeal.unresolved.joins(:script).count %>
+<% if appeal_count > 0 %>
+  <%= link_to "[#{appeal_count}]", script_lock_appeals_path, title: 'Appeals' %>
+<% end %>

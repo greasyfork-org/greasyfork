@@ -109,6 +109,13 @@ Rails.application.routes.draw do
         end
         resources :comments, only: [:create, :destroy, :update]
       end
+
+      resources :script_lock_appeals, only: [:new, :create, :show] do
+        member do
+          post :dismiss
+          post :unlock
+        end
+      end
     end
     resources :script_versions, only: [:create, :new]
     get 'script_versions/additional_info_form', to: 'script_versions#additional_info_form', as: 'script_version_additional_info_form'
@@ -182,6 +189,8 @@ Rails.application.routes.draw do
         get :diff
       end
     end
+
+    resources :script_lock_appeals, only: [:index]
 
     namespace :admin do
       get '/' => 'home#index'

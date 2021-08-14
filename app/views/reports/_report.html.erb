@@ -175,6 +175,9 @@
       </div>
     </blockquote>
   <% end %>
+  <% if current_user && report.item.is_a?(Script) && report.item.users.include?(current_user) %>
+    <p>You can <%= link_to('submit an appeal', new_script_script_lock_appeal_path(report.item, report_id: report.id)) %> to get your script undeleted.</p>
+  <% end %>
 <% elsif report.fixed? %>
   <p>
     <%= t('reports.result_fixed') %>

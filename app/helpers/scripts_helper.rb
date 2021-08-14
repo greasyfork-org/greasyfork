@@ -90,4 +90,14 @@ module ScriptsHelper
     title = t("scripts.badges.#{key}.long")
     tag.span(class: "badge badge-#{key}", title: text == title ? nil : title) { text }
   end
+
+  def delete_reason(script)
+    upheld_reports = script.reports.upheld
+    reason = upheld_reports.map { |report| link_to(t('reports.name', id: report.id), report_path(report)) }.join(' ').html_safe
+    if script.delete_reason.present?
+      reason += ' ' if reason.present?
+      reason += script.delete_reason
+    end
+    reason
+  end
 end
