@@ -44,6 +44,9 @@
           <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
         </header>
         <main class="modal__content" id="preinstall-modal-content">
+          <p>
+            <%= t('scripts.antifeatures.intro', site_name: site_name) %>
+          </p>
           <% script.best_antifeatures_for_locale(request_locale).each do |antifeature| %>
             <p>
               <%= t("scripts.antifeatures.types.#{antifeature.antifeature_type}.description_html", site_name: site_name) %>
