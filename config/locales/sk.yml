@@ -44,7 +44,7 @@ sk:
     deleted_notice: "Tento skript bol odstránený."
     deleted_notice_with_related: "Skript, ktorý požadujete bol odstránený, ale tu sú podobné skripty."
     deleted_undelete_notice_html: "Tento skript bol zamknutý moderátorom a nemôže byť obnovený. Uvedený dôvod je \"<i>%{delete_reason}</i>\"."
-    deleted_locked_author_notice_html: "Tento skript bol odstránený moderátorom a nie je ostatným prístupný. Uvedený dôvod je \"<i>%{delete_reason}</i>\"."
+    deleted_locked_author_notice_html: "Tento skript bol odstránený moderátorom a nie je ostatným prístupný. Uvedený dôvod je \"<i>%{delete_reason}</i>\". Proti tomuto odstráneniu sa môžete {appeal_link:odvolať}."
     deleted_author_notice: "Tento skript bol odstránený moderátorom a nie je ostatným prístupný. Môžete ho obnoviť zo záložky Odstrániť."
     version_notice_html: "Verzia zo dňa %{date}. Pozri %{latest_version_link}."
     version_notice_latest_version_link: "najnovšiu verziu"
@@ -353,6 +353,7 @@ sk:
       close_dialog: OK
     antifeatures:
       warning_title: Tento skript obsahuje antifeatures
+      intro: Pred inštaláciou by vás %{site_name}rád upozornil, že tento skript obsahuje antifeatures, ktoré sú skôr v prospech autora skriptu ako vo váš prospech.
       author_explanation_intro: "Vysvetlenie autora skriptu:"
       types:
         ads:
@@ -895,7 +896,7 @@ sk:
     antifeatures:
       title: Antifunkcie
       intro_html: |
-          <p>Antifeatures sú veci pridávané do skriptov, ktoré sú prospešné skôr pre autorov ako pre používateľov, ako napríklad reklamy alebo sledovanie. Skripty s antifunkciami sú povolené podľa %{rules_link:%pravidlá %{site_name}}, ale musia byť označené ako <code>@antifeature</code> v bloku metaúdajov skriptu. Týmto spôsobom zaistíte, že používateľ bude vedieť o antifunkiách pred inštaláciou.</p>
+          <p>Antifunkcie sú veci pridávané do skriptov, ktoré sú prospešné skôr pre autorov ako pre používateľov, ako napríklad reklamy alebo sledovanie. Skripty s antifunkciami sú povolené podľa %{rules_link:pravidlá %{site_name}}, ale musia byť označené ako <code>@antifeature</code> v bloku metaúdajov skriptu. Týmto spôsobom zaistíte, že používateľ bude vedieť o antifunkiách pred inštaláciou.</p>
           <p>Antifunkcie sú špecifikované ako %{meta_keys_link:metakľúče skriptu} vo formáte <code>@antifeature<i>typ</i><i>popis</i></code>.<i>typ</i> je povinný a <i>popis</i> je voliteľný.</p>
           <p>Táto strana popisuje typy <code>@antifeature</code>uznávané %{site_name}. Ostatný typu môžu byť použité, ale prítomnosť antifunkcie nesmie byť proti %{rules_link:pravidlám %{site_name}}. </p>
       ads_html: |

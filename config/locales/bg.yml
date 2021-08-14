@@ -42,7 +42,7 @@ bg:
     deleted_notice: "Този скрипт беше изтрит."
     deleted_notice_with_related: "Скриптът, който поискахте, беше изтрит, но имаме други подобни скриптове."
     deleted_undelete_notice_html: "Този скрипт е заключен от модератор и не може да бъде възстановен. Причината за заключване е: \"<i>%{delete_reason}</i>\"."
-    deleted_locked_author_notice_html: "Този скрипт е изтрит от модератор и не е достъпен за останалите. Причината за изтриване е: \"<i>%{delete_reason}</i>\"."
+    deleted_locked_author_notice_html: "Скриптът е изтрит от модератор и не е достъпен за останалите. Като причина е посочено:  \"<i>%{delete_reason}</i>\". Можете да %{appeal_link:изпратите опровержение} за това изтриване."
     deleted_author_notice: "Този скрипт е изтри и не е достъпен за останалите. Можете да го възстановите от поле Изтриване."
     version_notice_html: "От %{date}. Виж %{latest_version_link}."
     version_notice_latest_version_link: "последната версия"
@@ -350,6 +350,7 @@ bg:
       close_dialog: ОК
     antifeatures:
       warning_title: Този скрипт съдържа нежелани особености
+      intro: Преди да инсталирате, %{site_name} иска да ви уведоми, че този скрипт съдържа антиособености, които са в полза на автора, а не за вас.
       author_explanation_intro: "Обяснение от автора на скрипта:"
       types:
         ads:
