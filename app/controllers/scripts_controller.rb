@@ -21,7 +21,6 @@ class ScriptsController < ApplicationController
     when *MEMBER_AUTHOR_ACTIONS
       @script = Script.find(params[:id])
       render_access_denied unless @script.users.include?(current_user)
-      render_locked if @script.locked?
       @bots = 'noindex'
     when *MEMBER_AUTHOR_OR_MODERATOR_ACTIONS
       @script = Script.find(params[:id])
