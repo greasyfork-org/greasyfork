@@ -42,6 +42,8 @@ class ScriptLockAppealsController < ApplicationController
     @script.permanent_deletion_request_date = nil
     @script.save!
 
+    @script.script_lock_appeals.unresolved.update_all(resolution: 'unlocked')
+
     ScriptLockAppealMailer.unlock(@script_lock_appeal, site_name).deliver_later
 
     redirect_to script_path(@script), flash: { notice: 'Script has been unlocked.' }
