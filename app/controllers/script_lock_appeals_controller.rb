@@ -2,8 +2,9 @@ class ScriptLockAppealsController < ApplicationController
   layout 'scripts', except: :index
 
   before_action :load_script, except: :index
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :load_script_lock_appeal, only: [:show, :dismiss, :unlock]
-  before_action :ensure_author, only: [:new, :create]
+  before_action :authorize_by_script_id, only: [:new, :create]
   before_action :ensure_locked, only: [:new, :create]
   before_action :authorize_for_moderators_only, only: [:dismiss, :unlock]
 
@@ -61,10 +62,6 @@ class ScriptLockAppealsController < ApplicationController
 
   def load_script_lock_appeal
     @script_lock_appeal = @script.script_lock_appeals.find(params[:id])
-  end
-
-  def ensure_author
-    render_access_denied unless current_user && @script.users.include?(current_user)
   end
 
   def ensure_locked

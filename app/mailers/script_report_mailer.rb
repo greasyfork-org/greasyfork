@@ -24,7 +24,7 @@ class ScriptReportMailer < ApplicationMailer
       t('mailers.script_report.report_upheld_offender.subject', locale: locale, report_url: report_url(report, locale: locale), script_name: report.item.name(locale), site_name: site_name)
     }
     text_lambda = lambda { |locale|
-      t('mailers.script_report.report_upheld_offender.text', locale: locale, report_url: report_url(report, locale: locale), script_name: report.item.name(locale), site_name: site_name)
+      t('mailers.script_report.report_upheld_offender.text', locale: locale, report_url: report_url(report, locale: locale), appeal_url: new_script_script_lock_appeal_url(report.item, locale: locale, report_id: report.id), script_name: report.item.name(locale), site_name: site_name)
     }
     mail_to_offender(report, subject_lambda, text_lambda)
   end
