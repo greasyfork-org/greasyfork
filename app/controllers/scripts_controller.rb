@@ -157,7 +157,7 @@ class ScriptsController < ApplicationController
         return if handle_replaced_script(script)
 
         if script.library? && request.path.ends_with?('.user.js')
-          head 404
+          head :not_found
           return
         end
 
