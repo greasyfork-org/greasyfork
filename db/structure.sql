@@ -1435,13 +1435,14 @@ CREATE TABLE `moderator_actions` (
   `private_reason` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `report_id` bigint(20) DEFAULT NULL,
   `script_report_id` bigint(20) DEFAULT NULL,
+  `script_lock_appeal_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_rails_982b48b755` (`report_id`),
   KEY `fk_rails_de8c1b0dd2` (`script_report_id`),
   KEY `index_moderator_actions_on_user_id` (`user_id`),
   CONSTRAINT `fk_rails_982b48b755` FOREIGN KEY (`report_id`) REFERENCES `reports` (`id`) ON DELETE SET NULL,
   CONSTRAINT `fk_rails_de8c1b0dd2` FOREIGN KEY (`script_report_id`) REFERENCES `script_reports` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=66917 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=66918 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `redirect_service_domains`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1610,7 +1611,7 @@ CREATE TABLE `script_lock_appeals` (
   KEY `fk_rails_c92d139641` (`report_id`),
   CONSTRAINT `fk_rails_b37644914a` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_rails_c92d139641` FOREIGN KEY (`report_id`) REFERENCES `reports` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `script_reports`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2220,6 +2221,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20210720001211'),
 ('20210720001400'),
 ('20210722011850'),
-('20210814011208');
+('20210814011208'),
+('20210814162649');
 
 

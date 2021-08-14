@@ -32,8 +32,8 @@ class ScriptLockAppealsController < ApplicationController
     ma = ModeratorAction.new
     ma.moderator = current_user
     ma.script = @script
+    ma.script_lock_appeal = @script_lock_appeal
     ma.action = 'Undelete'
-    ma.reason = "Appeal ##{@script_lock_appeal.id}"
     ma.save!
 
     @script.delete_type = nil
