@@ -41,6 +41,7 @@ zh-CN:
     deleted_notice: "此脚本已被删除。"
     deleted_notice_with_related: "请求的脚本已被删除。不过，这里还有一些可能类似的脚本。"
     deleted_undelete_notice_html: "该脚本已被管理员锁定并删除且无法撤销。锁定原因：“<i>%{delete_reason}</i>”。"
+    deleted_locked_author_notice_html: "该脚本已被管理员删除且不能被其他用户所访问。删除的原因是：“<i>%{delete_reason}</i>”。您可以can %{appeal_link:提交异议}。"
     deleted_author_notice: "其他用户不能访问该脚本，因为它已经被删除。你可以在“删除”面板中取消删除。"
     version_notice_html: "您查看的为 %{date} 提交的版本。查看 %{latest_version_link}。"
     version_notice_latest_version_link: "最新版本"
@@ -344,6 +345,7 @@ zh-CN:
       close_dialog: 确定
     antifeatures:
       warning_title: 这个脚本含有可能不受欢迎的功能
+      intro: 在您安装前，%{site_name} 希望您了解该脚本包含“争议功能”，这可能利于脚本作者而不是用户。
       author_explanation_intro: "脚本作者的说明："
       types:
         ads:
@@ -662,6 +664,7 @@ zh-CN:
       description: "脚本功能的描述，显示在脚本标题下面，必填项。"
       description_localized_html: "用某门语言写成的脚本描述。XX 指 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 国家代码</a> 以及 YY 指可选的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 地区代码</a>。该选项用于提供多语言的<code>@description</code> 脚本介绍。"
       namespace_html: "<code>@namespace</code> 与 <code>@name</code> 这两个属性被作为脚本的唯一标识符，用户脚本管理器根据它们来判断一个脚本是否已安装。%{site_name} 也需要这些属性，若用户在更新脚本时改变了两者中的任意一项，将发出警告。"
+      version: "脚本的版本标记将使用 %{version_format_link:Mozilla 版本格式}，并显示于脚本的简介页面。%{site_name} 要求填写该属性，且当用户更新脚本时没有更新版本号或降低了版本号时将发出警告。"
       include_html: "描述脚本会在哪些网站上运行。该列表会被解析和展示到脚本的简介页面，并用于脚本的分类。每个脚本须有至少一个 <code>@match</code> 或 <code>@include</code>。<a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">了解格式细则</a>。"
       require_html: "在您的脚本中引用其他外部脚本。请参见 %{external_script_link}。"
       require_external_script_link_text: "包含外部脚本的使用规定"
@@ -689,6 +692,13 @@ zh-CN:
       reason: 脚本必须有一个成为脚本的理由。例如，一个只是跳转到某个网页的脚本可以只是一个超链接而非脚本；使用第三方接口来为当前页面提供服务的脚本（如转换数据）是允许的。
       monetization_html: 脚本含为作者而非用户获益的功能（如追踪、广告、挖矿等）非绝对禁止，但是其必须通过 %{antifeature_link:<code>@antifeature</code> 元属性} 公开披露。
       code_header: 代码
+      obfuscation: 提交到 %{site_name} 的代码不得混淆或最小化。用户必须有可能在安装前审视并理解脚本的内容。如果脚本使用了 WebPack 之类的工具打包，则必须以非最小化的形式输出，保留空白和变量名。
+      size_html: |
+          脚本大小不能超过 %{max_code_size}。如果您的脚本接近此限制，可能需考虑：
+          <ul>
+          <li>将 URI、JSON 等非代码数据移出脚本。</li>
+          <li>使用 <code>@require</code> 或 %{webpack_externals_link:webpack 的 <code>externals</code> 选项}加载库。</li>
+          </ul>
       libraries_html: 库是应被 <code>@require</code> 的脚本，除非因为技术原因不能这么做。如果一个库被内嵌入了脚本，那么你必须一并提供库的来源（比如一行评论指向原始地址、名称以及版本）。
       updates: 脚本不得以高于每日一次的频率检测更新。请注意用户脚本管理器都有内置的更新检查机制，请不要在脚本检查更新做无用功。脚本不得将在 %{site_name} 上传的脚本不应被动态插入到页面，因为这会绕过用户脚本管理器的缓存。
       external_js: "%{external_scripts_link:能引用其他网站上托管的 JavaScript 脚本是有限制的}。"
@@ -701,14 +711,52 @@ zh-CN:
       reporting: 如果你发现有脚本未能遵守上述规则，请访问脚本的反馈页面并选择“举报脚本”来举报。
     external_scripts:
       title: "%{site_name} 对外部脚本的政策"
+      intro_html: |
+          <p>用户脚本有能力加载和执行其他脚本，方式包括：</p>
+          <ul>
+          <li>%{require_doc_link:<code>@require</code>} 元数据键。</li>
+          <li><code>XmlHttpRequest</code> 来下载脚本，然后用 <code>eval</code> 执行。</li>
+          <li>动态添加 <code>&lt;script&gt;</code> 标签。</li>
+          <li>Webpack 的 %{webpack_externals_link:<code>externals</code>} 选项。</li>
+          </ul>
+          <p>虽然这是一个有用的功能，并且大多数脚本作者将其用在合法目的，但它也可以被恶意使用。%{site_name} 的一项核心原则是，用户必须可能检查脚本中的代码。而外部脚本可能用多种方法绕过这一原则：它们可以在用户不知情的情况下悄悄改变，而不留下历史记录；它们可以对不同的用户采用不同的代码；它们还可以在知名的库之中插入恶意的代码，以期逃避用户的检查。因此，即便有人已检查了一个外部脚本，并确定它此时是安全的，也无法保证该脚本在过去和将来始终不含恶意代码。</p>
       allowed_external_codes:
         heading: 允许的外部代码
+        content_html: |
+            <p>为了允许脚本作者继续使用外部脚本，%{site_name} 有一个 URL 形式的白名单，只允许引用白名单中的外部脚本。白名单中包含的网站应该是：</p>
+            <ul> <li>公开的</li>
+            <li>内容不会经常改变的</li>
+            <li></li> </ul>
+            <p></p>
+            <ul>
+            <li>公开的</li>
+            <li>不频繁改变其内容的</li>
+            <li>可能被不止一位脚本作者取用的</li>
+            </ul>
+            <p>如果您想加载的外部脚本是一个 JavaScript 库（例如 jQuery 或者 YUI），请访问上面列出的网站，看看是否能找到它的链接。%{cdnjs_link:cdnjs} 和 %{jsdelivr_link:jsDelivr} 提供了大量的常用库。</p>
+            <p>目前的名单见：</p>
+            %{allowed_require_list}
       other_allowed_codes:
         heading: 特殊情況
+        content_html: |
+            <p>除上述名单外，还允许使用：</p>
+            <ul>
+            <li>加载网站现有的代码用于同一站点（例如在 example.com 上使用 example.com/script.js）。</li>
+            <li>仅供数据用途而加载一个资源，例如加载 JSON 文件而不执行它的内容。</li>
+            </ul>
+            <p>禁止下列用法：</p>
+            <ul>
+            <li>从外部 URL 加载对脚本的更新。</li>
+            </ul>
       add_to_list:
         heading: 添加至列表
+        content_html: |
+            <p>如果以上网站均没有您想引用的外部脚本，请%{contact_link:告知我们}，以便我们查找它的链接（乃至我们自己托管）。</p>
+            <p>如果您想包含的脚本是您自己写的，您可以在 %{site_name} 上将它提交为一个单独的项目，选择“库”作为它的类型，然后就可以在您的脚本中引入这个您自己发布的库了。</p>
       enforcement:
         heading: 執法
+        content_html: |
+            <p>任何被发现含有允许范围外的外部代码的脚本将被删除。</p>
       test_url:
         label: 測試 URL
         result_ok: URL 允许使用
@@ -839,6 +887,8 @@ zh-CN:
     item_script_html: "脚本：%{script_link}"
     item_deleted_script: "已删除的脚本 %{id}"
     item_user_html: "用户：%{user_link}"
+    item_report: "%{report_link:举报 #%{report_id}}"
+    item_script_lock_appeal: "%{appeal_link:针对 #%{appeal_id} 提出异议}"
   notifications:
     consecutive_bad_ratings:
       other: "%{script_names} 已连续收到差评。请检查您的脚本和回复评价中提出的问题。"
@@ -1128,6 +1178,12 @@ zh-CN:
     attribution: "脚本作者保留所有权利，详见各脚本许可协议"
   importing:
     title: 导入脚本
+    intro: "%{site_name} 可以从其他网站导入脚本，比如代码版本控制系统 (例：GitHub)、您自己的服务器或其它的用户脚本网站。"
+    url_entry_label: 提供要导入的 URL，每行一个。这应该是原始 JS 或 CSS 文件的网址。
+    sync_type_label: "在初始导入后，脚本应该会同步："
+    additional_info_html: |
+        <p>对于来自版本控制系统的脚本，请确保使用的网址指向一个分支而非特定次提交，否则脚本永远不会被更新。例如使用 <code>https://bitbucket.org/username/reponame/raw/<b>分支名</b>/script.user.js</code>，而不能是 <code>https://bitbucket.org/username/reponame/raw/<b>commit-hash</b>/script.user.js</code>。</p>
+        <p>从 GitHub、Bitbucket 或 GitLab 导入的脚本可以设置为通过一个 Webhook 自动同步。这样在您推送提交到您的版本库后，Webhook 会触发并立即更新您在 %{site_name} 上的脚本。如果想设置但还没有这样做，请先导入，然后%{webhook_info_link:设置 Webhook}。</p>
     submit: 导入
     previously_imported:
       heading: 以前导入的脚本
@@ -1147,7 +1203,12 @@ zh-CN:
         text: "你的脚本 %{script_name} 被举报违反 %{site_name} 的站点条例。具体的理由是：%{reason}。你可以在 %{report_url} 查看该则举报并提交申诉。如果不进行申诉，你的脚本可能会被管理员删除。如果有任何问题，请访问论坛 https://greasyfork.org/forum/ 。"
       report_upheld_offender:
         subject: "您的脚本 %{script_name} 在 %{site_name} 上已被删除"
-        text: "您在 %{site_name} 上的%{script_name}脚本已由管理员删除。详情查阅此报告: %{report_url}。如有疑问，请访问 https://greasyfork.org/forum/。"
+        text: |
+            您在 %{site_name} 上的 %{script_name} 脚本已被一名管理员删除，不再对公众可见。详情见此报告：%{report_url}。
+
+            如有疑问，请访问 https://greasyfork.org/forum/。
+
+            如果这是一次误会，或者您已更新脚本而解决提到的问题，可以到 %{appeal_url} 提出异议。有关 %{site_name} 政策的一般性问题，请到 https://greasyfork.org/forum/ 询问。
       report_dismissed_offender:
         subject: "%{site_name} 上的一则针对您的 %{script_name} 脚本的举报已被驳回"
         text: "%{site_name} 上的一则针对您的 %{script_name} 脚本的举报已由管理员驳回，您的脚本继续保留。详情查阅此报告: %{report_url}。如有疑问，请访问 https://greasyfork.org/forum/。"
