@@ -1,0 +1,9 @@
+<p><%= it('mailers.script_comment.intro', site_name: @site_name, script_name: @comment.script.name(@locale), script_link: script_url(@comment.script, locale: @locale), **localization_params_for_comment(@comment, @locale)) %></p>
+
+<hr>
+
+<%= format_user_text(@comment.text, @comment.text_markup) %>
+
+<hr>
+
+<p><%= it('mailers.script_comment.outro', notification_preferences_link: notifications_user_url(@receiving_user, locale: @locale), **localization_params_for_comment(@comment, @locale)) %></p>

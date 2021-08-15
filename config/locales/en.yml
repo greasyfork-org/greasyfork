@@ -1617,38 +1617,16 @@ en:
           %{site_name} strives to maintain a high-quality list of scripts for users. To deal with broken, abandoned scripts, those that receive multiple consecutive "Bad" reviews without a timely response will become hidden. To avoid your script becoming hidden, post a new version or reply to the discussions by %{delete_date}. If you take no action, you will still have the option to make it visible again after this date.
     script_comment:
       subject: "Your script %{script_name} on %{site_name} has received a comment."
-      text: |
-        Your script '%{script_name}' on %{site_name} (%{script_url}) has received a comment by user '%{commenter_name}':
-
-        ---
-        %{comment_text}
-        ---
-
-        You can view and reply to this comment at %{comment_url}. Manage your notification preferences at %{notification_preferences_url}.
+      intro: "Your script %{script_link:%{script_name}} on %{site_name} has received a comment by user %{commenter_link:%{commenter_name}}:"
+      outro: "%{comment_link:View and reply to this comment.} %{notification_preferences_link:Manage your notification preferences.}"
     subscribed_discussion:
       subject: "The discussion %{discussion_title} on %{site_name} has received a comment."
-      text: |
-        The discussion '%{discussion_title}' on %{site_name} has received a comment by user '%{commenter_name}':
-
-        ---
-        %{comment_text}
-        ---
-
-        You can view and reply to this comment at %{comment_url}.
-
-        You received this notification because you are subscribed to this discussion. Visit %{discussion_url} to unsubscribe, or manage your notification preferences at %{notification_preferences_url}.
+      intro: "The discussion %{discussion_link:%{discussion_title}} on %{site_name} has received a comment by user %{commenter_link:%{commenter_name}}:"
+      outro: "%{comment_link:View and reply to this comment.} You received this notification because you subscribed to the discussion %{discussion_link:%{discussion_title}}. %{notification_preferences_link:Manage your notification preferences.}"
     comment_mentioned:
       subject: "User '%{commenter_name}' mentioned you on %{site_name}."
-      text: |
-        The discussion '%{discussion_title}' on %{site_name} received a comment by user '%{commenter_name}' that mentioned you:
-
-        ---
-        %{comment_text}
-        ---
-
-        You can view and reply to this comment at %{comment_url}.
-
-        You received this notification because you chose to be notified when you are mentioned. Manage your notification preferences at %{notification_preferences_url}.
+      intro: "The discussion %{discussion_link:%{discussion_title}} on %{site_name} received a comment by user %{commenter_link:%{commenter_name}} that mentioned you:"
+      outro: "%{comment_link:View and reply to this comment.} You received this notification because you chose to be notified when you are mentioned. %{notification_preferences_link:Manage your notification preferences.}</p>"
     new_message:
       subject: "%{user} sent you a message on %{site_name}"
       text: |

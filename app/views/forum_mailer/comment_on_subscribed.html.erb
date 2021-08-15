@@ -1,0 +1,9 @@
+<p><%= it('mailers.subscribed_discussion.intro', site_name: @site_name, **localization_params_for_comment(@comment, @locale)) %></p>
+
+<hr>
+
+<%= format_user_text(@comment.text, @comment.text_markup) %>
+
+<hr>
+
+<p><%= it('mailers.subscribed_discussion.outro', notification_preferences_link: notifications_user_url(@receiving_user, locale: @locale), **localization_params_for_comment(@comment, @locale)) %></p>
