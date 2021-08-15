@@ -126,7 +126,7 @@ Rails.application.routes.draw do
       get 'ban', to: 'users#ban', as: 'ban'
       post 'ban', to: 'users#do_ban', as: 'do_ban'
       resources :conversations, only: [:new, :create, :show, :index] do
-        resources :messages, only: :create
+        resources :messages, only: [:create, :update]
         member do
           post :subscribe
           post :unsubscribe

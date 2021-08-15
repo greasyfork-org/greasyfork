@@ -1415,6 +1415,7 @@ CREATE TABLE `messages` (
   `poster_id` int(11) NOT NULL,
   `content` varchar(10000) COLLATE utf8mb4_unicode_ci NOT NULL,
   `content_markup` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'html',
+  `edited_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_messages_on_poster_id` (`poster_id`),
   KEY `fk_rails_7f927086d2` (`conversation_id`),
@@ -2222,6 +2223,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20210720001400'),
 ('20210722011850'),
 ('20210814011208'),
-('20210814162649');
+('20210814162649'),
+('20210814211458');
 
 

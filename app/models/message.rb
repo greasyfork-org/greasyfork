@@ -25,4 +25,14 @@ class Message < ApplicationRecord
       end
     end
   end
+
+  EDITABLE_PERIOD = 5.minutes
+
+  def editable_by?(user)
+    return false if new_record?
+    return false unless user
+    return false unless poster == user
+
+    created_at >= EDITABLE_PERIOD.ago
+  end
 end

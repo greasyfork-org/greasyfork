@@ -20,9 +20,29 @@ class MessagesController < ApplicationController
     else
       ConversationSubscription.where(user: current_user, conversation: @conversation).destroy_all
     end
-    @message.send_notifications!
+
+    notification_job = MessageNotificationJob
+    notification_job = notification_job.set(wait: Message::EDITABLE_PERIOD) unless Rails.env.development? || Rails.env.test?
+    notification_job.perform_later(@message)
 
     redirect_to user_conversation_path(current_user, @conversation, anchor: "message-#{@message.id}")
+  end
+
+  def update
+    message = @conversation.messages.find(params[:id])
+    unless message.editable_by?(current_user)
+      render_access_denied
+      return
+    end
+    Comment.transaction do
+      message.edited_at = Time.current
+      message.attachments.select { |attachment| params["remove-attachment-#{attachment.id}"] == '1' }.each(&:destroy!)
+      message.assign_attributes(message_params)
+      message.construct_mentions(detect_possible_mentions(message.content, message.content_markup))
+      message.save!
+    end
+
+    redirect_to user_conversation_path(current_user, @conversation, anchor: "message-#{message.id}")
   end
 
   private

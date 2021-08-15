@@ -24,6 +24,11 @@
         <%= t('discussions.comment_date', date: markup_date(message.created_at)).html_safe %>
       </div>
       <div class="comment-meta-spacer"></div>
+      <% if message.editable_by?(current_user) %>
+        <div class="comment-meta-item">
+          <%= link_to t('discussions.edit_comment_link'), '#', class: 'edit-comment', data: { comment_container: "message-#{message.id}" } %>
+        </div>
+      <% end %>
       <div class="comment-meta-item">
         <%= link_to t('discussions.quote_comment'), '#', class: 'quote-comment' %>
       </div>
@@ -37,6 +42,16 @@
       <%= format_user_text(message.content, message.content_markup, mentions: message.mentions) %>
       <%= render partial: 'screenshots/show', locals: { attachable: message } %>
     </div>
+    <% if message.editable_by?(current_user) %>
+      <div class="edit-comment-form">
+        <%= form_with(model: message, url: user_conversation_message_path(message.poster, message.conversation, message), method: :PATCH) do |f| %>
+          <h3><%= t('conversations.edit_message_header') %></h3>
+          <%= render partial: 'message_entry', locals: { f: f } %>
+          <%= f.submit t('conversations.update_message_submit') %>
+          <%= f.submit t('discussions.cancel_update_comment'), class: 'cancel-edit-comment', data: { comment_container: "message-#{message.id}" } %>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 <% end %>
 <div id="post-reply" class="post-reply">
