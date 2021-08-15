@@ -1079,39 +1079,10 @@ ro:
             %{site_name}  se chinuie să mențină o listă de scripturi de mare calitate pentru utilizatori. Pentru a lupta cu scripturile stricate sau abandonate, cele care primesc pareri consecutive de "Rău" fară un raspuns imediat vor fi ascunse. Pentru a evita ca scriptul tău să devină ascuns, publică o nouă versiune sau răspunde la discuții pâna pe %{delete_date}. Dacă nu iei nici o măsură, vei avea oricum și după opțiunea de a-l face vizibil din nou dupa expirarea timpului.
     script_comment:
       subject: "Scriptul tău %{script_name} de pe %{site_name} a primit un comentariu."
-      text: |
-          Scriptul tau '%{script_name}' de pe %{site_name} (%{script_url}) a primitu n comentariu de la utilizatorul '%{commenter_name}':
-
-          ---
-          %{comment_text}
-          ---
-
-          Poți vedea și raspunde comentariului pe %{comment_url}.
-          Modifica-ți setarile de notificări pe %{notification_preferences_url}.
     subscribed_discussion:
       subject: "Discuția cu titlul %{discussion_title} de pe site-ul %{site_name} a primit un comentariu."
-      text: |
-          Discuția cu titlul '%{discussion_title}' de pe site-ul %{site_name} a primit un comentariu de la utilizatorul '%{commenter_name}'
-
-          ---
-          %{comment_text}
-          ---
-
-          Poți vizualiza si răspunde comentariului pe %{comment_url}.
-
-          Ai primit un anunț pentru că ești abonat la această discuție. Vizitează url-ul %{discussion_url} pentru a te dezabona, sau schimbă-ți setările de notificări pe %{notification_preferences_url}.
     comment_mentioned:
       subject: "Utilizatorul '%{commenter_name}' te-a menționat pe %{site_name}."
-      text: |
-          Discuția cu titlul '%{discussion_title}' de pe site-ul %{site_name} a primit un comentariu de la utilizatorul '%{commenter_name}' care te-a menționat
-
-          ---
-          %{comment_text}
-          ---
-
-          Poți vizualiza și răspunde comentariului pe %{comment_url}.
-
-          Ai primit un anunț pentru ca ai setat să fii notificat cand ești menționat. Schimbă-ți setarile de notificări pe %{notification_preferences_url}.
     new_message:
       subject: "Utilizatorul %{user} ți-a trimis un mesaj pe site-ul %{site_name}"
       text: |

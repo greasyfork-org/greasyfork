@@ -1123,38 +1123,10 @@ de:
             %{site_name} zielt darauf ab, hochqualitative Skripte für die Benutzer bereitzustellen. Um mit fehlerhaften, vernachlässigten Skripten umzugehen, werden Skripte, welche mehrere "Schlechte" Rückmeldungen ohne zeitnahe Rückmeldung erhalten, versteckt. Um zu vermeiden, dass Ihr Skript versteckt wird, veröffentlichen Sie eine neue Version oder antworten Sie auf die Diskussionen vor dem %{delete_date}. Falls Sie keine Aktion ergreifen, haben Sie weiterhin die Möglichkeit Ihr Skript nach diesem Datum wieder sichtbar zu machen.
     script_comment:
       subject: "Ihr Skript %{script_name} auf %{site_name} hat einen Kommentar erhalten."
-      text: |
-          Ih Skript '%{script_name}' auf %{site_name} (%{script_url}) erhielt einen Kommentar durch Benutzer '%{commenter_name}':
-
-          ---
-          %{comment_text}
-          ---
-
-          Sie können den Kommentar unter %{comment_url} anschauen und beantworten. Verwalten Sie Ihre Benachrichtigungseinstellungen unter %{notification_preferences_url}.
     subscribed_discussion:
       subject: "Die Diskussion %{discussion_title} auf %{site_name} hat einen Kommetar erhalten."
-      text: |
-          Die Diskussion '%{discussion_title}' auf %{site_name} erhielt einen Kommentar durch Benutzer '%{commenter_name}':
-
-          ---
-          %{comment_text}
-          ---
-
-          Sie können den Kommentar unter %{comment_url} anschauen und beantworten.
-
-          Sie erhalten diese Benachrichtigung, da Sie diese Diskussion abonniert haben.  Besuchen Sie %{discussion_url} zum Deabonnieren oder verwalten Sie Ihre Benachrichtigungseinstellungen unter %{notification_preferences_url} .
     comment_mentioned:
       subject: "Benutzer '%{commenter_name}' hat Sie auf %{site_name} erwähnt."
-      text: |
-          Die Diskussion '%{discussion_title}' auf %{site_name} erhielt einen Kommentar durch Benutzer '%{commenter_name}' welcher Sie erwähnt:
-
-          ---
-          %{comment_text}
-          ---
-
-          Sie können den Kommentar unter %{comment_url} anschauen und beantworten.
-
-          Sie erhalten diese Benachrichtigung, da Sie gewählt haben bei Kommentaren, die Sie erwähnen, benachrichtigt zu werden. Sie können Ihre Benachrichtigungseinstellungen unter %{notification_preferences_url} verwalten.
     new_message:
       subject: "%{user} hat Ihnen auf %{site_name} eine Nachricht gesendet"
       text: |

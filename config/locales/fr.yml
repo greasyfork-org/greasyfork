@@ -1214,38 +1214,10 @@ fr:
             %{site_name} s'efforce de maintenir un ensemble de scripts de haute qualité pour les utilisateurs. Afin de faire face aux scripts cassés, ou abandonnés, ceux qui reçoivent plusieurs "mauvaises" critiques consécutives sans réaction opportune seront cachés. Pour éviter que votre script se retrouve caché, publiez une nouvelle version ou répondez à la discussion avant le %{delete_date}. Si vous ne réagissez pas, vous aurez encore la possibilité de le rendre visible après cette date.
     script_comment:
       subject: "Votre script %{script_name} sur %{site_name} a reçu un commentaire."
-      text: |
-          Votre script '%{script_name}' sur %{site_name} (%{script_url}) a reçu un commentaire de l'utilisateur '%{commenter_name}':
-
-          ---
-          %{comment_text}
-          ---
-
-          Vous pouvez voir et répondre à ce commentaire sur %{comment_url}. Gérez vos préférences de notification dans %{notification_preferences_url}.
     subscribed_discussion:
       subject: "La discussion %{discussion_title} sur %{site_name} a reçu un commentaire."
-      text: |
-          La discussion '%{discussion_title}' sur %{site_name} a reçu un commentaire de l'utilisateur '%{commenter_name}':
-
-          ---
-          %{comment_text}
-          ---
-
-          Vous pouvez lire et répondre à ce commentaire là: %{comment_url}.
-
-          Vous avez reçu cette notification car vous être inscrit à cette discussion. Visitez %{discussion_url} pour vous désinscrire, ou %{notification_preferences_url} pour régler vos préférences de notification.
     comment_mentioned:
       subject: "L'utilisateur '%{commenter_name}' vous a mentionné sur %{site_name}."
-      text: |
-          La discussion '%{discussion_title}' sur %{site_name} a reçu un commentaire de l'utilisateur '%{commenter_name}' qui vous mentionnait:
-
-          ---
-          %{comment_text}
-          ---
-
-          Vous pouvez afficher et répondre à ce commentaire à %{comment_url}.
-
-          Vous avez reçu cette notification car vous avez choisi d'être notifié lorsque vous êtes mentionné. Gérez vos préférences de notification sur %{notification_preferences_url}.
     new_message:
       subject: "%{user} vous a envoyé un message sur %{site_name}"
       text: |

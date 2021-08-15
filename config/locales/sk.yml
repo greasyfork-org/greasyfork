@@ -954,6 +954,8 @@ sk:
     item_script_html: "Skript: %{script_link}"
     item_deleted_script: "Odstránený skript %{id}"
     item_user_html: "Používateľ: %{user_link}"
+    item_report: "%{report_link: Sťažnosť #%{report_id}}"
+    item_script_lock_appeal: "%{appeal_link:Odvolanie #%{appeal_id}}"
   notifications:
     consecutive_bad_ratings:
       one: "%{script_names} dostal po sebe idúce zlé hodnotenia. Preskúmajte váš skript a odpovedzte na obavy uvedené v hodnoteniach."
@@ -1169,6 +1171,8 @@ sk:
     recent:
       title: Nedávne konverzácie
       more: Zobraziť všetky konverzácie
+    edit_message_header: Upraviť správu
+    update_message_submit: Aktualizovať správu
   screenshots:
     requirements: "Maximálne %{number} PNG, GIF, JPEG, alebo WebP obrázkov, každý menší ako %{size}."
   common:
@@ -1292,6 +1296,10 @@ sk:
         text: "Váš skript %{script_name} bol nahlásený pre porušovanie pravidiel %{site_name}. Konkrétny dôvod: %{reason}. Túto sťažnosť si môžete pozrieť na %{report_url} a odoslať obhajobu. Ak neodošlete obhajobu, váš skript môže byť moderátorom odstránený. Ak máte nejaké otázky, prejdite na https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Váš skript %{script_name} na %{site_name} bol odstránený"
+        text: |
+            Váš skript %{script_name} na %{site_name} bol odstránený moderátorom a už nie je dostupný pre verejnosť. Správu o hlásení si môžete pozrieť na %{report_url}.
+
+            Ak sa domnievate, že ide o chybu, alebo ak ste skript aktualizovali a problém odstránili, môžete podať odvolanie na %{appeal_url}. Ak máte všeobecné otázky na %{site_name}, prosím, navštívte https://greasyfork.org/forum/.
       report_dismissed_offender:
         subject: "Sťažnosť na váš skript %{script_name} na %{site_name} bola zamietnutá"
         text: "Sťažnosť na váš skript %{script_name} na %{site_name} bola zamietnutá moderátorom. Váš skript zostane aktívny. Správu o hlásení si môžete pozrieť na %{report_url}. Ak máte nejaké otázky, prosím, navštívte https://greasyfork.org/forum/."
@@ -1324,38 +1332,16 @@ sk:
             %{site_name} sa udržiavať kvalitný zoznam skriptov pre používateľov. Nefunkčné, zanedbané, skripty s po sebe idúcimi "zlými" hodnoteniami bez včasnej odozvy budú skryté. Ak chcete zabrániť skrytiu vášho skriptu pridajte novú verziu alebo odpoveď do diskusie do %{delete_date}. Ak nič neurobíte, stále budete mať možnosť skript zviditeľniť aj po tomto dátume.
     script_comment:
       subject: "Váš skript %{script_name} na %{site_name} bol komentovaný."
-      text: |
-          Váš skript '%{script_name}' na %{site_name} (%{script_url}) bol komentovaný používateľom '%{commenter_name}':
-
-          ---
-          %{comment_text}
-          ---
-
-          Komentár môžete zobraziť a odpovedať naň na %{comment_url}. Spravujte svoje predvoľby upozornení na stránke %{notification_preferences_url}.
+      intro: "Váš skript %{script_link:%{script_name}} na %{site_name} bol komentovaný používateľom %{commenter_link:%{commenter_name}}:"
+      outro: "%{comment_link:Zobraziť a odpovedať na tento komentár.} %{notification_preferences_link:Spravujte svoje predvoľby upozornení.}"
     subscribed_discussion:
       subject: "Do diskusie %{discussion_title} na %{site_name} bol pridaný komentár."
-      text: |
-          V diskusii "%{discussion_title}" na %{site_name} pribudol komentár od používateľa "%{commenter_name}":
-
-          ---
-          %{comment_text}
-          ---
-
-          Zobraziť a odpovedať na tento komentár môžete na %{comment_url}.
-
-          Toto upozornenie ste dostali, pretože ste prihlásení na odber tejto diskusie. Pre odhlásenie prejdite na %{discussion_url}, alebo spravujte nastavenia upozornení na%{notification_preferences_url}.
+      intro: "Diskusia %{script_link:%{discussion_title}} na %{site_name} bola komentovaná používateľom %{commenter_link:%{commenter_name}}:"
+      outro: "%{comment_link:Zobraziť a odpovedať na tento komentár.} Toto upozornenie ste dostali, pretože ste prihlásený na odber tejto diskusie %{discussion_link:%{discussion_title}}. %{notification_preferences_link:Spravujte svoje predvoľby oznámení.}"
     comment_mentioned:
       subject: "Používateľ stránky '%{commenter_name}' sa o vás zmienil na %{site_name}."
-      text: |
-          Do diskusie '%{discussion_title}' na %{site_name} bol pridaný komentár používateľom '%{commenter_name}', ktorý sa o vás zmienil.
-
-          ---
-          %{comment_text}
-          ---
-
-          Zobraziť a reagovať na komentár môžete tu %{comment_url}.
-
-          Toto upozornenie ste dostali, lebo ste vybrali, že chcete byť upozornení, keď sa niekto o vás zmieni. Nastavenia upozornení môžete spravovať tu %{notification_preferences_url}.
+      intro: "Diskusia %{script_link:%{discussion_title}} na %{site_name} bola komentovaná používateľom %{commenter_link:%{commenter_name}}, ktorý vás spomenul:"
+      outro: "%{comment_link:Zobraziť a odpovedať na tento komentár.} Toto upozornenie ste dostali, pretože chcete byť upozornený, keď vás spomenú %{notification_preferences_link:Spravujte svoje predvoľby oznámení.}</p>"
     new_message:
       subject: "Používateľ %{user} vám poslal správu na %{site_name}"
       text: |

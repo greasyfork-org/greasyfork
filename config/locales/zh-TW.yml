@@ -1025,14 +1025,6 @@ zh-TW:
             %{site_name} 力求為使用者提供高品質的腳本。為了防止網站被不可用或已拋棄的腳本塞滿，收到大量建設性的負評卻未能在一定時間內回應的腳本將會被隱藏。為了防止這種事件發生，請在 %{delete_date} 或之前提交一個新的版本或做出回應。即使您未做出任何上述的動作，您也可以在此日期後手動取消隱藏狀態。
     script_comment:
       subject: "您在%{site_name}上的腳本%{script_name}已收到留言"
-      text: |
-          您對於網站%{site_name}的腳本'%{script_name}' (%{script_url}) 收到了一條來自使用者'%{commenter_name}'的評論:
-
-          ---
-          %{comment_text}
-          ---
-
-          您可以在%{comment_url} 檢視並回覆該評論，或者在%{notification_preferences_url}調整通知設定。
     subscribed_discussion:
       subject: "網站%{site_name}的討論%{discussion_title}收到了一個評論。"
     comment_mentioned:

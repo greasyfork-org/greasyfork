@@ -1134,38 +1134,10 @@ pl:
             %{site_name} stara się utrzymywać wysokiej jakości listę skryptów dla użytkowników. By radzić sobie z zepsutymi, porzuconymi skryptami te, które zostały ocenione wiele razy jako "Słaby", zostaną ukryte. Aby uniknąć ukrycia twojego skryptu, opublikuj nową wersję lub odpowiedz na dyskusje przed %{delete_date}. Jeśli nie podejmiesz żadnych działań, nadal będziesz mieć możliwość przywrócenia go po tej dacie.
     script_comment:
       subject: "Twój skrypt %{script_name} na %{site_name} został skomentowany."
-      text: |
-          Twój skrypt '%{script_name}' na %{site_name} (%{script_url}) został skomentowany przez '%{commenter_name}':
-
-          ---
-          %{comment_text}
-          ---
-
-          Możesz zobaczyć ten komentarz i odpowiedzieć na %{comment_url}. Zarządzaj ustawieniami powiadomień na %{notification_preferences_url}.
     subscribed_discussion:
       subject: "Dyskusja o %{discussion_title} na %{site_name} otrzymała komentarz."
-      text: |
-          Dyskusja o '%{discussion_title}' na %{site_name} została skomentowana przez '%{commenter_name}':
-
-          ---
-          %{comment_text}
-          ---
-
-          Możesz zobaczyć ten komentarz i odpowiedzieć na %{comment_url}.
-
-          Otrzymano to powiadomienie, ponieważ subskrybujesz tę dyskusję. Odwiedź %{discussion_url} by odsubskrybować, lub zarządzaj ustawieniami powiadomień na %{notification_preferences_url}.
     comment_mentioned:
       subject: "Użytkownik '%{commenter_name}' wspomniał o tobie na %{site_name}."
-      text: |
-          Dyskusja o '%{discussion_title}' na %{site_name} została skomentowana przez '%{commenter_name}', który cię oznaczył:
-
-          ---
-          %{comment_text}
-          ---
-
-          Możesz zobaczyć ten komentarz i odpowiedzieć na %{comment_url}.
-
-          Otrzymano to powiadomienie, ponieważ masz włączone otrzymywanie wzmianek o tobie. Zarządzaj ustawieniami powiadomień na %{notification_preferences_url}.
     new_message:
       subject: "Użytkownik %{user} wysłał ci wiadomość na %{site_name}"
       text: |

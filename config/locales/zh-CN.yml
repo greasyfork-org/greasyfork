@@ -8,7 +8,7 @@ zh-CN:
       submenu: "更多"
       advanced_search: "高级搜索"
       user_list: "用户列表"
-      libraries: "列"
+      libraries: "库"
       moderator_log: "管理日志"
   scripts:
     created_date: "创建日期"
@@ -41,7 +41,7 @@ zh-CN:
     deleted_notice: "此脚本已被删除。"
     deleted_notice_with_related: "请求的脚本已被删除。不过，这里还有一些可能类似的脚本。"
     deleted_undelete_notice_html: "该脚本已被管理员锁定并删除且无法撤销。锁定原因：“<i>%{delete_reason}</i>”。"
-    deleted_locked_author_notice_html: "该脚本已被管理员删除且不能被其他用户所访问。删除的原因是：“<i>%{delete_reason}</i>”。您可以can %{appeal_link:提交异议}。"
+    deleted_locked_author_notice_html: "该脚本已被管理员删除，其他用户无法访问。删除的原因是：“<i>%{delete_reason}</i>”。您可以对本次删除 %{appeal_link:提交申诉}。"
     deleted_author_notice: "其他用户不能访问该脚本，因为它已经被删除。你可以在“删除”面板中取消删除。"
     version_notice_html: "您查看的为 %{date} 提交的版本。查看 %{latest_version_link}。"
     version_notice_latest_version_link: "最新版本"
@@ -274,7 +274,7 @@ zh-CN:
     not_adult_content_self_report_explanation: "%{site_name} 允许脚本含有成人内容，但必须被「明确标注」，以便用户自主选择是否显示此类信息。您的脚本已经被网站自动标记为「包含和谐内容」；如果这是误判，您可以申请取消该标记，管理员将对您的申请进行审核。"
     not_adult_content_self_report_explanation_automatic: "%{site_name} 允许脚本含有成人内容，但必须被「明确标注」，以便用户自主选择是否显示此类信息。您的脚本在成人网站 %{domain_list} 上运行，因此已被自动标注为包含成人内容。"
     adult_content_on_greasy_logged_in_error: "根据您当前的 %{edit_account_link:Greasy Fork 账号设置}，此脚本不再在本网站上可用。"
-    adult_content_on_greasy_not_logged_in_error: "此脚本不再在本网站上匿名可用。请%{login_link:登录}并检查您的 Greasy Fork 账号设置。"
+    adult_content_on_greasy_not_logged_in_error: "此脚本不再在本网站上匿名可用。请 %{login_link:登录} 并检查您的 Greasy Fork 账号设置。"
     non_adult_content_on_sleazy: "此脚本在本网站上不可用。"
     not_js_convertible_override_header: "转换为 JS"
     not_js_convertible_override_explanation: "%{site_name} 可以为您的用户样式 (user CSS) 自动创建一份 %{help_link:用户脚本 (User JS)  版本} 。两者的运行方式有所不同，我们建议您测试转换后的脚本。如果您发现转换的脚本不能使用，可以选中下方的复选框来禁用它。"
@@ -317,7 +317,7 @@ zh-CN:
       remove_button: "移除"
       remove_confirm: "确定要将 %{user_name} 从作者列表中移除吗？"
       failure: "无法移除该作者。"
-    no_disposable_email: "如果您使用一次性电子邮件地址，则不能发布脚本。"
+    no_disposable_email: "如果您使用一次性电子邮箱地址，则不能发布脚本。"
     rate_limited: "您近期提交了太多脚本。请稍后再试。"
     new_script_notice:
       title: "想要做什么？"
@@ -622,7 +622,7 @@ zh-CN:
         new_comment: 默认订阅我回复过的讨论帖
         mention: 当在讨论中被提及的时发送通知
       conversation_defaults:
-        title: 对话设定
+        title: 私信通知
         starter: 默认订阅你发起的私信
         receiver: 默认订阅发送给你的私信
       save_button: 更新通知设置
@@ -758,7 +758,7 @@ zh-CN:
         content_html: |
             <p>任何被发现含有允许范围外的外部代码的脚本将被删除。</p>
       test_url:
-        label: 測試 URL
+        label: 测试一个 URL
         result_ok: URL 允许使用
         result_not_ok: URL 不允许使用
     script_rewriting:
@@ -1044,7 +1044,7 @@ zh-CN:
     subscribe: 关注
     unsubscribe: 取消关注
     notify: 通知我所有在该讨论的回复
-    notifying_on_script: 基于您%{notifications_link:脚本的通知设定}，你会收到回复的通知。
+    notifying_on_script: 根据您的 %{notifications_link:脚本通知设置}，有新回复时您将收到通知。
     categories:
       greasyfork:
         name: Greasy Fork 反馈
@@ -1087,6 +1087,8 @@ zh-CN:
     recent:
       title: 近期私信
       more: 查阅所有私信
+    edit_message_header: 编辑消息
+    update_message_submit: 更新消息
   screenshots:
     requirements: "最多上传 %{number} 张 PNG、GIF、JPEG、或 WebP 图片，且每张图片不得超过 %{size}。"
   common:
@@ -1106,7 +1108,7 @@ zh-CN:
     expander_show_less: "显示更少"
     advertisement_note: 广告
     preview_tab: 预览
-    write_tab: 撰写
+    write_tab: 编写
     listing_options_title: "搜索选项"
     quote:
       prefix_html: "%{user} 说："
@@ -1191,7 +1193,7 @@ zh-CN:
       unknown_date: "（未知）"
       failed_entry_html: "%{script_link} - %{sync_type} 同步中 ，最後同步嘗試 %{last_sync_attempt_date}，%{sync_error}"
     results:
-      title: "導入結果："
+      title: "导入结果："
       success: "以下的脚本已经成功被导入："
       needs_description: "以下的脚本需要说明段落才能被导入："
       existing: "以下的脚本已经导入："
@@ -1241,38 +1243,16 @@ zh-CN:
             %{site_name} 力求为用户提供高质量的脚本。为了防止网站被不可用或已抛弃的脚本填充，收到大量建设性的差评反馈却未能在一定时间内回应的脚本将会被隐藏。为了防止这种事件发生，请在 %{delete_date} 之前提交一个新的版本或做出回应。即使您未做出任何上述的操作，您也可以在此日期后手动取消隐藏状态。
     script_comment:
       subject: "您对于站点%{site_name}的脚本%{script_name}收到了一条评论。"
-      text: |
-          您对于站点%{site_name}的脚本'%{script_name}' (%{script_url}) 收到了一条来自用户'%{commenter_name}'的评论:
-
-          ---
-          %{comment_text}
-          ---
-
-          您可以在%{comment_url} 查看并回复该评论，或者在%{notification_preferences_url}调整通知设置。
+      intro: "您在 %{site_name}  上的脚本 %{script_link:%{script_name}} 收到了用户 %{commenter_link:%{commenter_name}} 的评论："
+      outro: "%{comment_link:查看和回复此评论}。%{notification_preferences_link:管理您的通知设置}。"
     subscribed_discussion:
       subject: "站点%{site_name}的讨论%{discussion_title}收到了一条评论。"
-      text: |
-          %{site_name} 上的讨论 '%{discussion_title}' 收到了一条来自 '%{commenter_name}' 的回复：
-
-          ---
-          %{comment_text}
-          ---
-
-          你可以在 %{comment_url} 查看并回复这条信息。
-
-          您收到的这条通知基于这条讨论的订阅设定。你可以访问 %{discussion_url} 来取消订阅，或访问 %{notification_preferences_url} 来管理通知设定。
+      intro: "%{site_name} 上的讨论 %{discussion_link:%{discussion_title}} 收到了一条来自 %{commenter_link:%{commenter_name}} 的评论："
+      outro: "%{comment_link:查看和回复此评论}。您收到此通知是因为您已订阅 %{discussion_link:%{discussion_title}}。%{notification_preferences_link:管理您的通知设置}。"
     comment_mentioned:
       subject: "%{site_name} 的用户“%{commenter_name}” 提到了你。"
-      text: |
-          %{site_name} 的用户“%{commenter_name}” 在%{discussion_title}提到了你：
-
-          ---
-          %{comment_text}
-          ---
-
-          你可以访问 %{comment_url} 来查阅或回复。
-
-          您收到的这条通知基于这条讨论的订阅设定。你可以访问 %{notification_preferences_url} 来管理通知设定。
+      intro: "%{site_name} 上的讨论 %{discussion_link:%{discussion_title}} 收到了一条来自 %{commenter_link:%{commenter_name}} 的提到您的评论："
+      outro: "%{comment_link:查看和回复此评论}。您收到此通知是因为您选择了在被提及时收到通知。%{notification_preferences_link:管理您的通知设置}。"
     new_message:
       subject: "%{user} 在 %{site_name} 给你发送了一则信息"
       text: |

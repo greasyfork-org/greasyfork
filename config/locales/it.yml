@@ -1288,38 +1288,10 @@ it:
             %{site_name} si impegna duramente per mantenere una lista di script di alta qualità per gli utenti. Per occuparsi degli script abbandonati e non funzionanti,  quelli che ricevono molteplici segnalazioni consecutive come "Cattivo" senza una pronta risposta diverranno nascosti. Per evitare che il tuo script diventi nascosto, pubblica una nuova versione o rispondi alle discussioni entro il %{delete_date}. Se non agirai, avrai ancora l'opzione di renderlo visibile nuovamente dopo questa data.
     script_comment:
       subject: "Il tuo script %{script_name} su %{site_name} ha ricevuto un commento."
-      text: |
-          Il tuo script '%{script_name}' su %{site_name} (%{script_url}) ha ricevuto un commento dall'utente '%{commenter_name}':
-
-          ---
-          %{comment_text}
-          ---
-
-          Puoi vedere questo commento e rispondere su %{comment_url}. Gestisci le tue preferenze per le notifiche su %{notification_preferences_url}.
     subscribed_discussion:
       subject: "La discussione %{discussion_title} su %{site_name} ha ricevuto un commento."
-      text: |
-          La discussione '%{discussion_title}' on %{site_name} ha ricevuto un commento dall'utente '%{commenter_name}':
-
-          ---
-          %{comment_text}
-          ---
-
-          Puoi vedere questo commento e rispondere su %{comment_url}.
-
-          Hai ricevuto questa notifica perché sei iscritto a questa discussione. Visita %{discussion_url} per disiscriverti, o gestisci le tue preferenze per le notifiche su %{notification_preferences_url}.
     comment_mentioned:
       subject: "L'utente '%{commenter_name}' ti ha menzionato su %{site_name}."
-      text: |
-          La discussione '%{discussion_title}' si %{site_name} ha ricevuto un commento dall'utente '%{commenter_name}' che ti ha menzionato:
-
-          ---
-          %{comment_text}
-          ---
-
-          Puoi visualizzare e rispondere a questo commento su %{comment_url}.
-
-          Hai ricevuto questa notifica perché hai scelto di essere notificato quando vieni menzionato. Gestisci le tue preferenze per le notifiche su %{notification_preferences_url}.
     new_message:
       subject: "%{user} ti ha inviato un messaggio su %{site_name}"
       text: |
