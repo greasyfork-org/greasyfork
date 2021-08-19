@@ -32,7 +32,7 @@ class Script < ApplicationRecord
   has_many :forum_discussions, foreign_key: 'ScriptID', inverse_of: :script
   has_many :antifeatures, dependent: :destroy, autosave: true
   has_many :reports, as: :item, dependent: :destroy
-  has_many :reports_as_reference_script, class_name: 'Report', foreign_key: :reference_script_id, dependent: :destroy
+  has_many :reports_as_reference_script, class_name: 'Report', foreign_key: :reference_script_id, inverse_of: :reference_script, dependent: :destroy
   has_many :script_lock_appeals, dependent: :destroy
 
   belongs_to :script_type

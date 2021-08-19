@@ -28,6 +28,8 @@ class Report < ApplicationRecord
   GRACE_PERIOD = 3.days
   GRACE_PERIOD_REASONS = [REASON_UNAUTHORIZED_CODE, REASON_UNDISCLOSED_ANTIFEATURE, REASON_OTHER, REASON_EXTERNAL_CODE, REASON_MINIFIED].freeze
 
+  REASONS_WARRANTING_BLANKING = [REASON_SPAM, REASON_ABUSE, REASON_ILLEGAL, REASON_MALWARE].freeze
+
   RESULT_DISMISSED = 'dismissed'.freeze
   RESULT_UPHELD = 'upheld'.freeze
   RESULT_FIXED = 'fixed'.freeze
@@ -76,7 +78,7 @@ class Report < ApplicationRecord
         if unauthorized_code? && reference_script
           item.assign_attributes(delete_type: redirect ? 'redirect' : 'keep', locked: true, replaced_by_script: reference_script, self_deleted: moderator.nil?)
         else
-          item.assign_attributes(delete_type: 'blanked', locked: true, self_deleted: moderator.nil?)
+          item.assign_attributes(delete_type: warrants_blanking? ? 'blanked' : 'keep', locked: true, self_deleted: moderator.nil?)
         end
         item.save(validate: false)
         if ban_user
@@ -120,6 +122,10 @@ class Report < ApplicationRecord
 
   def fixed?
     result == RESULT_FIXED
+  end
+
+  def warrants_blanking?
+    REASONS_WARRANTING_BLANKING.include?(reason)
   end
 
   def reported_users
