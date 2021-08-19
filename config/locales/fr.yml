@@ -42,6 +42,7 @@ fr:
     deleted_notice: "Ce script a été supprimé."
     deleted_notice_with_related: "Le script que vous avez demandé a été supprimé, mais voici quelques scripts similaires."
     deleted_undelete_notice_html: "Ce script a été bloqué par un modérateur et ne peut pas être restauré. Pour les raisons suivantes: \"<i>%{delete_reason}</i>\"."
+    deleted_locked_author_notice_html: "Ce script a été supprimé par un modérateur et n'est pas accessible aux autres. La raison fournie est : \"<i>%{delete_reason}</i>\". Vous pouvez %{appeal_link:faire appel} pour cette suppression."
     deleted_author_notice: "Ce script a été supprimé et n'est plus accessible aux autres. Vous pouvez le restaurer à partir de l'onglet Supprimer."
     version_notice_html: "Version au %{date}. Voir %{latest_version_link}."
     version_notice_latest_version_link: "la dernière version"
@@ -59,6 +60,8 @@ fr:
     delete_update_behaviour: "Que voudriez-vous qu'il se passe aux utilisateurs qui ont précédemment installé votre script ? "
     delete_update_behaviours:
       keep: "Ils le garderont comme tel."
+      blanked: "Ils seront mis à jour en un script vierge. Cela arrive lorsque qu'un  script  a un effet négatif sur les sites sur lesquels il s'exécute."
+      redirect: "Ils seront redirigés et mis à jour vers le script que vous spécifiez ci-dessous."
     delete_permanently_heading: "Suppression définitive"
     delete_permanently_explanation_html: >-
         <p>La suppression définitive de votre script le supprimera ainsi que tous
@@ -253,6 +256,7 @@ fr:
     sync_url_placeholder: "(URL)"
     screenshots_add: "Ajouter :"
     screenshots_remove: "Supprimer :"
+    replacement_script_explanation: "(Facultatif) Choisissez un autre script qui remplace ce script. Saisissez l'URL du script de remplacement:"
     diff_title: "%{script} -  Delta entre versions"
     diff_old_version: "Vieux :"
     diff_new_version: "Nouveau :"
@@ -347,6 +351,7 @@ fr:
       close_dialog: OK
     antifeatures:
       warning_title: Ce script contient des anti-fonctionnalités
+      intro: Avant de procéder à l'installation, %{site_name}attention  ce script contient des contre-fonctionnalités, qui sont là pour le bénéfice de l'auteur du script, plutôt que pour le vôtre.
       author_explanation_intro: "L'auteur de ce script explique:"
       types:
         ads:
@@ -360,7 +365,9 @@ fr:
           description_html: Ce script contient un cryptominer qui <b>utilisera les ressources de votre appareil</b> lorsqu'il est actif.
         referral-link:
           title: Liens de parrainage
+          description_html: Ce script <b>comporte une ou plusieurs commissions</b> pour l'auteur, par exemple en réécrivant des liens ou en fournissant des codes promo pour inclure un code de parrainage ou d'affiliation.
         membership:
+          title: Membre
           description_html: Ce script n'est pleinement fonctionnel qu'une fois que vous <b>vous serez inscrit à quelque chose</b>, comme rejoindre un groupe, vous abonner à une chaîne ou aimer une page.
         payment:
           title: Paiement
@@ -667,6 +674,10 @@ fr:
       title: 'Comment installer des scripts utilisateurs'
     installing_user_styles:
       title: 'Où installer des styles'
+      content_html: |
+          <p>Quelques scripts sur %{site_name} peuvent être installés en tant que styles utilisateur.</p>
+          <p>Les styles utilisateur peuvent être installés avec %{stylus_firefox_link:Stylus for Firefox}, %{stylus_chrome_link:Stylus for Chrome} et %{stylus_opera_link:Stylus for Opera}.</p>
+          <p>%{styles_link:Afficher tous les styles utilisateur disponibles}</p>.
     meta_keys:
       title: "Métadonnées utilisées par %{site_name}"
       intro_html: "Voici une liste de <a href=\"http://wiki.greasespot.net/Metadata_Block\">métadonnées</a> que %{site_name} peut utiliser. Les entrées non citées dans cette liste peuvent être utilisées dans de nouveaux scripts. Elles seront alors exploitables dans le script installé, mais n'auront aucun effet sur l'interace de %{site_name}."
@@ -675,6 +686,7 @@ fr:
       description: "Une description de ce que le script fait. Affichée sous forme de texte sous le nom du script. Requis."
       description_localized_html: "La description du script dans une langue spécifique, où XX est un <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">code à 2 lettres ISO 639-1</a> et YY ( optionnel ) est un <a href=\"https://www.iso.org/obp/ui/#search\">code du pays ISO 3166</a>. Remplace <code>@description</code> quand l'utilisateur navigue dans une langue correspondante."
       namespace_html: "Une combinaison de <code>@namespace</code> et de <code>@name</code> est utilisée par les outils de gestion de scripts pour déterminé si un script est déjà installé. %{site_name} a besoin de ce champ et montrera une alerte en cas de changement lors de la mise à jour."
+      version: "Identifiant d'une version spécifique d'un script dans %{version_format_link:Mozilla version format}. La version est affichée sur la page d'informations d'un script. %{site_name} nécessite ce champ et avertira s'il est décrémenté ou s'il n'est pas incrémenté lorsque le code du script change."
       include_html: "Décrivez sur quelles pages le script s'exécutera. Cette liste sera traitée, affichée sur la page d'informations du script et utilisée pour classer les scripts. Chaque script doit avoir au moins un <code>@match</code> ou <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Découvrez le format ici.</a>"
       require_html: "Inclut du JavaScript externe dans un script. Voir %{external_script_link}."
       require_external_script_link_text: "Règles pour les codes incluant des scripts externes."
@@ -702,6 +714,7 @@ fr:
       reason: Les scripts doivent avoir une raison d'être un script. Par exemple, un script qui dirige simplement un utilisateur vers un site Web n'a pas besoin d'être un script; ça pourrait être un lien. Les scripts qui utilisent un service Web pour effectuer une action sur la page actuelle (par exemple pour la convertir d'une manière ou d'une autre) sont autorisés.
       monetization_html: Les scripts qui contiennent des fonctionnalités pour le bénéfice de <em>author</em> plutôt que pour l'utilisateur (tels que le suivi, les publicités et les mineurs) sont autorisés, mais ils doivent être décrite avec les méta clés  %{antifeature_link:<code>@antifeature</code>}.
       code_header: Code
+      obfuscation: Le code posté sur %{site_name} ne doit pas être incompréhensible ou minimisé. Les utilisateurs doivent avoir la possibilité d'inspecter et de comprendre un script avant de l'installer. Si le script est fourni par un outil tel que webpack, il doit être généré sous une forme non-minifiée, avec les espaces et les noms de variables conservés.
       libraries_html: Les bibliothèques utilisées par un script doivent être <code>@require</code>, sauf s'il existe une raison technique valable de ne pas le faire. Dans le cas où une bibliothèque est incluse en ligne, elle doit inclure des informations sur la source de la bibliothèque (par exemple, un commentaire indiquant l'URL et / ou le nom et la version).
       updates: Les scripts ne doivent pas vérifier les mises à jour à un taux supérieur à une fois par jour. Notez que la plupart des gestionnaires de scripts utilisateur gèrent les mises à jour automatiques, il n'est donc pas nécessaire de le faire dans le script. Les scripts ne doivent pas non plus injecter dynamiquement un autre script %{site_name} hébergé dans une page, car cela contourne la mise en cache dans les gestionnaires de scripts utilisateur.
       external_js: "%{external_scripts_link:L'utilisation de JavaScript externe est limitée.}"
@@ -720,6 +733,10 @@ fr:
         heading: Cas spéciaux
       add_to_list:
         heading: Ajoutée à la liste
+      enforcement:
+        heading: Mise en vigueur
+        content_html: |
+            <p>Tout script contenant du code externe en dehors de ce qui est autorisé est susceptible d'être supprimé.</p>
       test_url:
         label: Tester une URL
         result_ok: L'URL est autorisée
@@ -869,6 +886,8 @@ fr:
     item_script_html: "Script: %{script_link}"
     item_deleted_script: "Script supprimé %{id}"
     item_user_html: "Utilisateur: %{user_link}"
+    item_report: "%{report_link: signalent #%{report_id}}"
+    item_script_lock_appeal: "%{appeal_link:Faire appel #%{appeal_id}}"
   notifications:
     consecutive_bad_ratings:
       one: "%{script_names} a reçu plusieurs mauvaises notes consécutives. Veuillez revoir votre script et répondre aux préoccupations soulevées dans les évaluations."
@@ -928,7 +947,9 @@ fr:
       undisclosed_antifeature: "Non divulguation %{antifeature_link:antifeature} (par exemple, annonce/ad, suivi/tracking, minage de cryptomonnaie, etc.)"
       other: "Autre"
     report_intro: "%{reported_item} a été signalé le %{report_date} par %{reporter} pour %{reason}"
+    report_intro_no_reporter: "%{reported_item}a été signalé %{report_date} pour %{reason} "
     report_intro_unauthorized_html: "%{reported_script} a été signalé à %{report_date} par %{reporter} comme une copie non autorisée de %{other_script}."
+    report_intro_unauthorized_no_reporter_html: "%{reported_script} a été signalée %{report_date} comme copie non autorisée de %{other_script}."
     report_intro_unauthorized_license: "%{other_script} utilise la licence %{license_link: %{license_name}}. Visitez %{tldr_legal_link:tldrlegal.com} pour savoir ce que signifie cette licence."
     report_intro_unauthorized_license_no_url: "%{other_script} utilise la licence %{license_name}. Visitez %{tldr_legal_link:tldrlegal.com} pour savoir ce que signifie cette licence."
     report_intro_unauthorized_no_license: "%{other_script} ne spécifie pas de licence, ce qui signifie que la distribution de copies n'est pas autorisée à moins qu'une autorisation explicite ne soit donnée."
@@ -957,6 +978,7 @@ fr:
     view_discussion: "Voir la discussion"
     load_diff: "Chargement différer "
     loading_diff: "Chargement…"
+    reported_user_activity_html: "%{user}(l'utilisateur signalé) a effectué:"
   discussions:
     title: Discussions
     comment_date: "Posté le: %{date}"
@@ -1076,6 +1098,8 @@ fr:
     recent:
       title: Conversations Récents
       more: Voir toutes les conversations
+    edit_message_header: Modifier le message
+    update_message_submit: Mettre à jour le message
   screenshots:
     requirements: "Maximum %{number} images PNG, GIF, JPEG ou WebP, inférieures à %{size} chacune."
   common:
@@ -1169,12 +1193,21 @@ fr:
     attribution: "Copyright des auteurs des scripts, voir chaque script individuel pour les licences"
   importing:
     title: Importer des scripts
+    intro: "%{site_name} peut importer des scripts déjà hébergés ailleurs, par exemple dans un système de contrôle de version (comme GitHub), votre propre serveur ou un autre site d'hébergement de scripts utilisateur."
+    url_entry_label: Fournissez les URL à partir desquelles importer, séparées par des sauts de ligne. Il doit s'agir d'URL vers les fichiers JS ou CSS bruts.
+    sync_type_label: "Après l'importation initiale, le ou les scripts doivent être synchronisés:"
     submit: Importer
     previously_imported:
       heading: Scripts précédemment importés
+      successful_entry_html: "%{script_link} - %{sync_type} synchronisation, dernière synchronisation %{last_sync_date}."
       unknown_date: "(inconnu)"
+      failed_entry_html: "%{script_link} - %{sync_type} synchronisation, dernière tentative de synchronisation %{last_sync_attempt_date}, %{sync_error}"
     results:
       title: "Importer le résultat"
+      success: "Les scripts suivants ont été importés avec succès:"
+      needs_description: "Les scripts suivants nécessitent une description pour être importés:"
+      existing: "Les scripts suivants avaient déjà été importés:"
+      failure: "Les scripts suivants n'ont pas pu être importés :"
   mailers:
     script_report:
       report_created_offender:
