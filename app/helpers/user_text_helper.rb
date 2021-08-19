@@ -206,7 +206,7 @@ module UserTextHelper
       return if url_reference.nil?
 
       url_reference = url_reference[2]
-      url_reference.gsub!(/[[:punct:]]+\z/u, '')
+      url_reference.gsub!(/[\.,\?!]+\z/u, '')
 
       replace_text_with_link(node, url_reference, url_reference, url_reference)
     end
