@@ -1,0 +1,9 @@
+<p><%= it('mailers.new_message.intro', site_name: @site_name, user_link: user_url(@message.poster, locale: @locale), user_name: @message.poster.name) %></p>
+
+<hr>
+
+<%= format_user_text(@message.content, @message.content_markup) %>
+
+<hr>
+
+<p><%= it('mailers.new_message.outro', notification_preferences_link: notifications_user_url(@receiving_user, locale: @locale), conversation_link: @conversation_url) %></p>

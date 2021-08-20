@@ -1629,13 +1629,5 @@ en:
       outro: "%{comment_link:View and reply to this comment.} You received this notification because you chose to be notified when you are mentioned. %{notification_preferences_link:Manage your notification preferences.}</p>"
     new_message:
       subject: "%{user} sent you a message on %{site_name}"
-      text: |
-        User '%{user}' on %{site_name} has sent you a message.
-
-        ---
-        %{message_text}
-        ---
-
-        You can view and reply at %{conversation_url}.
-
-        You received this notification because you are subscribed to this conversation. Visit %{conversation_url} to unsubscribe, or manage your notification preferences at %{notification_preferences_url}.
+      intro: "User %{user_link:%{user_name}} has sent you a message on %{site_name}."
+      outro: "%{conversation_link:View and reply to this message.} You received this notification because you are subscribed to this conversation. %{notification_preferences_link:Manage your notification preferences.}"
