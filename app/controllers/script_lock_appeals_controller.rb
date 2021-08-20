@@ -41,6 +41,7 @@ class ScriptLockAppealsController < ApplicationController
     @script.replaced_by_script_id = nil
     @script.delete_reason = nil
     @script.permanent_deletion_request_date = nil
+    @script.locked = false
     @script.save!
 
     @script.script_lock_appeals.unresolved.update_all(resolution: 'unlocked')
