@@ -1140,13 +1140,3 @@ pl:
       subject: "Użytkownik '%{commenter_name}' wspomniał o tobie na %{site_name}."
     new_message:
       subject: "Użytkownik %{user} wysłał ci wiadomość na %{site_name}"
-      text: |
-          Użytkownik '%{user}' na %{site_name} wysłał ci wiadomość.
-
-          ---
-          %{message_text}
-          ---
-
-          Możesz zobaczyć tę wiadomość i odpowiedzieć na %{conversation_url}.
-
-          Otrzymano to powiadomienie, ponieważ subskrybujesz tę dyskusję. Odwiedź %{conversation_url} by odsubskrybować, lub zarządzaj ustawieniami powiadomień na %{notification_preferences_url}.

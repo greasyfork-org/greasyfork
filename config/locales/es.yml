@@ -1225,13 +1225,5 @@ es:
       outro: "%{comment_link:Ver y responder al comentario.} Has recibido la notificación porque has establecido que se notifique cuando se te menciona directamente. %{notification_preferences_link:Administrar tus preferencias de notificaciones.}</p>"
     new_message:
       subject: "El usuario %{user} te ha enviado un mensaje en %{site_name}"
-      text: |
-          El usuario «%{user}» de %{site_name} te ha enviado un mensaje.
-
-          ---
-          %{message_text}
-          ---
-
-          Puedes verlo y responder en %{conversation_url}.
-
-          Has recibido esta notificación porque te has suscrito a esta conversación. Visita %{conversation_url} para desuscribirte, o cambia tus preferencias sobre notificaciones en %{notification_preferences_url}.
+      intro: "El usuario %{user_link:%{user_name}} te ha enviado un mensaje en %{site_name}"
+      outro: "%{conversation_link:Ver y responder al comentario.} Has recibido esta notificación porque te has suscrito a esta conversación. %{notification_preferences_link:Administrar tus preferencias de notificaciones.}"

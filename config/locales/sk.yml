@@ -1344,13 +1344,5 @@ sk:
       outro: "%{comment_link:Zobraziť a odpovedať na tento komentár.} Toto upozornenie ste dostali, pretože chcete byť upozornený, keď vás spomenú %{notification_preferences_link:Spravujte svoje predvoľby oznámení.}</p>"
     new_message:
       subject: "Používateľ %{user} vám poslal správu na %{site_name}"
-      text: |
-          Používateľ "%{user}" na %{site_name} vám poslal správu.
-
-          ---
-          %{message_text}
-          ---
-
-          Zobraziť správu a odpovedať na ňu môžete na %{conversation_url}.
-
-          Toto upozornenie ste dostali, pretože ste prihlásený na odber tejto konverzácie. Pre odhlásenie prejdite na %{conversation_url}, alebo spravujte nastavenia upozornení na %{notification_preferences_url}.
+      intro: "Používateľ %{user_link:%{user_name}} vám poslal správu na %{site_name}."
+      outro: "%{conversation_link:Zobraziť a odpovedať na túto správu.} Toto upozornenie ste dostali, pretože ste prihlásený na odber tejto konverzácie. %{notification_preferences_link:Spravujte svoje predvoľby upozornení.}"

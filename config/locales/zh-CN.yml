@@ -1251,13 +1251,5 @@ zh-CN:
       outro: "%{comment_link:查看和回复此评论}。您收到此通知是因为您选择了在被提及时收到通知。%{notification_preferences_link:管理您的通知设置}。"
     new_message:
       subject: "%{user} 在 %{site_name} 给你发送了一则信息"
-      text: |
-          %{site_name} 上的用户 '%{user}' 对您发送了一条消息。
-
-          ---
-          %{message_text}
-          ---
-
-          你可以访问 %{conversation_url} 来查看或作出回应。
-
-          您收到的这条通知基于私信通知的订阅设定。你可以访问 %{conversation_url} 来取消订阅，或访问 %{notification_preferences_url} 来管理通知设定。
+      intro: "%{user_link:%{user_name}} 在 %{site_name}  给你发送了一则信息。"
+      outro: "%{comment_link:查看和回复此评论}。您收到此通知是因为您选择了在被提及时收到通知。%{notification_preferences_link:管理您的通知设置}。"
