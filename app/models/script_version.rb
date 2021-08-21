@@ -396,12 +396,10 @@ class ScriptVersion < ApplicationRecord
 
     allowed_requires = AllowedRequire.all
     meta['require'].each do |script_url|
-      begin
-        uri = URI(script_url).normalize.to_s
-        r << script_url if allowed_requires.none? { |ar| uri =~ Regexp.new(ar.pattern) }
-      rescue URI::InvalidURIError
-        r << script_url
-      end
+      uri = URI(script_url).normalize.to_s
+      r << script_url if allowed_requires.none? { |ar| uri =~ Regexp.new(ar.pattern) }
+    rescue URI::InvalidURIError
+      r << script_url
     end
     return r
   end

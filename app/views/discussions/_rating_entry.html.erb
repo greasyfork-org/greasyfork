@@ -11,4 +11,9 @@
   <%= f.radio_button :rating, Discussion::RATING_BAD, required: true %> <%= f.label :rating, t('discussions.ratings.bad'), value: Discussion::RATING_BAD, class: 'radio-label' %><br>
   <%= f.radio_button :rating, Discussion::RATING_OK, required: true %> <%= f.label :rating, t('discussions.ratings.ok'), value: Discussion::RATING_OK, class: 'radio-label' %><br>
   <%= f.radio_button :rating, Discussion::RATING_GOOD, required: true %> <%= f.label :rating, t('discussions.ratings.good'), value: Discussion::RATING_GOOD, class: 'radio-label' %><br>
+  <% if f.object.new_record? %>
+    <div class="radio-note">
+      <%= t('discussions.update_rating_note') %>
+    </div>
+  <% end %>
 </div>
