@@ -51,26 +51,6 @@ class ScriptVersionTest < ActiveSupport::TestCase
     assert_equal expected_js, script.script_versions.first.calculate_rewritten_code
   end
 
-  test 'validate require disallowed' do
-    script = valid_script
-    script_version = script.script_versions.first
-    script_version.code = <<~JS
-      // ==UserScript==
-      // @name		A Test!
-      // @description		Unit test.
-      // @require		http://example.com
-      // @version 1.0
-      // @namespace http://greasyfork.local/users/1
-      // @include *
-      // ==/UserScript==
-      var foo = "bar";
-    JS
-    assert_not script_version.valid?
-    assert_equal 1, script_version.errors.size
-    assert_equal :code, script_version.errors.first.attribute
-    assert_equal 'uses an unapproved external script: @require http://example.com', script_version.errors.first.type
-  end
-
   test 'validate require exemption' do
     script = valid_script
     script_version = script.script_versions.first
