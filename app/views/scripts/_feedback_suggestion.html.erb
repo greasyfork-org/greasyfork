@@ -1,4 +1,4 @@
-<% feedback_link = feedback_script_path(script) %>
+<% feedback_link = feedback_script_path(script, anchor: 'post-discussion') %>
 <div id="script-feedback-suggestion">
   <% report_script_path = new_report_path(item_class: 'script', item_id: script.id) %>
   <% if script.support_url %>
