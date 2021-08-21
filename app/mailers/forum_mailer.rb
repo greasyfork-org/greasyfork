@@ -8,6 +8,7 @@ class ForumMailer < ApplicationMailer
     @site_name = 'Greasy Fork'
     @receiving_user = author_user
     I18n.locale = @locale = @receiving_user.available_locale_code
+    unsubscribe_for_user(@receiving_user)
 
     mail(
       to: @receiving_user.email,
@@ -23,6 +24,7 @@ class ForumMailer < ApplicationMailer
     @site_name = 'Greasy Fork'
     @receiving_user = user
     I18n.locale = @locale = @receiving_user.available_locale_code
+    unsubscribe_for_user(@receiving_user)
 
     mail(
       to: user.email,
@@ -38,6 +40,7 @@ class ForumMailer < ApplicationMailer
     @site_name = 'Greasy Fork'
     @receiving_user = user
     I18n.locale = @locale = user.available_locale_code
+    unsubscribe_for_user(@receiving_user)
 
     mail(
       to: user.email,

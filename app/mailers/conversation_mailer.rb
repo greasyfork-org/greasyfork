@@ -9,6 +9,7 @@ class ConversationMailer < ApplicationMailer
     @site_name = 'Greasy Fork'
     I18n.locale = @locale = @receiving_user.available_locale_code
     @conversation_url = user_conversation_url(@receiving_user, conversation, locale: @locale)
+    unsubscribe_for_user(@receiving_user)
 
     mail(
       to: @receiving_user.email,
@@ -23,6 +24,7 @@ class ConversationMailer < ApplicationMailer
     @site_name = 'Greasy Fork'
     I18n.locale = @locale = @receiving_user.available_locale_code
     @conversation_url = user_conversation_url(@receiving_user, message.conversation, locale: @locale, anchor: "message-#{message.id}")
+    unsubscribe_for_user(@receiving_user)
 
     mail(
       to: @receiving_user.email,

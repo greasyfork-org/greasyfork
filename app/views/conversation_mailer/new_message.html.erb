@@ -6,4 +6,4 @@
 
 <hr>
 
-<p><%= it('mailers.new_message.outro', notification_preferences_link: notifications_user_url(@receiving_user, locale: @locale), conversation_link: @conversation_url) %></p>
+<p><%= it('mailers.new_message.outro', notification_preferences_link: @unsubscribe_url, conversation_link: @conversation_url) %></p>

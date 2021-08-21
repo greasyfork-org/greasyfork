@@ -6,4 +6,4 @@
 
 <hr>
 
-<p><%= it('mailers.script_comment.outro', notification_preferences_link: notifications_user_url(@receiving_user, locale: @locale), **localization_params_for_comment(@comment, @locale)) %></p>
+<p><%= it('mailers.script_comment.outro', notification_preferences_link: @unsubscribe_url, **localization_params_for_comment(@comment, @locale)) %></p>
