@@ -42,6 +42,7 @@ it:
     deleted_notice: "Questo script è stato rimosso."
     deleted_notice_with_related: "Lo script che hai cercato è stato rimosso, ma ci sono alcuni script simili."
     deleted_undelete_notice_html: "Lo script è stato bloccato da un moderatore e non può essere cancellato. La motivazione fornita è: \"<i>%{delete_reason}</i>\"."
+    deleted_locked_author_notice_html: "Lo script è stato eliminato da un moderatore e non è accessibile agli altri. La ragione fornita è: \"<i>%{delete_reason}</i>\". Puoi %{appeal_link:presentare ricorso} a questa eliminazione."
     deleted_author_notice: "Lo script è stato cancellato e non è accessibile da altri. Puoi ripristinarlo dalla finestra Cancella."
     version_notice_html: "Versione datata %{date}. Vedi la nuova versione %{latest_version_link}."
     version_notice_latest_version_link: "l'ultima versione"
@@ -350,6 +351,7 @@ it:
       close_dialog: OK
     antifeatures:
       warning_title: Questo script contiene antifunzionalità
+      intro: 'Prima di installare, %{site_name} vuole informarti che questo script contiene antifunzionalità, che sono cose presenti a beneficio dell''autore dello script, anziché tuo. '
       author_explanation_intro: "L'autore di questo script spiega:"
       types:
         ads:
@@ -715,6 +717,7 @@ it:
       reason: Gli scripts devono avere una ragione per essere script. Per esempio, uno script che semplicemente rimanda un utente a un sito non ha bisogno di essere uno script; potrebbe essere un link. Gli scripts che usano un servizio web per compiere un azione sulla pagina corrente (es. per convertirla in qualche maniera) sono consentiti.
       monetization_html: Gli scripts che contengono funzioni a beneficio dell'<em>autore</em> piuttosto che dell'utente (come tracciamento, pubblicità e miners) sono consentite, ma queste devono essere dichiarate con le %{antifeature_link:<code>@antifeature</code> meta keys}.
       code_header: Codice
+      obfuscation: Il codice pubblicato su %{site_name} non deve essere offuscato o minimizzato. Agli utenti deve essere data l'opportunità di capire uno script prima di installarlo. Se lo script è compresso da uno strumento  come webpack, deve essere esportato in forma non minimizzata, con gli spazi e i nomi delle variabili conservati.
       libraries_html: Le librerie che uno script utilizza devono essere inserite con <code>@require</code>, a meno che ci sia una valida ragione tecnica per non farlo. Nel caso in cui una libreria sia inclusa all'interno del testo dello script. essa deve includere le informazioni sulla provenienza della libreria (es. un commento che indichi l'URL e/o il nome e la versione).
       updates: Gli scripts non devono verificare la presenza di aggiornamenti con una frequenza maggiore di una volta al giorno. È da notare che la maggior parte dei gestori di script utente si occupano autonomamente degli aggiornamenti, per cui farlo nello script non è necessario. Gli scripts non devono altresì iniettare dinamicamente un altro script ospitato su %{site_name} all'interno di una pagina, poiché questo bypassa la memorizzazione cache nei gestori di script utente.
       external_js: "%{external_scripts_link:L'uso di JavaScript esterno è limitato.}"
@@ -926,6 +929,8 @@ it:
     item_script_html: "Script: %{script_link}"
     item_deleted_script: "Script eliminato %{id}"
     item_user_html: "Utente: %{user_link}"
+    item_report: "%{report_link: Rapporto #%{report_id}}"
+    item_script_lock_appeal: "%{appeal_link:Ricorso #%{appeal_id}}"
   notifications:
     consecutive_bad_ratings:
       one: "%{script_names} ha ricevuto una serie di valutazioni negative. Rivedi il tuo script e rispondi ai problemi fatti presente nelle valutazioni."
@@ -1041,6 +1046,7 @@ it:
     quote_comment: "Cita"
     question_heading_html: "Domanda/commento"
     review_heading_html: "Recensione: %{rating}"
+    update_rating_note: "(Puoi cambiare successivamente la tua valutazione pubblicando un nuovo commento.)"
     update_rating: "Aggiorna la tua valutazione di %{script_name}"
     ratings:
       question: "Nessuna valutazione - solo una domanda, commento o richiesta di funzione"
@@ -1138,6 +1144,8 @@ it:
     recent:
       title: Conversazioni recenti
       more: Vedi tutte le conversazioni
+    edit_message_header: Modifica messaggio
+    update_message_submit: Aggiorna messaggio
   screenshots:
     requirements: "Massimo %{number} immagini PNG, GIF, JPEG o WebP, più piccole di %{size} ciascuna."
   common:
@@ -1290,7 +1298,11 @@ it:
       subject: "Il tuo script %{script_name} su %{site_name} ha ricevuto un commento."
     subscribed_discussion:
       subject: "La discussione %{discussion_title} su %{site_name} ha ricevuto un commento."
+      intro: "La discussione %{discussion_link:%{discussion_title}} su %{site_name} ha ricevuto un commento dall'utente %{commenter_link:%{commenter_name}}:"
+      outro: "%{comment_link:Visualizza e rispondi a questo commento.} Hai ricevuto questa notifica perché ti sei iscritto alla discussione %{discussion_link:%{discussion_title}}. %{notification_preferences_link:Gestisci le tue preferenze per le notifiche.}"
     comment_mentioned:
       subject: "L'utente '%{commenter_name}' ti ha menzionato su %{site_name}."
+      intro: "La discussione %{discussion_link:%{discussion_title}} su %{site_name} ha ricevuto un commento dall'utente %{commenter_link:%{commenter_name}} che ti ha menzionato:"
     new_message:
       subject: "%{user} ti ha inviato un messaggio su %{site_name}"
+      intro: "L'utente %{user_link:%{user_name}} ti ha inviato un messaggio su %{site_name}."
