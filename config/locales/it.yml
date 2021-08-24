@@ -718,6 +718,12 @@ it:
       monetization_html: Gli scripts che contengono funzioni a beneficio dell'<em>autore</em> piuttosto che dell'utente (come tracciamento, pubblicità e miners) sono consentite, ma queste devono essere dichiarate con le %{antifeature_link:<code>@antifeature</code> meta keys}.
       code_header: Codice
       obfuscation: Il codice pubblicato su %{site_name} non deve essere offuscato o minimizzato. Agli utenti deve essere data l'opportunità di capire uno script prima di installarlo. Se lo script è compresso da uno strumento  come webpack, deve essere esportato in forma non minimizzata, con gli spazi e i nomi delle variabili conservati.
+      size_html: |
+          Gli scripts sono limitati a una dimensione di %{max_code_size}. Gli scripts non possono essere minimizzati per farli rientrare in questo limite. Se il tuo script si sta avvicinando a questo limite, potresti prendere in considerazione di:
+          <ul>
+          <li>Spostare i dati che non sono codice come gli URIs con dati o i JSON al di fuori dello script.</li>
+          <li>Caricare le librerie usando <code>@require</code> o con %{webpack_externals_link:l'opzione <code>externals</code> di webpack}.</li>
+          </ul>
       libraries_html: Le librerie che uno script utilizza devono essere inserite con <code>@require</code>, a meno che ci sia una valida ragione tecnica per non farlo. Nel caso in cui una libreria sia inclusa all'interno del testo dello script. essa deve includere le informazioni sulla provenienza della libreria (es. un commento che indichi l'URL e/o il nome e la versione).
       updates: Gli scripts non devono verificare la presenza di aggiornamenti con una frequenza maggiore di una volta al giorno. È da notare che la maggior parte dei gestori di script utente si occupano autonomamente degli aggiornamenti, per cui farlo nello script non è necessario. Gli scripts non devono altresì iniettare dinamicamente un altro script ospitato su %{site_name} all'interno di una pagina, poiché questo bypassa la memorizzazione cache nei gestori di script utente.
       external_js: "%{external_scripts_link:L'uso di JavaScript esterno è limitato.}"
@@ -730,6 +736,15 @@ it:
       reporting: Se noti uno script che ricade al di fuori di questi parametri, per favore segnalalo andando sul collegamento Feedback per quello script e scegliendo l'opzione "Segnala lo script".
     external_scripts:
       title: "Politiche di %{site_name} per gli script esterni"
+      intro_html: |
+          <p>Gli script utente hanno l'abilità tecnica di caricare ed eseguire altri scripts. Questo può essere fatto in diversi modi, inclusi:</p>
+          <ul>
+          <li>La chiave %{require_doc_link:<code>@require</code>} nei metadati.</li>
+          <li><code>XmlHttpRequest</code> per scaricare lo script, e poi <code>eval</code> per eseguirlo.</li>
+          <li>Aggiungendo un tag <code>&lt;script&gt;</code> dinamicamente.</li>
+          <li>L'opzione %{webpack_externals_link:<code>externals</code>} di webpack.</li>
+          </ul>
+          <p>Sebbene questa sia una funzione utile e la maggioranza degli autori di script la usino per scopi legittimi, può anche essere usata in modo malevolo. Uno dei principî di %{site_name} è che l'utente deve avere la possibilità di ispezionare il codice in uno script. Gli script esterni possono aggirare questo principio in svariati modi: possono cambiare senza avvertimenti o storico delle modifiche, possono fornire codice diverso a persone diverse, e possono essere usati per nascondere codice malevolo nel mezzo di librerie note. Anche se qualcuno controllasse uno script esterno e determinasse che è legittimo, questo non garantirebbe che lo script sia sempre stato o che sempre sarà legittimo.</p>
       allowed_external_codes:
         heading: Codice esterno consentito
         content_html: |
@@ -1264,6 +1279,11 @@ it:
         text: "Il tuo script %{script_name} è stato segnalato per una violazione delle regole di %{site_name}. La ragione specifica data è: %{reason}. Puoi analizzare la segnalazione su %{report_url} e inviare una contestazione. Se non invii una contestazione, il tuo script potrà essere eliminato dai moderatori. Se hai qualsiasi domanda, per favore visita https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Il tuo script %{script_name} su%{site_name} è stato eliminato"
+        text: |
+            Il tuo script %{script_name} su %{site_name} è stato eliminato da un moderatore e non è più accessibile pubblicamente. Puoi consultare la segnalazione su %{report_url}.
+
+            Se credi che si sia trattato di un errore, o se hai aggiornato lo script per risolvere il problema, puoi presentare ricorso su %{appeal_url}
+            Se hai delle domande generali sulla linea di condotta di %{site_name}, per favore chiedi informazioni su https://greasyfork.org/forum/.
       report_dismissed_offender:
         subject: "Una segnalazione sul tuo script %{script_name} su %{site_name} è stata respinta"
         text: "Una segnalazione sul tuo script %{script_name} su %{site_name} è stata respinta da un moderatore. Il tuo script rimarrà attivo. Puoi consultare questa segnalazione su %{report_url}. Se hai delle domande, per favore visita https://greasyfork.org/forum/."
@@ -1296,6 +1316,8 @@ it:
             %{site_name} si impegna duramente per mantenere una lista di script di alta qualità per gli utenti. Per occuparsi degli script abbandonati e non funzionanti,  quelli che ricevono molteplici segnalazioni consecutive come "Cattivo" senza una pronta risposta diverranno nascosti. Per evitare che il tuo script diventi nascosto, pubblica una nuova versione o rispondi alle discussioni entro il %{delete_date}. Se non agirai, avrai ancora l'opzione di renderlo visibile nuovamente dopo questa data.
     script_comment:
       subject: "Il tuo script %{script_name} su %{site_name} ha ricevuto un commento."
+      intro: "Il tuo script %{script_link:%{script_name}} su %{site_name} ha ricevuto un commento dall'utente %{commenter_link:%{commenter_name}}:"
+      outro: "%{comment_link:Visualizza e rispondi a questo commento} %{notification_preferences_link:Gestisci le tue preferenze per le notifiche.}"
     subscribed_discussion:
       subject: "La discussione %{discussion_title} su %{site_name} ha ricevuto un commento."
       intro: "La discussione %{discussion_link:%{discussion_title}} su %{site_name} ha ricevuto un commento dall'utente %{commenter_link:%{commenter_name}}:"
@@ -1303,6 +1325,8 @@ it:
     comment_mentioned:
       subject: "L'utente '%{commenter_name}' ti ha menzionato su %{site_name}."
       intro: "La discussione %{discussion_link:%{discussion_title}} su %{site_name} ha ricevuto un commento dall'utente %{commenter_link:%{commenter_name}} che ti ha menzionato:"
+      outro: "%{comment_link:Visualizza e rispondi a questo commento.} Hai ricevuto questa notifica perché hai scelto di essere notificato quando vieni menzionato. %{notification_preferences_link:Gestisci le tue preferenze per le notifiche.}</p>"
     new_message:
       subject: "%{user} ti ha inviato un messaggio su %{site_name}"
       intro: "L'utente %{user_link:%{user_name}} ti ha inviato un messaggio su %{site_name}."
+      outro: "%{conversation_link:Visualizza e rispondi a questo messaggio.} Hai ricevuto \nquesta notifica perché sei iscritto a questa conversazione. %{notification_preferences_link:Gestisci le tue preferenze \nper le notifiche.}"

@@ -229,7 +229,7 @@ pl:
     additional_info_locale_repeated: "Zapewnienie tylko jedno dodatkowe informacje dla '% {locale_key} \"locale."
     localized_additional_info_with_no_name: "Dodatkowa informacja została określona dla tłumaczenia '%{locale_code}', ale linia @name:%{locale_code} nie została wprowadzona."
     code_syncing_from_url_html: "Kod tego skryptu został ustawiony, by synchronizować się z: %{field}"
-    provide_code_syncing_from_url_html: "% {Nazwa_Strony} może importować skrypty, które gościło już w innym miejscu, na przykład w systemie kontroli wersji (jak GitHub), swój własny serwer lub inny skrypt użytkownika Hosting strony. Aby włączyć synchronizację dla skryptu podaj adres URL:% {}"
+    provide_code_syncing_from_url_html: "%{site_name} może importować skrypty, które są hostowane w innym miejscu, na przykład w systemie kontroli wersji (jak GitHub), twój własny serwer lub z innej strony hostującej skrypty użytkownika. Aby włączyć synchronizację skryptu, podaj adres URL: %{field}"
     sync_type_intro: "Ten skrypt będzie synchronizowany:"
     sync_type_1:
       name: Ręcznie
@@ -431,6 +431,7 @@ pl:
       all_sites: "Wszystkie strony"
       user: "Skrypty użytkownika %{user}"
       locale: "Skrypty w %{locale_name}"
+    new: Nowy zestaw skryptów
   home:
     title: "%{site_name} — bezpieczne i użyteczne skrypty użytkownika"
     welcome: "Witaj na %{site_name}, stronie ze skryptami użytkownika."
@@ -897,6 +898,7 @@ pl:
     view_discussion: "Zobacz dyskusję"
     load_diff: "Załaduj diff"
     loading_diff: "Ładowanie..."
+    reported_user_activity_html: "%{user} (zgłoszony użytkownik) zrobił:"
   discussions:
     title: Dyskusje
     comment_date: "Napisano: %{date}"
@@ -919,9 +921,12 @@ pl:
     quote_comment: "Cytat"
     question_heading_html: "Pytanie/komentarz"
     review_heading_html: "Ocena: %{rating}"
+    update_rating_note: "(Możesz później zmienić swoją ocenę, publikując nowy komentarz.)"
     update_rating: "Zaktualizuj swoją ocenę o %{script_name}"
     ratings:
+      question: "Bez oceny - samo pytanie, komentarz lub prośba o dodanie funkcji"
       bad: "Słaby - skrypt nie działa"
+      ok: "OK - skrypt działa, ale ma błędy"
       good: "Dobry - skrypt działa"
     ratings_short:
       question: "Pytanie/komentarz"
@@ -1018,6 +1023,8 @@ pl:
     recent:
       title: Ostatnie rozmowy
       more: Zobacz wszystkie rozmowy
+    edit_message_header: Edytuj wiadomość
+    update_message_submit: Zaktualizuj wiadomość
   screenshots:
     requirements: "Maksymalnie %{number} obrazów PNG, GIF, JPEG, lub WebP, mniejszych niż %{size} każdy."
   common:
@@ -1041,7 +1048,19 @@ pl:
     listing_options_title: "Opcje wyszukiwania"
     quote:
       prefix_html: "%{user} napisał:"
+      anonymous_reporter_html: "Osoba zgłaszająca napisała:"
   activerecord:
+    models:
+      script:
+        one: "%{count} skrypt"
+        few: "%{count} skrypty"
+        many: "%{count} skryptów"
+        other: "%{count} skryptów"
+      comment:
+        one: "%{count} komentarz"
+        few: "%{count} komentarze"
+        many: "%{count} komentarzy"
+        other: "%{count} komentarzy"
     attributes:
       user:
         name: "Imię"
@@ -1101,6 +1120,15 @@ pl:
     description: "Szukaj skryptów użytkownika na %{site_name}."
     long_name: "%{site_name} szukanie skryptu użytkownika"
     attribution: "Prawa autorskie dla autorów skryptów, zobacz pojedynczy skrypt aby zobaczyć licencjonowanie"
+  importing:
+    title: Importuj skrypty
+    intro: "%{site_name} może importować skrypty, które są hostowane w innym miejscu, na przykład w systemie kontroli wersji (jak GitHub), twój własny serwer lub z innej strony hostującej skrypty użytkownika."
+    submit: Importuj
+    previously_imported:
+      heading: Wcześniej zaimportowane skrypty
+      unknown_date: "(nieznany)"
+    results:
+      title: "Wynik importu"
   mailers:
     script_report:
       report_created_offender:
