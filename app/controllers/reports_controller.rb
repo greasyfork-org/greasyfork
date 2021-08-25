@@ -7,8 +7,8 @@ class ReportsController < ApplicationController
   end
 
   def new
-    @report = Report.new(item: item, reporter: current_user)
-    previous_report = Report.unresolved.where(item: item, reporter: current_user, explanation_markup: current_user&.preferred_markup).first
+    @report = Report.new(item: item, reporter: current_user, explanation_markup: current_user&.preferred_markup)
+    previous_report = Report.unresolved.where(item: item, reporter: current_user).first
     redirect_to report_path(previous_report) if previous_report
   end
 
