@@ -5,6 +5,7 @@ class ScriptObserver < ActiveRecord::Observer
                   .map { |file_name| Rails.application.config.script_page_cache_directory.join(file_name) }
                   .select { |file_name| File.exist?(file_name) }
     File.delete(*cache_files)
+    FileUtils.rm_rf(Rails.application.config.script_page_cache_directory.join("scripts/#{script.id}"))
     Dir.glob(Rails.application.config.script_page_cache_directory.join("scripts/#{script.id}-*")).each { |file| FileUtils.rm_rf(file) }
   end
 end
