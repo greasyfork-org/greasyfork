@@ -59,6 +59,8 @@ pl:
     delete_page: "Usuń"
     delete_explanation: "Usunięcie skryptu spowoduje jego niedostępność dla wszystkich poza Tobą i moderatorami Greasy Fork. Możesz to cofnąć w dowolnym momencie."
     delete_update_behaviour: "Co ma się stać z osobami, które wcześniej zainstalowały Twój skrypt?"
+    delete_update_behaviours:
+      keep: "Zachowaj to tak, jak jest."
     delete_permanently_heading: "Trwałe usunięcie"
     delete_permanently_explanation_html: >-
         <p>Trwałe usunięcie skryptu usunie go wraz ze wszystkimi powiązanymi rekordami,
@@ -249,7 +251,7 @@ pl:
     update_and_sync: "Zaktualizuj i zsynchronizuj teraz"
     update_no_sync: "Zaktualizuj"
     turn_off_syncing: "Wyłącz synchronizację dla tego skryptu"
-    additional_info_default_sync_html: "Domyślne dodatkowe informacje (zgodność z językiem <code>@name</code>"
+    additional_info_default_sync_html: "Domyślne dodatkowe informacje (zgodność z językiem <code>@name</code>)"
     additional_info_localized_sync_html: "Dla tłumaczeń (zgodność z linią <code><a href=\"http://wiki.greasespot.net/Metadata_Block#.40name\">@name:XX</a></code>)"
     sync_url_placeholder: "(adres URL)"
     screenshots_add: "Dodaj:"
@@ -331,6 +333,8 @@ pl:
       css: "Opublikuj nowy styl"
     update_title: "Opublikuj nową wersję %{script}"
     install_help_dialog:
+      js:
+        other: Aby zainstalować ten skrypt, musisz zainstalować rozszerzenie menedżera skryptów użytkownika.
       css:
         safari: Aby zainstalować ten skrypt, potrzebujesz menedżera stylu.
       close_dialog: OK
@@ -824,6 +828,8 @@ pl:
     item_script_html: "Skrypt: %{script_link}"
     item_deleted_script: "Usunięto skrypt %{id}"
     item_user_html: "Użytkownik: %{user_link}"
+    item_report: "%{report_link: Zgłoszenie #%{report_id}}"
+    item_script_lock_appeal: "%{appeal_link:Odwołanie #%{appeal_id}}"
   notifications:
     consecutive_bad_ratings:
       one: "%{script_names} otrzymał konsekwentnie negatywne oceny. Prosimy, przejrzyj swój skrypt oraz ustosunkuj się do zarzutów podniesionych w opiniach."
@@ -1129,6 +1135,8 @@ pl:
       unknown_date: "(nieznany)"
     results:
       title: "Wynik importu"
+      success: "Następujące skrypty zostały pomyślnie zaimportowane:"
+      failure: "Nie udało się zaimportować następujących skryptów:"
   mailers:
     script_report:
       report_created_offender:
