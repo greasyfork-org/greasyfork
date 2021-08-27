@@ -20,7 +20,10 @@
           <td>
             <div class="possibly-long-text">
               <% if action.report %>
-                <%= link_to "Report ##{action.report.id}", report_path(action.report) %>
+                <%= it('moderator_logs.item_report', report_id: action.report_id, report_link: report_path(action.report)) %>
+              <% end %>
+              <% if !action.script_lock_appeal.nil? %>
+                <%= it('moderator_logs.item_script_lock_appeal', appeal_id: action.script_lock_appeal_id, appeal_link: script_script_lock_appeal_path(action.script_lock_appeal.script, action.script_lock_appeal)) %>
               <% end %>
               <%= action.reason %>
             </div>
