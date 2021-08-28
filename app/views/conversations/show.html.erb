@@ -10,7 +10,9 @@
   </div>
 </div>
 
-<% @conversation.messages.reject(&:new_record?).each do |message| %>
+<%= will_paginate(@messages) %>
+
+<% @messages.each do |message| %>
   <% by_current_user = message.poster && current_user == message.poster %>
   <div class="comment" id="message-<%= message.id %>">
     <div class="comment-meta">
@@ -54,6 +56,9 @@
     <% end %>
   </div>
 <% end %>
+
+<%= will_paginate(@messages) %>
+
 <div id="post-reply" class="post-reply">
   <h3><%= t('discussions.new_comment_heading') %></h3>
   <%= render partial: 'shared/errors', locals: { resource: @message } %>

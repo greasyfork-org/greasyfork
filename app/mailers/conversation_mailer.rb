@@ -23,7 +23,7 @@ class ConversationMailer < ApplicationMailer
     @receiving_user = receiving_user
     @site_name = 'Greasy Fork'
     I18n.locale = @locale = @receiving_user.available_locale_code
-    @conversation_url = user_conversation_url(@receiving_user, message.conversation, locale: @locale, anchor: "message-#{message.id}")
+    @conversation_url = @message.conversation.latest_url(@receiving_user, locale: @locale)
     unsubscribe_for_user(@receiving_user)
 
     mail(

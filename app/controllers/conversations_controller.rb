@@ -51,6 +51,7 @@ class ConversationsController < ApplicationController
   end
 
   def show
+    @messages = @conversation.messages.paginate(page: params[:page], per_page: per_page)
     @message = @conversation.messages.build(poster: current_user, content_markup: current_user&.preferred_markup)
     @subscribe = current_user.subscribed_to_conversation?(@conversation)
   end
