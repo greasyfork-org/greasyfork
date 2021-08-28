@@ -20,15 +20,17 @@ class ScriptLockAppealsController < ApplicationController
   def show; end
 
   def dismiss
-    @script_lock_appeal.update!(resolution: 'dismissed')
+    @script_lock_appeal.update!(resolution: 'dismissed', moderator_notes: params[:moderator_notes].presence)
 
-    ScriptLockAppealMailer.dismiss(@script_lock_appeal, site_name).deliver_later
+    @script_lock_appeal.script.users.each do |user|
+      ScriptLockAppealMailer.dismiss(@script_lock_appeal, user, site_name).deliver_later
+    end
 
     redirect_to script_path(@script), flash: { notice: 'Appeal has been dismissed.' }
   end
 
   def unlock
-    @script_lock_appeal.update!(resolution: 'unlocked')
+    @script_lock_appeal.update!(resolution: 'unlocked', moderator_notes: params[:moderator_notes].presence)
 
     ma = ModeratorAction.new
     ma.moderator = current_user
@@ -46,7 +48,9 @@ class ScriptLockAppealsController < ApplicationController
 
     @script.script_lock_appeals.unresolved.update_all(resolution: 'unlocked')
 
-    ScriptLockAppealMailer.unlock(@script_lock_appeal, site_name).deliver_later
+    @script_lock_appeal.script.users.each do |user|
+      ScriptLockAppealMailer.unlock(@script_lock_appeal, user, site_name).deliver_later
+    end
 
     redirect_to script_path(@script), flash: { notice: 'Script has been unlocked.' }
   end

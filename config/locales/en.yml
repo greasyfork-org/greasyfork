@@ -1632,3 +1632,14 @@ en:
       subject: "%{user} sent you a message on %{site_name}"
       intro: "User %{user_link:%{user_name}} has sent you a message on %{site_name}."
       outro: "%{conversation_link:View and reply to this message.} You received this notification because you are subscribed to this conversation. %{notification_preferences_link:Manage your notification preferences.}"
+    script_lock_appeal:
+      dismiss:
+        subject: Your script deletion appeal on %{site_name} has been dismissed
+        intro_html: Your appeal of the deletion of %{script} has been dismissed by a moderator. The script will remain deleted.
+        moderator_notes: "The moderator has commented:"
+        outro: If you still wish to have this script undeleted, please review the %{report_link:original report} and %{rules_link:%{site_name}'s rules}.
+      unlock:
+        subject: Your script deletion appeal on %{site_name} has been upheld
+        intro_html: Your appeal of the deletion of %{script} has been upheld by a moderator. The script is now undeleted and accessible publicly again.
+        moderator_notes: "The moderator has commented:"
+        outro: Please review %{rules_link:%{site_name}'s rules} to prevent further deletions in the future.

@@ -1,0 +1,16 @@
+<p>
+  <%= t('mailers.script_lock_appeal.unlock.intro_html', script: render_script(@appeal.script, locale: @locale)) %>
+</p>
+
+<% if @appeal.moderator_notes.presence %>
+  <p>
+    <%= t('mailers.script_lock_appeal.unlock.moderator_notes') %>
+  </p>
+  <blockquote>
+    <%= @appeal.moderator_notes %>
+  </blockquote>
+<% end %>
+
+<p>
+  <%= it('mailers.script_lock_appeal.unlock.outro', rules_link: help_code_rules_url(locale: @locale), site_name: @site_name) %>
+</p>
