@@ -1330,3 +1330,14 @@ it:
       subject: "%{user} ti ha inviato un messaggio su %{site_name}"
       intro: "L'utente %{user_link:%{user_name}} ti ha inviato un messaggio su %{site_name}."
       outro: "%{conversation_link:Visualizza e rispondi a questo messaggio.} Hai ricevuto \nquesta notifica perché sei iscritto a questa conversazione. %{notification_preferences_link:Gestisci le tue preferenze \nper le notifiche.}"
+    script_lock_appeal:
+      dismiss:
+        subject: Il tuo ricorso all'eliminazione dello script su %{site_name} è stato respinto.
+        intro_html: Il tuo ricorso all'eliminazione di %{script} è stato respinto da un moderatore. Lo script rimarrà eliminato.
+        moderator_notes: "Il moderatore ha commentato:"
+        outro: Se desideri ancora avere lo script ripristinato, per favore ricontrolla la %{report_link:segnalazione originale} e le %{rules_link:regole di %{site_name}}.
+      unlock:
+        subject: Il tuo ricorso all'eliminazione dello script su %{site_name} è stato accolto.
+        intro_html: Il tuo ricorso all'eliminazione di %{script} è stato accolto da un moderatore. Lo script è ora ripristinato e di nuovo pubblicamente accessibile.
+        moderator_notes: "Il moderatore ha commentato:"
+        outro: Per favore ricontrolla le %{rules_link:regole di %{site_name}} per prevenire ulteriori eliminazioni in futuro.

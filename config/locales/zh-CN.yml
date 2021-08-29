@@ -1254,3 +1254,14 @@ zh-CN:
       subject: "%{user} 在 %{site_name} 给你发送了一则信息"
       intro: "%{user_link:%{user_name}} 在 %{site_name}  给你发送了一则信息。"
       outro: "%{conversation_link:查看和回复此评论}。您收到此通知是因为您选择了在被提到时收到通知。%{notification_preferences_link:管理您的通知设置}。"
+    script_lock_appeal:
+      dismiss:
+        subject: 您对 %{site_name} 的脚本删除申诉已被驳回
+        intro_html: 您对删除 %{script} 的申诉已被管理员驳回。 该脚本将保持删除状态。
+        moderator_notes: "管理员的说明："
+        outro: 如果你仍然希望解除该脚本的删除状态，请查阅%{report_link:原始举报内容}以及 %{rules_link:%{site_name} 的规则}。
+      unlock:
+        subject: 您对 %{site_name} 的脚本删除申诉已通过
+        intro_html: 管理员通过了你对 %{script} 提交的删除申诉。该脚本现已取消删除并可再次公开访问。
+        moderator_notes: "管理员的说明："
+        outro: 请查阅 %{rules_link:%{site_name} 的规则}来避免日后被再次删除。

@@ -1347,3 +1347,14 @@ sk:
       subject: "Používateľ %{user} vám poslal správu na %{site_name}"
       intro: "Používateľ %{user_link:%{user_name}} vám poslal správu na %{site_name}."
       outro: "%{conversation_link:Zobraziť a odpovedať na túto správu.} Toto upozornenie ste dostali, pretože ste prihlásený na odber tejto konverzácie. %{notification_preferences_link:Spravujte svoje predvoľby upozornení.}"
+    script_lock_appeal:
+      dismiss:
+        subject: Vaše odvolanie na odstránenie skriptu na %{site_name} bolo zamietnuté
+        intro_html: Vaše odvolanie proti odstráneniu skriptu %{script} bolo moderátorom zamietnuté. Skript zostane odstránený.
+        moderator_notes: "Moderátor napísal:"
+        outro: Ak si napriek tomu želáte, aby bol tento skript obnovený, prečítajte si,  prosím %{report_link:pôvodnú správu} a %{rules_link:pravidlá %{site_name}}.
+      unlock:
+        subject: Vaše odvolanie na odstránenie skriptu na %{site_name} bolo potvrdené
+        intro_html: Vaše odvolanie proti odstráneniu skriptu %{script} bolo potvrdené moderátorom. Skript bol obnovený a je znova prístupný verejnosti.
+        moderator_notes: "Moderátor napísal:"
+        outro: Prečítajte si %{rules_link:pravidlá %{site_name}} aby ste v budúcnosti zabránili ďalšiemu odstráneniu.
