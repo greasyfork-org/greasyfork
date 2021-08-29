@@ -715,6 +715,12 @@ fr:
       monetization_html: Les scripts qui contiennent des fonctionnalités pour le bénéfice de <em>author</em> plutôt que pour l'utilisateur (tels que le suivi, les publicités et les mineurs) sont autorisés, mais ils doivent être décrite avec les méta clés  %{antifeature_link:<code>@antifeature</code>}.
       code_header: Code
       obfuscation: Le code posté sur %{site_name} ne doit pas être incompréhensible ou minimisé. Les utilisateurs doivent avoir la possibilité d'inspecter et de comprendre un script avant de l'installer. Si le script est fourni par un outil tel que webpack, il doit être généré sous une forme non-minifiée, avec les espaces et les noms de variables conservés.
+      size_html: |
+          Les scripts sont limités à une taille de %{max_code_size}. Les scripts ne peuvent pas être minimisés pour respecter cette limite. Si votre script approche de cette limite, vous pouvez envisager de:
+          <ul>
+          <li>Déplacer des données no-codes telles que des URLs de données ou JSON en dehors du script.</li>
+          <li>Chargement des bibliothèques à l'aide de <code>@require</code> ou avec %{webpack_externals_link:option <code>externes</code> de webpack}.</li>
+          </ul>
       libraries_html: Les bibliothèques utilisées par un script doivent être <code>@require</code>, sauf s'il existe une raison technique valable de ne pas le faire. Dans le cas où une bibliothèque est incluse en ligne, elle doit inclure des informations sur la source de la bibliothèque (par exemple, un commentaire indiquant l'URL et / ou le nom et la version).
       updates: Les scripts ne doivent pas vérifier les mises à jour à un taux supérieur à une fois par jour. Notez que la plupart des gestionnaires de scripts utilisateur gèrent les mises à jour automatiques, il n'est donc pas nécessaire de le faire dans le script. Les scripts ne doivent pas non plus injecter dynamiquement un autre script %{site_name} hébergé dans une page, car cela contourne la mise en cache dans les gestionnaires de scripts utilisateur.
       external_js: "%{external_scripts_link:L'utilisation de JavaScript externe est limitée.}"
@@ -727,12 +733,44 @@ fr:
       reporting: Si vous remarquez un script qui ne respecte pas ces paramètres, veuillez le signaler en accédant au lien Commentaires pour ce script et choisissez l'option "Signaler le script".
     external_scripts:
       title: "Politique de %{site_name} concernant les scripts externes"
+      intro_html: |
+          <p>Les scripts utilisateurs ont la capacité technique de charger et d'exécuter d'autres scripts. Cela peut être fait de différentes manières, notamment:</p>
+          <ul>
+          <li>La clé de métadonnées %{require_doc_link:<code>@require</code>}.</li>
+          <li><code>XmlHttpRequest</code> pour télécharger le script, puis <code>eval</code> pour l'exécuter.</li>
+          <li>Ajout d'un <code>&lt;script&gt;</code>en balise dynamiquement.</li>
+          <li>Option %{webpack_externals_link:<code>externals</code>} de Webpack.</li>
+          </ul>
+          <p>Bien qu'il s'agisse d'une fonctionnalité utile et que la plupart des auteurs de scripts l'utilisent à des fins légitimes, elle peut également être utilisée de manière malveillante. L'un des principes fondamentaux de %{site_name} est que l'utilisateur doit pouvoir inspecter le code dans un script. Les scripts externes peuvent contourner ce principe de plusieurs manières: ils peuvent changer sans avertissement ni historique, ils peuvent servir un code différent à différentes personnes et ils peuvent être utilisés pour cacher du code malveillant au milieu de bibliothèques connues. Même si quelqu'un vérifiait un script externe et déterminait qu'il est légitime, cela ne garantirait pas que ce script a toujours été ou sera toujours légitime.</p>
       allowed_external_codes:
         heading: Code externe autorisé
+        content_html: |
+            <p>Pour permettre aux auteurs de scripts de continuer à utiliser des scripts externes, %{site_name} a mis en place une liste de modèles d'URL autorisés qui peuvent être inclus avec un script. Cette liste se compose d'emplacements de script qui:</p>
+            <ul>
+            <li>Sont publics</li>
+            <li>Leur contenu ne changera pas fréquemment</li>
+            <li>Serait probablement utile à plus d'un auteur de script</li>
+            </ul>
+            <p>Si le script que vous souhaitez inclure est une bibliothèque JavaScript (par exemple jQuery ou YUI), essayez de le trouver sur l'un des sites répertoriés ci-dessous. %{cdnjs_link:cdnjs} et %{jsdelivr_link:jsDelivr} en particulier disposent d'un large éventail de bibliothèques.</p>
+            <p>La liste actuelle est :</p>
+            %{allowed_require_list}
       other_allowed_codes:
         heading: Cas spéciaux
+        content_html: |
+            <p>En plus de la liste ci-dessus, les utilisations suivantes sont également autorisées:</p>
+            <ul>
+            <li>Chargement du code existant d'un site à utiliser sur le même site (par exemple, en utilisant example.com/script.js sur example.com).</li>
+            <li>Charger une ressource qui ne contient que des données, par exemple un fichier JSON, sans en exécuter aucune.</li>
+            </ul>
+            <p>Les utilisations suivantes sont également interdites:</p>
+            <ul>
+            <li>Chargement des mises à jour du script à partir d'une URL externe.</li>
+            </ul>
       add_to_list:
         heading: Ajoutée à la liste
+        content_html: |
+            <p>Si le script que vous souhaitez inclure n'est pas disponible sur les sites ci-dessus, %{contact_link:faites-le nous savoir} et nous pourrons le trouver quelque part (ou l'héberger nous-mêmes !).</p>
+            <p>Si le script que vous souhaitez inclure a été écrit par vous, vous pouvez le soumettre en tant qu'entrée séparée de %{site_name} en choisissant le type de script "Bibliothèque". Vous pourrez alors inclure cette bibliothèque publiée dans votre script.</p>
       enforcement:
         heading: Mise en vigueur
         content_html: |
@@ -825,6 +863,25 @@ fr:
           Ces bibliothèques peuvent inclure une logique de suivi.</p>
     user_css_to_user_js:
       title: 'Conversion du CSS en JS '
+      content_html: |
+          <p>%{site_name}peut convertir le CSS utilisateur au format utilisateur JS. Les règles <code>@-moz-document</code> sont converties en instructions JavaScript <code>if</code>, créant le CSS à appliquer. Ce CSS est ajouté à <code>&lt;head&gt;</code> dans un <code>&lt;style&gt;</code> élément.</p>
+
+          <p>La présence de certaines fonctionnalités CSS utilisateur empêche la conversion au format JS utilisateur. Lorsque ces fonctionnalités sont détectées, la conversion JS de l'utilisateur ne sera pas effectuée.</p>
+
+          <ul>
+          <li><code>@preprocessor</code> metakeys autres que par <code>défaut</code></li>
+          <li><code>@var</code> méta clés</li>
+          </ul>
+
+          <p>Le JS utilisateur de %{site_name} peut charger le CSS un peu différemment du CSS utilisateur.</p>
+
+          <ul>
+          <li>En JS utilisateur, le CSS inséré comme dernier élément de <code>&lt;head&gt;</code>. En CSS utilisateur, cela peut dépendre de l'extension utilisée. Il est recommandé d'utiliser <code>!important</code> pour atténuer ce problème.</li>
+          <li>Dans le JS utilisateur, le CSS sera calculé et appliqué une fois au chargement de la page. L'utilisation par la page de l'API d'historique JavaScript peut entraîner l'application non conforme du CSS.</li>
+          <li>L'utilisateur JS ne peut pas appliquer le CSS aux cadres ou aux iframes.</li>
+          </ul>
+
+          <p>Si vous constatez que la conversion JS utilisateur ne fonctionne pas, vous devez choisir l'option pour la rendre indisponible lorsque vous mettez à jour votre CSS utilisateur.</p>
     antifeatures:
       title: 'Antifeatures '
       intro_html: |
@@ -1001,6 +1058,7 @@ fr:
     quote_comment: "Citation"
     question_heading_html: "Question / commentaire"
     review_heading_html: "Avis: %{rating}"
+    update_rating_note: "(Vous pouvez modifier votre note plus tard en publiant un nouveau commentaire.)"
     update_rating: "Mettez à jour votre note de %{script_name}"
     ratings:
       question: "Pas de note - juste une question, un commentaire ou une requête d'ajout de fonction"
@@ -1196,6 +1254,9 @@ fr:
     intro: "%{site_name} peut importer des scripts déjà hébergés ailleurs, par exemple dans un système de contrôle de version (comme GitHub), votre propre serveur ou un autre site d'hébergement de scripts utilisateur."
     url_entry_label: Fournissez les URL à partir desquelles importer, séparées par des sauts de ligne. Il doit s'agir d'URL vers les fichiers JS ou CSS bruts.
     sync_type_label: "Après l'importation initiale, le ou les scripts doivent être synchronisés:"
+    additional_info_html: |
+        <p>Pour les scripts du contrôle de source, assurez-vous que l'URL que vous utilisez fait référence à une branche et non à un commit spécifique, sinon elle ne sera jamais mise à jour. Par exemple, <code>https://bitbucket.org/username/reponame/raw/<b>branch-name</b>/script.user.js</code> plutôt que <code>https://bitbucket.org/username/reponame/raw/<b>commit-hash</b>/script.user. js</code>.</p>
+        <p>Les scripts importés depuis GitHub, Bitbucket ou GitLab peuvent également être configurés pour être synchronisés à l'aide d'un webhook. Un webhook fera en sorte que vos scripts soient immédiatement mis à jour lorsque %{site_name} vous poussez vers votre référentiel. Si vous souhaitez utiliser un webhook mais que vous ne l'avez pas encore configuré, effectuez d'abord l'importation, puis %{webhook_info_link:configurez le webhook après}.</p>
     submit: Importer
     previously_imported:
       heading: Scripts précédemment importés
@@ -1215,6 +1276,10 @@ fr:
         text: "Votre script %{script_name} a été signalé comme non conforme aux règles de %{site_name}. La raison spécifique évoquée: %{reason}. Vous pouvez consulter ce rapport à l'adresse %{report_url} et soumettre une réfutation. Si vous ne soumettez pas de réfutation, votre script peut être supprimé par les modérateurs. Si vous avez des questions, veuillez visiter https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Votre script %{script_name} par %{site_name} a été supprimé"
+        text: |
+            Votre script %{script_name} sur %{site_name} a été supprimé par un modérateur et n'est plus accessible publiquement. Vous pouvez consulter le rapport à l'adresse suivante:%{report_url}.
+
+            Si vous pensez qu'il s'agit d'une erreur ou si vous avez mis à jour ce script pour résoudre le problème, vous pouvez faire une demande de restauration à l'adresse suivante:%{appeal_url}. Si vous avez des questions générales sur la politique de %{site_name}, veuillez les poser sur https://greasyfork.org/forum/.
       report_dismissed_offender:
         subject: "Un rapport sur votre script %{script_name} par %{site_name} a été rejeté"
         text: "Un rapport sur votre script %{script_name} par %{site_name} a été rejeté par un modérateur. Votre script restera actif. Vous pouvez consulter le rapport sur %{report_url}. Si vous avez des questions, visiter https://greasyfork.org/fr/forum/."
@@ -1247,9 +1312,28 @@ fr:
             %{site_name} s'efforce de maintenir un ensemble de scripts de haute qualité pour les utilisateurs. Afin de faire face aux scripts cassés, ou abandonnés, ceux qui reçoivent plusieurs "mauvaises" critiques consécutives sans réaction opportune seront cachés. Pour éviter que votre script se retrouve caché, publiez une nouvelle version ou répondez à la discussion avant le %{delete_date}. Si vous ne réagissez pas, vous aurez encore la possibilité de le rendre visible après cette date.
     script_comment:
       subject: "Votre script %{script_name} sur %{site_name} a reçu un commentaire."
+      intro: "Votre script %{script_link:%{script_name}} sur %{site_name} a reçu un commentaire de l'utilisateur %{commenter_link:%{commenter_name}}:"
+      outro: "%{comment_link:Afficher et répondre à ce commentaire.} %{notification_preferences_link:Gérer vos préférences de notification.}"
     subscribed_discussion:
       subject: "La discussion %{discussion_title} sur %{site_name} a reçu un commentaire."
+      intro: "La discussion %{discussion_link:%{discussion_title}} sur %{site_name} a reçu un commentaire de l'utilisateur %{commenter_link:%{commenter_name}}:"
+      outro: "%{comment_link:Afficher et répondre à ce commentaire.} Vous avez reçu cette notification car vous vous êtes abonné à la discussion %{discussion_link:%{discussion_title}}. %{notification_preferences_link:Gérez vos préférences de notification.}"
     comment_mentioned:
       subject: "L'utilisateur '%{commenter_name}' vous a mentionné sur %{site_name}."
+      intro: "La discussion %{discussion_link:%{discussion_title}} sur %{site_name} a reçu un commentaire de l'utilisateur %{commenter_link:%{commenter_name}} qui vous a mentionné:"
+      outro: "%{comment_link:Afficher et répondre à ce commentaire.} Vous avez reçu cette notification car vous avez choisi d'être averti lorsque vous êtes mentionné. %{notification_preferences_link:Gérez vos préférences de notification.}</p>"
     new_message:
       subject: "%{user} vous a envoyé un message sur %{site_name}"
+      intro: "L'utilisateur %{user_link:%{user_name}} vous a envoyé un message sur %{site_name}."
+      outro: "%{conversation_link:Afficher et répondre à ce message.} Vous avez reçu cette notification car vous êtes abonné à cette conversation. %{notification_preferences_link:Gérez vos préférences de notification.}"
+    script_lock_appeal:
+      dismiss:
+        subject: Votre demande de suppression de script sur %{site_name} a été rejeté
+        intro_html: Votre demande de restauration de %{script} a été rejeté par un modérateur. Le script restera supprimé.
+        moderator_notes: "Le modérateur a commenté:"
+        outro: Si vous souhaitez toujours récupérer ce script, veuillez consulter les règles du %{report_link:rapport original} et %{rules_link:%{site_name}}.
+      unlock:
+        subject: Votre demande de suppression de script sur %{site_name} a été confirmé
+        intro_html: Votre demande de la suppression de %{script} a été accepté par un modérateur. Le script est maintenant restaurer et accessible publiquement de nouveau.
+        moderator_notes: "Le modérateur a commenté:"
+        outro: Veuillez consulter les règles de %{rules_link:%{site_name}} pour éviter d'autres suppressions à l'avenir.
