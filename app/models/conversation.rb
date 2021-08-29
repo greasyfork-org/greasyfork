@@ -28,12 +28,14 @@ class Conversation < ApplicationRecord
   def latest_url(user, locale: nil)
     pages = messages.count / 50 + 1
     last_message_id = messages.order(:id).last.id
-    Rails.application.routes.url_helpers.user_conversation_url(user, self, locale: locale&.code || user.available_locale_code, page: pages > 1 ? pages : nil, anchor: "message-#{last_message_id}")
+    locale = locale.code if locale.is_a?(Locale)
+    Rails.application.routes.url_helpers.user_conversation_url(user, self, locale: locale || user.available_locale_code, page: pages > 1 ? pages : nil, anchor: "message-#{last_message_id}")
   end
 
   def latest_path(user, locale: nil)
     pages = messages.count / 50 + 1
     last_message_id = messages.order(:id).last.id
-    Rails.application.routes.url_helpers.user_conversation_path(user, self, locale: locale&.code || user.available_locale_code, page: pages > 1 ? pages : nil, anchor: "message-#{last_message_id}")
+    locale = locale.code if locale.is_a?(Locale)
+    Rails.application.routes.url_helpers.user_conversation_path(user, self, locale: locale || user.available_locale_code, page: pages > 1 ? pages : nil, anchor: "message-#{last_message_id}")
   end
 end
