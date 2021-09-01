@@ -48,10 +48,12 @@ class Github
       # (repository url)/raw/(branch)/(path) OR
       # https://raw.githubusercontent.com/(user)/(repo)/(branch)/(path)
       # This will be used to find the related scripts.
-      [
-        "#{repo_url}/raw/#{ref}/#{file}",
-        "https://raw.githubusercontent.com/#{repo_url.split('/')[3..4].join('/')}/#{ref}/#{file}",
+      # Need handle spaces as %20 and +.
+      urls = [
+        "#{repo_url}/raw/#{ref}/#{file.tr(' ', '+')}",
+        "https://raw.githubusercontent.com/#{repo_url.split('/')[3..4].join('/')}/#{ref}/#{file.tr(' ', '+')}",
       ]
+      (urls + urls.map { |url| url.gsub('+', '%20') }).uniq
     end
 
     def file_from_root_for_url(url, repo_url)
