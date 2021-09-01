@@ -11,8 +11,7 @@ ThinkingSphinx::Index.define :script, with: :active_record, delta: Rails.env.tes
 
   # attributes
   has :created_at, :code_updated_at, :total_installs, :daily_installs, :default_name, :sensitive, :script_type_id
-  # int is default and unsigned, we deal with negatives
-  has :fan_score, type: :bigint
+  has :fan_score, type: :float
   has script_applies_tos.site_application_id, as: 'site_application_id'
   has localized_attributes.locale_id, as: 'locale'
   has "language = 'js' OR css_convertible_to_js = TRUE", as: 'available_as_js', type: :boolean
