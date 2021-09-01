@@ -13,7 +13,10 @@ install_plugin Capistrano::Puma
 install_plugin Capistrano::Puma::Systemd
 
 require 'capistrano/bundler'
+
 require 'capistrano/sidekiq'
+install_plugin Capistrano::Sidekiq
+install_plugin Capistrano::Sidekiq::Systemd
 
 require 'capistrano/scm/git'
 install_plugin Capistrano::SCM::Git

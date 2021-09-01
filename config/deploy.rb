@@ -7,6 +7,7 @@ set :rbenv_ruby, File.read('.ruby-version').strip
 set :sidekiq_roles, %w[worker]
 set :sidekiq_config, "#{current_path}/config/sidekiq.yml"
 set :sidekiq_env, 'production'
+set :sidekiq_service_unit_name, 'sidekiq-production'
 set :init_system, :systemd
 set :puma_systemctl_user, :system
 set :puma_service_unit_name, 'puma'
