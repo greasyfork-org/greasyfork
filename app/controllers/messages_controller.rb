@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   include UserTextHelper
 
+  before_action :check_read_only_mode
   before_action :authenticate_user!
   before_action :find_conversation
 

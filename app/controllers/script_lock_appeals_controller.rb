@@ -1,6 +1,7 @@
 class ScriptLockAppealsController < ApplicationController
   layout 'scripts', except: :index
 
+  before_action :check_read_only_mode, except: [:show, :index]
   before_action :load_script, except: :index
   before_action :authenticate_user!, except: [:index, :show]
   before_action :load_script_lock_appeal, only: [:show, :dismiss, :unlock]

@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   include DiscussionHelper
   include UserTextHelper
 
+  before_action :check_read_only_mode, except: :old_redirect
   before_action :authenticate_user!, except: :old_redirect
   before_action :load_discussion, except: :old_redirect
   before_action :check_ip, only: :create

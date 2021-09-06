@@ -1,4 +1,5 @@
 class ReportsController < ApplicationController
+  before_action :check_read_only_mode, except: [:index, :show, :diff]
   before_action :authenticate_user!, except: :show
   before_action :moderators_only, only: [:index, :dismiss]
 

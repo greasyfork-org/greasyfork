@@ -2,6 +2,7 @@ class ConversationsController < ApplicationController
   include BrowserCaching
   include UserTextHelper
 
+  before_action :check_read_only_mode, except: [:show, :index]
   before_action :authenticate_user!
   before_action :find_user
   before_action :ensure_user_current, only: [:new, :create]

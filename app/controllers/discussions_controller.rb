@@ -5,6 +5,7 @@ class DiscussionsController < ApplicationController
 
   FILTER_RESULT = Struct.new(:category, :by_user, :related_to_me, :read_status, :locale, :result)
 
+  before_action :check_read_only_mode, except: [:show, :index, :old_redirect]
   before_action :authenticate_user!, only: [:new, :create, :subscribe, :unsubscribe]
   before_action :greasy_only, only: :new
   before_action :check_ip, only: :create
