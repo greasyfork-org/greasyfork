@@ -1,1 +1,1 @@
-Rails.application.config.read_only_mode = false
+Rails.application.config.read_only_mode = true
