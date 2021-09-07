@@ -9,7 +9,7 @@ else
   version_param.nil? ? user_css_script_path(script, name: script.url_name, locale_override: nil) : "#{user_css_script_path(script, version: version_param, name: script.url_name, locale_override: nil)}&d=.user.css"
            end
 %>
-<%= link_to install_as_js ? t('scripts.install') : 'Install as user style', code_url, {
+<%= link_to install_as_js ? t('scripts.install') : t('scripts.install_css'), code_url, {
   class: 'install-link',
   'data-install-format' => install_as_js ? 'js' : 'css',
   'data-ping-url' => install_ping_script_path(script, authenticity_token: session[:_csrf_token], locale_override: nil),
