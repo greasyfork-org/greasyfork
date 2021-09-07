@@ -273,8 +273,10 @@ class Script < ApplicationRecord
     applies_to_delete = script_applies_tos.reject { |sat| applies_to_names.any? { |atn| sat.text == atn[:text] && sat.tld_extra == atn[:tld_extra] } }
     applies_to_delete.each(&:mark_for_destruction)
     applies_to_add = applies_to_names.reject { |atn| script_applies_tos.any? { |sat| sat.text == atn[:text] && sat.tld_extra == atn[:tld_extra] } }
+
+    existing_site_applications = SiteApplication.where(text: applies_to_add.pluck(:text))
     applies_to_add.each do |atn|
-      site_application = SiteApplication.find_by(text: atn[:text]) || SiteApplication.new(text: atn[:text], domain: atn[:domain])
+      site_application = existing_site_applications.find { |esa| esa.text == atn[:text] } || SiteApplication.new(text: atn[:text], domain: atn[:domain])
       script_applies_tos.build(site_application: site_application, tld_extra: atn[:tld_extra])
     end
 
