@@ -1,7 +1,7 @@
 class CacheRefreshJob < ApplicationJob
   queue_as :low
 
-  SITES = [:greasyfork, :sleazyfork].freeze
+  SITES = [:greasyfork, :sleazyfork, :all].freeze
 
   def perform
     (Locale.where(ui_available: true).pluck(:id) + [nil]).each do |locale_id|
