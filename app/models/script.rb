@@ -348,6 +348,8 @@ class Script < ApplicationRecord
   end
 
   def newest_saved_script_version
+    return script_versions.order(:id).last unless script_versions.loaded?
+
     # get the most recently saved record
     script_versions.reverse_each do |sv|
       return sv unless sv.new_record?
