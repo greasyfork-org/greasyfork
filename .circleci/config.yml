@@ -19,6 +19,7 @@ jobs:
           MYSQL_DATABASE: greasyfork_test
           MYSQL_USER: user
           MYSQL_PASSWORD: passw0rd
+          command: [--loose_innodb_read_only_compressed=OFF]
     executor: ruby/default
     steps:
       - run: sudo apt install mariadb-client
