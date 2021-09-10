@@ -29,6 +29,7 @@ pt-BR:
       other: "Veja %{count} outros scripts de %{site}"
     applies_to_all: "Todos sites"
     install: "Instalar o script"
+    install_css: "Instalar como um estilo de usuário"
     install_help: "?"
     install_help_title: "Como instalar"
     update: "Atualizar para a versão %{version}"
@@ -42,6 +43,7 @@ pt-BR:
     deleted_notice: "Este script foi deletado."
     deleted_notice_with_related: "O script solicitado foi removido, mas aqui estão alguns relacionados a ele."
     deleted_undelete_notice_html: "Este script foi travado por um moderador e não pode ser removido. Motivo: \"<i>%{delete_reason}</i>\"."
+    deleted_locked_author_notice_html: "Este script foi removido por um moderator e não está acessível para outros usuários. Motivo: \"<i>%{delete_reason}</i>\". Você pode %{appeal_link:apresentar um recurso} para esta remoção."
     deleted_author_notice: "Este script foi removido e não está acessível a outros. Você pode desfazer a remoção através da aba Remover."
     version_notice_html: "Versão de: %{date}. Veja: %{latest_version_link}."
     version_notice_latest_version_link: "a última versão"
@@ -250,6 +252,7 @@ pt-BR:
     sync_url_placeholder: "(URL)"
     screenshots_add: "Adicionar"
     screenshots_remove: "Remover"
+    replacement_script_explanation: "(Opcional) Escolha outro script que substitua este script. Digite a URL do script substituto:"
     diff_title: "%{script} - Versão diferente"
     diff_old_version: "Antigo:"
     diff_new_version: "Novo:"
@@ -326,8 +329,25 @@ pt-BR:
       js: "Postar um novo script"
       css: "Postar um novo estilo"
     update_title: "Postar uma nova versão do script %{script}"
+    install_help_dialog:
+      js:
+        firefox: Você precisará instalar uma extensão como %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} ou %{violentmonkey_link:Violentmonkey} para instalar este script.
+        chrome: Você precisará instalar uma extensão como %{tampermonkey_link:Tampermonkey} ou %{violentmonkey_link:Violentmonkey} para instalar este script.
+        opera: Você precisará instalar uma extensão como %{tampermonkey_link:Tampermonkey} ou %{violentmonkey_link:Violentmonkey} para instalar este script.
+        safari: Você precisará instalar uma extensão como %{tampermonkey_link:Tampermonkey} ou %{userscripts_link:Userscripts} para instalar este script.
+        other: Para instalar este script, antes será preciso instalar uma extensão gerenciadora de scripts.
+        bypass: (Eu já tenho um gerenciador de scripts de usuário, me deixe fazer a instalação!)
+      css:
+        firefox: Para instalar este script, antes você deve instalar uma extensão como %{stylus_link:Stylus}.
+        chrome: Para instalar este script, antes você deve instalar uma extensão como %{stylus_link:Stylus}.
+        opera: Para instalar este script, antes você deve instalar uma extensão como %{stylus_link:Stylus}.
+        safari: Para instalar este script, você deve primeiro instalar uma extensão gerenciadora de estilos de usuário.
+        other: Para instalar este script, você deve primeiro instalar uma extensão gerenciadora de estilos de usuário.
+        bypass: (Eu já possuo um gerenciador de estilos de usuário, me deixar fazer a instalação!)
+      close_dialog: OK
     antifeatures:
       warning_title: Este script contém antifuncionalidades
+      intro: Antes de instalar, o %{site_name} gostaria que você soubesse que este script contém antifeatures, que são coisas que beneficiam o autor e não você.
       author_explanation_intro: "O autor deste script script explica:"
       types:
         ads:
@@ -341,6 +361,13 @@ pt-BR:
           description_html: Este script contém um minerador de criptomoedas que irá <b>usar os recursos do seu dispositivo</b> quando ativado.
         referral-link:
           title: Links de referência
+          description_html: O script <b>fornece comissão</b> para o autor, por exemplo reescrevendo links ou fornecendo códigos de cupons ou de afiliados.
+        membership:
+          title: Filiação
+          description_html: Este script só será totalmente funcional depois que você <b>fizer algum tipo de registro</b>, como entrar em um grupo, se inscrever em um canal ou dar like em uma página.
+        payment:
+          title: Pagamento
+          description_html: Este script só será totalmente funcional depois que você <b>realizar um pagamento</b>. %{site_name} não se envolve no pagamento, então não podemos garantir a validade da transação ou te ajudar com reembolso.
       install_anyway: Instalar script
       cancel_install: Cancelar
     badges:
@@ -640,6 +667,10 @@ pt-BR:
       title: 'Como instalar scripts de usuários'
     installing_user_styles:
       title: 'Como instalar estilos de usuário'
+      content_html: |
+          <p>Alguns script no %{site_name} podem ser instalados como estilos de usuário.</p>
+          <p>Estilos de usuário podem ser instalador com %{stylus_firefox_link:Stylus para Firefox}, %{stylus_chrome_link:Stylus para Chrome}, e %{stylus_opera_link:Stylus para Opera}.</p>
+          <p>%{styles_link:Ver todos os estilos de usuário disponíveis}</p>.
     meta_keys:
       title: "Chaves de metadados de scripts lidas pelo %{site_name}"
       intro_html: "Esta é uma lista de <a href=\"http://wiki.greasespot.net/Metadata_Block\">meta chaves de scripts de usuário</a> que %{site_name} irá ler. Chaves fora desta lista podem ser incluídas nos scripts, e serão apresentados no script instalado, mas não surtirão efeito na UI de %{site_name}."
@@ -648,6 +679,7 @@ pt-BR:
       description: "Uma descrição do que o script faz. Mostrado como texto sob o nome de script. Requerido."
       description_localized_html: "A descrição do script em um idioma específico, onde XX é um <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">código de caracter ISO 639-1 2</a> e YY é um <a href=\"https://www.iso.org/obp/ui/#search\">código de país ISO 3166</a>, opcional. Substitui <code>@description</code> quando o usuário estiver navegando em um idioma correspondente."
       namespace_html: "É usada uma combinação de <code>@namespace</code> e <code>@name</code> pelos gerenciadores de scripts de usuário para verificar se o script já está instalado. %{site_name} requer este campo e irá informar se não sofreu nenhuma mudança na atualização."
+      version: "Identificador de uma versão específica de um script no %{version_format_link:formato de versão Mozilla}. A versão é mostrada na página de informações do script. %{site_name} precisa deste campo e irá alertar caso ele seja decrementado ou se não for incrementado quando o seu código for alterado."
       include_html: "Descreve em quais páginas o script irá rodar. Esta lista será processada, exibida na página de informações do script e utilizada para categorizar os scripts. Todo script deve ter ao menos uma chave <code>@match</code> ou <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Leia sobre o formato aqui.</a>"
       require_html: "Incluir JavaScript externo em um script. Ver %{external_script_link}."
       require_external_script_link_text: "Política do %{site_name} sobre scripts externos"
@@ -673,10 +705,18 @@ pt-BR:
       reason: Scripts deve ter um motivo para serem um script. Por exemplo, um script que apenas direciona um usuário para um site não precisa ser um script; poderia ser um link. Scripts que utilizam um web service para executar uma ação na página atual (para realizar uma conversão, por exemplo) são permitidos.
       monetization_html: Scripts que contenham funcionalidades que beneficiem o <em>autor</em> em vez do usuário (como rastreadores,  anúncios e mineradores) são permitidos, mas devem informar isso através de %{antifeature_link:meta keys <code>@antifeature</code>}.
       code_header: Código
+      obfuscation: Códigos publicados no %{site_name} não devem ser obfuscados ou minificados. Os usuários devem ser capazes de inspecionar e compreender um script antes de instalá-lo. Caso o script seja empacotado por ferramentas como webpack, ele deve ser exportado de forma não minificada, preservando espaços e nomes de variáveis.
+      size_html: |
+          Os script estão limitados ao tamanho de %{max_code_size}. Script não podem ser minificados para que caibam neste limite. Se seu script estiver chegando perto deste limite, você pode pensar em:
+          <ul>
+          <li>Mover dados que não são códigos, como URIs e JSON, para fora do script.</li>
+          <li>Carregar bibliotecas usando <code>@require</code> ou com %{webpack_externals_link:opções <code>externas</code> do webpack}.</li>
+          </ul>
       libraries_html: Bibliotecas que um script utiliza devem ser incluídas pela tag <code>@require</code>, a meos que haja um rasão técnica válida para isso. No caso da biblioteca ser incluída inline, deve ser incluída informação de sua fonte (um comentário indicando a URL e/ou nome e versão, por exemplo).
       updates: Scripts não devem buscar atualizações mais de uma vez por dia. Perceba que a maioria dos gerenciadores de scripts de usuário irão cuidar automaticamente das atualizações, então fazer isso no script é desnecessário. Scripts também não devem injetar dinamicamente outro script do %{site_name} em uma página, uma vez que isso bypassa o cache dos gerenciadores de scripts de usuário.
       external_js: "%{external_scripts_link:O uso de JavaScript externo é limitado.}"
       copyright_header: Direito autoral
+      licensing_html: Seu script deve respeitar os direitos autorais de terceiros. Isto inclui o código em si e qualquer recurso (imagens, por exemplo) que ele usar. Se você pretende usar o conteúdo de alguém, siga as suas regras de licença ou obtenha permissão antes de utilizá-lo. As licenças nos scripts são especificadas pela chave meta <code>@license</code>, e você pode aprender mais sobre o que é ou não permitido usando %{tldr_legal_link:tldrlegal.com}.
       reposts: Mesmo nos casos em que não há violação dass regras de direitos autorais, repostagem de scripts que já estão no %{site_name} não é permitida a menos que hajam melhorias em relação ao original.
       miscellaneous_header: Diversos
       keywords_html: Scripts não devem incluir tags <code>@include</code>, <code>@match</code>, ou palavras chave para sites para os quais não forneça funcionalidades.
@@ -684,6 +724,17 @@ pt-BR:
       reporting: Caso você encontre um script que fuja desses parâmetros, por favor reporte-o através do link de feedback daquele script e escolha a opção "Reportar script".
     external_scripts:
       title: "Política em scripts externo do %{site_name}"
+      intro_html: |
+          <p>Scripts de usuário tem a capacidade técnica de carregar e executar outros scripts. Isso pode ser feito de diferentes maneiras, incluindo:</p>
+          <ul>
+          <li>A chave de metadados %{require_doc_link:<code>@require</code>}.</li>
+          <li><code>XmlHttpRequest</code> para baixar o script, e então utilizar <code>eval</code> para executá-lo.</li>
+          <li>Adicionando uma tag <code>&lt;script&gt;</code> dinamicamente.</li>
+          <li>Opções %{webpack_externals_link:<code>externas</code>} do webpack.</li>
+          </ul>
+          <p>Enquanto isto é uma ferramenta útil e a maioria dos scripts utiliza isso para propósitos legítimos, também pode ser usada de forma maliciosa. Um dos principais princípios do%{site_name} é que o usuário deve ser capaz de inspecionar o código de um script. Scripts externos podemignorar este princípio de várias formas: eles podem sofrer alterações sem aviso ou histórico, podem fornecer códigos diferentes para pessoas diferentes, e podem ainda ser usados para esconder códigos maliciosos entre bibliotecas conhecidas. Mesmo que alguém verifique um script externo e veja que ele é legítimo, isso não garante que ele sempre foi ou sempre será legítimo.</p>
+      allowed_external_codes:
+        heading: Código externo permitido
       test_url:
         result_ok: A URL é permitida
         result_not_ok: A URL não é permitida
