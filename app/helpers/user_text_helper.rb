@@ -251,10 +251,10 @@ module UserTextHelper
     link = Nokogiri::XML::Node.new('a', node.document)
     link['href'] = url
     link.add_child(Nokogiri::XML::Text.new(link_text, node.document))
-    replace_text_with_node(node, original_text, link)
+    replace_text_with_node(node, original_text, link, once: true)
   end
 
-  def replace_text_with_node(node, text, node_to_insert)
+  def replace_text_with_node(node, text, node_to_insert, once: false)
     node_text = node.text
     replaced_original_node = false
 
@@ -276,6 +276,11 @@ module UserTextHelper
       end
       fragment << node_to_insert.dup
       node_text = node_text[(index + text.length)..]
+
+      if once
+        fragment << Nokogiri::XML::Text.new(node_text, node.document)
+        break
+      end
     end
 
     node.add_next_sibling(fragment)

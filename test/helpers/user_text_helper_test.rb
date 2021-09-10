@@ -27,6 +27,16 @@ class UserTextHelperTest < ActionView::TestCase
     assert_equal 'my url is <a href="https://example.com/" rel="nofollow">https://example.com/</a>.', format_user_text(text, 'html')
   end
 
+  test 'format_user_text html links are linkified with dashes' do
+    text = 'my url is https://example.com/some-path.'
+    assert_equal 'my url is <a href="https://example.com/some-path" rel="nofollow">https://example.com/some-path</a>.', format_user_text(text, 'html')
+  end
+
+  test 'format_user_text html links are linkified when repeated (partially)' do
+    text = 'my url is https://example.com/ and https://example.com/some-path.'
+    assert_equal 'my url is <a href="https://example.com/" rel="nofollow">https://example.com/</a> and <a href="https://example.com/some-path" rel="nofollow">https://example.com/some-path</a>.', format_user_text(text, 'html')
+  end
+
   test 'format_user_text html no hang on long text' do
     text = File.read(Rails.root.join('test/fixtures/files/hamlet.txt'))
     Timeout.timeout(1) do
