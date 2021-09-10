@@ -6,7 +6,7 @@
       <% previous_has_response = false %>
     <% end %>
     <section class="report-list-item">
-      <%= render partial: report, locals: { i: i, lazy_load_diffs: true } %>
+      <%= render partial: report, locals: { i: i } %>
     </section>
   <% end %>
   <%= will_paginate(@reports) %>
