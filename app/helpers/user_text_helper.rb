@@ -5,6 +5,28 @@ require 'memoist'
 module UserTextHelper
   extend Memoist
 
+  def with_user_text_preview(markup_name:, markup:, &block)
+    markup_choice_html = label_tag(nil, class: 'radio-label') do
+      "#{radio_button_tag(markup_name, 'html', markup == 'html' || markup.nil?, required: true)}HTML".html_safe
+    end +
+                         label_tag(nil, class: 'radio-label') do
+                           radio_button_tag(markup_name, 'markdown', markup == 'markdown', required: true) +
+                             link_to('Markdown', 'http://daringfireball.net/projects/markdown/basics', { target: 'markup_choice' })
+                         end
+    previewable_text_field_form(markup_name: markup_name, markup_choice_html: markup_choice_html, &block)
+  end
+
+  def with_user_text_preview_for_form(form:, markup_name:, &block)
+    markup_choice_html = label_tag(nil, class: 'radio-label') do
+      "#{form.radio_button(markup_name, 'html', required: true)}HTML".html_safe
+    end +
+                         label_tag(nil, class: 'radio-label') do
+                           form.radio_button(markup_name, 'markdown', required: true) +
+                             link_to('Markdown', 'http://daringfireball.net/projects/markdown/basics', { target: 'markup_choice' })
+                         end
+    previewable_text_field_form(markup_name: "#{form.object_name}[#{markup_name}]", markup_choice_html: markup_choice_html, &block)
+  end
+
   def format_user_text(text, markup_type, mentions: [])
     return '' if text.nil?
     return text if markup_type == 'text'
@@ -306,5 +328,17 @@ module UserTextHelper
 
   def markdown
     @markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML.new({ link_attributes: { rel: 'nofollow' } }), fenced_code_blocks: true, lax_spacing: true, tables: true, strikethrough: true)
+  end
+
+  def previewable_text_field_form(markup_name:, markup_choice_html:)
+    <<~HTML.html_safe
+      <span class="label-note">
+        #{link_to t('common.allowed_elements_link'), help_allowed_markup_path, { target: 'markup_choice' }}
+        #{markup_choice_html}
+      </span><br>
+      <div class="previewable" data-markup-option-name="#{markup_name}" data-preview-label="#{t('common.preview_tab')}" data-write-label="#{t('common.write_tab')}">
+        #{yield}
+      </div>
+    HTML
   end
 end

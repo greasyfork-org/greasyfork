@@ -28,15 +28,9 @@
   <% if UserRestrictionService.new(current_user).allow_posting_profile? %>
     <div class="form-control">
       <%= f.label :profile %>
-      <span class="label-note">
-        <%= link_to t('common.allowed_elements_link'), help_allowed_markup_path, {target: 'markup_choice'} %>
-        <%= f.radio_button(:profile_markup, 'html') %>HTML
-        <%= f.radio_button(:profile_markup, 'markdown') %><%= link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', {target: 'markup_choice'} %>
-      </span>
-      <br>
-      <div class="previewable" data-markup-option-name="user[profile_markup]" data-preview-label="<%= t('common.preview_tab') %>" data-write-label="<%= t('common.write_tab') %>">
-        <%= f.text_area :profile %>
-      </div>
+      <%= with_user_text_preview_for_form(form: f, markup_name: :profile_markup) do
+        f.text_area :profile
+      end %>
     </div>
   <% end %>
 

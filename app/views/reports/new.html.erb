@@ -49,16 +49,9 @@
     <% end %>
   </div>
 
-  <span class="label-note">
-    <%= link_to t('common.allowed_elements_link'), help_allowed_markup_path, { target: 'markup_choice' } %>
-    <%= f.radio_button(:explanation_markup, 'html') %>HTML
-    <%= f.radio_button(:explanation_markup, 'markdown') %><%= link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', { target: 'markup_choice' } %>
-  </span>
-  <br>
-
-  <div class="previewable" data-markup-option-name="report[explanation_markup]" data-preview-label="<%= t('common.preview_tab') %>" data-write-label="<%= t('common.write_tab') %>">
-    <%= f.text_area :explanation, placeholder: t('reports.explanation_placeholder') %>
-  </div>
+  <%= with_user_text_preview_for_form(form: f, markup_name: :explanation_markup) do
+    f.text_area :explanation, placeholder: t('reports.explanation_placeholder')
+  end %>
 
   <div class="report-screenshot-control">
     <%= render partial: 'screenshots/entry', locals: { f: f } %>

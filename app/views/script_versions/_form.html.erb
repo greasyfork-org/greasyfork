@@ -142,15 +142,9 @@
     <div class="form-section">
       <div class="form-control">
         <label for="changelog"><%= t('activerecord.attributes.script.changelog') %></label> <span class="label-note"><%= t('scripts.changelog_note') %></span><br>
-        <span class="label-note">
-          <%= link_to t('common.allowed_elements_link'), help_allowed_markup_path, { target:  'markup_choice' } %>
-          <%= s.radio_button(:changelog_markup, 'html') %>HTML
-          <%= s.radio_button(:changelog_markup, 'markdown') %><%= link_to 'Markdown', 'http://daringfireball.net/projects/markdown/basics', { target: 'markup_choice' } %>
-        </span>
-        <br>
-        <div class="previewable" data-markup-option-name="script_version[changelog_markup]" data-preview-label="<%= t('common.preview_tab') %>" data-write-label="<%= t('common.write_tab') %>">
-          <%= s.text_area :changelog, rows: 5 %>
-        </div>
+        <%= with_user_text_preview_for_form(form: s, markup_name: :changelog_markup) do
+          s.text_area :changelog, rows: 5
+        end %>
       </div>
     </div>
   <% end %>

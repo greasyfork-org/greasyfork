@@ -7,7 +7,7 @@
     <% @conversations.each do |conversation| %>
       <li>
         <% other_users = (conversation.users - [@user]) %>
-        <%= link_to t('conversations.conversation_link_html', users: other_users.map{ |u| render_user_text(u, nil) }.to_sentence, count: other_users.count), conversation.latest_url(@user, locale: request_locale) %>
+        <%= link_to t('conversations.conversation_link_html', users: other_users.map{ |u| render_user_text(u, nil) }.to_sentence, count: other_users.count), conversation.latest_path(@user, locale: request_locale) %>
         <%= t('conversations.conversation_info_html', date: markup_date(conversation.stat_last_message_date), user: render_user(conversation.stat_last_poster, conversation.stat_last_poster_id)) %>
       </li>
     <% end %>
