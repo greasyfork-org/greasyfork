@@ -265,9 +265,9 @@ zh-CN:
     write_your_own_html: "%{post_a_script_link}(或 %{learn_to_write_scripts_link})"
     post_a_script_link_text: "发布你编写的脚本"
     learn_to_write_scripts_link_text: "了解如何编写脚本"
-    feedback_or_report: "%{feedback_link:询问，评论}，或者 %{report_link:举报这个脚本}。"
-    support_feedback_or_report: "%{support_url:访问作者的支持站点}，%{feedback_link:询问，评论}，或者 %{report_link:举报此脚本}。"
-    support_email_feedback_or_report: "%{support_url:给作者发送电子邮件来获取支持}，%{feedback_link:询问，评价}，或者 %{report_link:举报此脚本}。"
+    feedback_or_report: "%{feedback_link:提问、发表评价}，或者 %{report_link:举报这个脚本}。"
+    support_feedback_or_report: "%{support_url:访问作者的支持站点}，%{feedback_link:提问、发表评价}，或者 %{report_link:举报此脚本}。"
+    support_email_feedback_or_report: "%{support_url:给作者发送电子邮件来获取支持}，%{feedback_link:提问、发表评价}，或者 %{report_link:举报此脚本}。"
     adult_content: "成人内容"
     adult_content_self_report: "此脚本包含成人内容，或者适用于一个含有成人内容的网站。"
     adult_content_self_report_explanation: "%{site_name} 允许脚本带有成人内容，但必须被明确标注使用户可以选择是否查看此类内容。"
@@ -992,10 +992,10 @@ zh-CN:
     update_rating_note: "（你可以通过发表新回复来更改评分）"
     update_rating: "更新您对 %{script_name} 的评分"
     ratings:
-      question: "不评分 - 只是一个询问或评论"
+      question: "不评分 - 只是一个提问、评论或功能请求"
       bad: "差评 - 脚本失效或无法使用"
-      ok: "一般 - 脚本有用，但还有一些问题"
-      good: "好评 - 脚本一切运行良好"
+      ok: "一般 - 脚本能用，但还有一些问题"
+      good: "好评 - 脚本一切正常"
     ratings_short:
       question: "提问/评论"
       bad: "差评"
@@ -1030,23 +1030,23 @@ zh-CN:
       see_all_activity: "查看所有用户活动"
       script_review:
         posted_html: "发表了对 <i>%{script}</i> 的评价"
-        replied_html: "回复了关于 <i>%{script}</i> 的评价"
+        replied_html: "回复了对 <i>%{script}</i> 的一评价"
       script_question:
         posted_html: "发表了对 <i>%{script}</i> 的提问或评论"
-        replied_html: "回复了关于 <i>%{script}</i> 的提问或评论"
+        replied_html: "回复了对 <i>%{script}</i> 的一提问或评论"
       discussion:
         posted_html: "发表讨论：<i>%{title}</i>"
         replied_html: "回复讨论：<i>%{title}</i>"
-    review_title: "%{script_name}的评论"
-    question_title: "关于%{script_name}的问题"
+    review_title: "对 %{script_name} 的评价"
+    question_title: "关于 %{script_name} 的问题"
     subscribe: 关注
     unsubscribe: 取消关注
-    notify: 通知我所有在该讨论的回复
+    notify: 若该讨论有新回复，请通知我
     notifying_on_script: 根据您的 %{notifications_link:脚本通知设置}，有新回复时您将收到通知。
     categories:
       greasyfork:
         name: Greasy Fork 反馈
-        description: 有关 Greasy Fork 本身的故障报告、功能需求等事务。
+        description: 有关 Greasy Fork 本身的故障报告、功能请求等事务。
       development:
         name: 开发
         description: 有关用户脚本和用户样式开发的技术讨论。

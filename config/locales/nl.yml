@@ -42,6 +42,7 @@ nl:
     deleted_notice: "Dit script is verwijderd."
     deleted_notice_with_related: "Het gevraagde script is verwijderd, maar er zijn enkele verwante scripts."
     deleted_undelete_notice_html: "Dit script is vergrendeld door een moderator en kan niet worden teruggehaald. Opgegeven reden: \"<i>%{delete_reason}</i>\""
+    deleted_locked_author_notice_html: "Dit script is verwijderd door een moderator en kan niet worden getoond. Opgegeven reden: \"<i>%{delete_reason}</i>\". U kunt  %{appeal_link:een bezwaar indienen} tegen de verwijdering."
     deleted_author_notice: "Dit script is verwijderd door een moderator en kan niet worden getoond. Herstel het op het tabblad 'Verwijderen'."
     version_notice_html: "Per %{date}. Zie %{latest_version_link}."
     version_notice_latest_version_link: "de nieuwste versie"
@@ -57,6 +58,9 @@ nl:
     delete_page: "Verwijderen"
     delete_explanation: "Het verwijderen van je script maakt het onbeschikbaar voor iedereen, behalve voor jou en de Greasy Fork-moderators. Je kunt je script altijd weer beschikbaar maken."
     delete_update_behaviour: "Wat wil je dat er gebeurt met mensen die je script eerder hebben geïnstalleerd?"
+    delete_update_behaviours:
+      keep: "Zij houden het zoals het is."
+      blanked: "Ze worden bijgewerkt naar een leeg script. Dit is van toepassing wanneer het script een negatief effect heeft op de sites waar hij wordt gebruikt."
     delete_permanently_heading: "Permanent verwijderen"
     delete_permanently_confirm: "Weet je zeker dat je dit script permanent wilt verwijderen?"
     delete_permanently_submit: "Permanente verwijdering aanvragen"
@@ -289,11 +293,15 @@ nl:
       submit: "Stuur uitnodiging"
       sent: "Uitnodiging is verstuurd."
       subject: "Uitnodiging voor %{script_name}"
+      current_user_already_author: "U bent al een auteur van dit script."
       invitation_not_found: "Uitnodiging niet gevonden."
       invitation_expired: "Uitnodiging is vervallen."
+      invitation_accepted: "U bent nu een auteur van dit script."
     remove_author:
       heading: "Verwijder Auteurs"
+      success: "%{user_name} is verwijderd als auteur."
       remove_button: "Verwijderen"
+      remove_confirm: "Weet je zeker dat je %{user_name} wilt verwijderen als auteur."
       failure: "Kon auteur niet verwijderen."
     new_script_notice:
       title: "Wat probeer je te doen?"
