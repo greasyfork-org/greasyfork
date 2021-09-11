@@ -332,7 +332,7 @@ module UserTextHelper
 
   def previewable_text_field_form(markup_name:, markup_choice_html:)
     <<~HTML.html_safe
-      <span class="label-note">
+      <span class="label-note markup-options">
         #{link_to t('common.allowed_elements_link'), help_allowed_markup_path, { target: 'markup_choice' }}
         #{markup_choice_html}
       </span><br>

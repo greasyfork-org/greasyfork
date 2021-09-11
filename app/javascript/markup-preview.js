@@ -24,7 +24,7 @@ window.markupPreview = function(p) {
   }
 
   function isOnPreviewTab(previewable) {
-    return previewable.querySelector(".preview-tab").className.indexOf("current") > -1;
+    return previewable.querySelector(".preview-tab").parentNode.className.indexOf("current") > -1;
   }
 
   function handlePreviewClick(event) {

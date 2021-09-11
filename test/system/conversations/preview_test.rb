@@ -25,5 +25,20 @@ module Conversations
       find('.preview-tab').click
       assert_content '1 2 3 4'
     end
+
+    test 'switching markup in preview' do
+      user = users(:geoff)
+      user.update!(preferred_markup: 'html')
+      login_as(user, scope: :user)
+      conversation = conversations(:geoff_and_junior)
+
+      visit user_conversation_url(user, conversation, locale: :en)
+
+      fill_in 'Message', with: '1 *2* 3 4'
+      find('.preview-tab').click
+      assert_content '1 *2* 3 4'
+      choose('Markdown')
+      assert_content '1 2 3 4'
+    end
   end
 end
