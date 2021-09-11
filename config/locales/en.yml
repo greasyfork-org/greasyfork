@@ -1298,6 +1298,17 @@ en:
     load_diff: "Load diff"
     loading_diff: "Loading…"
     reported_user_activity_html: "%{user} (the reported user) has made:"
+  appeals:
+    new:
+      title: New script delete appeal
+      intro: 'Your script was deleted due to: "%{reason}". If you believe this was in error, or if you have additional information to provide, or if you have updated your script to address the issue, you can submit an appeal. If a moderator is satisfied by your updates and by the information you provided, they will restore access to your script.'
+      submit: Submit appeal
+    deletion_reason_html: "%{script} was deleted due to: %{reason}."
+    author_reason: "Appeal submitted by the author:"
+    pending_review: This appeal is pending review by a moderator.
+    dismissed_by_moderator: A moderator has dismissed this appeal.
+    upheld_by_moderator: As a result of this appeal, a moderator undeleted this script.
+    submitted: Your appeal has been received and a moderator will review it.
   discussions:
     title: Discussions
     comment_date: "Posted: %{date}"
@@ -1520,6 +1531,8 @@ en:
         user_input: User
       message:
         content: Message
+      script_lock_appeal:
+        text: Appeal
   errors:
     messages:
       # validation for when a script name is not provided

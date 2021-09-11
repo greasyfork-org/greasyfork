@@ -1,6 +1,6 @@
-<p><%= render_script(script_lock_appeal.script) %> was deleted due to: <%= delete_reason(script_lock_appeal.script) %>.</p>
+<p><%= t('appeals.deletion_reason_html', script: render_script(script_lock_appeal.script), reason: delete_reason(script_lock_appeal.script)) %></p>
 
-<p>Appeal submitted by the author:</p>
+<p><%= t('appeals.author_reason') %></p>
 
 <div class="user-content">
   <%= format_user_text(script_lock_appeal.text, script_lock_appeal.text_markup) %>
@@ -18,17 +18,17 @@
       <%= submit_tag('Undelete script') %>
     <% end %>
   <% else %>
-    <p>This appeal is pending review by a moderator.</p>
+    <p><%= t('appeals.pending_review') %></p>
   <% end %>
 <% when 'dismissed' %>
-  <p>A moderator has dismissed this appeal.</p>
+  <p><%= t('appeals.dismissed_by_moderator') %></p>
   <% if script_lock_appeal.moderator_notes.presence %>
     <div class="user-content">
       <%= script_lock_appeal.moderator_notes %>
     </div>
   <% end %>
 <% when 'unlocked' %>
-  <p>As a result of this appeal, a moderator undeleted this script.</p>
+  <p><%= t('appeals.upheld_by_moderator') %></p>
   <% if script_lock_appeal.moderator_notes.presence %>
     <div class="user-content">
       <%= script_lock_appeal.moderator_notes %>

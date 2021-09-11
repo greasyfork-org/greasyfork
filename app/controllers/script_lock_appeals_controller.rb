@@ -15,7 +15,7 @@ class ScriptLockAppealsController < ApplicationController
 
   def create
     @script_lock_appeal = @script.script_lock_appeals.create!(script_lock_appeal_params)
-    redirect_to script_path(@script), flash: { notice: 'Your appeal has been received and a moderator will review it.' }
+    redirect_to script_path(@script), flash: { notice: t('appeals.submitted') }
   end
 
   def show; end

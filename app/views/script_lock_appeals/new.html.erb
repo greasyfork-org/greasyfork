@@ -1,14 +1,16 @@
-<% title 'New script lock appeal' %>
+<% title t('appeals.new.title') %>
 
-<p>Your script was deleted due to: "<%= delete_reason(@script) %>". If you believe this was in error, or if you have additional information to provide, or if you have updated your script to address the issue, you can submit an appeal. If a moderator is satisfied by your updates and by the information you provided, they will restore access to your script.</p>
+<p>
+  <%= t('appeals.new.intro', reason: delete_reason(@script)) %>
+</p>
 
 <%= form_with(model: @script_lock_appeal, url: script_script_lock_appeals_path(script_id: @script_lock_appeal.script_id)) do |f| %>
   <div class="form-control">
-    <%= f.label :text, 'Appeal' %>
+    <%= f.label :text %>
     <%= with_user_text_preview_for_form(form: f, markup_name: :text_markup) do
       f.text_area :text, required: true
     end %>
   </div>
   <%= f.hidden_field :report_id %>
-  <%= f.submit 'Submit appeal' %>
+  <%= f.submit t('appeals.new.submit') %>
 <% end %>
