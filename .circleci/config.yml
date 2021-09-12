@@ -13,12 +13,13 @@ jobs:
           MYSQL_PASSWORD: passw0rd
           MYSQL_DATABASE: greasyfork_test
           RAILS_ENV: test
-      - image: circleci/mariadb:10.3.23
+      - image: circleci/mariadb:10.6.4
         environment:
           MYSQL_ROOT_PASSWORD: rootpw
           MYSQL_DATABASE: greasyfork_test
           MYSQL_USER: user
           MYSQL_PASSWORD: passw0rd
+        command: [--loose_innodb_read_only_compressed=OFF]
     executor: ruby/default
     steps:
       - run: sudo apt install mariadb-client
