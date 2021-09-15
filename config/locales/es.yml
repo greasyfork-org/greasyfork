@@ -29,6 +29,7 @@ es:
       other: "Ver otros %{count} scripts para %{site}"
     applies_to_all: "Todos los sitios"
     install: "Instalar este script"
+    install_css: "Instalar como estilo de usuario"
     install_help: "¿?"
     install_help_title: "Cómo instalar"
     update: "Actualizar a la versión %{version}"
@@ -941,6 +942,13 @@ es:
     load_diff: "Cargar diferencias"
     loading_diff: "Cargando..."
     reported_user_activity_html: "%{user} (el usuario denunciado) ha hecho:"
+  appeals:
+    new:
+      title: Nueva revisión para eliminar script
+      intro: 'Su script ha sido eliminado porque: "%{reason}". Si cree que ha sido un error, o tienes información adicional que presentar, o has actualizado tu script para hacerte cargo de el problema, puedes enviar una revisión. Si un moderador esta satisfecho con su actualización y por la información presentada, el te devolverá el acceso a tu script.'
+      submit: Enviar apelación
+    deletion_reason_html: "%{script} ha sido eliminado porque: %{reason}."
+    author_reason: "Apelación enviada por el autor: "
   discussions:
     title: Conversaciones
     comment_date: "Publicado: %{date}"
@@ -1228,3 +1236,7 @@ es:
       subject: "El usuario %{user} te ha enviado un mensaje en %{site_name}"
       intro: "El usuario %{user_link:%{user_name}} te ha enviado un mensaje en %{site_name}"
       outro: "%{conversation_link:Ver y responder al comentario.} Has recibido esta notificación porque te has suscrito a esta conversación. %{notification_preferences_link:Administrar tus preferencias de notificaciones.}"
+    script_lock_appeal:
+      unlock:
+        subject: La revisión de tu script en %{site_name} se ha quedado en espera.
+        moderator_notes: "El moderador ha comentado:"
