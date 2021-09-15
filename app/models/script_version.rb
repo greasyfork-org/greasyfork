@@ -81,6 +81,12 @@ class ScriptVersion < ApplicationRecord
     record.errors.add(:code, :missing_include_or_match) if !meta.key?('include') && !meta.key?('match')
   end
 
+  validate on: :create do |record|
+    meta = parser_class.get_meta_block(code)
+    # The proper format, minus the space between // and @
+    record.errors.add(:code, :invalid_meta) if %r{//@([a-zA-Z:\-]+)\s+(.*)}.match(meta)
+  end
+
   before_save :set_locale
   def set_locale
     localized_attributes.select { |la| la.locale.nil? }.each { |la| la.locale = script.locale }

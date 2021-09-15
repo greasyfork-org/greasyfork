@@ -726,6 +726,25 @@ class ScriptVersionTest < ActiveSupport::TestCase
     assert_equal 'must include at least one @match or @include key', script_version.errors.first.message
   end
 
+  test 'invalid meta' do
+    script = valid_script
+    script_version = script.script_versions.first
+    script_version.code = <<~JS
+      // ==UserScript==
+      //@name		A Test!
+      // @description		Unit test.
+      // @version 1.0
+      // @namespace http://greasyfork.local/users/1
+      // @include example.com
+      // ==/UserScript==
+      var foo = "bar";
+    JS
+    assert_not script_version.valid?
+    assert_equal 1, script_version.errors.size
+    assert_equal :code, script_version.errors.first.attribute
+    assert_equal 'has an invalid meta directive. The proper format is // @foo', script_version.errors.first.message
+  end
+
   test 'creation resets consecutive bad reviews' do
     script = Script.find(3)
     script.update(consecutive_bad_ratings_at: Time.current)
