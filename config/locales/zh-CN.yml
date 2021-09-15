@@ -967,6 +967,17 @@ zh-CN:
     load_diff: "查看对比（diff 格式）"
     loading_diff: "加载中…"
     reported_user_activity_html: "%{user}（被举报用户）已经有："
+  appeals:
+    new:
+      title: 新建删除脚本申诉
+      intro: '你的脚本被删除的原因是：“%{reason}”。如果你认为这是误删、希望提供更多信息或是已提交脚本更新来解决这个问题，你可以提交申诉。如果管理员认为你解决了问题或提供了足够的信息，他们会解除脚本的删除状态。'
+      submit: 提交申诉
+    deletion_reason_html: "%{script} 已被删除，原因是：%{reason}。"
+    author_reason: "由作者提交的申诉："
+    pending_review: 该申诉正等待管理员的审核。
+    dismissed_by_moderator: 管理员已驳回该申诉。
+    upheld_by_moderator: 一位管理员通过了该则申诉，并解除了该则脚本的删除状态。
+    submitted: 已收到您提交的申诉，请等待管理员审核。
   discussions:
     title: 讨论
     comment_date: "发表于：%{date}"
@@ -1030,10 +1041,10 @@ zh-CN:
       see_all_activity: "查看所有用户活动"
       script_review:
         posted_html: "发表了对 <i>%{script}</i> 的评价"
-        replied_html: "回复了对 <i>%{script}</i> 的一评价"
+        replied_html: "回复了对 <i>%{script}</i> 的一条评价"
       script_question:
         posted_html: "发表了对 <i>%{script}</i> 的提问或评论"
-        replied_html: "回复了对 <i>%{script}</i> 的一提问或评论"
+        replied_html: "回复了对 <i>%{script}</i> 的一条提问或评论"
       discussion:
         posted_html: "发表讨论：<i>%{title}</i>"
         replied_html: "回复讨论：<i>%{title}</i>"
@@ -1154,6 +1165,8 @@ zh-CN:
         user_input: 用户
       message:
         content: 消息
+      script_lock_appeal:
+        text: 申诉
   errors:
     messages:
       script_missing_name: "必填 - 请通过 <code>@name</code> 指定"

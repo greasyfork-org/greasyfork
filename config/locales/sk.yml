@@ -1049,6 +1049,17 @@ sk:
     load_diff: "Načítať rozdiel"
     loading_diff: "Načítava sa…"
     reported_user_activity_html: "%{user} (nahlásený používateľ) urobil:"
+  appeals:
+    new:
+      title: Nové odvolanie proti odstráneniu skriptu
+      intro: 'Váš skript bol odstránený z dôvodu: "%{reason}". Ak sa domnievate, že to bola chyba, alebo ak máte ďalšie informácie, ktoré môžete poskytnúť, alebo ak ste svoj skript aktualizovali, aby ste vyriešili tento problém, môžete podať odvolanie. Ak je moderátor spokojný s vašimi aktualizáciami a vami poskytnutými informáciami, obnoví prístup k vášmu skriptu.'
+      submit: Odoslať odvolanie
+    deletion_reason_html: "%{script} bol odstránený z dôvodu: %{reason}."
+    author_reason: "Odvolanie odoslané autorom:"
+    pending_review: Toto odvolanie čaká na schválenie moderátorom.
+    dismissed_by_moderator: Moderátor toto odvolanie zamietol.
+    upheld_by_moderator: Ako výsledok tohto odvolania, moderátor obnovil tento skript.
+    submitted: Toto odvolanie bolo prijaté a moderátor ho posúdi.
   discussions:
     title: Diskusie
     comment_date: "Pridaný: %{date}"
@@ -1248,6 +1259,8 @@ sk:
         user_input: Používateľ
       message:
         content: Správa
+      script_lock_appeal:
+        text: Odvolanie
   errors:
     messages:
       script_missing_name: "potrebné - uveďte v @name"

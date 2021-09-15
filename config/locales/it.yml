@@ -29,6 +29,7 @@ it:
       other: "Vedi %{count} altri script da %{site}"
     applies_to_all: "Tutti i siti"
     install: "Installa questo script"
+    install_css: "Installa come stile utente"
     install_help: "?"
     install_help_title: "Come installare"
     update: "Aggiorna alla versione %{version}"
@@ -1039,6 +1040,17 @@ it:
     load_diff: "Carica diff"
     loading_diff: "Caricamento..."
     reported_user_activity_html: "%{user} (l'utente segnalato) ha fatto:"
+  appeals:
+    new:
+      title: Nuovo ricorso all'eliminazione di uno script
+      intro: 'Il tuo script è stato eliminato a causa di: "%{reason}". Se credi che si sia trattato di un errore, o se hai delle informazioni aggiuntive da fornire, o se hai aggiornato il tuo script per risolvere il problema, puoi presentare ricorso. Se un moderatore sarà soddisfatto dai tuoi aggiornamenti e dalle informazioni che avrai fornito, ripristinerà l''accesso al tuo script.'
+      submit: Presenta ricorso
+    deletion_reason_html: "%{script} è stato eliminato a causa di: %{reason}."
+    author_reason: "Ricorso presentato dall'autore:"
+    pending_review: Il ricorso è in attesa di essere visionato da un moderatore.
+    dismissed_by_moderator: Un moderatore ha respinto questo ricorso.
+    upheld_by_moderator: In seguito a questo ricorso, un moderatore ha ripristinato questo script.
+    submitted: Il tuo ricorso è stato ricevuto e un moderatore lo visionerà.
   discussions:
     title: Discussioni
     comment_date: "Pubblicato: %{date}"
@@ -1230,6 +1242,8 @@ it:
         user_input: Utente
       message:
         content: Messaggio
+      script_lock_appeal:
+        text: Ricorso
   errors:
     messages:
       script_missing_name: "è richiesto - specificane uno con @name"

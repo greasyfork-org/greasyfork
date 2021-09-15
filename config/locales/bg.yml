@@ -29,6 +29,7 @@ bg:
       other: "Виж други %{count} скрипта за %{site}"
     applies_to_all: "Всички сайтове"
     install: "Инсталирай този скрипт"
+    install_css: "Инсталирай като потребителски стил"
     install_help: "?"
     install_help_title: "Как да се инсталира"
     update: "Обновете до версия %{version}"
@@ -932,6 +933,8 @@ bg:
     item_script_html: "Скрипт: %{script_link}"
     item_deleted_script: "Изтрит скрипт %{id}"
     item_user_html: "Потребител: %{user_link}"
+    item_report: "%{report_link: Доклад#%{report_id}}"
+    item_script_lock_appeal: "%{appeal_link:Възражение#%{appeal_id}}"
   notifications:
     consecutive_bad_ratings:
       one: "%{script_names} has received consecutive bad ratings. Please review your script and reply to the concerns raised in the ratings."
@@ -1022,6 +1025,17 @@ bg:
     load_diff: "Заредете diff"
     loading_diff: "Зареждане..."
     reported_user_activity_html: "%{user} (докладваният потребите) направи:"
+  appeals:
+    new:
+      title: Ново възражение срещу изтриване на скрипт
+      intro: 'Скриптът ви беше изтрит заради: "%{reason}". Ако мислите, че това е било грешка или можете да предоставите допълнителна информация, или вече сте обновили скрипта, за да оправите проблема, можете да изпратите възражение. Ако модераторите са съгласни с обновленията и предоставената информация, те ще възстановят достъпа до скрипта.'
+      submit: Изпратете възражението
+    deletion_reason_html: "%{script} беше изтрит заради: %{reason}."
+    author_reason: "Възражение, изпратено от автора:"
+    pending_review: Възражението очаква преглед от модератор.
+    dismissed_by_moderator: Модератор отхвърли възражението.
+    upheld_by_moderator: В резултат от възражението, модератор възстанови скрипта.
+    submitted: Възражението ви беше получено и ще бъде прегледано от модератор.
   discussions:
     title: Дискусии
     comment_date: "Публикуван на: %{date}"
@@ -1044,6 +1058,7 @@ bg:
     quote_comment: "Цитат"
     question_heading_html: "Въпрос/коментар"
     review_heading_html: "Отзив: %{rating}"
+    update_rating_note: "(Можете да промените вашата оценка по-късно, като публикувате нов коментар.)"
     update_rating: "Обнови рейтинга си за %{script_name}"
     ratings:
       question: "Не е рейтинг - просто въпрос, коментар или заявка за функция"
@@ -1141,6 +1156,8 @@ bg:
     recent:
       title: Последни разговори
       more: Виж всички разговори
+    edit_message_header: Промени съобщението
+    update_message_submit: Обнови съобщението
   screenshots:
     requirements: "Не повече от %{number} PNG, GIF, JPEG, или WebP изображения, по-малки от %{size} всяко."
   common:
@@ -1210,6 +1227,8 @@ bg:
         user_input: Потребител
       message:
         content: Съобщение
+      script_lock_appeal:
+        text: Възражение
   errors:
     messages:
       script_missing_name: "е задължително - укажете с @name"
@@ -1259,6 +1278,10 @@ bg:
         text: "Вашият скрипт %{script_name} беше докладван за нарушаване на правилата на %{site_name}. Указаната причина е: %{reason}. Можете да прегледате доклада на %{report_url} и да изпратите опровержение. Ако не изпратите опровержение, скриптът ви може да бъде изтрит от модератор. Ако имате някакви въпроси, моля, посетете https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Скриптът ви %{script_name} на %{site_name} беше изтрит"
+        text: |
+            Вашият скрипт %{script_name} на %{site_name} беше изтрит от модератор и вече не е публично достъпен. Можете да видите доклада на %{report_url}.
+
+            Ако мислите, че това е грешка, или вече сте обновили скрипта, за да оправите проблема, можете да изпратите възражение на %{appeal_url}. Ако имате общи въпроси относно политиката на %{site_name}, моля, попитайте на https://greasyfork.org/forum/.
       report_dismissed_offender:
         subject: "Доклад на скриптът ви %{script_name} на %{site_name} беше отхвърлен"
         text: "Доклад за вашия скрипт %{script_name} на %{site_name} беше отхвърлен от модератор. Скритът ви ще остане активен. Можете да прегледате доклада на %{report_url}. Ако имате някакви въпроси, моля посетете https://greasyfork.org/forum/."
@@ -1291,9 +1314,28 @@ bg:
             %{site_name} се стреми да поддържа качествен списък със скриптове. За да се справим със счупените, изоставени скриптове, тези, които получават множество последователни „Лоши“ отзиви без навременен отговор, ще бъдат скрити. За да избегнете скриването на скрипта си, публикувайте нова версия или отговорете на дискусиите до %{delete_date}. Ако не предприемете никакви действия, пак ще имате възможност да го направите отново видим след тази дата.
     script_comment:
       subject: "Получихте коментар за вашия скрипт %{script_name} на %{site_name}."
+      intro: "Вашият скрипт %{script_link:%{script_name}} на %{site_name} има коментар от потребител %{commenter_link:%{commenter_name}}:"
+      outro: "%{comment_link:Прегледайте и отговорете на коментара.} %{notification_preferences_link:Управление на настройките за известия.}"
     subscribed_discussion:
       subject: "В дискусията %{discussion_title} на %{site_name} има получен коментар."
+      intro: "Дискусията %{discussion_link:%{discussion_title}} на %{site_name} има коментар от потребител %{commenter_link:%{commenter_name}}:"
+      outro: "%{comment_link:Прегледайте и отговорете на коментара.} Получихте това известие, защото сте абонирани за дискусията %{discussion_link:%{discussion_title}}. %{notification_preferences_link:Управление на настройките за известия.}"
     comment_mentioned:
       subject: "Потребителя '%{commenter_name}' Ви спомена в %{site_name}"
+      intro: "Дискусията %{discussion_link:%{discussion_title}} на %{site_name} има известие от потребител %{commenter_link:%{commenter_name}}, който ви спомена:"
+      outro: "%{comment_link:Прегледайте и отговорете на коментара.} Получихте това известите, защото сте избрали да бъдете уведомени когато някой ви спомене. %{notification_preferences_link:Управление на настройките за известия.}</p>"
     new_message:
       subject: "%{user} ви изпрати съобщение относно %{site_name}"
+      intro: "Получихте съобщение от потребител %{user_link:%{user_name}} на %{site_name}."
+      outro: "%{conversation_link:Прегледайте и отговорете на съобщението.} Получихте това известие, защото сте избрали да бъдете уведомени, когато някой ви изпрати съобщение. %{notification_preferences_link:Управление на настройките за известия.}"
+    script_lock_appeal:
+      dismiss:
+        subject: Възражението ви срещу изтриването на скрипта на %{site_name} беше отхвърлено
+        intro_html: Възражението ви за изтриване на  %{script} беше отхвърлено от модератор. Скриптът ще остане изтрит.
+        moderator_notes: "Модераторът коментира:"
+        outro: Ако все още искате скриптът ви да бъде възстановен, моля, прегледайте %{report_link:оригиналния доклад} и %{rules_link:правилата на %{site_name}'}.
+      unlock:
+        subject: Възражението ви срещу изтриването на скрипта на %{site_name} беше подкрепено
+        intro_html: Възражението ви за изтриването на %{script} беше подкрепено от модератор. Скриптът ще бъде възстановен и отново ще бъде достъпен публично.
+        moderator_notes: "Модераторът коментира:"
+        outro: 'Моля, прегледайте %{rules_link: правилата на%{site_name}}, за да избегнете бъдещи изтривания.'
