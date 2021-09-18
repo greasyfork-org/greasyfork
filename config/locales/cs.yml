@@ -179,6 +179,8 @@ cs:
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
     import: "Importovat skripty"
+    new: "Nahrát skript který jste napsal"
+    new_css: "Nahrát styl který jste napsal"
     support_site: "Navštívit stránku podpory autora."
     support_email: "Zaslat e-mail na podporu autora."
     contribution_no_amount: "Poděkovat %{author} zasláním finančního příspěvku."
@@ -202,6 +204,7 @@ cs:
     upload_label: "Nebo nahrát:"
     enable_source_code_editor_label: "Povolit editor se zvýrazněním syntaxe zdrojového kódu"
     changelog_note: "Co se v této verzi změnilo?"
+    additional_info_note: "Víc detailní popisek, instrukce, atd."
     post_new_script: "Vytvořit skript"
     post_updated_script: "Vytvořit novou verzi"
     type_1_html: "Veřejný uživatelský skript - zobrazeno všem."
@@ -217,6 +220,7 @@ cs:
     warning_potentially_minified_html: "Zdá se, že váš skript obsahuje komprimovaný kód. Pokud používáte komprimovanou knihovnu, vložte ji pomocí <code>@require</code> z %{allowed_requires_link}. Komprimované skripty jsou v rozporu s podmínkami a budou vymazány."
     warning_automatic_sensitive_html: "Váš skript je pro %{sensitive_domains} a proto bude označen jako obsah pro dospělé."
     warning_potentially_minified_allowed_requires_link: "některého z těchto umístění"
+    warning_code_previously_posted_html: "Tento kód byl už zveřejněn před tím v%{script_links}.\nKód byl zveřejněn jiným než originální autor a proto by smazán moderátory."
     additional_info_locale_prompt: "(Vybrat jazyk)"
     additional_info_add_localized: "Přidat lokalizovaný doplňující popis"
     additional_info_locale_repeated: "Uveďte pouze jeden dodatečný popis pro jazyk '%{locale_code}'."
@@ -224,9 +228,14 @@ cs:
     code_syncing_from_url_html: "Tento skript bude aktualizován z: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} může importovat skripty, které jsou uloženy jinde, například na verzovacím systému (jako je GitHub), na vašem serveru nebo na jiném úložišti uživatelských skriptů. Pro zapnutí synchronizace vložte URL: %{field}"
     sync_type_intro: "Tento skript bude synchronizován:"
+    sync_type_1:
+      name: Manuální
+    sync_type_2:
+      name: Automatický
     sync_failed_info_html: "Poslední pokus o synchronizaci proběhl %{date}, výsledkem byla chyba %{error}."
     sync_success_info_html: "Poslední úspěšná aktualizace proběhla %{date}."
     sync_never_succeeded: "Synchronizace dosud nikdy neproběhla úspěšně."
+    add_synced_additional_info: Přidat lokalizovaný, synchronizovaný přídavný info
     update_and_sync: "Aktualizovat a synchronizovat nyní"
     update_no_sync: "Aktualizovat"
     turn_off_syncing: "Vypnout synchronizaci tohoto skriptu"
@@ -255,6 +264,7 @@ cs:
     adult_content_on_greasy_logged_in_error: "Skript již není na této stránce dostupný s vaším současným %{edit_account_link:nastavením účtu Greasy Fork}."
     adult_content_on_greasy_not_logged_in_error: "Tento skript již není dostupný anonymně. %{login_link:Přihlaste se} a zkontrolujte nastavení účtu Greasy Fork."
     non_adult_content_on_sleazy: "Skript není na této stránce k dispozici."
+    not_js_convertible_override_header: "Konvertovat do JS"
     adult_marker: "(18+)"
     deleted_marker: "(Smazaný)"
     locked_marker: "(Uzamčený)"
@@ -268,8 +278,12 @@ cs:
     authors_heading: "Autoři"
     invitations:
       form_title: "Pozvat další autory"
+      invited_user_url_label: "Pozvat lidi"
+      invited_user_placeholder: "URL uživatelského profilu na %{site_name}"
       submit: "Poslat pozvánku"
+      invalid_user_url: "Pozvávací URL není platná."
       sent: "Pozvánka byla odeslána."
+      subject: "Pozvánka pro %{script_name}"
       invitation_not_found: "Pozvánka nebyla nalezena."
       invitation_expired: "Pozvánka vypršela."
       invitation_accepted: "Nyní jsi autor tohoto skriptu."
