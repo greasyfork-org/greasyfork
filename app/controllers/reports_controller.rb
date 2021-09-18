@@ -79,6 +79,12 @@ class ReportsController < ApplicationController
 
   def uphold
     @report = Report.find(params[:id])
+
+    if @report.awaiting_response?
+      render status: :not_acceptable, text: 'Cannot uphold report, awaiting author response.'
+      return
+    end
+
     user_is_script_author = user_is_script_author?(@report)
 
     unless user_is_script_author || current_user&.moderator?
