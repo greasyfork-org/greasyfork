@@ -2,10 +2,10 @@ require 'thinking_sphinx/deltas/test_delta'
 
 ThinkingSphinx::Index.define :script, with: :active_record, delta: Rails.env.test? ? ThinkingSphinx::Deltas::TestDelta : ThinkingSphinx::Deltas::SidekiqDelta do
   # fields
-  # indexes localized_names.attribute_value, :as => 'name'
-  # indexes localized_descriptions.attribute_value, :as => 'description'
-  # indexes localized_additional_infos.attribute_value, :as => 'additional_info'
-  indexes localized_attributes.attribute_value, as: 'combined_text'
+  indexes localized_names.attribute_value, as: 'name'
+  indexes localized_descriptions.attribute_value, as: 'description'
+  indexes localized_additional_infos.attribute_value, as: 'additional_info'
+  # indexes localized_attributes.attribute_value, as: 'combined_text'
 
   indexes users.name, as: :author
 
@@ -20,10 +20,10 @@ ThinkingSphinx::Index.define :script, with: :active_record, delta: Rails.env.tes
   where 'script_type_id IN (1,3) and delete_type is null and review_state != "required"'
 
   set_property field_weights: {
-    # name: 10,
-    combined_text: 10,
+    name: 10,
+    # combined_text: 10,
     author: 5,
-    # description: 2,
-    # additional_info: 1,
+    description: 2,
+    additional_info: 1,
   }
 end
