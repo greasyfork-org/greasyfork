@@ -108,7 +108,7 @@ it:
     feedback_has_reports: "Questo script è segnalato come una violazione delle regole."
     feedback_no_discussions_html: "Non c'è ancora nessuna discussione. %{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "Non ci sono ancora discussioni pubblicate."
-    feedback_report_instead: "Se pensi che questo script stia violando %{rules_link:%{site_name}'s rules}, per favore %{report_link:segnalalo per la rimozione}."
+    feedback_report_instead: "Se pensi che questo script stia violando %{rules_link:le regole di%{site_name}}, per favore %{report_link:segnalalo per la rimozione}."
     feedback_start_first_discussion_link: "Discuti per primo questo script"
     feedback_discussion_or_report: "%{new_discussion_link:Inizia una nuova discussione su questo script} oppure %{report_link:segnalalo per la rimozione}."
     feedback_favoriters_heading: "Preferiti"
@@ -302,7 +302,7 @@ it:
     must_confirm: "Devi confermare il tuo account prima di poter pubblicare degli scripts. Hai due opzioni di conferma - aggiungi un accreditamento esterno o invia un'email di conferma."
     must_confirm_email_button: "Invia il link di conferma a %{email}"
     authors_heading: "Autori"
-    error_unauthorized_copy: "Questo codice sembra essere una copia non autorizzata di%{script}. Fai riferimento a %{site_name} %{rules_link:regole} sulla pubblicazione degli script."
+    error_unauthorized_copy: "Questo codice sembra essere una copia non autorizzata di%{script}. Fai riferimento alle %{rules_link:regole} di %{site_name} sulla pubblicazione degli script."
     invitations:
       form_title: "Invita altri autori."
       explanation: "Puoi aggiungere altri utenti di Greasy Fork come autori di questo script. Avranno i tuoi stessi diritti su questo script."
@@ -1259,6 +1259,7 @@ it:
       script_disallowed_require: "utilizza uno script esterno non ammesso: %{code}"
       script_rate_limit: "Hai superato il limite di caricamento. Riprova più tardi."
       missing_include_or_match: "deve includere almeno una chiave @match o @include"
+      invalid_meta: "ha una direttiva meta non valida. Il formato giusto è // @foo"
       file_size_out_of_range: "la dimensione dev'essere minore di 200KB"
       meta_too_long: "%{key} è troppo lungo (il massimo è %{count} caratteri)"
   opensearch:
