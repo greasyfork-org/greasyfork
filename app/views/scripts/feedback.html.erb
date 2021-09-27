@@ -1,12 +1,6 @@
 <%- title t('scripts.feedback_title', script_name: @script.name(request_locale)) %>
 <%- description "Feedback on #{@script.name(request_locale)}" %>
 
-<% if @script.reports.unresolved.any? %>
-  <p>
-    <%= link_to t('scripts.feedback_has_reports', site_name: site_name), report_path(@script.reports.unresolved.first), rel: :nofollow %>
-  </p>
-<% end %>
-
 <% if !@script.contribution_url.nil?
   is_bitcoin = @script.contribution_url.starts_with?('bitcoin:') %>
   <p id="contribution">
