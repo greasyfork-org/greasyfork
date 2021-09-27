@@ -8,7 +8,6 @@
         </h2>
         <div>
           <span class="script-description"><%= script.description(I18n.locale) %></span>
-          <%= link_to('Translate', "https://translate.google.com/#view=home&op=translate&sl=auto&tl=en&text=#{URI.encode_www_form_component(script.description(I18n.locale))}") %>
         </div>
         <p>
           <%= script.site_applications.map { |s| s.domain? ? link_to(s.text, "http://#{s.text}") : s.text}.join(', ').html_safe %>
