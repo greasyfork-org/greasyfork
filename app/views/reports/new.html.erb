@@ -30,7 +30,7 @@
 
   <div class="form-control radio-group">
     <%= f.label :reason %><br>
-    <% possible_reasons = @report.item.is_a?(Script) ? Report::REASON_TEXT.keys : Report::NON_SCRIPT_REASONS %>
+    <% possible_reasons = @report.item.is_a?(Script) ? Report::POSSIBLE_REASONS : Report::NON_SCRIPT_REASONS %>
     <% if @report.item.is_a?(Script) %>
       <div>
         <%= f.radio_button(:reason, 'non_functional', required: true) %> <%= f.label :reason, t('reports.reason.non_functional'), class: 'radio-label', value: 'non_functional' %><br>

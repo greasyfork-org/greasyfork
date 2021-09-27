@@ -9,24 +9,26 @@ class Report < ApplicationRecord
   REASON_MINIFIED = 'minified'.freeze
   REASON_EXTERNAL_CODE = 'external_code'.freeze
   REASON_UNDISCLOSED_ANTIFEATURE = 'undisclosed_antifeature'.freeze
+  REASON_NO_DESCRIPTION = 'no_description'.freeze
   REASON_OTHER = 'other'.freeze
 
-  REASON_TEXT = {
-    REASON_SPAM => 'spam',
-    REASON_ABUSE => 'abusive or hateful content',
-    REASON_ILLEGAL => 'illegal content',
-    REASON_UNAUTHORIZED_CODE => 'unauthorized copy',
-    REASON_MALWARE => 'malware',
-    REASON_MINIFIED => 'minified code',
-    REASON_EXTERNAL_CODE => 'disallowed external code',
-    REASON_UNDISCLOSED_ANTIFEATURE => 'undisclosed antifeature',
-    REASON_OTHER => 'other',
-  }.freeze
+  POSSIBLE_REASONS = [
+    REASON_SPAM,
+    REASON_ABUSE,
+    REASON_ILLEGAL,
+    REASON_UNAUTHORIZED_CODE,
+    REASON_MALWARE,
+    REASON_MINIFIED,
+    REASON_EXTERNAL_CODE,
+    REASON_UNDISCLOSED_ANTIFEATURE,
+    REASON_NO_DESCRIPTION,
+    REASON_OTHER,
+  ].freeze
 
   NON_SCRIPT_REASONS = [REASON_SPAM, REASON_ABUSE, REASON_ILLEGAL].freeze
 
   GRACE_PERIOD = 3.days
-  GRACE_PERIOD_REASONS = [REASON_UNAUTHORIZED_CODE, REASON_UNDISCLOSED_ANTIFEATURE, REASON_OTHER, REASON_EXTERNAL_CODE, REASON_MINIFIED].freeze
+  GRACE_PERIOD_REASONS = [REASON_UNAUTHORIZED_CODE, REASON_UNDISCLOSED_ANTIFEATURE, REASON_OTHER, REASON_EXTERNAL_CODE, REASON_MINIFIED, REASON_NO_DESCRIPTION].freeze
 
   REASONS_WARRANTING_BLANKING = [REASON_SPAM, REASON_ABUSE, REASON_ILLEGAL, REASON_MALWARE].freeze
 
@@ -49,7 +51,7 @@ class Report < ApplicationRecord
   has_many :discussions
 
   validates :reason, inclusion: { in: NON_SCRIPT_REASONS }, presence: true, unless: -> { item.is_a?(Script) }
-  validates :reason, inclusion: { in: REASON_TEXT.keys, message: :invalid }, presence: true, if: -> { item.is_a?(Script) }
+  validates :reason, inclusion: { in: POSSIBLE_REASONS, message: :invalid }, presence: true, if: -> { item.is_a?(Script) }
   validates :reporter, presence: true, if: -> { auto_reporter.nil? }
   validates :explanation_markup, inclusion: { in: %w[html markdown text] }, presence: true
 

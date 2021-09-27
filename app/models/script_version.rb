@@ -84,7 +84,7 @@ class ScriptVersion < ApplicationRecord
   validate on: :create do |record|
     meta = parser_class.get_meta_block(code)
     # The proper format, minus the space between // and @
-    record.errors.add(:code, :invalid_meta) if %r{//@([a-zA-Z:\-]+)\s+(.*)}.match(meta)
+    record.errors.add(:code, :invalid_meta) if %r{//@([a-zA-Z:\-]+)\s+(.*)}.match?(meta)
   end
 
   before_save :set_locale
