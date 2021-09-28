@@ -29,7 +29,10 @@ class ReportsController < ApplicationController
       return
     end
 
-    item.discussion.update!(review_reason: 'trusted') if @report.item.is_a?(Comment) && @report.item.first_comment? && current_user.trusted_reports
+    item.discussion.update!(review_reason: 'trusted') if current_user.trusted_reports && (
+      (@report.item.is_a?(Discussion) && @report.reason != Report::REASON_WRONG_CATEGORY) ||
+        (@report.item.is_a?(Comment) && @report.item.first_comment?)
+    )
 
     ScriptReportMailer.report_created(@report, site_name).deliver_later if @report.item.is_a?(Script)
 
@@ -147,7 +150,7 @@ class ReportsController < ApplicationController
   private
 
   def report_params
-    params.require(:report).permit(:reason, :explanation, :explanation_markup, :script_url, attachments: [])
+    params.require(:report).permit(:reason, :explanation, :explanation_markup, :script_url, :discussion_category_id, attachments: [])
   end
 
   def item
@@ -156,6 +159,8 @@ class ReportsController < ApplicationController
       User.find(params[:item_id])
     when 'comment'
       Comment.find(params[:item_id])
+    when 'discussion'
+      Discussion.find(params[:item_id])
     when 'message'
       # Don't allow reporting a message in a conversation they're not involved in.
       Message.where(conversation: current_user.conversations).find(params[:item_id])

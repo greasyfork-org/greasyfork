@@ -10,9 +10,10 @@ class Report < ApplicationRecord
   REASON_EXTERNAL_CODE = 'external_code'.freeze
   REASON_UNDISCLOSED_ANTIFEATURE = 'undisclosed_antifeature'.freeze
   REASON_NO_DESCRIPTION = 'no_description'.freeze
+  REASON_WRONG_CATEGORY = 'wrong_category'.freeze
   REASON_OTHER = 'other'.freeze
 
-  POSSIBLE_REASONS = [
+  SCRIPT_REASONS = [
     REASON_SPAM,
     REASON_ABUSE,
     REASON_ILLEGAL,
@@ -25,6 +26,7 @@ class Report < ApplicationRecord
     REASON_OTHER,
   ].freeze
 
+  DISCUSSION_REASONS = [REASON_SPAM, REASON_ABUSE, REASON_ILLEGAL, REASON_WRONG_CATEGORY].freeze
   NON_SCRIPT_REASONS = [REASON_SPAM, REASON_ABUSE, REASON_ILLEGAL].freeze
 
   GRACE_PERIOD = 3.days
@@ -47,16 +49,20 @@ class Report < ApplicationRecord
   belongs_to :reporter, class_name: 'User', inverse_of: :reports_as_reporter, optional: true
   belongs_to :reference_script, class_name: 'Script', optional: true
   belongs_to :rebuttal_by_user, class_name: 'User', optional: true
+  belongs_to :discussion_category, optional: true
 
   has_many :discussions
 
-  validates :reason, inclusion: { in: NON_SCRIPT_REASONS }, presence: true, unless: -> { item.is_a?(Script) }
-  validates :reason, inclusion: { in: POSSIBLE_REASONS, message: :invalid }, presence: true, if: -> { item.is_a?(Script) }
+  validates :reason, inclusion: { in: NON_SCRIPT_REASONS }, presence: true, unless: -> { item.is_a?(Script) || item.is_a?(Discussion) }
+  validates :reason, inclusion: { in: SCRIPT_REASONS, message: :invalid }, presence: true, if: -> { item.is_a?(Script) }
+  validates :reason, inclusion: { in: DISCUSSION_REASONS, message: :invalid }, presence: true, if: -> { item.is_a?(Discussion) }
   validates :reporter, presence: true, if: -> { auto_reporter.nil? }
   validates :explanation_markup, inclusion: { in: %w[html markdown text] }, presence: true
+  validates :discussion_category, presence: true, if: -> { reason == REASON_WRONG_CATEGORY }
 
   def dismiss!(moderator_notes:)
     update!(result: RESULT_DISMISSED, moderator_notes: moderator_notes)
+    item.update!(review_reason: nil) if item.is_a?(Discussion)
     item.discussion.update!(review_reason: nil) if item.is_a?(Comment) && item.first_comment?
     reporter&.update_trusted_report!
     AkismetSubmission.mark_as_ham(item)
@@ -64,6 +70,7 @@ class Report < ApplicationRecord
 
   def fixed!(moderator_notes:)
     update!(result: RESULT_FIXED, moderator_notes: moderator_notes)
+    item.update!(review_reason: nil) if item.is_a?(Discussion)
     item.discussion.update!(review_reason: nil) if item.is_a?(Comment) && item.first_comment?
     reporter&.update_trusted_report!
   end
@@ -76,6 +83,13 @@ class Report < ApplicationRecord
       when Comment
         reported_users.each { |user| user.ban!(moderator: moderator, delete_comments: delete_comments, delete_scripts: delete_scripts, ban_related: true, report: self) } if ban_user
         item.soft_destroy!(by_user: moderator) unless item.soft_deleted?
+      when Discussion
+        if reason == REASON_WRONG_CATEGORY
+          item.update!(discussion_category_id: discussion_category_id)
+        else
+          reported_users.each { |user| user.ban!(moderator: moderator, delete_comments: delete_comments, delete_scripts: delete_scripts, ban_related: true, report: self) } if ban_user
+          item.soft_destroy!(by_user: moderator) unless item.soft_deleted?
+        end
       when Script
         if unauthorized_code? && reference_script
           item.assign_attributes(delete_type: redirect ? 'redirect' : 'keep', locked: true, replaced_by_script: reference_script, self_deleted: moderator.nil?)
@@ -96,6 +110,8 @@ class Report < ApplicationRecord
       reporter&.update_trusted_report!
     end
 
+    return if reason == REASON_WRONG_CATEGORY
+
     Report.unresolved.where(item: item).find_each do |other_report|
       other_report.update!(result: RESULT_UPHELD)
       other_report.reporter&.update_trusted_report!
@@ -107,6 +123,8 @@ class Report < ApplicationRecord
   end
 
   def reason_text
+    return It.it('reports.reason.wrong_category_with_suggestion', antifeature_link: Rails.application.routes.url_helpers.help_antifeatures_path, suggested_category: discussion_category.localized_name) if reason == REASON_WRONG_CATEGORY
+
     It.it("reports.reason.#{reason}", antifeature_link: Rails.application.routes.url_helpers.help_antifeatures_path)
   end
 
@@ -134,7 +152,7 @@ class Report < ApplicationRecord
     case item
     when User
       [item]
-    when Comment, Message
+    when Comment, Message, Discussion
       [item.poster]
     when Script
       item.users
@@ -147,7 +165,7 @@ class Report < ApplicationRecord
     case item
     when User
       item_id
-    when Comment, Message
+    when Comment, Message, Discussion
       item.poster_id
     when Script
       item.authors.first&.user_id

@@ -1474,6 +1474,7 @@ CREATE TABLE `reports` (
   `moderator_notes` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` datetime(6) NOT NULL,
   `updated_at` datetime(6) NOT NULL,
+  `discussion_category_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_reports_on_item_type_and_item_id` (`item_type`,`item_id`),
   KEY `index_reports_on_reporter_id` (`reporter_id`),
@@ -2226,6 +2227,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20210814011208'),
 ('20210814162649'),
 ('20210814211458'),
-('20210828002422');
+('20210828002422'),
+('20210927005947');
 
 

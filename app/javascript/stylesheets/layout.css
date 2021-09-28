@@ -290,7 +290,7 @@ dt[title] > span {
   border-style: inset;
   resize: both;
 }
-.form-control input:not([type=radio]):not([type=file]):not([type=checkbox]):not([type=search]):not([size]) {
+.form-control input:not([type=radio]):not([type=file]):not([type=checkbox]):not([type=search]):not([type=submit]):not([size]) {
   box-sizing: border-box;
   width: 100%;
 }
@@ -302,6 +302,12 @@ dt[title] > span {
 }
 .form-control label.radio-label, .form-control label.checkbox-label {
   font-weight: normal;
+}
+label.subselection-radio-title {
+  font-weight: normal;
+  font-size: small;
+  display: block;
+  margin-left: 3px;
 }
 .field_with_errors textarea {
   background-color: #FEE;
