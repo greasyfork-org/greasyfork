@@ -105,7 +105,6 @@ es:
     diff_button: "Comparar versiones seleccionadas"
     code_title: "%{script_name} - Código fuente"
     feedback_title: "%{script_name} - Comentarios y opiniones"
-    feedback_has_reports: "Se ha denunciado este script por incumplir las normas de %{site_name}."
     feedback_no_discussions_html: "Todavía no se ha publicado nada. %{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "Aún no se ha publicado ninguna conversación."
     feedback_report_instead: "Si crees que este script incumple las %{rules_link:normas de %{site_name}}, puedes %{report_link:denunciarlo} para que otros lo borren."
@@ -908,6 +907,7 @@ es:
       minified: "Código minimizado"
       external_code: "Código externo no permitido"
       undisclosed_antifeature: "Característica %{antifeature_link:adversa no revelada} (por ejemplo, un anuncio, un rastreador, minería de criptomonedas)"
+      no_description: "Sin descripción o sin dar información adecuada, o proporcionando información engañosa"
       other: "Otros"
     report_intro: "%{reported_item} ha sido denunciado el %{report_date} por %{reason} por %{reporter}"
     report_intro_no_reporter: "%{reported_item}fue reportado %{report_date} por %{reason}"
@@ -949,6 +949,10 @@ es:
       submit: Enviar apelación
     deletion_reason_html: "%{script} ha sido eliminado porque: %{reason}."
     author_reason: "Apelación enviada por el autor: "
+    pending_review: Esta petición está a la espera de que la revise un moderador.
+    dismissed_by_moderator: Un moderador ha dado por mala tu petición de revisión.
+    upheld_by_moderator: Un moderador ha revisado tu petición de revisión y la ha dado por buena, desbloqueando el script.
+    submitted: Se ha recibido tu petición y la revisará un moderador.
   discussions:
     title: Conversaciones
     comment_date: "Publicado: %{date}"
@@ -1140,6 +1144,8 @@ es:
         user_input: Usuario
       message:
         content: Mensaje
+      script_lock_appeal:
+        text: Pedir revisión
   errors:
     messages:
       script_missing_name: "obligatorio; especifica uno con @name"
@@ -1155,6 +1161,7 @@ es:
       script_disallowed_require: "usa un script externo no aprobado: %{code}"
       script_rate_limit: "Has subido demasiados scripts seguidos, prueba más tarde."
       missing_include_or_match: "es necesario incluir al menos una clave de tipo @match o @include"
+      invalid_meta: "tiene una directiva meta que no vale. El formato correcto es // @foo"
       file_size_out_of_range: "debe ocupar menos de 200KB"
       meta_too_long: "%{key}es demasiado larga (El máximo de caracteres es %{count})"
   opensearch:
@@ -1237,6 +1244,13 @@ es:
       intro: "El usuario %{user_link:%{user_name}} te ha enviado un mensaje en %{site_name}"
       outro: "%{conversation_link:Ver y responder al comentario.} Has recibido esta notificación porque te has suscrito a esta conversación. %{notification_preferences_link:Administrar tus preferencias de notificaciones.}"
     script_lock_appeal:
+      dismiss:
+        subject: Tu petición de revisión en %{site_name} se ha descartado
+        intro_html: Tu petición de revisión para que no se borre %{script} se ha revisado por un moderador no se admite. El script seguirá apareciendo como borrado.
+        moderator_notes: "El moderador explica:"
+        outro: Si sigues queriendo que restauremos este script revisa el texto de la %{report_link:denuncia original} así como %{rules_link:las reglas de %{site_name}}.
       unlock:
         subject: La revisión de tu script en %{site_name} se ha quedado en espera.
+        intro_html: Tu petición para %{script} ha sido revisada por un moderador. El script ha sido restaurado y vuelve a estar accesible de nuevo.
         moderator_notes: "El moderador ha comentado:"
+        outro: Revisa las %{rules_link:reglas de %{site_name}} para que no tengas más problemas de este tipo en el futuro.

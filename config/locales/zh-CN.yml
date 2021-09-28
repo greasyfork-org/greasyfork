@@ -100,7 +100,6 @@ zh-CN:
     diff_button: "对比选中版本差异"
     code_title: "%{script_name} - 源码"
     feedback_title: "%{script_name} - 反馈"
-    feedback_has_reports: "此脚本已被报告违反 %{site_name} 守则。"
     feedback_no_discussions_html: "暂无相关讨论。%{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "暂无相关讨论。"
     feedback_report_instead: "如果您觉得这个脚本违反了 %{rules_link: %{site_name} 的规则}，请 %{report_link: 举报这个脚本}。"
@@ -278,7 +277,7 @@ zh-CN:
     adult_content_on_greasy_not_logged_in_error: "此脚本不再在本网站上匿名可用。请 %{login_link:登录} 并检查您的 Greasy Fork 账号设置。"
     non_adult_content_on_sleazy: "此脚本在本网站上不可用。"
     not_js_convertible_override_header: "转换为 JS"
-    not_js_convertible_override_explanation: "%{site_name} 可以为您的用户样式 (user CSS) 自动创建一份 %{help_link:用户脚本 (User JS)  版本} 。两者的运行方式有所不同，我们建议您测试转换后的脚本。如果您发现转换的脚本不能使用，可以选中下方的复选框来禁用它。"
+    not_js_convertible_override_explanation: "%{site_name} 可以为您的用户样式（user CSS）自动创建一份 %{help_link:用户脚本（user JS）版本} 。两者的运行方式有所不同，我们建议您测试转换后的脚本。如果您发现转换的脚本不能使用，可以选中下方的复选框来禁用它。"
     not_js_convertible_override_label_html: "<strong>不要为</strong>此样式提供用户脚本版本"
     adult_marker: "(成人)"
     deleted_marker: "(已删除)"
@@ -803,10 +802,9 @@ zh-CN:
           由用户生成的内容组成，而脚本可能会包含追踪代码；安装此类脚本会导致用户信息被搜集。</p> <h2>第三方库</h2> <p>%{site_name}
           可能包含第三方代码以收集统计数据或者在网站上显示广告。这些库可能存在跟踪逻辑。</p>
     user_css_to_user_js:
-      title: 用户样式如何被转换为用户脚本
+      title: 将用户样式（user CSS）转换为用户脚本（user JS）
       content_html: |
-          <p>%{site_name} 可以转换 UserCSS 到 UserJS 格式。<code>@-moz-document</code> 规则将会转换到 JavaScript 的 <code>if</code> 语句，并构建最终的 CSS。这段 CSS 内容然后会被插入到 <code>&lt;head&gt;</code> 下的一个 <code>&lt;style&gt;</code> 元素内。</p>
-
+          <p>%{site_name} 可以将 UserCSS 转换为 UserJS 格式。<code>@-moz-document</code> 规则将会转换到 JavaScript 的 <code>if</code> 语句，并构建最终的 CSS。这段 CSS 内容然后会被插入到 <code>&lt;head&gt;</code> 下的一个 <code>&lt;style&gt;</code> 元素内。</p>
           <p>有些 UserCSS 特性不支持转换到 UserJS。当检测到这些特性的时候，则不会换转到 UserJS 格式。</p>
 
           <ul>
