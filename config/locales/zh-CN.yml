@@ -931,6 +931,9 @@ zh-CN:
       minified: "代码经过最小化处理"
       external_code: "未允许的外部代码引用"
       undisclosed_antifeature: "未声明的 %{antifeature_link:可能不受欢迎的功能}（包括但不限于广告、用户追踪、挖矿等功能）"
+      no_description: "脚本介绍未填写、未包含足够信息或含有误导性内容"
+      wrong_category: "分类错误"
+      wrong_category_with_suggestion: "分类错误（推荐: %{suggested_category}）"
       other: "其它"
     report_intro: "%{reporter} 在 %{report_date} 举报了 %{reported_item}，原因是：%{reason}"
     report_intro_no_reporter: "%{reported_item} %{report_date} 被举报，原因是：%{reason}"
@@ -1180,6 +1183,7 @@ zh-CN:
       script_disallowed_require: "使用了一个未经批准的外部脚本：%{code}"
       script_rate_limit: "您已超出脚本发布数量的限制。请稍后再试。"
       missing_include_or_match: "必须包含至少一个 @match 或 @include 规则"
+      invalid_meta: "含有无效的元信息声明。正确的格式是 // @foo"
       file_size_out_of_range: "必须小于 200KB"
       meta_too_long: "%{key} 过长（最多允许 %{count} 个字符）"
   opensearch:
