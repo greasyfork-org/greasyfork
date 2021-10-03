@@ -1022,6 +1022,7 @@ en:
         </ul>
       libraries_html: Libraries that a script uses should be <code>@require</code>-d, unless there's a valid technical reason not to do so. In the case that a library is included inline, it must include information as to the source of the library (e.g. a comment indicating URL and/or name and version).
       updates: Scripts must not check for updates at a rate higher than once per day. Note that most user script managers will handle automatic updates, so doing it in the script is unnecessary. Scripts should also not dynamically inject another %{site_name}-hosted script into a page, as this bypasses caching in user script managers.
+      hosting: The primary functionality of a script must be within the code on %{site_name}. A script posted on %{site_name} that simply loads the bulk of the script from somewhere else is not allowed. Posting of alternate download URLs, with the intent of having users use the alternate sources instead of the version posted to %{site_name}, is not allowed.
       external_js: "%{external_scripts_link:Use of external JavaScript is limited.}"
       copyright_header: Copyright
       licensing_html: Your script must respect others' copyrights. This includes the code itself and any resources (for example images) it uses. If you intend on using someone else's content, abide by their licensing terms or get their permission before doing so. Licenses on scripts are specified by the <code>@license</code> meta key, and you can learn about what you can and cannot do by using %{tldr_legal_link:tldrlegal.com}.
