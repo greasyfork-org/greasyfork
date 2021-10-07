@@ -272,7 +272,7 @@ it:
     learn_to_write_scripts_link_text: "impara come scriverne uno"
     feedback_or_report: "%{feedback_link:Fai una domanda, pubblica una recensione}, oppure %{report_link:segnala lo script}."
     support_feedback_or_report: "%{support_url:Visita il sito dell'autore per ricevere aiuto}, %{feedback_link:fai una domanda, scrivi una recensione}, oppure %{report_link:segnala lo script}."
-    support_email_feedback_or_report: "%{support_url:invia una email all'autore per supporto}, %{feedback_link:fai una domanda, scrivi una recensione}, oppure %{report_link:segnala lo script}."
+    support_email_feedback_or_report: "%{support_url:invia una email all'autore per supporto}, %{feedback_link:fai una domanda, pubblica una recensione}, oppure %{report_link:segnala lo script}."
     adult_content: "Contenuto per adulti"
     adult_content_self_report: "Questo sito contiene contenuto per adulti o è per un sito che contiene contenuto per adulti."
     adult_content_self_report_explanation: "%{site_name}  permette script con contenuti per adulti, ma devono essere contrassegnati come tali per consentire agli utenti di filtrarli."
@@ -726,6 +726,7 @@ it:
           </ul>
       libraries_html: Le librerie che uno script utilizza devono essere inserite con <code>@require</code>, a meno che ci sia una valida ragione tecnica per non farlo. Nel caso in cui una libreria sia inclusa all'interno del testo dello script. essa deve includere le informazioni sulla provenienza della libreria (es. un commento che indichi l'URL e/o il nome e la versione).
       updates: Gli scripts non devono verificare la presenza di aggiornamenti con una frequenza maggiore di una volta al giorno. È da notare che la maggior parte dei gestori di script utente si occupano autonomamente degli aggiornamenti, per cui farlo nello script non è necessario. Gli scripts non devono altresì iniettare dinamicamente un altro script ospitato su %{site_name} all'interno di una pagina, poiché questo bypassa la memorizzazione cache nei gestori di script utente.
+      hosting: La funzionalità primaria di uno script deve trovarsi all'interno del codice su %{site_name}. Uno script pubblicato su%{site_name} che semplicemente carica il grosso dello script da qualche altra fonte non è consentito. La pubblicazione di URL alternativi per il download, con l'intento di far sì che gli utenti utilizzino delle sorgenti alternative rispetto alla versione pubblicata su %{site_name}, non è consentito.
       external_js: "%{external_scripts_link:L'uso di JavaScript esterno è limitato.}"
       copyright_header: Copyright
       licensing_html: Il tuo script deve rispettare i copyrights degli altri. Questo include il codice stesso e qualsiasi risorsa (ad esempio immagini) che utilizza. Se intendi usare il contenuto di altri, conformati ai loro termini di licenza o ottieni il loro permesso prima di farlo. Le licenze per gli script sono specificate dalla meta key <code>@license</code>, e puoi apprendere cosa puoi e non puoi fare usando %{tldr_legal_link:tldrlegal.com}.
@@ -1005,6 +1006,9 @@ it:
       minified: "Codice minimizzato"
       external_code: "Codice esterno non consentito"
       undisclosed_antifeature: "%{antifeature_link:Antifunzionalità} (es. pubblicità, tracciamento, mining, ecc.) non dichiarata"
+      no_description: "Descrizione mancante, non informativa o fuorviante"
+      wrong_category: "Categoria errata"
+      wrong_category_with_suggestion: "Categoria errata (suggerita: %{suggested_category})"
       other: "Altro"
     report_intro: "%{reported_item} è stato segnalato %{report_date} da %{reporter} per %{reason}"
     report_intro_no_reporter: "%{reported_item} è stato segnalato il %{report_date} per %{reason}"
