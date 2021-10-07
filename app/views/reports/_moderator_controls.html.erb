@@ -34,7 +34,7 @@
         <%= check_box_tag :delete_scripts, '1', false, id: "delete-scripts-#{report.id}" %><%= label_tag "delete-scripts-#{report.id}", "Delete #{other_scripts.select{|_user, count| count > 0}.map{|user, scripts_count| "#{user.name}'s #{scripts_count} #{(report.item.is_a?(Script) ? 'other script' : 'script').pluralize(scripts_count)}" }.to_sentence}" %><br>
       <% end %>
 
-      <% if (report.item.is_a?(Comment) || report.item.is_a?(Script)) && report.reported_users.reject(&:banned?).any? %>
+      <% if [Comment, Discussion, Script].any? {|klass| report.item.is_a?(klass)} && report.reported_users.reject(&:banned?).any? %>
         <%= check_box_tag :ban, '1', false, id: "ban-#{report.id}" %><%= label_tag "ban-#{report.id}", "Ban #{report.reported_users.reject(&:banned?).map(&:name).to_sentence}" %><br>
       <% end %>
     <% end %>
