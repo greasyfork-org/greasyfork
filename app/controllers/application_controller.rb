@@ -23,6 +23,14 @@ class ApplicationController < ActionController::Base
                         count: scripts.count).html_safe
                     },
                     dismissable: false
+  show_announcement key: :open_reports,
+                    show_if: -> { Report.unresolved.where(item: current_user.scripts, rebuttal: nil).any? },
+                    content: lambda {
+                      reports = Report.unresolved.where(item: current_user.scripts, rebuttal: nil)
+                      t('notifications.open_reports',
+                        report_links: reports.map { |report| link_to(t('reports.name', id: report.id), report) }.join(' ')).html_safe
+                    },
+                    dismissable: false
 
   rescue_from ActiveRecord::RecordNotFound, with: :routing_error
   def routing_error
