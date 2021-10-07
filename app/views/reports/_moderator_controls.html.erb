@@ -52,6 +52,11 @@
       <%= submit_tag("Ban #{report.reported_users.first.name}") %>
     <% else
          raise "Unknown item #{report.item}"
-       end
-   end %>
+       end %>
+
+    <% if report.reason == Report::REASON_SPAM %>
+      <%= submit_tag('Nuke user', name: 'nuke') %>
+    <% end %>
+
+   <% end %>
 <% end %>

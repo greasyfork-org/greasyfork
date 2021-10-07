@@ -101,9 +101,9 @@ class ReportsController < ApplicationController
       @report.uphold!(
         moderator: current_user,
         moderator_notes: params[:moderator_notes],
-        ban_user: params[:ban] == '1',
-        delete_comments: params[:delete_comments] == '1',
-        delete_scripts: params[:delete_scripts] == '1',
+        ban_user: params[:ban] == '1' || params[:nuke].present?,
+        delete_comments: params[:delete_comments] == '1' || params[:nuke].present?,
+        delete_scripts: params[:delete_scripts] == '1' || params[:nuke].present?,
         redirect: params[:redirect] == '1'
       )
     end
