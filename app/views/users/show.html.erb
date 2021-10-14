@@ -45,7 +45,7 @@
 </section>
 
 <% if @same_user && @user.scripts.any?
-     dosr = @user.discussions_on_scripts_written %>
+     dosr = @user.discussions_on_scripts_written.visible %>
   <section id="user-discussions-on-scripts-written">
     <header>
       <h3><%= t('users.discussions_on_scripts') %></h3>

@@ -28,6 +28,6 @@ class AkismetDiscussionCheckingJob < ApplicationJob
     return unless is_spam
 
     discussion.update(review_reason: 'akismet')
-    Report.create!(item: discussion.comments.first, auto_reporter: 'akismet', reason: Report::REASON_SPAM)
+    Report.create!(item: discussion, auto_reporter: 'akismet', reason: Report::REASON_SPAM)
   end
 end
