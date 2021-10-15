@@ -59,6 +59,8 @@ pt-BR:
     delete_page: "Apagar"
     delete_explanation: "A exclusão de um script deixa-o inacessivel para todos menos para você e para os moderadors do Greasy Fork. Você pode desfazer a exclusão a qualquer momento."
     delete_update_behaviour: "O que você gostaria que acontecesse com os usuários que instalaram seu script anteriormente?"
+    delete_update_behaviours:
+      keep: "Eles vão mantê-lo como está."
     delete_permanently_heading: "Exclusão permanente"
     delete_permanently_explanation_html: >-
         <p>Remover seu script permanentemente irá removê-lo e todos os registros associados
@@ -894,6 +896,8 @@ pt-BR:
       malware: "Malware"
       minified: "Código minificado"
       external_code: "Código externo não permitido"
+      wrong_category: "Categoria errada"
+      wrong_category_with_suggestion: "Categoria errada (sugestão: %{suggested_category})"
       other: "Outro"
     report_intro_unauthorized_html: "%{reported_script} foi reportado %{report_date} por %{reporter} como uma cópia não autorizada de %{other_script}."
     non_functional_feedback: "Por favor, reporte scripts não funcionais por meio de %{feedback_link:feedback} na página do script em vez disso."
@@ -909,6 +913,8 @@ pt-BR:
     rebuttal_placeholder: 'Explique para um moderador por que este script deve ser removido'
     submit_rebuttal: "Enviar refutação"
     delete_script: "Remover script"
+    view_discussion: "Ver discussão"
+    loading_diff: "Carregando..."
   discussions:
     title: Discussões
     comment_date: "Publicado: %{date}"
@@ -934,6 +940,7 @@ pt-BR:
     update_rating: "Atualizar sua avaliação do script %{script_name}"
     ratings:
       bad: "Ruim - o script não funciona"
+      ok: "OK - script funciona, mas tem bugs"
       good: "Bom - o script funciona"
     ratings_short:
       question: "Pergunta/comentário"
@@ -1026,6 +1033,8 @@ pt-BR:
     recent:
       title: Conversas recentes
       more: Ver todas as conversas
+    edit_message_header: Editar mensagem
+    update_message_submit: Atualizar mensagem
   screenshots:
     requirements: "Máximo de %{number} imagens PNG, GIF, JPEG, ou WebP, com menos de %{size} cada."
   common:
@@ -1109,6 +1118,15 @@ pt-BR:
     description: "Busca por scripts de usuário em %{site_name}."
     long_name: "Busca de script de usuário em %{site_name}"
     attribution: "Cite a autoria original dos scripts, veja cada script individualmente para licenciamento"
+  importing:
+    previously_imported:
+      heading: Scripts importados anteriormente
+      unknown_date: "(desconhecido)"
+    results:
+      success: "Os seguintes scripts foram importados com sucesso:"
+      needs_description: "Os seguintes scripts precisam de uma descrição para ser importados:"
+      existing: "Os seguintes scripts já foram importados:"
+      failure: "Os seguintes scripts não puderam ser importados:"
   mailers:
     script_report:
       report_created_offender:
@@ -1150,3 +1168,8 @@ pt-BR:
       subject: "O usuário '%{commenter_name}' mencionou você no %{site_name}."
     new_message:
       subject: "%{user} te enviou uma mensagem no %{site_name}"
+    script_lock_appeal:
+      dismiss:
+        moderator_notes: "O moderador comentou:"
+      unlock:
+        moderator_notes: "O moderador comentou: "
