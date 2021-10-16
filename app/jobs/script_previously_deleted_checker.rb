@@ -26,7 +26,7 @@ class ScriptPreviouslyDeletedChecker < ApplicationJob
       explanation: <<~TEXT)
         Script is similar to previously deleted scripts:
 
-        #{scripts_and_reports.map { |other_script, reports| "- [#{other_script.default_name}](#{script_url(other_script, locale: nil)}) #{reports.each_with_index.map { |r, i| "[#{i + 1}](#{report_url(r, locale: nil)})" }.join(' ')}" }.join("\n")}
+        #{scripts_and_reports.map { |other_script, reports| "- [#{other_script.default_name}](#{script_url(other_script, locale: nil)}) [Diff](#{admin_script_path(script, compare: script_url(other_script, locale: nil), locale: nil, anchor: 'script-comparison')}) #{reports.each_with_index.map { |r, i| "[#{i + 1}](#{report_url(r, locale: nil)})" }.join(' ')}" }.join("\n")}
       TEXT
   end
 end
