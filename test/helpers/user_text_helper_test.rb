@@ -4,37 +4,37 @@ require 'timeout'
 class UserTextHelperTest < ActionView::TestCase
   test 'format_user_text html whitespace is formatted' do
     text = "line\nbreaks\nhere"
-    assert_equal 'line<br>breaks<br>here', format_user_text(text, 'html')
+    assert_equal '<p>line<br>breaks<br>here</p>', format_user_text(text, 'html')
   end
 
   test 'format_user_text html just whitespace' do
     text = "\n\n"
-    assert_equal '<br><br>', format_user_text(text, 'html')
+    assert_equal '<p><br><br></p>', format_user_text(text, 'html')
   end
 
   test 'format_user_text html links are linkified' do
     text = 'my url is https://example.com yes'
-    assert_equal 'my url is <a href="https://example.com" rel="nofollow">https://example.com</a> yes', format_user_text(text, 'html')
+    assert_equal '<p>my url is <a href="https://example.com" rel="nofollow">https://example.com</a> yes</p>', format_user_text(text, 'html')
   end
 
   test 'format_user_text html links are linkified but without punctuation' do
     text = 'my url is https://example.com.'
-    assert_equal 'my url is <a href="https://example.com" rel="nofollow">https://example.com</a>.', format_user_text(text, 'html')
+    assert_equal '<p>my url is <a href="https://example.com" rel="nofollow">https://example.com</a>.</p>', format_user_text(text, 'html')
   end
 
   test 'format_user_text html links are linkified with trailing slashes' do
     text = 'my url is https://example.com/.'
-    assert_equal 'my url is <a href="https://example.com/" rel="nofollow">https://example.com/</a>.', format_user_text(text, 'html')
+    assert_equal '<p>my url is <a href="https://example.com/" rel="nofollow">https://example.com/</a>.</p>', format_user_text(text, 'html')
   end
 
   test 'format_user_text html links are linkified with dashes' do
     text = 'my url is https://example.com/some-path.'
-    assert_equal 'my url is <a href="https://example.com/some-path" rel="nofollow">https://example.com/some-path</a>.', format_user_text(text, 'html')
+    assert_equal '<p>my url is <a href="https://example.com/some-path" rel="nofollow">https://example.com/some-path</a>.</p>', format_user_text(text, 'html')
   end
 
   test 'format_user_text html links are linkified when repeated (partially)' do
     text = 'my url is https://example.com/ and https://example.com/some-path.'
-    assert_equal 'my url is <a href="https://example.com/" rel="nofollow">https://example.com/</a> and <a href="https://example.com/some-path" rel="nofollow">https://example.com/some-path</a>.', format_user_text(text, 'html')
+    assert_equal '<p>my url is <a href="https://example.com/" rel="nofollow">https://example.com/</a> and <a href="https://example.com/some-path" rel="nofollow">https://example.com/some-path</a>.</p>', format_user_text(text, 'html')
   end
 
   test 'format_user_text html no hang on long text' do
@@ -42,6 +42,31 @@ class UserTextHelperTest < ActionView::TestCase
     Timeout.timeout(1) do
       format_user_text(text, 'html')
     end
+  end
+
+  test 'format_user_text markdown paragraphs' do
+    text = "p1\n\np2"
+    assert_equal("<p>p1</p>\n\n<p>p2</p>\n", format_user_text(text, 'markdown'))
+  end
+
+  test 'format_user_text markdown single line uses a paragraph' do
+    text = 'p1'
+    assert_equal("<p>p1</p>\n", format_user_text(text, 'markdown'))
+  end
+
+  test 'format_user_text html paragraphs' do
+    text = "p1\n\np2"
+    assert_equal('<p>p1<br><br>p2</p>', format_user_text(text, 'html'))
+  end
+
+  test 'format_user_text html paragraphs with block inside' do
+    text = "p1\n<ul><li>ul</li></ul>\np2"
+    assert_equal('<p>p1</p><ul><li>ul</li></ul><p>p2</p>', format_user_text(text, 'html'))
+  end
+
+  test 'format_user_text html single line uses a paragraph' do
+    text = 'p1'
+    assert_equal('<p>p1</p>', format_user_text(text, 'html'))
   end
 
   test 'detect_possible_user_references simple' do

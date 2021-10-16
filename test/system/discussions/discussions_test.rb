@@ -150,7 +150,7 @@ class DiscussionsTest < ApplicationSystemTestCase
     within '.discussion-header + .comment' do
       click_link 'Quote'
     end
-    assert_field('comment_text', with: "<blockquote>this is a test discussion</blockquote>\n\n")
+    assert_field('comment_text', with: "<blockquote><p>this is a test discussion</p></blockquote>\n\n")
   end
 
   test 'subscribing to a discussion' do

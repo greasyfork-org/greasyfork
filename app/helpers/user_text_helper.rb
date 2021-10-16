@@ -151,7 +151,25 @@ module UserTextHelper
       replace_text_with_node(node, "\n", Nokogiri::XML::Node.new('br', node.document))
     end
 
-    hsc[:transformers] += [fix_whitespace]
+    ensure_block_level = lambda do |env|
+      node = env[:node]
+
+      # Looking for top-level text or non-block elements.
+      return unless node.text? || (node.element? & !element_is_block(node))
+      return unless node.parent.fragment?
+
+      paragraph = Nokogiri::XML::Node.new('p', node.document)
+      node.before(paragraph)
+      next_node = node
+      while next_node && (next_node.text? || (next_node.element? & !element_is_block(next_node)))
+        # Need to store this before add_child, as that will move it
+        next_sibling = next_node.next_sibling
+        paragraph.add_child(next_node)
+        next_node = next_sibling
+      end
+    end
+
+    hsc[:transformers] += [fix_whitespace, ensure_block_level]
 
     hsc
   end
