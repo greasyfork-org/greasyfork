@@ -448,6 +448,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @version		1
       // @include *
       // ==/UserScript==
+      var foo = 1;
     JS
     sv = ScriptVersion.new
     sv.code = js
@@ -480,6 +481,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @version		1
       // @include *
       // ==/UserScript==
+      var foo = 1;
     JS
     sv = ScriptVersion.new
     sv.code = js
@@ -529,6 +531,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @downloadURL http://example.com
       // @include *
       // ==/UserScript==
+      var foo = 'bar';
     JS
     sv_new2 = ScriptVersion.new
     sv_new2.script = script
@@ -550,6 +553,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @version		1
       // @include *
       // ==/UserScript==
+      var foo = 1;
     JS
     sv = ScriptVersion.new
     sv.do_lenient_saving
@@ -591,6 +595,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @downloadURL http://example.com
       // @include *
       // ==/UserScript==
+      var foo = 1;
     JS
     sv.code = js
     sv.script = script
@@ -615,7 +620,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @downloadURL http://example.com
       // @include *
       // ==/UserScript==
-      var foo = "bar";
+      var foo = 2;
     JS
     sv.code = js
     sv.script = script
@@ -640,7 +645,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @version		1
       // @include *
       // ==/UserScript==
-      var foo = "bar";
+      var foo = 2;
     JS
     sv.code = js
     sv.script = script
@@ -743,6 +748,23 @@ class ScriptVersionTest < ActiveSupport::TestCase
     assert_equal 1, script_version.errors.size
     assert_equal :code, script_version.errors.first.attribute
     assert_equal 'has an invalid meta directive. The proper format is // @foo', script_version.errors.first.message
+  end
+
+  test 'no code' do
+    script = valid_script
+    script_version = script.script_versions.first
+    script_version.code = <<~JS
+      // ==UserScript==
+      // @name		blah blah
+      // @description		description
+      // @version 1.0
+      // @namespace http://greasyfork.local/users/1
+      // @include *
+      // ==/UserScript==
+    JS
+    assert_not script_version.valid?
+    assert_equal :code, script_version.errors.first.attribute
+    assert_equal 'contains no executable code', script_version.errors.first.message
   end
 
   test 'creation resets consecutive bad reviews' do
