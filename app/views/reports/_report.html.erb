@@ -44,15 +44,22 @@
   <p><b>(Awaiting response from author)</b></p>
 <% end %>
 
-
-<% if report.item.is_a?(Comment) %>
+<% case report.item %>
+<% when Comment %>
   <div><%= t('common.quote.prefix_html', user: render_user(report.reported_users.first, report.reported_user_id)) %></div>
   <blockquote>
     <div class="user-content">
       <%= format_user_text(report.item.text, report.item.text_markup) %>
     </div>
   </blockquote>
-<% elsif report.item.is_a?(Message) %>
+<% when Discussion %>
+  <div><%= t('common.quote.prefix_html', user: render_user(report.reported_users.first, report.reported_user_id)) %></div>
+  <blockquote>
+    <div class="user-content">
+      <%= format_user_text(report.item.first_comment.text, report.item.first_comment.text_markup) %>
+    </div>
+  </blockquote>
+<% when Message %>
   <div><%= t('common.quote.prefix_html', user: render_user(report.reported_users.first, report.reported_user_id)) %></div>
   <blockquote>
     <div class="user-content">
