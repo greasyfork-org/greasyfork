@@ -23,6 +23,6 @@ module ReportHelper
     new_code = report.item.newest_saved_script_version.code
     return tag.p('The scripts are identical.') if original_code == new_code
 
-    Diffy::Diff.new(original_code, new_code, include_plus_and_minus_in_html: true, diff: ['-U 3', '-w']).to_s(:html).html_safe
+    Diffy::Diff.new(original_code, new_code, include_plus_and_minus_in_html: true, diff: ['-U 3', '-w'], include_diff_info: true).to_s(:html).html_safe
   end
 end
