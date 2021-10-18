@@ -20,7 +20,7 @@ set :default_env, {
 # set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 # set :rbenv_roles, :all # default value
 
-append :linked_files, 'config/database.yml', 'config/newrelic.yml', 'config/production.sphinx.conf', 'config/secrets.yml', 'config/initializers/transifex.rb', 'config/initializers/omniauth.rb', 'config/initializers/detect_language.rb', 'bin/git', 'config/application.yml'
+append :linked_files, 'config/database.yml', 'config/newrelic.yml', 'config/production.sphinx.conf', 'config/secrets.yml', 'config/skylight.yml', 'config/initializers/transifex.rb', 'config/initializers/omniauth.rb', 'config/initializers/detect_language.rb', 'bin/git', 'config/application.yml'
 
 append :linked_dirs, '.bundle', 'log', 'tmp', 'public/data', 'public/cached_pages', 'db/sphinx/production'
 
