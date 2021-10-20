@@ -36,11 +36,4 @@ class JsCleanupTest < ActiveSupport::TestCase
       JsCleanup.cleanup("var oof = 1;\nvar rab = 2;")
     )
   end
-
-  test 'line breaks are retained' do
-    assert_equal(
-      "var a=1\na+=1\n\n",
-      JsCleanup.cleanup("var a=1;\na+=1\n")
-    )
-  end
 end
