@@ -552,6 +552,7 @@ class ScriptsController < ApplicationController
         response.content_type = 'text/csv'
       end
       format.json do
+        cache_request(@stats.to_json) if request.fullpath.ends_with?('json')
         render json: @stats
       end
     end
