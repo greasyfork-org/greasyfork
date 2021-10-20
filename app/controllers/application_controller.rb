@@ -207,7 +207,7 @@ class ApplicationController < ActionController::Base
     if value.to_i != 0
       script_id = value.to_i
     # A non-GF URL?
-    elsif !value.start_with?('https://greasyfork.org/') && !value.start_with?('/')
+    elsif !value.start_with?('https://greasyfork.org/') && !value.start_with?('https://greasyfork.local/') && !value.start_with?('/')
       return :non_gf_url
     # A GF URL?
     else
