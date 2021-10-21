@@ -4,7 +4,10 @@ by_sites = nil unless defined?(by_sites)
 include_search = false if !defined?(include_search) || include_search.nil?
 sort_options = %w[daily_installs total_installs ratings created updated name] if !defined?(sort_options) || sort_options.nil?
 default_sort = @set&.default_sort || sort_options.first
+rel = nil unless defined?(rel)
+
 current_options = params.to_unsafe_h.slice(:sort, :site, :set, :language, :filter_locale).map {|k, v| [k.to_sym, v] }.to_h.merge(default_sort: default_sort)
+current_options[:rel] = rel if rel
 skip_all_sites_link = false unless defined?(skip_all_sites_link)
 %>
 

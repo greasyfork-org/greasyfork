@@ -85,9 +85,9 @@
       <% unless by_current_user || comment.new_record? %>
         <div class="comment-meta-item">
           <% if comment.first_comment? %>
-            <%= link_to t('reports.report_comment'), new_report_path(item_class: 'discussion', item_id: comment.discussion_id), class: 'report-link' %>
+            <%= link_to t('reports.report_comment'), new_report_path(item_class: 'discussion', item_id: comment.discussion_id), class: 'report-link', rel: :nofollow %>
           <% else %>
-            <%= link_to t('reports.report_comment'), new_report_path(item_class: 'comment', item_id: comment.id), class: 'report-link' %>
+            <%= link_to t('reports.report_comment'), new_report_path(item_class: 'comment', item_id: comment.id), class: 'report-link', rel: :nofollow %>
           <% end %>
         </div>
       <% end %>

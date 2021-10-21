@@ -3,14 +3,14 @@ require 'memoist'
 module ScriptsHelper
   extend Memoist
 
-  def script_list_link(label, sort: nil, site: nil, set: nil, default_sort: nil, language: nil, filter_locale: nil)
+  def script_list_link(label, sort: nil, site: nil, set: nil, default_sort: nil, language: nil, filter_locale: nil, rel: nil)
     is_link = true
     is_minified = action_name == 'minified'
     is_code_search = action_name == 'code_search'
     is_libraries = action_name == 'libraries'
     # sets can have a different default
     sort_param_to_use = (sort == default_sort) ? nil : sort
-    rel = (set.present? || filter_locale.present?) ? :nofollow : nil
+    rel ||= (set.present? || filter_locale.present?) ? :nofollow : nil
     if sort == params[:sort] && site == params[:site] && set == params[:set] && language == params[:language]
       l = label
       is_link = false
