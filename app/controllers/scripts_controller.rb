@@ -75,7 +75,7 @@ class ScriptsController < ApplicationController
       format.html do
         return if handle_wrong_url(@script, :id)
 
-        page_key = "script/show/#{@script.id}/#{@script.updated_at}/#{request_locale.id}" if request.query_parameters.empty?
+        page_key = "script/show/#{@script.id}/#{@script.updated_at&.to_i}/#{request_locale.id}" if request.query_parameters.empty?
         cache_page(page_key) do
           @script = Script.with_includes_for_show.find(@script.id) if defer_includes
           @by_sites = TopSitesService.get_by_sites(script_subset: script_subset)
