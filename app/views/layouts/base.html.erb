@@ -6,7 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <%= stylesheet_pack_tag 'application', media: 'all' %>
   <%= javascript_pack_tag 'application' %>
-  <%= csrf_meta_tags %>
+  <% if @caching_request %>
+    <%= PageCache::CSRF_META_TAGS %>
+  <% else %>
+    <%= csrf_meta_tags %>
+  <% end %>
   <% if defined?(@bots) %>
     <meta name="robots" content="<%= @bots %>">
   <% end %>
