@@ -68,6 +68,7 @@ class Script < ApplicationRecord
   scope :for_all_sites, -> { includes(:script_applies_tos).references(:script_applies_tos).where('script_applies_tos.id' => nil) }
   scope :locked, -> { where(locked: true) }
   scope :not_locked, -> { where.not(locked: true) }
+  scope :with_includes_for_show, -> { includes(users: {}, license: {}, localized_attributes: :locale, compatibilities: :browser, script_applies_tos: :site_application, antifeatures: :locale) }
 
   ThinkingSphinx::Callbacks.append(self, behaviours: [:sql, :deltas])
 

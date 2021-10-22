@@ -47,11 +47,13 @@ module ScriptAndVersions
     return false
   end
 
-  def versionned_script(script_id, version_id)
+  def versionned_script(script_id, version_id, includes_for_show: true)
     return nil if script_id.nil?
 
     script_id = script_id.to_i
-    current_script = Script.includes(users: {}, license: {}, localized_attributes: :locale, compatibilities: :browser, script_applies_tos: :site_application, antifeatures: :locale).find(script_id)
+    scope = Script
+    scope = scope.with_includes_for_show if includes_for_show
+    current_script = scope.find(script_id)
     return [current_script, current_script.newest_saved_script_version] if version_id.nil?
 
     version_id = version_id.to_i

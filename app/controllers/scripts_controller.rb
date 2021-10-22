@@ -10,6 +10,7 @@ require 'js_cleanup'
 
 class ScriptsController < ApplicationController
   include ScriptAndVersions
+  include PageCache
 
   MEMBER_AUTHOR_ACTIONS = [:sync_update, :update_promoted, :request_permanent_deletion, :unrequest_permanent_deletion, :update_promoted, :invite, :remove_author].freeze
   MEMBER_AUTHOR_OR_MODERATOR_ACTIONS = [:delete, :do_delete, :undelete, :do_undelete, :derivatives, :admin, :update_locale, :request_duplicate_check].freeze
@@ -64,7 +65,9 @@ class ScriptsController < ApplicationController
   include ScriptListings
 
   def show
-    @script, @script_version = versionned_script(params[:id], params[:version])
+    # We may not need all those includes. Put it off till later.
+    defer_includes = params[:version].nil? && current_user.nil?
+    @script, @script_version = versionned_script(params[:id], params[:version], includes_for_show: !defer_includes)
 
     return if handle_publicly_deleted(@script)
 
@@ -72,14 +75,19 @@ class ScriptsController < ApplicationController
       format.html do
         return if handle_wrong_url(@script, :id)
 
-        @by_sites = TopSitesService.get_by_sites(script_subset: script_subset)
-        @link_alternates = [
-          { url: current_path_with_params(format: :json), type: 'application/json' },
-          { url: current_path_with_params(format: :jsonp, callback: 'callback'), type: 'application/javascript' },
-        ]
-        @canonical_params = [:id, :version]
-        set_bots_directive
-        @ad_method = choose_ad_method_for_script(@script)
+        page_key = "script/show/#{@script.id}/#{@script.updated_at}/#{request_locale.id}" unless params[:version]
+        cache_page(page_key) do
+          @script = Script.with_includes_for_show.find(@script.id) if defer_includes
+          @by_sites = TopSitesService.get_by_sites(script_subset: script_subset)
+          @link_alternates = [
+            { url: current_path_with_params(format: :json), type: 'application/json' },
+            { url: current_path_with_params(format: :jsonp, callback: 'callback'), type: 'application/javascript' },
+          ]
+          @canonical_params = [:id, :version]
+          set_bots_directive
+          @ad_method = choose_ad_method_for_script(@script)
+          render_to_string
+        end
       end
       format.js do
         redirect_to @script.code_url
