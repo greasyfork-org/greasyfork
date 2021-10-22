@@ -7,13 +7,13 @@ class InstallTest < ApplicationSystemTestCase
     assert_difference -> { Script.connection.select_value('select count(*) from daily_install_counts') } => 1 do
       click_link 'Install this script'
       click_link 'I already have a user script manager, let me install it!'
-      assert_current_path '/scripts/2-mystring/code/MyString.user.js'
+      assert_current_path '/scripts/2-a-test/code/A%20Test!.user.js'
     end
 
     visit script_url(script, locale: :en)
     assert_no_difference -> { Script.connection.select_value('select count(*) from daily_install_counts') } do
       click_link 'Install this script'
-      assert_current_path '/scripts/2-mystring/code/MyString.user.js'
+      assert_current_path '/scripts/2-a-test/code/A%20Test!.user.js'
     end
   end
 

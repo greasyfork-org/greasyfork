@@ -415,7 +415,7 @@ class Script < ApplicationRecord
   end
 
   def to_param
-    slug = slugify(name || default_name)
+    slug = slugify(default_name || name)
     return id.to_s if slug.blank?
 
     "#{id}-#{slug}"
