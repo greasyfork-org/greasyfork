@@ -40,10 +40,8 @@ if Rails.env.production?
   end
 
   if Rails.application.config.ip_address_tracking
-    Rack::Attack.blocklist('fail2ban super-installers') do |req|
-      Rack::Attack::Fail2Ban.filter("super-installers-#{req.ip}", maxretry: 3, findtime: 5.seconds, bantime: 1.minute) do
-        req.post? && req.path.include?('install-ping')
-      end
+    Rack::Attack.throttle('super-installers', limit: 3, period: 60) do |req|
+      req.ip if req.post? && req.path.include?('install-ping')
     end
   end
 end
