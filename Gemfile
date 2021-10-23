@@ -80,5 +80,5 @@ group :test do
   gem 'minitest-around'
   gem 'mocha'
   gem 'selenium-webdriver'
-  gem 'webdrivers', '~> 4.0'
+  gem 'webdrivers'
 end

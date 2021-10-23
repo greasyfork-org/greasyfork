@@ -7,11 +7,11 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   include Warden::Test::Helpers
 
   def allow_js_error(pattern)
-    pre_messages = page.driver.browser.manage.logs.get(:browser).map(&:message).reject { |message| js_error_ignored?(message) }
+    pre_messages = page.driver.browser.logs.get(:browser).map(&:message).reject { |message| js_error_ignored?(message) }
     raise pre_messages.first if pre_messages.any?
 
     yield
-    post_messages = page.driver.browser.manage.logs.get(:browser).map(&:message).reject { |m| pattern.is_a?(Regexp) ? pattern.match?(m) : m.include?(pattern) }.reject { |message| js_error_ignored?(message) }
+    post_messages = page.driver.browser.logs.get(:browser).map(&:message).reject { |m| pattern.is_a?(Regexp) ? pattern.match?(m) : m.include?(pattern) }.reject { |message| js_error_ignored?(message) }
     raise post_messages.first if post_messages.any?
   end
 
@@ -28,7 +28,7 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
   end
 
   teardown do
-    messages = page.driver.browser.manage.logs.get(:browser)
+    messages = page.driver.browser.logs.get(:browser)
                    .map(&:message)
                    .reject { |message| js_error_ignored?(message) }
     raise "Browser console in #{method_name}: #{messages}" if messages.any?
@@ -45,6 +45,6 @@ Capybara.register_driver :headless_chrome do |app|
 
   Capybara::Selenium::Driver.new app,
                                  browser: :chrome,
-                                 desired_capabilities: capabilities,
+                                 capabilities: capabilities,
                                  clear_local_storage: true
 end
