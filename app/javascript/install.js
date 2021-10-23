@@ -113,8 +113,8 @@ async function doInstall(installLink) {
 
 function onInstallMouseOver(event) {
   let url = event.target.getAttribute("data-ping-url");
-  if (!url.endsWith('&mo=1')) {
-    event.target.setAttribute("data-ping-url", url + (url.includes('?') ? '&' : '?') + "mo=1");
+  if (!/[&?]mo=2$/.test(url)) {
+    event.target.setAttribute("data-ping-url", url + (url.includes('?') ? '&' : '?') + "mo=2");
   }
 }
 
@@ -132,6 +132,7 @@ function init() {
   document.querySelectorAll(".install-link").forEach(function(installLink) {
     installLink.addEventListener("click", onInstallClick);
     installLink.addEventListener("mouseover", onInstallMouseOver);
+    installLink.addEventListener("touchstart", onInstallMouseOver);
   });
 }
 
