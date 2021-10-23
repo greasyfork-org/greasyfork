@@ -80,6 +80,8 @@ class ScriptsController < ApplicationController
       format.html do
         return if handle_wrong_url(@script, :id)
 
+        provision_session_install_key(@script)
+
         page_key = "script/show/#{@script.id}/#{@script.updated_at&.to_i}/#{params[:version].to_i}/#{request_locale.id}" if cachable_request
         cache_page(page_key) do
           @script, @script_version = versionned_script(params[:id], params[:version]) if cachable_request
@@ -122,6 +124,7 @@ class ScriptsController < ApplicationController
 
     respond_to do |format|
       format.html do
+        provision_session_install_key(@script)
         @code = @script_version.rewritten_code
         set_bots_directive
         @canonical_params = [:id, :version]
@@ -255,7 +258,8 @@ class ScriptsController < ApplicationController
 
     if install_keys.any? { |install_key| Digest::SHA1.hexdigest(request.remote_ip + script_id + install_key) == params[:ping_key] }
       passed_checks = PingRequestCheckingService.check(request)
-      if passed_checks.count >= 3
+      session[PingRequestChecking::SessionInstallKey::SESSION_KEY] -= [script_id.to_i]
+      if passed_checks.count == PingRequestCheckingService::STRATEGIES.count
         ip = Array.new(4) { rand(256) }.join('.') unless Rails.application.config.ip_address_tracking
         Rails.logger.warn("Recorded for script #{script_id} and IP #{ip} - passed ping checks: #{passed_checks.join(', ')}")
         Script.record_install(script_id, ip)
@@ -908,4 +912,9 @@ class ScriptsController < ApplicationController
     ]
   end
   helper_method :install_keys
+
+  def provision_session_install_key(script)
+    session[PingRequestChecking::SessionInstallKey::SESSION_KEY] ||= []
+    session[PingRequestChecking::SessionInstallKey::SESSION_KEY] << script.id unless session[PingRequestChecking::SessionInstallKey::SESSION_KEY].include?(script.id)
+  end
 end

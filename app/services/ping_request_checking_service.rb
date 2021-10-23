@@ -3,6 +3,7 @@ class PingRequestCheckingService
     PingRequestChecking::Locale,
     PingRequestChecking::UserAgent,
     PingRequestChecking::Params,
+    PingRequestChecking::SessionInstallKey,
   ].freeze
 
   def self.check(request)
