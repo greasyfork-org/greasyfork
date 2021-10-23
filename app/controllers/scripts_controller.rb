@@ -65,9 +65,14 @@ class ScriptsController < ApplicationController
   include ScriptListings
 
   def show
-    # We may not need all those includes. Put it off till later.
-    defer_includes = request.query_parameters.empty? && current_user.nil?
-    @script, @script_version = versionned_script(params[:id], params[:version], includes_for_show: !defer_includes)
+    cachable_request = request.query_parameters.except(:version).empty? && current_user.nil? && request.format.html?
+
+    if cachable_request
+      # We may not need everything. Put it off till later.
+      @script = Script.find(params[:id].to_i)
+    else
+      @script, @script_version = versionned_script(params[:id], params[:version])
+    end
 
     return if handle_publicly_deleted(@script)
 
@@ -75,9 +80,9 @@ class ScriptsController < ApplicationController
       format.html do
         return if handle_wrong_url(@script, :id)
 
-        page_key = "script/show/#{@script.id}/#{@script.updated_at&.to_i}/#{request_locale.id}" if request.query_parameters.empty?
+        page_key = "script/show/#{@script.id}/#{@script.updated_at&.to_i}/#{params[:version].to_i}/#{request_locale.id}" if cachable_request
         cache_page(page_key) do
-          @script = Script.with_includes_for_show.find(@script.id) if defer_includes
+          @script, @script_version = versionned_script(params[:id], params[:version]) if cachable_request
           @by_sites = TopSitesService.get_by_sites(script_subset: script_subset)
           @link_alternates = [
             { url: current_path_with_params(format: :json), type: 'application/json' },

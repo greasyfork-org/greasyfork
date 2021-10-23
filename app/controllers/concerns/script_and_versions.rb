@@ -47,13 +47,11 @@ module ScriptAndVersions
     return false
   end
 
-  def versionned_script(script_id, version_id, includes_for_show: true)
+  def versionned_script(script_id, version_id)
     return nil if script_id.nil?
 
     script_id = script_id.to_i
-    scope = Script
-    scope = scope.with_includes_for_show if includes_for_show
-    current_script = scope.find(script_id)
+    current_script = Script.with_includes_for_show.find(script_id)
     return [current_script, current_script.newest_saved_script_version] if version_id.nil?
 
     version_id = version_id.to_i
@@ -65,6 +63,7 @@ module ScriptAndVersions
     # this is not versionned information
     script.script_type_id = current_script.script_type_id
     script.locale = current_script.locale
+    script.default_name = current_script.default_name
 
     current_script.localized_attributes.each { |la| script.build_localized_attribute(la) }
 
@@ -74,7 +73,7 @@ module ScriptAndVersions
     script.user_ids = script_version.script.user_ids
     script.created_at = current_script.created_at
     script.updated_at = script_version.created_at
-    script.set_default_name
+
     # this is not necessarily accurate, as the revision the user picked may not have involved a code update
     script.code_updated_at = script_version.created_at
     return [script, script_version]
