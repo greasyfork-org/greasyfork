@@ -21,13 +21,13 @@ pt-BR:
     license: "Licença"
     no_license: "N/A"
     compatibility: "Compatibilidade"
-    compatible_with_browser: "Compatível como %[browser]"
-    incompatible_with_browser: "Incompatível com %[browser]"
+    compatible_with_browser: "Compatível com 1 %[browser]"
+    incompatible_with_browser: "Incompatível com 1 %[browser]"
     applies_to: "Aplicável a"
     applies_to_link_title:
       one: "Veja %{count} outro script de %{site}"
       other: "Veja %{count} outros scripts de %{site}"
-    applies_to_all: "Todos sites"
+    applies_to_all: "Todos os sites"
     install: "Instalar o script"
     install_css: "Instalar como um estilo de usuário"
     install_help: "?"
@@ -61,6 +61,8 @@ pt-BR:
     delete_update_behaviour: "O que você gostaria que acontecesse com os usuários que instalaram seu script anteriormente?"
     delete_update_behaviours:
       keep: "Eles vão mantê-lo como está."
+      blanked: "Eles serão atualizados para um script em branco. Isso é adequado quando o script tem um efeito negativo nos sites em que é executado."
+      redirect: "Eles serão redirecionados e atualizados para o script que você especificar abaixo."
     delete_permanently_heading: "Exclusão permanente"
     delete_permanently_explanation_html: >-
         <p>Remover seu script permanentemente irá removê-lo e todos os registros associados
@@ -445,6 +447,7 @@ pt-BR:
       all_sites: "Todos os sites"
       user: "Scripts do usuário %{user}"
       locale: "Scripts em %{locale_name}"
+    new: Novo conjunto de script
   home:
     title: "%{site_name}s - Scrips seguros e úteis"
     welcome: "Bem-vindo ao %{site_name}, um site de scripts de usuários"
@@ -691,6 +694,8 @@ pt-BR:
       contributionAmount_html: "Doação sugerida, usado em conjunto com <code>@contributionURL</code>."
       compatible_html: "Marca esse script como compatível com um navegador. Informação de compatibilidade será mostrada na página do script. Comentários sobre compatibilidade podem ser incluídos no formato <code>@compatible firefox Must disable pop-up blocker</code>. Os navegadores reconhecidos são: %{browsers}."
       incompatible_html: "Marca esse script como incompatível com um navegador. Informação de compatibilidade será mostrada na página do script. Comentários sobre compatibilidade podem ser incluídos no formato <code>@incompatible firefox Broken since Firefox 23</code>. Os navegadores reconhecidos são: %{browsers}."
+      antifeature_html: |
+          Divulga recursos em um script que existem para beneficiar o autor, não o usuário. O formato desta chave é a descrição <code> do tipo @antifeature. <i>tipo </i> é obrigatório, <i> a descrição </i>é opcional. % {antifeatures_link: Leia aqui} para informações sobre<i> os tipo</i>s lidos por %{site_name}.
       antifeature_localized_html: "Uma <code>@antifeature</code> descrita em um idioma específico, onde XX é um <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">código ISO 639-1 de 2 dígitos</a> e YY é um <a href=\"https://www.iso.org/obp/ui/#search\">código ISO 3166 de país</a> opcional. Substitui <code>@antifeature</code>s do mesmo tipo quando o usuário estiver navegando em um idioma correspondente."
     writing_user_scripts:
       title: "Como escrever scripts de usuário"
@@ -715,6 +720,7 @@ pt-BR:
           </ul>
       libraries_html: Bibliotecas que um script utiliza devem ser incluídas pela tag <code>@require</code>, a meos que haja um rasão técnica válida para isso. No caso da biblioteca ser incluída inline, deve ser incluída informação de sua fonte (um comentário indicando a URL e/ou nome e versão, por exemplo).
       updates: Scripts não devem buscar atualizações mais de uma vez por dia. Perceba que a maioria dos gerenciadores de scripts de usuário irão cuidar automaticamente das atualizações, então fazer isso no script é desnecessário. Scripts também não devem injetar dinamicamente outro script do %{site_name} em uma página, uma vez que isso bypassa o cache dos gerenciadores de scripts de usuário.
+      hosting: A funcionalidade principal de um script deve estar no código em %{site_name}. Um script postado no %{site_name}que simplesmente carregue a maior parte do script de outro lugar não é permitido. A postagem de URLs de download alternativos, com a intenção de que os usuários usem as fontes alternativas em vez da versão postada no %{site_name}, não é permitida.
       external_js: "%{external_scripts_link:O uso de JavaScript externo é limitado.}"
       copyright_header: Direito autoral
       licensing_html: Seu script deve respeitar os direitos autorais de terceiros. Isto inclui o código em si e qualquer recurso (imagens, por exemplo) que ele usar. Se você pretende usar o conteúdo de alguém, siga as suas regras de licença ou obtenha permissão antes de utilizá-lo. As licenças nos scripts são especificadas pela chave meta <code>@license</code>, e você pode aprender mais sobre o que é ou não permitido usando %{tldr_legal_link:tldrlegal.com}.
@@ -736,7 +742,16 @@ pt-BR:
           <p>Enquanto isto é uma ferramenta útil e a maioria dos scripts utiliza isso para propósitos legítimos, também pode ser usada de forma maliciosa. Um dos principais princípios do%{site_name} é que o usuário deve ser capaz de inspecionar o código de um script. Scripts externos podemignorar este princípio de várias formas: eles podem sofrer alterações sem aviso ou histórico, podem fornecer códigos diferentes para pessoas diferentes, e podem ainda ser usados para esconder códigos maliciosos entre bibliotecas conhecidas. Mesmo que alguém verifique um script externo e veja que ele é legítimo, isso não garante que ele sempre foi ou sempre será legítimo.</p>
       allowed_external_codes:
         heading: Código externo permitido
+      other_allowed_codes:
+        heading: Casos especiais
+      add_to_list:
+        heading: Adicionando à lista
+      enforcement:
+        heading: Execução
+        content_html: |
+            <p>Qualquer script que inclua código externo fora do permitido está sujeito a exclusão.</p>
       test_url:
+        label: Teste a URL
         result_ok: A URL é permitida
         result_not_ok: A URL não é permitida
     script_rewriting:
@@ -819,6 +834,12 @@ pt-BR:
           bibliotecas podem incluir lógicas de rastreamento.</p>
     user_css_to_user_js:
       title: Conversão de CSS de usuário para JS de usuário
+    antifeatures:
+      title: Anti recursos
+      referral_link_html: |
+          <p>O script executa alguma ação que ganha a comissão do autor nas compras. Isso inclui o script que contém links de referência / afiliados, reescrevendo links existentes para serem links de referência / afiliados ou fornecendo códigos de cupom que ganham a comissão do autor do script.</p>
+      tracking_html: |
+          <p>O script inclui código para rastrear a atividade do usuário. Isso inclui rastreadores como o Google Analytics ou código de rastreamento personalizado que relata a atividade do usuário ao autor do script.</p>
   search:
     script_search:
       title: "Pesquisa de Script"
@@ -845,6 +866,7 @@ pt-BR:
     consecutive_bad_ratings:
       one: "%{script_names} recebeu consecutivas avaliações negativas.  Por favor reveja seu script e responda as queixas nas avaliações."
       other: "%{script_names} receberam consecutivas avaliações negativas. Por favor reveja seus scripts e responda as queixas nas avaliações."
+    open_reports: "Alguns de seus scripts foram relatados. Reveja os relatórios e forneça todas as informações que puder.%{report_links}"
   reports:
     report_filed: "Sua denúncia será revisada por um moderador"
     new_report_title:
@@ -896,6 +918,7 @@ pt-BR:
       malware: "Malware"
       minified: "Código minificado"
       external_code: "Código externo não permitido"
+      no_description: "Descrição ausente, não informativa ou enganosa"
       wrong_category: "Categoria errada"
       wrong_category_with_suggestion: "Categoria errada (sugestão: %{suggested_category})"
       other: "Outro"
@@ -909,12 +932,25 @@ pt-BR:
     report_message: "Reportar mensagem"
     result_dismissed: "Essa denúncia foi desconsiderada por um moderador."
     result_upheld: "Essa denúncia foi confirmada por um moderador."
+    result_fixed: "Este relatório foi resolvido por um moderador, pois eles acreditam que o autor corrigiu o problema."
     result_pending: "Essa denúncia está aguardando avaliação de um moderador."
     rebuttal_placeholder: 'Explique para um moderador por que este script deve ser removido'
     submit_rebuttal: "Enviar refutação"
     delete_script: "Remover script"
     view_discussion: "Ver discussão"
+    load_diff: "Carga diferencial"
     loading_diff: "Carregando..."
+    reported_user_activity_html: "%{user}(o usuário denunciado) fez:"
+  appeals:
+    new:
+      title: Novo recurso de exclusão de script
+      intro: 'Seu script foi excluído devido a: "%{reason}". Se você acredita que isso foi um erro, ou se você tem informações adicionais a fornecer, ou se você atualizou seu script para resolver o problema, você pode enviar um recurso. Se um moderador estiver satisfeito com suas atualizações e com as informações fornecidas, ele restaurará o acesso ao seu script.'
+      submit: Enviar apelo
+    author_reason: "Recurso apresentado pelo autor:"
+    pending_review: Este recurso está com revisão pendente por um moderador.
+    dismissed_by_moderator: Um moderador rejeitou este recurso.
+    upheld_by_moderator: Como resultado deste apelo, um moderador cancelou a exclusão deste script.
+    submitted: Sua apelação foi recebida e um moderador a analisará.
   discussions:
     title: Discussões
     comment_date: "Publicado: %{date}"
@@ -937,8 +973,10 @@ pt-BR:
     quote_comment: "Citação"
     question_heading_html: "Pergunta/comentário"
     review_heading_html: "Avaliação: %{rating}"
+    update_rating_note: "(Você pode alterar sua classificação mais tarde, postando um novo comentário.)"
     update_rating: "Atualizar sua avaliação do script %{script_name}"
     ratings:
+      question: "Sem classificação - apenas uma pergunta, comentário ou solicitação de recurso"
       bad: "Ruim - o script não funciona"
       ok: "OK - script funciona, mas tem bugs"
       good: "Bom - o script funciona"
@@ -1058,7 +1096,12 @@ pt-BR:
     listing_options_title: "Opções de Pesquisa"
     quote:
       prefix_html: "%{user} disse:"
+      anonymous_reporter_html: "O denunciante disse:"
   activerecord:
+    models:
+      comment:
+        one: "%{count}comentários"
+        other: "%{count}comentários"
     attributes:
       user:
         name: "Nome"
@@ -1096,6 +1139,8 @@ pt-BR:
         user_input: Usuário
       message:
         content: Mensagem
+      script_lock_appeal:
+        text: Apelo
   errors:
     messages:
       script_missing_name: "é requerido - especifique um com @name"
@@ -1111,6 +1156,8 @@ pt-BR:
       script_disallowed_require: "usa um script externo não aprovado: %{code}"
       script_rate_limit: "Você atingiu o limite de postagens. Tente novamente mais tarde."
       missing_include_or_match: "deve incluir pelo menos uma chave @match ou @include"
+      invalid_meta: "tem uma meta-diretiva inválida. O formato adequado é // @foo"
+      no_executable: "não contém código executável"
       file_size_out_of_range: "tamanho deve ser menor que 200KB"
       meta_too_long: "%{key} é muito longa (o máximo são %{count} caracteres)"
   opensearch:
@@ -1119,10 +1166,16 @@ pt-BR:
     long_name: "Busca de script de usuário em %{site_name}"
     attribution: "Cite a autoria original dos scripts, veja cada script individualmente para licenciamento"
   importing:
+    title: Importar scripts
+    intro: "%{site_name}pode importar scripts que já estão hospedados em outro lugar, por exemplo, em um sistema de controle de versão (como GitHub), seu próprio servidor ou outro site de hospedagem de script de usuário."
+    url_entry_label: Fornece URLs para importar, separados por novas linhas. Devem ser URLs para os arquivos JS ou CSS brutos.
+    sync_type_label: "Após a importação inicial, o(s) script(s) deve ser sincronizado(s):"
+    submit: importar
     previously_imported:
       heading: Scripts importados anteriormente
       unknown_date: "(desconhecido)"
     results:
+      title: "importar resultado"
       success: "Os seguintes scripts foram importados com sucesso:"
       needs_description: "Os seguintes scripts precisam de uma descrição para ser importados:"
       existing: "Os seguintes scripts já foram importados:"
@@ -1170,6 +1223,10 @@ pt-BR:
       subject: "%{user} te enviou uma mensagem no %{site_name}"
     script_lock_appeal:
       dismiss:
+        subject: Seu recurso de exclusão de script em %{site_name} foi indeferido
+        intro_html: Seu recurso de exclusão de %{script} foi rejeitado por um moderador. O script permanecerá excluído.
         moderator_notes: "O moderador comentou:"
       unlock:
+        subject: Sua apelação de exclusão de script em %{site_name} foi mantida
+        intro_html: Seu recurso de exclusão de %{script} foi confirmado por um moderador. O script agora não foi excluído e está acessível publicamente novamente.
         moderator_notes: "O moderador comentou: "
