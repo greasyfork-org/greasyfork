@@ -194,6 +194,7 @@ Rails.application.routes.draw do
 
     namespace :admin do
       get '/' => 'home#index'
+      get 'rule_interpretations' => 'home#rule_interpretations'
       resources :ads, only: [] do
         member do
           patch :approve

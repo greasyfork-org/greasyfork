@@ -12,7 +12,8 @@
   <% if current_user.administrator? %>
     <li><%= link_to 'Ad Approval', pending_admin_ads_path %></li>
     <li><%= link_to 'Stats Upload', admin_analytics_stats_path %></li>
-<% end %>
+  <% end %>
+  <li><%= link_to 'Rule Interpretations', admin_rule_interpretations_path %></li>
 </ul>
 
 <h3>Moderator team</h3>
