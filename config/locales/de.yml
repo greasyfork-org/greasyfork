@@ -42,6 +42,7 @@ de:
     deleted_notice: "Dieses Skript wurde gelöscht."
     deleted_notice_with_related: "Das gewählte Skript wurde gelöscht, hier sind einige ähnliche Skripte."
     deleted_undelete_notice_html: "Das Skript wurde von einem Moderator gesperrt kann nicht wiederhergestellt werden. Mit der Begründung: \"<i>%{delete_reason}</i>\"."
+    deleted_locked_author_notice_html: "das Skript wurde von einem Moderator gelöscht und ist nicht mehr einsehbar"
     deleted_author_notice: "Das Skript wurde gelöscht und ist nicht mehr öffentlich. Es kann über den Gelöscht-Tab wiederherstellt werden."
     version_notice_html: "Version vom %{date}. %{latest_version_link}"
     version_notice_latest_version_link: "Aktuellste Version"
@@ -57,6 +58,8 @@ de:
     delete_page: "Löschen"
     delete_explanation: "Löschen des Skripts verbirgt es vor allen Nutzern mit Ausnahme des Autors und der Moderatoren. Ein Wiederherstellen ist jederzeit möglich."
     delete_update_behaviour: "Wie sollen Benutzer behandelt werden, welche das Skript bereits installiert haben?"
+    delete_update_behaviours:
+      keep: "Die werden es lassen wie es ist."
     delete_permanently_heading: "Endgültige Löschung"
     delete_permanently_explanation_html: >-
         <p>Das endgültige Löschen Ihres Skripts löscht alle zugehörigen Daten, mit
@@ -1083,6 +1086,9 @@ de:
     description: "Auf %{site_name} nach Benutzerskripten suchen."
     long_name: "%{site_name} Benutzerskript Suche"
     attribution: "Das Urheberrecht liegt bei den Autoren der Skripte, siehe jeweiliges Skript für Details zu Lizenz"
+  importing:
+    title: Importiertes Skript
+    submit: Importiert
   mailers:
     script_report:
       report_created_offender:

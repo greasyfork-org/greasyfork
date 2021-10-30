@@ -18,8 +18,8 @@ zh-CN:
     ratings: "得分"
     author_name: "作者"
     version_number: "版本"
-    license: "许可协议"
-    no_license: "不适用"
+    license: "许可证"
+    no_license: "暂无"
     compatibility: "兼容性"
     compatible_with_browser: "与 %{browser} 兼容"
     incompatible_with_browser: "与 %{browser} 不兼容"
@@ -53,7 +53,7 @@ zh-CN:
     history_page: "历史版本"
     feedback_page: "反馈 (%{count})"
     stats_page: "统计数据"
-    derivatives_page: "类似脚本"
+    derivatives_page: "相似脚本"
     update_page: "更新脚本"
     delete_page: "删除脚本"
     delete_explanation: "当你选择删除脚本之后，这个脚本将只能被你以及 Greasy Fork 的管理员访问。你可以之后撤销这个删除操作。"
@@ -126,9 +126,9 @@ zh-CN:
       month: 最近 30 日
       year: 最近 365 日
       all: 所有时间
-    derivatives_title: "%{script_name} - 类似脚本"
+    derivatives_title: "%{script_name} - 相似脚本"
     derivatives_intro: "这些脚本与您的脚本相似（或你的与他们的脚本相似）。如果有脚本违反授权使用了您的代码，可在那个脚本的反馈面板中举报。"
-    derivatives_script_html: "%{script}，作者 %{user}，许可协议: %{license} %{diff_link:[Diff]}"
+    derivatives_script_html: "%{script}，作者 %{user}，许可证：%{license} %{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "完整拷贝的副本"
     derivatives_exact_copies_list_intro: "以下这些脚本有与你的脚本有着完全一致的代码："
     derivatives_exact_copies_item_html: "%{author_links}发布的%{script_link}，版本：%{version_list}"
@@ -362,7 +362,7 @@ zh-CN:
           description_html: 作者从这份脚本<b>获得佣金</b>，例如透过改写链接或提供优惠券代码以包含推荐或附属代码。
         membership:
           title: 会员内容
-          description_html: 脚本只有在使用者 <b>主动登记后</b> 才能使用完整功能，如加入群组、订阅频道或在某页点赞等。
+          description_html: 你只有在 <b>参与某些事后</b> 才能使用脚本的全部功能，如加入某群组、订阅某频道或在某页点赞等。
         payment:
           title: 付费内容
           description_html: 脚本只有在使用者 <b>支付后</b>才能使用完整功能。 %{site_name} 未参与到支付的流程，因此不保证该支付的有效性，亦无法对退款行为进行帮助。
@@ -669,7 +669,7 @@ zh-CN:
       require_html: "在您的脚本中引用其他外部脚本。请参见 %{external_script_link}。"
       require_external_script_link_text: "包含外部脚本的使用规定"
       updateURL: "告知用户脚本管理器应该在哪个地址获取脚本更新。%{site_name} 将自动修改该属性使其永远通过 %{site_name} 进行更新。"
-      license: "许可协议描述的是您是否允许别人以某些形式复制或修改您的脚本。建议从 %{spdx_link:SPDX 许可协议列表} 中选择「Full name」或「Identifier」填至此处。若您不提供许可协议，则表示脚本仅允许个人使用且不得二次分发。许可协议将在脚本的简介页面显示。"
+      license: "许可证描述的是您是否允许别人以某些形式复制或修改您的脚本。建议从 %{spdx_link:SPDX 许可证列表} 中选择「Full name」或「Identifier」填至此处。若您不提供许可证，则表示脚本仅允许个人使用且不得二次分发。许可证将在脚本的简介页面显示。"
       supportURL: "该脚本的技术支持链接（如：错误反馈系统、论坛、电子邮箱地址等），该链接将显示在脚本的反馈页面。"
       contributionURL_html: "用于捐赠脚本作者的链接，该链接将显示在脚本的反馈页面。网址可以为 http、https 或比特币协议的网址。如果您需要链接到贝宝捐赠页面，请使用例如 <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a> 这样的格式，替换为您自己的邮箱地址即可。"
       contributionAmount_html: "建议捐赠金额，请配合 <code>@contributionURL</code> 使用。"
@@ -836,7 +836,7 @@ zh-CN:
           <li>宣传脚本作者的主页、代码仓库、Discord 语音群、微信等信息。</li>
           </ul>
       membership_html: |
-          <p>这个脚本要求用户订阅频道、加入群组、点赞等行为后才能使用脚本的完整功能。</p>
+          <p>这个脚本需要用户先订阅某频道、加入某群组、在某页点赞等后才能使用全部功能。</p>
 
           <p>请注意下述情况 <i>不需要</i> 声明 <code>@antifeature membership</code>：</p>
 
@@ -1190,7 +1190,7 @@ zh-CN:
     short_name: "%{site_name} 搜索"
     description: "搜索 %{site_name} 上的用户脚本。"
     long_name: "%{site_name} 用户脚本搜索"
-    attribution: "脚本作者保留所有权利，详见各脚本许可协议"
+    attribution: "脚本作者保留所有权利，详见各脚本许可证"
   importing:
     title: 导入脚本
     intro: "%{site_name} 可以从其他网站导入脚本，比如代码版本控制系统 (例：GitHub)、您自己的服务器或其它的用户脚本网站。"
@@ -1249,7 +1249,7 @@ zh-CN:
       notify:
         subject: "您在 %{site_name}发布的脚本 %{script_name} 收到了多条差评。"
         text: |
-            你在 %{site_name} 发表的脚本 '%{script_name}'（地址 %{script_url}）在短时间内收到了多条差评反馈。
+            你在 %{site_name} 发布的脚本 '%{script_name}'（地址 %{script_url}）在短时间内收到了多条差评反馈。
 
             你在 %{feedback_url} 收到的反馈可能意味着您的脚本发生了问题、临时失效、或目标网站已经不再兼容。请审阅收到的反馈，修正错误，并回应相关问题。
 
