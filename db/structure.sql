@@ -1112,7 +1112,7 @@ CREATE TABLE `comments` (
   KEY `index_comments_on_discussion_id` (`discussion_id`),
   KEY `index_comments_on_poster_id` (`poster_id`),
   CONSTRAINT `fk_rails_750d1a8a36` FOREIGN KEY (`discussion_id`) REFERENCES `discussions` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=221218 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=221219 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `compatibilities`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1180,7 +1180,7 @@ CREATE TABLE `daily_install_counts` (
   `install_date` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_daily_install_counts_on_script_id_and_ip` (`script_id`,`ip`)
-) ENGINE=InnoDB AUTO_INCREMENT=228461455 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=228461477 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `daily_update_check_counts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1241,7 +1241,7 @@ CREATE TABLE `discussion_reads` (
   KEY `index_discussion_reads_on_discussion_id` (`discussion_id`),
   CONSTRAINT `fk_rails_07825bdb9c` FOREIGN KEY (`discussion_id`) REFERENCES `discussions` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_rails_6fafaad5e9` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=1253544 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1253547 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `discussion_subscriptions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1257,7 +1257,7 @@ CREATE TABLE `discussion_subscriptions` (
   KEY `index_discussion_subscriptions_on_user_id` (`user_id`),
   CONSTRAINT `fk_rails_fa31029900` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_rails_feaa602412` FOREIGN KEY (`discussion_id`) REFERENCES `discussions` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=51394 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=51395 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `discussions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1443,7 +1443,7 @@ CREATE TABLE `moderator_actions` (
   KEY `index_moderator_actions_on_user_id` (`user_id`),
   CONSTRAINT `fk_rails_982b48b755` FOREIGN KEY (`report_id`) REFERENCES `reports` (`id`) ON DELETE SET NULL,
   CONSTRAINT `fk_rails_de8c1b0dd2` FOREIGN KEY (`script_report_id`) REFERENCES `script_reports` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=66917 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=66921 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `redirect_service_domains`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1480,7 +1480,7 @@ CREATE TABLE `reports` (
   KEY `index_reports_on_reporter_id` (`reporter_id`),
   KEY `index_reports_on_result` (`result`),
   CONSTRAINT `fk_rails_c4cb6e6463` FOREIGN KEY (`reporter_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=13535 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13537 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `roles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1816,6 +1816,7 @@ CREATE TABLE `scripts` (
   `self_deleted` tinyint(1) NOT NULL DEFAULT 0,
   `sync_attempt_count` int(11) NOT NULL DEFAULT 0,
   `delete_type` int(11) DEFAULT NULL,
+  `disable_stats` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `index_scripts_on_delta` (`delta`),
   KEY `index_scripts_on_script_type_id` (`script_type_id`),
@@ -2228,6 +2229,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20210814162649'),
 ('20210814211458'),
 ('20210828002422'),
-('20210927005947');
+('20210927005947'),
+('20211031001041');
 
 

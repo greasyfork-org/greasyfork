@@ -5,107 +5,111 @@
   <%= javascript_pack_tag 'stats' %>
 <% end %>
 
-<% if @script.created_at < 30.days.ago %>
-  <p>
-    <%
-      filter_options = []
-      filter_options << if params[:period].nil?
-        t('scripts.stats_filter_options.month')
-      else
-        link_to(t('scripts.stats_filter_options.month'), period: nil)
-                        end
-      filter_options << link_to_unless_current(t('scripts.stats_filter_options.year'), { period: 'year' }, rel: :nofollow)
-      filter_options << link_to_unless_current(t('scripts.stats_filter_options.all'), { period: 'all' }, rel: :nofollow ) if @script.created_at < 365.days.ago
-    %>
-    <%= it('scripts.stats_filters', filter_options: safe_join(filter_options, ' ')) %>
-  </p>
-<% end %>
-
-<%
-[:installs, :weekly_installs, :update_checks].each do |data_key|
-
-  case data_key
-    when :installs
-      container_id = 'install-stats-chart-container'
-      heading_key = 'scripts.stats_daily_installs_heading'
-    when :weekly_installs
-      container_id = 'weekly-install-stats-chart-container'
-      heading_key = 'scripts.stats_weekly_installs_heading'
-    when :update_checks
-      container_id = 'update-check-stats-chart-container'
-      heading_key = 'scripts.stats_daily_update_checks_heading'
-  end
-%>
-
-  <h3><%= t(heading_key) %></h3>
-  <div id="<%= container_id %>"></div>
+<% if @stats_disabled %>
+  <p>Stats are unavailable for this script.</p>
+<% else %>
+  <% if @script.created_at < 30.days.ago %>
+    <p>
+      <%
+        filter_options = []
+        filter_options << if params[:period].nil?
+          t('scripts.stats_filter_options.month')
+        else
+          link_to(t('scripts.stats_filter_options.month'), period: nil)
+                          end
+        filter_options << link_to_unless_current(t('scripts.stats_filter_options.year'), { period: 'year' }, rel: :nofollow)
+        filter_options << link_to_unless_current(t('scripts.stats_filter_options.all'), { period: 'all' }, rel: :nofollow ) if @script.created_at < 365.days.ago
+      %>
+      <%= it('scripts.stats_filters', filter_options: safe_join(filter_options, ' ')) %>
+    </p>
+  <% end %>
 
   <%
-  data = @stats.transform_values{|v| v[data_key == :weekly_installs ? :installs : data_key]}
-  if data_key == :weekly_installs
-    data = data.group_by{|k, _v| k.beginning_of_week}.transform_values{|vs| vs.sum{|v| v.last || 0}}
-  elsif @start_date
-    data = data.select{|k, _v| k >= @start_date }
-end
+  [:installs, :weekly_installs, :update_checks].each do |data_key|
+
+    case data_key
+      when :installs
+        container_id = 'install-stats-chart-container'
+        heading_key = 'scripts.stats_daily_installs_heading'
+      when :weekly_installs
+        container_id = 'weekly-install-stats-chart-container'
+        heading_key = 'scripts.stats_weekly_installs_heading'
+      when :update_checks
+        container_id = 'update-check-stats-chart-container'
+        heading_key = 'scripts.stats_daily_update_checks_heading'
+    end
   %>
-  <script>
-  var data = {
-    labels: [<%= data.keys.each.map{|d| "\"#{escape_javascript(d.to_s)}\""}.join(',').html_safe %>],
-    datasets: [{
-        fillColor : "rgba(220,220,220,0.5)",
-        strokeColor : "rgba(220,220,220,1)",
-        data: [<%= data.values.join(',') %>]
-    }]
-  }
 
-  var container = document.getElementById("<%= container_id %>");
-  var canvas = document.createElement("canvas")
-  canvas.id = "<%= container_id %>-canvas";
-  canvas.width = parseInt(getComputedStyle(container).width.replace("px", ""), 10) - 5;
-  canvas.height = 400;
-  container.appendChild(canvas)
+    <h3><%= t(heading_key) %></h3>
+    <div id="<%= container_id %>"></div>
 
-  var ctx = canvas.getContext("2d");
-  var myNewChart = new Chart(ctx, {
-    type: 'bar',
-    data: data,
-    options: {
-      scaleStartValue: 0,
-      legend: {display: false},
-      scales: {
-        xAxes: [{
-          gridLines: {display: false}
-        }],
-        yAxes: [{
-          ticks: {
-            suggestedMax: 10,
-            beginAtZero: true,
-          }
-        }]
-      }
+    <%
+    data = @stats.transform_values{|v| v[data_key == :weekly_installs ? :installs : data_key]}
+    if data_key == :weekly_installs
+      data = data.group_by{|k, _v| k.beginning_of_week}.transform_values{|vs| vs.sum{|v| v.last || 0}}
+    elsif @start_date
+      data = data.select{|k, _v| k >= @start_date }
+  end
+    %>
+    <script>
+    var data = {
+      labels: [<%= data.keys.each.map{|d| "\"#{escape_javascript(d.to_s)}\""}.join(',').html_safe %>],
+      datasets: [{
+          fillColor : "rgba(220,220,220,0.5)",
+          strokeColor : "rgba(220,220,220,1)",
+          data: [<%= data.values.join(',') %>]
+      }]
     }
-  });
-  </script>
-<% end %>
 
-<h3><%= t('scripts.stats_raw_data_header') %></h3>
-<table class="stats-table">
-  <thead>
-    <tr>
-      <th><%= t('scripts.stats_daily_installs_date_column_heading') %></th>
-      <th class="numeric"><%= t('scripts.stats_daily_installs_install_count_column_heading') %></th>
-      <th class="numeric"><%= t('scripts.stats_daily_installs_update_check_count_column_heading') %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @stats.to_a.last(30).each do |d, i| %>
+    var container = document.getElementById("<%= container_id %>");
+    var canvas = document.createElement("canvas")
+    canvas.id = "<%= container_id %>-canvas";
+    canvas.width = parseInt(getComputedStyle(container).width.replace("px", ""), 10) - 5;
+    canvas.height = 400;
+    container.appendChild(canvas)
+
+    var ctx = canvas.getContext("2d");
+    var myNewChart = new Chart(ctx, {
+      type: 'bar',
+      data: data,
+      options: {
+        scaleStartValue: 0,
+        legend: {display: false},
+        scales: {
+          xAxes: [{
+            gridLines: {display: false}
+          }],
+          yAxes: [{
+            ticks: {
+              suggestedMax: 10,
+              beginAtZero: true,
+            }
+          }]
+        }
+      }
+    });
+    </script>
+  <% end %>
+
+  <h3><%= t('scripts.stats_raw_data_header') %></h3>
+  <table class="stats-table">
+    <thead>
       <tr>
-        <th><%= d %></th>
-        <td class="numeric"><%= number_with_delimiter(i[:installs]) %></td>
-        <td class="numeric"><%= i[:update_checks].nil? ? t('scripts.stats_no_data') : number_with_delimiter(i[:update_checks]) %></td>
+        <th><%= t('scripts.stats_daily_installs_date_column_heading') %></th>
+        <th class="numeric"><%= t('scripts.stats_daily_installs_install_count_column_heading') %></th>
+        <th class="numeric"><%= t('scripts.stats_daily_installs_update_check_count_column_heading') %></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<% links = [:json, :csv].map{|f| link_to f.to_s.upcase, { format: f }, rel: :nofollow } %>
-<%= t('scripts.stats_download_raw_data_html', links: links.join(' ').html_safe) %>
+    </thead>
+    <tbody>
+      <% @stats.to_a.last(30).each do |d, i| %>
+        <tr>
+          <th><%= d %></th>
+          <td class="numeric"><%= number_with_delimiter(i[:installs]) %></td>
+          <td class="numeric"><%= i[:update_checks].nil? ? t('scripts.stats_no_data') : number_with_delimiter(i[:update_checks]) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% links = [:json, :csv].map{|f| link_to f.to_s.upcase, { format: f }, rel: :nofollow } %>
+  <%= t('scripts.stats_download_raw_data_html', links: links.join(' ').html_safe) %>
+<% end %>

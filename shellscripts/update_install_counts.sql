@@ -18,3 +18,5 @@ CREATE TEMPORARY TABLE total_install_counts (script_id int PRIMARY KEY NOT NULL,
 INSERT INTO total_install_counts (script_id, c) SELECT script_id, SUM(installs) c FROM install_counts GROUP BY script_id;
 INSERT INTO total_install_counts (script_id, c) SELECT * FROM (SELECT script_id, COUNT(*) daily_count FROM daily_install_counts GROUP BY script_id) dic ON DUPLICATE KEY UPDATE c = c + daily_count;
 UPDATE scripts LEFT JOIN total_install_counts on id = script_id set total_installs = IFNULL(c, 0);
+
+UPDATE scripts SET daily_installs = 0, total_installs = 0 WHERE disable_stats;
