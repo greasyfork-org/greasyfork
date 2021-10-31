@@ -5,7 +5,8 @@ UPDATE scripts s
     SELECT script_id, COUNT(*) c FROM daily_install_counts WHERE install_date >= DATE_SUB(NOW(), INTERVAL 1 DAY) GROUP BY script_id
   ) d
   ON s.id = d.script_id
-  SET s.daily_installs = d.c;
+  SET s.daily_installs = d.c
+  WHERE disable_stats = FALSE;
 
 -- move anything before yesterday to the historical count table
 INSERT IGNORE INTO install_counts
@@ -17,6 +18,6 @@ DELETE FROM daily_install_counts WHERE install_date < DATE_SUB(CURDATE(), INTERV
 CREATE TEMPORARY TABLE total_install_counts (script_id int PRIMARY KEY NOT NULL, c INTEGER NOT NULL);
 INSERT INTO total_install_counts (script_id, c) SELECT script_id, SUM(installs) c FROM install_counts GROUP BY script_id;
 INSERT INTO total_install_counts (script_id, c) SELECT * FROM (SELECT script_id, COUNT(*) daily_count FROM daily_install_counts GROUP BY script_id) dic ON DUPLICATE KEY UPDATE c = c + daily_count;
-UPDATE scripts LEFT JOIN total_install_counts on id = script_id set total_installs = IFNULL(c, 0);
+UPDATE scripts LEFT JOIN total_install_counts on id = script_id set total_installs = IFNULL(c, 0) WHERE disable_stats = FALSE;
 
 UPDATE scripts SET daily_installs = 0, total_installs = 0 WHERE disable_stats;
