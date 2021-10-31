@@ -53,12 +53,14 @@
     </div>
   </blockquote>
 <% when Discussion %>
-  <div><%= t('common.quote.prefix_html', user: render_user(report.reported_users.first, report.reported_user_id)) %></div>
-  <blockquote>
-    <div class="user-content">
-      <%= format_user_text(report.item.first_comment.text, report.item.first_comment.text_markup) %>
-    </div>
-  </blockquote>
+  <% if report.item.first_comment %>
+    <div><%= t('common.quote.prefix_html', user: render_user(report.reported_users.first, report.reported_user_id)) %></div>
+    <blockquote>
+      <div class="user-content">
+        <%= format_user_text(report.item.first_comment.text, report.item.first_comment.text_markup) %>
+      </div>
+    </blockquote>
+  <% end %>
 <% when Message %>
   <div><%= t('common.quote.prefix_html', user: render_user(report.reported_users.first, report.reported_user_id)) %></div>
   <blockquote>
