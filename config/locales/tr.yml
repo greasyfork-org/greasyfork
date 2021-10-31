@@ -43,6 +43,7 @@ tr:
     deleted_notice: "Bu script silinmiş."
     deleted_notice_with_related: "Baktığınız betik silinmiş, ama burada benzer betikleri bulabilirsiniz"
     deleted_undelete_notice_html: "Bu betik bir moderatör tarafından kilitlenmiş ve geri alınamaz.\nGerekçe: \"<i>%{delete_reason}</i>\"."
+    deleted_locked_author_notice_html: "Bu Script bir moderatör tarafından silinmiş ve artık erişilemez. Silinme sebebi: \"%{delete_reason}\". {appeal_link:itiraz oluştur}."
     deleted_author_notice: "Bu komut dosyası silinmiş ve diğerleri tarafından erişilemez. Silme sekmesinden geri alabilirsin."
     version_notice_html: "%{date} itibariyledir. %{latest_version_link} görün."
     version_notice_latest_version_link: "En son verisyonu"
@@ -58,6 +59,10 @@ tr:
     delete_page: "Sil"
     delete_explanation: "Scriptinizi silmek bu scripti siz ve Greasy Fork yöneticileri dışındaki herkes için erişilmez yapar. Dilerseniz istediğiniz zaman silme işlemini geri alabilirsiniz."
     delete_update_behaviour: "Scriptinizi daha önce yüklemiş kullanıcılara ne olmasını istersiniz?"
+    delete_update_behaviours:
+      keep: "Olduğu gibi tutacaklar."
+      blanked: "Boş bir script'e güncellenecekler. Bu, komut dosyasının çalıştığı siteler üzerinde olumsuz bir etkisi olduğunda uygundur."
+      redirect: "Aşağıda belirttiğiniz komut dosyasına yönlendirilecekler ve güncellenecekler."
     delete_permanently_heading: "Kalıcı olarak silme"
     delete_permanently_explanation_html: >-
         Kalıcı olarak silme işlemi, betiğinizi ve ona ait tüm kayıtları forum tartışmaları
@@ -87,6 +92,7 @@ tr:
       no_moderator_logs: "Bu script üzerinde moderatör etkinliği yok."
       compare_title: "Başka bir betikle karşılaştır"
       compare_button: "Karşılaştır"
+      compare_must_be_local_url: "Karşılaştırma script'i sadece %{site_name}üzerinde bir URL olmalıdır."
     history_title: "%{script_name} - Versiyon geçmişi"
     history_only_code_changes_info: "Bunlar bu scriptin güncellenmiş kod versiyonlarıdır."
     history_all_changes_link: "Bütün versiyonları göster."
@@ -97,10 +103,14 @@ tr:
     feedback_title: "%{script_name} - Geribildirim"
     feedback_no_discussions_html: "Henüz tartışmalar yapılmamış.  %{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "Henüz hiçbir gönderi gönderilmedi."
+    feedback_report_instead: "Eğer bu script'in %{rules_link:%{site_name}'nin kurallarını} çiğnediğini düşünüyorsanız, lütfen %{report_link: bildirin}."
     feedback_start_first_discussion_link: "Bu script hakkındaki tartışmayı ilk siz başlatın."
     feedback_discussion_or_report: "% {new_discussion_link: Bu script ile ilgili yeni bir tartışma başlatınız} veya% {report_link: kaldırılmak üzere raporlayın}."
     feedback_favoriters_heading: "Favorilerine ekleyenler"
     feedback_favoriters_user_list_html: "Bu script, 1%{user_list} tarafından favorilere eklendi"
+    feedback_favoriters_lots:
+      one: "Bu script %{user_count} kişi tarafından favorilere eklendi.%{full_link:Tümünü gör.}"
+      other: "Bu script %{user_count}kişi tarafından favorilere eklendi. %{full_link:Tümünü gör.}"
     feedback_no_favoriters: "Bu scripti henüz kimse favorilerine eklemedi."
     feedback_sign_in_to_favorite: "Favorilere eklemek için oturum aç."
     stats_title: "%{script_name} - İstatistik"
