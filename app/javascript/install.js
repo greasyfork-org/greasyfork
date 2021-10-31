@@ -113,8 +113,8 @@ async function doInstall(installLink) {
 
 function onInstallMouseOver(event) {
   let url = event.target.getAttribute("data-ping-url");
-  if (!/[&?]mo=2$/.test(url)) {
-    event.target.setAttribute("data-ping-url", url + (url.includes('?') ? '&' : '?') + "mo=2");
+  if (!/[&?]mo=3$/.test(url)) {
+    event.target.setAttribute("data-ping-url", url + (url.includes('?') ? '&' : '?') + "mo=3");
   }
 }
 
