@@ -45,7 +45,14 @@ class User < ApplicationRecord
   ThinkingSphinx::Callbacks.append(self, :script, behaviours: [:sql, :deltas], path: [:scripts])
 
   before_destroy(prepend: true) do
-    scripts.select { |script| script.authors.where.not(user_id: id).none? }.each(&:destroy!)
+    scripts.select { |script| script.authors.where.not(user_id: id).none? }.each do |script|
+      if banned?
+        # Retain the evidence
+        script.update_columns(locked: true, delete_type: 'keep', delete_reason: 'User deleted', deleted_at: Time.now)
+      else
+        script.destroy!
+      end
+    end
   end
 
   BANNED_EMAIL_SALT = '95b68f92d7f373b07dfe101a4b3b46708ae161739b263016eefa3d01762879936507ff2a55442e9a47c681d895de4d905565e2645caff432a987b07457bc005b'.freeze
