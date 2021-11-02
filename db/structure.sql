@@ -1101,9 +1101,9 @@ CREATE TABLE `cleaned_codes` (
   `script_id` int(11) NOT NULL,
   `code` text COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_rails_ea89da59a6` (`script_id`),
+  UNIQUE KEY `index_cleaned_codes_on_script_id` (`script_id`),
   CONSTRAINT `fk_rails_ea89da59a6` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `comments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2243,6 +2243,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20210828002422'),
 ('20210927005947'),
 ('20211031001041'),
-('20211102012556');
+('20211102012556'),
+('20211102022030');
 
 
