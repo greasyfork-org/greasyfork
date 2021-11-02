@@ -1042,7 +1042,7 @@ CREATE TABLE `banned_email_hashes` (
   `banned_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_banned_email_hashes_on_email_hash` (`email_hash`)
-) ENGINE=InnoDB AUTO_INCREMENT=14107 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14109 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `blocked_script_codes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1092,6 +1092,18 @@ CREATE TABLE `browsers` (
   `name` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `cleaned_codes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cleaned_codes` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `script_id` int(11) NOT NULL,
+  `code` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_rails_ea89da59a6` (`script_id`),
+  CONSTRAINT `fk_rails_ea89da59a6` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `comments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -2230,6 +2242,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20210814211458'),
 ('20210828002422'),
 ('20210927005947'),
-('20211031001041');
+('20211031001041'),
+('20211102012556');
 
 

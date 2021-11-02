@@ -48,7 +48,7 @@ class User < ApplicationRecord
     scripts.select { |script| script.authors.where.not(user_id: id).none? }.each do |script|
       if banned?
         # Retain the evidence
-        script.update_columns(locked: true, delete_type: 'keep', delete_reason: 'User deleted', deleted_at: Time.now)
+        script.update_columns(locked: true, delete_type: 'keep', delete_reason: 'User deleted', deleted_at: Time.zone.now)
       else
         script.destroy!
       end

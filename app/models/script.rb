@@ -35,6 +35,8 @@ class Script < ApplicationRecord
   has_many :reports_as_reference_script, class_name: 'Report', foreign_key: :reference_script_id, inverse_of: :reference_script, dependent: :destroy
   has_many :script_lock_appeals, dependent: :destroy
 
+  has_one :cleaned_code, dependent: :delete
+
   belongs_to :script_type
   belongs_to :script_sync_type, optional: true
   belongs_to :license, optional: true

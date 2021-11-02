@@ -102,6 +102,10 @@ class ScriptVersion < ApplicationRecord
     script.reset_consecutive_bad_ratings!
   end
 
+  after_commit on: [:create, :update] do
+    CleanedCodeJob.perform_later(script)
+  end
+
   # Delete the code if not in use by another version.
   after_destroy do
     script_code.destroy! if script_code.present? && ScriptVersion.where(['script_code_id = ? or rewritten_script_code_id = ?', script_code_id, script_code_id]).where.not(id: id).none?
