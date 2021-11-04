@@ -4,6 +4,7 @@ class CleanedCodeJob < ApplicationJob
   queue_as :background
 
   def perform(script)
+    return
     CleanedCode.upsert({ script_id: script.id, code: JsCleanup.cleanup(script.current_code) })
   end
 end
