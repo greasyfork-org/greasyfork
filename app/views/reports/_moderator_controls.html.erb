@@ -49,7 +49,11 @@
     <% when Script %>
       <%= submit_tag(t('reports.delete_script')) %>
     <% when Message %>
-      <%= submit_tag("Ban #{report.reported_users.first.name}") %>
+      <% if report.reported_users.any? %>
+        <%= submit_tag("Ban #{report.reported_users.first.name}") %>
+      <% else %>
+        <%= submit_tag('Resolve (user has been deleted)') %>
+      <% end %>
     <% else
          raise "Unknown item #{report.item}"
        end %>
