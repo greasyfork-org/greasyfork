@@ -1099,7 +1099,7 @@ DROP TABLE IF EXISTS `cleaned_codes`;
 CREATE TABLE `cleaned_codes` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `script_id` int(11) NOT NULL,
-  `code` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `code` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_cleaned_codes_on_script_id` (`script_id`),
   CONSTRAINT `fk_rails_ea89da59a6` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`) ON DELETE CASCADE
@@ -2245,6 +2245,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20211031001041'),
 ('20211102012556'),
 ('20211102022030'),
-('20211104000300');
+('20211104000300'),
+('20211104021132');
 
 
