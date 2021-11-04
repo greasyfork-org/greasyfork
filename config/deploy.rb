@@ -12,6 +12,7 @@ set :init_system, :systemd
 set :puma_systemctl_user, :system
 set :puma_service_unit_name, 'puma'
 set :thinking_sphinx_roles, 'workers'
+set :assets_roles, [:web, :worker]
 
 set :default_env, {
   'PATH' => '$PATH:/www/sphinx-3.2.1/bin',
