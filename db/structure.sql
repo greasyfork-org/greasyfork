@@ -1442,10 +1442,10 @@ CREATE TABLE `moderator_actions` (
   `created_at` datetime NOT NULL,
   `script_id` int(11) DEFAULT NULL,
   `moderator_id` int(11) NOT NULL,
-  `action` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `action` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `reason` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `private_reason` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `private_reason` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `report_id` bigint(20) DEFAULT NULL,
   `script_report_id` bigint(20) DEFAULT NULL,
   `script_lock_appeal_id` int(11) DEFAULT NULL,
@@ -2244,6 +2244,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20210927005947'),
 ('20211031001041'),
 ('20211102012556'),
-('20211102022030');
+('20211102022030'),
+('20211104000300');
 
 
