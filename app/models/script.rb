@@ -446,6 +446,10 @@ class Script < ApplicationRecord
     self.license_text = text
   end
 
+  def url
+    return url_helpers.script_url(self, locale: nil)
+  end
+
   def code_url
     return url_helpers.library_js_script_url(self, version: newest_saved_script_version.id, name: url_name) if library?
 
