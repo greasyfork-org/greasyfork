@@ -99,9 +99,13 @@ async function doInstall(installLink) {
       xhr.overrideMimeType("text/plain");
       xhr.send();
 
-      gtag('event', 'Script install', {
-        'value': installLink.getAttribute('data-script-id')
-      });
+      try {
+        gtag('event', 'Script install', {
+          'value': installLink.getAttribute('data-script-id')
+        });
+      } catch (ex) {
+        // Oh well, don't die.
+      }
 
       // Give time for the ping request to happen.
       setTimeout(function () {
