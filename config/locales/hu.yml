@@ -45,6 +45,8 @@ hu:
     deleted_author_notice: "A szkriptet törölték, ezért elérhetetlen másoknak. Visszavonhatod a törlést az Eltávolítás tab alatt."
     version_notice_html: "Mint %{date}. Lásd %{latest_version_link}"
     version_notice_latest_version_link: "a legutóbbi verzió"
+    reported_notice: "\"%{script_name}\" jelentve lett és felülvizsgálat alatt áll egy moderátor által."
+    reported_notice_for_author: "Ez a szkript nem elérhető mások számára amíg felül nem vizsgálta egy moderátor."
     info_page: "Információ"
     code_page: "Kód"
     history_page: "Történet"
@@ -55,12 +57,26 @@ hu:
     delete_page: "Eltávolítás"
     delete_explanation: "A szkriptjének törlése elérhetetlenné teszi azt mindenki számára, kivéve Önt és a Greasy Fork moderátorokat. A törlést bármikor visszavonhatja."
     delete_update_behaviour: "Mi történjen azokkal a felhasználókkal, akik már korábban telepítették a szkriptjeit?"
+    delete_update_behaviours:
+      keep: "Úgy hagyják ahogy van."
+      blanked: "Frissítve lesznek egy üres szkriptté. Ez akkor hasznos amikor a szkript negatív hatást gyakorol azokra az oldalakra ahol fut."
+      redirect: "Át lesznek irányítva és frissítve arra a szkriptre amit lentebb megadtál."
     delete_permanently_heading: "Végleges törlés"
+    delete_permanently_explanation_html: >-
+        <p>Ha véglegesen kitörlöd a szkripted , akkor a szkriptet és a hozzátartozó
+        adatok is törölve lesznek, kivéve a fórum beszélgetések és az ahhoz tartozó
+        moderátori tevékenységek naplózásai.</p><p>A szkripted véglegesen törölve
+        lesz a kérésed után 7 nappal. Ez idő alatt bármikor megszakíthatod a törlés
+        menetét. Ha nem, akkor senki, még a moderátorok sem fogják tudni visszaállítani
+        a szkriptedet.</p>
     delete_permanently_confirm: "Biztosan véglegesen törölni akarod a szkripted?"
     delete_permanently_submit: "Végleges törlés kérése"
     delete_permanently_immediate_submit: "Végleges törlés"
+    delete_permanently_notice: "A végleges törlésre irányuló kérést feldolgoztuk. A szkripted 7 napon belül törölve lesz."
+    delete_permanently_already_requested: "Ekkor kértél végleges törlést: %{datetime}."
     delete_permanently_notice_immediate: "A szkript végleges törlésre került."
     cancel_delete_permanently_submit: "Végleges törlési kérelem visszavonása"
+    cancel_delete_permanently_notice: "A végleges törlésre irányuló kérelmed megszakítva. A szkripted még nem látható mások számára."
     delete_permanently_rejected_locked: "Ez a szkript zárolva van és véglegesen nem törölhető"
     admin_page: "Admin"
     admin:
@@ -68,6 +84,15 @@ hu:
       promoted_heading: "Javasolt szkript"
       promoted_explanation: "Miután telepítették ezt a szkriptet, %{site_name} javasolhat a felhasználónak egy másik szkriptet, választásod szerint."
       promoted_script_label: "Javasolt szkript URL címe"
+      promoted_submit: "Előléptetett szkript beállítása"
+      sync_heading: "Forrás szinkronizálás"
+      locale_heading: "Alapértelmezett hely"
+      locale_example_html: "Ennek a szövegnek a helye:<i>%{text}</i>"
+      update_locale: "Hely frissítése"
+      no_moderator_logs: "Még nem nézte meg ezt a szkriptet egy moderátor sem."
+      compare_title: "Másik szkripttel való összehasonlítás"
+      compare_button: "Összehasonlítás"
+      compare_must_be_local_url: "Az összehasonlítás ezen az URL-en lehetséges %{site_name}."
     history_title: "%{script_name} - Verziótörténet"
     history_only_code_changes_info: "Ezek a szkript azon változatai, ahol a kód módosítva lett."
     history_all_changes_link: "Minden verzió mutatása"
@@ -77,8 +102,10 @@ hu:
     code_title: "%{script_name} - Forráskód"
     feedback_title: "%{script_name} - Visszajelzés"
     feedback_no_discussions_html: "Még nem szóltak hozzá %{start_first_discussion_link}"
+    feedback_no_discussions_on_page_form: "Még senki sem indított beszélgetést."
     feedback_start_first_discussion_link: "Legyél az első, aki hozzászól."
     feedback_favoriters_heading: "Kedvelők"
+    feedback_favoriters_user_list_html: "Ez a szkript kedvelve lett%{user_list} által."
     feedback_no_favoriters: "Ez a szkript még senkinek sem a kedvence."
     feedback_sign_in_to_favorite: "Jelentkezzen be, hogy a kedvencekhez adhassa."
     stats_title: "%{script_name} - Statisztikák"
@@ -91,10 +118,31 @@ hu:
     stats_raw_data_header: "Nyers adat"
     stats_download_raw_data_html: "MInden adat letöltése mint: %{links}"
     stats_no_data: "Ismeretlen"
+    stats_filters: "Szűrő: %{filter_options}"
+    stats_filter_options:
+      month: Előző 30 nap
+      year: Előző 365 nap
+      all: Mindig
     derivatives_title: "%{script_name} - Függőségek"
+    derivatives_exact_copies_heading: "Pontos másolatok."
+    derivatives_exact_copies_list_intro: "A következő szkriptek tartalmazzák ugyanazt a kódot amilyen a tied is:"
+    derivatives_exact_copies_item_html: "%{script_link}készítette%{author_links} - verziók: %{version_list}"
+    derivatives_exact_copes_none: "Nincsenek más szkriptek a%{site_name} oldalon, amik tartalmaznák ugyanazt a kódot mint amit ez a szkript is."
+    derivatives_similar_heading: "Hasonló szkriptek"
+    similarity_score:
+      high: Nagyon hasonló
+      medium: Többnyire hasonló
+      low: Valamennyire hasonló
+      none: Nem hasonló
+    derivatives_similar_none: "Nincs más, hasonló szkript a tiednél."
+    derivatives_similar_last_check_html: "Mi ekkor néztük meg, hogy van e hasonló szkript a tiedhez:%{date}."
+    derivatives_similar_last_check_soon: "Mindjárt leellenőrizzük ,hogy van-e hasonló szkript a tiedhez."
+    derivatives_similar_last_check_again_soon_html: "Legutóbb ekkor ellenőriztük le, hogy van-e hasonló szkript a tiedéhez:%{date}. Rövidesen újra ellenőrizzük."
+    derivatives_similar_check_now: "Újraellenőrzés most"
     listing_title_all_sites: "Felhasználói szkriptek minden oldalhoz"
     listing_description_all_sites: "Felhasználói szkriptek, amik funkciókat adnak hozzá és hibákat javítanak minden oldalon"
     listing_title_for_site: "Felhasználói szkriptek %{site} oldalhoz"
+    listing_description_for_site: "Felhasználói szkriptek amik tulajdonságokat adnak hozzá és programhibákat távolítanak el ezen az oldalon: %{site}."
     listing_title_for_search: "'%{search_string}' felhasználói szkriptek"
     listing_title_for_code_search: "'%{search_string}' felhasználói szkriptek"
     listing_title_generic: "Felhasználói szkriptek"
@@ -111,12 +159,18 @@ hu:
     listing_filter_by_site_label: "Ezekhez tartozó szkriptek mutatása"
     listing_filter_by_site_disable: "Összes"
     listing_filter_by_site_all_sites: "(Minden oldal)"
+    listing_filter_by_language_label: "Nyelv:"
     listing_filter_by_site_more_sites: "Több..."
     listing_no_scripts: "Nem található szkript."
     listing_created_feed: "Új szkriptek"
     listing_updated_feed: "Frissített szkriptek"
     listing_none: "(Semmi)"
+    listing_language_all: "Összes"
+    listing_language_js: "JavaScript"
+    listing_language_css: "CSS"
     import: "Szkriptek importálása"
+    new: "Egy általad írt szkript publikálása"
+    new_css: "Egy általad írt stílus publikálása."
     support_site: "Látogassa meg a fejlesztő támogatási oldalát."
     support_email: "E-mail küldés a fejlesztőnek támogatás céljából."
     contribution_no_amount: "Köszönje meg %{author} fejlesztőnek egy támogatással."
@@ -133,24 +187,41 @@ hu:
     sets_add_exclusion: "Kihagyás ebből %{set_name}"
     sets_add_to_new: "Hozzáadás új gyűjteményhez"
     rules_summary_link_to_full: "Olvassa el a szabályokat."
+    syncing_notice_sync_type_automatic: "Automatikus szinkronizálás beállítása%{sync_identifier}"
     upload_label: "Vagy töltse fel:"
     enable_source_code_editor_label: "Szintaxis-kiemelő engedélyezése"
     changelog_note: "Mi változott ebben a verzióban?"
+    additional_info_note: "Egy még részletesebb leírás, útmutatók, stb."
     post_new_script: "Szkript feltöltése"
     post_updated_script: "Új verzió feltöltése"
     type_1_html: "Nyilvános felhasználói szkript - egy felhasználói szkript, amit mindenki láthat és használhat"
+    type_2_html: "Nem listázott felhasználói szkript - egy felhasználói szkript (félig-) privát használatra. Elérhető közvetlen hozzáféréssel, de nincs belinkelve sehova se ezen az oldalon:%{site_name}."
     override_warning_checkbox_label: "Mindenképp menti?"
+    warning_version_not_incremented_html: "Frissítetted a kódot, de nem növelted a <code>@version</code> számot. Azok akik korábban feltelepítették a szkriptedet, nem fognak frissítést kapni."
     warning_version_missing_html: "Nem adta meg a <code>@version</code>-t. A <code>@version</code> önleíró kulcs lehetővé teszi a szkriptje frissítéseinek keresését a felhasználói szkript kezelőkben."
     warning_version_missing_generate_automatically_html: "<code>@version</code> automatikus generálása?"
     warning_namespace_missing_html: "Nem adta meg a <code>@namespace</code>-t. A <code>@namespace</code> önleíró kulcs lehetővé teszi, hogy a felhasználók frissítés végett újratelepítsék a szkriptet."
     warning_namespace_missing_generate_automatically_html: "Egy <code>@namespace</code> létrehozása automatikusan?"
+    warning_namespace_changed_html: "Megváltozott a <code>@namespace</code>. Egy következetes <code>@namespace </code>lehetővé teszi a felhasználók számára, hogy újratelepíthessék a szkriptedet, hogy frissíteni lehessen."
+    warning_potentially_minified_html: "A szkripted úgy tűnik tartalmaz lekicsinyített (összesűrített) kódot. Ha egy kicsinyített könyvtárat használsz, akkor helyette <code>@require</code>azt, a %{allowed_requires_link}. A kicsinyített szkriptek el lesznek távolítva."
+    warning_automatic_sensitive_html: "A szkripted a(z)%{sensitive_domains}oldalra érzékeny, ezért felnőtt tartalomként lesz kezelve."
     warning_potentially_minified_allowed_requires_link: "egyik hely ezek közül"
+    warning_code_previously_posted_html: "Ez a kód már ki lett rakva a %{script_links} helyen. Azokat a szkripteket amiket újra kiraktak a hivatalos szerzőn kívüli személyek, azok el lesznek távolítva a moderátorok által."
     additional_info_locale_prompt: "(Válasszon nyelvet)"
     additional_info_add_localized: "Egy lokalizált további információs mező hozzáadása"
     additional_info_locale_repeated: "A '%{locale_code}' nyelvhez csak egy további információs mezőt adjon meg."
     localized_additional_info_with_no_name: "Meg volt adva további információ a '%{locale_code}' nyelvhez, de @name:%{locale_code} nem volt megadva."
     code_syncing_from_url_html: "A szkript kódja innen fog szinkronizálódni: %{field}"
     sync_type_intro: "A szkript szinkronizálva lesz ide:"
+    sync_type_1:
+      name: Kézikönyv
+      description: Csak akkor lesz frissítve,ha elindítod.
+    sync_type_2:
+      name: Automatikus
+      description: Bizonyos időközönként frissítve lesz
+    sync_type_3:
+      name: automatizmusok
+    sync_name_and_description: "%{name} - %{description}"
     sync_success_info_html: "A legutóbbi sikeres frissítés %{date}-kor volt."
     sync_never_succeeded: "A szinkronizáció sosem sikerült."
     update_and_sync: "Frissítés és szinkronizálás most"
