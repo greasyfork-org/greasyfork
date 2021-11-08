@@ -6,7 +6,6 @@ require 'css_to_js_converter'
 require 'css_parser'
 require 'js_parser'
 require 'digest'
-require 'js_cleanup'
 
 class ScriptsController < ApplicationController
   include ScriptAndVersions
@@ -620,11 +619,12 @@ class ScriptsController < ApplicationController
     @other_script = get_script_from_input(params[:compare], allow_deleted: true)
 
     if @other_script.is_a?(Script)
-      other_code = @other_script.newest_saved_script_version.code
-      this_code = @script.newest_saved_script_version.code
       if params[:terser] == '1' && current_user&.moderator?
-        other_code = JsCleanup.cleanup(other_code)
-        this_code = JsCleanup.cleanup(this_code)
+        other_code = @other_script.cleaned_code.code
+        this_code = @script.cleaned_code.code
+      else
+        other_code = @other_script.newest_saved_script_version.code
+        this_code = @script.newest_saved_script_version.code
       end
       @diff = Diffy::Diff.new(other_code, this_code, include_plus_and_minus_in_html: true, include_diff_info: true, diff: diff_options).to_s(:html).html_safe
     else
