@@ -280,9 +280,9 @@ module ScriptListings
         return "#{column_prefix}default_name ASC, #{column_prefix}id"
       else
         params[:sort] = nil
-        return "myweight DESC, #{column_prefix}daily_installs DESC, #{column_prefix}id" if for_sphinx
+        return "myweight DESC, #{column_prefix}fan_score DESC, #{column_prefix}id" if for_sphinx
 
-        return "#{column_prefix}daily_installs DESC, #{column_prefix}id"
+        return "#{column_prefix}fan_score DESC, #{column_prefix}id"
       end
     end
   end
