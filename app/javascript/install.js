@@ -99,6 +99,10 @@ async function doInstall(installLink) {
       xhr.overrideMimeType("text/plain");
       xhr.send();
 
+      gtag('event', 'Script install', {
+        'value': installLink.getAttribute('data-script-id')
+      });
+
       // Give time for the ping request to happen.
       setTimeout(function () {
         location.href = installLink.href;
