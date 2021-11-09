@@ -35,7 +35,7 @@
       <% if @script.deleted? %>
         <p id="deleted-note">
           <% if @script.locked? && !@script.self_deleted %>
-            <%= it('scripts.deleted_locked_author_notice_html', delete_reason: delete_reason(@script), appeal_link: new_script_script_lock_appeal_path(@script)) %>
+            <%= it('scripts.deleted_locked_author_notice_html', delete_reason: delete_reason(@script), appeal_link: new_script_script_lock_appeal_path(@script), code_rules_link: help_code_rules_path, site_name: site_name) %>
           <% else %>
             <%= t('scripts.deleted_author_notice') %>
           <% end %>

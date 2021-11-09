@@ -76,7 +76,7 @@ en:
     deleted_notice: "This script has been deleted."
     deleted_notice_with_related: "The script you requested has been deleted, but here are some related scripts."
     deleted_undelete_notice_html: "This script has been locked by a moderator and cannot be undeleted. Reason provided is: \"<i>%{delete_reason}</i>\"."
-    deleted_locked_author_notice_html: "This script has been deleted by a moderator and is not accessible to others. Reason provided is: \"<i>%{delete_reason}</i>\". You can %{appeal_link:submit an appeal} of this deletion."
+    deleted_locked_author_notice_html: "This script has been deleted by a moderator and is not accessible to others. Reason provided is: \"<i>%{delete_reason}</i>\". Please review %{code_rules_link:%{site_name}'s rules}. If you believe the deletion to be in error, you can %{appeal_link:submit an appeal} of this deletion. Do not repost this script; doing so may result in a ban from %{site_name}."
     deleted_author_notice: "This script has been deleted and is not accessible to others. You can undelete it from the Delete tab."
     # test displayed when viewing a previous version. date is a date and time (no "ago"), latest_version_link is a link to the newest version whose text is version_notice_latest_version_link
     version_notice_html: "As of %{date}. See %{latest_version_link}."
@@ -1604,9 +1604,9 @@ en:
       report_upheld_offender:
         subject: "Your script %{script_name} on %{site_name} has been deleted"
         text: |
-          Your script %{script_name} on %{site_name} has been deleted by a moderator and is no longer accessible publicly. You can review the report at %{report_url}.
+          Your script %{script_name} on %{site_name} has been deleted by a moderator and is no longer accessible publicly. You can review the report at %{report_url} and %{site_name}'s rules at %{code_rules_url}.
 
-          If you believe this to be in error, or if you've updated the script to fix the issue, you can file an appeal at %{appeal_url}. If you have general questions on %{site_name} policy, please ask at https://greasyfork.org/forum/.
+          If you believe this to be in error, or if you've updated the script to fix the issue, you can file an appeal at %{appeal_url}, and a moderator will review it. Do not repost this script; doing so may result in a ban from %{site_name}.
       report_dismissed_offender:
         subject: "A report on your script %{script_name} on %{site_name} has been dismissed"
         text: "A report on your script %{script_name} on %{site_name} has been dismissed by a moderator. Your script will remain active. You can review this report at %{report_url}. If you have any questions, please visit https://greasyfork.org/forum/."
