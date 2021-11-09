@@ -28,6 +28,7 @@ ja:
       other: "%{site} で実行されるスクリプト一覧 (%{count}件)"
     applies_to_all: "すべてのサイト"
     install: "スクリプトをインストール"
+    install_css: "ユーザースタイルとしてインストール"
     install_help: "?"
     install_help_title: "インストール方法"
     update: "バージョン %{version} へアップデート"
@@ -222,6 +223,8 @@ ja:
       name: 説明書
     sync_type_2:
       name: 自動
+    sync_type_3:
+      name: Web Hook
     sync_failed_info_html: "%{date} に同期に失敗しました。結果: %{error}"
     sync_success_info_html: "%{date} に同期に成功しました。"
     sync_never_succeeded: "まだ一度も同期に成功していません。"
@@ -308,6 +311,8 @@ ja:
       js: "スクリプトを投稿"
       css: "スタイルシートを投稿"
     update_title: "%{script}を更新する"
+    install_help_dialog:
+      close_dialog: OK
     antifeatures:
       warning_title: このスクリプトは反作用を含みます
       author_explanation_intro: "スクリプト作者による説明:"
@@ -323,6 +328,8 @@ ja:
           description_html: このスクリプトは、アクティブ時に<b>あなたのデバイスを活用して暗号通貨の採掘を行います</b>。
         referral-link:
           title: 紹介リンク
+        membership:
+          title: メンバーシップ
         payment:
           title: お支払い
       install_anyway: スクリプトをインストール
@@ -515,6 +522,7 @@ ja:
     listing_title: "ユーザー一覧"
     listing_banned_filter:
       banned: "規制中"
+      not_banned: "規制されていません"
       all: "すべて"
     listing_author_filter:
       script_author: "作者"
@@ -609,10 +617,14 @@ ja:
       post_new_script_link_text: 'スクリプトの投稿'
     code_rules:
       title: "投稿されるスクリプトに関する %{site_name} のルール"
+      functionality_header: 性能
       monetization_html: ユーザーではなく<em>開発者</em>にとっての利益となる機能(トラッキングや広告、マイニングなど)は認められていますが、それらは %{antifeature_link:<code>@antifeature</code> メタキー} で開示されなければなりません。
       code_header: コード
+      copyright_header: 著作権
     external_scripts:
       title: "外部スクリプトにおける %{site_name} のポリシー"
+      test_url:
+        result_ok: URLは使用可能です
     script_rewriting:
       title: "%{site_name} は投稿されたスクリプトをどのように書き直すか"
       content_html: >
