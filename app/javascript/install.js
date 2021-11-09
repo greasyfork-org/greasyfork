@@ -101,7 +101,8 @@ async function doInstall(installLink) {
 
       try {
         gtag('event', 'Script install', {
-          'value': installLink.getAttribute('data-script-id')
+          'event_label': installLink.getAttribute('data-script-id'),
+          'value': 1
         });
       } catch (ex) {
         // Oh well, don't die.
