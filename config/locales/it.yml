@@ -43,7 +43,7 @@ it:
     deleted_notice: "Questo script è stato rimosso."
     deleted_notice_with_related: "Lo script che hai cercato è stato rimosso, ma ci sono alcuni script simili."
     deleted_undelete_notice_html: "Lo script è stato bloccato da un moderatore e non può essere cancellato. La motivazione fornita è: \"<i>%{delete_reason}</i>\"."
-    deleted_locked_author_notice_html: "Lo script è stato eliminato da un moderatore e non è accessibile agli altri. La ragione fornita è: \"<i>%{delete_reason}</i>\". Puoi %{appeal_link:presentare ricorso} a questa eliminazione."
+    deleted_locked_author_notice_html: "Lo script è stato eliminato da un moderatore e non è accessibile ad altri. La ragione fornita è: \"<i>%{delete_reason}</i>\". Per favore consulta le %{code_rules_link:regole di %{site_name}}. Se credi che la cancellazione sia stata frutto di un errore, puoi %{appeal_link:presentare ricorso} a questa eliminazione. Non ripubblicare lo script; facendolo potresti essere bandito da %{site_name}."
     deleted_author_notice: "Lo script è stato cancellato e non è accessibile da altri. Puoi ripristinarlo dalla finestra Cancella."
     version_notice_html: "Versione datata %{date}. Vedi la nuova versione %{latest_version_link}."
     version_notice_latest_version_link: "l'ultima versione"
@@ -734,6 +734,7 @@ it:
       miscellaneous_header: Miste
       keywords_html: Gli scripts non devono contenere <code>@include</code>, <code>@match</code> o parole chiave per siti per i quali non forniscano funzionalità.
       adult_content_rule: Gli scripts che includono contenuti per adulti o che sono per siti con contenuti per adulti devono essere segnati come tali per garantire agli altri utenti l'opzione di vederli o meno.
+      reposting_deleted: Non ripubblicare gli scripts che sono stati eliminati a causa di violazioni delle regole; usa la funzione ricorso invece. Ripubblicare gli scripts eliminati potrebbe risultare in un ban.
       reporting: Se noti uno script che ricade al di fuori di questi parametri, per favore segnalalo andando sul collegamento Feedback per quello script e scegliendo l'opzione "Segnala lo script".
     external_scripts:
       title: "Politiche di %{site_name} per gli script esterni"
@@ -1163,12 +1164,12 @@ it:
     new_button: Crea conversazione
     title_html:
       one: Conversazione con%{users}
-      other: Conversazioni con %{users}
+      other: Conversazione con %{users}
     send_message: Invia messaggio
     conversation_list_title: Conversazioni
     conversation_link_html:
       one: Conversazione con %{users}
-      other: Conversazioni con %{users}
+      other: Conversazione con %{users}.
     conversation_info_html: Ultimo messaggio alle %{date} da %{user}
     no_conversations: Non hai ancora avuto nessuna conversazione.
     no_recent_conversations: Non hai nessuna conversazione recente.
@@ -1300,10 +1301,9 @@ it:
       report_upheld_offender:
         subject: "Il tuo script %{script_name} su%{site_name} è stato eliminato"
         text: |
-            Il tuo script %{script_name} su %{site_name} è stato eliminato da un moderatore e non è più accessibile pubblicamente. Puoi consultare la segnalazione su %{report_url}.
+            Il tuo script %{script_name} su %{site_name} è stato eliminato da un moderatore e non è più accessibile pubblicamente. Puoi consultare la segnalazione su %{report_url} e le regole di %{site_name} su %{code_rules_url}.
 
-            Se credi che si sia trattato di un errore, o se hai aggiornato lo script per risolvere il problema, puoi presentare ricorso su %{appeal_url}
-            Se hai delle domande generali sulla linea di condotta di %{site_name}, per favore chiedi informazioni su https://greasyfork.org/forum/.
+            Se credi che si sia trattato di un errore, o se hai aggiornato lo script per risolvere il problema, puoi presentare ricorso su %{appeal_url}, e un moderatore lo visionerà. Non ripubblicare questo script; facendolo potresti essere bandito da %{site_name}.
       report_dismissed_offender:
         subject: "Una segnalazione sul tuo script %{script_name} su %{site_name} è stata respinta"
         text: "Una segnalazione sul tuo script %{script_name} su %{site_name} è stata respinta da un moderatore. Il tuo script rimarrà attivo. Puoi consultare questa segnalazione su %{report_url}. Se hai delle domande, per favore visita https://greasyfork.org/forum/."

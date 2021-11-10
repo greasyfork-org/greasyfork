@@ -42,7 +42,6 @@ zh-CN:
     deleted_notice: "此脚本已被删除。"
     deleted_notice_with_related: "请求的脚本已被删除。不过，这里还有一些可能类似的脚本。"
     deleted_undelete_notice_html: "该脚本已被管理员锁定并删除且无法撤销。锁定原因：“<i>%{delete_reason}</i>”。"
-    deleted_locked_author_notice_html: "该脚本已被管理员删除，其他用户无法访问。删除的原因是：“<i>%{delete_reason}</i>”。您可以对本次删除 %{appeal_link:提交申诉}。"
     deleted_author_notice: "其他用户不能访问该脚本，因为它已经被删除。你可以在“删除”面板中取消删除。"
     version_notice_html: "您查看的为 %{date} 提交的版本。查看 %{latest_version_link}。"
     version_notice_latest_version_link: "最新版本"
@@ -1218,12 +1217,6 @@ zh-CN:
         text: "你的脚本 %{script_name} 被举报违反 %{site_name} 的站点条例。具体的理由是：%{reason}。你可以在 %{report_url} 查看该则举报并提交申诉。如果不进行申诉，你的脚本可能会被管理员删除。如果有任何问题，请访问论坛 https://greasyfork.org/forum/ 。"
       report_upheld_offender:
         subject: "您的脚本 %{script_name} 在 %{site_name} 上已被删除"
-        text: |
-            您在 %{site_name} 上的 %{script_name} 脚本已被一名管理员删除，不再对公众可见。详情见此报告：%{report_url}。
-
-            如有疑问，请访问 https://greasyfork.org/forum/。
-
-            如果这是一次误会，或者您已更新脚本而解决提到的问题，可以到 %{appeal_url} 提交申诉。有关 %{site_name} 政策的一般性问题，请到 https://greasyfork.org/forum/ 询问。
       report_dismissed_offender:
         subject: "%{site_name} 上的一则针对您的 %{script_name} 脚本的举报已被驳回"
         text: "%{site_name} 上的一则针对您的 %{script_name} 脚本的举报已由管理员驳回，您的脚本继续保留。详情查阅此报告: %{report_url}。如有疑问，请访问 https://greasyfork.org/forum/。"

@@ -45,7 +45,7 @@ sk:
     deleted_notice: "Tento skript bol odstránený."
     deleted_notice_with_related: "Skript, ktorý požadujete bol odstránený, ale tu sú podobné skripty."
     deleted_undelete_notice_html: "Tento skript bol zamknutý moderátorom a nemôže byť obnovený. Uvedený dôvod je \"<i>%{delete_reason}</i>\"."
-    deleted_locked_author_notice_html: "Tento skript bol odstránený moderátorom a nie je ostatným prístupný. Uvedený dôvod je \"<i>%{delete_reason}</i>\". Proti tomuto odstráneniu sa môžete {appeal_link:odvolať}."
+    deleted_locked_author_notice_html: "Tento skript bol odstránený moderátorom a je pre ostatných nedostupný. Dôvodom je : \"<i>%{delete_reason}</i>\". Prosím, prečítajte si %{code_rules_link:% Pravidlá {site_name}}. Ak sa domnievate, že odstránenie je neoprávnené, môžete %{appeal_link:podať odvolanie} voči tomuto odstráneniu. Opätovné zverejnenie odstránených skriptov môže viesť k banu zo stránky %{site_name}."
     deleted_author_notice: "Tento skript bol odstránený moderátorom a nie je ostatným prístupný. Môžete ho obnoviť zo záložky Odstrániť."
     version_notice_html: "Verzia zo dňa %{date}. Pozri %{latest_version_link}."
     version_notice_latest_version_link: "najnovšiu verziu"
@@ -1319,9 +1319,9 @@ sk:
       report_upheld_offender:
         subject: "Váš skript %{script_name} na %{site_name} bol odstránený"
         text: |
-            Váš skript %{script_name} na %{site_name} bol odstránený moderátorom a už nie je dostupný pre verejnosť. Správu o hlásení si môžete pozrieť na %{report_url}.
+            Váš skript %{script_name} na %{site_name} bol odstránený moderátorom a už nie je dostupný pre verejnosť. Správu o hlásení si môžete pozrieť na %{report_url} a pravidlá stránky %{site_name} na %{code_rules_url}.
 
-            Ak sa domnievate, že ide o chybu, alebo ak ste skript aktualizovali a problém odstránili, môžete podať odvolanie na %{appeal_url}. Ak máte všeobecné otázky na %{site_name}, prosím, navštívte https://greasyfork.org/forum/.
+            Ak sa domnievate, že ide o chybu, alebo ak ste skript aktualizovali na odstránenie chyby, môžete podať odvolanie na %{appeal_url}, a moderátor ho posúdi. Opätovné zverejnenie tohto skriptu môže viesť k banu na stránke %{site_name}.
       report_dismissed_offender:
         subject: "Sťažnosť na váš skript %{script_name} na %{site_name} bola zamietnutá"
         text: "Sťažnosť na váš skript %{script_name} na %{site_name} bola zamietnutá moderátorom. Váš skript zostane aktívny. Správu o hlásení si môžete pozrieť na %{report_url}. Ak máte nejaké otázky, prosím, navštívte https://greasyfork.org/forum/."

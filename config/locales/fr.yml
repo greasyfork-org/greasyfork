@@ -42,7 +42,6 @@ fr:
     deleted_notice: "Ce script a été supprimé."
     deleted_notice_with_related: "Le script que vous avez demandé a été supprimé, mais voici quelques scripts similaires."
     deleted_undelete_notice_html: "Ce script a été bloqué par un modérateur et ne peut pas être restauré. Pour les raisons suivantes: \"<i>%{delete_reason}</i>\"."
-    deleted_locked_author_notice_html: "Ce script a été supprimé par un modérateur et n'est pas accessible aux autres. La raison fournie est : \"<i>%{delete_reason}</i>\". Vous pouvez %{appeal_link:faire appel} pour cette suppression."
     deleted_author_notice: "Ce script a été supprimé et n'est plus accessible aux autres. Vous pouvez le restaurer à partir de l'onglet Supprimer."
     version_notice_html: "Version au %{date}. Voir %{latest_version_link}."
     version_notice_latest_version_link: "la dernière version"
@@ -1275,10 +1274,6 @@ fr:
         text: "Votre script %{script_name} a été signalé comme non conforme aux règles de %{site_name}. La raison spécifique évoquée: %{reason}. Vous pouvez consulter ce rapport à l'adresse %{report_url} et soumettre une réfutation. Si vous ne soumettez pas de réfutation, votre script peut être supprimé par les modérateurs. Si vous avez des questions, veuillez visiter https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Votre script %{script_name} par %{site_name} a été supprimé"
-        text: |
-            Votre script %{script_name} sur %{site_name} a été supprimé par un modérateur et n'est plus accessible publiquement. Vous pouvez consulter le rapport à l'adresse suivante:%{report_url}.
-
-            Si vous pensez qu'il s'agit d'une erreur ou si vous avez mis à jour ce script pour résoudre le problème, vous pouvez faire une demande de restauration à l'adresse suivante:%{appeal_url}. Si vous avez des questions générales sur la politique de %{site_name}, veuillez les poser sur https://greasyfork.org/forum/.
       report_dismissed_offender:
         subject: "Un rapport sur votre script %{script_name} par %{site_name} a été rejeté"
         text: "Un rapport sur votre script %{script_name} par %{site_name} a été rejeté par un modérateur. Votre script restera actif. Vous pouvez consulter le rapport sur %{report_url}. Si vous avez des questions, visiter https://greasyfork.org/fr/forum/."

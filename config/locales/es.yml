@@ -43,7 +43,6 @@ es:
     deleted_notice: "Este script ha sido borrado."
     deleted_notice_with_related: "El script que buscabas ha sido eliminado, así que aquí te dejamos algunos scripts alternativos."
     deleted_undelete_notice_html: "Un moderador ha bloqueado este script y no se puede restaurar. La razón es la siguiente: «<i>%{delete_reason}</i>»."
-    deleted_locked_author_notice_html: "Un moderador ha borrado este script y ya no es visible para el resto de usuarios. La razón es la siguiente: «<i>%{delete_reason}</i>». Puedes %{appeal_link:pedir que lo revisen otra vez} y darle otra oportunidad."
     deleted_author_notice: "Se ha borrado este script y ya no es visible para el resto de usuarios. Puedes restaurarlo desde la pestaña de borrado."
     version_notice_html: "Versión del día %{date}. Echa un vistazo a %{latest_version_link}."
     version_notice_latest_version_link: "la versión más reciente"
@@ -1195,10 +1194,6 @@ es:
         text: "Tu script %{script_name} ha sido denunciado por incumplir las normas de %{site_name}. El motivo específico es: %{reason}. Puedes revisar la denuncia en %{report_url} y enviar una reclamación. Si no envías una reclamación, tu script puede que sea eliminado por los moderadores. Si tienes preguntas, echa un vistazo en https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Tu script %{script_name} en %{site_name} ha sido eliminado."
-        text: |
-            Un moderador ha confirmado una denuncia y tu script %{script_name} en %{site_name} ha sido eliminado. Puedes ver la denuncia en %{report_url}.
-
-            Si crees que no tenemos razón, o si has actualizado el script para arreglar el problema, puedes reabrir el proceso en %{appeal_url}. Si tienes dudas puedes escribirnos en https://greasyfork.org/forum/.
       report_dismissed_offender:
         subject: "Tu script %{script_name} no parece incumplir las normas de %{site_name}"
         text: "Se ha revisado una denuncia en %{site_name} y tu script %{script_name} no parece incumplir las normas. Tu script seguirá activo. Puedes ver la denuncia en %{report_url}. Si tienes dudas puedes escribirnos en https://greasyfork.org/forum/."
