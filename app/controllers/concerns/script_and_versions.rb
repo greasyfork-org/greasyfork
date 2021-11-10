@@ -21,6 +21,11 @@ module ScriptAndVersions
     return false if current_user && (script.users.include?(current_user) || current_user.moderator?)
 
     if script.deleted?
+      if script.pure_404
+        render_deleted
+        return
+      end
+
       if script.replaced_by_script_id
         # Same action, different script.
         if params.include?(:script_id)

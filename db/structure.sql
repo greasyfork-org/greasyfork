@@ -1734,7 +1734,7 @@ CREATE TABLE `script_similarities` (
   KEY `fk_rails_3fba862a5b` (`other_script_id`),
   CONSTRAINT `fk_rails_3fba862a5b` FOREIGN KEY (`other_script_id`) REFERENCES `scripts` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_rails_a0ca33ef1d` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=48482701 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=48482901 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `script_sync_types`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1830,6 +1830,7 @@ CREATE TABLE `scripts` (
   `sync_attempt_count` int(11) NOT NULL DEFAULT 0,
   `delete_type` int(11) DEFAULT NULL,
   `disable_stats` tinyint(1) NOT NULL DEFAULT 0,
+  `pure_404` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
   KEY `index_scripts_on_delta` (`delta`),
   KEY `index_scripts_on_script_type_id` (`script_type_id`),
@@ -2248,6 +2249,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20211102022030'),
 ('20211104000300'),
 ('20211104021132'),
-('20211109015133');
+('20211109015133'),
+('20211110192948');
 
 
