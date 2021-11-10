@@ -5,7 +5,7 @@
 <% if @script.deleted? %>
 
   <% if @script.locked? && !moderator_view %>
-    <p><%= t('scripts.deleted_undelete_notice_html', delete_reason: @script.delete_reason) %></p>
+    <p><%= t('scripts.deleted_undelete_notice_html', delete_reason: delete_reason(@script)) %></p>
   <% else %>
     <%= form_tag(do_undelete_script_path) do |f| %>
       <% if moderator_view %>
