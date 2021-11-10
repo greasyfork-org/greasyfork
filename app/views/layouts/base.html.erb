@@ -53,6 +53,28 @@
     <% end %>
   </script>
 
+  <% if sleazy? %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZB1G3ZKC89"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-ZB1G3ZKC89');
+    </script>
+  <% else %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-7NMRNRYW7C"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-7NMRNRYW7C');
+    </script>
+  <% end %>
+
   <% if content_for(:head_bottom) %><%= yield(:head_bottom) %><% end %>
 </head>
 <body>
