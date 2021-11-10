@@ -23,13 +23,15 @@ class ScriptDuplicateCheckerJob < ApplicationJob
       other_scripts = other_scripts.where.not(id: up_to_date_script_ids)
     end
 
-    results = CodeSimilarityScorer.get_similarities(script, other_scripts)
+    [true, false].each do |tersed|
+      results = CodeSimilarityScorer.get_similarities(script, other_scripts, tersed: tersed)
 
-    return if results.none?
+      next if results.none?
 
-    ScriptSimilarity.where(script_id: script_id).delete_all
-    bulk_data = results.sort_by(&:last).last(100).map { |other_script_id, similarity| { script_id: script_id, other_script_id: other_script_id, similarity: similarity.round(3), checked_at: now } }
-    ScriptSimilarity.upsert_all(bulk_data)
+      ScriptSimilarity.where(script_id: script_id, tersed: tersed).delete_all
+      bulk_data = results.sort_by(&:last).last(100).map { |other_script_id, similarity| { script_id: script_id, other_script_id: other_script_id, similarity: similarity.round(3), checked_at: now, tersed: tersed } }
+      ScriptSimilarity.upsert_all(bulk_data)
+    end
 
     ScriptPreviouslyDeletedChecker.perform_later(script_id) if last_run.nil?
   end

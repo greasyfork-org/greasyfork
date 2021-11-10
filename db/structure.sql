@@ -1103,7 +1103,7 @@ CREATE TABLE `cleaned_codes` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_cleaned_codes_on_script_id` (`script_id`),
   CONSTRAINT `fk_rails_ea89da59a6` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=69581 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `comments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1192,7 +1192,7 @@ CREATE TABLE `daily_install_counts` (
   `install_date` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_daily_install_counts_on_script_id_and_ip` (`script_id`,`ip`)
-) ENGINE=InnoDB AUTO_INCREMENT=228461477 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=228461479 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `daily_update_check_counts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -1728,8 +1728,9 @@ CREATE TABLE `script_similarities` (
   `other_script_id` int(11) NOT NULL,
   `similarity` decimal(4,3) NOT NULL,
   `checked_at` datetime NOT NULL,
+  `tersed` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `index_script_similarities_on_script_id_and_other_script_id` (`script_id`,`other_script_id`),
+  UNIQUE KEY `script_similarity_search` (`script_id`,`other_script_id`,`tersed`),
   KEY `fk_rails_3fba862a5b` (`other_script_id`),
   CONSTRAINT `fk_rails_3fba862a5b` FOREIGN KEY (`other_script_id`) REFERENCES `scripts` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_rails_a0ca33ef1d` FOREIGN KEY (`script_id`) REFERENCES `scripts` (`id`) ON DELETE CASCADE
@@ -2246,6 +2247,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20211102012556'),
 ('20211102022030'),
 ('20211104000300'),
-('20211104021132');
+('20211104021132'),
+('20211109015133');
 
 
