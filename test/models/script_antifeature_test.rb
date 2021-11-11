@@ -13,6 +13,7 @@ class ScriptAntifeatureTest < ActiveSupport::TestCase
       // @namespace http://greasyfork.local/users/1
       // @antifeature ads We show you ads.
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = 2;
     JS
@@ -40,6 +41,7 @@ class ScriptAntifeatureTest < ActiveSupport::TestCase
       // @namespace http://greasyfork.local/users/1
       // @antifeature:en ads We show you ads.
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = 2;
     JS
@@ -69,6 +71,7 @@ class ScriptAntifeatureTest < ActiveSupport::TestCase
       // @antifeature:fr ads We show you ads hon hon.
       // @antifeature:es ads We show you ads jeje.
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = 2;
     JS
@@ -96,6 +99,7 @@ class ScriptAntifeatureTest < ActiveSupport::TestCase
       // @antifeature ads We show you ads.
       // @antifeature tracking We track you.
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = 2;
     JS
@@ -121,6 +125,7 @@ class ScriptAntifeatureTest < ActiveSupport::TestCase
       // @namespace http://greasyfork.local/users/1
       // @antifeature hacking We hack you.
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = 2;
     JS
@@ -144,6 +149,7 @@ class ScriptAntifeatureTest < ActiveSupport::TestCase
       // @namespace http://greasyfork.local/users/1
       // @antifeature ads
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = 2;
     JS

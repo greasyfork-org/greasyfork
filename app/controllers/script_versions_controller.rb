@@ -268,7 +268,7 @@ class ScriptVersionsController < ApplicationController
     params
       .require(:script_version)
       .permit(:code, :changelog, :changelog_markup, :version_check_override, :add_missing_version, :namespace_check_override,
-              :add_missing_namespace, :minified_confirmation, :sensitive_site_confirmation,
+              :add_missing_namespace, :minified_confirmation, :sensitive_site_confirmation, :license_missing_override,
               :not_js_convertible_override, :allow_code_previously_posted, attachments: [])
   end
 

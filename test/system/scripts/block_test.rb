@@ -13,6 +13,7 @@ class BlockTest < ApplicationSystemTestCase
       // @version 1.1
       // @namespace http://greasyfork.local/users/1
       // @include *
+      // @license MIT
       // ==/UserScript==
       location.href = "https://example.com/unique-test-value"
     JS
@@ -35,6 +36,7 @@ class BlockTest < ApplicationSystemTestCase
       // @version 1.1
       // @namespace http://greasyfork.local/users/1
       // @include *
+      // @license MIT
       // ==/UserScript==
       some.unique[value]
     JS
@@ -54,6 +56,7 @@ class BlockTest < ApplicationSystemTestCase
       // @version 1.1
       // @namespace http://greasyfork.local/users/1
       // @include *
+      // @license MIT
       // ==/UserScript==
       some.unique[value]
     JS
@@ -74,6 +77,7 @@ class BlockTest < ApplicationSystemTestCase
       // @version 1.1
       // @namespace http://greasyfork.local/users/1
       // @include *
+      // @license MIT
       // ==/UserScript==
       some.unique[value]
     JS
@@ -95,6 +99,7 @@ class BlockTest < ApplicationSystemTestCase
       // @version 1.1
       // @namespace http://greasyfork.local/users/1
       // @include *
+      // @license MIT
       // ==/UserScript==
       location.href = "something"
     JS

@@ -12,6 +12,7 @@ class UpdateTest < ApplicationSystemTestCase
       // @version 1.3
       // @namespace http://greasyfork.local/users/1
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = 1;
     JS
@@ -35,6 +36,7 @@ class UpdateTest < ApplicationSystemTestCase
       // @version 1.2
       // @namespace http://greasyfork.local/users/1
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = 1;
     JS
@@ -57,6 +59,7 @@ class UpdateTest < ApplicationSystemTestCase
       // @version 1.3
       // @namespace http://greasyfork.local/users/1
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = 1;
     JS
@@ -88,6 +91,7 @@ class UpdateTest < ApplicationSystemTestCase
       // @version 1.3
       // @namespace http://greasyfork.local/users/1
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = 1;
     JS
@@ -111,6 +115,7 @@ class UpdateTest < ApplicationSystemTestCase
       // @version 1.3
       // @namespace http://greasyfork.local/users/1
       // @include http://pornonthecob.com
+      // @license MIT
       // ==/UserScript==
       var foo = 1;
     JS

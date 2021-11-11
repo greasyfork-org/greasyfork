@@ -18,6 +18,7 @@ class ScriptLocalizationTest < ActiveSupport::TestCase
       // @namespace http://greasyfork.local/users/1
       // @version 1.0
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = "bar";
     JS
@@ -55,6 +56,7 @@ class ScriptLocalizationTest < ActiveSupport::TestCase
       // @namespace http://greasyfork.local/users/1
       // @version 1.0
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = "bar";
     JS
@@ -78,6 +80,7 @@ class ScriptLocalizationTest < ActiveSupport::TestCase
       // @namespace http://greasyfork.local/users/1
       // @version 1.0
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = "bar";
     JS
@@ -103,6 +106,7 @@ class ScriptLocalizationTest < ActiveSupport::TestCase
       // @namespace http://greasyfork.local/users/1
       // @version 1.0
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = "bar";
     JS
@@ -127,6 +131,7 @@ class ScriptLocalizationTest < ActiveSupport::TestCase
       // @namespace http://greasyfork.local/users/1
       // @version 1.0
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = "bar";
     JS
@@ -149,6 +154,7 @@ class ScriptLocalizationTest < ActiveSupport::TestCase
       // @namespace http://greasyfork.local/users/1
       // @version 1.0
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = "bar";
     JS
@@ -198,6 +204,7 @@ class ScriptLocalizationTest < ActiveSupport::TestCase
       // @namespace http://greasyfork.local/users/1
       // @version 1.0
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = "bar";
     JS
@@ -238,6 +245,7 @@ class ScriptLocalizationTest < ActiveSupport::TestCase
       // @version 1.0
       // @namespace http://greasyfork.local/users/1
       // @include *
+      // @license MIT
       // ==/UserScript==
       foo.baz();
     JS

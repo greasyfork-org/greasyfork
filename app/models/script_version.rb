@@ -98,6 +98,11 @@ class ScriptVersion < ApplicationRecord
     localized_attributes.select { |la| la.locale.nil? }.each { |la| la.locale = script.locale }
   end
 
+  before_save :set_missing_license_warned
+  def set_missing_license_warned
+    script.missing_license_warned = true if license_missing_override && !script.missing_license_warned
+  end
+
   after_create do
     script.reset_consecutive_bad_ratings!
   end
@@ -121,6 +126,7 @@ class ScriptVersion < ApplicationRecord
     w << :potentially_minified if potentially_minified?
     w << :automatic_sensitive if automatic_sensitive?
     w << :code_previously_posted if code_previously_posted?
+    w << :license_missing if license_missing? && !script.missing_license_warned
     return w
   end
 
@@ -226,9 +232,18 @@ class ScriptVersion < ApplicationRecord
     previously_posted_scripts.any?
   end
 
+  def license_missing?
+    return false if license_missing_override
+
+    # exempt scripts that are (being) deleted as well as libraries
+    return false if !script.nil? && (script.deleted? || script.library?)
+
+    parser_class.parse_meta(code)['license'].blank?
+  end
+
   attr_accessor :version_check_override, :add_missing_version, :namespace_check_override, :add_missing_namespace,
                 :minified_confirmation, :truncate_description, :sensitive_site_confirmation,
-                :allow_code_previously_posted, :previously_posted_scripts
+                :allow_code_previously_posted, :previously_posted_scripts, :license_missing_override
 
   def initialize(*args)
     # Allow code to be updated without version being upped
@@ -248,6 +263,7 @@ class ScriptVersion < ApplicationRecord
     # Allow code that was already posted elsewhere
     @allow_code_previously_posted = false
     @previously_posted_scripts = []
+    @license_missing_override = false
     super(*args)
   end
 
@@ -330,6 +346,7 @@ class ScriptVersion < ApplicationRecord
     @truncate_description = true
     @sensitive_site_confirmation = true
     @allow_code_previously_posted = true
+    @license_missing_override = true
   end
 
   def calculate_all(previous_description = nil)

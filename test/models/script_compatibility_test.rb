@@ -13,6 +13,7 @@ class ScriptCompatibilityTest < ActiveSupport::TestCase
       // @namespace http://greasyfork.local/users/1
       // @compatible firefox
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = 2;
     JS
@@ -41,6 +42,7 @@ class ScriptCompatibilityTest < ActiveSupport::TestCase
       // @compatible firefox
       // @compatible chrome Except for X
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = 2;
     JS
@@ -72,6 +74,7 @@ class ScriptCompatibilityTest < ActiveSupport::TestCase
       // @namespace http://greasyfork.local/users/1
       // @incompatible firefox
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = 2;
     JS
@@ -94,6 +97,7 @@ class ScriptCompatibilityTest < ActiveSupport::TestCase
       // @namespace http://greasyfork.local/users/1
       // @compatible firefox(24-27)
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = 2;
     JS
@@ -119,6 +123,7 @@ class ScriptCompatibilityTest < ActiveSupport::TestCase
       // @compatible firefox
       // @compatible crazybrowser
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = 2;
     JS

@@ -18,6 +18,7 @@ class ScriptValidationTest < ActiveSupport::TestCase
       // @version 1.0
       // @namespace http://greasyfork.local/users/1
       // @include *
+      // @license MIT
       // ==/UserScript==
       foo.baz();
     JS
@@ -35,6 +36,7 @@ class ScriptValidationTest < ActiveSupport::TestCase
       // @version 1.0
       // @namespace http://greasyfork.local/users/1
       // @include *
+      // @license MIT
       // ==/UserScript==
       foo.baz();
     JS

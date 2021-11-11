@@ -15,6 +15,7 @@ class AdditionalInfoTest < ApplicationSystemTestCase
       // @version 1.1
       // @namespace http://greasyfork.local/users/1
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = 1;
     JS
@@ -51,6 +52,7 @@ class AdditionalInfoTest < ApplicationSystemTestCase
       // @version 1.1
       // @namespace http://greasyfork.local/users/1
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = 1;
     JS

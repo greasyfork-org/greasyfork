@@ -91,6 +91,9 @@
             <% when :code_previously_posted %>
               <%= t('scripts.warning_code_previously_posted_html', script_links: script_version.previously_posted_scripts.map { |s| render_script(s) }.to_sentence.html_safe) %><br>
               <%= s.check_box(:allow_code_previously_posted, {}, true, false) %> <label for="script_version_allow_code_previously_posted"><%= t('scripts.override_warning_checkbox_label') %></label>
+            <% when :license_missing %>
+              <%= it('scripts.warning_license_missing_html', site_name: site_name, license_chooser_link: It.link('https://choosealicense.com/', target: 'license_chooser')) %><br>
+              <%= s.check_box(:license_missing_override, {}, true, false) %> <label for="script_version_license_missing_override"><%= t('scripts.warning_license_missing_override_html') %></label>
             <% else
               raise "Unknown warning #{w}"
           end %>

@@ -9,6 +9,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @updateURL		http://example.com
       // @namespace		http://greasyfork.local/users/1
       // @include *
+      // @license MIT
       // ==/UserScript==
       foo.baz();
     JS
@@ -18,7 +19,17 @@ class ScriptVersionTest < ActiveSupport::TestCase
     sv.script = Script.find(1)
     sv.rewritten_code = sv.calculate_rewritten_code
     sv.save!
-    expected_js = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @namespace		http://greasyfork.local/users/1\n// @include *\n// @version 123\n// ==/UserScript==\nfoo.baz();\n"
+    expected_js = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @namespace		http://greasyfork.local/users/1
+      // @include *
+      // @license MIT
+      // @version 123
+      // ==/UserScript==
+      foo.baz();
+    JS
     assert_equal expected_js, sv.rewritten_code
   end
 
@@ -45,6 +56,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @description		Unit test.
       // @version		1
       // @include *
+      // @license MIT
       // ==/UserScript==
       foo.baz();
     JS
@@ -62,6 +74,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @namespace http://greasyfork.local/users/1
       // @require		http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = "bar";
     JS
@@ -80,6 +93,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @version 1.0
       // @namespace http://greasyfork.local/users/1
       // @include *
+      // @license MIT
       // ==/UserScript==
       syn tax error
     JS
@@ -132,7 +146,17 @@ class ScriptVersionTest < ActiveSupport::TestCase
     script = Script.find(3)
     assert(script.valid?) && (script.script_versions.length == 1) && script.script_versions.first.valid?
     sv = ScriptVersion.new
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.2\n// @namespace http://greasyfork.local/users/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.2
+      // @namespace http://greasyfork.local/users/1
+      // @include *
+      // @license MIT
+      // ==/UserScript==
+      var foo = 2;
+    JS
     sv.script = script
     sv.calculate_all
     assert sv.valid?, sv.errors.full_messages.join(' ')
@@ -143,7 +167,17 @@ class ScriptVersionTest < ActiveSupport::TestCase
     script = Script.find(3)
     assert(script.valid?) && (script.script_versions.length == 1) && script.script_versions.first.valid?
     sv = ScriptVersion.new
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @namespace http://greasyfork.local/users/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.1
+      // @namespace http://greasyfork.local/users/1
+      // @include *
+      // @license MIT
+      // ==/UserScript==
+      var foo = 2;
+    JS
     sv.script = script
     sv.calculate_all
     assert_not sv.valid?
@@ -154,7 +188,17 @@ class ScriptVersionTest < ActiveSupport::TestCase
     script = Script.find(3)
     assert(script.valid?) && (script.script_versions.length == 1) && script.script_versions.first.valid?
     sv = ScriptVersion.new
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @namespace http://greasyfork.local/users/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.1
+      // @namespace http://greasyfork.local/users/1
+      // @include *
+      // @license MIT
+      // ==/UserScript==
+      var foo = 2;
+    JS
     sv.script = script
     sv.calculate_all
     sv.version_check_override = true
@@ -166,7 +210,17 @@ class ScriptVersionTest < ActiveSupport::TestCase
     script = Script.find(3)
     assert(script.valid?) && (script.script_versions.length == 1) && script.script_versions.first.valid?
     sv = ScriptVersion.new
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @namespace http://greasyfork.local/users/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.1
+      // @namespace http://greasyfork.local/users/1
+      // @include *
+      // @license MIT
+      // ==/UserScript==
+      var foo = 2;
+    JS
     sv.script = script
     sv.calculate_all
     sv.do_lenient_saving
@@ -179,11 +233,29 @@ class ScriptVersionTest < ActiveSupport::TestCase
     sv = ScriptVersion.new
     sv.script = script
     # valid with the version
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @namespace http://greasyfork.local/users/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.1
+      // @namespace http://greasyfork.local/users/1
+      // @include *
+      // @license MIT
+      // ==/UserScript==
+      var foo = 2;
+    JS
     sv.calculate_all
     assert sv.valid?, sv.errors.full_messages.join(' ')
     # invalid without
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @namespace http://greasyfork.local/users/1\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @namespace http://greasyfork.local/users/1
+      // @license MIT
+      // ==/UserScript==
+      var foo = 2;
+    JS
     sv.calculate_all
     assert_not sv.valid?, sv.errors.full_messages.join(' ')
   end
@@ -194,11 +266,30 @@ class ScriptVersionTest < ActiveSupport::TestCase
     sv = ScriptVersion.new
     sv.script = script
     # valid with the version
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n\n// @namespace http://greasyfork.local/users/1/\n// @include *\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.1
+      // @namespace http://greasyfork.local/users/1/
+      // @include *
+      // @license MIT
+      // ==/UserScript==
+      var foo = 2;
+    JS
     sv.calculate_all
     assert sv.valid?, sv.errors.full_messages.join(' ')
     # invalid without
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n\n// @namespace http://greasyfork.local/users/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @namespace http://greasyfork.local/users/1
+      // @include *
+      // @license MIT
+      // ==/UserScript==
+      var foo = 2;
+    JS
     sv.add_missing_version = true
     sv.calculate_all
     assert sv.valid?
@@ -210,7 +301,16 @@ class ScriptVersionTest < ActiveSupport::TestCase
     assert(script.valid?) && (script.script_versions.length == 1) && script.script_versions.first.valid?
     old_version = script.script_versions.first.version
     sv = ScriptVersion.new
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @namespace http://greasyfork.local/users/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @namespace http://greasyfork.local/users/1
+      // @include *
+      // @license MIT
+      // ==/UserScript==
+      var foo = 2;
+    JS
     sv.script = script
     sv.calculate_all
     assert sv.valid?, sv.errors.full_messages.join(' ')
@@ -222,7 +322,16 @@ class ScriptVersionTest < ActiveSupport::TestCase
     script = Script.find(5)
     assert(script.valid?) && (script.script_versions.length == 1) && script.script_versions.first.valid?
     sv = ScriptVersion.new
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @namespace http://greasyfork.local/users/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @namespace http://greasyfork.local/users/1
+      // @include *
+      // @license MIT
+      // ==/UserScript==
+        var foo = 2;
+    JS
     sv.script = script
     sv.calculate_all
     assert_not sv.valid?
@@ -235,11 +344,30 @@ class ScriptVersionTest < ActiveSupport::TestCase
     sv = ScriptVersion.new
     sv.script = script
     # valid with the namespace
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @namespace http://greasyfork.local/users/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.1
+      // @namespace http://greasyfork.local/users/1
+      // @include *
+      // @license MIT
+      // ==/UserScript==
+      var foo = 2;
+    JS
     sv.calculate_all
     assert sv.valid?, sv.errors.full_messages.join(' ')
     # invalid without
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.1
+      // @include *
+      // @license MIT
+      // ==/UserScript==
+      var foo = 2;
+    JS
     sv.calculate_all
     assert_not sv.valid?
   end
@@ -249,12 +377,32 @@ class ScriptVersionTest < ActiveSupport::TestCase
     script.authors.build(user: User.find(1))
     sv = ScriptVersion.new
     sv.script = script
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.1
+      // @include *
+      // @license MIT
+      // ==/UserScript==
+      var foo = 2;
+    JS
     sv.calculate_all
     assert_not sv.valid?
     sv.add_missing_namespace = true
     sv.calculate_all
-    assert_equal "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.1\n// @include *\n// @namespace http://localhost/users/1\n// ==/UserScript==\nvar foo = 2;", sv.rewritten_code
+    expected = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.1
+      // @include *
+      // @license MIT
+      // @namespace http://localhost/users/1
+      // ==/UserScript==
+      var foo = 2;
+    JS
+    assert_equal expected, sv.rewritten_code
     assert sv.valid?, sv.errors.full_messages.inspect
   end
 
@@ -262,19 +410,60 @@ class ScriptVersionTest < ActiveSupport::TestCase
     script = Script.find(6)
     sv = ScriptVersion.new
     sv.script = script
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.2\n// @include *\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.2
+      // @include *
+      // @license MIT
+      // ==/UserScript==
+      var foo = 2;
+    JS
     sv.calculate_all
     assert sv.valid?, sv.errors.full_messages.inspect
-    assert_equal "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.2\n// @include *\n// @namespace http://example.com\n// ==/UserScript==\nvar foo = 2;", sv.rewritten_code
+    expected = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.2
+      // @include *
+      // @license MIT
+      // @namespace http://example.com
+      // ==/UserScript==
+      var foo = 2;
+    JS
+    assert_equal expected, sv.rewritten_code
   end
 
   test 'retain namespace' do
     script = Script.find(6)
     sv = ScriptVersion.new
     sv.script = script
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.2\n// @namespace http://example.com\n// @include *\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.2
+      // @namespace http://example.com
+      // @include *
+      // @license MIT
+      // ==/UserScript==
+        var foo = 2;
+    JS
     sv.calculate_all
-    assert_equal "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.2\n// @namespace http://example.com\n// @include *\n// ==/UserScript==\nvar foo = 2;", sv.rewritten_code
+    expected = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.2
+      // @namespace http://example.com
+      // @include *
+      // @license MIT
+      // ==/UserScript==
+        var foo = 2;
+    JS
+    assert_equal expected, sv.rewritten_code
     assert sv.valid?, sv.errors.full_messages.inspect
   end
 
@@ -282,7 +471,17 @@ class ScriptVersionTest < ActiveSupport::TestCase
     script = Script.find(6)
     sv = ScriptVersion.new
     sv.script = script
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.2\n// @namespace http://example.com/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.2
+      // @namespace http://example.com/1
+      // @include *
+      // @license MIT
+      // ==/UserScript==
+        var foo = 2;
+    JS
     sv.calculate_all
     assert_not sv.valid?
   end
@@ -291,10 +490,31 @@ class ScriptVersionTest < ActiveSupport::TestCase
     script = Script.find(6)
     sv = ScriptVersion.new
     sv.script = script
-    sv.code = "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.2\n// @namespace http://example.com/1\n// @include *\n// ==/UserScript==\nvar foo = 2;"
+    sv.code = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.2
+      // @namespace http://example.com/1
+      // @include *
+      // @license MIT
+      // ==/UserScript==
+      var foo = 2;
+    JS
     sv.namespace_check_override = true
     sv.calculate_all
-    assert_equal "// ==UserScript==\n// @name		A Test!\n// @description		Unit test.\n// @version 1.2\n// @namespace http://example.com/1\n// @include *\n// ==/UserScript==\nvar foo = 2;", sv.rewritten_code
+    expected = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.2
+      // @namespace http://example.com/1
+      // @include *
+      // @license MIT
+      // ==/UserScript==
+      var foo = 2;
+    JS
+    assert_equal expected, sv.rewritten_code
     assert sv.valid?
   end
 
@@ -304,6 +524,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @name		A Test!
       // @namespace		http://example.com/1
       // @version		1
+      // @license MIT
       // ==/UserScript==
       foo.baz();
     JS
@@ -324,6 +545,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @namespace		http://example.com/1
       // @version		1
       // @include *
+      // @license MIT
       // ==/UserScript==
       foo.baz();
     JS
@@ -344,6 +566,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @namespace		http://example.com/1
       // @version		1
       // @include *
+      // @license MIT
       // ==/UserScript==
       foo.baz();
     JS
@@ -364,6 +587,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @namespace		http://example.com/1
       // @version		1
       // @include *
+      // @license MIT
       // ==/UserScript==
       foo.baz();
     JS
@@ -413,6 +637,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @require http://www.example.com/script.js
       // @require http://www.example.com/script2.js
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = "bar";
     JS
@@ -427,6 +652,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @version 2.0.0.1
       // @namespace whatever
       // @include *
+      // @license MIT
       // ==/UserScript==
     JS
     assert_equal expected_meta, sv.generate_blanked_code
@@ -447,6 +673,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @namespace		http://example.com/1
       // @version		1
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = 1;
     JS
@@ -480,6 +707,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @namespace		http://example.com/1
       // @version		1
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = 1;
     JS
@@ -509,6 +737,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @namespace		http://example.com/1
       // @version		2
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = 'bar';
     JS
@@ -530,6 +759,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @version		3
       // @downloadURL http://example.com
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = 'bar';
     JS
@@ -552,6 +782,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @namespace		http://example.com/1
       // @version		1
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = 1;
     JS
@@ -594,6 +825,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @version		1
       // @downloadURL http://example.com
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = 1;
     JS
@@ -619,6 +851,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @version		1
       // @downloadURL http://example.com
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = 2;
     JS
@@ -644,6 +877,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @namespace		http://example.com/1
       // @version		1
       // @include *
+      // @license MIT
       // ==/UserScript==
       var foo = 2;
     JS
@@ -722,6 +956,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @description		Unit test.
       // @version 1.0
       // @namespace http://greasyfork.local/users/1
+      // @license MIT
       // ==/UserScript==
       var foo = "bar";
     JS
@@ -741,6 +976,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @version 1.0
       // @namespace http://greasyfork.local/users/1
       // @include example.com
+      // @license MIT
       // ==/UserScript==
       var foo = "bar";
     JS
@@ -760,6 +996,7 @@ class ScriptVersionTest < ActiveSupport::TestCase
       // @version 1.0
       // @namespace http://greasyfork.local/users/1
       // @include *
+      // @license MIT
       // ==/UserScript==
     JS
     assert_not script_version.valid?

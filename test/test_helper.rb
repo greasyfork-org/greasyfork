@@ -30,6 +30,7 @@ module ActiveSupport
         // @namespace http://greasyfork.local/users/1
         // @version 1.0
         // @include *
+        // @license MIT
         // ==/UserScript==
         var foo = "bar";
       JS

@@ -12,6 +12,7 @@ class ScriptVersionAllowedRequiresTest < ActiveSupport::TestCase
       // @namespace http://greasyfork.local/users/1
       // @include example.com
       // @require https://ajax.googleapis.com/whatever.js
+      // @license MIT
       // ==/UserScript==
       var foo = "bar";
     JS
@@ -29,6 +30,7 @@ class ScriptVersionAllowedRequiresTest < ActiveSupport::TestCase
       // @namespace http://greasyfork.local/users/1
       // @include example.com
       // @require https://ajax.googleapis.com/invalid\stuff
+      // @license MIT
       // ==/UserScript==
       var foo = "bar";
     JS
@@ -46,6 +48,7 @@ class ScriptVersionAllowedRequiresTest < ActiveSupport::TestCase
       // @namespace http://greasyfork.local/users/1
       // @include example.com
       // @require https://ajax.jqueryorwhatever.com/whatever.js
+      // @license MIT
       // ==/UserScript==
       var foo = "bar";
     JS
