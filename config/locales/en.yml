@@ -352,17 +352,17 @@ en:
     # label for radio button for library-type script
     type_3_html: "Library - a script intended to be <code>@require</code>-d from other scripts and not installed directly."
     # label for checkbox to override script save warnings
-    override_warning_checkbox_label: "Save anyway?"
+    override_warning_checkbox_label: "Save anyway"
     # script warning for not increasing the version number when updating the code
     warning_version_not_incremented_html: "You updated the code but didn't increase the <code>@version</code> number. Those who previously installed your script may not get the updated code."
     # script warning for when a version number is not provided
-    warning_version_missing_html: "You didn't specify <code>@version</code>. A <code>@version</code> meta key allows for update checking of your script in user script managers."
+    warning_version_missing_html: "You didn't specify <code>@version</code>. <code>@version</code> is needed for users to receive updates. You can specify one like this: <code>// @version 1.0</code>."
     # label for checkbox for the site to automatically handle version numbers
-    warning_version_missing_generate_automatically_html: "Generate <code>@version</code> automatically?"
+    warning_version_missing_generate_automatically_html: "Generate <code>@version</code> automatically"
     # script warning for when a namespace is not provided
-    warning_namespace_missing_html: "You didn't specify <code>@namespace</code>. A <code>@namespace</code> meta keys allows users to re-install your script to update it."
+    warning_namespace_missing_html: "You didn't specify <code>@namespace</code>. <code>@namespace</code> helps prevents collisions if users install another script with the same name. <code>@namespace</code> just needs to be a unique string; often the URL the author you controls is used."
     # label for checkbox for the site to automatically add a namespace
-    warning_namespace_missing_generate_automatically_html: "Generate a <code>@namespace</code> automatically?"
+    warning_namespace_missing_generate_automatically_html: "Generate a <code>@namespace</code> automatically"
     # script warning for when a namespace changed on update
     warning_namespace_changed_html: "Your <code>@namespace</code> has changed. A consistent <code>@namespace</code> allows users to re-install your script to update it."
     # script warning for when a script's code appears minified. allowed_requires_link is a link to the allowed @require list, with text of warning_potentially_minified_allowed_requires_link
@@ -371,7 +371,7 @@ en:
     warning_automatic_sensitive_html: "Your script is for %{sensitive_domains} and so will be marked as adult content."
     # used in warning_potentially_minified_html
     warning_potentially_minified_allowed_requires_link: "one of these places"
-    warning_code_previously_posted_html: "This code has previously been posted in %{script_links}. Scripts that are reposted by those other than the original author are subject to removal by moderators."
+    warning_code_previously_posted_html: "This code has previously been posted in %{script_links}. Reposts are subject to removal by moderators."
     # default option for the locale of a localized additional info
     additional_info_locale_prompt: "(Choose a locale)"
     # text for the button to add another additional info section for a different language
@@ -1440,7 +1440,7 @@ en:
     requirements: "Maximum of %{number} PNG, GIF, JPEG, or WebP images, smaller than %{size} each."
   common:
     # text to show before listing errors in a submission
-    error_preamble: "There were some problems with what you posted..."
+    error_preamble: "There were some problems with what you posted…"
     # link to the list of allowed HTML elements and attributes for HTML/Markdown fields
     allowed_elements_link: "(See allowed code.)"
     # title of the page showing allowed HTML elements and attributes for HTML/Markdown fields

@@ -2,9 +2,11 @@
   <%= javascript_pack_tag 'script-version-editor' %>
 <% end %>
 
-<p>
-  <%= t('scripts.rules_summary_html', full_rules_link: link_to(t('scripts.rules_summary_link_to_full'), help_code_rules_path)) %>
-</p>
+<% if script_version.errors.empty? && script_version.script.errors.empty? %>
+  <p>
+    <%= t('scripts.rules_summary_html', full_rules_link: link_to(t('scripts.rules_summary_link_to_full'), help_code_rules_path)) %>
+  </p>
+<% end %>
 
 <% if script_version.script.script_sync_type_id %>
   <p>
@@ -31,70 +33,69 @@
 
   <%= hidden_field_tag(:language, script_version.script.language) if script_version.script.new_record? %>
 
-  <% if !script_version.errors.empty? or !script_version.script.errors.empty? %>
-    <div class="alert">
-      <p><%= t('common.error_preamble') %></p>
-      <ul class="errors">
-        <% displayed_errors = []
-        script_version.errors.each do |error|
-          msg = error.message
-          attr = error.attribute
-          # need custom handling for warnings
-          next if msg.starts_with?('warning-') || attr.to_s.include?('screenshot')
-          displayed_errors << if attr == :base
-            if msg == 'appears to be an unauthorized copy' && script_version.unauthorized_original
-              it('scripts.error_unauthorized_copy',
-                script: render_script(script_version.unauthorized_original),
-                rules_link: help_code_rules_path,
-                site_name: site_name
-              )
-            else
-              msg
-                                end
-          elsif msg.is_a?(String)
-            "#{attr.to_s.capitalize} #{msg}"
+  <% unless script_version.errors.empty? && script_version.script.errors.empty? %>
+    <div class="validation-errors">
+      <p>
+        <%= t('common.error_preamble') %>
+      </p>
+      <% displayed_errors = []
+      script_version.errors.each do |error|
+        msg = error.message
+        attr = error.attribute
+        # need custom handling for warnings
+        next if msg.starts_with?('warning-') || attr.to_s.include?('screenshot')
+        displayed_errors << if attr == :base
+          if msg == 'appears to be an unauthorized copy' && script_version.unauthorized_original
+            it('scripts.error_unauthorized_copy',
+              script: render_script(script_version.unauthorized_original),
+              rules_link: help_code_rules_path,
+              site_name: site_name
+            )
           else
-            script_version.errors.generate_message(attr, msg)
+            msg
                               end
-        end
-        script_version.script.errors.full_messages.each do |m|
-          displayed_errors << m
-        end
-        displayed_errors.uniq.each do |err| %>
-          <li><%= err %></li>
-        <% end
-        script_version.warnings.each do |w| %>
-          <li><%
-            case w
-              when :version_not_incremented
-              %>
-                <%= t('scripts.warning_version_not_incremented_html') %><br>
-                <label for="script_version_version_check_override"><%= t('scripts.override_warning_checkbox_label') %></label> <%= s.check_box(:version_check_override, {}, true, false) %>
-              <% when :version_missing %>
-                <%= t('scripts.warning_version_missing_html') %><br>
-                <label for="script_version_add_missing_version"><%= t('scripts.warning_version_missing_generate_automatically_html') %></label> <%= s.check_box(:add_missing_version, {}, true, false) %>
-              <% when :namespace_missing %>
-                <%= t('scripts.warning_namespace_missing_html') %><br>
-                <label for="script_version_add_missing_namespace"><%= t('scripts.warning_namespace_missing_generate_automatically_html') %></label> <%= s.check_box(:add_missing_namespace, {}, true, false) %>
-              <% when :namespace_changed %>
-                <%= t('scripts.warning_namespace_changed_html') %><br>
-                <label for="script_version_namespace_check_override"><%= t('scripts.override_warning_checkbox_label') %></label> <%= s.check_box(:namespace_check_override, {}, true, false) %>
-              <% when :potentially_minified %>
-                <%= t('scripts.warning_potentially_minified_html', allowed_requires_link: link_to(t('scripts.warning_potentially_minified_allowed_requires_link'), help_external_scripts_path)) %><br>
-                <label for="script_version_minified_confirmation"><%= t('scripts.override_warning_checkbox_label') %></label> <%= s.check_box(:minified_confirmation, {}, true, false) %>
-              <% when :automatic_sensitive %>
-                <%= t('scripts.warning_automatic_sensitive_html', sensitive_domains: script_version.sensitive_domains.to_sentence) %><br>
-                <label for="script_version_sensitive_site_confirmation"><%= t('scripts.override_warning_checkbox_label') %></label> <%= s.check_box(:sensitive_site_confirmation, {}, true, false) %>
-              <% when :code_previously_posted %>
-                <%= t('scripts.warning_code_previously_posted_html', script_links: script_version.previously_posted_scripts.map { |s| render_script(s) }.to_sentence.html_safe) %><br>
-                <label for="script_version_allow_code_previously_posted"><%= t('scripts.override_warning_checkbox_label') %></label> <%= s.check_box(:allow_code_previously_posted, {}, true, false) %>
-              <% else
-                raise "Unknown warning #{w}"
-            end %>
-          </li><%
-        end
-               %>
-      </ul>
+        elsif msg.is_a?(String)
+          "#{attr.to_s.capitalize} #{msg}"
+        else
+          script_version.errors.generate_message(attr, msg)
+                            end
+      end
+      script_version.script.errors.full_messages.each do |m|
+        displayed_errors << m
+      end
+      displayed_errors.uniq.each do |err| %>
+        <p><%= err %></p>
+      <% end
+      script_version.warnings.each do |w| %>
+        <p><%
+          case w
+            when :version_not_incremented
+            %>
+              <%= t('scripts.warning_version_not_incremented_html') %><br>
+              <%= s.check_box(:version_check_override, {}, true, false) %> <label for="script_version_version_check_override"><%= t('scripts.override_warning_checkbox_label') %></label>
+            <% when :version_missing %>
+              <%= t('scripts.warning_version_missing_html') %><br>
+              <%= s.check_box(:add_missing_version, {}, true, false) %> <label for="script_version_add_missing_version"><%= t('scripts.warning_version_missing_generate_automatically_html') %></label>
+            <% when :namespace_missing %>
+              <%= t('scripts.warning_namespace_missing_html') %><br>
+              <%= s.check_box(:add_missing_namespace, {}, true, false) %> <label for="script_version_add_missing_namespace"><%= t('scripts.warning_namespace_missing_generate_automatically_html') %></label>
+            <% when :namespace_changed %>
+              <%= t('scripts.warning_namespace_changed_html') %><br>
+              <%= s.check_box(:namespace_check_override, {}, true, false) %> <label for="script_version_namespace_check_override"><%= t('scripts.override_warning_checkbox_label') %></label>
+            <% when :potentially_minified %>
+              <%= t('scripts.warning_potentially_minified_html', allowed_requires_link: link_to(t('scripts.warning_potentially_minified_allowed_requires_link'), help_external_scripts_path)) %><br>
+              <%= s.check_box(:minified_confirmation, {}, true, false) %> <label for="script_version_minified_confirmation"><%= t('scripts.override_warning_checkbox_label') %></label>
+            <% when :automatic_sensitive %>
+              <%= t('scripts.warning_automatic_sensitive_html', sensitive_domains: script_version.sensitive_domains.to_sentence) %><br>
+              <%= s.check_box(:sensitive_site_confirmation, {}, true, false) %> <label for="script_version_sensitive_site_confirmation"><%= t('scripts.override_warning_checkbox_label') %></label>
+            <% when :code_previously_posted %>
+              <%= t('scripts.warning_code_previously_posted_html', script_links: script_version.previously_posted_scripts.map { |s| render_script(s) }.to_sentence.html_safe) %><br>
+              <%= s.check_box(:allow_code_previously_posted, {}, true, false) %> <label for="script_version_allow_code_previously_posted"><%= t('scripts.override_warning_checkbox_label') %></label>
+            <% else
+              raise "Unknown warning #{w}"
+          end %>
+        </p>
+      <% end %>
     </div>
   <% end %>
 

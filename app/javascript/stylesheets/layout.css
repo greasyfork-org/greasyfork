@@ -546,7 +546,7 @@ label.subselection-radio-title {
   font-style: italic;
   background-color: #FFFFCC;
   border: none;
-   border-left: 6px solid #FFEB3B;
+  border-left: 6px solid #FFEB3B;
   padding: 0.5em;
 }
 .notice {
@@ -555,7 +555,19 @@ label.subselection-radio-title {
   border-left: 6px solid #31708F;
   padding: 0.5em;
 }
-
+.validation-errors {
+  background-color: #FFFFCC;
+  border: none;
+  border-left: 6px solid #FFEB3B;
+  padding: 0.5em;
+  margin: 0.5em 0;
+}
+.validation-errors > p:first-child {
+  margin-top: 0;
+}
+.validation-errors > p:last-child {
+  margin-bottom: 0;
+}
 
 #install-stats-chart {
   width: 100%;

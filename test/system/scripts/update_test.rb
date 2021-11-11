@@ -118,7 +118,7 @@ class UpdateTest < ApplicationSystemTestCase
     click_button 'Post new version'
 
     assert_content 'Your script is for pornonthecob.com and so will be marked as adult content.'
-    check 'Save anyway?'
+    check 'Save anyway'
     click_button 'Post new version'
 
     assert_selector 'h2', text: 'A Test Update!'

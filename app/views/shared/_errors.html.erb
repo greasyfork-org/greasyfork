@@ -1,10 +1,10 @@
 <% unless resource.errors.empty? %>
-  <div class="alert">
-    <%= t('common.error_preamble') %>
-    <ul>
-      <% resource.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
+  <div class="validation-errors">
+    <p>
+      <%= t('common.error_preamble') %>
+    </p>
+    <% resource.errors.full_messages.each do |msg| %>
+      <p><%= msg %></p>
+    <% end %>
   </div>
 <% end %>
