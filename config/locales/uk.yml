@@ -180,12 +180,7 @@ uk:
     type_1_html: "Загальний скрипт користувачів - скрипт який всі користувачі можуть бачити і використовувати."
     type_2_html: "Приватні скрипти користувачів - скрипт користувача для (напів-)приватного використання. Доступні за прямим посиланням, проте не показані на жодній сторінці %{site_name}'у."
     type_3_html: "Бібліотека - скрипт, може бути підключений за допомогою <code>@require</code> з іншого скрипта, але не встановлюється безпосередньо."
-    override_warning_checkbox_label: "Всеодно зберегти?"
     warning_version_not_incremented_html: "Ви оновили код, але не збільшили номер <code>@version</code>. Користувачі, які раніше встановили ваш скрипт не отримають оновлення коду."
-    warning_version_missing_html: "Ви не вказали <code>@version</code>. <code>@version</code> мета поле дозволяє перевірку оновлень скриптів в менеджерах скриптів користувачів."
-    warning_version_missing_generate_automatically_html: "Генерувати <code>@version</code> автоматично?"
-    warning_namespace_missing_html: "Ви не вказали <code>@namespace</code>. Поле <code>@namespace</code> дозволяє користувачам повторно встановивши ваш скрипт, оновити його."
-    warning_namespace_missing_generate_automatically_html: "Генерувати <code>@namespace</code> автоматично?"
     warning_namespace_changed_html: "Ваше <code>@namespace</code> змінилося. Незмінний <code>@namespace</code> дозволяє користувачам повторно встановивши ваш скрипт, оновити його."
     warning_potentially_minified_html: "Ваш сценарій виглядає неначе він може містити стиснений (minified) код. Якщо ви використовуєте стиснуту бібліотеку, будь ласка замість коду приєднайте її за допомогою поля <code>@require</code> з %{allowed_requires_link}. Скрипти з мінімізованим кодом підлягають видаленню."
     warning_potentially_minified_allowed_requires_link: "одному з цих місць"
@@ -518,7 +513,6 @@ uk:
   screenshots:
     requirements: "Максимум %{number} PNG, GIF, JPEG, або WebP зображень, кожне з яких менше за %{size}."
   common:
-    error_preamble: "Були деякі проблеми з тим, що ви публікуєте..."
     allowed_elements_link: "(Переглянути дозволений код.)"
     allowed_elements_and_attributes_title: "Допустимі елементи HTML"
     allowed_elements_intro: "Наступні елементи і атрибути допускаються. Це відноситься як до HTML так і до Markdown (після перетворення в HTML)."

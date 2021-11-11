@@ -43,6 +43,7 @@ es:
     deleted_notice: "Este script ha sido borrado."
     deleted_notice_with_related: "El script que buscabas ha sido eliminado, así que aquí te dejamos algunos scripts alternativos."
     deleted_undelete_notice_html: "Un moderador ha bloqueado este script y no se puede restaurar. La razón es la siguiente: «<i>%{delete_reason}</i>»."
+    deleted_locked_author_notice_html: "Un moderador ha borrado este script y ya no es visible para el resto de usuarios. La razón es la siguiente: «<i>%{delete_reason}</i>». Revisa las %{rules_link:reglas de %{site_name}} para que no tengas más problemas de este tipo en el futuro. Puedes %{appeal_link:pedir que lo revisen otra vez} y darle otra oportunidad. No intentes volver a subirlo tal cual porque te pueden echar de %{site_name}."
     deleted_author_notice: "Se ha borrado este script y ya no es visible para el resto de usuarios. Puedes restaurarlo desde la pestaña de borrado."
     version_notice_html: "Versión del día %{date}. Echa un vistazo a %{latest_version_link}."
     version_notice_latest_version_link: "la versión más reciente"
@@ -214,12 +215,12 @@ es:
     type_1_html: "Script de usuario público; un script de usuario que todos puedan ver y utilizar."
     type_2_html: "Script de usuario oculto; un script de usuario para un uso (más o menos) privado; solo se puede encontrar al tener el enlace en %{site_name}."
     type_3_html: "Biblioteca; un script destinado a ser usado por otros scripts mediante <code>@require</code> y que no puede instalarse directamente."
-    override_warning_checkbox_label: "¿Guardar de todas formas?"
+    override_warning_checkbox_label: "Guardar de todas formas"
     warning_version_not_incremented_html: "Has actualizado el código pero no has cambiado el número de <code>@version</code>. Puede que los que hayan instalado tu script no reciban versiones nuevas."
-    warning_version_missing_html: "No has especificado ninguna <code>@version</code>. La metaclave <code>@version</code> permite que los gestores de scripts comprueben si hay nuevas versiones disponibles desde la última vez."
-    warning_version_missing_generate_automatically_html: "¿Generar un <code>@version</code> automáticamente?"
-    warning_namespace_missing_html: "No has especificado ningún <code>@namespace</code>. La metaclave <code>@namespace</code> permite a los usuarios reinstalar tu script para actualizarlo."
-    warning_namespace_missing_generate_automatically_html: "¿Generar un <code>@namespace</code> automáticamente?"
+    warning_version_missing_html: "No has especificado ninguna <code>@version</code>. La metaclave <code>@version</code> permite que los gestores de scripts comprueben si hay nuevas versiones disponibles desde la última vez y se necesita para poder actualizar. Pon algo del estilo a: <code>// @version 1.0</code>."
+    warning_version_missing_generate_automatically_html: "Generar un <code>@version</code> automáticamente"
+    warning_namespace_missing_html: "No has especificado ningún <code>@namespace</code>. La metaclave <code>@namespace</code> evita problemas cuando los usuarios instalan otro script con el mismo nombre y haciendo que no se sobrescriban, puedes poner cualquier texto que sea único, se suele poner una dirección URL con el nombre del autor o su perfil."
+    warning_namespace_missing_generate_automatically_html: "Generar un <code>@namespace</code> automáticamente"
     warning_namespace_changed_html: "Tu <code>@namespace</code> ha cambiado. Un <code>@namespace</code> constante permite a los usuarios reinstalar tu script para actualizarlo."
     warning_potentially_minified_html: "Tu script parece contener código compactado (miniaturizado). Si estás usando una biblioteca miniaturizada, por favor, cárgala desde %{allowed_requires_link} con <code>@require</code>. Los scripts con código miniaturizado se terminarán eliminando."
     warning_automatic_sensitive_html: "Tu script es para %{sensitive_domains} y por tanto se marcará como contenido para adultos."
@@ -851,6 +852,7 @@ es:
     consecutive_bad_ratings:
       one: "«%{script_names}» ha recibido múltiples opiniones «malas» seguidas. Échale un vistazo a los comentarios, arregla los posibles problemas y responde en consonancia."
       other: "«%{script_names}» han recibido múltiples opiniones «malas» seguidas. Échale un vistazo a los comentarios, arregla los posibles problemas y responde en consonancia."
+    open_reports: "Parece que alguien ha denunciado alguno de tus scripts; puedes revisar las denuncias y proporcionarnos toda la información que puedas desde aquí: %{report_links}"
   reports:
     name: "Denuncia nº %{id}"
     report_filed: "Pendiente de que lo revise un moderador. "
@@ -1163,6 +1165,7 @@ es:
       script_rate_limit: "Has subido demasiados scripts seguidos, prueba más tarde."
       missing_include_or_match: "es necesario incluir al menos una clave de tipo @match o @include"
       invalid_meta: "tiene una directiva meta que no vale. El formato correcto es // @foo"
+      no_executable: "sin código ejecutable"
       file_size_out_of_range: "debe ocupar menos de 200KB"
       meta_too_long: "%{key}es demasiado larga (El máximo de caracteres es %{count})"
   opensearch:
@@ -1194,6 +1197,10 @@ es:
         text: "Tu script %{script_name} ha sido denunciado por incumplir las normas de %{site_name}. El motivo específico es: %{reason}. Puedes revisar la denuncia en %{report_url} y enviar una reclamación. Si no envías una reclamación, tu script puede que sea eliminado por los moderadores. Si tienes preguntas, echa un vistazo en https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Tu script %{script_name} en %{site_name} ha sido eliminado."
+        text: |
+            Un moderador ha confirmado una denuncia y tu script %{script_name} en %{site_name} ha sido eliminado. Puedes ver la denuncia en %{report_url}, y las reglas en %{code_rules_url}.
+
+            Si crees que no tenemos razón, o si has actualizado el script para arreglar el problema, puedes reabrir el proceso en %{appeal_url}. Si tienes dudas puedes escribirnos en https://greasyfork.org/forum/. No intentes volver a subirlo tal cual porque te pueden echar de %{site_name}.
       report_dismissed_offender:
         subject: "Tu script %{script_name} no parece incumplir las normas de %{site_name}"
         text: "Se ha revisado una denuncia en %{site_name} y tu script %{script_name} no parece incumplir las normas. Tu script seguirá activo. Puedes ver la denuncia en %{report_url}. Si tienes dudas puedes escribirnos en https://greasyfork.org/forum/."

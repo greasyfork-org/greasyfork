@@ -137,12 +137,7 @@ sv:
     type_1_html: "Öppet användarskript - ett användarskript öppet för alla att se och använda."
     type_2_html: "Olistat användarskript - ett användarskript för (semi-)privat användning. Tillgänglig via direkt åtkomst, men inte länkad till från någonstans på %{site_name}."
     type_3_html: "Bibliotek- ett skript avsedd att vara <code>@require</code>-d \nfrån andra skript och inte installeras direkt."
-    override_warning_checkbox_label: "Spara iallafall"
     warning_version_not_incremented_html: "Du uppdaterade koden men inte öka <code>@version</code> numret. De som tidigare installerat skriptet kan inte få den uppdaterade koden."
-    warning_version_missing_html: "Du har inte specificerat  <code>@version</code>. A <code>@version</code> meta nyckel tillåter uppdatering kontroll av ditt skript i användare script chefer."
-    warning_version_missing_generate_automatically_html: "Generera <code>@version</code> automatiskt?"
-    warning_namespace_missing_html: "Du har inte specificerat <code>@namespace</code>. A <code>@namespace</code> metanyckel tillåter användare att om installera skriptet för att uppdatera den."
-    warning_namespace_missing_generate_automatically_html: "Generera <code>@namespace</code> automatiskt?"
     warning_namespace_changed_html: "Din <code>@namespace</code> har förändrats. En konsekvent <code>@namespace</code> tillåter användare att ominstallera skriptet för att uppdatera den."
     warning_potentially_minified_allowed_requires_link: "en av dessa platser"
     additional_info_locale_prompt: "(Välj ett språk)"
@@ -369,7 +364,6 @@ sv:
     privacy_policy:
       title: "Integritetspolicy"
   common:
-    error_preamble: "Det var några problem med vad du la upp..."
     allowed_elements_link: "(Se tillåten kod.)"
     allowed_elements_and_attributes_title: "Tillåtna element för HTML-innehåll"
     allowed_elements_intro: "Följande element och attribut är tillåtna. Detta gäller både HTML och Markdown (efter omvandling till HTML)."

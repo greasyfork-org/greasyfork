@@ -209,17 +209,11 @@ tr:
     type_1_html: "Herkese açık kullanıcı scripti - herkesin görmesi ve kullanması için bir kullanıcı scripti ."
     type_2_html: "Liste dışı kullanıcı scripti  (yarı)-özel kullanım için bir kullanıcı scripti.  Direkt erişim mümkün ancak %{site_name}'ta linki bulunmaz."
     type_3_html: "Kütüphane - Script sadece <code>@require</code> ile kullanılır ve direkt olarak kurulmaz."
-    override_warning_checkbox_label: "Yine de kaydet?"
     warning_version_not_incremented_html: "Kodu güncelledin fakat <code>@version</code> numarasını arttırmadın. Önceden senin scriptini yüklemiş olanlar güncelleme alamayabilir."
-    warning_version_missing_html: "Sen <code>@version</code> kullanmamışsın. <code>@version</code> meta etiketi script yöneticileri tarafından scriptinin güncelleme kontolü için gereklidir."
-    warning_version_missing_generate_automatically_html: "Otomatik <code>@version</code> oluştur?"
-    warning_namespace_missing_html: "Sen <code>@namespace</code> kullanmamışsın. <code>@namespace</code> meta etiketi  kullanıcıların scriptini güncellemek amaçlı yeniden yükleyebilmesi için gereklidir."
-    warning_namespace_missing_generate_automatically_html: "Otomatik bir <code>@namespace</code> oluştur?"
     warning_namespace_changed_html: "Senin <code>@namespace</code> değişmiş.Tutarlı bir  <code>@namespace</code>  kullanıcıların scriptini güncellemek amaçlı yeniden yükleyebilmesi için gereklidir."
     warning_potentially_minified_html: "Senin script kodun küçültülmüş (kompreslenmiş) gibi görünüyor. Eğer küçültülmüş kütüphane kullanıyorsan, bunun yerine <code>@require</code> buradan %{allowed_requires_link}.  Scriptten küçültülmüş kodun çıkarılması gerekir."
     warning_automatic_sensitive_html: "Scriptiniz %{sensitive_domains}, bu yüzden yetişkin içeriği olarak işaretlenecek."
     warning_potentially_minified_allowed_requires_link: "bu yerlerden biri"
-    warning_code_previously_posted_html: "Bu kod daha önce postalanmış %{script_links}. Orijinal yazar dışındaki kişiler tarafından yeniden yayınlanan komut dosyaları, moderatörler tarafından kaldırılabilir."
     additional_info_locale_prompt: "(Bir yer seç)"
     additional_info_add_localized: "Yerel ek bilgi ekle"
     additional_info_locale_repeated: "'%{locale_code}' yeri için bir ek bilgi sağlayın."
@@ -770,7 +764,6 @@ tr:
       title: Son konuşmalar
       more: Tüm konuşmaları göster
   common:
-    error_preamble: "Ne gönderdiğinizde bazı sorunlar oldu.."
     allowed_elements_link: "(İzin verilen kodları gör.)"
     allowed_elements_and_attributes_title: "HTML içerik için izin verilen elementler"
     allowed_elements_intro: "Aşağıdaki unsurlar ve nitelikleri izin verilir. Bu her ikisi için HTML ve Markdown (daha sonra HTML'ye dönüştürülmesi) geçerlidir."

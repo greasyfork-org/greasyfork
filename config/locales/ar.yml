@@ -172,12 +172,7 @@ ar:
     type_1_html: "برنامج نصي عام - برنامج نصي يراه ويستخدمه الجميع."
     type_2_html: "برنامج نصي غير مدرج - برنامج نصي (شبه) خاص.  متوفر للوصول المباشر، ولكن لا يوضع له أي رابط في أي مكان على %{site_name}."
     type_3_html: "المكتبة - برنامج نصي للإستخدام كـ <code>@require</code>-d من قبل البرامج النصية.الأخرى ولا يتم تثبيته مباشرة."
-    override_warning_checkbox_label: "حفظ على أي حال؟"
     warning_version_not_incremented_html: "أنت قمت بتحديث الكود لكن لم تقم بزيادة رقم الإصدار <code>@version</code>. هؤلاء الذين ثبتوا البرنامج النصي سابقا قد لا يحصلون على التحديث.."
-    warning_version_missing_html: "لم تحدد <code>@version</code>. مفتاح <code>@version</code> يسمح بالبحث عن تحديث لبرنامجك النصي عبر برامج إدارة البرامج النصية."
-    warning_version_missing_generate_automatically_html: "إنشاء <code>@version</code> تلقائيا؟"
-    warning_namespace_missing_html: "لم تحدد <code>@namespace</code>. مفتاح <code>@namespace</code> يسمح للمستخدمين بإعادة تثبيت برنامجك النصي لتحديثه."
-    warning_namespace_missing_generate_automatically_html: "إنشاء a <code>@namespace</code> تلقائيا؟"
     warning_namespace_changed_html: "<code>@namespace</code> الخاص بك تغير. <code>@namespace</code> ثابت سمح للمستخدمين بإعادة تثبيت برنامجك النصي لتحديثه."
     warning_potentially_minified_html: "يبدو أنا برنامجك النصي يحتوي كود مصغر (مضغوط). إذا كنت تستخدم مكتبة مضغوطة رجاء استبدلها <code>@require</code> من %{allowed_requires_link}. البرامج النصية التي تحوي كود مضغوط هي عرضة للحذف."
     warning_automatic_sensitive_html: "السكربت الخاص بك مخصص لـ %{sensitive_domains} وسيتم تمييزه على أنه محتوى للبالغين."
@@ -689,7 +684,6 @@ ar:
       title: المحادثات الأخيرة
       more: مشاهدة جميع المحادثات
   common:
-    error_preamble: "هناك بعض المشاكل مع ما قمت بنشره ..."
     allowed_elements_link: "(مشاهدة الكود المسموح به)"
     allowed_elements_and_attributes_title: "العناصر المسموحة لمحتوى HTML "
     allowed_elements_intro: "العناصر والخصائص التالية مسموح بها. هذا ينطبق على كل من HTML و Markdown (بعد تحويلها إلى HTML)"
