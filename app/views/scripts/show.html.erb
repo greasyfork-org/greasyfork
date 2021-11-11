@@ -31,10 +31,6 @@
   </div>
 <% end %>
 
-<% if @script.active? && @script.can_be_added_to_set? %>
-  <%= render partial: 'script_set', locals: {script: @script} %>
-<% end %>
-
 <%= render partial: 'feedback_suggestion', locals: {script: @script} %>
 
 <div id="script-meta">

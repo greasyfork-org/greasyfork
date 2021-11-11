@@ -56,54 +56,6 @@ class ScriptSetsController < ApplicationController
     redirect_to set.user
   end
 
-  def add_to_set
-    action, set_id = params['action-set'].split('-')
-
-    case set_id
-    when 'fav'
-      set = current_user.favorite_script_set
-      if set.nil?
-        set = ScriptSet.new
-        set.user = current_user
-        make_favorite_set(set)
-      end
-    when 'new'
-      redirect_to new_user_script_set_path(current_user, script_id: params[:script_id])
-      return
-    else
-      set = ScriptSet.find(set_id)
-      if set.user_id != current_user.id
-        render_access_denied
-        return
-      end
-    end
-
-    script = Script.find(params[:script_id])
-
-    r = false
-    case action
-    when 'ai'
-      r = set.add_child(script, exclusion: false)
-    when 'ae'
-      r = set.add_child(script, exclusion: true)
-    when 'ri', 're'
-      r = set.remove_child(script)
-    end
-
-    if r
-      if set.save
-        # Removing a child seems to not update the set so caching gets weird.
-        set.touch
-      else
-        flash[:notice] = 'Could not save set'
-      end
-    else
-      flash[:notice] = 'Could not add to set.'
-    end
-
-    redirect_to clean_redirect_param(:return_to) || script
-  end
-
   private
 
   def handle_update(set)

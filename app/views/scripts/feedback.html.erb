@@ -71,38 +71,4 @@
       <%= link_to t('discussions.sign_in_to_post_discussion'), new_user_session_path(return_to: request.fullpath) %>
     </p>
   <% end %>
-
-  <h3 id="feedback-favoriters"><%= t('scripts.feedback_favoriters_heading') %></h3>
-  <div>
-    <% favoriter_count = @script.favoriters.count %>
-    <% if favoriter_count == 0 %>
-      <%= t('scripts.feedback_no_favoriters') %>
-    <% elsif favoriter_count < 10 || params[:show_favoriters] == '1' %>
-      <%= t('scripts.feedback_favoriters_user_list_html', user_list: @script.favoriters.map{ |user| render_user(user, user.id, skip_badge: true) }.to_sentence.html_safe) %>
-    <% else %>
-      <% begin %>
-        <%= it('scripts.feedback_favoriters_lots', user_count: number_with_delimiter(favoriter_count), count: favoriter_count, full_link: It.link(url_for(show_favoriters: 1, anchor: 'feedback-favoriters'), rel: :nofollow)) %>
-      <% rescue I18n::InvalidPluralizationData %>
-        <%# https://github.com/iGEL/it/issues/30 %>
-        <%= it('scripts.feedback_favoriters_lots', user_count: number_with_delimiter(favoriter_count), count: favoriter_count, full_link: It.link(url_for(show_favoriters: 1, anchor: 'feedback-favoriters'), rel: :nofollow), locale: :en) %>
-      <% end %>
-    <% end %>
-  </div>
-  <p>
-    <% if user_signed_in? %>
-      <%= form_tag(add_to_script_set_path) do |f| %>
-        <input type="hidden" name="script_id" value="<%= @script.id %>">
-        <input type="hidden" name="return_to" value="<%= url_for(anchor: 'feedback-favoriters') %>">
-        <% if @script.favoriters.find{|f| f.id == current_user.id}.nil? %>
-          <input type="hidden" name="action-set" value="ai-fav">
-          <input type="submit" value="<%= t('scripts.sets_add_inclusion', set_name: t('script_sets.favorites_name')) %>">
-        <% else %>
-          <input type="hidden" name="action-set" value="ri-fav">
-          <input type="submit" value="<%= t('scripts.sets_remove_inclusion', set_name: t('script_sets.favorites_name')) %>">
-        <% end %>
-      <% end %>
-    <% else %>
-      <%= link_to(t('scripts.feedback_sign_in_to_favorite'), new_user_session_path(return_to: url_for(anchor: 'feedback-favoriters')), {rel: :nofollow}) %>
-    <% end %>
-  </p>
 </div>
