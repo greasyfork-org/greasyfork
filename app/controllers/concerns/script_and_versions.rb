@@ -23,7 +23,7 @@ module ScriptAndVersions
     if script.deleted?
       if script.pure_404
         render_deleted
-        return
+        return true
       end
 
       if script.replaced_by_script_id
