@@ -5,7 +5,7 @@ module PingRequestChecking
     SESSION_KEY = :install_keys
 
     def self.check(request)
-      request.session[SESSION_KEY].include?(request.params[:id].to_i)
+      request.session[SESSION_KEY]&.include?(request.params[:id].to_i)
     end
   end
 end
