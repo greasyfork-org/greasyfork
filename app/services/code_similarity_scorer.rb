@@ -46,7 +46,7 @@ class CodeSimilarityScorer
   end
 
   def self.score_for_codes(base_code, other_code, base_length:, base_compressed_length:, compressed_length_if_identical:)
-    return if other_code.nil?
+    return 0.0 if other_code.nil?
 
     return 1.000 if base_code == other_code
 
