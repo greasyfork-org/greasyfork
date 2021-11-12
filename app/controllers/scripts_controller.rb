@@ -152,7 +152,7 @@ class ScriptsController < ApplicationController
                           .where(report_id: nil)
                           .includes(:stat_first_comment, :poster)
                           .order(stat_last_reply_date: :desc)
-                          .paginate(page: params[:page], per_page: 25)
+                          .paginate(page: params[:page], per_page: per_page(default: 25))
     @discussion = @discussions.build(discussion_category: DiscussionCategory.script_discussions)
     @discussion.comments.build(text_markup: current_user&.preferred_markup)
 

@@ -164,9 +164,9 @@ class ApplicationController < ActionController::Base
     script.localized_attributes.build({ attribute_key: 'additional_info', attribute_default: true, value_markup: default_markup }) unless script.localized_attributes_for('additional_info').any?(&:attribute_default)
   end
 
-  def per_page
-    pp = 50
-    pp = [params[:per_page].to_i, 200].min if !params[:per_page].nil? && (params[:per_page].to_i > 0)
+  def per_page(default: 50)
+    pp = default
+    pp = [params[:per_page].to_i, 200].min if !params[:per_page].nil? && params[:per_page].to_i > 0
     return pp
   end
 
