@@ -257,7 +257,7 @@ class ScriptsController < ApplicationController
 
     if install_keys.any? { |install_key| Digest::SHA1.hexdigest(request.remote_ip + script_id + install_key) == params[:ping_key] }
       passed_checks = PingRequestCheckingService.check(request)
-      session[PingRequestChecking::SessionInstallKey::SESSION_KEY] -= [script_id.to_i]
+      session[PingRequestChecking::SessionInstallKey::SESSION_KEY] -= [script_id.to_i] if session[PingRequestChecking::SessionInstallKey::SESSION_KEY]
       if passed_checks.count == PingRequestCheckingService::STRATEGIES.count
         ip = Array.new(4) { rand(256) }.join('.') unless Rails.application.config.ip_address_tracking
         Rails.logger.warn("Recorded for script #{script_id} and IP #{ip} - passed ping checks: #{passed_checks.join(', ')}")
