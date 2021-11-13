@@ -48,7 +48,10 @@ class JsParser
       meta_start = code.index(META_START_COMMENT)
       return [code, ''] if meta_start.nil?
 
-      meta_end = code.index(META_END_COMMENT, meta_start) + META_END_COMMENT.length
+      meta_end_start = code.index(META_END_COMMENT, meta_start)
+      return [code, ''] if meta_end_start.nil?
+
+      meta_end = meta_end_start + META_END_COMMENT.length
       return [(meta_start == 0 ? '' : code[0..meta_start - 1]), code[meta_end..code.length]]
     end
 
