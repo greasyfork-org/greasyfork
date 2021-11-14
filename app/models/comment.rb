@@ -11,7 +11,7 @@ class Comment < ApplicationRecord
   belongs_to :poster, class_name: 'User', optional: true
   has_many :reports, as: :item, dependent: :destroy
 
-  validates :text, presence: true
+  validates :text, presence: true, length: { maximum: 65_535 }
   validates :text_markup, inclusion: { in: %w[html markdown] }, presence: true
 
   delegate :script, :discussion_category, to: :discussion
