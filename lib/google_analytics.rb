@@ -1,7 +1,7 @@
 require 'google/analytics/data/v1beta'
 
 class GoogleAnalytics
-  def self.report_installs(date)
+  def self.report_installs(date, site: :greasyfork)
     # Create a client object. The client can be reused for multiple calls.
     client = Google::Analytics::Data::V1beta::AnalyticsData::Client.new do |config|
       config.credentials = Rails.application.secrets.google_analytics[:credentials]
@@ -15,7 +15,7 @@ class GoogleAnalytics
     metric = Google::Analytics::Data::V1beta::Metric.new(name: 'eventCount')
     dimension = Google::Analytics::Data::V1beta::Dimension.new(name: 'customEvent:script_id')
     filter = Google::Analytics::Data::V1beta::FilterExpression.new(filter: Google::Analytics::Data::V1beta::Filter.new(field_name: 'eventName', string_filter: Google::Analytics::Data::V1beta::Filter::StringFilter.new(match_type: Google::Analytics::Data::V1beta::Filter::StringFilter::MatchType::EXACT, value: 'Script install')))
-    request = Google::Analytics::Data::V1beta::RunReportRequest.new(property: 'properties/293110681', date_ranges: [date_range], metrics: [metric], dimensions: [dimension], dimension_filter: filter)
+    request = Google::Analytics::Data::V1beta::RunReportRequest.new(property: site == :sleazyfork ? 'properties/293114118' : 'properties/293110681', date_ranges: [date_range], metrics: [metric], dimensions: [dimension], dimension_filter: filter)
 
     # Call the run_report method.
     result = client.run_report request
