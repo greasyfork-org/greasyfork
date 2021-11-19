@@ -6,7 +6,7 @@ module ShowsAds
   end
 
   def eligible_for_ads?(script = nil)
-    return ads_enabled? && !script&.sensitive
+    return ads_enabled? && script && !script.sensitive
   end
 
   def choose_ad_method_for_script(script)
