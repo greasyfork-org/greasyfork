@@ -4,11 +4,8 @@
 <%
 show_diff = @script.script_versions.length > 1
 show_all_versions = !params[:show_all_versions].nil?
-visible_version_index = 0
-svs = @script.script_versions.reverse
 if show_diff
-  if !show_all_versions
-%>
+  if !show_all_versions %>
     <p><%= t('scripts.history_only_code_changes_info') %> <%= link_to t('scripts.history_all_changes_link'), show_all_versions: 1 %></p>
   <% else %>
     <p><%= t('scripts.history_all_changes_info') %> <%= link_to t('scripts.history_only_code_changes_link'), show_all_versions: nil %></p>
@@ -19,33 +16,39 @@ end %>
     <%= submit_tag t('scripts.diff_button'), name: nil %>
   <% end %>
   <ul class="history_versions">
-    <% svs.each_with_index do |sv, i|
-      show_version = show_all_versions || ((i + 1 >= svs.length) || sv.rewritten_script_code_id != svs[i + 1].rewritten_script_code_id)
-      if show_version %>
-        <li>
-          <% if show_diff %>
-            <span class="diff-controls">
-              <input required type="radio" name="v1" value="<%= sv.id %>"<% if visible_version_index == 0 %> checked<% end %>><input required type="radio" name="v2" value="<%= sv.id %>"<% if visible_version_index == 1 %> checked<% end %>>
-            </span>
-          <% end
-          visible_version_index += 1 %>
-          <span class="version-number">
-            <%= link_to "v#{sv.version}", script_path(sv.script, version: sv.id), rel: :nofollow %>
-            <% if !current_user.nil? && current_user.moderator? %>
-              <%= link_to 'Delete', script_script_version_delete_path(script_id: sv.script.id, script_version_id: sv.id) %>
-            <% end %>
+    <% @script_versions.each_with_index do |sv, i| %>
+      <li>
+        <% if show_diff %>
+          <span class="diff-controls">
+            <input required type="radio" name="v1" value="<%= sv.id %>"<% if i == 0 %> checked<% end %>><input required type="radio" name="v2" value="<%= sv.id %>"<% if i == 1 %> checked<% end %>>
           </span>
-          <%= markup_date(sv.created_at, class: 'version-date') %>
-          <% if sv.changelog.present? %>
-            <span class="version-changelog">
-              <%= format_user_text(sv.changelog, sv.changelog_markup) %>
-            </span>
+        <% end %>
+        <span class="version-number">
+          <%= link_to "v#{sv.version}", script_path(sv.script, version: sv.id), rel: :nofollow %>
+          <% if !current_user.nil? && current_user.moderator? %>
+            <%= link_to 'Delete', script_script_version_delete_path(script_id: sv.script.id, script_version_id: sv.id) %>
           <% end %>
-        </li>
-      <% end
-    end %>
+        </span>
+        <%= markup_date(sv.created_at, class: 'version-date') %>
+        <% if sv.changelog.present? %>
+          <span class="version-changelog">
+            <%= format_user_text(sv.changelog, sv.changelog_markup) %>
+          </span>
+        <% end %>
+      </li>
+    <% end %>
   </ul>
   <% if show_diff %>
-    <%= submit_tag t('scripts.diff_button'), name: nil %>
+    <p>
+      <%= submit_tag t('scripts.diff_button'), name: nil %>
+    </p>
+  <% end %>
+  <% if !defined?(@paginate) || @paginate %>
+    <%= will_paginate(@script_versions, renderer: @bots == 'noindex' ? WillPaginate::ActionView::LinkRendererWithNoFollow : nil) %>
+    <% if @script_versions.total_pages > 1 %>
+      <p>
+        <%= link_to t('scripts.list_all_script_versions'), { list_all: 1 }, { rel: :nofollow } %>
+      </p>
+    <% end %>
   <% end %>
 </form>

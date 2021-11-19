@@ -16,7 +16,23 @@ class ScriptVersionsController < ApplicationController
     return if handle_publicly_deleted(@script)
     return if redirect_to_slug(@script, :script_id)
 
-    if params[:show_all_versions].present? || params[:version].present?
+    @script_versions = @script.script_versions.order(id: :desc)
+
+    unless params[:show_all_versions] == '1'
+      version_ids_to_show = []
+      @script_versions.each_with_index do |sv, i|
+        version_ids_to_show << sv.id if (i + 1 >= @script_versions.length) || sv.rewritten_script_code_id != @script_versions[i + 1].rewritten_script_code_id
+      end
+      @script_versions = @script_versions.where(id: version_ids_to_show)
+    end
+
+    if params[:list_all] == '1'
+      @paginate = false
+    else
+      @script_versions = @script_versions.paginate(page: params[:page], per_page: per_page)
+    end
+
+    if params[:show_all_versions].present? || params[:version].present? || params[:page].present?
       @bots = 'noindex'
     elsif @script.unlisted?
       @bots = 'noindex,follow'
