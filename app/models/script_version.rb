@@ -108,7 +108,7 @@ class ScriptVersion < ApplicationRecord
   end
 
   after_commit on: [:create, :update] do
-    CleanedCodeJob.perform_later(script) if script.js?
+    CleanedCodeJob.perform_later_unless_will_run(script) if script.js?
   end
 
   # Delete the code if not in use by another version.
