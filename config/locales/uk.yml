@@ -31,6 +31,7 @@ uk:
       other: "Подивіть ще %{count} скриптів для %{site}"
     applies_to_all: "Всі сайти"
     install: "Встановити цей скрипт"
+    install_css: "Встановити як користувацький стиль"
     install_help: "?"
     install_help_title: "Як встановити"
     update: "Оновитися до версії %{version}"
@@ -38,11 +39,16 @@ uk:
     reinstall: "Перевстановити версію %{version}"
     old_version_warning: "Це застаріла версія скрипта. Якщо її встановити, новіша версія ніколи не буде встановлена. Все одно встановити?"
     promoted: "Розкручений сценарій"
+    promoted_text_html: "Вам також може сподобатись %{script_link}."
     library_instructions_html: "Цей скрипт не слід встановлювати безпосередньо. Це - бібліотека для інших скриптів для включення в мета директиву %{code}"
     deleted_notice: "Цей скрипт було видалено."
     deleted_notice_with_related: "Скрип, який ви запитуєте, був видалений. Але ось деякі пов'язані скрипти."
+    deleted_undelete_notice_html: "Цей сценарій був заблокований модератором і не може бути відновлений з причини \"<i>%{delete_reason}</i>\"."
+    deleted_locked_author_notice_html: "Цей сценарій був видалений модератором і не є доступним для інших користувачів. Причина видалення: \"<i>%{delete_reason}</i>\". Будь ласка, перегляньте %{code_rules_link:правила%{site_name}}. Якщо ви вважаєте, що видалення було помилковим, ви можете %{appeal_link:оскаржити} його. Не публікуйте цей сценарій повторно: це може призвести до бану на%{site_name}."
+    deleted_author_notice: "Цей сценарій був видалений і не є доступним для інших користувачів. Ви можете відновити його із вкладки \"Видалити\"."
     version_notice_html: "Від %{date}. Дивіться %{latest_version_link}."
     version_notice_latest_version_link: "остання версія"
+    reported_notice_for_author: "Цей сценарій буде недоступним іншим користувачам, поки його не перегляне оператор."
     info_page: "Інформація"
     code_page: "Код"
     history_page: "Історія"
@@ -65,18 +71,22 @@ uk:
     admin:
       promoted_heading: "Розкручений сценарій"
       promoted_submit: "Встановити розкручений сценарій"
+      no_moderator_logs: "Модератори не виконали жодних дій над цим сценарієм."
       compare_title: "Повірняти з іншим скриптом."
       compare_button: "Порівняти"
+      compare_must_be_local_url: "Сценарій для порівняння має бути URL на %{site_name}."
     history_title: "%{script_name} - Історія версій"
     history_only_code_changes_info: "Це версії цього скрипту, де код був змінений."
     history_all_changes_link: "Показати всі версії."
     history_all_changes_info: "Це всі версії цього скрипту."
     history_only_code_changes_link: "Показати тільки версії, де присутні зміни в коді."
     diff_button: "Порівняти обрані версії"
+    list_all_script_versions: "Показати всі версії сценарію"
     code_title: "%{script_name} - Початковий код"
     feedback_title: "%{script_name} - Відгуки"
     feedback_no_discussions_html: "Ще не було опубліковано жодної дискусії. %{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "Жодного обговорення ще не опубліковано."
+    feedback_report_instead: "Якщо ви вважаєте, що цей сценарій порушує %{rules_link:правила %{site_name}}, будь ласка, %{report_link:зголосіть його для видалення}."
     feedback_start_first_discussion_link: "Будьте першим, хто напише про цей скрипт."
     stats_title: "%{script_name} - Статистика"
     stats_daily_installs_heading: "Щоденні встановлення"
@@ -94,6 +104,7 @@ uk:
       year: Останні 365 днів
       all: Увесь час
     derivatives_title: "%{script_name} - Подібні"
+    derivatives_intro: "Ці сценарії можуть ґрунтуватись на ваших (або ваші можуть ґрунтуватись на них). Якщо ви знайшли приклад несанкціонованого використання вашого коду, зголосіть його із вкладки відгуків сценарію."
     derivatives_exact_copies_heading: "Точні копії"
     derivatives_exact_copies_list_intro: "Наступні скрипти мають такий самий код, як і ваш:"
     derivatives_exact_copies_item_html: "%{script_link} від %{author_links} - версії: %{version_list}"
@@ -108,6 +119,7 @@ uk:
     derivatives_similar_item: "%{score}: %{diff_link:[Diff]} %{script}"
     derivatives_similar_last_check_html: "Ми востаннє перевірили подібні скрипти до вашого %{date}."
     derivatives_similar_last_check_soon: "Ми скоро перевіримо скрипти, подібні до вашого."
+    derivatives_similar_last_check_again_soon_html: "Ми востаннє перевіряли наявність сценаріїв, схожих на ваші, о %{date}. Незабаром ми здійснимо перевірку ще раз."
     derivatives_similar_check_now: "Перевірити зараз"
     listing_title_all_sites: "Скрипти користувачів для всіх сайтів"
     listing_description_all_sites: "Скрипти користувачів, що додають нові функції і видаляють помилки на всіх сайтах"
@@ -166,15 +178,24 @@ uk:
     upload_label: "Або завантажте:"
     enable_source_code_editor_label: "Ввімкнути редактор коду з підсвічуванням синтаксису"
     changelog_note: "Які зміни відбулись в цій версії?"
+    additional_info_note: "Більш розгорнутий опис, вказівки і т. д."
     post_new_script: "Опублікувати скрипт"
     post_updated_script: "Опублікувати нову версію"
     type_1_html: "Загальний скрипт користувачів - скрипт який всі користувачі можуть бачити і використовувати."
     type_2_html: "Приватні скрипти користувачів - скрипт користувача для (напів-)приватного використання. Доступні за прямим посиланням, проте не показані на жодній сторінці %{site_name}'у."
     type_3_html: "Бібліотека - скрипт, може бути підключений за допомогою <code>@require</code> з іншого скрипта, але не встановлюється безпосередньо."
+    override_warning_checkbox_label: "Все одно зберегти"
     warning_version_not_incremented_html: "Ви оновили код, але не збільшили номер <code>@version</code>. Користувачі, які раніше встановили ваш скрипт не отримають оновлення коду."
+    warning_version_missing_html: "Ви не вказали <code>@version</code>. <code>@version</code> потрібна для отримання оновлень користувачами. Ви можете вказати версію так: <code>// @version 1.0</code>."
+    warning_version_missing_generate_automatically_html: "Генерувати <code>@version</code> автоматично"
+    warning_namespace_missing_generate_automatically_html: "Генерувати <code>@namespace</code> автоматично"
     warning_namespace_changed_html: "Ваше <code>@namespace</code> змінилося. Незмінний <code>@namespace</code> дозволяє користувачам повторно встановивши ваш скрипт, оновити його."
     warning_potentially_minified_html: "Ваш сценарій виглядає неначе він може містити стиснений (minified) код. Якщо ви використовуєте стиснуту бібліотеку, будь ласка замість коду приєднайте її за допомогою поля <code>@require</code> з %{allowed_requires_link}. Скрипти з мінімізованим кодом підлягають видаленню."
+    warning_automatic_sensitive_html: "Ваш сценарій створений для %{sensitive_domains}, отже, буде позначений як дорослий контент."
     warning_potentially_minified_allowed_requires_link: "одному з цих місць"
+    warning_code_previously_posted_html: "Цей код був опублікований раніше в %{script_links}. Повторні публікації будуть видалені модератором."
+    warning_license_missing_html: "Ви не вказали <code>@license</code>. Публікуючи код на %{site_name}, ви дозволяєте іншим його використовувати, але за допомогою ліцензії можна вказати, як цей код можна видозмінювати і поширювати. Наприклад, <code>// @license MIT</code> означає, що всім дозволено видозмінювати і поширювати написаний вами код. {license_chooser_link:Більше інформації про ліцензії можна знайти тут.} Якщо ви не вкажете ліцензію, %{site_name} буде вважати, що іншим заборонено вносити зміни чи поширювати копії. Зауважте, що якщо ви не є єдиним автором коду, ви не можете опублікувати його без дозволу решти авторів."
+    warning_license_missing_override_html: "Зберегти без ліцензії"
     additional_info_locale_prompt: "(Виберіть мову)"
     additional_info_add_localized: "Додати перекладену додаткову інформацію"
     additional_info_locale_repeated: "Надайте тільки одну додаткову інформацію для '%{locale_code}' мови."
@@ -182,6 +203,11 @@ uk:
     code_syncing_from_url_html: "Код скрипту налаштовано на синхронізацію з: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} може імпортувати скрипти, які вже розміщених в іншому місці, наприклад, у системі контролю версій (як GitHub), ваш власний сервер або інший хостинг сайт користувацьких сценаріїв. Щоб включити синхронізацію для вашого сценарію, надайте URL: %{field}"
     sync_type_intro: "Скрипт буде синхронізовано:"
+    sync_type_1:
+      name: Вручну
+    sync_type_2:
+      name: Автоматично
+      description: перевірка оновлень буде проводитись періодично
     sync_failed_info_html: "Остання спроба синхронізації відбулась %{date}, і в результаті неї трапилась %{error}."
     sync_success_info_html: "Остання успішна спроба синхронізації відбулась %{date}."
     sync_never_succeeded: "Синхронізації ніколи не завершилась успішно."
@@ -193,6 +219,7 @@ uk:
     sync_url_placeholder: "(URL)"
     screenshots_add: "Додати:"
     screenshots_remove: "Видалити"
+    replacement_script_explanation: "(Необов'язково) Оберіть інший сценарій, що замістить цей. Уведіть URL замісного сценарію:"
     diff_title: "%{script} - Різниця версій"
     diff_old_version: "Стара:"
     diff_new_version: "Нова:"
@@ -426,6 +453,7 @@ uk:
     code_rules:
       title: "правила для публікації скриптів на %{site_name}"
       code_header: Код
+      reposting_deleted: Не публікуйте повторно сценарії, що були видалені через порушення правил; натомість користуйтесь функцією "оскаржити". Повторна публікація видалених скриптів може призвести до бану.
     external_scripts:
       title: "Політика %{site_name}'у щодо зовнішніх сценаріїв"
     script_rewriting:
@@ -447,6 +475,7 @@ uk:
     action_column: "Дія"
     reason_column: "Причина"
     item_script_html: "Скрипт: %{script_link}"
+    item_script_lock_appeal: "%{appeal_link:Заява #%{appeal_id}}"
   reports:
     reason:
       spam: "Спам"
