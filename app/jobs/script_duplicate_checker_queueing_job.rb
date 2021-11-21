@@ -13,7 +13,7 @@ class ScriptDuplicateCheckerQueueingJob < ApplicationJob
 
     script_ids.shift(number_to_enqueue)
               .reject { |id| ScriptDuplicateCheckerJob.currently_queued_script_ids.include?(id) }
-              .each { |id| ScriptDuplicateCheckerJob.perform_later(id) }
+              .each { |id| ScriptDuplicateCheckerJob.perform_later_unless_will_run(id) }
 
     Rails.logger.warn("Caching script IDs: #{script_ids}")
     Rails.cache.write('ScriptDuplicateCheckerQueueingJob.queue', script_ids)

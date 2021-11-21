@@ -62,19 +62,19 @@ class ApplicationJob < ActiveJob::Base
     end
 
     def currently_running_with_args?(*args)
-      currently_running.any? {|job_hash| job_hash_matches_args?(job_hash, *args) }
+      currently_running.any? { |job_hash| job_hash_matches_args?(job_hash, *args) }
     end
 
     def currently_enqueued_with_args?(*args)
-      currently_enqueued.any? {|job| job_hash_matches_args?(job.item, *args)}
+      currently_enqueued.any? { |job| job_hash_matches_args?(job.item, *args) }
     end
 
     def currently_scheduled_with_args?(*args)
-      currently_scheduled.any? {|job| job_hash_matches_args?(job.item, *args)}
+      currently_scheduled.any? { |job| job_hash_matches_args?(job.item, *args) }
     end
 
     def currently_will_retry_with_args?(*args)
-      currently_will_retry.any? {|job| job_hash_matches_args?(job.item, *args)}
+      currently_will_retry.any? { |job| job_hash_matches_args?(job.item, *args) }
     end
 
     def job_hash_matches_args?(job_hash, *args)
@@ -84,28 +84,12 @@ class ApplicationJob < ActiveJob::Base
     end
 
     # perform_later if a job matching the args is not already enqueued, scheduled, or running.
-    def perform_later_unless_is_or_will_run(*args)
-      begin
-        will_run = is_or_will_run_with_args?(*args)
-      rescue Redis::CannotConnectError => ex
-        raise ex unless Rails.env.test?
-        Rails.logger.warn('Redis not available, assuming this job is not enqueued.')
-        will_run = false
-      end
-
-      if will_run
-        Rails.logger.info("#{name} is already enqueued or running with args #{ActiveJob::Arguments.serialize(args)}, not enqueuing again.")
-      else
-        perform_later(*args)
-      end
-    end
-
-    # perform_later if a job matching the args is not already enqueued, scheduled, or running.
     def perform_later_unless_will_run(*args)
       begin
         will_run = will_run_with_args?(*args)
-      rescue Redis::CannotConnectError => ex
-        raise ex unless Rails.env.test?
+      rescue Redis::CannotConnectError => e
+        raise e unless Rails.env.test?
+
         Rails.logger.warn('Redis not available, assuming this job is not enqueued.')
         will_run = false
       end

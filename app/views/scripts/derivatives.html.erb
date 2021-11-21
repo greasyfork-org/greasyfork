@@ -24,7 +24,7 @@
 <h3><%= t('scripts.derivatives_similar_heading') %></h3>
 
 <% check_date = @script.script_similarities.minimum(:checked_at) %>
-<% enqueued = ScriptDuplicateCheckerJob.currently_queued_script_ids.include?(@script.id) %>
+<% enqueued = ScriptDuplicateCheckerJob.will_run_with_args?(@script.id) %>
 
 <p><%= t('scripts.derivatives_similar_info') %></p>
 

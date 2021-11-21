@@ -46,8 +46,4 @@ class ScriptDuplicateCheckerJob < ApplicationJob
       currently_scheduled.map { |p| p['args'].first['arguments'].first },
     ].flatten
   end
-
-  def self.currently_queued?(script_id)
-    currently_queued_script_ids.include?(script_id)
-  end
 end
