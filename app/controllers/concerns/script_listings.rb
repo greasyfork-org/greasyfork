@@ -6,6 +6,8 @@ module ScriptListings
   # We want to avoid bots on code_search as it's pretty expensive.
   COLLECTION_LOGGED_IN_ACTIONS = [:code_search].freeze
 
+  DEFAULT_SORT = 'daily_installs'.freeze
+
   included do
     layout 'list', only: [:index, :search, :libraries, :reported, :reported_not_adult, :code_search]
   end
@@ -280,9 +282,9 @@ module ScriptListings
         return "#{column_prefix}default_name ASC, #{column_prefix}id"
       else
         params[:sort] = nil
-        return "myweight DESC, #{column_prefix}fan_score DESC, #{column_prefix}id" if for_sphinx
+        return "myweight DESC, #{column_prefix}#{DEFAULT_SORT} DESC, #{column_prefix}id" if for_sphinx
 
-        return "#{column_prefix}fan_score DESC, #{column_prefix}id"
+        return "#{column_prefix}#{DEFAULT_SORT} DESC, #{column_prefix}id"
       end
     end
   end
