@@ -15,6 +15,8 @@ module ShowsAds
     return 'vi' if script.id == 1
     return 'ga' if script.adsense_approved && locale_allows_adsense? && script.localized_attributes.where(attribute_key: 'additional_info').any?
 
+    return 'vi' if [:'zh-CN', :'zh-TW'].include?(I18n.locale) && script.id.even?
+
     %w[ca ea].sample
   end
 
