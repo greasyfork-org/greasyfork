@@ -60,7 +60,7 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
+      gtag('set', { 'ad_method': '<%= @ad_method %>'});
       gtag('config', 'G-ZB1G3ZKC89');
     </script>
   <% else %>
@@ -70,7 +70,7 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
+      gtag('set', { 'ad_method': '<%= @ad_method %>'});
       gtag('config', 'G-7NMRNRYW7C');
     </script>
   <% end %>
