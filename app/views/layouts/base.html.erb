@@ -60,8 +60,9 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('set', { 'ad_method': '<%= @ad_method %>'});
-      gtag('config', 'G-ZB1G3ZKC89');
+      gtag('config', 'G-ZB1G3ZKC89', {
+        'ad_method': '<%= @ad_method %>'
+      });
     </script>
   <% else %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -70,8 +71,9 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-      gtag('set', { 'ad_method': '<%= @ad_method %>'});
-      gtag('config', 'G-7NMRNRYW7C');
+      gtag('config', 'G-7NMRNRYW7C', {
+        'ad_method': '<%= @ad_method %>'
+      });
     </script>
   <% end %>
 
