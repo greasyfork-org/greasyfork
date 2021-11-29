@@ -12,10 +12,10 @@ module ShowsAds
   def choose_ad_method_for_script(script)
     return nil unless eligible_for_ads?(script)
 
-    return 'vi' if script.id == 1
+    #return 'vi' if script.id == 1
     return 'ga' if script.adsense_approved && locale_allows_adsense? && script.localized_attributes.where(attribute_key: 'additional_info').any?
 
-    return 'vi' if [:'zh-CN', :'zh-TW'].include?(I18n.locale) && script.id.even?
+    #return 'vi' if [:'zh-CN', :'zh-TW'].include?(I18n.locale) && script.id.even?
 
     %w[ca ea].sample
   end
@@ -45,10 +45,4 @@ module ShowsAds
   def locale_allows_adsense?
     Rails.application.config.no_adsense_locales.exclude?(request_locale.code)
   end
-
-  # FALLBACK_METHODS = ['ca', 'cf']
-
-  # def fallback_ad_method
-  #  FALLBACK_METHODS.sample
-  # end
 end
