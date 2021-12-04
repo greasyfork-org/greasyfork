@@ -4,7 +4,7 @@
 <%= render partial: 'install', locals: {script: @script, script_version: @script_version} %>
 
 <% if @ad_method&.show_ads? %>
-  <div class="ad ad-<%= @ad_method %>" id="script-show-info-ad">
+  <div class="ad <%= @ad_method.css_class %>" id="script-show-info-ad">
     <div class="ad-content">
       <% if @ad_method.ga? %>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2247465624637408"

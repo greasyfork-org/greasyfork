@@ -42,7 +42,7 @@
 </section>
 
 <% if @ad_method&.ga? %>
-  <div class="ad ad-<%= @ad_method %>" id="home-ad">
+  <div class="ad <%= @ad_method.css_class %>" id="home-ad">
     <div class="ad-content">
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2247465624637408"
               crossorigin="anonymous"></script>

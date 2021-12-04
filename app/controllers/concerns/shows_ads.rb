@@ -10,6 +10,8 @@ module ShowsAds
     no_ads = general_ads_setting
     return no_ads if no_ads
 
+    return AdMethod.no_ad(:script_deleted) if script.nil? || script.deleted?
+
     return AdMethod.no_ad(:sensitive) if script&.sensitive
 
     return AdMethod.ga if script.adsense_approved && locale_allows_adsense? && script.localized_attributes.where(attribute_key: 'additional_info').any?

@@ -10,6 +10,10 @@ class AdMethod
     @ad_method.present?
   end
 
+  def css_class
+    "ad-#{@ad_method}" if @ad_method
+  end
+
   def tracking_key
     return @ad_method if @ad_method
     return "_#{@no_ad_reason}" if @no_ad_reason
