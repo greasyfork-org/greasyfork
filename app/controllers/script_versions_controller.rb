@@ -38,7 +38,6 @@ class ScriptVersionsController < ApplicationController
       @bots = 'noindex,follow'
     end
     @canonical_params = [:script_id, :version, :show_all_versions]
-    @show_ad = eligible_for_ads?(@script)
   end
 
   def new

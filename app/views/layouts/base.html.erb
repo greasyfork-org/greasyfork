@@ -36,7 +36,7 @@
 
   <link rel="search" href="<%= opensearch_description_path %>" type="application/opensearchdescription+xml" title="<%= t('opensearch.short_name', site_name: site_name, default: t('opensearch.short_name', site_name: site_name, locale: 'en')) %>" hreflang="<%= I18n.locale %>">
 
-  <% if @ad_method == 'ea' %>
+  <% if @ad_method&.ea? %>
     <script async src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
   <% end %>
 
@@ -61,7 +61,7 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-ZB1G3ZKC89', {
-        'ad_method': '<%= @ad_method %>'
+        'ad_method': '<%= @ad_method&.tracking_key %>'
       });
     </script>
   <% else %>
@@ -72,7 +72,7 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-7NMRNRYW7C', {
-        'ad_method': '<%= @ad_method %>'
+        'ad_method': '<%= @ad_method&.tracking_key %>'
       });
     </script>
   <% end %>

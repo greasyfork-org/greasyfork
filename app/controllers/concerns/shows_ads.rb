@@ -1,45 +1,39 @@
 module ShowsAds
   def choose_ad_method
-    return nil unless ads_enabled? && locale_allows_adsense?
+    no_ads = general_ads_setting
+    return no_ads if no_ads
 
-    'ga'
-  end
-
-  def eligible_for_ads?(script = nil)
-    return ads_enabled? && script && !script.sensitive
+    AdMethod.ga
   end
 
   def choose_ad_method_for_script(script)
-    return nil unless eligible_for_ads?(script)
+    no_ads = general_ads_setting
+    return no_ads if no_ads
 
-    # return 'vi' if script.id == 1
-    return 'ga' if script.adsense_approved && locale_allows_adsense? && script.localized_attributes.where(attribute_key: 'additional_info').any?
+    return AdMethod.no_ad(:sensitive) if script&.sensitive
 
-    # return 'vi' if [:'zh-CN', :'zh-TW'].include?(I18n.locale) && script.id.even?
+    return AdMethod.ga if script.adsense_approved && locale_allows_adsense? && script.localized_attributes.where(attribute_key: 'additional_info').any?
 
-    %w[ca ea].sample
+    [AdMethod.ca, AdMethod.ea].sample
   end
 
   def choose_ad_method_for_scripts(scripts)
-    return nil unless ads_enabled?
+    no_ads = general_ads_setting
+    return no_ads if no_ads
+
     # #size, not #count, here because #count does things wrong with will_paginate, which is used when this is filtered
     # by a ScriptSet.
     # https://github.com/mislav/will_paginate/issues/449
-    return nil if scripts.size < 3
-    return nil if scripts.any?(&:sensitive?)
+    return AdMethod.no_ad(:not_enough_scripts) if scripts.size < 3
+    return AdMethod.no_ad(:sensitive_list) if scripts.any?(&:sensitive?)
 
-    # return 'ga' if scripts.all?(&:adsense_approved)
-
-    'ea'
+    AdMethod.ea
   end
 
-  private
-
-  def ads_enabled?
-    return false if Rails.env.test?
-    return false if sleazy?
-
-    current_user.nil? || current_user.show_ads
+  def general_ads_setting
+    return AdMethod.no_ad(:test) if Rails.env.test?
+    return AdMethod.no_ad(:sleazy) if sleazy?
+    return AdMethod.no_ad(:user_pref) if current_user && !current_user.show_ads
   end
 
   def locale_allows_adsense?

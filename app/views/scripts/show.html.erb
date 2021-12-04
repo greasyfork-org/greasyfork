@@ -3,11 +3,10 @@
 
 <%= render partial: 'install', locals: {script: @script, script_version: @script_version} %>
 
-<% if @ad_method %>
+<% if @ad_method&.show_ads? %>
   <div class="ad ad-<%= @ad_method %>" id="script-show-info-ad">
     <div class="ad-content">
-      <% case @ad_method
-      when 'ga' %>
+      <% if @ad_method.ga? %>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2247465624637408"
                 crossorigin="anonymous"></script>
         <ins class="adsbygoogle"
@@ -19,18 +18,16 @@
         <script>
           (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
-      <% when 'ca' %>
+      <% end %>
+      <% if @ad_method&.ca? %>
         <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CKYI5KQU&placement=greasyforkorg" id="_carbonads_js"></script>
-      <% when 'ea' %>
+      <% end %>
+      <% if @ad_method&.ea? %>
         <div id="script-show-ea" class="flat ethical-ads" data-ea-publisher="greasyfork" data-ea-type="text"></div>
         <div class="ad carbon-ad" style="display: none">
           <div id="_carbonads_js" data-src="https://cdn.carbonads.com/carbon.js?serve=CKYI5KQU&placement=greasyforkorg"></div>
         </div>
-      <% when 'vi' %>
-        <div class="ad vidoomy-ad">
-          <script type="text/javascript" src="https://ads.vidoomy.com/greasyfork_18449.js" async></script>
-        </div>
-    <% end %>
+      <% end %>
     </div>
   </div>
 <% end %>
