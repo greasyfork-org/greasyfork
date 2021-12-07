@@ -14,6 +14,7 @@ class ScriptPreviouslyDeletedCheckerTest < ActiveSupport::TestCase
     script = Script.first
     script_2 = Script.second
     script_3 = Script.third
+    ScriptSimilarity.delete_all
     ScriptSimilarity.create!(script: script, other_script: script_2, similarity: 0.9, checked_at: Time.zone.now)
     ScriptSimilarity.create!(script: script, other_script: script_3, similarity: 0.9, checked_at: Time.zone.now)
     assert_no_difference -> { Report.count } do
@@ -25,6 +26,7 @@ class ScriptPreviouslyDeletedCheckerTest < ActiveSupport::TestCase
     script = Script.first
     script_2 = Script.second
     script_3 = Script.third
+    ScriptSimilarity.delete_all
     ScriptSimilarity.create!(script: script, other_script: script_2, similarity: 0.9, checked_at: Time.zone.now)
     ScriptSimilarity.create!(script: script, other_script: script_3, similarity: 0.9, checked_at: Time.zone.now)
     initial_report = Report.create!(item: script_2, result: Report::RESULT_UPHELD, reason: Report::REASON_MALWARE, reporter: User.first)
