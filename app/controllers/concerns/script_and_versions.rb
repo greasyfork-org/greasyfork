@@ -104,6 +104,8 @@ module ScriptAndVersions
           )
         end
 
+        @ad_method = AdMethod.no_ad(:script_deleted)
+
         if @scripts&.any?
           @page_description = t('scripts.deleted_notice_with_related')
           @paginate = false
