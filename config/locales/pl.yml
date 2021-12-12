@@ -31,6 +31,7 @@ pl:
       other: "Zobacz %{count} inne skrypty dla %{site}"
     applies_to_all: "Wszystkie strony"
     install: "Zainstaluj skrypt"
+    install_css: "Zainstaluj jako styl"
     install_help: "?"
     install_help_title: "Jak zainstalować"
     update: "Aktualizacja do wersji %{version}"
@@ -100,6 +101,7 @@ pl:
     history_all_changes_info: "To są wszystkie wersje tego skryptu."
     history_only_code_changes_link: "Pokaż tylko te wersje, gdzie kod został zmieniony."
     diff_button: "Porównaj wybrane wersje"
+    list_all_script_versions: "Pokaż wszystkie wersje skryptu"
     code_title: "%{script_name} — kod źródłowy"
     feedback_title: "%{script_name} - opinie"
     feedback_no_discussions_html: "Brak udostępnionych dyskusji. %{start_first_discussion_link}"
@@ -205,11 +207,13 @@ pl:
     type_1_html: "Publiczny skrypt użytkownika - wszyscy mogą go zobaczyć i używać."
     type_2_html: "Niepubliczny skrypt użytkownika - do użytku prywatnego (lub półprywatnego). Dostępny przez bezpośredni dostęp. Nie jest nigdzie linkowany w %{site_name}."
     type_3_html: "Biblioteka - skrypt nie jest przeznaczony do instalowania bezpośrednio, tylko do używania przez inne skrypty poprzez <code>@require</code>."
+    override_warning_checkbox_label: "Zapisz mimo to"
     warning_version_not_incremented_html: "Zaktualizowałeś kod, ale nie zwiększyłeś liczby w linii <code>@version</code>. Ci, którzy zainstalowali wcześniej Twój skrypt mogą nie otrzymać zaktualizowanego kodu.."
     warning_namespace_changed_html: "Twój <code> @namespace </ code> nie zmieniło. Spójne <code> @namespace </ code> pozwala użytkownikom ponownie zainstalować skrypt, aby go zaktualizować."
     warning_potentially_minified_html: "Skrypt wygląda może on zawierać minified (z kompresją) kod. Jeśli używasz minified biblioteki, należy zamiast <code> @require </ code> to z %{allowed_requires_link} wymaga dozwolone. Skrypty z kodem minified podlegają usunięciu."
     warning_automatic_sensitive_html: "Twój skrypt jest przeznaczony dla %{sensitive_domains} i będzie oznaczony jako zawartość dla osób dorosłych."
     warning_potentially_minified_allowed_requires_link: "jedno z tych miejsc"
+    warning_license_missing_override_html: "Zapisz bez licencji"
     additional_info_locale_prompt: "(wybierz język)"
     additional_info_add_localized: "Dodaj dodatkowe informacje w innym języku"
     additional_info_locale_repeated: "Zapewnienie tylko jedno dodatkowe informacje dla '% {locale_key} \"locale."
@@ -319,8 +323,14 @@ pl:
     install_help_dialog:
       js:
         other: Aby zainstalować ten skrypt, musisz zainstalować rozszerzenie menedżera skryptów użytkownika.
+        bypass: (Mam już menedżera skryptów użytkownika, pozwól mi to zainstalować!)
       css:
+        firefox: Musisz posiadać rozszerzenie, takie jak %{stylus_link:Stylus}, by zainstalować ten skrypt.
+        chrome: Musisz posiadać rozszerzenie, takie jak %{stylus_link:Stylus}, by zainstalować ten skrypt.
+        opera: Musisz posiadać rozszerzenie, takie jak %{stylus_link:Stylus}, by zainstalować ten skrypt.
         safari: Aby zainstalować ten skrypt, potrzebujesz menedżera stylu.
+        other: Aby zainstalować ten skrypt, musisz zainstalować rozszerzenie menedżera stylów użytkownika.
+        bypass: (Mam już menedżera stylów użytkownika, pozwól mi to zainstalować!)
       close_dialog: OK
     antifeatures:
       warning_title: Ten skrypt zawiera antyfunkcjonalności
@@ -699,6 +709,7 @@ pl:
     external_scripts:
       title: "Polityka %{site_name} dot. zewnętrznych skryptów"
       test_url:
+        label: Testuj adres URL
         result_ok: URL jest dozwolony
         result_not_ok: URL jest niedozwolony
     script_rewriting:
@@ -871,6 +882,8 @@ pl:
       malware: "Szkodliwy kod"
       minified: "Zminifikowany kod"
       external_code: "Niedozwolony zewnętrzny kod"
+      wrong_category: "Niewłaściwa kategoria"
+      wrong_category_with_suggestion: "Niewłaściwa kategoria (sugestia: %{suggested_category})"
       other: "Inne"
     non_functional_feedback: "Prosimy o zgłaszanie niefunkcjonalnych skryptów korzystając z opcji %{feedback_link:pozostawienia opinii} o skrypcie."
     unauthorized_code_original_placeholder: "Adres URL oryginalnego kodu"
@@ -1159,3 +1172,8 @@ pl:
       subject: "Użytkownik '%{commenter_name}' wspomniał o tobie na %{site_name}."
     new_message:
       subject: "Użytkownik %{user} wysłał ci wiadomość na %{site_name}"
+    script_lock_appeal:
+      dismiss:
+        moderator_notes: "Moderator skomentował:"
+      unlock:
+        moderator_notes: "Moderator skomentował:"
