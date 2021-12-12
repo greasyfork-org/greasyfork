@@ -122,14 +122,14 @@ module Sidekiq
         begin
           will_run = will_run_with_args?(*args)
         rescue Redis::CannotConnectError => e
-          raise e unless Rails.env.test?
+          raise e unless ::Rails.env.test?
 
-          Rails.logger.warn('Redis not available, assuming this job is not enqueued.')
+          ::Rails.logger.warn('Redis not available, assuming this job is not enqueued.')
           will_run = false
         end
 
         if will_run
-          Rails.logger.info("#{name} is already enqueued with args #{ActiveJob::Arguments.serialize(args)}, not enqueuing again.")
+          ::Rails.logger.info("#{name} is already enqueued with args #{ActiveJob::Arguments.serialize(args)}, not enqueuing again.")
         else
           perform_later(*args)
         end
@@ -140,14 +140,14 @@ module Sidekiq
         begin
           will_run = will_run_in_any_queue_with_args?(*args)
         rescue Redis::CannotConnectError => e
-          raise e unless Rails.env.test?
+          raise e unless ::Rails.env.test?
 
-          Rails.logger.warn('Redis not available, assuming this job is not enqueued.')
+          ::Rails.logger.warn('Redis not available, assuming this job is not enqueued.')
           will_run = false
         end
 
         if will_run
-          Rails.logger.info("#{name} is already enqueued with args #{ActiveJob::Arguments.serialize(args)}, not enqueuing again.")
+          ::Rails.logger.info("#{name} is already enqueued with args #{ActiveJob::Arguments.serialize(args)}, not enqueuing again.")
         else
           perform_later(*args)
         end
