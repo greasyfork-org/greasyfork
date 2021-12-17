@@ -51,6 +51,10 @@ class CodeSimilarityScorer
     return 1.000 if base_code == other_code
 
     other_code_length = other_code.size
+
+    # If the length is very different, assume not at all similar.
+    return 0.0 unless ((base_code.length/2)..(base_code.length*2)).include?(other_code_length)
+
     other_compressed_length = get_compressed_size(other_code)
 
     combined_compressed_length = get_compressed_size(base_code + other_code)
