@@ -43,4 +43,10 @@ class JsCleanupTest < ActiveSupport::TestCase
       JsCleanup.cleanup('function foo() { var bar = 1; delete bar; }')
     end
   end
+
+  test 'an invalid script - return' do
+    assert_raises(JsCleanup::UncleanableException) do
+      JsCleanup.cleanup('if (true) return')
+    end
+  end
 end
