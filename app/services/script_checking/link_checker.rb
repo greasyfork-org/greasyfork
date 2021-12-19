@@ -19,7 +19,7 @@ module ScriptChecking
         result = checked_for_blocked_urls(urls_from_execution)
         return result if result
 
-        redirect_urls_from_execution = urls_from_execution.select { |url| redirect_url_pattern.match?(url) }
+        redirect_urls_from_execution = urls_from_execution.grep(redirect_url_pattern)
         redirect_destinations_from_execution = redirect_urls_from_execution.filter_map { |url| resolve(url) }.to_set
         result = checked_for_blocked_urls(redirect_destinations_from_execution)
         return result if result
