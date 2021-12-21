@@ -189,7 +189,8 @@
         <% else %>
           <select id="remove-automatic-sets-included" name="remove-automatic-sets-included[]" multiple size="10">
             <% @set.child_automatic_set_inclusions.each do |set| %>
-              <option value="<%= set.param_value %>"><%= t(*set.i18n_params) %></option>
+              <%= i18n_key, i18n_params = set.i18n_params %>
+              <option value="<%= set.param_value %>"><%= t(i18n_key, **i18n_params) %></option>
             <% end %>
           </select><br>
           <button name="remove-selected-automatic-sets" value="i" data-submit-anchor="script-set-auto-script-sets"><%= t('script_sets.edit_auto_sets.remove_included') %></button>

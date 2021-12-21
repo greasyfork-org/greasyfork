@@ -3,9 +3,9 @@ class ScriptSetAutomaticSetInclusion < ApplicationRecord
   belongs_to :script_set_automatic_type
 
   def i18n_params
-    return ['script_sets.auto_set_types.all_scripts'] if script_set_automatic_type_id == 1
+    return ['script_sets.auto_set_types.all_scripts', {}] if script_set_automatic_type_id == 1
     return ['script_sets.auto_set_types.site', { site: value }] if (script_set_automatic_type_id == 2) && !value.nil? && !value.empty?
-    return ['script_sets.auto_set_types.all_sites'] if script_set_automatic_type_id == 2
+    return ['script_sets.auto_set_types.all_sites', {}] if script_set_automatic_type_id == 2
     return ['script_sets.auto_set_types.user', { user: User.find(value).name }] if script_set_automatic_type_id == 3
     return ['script_sets.auto_set_types.locale', { locale_name: Locale.find(value).display_text }] if script_set_automatic_type_id == 4
   end
