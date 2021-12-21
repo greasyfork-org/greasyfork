@@ -170,6 +170,12 @@ class ApplicationController < ActionController::Base
     return pp
   end
 
+  def page_number
+    page = params[:page]&.to_i
+    page = 1 if page.nil? || page < 1
+    page
+  end
+
   def cache_with_log(key, options = {}, &block)
     self.class.cache_with_log(key, options, &block)
   end
