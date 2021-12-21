@@ -5,15 +5,6 @@ GIT
     devise-i18n (1.10.1)
       devise (>= 4.8.0)
 
-GIT
-  remote: https://github.com/tmaesaka/transifex-ruby.git
-  revision: 7d999bdd4cb4b80b56e86add170d8c2ed7f7949d
-  specs:
-    transifex-ruby (0.0.5)
-      faraday (>= 0.8.0)
-      faraday_middleware (>= 0.9.0)
-      hashie (>= 1.2.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -199,7 +190,7 @@ GEM
     faraday-net_http_persistent (1.2.0)
     faraday-patron (1.0.0)
     faraday-rack (1.0.0)
-    faraday_middleware (1.0.0)
+    faraday_middleware (1.2.0)
       faraday (~> 1.0)
     ffi (1.15.3)
     gapic-common (0.7.0)
@@ -250,7 +241,7 @@ GEM
     grpc (1.41.1-x86_64-linux)
       google-protobuf (~> 3.17)
       googleapis-common-protos-types (~> 1.0)
-    hashie (4.1.0)
+    hashie (5.0.0)
     hiredis (0.6.3)
     html_tokenizer (0.0.7)
     i18n (1.8.11)
@@ -478,6 +469,10 @@ GEM
       middleware (>= 0.1.0)
       riddle (~> 2.3)
     thor (1.1.0)
+    transifex-ruby (0.1.0)
+      faraday (>= 1, < 2)
+      faraday_middleware (>= 0.9.0)
+      hashie (>= 1.2.0)
     ts-sidekiq-delta (0.3.0)
       sidekiq (>= 2.5.4)
       sidekiq-unique-jobs (>= 6.0.0)
@@ -575,7 +570,7 @@ DEPENDENCIES
   sidekiq
   strip_attributes
   thinking-sphinx
-  transifex-ruby!
+  transifex-ruby
   ts-sidekiq-delta
   user_agent_parser
   webdrivers
