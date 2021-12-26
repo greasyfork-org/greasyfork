@@ -99,8 +99,8 @@ module ApplicationHelper
     canonical_param_names = (canonical_param_names || []).push(:id, :locale)
     canonical_params = params
                        .to_unsafe_h
-                       .map { |k, v| canonical_param_names.include?(k.to_sym) ? [k, v] : [k, nil] }
-                       .to_h
+                       .to_h { |k, v| canonical_param_names.include?(k.to_sym) ? [k, v] : [k, nil] }
+
     begin
       url_for(canonical_params.merge(controller: controller_name, action: action_name, only_path: false, host: sleazy? ? 'sleazyfork.org' : 'greasyfork.org', port: nil))
     rescue StandardError

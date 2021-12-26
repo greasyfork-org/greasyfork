@@ -5,8 +5,6 @@ class ModeratorAction < ApplicationRecord
   belongs_to :report, optional: true
   belongs_to :script_lock_appeal, optional: true
 
-  validates :moderator, :action, presence: true
-
   validates :action, length: { maximum: 50 }
   validates :reason, length: { maximum: 500 }
 end

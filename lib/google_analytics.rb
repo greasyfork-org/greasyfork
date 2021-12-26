@@ -20,6 +20,6 @@ class GoogleAnalytics
     # Call the run_report method.
     result = client.run_report request
 
-    result.rows.map { |row| [row.dimension_values.first.value.to_i, row.metric_values.first.value.to_i] }.to_h
+    result.rows.to_h { |row| [row.dimension_values.first.value.to_i, row.metric_values.first.value.to_i] }
   end
 end

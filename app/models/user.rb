@@ -327,7 +327,7 @@ class User < ApplicationRecord
 
   def calculate_stats
     script_stat_results = scripts.listable(:all).pick(*SCRIPT_STAT_QUERIES.map(&:last).map { |v| Arel.sql(v) })
-    script_stat_results = SCRIPT_STAT_QUERIES.map(&:first).each_with_index.map { |k, i| [k, script_stat_results[i]] }.to_h
+    script_stat_results = SCRIPT_STAT_QUERIES.map(&:first).each_with_index.to_h { |k, i| [k, script_stat_results[i]] }
     {
       stats_script_count: script_stat_results[:count],
       stats_script_total_installs: script_stat_results[:total_installs],

@@ -137,7 +137,6 @@ class ScriptSetsController < ApplicationController
       errors << I18n.t('script_sets.already_included', name: child_set.name) unless set.add_child(child_set, exclusion: params['set-action'] == 'e')
     end
 
-
     i18n_key, i18n_params = ssasi.i18n_params
 
     # Add automatic set

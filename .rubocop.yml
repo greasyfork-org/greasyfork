@@ -64,6 +64,10 @@ Naming/MethodParameterName:
 Naming/VariableNumber:
   Enabled: false
 
+# False positives per https://docs.rubocop.org/rubocop-rails/cops_rails.html#railscompactblank
+Rails/CompactBlank:
+  Enabled: false
+
 Rails/HasAndBelongsToMany:
   Enabled: false
 
@@ -78,6 +82,10 @@ Rails/OutputSafety:
   Enabled: false
 
 Rails/SkipsModelValidations:
+  Enabled: false
+
+# Disabled due to false positives with hash accesses
+Style/CombinableLoops:
   Enabled: false
 
 Style/Documentation:

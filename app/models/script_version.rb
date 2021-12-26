@@ -60,14 +60,14 @@ class ScriptVersion < ApplicationRecord
   # Multiple additional infos in the same locale
   validate on: :create do |record|
     # The default will get set to the script's locale
-    additional_info_locales = localized_attributes_for('additional_info').map { |la| (la.locale.nil? && la.attribute_default) ? script.locale : la.locale }.reject(&:nil?)
+    additional_info_locales = localized_attributes_for('additional_info').filter_map { |la| (la.locale.nil? && la.attribute_default) ? script.locale : la.locale }
     duplicated_locales = additional_info_locales.select { |l| additional_info_locales.count(l) > 1 }.uniq
     duplicated_locales.each { |l| record.errors.add(:base, :additional_info_locale_repeated, message: I18n.t('scripts.additional_info_locale_repeated', locale_code: l.code)) }
   end
 
   # Additional info where no @name for that locale exists. This is OK if the script locale matches, though.
   validate on: :create do |record|
-    additional_info_locales = localized_attributes_for('additional_info').reject(&:attribute_default).map { |la| la.locale.nil? ? script.locale : la.locale }.reject(&:nil?).uniq
+    additional_info_locales = localized_attributes_for('additional_info').reject(&:attribute_default).filter_map { |la| la.locale.nil? ? script.locale : la.locale }.uniq
     meta_keys = record.parser_class.parse_meta(code)
     additional_info_locales.each do |l|
       record.errors.add(:base, :localized_additional_info_with_no_name, message: I18n.t('scripts.localized_additional_info_with_no_name', locale_code: l.code)) if meta_keys.exclude?("name:#{l.code}") && (l != script.locale)

@@ -59,7 +59,7 @@ namespace :transifex do
       c = rails_resource.translation(code).content
       # transifex likes underscores in locale names, we like hyphens
       c.sub!(code, code_with_hyphens) if code != code_with_hyphens
-      File.open("config/locales/#{code_with_hyphens}.yml", 'w') { |file| file.write(c) }
+      File.write("config/locales/#{code_with_hyphens}.yml", c)
     end
   end
 end
