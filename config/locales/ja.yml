@@ -42,6 +42,7 @@ ja:
     deleted_notice: "このスクリプトは削除されました。"
     deleted_notice_with_related: "アクセス要求のあったスクリプトは削除されています。関連するスクリプトをご紹介します。"
     deleted_undelete_notice_html: "このスクリプトは管理担当者によりロックされており、削除できません。理由:  \"<i>%{delete_reason}</i>\""
+    deleted_locked_author_notice_html: "このスクリプトは管理担当者によって削除されており、第三者はアクセスできません。理由 \"<i>%{delete_reason}</i>\" {code_rules_link:%{site_name}の規則}を確認してください。もし誤って削除された場合、%{appeal_link:異議の申立}ができます。スクリプトの再投稿は行わないでください。%{site_name}からBANされる場合があります。"
     deleted_author_notice: "このスクリプトは削除されており、第三者はアクセスできません。削除タブから削除を解除できます。"
     version_notice_html: "%{date} 時点のページです。%{latest_version_link}を参照してください。"
     version_notice_latest_version_link: "最新バージョン"
@@ -92,6 +93,7 @@ ja:
     history_all_changes_info: "すべてのバージョンを表示しています。"
     history_only_code_changes_link: "コードが変更されたバージョンのみを表示"
     diff_button: "選択したバージョン同士を比較"
+    list_all_script_versions: "スクリプトの全バージョンを表示"
     code_title: "%{script_name} のソースコード"
     feedback_title: "%{script_name} のフィードバック"
     feedback_no_discussions_html: "まだスレッドはありません。%{start_first_discussion_link}"
@@ -195,11 +197,13 @@ ja:
     type_1_html: "公開スクリプト – 誰でも閲覧・利用できるユーザースクリプト。"
     type_2_html: "限定公開スクリプト – 半プライベートなユーザースクリプト。URLを知っていればアクセス可能ですが、%{site_name} のどこからもリンクされません。"
     type_3_html: "ライブラリ – <code>@require</code> によって他のスクリプトから読み込まれるスクリプト。インストールボタンは表示されません。"
+    override_warning_checkbox_label: "強制的に保存する"
     warning_version_not_incremented_html: "コードが更新されていますが、<code>@version</code> の値が大きくなっていません。すでにスクリプトをインストールしている人が、更新されたコードを取得できない可能性があります。"
     warning_namespace_changed_html: "<code>@namespace</code> が変更されています。一貫性のある <code>@namespace</code> を記述することで、再インストールによってスクリプトを更新できるようになります。"
     warning_potentially_minified_html: "圧縮 (minify) されたコードが含まれている可能性があります。圧縮されたライブラリを使用している場合は、ライブラリのコードを貼り付ける代わりに、%{allowed_requires_link} で許可されたURLから <code>@require</code> メタキーで読み込んでください。圧縮されたスクリプトは削除対象です。"
     warning_automatic_sensitive_html: "%{sensitive_domains} 向けであるため、アダルトコンテンツに関するスクリプトであるとマークされます。"
     warning_potentially_minified_allowed_requires_link: "外部スクリプトにおける%{site_name}のポリシー"
+    warning_license_missing_override_html: "ライセンスなしで保存する"
     additional_info_locale_prompt: "(ロケールを選択してください)"
     additional_info_add_localized: "ローカライズした (他国語に翻訳した) 追加情報を書く"
     additional_info_locale_repeated: "ロケール「%{locale_code}」の追加情報が複数あります。"
@@ -213,6 +217,7 @@ ja:
       name: 自動
     sync_type_3:
       name: Web Hook
+    sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "%{date} に同期に失敗しました。結果: %{error}"
     sync_success_info_html: "%{date} に同期に成功しました。"
     sync_never_succeeded: "まだ一度も同期に成功していません。"
