@@ -29,7 +29,7 @@ class ScriptVersionsController < ApplicationController
     if params[:list_all] == '1'
       @paginate = false
     else
-      @script_versions = @script_versions.paginate(page: params[:page], per_page: per_page)
+      @script_versions = @script_versions.paginate(page: page_number, per_page: per_page)
     end
 
     if params[:show_all_versions].present? || params[:version].present? || params[:page].present?
