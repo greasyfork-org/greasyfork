@@ -63,6 +63,13 @@ class ReportsController < ApplicationController
 
   def dismiss
     @report = Report.find(params[:id])
+
+    if current_user.moderator? && !@report.resolvable_by_moderator?(current_user)
+      @text = 'Cannot dismiss, you are involved in this report.'
+      render 'home/error', status: :not_acceptable, layout: 'application'
+      return
+    end
+
     @report.dismiss!(moderator_notes: params[:moderator_notes].presence)
     if @report.item.is_a?(Script) && !@report.auto_reporter
       ScriptReportMailer.report_dismissed_offender(@report, site_name).deliver_later
@@ -73,6 +80,13 @@ class ReportsController < ApplicationController
 
   def mark_fixed
     @report = Report.find(params[:id])
+
+    if current_user.moderator? && !@report.resolvable_by_moderator?(current_user)
+      @text = 'Cannot mark as fixed, you are involved in this report.'
+      render 'home/error', status: :not_acceptable, layout: 'application'
+      return
+    end
+
     @report.fixed!(moderator_notes: params[:moderator_notes].presence)
     if @report.item.is_a?(Script) && !@report.auto_reporter
       ScriptReportMailer.report_fixed_offender(@report, site_name).deliver_later
@@ -93,6 +107,12 @@ class ReportsController < ApplicationController
 
     if @report.awaiting_response? && !user_is_script_author
       @text = 'Cannot uphold report, awaiting author response.'
+      render 'home/error', status: :not_acceptable, layout: 'application'
+      return
+    end
+
+    if current_user.moderator? && !@report.resolvable_by_moderator?(current_user)
+      @text = 'Cannot uphold report, you are involved in this report.'
       render 'home/error', status: :not_acceptable, layout: 'application'
       return
     end

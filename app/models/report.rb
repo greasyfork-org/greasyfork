@@ -189,4 +189,10 @@ class Report < ApplicationRecord
   def awaiting_response?
     in_grace_period? && rebuttal.blank?
   end
+
+  def resolvable_by_moderator?(moderator)
+    return true if moderator.administrator?
+
+    reporter != moderator && reported_users.exclude?(moderator)
+  end
 end
