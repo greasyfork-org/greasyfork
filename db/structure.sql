@@ -934,7 +934,7 @@ CREATE TABLE `active_storage_blobs` (
   `content_type` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `metadata` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `byte_size` bigint(20) NOT NULL,
-  `checksum` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `checksum` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `service_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
@@ -2254,6 +2254,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20211109015133'),
 ('20211110192948'),
 ('20211111005455'),
-('20211227002934');
+('20211227002934'),
+('20211227014433');
 
 
