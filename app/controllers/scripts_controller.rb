@@ -790,10 +790,10 @@ class ScriptsController < ApplicationController
     # Cache dir + request path without leading slash. Ensure it's actually under the cache dir to prevent
     # directory traversal.
     cache_request_portion = CGI.unescape(request.fullpath[1..])
+
+    return unless cache_request_portion.valid_encoding?
+
     cache_path = Rails.application.config.script_page_cache_directory.join(cache_request_portion).cleanpath
-
-    return unless cache_path.to_s.valid_encoding?
-
     return unless cache_path.to_s.start_with?(Rails.application.config.script_page_cache_directory.to_s)
 
     # Make sure each portion is under the filesystem limit
