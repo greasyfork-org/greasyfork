@@ -245,7 +245,7 @@ class User < ApplicationRecord
         report: report
       )
       update_columns(banned_at: Time.current)
-      reports_as_reporter.unresolved.each { |reported_reports| reported_reports.dismiss!(moderator_notes: 'User banned.') }
+      reports_as_reporter.unresolved.each { |reported_reports| reported_reports.dismiss!(moderator: moderator, moderator_notes: 'User banned.') }
     end
 
     if ban_related

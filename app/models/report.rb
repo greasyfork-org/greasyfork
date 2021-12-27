@@ -47,6 +47,7 @@ class Report < ApplicationRecord
 
   belongs_to :item, polymorphic: true
   belongs_to :reporter, class_name: 'User', inverse_of: :reports_as_reporter, optional: true
+  belongs_to :resolver, class_name: 'User', optional: true
   belongs_to :reference_script, class_name: 'Script', optional: true
   belongs_to :rebuttal_by_user, class_name: 'User', optional: true
   belongs_to :discussion_category, optional: true
@@ -61,8 +62,8 @@ class Report < ApplicationRecord
   validates :explanation_markup, inclusion: { in: %w[html markdown text] }, presence: true
   validates :discussion_category, presence: true, if: -> { reason == REASON_WRONG_CATEGORY }
 
-  def dismiss!(moderator_notes:)
-    update!(result: RESULT_DISMISSED, moderator_notes: moderator_notes)
+  def dismiss!(moderator:, moderator_notes:)
+    update!(result: RESULT_DISMISSED, moderator_notes: moderator_notes, resolver: moderator)
     if item.is_a?(Discussion)
       akismet = item.review_reason == 'akismet'
       item.update!(review_reason: nil)
@@ -72,8 +73,8 @@ class Report < ApplicationRecord
     AkismetSubmission.mark_as_ham(item)
   end
 
-  def fixed!(moderator_notes:)
-    update!(result: RESULT_FIXED, moderator_notes: moderator_notes)
+  def fixed!(moderator:, moderator_notes:)
+    update!(result: RESULT_FIXED, moderator_notes: moderator_notes, resolver: moderator)
     item.update!(review_reason: nil) if item.is_a?(Discussion)
     item.discussion.update!(review_reason: nil) if item.is_a?(Comment) && item.first_comment?
     reporter&.update_trusted_report!
@@ -110,7 +111,7 @@ class Report < ApplicationRecord
         raise "Unknown report item #{item}"
       end
 
-      update!(result: RESULT_UPHELD, moderator_notes: moderator_notes)
+      update!(result: RESULT_UPHELD, resolver: moderator, moderator_notes: moderator_notes)
       reporter&.update_trusted_report!
     end
 

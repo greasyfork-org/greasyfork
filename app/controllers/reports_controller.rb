@@ -70,7 +70,7 @@ class ReportsController < ApplicationController
       return
     end
 
-    @report.dismiss!(moderator_notes: params[:moderator_notes].presence)
+    @report.dismiss!(moderator: current_user, moderator_notes: params[:moderator_notes].presence)
     if @report.item.is_a?(Script) && !@report.auto_reporter
       ScriptReportMailer.report_dismissed_offender(@report, site_name).deliver_later
       ScriptReportMailer.report_dismissed_reporter(@report, site_name).deliver_later
@@ -87,7 +87,7 @@ class ReportsController < ApplicationController
       return
     end
 
-    @report.fixed!(moderator_notes: params[:moderator_notes].presence)
+    @report.fixed!(moderator: current_user, moderator_notes: params[:moderator_notes].presence)
     if @report.item.is_a?(Script) && !@report.auto_reporter
       ScriptReportMailer.report_fixed_offender(@report, site_name).deliver_later
       ScriptReportMailer.report_fixed_reporter(@report, site_name).deliver_later
