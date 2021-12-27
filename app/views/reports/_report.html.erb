@@ -172,7 +172,7 @@
 
 <% if report.upheld? %>
   <p>
-    <% if current_user.moderator? && report.resolver %>
+    <% if current_user&.moderator? && report.resolver %>
       This report has been upheld by <%= render_user(report.resolver, report.resolver_id) %>.
     <% else %>
       <%= t('reports.result_upheld') %>
@@ -190,7 +190,7 @@
   <% end %>
 <% elsif report.fixed? %>
   <p>
-    <% if current_user.moderator? && report.resolver %>
+    <% if current_user&.moderator? && report.resolver %>
       This report has been marked as fixed by <%= render_user(report.resolver, report.resolver_id) %>.
     <% else %>
       <%= t('reports.result_fixed') %>
@@ -205,7 +205,7 @@
   <% end %>
 <% elsif report.dismissed? %>
   <p>
-    <% if current_user.moderator? && report.resolver %>
+    <% if current_user&.moderator? && report.resolver %>
       This report has been dismissed by <%= render_user(report.resolver, report.resolver_id) %>.
     <% else %>
       <%= t('reports.result_dismissed') %>
