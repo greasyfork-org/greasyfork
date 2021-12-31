@@ -29,6 +29,7 @@ fr:
       other: "Voir %{count} autres scripts pour %{site}"
     applies_to_all: "Tous les sites"
     install: "Installer ce script"
+    install_css: "Installer en tant que style utilisateur"
     install_help: "?"
     install_help_title: "Comment installer"
     update: "Mettre à jour vers la version %{version}"
@@ -42,6 +43,7 @@ fr:
     deleted_notice: "Ce script a été supprimé."
     deleted_notice_with_related: "Le script que vous avez demandé a été supprimé, mais voici quelques scripts similaires."
     deleted_undelete_notice_html: "Ce script a été bloqué par un modérateur et ne peut pas être restauré. Pour les raisons suivantes: \"<i>%{delete_reason}</i>\"."
+    deleted_locked_author_notice_html: "Ce script a été supprimé par un modérateur et n'est pas accessible aux autres. Le motif fourni est : \"<i>%{delete_reason}</i>\". Veuillez consulter les règles sur %{code_rules_link:%{site_name}}. Si vous pensez que la suppression est une erreur, vous pouvez %{appeal_link: faire appel } pour cette suppression. Ne republiez pas ce script ; cela peut entraîner un  bannissement sur %{site_name}."
     deleted_author_notice: "Ce script a été supprimé et n'est plus accessible aux autres. Vous pouvez le restaurer à partir de l'onglet Supprimer."
     version_notice_html: "Version au %{date}. Voir %{latest_version_link}."
     version_notice_latest_version_link: "la dernière version"
@@ -101,6 +103,7 @@ fr:
     history_all_changes_info: "Voici toutes les versions de ce script."
     history_only_code_changes_link: "Voir uniquement les versions où le code a été modifié."
     diff_button: "Voir les différences entre les versions sélectionnées"
+    list_all_script_versions: "Afficher toutes les versions de script"
     code_title: "%{script_name} - Code source"
     feedback_title: "%{script_name} - Commentaires"
     feedback_no_discussions_html: "Aucun commentaire. %{start_first_discussion_link}"
@@ -206,11 +209,19 @@ fr:
     type_1_html: "Script utilisateur public - un script utilisateur que tout le monde peut voir et utiliser."
     type_2_html: "Script utilisateur non listé - un script utilisateur pour utilisation (semi-)privée. Disponible par accès direct, mais aucun lien n'est présent sur %{site_name}."
     type_3_html: "Bibliothèque - un script fait pour être inclus dans d'autres scripts à l'aide de <code>@require</code>, et non installé directement."
+    override_warning_checkbox_label: "Enregistrer quand même"
     warning_version_not_incremented_html: "Vous avez mis à jour le code source mais n'avez pas modifié la clé <code>@version</code>. Ceux qui ont déjà installé votre script risquent de ne pas recevoir la mise à jour."
+    warning_version_missing_html: "Vous n'avez pas spécifié de <code>@version</code>. <code>@version</code> est nécessaire pour que les utilisateurs reçoivent les mises à jour. Vous pouvez en spécifier un comme ceci : <code>// @version 1.0</code>"
+    warning_version_missing_generate_automatically_html: "Générer une <code>@ version</code> automatiquement"
+    warning_namespace_missing_html: "Vous n'avez pas spécifié de <code>@namespace</code>. <code>@namespace</code> permet d'éviter les collisions si les utilisateurs installent un autre script du même nom. <code>@namespace</code> doit juste être une chaîne unique ; souvent l'URL que l'auteur que vous contrôlez est utilisée."
+    warning_namespace_missing_generate_automatically_html: "Générer un <code>@namespace</code> automatiquement"
     warning_namespace_changed_html: "Votre <code>@namespace</code> a changé. Un <code>@namespace</code> cohérent permet aux utilisateurs de réinstaller votre script pour le mettre à jour."
     warning_potentially_minified_html: "Votre script semble contenir du code minimisé (compressé). Si vous utilisez une bibliothèque minimisée, veuillez utiliser <code>@require</code> depuis %{allowed_requires_link}. Les scripts avec du code minimisé risquent d'être supprimés."
     warning_automatic_sensitive_html: "Votre script est pour %{sensitive_domains} et sera donc marqué comment du contenu adulte."
     warning_potentially_minified_allowed_requires_link: "un de ces endroits"
+    warning_code_previously_posted_html: "Ce code a déjà été posté dans %{script_links}. Les reposte peuvent être supprimés par les modérateurs."
+    warning_license_missing_html: "Vous n'avez pas spécifié de <code>@license</code>. En publiant sur %{site_name}, vous autorisez les autres à utiliser votre code, mais une licence vous permettra également de dire aux autres comment ils peuvent modifier et redistribuer votre code. Par exemple, <code>// @license MIT</code> signifie que vous autorisez quiconque à modifier et redistribuer le code que vous avez écrit. %{license_chooser_link:Plus d'informations sur les licences sont disponibles ici.} Si vous ne fournissez pas de licence, cela supposera que vous n'autorisez pas les autres à apporter des modifications ou à redistribuer des copies. Notez que si vous n'êtes pas le seul auteur du code que vous publiez, vous n'êtes généralement pas autorisé à le publier à moins d'avoir la permission de tous les autres auteurs."
+    warning_license_missing_override_html: "Enregistrer sans licence"
     additional_info_locale_prompt: "(Sélectionner une langue)"
     additional_info_add_localized: "Ajouter une information additionnelle dans une autre langue"
     additional_info_locale_repeated: "Ne spécifiez qu'une information additionnelle pour la région '%{locale_code}'."
@@ -708,6 +719,7 @@ fr:
           </ul>
       libraries_html: Les bibliothèques utilisées par un script doivent être <code>@require</code>, sauf s'il existe une raison technique valable de ne pas le faire. Dans le cas où une bibliothèque est incluse en ligne, elle doit inclure des informations sur la source de la bibliothèque (par exemple, un commentaire indiquant l'URL et / ou le nom et la version).
       updates: Les scripts ne doivent pas vérifier les mises à jour à un taux supérieur à une fois par jour. Notez que la plupart des gestionnaires de scripts utilisateur gèrent les mises à jour automatiques, il n'est donc pas nécessaire de le faire dans le script. Les scripts ne doivent pas non plus injecter dynamiquement un autre script %{site_name} hébergé dans une page, car cela contourne la mise en cache dans les gestionnaires de scripts utilisateur.
+      hosting: La fonctionnalité principale d'un script doit se trouver dans le code sur %{site_name}. Un script posté sur %{site_name} qui charge simplement la majeure partie du script depuis un autre endroit n'est pas autorisé. La publication d'URL de téléchargement alternatives, dans le but d'inciter les utilisateurs à utiliser les sources alternatives au lieu de la version publiée sur %{site_name}, n'est pas autorisée.
       external_js: "%{external_scripts_link:L'utilisation de JavaScript externe est limitée.}"
       copyright_header: Droits d'auteur
       licensing_html: Votre script doit respecter les droits d'auteur des autres. Cela inclut le code lui-même et toutes les ressources (par exemple les images) qu'il utilise. Si vous avez l'intention d'utiliser le contenu de quelqu'un d'autre, respectez ses conditions de licence ou obtenez son autorisation avant de le faire. Les licences sur les scripts sont spécifiées par la clé de métadonnée <code>@license</code>, et pour savoir ce que vous pouvez ou non faire utiliser %{tldr_legal_link:tldrlegal.com}.
@@ -715,6 +727,7 @@ fr:
       miscellaneous_header: Divers
       keywords_html: Les scripts ne doivent pas inclure de <code>@include</code>, <code>@match</code> ou des mots-clés pour les sites sur lesquels ils ne fournissent pas de fonctionnalités.
       adult_content_rule: Les scripts incluant du contenu pour adulte ou sont destinés à des sites avec du contenu pour adulte doivent être marqués comme tels pour permettre aux autres utilisateurs de les voir ou non.
+      reposting_deleted: Ne republiez pas les scripts qui ont été supprimés en raison de violations des règles; utilisez plutôt la fonction faire appel. Republier des scripts supprimés peut entraîner un ban.
       reporting: Si vous remarquez un script qui ne respecte pas ces paramètres, veuillez le signaler en accédant au lien Commentaires pour ce script et choisissez l'option "Signaler le script".
     external_scripts:
       title: "Politique de %{site_name} concernant les scripts externes"
@@ -934,6 +947,7 @@ fr:
     consecutive_bad_ratings:
       one: "%{script_names} a reçu plusieurs mauvaises notes consécutives. Veuillez revoir votre script et répondre aux préoccupations soulevées dans les évaluations."
       other: "%{script_names} ont reçu plusieurs mauvaises notes consécutives. Veuillez revoir vos scripts et répondre aux préoccupations soulevées dans les évaluations."
+    open_reports: "Certains de vos scripts ont été signalés. Veuillez examiner les rapports et fournir toutes les informations que vous pouvez. %{report_links}"
   reports:
     name: "Signaler #%{id}"
     report_filed: "Votre rapport sera examiné par un modérateur."
@@ -987,6 +1001,9 @@ fr:
       minified: "Code minifié"
       external_code: "Code externe non autorisé"
       undisclosed_antifeature: "Non divulguation %{antifeature_link:antifeature} (par exemple, annonce/ad, suivi/tracking, minage de cryptomonnaie, etc.)"
+      no_description: "Description manquante, non informative ou trompeuse"
+      wrong_category: "Mauvaise catégorie"
+      wrong_category_with_suggestion: "Mauvaise catégorie (suggéré: %{suggested_category} )"
       other: "Autre"
     report_intro: "%{reported_item} a été signalé le %{report_date} par %{reporter} pour %{reason}"
     report_intro_no_reporter: "%{reported_item}a été signalé %{report_date} pour %{reason} "
@@ -1021,6 +1038,17 @@ fr:
     load_diff: "Chargement différer "
     loading_diff: "Chargement…"
     reported_user_activity_html: "%{user}(l'utilisateur signalé) a effectué:"
+  appeals:
+    new:
+      title: Appel de suppression de nouveau script
+      intro: 'Votre script a été supprimé en raison de: "%{reason}". Si vous pensez qu''il s''agit d''une erreur, ou si vous avez des informations supplémentaires à fournir, ou si vous avez mis à jour votre script pour résoudre le problème, vous pouvez faire appel. Si un modérateur est satisfait de vos mises à jour et des informations que vous avez fournies, il rétablira l''accès à votre script.'
+      submit: Soumettre un appel
+    deletion_reason_html: "%{script} a été supprimé en raison de: %{reason}."
+    author_reason: "Appel présenté par l'auteur:"
+    pending_review: Cet appel est en attente d'examen par un modérateur.
+    dismissed_by_moderator: Un modérateur a rejeté cet appel.
+    upheld_by_moderator: À la suite de cet appel, un modérateur a rétabli ce script.
+    submitted: Votre appel a été reçu et un modérateur l'examinera.
   discussions:
     title: Discussions
     comment_date: "Posté le: %{date}"
@@ -1146,6 +1174,7 @@ fr:
   screenshots:
     requirements: "Maximum %{number} images PNG, GIF, JPEG ou WebP, inférieures à %{size} chacune."
   common:
+    error_preamble: "Il y a eu des problèmes avec ce que vous avez posté…"
     allowed_elements_link: "(Voir les balises autorisées.)"
     allowed_elements_and_attributes_title: "Balises autorisées pour le contenu HTML"
     allowed_elements_intro: "Les éléments et attributs suivants sont autorisés. Cela s'applique à la fois au HTML et au Markdown (après conversion en HTML)"
@@ -1211,6 +1240,8 @@ fr:
         user_input: Utilisateur
       message:
         content: Message
+      script_lock_appeal:
+        text: Faire appel
   errors:
     messages:
       script_missing_name: "est nécessaire - spécifiez-le avec @name"
@@ -1226,6 +1257,8 @@ fr:
       script_disallowed_require: "utilise un script externe non approuvé: %{code}"
       script_rate_limit: "Vous avez atteint la limite d'envois. Essayez plus tard."
       missing_include_or_match: "doit inclure au moins une clé @match ou @include"
+      invalid_meta: "a une directive méta invalide. Le format approprié est // @foo"
+      no_executable: "ne contient aucun code exécutable"
       file_size_out_of_range: "la taille doit être inférieure à 200KB"
       meta_too_long: "%{key} est trop long (le maximum est de %{count} caractères)"
   opensearch:
@@ -1260,6 +1293,10 @@ fr:
         text: "Votre script %{script_name} a été signalé comme non conforme aux règles de %{site_name}. La raison spécifique évoquée: %{reason}. Vous pouvez consulter ce rapport à l'adresse %{report_url} et soumettre une réfutation. Si vous ne soumettez pas de réfutation, votre script peut être supprimé par les modérateurs. Si vous avez des questions, veuillez visiter https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Votre script %{script_name} par %{site_name} a été supprimé"
+        text: |
+            Votre script %{script_name} sur %{site_name} a été supprimé par un modérateur et n'est plus accessible publiquement. Vous pouvez consulter le rapport %{report_url} à l'adresse %{site_name} et les règles à l'adresse %{code_rules_url}.
+
+            Si vous pensez qu'il s'agit d'une erreur ou si vous avez mis à jour le script pour résoudre le problème, vous pouvez faire appel à l'adresse %{appeal_url}, et un modérateur l'examinera. Ne republiez pas ce script; cela peut entraîner une interdiction de %{site_name}.
       report_dismissed_offender:
         subject: "Un rapport sur votre script %{script_name} par %{site_name} a été rejeté"
         text: "Un rapport sur votre script %{script_name} par %{site_name} a été rejeté par un modérateur. Votre script restera actif. Vous pouvez consulter le rapport sur %{report_url}. Si vous avez des questions, visiter https://greasyfork.org/fr/forum/."
