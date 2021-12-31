@@ -172,7 +172,7 @@ class DiscussionsController < ApplicationController
   end
 
   def old_redirect
-    redirect_to Discussion.find_by!(migrated_from: params[:id]).url(locale: request_locale.code), status: :moved_permanently
+    redirect_to Discussion.find_by!(migrated_from: params[:id]).path(locale: request_locale.code), status: :moved_permanently
   end
 
   def mark_all_read
