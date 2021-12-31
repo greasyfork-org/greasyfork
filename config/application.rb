@@ -24,7 +24,11 @@ Bundler.require(*Rails.groups)
 module Greasyfork
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.1
+    config.load_defaults 7.0
+
+    # https://github.com/rails/rails/issues/44005
+    config.active_support.executor_around_test_case = false
+
     config.active_support.cache_format_version = 6.1
 
     # Settings in config/environments/* take precedence over those specified here.
