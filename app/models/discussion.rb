@@ -103,7 +103,7 @@ class Discussion < ApplicationRecord
 
   def url(locale: nil)
     if script
-      Rails.application.routes.url_helpers.script_discussion_url(script, self, locale: locale)
+      Rails.application.routes.url_helpers.script_discussion_url(script, self, locale: locale, host: script.host)
     else
       Rails.application.routes.url_helpers.category_discussion_url(self, category: discussion_category, locale: locale)
     end

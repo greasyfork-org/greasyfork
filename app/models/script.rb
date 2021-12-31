@@ -545,6 +545,12 @@ class Script < ApplicationRecord
     end
   end
 
+  def host
+    return sensitive? ? 'sleazyfork.org' : 'greasyfork.org' if Rails.env.production?
+
+    sensitive? ? 'sleazyfork.local' : 'greasyfork.local'
+  end
+
   private
 
   def url_helpers
