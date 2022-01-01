@@ -12,6 +12,7 @@ class ScriptPreviouslyDeletedChecker < ApplicationJob
                              .joins(:other_script)
                              .where(scripts: { locked: true })
                              .map(&:other_script)
+                             .uniq
 
     return unless similar_locked_scripts.count > 1
 
