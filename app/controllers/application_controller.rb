@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :banned?
+  before_action :set_active_storage_url_options, if: -> { Rails.env.test? }
 
   skip_before_action :verify_authenticity_token, if: -> { request.format.jsonp? }
 
@@ -288,5 +289,9 @@ class ApplicationController < ActionController::Base
       @text = 'Your IP address has been banned.'
       render 'home/error', layout: 'application'
     end
+  end
+
+  def set_active_storage_url_options
+    ActiveStorage::Current.url_options = { host: request.host, port: request.port }
   end
 end

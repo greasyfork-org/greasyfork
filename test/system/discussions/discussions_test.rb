@@ -167,4 +167,33 @@ class DiscussionsTest < ApplicationSystemTestCase
       assert_selector 'a', text: 'Subscribe'
     end
   end
+
+  test 'adding a discussion with attachments' do
+    user = User.first
+    login_as(user, scope: :user)
+    visit new_discussion_path(locale: :en)
+    fill_in 'Title', with: 'discussion title'
+    fill_in 'discussion_comments_attributes_0_text', with: 'this is my comment'
+    choose 'Greasy Fork Feedback'
+    attach_file 'Add:', [Rails.root.join('public/images/blacklogo16.png'), Rails.root.join('public/images/blacklogo32.png')]
+
+    assert_difference -> { Discussion.count } => 1 do
+      click_button 'Post comment'
+      assert_content 'this is my comment'
+      assert_selector '.user-screenshots img', count: 2
+    end
+
+    click_link 'Edit'
+    assert_selector '.comment-screenshot-control img', count: 2
+    within '.edit-comment-form' do
+      fill_in 'comment_text', with: 'this is an updated reply'
+    end
+    within '.remove-attachment:first-child' do
+      check 'Remove'
+    end
+
+    click_button 'Update comment'
+    assert_content 'this is an updated reply'
+    assert_selector '.user-screenshots img', count: 1
+  end
 end

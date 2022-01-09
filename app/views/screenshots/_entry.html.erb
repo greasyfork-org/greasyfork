@@ -8,7 +8,7 @@
   <div class="remove-attachments">
     <% current_attachments.each do |attachment| %>
       <div class="remove-attachment">
-        <%= link_to attachment.blob.url do %><%= image_tag attachment.variant(resize_to_limit: [200, 200]).url || attachment.variant(resize_to_limit: [200, 200]) %><% end %>
+        <%= link_to url_for(attachment.blob) do %><%= image_tag attachment.variant(resize_to_limit: [200, 200]).url || attachment.variant(resize_to_limit: [200, 200]) %><% end %>
         <div class="remove-attachment-selecter">
           <input id="remove-attachment-<%= attachment.id %>" name="remove-attachment-<%= attachment.id %>" type="checkbox" value="1"><label class="checkbox-label" for="remove-attachment-<%= attachment.id %>"><%= t('scripts.screenshots_remove') %></label>
         </div>

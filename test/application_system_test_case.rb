@@ -33,6 +33,11 @@ class ApplicationSystemTestCase < ActionDispatch::SystemTestCase
                    .reject { |message| js_error_ignored?(message) }
     raise "Browser console in #{method_name}: #{messages}" if messages.any?
   end
+
+  def after_teardown
+    super
+    FileUtils.rm_rf(ActiveStorage::Blob.service.root)
+  end
 end
 
 Capybara.server = :puma
