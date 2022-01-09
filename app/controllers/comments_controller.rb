@@ -53,8 +53,8 @@ class CommentsController < ApplicationController
         params[:comment].delete(:discussion)
       end
       comment.edited_at = Time.current
-      comment.attachments.select { |attachment| params["remove-attachment-#{attachment.id}"] == '1' }.each(&:destroy!)
       comment.assign_attributes(comments_params)
+      comment.attachments.select { |attachment| params["remove-attachment-#{attachment.id}"] == '1' }.each(&:destroy!)
       comment.construct_mentions(detect_possible_mentions(comment.text, comment.text_markup))
       comment.save!
     end
