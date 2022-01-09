@@ -177,6 +177,9 @@ class ScriptsController < ApplicationController
 
         user_js_code = if script.delete_type_blanked?
                          script_version.generate_blanked_code
+                       elsif script.deleted?
+                         head :not_found
+                         return
                        elsif script.css?
                          unless script.css_convertible_to_js?
                            head :not_found
@@ -212,17 +215,24 @@ class ScriptsController < ApplicationController
         script, script_version = minimal_versionned_script(script_id, script_version_id)
         return if handle_replaced_script(script)
 
-        user_js_code = script.delete_type_blanked? ? script_version.generate_blanked_code : script_version.rewritten_code
+        user_css_code = if script.delete_type_blanked?
+                          script_version.generate_blanked_code
+                        elsif script.deleted?
+                          head :not_found
+                          return
+                        else
+                          script_version.rewritten_code
+                        end
 
         # If the request specifies a specific version, the code will never change, so inform the manager not to check for updates.
-        user_js_code = script_version.parser_class.inject_meta(user_js_code, downloadURL: 'none') if params[:version].present? && !script.library?
+        user_css_code = script_version.parser_class.inject_meta(user_css_code, downloadURL: 'none') if params[:version].present? && !script.library?
 
         # Only cache if:
         # - It's not for a specific version (as the caching does not work with query params)
         # - It's a .user.css extension (client's Accept header may not match path).
-        cache_request(user_js_code) if script_version_id == 0 && request.fullpath.end_with?('.user.css')
+        cache_request(user_css_code) if script_version_id == 0 && request.fullpath.end_with?('.user.css')
 
-        render body: user_js_code, content_type: 'text/css'
+        render body: user_css_code, content_type: 'text/css'
       end
     end
   end
@@ -877,6 +887,11 @@ class ScriptsController < ApplicationController
       return
     end
 
+    if script_info.deleted?
+      head :not_found
+      return
+    end
+
     # A style can serve out either JS or CSS. A script can only serve out JS.
     if script_info.language == 'js' && is_css
       head :not_found
@@ -886,8 +901,8 @@ class ScriptsController < ApplicationController
     script_info.code = CssToJsConverter.convert(script_info.code) if script_info.language == 'css' && !is_css
 
     parser = is_css ? CssParser : JsParser
-    # Strip out some thing that could contain a lot of data (data: URIs). get_blanked_code already does this.
-    meta_js_code = script_info.delete_type == Script.delete_types[:blanked] ? ScriptVersion.generate_blanked_code(script_info.code, parser) : parser.inject_meta(parser.get_meta_block(script_info.code), { icon: nil, resource: nil })
+    # Strip out some thing that could contain a lot of data (data: URIs).
+    meta_js_code = parser.inject_meta(parser.get_meta_block(script_info.code), { icon: nil, resource: nil })
 
     # Only cache if:
     # - It's not for a specific version (as the caching does not work with query params)
