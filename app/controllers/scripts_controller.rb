@@ -887,7 +887,7 @@ class ScriptsController < ApplicationController
       return
     end
 
-    if script_info.deleted?
+    unless script_info.delete_type.nil?
       head :not_found
       return
     end
