@@ -15,7 +15,7 @@ module LocalizedRequest
   def set_locale
     # User chose "Help us translate" in the locale picker
     if params[:locale] == 'help'
-      redirect_to Rails.configuration.help_translate_url
+      redirect_to Rails.configuration.help_translate_url, allow_other_host: true
       return
     end
 
