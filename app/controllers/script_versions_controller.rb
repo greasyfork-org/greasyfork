@@ -72,11 +72,13 @@ class ScriptVersionsController < ApplicationController
       when nil
         # OK
       when UserRestrictionService::NEEDS_CONFIRMATION, UserRestrictionService::BLOCKED
-        # We're lying to spammers :(
         render 'must_confirm'
         return
       when UserRestrictionService::RATE_LIMITED
         render 'rate_limited'
+        return
+      when UserRestrictionService::DELAYED
+        render 'delayed'
         return
       else
         raise "Unknown restriction #{UserRestrictionService.new(current_user).new_script_restriction}"

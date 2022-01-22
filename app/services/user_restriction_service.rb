@@ -1,5 +1,6 @@
 class UserRestrictionService
   NEEDS_CONFIRMATION = :needs_confirmation
+  DELAYED = :delayed
   BLOCKED = :blocked
   RATE_LIMITED = :rate_limited
 
@@ -18,7 +19,7 @@ class UserRestrictionService
       sed = SpammyEmailDomain.find_by(domain: @user.email.split('@').last)
       if sed
         return BLOCKED if sed.blocked_script_posting?
-        return NEEDS_CONFIRMATION if @user.in_confirmation_period?
+        return DELAYED if @user.in_confirmation_period?
       end
     end
 
