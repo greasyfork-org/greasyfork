@@ -61,6 +61,7 @@ de:
     delete_update_behaviour: "Wie sollen Benutzer behandelt werden, welche das Skript bereits installiert haben?"
     delete_update_behaviours:
       keep: "Die werden es lassen wie es ist."
+      blanked: "Ihre Version wird mit einem leeren Skript aktualisiert. Dies ist anzuraten, wenn das Skript auf den Seiten, auf denen es ausgeführt wird, negative Auswirkungen hat."
     delete_permanently_heading: "Endgültige Löschung"
     delete_permanently_explanation_html: >-
         <p>Das endgültige Löschen Ihres Skripts löscht alle zugehörigen Daten, mit
@@ -207,12 +208,15 @@ de:
     type_1_html: "Öffentliches Nutzerskript - ein Nutzerskript, welches alle sehen und nutzen können."
     type_2_html: "Nicht aufgeführtes Benutzerskript - ein Benutzerskript für die (halb-)private Nutzung. Verfügbar über direkten Zugriff, jedoch nirgendwo auf %{site_name} verlinkt."
     type_3_html: "Bibliothek - ein Skript, welches per <code>@require</code> in anderen Skripten eingebunden und nicht direkt installiert werden soll."
+    override_warning_checkbox_label: "Trotzdem speichern"
     warning_version_not_incremented_html: "Sie haben den Quelltext geändert, aber die <code>@version</code> Nummer nicht erhöht. Diejenigen, die Ihr Skript vorher installiert hatten, werden den aktualisierten Quelltext möglicherweise nicht erhalten."
+    warning_version_missing_generate_automatically_html: "Automatish<code>@version</code> generiern"
     warning_namespace_changed_html: "Ihr <code>@namespace</code> hat sich geändert. Ein konsistenter <code>@namespace</code> erlaubt es ihren Nutzern, das Script erneut zu installieren oder es zu aktualisieren."
     warning_potentially_minified_html: "Ihr Skriptquelltext sieht aus, als enthielte er verkürzten (komprimierten) Quelltext. Falls Sie eine verkleinerte Bibliothek benutzen, binden Sie diese bitte mit <code>@require</code> von %{allowed_requires_link} ein. Skripte mit verkleinertem Quelltext können entfernt werden."
     warning_automatic_sensitive_html: "Dein Skript ist für %{sensitive_domains} und wird daher als nicht-jugendfrei markiert."
     warning_potentially_minified_allowed_requires_link: "einer dieser Seiten"
     warning_code_previously_posted_html: "Dieser Code wurde bereits in %{script_links} veröffentlicht. Reposts werden von Moderatoren gelöscht."
+    warning_license_missing_override_html: "Ohne Lizenz speichern"
     additional_info_locale_prompt: "(Wählen Sie eine Sprache)"
     additional_info_add_localized: "Lokalisierte zusätzliche Informationen hinzufügen"
     additional_info_locale_repeated: "Zusätzliche Informationen für Sprache »%{locale_code}« nur einmal hinzufügen"
@@ -321,6 +325,10 @@ de:
       css: "Neuen Style hochladen"
     update_title: "Neue Version von %{script} veröffentlichen"
     install_help_dialog:
+      js:
+        firefox: Du musst eine Erweiterung wie %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} oder %{violentmonkey_link:Violentmonkey} installieren, um dieses Skript zu installieren.
+        other: 'Sie müssten eine Skript Manager Erweiterung installieren damit sie dieses Skript installieren können '
+        bypass: (Ich habe schon ein Skript Manager, Lass mich es installieren!)
       close_dialog: OK
     antifeatures:
       warning_title: Dieses Skript enthält Antifeatures

@@ -19,10 +19,13 @@ class ScriptPreviouslyDeletedChecker < ApplicationJob
     other_reports = Report.upheld.where(item: similar_locked_scripts)
     scripts_and_reports = similar_locked_scripts.map { |similar_script| [similar_script, other_reports.select { |report| similar_script == report.item }] }
 
+    # Use the most common non-'other' reason.
+    reason = other_reports.map(&:reason).reject { |reason| reason == Report::REASON_OTHER }.tally.max_by(&:last).first || Report::REASON_OTHER
+
     Report.create!(
       item: script,
       auto_reporter: 'hardy',
-      reason: other_reports.first&.reason || Report::REASON_OTHER,
+      reason: reason,
       explanation_markup: 'markdown',
       explanation: <<~TEXT)
         Script is similar to previously deleted scripts:

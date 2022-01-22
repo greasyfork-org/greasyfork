@@ -213,10 +213,15 @@ cs:
     warning_version_not_incremented_html: "Změnili jste kód, ale nezvýšili jste číslo <code>@version</code>. Uživatelům, kteří používají váš skript, se kód neaktualizuje."
     warning_version_missing_html: "Nespecifikovali jste <code>@version</code>. <code>@version</code>je nutná aby uživatelé mohli dostávat aktualizace. Můžete ji zadat takto: <code>// @version 1.0</code>."
     warning_version_missing_generate_automatically_html: "Vygenerovat <code>@version</code>automaticky"
+    warning_namespace_missing_html: "Nespecikovali jste <code>@namespace</code>. <code>@namespace</code> pomáhá zabraňovat kolizím když uživatelé nainstalují jiný skript se stejným jménem. <code>@namespace</code> jen musí být unikátní string; často je používána URL autora kterou ovládáte."
+    warning_namespace_missing_generate_automatically_html: "Vygenerovat <code>@namespace</code> automaticky"
     warning_namespace_changed_html: "Parametr <code>@namespace</code> se změnil. Neměnné <code>@namespace</code> umožňuje uživatelům reinstalovat skript pro jeho aktualizaci."
     warning_potentially_minified_html: "Zdá se, že váš skript obsahuje komprimovaný kód. Pokud používáte komprimovanou knihovnu, vložte ji pomocí <code>@require</code> z %{allowed_requires_link}. Komprimované skripty jsou v rozporu s podmínkami a budou vymazány."
     warning_automatic_sensitive_html: "Váš skript je pro %{sensitive_domains} a proto bude označen jako obsah pro dospělé."
     warning_potentially_minified_allowed_requires_link: "některého z těchto umístění"
+    warning_code_previously_posted_html: "Tento kód byl dříve zveřejněn v %{script_links}. Reposty podléhají odstranění moderátory."
+    warning_license_missing_html: "Nespecifikovali jste <code>@license</code>. Při publikaci na %{site_name}, necháváte ostatní používat váš kód, ale licence vám také dovolí říct ostatním jak mohou váš kód upravovat a redistribuovat. Například <code>// @license MIT</code> znamená, že povolujete komukoliv upravovat a redistribuovat kód který jste napsali. %{license_chooser_link:Další informace ohledně licencí jsou dostupné zde.} Pokud neposkytnete licenci, %{site_name} bude předpokládat, že nedovolíte ostatním dělat úpravy a redistribuovat kopie. Nezapomeňte, že pokud nejste jediným autorem kódu, který zveřejňujete, nemůžete jej zveřejnit, pokud nemáte povolení od všech ostatních autorů."
+    warning_license_missing_override_html: "Uložit bez licence"
     additional_info_locale_prompt: "(Vybrat jazyk)"
     additional_info_add_localized: "Přidat lokalizovaný doplňující popis"
     additional_info_locale_repeated: "Uveďte pouze jeden dodatečný popis pro jazyk '%{locale_code}'."
@@ -226,11 +231,18 @@ cs:
     sync_type_intro: "Tento skript bude synchronizován:"
     sync_type_1:
       name: Manuální
+      description: aktualizace budou zkontrolovány pouze když jej spustíte
     sync_type_2:
       name: Automatický
+      description: aktualizace budou kontrolovány pravidelně
+    sync_type_3:
+      name: Webhook
+      description: bude aktualizován, když uložíte změny do tohoto souboru ve vašem repozitáři
+    sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "Poslední pokus o synchronizaci proběhl %{date}, výsledkem byla chyba %{error}."
     sync_success_info_html: "Poslední úspěšná aktualizace proběhla %{date}."
     sync_never_succeeded: "Synchronizace dosud nikdy neproběhla úspěšně."
+    sync_additional_info: Volitelně můžete synchronizovat ostatní informace skriptu.
     add_synced_additional_info: Přidat lokalizovaný, synchronizovaný přídavný info
     update_and_sync: "Aktualizovat a synchronizovat nyní"
     update_no_sync: "Aktualizovat"
@@ -240,6 +252,7 @@ cs:
     sync_url_placeholder: "(URL)"
     screenshots_add: "Přidat:"
     screenshots_remove: "Odebrat"
+    replacement_script_explanation: "(Volitelné) Vyberte jiný skript, který nahradí tento skript. Zadejte URL náhradního skriptu:"
     diff_title: "%{script} - Rozdíl verzí"
     diff_old_version: "Stará:"
     diff_new_version: "Nová:"
@@ -251,16 +264,23 @@ cs:
     ok_rating_explanation: "Počet lidí, kteří dali hodnocení \"OK\"."
     bad_rating_explanation: "Počet lidí, kteří dali hodnocení \"Špatný\"."
     write_your_own_html: "%{post_a_script_link} (nebo %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "Zveřejnit vámi napsaný skript"
     learn_to_write_scripts_link_text: "naučit se napsat skript"
+    feedback_or_report: "%{feedback_link:Zeptejte se na otázku, přidejte recenzi} nebo %{report_link:skript nahlašte}."
+    support_feedback_or_report: "%{support_url:Navštivte stránky autora pro podporu}, %{feedback_link:zeptejte se na otázku, přidejte recenzi} nebo %{report_link:skript nahlašte}."
+    support_email_feedback_or_report: "%{support_url:Napište autorovi pro podporu email}, %{feedback_link:zeptejte se na otázku, přidejte recenzi} nebo %{report_link:skript nahlašte}."
     adult_content: "Obsah pro dospělé"
     adult_content_self_report: "Tento skript obsahuje mládeži nepřístupný materiál nebo je určen pro stránku přístupnoou od 18 let."
     adult_content_self_report_explanation: "%{site_name} povoluje skripty s obsahem pro dospělé, ale pouze za podmínky, že jsou tyto skripty označeny a uživatelé si mohou zvolit, zda budou zobrazeny."
     not_adult_content_self_report_html: "Tento skript <strong>neobsahuje</strong> mládeži nepřístupný materiál a <strong>není</strong> určen pro stránky přístupné od 18 let."
     not_adult_content_self_report_explanation: "%{site_name} povoluje skripty s obsahem pro dospělé, ale pouze za podmínky, že jsou tyto skripty označeny a uživatelé si mohou zvolit, zda budou zobrazeny. Vaš skript byl označen jako mládeži nepřístupný. Pokud s tímto označením nesouhlasíte, můžete požádat moderátora o přezkoumání."
+    not_adult_content_self_report_explanation_automatic: "%{site_name} povoluje skripty s obsahem pro dospělé, ale musí být tak označené, aby se uživatelé mohli rozhodnout zda je uvidí. Váš skript byl označen jako s obsahem pro dospělé, protože je pro %{domain_list}."
     adult_content_on_greasy_logged_in_error: "Skript již není na této stránce dostupný s vaším současným %{edit_account_link:nastavením účtu Greasy Fork}."
     adult_content_on_greasy_not_logged_in_error: "Tento skript již není dostupný anonymně. %{login_link:Přihlaste se} a zkontrolujte nastavení účtu Greasy Fork."
     non_adult_content_on_sleazy: "Skript není na této stránce k dispozici."
     not_js_convertible_override_header: "Konvertovat do JS"
+    not_js_convertible_override_explanation: "%{site_name} dokáže automaticky vytvořit %{help_link:uživatelskou JS konverzi} vašeho uživatelského CSS. Jelikož uživatelská JS konverze a vaše uživatelské CSS budou fungovat trochu jinak, doporučujeme uživatelskou JS konverzi vyzkoušet. Pokud zjistíte, že je nefunkční, můžete ji znepřístupnit zaškrtnutím políčka níže."
+    not_js_convertible_override_label_html: "Toto by <strong>ne</strong>mělo být přístupné v uživatelském JS formátu"
     adult_marker: "(18+)"
     deleted_marker: "(Smazaný)"
     locked_marker: "(Uzamčený)"

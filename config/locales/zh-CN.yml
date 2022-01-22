@@ -205,7 +205,9 @@ zh-CN:
     type_3_html: "库 - 用于被其他脚本以 <code>@require</code> 调用而非直接安装的脚本。"
     override_warning_checkbox_label: "仍要保存"
     warning_version_not_incremented_html: "您更新了脚本代码但是没有增加 <code>@version</code> 版本号。之前安装了您的脚本的用户可能不会自动更新到更新后的代码。"
+    warning_version_missing_html: "你没有指定 <code>@version</code>。<code>@version</code> 是用户接收更新所必需的。您可以像这样指定：<code>// @version 1.0</code>.。"
     warning_version_missing_generate_automatically_html: "自动生成 <code>@version</code> 属性"
+    warning_namespace_missing_generate_automatically_html: "自动生成 <code>@namespace</code> 属性"
     warning_namespace_changed_html: "您的命名空间 <code>@namespace</code> 发生了改变。改变 <code>@namespace</code> 后脚本管理器会将更新作为新脚本安装。"
     warning_potentially_minified_html: "您的脚本看上去像最小化（压缩后）的版本。如果您使用了最小化后的库，请使用 <code>@require</code> 引用 %{allowed_requires_link} 里面的相应库。压缩后的脚本不被本站允许且会被管理员移除。"
     warning_automatic_sensitive_html: "您的脚本适用于%{sensitive_domains}，因此会被标注为成人内容。"
@@ -1092,6 +1094,7 @@ zh-CN:
   screenshots:
     requirements: "最多上传 %{number} 张 PNG、GIF、JPEG 或 WebP 图片，且每张图片大小不得超过 %{size}。"
   common:
+    error_preamble: "很抱歉，您提交的内容有点问题…"
     allowed_elements_link: "(查看允许使用的代码)"
     allowed_elements_and_attributes_title: "HTML 内容中允许的元素"
     allowed_elements_intro: "可以使用下列元素和属性。此规则应用于 HTML 以及 Markdown (转换到 HTML 后的代码)。"
