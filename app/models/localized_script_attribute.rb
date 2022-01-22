@@ -6,7 +6,7 @@ class LocalizedScriptAttribute < ApplicationRecord
 
   strip_attributes only: [:attribute_key, :attribute_value]
 
-  validates :attribute_key, :attribute_value, :locale, :value_markup, presence: true
+  validates :attribute_key, :attribute_value, :value_markup, presence: true
 
   validates :sync_identifier, format: { with: URI::DEFAULT_PARSER.make_regexp(%w[http https]), message: :script_sync_identifier_bad_protocol }, allow_nil: true, unless: -> { Rails.env.test? }
 
