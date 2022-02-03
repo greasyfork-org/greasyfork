@@ -218,7 +218,7 @@
         <p><%= t('users.script_list_none_for_filter') %></p>
       <% else %>
         <ol id="user-script-list" class="script-list <%= 'showing-all-languages' if params[:language].nil? %>">
-          <%= render partial: 'scripts/script', collection: script_list, locals: {show_author_details: true}, cached: params[:locale_override].nil? ? ->(script) { ['user', script, I18n.locale] } : false %>
+          <%= render partial: 'scripts/script', collection: script_list, locals: {show_author_details: true}, cached: (params[:locale_override].nil? && greasy?) ? ->(script) { ['user', script, I18n.locale] } : false %>
         </ol>
       <% end %>
 

@@ -204,7 +204,7 @@ class ApplicationController < ActionController::Base
     render_404 unless greasy?
   end
 
-  helper_method :cache_with_log, :sleazy?, :script_subset, :site_name
+  helper_method :cache_with_log, :greasy?, :sleazy?, :script_subset, :site_name
 
   def get_script_from_input(value, allow_deleted: false)
     return nil if value.blank?
