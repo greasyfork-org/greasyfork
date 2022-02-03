@@ -288,7 +288,9 @@ class User < ApplicationRecord
   end
 
   def needs_to_recaptcha?
-    scripts.not_deleted.where('created_at <= ?', 1.month.ago).none?
+    scripts.not_deleted.where('created_at <= ?', 1.month.ago).none? &&
+      discussions.not_deleted.where('created_at <= ?', 1.month.ago).none? &&
+      comments.not_deleted.where('created_at <= ?', 1.month.ago).none?
   end
 
   def existing_conversation_with(users)
