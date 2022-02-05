@@ -8,11 +8,19 @@ class ScriptPreviouslyDeletedChecker < ApplicationJob
 
     similar_locked_scripts = ScriptSimilarity
                              .where(script_id: script_id)
-                             .where('similarity >= 0.8')
                              .joins(:other_script)
                              .where(scripts: { locked: true })
-                             .map(&:other_script)
-                             .uniq
+
+    clean_length = CleanedCode.find_by(script_id: script_id)&.code&.length
+
+    # Be more lenient if it's a very short (code-wise) script.
+    similar_locked_scripts = if clean_length && clean_length < 250
+                               similar_locked_scripts.where('(similarity >= 0.8 AND !tersed) OR (similarity >= 0.9 AND tersed)')
+                             else
+                               similar_locked_scripts.where('similarity >= 0.8')
+                             end
+
+    similar_locked_scripts = similar_locked_scripts.map(&:other_script).uniq
 
     return unless similar_locked_scripts.count > 1
 
