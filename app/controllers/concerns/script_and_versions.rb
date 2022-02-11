@@ -69,6 +69,7 @@ module ScriptAndVersions
     script.script_type_id = current_script.script_type_id
     script.locale = current_script.locale
     script.default_name = current_script.default_name
+    script.sensitive = current_script.sensitive
 
     current_script.localized_attributes.each { |la| script.build_localized_attribute(la) }
 
