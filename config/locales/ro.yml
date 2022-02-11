@@ -30,6 +30,7 @@ ro:
       other: "Vezi alte %{count} scripturi pentru %{site}"
     applies_to_all: "Toate site-urile"
     install: "Instalează acest script"
+    install_css: "Instalează ca utilizator stil"
     install_help: "?"
     install_help_title: "Cum se instalează"
     update: "Actualizează la versiunea %{version}"
@@ -58,6 +59,9 @@ ro:
     delete_page: "Șterge"
     delete_explanation: "Ștergerea scriptului îl face inaccesibil oricui în afara de tine și de a moderatorilor Greasy Fork. Îl vei putea restaura oricând."
     delete_update_behaviour: "Ce dorești să se întâmple utilizatorilor care au instalat deja scriptul tău?"
+    delete_update_behaviours:
+      keep: "Îl vor păstra așa cum este."
+      blanked: "Acesta se va actualiza la un script gol. Acest lucru este adecvat atunci când scriptul are un efect negativ pe siturile pe care se execută."
     delete_permanently_heading: "Șterge-l permanent"
     delete_permanently_explanation_html: >-
         <p>Ștergerea permanentă a script-ului tau va șterge și înregistrările asociate
@@ -614,6 +618,10 @@ ro:
       title: 'Cum se instalează script-urile'
     installing_user_styles:
       title: 'Cum se instalează stiluri de utilizator'
+      content_html: |
+          <p>Unele scripturi de pe %{site_name} pot fi instalate ca stiluri de utilizator.</p>
+          <p>Stilurile de utilizator pot fi instalate cu %{stylus_firefox_link:Stylus pentru Firefox}, %{stylus_chrome_link:Stylus pentru Chrome}, and %{stylus_opera_link:Stylus pentru Opera}.</p>
+          <p> %{styles_link:Vizualizați toate stilurile de utilizator disponibile}</p>.
     meta_keys:
       title: "Cheia metadata citită de %{site_name}"
       intro_html: "Aceasta este o lista a <a href=\"http://wiki.greasespot.net/Metadata_Block\">meta chei de folosit pentru scripturile utilizatorului</a> care %{site_name} le va citi. Cheile înafara celor de pe această lista pot fi incluse în scripturi, și vor fi prezente în scriptul instalat, dar, nu vor avea nici un efect pe UI-ul site-ului %{site_name}."
@@ -1030,6 +1038,16 @@ ro:
     description: "Cauta script-uri are utilizatorului pe %{site_name}."
     long_name: "%{site_name} căutarea de script-uri ale utilizatorului"
     attribution: "Dă-le drepturi de autor autorilor scriptului, vezi fiecare script individual pentru a-l licenția"
+  importing:
+    title: Import scripts
+    intro: "%{site_name}poate importa scripturi care sunt deja găzduite în altă parte, de exemplu într-un sistem de control al versiunilor (cum ar fi GitHub), pe propriul server sau pe un alt site de găzduire a scripturilor utilizatorului."
+    submit: Import
+    previously_imported:
+      heading: Scripturi importate anterior
+      successful_entry_html: "%{script_link} - %{sync_type}sincronizare, ultima sincronizare %{last_sync_date}."
+      unknown_date: "(necunoscut)"
+    results:
+      title: "Import rezultat"
   mailers:
     script_report:
       report_created_offender:
@@ -1039,7 +1057,9 @@ ro:
         subject: "Script-ul tău %{script_name} de pe %{site_name} a fost șters"
       report_dismissed_offender:
         subject: "Un raport despre scriptul %{script_name} de pe %{site_name} a fost verificat și nu a fost luată nici o masură"
-        text: "Un raport despre scriptul%{script_name} de pe %{site_name} a fost verificat și nu a fost luată nici o masură. Script-ul tau va ramâne activ. Daca vrei poți să verifici raportul pe %{report_url}. Daca ai orice întrebare, te rog vizitează ttps://greasyfork.org/forum/ ."
+        text: "Un raport despre scriptul%{script_name} de pe %{site_name} a fost verificat și nu a fost luată nici o masură. Script-ul tau va ramâne activ. Daca vrei poți să verifici raportul pe %{report_url}. Daca ai orice întrebare, te rog vizitează https://greasyfork.org/forum/ ."
+      report_fixed_offender:
+        subject: "Un raport despre scriptul %{script_name} de pe %{site_name} a fost marcat ca rezolvat"
       report_rebutted_reporter:
         subject: "Raport-ul despre scriptul %{script_name} de pe %{site_name} a primit un răspuns"
         text: "Raport-ul despre scriptul %{script_name} de pe %{site_name}a primit un răspuns. Poți verifica acest răspuns pe %{report_url}. Un moderator va verifica raportul tau și acest raspuns apoi va decide un rezultat. Daca ai orice întrebare, te rog vizitează https://greasyfork.org/forum/ ."
@@ -1051,7 +1071,7 @@ ro:
         text: "Raport-ul tău despre scriptul %{script_name} de pe %{site_name} a fost închis deoarece scriptul a fost șters de către autorul lui. Poți verifica reportul pe %{report_url}. Dacă ai orice întrebare, te rog vizitează https://greasyfork.org/forum/ ."
       report_dismissed_reporter:
         subject: "Raport-ul tău despre scriptul %{script_name} de pe %{site_name} a fost anulat"
-        text: "Raport-ul tău despre scriptul %{script_name} de pe %{site_name} a fost anulat de către un moderator si scriptul pe care l-ai raportat ramâne activ. Poți verifica reportul pe %{report_url}. Daca ai orice întrebare, te rog vizitează https://greasyfork.org/forum/ ."
+        text: "Raportul dvs. despre %{script_name} de pe %{site_name} a fost respins de un moderator, iar scriptul pe care l-ați raportat va rămâne activ. Puteți consulta raportul la %{report_url}. Dacă aveți întrebări, vă rugăm să vizitați https://greasyfork.org/forum/."
     consecutive_bad_ratings:
       notify:
         subject: "Script-ul tau %{script_name} de pe %{site_name} a primit multiple păreri \"Rau\"."
