@@ -140,8 +140,10 @@
   <p><%= report_item_link(report) %> has been previously reported:</p>
   <ul>
     <% ror.each do |other_report| %>
-      <%= link_to report_url(other_report) do %>Report #<%= other_report.id %> by <%= render_user(other_report.reporter, other_report.reporter_id, skip_link: true) %> for <%= other_report.reason_text %><% end %>
-      - <%= other_report.result || 'pending' %>
+      <li>
+        <%= link_to report_url(other_report) do %>Report #<%= other_report.id %> by <%= render_user(other_report.reporter, other_report.reporter_id, skip_link: true) %> for <%= other_report.reason_text %><% end %>
+        - <%= other_report.result || 'pending' %>
+      </li>
     <% end %>
   </ul>
 <% end %>
