@@ -28,6 +28,7 @@ id:
       other: "Lihat %{count} skrip lain untuk %{site}"
     applies_to_all: "Semua situs"
     install: "Pasang skrip ini"
+    install_css: "Pasang sebagai pengguna style"
     install_help: "?"
     install_help_title: "Cara pemasangan"
     update: "Perbarui ke versi %{version}"
@@ -39,6 +40,9 @@ id:
     promoted_text_html: "Kamu mungkin juga suka %{script_link}."
     library_instructions_html: "Skrip ini tidak untuk dipasang secara langsung. Ini adalah pustaka skrip lain untuk disertakan dengan direktif meta %{code}"
     deleted_notice: "Skrip ini telah dihapus."
+    deleted_notice_with_related: "Skrip yang kamu cari sudah dihapus.\ntapi ada beberapa skrip yang mirip."
+    deleted_undelete_notice_html: "Skrip ini sudah dikunci oleh moderator dan tidak dapat tidak dihapus. alasan yang disediakan: \"<i>%{delete_reason}</i>\"."
+    deleted_locked_author_notice_html: "Skrip ini sudah dihapus oleh moderator dan tidak bisa diakses orang lain. alasan yang disediakan: \"<i>%{delete_reason}</i>\". Silahkan tinjau %{code_rules_link:%{site_name}'s rules}. jika kamu percaya penghapusan karena error. kamu bisa %{appeal_link:submit an appeal} dengan penghapusan ini. jangan posting ulang skrip ini; melakukan terlalu banyak mungkin membuatmu diban dari %{site_name}."
     version_notice_html: "Pada tanggal %{date}. Lihat %(latest_version_link)."
     version_notice_latest_version_link: "versi terakhir"
     info_page: "Info"
@@ -101,12 +105,14 @@ id:
     listing_filter_by_site_label: "Menampilkan skrip untuk:"
     listing_filter_by_site_disable: "Semua"
     listing_filter_by_site_all_sites: "(Semua situs)"
+    listing_filter_by_language_label: "Bahasa:"
     listing_filter_by_site_more_sites: "Lebih banyak..."
     listing_no_scripts: "Skrip tidak ditemukan."
     listing_created_feed: "Skrip baru"
     listing_updated_feed: "Skrip terbaru"
     listing_none: "(Kosong)"
     import: "Impor skrip"
+    new_css: "Publikasi style yang kamu tulis"
     support_site: "Kunjungi situs dukungan penulis."
     support_email: "Kirim surel ke penulis untuk dukungan."
     contribution_no_amount: "Berterima kasihlah pada %{author} dengan memberikan donasi."
@@ -138,7 +144,10 @@ id:
     warning_version_not_incremented_html: "Anda memperbarui kode tetapi tidak meningkatkan angka <code>@version</code>. Siapapun yang sebelumnya memasang skrip anda kemungkinan tidak akan mendapatkan kode yang terbarui."
     warning_namespace_changed_html: "<code>@namespace</code> anda telah berubah. <code>@namespace</code> yang konsisten mengizinkan pengguna memasang ulang skrip anda untuk memperbaruinya."
     warning_potentially_minified_html: "Skrip anda sepertinya mengandung kode yang diminimalkan (dimampatkan). Jika anda menggunakan pustaka yang diminimalkan, mohon gunakan <code>@require</code> dari %{allowed_requires_link}. Skrip dengan kode yang diminimalkan akan dibuang."
+    warning_automatic_sensitive_html: "Skripmu untuk %{sensitive_domains}dan akan ditandai dengan konten dewasa."
     warning_potentially_minified_allowed_requires_link: "salah satu dari tempat ini"
+    warning_code_previously_posted_html: "kode ini sebelumnya sudah di posting di %{script_links}. memposting ulang adalah subjek untuk dihapus oleh moderator."
+    warning_license_missing_override_html: "simpan tanpa lisensi"
     additional_info_locale_prompt: "(Pilih lokal)"
     additional_info_add_localized: "Tambah info tambahan yang dilokalkan"
     additional_info_locale_repeated: "Berikan satu saja info tambahan untuk lokal '%{locale_code}'."
@@ -146,6 +155,13 @@ id:
     code_syncing_from_url_html: "Kode skrip ini dipersiapkan untuk diselaraskan dari: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} dapat mengimpor skrip yang telah menginang di tempat lain, misalnya di sistem pengelolaan versi (seperti GitHub), server anda sendiri, atau situs inang skrip lainnya. Untuk mengaktifkan penyelarasan, berikan sebuah URL: %{field}"
     sync_type_intro: "Skrip akan diselaraskan:"
+    sync_type_1:
+      name: Panduan
+    sync_type_2:
+      name: Otomatis
+    sync_type_3:
+      name: Webhook
+    sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "Pengusahaan penyelarasan terakhir pada %{date}, yang mengakibatkan %{error}."
     sync_success_info_html: "Penyelarasan sukses yang terakhir pada %{date}."
     sync_never_succeeded: "Penyelarasan tidak pernah selesai dengan sukses."
@@ -186,6 +202,11 @@ id:
     by_site_list_filter: "Saring menurut nama situs:"
     search_placeholder: "Cari Skrip"
     updated: "Skrip diperbarui"
+    new_title:
+      css: "Posting style baru"
+    badges:
+      css:
+        long: Style pengguna
   script_sets:
     favorites_name: "Favorit"
     delete: "Hapus set skrip"
@@ -215,6 +236,7 @@ id:
     scripts_for_label: "Skrip untuk"
     explain_user_scripts_heading: "Apakah itu skrip pengguna?"
     explain_user_scripts_html: "Skrip membantu Anda mengontrol pengalaman menjelajah internet. Sekali dipasang, mereka secara otomatis membuat situs yang Anda kunjungi lebih baik dengan menambahkan fitur, membuat situs lebih mudah digunakan, atau menyingkirkan hal-hal yang mengganggu. Skrip pada situs %{site_name} dibuat oleh pengguna lainnya dan dikirimkan untuk dibagikan ke seluruh dunia. Mereka gratisdan bebas untuk dipasang dan mudah digunakan."
+    installing_step1_header: "Step 1: instal pengelola skrip pengguna"
     installing_step1_caption: "Tampermonkey di Chrome"
   users:
     sign_in_title: "Masuk ke %{site_name}"
@@ -294,9 +316,30 @@ id:
         cancel: "Batalkan Penghapusan"
         cancelled: "Penghapusan dibatalkan"
         completed: "Akunmu telah dihapus"
+    banned_delete:
+      complete: "Akunmu sudah dihapus."
+    badges:
+      moderator:
+        short: Mod
+        long: Moderator
+      author:
+        short: Pembuat
+        long: Pembuat skrip ini
+    notifications:
+      discussion_defaults:
+        title: Notifikasi forum
+      conversation_defaults:
+        title: Notifikasi percakapan
+      save_button: Perbarui setelan notifikasi
+      title: Notifikasi
   help:
+    sections:
+      usage: Penggunaan
+      development: Pengembangaan
     installing_user_scripts:
       title: 'Bagaimana cara memasang skrip pengguna'
+    installing_user_styles:
+      title: 'Cara memasang style pengguna'
     meta_keys:
       title: "Kunci meta skrip dibaca oleh %{site_name}"
       intro_html: "Berikut adalah daftar <a href=\"http://wiki.greasespot.net/Metadata_Block\">kunci meta skrip</a> yang %{site_name} akan baca. Kunci di luar daftar ini boleh disertakan dalam skrip, dan akan tersedia dalam skrip yang terpasang, tetapi tidak akan memiliki pengaruh pada UI %{site_name}."
@@ -321,8 +364,20 @@ id:
       post_new_script_link_text: 'kirim skrip baru'
     code_rules:
       title: "Aturan %{site_name} untuk skrip yang dikirim"
+      copyright_header: hak cipta
     external_scripts:
       title: "Kebijakan %{site_name} pada skrip eksternal"
+      allowed_external_codes:
+        heading: Kode eksternal yang diizinkan
+      other_allowed_codes:
+        heading: Kasus khusus
+      add_to_list:
+        heading: Tambah ke daftar
+      enforcement:
+        heading: Pelaksanaan
+      test_url:
+        label: Tes sebuah URL
+        result_ok: URL diperbolehkan
     script_rewriting:
       title: "Bagaimana %{site_name} akan menulis ulang skrip yang dikirimkan"
     site_feedback_link: "Laporkan masalah atau kirimkan ide untuk %{site_name}"
