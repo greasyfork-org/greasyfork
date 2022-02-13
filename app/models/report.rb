@@ -196,4 +196,8 @@ class Report < ApplicationRecord
 
     reporter != moderator && reported_users.exclude?(moderator)
   end
+
+  def recent_other_reports
+    Report.where(created_at: 3.months.ago..).where.not(id: id).where(item: item)
+  end
 end
