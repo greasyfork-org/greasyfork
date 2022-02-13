@@ -135,20 +135,20 @@
   <% end %>
 <% end %>
 
-<% ror = report.recent_other_reports.load %>
-<% if ror.any? %>
-  <p><%= report_item_link(report) %> has been previously reported:</p>
-  <ul>
-    <% ror.each do |other_report| %>
-      <li>
-        <%= link_to report_url(other_report) do %>Report #<%= other_report.id %> by <%= render_user(other_report.reporter, other_report.reporter_id, skip_link: true) %> for <%= other_report.reason_text %><% end %>
-        - <%= other_report.result || 'pending' %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
-
 <% if current_user&.moderator? %>
+  <% ror = report.recent_other_reports.load %>
+  <% if ror.any? %>
+    <p><%= report_item_link(report) %> has been previously reported:</p>
+    <ul>
+      <% ror.each do |other_report| %>
+        <li>
+          <%= link_to report_url(other_report) do %>Report #<%= other_report.id %> by <%= render_user(other_report.reporter, other_report.reporter_id, skip_link: true) %> for <%= other_report.reason_text %><% end %>
+          - <%= other_report.result || 'pending' %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
   <% if report.reporter %>
     <% reporter_stats = report.reporter.report_stats(ignore_report: report) %>
     <% if reporter_stats.values.any?{ |v| v > 0 } %>
