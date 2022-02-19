@@ -42,6 +42,7 @@ zh-CN:
     deleted_notice: "此脚本已被删除。"
     deleted_notice_with_related: "请求的脚本已被删除。不过，这里还有一些可能类似的脚本。"
     deleted_undelete_notice_html: "该脚本已被管理员锁定并删除且无法撤销。锁定原因：“<i>%{delete_reason}</i>”。"
+    deleted_locked_author_notice_html: "此脚本已由一位审核员删除并不再可被他人访问。提供的原因为：\"<i>%{delete_reason}</i>\"。请查看%{code_rules_link:%{site_name}规则}。如果您认为删除是错误的，您可以对此删除%{appeal_link:提交申诉}。请勿重新发布此脚本；这可能会导致被%{site_name}封锁。"
     deleted_author_notice: "其他用户不能访问该脚本，因为它已经被删除。你可以在“删除”面板中取消删除。"
     version_notice_html: "您查看的为 %{date} 提交的版本。查看 %{latest_version_link}。"
     version_notice_latest_version_link: "最新版本"
@@ -207,11 +208,15 @@ zh-CN:
     warning_version_not_incremented_html: "您更新了脚本代码但是没有增加 <code>@version</code> 版本号。之前安装了您的脚本的用户可能不会自动更新到更新后的代码。"
     warning_version_missing_html: "你没有指定 <code>@version</code>。<code>@version</code> 是用户接收更新所必需的。您可以像这样指定：<code>// @version 1.0</code>.。"
     warning_version_missing_generate_automatically_html: "自动生成 <code>@version</code> 属性"
+    warning_namespace_missing_html: "您未指明<code>@namespace</code>。<code>@namespace</code>帮助避免在用户安装另一个同名脚本时产生冲突。一个独特的字符串即可作为<code>@namespace</code>，通常使用作者控制的URL。"
     warning_namespace_missing_generate_automatically_html: "自动生成 <code>@namespace</code> 属性"
     warning_namespace_changed_html: "您的命名空间 <code>@namespace</code> 发生了改变。改变 <code>@namespace</code> 后脚本管理器会将更新作为新脚本安装。"
     warning_potentially_minified_html: "您的脚本看上去像最小化（压缩后）的版本。如果您使用了最小化后的库，请使用 <code>@require</code> 引用 %{allowed_requires_link} 里面的相应库。压缩后的脚本不被本站允许且会被管理员移除。"
     warning_automatic_sensitive_html: "您的脚本适用于%{sensitive_domains}，因此会被标注为成人内容。"
     warning_potentially_minified_allowed_requires_link: "在这些地方"
+    warning_code_previously_posted_html: "此代码已在 %{script_links} 发布。重新发布此脚本可能被管理员移除。"
+    warning_license_missing_html: "您未声明<code>@license</code>。通过在%{site_name}发布，您在允许他人使用您的代码，但许可将同时允许您告知他人他们可以如何修改并分发您的代码。例如，<code>// @license MIT</code>意味着您允许任何人修改并分发您撰写的代码。%{license_chooser_link:更多关于许可的信息见此。}如果您不提供一个许可，%{site_name}会假定您不允许他人修改或分发拷贝。请注意如果您不是您发布的代码的唯一作者，通常您不被允许发布它，除非您获得了所有作者的许可。"
+    warning_license_missing_override_html: "不要求许可就保存"
     additional_info_locale_prompt: "(选择语言)"
     additional_info_add_localized: "添加一个本地化的附加信息"
     additional_info_locale_repeated: "您只能对“%{locale_code}”提供一条附加信息。"
@@ -311,6 +316,7 @@ zh-CN:
       failure: "无法移除该作者。"
     no_disposable_email: "如果您使用一次性电子邮箱地址，则不能发布脚本。"
     rate_limited: "您近期提交了太多脚本。请稍后再试。"
+    delayed: "由于垃圾信息问题，新用户不能立即发布脚本。请稍后再试。"
     new_script_notice:
       title: "想要做什么？"
       install_link_html: "我想<b>安装并使用</b>一个脚本。"
@@ -881,6 +887,7 @@ zh-CN:
   notifications:
     consecutive_bad_ratings:
       other: "%{script_names} 已连续收到差评。请检查您的脚本和回复评价中提出的问题。"
+    open_reports: "您的一些脚本被举报了。请审核这些举报并尽可能提供信息。举报链接：%{report_links}"
   reports:
     name: "举报 #%{id}"
     report_filed: "您提交的举报将由管理员审核。"
@@ -1178,6 +1185,7 @@ zh-CN:
       script_rate_limit: "您已超出脚本发布数量的限制。请稍后再试。"
       missing_include_or_match: "必须包含至少一个 @match 或 @include 规则"
       invalid_meta: "含有无效的元信息声明。正确的格式是 // @foo"
+      no_executable: "未包含可执行代码"
       file_size_out_of_range: "必须小于 200KB"
       meta_too_long: "%{key} 过长（最多允许 %{count} 个字符）"
   opensearch:
@@ -1212,6 +1220,10 @@ zh-CN:
         text: "你的脚本 %{script_name} 被举报违反 %{site_name} 的站点条例。具体的理由是：%{reason}。你可以在 %{report_url} 查看该则举报并提交申诉。如果不进行申诉，你的脚本可能会被管理员删除。如果有任何问题，请访问论坛 https://greasyfork.org/forum/ 。"
       report_upheld_offender:
         subject: "您的脚本 %{script_name} 在 %{site_name} 上已被删除"
+        text: |
+            您在 %{site_name} 上的 %{script_name} 脚本已被一名管理员删除，不再对公众可见。详情见此报告：%{report_url}和%{code_rules_url}处的%{site_name}规则。
+
+            如果这是一次误会，或者您已更新脚本而解决提到的问题，可以到 %{appeal_url} 提出异议，审核员将会复合它。请勿重新发布此脚本，这可能导致被%{site_name}禁用账号。
       report_dismissed_offender:
         subject: "%{site_name} 上的一则针对您的 %{script_name} 脚本的举报已被驳回"
         text: "%{site_name} 上的一则针对您的 %{script_name} 脚本的举报已由管理员驳回，您的脚本继续保留。详情查阅此报告: %{report_url}。如有疑问，请访问 https://greasyfork.org/forum/。"

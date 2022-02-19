@@ -43,8 +43,11 @@ id:
     deleted_notice_with_related: "Skrip yang kamu cari sudah dihapus.\ntapi ada beberapa skrip yang mirip."
     deleted_undelete_notice_html: "Skrip ini sudah dikunci oleh moderator dan tidak dapat tidak dihapus. alasan yang disediakan: \"<i>%{delete_reason}</i>\"."
     deleted_locked_author_notice_html: "Skrip ini sudah dihapus oleh moderator dan tidak bisa diakses orang lain. alasan yang disediakan: \"<i>%{delete_reason}</i>\". Silahkan tinjau %{code_rules_link:%{site_name}'s rules}. jika kamu percaya penghapusan karena error. kamu bisa %{appeal_link:submit an appeal} dengan penghapusan ini. jangan posting ulang skrip ini; melakukan terlalu banyak mungkin membuatmu diban dari %{site_name}."
+    deleted_author_notice: "Skrip ini telah dihapus dan tidak dapat diakses oleh orang lain. Anda dapat membatalkan penghapusan dari tab Hapus. "
     version_notice_html: "Pada tanggal %{date}. Lihat %(latest_version_link)."
     version_notice_latest_version_link: "versi terakhir"
+    reported_notice: "\"%{script_name}\" telah dilaporkan dan menunggu tinjauan oleh moderator."
+    reported_notice_for_author: "Skrip ini tidak tersedia untuk pengguna lain hingga ditinjau oleh moderator. "
     info_page: "Info"
     code_page: "Kode"
     history_page: "Riwayat"
@@ -55,9 +58,23 @@ id:
     delete_page: "Hapus"
     delete_explanation: "Menghapus skrip akan membuatnya tidak dapat diakses oleh siapapun kecuali Anda dan moderator Greasy Fork. Anda bisa membatalkan penghapusan kapan saja."
     delete_update_behaviour: "Apa yang Anda inginkan terjadi pada skrip pengguna yang sebelumnya telah memasang skrip Anda?"
+    delete_update_behaviours:
+      keep: "Mereka akan tetap seperti itu. "
+      blanked: "Mereka akan diperbarui ke skrip kosong. Ini cocok ketika skrip memiliki efek negatif pada situs yang dijalankannya. "
+      redirect: "Mereka akan diarahkan dan diperbarui ke skrip yang Anda tentukan di bawah."
     delete_permanently_heading: "Dihapus secara permanen"
+    delete_permanently_explanation_html: >-
+        <p>Menghapus skrip Anda akan menghapusnya secara permanen termasuk semua catatan
+        yang terkait, kecuali di forum diskusi dan catatan moderator.</p><p>Skrip
+        Anda akan dihapus secara permanen setelah 7 hari dari permintaan Anda. Anda
+        dapat membatalkan penghapusan permanen untuk saat ini. Jika tidak, tidak seorang
+        pun, bahkan moderator, yang dapat memulihkan skrip Anda.
+
+        </p>
+    delete_permanently_confirm: "Apakah Anda yakin ingin menghapus skrip Anda secara permanen? "
     delete_permanently_submit: "Minta penghapusan permanen"
     delete_permanently_immediate_submit: "Dihapus secara permanen"
+    delete_permanently_notice: "Permintaan untuk penghapusan permanen telah direkam. Skrip Anda akan dihapus secara permanen dalam 7 hari."
     delete_permanently_notice_immediate: "Skrip telah dihapus secara permanen."
     cancel_delete_permanently_submit: "Batalkan permintaan penghapusan permanen"
     delete_permanently_rejected_locked: "Skrip ini sedang dikunci dan tidak dapat dihapus secara permanen"
