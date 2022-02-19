@@ -96,7 +96,7 @@ class ScriptsController < ApplicationController
         end
       end
       format.js do
-        redirect_to @script.code_url
+        redirect_to @script.code_path
       end
       format.json { render json: @script.as_json(include: :users) }
       format.jsonp { render json: @script.as_json(include: :users), callback: clean_json_callback_param }
@@ -129,7 +129,7 @@ class ScriptsController < ApplicationController
         @canonical_params = [:id, :version]
       end
       format.js do
-        redirect_to @script.code_url
+        redirect_to @script.code_path
       end
       format.user_script_meta do
         route_params = { id: params[:id], name: @script.name, format: nil }

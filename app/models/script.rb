@@ -456,6 +456,12 @@ class Script < ApplicationRecord
     return url_helpers.user_js_script_url(self, name: url_name)
   end
 
+  def code_path
+    return url_helpers.library_js_script_path(self, version: newest_saved_script_version.id, name: url_name) if library?
+
+    return url_helpers.user_js_script_path(self, name: url_name)
+  end
+
   def serializable_hash(options = nil)
     super({ only: [:id, :daily_installs, :total_installs, :fan_score, :good_ratings, :ok_ratings, :bad_ratings, :created_at, :code_updated_at, :namespace, :support_url, :contribution_url, :contribution_amount] }.merge(options || {})).merge({
                                                                                                                                                                                                                                                   name: default_name,
