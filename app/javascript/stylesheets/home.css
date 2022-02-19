@@ -54,3 +54,20 @@
 .super-title {
   text-align: center;
 }
+
+.browser-list {
+  display: none;
+}
+#desktop-browser-list {
+  display: block;
+}
+.browser-list-selector:not(.browser-list-selector-active) {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.browser-list-selector-active {
+  font-weight: bold;
+}
+.browser-list-selector:not(:last-child) {
+  margin-right: 1em;
+}
