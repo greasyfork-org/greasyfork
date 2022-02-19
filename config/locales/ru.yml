@@ -460,6 +460,38 @@ ru:
     explain_user_scripts_html: "Пользовательские скрипты делают путешествие по Интернету более комфортным. Будучи установленными, скрипты улучшают определенные сайты, меняя их внешний вид, добавляя новые функции или скрывая нежелательные вещи. Любой человек может опубликовать написанные им скрипты на %{site_name}. Опубликованные скрипты может установить любой желающий, бесплатно и быстро."
     installing_step1_header: "Шаг 1: установить менеджер скриптов"
     installing_step1_caption: "Tampermonkey для Chrome"
+    installing_step1_description_html: >
+        <p>Для использования скриптов необходимо сначала установить менеджер скриптов.
+        Для браузеров доступны следующие менеджеры скриптов.</p>
+    desktop_browsers:
+      title: Для ПК
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} или %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, или %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} или %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} или %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>AdGuard: (дополнительного ПО не требуется)</li>
+          </ul>
+    android_browsers:
+      title: Для Android
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, или %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          <li>Kiwi: %{chrome_tampermonkey_link:Tampermonkey} или %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>X浏览: (дополнительного ПО не требуется)</li>
+          </ul>
+    ios_browsers:
+      title: Для iOS
+      browser_list_html: |
+          <ul>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} или %{safari_userscripts_link:Userscripts}</li>
+          </ul>
     installing_step2_header: "Шаг 2: установить скрипт"
     installing_step2_caption: "Кнопка установки скрипта"
     installing_step2_description_html: >
