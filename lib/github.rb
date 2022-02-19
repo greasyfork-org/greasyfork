@@ -39,7 +39,8 @@ class Github
       ref = params[:release][:tag_name]
       default_branch = params[:repository][:default_branch]
 
-      sync_identifiers = Script.where('sync_identifier LIKE ?', "#{Script.sanitize_sql_like(repo_url)}%").pluck(:sync_identifier)
+      urls = possible_sync_urls_for_repo_url(repo_url)
+      sync_identifiers = Script.where((['sync_identifier LIKE ?'] * urls.count).join(' OR '), *urls.map { |url| "#{Script.sanitize_sql_like(url)}%" }).pluck(:sync_identifier)
       sync_identifiers.map { |file| file_from_root_for_url(file, repo_url) }.index_with { |file| { messages: [release_name], urls: urls_for_ref(repo_url, ref, file) + urls_for_ref(repo_url, default_branch, file), ref: ref } }
     end
 
@@ -49,11 +50,15 @@ class Github
       # https://raw.githubusercontent.com/(user)/(repo)/(branch)/(path)
       # This will be used to find the related scripts.
       # Need handle spaces as %20 and +.
-      urls = [
-        "#{repo_url}/raw/#{ref}/#{file.tr(' ', '+')}",
-        "https://raw.githubusercontent.com/#{repo_url.split('/')[3..4].join('/')}/#{ref}/#{file.tr(' ', '+')}",
-      ]
+      urls = possible_sync_urls_for_repo_url(repo_url).map { |url| "#{url}#{ref}/#{file.tr(' ', '+')}" }
       (urls + urls.map { |url| url.gsub('+', '%20') }).uniq
+    end
+
+    def possible_sync_urls_for_repo_url(repo_url)
+      [
+        "#{repo_url}/raw/",
+        "https://raw.githubusercontent.com/#{repo_url.split('/')[3..4].join('/')}/",
+      ]
     end
 
     def file_from_root_for_url(url, repo_url)
@@ -61,7 +66,7 @@ class Github
       if url.starts_with?(repo_url)
         url.sub("#{repo_url}/raw/", '').sub(ref_pattern, '')
       else
-        url.sub("https://raw.githubusercontent.com/#{repo_url.split('/')[3..4].join('/')}").sub(ref_pattern, '')
+        url.sub("https://raw.githubusercontent.com/#{repo_url.split('/')[3..4].join('/')}/", '').sub(ref_pattern, '')
       end
     end
   end

@@ -55,4 +55,23 @@ class GithubWebhookTest < ActionDispatch::IntegrationTest
     assert_equal '200', response.code
     assert_equal({ 'updated_scripts' => ['https://greasyfork.org/en/scripts/18-mb-funkey-illustrated-records-15'], 'updated_failed' => [] }, JSON.parse(response.body))
   end
+
+  def test_webhook_release_with_raw_subdomain
+    script = Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js')
+    script.update!(sync_identifier: 'https://raw.githubusercontent.com/JasonBarnabe/webhooktest/master/test.user.js')
+    Git.expects(:get_contents).with('git://github.com/JasonBarnabe/webhooktest.git', { 'test.user.js' => 'v0.0.1' }).yields('test.user.js', 'abc123', script.newest_saved_script_version.rewritten_code)
+    user = User.find(1)
+    release_webhook_request(user)
+    assert_equal '200', response.code
+    assert_equal({ 'updated_scripts' => ['https://greasyfork.org/en/scripts/18-mb-funkey-illustrated-records-15'], 'updated_failed' => [] }, JSON.parse(response.body))
+  end
+
+  def test_webhook_release_no_match
+    script = Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js')
+    script.update!(sync_identifier: 'https://raw.githubusercontent.com/something/else/master/test.user.js')
+    user = User.find(1)
+    release_webhook_request(user)
+    assert_equal '200', response.code
+    assert_equal({ 'message' => 'No scripts found for this release.' }, JSON.parse(response.body))
+  end
 end

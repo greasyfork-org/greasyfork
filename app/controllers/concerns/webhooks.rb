@@ -42,7 +42,11 @@ module Webhooks
     end
 
     if changed_files.empty?
-      render json: { message: 'No commits found in this push.' }
+      if request.headers['X-GitHub-Event'] == 'release'
+        render json: { message: 'No scripts found for this release.' }
+      else
+        render json: { message: 'No commits found in this push.' }
+      end
       return nil, nil
     end
 
