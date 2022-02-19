@@ -99,7 +99,9 @@ module ApplicationHelper
     canonical_param_names = (canonical_param_names || []).push(:id, :locale)
     canonical_params = params
                        .to_unsafe_h
-                       .to_h { |k, v| canonical_param_names.include?(k.to_sym) ? [k, v] : [k, nil] }
+                       .to_h do |k, v|
+      canonical_param_names.include?(k.to_sym) ? [k, v&.encode('UTF-8', invalid: :replace, undef: :replace, replace: '')] : [k, nil]
+    end
 
     begin
       url_for(canonical_params.merge(controller: controller_name, action: action_name, only_path: false, host: sleazy? ? 'sleazyfork.org' : 'greasyfork.org', port: nil))
