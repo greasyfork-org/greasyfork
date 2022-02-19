@@ -34,8 +34,8 @@ class DiscussionsController < ApplicationController
     @filter_result = apply_filters(@discussions)
 
     @discussions = @filter_result.result
-    @discussions = @discussions.paginate(page: params[:page], per_page: per_page(default: 25))
-    @bots = 'noindex' unless params[:page].nil?
+    @discussions = @discussions.paginate(page: page_number, per_page: per_page(default: 25))
+    @bots = 'noindex' unless page_number == 1
 
     @discussion_ids_read = DiscussionRead.read_ids_for(@discussions, current_user) if current_user
 
