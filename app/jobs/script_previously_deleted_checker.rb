@@ -28,7 +28,7 @@ class ScriptPreviouslyDeletedChecker < ApplicationJob
     scripts_and_reports = similar_locked_scripts.map { |similar_script| [similar_script, other_reports.select { |report| similar_script == report.item }] }
 
     # Use the most common non-'other' reason.
-    reason = other_reports.map(&:reason).reject { |r| r == Report::REASON_OTHER }.tally.max_by(&:last).first || Report::REASON_OTHER
+    reason = other_reports.map(&:reason).reject { |r| r == Report::REASON_OTHER }.tally.max_by(&:last)&.first || Report::REASON_OTHER
 
     Report.create!(
       item: script,
