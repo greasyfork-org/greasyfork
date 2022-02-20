@@ -53,6 +53,9 @@ module Webhooks
     inject_script_info(user, changed_files)
 
     return changed_files, params[:repository][:git_url]
+  rescue StandardError
+    Rails.logger.error("Error processing webhook body: #{body}")
+    raise
   end
 
   def process_bitbucket_webhook(user)
