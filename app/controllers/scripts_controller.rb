@@ -152,7 +152,9 @@ class ScriptsController < ApplicationController
                           .includes(:stat_first_comment, :poster)
                           .order(stat_last_reply_date: :desc)
                           .paginate(page: page_number, per_page: per_page(default: 25))
-    @discussion = @discussions.build(discussion_category: DiscussionCategory.script_discussions)
+    @discussion = @discussions.build(discussion_category: DiscussionCategory.script_discussions, poster: current_user)
+    @discussion.rating = Discussion::RATING_QUESTION if @discussion.by_script_author?
+
     @discussion.comments.build(text_markup: current_user&.preferred_markup)
 
     @subscribe = current_user&.subscribe_on_discussion

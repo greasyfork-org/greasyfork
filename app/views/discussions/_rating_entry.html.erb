@@ -1,19 +1,23 @@
-<% full_label = false unless defined?(full_label) %>
-<div class="form-control radio-group discussion-rating">
-  <label>
-    <% if full_label %>
-      <%= t('discussions.update_rating', script_name: f.object.script.name(request_locale)) %>
-    <% else %>
-      <%= t('activerecord.attributes.discussion.rating') %>
+<% if f.object.by_script_author? %>
+  <%= f.hidden_field :rating %>
+<% else %>
+  <% full_label = false unless defined?(full_label) %>
+  <div class="form-control radio-group discussion-rating">
+    <label>
+      <% if full_label %>
+        <%= t('discussions.update_rating', script_name: f.object.script.name(request_locale)) %>
+      <% else %>
+        <%= t('activerecord.attributes.discussion.rating') %>
+      <% end %>
+    </label><br>
+    <%= f.radio_button :rating, Discussion::RATING_QUESTION, required: true %> <%= f.label :rating, t('discussions.ratings.question'), value: Discussion::RATING_QUESTION, class: 'radio-label' %><br>
+    <%= f.radio_button :rating, Discussion::RATING_BAD, required: true %> <%= f.label :rating, t('discussions.ratings.bad'), value: Discussion::RATING_BAD, class: 'radio-label' %><br>
+    <%= f.radio_button :rating, Discussion::RATING_OK, required: true %> <%= f.label :rating, t('discussions.ratings.ok'), value: Discussion::RATING_OK, class: 'radio-label' %><br>
+    <%= f.radio_button :rating, Discussion::RATING_GOOD, required: true %> <%= f.label :rating, t('discussions.ratings.good'), value: Discussion::RATING_GOOD, class: 'radio-label' %><br>
+    <% if f.object.new_record? %>
+      <div class="radio-note">
+        <%= t('discussions.update_rating_note') %>
+      </div>
     <% end %>
-  </label><br>
-  <%= f.radio_button :rating, Discussion::RATING_QUESTION, required: true %> <%= f.label :rating, t('discussions.ratings.question'), value: Discussion::RATING_QUESTION, class: 'radio-label' %><br>
-  <%= f.radio_button :rating, Discussion::RATING_BAD, required: true %> <%= f.label :rating, t('discussions.ratings.bad'), value: Discussion::RATING_BAD, class: 'radio-label' %><br>
-  <%= f.radio_button :rating, Discussion::RATING_OK, required: true %> <%= f.label :rating, t('discussions.ratings.ok'), value: Discussion::RATING_OK, class: 'radio-label' %><br>
-  <%= f.radio_button :rating, Discussion::RATING_GOOD, required: true %> <%= f.label :rating, t('discussions.ratings.good'), value: Discussion::RATING_GOOD, class: 'radio-label' %><br>
-  <% if f.object.new_record? %>
-    <div class="radio-note">
-      <%= t('discussions.update_rating_note') %>
-    </div>
-  <% end %>
-</div>
+  </div>
+<% end %>

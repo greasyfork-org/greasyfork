@@ -34,6 +34,7 @@ class Discussion < ApplicationRecord
 
   validates :title, presence: true, unless: :for_script?
   validates :rating, absence: true, unless: :for_script?
+  validates :rating, inclusion: { in: [RATING_QUESTION] }, if: :by_script_author?, on: :create
 
   validate do
     if discussion_category_id == DiscussionCategory.script_discussions.id
@@ -150,5 +151,11 @@ class Discussion < ApplicationRecord
     comment = comments.first
     parts << ApplicationController.helpers.format_user_text_as_plain(comment.text, comment.text_markup) if comment
     parts.join("\n")
+  end
+
+  def by_script_author?
+    return false unless script
+
+    script.users.include?(poster)
   end
 end

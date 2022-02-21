@@ -4,7 +4,7 @@ class ScriptDiscussionsTest < ApplicationSystemTestCase
   include ActionMailer::TestHelper
 
   test 'adding a discussion on a script' do
-    user = User.first
+    user = users(:consumer)
     login_as(user, scope: :user)
     script = Script.first
     visit feedback_script_url(script, locale: :en)
@@ -24,6 +24,37 @@ class ScriptDiscussionsTest < ApplicationSystemTestCase
     end
 
     assert_changes -> { Discussion.last.rating }, from: Discussion::RATING_GOOD, to: Discussion::RATING_BAD do
+      click_button 'Update comment'
+      assert_content 'this is an updated reply'
+    end
+
+    travel_to(10.minutes.from_now) do
+      visit current_path
+      assert_no_link 'Edit'
+    end
+  end
+
+  test 'adding a discussion on a script by an author' do
+    script = Script.first
+    user = script.users.first
+    login_as(user, scope: :user)
+    visit feedback_script_url(script, locale: :en)
+    fill_in 'discussion_comments_attributes_0_text', with: 'this is my comment'
+    assert_no_selector '.discussion-rating'
+    assert_difference -> { Discussion.count } => 1 do
+      click_button 'Post comment'
+      assert_content 'this is my comment'
+    end
+    assert_equal Discussion::RATING_QUESTION, Discussion.last.rating
+    assert user.subscribed_to?(Discussion.last)
+
+    click_link 'Edit'
+    within '.edit-comment-form' do
+      fill_in 'comment_text', with: 'this is an updated reply'
+      assert_no_selector '.discussion-rating'
+    end
+
+    assert_no_changes -> { Discussion.last.rating } do
       click_button 'Update comment'
       assert_content 'this is an updated reply'
     end
