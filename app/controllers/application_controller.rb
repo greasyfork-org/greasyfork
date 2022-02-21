@@ -207,6 +207,9 @@ class ApplicationController < ActionController::Base
   helper_method :cache_with_log, :greasy?, :sleazy?, :script_subset, :site_name
 
   def get_script_from_input(value, allow_deleted: false)
+    allowed_hosts = ['https://greasyfork.org', 'https://sleazyfork.org']
+    allowed_hosts += ['https://greasyfork.local', 'https://sleazyfork.local'] unless Rails.env.production?
+
     return nil if value.blank?
 
     script_id = nil
@@ -214,7 +217,7 @@ class ApplicationController < ActionController::Base
     if value.to_i != 0
       script_id = value.to_i
     # A non-GF URL?
-    elsif !value.start_with?('https://greasyfork.org/') && !value.start_with?('https://greasyfork.local/') && !value.start_with?('/')
+    elsif allowed_hosts.none? { |host| value.start_with?(host) && !value.start_with?('/') }
       return :non_gf_url
     # A GF URL?
     else

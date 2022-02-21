@@ -669,7 +669,7 @@ class ScriptsController < ApplicationController
       return
     end
 
-    if promoted_script && @script.sensitive? != promoted_script.sensitive?
+    if promoted_script && !@script.sensitive? && promoted_script.sensitive?
       @script.errors.add(:promoted_script_id, :cannot_be_used_with_this_script)
       render :admin
       return
