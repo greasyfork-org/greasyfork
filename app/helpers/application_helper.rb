@@ -105,7 +105,8 @@ module ApplicationHelper
 
     begin
       url_for(canonical_params.merge(controller: controller_name, action: action_name, only_path: false, host: sleazy? ? 'sleazyfork.org' : 'greasyfork.org', port: nil))
-    rescue StandardError
+    rescue StandardError => e
+      Rails.logger.error(e)
       request.url
     end
   end
