@@ -213,7 +213,6 @@ fr:
     warning_version_not_incremented_html: "Vous avez mis à jour le code source mais n'avez pas modifié la clé <code>@version</code>. Ceux qui ont déjà installé votre script risquent de ne pas recevoir la mise à jour."
     warning_version_missing_html: "Vous n'avez pas spécifié de <code>@version</code>. <code>@version</code> est nécessaire pour que les utilisateurs reçoivent les mises à jour. Vous pouvez en spécifier un comme ceci : <code>// @version 1.0</code>"
     warning_version_missing_generate_automatically_html: "Générer une <code>@ version</code> automatiquement"
-    warning_namespace_missing_html: "Vous n'avez pas spécifié de <code>@namespace</code>. <code>@namespace</code> permet d'éviter les collisions si les utilisateurs installent un autre script du même nom. <code>@namespace</code> doit juste être une chaîne unique ; souvent l'URL que l'auteur que vous contrôlez est utilisée."
     warning_namespace_missing_generate_automatically_html: "Générer un <code>@namespace</code> automatiquement"
     warning_namespace_changed_html: "Votre <code>@namespace</code> a changé. Un <code>@namespace</code> cohérent permet aux utilisateurs de réinstaller votre script pour le mettre à jour."
     warning_potentially_minified_html: "Votre script semble contenir du code minimisé (compressé). Si vous utilisez une bibliothèque minimisée, veuillez utiliser <code>@require</code> depuis %{allowed_requires_link}. Les scripts avec du code minimisé risquent d'être supprimés."

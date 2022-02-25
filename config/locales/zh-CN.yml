@@ -208,7 +208,7 @@ zh-CN:
     warning_version_not_incremented_html: "您更新了脚本代码但是没有增加 <code>@version</code> 版本号。之前安装了您的脚本的用户可能不会自动更新到更新后的代码。"
     warning_version_missing_html: "你没有指定 <code>@version</code>。<code>@version</code> 是用户接收更新所必需的。您可以像这样指定：<code>// @version 1.0</code>.。"
     warning_version_missing_generate_automatically_html: "自动生成 <code>@version</code> 属性"
-    warning_namespace_missing_html: "您未指明<code>@namespace</code>。<code>@namespace</code>帮助避免在用户安装另一个同名脚本时产生冲突。一个独特的字符串即可作为<code>@namespace</code>，通常使用作者控制的URL。"
+    warning_namespace_missing_html: "您未指明 <code>@namespace</code>。<code>@namespace</code> 可帮助避免在用户安装另一个同名脚本时产生冲突。<code>@namespace</code> 只需要是一个独特的字符串；通常使用你控制的 URL。"
     warning_namespace_missing_generate_automatically_html: "自动生成 <code>@namespace</code> 属性"
     warning_namespace_changed_html: "您的命名空间 <code>@namespace</code> 发生了改变。改变 <code>@namespace</code> 后脚本管理器会将更新作为新脚本安装。"
     warning_potentially_minified_html: "您的脚本看上去像最小化（压缩后）的版本。如果您使用了最小化后的库，请使用 <code>@require</code> 引用 %{allowed_requires_link} 里面的相应库。压缩后的脚本不被本站允许且会被管理员移除。"

@@ -214,7 +214,7 @@ ru:
     warning_version_not_incremented_html: "Вы обновили код, но не увеличили номер версии скрипта <code>@version</code>. Таким образом, те, кто уже устанавливал ваш скрипт, не получат это обновление автоматически."
     warning_version_missing_html: "Вы не указали <code>@version</code>, который необходим для получения обновлений. Например, он может выглядеть так: <code>// @version 1.0</code>."
     warning_version_missing_generate_automatically_html: "Автоматически создать <code>@version</code>"
-    warning_namespace_missing_html: "Вы не указали <code>@namespace</code>, который помогает избежать коллизий между двумя разными скриптами с одинаковым именем. <code>@namespace</code> должен содержать уникальную строку; обычно это URL, принадлежащий автору скрипта."
+    warning_namespace_missing_html: "Вы не указали <code>@namespace</code>, который помогает избежать коллизий между двумя разными скриптами с одинаковым именем. <code>@namespace</code> должен содержать уникальную строку; обычно это принадлежащий вам URL."
     warning_namespace_missing_generate_automatically_html: "Автоматически создать <code>@namespace</code>"
     warning_namespace_changed_html: "Ваш <code>@namespace</code> изменился. Постоянный <code>@namespace</code> позволяет вашим пользователям устанавливать новые версии скрипта заменяя старую."
     warning_potentially_minified_html: "Ваш скрипт, похоже, использует минификацию (сжатый код). Если вы подключаете сжатую библиотеку, то, пожалуйста, делайте это посредством <code>@require</code> с %{allowed_requires_link}. Скрипты со сжатым кодом будут удалены."
