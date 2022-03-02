@@ -93,6 +93,7 @@ nl:
     history_all_changes_info: "Dit zijn alle versies van het script."
     history_only_code_changes_link: "Alleen de versies tonen waarvan de code gewijzigd is."
     diff_button: "Verschil tussen geselecteerde versies"
+    list_all_script_versions: "zie alle script versies"
     code_title: "%{script_name} - Broncode"
     feedback_title: "%{script_name} - Feedback"
     feedback_no_discussions_html: "Er zijn nog geen discussies geplaatst. %{start_first_discussion_link}"
@@ -201,6 +202,7 @@ nl:
     warning_potentially_minified_html: "Het lijkt erop dat uw script minimalistische (gecomprimeerde) code bevat. Als u een minimalistische bibliotheek gebruikt, gebruik dan bij voorkeur <code>@require</code> van %{allowed_requires_link}. Script met minimalistische code is onderhevig aan verwijdering."
     warning_automatic_sensitive_html: "Uw script is bedoeld voor %{sensitive_domains} en zal daarom gemarkeerd worden als volwassen inhoud."
     warning_potentially_minified_allowed_requires_link: "één van deze locaties"
+    warning_license_missing_override_html: "Opslaan zonder certificaat"
     additional_info_locale_prompt: "(Kies een taal)"
     additional_info_add_localized: "Extra vertaalde informatie toevoegen"
     additional_info_locale_repeated: "Geef slechts één extra informatie-item op voor de taal '%{locale_code}'."
@@ -270,12 +272,15 @@ nl:
     search_placeholder: "Zoek scripts"
     updated: "Script bijgewerkt."
     preview_additional_info: "Voorvertoning"
+    must_confirm: "U moet u account bevestigen voor dat u scripts kunt plaatsen. U heeft twee bevestiging opties- voeg een externe aanmelding toe of stuur een bevestigingsmail."
     must_confirm_email_button: "Stuur bevestigings-link naar %{email}"
     authors_heading: "Auteurs"
     invitations:
       form_title: "Nodig andere auteurs uit"
       invited_user_url_label: "Gebruiker om uit te nodigen"
       submit: "Stuur uitnodiging"
+      invalid_user_url: "De URL van de uitgenodigde gebruiker is niet geldig."
+      already_author: "De gebruiker die u hebt opgegeven is al de auteur van dit script."
       sent: "Uitnodiging is verstuurd."
       subject: "Uitnodiging voor %{script_name}"
       current_user_already_author: "U bent al een auteur van dit script."
@@ -296,6 +301,10 @@ nl:
       js: "Publiceer een nieuw script"
       css: "Publiceer een nieuw stijl"
     update_title: "Nieuwe versie plaatsen van %{script}"
+    install_help_dialog:
+      js:
+        bypass: (Ik heb al een user script manager, laat me het downloaden!)
+      close_dialog: OK
     antifeatures:
       types:
         ads:
