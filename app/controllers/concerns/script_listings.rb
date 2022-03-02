@@ -218,7 +218,6 @@ module ScriptListings
   end
 
   def code_search
-    @bots = 'noindex,nofollow'
     if params[:c].blank?
       redirect_to search_path(anchor: 'code-search'), status: :moved_permanently
       return
@@ -228,18 +227,38 @@ module ScriptListings
     @scripts = Script.order(self.class.get_sort(params)).includes(:users, :script_type, :localized_attributes).where(id: script_ids)
     include_deleted = current_user&.moderator? && params[:include_deleted] == '1'
     @scripts = @scripts.listable(script_subset) unless include_deleted
-    if current_user&.moderator?
-      @page_description = if include_deleted
-                            view_context.link_to('Exclude deleted scripts', { c: params[:c], include_deleted: nil })
-                          else
-                            view_context.link_to('Include deleted scripts', { c: params[:c], include_deleted: '1' })
-                          end
-    end
     @scripts = @scripts.paginate(page: params[:page], per_page: per_page)
-    @title = t('scripts.listing_title_for_code_search', search_string: params[:c])
-    @canonical_params = [:c, :sort]
-    @include_script_sets = false
-    render action: 'index'
+
+    respond_to do |format|
+      format.html do
+        @bots = 'noindex,nofollow'
+        @title = t('scripts.listing_title_for_code_search', search_string: params[:c])
+        @canonical_params = [:c, :sort]
+        @include_script_sets = false
+        if current_user&.moderator?
+          @page_description = if include_deleted
+                                view_context.link_to('Exclude deleted scripts', { c: params[:c], include_deleted: nil })
+                              else
+                                view_context.link_to('Include deleted scripts', { c: params[:c], include_deleted: '1' })
+                              end
+        end
+
+        @link_alternates = [
+          { url: current_path_with_params(format: :json), type: 'application/json' },
+          { url: current_path_with_params(format: :jsonp, callback: 'callback'), type: 'application/javascript' },
+          { url: current_path_with_params(format: :json, meta: '1'), type: 'application/json' },
+          { url: current_path_with_params(format: :jsonp, meta: '1', callback: 'callback'), type: 'application/javascript' }
+        ]
+        render action: 'index'
+      end
+      format.json do
+        render json: params[:meta] == '1' ? { count: @scripts.count } : @scripts.as_json(include: :users)
+      end
+      format.jsonp do
+        render json: params[:meta] == '1' ? { count: @scripts.count } : @scripts.as_json(include: :users), callback: clean_json_callback_param
+      end
+    end
+
   end
 
   class_methods do
