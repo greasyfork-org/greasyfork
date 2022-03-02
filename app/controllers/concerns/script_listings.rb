@@ -247,7 +247,7 @@ module ScriptListings
           { url: current_path_with_params(format: :json), type: 'application/json' },
           { url: current_path_with_params(format: :jsonp, callback: 'callback'), type: 'application/javascript' },
           { url: current_path_with_params(format: :json, meta: '1'), type: 'application/json' },
-          { url: current_path_with_params(format: :jsonp, meta: '1', callback: 'callback'), type: 'application/javascript' }
+          { url: current_path_with_params(format: :jsonp, meta: '1', callback: 'callback'), type: 'application/javascript' },
         ]
         render action: 'index'
       end
@@ -258,7 +258,6 @@ module ScriptListings
         render json: params[:meta] == '1' ? { count: @scripts.count } : @scripts.as_json(include: :users), callback: clean_json_callback_param
       end
     end
-
   end
 
   class_methods do

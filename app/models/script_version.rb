@@ -549,4 +549,14 @@ class ScriptVersion < ApplicationRecord
       [match_array[1].to_i, match_array[2], match_array[3].to_i, match_array[4]]
     end.flatten
   end
+
+  def code_url
+    return url_helpers.library_js_script_url(script, name: script.url_name, version: id) if script.library?
+
+    url_helpers.user_js_script_url(script, name: script.url_name, version: id)
+  end
+
+  def url_helpers
+    Rails.application.routes.url_helpers
+  end
 end

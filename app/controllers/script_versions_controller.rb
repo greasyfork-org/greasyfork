@@ -32,12 +32,26 @@ class ScriptVersionsController < ApplicationController
       @script_versions = @script_versions.paginate(page: page_number, per_page: per_page)
     end
 
-    if params[:show_all_versions].present? || params[:version].present? || params[:page].present?
-      @bots = 'noindex'
-    elsif @script.unlisted?
-      @bots = 'noindex,follow'
+    respond_to do |format|
+      format.html do
+        if params[:show_all_versions].present? || params[:version].present? || params[:page].present?
+          @bots = 'noindex'
+        elsif @script.unlisted?
+          @bots = 'noindex,follow'
+        end
+        @canonical_params = [:script_id, :version, :show_all_versions]
+        @link_alternates = [
+          { url: current_path_with_params(format: :json), type: 'application/json' },
+          { url: current_path_with_params(format: :jsonp, callback: 'callback'), type: 'application/javascript' },
+        ]
+      end
+      format.json do
+        render json: @script_versions.map { |sv| { version: sv.version, created_at: sv.created_at, url: script_url(id: @script, version: sv.id), code_url: sv.code_url } }
+      end
+      format.jsonp do
+        render json: @script_versions.map { |sv| { version: sv.version, created_at: sv.created_at, url: script_url(id: @script, version: sv.id), code_url: sv.code_url } }, callback: clean_json_callback_param
+      end
     end
-    @canonical_params = [:script_id, :version, :show_all_versions]
   end
 
   def new
