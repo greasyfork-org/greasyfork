@@ -144,6 +144,15 @@
         <li>
           <%= link_to report_url(other_report) do %>Report #<%= other_report.id %> by <%= render_user(other_report.reporter, other_report.reporter_id, skip_link: true) %> for <%= other_report.reason_text %><% end %>
           - <%= other_report.result || 'pending' %>
+          <% if other_report.script_lock_appeals.any? %>
+            <ul>
+              <% other_report.script_lock_appeals.each do |sla| %>
+                <li>
+                  <%= link_to "Appeal ##{sla.id}", script_script_lock_appeal_path(report.script, sla) %> - <%= sla.resolution %>
+                </li>
+              <% end %>
+            </ul>
+          <% end %>
         </li>
       <% end %>
     </ul>

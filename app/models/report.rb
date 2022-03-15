@@ -53,6 +53,7 @@ class Report < ApplicationRecord
   belongs_to :discussion_category, optional: true
 
   has_many :discussions
+  has_many :script_lock_appeals
 
   validates :reason, inclusion: { in: NON_SCRIPT_REASONS }, presence: true, unless: -> { item.is_a?(Script) || item.is_a?(Discussion) }
   validates :reason, inclusion: { in: SCRIPT_REASONS, message: :invalid }, presence: true, if: -> { item.is_a?(Script) }
@@ -198,6 +199,6 @@ class Report < ApplicationRecord
   end
 
   def recent_other_reports
-    Report.where(created_at: 3.months.ago..).where.not(id: id).where(item: item)
+    Report.where(created_at: 3.months.ago..).where.not(id: id).where(item: item).includes(:script_lock_appeals)
   end
 end
