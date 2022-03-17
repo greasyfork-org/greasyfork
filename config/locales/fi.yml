@@ -5,6 +5,10 @@ fi:
       forum: "Foorumi"
       help: "Ohje"
       sign_in: "Kirjaudu sisään"
+      submenu: "Lisää"
+      advanced_search: "Tarkennettu haku"
+      user_list: "Käyttäjäluettelo"
+      libraries: "Kirjastot"
   scripts:
     created_date: "Luotu"
     updated_date: "Päivitetty"
@@ -28,6 +32,7 @@ fi:
     install_help_title: "Asennusohje"
     library_instructions_html: "Tätä skriptiä ei tulisi asentaa suoraan. Se on kirjasto muita skriptejä varten sisällytettäväksi metadirektiivillä %{code}."
     deleted_notice: "Tämä skripti on poistettu."
+    deleted_undelete_notice_html: "Moderaattori on lukinnut tämän skriptin, eikä sitä voi peruuttaa. Syynä on: \"<i>%{delete_reason}</i>\"."
     version_notice_html: "Ajankohdalta %{date}. Katso %{latest_version_link}."
     version_notice_latest_version_link: "uusin versio"
     info_page: "Tiedot"
@@ -46,18 +51,21 @@ fi:
     delete_permanently_notice_immediate: "Skripti poistettu pysyvästi."
     cancel_delete_permanently_submit: "Peruuta pyyntö pysyvästä poistosta"
     delete_permanently_rejected_locked: "Tämä skripti on lukittu eikä sitä voida poistaa pysyvästi."
+    admin_page: "Ylläpitäjä"
     history_title: "%{script_name} - Versiohistoria"
     history_only_code_changes_info: "Tästä skriptistä on versioita, joissa koodia päivitettiin."
     history_all_changes_link: "Näytä kaikki versiot."
     history_all_changes_info: "Tässä ovat skriptin kaikki versiot."
     history_only_code_changes_link: "Näytä vain versiot, joissa koodi muuttui."
     diff_button: "Vertaa valittuja versioita"
+    list_all_script_versions: "Näytä kaikki skriptin versiot."
     code_title: "%{script_name} - Lähdekoodi"
     feedback_title: "%{script_name} - Palaute"
     feedback_no_discussions_html: "Ei keskusteluja lähetetty vielä. "
     feedback_start_first_discussion_link: "Ole ensimmäinen, joka keskustelee tästä skriptistä."
     stats_title: "%{script_name} - Tilastot"
     stats_daily_installs_heading: "Päivittäiset asennukset"
+    stats_weekly_installs_heading: "Viikottaiset asennukset"
     stats_daily_update_checks_heading: "Päivittäiset päivitystarkastukset"
     stats_daily_installs_date_column_heading: "Päiväys"
     stats_daily_installs_install_count_column_heading: "Asennuskerrat"
@@ -65,6 +73,9 @@ fi:
     stats_raw_data_header: "Raakadata"
     stats_download_raw_data_html: "Lataa kaikki data: %{links}"
     stats_no_data: "N/A"
+    stats_filter_options:
+      month: Viimeiset 30 päivää
+      year: Viimeiset 365 päivää
     derivatives_title: "%{script_name} - Johdannaiset"
     listing_title_all_sites: "Userscriptit kaikille sivustoille"
     listing_description_all_sites: "Userscriptit jotka lisäävät ominaisuuksia ja poistavat bugeja kaikilla sivustoilla"
@@ -91,6 +102,8 @@ fi:
     listing_created_feed: "Uudet skriptit"
     listing_updated_feed: "Päivitetyt skriptit"
     listing_none: "(Ei mitään)"
+    listing_language_all: "Kaikki"
+    listing_language_js: "JavaScript"
     import: "Tuo skriptejä"
     support_site: "Käy tekijän tukisivustolla"
     support_email: "Lähetä tekijälle sähköpostia saadaksesi tukea."
@@ -120,6 +133,7 @@ fi:
     type_1_html: "Julkinen skripti - skripti kaikkien nähtäväksi ja käytettäväksi."
     type_2_html: "Listaamaton skripti - skripti (melko) yksityiseen käyttöön. Käytettävissä suoraan, muttei linkitetä mistään muualta %{site_name}issa."
     type_3_html: "Kirjasto - skripti, joka on tarkoitettu <code>@require</code>ttavaksi muista skripteistä eikä asennettavaksi suoraan."
+    override_warning_checkbox_label: "Tallenna silti"
     warning_version_not_incremented_html: "Päivitit koodia, muttet kasvattanut <code>@version</code>-numeroa. Skriptisi jo asentaneet eivät ehkä saa päivitettyä versiota."
     warning_namespace_changed_html: "<code>@namespace</code>si on vaihtunut. Pysyvä <code>@namespace</code> -metadirektiivi sallii käyttäjiesi uudelleenasentaa skriptin päivittääkseen sen."
     warning_potentially_minified_html: "Skriptisi näyttää sisältävän minifioitua (pakattua) koodia. Jos käytät minifioitua kirjastoa, ole hyvä ja <code>@require</code>a se  %{allowed_requires_link}. Minifioitua koodia sisältävät skriptit tulevat poistetuiksi."
@@ -131,6 +145,8 @@ fi:
     code_syncing_from_url_html: "Tämän skriptin koodi on asetettu synkronoitumaan kohteesta: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} voi tuoda skriptejä, joita säilytetään jo muualla, kuten versionhallintajärjestelmässä (kuten GitHub), omalla palvelimellasi, tai toisella userscript-sivustolla. Ottaaksesi käyttöön synkronoinnin skriptillesi, syötä URL: %{field}"
     sync_type_intro: "Skripti synkronoidaan:"
+    sync_type_2:
+      name: Automaattinen
     sync_failed_info_html: "Viimeisin synkronointiyritys oli %{date}, jolloin lopputulos oli %{error}."
     sync_success_info_html: "Viimeisin onnistunut synkronointi tapahtui %{date}."
     sync_never_succeeded: "Synkronointi ei ole koskaan onnistunut."
@@ -167,11 +183,28 @@ fi:
     locked_marker: "(Lukittu)"
     unlisted_marker: "(Piilotettu)"
     library_marker: "(Kirjasto)"
+    search_placeholder: "Hae skriptejä"
+    invitations:
+      submit: "Lähetä pyyntö"
+    install_help_dialog:
+      close_dialog: OK
+    antifeatures:
+      types:
+        ads:
+          title: mainoksia
+      cancel_install: Peru
   script_sets:
     favorites_name: "Suosikit"
     delete: "Poista skriptijoukko"
     delete_confirmation: "Haluatko varmasti poistaa tämän skriptijoukon?"
     site_default_sort: "(Sivuston oletus)"
+    edit_sets:
+      included_none: "(ei mitään)"
+    calculated_list_none: "(Ei mitään)"
+    save: "Tallenna"
+    auto_set_types:
+      all_scripts: "Kaikki skriptit"
+      all_sites: "Kaikki sivut"
   home:
     title: "%{site_name} - turvallisia ja hyödyllisiä userscriptejä"
     welcome: "Tervetuloa %{site_name}in, sivustolle userscriptejä varten."
@@ -179,6 +212,10 @@ fi:
     sleazy_welcome: "Tervetuloa %{site_name}in, sivustolle aikusten userscriptejä varten."
     explain_user_scripts_heading: "Mitä ovat userscriptit?"
     explain_user_scripts_html: "Userscriptit antavat sinun hallita selauskokemustasi. Asennuksen jälkeen ne parantavat automaattisesti vierailemiasi sivustoja lisäämällä ominaisuuksia, tekemällä sivuista helppokäyttöisempiä tai poistamalla ärsyttäviä osia. %{site_name}in userscriptit ovat muiden käyttäjien kirjoittamia ja julkaisemia. Ne ovat ilmaisia asentaa ja helppoja käyttää."
+    installing_step1_caption: "Tampermonkey chromeen"
+    desktop_browsers:
+      title: Työpöytä
+    installing_step2_header: "Vaihe 2: asenna käyttäjäskripti"
   users:
     sign_in_title: "Kirjaudu sisään %{site_name}iin"
     sign_in_description: "Sisäänkirjautuminen %{site_name}iin sallii sinun lähettää skriptejäsi ja palautetta muiden skripteille. Sinun ei tarvitse kirjautua sisään selataksesi tai asentaaksesi skriptejä."
@@ -240,6 +277,9 @@ fi:
     listing_new_scripts: "Uudet skriptit"
     listing_updated_scripts: "Päivitetyt skriptit"
     listing_registration_date: "Rekisteröitymispäivä"
+    listing_banned_filter:
+      banned: "Estetty"
+      not_banned: "Ei estetty"
     locale_prompt: "(Valitse lokalisaatio)"
     show_ads_description: "Tue %{site_name}ia antamalla sen näyttää mainoksia"
     show_sensitive_description: "Näytä aikuisille suunnattua sisältöä sisältävät skriptit"
@@ -247,6 +287,14 @@ fi:
     greasy_fork_scripts_link:
       one: "Käyttäjällä %{user_name} on myös %{count} skripti Greasy Forkissa."
       other: "Käyttäjällä %{user_name} on myös %{count} skriptiä Greasy Forkissa."
+    banned_delete:
+      complete: "Sinun käyttäjä on poistettu."
+    badges:
+      banned:
+        short: Estetty
+        long: Estetty
+      moderator:
+        long: Moderaattori
   help:
     meta_keys:
       title: "%{site_name}in lukemat metatiedot skripteissä"
@@ -272,6 +320,7 @@ fi:
       post_new_script_link_text: 'lähettämään uusi skripti'
     code_rules:
       title: "%{site_name}in skriptejä koskevat säännöt"
+      code_header: Koodi
     external_scripts:
       title: "%{site_name}in käytäntö ulkoisista skripteistä"
     script_rewriting:
@@ -327,6 +376,13 @@ fi:
           ne asennetaan.</p> <h2>Kolmannen osapuolen kirjastot</h2> <p>%{site_name}
           voi sisällyttää kolmannen osapuolen koodia kerätäkseen tilastoja tai näyttääkseen
           mainoksia sivustolla. Nämä kirjastot saattavat sisältää seurantalogiikkaa.</p>
+  discussions:
+    edit_comment_header: "Muokkaa komenttia"
+    cancel_update_comment: "Peru"
+    ratings:
+      ok: "OK - Skripti toimii, mutta siinä on ongelmia"
+    locale_filter:
+      all: Kaikki
   common:
     allowed_elements_link: "(Katso sallittu koodi.)"
     allowed_elements_and_attributes_title: "Sallitut elementit HTML-sisällölle"
