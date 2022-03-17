@@ -40,7 +40,7 @@ class GithubWebhookTest < ActionDispatch::IntegrationTest
 
   def test_webhook_push
     script = Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js')
-    Git.expects(:get_contents).with('git://github.com/JasonBarnabe/webhooktest.git', { 'test.user.js' => '7e1817e12430e179c0103c658018168f081336af' }).yields('test.user.js', 'abc123', script.newest_saved_script_version.rewritten_code)
+    Git.expects(:get_contents).with('https://github.com/JasonBarnabe/webhooktest.git', { 'test.user.js' => '7e1817e12430e179c0103c658018168f081336af' }).yields('test.user.js', 'abc123', script.newest_saved_script_version.rewritten_code)
     user = User.find(1)
     push_webhook_request(user)
     assert_equal '200', response.code
@@ -49,7 +49,7 @@ class GithubWebhookTest < ActionDispatch::IntegrationTest
 
   def test_webhook_release
     script = Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js')
-    Git.expects(:get_contents).with('git://github.com/JasonBarnabe/webhooktest.git', { 'test.user.js' => 'v0.0.1' }).yields('test.user.js', 'abc123', script.newest_saved_script_version.rewritten_code)
+    Git.expects(:get_contents).with('https://github.com/JasonBarnabe/webhooktest.git', { 'test.user.js' => 'v0.0.1' }).yields('test.user.js', 'abc123', script.newest_saved_script_version.rewritten_code)
     user = User.find(1)
     release_webhook_request(user)
     assert_equal '200', response.code
@@ -59,7 +59,7 @@ class GithubWebhookTest < ActionDispatch::IntegrationTest
   def test_webhook_release_with_raw_subdomain
     script = Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js')
     script.update!(sync_identifier: 'https://raw.githubusercontent.com/JasonBarnabe/webhooktest/master/test.user.js')
-    Git.expects(:get_contents).with('git://github.com/JasonBarnabe/webhooktest.git', { 'test.user.js' => 'v0.0.1' }).yields('test.user.js', 'abc123', script.newest_saved_script_version.rewritten_code)
+    Git.expects(:get_contents).with('https://github.com/JasonBarnabe/webhooktest.git', { 'test.user.js' => 'v0.0.1' }).yields('test.user.js', 'abc123', script.newest_saved_script_version.rewritten_code)
     user = User.find(1)
     release_webhook_request(user)
     assert_equal '200', response.code

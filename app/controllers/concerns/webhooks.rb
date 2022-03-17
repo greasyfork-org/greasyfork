@@ -52,7 +52,7 @@ module Webhooks
 
     inject_script_info(user, changed_files)
 
-    return changed_files, params[:repository][:git_url]
+    return changed_files, params[:repository][:clone_url]
   rescue StandardError
     Rails.logger.error("Error processing webhook body: #{body}")
     raise
@@ -127,7 +127,7 @@ module Webhooks
   #   - script_attributes
   #   - commit
   #   - messages
-  def process_webhook_changes(changed_files, git_url)
+  def process_webhook_changes(changed_files, repo_url)
     # Forget about any files that changed but are not related to scripts or attributes.
     changed_files = changed_files.select { |_filename, info| info[:scripts].any? || info[:script_attributes].any? }
 
@@ -137,7 +137,7 @@ module Webhooks
     end
 
     # Get the contents of the files.
-    Git.get_contents(git_url, changed_files.transform_values { |info| info[:commit] || info[:ref] }) do |file_path, _commit, content|
+    Git.get_contents(repo_url, changed_files.transform_values { |info| info[:commit] || info[:ref] }) do |file_path, _commit, content|
       changed_files[file_path][:content] = content
     end
 
