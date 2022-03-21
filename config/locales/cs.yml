@@ -288,7 +288,9 @@ cs:
     libraries_title: "Knihovny"
     by_site_list_filter: "Řadit podle názvu stránky"
     search_placeholder: "Hledat skripty"
+    updated: "Aktualizovaný skript."
     preview_additional_info: "Náhled"
+    must_confirm: "Před tím, než nahrajete skript je třeba ověřit váš účet. Máte dvě možnosti ověření účtu - přihlásit se přes externí službu nebo přes ověřovací e-mail."
     must_confirm_email_button: "Odeslat ověřovací email na %{email}"
     authors_heading: "Autoři"
     invitations:
@@ -297,8 +299,10 @@ cs:
       invited_user_placeholder: "URL uživatelského profilu na %{site_name}"
       submit: "Poslat pozvánku"
       invalid_user_url: "Pozvávací URL není platná."
+      already_author: "Vámi uvedený uživatel už byl uveden jako autor tohoto skriptu."
       sent: "Pozvánka byla odeslána."
       subject: "Pozvánka pro %{script_name}"
+      current_user_already_author: "U tohoto skriptu už jste autorem"
       invitation_not_found: "Pozvánka nebyla nalezena."
       invitation_expired: "Pozvánka vypršela."
       invitation_accepted: "Nyní jsi autor tohoto skriptu."
@@ -307,6 +311,33 @@ cs:
       success: "%{user_name} byl odstraněn jako autor."
       remove_button: "Odebrat"
       remove_confirm: "Opravdu chcete smazat %{user_name} jako autora?"
+      failure: "Tohoto autora nelze odebrat."
+    delayed: "Kvůli potížím se spamem, nemusí jít nahrávání skriptů z nových účtů. Prosím, zkuste to později."
+    install_help_dialog:
+      css:
+        firefox: K nainstalování skriptu %{stylus_link:Stylus} potřebujete nejprve nainstalovat doplňek prohlížeče.
+    antifeatures:
+      types:
+        ads:
+          title: Reklamy
+          description_html: Tento skript přidává reklamy na vámi navštěvované stránky.
+        tracking:
+          title: Zjištění polohy
+          description_html: Tento skript obsahuje části, které sledují vaše vyhledávání.
+        referral-link:
+          title: Odkazy
+          description_html: ' '
+        membership:
+          title: Členství
+        payment:
+          title: Platba
+      install_anyway: Nainstalovat skript
+    badges:
+      js:
+        short: JS
+        long: Uživatelský skript
+      css:
+        short: CSS
   script_sets:
     favorites_name: "Oblíbené"
     delete: "Smazat sadu skriptů"
@@ -314,6 +345,7 @@ cs:
     site_default_sort: "(Výchozí)"
     edit_scripts:
       heading: "Skripty"
+      included: "Zahrnuto"
       included_none: "(Žádný)"
       remove_included: "Smazat vybrané"
       excluded: "Vynechané"
@@ -334,9 +366,11 @@ cs:
       remove_included: "Smazat vybrané"
       excluded_none: "(Žádný)"
       all_scripts_label: "Všechny skripty"
+      all_scripts_include: "Zahrnout"
       for_sites_label: "Skripty pro stránku (např. priklad.com, nechejte prázdné pro „všechny stránky“)"
       for_user_include: "Zahrnout"
       for_user_exclude: "Vynechat"
+      for_language_label: "Skripty v jazyce"
       for_language_include: "Zahrnout"
       for_language_exclude: "Vynechat"
     save: "Uložit"
@@ -344,16 +378,22 @@ cs:
       all_scripts: "Všechny skripty"
       site: "Skripty pro %{site}"
       all_sites: "Všechny stránky"
+      user: "Skripty od uživatele %{user}"
   home:
     title: "%{site_name} - bezpečné a užitečné uživatelské skripty"
     welcome: "Vítejte na %{site_name}, úložišti pro uživatelské skripty."
     sleazy_title: "%{site_name} - bezpečné a užitečné uživatelské skripty pro dospělé"
     sleazy_welcome: "Vítejte na %{site_name}, úložišti pro uživatelské skripty pro dospělé."
+    search_placeholder: "Vyhledat uživatelský skript"
     scripts_for_label: "Skripty pro:"
     explain_user_scripts_heading: "Co jsou uživatelské skripty?"
     explain_user_scripts_html: "Uživatelské skripty vám umožňují mít kontrolou nad prohlížením webu. Jakmile se nainstalují, automaticky vylepšují navštívené stránky přidáváním funkcí, zjednodušním ovládání nebo vynecháním obtěžujících částí. Uživatelské skripty na %{site_name} byly napsány jinými uživateli a poskytnuty ke sdílení celému světu. Jsou zdarma k instalaci a snadno se používají."
     installing_step1_header: "Krok 1: nainstalujte manažer skriptů"
     installing_step1_caption: "Tampermonkey pro Chrome"
+    desktop_browsers:
+      title: Desktop
+    android_browsers:
+      title: Mobilní (Android)
     installing_step2_header: "Krok 2: nainstalujte uživatelký skript"
     installing_step3_header: "Krok 3: použijte uživatelský skript"
   users:
@@ -553,3 +593,16 @@ cs:
       must_be_greasy_fork_script: "musí být umístěn na %{site_name}"
       script_update_not_utf8: "nahraný text musí mít kódování UTF-8"
       script_disallowed_require: "využívá neschválený externí skript: %{code}"
+  mailers:
+    script_report:
+      report_fixed_reporter:
+        subject: "Vaše stížnost na %{script_name} z %{site_name} byla označena jako vyřešená."
+    consecutive_bad_ratings:
+      notify:
+        subject: "Váš skript %{script_name} na %{site_name} byl ohodnocen mnoha \"špatnými\" recenzemi."
+    script_comment:
+      subject: "Váš skript %{script_name} na %{site_name} byl okomentován."
+    comment_mentioned:
+      subject: "Uživatel '%{commenter_name}' vás zmínil na %{site_name}."
+    new_message:
+      subject: "%{user} vám odeslal zprávu na %{site_name}"
