@@ -309,7 +309,7 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       // @license unlicense
       // @grant GM_addStyle
       // @run-at document-start
-      // @include /^https?://www\\.google\\.com$/
+      // @include /^(?:https?://www\\.google\\.com)$/
       // ==/UserScript==
 
       (function() {
@@ -359,20 +359,20 @@ class CssToJsConverterTest < ActiveSupport::TestCase
       // @license unlicense
       // @grant GM_addStyle
       // @run-at document-start
-      // @include /^http://example\\.com/$/
-      // @include /^http://example\\.net/$/
+      // @include /^(?:http://example\\.com/)$/
+      // @include /^(?:http://example\\.net/)$/
       // ==/UserScript==
 
       (function() {
       let css = "";
-      if (new RegExp("^http://example\\\\.com/$").test(location.href)) {
+      if (new RegExp("^(?:http://example\\\\.com/)\\$").test(location.href)) {
         css += `
           a {
             color: red;
           }
         `;
       }
-      if (new RegExp("^http://example\\\\.net/$").test(location.href)) {
+      if (new RegExp("^(?:http://example\\\\.net/)\\$").test(location.href)) {
         css += `
           a {
             color: blue;

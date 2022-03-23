@@ -49,7 +49,7 @@ class CssToJsConverter
             when 'domain'
               "(location.hostname === \"#{j match.value}\" || location.hostname.endsWith(\".#{j match.value}\"))"
             when 'regexp'
-              "new RegExp(\"^#{j unescape_css(match.value)}$\").test(location.href)"
+              "new RegExp(\"#{j css_regexp_to_js(unescape_css(match.value))}\").test(location.href)"
             end
           end
           ["if (#{conditions.join(' || ')}) {", js_for_block.indent(2), '}']
@@ -84,7 +84,7 @@ class CssToJsConverter
 
       %w[regexp domain url url-prefix].each { |rule_type| matches[rule_type] = [] unless matches.key?(rule_type) }
 
-      js_includes = matches['regexp'].map { |re| "/^#{unescape_css(re)}$/" }
+      js_includes = matches['regexp'].map { |re| "/#{css_regexp_to_js(unescape_css(re))}/" }
       js_includes += matches['domain'].map { |domain| [domain, "*.#{domain}"].map { |d| ["http://#{d}/*", "https://#{d}/*"] } }.flatten
 
       # Don't include url or url-prefix if already covered by a domain rule.
@@ -117,7 +117,7 @@ class CssToJsConverter
     end
 
     def css_regexp_to_js(css_regexp)
-      "^#{css_regexp}$"
+      "^(?:#{css_regexp})$"
     end
 
     def convertible?(css)
