@@ -9,7 +9,7 @@ tr:
       advanced_search: "Gelişmiş arama"
       user_list: "Kullanıcı listesi"
       libraries: "Kütüphaneler"
-      moderator_log: "Denetleyici günlüğü"
+      moderator_log: "Moderatör günlüğü"
   scripts:
     created_date: "Oluşturulma"
     updated_date: "Güncellenme"
@@ -35,19 +35,20 @@ tr:
     update: "%{version} sürümüne yükselt"
     downgrade: "%{version} sürümüne düşür"
     reinstall: "%{version} sürümünü tekrar yükle"
-    old_version_warning: "Bu, betiğin en son sürümü değil. Yüklerseniz, yeni sürüme güncelleyemezsiniz. Yine de yüklensin mi?"
+    old_version_warning: "Bu, betiğin en son sürümü değil. Eğer bu sürümü yüklerseniz en yeni sürüme asla güncelleyemeyeceksiniz. Yine de yüklensin mi?"
     promoted: "Desteklenen betik"
-    author_promoted: "Yazar'ın tavsiye ettiği betik"
-    promoted_text_html: "Şunu da %{script_link} sevebilirsiniz."
+    author_promoted: "Yazarın tavsiye ettiği betik"
+    promoted_text_html: "Bunu da sevebilirsiniz: %{script_link}."
     library_instructions_html: "Bu script direkt olarak kurulamaz. Başka scriptler için bir kütüphanedir ve meta yönergeleri içerir %{code}"
     deleted_notice: "Bu script silinmiş."
     deleted_notice_with_related: "Baktığınız betik silinmiş, ama burada benzer betikleri bulabilirsiniz"
     deleted_undelete_notice_html: "Bu betik bir moderatör tarafından kilitlenmiş ve geri alınamaz.\nGerekçe: \"<i>%{delete_reason}</i>\"."
-    deleted_author_notice: "Bu komut dosyası silinmiş ve diğerleri tarafından erişilemez. Silme sekmesinden geri alabilirsin."
+    deleted_locked_author_notice_html: "Bu betik bir moderatör tarafından silinmiş ve başkaları tarafından erişilemez. Sebebi ise: \"<i>%{delete_reason}</i>\". Lütfen %{code_rules_link: %{site_name} kurallarını} gözden geçirin. Eğer silinmenin bir hata olduğunu düşünüyorsanız, sorun hakkında %{appeal_link:başvuru yapabilirsiniz}. Lütfen betiği tekrar yüklemeyin; bu tip bir davranış %{site_name}'dan menedilmenize yol açabilir."
+    deleted_author_notice: "Bu betik silinmiş ve başkaları tarafından erişilemez. \"Sil\" menüsünden silme işlemini geri alabilirsiniz."
     version_notice_html: "%{date} itibariyledir. %{latest_version_link} görün."
     version_notice_latest_version_link: "En son verisyonu"
     reported_notice: "\"%{script_name}\" rapor edildi ve bir moderatör tarafından incelenmeyi bekliyor."
-    reported_notice_for_author: "Bu betiğin, bir moderatör tarafından incelenene kadar diğer kullanıcılara erişimi olmayacaktır."
+    reported_notice_for_author: "Bu betik, bir moderatör tarafından incelenene kadar diğer kullanıcılara erişimi olmayacaktır."
     info_page: "Bilgi"
     code_page: "Kod"
     history_page: "Geçmiş"
@@ -59,15 +60,17 @@ tr:
     delete_explanation: "Scriptinizi silmek bu scripti siz ve Greasy Fork yöneticileri dışındaki herkes için erişilmez yapar. Dilerseniz istediğiniz zaman silme işlemini geri alabilirsiniz."
     delete_update_behaviour: "Scriptinizi daha önce yüklemiş kullanıcılara ne olmasını istersiniz?"
     delete_update_behaviours:
-      keep: "Olduğu gibi tutacaklar."
-      blanked: "Boş bir script'e güncellenecekler. Bu, komut dosyasının çalıştığı siteler üzerinde olumsuz bir etkisi olduğunda uygundur."
-      redirect: "Aşağıda belirttiğiniz komut dosyasına yönlendirilecekler ve güncellenecekler."
+      keep: "Oldukları gibi kalsınlar"
+      blanked: "Betikleri, boş bir betiğe dönüştürülsün. Bu, betiğin çalıştığı sitelerde olumsuz etkileri olduğunda önerilir."
+      redirect: "Aşağıda belirttiğim betiğe yönlendirilsinler ve eski betikleri, bu betiğe güncellensin."
     delete_permanently_heading: "Kalıcı olarak silme"
     delete_permanently_explanation_html: >-
-        Kalıcı olarak silme işlemi, betiğinizi ve ona ait tüm kayıtları forum tartışmaları
-        ve yönetici müdahaleleri hariç siler. Bu işlem sistem yöneticileri tarafından
-        bile geri alınamaz.
-    delete_permanently_confirm: "Betiği kalıcı olarak silmek istediğinizden emin misiniz? Bu işlem geri alınamaz!"
+        <p>Kalıcı olarak silme, forum tartışmaları ve moderatör günlükleri hariç betiğinizi
+        ve bağlantılı tüm kayıtları siler.</p><p>Betiğiniz silme isteğinizden 7 gün
+        sonra kalıcı olarak silinecektir. Bu süre içinde silme işlemini iptal edebilirsiniz.
+        Ancak eğer bu süre içinde iptal etmezseniz moderatörler dahil kimse betiğinizi
+        geri getiremez.</p>
+    delete_permanently_confirm: "Betiğinizi kalıcı olarak silmek istediğinize emin misiniz?"
     delete_permanently_submit: "Kalıcı olarak silme isteğinde bulun"
     delete_permanently_immediate_submit: "Kalıcı olarak sil"
     delete_permanently_notice: "Kalıcı olarak silme isteğiniz kaydedilmiştir. 7 gün içerisinde betiğiniz kalıcı olarak silinecektir."
@@ -81,17 +84,18 @@ tr:
       title: "%{script_name} - Yönetici"
       promoted_heading: "Desteklenen betik"
       promoted_explanation: "Bu betiği yükledikten sonra, %{site_name} tercihinize uyan başka bir betik tavsiye edebilir."
-      promoted_script_label: "Promosyon için script URL'si"
-      promoted_submit: "Scripti ayarla"
-      sync_heading: "Kaynak Senkronizasyon"
+      promoted_script_label: "Promosyon için betik URL'si"
+      promoted_submit: "Desteklenen betiği ayarla"
+      sync_heading: "Kaynak Eşitleme"
       locale_heading: "Varsayılan Yerel Ayar"
-      locale_example_html: "Yerel ayar konumu: %{text}"
-      locale_multiple_note: "Dikkat, %{meta_keys_link:Çoklu yerel ayar bir script için tanımlı olabilir}."
+      locale_example_html: "Bu metnin yerel ayar konumu: %{text}"
+      locale_multiple_note: "Dikkat, %{meta_keys_link:bir betiğe birden fazla yerel ayar tanımlı olabilir}."
       update_locale: "Yerel Ayarı Kaydet"
-      no_moderator_logs: "Bu script üzerinde moderatör etkinliği yok."
+      no_moderator_logs: "Bu betiğe moderatörler tarafından hiçbir eylemde bulunulmamış"
       compare_title: "Başka bir betikle karşılaştır"
+      compare_to: "Karşılaştırmak için %{site_name} sitesindeki betik (URL):"
       compare_button: "Karşılaştır"
-      compare_must_be_local_url: "Karşılaştırma script'i sadece %{site_name}üzerinde bir URL olmalıdır."
+      compare_must_be_local_url: "Karşılaştırma betiği sadece %{site_name}üzerinde bir URL olmalıdır."
     history_title: "%{script_name} - Versiyon geçmişi"
     history_only_code_changes_info: "Bunlar bu scriptin güncellenmiş kod versiyonlarıdır."
     history_all_changes_link: "Bütün versiyonları göster."
@@ -102,10 +106,10 @@ tr:
     code_title: "%{script_name} - Kaynak kodu"
     feedback_title: "%{script_name} - Geribildirim"
     feedback_no_discussions_html: "Henüz tartışmalar yapılmamış.  %{start_first_discussion_link}"
-    feedback_no_discussions_on_page_form: "Henüz hiçbir gönderi gönderilmedi."
-    feedback_report_instead: "Eğer bu script'in %{rules_link:%{site_name}'nin kurallarını} çiğnediğini düşünüyorsanız, lütfen %{report_link: bildirin}."
+    feedback_no_discussions_on_page_form: "Henüz bir tartışma gönderisi yok."
+    feedback_report_instead: "Eğer bu betiğin %{rules_link:%{site_name}'nin kurallarını} çiğnediğini düşünüyorsanız, lütfen %{report_link:silinmesi için bildirin}."
     feedback_start_first_discussion_link: "Bu script hakkındaki tartışmayı ilk siz başlatın."
-    feedback_discussion_or_report: "% {new_discussion_link: Bu script ile ilgili yeni bir tartışma başlatınız} veya% {report_link: kaldırılmak üzere raporlayın}."
+    feedback_discussion_or_report: "%{new_discussion_link:Bu betik ile ilgili yeni bir tartışma başlatın} veya %{report_link:kaldırılmak üzere rapor edin}."
     stats_title: "%{script_name} - İstatistik"
     stats_daily_installs_heading: "Günlük kurulumlar"
     stats_weekly_installs_heading: "Haftalık kurulumlar"
@@ -122,21 +126,22 @@ tr:
       year: Son 365 gün
       all: Tüm zamanlar
     derivatives_title: "%{script_name} - Türevleri"
-    derivatives_intro: "Bu sbetikler sizinkine dayalı olabilir (veya sizinki bunlara dayalı olabilir). Kodunuzun izinsiz kullanıldığını fark ederseniz, o komut dosyasının geri besleme sekmesinden bunu bildirin."
+    derivatives_intro: "Bu betikler sizinkine dayalı olabilir (veya sizin betiğiniz onların betiğine dayalı olabilir). Eğer kodunuzun izinsiz kullanıldığını düşünüyorsanız, betiğin Geribildirim menüsünden rapor edebilirsiniz."
     derivatives_script_html: "%{user}tarafından %{script}, lisans: %{license}%{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "Tam kopyalar"
     derivatives_exact_copies_list_intro: "Aşağıdaki betikler, sizinkiyle tam olarak aynı koda sahiptir:"
     derivatives_exact_copies_item_html: "%{author_links}tarafından %{script_link}-versions: %{version_list} "
-    derivatives_exact_copes_none: "Üzerinde bu betik %{site_name} tam olarak aynı koda sahip başka betik yok."
-    derivatives_similar_heading: "Benzer komut dosyaları"
-    derivatives_similar_info: "Sizinkine en çok benzeyenleri bulmak için diğer tüm komut dosyalarının en son sürümünü periyodik olarak kontrol ederiz. Ayrıca komut dosyanıza bir güncelleme gönderdiğinizde ve isteğiniz üzerine kontrol ederiz."
+    derivatives_exact_copes_none: "%{site_name} sitesinde bu betik ile tam olarak aynı koda sahip başka bir betik bulunmuyor."
+    derivatives_similar_heading: "Benzer betikler"
+    derivatives_similar_info: "Sizinkine en çok benzeyen betikleri bulmak için düzenli olarak diğer betiklerin en son sürümlerini gözden geçiriyoruz. Bu gözden geçirmeyi aynı zamanda güncelleme gönderdiğinizde ve gözetleme isteğinde bulunduğunuzda da yapıyoruz."
     similarity_score:
       high: Çok benzer
       medium: Orta derecede benzer
-      low: Biraz benzerler
-      none: benzer değil
-    derivatives_similar_none: "Sizinkine benzer hiçbir komut dosyası yok."
-    derivatives_similar_last_check_html: "En son tarihinde %{date}sizinkine benzer komut dosyalarını kontrol ettik."
+      low: Biraz benzer
+      none: Benzer değil
+    derivatives_similar_none: "Sizinkine benzer hiçbir betik yok."
+    derivatives_similar_item: "%{score}: %{diff_link:[Değişiklik]} %{script}"
+    derivatives_similar_last_check_html: "En son %{date} tarihinde sizinkine benzer betikleri kontrol ettik."
     derivatives_similar_last_check_soon: "Kısa süre içinde sizinkine benzer komut dosyalarını kontrol edeceğiz."
     derivatives_similar_last_check_again_soon_html: "En son tarihinde %{date}sizinkine benzer komut dosyalarını kontrol ettik. Kısa süre sonra tekrar kontrol edeceğiz."
     derivatives_similar_check_now: "Şimdi tekrar kontrol edin"
