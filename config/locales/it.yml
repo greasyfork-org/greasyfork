@@ -735,6 +735,7 @@ it:
       keywords_html: Gli scripts non devono contenere <code>@include</code>, <code>@match</code> o parole chiave per siti per i quali non forniscano funzionalità.
       adult_content_rule: Gli scripts che includono contenuti per adulti o che sono per siti con contenuti per adulti devono essere segnati come tali per garantire agli altri utenti l'opzione di vederli o meno.
       reposting_deleted: Non ripubblicare gli scripts che sono stati eliminati a causa di violazioni delle regole; usa la funzione ricorso invece. Ripubblicare gli scripts eliminati potrebbe risultare in un ban.
+      advertising_in_description: Gli autori degli script non possono pubblicare pubblicità sulle pagine di Greasy Fork, ad esempio nella descrizione dello script. La promozione della pagina dell'autore dello script, della repository per il codice, di Discord, di WeChat, ecc. è consentita.
       reporting: Se noti uno script che ricade al di fuori di questi parametri, per favore segnalalo andando sul collegamento Feedback per quello script e scegliendo l'opzione "Segnala lo script".
     external_scripts:
       title: "Politiche di %{site_name} per gli script esterni"
@@ -889,15 +890,15 @@ it:
       title: Antifunzionalità
       intro_html: |
           <p>Le antifunzionalità sono cose aggiunte allo script a beneficio degli autori piuttosto che degli utenti, come pubblicità o tracciamento. Gli scripts con antifunzionalità sono permessi in accordo con le %{rules_link:regole di %{site_name}}, ma devono essere marcati con <code>@antifeature</code> nel blocco dei metadati dello script. Fare ciò assicurerà che l'utente sia consapevole delle antifunzionalità prima dell'installazione.</p>
-          <p>Le antifunzionalità sono specificate come %{meta_keys_link:metadati dello script}  con il formato <code>@antifeature <i>tipo</i> <i>descrizione</i></code>.<i>tipo</i> è richiesto e <i>descrizione</i> è opzionale</p>
-          <p>Questa pagina descrive i tipi di <code>@antifeature</code> riconosciuti da %{site_name}. Altri tipi possono essere usati, ma la presenza dell'antifunzionalità non deve essere contraria alle %{rules_link:regole di%{site_name}}.</p>
+          <p>Le antifunzionalità sono specificate come %{meta_keys_link:metadati dello script}  con il formato <code>@antifeature <i>tipo</i> <i>descrizione</i></code>. <i>tipo</i> è richiesto e <i>descrizione</i> è opzionale.</p>
+          <p>Questa pagina descrive i tipi di <code>@antifeature</code> riconosciuti da %{site_name}. Altri tipi possono essere usati, ma la presenza dell'antifunzionalità non deve essere contraria alle %{rules_link:regole di %{site_name}}.</p>
       ads_html: |
           <p>Lo script inserisce pubblicità nelle pagine che l'utente visita.</p>
           <p>Quanto segue <i>non</i> richiede l'uso di <code>@antifeature ads</code>:</p>
           <ul>
           <li>Uno script che ha effetto su un sito che contiene pubblicità.</li>
           <li>Uno script che collega o in altro modo indirizza l'utente a un sito che contiene pubblicità, fintanto che quel sito fornisce qualche funzionalità quando integrato con lo script.</li>
-          <li>Promozine della homepage dell'autore dello script, repository di codice, Discord, WeChat, ecc.</li>
+          <li>Promozione della homepage dell'autore dello script, repository di codice, Discord, WeChat, ecc.</li>
           </ul>
       membership_html: |
           <p>Lo script richiede che l'utente si abboni a un canale, si unisca a un gruppo, metta "Mi piace" a una pagina, ecc. affinché lo script sia completamente funzionale.</p>
@@ -907,7 +908,7 @@ it:
           <ul>
           <li>Uno script che abbia effetto nell'area riservata di un sito,  senza che però lo script stesso richieda un accesso aggiuntivo.</li>
           <li>Uno script dove il supporto è fornito tramite una piattaforma che richiede l'iscrizione, fintanto che questo supporto non è necessario per l'utente per avere la piena funzionalità.</li>
-          <li>Collegamenti al canale, gurppo, pagina, ecc. dell'autore che non abbiano effetto sulla funzionalità dello script.</li>
+          <li>Collegamenti al canale, gruppo, pagina, ecc. dell'autore che non abbiano effetto sulla funzionalità dello script.</li>
           </ul>
       miner_html: |
           <p>Lo script contiene un cryptominer o altro codice che usa le risorse dell'utente per eseguire dei compiti per l'autore dello script.</p>

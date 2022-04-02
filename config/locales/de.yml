@@ -316,6 +316,7 @@ de:
       failure: "Konnte Autor nicht entfernen."
     no_disposable_email: "Sie können keine Skripte veröffentlichen, wenn sie eine Wegwerfemailadresse verwenden."
     rate_limited: "Du hast kürzlich zu viele Skripts veröffentlicht, versuche es Später erneut."
+    delayed: "Aufgrund von Spam kann es sein, dass neue Konten nicht unmittelbar Skripte veröffentlichen. Bitte versuchen Sie es später erneut."
     new_script_notice:
       title: "Was ist deine Absicht?"
       install_link_html: "Ich möchte ein Skript <b>installieren und benutzen</b>."
@@ -436,6 +437,12 @@ de:
     explain_user_scripts_html: "Benutzerskripte erlauben die vollständige Kontrolle des Interneterlebnisses. Einmal installiert werten sie automatisch die besuchten Seiten auf, indem sie diesen Funktionen hinzufügen, deren Verwendung vereinfachen oder störende Kleinigkeiten entfernen. Die Benutzerskripte auf %{site_name} wurden von anderen Benutzern geschrieben und veröffentlicht um sie mit der ganzen Welt zu teilen. Sie sind frei verwendbar und einfach zu benutzen."
     installing_step1_header: "Schritt 1: Eine Benutzerskriptverwaltung installieren"
     installing_step1_caption: "Tampermonkey in Chrome"
+    desktop_browsers:
+      title: Desktop
+    android_browsers:
+      title: Mobile (Android)
+    ios_browsers:
+      title: Mobile (iOS)
     installing_step2_header: "Schritt 2: Ein Benutzerskript installieren"
     installing_step2_caption: "Der Installationsknopf eines Benutzerskripts"
     installing_step2_description_html: >
@@ -661,14 +668,20 @@ de:
       updates: Skripte dürfen nicht häufiger als einmal pro Tag nach Updates suchen. Beachten Sie, dass die meisten Benutzerskript-Manager automatische Aktualisierungen durchführen, so dass es nicht notwendig ist, dies im Skript zu tun. Skripte sollten auch nicht dynamisch ein anderes von %{site_name} gehostetes Skript in eine Seite einfügen, da dies die Zwischenspeicherung in Benutzerskript-Managern umgeht.
       external_js: "%{external_scripts_link:Die Benutzung von externem JavaScript ist eingeschränkt.}"
       copyright_header: Urheberrecht
+      licensing_html: Das Skript muss die Urheberrechte Anderer respektieren. Dies gilt sowohl für den Code selbst als auch für die Ressourcen (z.B. Bilder), die das Skript verwendet. Wenn Sie beabsichtigen, fremde Inhalte zu verwenden, halten Sie sich an die Lizenzbestimmungen des Urhebers oder holen Sie die Zustimmung des Urhebers ein.
       reposts: Selbst in Fällen, die nicht gegen die Copyright-Regel verstoßen, ist das Wiederveröffentlichen von Skripten, die bereits auf %{site_name} vorhanden sind, nicht erlaubt, es sei denn, sie verbessern das Original.
       miscellaneous_header: Verschiedenes
       keywords_html: Skripte dürfen keine <code>@include</code>s, <code>@match</code>es oder Schlüsselwörter für Sites enthalten, auf denen sie keine Funktionalität bieten.
       adult_content_rule: Skripte, die nicht jugendfreie Inhalte enthalten oder für Websites mit nicht jugendfreien Inhalten bestimmt sind, müssen als solche gekennzeichnet werden, damit andere Benutzer die Möglichkeit haben, sie auszublenden.
+      reposting_deleted: Posten Sie nicht Skripts die in der Vergangenheit aufgrund von Regelverletzungen gelöscht wurden. Dies kann zu einem Bann führen.
+      advertising_in_description: Es ist verboten, Werbung in Seiten auf Greasy Fork zu platzieren (z.B. in der Skript-Beschreibung). Erlaubt ist die Bewerbung der Website des Autors, dessen Code Repository oder seiner Präsenz auf Discord, WeChat oder ähnlichen Plattformen.
       reporting: Wenn Ihnen auffällt, dass ein Skript aus den Parametern herausfällt, melden Sie es bitte über den Feedback-Link für das Skript und dort über die "Skript melden"-Option.
     external_scripts:
       title: "%{site_name}s Richtlinie für externe Skripte"
+      other_allowed_codes:
+        heading: Spezialfälle
       test_url:
+        label: Testen Sie eine URL
         result_ok: URL ist erlaubt
         result_not_ok: URL ist nicht erlaubt
     script_rewriting:
@@ -837,6 +850,8 @@ de:
       malware: "Schadsoftware"
       minified: "Minimierter Code"
       external_code: "Nicht erlaubter externer Code"
+      no_description: "Fehlende, nicht informative oder irreführende Beschreibung"
+      wrong_category: "Falsche Kategorie"
       other: "Sonstiges"
     report_intro_unauthorized_html: "%{reported_script} wurde am %{report_date} von %{reporter} als eine nicht genehmigte Kopie von %{other_script} gemeldet."
     non_functional_feedback: "Bitte melden Sie nicht funktionierende Skripte stattdessen als %{feedback_link:Rückmeldung} an das Skript."
@@ -856,6 +871,14 @@ de:
     view_discussion: "Zeige Diskussion"
     load_diff: "Lade Unterschiede"
     loading_diff: "Lädt..."
+  appeals:
+    new:
+      title: Neue Berufung gegen die Löschung des Skripts
+      submit: Berufung abschicken
+    author_reason: "Berufung durch den Autor übermittelt"
+    pending_review: Die Berufung wird von einem Moderator überprüft.
+    dismissed_by_moderator: Ein Moderator hat die Berufung abgelehnt.
+    upheld_by_moderator: 'Aufgrund der Berufung hat '
   discussions:
     title: 'Diskussionen '
     comment_date: "Veröffentlicht: %{date}"
