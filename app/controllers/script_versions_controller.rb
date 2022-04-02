@@ -116,8 +116,12 @@ class ScriptVersionsController < ApplicationController
     @bots = 'noindex'
     preview = params[:preview].present?
 
+    # We will not purge these as they can be used by prior versions.
+    svp = script_version_params
+    svp['attachments'] = svp['attachments'].reject { |signed_id| params["remove-attachment-#{signed_id}"] == '1' }
+
     @script_version = ScriptVersion.new
-    @script_version.assign_attributes(script_version_params)
+    @script_version.assign_attributes(svp)
 
     if params[:script_id].nil?
       @script = Script.new(language: params[:language] || 'js')
@@ -205,12 +209,6 @@ class ScriptVersionsController < ApplicationController
     @preview = view_context.format_user_text(@script_version.additional_info, @script_version.additional_info_markup) if preview
 
     @script_version.localized_attributes.build({ attribute_key: 'additional_info', attribute_default: false }) unless params['add-additional-info'].nil?
-
-    if @script.newest_saved_script_version
-      @script.newest_saved_script_version.attachments.reject { |attachment| params["remove-attachment-#{attachment.id}"] == '1' }.each do |attachment|
-        @script_version.attachments << attachment.dup
-      end
-    end
 
     recaptcha_ok = !@script.new_record? || (UserRestrictionService.new(current_user).must_recaptcha? ? verify_recaptcha : true)
 
