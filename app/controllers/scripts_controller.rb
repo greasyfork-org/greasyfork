@@ -938,6 +938,7 @@ class ScriptsController < ApplicationController
 
   def provision_session_install_key(script)
     session[PingRequestChecking::SessionInstallKey::SESSION_KEY] ||= []
+    session[PingRequestChecking::SessionInstallKey::SESSION_KEY] = session[PingRequestChecking::SessionInstallKey::SESSION_KEY].last(10)
     session[PingRequestChecking::SessionInstallKey::SESSION_KEY] << script.id unless session[PingRequestChecking::SessionInstallKey::SESSION_KEY].include?(script.id)
   end
 end
