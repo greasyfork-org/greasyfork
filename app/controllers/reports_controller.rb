@@ -75,7 +75,7 @@ class ReportsController < ApplicationController
       ScriptReportMailer.report_dismissed_offender(@report, site_name).deliver_later
       ScriptReportMailer.report_dismissed_reporter(@report, site_name).deliver_later
     end
-    redirect_to reports_path(anchor: "open-report-#{params[:index]}")
+    redirect_to reports_path(anchor: params[:index] == '0' ? nil : "open-report-#{params[:index]}")
   end
 
   def mark_fixed
@@ -92,7 +92,7 @@ class ReportsController < ApplicationController
       ScriptReportMailer.report_fixed_offender(@report, site_name).deliver_later
       ScriptReportMailer.report_fixed_reporter(@report, site_name).deliver_later
     end
-    redirect_to reports_path(anchor: "open-report-#{params[:index]}")
+    redirect_to reports_path(anchor: params[:index] == '0' ? nil : "open-report-#{params[:index]}")
   end
 
   def uphold
@@ -138,7 +138,7 @@ class ReportsController < ApplicationController
     if user_is_script_author
       redirect_to script_path(@report.item)
     else
-      redirect_to reports_path(anchor: "open-report-#{params[:index]}")
+      redirect_to reports_path(anchor: params[:index] == '0' ? nil : "open-report-#{params[:index]}")
     end
   end
 
