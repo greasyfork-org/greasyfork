@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
   include UserTextHelper
 
+  before_action :administrators_only, only: :debug
+
   def index
     @ad_method = choose_ad_method
   end
@@ -28,4 +30,8 @@ class HomeController < ApplicationController
   end
 
   def search; end
+
+  def debug
+    render json: session.to_json
+  end
 end

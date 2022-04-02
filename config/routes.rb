@@ -174,6 +174,7 @@ Rails.application.routes.draw do
 
     post 'preview-markup', to: 'home#preview_markup', as: 'preview_markup'
     get 'search', to: 'home#search'
+    get 'debug', to: 'home#debug'
 
     resources :moderator_actions, only: [:index]
 
