@@ -40,7 +40,7 @@ zh-CN:
     promoted_text_html: "您或许会喜欢%{script_link}。"
     library_instructions_html: "此脚本不应被直接安装，它是一个供其他脚本使用的外部库。如果您需要使用该库，请在脚本元属性加入：%{code}"
     deleted_notice: "此脚本已被删除。"
-    deleted_notice_with_related: "请求的脚本已被删除。不过，这里还有一些可能类似的脚本。"
+    deleted_notice_with_related: "请求的脚本已被删除。不过，这里有一些相关的脚本。"
     deleted_undelete_notice_html: "该脚本已被管理员锁定并删除且无法撤销。锁定原因：“<i>%{delete_reason}</i>”。"
     deleted_locked_author_notice_html: "此脚本已由一位审核员删除并不再可被他人访问。提供的原因为：\"<i>%{delete_reason}</i>\"。请查看%{code_rules_link:%{site_name}规则}。如果您认为删除是错误的，您可以对此删除%{appeal_link:提交申诉}。请勿重新发布此脚本；这可能会导致被%{site_name}封锁。"
     deleted_author_notice: "其他用户不能访问该脚本，因为它已经被删除。你可以在“删除”面板中取消删除。"
@@ -373,6 +373,7 @@ zh-CN:
       css:
         short: CSS
         long: 用户样式
+    related_scripts: "你也可以试试这些相关的脚本："
   script_sets:
     description: "脚本收藏集有助于您创建一个自定义的使用 Greasy Fork 浏览的脚本列表。您可以包含单个脚本，以及其他用户或自动生成的脚本收藏集。您也可以用相同的方法排除特定脚本。"
     favorites_name: "收藏"
