@@ -557,6 +557,29 @@ class Script < ApplicationRecord
     sensitive? ? 'sleazyfork.local' : 'greasyfork.local'
   end
 
+  def similar_scripts(locale:)
+    return @_similar_scripts unless @_similar_scripts.nil?
+
+    sas = site_applications.where(domain: true).pluck(:id)
+    return Script.none if sas.none?
+
+    @_similiar_scripts = Script
+                         .search(
+                           with: {
+                             sensitive: false,
+                             script_type_id: ScriptType::PUBLIC_TYPE_ID,
+                             site_application_id: sas,
+                             locale: Locale.find_by(code: locale).id,
+                           },
+                           sql: { include: [{ localized_attributes: :locale }, :users] },
+                           order: 'daily_installs DESC',
+                           per_page: 25
+                         )
+                         .reject { |script| script.id == id }
+                         .sort_by { |script| [(script.users & users).any? ? 0 : 1, script.daily_installs * -1] }
+                         .first(5)
+  end
+
   private
 
   def url_helpers

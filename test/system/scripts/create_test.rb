@@ -23,28 +23,30 @@ class CreateTest < ApplicationSystemTestCase
   end
 
   test 'css script creation' do
-    user = User.first
-    login_as(user, scope: :user)
-    visit new_script_version_url(language: 'css')
-    code = <<~JS
-      /* ==UserStyle==
-      @name        Example UserCSS style
-      @description This is an example
-      @namespace   github.com/openstyles/stylus
-      @version     1.0.0
-      @license     unlicense
-      ==/UserStyle== */
+    with_sphinx do
+      user = User.first
+      login_as(user, scope: :user)
+      visit new_script_version_url(language: 'css')
+      code = <<~JS
+        /* ==UserStyle==
+        @name        Example UserCSS style
+        @description This is an example
+        @namespace   github.com/openstyles/stylus
+        @version     1.0.0
+        @license     unlicense
+        ==/UserStyle== */
 
-      @-moz-document domain("example.com") {
-        a {
-          color: red;
+        @-moz-document domain("example.com") {
+          a {
+            color: red;
+          }
         }
-      }
-    JS
-    fill_in 'Code', with: code
-    click_button 'Post script'
-    assert_selector 'h2', text: 'Example UserCSS style'
-    assert_includes(Script.last.users, user)
+      JS
+      fill_in 'Code', with: code
+      click_button 'Post script'
+      assert_selector 'h2', text: 'Example UserCSS style'
+      assert_includes(Script.last.users, user)
+    end
   end
 
   test 'library creation with meta block' do

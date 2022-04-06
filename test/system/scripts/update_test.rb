@@ -104,38 +104,40 @@ class UpdateTest < ApplicationSystemTestCase
   end
 
   test 'sensitive site' do
-    script = Script.find(1)
-    user = script.users.first
-    login_as(user, scope: :user)
-    visit new_script_script_version_url(script_id: script.id)
-    code = <<~JS
-      // ==UserScript==
-      // @name A Test Update!
-      // @description Unit test.
-      // @version 1.3
-      // @namespace http://greasyfork.local/users/1
-      // @include http://pornonthecob.com
-      // @license MIT
-      // ==/UserScript==
-      var foo = 1;
-    JS
-    fill_in 'Code', with: code
-    click_button 'Post new version'
+    with_sphinx do
+      script = Script.find(1)
+      user = script.users.first
+      login_as(user, scope: :user)
+      visit new_script_script_version_url(script_id: script.id)
+      code = <<~JS
+        // ==UserScript==
+        // @name A Test Update!
+        // @description Unit test.
+        // @version 1.3
+        // @namespace http://greasyfork.local/users/1
+        // @include http://pornonthecob.com
+        // @license MIT
+        // ==/UserScript==
+        var foo = 1;
+      JS
+      fill_in 'Code', with: code
+      click_button 'Post new version'
 
-    assert_content 'Your script is for pornonthecob.com and so will be marked as adult content.'
-    check 'Save anyway'
-    click_button 'Post new version'
+      assert_content 'Your script is for pornonthecob.com and so will be marked as adult content.'
+      check 'Save anyway'
+      click_button 'Post new version'
 
-    assert_selector 'h2', text: 'A Test Update!'
-    assert script.reload.sensitive?
-    assert_nil script.marked_adult_by_user
+      assert_selector 'h2', text: 'A Test Update!'
+      assert script.reload.sensitive?
+      assert_nil script.marked_adult_by_user
 
-    visit new_script_script_version_url(script_id: script.id)
-    assert_content 'Your script has been marked as having adult content due to being for pornonthecob.com.'
-    click_button 'Post new version'
+      visit new_script_script_version_url(script_id: script.id)
+      assert_content 'Your script has been marked as having adult content due to being for pornonthecob.com.'
+      click_button 'Post new version'
 
-    assert_selector 'h2', text: 'A Test Update!'
-    assert script.reload.sensitive?
-    assert_nil script.marked_adult_by_user
+      assert_selector 'h2', text: 'A Test Update!'
+      assert script.reload.sensitive?
+      assert_nil script.marked_adult_by_user
+    end
   end
 end
