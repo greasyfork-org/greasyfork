@@ -16,7 +16,7 @@ module ShowsAds
 
     return AdMethod.ga if script.adsense_approved && locale_allows_adsense? && (script.localized_attributes.where(attribute_key: 'additional_info').any? || script.newest_saved_script_version.attachments.any? || script.similar_scripts(locale: I18n.locale).any?)
 
-    [AdMethod.ca, AdMethod.ea].sample
+    AdMethod.ca
   end
 
   def choose_ad_method_for_scripts(scripts)
