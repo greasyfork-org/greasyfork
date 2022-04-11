@@ -496,14 +496,14 @@ zh-CN:
         <p>现在您可以访问这个用户脚本所针对的网站，脚本应该已经自动启动和生效。在试用一段时间之后，您可以回到用户脚本发表的页面，给用户脚本的作者留下反馈。</p>
   users:
     sign_in_title: "登录 %{site_name}"
-    sign_in_description: "登录到 %{site_name} 可以让您发布脚本或为其他作者的脚本提供反馈。如果您只是翻阅网站或安装脚本，登录并不是必须的。"
+    sign_in_description: "登录 %{site_name} 可以发布脚本或为他人的脚本提供反馈。浏览或安装脚本不需要登录。"
     sign_in_external: "使用第三方账户登录"
     sign_in_with: "使用 %{provider} 登录"
     sign_in_password: "使用密码登录"
     sign_in_email_used_no_external_services_html: "“%{email}”已被“%{user_name}”注册。如果这是你并希望连接该账号至 %{provider}，请先 %{sign_in_link} 然后添加 %{provider} 至您的第三方登录。"
     sign_in_email_used_with_external_services_html: "“%{email}”已被“%{user_name}”绑定至第三方登录服务 %{existing_providers}。如果这是你并希望连接账号至 %{provider}，请先 %{sign_in_link} 然后添加 %{provider} 至您的第三方登录。"
     sign_in_email_used_sign_in_link: "登录"
-    sign_in_email_missing: "%{site_name} 需要一个电子邮件地址来建立新账号，但您绑定的 %{provider} 账号未能提供该信息。你可以到 %{provider} 绑定邮箱，然后在本网站用该账号登录；或在 %{site_name} 上创建一个常规的使用电子邮件/密码登陆的账号，之后添加 %{provider} 的账号绑定。"
+    sign_in_email_missing: "%{site_name} 需要一个电子邮件地址来建立新账号，但您绑定的 %{provider} 账号未能提供该信息。你可以到 %{provider} 绑定邮箱，然后在本网站用该账号登录；或在 %{site_name} 上创建一个常规的使用电子邮件/密码登录的账号，之后添加 %{provider} 的账号绑定。"
     sign_in_name_used: "用户名“%{name}”已存在，换一个吧。"
     sign_in_name_used_submit: "提交"
     control_panel: "控制台"
@@ -984,7 +984,7 @@ zh-CN:
     deletion_reason_html: "%{script} 已被删除，原因是：%{reason}。"
     author_reason: "由作者提交的申诉："
     pending_review: 该申诉正等待管理员的审核。
-    dismissed_by_moderator: 管理员已驳回该申诉。
+    dismissed_by_moderator: 管理员驳回了该申诉。
     upheld_by_moderator: 一位管理员通过了该则申诉，并解除了该则脚本的删除状态。
     submitted: 已收到您提交的申诉，请等待管理员审核。
   discussions:
@@ -1285,6 +1285,6 @@ zh-CN:
         outro: 如果你仍然希望解除该脚本的删除状态，请查阅%{report_link:原始举报内容}以及 %{rules_link:%{site_name} 的规则}。
       unlock:
         subject: 您对 %{site_name} 的脚本删除申诉已通过
-        intro_html: 管理员通过了你对 %{script} 提交的删除申诉。该脚本现已取消删除并可再次公开访问。
+        intro_html: 管理员通过了你对删除 %{script} 的申诉。该脚本现已取消删除并可再次公开访问。
         moderator_notes: "管理员的说明："
         outro: 请查阅 %{rules_link:%{site_name} 的规则}来避免日后被再次删除。

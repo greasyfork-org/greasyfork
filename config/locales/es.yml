@@ -687,6 +687,7 @@ es:
       description: "Una descripción de lo que hace el script. Se muestra como texto bajo el nombre del mismo. Obligatorio."
       description_localized_html: "La descripción del script en otro idioma, donde XX es un <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">código de dos letras ISO 639-1</a> e YY es un <a href=\"https://www.iso.org/obp/ui/#search\">código de pais ISO 3166</a> totalmente opcional. Esta clave tiene precedencia sobre <code>@description</code> cuando el usuario está viendo la página en ese idioma."
       namespace_html: "Los gestores de scripts utilizan la combinación entre <code>@namespace</code> y <code>@name</code> para ver si el script ya está instalado. Este campo es obligatorio para %{site_name} y te avisaremos si cambia durante alguna actualización."
+      version: "Identificador para una versión específica de un script en %{version_format_link:el formato de versionado de Mozilla}. La versión se muestra en una página de información del script. %{site_name} necesita este campo y te avisará si lo cambias a una versión menor o si directamente no lo actualizas cuando cambias el código del script."
       include_html: "Describe en qué páginas va a funcionar tu script. La lista se procesará y se mostrará en la página de información, y se utilizará para categorizarlo. Cada script debe de tener al menos una clave <code>@match</code> o <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Puedes leer más cosas sobre el formato aquí.</a>"
       require_html: "Incluye JavaScript externo en un script. Ver las %{external_script_link}."
       require_external_script_link_text: "reglas para código que incluye scripts externos"
@@ -828,6 +829,8 @@ es:
       title: Características indeseables
       miner_html: |
           <p>El script contiene un cryptominer u otro código que utiliza los recursos del usuario para realizar alguna tarea para el autor del script.
+      tracking_html: |
+          <p>El script incluye código que rastrea la actividad del usuario; incluidos rastreadores tipo Google Analytics o elementos personalizados que informan que lo que haces al autor del mismo.</p>
   search:
     script_search:
       title: "Buscar scripts"
