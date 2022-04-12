@@ -84,6 +84,12 @@ class ScriptsController < ApplicationController
         page_key = "#{script_subset}/script/show/#{@script.id}/#{@script.updated_at&.to_i}/#{params[:version].to_i}/#{request_locale.id}" if cachable_request
         cache_page(page_key) do
           @script, @script_version = versionned_script(params[:id], params[:version]) if cachable_request
+
+          if @script.nil?
+            render_deleted(http_code: 410)
+            return
+          end
+
           @by_sites = TopSitesService.get_by_sites(script_subset: script_subset)
           @link_alternates = [
             { url: current_path_with_params(format: :json), type: 'application/json' },
