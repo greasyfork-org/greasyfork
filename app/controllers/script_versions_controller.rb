@@ -286,7 +286,7 @@ class ScriptVersionsController < ApplicationController
     @script.apply_from_script_version(@script.newest_saved_script_version)
     @script.save!
 
-    flash[:notice] = 'Version deleted.'
+    flash[:notice] = 'Version deleted.' # rubocop:disable Rails/I18nLocaleTexts
 
     redirect_to @script
   end

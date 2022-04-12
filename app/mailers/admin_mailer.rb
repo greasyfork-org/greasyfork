@@ -1,6 +1,6 @@
 class AdminMailer < ApplicationMailer
   def delete_confirm(item, private_reason)
-    mail(to: User.administrators.pluck(:email), subject: 'Script auto-deleted') do |format|
+    mail(to: User.administrators.pluck(:email), subject: 'Script auto-deleted') do |format| # rubocop:disable Rails/I18nLocaleTexts
       format.text do
         if item.is_a?(Script)
           render plain: "Script '#{item.default_name}' (#{script_url(item, locale: nil)}) has been automatically deleted: #{private_reason}."

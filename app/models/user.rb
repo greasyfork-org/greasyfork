@@ -261,11 +261,11 @@ class User < ApplicationRecord
       other_report.uphold!(moderator: moderator)
     end
 
-    if delete_scripts
-      # Resolve any reports on the user's deleted scripts
-      Report.unresolved.where(item: scripts).find_each do |other_report|
-        other_report.uphold!(moderator: moderator)
-      end
+    return unless delete_scripts
+
+    # Resolve any reports on the user's deleted scripts
+    Report.unresolved.where(item: scripts).find_each do |other_report|
+      other_report.uphold!(moderator: moderator)
     end
   end
 

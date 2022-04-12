@@ -318,7 +318,7 @@ class ScriptsController < ApplicationController
         la.sync_identifier = nil
       end
       @script.save(validate: false)
-      flash[:notice] = 'Script sync turned off.'
+      flash[:notice] = t('scripts.sync_turned_off')
       redirect_to @script
       return
     end
@@ -382,11 +382,11 @@ class ScriptsController < ApplicationController
     unless params['update-and-sync'].nil?
       case ScriptImporter::ScriptSyncer.sync(@script)
       when :success
-        flash[:notice] = 'Script successfully synced.'
+        flash[:notice] = t('scripts.sync_successful')
       when :unchanged
-        flash[:notice] = 'Script successfully synced, but no changes found.'
+        flash[:notice] = t('scripts.sync_no_changes')
       when :failure
-        flash[:notice] = "Script sync failed - #{@script.sync_error}."
+        flash[:notice] = t('scripts.sync_error', error: @script.sync_error)
       end
     end
     redirect_to @script
@@ -522,7 +522,7 @@ class ScriptsController < ApplicationController
     ma.save! unless ma.action.nil?
 
     @script.save!
-    flash[:notice] = 'Script updated.'
+    flash[:notice] = 'Script updated.' # rubocop:disable Rails/I18nLocaleTexts
     redirect_to @script
   end
 
@@ -770,13 +770,13 @@ class ScriptsController < ApplicationController
 
   def approve
     @script.update!(review_state: 'approved')
-    flash[:notice] = 'Marked as approved.'
+    flash[:notice] = 'Marked as approved.' # rubocop:disable Rails/I18nLocaleTexts
     redirect_to clean_redirect_param(:return_to) || script_path(@script)
   end
 
   def request_duplicate_check
     ScriptDuplicateCheckerJob.set(queue: 'user_low').perform_later(@script.id)
-    flash[:notice] = 'Similarity check will be completed in a few minutes.'
+    flash[:notice] = t('scripts.derivatives_similiar_queued')
     redirect_to derivatives_script_path(@script)
   end
 

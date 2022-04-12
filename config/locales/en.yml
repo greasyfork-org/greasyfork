@@ -219,6 +219,7 @@ en:
     derivatives_similar_last_check_soon: "We will check for scripts similar to yours shortly."
     derivatives_similar_last_check_again_soon_html: "We last checked for scripts similar to yours on %{date}. We will check again shortly."
     derivatives_similar_check_now: "Recheck now"
+    derivatives_similiar_queued: Similarity check will be completed in a few minutes.
     # html title for script list page when showing scripts that affect all sites
     listing_title_all_sites: "User scripts for all sites"
     # meta description and feed subtitle when showing scripts that affect all sites
@@ -411,6 +412,10 @@ en:
     additional_info_localized_sync_html: "For locale (matches <code>@name:XX</code>)"
     # HTML placeholder for sync fields
     sync_url_placeholder: "(URL)"
+    sync_successful: Script successfully synced.
+    sync_no_changes: Script successfully synced, but no changes found.
+    sync_error: Script sync failed - %{error}.
+    sync_turned_off: Script sync turned off.
     # label for adding a new screenshot
     screenshots_add: "Add:"
     # label for checkbox to remove a screenshot
@@ -940,6 +945,7 @@ en:
       save_success: Your notification preferences have been updated.
       unsubscribe_all: Unsubscribe from all notifications
       unsubscribe_all_success: You have been unsubscribed from all notifications.
+    account_banned: This account has been banned.
   webhooks:
     info:
       title: Setting up a webhook
@@ -1310,6 +1316,7 @@ en:
       </ol>
     rebuttal_placeholder: 'Explain to a moderator why this script should not be deleted.'
     submit_rebuttal: "Submit rebuttal"
+    rebuttal_submitted: A moderator will review this report and your explanation and make a decision.
     delete_script: "Delete script"
     view_discussion: "View discussion"
     load_diff: "Load diff"

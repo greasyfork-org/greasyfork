@@ -132,7 +132,7 @@ class ApplicationController < ActionController::Base
     return unless current_user.present? && current_user.banned?
 
     sign_out current_user
-    flash[:alert] = 'This account has been banned.'
+    flash[:alert] = t('users.account_banned')
     root_path
   end
 

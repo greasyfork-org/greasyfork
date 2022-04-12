@@ -27,7 +27,7 @@ class ScriptLockAppealsController < ApplicationController
       ScriptLockAppealMailer.dismiss(@script_lock_appeal, user, site_name).deliver_later
     end
 
-    redirect_to script_path(@script), flash: { notice: 'Appeal has been dismissed.' }
+    redirect_to script_path(@script), flash: { notice: 'Appeal has been dismissed.' } # rubocop:disable Rails/I18nLocaleTexts
   end
 
   def unlock
@@ -53,7 +53,7 @@ class ScriptLockAppealsController < ApplicationController
       ScriptLockAppealMailer.unlock(@script_lock_appeal, user, site_name).deliver_later
     end
 
-    redirect_to script_path(@script), flash: { notice: 'Script has been unlocked.' }
+    redirect_to script_path(@script), flash: { notice: 'Script has been unlocked.' } # rubocop:disable Rails/I18nLocaleTexts
   end
 
   def index

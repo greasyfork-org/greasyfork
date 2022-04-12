@@ -156,7 +156,7 @@ class ReportsController < ApplicationController
       ScriptReportMailer.report_rebutted(@report, site_name).deliver_later
     end
 
-    redirect_to report_path(@report), notice: 'A moderator will review this report and your explanation and make a decision.'
+    redirect_to report_path(@report), notice: t('reports.rebuttal_submitted')
   end
 
   def show

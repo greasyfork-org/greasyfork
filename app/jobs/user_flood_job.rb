@@ -20,7 +20,7 @@ class UserFloodJob < ApplicationJob
       ActionMailer::Base.mail(
         from: 'noreply@greasyfork.org',
         to: 'jason.barnabe@gmail.com',
-        subject: 'Greasy Fork registration flood',
+        subject: 'Greasy Fork registration flood', # rubocop:disable Rails/I18nLocaleTexts
         body: "#{most_used_domain.last} of the newest #{CHECK_COUNT} users have the email domain #{most_used_domain.first}. https://greasyfork.org/en/users?email_domain=#{most_used_domain.first}"
       ).deliver
     end
