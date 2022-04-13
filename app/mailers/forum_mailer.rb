@@ -55,10 +55,10 @@ class ForumMailer < ApplicationMailer
 
   def localization_params_for_comment(comment, locale)
     {
-      commenter_link: user_url(comment.poster_id, locale: locale),
+      commenter_link: user_url(comment.poster_id, locale:),
       commenter_name: render_user_text(comment.poster, comment.poster_id),
       comment_link: comment.url,
-      discussion_title: comment.discussion.display_title(locale: locale),
+      discussion_title: comment.discussion.display_title(locale:),
       discussion_link: comment.discussion.url,
     }
   end

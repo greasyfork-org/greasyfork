@@ -177,8 +177,8 @@ class ApplicationController < ActionController::Base
     page
   end
 
-  def cache_with_log(key, options = {}, &block)
-    self.class.cache_with_log(key, options, &block)
+  def cache_with_log(key, options = {}, &)
+    self.class.cache_with_log(key, options, &)
   end
 
   def greasy?
@@ -252,7 +252,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_cookie(key, value, httponly: true)
-    cookies[key] = { value: value, secure: Rails.env.production?, httponly: httponly }
+    cookies[key] = { value:, secure: Rails.env.production?, httponly: }
   end
 
   def check_read_only_mode

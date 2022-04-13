@@ -1,8 +1,8 @@
 require 'application_system_test_case'
 
 class ListTest < ApplicationSystemTestCase
-  def around(&block)
-    with_sphinx(&block)
+  def around(&)
+    with_sphinx(&)
   end
 
   test 'script list' do

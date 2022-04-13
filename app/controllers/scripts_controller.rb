@@ -90,7 +90,7 @@ class ScriptsController < ApplicationController
             return
           end
 
-          @by_sites = TopSitesService.get_by_sites(script_subset: script_subset)
+          @by_sites = TopSitesService.get_by_sites(script_subset:)
           @link_alternates = [
             { url: current_path_with_params(format: :json), type: 'application/json' },
             { url: current_path_with_params(format: :jsonp, callback: 'callback'), type: 'application/javascript' },
@@ -338,7 +338,7 @@ class ScriptsController < ApplicationController
           next if form_is_blank
 
           attribute_default = (sync_params['attribute_default'] == 'true')
-          @script.localized_attributes.build(attribute_key: 'additional_info', sync_identifier: sync_params['sync_identifier'], value_markup: sync_params['value_markup'], locale_id: attribute_default ? @script.locale_id : sync_params['locale'], attribute_value: ADDITIONAL_INFO_SYNC_PLACEHOLDER, attribute_default: attribute_default)
+          @script.localized_attributes.build(attribute_key: 'additional_info', sync_identifier: sync_params['sync_identifier'], value_markup: sync_params['value_markup'], locale_id: attribute_default ? @script.locale_id : sync_params['locale'], attribute_value: ADDITIONAL_INFO_SYNC_PLACEHOLDER, attribute_default:)
         else
           unless form_is_blank
             unused_additional_infos.delete(existing)
@@ -399,7 +399,7 @@ class ScriptsController < ApplicationController
     replaced_by = get_script_from_input(params[:replaced_by_script_id])
     case replaced_by
     when :non_gf_url
-      @script.errors.add(:replaced_by_script_id, I18n.t('errors.messages.must_be_greasy_fork_script', site_name: site_name))
+      @script.errors.add(:replaced_by_script_id, I18n.t('errors.messages.must_be_greasy_fork_script', site_name:))
       render :delete
       return
     when :non_script_url
@@ -644,7 +644,7 @@ class ScriptsController < ApplicationController
       end
       @diff = Diffy::Diff.new(other_code, this_code, include_plus_and_minus_in_html: true, include_diff_info: true, diff: diff_options).to_s(:html).html_safe
     else
-      flash[:notice] = t('scripts.admin.compare_must_be_local_url', site_name: site_name)
+      flash[:notice] = t('scripts.admin.compare_must_be_local_url', site_name:)
     end
   end
 
@@ -652,7 +652,7 @@ class ScriptsController < ApplicationController
     promoted_script = get_script_from_input(params[:promoted_script_id])
     case promoted_script
     when :non_gf_url
-      @script.errors.add(:promoted_script_id, I18n.t('errors.messages.must_be_greasy_fork_script', site_name: site_name))
+      @script.errors.add(:promoted_script_id, I18n.t('errors.messages.must_be_greasy_fork_script', site_name:))
       render :admin
       return
     when :non_script_url
@@ -758,12 +758,12 @@ class ScriptsController < ApplicationController
 
   def remove_author
     user = User.find(params[:user_id])
-    if @script.authors.count < 2 || @script.authors.where(user: user).none?
+    if @script.authors.count < 2 || @script.authors.where(user:).none?
       flash[:error] = t('scripts.remove_author.failure')
       return
     end
 
-    @script.authors.find_by!(user: user).destroy!
+    @script.authors.find_by!(user:).destroy!
     flash[:notice] = t('scripts.remove_author.success', user_name: user.name)
     redirect_to script_path(@script)
   end
@@ -833,7 +833,7 @@ class ScriptsController < ApplicationController
 
   # versionned_script loads a bunch of stuff we may not care about
   def minimal_versionned_script(script_id, version_id)
-    script_version = ScriptVersion.includes(:script).where(script_id: script_id)
+    script_version = ScriptVersion.includes(:script).where(script_id:)
     if params[:version]
       script_version = script_version.find(version_id)
     else

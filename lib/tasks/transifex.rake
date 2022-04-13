@@ -35,7 +35,7 @@ namespace :transifex do
       end
       Rails.logger.info("Locale #{code_with_hyphens} is #{locale.percent_complete}% complete")
       (language.coordinators + language.reviewers + language.translators - ['jason.barnabe']).each do |contributor|
-        LocaleContributor.create({ locale: locale, transifex_user_name: contributor })
+        LocaleContributor.create({ locale:, transifex_user_name: contributor })
       end
       locale.save!
     end

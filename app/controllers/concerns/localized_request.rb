@@ -50,11 +50,11 @@ module LocalizedRequest
         # Suggest a different locale if we think there's a better one.
         if current_user.nil?
           top, _preferred = detect_locale(current_user, request.headers['Accept-Language'])
-          flash.now[:notice] = view_context.tag.b { view_context.link_to(t('common.suggest_locale', locale: top.code, locale_name: (top.native_name || top.english_name), site_name: site_name), { locale: top.code }) } if top.code != params[:locale]
+          flash.now[:notice] = view_context.tag.b { view_context.link_to(t('common.suggest_locale', locale: top.code, locale_name: (top.native_name || top.english_name), site_name:), { locale: top.code }) } if top.code != params[:locale]
         end
         if flash.now[:notice].nil?
           locale = Locale.where(code: params[:locale]).first
-          flash.now[:notice] = view_context.tag.b { view_context.link_to(t('common.incomplete_locale', locale_name: (locale.native_name || locale.english_name), percent: view_context.number_to_percentage(locale.percent_complete, precision: 0), site_name: site_name), Rails.configuration.help_translate_url, target: '_new') } if !locale.nil? && locale.percent_complete <= 95
+          flash.now[:notice] = view_context.tag.b { view_context.link_to(t('common.incomplete_locale', locale_name: (locale.native_name || locale.english_name), percent: view_context.number_to_percentage(locale.percent_complete, precision: 0), site_name:), Rails.configuration.help_translate_url, target: '_new') } if !locale.nil? && locale.percent_complete <= 95
         end
       end
       return

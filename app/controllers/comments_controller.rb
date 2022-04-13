@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
     Comment.transaction do
       rating = params.dig(:comment, :discussion, :rating)
       params[:comment].delete(:discussion)
-      @discussion.update!(rating: rating) if rating && @discussion.poster == current_user && @discussion.script
+      @discussion.update!(rating:) if rating && @discussion.poster == current_user && @discussion.script
       @comment = @discussion.comments.build(comments_params)
       @comment.poster = current_user
       @comment.construct_mentions(detect_possible_mentions(@comment.text, @comment.text_markup))
@@ -48,8 +48,8 @@ class CommentsController < ApplicationController
       if comment.first_comment? && @discussion.poster == current_user
         rating = params.dig(:comment, :discussion, :rating)
         title = params.dig(:comment, :discussion, :title)
-        @discussion.update!(rating: rating) if rating && @discussion.for_script?
-        @discussion.update!(title: title) if title && !@discussion.for_script?
+        @discussion.update!(rating:) if rating && @discussion.for_script?
+        @discussion.update!(title:) if title && !@discussion.for_script?
         params[:comment].delete(:discussion)
       end
       comment.edited_at = Time.current

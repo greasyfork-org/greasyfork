@@ -13,7 +13,7 @@ class AkismetScriptCheckingJob < ApplicationJob
 
     akismet_params = [
       ip, user_agent, {
-        referrer: referrer,
+        referrer:,
         post_url: Rails.application.routes.url_helpers.script_url(nil, script),
         post_modified_at: script.updated_at,
         type: 'blog-post',
@@ -28,7 +28,7 @@ class AkismetScriptCheckingJob < ApplicationJob
 
     is_spam, is_blatant = Akismet.check(*akismet_params)
 
-    AkismetSubmission.create!(item: script, akismet_params: akismet_params, result_spam: is_spam, result_blatant: is_blatant)
+    AkismetSubmission.create!(item: script, akismet_params:, result_spam: is_spam, result_blatant: is_blatant)
 
     return unless is_spam
 

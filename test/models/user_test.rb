@@ -1,8 +1,8 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  def around(&block)
-    with_sphinx(&block)
+  def around(&)
+    with_sphinx(&)
   end
 
   test 'deleting scripts where they are the sole author' do

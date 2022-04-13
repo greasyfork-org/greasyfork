@@ -54,7 +54,7 @@ module ScriptImporter
       sv.changelog = "Imported from #{import_source_name}"
 
       script = Script.new
-      script.authors.build(user: user)
+      script.authors.build(user:)
       script.script_type_id = 1
       script.script_sync_type_id = sync_type_id
       script.language = url.ends_with?('.css') ? 'css' : 'js'

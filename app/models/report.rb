@@ -64,7 +64,7 @@ class Report < ApplicationRecord
   validates :discussion_category, presence: true, if: -> { reason == REASON_WRONG_CATEGORY }
 
   def dismiss!(moderator:, moderator_notes:)
-    update!(result: RESULT_DISMISSED, moderator_notes: moderator_notes, resolver: moderator)
+    update!(result: RESULT_DISMISSED, moderator_notes:, resolver: moderator)
     if item.is_a?(Discussion)
       akismet = item.review_reason == 'akismet'
       item.update!(review_reason: nil)
@@ -75,7 +75,7 @@ class Report < ApplicationRecord
   end
 
   def fixed!(moderator:, moderator_notes:)
-    update!(result: RESULT_FIXED, moderator_notes: moderator_notes, resolver: moderator)
+    update!(result: RESULT_FIXED, moderator_notes:, resolver: moderator)
     item.update!(review_reason: nil) if item.is_a?(Discussion)
     item.discussion.update!(review_reason: nil) if item.is_a?(Comment) && item.first_comment?
     reporter&.update_trusted_report!
@@ -85,15 +85,15 @@ class Report < ApplicationRecord
     Report.transaction do
       case item
       when User, Message
-        reported_users.each { |user| user.ban!(moderator: moderator, delete_comments: delete_comments, delete_scripts: delete_scripts, ban_related: true, report: self) }
+        reported_users.each { |user| user.ban!(moderator:, delete_comments:, delete_scripts:, ban_related: true, report: self) }
       when Comment
-        reported_users.each { |user| user.ban!(moderator: moderator, delete_comments: delete_comments, delete_scripts: delete_scripts, ban_related: true, report: self) } if ban_user
+        reported_users.each { |user| user.ban!(moderator:, delete_comments:, delete_scripts:, ban_related: true, report: self) } if ban_user
         item.soft_destroy!(by_user: moderator) unless item.soft_deleted?
       when Discussion
         if reason == REASON_WRONG_CATEGORY
-          item.update!(discussion_category_id: discussion_category_id)
+          item.update!(discussion_category_id:)
         else
-          reported_users.each { |user| user.ban!(moderator: moderator, delete_comments: delete_comments, delete_scripts: delete_scripts, ban_related: true, report: self) } if ban_user
+          reported_users.each { |user| user.ban!(moderator:, delete_comments:, delete_scripts:, ban_related: true, report: self) } if ban_user
           item.soft_destroy!(by_user: moderator) unless item.soft_deleted?
         end
       when Script
@@ -104,28 +104,28 @@ class Report < ApplicationRecord
         end
         item.save(validate: false)
         if ban_user
-          reported_users.each { |user| user.ban!(moderator: moderator, delete_comments: delete_comments, delete_scripts: delete_scripts, ban_related: true, report: self) }
+          reported_users.each { |user| user.ban!(moderator:, delete_comments:, delete_scripts:, ban_related: true, report: self) }
         elsif moderator
-          ModeratorAction.create!(moderator: moderator, script: item, action: 'Delete and lock', report: self)
+          ModeratorAction.create!(moderator:, script: item, action: 'Delete and lock', report: self)
         end
       else
         raise "Unknown report item #{item}"
       end
 
-      update!(result: RESULT_UPHELD, resolver: moderator, moderator_notes: moderator_notes)
+      update!(result: RESULT_UPHELD, resolver: moderator, moderator_notes:)
       reporter&.update_trusted_report!
     end
 
     return if reason == REASON_WRONG_CATEGORY
 
-    Report.unresolved.where(item: item).find_each do |other_report|
+    Report.unresolved.where(item:).find_each do |other_report|
       other_report.update!(result: RESULT_UPHELD)
       other_report.reporter&.update_trusted_report!
     end
   end
 
   def rebut!(rebuttal:, by:)
-    update!(rebuttal: rebuttal, rebuttal_by_user: by)
+    update!(rebuttal:, rebuttal_by_user: by)
   end
 
   def reason_text
@@ -199,6 +199,6 @@ class Report < ApplicationRecord
   end
 
   def recent_other_reports
-    Report.where(created_at: 3.months.ago..).where.not(id: id).where(item: item).includes(:script_lock_appeals)
+    Report.where(created_at: 3.months.ago..).where.not(id:).where(item:).includes(:script_lock_appeals)
   end
 end

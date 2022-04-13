@@ -92,7 +92,7 @@ class DiscussionsController < ApplicationController
     elsif params[:category] && params[:category] != DiscussionCategory::SCRIPT_DISCUSSIONS_KEY
       @discussion.discussion_category = DiscussionCategory.find_by(category_key: params[:category])
     end
-    @discussion.comments.build(poster: current_user, text_markup: current_user&.preferred_markup, text: text)
+    @discussion.comments.build(poster: current_user, text_markup: current_user&.preferred_markup, text:)
     @subscribe = current_user.subscribe_on_discussion
   end
 
@@ -156,7 +156,7 @@ class DiscussionsController < ApplicationController
 
   def subscribe
     discussion = discussion_scope.find(params[:id])
-    DiscussionSubscription.find_or_create_by!(user: current_user, discussion: discussion)
+    DiscussionSubscription.find_or_create_by!(user: current_user, discussion:)
     respond_to do |format|
       format.js { head :ok }
       format.all { redirect_to discussion.path(locale: request_locale.code) }
@@ -165,7 +165,7 @@ class DiscussionsController < ApplicationController
 
   def unsubscribe
     discussion = discussion_scope.find(params[:id])
-    DiscussionSubscription.find_by(user: current_user, discussion: discussion)&.destroy
+    DiscussionSubscription.find_by(user: current_user, discussion:)&.destroy
     respond_to do |format|
       format.js { head :ok }
       format.all { redirect_to discussion.path(locale: request_locale.code) }
@@ -182,7 +182,7 @@ class DiscussionsController < ApplicationController
     if filter_result.category || filter_result.related_to_me || filter_result.by_user
       now = Time.current
       ids = filter_result.result.pluck(:id)
-      DiscussionRead.upsert_all(ids.map { |discussion_id| { discussion_id: discussion_id, user_id: current_user.id, read_at: now } }) if ids.any?
+      DiscussionRead.upsert_all(ids.map { |discussion_id| { discussion_id:, user_id: current_user.id, read_at: now } }) if ids.any?
     else
       current_user.update!(discussions_read_since: Time.current)
     end

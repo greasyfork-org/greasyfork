@@ -305,7 +305,7 @@ class BitbucketWebhookTest < ActionDispatch::IntegrationTest
 
   def webhook_request(user, secret: nil)
     secret ||= user.webhook_secret
-    post user_webhook_url(user_id: user.id, secret: secret),
+    post user_webhook_url(user_id: user.id, secret:),
          headers: { 'Host' => 'greasyfork.org', 'X-Forwarded-Proto' => 'https', 'X-Request-UUID' => 'cbb57380-2da5-4efa-9a69-fa61182bbccb', 'X-Event-Key' => 'repo:push', 'User-Agent' => 'Bitbucket-Webhooks/2.0', 'X-Attempt-Number' => '1', 'X-Hook-UUID' => '61bb6549-54df-4f62-81fe-350a0335d847', 'Content-Type' => 'application/json' },
          params: CHANGE_BODY
   end

@@ -67,14 +67,14 @@ class ScriptSet < ApplicationRecord
       return false if child_set_inclusions.include?(child) || child_set_exclusions.include?(child)
 
       # Include parent due to https://github.com/rails/rails/issues/26817
-      set_inclusions.build(parent: self, child: child, exclusion: exclusion)
+      set_inclusions.build(parent: self, child:, exclusion:)
       return true
     end
     if child.is_a?(Script)
       return false if child_script_inclusions.include?(child) || child_script_exclusions.include?(child)
 
       # Include parent due to https://github.com/rails/rails/issues/26817
-      script_inclusions.build(parent: self, child: child, exclusion: exclusion)
+      script_inclusions.build(parent: self, child:, exclusion:)
       return true
     end
     return false

@@ -72,9 +72,9 @@ module ScriptListings
           # else matching on "name".
           @scripts = Script.search(
             params[:q],
-            with: with,
+            with:,
             page: params[:page],
-            per_page: per_page,
+            per_page:,
             order: self.class.get_sort(params, for_sphinx: true),
             populate: true,
             sql: { include: [:script_type, { localized_attributes: :locale }, :users] },
@@ -103,7 +103,7 @@ module ScriptListings
       @scripts = Script
                  .listable(script_subset)
                  .includes({ users: {}, script_type: {}, localized_attributes: :locale })
-                 .paginate(page: page_number, per_page: per_page)
+                 .paginate(page: page_number, per_page:)
       @scripts = self.class.apply_filters(@scripts, params, script_subset)
       # Force a load as will be doing empty?, size, etc. and don't want separate queries for each.
       @scripts = @scripts.load
@@ -112,7 +112,7 @@ module ScriptListings
     respond_to do |format|
       format.html do
         @set = ScriptSet.find(params[:set]) unless params[:set].nil?
-        @by_sites = TopSitesService.get_top_by_sites(script_subset: script_subset, locale_id: search_locale)
+        @by_sites = TopSitesService.get_top_by_sites(script_subset:, locale_id: search_locale)
 
         @sort_options = %w[relevance daily_installs total_installs ratings created updated name] if is_search
         @link_alternates = listing_link_alternatives
@@ -157,7 +157,7 @@ module ScriptListings
   def by_site
     respond_to do |format|
       format.html do
-        @by_sites = TopSitesService.get_by_sites(script_subset: script_subset)
+        @by_sites = TopSitesService.get_by_sites(script_subset:)
         @by_sites = @by_sites.select { |k, _v| k.present? && k.include?(params[:q].downcase) } if params[:q].present?
         @by_sites = @by_sites.max_by(200) { |_k, v| v[:installs] }.sort_by { |k, _v| k || '' }.to_h
         render layout: 'application'
@@ -193,9 +193,9 @@ module ScriptListings
       # else matching on "name".
       @scripts = Script.search(
         params[:q],
-        with: with,
+        with:,
         page: params[:page],
-        per_page: per_page,
+        per_page:,
         order: self.class.get_sort(params, for_sphinx: true, set: nil, default_sort: 'created'),
         populate: true,
         sql: { include: [:script_type, { localized_attributes: :locale }, :users] },
@@ -213,7 +213,7 @@ module ScriptListings
   end
 
   def reported_not_adult
-    @scripts = Script.reported_not_adult.paginate(page: params[:page], per_page: per_page)
+    @scripts = Script.reported_not_adult.paginate(page: params[:page], per_page:)
     render :index
   end
 
@@ -227,7 +227,7 @@ module ScriptListings
     @scripts = Script.order(self.class.get_sort(params)).includes(:users, :script_type, :localized_attributes).where(id: script_ids)
     include_deleted = current_user&.moderator? && params[:include_deleted] == '1'
     @scripts = @scripts.listable(script_subset) unless include_deleted
-    @scripts = @scripts.paginate(page: params[:page], per_page: per_page)
+    @scripts = @scripts.paginate(page: params[:page], per_page:)
 
     respond_to do |format|
       format.html do
@@ -277,7 +277,7 @@ module ScriptListings
         scripts = scripts.where(id: set_script_ids)
       end
       scripts = scripts.where(language: params[:language] == 'css' ? 'css' : 'js') unless params[:language] == 'all'
-      scripts = scripts.order(get_sort(params, for_sphinx: false, set: set, default_sort: default_sort))
+      scripts = scripts.order(get_sort(params, for_sphinx: false, set:, default_sort:))
       return scripts
     end
 

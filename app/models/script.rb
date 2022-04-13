@@ -203,7 +203,7 @@ class Script < ApplicationRecord
   end
 
   def for_sensitive_site?(unsaved: false)
-    return matching_sensitive_sites(unsaved: unsaved).any?
+    return matching_sensitive_sites(unsaved:).any?
   end
 
   before_destroy do |script|
@@ -280,7 +280,7 @@ class Script < ApplicationRecord
     existing_site_applications = SiteApplication.where(text: applies_to_add.pluck(:text))
     applies_to_add.each do |atn|
       site_application = existing_site_applications.find { |esa| esa.text == atn[:text] } || SiteApplication.new(text: atn[:text], domain: atn[:domain])
-      script_applies_tos.build(site_application: site_application, tld_extra: atn[:tld_extra])
+      script_applies_tos.build(site_application:, tld_extra: atn[:tld_extra])
     end
 
     if new_record? || code_updated_at.nil?
@@ -331,7 +331,7 @@ class Script < ApplicationRecord
 
         comments_split = line.split(' ', 2)
         comments = comments_split.length == 2 ? comments_split[1] : nil
-        new_compatibility_data << { compatible: compatible, browser: browser, comments: comments }
+        new_compatibility_data << { compatible:, browser:, comments: }
       end
     end
     update_children(:compatibilities, new_compatibility_data)
@@ -344,7 +344,7 @@ class Script < ApplicationRecord
         type, description = value.split(/\s+/, 2)
         next unless Antifeature.antifeature_types.include?(type)
 
-        new_antifeature_data << { locale: locale, antifeature_type: type, description: description }
+        new_antifeature_data << { locale:, antifeature_type: type, description: }
       end
     end
     update_children(:antifeatures, new_antifeature_data)
@@ -467,9 +467,9 @@ class Script < ApplicationRecord
                                                                                                                                                                                                                                                   name: default_name,
                                                                                                                                                                                                                                                   description: default_localized_value_for('description'),
                                                                                                                                                                                                                                                   url: url_helpers.script_url(nil, self),
-                                                                                                                                                                                                                                                  code_url: code_url,
+                                                                                                                                                                                                                                                  code_url:,
                                                                                                                                                                                                                                                   license: license_text,
-                                                                                                                                                                                                                                                  version: version,
+                                                                                                                                                                                                                                                  version:,
                                                                                                                                                                                                                                                   locale: locale.nil? ? nil : locale.code,
                                                                                                                                                                                                                                                   deleted: deleted?,
                                                                                                                                                                                                                                                 })
@@ -493,8 +493,8 @@ class Script < ApplicationRecord
 
   def ban_all_authors!(moderator:, reason:, private_reason: nil)
     users.each do |user|
-      user.ban!(moderator: moderator, reason: reason, private_reason: private_reason)
-      user.lock_all_scripts!(reason: reason, moderator: moderator, delete_type: 'blanked')
+      user.ban!(moderator:, reason:, private_reason:)
+      user.lock_all_scripts!(reason:, moderator:, delete_type: 'blanked')
     end
   end
 
@@ -596,7 +596,7 @@ class Script < ApplicationRecord
     unless default_value.nil?
       default_la = existing_localized_attributes.find { |la| la.locale == locale && la.attribute_key == attr_name && la.attribute_default }
       if default_la.nil?
-        default_la = localized_attributes.build({ attribute_key: attr_name, attribute_default: true, locale: locale })
+        default_la = localized_attributes.build({ attribute_key: attr_name, attribute_default: true, locale: })
       else
         existing_localized_attributes.delete(default_la)
       end

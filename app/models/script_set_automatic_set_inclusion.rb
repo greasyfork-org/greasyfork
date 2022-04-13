@@ -16,7 +16,7 @@ class ScriptSetAutomaticSetInclusion < ApplicationRecord
 
   def self.from_param_value(value, exclusion: false)
     parts = value.split('-', 2)
-    return ScriptSetAutomaticSetInclusion.new({ script_set_automatic_type_id: parts[0], value: parts[1], exclusion: exclusion })
+    return ScriptSetAutomaticSetInclusion.new({ script_set_automatic_type_id: parts[0], value: parts[1], exclusion: })
   end
 
   def scripts(script_subset)

@@ -13,7 +13,7 @@ module UserTextHelper
                            radio_button_tag(markup_name, 'markdown', markup == 'markdown', required: true) +
                              link_to('Markdown', 'http://daringfireball.net/projects/markdown/basics', { target: 'markup_choice' })
                          end
-    previewable_text_field_form(markup_name: markup_name, markup_choice_html: markup_choice_html, &block)
+    previewable_text_field_form(markup_name:, markup_choice_html:, &block)
   end
 
   def with_user_text_preview_for_form(form:, markup_name:, &block)
@@ -24,7 +24,7 @@ module UserTextHelper
                            form.radio_button(markup_name, 'markdown', required: true) +
                              link_to('Markdown', 'http://daringfireball.net/projects/markdown/basics', { target: 'markup_choice' })
                          end
-    previewable_text_field_form(markup_name: "#{form.object_name}[#{markup_name}]", markup_choice_html: markup_choice_html, &block)
+    previewable_text_field_form(markup_name: "#{form.object_name}[#{markup_name}]", markup_choice_html:, &block)
   end
 
   def format_user_text(text, markup_type, mentions: [])

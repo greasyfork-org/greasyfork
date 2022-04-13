@@ -15,9 +15,9 @@ module DiscussionHelper
 
   def scoped_comment_create_path(discussion, anchor: nil)
     if discussion.script
-      script_discussion_comments_path(discussion.script, discussion, anchor: anchor)
+      script_discussion_comments_path(discussion.script, discussion, anchor:)
     else
-      category_discussion_comments_path(discussion, category: discussion.discussion_category, anchor: anchor)
+      category_discussion_comments_path(discussion, category: discussion.discussion_category, anchor:)
     end
   end
 

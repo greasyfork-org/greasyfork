@@ -51,8 +51,8 @@ module ActiveSupport
       ThinkingSphinx::Test.clear
     end
 
-    def assert_reindexes(&block)
-      assert_changes -> { ThinkingSphinx::Deltas::TestDelta.index_count }, &block
+    def assert_reindexes(&)
+      assert_changes(-> { ThinkingSphinx::Deltas::TestDelta.index_count }, &)
     end
   end
 end

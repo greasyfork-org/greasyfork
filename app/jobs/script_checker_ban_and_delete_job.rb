@@ -24,15 +24,15 @@ class ScriptCheckerBanAndDeleteJob < ApplicationJob
     script.save(validate: false)
 
     ModeratorAction.create!(
-      moderator: moderator,
-      script: script,
+      moderator:,
+      script:,
       action: 'Delete and lock',
-      reason: reason,
-      private_reason: private_reason
+      reason:,
+      private_reason:
     )
 
     # Spare mods and established users from being banned.
-    script.ban_all_authors!(moderator: moderator, reason: reason, private_reason: private_reason) if script.users.any?(&:moderator?) || script.users.any? { |u| u.created_at < 1.month.ago }
+    script.ban_all_authors!(moderator:, reason:, private_reason:) if script.users.any?(&:moderator?) || script.users.any? { |u| u.created_at < 1.month.ago }
 
     AdminMailer.delete_confirm(script, private_reason).deliver_later
   end

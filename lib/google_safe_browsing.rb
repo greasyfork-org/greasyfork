@@ -16,7 +16,7 @@ class GoogleSafeBrowsing
         platformTypes: ['ANY_PLATFORM'],
         threatEntryTypes: ['URL'],
         threatEntries: urls.map do |url|
-          { url: url }
+          { url: }
         end,
       },
     }

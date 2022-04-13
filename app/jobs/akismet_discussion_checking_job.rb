@@ -8,7 +8,7 @@ class AkismetDiscussionCheckingJob < ApplicationJob
       ip,
       user_agent,
       {
-        referrer: referrer,
+        referrer:,
         post_url: discussion.url,
         post_modified_at: discussion.updated_at,
         type: 'forum-post',
@@ -23,7 +23,7 @@ class AkismetDiscussionCheckingJob < ApplicationJob
 
     is_spam, is_blatant = Akismet.check(*akismet_params)
 
-    AkismetSubmission.create!(item: discussion, akismet_params: akismet_params, result_spam: is_spam, result_blatant: is_blatant)
+    AkismetSubmission.create!(item: discussion, akismet_params:, result_spam: is_spam, result_blatant: is_blatant)
 
     return unless is_spam
 

@@ -15,17 +15,17 @@ module ScriptsHelper
       l = label
       is_link = false
     elsif is_libraries
-      l = link_to label, libraries_scripts_path(sort: sort_param_to_use, q: params[:q], set: set), rel: rel
+      l = link_to label, libraries_scripts_path(sort: sort_param_to_use, q: params[:q], set:), rel: rel
     elsif is_minified
       l = link_to label, minified_scripts_path(sort: sort_param_to_use), rel: rel
     elsif is_code_search
       l = link_to label, code_search_scripts_path(sort: sort_param_to_use, c: params[:c]), rel: rel
     elsif site.nil?
-      l = link_to label, { sort: sort_param_to_use, site: nil, set: set, q: params[:q], language: language, filter_locale: filter_locale }, rel: rel
+      l = link_to label, { sort: sort_param_to_use, site: nil, set:, q: params[:q], language:, filter_locale: }, rel: rel
     elsif params[:controller] == 'users'
-      l = link_to label, { sort: sort_param_to_use, site: site, set: set, language: language, filter_locale: filter_locale }, rel: rel
+      l = link_to label, { sort: sort_param_to_use, site:, set:, language:, filter_locale: }, rel: rel
     else
-      l = link_to label, by_site_scripts_path(sort: sort_param_to_use, site: site, set: set, q: params[:q], language: language, filter_locale: filter_locale), rel: rel
+      l = link_to label, by_site_scripts_path(sort: sort_param_to_use, site:, set:, q: params[:q], language:, filter_locale:), rel:
     end
     tag.li(class: "list-option#{is_link ? '' : ' list-current'}") { l }
   end
@@ -68,7 +68,7 @@ module ScriptsHelper
   def content_for_script_applies_to_that_has_domain(sat, count_of_other_scripts)
     if !sat.site_application.blocked && count_of_other_scripts > 0
       title = t('scripts.applies_to_link_title', count: count_of_other_scripts, site: sat.text)
-      return link_to(sat.text, by_site_scripts_path(site: sat.text), { title: title })
+      return link_to(sat.text, by_site_scripts_path(site: sat.text), { title: })
     end
     return sat.text
   end

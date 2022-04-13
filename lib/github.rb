@@ -41,7 +41,7 @@ class Github
 
       urls = possible_sync_urls_for_repo_url(repo_url)
       sync_identifiers = Script.where((['sync_identifier LIKE ?'] * urls.count).join(' OR '), *urls.map { |url| "#{Script.sanitize_sql_like(url)}%" }).pluck(:sync_identifier)
-      sync_identifiers.map { |file| file_from_root_for_url(file, repo_url) }.index_with { |file| { messages: [release_name], urls: urls_for_ref(repo_url, ref, file) + urls_for_ref(repo_url, default_branch, file), ref: ref } }
+      sync_identifiers.map { |file| file_from_root_for_url(file, repo_url) }.index_with { |file| { messages: [release_name], urls: urls_for_ref(repo_url, ref, file) + urls_for_ref(repo_url, default_branch, file), ref: } }
     end
 
     def urls_for_ref(repo_url, ref, file)

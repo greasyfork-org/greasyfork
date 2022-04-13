@@ -23,7 +23,7 @@ class HomeController < ApplicationController
     end
 
     # Just using Comment as a container - it could really be anything.
-    comment = Comment.new(text: text, text_markup: params[:markup])
+    comment = Comment.new(text:, text_markup: params[:markup])
     comment.construct_mentions(detect_possible_mentions(comment.text, comment.text_markup))
 
     render html: format_user_text(comment.text, comment.text_markup, mentions: comment.mentions)

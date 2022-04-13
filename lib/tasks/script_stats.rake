@@ -5,7 +5,7 @@ namespace :script_stats do
   task refresh: :environment do
     (Locale.where(ui_available: true).pluck(:id) + [nil]).each do |locale_id|
       SCRIPT_STATS_SITES.each do |script_subset|
-        TopSitesService.get_by_sites(script_subset: script_subset, locale_id: locale_id, force: true)
+        TopSitesService.get_by_sites(script_subset:, locale_id:, force: true)
       end
     end
   end

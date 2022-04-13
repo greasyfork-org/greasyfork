@@ -113,8 +113,8 @@ class ScriptVersion < ApplicationRecord
 
   # Delete the code if not in use by another version.
   after_destroy do
-    script_code.destroy! if script_code.present? && ScriptVersion.where(['script_code_id = ? or rewritten_script_code_id = ?', script_code_id, script_code_id]).where.not(id: id).none?
-    rewritten_script_code.destroy! if rewritten_script_code.present? && ScriptVersion.where(['script_code_id = ? or rewritten_script_code_id = ?', rewritten_script_code_id, rewritten_script_code_id]).where.not(id: id).none?
+    script_code.destroy! if script_code.present? && ScriptVersion.where(['script_code_id = ? or rewritten_script_code_id = ?', script_code_id, script_code_id]).where.not(id:).none?
+    rewritten_script_code.destroy! if rewritten_script_code.present? && ScriptVersion.where(['script_code_id = ? or rewritten_script_code_id = ?', rewritten_script_code_id, rewritten_script_code_id]).where.not(id:).none?
   end
 
   def warnings
@@ -223,7 +223,7 @@ class ScriptVersion < ApplicationRecord
     return false if allow_code_previously_posted || !new_record?
 
     hash = script_code.calculate_hash
-    previously_posted_scope = ScriptVersion.joins(:script).merge(Script.not_deleted).where.not(script_id: script_id)
+    previously_posted_scope = ScriptVersion.joins(:script).merge(Script.not_deleted).where.not(script_id:)
     # Split into two queries to better use the indexes.
     self.previously_posted_scripts = (
           previously_posted_scope.joins(:script_code).where(script_codes: { code_hash: hash }) +
@@ -392,7 +392,7 @@ class ScriptVersion < ApplicationRecord
     add_if_missing[:namespace] = backup_namespace unless backup_namespace.nil?
     add_if_missing[:description] = previous_description unless previous_description.nil?
     rewritten_meta = parser_class.inject_meta(code, {
-                                                version: version,
+                                                version:,
                                                 updateURL: nil,
                                                 installURL: nil,
                                                 downloadURL: nil,
@@ -532,7 +532,7 @@ class ScriptVersion < ApplicationRecord
     ScriptVersion
       .joins(:script)
       .merge(Script.not_deleted)
-      .where.not(script_id: script_id)
+      .where.not(script_id:)
       .where(['script_code_id IN (?) OR rewritten_script_code_id IN (?)', script_code_ids, script_code_ids])
   end
 

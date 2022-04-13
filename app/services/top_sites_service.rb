@@ -12,7 +12,7 @@ class TopSitesService
                           ''
                         end
         locale_clause = if locale_id
-                          "AND s.id IN (#{([0] + LocalizedScriptAttribute.where(locale_id: locale_id).distinct.pluck(:script_id)).join(',')})"
+                          "AND s.id IN (#{([0] + LocalizedScriptAttribute.where(locale_id:).distinct.pluck(:script_id)).join(',')})"
                         else
                           ''
                         end
@@ -47,7 +47,7 @@ class TopSitesService
 
     def get_top_by_sites(script_subset:, locale_id: nil, user_id: nil)
       return ApplicationController.cache_with_log("scripts/get_top_by_sites/#{script_subset}/#{locale_id}/#{user_id}") do
-        get_by_sites(script_subset: script_subset, locale_id: locale_id, user_id: user_id).sort { |a, b| b[1][:installs] <=> a[1][:installs] }.first(10)
+        get_by_sites(script_subset:, locale_id:, user_id:).sort { |a, b| b[1][:installs] <=> a[1][:installs] }.first(10)
       end
     end
 

@@ -7,7 +7,7 @@ class MentionsUsersTest < ActiveSupport::TestCase
     comment = create_comment('@"Gordon J. Canada", have you met @Geoffrey?')
     assert_equal ['Geoffrey', 'Gordon J. Canada'], comment.mentions.map(&:user).map(&:name).sort
 
-    comment = create_comment('@"Junior J. Junior, Sr.", have you met @Geoffrey?', comment: comment)
+    comment = create_comment('@"Junior J. Junior, Sr.", have you met @Geoffrey?', comment:)
     assert_equal ['Geoffrey', 'Junior J. Junior, Sr.'], comment.mentions.map(&:user).map(&:name).sort
   end
 
@@ -16,7 +16,7 @@ class MentionsUsersTest < ActiveSupport::TestCase
       comment.text = text
     else
       discussion = discussions(:script_discussion)
-      comment = discussion.comments.build(poster: users(:one), text_markup: 'markdown', text: text)
+      comment = discussion.comments.build(poster: users(:one), text_markup: 'markdown', text:)
     end
 
     comment.construct_mentions(detect_possible_mentions(comment.text, comment.text_markup))

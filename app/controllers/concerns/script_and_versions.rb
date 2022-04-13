@@ -35,7 +35,7 @@ module ScriptAndVersions
         end
         return true
       end
-      render_deleted(script: script)
+      render_deleted(script:)
       return true
     end
 
@@ -97,7 +97,7 @@ module ScriptAndVersions
 
           @scripts = Script.search(
             params[:q],
-            with: with,
+            with:,
             per_page: 5,
             order: 'daily_installs DESC',
             populate: true,

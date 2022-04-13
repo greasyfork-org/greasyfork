@@ -61,7 +61,7 @@ class User < ApplicationRecord
     next unless canonical_email && banned_at
 
     hash = Digest::SHA1.hexdigest(BANNED_EMAIL_SALT + canonical_email)
-    BannedEmailHash.create(email_hash: hash, deleted_at: Time.current, banned_at: banned_at) unless BannedEmailHash.where(email_hash: hash).any?
+    BannedEmailHash.create(email_hash: hash, deleted_at: Time.current, banned_at:) unless BannedEmailHash.where(email_hash: hash).any?
   end
 
   def self.email_previously_banned_and_deleted?(email)
@@ -121,7 +121,7 @@ class User < ApplicationRecord
   end
 
   validate do
-    errors.add(:base, 'This email has been banned.') if (new_record? || email_changed? || unconfirmed_email_changed?) && (User.banned.where(canonical_email: canonical_email).any? || User.email_previously_banned_and_deleted?(canonical_email))
+    errors.add(:base, 'This email has been banned.') if (new_record? || email_changed? || unconfirmed_email_changed?) && (User.banned.where(canonical_email:).any? || User.email_previously_banned_and_deleted?(canonical_email))
   end
 
   # Devise runs this when password_required?, and we override that so
@@ -201,7 +201,7 @@ class User < ApplicationRecord
       s.locked = true
       s.delete_type = delete_type
       s.save(validate: false)
-      ModeratorAction.create!(moderator: moderator, script: s, action: 'Delete and lock', reason: reason, report: report)
+      ModeratorAction.create!(moderator:, script: s, action: 'Delete and lock', reason:, report:)
     end
   end
 
@@ -237,35 +237,35 @@ class User < ApplicationRecord
 
     User.transaction do
       ModeratorAction.create!(
-        moderator: moderator,
+        moderator:,
         user: self,
         action: 'Ban',
-        reason: reason,
-        private_reason: private_reason,
-        report: report
+        reason:,
+        private_reason:,
+        report:
       )
       update_columns(banned_at: Time.current)
-      reports_as_reporter.unresolved.each { |reported_reports| reported_reports.dismiss!(moderator: moderator, moderator_notes: 'User banned.') }
+      reports_as_reporter.unresolved.each { |reported_reports| reported_reports.dismiss!(moderator:, moderator_notes: 'User banned.') }
     end
 
     if ban_related
-      User.not_banned.where(canonical_email: canonical_email).find_each do |user|
-        user.ban!(moderator: moderator, reason: reason, delete_comments: delete_scripts, delete_scripts: delete_scripts, private_reason: private_reason, ban_related: false, report: report)
+      User.not_banned.where(canonical_email:).find_each do |user|
+        user.ban!(moderator:, reason:, delete_comments: delete_scripts, delete_scripts:, private_reason:, ban_related: false, report:)
       end
     end
 
     delete_all_comments!(by_user: moderator) if delete_comments
-    lock_all_scripts!(reason: reason, report: report, moderator: moderator, delete_type: 'blanked') if delete_scripts
+    lock_all_scripts!(reason:, report:, moderator:, delete_type: 'blanked') if delete_scripts
 
     Report.unresolved.where(item: self).find_each do |other_report|
-      other_report.uphold!(moderator: moderator)
+      other_report.uphold!(moderator:)
     end
 
     return unless delete_scripts
 
     # Resolve any reports on the user's deleted scripts
     Report.unresolved.where(item: scripts).find_each do |other_report|
-      other_report.uphold!(moderator: moderator)
+      other_report.uphold!(moderator:)
     end
   end
 
@@ -282,11 +282,11 @@ class User < ApplicationRecord
   end
 
   def subscribed_to?(discussion)
-    discussion_subscriptions.where(discussion: discussion).any?
+    discussion_subscriptions.where(discussion:).any?
   end
 
   def subscribed_to_conversation?(conversation)
-    conversation_subscriptions.where(conversation: conversation).any?
+    conversation_subscriptions.where(conversation:).any?
   end
 
   # Override devise's method to send async. https://github.com/heartcombo/devise#activejob-integration
@@ -307,8 +307,8 @@ class User < ApplicationRecord
   end
 
   def delete_all_comments!(by_user: nil)
-    discussions.not_deleted.each { |discussion| discussion.soft_destroy!(by_user: by_user) }
-    comments.not_deleted.each { |comment| comment.soft_destroy!(by_user: by_user) }
+    discussions.not_deleted.each { |discussion| discussion.soft_destroy!(by_user:) }
+    comments.not_deleted.each { |comment| comment.soft_destroy!(by_user:) }
     Report.unresolved.where(item: discussions + comments).find_each { |report| report.uphold!(moderator: by_user) }
   end
 

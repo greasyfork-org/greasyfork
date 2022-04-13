@@ -29,7 +29,7 @@ class ScriptVersionsController < ApplicationController
     if params[:list_all] == '1'
       @paginate = false
     else
-      @script_versions = @script_versions.paginate(page: page_number, per_page: per_page)
+      @script_versions = @script_versions.paginate(page: page_number, per_page:)
     end
 
     respond_to do |format|
@@ -164,7 +164,7 @@ class ScriptVersionsController < ApplicationController
       attribute_value = additional_info_params['attribute_value']
       attribute_default = additional_info_params['attribute_default'] == 'true'
       value_markup = additional_info_params['value_markup']
-      additional_info_la = @script_version.localized_attributes.build({ attribute_key: 'additional_info', attribute_value: attribute_value, attribute_default: attribute_default, locale_id: locale_id, value_markup: value_markup }) unless save_record && attribute_value.blank?
+      additional_info_la = @script_version.localized_attributes.build({ attribute_key: 'additional_info', attribute_value:, attribute_default:, locale_id:, value_markup: }) unless save_record && attribute_value.blank?
       additional_info_la&.construct_mentions(detect_possible_mentions(additional_info_la.attribute_value, additional_info_la.value_markup))
     end
 

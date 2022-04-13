@@ -7,11 +7,11 @@ class ScriptPreviouslyDeletedChecker < ApplicationJob
     return if script.locked?
 
     similar_locked_scripts = ScriptSimilarity
-                             .where(script_id: script_id)
+                             .where(script_id:)
                              .joins(:other_script)
                              .where(scripts: { locked: true })
 
-    clean_length = CleanedCode.find_by(script_id: script_id)&.code&.length
+    clean_length = CleanedCode.find_by(script_id:)&.code&.length
 
     # Be more lenient if it's a very short (code-wise) script.
     similar_locked_scripts = if clean_length && clean_length < 250
@@ -33,7 +33,7 @@ class ScriptPreviouslyDeletedChecker < ApplicationJob
     Report.create!(
       item: script,
       auto_reporter: 'hardy',
-      reason: reason,
+      reason:,
       explanation_markup: 'markdown',
       explanation: <<~TEXT)
         Script is similar to previously deleted scripts:

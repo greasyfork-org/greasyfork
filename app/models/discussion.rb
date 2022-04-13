@@ -96,25 +96,25 @@ class Discussion < ApplicationRecord
 
   def path(locale: nil)
     if script
-      Rails.application.routes.url_helpers.script_discussion_path(script, self, locale: locale)
+      Rails.application.routes.url_helpers.script_discussion_path(script, self, locale:)
     else
-      Rails.application.routes.url_helpers.category_discussion_path(self, category: discussion_category, locale: locale)
+      Rails.application.routes.url_helpers.category_discussion_path(self, category: discussion_category, locale:)
     end
   end
 
   def url(locale: nil)
     if script
-      Rails.application.routes.url_helpers.script_discussion_url(script, self, locale: locale, host: script.host)
+      Rails.application.routes.url_helpers.script_discussion_url(script, self, locale:, host: script.host)
     else
-      Rails.application.routes.url_helpers.category_discussion_url(self, category: discussion_category, locale: locale)
+      Rails.application.routes.url_helpers.category_discussion_url(self, category: discussion_category, locale:)
     end
   end
 
   def display_title(locale: nil)
     return title if title
-    return I18n.t('discussions.review_title', script_name: script.name(locale), locale: locale) if actual_rating?
+    return I18n.t('discussions.review_title', script_name: script.name(locale), locale:) if actual_rating?
 
-    I18n.t('discussions.question_title', script_name: script.name(locale), locale: locale)
+    I18n.t('discussions.question_title', script_name: script.name(locale), locale:)
   end
 
   def update_stats!

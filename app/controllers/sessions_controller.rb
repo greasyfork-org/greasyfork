@@ -23,11 +23,11 @@ class SessionsController < Devise::SessionsController
       delete_link = new_user_session_path(return_to: BANNED_DELETE_PATH)
       flash[:html_safe] = true
       flash[:alert] = if moderator_action&.report
-                        It.it('users.banned_notice.with_report', report_link: report_path(moderator_action.report), delete_link: delete_link)
+                        It.it('users.banned_notice.with_report', report_link: report_path(moderator_action.report), delete_link:)
                       elsif moderator_action&.reason.present?
-                        It.it('users.banned_notice.with_reason', reason: moderator_action.reason, delete_link: delete_link)
+                        It.it('users.banned_notice.with_reason', reason: moderator_action.reason, delete_link:)
                       else
-                        It.it('users.banned_notice.no_report_no_reason', delete_link: delete_link)
+                        It.it('users.banned_notice.no_report_no_reason', delete_link:)
                       end
       return root_path
     end
@@ -71,7 +71,7 @@ class SessionsController < Devise::SessionsController
           (o[:extra] && o[:extra][:raw_info] && o[:extra][:raw_info][:profile]) # Google
 
     # does the identity already exist?
-    identity = Identity.find_by(provider: provider, uid: uid)
+    identity = Identity.find_by(provider:, uid:)
     unless identity.nil?
       # existing user
       user = identity.user
@@ -99,7 +99,7 @@ class SessionsController < Devise::SessionsController
 
     # user already logged in - add identity to their account
     unless current_user.nil?
-      identity = Identity.new(provider: provider, uid: uid, syncing: false, url: url, user: current_user)
+      identity = Identity.new(provider:, uid:, syncing: false, url:, user: current_user)
       unless identity.valid?
         handle_omniauth_failure(identity.errors.full_messages.join(', '))
         return
@@ -113,7 +113,7 @@ class SessionsController < Devise::SessionsController
 
     # does another user already have that e-mail?
     unless email.nil?
-      @same_email_user = User.find_by(email: email)
+      @same_email_user = User.find_by(email:)
       unless @same_email_user.nil?
         @provider = Identity.pretty_provider(provider)
         @email = email
@@ -130,7 +130,7 @@ class SessionsController < Devise::SessionsController
     end
 
     # does another user already have that name?
-    same_name_user = User.find_by(name: name)
+    same_name_user = User.find_by(name:)
     unless same_name_user.nil?
       @provider = provider
       @name = name
@@ -139,8 +139,8 @@ class SessionsController < Devise::SessionsController
     end
 
     # create a new user
-    identity = Identity.new(provider: provider, uid: uid, syncing: true, url: url)
-    user = User.new(name: name, email: email, locale_id: session[:locale_id], identities: [identity])
+    identity = Identity.new(provider:, uid:, syncing: true, url:)
+    user = User.new(name:, email:, locale_id: session[:locale_id], identities: [identity])
     identity.user = user
     unless user.save
       handle_omniauth_failure(user.errors.full_messages.join(', '))
@@ -148,7 +148,7 @@ class SessionsController < Devise::SessionsController
     end
     sign_in user
     remember_me user if session[:remember_me] || params[:remember_me]
-    flash[:notice] = t('users.external_sign_in_confirmation', site_name: site_name, provider: identity.pretty_provider, username: user.name)
+    flash[:notice] = t('users.external_sign_in_confirmation', site_name:, provider: identity.pretty_provider, username: user.name)
     redirect_to return_to || after_sign_in_path_for(user)
   end
 
@@ -177,7 +177,7 @@ class SessionsController < Devise::SessionsController
   private
 
   def handle_omniauth_failure(error = 'unknown')
-    flash[:notice] = t('users.external_sign_in_failed', provider: Identity.pretty_provider(params[:provider] || params[:strategy]), error: error)
+    flash[:notice] = t('users.external_sign_in_failed', provider: Identity.pretty_provider(params[:provider] || params[:strategy]), error:)
     redirect_to clean_redirect_param(:origin) || request.env['omniauth.origin'] || new_user_session_path
   end
 

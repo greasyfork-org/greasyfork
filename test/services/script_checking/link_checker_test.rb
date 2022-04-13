@@ -109,7 +109,7 @@ module ScriptChecking
     end
 
     def check_script_with_code(code)
-      script_version = ScriptVersion.new(code: code)
+      script_version = ScriptVersion.new(code:)
       ScriptChecking::LinkChecker.check(script_version)
     end
 

@@ -90,7 +90,7 @@ module ApplicationHelper
 
   def highlighted_scripts(restrict_to_ad_method: nil)
     highlighted_scripts_ids = cache_with_log("scripts/highlighted/#{script_subset}/#{I18n.locale}/#{restrict_to_ad_method}") do
-      highlighted_script_ids_for_locale(locale: I18n.locale, script_subset: script_subset, restrict_to_ad_method: restrict_to_ad_method)
+      highlighted_script_ids_for_locale(locale: I18n.locale, script_subset:, restrict_to_ad_method:)
     end
     Script.includes(localized_attributes: :locale).where(id: highlighted_scripts_ids.to_a)
   end

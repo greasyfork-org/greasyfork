@@ -18,7 +18,7 @@ module Admin
         urls[m[1]] = (urls[m[1]] || 0) + row[1].delete(',').to_i
       end
       urls.each do |script_id, page_views|
-        Script.where(id: script_id).update_all(page_views: page_views)
+        Script.where(id: script_id).update_all(page_views:)
       end
       flash[:notice] = 'Uploaded' # rubocop:disable Rails/I18nLocaleTexts
       redirect_to pending_admin_ads_path

@@ -19,13 +19,13 @@ class Comment < ApplicationRecord
   strip_attributes only: :text
 
   def path(locale: nil)
-    discussion_path = discussion.path(locale: locale)
+    discussion_path = discussion.path(locale:)
     discussion_path += "#comment-#{id}" unless first_comment?
     discussion_path
   end
 
   def url(locale: nil)
-    discussion_url = discussion.url(locale: locale)
+    discussion_url = discussion.url(locale:)
     discussion_url += "#comment-#{id}" unless first_comment?
     discussion_url
   end

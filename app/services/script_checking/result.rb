@@ -16,9 +16,9 @@ module ScriptChecking
 
     def as_json(_options = {})
       {
-        code: code,
-        public_reason: public_reason,
-        private_reason: private_reason,
+        code:,
+        public_reason:,
+        private_reason:,
         related_object_id: related_object&.id,
         related_object_class: related_object&.class&.name,
       }

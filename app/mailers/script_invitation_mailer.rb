@@ -4,16 +4,16 @@ class ScriptInvitationMailer < ApplicationMailer
     mail(
       to: invitation.invited_user.email,
       subject: t('scripts.invitations.subject',
-                 site_name: site_name,
+                 site_name:,
                  script_name: invitation.script.name(locale),
-                 locale: locale)
+                 locale:)
     ) do |format|
       format.html do
         render plain: t('scripts.invitations.body',
-                        site_name: site_name,
+                        site_name:,
                         script_name: invitation.script.name(locale),
-                        script_url: script_url(invitation.script, locale: locale),
-                        accept_url: accept_invitation_script_url(invitation.script, locale: locale))
+                        script_url: script_url(invitation.script, locale:),
+                        accept_url: accept_invitation_script_url(invitation.script, locale:))
       end
     end
   end

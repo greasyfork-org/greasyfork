@@ -8,8 +8,8 @@ class ReportsController < ApplicationController
   end
 
   def new
-    @report = Report.new(item: item, reporter: current_user, explanation_markup: current_user&.preferred_markup)
-    previous_report = Report.unresolved.where(item: item, reporter: current_user).first
+    @report = Report.new(item:, reporter: current_user, explanation_markup: current_user&.preferred_markup)
+    previous_report = Report.unresolved.where(item:, reporter: current_user).first
     redirect_to report_path(previous_report) if previous_report
   end
 
@@ -152,7 +152,7 @@ class ReportsController < ApplicationController
     rebuttal = params[:report][:rebuttal]
 
     if rebuttal.present?
-      @report.rebut!(rebuttal: rebuttal, by: current_user)
+      @report.rebut!(rebuttal:, by: current_user)
       ScriptReportMailer.report_rebutted(@report, site_name).deliver_later
     end
 

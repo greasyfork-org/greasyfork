@@ -22,7 +22,7 @@ class CodeSimilarityScorer
 
     if tersed
       CleanedCode.where(script_id: other_scripts.pluck(:id)).find_each(batch_size: 100) do |cleaned_code|
-        results[cleaned_code.script_id] = score_for_codes(base_code, cleaned_code.code, base_length: base_length, base_compressed_length: base_compressed_length, compressed_length_if_identical: compressed_length_if_identical)
+        results[cleaned_code.script_id] = score_for_codes(base_code, cleaned_code.code, base_length:, base_compressed_length:, compressed_length_if_identical:)
       end
 
       return results
@@ -38,7 +38,7 @@ class CodeSimilarityScorer
 
       slice.each do |script_id, code_id|
         other_code = script_code_id_to_code[code_id]
-        results[script_id] = score_for_codes(base_code, other_code, base_length: base_length, base_compressed_length: base_compressed_length, compressed_length_if_identical: compressed_length_if_identical)
+        results[script_id] = score_for_codes(base_code, other_code, base_length:, base_compressed_length:, compressed_length_if_identical:)
       end
     end
 

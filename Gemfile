@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '3.0.3'
+ruby '3.1.1'
 
 gem 'bootsnap'
 gem 'daemons'
@@ -24,7 +24,7 @@ gem 'sentry-rails'
 gem 'sentry-ruby'
 gem 'sidekiq'
 gem 'strip_attributes'
-gem 'thinking-sphinx'
+gem 'thinking-sphinx', git: 'https://github.com/pat/thinking-sphinx'
 gem 'transifex-ruby'
 gem 'ts-sidekiq-delta'
 gem 'user_agent_parser'
