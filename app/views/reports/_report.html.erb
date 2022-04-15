@@ -148,7 +148,7 @@
             <ul>
               <% other_report.script_lock_appeals.each do |sla| %>
                 <li>
-                  <%= link_to "Appeal ##{sla.id}", script_script_lock_appeal_path(report.script, sla) %> - <%= sla.resolution %>
+                  <%= link_to "Appeal ##{sla.id}", script_script_lock_appeal_path(report.item, sla) %> - <%= sla.resolution %>
                 </li>
               <% end %>
             </ul>
@@ -177,7 +177,14 @@
     <%= t('reports.reported_user_activity_html', user: render_user(reported_user, reported_user.id)) %>
   </p>
   <ul>
-    <li><%= link_to t('activerecord.models.script', count: reported_user.scripts.not_deleted.count), user_path(reported_user.id, anchor: 'user-script-list') %></li>
+    <li>
+      <%= link_to t('activerecord.models.script', count: reported_user.scripts.not_deleted.count), user_path(reported_user.id, anchor: 'user-script-list') %>
+      <% if current_user&.moderator? %>
+        <% if (locked_count = reported_user.scripts.locked.count) > 0 %>
+          (and <%= locked_count %> locked <%= 'script'.pluralize(locked_count) %>)
+        <% end %>
+      <% end %>
+    </li>
     <li><%= link_to t('activerecord.models.comment', count: reported_user.comments.not_deleted.count), discussions_path(user: reported_user.id) %></li>
   </ul>
 <% end %>
