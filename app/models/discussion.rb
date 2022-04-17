@@ -8,6 +8,10 @@ class Discussion < ApplicationRecord
   RATING_OK = 3
   RATING_GOOD = 4
 
+  REVIEW_REASON_AKISMET = 'akismet'.freeze
+  REVIEW_REASON_RAINMAN = 'rainman'.freeze
+  REVIEW_REASON_TRUSTED = 'trusted'.freeze
+
   # Optional because the user may no longer exist.
   belongs_to :poster, class_name: 'User', optional: true
   belongs_to :script, optional: true
