@@ -2,6 +2,8 @@ class DiscussionSpamCheckJob < ApplicationJob
   queue_as :low
 
   def perform(discussion, ip, user_agent, referrer)
+    return if discussion.soft_deleted?
+
     return if pattern_check(discussion)
 
     check_with_akismet(discussion, ip, user_agent, referrer)
