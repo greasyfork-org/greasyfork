@@ -99,7 +99,7 @@ a.discussion-title {
 .discussion-title:hover {
   color: #333;
 }
-.rating-icon {
+.rating-icon, .badge-deleted {
   border: 2px solid black;
   border-radius: 5px;
   font-size: 12px;
@@ -161,6 +161,9 @@ a.discussion-title {
 }
 .discussion-header h2, .discussion-header .discussion-up-level {
   margin: 0;
+}
+.discussion-header .badge {
+  vertical-align: middle;
 }
 .discussion-actions {
   font-size: smaller;

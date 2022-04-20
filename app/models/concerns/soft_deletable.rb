@@ -7,6 +7,7 @@ module SoftDeletable
     belongs_to :deleted_by_user, class_name: 'User', optional: true
 
     scope :not_deleted, -> { where(deleted_at: nil) }
+    scope :soft_deleted, -> { where.not(deleted_at: nil) }
 
     define_model_callbacks :soft_destroy
   end

@@ -21,6 +21,7 @@
       </p>
     <% end %>
     <h2>
+      <%= render_discussion_badge('deleted') if @discussion.soft_deleted? %>
       <% if @discussion.title %>
         <%= @discussion.title %>
       <% elsif @discussion.actual_rating? %>
@@ -30,7 +31,7 @@
       <% end %>
     </h2>
   </div>
-  <% if current_user %>
+  <% if current_user && !@discussion.soft_deleted? %>
     <div class="discussion-actions">
       <div class="discussion-subscription-links <%= current_user.subscribed_to?(@discussion) ? 'discussion-subscribed' : 'discussion-not-subscribed' %>">
         <%= link_to t('discussions.subscribe'), scoped_subscribe_path(@discussion), method: :POST, remote: true, class: 'discussion-subscribe' %>
@@ -44,7 +45,9 @@
   <p id="reported-note"><%= t('discussions.pending_moderator_review') %></p>
 <% end %>
 
-<% @discussion.comments.not_deleted.reject(&:new_record?).each do |comment| %>
+<% comment_scope = @discussion.comments %>
+<% comment_scope = comment_scope.not_deleted unless @discussion.soft_deleted? %>
+<% comment_scope.reject(&:new_record?).each do |comment| %>
   <% by_current_user = comment.poster && current_user == comment.poster %>
   <div class="comment" id="comment-<%= comment.id %>">
     <div class="comment-meta">
@@ -63,17 +66,17 @@
         </div>
       <% end %>
       <div class="comment-meta-spacer"></div>
-      <% if comment.editable_by?(current_user) %>
+      <% if comment.editable_by?(current_user) && !@discussion.soft_deleted? %>
         <div class="comment-meta-item">
           <%= link_to t('discussions.edit_comment_link'), '#', class: 'edit-comment', data: { comment_container: "comment-#{comment.id}" } %>
         </div>
       <% end %>
-      <% if current_user %>
+      <% if current_user && !@discussion.soft_deleted? %>
         <div class="comment-meta-item">
           <%= link_to t('discussions.quote_comment'), '#', class: 'quote-comment' %>
         </div>
       <% end %>
-      <% if current_user&.moderator? || comment.deletable_by?(current_user) %>
+      <% if !@discussion.soft_deleted? && (current_user&.moderator? || comment.deletable_by?(current_user)) %>
         <div class="comment-meta-item">
           <% if comment.first_comment? %>
             <%= link_to t('discussions.delete_discussion'), comment.discussion.path, method: :DELETE, data: { confirm: t('discussions.delete_discussion_confirm') } %>
@@ -82,7 +85,7 @@
           <% end %>
         </div>
       <% end %>
-      <% unless by_current_user || comment.new_record? %>
+      <% unless by_current_user || comment.new_record? || comment.soft_deleted? %>
         <div class="comment-meta-item">
           <% if comment.first_comment? %>
             <%= link_to t('reports.report_comment'), new_report_path(item_class: 'discussion', item_id: comment.discussion_id), class: 'report-link', rel: :nofollow %>
@@ -121,27 +124,29 @@
     <% end %>
   </div>
 <% end %>
-<div id="post-reply" class="post-reply">
-  <h3><%= t('discussions.new_comment_heading') %></h3>
-  <% if current_user && @comment %>
+<% unless @discussion.soft_deleted? %>
+  <div id="post-reply" class="post-reply">
+    <h3><%= t('discussions.new_comment_heading') %></h3>
+    <% if current_user && @comment %>
 
-    <%= render partial: 'shared/errors', locals: { resource: @comment } %>
+      <%= render partial: 'shared/errors', locals: { resource: @comment } %>
 
-    <%# Use an anchor so that on failure (with no redirect, we scroll down here) %>
-    <%= form_with(model: @comment, url: scoped_comment_create_path(@discussion, anchor: 'post-reply'), method: :POST) do |f| %>
-      <%= render partial: 'discussions/comment_entry', locals: { f: f } %>
-      <% if @script && @script.users.include?(current_user) && current_user.author_email_notification_type_id == User::AUTHOR_NOTIFICATION_COMMENT %>
-        <p class="form-note">
-          <%= it('discussions.notifying_on_script', notifications_link: notifications_user_path(current_user)) %>
-        </p>
-      <% else %>
-        <%= render partial: 'discussions/subscribe', locals: { subscribe: @subscribe} %>
+      <%# Use an anchor so that on failure (with no redirect, we scroll down here) %>
+      <%= form_with(model: @comment, url: scoped_comment_create_path(@discussion, anchor: 'post-reply'), method: :POST) do |f| %>
+        <%= render partial: 'discussions/comment_entry', locals: { f: f } %>
+        <% if @script && @script.users.include?(current_user) && current_user.author_email_notification_type_id == User::AUTHOR_NOTIFICATION_COMMENT %>
+          <p class="form-note">
+            <%= it('discussions.notifying_on_script', notifications_link: notifications_user_path(current_user)) %>
+          </p>
+        <% else %>
+          <%= render partial: 'discussions/subscribe', locals: { subscribe: @subscribe} %>
+        <% end %>
+        <%= f.submit t('discussions.new_comment_submit') %>
       <% end %>
-      <%= f.submit t('discussions.new_comment_submit') %>
+    <% else %>
+      <p>
+        <%= link_to t('discussions.sign_in_to_post_comment'), new_user_session_path(return_to: request.fullpath) %>
+      </p>
     <% end %>
-  <% else %>
-    <p>
-      <%= link_to t('discussions.sign_in_to_post_comment'), new_user_session_path(return_to: request.fullpath) %>
-    </p>
-  <% end %>
-</div>
+  </div>
+<% end %>

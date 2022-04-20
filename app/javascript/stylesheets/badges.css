@@ -7,9 +7,13 @@
   position: relative;
   top: -0.2ex;
 }
-.badge-banned {
+.badge-banned, .badge-deleted {
   background-color: rgba(255, 0, 0, 0.9);
   color: white;
+}
+.badge-deleted {
+  margin-left: 0;
+  border-color: rgba(255, 0, 0, 0.9);
 }
 .badge-moderator {
   background-color: rgba(26, 29, 168, 0.9);

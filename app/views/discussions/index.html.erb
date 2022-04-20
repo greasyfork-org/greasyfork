@@ -153,6 +153,30 @@
           </li>
         </ul>
       </div>
+
+      <% if current_user&.moderator? %>
+        <div class="list-option-group">
+          Visibility
+          <ul>
+            <% if @filter_result.visibility.nil? %>
+              <li class="list-option list-current">Public</li>
+            <% else %>
+              <li class="list-option"><%= link_to 'Public', current_path_with_params(visibility: nil, page: nil) %></li>
+            <% end %>
+            <% if @filter_result.visibility == 'private' %>
+              <li class="list-option list-current">Private</li>
+            <% else %>
+              <li class="list-option"><%= link_to 'Private', current_path_with_params(visibility: 'private', page: nil) %></li>
+            <% end %>
+            <% if @filter_result.visibility == 'all' %>
+              <li class="list-option list-current">All</li>
+            <% else %>
+              <li class="list-option"><%= link_to 'All', current_path_with_params(visibility: 'all', page: nil) %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
     </div>
   </div>
 </div>

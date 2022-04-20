@@ -27,7 +27,13 @@ class Discussion < ApplicationRecord
   scope :with_actual_rating, -> { where(rating: [RATING_BAD, RATING_OK, RATING_GOOD]) }
   scope :with_comment_by, ->(user) { where(id: Comment.where(poster: user).select(:discussion_id)) }
   scope :visible, -> { not_deleted.where(review_reason: nil) }
-  scope :permissive_visible, ->(user) { user.moderator? ? not_deleted : not_deleted.where('review_reason IS NULL OR poster_id = ?', user.id) }
+  scope :permissive_visible, lambda { |user|
+                               if user
+                                 user&.moderator? ? all : not_deleted.where('review_reason IS NULL OR discussions.poster_id = ?', user.id)
+                               else
+                                 visible
+                               end
+                             }
 
   accepts_nested_attributes_for :comments
 

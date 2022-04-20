@@ -57,4 +57,10 @@ module DiscussionHelper
 
     t(post ? 'discussions.user_activity.discussion.posted_html' : 'discussions.user_activity.discussion.replied_html', title: discussion.title)
   end
+
+  def render_discussion_badge(key)
+    text = t("discussions.badges.#{key}.short")
+    title = t("discussions.badges.#{key}.long")
+    tag.span(class: "badge badge-#{key}", title: text == title ? nil : title) { text }
+  end
 end

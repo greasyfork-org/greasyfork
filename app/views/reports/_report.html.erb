@@ -185,7 +185,14 @@
         <% end %>
       <% end %>
     </li>
-    <li><%= link_to t('activerecord.models.comment', count: reported_user.comments.not_deleted.count), discussions_path(user: reported_user.id) %></li>
+    <li>
+      <%= link_to t('activerecord.models.comment', count: reported_user.comments.not_deleted.count), discussions_path(user: reported_user.id, visibility: current_user&.moderator? ? 'all' : nil) %>
+      <% if current_user&.moderator? %>
+        <% if (locked_count = reported_user.discussions.soft_deleted.count) > 0 %>
+          (and <%= locked_count %> deleted <%= 'discussion'.pluralize(locked_count) %>)
+        <% end %>
+      <% end %>
+    </li>
   </ul>
 <% end %>
 

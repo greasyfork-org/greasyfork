@@ -3,7 +3,7 @@ class DiscussionsController < ApplicationController
   include ScriptAndVersions
   include UserTextHelper
 
-  FILTER_RESULT = Struct.new(:category, :by_user, :related_to_me, :read_status, :locale, :result)
+  FILTER_RESULT = Struct.new(:category, :by_user, :related_to_me, :read_status, :locale, :result, :visibility)
 
   before_action :check_read_only_mode, except: [:show, :index, :old_redirect]
   before_action :authenticate_user!, only: [:new, :create, :subscribe, :unsubscribe]
@@ -15,9 +15,9 @@ class DiscussionsController < ApplicationController
 
   def index
     @discussions = Discussion
-                   .visible
                    .includes(:poster, :script, :discussion_category, :stat_first_comment, :stat_last_replier)
                    .order(stat_last_reply_date: :desc)
+
     case script_subset
     when :sleazyfork
       @discussions = @discussions.where(scripts: { sensitive: true })
@@ -271,6 +271,21 @@ class DiscussionsController < ApplicationController
       end
     end
 
-    FILTER_RESULT.new(category, by_user, related_to_me, read_status, locale, discussions)
+    if current_user&.moderator?
+      visibility = params[:visibility]
+      case visibility
+      when 'all'
+        # No change
+      when 'private'
+        discussions = discussions.where('review_reason IS NOT NULL OR discussions.deleted_at IS NOT NULL')
+      else
+        visibility = nil
+        discussions = discussions.visible
+      end
+    else
+      discussions = discussions.permissive_visible(current_user)
+    end
+
+    FILTER_RESULT.new(category, by_user, related_to_me, read_status, locale, discussions, visibility)
   end
 end
