@@ -141,6 +141,7 @@ zh-CN:
     derivatives_similar_last_check_soon: "我们将会稍后查询与您的脚本相似的脚本。"
     derivatives_similar_last_check_again_soon_html: "我们在%{date}查询了与您的脚本相似的脚本。我们稍后会再次检查。"
     derivatives_similar_check_now: "再检查一次"
+    derivatives_similiar_queued: 类似脚本检查将在几分钟内完成。
     listing_title_all_sites: "适用于所有网站的用户脚本"
     listing_description_all_sites: "针对所有网站添加功能或解决问题的用户脚本"
     listing_title_for_site: "适用于 %{site} 的用户脚本"
@@ -245,6 +246,10 @@ zh-CN:
     additional_info_default_sync_html: "默认附加信息 (匹配 <code>@name</code> 的语言)"
     additional_info_localized_sync_html: "本地化的附加信息 (匹配 <code>@name:XX</code> 的语言)"
     sync_url_placeholder: "(链接)"
+    sync_successful: 脚本已同步完成。
+    sync_no_changes: 脚本已同步，但未发现更新。
+    sync_error: 脚本同步失败 - %{error}。
+    sync_turned_off: 脚本同步已关闭。
     screenshots_add: "添加："
     screenshots_remove: "移除"
     replacement_script_explanation: "（可选）选择另一个可替代此脚本的脚本。用户将被更新并重定向到此脚本。请输入替代脚本的网址："
@@ -637,6 +642,7 @@ zh-CN:
       save_success: 您的通知设定已更新。
       unsubscribe_all: 取消接收所有通知
       unsubscribe_all_success: 您已取消接收所有通知。
+    account_banned: 该账号已被封禁。
   webhooks:
     info:
       title: 设置 webhook
@@ -715,6 +721,7 @@ zh-CN:
       keywords_html: 脚本不得在 <code>@include</code>、<code>@match</code>、或关键字中包含脚本所不提供功能的页面。
       adult_content_rule: 含有成人内容或在成人网站上运行的脚本必须做出相应标记，来让其他用户选择是否在网站上看到它们。
       reposting_deleted: 不要重新发布因违反规则而被删除的脚本；请使用申诉功能。重新发布已删除的脚本可能会导致被封禁。
+      advertising_in_description: 脚本作者不得在 Greasy Fork 的页面，如脚本描述页面，放置广告。用于推广脚本作者的首页、代码仓库、Discord 交流群、微信等内容是允许的。
       reporting: 如果你发现有脚本未能遵守上述规则，请访问脚本的反馈页面并选择“举报脚本”来举报。
     external_scripts:
       title: "%{site_name} 对外部脚本的政策"
@@ -971,6 +978,7 @@ zh-CN:
         </ol>
     rebuttal_placeholder: '向管理员解释为什么这个脚本不应被删除。'
     submit_rebuttal: "申诉"
+    rebuttal_submitted: 一名管理员将审查该则举报与您提供的解释来作出决定。
     delete_script: "删除脚本"
     view_discussion: "查看讨论"
     load_diff: "查看对比（diff 格式）"

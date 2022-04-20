@@ -37,10 +37,10 @@ pl:
     update: "Aktualizacja do wersji %{version}"
     downgrade: "Powrót do wersji %{version}"
     reinstall: "Ponowna instalacja wersji %{version}"
-    old_version_warning: "To nie jest aktualna wersja skryptu. Jeśli ją zainstalujesz, nie zostanie ona automatycznie zaktualizowana do nowszej. Zainstalować pomimo to?"
-    promoted: "Promowane skrypty"
+    old_version_warning: "To nie jest najnowsza wersja tego skrypt. Jeśli go zainstalujesz, nigdy nie zostaniesz zaktualizowany do nowszej wersji. Mimo to zainstalować?"
+    promoted: "Skrypt promowany"
     author_promoted: "Skrypt zaproponowany przez autora"
-    promoted_text_html: "%{script_link}może Ci się również spodobać. "
+    promoted_text_html: "może Ci się również spodobać. %{script_link}"
     library_instructions_html: "Ten skrypt nie powinien być instalowany bezpośrednio. Jest to biblioteka dla innych skyptów do włączenia dyrektywą meta %{code}"
     deleted_notice: "Ten skrypt został usunięty."
     deleted_notice_with_related: "Żądany skrypt został usunięty. Oto kilka podobnych skryptów."
@@ -64,15 +64,15 @@ pl:
       keep: "Zachowaj to tak, jak jest."
     delete_permanently_heading: "Trwałe usunięcie"
     delete_permanently_explanation_html: >-
-        <p>Trwałe usunięcie skryptu usunie go wraz ze wszystkimi powiązanymi rekordami,
-        z wyjątkiem dyskusji na forum oraz logów działań moderatorów.</p> <p>Twój
-        skrypt zostanie trwale usunięty po 7 dniach od zgłoszenia. Możesz w tym czasie
-        anulować jego usunięcie. Po tym czasie przywrócenie skryptu jest niemożliwe
-        nawet przez moderatorów.</p>
-    delete_permanently_confirm: "Czy na pewno chcesz trwale usunąć swój skrypt?"
+        <p>Permamentnie usunięcie Twój skrypt usunie go wraz ze wszystkimi powiązanymi
+        rekordami, z wyjątkiem dyskusji na forum oraz logów działań moderator.</p>
+        <p>Twój skrypt zostanie permamentnie usunięty po 7 dniach od Twój zgłoszenia.
+        Możesz w tym czasie anulować jego usunięcie. Po tym czasie przywrócenie skryptu
+        jest niemożliwe nawet przez moderatorów.</p>
+    delete_permanently_confirm: "Czy na pewno chcesz permamentnie usunąć Twój skrypt?"
     delete_permanently_submit: "Usuń trwale"
     delete_permanently_immediate_submit: "Permanentnie usunięty"
-    delete_permanently_notice: "Prośba o usunięcie została zarejestrowana. Twój skrypt zostanie trwale usunięty w ciągu 7 dni."
+    delete_permanently_notice: "Prośba o usunięcie została zarejestrowana. Twój skrypt zostanie permamentnie usunięty w ciągu 7 dni."
     delete_permanently_already_requested: "Poprosiłeś o trwałe usunięcie %{datetime}."
     delete_permanently_notice_immediate: "Skrypt permanentnie usunięty."
     cancel_delete_permanently_submit: "Wycofaj prośbę o trwałe usunięcie"
