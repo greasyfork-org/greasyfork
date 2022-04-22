@@ -145,6 +145,7 @@ bg:
     derivatives_similar_last_check_soon: "След малко започва проверка за сходни скриптове на вашия."
     derivatives_similar_last_check_again_soon_html: "Последно проверихме за подобни на вашия скрипт на %{date}. След малко започва нова проверка."
     derivatives_similar_check_now: "Провери отново сега"
+    derivatives_similiar_queued: Проверката за сходност ще приключи след минути.
     listing_title_all_sites: "Скриптове, работещи на всички сайтове"
     listing_description_all_sites: "Скриптове, добавящи екстри или отстраняващи бъгове за всички сайтове"
     listing_title_for_site: "Скриптове за %{site}"
@@ -249,6 +250,10 @@ bg:
     additional_info_default_sync_html: "Допълнителна информация по подразбиране (езикът съвпада с <code>@name</code>)"
     additional_info_localized_sync_html: "За локализация (съвпада с <code>@name:XX</code>)"
     sync_url_placeholder: "(URL)"
+    sync_successful: Скриптът е синхронизиран успешно.
+    sync_no_changes: Синхронизацията на скрипта беше успешна, но нямаше намерени промени.
+    sync_error: Синхронизацията не беше успешна - %{error}.
+    sync_turned_off: Синхронизацията на скрипта е изключена.
     screenshots_add: "Добави:"
     screenshots_remove: "Премахни"
     replacement_script_explanation: "(По желание) Изберете друг скрипт, който заменя този. Въведете адреса (URL) на заменящия скрипт."
@@ -654,6 +659,7 @@ bg:
       save_success: Настройките за известията бяха обновени.
       unsubscribe_all: Отпиши се от всички известия
       unsubscribe_all_success: Отписа се от всички известия.
+    account_banned: Акаунтът е блокиран.
   webhooks:
     info:
       title: Настройване на webhook
@@ -1030,6 +1036,7 @@ bg:
         </ol>
     rebuttal_placeholder: 'Обяснете на модератора защо този скрипт не трябва да бъде изтрит.'
     submit_rebuttal: "Изпратете опровержение "
+    rebuttal_submitted: Модератор ще прегледа доклада и обяснението, и ще вземе решение.
     delete_script: "Изтрийте скрипта"
     view_discussion: "Вижте дискусията"
     load_diff: "Заредете diff"
@@ -1080,6 +1087,10 @@ bg:
       bad: "Лошо"
       ok: "ОК"
       good: "Добре"
+    badges:
+      deleted:
+        short: Изтрит
+        long: Изтрит
     sign_in_to_post_discussion: "Влезте, за да публикувате отзив, коментар или въпрос."
     sign_in_to_post_comment: "Влезте, за да публикувате отговор."
     user_filter:
