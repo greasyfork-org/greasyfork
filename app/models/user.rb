@@ -92,8 +92,8 @@ class User < ApplicationRecord
   end
 
   # Include default devise modules. Others available are:
-  # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable
+  # :lockable and :omniauthable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable, :timeoutable
 
   # Prevent session termination vulnerability
   # https://makandracards.com/makandra/53562-devise-invalidating-all-sessions-for-a-user
