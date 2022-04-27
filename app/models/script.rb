@@ -446,8 +446,8 @@ class Script < ApplicationRecord
     self.license_text = text
   end
 
-  def url
-    return url_helpers.script_url(self, locale: nil)
+  def url(locale: nil)
+    url_helpers.script_url(self, locale:)
   end
 
   def code_url

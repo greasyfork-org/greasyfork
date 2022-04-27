@@ -284,7 +284,7 @@ class UsersController < ApplicationController
   end
 
   def update_notifications
-    current_user.update!(params.require(:user).permit(:author_email_notification_type_id, :subscribe_on_discussion, :subscribe_on_comment, :subscribe_on_conversation_starter, :subscribe_on_conversation_receiver, :notify_on_mention))
+    current_user.update!(params.require(:user).permit(:author_email_notification_type_id, :subscribe_on_discussion, :subscribe_on_comment, :subscribe_on_conversation_starter, :subscribe_on_conversation_receiver, :notify_on_mention, :notify_as_reporter, :notify_as_reported))
     current_user.discussion_subscriptions.destroy_all if params[:unsubscribe_all_discussions] == '1'
     flash[:notice] = t('users.notifications.save_success')
     redirect_to user_path(current_user)
@@ -297,7 +297,9 @@ class UsersController < ApplicationController
       subscribe_on_comment: false,
       subscribe_on_conversation_starter: false,
       subscribe_on_conversation_receiver: false,
-      notify_on_mention: false
+      notify_on_mention: false,
+      notify_as_reporter: false,
+      notify_as_reported: false
     )
     current_user.discussion_subscriptions.destroy_all
     flash[:notice] = t('users.notifications.unsubscribe_all_success')

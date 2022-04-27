@@ -42,6 +42,18 @@
     </div>
   </div>
 
+  <div class="form-control">
+    <%= label_tag t('users.notifications.report_defaults.title') %>
+    <div>
+      <%= f.check_box :notify_as_reporter %>
+      <%= f.label :notify_as_reporter, t('users.notifications.report_defaults.reporter'), class: 'radio-label' %>
+    </div>
+    <div>
+      <%= f.check_box :notify_as_reported %>
+      <%= f.label :notify_as_reported, t('users.notifications.report_defaults.reported'), class: 'radio-label' %>
+    </div>
+  </div>
+
   <div>
     <%= f.submit t('users.notifications.save_button') %>
     <% if @user.author_email_notification_type_id != User::AUTHOR_NOTIFICATION_NONE || @user.subscribe_on_discussion || @user.subscribe_on_comment || @user.subscribe_on_conversation_starter || @user.subscribe_on_conversation_receiver || @user.notify_on_mention || @user.discussion_subscriptions.any? %>

@@ -1,0 +1,14 @@
+<%= it('mailers.script_report.report_upheld_reporter.body_html',
+       locale: @locale,
+       script_name: @report.item.name(@locale),
+       report_link: report_url(@report, locale: @locale),
+       script_link: @report.item.url(locale: @locale),
+       appeal_link: new_script_script_lock_appeal_url(@report.item, locale:, report_id: @report.id),
+       code_rules_link: help_code_rules_url,
+       site_name: @site_name,
+       reason: t("reports.reason.#{@report.reason}"))
+%>
+
+<hr>
+
+<p><%= it('mailers.script_report.reporter_outro', notification_preferences_link: @unsubscribe_url, site_name: @site_name) %></p>

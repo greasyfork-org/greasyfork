@@ -1,0 +1,12 @@
+<%= it('mailers.script_report.report_dismissed_offender.body_html',
+       locale: @locale,
+       script_name: @report.item.name(@locale),
+       report_link: report_url(@report, locale: @locale),
+       script_link: @report.item.url(locale: @locale),
+       site_name: @site_name,
+       reason: t("reports.reason.#{@report.reason}"))
+%>
+
+<hr>
+
+<p><%= it('mailers.script_report.reported_outro', notification_preferences_link: @unsubscribe_url, site_name: @site_name) %></p>
