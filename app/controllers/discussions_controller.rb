@@ -110,7 +110,7 @@ class DiscussionsController < ApplicationController
       @discussion.rating = Discussion::RATING_QUESTION if @discussion.by_script_author?
     end
 
-    if @discussion.report
+    if @discussion.report && @discussion.report.item.is_a?(Script)
       @discussion.script = @discussion.report.item
       @discussion.rating = Discussion::RATING_QUESTION
       @discussion.discussion_category = DiscussionCategory.script_discussions
