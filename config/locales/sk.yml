@@ -669,6 +669,10 @@ sk:
         title: Upozornenia na konverzácie
         starter: Predvolene, prihlásiť k odberu konverzácie, ktoré som začal/a
         receiver: Predvolene, prihlásiť k odberu konverzácie, do ktorých som sa zapojil/a a nezačal/a som ich
+      report_defaults:
+        title: Upozornenia o hláseniach
+        reporter: Dostávať upozornenie, keď bude hlásenie, ktoré ste vytvorili, vyriešené
+        reported: Dostať upozornenie, keď sa vytvorí alebo vyrieši hlásenie o veciach, ktoré ste odoslali
       save_button: Aktualizovať nastavenia upozornenia
       title: Upozornenia
       current_discussion_subscriptions:
@@ -1328,34 +1332,63 @@ sk:
     script_report:
       report_created_offender:
         subject: "Váš skript %{script_name} na %{site_name} bol nahlásený"
-        text: "Váš skript %{script_name} bol nahlásený pre porušovanie pravidiel %{site_name}. Konkrétny dôvod: %{reason}. Túto sťažnosť si môžete pozrieť na %{report_url} a odoslať obhajobu. Ak neodošlete obhajobu, váš skript môže byť moderátorom odstránený. Ak máte nejaké otázky, prejdite na https://greasyfork.org/forum/."
+        body_html: |
+            <p>
+            Váš skript %{script_link:%{script_name}} bol nahlásený pre porušenie pravidiel stránky %{site_name}. Konkrétny dôvod: %{reason}. Môžete %{report_link:preskúmať túto správu a predložiť námietky}. Ak nepodáte námietku, moderátori môžu váš skript odstrániť.
+            </p>
       report_upheld_offender:
         subject: "Váš skript %{script_name} na %{site_name} bol odstránený"
-        text: |
-            Váš skript %{script_name} na %{site_name} bol odstránený moderátorom a už nie je dostupný pre verejnosť. Správu o hlásení si môžete pozrieť na %{report_url} a pravidlá stránky %{site_name} na %{code_rules_url}.
-
-            Ak sa domnievate, že ide o chybu, alebo ak ste skript aktualizovali na odstránenie chyby, môžete podať odvolanie na %{appeal_url}, a moderátor ho posúdi. Opätovné zverejnenie tohto skriptu môže viesť k banu na stránke %{site_name}.
+        body_html: |
+            <p>
+            Váš skript %{script_link:%{script_name}} na %{site_name} bol odstránený moderátorom a už nie je dostupný pre verejnosť. Môžete %{report_link:preskúmať hlásenie} a %{code_rules_link:prezrieť pravidlá stránky %{site_name}}.
+            </p>
+            <p>
+            Ak sa domnievate, že ide o chybu, alebo ak ste skript aktualizovali na odstránenie chyby, môžete %{appeal_link:podať odvolanie} a moderátor ho posúdi. Opätovné zverejnenie tohto skriptu môže viesť k banu na stránke %{site_name}.
+            </p>
       report_dismissed_offender:
         subject: "Sťažnosť na váš skript %{script_name} na %{site_name} bola zamietnutá"
-        text: "Sťažnosť na váš skript %{script_name} na %{site_name} bola zamietnutá moderátorom. Váš skript zostane aktívny. Správu o hlásení si môžete pozrieť na %{report_url}. Ak máte nejaké otázky, prosím, navštívte https://greasyfork.org/forum/."
+        body_html: |
+            <p>
+            Hlásenie na váš skript %{script_link:%{script_name}} na stránke %{site_name} bolo zamietnuté moderátorom. Váš skript zostane aktívny. Môžete %{report_link:preskúmať toto hlásenie}.
+            </p>
       report_fixed_offender:
         subject: "Sťažnosť na váš skript %{script_name} na %{site_name} bola označená ako vyriešená"
-        text: "Sťažnosť na váš skript %{script_name} na %{site_name} bola moderátorom označená ako vyriešená, pretože verí, že problém bol vyriešený. Váš skript zostane aktívny. Správu o hlásení si môžete pozrieť na %{report_url}. Ak máte nejaké otázky, prosím, navštívte https://greasyfork.org/forum/."
+        body_html: |
+            <p>
+            Hlásenie na váš skript %{script_link:%{script_name}} na stránke %{site_name} bolo moderátorom označené ako vyriešené, pretože sa domnieva, že ste problém vyriešili. Váš skript zostane aktívny. Môžete %{report_link:preskúmať toto hlásenie}.
+            </p>
       report_rebutted_reporter:
         subject: "Na vašu sťažnosť na %{script_name} na %{site_name} ste dostali odpoveď"
-        text: "Na vašu sťažnosť na %{script_name} na %{site_name} ste dostali odpoveď. Na správu o hlásení môžete odpovedať na %{report_url}. Moderátor posúdi vašu sťažnosť a túto reakciu a rozhodne o výsledku. Ak máte nejaké otázky, prosím, navštívte https://greasyfork.org/forum/."
+        body_html: |
+            <p>
+            Na vaše hlásenie na %{script_link:%{script_name}} na stránke %{site_name} ste dostali odpoveď. Môžete %{report_link:preskúmať túto odpoveď}. Moderátor preskúma vaše hlásenie a túto odpoveď a rozhodne o výsledku.
+            </p>
       report_upheld_reporter:
         subject: "Vašej sťažnosti na %{script_name} na %{site_name} bolo vyhovené"
-        text: "Vašej sťažnosti na %{script_name} na %{site_name} bolo vyhovené moderátorom a skript bol odstránený. Správu o hlásení si môžete pozrieť na %{report_url}. Ak máte nejaké otázky, prosím, navštívte https://greasyfork.org/forum/."
-      report_script_deleted_reported:
-        subject: "Vaša sťažnosť na %{script_name} na %{site_name} bola uzavretá"
-        text: "Vaša sťažnosť na %{script_name} na %{site_name} bola uzavretá a skript bol odstránený autorom. Správu o hlásení si môžete pozrieť na %{report_url}. Ak máte nejaké otázky, prosím, navštívte https://greasyfork.org/forum/."
+        body_html: |
+            <p>
+            Vaše hlásenie na %{script_link:%{script_name}} na stránke %{site_name} bolo potvrdené moderátorom a skript bol odstránený. Môžete %{report_link:preskúmať hlásenie}.
+            </p>
+      report_script_deleted_reporter:
+        subject: "Vaše hlásenie na %{script_name} na stránke %{site_name} bolo uzavreté"
+        body_html: |
+            <p>
+            Vaše hlásenie na %{script_link:%{script_name}} na stránke %{site_name} bolo uzavreté moderátorom a skript bol odstránený jeho autorom. Môžete %{report_link:preskúmať hlásenie}.
+            </p>
       report_dismissed_reporter:
         subject: "Vaša sťažnosť na %{script_name} na %{site_name} bola zamietnutá"
-        text: "Vaša sťažnosť na %{script_name} na %{site_name} bola zamietnutá moderátorom a skript, ktorý ste nahlásili zostáva aktívny. Správu o hlásení si môžete pozrieť na %{report_url}. Ak máte nejaké otázky, prosím, navštívte https://greasyfork.org/forum/."
+        body_html: |
+            <p>
+            Vaše hlásenie na %{script_link:%{script_name}} na stránke %{site_name} bolo zamietnuté moderátorom a nahlásený skript zostane aktívny. Môžete %{report_link:preskúmať hlásenie}.
+            </p>
       report_fixed_reporter:
         subject: "Vaša sťažnosť na %{script_name} na %{site_name} bola označená ako vyriešená"
-        text: "Vaša sťažnosť na %{script_name} na %{site_name} bola moderátorom označená ako vyriešená, pretože verí, že autor problém vyriešil. Skript  zostáva aktívny. Správu o hlásení si môžete pozrieť na %{report_url}. Ak máte nejaké otázky, prosím, navštívte https://greasyfork.org/forum/."
+        body_html: |
+            <p>
+            Vaše hlásenie na %{script_link:%{script_name}} na stránke %{site_name} bolo moderátorom označené ako vyriešené, pretože sa domnieva, že autor problém vyriešil. Skript zostane aktívny. Môžete %{report_link:preskúmať toto hlásenie}.
+            </p>
+      reported_outro: "Toto upozornenie ste dostali, pretože sa týka hlásenia o skripte, ktorý ste odoslali na %{site_name}. %{notification_preferences_link:Spravujte svoje predvoľby upozornení.}"
+      reporter_outro: "Toto upozornenie ste dostali, pretože ste vytvorili hlásenie o skripte na %{site_name}. %{notification_preferences_link:Spravujte svoje predvoľby upozornení.}"
     consecutive_bad_ratings:
       notify:
         subject: "Váš skript %{script_name} na %{site_name} dostal viacero \"zlých\" hodnotení."
@@ -1368,7 +1401,7 @@ sk:
     script_comment:
       subject: "Váš skript %{script_name} na %{site_name} bol komentovaný."
       intro: "Váš skript %{script_link:%{script_name}} na %{site_name} bol komentovaný používateľom %{commenter_link:%{commenter_name}}:"
-      outro: "%{comment_link:Zobraziť a odpovedať na tento komentár.} %{notification_preferences_link:Spravujte svoje predvoľby upozornení.}"
+      outro: "%{comment_link:Zobraziť a odpovedať na tento komentár.} Toto upozornenie ste dostali, pretože chcete byť upozornený na diskusiu o vašich skriptoch. %{notification_preferences_link:Spravujte svoje predvoľby oznámení.}</p>"
     subscribed_discussion:
       subject: "Do diskusie %{discussion_title} na %{site_name} bol pridaný komentár."
       intro: "Diskusia %{discussion_link:%{discussion_title}} na %{site_name} bola komentovaná používateľom %{commenter_link:%{commenter_name}}:"

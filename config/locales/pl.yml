@@ -1113,24 +1113,16 @@ pl:
     script_report:
       report_created_offender:
         subject: "Twój skrypt %{script_name} dla %{site_name} został zgłoszony"
-        text: "Twój skrypt %{script_name} został zgłoszony jako stanowiący naruszenie zasad %{site_name}. Przedstawiony powód: %{reason}. Możesz zapoznać się z tym zgłoszeniem pod %{report_url}, oraz przesłać odwołanie. Jeśli masz jakieś pytania, odwiedź https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Twój skrypt %{script_name} dla %{site_name} został usunięty"
       report_dismissed_offender:
         subject: "Zgłoszenie odnośnie Twojego skryptu %{script_name} dla %{site_name} zostało odrzucone"
-        text: "Zgłoszenie odnośnie Twojego skryptu %{script_name} dla %{site_name} zostało odrzucone przez moderatora. Twój skrypt pozostanie dostępny. Możesz zapoznać się ze zgłoszeniem pod %{report_url}. Jeśli masz jakieś pytania, odwiedź https://greasyfork.org/forum/."
       report_rebutted_reporter:
         subject: "Twoje zgłoszenie odnośnie skryptu %{script_name} dla %{site_name} otrzymało odpowiedź"
-        text: "Twoje zgłoszenie odnośnie skryptu %{script_name} dla %{site_name} otrzymało odpowiedź. Możesz zapoznać się z odpowiedzią pod %{report_url}. Moderator zapozna się z Twoim zgłoszeniem oraz odpowiedzią na nie, oraz zadecyduje o dalszym postępowaniu. Jeśli masz jakieś pytania, odwiedź https://greasyfork.org/forum/."
       report_upheld_reporter:
         subject: "Twoje zgłoszenie odnośnie skryptu %{script_name} dla %{site_name} zostało podtrzymane"
-        text: "Twoje zgłoszenie odnośnie skryptu %{script_name} dla %{site_name} zostało uznane przez moderatora, a skrypt został usunięty. Możesz zapoznać się ze zgłoszeniem pod %{report_url}. Jeśli masz jakieś pytania, odwiedź https://greasyfork.org/forum/."
-      report_script_deleted_reported:
-        subject: "Twoje zgłoszenie odnośnie skryptu %{script_name} dla %{site_name} zostało zamknięte"
-        text: "Twoje zgłoszenie odnośnie skryptu %{script_name} dla %{site_name}zostało zamknięte, ponieważ skrypt został usunięty przez jego autora. Możesz zapoznać się ze zgłoszeniem pod %{report_url}. Jeśli masz jakieś pytania, odwiedź https://greasyfork.org/forum/."
       report_dismissed_reporter:
         subject: "Twoje zgłoszenie odnośnie skryptu %{script_name} dla %{site_name} zostało odrzucone"
-        text: "Twoje zgłoszenie odnośnie skryptu %{script_name} dla %{site_name} zostało odrzucone przez moderatora, a skrypt pozostanie dostępny. Możesz zapoznać się ze zgłoszeniem pod %{report_url}. Jeśli masz jakieś pytania, odwiedź https://greasyfork.org/forum/. "
     consecutive_bad_ratings:
       notify:
         subject: "Twój skrypt %{script_name} na %{site_name} został oceniony przez wielu jako \"Słaby\"."

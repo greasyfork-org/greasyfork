@@ -249,6 +249,7 @@ es:
     additional_info_default_sync_html: "Información adicional predeterminada (el idioma coincide con <code>@name</code>)"
     additional_info_localized_sync_html: "Información adicional traducida (el idioma coincide con <code>@name:XX</code>)"
     sync_url_placeholder: "(URL)"
+    sync_successful: El script se ha sincronizado correctamente.
     screenshots_add: "Añadir:"
     screenshots_remove: "Eliminar"
     replacement_script_explanation: "(Opcional) Elige un nuevo script que sustituya al actual. A los usuarios que intenten actualizar se les redirigirá. Introduce la dirección URL del script sustituto:"
@@ -1201,34 +1202,20 @@ es:
     script_report:
       report_created_offender:
         subject: "Alguien ha denunciado tu script %{script_name} en %{site_name}"
-        text: "Tu script %{script_name} ha sido denunciado por incumplir las normas de %{site_name}. El motivo específico es: %{reason}. Puedes revisar la denuncia en %{report_url} y enviar una reclamación. Si no envías una reclamación, tu script puede que sea eliminado por los moderadores. Si tienes preguntas, echa un vistazo en https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Tu script %{script_name} en %{site_name} ha sido eliminado."
-        text: |
-            Un moderador ha confirmado una denuncia y tu script %{script_name} en %{site_name} ha sido eliminado. Puedes ver la denuncia en %{report_url}, y las reglas en %{code_rules_url}.
-
-            Si crees que no tenemos razón, o si has actualizado el script para arreglar el problema, puedes reabrir el proceso en %{appeal_url}. Si tienes dudas puedes escribirnos en https://greasyfork.org/forum/. No intentes volver a subirlo tal cual porque te pueden echar de %{site_name}.
       report_dismissed_offender:
         subject: "Tu script %{script_name} no parece incumplir las normas de %{site_name}"
-        text: "Se ha revisado una denuncia en %{site_name} y tu script %{script_name} no parece incumplir las normas. Tu script seguirá activo. Puedes ver la denuncia en %{report_url}. Si tienes dudas puedes escribirnos en https://greasyfork.org/forum/."
       report_fixed_offender:
         subject: "Se ha revisado tu script en %{site_name} y %{script_name} y una vez corregidos los problemas se ha marcado la denuncia como resuelta."
-        text: "Se ha revisado una denuncia en %{site_name} y tu script %{script_name} parece haber solucionado los problemas denunciados. Tu script seguirá activo. Puedes ver la denuncia en %{report_url}. Si tienes dudas puedes escribirnos en https://greasyfork.org/forum/."
       report_rebutted_reporter:
         subject: "Alguien ha contestado a tu denuncia de %{script_name} en %{site_name}"
-        text: "Alguien ha contestado a tu denuncia de %{script_name} en %{site_name}. Puedes ver la respuesta en %{report_url}. Un moderador revisará el problema y verá si existe o no. Si tienes dudas puedes escribirnos en https://greasyfork.org/forum/."
       report_upheld_reporter:
         subject: "Se ha confirmado tu denuncia de %{script_name} en %{site_name}"
-        text: "Un moderador ha confirmado tu denuncia de %{script_name} en %{site_name} y el script ha sido eliminado. Puedes ver la denuncia en %{report_url}. Si tienes dudas puedes escribirnos en https://greasyfork.org/forum/."
-      report_script_deleted_reported:
-        subject: "Se ha cerrado la denuncia de %{script_name} en %{site_name}"
-        text: "Se ha archivado tu denuncia de %{script_name} en %{site_name} porque el autor ha borrado el script. Puedes ver la denuncia en %{report_url}. Si tienes dudas puedes escribirnos en https://greasyfork.org/forum/."
       report_dismissed_reporter:
         subject: "Se ha revisado tu denuncia en %{site_name} y %{script_name} no parece incumplir las normas."
-        text: "Se ha revisado tu denuncia en %{site_name} y %{script_name} no parece incumplir las normas, por lo que el script seguirá activo. Puedes ver la denuncia en %{report_url}. Si tienes dudas puedes escribirnos en https://greasyfork.org/forum/."
       report_fixed_reporter:
         subject: "Se ha revisado tu denuncia en %{site_name} y %{script_name} y una vez corregidos los problemas se ha marcado como resuelta."
-        text: "Se ha revisado tu denuncia en %{site_name} y el script %{script_name} parece haber solucionado los problemas denunciados. El script seguirá activo. Puedes ver la denuncia en %{report_url}. Si tienes dudas puedes escribirnos en https://greasyfork.org/forum/."
     consecutive_bad_ratings:
       notify:
         subject: "Tu script %{script_name} en %{site_name} ha recibido múltiples críticas negativas."
@@ -1241,7 +1228,6 @@ es:
     script_comment:
       subject: "Alguien ha comentado en %{script_name} en %{site_name}."
       intro: "Tu script %{script_link:%{script_name}} en %{site_name} ha recibido un comentario del usuario %{commenter_link:%{commenter_name}}:"
-      outro: "%{comment_link:Ver y responder al comentario.} %{notification_preferences_link:Administrar tus preferencias de notificaciones.}"
     subscribed_discussion:
       subject: "La conversación «%{discussion_title}» en %{site_name} ha recibido un comentario."
       intro: "La conversación %{discussion_link:%{discussion_title}} en %{site_name} ha recibido un comentario del usuario %{commenter_link:%{commenter_name}}:"

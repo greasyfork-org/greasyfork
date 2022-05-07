@@ -146,6 +146,7 @@ it:
     derivatives_similar_last_check_soon: "Cercheremo script simili al tuo a breve."
     derivatives_similar_last_check_again_soon_html: "Abbiamo cercato script simili al tuo l'ultima volta il %{date}. Controlleremo di nuovo a breve."
     derivatives_similar_check_now: "Ricontrolla ora"
+    derivatives_similiar_queued: Il controllo delle similarità verrà completato entro pochi minuti.
     listing_title_all_sites: "Script utente per tutti i siti"
     listing_description_all_sites: "Script che aggiungono funzioni e rimuovono bug in tutti i siti"
     listing_title_for_site: "Script per %{site}"
@@ -250,6 +251,10 @@ it:
     additional_info_default_sync_html: "Informazioni addizionali predefinite (la lingua corrisponde con <code>@name</code>)"
     additional_info_localized_sync_html: "Per lingua (corrisponde con <code>@name:XX</code>)"
     sync_url_placeholder: "(URL)"
+    sync_successful: Script sincronizzato con successo.
+    sync_no_changes: Script sincronizzato con successo, ma nessun cambiamento trovato.
+    sync_error: Sincronizzazione dello script fallita - %{error}.
+    sync_turned_off: Sincronizzazione dello script disattivata.
     screenshots_add: "Aggiungi:"
     screenshots_remove: "Rimuovi"
     replacement_script_explanation: "(Opzionale) Scegli un altro script che sostituisce questo script. Inserisci l'URL dello script sostitutivo:"
@@ -650,6 +655,10 @@ it:
         title: Notifiche conversazioni
         starter: Come impostazione predefinita, iscriviti a tutte le conversazioni che inizi
         receiver: Come impostazione predefinita, iscriviti a tutte le conversazioni in cui sei coinvolto, ma che non hai iniziato tu
+      report_defaults:
+        title: Notifiche per le segnalazioni
+        reporter: Ricevi una notifica quando una segnalazione che hai creato è stata risolta.
+        reported: Ricevi una notifica quando una segnalazione contro cose che hai pubblicato viene creata o risolta.
       save_button: Aggiorna impostazioni notifiche
       title: Notifiche
       current_discussion_subscriptions:
@@ -658,6 +667,7 @@ it:
       save_success: Le preferenze per le tue notifiche sono state aggiornate.
       unsubscribe_all: Disiscriviti da tutte le notifiche
       unsubscribe_all_success: Ti sei disiscritto da tutte le notifiche.
+    account_banned: Questo account è stato bannato.
   webhooks:
     info:
       title: Impostare un webhook
@@ -1042,6 +1052,7 @@ it:
         </ol>
     rebuttal_placeholder: 'Spiega a un moderatore perché questo script non dovrebbe essere cancellato.'
     submit_rebuttal: "Invia una contestazione"
+    rebuttal_submitted: Un moderatore verificherà questa segnalazione e la tua spiegazione e prenderà una decisione.
     delete_script: "Elimina lo script"
     view_discussion: "Visualizza discussione"
     load_diff: "Carica diff"
@@ -1092,6 +1103,10 @@ it:
       bad: "Male"
       ok: "OK"
       good: "Bene"
+    badges:
+      deleted:
+        short: Eliminato
+        long: Eliminato
     sign_in_to_post_discussion: "Accedi per pubblicare una recensione, commentare o fare domande."
     sign_in_to_post_comment: "Accedi per pubblicare una risposta."
     user_filter:
@@ -1299,34 +1314,31 @@ it:
     script_report:
       report_created_offender:
         subject: "Il tuo script %{script_name} su %{site_name} è stato segnalato"
-        text: "Il tuo script %{script_name} è stato segnalato per una violazione delle regole di %{site_name}. La ragione specifica data è: %{reason}. Puoi analizzare la segnalazione su %{report_url} e inviare una contestazione. Se non invii una contestazione, il tuo script potrà essere eliminato dai moderatori. Se hai qualsiasi domanda, per favore visita https://greasyfork.org/forum/."
+        body_html: |
+            <p>
+            Il tuo script %{script_link:%{script_name}} è stato segnalato poiché viola le regole di %{site_name}. La ragione specifica che è stata fornita è: %{reason}. Puoi %{report_link:controllare questa segnalazione e inviare una contestazione}. Se non invii una contestazione, il tuo script potrebbe venire eliminato dai moderatori.
+            </p>
       report_upheld_offender:
         subject: "Il tuo script %{script_name} su%{site_name} è stato eliminato"
-        text: |
-            Il tuo script %{script_name} su %{site_name} è stato eliminato da un moderatore e non è più accessibile pubblicamente. Puoi consultare la segnalazione su %{report_url} e le regole di %{site_name} su %{code_rules_url}.
-
-            Se credi che si sia trattato di un errore, o se hai aggiornato lo script per risolvere il problema, puoi presentare ricorso su %{appeal_url}, e un moderatore lo visionerà. Non ripubblicare questo script; facendolo potresti essere bandito da %{site_name}.
+        body_html: |
+            <p>
+            Il tuo script %{script_link:%{script_name}} su %{site_name} è stato eliminato da un moderatore e non è più accessibile pubblicamente. Puoi %{report_link:consultare la segnalazione} e %{code_rules_link:leggere le regole di %{site_name}}.
+            </p>
+            <p>
+            Se credi che questo sia frutto di un errore, o se hai aggiornato lo script per sistemare il problema, puoi %{appeal_link:presentare ricorso} e un moderatore lo prenderà in carico. Non ripubblicare questo script; questo potrebbe risultare in un ban da %{site_name}.
+            </p>
       report_dismissed_offender:
         subject: "Una segnalazione sul tuo script %{script_name} su %{site_name} è stata respinta"
-        text: "Una segnalazione sul tuo script %{script_name} su %{site_name} è stata respinta da un moderatore. Il tuo script rimarrà attivo. Puoi consultare questa segnalazione su %{report_url}. Se hai delle domande, per favore visita https://greasyfork.org/forum/."
       report_fixed_offender:
         subject: "Una segnalazione relativa al tuo script %{script_name} su%{site_name} è stata contrassegnata come risolta"
-        text: "Una segnalazione relativa al tuo script %{script_name} su%{site_name} è stata contrassegnata come risolta da un moderatore poiché ritiene che tu abbia risolto il problema. Il tuo script rimarrà attivo. Puoi esaminare questa segnalazione su %{report_url}. Se hai qualche domanda, puoi visitare https://greasyfork.org/forum/."
       report_rebutted_reporter:
         subject: "La tua segnalazione di %{script_name} su %{site_name} ha ricevuto una risposta"
-        text: "La tua segnalazione a riguardo di %{script_name} su %{site_name} ha ricevuto una risposta. Puoi consultare questa risposta su %{report_url}. Un moderatore valuterà la tua segnalazione e questa risposta e deciderà il responso. Se hai delle domande, per favore visita https://greasyfork.org/forum/."
       report_upheld_reporter:
         subject: "La tua segnalazione a riguardo di %{script_name} su %{site_name} è stata supportata"
-        text: "La tua segnalazione a riguardo di %{script_name} su %{site_name} è stata supportata da un moderatore e lo script è stato eliminato. Puoi consultare la segnalazione su %{report_url}. Se hai delle domande, per favore visita https://greasyfork.org/forum/."
-      report_script_deleted_reported:
-        subject: "La tua segnalazione a riguardo di %{script_name} su %{site_name} è stata chiusa"
-        text: "La tua segnalazione a riguardo di%{script_name} su %{site_name} è stata chiusa poiché lo script è stato eliminato dal suo autore. Puoi consultare la segnalazione su %{report_url}. Se hai delle domande, per favore visita https://greasyfork.org/forum/."
       report_dismissed_reporter:
         subject: "La tua segnalazione a riguardo di %{script_name} su %{site_name} è stata respinta"
-        text: "La tua segnalazione a riguardo di %{script_name} su %{site_name} è stata respinta da un moderatore e lo script che hai segnalato rimarrà attivo. Puoi consultare la segnalazione su %{report_url}. Se hai delle domande, per favore visita https://greasyfork.org/forum/."
       report_fixed_reporter:
         subject: "La tua segnalazione relativa a %{script_name} su%{site_name} è stata contrassegnata come risolta"
-        text: "La tua segnalazione relativa a %{script_name} su%{site_name} è stata contrassegnata come risolta da un moderatore poiché ritiene che l'autore abbia risolto il problema. Lo script rimarrà attivo. Puoi esaminare la segnalazione su %{report_url}. Se hai qualche domanda, visita https://greasyfork.org/forum/."
     consecutive_bad_ratings:
       notify:
         subject: "Il tuo script %{script_name} su %{site_name} ha ricevuto molteplici segnalazioni come \"Cattivo\"."
@@ -1339,7 +1351,6 @@ it:
     script_comment:
       subject: "Il tuo script %{script_name} su %{site_name} ha ricevuto un commento."
       intro: "Il tuo script %{script_link:%{script_name}} su %{site_name} ha ricevuto un commento dall'utente %{commenter_link:%{commenter_name}}:"
-      outro: "%{comment_link:Visualizza e rispondi a questo commento} %{notification_preferences_link:Gestisci le tue preferenze per le notifiche.}"
     subscribed_discussion:
       subject: "La discussione %{discussion_title} su %{site_name} ha ricevuto un commento."
       intro: "La discussione %{discussion_link:%{discussion_title}} su %{site_name} ha ricevuto un commento dall'utente %{commenter_link:%{commenter_name}}:"

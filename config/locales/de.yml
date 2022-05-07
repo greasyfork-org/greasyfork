@@ -1088,30 +1088,20 @@ de:
     script_report:
       report_created_offender:
         subject: "Dein Skript %{script_name} auf %{site_name} wurde gemeldet."
-        text: "Ihr Skript %{script_name} wurde gemeldet, dass es %{site_name}'s Regeln verletzt. Der spezielle Grund ist: %{reason}. Sie können diese Meldung unter %{report_url} prüfen und Gegenargumente vorbringen. Sollten Sie keine Gegenargumente vorbringen, wird Ihr Skript möglicherweise durch Moderatoren gelöscht. Sollten Sie Fragen habe, besuchen sie bitte https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Dein Skript %{script_name} auf %{site_name} wurde gelöscht."
       report_dismissed_offender:
         subject: "Deine Meldung zum Skript %{script_name} auf %{site_name} wurde zurückgewiesen"
-        text: "Eine Meldung zu deinem Skript %{script_name} auf %{site_name} wurde von einem Moderator zurückgewiesen. Dein Skript bleibt aktiv. Ein Report findet sich hier: %{report_url}. Wenn es Fragen gibt, bitte das Forum https://greasyfork.org/forum/ besuchen."
       report_fixed_offender:
         subject: "Ein Bericht zu Ihrem Skript %{script_name} auf %{site_name} wurde als gelöst markiert"
-        text: "Ein Bericht zu Ihrem Skript %{script_name} auf %{site_name} wurde von einem Moderator als behoben markiert, da er glaubt, dass Sie das Problem behoben haben. Ihr Skript bleibt weiterhin aktiv. Sie können diesen Bericht unter %{report_url} überprüfen. Wenn Sie Fragen haben, besuchen Sie bitte https://greasyfork.org/forum/."
       report_rebutted_reporter:
         subject: "Auf deine Meldung zu %{script_name} auf %{site_name} wurde geantwortet."
-        text: "Auf deine Meldung zu deinem Skript %{script_name} auf %{site_name} wurde geantwortet. Die Antwort findet sich hier: %{report_url}.Ein Moderator wird die Meldung und Antwort prüfen und eine Entscheidung fällen. Wenn es Fragen gibt, bitte das Forum https://greasyfork.org/forum/ besuchen."
       report_upheld_reporter:
         subject: "Deine Meldung zu %{script_name} auf %{site_name} wurde bestätigt."
-        text: "Deine Meldung zu %{script_name} auf %{site_name} wurde von einem Moderator bestätigt und das Skript gelöscht. Die Meldung lässt sich hier einsehen: %{report_url}. Wenn es Fragen gibt, bitte das Forum https://greasyfork.org/forum/ besuchen."
-      report_script_deleted_reported:
-        subject: "Deine Meldung zu %{script_name} auf %{site_name} wurde geschlossen"
-        text: "Deine Meldung zu %{script_name} auf %{site_name} wurde geschlossen und das Skript vom Autor gelöscht. Die Meldung lässt sich hier einsehen: %{report_url}. Wenn es Fragen gibt, bitte das Forum https://greasyfork.org/forum/ besuchen."
       report_dismissed_reporter:
         subject: "Deine Meldung zu %{script_name} auf %{site_name} wurde zurückgewiesen."
-        text: "Deine Meldung zu %{script_name} auf %{site_name} wurde zurückgewiesen und das Skript bleibt aktiv. Die Meldung lässt sich hier einsehen: %{report_url}. Wenn es Fragen gibt, bitte das Forum https://greasyfork.org/forum/ besuchen."
       report_fixed_reporter:
         subject: "Dein Bericht zu %{script_name} auf %{site_name} wurde als gelöst markiert"
-        text: "Dein Bericht zu %{script_name} auf %{site_name} wurde von einem Moderator als behoben markiert, da er glaubt, dass der Autor das Problem behoben hat. Ihr Skript bleibt weiterhin aktiv. Du kannst diesen Bericht unter %{report_url} überprüfen. Wenn Sie Fragen haben, besuchen Sie bitte https://greasyfork.org/forum/."
     consecutive_bad_ratings:
       notify:
         subject: "Ihr Skript %{script_name} auf %{site_name} hat mehrere \"Schlechte\" Bewertungen erhalten."

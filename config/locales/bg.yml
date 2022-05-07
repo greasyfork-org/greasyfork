@@ -651,6 +651,10 @@ bg:
         title: Известия за разговори
         starter: По подразбиране, абонирай се за всички започнати от теб разговори
         receiver: По подразбиране, абонирай се за всички разговори, в които те споменават
+      report_defaults:
+        title: Известия за доклади
+        reporter: Получавай известия, когато има развръзка по изпратен доклад
+        reported: Получавай известия когато има доклад или развръзка по публикувани от теб неща
       save_button: Промени настройките за известия
       title: Известия
       current_discussion_subscriptions:
@@ -1298,34 +1302,35 @@ bg:
     script_report:
       report_created_offender:
         subject: "Скриптът ви %{script_name} на %{site_name} беше докладван"
-        text: "Вашият скрипт %{script_name} беше докладван за нарушаване на правилата на %{site_name}. Указаната причина е: %{reason}. Можете да прегледате доклада на %{report_url} и да изпратите опровержение. Ако не изпратите опровержение, скриптът ви може да бъде изтрит от модератор. Ако имате някакви въпроси, моля, посетете https://greasyfork.org/forum/."
+        body_html: |
+            <p>
+            Вашият скрипт %{script_link:%{script_name}} беше докладван за нарушаване на правилата на %{site_name}. За причина беше посочено: %{reason}. Можете да %{report_link:прегледате доклада и да изпратите опровержение}. Ако не изпратите опровержение, скриптът може да бъде изтрит от модераторите.
+            </p>
       report_upheld_offender:
         subject: "Скриптът ви %{script_name} на %{site_name} беше изтрит"
-        text: |
-            Скриптът %{script_name} на %{site_name} беше изтрит от модератор и вече не е достъпен публично. Можете да прегледате доклада на %{report_url} и правилата на%{site_name}тук %{code_rules_url}.
-
-            Ако смятате, че това е грешка или ако сте променили скрипта, за да оправите проблема, можете да изпратите опровержение на %{appeal_url}, което ще бъде прегледано от модератор. Не публикувайте скрипта отново; това може да ви доведе до блокиране (бан) в %{site_name}.
+        body_html: |
+            <p>
+            Скриптът ви %{script_link:%{script_name}} на %{site_name} беше изтрит от модератор и вече не е публично достъпен. Можете %{report_link: да прегледате доклада} и %{code_rules_link: да прегледате правилата на %{site_name}}.
+            </p>
+            <p>
+            Ако смятате, че това е грешка, или сте обновили скрипта, за да оправите проблема, можете да %{appeal_link:изпратите апел}, който ще бъде прегледан от модератор. Не публикувайте отново скрипта, защото достъпът ви до %{site_name} може да бъде спрян.
+            </p>
       report_dismissed_offender:
         subject: "Доклад на скриптът ви %{script_name} на %{site_name} беше отхвърлен"
-        text: "Доклад за вашия скрипт %{script_name} на %{site_name} беше отхвърлен от модератор. Скритът ви ще остане активен. Можете да прегледате доклада на %{report_url}. Ако имате някакви въпроси, моля посетете https://greasyfork.org/forum/."
+        body_html: |
+            <p>
+            Доклад за вашия скрипт %{script_link:%{script_name}} на %{site_name} беше отхвърлен от модератор. Скриптът ще остане активен. Можете  %{report_link:да прегледате доклада}.
+            </p>
       report_fixed_offender:
         subject: "Доклад за вашия скрипт %{script_name} на %{site_name} е отбелязан като решен"
-        text: "Модератор е преценил, че сте оправили проблема и докладът за вашия скрипт %{script_name} на %{site_name} беше маркиран като решен. Скриптът ви ще остане активен. Можете да прегледате доклада тук %{report_url}. Ако имате някакви въпроси, моля посетете https://greasyfork.org/forum/."
       report_rebutted_reporter:
         subject: "Има отговор на доклада ви за %{script_name} в %{site_name}"
-        text: "Има отговор на вашия доклад за %{script_name} в %{site_name}. Можете да го прегледате на %{report_url}. Модератор ще прегледа доклада ви и отговора, и ще избере по-нататъшните действия. Ако имате някакви въпроси, моля посетете https://greasyfork.org/forum/."
       report_upheld_reporter:
         subject: "Докладът ви за %{script_name} на %{site_name} беше потвърден"
-        text: "Вашият доклад за %{script_name} на %{site_name} беше потвърден от модератор и скриптът беше изтрит. Можете да прегледате доклада на %{report_url}. Ако имате някакви въпроси, моля посетете https://greasyfork.org/forum/."
-      report_script_deleted_reported:
-        subject: "Докладът ви за %{script_name} на %{site_name} беше затворен"
-        text: "Вашият доклад за %{script_name} на %{site_name} беше затворен, защото скриптът беше изтрит от автора си. Можете да прегледате доклада на %{report_url}. Ако имате някакви въпроси, моля посетете https://greasyfork.org/forum/."
       report_dismissed_reporter:
         subject: "Докладът ви за %{script_name} на %{site_name} беше отхвърлен"
-        text: "Вашият доклад за %{script_name} на %{site_name} беше отхвърлен от модератор и докладваният скрипт остава активен. Можете да прегледате доклада на %{report_url}. Ако имате някакви въпроси, моля посетете https://greasyfork.org/forum/."
       report_fixed_reporter:
         subject: "Докладът ви за %{script_name} на %{site_name} беше маркиран като решен"
-        text: "Модератор е преценил, че авторът е оправил проблема и докладът ви за скрипта %{script_name} на %{site_name} беше маркиран като решен. Скриптът ще остане активен. Можете да прегледате доклада тук %{report_url}. Ако имате някакви въпроси, моля посетете https://greasyfork.org/forum/."
     consecutive_bad_ratings:
       notify:
         subject: "Твоят скрипт %{script_name} на %{site_name} е получил множество \"Лоши\" отзиви."
@@ -1338,7 +1343,6 @@ bg:
     script_comment:
       subject: "Получихте коментар за вашия скрипт %{script_name} на %{site_name}."
       intro: "Вашият скрипт %{script_link:%{script_name}} на %{site_name} има коментар от потребител %{commenter_link:%{commenter_name}}:"
-      outro: "%{comment_link:Прегледайте и отговорете на коментара.} %{notification_preferences_link:Управление на настройките за известия.}"
     subscribed_discussion:
       subject: "В дискусията %{discussion_title} на %{site_name} има получен коментар."
       intro: "Дискусията %{discussion_link:%{discussion_title}} на %{site_name} има коментар от потребител %{commenter_link:%{commenter_name}}:"

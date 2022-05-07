@@ -1025,26 +1025,18 @@ ro:
     script_report:
       report_created_offender:
         subject: "Script-ul tău %{script_name} de pe %{site_name} a fost raportat"
-        text: "Scriptul tau %{script_name} a fost șters pentru că a încălcat regulamentul siteului %{site_name}. Motivul specificat este: %{reason}. Poți vedea raportul pe %{report_url} și să trimiți o contestație. Dacă nu trimiți o conestație, scriptul tău poate fi șters de moderatori. Daca ai orice întrebare, te rog vizitează https://greasyfork.org/forum/ ."
       report_upheld_offender:
         subject: "Script-ul tău %{script_name} de pe %{site_name} a fost șters"
       report_dismissed_offender:
         subject: "Un raport despre scriptul %{script_name} de pe %{site_name} a fost verificat și nu a fost luată nici o masură"
-        text: "Un raport despre scriptul%{script_name} de pe %{site_name} a fost verificat și nu a fost luată nici o masură. Script-ul tau va ramâne activ. Daca vrei poți să verifici raportul pe %{report_url}. Daca ai orice întrebare, te rog vizitează https://greasyfork.org/forum/ ."
       report_fixed_offender:
         subject: "Un raport despre scriptul %{script_name} de pe %{site_name} a fost marcat ca rezolvat"
       report_rebutted_reporter:
         subject: "Raport-ul despre scriptul %{script_name} de pe %{site_name} a primit un răspuns"
-        text: "Raport-ul despre scriptul %{script_name} de pe %{site_name}a primit un răspuns. Poți verifica acest răspuns pe %{report_url}. Un moderator va verifica raportul tau și acest raspuns apoi va decide un rezultat. Daca ai orice întrebare, te rog vizitează https://greasyfork.org/forum/ ."
       report_upheld_reporter:
         subject: "Raport-ul tău despre script-ul %{script_name} de pe %{site_name} a fost reținut."
-        text: "Raport-ul tău despre scriptul %{script_name} de pe %{site_name} a fost reținut de un moderator si scriptul a fost șters. Poți verifica reportul pe %{report_url}. Daca ai orice întrebare, te rog vizitează https://greasyfork.org/forum/ ."
-      report_script_deleted_reported:
-        subject: "Raport-ul tău despre scriptul %{script_name} de pe %{site_name} a fost închis."
-        text: "Raport-ul tău despre scriptul %{script_name} de pe %{site_name} a fost închis deoarece scriptul a fost șters de către autorul lui. Poți verifica reportul pe %{report_url}. Dacă ai orice întrebare, te rog vizitează https://greasyfork.org/forum/ ."
       report_dismissed_reporter:
         subject: "Raport-ul tău despre scriptul %{script_name} de pe %{site_name} a fost anulat"
-        text: "Raportul dvs. despre %{script_name} de pe %{site_name} a fost respins de un moderator, iar scriptul pe care l-ați raportat va rămâne activ. Puteți consulta raportul la %{report_url}. Dacă aveți întrebări, vă rugăm să vizitați https://greasyfork.org/forum/."
     consecutive_bad_ratings:
       notify:
         subject: "Script-ul tau %{script_name} de pe %{site_name} a primit multiple păreri \"Rau\"."

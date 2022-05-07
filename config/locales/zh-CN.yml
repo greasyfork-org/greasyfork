@@ -635,6 +635,8 @@ zh-CN:
         title: 私信通知
         starter: 默认订阅我发起的私信
         receiver: 默认订阅发给我的私信
+      report_defaults:
+        title: 举报通知
       save_button: 更新通知设置
       title: 通知
       current_discussion_subscriptions:
@@ -1232,34 +1234,20 @@ zh-CN:
     script_report:
       report_created_offender:
         subject: "您的脚本 %{script_name} 在 %{site_name} 上被举报"
-        text: "你的脚本 %{script_name} 被举报违反 %{site_name} 的站点条例。具体的理由是：%{reason}。你可以在 %{report_url} 查看该则举报并提交申诉。如果不进行申诉，你的脚本可能会被管理员删除。如果有任何问题，请访问论坛 https://greasyfork.org/forum/ 。"
       report_upheld_offender:
         subject: "您的脚本 %{script_name} 在 %{site_name} 上已被删除"
-        text: |
-            您在 %{site_name} 上的 %{script_name} 脚本已被一名管理员删除，不再对公众可见。详情见此报告：%{report_url}和%{code_rules_url}处的%{site_name}规则。
-
-            如果这是一次误会，或者您已更新脚本而解决提到的问题，可以到 %{appeal_url} 提出异议，审核员将会复合它。请勿重新发布此脚本，这可能导致被%{site_name}禁用账号。
       report_dismissed_offender:
         subject: "%{site_name} 上的一则针对您的 %{script_name} 脚本的举报已被驳回"
-        text: "%{site_name} 上的一则针对您的 %{script_name} 脚本的举报已由管理员驳回，您的脚本继续保留。详情查阅此报告: %{report_url}。如有疑问，请访问 https://greasyfork.org/forum/。"
       report_fixed_offender:
         subject: "一则针对你在 %{site_name} 发布的脚本 %{script_name} 的举报已关闭"
-        text: "管理员关闭了 %{site_name}上的一则关于脚本 %{script_name} 的举报，因为管理员认为你已经解决了报告的问题。该脚本已恢复正常访问。关于该则举报的详情可以在 %{report_url}阅读。如果你有任何问题，请访问论坛 https://greasyfork.org/forum/ 。"
       report_rebutted_reporter:
         subject: "您在%{site_name}上对于%{script_name}脚本的举报收到了一条回复"
-        text: "您在 %{site_name} 上针对 %{script_name} 的举报收到了一则回应，你可以访问 %{report_url} 来查看。管理员将同时参考您的报告与原作者的回应来判定脚本是否违规。如有疑问，请访问 https://greasyfork.org/forum/ 。"
       report_upheld_reporter:
         subject: "您在%{site_name}上对于%{script_name}脚本的举报已被核实"
-        text: "您在%{site_name}上举报的脚本 %{script_name}已被管理员判定违规并删除，你可以在 %{report_url} 查看具体的报告。如有疑问，请访问 https://greasyfork.org/forum/ 。"
-      report_script_deleted_reported:
-        subject: "您对于站点%{site_name}的脚本%{script_name}的举报已被关闭。"
-        text: "由于作者删除了该脚本，您对于站点%{site_name}的脚本%{script_name}的举报已被关闭。您可以在%{report_url}重新查看这个举报。如有任何问题请访问https://greasyfork.org/forum 。"
       report_dismissed_reporter:
         subject: "您在%{site_name}上对于%{script_name}脚本的举报被驳回"
-        text: "您在%{site_name}上对于%{script_name}脚本的举报已被管理员驳回，并且该脚本将继续保留。 详情查阅此报告:%{report_url}。如有疑问，请访问https://greasyfork.org/forum/。"
       report_fixed_reporter:
         subject: "你在 %{site_name} 针对 %{script_name} 提交的一则举报已关闭"
-        text: "你在 %{site_name} 针对 %{script_name} 提交的举报已被一位管理员关闭，因为该管理员认为作者已经解决了报告的问题。该脚本已恢复正常访问。关于该则举报的详情可以在%{report_url}阅读。如果你有任何问题，请访问论坛 https://greasyfork.org/forum/ 。"
     consecutive_bad_ratings:
       notify:
         subject: "您在 %{site_name}发布的脚本 %{script_name} 收到了多条差评。"
@@ -1272,7 +1260,6 @@ zh-CN:
     script_comment:
       subject: "您对于站点%{site_name}的脚本%{script_name}收到了一条评论。"
       intro: "您在 %{site_name}  上的脚本 %{script_link:%{script_name}} 收到了用户 %{commenter_link:%{commenter_name}} 的评论："
-      outro: "%{comment_link:查看和回复此评论}。%{notification_preferences_link:管理您的通知设置}。"
     subscribed_discussion:
       subject: "站点%{site_name}的讨论%{discussion_title}收到了一条评论。"
       intro: "%{site_name} 上的讨论 %{discussion_link:%{discussion_title}} 收到了一条来自 %{commenter_link:%{commenter_name}} 的评论："

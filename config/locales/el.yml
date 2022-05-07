@@ -415,6 +415,12 @@ el:
     explain_user_scripts_html: "Οι κώδικες χρηστών σας δίνουν τον έλεγχο της εμπειρίας πλοήγησής. Μόλις εγκατασταθούν, κάνουν αυτόματα τις ιστοσελίδες που επισκέπτεστε καλύτερες προσθέτοντας χαρακτηριστικά, ευκολότερες στη χρήση ή απομακρύνουν ενοχλητικά χαρακτηριστικά. Οι κώδικες χρηστών στο %{site_name} γράφτηκαν από άλλους χρήστες και δημοσιεύτηκαν για κοινή χρήση από όλο τον κόσμο. Είναι δωρεάν η εγκατάστασή τους και εύκολοι στη χρήση."
     installing_step1_header: "Βήμα 1: Εγκατάσταση ενός διαχειριστή κώδικα χρήστη"
     installing_step1_caption: "Tampermonkey στο Chrome"
+    desktop_browsers:
+      title: Επιτραπέζιο
+    android_browsers:
+      title: Κινητό (Android)
+    ios_browsers:
+      title: Κινητό (iOS)
     installing_step2_header: "Βήμα 2: Εγκατάσταση ενός κώδικα χρήστη"
     installing_step2_caption: "Ένα κουμπί εγκατάστασης κώδικα χρήστη"
     installing_step2_description_html: >
@@ -571,6 +577,8 @@ el:
         title: Ειδοποιήσεις συνομιλίας
         starter: Από προεπιλογή, εγγραφή σε κάθε συνομιλία που ξεκινάτε
         receiver: Από προεπιλογή, εγγραφή σε κάθε συνομιλία που σας περιλαμβάνει και δεν έχετε ξεκινήσει
+      report_defaults:
+        title: Ειδοποιήσεις αναφοράς
       save_button: Ενημέρωση ρυθμίσεων ειδοποιήσεων
       title: Ειδοποιήσεις
       current_discussion_subscriptions:
@@ -620,7 +628,14 @@ el:
       miscellaneous_header: Διάφοροι
     external_scripts:
       title: "Η πολιτική του %{site_name} για εξωτερικούς κώδικες"
+      other_allowed_codes:
+        heading: Ειδικές περιπτώσεις
+      add_to_list:
+        heading: Προσθήκη στη λίστα
+      enforcement:
+        heading: Ενίσχυση
       test_url:
+        label: Έλεγχος διεύθυνσης URL
         result_ok: Το URL επιτρέπεται
         result_not_ok: Το URL δεν επιτρέπεται
     script_rewriting:
@@ -706,6 +721,8 @@ el:
           στην ιστοσελίδα. Αυτές οι βιβλιοθήκες μπορεί να περιλαμβάνουν λογική καταγραφής.</p>
     user_css_to_user_js:
       title: Μετατροπή CSS χρήστη σε JS χρήστη
+    antifeatures:
+      title: Αντιχαρακτηριστικά
   search:
     script_search:
       title: "Αναζήτηση κώδικα"
@@ -728,14 +745,30 @@ el:
     item_script_html: "Κώδικας: %{script_link}"
     item_deleted_script: "Διαγραμμένος κώδικας %{id}"
     item_user_html: "Χρήστης: %{user_link}"
+    item_report: "%{report_link: Αναφορά #%{report_id}}"
+    item_script_lock_appeal: "%{appeal_link:Έφεση #%{appeal_id}}"
   reports:
+    name: "Αναφορά #%{id}"
     report_filed: "Η αναφορά έχει ελεγχθεί από συντονιστή."
     new_report_title:
       user: "Αναφορά %{user}"
       comment: "Αναφορά σχολίου από %{user}"
+      message: "Αναφορά ενός μηνύματος από %{user}"
+      script: "Αναφορά %{script}"
     reason:
+      non_functional: "Ο κώδικας δεν λειτουργεί"
       spam: "Ανεπιθύμητο"
       abuse: "Προσβλητικό περιεχόμενο ή μίσους"
+      illegal: "Παράνομο περιεχόμενο"
+      unauthorized_code: "Μη εξουσιοδοτημένο αντίγραφο"
+      malware: "Κακόβουλο λογισμικό"
+      minified: "Ελαχιστοποιημένος κώδικας"
+      external_code: "Μη επιτρεπτός εξωτερικός κώδικας"
+      no_description: "Απούσα, χωρίς πληροφορία ή αποπροσανατολιστική περιγραφή"
+      wrong_category: "Εσφαλμένη κατηγορία"
+      wrong_category_with_suggestion: "Εσφαλμένη κατηγορία (προτείνεται: %{suggested_category})"
+      other: "Άλλος"
+    unauthorized_code_original_placeholder: "Διεύθυνση URL αρχικού κώδικα"
     explanation_placeholder: "Παροχή πρόσθετων πληροφοριών (προαιρετικό)"
     create_button: "Δημιουργία αναφοράς"
     report_user: "Αναφορά χρήστη"
@@ -744,6 +777,18 @@ el:
     result_dismissed: "Αυτή η αναφορά έχει απόρριφθεί από συντονιστή."
     result_upheld: "Αυτή η αναφορά έχει στηριχθεί από συντονιστή."
     result_pending: "Αυτή η αναφορά αναμένει έλεγχο από συντονιστή."
+    submit_rebuttal: "Υποβολή αντίκρουσης"
+    delete_script: "Διαγραφή κώδικα"
+    view_discussion: "Προβολή συζήτησης"
+    load_diff: "Φόρτωση διαφορών"
+    loading_diff: "Φόρτωση..."
+    reported_user_activity_html: "%{user} (ο αναφερόμενος χρήστης) έχει κάνει:"
+  appeals:
+    new:
+      title: Έφεση διαγραφής νέου κώδικα
+      submit: Υποβολή έφεσης
+    deletion_reason_html: "%{script} διεγράφει εξαιτίας: %{reason}."
+    author_reason: "Η έφεση υποβλήθει από τον δημιουργό:"
   discussions:
     title: Συζητήσεις
     comment_date: "Δημοσιεύτηκε: %{date}"
@@ -775,6 +820,10 @@ el:
       bad: "Κακός"
       ok: "Εντάξει"
       good: "Καλός"
+    badges:
+      deleted:
+        short: Διαγράφηκε
+        long: Διαγράφηκε
     sign_in_to_post_discussion: "Συνδεθείτε για να δημοσιεύσετε μια αναφορά, ένα σχόλιο ή μια ερώτηση."
     sign_in_to_post_comment: "Συνδεθείτε για να δημοσιεύσετε μια απάντηση."
     user_filter:
@@ -795,6 +844,9 @@ el:
       all: Όλες
       read: Αναγνωσμένες
       unread: Μη αναγνωσμένες
+    locale_filter:
+      label: Γλώσσα
+      all: Όλες
     user_activity:
       title: "Πρόσφατα σχόλια"
       no_recent_activity: "Αυτός ο χρήστης δεν δημοσίευσε σχόλια πρόσφατα."
@@ -827,6 +879,9 @@ el:
         description: Συνομιλίες για ήδη υπάρχον κώδικα και  στυλ  χρήστη .
       no-scripts:
         name: Όλες εκτός από τις Συζητήσεις Κώδικα
+      moderators:
+        name: Συντονιστές
+        description: Ιδιωτική συνομιλία για συντονιστές.
     category_display: "%{name} - %{description}"
     new_title: Νέα συζήτηση
     new_button: Νέα συζήτηση
@@ -852,6 +907,8 @@ el:
     recent:
       title: Πρόσφατες συνομιλίες
       more: Δείτε όλες τις συνομιλίες
+    edit_message_header: Επεξεργασία μηνύματος
+    update_message_submit: Αναβάθμιση μηνύματος
   screenshots:
     requirements: "Μέγιστο μέγεθος από %{number} PNG, GIF, JPEG, ή WebP εικόνες, μικρότερες από %{size} η καθεμιά."
   common:
@@ -872,7 +929,15 @@ el:
     listing_options_title: "Επιλογές Αναζήτησης"
     quote:
       prefix_html: "Ο χρήστης %{user}είπε:"
+      anonymous_reporter_html: "Ο αναφέρων είπε:"
   activerecord:
+    models:
+      script:
+        one: "%{count} κώδικας"
+        other: "%{count} κώδικες"
+      comment:
+        one: "%{count} σχόλιο"
+        other: "%{count} σχόλια"
     attributes:
       user:
         name: "Όνομα"
@@ -883,6 +948,9 @@ el:
         show_sensitive: "Περιεχόμενο για ενήλικες"
         preferred_markup: "Προτιμητέα χρήση ετικετών"
         filter_locale_default: "Γλωσσικό φίλτρο"
+        current_password: "Τρέχων κωδικός πρόσβασης"
+        new_password: "Νέος κωδικός πρόσβασης"
+        new_password_confirmation: "Επιβεβαίωση νέου κωδικού πρόσβασης"
       script:
         name: "Όνομα"
         description: "Περιγραφή"
@@ -907,6 +975,8 @@ el:
         user_input: Χρήστης
       message:
         content: Μήνυμα
+      script_lock_appeal:
+        text: Έφεση
   errors:
     messages:
       script_missing_name: "απαιτείται - ορίστε ένα με την ετικέτα @name"
@@ -922,6 +992,7 @@ el:
       script_disallowed_require: "χρησιμοποιείται ένας μη αποδεκτός εξωτερικός κώδικας: %{code}"
       script_rate_limit: "Έχετε υπερβεί το όριο δημοσιεύσεων. Δοκιμάστε ξανά αργότερα."
       missing_include_or_match: "πρέπει να περιλαμβάνεται τουλάχιστον ένα @match ή @include κλειδί"
+      no_executable: "περιέχει μη εκτελέσιμο κώδικα"
       file_size_out_of_range: "Το μέγεθος πρέπει να είναι λιγότερο από 200KB"
       meta_too_long: "%{key} είναι πολύ μεγάλο (μέγιστο είναι %{count} χαρακτήρες)"
   opensearch:
@@ -929,6 +1000,15 @@ el:
     description: "Αναζήτηση για κώδικες χρηστών στο %{site_name}."
     long_name: "Αναζήτηση κώδικα χρήστη του %{site_name}"
     attribution: "Για τα πνευματικά δικαιώματα των δημιουργών των κωδικών, δείτε κάθε ξεχωριστό κώδικα για την αδειοδότηση"
+  importing:
+    title: Εισαγωγή κωδίκων
+    submit: Εισαγωγή
+    previously_imported:
+      heading: Προηγούμενα εισαχθέντες κώδικες
+      unknown_date: "(΄άγνωστη)"
+    results:
+      title: "Αποτέλεσμα εισαγωγής"
+      success: "Οι ακόλουθοι κώδικες εισήχθησαν επιτυχώς:"
   mailers:
     script_report:
       report_created_offender:
@@ -937,13 +1017,10 @@ el:
         subject: "Ο κώδικάς στο %{script_name} στο %{site_name}έχει διαγραφεί"
       report_dismissed_offender:
         subject: "Μια αναφορά για τον κώδικά σας %{script_name} στο %{site_name} έχει  αποριφθεί."
-        text: "Μια αναφορά για τον κώδικά σας %{script_name} στο %{site_name} έχει απορριφθεί από συντονιστή. Ο κώδικάς σας θα παραμείνει ενεργός. Μπορείτε να ελέγξετε την αναφορά στο %{report_url}. Αν έχετε οποιαδήποτε ερώτηση παρακαλούμε επισκεφθείτε https://greasyfork.org/forum/."
       report_rebutted_reporter:
         subject: "Η αναφορά σας στο %{script_name} στο %{site_name}λάβει απάντηση"
       report_upheld_reporter:
         subject: "Η αναφορά σας στο%{script_name} στο %{site_name} έχει γίνει δεκτή"
-      report_script_deleted_reported:
-        subject: "Η αναφορά σας στο %{script_name}στο %{site_name}έχει κλείσει"
       report_dismissed_reporter:
         subject: "Η αναφορά σας%{script_name} στο %{site_name}έχει απορριφθεί"
     consecutive_bad_ratings:
@@ -957,3 +1034,8 @@ el:
       subject: "Ο χρήστης %{commenter_name} αναφέρθηκε σε εσάς στο %{site_name}."
     new_message:
       subject: "%{user}σας έστειλε ένα μήνυμα στο %{site_name}."
+    script_lock_appeal:
+      dismiss:
+        moderator_notes: "Ο συντονιστής σχολίασε:"
+      unlock:
+        moderator_notes: "Ο συντονιστής σχολίασε:"

@@ -1292,34 +1292,20 @@ pt-BR:
     script_report:
       report_created_offender:
         subject: "O seu script %{script_name} no %{site_name} foi denunciado"
-        text: "O seu script %{script_name} foi reportado por violar as regras do %{site_name}. O motivo específico foi: %{reason}. Você pode analisar este reporte em %{report_url} e refutá-lo. Caso não seja enviada uma refutação, seu script pode ser removido pelos moderadores. Se tiver alguma dúvida, por favor visite https://greasyfork.org/forum/."
       report_upheld_offender:
         subject: "Seu script %{script_name} no %{site_name} foi removido"
-        text: |
-            Seu script %{script_name} em %{site_name} foi excluído por um moderador e não está mais acessível publicamente. Você pode revisar a denúncia em %{report_url} as regras de %{site_name} em %{code_rules_url}.
-
-            Se você acredita que haja algum erro, ou se tiver atualizado o script para resolver o problema, você pode abrir uma apelação em %{appeal_url}, e um moderador irá revisar. Não reposte este script, fazê-lo pode resultar em banimento de %{site_name}.
       report_dismissed_offender:
         subject: "Uma denúncia do seu script %{script_name} no %{site_name} foi desfeita"
-        text: "Uma denúncia no seu script %{script_name} no %{site_name} foi indeferida por um moderador. Seu script continuará ativo. Você pode rever esta denúncia em %{report_url}. Se você tiver alguma dúvida, por favor visite https://greasyfork.org/forum/."
       report_fixed_offender:
         subject: "Um relatório sobre o seu script %{script_name} em %{site_name} foi marcado como resolvido"
-        text: "Um relatório sobre seu script %{script_name} em %{site_name} foi marcado por um moderador, pois eles acreditam que você corrigiu o problema. Seu script permanecerá ativo. Você pode revisar este relatório em%{report_url}. Se você tiver alguma dúvida, visite https://greasyfork.org/forum/."
       report_rebutted_reporter:
         subject: "Sua denúncia no %{script_name} no %{site_name} recebeu uma resposta"
-        text: "Sua denúncia no %{script_name} no %{site_name} recebeu uma resposta. Você pode rever esta resposta em %{report_url}. Um moderador irá rever sua denúncia e esta resposta, e decidir o resultado. Se você tiver alguma dúvida, por favor visite https://greasyfork.org/forum/."
       report_upheld_reporter:
         subject: "Sua denúncia no %{script_name} no %{site_name} foi confirmada"
-        text: "Sua denúncia no %{script_name} no %{site_name} foi confirmada por um moderador e o script foi demovido. Você pode rever a denúncia em %{report_url}. Se você tiver alguma dúvida, por favor visite https://greasyfork.org/forum/."
-      report_script_deleted_reported:
-        subject: "Sua denúncia no %{script_name} no %{site_name} foi encerrada"
-        text: "Sua denúncia no %{script_name} no %{site_name} foi encerrada pois o script foi removido pelo autor.  Você pode rever esta denúncia em %{report_url}. Se você tem alguma dúvida, por favor visite https://greasyfork.org/forum/."
       report_dismissed_reporter:
         subject: "Sua denúncia no %{script_name} no %{site_name} foi indeferida"
-        text: "Sua denúncia no %{script_name} no %{site_name} foi indeferido por um moderador e o script que você denunciou continuará ativo. Você pode rever a denúncia em %{report_url}. Se você tiver alguma dúvida, por favor visite https://greasyfork.org/forum/."
       report_fixed_reporter:
         subject: "Seu relatório em %{script_name} em %{site_name} foi marcado como resolvido"
-        text: "Seu relatório em %{script_name} em %{site_name} foi marcado como resolvido por um moderador, pois eles acreditam que o autor corrigiu o problema. O script vai permanecer ativo. Você pode revisar o relatório em %{report_url}. Se você tiver alguma dúvida, por favor visite https://greasyfork.org/forum/."
     consecutive_bad_ratings:
       notify:
         subject: "O seu script %{script_name} no %{site_name} recebeu múltiplas avaliações \"Ruins\"."
@@ -1332,7 +1318,6 @@ pt-BR:
     script_comment:
       subject: "Seu script %{script_name} no %{site_name} recebeu um comentário."
       intro: "Seu script %{script_link:%{script_name}} em %{site_name} recebeu um comentário do usuário %{commenter_link:%{commenter_name}}:"
-      outro: "%{comment_link:Veja e responda esse comentário.} %{notification_preferences_link:Gerencie suas preferências de notificação.}"
     subscribed_discussion:
       subject: "A discussão %{discussion_title} no %{site_name} recebeu um comentário."
       intro: "A discussão %{discussion_link:%{discussion_title}} em %{site_name} recebeu um comentário do usuário %{commenter_link:%{commenter_name}}:"
