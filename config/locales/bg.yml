@@ -1323,10 +1323,28 @@ bg:
             </p>
       report_fixed_offender:
         subject: "Доклад за вашия скрипт %{script_name} на %{site_name} е отбелязан като решен"
+        body_html: |
+            <p>
+            Доклад за вашия скрипт %{script_link:%{script_name}} на %{site_name} беше отбелязан от модератор като решен, понеже се предполага, че сте оправили проблема. Скриптът остава активен. Можете да  %{report_link:прегледате доклада}.
+            </p>
       report_rebutted_reporter:
         subject: "Има отговор на доклада ви за %{script_name} в %{site_name}"
+        body_html: |
+            <p>
+            Има отговор на вашия доклад за %{script_link:%{script_name}} на%{site_name}. Можете да %{report_link:видите отговора}. Модератор ще прегледа вашия доклад и отговора, и ще вземе решение.
+            </p>
       report_upheld_reporter:
         subject: "Докладът ви за %{script_name} на %{site_name} беше потвърден"
+        body_html: |
+            <p>
+            Докладът ви за %{script_link:%{script_name}} на %{site_name} беше потвърден от модератор и скриптът беше изтрит. Можете да %{report_link:прегледате доклада}.
+            </p>
+      report_script_deleted_reporter:
+        subject: "Вашият доклад за %{script_name} на %{site_name} беше приключен"
+        body_html: |
+            <p>
+            Докладът ви за %{script_link:%{script_name}} на %{site_name} беше приключен, понеже авторът е изтрил скрипта си. Можете да %{report_link:прегледате доклада}.
+            </p>
       report_dismissed_reporter:
         subject: "Докладът ви за %{script_name} на %{site_name} беше отхвърлен"
       report_fixed_reporter:
