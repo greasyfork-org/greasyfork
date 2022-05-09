@@ -4,7 +4,8 @@
        report_link: report_url(@report, locale: @locale),
        script_link: @report.item.url(locale: @locale),
        site_name: @site_name,
-       reason: t("reports.reason.#{@report.reason}"))
+       reason: t("reports.reason.#{@report.reason}"),
+       antifeature_link: Rails.application.routes.url_helpers.help_antifeatures_url)
 %>
 
 <hr>
