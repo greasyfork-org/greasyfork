@@ -110,7 +110,7 @@ class ScriptReportMailer < ApplicationMailer
   def mail_to_reporters(report, subject:, site_name:, template_name: nil)
     reporters = [report.reporter]
     reporters += report.reference_script.users if report.reference_script
-    reporters.select(&:notify_as_reporter).compact.uniq.each do |user|
+    reporters.compact.select(&:notify_as_reporter).uniq.each do |user|
       mail_to_user(user:, report:, subject:, site_name:, template_name:)
     end
   end
