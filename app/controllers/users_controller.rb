@@ -60,11 +60,16 @@ class UsersController < ApplicationController
     @users = self.class.apply_sort(@users, sort: params[:sort]).paginate(page: params[:page], per_page: pp, total_entries: [@users.count, MAX_LIST_ENTRIES].min).load
     @user_script_counts = Script.listable(script_subset).joins(:authors).where(authors: { user_id: @users.map(&:id) }).group(:user_id).count
 
-    @bots = 'noindex,follow' if !params[:sort].nil? || !params[:q].nil?
-    @title = t('users.listing_title')
-    @canonical_params = [:page, :per_page, :sort, :q]
-
-    render layout: 'base'
+    respond_to do |format|
+      format.html do
+        @bots = 'noindex,follow' if !params[:sort].nil? || !params[:q].nil?
+        @title = t('users.listing_title')
+        @canonical_params = [:page, :per_page, :sort, :q]
+        render layout: 'base'
+      end
+      format.json { render json: @users.as_json }
+      format.jsonp { render json: @users.as_json, callback: clean_json_callback_param }
+    end
   end
 
   def show
