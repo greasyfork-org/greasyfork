@@ -1347,6 +1347,10 @@ bg:
             </p>
       report_dismissed_reporter:
         subject: "Докладът ви за %{script_name} на %{site_name} беше отхвърлен"
+        body_html: |
+            <p>
+            Докладът ви за %{script_link:%{script_name}} на %{site_name} беше игнориран и докладваният скрипт ще остане активен. Можете да %{report_link:прегледате доклада}.
+            </p>
       report_fixed_reporter:
         subject: "Докладът ви за %{script_name} на %{site_name} беше маркиран като решен"
     consecutive_bad_ratings:
