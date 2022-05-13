@@ -18,14 +18,14 @@ class UsersController < ApplicationController
   def index
     # Limit to 1000 results. Otherwise bots get at it and load way far into the list, which has performance problems.
     pp = per_page
-    if params[:page].to_i > MAX_LIST_ENTRIES / pp
+    if page_number > MAX_LIST_ENTRIES / pp
       render_404 'User list is limited to 1000 results.'
       return
     end
 
     # Pagination with search is also slow.
     if params[:q].present?
-      if params[:page].to_i > 1
+      if page_number > 1
         redirect_to current_path_with_params(page: nil, per_page: nil)
         return
       end
@@ -57,7 +57,7 @@ class UsersController < ApplicationController
       @users = @users.where(current_sign_in_ip: other_user.current_sign_in_ip) if other_user&.current_sign_in_ip
     end
 
-    @users = self.class.apply_sort(@users, sort: params[:sort]).paginate(page: params[:page], per_page: pp, total_entries: [@users.count, MAX_LIST_ENTRIES].min).load
+    @users = self.class.apply_sort(@users, sort: params[:sort]).paginate(page: page_number, per_page: pp, total_entries: [@users.count, MAX_LIST_ENTRIES].min).load
     @user_script_counts = Script.listable(script_subset).joins(:authors).where(authors: { user_id: @users.map(&:id) }).group(:user_id).count
 
     respond_to do |format|
