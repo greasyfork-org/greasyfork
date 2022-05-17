@@ -635,7 +635,7 @@ class ScriptsController < ApplicationController
     @other_script = get_script_from_input(params[:compare], allow_deleted: true)
 
     if @other_script.is_a?(Script)
-      if params[:terser] == '1' && current_user&.moderator?
+      if params[:terser] == '1'
         other_code = @other_script.cleaned_code.code
         this_code = @script.cleaned_code.code
       else

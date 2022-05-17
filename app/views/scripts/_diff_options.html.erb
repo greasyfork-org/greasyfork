@@ -6,9 +6,7 @@
   <input id="ignore-whitespace" type="checkbox" name="w" value="1" <% if params[:w] == '1' %> checked<% end %>>
   <label for="ignore-whitespace" class="radio-label"><%= t('scripts.diff_ignore_whitespace') %></label>
 </div>
-<% if current_user&.moderator? %>
-  <div class="form-control">
-    <input id="terser" type="checkbox" name="terser" value="1" <% if params[:terser] == '1' %> checked<% end %>>
-    <label for="terser" class="radio-label">Run code through terser/prettier</label>
-  </div>
-<% end %>
+<div class="form-control">
+  <input id="terser" type="checkbox" name="terser" value="1" <% if params[:terser] == '1' %> checked<% end %>>
+  <label for="terser" class="radio-label">Run code through terser/prettier</label>
+</div>
