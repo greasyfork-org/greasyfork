@@ -145,6 +145,7 @@ tr:
     derivatives_similar_last_check_soon: "Kısa süre içinde sizinkine benzer komut dosyalarını kontrol edeceğiz."
     derivatives_similar_last_check_again_soon_html: "En son tarihinde %{date}sizinkine benzer komut dosyalarını kontrol ettik. Kısa süre sonra tekrar kontrol edeceğiz."
     derivatives_similar_check_now: "Şimdi tekrar kontrol edin"
+    derivatives_similiar_queued: Benzerlik kontrolü birkaç dakika içinde tamamlanacaktır.
     listing_title_all_sites: "Tüm siteler için üye scriptleri"
     listing_description_all_sites: "Tüm sitelerde özellikler ekleyen ve bugları kaldıran scriptler."
     listing_title_for_site: "%{site} için kullanıcı scriptleri"
@@ -241,6 +242,10 @@ tr:
     additional_info_default_sync_html: "Varsayılan ek bilgi (<code>@name</code> ile eşleşmiş dil)"
     additional_info_localized_sync_html: "Sadece yerel (<code>@name:XX</code> ile eşleşmiş dil)"
     sync_url_placeholder: "(URL)"
+    sync_successful: Script başarılı bir şekilde eşitlendi.
+    sync_no_changes: Script başarılı bir şekilde eşitlendi, ama değişiklik bulunamadı.
+    sync_error: Script eşitleme başarısız - %{error}.
+    sync_turned_off: Script eşitleme kapalı.
     screenshots_add: "Ekle:"
     screenshots_remove: "Kaldır"
     replacement_script_explanation: "(İsteğe bağlı) Bu script yerine başka bir script seçin. Yerine gelecek scriptin URL'sini giriniz:"
@@ -426,6 +431,10 @@ tr:
     explain_user_scripts_html: "Kullanıcı scriptleri göz atma deneyiminizi kontrol etmenizi sağlar. Yüklendikten sonra, özellikler ekleyerek, onları daha kolay kullanmanızı sağlayarak veya rahatsız edici bitleri çıkartarak ziyaret ettiğiniz siteleri otomatik olarak daha iyi hale getirirler. %{site_name} alanındaki kullanıcı scriptler diğer kullanıcılar tarafından yazılmış ve dünyayla paylaşımda bulunmak için gönderilmiştir. Kurulumu kolay ve kullanımı kolaydır."
     installing_step1_header: "Adım 1: Bir kullanıcı script yöneticisi kur"
     installing_step1_caption: "Chrome için Tampermonkey "
+    installing_step1_description_html: >
+        <p>Kullanıcı scriptlerini kullanabilmek için ilk önce bir script yöneticisi
+        kurmanız gerekir. Kullanabileceğiniz script yöneticisi kullandığınız tarayıcıya
+        bağlıdır.</p>
     installing_step2_header: "Adım 2: Bir kullanıcı skripti kur"
     installing_step2_caption: "Bir kullanıcı scriptinin yükleme düğmesi"
     installing_step3_header: "Adım 3: Kullanıcı scripti kullan"

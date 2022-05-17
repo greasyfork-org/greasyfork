@@ -209,6 +209,7 @@ zh-TW:
     warning_potentially_minified_html: "您的腳本看起來好像包含壓縮過的代碼。如果您使用了壓縮過的函式庫，請改爲透過 <code>@require</code> 引用 %{allowed_requires_link} 所提供的腳本。包含了壓縮代碼的腳本將會被刪除。"
     warning_automatic_sensitive_html: "由於您的腳本執行於 %{sensitive_domains}，它將會被標記為包含成人內容。"
     warning_potentially_minified_allowed_requires_link: "這些網站"
+    warning_license_missing_override_html: "不詢問直接儲存"
     additional_info_locale_prompt: "(語言選擇)"
     additional_info_add_localized: "新增別的語言的「其他資訊」欄位"
     additional_info_locale_repeated: "對於 '%{locale_code}' 語言，請勿提供多個其他資訊。"
@@ -237,6 +238,7 @@ zh-TW:
     additional_info_default_sync_html: "「其他資訊」預設值 (應與 <code>@name</code> 使用同種語言)"
     additional_info_localized_sync_html: "當地語系化 (應與 <code>@name:XX</code> 使用同種語言)"
     sync_url_placeholder: "(網址)"
+    sync_turned_off: 腳本同步已關閉
     screenshots_add: "新增："
     screenshots_remove: "移除"
     replacement_script_explanation: "(可選)選擇另一個可替代此腳本的腳本。用戶將被更新並生成到此腳本。請輸入替代腳本的網址："
@@ -320,6 +322,9 @@ zh-TW:
       js:
         firefox: 您需要先安裝一個用戶腳本管理器擴展，如 %{tampermonkey_link:Tampermonkey}、%{greasemonkey_link:Greasemonkey} 或 %{violentmonkey_link:Violentmonkey} 之後才能安裝該腳本。
         chrome: 您需要先安装一个用户脚本管理器扩展，如 %{tampermonkey_link:Tampermonkey} 或 %{violentmonkey_link:Violentmonkey} 后才能安装该脚本。
+      css:
+        firefox: 您需要先安裝一個用戶樣式管理器擴展，如 %{stylus_link:Stylus} 後才能安裝該腳本。
+      close_dialog: OK
     antifeatures:
       warning_title: 該腳本包含反功能
       author_explanation_intro: "腳本的作者解釋："
@@ -421,6 +426,19 @@ zh-TW:
     explain_user_scripts_html: "使用者腳本讓您控制您的瀏覽體驗。當您安裝後，使用者腳本可以為網頁增加功能、簡化使用方法、或移除煩人的東西。在 %{site_name} 上的腳本都是由其它使用者撰寫、和全世界分享的。所有的腳本都是免費安裝，而且容易使用。"
     installing_step1_header: "第 1 步：安裝使用者腳本管理器"
     installing_step1_caption: "Chrome 下使用 TamerMonkey 的截圖"
+    installing_step1_description_html: >
+        <p>要使用者腳本，您首先要安裝一個用戶腳本管理器。您可以根據目前使用的瀏覽器來選擇一個用戶腳本管理器。</p>
+    desktop_browsers:
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} or %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, 或 %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} 或 %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} 或 %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>AdGuard: (無需其他軟體)</li>
+          </ul>
     installing_step2_header: "第 2 步：安裝使用者腳本"
     installing_step2_caption: "使用者腳本的安裝按鈕"
     installing_step2_description_html: >

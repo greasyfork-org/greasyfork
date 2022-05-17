@@ -637,6 +637,8 @@ zh-CN:
         receiver: 默认订阅发给我的私信
       report_defaults:
         title: 举报通知
+        reporter: 在您创建的举报被解决时获取通知
+        reported: 在对您发布的内容的举报被创建或解决时获取通知
       save_button: 更新通知设置
       title: 通知
       current_discussion_subscriptions:
@@ -1031,6 +1033,10 @@ zh-CN:
       bad: "差评"
       ok: "一般"
       good: "好评"
+    badges:
+      deleted:
+        short: 已删除
+        long: 已删除
     sign_in_to_post_discussion: "登录以发表评价、评论或提问。"
     sign_in_to_post_comment: "登录以发表回复。"
     user_filter:
@@ -1234,8 +1240,18 @@ zh-CN:
     script_report:
       report_created_offender:
         subject: "您的脚本 %{script_name} 在 %{site_name} 上被举报"
+        body_html: |
+            <p>
+            您的脚本%{script_link:%{script_name}} 被报告违反了%{site_name}的规则。给出的理由是：%{reason}您可以%{report_link:审核此举报并提交反驳}。如果您不提交反驳，您的脚本将被审核员删除。
       report_upheld_offender:
         subject: "您的脚本 %{script_name} 在 %{site_name} 上已被删除"
+        body_html: |
+            <p>
+            您在%{site_name}上的脚本%{script_link:%{script_name}} 已被审核员移除且不可被公开访问。您可以%{report_link:审核举报}并%{code_rules_link:审核 %{site_name}的规则}。
+            </p>
+            <p>
+            若您认为这是错误，或您已更新了此脚本以修复此问题，您可以%{appeal_link:提交上诉}，一位审查员将审核它。请勿重新发布此脚本；这样做可能导致您被%{site_name}封锁账号。
+            </p>
       report_dismissed_offender:
         subject: "%{site_name} 上的一则针对您的 %{script_name} 脚本的举报已被驳回"
       report_fixed_offender:
