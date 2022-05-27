@@ -26,6 +26,7 @@ it:
     applies_to: "Applica a"
     applies_to_link_title:
       one: "Vedi %{count} altro script da %{site}"
+      many: "Vedi %{count} altri script da %{site}"
       other: "Vedi %{count} altri script da %{site}"
     applies_to_all: "Tutti i siti"
     install: "Installa questo script"
@@ -440,6 +441,7 @@ it:
     calculated_list_none: "(Nessuno)"
     calculated_list_more:
       one: "E %{count} altro..."
+      many: "E %{count} altri..."
       other: "E %{count} altri..."
     already_included: "'%{name}' già incluso."
     could_not_parse_script: "Non è stato possibile interpretare lo script '%{value}'"
@@ -574,6 +576,7 @@ it:
       discussion_and_comment: "Ricevi un'e-mail quando ci sono delle nuove discussioni sui tuoi script o quando queste discussioni ricevono nuovi commenti"
     list_display_html:
       one: "%{user_link} - %{count} script"
+      many: "%{user_link} - %{count} script"
       other: "%{user_link} - %{count} script"
     listing_number_of_scripts: "Numero di script"
     listing_new_scripts: "Nuovi script"
@@ -596,9 +599,11 @@ it:
     filter_locale_default_description: "Per impostazione predefinita, mostra solo i contenuti nella lingua locale"
     greasy_fork_scripts_link:
       one: "%{user_name} ha altri %{count} script su Greasy Fork."
+      many: "%{user_name} ha anche %{count} script su Greasy Fork."
       other: "%{user_name} ha anche %{count} script su Greasy Fork."
     update_sync_warning:
       one: "Il tuo nome utente e la tua email sono sincronizzati quando accedi con . %{edit_sign_in_link:Modifica i tuoi metodi di accesso per rimuovere la sincronizzazione} se desideri impostare permanentemente un nome utente o una email pesonalizzata."
+      many: "Il tuo nome utente e la tua email sono sincronizzati quando accedi con %{providers}. %{edit_sign_in_link:Modifica i tuoi metodi di accesso per rimuovere la sincronizzazione} se desideri impostare permanentemente un nome utente o una email pesonalizzata."
       other: "Il tuo nome utente e la tua email sono sincronizzati quando accedi con %{providers}. %{edit_sign_in_link:Modifica i tuoi metodi di accesso per rimuovere la sincronizzazione} se desideri impostare permanentemente un nome utente o una email pesonalizzata."
     delete_link: "Cancella account"
     delete:
@@ -606,12 +611,15 @@ it:
       password_effect: "Non potrai più accedere con la tua password."
       identities_effect:
         one: "Effettuando l'accesso tramite %{identities} verrà creato un nuovo account."
+        many: "Effettuando l'accesso tramite %{identities} verrà creato un nuovo account."
         other: "Effettuando l'accesso tramite %{identities} verrà creato un nuovo account."
       scripts_effect:
         one: "Il tuo script verrà cancellato."
+        many: "I tuoi %{count} script verranno cancellati."
         other: "I tuoi %{count} script verranno cancellati."
       script_sets_effect:
         one: "Il tuo set di script verrà cancellato."
+        many: "I tuoi %{count} set di script verranno cancellati."
         other: "I tuoi %{count} set di script verranno cancellati."
       forum_effect: "I tuoi contributi sul forum rimarranno, ma l'utente associato verrò rinominato \"%{user_name}\"."
       email_confirmation: "Prima di cancellare il tuo account, %{site_name} invierà una email a %{email} per confermare la tua richiesta."
@@ -663,6 +671,7 @@ it:
       title: Notifiche
       current_discussion_subscriptions:
         one: Disiscriviti dalla %{discussions_link:%{count} discussione} a cui sei iscritto
+        many: Disiscriviti dalle %{discussions_link:%{count} discussioni} a cui sei iscritto
         other: Disiscriviti dalle %{discussions_link:%{count} discussioni} a cui sei iscritto
       save_success: Le preferenze per le tue notifiche sono state aggiornate.
       unsubscribe_all: Disiscriviti da tutte le notifiche
@@ -963,6 +972,7 @@ it:
   notifications:
     consecutive_bad_ratings:
       one: "%{script_names} ha ricevuto una serie di valutazioni negative. Rivedi il tuo script e rispondi ai problemi fatti presente nelle valutazioni."
+      many: "%{script_names} hanno ricevuto una serie di valutazioni negative. Rivedi i tuoi script e rispondi ai problemi fatti presente nelle valutazioni."
       other: "%{script_names} hanno ricevuto una serie di valutazioni negative. Rivedi i tuoi script e rispondi ai problemi fatti presente nelle valutazioni."
     open_reports: "Alcuni dei tuoi scripts sono stati segnalati. Per favore, visiona le segnalazioni e fornisci tutte le informazioni che puoi. %{report_links}"
   reports:
@@ -1181,11 +1191,13 @@ it:
     new_button: Crea conversazione
     title_html:
       one: Conversazione con%{users}
+      many: Conversazione con %{users}
       other: Conversazione con %{users}
     send_message: Invia messaggio
     conversation_list_title: Conversazioni
     conversation_link_html:
       one: Conversazione con %{users}
+      many: Conversazione con %{users}.
       other: Conversazione con %{users}.
     conversation_info_html: Ultimo messaggio %{date} da %{user}
     no_conversations: Non hai ancora avuto nessuna conversazione.
@@ -1223,9 +1235,11 @@ it:
     models:
       script:
         one: "%{count} script"
+        many: "%{count} script"
         other: "%{count} script"
       comment:
         one: "%{count} commento"
+        many: "%{count} commenti"
         other: "%{count} commenti"
     attributes:
       user:

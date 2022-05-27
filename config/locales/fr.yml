@@ -26,6 +26,7 @@ fr:
     applies_to: "S'applique à"
     applies_to_link_title:
       one: "Voir %{count} autre script pour %{site}"
+      many: "Voir %{count} autres scripts pour %{site}"
       other: "Voir %{count} autres scripts pour %{site}"
     applies_to_all: "Tous les sites"
     install: "Installer ce script"
@@ -432,6 +433,7 @@ fr:
     calculated_list_none: "(Aucun)"
     calculated_list_more:
       one: "Et %{count} de plus"
+      many: "Et %{count} de plus"
       other: "Et %{count} de plus"
     already_included: "'%{name}' déjà inclus."
     could_not_parse_script: "Impossible d'analyser le script '% {value}'"
@@ -533,6 +535,7 @@ fr:
       discussion_and_comment: "Recevoir un email quand une discussion est postée sur l'un de vos scripts, ou quand un nouveau commentaire est posté sur l'une de ces discussions"
     list_display_html:
       one: "%{user_link} - %{count} script"
+      many: "%{user_link} - %{count} scripts"
       other: "%{user_link} - %{count} scripts"
     listing_number_of_scripts: "Nombre de scripts"
     listing_new_scripts: "Nouveaux scripts"
@@ -555,9 +558,11 @@ fr:
     filter_locale_default_description: "Par défaut, seul la liste contienne les paramètres actuels"
     greasy_fork_scripts_link:
       one: "%{user_name} a aussi %{count} script sur Greasy Fork."
+      many: "%{user_name} a aussi %{count} scripts sur Greasy Fork."
       other: "%{user_name} a aussi %{count} scripts sur Greasy Fork."
     update_sync_warning:
       one: "Votre nom d'utilisateur et courriel sont configurés pour être synchronisés lorsque vous vous connectez avec %{providers}. %{edit_sign_in_link:Editer votre méthode de connexion pour supprimer la synchonisation} si vous voulez définir de façon permanente un nom d'utilisateur personnalisé ou un courriel."
+      many: "Votre nom d'utilisateur et courriel sont configurés pour être synchronisés lorsque vous vous connectez avec %{providers}. %{edit_sign_in_link:Editer votre méthode de connexion pour supprimer la synchonisation} si vous voulez définir de façon permanente un nom d'utilisateur personnalisé ou un courriel."
       other: "Votre nom d'utilisateur et courriel sont configurés pour être synchronisés lorsque vous vous connectez avec %{providers}. %{edit_sign_in_link:Editer votre méthode de connexion pour supprimer la synchonisation} si vous voulez définir de façon permanente un nom d'utilisateur personnalisé ou un courriel."
     delete_link: "Supprimer mon compte"
     delete:
@@ -565,12 +570,15 @@ fr:
       password_effect: "Vous ne pourrez plus vous connecter avec votre mot de passe."
       identities_effect:
         one: "Se connecter via %{identities} créera un nouveau compte."
+        many: "Se connecter via %{identities} créera un nouveau compte."
         other: "Se connecter via %{identities} créera un nouveau compte."
       scripts_effect:
         one: "Vos %{count} scripts vont êtes supprimés."
+        many: "Vos %{count} scripts vont être supprimés."
         other: "Vos %{count} scripts vont être supprimés."
       script_sets_effect:
         one: "Votre jeu de scripts va être supprimé."
+        many: "Vos %{count} jeux de scripts vont être supprimés."
         other: "Vos %{count} jeux de scripts vont être supprimés."
       forum_effect: "Vos contributions sur le forum resteront, mais l'utilisateur associé sera renommé \"%{user_name}\"."
       email_confirmation: "Avant de supprimer votre compte, %{site_name} nous allons envoyer un email à %{email} afin de confirmer votre demande."
@@ -618,6 +626,7 @@ fr:
       title: Notifications
       current_discussion_subscriptions:
         one: Se désabonner de la %{discussions_link:%{count} discussion} au quelle vous êtes abonné
+        many: Se désabonner des %{discussions_link:%{count} discussions} auxquels vous êtes abonné
         other: Se désabonner des %{discussions_link:%{count} discussions} auxquels vous êtes abonné
       save_success: Vos préférences de notification ont été mises à jour.
       unsubscribe_all: Se désabonner de toutes les notifications
@@ -918,6 +927,7 @@ fr:
   notifications:
     consecutive_bad_ratings:
       one: "%{script_names} a reçu plusieurs mauvaises notes consécutives. Veuillez revoir votre script et répondre aux préoccupations soulevées dans les évaluations."
+      many: "%{script_names} ont reçu plusieurs mauvaises notes consécutives. Veuillez revoir vos scripts et répondre aux préoccupations soulevées dans les évaluations."
       other: "%{script_names} ont reçu plusieurs mauvaises notes consécutives. Veuillez revoir vos scripts et répondre aux préoccupations soulevées dans les évaluations."
     open_reports: "Certains de vos scripts ont été signalés. Veuillez examiner les rapports et fournir toutes les informations que vous pouvez. %{report_links}"
   reports:
@@ -1129,11 +1139,13 @@ fr:
     new_button: Créer une conversation
     title_html:
       one: Conversation avec %{users}
+      many: Conversation de %{users}
       other: Conversation de %{users}
     send_message: Envoyer le message
     conversation_list_title: Conversations
     conversation_link_html:
       one: Conversation avec %{users}.
+      many: Conversation avec %{users}.
       other: Conversation avec %{users}.
     conversation_info_html: Dernier message à %{date} de %{user}.
     no_conversations: Vous n'avez encore eu aucune conversation.
@@ -1171,9 +1183,11 @@ fr:
     models:
       script:
         one: "%{count} script"
+        many: "%{count} scripts"
         other: "%{count} scripts"
       comment:
         one: "%{count} commentaire"
+        many: "%{count} commentaires"
         other: "%{count} commentaires"
     attributes:
       user:

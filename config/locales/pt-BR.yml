@@ -26,6 +26,7 @@ pt-BR:
     applies_to: "Aplicável a"
     applies_to_link_title:
       one: "Veja %{count} outro script de %{site}"
+      many: "Veja %{count} outros scripts de %{site}"
       other: "Veja %{count} outros scripts de %{site}"
     applies_to_all: "Todos os sites"
     install: "Instalar o script"
@@ -433,6 +434,7 @@ pt-BR:
     calculated_list_none: "(Nenhum)"
     calculated_list_more:
       one: "E %{count} outra..."
+      many: "E %{count} outras..."
       other: "E %{count} outras..."
     already_included: "'%{name}' já está incluído."
     could_not_parse_script: "Não foi possível analisar o script '%{value}'"
@@ -567,6 +569,7 @@ pt-BR:
       discussion_and_comment: "Receber um email quando discussões são postadas em seus scripts ou quando estas discussões recebem novos comentários"
     list_display_html:
       one: "%{user_link} - %{count} script"
+      many: "%{user_link} - %{count} scripts"
       other: "%{user_link} - %{count} scripts"
     listing_number_of_scripts: "Número de scripts"
     listing_new_scripts: "Novos scripts"
@@ -589,9 +592,11 @@ pt-BR:
     filter_locale_default_description: "Por padrão, apenas listar conteúdo no idioma atual"
     greasy_fork_scripts_link:
       one: "%{user_name} também possui %{count} scripts no Greasy Fork."
+      many: "%{user_name} também possui %{count} scripts no Greasy Fork."
       other: "%{user_name} também possui %{count} scripts no Greasy Fork."
     update_sync_warning:
       one: "Seu nome de usuário e email estão configurados para serem sincronizados quando você efetuar o login com %{providers}. %{edit_sign_in_link:Altere seus métodos de login para remover esta sincronização} caso deseje definir permanentemente um nome de usuário ou email personalizados."
+      many: "Seu nome de usuário e email estão configurados para serem sincronizados quando você efetuar o login com %{providers}. %{edit_sign_in_link:Altere seus métodos de login para remover esta sincronização} caso deseje definir permanentemente um nome de usuário ou email personalizados."
       other: "Seu nome de usuário e email estão configurados para serem sincronizados quando você efetuar o login com %{providers}. %{edit_sign_in_link:Altere seus métodos de login para remover esta sincronização} caso deseje definir permanentemente um nome de usuário ou email personalizados."
     delete_link: "Apagar conta"
     delete:
@@ -599,12 +604,15 @@ pt-BR:
       password_effect: "Você não poderá mais acessar o site utilizando sua senha."
       identities_effect:
         one: "Acessar via %{identities} fará com que seja criada uma nova conta."
+        many: "Acessar via %{identities} fará com que seja criada uma nova conta. "
         other: "Acessar via %{identities} fará com que seja criada uma nova conta. "
       scripts_effect:
         one: "Seu %{count} script script será removido."
+        many: "Seus %{count} scripts serão removidos."
         other: "Seus %{count} scripts serão removidos."
       script_sets_effect:
         one: "Seu %{count} conjunto de scripts será removido."
+        many: "Seus %{count} conjuntos de script serão removidos."
         other: "Seus %{count} conjuntos de script serão removidos."
       forum_effect: "Suas contribuições para o fórum permanecerão, mas o usuário associado será renomeado para \"%{user_name}\"."
       email_confirmation: "Antes de remover sua conta, o %{site_name} enviará um email para %{email} para confirmar sua solicitação."
@@ -652,6 +660,7 @@ pt-BR:
       title: Notificações
       current_discussion_subscriptions:
         one: Desinscrever da %{discussions_link:%{count} discussão} que você está inscrito
+        many: Desinscrever das %{discussions_link:%{count} discussões} que você está inscrito
         other: Desinscrever das %{discussions_link:%{count} discussões} que você está inscrito
       save_success: Suas preferências de notificação foram atualizadas
       unsubscribe_all: Desinscrever-se de todas as notificações
@@ -948,6 +957,7 @@ pt-BR:
   notifications:
     consecutive_bad_ratings:
       one: "%{script_names} recebeu consecutivas avaliações negativas.  Por favor reveja seu script e responda as queixas nas avaliações."
+      many: "%{script_names} receberam consecutivas avaliações negativas. Por favor reveja seus scripts e responda as queixas nas avaliações."
       other: "%{script_names} receberam consecutivas avaliações negativas. Por favor reveja seus scripts e responda as queixas nas avaliações."
     open_reports: "Alguns de seus scripts foram relatados. Reveja os relatórios e forneça todas as informações que puder.%{report_links}"
   reports:
@@ -1159,11 +1169,13 @@ pt-BR:
     new_button: Criar conversa
     title_html:
       one: Conversa com %{users}
+      many: Conversa com %{users}
       other: Conversa com %{users}
     send_message: Enviar mensagem
     conversation_list_title: Conversas
     conversation_link_html:
       one: Conversa com %{users}.
+      many: Conversa com %{users}.
       other: Conversa com %{users}.
     conversation_info_html: Última mensagem em %{date} por %{user}.
     no_conversations: Você ainda não possui nenhuma conversa.
@@ -1201,9 +1213,11 @@ pt-BR:
     models:
       script:
         one: "%{count} script"
+        many: "%{count} scripts"
         other: "%{count} scripts"
       comment:
         one: "%{count}comentários"
+        many: "%{count}comentários"
         other: "%{count}comentários"
     attributes:
       user:

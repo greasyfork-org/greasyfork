@@ -1254,6 +1254,10 @@ zh-CN:
             </p>
       report_dismissed_offender:
         subject: "%{site_name} 上的一则针对您的 %{script_name} 脚本的举报已被驳回"
+        body_html: |
+            <p>
+            一个关于您在%{site_name}上的脚本%{script_link:%{script_name}} 的举报已经被审查员拒绝。您的脚本将保持活跃。您可以%{report_link:审核此举报}。
+            </p>
       report_fixed_offender:
         subject: "一则针对你在 %{site_name} 发布的脚本 %{script_name} 的举报已关闭"
       report_rebutted_reporter:
