@@ -493,6 +493,7 @@ bg:
       browser_list_html: |
           <ul>
           <li>Safari: %{safari_tampermonkey_link:Tampermonkey} или %{safari_userscripts_link:Userscripts}</li>
+          <li>%{gear_link:Gear}: (не е необходим допълнителен софтуер)
           </ul>
     installing_step2_header: "Стъпка 2: инсталирайте потребителски скрипт"
     installing_step2_caption: "Бутон за инсталиране на скрипта"
@@ -1353,6 +1354,10 @@ bg:
             </p>
       report_fixed_reporter:
         subject: "Докладът ви за %{script_name} на %{site_name} беше маркиран като решен"
+        body_html: |
+            <p>
+            Докладът ви за %{script_link:%{script_name}} на %{site_name} беше отбелязан от модератор като завършен, вярвайки че авторът е оправил проблема. Скриптът остава активен. Можете да %{report_link:прегледате доклада}.
+            </p>
     consecutive_bad_ratings:
       notify:
         subject: "Твоят скрипт %{script_name} на %{site_name} е получил множество \"Лоши\" отзиви."
