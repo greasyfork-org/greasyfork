@@ -45,7 +45,7 @@ it:
     deleted_notice_with_related: "Lo script che hai cercato è stato rimosso, ma ci sono alcuni script simili."
     deleted_undelete_notice_html: "Lo script è stato bloccato da un moderatore e non può essere cancellato. La motivazione fornita è: \"<i>%{delete_reason}</i>\"."
     deleted_locked_author_notice_html: "Lo script è stato eliminato da un moderatore e non è accessibile ad altri. La ragione fornita è: \"<i>%{delete_reason}</i>\". Per favore consulta le %{code_rules_link:regole di %{site_name}}. Se credi che la cancellazione sia stata frutto di un errore, puoi %{appeal_link:presentare ricorso} a questa eliminazione. Non ripubblicare lo script; facendolo potresti essere bandito da %{site_name}."
-    deleted_author_notice: "Lo script è stato cancellato e non è accessibile da altri. Puoi ripristinarlo dalla finestra Cancella."
+    deleted_author_notice: "Lo script è stato cancellato e non è accessibile da altri. Puoi ripristinarlo dalla finestra Elimina."
     version_notice_html: "Versione datata %{date}. Vedi la nuova versione %{latest_version_link}."
     version_notice_latest_version_link: "l'ultima versione"
     reported_notice: "\"%{script_name}\" è stato segnalato e la valutazione è in capo ad un moderatore."
@@ -494,6 +494,11 @@ it:
           </ul>
     ios_browsers:
       title: Mobile (iOS)
+      browser_list_html: |
+          <ul>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} o %{safari_userscripts_link:Userscripts}</li>
+          <li>%{gear_link:Gear}: (nessun software aggiuntivo richiesto)
+          </ul>
     installing_step2_header: "Step 2: installa uno script utente"
     installing_step2_caption: "Il tasto di installazione di uno script utente"
     installing_step2_description_html: >
@@ -1339,12 +1344,26 @@ it:
             </p>
       report_dismissed_offender:
         subject: "Una segnalazione sul tuo script %{script_name} su %{site_name} è stata respinta"
+        body_html: |
+            <p>
+            Una segnalazione riguardo a un tuo script %{script_link:%{script_name}} su %{site_name} è stata respinta da un moderatore. Il tuo script rimarrà attivo. Puoi %{report_link:visualizzare questa segnalazione}.
+            </p>
       report_fixed_offender:
         subject: "Una segnalazione relativa al tuo script %{script_name} su%{site_name} è stata contrassegnata come risolta"
+        body_html: |
+            <p>
+            Una segnalazione riguardo a un tuo script %{script_link:%{script_name}} su %{site_name} è stata segnata come risolta da un moderatore perché crede che tu abbia risolto il problema. Il tuo script rimarrà attivo. Puoi %{report_link:visualizzare questa segnalazione}.
+            </p>
       report_rebutted_reporter:
         subject: "La tua segnalazione di %{script_name} su %{site_name} ha ricevuto una risposta"
+        body_html: |
+            <p>
+            La tua segnalazione riguardo a %{script_link:%{script_name}} su %{site_name} ha ricevuto una risposta. Puoi %{report_link:visualizzare questa risposta}. Un moderatore rivedrà la tua segnalazione e questa risposta e prenderà una decisione.
+            </p>
       report_upheld_reporter:
         subject: "La tua segnalazione a riguardo di %{script_name} su %{site_name} è stata supportata"
+      report_script_deleted_reporter:
+        subject: "La tua segnalazione riguardo a %{script_name} su %{site_name} è stata chiusa"
       report_dismissed_reporter:
         subject: "La tua segnalazione a riguardo di %{script_name} su %{site_name} è stata respinta"
       report_fixed_reporter:

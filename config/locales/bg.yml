@@ -1358,6 +1358,8 @@ bg:
             <p>
             Докладът ви за %{script_link:%{script_name}} на %{site_name} беше отбелязан от модератор като завършен, вярвайки че авторът е оправил проблема. Скриптът остава активен. Можете да %{report_link:прегледате доклада}.
             </p>
+      reported_outro: "Получихте това известие, защото се отнася до доклад за скрипт, който сте изпратили %{site_name}. %{notification_preferences_link:Управление на настройките за известията.}"
+      reporter_outro: "Получихте това известие, защото сте изпратили доклад за скрипт на %{site_name}. %{notification_preferences_link:Управление на настройките за известията.}"
     consecutive_bad_ratings:
       notify:
         subject: "Твоят скрипт %{script_name} на %{site_name} е получил множество \"Лоши\" отзиви."
@@ -1370,6 +1372,7 @@ bg:
     script_comment:
       subject: "Получихте коментар за вашия скрипт %{script_name} на %{site_name}."
       intro: "Вашият скрипт %{script_link:%{script_name}} на %{site_name} има коментар от потребител %{commenter_link:%{commenter_name}}:"
+      outro: "%{comment_link:Прегледайте и отговорете на коментара.} Получихте това известие, защото сте избрали да бъдете уведомени за дискусии по вашите скриптове. %{notification_preferences_link:Управление на настройките за известията.}"
     subscribed_discussion:
       subject: "В дискусията %{discussion_title} на %{site_name} има получен коментар."
       intro: "Дискусията %{discussion_link:%{discussion_title}} на %{site_name} има коментар от потребител %{commenter_link:%{commenter_name}}:"

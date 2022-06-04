@@ -28,7 +28,8 @@ nl:
       one: "Bekijk %{count} ander script voor %{site}"
       other: "Bekijk %{count} andere scripts voor %{site}"
     applies_to_all: "Alle websites"
-    install: "Installeren"
+    install: "Installeren als gebruikersscript"
+    install_css: "Installeren als gebruikersstijl"
     install_help: "?"
     install_help_title: "Hoe installeer ik dit?"
     update: "Bijwerken naar versie %{version}"
@@ -41,11 +42,12 @@ nl:
     library_instructions_html: "Dit script moet niet direct worden geïnstalleerd - het is een bibliotheek voor andere scripts om op te nemen met de meta-richtlijn %{code}"
     deleted_notice: "Dit script is verwijderd."
     deleted_notice_with_related: "Het gevraagde script is verwijderd, maar er zijn enkele verwante scripts."
-    deleted_undelete_notice_html: "Dit script is vergrendeld door een moderator en kan niet worden teruggehaald. Opgegeven reden: \"<i>%{delete_reason}</i>\""
-    deleted_author_notice: "Dit script is verwijderd door een moderator en kan niet worden getoond. Herstel het op het tabblad 'Verwijderen'."
+    deleted_undelete_notice_html: "Dit script is vergrendeld door een moderator en kan niet worden hersteld. Opgegeven reden: “<i>%{delete_reason}</i>”"
+    deleted_locked_author_notice_html: "Dit script is verwijderd door een moderator en is ontoegankelijk gemaakt voor anderen omwille van de volgende reden: “<i>%{delete_reason}</i>”. Neem %{code_rules_link:%{site_name}s regels} door. Als je het hier niet mee eens bent, dan kun je %{appeal_link:bezwaar indienen}. Let op: plaats het script niet opnieuw, anders loop je het risico dat je permanent wordt verbannen van %{site_name}."
+    deleted_author_notice: "Dit script is verwijderd door een moderator en kan niet worden getoond. Herstel het op het tabblad ‘Verwijderen’."
     version_notice_html: "Per %{date}. Zie %{latest_version_link}."
     version_notice_latest_version_link: "de nieuwste versie"
-    reported_notice: "Er is een melding ingediend over \"%{script_name}\" en wacht nu op goedkeuring door een moderator."
+    reported_notice: "Er is een melding ingediend over ‘%{script_name}’. Het script wordt zo spoedig mogelijk nagekeken door een moderator."
     reported_notice_for_author: "Dit script is niet beschikbaar tot het door een moderator is goedgekeurd."
     info_page: "Informatie"
     code_page: "Code"
@@ -55,11 +57,12 @@ nl:
     derivatives_page: "Vergelijkbare scripts"
     update_page: "Bijwerken"
     delete_page: "Verwijderen"
-    delete_explanation: "Het verwijderen van je script maakt het onbeschikbaar voor iedereen, behalve voor jou en de Greasy Fork-moderators. Je kunt je script altijd weer beschikbaar maken."
-    delete_update_behaviour: "Wat wil je dat er gebeurt met mensen die je script eerder hebben geïnstalleerd?"
+    delete_explanation: "Door je script te verwijderen, maak je het onbeschikbaar voor iedereen, behalve voor jou en de Greasy Fork-moderators. Je kunt je script te allen tijde weer beschikbaar maken."
+    delete_update_behaviour: "Wat wil je dat er gebeurt met reeds geïnstalleerde scripts?"
     delete_update_behaviours:
-      keep: "Zij houden het zoals het is."
-      blanked: "Ze worden bijgewerkt naar een leeg script. Dit is van toepassing wanneer het script een negatief effect heeft op de sites waar hij wordt gebruikt."
+      keep: "Niets aan veranderen."
+      blanked: "Bijwerken naar een blanco script. Dit is nuttig als het script een negatief effect heeft op de betrokken sites."
+      redirect: "Bezoekers doorsturen naar onderstaand script."
     delete_permanently_heading: "Permanent verwijderen"
     delete_permanently_confirm: "Weet je zeker dat je dit script permanent wilt verwijderen?"
     delete_permanently_submit: "Permanente verwijdering aanvragen"
@@ -75,7 +78,7 @@ nl:
       title: "%{script_name} - Beheerder"
       promoted_heading: "Aanbevolen script"
       promoted_explanation: "Na het installeren van dit script kan %{site_name} de gebruiker een ander script naar keuze aanbevelen."
-      promoted_script_label: "URL van het aan te bevelen script"
+      promoted_script_label: "Url van het aan te bevelen script"
       promoted_submit: "Aanbevolen script instellen"
       sync_heading: "Broncodesynchronisatie"
       locale_heading: "Standaardtaal"
@@ -93,12 +96,12 @@ nl:
     history_all_changes_info: "Dit zijn alle versies van het script."
     history_only_code_changes_link: "Alleen de versies tonen waarvan de code gewijzigd is."
     diff_button: "Verschil tussen geselecteerde versies"
-    list_all_script_versions: "zie alle script versies"
+    list_all_script_versions: "Alle scriptversies tonen"
     code_title: "%{script_name} - Broncode"
     feedback_title: "%{script_name} - Feedback"
     feedback_no_discussions_html: "Er zijn nog geen discussies geplaatst. %{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "Er zijn nog geen discussies geplaatst."
-    feedback_report_instead: "Als je van mening bent dat dit script %{rules_link:%{site_name}'s regels} overtreedt, %{report_link:maak er dan melding van}."
+    feedback_report_instead: "Als je van mening bent dat dit script %{rules_link:%{site_name}s regels} overtreedt, %{report_link:rapporteer het dan}."
     feedback_start_first_discussion_link: "Wees de eerste om een discussie te beginnen over dit script."
     feedback_discussion_or_report: "%{new_discussion_link:Begin een discussie over dit script} of %{report_link:dien een verwijderingsverzoek in}."
     stats_title: "%{script_name} - Statistieken"
@@ -109,7 +112,7 @@ nl:
     stats_daily_installs_install_count_column_heading: "Aantal installaties"
     stats_daily_installs_update_check_count_column_heading: "Aantal bijwerkcontroles"
     stats_raw_data_header: "Onbewerkte gegevens"
-    stats_download_raw_data_html: "Alle gegevens downloaden als: %{links} "
+    stats_download_raw_data_html: "Alle gegevens downloaden als %{links} "
     stats_no_data: "n/b"
     stats_filters: "Filter: %{filter_options}"
     stats_filter_options:
@@ -117,33 +120,36 @@ nl:
       year: Afgelopen 365 dagen
       all: Gehele periode
     derivatives_title: "%{script_name} - Afgeleiden"
+    derivatives_intro: "Deze scripts kunnen gebaseerd zijn op die van jou (of die van jou gebaseerd op anderen). Als je onbevoegd gebruik van je code tegenkomt, dan kun je dit melden via het tabblad ‘Feedback’ van het desbetreffende script."
     derivatives_script_html: "%{script} van %{user} - Licentie: %{license} %{diff_link:[Diff]}"
-    derivatives_exact_copies_heading: "Exacte kopieën"
-    derivatives_exact_copies_list_intro: "De volgende scripts hebben exact dezelfde code als die van jou:"
+    derivatives_exact_copies_heading: "Een-op-eenkopieën"
+    derivatives_exact_copies_list_intro: "De volgende scripts hebben precies dezelfde code als die van jou:"
     derivatives_exact_copies_item_html: "%{script_link} van %{author_links} - Versies: %{version_list}"
-    derivatives_exact_copes_none: "Er zijn geen scripts die exact dezelfde code hebben als die van jou:"
+    derivatives_exact_copes_none: "Er zijn geen scripts op %{site_name} die precies dezelfde code hebben als die van jou."
     derivatives_similar_heading: "Vergelijkbare scripts"
+    derivatives_similar_info: "We controleren regelmatig de nieuwste versie van alle scripts om te zien of er scripts zijn die vergelijkbaar zijn met die van jou. We controleren ook als jij een update uitrolt en op jouw uitdrukkelijke verzoek."
     similarity_score:
       high: Zeer vergelijkbaar
-      medium: Middelmatig vergelijkbaar
+      medium: Redelijk vergelijkbaar
       low: Enigszins vergelijkbaar
       none: Niet vergelijkbaar
     derivatives_similar_none: "Er zijn geen scripts vergelijkbaar met dat van jou."
     derivatives_similar_item: "%{score}: %{diff_link:[Diff]} %{script}"
     derivatives_similar_last_check_html: "De recentste controle op vergelijkbare scripts heeft plaatsgevonden op %{date}."
-    derivatives_similar_last_check_soon: "Er wordt binnenkort gecontroleerd op vergelijkbare scripts."
-    derivatives_similar_last_check_again_soon_html: "De recentste controle op vergelijkbare scripts heeft plaatsgevonden op %{date}. Er wordt binnenkort opnieuw gecontroleerd."
+    derivatives_similar_last_check_soon: "Er wordt zo spoedig mogelijk gecontroleerd op vergelijkbare scripts."
+    derivatives_similar_last_check_again_soon_html: "De recentste controle op vergelijkbare scripts heeft plaatsgevonden op %{date}. Er wordt zo spoedig mogelijk opnieuw gecontroleerd."
     derivatives_similar_check_now: "Nu controleren"
+    derivatives_similiar_queued: De vergelijking duurt niet langer dan een paar minuten.
     listing_title_all_sites: "Gebruikersscripts voor alle websites"
     listing_description_all_sites: "Gebruikersscripts die op alle websites functies toevoegen en bugs verwijderen"
     listing_title_for_site: "Gebruikersscripts voor %{site}"
     listing_description_for_site: "Gebruikersscripts die op %{site} functies toevoegen en bugs verwijderen"
-    listing_title_for_search: "'%{search_string}' gebruikersscripts"
-    listing_title_for_code_search: "'%{search_string}' gebruikersscripts"
+    listing_title_for_search: "‘%{search_string}’-gebruikersscripts"
+    listing_title_for_code_search: "‘%{search_string}’ gebruikersscripts"
     listing_title_generic: "Gebruikersscripts"
     listing_title_for_favorites: "%{user_name}'s %{set_name}"
-    listing_description_generic: "Gebruikersscripts die functies toevoegen en bugs verwijderen op sites die u gebruikt"
-    listing_sort_label: "Wordt gesorteerd op:"
+    listing_description_generic: "Gebruikersscripts die functies toevoegen en bugs verwijderen op sites die je gebruikt"
+    listing_sort_label: "Sorteren op:"
     listing_sort_relevance: "Relevantie"
     listing_sort_daily_installs: "Dagelijks aantal installaties"
     listing_sort_total_installs: "Totaal aantal installaties"
@@ -151,17 +157,17 @@ nl:
     listing_sort_created: "Aanmaakdatum"
     listing_sort_updated: "Bijwerkdatum"
     listing_sort_name: "Naam"
-    listing_filter_by_site_label: "Getoonde scripts voor:"
-    listing_filter_by_site_disable: "Alle"
+    listing_filter_by_site_label: "Scripts voor:"
+    listing_filter_by_site_disable: "Alles"
     listing_filter_by_site_all_sites: "(Alle sites)"
     listing_filter_by_language_label: "Taal:"
     listing_filter_by_site_more_sites: "Meer…"
-    listing_no_scripts: "Geen scripts gevonden."
+    listing_no_scripts: "Er zijn geen zoekresultaten."
     listing_created_feed: "Nieuwe scripts"
     listing_updated_feed: "Bijgewerkte scripts"
     listing_none: "(Geen)"
-    listing_set_locale_filter: "Resultaten voor alle talen. %{set_filter_link:Toon alleen resultaten uit het  %{language}.}"
-    listing_remove_locale_filter: "Resultaten uit het %{language}. %{remove_filter_link:Toon resultaten voor alle talen.}"
+    listing_set_locale_filter: "Er worden resultaten uit alle talen getoond. %{set_filter_link:Alleen resultaten uit het  %{language} tonen.}"
+    listing_remove_locale_filter: "Er worden alleen resultaten uit het %{language} getoond. %{remove_filter_link:Resultaten uit alle talen tonen.}"
     listing_language_all: "Alles"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
@@ -183,47 +189,52 @@ nl:
     sets_add_inclusion: "Toevoegen aan %{set_name}"
     sets_add_exclusion: "Uitsluiten uit %{set_name}"
     sets_add_to_new: "Toevoegen aan nieuwe groep"
-    rules_summary_html: "Scripts moeten <strong>nauwkeurig worden omschreven</strong>, mogen niet <strong>obscuur</strong> of <strong>minimalistisch</strong> zijn, moeten <strong>copyright</strong> respecteren en zijn beperkt in de te gebruiken <strong>externe code</strong>. %{full_rules_link}"
-    rules_summary_link_to_full: "Lees de volledige regels."
-    syncing_notice_html: "Dit script is %{syncing_notice_sync_type}. Elke wijziging die u hier maakt aan de code zal worden overschreven tijdens het synchroniseren."
+    rules_summary_html: "Scripts moeten <strong>nauwkeurig worden omschreven</strong>, mogen niet <strong>obscuur</strong> of <strong>minimalistisch</strong> zijn, moeten <strong>auteursrecht/copyright</strong> respecteren en zijn beperkt in de te gebruiken <strong>externe code</strong>. %{full_rules_link}"
+    rules_summary_link_to_full: "Lees alle regels."
+    syncing_notice_html: "Dit script is %{syncing_notice_sync_type}. Elke wijziging die je hier aan de code maakt zal tijdens het synchroniseren worden overschreven."
     syncing_notice_sync_type_manual: "ingesteld om handmatig te synchroniseren van %{sync_identifier}"
     syncing_notice_sync_type_automatic: "ingesteld om automatisch te synchroniseren van %{sync_identifier}"
     upload_label: "Of upload:"
-    enable_source_code_editor_label: "Syntaxmarkering inschakelen in broncodebewerker"
+    enable_source_code_editor_label: "Syntaxismarkering inschakelen in broncodebewerker"
     changelog_note: "Wat is er gewijzigd in deze versie?"
     additional_info_note: "Een uitgebreidere omschrijving, instructies, etc."
     post_new_script: "Script plaatsen"
     post_updated_script: "Nieuwe versie plaatsen"
     type_1_html: "Openbaar gebruikersscript - een script dat iedereen kan zien en gebruiken."
-    type_2_html: "Niet-vermeld gebruikersscript - een script voor (semi-)private doeleinden. Beschikbaar door de link ervan te delen, maar niet vermeld op de website van %{site_name}."
+    type_2_html: "Niet-vermeld gebruikersscript - een script voor (semi-)private doeleinden. Beschikbaar door de link ervan te delen, maar niet vermeld op %{site_name}."
     type_3_html: "Bibliotheek - een script met de intentie middels <code>@require</code> door andere scripts gebruikt te worden en niet om direct geïnstalleerd te worden."
-    warning_version_not_incremented_html: "U heeft de code bijgewerkt, maar het <code>@version</code>-nummer niet verhoogd. Personen die uw script eerder geïnstalleerd hebben krijgen mogelijk niet de recentste code."
-    warning_namespace_changed_html: "Uw <code>@namespace</code> is gewijzigd. Een consistente <code>@namespace</code> stelt gebruikers in staat uw script opnieuw te installeren voor bijwerken van de code."
-    warning_potentially_minified_html: "Het lijkt erop dat uw script minimalistische (gecomprimeerde) code bevat. Als u een minimalistische bibliotheek gebruikt, gebruik dan bij voorkeur <code>@require</code> van %{allowed_requires_link}. Script met minimalistische code is onderhevig aan verwijdering."
-    warning_automatic_sensitive_html: "Uw script is bedoeld voor %{sensitive_domains} en zal daarom gemarkeerd worden als volwassen inhoud."
-    warning_potentially_minified_allowed_requires_link: "één van deze locaties"
-    warning_license_missing_override_html: "Opslaan zonder certificaat"
+    override_warning_checkbox_label: "Tóch opslaan"
+    warning_version_not_incremented_html: "Je hebt de code bijgewerkt, maar het <code>@version</code>-nummer niet verhoogd. Personen die je script reeds geïnstalleerd hebben, krijgen hierdoor mogelijk niet de recentste code."
+    warning_version_missing_html: "Je bent vergeten om <code>@version</code> op te geven. <code>@version</code> is vereist om updates te ontvangen. Geef bijvoorbeeld op: <code>// @version 1.0</code>."
+    warning_version_missing_generate_automatically_html: "<code>@version</code> automatisch genereren"
+    warning_namespace_missing_generate_automatically_html: "<code>@namespace</code> automatisch genereren"
+    warning_namespace_changed_html: "Je <code>@namespace</code> is gewijzigd. Een consistente <code>@namespace</code> stelt gebruikers in staat je script opnieuw te installeren zodat de code kan worden bijgewerkt."
+    warning_potentially_minified_html: "Het lijkt erop dat jescript minimalistische (gecomprimeerde) code bevat. Als je een minimalistische bibliotheek gebruikt, gebruik dan bij voorkeur <code>@require</code> van %{allowed_requires_link}. Script met minimalistische code is onderhevig aan verwijdering."
+    warning_automatic_sensitive_html: "Je script is bedoeld voor %{sensitive_domains} en zal daarom worden aangemerkt als volwassen inhoud."
+    warning_potentially_minified_allowed_requires_link: "een van deze locaties"
+    warning_code_previously_posted_html: "Deze code is voorheen geplaatst op %{script_links}. Scripts die opnieuw worden geplaatst worden door een van de moderators verwijderd."
+    warning_license_missing_override_html: "Opslaan zonder licentie"
     additional_info_locale_prompt: "(Kies een taal)"
-    additional_info_add_localized: "Extra vertaalde informatie toevoegen"
-    additional_info_locale_repeated: "Geef slechts één extra informatie-item op voor de taal '%{locale_code}'."
-    localized_additional_info_with_no_name: "Er is extra informatie opgegeven voor de taal '%{locale_code}', maar @name:%{locale_code} is niet aangetroffen."
-    code_syncing_from_url_html: "De code van dit script is ingesteld om te synchroniseren van: %{field}"
-    provide_code_syncing_from_url_html: "%{site_name} kan scripts importeren die ergens anders worden gehost, bijv. op een versiebeheersysteem (zoals GitHub), uw eigen server of een andere gebruikersscript-hostingsite. Om synchronisatie van uw script in te schakelen, dient u een url op te geven: %{field}"
+    additional_info_add_localized: "Vertaalde informatie toevoegen"
+    additional_info_locale_repeated: "Geef slechts één extra informatie-item op voor de taal ‘%{locale_code}’."
+    localized_additional_info_with_no_name: "Er is extra informatie opgegeven voor de taal ‘%{locale_code}’, maar @name:%{locale_code} is niet aangetroffen."
+    code_syncing_from_url_html: "De code van dit script is ingesteld om te synchroniseren van %{field}"
+    provide_code_syncing_from_url_html: "%{site_name} kan scripts importeren die ergens anders worden gehost, bijv. op een versiebeheersysteem (zoals GitHub), je eigen server of een andere gebruikersscript-hostingsite. Om synchronisatie van je script in te schakelen, dien je een url op te geven: %{field}"
     sync_type_intro: "Het script zal worden gesynchroniseerd:"
     sync_type_1:
       name: Handmatig
       description: er wordt alleen gecontroleerd op updates als u actie onderneemt
     sync_type_2:
       name: Automatisch
-      description: er wordt geregeld gecontroleerd op updates
+      description: er wordt periodiek gecontroleerd op updates
     sync_type_3:
-      name: Webhook
-      description: er wordt bijgewerkt zodra u wijzigingen aanbrengt aan dit bestand in uw repo
+      name: Webkoppeling
+      description: er wordt bijgewerkt zodra je wijzigingen aanbrengt aan dit bestand in je repo
     sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "De recentste getrachte synchronisatie was op %{date}, welke resulteerde in %{error}."
     sync_success_info_html: "De recentste geslaagde synchronisatie was op %{date}."
     sync_never_succeeded: "De synchronisatie is nog nooit geslaagd."
-    sync_additional_info: (Optioneel) U kunt de aanvullende informatie van uw script synchroniseren.
+    sync_additional_info: (Optioneel) Je kunt de aanvullende informatie van je script synchroniseren.
     add_synced_additional_info: Voeg vertaalde aanvullende informatie toe
     update_and_sync: "Nu bijwerken en synchroniseren"
     update_no_sync: "Bijwerken"
@@ -231,8 +242,13 @@ nl:
     additional_info_default_sync_html: "Standaard aanvullende informatie (taal komt overeen met <code>@name</code>)"
     additional_info_localized_sync_html: "Voor de taal (komt overeen met <code>@name:XX</code>)"
     sync_url_placeholder: "(URL)"
+    sync_successful: Het script is gesynchroniseerd.
+    sync_no_changes: Het script is gesynchroniseerd, maar er zijn geen wijzigingen aangetroffen.
+    sync_error: 'Het script kan niet worden gesynchroniseerd: %{error}.'
+    sync_turned_off: Synchronisatie is uitgeschakeld.
     screenshots_add: "Toevoegen:"
     screenshots_remove: "Verwijderen"
+    replacement_script_explanation: "(Optioneel) Kies een ander script dat dit script vervangt. Voer de url in van het vervangende script:"
     diff_title: "%{script} - Versieverschil"
     diff_old_version: "Oud:"
     diff_new_version: "Nieuw:"
@@ -242,30 +258,31 @@ nl:
     diff_no_change: "Geen verschillen gevonden."
     good_rating_explanation: "Het aantal personen dat het script beoordeeld heeft als 'goed' of heeft toegevoegd aan hun favorieten."
     ok_rating_explanation: "Het aantal personen dat het beoordeeld heeft als 'matig'."
-    bad_rating_explanation: "Het aantal personen dat het beoordeeld heeft als 'slecht'."
+    bad_rating_explanation: "Het aantal personen dat het beoordeeld heeft als ‘slecht’."
     write_your_own_html: "%{post_a_script_link} (of %{learn_to_write_scripts_link})"
     post_a_script_link_text: "Zelfgeschreven script publiceren"
     learn_to_write_scripts_link_text: "leer hoe u een script schrijft"
-    feedback_or_report: "%{feedback_link:Stel een vraag, plaats een beoordeling} of %{report_link:maak melding van het script}."
-    support_feedback_or_report: "%{support_url:Bezoek de website van de maker}, %{feedback_link:stel een vraag, plaats een beoordeling} of %{report_link:maak melding van het script}."
-    support_email_feedback_or_report: "%{support_url:Stuur een e-mail aan de maker}, %{feedback_link:stel een vraag, plaats een beoordeling} of %{report_link:maak melding van het script}."
+    feedback_or_report: "%{feedback_link:Stel een vraag, plaats een beoordeling} of %{report_link:rapporteer dit script}."
+    support_feedback_or_report: "%{support_url:Bezoek de website van de maker}, %{feedback_link:stel een vraag, plaats een beoordeling} of %{report_link:rapporteer dit script}."
+    support_email_feedback_or_report: "%{support_url:Stuur een e-mail aan de maker}, %{feedback_link:stel een vraag, plaats een beoordeling} of %{report_link:rapporteer dit script}."
     adult_content: "Inhoud voor volwassenen"
     adult_content_self_report: "Dit script bevat inhoud voor volwassenen of is bestemd voor een website die inhoud voor volwassenen bevat."
     adult_content_self_report_explanation: "%{site_name} staat scripts met inhoud voor volwassenen toe, mits deze als dusdanig gemarkeerd zijn zodat gebruikers zelf kunnen kiezen of ze dit willen zien of niet."
     not_adult_content_self_report_html: "Dit script bevat <strong>geen</strong> inhoud voor volwassenen en is ook <strong>niet</strong> bestemd voor een website met inhoud voor volwassenen."
-    not_adult_content_self_report_explanation: "%{site_name} staat scripts met inhoud voor volwassenen toe, mits deze als dusdanig gemarkeerd zijn zodat gebruikers zelf kunnen kiezen of ze dit willen zien of niet. Uw script is gemarkeerd als 'inhoud voor volwassenen'. U kunt er voor kiezen om het te melden als u vindt dat dit onjuist is - het script zal dan worden nagekeken door een moderator."
-    not_adult_content_self_report_explanation_automatic: "%{site_name} staat scripts met volwassen inhoud toe, mits ze zo gemarkeerd zijn dat gebruikers kunnen kiezen of ze het willen zien. Uw script is gemarkeerd als inhoud voor volwassenen, want deze is bestemd voor %{domain_list}."
-    adult_content_on_greasy_logged_in_error: "Dit script is niet meer anoniem beschikbaar op deze site met uw huidige %{edit_account_link:Greasy Fork-accountinstellingen}."
-    adult_content_on_greasy_not_logged_in_error: "Dit script is niet meer anoniem verkrijgbaar op deze site. %{login_link:Log in} en controleer uw Greasy Fork-accountinstellingen."
+    not_adult_content_self_report_explanation: "%{site_name} staat scripts met inhoud voor volwassenen toe, mits deze als dusdanig gemarkeerd zijn zodat gebruikers zelf kunnen kiezen of ze dit willen zien of niet. Je script is aangemerkt als ‘inhoud voor volwassenen’. Je kunt er voor kiezen om het te melden als je van mening bent dat dit onjuist is. In dat geval zal het script worden nagekeken door een moderator."
+    not_adult_content_self_report_explanation_automatic: "%{site_name} staat scripts met volwassen inhoud toe, mits ze zo gemarkeerd zijn dat gebruikers kunnen kiezen of ze het willen zien. Je script is aangemerkt als ‘inhoud voor volwassenen’, want deze is bestemd voor %{domain_list}."
+    adult_content_on_greasy_logged_in_error: "Dit script is niet meer anoniem beschikbaar op deze site met je huidige %{edit_account_link:Greasy Fork-accountinstellingen}."
+    adult_content_on_greasy_not_logged_in_error: "Dit script is niet meer anoniem verkrijgbaar op deze site. %{login_link:Log in} en controleer jeGreasy Fork-accountinstellingen."
     non_adult_content_on_sleazy: "Dit script is niet beschikbaar op deze site."
     not_js_convertible_override_header: "Omzetten naar JS"
+    not_js_convertible_override_label_html: "Dit hoort <strong>niet</strong> beschikbaar te zijn als gebruikersscript"
     adult_marker: "(Volwassen)"
     deleted_marker: "(Verwijderd)"
     locked_marker: "(Beveiligd)"
     unlisted_marker: "()"
     library_marker: "(Bibliotheek)"
     libraries_title: "Bibliotheken"
-    libraries_description_html: "Er zijn bibliotheken geplaatst door %{site_name} gebruikers die je kunt <code>@require</code> in je scripts. Voor andere soorten bibliotheken kun je <code>@require</code>, lees %{policy_link:%{site_name}'s beleid op <code>@require</code>}."
+    libraries_description_html: "Er zijn bibliotheken geplaatst door %{site_name}-gebruikers die je kunt <code>@require</code> in je scripts. Voor andere soorten bibliotheken kun je <code>@require</code> gebruiken. Lees ook %{policy_link:%{site_name}s beleid omtrent het gebruik van <code>@require</code>}."
     by_site_list_title: "Gebruikersscripts voor %{site_name}, gegroepeerd op site"
     by_site_list_description: "Dit zijn de sites beïnvloed door de most populaire gebruikersscripts. Groter lettertype betekent populairder gebruikersscript."
     by_site_list_filter: "Filter op site naam:"
@@ -275,14 +292,18 @@ nl:
     must_confirm: "U moet u account bevestigen voor dat u scripts kunt plaatsen. U heeft twee bevestiging opties- voeg een externe aanmelding toe of stuur een bevestigingsmail."
     must_confirm_email_button: "Stuur bevestigings-link naar %{email}"
     authors_heading: "Auteurs"
+    error_unauthorized_copy: "Deze code lijkt een niet-goedgekeurde kopie van %{script} te zijn. Lees meer over %{site_name}s %{rules_link:regels} omtrent het publiceren van scripts."
     invitations:
       form_title: "Nodig andere auteurs uit"
+      explanation: "Je kunt andere GreasyFork-gebruikers vermelden als maker van dit script. Zij beschikken dan over dezelfde rechten als jij."
       invited_user_url_label: "Gebruiker om uit te nodigen"
+      invited_user_placeholder: "Url van gebruikersprofiel op %{site_name}"
       submit: "Stuur uitnodiging"
       invalid_user_url: "De URL van de uitgenodigde gebruiker is niet geldig."
       already_author: "De gebruiker die u hebt opgegeven is al de auteur van dit script."
       sent: "Uitnodiging is verstuurd."
       subject: "Uitnodiging voor %{script_name}"
+      body: "Je bent vermeld als maker van %{script_name} (%{script_url}) op %{site_name}. Ga naar %{accept_url} om dit te bevestigen."
       current_user_already_author: "U bent al een auteur van dit script."
       invitation_not_found: "Uitnodiging niet gevonden."
       invitation_expired: "Uitnodiging is vervallen."
@@ -293,6 +314,9 @@ nl:
       remove_button: "Verwijderen"
       remove_confirm: "Weet je zeker dat je %{user_name} wilt verwijderen als auteur."
       failure: "Kon auteur niet verwijderen."
+    no_disposable_email: "Scripts kunnen niet worden gepubliceerd bij gebruik van een wegwerpadres."
+    rate_limited: "Je hebt in korte tijd teveel scripts gepubliceerd. Probeer het later opnieuw."
+    delayed: "Om spam te voorkomen mogen nieuwe gebruikers niet direct scripts publiceren. Probeer het later opnieuw."
     new_script_notice:
       title: "Wat probeer je te doen?"
       install_link_html: "Ik wil een script <b>installeren en gebruiken</b>."
@@ -303,19 +327,53 @@ nl:
     update_title: "Nieuwe versie plaatsen van %{script}"
     install_help_dialog:
       js:
+        firefox: Voor het installeren van scripts heb je een extensie nodig, zoals %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} of %{violentmonkey_link:Violentmonkey}.
+        chrome: Voor het installeren van scripts heb je een extensie nodig, zoals %{tampermonkey_link:Tampermonkey} of %{violentmonkey_link:Violentmonkey}.
+        opera: Voor het installeren van scripts heb je een extensie nodig, zoals %{tampermonkey_link:Tampermonkey} of %{violentmonkey_link:Violentmonkey}.
+        safari: Voor het installeren van scripts heb je een extensie nodig, zoals %{tampermonkey_link:Tampermonkey} of %{userscripts_link:Userscripts}.
+        other: Voor het installeren van scripts heb je een gebruikersscriptbeheerder nodig.
         bypass: (Ik heb al een user script manager, laat me het downloaden!)
+      css:
+        firefox: Voor het installeren van gebruikersstijlen heb je een extensie nodig, zoals {stylus_link:Stylus}.
+        chrome: Voor het installeren van gebruikersstijlen heb je een extensie nodig, zoals {stylus_link:Stylus}.
+        opera: Voor het installeren van gebruikersstijlen heb je een extensie nodig, zoals {stylus_link:Stylus}.
+        safari: Voor het installeren van gebruikersstijlen heb je een gebruikersstijlbeheerder nodig.
+        other: Voor het installeren van gebruikersstijlen heb je een gebruikersstijlbeheerder nodig.
+        bypass: (Ik heb al een beheerder - laat me doorgaan met de installatie!)
       close_dialog: OK
     antifeatures:
+      warning_title: Dit script bevat functies voor eigen gewin
+      intro: Voorafgaand aan de installatie wil %{site_name} je waarschuwen dat dit script functies voor eigen gewin van de maker bevat in plaats van functies die voor jouw gewin.
+      author_explanation_intro: "De maker legt uit waarom:"
       types:
         ads:
           title: Advertenties
+          description_html: Dit script zal <b>reclame tonen</b> op websites die je bezoekt.
+        tracking:
+          title: Volgen
+          description_html: Dit script bevat code die je <b>volgt tijdens het bezoeken van websites</b>.
+        miner:
+          title: Cryptominer
+          description_html: Dit script bevat een cryptominer die, indien actief, <b>impact heeft op de prestaties van je apparaat </b>.
+        referral-link:
+          title: Doorverwijzingen
+          description_html: Dit script <b>geeft een compensatie</b> aan de maker, bijvoorbeeld door het herschrijven van links of het aanbieden van waardebonnen.
+        membership:
+          title: Lidmaatschap
+          description_html: Dit script werkt alleen als je <b>je ergens aanmeldt</b>, bijvoorbeeld bij een groep, een videokanaal of een socialemediapagina.
+        payment:
+          title: Betaling
+          description_html: Dit script werkt alleen <b>na betaling. %{site_name} is niet betrokken bij de betaling, dus de waarde kan niet worden beoordeeld en er kan geen hulp omtrent terugbetaling worden geboden.
       install_anyway: Installeer script
       cancel_install: Annuleer
     badges:
       js:
         short: JS
+        long: Gebruikersscript
       css:
         short: CSS
+        long: Gebruikersstijl
+    related_scripts: "Bekijk ook deze vergelijkbare scripts:"
   script_sets:
     description: "Script-sets stellen je in staat om een gepersonaliseerde lijst met scripts met Greasy Fork door te bladeren. Je kunt scripts toevoegen aan je set door individuele scripts op te nemen, sets van andere gebruikers of automatisch gegenereerde sets. Je kunt ook scripts uit je set verwijderen met dezelfde methode."
     favorites_name: "Favorieten"
@@ -331,7 +389,7 @@ nl:
       excluded: "Uitgesloten"
       excluded_none: "(Geen)"
       remove_excluded: "Verwijder geselecteerde"
-      add_label: "Voeg scripts toe (URL's of ID's, gescheiden door witruimte)"
+      add_label: "Voeg scripts toe (url's of id's, spatiegescheiden)"
       add_include: "Neem op"
       add_exclude: "Sluit uit"
     edit_sets:
@@ -343,7 +401,7 @@ nl:
       excluded: "Uitgesloten"
       excluded_none: "(Geen)"
       remove_excluded: "Verwijder geselecteerde"
-      add_label: "Voeg scripts toe (URL's of ID's, gescheiden door witruimte)"
+      add_label: "Voeg scripts toe (url's of id's, spatiegescheiden)"
       add_include: "Neem op"
       add_exclude: "Sluit uit"
       user_label: "Som script-sets die bij een gebruiker horen op (URL, ID of naam)"
@@ -383,6 +441,7 @@ nl:
       all_sites: "Alle sites"
       user: "Scripts door gebruiker %{user}"
       locale: "Scripts in het %{locale_name}"
+    new: Nieuwe scriptgroep
   home:
     title: "%{site_name} - veilige en nuttige gebruikersscripts"
     welcome: "Welkom bij %{site_name}, een site voor gebruikersscripts."
@@ -394,6 +453,40 @@ nl:
     explain_user_scripts_html: "Gebruikersscripts stellen je in staat je browser naar je eigen wensen aan te passen. Wanneer je ze hebt geïnstalleerd, maken ze sites die je bezoekt automatisch beter, door aanvullende mogelijkheden, makkelijker gebruik of vervelende eigenschappen kunnen worden verwijderd. De gebruikersscripts op %{site_name} zijn geschreven door andere gebruikers, en geplaatst om te delen met de rest van de wereld. Ze zijn gratis om te installeren, en makkelijk in gebruik."
     installing_step1_header: "Stap 1: Installeer een gebruikersscriptmanager"
     installing_step1_caption: "Tampermonkey voor Chrome"
+    installing_step1_description_html: >
+        <p>Om gebruikersscripts te kunnen gebruiken, heb je een gebruikersscriptbeheerder
+        nodig. Welke je precies nodig hebt is afhankelijk van de webbrowser die je
+        gebruikt.</p>
+    desktop_browsers:
+      title: Computer
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} of %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey} of %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} of %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} of %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>AdGuard: (geen aanvullende software vereist)</li>
+          </ul>
+    android_browsers:
+      title: Smartphone/Tablet (Android)
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey} of %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          <li>Kiwi: %{chrome_tampermonkey_link:Tampermonkey} of %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>XBrowser: (geen aanvullende software vereist)</li>
+          </ul>
+    ios_browsers:
+      title: Smartphone/Tablet (iOS/iPadOS)
+      browser_list_html: |
+          <ul>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} of %{safari_userscripts_link:Userscripts}</li>
+          <li>%{gear_link:Gear}: (geen aanvullende software vereist)
+          </ul>
     installing_step2_header: "Stap 2: Installeer een gebruikersscript"
     installing_step2_caption: "Een gebruikersscript-installeer knop"
     installing_step2_description_html: >
@@ -417,8 +510,8 @@ nl:
     sign_in_external: "Inloggen via een externe dienst"
     sign_in_with: "Inloggen met %{provider}"
     sign_in_password: "Inloggen met een wachtwoord"
-    sign_in_email_used_no_external_services_html: "'%{email}' is al in gebruik door gebruiker '%{user_name}'. Als u dat bent en u wilt inloggen met inlogdienst %{provider}, %{sign_in_link} uw account en voeg daarna de %{provider}-inlogdienst toe."
-    sign_in_email_used_with_external_services_html: "'%{email}' is al in gebruik door gebruiker '%{user_name}' die ingelogd is via %{existing_providers}. Als u dat bent en u wilt inloggen met inlogdienst %{provider}, %{sign_in_link} uw account en voeg daarna de %{provider}-inlogdienst toe."
+    sign_in_email_used_no_external_services_html: "‘%{email}’ is al in gebruik door gebruiker ‘%{user_name}’. Als jij dat bent en wilt inloggen met de inlogdienst ‘%{provider}’, %{sign_in_link} je account en voeg daarna de %{provider}-inlogdienst toe."
+    sign_in_email_used_with_external_services_html: "‘%{email}’ is al in gebruik door gebruiker ‘%{user_name}’, die inlogt met %{existing_providers}. Als jij dat bent en wilt inloggen met de inlogdienst ‘%{provider}’, %{sign_in_link} je account en voeg daarna de %{provider}-inlogdienst toe."
     sign_in_email_used_sign_in_link: "inloggen"
     sign_in_email_missing: "%{site_name} vereist een e-mailadres om een nieuw account aan te maken, maar %{provider} voorzag hier niet in. U kunt uw %{provider}-account bijwerken en proberen opnieuw in te loggen of ervoor kiezen een normaaal e-mailadres-/wachtwoord-account te creëren op %{site_name} en dan uw %{provider}-account toe te voegen."
     sign_in_name_used: "De naam '%{name}' is al in gebruik. Kies een andere naam."
@@ -434,12 +527,14 @@ nl:
     script_list_none_same_user_html: "U heeft geen scripts geschreven. %{script_list_none_same_user_info_link}"
     script_list_none_same_user_info_link_text: "Wilt u leren hoe u scripts schrijft?"
     deleted_script_list: "Verwijderde scripts"
+    unlisted_script_list: "Verborgen scripts"
     sign_out: "Uitloggen"
     edit: "Account bewerken"
     edit_sign_in: "Inlogmethodes bewerken"
     edit_sign_in_title: "Inlogmethodes bewerken"
     edit_sign_in_password: "Wachtwoord"
-    no_password_set_info: "Uw account is niet beveiligd met een wachtwoord."
+    edit_notifications: "Meldingen aanpassen"
+    no_password_set_info: "Je account is niet beveiligd met een wachtwoord."
     set_password: "Wachtwoord instellen"
     update_password: "Wachtwoord bijwerken"
     update_password_no_match: "Wachtwoorden komen niet overeen."
@@ -451,13 +546,13 @@ nl:
     password_removed: "Wachtwoord is verwijderd."
     edit_sign_in_external: "Externe inlogdiensten"
     external_sign_in_info_no_sign_ins: "U kunt uw account op andere websites gebruiken om in te loggen op %{site_name}."
-    external_sign_in_info_with_sign_ins: "U maakt momenteel gebruik van onderstaande inlogdiensten. De tekst \"synchroniseren\" naast de inlogdienst betekent dat %{site_name} gebruik zal maken van de informatie (zoals gebruikersnaam en e-mailadres) zodra u hier inlogt."
+    external_sign_in_info_with_sign_ins: "Je maakt momenteel gebruik van onderstaande inlogdiensten. De tekst “synchroniseren” naast een inlogdienst betekent dat %{site_name} gebruik zal maken van de informatie (zoals gebruikersnaam en e-mailadres) zodra je hier inlogt."
     external_sign_in_added: "%{provider}-inlogdienst is toegevoegd."
     external_sign_in_updated: "De %{provider}-inlogdienst is bijgewerkt."
     external_sign_in_removed: "%{provider}-inlogdienst is verwijderd."
     external_sign_in_failed: "Inloggen middels %{provider} is mislukt: %{error}."
     external_sign_in_already_used: "Het toevoegen van de %{provider}-inlogdienst is mislukt: deze inlogdienst wordt al gebruikt door gebruiker '%{user_name}'."
-    external_sign_in_confirmation: "Er is een nieuw %{site_name} account gemaakt gebaseerd op jouw %{provider} accountgegevens. Je openbare gebruikersnaam is %{username}."
+    external_sign_in_confirmation: "Er is een nieuw %{site_name} account aangemaakt op basis van je %{provider} accountgegevens. Je openbare gebruikersnaam is %{username}."
     syncing_indicator: "(synchroniseren)"
     enable_syncing: "Synchroniseren inschakelen"
     disable_syncing: "Synchroniseren uitschakelen"
@@ -481,12 +576,15 @@ nl:
       not_banned: "Niet verbannen"
       all: "Alles"
     listing_author_filter:
+      script_author: "Scriptmaker"
+      not_script_author: "Niet de scriptmaker"
       all: "Alles"
     search_placeholder: "Zoek gebruikers"
     locale_prompt: "(Kies een taal0"
     show_ads_description: "Ondersteun %{site_name} door toe te staan dat advertenties worden weergegeven"
     show_sensitive_description: "Scipts weergeven met inhoud voor volwassenen"
     preferred_markup_description: "Zal worden gebruikt voor nieuwe scripts en plaatsingen."
+    filter_locale_default_description: "Standaard wordt de pagina-inhoud in de systeemtaal getoond"
     greasy_fork_scripts_link:
       one: "%{user_name} heeft ook %{count} script op Greasy Fork."
       other: "%{user_name} heeft ook %{count} scripts op Greasy Fork."
@@ -504,8 +602,8 @@ nl:
         one: "Uw %{count} scripts zullen verwijderd worden."
         other: "Uw %{count} scripts zullen verwijderd worden."
       script_sets_effect:
-        one: "Uw %{count} scriptsets zullen verwijderd worden."
-        other: "Uw %{count} scriptverzamelingen zullen verwijderd worden."
+        one: "Er zal%{count} scriptgroep worden verwijderd."
+        other: "Er zullen %{count} scriptgroepen worden verwijderd."
       forum_effect: "Uw bijdragen aan het forum blijven behouden, maar de corresponderende gebruiker wordt hernoemd tot \"%{user_name}\"."
       email_confirmation: "%{site_name} stuurt een bevestiging naar %{email} om uw aanvraag tot account-verwijdering te bevestigen."
       submit: "Verwijder account"
@@ -514,13 +612,19 @@ nl:
         subject: "%{site_name} bevestig verwijderen van account"
         body: "Er is een aanvraag gedaan om uw account '%{user_name}' van %{site_name} te verwijderen. Ga naar %{url} om deze aanvraag te bevestigen en uw account werkelijk te verwijderen. Doe dit binnen 24 uur, anders wordt de aanvraag geannuleerd."
       confirmation:
-        intro: "U staat op het punt om de account '%{user_name}' te verwijderen. Deze actie kan niet ongedaan worden gemaakt."
+        intro: "Je staat op het punt om het account ‘%{user_name}’ te verwijderen. Deze actie kan niet ongedaan worden gemaakt."
         confirm: "'%{user_name}' verwijderen"
         cancel: "Verwijdering annuleren"
         key_mismatch: "Kon gebruiker niet verwijderen - sleutels komen niet overeen."
         request_expired: "Kon gebruiker niet verwijderen - aanvraag verlopen."
         cancelled: "Verwijdering afgebroken."
         completed: "Uw account is verwijderd."
+    banned_notice:
+      no_report_no_reason: "Je account is verbannen. Als je wilt, kun je je %{delete_link: account verwijderen}."
+      with_report: "Je account is verbannen op basis van {report_link:deze melding}. Als je wilt, kun je je %{delete_link: account verwijderen}."
+      with_reason: "Je account is verbannen. De betrokken moderator heeft daarbij de volgende reden opgegeven: “%{reason}”. Als je wilt, kun je je %{delete_link: account verwijderen}."
+    banned_delete:
+      complete: "Je account is verwijderd."
     badges:
       banned:
         short: Verbannen
@@ -530,34 +634,68 @@ nl:
         long: Moderator
       author:
         short: Auteur
+        long: Maker van dit script
     notifications:
       discussion_defaults:
-        title: Forum notificaties
-      title: Notificaties
+        title: Forummeldingen
+        new_discussion: Altijd abonneren op eigen discussies
+        new_comment: Altijd abonneren op alle discussies waaraan ik deelneem
+        mention: Melding tonen als anderen mij vermelden
+      conversation_defaults:
+        title: Gespreksmeldingen
+        starter: Altijd abonneren op eigen gesprekken
+        receiver: Altijd abonneren op gesprekken waaraan ik deelneem
+      report_defaults:
+        title: Rapportagemeldingen
+        reporter: Melding tonen als een door jou gemeld script is nagekeken
+        reported: Melding tonen als een van jouw scripts gemeld is en is nagekeken
+      save_button: Updatemeldingen
+      title: Meldingen
+      current_discussion_subscriptions:
+        one: Geen meldingen tonen omtrent de %{discussions_link:%{count} discussie} waarop je geabonneerd bent
+        other: Geen meldingen tonen omtrent de %{discussions_link:%{count} discussies} waarop je geabonneerd bent
+      save_success: Je meldingsinstellingen zijn bijgewerkt.
+      unsubscribe_all: Geen meldingen tonen
+      unsubscribe_all_success: Er worden geen meldingen meer getoond.
+    account_banned: Je account is verbannen.
+  webhooks:
+    info:
+      title: Webkoppeling instellen
+      already_syncing_list: "Hieronder zie je de scripts die hebt ingesteld voor synchronisatie met een ondersteunde dienst:"
+      synced_item_html: "%{script_name} - %{sync_type} wordt gesynchroniseerd met %{sync_url}"
+      language_note: De websites van GitHub, GitLab en Bitbucket zijn Engelstalig, dus onderstaande instructies worden ook in het Engels getoond.
   help:
     sections:
       usage: Gebruik
       development: Ontwikkeling
       miscellaneous: Overig
+    open_source: "%{site_name} is open source (GPLv3-licentie). Je kunt %{github_link:de broncode ervan bekijken op GitHub}."
     installing_user_scripts:
       title: 'Hoe je gebruikersscripts installeert'
+    installing_user_styles:
+      title: 'Hoe installeer ik gebruikersstijlen?'
+      content_html: |
+          <p>Sommige scripts op %{site_name} kunnen worden geïnstalleerd als gebruikersstijlen.</p>
+          <p>Gebruikersstijlen kunnen worden geïnstalleerd met %{stylus_firefox_link:Stylus voor Firefox}, %{stylus_chrome_link:Stylus voor Chrome} en %{stylus_opera_link:Stylus voor Opera}.</p>
+          <p>%{styles_link:Bekijk alle beschikbare gebruikersstijlen}</p>.
     meta_keys:
       title: "Metatoetsen van scripts gelezen door %{site_name}"
       intro_html: "Dit is een lijst met <a href=\"http://wiki.greasespot.net/Metadata_Block\">metatoetsen van gebruikersscripts</a> die %{site_name} zal lezen. Toetsen die niet op deze lijst staan kunnen in scripts staan en zullen worden gepresenteerd in het geïnstalleerde script maar zullen geen effect hebben binnen %{site_name} zelf."
       name: "De naam van het script die zal worden gebruikt in de banier en in links. Vereist."
-      name_localized_html: "De naam van het script in een specifieke taal waar XX een <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-opmaakcode</a> is en YY een optioneel <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166-landnummer</a> is. Dit overschrijft <code>@name</code> zodra de gebruiker navigeert in een overeenkomende taal."
+      name_localized_html: "De naam van het script in een specifieke taal waar XX een <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-opmaakcode</a> is en YY een optioneel <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166-landnummer</a>. <code>@name</code> wordt overschreven zodra de gebruiker surft in een overeenkomende taal."
       description: "Een beschrijving van wat het script doet. Dit wordt weergegeven als tekst onder de scriptnaam. Vereist."
-      description_localized_html: "De beschrijving van het script in een specifieke taal waar XX een <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-opmaakcode</a> is en YY een optioneel <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166-landnummer</a> is. Dit overschrijft <code>@description</code> zodra de gebruiker navigeert in een overeenkomende taal."
+      description_localized_html: "De beschrijving van het script in een specifieke taal waar XX een <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-opmaakcode</a> is en YY een optioneel <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166-landnummer</a>. <code>@description</code> wordt overschreven zodra de gebruiker surft in een overeenkomende taal."
       namespace_html: "Een combinatie van <code>@namespace</code> en <code>@name</code> wordt gebruikt door gebruikersscriptsbeheerders om vast te stellen of een script reeds geïnstalleerd is. %{site_name} stelt dit veld als vereiste en zal een waarschuwing geven wanneer het wordt gewijzigd bij een bijwerking."
+      version: "Identificatie van een specifieke versie van een script in de {version_format_link:Mozilla-versie-opmaak}. Deze versie wordt getoond op de informatiepagina van een script. %{site_name} stelt dit veld als vereiste en zal waarschuwen als het gedevalueerd of niet gevalueerd wordt als de code van het script wijzigt."
       require_html: "Dit sluit externe JavaScript in een script in. Zie %{external_script_link}."
       require_external_script_link_text: "de regels voor de code inclusief externe scripts"
       updateURL: "Beschrijf hoe gebruikersscriptbeheerders bijwerkingen moeten verkrijgen. %{site_name} zal deze sleutels schrappen zodat elk met %{site_name} geïnstalleerd script alleen kan worden bijgewerkt vanuit %{site_name}."
       license: "De licentie die beschrijft hoe personen een script mogen kopiëren of bewerken. Gebruik van een \"Volledige naam\" of \"Identificatie\" van %{spdx_link:the SPDX License List} wordt aanbevolen. Het ontbreken van een licentie wekt de indruk dat gebruikers het script persoonlijk mogen installeren maar niet mogen verspreiden. De licentie wordt weergegeven op de informatiepagina van een script."
       supportURL: "URL van de pagina waar gebruikers ondersteuning kunnen krijgen op een script (bijv. een bugtracker, forum of e-mailadres). De ondersteunings-URL zal worden weergegeven op de feedbackpagina van een script."
-      contributionURL_html: "URL van de pagina waar gebruikers een donatie kunnen doen aan de auteur van een script. De donatie-URL zal worden weergegeven op de feedbackpagina van een script. URL's kunnen http-, https- of Bitcoin- protocollen zijn. Om een URL te plaatsen van een PayPal-donatiepagina moet hem plaatsen in de opmaak <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a> waarbij u het voorbeeld-e-mailadres vervangt door uw eigen."
+      contributionURL_html: "De url van de pagina waarop gebruikers kunnen doneren aan de maker van een script. De donatie-url zal worden getoond op de feedbackpagina van een script. Url's kunnen beginnen met http, https of Bitcoin. Als je een PayPal-donatiepagina wilt plaatsen, dan dien je de opmaak <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=mijn.emailadres@voorbeeld.nl&item_name=Greasy+Fork+donatie</a> te gebruiken, waarbij je het voorbeelde-mailadres vervangt door je eigen."
       contributionAmount_html: "De aangeraden hoogte van een donatie. Deze wordt tezamen gebruikt met <code>@contributionURL</code>."
-      compatible_html: "Dit markeert het script als zijnde compatibel met een browser. Comptabiliteitsinformatie zal worden weergegeven op de pagina van een script. Commentaren aangaande de comptabiliteit kunnen worden ingevoegd in de opmaak <code>@compatible firefox Pop-up-blokkeerder moet worden uitgeschakeld</code>. De erkende browsers zijn: %{browsers}"
-      incompatible_html: "Dit markeert het script als zijnde compatibel met een browser. Comptabiliteitsinformatie zal worden weergegeven op de pagina van een script. Commentaren aangaande de comptabiliteit kunnen worden ingevoegd in de opmaak <code>@incompatible firefox Niet-werkend sinds Firefox 23</code>. De erkende browsers zijn: %{browsers}"
+      compatible_html: "Dit markeert het script als compatibel met een bepaalde browser. De comptabiliteitsinformatie zal worden getoond op de pagina van een script. Opmerkingen aangaande de comptabiliteit kunnen worden ingevoegd met de opmaak <code>@compatible firefox Schakel pop-upblokkering uit</code>. Erkende browsers zijn: %{browsers}"
+      incompatible_html: "Dit markeert het script als compatibel met een bepaalde browser. De comptabiliteitsinformatie zal worden getoond op de pagina van een script. Opmerkingen aangaande de comptabiliteit kunnen worden ingevoegd met de opmaak <code>@compatible firefox Werkt niet meer sinds Firefox 90</code>. Erkende browsers zijn: %{browsers}"
     writing_user_scripts:
       title: "Hoe schrijf ik gebruikersscripts?"
       content_html: "<p>Het schrijven van gebruikersscripts vereist kennis van JavaScript. De <a href=\"http://wiki.greasespot.net/Tutorials\">handleidingen op de GreaseSpot-wiki</a> kunnen u op weg helpen met JavaScript, zowel in het algemeen als voor het schrijven van gebruikersscripts. Het kan ook helpen om scripts van anderen in te kijken. Wellicht bent u geïnteresseerd in %{code_rules_link} en %{meta_keys_link}. Als u hulp wilt bij het schrijven van uw script, vraag dan gerust om hulp: %{ask_in_forum_link}.</p><p>Om uw script te publiceren op %{site_name} moet u een account creëren. Vanuit %uw {user_page_link}, kunt u de link volgen naar %{post_new_script_link}.</p>"
@@ -565,13 +703,28 @@ nl:
       user_page_link_text: 'gebruikerspagina'
       post_new_script_link_text: 'publiceer een nieuw script'
     code_rules:
-      title: "%{site_name}'s regels voor gepubliceerde scripts"
+      title: "%{site_name}s regels omtrent gepubliceerde scripts"
       functionality_header: Functionaliteit
       code_header: Code
+      external_js: "%{external_scripts_link:Het gebruik van externe JavaScript is beperkt.}"
       copyright_header: Copyright
       miscellaneous_header: Overig
     external_scripts:
-      title: "%{site_name}'s beleid voor externe scripts."
+      title: "%{site_name}s beleid omtrent externe scripts."
+      allowed_external_codes:
+        heading: Toegestane externe code
+      other_allowed_codes:
+        heading: Speciale gevallen
+      add_to_list:
+        heading: Toevoegen aan de lijst
+      enforcement:
+        heading: Handhaving
+        content_html: |
+            <p>Elk script dat niet-toegestane externe code bevat wordt ogenblikkelijk verwijderd.</p>
+      test_url:
+        label: Url testen
+        result_ok: Deze url is toegestaan
+        result_not_ok: Deze url is niet toegestaan
     script_rewriting:
       title: "Hoe %{site_name} geplaatste scripts herschrijft"
       content_html: >
@@ -600,6 +753,7 @@ nl:
       authors_credit: "%{site_name} zou niet bestaan zonder de auteurs die hun scripts hebben  geplaatst."
       developers_credit: "%{site_name} is gecreëerd door %{developers_link:deze personen} met behulp van alle personen die bugs hebben gerapporteerd en ideeën hebben geplaatst."
       translators_credit: "%{site_name} is vertaald door %{translators_link:de Greasy Vertalingsunie op Transifex):"
+      icons_credit: "De browserpictogrammen zijn afkomstig van %{browserlogos}."
     help_with_greasymonkey: "Help met Greasemonkey"
     contact:
       title: "Neem contact met iemand op"
@@ -643,6 +797,10 @@ nl:
           <p>%{site_name} kan code van derden bevatten om statistieken te verzamelen
           of om advertenties weer te geven op de site. Deze bibliotheken kunnen tracking-logica
           bevatten.</p>
+    user_css_to_user_js:
+      title: Omzetten van gebruikers-css naar gebruikers-js
+    antifeatures:
+      title: Functies voor eigen gewin
   search:
     script_search:
       title: "Zoek scripts"
@@ -665,47 +823,266 @@ nl:
     item_script_html: "Script: %{script_link}"
     item_deleted_script: "Verwijderd: script %{id}"
     item_user_html: "Gebruiker: %{user_link}"
+    item_report: "%{report_link: Melding #%{report_id}}"
+    item_script_lock_appeal: "%{appeal_link:Bezwaar #%{appeal_id}}"
+  notifications:
+    consecutive_bad_ratings:
+      one: "%{script_names} heeft meermaals een slechte beoordeling gekregen. Controleer je script en luister naar de aangedragen feedback."
+      other: "%{script_names} hebben meermaals een slechte beoordeling gekregen. Controleer je scripts en luister naar de aangedragen feedback."
+    open_reports: "Er is melding gemaakt van enkele van je scripts. Loop de meldingen na en geef, waar mogelijk, aanvullende informatie. %{report_links}"
   reports:
+    name: "Melding maken van #%{id}"
+    report_filed: "Je melding wordt beoordeeld door een moderator."
     new_report_title:
-      user: "Maak melding van %{user}"
-      comment: "Maak melding van de reactie van %{user}"
-      message: "Maak melding van het bericht van %{user}"
+      user: "Melding maken van %{user}"
+      comment: "Melding maken van de reactie van %{user}"
+      message: "Melding maken van het bericht van %{user}"
       script: "Melding maken van %{script}"
+    new_report_notes_html: >
+        <p>Let op:</p> <ul>
+
+        <li>Een moderator beoordeelt je melding en grijpt zonodig in.</li>
+
+        <li>Maak geen melding als je het niet eens bent met de inhoud of als je de
+        inhoud niet gelooft.</li>
+
+        <li>Misbruik van de meldfunctie kan leiden tot een <i>permanente</i> verbanning
+        van je account.</li>
+
+        </ul>
+    new_script_report_notes_html: >
+        <p>Let op:</p><ul>
+
+        <li>Scripts worden alléén verwijderd als ze de %{rules_link:%{site_name}-regels}
+        overtreden. Als een script niet (meer) werkt, meld dit dan op het tabblad
+        ‘%{feedback_link:Feedback}.’ </li>
+
+        <li>Een moderator beoordeelt je melding en grijpt zonodig in.</li>
+
+        <li>Misbruik van de meldfunctie kan leiden tot een <i>permanente</i> verbanning
+        van je account.</li>
+
+        </ul>
+    new_user_report_notes_html: >
+        <p>Let op:</p><ul>
+
+        <li>Als je de inhoud van een script of reactie wilt melden, meld dan het specifieke
+        script of de reactie. </li>
+
+        <li>Een moderator beoordeelt je melding en grijpt zonodig in.</li>
+
+        <li>Misbruik van de meldfunctie kan leiden tot een <i>permanente</i> verbanning
+        van je account.</li>
+
+        </ul>
     reason:
-      non_functional: "Script werkt niet"
+      non_functional: "Dit script werkt niet"
       spam: "Spam"
+      abuse: "Beledigende of haatdragende inhoud"
+      illegal: "Illegale inhoud"
+      unauthorized_code: "Kopie zonder toestemming"
+      malware: "Malware"
+      minified: "Geminimaliseerde code"
+      external_code: "Niet-toegestane externe code"
+      undisclosed_antifeature: "Onduidelijk %{antifeature_link:functie voor eigen gewin} (bijv. reclame, volgen, miner, etc.)"
+      no_description: "Ontbrekende, onduidelijke of misleidende omschrijving"
+      wrong_category: "Verkeerde categorie"
+      wrong_category_with_suggestion: "Verkeerde categorie (aanbevolen: %{suggested_category})"
       other: "Anders"
-    create_button: "Maak een melding"
+    report_intro: "%{reported_item} is op %{report_date} gemeld door %{reporter} omwille van %{reason}"
+    report_intro_no_reporter: "%{reported_item} is op %{report_date} gemeld omwille van %{reason}"
+    report_intro_unauthorized_html: "%{reported_item} is op %{report_date} gemeld door %{reporter} als kopie zonder toestemming van %{other_script}."
+    report_intro_unauthorized_no_reporter_html: "%{reported_item} is op %{report_date} gemeld als kopie zonder toestemming van %{other_script}."
+    report_intro_unauthorized_license: "%{other_script} is uitgebracht onder de %{license_link: %{license_name}}-licentie. Meer informatie over deze licentie is te vinden op %{tldr_legal_link:tldrlegal.com}."
+    report_intro_unauthorized_license_no_url: "%{other_script} is uitgebracht onder de %{license_name}-licentie. Meer informatie over deze licentie is te vinden op %{tldr_legal_link:tldrlegal.com}."
+    report_intro_unauthorized_no_license: "Bij %{other_script} is geen licentie opgegeven, wat inhoudt dat het verspreiden van kopiëen zonder uitdrukkelijke toestemming niet is toegestaan."
+    non_functional_feedback: "Meld niet-werkende scripts als %{feedback_link:feedback} op dit script."
+    unauthorized_code_original_placeholder: "Url van oorspronkelijke code"
+    explanation_placeholder: "Vermeld aanvullende informatie (optioneel)"
+    create_button: "Melding opmaken"
     report_user: "Gebruiker melden"
     report_comment: "Reactie melden"
     report_message: "Bericht melden"
+    result_dismissed: "Deze melding is afgewezen door een moderator."
+    result_upheld: "Deze melding is gehandhaafd door een moderator."
+    result_fixed: "Deze melding is afgewezen door een moderator omdat hij/zij van mening is dat de maker van het script het probleem heeft opgelost."
+    result_pending: "Deze melding wacht op een beslissing door een moderator."
+    rebuttal_placeholder: 'Leg uit waarom je vindt dat dit script niet verwijderd dient te worden.'
+    submit_rebuttal: "Bezwaar indienen"
+    rebuttal_submitted: Een moderator zal de melding, met inbegrip van je uitleg, behandelen en een beslissing nemen.
     delete_script: "Verwijder script"
+    view_discussion: "Discussie bekijken"
+    load_diff: "Verschil tonen"
+    loading_diff: "Bezig met laden…"
+    reported_user_activity_html: "%{user} (de gebruiker waarvan melding is gemaakt) heeft het volgende gedaan:"
+  appeals:
+    new:
+      title: Bezwaar ingediend tegen scriptverwijdering
+      intro: 'Je script is omwille van de volgende reden verwijderd: “%{reason}”. Als je het hier niet mee eens bent, aanvullende informatie wilt aanleveren of je het script in kwestie al hebt verbeterd, dan kun je een bezwaar indien. Als een moderator het eens is met je verbeteringen en/of uitleg, dan wordt je script hersteld.'
+      submit: Bezwaar indienen
+    deletion_reason_html: "%{script} is omwille van de volgende reden verwijderd: “%{reason}”."
+    author_reason: "Er is bezwaar ingediend door de maker:"
+    pending_review: Dit bezwaar wacht op een beslissing door een moderator.
+    dismissed_by_moderator: Een moderator heeft het bezwaar afgewezen.
+    upheld_by_moderator: Een moderator heeft, op basis van het bezwaar, het script hersteld.
+    submitted: Je bezwaar is ingediend; een moderator zal zich er over buigen.
   discussions:
     title: Discussies
     comment_date: "Geplaatst: %{date}"
     comment_edit_date: "Bijgewerkt: %{date}"
     posted_by_html: "%{user}%{date}"
     last_comment: "Laatst: %{user} %{date}"
+    new_discussion_heading: "Plaats een recensie, reactie of vraag"
+    new_discussion_submit: "Reactie plaatsen"
+    new_comment_heading: "Reactie plaatsen"
+    new_comment_submit: "Reactie plaatsen"
+    back_to_feedback: "< Feedback op %{script}"
+    edit_comment_link: "Bewerken"
+    edit_comment_header: "Reactie bewerken"
     delete_comment: "Verwijderen"
+    delete_comment_confirm: Weet je zeker dat je deze reactie wilt verwijderen?
     delete_discussion: "Verwijderen"
+    delete_discussion_confirm: Weet je zeker dat je deze discussie wilt verwijderen?
+    update_comment_submit: "Reactie bijwerken"
     cancel_update_comment: "Annuleren"
+    quote_comment: "Citeren"
+    question_heading_html: "Vraag/Reactie"
+    review_heading_html: "Recensie: %{rating}"
+    update_rating_note: "(Je kunt je beoordeling te allen tijde herzien door een nieuwe reactie te plaatsen.)"
+    update_rating: "Beoordeling van %{script_name} herzien"
+    ratings:
+      question: "Geen beoordeling - ik wil alleen een vraag stellen, reactie plaatsen of idee delen"
+      bad: "Slecht - het script werkt niet"
+      ok: "Redelijk - het script werkt, maar bevat bugs"
+      good: "Goed - het script werkt zoals het hoort"
+    ratings_short:
+      question: "Vraag/Reactie"
+      bad: "Slecht"
+      ok: "Redelijk"
+      good: "Goed"
+    badges:
+      deleted:
+        short: Verwijderd
+        long: Verwijderd
+    sign_in_to_post_discussion: "Log in om een recensie, reactie of vraag te plaatsen."
+    sign_in_to_post_comment: "Log in om antwoord te geven."
+    user_filter:
+      label: "Discussies waaraan ik deelneem"
+      all: "Alle discussies"
+      discussion_by_me: "Eigen discussies"
+      comment_by_me: "Eigen reacties"
+      on_my_scripts: "Op mijn scripts"
+      subscribed: "Geabonneerd"
+    other_user_filter:
+      all: "Alle discussies"
+      comments_by: "Reacties van %{user}"
+    category_filter:
+      label: Categorie
+      all: Alle categorieën
+    read_filter:
+      label: Leesstatus
+      all: Alle
+      read: Gelezen
+      unread: Ongelezen
+    locale_filter:
+      label: Taal
+      all: Alle
+    user_activity:
+      title: "Onlangs geplaatste reacties"
+      no_recent_activity: "Deze gebruiker heeft de laatste tijd geen reacties geplaatst."
+      see_all_activity: "Bekijk alle gebruikersactiviteit."
+      script_review:
+        posted_html: "heeft <i>%{script}</i> beoordeeld"
+        replied_html: "heeft gereageerd op een recensie van <i>%{script}</i>"
+      script_question:
+        posted_html: "heeft een vraag/reactie geplaatst bij <i>%{script}</i>"
+        replied_html: "heeft een vraag/reactie beantwoord bij <i>%{script}</i>"
+      discussion:
+        posted_html: "is een discussie gestart: <i>%{title}</i>"
+        replied_html: "heeft gereageerd op een discussie: <i>%{title}</i>"
+    review_title: "Een recensie van %{script_name}"
+    question_title: "Een vraag over %{script_name}"
+    subscribe: Abonneren
+    unsubscribe: Deabonneren
+    notify: Melding tonen bij nieuwe reacties
+    notifying_on_script: Je wordt op de hoogte gehouden van nieuwe reacties op basis van je %{notifications_link:meldingsinstellingen}.
+    categories:
+      greasyfork:
+        name: Greasy Fork-feedback
+        description: Bugrapportages, ideeën en andere dingen aangaande Greasy Fork.
+      development:
+        name: Ontwikkeling
+        description: Technische gesprekken over de ontwikkeling van gebruikersscripts.
+      requests:
+        name: Scriptaanvragen
+        description: Vraag of iemand een gebruikersscript of -stijl voor je wil maken.
+      script-discussions:
+        name: Scriptdiscussies
+        description: Discussies over bestaande gebruikersscripts en -stijlen.
+      no-scripts:
+        name: Alles behalve scriptdiscussies
+      moderators:
+        name: Moderators
+        description: Privédiscussie van moderators.
+    category_display: "%{name} - %{description}"
+    new_title: Nieuwe discussie
+    new_button: Nieuwe discussie
+    script_notice: Als je een discussie over een bepaald script wilt starten, ga dan naar de feedbackpagina van het desbetreffende script.
+    no_discussions: Er zijn geen discussies gevonden.
+    mark_all_read: Alles als gelezen markeren
+    pending_moderator_review: Deze discussie is niet inzichtelijk tot deze door een moderator is goedgekeurd.
+  conversations:
+    user_input_note: Voer de gebruikersnaam of profiel-url in.
+    new_title: Gesprek starten
+    new_link: Gesprek starten
+    new_button: Gesprek starten
+    title_html:
+      one: Gesprek met %{users}
+      other: Gesprek met %{users}
+    send_message: Bericht versturen
+    conversation_list_title: Gesprekken
+    conversation_link_html:
+      one: Gesprek met %{users}.
+      other: Gesprek met %{users}.
+    conversation_info_html: 'Recentste bericht van %{user} op %{date}. '
+    no_conversations: Je hebt nog geen gesprekken gevoerd.
+    no_recent_conversations: Je hebt onlangs geen gesprekken gevoerd.
+    recent:
+      title: Onlangs gevoerde gesprekken
+      more: Alle gesprekken bekijken
+    edit_message_header: Bericht bewerken
+    update_message_submit: Bericht bijwerken
+  screenshots:
+    requirements: "Maximumaantal png-, gif-, jpeg- of webp-afbeeldingen: %{number}, elk kleiner dan %{size}."
   common:
+    error_preamble: "Er zijn enkele problemen met wat je plaatste…"
     allowed_elements_link: "(Zie de toegestane code.)"
     allowed_elements_and_attributes_title: "Toegestane elementen voor HTML-inhoud"
     allowed_elements_intro: "De volgende elementen en attributen zijn toegestaan. Dit geldt voor zowel HTML als Markdown (na conversie naar HTML)."
-    allowed_elements_extra_info: "Witruimtes zullen worden omgezet in p- of br-elementen. URL's zullen automatisch aanklikbaar worden gemaakt."
+    allowed_elements_extra_info: "Witruimtes zullen worden omgezet in p- of br-elementen. Url's zullen automatisch aanklikbaar worden gemaakt."
+    allowed_css_intro: "De volgende css-opties zijn toegestaan op alle elementen:"
     not_found_text: "404 - pagina niet gevonden."
     not_found_title: "404 - Pagina niet gevonden"
     not_found_link_home: "Ga naar de beginpagina."
     suggest_locale: "%{site_name} is beschikbaar in het %{locale_name}."
-    incomplete_locale: "Grease Fork's vertaling naar %{locale_name} is slechts %{percent} afgerond. U kunt dit veranderen."
+    incomplete_locale: "%{site_name} is slechts voor %{percent} beschikbaar in het %{locale_name}. Help mee met vertalen!"
     expander_show_more: "Meer weergeven"
     expander_show_less: "Minder weergeven"
     advertisement_note: Advertentie
     preview_tab: Voorvertoning
     write_tab: Schrijf
     listing_options_title: "Zoekopties"
+    quote:
+      prefix_html: "%{user} zei:"
+      anonymous_reporter_html: "De melder zei:"
   activerecord:
+    models:
+      script:
+        one: "%{count} script"
+        other: "%{count} scripts"
+      comment:
+        one: "%{count} reactie"
+        other: "%{count} reacties"
     attributes:
       user:
         name: "Naam"
@@ -715,6 +1092,10 @@ nl:
         show_ads: "Advertenties weergeven"
         show_sensitive: "Inhoud voor volwassenen"
         preferred_markup: "Voorkeursopmaak"
+        filter_locale_default: "Filteren op taal"
+        current_password: "Huidig wachtwoord"
+        new_password: "Nieuw wachtwoord"
+        new_password_confirmation: "Wachtwoord herhalen"
       script:
         name: "Naam"
         description: "Beschrijving"
@@ -729,10 +1110,22 @@ nl:
         name: "Naam"
         description: "Beschrijving"
         default_sort: "Standaard sortering"
+      report:
+        reason: "Rapportagereden"
+      discussion:
+        rating: "Beoordeling"
+        category: "Categorie"
+        title: Naam
+      conversation:
+        user_input: Gebruiker
+      message:
+        content: Bericht
+      script_lock_appeal:
+        text: Bezwaar indienen
   errors:
     messages:
-      script_missing_name: "is vereist - specificeer er één met @name"
-      script_missing_description: "is vereist - specificeer er één met @description"
+      script_missing_name: "is vereist - specificeer er een met @name"
+      script_missing_description: "is vereist - specificeer er een met @description"
       script_name_same_as_description: "mag niet hetzelfde zijn als de scriptnaam"
       script_sync_identifier_bad_protocol: "moet een HTTP- of HTTPS-URL zijn"
       script_too_many_screenshots: "Teveel bijgevoegde schermafdrukken - het maximaal aantal toegestane is %{number}"
@@ -743,8 +1136,76 @@ nl:
       script_update_not_utf8: "upload moet UTF-8-tekst bevatten"
       script_disallowed_require: "gebruikt een nog niet goedgekeurd extern script %{code}"
       script_rate_limit: "U heeft de plaatsingslimiet overschreden. Probeer het later nog eens."
+      missing_include_or_match: "dient ten minste eenmaal @match of @include key te bevatten"
+      invalid_meta: "bevat een ongeldige metarichting. De juiste opmaak is // @foo"
+      no_executable: "bevat geen uitvoerbare code"
+      file_size_out_of_range: "de grootte dient minder dan 200KB te zijn"
+      meta_too_long: "%{key} is te lang (maximaal toegestaan: %{count} tekens)"
   opensearch:
     short_name: "Zoeken op %{site_name}"
     description: "Zoek naar gebruikersscripts op %{site_name}."
     long_name: "%{site_name} gebruikersscripts zoeken"
     attribution: "Auteursrecht van de scripts, zie elk individueel script voor licentie"
+  importing:
+    title: Scripts importeren
+    intro: "%{site_name} kan scripts importeren die ergens anders worden gehost, bijv. op een versiebeheersysteem (zoals GitHub), je eigen server of een andere gebruikersscript-hostingsite."
+    url_entry_label: Geef de import-url's op, één per regel. De url's moeten direct verwijzen naar js- of css-bestanden.
+    sync_type_label: "Na het importeren worden de scripts gesynchroniseerd:"
+    submit: Importeren
+    previously_imported:
+      heading: Reeds geïmporteerde scripts
+      successful_entry_html: "%{script_name} - %{sync_type} is voor het laatst gesynchroniseerd op %{last_sync_date}."
+      unknown_date: "(onbekend)"
+      failed_entry_html: "%{script_name} - %{sync_type} is voor het laatst getracht te synchroniseren op %{last_sync_attempt_date} - %{sync_error}"
+    results:
+      title: "Importresultaat"
+      success: "De volgende scripts zijn geïmporteerd:"
+      needs_description: "De volgende scripts kunnen alleen met een omschrijving worden geïmporteerd:"
+      existing: "De volgende scripts waren al geïmporteerd:"
+      failure: "De volgende scripts kunnen niet worden geïmporteerd:"
+  mailers:
+    script_report:
+      report_created_offender:
+        subject: "Er is melding gemaakt van je script ‘%{script_name}’ op %{site_name}"
+      report_upheld_offender:
+        subject: "Je script ‘%{script_name}’ op %{site_name} is verwijderd"
+      report_dismissed_offender:
+        subject: "Een melding van je script ‘%{script_name}’ op %{site_name} is afgewezen"
+      report_fixed_offender:
+        subject: "Een melding van je script ‘%{script_name}’ op %{site_name} is gemarkeerd als opgelost"
+      report_rebutted_reporter:
+        subject: "Er is een reactie geplaatst bij je melding van ‘%{script_name}’ op %{site_name}"
+      report_upheld_reporter:
+        subject: "Je melding van ‘%{script_name}’ op %{site_name} is gehandhaafd"
+      report_script_deleted_reporter:
+        subject: "Je melding van ‘%{script_name}’ op %{site_name} is gesloten"
+      report_dismissed_reporter:
+        subject: "Je melding van ‘%{script_name}’ op %{site_name} is afgewezen"
+      report_fixed_reporter:
+        subject: "Je melding van %{script_name} op %{site_name} is gemarkeerd als opgelost"
+    consecutive_bad_ratings:
+      notify:
+        subject: "Je script ‘%{script_name}’ op %{site_name} heeft meermaals een slechte beoordeling gekregen."
+    script_comment:
+      subject: "Er is een reactie geplaatst bij je script ‘%{script_name}’ op %{site_name}."
+      intro: "Er is een reactie geplaatst op je script ‘%{script_link:%{script_name}}’ op %{site_name} door %{commenter_link:%{commenter_name}}."
+    subscribed_discussion:
+      subject: "Er is een reactie geplaatst in de discussie ‘%{discussion_title}’ op %{site_name}. "
+      intro: "Er is een reactie geplaatst door %{commenter_link:%{commenter_name}} in de discussie ‘%{discussion_link:%{discussion_title}}’ op %{site_name}."
+      outro: "%{comment_link:Bekijk en reageer op deze reactie.} Je ontvangt deze melding omdat je geabonneerd bent op de discussie ‘%{discussion_link:%{discussion_title}}’. %{notification_preferences_link:Meldingsinstellingen beheren}"
+    comment_mentioned:
+      subject: "%{commenter_name} heeft je genoemd in een reactie op %{site_name}."
+    new_message:
+      subject: "%{user} heeft je een bericht gestuurd op %{site_name}."
+      intro: "%{user_link:%{user_name}} heeft je een bericht gestuurd op %{site_name}."
+    script_lock_appeal:
+      dismiss:
+        subject: Je bezwaar op %{site_name} is afgewezen
+        intro_html: Je bezwaar tegen het verwijderen van %{script} is afgewezen door een moderator. Het script wordt niet hersteld.
+        moderator_notes: "De moderator voegde als commentaar toe:"
+        outro: Als je nog steeds wilt dat je script wordt hersteld, bekijk dan de %{report_link:melding} en neem %{rules_link:%{site_name}s regels} door.
+      unlock:
+        subject: Je bezwaar op %{site_name} is gehandhaafd
+        intro_html: Je bezwaar tegen het verwijderen van %{script} is gehandhaafd door een moderator. Het script wordt hersteld en daarmee weer geopenbaard.
+        moderator_notes: "De moderator voegde als commentaar toe:"
+        outro: Neem %{rules_link:%{site_name}s regels} door om dit soort problemen in de toekomst te vermijden.
