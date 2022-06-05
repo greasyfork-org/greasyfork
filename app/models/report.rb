@@ -199,6 +199,6 @@ class Report < ApplicationRecord
   end
 
   def recent_other_reports
-    Report.where(created_at: 3.months.ago..).where.not(id:).where(item:).includes(:script_lock_appeals)
+    Report.where(created_at: 3.months.ago..DateTime.now).where.not(id:).where(item:).includes(:script_lock_appeals)
   end
 end

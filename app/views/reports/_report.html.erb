@@ -138,7 +138,7 @@
 <% if current_user&.moderator? %>
   <% ror = report.recent_other_reports.load %>
   <% if ror.any? %>
-    <p><%= report_item_link(report) %> has been previously reported:</p>
+    <p><%= report_item_link(report) %> has been recently reported:</p>
     <ul>
       <% ror.each do |other_report| %>
         <li>
