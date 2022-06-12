@@ -91,7 +91,7 @@ class Report < ApplicationRecord
         item.soft_destroy!(by_user: moderator) unless item.soft_deleted?
       when Discussion
         if reason == REASON_WRONG_CATEGORY
-          item.update!(discussion_category_id:)
+          item.update!(discussion_category_id:, script_id: nil)
         else
           reported_users.each { |user| user.ban!(moderator:, delete_comments:, delete_scripts:, ban_related: true, report: self) } if ban_user
           item.soft_destroy!(by_user: moderator) unless item.soft_deleted?
@@ -106,7 +106,7 @@ class Report < ApplicationRecord
         if ban_user
           reported_users.each { |user| user.ban!(moderator:, delete_comments:, delete_scripts:, ban_related: true, report: self) }
         elsif moderator
-          ModeratorAction.create!(moderator:, script: item, action: 'Delete and lock', report: self)
+          ModeratorAction.create!(moderator:, script: item, action: 'Delete and lock', report: self, private_reason: moderator_notes)
         end
       else
         raise "Unknown report item #{item}"
