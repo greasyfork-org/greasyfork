@@ -91,7 +91,7 @@ class Report < ApplicationRecord
         item.soft_destroy!(by_user: moderator) unless item.soft_deleted?
       when Discussion
         if reason == REASON_WRONG_CATEGORY
-          item.update!(discussion_category_id:, script_id: nil, rating: nil, title: ApplicationController.helpers.format_user_text_as_plain(item.first_comment.text, item.first_comment.text_markup))
+          item.update!(discussion_category_id:, script_id: nil, rating: nil, title: ApplicationController.helpers.format_user_text_as_plain(item.first_comment.text, item.first_comment.text_markup).truncate(200))
         else
           reported_users.each { |user| user.ban!(moderator:, delete_comments:, delete_scripts:, ban_related: true, report: self) } if ban_user
           item.soft_destroy!(by_user: moderator) unless item.soft_deleted?
