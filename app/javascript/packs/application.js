@@ -39,3 +39,4 @@ require("locale-switcher");
 require("attachments");
 require("reports")
 require("home")
+require("host-check")
