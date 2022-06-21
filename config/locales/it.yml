@@ -1362,6 +1362,10 @@ it:
             </p>
       report_upheld_reporter:
         subject: "La tua segnalazione a riguardo di %{script_name} su %{site_name} è stata supportata"
+        body_html: |
+            <p>
+            La tua segnalazione riguardo a %{script_link:%{script_name}} su %{site_name} è stata accolta da un moderatore e lo script è stato eliminato. Puoi %{report_link:consultare la segnalazione}.
+            </p>
       report_script_deleted_reporter:
         subject: "La tua segnalazione riguardo a %{script_name} su %{site_name} è stata chiusa"
       report_dismissed_reporter:
