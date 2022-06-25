@@ -489,10 +489,16 @@ es:
           <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
           <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
           <li>Kiwi: %{chrome_tampermonkey_link:Tampermonkey} o %{chrome_violentmonkey_link:Violentmonkey}</li>
-          <li>XBrowser: (no se necesita nada más)</li>
+          <li>%{xbrowser_link:XBrowser}</li>
+          %{locale_specific_browsers}
           </ul>
     ios_browsers:
       title: Para iOS
+      browser_list_html: |
+          <ul>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} o %{safari_userscripts_link:Userscripts}</li>
+          <li>%{gear_link:Gear}: (no se necesita nada más)
+          </ul>
     installing_step2_header: "Segundo paso: Elige e instala un script"
     installing_step2_caption: "Botón de instalación de un script de usuario"
     installing_step2_description_html: >
