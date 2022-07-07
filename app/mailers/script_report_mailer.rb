@@ -98,7 +98,7 @@ class ScriptReportMailer < ApplicationMailer
   def report_fixed_reporter(report, site_name)
     subject = lambda { |user|
       locale = user.available_locale_code
-      t('mailers.script_report.report_fixed_report.subject',
+      t('mailers.script_report.report_fixed_reporter.subject',
         locale:,
         script_name: report.item.name(locale),
         report_url: report_url(report, locale:),
