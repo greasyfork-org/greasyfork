@@ -212,7 +212,7 @@ pl:
     type_2_html: "Niepubliczny skrypt użytkownika - do użytku prywatnego (lub półprywatnego). Dostępny przez bezpośredni dostęp. Nie jest nigdzie linkowany w %{site_name}."
     type_3_html: "Biblioteka - skrypt nie jest przeznaczony do instalowania bezpośrednio, tylko do używania przez inne skrypty poprzez <code>@require</code>."
     override_warning_checkbox_label: "Zapisz mimo to"
-    warning_version_not_incremented_html: "Zaktualizowałeś kod, ale nie zwiększyłeś liczby w linii <code>@version</code>. Ci, którzy zainstalowali wcześniej Twój skrypt mogą nie otrzymać zaktualizowanego kodu.."
+    warning_version_not_incremented_html: "Kod został przez Ciebie zaktualizowany, jednak nie zwiększono liczby w znaczniku <code>@version</code>. Ci, którzy zainstalowali wcześniej Twój skrypt mogą nie otrzymać zaktualizowanego kodu.."
     warning_version_missing_html: "Nie został sprecyzowany znacznik wersji (<code>@version</code>). Jest on wymagany, aby użytkownicy skryptu mieli możliwość otrzymania aktualizacji. Można go wprowadzić w następujący sposób: <code>// @version 1.0</code>."
     warning_version_missing_generate_automatically_html: "Wygeneruj znacznik <code>@version</code> automatycznie "
     warning_namespace_missing_html: "Nie został sprecyzowany znacznik przestrzeni nazw (<code>@namespace</code>). Pomaga on w znalezieniu konfliktów, na wypadek instalacji innego skryptu o tej samej nazwie. Wystarczy, aby znacznik <code>@namespace</code> był unikalnym ciągiem znaków, jednak najczęściej jest to adres URL będący pod kontrolą autora skryptu."
@@ -326,7 +326,7 @@ pl:
       remove_confirm: "Czy na pewno chcesz usunąć %{user_name} jako autora?"
       failure: "Nie można usunąć autora."
     no_disposable_email: "Nie możesz publikować skryptów, jeśli używasz jednorazowego adresu e-mail."
-    rate_limited: "Ostatnio opublikowałeś zbyt wiele skryptów. Spróbuj ponownie później."
+    rate_limited: "Publikujesz zbyt wiele skryptów w krótkim czasie. Spróbuj ponownie później."
     delayed: "Z powodu problemów z nadużyciami, nowe konta nie mogą publikować skryptów zaraz po utworzeniu. Proszę odczekać chwilę i spróbować ponownie."
     new_script_notice:
       title: "Co próbujesz zrobić?"
@@ -689,7 +689,13 @@ pl:
   webhooks:
     info:
       title: Konfiguracja webhooka
+      intro_html: |
+          <p>Połączenie webhook dla %{site_name} umożliwia automatyczne aktualizowanie zawartości %{site_name} na podstawie zmian w Twoim repozytorium. %{site_name} wspiera webhooki typu «push» dla serwisów GitHub, GitLab oraz Bitbucket, a także webhooki typu «release» dla serwisów GitHub i GitLab. </p>
+          <p>Aby użyć tej funkcjonalności, należy skonfigurować skrypty umieszczone w %{site_name} do synchronizacji poprzez URL z Twoim repozytorium. Można również dodać nowe skrypty za pomocą %{import_link: importu do %{site_name}} lub wybierając jeden z poprzednio stworzonych skryptów przez zakładkę „Admin” na stronie skryptu.</p>
+          <p>Twoje skrypty nadal będą pokazywały rodzaj synchronizacji jako „Automatyczny” lub „Manualny”, dopóki nie nastąpi pierwsze wywołanie webhook</p>
+      already_syncing_list: "Oto skrypty, które zostały już przez Ciebie skonfigurowane do synchronizacji ze wspieranym dostawcą"
       synced_item_html: "%{script_name} - %{sync_type} synchronizuje się z %{sync_url}"
+      language_note: Ponieważ interfejsy udostępniane przez serwisy GitHub, GitLab oraz Bitbucket są dostępne jedynie w języku angielskim, następne instrukcje mogą nie być przetłumaczone.
   help:
     sections:
       usage: Używanie
@@ -712,6 +718,7 @@ pl:
       description: "Opis funkcji skryptu.  Wyświetlany jako tekst pod nazwą skryptu. Wymagane."
       description_localized_html: "Opis w specyficznym języku, gdzie XX oznacza <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\"> kod dwuliterowy ISO 639-1 </a>, a YY jest opcjonalnym <a href=\"https://www.iso.org/obp/ui/#search\"> kodem kraju ISO 3166 </a>.  Zastępuje <code>@description</code>, kiedy użytkownik przegląda z wybranym językiem."
       namespace_html: "Kombinacja <code>@namespace</code> i <code>@name</code> jest używana przez menedżerów skryptów użytkownika aby sprawdzić czy skrypt został już zainstalowany. %{site_name} wymaga tego pola i będzie ostrzegać jeżeli zostanie zmienione przy aktualizacji."
+      version: "Identyfikator dla konkretnej wersji skryptu w %{version_format_link:formacie wersji Mozilla}. Ten identyfikator jest wyświetlany na stronie informacyjnej skryptu. %{site_name} wymaga, aby to pole było wypełnione i ostrzeże Cię, jeżeli dojdzie do cofnięcia wartości wersji lub jeżeli nie wzrośnie ona po zaktualizowaniu kodu skryptu."
       include_html: "Określa, na jakich stronach zostanie uruchomiony dany skrypt. Ich lista zostanie wyświetlona na stronie listingu skryptu, oraz użyta do ich kategoryzacji. Każdy skrypt musi posiadać co najmniej jedną deklarację <code>@match</code> lub <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Więcej informacji o wymaganym formacie znajdziesz tutaj.</a>"
       require_html: "Zawiera zewnętrzny JavaScript w skrypcie. Zobacz %{external_script_link}."
       require_external_script_link_text: "zasady dla kodu zawierającego zewnętrzne skrypty"
@@ -722,6 +729,8 @@ pl:
       contributionAmount_html: "Sugerowana kwota dotacji, używana wraz z <code>@contributionURL</code>."
       compatible_html: "Oznacza ten skrypt jako kompatybilny z przeglądarką. Informacje o zgodności zostaną pokazane na stronie skryptu. Uwagi dotyczące zgodności mogą zostać dołączone w formacie<code>@compatible firefox Należy wyłączyć blokowanie wyskakujących okien.</code>. Rozpoznawane przeglądarki to: %{browsers}."
       incompatible_html: "Oznacza ten skrypt jako niezgodny z przeglądarką. Informacje o kompatybilności zostaną wyświetlone na stronie skryptu. Opcjonalne komentarze dotyczące kompatybilności mogą zostać dołączone w formacie <code>@incompatible firefox Niezgodne od Firefox'a w wersji 23</code>. Rozpoznawane przeglądarki to: %{browsers}."
+      antifeature_html: |
+          Informuje o funkcjonalnościach skryptu, które są w nim umieszczone na korzyść autora, nie użytkownika. Format dla tego klucza to <code>@antifeature typ opis</code>. <i>typ</i> jest wymagany, ale <i>opis</i>jest opcjonalny. Aby poznać listę <i>typów</i> rozpoznawanych przez %{site_name}, odwiedź %{antifeatures_link:tę witrynę}.
       antifeature_localized_html: "<code>@antifeature</code> opisany w innym języku, gdzie XX oznacza <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">dwuliterowy kod ISO 639-1</a>, a YY jest opcjonalnym <a href=\"https://www.iso.org/obp/ui/#search\">kodem kraju ISO 3166</a>. Nadpisuje <code>@antifeature</code> gdy użytkownik przegląda w pasującym języku."
     writing_user_scripts:
       title: "Jak pisać skrypty użytkownika"
@@ -739,23 +748,71 @@ pl:
         po prostu przekierowuje użytkownika na stronę internetową, nie musi być skryptem; może to być link. Dozwolone są skrypty, które wykorzystują usługę sieciową do wykonania akcji na bieżącej stronie (np. w celu jej konwersji).'
       monetization_html: 'Skrypty, które zawierają funkcje przynoszące korzyść <em>autorowi</em>, nie użytkownikowi (jak skrypty śledzące, reklamy, koparki kryptowalut) są dozwolone, jednak muszą zostać oznaczone %{antifeature_link: kluczem <code>@antifeature</code>}.'
       code_header: Kod
+      obfuscation: Kod umieszczony na %{site_name} nie może być zaszumiony lub zminiaturyzowany. Użytkownicy muszą mieć możliwość podejrzenia zasady jego działania przed instalacją. Jeżeli skrypt jest spakowany za pomocą narzędzia (np. webpack), to musi być zamieszony w niezminiaturyzowanej formie, ze znakami białymi i czytelnymi nazwami zmiennych.
+      size_html: |
+          Skrypty są ograniczone do rozmiaru %{max_code_size}. Nie można miniaturyzować skryptów, aby zmieścić się pod limitem. Jeżeli Twój skrypt zbliża się do tego limitu, to:
+          <ul>
+          <li>rozważ przeniesienie danych takich jak JSON poza skrypt i pobieranie ich zawartości przez adres URI;</li>
+          <li>postaraj się ładować biblioteki za pomocą parametru <code>@require</code> lub za pomocą %{webpack_externals_link:opcji <code>zawartość zewnętrzna</code> Webpack'a}, jeżeli go używasz.</li>
+          </ul>
       libraries_html: Biblioteki, których używa skrypt, powinny zostać dodane poprzez <code>@require</code>, chyba że istnieje wyraźny techniczny powód, by tego nie robić. Jeśli kod źródłowy biblioteki jest zawarty w kodzie skryptu, należy również dodać informację o źródle biblioteki (np. komentarz zawierający adres URL i/lub nazwę oraz wersję).
       updates: Skrypty nie powinny sprawdzać dostępności aktualizacji częściej niż raz dziennie. Należy pamiętać, że większość menedżerów skryptów użytkownika obsługuje automatyczne aktualizacje, więc wykonywanie tego w skrypcie nie jest konieczne. Skrypty również nie powinny dynamicznie wstrzykiwać do strony innych skryptów hostowanych na %{site_name}, ponieważ omija to pamięć podręczną w menedżerach skryptów.
+      hosting: Podstawowa funkcjonalność skryptu musi się znajdować w obrębie kodu zamieszczonego na %{site_name}. Skrypty zamieszczone na %{site_name}, które ładują większość zawartości z zewnętrznego źródła, nie są dozwolone. Umieszczanie alternatywnego adresu URL, zachęcającego użytkowników do pobrania skryptu z zewnętrznego źródła nie jest dozwolone.
       external_js: "%{external_scripts_link:Korzystanie z zewnętrznego kodu JavaScript jest ograniczone.}"
       copyright_header: Prawa autorskie
+      licensing_html: Twój skrypt musi respektować prawa autorskie innych. Dotyczy to kodu oraz wszelkich zasobów (np. grafik), których używa. Jeżeli planujesz używać czyichś zasobów, upewnij się, że robisz to zgodnie z prawami, na jakich są one udostępniane lub uzyskaj na to zgodę autora. Licencje skryptów określane są meta-znacznikiem <code>@license</code>. Odwiedź %{tldr_legal_link:tldrlegal.com}, aby dowiedzieć się więcej na temat działania licencji oprogramowania.
       reposts: Nawet jeśli prawa autorskie nie są naruszone to ponowne publikowanie skryptów, które znajdują się na %{site_name}, jest zabronione, chyba że wprowadzają usprawnienia różniące się od oryginału.
       miscellaneous_header: Inne
       keywords_html: Skrypty nie mogą zawierać <code>@include</code>, <code>@match</code>, lub słów kluczowych, do których stron nie wprowadzają żadnej funkcjonalności.
       adult_content_rule: Skrypty, które zawierają treści dla dorosłych lub są przeznaczone do stron dla dorosłych, muszą być oznaczone jako takie, aby użytkownicy mogli zdecydować czy chcą je zobaczyć.
+      reposting_deleted: Nie publikuj ponownie skryptów, które zostały usunięte z powodu naruszeń zasad. Zamiast tego użyj funkcji wysyłania odwołania. Publikacja usuniętych skryptów będzie skutkowało blokadą konta.
+      advertising_in_description: Autorzy skryptów nie mogą umieszczać reklam na stronach Greasy Fork, na przykład w opisie skryptu. Autopromocja w postaci linku do strony autora, repozytorium autora, społeczności Discord, WeChat itp. jest dozwolone.
       reporting: Jeśli zauważysz skrypt, który nie przestrzega wyżej wymienionych zasad, zgłoś go na stronie skryptu, przechodząc na podstronę Opinie, a następnie klikając "zgłoś ten skrypt".
     external_scripts:
       title: "Polityka %{site_name} dot. zewnętrznych skryptów"
+      intro_html: |
+          <p>Skrypty użytkowników mają techniczną możliwość ładowania i uruchamiania innych skryptów. Można to zrobić na przykład:</p>
+          <ul>
+          <li>za pomocą znacznika metadanych %{require_doc_link: <code>@require</code>};</li>
+          <li>za pomocą funkcji <code>XmlHttpRequest</code>, pobierającej zewnętrzny skrypt i uruchomienie go za pomocą funkcji <code>eval</code>;</li>
+          <li>poprzez dynamiczne dodanie znacznika <code>&lt;script&gt</code>;</li>
+          <li>poprzez użycie opcji %{webpack_externals_link:<code>zawartości zewnętrznej</code>} narzędzia Webpack, jeżeli go używasz.</li>
+
+          </ul>
+          Pomimo że jest to bardzo wygodna funkcjonalność, często stosowana przez autorów skryptów w uzasadniony sposób, to może być także użyta w złośliwych celach. Należy podkreślić, że jedną z głównych zasad %{site_name} jest wymóg udostępnienia możliwości wglądu do kodu skryptu przez użytkowników. Zewnętrzne skrypty mogą to utrudnić na wiele sposobów: zmieniając swoje działanie bez ostrzeżenia, ładując alternatywną wersję skryptu dla różnych użytkowników lub nawet ukrywając złośliwy kod w renomowanych bibliotekach. Nawet jeżeli zostanie udostępniona możliwość wglądu do zewnętrznie ładowanego skryptu, to nigdy nie ma pewności, że nie ulegnie on niespodziewanym zmianom.
       allowed_external_codes:
         heading: Dozwolony kod zewnętrzny
+        content_html: |
+            <p>Aby pozwolić autorom skryptów na używanie zewnętrznie ładowanego kodu %{site_name} wprowadza listę dozwolonych adresów URL, z których mogą one być dołączane w skrypcie. Lista zawiera lokalizacje, które:</p>
+            <ul>
+            <li>są publicznie dostępne,</li>
+            <li>nie stwarzają ryzyka częstej zmiany zawartości,</li>
+            <li>prawdopodobnie byłyby użyteczne dla więcej niż jednego autora skryptu.</li>
+            </ul>
+            <p>Jeśli skrypt, który planujesz opublikować, używa biblioteki JavaScript (na przykład JQuery lub YUI), postaraj się znaleźć do niej łącze w serwisach takich jak %{cdnjs_link:cdnjs} lub %{jsdelivr_link:jsDelivr}. Oferują one szeroką gamę powszechnie stosowanych bibliotek.</p>
+            <p>Aktualna lista dozwolonych adresów jest dostępna poniżej:</p>
+            %{allowed_require_list}
       other_allowed_codes:
         heading: Szczególne przypadki
+        content_html: |
+            <p>Ponadto, dozwolone są jeszcze takie zastosowania ładowania zewnętrznej zawartości jak:</p>
+            <ul>
+            <li>ładowanie istniejącego kodu z tej samej strony (np. example.com/skrypt.js ze strony example.com);</li>
+            <li>ładowanie zasobów zawierających jedynie dane, na przykład w formacie JSON, bez wykonywania żadnej ich zawartości.</li>
+            </ul>
+            <p>Nie dozwolone jest jednak:</p>
+            <ul>
+            <li>ładowanie aktualizacji do skryptu z zewnętrznego adresu URL.</li>
+            </ul>
       add_to_list:
         heading: Dodawanie do listy
+        content_html: |
+            <p>Jeżeli skrypt, który chcesz dołączyć, nie jest dostępny na wymienionych stronach, %{contact_link:skontaktuj się z nami}. Postaramy się pomóc znaleźć do niego odpowiednie łącze lub nawet udostępnimy go z naszego serwera!</p>
+            <p>Jeżeli zewnętrzny skrypt, który planujesz dołączyć, jest Twojego autorstwa, możesz opublikować go na %{site_name} osobno, wybierając podczas publikacji opcję „biblioteka” przy pytaniu o typ skryptu.</p>
+      enforcement:
+        heading: Wymóg
+        content_html: |
+            <p>Jakikolwiek skrypt pobierający zewnętrzny kod w inny sposób niż określono w zasadach zostanie usunięty</p>
       test_url:
         label: Testuj adres URL
         result_ok: URL jest dozwolony
@@ -849,6 +906,21 @@ pl:
       title: Konwersja user CSS do user JS
     antifeatures:
       title: Antyfunkcje
+      miner_html: |
+          <p>Ten skrypt zawiera koparkę kryptowalut lub inny kod używający mocy obliczeniowej komputera użytkownika, aby wykonywać pewne zadania dla autora skryptu</p>
+      payment_html: |
+          <p>Skrypt wymaga od użytkownika uiszczenia opłaty dla autora, aby skrypt był w pełni funkcjonalny.</p>
+
+          <p>Poniższe przypadki <i>nie wymagają</i> użycia znacznika <code>@antifeature payment</code>:</p>
+
+          <ul>
+          <li>skrypty, modyfikujące działanie strony, która pobiera opłaty, ale sam skrypt jej nie pobiera;</li>
+          <li>skrypty, które proszą o dotacje, ale nie ograniczają funkcjonalności, jeżeli dotacja nie zostanie przekazana.</li>
+          </ul>
+      referral_link_html: |
+          <p>Ten skrypt wykonuje pewne czynności, które przekazują prowizję dla autora skryptu podczas zakupów. Mogą to być łącza programów partnerskich znajdujące się w skrypcie lub podmiana linków na stronach na zawierające łącze programów partnerskich. Czynności te mogą też obejmować dostarczanie specjalnych kodów kuponów.</p>
+      tracking_html: |
+          <p>Ten skrypt zawiera kod śledzący aktywność użytkownika. Może to obejmować usługi śledzące jak na przykład Google Analytics lub własny kod twórcy zbierający informacje o aktywności.</p>
   search:
     script_search:
       title: "Wyszukiwanie skryptów"
@@ -931,6 +1003,7 @@ pl:
       malware: "Szkodliwy kod"
       minified: "Zminifikowany kod"
       external_code: "Niedozwolony zewnętrzny kod"
+      undisclosed_antifeature: "Niesprecyzowana %{antifeature_link:złośliwa funkcjonalność} (np. reklamy, śledzenie, koparka kryptowalut itp.)"
       no_description: "Brakujący, nieinformatywny lub wprowadzający w błąd opis."
       wrong_category: "Niewłaściwa kategoria"
       wrong_category_with_suggestion: "Niewłaściwa kategoria (sugestia: %{suggested_category})"
@@ -938,6 +1011,10 @@ pl:
     report_intro: "%{reported_item} został zgłoszony %{report_date} przez %{reporter} , bo%{reason}"
     report_intro_no_reporter: "%{reported_item} został zgłoszony %{report_date}, bo %{reason} "
     report_intro_unauthorized_html: "%{reported_script} został zgłoszony %{report_date} przez %{reporter} jako nieautoryzowana kopia %{other_script}"
+    report_intro_unauthorized_no_reporter_html: "%{reported_script} został zgłoszony dnia %{report_date} jako nieuprawniona kopia skryptu %{other_script}."
+    report_intro_unauthorized_license: "%{other_script} używa licencji %{license_link: %{license_name}}. Odwiedź %{tldr_legal_link:tldrlegal.com} aby dowiedzieć się, co oznacza ta licencja."
+    report_intro_unauthorized_license_no_url: "%{other_script} używa licencji %{license_name}. Odwiedź %{tldr_legal_link:tldrlegal.com} aby dowiedzieć się, co oznacza ta licencja."
+    report_intro_unauthorized_no_license: "%{other_script} nie określa używanej licencji, co oznacza, że redystrybucja tego skryptu nie jest dozwolona bez zgody autora."
     non_functional_feedback: "Prosimy o zgłaszanie niefunkcjonalnych skryptów korzystając z opcji %{feedback_link:pozostawienia opinii} o skrypcie."
     unauthorized_code_original_placeholder: "Adres URL oryginalnego kodu"
     explanation_placeholder: "Podaj dodatkowe szczegóły (opcjonalne)"
@@ -949,8 +1026,17 @@ pl:
     result_upheld: "Twoje zgłoszenie zostało uznane przez moderatora."
     result_fixed: "Te zgłoszenie zostało rozwiązane przez moderatora, bo uważa on że autor naprawił problem."
     result_pending: "Twoje zgłoszenie oczekuje na sprawdzenie przez moderatora."
+    result_pending_author_html: |
+        <p>Działania, jakie możesz podjąć to:</p>
+        <ol>
+        <li>jeżeli zgadzasz się ze zgłoszeniem, naprawa problemu oraz przesłanie swojego wyjaśnienia, informującego o wprowadzonych zmianach;</li>
+        <li>jeżeli nie zgadzasz się ze zgłoszeniem, wysłanie odparcia zarzutów;</li>
+        <li>usunięcie skryptu;</li>
+        <li>nierobienie nic oraz oczekiwanie na decyzję moderatora serwisu</li>
+        </ol>
     rebuttal_placeholder: 'Wyjaśnij moderatorowi, dlaczego ten skrypt nie powinien zostać usunięty.'
     submit_rebuttal: "Prześlij odwołanie"
+    rebuttal_submitted: Moderator rozpatrzy ten raport oraz Twoje wyjaśnienie i podejmie decyzję.
     delete_script: "Usuń skrypt"
     view_discussion: "Zobacz dyskusję"
     load_diff: "Załaduj diff"
@@ -959,6 +1045,7 @@ pl:
   appeals:
     new:
       title: Nowe zgłoszenie usunięcia skryptu
+      intro: 'Twój skrypt został usunięty. Jako powód podano „%{reason}”. Jeżeli uważasz, że to pomyłka, jeżeli chcesz przekazać dodatkowe informacje lub też, jeżeli skrypt został zaktualizowany, a błąd poprawiony, możesz wysłać odwołanie. Jeżeli moderator uzna poprawki za stosowne, to przywróci Twój skrypt.'
       submit: Złóż zgłoszenie
     deletion_reason_html: "%{script} został usunięty z powodu: %{reason}."
     author_reason: "Zgłoszenie złożone przez autora:"
@@ -1186,6 +1273,7 @@ pl:
       script_disallowed_require: "używa niezatwierdzonego zewnętrznego skryptu: %{code}"
       script_rate_limit: "Przekroczono limit udostępniania. Spróbuj ponownie później."
       missing_include_or_match: "musi zawierać co najmniej jeden klucz @match lub @include"
+      invalid_meta: "posiada niewłaściwy znacznik. Prawidłowy format to // @foo"
       no_executable: "Nie zawiera kodu wykonywalnego"
       file_size_out_of_range: "rozmiar musi być mniejszy niż 200KB"
       meta_too_long: "%{key} jest zbyt długi (maksymalna dozwolona ilość znaków to %{count})"
@@ -1197,6 +1285,11 @@ pl:
   importing:
     title: Importuj skrypty
     intro: "%{site_name} może importować skrypty, które są hostowane w innym miejscu, na przykład w systemie kontroli wersji (jak GitHub), twój własny serwer lub z innej strony hostującej skrypty użytkownika."
+    url_entry_label: Wprowadź adresy URL, z których nastąpi import, każdy w osobnej linii. Powinny to być adresy do surowych plików JS lub CSS.
+    sync_type_label: "Po wstępnym imporcie skrypty powinny zostać zsynchronizowane:"
+    additional_info_html: |
+        <p>Dla skryptów z systemu kontroli wersji, upewnij się, że adres URL wskazuje na całą gałąź, a nie operację zatwierdzenia (pojedynczy commit). W przeciwnym wypadku nigdy nie zostanie on zaktualizowany. Dla przykładu należy użyć <code>https://bitbucket.org/użytkownik/repozytorium/raw/<b>nazwa-gałęzi</b>/skrypt.user.js</code> zamiast <code>https://bitbucket.org/użytkownik/repozytorium/raw/<b>suma-kontrolna</b>/skrypt.user.js</code>.</p>
+        <p>Skrypty importowane z serwisów GitHub, Bitbucket lub GitLab mogą być automatycznie synchronizowane za pomocą funkcji webhook. Skrypt na %{site_name} będzie automatycznie aktualizowany przy zmianie w repozytorium. Jeżeli chcesz używać funkcji webhook, ale jeszcze nie była ona przez Ciebie skonfigurowana, to najpierw zaimportuj pliki, a następnie %{webhook_info_link:sprawdź jak włączyć webhook}.</p>
     submit: Importuj
     previously_imported:
       heading: Wcześniej zaimportowane skrypty
@@ -1213,16 +1306,41 @@ pl:
     script_report:
       report_created_offender:
         subject: "Twój skrypt %{script_name} dla %{site_name} został zgłoszony"
+        body_html: |
+            <p>
+            Twój skrypt %{script_link:%{script_name}} został zgłoszony za złamanie zasad %{site_name}. Jako powód podano „%{reason}”. Możesz %{report_link:zobaczyć zgłoszenie i odesłać odpowiedź}. Jeżeli nie odpowiesz na zgłoszenie, skrypt może zostać usunięty przez moderatorów.</p>.
       report_upheld_offender:
         subject: "Twój skrypt %{script_name} dla %{site_name} został usunięty"
+        body_html: |
+            <p>
+            Twój skrypt %{script_link:%{script_name}}  został usunięty z %{site_name} przez moderatorów oraz nie jest już dostępny publicznie. Możesz %{report_link:sprawdzić raport}  oraz %{code_rules_link:zasady %{site_name}}, by dowiedzieć się, co się stało.
+            </p>
+            <p>
+            Jeżeli uważasz, że to pomyłka lub błędy zostały już przez Ciebie naprawione, możesz %{appeal_link:napisać odwołanie} do przejrzenia przez moderatorów. Nie publikuj tego skryptu ponownie pod inną nazwą. Może to skutkować blokadą konta na %{site_name}</p>
       report_dismissed_offender:
         subject: "Zgłoszenie odnośnie Twojego skryptu %{script_name} dla %{site_name} zostało odrzucone"
+        body_html: |
+            <p>
+            Skarga na temat twojego skryptu %{script_link:%{script_name}} na %{site_name} została odrzucona przez moderatora. Skrypt pozostanie dostępny publicznie. Raport możesz sprawdzić %{report_link:tutaj}.
+            </p>
       report_fixed_offender:
         subject: "Zgłoszenie odnośnie twojego skryptu %{script_name}dla %{site_name} zostało oznaczone jako rozwiązane."
+        body_html: |
+            <p>
+            Skarga na temat twojego skryptu %{script_link:%{script_name}} na %{site_name} została oznaczona przez moderatora jako rozwiązana, ponieważ twoje poprawki okazały się wystarczające. Twój skrypt pozostaje dostępny publicznie. Raport możesz sprawdzić %{report_link:tutaj}.
+            </p>
       report_rebutted_reporter:
         subject: "Twoje zgłoszenie odnośnie skryptu %{script_name} dla %{site_name} otrzymało odpowiedź"
+        body_html: |
+            <p>
+            Twoje zgłoszenie odnośnie do skryptu %{script_link:%{script_name}} na %{site_name} otrzymało odpowiedź. Możesz ją przejrzeć %{report_link:tutaj}. Moderator rozpatrzy zgłoszenie i podejmie decyzję.
+            </p>
       report_upheld_reporter:
         subject: "Twoje zgłoszenie odnośnie skryptu %{script_name} dla %{site_name} zostało podtrzymane"
+        body_html: |
+            <p>
+            Twoje zgłoszenie odnośnie do skryptu %{script_link:%{script_name}} na %{site_name} zostało uznane za stosowne przez moderatora i skrypt został usunięty. Raport możesz przejrzeć %{report_link:tutaj}.
+            </p>
       report_script_deleted_reporter:
         subject: "Twoje zgłoszenie odnośnie %{script_name} dla %{site_name} zostało zamknięte"
       report_dismissed_reporter:

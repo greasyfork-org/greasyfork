@@ -473,12 +473,21 @@ zh-CN:
           </ul>
     android_browsers:
       title: 手机端（Android）
+      browser_list_html: |
+          <ul>
+          <li>Firefox：%{firefox_greasemonkey_link:Greasemonkey}、%{firefox_tampermonkey_link:Tampermonkey} 或 %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon：%{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin：%{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC：%{uc_tampermonkey_link:Tampermonkey}</li>
+          <li>Kiwi：%{chrome_tampermonkey_link:Tampermonkey} 或 %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>X浏览器</li>
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: 手机端（iOS）
       browser_list_html: |
           <ul>
           <li>Safari：%{safari_tampermonkey_link:Tampermonkey} 或 %{safari_userscripts_link:Userscripts}</li>
-          </ul>
           <li>%{gear_link:Gear}：（不需要其他软件）
           </ul>
     installing_step2_header: "第二步：安装一个用户脚本"
