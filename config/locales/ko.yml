@@ -140,6 +140,7 @@ ko:
     derivatives_similar_last_check_soon: "빨리 유사한 스크립트를 검사하겠습니다."
     derivatives_similar_last_check_again_soon_html: "%{date}에 마지막으로 비슷한 스크립트를 검사했습니다. 빠르게 다시 검사합니다."
     derivatives_similar_check_now: "지금 재검사"
+    derivatives_similiar_queued: 몇 분 안에 유사성 검사가 완료됩니다.
     listing_title_all_sites: "모든 사이트에서 동작하는 유저 스크립트"
     listing_description_all_sites: "모든 사이트에서 기능을 추가하고 버그를 제거하는 유저 스크립트"
     listing_title_for_site: "%{site}에서 동작하는 유저 스크립트"
@@ -205,6 +206,8 @@ ko:
     type_3_html: "라이브러리 - 다른 스크립트에서 <code>@require</code>로 사용하고 직접 설치되지 않는 스크립트"
     override_warning_checkbox_label: "강제 저장"
     warning_version_not_incremented_html: "코드는 바뀌었지만 <code>@version</code> 번호는 올라가지 않았습니다. 이전에 스크립트를 설치한 사람은 업데이트를 못 할 수 있습니다."
+    warning_version_missing_html: "<code>@version</code>을 지정하지 않았습니다. 사용자가 업데이트를 받으려면 <code>@version</code>이 필요합니다. 다음과 같이 지정할 수 있습니다. <code>// @version 1.0.</code>"
+    warning_version_missing_generate_automatically_html: "자동으로 <code>@version1</code>생성"
     warning_namespace_changed_html: "<code>@namespace</code>가 변경됐습니다. 일관된 <code>@namespace</code>는 사용자가 스크립트 재설치로 업데이트 할 수 있도록 만들 수 있습니다."
     warning_potentially_minified_html: "이 스크립트 코드는 최소화(압축)된 듯 합니다. 만약 최소화된 라이브러리를 사용 중이라면, 그 대신 %{allowed_requires_link}에서 <code>@require</code> 해주세요. 최소화된 코드를 포함하는 스크립트는 삭제될 수 있습니다."
     warning_automatic_sensitive_html: "이 스크립트는 %{sensitive_domains}에서 동작하기에 성인 컨텐츠로 설정되었습니다."
@@ -237,6 +240,8 @@ ko:
     additional_info_default_sync_html: "기본 추가 정보 (<code>@name</code>의 언어와 일치하는 언어)"
     additional_info_localized_sync_html: "로케일 (<code>@name:XX</code>와 일치)"
     sync_url_placeholder: "(URL)"
+    sync_successful: 스크립트가 성공적으로 동기화되었습니다.
+    sync_no_changes: 스크립트가 성공적으로 동기화되었지만 변경 사항이 없습니다.
     screenshots_add: "추가:"
     screenshots_remove: "제거"
     replacement_script_explanation: "(선택) 이 스크립트를 대체할 스크립트를 지정해주세요. 스크립트 URL:"
@@ -441,6 +446,12 @@ ko:
     explain_user_scripts_html: "유저 스크립트로 웹 서핑을 더 마음대로 할 수 있습니다. 설치해서 사이트에 기능을 추가하거나, 원래 있던 기능을 더 편하게 하거나, 거슬리는 걸 치울 수 있습니다. %{site_name}의 유저 스크립트는 다른 사용자들이 만들어 공유한 겁니다. 마음대로 설치할 수 있고 쓰기도 쉬워요."
     installing_step1_header: "1. 유저 스크립트 관리자 설치"
     installing_step1_caption: "크롬의 Tampermonkey"
+    desktop_browsers:
+      title: 데스크탑
+    android_browsers:
+      title: 모바일(안드로이드)
+    ios_browsers:
+      title: 모바일(iOS)
     installing_step2_header: "2. 유저 스크립트 설치"
     installing_step2_caption: "유저 스크립트 설치 버튼"
     installing_step2_description_html: >
@@ -924,6 +935,7 @@ ko:
       minified: "최소화된 코드"
       external_code: "금지된 외부 코드"
       undisclosed_antifeature: "숨겨진 %{antifeature_link:역기능} (광고, 추적, 채굴 등)"
+      wrong_category: "잘못된 카테고리"
       other: "기타"
     report_intro: "%{reported_item} 항목을 %{reporter} 제보자가 %{report_date}에 %{reason} 사유로 신고"
     report_intro_no_reporter: "%{reported_item} 항목을 %{report_date}에 %{reason} 사유로 신고"
@@ -958,6 +970,9 @@ ko:
     load_diff: "비교"
     loading_diff: "로드 중…"
     reported_user_activity_html: "%{user} (신고된 사용자)의 행동:"
+  appeals:
+    pending_review: 이 항소는 관리자의 검토 대기 중입니다.
+    dismissed_by_moderator: 관리자가 이 항소를 기각했습니다.
   discussions:
     title: 게시판
     comment_date: "작성: %{date}"
@@ -991,6 +1006,10 @@ ko:
       bad: "나쁨"
       ok: "보통"
       good: "좋음"
+    badges:
+      deleted:
+        short: 삭제됨
+        long: 삭제됨
     sign_in_to_post_discussion: "리뷰, 댓글, 질문을 남기려면 로그인하세요."
     sign_in_to_post_comment: "댓글을 남기려면 로그인하세요."
     user_filter:
@@ -1075,6 +1094,7 @@ ko:
     recent:
       title: 최근 쪽지
       more: 모든 쪽지 보기
+    edit_message_header: 메세지 수정하기
   screenshots:
     requirements: "%{size} 미만의 png, gif, jpg, webp 이미지를 최대 %{number}개 까지"
   common:
@@ -1228,3 +1248,8 @@ ko:
       subject: "'%{commenter_name}'님이 사용자님을 %{site_name}에서 멘션했습니다."
     new_message:
       subject: "%{site_name} %{user}님이 메시지를 보냈습니다"
+    script_lock_appeal:
+      dismiss:
+        moderator_notes: "관리자가 다음과 같이 댓글을 남겼습니다."
+      unlock:
+        moderator_notes: "진행자가 다음과 같이 댓글을 남겼습니다."
