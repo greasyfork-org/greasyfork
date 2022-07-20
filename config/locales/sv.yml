@@ -16,7 +16,7 @@ sv:
     total_installs: "Totala installationer"
     daily_installs: "Dagliga installationer"
     ratings: "Betyg"
-    author_name: "Författare"
+    author_name: "Skapare"
     version_number: "Version"
     license: "Licens"
     no_license: "N/A"
@@ -29,6 +29,7 @@ sv:
       other: "Se %{count} andra skript för %{site}"
     applies_to_all: "Alla sidor"
     install: "Installera detta skript"
+    install_css: "Installera som användar stil"
     install_help: "?"
     install_help_title: "Hur man installerar"
     update: "Uppdatera till version %{version}"
@@ -41,6 +42,7 @@ sv:
     deleted_notice: "Detta skript har blivit raderat"
     deleted_notice_with_related: "Skripten du har viljat ha har blivit raderad, men här är några relaterade skripter"
     deleted_undelete_notice_html: "Skripten har blivit låst av en moderator och kan inte bli avraderad. Anledningen till detta: \"<i>%{delete_reason}</i>\"."
+    deleted_locked_author_notice_html: "Denna skript har blivit raderad utav en moderator och är inte tillgänglig till andra. Anledning: \"<i>%{delete_reason}</i>\". Please review %{code_rules_link:%{site_name}'s rules}. If you believe the deletion to be in error, you can %{appeal_link:submit an appeal} of this deletion. Do not repost this script; doing so may result in a ban from %{site_name}."
     version_notice_html: "Från och med %{date}. Se %{latest_version_link}."
     version_notice_latest_version_link: "den senaste versionen"
     info_page: "Info"
@@ -59,6 +61,10 @@ sv:
     delete_permanently_notice_immediate: "Skriptet är permanent borttaget."
     cancel_delete_permanently_submit: "Avbryt permanent borttagningansökan"
     delete_permanently_rejected_locked: "Detta skriptet är låst och kan inte tas bort permanent."
+    admin_page: "Administrartör"
+    admin:
+      title: "%{script_name} - Administratör"
+      compare_button: "Jämföra"
     history_title: "%{script_name} - Versionshistorik"
     history_only_code_changes_info: "Dessa är versionerna av skriptet där koden uppdaterades."
     history_all_changes_link: "Visa alla versioner."
@@ -79,7 +85,15 @@ sv:
     stats_raw_data_header: "Rå data"
     stats_download_raw_data_html: "Ladda ner all data som %{länkar}"
     stats_no_data: "N/A"
+    stats_filter_options:
+      month: Senaste 30 dagarna
+      year: Senaste 365 dagarna
+      all: hela tiden
     derivatives_title: "%{script_name} - Derivat"
+    similarity_score:
+      high: Väldigt lika
+      none: Inte lika alls
+    derivatives_similar_item: "%{score}: %{diff_link:[Diff]} %{script}"
     listing_title_all_sites: "Användarskript för alla sidor"
     listing_description_all_sites: "Användarskript som lägger till funktioner och tar bort buggar på alla sidor"
     listing_title_for_site: "Användarskript för %{site}"
@@ -134,6 +148,7 @@ sv:
     type_1_html: "Öppet användarskript - ett användarskript öppet för alla att se och använda."
     type_2_html: "Olistat användarskript - ett användarskript för (semi-)privat användning. Tillgänglig via direkt åtkomst, men inte länkad till från någonstans på %{site_name}."
     type_3_html: "Bibliotek- ett skript avsedd att vara <code>@require</code>-d \nfrån andra skript och inte installeras direkt."
+    override_warning_checkbox_label: "Spara ändå"
     warning_version_not_incremented_html: "Du uppdaterade koden men inte öka <code>@version</code> numret. De som tidigare installerat skriptet kan inte få den uppdaterade koden."
     warning_namespace_changed_html: "Din <code>@namespace</code> har förändrats. En konsekvent <code>@namespace</code> tillåter användare att ominstallera skriptet för att uppdatera den."
     warning_potentially_minified_allowed_requires_link: "en av dessa platser"
@@ -144,6 +159,8 @@ sv:
     code_syncing_from_url_html: "Detta skriptets kod är inställt på att synka från: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} kan importera skript som redan värd någon annanstans, till exempel i ett versionshanteringssystem (som GitHub), din egen server, eller en annan användar skript webbsida.till att aktivera synkronisering för dina skript, tillhandahålla en webbadress: %{field}"
     sync_type_intro: "Skriptet kommer synkas:"
+    sync_type_1:
+      name: Manuell
     sync_failed_info_html: "Försökte synka senast %{date}, vilket resulterade i %{error}."
     sync_success_info_html: "Senaste lyckade synkningen skedde %{date}."
     sync_never_succeeded: "Synkning lyckades aldrig."
@@ -184,6 +201,28 @@ sv:
     by_site_list_title: "Användarskript på %{site_name} grupperade efter sida"
     by_site_list_filter: "Filtrera efter sidnamn:"
     search_placeholder: "Sök skript"
+    install_help_dialog:
+      close_dialog: OK
+    antifeatures:
+      types:
+        ads:
+          title: Reklam
+        tracking:
+          title: Spårning
+        miner:
+          title: Cryptominer
+        membership:
+          title: Medlemsskap
+        payment:
+          title: Betalning
+      install_anyway: Installera skript
+      cancel_install: Avbryt
+    badges:
+      js:
+        short: JS
+      css:
+        short: CSS
+        long: Användar stil
   script_sets:
     favorites_name: "Favoriter"
     delete: "Radera skript uppsättning"
@@ -240,6 +279,8 @@ sv:
     sleazy_welcome: "Välkommen till %{site_name}, en sida för vuxenanvändarskript."
     explain_user_scripts_heading: "Vad är användarskript?"
     explain_user_scripts_html: "Användar skript sätta dig i kontroll över din webbupplevelse . när skriptet är installerat, de automatiskt gör de webbplatser du besöker bättre genom att lägga till funktioner, vilket gör dem lättare att använda, eller ta ut irriterande bitar. Användaren skript på %{site_name} skrivna av andra användare och skrivit att dela med världen. De är gratis att installera och lätt att använda."
+    desktop_browsers:
+      title: Skrivbord
   users:
     sign_in_title: "Logga in på %{site_name}"
     sign_in_description: "Att logga in på %{site_name} låter dig publicera skript och recensera andras skript. Du behöver inte logga in för att bläddra eller installera skript."
@@ -360,6 +401,10 @@ sv:
       title: "Kontakta någon"
     privacy_policy:
       title: "Integritetspolicy"
+  conversations:
+    new_button: skapa konverstation
+    send_message: skicka medelande
+    conversation_list_title: konverstationer
   common:
     allowed_elements_link: "(Se tillåten kod.)"
     allowed_elements_and_attributes_title: "Tillåtna element för HTML-innehåll"
@@ -383,6 +428,8 @@ sv:
         show_ads: "Visa annonser"
         show_sensitive: "Vuxeninnehål"
         preferred_markup: "föredragna märkning"
+        current_password: "Nuvarande lösenord"
+        new_password: "Nytt lösenord"
       script:
         name: "Namn"
         description: "Beskrivning"
@@ -393,6 +440,19 @@ sv:
         additional_info: "Ytterligare beskrivning"
         screenshots: "Skärmdumpar"
         replaced_by_script_id: "Ersättningsskript"
+      script_set:
+        name: "Namn"
+        description: "Beskrivining"
+      discussion:
+        rating: "Betyg"
+        category: "Kategori"
+        title: Titel
+      conversation:
+        user_input: Användare
+      message:
+        content: Medelande
+      script_lock_appeal:
+        text: överklaga
   errors:
     messages:
       script_missing_name: "krävs - specificera med @name"
@@ -402,6 +462,7 @@ sv:
       script_too_many_screenshots: "För många inkluderade skärmdumpar - maxantal är %{number}"
       cannot_be_self_reference: "får inte vara samma skript"
       cannot_be_deleted_reference: "får inte vara ett borttaget skript"
+      cannot_be_used_with_this_script: "Kan inte användas med detta skript"
       must_be_greasy_fork_script: "måste vara URL:en för ett skript på %{site_name}"
       script_update_not_utf8: "uppladdat måste vara UTF-8 text"
       script_disallowed_require: "använder ett icke godkänt externt skript: %{code}"
