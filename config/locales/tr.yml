@@ -436,6 +436,12 @@ tr:
         <p>Kullanıcı scriptlerini kullanabilmek için ilk önce bir script yöneticisi
         kurmanız gerekir. Kullanabileceğiniz script yöneticisi kullandığınız tarayıcıya
         bağlıdır.</p>
+    desktop_browsers:
+      title: Masaüstü
+    android_browsers:
+      title: Mobil (Android)
+    ios_browsers:
+      title: Mobil (iOS)
     installing_step2_header: "Adım 2: Bir kullanıcı skripti kur"
     installing_step2_caption: "Bir kullanıcı scriptinin yükleme düğmesi"
     installing_step3_header: "Adım 3: Kullanıcı scripti kullan"
@@ -577,6 +583,7 @@ tr:
       save_success: Bildirim tercihleriniz güncellendi.
       unsubscribe_all: Tüm bildirim aboneliklerinden ayrıl
       unsubscribe_all_success: Tüm bildirim aboneliklerinden ayrıldınız.
+    account_banned: Bu hesap yasaklandı.
   help:
     sections:
       usage: Kullanım
@@ -584,6 +591,8 @@ tr:
       miscellaneous: Çeşitli
     installing_user_scripts:
       title: 'Kullanıcı scriptleri nasıl yüklenir?'
+    installing_user_styles:
+      title: 'Kullanıcı stilleri nasıl yüklenir'
     meta_keys:
       title: "Script meta anahtarları %{site_name} tarafından okundu"
       intro_html: "Bu, %{site_name} sitesinin okuyacağı bir <a href=\"http://wiki.greasespot.net/Metadata_Block\">kullanıcı betiği meta anahtarları </a> listesi. Bu listenin dışındaki anahtarlar, betiğe eklenmiş olabilir, ve yüklenmiş betikte bulunabilir, fakat %{site_name}sitesinin Kullanıcı Arayüzü'nde bulunmayabilir."
@@ -708,7 +717,10 @@ tr:
     result_pending: "Bu rapor moderatör tarafından incelenmeyi bekliyor."
     delete_script: "Scripti sil"
     loading_diff: "Yükleniyor…"
+  appeals:
+    dismissed_by_moderator: Bir moderatör bu itirazı reddetti.
   discussions:
+    title: Tartışmalar
     comment_date: "Gönderildi: %{date}"
     comment_edit_date: "Düzenlendi: %{date}"
     posted_by_html: "%{user} %{date}"
@@ -724,6 +736,7 @@ tr:
     delete_discussion: "Sil"
     update_comment_submit: "Yorumu güncelle"
     cancel_update_comment: "İptal"
+    quote_comment: "Alıntı"
     question_heading_html: "Soru/yorum"
     review_heading_html: "Değerlendirme: %{rating}"
     ratings:
@@ -736,13 +749,21 @@ tr:
       bad: "Kötü"
       ok: "Tamam"
       good: "İyi"
+    badges:
+      deleted:
+        short: Silindi
+        long: Silindi
     sign_in_to_post_discussion: "Değerlendirme yapabilmek, yorum veya soru paylaşabilmek için giriş yapın."
+    sign_in_to_post_comment: "Yanıt göndermek için oturum açın."
     user_filter:
+      label: "Benimle ilgili tartışmalar"
+      all: "Tüm tartışmalar"
       discussion_by_me: "Benim tarafımdan başlatılan"
       comment_by_me: "Benim yorumlarım"
       on_my_scripts: "Scriptlerimde"
       subscribed: "Takip edildi"
     other_user_filter:
+      all: "Tüm tartışmalar"
       comments_by: "%{user} tarafından yorumlar"
     category_filter:
       label: Kategori
@@ -765,12 +786,21 @@ tr:
     unsubscribe: Takibi bırak
     notify: Herhangi bir cevapta beni bilgilendir
     categories:
+      greasyfork:
+        name: Greasy Fork Geri Bildirimi
       development:
         name: Geliştirme
+      requests:
+        name: Oluşturma İstekleri
+      script-discussions:
+        name: Script Tartışmaları
+        description: Mevcut kullanıcı script ve stilleri hakkında tartışmalar.
       moderators:
         name: Moderatörler
     mark_all_read: Tümünü okundu işaretle
   conversations:
+    new_title: Yeni bir konuşma oluştur
+    new_link: Yeni bir konuşma oluştur
     new_button: Konuşma başlat
     send_message: Mesaj gönder
     conversation_list_title: Konuşamalar
@@ -779,6 +809,8 @@ tr:
     recent:
       title: Son konuşmalar
       more: Tüm konuşmaları göster
+    edit_message_header: Mesajı düzenle
+    update_message_submit: Mesajı güncelle
   common:
     allowed_elements_link: "(İzin verilen kodları gör.)"
     allowed_elements_and_attributes_title: "HTML içerik için izin verilen elementler"
@@ -883,3 +915,8 @@ tr:
       subject: "%{site_name} sitesinde '%{commenter_name}' adlı kullanıcı sizden bahsetti."
     new_message:
       subject: "%{site_name} sitesinde %{user} size bir mesaj yolladı"
+    script_lock_appeal:
+      dismiss:
+        moderator_notes: "Moderatör şu yorumu yaptı:"
+      unlock:
+        moderator_notes: "Moderatör şu yorumu yaptı:"
