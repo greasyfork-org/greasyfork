@@ -24,7 +24,7 @@ class ScriptPreviouslyDeletedChecker < ApplicationJob
 
     return unless similar_locked_scripts.count > 1
 
-    other_reports = Report.upheld.where(item: similar_locked_scripts)
+    other_reports = Report.upheld.where(item: similar_locked_scripts).where.not(reason: Report::REASON_NO_DESCRIPTION)
     scripts_and_reports = similar_locked_scripts.map { |similar_script| [similar_script, other_reports.select { |report| similar_script == report.item }] }
 
     # Use the most common non-'other' reason.
