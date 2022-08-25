@@ -313,6 +313,7 @@ tr:
       remove_confirm: "%{user_name}'i sahip bilgilerinden kaldırmak istediğine eminmisin?"
       failure: "Sahip bilgisi kaldırılamıyor."
     no_disposable_email: "Geçici email adresi kullanırsanız script oluşturamazsınız."
+    delayed: "Spam sorununundan dolayı, yeni hesaplar hemen script paylaşamayabilirler. Lütfen sonradan tekrar deneyiniz."
     new_script_notice:
       title: "Ne yapmak istiyorsunuz?"
       install_link_html: "Bir script <b>yüklemek ve kullanmak</b> istiyorum."
@@ -620,6 +621,8 @@ tr:
         heading: İzin verilen harici kodlar
       other_allowed_codes:
         heading: Özel durumlar
+      add_to_list:
+        heading: Listeye ekleniyor
     script_rewriting:
       title: "%{site_name}, gönderilen scriptleri nasıl yeniden yazacak"
     site_feedback_link: "%{site_name} için bir sorun bildir veya birşetler söyle"
@@ -797,6 +800,8 @@ tr:
         description: Mevcut kullanıcı script ve stilleri hakkında tartışmalar.
       moderators:
         name: Moderatörler
+    new_button: Yeni Tartışma
+    no_discussions: Tartışma bulunamadı.
     mark_all_read: Tümünü okundu işaretle
   conversations:
     new_title: Yeni bir konuşma oluştur
@@ -812,6 +817,7 @@ tr:
     edit_message_header: Mesajı düzenle
     update_message_submit: Mesajı güncelle
   common:
+    error_preamble: "Paylaştığınız şey ile bazı sorunlar vardı..."
     allowed_elements_link: "(İzin verilen kodları gör.)"
     allowed_elements_and_attributes_title: "HTML içerik için izin verilen elementler"
     allowed_elements_intro: "Aşağıdaki unsurlar ve nitelikleri izin verilir. Bu her ikisi için HTML ve Markdown (daha sonra HTML'ye dönüştürülmesi) geçerlidir."

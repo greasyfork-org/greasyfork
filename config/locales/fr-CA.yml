@@ -30,6 +30,7 @@ fr-CA:
       other: "Voir %{count} autres scripts pour %{site}"
     applies_to_all: "Tous les sites"
     install: "Installer ce script"
+    install_css: "Installer en tant que style utilisateur"
     install_help: "?"
     install_help_title: "Aide pour l'installation"
     update: "Mettre à niveau vers la version %{version}"
@@ -41,6 +42,10 @@ fr-CA:
     promoted_text_html: "Vous aimerez aussi %{script_link}."
     library_instructions_html: "Ce script ne devrait pas être installé directement. C'est une librairie créée pour d'autres scripts. Elle doit être inclus avec la commande %{code}"
     deleted_notice: "Ce script a été supprimé."
+    deleted_notice_with_related: "Le script que vous avez demandé a été supprimé, mais voici des scripts associés"
+    deleted_undelete_notice_html: "Le script a été verrouillé par un modérateur et sa suppression ne peu pas pas être annulée. La raison fournie est: \"%{delete_reason}\"."
+    deleted_locked_author_notice_html: "Ce script a été supprimé par un modérateur et n'est plus accessible aux autres. La raison fournie est: \"%{delete_reason}\". Veuillez réviser les règlements sur le site %{code_rules_link:%{site_name}}. Si vous pensez que cette suppression est une erreur, vous pouvez %{appeal_link:soumettre un appel} pour cette suppression. Ne republiez pas ce script; Faire ainsi peu résulter en un bannissement de %{site_name}"
+    deleted_author_notice: "Ce script a été supprimé et n'est plus accessible aux autres. Vous pouvez le restaurer à partir de l'onglet Supprimer."
     version_notice_html: "À partir de %{date}. Voir %{latest_version_link}."
     version_notice_latest_version_link: "la dernière version"
     reported_notice: "\"%{script_name}\" a été signalé et est en attente d'examen par un modérateur."
@@ -55,6 +60,24 @@ fr-CA:
     delete_page: "Supprimer"
     delete_explanation: "La suppression de votre script le rend inaccessible à quiconque sauf à vous et aux modérateurs de Greasy Fork. Vous pouvez annuler la suppression à tout moment."
     delete_update_behaviour: "Qu'aimeriez-vous qu'il arrive aux utilisateurs qui ont déjà installé votre script?"
+    delete_update_behaviours:
+      keep: "Ils le garderont tel quel."
+      blanked: "Ils seront mis à jour en un script vide. Cela est utile quand le script a une influence négative sur les sites sur lequel il est exécuté."
+      redirect: "Ils seront redirigé et mis à jour vers le script que vous spécifiez ci-dessous."
+    delete_permanently_heading: "Suppression définitive"
+    delete_permanently_explanation_html: >-
+        <p>La suppression définitive de votre script le supprimera ainsi que tous
+        les enregistrements associés, à l'exception des discussions du forum et du
+        journal des actions de modérateurs.</p> <p>Votre script sera supprimé de façon
+        permanente 7 jours après votre requête. Vous pouvez annuler la suppression
+        définitive durant ce délai. Si vous ne le faites pas, personne, pas même les
+        modérateurs, ne pourra récupérer votre script.</p>
+    delete_permanently_confirm: "Êtes-vous sûr de vouloir supprimer définitivement votre script ?"
+    delete_permanently_submit: "Requête de suppression définitive"
+    delete_permanently_immediate_submit: "Supprimer de façon permanente"
+    delete_permanently_notice: "Votre demande de suppression définitive a été enregistrée. Votre script sera supprimé de façon permanente dans 7 jours."
+    delete_permanently_already_requested: "Vous avez demandé la suppression définitive le %{datetime}."
+    delete_permanently_notice_immediate: "Script supprimé de façon permanente."
     history_title: "%{script_name} - Historique des mises à jour"
     history_only_code_changes_info: "Ceci est la version du script où le code a été mise à jour."
     history_all_changes_link: "Présenter toutes les versions."
