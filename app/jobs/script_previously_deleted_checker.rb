@@ -23,7 +23,12 @@ class ScriptPreviouslyDeletedChecker < ApplicationJob
     similar_locked_scripts = similar_locked_scripts.map(&:other_script).uniq
     return unless similar_locked_scripts.count > 1
 
+    # No description is removed because there could be that info in additional info, which is not checked by this
+    # process. Auto-reports are removed to reduce noise.
     other_reports = Report.upheld.where(item: similar_locked_scripts).where.not(reason: Report::REASON_NO_DESCRIPTION).where(auto_reporter: nil)
+
+    # Reject any unauthorized code reports where the original script shares an author.
+    other_reports = other_reports.reject { |other_report| other_report.unauthorized_code? && other_report.reference_script && (other_report.reference_script.users & script.users).any? }
     return if other_reports.empty?
 
     scripts_and_reports = similar_locked_scripts.map { |similar_script| [similar_script, other_reports.select { |report| similar_script == report.item }] }
