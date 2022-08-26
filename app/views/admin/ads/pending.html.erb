@@ -14,7 +14,7 @@
         </p>
         <p style="padding: 0.5em 0">
           <%= form_with(model: @script, url: approve_admin_ad_path(script), method: :patch, html: { style: 'display: inline;' }) do %>
-            <button>Approve</button>
+            <button <% if contains_disallowed_keyword?(script) %>disabled<% end %>>Approve</button>
           <% end %>
           <%= form_with(model: @script, url: reject_admin_ad_path(script), method: :patch, html: { style: 'display: inline;' }) do %>
             <button>Reject</button>
