@@ -1,7 +1,7 @@
 module Admin
   class AdsController < BaseController
     DISALLOWED_INCLUDES = %w[youtube google].freeze
-    DISALLOWED_KEYWORDS = (%w[hack crack drawing] + DISALLOWED_INCLUDES).freeze
+    DISALLOWED_KEYWORDS = (%w[hack crack] + DISALLOWED_INCLUDES).freeze
 
     before_action :administrators_only
 
