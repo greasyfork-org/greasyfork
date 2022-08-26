@@ -28,7 +28,7 @@ module Admin
     private
 
     def disallowed_keyword_regexp
-      @_disallowed_keyword_regexp ||= Regexp.new(Regexp.union(DISALLOWED_KEYWORDS.map {|keyword| Regexp.escape(keyword)}).to_s, true)
+      @_disallowed_keyword_regexp ||= Regexp.new(DISALLOWED_KEYWORDS.map {|keyword| Regexp.escape(keyword)}.join('|'), true)
     end
 
     def contains_disallowed_keyword?(script)
