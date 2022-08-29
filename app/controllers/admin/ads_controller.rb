@@ -28,11 +28,11 @@ module Admin
     private
 
     def disallowed_keyword_regexp
-      @_disallowed_keyword_regexp ||= Regexp.new(DISALLOWED_KEYWORDS.map {|keyword| Regexp.escape(keyword)}.join('|'), true)
+      @disallowed_keyword_regexp ||= Regexp.new(DISALLOWED_KEYWORDS.map { |keyword| Regexp.escape(keyword) }.join('|'), true)
     end
 
     def contains_disallowed_keyword?(script)
-      script.localized_attributes.any? {|la| disallowed_keyword_regexp.match?(la.attribute_value) }
+      script.localized_attributes.any? { |la| disallowed_keyword_regexp.match?(la.attribute_value) }
     end
     helper_method :contains_disallowed_keyword?
   end

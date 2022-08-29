@@ -509,4 +509,55 @@ class CssToJsConverterTest < ActiveSupport::TestCase
     CSS
     CssToJsConverter.convert(css)
   end
+
+  test 'js conversion of single blocked code with CSS @namespace' do
+    css = <<~CSS
+      /* ==UserStyle==
+      @name        Example UserCSS style
+      @namespace   github.com/openstyles/stylus
+      @version     1.0.0
+      @license     unlicense
+      ==/UserStyle== */
+
+      @namespace url(http://www.w3.org/1999/xhtml);
+
+      @-moz-document domain("example.com") {
+        a {
+          color: red;
+        }
+      }
+    CSS
+
+    js = <<~JS
+      // ==UserScript==
+      // @name Example UserCSS style
+      // @namespace github.com/openstyles/stylus
+      // @version 1.0.0
+      // @license unlicense
+      // @grant GM_addStyle
+      // @run-at document-start
+      // @include http://example.com/*
+      // @include https://example.com/*
+      // @include http://*.example.com/*
+      // @include https://*.example.com/*
+      // ==/UserScript==
+
+      (function() {
+      let css = `@namespace url(http://www.w3.org/1999/xhtml);
+
+        a {
+          color: red;
+        }
+      `;
+      if (typeof GM_addStyle !== "undefined") {
+        GM_addStyle(css);
+      } else {
+        let styleNode = document.createElement("style");
+        styleNode.appendChild(document.createTextNode(css));
+        (document.querySelector("head") || document.documentElement).appendChild(styleNode);
+      }
+      })();
+    JS
+    assert_equal js, CssToJsConverter.convert(css)
+  end
 end
