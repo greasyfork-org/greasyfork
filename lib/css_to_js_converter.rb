@@ -22,7 +22,7 @@ class CssToJsConverter
       # If we have only one doc block, and the rest is just a @namespace rule, then put the namespace rule inside
       # the doc block.
       if doc_blocks_and_code.count > 1
-        namespace_only_blocks = doc_blocks_and_code.select { |doc_block, block_code| doc_block.matches.none? && only_namespace?(block_code) }
+        namespace_only_blocks = doc_blocks_and_code.select { |doc_block, block_code| doc_block.matches.none? && only_global_directives?(block_code) }
         if namespace_only_blocks.any?
           namespace_code = "#{namespace_only_blocks.map(&:last).map(&:strip).join("\n")}\n"
           doc_blocks_and_code -= namespace_only_blocks
@@ -122,8 +122,8 @@ class CssToJsConverter
       %r{\A(\s*/\*.*?\*/\s*)*\z}.match?(css)
     end
 
-    def only_namespace?(css)
-      /\A\s+@namespace[^;]+;\s+\z/.match?(css)
+    def only_global_directives?(css)
+      /\A(\s*@(namespace|charset)[^;]+;\s*)+\z/.match?(css)
     end
 
     def escape_for_js_literal(css)
