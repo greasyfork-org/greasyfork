@@ -54,4 +54,22 @@ class ScriptVersionAllowedRequiresTest < ActiveSupport::TestCase
     JS
     assert_not script_version.valid?
   end
+
+  test 'data URI require is allowed' do
+    script = valid_script
+    script_version = script.script_versions.first
+    script_version.code = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.0
+      // @namespace http://greasyfork.local/users/1
+      // @include example.com
+      // @require data:text/javascript,window.vue = {}
+      // @license MIT
+      // ==/UserScript==
+      var foo = "bar";
+    JS
+    assert script_version.valid?
+  end
 end
