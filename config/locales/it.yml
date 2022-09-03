@@ -483,6 +483,16 @@ it:
           </ul>
     android_browsers:
       title: Mobile (Android)
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, o %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          <li>Kiwi: %{chrome_tampermonkey_link:Tampermonkey} o %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>%{xbrowser_link:XBrowser}</li>
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: Mobile (iOS)
       browser_list_html: |
@@ -1359,6 +1369,10 @@ it:
             </p>
       report_script_deleted_reporter:
         subject: "La tua segnalazione riguardo a %{script_name} su %{site_name} è stata chiusa"
+        body_html: |
+            <p>
+            La tua segnalazione riguardo a %{script_link:%{script_name}} su %{site_name} è stata chiusa poiché lo script è stato cancellato dal suo autore. Puoi %{report_link:consultare la segnalazione}.
+            </p>
       report_dismissed_reporter:
         subject: "La tua segnalazione a riguardo di %{script_name} su %{site_name} è stata respinta"
       report_fixed_reporter:
