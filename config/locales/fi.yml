@@ -30,6 +30,7 @@ fi:
     install: "Asenna tämä skripti"
     install_help: "?"
     install_help_title: "Asennusohje"
+    promoted_text_html: "Saatat myös pitää "
     library_instructions_html: "Tätä skriptiä ei tulisi asentaa suoraan. Se on kirjasto muita skriptejä varten sisällytettäväksi metadirektiivillä %{code}."
     deleted_notice: "Tämä skripti on poistettu."
     deleted_undelete_notice_html: "Moderaattori on lukinnut tämän skriptin, eikä sitä voi peruuttaa. Syynä on: \"<i>%{delete_reason}</i>\"."
@@ -46,12 +47,17 @@ fi:
     delete_explanation: "Skriptin poistaminen estää pääsyn siihen kaikilta paitsi sinulta ja Greasy Forkin moderaattoreilta. Voit kumota poiston koska tahansa."
     delete_update_behaviour: "Mitä haluat tapahtuvan käyttäjille, jotka ovat aikaisemmin asentaneet skriptisi?"
     delete_permanently_heading: "Pysyvä poisto"
+    delete_permanently_confirm: "Oletko varma että haluat poistaa skriptisi pysyvästi?"
     delete_permanently_submit: "Pyydä pysyvää poistoa"
     delete_permanently_immediate_submit: "Poista pysyvästi"
     delete_permanently_notice_immediate: "Skripti poistettu pysyvästi."
     cancel_delete_permanently_submit: "Peruuta pyyntö pysyvästä poistosta"
     delete_permanently_rejected_locked: "Tämä skripti on lukittu eikä sitä voida poistaa pysyvästi."
     admin_page: "Ylläpitäjä"
+    admin:
+      sync_heading: "Lähde synkronisoi"
+      compare_button: "Vertaile"
+      compare_must_be_local_url: "Vertailuun käytetty skripti täytyy olla URL 1%{site_name}"
     history_title: "%{script_name} - Versiohistoria"
     history_only_code_changes_info: "Tästä skriptistä on versioita, joissa koodia päivitettiin."
     history_all_changes_link: "Näytä kaikki versiot."
@@ -62,6 +68,7 @@ fi:
     code_title: "%{script_name} - Lähdekoodi"
     feedback_title: "%{script_name} - Palaute"
     feedback_no_discussions_html: "Ei keskusteluja lähetetty vielä. "
+    feedback_no_discussions_on_page_form: "Ei keskusteluja aloitettu vielä."
     feedback_start_first_discussion_link: "Ole ensimmäinen, joka keskustelee tästä skriptistä."
     stats_title: "%{script_name} - Tilastot"
     stats_daily_installs_heading: "Päivittäiset asennukset"
@@ -77,6 +84,15 @@ fi:
       month: Viimeiset 30 päivää
       year: Viimeiset 365 päivää
     derivatives_title: "%{script_name} - Johdannaiset"
+    derivatives_exact_copies_heading: "Tarkat kopiot"
+    derivatives_exact_copies_list_intro: "Seuraavilla skripteillä on täysin sama koodi kuin sinun skriptilläsi:"
+    derivatives_similar_heading: "Samanlaiset skriptit"
+    derivatives_similar_info: "Me aika-ajoin tarkistamme viimeisimmät versiot kaikista skripteistä löytääksemme kaikista samankaltaisimmat sinun skriptiisi verrattuna. Me myös tarkistamme tämän aina kun lähetät päivityksen skriptistäsi ja pyynnöstä."
+    similarity_score:
+      high: Todella samankaltainen
+      medium: Kohtalaisen samankaltainen
+      low: Jotakuinkin samankaltainen
+      none: Ei samankaltainen
     listing_title_all_sites: "Userscriptit kaikille sivustoille"
     listing_description_all_sites: "Userscriptit jotka lisäävät ominaisuuksia ja poistavat bugeja kaikilla sivustoilla"
     listing_title_for_site: "Userscriptit sivustolle %{site}"
