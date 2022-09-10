@@ -28,6 +28,8 @@ class CommentsController < ApplicationController
     notification_job = notification_job.set(wait: Comment::EDITABLE_PERIOD) unless Rails.env.development?
     notification_job.perform_later(@comment)
 
+    CommentSpamCheckJob.perform_later(@comment, request.ip, request.user_agent, request.referer) unless current_user.comments.count > 3
+
     redirect_to @comment.path(locale: request_locale.code)
   rescue ActiveRecord::RecordInvalid
     if @discussion.script
