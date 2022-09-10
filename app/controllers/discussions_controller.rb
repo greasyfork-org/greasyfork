@@ -139,7 +139,7 @@ class DiscussionsController < ApplicationController
 
     DiscussionSubscription.find_or_create_by!(user: current_user, discussion: @discussion) if @subscribe
 
-    DiscussionSpamCheckJob.perform_later(@discussion, request.ip, request.user_agent, request.referer)
+    DiscussionSpamCheckJob.perform_later(@discussion, request.ip, request.user_agent, request.referer) unless current_user.discussions.count > 3
 
     redirect_to @discussion.path(locale: request_locale.code)
   end
