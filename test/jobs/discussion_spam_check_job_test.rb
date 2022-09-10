@@ -32,6 +32,7 @@ class DiscussionSpamCheckJobTest < ActiveSupport::TestCase
   end
 
   test 'when it is pattern spam' do
+    skip 'Pattern check disabled'
     discussion = discussions(:non_script_discussion)
     discussion.first_comment.update(text: '网12345567890')
 
