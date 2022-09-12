@@ -1,0 +1,21 @@
+// ==UserScript==
+// @name         天津电子信息职业技术学院天翼宽带自动连接
+// @namespace    http://tampermonkey.net/
+// @version      5.20
+// @description  try to take over the world!
+// @author       陈士旭
+// @match        https://www.tampermonkey.net/scripts.php
+// @match        http://219.150.59.241:28120/*
+// @grant        none
+// ==/UserScript==
+var username = "02272733128@tjxy";  //宽带账号
+var password = "20210914"; //宽带密码
+
+(function() {
+    'use strict';
+
+    document.querySelector("#otherUser").value = username;
+    document.querySelector("#otherUserPwd").value = password;
+    document.getElementsByClassName("e_button")[0].click();
+
+})();
