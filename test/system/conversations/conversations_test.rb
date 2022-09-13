@@ -73,4 +73,17 @@ class ConversationsTest < ApplicationSystemTestCase
       assert_link '@Gordon J. Canada', href: user_path(mentioned_user2, locale: :en)
     end
   end
+
+  test 'failing validation posting a message' do
+    user = users(:geoff)
+    user.update!(preferred_markup: 'markdown')
+    login_as(user, scope: :user)
+    conversation = conversations(:geoff_and_junior)
+
+    visit user_conversation_url(user, conversation, locale: :en)
+
+    fill_in 'Message', with: 'a' * 100_001
+    click_button 'Post reply'
+    assert_content 'Message is too long'
+  end
 end

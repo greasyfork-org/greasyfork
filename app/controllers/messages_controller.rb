@@ -12,6 +12,7 @@ class MessagesController < ApplicationController
     @message.construct_mentions(detect_possible_mentions(@message.content, @message.content_markup))
 
     unless @message.save
+      @messages = @conversation.messages.paginate(page: params[:page], per_page:)
       render 'conversations/show'
       return
     end
