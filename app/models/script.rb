@@ -34,6 +34,8 @@ class Script < ApplicationRecord
   has_many :reports, as: :item, dependent: :destroy
   has_many :reports_as_reference_script, class_name: 'Report', foreign_key: :reference_script_id, inverse_of: :reference_script, dependent: :destroy
   has_many :script_lock_appeals, dependent: :destroy
+  has_many :subresource_usages, dependent: :destroy, class_name: 'ScriptSubresourceUsage', autosave: true
+  has_many :subresources, through: :subresource_usages
 
   has_one :cleaned_code, dependent: :delete
 
@@ -348,6 +350,27 @@ class Script < ApplicationRecord
       end
     end
     update_children(:antifeatures, new_antifeature_data)
+
+    new_subresource_data = []
+    [meta['require'], meta['resource']]
+      .flatten
+      .compact
+      .uniq
+      .each do |url|
+      url, integrity_hashes = url.split('#', 2)
+      if integrity_hashes
+        integrity_hashes = integrity_hashes.split(/[;,]/, 2)
+        integrity_hashes = integrity_hashes.map { |entry| entry.split('=') }
+        integrity_hashes = integrity_hashes.select { |algorithm, hash| algorithm.present? && hash.present? }
+      end
+      subresource = Subresource.find_or_initialize_by(url:)
+      if integrity_hashes&.any?
+        integrity_hashes.each { |algorithm, hash| new_subresource_data << { subresource:, algorithm:, integrity_hash: hash } }
+      else
+        new_subresource_data << { subresource: }
+      end
+    end
+    update_children(:subresource_usages, new_subresource_data)
   end
 
   def newest_saved_script_version
