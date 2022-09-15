@@ -156,4 +156,25 @@ class ScriptSubresourceTest < ActiveSupport::TestCase
 
     assert_equal 2, Subresource.last.scripts.count
   end
+
+  test '@resource subresources' do
+    script = get_script_with_code(<<~JS)
+      // ==UserScript==
+      // @name		Subresource test
+      // @description		description
+      // @version 1.0
+      // @namespace http://greasyfork.local/users/1
+      // @include *
+      // @license MIT
+      // @resource testScript https://ajax.googleapis.com/test.js
+      // ==/UserScript==
+      foo.baz();
+    JS
+    assert_difference -> { Subresource.count } => 1 do
+      script.save!
+    end
+    assert_equal(1, script.subresource_usages.count)
+    assert_equal(1, script.subresources.count)
+    assert_equal 'https://ajax.googleapis.com/test.js', script.subresources.first.url
+  end
 end

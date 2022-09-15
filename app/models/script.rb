@@ -352,7 +352,7 @@ class Script < ApplicationRecord
     update_children(:antifeatures, new_antifeature_data)
 
     new_subresource_data = []
-    [meta['require'], meta['resource']]
+    [meta['require'], meta['resource']&.map{|v| v.split(/\s+/, 2).last}]
       .flatten
       .compact
       .uniq
