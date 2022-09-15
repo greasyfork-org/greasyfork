@@ -1890,6 +1890,19 @@ CREATE TABLE `spammy_email_domains` (
   KEY `index_spammy_email_domains_on_domain` (`domain`)
 ) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `subresource_integrity_hashes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `subresource_integrity_hashes` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `subresource_id` bigint(20) NOT NULL,
+  `algorithm` varchar(20) NOT NULL,
+  `encoding` varchar(10) NOT NULL,
+  `integrity_hash` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `index_subresource_integrity_hashes_on_subresource_id` (`subresource_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `subresources`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
@@ -1898,6 +1911,9 @@ CREATE TABLE `subresources` (
   `url` varchar(255) NOT NULL,
   `created_at` datetime(6) NOT NULL,
   `updated_at` datetime(6) NOT NULL,
+  `last_attempt_at` datetime(6) DEFAULT NULL,
+  `last_success_at` datetime(6) DEFAULT NULL,
+  `last_change_at` datetime(6) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `index_subresources_on_url` (`url`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -2285,6 +2301,8 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20211227002934'),
 ('20211227014433'),
 ('20220425234023'),
-('20220913010242');
+('20220913010242'),
+('20220914015921'),
+('20220915003006');
 
 
