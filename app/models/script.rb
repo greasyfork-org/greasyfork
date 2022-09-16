@@ -352,11 +352,13 @@ class Script < ApplicationRecord
     update_children(:antifeatures, new_antifeature_data)
 
     new_subresource_data = []
-    [meta['require'], meta['resource']&.map{|v| v.split(/\s+/, 2).last}]
+    [meta['require'], meta['resource']&.map { |v| v.split(/\s+/, 2).last }]
       .flatten
       .compact
       .uniq
       .each do |url|
+      next if url.starts_with?('data:')
+
       url, integrity_hashes = url.split('#', 2)
       if integrity_hashes
         integrity_hashes = integrity_hashes.split(/[;,]/, 2)

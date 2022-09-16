@@ -177,4 +177,22 @@ class ScriptSubresourceTest < ActiveSupport::TestCase
     assert_equal(1, script.subresources.count)
     assert_equal 'https://ajax.googleapis.com/test.js', script.subresources.first.url
   end
+
+  test 'data: subresources are ignored' do
+    script = get_script_with_code(<<~JS)
+      // ==UserScript==
+      // @name		Subresource test
+      // @description		description
+      // @version 1.0
+      // @namespace http://greasyfork.local/users/1
+      // @include *
+      // @license MIT
+      // @require data:application/javascript,var foo={}
+      // ==/UserScript==
+      foo.baz();
+    JS
+    assert_no_difference -> { Subresource.count } do
+      script.save!
+    end
+  end
 end
