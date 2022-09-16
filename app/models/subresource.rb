@@ -9,7 +9,9 @@ class Subresource < ApplicationRecord
   scope :with_integrity_hash_usages, -> { joins(:script_subresource_usages).where.not(script_subresource_usages: { integrity_hash: nil }) }
 
   def calculate_hashes!
-    update(last_attempt_at: Time.zone.now)
+    now = Time.zone.now
+
+    update(last_attempt_at: now)
 
     begin
       contents = download
@@ -41,9 +43,9 @@ class Subresource < ApplicationRecord
     end
 
     if changed
-      update(last_success_at: Time.zone.now, last_change_at: Time.zone.now)
+      update(last_success_at: now, last_change_at: now)
     else
-      update(last_success_at: Time.zone.now)
+      update(last_success_at: now)
     end
   end
 
