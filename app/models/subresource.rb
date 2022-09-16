@@ -20,8 +20,14 @@ class Subresource < ApplicationRecord
     changed = false
 
     [
+      [->(c) { Digest::SHA1.hexdigest(c) }, { algorithm: 'sha1', encoding: 'hex' }],
+      [->(c) { Digest::SHA1.base64digest(c) }, { algorithm: 'sha1', encoding: 'base64' }],
       [->(c) { Digest::SHA2.hexdigest(c) }, { algorithm: 'sha256', encoding: 'hex' }],
       [->(c) { Digest::SHA2.base64digest(c) }, { algorithm: 'sha256', encoding: 'base64' }],
+      [->(c) { Digest::SHA384.hexdigest(c) }, { algorithm: 'sha384', encoding: 'hex' }],
+      [->(c) { Digest::SHA384.base64digest(c) }, { algorithm: 'sha384', encoding: 'base64' }],
+      [->(c) { Digest::SHA512.hexdigest(c) }, { algorithm: 'sha512', encoding: 'hex' }],
+      [->(c) { Digest::SHA512.base64digest(c) }, { algorithm: 'sha512', encoding: 'base64' }],
       [->(c) { Digest::MD5.hexdigest(c) }, { algorithm: 'md5', encoding: 'hex' }],
       [->(c) { Digest::MD5.base64digest(c) }, { algorithm: 'md5', encoding: 'base64' }],
     ].each do |calculator, data|

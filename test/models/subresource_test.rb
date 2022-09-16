@@ -5,7 +5,7 @@ class SubresourceTest < ActiveSupport::TestCase
     subresource = Subresource.create!(url: 'https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js')
     assert_changes -> { subresource.last_attempt_at } do
       assert_changes -> { subresource.last_success_at } do
-        assert_changes -> { subresource.subresource_integrity_hashes.count }, from: 0, to: 4 do
+        assert_changes -> { subresource.subresource_integrity_hashes.count }, from: 0, to: 10 do
           subresource.calculate_hashes!
         end
       end
