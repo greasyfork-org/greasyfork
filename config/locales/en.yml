@@ -584,6 +584,15 @@ en:
         short: CSS
         long: User style
     related_scripts: "You can also try these related scripts:"
+    integrity_hashes:
+      user_notice_html:
+        one: "You have a script with an incorrect subresource integrity hash: %{script_links}."
+        other: "You have scripts with incorrect subresource integrity hashes: %{script_links}."
+      script_notice:
+        text_html:
+          one: "This script uses an incorrect subresource integrity hash: %{detail}."
+          other: "This script uses a incorrect subresource integrity hashes: %{detail}."
+        detail: "<code>%{url}</code> should use the hash <code>%{expected_hash}</code> (last checked %{last_checked_at})"
   script_sets:
     # description of script sets on edit page
     description: "Script sets let you create a customized list of scripts to browse Greasy Fork with. You can add scripts to your set by including individual scripts, other users' sets, or automatically generated sets. You can also exclude scripts from your set with the same methods."

@@ -98,6 +98,7 @@ class ScriptsController < ApplicationController
           @canonical_params = [:id, :version]
           set_bots_directive
           @ad_method = choose_ad_method_for_script(@script)
+          show_integrity_hash_warning
           render_to_string
         end
       end
@@ -133,6 +134,7 @@ class ScriptsController < ApplicationController
         @code = @script_version.rewritten_code
         set_bots_directive
         @canonical_params = [:id, :version]
+        show_integrity_hash_warning
       end
       format.js do
         redirect_to @script.code_path
@@ -946,5 +948,14 @@ class ScriptsController < ApplicationController
     session[PingRequestChecking::SessionInstallKey::SESSION_KEY] ||= []
     session[PingRequestChecking::SessionInstallKey::SESSION_KEY] = session[PingRequestChecking::SessionInstallKey::SESSION_KEY].last(10)
     session[PingRequestChecking::SessionInstallKey::SESSION_KEY] << script.id unless session[PingRequestChecking::SessionInstallKey::SESSION_KEY].include?(script.id)
+  end
+
+  def show_integrity_hash_warning
+    return unless current_user && @script.user_ids.include?(current_user.id)
+
+    bih = @script.bad_integrity_hashes
+    return unless bih.any?
+
+    flash.now[:alert] ||= t('scripts.integrity_hashes.script_notice.text_html', detail: bih.map { |b| t('scripts.integrity_hashes.script_notice.detail', url: b[:url], expected_hash: b[:expected_hash], last_checked_at: view_context.markup_date(b[:last_success_at])) }.join(', ').html_safe, count: bih.count)
   end
 end

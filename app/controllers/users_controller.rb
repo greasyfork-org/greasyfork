@@ -109,6 +109,8 @@ class UsersController < ApplicationController
           conversation_scope = current_user.conversations.includes(:users, :stat_last_poster)
           @recent_conversations = conversation_scope.order(stat_last_message_date: :desc).where(stat_last_message_date: 1.month.ago..)
           @more_conversations = conversation_scope.count > @recent_conversations.count
+          scripts_with_bad_hashes = @scripts.not_deleted.with_bad_integrity_hashes.load
+          flash.now[:alert] ||= t('scripts.integrity_hashes.user_notice_html', script_links: scripts_with_bad_hashes.map { |script| view_context.render_script(script) }.join(', ').html_safe, count: scripts_with_bad_hashes.count) if scripts_with_bad_hashes.any?
         end
 
         @show_profile = !@user.banned? && UserRestrictionService.new(@user).allow_posting_profile?

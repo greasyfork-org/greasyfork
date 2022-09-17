@@ -73,6 +73,7 @@ class Script < ApplicationRecord
   scope :locked, -> { where(locked: true) }
   scope :not_locked, -> { where.not(locked: true) }
   scope :with_includes_for_show, -> { includes(users: {}, license: {}, localized_attributes: :locale, compatibilities: :browser, script_applies_tos: :site_application, antifeatures: :locale) }
+  scope :with_bad_integrity_hashes, -> { joins(:subresource_usages).joins('INNER JOIN subresource_integrity_hashes sih ON script_subresource_usages.algorithm = sih.algorithm AND script_subresource_usages.encoding = sih.encoding AND script_subresource_usages.integrity_hash != sih.integrity_hash') }
 
   ThinkingSphinx::Callbacks.append(self, behaviours: [:sql, :deltas])
 
@@ -603,6 +604,17 @@ class Script < ApplicationRecord
                          .reject { |script| script.id == id }
                          .sort_by { |script| [(script.users & users).any? ? 0 : 1, script.daily_installs * -1] }
                          .first(5)
+  end
+
+  def bad_integrity_hashes
+    subresource_usages_with_hashes = subresource_usages.where.not(integrity_hash: nil).load
+    return [] unless subresource_usages_with_hashes.any?
+
+    sris = subresource_usages_with_hashes.filter_map do |subresource_usage|
+      SubresourceIntegrityHash.where(subresource_id: subresource_usage.subresource_id, algorithm: subresource_usage.algorithm, encoding: subresource_usage.encoding).where.not(integrity_hash: subresource_usage.integrity_hash).first
+    end
+
+    sris.map { |sri| { url: sri.subresource.url, expected_hash: "#{sri.algorithm}=#{sri.integrity_hash}", last_success_at: sri.subresource.last_success_at } }
   end
 
   private
