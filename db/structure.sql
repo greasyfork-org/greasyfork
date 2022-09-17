@@ -1746,6 +1746,7 @@ CREATE TABLE `script_subresource_usages` (
   `subresource_id` bigint(20) NOT NULL,
   `algorithm` varchar(20) DEFAULT NULL,
   `integrity_hash` varchar(128) DEFAULT NULL,
+  `encoding` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `index_script_subresource_usages_on_script_id` (`script_id`),
   KEY `index_script_subresource_usages_on_subresource_id` (`subresource_id`)
@@ -2303,6 +2304,7 @@ INSERT INTO `schema_migrations` (version) VALUES
 ('20220425234023'),
 ('20220913010242'),
 ('20220914015921'),
-('20220915003006');
+('20220915003006'),
+('20220917003952');
 
 

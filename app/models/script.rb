@@ -367,7 +367,7 @@ class Script < ApplicationRecord
       end
       subresource = Subresource.find_or_initialize_by(url:)
       if integrity_hashes&.any?
-        integrity_hashes.each { |algorithm, hash| new_subresource_data << { subresource:, algorithm:, integrity_hash: hash } }
+        integrity_hashes.each { |algorithm, hash| new_subresource_data << { subresource:, algorithm:, encoding: /\A[0-9a-f]+\z/.match?(hash) ? 'hex' : 'base64', integrity_hash: hash } }
       else
         new_subresource_data << { subresource: }
       end
