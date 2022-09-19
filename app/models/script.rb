@@ -73,7 +73,7 @@ class Script < ApplicationRecord
   scope :locked, -> { where(locked: true) }
   scope :not_locked, -> { where.not(locked: true) }
   scope :with_includes_for_show, -> { includes(users: {}, license: {}, localized_attributes: :locale, compatibilities: :browser, script_applies_tos: :site_application, antifeatures: :locale) }
-  scope :with_bad_integrity_hashes, -> { joins(:subresource_usages).joins('INNER JOIN subresource_integrity_hashes sih ON script_subresource_usages.subresource_id = sih.subresource_id AND script_subresource_usages.algorithm = sih.algorithm AND script_subresource_usages.encoding = sih.encoding AND script_subresource_usages.integrity_hash != sih.integrity_hash') }
+  scope :with_bad_integrity_hashes, -> { joins(:subresource_usages).joins('INNER JOIN subresource_integrity_hashes sih ON script_subresource_usages.subresource_id = sih.subresource_id AND script_subresource_usages.algorithm = sih.algorithm AND script_subresource_usages.encoding = sih.encoding AND script_subresource_usages.integrity_hash != sih.integrity_hash').distinct }
 
   ThinkingSphinx::Callbacks.append(self, behaviours: [:sql, :deltas])
 
