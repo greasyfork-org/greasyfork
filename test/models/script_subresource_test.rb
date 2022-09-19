@@ -195,4 +195,28 @@ class ScriptSubresourceTest < ActiveSupport::TestCase
       script.save!
     end
   end
+
+  test 'base64 subresources' do
+    script = get_script_with_code(<<~JS)
+      // ==UserScript==
+      // @name		Subresource test
+      // @description		description
+      // @version 1.0
+      // @namespace http://greasyfork.local/users/1
+      // @include *
+      // @license MIT
+      // @require https://ajax.googleapis.com/test.js#sha256=FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=
+      // ==/UserScript==
+      foo.baz();
+    JS
+    assert_difference -> { Subresource.count } => 1 do
+      script.save!
+    end
+    assert_equal(1, script.subresource_usages.count)
+    assert_equal(1, script.subresources.count)
+    assert_equal 'https://ajax.googleapis.com/test.js', script.subresources.first.url
+    assert_equal 'sha256', script.subresource_usages.first.algorithm
+    assert_equal 'base64', script.subresource_usages.first.encoding
+    assert_equal 'FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=', script.subresource_usages.first.integrity_hash
+  end
 end
