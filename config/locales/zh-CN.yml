@@ -379,6 +379,13 @@ zh-CN:
         short: CSS
         long: 用户样式
     related_scripts: "你也可以试试这些相关的脚本："
+    integrity_hashes:
+      user_notice_html:
+        other: "您上传的脚本指定了不匹配的哈希校验值：%{script_links}。"
+      script_notice:
+        text_html:
+          other: "该脚本制定了不匹配的哈希校验值：%{detail}。"
+        detail: "<code>%{url}</code> 应设定其哈希校验值为 <code>%{expected_hash}</code>（检查于 %{last_checked_at}）"
   script_sets:
     description: "脚本收藏集有助于您创建一个自定义的使用 Greasy Fork 浏览的脚本列表。您可以包含单个脚本，以及其他用户或自动生成的脚本收藏集。您也可以用相同的方法排除特定脚本。"
     favorites_name: "收藏"
@@ -1262,10 +1269,24 @@ zh-CN:
             </p>
       report_fixed_offender:
         subject: "一则针对你在 %{site_name} 发布的脚本 %{script_name} 的举报已关闭"
+        body_html: |
+            <p>
+            一名管理员已将一则对您在 %{site_name} 上传的脚本 %{script_link:%{script_name}} 的举报标记为已解决，因为他们认为你解决了该则举报提及的问题。你的脚本将保持可用状态。你可以%{report_link:在此处查看该举报}。
+            </p>
       report_rebutted_reporter:
         subject: "您在%{site_name}上对于%{script_name}脚本的举报收到了一条回复"
+        body_html: |
+            <p>
+            您在 %{site_name} 举报的脚本 %{script_link:%{script_name}} 收到了一则回应。你可以%{report_link:在此查阅该回应}。一名管理员将审阅您的举报与该则回应，并作出裁决。
+            </p>
       report_upheld_reporter:
         subject: "您在%{site_name}上对于%{script_name}脚本的举报已被核实"
+        body_html: |
+            <p>
+            一名管理员已将您在 %{site_name} 举报的脚本 %{script_link:%{script_name}} 的结果标记为举报成功，脚本已被删除。你可以%{report_link:在此处查看该举报}。
+            </p>
+      report_script_deleted_reporter:
+        subject: "您在%{site_name}举报的脚本%{script_name}已做出裁决。"
       report_dismissed_reporter:
         subject: "您在%{site_name}上对于%{script_name}脚本的举报被驳回"
       report_fixed_reporter:

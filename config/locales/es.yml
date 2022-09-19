@@ -385,6 +385,17 @@ es:
         short: CSS
         long: Estilo de usuario
     related_scripts: "También puedes probar estos otros scripts:"
+    integrity_hashes:
+      user_notice_html:
+        one: "Tienes un script con una suma de comprobación de subrecurso que no concuerda: %{script_links}."
+        many: "Tienes scripts con sumas de comprobación de subrecurso que no concuerdan: %{script_links}."
+        other: "Tienes scripts con sumas de comprobación de subrecurso que no concuerdan: %{script_links}."
+      script_notice:
+        text_html:
+          one: "Este script tiene una suma de comprobación de subrecurso que no concuerda: %{detail}."
+          many: "Este script tiene una suma de comprobación de subrecurso que no concuerda: %{detail}."
+          other: "Este script tiene una suma de comprobación de subrecurso que no concuerda: %{detail}."
+        detail: "<code>%{url}</code> debería tener la suma de comprobación <code>%{expected_hash}</code> (comprobado por última vez %{last_checked_at})"
   script_sets:
     description: "Los grupos permiten crear un listado personal de scripts con los que explorar Greasy Fork. Puedes agruparlos añadiendo scripts individuales, incluyendo grupos de otros usuarios, o incluso grupos generados automáticamente. También puedes excluir scripts de la misma forma."
     favorites_name: "Favoritos"

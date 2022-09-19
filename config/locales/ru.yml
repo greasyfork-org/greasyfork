@@ -385,6 +385,19 @@ ru:
         short: CSS
         long: Пользовательский стиль
     related_scripts: "Попробуйте также следующие похожие скрипты:"
+    integrity_hashes:
+      user_notice_html:
+        one: "У вас есть скрипт с неправильным subresource integrity hash: %{script_links}."
+        few: "У вас есть скрипты с неправильным subresource integrity hash: %{script_links}."
+        many: "У вас есть скрипты с неправильным subresource integrity hash: %{script_links}."
+        other: "У вас есть скрипты с неправильным subresource integrity hash: %{script_links}."
+      script_notice:
+        text_html:
+          one: "Этот скрипт использует неправильный subresource integrity hash: %{detail}."
+          few: "Этот скрипт использует неправильные subresource integrity hashes: %{detail}."
+          many: "Этот скрипт использует неправильные subresource integrity hashes: %{detail}."
+          other: "Этот скрипт использует неправильные subresource integrity hashes: %{detail}."
+        detail: "<code>%{url}</code> должен использовать хэш <code>%{expected_hash}</code> (последняя проверка была %{last_checked_at})"
   script_sets:
     description: "Списки скриптов позволяют вам объединять произвольные скрипты в группы для более удобного их просмотра на сайте Greasy Fork. Вы можете добавлять в списки отдельные скрипты, другие списки, или автоматически создаваемые списки."
     favorites_name: "Избранное"

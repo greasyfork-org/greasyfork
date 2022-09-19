@@ -384,6 +384,19 @@ sk:
         short: CSS
         long: Používateľský štýl
     related_scripts: "Vyskúšať môžete aj tieto podobné skripty:"
+    integrity_hashes:
+      user_notice_html:
+        one: "Máte skript s nesprávnymi hashmi integrity čiastkových zdrojov:\n%{script_links}."
+        few: "Máte skripty s nesprávnymi hashmi integrity čiastkových zdrojov:\n%{script_links}."
+        many: "Máte skripty s nesprávnymi hashmi integrity čiastkových zdrojov:\n%{script_links}."
+        other: "Máte skripty s nesprávnymi hashmi integrity čiastkových zdrojov:\n%{script_links}."
+      script_notice:
+        text_html:
+          one: "Tento skript používa nesprávny hash integrity čiastkového zdroja: %{detail}."
+          few: "Tento skript používa nesprávne hashe integrity čiastkových zdrojov: %{detail}."
+          many: "Tento skript používa nesprávne hashe integrity čiastkových zdrojov: %{detail}."
+          other: "Tento skript používa nesprávne hashe integrity čiastkových zdrojov: %{detail}."
+        detail: "URL<code>%{url}</code> by mala používať hash <code>%{expected_hash}</code> (naposledy kontrolované %{last_checked_at})"
   script_sets:
     description: "Zbierka skriptov vám umožní vytvoriť vlastný zoznam skriptov pre prehliadanie s Greasy Fork. Skripty môžete pridať do vašej zbierky Vy, ďalší používatelia zbierky alebo automaticky generované zbierky."
     favorites_name: "Obľúbené"
