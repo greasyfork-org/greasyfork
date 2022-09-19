@@ -146,6 +146,7 @@ pt-BR:
     derivatives_similar_last_check_soon: "Iremos verificar se existem scripts similares aos seus em breve."
     derivatives_similar_last_check_again_soon_html: "A última vez que verificamos a existência de scripts similares aos seus foi em %{date}. Verificaremos novamente em breve."
     derivatives_similar_check_now: "Verificar novamente agora"
+    derivatives_similiar_queued: A verificação de similaridade será concluída em alguns minutos.
     listing_title_all_sites: "Scripts para todos os sites"
     listing_description_all_sites: "Scripts que adicionam recuros e removem bugs em todos sites"
     listing_title_for_site: "Scripts de %{site}"
@@ -250,6 +251,10 @@ pt-BR:
     additional_info_default_sync_html: "Info adicional padrão (linguagem igual a <code>@name</code>)"
     additional_info_localized_sync_html: "Para regionalização (igual a <code>@name:XX</code>)"
     sync_url_placeholder: "(URL)"
+    sync_successful: Script sincronizado com sucesso.
+    sync_no_changes: Script sincronizado com sucesso, mas nenhuma alteração encontrada.
+    sync_error: Falha na sincronização de script - %{error}.
+    sync_turned_off: Sincronização de script desativada.
     screenshots_add: "Adicionar"
     screenshots_remove: "Remover"
     replacement_script_explanation: "(Opcional) Escolha outro script que substitua este script. Digite a URL do script substituto:"
@@ -378,6 +383,7 @@ pt-BR:
       css:
         short: CSS
         long: Estilo de usuário
+    related_scripts: "Você também pode tentar estes scripts relacionados:"
   script_sets:
     description: "Coleções de scripts permitem a você criar uma lista personalizada de scripts dentro do Greasy Fork. Você pode adicionar scripts à sua coleção incluindo scripts individuais, coleções de outros usuários, ou coleções geradas automaticamente. Você também pode excluir scripts da sua coleção da mesma maneira."
     favorites_name: "Favoritos"
@@ -642,6 +648,10 @@ pt-BR:
         title: Notificações de conversa
         starter: Por padrão, inscrever-se em qualquer conversa que você iniciar
         receiver: Por padrão, inscrever-se em qualquer conversa que envolva você que você não iniciou
+      report_defaults:
+        title: Relatório de notificações
+        reporter: Receba uma notificação quando um relatório que você criou for resolvido
+        reported: Receba uma notificação quando um relatório sobre coisas que você publicou for criado ou resolvido
       save_button: Atualizar configurações de notificação
       title: Notificações
       current_discussion_subscriptions:
@@ -651,6 +661,7 @@ pt-BR:
       save_success: Suas preferências de notificação foram atualizadas
       unsubscribe_all: Desinscrever-se de todas as notificações
       unsubscribe_all_success: Você foi desinscrito de todas as notificações.
+    account_banned: Esta conta foi banida.
   webhooks:
     info:
       title: Configurando um webhook
@@ -727,6 +738,7 @@ pt-BR:
       keywords_html: Scripts não devem incluir tags <code>@include</code>, <code>@match</code>, ou palavras chave para sites para os quais não forneça funcionalidades.
       adult_content_rule: Scripts que incluam conteúdo adulto ou que sejam destinados a sites de conteúdo adulto devem ser marcados como tal para que os usuários possam decidir vê-lo ou não.
       reposting_deleted: Não reposte scripts que foram excluídos devido a violação das regras; em vez disso, utilize a função de apelação. Repostar scripts excluídos pode resultar em banimento.
+      advertising_in_description: Os autores de scripts não podem colocar publicidade nas páginas do Greasy Fork, por exemplo, na descrição de um script. É permitida a promoção da homepage do autor do script, repositório de código, Discord, WeChat, etc.
       reporting: Caso você encontre um script que fuja desses parâmetros, por favor reporte-o através do link de feedback daquele script e escolha a opção "Reportar script".
     external_scripts:
       title: "Política em scripts externo do %{site_name}"
@@ -1029,6 +1041,7 @@ pt-BR:
         </ol>
     rebuttal_placeholder: 'Explique para um moderador por que este script deve ser removido'
     submit_rebuttal: "Enviar refutação"
+    rebuttal_submitted: Um moderador revisará este relatório e sua explicação e tomará uma decisão.
     delete_script: "Remover script"
     view_discussion: "Ver discussão"
     load_diff: "Carga diferencial"
@@ -1079,6 +1092,10 @@ pt-BR:
       bad: "Ruim"
       ok: "OK"
       good: "Bom"
+    badges:
+      deleted:
+        short: Excluído
+        long: Excluído
     sign_in_to_post_discussion: "Faça o login para publicar uma análise, comentário ou pergunta."
     sign_in_to_post_comment: "Faça o login para publicar uma resposta."
     user_filter:
@@ -1304,6 +1321,7 @@ pt-BR:
         subject: "Sua denúncia no %{script_name} no %{site_name} foi indeferida"
       report_fixed_reporter:
         subject: "Seu relatório em %{script_name} em %{site_name} foi marcado como resolvido"
+      reporter_outro: "Você recebeu esta notificação porque criou um relatório sobre um script em %{site_name}.%{notification_preferences_link:Manage your notification preferences.}"
     consecutive_bad_ratings:
       notify:
         subject: "O seu script %{script_name} no %{site_name} recebeu múltiplas avaliações \"Ruins\"."

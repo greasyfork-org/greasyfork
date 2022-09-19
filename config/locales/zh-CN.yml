@@ -690,6 +690,8 @@ zh-CN:
       namespace_html: "<code>@namespace</code> 与 <code>@name</code> 这两个属性被作为脚本的唯一标识符，用户脚本管理器根据它们来判断一个脚本是否已安装。%{site_name} 也需要这些属性，若用户在更新脚本时改变了两者中的任意一项，将发出警告。"
       version: "脚本的版本标记将使用 %{version_format_link:Mozilla 版本格式}，并显示于脚本的简介页面。%{site_name} 要求填写该属性，且当用户更新脚本时没有更新版本号或降低了版本号时将发出警告。"
       include_html: "描述脚本会在哪些网站上运行。该列表会被解析和展示到脚本的简介页面，并用于脚本的分类。每个脚本须有至少一个 <code>@match</code> 或 <code>@include</code>。<a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">了解格式细则</a>。"
+      require_html: "引入外部脚本到用户脚本。查看关于%{external_script_link:引入外部脚本到代码的规则}。如果你使用 SRI（Sub-Resource Integrity） 来记录外部脚本哈希（更多信息请参阅 %{tm_subresource_link:TamerMonkey 文档} 与 %{mdn_subresource_link:MDN 文档})，当 SRI 与文件的实际哈希不一致时将会在 %{site_name} 进行警告。"
+      resource_html: "引入外部资源（如 JavaScript、CSS、图像等）到脚本。查看关于%{external_script_link:引入外部脚本到代码的规则}。如果你使用 SRI（Sub-Resource Integrity） 来记录外部脚本哈希（更多信息请参阅 %{tm_subresource_link:TamerMonkey 文档} 与 %{mdn_subresource_link:MDN 文档})，当 SRI 与文件的实际哈希不一致时将会在 %{site_name} 进行警告。"
       updateURL: "告知用户脚本管理器应该在哪个地址获取脚本更新。%{site_name} 将自动修改该属性使其永远通过 %{site_name} 进行更新。"
       license: "许可证描述的是您是否允许别人以某些形式复制或修改您的脚本。建议从 %{spdx_link:SPDX 许可证列表} 中选择「Full name」或「Identifier」填至此处。若您不提供许可证，则表示脚本仅允许个人使用且不得二次分发。许可证将在脚本的简介页面显示。"
       supportURL: "该脚本的技术支持链接（如：错误反馈系统、论坛、电子邮箱地址等），该链接将显示在脚本的反馈页面。"
@@ -1285,10 +1287,24 @@ zh-CN:
             </p>
       report_script_deleted_reporter:
         subject: "您在%{site_name}举报的脚本%{script_name}已做出裁决。"
+        body_html: |
+            <p>
+            您在 %{site_name} 上对脚本 %{script_link:%{script_name}} 进行的举报已结束，作者选择删除脚本。你可以%{report_link:查看该举报}。
+            </p>
       report_dismissed_reporter:
         subject: "您在%{site_name}上对于%{script_name}脚本的举报被驳回"
+        body_html: |
+            <p>
+            您在 %{site_name} 对脚本 %{script_link:%{script_name}} 的举报已被管理员忽略，该脚本仍将可用。你可以%{report_link:查看该举报}。
+            </p>
       report_fixed_reporter:
         subject: "你在 %{site_name} 针对 %{script_name} 提交的一则举报已关闭"
+        body_html: |
+            <p>
+            您在 %{site_name} 对脚本 %{script_link:%{script_name}} 的举报已被管理员标记为已解决，因为管理员认为脚本作者已经修正了举报提及的问题。该脚本仍将可用。你可以%{report_link:查看该举报}。
+            </p>
+      reported_outro: "你收到了该则通知，因为你提交到 %{site_name} 的一个脚本收到了一则举报。%{notification_preferences_link:你可以管理该通知选项}。"
+      reporter_outro: "你收到了该则通知，因为你对提交到 %{site_name} 的一个脚本发送了一则举报。%{notification_preferences_link:你可以管理该通知选项}。"
     consecutive_bad_ratings:
       notify:
         subject: "您在 %{site_name}发布的脚本 %{script_name} 收到了多条差评。"
@@ -1301,6 +1317,7 @@ zh-CN:
     script_comment:
       subject: "您对于站点%{site_name}的脚本%{script_name}收到了一条评论。"
       intro: "您在 %{site_name}  上的脚本 %{script_link:%{script_name}} 收到了用户 %{commenter_link:%{commenter_name}} 的评论："
+      outro: "%{comment_link:查看并恢复该评论}。你收到了该则通知，因为你的一个脚本收到了一则评论并且你选择接收该通知。%{notification_preferences_link:你可以管理该通知选项}。"
     subscribed_discussion:
       subject: "站点%{site_name}的讨论%{discussion_title}收到了一条评论。"
       intro: "%{site_name} 上的讨论 %{discussion_link:%{discussion_title}} 收到了一条来自 %{commenter_link:%{commenter_name}} 的评论："
