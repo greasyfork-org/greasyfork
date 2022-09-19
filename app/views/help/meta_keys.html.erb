@@ -26,7 +26,10 @@
   <dd><%= t('help.meta_keys.include_html') %></dd>
 
   <dt><%= self_link('meta-require', tag.code { '@require' }) %></dt>
-  <dd><%= t('help.meta_keys.require_html', external_script_link: link_to(t('help.meta_keys.require_external_script_link_text'), help_external_scripts_path)) %></dd>
+  <dd><%= it('help.meta_keys.require_html', external_script_link: help_external_scripts_path, tm_subresource_link: 'https://www.tampermonkey.net/documentation.php#Subresource_Integrity', mdn_subresource_link: 'https://developer.mozilla.org/docs/Web/Security/Subresource_Integrity', site_name: site_name) %></dd>
+
+  <dt><%= self_link('meta-resource', tag.code { '@resource' }) %></dt>
+  <dd><%= it('help.meta_keys.resource_html', external_script_link: help_external_scripts_path, tm_subresource_link: 'https://www.tampermonkey.net/documentation.php#Subresource_Integrity', mdn_subresource_link: 'https://developer.mozilla.org/docs/Web/Security/Subresource_Integrity', site_name: site_name) %></dd>
 
   <dt><%= self_link('meta-updateURL', safe_join([tag.code { '@updateURL' }, tag.code { '@installURL' }, tag.code { '@downloadURL' }], ', ')) %></dt>
   <dd><%= t('help.meta_keys.updateURL', site_name: site_name) %></dd>

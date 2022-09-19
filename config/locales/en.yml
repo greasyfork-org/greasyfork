@@ -1004,10 +1004,9 @@ en:
       version: "Identifier for a specific version of a script in %{version_format_link:Mozilla version format}. Version is displayed on a script's info page. %{site_name} requires this field and will warn if it's decremented or if it's not incremented when the script's code changes."
       # description of @include
       include_html: "Describe what pages the script will run on. This list will be processed, displayed on the script's info page, and used to categorize scripts. Every script must have at least one <code>@match</code> or <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Read about the format here.</a>"
-      # description of @require. %{external_script_link} is a link to the document describing allowed external scripts and has a link of key "require_external_script_link_text"
-      require_html: "Includes external JavaScript into a script. See %{external_script_link}."
-      # used in required_html
-      require_external_script_link_text: "rules for code including external scripts"
+      # description of @require
+      require_html: "Includes external JavaScript into a script. See %{external_script_link:rules for code including external scripts}. If you use subresource integrity hashes (see info %{tm_subresource_link:here} and %{mdn_subresource_link:here}), %{site_name} will alert you if your hashes do not match the content at the URL you use."
+      resource_html: "Includes an external resource (JavaScript, CSS, images, etc.) into a script. See %{external_script_link:rules for code including external scripts}. If you use subresource integrity hashes (see info %{tm_subresource_link:here} and %{mdn_subresource_link:here}), %{site_name} will alert you if your hashes do not match the content at the URL you use."
       # description of @updateURL
       updateURL: "Describe how user script managers should get updates. %{site_name} will strip these keys, which makes any script installed from %{site_name} only update from %{site_name}."
       # description of @license
