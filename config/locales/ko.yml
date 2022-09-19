@@ -640,8 +640,6 @@ ko:
       namespace_html: "유저 스크립트 관리자는 <code>@namespace</code>와 <code>@name</code> 조합으로 스크립트가 이미 설치됐는지 판단합니다. %{site_name}에서 이 필드는 필수고 업데이트 시에 변경되면 경고합니다."
       version: "%{version_format_link:모질라 버전 포맷}으로 스크립트 버전을 나타내는 식별자. 버전은 스크립트의 정보 페이지에 표시됩니다. %{site_name}는 이 필드를 필수로 요구하고 코드 변경 시 버전값이 증가하지 않으면 경고합니다."
       include_html: "어떤 페이지에서 스크립트가 동작할지 나타냅니다. 스크립트 정보 페이지에 이 필드가 보이고 스크립트를 분류하는 데도 씁니다. 스크립트는 <code>@match</code>나 <code>@include</code>가 적어도 하나 이상 있어야 합니다. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">양식은 여기를 참고하세요</a>."
-      require_html: "스크립트에 외부 JavaScript를 포함시킵니다. %{external_script_link}를 확인하세요."
-      require_external_script_link_text: "외부 스크립트를 포함하는 코드에 대한 규칙"
       updateURL: "스크립트 매니저가 어떻게 업데이트할 지 서수랍니다. %{site_name}는 이 키들을 키들을 제거해 %{site_name}에서 설치한 스크립트는 오직 %{site_name}에서만 업데이트하도록 합니다."
       license: "스크립트의 복제 및 변경 허락 범위에 관한 라이선스입니다. 라이선스의 완전한 이름이나  %{spdx_link:SPDX 라이선스 목록}의 식별자를 쓰는 걸 추천합니다. 라이선스가 없으면 다른 사용자가 스크립트를 개인적 용도로 쓸 수 있지만 재배포할 수 없다고 간주합니다. 라이선스는 스크립트 정보 페이지에 노출됩니다."
       supportURL: "유저들이 스크립트에 대한 지원을 받을 수 있는 URL입니다. (예시. 버그 신고, 게시판, 이메일 주소). 지원 URL은 스크립트의 피드백 페이지에 표시됩니다."

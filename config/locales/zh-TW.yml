@@ -617,8 +617,6 @@ zh-TW:
       description_localized_html: "此腳本在不同語系中的描述，XX 是 <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 的兩字母代碼</a> ，YY 則是非必要的 <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 國家代碼</a>。當使用者在符合的語系中瀏覽時就會蓋過 <code>@description</code> 顯示。"
       namespace_html: "使用者腳本管理器將會透過 <code>@namespace</code> 與 <code>@name</code> 的組合來判斷是否已安裝該腳本。%{site_name} 要求必填此欄位，若於更新時修改了此欄位也會警告您。"
       include_html: "描述腳本所欲執行的頁面。此清單將被處理並顯示於腳本資訊頁用以分類腳本。每個腳本必須有一個<code>@相符</code>或<code>@包含</code>。<a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">於此閱讀格式。</a>"
-      require_html: "在腳本中引入的外部 JavaScript，請參考 %{external_script_link}。"
-      require_external_script_link_text: "外部腳本的使用規範"
       updateURL: "描述使用者腳本管理器要從何取得更新。%{site_name} 將會移除這些更新網址，目的是讓從 %{site_name} 安裝的腳本只能由 %{site_name} 更新。"
       license: "一授權條款，用來描述他人是如何被允許複製或修改此腳本。建議從 %{spdx_link:the SPDX 授權條款列表} 中選擇「Full name」或「Identifier」使用。若缺少授權條款，代表使用者可以安裝腳本作為個人使用，但不得再次進行散佈。腳本的授權條款會被顯示在資訊頁面中。"
       supportURL: "使用者能取得腳本的技術支援之處（例如：臭蟲追蹤系統、討論區、電子郵件信箱等等）。技術支援網址將會顯示在腳本的反饋頁。"

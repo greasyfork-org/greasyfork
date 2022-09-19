@@ -573,8 +573,6 @@ ja:
       description_localized_html: "特定のロケールにおけるスクリプトの説明で、XX は<a href=\"https://ja.wikipedia.org/wiki/ISO_639-1\">ISO 639-1の2文字コード</a>、任意指定の YY は<a href=\"https://ja.wikipedia.org/wiki/ISO_3166-1\">ISO 3166-1の国名コード</a>。ユーザーが対応するロケールで閲覧しているときに、<code>@description</code> を上書きします。"
       namespace_html: "ユーザースクリプトマネージャーは、<code>@namespace</code> と <code>@name</code> の組み合わせで、スクリプトがすでにインストールされているか否かを判断します。%{site_name} ではこのキーを必須としており、スクリプト更新時に変更された場合は警告を表示します。"
       include_html: "スクリプトを実行するページを指定します。この一覧は処理されてスクリプトの情報ページに表示され、またスクリプトの分類に使われます。各スクリプトには 1 回以上の<code>@match</code> か <code>@include</code> を含めてください。そのフォーマットについては <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">ここをお読みください。</a>"
-      require_html: "スクリプトへの外部 JavaScript の読み込み。%{external_script_link}を参照してください。"
-      require_external_script_link_text: "コードに外部スクリプトを含める場合のルール"
       updateURL: "ユーザースクリプトマネージャーが更新を取得する方法の記述。%{site_name} はこれらのキーを取り除き、%{site_name}　からインストールされたすべてのスクリプトが　%{site_name}　から更新されるようにします。"
       license: "スクリプトのコピーや変更の許諾について記述されたライセンス。%{spdx_link:the SPDX License List}の「Full name」、または「Identifier」の記載を推奨します。ライセンスの欠如は、私的使用目的でスクリプトがインストールできることを意味しますが、再配布することはできません。ライセンスはスクリプトの情報ページに表示されます。"
       supportURL: "ユーザーがスクリプトのサポートを受けることができるページの URL (例: バグトラッカー、フォーラム、電子メールアドレス)。サポート URL はスクリプトのフィードバックページに表示されます。"
