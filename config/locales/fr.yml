@@ -710,52 +710,6 @@ fr:
       reporting: Si vous remarquez un script qui ne respecte pas ces paramètres, veuillez le signaler en accédant au lien Commentaires pour ce script et choisissez l'option "Signaler le script".
     external_scripts:
       title: "Politique de %{site_name} concernant les scripts externes"
-      intro_html: |
-          <p>Les scripts utilisateurs ont la capacité technique de charger et d'exécuter d'autres scripts. Cela peut être fait de différentes manières, notamment:</p>
-          <ul>
-          <li>La clé de métadonnées %{require_doc_link:<code>@require</code>}.</li>
-          <li><code>XmlHttpRequest</code> pour télécharger le script, puis <code>eval</code> pour l'exécuter.</li>
-          <li>Ajout d'un <code>&lt;script&gt;</code>en balise dynamiquement.</li>
-          <li>Option %{webpack_externals_link:<code>externals</code>} de Webpack.</li>
-          </ul>
-          <p>Bien qu'il s'agisse d'une fonctionnalité utile et que la plupart des auteurs de scripts l'utilisent à des fins légitimes, elle peut également être utilisée de manière malveillante. L'un des principes fondamentaux de %{site_name} est que l'utilisateur doit pouvoir inspecter le code dans un script. Les scripts externes peuvent contourner ce principe de plusieurs manières: ils peuvent changer sans avertissement ni historique, ils peuvent servir un code différent à différentes personnes et ils peuvent être utilisés pour cacher du code malveillant au milieu de bibliothèques connues. Même si quelqu'un vérifiait un script externe et déterminait qu'il est légitime, cela ne garantirait pas que ce script a toujours été ou sera toujours légitime.</p>
-      allowed_external_codes:
-        heading: Code externe autorisé
-        content_html: |
-            <p>Pour permettre aux auteurs de scripts de continuer à utiliser des scripts externes, %{site_name} a mis en place une liste de modèles d'URL autorisés qui peuvent être inclus avec un script. Cette liste se compose d'emplacements de script qui:</p>
-            <ul>
-            <li>Sont publics</li>
-            <li>Leur contenu ne changera pas fréquemment</li>
-            <li>Serait probablement utile à plus d'un auteur de script</li>
-            </ul>
-            <p>Si le script que vous souhaitez inclure est une bibliothèque JavaScript (par exemple jQuery ou YUI), essayez de le trouver sur l'un des sites répertoriés ci-dessous. %{cdnjs_link:cdnjs} et %{jsdelivr_link:jsDelivr} en particulier disposent d'un large éventail de bibliothèques.</p>
-            <p>La liste actuelle est :</p>
-            %{allowed_require_list}
-      other_allowed_codes:
-        heading: Cas spéciaux
-        content_html: |
-            <p>En plus de la liste ci-dessus, les utilisations suivantes sont également autorisées:</p>
-            <ul>
-            <li>Chargement du code existant d'un site à utiliser sur le même site (par exemple, en utilisant example.com/script.js sur example.com).</li>
-            <li>Charger une ressource qui ne contient que des données, par exemple un fichier JSON, sans en exécuter aucune.</li>
-            </ul>
-            <p>Les utilisations suivantes sont également interdites:</p>
-            <ul>
-            <li>Chargement des mises à jour du script à partir d'une URL externe.</li>
-            </ul>
-      add_to_list:
-        heading: Ajoutée à la liste
-        content_html: |
-            <p>Si le script que vous souhaitez inclure n'est pas disponible sur les sites ci-dessus, %{contact_link:faites-le nous savoir} et nous pourrons le trouver quelque part (ou l'héberger nous-mêmes !).</p>
-            <p>Si le script que vous souhaitez inclure a été écrit par vous, vous pouvez le soumettre en tant qu'entrée séparée de %{site_name} en choisissant le type de script "Bibliothèque". Vous pourrez alors inclure cette bibliothèque publiée dans votre script.</p>
-      enforcement:
-        heading: Mise en vigueur
-        content_html: |
-            <p>Tout script contenant du code externe en dehors de ce qui est autorisé est susceptible d'être supprimé.</p>
-      test_url:
-        label: Tester une URL
-        result_ok: L'URL est autorisée
-        result_not_ok: L'URL n'est pas autorisée
     script_rewriting:
       title: "Comment %{site_name} va récrire les scripts postés"
       content_html: >

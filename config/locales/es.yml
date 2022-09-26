@@ -770,52 +770,6 @@ es:
       reporting: Si ves algún script que incumpla las normas informa de ello en la pestaña de comentarios y opiniones del script.
     external_scripts:
       title: "Política de %{site_name} sobre scripts externos"
-      intro_html: |
-          <p>Los scripts de usuario tienen la capacidad técnica de cargar y ejecutar otros scripts. Esto se puede hacer de varias maneras, incluyendo:</p>
-          <ul>
-          <li>La clave de metadatos de %{require_doc_link:<code>@require</code>}.</li>
-          <li><code>XmlHttpRequest</code>para descargar el script, luego <code>eval</code> para ejecutarlo.</li>
-          <li>Añadiendo una etiqueta de <code>&lt;script&gt;</code>dinámicamente.</li>
-          <li>La opción %{webpack_externals_link:<code>externals</code>} de Webpack.</li>
-          </ul>
-          <p>Aunque esta es una característica útil y la mayoría de los autores de scripts la utilizan con fines legítimos, también puede ser utilizada de forma maliciosa. Uno de los principios fundamentales de es que el usuario debe poder inspeccionar el código de un script. Los scripts externos pueden saltarse este principio de varias maneras: pueden cambiar sin aviso ni historial, pueden servir código diferente a diferentes personas y pueden utilizarse para ocultar código malicioso en medio de bibliotecas conocidas. Incluso si alguien comprobara un script externo y determinara que es legítimo, eso no sería garantía de que ese script siempre ha sido o será legítimo.</p>
-      allowed_external_codes:
-        heading: Código externo permitido
-        content_html: |
-            <p>Para permitir que los autores de scripts sigan utilizando scripts externos, %{site_name} ha implementado una lista de patrones de URL permitidos que pueden incluirse con un script. Esta lista consiste en ubicaciones de scripts que:</p>
-            <ul>
-            <li>Sean públicos</li>
-            <li>No tengan un contenido que cambie con frecuencia</li>
-            <li>Probablemente sean útiles para más de un autor de scripts</li>
-            </ul>
-            <p>Si el script que desea incluir es una biblioteca de JavaScript (por ejemplo, jQuery o YUI), intente encontrarlo en uno de los sitios indicados a continuación. %{cdnjs_link:cdnjs} y %{jsdelivr_link:jsDelivr} en particular tienen una amplia gama de bibliotecas disponibles.</p>
-            <p>La lista actual es:</p>
-            %{allowed_require_list}
-      other_allowed_codes:
-        heading: Casos especiales
-        content_html: |
-            <p>Además de la lista anterior, también se permiten los siguientes usos:</p>
-            <ul>
-            <li>Cargar el código existente de un sitio para utilizarlo en el mismo sitio (por ejemplo, utilizar ejemplo.com/script.js en ejemplo.com).</li>
-            <li>Cargar un recurso que sea sólo datos, por ejemplo un archivo JSON, sin ejecutar nada de él.</li>
-            </ul>
-            <p>Los siguientes usos tampoco están permitidos:</p>
-            <ul>
-            <li>Cargar actualizaciones del script desde una URL externa.</li>
-            </ul>
-      add_to_list:
-        heading: Añadir a la lista
-        content_html: |
-            <p>Si el script que desea incluir no está disponible en los sitios anteriores, %{contact_link:háganoslo saber} y podremos encontrar algún sitio donde esté (¡o alojarlo nosotros mismos!).</p>
-            <p>Si el script que desea incluir fue escrito por usted, puede enviarlo como una entrada separada en %{site_name} eligiendo el tipo de script "Biblioteca". Entonces podrás incluir esta biblioteca publicada en tu script.</p>
-      enforcement:
-        heading: Aplicación de las normas
-        content_html: |
-            <p>Se borrará cualquier script que incluya código externo más allá de lo permitido.</p>
-      test_url:
-        label: Probar una dirección URL
-        result_ok: La dirección URL es correcta
-        result_not_ok: La dirección URL no está permitida
     script_rewriting:
       title: "Cómo afectará %{site_name} a los scripts publicados"
       content_html: >

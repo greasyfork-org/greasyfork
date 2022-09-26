@@ -738,52 +738,6 @@ zh-CN:
       reporting: 如果你发现有脚本未能遵守上述规则，请访问脚本的反馈页面并选择“举报脚本”来举报。
     external_scripts:
       title: "%{site_name} 对外部脚本的政策"
-      intro_html: |
-          <p>用户脚本有能力加载和执行其他脚本，方式包括：</p>
-          <ul>
-          <li>%{require_doc_link:<code>@require</code>} 元数据键。</li>
-          <li><code>XmlHttpRequest</code> 来下载脚本，然后用 <code>eval</code> 执行。</li>
-          <li>动态添加 <code>&lt;script&gt;</code> 标签。</li>
-          <li>Webpack 的 %{webpack_externals_link:<code>externals</code>} 选项。</li>
-          </ul>
-          <p>虽然这是一个有用的功能，并且大多数脚本作者将其用在合法目的，但它也可以被恶意使用。%{site_name} 的一项核心原则是，用户必须可能检查脚本中的代码。而外部脚本可能用多种方法绕过这一原则：它们可以在用户不知情的情况下悄悄改变，而不留下历史记录；它们可以对不同的用户采用不同的代码；它们还可以在知名的库之中插入恶意的代码，以期逃避用户的检查。因此，即便有人已检查了一个外部脚本，并确定它此时是安全的，也无法保证该脚本在过去和将来始终不含恶意代码。</p>
-      allowed_external_codes:
-        heading: 允许的外部代码
-        content_html: |
-            <p>为了允许脚本作者继续使用外部脚本，%{site_name} 有一个 URL 形式的白名单，只允许引用白名单中的外部脚本。白名单中包含的网站应该是：</p>
-            <ul>
-            <li>公开的</li>
-            <li>不频繁改变其内容的</li>
-            <li>可能被不止一位脚本作者取用的</li>
-            </ul>
-            <p>如果您想加载的外部脚本是一个 JavaScript 库（例如 jQuery 或者 YUI），请访问上面列出的网站，看看是否能找到它的链接。%{cdnjs_link:cdnjs} 和 %{jsdelivr_link:jsDelivr} 提供了大量的常用库。</p>
-            <p>目前的名单见：</p>
-            %{allowed_require_list}
-      other_allowed_codes:
-        heading: 特殊情況
-        content_html: |
-            <p>除上述名单外，还允许使用：</p>
-            <ul>
-            <li>加载网站现有的代码用于同一站点（例如在 example.com 上使用 example.com/script.js）。</li>
-            <li>仅供数据用途而加载一个资源，例如加载 JSON 文件而不执行它的内容。</li>
-            </ul>
-            <p>禁止下列用法：</p>
-            <ul>
-            <li>从外部 URL 加载对脚本的更新。</li>
-            </ul>
-      add_to_list:
-        heading: 添加至列表
-        content_html: |
-            <p>如果以上网站均没有您想引用的外部脚本，请%{contact_link:告知我们}，以便我们查找它的链接（乃至我们自己托管）。</p>
-            <p>如果您想包含的脚本是您自己写的，您可以在 %{site_name} 上将它提交为一个单独的项目，选择“库”作为它的类型，然后就可以在您的脚本中引入这个您自己发布的库了。</p>
-      enforcement:
-        heading: 执法
-        content_html: |
-            <p>任何被发现含有允许范围外的外部代码的脚本将被删除。</p>
-      test_url:
-        label: 测试一个 URL
-        result_ok: URL 允许使用
-        result_not_ok: URL 不允许使用
     script_rewriting:
       title: "%{site_name} 将如何改写已发布的脚本"
       content_html: >

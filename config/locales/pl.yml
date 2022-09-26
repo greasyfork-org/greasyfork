@@ -768,53 +768,6 @@ pl:
       reporting: Jeśli zauważysz skrypt, który nie przestrzega wyżej wymienionych zasad, zgłoś go na stronie skryptu, przechodząc na podstronę Opinie, a następnie klikając "zgłoś ten skrypt".
     external_scripts:
       title: "Polityka %{site_name} dot. zewnętrznych skryptów"
-      intro_html: |
-          <p>Skrypty użytkowników mają techniczną możliwość ładowania i uruchamiania innych skryptów. Można to zrobić na przykład:</p>
-          <ul>
-          <li>za pomocą znacznika metadanych %{require_doc_link: <code>@require</code>};</li>
-          <li>za pomocą funkcji <code>XmlHttpRequest</code>, pobierającej zewnętrzny skrypt i uruchomienie go za pomocą funkcji <code>eval</code>;</li>
-          <li>poprzez dynamiczne dodanie znacznika <code>&lt;script&gt</code>;</li>
-          <li>poprzez użycie opcji %{webpack_externals_link:<code>zawartości zewnętrznej</code>} narzędzia Webpack, jeżeli go używasz.</li>
-
-          </ul>
-          Pomimo że jest to bardzo wygodna funkcjonalność, często stosowana przez autorów skryptów w uzasadniony sposób, to może być także użyta w złośliwych celach. Należy podkreślić, że jedną z głównych zasad %{site_name} jest wymóg udostępnienia możliwości wglądu do kodu skryptu przez użytkowników. Zewnętrzne skrypty mogą to utrudnić na wiele sposobów: zmieniając swoje działanie bez ostrzeżenia, ładując alternatywną wersję skryptu dla różnych użytkowników lub nawet ukrywając złośliwy kod w renomowanych bibliotekach. Nawet jeżeli zostanie udostępniona możliwość wglądu do zewnętrznie ładowanego skryptu, to nigdy nie ma pewności, że nie ulegnie on niespodziewanym zmianom.
-      allowed_external_codes:
-        heading: Dozwolony kod zewnętrzny
-        content_html: |
-            <p>Aby pozwolić autorom skryptów na używanie zewnętrznie ładowanego kodu %{site_name} wprowadza listę dozwolonych adresów URL, z których mogą one być dołączane w skrypcie. Lista zawiera lokalizacje, które:</p>
-            <ul>
-            <li>są publicznie dostępne,</li>
-            <li>nie stwarzają ryzyka częstej zmiany zawartości,</li>
-            <li>prawdopodobnie byłyby użyteczne dla więcej niż jednego autora skryptu.</li>
-            </ul>
-            <p>Jeśli skrypt, który planujesz opublikować, używa biblioteki JavaScript (na przykład JQuery lub YUI), postaraj się znaleźć do niej łącze w serwisach takich jak %{cdnjs_link:cdnjs} lub %{jsdelivr_link:jsDelivr}. Oferują one szeroką gamę powszechnie stosowanych bibliotek.</p>
-            <p>Aktualna lista dozwolonych adresów jest dostępna poniżej:</p>
-            %{allowed_require_list}
-      other_allowed_codes:
-        heading: Szczególne przypadki
-        content_html: |
-            <p>Ponadto, dozwolone są jeszcze takie zastosowania ładowania zewnętrznej zawartości jak:</p>
-            <ul>
-            <li>ładowanie istniejącego kodu z tej samej strony (np. example.com/skrypt.js ze strony example.com);</li>
-            <li>ładowanie zasobów zawierających jedynie dane, na przykład w formacie JSON, bez wykonywania żadnej ich zawartości.</li>
-            </ul>
-            <p>Nie dozwolone jest jednak:</p>
-            <ul>
-            <li>ładowanie aktualizacji do skryptu z zewnętrznego adresu URL.</li>
-            </ul>
-      add_to_list:
-        heading: Dodawanie do listy
-        content_html: |
-            <p>Jeżeli skrypt, który chcesz dołączyć, nie jest dostępny na wymienionych stronach, %{contact_link:skontaktuj się z nami}. Postaramy się pomóc znaleźć do niego odpowiednie łącze lub nawet udostępnimy go z naszego serwera!</p>
-            <p>Jeżeli zewnętrzny skrypt, który planujesz dołączyć, jest Twojego autorstwa, możesz opublikować go na %{site_name} osobno, wybierając podczas publikacji opcję „biblioteka” przy pytaniu o typ skryptu.</p>
-      enforcement:
-        heading: Wymóg
-        content_html: |
-            <p>Jakikolwiek skrypt pobierający zewnętrzny kod w inny sposób niż określono w zasadach zostanie usunięty</p>
-      test_url:
-        label: Testuj adres URL
-        result_ok: URL jest dozwolony
-        result_not_ok: URL jest niedozwolony
     script_rewriting:
       title: "Jak %{site_name} przepisze udostępnione skrypty"
       content_html: >

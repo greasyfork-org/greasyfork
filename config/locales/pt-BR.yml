@@ -742,52 +742,6 @@ pt-BR:
       reporting: Caso você encontre um script que fuja desses parâmetros, por favor reporte-o através do link de feedback daquele script e escolha a opção "Reportar script".
     external_scripts:
       title: "Política em scripts externo do %{site_name}"
-      intro_html: |
-          <p>Scripts de usuário tem a capacidade técnica de carregar e executar outros scripts. Isso pode ser feito de diferentes maneiras, incluindo:</p>
-          <ul>
-          <li>A chave de metadados %{require_doc_link:<code>@require</code>}.</li>
-          <li><code>XmlHttpRequest</code> para baixar o script, e então utilizar <code>eval</code> para executá-lo.</li>
-          <li>Adicionando uma tag <code>&lt;script&gt;</code> dinamicamente.</li>
-          <li>Opções %{webpack_externals_link:<code>externas</code>} do webpack.</li>
-          </ul>
-          <p>Enquanto isto é uma ferramenta útil e a maioria dos scripts utiliza isso para propósitos legítimos, também pode ser usada de forma maliciosa. Um dos principais princípios do%{site_name} é que o usuário deve ser capaz de inspecionar o código de um script. Scripts externos podemignorar este princípio de várias formas: eles podem sofrer alterações sem aviso ou histórico, podem fornecer códigos diferentes para pessoas diferentes, e podem ainda ser usados para esconder códigos maliciosos entre bibliotecas conhecidas. Mesmo que alguém verifique um script externo e veja que ele é legítimo, isso não garante que ele sempre foi ou sempre será legítimo.</p>
-      allowed_external_codes:
-        heading: Código externo permitido
-        content_html: |
-            <p>Para permitir autores de scipt a continuar utilizando scripts externos, %{site_name}implementou uma lista de padrões de URL permitidos que podem ser incluídos com um script.  Esta lista consiste em locais de script que: </p>
-            <ul>
-            <li>São públicos</li>
-            <li>Não terão seu conteúdo alterado com frequência</li>
-            <li>Provavelmente seriam úteis para mais de um autor de script</li>
-            </ul>
-            <p>Se o script que você deseja incluir é uma biblioteca JavaScript (por exemplo jQuery ou YUI), tente encontrá-lo em um dos sites listados abaixo. %{cdnjs_link:cdnjs} e %{jsdelivr_link:jsDelivr} em particular têm uma grande variedade de bibliotecas disponíveis.</p>
-            <p>A lista atual é:</p>
-            %{allowed_require_list}
-      other_allowed_codes:
-        heading: Casos especiais
-        content_html: |
-            <p>Além da lista acima, os seguintes usos também são permitidos:</p>
-            <ul>
-            <li>Carregando o código existente de um site para uso no mesmo site (por exemplo, usando example.com/script.js em example.com).</li>
-            <li>Carregar um recurso que contém apenas dados, por exemplo, um arquivo JSON, sem executá-lo.</li>
-            </ul>
-            <p>Os seguintes usos não são permitidos:</p>
-            <ul>
-            <li>Carregar atualizações para o script de um URL externo.</li>
-            </ul>
-      add_to_list:
-        heading: Adicionando à lista
-        content_html: |
-            <p>Se o script que você deseja incluir não está disponivel nos seguintes sites, %{contact_link:deixe-nos saber} e podemos encontra-ló em algum lugar (ou nós mesmos hospedarmos!).</p>
-            <p>Se o script que deseja incluir foi escrito por você, você pode submeter ele em uma entrada separada em %{site_name}escolhendo o tipo de script "Biblioteca". Você poderá então incluir esta biblioteca postada em seu script.</p>
-      enforcement:
-        heading: Execução
-        content_html: |
-            <p>Qualquer script que inclua código externo fora do permitido está sujeito a exclusão.</p>
-      test_url:
-        label: Teste a URL
-        result_ok: A URL é permitida
-        result_not_ok: A URL não é permitida
     script_rewriting:
       title: "Como o %{site_name} irá sobrescrever scripts postados"
       content_html: >

@@ -759,52 +759,6 @@ it:
       reporting: Se noti uno script che ricade al di fuori di questi parametri, per favore segnalalo andando sul collegamento Feedback per quello script e scegliendo l'opzione "Segnala lo script".
     external_scripts:
       title: "Politiche di %{site_name} per gli script esterni"
-      intro_html: |
-          <p>Gli script utente hanno l'abilità tecnica di caricare ed eseguire altri scripts. Questo può essere fatto in diversi modi, inclusi:</p>
-          <ul>
-          <li>La chiave %{require_doc_link:<code>@require</code>} nei metadati.</li>
-          <li><code>XmlHttpRequest</code> per scaricare lo script, e poi <code>eval</code> per eseguirlo.</li>
-          <li>Aggiungendo un tag <code>&lt;script&gt;</code> dinamicamente.</li>
-          <li>L'opzione %{webpack_externals_link:<code>externals</code>} di webpack.</li>
-          </ul>
-          <p>Sebbene questa sia una funzione utile e la maggioranza degli autori di script la usino per scopi legittimi, può anche essere usata in modo malevolo. Uno dei principî di %{site_name} è che l'utente deve avere la possibilità di ispezionare il codice in uno script. Gli script esterni possono aggirare questo principio in svariati modi: possono cambiare senza avvertimenti o storico delle modifiche, possono fornire codice diverso a persone diverse, e possono essere usati per nascondere codice malevolo nel mezzo di librerie note. Anche se qualcuno controllasse uno script esterno e determinasse che è legittimo, questo non garantirebbe che lo script sia sempre stato o che sempre sarà legittimo.</p>
-      allowed_external_codes:
-        heading: Codice esterno consentito
-        content_html: |
-            <p>Per consentire agli autori degli scripts di continuare a usare scripts esterni, %{site_name} ha implementato una lista di schemi di URL consentiti che possono essere inclusi in uno script. Questa lista consiste di indirizzi di scripts che:</p>
-            <ul>
-            <li>Sono pubblici</li>
-            <li>I cui contenuti non vengono modificati spesso</li>
-            <li>Siano possibilmente utili a più di un autore di script</li>
-            </ul>
-            <p>Se lo script che vuoi includere è una libreria JavaScript (ad esempio jQuery o YUI), prova a cercarlo in uno dei siti elencati qui sotto. %{cdnjs_link:cdnjs} e %{jsdelivr_link:jsDelivr} in particolare hanno un'ampia gamma di librerie disponibili.</p>
-            <p>La lista attuale è:</p>
-            %{allowed_require_list}
-      other_allowed_codes:
-        heading: Casi speciali
-        content_html: |
-            <p>In aggiunta alla lista qui sopra, i seguenti usi sono altresì consentiti:</p>
-            <ul>
-            <li>Caricare un codice già presente su un sito per usarlo sullo stesso sito (es. usare example.com/script.js su example.com).</li>
-            <li>Caricare una risorsa esclusivamente fatta di dati, ad esempio un file JSON, senza eseguirne nessuna parte.</li>
-            </ul>
-            <p>I seguenti usi non sono invece permessi:</p>
-            <ul>
-            <li>Caricare aggiornamenti dello script da un URL esterno.</li>
-            </ul>
-      add_to_list:
-        heading: Aggiungere alla lista
-        content_html: |
-            <p>Se lo script che desideri includere non è disponibile nei siti qui sopra, %{contact_link:faccelo sapere} e potremo cercare dove si trova (o ospitarlo noi stessi!).</p>
-            <p>Se lo script che desideri includere è stato scritto da te, puoi caricarlo come una voce separata su %{site_name} scegliendo "Libreria" come tipo di script. Avrai quindi la possiblilità di includere nel tuo script questa libreria che hai pubblicato.</p>
-      enforcement:
-        heading: Applicazione delle regole
-        content_html: |
-            <p>Qualsiasi script che venga trovato a includere del codice esterno al di fuori di quanto permesso sarà soggetto all'eliminazione.</p>
-      test_url:
-        label: Verifica un URL
-        result_ok: L'URL è consentito
-        result_not_ok: L'URL non è consentito
     script_rewriting:
       title: "Come %{site_name} riscriverà gli script postati"
       content_html: >
