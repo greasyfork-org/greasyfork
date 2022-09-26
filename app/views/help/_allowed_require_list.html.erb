@@ -1,3 +1,10 @@
+<p>
+  <label for="test-require"><%= t('help.cdns.test_url.label') %></label><br>
+  <input id="test-require" type="url" style="width: 100%">
+  <span id="test-require-result-ok"><%= t('help.cdns.test_url.result_ok') %></span>
+  <span id="test-require-result-not-ok"><%= t('help.cdns.test_url.result_not_ok') %></span>
+</p>
+
 <table>
   <tbody>
     <% AllowedRequire.order(:name, :pattern).each do |ar| %>
@@ -27,17 +34,11 @@
 </table>
 
 <% if current_user&.administrator? %>
+  <hr>
   <p>
     <%= link_to 'New', new_admin_allowed_require_path %>
   </p>
 <% end %>
-
-<p>
-  <label for="test-require"><%= t('help.external_scripts.test_url.label') %></label>
-  <input id="test-require" type="url">
-  <span id="test-require-result-ok"><%= t('help.external_scripts.test_url.result_ok') %></span>
-  <span id="test-require-result-not-ok"><%= t('help.external_scripts.test_url.result_not_ok') %></span>
-</p>
 
 <script>
   var patterns = [<%= AllowedRequire.pluck(:pattern).map { |pattern| "new RegExp(\"#{j pattern}\")"}.join(",\n").html_safe %>];
@@ -50,13 +51,11 @@
       okDiv.style.display = "none";
       notOkDiv.style.display = "none";
     } else if (patterns.find(pattern => pattern.test(value))) {
-      okDiv.style.display = "inline";
+      okDiv.style.display = "block";
       notOkDiv.style.display = "none";
     } else {
       okDiv.style.display = "none";
-      notOkDiv.style.display = "inline";
+      notOkDiv.style.display = "block";
     }
   });
 </script>
-
-<hr>

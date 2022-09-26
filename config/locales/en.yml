@@ -1069,47 +1069,54 @@ en:
       title: "%{site_name}'s policy on external scripts"
       # content of the external script rules page
       intro_html: |
-        <p>User scripts have the technical ability to load and execute other scripts. This can be done in a few different ways, including:</p>
-        <ul>
-          <li>The %{require_doc_link:<code>@require</code>} metadata key.</li>
+        <p>%{site_name} permits the use of external code in specific cases. Any script found to be including external code outside of what is permitted is subject to be deleted. If you find a script violating these rules, please report it.</p>
+        <p>Note that these rules only apply to external, executable code. Loading non-executable code, for example JSON or CSS, is not restricted.</p>
+      rationale:
+        title: Rationale
+        content_html: |
+          <p>User scripts have the technical ability to load and execute other scripts. This can be done in a few different ways, including:</p>
+          <ul>
+          <li>The %{require_doc_link:<code>@require</code>} and %{resource_doc_link:<code>@resource</code>} metadata keys.</li>
           <li><code>XmlHttpRequest</code> to download the script, then <code>eval</code> to execute.</li>
           <li>Adding a <code>&lt;script&gt;</code> tag dynamically.</li>
           <li>Webpack's %{webpack_externals_link:<code>externals</code>} option.</li>
-        </ul>
-        <p>While this is a useful feature and most script authors use this for legitimate purposes, it can also be used maliciously. One of the core principles of %{site_name} is that the user must be able to inspect the code in a script. External scripts can bypass this principle in a number of ways: they can change without warning or history, they can serve up different code to different people, and they can be used to hide malicious code in the middle of known libraries. Even if someone were to check an external script and determine it to be legitimate, that would be no guarantee that that script always has been or always will be legitimate.</p>
+          <li>Performing an update of the script, whether performed automatically or by directing the user to perform an action.</li>
+          </ul>
+          <p>While this is a useful feature and most script authors use this for legitimate purposes, it can also be used maliciously. One of the core principles of %{site_name} is that the user must be able to inspect the code in a script. External scripts can bypass this principle in a number of ways: they can change without warning or history, they can serve up different code to different people, and they can be used to hide malicious code in the middle of known libraries. Even if someone were to check an external script and determine it to be legitimate, that would be no guarantee that that script always has been or always will be legitimate.</p>
+      cdns:
+        title: Content delivery networks (CDNs)
+        content_html: |
+          <p>Code from CDNs is allowed. %{cdns_link:See a list of recognized CDNs.} This code may be minified, but not obfuscated.</p>
+      sri:
+        title: Scripts with subresource integrity hashes
+        content_html: |
+          <p>Use of <code>@require</code> and <code>@resource</code> with URLs with %{mdn_sri_link:subresource integrity} in the %{tm_sri_link:Tampermonkey format} is allowed.</p>
       allowed_external_codes:
-        heading: Allowed external code
+        heading: Allowed external codes
         content_html: |
-          <p>To allow script authors to continue to use external scripts, %{site_name} has implemented a list of allowed URL patterns that can be included with a script. This list consists of script locations that:</p>
-          <ul>
-            <li>Are public</li>
-            <li>Will not have their contents change frequently</li>
-            <li>Would likely be useful to more than one script author</li>
-          </ul>
-          <p>If the script you wish to include is a JavaScript library (for example jQuery or YUI), try to find it on one of the sites listed below. %{cdnjs_link:cdnjs} and %{jsdelivr_link:jsDelivr} in particular have a wide range of libraries available.</p>
-          <p>The current list is:</p>
-          %{allowed_require_list}
-      other_allowed_codes:
-        heading: Special cases
+          <p>The following are the ways external code is allowed on %{site_name}. Unless otherwise specified, all other %{code_rules_link:rules for code} apply to the external code.</p>
+      libraries:
+        title: "%{site_name} libraries"
         content_html: |
-          <p>In addition to the list above, the following uses are also allowed:</p>
-          <ul>
-            <li>Loading a site's existing code for use on the same site (e.g. using example.com/script.js on example.com).</li>
-            <li>Loading a resource that is data only, for example a JSON file, without executing any of it.</li>
-          </ul>
-          <p>The following uses are also disallowed:</p>
-          <ul>
-            <li>Loading updates to the script from an external URL.</li>
-          </ul>
-      add_to_list:
-        heading: Adding to the list
+          <p>Scripts posted as libraries on %{site_name} are allowed. Libraries can be created by choosing the option when creating a new script. These can additionally be set to sync from an external URL, like a GitHub repository.</p>
+      origin_host:
+        title: Injection of scripts from the origin host
         content_html: |
-          <p>If the script you wish to include is not available on the sites above, %{contact_link:let us know} and we can find somewhere it is (or host it ourselves!).</p>
-          <p>If the script you wish to include was written by you, you can submit it as a separate entry on %{site_name} by choosing the "Library" script type. You will then be able to include this posted library in your script.</p>
-      enforcement:
-        heading: Enforcement
-        content_html: |
-          <p>Any script found to be including external code outside of what is permitted is subject to be deleted.</p>
+          <p>Injection of external scripts on the same domain as where they came from is allowed. If a script runs on https://example.com, and downloads https://example.com/script.js, modifies it, and injects back on https://example.com/, this would be allowed.</p>
+          <p>If https://example.com/script.js is injected onto https://differentsite.com, this would be disallowed.</p>
+    cdns:
+      title: Allowed CDNs
+      content_html: |
+        <p>This is a list of CDNs recognized by %{site_name}. These may be used to load %{external_code_link:external code} on scripts posted on %{site_name}.</p>
+        <p>This list consists of script locations that:</p>
+        <ul>
+          <li>Are public</li>
+          <li>Will not have their contents change frequently</li>
+          <li>Would likely be useful to more than one script author</li>
+        </ul>
+        <p>If the script you wish to include is a JavaScript library (for example jQuery or YUI), try to find it on one of the sites listed below. %{cdnjs_link:cdnjs} and %{jsdelivr_link:jsDelivr} in particular have a wide range of libraries available. If you have a CDN you would like to be added, please %{github_link:request it on GitHub}. Note that there are %{external_code_link:other options} for external code other than CDNs.</p>
+
+        %{allowed_require_list}
       test_url:
         label: Test a URL
         result_ok: URL is allowed

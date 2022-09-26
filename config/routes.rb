@@ -160,6 +160,7 @@ Rails.application.routes.draw do
     get 'help', to: 'help#index', as: 'help'
     get 'help/allowed-markup', to: 'help#allowed_markup', as: 'help_allowed_markup'
     get 'help/antifeatures', to: 'help#antifeatures', as: 'help_antifeatures'
+    get 'help/cdns', to: 'help#cdns', as: 'help_cdns'
     get 'help/code-rules', to: 'help#code_rules', as: 'help_code_rules'
     get 'help/contact', to: 'help#contact', as: 'help_contact'
     get 'help/credits', to: 'help#credits', as: 'help_credits'

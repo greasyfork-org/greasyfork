@@ -430,6 +430,7 @@ class ScriptVersion < ApplicationRecord
     allowed_requires = AllowedRequire.all
     meta['require'].each do |script_url|
       next if script_url.starts_with?('data:')
+      next if /\A[^#]+#(md5|sha1|sha256|sha385|sha512)=/.match?(script_url)
 
       uri = URI(script_url).normalize.to_s
       r << script_url if allowed_requires.none? { |ar| uri =~ Regexp.new(ar.pattern) }

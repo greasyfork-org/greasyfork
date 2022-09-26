@@ -1,0 +1,3 @@
+<% title t('help.cdns.title') %>
+
+<%= it('help.cdns.content_html', allowed_require_list: controller.render_to_string(partial: 'allowed_require_list'), site_name: site_name, cdnjs_link: 'https://cdnjs.com/', jsdelivr_link: 'https://www.jsdelivr.com/', external_code_link: help_external_scripts_path, github_link: 'https://github.com/JasonBarnabe/greasyfork') %>
