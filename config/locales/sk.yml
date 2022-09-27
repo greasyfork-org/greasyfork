@@ -781,6 +781,59 @@ sk:
       reporting: Ak spozorujete skript, ktorý nespĺňa tieto parametre, nahláste ho kliknutím na odkaz Spätná väzba pre tento skript a vyberte  možnosť "Nahlásiť skript".
     external_scripts:
       title: "Zásady %{site_name} používania externých skriptov"
+      intro_html: |
+          <p>%{site_name} umožňuje v určitých prípadoch použiť externý kód. Každý skript, pri ktorom sa zistí, že obsahuje externý kód mimo povoleného rozsahu, bude odstránený. Ak nájdete skript, ktorý porušuje tieto pravidlá, nahláste ho.</p>
+          <p>Upozorňujeme, že tieto pravidlá sa vzťahujú len na externý spustiteľný kód. Načítanie nespustiteľného kódu, napríklad JSON alebo CSS, nie je obmedzené.</p>
+      rationale:
+        title: Odôvodnenie
+        content_html: |
+            <p>Používateľské skripty majú technickú schopnosť načítať a vykonávať iné skripty. To možno vykonať niekoľkými rôznymi spôsobmi, vrátane:</p>
+            <ul>
+            <li>%{require_doc_link:<code>@require</code>} a %{resource_doc_link:<code>@resource</code>} metadátové kľúče.</li>
+            <li><code>XmlHttpRequest</code>na stiahnutie skriptu, a potom <code>eval</code> na vykonanie.</li>
+            <li>Dynamické pridanie značky <code>&lt;script&gt;</code>.</li>
+            <li>Možnosti webpakov %{webpack_externals_link:externals<code>}.</li>
+            <li>Vykonanie aktualizácie skriptu, či už automaticky alebo usmernením používateľa na vykonanie akcie.</li>
+            </ul>
+            <p>Hoci ide o užitočnú funkciu a väčšina autorov skriptov ju využíva na legitímne účely, môže byť použitá aj zlomyseľne. Jednou zo základných zásad stránky %{site_name} je, že používateľ musí mať možnosť kontrolovať kód v skripte. Externé skripty môžu túto zásadu obchádzať viacerými spôsobmi: môžu sa meniť bez varovania alebo histórie, môžu slúžiť na zobrazenie rôzneho kódu rôznym ľuďom a môžu sa použiť na skrytie škodlivého kódu uprostred známych knižníc. Aj keby niekto skontroloval externý skript a určil ho ako legitímny, nebola by to žiadna záruka, že tento skript vždy bol alebo vždy bude legitímny.</p>
+      cdns:
+        title: Sieť pre doručovanie obsahu (CDN)
+        content_html: |
+            <p>Kód z CDN je povolený. %{cdns_link:Pozrite si zoznam uznaných CDN.} Tento kód môže byť minifikovaný, ale nie obfuskovaný.</p>
+      sri:
+        title: Skripty s hashmi integrity čiastkových zdrojov
+        content_html: |
+            <p>Použitie <code>@require</code> a <code>@resource</code> s adresami URL s %{mdn_sri_link:integrita čiastkových zdrojov} vo formáte %{tm_sri_link:Tampermonkey} je povolené.</p>
+      allowed_external_codes:
+        heading: Povolené externé kódy
+        content_html: |
+            <p>Nižšie sú uvedené spôsoby, akými je povolený externý kód na %{site_name}. Ak nie je uvedené inak, všetky ostatné %{code_rules_link:pravidlá pre kód} sa vzťahujú na externý kód.</p>
+      libraries:
+        title: "Knižnice %{site_name}"
+        content_html: |
+            <p>Skripty zverejnené ako knižnice na %{site_name} sú povolené. Knižnice možno vytvoriť výberom tejto možnosti pri vytváraní nového skriptu. Tie možno dodatočne nastaviť na synchronizáciu z externej adresy URL, napríklad z úložiska GitHub.</p>
+      origin_host:
+        title: Injektovanie skriptov z pôvodného hostiteľa
+        content_html: |
+            <p>Injektovanie externých skriptov na rovnakej doméne, z ktorej pochádzajú, je povolené. Ak sa skript spustí na adrese https://example.com, stiahne https://priklad.com/script.js, upraví skript a injektuje späť na adresu https://priklad.com/, bude to povolené.</p>
+            <p>Ak je https://priklad.com/script.js injektovaný na https://inastranka.com, bolo by to zakázané.</p>
+    cdns:
+      title: Povolené siete CDN
+      content_html: |
+          <p>Toto je zoznam sietí CDN uznaných stránkou %{site_name}. Tieto môžu byť použité na načítanie %{external_code_link:externého kódu} skripty zverejnené na %{site_name}.</p>
+          <p>Tento zoznam obsahuje umiestnenia skriptov, ktoré:</p>
+          <ul>
+          <li>Sú verejné</li>
+          <li>Ich obsah sa nebude často meniť</li>
+          <li>Pravdepodobne by bol užitočný pre viacerých autorov skriptov</li>
+          </ul>
+          <p>Ak je skript, ktorý chcete zahrnúť je knižnica JavaScriptu (napríklad jQuery alebo YUI), skúste ju nájsť na niektorej z nižšie uvedených lokalít. Najmä %{cdnjs_link:cdnjs} a %{jsdelivr_link:jsDelivr} majú k dispozícii širokú škálu knižníc. Ak máte CDN, ktorú by ste chceli pridať, požiadajte %{github_link:o ňu na GitHube}. Upozorňujeme, že existujú %{external_code_link:ďalšie možnosti} pre iný externý kód ako CDN.</p>
+
+          %{allowed_require_list}
+      test_url:
+        label: Skúška URL
+        result_ok: URL je povolená
+        result_not_ok: URL nie je povolená
     script_rewriting:
       title: "Ako budú prepísané skripty odoslané na %{site_name}"
       content_html: >
