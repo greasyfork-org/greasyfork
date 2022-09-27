@@ -4,12 +4,8 @@
  *  </div>
  */
 window.markupPreview = function(p) {
-  function getMarkupOptions(previewable) {
-    return document.querySelectorAll('input[type=radio][name="' + previewable.getAttribute("data-markup-option-name") + '"]');
-  }
-
   function getPreviewable(element) {
-    while (element && element.className.indexOf("previewable") == -1) {
+    while (element && element.className.indexOf("previewable") === -1) {
       element = element.parentNode;
     }
     return element;
@@ -28,7 +24,7 @@ window.markupPreview = function(p) {
   }
 
   function handlePreviewClick(event) {
-    var previewable = getPreviewable(event.target);
+    let previewable = getPreviewable(event.target);
     if (isOnPreviewTab(previewable)) {
       return;
     }
@@ -37,11 +33,10 @@ window.markupPreview = function(p) {
   }
 
   function updateContent(previewable) {
-    var markupOptions = getMarkupOptions(previewable);
-    var selectedMarkup = previewable.closest("form").querySelector('input[name="' + previewable.getAttribute("data-markup-option-name") + '"]:checked').value;
-    var url = previewable.getAttribute("data-preview-source") == "url";
+    let selectedMarkup = previewable.closest("form").querySelector('input[name="' + previewable.getAttribute("data-markup-option-name") + '"]:checked').value;
+    let url = previewable.getAttribute("data-preview-source") === "url";
 
-    var xhr = new XMLHttpRequest();
+    let xhr = new XMLHttpRequest();
     xhr.onload = function() {
       displayResult(previewable, xhr.responseText);
     }
@@ -49,30 +44,38 @@ window.markupPreview = function(p) {
       displayResult(previewable, xhr.status);
     }
     xhr.open("POST", "/preview-markup");
-    var params = new FormData();
+    let params = new FormData();
     params.append("text", getTextElement(previewable).value);
     params.append("markup", selectedMarkup);
-    params.append("url", url);
+    params.append("url", String(url));
     params.append(document.querySelector("meta[name='csrf-param']").getAttribute("content"), document.querySelector("meta[name='csrf-token']").getAttribute("content"))
     xhr.send(params);
   }
 
   function displayResult(previewable, text) {
-    var textElement = getTextElement(previewable);
-    var resultElement = getResultElement(previewable);
+    let textElement = getTextElement(previewable);
+    let resultElement = getResultElement(previewable);
     resultElement.innerHTML = text;
-    if (textElement.style.display != "none") {
-      resultElement.style.height = textElement.clientHeight + "px";
-      resultElement.style.display = "block";
+    // Need both not display: none to be able to their heights
+    resultElement.style.display = "block";
+    textElement.style.display = 'block'
+    resultElement.style.height = "auto"
+    resultElement.style.height = Math.max(textElement.clientHeight + getBorderHeight(textElement), resultElement.scrollHeight + getBorderHeight(resultElement)) + "px";
+    if (textElement.style.display !== "none") {
       textElement.style.display = "none";
       updateTabUI(previewable, true);
     }
   }
 
+  function getBorderHeight(el) {
+    let computedStyle = getComputedStyle(el)
+    return parseInt(computedStyle.borderTopWidth) + parseInt(computedStyle.borderBottomWidth)
+  }
+
   function handleWriteClick(event) {
-    var previewable = getPreviewable(event.target);
-    var textElement = getTextElement(previewable);
-    var resultElement = getResultElement(previewable);
+    let previewable = getPreviewable(event.target);
+    let textElement = getTextElement(previewable);
+    let resultElement = getResultElement(previewable);
     resultElement.style.display = "none";
     textElement.style.display = "block";
     updateTabUI(previewable, false);
@@ -86,16 +89,16 @@ window.markupPreview = function(p) {
 
   function updateTabUI(previewable, previewTab) {
     previewable.querySelector(previewTab ? ".preview-tab" : ".write-tab").parentNode.classList.add("current");
-    var tabToHide = previewable.querySelector(previewTab ? ".write-tab" : ".preview-tab");
+    let tabToHide = previewable.querySelector(previewTab ? ".write-tab" : ".preview-tab");
     tabToHide.parentNode.classList.remove("current");
   }
 
-  var tabs = document.createElement("div");
+  let tabs = document.createElement("div");
   tabs.className = "tabs";
   tabs.innerHTML = "<span class='current'><a class='write-tab'><span>" + p.getAttribute("data-write-label") + "</span></a></span> <span><a class='preview-tab'><span>" + p.getAttribute("data-preview-label") + "</span></a></span>";
   p.insertBefore(tabs, p.firstChild);
 
-  var results = document.createElement("div");
+  let results = document.createElement("div");
   results.className = "preview-results user-content";
   results.style.display = "none";
   p.appendChild(results);
