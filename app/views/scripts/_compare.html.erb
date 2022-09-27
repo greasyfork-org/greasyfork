@@ -10,7 +10,9 @@
     <%= f.submit t('scripts.admin.compare_button') %>
   <% end %>
 
-  <% unless @diff.nil? %>
+  <% if @diff_error %>
+    <p class="notice"><%= @diff_error %></p>
+  <% elsif @diff %>
     <p>
       <%= link_to(@other_script.name(request_locale), show_code_script_path(@other_script)) %><br>
     </p>
@@ -27,10 +29,10 @@
       </p>
     <% end %>
 
-    <% if @diff.empty? %>
-      <p><%= t('scripts.diff_no_change') %></p>
+    <% if @diff.diff.empty? %>
+      <p class="notice"><%= t('scripts.diff_no_change') %></p>
     <% else %>
-      <%= @diff %>
+      <%= @diff.to_s(:html).html_safe %>
     <% end %>
   <% end %>
 </section>

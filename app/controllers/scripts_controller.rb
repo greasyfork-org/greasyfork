@@ -644,9 +644,9 @@ class ScriptsController < ApplicationController
         other_code = @other_script.newest_saved_script_version.code
         this_code = @script.newest_saved_script_version.code
       end
-      @diff = Diffy::Diff.new(other_code, this_code, include_plus_and_minus_in_html: true, include_diff_info: true, diff: diff_options).to_s(:html).html_safe
+      @diff = Diffy::Diff.new(other_code, this_code, include_plus_and_minus_in_html: true, include_diff_info: true, diff: diff_options)
     else
-      flash[:notice] = t('scripts.admin.compare_must_be_local_url', site_name:)
+      @diff_error = flash[:notice] = t('scripts.admin.compare_must_be_local_url', site_name:)
     end
   end
 
