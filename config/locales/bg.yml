@@ -759,6 +759,22 @@ bg:
       reporting: Ако забележите скрипт, който попада извън тези параметри, моля, докладвайте го чрез обратната връзка и изберете „Докладване на скрипт“.
     external_scripts:
       title: "Политика на %{site_name} за външни скриптове"
+      rationale:
+        title: Обосновка
+      cdns:
+        title: Content delivery networks (CDNs)
+      allowed_external_codes:
+        heading: Разрешени външни кодове
+      libraries:
+        title: "%{site_name} библиотеки"
+      origin_host:
+        title: Инжектиране на скриптове от origin host
+    cdns:
+      title: Разрешени CDNи
+      test_url:
+        label: Тествай URL
+        result_ok: URL е разрешен
+        result_not_ok: URL не е разрешен
     script_rewriting:
       title: "Как %{site_name} ще презапише публикуваните скриптове"
       content_html: >
