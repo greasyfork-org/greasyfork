@@ -39,19 +39,6 @@
   <% end %>
 
   <% if Rails.env.production? %>
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-48197018-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      <% if sleazy? %>
-        gtag('config', 'UA-48197018-2');
-      <% else %>
-        gtag('config', 'UA-48197018-1');
-      <% end %>
-    </script>
-
     <% if sleazy? %>
       <!-- Global site tag (gtag.js) - Google Analytics -->
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZB1G3ZKC89"></script>
