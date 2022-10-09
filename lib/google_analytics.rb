@@ -2,11 +2,6 @@ require 'google/analytics/data/v1beta'
 
 class GoogleAnalytics
   def self.report_installs(date, site: :greasyfork)
-    # Create a client object. The client can be reused for multiple calls.
-    client = Google::Analytics::Data::V1beta::AnalyticsData::Client.new do |config|
-      config.credentials = Rails.application.secrets.google_analytics[:credentials]
-    end
-
     # Create a request. To set request fields, pass in keyword arguments.
     # https://developers.google.com/analytics/devguides/reporting/data/v1/rest/v1beta/properties/runReport
     # https://www.rubydoc.info/gems/google-analytics-data-v1beta/0.4.1/Google/Analytics/Data/V1beta/RunReportRequest#dimension_filter-instance_method
@@ -21,5 +16,23 @@ class GoogleAnalytics
     result = client.run_report request
 
     result.rows.to_h { |row| [row.dimension_values.first.value.to_i, row.metric_values.first.value.to_i] }
+  end
+
+  def self.report_pageviews(site: :greasyfork)
+    date_range = Google::Analytics::Data::V1beta::DateRange.new(start_date: 30.days.ago.to_date.iso8601, end_date: Time.zone.today.iso8601)
+    metric = Google::Analytics::Data::V1beta::Metric.new(name: 'screenPageViews')
+    dimension = Google::Analytics::Data::V1beta::Dimension.new(name: 'pagePath')
+    request = Google::Analytics::Data::V1beta::RunReportRequest.new(property: site == :sleazyfork ? 'properties/293114118' : 'properties/293110681', date_ranges: [date_range], metrics: [metric], dimensions: [dimension])
+
+    # Call the run_report method.
+    result = client.run_report request
+
+    result.rows.to_h { |row| [row.dimension_values.first.value, row.metric_values.first.value.to_i] }
+  end
+
+  def self.client
+    Google::Analytics::Data::V1beta::AnalyticsData::Client.new do |config|
+      config.credentials = Rails.application.secrets.google_analytics[:credentials]
+    end
   end
 end
