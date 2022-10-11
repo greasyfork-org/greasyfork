@@ -71,7 +71,7 @@
   <header id="main-header">
     <div class="width-constraint">
       <div id="site-name">
-        <%= link_to_unless_current "<img src=\"#{ image_pack_path 'blacklogo96.png'}\" alt=\"\">".html_safe, root_path %>
+        <%= link_to_unless_current(root_path) { image_pack_tag 'blacklogo96.png', alt: '', width: 96, height: 96 } %>
         <div id="site-name-text">
           <h1><%= link_to_unless_current site_name, root_path %></h1>
         </div>
