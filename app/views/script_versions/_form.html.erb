@@ -1,7 +1,3 @@
-<% content_for :head_bottom do %>
-  <%= javascript_pack_tag 'script-version-editor' %>
-<% end %>
-
 <% if script_version.errors.empty? && script_version.script.errors.empty? %>
   <p>
     <%= t('scripts.rules_summary_html', full_rules_link: link_to(t('scripts.rules_summary_link_to_full'), help_code_rules_path)) %>

@@ -40,3 +40,4 @@ require("attachments");
 require("reports")
 require("home")
 require("host-check")
+import '../source-editor'
