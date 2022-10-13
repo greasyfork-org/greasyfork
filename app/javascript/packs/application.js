@@ -15,30 +15,31 @@
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-require("@rails/ujs").start()
+import Rails from '@rails/ujs';
+Rails.start();
 
 import '../stylesheets/application.css'
 require.context('../images', true)
 
 import 'lightbox'
 
-require('relative-time');
+import 'relative-time'
 
-require("install");
-require("versioncheck");
-require("recaptcha");
-require("additional-info")
-require("markup-preview");
-require("submit-anchor");
-require("expandable-text");
-require("sidebar");
-require("announcements");
-require("forum");
-require("ethical-ads");
-require("locale-switcher");
-require("attachments");
-require("reports")
-require("home")
-require("host-check")
-import '../source-editor'
+import "install"
+import "versioncheck"
+import "recaptcha"
+import "additional-info"
+import "markup-preview"
+import "submit-anchor"
+import "expandable-text"
+import "sidebar"
+import "announcements"
+import "forum"
+import "ethical-ads"
+import "locale-switcher"
+import "attachments"
+import "reports"
+import "home"
+import "host-check"
+import 'source-editor'
 import 'stats'
