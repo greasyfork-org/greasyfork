@@ -41,3 +41,4 @@ require("reports")
 require("home")
 require("host-check")
 import '../source-editor'
+import 'stats'
