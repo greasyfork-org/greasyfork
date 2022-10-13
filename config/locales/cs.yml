@@ -146,6 +146,7 @@ cs:
     derivatives_similar_last_check_soon: "Brzy provedeme kontrolu na podobnost s vaším skriptem."
     derivatives_similar_last_check_again_soon_html: "Poslední kontrola na podobnost s vaším skriptem proběhla %{date}. Další kontrolu provedeme brzy."
     derivatives_similar_check_now: "Zkontrolovat nyní."
+    derivatives_similiar_queued: Kontrola podobnosti bude dokončena za pár minut.
     listing_title_all_sites: "Uživatelské skripty pro všechny stránky"
     listing_description_all_sites: "Uživatelské skripty, které přidávají funkcionality a řeší chyby na všech stránkách"
     listing_title_for_site: "Uživatelské skripty pro %{site}"
@@ -213,6 +214,7 @@ cs:
     warning_version_not_incremented_html: "Změnili jste kód, ale nezvýšili jste číslo <code>@version</code>. Uživatelům, kteří používají váš skript, se kód neaktualizuje."
     warning_version_missing_html: "Nespecifikovali jste <code>@version</code>. <code>@version</code>je nutná aby uživatelé mohli dostávat aktualizace. Můžete ji zadat takto: <code>// @version 1.0</code>."
     warning_version_missing_generate_automatically_html: "Vygenerovat <code>@version</code>automaticky"
+    warning_namespace_missing_html: "Nespecifikovali jste <code>@namespace</code>. <code>@namespace</code> pomáhá zabraňovat kolizím když uživatelé nainstalují jiný skript se stejným jménem. <code>@namespace</code> musí být jen unikátní název; často je používána vaše URL autora."
     warning_namespace_missing_generate_automatically_html: "Vygenerovat <code>@namespace</code> automaticky"
     warning_namespace_changed_html: "Parametr <code>@namespace</code> se změnil. Neměnné <code>@namespace</code> umožňuje uživatelům reinstalovat skript pro jeho aktualizaci."
     warning_potentially_minified_html: "Zdá se, že váš skript obsahuje komprimovaný kód. Pokud používáte komprimovanou knihovnu, vložte ji pomocí <code>@require</code> z %{allowed_requires_link}. Komprimované skripty jsou v rozporu s podmínkami a budou vymazány."
@@ -290,6 +292,9 @@ cs:
     unlisted_marker: "(Neveřejný)"
     library_marker: "(Knihovna)"
     libraries_title: "Knihovny"
+    libraries_description_html: "Jsou dostupné knihovny zveřejněny %{site_name} uživateli, které můžete <code>@require</code> ve vašich skriptech. Pro ostatní druhy knihoven které můžete <code>@require</code>, si přečtěte %{policy_link: podmínky %{site_name} pro <code>@require</code>}."
+    by_site_list_title: "Uživatelské skripty na %{site_name} ve skupinách po stránce"
+    by_site_list_description: "Tohle jsou stránky ovlivněny většinou populárních uživatelských skriptů. Větší písmo znamená více populární uživatelské skripty."
     by_site_list_filter: "Řadit podle názvu stránky"
     search_placeholder: "Hledat skripty"
     updated: "Aktualizovaný skript."
@@ -297,8 +302,10 @@ cs:
     must_confirm: "Před tím, než nahrajete skript je třeba ověřit váš účet. Máte dvě možnosti ověření účtu - přihlásit se přes externí službu nebo přes ověřovací e-mail."
     must_confirm_email_button: "Odeslat ověřovací email na %{email}"
     authors_heading: "Autoři"
+    error_unauthorized_copy: "Tento kód vypadá, že je neoprávněnou kopií %{script}. Přečtěte si prosím %{rules_link:pravidla} %{site_name} o zveřejňování skriptů. "
     invitations:
       form_title: "Pozvat další autory"
+      explanation: "Můžete přidat další Greasy Fork uživatele jako autory tohoto skriptu. Budou mít stejná práva na tomto skriptu jako vy."
       invited_user_url_label: "Pozvat lidi"
       invited_user_placeholder: "URL uživatelského profilu na %{site_name}"
       submit: "Poslat pozvánku"
@@ -306,6 +313,7 @@ cs:
       already_author: "Vámi uvedený uživatel už byl uveden jako autor tohoto skriptu."
       sent: "Pozvánka byla odeslána."
       subject: "Pozvánka pro %{script_name}"
+      body: "Byli jste pozváni, abyste se stali autorem %{script_name} (%{script_url}) na %{site_name}. Pro přijetí prosím navštivte %{accept_url}. "
       current_user_already_author: "U tohoto skriptu už jste autorem"
       invitation_not_found: "Pozvánka nebyla nalezena."
       invitation_expired: "Pozvánka vypršela."
@@ -316,11 +324,37 @@ cs:
       remove_button: "Odebrat"
       remove_confirm: "Opravdu chcete smazat %{user_name} jako autora?"
       failure: "Tohoto autora nelze odebrat."
+    no_disposable_email: "Nemůžete zveřejňovat skripty pokud používáte jednorázovou e-mailovou adresu."
+    rate_limited: "Nedávno jste zveřejnili příliš mnoho skriptů. Zkuste to znovu později."
     delayed: "Kvůli potížím se spamem, nemusí jít nahrávání skriptů z nových účtů. Prosím, zkuste to později."
+    new_script_notice:
+      title: "Co se snažíte udělat?"
+      install_link_html: "Chci <b>nainstalovat a používat</b> skript."
+      share_link_html: "<b>Napsal</b> jsem skript a chci ho <b>sdílet</b> s ostatními."
+    new_title:
+      js: "Zveřejnit nový skript"
+      css: "Zveřejnit nový styl"
+    update_title: "Zveřejnit novou verzi %{script}"
     install_help_dialog:
+      js:
+        firefox: K instalaci tototo skriptu si budete muset nainstalovat rozšíření jako %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} nebo %{violentmonkey_link:Violentmonkey}.
+        chrome: K instalaci tohoto skriptu si budete muset nainstalovat rozšíření jako %{tampermonkey_link:Tampermonkey} nebo %{violentmonkey_link:Violentmonkey}.
+        opera: K instalaci tohoto skriptu si budete muset nainstalovat rozšíření jako %{tampermonkey_link:Tampermonkey} nebo %{violentmonkey_link:Violentmonkey}.
+        safari: K instalaci tohoto skriptu si budete muset nainstalovat rozšíření jako %{tampermonkey_link:Tampermonkey} nebo %{userscripts_link:Userscripts}.
+        other: K instalaci tohoto skriptu si budete muset nainstalovat manažer uživatelských skriptů.
+        bypass: (Už mám manažer uživatelských skriptů, nechte mě ho nainstalovat!)
       css:
         firefox: K nainstalování skriptu %{stylus_link:Stylus} potřebujete nejprve nainstalovat doplňek prohlížeče.
+        chrome: K instalaci tohoto skriptu si budete muset nainstalovat rozšíření jako %{stylus_link:Stylus}.
+        opera: K instalaci tohoto skriptu si budete muset nainstalovat rozšíření jako %{stylus_link:Stylus}.
+        safari: K instalaci tohoto skriptu si budete muset nainstalovat manažer uživatelských stylů.
+        other: K instalaci tohoto skriptu si budete muset nainstalovat manažer uživatelských stylů.
+        bypass: (Už mám manažer uživatelských stylů, nechte mě ho nainstalovat!)
+      close_dialog: OK
     antifeatures:
+      warning_title: Tento skript obsahuje "antifunkce"
+      intro: Před instalací, %{site_name} chce abyste věděli, že tento skript obsahuje "antifunkce", což jsou věci, které spíše přispívají autorovi skriptu, než vám.
+      author_explanation_intro: "Autor skriptu vysvětluje:"
       types:
         ads:
           title: Reklamy
@@ -328,14 +362,20 @@ cs:
         tracking:
           title: Zjištění polohy
           description_html: Tento skript obsahuje části, které sledují vaše vyhledávání.
+        miner:
+          title: Kryptominer
+          description_html: Tento skript obsahuje kryptominer, který bude <b>používat výkon vašeho zařízení</b> když bude aktivní.
         referral-link:
           title: Odkazy
           description_html: ' '
         membership:
           title: Členství
+          description_html: Tento skript je plně funkční až poté co se <b>k něčemu přihlásíte</b>, např. připojíte se do skupiny, přihlásíte se k odběru kanálu, nebo označíte stránku likem.
         payment:
           title: Platba
+          description_html: Tento skript je plně funkční až poté co <b>uděláte platbu</b>. %{site_name} není spojená s platbou, takže nemůže ověřit, jestli něco dostanete nebo pomoct vám s vrácením peněz.
       install_anyway: Nainstalovat skript
+      cancel_install: Zrušit
     badges:
       js:
         short: JS
