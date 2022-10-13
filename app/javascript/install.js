@@ -1,7 +1,6 @@
 import sha1 from 'js-sha1';
 import MicroModal from 'micromodal';
 import { canInstallUserJS, canInstallUserCSS } from "./managers";
-const { detect } = require('detect-browser');
 
 function onInstallClick(event) {
   event.preventDefault();
@@ -30,6 +29,7 @@ async function detectCanInstall(installLink) {
 
 function installationHelpFunction(js) {
   return async function showInstallationHelpJS(installLink) {
+    const { detect } = await import('detect-browser')
     let browserType = detect().name
     let modal = document.getElementById(js ? "installation-instructions-modal-js" : "installation-instructions-modal-css")
     switch (browserType) {

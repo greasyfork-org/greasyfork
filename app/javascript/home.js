@@ -1,10 +1,9 @@
-const { detect } = require('detect-browser');
-
-function init() {
+async function init() {
   if (!document.querySelector(".browser-list")) {
     return
   }
 
+  const { detect } = await import('detect-browser')
   let listToShow
   switch (detect().os) {
     case 'Android OS':
