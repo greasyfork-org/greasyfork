@@ -5,7 +5,7 @@ orbs:
 jobs:
   build:
     docker:
-      - image: circleci/ruby:3.1.2-browsers
+      - image: cimg/ruby:3.1.2-browsers
         environment:
           MYSQL_HOST: 127.0.0.1
           MYSQL_PORT: 3306
