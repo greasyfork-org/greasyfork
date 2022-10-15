@@ -20,10 +20,8 @@ jobs:
           MYSQL_USER: user
           MYSQL_PASSWORD: passw0rd
         command: [--loose_innodb_read_only_compressed=OFF]
-    executor: ruby/default
     steps:
       - browser-tools/install-browser-tools
-      - checkout
       - run: sudo apt install mariadb-client
       - run:
           name: Install Sphinx
