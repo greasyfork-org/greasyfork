@@ -2,7 +2,6 @@
   "dependencies": {
     "@github/time-elements": "^3.1.1",
     "@rails/ujs": "^7.0",
-    "@rails/webpacker": "^5.4.0",
     "ace-builds": "^1.4.12",
     "chart.js": "^2.9.3",
     "detect-browser": "^5.2.0",
@@ -13,9 +12,7 @@
     "terser": "^5.14.2"
   },
   "devDependencies": {
-    "webpack-bundle-analyzer": "^4.4.0"
-  },
-  "scripts": {
-    "webpack:analyze": "mkdir -p public/packs && node_modules/.bin/webpack --config config/webpack/production.js --profile --json > public/packs/stats.json && node_modules/.bin/webpack-bundle-analyzer public/packs/stats.json"
+    "vite": "^3.0.0",
+    "vite-plugin-ruby": "^3.1.0"
   }
 }

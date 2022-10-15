@@ -111,10 +111,6 @@ module ApplicationHelper
     end
   end
 
-  def image_pack_path(path)
-    asset_pack_path "media/images/#{path}"
-  end
-
   def non_blocking_stylesheet_tag(url)
     <<~HTML.html_safe
       <link rel="stylesheet" href="#{h url}" media="print" onload="this.media='all'; this.onload=null;">

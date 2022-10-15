@@ -1,6 +1,3 @@
-import jsWorkerUrl from "file-loader!ace-builds/src-noconflict/worker-javascript";
-import cssWorkerUrl from "file-loader!ace-builds/src-noconflict/worker-css";
-
 let aceEditor = null;
 
 window.addEventListener("DOMContentLoaded", async () => {
@@ -61,11 +58,13 @@ async function handleChange(e) {
     });
     if (language === 'css') {
       await import('ace-builds/src-noconflict/mode-css')
-      ace.config.setModuleUrl('ace/mode/css_worker', cssWorkerUrl)
+      let cssWorkerUrl = await import("ace-builds/src-noconflict/worker-css?url");
+      ace.config.setModuleUrl('ace/mode/css_worker', cssWorkerUrl.default)
       aceEditor.getSession().setMode("ace/mode/css");
     } else {
       await import('ace-builds/src-noconflict/mode-javascript')
-      ace.config.setModuleUrl('ace/mode/javascript_worker', jsWorkerUrl)
+      let jsWorkerUrl = await import("ace-builds/src-noconflict/worker-javascript?url");
+      ace.config.setModuleUrl('ace/mode/javascript_worker', jsWorkerUrl.default)
       aceEditor.getSession().setMode("ace/mode/javascript");
     }
     /*$('#ace-editor').resizable({

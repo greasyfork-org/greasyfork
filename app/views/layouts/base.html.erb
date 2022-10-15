@@ -4,8 +4,8 @@
   <title><%= content_for?(:title) ? content_for(:title) : site_name %></title>
   <% if content_for?(:description) %><meta name="description" value="<%= content_for(:description) %>"><% end %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <%= stylesheet_pack_tag 'application', media: 'all' %>
-  <%= javascript_pack_tag 'application' %>
+  <%= vite_client_tag %>
+  <%= vite_javascript_tag 'application' %>
   <% if @caching_request %>
     <%= PageCache::CSRF_META_TAGS %>
   <% else %>
@@ -15,7 +15,7 @@
     <meta name="robots" content="<%= @bots %>">
   <% end %>
   <link rel="canonical" href="<%= canonical_url(@canonical_params) %>">
-  <link rel="icon" href="<%= image_pack_path 'blacklogo16.png' %>">
+  <link rel="icon" href="<%= vite_asset_path('images/blacklogo16.png') %>">
   <%= non_blocking_stylesheet_tag('https://fonts.googleapis.com/css?family=Open+Sans&display=swap') unless Rails.env.test? %>
   <% if request.get?
     # https://support.google.com/webmasters/answer/189077
@@ -71,7 +71,7 @@
   <header id="main-header">
     <div class="width-constraint">
       <div id="site-name">
-        <%= link_to_unless_current(root_path) { image_pack_tag 'blacklogo96.png', alt: '', width: 96, height: 96 } %>
+        <%= link_to_unless_current(root_path) { vite_image_tag('images/blacklogo96.png', alt: '', width: 96, height: 96) } %>
         <div id="site-name-text">
           <h1><%= link_to_unless_current site_name, root_path %></h1>
         </div>

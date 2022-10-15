@@ -28,7 +28,7 @@ gem 'thinking-sphinx', git: 'https://github.com/pat/thinking-sphinx'
 gem 'transifex-ruby'
 gem 'ts-sidekiq-delta'
 gem 'user_agent_parser'
-gem 'webpacker', '~> 5.x'
+gem 'vite_rails'
 gem 'will_paginate'
 gem 'will-paginate-i18n'
 
