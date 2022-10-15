@@ -22,6 +22,7 @@ jobs:
           MYSQL_PASSWORD: passw0rd
         command: [--loose_innodb_read_only_compressed=OFF]
     steps:
+      - checkout
       - ruby/install-deps
       - browser-tools/install-chrome
       - run: sudo apt install mariadb-client
@@ -32,7 +33,6 @@ jobs:
             wget http://sphinxsearch.com/files/sphinx-3.2.1-f152e0b-linux-amd64.tar.gz
             tar -xvf sphinx-3.2.1-f152e0b-linux-amd64.tar.gz
             echo "export PATH=$PATH:$PWD/sphinx-3.2.1/bin/" >> $BASH_ENV
-      - checkout
       - run:
           name: Which bundler?
           command: bundle -v
