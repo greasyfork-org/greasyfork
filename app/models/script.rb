@@ -578,9 +578,8 @@ class Script < ApplicationRecord
   end
 
   def host
-    return sensitive? ? 'sleazyfork.org' : 'greasyfork.org' if Rails.env.production?
-
-    sensitive? ? 'sleazyfork.local' : 'greasyfork.local'
+    return Rails.application.routes.default_url_options[:host] unless sensitive?
+    return Rails.env.production? ? 'sleazyfork.org' : 'sleazyfork.local'
   end
 
   def similar_scripts(locale:)
