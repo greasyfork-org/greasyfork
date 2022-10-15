@@ -71,10 +71,10 @@
           end
           # show icons for compatible and incompatible
           if status == 'incompatible' %>
-            <%= image_pack_tag 'x.svg', class: 'browser-incompatible-marker', alt: '' %>
-            <%= image_pack_tag "browsericons/#{b.code}.svg", class: 'browser-incompatible', alt: t('scripts.incompatible_with_browser', browser: b.name), title: b_compatibilities.map(&:comments).reject(&:blank?).join("\n").presence || t('scripts.incompatible_with_browser', browser: b.name) %>
+            <%= vite_image_tag 'images/x.svg', class: 'browser-incompatible-marker', alt: '' %>
+            <%= vite_image_tag "images/browsericons/#{b.code}.svg", class: 'browser-incompatible', alt: t('scripts.incompatible_with_browser', browser: b.name), title: b_compatibilities.map(&:comments).reject(&:blank?).join("\n").presence || t('scripts.incompatible_with_browser', browser: b.name) %>
           <% elsif status == 'compatible' %>
-            <%= image_pack_tag "browsericons/#{b.code}.svg", class: 'browser-compatible', alt: t('scripts.compatible_with_browser', browser: b.name), title: b_compatibilities.map(&:comments).reject(&:blank?).join("\n").presence || t('scripts.compatible_with_browser', browser: b.name) %>
+            <%= vite_image_tag "images/browsericons/#{b.code}.svg", class: 'browser-compatible', alt: t('scripts.compatible_with_browser', browser: b.name), title: b_compatibilities.map(&:comments).reject(&:blank?).join("\n").presence || t('scripts.compatible_with_browser', browser: b.name) %>
           <% end %>
         <% end %>
       </span></dd>
