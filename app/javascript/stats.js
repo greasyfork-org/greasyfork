@@ -18,7 +18,7 @@ window.initializeChart = async function(rawData, containerId) {
   container.appendChild(canvas)
 
   let ctx = canvas.getContext("2d");
-  await import('chart.js')
+  const { Chart } = await import('chart.js')
   new Chart(ctx, {
     type: 'bar',
     data: data,

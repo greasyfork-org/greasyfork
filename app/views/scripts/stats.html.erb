@@ -48,7 +48,7 @@
   end
     %>
     <script>
-      initializeChart(<%= data.to_json.html_safe %>, '<%= escape_javascript(container_id) %>')
+      document.addEventListener('DOMContentLoaded', () => initializeChart(<%= data.to_json.html_safe %>, '<%= escape_javascript(container_id) %>'))
     </script>
   <% end %>
 
