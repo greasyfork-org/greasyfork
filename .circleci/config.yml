@@ -22,7 +22,7 @@ jobs:
           MYSQL_PASSWORD: passw0rd
         command: [--loose_innodb_read_only_compressed=OFF]
     steps:
-      - ruby/install_deps
+      - ruby/install-deps
       - browser-tools/install-chrome
       - run: sudo apt install mariadb-client
       - run:
