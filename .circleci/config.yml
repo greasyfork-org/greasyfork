@@ -1,11 +1,11 @@
 version: 2.1
 orbs:
-  ruby: circleci/ruby@1.1.2 
+  browser-tools: circleci/browser-tools@1.1
 
 jobs:
   build:
     docker:
-      - image: circleci/ruby:3.1.2-node-browsers
+      - image: circleci/ruby:3.1.2-browsers
         environment:
           MYSQL_HOST: 127.0.0.1
           MYSQL_PORT: 3306
@@ -22,6 +22,8 @@ jobs:
         command: [--loose_innodb_read_only_compressed=OFF]
     executor: ruby/default
     steps:
+      - browser-tools/install-browser-tools
+      - checkout
       - run: sudo apt install mariadb-client
       - run:
           name: Install Sphinx
