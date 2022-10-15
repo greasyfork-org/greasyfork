@@ -579,6 +579,7 @@ class Script < ApplicationRecord
 
   def host
     return Rails.application.routes.default_url_options[:host] unless sensitive?
+
     return Rails.env.production? ? 'sleazyfork.org' : 'sleazyfork.local'
   end
 
