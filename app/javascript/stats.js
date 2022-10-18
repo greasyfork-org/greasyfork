@@ -18,8 +18,8 @@ window.initializeChart = async function(rawData, containerId) {
   container.appendChild(canvas)
 
   let ctx = canvas.getContext("2d");
-  const { Chart, CategoryScale, LinearScale, BarController, BarElement } = await import('chart.js')
-  Chart.register([CategoryScale, LinearScale, BarController, BarElement])
+  const { Chart, CategoryScale, LinearScale, BarController, BarElement, Tooltip } = await import('chart.js')
+  Chart.register([CategoryScale, LinearScale, BarController, BarElement, Tooltip])
   new Chart(ctx, {
     type: 'bar',
     data: data,
@@ -33,6 +33,11 @@ window.initializeChart = async function(rawData, containerId) {
         y: {
           suggestedMax: 10,
           beginAtZero: true
+        }
+      },
+      plugins: {
+        tooltip: {
+          enabled: true
         }
       }
     }
