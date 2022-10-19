@@ -45,10 +45,12 @@
   #home-step-1 figure, #home-step-2 figure, #home-step-3 figure {
     float: unset;
     max-width: unset;
-    margin: unset;
+    width: fit-content;
+    margin: 0 auto;
   }
   [id^='home-step-'] figure img {
     width: 100%;
+    height: auto;
   }
 }
 .super-title {
