@@ -2,13 +2,13 @@ module ReportHelper
   def report_item_link(report)
     case report.item
     when User
-      link_to report.item.name, user_path(report.item)
+      render_user(report.item, report.item_id, skip_badge: true)
     when Discussion
-      link_to "A discussion by #{report.item.poster&.name || "Deleted user #{report.item.poster_id}"}", report.item.path
+      "Discussion #{link_to(report.item.display_title(locale: :en), report.item.path)} by #{render_user(report.item.poster, report.item.poster_id, skip_badge: true)}".html_safe
     when Comment
-      link_to "A comment by #{report.item.poster&.name || "Deleted user #{report.item.poster_id}"}", report.item.path
+      "#{link_to('A comment', report.item.path)} by #{render_user(report.item.poster, report.item.poster_id, skip_badge: true)}".html_safe
     when Message
-      "A message by #{report.item.poster&.name || "Deleted user #{report.item.poster_id}"}"
+      "A message by #{render_user(report.item.poster, report.item.poster_id, skip_badge: true)}"
     when Script
       render_script(report.item)
     when nil
