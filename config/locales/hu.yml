@@ -29,6 +29,7 @@ hu:
       other: "%{count} másik szkript megtekintése ehhez: %{site}"
     applies_to_all: "Minden oldal"
     install: "Szkript telepítése"
+    install_css: "Telepítés felhasználói stílus szerint"
     install_help: "?"
     install_help_title: "Hogyan telepítsd"
     update: "Frissítve a %{version} verzióra"
@@ -109,6 +110,7 @@ hu:
     feedback_no_discussions_on_page_form: "Még senki sem indított beszélgetést."
     feedback_report_instead: "Ha azt gondolod hogy ez a szkript a %{rules_link: %{site_name} nevű oldalnak a szabályzatába ütközik, akkor}, kérlek %{report_link: jelentsd hogy eltávolíthassuk}."
     feedback_start_first_discussion_link: "Legyél az első, aki hozzászól."
+    feedback_discussion_or_report: "%{new_discussion_link: Egy új gondolatmenet elkezdése ezen a szkripten} vagy %{report_link: Jelentsd be az eltávolításához}."
     stats_title: "%{script_name} - Statisztikák"
     stats_daily_installs_heading: "Napi telepítések"
     stats_weekly_installs_heading: "Heti telepítések"
@@ -125,11 +127,14 @@ hu:
       year: Előző 365 nap
       all: Mindig
     derivatives_title: "%{script_name} - Függőségek"
+    derivatives_intro: "Ezek a szkriptek a tiedhez hasonló alapokra épülhetnek (vagy a tied alapszik rajtuk). Ha jogtalan kódhasználatot vélsz felfedezni, jelentsd azt az adott szkript visszajelzési fülén"
+    derivatives_script_html: "A(z)%{script}szerzője%{user}, a licensz pedig: %{license} %{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "Pontos másolatok."
     derivatives_exact_copies_list_intro: "A következő szkriptek tartalmazzák ugyanazt a kódot amilyen a tied is:"
     derivatives_exact_copies_item_html: "%{script_link}készítette%{author_links} - verziók: %{version_list}"
     derivatives_exact_copes_none: "Nincsenek más szkriptek a%{site_name} oldalon, amik tartalmaznák ugyanazt a kódot mint amit ez a szkript is."
     derivatives_similar_heading: "Hasonló szkriptek"
+    derivatives_similar_info: "Mi bizonyos időközönként ellenőrizzük az összes többi szkript verzióját, hogy megtalálhasd azokat amik a leginkább hasonlítanak a tiedhez. Azt is ellenőrizzük, hogy mikor frissíted a szkriptedet."
     similarity_score:
       high: Nagyon hasonló
       medium: Többnyire hasonló
@@ -140,6 +145,7 @@ hu:
     derivatives_similar_last_check_soon: "Mindjárt leellenőrizzük ,hogy van-e hasonló szkript a tiedhez."
     derivatives_similar_last_check_again_soon_html: "Legutóbb ekkor ellenőriztük le, hogy van-e hasonló szkript a tiedéhez:%{date}. Rövidesen újra ellenőrizzük."
     derivatives_similar_check_now: "Újraellenőrzés most"
+    derivatives_similiar_queued: A hasonlósági ellenőrzés pár perc múlva kész lesz
     listing_title_all_sites: "Felhasználói szkriptek minden oldalhoz"
     listing_description_all_sites: "Felhasználói szkriptek, amik funkciókat adnak hozzá és hibákat javítanak minden oldalon"
     listing_title_for_site: "Felhasználói szkriptek %{site} oldalhoz"
@@ -166,6 +172,8 @@ hu:
     listing_created_feed: "Új szkriptek"
     listing_updated_feed: "Frissített szkriptek"
     listing_none: "(Semmi)"
+    listing_set_locale_filter: "Mutasd a találatokat minden nyelven %{set_filter_link:Show %{language} results only.}"
+    listing_remove_locale_filter: "Csak %{language} nyelvű találatok mutatása. %{remove_filter_link:Show results for all languages.}"
     listing_language_all: "Összes"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
@@ -187,7 +195,10 @@ hu:
     sets_add_inclusion: "Hozzáadás ehhez: %{set_name}"
     sets_add_exclusion: "Kihagyás ebből %{set_name}"
     sets_add_to_new: "Hozzáadás új gyűjteményhez"
+    rules_summary_html: "A szkriptek <strong>alaposan legyenek leírva</strong>, nem lehetnek <strong>zavarosak</strong> vagy <strong>kicsik</strong>, tiszteletben kell tartaniuk a <strong>szerzői jogot</strong>és csak a <strong>külső kódban</strong> lehessen használni azokat. %{full_rules_link}"
     rules_summary_link_to_full: "Olvassa el a szabályokat."
+    syncing_notice_html: "Ez a szkript%{syncing_notice_sync_type}. Itt bármikor frissíted a kódot, amikor a szinkronizáció be van kapcsolva, automatikusan felül lesznek írva."
+    syncing_notice_sync_type_manual: "Kézi szinkronizálás beállítása%{sync_identifier}"
     syncing_notice_sync_type_automatic: "Automatikus szinkronizálás beállítása%{sync_identifier}"
     upload_label: "Vagy töltse fel:"
     enable_source_code_editor_label: "Szintaxis-kiemelő engedélyezése"
@@ -197,6 +208,7 @@ hu:
     post_updated_script: "Új verzió feltöltése"
     type_1_html: "Nyilvános felhasználói szkript - egy felhasználói szkript, amit mindenki láthat és használhat"
     type_2_html: "Nem listázott felhasználói szkript - egy felhasználói szkript (félig-) privát használatra. Elérhető közvetlen hozzáféréssel, de nincs belinkelve sehova se ezen az oldalon:%{site_name}."
+    override_warning_checkbox_label: "Mentés mindenféleképpen"
     warning_version_not_incremented_html: "Frissítetted a kódot, de nem növelted a <code>@version</code> számot. Azok akik korábban feltelepítették a szkriptedet, nem fognak frissítést kapni."
     warning_namespace_changed_html: "Megváltozott a <code>@namespace</code>. Egy következetes <code>@namespace </code>lehetővé teszi a felhasználók számára, hogy újratelepíthessék a szkriptedet, hogy frissíteni lehessen."
     warning_potentially_minified_html: "A szkripted úgy tűnik tartalmaz lekicsinyített (összesűrített) kódot. Ha egy kicsinyített könyvtárat használsz, akkor helyette <code>@require</code>azt, a %{allowed_requires_link}. A kicsinyített szkriptek el lesznek távolítva."

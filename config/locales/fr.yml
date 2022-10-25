@@ -253,6 +253,7 @@ fr:
     sync_successful: Le script a été synchronisé avec succès.
     sync_no_changes: Le script a été synchronisé avec succès, mais aucun changement n'a été constaté.
     sync_error: La synchronisation du script a échoué - %{error}.
+    sync_turned_off: La synchronisation des scripts est désactivée.
     screenshots_add: "Ajouter :"
     screenshots_remove: "Supprimer :"
     replacement_script_explanation: "(Facultatif) Choisissez un autre script qui remplace ce script. Saisissez l'URL du script de remplacement:"
@@ -324,6 +325,7 @@ fr:
       failure: "Impossible de retirer l'auteur."
     no_disposable_email: "Vous ne pouvez pas envoyer de scripts si vous utilisez une adresse email jetable."
     rate_limited: "Vous avez publié trop de scripts récemment. Veuillez reéssayer plus tard.."
+    delayed: "En raison de problèmes de spam, les nouveaux comptes peuvent ne pas afficher immédiatement des scripts. Veuillez réessayer plus tard."
     new_script_notice:
       title: "Qu'essayez-vous de faire ?"
       install_link_html: "Je souhaite <b>installer et utiliser</b> un script."
@@ -380,6 +382,12 @@ fr:
       css:
         short: CSS
         long: Style utilisateur
+    related_scripts: "Vous pouvez également essayer ces scripts connexes :"
+    integrity_hashes:
+      user_notice_html:
+        one: "Vous avez un script avec un hash d'intégrité de sous-ressource incorrect : %{script_links}."
+        many: "Vous avez des scripts avec des hachages d'intégrité de sous-ressources incorrects : %{script_links}."
+        other: "Vous avez des scripts avec des hachages d'intégrité de sous-ressources incorrects : %{script_links}."
   script_sets:
     description: "Les jeux de scripts vous permettent de créer une liste personnalisée de scripts pour naviguer avec sur Greasy Fork. Vous pouvez ajouter des scripts à votre jeu en incluant des scripts individuels, des jeux d'autres utilisateurs ou des jeux générés automatiquement. Vous pouvez également exclure les scripts de votre jeu avec les mêmes méthodes."
     favorites_name: "Favoris"
@@ -460,6 +468,41 @@ fr:
     explain_user_scripts_html: "Les scripts utilisateurs vous permettent d'être le maître de votre expérience de navigation. Une fois installés, ils améliorent automatiquement les sites que vous visitez en ajoutant des fonctionnalités, qui permettent de faciliter leur utilisation, ou en supprimant les éléments ennuyeux. Les scripts utilisateurs sur %{site_name} sont écrits par d'autres utilisateurs et postés pour être partagés avec tout le monde. Ils sont installables gratuitement et sont faciles à utiliser."
     installing_step1_header: "Étape 1: installer un gestionnaire de script utilisateur"
     installing_step1_caption: "Tampermonkey sur Chrome"
+    installing_step1_description_html: >
+        <p>Pour utiliser les scripts utilisateur, vous devez d'abord installer un
+        gestionnaire de script utilisateur. Le gestionnaire de script utilisateur
+        que vous pouvez utiliser dépend du navigateur que vous utilisez.</p>
+    desktop_browsers:
+      title: Bureau
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} or %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, or %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} or %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} or %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>AdGuard: (aucun logiciel supplémentaire n'est nécessaire)</li>
+          </ul>
+    android_browsers:
+      title: Mobile (Android)
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, or %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          <li>Kiwi: %{chrome_tampermonkey_link:Tampermonkey} or %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>%{xbrowser_link:XBrowser}</li>
+          %{locale_specific_browsers}
+          </ul>
+    ios_browsers:
+      title: Mobile (iOS)
+      browser_list_html: |
+          <ul>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} or %{safari_userscripts_link:Userscripts}</li>
+          <li>%{gear_link:Gear}: (aucun logiciel supplémentaire n'est nécessaire)
+          </ul>
     installing_step2_header: "Étape 2: installer un script utilisateur"
     installing_step2_caption: "Un bouton d'installation d'un script utilisateur"
     installing_step2_description_html: >
@@ -625,6 +668,9 @@ fr:
         title: Notifications des conversations
         starter: Par défaut, abonnez-vous à toutes les conversations que vous démarrez
         receiver: Par défaut, abonnez-vous à toutes les conversations vous concernant que vous ne démarrez pas
+      report_defaults:
+        reporter: Recevoir une notification lorsqu'un rapport que vous avez créé est résolu
+        reported: Recevez une notification lorsqu'un rapport sur les éléments que vous publiez est créé ou résolu.
       save_button: Mettre à jour les paramètres de notification
       title: Notifications
       current_discussion_subscriptions:
@@ -634,6 +680,7 @@ fr:
       save_success: Vos préférences de notification ont été mises à jour.
       unsubscribe_all: Se désabonner de toutes les notifications
       unsubscribe_all_success: Vous avez été désabonné de toutes les notifications.
+    account_banned: Ce compte a été banni.
   webhooks:
     info:
       title: Configurer un webhook

@@ -738,17 +738,20 @@ zh-CN:
       reporting: 如果你发现有脚本未能遵守上述规则，请访问脚本的反馈页面并选择“举报脚本”来举报。
     external_scripts:
       title: "%{site_name} 对外部脚本的政策"
+      intro_html: |
+          <p>%{site_name}我们允许在特定情况下使用外部代码。任何脚本发现使用超出允许范围的外部代码都将会被删除。如发现脚本违反这些规则，请举报。</p>
+          <p>请注意，这些规则仅适用于外部可执行代码。那些加载但不可执行代码不受限制，例如JSON或CSS。</p>
     script_rewriting:
       title: "%{site_name} 将如何改写已发布的脚本"
       content_html: >
-          <p>发布到 %{site_name} 的脚本将会被系统修改以下属性：</p> <ul>
+          <p>发布到 %{site_name} 的脚本将会被系统重写以下属性：</p> <ul>
 
-          <li><code>@updateURL</code>、<code>@installURL</code> 和 <code>@downloadURL</code>
-          元信息将被删除（如有提供）。任何从 %{site_name} 安装的脚本将通过 %{site_name} 更新。</li>
+          <li>如有提供，<code>@updateURL</code>、<code>@installURL</code> 和 <code>@downloadURL</code>
+          的信息将被删除。任何从 %{site_name} 安装的脚本将通过 %{site_name} 更新。</li>
 
-          <li>若未提供，<code>@version</code> 和 <code>@namespace</code> 的元信息将被插入到脚本这些指令需要被适当更新。</li>
+          <li>若未提供，<code>@version</code> 和 <code>@namespace</code> ，将会被插入到脚本，并根据需要会被适当更新。</li>
 
-          <li>若新版本缺失 <code>@description</code> 元信息，系统将寻找旧版本的对应信息并插入到最新的版本。</li>
+          <li>若新版本缺失 <code>@description</code> 信息，系统将使用之前旧版本的对应信息并插入到脚本最新的版本。</li>
 
           <li>CRLF 和 CR 换行符将被转换为标准的 Unix 样式换行符。</li>
 
@@ -1205,7 +1208,7 @@ zh-CN:
         subject: "您的脚本 %{script_name} 在 %{site_name} 上被举报"
         body_html: |
             <p>
-            您的脚本%{script_link:%{script_name}} 被报告违反了%{site_name}的规则。给出的理由是：%{reason}您可以%{report_link:审核此举报并提交反驳}。如果您不提交反驳，您的脚本将被审核员删除。
+            您的脚本%{script_link:%{script_name}} 被报告违反了%{site_name}的规则。给出的理由是：%{reason}您可以%{report_link:审核此举报并提交反驳}。如果您不提交反驳，您的脚本可能会被审核员删除。
       report_upheld_offender:
         subject: "您的脚本 %{script_name} 在 %{site_name} 上已被删除"
         body_html: |
@@ -1243,7 +1246,7 @@ zh-CN:
         subject: "您在%{site_name}举报的脚本%{script_name}已做出裁决。"
         body_html: |
             <p>
-            您在 %{site_name} 上对脚本 %{script_link:%{script_name}} 进行的举报已结束，作者选择删除脚本。你可以%{report_link:查看该举报}。
+            您在 %{site_name} 上对脚本 %{script_link:%{script_name}} 进行的举报已被关闭，作者选择删除脚本。你可以%{report_link:查看该举报}。
             </p>
       report_dismissed_reporter:
         subject: "您在%{site_name}上对于%{script_name}脚本的举报被驳回"
@@ -1271,7 +1274,7 @@ zh-CN:
     script_comment:
       subject: "您对于站点%{site_name}的脚本%{script_name}收到了一条评论。"
       intro: "您在 %{site_name}  上的脚本 %{script_link:%{script_name}} 收到了用户 %{commenter_link:%{commenter_name}} 的评论："
-      outro: "%{comment_link:查看并恢复该评论}。你收到了该则通知，因为你的一个脚本收到了一则评论并且你选择接收该通知。%{notification_preferences_link:你可以管理该通知选项}。"
+      outro: "%{comment_link:查看并回复该评论}。你收到了该则通知，因为你的一个脚本收到了一则评论并且你选择接收该通知。%{notification_preferences_link:你可以管理该通知选项}。"
     subscribed_discussion:
       subject: "站点%{site_name}的讨论%{discussion_title}收到了一条评论。"
       intro: "%{site_name} 上的讨论 %{discussion_link:%{discussion_title}} 收到了一条来自 %{commenter_link:%{commenter_name}} 的评论："
