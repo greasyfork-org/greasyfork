@@ -8,7 +8,7 @@ module ReportHelper
     when Comment
       "#{link_to('A comment', report.item.path)} by #{render_user(report.item.poster, report.item.poster_id, skip_badge: true)}".html_safe
     when Message
-      "A message by #{render_user(report.item.poster, report.item.poster_id, skip_badge: true)}"
+      "A message by #{render_user(report.item.poster, report.item.poster_id, skip_badge: true)}".html_safe
     when Script
       render_script(report.item)
     when nil

@@ -93,11 +93,11 @@ module ScriptsHelper
 
   def delete_reason(script)
     upheld_reports = script.reports.upheld
-    reason = upheld_reports.map { |report| link_to(t('reports.name', id: report.id), report_path(report)) }.join(' ').html_safe
+    reason = upheld_reports.map { |report| link_to(t('reports.name', id: report.id), report_path(report)) }.to_sentence
     if script.delete_reason.present?
       reason += ' ' if reason.present?
-      reason += script.delete_reason
+      reason += "\"#{script.delete_reason}\""
     end
-    reason
+    reason.html_safe
   end
 end

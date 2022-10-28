@@ -1,7 +1,7 @@
 <% title t('appeals.new.title') %>
 
 <p>
-  <%= t('appeals.new.intro', reason: delete_reason(@script)) %>
+  <%= t('appeals.new.intro_html', reason: delete_reason(@script)) %>
 </p>
 
 <%= form_with(model: @script_lock_appeal, url: script_script_lock_appeals_path(script_id: @script_lock_appeal.script_id)) do |f| %>
