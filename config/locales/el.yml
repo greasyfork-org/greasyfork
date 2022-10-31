@@ -143,6 +143,7 @@ el:
     derivatives_similar_last_check_soon: "Σύντομα θα ελέγξουμε για παρόμοιο κώδικα με τον δικό σας"
     derivatives_similar_last_check_again_soon_html: "Ελέγξαμε πρόσφατα για κώδικες παρόμοιους με το δικό σας %{date}. Θα έλέγξουμε ξανά σύντομα."
     derivatives_similar_check_now: "Επανέλεγχος τώρα"
+    derivatives_similiar_queued: Ο έλεγχος ομοιότητας θα ολοκληρωθεί σε λίγα λεπτά.
     listing_title_all_sites: "Κώδικες χρηστών για όλες τις ιστοσελίδες"
     listing_description_all_sites: "Κώδικες χρηστών που προσθέτουν χαρακτηριστικά και απομακρύνουν σφάλματα σε όλους τους ιστοχώρους"
     listing_title_for_site: "Κώδικες χρηστών για τον ιστοχώρο %{site}"
@@ -209,10 +210,12 @@ el:
     override_warning_checkbox_label: "Αποθήκευση παρά τις ειδοποιήσεις"
     warning_version_not_incremented_html: "Ενημερώσατε τον κώδικα αλλά δεν αυξήσατε τον αριθμό της έκδοσης <code>@version</code>. Αυτοί που προηγούμενα εγκατέστησαν τον κώδικά σας ίσως δεν λάβουν τον ενημερωμένο κώδικα."
     warning_version_missing_generate_automatically_html: "Δημιουργία της έκδοσης <code>@version</code> αυτόματα"
+    warning_namespace_missing_generate_automatically_html: "Αυτόματη δημιουργία ονοματοχώρου <code>@namespace</code>"
     warning_namespace_changed_html: "Η ετικέτα <code>@namespace</code> έχει αλλάξει. Μια σταθερή ετικέτα <code>@namespace</code> επιτρέπει στους χρήστες να επανεγκαταστήσουν ή να τον ενημερώσουν."
     warning_potentially_minified_html: "Ο κώδικάς σας φαίνεται ότι ίσως περιέχει ελαχιστοποιημένο (συμπιεσμένο) κώδικα. Αν χρησιμοποιείτε μια ελαχιστοποιημένη βιβλιοθήκη, χρησιμοποιήστε αντίθετα την ετικέτα <code>@require</code> με μια από την λίστα %{allowed_requires_link}. Κώδικες με ελαχιστοποιημένο κώδικα απομακρύνονται."
     warning_automatic_sensitive_html: "Ο κώδικάς σας είναι για %{sensitive_domains} και για αυτό θα επισημανθεί ως περιεχόμενο για ενήλικες."
     warning_potentially_minified_allowed_requires_link: "ένα από αυτά τα μέρη"
+    warning_license_missing_override_html: "Αποθήκευση χωρίς άδεια"
     additional_info_locale_prompt: "(Επιλέξτε γλώσσα)"
     additional_info_add_localized: "Προσθήκη μιας πρόσθετης πληροφορίας για μια γλώσσα"
     additional_info_locale_repeated: "Παρέχετε μόνο μια πρόσθετη πληροφορία για τη γλώσσα «%{locale_code}»."
@@ -228,17 +231,26 @@ el:
       description: θα γίνεται περιοδικός έλεγχος για ενημερώσεις
     sync_type_3:
       name: Webhook
+      description: θα ενημερωθεί όταν προωθήσετε τις αλλαγές σε αυτό το αρχείο στο απωθετήριό σας
+    sync_name_and_description: "%{name} - %{description}"
     sync_failed_info_html: "Η τελευταία προσπάθεια συγχρονισμού ήταν την %{date}, και είχε ως αποτέλεσμα στο σφάλμα %{error}."
     sync_success_info_html: "Ο τελευταίος επιτυχής συγχρονισμός ήταν την %{date}."
     sync_never_succeeded: "Ο συγχρονισμός δεν ολοκληρώθηκε ποτέ επιτυχώς."
+    sync_additional_info: Μπορείτε, προαιρετικά, να συγχρονίσετε τις πρόσθετες πληροφορίες του κώδικά σας.
+    add_synced_additional_info: Προσθήκη μεταφρασμένων και συγχρονισμένων πληροφοριών
     update_and_sync: "Ενημέρωση και συγχρονισμός τώρα"
     update_no_sync: "Ενημέρωση"
     turn_off_syncing: "Απενεργοποίηση συγχρονισμού για αυτόν τον κώδικα"
     additional_info_default_sync_html: "Προεπιλεγμένη πρόσθετη πληροφορία (ταίριασμα γλώσσας <code>@name</code>)"
     additional_info_localized_sync_html: "Για τη γλώσσα (ταίριασμα <code>@name:XX</code>)"
     sync_url_placeholder: "(URL)"
+    sync_successful: Ο κώδικας συγχρονίστηκε επιτυχώς.
+    sync_no_changes: Ο κώδικας συγχρονίστηκε επιτυχώς, αλλά δεν βρέθηκαν αλλαγές.
+    sync_error: Ο συγχρονισμός του κώδικας απέτυχε - %{error}.
+    sync_turned_off: Ο συγχρονισμός κώδικα απενεργοποιήθηκε.
     screenshots_add: "Προσθήκη:"
     screenshots_remove: "Απομάκρυνση"
+    replacement_script_explanation: "(Προαιρετικό) Επιλογή άλλου κώδικα που αντικαθιστά τον κώδικα. Εισάγετε το URL του κώδικα αντικατάστασης:"
     diff_title: "%{script} - Διαφορές έκδοσης"
     diff_old_version: "Παλαιά:"
     diff_new_version: "Νέα:"
@@ -313,6 +325,10 @@ el:
       js: "Δημοσίευση νέου κώδικα"
       css: "Δημοσίευση νέου στυλ"
     update_title: "Δημοσίευση νέας έκδοσης του κωδικά %{script}"
+    install_help_dialog:
+      js:
+        bypass: (Έχω ήδη έναν διαχειριστή κωδίκων χρήστη, επιτρέψτε μου να τον εγκαταστήσω!)
+      close_dialog: Εντάξει
     antifeatures:
       warning_title: Ο κώδικας περιέχει αντιχαρακτηριστικά
       author_explanation_intro: "Ο δημιουργός αυτού του κώδικα εξηγεί:"
@@ -328,6 +344,10 @@ el:
           description_html: Αυτός ο κώδικας περιέχει cryptominer που θα <b>χρησιμοποιήσει τους πόρους της συσκευής σας</b> όταν είναι ενεργός.
         referral-link:
           title: Σύνδεσμοι αναφοράς
+        membership:
+          title: Μέλη
+        payment:
+          title: Πληρωμή
       install_anyway: Εγκατάσταση κώδικα
       cancel_install: Άκυρο
     badges:
@@ -337,6 +357,7 @@ el:
       css:
         short: CSS
         long: Στυλ χρήστη
+    related_scripts: "Μπορείτε να δοκιμάσετε αυτούς του σχετικούς κώδικες:"
   script_sets:
     description: "Τα σύνολα κώδικα σας επιτρέπουν να δημιουργήσετε μια προσαρμοσμένη λίστα για πλοήγηση στο Greasy Fork. Μπορείτε να προσθέσετε κωδικούς στο σύνολό σας περιλαμβάνοντας μεμονωμένους κώδικες, σύνολα άλλων χρηστών ή αυτόματα δημιουργούμενα σύνολα. Μπορείτε, επίσης, να αποκλείσετε κώδικες από το σύνολό σας με τις ίδιες μεθόδους."
     favorites_name: "Αγαπημένα"
@@ -404,6 +425,7 @@ el:
       all_sites: "Όλοι οι ιστοχώροι"
       user: "Κώδικες ανά χρήστη %{user}"
       locale: "Κώδικες στα %{locale_name}"
+    new: Νέο σύνολο κώδικα
   home:
     title: "%{site_name} - ασφαλείς και χρήσιμοι κώδικες χρηστών"
     welcome: "Καλώς ήρθατε στο %{site_name}, έναν ιστοχώρο για κώδικες χρηστών."
@@ -626,6 +648,10 @@ el:
       miscellaneous_header: Διάφοροι
     external_scripts:
       title: "Η πολιτική του %{site_name} για εξωτερικούς κώδικες"
+      rationale:
+        title: Αιτιολόγηση
+      cdns:
+        title: Δίκτυα διανομής περιεχομένου (CDNs)
     script_rewriting:
       title: "Πως το %{site_name} θα ξαναγράψει δημοσιευμένους κώδικες"
       content_html: >
