@@ -76,15 +76,19 @@ class ScriptPreviouslyDeletedCheckerTest < ActiveSupport::TestCase
     script = Script.first
     script_2 = Script.second
     script_3 = Script.third
+    reference_script = scripts(:derivative_with_same_name)
+
     ScriptSimilarity.delete_all
     ScriptSimilarity.create!(script:, other_script: script_2, similarity: 0.9, checked_at: Time.zone.now)
     ScriptSimilarity.create!(script:, other_script: script_3, similarity: 0.9, checked_at: Time.zone.now)
-    Report.create!(item: script_2, result: Report::RESULT_UPHELD, reason: Report::REASON_UNAUTHORIZED_CODE, reporter: User.first)
+
+    Report.create!(item: script_2, result: Report::RESULT_UPHELD, reason: Report::REASON_UNAUTHORIZED_CODE, reporter: User.first, reference_script:)
     script_2.update!(locked: true)
     script_3.update!(locked: true)
     assert_difference -> { Report.count } => 1 do
       ScriptPreviouslyDeletedChecker.perform_now(script.id)
     end
+    assert_equal reference_script, Report.last.reference_script
   end
 
   test 'previous was deleted for unauthorized copy, but original author is the same as this one' do
@@ -97,6 +101,7 @@ class ScriptPreviouslyDeletedCheckerTest < ActiveSupport::TestCase
     ScriptSimilarity.delete_all
     ScriptSimilarity.create!(script:, other_script: script_2, similarity: 0.9, checked_at: Time.zone.now)
     ScriptSimilarity.create!(script:, other_script: script_3, similarity: 0.9, checked_at: Time.zone.now)
+
     Report.create!(item: script_2, result: Report::RESULT_UPHELD, reason: Report::REASON_UNAUTHORIZED_CODE, reporter: User.first, reference_script: original_script)
     script_2.update!(locked: true)
     script_3.update!(locked: true)
