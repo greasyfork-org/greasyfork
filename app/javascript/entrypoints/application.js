@@ -1,10 +1,9 @@
 import '@rails/ujs';
+import '@github/time-elements';
 
 import '../stylesheets/application.css'
 
 import '../lightbox'
-
-import '../relative-time'
 
 import "../install"
 import "../versioncheck"

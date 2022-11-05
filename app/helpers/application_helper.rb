@@ -12,7 +12,7 @@ module ApplicationHelper
   def markup_date(date, **html_options)
     return '?' if date.nil?
 
-    tag.gf_relative_time(datetime: date.to_datetime.rfc3339, **html_options) { I18n.l(date.to_date) }
+    tag.relative_time(datetime: date.to_datetime.rfc3339, **html_options, prefix: '') { I18n.l(date.to_date) }
   end
 
   def discussion_class(discussion)
