@@ -246,6 +246,10 @@ de:
     additional_info_default_sync_html: "Standardmäßige zusätzliche Informationen (Sprache entspricht <code>@name</code>)"
     additional_info_localized_sync_html: "Für Sprache (entspricht <code>@name:XX</code>)"
     sync_url_placeholder: "(Internetadresse)"
+    sync_successful: Skript erfolgreich synchronisiert.
+    sync_no_changes: Skript erfolgreich synchronisiert, aber es wurdden keine Änderungen gefunden.
+    sync_error: Skripte-Sync fehlgeschlagen - %{error}
+    sync_turned_off: Skripte-Sync ausgeschaltet.
     screenshots_add: "Hinzufügen:"
     screenshots_remove: "Entfernen"
     replacement_script_explanation: "(Optional) Wählen Sie ein anderes Skript, welches dieses Skript ersetzt. Geben Sie die URL des Ersatzskripts an:"
@@ -604,6 +608,8 @@ de:
         title: Konversationsbenachrichtigungen
         starter: Standardmäßig alle Konversationen, die Sie starten, abonnieren
         receiver: Standardmäßig alle Konversationen, in denen Sie einbezogen sind und die Sie nicht gestartet haben, abonnieren
+      report_defaults:
+        title: Benachrichtigungen melden
       save_button: Benachrichtigungseinstellungen aktualisieren
       title: Benachrichtigungen
       current_discussion_subscriptions:
@@ -1082,7 +1088,10 @@ de:
   importing:
     title: Importiertes Skript
     submit: Importiert
+    previously_imported:
+      unknown_date: "(unbekannt)"
     results:
+      title: "Importierergebnis"
       existing: "Die folgenden Skripte wurden bereits importiert:"
       failure: "Die folgenden Skripte konnten nicht importiert werden:"
   mailers:

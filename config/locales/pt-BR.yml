@@ -384,6 +384,17 @@ pt-BR:
         short: CSS
         long: Estilo de usuário
     related_scripts: "Você também pode tentar estes scripts relacionados:"
+    integrity_hashes:
+      user_notice_html:
+        one: "Você tem um código com a chave de integridade de sub recurso incorreta: %{script_links}"
+        many: "Você tem códigos com a chave de integridade de sub recursos incorretas: %{script_links}"
+        other: "Você tem códigos com a chave de integridade de sub recursos incorretas: %{script_links}"
+      script_notice:
+        text_html:
+          one: "Esse código utiliza uma chave de integridade de sub recurso incorreta: %{detail}"
+          many: "Esse código utiliza chaves de integridade de sub recursos incorretas: %{detail}"
+          other: "Esse código utiliza chaves de integridade de sub recursos incorretas: %{detail}"
+        detail: "<code>%{url}</code> deveria usar a chave hash <code>%{expected_hash}</code> (ultima checagem %{last_checked_at})"
   script_sets:
     description: "Coleções de scripts permitem a você criar uma lista personalizada de scripts dentro do Greasy Fork. Você pode adicionar scripts à sua coleção incluindo scripts individuais, coleções de outros usuários, ou coleções geradas automaticamente. Você também pode excluir scripts da sua coleção da mesma maneira."
     favorites_name: "Favoritos"
@@ -696,6 +707,7 @@ pt-BR:
       namespace_html: "É usada uma combinação de <code>@namespace</code> e <code>@name</code> pelos gerenciadores de scripts de usuário para verificar se o script já está instalado. %{site_name} requer este campo e irá informar se não sofreu nenhuma mudança na atualização."
       version: "Identificador de uma versão específica de um script no %{version_format_link:formato de versão Mozilla}. A versão é mostrada na página de informações do script. %{site_name} precisa deste campo e irá alertar caso ele seja decrementado ou se não for incrementado quando o seu código for alterado."
       include_html: "Descreve em quais páginas o script irá rodar. Esta lista será processada, exibida na página de informações do script e utilizada para categorizar os scripts. Todo script deve ter ao menos uma chave <code>@match</code> ou <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Leia sobre o formato aqui.</a>"
+      require_html: "Inclui JavaScript externo em um código. Veja %{external_script_link:rules for code including external scripts}. Se você usa chaves de integridade de sub recursos (informações %{tm_subresource_link:here} e %{mdn_subresource_link:here}), %{site_name} irá alerta-lo se suas chaves não corresponderem ao conteúdo da URL."
       updateURL: "Descreve como os gerenciadores de script de usuário devem ser atualizados. %{site_name} irá retirar essas chaves, o que faz com que qualquer script instalado a partir de %{site_name} seja atualizado somente a partir de %{site_name}."
       license: "A licença que descreve como as pessoas tem permissão para copiar ou modificar um script. É recomendado usar um \"Nome Completo\" ou \"Identificador\" da %{spdx_link:Lista de Licença SPDX}. A falta de licença significa que os usuários podem instalar o script para uso pessoal, mas não podem redistribuí-los. A licença é mostrada na página de informações do script."
       supportURL: "URL para uma página onde os usuários podem obter suporte para o script, como rastreador de bug, um fórum, endereço de email, etc. A URL de suporte será exibida na página de feedback do script."
@@ -742,6 +754,33 @@ pt-BR:
       reporting: Caso você encontre um script que fuja desses parâmetros, por favor reporte-o através do link de feedback daquele script e escolha a opção "Reportar script".
     external_scripts:
       title: "Política em scripts externo do %{site_name}"
+      intro_html: |
+          <p>%{site_name} permite o uso de código externo em casos específicos. Qualquer código que estiver incluindo código externo fora do que é permitido está sujeito a ser deletado. Se você encontrar código violando essas regras, por favor denuncie.</p>
+          <p>Note que essas regras são aplicadas somente para códigos externos que sejam executáveis. Códigos não-executáveis como JSON ou CSS são permitidos.</p>
+      cdns:
+        title: Redes de distribuição de conteúdo (CDNs)
+        content_html: |
+            <p>Códigos de CDNs (Redes de distribuição de conteúdo) são permitidas. %{cdns_link:See a list of recognized CDNs.} Esse código pode estar reduzido (minified), mas não ofuscado.</p>
+      sri:
+        title: Códigos com chaves de integridade de sub recursos
+        content_html: |
+            <p>O uso de <code>@require</code> e <code>@resource</code>com URLs com %{mdn_sri_link:subresource integrity} em %{tm_sri_link:Tampermonkey format} é permitido.
+      allowed_external_codes:
+        heading: Códigos externos permitidos
+        content_html: |
+            <p>A seguir estão os casos em que códigos externos são permitidos em %{site_name}. Em outro caso, todas %{code_rules_link:rules for code} são aplicadas à códigos externos.</p>
+      libraries:
+        title: "%{site_name}bibliotecas"
+        content_html: |
+            <p>Códigos publicados como bibliotecas em %{site_name} são permitidas. Bibliotecas podem ser criadas escolhendo a opção ao criar um novo código. Também podem serem sincronizadas a partir de uma URL externa, como por exemplo um repositório no Github.
+      origin_host:
+        title: Injeção de códigos a partir do servidor de origem
+    cdns:
+      title: Redes de distribuição de conteúdo (CDNs) permitidos
+      test_url:
+        label: Testar uma URL
+        result_ok: URL é permitida
+        result_not_ok: URL não é permitida
     script_rewriting:
       title: "Como o %{site_name} irá sobrescrever scripts postados"
       content_html: >
@@ -961,6 +1000,7 @@ pt-BR:
       unauthorized_code: "Cópia não autorizada"
       malware: "Malware"
       minified: "Código minificado"
+      obfuscated: "Código ofuscado"
       external_code: "Código externo não permitido"
       undisclosed_antifeature: "Não divulgado %{antifeature_link:antirecurso} (por exemplo, anúncio, rastreamento, mineiração, etc.)"
       no_description: "Descrição ausente, não informativa ou enganosa"
@@ -1004,6 +1044,7 @@ pt-BR:
   appeals:
     new:
       title: Novo recurso de exclusão de script
+      intro_html: 'Seu código foi removido devido a %{reason}. Se você acha que isso é um erro, ou você tem informações adicionais para fornecer, ou se você atualizou seu código resolvendo o problema, você pode enviar um apelo. Se um moderador estiver satisfeito com sua atualização e as informações que você forneceu, ele irá restaurar seu acesso ao código.'
       submit: Enviar apelo
     deletion_reason_html: "%{script} foi deletado devido a: %{reason}."
     author_reason: "Recurso apresentado pelo autor:"

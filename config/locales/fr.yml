@@ -147,6 +147,7 @@ fr:
     derivatives_similar_last_check_soon: "Nous vérifierons sous peu les scripts similaires aux vôtres."
     derivatives_similar_last_check_again_soon_html: "Nous avons vérifié pour la dernière fois des scripts similaires aux vôtres le %{date}. Nous revérifions sous peu."
     derivatives_similar_check_now: "Revérifiez maintenant"
+    derivatives_similiar_queued: La vérification de similarité sera terminée dans quelques minutes
     listing_title_all_sites: "Scripts utilisateurs pour tous les sites"
     listing_description_all_sites: "Scripts utilisateurs qui ajoutent des fonctionnalités et corrigent des bugs sur tous les sites"
     listing_title_for_site: "Scripts utilisateurs pour %{site}"
@@ -214,6 +215,7 @@ fr:
     warning_version_not_incremented_html: "Vous avez mis à jour le code source mais n'avez pas modifié la clé <code>@version</code>. Ceux qui ont déjà installé votre script risquent de ne pas recevoir la mise à jour."
     warning_version_missing_html: "Vous n'avez pas spécifié de <code>@version</code>. <code>@version</code> est nécessaire pour que les utilisateurs reçoivent les mises à jour. Vous pouvez en spécifier un comme ceci : <code>// @version 1.0</code>"
     warning_version_missing_generate_automatically_html: "Générer une <code>@ version</code> automatiquement"
+    warning_namespace_missing_html: "Vous n'avez pas spécifié de <code>@namespace</code>. <code>@namespace</code> permet d'éviter les collisions si les utilisateurs installent un autre script du même nom. <code>@namespace</code> doit juste être une chaîne unique ; souvent l'URL que l'auteur que vous contrôlez est utilisée."
     warning_namespace_missing_generate_automatically_html: "Générer un <code>@namespace</code> automatiquement"
     warning_namespace_changed_html: "Votre <code>@namespace</code> a changé. Un <code>@namespace</code> cohérent permet aux utilisateurs de réinstaller votre script pour le mettre à jour."
     warning_potentially_minified_html: "Votre script semble contenir du code minimisé (compressé). Si vous utilisez une bibliothèque minimisée, veuillez utiliser <code>@require</code> depuis %{allowed_requires_link}. Les scripts avec du code minimisé risquent d'être supprimés."
@@ -388,6 +390,12 @@ fr:
         one: "Vous avez un script avec un hash d'intégrité de sous-ressource incorrect : %{script_links}."
         many: "Vous avez des scripts avec des hachages d'intégrité de sous-ressources incorrects : %{script_links}."
         other: "Vous avez des scripts avec des hachages d'intégrité de sous-ressources incorrects : %{script_links}."
+      script_notice:
+        text_html:
+          one: "Ce script utilise un hachage d'intégrité de sous-ressource incorrect : %{detail}"
+          many: "Ce script utilise des hachages d'intégrité de sous-ressources incorrects : %{detail}."
+          other: "Ce script utilise des hachages d'intégrité de sous-ressource incorrects : %{detail}"
+        detail: "<code>%{url}</code> devrait utiliser le hachage <code>%{expected_hash}</code> (dernière vérification le %{last_checked_at})"
   script_sets:
     description: "Les jeux de scripts vous permettent de créer une liste personnalisée de scripts pour naviguer avec sur Greasy Fork. Vous pouvez ajouter des scripts à votre jeu en incluant des scripts individuels, des jeux d'autres utilisateurs ou des jeux générés automatiquement. Vous pouvez également exclure les scripts de votre jeu avec les mêmes méthodes."
     favorites_name: "Favoris"
@@ -669,6 +677,7 @@ fr:
         starter: Par défaut, abonnez-vous à toutes les conversations que vous démarrez
         receiver: Par défaut, abonnez-vous à toutes les conversations vous concernant que vous ne démarrez pas
       report_defaults:
+        title: Signaler des notifications
         reporter: Recevoir une notification lorsqu'un rapport que vous avez créé est résolu
         reported: Recevez une notification lorsqu'un rapport sur les éléments que vous publiez est créé ou résolu.
       save_button: Mettre à jour les paramètres de notification

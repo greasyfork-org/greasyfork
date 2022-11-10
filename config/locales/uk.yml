@@ -7,7 +7,7 @@ uk:
       sign_in: "Увійти"
       submenu: "Більше"
       advanced_search: "Розширений пошук"
-      user_list: "Список користувача"
+      user_list: "Список користувачів"
       libraries: "Бібліотеки"
       moderator_log: "Лог модератора"
   scripts:
@@ -48,6 +48,7 @@ uk:
     deleted_author_notice: "Цей сценарій був видалений і не є доступним для інших користувачів. Ви можете відновити його із вкладки \"Видалити\"."
     version_notice_html: "Від %{date}. Дивіться %{latest_version_link}."
     version_notice_latest_version_link: "остання версія"
+    reported_notice: "\"%{script_name}\" було відправлено на перевірку та очікує перегляду модератором."
     reported_notice_for_author: "Цей сценарій буде недоступним іншим користувачам, поки його не перегляне оператор."
     info_page: "Інформація"
     code_page: "Код"
@@ -60,6 +61,13 @@ uk:
     delete_explanation: "Видалення скрипту робить його недоступним для всіх окрім вас і модераторів Greasy Fork'у. Ви можете його повернути будь-коли."
     delete_update_behaviour: "Що ви хочете, щоб трапилось вже зі встановленими версіями вашого скрипту?"
     delete_permanently_heading: "Повне знищення"
+    delete_permanently_explanation_html: >-
+        <p>Видалення сценарію назавжди видалить його та всі пов’язані записи, за винятком
+        обговорень на форумі та журналу дій модератора.</p> <p>Ваш скрипт буде видалено
+        через 7 днів після вашого запиту. Ви можете скасувати видалення за цей час.
+        Якщо ви цього не зробите, ніхто, навіть модератори, не зможуть відновити ваш
+        скрипт.</p>
+    delete_permanently_confirm: "Ви впевнені, що хочете назавжди видалити ваш скрипт?"
     delete_permanently_submit: "Надіслати запит на повне знищення"
     delete_permanently_immediate_submit: "Повністю видалити"
     delete_permanently_notice: "Запит на остаточне видалення було прийнято. Ваш скрипт буде повністю видалено через 7 днів."
@@ -69,6 +77,7 @@ uk:
     delete_permanently_rejected_locked: "Цей скрипт заблокований і не може бути повністю видалений"
     admin_page: "Адміністратор"
     admin:
+      title: "%{script_name} - Адмін"
       promoted_heading: "Розкручений сценарій"
       promoted_submit: "Встановити розкручений сценарій"
       no_moderator_logs: "Модератори не виконали жодних дій над цим сценарієм."
@@ -208,6 +217,8 @@ uk:
     sync_type_2:
       name: Автоматично
       description: перевірка оновлень буде проводитись періодично
+    sync_type_3:
+      name: Вебхук
     sync_failed_info_html: "Остання спроба синхронізації відбулась %{date}, і в результаті неї трапилась %{error}."
     sync_success_info_html: "Остання успішна спроба синхронізації відбулась %{date}."
     sync_never_succeeded: "Синхронізації ніколи не завершилась успішно."
@@ -217,6 +228,10 @@ uk:
     additional_info_default_sync_html: "Додаткова інформація за замовчуванням (мова повинна відповідати <code>@name</code>)"
     additional_info_localized_sync_html: "Для мови (повинні відповідати <code>@name:XX</code>)"
     sync_url_placeholder: "(URL)"
+    sync_successful: Скрипт успішно синхронізовано.
+    sync_no_changes: Скрипт успішно синхронізовано, але жодних змін не знайдено.
+    sync_error: Помилка синхронізації скрипту - %{error}.
+    sync_turned_off: Синхронізація скриптів вимкнена.
     screenshots_add: "Додати:"
     screenshots_remove: "Видалити"
     replacement_script_explanation: "(Необов'язково) Оберіть інший сценарій, що замістить цей. Уведіть URL замісного сценарію:"
@@ -251,9 +266,11 @@ uk:
     unlisted_marker: "(Прихований)"
     library_marker: "(Бібліотека)"
     libraries_title: "Бібліотеки"
+    by_site_list_filter: "Фільтр за назвою сайта:"
     search_placeholder: "Знайти скрипти"
     updated: "Скрипт оновлено"
     preview_additional_info: "Перегляд"
+    must_confirm: "Ви повинні підтвердити свій аккаунт перед тим як ви зможете опубліковувати скрипти. Ви маєте два способи підтвердження - додати зовнішній вхід або відправити лист з підтвердженням. "
     must_confirm_email_button: "Надіслати посилання для підтвердження на %{email}"
     authors_heading: "Автори"
     error_unauthorized_copy: "Схоже цей код є неавторизованою копією %{script}. Будь ласка, зверніться до %{site_name} %{rules_link:rules} про публікацію скриптів."
@@ -278,20 +295,30 @@ uk:
       remove_button: "Видалити"
       remove_confirm: "Ви впевнені, що хочете видалити %{user_name} як автора?"
       failure: "Неможливо видалити автора."
+    rate_limited: "Ви опублікували дуже багато скриптів за останній час. Повторіть спробу пізніше."
     new_script_notice:
       title: "Що ви намагаєтеся зробити?"
+      install_link_html: "Я хочу <b>встановити та використовувати</b> скрипт."
+      share_link_html: "Я <b>написав</b> скрипт та хочу <b>поділитись</b> ним з іншими."
     new_title:
       js: "Додати новий скрипт"
       css: "Додати новий стиль"
     update_title: "Додати нову версію %{script}"
+    install_help_dialog:
+      js:
+        bypass: (У мене вже є менеджер скриптів, дайте мені встановити його!)
+      close_dialog: ОК
     antifeatures:
       types:
         ads:
           title: Реклама
+          description_html: Цей скрипт <b>додає рекламу</b> на сайти які ви відвідуєте.
         tracking:
           title: Стеження
+          description_html: Цей скрипт містить код який <b>відслідковує ваші дії</b>.
         miner:
           title: Криптомайнер
+          description_html: Цей скрипт містить криптомайнер який <b>використовуватиме ресурси вашого пристрою</b> коли активний.
       install_anyway: Встановити скрипт
       cancel_install: Скасувати
     badges:
@@ -316,6 +343,13 @@ uk:
       heading: "Набори скриптів"
       included_none: "(Жодного)"
       remove_included: "Вилучити відмічені"
+      excluded_none: "(Пусто)"
+      add_label: "Додати скрипти (URL посилання або ID, відокремленні пробілами)"
+    calculated_list_more:
+      one: "Та ще %{count}..."
+      few: "Та ще %{count}..."
+      many: "Та ще %{count}..."
+      other: "Та ще %{count}…"
     save: "Зберегти"
     saved: "Набір скриптів збережено."
   home:
@@ -325,6 +359,26 @@ uk:
     sleazy_welcome: "Ласкаво просимо на %{site_name}, сайт для скриптів користувачів для дорослих."
     explain_user_scripts_heading: "Що таке скрипти користувачів?"
     explain_user_scripts_html: "Скрипти користувачів дають вам в контроль над переглядом вебсторінок. Після встановлення вони покращують сайти додаючи функціонал, роблять їх легшими для користування, або усувають дратівливі деталі. Скрипти користувачів на %{site_name} були написані іншими користувачами, які діляться ними зі світом. Вони відкриті для встановлення і прості у використанні."
+    installing_step1_header: "Крок 1: встановити менеджер скриптів"
+    installing_step1_caption: "Tampermonkey для Chrome"
+    desktop_browsers:
+      title: Робочий стіл
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} або %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, або %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} або %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} або %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>AdGuard: (додаткових інсталяцій не треба)</li>
+          </ul>
+    android_browsers:
+      title: Телефон (Android)
+    ios_browsers:
+      title: Телефон (iOS)
+    installing_step2_header: "Крок 2: встановити користувацький скрипт"
+    installing_step3_header: "Крок 3: використовувати користувацький скрипт"
   users:
     sign_in_title: "Увійти в %{site_name}"
     sign_in_description: "Увійшовши в %{site_name} дозволяє створювати свої скрипти та залишати відгуки про скрипти інших користувачів. Щоб переглядати і встановлювати скрипти вам не обов'язково входити."
@@ -377,6 +431,7 @@ uk:
     disable_syncing: "Вимкнути синхронізацію"
     remove_external_sign_in: "Видалити"
     add_external_sign_in_info: "Додати метод входу:"
+    set_up_webhook: "Налаштувати вебхук"
     author_email_notification_type:
       none: "Не отримую листи про обговорення ваших скриптів"
       discussion_only: "Отримати лист, коли розпочинається обговорення ваших скриптів"
@@ -413,6 +468,7 @@ uk:
         confirm: "Видалити '%{user_name}'"
         cancel: "Скасувати видалення"
         cancelled: "Видалення скасовано."
+        completed: "Ваш аккаунт було видалено."
     badges:
       moderator:
         long: Модератор
@@ -426,10 +482,14 @@ uk:
       title: Сповіщення
       unsubscribe_all: Скасувати підписку на усі сповіщення
       unsubscribe_all_success: Ви скасували підписку на всі сповіщення.
+  webhooks:
+    info:
+      language_note: Так як інтерфейси GitHub, GitLab та Bitbucket на англійський мові, то інструкції нижче будуть також англійською.
   help:
     sections:
       usage: Використання
       development: Розробка
+      miscellaneous: Різне
     meta_keys:
       title: "Мета ключі які розпізнає %{site_name}"
       intro_html: "Це <a href=\"http://wiki.greasespot.net/Metadata_Block\">список мета полів</a>, які %{site_name} буде читати в скриптах користувачів. Значення поза цим списком можуть бути включені в сценарії, і будуть присутні у встановленому скрипті, але не мають ніякого ефекту в інтерфейсі %{site_name}'у."
@@ -586,3 +646,20 @@ uk:
     description: "Шукати користувацькі скрипти на %{site_name}."
     long_name: "%{site_name} пошук скриптів користувачів"
     attribution: "Авторське право належить авторам скриптів, див. сторінку кожного скрипта за інформацією про ліцензування"
+  mailers:
+    consecutive_bad_ratings:
+      notify:
+        subject: "Ваш скрипт %{script_name} на %{site_name} отримав багато поганих рецензій."
+    script_comment:
+      subject: "Ваш скрипт %{script_name} на %{site_name} отримав коментар."
+    comment_mentioned:
+      subject: "Користувач '%{commenter_name}' згадав вас на %{site_name}."
+    new_message:
+      subject: "%{user} надіслав вам повідомлення на %{site_name}"
+      intro: "Користувач %{user_link:%{user_name}} надіслав вам повідомлення на %{site_name}."
+    script_lock_appeal:
+      dismiss:
+        intro_html: Ваше оскарження видалення %{script} було відхилено модератором. Скрипт залишиться видаленим.
+        moderator_notes: "Модератор прокоментував:"
+      unlock:
+        moderator_notes: "Модератор прокоментував:"
