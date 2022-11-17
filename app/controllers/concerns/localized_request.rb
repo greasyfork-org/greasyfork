@@ -62,7 +62,7 @@ module LocalizedRequest
 
     # Detect language
     top, preferred = detect_locale(current_user, request.headers['Accept-Language'])
-    flash[:notice] = view_context.tag.b { "Greasy Fork is not available in #{preferred.english_name}. " + view_context.link_to('You can change that.', Rails.configuration.help_translate_url, target: '_new') } unless preferred.nil?
+    flash[:notice] = view_context.tag.b { "#{site_name} is not available in #{preferred.english_name}. ".html_safe + view_context.link_to('You can change that.', Rails.configuration.help_translate_url, target: '_new') } unless preferred.nil?
     redirect_to current_path_with_params(locale: top.code), status: :found
   end
 
