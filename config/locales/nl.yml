@@ -64,6 +64,14 @@ nl:
       blanked: "Bijwerken naar een blanco script. Dit is nuttig als het script een negatief effect heeft op de betrokken sites."
       redirect: "Bezoekers doorsturen naar onderstaand script."
     delete_permanently_heading: "Permanent verwijderen"
+    delete_permanently_explanation_html: >-
+        <p>Het permanent verwijderen van de script zal je script en alle geassocieerde
+        data verwijderen, met uitzondering van forum discussies en de log van moderator
+        acties.
+
+        <p>Je script zal 7 dagen na je verzoek permanent verwijderd worden. Je kunt
+        de verwijdering in deze tijd annuleren. Als je het niet doet, zal niemand,
+        ook moderators niet, je script kunnen terughalen.
     delete_permanently_confirm: "Weet je zeker dat je dit script permanent wilt verwijderen?"
     delete_permanently_submit: "Permanente verwijdering aanvragen"
     delete_permanently_immediate_submit: "Permanent verwijderen"
@@ -705,8 +713,19 @@ nl:
       external_js: "%{external_scripts_link:Het gebruik van externe JavaScript is beperkt.}"
       copyright_header: Copyright
       miscellaneous_header: Overig
+      adult_content_rule: Scripts met content voor volwassenen of scripts voor sites voor volwassenen moeten gemarkeerd worden, om andere gebruikers te laten kiezen of ze deze scripts willen zien.
+      reposting_deleted: Repost geen scripts die waren verwijderd door het schenden van regels; gebruik in plaats van dat de appeal functie. Het reposten van scripts kan leiden tot een ban.
     external_scripts:
       title: "%{site_name}s beleid omtrent externe scripts."
+      rationale:
+        title: Rationeel
+      libraries:
+        title: "%{site_name}bibliotheken"
+    cdns:
+      test_url:
+        label: Test een URL
+        result_ok: URL is toegestaan
+        result_not_ok: URL is niet toegestaan
     script_rewriting:
       title: "Hoe %{site_name} geplaatste scripts herschrijft"
       content_html: >

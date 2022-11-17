@@ -724,6 +724,8 @@ fr:
       namespace_html: "Une combinaison de <code>@namespace</code> et de <code>@name</code> est utilisée par les outils de gestion de scripts pour déterminé si un script est déjà installé. %{site_name} a besoin de ce champ et montrera une alerte en cas de changement lors de la mise à jour."
       version: "Identifiant d'une version spécifique d'un script dans %{version_format_link:Mozilla version format}. La version est affichée sur la page d'informations d'un script. %{site_name} nécessite ce champ et avertira s'il est décrémenté ou s'il n'est pas incrémenté lorsque le code du script change."
       include_html: "Décrivez sur quelles pages le script s'exécutera. Cette liste sera traitée, affichée sur la page d'informations du script et utilisée pour classer les scripts. Chaque script doit avoir au moins un <code>@match</code> ou <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Découvrez le format ici.</a>"
+      require_html: "Inclut du JavaScript externe dans un script. Voir %{external_script_link:règles pour le code incluant les scripts externes}. Si vous utilisez des hachages d'intégrité de sous-ressources (voir les informations %{tm_subresource_link:ici} et %{mdn_subresource_link:ici}), %{site_name} vous alertera si vos hachages ne correspondent pas au contenu de l'URL que vous utilisez."
+      resource_html: "Inclut une ressource externe (JavaScript, CSS, images, etc.) dans un script. Voir %{external_script_link:règles pour le code incluant les scripts externes}. Si vous utilisez des hachages d'intégrité de sous-ressources (voir les informations %{tm_subresource_link:ici} et %{mdn_subresource_link:ici}), %{site_name} vous alertera si vos hachages ne correspondent pas au contenu de l'URL que vous utilisez."
       updateURL: "Décrit comment les gestionnaires de scripts utilisateurs doivent obtenir les mises à jours. %{site_name} supprimera ces clés, ce qui fait que n'importe quel script installé de %{site_name} se met à jour seulement de %{site_name}."
       license: "Cette licence décrit comment les utilisateurs sont autorisés à copier ou modifier un script. Il est recommandé d'utiliser un \"Nom complet\" ou un \"Identifiant\" de %{spdx_link:la liste des licences SPDX}. Le manque de licence implique que les utilisateurs peuvent installer le script pour un usage personnel, mais ne peuvent pas le redistribuer. La licence est affichée sur la page d'informations d'un script."
       supportURL: "URL de la page où les utilisateurs peuvent obtenir de l'aide sur un script ( un bug tracker, un forum, une adresse e-mail ). L'URL d'aide est affichée sur la page de commentaires du script."
@@ -766,9 +768,63 @@ fr:
       keywords_html: Les scripts ne doivent pas inclure de <code>@include</code>, <code>@match</code> ou des mots-clés pour les sites sur lesquels ils ne fournissent pas de fonctionnalités.
       adult_content_rule: Les scripts incluant du contenu pour adulte ou sont destinés à des sites avec du contenu pour adulte doivent être marqués comme tels pour permettre aux autres utilisateurs de les voir ou non.
       reposting_deleted: Ne republiez pas les scripts qui ont été supprimés en raison de violations des règles; utilisez plutôt la fonction faire appel. Republier des scripts supprimés peut entraîner un ban.
+      advertising_in_description: Les auteurs de scripts ne peuvent pas placer de publicité sur les pages de Greasy Fork, par exemple dans la description d'un script. La promotion de la page d'accueil de l'auteur du script, du référentiel de code, de Discord, de WeChat, etc. est autorisée.
       reporting: Si vous remarquez un script qui ne respecte pas ces paramètres, veuillez le signaler en accédant au lien Commentaires pour ce script et choisissez l'option "Signaler le script".
     external_scripts:
       title: "Politique de %{site_name} concernant les scripts externes"
+      intro_html: |
+          <p>%{site_name}permet l'utilisation de code externe dans des cas spécifiques. Tout script contenant du code externe en dehors de ce qui est autorisé est susceptible d'être supprimé. Si vous trouvez un script qui enfreignent ces règles, veuillez le signaler.</p>
+          <p>Notez que ces règles ne s'appliquent qu'au code exécutable externe. Le chargement de code non exécutable, par exemple JSON ou CSS, n'ont pas restrictions.</p>
+      rationale:
+        title: Raisonnement
+        content_html: |
+            <p>Les scripts utilisateur ont la capacité technique de charger et d'exécuter d'autres scripts. Cela peut être fait de différentes manières, notamment :</p>
+            <ul>
+            <li>Les clés de métadonnées %{require_doc_link:<code>@require</code>} et %{resource_doc_link:<code>@resource</code>}.</li>
+            <li><code>XmlHttpRequest</code> pour télécharger le script, puis <code>eval</code> pour l'exécuter.</li>
+            <li>Ajout d'un <code>&lt;script&gt;</code> marquer dynamiquement.</li>
+            <li>L'option %{webpack_externals_link:<code>externes</code>} de Webpack.</li>
+            <li>Effectuer une mise à jour du script, qu'elle soit effectuée automatiquement ou en demandant à l'utilisateur d'effectuer une action.</li>
+            </ul>
+            <p>Bien qu'il s'agisse d'une fonctionnalité utile et que la plupart des auteurs de scripts l'utilisent à des fins légitimes, elle peut également être utilisée de manière malveillante. L'un des principes fondamentaux de %{site_name} est que l'utilisateur doit pouvoir inspecter le code dans un script. Les scripts externes peuvent contourner ce principe de plusieurs manières : ils peuvent changer sans avertissement ni historique, ils peuvent servir un code différent à différentes personnes et ils peuvent être utilisés pour cacher du code malveillant au milieu de bibliothèques connues. Même si quelqu'un devait vérifier un script externe et déterminer qu'il est légitime, cela ne garantirait pas que ce script a toujours été ou sera toujours légitime.</p>
+      cdns:
+        title: Réseaux de diffusion de contenu (CDNs/RDC)
+        content_html: |
+            <p>Le code des CDN est autorisé. %{cdns_link :Voir une liste de CDN reconnus.} Ce code peut être minifié, mais pas obscurci.</p>
+      sri:
+        title: Scripts avec hachages d'intégrité des sous-ressources
+        content_html: |
+            <p>L'utilisation de <code>@require</code> et <code>@resource</code> avec des URL avec %{mdn_sri_link:intégrité des sous-ressources} au %{tm_sri_link:Tampermonkey format} est autorisée.</p>
+      allowed_external_codes:
+        heading: Codes externes autorisés
+        content_html: |
+            <p>Voici les façons dont le code externe est autorisé sur %{site_name}. Sauf indication contraire, tous les autres %{code_rules_link:règles pour le code} s'appliquent au code externe.</p>
+      libraries:
+        title: "%{site_name} bibliothèques"
+        content_html: |
+            <p>Les scripts publiés en tant que bibliothèques sur %{site_name} sont autorisés. Les bibliothèques peuvent être créées en choisissant l'option lors de la création d'un nouveau script. Ceux-ci peuvent en outre être configurés pour se synchroniser à partir d'une URL externe, comme un référentiel GitHub.</p>
+      origin_host:
+        title: Injection de scripts depuis l'hôte d'origine
+        content_html: |
+            <p>L'injection de scripts externes sur le même domaine que celui d'où ils proviennent est autorisée. Si un script s'exécute sur https://example.com et télécharge https://example.com/script.js, le modifie et réinjecte sur https://example.com/, cela serait autorisé.</p>
+            <p>Si https://example.com/script.js est injecté sur https://differentsite.com, cela ne sera pas autorisé.</p>
+    cdns:
+      title: CDN autorisés
+      content_html: |
+          <p>Ceci est une liste des CDN reconnus par %{site_name}. Ceux-ci peuvent être utilisés pour charger %{external_code_link:code externe} sur les scripts publiés sur %{site_name}.</p>
+          <p>Cette liste se compose d'emplacements de script qui :</p>
+          <ul>
+          <li>Sont publics</li>
+          <li>Ne verront pas leur contenu changer fréquemment</li>
+          <li>Serait probablement utile à plus d'un auteur de script</li>
+          </ul>
+          <p>Si le script que vous souhaitez inclure est une bibliothèque JavaScript (par exemple jQuery ou YUI), essayez de le trouver sur l'un des sites répertoriés ci-dessous. %{cdnjs_link:cdnjs} et %{jsdelivr_link:jsDelivr} en particulier ont un large éventail de bibliothèques disponibles. Si vous avez un CDN que vous souhaitez ajouter, veuillez %{github_link:demandez-le sur GitHub}. Notez qu'il existe %{external_code_link:autres options} pour le code externe autre que les CDNs.</p>
+
+          %{allowed_require_list}
+      test_url:
+        label: Tester une URL
+        result_ok: L'URL est autorisée
+        result_not_ok: L'URL n'est pas autorisée
     script_rewriting:
       title: "Comment %{site_name} va récrire les scripts postés"
       content_html: >
@@ -992,6 +1048,7 @@ fr:
       unauthorized_code: "Copie non autorisée"
       malware: "Malware"
       minified: "Code minifié"
+      obfuscated: "Code illisible"
       external_code: "Code externe non autorisé"
       undisclosed_antifeature: "Non divulguation %{antifeature_link:antifeature} (par exemple, annonce/ad, suivi/tracking, minage de cryptomonnaie, etc.)"
       no_description: "Description manquante, non informative ou trompeuse"
@@ -1026,6 +1083,7 @@ fr:
         </ol>
     rebuttal_placeholder: 'Expliquez à un modérateur pourquoi ce script ne doit pas être supprimé.'
     submit_rebuttal: "Soumettre une réfutation"
+    rebuttal_submitted: Un modérateur examinera ce rapport et votre explication et prendra une décision.
     delete_script: "Supprimer le script"
     view_discussion: "Voir la discussion"
     load_diff: "Chargement différer "
@@ -1034,6 +1092,7 @@ fr:
   appeals:
     new:
       title: Appel de suppression de nouveau script
+      intro_html: 'Votre script a été supprimé pour les raison suivante %{reason}. Si vous pensez qu''il s''agit d''une erreur, ou si vous avez des informations supplémentaires à fournir, ou si vous avez mis à jour votre script pour résoudre le problème, vous pouvez soumettre faire appel. Si un modérateur est satisfait de vos mises à jour et des informations que vous avez fournies, il rétablira l''accès à votre script.'
       submit: Soumettre un appel
     deletion_reason_html: "%{script} a été supprimé en raison de: %{reason}."
     author_reason: "Appel présenté par l'auteur:"
@@ -1075,6 +1134,10 @@ fr:
       bad: "Mauvais"
       ok: "OK"
       good: "Bon"
+    badges:
+      deleted:
+        short: Supprimé
+        long: Supprimé
     sign_in_to_post_discussion: "Connectez-vous pour poster un avis, un commentaire ou une question."
     sign_in_to_post_comment: "Connectez-vous pour poster une réponse."
     user_filter:
@@ -1286,20 +1349,63 @@ fr:
     script_report:
       report_created_offender:
         subject: "Votre script %{script_name} par %{site_name}  a été signalé"
+        body_html: |
+            <p>
+            Votre script %{script_link:%{script_name}} a été signalé comme enfreignant les règles de %{site_name}. La raison précise invoquée est : %{reason}. Vous pouvez %{report_link:examiner ce rapport et soumettre une réfutation}. Si vous ne soumettez pas de réfutation, votre script peut être supprimé par les modérateurs.
+            </p>
       report_upheld_offender:
         subject: "Votre script %{script_name} par %{site_name} a été supprimé"
+        body_html: |
+            <p>
+            Votre script %{script_link:%{script_name}} sur %{site_name} a été supprimé par un modérateur et n'est plus accessible publiquement. Vous pouvez %{report_link:revoir le rapport} et %{code_rules_link:revoir les règles de %{site_name}}.
+            </p>
+            <p>
+            Si vous pensez qu'il s'agit d'une erreur ou si vous avez mis à jour le script pour résoudre le problème, vous pouvez %{appeal_link:faire appel} et un modérateur l'examinera. Ne republiez pas ce script ; cela peut entraîner un bannissement sur %{site_name}.
+            </p>
       report_dismissed_offender:
         subject: "Un rapport sur votre script %{script_name} par %{site_name} a été rejeté"
+        body_html: |
+            <p>
+            Un rapport sur votre script %{script_link:%{script_name}} sur %{site_name} a été rejeté par un modérateur. Votre script restera actif. Vous pouvez %{report_link:revoir ce rapport}.
+            </p>
       report_fixed_offender:
         subject: "Un rapport sur votre script %{script_name} sur %{site_name} a été marqué comme résolu"
+        body_html: |
+            <p>
+            Un rapport sur votre script %{script_link:%{script_name}} sur %{site_name} a été marqué comme résolu par un modérateur car il pense que vous avez résolu le problème. Votre script restera actif. Vous pouvez %{report_link:revoir ce rapport}.
+            </p>
       report_rebutted_reporter:
         subject: "Votre rapport sur%{script_name} par %{site_name}a reçu une réponse"
+        body_html: |
+            <p>
+            Votre rapport sur %{script_link:%{script_name}} sur %{site_name} a reçu une réponse. Vous pouvez %{report_link:revoir cette réponse}. Un modérateur examinera votre rapport et cette réponse et décidera du résultat.
+            </p>
       report_upheld_reporter:
         subject: "Votre rapport sur%{script_name}par%{site_name}a été confirmé"
+        body_html: |
+            <p>
+            Votre signalement sur %{script_link:%{script_name}} de %{site_name} a été confirmé par un modérateur et le script a été supprimé. Vous pouvez %{report_link:revoir le rapport}.
+            </p>
+      report_script_deleted_reporter:
+        subject: "Votre rapport sur %{script_name} de %{site_name} a été fermé"
+        body_html: |
+            <p>
+            Votre rapport sur %{script_link :%{script_name}} de %{site_name} a été fermé car le script a été supprimé par son auteur. Vous pouvez %{report_link:revoir le rapport}.
+            </p>
       report_dismissed_reporter:
         subject: "Votre rapport sur%{script_name}par%{site_name}a été rejeté"
+        body_html: |
+            <p>
+            Votre rapport sur %{script_link:%{script_name}} sur %{site_name} a été rejeté par un modérateur donc le script que vous avez signalé restera actif. Vous pouvez %{report_link:revoir le rapport}.
+            </p>
       report_fixed_reporter:
         subject: "Votre rapport sur %{script_name} sur %{site_name} a été marqué comme résolu"
+        body_html: |
+            <p>
+            Votre rapport sur %{script_link:%{script_name}} sur %{site_name} a été marqué comme résolu par un modérateur car il pense que l'auteur a résolu le problème. Le script restera actif. Vous pouvez %{report_link:revoir ce rapport}.
+            </p>
+      reported_outro: "Vous avez reçu cette notification car elle concerne un rapport sur un script que vous avez soumis à %{site_name}. %{notification_preferences_link: Gérez vos préférences de notification.}"
+      reporter_outro: "Vous avez reçu cette notification car vous avez créé un rapport sur un script sur %{site_name}. %{notification_preferences_link: Gérez vos préférences de notification.}"
     consecutive_bad_ratings:
       notify:
         subject: "Votre script %{script_name} sur %{site_name} a reçu plusieurs \"mauvraises\" critiques."
@@ -1312,6 +1418,7 @@ fr:
     script_comment:
       subject: "Votre script %{script_name} sur %{site_name} a reçu un commentaire."
       intro: "Votre script %{script_link:%{script_name}} sur %{site_name} a reçu un commentaire de l'utilisateur %{commenter_link:%{commenter_name}}:"
+      outro: "%{comment_link:Afficher et répondre à ce commentaire.} Vous avez reçu cette notification car vous avez choisi d'être informé des discussions sur vos scripts. %{notification_preferences_link:Gérez vos préférences de notification.}"
     subscribed_discussion:
       subject: "La discussion %{discussion_title} sur %{site_name} a reçu un commentaire."
       intro: "La discussion %{discussion_link:%{discussion_title}} sur %{site_name} a reçu un commentaire de l'utilisateur %{commenter_link:%{commenter_name}}:"
