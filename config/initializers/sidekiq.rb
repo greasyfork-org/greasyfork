@@ -1,6 +1,6 @@
 if Rails.env.production?
   Sidekiq.configure_client do |config|
-    config.redis = { url: 'redis://192.168.149.153:6379/0' }
+    config.redis = { url: 'redis://192.168.166.212:6379/0' }
   end
 end
 
