@@ -486,7 +486,7 @@ es:
           <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} o %{chrome_violentmonkey_link:Violentmonkey}</li>
           <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, o %{firefox_violentmonkey_link:Violentmonkey}</li>
           <li>Safari: %{safari_tampermonkey_link:Tampermonkey} o %{safari_userscripts_link:Userscripts}</li>
-          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} o %{edge_violentmonkey_link:Violentmonkey}</li>
           <li>Opera: %{opera_tampermonkey_link:Tampermonkey} o %{opera_violentmonkey_link:Violentmonkey}</li>
           <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
           <li>AdGuard: (no se necesita nada más)</li>
@@ -774,6 +774,20 @@ es:
         title: Razones
       cdns:
         title: Redes de entrega de contenido (CDNs en inglés)
+      sri:
+        title: Scripts con sumas de comprobación de subrecurso
+      allowed_external_codes:
+        heading: Se permite el código externo
+      libraries:
+        title: "Bibliotecas en %{site_name}"
+      origin_host:
+        title: Inyección de scripts bajo el dominio original
+    cdns:
+      title: CDNs permitidas
+      test_url:
+        label: Probar una dirección URL
+        result_ok: Esta dirección está en la lista blanca
+        result_not_ok: Esta dirección no está en la lista blanca
     script_rewriting:
       title: "Cómo afectará %{site_name} a los scripts publicados"
       content_html: >
@@ -997,6 +1011,7 @@ es:
       unauthorized_code: "Copia no autorizada"
       malware: "Software malicioso"
       minified: "Código minimizado"
+      obfuscated: "Con código ofuscado"
       external_code: "Código externo no permitido"
       undisclosed_antifeature: "Característica %{antifeature_link:adversa no revelada} (por ejemplo, un anuncio, un rastreador, minería de criptomonedas)"
       no_description: "Sin descripción o sin dar información adecuada, o proporcionando información engañosa"
