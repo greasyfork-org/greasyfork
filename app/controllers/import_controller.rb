@@ -28,7 +28,7 @@ class ImportController < ApplicationController
       when :failure, :notuserscript
         @results[:failure] << "#{sync_id} - #{message}"
       when :success
-        existing_scripts = Script.where(sync_identifier: sync_id)
+        existing_scripts = current_user.scripts.where(sync_identifier: sync_id)
         if !existing_scripts.empty?
           @results[:existing] << existing_scripts.first
         elsif script.save
