@@ -6,6 +6,8 @@ class CommentSpamCheckJob < ApplicationJob
 
     return if pattern_check(comment)
 
+    return if repeat_check(comment)
+
     check_with_akismet(comment, ip, user_agent, referrer)
   end
 
@@ -16,6 +18,12 @@ class CommentSpamCheckJob < ApplicationJob
 
     # discussion.update(review_reason: Discussion::REVIEW_REASON_RAINMAN)
     # Report.create!(item: discussion, auto_reporter: 'rainman', reason: Report::REASON_SPAM)
+  end
+
+  def repeat_check(comment)
+    return false unless comment.poster.created_at > 7.days.ago
+
+    Report.create!(item: comment, auto_reporter: 'rainman', reason: Report::REASON_SPAM) if comment.poster.comments.where('id < ?', comment.id).where(text: comment.text).any?
   end
 
   def check_with_akismet(comment, ip, user_agent, referrer)
