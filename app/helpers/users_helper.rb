@@ -5,6 +5,7 @@ module UsersHelper
       sort: params[:sort],
       banned: params[:banned],
       author: params[:author],
+      same_ip: params[:same_ip],
     }.compact
 
     new_options = current_options.dup
@@ -32,6 +33,8 @@ module UsersHelper
     else
       new_options[:author] = author
     end
+
+    new_options.delete(:same_ip) if params[:same_ip].nil?
 
     is_link = current_options != new_options
 
