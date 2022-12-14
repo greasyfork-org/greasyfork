@@ -21,13 +21,31 @@ class GoogleAnalytics
   def self.report_pageviews(site: :greasyfork)
     date_range = Google::Analytics::Data::V1beta::DateRange.new(start_date: 30.days.ago.to_date.iso8601, end_date: Time.zone.today.iso8601)
     metric = Google::Analytics::Data::V1beta::Metric.new(name: 'screenPageViews')
-    dimension = Google::Analytics::Data::V1beta::Dimension.new(name: 'pagePath')
-    request = Google::Analytics::Data::V1beta::RunReportRequest.new(property: site == :sleazyfork ? 'properties/293114118' : 'properties/293110681', date_ranges: [date_range], metrics: [metric], dimensions: [dimension])
+    dimension = Google::Analytics::Data::V1beta::Dimension.new(name: 'pageLocation')
 
-    # Call the run_report method.
-    result = client.run_report request
+    results = []
 
-    result.rows.to_h { |row| [row.dimension_values.first.value, row.metric_values.first.value.to_i] }
+    # Going with too many results at once gives an error.
+    offset = 0
+    limit = 25_000
+    # Stop once we reach things with this many page views or less. Otherwise we can hit rate limits and otherwise spend
+    # too much time on stuff that doesn't matter.
+    minimum_to_query = 10
+
+    loop do
+      request = Google::Analytics::Data::V1beta::RunReportRequest.new(property: site == :sleazyfork ? 'properties/293114118' : 'properties/293110681', date_ranges: [date_range], metrics: [metric], dimensions: [dimension], limit:, offset:)
+
+      # Call the run_report method.
+      result = client.run_report request
+
+      this_results = result.rows.map { |row| [row.dimension_values.first.value, row.metric_values.first.value.to_i] }
+      return results if this_results.empty?
+
+      results += this_results
+      offset += limit
+
+      return results if results.last.last <= minimum_to_query
+    end
   end
 
   def self.client
