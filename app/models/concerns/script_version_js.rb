@@ -21,7 +21,13 @@ module ScriptVersionJs
     validate on: :create do |record|
       next unless record.js?
 
-      record.disallowed_requires_used.each { |w| record.errors.add(:code, I18n.t('errors.messages.script_disallowed_require', code: "@require #{w}")) }
+      record.disallowed_requires_used.each do |url, type|
+        if type == :disallowed
+          record.errors.add(:code, I18n.t('errors.messages.script_disallowed_require', code: "@require #{url}"))
+        else
+          record.errors.add(:code, I18n.t('errors.messages.script_malformed_require', code: "@require #{url}"))
+        end
+      end
     end
   end
 end

@@ -29,12 +29,13 @@ class ScriptVersionAllowedRequiresTest < ActiveSupport::TestCase
       // @version 1.0
       // @namespace http://greasyfork.local/users/1
       // @include example.com
-      // @require https://ajax.googleapis.com/invalid\stuff
+      // @require https://ajax.googleapis.com/invalid^stuff
       // @license MIT
       // ==/UserScript==
       var foo = "bar";
     JS
     assert_not script_version.valid?
+    assert_includes script_version.errors.full_messages, 'Code uses a malformed external script reference: @require https://ajax.googleapis.com/invalid^stuff'
   end
 
   test 'require not on allowed list is not allowed' do
@@ -53,6 +54,7 @@ class ScriptVersionAllowedRequiresTest < ActiveSupport::TestCase
       var foo = "bar";
     JS
     assert_not script_version.valid?
+    assert_includes script_version.errors.full_messages, 'Code uses an unapproved external script: @require https://ajax.jqueryorwhatever.com/whatever.js'
   end
 
   test 'require not on allowed list is allowed if it has a subresource integrity hash' do

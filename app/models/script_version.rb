@@ -433,9 +433,9 @@ class ScriptVersion < ApplicationRecord
       next if /\A[^#]+#(md5|sha1|sha256|sha384|sha512)=/.match?(script_url)
 
       uri = URI(script_url).normalize.to_s
-      r << script_url if allowed_requires.none? { |ar| uri =~ Regexp.new(ar.pattern) }
+      r << [script_url, :disallowed] if allowed_requires.none? { |ar| uri =~ Regexp.new(ar.pattern) }
     rescue URI::InvalidURIError
-      r << script_url
+      r << [script_url, :malformed]
     end
     return r
   end
