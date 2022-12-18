@@ -226,7 +226,7 @@ de:
     provide_code_syncing_from_url_html: "%{site_name} kann Skripte importieren, welche schon an anderer Stelle gespeichert sind, wie beispielsweise in einer Versionskontrolle (wie GitHub), Ihrem eigenen Server oder einer anderen Benutzerskript Seite. Geben Sie bitte eine Internetadresse an, um die Synchronisierung für Ihr Skript einzurichten: %{field}"
     sync_type_intro: "Das Skript wird synchronisiert:"
     sync_type_1:
-      name: Anleitung
+      name: Manuell
       description: Es wird nur auf Aktualisierungen geprüft, wenn Sie es anstoßen
     sync_type_2:
       name: Automatisch
@@ -622,7 +622,7 @@ de:
     info:
       title: Webhook einrichten
       intro_html: |
-          <p>Eine Webhook, die mit %{site_name}  verbunden ist, macht es möglich, dass Sie automatisch %{site_name}  aktualisieren können, basieren auf dem, was in Ihrer Versionskontrolle passiert. %{site_name} unterstützt "push" Webhooks für GitHub, GitLab und Bitbucket, und "release" Webhooks für GitHub und GitLab.</p>
+          <p>Ein Webhook, der mit %{site_name}  verbunden ist, macht es möglich, dass Sie automatisch %{site_name}  aktualisieren können, basieren auf dem, was in Ihrer Versionskontrolle passiert. %{site_name} unterstützt "push" Webhooks für GitHub, GitLab und Bitbucket, und "release" Webhooks für GitHub und GitLab.</p>
           <p>Um diese Funktion nutzen zu können, müssen Sie in Skripten auf %{site_name} die Synchronisierung mit einer URL zu Ihrem Repository aktivieren. Sie können neue Skripte durch %{import_link: Neue Skripte in %{site_name} importieren} hinzufügen oder Sie können bei bereits hochgeladenen Skripten über den "Admin"-Tab der Seite des Skriptes die Synchronisierung aktivieren.</p>
           <p>Ihr Skript wird weiterhin "Automatisch" oder "Manuell" anzeigen, bis der erste Webhook ausgelöst wird.</p>
       already_syncing_list: "Hier sind die Skripte, die Sie bereits zur Synchronisierung von einem unterstützten Anbieter eingerichtet sind:"

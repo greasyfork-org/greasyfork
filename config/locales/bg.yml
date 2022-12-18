@@ -753,10 +753,16 @@ bg:
         title: Обосновка
       cdns:
         title: Content delivery networks (CDNs)
+      sri:
+        title: Скриптове с проверка за целостта на подресурса
       allowed_external_codes:
         heading: Разрешени външни кодове
+        content_html: |
+            <p>Това са начините, по които е разрешен външен код %{site_name}. Освен ако не е оказано друго, всички %{code_rules_link:правила за кода} се прилагат за външния код.</p>
       libraries:
         title: "%{site_name} библиотеки"
+        content_html: |
+            <p>Скриптове, публикувани като библиотеки на %{site_name} са позволени. Библиотеките могат да бъдат създадени чрез избиране на опцията при създаване на нов скрипт. Допълнително може да бъде указано да се синхронизират с външен URL като хранилище на GitHub.</p>
       origin_host:
         title: Инжектиране на скриптове от origin host
     cdns:
@@ -977,6 +983,7 @@ bg:
       unauthorized_code: "Неоторизирано копие"
       malware: "Зловреден скрипт"
       minified: "Минифициран код"
+      obfuscated: "Обфускиран код"
       external_code: "Неразрешен външен код"
       undisclosed_antifeature: "Неописана %{antifeature_link:антифункция} (напр. реклама, проследяване, копачка, и т.н..)"
       no_description: "Липсващо, безсмислено или подвеждащо описание"
@@ -1237,6 +1244,7 @@ bg:
       must_be_greasy_fork_script: "трябва да бъде адрес (URL) на скрипт в %{site_name}"
       script_update_not_utf8: "трябва да използвате UTF-8 кодировка"
       script_disallowed_require: "използва неодобрен външен скрипт: %{code}"
+      script_malformed_require: "използва счупена препратка към външен скрипт: %{code}"
       script_rate_limit: "Надхвърлили сте лимита за публикуване. Опитайте отново по-късно."
       missing_include_or_match: "трябва да съдържа поне един @match или @include"
       invalid_meta: "съдържа невалидна мета директива. Правилният формат е // @foo"

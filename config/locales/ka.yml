@@ -1,0 +1,91 @@
+ka:
+  layouts:
+    application:
+      script_list: "სკრიპტები"
+      forum: "ფორუმი"
+      help: "დახმარება"
+      sign_in: "შემოსვლა"
+      submenu: "მეტი"
+      advanced_search: "მოწინავე ძიება"
+      user_list: "მომხმარებელთა სია"
+      libraries: "ბიბლიოთეკები"
+      moderator_log: "მოდერატორის ჟურნალი"
+  scripts:
+    created_date: "შექმნილია"
+    updated_date: "განახლებულია"
+    total_installs: "მთლიანი ინსტალაციები"
+    daily_installs: "დღიური ინსტალაციები"
+    ratings: "რეიტინგი"
+    author_name: "ავტორი"
+    version_number: "ვერსია"
+    license: "ლიცენზია"
+    no_license: "პ/გ"
+    applies_to_all: "ყველა საიტი"
+    install: "ეს სკრიპტის ინსტალაცია"
+    install_help: "?"
+    install_help_title: "როგორ უნდა დაინსტალურო"
+    info_page: "ინფორმაცია"
+    code_page: "კოდი"
+    history_page: "ისტორია"
+    stats_page: "სტატისტიკა"
+    admin_page: "ადმინი"
+    admin:
+      title: "%{script_name}- ადმინი"
+    stats_no_data: "პ/გ"
+    stats_filter_options:
+      all: მთელი დრო
+    similarity_score:
+      high: ძალიან მსგავსი
+    derivatives_similar_none: "არ არსებობს შენი მსგავსი სკრიპტები."
+    listing_title_generic: "მომხმარებლის სკრიპტები"
+    listing_sort_name: "სახელი"
+    listing_filter_by_site_disable: "ყველა"
+    listing_filter_by_site_all_sites: "(ყველა საიტი)"
+    library_marker: "(ბიბლიოთეკა)"
+  help:
+    cdns:
+      test_url:
+        label: URL'ის ტესტირება
+  search:
+    script_search:
+      title: "სკრიპტის ეძება"
+    library_search:
+      title: "ბიბლიოთეკის ეძება"
+  moderator_logs:
+    date_column: "ჟამი"
+    moderator_column: "მოდერატორი"
+    reason_column: "მიზეზი"
+    item_script_html: "სკრიფტი: %{script_link}"
+  activerecord:
+    attributes:
+      user:
+        profile: "პროფილი"
+        show_ads: "მანახეთ რეკლამა"
+        show_sensitive: "ზრდადამთავრებული კონტენტი"
+        current_password: "მიმდინარე პაროლი"
+        new_password: "ახალი პაროლი"
+        new_password_confirmation: "დაადასტურეთ ახალი პაროლი"
+      script:
+        code: "კოდი"
+        changelog: "განსხვავებების ჟურნალი"
+        type: "სკრიპტის ტიპი"
+      script_set:
+        name: "სახელი"
+      discussion:
+        rating: "რეიტინგი"
+  errors:
+    messages:
+      script_sync_identifier_bad_protocol: "უნდა იყოს ან HTTP ან HTTPS URL'ი."
+      cannot_be_self_reference: "არ უნდა იყოს ერთი და იგივე სკრიპტი"
+      cannot_be_deleted_reference: "არ უნდა იყოს წაშლილი სკრიპტი"
+      cannot_be_used_with_this_script: "ეს სკრიპტის ერთად გამოყენება არ შეიძლება"
+      script_update_not_utf8: "დატვირთული ფაილი უნდა იყოს UTF-8 ტექსტი"
+      file_size_out_of_range: "ზომა უნდა იყოს 200KB-ზე ნაკლები."
+  opensearch:
+    short_name: "%{site_name} ეძება"
+  importing:
+    submit: იმპორტირება
+    previously_imported:
+      unknown_date: "(უცნობი)"
+    results:
+      title: "რეზულტატის იმპორტირება"
