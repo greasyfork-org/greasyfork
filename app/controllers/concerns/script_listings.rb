@@ -22,133 +22,55 @@ module ScriptListings
       @bots = 'noindex'
     end
 
-    is_search = params[:q].present?
-
-    locale = request_locale
-    if locale.scripts?(script_subset)
-      if params[:filter_locale] == '0' || (params[:filter_locale].nil? && current_user && !current_user.filter_locale_default)
-        @offer_filtered_results_for_locale = locale
-      else
-        @current_locale_filter = locale
-        search_locale = @current_locale_filter.id
-      end
-    end
-
-    # Search can't do script sets, otherwise we'd use it for everything.
-    if params[:set].nil?
-      begin
-        with = sphinx_options_for_request
-        with[:locale] = search_locale if search_locale
-
-        if params[:site]
-          if params[:site] == '*'
-            with[:site_count] = 0
-          else
-            site = SiteApplication.find_by(text: params[:site])
-            if site.nil?
-              @scripts = Script.none.paginate(page: 1)
-            elsif site.blocked
-              render_404(site.blocked_message)
-              return
-            else
-              with[:site_application_id] = site.id
-            end
-          end
-        end
-
-        case params[:language]
-        when 'css'
-          with[:available_as_css] = true
-        when 'all'
-          # No filter
-        else
-          with[:available_as_js] = true
-        end
-
-        # This should be nil unless there are going to be no results.
-        if @scripts.nil?
-          # :ranker => "expr('top(user_weight)')" means that it will be sorted on the top ranking match rather than
-          # an aggregate of all matches. In other words, something matching on "name" will be tied with everything
-          # else matching on "name".
-          @scripts = Script.search(
-            params[:q],
-            with:,
-            page: params[:page],
-            per_page:,
-            order: self.class.get_sort(params, for_sphinx: true),
-            populate: true,
-            sql: { include: [:script_type, { localized_attributes: :locale }, :users] },
-            select: '*, weight() myweight, LENGTH(site_application_id) AS site_count',
-            ranker: "expr('top(user_weight)')"
-          )
-          # make it run now so we can catch syntax errors
-          @scripts.empty?
-        end
-      rescue ThinkingSphinx::SyntaxError, ThinkingSphinx::ParseError, ThinkingSphinx::QueryError
-        flash[:alert] = "Invalid search query - '#{params[:q]}'."
-        # back to the main listing
-        redirect_to scripts_path
-        return
-      rescue ThinkingSphinx::OutOfBoundsError
-        # Paginated too far.
-        @scripts = Script.none.paginate(page: 1)
-      end
-    else
-      set = ScriptSet.find(params[:set])
-      if !current_user&.moderator? && set.user&.banned?
-        redirect_to scripts_path(locale: request_locale.code), status: :moved_permanently
-        return
-      end
-
-      @scripts = Script
-                 .listable(script_subset)
-                 .includes({ users: {}, script_type: {}, localized_attributes: :locale })
-                 .paginate(page: page_number, per_page:)
-      @scripts = self.class.apply_filters(@scripts, params, script_subset)
-      # Force a load as will be doing empty?, size, etc. and don't want separate queries for each.
-      @scripts = @scripts.load
-    end
-
     respond_to do |format|
       format.html do
-        @set = ScriptSet.find(params[:set]) unless params[:set].nil?
-        @by_sites = TopSitesService.get_top_by_sites(script_subset:, locale_id: search_locale)
+        should_cache_page = current_user.nil? && request.format.html? && (params.keys - %w[locale controller action site page]).none?
+        cache_page(should_cache_page ? "script_index/#{params.values.join('/')}" : nil) do
+          load_scripts_for_index
+          is_search = params[:q].present?
 
-        @sort_options = %w[relevance daily_installs total_installs ratings created updated name] if is_search
-        @link_alternates = listing_link_alternatives
+          @set = ScriptSet.find(params[:set]) unless params[:set].nil?
+          @by_sites = TopSitesService.get_top_by_sites(script_subset:, locale_id: @search_locale)
 
-        if !params[:set].nil?
-          if is_search
-            @title = t('scripts.listing_title_for_search', search_string: params[:q])
-          elsif @set.favorite
-            @title = t('scripts.listing_title_for_favorites', set_name: @set.display_name, user_name: @set.user.name)
+          @sort_options = %w[relevance daily_installs total_installs ratings created updated name] if is_search
+          @link_alternates = listing_link_alternatives
+
+          if !params[:set].nil?
+            if is_search
+              @title = t('scripts.listing_title_for_search', search_string: params[:q])
+            elsif @set.favorite
+              @title = t('scripts.listing_title_for_favorites', set_name: @set.display_name, user_name: @set.user.name)
+            else
+              @title = @set.display_name
+              @description = @set.description
+            end
+          elsif (params[:site] == '*') && !@scripts.empty?
+            @title = t('scripts.listing_title_all_sites')
+            @description = t('scripts.listing_description_all_sites')
+          elsif !params[:site].nil? && !@scripts.empty?
+            @title = t('scripts.listing_title_for_site', site: params[:site])
+            @description = t('scripts.listing_description_for_site', site: params[:site])
           else
-            @title = @set.display_name
-            @description = @set.description
+            @title = t('scripts.listing_title_generic')
+            @description = t('scripts.listing_description_generic')
           end
-        elsif (params[:site] == '*') && !@scripts.empty?
-          @title = t('scripts.listing_title_all_sites')
-          @description = t('scripts.listing_description_all_sites')
-        elsif !params[:site].nil? && !@scripts.empty?
-          @title = t('scripts.listing_title_for_site', site: params[:site])
-          @description = t('scripts.listing_description_for_site', site: params[:site])
-        else
-          @title = t('scripts.listing_title_generic')
-          @description = t('scripts.listing_description_generic')
+          @canonical_params = [:page, :per_page, :site, :sort, :filter_locale, :language]
+          @canonical_params << if is_search
+                                 :q
+                               else
+                                 :set
+                               end
+          @ad_method = choose_ad_method_for_scripts(@scripts)
+          render_to_string
         end
-        @canonical_params = [:page, :per_page, :site, :sort, :filter_locale, :language]
-        @canonical_params << if is_search
-                               :q
-                             else
-                               :set
-                             end
-        @ad_method = choose_ad_method_for_scripts(@scripts)
       end
       format.atom
       format.json do
+        load_scripts_for_index
         render json: params[:meta] == '1' ? { count: @scripts.count } : @scripts.as_json(include: :users)
       end
       format.jsonp do
+        load_scripts_for_index
         render json: params[:meta] == '1' ? { count: @scripts.count } : @scripts.as_json(include: :users), callback: clean_json_callback_param
       end
     end
@@ -318,5 +240,92 @@ module ScriptListings
       { url: current_path_with_params(format: :json, meta: '1'), type: 'application/json' },
       { url: current_path_with_params(format: :jsonp, meta: '1', callback: 'callback'), type: 'application/javascript' },
     ]
+  end
+
+  def load_scripts_for_index
+    locale = request_locale
+    if locale.scripts?(script_subset)
+      if params[:filter_locale] == '0' || (params[:filter_locale].nil? && current_user && !current_user.filter_locale_default)
+        @offer_filtered_results_for_locale = locale
+      else
+        @current_locale_filter = locale
+        @search_locale = @current_locale_filter.id
+      end
+    end
+
+    # Search can't do script sets, otherwise we'd use it for everything.
+    if params[:set].nil?
+      begin
+        with = sphinx_options_for_request
+        with[:locale] = @search_locale if @search_locale
+
+        if params[:site]
+          if params[:site] == '*'
+            with[:site_count] = 0
+          else
+            site = SiteApplication.find_by(text: params[:site])
+            if site.nil?
+              @scripts = Script.none.paginate(page: 1)
+            elsif site.blocked
+              render_404(site.blocked_message)
+              return
+            else
+              with[:site_application_id] = site.id
+            end
+          end
+        end
+
+        case params[:language]
+        when 'css'
+          with[:available_as_css] = true
+        when 'all'
+          # No filter
+        else
+          with[:available_as_js] = true
+        end
+
+        # This should be nil unless there are going to be no results.
+        if @scripts.nil?
+          # :ranker => "expr('top(user_weight)')" means that it will be sorted on the top ranking match rather than
+          # an aggregate of all matches. In other words, something matching on "name" will be tied with everything
+          # else matching on "name".
+          @scripts = Script.search(
+            params[:q],
+            with:,
+            page: params[:page],
+            per_page:,
+            order: self.class.get_sort(params, for_sphinx: true),
+            populate: true,
+            sql: { include: [:script_type, { localized_attributes: :locale }, :users] },
+            select: '*, weight() myweight, LENGTH(site_application_id) AS site_count',
+            ranker: "expr('top(user_weight)')"
+          )
+          # make it run now so we can catch syntax errors
+          @scripts.empty?
+        end
+      rescue ThinkingSphinx::SyntaxError, ThinkingSphinx::ParseError, ThinkingSphinx::QueryError
+        flash[:alert] = "Invalid search query - '#{params[:q]}'."
+        # back to the main listing
+        redirect_to scripts_path
+        return
+      rescue ThinkingSphinx::OutOfBoundsError
+        # Paginated too far.
+        @scripts = Script.none.paginate(page: 1)
+      end
+    else
+      set = ScriptSet.find(params[:set])
+      if !current_user&.moderator? && set.user&.banned?
+        redirect_to scripts_path(locale: request_locale.code), status: :moved_permanently
+        return
+      end
+
+      @scripts = Script
+                 .listable(script_subset)
+                 .includes({ users: {}, script_type: {}, localized_attributes: :locale })
+                 .paginate(page: page_number, per_page:)
+      @scripts = self.class.apply_filters(@scripts, params, script_subset)
+      # Force a load as will be doing empty?, size, etc. and don't want separate queries for each.
+      @scripts = @scripts.load
+    end
   end
 end
