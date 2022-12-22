@@ -26,7 +26,8 @@ module ScriptListings
       format.html do
         should_cache_page = current_user.nil? && request.format.html? && (params.keys - %w[locale controller action site page]).none?
         cache_page(should_cache_page ? "script_index/#{params.values.join('/')}" : nil) do
-          load_scripts_for_index
+          return if load_scripts_for_index
+
           is_search = params[:q].present?
 
           @set = ScriptSet.find(params[:set]) unless params[:set].nil?
@@ -68,11 +69,11 @@ module ScriptListings
         load_scripts_for_index
       end
       format.json do
-        load_scripts_for_index
+        return if load_scripts_for_index
         render json: params[:meta] == '1' ? { count: @scripts.count } : @scripts.as_json(include: :users)
       end
       format.jsonp do
-        load_scripts_for_index
+        return if load_scripts_for_index
         render json: params[:meta] == '1' ? { count: @scripts.count } : @scripts.as_json(include: :users), callback: clean_json_callback_param
       end
     end
@@ -270,7 +271,7 @@ module ScriptListings
               @scripts = Script.none.paginate(page: 1)
             elsif site.blocked
               render_404(site.blocked_message)
-              return
+              return true
             else
               with[:site_application_id] = site.id
             end
@@ -309,7 +310,7 @@ module ScriptListings
         flash[:alert] = "Invalid search query - '#{params[:q]}'."
         # back to the main listing
         redirect_to scripts_path
-        return
+        return true
       rescue ThinkingSphinx::OutOfBoundsError
         # Paginated too far.
         @scripts = Script.none.paginate(page: 1)
@@ -318,7 +319,7 @@ module ScriptListings
       set = ScriptSet.find(params[:set])
       if !current_user&.moderator? && set.user&.banned?
         redirect_to scripts_path(locale: request_locale.code), status: :moved_permanently
-        return
+        return true
       end
 
       @scripts = Script
@@ -329,5 +330,7 @@ module ScriptListings
       # Force a load as will be doing empty?, size, etc. and don't want separate queries for each.
       @scripts = @scripts.load
     end
+
+    false
   end
 end
