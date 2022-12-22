@@ -64,7 +64,9 @@ module ScriptListings
           render_to_string
         end
       end
-      format.atom
+      format.atom do
+        load_scripts_for_index
+      end
       format.json do
         load_scripts_for_index
         render json: params[:meta] == '1' ? { count: @scripts.count } : @scripts.as_json(include: :users)
