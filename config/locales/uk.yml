@@ -359,16 +359,58 @@ uk:
     sleazy_welcome: "Ласкаво просимо на %{site_name}, сайт для скриптів користувачів для дорослих."
     explain_user_scripts_heading: "Що таке скрипти користувачів?"
     explain_user_scripts_html: "Скрипти користувачів дають вам в контроль над переглядом вебсторінок. Після встановлення вони покращують сайти додаючи функціонал, роблять їх легшими для користування, або усувають дратівливі деталі. Скрипти користувачів на %{site_name} були написані іншими користувачами, які діляться ними зі світом. Вони відкриті для встановлення і прості у використанні."
-    installing_step1_header: "Крок 1: встановити менеджер скриптів"
+    installing_step1_header: "Крок 1: Встановити менеджер скриптів"
     installing_step1_caption: "Tampermonkey для Chrome"
+    installing_step1_description_html: >
+        <p>Для використання скриптів вам необхідно спочатку встановити менеджер користувацьких
+        скриптів. Який менеджер скриптів буде залежати від того яким браузером ви
+        користуєтесь.</p>
     desktop_browsers:
-      title: Робочий стіл
+      title: Комп'ютер
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} або %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, або %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} або %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} або %{edge_violentmonkey_link:Violentmonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} або %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>AdGuard: (додаткового програмного забезпечення не потрібно)</li>
+          </ul>
     android_browsers:
       title: Телефон (Android)
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, або %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          <li>Kiwi: %{chrome_tampermonkey_link:Tampermonkey} або %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>%{xbrowser_link:XBrowser}</li>
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: Телефон (iOS)
-    installing_step2_header: "Крок 2: встановити користувацький скрипт"
-    installing_step3_header: "Крок 3: використовувати користувацький скрипт"
+      browser_list_html: |
+          <ul>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} або %{safari_userscripts_link:Userscripts}</li>
+          <li>%{gear_link:Gear}: (додаткового програмного забезпечення не потрібно)
+          </ul>
+    installing_step2_header: "Крок 2: Встановити користувацький скрипт"
+    installing_step2_description_html: >
+        <p>%{browse_link:Відкрийте цей сайт} щоб знайти користувацький скрипт який
+        хочете спробувати. Ось список найпопулярніших скриптів:</p>
+
+        %{highlighted_scripts_list}
+
+        <p>Після того як ви знайшли користувацький скрипт, натисніть на зелену кнопку
+        "Встановити цей скрипт" на сторінці скрипту, після чого ваш менеджер запросить
+        вас підтвердити встановлення.</p>
+    installing_step3_header: "Крок 3: Використовувати користувацький скрипт"
+    installing_step3_description_html: >
+        <p>Відкрийте сайт який буде змінено користувацьким скриптом. Він повинен автоматично
+        виконати свою роботу. Після певного часу використання користувацького скрипту,
+        поверніться туди звідки завантажили його і залиште відгук для автора.</p>
   users:
     sign_in_title: "Увійти в %{site_name}"
     sign_in_description: "Увійшовши в %{site_name} дозволяє створювати свої скрипти та залишати відгуки про скрипти інших користувачів. Щоб переглядати і встановлювати скрипти вам не обов'язково входити."
@@ -480,6 +522,10 @@ uk:
       usage: Використання
       development: Розробка
       miscellaneous: Різне
+    installing_user_scripts:
+      title: 'Як встановлювати користувацькі скрипти'
+    installing_user_styles:
+      title: 'Як встановлювати користувацькі стилі'
     meta_keys:
       title: "Мета ключі які розпізнає %{site_name}"
       intro_html: "Це <a href=\"http://wiki.greasespot.net/Metadata_Block\">список мета полів</a>, які %{site_name} буде читати в скриптах користувачів. Значення поза цим списком можуть бути включені в сценарії, і будуть присутні у встановленому скрипті, але не мають ніякого ефекту в інтерфейсі %{site_name}'у."
@@ -501,7 +547,7 @@ uk:
       user_page_link_text: 'сторінки користувача'
       post_new_script_link_text: 'публікації нового скрипту'
     code_rules:
-      title: "правила для публікації скриптів на %{site_name}"
+      title: "Правила для публікації скриптів на %{site_name}"
       code_header: Код
       reposting_deleted: Не публікуйте повторно сценарії, що були видалені через порушення правил; натомість користуйтесь функцією "оскаржити". Повторна публікація видалених скриптів може призвести до бану.
     external_scripts:
