@@ -40,12 +40,12 @@ cs:
     old_version_warning: "Toto není poslední verze skriptu. Po instalaci nebude funkční aktualizace na nejnovější verzi. Přejete si přesto provést instalaci?"
     promoted: "Doporučený skript"
     author_promoted: "Skript doporučený autorem"
-    promoted_text_html: "Mohl by se vám také líbit %{script_link}"
+    promoted_text_html: "Mohlo by se vám také líbit %{script_link}."
     library_instructions_html: "Tento skript by neměl být instalován přímo. Jedná se o knihovnu, kterou by měly jiné skripty využívat pomocí meta příkazu %{code}"
     deleted_notice: "Tento skript byl smazán."
     deleted_notice_with_related: "Požadovaný skript byl odstraněn, ale jsou zde podobné skripty."
     deleted_undelete_notice_html: "Tento skript byl uzamčen moderátorem a nemůže být obnoven. Uvedený důvod je „<i>%{delete_reason}</i>“."
-    deleted_locked_author_notice_html: "Tento skript byl smazán moderátorem a není přístupný ostatním. Uvedený důvod: \"<i>%{delete_reason}</i>\". Prostudujte si prosím znovu %{code_rules_link:pravidla %{site_name}}. Pokud si myslíte že došlo k odstranění omylem, můžete %{appeal_link:podat odvolání} proti tomuto smazání. Nenahrávejte tento skript znovu; pokud tak učiníte, může to mít za následek zákaz z %{site_name}."
+    deleted_locked_author_notice_html: "Tento skript byl smazán moderátorem a není přístupný ostatním. Uvedený důvod: \"<i>%{delete_reason}</i>\". Prostudujte si prosím znovu %{code_rules_link:pravidla %{site_name}}. Pokud si myslíte že došlo k odstranění omylem, můžete %{appeal_link:podat odvolání} proti tomuto smazání. Nenahrávejte tento skript znovu; pokud tak učiníte, můžete být zablokováni z %{site_name}."
     deleted_author_notice: "Tento skript byl odstraněn a není přístupný ostatním. Můžete ho obnovit v kartě Smazáno. "
     version_notice_html: "Verze ze dne %{date}. Zobrazit %{latest_version_link}."
     version_notice_latest_version_link: "nejnovější verzi"
@@ -399,24 +399,31 @@ cs:
       add_include: "Zahrnout"
       add_exclude: "Vynechat"
     edit_sets:
+      included: "Zahrnuto"
       included_none: "(Žádný)"
       remove_included: "Smazat vybrané"
+      excluded: "Vyloučeno"
       excluded_none: "(Žádný)"
       remove_excluded: "Smazat vybrané"
       add_include: "Zahrnout"
       add_exclude: "Vynechat"
     edit_auto_sets:
+      included: "Zahrnuto"
       included_none: "(Žádný)"
       remove_included: "Smazat vybrané"
+      excluded: "Vyloučeno"
       excluded_none: "(Žádný)"
       all_scripts_label: "Všechny skripty"
       all_scripts_include: "Zahrnout"
       for_sites_label: "Skripty pro stránku (např. priklad.com, nechejte prázdné pro „všechny stránky“)"
+      for_sites_include: "Zahrnout"
+      for_sites_exclude: "Vyloučit"
       for_user_include: "Zahrnout"
       for_user_exclude: "Vynechat"
       for_language_label: "Skripty v jazyce"
       for_language_include: "Zahrnout"
       for_language_exclude: "Vynechat"
+    calculated_list_none: "(Žádné)"
     save: "Uložit"
     auto_set_types:
       all_scripts: "Všechny skripty"
@@ -436,8 +443,25 @@ cs:
     installing_step1_caption: "Tampermonkey pro Chrome"
     desktop_browsers:
       title: Desktop
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} nebo %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, nebo %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} nebo %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} nebo %{edge_violentmonkey_link:Violentmonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} nebo %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>AdGuard: (není nutný žádný další software)</li>
+          </ul>
     android_browsers:
       title: Mobilní (Android)
+    ios_browsers:
+      title: Mobilní zařízení (iOS)
+      browser_list_html: |
+          <ul>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} or %{safari_userscripts_link:Userscripts}</li>
+          <li>%{gear_link:Gear}: (není nutný žádný další software)
+          </ul>
     installing_step2_header: "Krok 2: nainstalujte uživatelký skript"
     installing_step3_header: "Krok 3: použijte uživatelský skript"
   users:
@@ -468,6 +492,7 @@ cs:
     edit_sign_in: "Změna způsobu přihlášení"
     edit_sign_in_title: "Změna způsobu přihlášení"
     edit_sign_in_password: "Heslo"
+    edit_notifications: "Upravit oznámení"
     no_password_set_info: "Váš účet není konfigurován s heslem."
     set_password: "Nastavit heslo"
     update_password: "Změnit heslo"
@@ -505,6 +530,13 @@ cs:
     listing_updated_scripts: "Aktualizované skripty"
     listing_registration_date: "Datum registrace"
     listing_title: "Uživatelé"
+    listing_banned_filter:
+      banned: "Zablokován"
+      not_banned: "Nebyl zablokován"
+      all: "Vše"
+    listing_author_filter:
+      script_author: "Autor skriptu"
+      all: "Vše"
     search_placeholder: "Hledat uživatele"
     locale_prompt: "(Vybrat jazyk)"
     show_ads_description: "Podpořte %{site_name} povolením zobrazení reklam"
@@ -549,9 +581,24 @@ cs:
         request_expired: "Nelze smazat účet – platnost požadavku vypršela. "
         cancelled: "Požadavek stornován."
         completed: "Váš účet byl smazán."
+    banned_notice:
+      no_report_no_reason: "Váš účet byl zablokován. Pokud si přejete, můžete %{delete_link:si smazat váš účet}."
+      with_report: "Váš účet byl zablokován v reakci %{report_link:na tuto zprávu}. Pokud si přejete, můžete %{delete_link:si smazat váš účet}."
+    badges:
+      banned:
+        short: Zablokován
+        long: Zablokován
+    notifications:
+      report_defaults:
+        title: Nahlásit oznámení
+      title: Oznámení
+      unsubscribe_all: Odhlásit se od všech oznámení
+    account_banned: Tento účet byl zablokován.
   help:
     installing_user_scripts:
       title: 'Jak nainstalovat uživatelsé skripty'
+    installing_user_styles:
+      title: 'Jak nainstalovat uživatelské styly'
     meta_keys:
       title: "Meta parametry skriptu zpracovávané %{site_name}em"
       intro_html: "Toto je seznam <a href=\"http://wiki.greasespot.net/Metadata_Block\">meta klíčů uživatelského skriptu</a>, které %{site_name} rozpozná. Klíče mimo tento seznam mohou být obsaženy ve skriptu, budou v instalovaném skriptu přítomny, ale nebudou mít efekt v uživatelském rozhraní %{site_name}."
@@ -570,22 +617,124 @@ cs:
       post_new_script_link_text: 'vytvoření nového skriptu'
     code_rules:
       title: "Pravidla %{site_name} pro skripty"
+      functionality_header: Funkčnost
+      code_header: Kód
+      copyright_header: Autorská práva
+      miscellaneous_header: Smíšený
     external_scripts:
       title: "Pravidla %{site_name} o používání externích skriptů"
+      rationale:
+        title: Odůvodnění
+      allowed_external_codes:
+        heading: Povolené externí kódy
+      origin_host:
+        title: Vložení skriptů z původního hostitele
+    cdns:
+      test_url:
+        label: Testování adresy URL
+        result_ok: Adresa URL je povolena
+        result_not_ok: Adresa URL není povolena
+    script_rewriting:
+      title: "Jak %{site_name} přepíše zveřejněné skripty"
     credits:
       title: "Autoři"
       authors_credit: "%{site_name} by nemohl existovat bez autorů, kteří pracují na skriptech."
       developers_credit: "Samotný %{site_name} je budován %{developers_link:těmito lidmi} společně s pomocí ostatních, kdo hlásí chyby nebo zasílají náměty na vylepšení."
       translators_credit: "%{site_name} je překládán %{translators_link:předkladatelskou skupinou Greasy Translation Force na Transifexu}:"
+      icons_credit: "Ikony prohlížeče jsou z %{browserlogos}."
     help_with_greasymonkey: "Pomoc s Greasymonkey"
     contact:
       title: "Kontaktovat někoho"
     privacy_policy:
       title: "Ochrana soukromí"
+      content_html: >
+          <p>Tato stránka popisuje jak %{site_name} bude zaznamenávat nebo sledovat
+          uživatele. Pokud máte nějaké dotazy, %{admin_email_link:e-mail the admin}.</p>
+          <h2>Záznamy serveru</h2> <p>%{site_name} Záznamy serveru zaznamenávají všechny
+          požadavky typickým způsobem záznamů serveru. Zaznamenávané informace zahrnují
+          navštívené stránky, IP adresu a řetězec agenta uživatele. Tyto protokoly
+          slouží k ladění a analýze serveru. Data se uchovávají po dobu jednoho týdne.
+          Tato data nejsou sdílena ani zveřejňována.</p> <h2>Statistiky skriptů</h2>
+          <p>Pro účely vytváření statistik, %{site_name} zaznamenává požadavky na
+          instalaci a aktualizaci s informacemi o IP adrese. Tyto informace jsou uchovávány
+          po dobu jednoho dne a poté jsou agregovány tak, aby již neobsahovaly IP
+          adresu. Údaje specifické pro IP adresu nejsou sdíleny ani zveřejňovány,
+          ale agregované údaje ano.</p> <h2>Cookies (pokud nejste přihlášeni)</h2>
+          <p>%{site_name} mohou nastavit dočasné soubory cookie relace, které umožňují
+          některé funkce webu. Tyto soubory cookie nejsou nastaveny tak, aby zůstaly
+          trvalé, a mohou být vymazány při zavření prohlížeče (v závislosti na nastavení
+          prohlížeče).</p> <h2>Uživatelské účty</h2> <p>%{site_name} vyžadují, aby
+          si uživatelé vytvořili účet pro vkládání skriptů, účast v diskusích a přístup
+          k některým dalším funkcím webu. Při vytváření účtu mohou být trvale uloženy
+          informace jako IP adresa, e-mailová adresa a agent uživatele. Některé z
+          těchto informací mohou být viditelné pro ostatní uživatele.</p> <p>Akce
+          prováděné po přihlášení, například odesílání skriptů a komentářů, budou
+          viditelné pro ostatní uživatele.</p> <p>Pokud je při přihlašování k účtu
+          zaškrtnuta možnost "Zapamatovat si mě",  %{site_name} nastaví se trvalý
+          soubor cookie pro uchování stavu přihlášení.</p> <h2>Skripty zveřejněné
+          na %{site_name}</h2> <p>%{site_name}obsahuje obsah vytvořený uživateli a
+          zveřejněné skripty mohou být schopny sledovat uživatele, pokud si tento
+          skript nainstalují.</p> <h2>Knihovny třetích stran</h2> <p>%{site_name}
+          Knihovny třetích stran mohou obsahovat kód třetích stran pro shromažďování
+          statistik nebo zobrazování reklamy na webu. Tyto knihovny mohou obsahovat
+          logiku sledování..</p>
+    antifeatures:
+      title: Antifunkce
+  search:
+    script_search:
+      title: "Vyhledávání skriptů"
+    library_search:
+      title: "Vyhledávání v knihovně"
   moderator_logs:
     date_column: "Datum"
     moderator_column: "Moderátor"
+    item_column: "Položka"
     reason_column: "Důvod"
+  reports:
+    new_report_title:
+      user: "Nahlásit %{user}"
+      comment: "Nahlásit komentář od %{user}"
+      message: "Nahlásit zprávu od %{user}"
+      script: "Nahlásit %{script}"
+    reason:
+      non_functional: "Skript nefunguje"
+      spam: "Spam"
+      malware: "Malware"
+      wrong_category: "Špatná kategorie"
+      other: "Jiné"
+    create_button: "Nahlásit"
+    report_user: "Nahlásit uživatele"
+    report_comment: "Nahlásit komentář"
+    report_message: "Nahlásit zprávu"
+    delete_script: "Smazat skript"
+    view_discussion: "Zobrazit diskusi"
+    loading_diff: "Načítání..."
+  discussions:
+    title: Diskuse
+    new_discussion_submit: "Komentovat příspěvek"
+    edit_comment_link: "Upravit"
+    edit_comment_header: "Upravit komentář"
+    delete_comment: "Smazat"
+    delete_comment_confirm: Opravdu chcete tento komentář smazat?
+    delete_discussion: "Smazat"
+    update_comment_submit: "Aktualizovat komentář"
+    cancel_update_comment: "Zrušit"
+    badges:
+      deleted:
+        short: Smazáno
+        long: Smazáno
+    user_filter:
+      comment_by_me: "Mé komentáře"
+    read_filter:
+      all: Vše
+    locale_filter:
+      label: Jazyk
+    user_activity:
+      title: "Nedávné komentáře"
+    notify: Upozorněte mě na odpovědi
+  conversations:
+    send_message: Odeslat zprávu
+    update_message_submit: Aktualizovat zprávu
   common:
     allowed_elements_link: "(Zobrazit povolené elementy.)"
     allowed_elements_and_attributes_title: "Povolené elementy pro HTML obsah"
@@ -610,6 +759,9 @@ cs:
         show_ads: "Zobrazit reklamy"
         show_sensitive: "Obsah pro dospělé"
         preferred_markup: "Preferované značkování"
+        current_password: "Současné heslo"
+        new_password: "Nové heslo"
+        new_password_confirmation: "Potvrdit nové heslo"
       script:
         name: "Jméno"
         description: "Popis"
@@ -623,6 +775,8 @@ cs:
       script_set:
         name: "Název"
         description: "Popis"
+      conversation:
+        user_input: Uživatel
   errors:
     messages:
       script_missing_name: "je vyžadováno - použijte parametr @name"
@@ -635,6 +789,8 @@ cs:
       must_be_greasy_fork_script: "musí být umístěn na %{site_name}"
       script_update_not_utf8: "nahraný text musí mít kódování UTF-8"
       script_disallowed_require: "využívá neschválený externí skript: %{code}"
+  importing:
+    submit: Importovat
   mailers:
     script_report:
       report_fixed_reporter:
@@ -648,3 +804,9 @@ cs:
       subject: "Uživatel '%{commenter_name}' vás zmínil na %{site_name}."
     new_message:
       subject: "%{user} vám odeslal zprávu na %{site_name}"
+    script_lock_appeal:
+      dismiss:
+        moderator_notes: "Moderátor komentoval:"
+      unlock:
+        moderator_notes: "Moderátor komentoval:"
+        outro: Zkontrolujte prosím pravidla %{rules_link:pravidla %{site_name}} abyste v budoucnu zabránili dalšímu mazání.
