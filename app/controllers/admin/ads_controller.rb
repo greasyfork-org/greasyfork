@@ -5,6 +5,8 @@ module Admin
 
     before_action :administrators_only
 
+    layout 'list'
+
     def pending
       @scripts = Script
                  .active(:greasyfork)
