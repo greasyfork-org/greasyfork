@@ -1,6 +1,7 @@
 #!/bin/bash
 
 MAILTO="jason.barnabe@gmail.com"
+PATH="/www/sphinx-3.3.1/bin:$PATH"
 
 if [ -e /www/greasyfork/shared/db/sphinx/production/ts-script_delta.tmp ] && test `find "/www/greasyfork/shared/db/sphinx/production/ts-script_delta.tmp" -mmin +10`
 then
