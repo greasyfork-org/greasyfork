@@ -38,6 +38,25 @@ class ScriptVersionAllowedRequiresTest < ActiveSupport::TestCase
     assert_includes script_version.errors.full_messages, 'Code uses a malformed external script reference: @require https://ajax.googleapis.com/invalid^stuff'
   end
 
+  test 'relative url in require is disallowed' do
+    script = valid_script
+    script_version = script.script_versions.first
+    script_version.code = <<~JS
+      // ==UserScript==
+      // @name		A Test!
+      // @description		Unit test.
+      // @version 1.0
+      // @namespace http://greasyfork.local/users/1
+      // @include example.com
+      // @require jquery.min.js
+      // @license MIT
+      // ==/UserScript==
+      var foo = "bar";
+    JS
+    assert_not script_version.valid?
+    assert_includes script_version.errors.full_messages, 'Code uses an unapproved external script: @require jquery.min.js'
+  end
+
   test 'require not on allowed list is not allowed' do
     script = valid_script
     script_version = script.script_versions.first

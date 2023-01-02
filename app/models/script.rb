@@ -358,7 +358,7 @@ class Script < ApplicationRecord
       .compact
       .uniq
       .each do |url|
-      next if url.starts_with?('data:')
+      next unless url.starts_with?('https:') || url.starts_with?('http:')
 
       url, integrity_hashes = url.split('#', 2)
       if integrity_hashes
