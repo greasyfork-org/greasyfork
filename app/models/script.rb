@@ -602,7 +602,7 @@ class Script < ApplicationRecord
                            per_page: 25
                          )
                          .reject { |script| script.id == id }
-                         .sort_by { |script| [script.users.intersect?(users) ? 0 : 1, script.daily_installs * -1] }
+                         .sort_by { |script| [(script.users & users).any? ? 0 : 1, script.daily_installs * -1] }
                          .first(5)
   end
 
