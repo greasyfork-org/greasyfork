@@ -64,7 +64,7 @@ class SessionsController < Devise::SessionsController
       request.env['omniauth.origin'] = params[:origin]
     else
       name = o[:info][:nickname] || # GitHub
-             (provider == 'browser_id' ? o[:info][:name].split('@').first : nil) || # Persona
+             ((provider == 'browser_id') ? o[:info][:name].split('@').first : nil) || # Persona
              o[:info][:name] # Google
     end
     url = (o[:extra] && o[:extra][:raw_info] && o[:extra][:raw_info][:html_url]) || # GitHub

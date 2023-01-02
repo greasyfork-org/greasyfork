@@ -112,7 +112,7 @@ class CssToJsConverter
 
           next matches['domain'].exclude?(uri.host)
         end
-        js_includes += url_and_prefix_rules.map { |value| value + (rule_type == 'url-prefix' ? '*' : '') }
+        js_includes += url_and_prefix_rules.map { |value| value + ((rule_type == 'url-prefix') ? '*' : '') }
       end
 
       js_includes.uniq

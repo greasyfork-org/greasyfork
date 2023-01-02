@@ -55,6 +55,9 @@ Minitest/AssertPredicate:
 Minitest/AssertWithExpectedArgument:
   Enabled: false
 
+Minitest/EmptyLineBeforeAssertionMethods:
+  Enabled: false
+
 Minitest/MultipleAssertions:
   Enabled: false
 
@@ -85,6 +88,10 @@ Rails/OutputSafety:
   Enabled: false
 
 Rails/SkipsModelValidations:
+  Enabled: false
+
+# Breaks cases with ActiveRecord::Associations::CollectionProxy instead of Array
+Style/ArrayIntersect:
   Enabled: false
 
 Style/Documentation:

@@ -320,7 +320,7 @@ class ScriptsController < ApplicationController
         la.sync_identifier = nil
       end
       @script.save(validate: false)
-      flash[:notice] = t('scripts.sync_turned_off')
+      flash.now[:notice] = t('scripts.sync_turned_off')
       redirect_to @script
       return
     end
@@ -572,7 +572,7 @@ class ScriptsController < ApplicationController
       stat = {}
       stat[:installs] = install_values[d] || daily_install_values[d] || 0
       # this stat not available before that date
-      stat[:update_checks] = d >= update_check_start_date ? (update_check_values[d] || 0) : nil
+      stat[:update_checks] = (d >= update_check_start_date) ? (update_check_values[d] || 0) : nil
       @stats[d] = stat
     end
     respond_to do |format|
@@ -646,7 +646,7 @@ class ScriptsController < ApplicationController
       end
       @diff = Diffy::Diff.new(other_code, this_code, include_plus_and_minus_in_html: true, include_diff_info: true, diff: diff_options)
     else
-      @diff_error = flash[:notice] = t('scripts.admin.compare_must_be_local_url', site_name:)
+      @diff_error = flash[:notice] = t('.compare_must_be_local_url', site_name:)
     end
   end
 
@@ -700,7 +700,7 @@ class ScriptsController < ApplicationController
       unless @script.users.include?(current_user)
         ModeratorAction.create!(script: @script, moderator: current_user, action: 'Update locale', reason: "Changed to #{@script.locale.code}#{update_params[:locale_id].blank? ? ' (auto-detected)' : ''}")
       end
-      flash[:notice] = I18n.t('scripts.updated')
+      flash.now[:notice] = I18n.t('scripts.updated')
       redirect_to admin_script_path(@script)
       return
     end
@@ -761,12 +761,12 @@ class ScriptsController < ApplicationController
   def remove_author
     user = User.find(params[:user_id])
     if @script.authors.count < 2 || @script.authors.where(user:).none?
-      flash[:error] = t('scripts.remove_author.failure')
+      flash[:error] = t('.failure')
       return
     end
 
     @script.authors.find_by!(user:).destroy!
-    flash[:notice] = t('scripts.remove_author.success', user_name: user.name)
+    flash[:notice] = t('.success', user_name: user.name)
     redirect_to script_path(@script)
   end
 

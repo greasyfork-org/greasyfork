@@ -10,6 +10,11 @@ module Admin
       @redirect_service_domain = RedirectServiceDomain.new
     end
 
+    def edit
+      @redirect_service_domain = RedirectServiceDomain.find(params[:id])
+      render :new
+    end
+
     def create
       @redirect_service_domain = RedirectServiceDomain.new(redirect_service_domain_params)
       if @redirect_service_domain.save
@@ -17,11 +22,6 @@ module Admin
       else
         render :new
       end
-    end
-
-    def edit
-      @redirect_service_domain = RedirectServiceDomain.find(params[:id])
-      render :new
     end
 
     def update

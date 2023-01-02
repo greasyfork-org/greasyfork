@@ -24,7 +24,7 @@ module ScriptImporter
       our_url_match = %r{https?://greasyfork.org/users/([0-9]+)}.match(content)
       return :nourl if our_url_match.nil?
 
-      return current_user_id == our_url_match[1].to_i ? :success : :wronguser
+      return (current_user_id == our_url_match[1].to_i) ? :success : :wronguser
     end
 
     # Generates a script list and returns an array:

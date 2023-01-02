@@ -311,7 +311,7 @@ class ScriptVersion < ApplicationRecord
   end
 
   def code
-    script_code.nil? ? nil : script_code.code
+    script_code&.code
   end
 
   def code=(new_code)
@@ -324,7 +324,7 @@ class ScriptVersion < ApplicationRecord
   end
 
   def rewritten_code
-    rewritten_script_code.nil? ? nil : rewritten_script_code.code
+    rewritten_script_code&.code
   end
 
   def rewritten_code=(new_code)
@@ -448,7 +448,7 @@ class ScriptVersion < ApplicationRecord
     sv2 = ScriptVersion.split_version(v2)
     return nil if sv1.nil? || sv2.nil?
 
-    (0..15).each do |i|
+    16.times do |i|
       # Odds are strings
       if i.odd?
         return 1 if sv1[i].empty? && !sv2[i].empty?
@@ -548,7 +548,7 @@ class ScriptVersion < ApplicationRecord
     return a.map do |p|
       # each part consists of number, string, number, string, each part optional
       # string #2 we will assume is no numbers, string #4 will eat whatever's left
-      match_array = /((?:-?[0-9]+)?)([^0-9\-]*)((?:-?[0-9]+)?)(.*)/.match(p)
+      match_array = /((?:-?[0-9]+)?)([^0-9-]*)((?:-?[0-9]+)?)(.*)/.match(p)
       [match_array[1].to_i, match_array[2], match_array[3].to_i, match_array[4]]
     end.flatten
   end

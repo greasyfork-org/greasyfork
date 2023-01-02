@@ -52,7 +52,7 @@ class JsParser
       return [code, ''] if meta_end_start.nil?
 
       meta_end = meta_end_start + META_END_COMMENT.length
-      return [(meta_start == 0 ? '' : code[0..meta_start - 1]), code[meta_end..code.length]]
+      return [((meta_start == 0) ? '' : code[0..meta_start - 1]), code[meta_end..code.length]]
     end
 
     # Inserts, changes, or deletes meta values in the code and returns the entire code
@@ -113,7 +113,7 @@ class JsParser
       meta.each { |k, v| patterns.concat(v) if APPLIES_TO_META_KEYS.include?(k) }
 
       return [] if patterns.empty?
-      return [] unless (patterns & APPLIES_TO_ALL_PATTERNS).empty?
+      return [] if patterns.intersect?(APPLIES_TO_ALL_PATTERNS)
 
       applies_to_names = []
       patterns.each do |p|
@@ -150,7 +150,7 @@ class JsParser
           p = m[1] + m[2] unless m.nil?
 
           # protocol and subdomain wild-cards - *example.com and *.example.com
-          m = p.match(/^\*\.?([a-z0-9\-]+\.[a-z0-9\-]+.*)/i)
+          m = p.match(/^\*\.?([a-z0-9-]+\.[a-z0-9-]+.*)/i)
           p = "http://#{m[1]}" unless m.nil?
 
           # protocol and subdomain wild-cards - http*.example.com, http*example.com, http*//example.com

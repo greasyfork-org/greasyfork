@@ -44,7 +44,7 @@ Capybara.server = :puma
 
 Capybara.register_driver :headless_chrome do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
-    'goog:chromeOptions' => { args: ['verbose', 'disable-gpu', 'no-sandbox', 'disable-dev-shm-usage', 'window-size=1400,1400', ENV['HEADED'] == '1' ? nil : 'headless'].compact },
+    'goog:chromeOptions' => { args: ['verbose', 'disable-gpu', 'no-sandbox', 'disable-dev-shm-usage', 'window-size=1400,1400', (ENV['HEADED'] == '1') ? nil : 'headless'].compact },
     'goog:loggingPrefs' => { browser: 'ALL' }
   )
 

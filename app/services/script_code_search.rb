@@ -13,7 +13,7 @@ class ScriptCodeSearch
 
     def unindex(script_id)
       path = path_for(script_id)
-      File.delete(path) if File.exist?(path)
+      FileUtils.rm_f(path)
     end
 
     def index_all

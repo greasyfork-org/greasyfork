@@ -61,6 +61,6 @@ module DiscussionHelper
   def render_discussion_badge(key)
     text = t("discussions.badges.#{key}.short")
     title = t("discussions.badges.#{key}.long")
-    tag.span(class: "badge badge-#{key}", title: text == title ? nil : title) { text }
+    tag.span(class: "badge badge-#{key}", title: (text == title) ? nil : title) { text }
   end
 end

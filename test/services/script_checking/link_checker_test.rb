@@ -71,7 +71,6 @@ module ScriptChecking
     end
 
     test 'block set of top-level object' do
-      skip
       assert_equal ScriptChecking::Result::RESULT_CODE_BAN, check_script_with_code('location = "https://example.com/unique-test-value"').code
     end
 

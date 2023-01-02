@@ -15,15 +15,15 @@ module ScriptsHelper
       l = label
       is_link = false
     elsif is_libraries
-      l = link_to label, libraries_scripts_path(sort: sort_param_to_use, q: params[:q], set:), rel: rel
+      l = link_to(label, libraries_scripts_path(sort: sort_param_to_use, q: params[:q], set:), rel:)
     elsif is_minified
-      l = link_to label, minified_scripts_path(sort: sort_param_to_use), rel: rel
+      l = link_to(label, minified_scripts_path(sort: sort_param_to_use), rel:)
     elsif is_code_search
-      l = link_to label, code_search_scripts_path(sort: sort_param_to_use, c: params[:c]), rel: rel
+      l = link_to(label, code_search_scripts_path(sort: sort_param_to_use, c: params[:c]), rel:)
     elsif site.nil?
-      l = link_to label, { sort: sort_param_to_use, site: nil, set:, q: params[:q], language:, filter_locale: }, rel: rel
+      l = link_to(label, { sort: sort_param_to_use, site: nil, set:, q: params[:q], language:, filter_locale: }, rel:)
     elsif params[:controller] == 'users'
-      l = link_to label, { sort: sort_param_to_use, site:, set:, language:, filter_locale: }, rel: rel
+      l = link_to(label, { sort: sort_param_to_use, site:, set:, language:, filter_locale: }, rel:)
     else
       l = link_to label, by_site_scripts_path(sort: sort_param_to_use, site:, set:, q: params[:q], language:, filter_locale:), rel:
     end
@@ -88,7 +88,7 @@ module ScriptsHelper
   def render_script_badge(key)
     text = t("scripts.badges.#{key}.short")
     title = t("scripts.badges.#{key}.long")
-    tag.span(class: "badge badge-#{key}", title: text == title ? nil : title) { text }
+    tag.span(class: "badge badge-#{key}", title: (text == title) ? nil : title) { text }
   end
 
   def delete_reason(script)

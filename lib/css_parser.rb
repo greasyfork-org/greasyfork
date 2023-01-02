@@ -28,7 +28,7 @@ class CssParser
 
       # can these be multiline?
       meta_block.split("\n").each do |meta_line|
-        meta_match = /@([a-zA-Z:\-]+)\s+(.*)/.match(meta_line)
+        meta_match = /@([a-zA-Z:-]+)\s+(.*)/.match(meta_line)
         next if meta_match.nil?
 
         key = meta_match[1].strip
@@ -48,7 +48,7 @@ class CssParser
       return [code, ''] if meta_start.nil?
 
       meta_end = code.index(META_END_COMMENT, meta_start) + META_END_COMMENT.length
-      return [(meta_start == 0 ? '' : code[0..meta_start - 1]), code[meta_end..code.length]]
+      return [((meta_start == 0) ? '' : code[0..meta_start - 1]), code[meta_end..code.length]]
     end
 
     # Inserts, changes, or deletes meta values in the code and returns the entire code
@@ -173,14 +173,14 @@ class CssParser
           uri = URI(css_document_match.value)
         rescue ArgumentError, URI::InvalidURIError
           Rails.logger.warn "Invalid URI '#{css_document_match.value}'"
-          return { text: css_document_match.value + (css_document_match.rule_type == 'url-prefix' ? '*' : ''), domain: false, tld_extra: false }
+          return { text: css_document_match.value + ((css_document_match.rule_type == 'url-prefix') ? '*' : ''), domain: false, tld_extra: false }
         else
           if uri.host.nil?
-            return { text: css_document_match.value + (css_document_match.rule_type == 'url-prefix' ? '*' : ''), domain: false, tld_extra: false }
+            return { text: css_document_match.value + ((css_document_match.rule_type == 'url-prefix') ? '*' : ''), domain: false, tld_extra: false }
           end
           if uri.host.exclude?('.') || uri.host.include?('*')
             # ensure the host is something sane
-            return { text: css_document_match.value + (css_document_match.rule_type == 'url-prefix' ? '*' : ''), domain: false, tld_extra: false }
+            return { text: css_document_match.value + ((css_document_match.rule_type == 'url-prefix') ? '*' : ''), domain: false, tld_extra: false }
           end
 
           return { text: MatchURI.get_tld_plus_1(uri.host), domain: true, tld_extra: false }

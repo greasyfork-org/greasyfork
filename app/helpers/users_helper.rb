@@ -76,6 +76,6 @@ module UsersHelper
   def render_user_badge(key)
     text = t("users.badges.#{key}.short")
     title = t("users.badges.#{key}.long")
-    tag.span(class: "badge badge-#{key}", title: text == title ? nil : title) { text }
+    tag.span(class: "badge badge-#{key}", title: (text == title) ? nil : title) { text }
   end
 end

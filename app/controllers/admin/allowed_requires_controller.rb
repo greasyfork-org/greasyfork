@@ -6,6 +6,11 @@ module Admin
       @allowed_require = AllowedRequire.new
     end
 
+    def edit
+      @allowed_require = AllowedRequire.find(params[:id])
+      render :new
+    end
+
     def create
       @allowed_require = AllowedRequire.new(allowed_require_params)
       if @allowed_require.save
@@ -13,11 +18,6 @@ module Admin
       else
         render :new
       end
-    end
-
-    def edit
-      @allowed_require = AllowedRequire.find(params[:id])
-      render :new
     end
 
     def update

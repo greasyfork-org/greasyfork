@@ -80,7 +80,7 @@ module UserTextHelper
     return [] if text.blank?
 
     mentions = Set.new
-    sanitize_config = markup_type == 'html' ? html_sanitize_config : markdown_sanitize_config
+    sanitize_config = (markup_type == 'html') ? html_sanitize_config : markdown_sanitize_config
     add_detect_mention_transformer(sanitize_config, mentions)
 
     text = markdown.render(text) if markup_type == 'markdown'
@@ -177,7 +177,7 @@ module UserTextHelper
   def markdown_sanitize_config
     msc = Sanitize::Config::BASIC.dup
     msc[:elements] = msc[:elements].dup
-    msc[:elements].concat(%w[h1 h2 h3 h4 h5 h6 img hr del ins table tr th td thead tbody tfoot span div tt center ruby rt rp video details summary])
+    msc[:elements].push('h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'img', 'hr', 'del', 'ins', 'table', 'tr', 'th', 'td', 'thead', 'tbody', 'tfoot', 'span', 'div', 'tt', 'center', 'ruby', 'rt', 'rp', 'video', 'details', 'summary')
     msc[:attributes] = msc[:attributes].merge('img' => %w[src alt height width], 'video' => %w[src poster height width], 'details' => ['open'], :all => %w[title name style])
     msc[:css] = { properties: %w[border background-color color] }
     msc[:protocols] = msc[:protocols].merge('img' => { 'src' => ['https'] }, 'video' => { 'src' => ['https'] })
@@ -246,7 +246,7 @@ module UserTextHelper
       return if url_reference.nil?
 
       url_reference = url_reference[2]
-      url_reference.gsub!(/[\.,\?!]+\z/u, '')
+      url_reference.gsub!(/[.,?!]+\z/u, '')
 
       replace_text_with_link(node, url_reference, url_reference, url_reference)
     end

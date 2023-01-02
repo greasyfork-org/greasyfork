@@ -9,6 +9,20 @@ class ConversationsController < ApplicationController
   before_action :find_conversation, only: [:show, :subscribe, :unsubscribe]
   before_action :disable_browser_caching!
 
+  def index
+    unless @user == current_user || current_user&.administrator?
+      render_404('You can only view your own conversations.')
+      return
+    end
+    @conversations = current_user.conversations.includes(:users, :stat_last_poster).order(stat_last_message_date: :desc).paginate(page: params[:page])
+  end
+
+  def show
+    @messages = @conversation.messages.paginate(page: params[:page], per_page:)
+    @message = @conversation.messages.build(poster: current_user, content_markup: current_user&.preferred_markup)
+    @subscribe = current_user.subscribed_to_conversation?(@conversation)
+  end
+
   def new
     @conversation = Conversation.new(user_input: params[:other_user])
     @conversation.messages.build(poster: current_user, content_markup: current_user&.preferred_markup)
@@ -49,20 +63,6 @@ class ConversationsController < ApplicationController
     @conversation.messages.last.send_notifications!
 
     redirect_to user_conversation_path(current_user, @conversation)
-  end
-
-  def show
-    @messages = @conversation.messages.paginate(page: params[:page], per_page:)
-    @message = @conversation.messages.build(poster: current_user, content_markup: current_user&.preferred_markup)
-    @subscribe = current_user.subscribed_to_conversation?(@conversation)
-  end
-
-  def index
-    unless @user == current_user || current_user&.administrator?
-      render_404('You can only view your own conversations.')
-      return
-    end
-    @conversations = current_user.conversations.includes(:users, :stat_last_poster).order(stat_last_message_date: :desc).paginate(page: params[:page])
   end
 
   def subscribe

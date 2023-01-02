@@ -77,7 +77,7 @@ class User < ApplicationRecord
   end
 
   before_save do
-    self.email_domain = email ? email.split('@').last : nil
+    self.email_domain = email&.split('@')&.last
   end
 
   after_create_commit do

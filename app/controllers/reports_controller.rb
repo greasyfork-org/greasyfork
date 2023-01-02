@@ -7,6 +7,34 @@ class ReportsController < ApplicationController
     @bots = 'noindex'
   end
 
+  def index
+    scope = Report
+            .includes(:item)
+            .order(:created_at)
+    if params[:user_id].present?
+      scope = scope.where(reporter_id: params[:user_id])
+    else
+      @show_separator = true
+      scope = scope.unresolved
+    end
+    report_ids = scope
+                 .sort_by { |r| [r.awaiting_response? ? 1 : 0, r.created_at] }
+                 .reject { |r| r.item.nil? }
+                 .map(&:id)
+    @reports = Report
+               .where(id: report_ids)
+               .includes(:item, :reference_script, :reporter, :rebuttal_by_user)
+    @reports = @reports.order(Arel.sql("FIELD(id, #{report_ids.join(',')})")) if report_ids.any?
+    @reports = @reports.paginate(page: params[:page], per_page: per_page(default: 25))
+    @bots = 'noindex'
+  end
+
+  def show
+    @report = Report.find(params[:id])
+    @bots = 'noindex'
+    render_404 unless @report.item
+  end
+
   def new
     @report = Report.new(item:, reporter: current_user, explanation_markup: current_user&.preferred_markup)
     previous_report = Report.unresolved.where(item:, reporter: current_user).first
@@ -39,28 +67,6 @@ class ReportsController < ApplicationController
     redirect_to report_path(@report), notice: t('reports.report_filed')
   end
 
-  def index
-    scope = Report
-            .includes(:item)
-            .order(:created_at)
-    if params[:user_id].present?
-      scope = scope.where(reporter_id: params[:user_id])
-    else
-      @show_separator = true
-      scope = scope.unresolved
-    end
-    report_ids = scope
-                 .sort_by { |r| [r.awaiting_response? ? 1 : 0, r.created_at] }
-                 .reject { |r| r.item.nil? }
-                 .map(&:id)
-    @reports = Report
-               .where(id: report_ids)
-               .includes(:item, :reference_script, :reporter, :rebuttal_by_user)
-    @reports = @reports.order(Arel.sql("FIELD(id, #{report_ids.join(',')})")) if report_ids.any?
-    @reports = @reports.paginate(page: params[:page], per_page: per_page(default: 25))
-    @bots = 'noindex'
-  end
-
   def dismiss
     @report = Report.find(params[:id])
 
@@ -75,7 +81,7 @@ class ReportsController < ApplicationController
       ScriptReportMailer.report_dismissed_offender(@report, site_name).deliver_later
       ScriptReportMailer.report_dismissed_reporter(@report, site_name).deliver_later
     end
-    redirect_to reports_path(anchor: params[:index] == '0' ? nil : "open-report-#{params[:index]}")
+    redirect_to reports_path(anchor: (params[:index] == '0') ? nil : "open-report-#{params[:index]}")
   end
 
   def mark_fixed
@@ -92,7 +98,7 @@ class ReportsController < ApplicationController
       ScriptReportMailer.report_fixed_offender(@report, site_name).deliver_later
       ScriptReportMailer.report_fixed_reporter(@report, site_name).deliver_later
     end
-    redirect_to reports_path(anchor: params[:index] == '0' ? nil : "open-report-#{params[:index]}")
+    redirect_to reports_path(anchor: (params[:index] == '0') ? nil : "open-report-#{params[:index]}")
   end
 
   def uphold
@@ -138,7 +144,7 @@ class ReportsController < ApplicationController
     if user_is_script_author
       redirect_to script_path(@report.item)
     else
-      redirect_to reports_path(anchor: params[:index] == '0' ? nil : "open-report-#{params[:index]}")
+      redirect_to reports_path(anchor: (params[:index] == '0') ? nil : "open-report-#{params[:index]}")
     end
   end
 
@@ -157,12 +163,6 @@ class ReportsController < ApplicationController
     end
 
     redirect_to report_path(@report), notice: t('reports.rebuttal_submitted')
-  end
-
-  def show
-    @report = Report.find(params[:id])
-    @bots = 'noindex'
-    render_404 unless @report.item
   end
 
   def diff

@@ -31,7 +31,7 @@ class JsCleanupTest < ActiveSupport::TestCase
   end
 
   test 'different variable names are ignored' do
-    skip
+    skip "Disabled variable name changing as it isn't consistently cleaned up"
     assert_equal(
       JsCleanup.cleanup("var foo = 1;\nvar bar = 2;"),
       JsCleanup.cleanup("var oof = 1;\nvar rab = 2;")

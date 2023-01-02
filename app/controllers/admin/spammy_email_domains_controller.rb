@@ -10,6 +10,11 @@ module Admin
       @spammy_email_domain = SpammyEmailDomain.new
     end
 
+    def edit
+      @spammy_email_domain = SpammyEmailDomain.find(params[:id])
+      render :new
+    end
+
     def create
       @spammy_email_domain = SpammyEmailDomain.new(spammy_email_domain_params)
       if @spammy_email_domain.save
@@ -17,11 +22,6 @@ module Admin
       else
         render :new
       end
-    end
-
-    def edit
-      @spammy_email_domain = SpammyEmailDomain.find(params[:id])
-      render :new
     end
 
     def update

@@ -17,7 +17,7 @@ class AttachmentsTest < ApplicationSystemTestCase
       var foo = 1;
     JS
     fill_in 'Code', with: code
-    attach_file 'Add:', [Rails.root.join('public/images/blacklogo16.png'), Rails.root.join('public/images/blacklogo32.png')]
+    attach_file 'Add:', [Rails.public_path.join('images/blacklogo16.png'), Rails.public_path.join('images/blacklogo32.png')]
     click_button 'Post script'
     assert_selector 'h2', text: 'A Test!'
     assert_includes(Script.last.users, user)
@@ -27,7 +27,7 @@ class AttachmentsTest < ApplicationSystemTestCase
     within '.remove-attachment-selecter', match: :first do
       check 'Remove'
     end
-    attach_file 'Add:', [Rails.root.join('public/images/blacklogo128.png')]
+    attach_file 'Add:', [Rails.public_path.join('images/blacklogo128.png')]
     click_button 'Post new version'
 
     assert_selector ".user-screenshots img[src*='blacklogo32.png']"

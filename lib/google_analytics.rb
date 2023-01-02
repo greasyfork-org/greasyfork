@@ -10,7 +10,7 @@ class GoogleAnalytics
     metric = Google::Analytics::Data::V1beta::Metric.new(name: 'eventCount')
     dimension = Google::Analytics::Data::V1beta::Dimension.new(name: 'customEvent:script_id')
     filter = Google::Analytics::Data::V1beta::FilterExpression.new(filter: Google::Analytics::Data::V1beta::Filter.new(field_name: 'eventName', string_filter: Google::Analytics::Data::V1beta::Filter::StringFilter.new(match_type: Google::Analytics::Data::V1beta::Filter::StringFilter::MatchType::EXACT, value: 'Script install')))
-    request = Google::Analytics::Data::V1beta::RunReportRequest.new(property: site == :sleazyfork ? 'properties/293114118' : 'properties/293110681', date_ranges: [date_range], metrics: [metric], dimensions: [dimension], dimension_filter: filter)
+    request = Google::Analytics::Data::V1beta::RunReportRequest.new(property: (site == :sleazyfork) ? 'properties/293114118' : 'properties/293110681', date_ranges: [date_range], metrics: [metric], dimensions: [dimension], dimension_filter: filter)
 
     # Call the run_report method.
     result = client.run_report request
@@ -33,7 +33,7 @@ class GoogleAnalytics
     minimum_to_query = 10
 
     loop do
-      request = Google::Analytics::Data::V1beta::RunReportRequest.new(property: site == :sleazyfork ? 'properties/293114118' : 'properties/293110681', date_ranges: [date_range], metrics: [metric], dimensions: [dimension], limit:, offset:)
+      request = Google::Analytics::Data::V1beta::RunReportRequest.new(property: (site == :sleazyfork) ? 'properties/293114118' : 'properties/293110681', date_ranges: [date_range], metrics: [metric], dimensions: [dimension], limit:, offset:)
 
       # Call the run_report method.
       result = client.run_report request

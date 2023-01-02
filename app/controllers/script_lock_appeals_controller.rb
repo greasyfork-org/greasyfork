@@ -9,6 +9,12 @@ class ScriptLockAppealsController < ApplicationController
   before_action :ensure_locked, only: [:new, :create]
   before_action :authorize_for_moderators_only, only: [:dismiss, :unlock]
 
+  def index
+    @script_lock_appeals = ScriptLockAppeal.unresolved
+  end
+
+  def show; end
+
   def new
     @script_lock_appeal = @script.script_lock_appeals.build
   end
@@ -17,8 +23,6 @@ class ScriptLockAppealsController < ApplicationController
     @script_lock_appeal = @script.script_lock_appeals.create!(script_lock_appeal_params)
     redirect_to script_path(@script), flash: { notice: t('appeals.submitted') }
   end
-
-  def show; end
 
   def dismiss
     @script_lock_appeal.update!(resolution: 'dismissed', moderator_notes: params[:moderator_notes].presence)
@@ -54,10 +58,6 @@ class ScriptLockAppealsController < ApplicationController
     end
 
     redirect_to script_path(@script), flash: { notice: 'Script has been unlocked.' } # rubocop:disable Rails/I18nLocaleTexts
-  end
-
-  def index
-    @script_lock_appeals = ScriptLockAppeal.unresolved
   end
 
   protected

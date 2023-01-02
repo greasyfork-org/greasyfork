@@ -70,11 +70,13 @@ module ScriptListings
       end
       format.json do
         return if load_scripts_for_index
-        render json: params[:meta] == '1' ? { count: @scripts.count } : @scripts.as_json(include: :users)
+
+        render json: (params[:meta] == '1') ? { count: @scripts.count } : @scripts.as_json(include: :users)
       end
       format.jsonp do
         return if load_scripts_for_index
-        render json: params[:meta] == '1' ? { count: @scripts.count } : @scripts.as_json(include: :users), callback: clean_json_callback_param
+
+        render json: (params[:meta] == '1') ? { count: @scripts.count } : @scripts.as_json(include: :users), callback: clean_json_callback_param
       end
     end
   end
@@ -177,10 +179,10 @@ module ScriptListings
         render action: 'index'
       end
       format.json do
-        render json: params[:meta] == '1' ? { count: @scripts.count } : @scripts.as_json(include: :users)
+        render json: (params[:meta] == '1') ? { count: @scripts.count } : @scripts.as_json(include: :users)
       end
       format.jsonp do
-        render json: params[:meta] == '1' ? { count: @scripts.count } : @scripts.as_json(include: :users), callback: clean_json_callback_param
+        render json: (params[:meta] == '1') ? { count: @scripts.count } : @scripts.as_json(include: :users), callback: clean_json_callback_param
       end
     end
   end
@@ -201,7 +203,7 @@ module ScriptListings
         end
         scripts = scripts.where(id: set_script_ids)
       end
-      scripts = scripts.where(language: params[:language] == 'css' ? 'css' : 'js') unless params[:language] == 'all'
+      scripts = scripts.where(language: (params[:language] == 'css') ? 'css' : 'js') unless params[:language] == 'all'
       scripts = scripts.order(get_sort(params, for_sphinx: false, set:, default_sort:))
       return scripts
     end
@@ -209,7 +211,7 @@ module ScriptListings
     def get_sort(params, for_sphinx: false, set: nil, default_sort: nil)
       # sphinx has these defined as attributes, outside of sphinx they're possibly ambiguous column names
       column_prefix = for_sphinx ? '' : 'scripts.'
-      sort = params[:sort] || (set.nil? ? nil : set.default_sort) || default_sort
+      sort = params[:sort] || set&.default_sort || default_sort
       case sort
       when 'total_installs'
         return "#{column_prefix}total_installs DESC, #{column_prefix}id"

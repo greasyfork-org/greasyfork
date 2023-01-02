@@ -10,6 +10,11 @@ module Admin
       @blocked_script_text = BlockedScriptText.new
     end
 
+    def edit
+      @blocked_script_text = BlockedScriptText.find(params[:id])
+      render :new
+    end
+
     def create
       @blocked_script_text = BlockedScriptText.new(blocked_script_text_params)
       if @blocked_script_text.save
@@ -17,11 +22,6 @@ module Admin
       else
         render :new
       end
-    end
-
-    def edit
-      @blocked_script_text = BlockedScriptText.find(params[:id])
-      render :new
     end
 
     def update

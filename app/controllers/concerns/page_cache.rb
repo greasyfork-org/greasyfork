@@ -6,7 +6,7 @@ module PageCache
   def cache_page(page_key)
     if page_key.nil? || current_user
       html = yield
-      render html: html
+      render(html:)
       return
     end
 

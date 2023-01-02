@@ -148,7 +148,7 @@ class ScriptSetsController < ApplicationController
       errors << I18n.t('script_sets.already_included', name: I18n.t(i18n_key, **i18n_params)) unless set.add_automatic_child(ssasi)
     elsif !params['add-automatic-script-set-3'].nil? && !params['add-automatic-script-set-value-3'].nil? && !params['add-automatic-script-set-value-3'].empty?
       automatic_script_set_user = parse_user(params['add-automatic-script-set-value-3'])
-      automatic_script_set_user = automatic_script_set_user.nil? ? nil : automatic_script_set_user.id
+      automatic_script_set_user = automatic_script_set_user&.id
       ssasi = ScriptSetAutomaticSetInclusion.from_param_value("3-#{automatic_script_set_user}", exclusion: params['add-automatic-script-set-3'] == 'e')
       i18n_key, i18n_params = ssasi.i18n_params
       errors << I18n.t('script_sets.already_included', name: I18n.t(i18n_key, **i18n_params)) unless set.add_automatic_child(ssasi)

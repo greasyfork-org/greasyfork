@@ -175,7 +175,7 @@ class DiscussionsTest < ApplicationSystemTestCase
     fill_in 'Title', with: 'discussion title'
     fill_in 'discussion_comments_attributes_0_text', with: 'this is my comment'
     choose 'Greasy Fork Feedback'
-    attach_file 'Add:', [Rails.root.join('public/images/blacklogo16.png'), Rails.root.join('public/images/blacklogo32.png')]
+    attach_file 'Add:', [Rails.public_path.join('images/blacklogo16.png'), Rails.public_path.join('images/blacklogo32.png')]
 
     assert_difference -> { Discussion.count } => 1 do
       click_button 'Post comment'

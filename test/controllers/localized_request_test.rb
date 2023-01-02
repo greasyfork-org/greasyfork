@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class LocalizedRequestTest < ActionController::TestCase
+class LocalizedRequestTest < ActionDispatch::IntegrationTest
   # Dummy to pretend we're a controller
   def self.before_action(*args); end
 
