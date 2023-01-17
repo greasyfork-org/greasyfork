@@ -468,6 +468,16 @@ zh-CN:
         <p>要使用用户脚本，您首先需要安装一个用户脚本管理器。您可以根据当前使用的浏览器来选择一个用户脚本管理器。</p>
     desktop_browsers:
       title: 桌面端
+      browser_list_html: |
+          <ul>
+          <li>Chrome：%{chrome_tampermonkey_link:Tampermonkey} 或 %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox：%{firefox_greasemonkey_link:Greasemonkey}、%{firefox_tampermonkey_link:Tampermonkey} 或 %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari：%{safari_tampermonkey_link:Tampermonkey} 或 %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge：%{edge_tampermonkey_link:Tampermonkey} 或 %{edge_violentmonkey_link:Violentmonkey}</li>
+          <li>Opera：%{opera_tampermonkey_link:Tampermonkey} 或 %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon：%{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>AdGuard：（不需要其他软件）</li>
+          </ul>
     android_browsers:
       title: 手机端（Android）
       browser_list_html: |
@@ -731,6 +741,12 @@ zh-CN:
       intro_html: |
           <p>%{site_name}我们允许在特定情况下使用外部代码。任何脚本发现使用超出允许范围的外部代码都将会被删除。如发现脚本违反这些规则，请举报。</p>
           <p>请注意，这些规则仅适用于外部可执行代码。那些加载但不可执行代码不受限制，例如JSON或CSS。</p>
+      allowed_external_codes:
+        heading: 允许的外部代码
+      libraries:
+        title: "%{site_name} 库"
+    cdns:
+      title: 允许的 CDN
     script_rewriting:
       title: "%{site_name} 将如何改写已发布的脚本"
       content_html: >

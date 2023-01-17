@@ -20,10 +20,22 @@ ka:
     version_number: "ვერსია"
     license: "ლიცენზია"
     no_license: "პ/გ"
+    applies_to: "ეხება"
     applies_to_all: "ყველა საიტი"
-    install: "ეს სკრიპტის ინსტალაცია"
+    install: "სკრიპტის ინსტალაცია"
+    install_css: "სკრიპტის ინსტალაცია როგორც მომხმარებელის სტილი"
     install_help: "?"
     install_help_title: "როგორ უნდა დაინსტალურო"
+    update: "განახლებულეთ %{version} ვერსიაზე"
+    downgrade: "დაქვეითედ %{version} ვერსიაზე"
+    reinstall: "რე-ინსტალირეთ %{version} ვერსია"
+    old_version_warning: "ეს არ არის ბოლო სკრიპტის ვერსია. თუ დააინსტალირებთ ის, მაშინ არასოდეს არ განაახლებთ უფრო ახალ ვერსიაზე. მაინც დააინსტალირებთ?"
+    promoted: "რეკლამირებული სკრიპტი"
+    author_promoted: "ავტორის შემოთავაზებული სკრიპტი"
+    promoted_text_html: "შეიძლება მოგეწონოს %{script_link}."
+    library_instructions_html: "ეს სკრიპტი არ უნდა იყოს პირდაპირ დაინსტალირებული. ეს ბიბლიოთეკაა, სხვა სკრიპტებისთვის უნდა ჩართეთ მეტა-დირექტივაში %{code}."
+    deleted_notice: "ეს სკრიპტი წაშლილია."
+    version_notice_latest_version_link: "ბოლო ვერსია"
     info_page: "ინფორმაცია"
     code_page: "კოდი"
     history_page: "ისტორია"
@@ -31,13 +43,24 @@ ka:
     derivatives_page: "წარმოებულები"
     update_page: "განახლება"
     delete_page: "წაშლა"
+    delete_update_behaviours:
+      keep: "ისინი დატოვებენ როგორც არის."
     delete_permanently_heading: "მუდმივად წაშლილი"
+    delete_permanently_submit: "მოთხოვო მუდმივი წაშლა"
     delete_permanently_immediate_submit: "მუდმივი წაშლა"
+    delete_permanently_notice_immediate: "სკრიპტი სამუდამოდ წაშლილია."
     admin_page: "ადმინი"
     admin:
       title: "%{script_name}- ადმინი"
+      compare_button: "შედარება"
+    stats_daily_installs_heading: "ყოველდღიური ინსტალაციები"
+    stats_weekly_installs_heading: "ყოველკვირული ინსტალაციები"
+    stats_daily_installs_date_column_heading: "თარიღი"
+    stats_daily_installs_install_count_column_heading: "ინსტალაციები"
     stats_no_data: "პ/გ"
     stats_filter_options:
+      month: ბოლო 30 დღე
+      year: ბოლო 365 დღე
       all: მთელი დრო
     similarity_score:
       high: ძალიან მსგავსი
