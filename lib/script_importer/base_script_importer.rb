@@ -10,23 +10,6 @@ module ScriptImporter
       raise 'Missing'
     end
 
-    def self.verify_ownership(remote_ownership_url, current_user_id)
-      return :success unless Greasyfork::Application.config.verify_ownership_on_import
-
-      remote_ownership_url = fix_url(remote_ownership_url)
-      begin
-        content = download(remote_ownership_url)
-      rescue OpenURI::HTTPError
-        return :failure
-      end
-      return :failure if content.nil?
-
-      our_url_match = %r{https?://greasyfork.org/users/([0-9]+)}.match(content)
-      return :nourl if our_url_match.nil?
-
-      return (current_user_id == our_url_match[1].to_i) ? :success : :wronguser
-    end
-
     # Generates a script list and returns an array:
     # - Result code:
     #   - :failure
@@ -36,9 +19,9 @@ module ScriptImporter
     # - The script
     # - An error message
     def self.generate_script(sync_id, provided_description, user, sync_type_id = 1, localized_attribute_syncs = {}, locale = nil, do_not_recheck_if_equal_to: nil)
-      url = sync_id
+      sync_id = fix_sync_id(sync_id)
       begin
-        code = download(url)
+        code = download(sync_id)
       rescue OpenURI::HTTPError, Errno::ETIMEDOUT => e
         return [:failure, nil, "Could not download source. #{e.message}"]
       rescue Timeout::Error => e
@@ -57,7 +40,7 @@ module ScriptImporter
       script.authors.build(user:)
       script.script_type_id = 1
       script.script_sync_type_id = sync_type_id
-      script.language = url.ends_with?('.css') ? 'css' : 'js'
+      script.language = sync_id.ends_with?('.css') ? 'css' : 'js'
       script.locale = locale
       script.sync_identifier = sync_id
       script.last_attempted_sync_date = DateTime.now
@@ -113,8 +96,8 @@ module ScriptImporter
     end
 
     # updates the URL to the working version
-    def self.fix_url(url)
-      return url
+    def self.fix_sync_id(sync_id)
+      sync_id
     end
 
     def self.absolutize_references(html, base)

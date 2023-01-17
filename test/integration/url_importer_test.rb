@@ -10,6 +10,14 @@ class UrlImporterTest < ActiveSupport::TestCase
     assert_equal 'https://github.com/scintill/userscripts/raw/master/routey-on-home.user.js', script.sync_identifier
   end
 
+  test 'generate script with GitHub HTML URL' do
+    result, script, message = ScriptImporter::UrlImporter.generate_script('https://github.com/scintill/userscripts/blob/master/routey-on-home.user.js', nil, User.find(1))
+    assert_equal :success, result, message
+    assert_not_nil script
+    assert_equal 'Route Y links on the BYU Home Page', script.name
+    assert_equal 'https://github.com/scintill/userscripts/raw/master/routey-on-home.user.js', script.sync_identifier
+  end
+
   test 'triggering script checking' do
     ScriptImporter::UrlImporter.expects(:download).returns(<<~JS)
       // ==UserScript==
