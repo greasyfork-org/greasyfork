@@ -20,7 +20,7 @@ ka:
     version_number: "ვერსია"
     license: "ლიცენზია"
     no_license: "პ/გ"
-    applies_to: "ეხება"
+    applies_to: "გამოყენებს ეს"
     applies_to_all: "ყველა საიტი"
     install: "სკრიპტის ინსტალაცია"
     install_css: "სკრიპტის ინსტალაცია როგორც მომხმარებელის სტილი"
@@ -35,6 +35,8 @@ ka:
     promoted_text_html: "შეიძლება მოგეწონოს %{script_link}."
     library_instructions_html: "ეს სკრიპტი არ უნდა იყოს პირდაპირ დაინსტალირებული. ეს ბიბლიოთეკაა, სხვა სკრიპტებისთვის უნდა ჩართეთ მეტა-დირექტივაში %{code}."
     deleted_notice: "ეს სკრიპტი წაშლილია."
+    deleted_notice_with_related: "თქვენ მიერ მოთხოვილი სკრიპტი წაშლილია, მაგრამ არსებობს რამდენიმე დაკავშირებული სკრიპტი."
+    deleted_undelete_notice_html: "ეს სკრიპტი დაბლოკილია მოდერატორის მიერ და მისი წაშლა შეუძლებელია. მოყვანილი მიზეზი არის: \"<i>%{delete_reason}</i>\"."
     version_notice_latest_version_link: "ბოლო ვერსია"
     info_page: "ინფორმაცია"
     code_page: "კოდი"
@@ -87,6 +89,7 @@ ka:
   activerecord:
     attributes:
       user:
+        name: "სახელწოდება"
         profile: "პროფილი"
         show_ads: "მანახეთ რეკლამა"
         show_sensitive: "ზრდადამთავრებული კონტენტი"
@@ -94,6 +97,8 @@ ka:
         new_password: "ახალი პაროლი"
         new_password_confirmation: "დაადასტურეთ ახალი პაროლი"
       script:
+        name: "სახელწოდება"
+        description: "აღწერა"
         code: "კოდი"
         changelog: "განსხვავებების ჟურნალი"
         type: "სკრიპტის ტიპი"

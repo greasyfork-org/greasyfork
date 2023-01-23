@@ -714,6 +714,8 @@ nl:
       namespace_html: "Een combinatie van <code>@namespace</code> en <code>@name</code> wordt gebruikt door gebruikersscriptsbeheerders om vast te stellen of een script reeds geïnstalleerd is. %{site_name} stelt dit veld als vereiste en zal een waarschuwing geven wanneer het wordt gewijzigd bij een bijwerking."
       version: "Identificatie van een specifieke versie van een script in de {version_format_link:Mozilla-versie-opmaak}. Deze versie wordt getoond op de informatiepagina van een script. %{site_name} stelt dit veld als vereiste en zal waarschuwen als het gedevalueerd of niet gevalueerd wordt als de code van het script wijzigt."
       include_html: "Beschrijf op welke pagina's het script actief is. Deze lijst wordt verwerkt, getoond op de scriptinformatiepagina en gebruikt om scripts te categoriseren. Ieder script dient voorzien te zijn van minimaal één <code>@match</code> of <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Lees meer over de opmaak.</a>"
+      require_html: "Voeg externe JavaScript toe aan een script. Lees voor meer informatie de %{external_script_link:regels omtrent code in externe scripts}. Als je subbronnen met integriteitscontrolesommen gebruikt (%{tm_subresource_link:meer informatie} en %{mdn_subresource_link:nog meer informatie}), %{site_name} dan wordt er een waarschuwing getoond als de controlesommen niet overeenkomen met de gebruikte url."
+      resource_html: "Voeg externe bronnen (JavaScript, CSS, afbeeldingen, etc.) toe aan een script. Lees voor meer informatie de %{external_script_link:regels omtrent code in externe scripts}. Als je subbronnen met integriteitscontrolesommen gebruikt (%{tm_subresource_link:meer informatie} en %{mdn_subresource_link:nog meer informatie}), %{site_name} dan wordt er een waarschuwing getoond als de controlesommen niet overeenkomen met de gebruikte url."
       updateURL: "Beschrijf hoe gebruikersscriptbeheerders bijwerkingen moeten verkrijgen. %{site_name} zal deze sleutels schrappen zodat elk met %{site_name} geïnstalleerd script alleen kan worden bijgewerkt vanuit %{site_name}."
       license: "De licentie die beschrijft hoe personen een script mogen kopiëren of bewerken. Gebruik van een \"Volledige naam\" of \"Identificatie\" van %{spdx_link:the SPDX License List} wordt aanbevolen. Het ontbreken van een licentie wekt de indruk dat gebruikers het script persoonlijk mogen installeren maar niet mogen verspreiden. De licentie wordt weergegeven op de informatiepagina van een script."
       supportURL: "De url van de pagina waar gebruikers ondersteuning kunnen krijgen op een script (bijv. een bugtracker, forum of e-mailadres). De ondersteunings-url zal worden getoond op de feedbackpagina van een script."
@@ -721,6 +723,9 @@ nl:
       contributionAmount_html: "Het aanbevolen donatiebedrag. Dit bedrag wordt gebruikt in combinatie met <code>@contributionURL</code>."
       compatible_html: "Dit markeert het script als compatibel met een bepaalde browser. De comptabiliteitsinformatie zal worden getoond op de pagina van een script. Opmerkingen aangaande de comptabiliteit kunnen worden ingevoegd met de opmaak <code>@compatible firefox Schakel pop-upblokkering uit</code>. Erkende browsers zijn: %{browsers}"
       incompatible_html: "Dit markeert het script als compatibel met een bepaalde browser. De comptabiliteitsinformatie zal worden getoond op de pagina van een script. Opmerkingen aangaande de comptabiliteit kunnen worden ingevoegd met de opmaak <code>@compatible firefox Werkt niet meer sinds Firefox 90</code>. Erkende browsers zijn: %{browsers}"
+      antifeature_html: |
+          Toont functies in scripts die alleen voordelen voor de maker en niet voor de gebruiker bieden. De opmaak van deze sleutel is <code>@antifeature type description</code>. <i>type</i> is vereist;, <i>description</i> is optioneel. %{antifeatures_link:Lees dit} voor meer informatie omtrent <i>type</i>s die herkend worden door %{site_name}.
+      antifeature_localized_html: "De <code>@antifeature</code> van het script in een specifieke taal, waar XX een <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 2-opmaakcode</a> is en YY een optioneel <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166-landnummer</a>. <code>@antifeature</code> van hetzelfde type wordt overschreven zodra de gebruiker surft in een overeenkomende taal."
     writing_user_scripts:
       title: "Hoe schrijf ik gebruikersscripts?"
       content_html: "<p>Het schrijven van gebruikersscripts vereist kennis van JavaScript. De <a href=\"http://wiki.greasespot.net/Tutorials\">handleidingen op de GreaseSpot-wiki</a> kunnen je op weg helpen met JavaScript, zowel in het algemeen als voor het schrijven van gebruikersscripts. Het kan ook helpen om scripts van anderen in te kijken. Wellicht ben je geïnteresseerd in %{code_rules_link} en %{meta_keys_link}. Als je hulp wilt bij het schrijven van een script, vraag dan gerust om hulp: %{ask_in_forum_link}.</p><p>Om je script te publiceren op %{site_name} heb je een account nodig. Via %{user_page_link} kun je de link volgen naar %{post_new_script_link}.</p>"
@@ -736,10 +741,18 @@ nl:
       monetization_html: Scripts die functies voor eigen gewin <em>(eigen = scriptmaker)</em> bevatten (zoals volgfuncties, reclame en miners) zijn toegestaan, maar dienen voorzien te zijn van de %{antifeature_link:<code>@antifeature</code>-metasleutels}.
       code_header: Code
       obfuscation: Code op %{site_name} mag niet vaag of geminimaliseerd zijn. Gebruikers hebben het recht om de code te inspecteren en begrijpen wat een script doet alvorens het te installeren. Als een script gebundeld is als bijv. een webpack, dan dient de uitvoer niet geminimaliseerd te zijn, dus mét inbegrip van witruimten en namen van variabelen.
+      size_html: |
+          Scripts zijn beperkt tot een omvang van %{max_code_size}. Scripts mogen niet kleiner zijn dan dit limiet. Als je script de maximale omvang nadert, overweeg dan het volgende:
+          <ul>
+          <li>Verplaats niet-code naar gegevensuri's of json buiten het script om;</li>
+          <li>Laad bibliotheken in met <code>@require</code> of %{webpack_externals_link:webpacks <code>externals</code>-optie}.</li>
+          </ul>
+      libraries_html: Bibliotheken die door een script worden gebruikt dienen <code>@require</code> te bevatten, tenzij er een goede technische reden is om dat niet te doen. Als een bibliotheek in de code wordt vermeld, dan dient er tevens informatie omtrent de bron te worden vermeld (bijv. een opmerking die naar een url en/of naam en versie verwijst).
       updates: Scripts mogen maximaal één keer per dag op updates controleren. De meeste gebruikersscriptbeheerders beschikken over automatische scriptupdates, dus scripts hoeven niet eens een updatecontrole te bevatten. Bovendien mogen scripts geen dynamische scriptinjecties op %{site_name} doen, omdat anders de cache van gebruikersscriptbeheerders wordt omzeild.
       hosting: De primaire functionaliteit van een script dient binnen het bereik van de code van %{site_name} te zijn. Een script op %{site_name} dat een groot deel van de code van een externe locatie ophaalt is niet toegestaan. Het plaatsen van alternatieve download-url's om gebruikers om de tuin te leiden is eveneens niet toegestaan.
       external_js: "%{external_scripts_link:Het gebruik van externe JavaScript is beperkt.}"
       copyright_header: Copyright
+      licensing_html: Je script dient auteursrechten en copyrights van anderen te respecteren. Dit geldt voor zowel de code als bronnen (bijvoorbeeld afbeeldingen). Als je van plan bent items van anderen te gebruiken, zorg dan dat je voldoet aan de licentie-overeenkomst of om toestemming vraagt. Licenties op scripts kunnen worden gespecificeerd met <code>@license</code>. Meer informatie over wat wel en niet mag is te vinden op %{tldr_legal_link:tldrlegal.com}.
       reposts: Zelfs als scripts geen auteursrechten schenden, mogen ze niet opnieuw worden geplaatst als ze al op %{site_name} staan, tenzij ze het origineel merkbaar verbeteren.
       miscellaneous_header: Overig
       keywords_html: Scripts mogen geen <code>@include</code>s, <code>@match</code>es of trefwoorden bevatten van sites waarop ze niet actief zijn.
@@ -749,8 +762,21 @@ nl:
       reporting: Als je een script tegenkomt dat niet voldoet, maak er dan melding van via de feedbacklink.
     external_scripts:
       title: "%{site_name}s beleid omtrent externe scripts."
+      intro_html: |
+          <p>%{site_name} staat het gebruik van externe code in sommige gevallen toe. Scripts die externe code bevatten buiten het toegestane gebruik worden verwijderd. Als je een script tegenkomt die de regels overtreedt, maak er dan melding van.</p>
+          <p>Let op: deze regels zijn alléén van toepassing op externe, uitvoerbare code. Het laden van niet-uitvoerbare code, zoals json en css, is altijd toegestaan.</p>
       rationale:
         title: Rationeel
+        content_html: |
+            <p>Gebruikersscripts zijn technisch in staat om andere scripts te laden en uit te voeren. Dit kan op verschillende manieren, waaronder:</p>
+            <ul>
+            <li>De %{require_doc_link:<code>@require</code>}- en %{resource_doc_link:<code>@resource</code>}-sleutels;</li>
+            <li><code>XmlHttpRequest</code> om een script op te halen en <code>eval</code> om het uit te voeren;</li>
+            <li>Door een <code>&lt;script&gt;</code>-tag toe te voegen;</li>
+            <li>Met Webpack's %{webpack_externals_link:<code>externals</code>}-optie;</li>
+            <li>Door een update van het script uit te voeren, automatisch of middels een gebruikersactie.</li>
+            </ul>
+            <p>Dit is een handige functie en de meeste scriptmakers gebruiken dit voor legitieme doeleinden, maar de functie kan ook worden misbruikt. Een van de kernwaarden van %{site_name} is dat de gebruiker code van een script moet kunnen inspecteren. Externe scripts kunnen deze werkwijze op verschillende manieren omzeilen: zonder waarschuwing of geschiedenis, door het tonen van verschillende code aan verschillende mensen en door het verbergen van schadelijke code te midden van bekende bibliotheken. Zelfs áls iemand een extern script zou controleren en het als legitiem zou aanmerken, dan nog is er geen garantie dat een script altijd legitiem is of zal zijn.</p>
       cdns:
         title: Contentdeliverynetwerken (CDNs)
         content_html: |
@@ -774,6 +800,17 @@ nl:
             <p>https://voorbeeld.nl/script.js invoegen op https://anderesite.nl mag niet.</p>
     cdns:
       title: Toegestane CDNs
+      content_html: |
+          <p>Hieronder vind je een lijst met CDN's die erkend worden door %{site_name}. Deze kunnen worden gebruikt om %{external_code_link:externe code} te laden in op %{site_name} geplaatste scripts.</p>
+          <p>Deze lijst bevat scriptlocaties die:</p>
+          <ul>
+          <li>Openbaar toegankelijk zijn;</li>
+          <li>Niet geregeld wijzigen;</li>
+          <li>Van dienst willen zijn voor verschillende soorten makers.</li>
+          </ul>
+          <p>Als een script een JavaScript-bibliotheek is (bijvoorbeeld jQuery of YUI), probeer dan om de bibliotheek in kwestie te vinden op onderstaande websites. Met name %{cdnjs_link:cdnjs} en %{jsdelivr_link:jsDelivr} bieden veel bibliotheken aan. Als je een CDN wilt toevoegen, open dan een %{github_link:verzoek op GitHub}. Let op: er zijn ook %{external_code_link:andere manieren} om externe code in te laden.</p>
+
+          %{allowed_require_list}
       test_url:
         label: Test een URL
         result_ok: URL is toegestaan
@@ -852,10 +889,62 @@ nl:
           bevatten.</p>
     user_css_to_user_js:
       title: Omzetten van gebruikers-css naar gebruikers-js
+      content_html: |
+          <p>%{site_name} kan gebruikers-css omzetten naar gebruikers-js. <code>@-moz-document</code>-regels worden omgezet naar JavaScript <code>if</code>-verklaringen, waardoor de toe te passen css wordt opgebouwd. Deze css wordt toegevoegd aan <code>&lt;head&gt;</code> in een <code>&lt;style&gt;</code>-element.</p>
+
+          <p>Sommige css-functies kunnen echter niet worden omgezet:</p>
+
+          <ul>
+          <li><code>@preprocessor</code>-sleutels, met uitzondering van <code>default</code>;</li>
+          <li><code>@var</code>-sleutels.</li>
+          </ul>
+
+          <p>%{site_name}s gebruikers-js kan de css-code iets anders inladen dan gebruikers-css.</p>
+
+          <ul>
+          <li>In gebruikers-js wordt de css-code ingevoegd in het laatste element van <code>&lt;head&gt;</code>; in gebruikers-css is dit afhankelijk van de gebruikte extensie. Het gebruik van <code>!important</code> wordt aanbevolen om dit probleem te omzeilen.</li>
+          <li>In gebruikers-js wordt de css-code berekend en toegepast na het laden van de pagina. Het gebruik van de JavaScript-geschiedenis-api kan leiden tot het niet juist toevoegen van css-code.</li>
+          <li>Gebruikers-js past css-code mogelijk niet toe op frames of iframes.</li>
+          </ul>
+
+          <p>Als je van mening bent dat de omzetting niet werkt, kies dan de optie die de optie onbeschikbaar maakt.</p>
     antifeatures:
       title: Functies voor eigen gewin
+      intro_html: |
+          <p>Anti-functies zijn items die worden toegevoegd aan scripts die alleen in het voordeel van de makers zijn, zoals advertenties of volgfuncties. Scripts met anti-functies zijn toegestaan op basis van %{rules_link:%{site_name}s regels}, maar dienen te worden aangemerkt met <code>@antifeature</code> in het metagegevensblok van het script in kwestie. Hierdoor wordt de gebruiker vooraf op de hoogte gebracht van de anti-functie.</p>
+          <p>Anti-functies worden opgegeven als %{meta_keys_link:script-metasleutels} met de opmaak <code>@antifeature <i>type</i> <i>description</i></code>. <i>type</i> is vereist; <i>description</i> is optioneel.</p>
+          <p>Op deze pagina worden alle soorten <code>@antifeature</code>s getoond die erkend worden door %{site_name}. Overige soorten kunnen ook worden gebruikt, zolang ze niet tegen de %{rules_link:%{site_name}-regels} zijn.</p>
+      ads_html: |
+          <p>Het script voegt advertenties toe op door de gebruiker bezochte pagina's.</p>
+          <p>In de volgende gevallen is het gebruik van <code>@antifeature ads</code> <i>niet</i> nodig:</p>
+          <ul>
+          <li>Een script voor een website die zelf reclame toont;</li>
+          <li>Een script dat de gebruiker naar een website met reclame (door)verwijst, zolang de website integratie met het script biedt;</li>
+          <li>Promotie van een script op de eigen website, repo, Discord, WeChat, etc.</li>
+          </ul>
+      membership_html: |
+          <p>Het script vereist de gebruiker zich te abonneren op een bepaald kanaal, deel te nemen aan een groep, een pagina leuk te vinden, etc. voordat het script actief wordt.</p>
+
+          <p>In de volgende gevallen is het gebruik van <code>@antifeature membership</code> <i>niet</i> nodig:</p>
+
+          <ul>
+          <li>Een script dat alleen van toepassing is op het ingelogde gedeelte van een website, maar zelf niet om inloggegevens vraagt;</li>
+          <li>Een script dat ondersteuning biedt via een platform waar lidmaatschap vereist is, zolang het script zónder deze ondersteuning werkt;</li>
+          <li>Links naar het kanaal, de groep, pagina, etc. van de maker die de scriptfunctionaliteit niet aantasten.</li>
+          </ul>
       miner_html: |
           <p>Het script bevat een cryptominer of andere code die systeembronnen van gebruikers misbruikt voor eigen gewin.</p>
+      payment_html: |
+          <p>Het script vereist dat de gebruiker de scriptmaker betaalt voor het gebruik ervan.</p>
+
+          <p>In de volgende gevallen is het gebruik van <code>@antifeature payment</code> <i>niet</i> nodig:</p>
+
+          <ul>
+          <li>Een script voor een website die zelf betaling vereist, zolang het script dat niet doet;</li>
+          <li>Een script dat om donaties vraagt, zolang de donatie niet vereist is voor het gebruik ervan.</li>
+          </ul>
+      referral_link_html: |
+          <p>Het script voert een actie uit die de maker een vergoeding oplevert. Dit omvat scripts met aanbevolen/partnerlinks, die bestaande links omzetten naar dat soort links, of het aanbieden van kortingscodes die de maker een vergoeding opleveren.</p>
       tracking_html: |
           <p>Dit script bevat code om gebruikersactiviteit bij te houden, zoals van Google Analytics of andere diensten die activiteit doorgeven aan de scriptmaker.</p>
   search:
@@ -1219,6 +1308,9 @@ nl:
     intro: "%{site_name} kan scripts importeren die ergens anders worden gehost, bijv. op een versiebeheersysteem (zoals GitHub), je eigen server of een andere gebruikersscript-hostingsite."
     url_entry_label: Geef de import-url's op, één per regel. De url's moeten direct verwijzen naar js- of css-bestanden.
     sync_type_label: "Na het importeren worden de scripts gesynchroniseerd:"
+    additional_info_html: |
+        <p>Bij scripts uit openbare bronnen dient de url te verwijzen naar een afsplitsing (branch) en niet naar een specifieke commit, anders kunnen ze nooit bijgewerkt worden. Voorbeeld: <code>https://bitbucket.org/username/reponame/raw/<b>afsplitsingsnaam</b>/script.user.js</code> in plaats van <code>https://bitbucket.org/username/reponame/raw/<b>commit-controlesom</b>/script.user.js</code>.</p>
+        <p>Scripts van GitHub, Bitbucket of GitLab kunnen tevens via een webhook worden gesynchroniseerd. Een webhook zorgt er voor dat scripts automatisch worden bijgewerkt op %{site_name} zodra je updates naar je repo pusht. Als je een webhook wilt gebruiken maar deze nog niet hebt ingesteld, begin dan met een import en %{webhook_info_link:stel nadien de webhook in}.</p>
     submit: Importeren
     previously_imported:
       heading: Reeds geïmporteerde scripts
@@ -1295,6 +1387,12 @@ nl:
     consecutive_bad_ratings:
       notify:
         subject: "Je script ‘%{script_name}’ op %{site_name} heeft meermaals een slechte beoordeling gekregen."
+        text: |
+            Je script, %{script_name}, op %{site_name} (%{script_url}) heeft meerdere slechte recensies ontvangen.
+
+            Controleer op basis van de feedback op %{feedback_url}  of er een probleem met het script, een tijdelijke storing of gewijzigd website-adres is. Los de problemen op en reageer zo spoedig mogelijk op de genoemde problemen.
+
+            %{site_name} streeft naar scripts met hoge kwaliteit. Niet meer werkende en verouderde scripts worden na meerdere slechte recensies verborgen. Om dit te voorkomen, kun je een nieuwe versie plaatsen of vóór %{delete_date} op de problemen reageren. Als je niets doet, dan wordt het script verborgen en dien je het handmatig weer zichtbaar te maken.
     script_comment:
       subject: "Er is een reactie geplaatst bij je script ‘%{script_name}’ op %{site_name}."
       intro: "Er is een reactie geplaatst op je script ‘%{script_link:%{script_name}}’ op %{site_name} door %{commenter_link:%{commenter_name}}."
