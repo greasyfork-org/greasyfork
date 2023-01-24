@@ -7,7 +7,7 @@ set :rbenv_ruby, File.read('.ruby-version').strip
 set :sidekiq_roles, %w[worker]
 set :sidekiq_config, "#{current_path}/config/sidekiq.yml"
 set :sidekiq_env, 'production'
-set :sidekiq_service_unit_name, 'sidekiq-production'
+set :sidekiq_systemd_unit_name, 'sidekiq-production'
 set :init_system, :systemd
 set :puma_systemctl_user, :system
 set :puma_service_unit_name, 'puma'
@@ -31,3 +31,40 @@ namespace :deploy do
   after :rollback, 'thinking_sphinx:index'
   after :rollback, 'sidekiq:start'
 end
+
+namespace :sidekiq do
+  desc 'Quiet sidekiq (stop fetching new tasks from Redis)'
+  task :quiet do
+    on roles fetch(:sidekiq_roles) do
+      # See: https://github.com/mperham/sidekiq/wiki/Signals#tstp
+      execute :systemctl, '--user', 'kill', '-s', 'SIGTSTP', fetch(:sidekiq_systemd_unit_name), raise_on_non_zero_exit: false
+    end
+  end
+
+  desc 'Stop sidekiq (graceful shutdown within timeout, put unfinished tasks back to Redis)'
+  task :stop do
+    on roles fetch(:sidekiq_roles) do
+      # See: https://github.com/mperham/sidekiq/wiki/Signals#tstp
+      execute :systemctl, '--user', 'kill', '-s', 'SIGTERM', fetch(:sidekiq_systemd_unit_name), raise_on_non_zero_exit: false
+    end
+  end
+
+  desc 'Start sidekiq'
+  task :start do
+    on roles fetch(:sidekiq_roles) do
+      execute :systemctl, '--user', 'start', fetch(:sidekiq_systemd_unit_name)
+    end
+  end
+
+  desc 'Restart sidekiq'
+  task :restart do
+    on roles fetch(:sidekiq_roles) do
+      execute :systemctl, '--user', 'restart', fetch(:sidekiq_systemd_unit_name)
+    end
+  end
+end
+
+after 'deploy:starting', 'sidekiq:quiet'
+after 'deploy:updated', 'sidekiq:stop'
+after 'deploy:published', 'sidekiq:start'
+after 'deploy:failed', 'sidekiq:restart'
