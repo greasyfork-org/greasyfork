@@ -4,7 +4,7 @@ class ScriptDuplicateCheckerJob < ApplicationJob
   DESIRED_RUN_COUNT = 4
 
   queue_as :low
-  self.max_concurrency = 4
+  self.max_concurrency = 5
 
   def perform(script_id)
     now = Time.current
