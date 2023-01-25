@@ -19,10 +19,20 @@ module ReportHelper
   end
 
   def report_diff(report)
-    original_code = report.reference_script.script_versions.last.code
-    new_code = report.item.newest_saved_script_version.code
-    return tag.p('The scripts are identical.') if original_code == new_code
+    if params[:tersed] == '1'
+      original_code = report.reference_script.cleaned_code.code
+      new_code = report.item.cleaned_code.code
+    else
+      original_code = report.reference_script.current_code
+      new_code = report.item.current_code
+    end
 
-    Diffy::Diff.new(original_code, new_code, include_plus_and_minus_in_html: true, diff: ['-U 3', '-w'], include_diff_info: true).to_s(:html).html_safe
+    return tag.p(t('scripts.diff_no_change')) if original_code == new_code
+
+    diff = Diffy::Diff.new(original_code, new_code, include_plus_and_minus_in_html: true, diff: ['-U 10000', '-w'], include_diff_info: true)
+
+    return tag.p(t('scripts.diff_no_change')) if diff.to_s.blank?
+
+    diff.to_s(:html).html_safe
   end
 end

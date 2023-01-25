@@ -3,7 +3,7 @@ window.addEventListener("load", () => {
   buttons.forEach((button) => {
     button.parentNode.addEventListener("ajax:success", (e) => {
       let diffSection = button.closest('.report-diff')
-      diffSection.replaceChild(e.detail[0].firstChild, diffSection.firstChild)
+      diffSection.replaceChild(e.detail[0].body.firstChild, diffSection.firstChild)
     });
   });
 });

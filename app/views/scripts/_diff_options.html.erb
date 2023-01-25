@@ -8,5 +8,5 @@
 </div>
 <div class="form-control">
   <input id="terser" type="checkbox" name="terser" value="1" <% if params[:terser] == '1' %> checked<% end %>>
-  <label for="terser" class="radio-label">Run code through terser/prettier</label>
+  <label for="terser" class="radio-label"><%= t('scripts.diff_terser') %></label>
 </div>

@@ -128,9 +128,10 @@
 
   <% if report.reference_script %>
     <div class="report-diff">
-      <p>
-        <%= button_to t('reports.load_diff'), diff_report_path(report), method: :get, remote: true, class: 'lazy-load-diff', data: { disable_with: t('reports.loading_diff') } %>
-      </p>
+      <%= button_to t('reports.load_diff'), diff_report_path(report), method: :get, remote: true, class: 'lazy-load-diff', data: { disable_with: t('reports.loading_diff') } %>
+      <% if report.reference_script.cleaned_code %>
+        <%= button_to t('reports.load_cleaned_diff'), diff_report_path(report), params: { tersed: 1 }, method: :get, remote: true, class: 'lazy-load-diff', data: { disable_with: t('reports.loading_diff') } %>
+      <% end %>
     </div>
   <% end %>
 <% end %>
