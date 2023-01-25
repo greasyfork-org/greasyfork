@@ -40,9 +40,9 @@ ja:
     promoted_text_html: "%{script_link}も気に入るかもしれません。"
     library_instructions_html: "このスクリプトは単体で利用できません。右のようなメタデータを含むスクリプトから、ライブラリとして読み込まれます: %{code}"
     deleted_notice: "このスクリプトは削除されました。"
-    deleted_notice_with_related: "アクセス要求のあったスクリプトは削除されています。関連するスクリプトをご紹介します。"
+    deleted_notice_with_related: "このスクリプトは削除されています。関連するスクリプトをどうぞ。"
     deleted_undelete_notice_html: "このスクリプトは管理担当者によりロックされており、削除の取り消しはできません。理由:  \"<i>%{delete_reason}</i>\""
-    deleted_locked_author_notice_html: "このスクリプトは管理担当者によって削除されており、第三者はアクセスできません。理由 \"<i>%{delete_reason}</i>\" {code_rules_link:%{site_name}の規則}を確認してください。もし誤って削除された場合、%{appeal_link:異議の申立}ができます。スクリプトの再投稿は行わないでください。%{site_name}からBANされる場合があります。"
+    deleted_locked_author_notice_html: "このスクリプトは管理担当者によって削除されており、第三者はアクセスできません。理由: <i>%{delete_reason}</i>。{code_rules_link:%{site_name}の規則}を確認してください。誤って削除された場合、%{appeal_link:抗議}も行えます。スクリプトの再投稿は行わないでください。%{site_name}へのアクセス禁止になる可能性があります。"
     deleted_author_notice: "このスクリプトは削除されており、第三者はアクセスできません。削除タブから削除を取り消しできます。"
     version_notice_html: "%{date} 時点のページです。%{latest_version_link}を参照してください。"
     version_notice_latest_version_link: "最新バージョン"
@@ -100,11 +100,11 @@ ja:
     list_all_script_versions: "スクリプトのすべてのバージョンを表示"
     code_title: "%{script_name} のソースコード"
     feedback_title: "%{script_name} のフィードバック"
-    feedback_no_discussions_html: "まだスレッドはありません。%{start_first_discussion_link}"
+    feedback_no_discussions_html: "議論はまだありません。%{start_first_discussion_link}"
     feedback_no_discussions_on_page_form: "議論はまだ投稿されていません。"
     feedback_report_instead: "もしこのスクリプトが %{rules_link:%{site_name}の規則}に反するとお考えであれば、%{report_link:削除依頼}してください。"
     feedback_start_first_discussion_link: "このスクリプトについて最初のスレッドを立てる。"
-    feedback_discussion_or_report: "%{new_discussion_link:このスクリプトの新規の議論を開始} または %{report_link:削除のために報告}する。"
+    feedback_discussion_or_report: "%{new_discussion_link:このスクリプトに関する議論を開始}、または %{report_link:削除のために通報}する。"
     stats_title: "%{script_name} のインストール数の統計"
     stats_daily_installs_heading: "1日ごとのインストール数"
     stats_weekly_installs_heading: "1週間ごとのインストール数"
@@ -148,7 +148,7 @@ ja:
     listing_title_generic: "ユーザースクリプト一覧"
     listing_title_for_favorites: "%{user_name} の%{set_name}"
     listing_description_generic: "サイトに機能を追加し、バグを取り除くユーザースクリプト"
-    listing_sort_label: "並べ替え"
+    listing_sort_label: "並べ替え:"
     listing_sort_relevance: "関連度"
     listing_sort_daily_installs: "1日のインストール数"
     listing_sort_total_installs: "インストール数"
@@ -156,17 +156,17 @@ ja:
     listing_sort_created: "作成日"
     listing_sort_updated: "更新日"
     listing_sort_name: "名前"
-    listing_filter_by_site_label: "実行されるサイト"
+    listing_filter_by_site_label: "実行されるサイト:"
     listing_filter_by_site_disable: "すべてのスクリプト / スタイル"
     listing_filter_by_site_all_sites: "(すべてのサイト)"
     listing_filter_by_language_label: "対象:"
     listing_filter_by_site_more_sites: "さらに表示 ▸"
-    listing_no_scripts: "スクリプトが見つかりませんでした。"
+    listing_no_scripts: "スクリプトはありませんでした。"
     listing_created_feed: "新しいスクリプト"
     listing_updated_feed: "更新されたスクリプト"
     listing_none: "(なし)"
     listing_set_locale_filter: "すべての言語の結果を表示しています。%{set_filter_link:%{language}で絞り込む。}"
-    listing_remove_locale_filter: "%{language}で絞り込んだ結果を表示しています。%{remove_filter_link:すべての言語の結果を表示する。}"
+    listing_remove_locale_filter: "%{language}で絞り込んだ結果を表示しています。%{remove_filter_link:すべての言語の結果を表示。}"
     listing_language_all: "すべて"
     listing_language_js: "JavaScript"
     listing_language_css: "CSS"
@@ -188,19 +188,19 @@ ja:
     sets_add_inclusion: "%{set_name} に追加"
     sets_add_exclusion: "%{set_name} から除外"
     sets_add_to_new: "新しいセットに追加"
-    rules_summary_html: "スクリプトは<strong>難読化</strong>や<strong>圧縮 minify</strong> をせず<strong>正しく記述</strong>し、<strong>著作権</strong>を守るように心がけてください。また、<strong>外部のコード</strong>の読み込みには制限があります。%{full_rules_link}"
-    rules_summary_link_to_full: "すべての規則はこちらでご確認ください。"
+    rules_summary_html: "スクリプトは<strong>難読化</strong>や<strong>圧縮 minify</strong> をせず<strong>正しく記述</strong>し、<strong>著作権</strong>を守るように心がけてください。また<strong>外部のコード</strong>の読み込みには制限があります。%{full_rules_link}"
+    rules_summary_link_to_full: "すべての規則を確認。"
     syncing_notice_html: "このスクリプトは%{syncing_notice_sync_type}になっています。ここでコードに加えた変更点は、同期の際に上書きされます。"
     syncing_notice_sync_type_manual: "手動で %{sync_identifier} と同期する設定"
     syncing_notice_sync_type_automatic: "自動で %{sync_identifier} と同期する設定"
     upload_label: "または アップロード:"
-    enable_source_code_editor_label: "ソースエディタを有効にしてシンタックスハイライトする"
+    enable_source_code_editor_label: "ソースエディタを有効にして構文を色分け"
     changelog_note: "バージョン履歴ページに表示する変更点。"
     additional_info_note: "説明の詳細や使用法など。"
     post_new_script: "スクリプトを投稿"
     post_updated_script: "更新"
     type_1_html: "公開スクリプト – 誰でも閲覧・利用できるユーザースクリプト。"
-    type_2_html: "限定公開スクリプト – 半プライベートなユーザースクリプト。URLを知っていればアクセス可能ですが、%{site_name} のどこからもリンクされません。"
+    type_2_html: "限定公開スクリプト – 半非公開のユーザースクリプト。URLを知っていればアクセス可能ですが、%{site_name} のどこからもリンクされません。"
     type_3_html: "ライブラリ – <code>@require</code> によって他のスクリプトから読み込まれるスクリプト。インストールボタンは表示されません。"
     override_warning_checkbox_label: "強制的に保存する"
     warning_version_not_incremented_html: "コードが更新されていますが、<code>@version</code> の値が大きくなっていません。すでにスクリプトをインストールしている人が、更新されたコードを取得できない可能性があります。"
@@ -218,9 +218,11 @@ ja:
     provide_code_syncing_from_url_html: "%{site_name} は、GitHub のようなバージョン管理システム、自分のサーバー、他のユーザースクリプト公開サイトなどで公開しているスクリプトをインポートすることができます。URL を設定して、スクリプトの同期を有効化します: %{field}"
     sync_type_intro: "スクリプトの同期方法:"
     sync_type_1:
-      name: 説明書
+      name: 手動
+      description: 更新を行った時にのみ更新確認
     sync_type_2:
       name: 自動
+      description: 定期的に更新確認
     sync_type_3:
       name: Web Hook
     sync_name_and_description: "%{name} - %{description}"
@@ -233,6 +235,9 @@ ja:
     additional_info_default_sync_html: "既定の追加情報 (メタデータの <code>@name</code> と同じ言語)"
     additional_info_localized_sync_html: "この言語の追加情報 (<code>@name:XX</code> )"
     sync_url_placeholder: "(URL)"
+    sync_successful: スクリプトの同期に成功しました。
+    sync_no_changes: スクリプトの同期に成功しましが、変更点はありません。
+    sync_error: スクリプトの同期に失敗 - %{error}。
     screenshots_add: "追加:"
     screenshots_remove: "削除"
     replacement_script_explanation: "(任意) このスクリプトを置き換える他のスクリプトのURLを入力:"
@@ -262,8 +267,8 @@ ja:
     adult_content_on_greasy_not_logged_in_error: "ログインしていない場合、このスクリプトを当サイトから利用することはできなくなりました。%{login_link:ログイン} 後、Greasy Fork のアカウント設定をご確認ください。"
     non_adult_content_on_sleazy: "このスクリプトを当サイトから利用することはできません。"
     not_js_convertible_override_header: "JS 形式への変換"
-    not_js_convertible_override_explanation: "%{site_name} は、あなたのユーザーCSS の ユーザーJS変換版  %{help_link:user JS conversion} を自動的に作成できます。ユーザーJS変換版 と ユーザーCSS の挙動には少し違いがあるので、ユーザー JS 変換版をテストすることを推奨します。もし、うまく動作していなければ、下記のチェックボックスをチェックすることで無効にできます。"
-    not_js_convertible_override_label_html: "ユーザーJS 形式を利用 <strong>しない</strong>"
+    not_js_convertible_override_explanation: "%{site_name} は、あなたのユーザーCSSの%{help_link:ユーザーJS変換版}を自動的に作成できます。ユーザーJS変換版 と ユーザーCSS の挙動には少し違いがあるので、ユーザー JS 変換版をテストすることを推奨します。うまく動作していなければ、下記のチェックボックスをチェックすることで無効にできます。"
+    not_js_convertible_override_label_html: "ユーザーJS 形式を利用<strong>しない</strong>"
     adult_marker: "(アダルト)"
     deleted_marker: "(削除済み)"
     locked_marker: "(ロック済み)"
@@ -272,7 +277,7 @@ ja:
     libraries_title: "ライブラリ一覧"
     libraries_description_html: "これらは %{site_name} のユーザーが投稿したライブラリで、ユーザースクリプトの <code>@require</code> で読み込めます。<code>@require</code> で利用可能な他のライブラリについては、%{policy_link:<code>@require</code> における %{site_name} のポリシー} を参照してください。"
     by_site_list_title: "実行されるサイトごとにまとめた %{site_name} のユーザースクリプト"
-    by_site_list_description: "以下は関連するユーザースクリプトが多いサイトです。文字が大きいほど、多くのユーザースクリプトが投稿されていることを表します。"
+    by_site_list_description: "以下はユーザースクリプトが多いサイトです。文字が大きいほど、多くのユーザースクリプトが投稿されています。"
     by_site_list_filter: "サイト名で絞り込む"
     search_placeholder: "スクリプトを検索"
     updated: "スクリプトが更新されました。"
@@ -303,15 +308,23 @@ ja:
       failure: "作者を解除できませんでした。"
     no_disposable_email: "使い捨ての電子メールアドレスを使用している場合は、スクリプトを投稿することはできません。"
     rate_limited: "短期間に多くのスクリプトが投稿され過ぎました。しばらく後にまたお試しください。"
+    delayed: "スパムのため、新しいアカウントはスクリプトをすぐには投稿できないことがあります。後で再度お試しください。"
     new_script_notice:
       title: "何をしようとしていますか？"
       install_link_html: "スクリプトを<b>インストールして使用したい</b>。"
       share_link_html: " スクリプトを<b>書いた</b>ので、他の人に<b>共有したい</b>。"
     new_title:
-      js: "スクリプトを投稿"
-      css: "スタイルシートを投稿"
+      js: "新しいスクリプトを投稿"
+      css: "新しいスタイルシートを投稿"
     update_title: "%{script}を更新する"
     install_help_dialog:
+      js:
+        other: このスクリプトをインストールするには、ユーザースクリプト管理ツールの拡張機能をインストールする必要があります。
+        bypass: (ユーザースクリプト管理ツールはあるのでインストールする！)
+      css:
+        safari: このスクリプトをインストールするには、ユーザースタイル管理ツールの拡張機能をインストール必要があります。
+        other: このスクリプトをインストールするには、ユーザースタイル管理ツールの拡張機能をインストール必要があります。
+        bypass: (ユーザースタイル管理ツールはあるのでインストールする！)
       close_dialog: OK
     antifeatures:
       warning_title: このスクリプトはアンチ機能を含みます
@@ -331,8 +344,10 @@ ja:
           title: 紹介リンク
         membership:
           title: メンバーシップ
+          description_html: このスクリプトは、<b>何かに登録する</b>ことでのみ完全な機能となります。例、グループへの参加、チャンネル登録、ページへの「いいね」など。
         payment:
           title: お支払い
+          description_html: このスクリプトは<b>支払う</b>ことでのみ完全な機能となります。%{site_name} は支払いに関与しないので、価値のあるものを入手できるかを検証していませんし、返金のお手伝いもできないので注意してください。
       install_anyway: スクリプトをインストール
       cancel_install: キャンセル
     badges:
@@ -409,6 +424,7 @@ ja:
       all_sites: "すべてのサイトで実行されるスクリプト / スタイル"
       user: "%{user} が作成したスクリプト"
       locale: "%{locale_name} に対応したスクリプト"
+    new: スクリプトセットを作成
   home:
     title: "%{site_name} – 便利で安全なユーザースクリプトを"
     welcome: "%{site_name} はユーザースクリプトの投稿サイトです。"
@@ -418,10 +434,10 @@ ja:
     scripts_for_label: "サイト別のスクリプト:"
     explain_user_scripts_heading: "ユーザースクリプトについて"
     explain_user_scripts_html: "ユーザースクリプトは、Web ページを見たり使ったりするときの主導権をあなたに与えます。スクリプトをインストールすれば、ページの機能を使いやすくしたり、新たな機能を追加したり、迷惑なものを取り除いたりして、訪れたサイトをより便利にカスタマイズすることができます。%{site_name} では、ユーザーが開発・投稿したスクリプトを公開しています。これらのスクリプトは自由にインストールでき、使うのも簡単です。"
-    installing_step1_header: "1. ユーザースクリプトマネージャーをインストール"
+    installing_step1_header: "1. ユーザースクリプト管理ツールをインストール"
     installing_step1_caption: "Tampermonkey (Chrome 版)"
     installing_step1_description_html: >
-        <p>ユーザースクリプトを使用するには、最初にユーザースクリプトマネージャーをインストールする必要があります。使用できるスクリプトマネージャーの種類はブラウザによって異なります。</p>
+        <p>ユーザースクリプトを使用するには、最初にユーザースクリプト管理ツールをインストールする必要があります。使用できるスクリプト管理ツールの種類はブラウザによって異なります。</p>
     desktop_browsers:
       title: デスクトップ
       browser_list_html: |
@@ -460,7 +476,7 @@ ja:
 
         %{highlighted_scripts_list}
 
-        <p>スクリプトのページにある緑色のインストールボタンをクリックすると、インストールするかどうかの確認が、ユーザースクリプトマネージャーにより表示されます。</p>
+        <p>スクリプトのページにある緑色のインストールボタンをクリックすると、インストールするかどうかの確認が、ユーザースクリプト管理ツールにより表示されます。</p>
     installing_step3_header: "3. ユーザースクリプトを使う"
     installing_step3_description_html: >
         <p>これで、スクリプトは実行対象のページで動作するようになります。スクリプトを試したあと、インストールしたページに戻り、作者宛てにフィードバックを投稿することもできます。</p>
@@ -477,10 +493,10 @@ ja:
     sign_in_name_used: "「%{name}」という名前はすでに利用されています。別の名前を入力してください。"
     sign_in_name_used_submit: "登録"
     control_panel: "設定"
-    discussions_on_scripts: "フィードバック一覧"
+    discussions_on_scripts: "あなたのスクリプトに関する議論"
     discussions_on_scripts_feed_alt: "フィード"
     discussions_on_scripts_none: "まだ投稿はありません。"
-    discussions_on_scripts_more: "さらに表示 ▸"
+    discussions_on_scripts_more: "さらに表示..."
     script_list: "スクリプト一覧"
     script_list_none: "まだ投稿していません。"
     script_list_none_for_filter: "指定した条件に一致するスクリプトはありません。"
@@ -520,9 +536,9 @@ ja:
     add_external_sign_in_info: "以下のサービスのアカウントを使ってログインできるようにする:"
     set_up_webhook: "Web Hookを設定する"
     author_email_notification_type:
-      none: "通知メールを受け取らない"
-      discussion_only: "投稿したスクリプトに関する新しいスレッドが立てられたときに通知メールを受け取る"
-      discussion_and_comment: "投稿したスクリプトに関する新しいスレッドが立てられたとき、およびそのスレッドへの返信が投稿されたときに通知メールを受け取る"
+      none: "投稿したスクリプトに関する議論の通知メールを受け取らない"
+      discussion_only: "投稿したスクリプトに関する議論が開始されたら、通知メールを受け取る"
+      discussion_and_comment: "投稿したスクリプトに関する議論の開始、またそこへコメントが投稿されたら、通知メールを受け取る"
     list_display_html:
       other: "%{user_link} – %{count}個のスクリプト"
     listing_number_of_scripts: "スクリプト数"
@@ -557,7 +573,7 @@ ja:
         other: "あなたの%{count}個のスクリプトは削除されます。"
       script_sets_effect:
         other: "あなたの%{count}個のスクリプトセットは削除されます。"
-      forum_effect: "掲示板の投稿は残りますが、投稿者名は「%{user_name}」に変更されます。"
+      forum_effect: "掲示板への投稿は残りますが、投稿者名は「%{user_name}」に変更されます。"
       email_confirmation: "アカウントを削除する前に、%{email} へ %{site_name} から確認のメールを送信します。"
       submit: "アカウント削除"
       confirmation_email_sent: "アカウントの削除について、確認のメールが送信されました。"
@@ -590,10 +606,25 @@ ja:
         long: このスクリプトの作者
     notifications:
       discussion_defaults:
-        title: 掲示板通知
+        title: 掲示板の通知
+        new_discussion: 既定では、あなたが作成した議論を購読
+        new_comment: 既定では、あなたがコメントした議論を購読
+        mention: 議論で言及されたら通知を受け取る
+      conversation_defaults:
+        title: 会話の通知
+        starter: 既定では、あなたが開始した会話を通知する
+        receiver: 既定では、あなたに言及する会話を通知する
+      report_defaults:
+        title: 報告の通知
+        reporter: あなたが作成した報告が解決されたら通知
+        reported: あなたの投稿した内容への通報が、作成または解決されたら通知
       save_button: 通知設定を更新
       title: 通知
+      current_discussion_subscriptions:
+        other: '%{discussions_link:%{count} 議論}の購読を解除する'
       save_success: 通知設定を更新しました。
+      unsubscribe_all: すべての通知を解除
+      unsubscribe_all_success: すべての通知を解除しました。
     account_banned: このアカウントはアクセス禁止になりました。
   webhooks:
     info:
@@ -608,6 +639,10 @@ ja:
       title: 'ユーザースクリプトのインストール方法'
     installing_user_styles:
       title: 'ユーザースタイルのインストール方法'
+      content_html: |
+          <p> %{site_name} 上の一部のスクリプトは、ユーザースタイルとしてインストールできます。</p>
+          <p>ユーザースタイルのインストールには、拡張機能の Stylus を利用します。%{stylus_firefox_link:Firefox 用}、%{stylus_chrome_link:Chrome 用}、%{stylus_opera_link:Opera用}。</p>
+          <p>%{styles_link:すべてのユーザースタイルを表示。}</p>
     meta_keys:
       title: "%{site_name} が読み込むスクリプト・メタキー"
       intro_html: "%{site_name} が読み込む<a href=\"http://wiki.greasespot.net/Metadata_Block\">ユーザースクリプトのメタキー</a>の一覧です。以下の一覧にないキーをスクリプトに含めることも可能で、そのキーはインストールされたスクリプト中にも含まれることになりますが、%{site_name} の UI (表示) には影響しません。"
@@ -615,19 +650,20 @@ ja:
       name_localized_html: "特定の言語におけるスクリプトの名前で、XX は <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1の2文字コード</a>、任意指定の YY は <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166の国名コード</a>。ユーザーが対応する言語で閲覧しているときに、<code>@name</code>を上書きします。"
       description: "スクリプトがなにをするのかについての説明。スクリプト名の下にテキストとして表示。必須。"
       description_localized_html: "特定の言語におけるスクリプトの説明で、XX は<a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1の2文字コード</a>、任意指定の YY は <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166の国名コード</a>。ユーザーが対応する言語で閲覧しているときに、<code>@description</code>を上書きします。"
-      namespace_html: "ユーザースクリプトマネージャーは、<code>@namespace</code> と <code>@name</code> の組み合わせで、スクリプトがすでにインストールされているか否かを判断します。%{site_name} ではこのキーを必須としており、スクリプト更新時に変更された場合は警告を表示します。"
+      namespace_html: "ユーザースクリプト管理ツールは、<code>@namespace</code> と <code>@name</code> の組み合わせで、スクリプトがすでにインストールされているか否かを判断します。%{site_name} ではこのキーを必須としており、スクリプト更新時に変更された場合は警告を表示します。"
+      version: "Identifier for a specific version of a script in %{version_format_link:Mozilla のバージョン規則}によるスクリプトのバージョンの指定です。バージョンはスクリプトの情報ページに表示されいます。%{site_name} はこの項目を必須とし、スクリプトのコードが変更された際に、値が減少、または増加していない場合に警告します。"
       include_html: "スクリプトを実行するページを指定します。この一覧は処理されてスクリプトの情報ページに表示され、またスクリプトの分類に使われます。各スクリプトには 1 回以上の<code>@match</code> か <code>@include</code> を含めてください。そのフォーマットについては <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">ここをお読みください。</a>"
       require_html: "外部の JavaScript をスクリプトに含めます。%{external_script_link:外部のスクリプトをコードに含める際の規則}を確認してください。サブリソースの整合性ハッシュ（%{tm_subresource_link:ここ}と%{mdn_subresource_link:ここ}の情報を参照）を使っていて、ハッシュが使用するURLのハッシュと一致しない際に、%{site_name}は警告します。"
       resource_html: "スクリプトに外部のリソース（JavaScript、CSS、画像など）を含めます。%{external_script_link:外部のスクリプトをコードに含める際の規則}を確認してください。サブリソースの整合性ハッシュ（%{tm_subresource_link:ここ}と%{mdn_subresource_link:ここ}の情報を参照）を使っていて、ハッシュが使用するURLのハッシュと一致しない際に、%{site_name}は警告します。"
-      updateURL: "ユーザースクリプトマネージャーが更新を取得する方法の記述。%{site_name} はこれらのキーを取り除き、%{site_name}　からインストールされたすべてのスクリプトが　%{site_name}　から更新されるようにします。"
-      license: "スクリプトのコピーや変更の許諾について記述されたライセンス。%{spdx_link:the SPDX License List}の「Full name」、または「Identifier」の記載を推奨します。ライセンスの欠如は、私的使用目的でスクリプトがインストールできることを意味しますが、再配布することはできません。ライセンスはスクリプトの情報ページに表示されます。"
+      updateURL: "ユーザースクリプト管理ツールが更新を取得する方法の記述。%{site_name} はこれらのキーを取り除き、%{site_name}　からインストールされたすべてのスクリプトが　%{site_name}　から更新されるようにします。"
+      license: "スクリプトのコピーや変更の許諾について記述されたライセンス。%{spdx_link:SPDX ライセンスの一覧}の「Full name」、または「Identifier」の記載を推奨します。ライセンスの欠如は、私的使用の目的でスクリプトをインストールできることを意味しますが、再配布はできないでしょう。ライセンスはスクリプトの情報ページに表示されます。"
       supportURL: "ユーザーがスクリプトのサポートを受けることができるページの URL (例: バグトラッカー、フォーラム、電子メールアドレス)。サポート URL はスクリプトのフィードバックページに表示されます。"
       contributionURL_html: "ユーザーがスクリプト作者に寄付することができるページの URL。貢献 URL はスクリプトのフィードバックページに表示されます。http、https、bitcoin スキームの URL が指定可能です。PayPal の寄付ページにリンクするには、 <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a>のような形式の URL を使用し、サンプルのメールアドレスを自分のものに置き換えます。"
       contributionAmount_html: "提示する寄付金額。<code>@contributionURL</code> と共に使用します。"
       compatible_html: "スクリプトがどのブラウザと互換性があるか。互換性はスクリプトの情報ページに表示されます。<code>@compatible firefox ポップアップブロックの無効化が必須</code> のような形式で、互換性に関するコメントを含めることもできます。認識されるブラウザ: %{browsers}"
       incompatible_html: "スクリプトがどのブラウザと互換性がないか。互換性はスクリプトの情報ページに表示されます。<code>@incompatible firefox Firefox 23 以降で動作しない</code> のような形式で、互換性に関するコメントを含めることもできます。認識されるブラウザ: %{browsers}"
       antifeature_html: |
-          ユーザーではなく作者の利益を目的としたスクリプトの機能を開示します。このキーの形式は、 <code>@antifeature type description</code>で、<i>type</i> 種類は必須、<i>description</i>説明は任意です。%{antifeatures_link:こちらの情報}は、 <i>type</i>の種類について %{site_name} が読み取り可能なものです。
+          ユーザーではなく作者の利益を目的としたスクリプトの機能を開示します。このキーの形式は、 <code>@antifeature type description</code>で、<i>type</i> : 種類は必須、<i>description</i> : 説明は任意です。%{antifeatures_link:こちらの情報}は、 <i>type</i>の種類について %{site_name} が読み取り可能なものです。
       antifeature_localized_html: "<code>@antifeature</code> の説明を特定の言語で記述します。XX は <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 の2文字コード</a> で、YY として <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 の国名コード</a> を追加することもできます。ユーザーの使用言語に一致したら <code>@antifeature</code> の内容を上書きします。"
     writing_user_scripts:
       title: "ユーザースクリプトの書き方"
@@ -637,29 +673,52 @@ ja:
       post_new_script_link_text: 'スクリプトの投稿'
     code_rules:
       title: "投稿されるスクリプトに関する %{site_name} の規則"
-      functionality_header: 性能
-      monetization_html: ユーザーではなく<em>開発者</em>にとっての利益となる機能(トラッキングや広告、マイニングなど)は認められていますが、それらは %{antifeature_link:<code>@antifeature</code> メタキー} で開示されなければなりません。
+      preamble: '%{site_name}に投稿されるスクリプトに必要な要件です。その目的は、ユーザースクリプトのための %{site_name} を安全かつ有用にすることです。これらの要件に合致しないスクリプトは、%{site_name} の管理担当者により削除される可能性があります。'
+      functionality_header: 機能性
+      description: スクリプトには、何を行うかの説明を含む必要があり、この説明から外れた正当な理由のないことを行ってはいけません。スクリプトのインストール前に、何をするものかをユーザーに知らせる必要があります。
+      reason: スクリプトには、それがスクリプトである理由が必要です。例えば、ユーザーをあるウェブサイトに転送するだけのスクリプトはスクリプトである必要はありません。リンクにもできるでしょう。ウェブサービスを用いて、表示されているページへの操作を実行するスクリプトは許容されます（例、そうした方法で変換する）。
+      monetization_html: ユーザーではなく<em>作者</em>にとっての利益となる機能(トラッキングや広告、マイニングなど)は認められていますが、それらは %{antifeature_link:<code>@antifeature</code> メタキー}で開示されなければなりません。
       code_header: コード
       obfuscation: '%{site_name} に投稿されるコードは、難読化または最小化 minify してはいけません。ユーザーがスクリプトをインストールする前に、スクリプトを検査し、理解する機会が必要です。スクリプトが、webpack などのツールでバンドルされている場合は、空白や変数名をそのままに、最小化しない状態で出力される必要があります。'
       size_html: |
           スクリプトのサイズは、%{max_code_size}に制限されています。この制限に収まるようスクリプトを最小化することができないかもしれません。この制限に近い場合、以下の方法を検討できます:
           <ul>
           <li>データURIやJSONなどコードではないデータをこのスクリプトの外部に移動。</li>
-          <li><code>@require</code>または、%{webpack_externals_link:webpackの<code>externals</code>オプション}でライブラリを読み込む。</li>
+          <li><code>@require</code> または、%{webpack_externals_link:webpack の <code>externals</code>オプション}でライブラリを読み込む。</li>
           </ul>
+      libraries_html: スクリプトが使用するライブラリは、技術的に正当な理由がない限り <code>@require</code> を使用すべきです。インラインにライブラリを含めるなら、ライブラリの入手元に関する情報を含めなければいけません（例、URL、名前、バージョンなどを示すコメント）。
+      updates: スクリプトは、1日1回を超える頻度の更新確認しないでください。多くのユーザースクリプト管理ツールは自動更新を行うので、スクリプトでの実装は不要です。スクリプトはまた、%{site_name}で提供されるする他のスクリプトをページに動的に挿入してはいけません。
+      hosting: スクリプトの主な機能は %{site_name}上のコード内に書かれるようにしてください。スクリプトの大部分を単にどこかから読み込むために%{site_name} に投稿されたスクリプトは、許可されません。%{site_name}上に投稿されたバージョンではない別の提供元をユーザーに使わせる目的の、他のダウンロード用のURLの投稿は、許可されません。
+      external_js: "%{external_scripts_link:外部の JavaScript の使用は制限されています。}"
       copyright_header: 著作権
-      reposting_deleted: 規則の違反で削除されたスクリプトは再投稿しないでください。代わりに抗議の機能を使用しましょう。削除されたスクリプトの再投稿は、アクセス禁止になる可能性があります。
+      licensing_html: 作成するスクリプトは他者の著作権に配慮してください。これはコードそのものと、リソース（画像など）に当てはまります。誰かのコンテンツを使用するには、そのライセンス条項に従うか、事前に許可を得ましょう。スクリプトのライセンスは、<code>@license</code> メタキーで指定でき、何ができて、またしてはいけないのかについては、%{tldr_legal_link:tldrlegal.com}で学ぶことが決まます。
+      reposts: 著作権の保護に違反していなくても、すでに %{site_name} に存在するスクリプトの再投稿は、オリジナルを改良する場合を除いて、許可しません。
+      miscellaneous_header: その他
+      adult_content_rule: アダルトコンテンツを含むとか、アダルトサイト用のスクリプトは、他のユーザー自身がそれを見るかどうか決定できるように、そうであることを示さなければなりません。
+      reposting_deleted: 規則への違反により削除されたスクリプトは再投稿しないでください。代わりに「抗議」の機能を使用しましょう。スクリプトの再投稿は、アクセス禁止になる可能性があります。
+      advertising_in_description: スクリプトの作者は、スクリプトの説明文の中など、Greasy Fork 上のページで宣伝することはできません。スクリプトの作者のホームページ、コードリポジトリ、Discord、WeChat などの宣伝は許可されています。
+      reporting: こうした条件から外れたスクリプトを見つけたら、そのスクリプトのページから「通報」してください。
     external_scripts:
       title: "外部スクリプトにおける %{site_name} のポリシー"
       intro_html: |
           <p>%{site_name}では、特定の状況で外部のコードの使用を許可しています。許可されていない外部コードを含むスクリプトが見つかれば削除されます。これらの規則に違反するスクリプトを見つけたら通報してください。</p>コード
           <p>注: これらの規則は、外部の実行可能なコードにのみ適用されます。JSON や CSS など実行できないコードの読み込みは制限されていません。</p>
       cdns:
+        title: コンテンツデリバリネットワーク (CDN)
         content_html: |
             <p>CDN のコードは許可されています。%{cdns_link:確認済みのCDNの一覧を確認ください}。このコードは圧縮 minify されることもありますが、難読化は許容されません。</p>
       allowed_external_codes:
+        heading: 許可される外部のコード
         content_html: |
             <p>%{site_name}で許可される外部のコードの方法は以下です。指定がない限り、すべての他の%{code_rules_link:コードの規則}は外部のコードにも適用されます。</p>
+      libraries:
+        title: "%{site_name} のライブラリ"
+    cdns:
+      title: 許可されたCDN
+      test_url:
+        label: URL を試す
+        result_ok: この URL は許可されています
+        result_not_ok: この URL は許可されていません
     script_rewriting:
       title: "%{site_name} は投稿されたスクリプトをどのように書き直すか"
       content_html: >
@@ -682,16 +741,15 @@ ja:
       authors_credit: "%{site_name} は、スクリプトを開発し投稿している製作者なしには成り立ちません。"
       developers_credit: "%{site_name} 自体は、バグ報告や改善提案をしたすべての人の助けを借り、%{developers_link:こちらの人たち}によって開発されています。 "
       translators_credit: "%{site_name} は、%{translators_link:Transifex の Greasy Translation Force} によって翻訳されました:"
+      icons_credit: " ブラウザーのアイコンは%{browserlogos} を使用しています。"
     help_with_greasymonkey: "Greasemonkey のヘルプ"
     contact:
       title: "連絡を行う"
       content_html: >
-          <p>%{site_name} や %{site_name} 上の事柄について話し合う方法はいくつかあります。</p> <p>サイトに投稿された特定のスクリプトについて、質問やコメントがありますか?
-          その場合は、該当スクリプトのページ内のフィードバックタブにある投稿リンクから、話題を投稿してください。スクリプトに対して投稿されたあらゆる話題は、スクリプトの作者のアカウントページに通知されます。</p>
-          <p>%{site_name} 自体やスクリプトの開発について、質問やコメントがありますか? または、誰かに作ってもらいたいスクリプトがありますか?
-          %{forum_link:掲示板への投稿} が、その話題について閲覧者を集めるのに最適でしょう。</p> <p>%{site_name} 自体
-          (%{site_name} に投稿された特定のスクリプトについてではなく) についての不具合報告、または完成された形のアイデアがある場合は、%{github_link:GitHub
-          のページ上でそれを投稿してください}。</p> <p>管理者だけが読めるようにしたい質問やコメントがある場合は、%{admin_email_link:メールを送ってください}。</p>
+          <p>{site_name} 自体や本サイト上の事柄について話し合う方法はいくつかあります。</p> <p>サイトに投稿された特定のスクリプトについて、質問やコメントがありますか？その場合、そのスクリプトのページ内のフィードバックタブにある投稿リンクから、話題を投稿してください。スクリプトに対して投稿されたあらゆる話題は、スクリプトの作者のアカウントページに通知されます。</p>
+          <p>%{site_name} 自体やスクリプトの開発について、質問やコメントがありますか？または、誰かに作ってもらいたいスクリプトがありますか？%{forum_link:掲示板への投稿}
+          が、その話題への関心を集めるのに最適でしょう。</p> <p>%{site_name}自体のバグ報告や完成されたアイデアがありますか？（%{site_name}に<em>投稿された</em>スクリプトではなく）%{github_link:GitHub
+          で投稿してください。}</p> <p>管理者だけが読めるようにしたい質問やコメントがある場合は、%{admin_email_link:メールを送ってください}。</p>
     privacy_policy:
       title: "プライバシーポリシー"
       content_html: >
@@ -709,19 +767,56 @@ ja:
           <h2>サードパーティーライブラリ</h2> <p>%{site_name} は、サイト上での統計や広告の表示を行うために、サードパーティーのコードを含んでいる場合があります。これらのライブラリは、追跡を行うロジックを含んでいるかもしれません。</p>
     user_css_to_user_js:
       title: ユーザーCSSのユーザーJSへの変換
+      content_html: |
+          <p>%{site_name} はユーザーCSSをユーザーJS形式に変換できます。 <code>@-moz-document</code> rules are converted into JavaScript <code>if</code> statements, building the CSS to apply. このCSSは<code>&lt;head&gt;</code>タグ、<code>&lt;style&gt;</code> 要素内のものに追加されます。</p>
+
+          <p>一部のユーザーCSSの機能が存在すれば、ユーザーJS形式への変換は行われません。</p>
+
+          <ul>
+          <li><code>@preprocessor</code> のメタキーが <code>default</code>以外の場合</li>
+          <li><code>@var</code> メタキー</li>
+          </ul>
+
+          <p>%{site_name}のユーザーJSは、ユーザーCSSとは少し異なる形でCSSを読み込むことがあります。</p>
+
+          <ul>
+          <li>ユーザーJSでは、CSS は<code>&lt;head&gt;</code>内の最後の要素として挿入されます。ユーザーCSSでは、これは使用される・on the extension :訳不明・によります。この問題を減らすために<code>!important</code>の使用を推奨します。</li>
+          <li>ユーザーJSでは、CSSはページの読み込み時に一度適用されます。JavaScript の History API を使ったページでは、予想通りにCSSが適用されないことがあります。</li>ユーザーJSは、frame や iframe にCSSを適用できません。</li>
+          </ul>
+
+          <p>ユーザーJS変換版がうまく動作しないなら、ユーザーCSSの更新時にオプションの「利用しない」を選択してください。</p>
     antifeatures:
       title: アンチ機能
       intro_html: |
           <p>アンチ機能は、広告や追跡のように、ユーザーよりも作者の利益のためにスクリプトに追加されています。アンチ機能を含むスクリプトは %{rules_link:%{site_name}の規則}に従って利用できますが、スクリプトのメタデータ部分で <code>@antifeature</code> として示される必要があります。このことでユーザーはインストール前に、アンチ機能を把握できます。</p>
           <p>アンチ機能は、%{meta_keys_link:スクリプトのメタキーで} <code>@antifeature <i>type</i> <i>description</i></code>。 <i>type</i> 種類は必須、 <i>description</i>説明は任意です。</p>
           <p>このページでは %{site_name} で許可されている<code>@antifeature</code> の種類を説明します。ほかの種類も使用できることがありますが、アンチ機能は、%{rules_link:%{site_name}の規則}に反してはいけません。</p>
+      membership_html: |
+          <p>完全な機能にするには、ユーザーはチャンネル登録、グループへの参加、ページへの「いいね」を必要とするスクリプト。</p>
+
+          <p>以下の例では <i>このメタキーは不要</i>です。 <code>@antifeature membership</code>:</p>
+
+          <ul>
+          <li>あるサイトのログインに対するスクリプトだが、スクリプト自体はログインを必要としない。</li>
+          <li>会員登録が必要なプラットフォームでサポートが提供され、サポートはユーザーが完全な機能を得るために必要ではない。</li>
+          <li>スクリプトの機能への影響がない、作者のチャンネル、グループ、ページなどへのリンク。</li>
+          </ul>
+      payment_html: |
+          <p>完全な機能にするには、スクリプト作者へユーザーが支払うことが必要となるスクリプト。</p>
+
+          <p>以下の例では<i>このメタキーは不要</i>です。 <code>@antifeature payment</code>:</p>
+
+          <ul>
+          <li>支払いが必要なサイトに対するスクリプトだが、スクリプト自体への支払いは不要。</li>
+          <li>スクリプトが寄付を求めていて、寄付によって追加の機能の使用を解除する。</li>
+          </ul>
   search:
     script_search:
       title: "スクリプトの検索"
-      description: "スクリプト名、説明、追加情報、作者名からスクリプトを検索します。 (%{sphinx_link:Sphinxの拡張クエリ構文}を参照)"
+      description: "スクリプト名、説明、追加情報、作者名からスクリプトを検索。 %{sphinx_link:Sphinxの高度なクエリ構文を参照}"
     library_search:
       title: "ライブラリの検索"
-      description: "ライブラリ名、説明、追加情報、作者名からライブラリを検索します。 (%{sphinx_link:Sphinxの拡張クエリ構文}を参照)"
+      description: "ライブラリ名、説明、追加情報、作者名からライブラリを検索。%{sphinx_link:Sphinxの高度なクエリ構文を参照}"
     code_search:
       title: "コードの検索"
       description: "スクリプトのコードを検索します。大文字と小文字は区別しません。 (ワイルドカードは使用不可)"
@@ -737,10 +832,13 @@ ja:
     item_script_html: "スクリプト: %{script_link}"
     item_deleted_script: "削除されたスクリプト %{id}"
     item_user_html: "ユーザー: %{user_link}"
+    item_report: "%{report_link: 通報 #%{report_id}}"
+    item_script_lock_appeal: "%{appeal_link:抗議 #%{appeal_id}}"
   notifications:
     consecutive_bad_ratings:
       other: "%{script_names} に連続で不可の評価がついています。スクリプトを見直し、評価の懸念事項に返信を行ってください。"
   reports:
+    name: "通報 #%{id}"
     report_filed: "通報は管理担当者によって審査されます。"
     new_report_title:
       user: "%{user} を通報"
@@ -781,27 +879,47 @@ ja:
       spam: "スパム"
       abuse: "虐待や増悪に満ちた内容"
       illegal: "違法な内容"
-      unauthorized_code: "不正コピー"
+      unauthorized_code: "許可のないコピー"
       malware: "マルウェア"
       minified: "最小化 minify されたコード"
       obfuscated: "難読化されたコード"
       external_code: "許可されていない外部コード"
       undisclosed_antifeature: "開示されていない%{antifeature_link:アンチ機能}の使用 (例: 広告、追跡、発掘など)"
+      wrong_category: "種類の誤り"
+      wrong_category_with_suggestion: "種類の誤り (提案: %{suggested_category})"
       other: "その他"
+    report_intro: "%{reported_item} は「%{reason}」で通報済み。作成者: %{reporter}%{report_date} "
+    report_intro_no_reporter: "%{reported_item} は「%{reason}」で通報済み。%{report_date}"
+    report_intro_unauthorized_html: "%{reported_script}は通報済み。作成者: %{reporter}。%{report_date} 。以下を許可なくコピーしたことによる%{other_script}。"
+    report_intro_unauthorized_no_reporter_html: "%{reported_script} は通報済み。%{report_date}。以下を許可なくコピーしたことによる%{other_script}。"
     unauthorized_code_original_placeholder: "元のコードのURL"
     explanation_placeholder: "追加の詳細を提供 (任意)"
     create_button: "通報を作成"
     report_user: "ユーザーを通報"
     report_comment: "コメントを通報"
     report_message: "メッセージを通報"
-    result_dismissed: "この通報はモデレーターに拒否されました。"
-    result_upheld: "この通報はモデレーターに承認されました。"
+    result_dismissed: "この通報は管理担当者に拒否されました。"
+    result_upheld: "この通報は管理担当者に承認されました。"
+    result_fixed: "この通報は管理担当者により作者が問題を修正したとして解決されました。"
     result_pending: "この通報は管理担当者による審査待ちです。"
+    rebuttal_placeholder: 'このスクリプトが削除されるべきではない理由を管理担当者に説明してください。'
+    rebuttal_submitted: 管理担当者は、この通報と、あなたの説明とを審査します。
     delete_script: "スクリプトを削除"
+    view_discussion: "議論を表示"
     load_diff: "差分を表示"
     loading_diff: "読み込み中..."
+    reported_user_activity_html: "%{user} (通報されたユーザー) の行動:"
   appeals:
+    new:
+      title: スクリプト削除への新しい抗議
+      intro_html: 'あなたのスクリプトは「%{reason}」 の理由で削除されました。これが誤りだという理由があるか、または追加の情報を提供するか、または問題を解決するようスクリプトを更新したら、抗議することができます。管理担当者が提供された情報や更新に納得すれば、スクリプトは再び利用可能になります。'
+      submit: 抗議を作成
+    deletion_reason_html: "%{script} は次の理由で削除されました: %{reason}."
+    author_reason: "作成者による抗議:"
+    pending_review: この抗議は、管理担当者による審査待ちです。
+    dismissed_by_moderator: この抗議は、管理担当者に却下されました。
     upheld_by_moderator: この抗議の結果、管理担当者はこのスクリプトの削除を取り消しました。
+    submitted: あなたの抗議を受け取りました。管理担当者が審査します。
   discussions:
     title: 議論
     comment_date: "投稿日: %{date}"
@@ -818,6 +936,7 @@ ja:
     delete_comment: "削除"
     delete_comment_confirm: このコメントを削除しますか？
     delete_discussion: "削除"
+    delete_discussion_confirm: この議論を削除しますか？
     update_comment_submit: "コメントの更新"
     cancel_update_comment: "キャンセル"
     quote_comment: "引用"
@@ -842,19 +961,20 @@ ja:
     sign_in_to_post_discussion: "評価やコメント、質問を投稿するにはサインインしてください。"
     sign_in_to_post_comment: "返信を投稿するにはサインインしてください。"
     user_filter:
-      label: "あなたを含めた議論"
-      all: "全ての議論"
-      discussion_by_me: "あなたによって開始されました"
+      label: "あなたに関わる議論"
+      all: "すべての議論"
+      discussion_by_me: "あなたが作成"
       comment_by_me: "あなたのコメント"
       on_my_scripts: "あなたのスクリプトについて"
       subscribed: "購読しています"
     other_user_filter:
-      all: "全ての議論"
+      all: "すべての議論"
       comments_by: "%{user}によるコメント"
     category_filter:
-      label: カテゴリー
-      all: 全てのカテゴリー
+      label: 種類
+      all: すべてのカテゴリ
     read_filter:
+      label: 既読の状態
       all: すべて
       read: 既読
       unread: 未読
@@ -863,8 +983,8 @@ ja:
       all: すべて
     user_activity:
       title: "最近のコメント"
-      no_recent_activity: "このユーザーは最近コメントを投稿していません。"
-      see_all_activity: "全てのユーザーアクティビティを見る。"
+      no_recent_activity: "このユーザーの最近のコメント投稿はありません。"
+      see_all_activity: "ユーザーのすべての行動履歴を表示。"
       script_review:
         posted_html: "%{script}のレビューを投稿しました"
         replied_html: "%{script}のレビューに返信"
@@ -878,11 +998,12 @@ ja:
     question_title: "%{script_name}に関する質問"
     subscribe: 購読
     unsubscribe: 購読解除
-    notify: 返信を通知する
+    notify: 返信を通知
+    notifying_on_script: 返信があれば通知されます。%{notifications_link:スクリプトに関する通知の設定}。
     categories:
       greasyfork:
-        name: Greasy Fork フィードバック
-        description: バグ報告、機能リクエスト、その他 Greasy Fork 自体に関するもの。
+        name: Greasy Fork への意見
+        description: バグ報告、機能の要望、その他 Greasy Fork 自体に関するもの。
       development:
         name: 開発
         description: ユーザースクリプトやユーザースタイル開発の技術的な話。
@@ -892,20 +1013,23 @@ ja:
       script-discussions:
         name: スクリプトの議論
         description: 既存のユーザースクリプトやユーザースタイルについての議論。
+      no-scripts:
+        name: スクリプトの議論以外
       moderators:
         name: 管理担当者
-        description: 管理担当者と非公開の会話。
+        description: 管理担当者と非公開の議論。
     category_display: "1%{name} - %{description}"
-    new_title: ディスカッション
+    new_title: 新しい議論
     new_button: 新しい議論
-    script_notice: 特定のスクリプトについて議論したい場合は、スクリプトのフィードバックページにアクセスして、そこから議論を始めてください。
+    script_notice: 特定のスクリプトについての議論は、そのスクリプトのフィードバックページにて議論を始めてください。
     no_discussions: 議論はありません。
-    mark_all_read: すべて既読に
-    pending_moderator_review: このスレッドは管理担当者によって審査されるまで表示できません。
+    mark_all_read: すべて既読にする
+    pending_moderator_review: この議論は、管理担当者により審査されるまで他のユーザーに表示されません。
   conversations:
-    new_title: 新規スレッド
+    user_input_note: ユーザー名またはプロフィールのあるURLを入力。
+    new_title: 新しい会話の作成
     new_link: 新しい会話の作成
-    new_button: 新規スレッド
+    new_button: 会話の作成
     title_html:
       other: '%{users}との会話'
     send_message: 送信
@@ -920,7 +1044,7 @@ ja:
     edit_message_header: メッセージの編集
     update_message_submit: メッセージの更新
   screenshots:
-    requirements: "画像は最大 %{number} 枚、PNG・GIF・JPEG・WebP のいずれか、それぞれ %{size} までです。"
+    requirements: "画像は最大%{number}枚、PNG、GIF、JPEG、WebP に対応、それぞれ%{size}までです。"
   common:
     allowed_elements_link: "使用可能なタグ"
     allowed_elements_and_attributes_title: "使用可能なHTMLの要素・属性"
@@ -939,13 +1063,21 @@ ja:
     preview_tab: プレビュー
     write_tab: 編集
     listing_options_title: "検索オプション"
+    quote:
+      prefix_html: "%{user} の発言:"
+      anonymous_reporter_html: "通報者の発言:"
   activerecord:
+    models:
+      script:
+        other: "%{count} 個のスクリプト"
+      comment:
+        other: "%{count} 発言のコメント"
     attributes:
       user:
         name: "名前"
         profile: "自己紹介"
         locale: "優先する言語"
-        author_email_notification_type_id: "フィードバックの通知"
+        author_email_notification_type_id: "スクリプトの議論の通知"
         show_ads: "広告の表示"
         show_sensitive: "アダルトコンテンツ"
         preferred_markup: "優先するマークアップ"
@@ -971,7 +1103,7 @@ ja:
         reason: "通報の理由"
       discussion:
         rating: "評価"
-        category: "カテゴリー"
+        category: "種類"
         title: タイトル
       conversation:
         user_input: ユーザー
@@ -990,7 +1122,7 @@ ja:
       cannot_be_deleted_reference: "に削除されたスクリプトを指定することはできません"
       cannot_be_used_with_this_script: "このスクリプトでは使用できません。"
       must_be_greasy_fork_script: "は %{site_name} 上のスクリプトの URL にする必要があります"
-      script_update_not_utf8: " (アップロード) は UTF-8 のテキスト形式にする必要があります"
+      script_update_not_utf8: "アップロードされるテキストはUTF-8形式にしてだくさい"
       script_disallowed_require: "で許可されていない外部スクリプトが使用されています: %{code}"
       script_rate_limit: "投稿制限です。時間をおいて再投稿してください。"
       missing_include_or_match: "@match か @include キーを 1 回以上含めてください"
@@ -1004,11 +1136,15 @@ ja:
     attribution: "スクリプト作者の著作権について、ライセンスはそれぞれのスクリプトを参照してください"
   importing:
     title: スクリプトのインポート
+    intro: "%{site_name} には、どこかで既に公開されているスクリプトをインポートすることができます。例えば、バージョン管理システム（GitHubなど）、あなたのサーバー、他のユーザースクリプト管理サイトなどです。"
+    url_entry_label: インポートされるURLを、改行で区切って入力します。これらは、そのままの JS または CSS ファイルへのURLにしてください。
+    sync_type_label: "最初のインポート後、スクリプトの同期が必要:"
     submit: インポート
     previously_imported:
       heading: 以前にインポートされたスクリプト
       unknown_date: "(不明)"
     results:
+      title: "インポートの結果"
       success: "以下のスクリプトのインポートに成功:"
       needs_description: "以下のスクリプトをインポートするには説明が必要:"
       existing: "以下のスクリプトは既にインポート済み:"
@@ -1016,13 +1152,13 @@ ja:
   mailers:
     script_report:
       report_created_offender:
-        subject: "あなたのスクリプト%{script_name} (%{site_name}) に通報があります"
+        subject: "%{site_name}上の、あなたのスクリプト%{script_name}が通報されました"
         body_html: |
             <p>
             このスクリプト %{script_link:%{script_name}} は %{site_name}の規則に違反していると報告されました。具体的な理由: %{reason}。%{report_link:この報告を確認し反論する}ことも可能です。反論しない場合、スクリプトは管理担当者により削除される可能性があります。
             </p>
       report_upheld_offender:
-        subject: "あなたのスクリプト %{script_name} (%{site_name}) は削除されました。"
+        subject: "%{site_name}上の、あなたのスクリプト %{script_name} は削除されました。"
         body_html: |
             <p>
             %{site_name} 上の、このスクリプト %{script_link:%{script_name}}  は管理担当者によって削除され、誰もがアクセスできるものではなくなりました。あなたは%{report_link:報告の確認}と%{code_rules_link:%{site_name}の規則を確認}できます。
@@ -1031,13 +1167,23 @@ ja:
             これは間違いと感じたり、またはこのスクリプトの問題を修正したら、%{appeal_link:抗議する}ことができ管理担当者はこれを審査します。このスクリプトを再投稿しないでください。そうすれば%{site_name}へのアクセス禁止となるでしょう。
             </p>
       report_dismissed_offender:
-        subject: "あなたのスクリプト %{script_name} (%{site_name}) への通報は却下されました"
+        subject: "%{site_name}上の、あなたのスクリプト %{script_name} への通報は却下されました"
+        body_html: |
+            <p>
+            %{site_name} 上の、あなたのスクリプトに関する通報 %{script_link:%{script_name}} は管理担当者により却下されました。スクリプトは利用可能なままです。%{report_link:この通報を確認}できます。
+            </p>
       report_rebutted_reporter:
         subject: "%{script_name} (%{site_name}) に関するあなたの通報に返信があります"
       report_upheld_reporter:
         subject: "%{script_name} (%{site_name}) に関するあなたの通報が承認されました"
       report_dismissed_reporter:
-        subject: "%{script_name} (%{site_name}) に関するあなたの通報は却下されました"
+        subject: "%{site_name}上の%{script_name}に関するあなたの通報は却下されました"
+        body_html: |
+            <p>
+            %{site_name} 上の、このスクリプトに関するあなたによる通報 %{script_link:%{script_name}} は管理担当者により却下されました。スクリプトは利用可能なままです。%{report_link:この通報を確認}できます。
+            </p>
+      reported_outro: "この通知は、あなたが%{site_name}に送信したスクリプトに関してです。%{notification_preferences_link:通知の設定を管理。}"
+      reporter_outro: "この通知は、あなたが%{site_name}に作成したスクリプトに関してです。%{notification_preferences_link:通知の設定を管理。}"
     consecutive_bad_ratings:
       notify:
         subject: "%{site_name}のスクリプト %{script_name} は、複数の「不可」の評価を受けています。"
@@ -1049,10 +1195,20 @@ ja:
             %{site_name} は、ユーザーに対し、高品質なスクリプトの一覧を維持できるよう努めています。壊れたり、放棄されているスクリプトに対処するため、素早い返信がなく、「不可」の評価を連続して受けているなら、非表示にされます。スクリプトが非表示にならないよう、%{delete_date}までに、更新版を投稿するか、議論に返信してください。この期限を過ぎ何も対応していない場合にも、再びスクリプトを表示する選択肢はあります。
     script_comment:
       subject: "スクリプト %{script_name} (%{site_name}) にコメントがあります。"
+      outro: "%{comment_link:このコメントを表示し返信。}あなたのスクリプトに関する議論は、通知されています。%{notification_preferences_link:通知の設定を管理。}"
     subscribed_discussion:
-      subject: "%{site_name} でスレッド「%{discussion_title}」にコメントがつきました。"
+      subject: "%{site_name} の議論「%{discussion_title}」にコメントがあります。"
+      intro: " %{site_name} の議論「%{discussion_link:%{discussion_title}} 」にユーザー%{commenter_link:%{commenter_name}}からの返信:"
+      outro: "%{comment_link:このコメントを表示し返信。}以下の議論を購読しています:「%{discussion_link:%{discussion_title}}」。%{notification_preferences_link:通知の設定を管理。}"
+    comment_mentioned:
+      intro: " %{site_name} の議論「%{discussion_link:%{discussion_title}}」でユーザー%{commenter_link:%{commenter_name}}があなたに言及:"
+      outro: "%{comment_link:このコメントを表示し返信。}あなたへの言及は通知されています。%{notification_preferences_link:通知の設定を管理。}</p>"
+    new_message:
+      outro: "%{conversation_link:このメッセージを表示し返信。} この会話を通知するよう設定されています。%{notification_preferences_link:通知の設定を管理。}"
     script_lock_appeal:
       dismiss:
+        subject: ' %{site_name} 上のあなたのスクリプトの削除に対する抗議は却下されました'
+        intro_html: '%{script} の削除に対するあなたの抗議は、管理担当者により却下されました。このスクリプトは削除されたままです。'
         moderator_notes: "管理担当者がコメントしました:"
         outro: まだこのスクリプトの削除を取り消したいなら、%{report_link:元の通報}と%{rules_link:%{site_name}の規則}を確認してください。
       unlock:
