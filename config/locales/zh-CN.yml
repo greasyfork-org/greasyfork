@@ -258,6 +258,7 @@ zh-CN:
     diff_new_version: "新版："
     diff_lines_of_context: "上下文显示行数："
     diff_ignore_whitespace: "忽略空白字符更改"
+    diff_terser: "比较前清洁代码"
     diff_refresh: "刷新"
     diff_no_change: "二者没有区别。"
     good_rating_explanation: "好评或收藏的人数。"
@@ -741,12 +742,26 @@ zh-CN:
       intro_html: |
           <p>%{site_name}我们允许在特定情况下使用外部代码。任何脚本发现使用超出允许范围的外部代码都将会被删除。如发现脚本违反这些规则，请举报。</p>
           <p>请注意，这些规则仅适用于外部可执行代码。那些加载但不可执行代码不受限制，例如JSON或CSS。</p>
+      rationale:
+        title: 运作机理
+      cdns:
+        title: 内容交付网络（CDN）
+        content_html: |
+            <p>允许使用源自 CDN 的代码。详见%{cdns_link:获准 CDN 名单}。代码可以缩小，但不能混淆。</p>
+      sri:
+        title: 附有子资源完整性散列的脚本
+        content_html: |
+            <p>允许使用 %{tm_sri_link:Tampermonkey 格式} 下的有%{mdn_sri_link:子资源完整性}的 <code>@require</code> 和<code>@resource</code> URL。</p>
       allowed_external_codes:
         heading: 允许的外部代码
       libraries:
         title: "%{site_name} 库"
     cdns:
       title: 允许的 CDN
+      test_url:
+        label: 测试网址
+        result_ok: 允许此网址
+        result_not_ok: 不允许此网址
     script_rewriting:
       title: "%{site_name} 将如何改写已发布的脚本"
       content_html: >
@@ -920,6 +935,7 @@ zh-CN:
       unauthorized_code: "未授权的副本"
       malware: "恶意软件或代码"
       minified: "代码经过最小化处理"
+      obfuscated: "经过混淆的代码"
       external_code: "未允许的外部代码引用"
       undisclosed_antifeature: "未声明的 %{antifeature_link:可能不受欢迎的功能}（包括但不限于广告、用户追踪、挖矿等功能）"
       no_description: "脚本介绍未填写、未包含足够信息或含有误导性内容"
@@ -958,11 +974,13 @@ zh-CN:
     delete_script: "删除脚本"
     view_discussion: "查看讨论"
     load_diff: "查看对比（diff 格式）"
+    load_cleaned_diff: "加载洁净的代码差异"
     loading_diff: "加载中…"
     reported_user_activity_html: "%{user}（被举报用户）已经有："
   appeals:
     new:
       title: 新建删除脚本申诉
+      intro_html: '您的脚本因如下原因已被删除：%{reason}。如果您确信此操作有误，或者可提供额外信息，再或者已更新您的代码来解决该问题，您可以提交申诉。如果管理员看到您提供的更新或信息已满足相关标准，则将恢复该脚本。'
       submit: 提交申诉
     deletion_reason_html: "%{script} 已被删除，原因是：%{reason}。"
     author_reason: "由作者提交的申诉："
@@ -1176,6 +1194,7 @@ zh-CN:
       must_be_greasy_fork_script: "网址必须是 %{site_name} 上的一个脚本"
       script_update_not_utf8: "上传的文本必须为 UTF-8 编码"
       script_disallowed_require: "使用了一个未经批准的外部脚本：%{code}"
+      script_malformed_require: "使用了异样的外部脚本引用：%{code}"
       script_rate_limit: "您已超出脚本发布数量的限制。请稍后再试。"
       missing_include_or_match: "必须包含至少一个 @match 或 @include 规则"
       invalid_meta: "含有无效的元信息声明。正确的格式是 // @foo"

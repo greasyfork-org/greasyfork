@@ -264,6 +264,7 @@ es:
     diff_new_version: "Nueva:"
     diff_lines_of_context: "Líneas de contexto:"
     diff_ignore_whitespace: "Ignorar cambios en espacios en blanco"
+    diff_terser: "Adecentar el código antes de comparar"
     diff_refresh: "Actualizar"
     diff_no_change: "No se han encontrado diferencias."
     good_rating_explanation: "Número de personas que lo calificaron como bueno o lo añadieron a sus favoritos."
@@ -1050,6 +1051,7 @@ es:
     delete_script: "Eliminar script"
     view_discussion: "Ver conversación"
     load_diff: "Cargar diferencias"
+    load_cleaned_diff: "Cargar comparación de versiones tersa"
     loading_diff: "Cargando..."
     reported_user_activity_html: "%{user} (el usuario denunciado) ha hecho:"
   appeals:
@@ -1276,6 +1278,7 @@ es:
       must_be_greasy_fork_script: "debe ser la dirección URL de un script en %{site_name}"
       script_update_not_utf8: "debe ser texto en formato UTF-8"
       script_disallowed_require: "usa un script externo no aprobado: %{code}"
+      script_malformed_require: "hace referencia a un script externo mal formado: %{code}"
       script_rate_limit: "Has subido demasiados scripts seguidos, prueba más tarde."
       missing_include_or_match: "es necesario incluir al menos una clave de tipo @match o @include"
       invalid_meta: "tiene una directiva meta que no vale. El formato correcto es // @foo"
