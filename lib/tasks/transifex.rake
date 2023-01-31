@@ -1,43 +1,76 @@
-require 'transifex'
 require 'yaml'
 
 namespace :transifex do
-  def lookup_value(content, dot_string)
-    parts = dot_string.split('.')
-    content = content[parts.first]
-    return content if parts.length == 1 || content.nil?
+  def get_data_from_transifex(url)
+    require 'uri'
+    require 'net/http'
+    require 'openssl'
 
-    return lookup_value(content, parts[1..parts.length].join('.'))
+    url = URI(url)
+
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
+
+    request = Net::HTTP::Get.new(url)
+    request["accept"] = 'application/vnd.api+json'
+    request["authorization"] = "Bearer #{Rails.application.secrets.transifex_api_key}"
+
+    response = http.request(request)
+    body = JSON.parse(response.read_body)
+
+    data = body['data']
+    if next_cursor = body.dig('links', 'next')
+      return data + get_data_from_transifex(next_cursor)
+    end
+
+    data
   end
 
-  def project
-    project_slug = 'greasy-fork'
-    transifex = Transifex::Client.new
-    return transifex.project(project_slug)
+  def from_transifex_locale(locale)
+    locale.sub('_', '-')
   end
+
+  task update_meta: [:update_stats, :update_contributors]
 
   task update_stats: :environment do
-    LocaleContributor.delete_all
-    p = project
-    rails_resource = p.resource('enyml-19')
-    p.languages.each do |language|
-      code = language.language_code
-      code_with_hyphens = code.sub('_', '-')
-      locale = Locale.where(code: code_with_hyphens).first
+    get_data_from_transifex('https://rest.api.transifex.com/resource_language_stats?filter[project]=o:greasy-fork:p:greasy-fork').each do |lang_data|
+      locale_code = from_transifex_locale(lang_data['id'].split(':').last)
+      percent = lang_data['attributes']['translated_strings'] * 100 / lang_data['attributes']['total_strings']
+
+      if percent == 0
+        Rails.logger.info("Locale #{locale_code} empty, skipping")
+        next
+      end
+
+      locale = Locale.find_by(code: locale_code)
       if locale.nil?
-        Rails.logger.warn("Unknown locale #{code_with_hyphens}, skipping")
+        Rails.logger.warn("Unknown locale #{locale_code}, skipping")
         next
       end
-      locale.percent_complete = rails_resource.stats(code).completed.to_i
-      if locale.percent_complete == 0
-        Rails.logger.info("Locale #{code_with_hyphens} empty, skipping")
+
+      locale.update!(percent_complete: percent)
+    end
+  end
+
+  task update_contributors: :environment do
+    contributors = {}
+    get_data_from_transifex('https://rest.api.transifex.com/team_memberships?filter[organization]=o:greasy-fork').each do |member_data|
+      locale_code = from_transifex_locale(member_data.dig('relationships', 'language', 'data', 'id').delete_prefix('l:'))
+      user_name = member_data.dig('relationships', 'user', 'data', 'id').delete_prefix('u:')
+      contributors[locale_code] ||= []
+      contributors[locale_code] << user_name
+    end
+    contributors.each do |locale_code, users|
+      locale = Locale.find_by(code: locale_code)
+      if locale.nil?
+        Rails.logger.warn("Unknown locale #{locale_code}, skipping")
         next
       end
-      Rails.logger.info("Locale #{code_with_hyphens} is #{locale.percent_complete}% complete")
-      (language.coordinators + language.reviewers + language.translators - ['jason.barnabe']).each do |contributor|
-        LocaleContributor.create({ locale:, transifex_user_name: contributor })
+
+      locale.locale_contributors.delete_all
+      users.uniq.each do |user|
+        LocaleContributor.create(locale: , transifex_user_name: user)
       end
-      locale.save!
     end
   end
 end

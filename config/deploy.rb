@@ -26,7 +26,7 @@ append :linked_dirs, '.bundle', 'log', 'tmp', 'public/data', 'public/cached_page
 
 namespace :deploy do
   after :published, 'thinking_sphinx:index'
-  after :published, 'transifex_update_stats'
+  after :published, 'transifex:update_meta'
   after :rollback, 'thinking_sphinx:index'
   after :rollback, 'sidekiq:start'
 end
