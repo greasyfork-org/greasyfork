@@ -40,26 +40,4 @@ namespace :transifex do
       locale.save!
     end
   end
-
-  task download_files: :environment do
-    p = project
-    rails_resource = p.resource('enyml-19')
-
-    p.languages.each do |language|
-      code = language.language_code
-      code_with_hyphens = code.sub('_', '-')
-
-      if rails_resource.stats(code).completed.to_i == 0
-        Rails.logger.info("Locale #{code_with_hyphens} empty, skipping")
-        next
-      end
-
-      # write Rails file
-      Rails.logger.info("Downloading #{code_with_hyphens} content")
-      c = rails_resource.translation(code).content
-      # transifex likes underscores in locale names, we like hyphens
-      c.sub!(code, code_with_hyphens) if code != code_with_hyphens
-      File.write("config/locales/#{code_with_hyphens}.yml", c)
-    end
-  end
 end
