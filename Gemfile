@@ -25,6 +25,7 @@ gem 'sentry-rails'
 gem 'sentry-ruby'
 # Need redis 6.2+ for sidekiq 7
 gem 'sidekiq', '< 7'
+gem 'sidekiq-worker-killer'
 gem 'strip_attributes'
 gem 'thinking-sphinx', git: 'https://github.com/pat/thinking-sphinx'
 gem 'transifex-ruby'
