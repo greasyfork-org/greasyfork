@@ -1,5 +1,6 @@
 class ApplicationMailer < ActionMailer::Base
   default from: 'Greasy Fork <noreply@greasyfork.org>'
+  layout 'mailer'
 
   def unsubscribe_for_user(user)
     @unsubscribe_url = notifications_user_url(user, locale: user.available_locale_code)
