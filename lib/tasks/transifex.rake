@@ -12,14 +12,14 @@ namespace :transifex do
     http.use_ssl = true
 
     request = Net::HTTP::Get.new(url)
-    request["accept"] = 'application/vnd.api+json'
-    request["authorization"] = "Bearer #{Rails.application.secrets.transifex_api_key}"
+    request['accept'] = 'application/vnd.api+json'
+    request['authorization'] = "Bearer #{Rails.application.secrets.transifex_api_key}"
 
     response = http.request(request)
     body = JSON.parse(response.read_body)
 
     data = body['data']
-    if next_cursor = body.dig('links', 'next')
+    if (next_cursor = body.dig('links', 'next'))
       return data + get_data_from_transifex(next_cursor)
     end
 
@@ -69,7 +69,7 @@ namespace :transifex do
 
       locale.locale_contributors.delete_all
       users.uniq.each do |user|
-        LocaleContributor.create(locale: , transifex_user_name: user)
+        LocaleContributor.create(locale:, transifex_user_name: user)
       end
     end
   end
