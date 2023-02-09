@@ -240,6 +240,9 @@ zh-TW:
     additional_info_default_sync_html: "「其他資訊」預設值 (應與 <code>@name</code> 使用同種語言)"
     additional_info_localized_sync_html: "當地語系化 (應與 <code>@name:XX</code> 使用同種語言)"
     sync_url_placeholder: "(網址)"
+    sync_successful: 腳本已成功同步。
+    sync_no_changes: 腳本已成功同步，但未找到更新。
+    sync_error: 腳本同步失敗 - %{error}。
     sync_turned_off: 腳本同步已關閉
     screenshots_add: "新增："
     screenshots_remove: "移除"
@@ -312,6 +315,7 @@ zh-TW:
       failure: "無法移除作者。"
     no_disposable_email: "如果您使用一次性電子郵件地址，那您則不可以提交腳本。"
     rate_limited: "您最近發布了太多腳本。請稍後再試。"
+    delayed: "由於垃圾內容的問題，新帳戶可能無法立即發佈腳本。請稍後重試。"
     new_script_notice:
       title: "你到底想做什麼？"
       install_link_html: "我想<b>安裝並使用</b>腳本。"
@@ -351,6 +355,7 @@ zh-TW:
       css:
         short: CSS
         long: 使用者樣式
+    related_scripts: "您還可以嘗試以下相關腳本："
   script_sets:
     description: "腳本收藏集讓你自訂一個腳本列表。你可以把單獨的腳本、其它使用者的收藏集、或自動產生的收藏集，加入包含列表。排除列表也是同樣的方式。"
     favorites_name: "我的最愛"
@@ -417,6 +422,7 @@ zh-TW:
       all_sites: "所有網站"
       user: "作者 %{user} 的腳本"
       locale: "%{locale_name} 的腳本"
+    new: 新腳本集
   home:
     title: "%{site_name} - 安全又好用的使用者腳本分享站"
     welcome: "歡迎來到 %{site_name}，這是一個使用者腳本分享站。"

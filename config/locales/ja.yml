@@ -981,12 +981,12 @@ ja:
       other: "その他"
     report_intro: "%{reported_item} は「%{reason}」で通報済み。作成者: %{reporter}%{report_date} "
     report_intro_no_reporter: "%{reported_item} は「%{reason}」で通報済み。%{report_date}"
-    report_intro_unauthorized_html: "%{reported_script}は通報済み。作成者: %{reporter}。%{report_date} 。以下を許可なくコピーしたことによる%{other_script}。"
-    report_intro_unauthorized_no_reporter_html: "%{reported_script} は通報済み。%{report_date}。以下を許可なくコピーしたことによる%{other_script}。"
+    report_intro_unauthorized_html: "%{reported_script}は通報済み。作成者: %{reporter}。%{report_date} 。以下を許可なくコピーしたことによる: %{other_script}。"
+    report_intro_unauthorized_no_reporter_html: "%{reported_script} は通報済み。%{report_date}。以下を許可なくコピーしたことによる: %{other_script}。"
     report_intro_unauthorized_license: "%{other_script} は %{license_link: %{license_name}} ライセンスです。%{tldr_legal_link:tldrlegal.com} からこのライセンスの意味を確認してください。"
     report_intro_unauthorized_license_no_url: "%{other_script} は %{license_name} ライセンスです。%{tldr_legal_link:tldrlegal.com}  からこのライセンスの意味を確認してください。"
-    report_intro_unauthorized_no_license: "%{other_script} はライセンスを指定していません。つまり明示的な許可がない限り、複製物の配布は許可されていません。"
-    non_functional_feedback: "機能しないスクリプトは%{feedback_link:そのスクリプトのフィードバック}を残してください。"
+    report_intro_unauthorized_no_license: "%{other_script} にはライセンスの指定がありません。つまり明示的な許可がない限り、複製物の配布は許可されていません。"
+    non_functional_feedback: "機能しないスクリプトでは%{feedback_link:そのスクリプトのフィードバック}に報告してください。"
     unauthorized_code_original_placeholder: "元のコードのURL"
     explanation_placeholder: "追加の詳細を提供 (任意)"
     create_button: "通報を作成"
@@ -1011,8 +1011,9 @@ ja:
     delete_script: "スクリプトを削除"
     view_discussion: "議論を表示"
     load_diff: "差分を表示"
+    load_cleaned_diff: "整えたコードでの差分を読込"
     loading_diff: "読み込み中..."
-    reported_user_activity_html: "%{user} (通報されたユーザー) の行動:"
+    reported_user_activity_html: "%{user} (通報されたユーザー) の活動:"
   appeals:
     new:
       title: スクリプト削除への新しい抗議
