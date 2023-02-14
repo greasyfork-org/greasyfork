@@ -24,7 +24,7 @@ function getInstalledVersion(name, namespace) {
   });
 }
 
-// https://developer.mozilla.org/en/docs/Toolkit_version_format
+// https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/manifest.json/version/format
 function compareVersions(a, b) {
   if (a == b) {
     return 0;
@@ -36,6 +36,10 @@ function compareVersions(a, b) {
     if (result != 0) {
       return result;
     }
+  }
+  // If all of a's parts are the same as b's parts, but b has additional parts, b is greater.
+  if (bParts.length > aParts.length) {
+    return -1;
   }
   return 0;
 }
