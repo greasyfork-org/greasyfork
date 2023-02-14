@@ -26,7 +26,15 @@ module ScriptListings
       format.html do
         should_cache_page = current_user.nil? && request.format.html? && (params.keys - %w[locale controller action site page]).none?
         cache_page(should_cache_page ? "script_index/#{params.values.join('/')}" : nil) do
-          return if load_scripts_for_index
+          begin
+            return if load_scripts_for_index
+          rescue ThinkingSphinx::SphinxError => e
+            raise e unless Rails.env.production?
+
+            Sentry.capture_exception(e)
+            flash.now[:alert] = "Something went wrong loading your results. Some search functionality may not be working. We've been notified of the issue."
+            load_scripts_for_index_without_sphinx
+          end
 
           is_search = params[:q].present?
 
@@ -318,21 +326,27 @@ module ScriptListings
         @scripts = Script.none.paginate(page: 1)
       end
     else
+      load_scripts_for_index_without_sphinx
+    end
+
+    false
+  end
+
+  def load_scripts_for_index_without_sphinx
+    if params[:set]
       set = ScriptSet.find(params[:set])
       if !current_user&.moderator? && set.user&.banned?
         redirect_to scripts_path(locale: request_locale.code), status: :moved_permanently
         return true
       end
-
-      @scripts = Script
-                 .listable(script_subset)
-                 .includes({ users: {}, script_type: {}, localized_attributes: :locale })
-                 .paginate(page: page_number, per_page:)
-      @scripts = self.class.apply_filters(@scripts, params, script_subset)
-      # Force a load as will be doing empty?, size, etc. and don't want separate queries for each.
-      @scripts = @scripts.load
     end
 
-    false
+    @scripts = Script
+               .listable(script_subset)
+               .includes({ users: {}, script_type: {}, localized_attributes: :locale })
+               .paginate(page: page_number, per_page:)
+    @scripts = self.class.apply_filters(@scripts, params, script_subset)
+    # Force a load as will be doing empty?, size, etc. and don't want separate queries for each.
+    @scripts = @scripts.load
   end
 end
