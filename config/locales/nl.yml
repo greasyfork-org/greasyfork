@@ -1409,7 +1409,7 @@ nl:
     new_message:
       subject: "%{user} heeft je een bericht gestuurd op %{site_name}."
       intro: "%{user_link:%{user_name}} heeft je een bericht gestuurd op %{site_name}."
-      outro: "%{comment_link:Bekijk en reageer op deze reactie.} Je ontvangt deze melding omdat je geabonneerd bent op dit gesprek. %{notification_preferences_link:Meldingsinstellingen beheren}"
+      outro: "%{conversation_link:Bekijk en reageer op deze reactie.} Je ontvangt deze melding omdat je geabonneerd bent op dit gesprek. %{notification_preferences_link:Meldingsinstellingen beheren}"
     script_lock_appeal:
       dismiss:
         subject: Je bezwaar op %{site_name} is afgewezen
