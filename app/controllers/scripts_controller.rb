@@ -709,7 +709,7 @@ class ScriptsController < ApplicationController
   end
 
   def invite
-    user_url_match = %r{https://(?:greasyfork|sleazyfork)\.org/(?:[a-zA-Z\-]+/)?users/([0-9]+)}.match(params[:invited_user_url])
+    user_url_match = %r{https://(?:greasyfork|sleazyfork)\.org/(?:[a-zA-Z-]+/)?users/([0-9]+)}.match(params[:invited_user_url])
 
     unless user_url_match
       flash[:alert] = t('scripts.invitations.invalid_user_url')

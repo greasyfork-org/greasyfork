@@ -29,7 +29,7 @@ class JsParser
 
       # can these be multiline?
       meta_block.split("\n").each do |meta_line|
-        meta_match = %r{//\s+@([a-zA-Z:\-]+)\s+(.*)}.match(meta_line)
+        meta_match = %r{//\s+@([a-zA-Z:-]+)\s+(.*)}.match(meta_line)
         next if meta_match.nil?
 
         key = meta_match[1].strip
@@ -146,7 +146,7 @@ class JsParser
           p = p.sub(%r{^(https?):([^/])}i, '\1://\2')
 
           # subdomain wild-cards - http://*.example.com and http://*example.com
-          m = p.match(%r{^([a-z]+://)\*\.?([a-z0-9\-]+(?:.[a-z0-9\-]+)+.*)}i)
+          m = p.match(%r{^([a-z]+://)\*\.?([a-z0-9-]+(?:.[a-z0-9-]+)+.*)}i)
           p = m[1] + m[2] unless m.nil?
 
           # protocol and subdomain wild-cards - *example.com and *.example.com
@@ -154,11 +154,11 @@ class JsParser
           p = "http://#{m[1]}" unless m.nil?
 
           # protocol and subdomain wild-cards - http*.example.com, http*example.com, http*//example.com
-          m = p.match(%r{^http\*(?://)?\.?((?:[a-z0-9\-]+)(?:\.[a-z0-9\-]+)+.*)}i)
+          m = p.match(%r{^http\*(?://)?\.?((?:[a-z0-9-]+)(?:\.[a-z0-9-]+)+.*)}i)
           p = "http://#{m[1]}" unless m.nil?
 
           # tld wildcards - http://example.* - switch to .tld. don't switch if it's an ip address, though
-          m = p.match(%r{^([a-z]+://([a-z0-9\-]+(?:\.[a-z0-9\-]+)*\.))\*(.*)})
+          m = p.match(%r{^([a-z]+://([a-z0-9-]+(?:\.[a-z0-9-]+)*\.))\*(.*)})
           if !m.nil? && m[2].match(/\A([0-9]+\.){2,}\z/).nil?
             p = "#{m[1]}tld#{m[3]}"
             # grab up to the first *

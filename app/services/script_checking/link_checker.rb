@@ -58,7 +58,7 @@ module ScriptChecking
 
       def redirect_url_pattern
         Regexp.union([
-                       Regexp.new(%r{https?://}i.to_s + Regexp.union(*RedirectServiceDomain.pluck(:domain)).to_s + %r{/[a-z0-9\-]+}i.to_s),
+                       Regexp.new(%r{https?://}i.to_s + Regexp.union(*RedirectServiceDomain.pluck(:domain)).to_s + %r{/[a-z0-9-]+}i.to_s),
                        %r{https?://www\.baidu\.com/link\?url=[0-9a-z\-&=_]+}i,
                      ])
       end
