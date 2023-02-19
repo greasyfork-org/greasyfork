@@ -33,7 +33,7 @@ module ScriptListings
 
             Sentry.capture_exception(e)
             flash.now[:alert] = "Something went wrong loading your results. Some search functionality may not be working. We've been notified of the issue."
-            load_scripts_for_index_without_sphinx
+            return if load_scripts_for_index_without_sphinx
           end
 
           is_search = params[:q].present?
@@ -346,5 +346,7 @@ module ScriptListings
     @scripts = self.class.apply_filters(@scripts, params, script_subset)
     # Force a load as will be doing empty?, size, etc. and don't want separate queries for each.
     @scripts = @scripts.load
+
+    false
   end
 end
