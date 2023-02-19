@@ -26,11 +26,14 @@ module ScriptListings
       format.html do
         should_cache_page = current_user.nil? && request.format.html? && (params.keys - %w[locale controller action site page]).none?
         cache_page(should_cache_page ? "script_index/#{params.values.join('/')}" : nil) do
+          status = 200
+
           begin
             return if load_scripts_for_index
           rescue ThinkingSphinx::SphinxError => e
             raise e unless Rails.env.production?
 
+            status = 500 # We'll render a nice page but with an error code so monitoring will notice.
             Sentry.capture_exception(e)
             flash.now[:alert] = "Something went wrong loading your results. Some search functionality may not be working. We've been notified of the issue."
             return if load_scripts_for_index_without_sphinx
@@ -70,7 +73,7 @@ module ScriptListings
                                  :set
                                end
           @ad_method = choose_ad_method_for_scripts(@scripts)
-          render_to_string
+          [render_to_string, status]
         end
       end
       format.atom do

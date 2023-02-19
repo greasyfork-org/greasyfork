@@ -5,12 +5,12 @@ module PageCache
 
   def cache_page(page_key)
     if page_key.nil? || current_user
-      html = yield
-      render(html:)
+      html, status = yield
+      render(html:, status: status || 200)
       return
     end
 
-    html = Rails.cache.fetch(page_key, expires_in: 1.minute) do
+    html, status = Rails.cache.fetch(page_key, expires_in: 1.minute) do
       @caching_request = true
       yield
     end
@@ -21,6 +21,6 @@ module PageCache
       .gsub(CSRF_META_TAGS, view_context.csrf_meta_tags)
       .gsub(CSRF_TOKEN, session[:_csrf_token])
       .gsub(IP_ADDRESS, request.remote_ip)
-      .html_safe
+      .html_safe, status: status || 200
   end
 end
