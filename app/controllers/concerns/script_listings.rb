@@ -267,66 +267,64 @@ module ScriptListings
     end
 
     # Search can't do script sets, otherwise we'd use it for everything.
-    if params[:set].nil?
-      begin
-        with = sphinx_options_for_request
-        with[:locale] = @search_locale if @search_locale
+    return load_scripts_for_index_without_sphinx unless params[:set].nil?
 
-        if params[:site]
-          if params[:site] == '*'
-            with[:site_count] = 0
+    begin
+      with = sphinx_options_for_request
+      with[:locale] = @search_locale if @search_locale
+
+      if params[:site]
+        if params[:site] == '*'
+          with[:site_count] = 0
+        else
+          site = SiteApplication.find_by(text: params[:site])
+          if site.nil?
+            @scripts = Script.none.paginate(page: 1)
+          elsif site.blocked
+            render_404(site.blocked_message)
+            return true
           else
-            site = SiteApplication.find_by(text: params[:site])
-            if site.nil?
-              @scripts = Script.none.paginate(page: 1)
-            elsif site.blocked
-              render_404(site.blocked_message)
-              return true
-            else
-              with[:site_application_id] = site.id
-            end
+            with[:site_application_id] = site.id
           end
         end
-
-        case params[:language]
-        when 'css'
-          with[:available_as_css] = true
-        when 'all'
-          # No filter
-        else
-          with[:available_as_js] = true
-        end
-
-        # This should be nil unless there are going to be no results.
-        if @scripts.nil?
-          # :ranker => "expr('top(user_weight)')" means that it will be sorted on the top ranking match rather than
-          # an aggregate of all matches. In other words, something matching on "name" will be tied with everything
-          # else matching on "name".
-          @scripts = Script.search(
-            params[:q],
-            with:,
-            page: params[:page],
-            per_page:,
-            order: self.class.get_sort(params, for_sphinx: true),
-            populate: true,
-            sql: { include: [:script_type, { localized_attributes: :locale }, :users] },
-            select: '*, weight() myweight, LENGTH(site_application_id) AS site_count',
-            ranker: "expr('top(user_weight)')"
-          )
-          # make it run now so we can catch syntax errors
-          @scripts.empty?
-        end
-      rescue ThinkingSphinx::SyntaxError, ThinkingSphinx::ParseError, ThinkingSphinx::QueryError
-        flash[:alert] = "Invalid search query - '#{params[:q]}'."
-        # back to the main listing
-        redirect_to scripts_path
-        return true
-      rescue ThinkingSphinx::OutOfBoundsError
-        # Paginated too far.
-        @scripts = Script.none.paginate(page: 1)
       end
-    else
-      load_scripts_for_index_without_sphinx
+
+      case params[:language]
+      when 'css'
+        with[:available_as_css] = true
+      when 'all'
+        # No filter
+      else
+        with[:available_as_js] = true
+      end
+
+      # This should be nil unless there are going to be no results.
+      if @scripts.nil?
+        # :ranker => "expr('top(user_weight)')" means that it will be sorted on the top ranking match rather than
+        # an aggregate of all matches. In other words, something matching on "name" will be tied with everything
+        # else matching on "name".
+        @scripts = Script.search(
+          params[:q],
+          with:,
+          page: params[:page],
+          per_page:,
+          order: self.class.get_sort(params, for_sphinx: true),
+          populate: true,
+          sql: { include: [:script_type, { localized_attributes: :locale }, :users] },
+          select: '*, weight() myweight, LENGTH(site_application_id) AS site_count',
+          ranker: "expr('top(user_weight)')"
+        )
+        # make it run now so we can catch syntax errors
+        @scripts.empty?
+      end
+    rescue ThinkingSphinx::SyntaxError, ThinkingSphinx::ParseError, ThinkingSphinx::QueryError
+      flash[:alert] = "Invalid search query - '#{params[:q]}'."
+      # back to the main listing
+      redirect_to scripts_path
+      return true
+    rescue ThinkingSphinx::OutOfBoundsError
+      # Paginated too far.
+      @scripts = Script.none.paginate(page: 1)
     end
 
     false
