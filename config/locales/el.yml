@@ -256,6 +256,7 @@ el:
     diff_new_version: "Νέα:"
     diff_lines_of_context: "Γραμμές περιεχομένου:"
     diff_ignore_whitespace: "Αγνόηση αλλαγών λευκών διαστημάτων"
+    diff_terser: "Εκκαθάριση κώδικα πριν την σύγκριση"
     diff_refresh: "Ανανέωση"
     diff_no_change: "Δεν βρέθηκαν διαφορές."
     good_rating_explanation: "Αριθμός ατόμων που το βαθμολόγησαν Καλό ή το πρόσθεσαν στα Αγαπημένα."
@@ -601,12 +602,22 @@ el:
         receiver: Από προεπιλογή, εγγραφή σε κάθε συνομιλία που σας περιλαμβάνει και δεν έχετε ξεκινήσει
       report_defaults:
         title: Ειδοποιήσεις αναφοράς
+        reporter: Λήψη ειδοποίησης όταν επιλύεται μια αναφορά που έχετε δημιουργήσει
+        reported: Λήψη ειδοποίησης όταν δημιουργείται ή επιλύεται μια αναφορά για πράγματα που έχετε δημοσιεύσει
       save_button: Ενημέρωση ρυθμίσεων ειδοποιήσεων
       title: Ειδοποιήσεις
       current_discussion_subscriptions:
         one: Ακύρωση εγγραφής από τη %{discussions_link:%{count} συνομιλία} που έχετε εγγραφεί
         other: Ακύρωση εγγραφής από τις %{discussions_link:%{count} συνομιλίες} που έχετε εγγραφεί
       save_success: Οι προτιμήσεις ειδοποιήσεών σας έχουν ενημερωθεί.
+      unsubscribe_all: Ακύρωση εγγραφής από όλες τις ειδοποιήσεις
+      unsubscribe_all_success: Έχετε ακυρώσει την εγγραφή σας από όλες τις ειδοποιήσεις.
+    account_banned: Αυτός ο λογαριασμός έχει αποκλειστεί.
+  webhooks:
+    info:
+      title: Ορισμός ιστοάγκιστρου
+      already_syncing_list: "Εδώ είναι οι κώδικες που έχετε ήδη ορίσει να συγχρονίζονται από υποστηριζόμενο πάροχο."
+      synced_item_html: "%{script_name} - %{sync_type} συγχρονισμός από %{sync_url}"
   help:
     sections:
       usage: Χρήση
@@ -652,6 +663,20 @@ el:
         title: Αιτιολόγηση
       cdns:
         title: Δίκτυα διανομής περιεχομένου (CDNs)
+      sri:
+        title: Κώδικες με άγκιστρα υπόπροέλευσης ακρίβειας
+      allowed_external_codes:
+        heading: Επιτρεπτοί εξωτερικοί κώδικες
+      libraries:
+        title: "%{site_name} βιβλιοθήκες"
+      origin_host:
+        title: Έκχυση κωδικών από τον φιλοξενητή προέλευσης
+    cdns:
+      title: Επιτρεπτά CDNs
+      test_url:
+        label: Έλεγχος ενός URL
+        result_ok: Το URL επιτρέπεται
+        result_not_ok: To URL δεν επιτρέπεται
     script_rewriting:
       title: "Πως το %{site_name} θα ξαναγράψει δημοσιευμένους κώδικες"
       content_html: >
@@ -777,11 +802,14 @@ el:
       unauthorized_code: "Μη εξουσιοδοτημένο αντίγραφο"
       malware: "Κακόβουλο λογισμικό"
       minified: "Ελαχιστοποιημένος κώδικας"
+      obfuscated: "Μη ξεκάθαρος κώδικας"
       external_code: "Μη επιτρεπτός εξωτερικός κώδικας"
       no_description: "Απούσα, χωρίς πληροφορία ή αποπροσανατολιστική περιγραφή"
       wrong_category: "Εσφαλμένη κατηγορία"
       wrong_category_with_suggestion: "Εσφαλμένη κατηγορία (προτείνεται: %{suggested_category})"
+      no_code: 'Χωρίς κώδικα / γεια σου κόσμε'
       other: "Άλλος"
+    non_functional_feedback: "Αναφέρετε μη λειτουργικούς κώδικες ως %{feedback_link:τροφοδοσία} στον κώδικα."
     unauthorized_code_original_placeholder: "Διεύθυνση URL αρχικού κώδικα"
     explanation_placeholder: "Παροχή πρόσθετων πληροφοριών (προαιρετικό)"
     create_button: "Δημιουργία αναφοράς"
@@ -790,11 +818,15 @@ el:
     report_message: "Αναφορά μηνύματος"
     result_dismissed: "Αυτή η αναφορά έχει απόρριφθεί από συντονιστή."
     result_upheld: "Αυτή η αναφορά έχει στηριχθεί από συντονιστή."
+    result_fixed: "Η αναφορά έχει επιλυθεί από έναν συντονιστή καθώς πιστεύουν ότι ο δημιουργός διόρθωσε το θέμα."
     result_pending: "Αυτή η αναφορά αναμένει έλεγχο από συντονιστή."
+    rebuttal_placeholder: 'Εξηγείστε σε έναν συντονιστή γιατί δεν πρέπει να διαγραφεί ο κώδικας.'
     submit_rebuttal: "Υποβολή αντίκρουσης"
+    rebuttal_submitted: Ένας συντονιστής θα μελετήσει την αναφορά και την εξήγησή σας και θα πάρει μια απόφαση.
     delete_script: "Διαγραφή κώδικα"
     view_discussion: "Προβολή συζήτησης"
     load_diff: "Φόρτωση διαφορών"
+    load_cleaned_diff: "Φόρτωση διαφορών εκκαθαρισμένου κώδικα"
     loading_diff: "Φόρτωση..."
     reported_user_activity_html: "%{user} (ο αναφερόμενος χρήστης) έχει κάνει:"
   appeals:
@@ -803,6 +835,7 @@ el:
       submit: Υποβολή έφεσης
     deletion_reason_html: "%{script} διεγράφει εξαιτίας: %{reason}."
     author_reason: "Η έφεση υποβλήθει από τον δημιουργό:"
+    pending_review: Αυτό το αίτημα επανεξέτασης εκκρεμεί μελέτης από συντονιστή.
   discussions:
     title: Συζητήσεις
     comment_date: "Δημοσιεύτηκε: %{date}"
