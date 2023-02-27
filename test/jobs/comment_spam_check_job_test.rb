@@ -21,6 +21,8 @@ class CommentSpamCheckJobTest < ActiveSupport::TestCase
     assert_difference -> { Report.count } => 1, -> { AkismetSubmission.count } => 1 do
       CommentSpamCheckJob.perform_now(comment, '1.1.1.1', 'User agent', nil)
     end
+
+    assert_equal Discussion::REVIEW_REASON_AKISMET, comment.reload.review_reason
   end
 
   test 'when it is repeated comment spam from new users' do

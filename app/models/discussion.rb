@@ -29,7 +29,7 @@ class Discussion < ApplicationRecord
   scope :visible, -> { not_deleted.where(review_reason: nil) }
   scope :permissive_visible, lambda { |user|
                                if user
-                                 user&.moderator? ? all : not_deleted.where('review_reason IS NULL OR discussions.poster_id = ?', user.id)
+                                 user&.moderator? ? all : not_deleted.where('discussions.review_reason IS NULL OR discussions.poster_id = ?', user.id)
                                else
                                  visible
                                end

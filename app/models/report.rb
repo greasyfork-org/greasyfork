@@ -69,10 +69,16 @@ class Report < ApplicationRecord
 
   def dismiss!(moderator:, moderator_notes:)
     update!(result: RESULT_DISMISSED, moderator_notes:, resolver: moderator)
-    if item.is_a?(Discussion)
+    if item.is_a?(Discussion) || item.is_a?(Comment)
       send_notification = [Discussion::REVIEW_REASON_AKISMET, Discussion::REVIEW_REASON_RAINMAN].include?(item.review_reason)
       item.update!(review_reason: nil)
-      CommentNotificationJob.perform_later(item.first_comment) if send_notification
+      if send_notification
+        if item.is_a?(Discussion)
+          CommentNotificationJob.perform_later(item.first_comment)
+        else
+          CommentNotificationJob.perform_later(item)
+        end
+      end
     end
     reporter&.update_trusted_report!
     AkismetSubmission.mark_as_ham(item)

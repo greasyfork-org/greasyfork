@@ -53,5 +53,6 @@ class CommentSpamCheckJob < ApplicationJob
     return unless is_spam
 
     Report.create!(item: comment, auto_reporter: 'akismet', reason: Report::REASON_SPAM)
+    comment.update(review_reason: Discussion::REVIEW_REASON_AKISMET)
   end
 end

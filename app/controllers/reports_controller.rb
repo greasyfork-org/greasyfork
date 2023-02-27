@@ -59,7 +59,10 @@ class ReportsController < ApplicationController
 
     if current_user.trusted_reports
       item.update!(review_reason: Discussion::REVIEW_REASON_TRUSTED) if @report.item.is_a?(Discussion) && @report.reason != Report::REASON_WRONG_CATEGORY
-      item.discussion.update!(review_reason: Discussion::REVIEW_REASON_TRUSTED) if @report.item.is_a?(Comment) && @report.item.first_comment?
+      if @report.item.is_a?(Comment)
+        item.discussion.update!(review_reason: Discussion::REVIEW_REASON_TRUSTED) if @report.item.first_comment?
+        item.update!(review_reason: Discussion::REVIEW_REASON_TRUSTED)
+      end
     end
 
     ScriptReportMailer.report_created(@report, site_name).deliver_later if @report.item.is_a?(Script)
