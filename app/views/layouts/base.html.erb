@@ -71,7 +71,7 @@
   <header id="main-header">
     <div class="width-constraint">
       <div id="site-name">
-        <%= link_to_unless_current(root_path) { vite_image_tag('images/blacklogo96.png', alt: '', width: 96, height: 96) } %>
+        <%= link_to_unless_current(vite_image_tag('images/blacklogo96.png', alt: '', width: 96, height: 96), root_path) %>
         <div id="site-name-text">
           <h1><%= link_to_unless_current site_name, root_path %></h1>
         </div>
