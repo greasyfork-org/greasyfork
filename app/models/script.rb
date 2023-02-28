@@ -177,11 +177,22 @@ class Script < ApplicationRecord
   end
 
   # If the locale has changed, update the default localized attributes' locale
-  before_validation :update_localized_attribute_locales
+  before_validation :update_localized_attribute_locales, on: :create
   def update_localized_attribute_locales
     return unless locale_id_changed?
 
+    # For new records, we just set the default locale
     localized_attributes.select(&:attribute_default).each { |la| la.locale = locale }
+  end
+
+  before_validation :update_localized_attribute_locales_for_existing, on: :update
+  def update_localized_attribute_locales_for_existing
+    # All existing scripts should have a locale; this is getting called on test setup without a locale.
+    return unless locale_id_changed? && locale_id_was
+
+    # For existing records, recalculate because if they had @name and @name:fr with a default locale of fr, changing the
+    # default locale not only updates the locale of the default attributes, but also adds new non-default fr attributes.
+    %w[name description].each { |key| update_localized_attribute(meta, key) } unless library?
   end
 
   before_validation :set_sensitive_flag

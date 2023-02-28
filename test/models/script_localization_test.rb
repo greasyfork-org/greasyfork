@@ -180,13 +180,58 @@ class ScriptLocalizationTest < ActiveSupport::TestCase
     script.save!
 
     available_locale_codes = script.available_locales.map(&:code)
-    assert_equal(%w[es fr], available_locale_codes)
+    assert_equal(%w[es fr], available_locale_codes.sort)
 
     assert_equal 'Una prueba!', script.localized_value_for(:name, 'es')
     assert_equal 'Un test!', script.localized_value_for(:name, 'fr')
     assert_equal 'Unidad de prueba', script.localized_value_for(:description, 'es')
     assert_equal 'Test d\'unit', script.localized_value_for(:description, 'fr')
     assert_equal 'Additional info en espanol', script.localized_value_for(:additional_info, 'es')
+    assert_equal 'Additional info en francais', script.localized_value_for(:additional_info, 'fr')
+  end
+
+  test 'changing the default locale after having an overlap' do
+    script = Script.new(locale: Locale.find_by(code: :fr))
+    script.authors.build(user: User.find(1))
+    sv = ScriptVersion.new
+    sv.script = script
+    sv.code = <<~JS
+      // ==UserScript==
+      // @name		Una prueba!
+      // @name:fr		Un test!
+      // @description		Unidad de prueba
+      // @description:fr	Test d'unit
+      // @namespace http://greasyfork.local/users/1
+      // @version 1.0
+      // @include *
+      // @license MIT
+      // ==/UserScript==
+      var foo = "bar";
+    JS
+    sv.localized_attributes.build(attribute_key: 'additional_info', attribute_value: 'Additional info en francais', locale: Locale.find_by(code: :fr), attribute_default: true, value_markup: 'text')
+    sv.calculate_all
+    script.apply_from_script_version(sv)
+    script.script_versions << sv
+    sv.save!
+    script.save!
+
+    available_locale_codes = script.available_locales.map(&:code)
+    assert_equal(%w[fr], available_locale_codes)
+
+    assert_equal 'Una prueba!', script.localized_value_for(:name, 'fr')
+    assert_equal 'Unidad de prueba', script.localized_value_for(:description, 'fr')
+    assert_equal 'Additional info en francais', script.localized_value_for(:additional_info, 'fr')
+
+    script.locale = Locale.find_by(code: 'es')
+    script.save!
+
+    available_locale_codes = script.available_locales.map(&:code)
+    assert_equal(%w[es fr], available_locale_codes.sort)
+
+    assert_equal 'Una prueba!', script.localized_value_for(:name, 'es')
+    assert_equal 'Un test!', script.localized_value_for(:name, 'fr')
+    assert_equal 'Unidad de prueba', script.localized_value_for(:description, 'es')
+    assert_equal 'Test d\'unit', script.localized_value_for(:description, 'fr')
     assert_equal 'Additional info en francais', script.localized_value_for(:additional_info, 'fr')
   end
 

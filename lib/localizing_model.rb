@@ -64,7 +64,8 @@ module LocalizingModel
 
   # Returns an array of Locales this script has
   def available_locales
-    return active_localized_attributes.map(&:locale).uniq
+    # name is the most basic one, just search for that.
+    active_localized_attributes.select { |la| la.attribute_key == 'name' }.map(&:locale).uniq
   end
 
   # Builds a localized attribute on this record based on the passed localized attribute and return it
