@@ -5,7 +5,7 @@ tr:
       forum: "Forum"
       help: "Yardım"
       sign_in: "Oturum aç"
-      submenu: "Dahası"
+      submenu: "Daha fazla"
       advanced_search: "Gelişmiş arama"
       user_list: "Kullanıcı listesi"
       libraries: "Kütüphaneler"
@@ -211,10 +211,14 @@ tr:
     type_3_html: "Kütüphane - Script sadece <code>@require</code> ile kullanılır ve direkt olarak kurulmaz."
     override_warning_checkbox_label: "Yine de kaydet"
     warning_version_not_incremented_html: "Kodu güncelledin fakat <code>@version</code> numarasını arttırmadın. Önceden senin scriptini yüklemiş olanlar güncelleme alamayabilir."
+    warning_version_missing_html: " <code>@version</code>'i belirtmediniz. <code>@version</code> kullanıcıların güncellemeleri alması için gereklidir. Bu şekilde belirtebilirsiniz: <code>// @version 1.0</code>."
+    warning_version_missing_generate_automatically_html: "<code>@version</code> 'i otomatik oluştur"
+    warning_namespace_missing_generate_automatically_html: "Otomatik bir <code>@namespace</code> oluştur"
     warning_namespace_changed_html: "Senin <code>@namespace</code> değişmiş.Tutarlı bir  <code>@namespace</code>  kullanıcıların scriptini güncellemek amaçlı yeniden yükleyebilmesi için gereklidir."
     warning_potentially_minified_html: "Senin script kodun küçültülmüş (kompreslenmiş) gibi görünüyor. Eğer küçültülmüş kütüphane kullanıyorsan, bunun yerine <code>@require</code> buradan %{allowed_requires_link}.  Scriptten küçültülmüş kodun çıkarılması gerekir."
     warning_automatic_sensitive_html: "Scriptiniz %{sensitive_domains}, bu yüzden yetişkin içeriği olarak işaretlenecek."
     warning_potentially_minified_allowed_requires_link: "bu yerlerden biri"
+    warning_code_previously_posted_html: "Bu kod zaten daha önceden %{script_links}' de paylaşılmış. Yeniden gönderiler moderatörler tarafından kaldırılabilir."
     warning_license_missing_html: "208\nBir @lisans belirtmediniz. %{site_name} üzerinde gönderi paylaşarak, başkalarının kodunuzu kullanmasına izin vermiş olursunuz, ancak bir lisans, başkalarına kodunuzu nasıl değiştirebileceklerini ve yeniden dağıtabileceklerini söylemenize de izin verir. Örneğin, // @license MIT, herhangi birinin yazdığınız kodu değiştirmesine ve yeniden dağıtmasına izin verdiğiniz anlamına gelir. %{license_chooser_link:Lisanslarla ilgili daha fazla bilgiyi burada bulabilirsiniz.} Bir lisans sağlamazsanız, %{site_name}, başkalarının değişiklik yapmasına veya kopyaları yeniden dağıtmasına izin vermediğinizi varsayacaktır. Gönderdiğiniz kodun tek yazarı değilseniz, diğer tüm yazarlardan izin almadığınız sürece genellikle kodu göndermenize izin verilmediğini unutmayın."
     warning_license_missing_override_html: "Lisans olmadan kaydet"
     additional_info_locale_prompt: "(Bir yer seç)"
@@ -237,6 +241,8 @@ tr:
     sync_failed_info_html: "Son senkronizasyon teşebbüsü %{date} oldu, %{error} ile sonuçlandı."
     sync_success_info_html: "Son başarılı senkronizasyon %{date} tarihinde yapıldı."
     sync_never_succeeded: "Hiç bir zaman başarılı senksonizasyon yapılmadı."
+    sync_additional_info: İsteğe bağlı olarak komut dosyanızın ek bilgilerini senkronize edebilirsiniz.
+    add_synced_additional_info: İsteğe bağlı olarak komut dosyanızın ek dökümantasyonunu açabilirsiniz.
     update_and_sync: "Güncelle ve şimdi senkronize et"
     update_no_sync: "Güncelle"
     turn_off_syncing: "Bu script için senkronize olmayı kapat"
@@ -255,6 +261,7 @@ tr:
     diff_new_version: "Yeni:"
     diff_lines_of_context: "Context hataları:"
     diff_ignore_whitespace: "Boşluk hatalarını önemseme"
+    diff_terser: "Karşılaştırmadan önce kodu temizle"
     diff_refresh: "Yenile"
     diff_no_change: "Farklılıklar bulunamadı."
     good_rating_explanation: "İyi oylayan ve favorilere ekleyen kullanıcı sayısı."
@@ -295,6 +302,7 @@ tr:
     authors_heading: "Yazarlar"
     invitations:
       form_title: "Diğer yazarları davet edin"
+      explanation: "Diğer Greasy Fork kullanıcılarını bu betiğin yazarları olarak ekleyebilirsiniz. Bu komut dosyasında sizinle aynı haklara sahip olacaklar."
       invited_user_url_label: "Davet için kullanıcı"
       invited_user_placeholder: "Kullanıcının %{site_name}sitesinde ki profili"
       submit: "Davet gönder"
@@ -326,11 +334,19 @@ tr:
     install_help_dialog:
       js:
         firefox: sen, Bu komut dosyasını yüklemek için %{tampermonkey_link:Tampermonkey}, %{greasemonkey_link:Greasemonkey} veya %{violentmonkey_link:Violentmonkey} gibi bir uzantı yüklemeniz gerekecek.
+        other: Bu komut dosyasını yüklemek için bir kullanıcı komut dosyası yöneticisi uzantısı yüklemeniz gerekecek.
+        bypass: (Zaten bir kullanıcı komut dosyası yöneticim var, kurmama izin verin!)
       css:
+        firefox: Bu komut dosyasını yüklemek için %{stylus_link:Stylus} gibi bir uzantı yüklemeniz gerekecek.
+        chrome: Bu komut dosyasını yüklemek için %{stylus_link:Stylus} gibi bir uzantı yüklemeniz gerekecek.
+        opera: Bu komut dosyasını yüklemek için %{stylus_link:Stylus} gibi bir uzantı yüklemeniz gerekecek.
+        safari: Bu komut dosyasını yüklemek için bir kullanıcı stili yöneticisi uzantısı yüklemeniz gerekecek.
+        other: Bu komut dosyasını yüklemek için bir kullanıcı stili yöneticisi uzantısı yüklemeniz gerekecek.
         bypass: (Zateb bir user-style yöneticim var, yükleyeyim!)
       close_dialog: Tamam
     antifeatures:
       warning_title: Bu script bazı istenmeyecek içerikler barındırıyor
+      intro: Yüklemeden önce, %{site_name}, bu betiğin anti-özellikler içerdiğini bilmenizi ister; bunlar sizin değil, betik yazarının yararına olan şeylerdir.
       author_explanation_intro: "Script sahibi şöyle açıklıyor:"
       types:
         ads:
@@ -342,6 +358,9 @@ tr:
         miner:
           title: Kripto madencilik
           description_html: Bu script <b>cihazınızın kaynaklarını kullanarak kripto para madenciliği</b> yapan kod içeriyor.
+        referral-link:
+          title: Referans bağlantıları
+          description_html: Bu komut dosyası, örneğin bağlantıları yeniden yazarak veya bir yönlendirme veya bağlı kuruluş kodu içerecek şekilde kupon kodları sağlayarak yazara <b>komisyon kazandırır</b>.
         membership:
           title: Üyelik
           description_html: Bu scriptin tüm özelliklerini kullanabilmek için <b>bir şeylere kayıt olmanız</b> gerekiyor. Örneğin bir gruba katılmak, bir kanala abone olmak veya bir sayfayı beğenmek...
@@ -357,6 +376,7 @@ tr:
       css:
         short: CSS
         long: Kullanıcı görünümü
+    related_scripts: "Bu ilgili komut dosyalarını da deneyebilirsiniz:"
   script_sets:
     description: "Komut dizileri, Greasey Fork ile göz atmak için özelleştirilmiş bir komut listesi oluşturmanıza izin verir. Tek tek komut dosyalarını, diğer kullanıcıların kümelerini veya otomatik olarak oluşturulan setleri ekleyerek kümenize komut dosyaları ekleyebilirsiniz. Komut dosyalarını da kümenizden aynı yöntemlerle hariç tutabilirsiniz."
     favorites_name: "Favoriler"
