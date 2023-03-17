@@ -208,10 +208,14 @@ zh-TW:
     warning_version_not_incremented_html: "您更新了腳本代碼但未增加 <code>@version</code> 版本號。之前安裝了您的腳本的使用者可能無法自動更新至最新版。"
     warning_version_missing_html: "您沒有指定<code>@version</code>。用戶需要通過<code>@version</code>接受更新。您可以通過這個方法指明：<code>// @version 1.0</code>"
     warning_version_missing_generate_automatically_html: "自動產生 <code>@version</code>"
+    warning_namespace_missing_html: "您未指明<code>@namespace</code>。<code>@namespace</code>可幫助避免在使用者安裝另一個同名腳本時產生衝突。<code>@namespace</code>只需要是一個獨特的字串；通常使用你控制的 URL。"
+    warning_namespace_missing_generate_automatically_html: "自動生成<code>@namespace</code>屬性"
     warning_namespace_changed_html: "您已變更 <code>@namespace</code> 。不同的 <code>@namespace</code> 會讓使用者腳本管理器識別為不同腳本，下次使用者更新時，新版本會被識別為新腳本安裝而與舊版本共存。"
     warning_potentially_minified_html: "您的腳本看起來好像包含壓縮過的代碼。如果您使用了壓縮過的函式庫，請改爲透過 <code>@require</code> 引用 %{allowed_requires_link} 所提供的腳本。包含了壓縮代碼的腳本將會被刪除。"
     warning_automatic_sensitive_html: "由於您的腳本執行於 %{sensitive_domains}，它將會被標記為包含成人內容。"
     warning_potentially_minified_allowed_requires_link: "這些網站"
+    warning_code_previously_posted_html: "此程式碼已在%{script_links}發布。重新發布此腳本可能被管理員移除。"
+    warning_license_missing_html: "您未宣告<code>@license</code>。透過在%{site_name}發布，您在允許他人使用您的程式碼，但許可將同時允許您告知他人他們可以如何修改並分發您的程式碼。例如，<code>// @license MIT</code>意味著您允許任何人修改並分發您撰寫的程式碼。%{license_chooser_link:更多關於許可的訊息見此。如果您不提供一個許可，%{site_name}會假定您不允許他人修改或分發複製。請注意如果您不是您發布的程式碼的唯一作者，通常您不被允許發布它，除非您獲得了所有作者的許可。"
     warning_license_missing_override_html: "不詢問直接儲存"
     additional_info_locale_prompt: "(語言選擇)"
     additional_info_add_localized: "新增別的語言的「其他資訊」欄位"
@@ -253,6 +257,7 @@ zh-TW:
     diff_new_version: "之後:"
     diff_lines_of_context: "上下文行數:"
     diff_ignore_whitespace: "忽視空白字元的變更"
+    diff_terser: "比較前清理程式碼"
     diff_refresh: "重新載入"
     diff_no_change: "未發現差異。"
     good_rating_explanation: "給予好評或加入我的最愛的使用者數目"
@@ -329,8 +334,13 @@ zh-TW:
       js:
         firefox: 您需要先安裝一個用戶腳本管理器擴展，如 %{tampermonkey_link:Tampermonkey}、%{greasemonkey_link:Greasemonkey} 或 %{violentmonkey_link:Violentmonkey} 之後才能安裝該腳本。
         chrome: 您需要先安装一个用户脚本管理器扩展，如 %{tampermonkey_link:Tampermonkey} 或 %{violentmonkey_link:Violentmonkey} 后才能安装该脚本。
+        opera: 您需要先安裝一個使用者腳本管理器擴充功能，如 %{tampermonkey_link:Tampermonkey}、%{greasemonkey_link:Greasemonkey} 或 %{violentmonkey_link:Violentmonkey} 後才能安裝該腳本。
+        safari: 您需要先安裝一個使用者腳本管理器擴充功能，如 %{tampermonkey_link:Tampermonkey}、%{greasemonkey_link:Greasemonkey} 或 %{violentmonkey_link:Violentmonkey} 後才能安裝該腳本。
+        other: 您需要先安裝一個使用者腳本管理器擴充功能後才能安裝該腳本。
+        bypass: （我已經安裝了使用者腳本管理器，讓我安裝！）
       css:
         firefox: 您需要先安裝一個用戶樣式管理器擴展，如 %{stylus_link:Stylus} 後才能安裝該腳本。
+        chrome: 您需要先安裝一個使用者腳本管理器擴充功能，如 %{tampermonkey_link:Tampermonkey}、%{greasemonkey_link:Greasemonkey} 或 %{violentmonkey_link:Violentmonkey} 後才能安裝該腳本。
       close_dialog: OK
     antifeatures:
       warning_title: 該腳本包含反功能

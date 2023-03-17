@@ -20,7 +20,7 @@ ka:
     version_number: "ვერსია"
     license: "ლიცენზია"
     no_license: "პ/გ"
-    applies_to: "გამოყენებს ეს"
+    applies_to: "გამოყენებს მათ"
     applies_to_all: "ყველა საიტი"
     install: "სკრიპტის ინსტალაცია"
     install_css: "სკრიპტის ინსტალაცია როგორც მომხმარებელის სტილი"
@@ -37,6 +37,8 @@ ka:
     deleted_notice: "ეს სკრიპტი წაშლილია."
     deleted_notice_with_related: "თქვენ მიერ მოთხოვილი სკრიპტი წაშლილია, მაგრამ არსებობს რამდენიმე დაკავშირებული სკრიპტი."
     deleted_undelete_notice_html: "ეს სკრიპტი დაბლოკილია მოდერატორის მიერ და მისი წაშლა შეუძლებელია. მოყვანილი მიზეზი არის: \"<i>%{delete_reason}</i>\"."
+    deleted_locked_author_notice_html: "ეს სკრიპტი დაბლოკილია მოდერატორის მიერ და დასამხარი სხვებისთვის. მოყვანილი მიზეზი: \"<i>%{delete_reason}</i>\". გთხოვთ, მიმოიხილავეთ %{code_rules_link:%{site_name}'ის წესები}. თუ ფიქრობთ, რომ შეწდომით წაშლილია, თქვენ შეგიძლიათ %{appeal_link: გამოიგზავოთ გაასაჩივროთ} წაშლას. ნუ გამოქვეყნებთ ეს სკტიპტს ხელახლა; თუ ასე გააკეთებთ შეგიძლიათ დაბლოკილი გახდეთ %{site_name}'ში."
+    deleted_author_notice: "ეს სკრიპტი წაშლილია და არ არის დასამხარი სხვებისთვის. თქვენ არ შეგიძლიათ მისი აღდგენა, წაშლის ჩანართიდან."
     version_notice_latest_version_link: "ბოლო ვერსია"
     info_page: "ინფორმაცია"
     code_page: "კოდი"
@@ -48,28 +50,39 @@ ka:
     delete_page: "წაშლა"
     delete_update_behaviours:
       keep: "ისინი დატოვებენ როგორც არის."
-    delete_permanently_heading: "მუდმივად წაშლილი"
+    delete_permanently_heading: "სამუდამოდ წაშლა"
     delete_permanently_submit: "მოთხოვო მუდმივი წაშლა"
     delete_permanently_immediate_submit: "მუდმივი წაშლა"
     delete_permanently_notice_immediate: "სკრიპტი სამუდამოდ წაშლილია."
     admin_page: "ადმინი"
     admin:
       title: "%{script_name}- ადმინი"
+      locale_heading: "სტანდარტული ენა"
       compare_button: "შედარება"
     feedback_title: "%{script_name} - შეფასება"
+    stats_title: "%{script_name}- სტატისტიკა"
     stats_daily_installs_heading: "ყოველდღიური ინსტალაციები"
     stats_weekly_installs_heading: "ყოველკვირული ინსტალაციები"
     stats_daily_installs_date_column_heading: "თარიღი"
     stats_daily_installs_install_count_column_heading: "ინსტალაციები"
+    stats_raw_data_header: "დაუმუშავებელი მონაცემები"
+    stats_download_raw_data_html: "ყველა მონაცემის ჩატვირთვა როგორც: %{links}"
     stats_no_data: "პ/გ"
     stats_filter_options:
       month: ბოლო 30 დღე
       year: ბოლო 365 დღე
       all: მთელი დრო
+    derivatives_similar_heading: "მსგავსი სკრიპტები"
     similarity_score:
       high: ძალიან მსგავსი
+      medium: ზომიერებით მსგავსი
+      low: გარკვეულწილად მსგავსი
+      none: არა მსგავსი
     derivatives_similar_none: "არ არსებობს შენი მსგავსი სკრიპტები."
+    listing_title_all_sites: "მომხმარებლების ყველა სკრიპტები ყველა საიტისთვის."
     listing_title_generic: "მომხმარებლის სკრიპტები"
+    listing_sort_daily_installs: "დღიური ინსტალაციები"
+    listing_sort_total_installs: "მთლიანი ინსტალაციები"
     listing_sort_name: "სახელი"
     listing_filter_by_site_disable: "ყველა"
     listing_filter_by_site_all_sites: "(ყველა საიტი)"
