@@ -609,10 +609,6 @@ ko:
   webhooks:
     info:
       title: 웹훅 설정
-      intro_html: |
-          <p>저장소 이벤트에 따라 %{site_name} 스크립트를 업데이트하도록 웹훅을 연결할 수 있습니다. %{site_name}는 Github, Gitlab, Bitbucket에 대해 "푸시" 웹훅을 지원하고 Github, Gitlab에 대해 "릴리즈" 웹훅을 지원합니다.</p>
-          <p>이 기능을 쓰려면 %{site_name} 스크립트가 사용자의 저장소 URL과 동기화 하도록 설정해야 합니다. %{import_link:스크립트 가져오기}나 이전에 업로드한 스크립트의 "관리" 탭에서 동기화하도록 설정할 수 있습니다,</p>
-          <p>동기화 설정은 처음 웹훅이 실행되기 전까지 "자동"이나 "수동"으로 표시됩니다.</p>
       already_syncing_list: "다음은 이미 웹훅을 설정한 스크립트입니다."
       synced_item_html: "%{script_name} - %{sync_url}에서 %{sync_type} 동기화"
       language_note: Github, Gitlab, Bitbucket의 UI는 영어이므로 웹훅 설정 방법도 영어로 설명합니다.

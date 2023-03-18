@@ -213,7 +213,6 @@ ja:
     warning_namespace_changed_html: "<code>@namespace</code> が変更されています。一貫性のある <code>@namespace</code> を記述することで、再インストールによってスクリプトを更新できるようになります。"
     warning_potentially_minified_html: "圧縮 (minify) されたコードが含まれている可能性があります。圧縮されたライブラリを使用している場合は、ライブラリのコードを貼り付ける代わりに、%{allowed_requires_link} で許可されたURLから <code>@require</code> メタキーで読み込んでください。圧縮されたスクリプトは削除対象です。"
     warning_automatic_sensitive_html: "%{sensitive_domains} 向けであるため、アダルトコンテンツに関するスクリプトであると識別されます。"
-    warning_potentially_minified_allowed_requires_link: "外部スクリプトにおける%{site_name}のポリシー"
     warning_code_previously_posted_html: "このコードは以前にも%{script_links}に投稿されました。再投稿すると管理担当者が削除する可能性があります。"
     warning_license_missing_html: "<code>@license</code> を指定していません。%{site_name} に投稿することで、あなたのコードを他者に利用させますが、ライセンスはあなたのコードをどのように修正し再配布できるかを他者に伝えます。例: <code>// @license MIT</code> は、誰でもコードを修正し再配布できることを許します。%{license_chooser_link:利用可能なライセンスの詳細な情報はこちら。} ライセンスを明示しない場合、%{site_name} は他者による修正や再配布を許可していないものだと解釈します。投稿するコードの唯一の作者があなただけではないのなら、他のすべての作者から許可を得ない限り、ほとんどの場合、投稿は許可されません。"
     warning_license_missing_override_html: "ライセンスなしで保存する"
@@ -514,9 +513,6 @@ ja:
     sign_in_external: "ソーシャルアカウントでログイン"
     sign_in_with: "%{provider} でログイン"
     sign_in_password: "または"
-    sign_in_email_used_no_external_services_html: "&lt;%{email}&gt; は、すでに %{site_name} のアカウント「%{user_name}」で利用されています。%{provider} のアカウントによる認証を有効にするには、まず%{sign_in_link}してください。"
-    sign_in_email_used_with_external_services_html: "&lt;%{email}&gt; は、すでに %{site_name} のアカウント「%{user_name}」で利用されています (%{existing_providers} のアカウントによる認証)。%{provider} のアカウントによる認証を有効にするには、まず%{sign_in_link}してください。"
-    sign_in_email_used_sign_in_link: "%{site_name} にログイン"
     sign_in_email_missing: "%{site_name} にアカウントを作成するにはメールアドレスが必要ですが、%{provider} からはメールアドレスを取得できませんでした。%{provider} のアカウントにメールアドレスを追加してから、もう一度ログインしてみてください。Email と Password で %{site_name} にアカウント登録してから、%{provider} による認証を追加することもできます。"
     sign_in_name_used: "「%{name}」という名前はすでに利用されています。別の名前を入力してください。"
     sign_in_name_used_submit: "登録"
@@ -543,7 +539,6 @@ ja:
     update_password: "更新"
     update_password_no_match: "「Password」と「Password confirmation」が一致しません。"
     password_updated: "パスワードを更新しました。"
-    remove_password_info: "ここで設定したパスワードを削除して、%{site_name} へのログインをソーシャルアカウントに依存することもできます。"
     remove_password: "パスワードを削除"
     cant_remove_password: "パスワードを削除する前に、ソーシャルアカウントでログインできるようにしてください。"
     cant_remove_sign_in: "%{provider} との連携を解除する前に、パスワードを設定するか他のソーシャルアカウントでログインできるようにしてください。"
@@ -555,7 +550,6 @@ ja:
     external_sign_in_updated: "%{provider} の同期設定を更新しました。"
     external_sign_in_removed: "%{provider} との連携を解除しました。"
     external_sign_in_failed: "%{provider} にログインできませんでした: %{error}"
-    external_sign_in_already_used: "追加しようとした %{provider} のアカウントは、すでに %{site_name} のアカウント「%{user_name}」と連携しています。"
     external_sign_in_confirmation: "%{provider} アカウントの情報をもとに、新しい %{site_name} アカウントが作成されました。公開ユーザー名は「%{username}」です。"
     syncing_indicator: "【同期中】"
     enable_syncing: "同期する"
@@ -704,7 +698,7 @@ ja:
       antifeature_localized_html: "<code>@antifeature</code> の説明を特定の言語で記述します。XX は <a href=\"http://www.loc.gov/standards/iso639-2/php/code_list.php\">ISO 639-1 の2文字コード</a> で、YY として <a href=\"https://www.iso.org/obp/ui/#search\">ISO 3166 の国名コード</a> を追加することもできます。ユーザーの使用言語に一致したら <code>@antifeature</code> の内容を上書きします。"
     writing_user_scripts:
       title: "ユーザースクリプトの書き方"
-      content_html: "<p>ユーザースクリプトを書くには、JavaScript の知識が必要です。<a href=\"http://wiki.greasespot.net/Tutorials\">GreaseSpot Wiki のチュートリアルユーザースクリプト</a> は、一般的な JavaScript とユーザースクリプト関連の両方を勉強し始めたいときに便利です。他の人のスクリプトコードを見てみるのも良いでしょう。興味があれば、%{code_rules_link} や %{meta_keys_link} も参考にしてください。スクリプトの開発にあたって助けが必要であれば、お気軽に %{ask_in_forum_link}。</p><p>%{site_name} で投稿するには、アカウントの作成が必要です。自分の %{user_page_link} に %{post_new_script_link} へのリンクがあります。</p>"
+      content_html: "<p>ユーザースクリプトを書くには、JavaScript の知識が必要です。<a href=\"http://wiki.greasespot.net/Tutorials\">GreaseSpot Wiki のチュートリアル</a>は、一般的な JavaScript とユーザースクリプト関連の両方を勉強し始めたいときに便利です。他の人のスクリプトコードを見てみるのも良いでしょう。興味があれば、%{code_rules_link} や %{meta_keys_link} も参考にしてください。スクリプトの開発にあたって助けが必要であれば、お気軽に%{ask_in_forum_link}。</p><p>%{site_name} で投稿するには、アカウントの作成が必要です。自分の%{user_page_link}に%{post_new_script_link}へのリンクがあります。</p>"
       ask_in_forum_link_text: '掲示板でおたずねください'
       user_page_link_text: 'ユーザーページ'
       post_new_script_link_text: 'スクリプトの投稿'
@@ -724,7 +718,7 @@ ja:
           <li><code>@require</code> または、%{webpack_externals_link:webpack の <code>externals</code>オプション}でライブラリを読み込む。</li>
           </ul>
       libraries_html: スクリプトが使用するライブラリは、技術的に正当な理由がない限り <code>@require</code> を使用すべきです。インラインにライブラリを含めるなら、ライブラリの入手元に関する情報を含めなければいけません（例、URL、名前、バージョンなどを示すコメント）。
-      updates: スクリプトは、1日1回を超える頻度の更新確認しないでください。多くのユーザースクリプト管理ツールは自動更新を行うので、スクリプトでの実装は不要です。スクリプトはまた、%{site_name}で提供されるする他のスクリプトをページに動的に挿入してはいけません。
+      updates: スクリプトは、1日1回を超える頻度で更新確認しないでください。多くのユーザースクリプト管理ツールで自動更新を行っているで、スクリプト内に実装する必要はありません。スクリプトはまた、%{site_name}で提供される他のスクリプトをページに動的に挿入してはいけません。
       hosting: スクリプトの主な機能は %{site_name}上のコード内に書かれるようにしてください。スクリプトの大部分を単にどこかから読み込むために%{site_name} に投稿されたスクリプトは、許可されません。%{site_name}上に投稿されたバージョンではない別の提供元をユーザーに使わせる目的の、他のダウンロード用のURLの投稿は、許可されません。
       external_js: "%{external_scripts_link:外部の JavaScript の使用は制限されています。}"
       copyright_header: 著作権

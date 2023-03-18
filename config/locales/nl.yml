@@ -392,8 +392,8 @@ nl:
         other: "Je hebt scripts met onjuiste subbron-controlesommen: %{script_links}."
       script_notice:
         text_html:
-          one: "Dit script bevat een onjuiste subbron-controlesom: %{script_links}."
-          other: "Dit script bevat onjuiste subbron-controlesommen: %{script_links}."
+          one: "Dit script bevat een onjuiste subbron-controlesom: %{detail}."
+          other: "Dit script bevat onjuiste subbron-controlesommen: %{detail}."
         detail: "<code>%{url}</code> dient de controlesom <code>%{expected_hash}</code> te gebruiken (recentste controle: %{last_checked_at})"
   script_sets:
     description: "Met behulp van scriptgroepen kun je zelf lijsten met scripts samenstellen. Je kunt scripts toevoegen door individuele scripts op te nemen, sets van andere gebruikers of automatisch samengestelde sets. Uiteraard kun je scripts te allen tijde verwijderen van je lijsten."
@@ -1316,9 +1316,9 @@ nl:
     submit: Importeren
     previously_imported:
       heading: Reeds geïmporteerde scripts
-      successful_entry_html: "%{script_name} - %{sync_type} is voor het laatst gesynchroniseerd op %{last_sync_date}."
+      successful_entry_html: "%{script_link} - %{sync_type} is voor het laatst gesynchroniseerd op %{last_sync_date}."
       unknown_date: "(onbekend)"
-      failed_entry_html: "%{script_name} - %{sync_type} is voor het laatst getracht te synchroniseren op %{last_sync_attempt_date} - %{sync_error}"
+      failed_entry_html: "%{script_link} - %{sync_type} is voor het laatst getracht te synchroniseren op %{last_sync_attempt_date} - %{sync_error}"
     results:
       title: "Importresultaat"
       success: "De volgende scripts zijn geïmporteerd:"

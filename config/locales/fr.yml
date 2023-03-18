@@ -1394,7 +1394,7 @@ fr:
         subject: "Votre rapport sur %{script_name} de %{site_name} a été fermé"
         body_html: |
             <p>
-            Votre rapport sur %{script_link :%{script_name}} de %{site_name} a été fermé car le script a été supprimé par son auteur. Vous pouvez %{report_link:revoir le rapport}.
+            Votre rapport sur %{script_link:%{script_name}} de %{site_name} a été fermé car le script a été supprimé par son auteur. Vous pouvez %{report_link:revoir le rapport}.
             </p>
       report_dismissed_reporter:
         subject: "Votre rapport sur%{script_name}par%{site_name}a été rejeté"
