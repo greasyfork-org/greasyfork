@@ -322,7 +322,7 @@ class BitbucketWebhookTest < ActionDispatch::IntegrationTest
     Git.expects(:get_files_changed).yields('12245dbfb00de399a3108828b5aa2dc8bdbc4107', ['test.user.js'])
     webhook_request(user)
     assert_equal '200', response.code
-    assert_equal({ 'updated_scripts' => [], 'updated_failed' => [] }, JSON.parse(response.body))
+    assert_equal({ 'updated_scripts' => [], 'updated_failed' => [] }, response.parsed_body)
   end
 
   def test_webhook_change
@@ -333,6 +333,6 @@ class BitbucketWebhookTest < ActionDispatch::IntegrationTest
     user = User.find(1)
     webhook_request(user)
     assert_equal '200', response.code
-    assert_equal({ 'updated_scripts' => ['https://greasyfork.org/en/scripts/18-mb-funkey-illustrated-records-15'], 'updated_failed' => [] }, JSON.parse(response.body))
+    assert_equal({ 'updated_scripts' => ['https://greasyfork.org/en/scripts/18-mb-funkey-illustrated-records-15'], 'updated_failed' => [] }, response.parsed_body)
   end
 end

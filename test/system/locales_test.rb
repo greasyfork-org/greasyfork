@@ -5,7 +5,7 @@ class LocalesTest < ApplicationSystemTestCase
     with_sphinx do
       Rails.application.config.available_locales.keys.each do |locale|
         ensure_locale_exists(locale)
-        visit root_url(locale: locale)
+        visit root_url(locale:)
       end
     end
   end
@@ -14,7 +14,7 @@ class LocalesTest < ApplicationSystemTestCase
     with_sphinx do
       Rails.application.config.available_locales.keys.each do |locale|
         ensure_locale_exists(locale)
-        visit scripts_url(locale: locale)
+        visit scripts_url(locale:)
       end
     end
   end
@@ -23,7 +23,7 @@ class LocalesTest < ApplicationSystemTestCase
     script = scripts(:one)
     Rails.application.config.available_locales.keys.each do |locale|
       ensure_locale_exists(locale)
-      visit script_url(script, locale: locale)
+      visit script_url(script, locale:)
     end
   end
 

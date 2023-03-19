@@ -35,7 +35,7 @@ class GithubWebhookTest < ActionDispatch::IntegrationTest
     Script.find_by(sync_identifier: 'https://github.com/JasonBarnabe/webhooktest/raw/master/test.user.js').update!(sync_identifier: nil)
     push_webhook_request(user)
     assert_equal '200', response.code
-    assert_equal({ 'updated_scripts' => [], 'updated_failed' => [] }, JSON.parse(response.body))
+    assert_equal({ 'updated_scripts' => [], 'updated_failed' => [] }, response.parsed_body)
   end
 
   def test_webhook_push
@@ -44,7 +44,7 @@ class GithubWebhookTest < ActionDispatch::IntegrationTest
     user = User.find(1)
     push_webhook_request(user)
     assert_equal '200', response.code
-    assert_equal({ 'updated_scripts' => ['https://greasyfork.org/en/scripts/18-mb-funkey-illustrated-records-15'], 'updated_failed' => [] }, JSON.parse(response.body))
+    assert_equal({ 'updated_scripts' => ['https://greasyfork.org/en/scripts/18-mb-funkey-illustrated-records-15'], 'updated_failed' => [] }, response.parsed_body)
   end
 
   def test_webhook_release
@@ -53,7 +53,7 @@ class GithubWebhookTest < ActionDispatch::IntegrationTest
     user = User.find(1)
     release_webhook_request(user)
     assert_equal '200', response.code
-    assert_equal({ 'updated_scripts' => ['https://greasyfork.org/en/scripts/18-mb-funkey-illustrated-records-15'], 'updated_failed' => [] }, JSON.parse(response.body))
+    assert_equal({ 'updated_scripts' => ['https://greasyfork.org/en/scripts/18-mb-funkey-illustrated-records-15'], 'updated_failed' => [] }, response.parsed_body)
   end
 
   def test_webhook_release_with_raw_subdomain
@@ -63,7 +63,7 @@ class GithubWebhookTest < ActionDispatch::IntegrationTest
     user = User.find(1)
     release_webhook_request(user)
     assert_equal '200', response.code
-    assert_equal({ 'updated_scripts' => ['https://greasyfork.org/en/scripts/18-mb-funkey-illustrated-records-15'], 'updated_failed' => [] }, JSON.parse(response.body))
+    assert_equal({ 'updated_scripts' => ['https://greasyfork.org/en/scripts/18-mb-funkey-illustrated-records-15'], 'updated_failed' => [] }, response.parsed_body)
   end
 
   def test_webhook_release_with_download_url
@@ -73,7 +73,7 @@ class GithubWebhookTest < ActionDispatch::IntegrationTest
     user = User.find(1)
     release_webhook_request(user)
     assert_equal '200', response.code
-    assert_equal({ 'updated_scripts' => ['https://greasyfork.org/en/scripts/18-mb-funkey-illustrated-records-15'], 'updated_failed' => [] }, JSON.parse(response.body))
+    assert_equal({ 'updated_scripts' => ['https://greasyfork.org/en/scripts/18-mb-funkey-illustrated-records-15'], 'updated_failed' => [] }, response.parsed_body)
   end
 
   def test_webhook_release_no_match
@@ -82,6 +82,6 @@ class GithubWebhookTest < ActionDispatch::IntegrationTest
     user = User.find(1)
     release_webhook_request(user)
     assert_equal '200', response.code
-    assert_equal({ 'message' => 'No scripts found for this release.' }, JSON.parse(response.body))
+    assert_equal({ 'message' => 'No scripts found for this release.' }, response.parsed_body)
   end
 end
