@@ -3,14 +3,16 @@ module PageCache
   CSRF_TOKEN = '__CSRF_TOKEN__'.freeze
   IP_ADDRESS = '__IP_ADDRESS__'.freeze
 
-  def cache_page(page_key)
+  def cache_page(page_key, ttl: 1.minute)
+    ttl = 0.seconds if Rails.env.test?
+
     if page_key.nil? || current_user
       html, status = yield
       render(html:, status: status || 200)
       return
     end
 
-    html, status = Rails.cache.fetch(page_key, expires_in: 1.minute) do
+    html, status = Rails.cache.fetch(page_key, expires_in: ttl) do
       @caching_request = true
       yield
     end

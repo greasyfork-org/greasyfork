@@ -2,6 +2,7 @@ class DiscussionsController < ApplicationController
   include DiscussionHelper
   include ScriptAndVersions
   include UserTextHelper
+  include PageCache
 
   FILTER_RESULT = Struct.new(:category, :by_user, :related_to_me, :read_status, :locale, :result, :visibility)
 
@@ -14,32 +15,37 @@ class DiscussionsController < ApplicationController
   layout 'application', only: [:new, :create]
 
   def index
-    @discussions = Discussion
-                   .includes(:poster, :script, :discussion_category, :stat_first_comment, :stat_last_replier)
-                   .order(stat_last_reply_date: :desc)
+    should_cache_page = current_user.nil? && request.format.html? && (params.keys - %w[locale controller action site page]).none?
+    cache_page(should_cache_page ? "discussion_index/#{params.values.join('/')}" : nil, ttl: 15.seconds) do
+      @discussions = Discussion
+                     .includes(:poster, :script, :discussion_category, :stat_first_comment, :stat_last_replier)
+                     .order(stat_last_reply_date: :desc)
 
-    case script_subset
-    when :sleazyfork
-      @discussions = @discussions.where(scripts: { sensitive: true })
-    when :greasyfork
-      @discussions = @discussions.where(scripts: { sensitive: [nil, false] })
-    when :all
-      # No restrictions
-    else
-      raise "Unknown subset #{script_subset}"
+      case script_subset
+      when :sleazyfork
+        @discussions = @discussions.where(scripts: { sensitive: true })
+      when :greasyfork
+        @discussions = @discussions.where(scripts: { sensitive: [nil, false] })
+      when :all
+        # No restrictions
+      else
+        raise "Unknown subset #{script_subset}"
+      end
+
+      @discussions = @discussions.where(scripts: { delete_type: nil }).where(report_id: nil) unless current_user&.moderator?
+
+      @filter_result = apply_filters(@discussions)
+
+      @discussions = @filter_result.result
+      @discussions = @discussions.paginate(page: page_number, per_page: per_page(default: 25))
+      @bots = 'noindex' unless page_number == 1
+
+      @discussion_ids_read = DiscussionRead.read_ids_for(@discussions, current_user) if current_user
+
+      @possible_locales = Locale.with_discussions.order(:code)
+
+      render_to_string
     end
-
-    @discussions = @discussions.where(scripts: { delete_type: nil }).where(report_id: nil) unless current_user&.moderator?
-
-    @filter_result = apply_filters(@discussions)
-
-    @discussions = @filter_result.result
-    @discussions = @discussions.paginate(page: page_number, per_page: per_page(default: 25))
-    @bots = 'noindex' unless page_number == 1
-
-    @discussion_ids_read = DiscussionRead.read_ids_for(@discussions, current_user) if current_user
-
-    @possible_locales = Locale.with_discussions.order(:code)
   end
 
   def show
