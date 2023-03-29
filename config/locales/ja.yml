@@ -4,7 +4,7 @@ ja:
       script_list: "スクリプト"
       forum: "掲示板"
       help: "ヘルプ"
-      sign_in: "サインイン"
+      sign_in: "ログイン"
       submenu: "その他"
       advanced_search: "詳細検索"
       user_list: "ユーザー一覧"
@@ -513,6 +513,9 @@ ja:
     sign_in_external: "ソーシャルアカウントでログイン"
     sign_in_with: "%{provider} でログイン"
     sign_in_password: "または"
+    sign_in_email_used_no_external_services_html: "%{email} はユーザー「%{user_name}」によって既に使用されています。これはあなたであり、さらに %{provider} ログインを追加したいなら、あなたのアカウントログインし %{sign_in_link}、%{provider} ログインを追加してください。"
+    sign_in_email_used_with_external_services_html: "%{email} はユーザー「%{user_name}」によって既に使用されており、 %{existing_providers} でログインされています。これはあなたであり、さらに %{provider} ログインを追加したいなら、あなたのアカウントにログインし %{sign_in_link}、%{provider} ログインを追加してください。"
+    sign_in_email_used_sign_in_link: "ログイン"
     sign_in_email_missing: "%{site_name} にアカウントを作成するにはメールアドレスが必要ですが、%{provider} からはメールアドレスを取得できませんでした。%{provider} のアカウントにメールアドレスを追加してから、もう一度ログインしてみてください。Email と Password で %{site_name} にアカウント登録してから、%{provider} による認証を追加することもできます。"
     sign_in_name_used: "「%{name}」という名前はすでに利用されています。別の名前を入力してください。"
     sign_in_name_used_submit: "登録"
@@ -539,6 +542,7 @@ ja:
     update_password: "更新"
     update_password_no_match: "「Password」と「Password confirmation」が一致しません。"
     password_updated: "パスワードを更新しました。"
+    remove_password_info: "パスワードを削除し外部のログインアカウントだけにすることもできます。"
     remove_password: "パスワードを削除"
     cant_remove_password: "パスワードを削除する前に、ソーシャルアカウントでログインできるようにしてください。"
     cant_remove_sign_in: "%{provider} との連携を解除する前に、パスワードを設定するか他のソーシャルアカウントでログインできるようにしてください。"
@@ -550,6 +554,7 @@ ja:
     external_sign_in_updated: "%{provider} の同期設定を更新しました。"
     external_sign_in_removed: "%{provider} との連携を解除しました。"
     external_sign_in_failed: "%{provider} にログインできませんでした: %{error}"
+    external_sign_in_already_used: "%{provider} のログインの追加に失敗: このログインは、ユーザー「%{user_name}によって既に使用されています。"
     external_sign_in_confirmation: "%{provider} アカウントの情報をもとに、新しい %{site_name} アカウントが作成されました。公開ユーザー名は「%{username}」です。"
     syncing_indicator: "【同期中】"
     enable_syncing: "同期する"
@@ -616,7 +621,7 @@ ja:
       with_report: "このアカウントは、%{report_link:この報告への対処}によりアクセス禁止となりました。ご希望であれば、%{delete_link:delete アカウントを削除}することもできます。"
       with_reason: "このアカウントはアクセス禁止されました。管理担当者による理由は以下です: 「%{reason}」 。ご希望であれば、%{delete_link:delete アカウントを削除}することもできます。"
     banned_delete:
-      intro: "アカウントを削除すると、あなたが投稿したスクリプトも削除されます。掲示板への投稿は残りますが、ユーザー名は匿名となります。削除後に同じメールアドレスで再登録することはできません。アカウントを削除するには、以下からサインインしてください。"
+      intro: "アカウントを削除すると、あなたが投稿したスクリプトも削除されます。掲示板への投稿は残りますが、ユーザー名は匿名となります。削除後に同じメールアドレスで再登録することはできません。アカウントを削除するには、以下からログインしてください。"
       complete: "あなたのアカウントは削除されました"
     badges:
       banned:
@@ -1058,8 +1063,8 @@ ja:
       deleted:
         short: 削除済み
         long: 削除済み
-    sign_in_to_post_discussion: "評価やコメント、質問を投稿するにはサインインしてください。"
-    sign_in_to_post_comment: "返信を投稿するにはサインインしてください。"
+    sign_in_to_post_discussion: "評価やコメント、質問を投稿するにはログインしてください。"
+    sign_in_to_post_comment: "返信を投稿するにはログインしてください。"
     user_filter:
       label: "あなたに関わる議論"
       all: "すべての議論"
