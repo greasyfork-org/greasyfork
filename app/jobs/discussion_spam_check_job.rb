@@ -9,13 +9,14 @@ class DiscussionSpamCheckJob < ApplicationJob
     check_with_akismet(discussion, ip, user_agent, referrer)
   end
 
-  def pattern_check(_discussion)
-    return false
+  def pattern_check(discussion)
     # WeChat spam
     # return false unless discussion.first_comment.text.match?(/\p{Han}/) && discussion.first_comment.text.match?(/[0-9]{5,}\z/)
 
-    # discussion.update(review_reason: Discussion::REVIEW_REASON_RAINMAN)
-    # Report.create!(item: discussion, auto_reporter: 'rainman', reason: Report::REASON_SPAM)
+    return false unless discussion.first_comment.text.include?('yxd02040608')
+
+    discussion.update(review_reason: Discussion::REVIEW_REASON_RAINMAN)
+    Report.create!(item: discussion, auto_reporter: 'rainman', reason: Report::REASON_SPAM)
   end
 
   def check_with_akismet(discussion, ip, user_agent, referrer)
