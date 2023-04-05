@@ -554,6 +554,7 @@ tr:
     show_ads_description: "%{site_name}'u reklamların görünmelerine izin vererek destekleyin"
     show_sensitive_description: "Yetişkin içerikli scriptleri göster"
     preferred_markup_description: "Yeni scriptler ve gönderiler için kullanılacak."
+    filter_locale_default_description: "Varsayılan olarak, sadece şu anki yerel ayarda bulunan içerikleri listele"
     greasy_fork_scripts_link:
       one: "%{user_name}'nin ayrıca Greasy Fork'da %{count} scripti var."
       other: "%{user_name}'nin ayrıca Greasy Fork'da %{count} scripti var."
@@ -602,12 +603,25 @@ tr:
     notifications:
       discussion_defaults:
         title: Forum bildirimleri
+        new_discussion: Varsayılan olarak, başlattığınız tüm konuşmaları takip edin
+        new_comment: Varsayılan olarak yorum attığınız tüm tartışmaları takip edin
+        mention: Bir tartışmada birisi sizden bahsettiğinde bildirim alın
+      conversation_defaults:
+        title: Konuşma bildirimleri
+        starter: Varsayılan olarak, başlattığınız tüm konuşmaları takip edin
+        receiver: Varsayılan olarak, sizi ilgilendiren ama sizin başlatmadığınız tüm konuşmaları takip edin
+      report_defaults:
+        title: Rapor bildirimleri
+        reporter: Sizin oluşturduğunuz rapor çözümlendiğinde bildirim alın
       save_button: Bildirim ayarlarını güncelle
       title: Bildirimler
       save_success: Bildirim tercihleriniz güncellendi.
       unsubscribe_all: Tüm bildirim aboneliklerinden ayrıl
       unsubscribe_all_success: Tüm bildirim aboneliklerinden ayrıldınız.
     account_banned: Bu hesap yasaklandı.
+  webhooks:
+    info:
+      title: Web kancası kurma
   help:
     sections:
       usage: Kullanım
@@ -638,6 +652,10 @@ tr:
       miscellaneous_header: Çeşitli
     external_scripts:
       title: "%{site_name} sitesinin harici scriptlerdeki politikası"
+      allowed_external_codes:
+        heading: İzin verilen dış kodlar
+    cdns:
+      title: İzin verilen CDNler
     script_rewriting:
       title: "%{site_name}, gönderilen scriptleri nasıl yeniden yazacak"
     site_feedback_link: "%{site_name} için bir sorun bildir veya birşetler söyle"
@@ -724,7 +742,9 @@ tr:
       minified: "Sıkıştırılmış kod"
       external_code: "İzin verilmeyen harici kod"
       undisclosed_antifeature: "Belirtilmeyen %{antifeature_link:istenmeyen özellik} (örn. reklam, izleme, madencilik vs.)"
+      wrong_category: "Yanlış kategori"
       other: "Diğer"
+    report_intro: "%{reported_item}, %{report_date}tarihinde %{reporter}tarafından %{reason}sebebiyle raporlandı."
     explanation_placeholder: "İlave detaylar paylaşın (isteğe bağlı)"
     create_button: "Rapor oluştur"
     report_user: "Kullanıcı raporla"
@@ -733,9 +753,13 @@ tr:
     result_dismissed: "Bu rapor moderatör tarafından reddedildi."
     result_upheld: "Bu rapor moderatör tarafından onaylanmıştı"
     result_pending: "Bu rapor moderatör tarafından incelenmeyi bekliyor."
+    rebuttal_placeholder: 'Moderatöre neden scriptiniz kaldırmaması gerektiğini açıklayın.'
+    rebuttal_submitted: Bir moderatör bu raporu ve sizin açıklamanızı inceleyecek ve karar verecek.
     delete_script: "Scripti sil"
     loading_diff: "Yükleniyor…"
   appeals:
+    new:
+      title: Yeni script silme itirazı
     dismissed_by_moderator: Bir moderatör bu itirazı reddetti.
   discussions:
     title: Tartışmalar
@@ -752,6 +776,7 @@ tr:
     delete_comment: "Sil"
     delete_comment_confirm: Bu yorumu silmek istediğinize emin misiniz?
     delete_discussion: "Sil"
+    delete_discussion_confirm: Bu tartışmayı silmek istediğine emin misin?
     update_comment_submit: "Yorumu güncelle"
     cancel_update_comment: "İptal"
     quote_comment: "Alıntı"
@@ -815,6 +840,7 @@ tr:
         description: Mevcut kullanıcı script ve stilleri hakkında tartışmalar.
       moderators:
         name: Moderatörler
+        description: Moderatörler için özel tartışma.
     new_button: Yeni Tartışma
     no_discussions: Tartışma bulunamadı.
     mark_all_read: Tümünü okundu işaretle
@@ -823,7 +849,7 @@ tr:
     new_link: Yeni bir konuşma oluştur
     new_button: Konuşma başlat
     send_message: Mesaj gönder
-    conversation_list_title: Konuşamalar
+    conversation_list_title: Konuşmalar
     no_conversations: Henüz hiç konuşmanız yok.
     no_recent_conversations: Son zamanlarda bir konuşmanız yok.
     recent:
@@ -837,6 +863,7 @@ tr:
     allowed_elements_and_attributes_title: "HTML içerik için izin verilen elementler"
     allowed_elements_intro: "Aşağıdaki unsurlar ve nitelikleri izin verilir. Bu her ikisi için HTML ve Markdown (daha sonra HTML'ye dönüştürülmesi) geçerlidir."
     allowed_elements_extra_info: "Boşluklar p ya da br elementlerine dönüşecektir. URL'ler otomatik olarak linklenecektir."
+    allowed_css_intro: "Aşağıdaki CSS özelliklerinin tüm elementlerin üstünde izni vardır."
     not_found_text: "404 - sayfa bulunamadı."
     not_found_title: "404 - Sayfa Bulunamadı"
     not_found_link_home: "Anasayfaya git."
@@ -867,6 +894,7 @@ tr:
         show_ads: "Reklamları göster"
         show_sensitive: "Yetişkin içerik"
         preferred_markup: "Tercih biçimlendir"
+        filter_locale_default: "Yerel ayarları filtrele"
         current_password: "Mevcut şifre"
         new_password: "Yeni şifre"
         new_password_confirmation: "Yeni şifreyi onayla"
@@ -894,6 +922,8 @@ tr:
         user_input: Kullanıcı
       message:
         content: Mesaj
+      script_lock_appeal:
+        text: Başvuru
   errors:
     messages:
       script_missing_name: "Gerekli - Bir @isim belirle"
@@ -926,6 +956,17 @@ tr:
       existing: "Aşağıdaki scriptler zaten içe aktarıldı:"
       failure: "Aşağıdaki scriptler içe aktarılamıyor:"
   mailers:
+    script_report:
+      report_created_offender:
+        subject: "%{site_name} sitesindeki %{script_name} scriptiniz birisi tarafından raporlandı"
+      report_upheld_offender:
+        subject: "%{site_name} sitesindeki %{script_name} scriptiniz silinmiştir"
+      report_upheld_reporter:
+        subject: "%{site_name}  sitesindeki %{script_name} scriptine karşı verdiğiniz rapor onaylandı"
+      report_script_deleted_reporter:
+        subject: "%{site_name} sitesindeki %{script_name} scriptine karşı verdiğiniz rapor kapatıldı"
+      report_dismissed_reporter:
+        subject: "%{site_name} sitesindeki %{script_name} scriptine karşılık verdiğiniz rapor reddedildi"
     consecutive_bad_ratings:
       notify:
         subject: "%{script_name} scriptinize %{site_name} sitesinde bir çok \"Kötü\" yorum yapıldı."
@@ -937,6 +978,10 @@ tr:
       subject: "%{site_name} sitesinde %{user} size bir mesaj yolladı"
     script_lock_appeal:
       dismiss:
+        subject: '%{site_name} sitesindeki scriptin silinmesine karşı yaptığınız itirazınız reddedildi'
+        intro_html: '%{script} scriptinin silinmesine yaptığınız itiraz bir moderatör tarafından reddedildi. Script silinmiş kalacak.'
         moderator_notes: "Moderatör şu yorumu yaptı:"
       unlock:
+        subject: '%{site_name} sitesindeki scriptin silinmesine karşı yaptığınız itirazınız onaylandı.'
+        intro_html: '%{script} scriptinin silinmesine karşı yaptığınız itiraz bir moderatör tarafından onaylandı. Script artık silinmiş değil ve herkese açık bir şekilde erişilebilir bir halde.'
         moderator_notes: "Moderatör şu yorumu yaptı:"

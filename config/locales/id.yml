@@ -130,7 +130,10 @@ id:
     derivatives_exact_copies_list_intro: "Skrip berikut memiliki kode yang sama persis dengan milik Anda:"
     derivatives_similar_heading: "Skrip yang mirip"
     derivatives_similar_info: "Kami secara berkala memeriksa versi terbaru dari semua skrip lain untuk menemukan yang paling mirip dengan Anda. Kami juga memeriksa setiap kali Anda memposting pembaruan ke skrip Anda dan atas permintaan Anda."
+    similarity_score:
+      high: Sangat mirip
     derivatives_similar_check_now: "Mengecek ulang sekarang"
+    derivatives_similiar_queued: Pemeriksaan kesamaan akan selesai dalam beberapa menit.
     listing_title_all_sites: "Skrip untuk semua situs"
     listing_description_all_sites: "Skrip yang menambah fitur dan membuang bug pada semua situs"
     listing_title_for_site: "Skrip untuk %{site}"
@@ -157,7 +160,11 @@ id:
     listing_created_feed: "Skrip baru"
     listing_updated_feed: "Skrip terbaru"
     listing_none: "(Kosong)"
+    listing_language_all: "Semua"
+    listing_language_js: "JavaScript"
+    listing_language_css: "CSS"
     import: "Impor skrip"
+    new: "Publikasikan skrip yang telah Anda tulis"
     new_css: "Publikasi style yang kamu tulis"
     support_site: "Kunjungi situs dukungan penulis."
     support_email: "Kirim surel ke penulis untuk dukungan."
@@ -187,6 +194,7 @@ id:
     type_1_html: "Skrip publik - untuk semua orang lihat dan gunakan."
     type_2_html: "Skrip tidak terdaftar - untuk penggunaan (semi-)pribadi. Tersedia melalui akses langsung, tetapi tidak ditautkan dari manapun di %{site_name}."
     type_3_html: "Pustaka - skrip yang dibutuhkan <code>@require</code> oleh / dari skrip lain dan tidak untuk dipasang secara langsung."
+    override_warning_checkbox_label: "Tetap simpan"
     warning_version_not_incremented_html: "Anda memperbarui kode tetapi tidak meningkatkan angka <code>@version</code>. Siapapun yang sebelumnya memasang skrip anda kemungkinan tidak akan mendapatkan kode yang terbarui."
     warning_namespace_changed_html: "<code>@namespace</code> anda telah berubah. <code>@namespace</code> yang konsisten mengizinkan pengguna memasang ulang skrip anda untuk memperbaruinya."
     warning_potentially_minified_html: "Skrip anda sepertinya mengandung kode yang diminimalkan (dimampatkan). Jika anda menggunakan pustaka yang diminimalkan, mohon gunakan <code>@require</code> dari %{allowed_requires_link}. Skrip dengan kode yang diminimalkan akan dibuang."
@@ -203,6 +211,7 @@ id:
     sync_type_intro: "Skrip akan diselaraskan:"
     sync_type_1:
       name: Panduan
+      description: itu akan diperiksa untuk pembaruan hanya ketika Anda memicunya
     sync_type_2:
       name: Otomatis
     sync_type_3:
@@ -241,6 +250,7 @@ id:
     adult_content_on_greasy_logged_in_error: "Skrip ini tidak lagi tersedia di situs ini sesuai dengan %{edit_account_link:Pengaturan akun Greasy Fork}."
     adult_content_on_greasy_not_logged_in_error: "Skrip ini tidak lagi secara anonim tersedia di situs ini. %{login_link:Masuk} dan periksa pengaturan akun Greasy Fork Anda."
     non_adult_content_on_sleazy: "Skrip ini tidak tersedia di situs ini."
+    not_js_convertible_override_header: "Konversi ke JS"
     adult_marker: "(Dewasa)"
     deleted_marker: "(Dihapus)"
     locked_marker: "(Dikunci)"
@@ -250,6 +260,17 @@ id:
     by_site_list_filter: "Saring menurut nama situs:"
     search_placeholder: "Cari Skrip"
     updated: "Skrip diperbarui"
+    preview_additional_info: "pratinjau"
+    authors_heading: "Penulis"
+    invitations:
+      form_title: "Undang penulis lain"
+      explanation: "Anda dapat menambahkan pengguna Greasy Fork yang lainnya sebagai penulis skrip ini. Mereka akan memiliki hak yang sama seperti yang ada pada skrip ini seperti Anda."
+      invited_user_url_label: "Pengguna untuk mengundang"
+      submit: "Kirim undangan"
+      invalid_user_url: "URL pengguna yang diundang tidak valid."
+      already_author: "Pengguna yang Anda tentukan sudah menjadi penulis skrip ini."
+      sent: "Undangan telah dikirim."
+      current_user_already_author: "Anda sudah menjadi penulis skrip ini."
     new_title:
       css: "Posting style baru"
     badges:
@@ -435,6 +456,8 @@ id:
     item_script_html: "Skrip: %{script_link}"
     item_deleted_script: "Skrip terhapus %{id}"
     item_user_html: "Pengguna: %{user_link}"
+  reports:
+    rebuttal_placeholder: 'Jelaskan kepada moderator mengapa skrip ini tidak boleh dihapus.'
   common:
     allowed_elements_link: "(Lihat kode yang diizinkan.)"
     allowed_elements_and_attributes_title: "Elemen yang diizinkan untuk konten HTML"
