@@ -25,7 +25,7 @@ class ScriptCodeSearch
           index_content(row[0], row[1], skip_dir_create: true)
         end
       end
-      (Set.new(Dir.children(BASE_PATH)) - script_ids.map(&:to_s).to_set).each do |f|
+      (Set.new(Dir.children(BASE_PATH)) - script_ids.to_set(&:to_s)).each do |f|
         File.delete(File.join(BASE_PATH, f))
       end
     end
