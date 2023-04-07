@@ -103,7 +103,6 @@ class UsersController < ApplicationController
           { url: current_path_with_params(format: :jsonp, callback: 'callback'), type: 'application/javascript' },
         ]
         @canonical_params = [:id, :page, :per_page, :set, :site, :sort, :language]
-        @ad_method = general_ads_setting || AdMethod.ea
 
         if @same_user
           conversation_scope = current_user.conversations.includes(:users, :stat_last_poster)

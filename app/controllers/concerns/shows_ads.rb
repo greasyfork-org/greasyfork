@@ -3,6 +3,8 @@ module ShowsAds
     no_ads = general_ads_setting
     return no_ads if no_ads
 
+    return AdMethod.ev if sleazy?
+
     AdMethod.ga
   end
 
@@ -11,6 +13,8 @@ module ShowsAds
     return no_ads if no_ads
 
     return AdMethod.no_ad(:script_deleted) if script.nil? || script.deleted?
+
+    return AdMethod.ev if sleazy?
 
     return AdMethod.no_ad(:sensitive) if script&.sensitive
 
@@ -23,6 +27,8 @@ module ShowsAds
     no_ads = general_ads_setting
     return no_ads if no_ads
 
+    return AdMethod.ev if sleazy?
+
     # #size, not #count, here because #count does things wrong with will_paginate, which is used when this is filtered
     # by a ScriptSet.
     # https://github.com/mislav/will_paginate/issues/449
@@ -32,9 +38,10 @@ module ShowsAds
     AdMethod.ea
   end
 
+  private
+
   def general_ads_setting
     return AdMethod.no_ad(:test) if Rails.env.test?
-    return AdMethod.no_ad(:sleazy) if sleazy?
     return AdMethod.no_ad(:user_pref) if current_user && !current_user.show_ads
   end
 

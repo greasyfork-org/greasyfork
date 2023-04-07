@@ -31,6 +31,10 @@ class AdMethod
     @ad_method == 'ca'
   end
 
+  def ev?
+    @ad_method == 'ev'
+  end
+
   def self.ga
     new('ga')
   end
@@ -41,6 +45,10 @@ class AdMethod
 
   def self.ea
     new('ea')
+  end
+
+  def self.ev
+    new('ev')
   end
 
   def self.no_ad(reason)
