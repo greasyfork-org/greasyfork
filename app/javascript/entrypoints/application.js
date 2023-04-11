@@ -1,5 +1,5 @@
 import '@rails/ujs';
-import '@github/time-elements';
+import '@github/relative-time-element';
 
 import '../stylesheets/application.css'
 
