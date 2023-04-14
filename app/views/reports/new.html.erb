@@ -32,13 +32,17 @@
     <%= f.label :reason %><br>
     <% possible_reasons = case @report.item
       when Script; Report::SCRIPT_REASONS
-      when Discussion; Report::DISCUSSION_REASONS;
+      when Discussion; Report::DISCUSSION_REASONS
       else Report::NON_SCRIPT_REASONS
     end %>
     <% if @report.item.is_a?(Script) %>
       <div>
         <%= f.radio_button(:reason, 'non_functional', required: true) %> <%= f.label :reason, t('reports.reason.non_functional'), class: 'radio-label', value: 'non_functional' %><br>
         <div class="after-radio-chosen alert"><%= it('reports.non_functional_feedback', feedback_link: feedback_script_path(@report.item)) %></div>
+      </div>
+      <div>
+        <%= f.radio_button(:reason, 'paid_benefits', required: true) %> <%= f.label :reason, t('reports.reason.paid_benefits'), class: 'radio-label', value: 'paid_benefits' %><br>
+        <div class="after-radio-chosen alert"><%= it('reports.paid_benefits_feedback', feedback_link: feedback_script_path(@report.item), site_name: site_name) %></div>
       </div>
     <% end %>
     <% possible_reasons.each do |reason| %>
