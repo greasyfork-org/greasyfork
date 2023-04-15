@@ -1,48 +1,56 @@
-(function() {
+function makeExpandable(expandable) {
+  // Use a multiple of line height to prevent partially displayed lines
+  let height = parseInt(getComputedStyle(expandable).height)
+  let lineHeight = 18 // This depends on waiting for the font to load - expandable.firstElementChild.getBoundingClientRect().height
 
-  function init() {
-    var expandable = document.getElementById("script-applies-to");
-    if (!expandable) {
-      return;
-    }
-    // Use a multiple of line height to prevent partially displayed lines
-    var height = parseInt(getComputedStyle(expandable).height, 10);
-    var lineHeight = parseInt(getComputedStyle(expandable).lineHeight, 10) || parseInt(getComputedStyle(expandable).fontSize, 10);
-    // Matching the number of metas on the other side
-    var lines = 8;
-    var maxAllowedHeight = lineHeight * lines;
-    if (height <= maxAllowedHeight) {
-      return;
-    }
-
-    expandable.style.overflow = "hidden";
-    expandable.parentNode.style.position = "relative";
-
-    function toggle(andScroll) {
-      if (expandable.style.height == "auto" || expandable.style.height == "") {
-        expandable.style.height = maxAllowedHeight + "px";
-        span.removeChild(span.firstChild);
-        span.appendChild(document.createTextNode(expandable.getAttribute("data-show-more-text")))
-        if (andScroll) {
-          setTimeout(function() {expandable.scrollIntoView()}, 10);
-        }
-      } else {
-        expandable.style.height = "auto";
-        span.removeChild(span.firstChild);
-        span.appendChild(document.createTextNode(expandable.getAttribute("data-show-less-text")));
-      }
-    }
-
-    var span = document.createElement("span");
-    span.className = "expander";
-    span.style.position = "absolute";
-    span.style.right = "0";
-    span.style.marginTop = "-" + lineHeight + "px";
-    span.appendChild(document.createTextNode(expandable.getAttribute("data-show-more-text")));
-    span.addEventListener("click", function(){toggle(true)});
-    expandable.parentNode.appendChild(span);
-    toggle(false);
+  let lines = 4
+  let maxAllowedHeight = lineHeight * lines
+  if (height <= maxAllowedHeight) {
+    return
   }
 
-  window.addEventListener("DOMContentLoaded", init);
-})();
+  expandable.parentNode.style.position = "relative"
+  expandable.style.height = maxAllowedHeight + "px"
+
+  let rtl = getComputedStyle(document.documentElement).direction == 'rtl'
+  let narrowMode = document.documentElement.clientWidth <= 600
+
+  function toggle() {
+    if (expandable.classList.contains('expanded')) {
+      if (narrowMode) {
+        expandable.style.height = maxAllowedHeight + "px"
+      } else {
+        expandable.style.marginInlineEnd = ""
+        span.style.marginInlineEnd = ""
+      }
+      span.removeChild(span.firstChild)
+      span.appendChild(document.createTextNode("+"))
+      expandable.classList.remove('expanded')
+      expandable.classList.add('collapsed')
+    } else {
+      if (narrowMode) {
+        expandable.style.height = "auto"
+      } else {
+        let widthConstraint = document.querySelector('.width-constraint')
+        let availableWidth = rtl ? (widthConstraint.getBoundingClientRect().left - expandable.getBoundingClientRect().left + 40) : (widthConstraint.getBoundingClientRect().right - expandable.getBoundingClientRect().right - 40)
+
+        expandable.style.marginInlineEnd = "-" + availableWidth + "px"
+        span.style.marginInlineEnd = "-" + availableWidth + "px"
+      }
+      span.removeChild(span.firstChild)
+      span.appendChild(document.createTextNode("-"))
+      expandable.classList.add('expanded')
+      expandable.classList.remove('collapsed')
+    }
+  }
+
+  let span = document.createElement("span")
+  span.className = "expander"
+  span.appendChild(document.createTextNode("+"))
+  span.addEventListener("click", toggle)
+  expandable.insertAdjacentElement('afterend', span)
+  expandable.classList.add('expanded')
+  toggle()
+}
+
+window.addEventListener("DOMContentLoaded", () => { document.querySelectorAll('.expandable').forEach(makeExpandable) })

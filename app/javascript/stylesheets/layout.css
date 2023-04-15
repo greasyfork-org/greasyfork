@@ -252,18 +252,31 @@ nav .with-submenu:hover > a::after, nav .with-submenu > a:focus::after {
   color: white;
 }
 
-.inline-list {
-  display: inline;
+.inline-list, .block-list {
   padding-left: 0;
+  padding-right: 0;
   list-style: none;
 }
-.inline-list li {
+.inline-list {
   display: inline;
 }
-.inline-list li:after {
-  content: ", ";
+.block-list {
+  display: block;
+  margin: 0
 }
-.inline-list li:last-child:after {
+.inline-list li, .block-list li {
+  display: inline;
+}
+.inline-list li:after, .block-list li:after {
+  content: ", ";
+
+}
+body:lang(he) .inline-list li:after, body:lang(he) .block-list li:after,
+body:lang(ar) .inline-list li:after, body:lang(ar) .block-list li:after,
+body:lang(ug) .inline-list li:after, body:lang(ug) .block-list li:after {
+  content: "،";
+}
+.inline-list li:last-child:after, .block-list li:last-child:after {
   content: "";
 }
 dt[title] > span {
@@ -609,15 +622,6 @@ a.self-link, a.self-link:visited {
   padding-left: 1em;
 }
 
-.expander {
-  cursor: pointer;
-  padding: 2px 5px;
-  color: #670000;
-  border-radius: 3px;
-  background-color: #F2E5E5;
-  text-decoration: underline;
-}
-
 .external-login {
   padding: 2px 2px 3px 25px;
   border: 1px solid black;
@@ -781,7 +785,7 @@ form.new_user + a {
   position: absolute;
   -moz-appearance: none;
   -webkit-appearance: none;
-  right: 0;
+  inset-inline-end: 0;
   top: 0;
   border-color: transparent;
   padding-inline-start: 0;

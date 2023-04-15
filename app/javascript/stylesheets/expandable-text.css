@@ -1,0 +1,19 @@
+.expander {
+  cursor: pointer;
+  display: block;
+  color: #670000;
+  border-radius: 3px;
+  background-color: #F2E5E5;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  inset-inline-end: -22px;
+  bottom: 0;
+}
+.expanded {
+  overflow: auto;
+}
+.collapsed {
+  overflow: hidden;
+}

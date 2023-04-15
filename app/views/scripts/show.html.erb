@@ -32,7 +32,7 @@
 
 <%= render partial: 'feedback_suggestion', locals: {script: @script} %>
 
-<div id="script-meta">
+<div class="script-meta-block">
   <dl id="script-stats" class="inline-script-stats">
     <dt class="script-show-author"><span><%= t('scripts.author_name') %></span></dt>
     <dd class="script-show-author"><span><%= @script.users.map { |u| link_to(u.name, u) }.to_sentence.html_safe %></span></dd>
@@ -89,25 +89,21 @@
         </span>
       </dd>
     <% end %>
+    <% unless @script.library? %>
+      <dt class="script-show-applies-to"><span><%= t('scripts.applies_to') %></span></dt>
+      <dd class="script-show-applies-to">
+        <% if @script.script_applies_tos.empty? %>
+          <%= t('scripts.applies_to_all') %>
+        <% else %>
+          <ul class="block-list expandable">
+            <% script_applies_to_list_contents(@script, @by_sites).each do |script_applies_to_content| %>
+              <li><%= script_applies_to_content %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </dd>
+    <% end %>
   </dl>
-  <% unless @script.library? %>
-    <div>
-      <dl id="script-applies-to" class="inline-script-stats" data-show-more-text="<%= t('common.expander_show_more') %>" data-show-less-text="<%= t('common.expander_show_less') %>">
-        <dt class="script-show-applies-to"><span><%= t('scripts.applies_to') %></span></dt>
-        <dd class="script-show-applies-to">
-          <% if @script.script_applies_tos.empty? %>
-            <%= t('scripts.applies_to_all') %>
-          <% else %>
-            <ul class="inline-list">
-              <% script_applies_to_list_contents(@script, @by_sites).each do |script_applies_to_content| %>
-                <li><%= script_applies_to_content %></li>
-              <% end %>
-            </ul>
-          <% end %>
-        </dd>
-      </dl>
-    </div>
-  <% end %>
 </div>
 
 <% localized_additional_info = @script.localized_attribute_for('additional_info', I18n.locale)
