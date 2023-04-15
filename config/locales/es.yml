@@ -1006,6 +1006,7 @@ es:
         </ul>
     reason:
       non_functional: "El script no funciona"
+      paid_benefits: "Se ha pagado por mejoras pero dichas mejoras no están"
       spam: "Spam"
       abuse: "Abusos, perjuicios o discurso del odio"
       illegal: "Contenido ilegal"
@@ -1018,6 +1019,7 @@ es:
       no_description: "Sin descripción o sin dar información adecuada, o proporcionando información engañosa"
       wrong_category: "Categoría incorrecta"
       wrong_category_with_suggestion: "Categoría incorrecta (sugerencia: %{suggested_category})"
+      no_code: 'Sin código, o solo con código de ejemplo tipo «hola mundo»'
       other: "Otros"
     report_intro: "%{reported_item} ha sido denunciado el %{report_date} por %{reason} por %{reporter}"
     report_intro_no_reporter: "%{reported_item}fue reportado %{report_date} por %{reason}"
@@ -1057,6 +1059,7 @@ es:
   appeals:
     new:
       title: Nueva revisión para eliminar script
+      intro_html: 'Tu script se ha eliminado por: %{reason}. Si crees que ha sido un error, o tienes información adicional que presentar, o has actualizado tu script para hacerte cargo del problema, puedes solicitar que lo revisen. Si el equipo de moderación está de acuerdo con los cambios se restaurará el acceso.'
       submit: Enviar apelación
     deletion_reason_html: "%{script} ha sido eliminado porque: %{reason}."
     author_reason: "Apelación enviada por el autor: "
@@ -1207,9 +1210,6 @@ es:
     not_found_link_home: "Ir a la página principal."
     suggest_locale: "%{site_name} está disponible en %{locale_name}."
     incomplete_locale: "La traducción de %{site_name} a %{locale_name} está al %{percent}. Si sabes idiomas puedes ayudarnos."
-    expander_show_more: "Mostrar más"
-    expander_show_less: "Mostrar menos"
-    advertisement_note: Anuncio
     preview_tab: Vista previa
     write_tab: Editar
     listing_options_title: "Opciones de búsqueda"

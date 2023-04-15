@@ -39,6 +39,7 @@ uk:
     reinstall: "Перевстановити версію %{version}"
     old_version_warning: "Це застаріла версія скрипта. Якщо її встановити, новіша версія ніколи не буде встановлена. Все одно встановити?"
     promoted: "Розкручений сценарій"
+    author_promoted: "Скрипт запропонований Автором"
     promoted_text_html: "Вам також може сподобатись %{script_link}."
     library_instructions_html: "Цей скрипт не слід встановлювати безпосередньо. Це - бібліотека для інших скриптів для включення в мета директиву %{code}"
     deleted_notice: "Цей скрипт було видалено."
@@ -60,6 +61,10 @@ uk:
     delete_page: "Видалити"
     delete_explanation: "Видалення скрипту робить його недоступним для всіх окрім вас і модераторів Greasy Fork'у. Ви можете його повернути будь-коли."
     delete_update_behaviour: "Що ви хочете, щоб трапилось вже зі встановленими версіями вашого скрипту?"
+    delete_update_behaviours:
+      keep: "Вони залишаться таким як є."
+      blanked: "Хочу, щоб вони оновились до пустого скрипту. Ця дія є корисною, коли скрипт має негативний ефект на сайтах для яких він призначений."
+      redirect: "Вони будуть перенаправлені і оновлять до скрипту, яки ви вкажете нижче."
     delete_permanently_heading: "Повне знищення"
     delete_permanently_explanation_html: >-
         <p>Видалення сценарію назавжди видалить його та всі пов’язані записи, за винятком
@@ -71,6 +76,7 @@ uk:
     delete_permanently_submit: "Надіслати запит на повне знищення"
     delete_permanently_immediate_submit: "Повністю видалити"
     delete_permanently_notice: "Запит на остаточне видалення було прийнято. Ваш скрипт буде повністю видалено через 7 днів."
+    delete_permanently_already_requested: "Ви подали запит на повне знищення %{datetime}."
     delete_permanently_notice_immediate: "Скрипт був повністю видалений."
     cancel_delete_permanently_submit: "Відмінити запит на повне знищення"
     cancel_delete_permanently_notice: "Ваш запит на повне знищення був скасований. Ваш сценарій досі не видно для інших."
@@ -638,9 +644,6 @@ uk:
     not_found_link_home: "Додому."
     suggest_locale: "%{site_name} доступна на %{locale_name}."
     incomplete_locale: "%{locale_name} переклад %{site_name}'у завершений тільки на %{percent}. Ви можете це змінити."
-    expander_show_more: "Показати більше"
-    expander_show_less: "Показати менше"
-    advertisement_note: Реклама
   activerecord:
     attributes:
       user:
