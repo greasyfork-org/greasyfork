@@ -84,7 +84,7 @@
     <dt class="script-show-license"><span><%= t('scripts.license') %></span></dt>
     <dd class="script-show-license"><span><%= license_display(@script) %></span></dd>
     <% if @script.antifeatures.any? %>
-      <dt class="script-antifeatures"><span>Antifeatures</span></dt>
+      <dt class="script-antifeatures"><span><%= t('scripts.antifeatures.label') %></span></dt>
       <dd class="script-antifeatures">
         <span>
           <%= safe_join(@script.best_antifeatures_for_locale(request_locale).map do |antifeature|
