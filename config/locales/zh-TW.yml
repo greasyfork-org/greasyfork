@@ -42,7 +42,7 @@ zh-TW:
     deleted_notice: "此腳本已被刪除。"
     deleted_notice_with_related: "您請求的腳本已被刪除，但是這裡有一些相關的腳本。"
     deleted_undelete_notice_html: "此腳本已被管理員鎖定，無法復原。原因：「<i>%{delete_reason}</i>」。"
-    deleted_locked_author_notice_html: "這個腳本已經被管理員刪除並且不可被其他人所訪問。原因爲：<i>%{delete_reason}</i>。請回顧規則%{code_rules_link:%{site_name}'s rules}.。如果您仍然認爲本次刪除是錯誤的，您可以%{appeal_link:submit an appeal}本次刪除。請不要重新發佈這個攪拌，否則您將可能會被%{site_name}封禁。"
+    deleted_locked_author_notice_html: "這個腳本已經被管理員刪除並且不可被其他人所訪問。原因爲：<i>%{delete_reason}</i>。請回顧規則%{code_rules_link:%{site_name}的規則}.。如果您仍然認爲本次刪除是錯誤的，您可以對本次刪除%{appeal_link:提出申訴}。請不要重新發佈這個腳本，否則您將可能會被%{site_name}封禁。"
     deleted_author_notice: "此腳本已被刪除，其他人無法訪問。您可以從「刪除」分頁將其復原。"
     version_notice_html: "目前為 %{date} 提交的版本，檢視 %{latest_version_link}。"
     version_notice_latest_version_link: "最新版本"
@@ -215,7 +215,7 @@ zh-TW:
     warning_automatic_sensitive_html: "由於您的腳本執行於 %{sensitive_domains}，它將會被標記為包含成人內容。"
     warning_potentially_minified_allowed_requires_link: "這些網站"
     warning_code_previously_posted_html: "此程式碼已在%{script_links}發布。重新發布此腳本可能被管理員移除。"
-    warning_license_missing_html: "您未宣告<code>@license</code>。透過在%{site_name}發布，您在允許他人使用您的程式碼，但許可將同時允許您告知他人他們可以如何修改並分發您的程式碼。例如，<code>// @license MIT</code>意味著您允許任何人修改並分發您撰寫的程式碼。%{license_chooser_link:更多關於許可的訊息見此。如果您不提供一個許可，%{site_name}會假定您不允許他人修改或分發複製。請注意如果您不是您發布的程式碼的唯一作者，通常您不被允許發布它，除非您獲得了所有作者的許可。"
+    warning_license_missing_html: "您未宣告<code>@license</code>。透過在%{site_name}發布，您在允許他人使用您的程式碼，但許可將同時允許您告知他人他們可以如何修改並分發您的程式碼。例如，<code>// @license MIT</code>意味著您允許任何人修改並分發您撰寫的程式碼。%{license_chooser_link:更多關於許可的訊息見此。}如果您不提供一個許可，%{site_name}會假定您不允許他人修改或分發複製。請注意如果您不是您發布的程式碼的唯一作者，通常您不被允許發布它，除非您獲得了所有作者的許可。"
     warning_license_missing_override_html: "不詢問直接儲存"
     additional_info_locale_prompt: "(語言選擇)"
     additional_info_add_localized: "新增別的語言的「其他資訊」欄位"
@@ -333,7 +333,7 @@ zh-TW:
     install_help_dialog:
       js:
         firefox: 您需要先安裝一個用戶腳本管理器擴展，如 %{tampermonkey_link:Tampermonkey}、%{greasemonkey_link:Greasemonkey} 或 %{violentmonkey_link:Violentmonkey} 之後才能安裝該腳本。
-        chrome: 您需要先安装一个用户脚本管理器扩展，如 %{tampermonkey_link:Tampermonkey} 或 %{violentmonkey_link:Violentmonkey} 后才能安装该脚本。
+        chrome: 您需要先安裝一個使用者腳本管理器擴充功能，如 %{tampermonkey_link:Tampermonkey} 或 %{violentmonkey_link:Violentmonkey} 後才能安裝該腳本。
         opera: 您需要先安裝一個使用者腳本管理器擴充功能，如 %{tampermonkey_link:Tampermonkey}或 %{violentmonkey_link:Violentmonkey} 後才能安裝該腳本。
         safari: 您需要先安裝一個使用者腳本管理器擴充功能，如 %{tampermonkey_link:Tampermonkey}或 %{userscripts_link:Userscripts} 後才能安裝該腳本。
         other: 您需要先安裝一個使用者腳本管理器擴充功能後才能安裝該腳本。
@@ -341,9 +341,14 @@ zh-TW:
       css:
         firefox: 您需要先安裝一個用戶樣式管理器擴展，如 %{stylus_link:Stylus} 後才能安裝該腳本。
         chrome: 您需要先安裝一個使用者腳本管理器擴充功能，如 %{stylus_link:Stylus}後才能安裝該腳本。
+        opera: 您需要先安裝一個使用者樣式管理器擴充功能，如 %{stylus_link:Stylus}後才能安裝該腳本。
+        safari: 您需要先安裝一個使用者樣式管理器擴充功能後才能安裝該腳本。
+        other: 您需要先安裝一個使用者樣式管理器擴充功能後才能安裝該腳本。
+        bypass: （我已經安裝了使用者樣式管理器，讓我安裝！）
       close_dialog: OK
     antifeatures:
       warning_title: 該腳本包含反功能
+      intro: 在您安裝前，%{site_name}希望您了解本腳本包含“可能不受歡迎的功能”，可能幫助腳本的作者獲利，而不能給你帶來任何收益。
       author_explanation_intro: "腳本的作者解釋："
       types:
         ads:
@@ -357,6 +362,13 @@ zh-TW:
           description_html: 此腳本含有挖礦代碼，啟動時將會<b>使用您裝置上的計算資源</b>。
         referral-link:
           title: 推薦連結
+          description_html: 作者從這份腳本<b>獲得佣金</b>， 例如透過重寫連結或提供優惠券代碼以加入推薦或附屬代碼
+        membership:
+          title: 會員資格
+          description_html: 此腳本只有在您 <b>註冊後</b>才能使用全部的功能, 例如加入群組, 訂閱頻道, 或是點讚頁面。
+        payment:
+          title: 支付方式
+          description_html: 此腳本只有在您 <b>付費後</b>才能使用全部的功能。 %{site_name}尚未支付費用，因此無法驗證使用需要付費的商品，也無法幫助您獲得退款。
       install_anyway: 安裝腳本
       cancel_install: 取消
     badges:
@@ -367,6 +379,13 @@ zh-TW:
         short: CSS
         long: 使用者樣式
     related_scripts: "您還可以嘗試以下相關腳本："
+    integrity_hashes:
+      user_notice_html:
+        other: "您的腳本具有不正確的子資源完整性哈希值: %{script_links}."
+      script_notice:
+        text_html:
+          other: "此腳本使用了不正確的子資源完整性哈希值: %{detail}."
+        detail: "<code>%{url}</code> 應使用哈希值<code>%{expected_hash}</code> (上次檢查%{last_checked_at})"
   script_sets:
     description: "腳本收藏集讓你自訂一個腳本列表。你可以把單獨的腳本、其它使用者的收藏集、或自動產生的收藏集，加入包含列表。排除列表也是同樣的方式。"
     favorites_name: "我的最愛"
@@ -447,6 +466,12 @@ zh-TW:
     installing_step1_caption: "Chrome 下使用 TamerMonkey 的截圖"
     installing_step1_description_html: >
         <p>要使用者腳本，您首先要安裝一個用戶腳本管理器。您可以根據目前使用的瀏覽器來選擇一個用戶腳本管理器。</p>
+    desktop_browsers:
+      title: 桌面
+    android_browsers:
+      title: 手機（安卓）
+    ios_browsers:
+      title: 手機 (iOS)
     installing_step2_header: "第 2 步：安裝使用者腳本"
     installing_step2_caption: "使用者腳本的安裝按鈕"
     installing_step2_description_html: >
@@ -594,6 +619,10 @@ zh-TW:
         title: 會話通知
         starter: 預設訂閱你發起的私訊
         receiver: 預設訂閱傳送給你的私訊
+      report_defaults:
+        title: 新的通知
+        reporter: 當您創建的內容得到回應時收到通知
+        reported: 當針對您發布的內容被創建或解決時獲得通知
       save_button: 更新通知設定
       title: 通知
       current_discussion_subscriptions:
@@ -601,10 +630,12 @@ zh-TW:
       save_success: 您的通知設定已更新。
       unsubscribe_all: 停止所有的通知
       unsubscribe_all_success: 您已停用所有通知。
+    account_banned: 該帳戶已被禁止使用。
   webhooks:
     info:
       title: 建立 Webhook
       already_syncing_list: "以下是您已經設定好要與支援的供應商進行同步的腳本："
+      synced_item_html: "%{script_name} - %{sync_type} 同步於 %{sync_url}"
       language_note: 由於 GitHub、GitLab 及 Bitbucket 都只有英文版介面，下方的操作教學將不做翻譯。
   help:
     sections:
@@ -616,6 +647,10 @@ zh-TW:
       title: '如何安裝使用者腳本'
     installing_user_styles:
       title: '如何安裝使用者風格'
+      content_html: |
+          <p>部分腳本在 %{site_name} 可以作為用戶樣式安裝。</p>
+          <p>用戶樣式可以通過以下方式安裝 %{stylus_firefox_link:Stylus for Firefox}, %{stylus_chrome_link:Stylus for Chrome}, and %{stylus_opera_link:Stylus for Opera}.</p>
+          <p>%{styles_link:查看所有可用的用戶樣式}</p>.
     meta_keys:
       title: "%{site_name} 讀取的 meta keys"
       intro_html: "這是 %{site_name} 會讀取的 <a href=\"http://wiki.greasespot.net/Metadata_Block\">使用者腳本 meta keys</a> 的清單。腳本中可以有不在此清單中的 key，也會存在使用者安裝的腳本中，但不會對 %{site_name} 的介面有任何效果。"
