@@ -1012,7 +1012,15 @@ en:
       # description of @updateURL
       updateURL: "Describe how user script managers should get updates. %{site_name} will strip these keys, which makes any script installed from %{site_name} only update from %{site_name}."
       # description of @license
-      license: "The license that describes how people are allowed to copy or modify a script. Using a \"Full name\" or \"Identifier\" from %{spdx_link:the SPDX License List} is recommended. Lack of license implies users can install the script for personal use, but may not redistribute it. License is displayed on a script's info page."
+      license_html: |
+        By posting your script to %{site_name}, you give others permission to install and use it. The license describes whether and how people are allowed to modify and distribute your script. License is displayed on a script's info page. <code>@license</code> can be:
+        <ul>
+          <li>The name of a license (for example, <code>@licence GPL3</code>). Using a "Full name" or "Identifier" from %{spdx_link:the SPDX License List} is recommended.</li>
+          <li>The conditions under which you allow use (for example <code>@license You can modify as long as you credit me</code>, though using a pre-existing license is recommended.</li>
+          <li>A copyright statement (for example <code>@license Copyright MyName</code>) if you don't want to release under a license.</li>
+          <li>Omitted entirely, which is the same as having a copyright statement, but less clear to users.</li>
+        </ul>
+        Note that if your script is based on code someone else wrote, you may be restricted in what license you choose.
       # description of @supportURL
       supportURL: "URL for a page where users can get support on a script (e.g. a bug tracker, a forum, an e-mail address). Support URL is displayed on a script's feedback page."
       # description of @contributionURL. You can replace the sample "business" and "item_name" parameters in the URLs with localized versions.
