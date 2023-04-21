@@ -1,15 +1,6 @@
 <%- title t('scripts.admin.title', script_name: @script.name) %>
 
-<% if !@script.errors.empty? %>
-  <div class="alert">
-    <p><%= t('common.error_preamble') %></p>
-    <ul class="errors">
-      <% @script.errors.full_messages.each do |m| %>
-        <li><%= m %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+<%= render partial: 'shared/errors', locals: { resource: @script } %>
 
 <% if @script.users.include?(current_user) %>
   <%= render partial: 'set_promoted' %>
