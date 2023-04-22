@@ -209,7 +209,9 @@
 
 <% if report.upheld? %>
   <p>
-    <% if current_user&.moderator? && report.resolver %>
+    <% if report.self_upheld %>
+      <%= t('reports.result_self_upheld') %>
+    <% elsif current_user&.moderator? && report.resolver %>
       This report has been upheld by <%= render_user(report.resolver, report.resolver_id) %>.
     <% else %>
       <%= t('reports.result_upheld') %>

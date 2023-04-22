@@ -91,7 +91,7 @@ class Report < ApplicationRecord
     reporter&.update_trusted_report!
   end
 
-  def uphold!(moderator:, moderator_notes: nil, ban_user: false, delete_comments: false, delete_scripts: false, redirect: false)
+  def uphold!(moderator:, moderator_notes: nil, ban_user: false, delete_comments: false, delete_scripts: false, redirect: false, self_upheld: false)
     Report.transaction do
       case item
       when User, Message
@@ -122,7 +122,7 @@ class Report < ApplicationRecord
         raise "Unknown report item #{item}"
       end
 
-      update!(result: RESULT_UPHELD, resolver: moderator, moderator_notes:)
+      update!(result: RESULT_UPHELD, resolver: moderator, moderator_notes:, self_upheld: self_upheld)
       reporter&.update_trusted_report!
     end
 

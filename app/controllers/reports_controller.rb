@@ -127,7 +127,7 @@ class ReportsController < ApplicationController
     end
 
     if user_is_script_author
-      @report.uphold!(moderator: nil)
+      @report.uphold!(moderator: nil, self_upheld: true)
     else
       @report.uphold!(
         moderator: current_user,
