@@ -1,0 +1,16 @@
+.checkup-list {
+  padding-inline-start: 1em;
+}
+.checkup-list li {
+  list-style-type: "✗";
+  padding-inline-start: 0.5em;
+}
+.checkup-list li::marker {
+  color: red;
+}
+.checkup-list li.good-check {
+  list-style-type: "✓";
+}
+.checkup-list li.good-check::marker {
+  color: green;
+}
