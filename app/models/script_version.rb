@@ -424,20 +424,41 @@ class ScriptVersion < ApplicationRecord
 
   def disallowed_requires_used
     r = []
+
+    # Get all the requires
     meta = parser_class.parse_meta(code)
     return r unless meta.key?('require')
 
+    # Filter out the allowlisted ones
+    non_allowlisted_requires = []
     allowed_requires = AllowedRequire.all
     meta['require'].each do |script_url|
       next if script_url.starts_with?('data:')
       next if /\A[^#]+#(md5|sha1|sha256|sha384|sha512)=/.match?(script_url)
 
       uri = URI(script_url).normalize.to_s
-      r << [script_url, :disallowed] if allowed_requires.none? { |ar| uri =~ Regexp.new(ar.pattern) }
+      non_allowlisted_requires << script_url if allowed_requires.none? { |ar| uri =~ Regexp.new(ar.pattern) }
     rescue URI::InvalidURIError
       r << [script_url, :malformed]
     end
-    return r
+
+    # Allow any that match all @includes and @matches
+    applies_to_names = calculate_applies_to_names
+    eligible_for_matching = applies_to_names.any? && applies_to_names.all? { |atn| atn[:domain] }
+    if eligible_for_matching
+      domains = applies_to_names.pluck(:text)
+      non_domain_matched_requires = non_allowlisted_requires.reject do |require|
+        require_host = URI(require).host
+        next false unless require_host
+
+        domains.all? { |domain| require_host == domain || require_host.ends_with?(".#{domain}") }
+      end
+    else
+      non_domain_matched_requires = non_allowlisted_requires
+    end
+    r.concat(non_domain_matched_requires.map { |require| [require, :disallowed] })
+
+    r
   end
 
   def self.compare_versions(v1, v2)
