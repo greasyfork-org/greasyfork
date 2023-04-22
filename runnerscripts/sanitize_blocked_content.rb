@@ -18,6 +18,6 @@ deleted_nodes = []
 Script.find_each do |s|
   deleted_nodes = []
   sv = s.newest_saved_script_version
-  puts s.id.to_s
+  puts s.id
   sv.format_user_text(sv.additional_info, sv.additional_info_markup)
 end

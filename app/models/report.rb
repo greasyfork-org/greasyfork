@@ -122,7 +122,7 @@ class Report < ApplicationRecord
         raise "Unknown report item #{item}"
       end
 
-      update!(result: RESULT_UPHELD, resolver: moderator, moderator_notes:, self_upheld: self_upheld)
+      update!(result: RESULT_UPHELD, resolver: moderator, moderator_notes:, self_upheld:)
       reporter&.update_trusted_report!
     end
 

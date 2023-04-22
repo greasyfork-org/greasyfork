@@ -3,7 +3,7 @@ ScriptVersion.record_timestamps = false
 start = ScriptVersion.last.id
 start.downto(1).each do |id|
   sv = ScriptVersion.find(id)
-  puts sv.id.to_s
+  puts sv.id
   sv.save(validate: false)
 end
 ScriptVersion.record_timestamps = true
