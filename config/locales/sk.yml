@@ -353,6 +353,7 @@ sk:
         bypass: (Už mám správcu používateľských štýlov, nechajte ma ho nainštalovať!)
       close_dialog: OK
     antifeatures:
+      label: Antifunkcie
       warning_title: Tento skript obsahuje antifeatures
       intro: Pred inštaláciou vás %{site_name}upozorňuje, že tento skript obsahuje antifeatures, ktoré sú skôr v prospech autora skriptu ako vo váš prospech.
       author_explanation_intro: "Vysvetlenie autora skriptu:"
@@ -737,7 +738,15 @@ sk:
       require_html: "Zahŕňa externý JavaScript do skriptu. Pozrite si %{external_script_link:opravidlá pre kód vrátane externých skriptov}. Ak používate hashe integrity podzdroja (pozri informácie %{tm_subresource_link:tu} a %{mdn_subresource_link:tu}), %{site_name} vás upozorní, ak sa vaše hashe nezhodujú s obsahom URL, ktoré používate."
       resource_html: "Zahŕňa externý zdroj (JavaScript, CSS, obrázky, atď.) do skriptu. Pozrite si %{external_script_link:pravidlá pre kód vrátane externých skriptov}. Ak používate hashe integrity podzdroja (pozri informácie %{tm_subresource_link:tu} a %{mdn_subresource_link:tu}), %{site_name} vás upozorní, ak sa vaše hashe nezhodujú s obsahom URL, ktoré používate."
       updateURL: "Popis ako správcovia používateľských skriptov môžu získať aktualizácie. %{site_name} vymaže tieto kľúče, všetky skripty z %{site_name} musia byť aktualizované cez %{site_name}."
-      license: "Licencia, ktorá opisuje, ako môžu ľudia kopírovať alebo upravovať skript. Odporúča sa použitie \"Celého názvu\" alebo \"Identifikátora\" zo zoznamu %{spdx_link:the SPDX License List}. Chýbajúca licencia znamená, že používatelia si môžu nainštalovať skript pre osobné použitie, ale nemôžu ho šíriť. Licencia sa zobrazí na stránke skriptu."
+      license_html: |
+          Zverejnením svojho skriptu na %{site_name} dávate ostatným povolenie na jeho inštaláciu a používanie. Licencia popisuje, či a ako môžu ľudia váš skript upravovať a šíriť. Licencia sa zobrazuje na informačnej stránke skriptu. <code>@license</code> môže byť:
+          <ul>
+          <li>Názov licencie (napríklad <code>@licence GPL3</code>). Odporúča sa použiť "Úplný názov" alebo "Identifikátor" z %{spdx_link:zoznam licencií SPDX}.</li>
+          <li>Podmienky, za ktorých povoľujete použitie (napríklad <code>@licencia Môžete upravovať, pokiaľ uvediete moje meno</code>, hoci sa odporúča použiť už existujúcu licenciu.</li>
+          <li>Vyhlásenie o autorských právach (napríklad <code>@license Autorské práva MojeMeno</code>), ak nechcete zverejniť licenciu.</li>
+          <li>Povolená úplne, čo je to isté ako mať vyhlásenie o autorských právach, ale menej jasné pre používateľov.</li>
+          </ul>
+          Upozorňujeme, že ak je váš skript založený na kóde, ktorý napísal niekto iný, môžete byť obmedzení v tom, akú licenciu si vyberiete.
       supportURL: "Adresa stránky, kde používatelia môžu podporiť vývoj skriptu (napr. bug tracker, fórum, emailová adresa). URL adresa pre podporu je uvedená na stránke spätnej väzby skriptu."
       contributionURL_html: "URL adresa, kde používatelia môžu finančne podporiť autora skriptu. URL adresa pre prispievateľov je uvedená na stránke spätnej väzby skriptu. Adresy môžu používať  http, https, alebo BItcoin protokoly. Pre odkaz na stránku podpory PayPal, použite adresu vo formáte <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+podpora\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=vas.email@priklad.com&item_name=Greasy+Fork+podpora</a>, nahraďte ukážkovú emailovú adresu vašou."
       contributionAmount_html: "Navrhnutá suma príspevku, spojená v súvislosti s <code>@contributionURL</code>."
