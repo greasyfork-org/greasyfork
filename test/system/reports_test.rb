@@ -137,10 +137,14 @@ class ReportsTest < ApplicationSystemTestCase
       assert_changes -> { report.item.reload.deleted? }, from: false, to: true do
         assert_enqueued_emails(1) do
           click_button 'Delete script'
-          assert_content 'This script has been deleted and is not accessible'
+          assert_content 'This script was deleted by you'
         end
       end
     end
+    click_link 'this report'
+    assert_content 'This is total spam!'
+    click_link 'submit an appeal'
+    assert_content 'If a moderator is satisfied by your updates'
   end
 
   test 'reported script author submitting a rebuttal' do
