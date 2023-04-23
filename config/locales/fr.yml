@@ -354,6 +354,7 @@ fr:
         bypass: (J'ai déjà un gestionnaire de style utilisateur, laissez-moi l'installer!)
       close_dialog: OK
     antifeatures:
+      label: Antifeatures
       warning_title: Ce script contient des anti-fonctionnalités
       intro: Avant de procéder à l'installation, %{site_name}attention  ce script contient des contre-fonctionnalités, qui sont là pour le bénéfice de l'auteur du script, plutôt que pour le vôtre.
       author_explanation_intro: "L'auteur de ce script explique:"
@@ -728,6 +729,15 @@ fr:
       require_html: "Inclut du JavaScript externe dans un script. Voir %{external_script_link:règles pour le code incluant les scripts externes}. Si vous utilisez des hachages d'intégrité de sous-ressources (voir les informations %{tm_subresource_link:ici} et %{mdn_subresource_link:ici}), %{site_name} vous alertera si vos hachages ne correspondent pas au contenu de l'URL que vous utilisez."
       resource_html: "Inclut une ressource externe (JavaScript, CSS, images, etc.) dans un script. Voir %{external_script_link:règles pour le code incluant les scripts externes}. Si vous utilisez des hachages d'intégrité de sous-ressources (voir les informations %{tm_subresource_link:ici} et %{mdn_subresource_link:ici}), %{site_name} vous alertera si vos hachages ne correspondent pas au contenu de l'URL que vous utilisez."
       updateURL: "Décrit comment les gestionnaires de scripts utilisateurs doivent obtenir les mises à jours. %{site_name} supprimera ces clés, ce qui fait que n'importe quel script installé de %{site_name} se met à jour seulement de %{site_name}."
+      license_html: |
+          En publiant votre script sur %{site_name}, vous autorisez les autres à l'installer et à l'utiliser. La licence décrit si et comment les personnes sont autorisées à modifier et à distribuer votre script. La licence est affichée sur la page d'informations d'un script. <code>@licence</code> peut comprendre:
+          <ul>
+          <li>Le nom d'une licence (par exemple, <code>@licence GPL3</code>). Il est recommandé d'utiliser un "Nom complet" ou un "Identifiant" de %{spdx_link:the SPDX License List}.</li>
+          <li>Les conditions dans lesquelles vous autorisez l'utilisation (par exemple <code>@license Vous pouvez modifier tant que vous me créditez</code>, bien qu'il soit recommandé d'utiliser une licence préexistante.</li>
+          <li>Une déclaration de copyright (par exemple <code>@license Copyright MyName</code>) si vous ne souhaitez pas publier sous licence.</li>
+          <li>Ne rien renseigner est qui équivaut à avoir une déclaration de droit d'auteur, mais moins clair pour les utilisateurs.</li>
+          </ul>
+          Notez que si votre script est basé sur du code écrit par quelqu'un d'autre, vous pouvez être limité dans la licence que vous choisissez.
       supportURL: "URL de la page où les utilisateurs peuvent obtenir de l'aide sur un script ( un bug tracker, un forum, une adresse e-mail ). L'URL d'aide est affichée sur la page de commentaires du script."
       contributionURL_html: "Lien de la page où les utilisateurs peuvent faire un don à l'auteur d'un script. Le lien de contribution est affiché dans la page de commentaires d'un script. Les liens peuvent être en protocole HTTP, HTTPS, ou Bitcoin. Pour diriger vers une page de donation PayPal, utilisez un lien dans ce format <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=votre.email.ici@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=votre.email.ici@example.com&item_name=Greasy+Fork+donation</a>, en remplaçant l'adresse e-mail en exemple par la vôtre."
       contributionAmount_html: "Montant suggéré de don, utilisé en conjonction avec <code>@contributionURL</code>."
@@ -1074,6 +1084,7 @@ fr:
     report_message: "Signaler un message"
     result_dismissed: "Ce rapport a été rejeté par un modérateur."
     result_upheld: "signalerCe rapport a été approuver par un modérateur."
+    result_self_upheld: "L'auteur a supprimé son propre script à la suite de ce rapport."
     result_fixed: "Ce rapport a été résolu par un modérateur car ils pensent que l'auteur a résolu le problème."
     result_pending: "Ce rapport est en attente d'examen par un modérateur."
     result_pending_author_html: |

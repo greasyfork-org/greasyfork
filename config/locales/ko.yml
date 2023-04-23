@@ -437,35 +437,64 @@ ko:
     new: 새 스크립트 모음
   home:
     title: "%{site_name} - 안전하고 유용한 유저 스크립트"
-    welcome: "유저 스크립트 사이트 %{site_name}에 어서오세요!"
+    welcome: "유저 스크립트 사이트, %{site_name}에 오신 것을 환영합니다."
     sleazy_title: "%{site_name} - 안전하고 유용한 성인용 유저 스크립트"
-    sleazy_welcome: "성인용 유저 스크립트 사이트 %{site_name}에 어서오세요!"
+    sleazy_welcome: "성인용 유저 스크립트 사이트, %{site_name}에 오신 것을 환영합니다."
     search_placeholder: "유저 스크립트 검색"
     scripts_for_label: "다음 사이트에서 동작하는 스크립트:"
-    explain_user_scripts_heading: "유저 스크립트가 뭔가요?"
-    explain_user_scripts_html: "유저 스크립트로 웹 서핑을 더 마음대로 할 수 있습니다. 설치해서 사이트에 기능을 추가하거나, 원래 있던 기능을 더 편하게 하거나, 거슬리는 걸 치울 수 있습니다. %{site_name}의 유저 스크립트는 다른 사용자들이 만들어 공유한 겁니다. 마음대로 설치할 수 있고 쓰기도 쉬워요."
+    explain_user_scripts_heading: "유저 스크립트가 무엇인가요?"
+    explain_user_scripts_html: "유저 스크립트를 사용하여 인터넷 탐색 환경을 제어할 수 있습니다. 스크립트가 설치되면, 자동으로 방문하는 사이트의 기능을 추가하고, 거슬리는 요소를 삭제하고, 더 사용하기 쉽게 만들어 줍니다. %{site_name}의 유저 스크립트는 다른 사용자에 의해 작성되어 전 세계에 공유되고 있습니다. 유저 스크립트는 무료이며, 사용하기도 쉽습니다."
     installing_step1_header: "1. 유저 스크립트 관리자 설치"
     installing_step1_caption: "크롬의 Tampermonkey"
+    installing_step1_description_html: >
+        <p>유저 스크립트를 사용하려면 먼저 스크립트 관리 프로그램을 설치해야 합니다. 사용 환경에 따라 사용 가능한 프로그램이 다릅니다.</p>
     desktop_browsers:
       title: 데스크탑
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} 또는 %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, 또는 %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} 또는 %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} 또는 %{edge_violentmonkey_link:Violentmonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} 또는 %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>AdGuard: (별도 프로그램이 필요하지 않습니다)</li>
+          </ul>
     android_browsers:
       title: 모바일(안드로이드)
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, 또는 %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          <li>Kiwi: %{chrome_tampermonkey_link:Tampermonkey} 또는 %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>%{xbrowser_link:XBrowser}</li>
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: 모바일(iOS)
+      browser_list_html: |
+          <ul>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} or %{safari_userscripts_link:Userscripts}</li>
+          <li>%{gear_link:Gear}: (별도 프로그램이 필요하지 않습니다)
+          </ul>
     installing_step2_header: "2. 유저 스크립트 설치"
     installing_step2_caption: "유저 스크립트 설치 버튼"
     installing_step2_description_html: >
-        <p>%{browse_link:사이트에서} 유용한 유저 스크립트를 찾으세요. 다음은 인기 있는 스크립트입니다.</p>
+        <p>%{browse_link:Greasy Fork에서 검색}하여 유용한 유저 스크립트를 찾으세요. 다음은 인기 있는 스크립트입니다.</p>
 
         %{highlighted_scripts_list}
 
-        <p>스크립트를 찾으면 초록색의 '스크립트 설치' 버튼을 누르세요. 그러면 유저 스크립트 관리자가 설치 확인을 요청할 것입니다.</p>
+        <p>설치할 유저 스크립트를 찾으면 초록색의 '스크립트 설치' 버튼을 누르세요. 그러면 유저 스크립트 관리 프로그램이 설치 확인을 요청할
+        것입니다.</p>
     installing_step3_header: "3. 유저 스크립트 사용하기"
     installing_step3_description_html: >
-        <p>유저 스크립트 동작 사이트로 가면 자동으로 스크립트가 동작합니다. 충분히 써 보시고 개발자에게 피드백을 남겨보세요!</p>
+        <p>유저 스크립트의 대상 사이트로 가면 자동으로 스크립트가 동작합니다. 충분히 사용한 후에는, 스크립트를 설치한 페이지에서 개발자에게
+        피드백을 남겨보세요.</p>
   users:
     sign_in_title: "%{site_name}에 로그인"
-    sign_in_description: "%{site_name}에 로그인하면 스크립트를 업로드하고 다른 스크립트에 피드백을 남길 수 있습니다. 스크립트 검색·설치는 로그인하지 않아도 됩니다."
+    sign_in_description: "%{site_name}에 로그인하면 스크립트를 업로드하고 다른 스크립트에 피드백을 남길 수 있습니다. 스크립트 검색 및 설치는 로그인하지 않아도 됩니다."
     sign_in_external: "외부 서비스로 로그인"
     sign_in_with: "%{provider}으로 로그인"
     sign_in_password: "비밀번호로 로그인"
@@ -638,7 +667,7 @@ ko:
       include_html: "어떤 페이지에서 스크립트가 동작할지 나타냅니다. 스크립트 정보 페이지에 이 필드가 보이고 스크립트를 분류하는 데도 씁니다. 스크립트는 <code>@match</code>나 <code>@include</code>가 적어도 하나 이상 있어야 합니다. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">양식은 여기를 참고하세요</a>."
       updateURL: "스크립트 매니저가 어떻게 업데이트할 지 서수랍니다. %{site_name}는 이 키들을 키들을 제거해 %{site_name}에서 설치한 스크립트는 오직 %{site_name}에서만 업데이트하도록 합니다."
       supportURL: "유저들이 스크립트에 대한 지원을 받을 수 있는 URL입니다. (예시. 버그 신고, 게시판, 이메일 주소). 지원 URL은 스크립트의 피드백 페이지에 표시됩니다."
-      contributionURL_html: "유저들이 스크립트 개발자에게 기부할 수 있는 페이지의 URL입니다. 기부 URL은 스크립트의 피드백 페이지에 표시됩니다. URL들은 http, https, 또는 비토코인 프로토콜로 가능합니다. PayPal 기부 페이지로 링크하려면, <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a>에서 샘플 이메일을 당신의 이메일로 바꾼 URL을 사용합시요."
+      contributionURL_html: "유저들이 스크립트 개발자에게 기부할 수 있는 페이지의 URL입니다. 기부 URL은 스크립트의 피드백 페이지에 표시됩니다. URL들은 http, https, 또는 비토코인 프로토콜로 가능합니다. PayPal 기부 페이지로 링크하려면, <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a>에서 샘플 이메일을 당신의 이메일로 바꾼 URL을 사용하세요."
       contributionAmount_html: "추천하는 기부금 가격입니다, <code>@contributionURL</code>과 결합하여 사용합니다."
       compatible_html: "이 스크립트가 어느 브라우저랑 호환됨을 표시합니다. 호환성 정보는 스크립트 페이지에 표시됩니다. 호환성에 관한 주석은 <code>@copmatible firefox 팝업 차단을 반드시 해제해야 함</code>의 형식에 맞춰 포함 될 수 있습니다. 인식되는 브라우저들은 다음과 같습니다: %{browsers}."
       incompatible_html: "이 스크립트가 어느 브라우저랑 호환되지 않음을 표시합니다. 호환성 정보는 스크립트 페이지에 표시됩니다. 선택적으로, <code>@incompatible firefox 23 버전부터 작동 안됨</code>의 형식에 맞추어 호환성에 대한 주석을 포함할 수 있습니다. 인식되는 브라우저들은 다음과 같습니다: %{browsers}."

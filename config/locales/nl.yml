@@ -718,6 +718,15 @@ nl:
       require_html: "Voeg externe JavaScript toe aan een script. Lees voor meer informatie de %{external_script_link:regels omtrent code in externe scripts}. Als je subbronnen met integriteitscontrolesommen gebruikt (%{tm_subresource_link:meer informatie} en %{mdn_subresource_link:nog meer informatie}), %{site_name} dan wordt er een waarschuwing getoond als de controlesommen niet overeenkomen met de gebruikte url."
       resource_html: "Voeg externe bronnen (JavaScript, CSS, afbeeldingen, etc.) toe aan een script. Lees voor meer informatie de %{external_script_link:regels omtrent code in externe scripts}. Als je subbronnen met integriteitscontrolesommen gebruikt (%{tm_subresource_link:meer informatie} en %{mdn_subresource_link:nog meer informatie}), %{site_name} dan wordt er een waarschuwing getoond als de controlesommen niet overeenkomen met de gebruikte url."
       updateURL: "Beschrijf hoe gebruikersscriptbeheerders bijwerkingen moeten verkrijgen. %{site_name} zal deze sleutels schrappen zodat elk met %{site_name} geïnstalleerd script alleen kan worden bijgewerkt vanuit %{site_name}."
+      license_html: |
+          Door een script op %{site_name} te publiceren, geef je anderen het recht om het te installeren en te gebruiken. De licentie geeft aan of en hoe men het script mag bewerken en opnieuw uitgeven. De licentie wordt getoond op de scriptinformatiepagina. <code>@license</code> kan zijn:
+          <ul>
+          <li>De naam van een licentie (bijvoorbeeld <code>@licence GPL3</code>). Een ‘volledige naam’ of ‘Identificatie’ van %{spdx_link:de SPDX-licenselijst} wordt aanbevolen.</li>
+          <li>De gebruiksvoorwaarden (bijvoorbeeld <code>@license Je mag het script aanpassen onder vermelding van mijn naam)</code>, maar een reeds bestaande licentie wordt aanbevolen.</li>
+          <li>Een auteursrechtvermelding (bijvoorbeeld <code>@license Auteursrecht MijnNaam</code>) als je het script niet wilt vrijgeven met een licentie.</li>
+          <li>Geen enkele licentie-indicatie, vergelijkbaar met een auteursrechtvermelding, maar dit is minder duidelijk naar gebruikers toe.</li>
+          </ul>
+          Let op: als je script gebaseerd is op code die iemand anders geschreven heeft, dan kan het zijn dat je weinig keus in licenties hebt.
       supportURL: "De url van de pagina waar gebruikers ondersteuning kunnen krijgen op een script (bijv. een bugtracker, forum of e-mailadres). De ondersteunings-url zal worden getoond op de feedbackpagina van een script."
       contributionURL_html: "De url van de pagina waarop gebruikers kunnen doneren aan de maker van een script. De donatie-url zal worden getoond op de feedbackpagina van een script. Url's kunnen beginnen met http, https of Bitcoin. Als je een PayPal-donatiepagina wilt plaatsen, dan dien je de opmaak <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=mijn.emailadres@voorbeeld.nl&item_name=Greasy+Fork+donatie</a> te gebruiken, waarbij je het voorbeelde-mailadres vervangt door je eigen."
       contributionAmount_html: "Het aanbevolen donatiebedrag. Dit bedrag wordt gebruikt in combinatie met <code>@contributionURL</code>."
@@ -1055,6 +1064,7 @@ nl:
     report_message: "Bericht melden"
     result_dismissed: "Deze melding is afgewezen door een moderator."
     result_upheld: "Deze melding is gehandhaafd door een moderator."
+    result_self_upheld: "De maker heeft - op basis van de melding - het script verwijderd."
     result_fixed: "Deze melding is afgewezen door een moderator omdat hij/zij van mening is dat de maker van het script het probleem heeft opgelost."
     result_pending: "Deze melding wacht op een beslissing door een moderator."
     result_pending_author_html: |
