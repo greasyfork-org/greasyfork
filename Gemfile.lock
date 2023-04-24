@@ -158,7 +158,7 @@ GEM
       xpath (~> 3.2)
     coderay (1.1.3)
     concurrent-ruby (1.2.2)
-    connection_pool (2.3.0)
+    connection_pool (2.4.0)
     crass (1.0.6)
     daemons (1.4.1)
     date (3.3.3)
@@ -393,7 +393,7 @@ GEM
     redcarpet (3.5.1)
     redis (5.0.5)
       redis-client (>= 0.9.0)
-    redis-client (0.11.2)
+    redis-client (0.14.1)
       connection_pool
     regexp_parser (2.8.0)
     responders (3.1.0)
@@ -439,10 +439,11 @@ GEM
       sentry-ruby (~> 5.9.0)
     sentry-ruby (5.9.0)
       concurrent-ruby (~> 1.0, >= 1.0.2)
-    sidekiq (6.5.5)
-      connection_pool (>= 2.2.2)
-      rack (~> 2.0)
-      redis (>= 4.5.0)
+    sidekiq (7.0.8)
+      concurrent-ruby (< 2)
+      connection_pool (>= 2.3.0)
+      rack (>= 2.2.4)
+      redis-client (>= 0.11.0)
     sidekiq-unique-jobs (7.1.28)
       brpoplpush-redis_script (> 0.1.1, <= 2.0.0)
       concurrent-ruby (~> 1.0, >= 1.0.5)
@@ -574,7 +575,7 @@ DEPENDENCIES
   selenium-webdriver
   sentry-rails
   sentry-ruby
-  sidekiq (< 7)
+  sidekiq (< 8)
   sidekiq-worker-killer
   strip_attributes
   thinking-sphinx

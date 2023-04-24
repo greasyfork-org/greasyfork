@@ -24,7 +24,7 @@ gem 'sanitize'
 gem 'sentry-rails'
 gem 'sentry-ruby'
 # Need redis 6.2+ for sidekiq 7
-gem 'sidekiq', '< 7'
+gem 'sidekiq', '< 8'
 gem 'sidekiq-worker-killer'
 gem 'strip_attributes'
 gem 'thinking-sphinx'
