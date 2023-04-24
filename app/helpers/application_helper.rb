@@ -15,21 +15,6 @@ module ApplicationHelper
     tag.relative_time(datetime: date.to_datetime.rfc3339, **html_options, prefix: '') { I18n.l(date.to_date) }
   end
 
-  def discussion_class(discussion)
-    case discussion.rating
-    when ForumDiscussion::RATING_QUESTION
-      return 'discussion-question'
-    when ForumDiscussion::RATING_REPORT
-      return 'discussion-report'
-    when ForumDiscussion::RATING_BAD
-      return 'discussion-bad'
-    when ForumDiscussion::RATING_OK
-      return 'discussion-ok'
-    when ForumDiscussion::RATING_GOOD
-      return 'discussion-good'
-    end
-  end
-
   def self_link(name, text)
     tag.span(id: name) { link_to('§', { anchor: name }, { class: 'self-link' }) + text }
   end
