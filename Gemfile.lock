@@ -1,16 +1,4 @@
 GIT
-  remote: https://github.com/pat/thinking-sphinx
-  revision: f6657c9dc011a0ad347ee66399ecc73b14023453
-  specs:
-    thinking-sphinx (5.4.0)
-      activerecord (>= 4.2.0)
-      builder (>= 2.1.2)
-      innertube (>= 1.0.2)
-      joiner (>= 0.3.4)
-      middleware (>= 0.1.0)
-      riddle (~> 2.3)
-
-GIT
   remote: https://github.com/seuros/capistrano-puma.git
   revision: 2cc11846540489edda10d83e026c9bea04e6fab1
   specs:
@@ -482,6 +470,13 @@ GEM
       net-ssh (>= 2.8.0)
     strip_attributes (1.12.0)
       activemodel (>= 3.0, < 8.0)
+    thinking-sphinx (5.5.1)
+      activerecord (>= 4.2.0)
+      builder (>= 2.1.2)
+      innertube (>= 1.0.2)
+      joiner (>= 0.3.4)
+      middleware (>= 0.1.0)
+      riddle (~> 2.3)
     thor (1.2.1)
     timeout (0.3.2)
     ts-sidekiq-delta (0.4.0)
@@ -585,7 +580,7 @@ DEPENDENCIES
   sidekiq (< 7)
   sidekiq-worker-killer
   strip_attributes
-  thinking-sphinx!
+  thinking-sphinx
   ts-sidekiq-delta
   user_agent_parser
   vite_rails
