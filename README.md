@@ -2,11 +2,9 @@
 
 ## Help
 
-Post in the [Greasy Forum](https://greasyfork.org/forum/) for help with Greasy Fork, user scripts, user script managers, or related.
+Post in the [Greasy Forum](https://greasyfork.org/discussions/) for help with Greasy Fork, user scripts, user script managers, or related.
 
 ## Contributing
-
-[![Build Status](https://travis-ci.org/JasonBarnabe/greasyfork.svg?branch=master)](https://travis-ci.org/JasonBarnabe/greasyfork)
 
 Greasy Fork welcomes contributions. Learn about [running Greasy Fork locally](https://github.com/JasonBarnabe/greasyfork/wiki/Running-Greasy-Fork-locally) and [contributing code](https://github.com/JasonBarnabe/greasyfork/wiki/Contributing-code).
 
