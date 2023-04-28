@@ -44,6 +44,7 @@ it:
     deleted_notice: "Questo script è stato rimosso."
     deleted_notice_with_related: "Lo script che hai cercato è stato rimosso, ma ci sono alcuni script simili."
     deleted_undelete_notice_html: "Lo script è stato bloccato da un moderatore e non può essere cancellato. La motivazione fornita è: \"<i>%{delete_reason}</i>\"."
+    deleted_locked_author_notice_html: "Questo script è stato eliminato da un moderatore in risposta a %{report_link:this report} e non sara accessibile ad altri. La spiegazione fornita e' \"<i>%{delete_reason}</i>\". Perfavore controlla %{code_rules_link:%{site_name}il regolamento}. Se pensi la cancellazione sia un errore, puoi %{appeal_link:submit una richiesta} per questa cancellazione. Non ripubblicare questo script; ciò potrebbe comportare il divieto di%{site_name}."
     deleted_author_notice: "Lo script è stato cancellato e non è accessibile da altri. Puoi ripristinarlo dalla finestra Elimina."
     version_notice_html: "Versione datata %{date}. Vedi la nuova versione %{latest_version_link}."
     version_notice_latest_version_link: "l'ultima versione"
@@ -263,6 +264,7 @@ it:
     diff_new_version: "Nuova:"
     diff_lines_of_context: "Linee di contesto:"
     diff_ignore_whitespace: "Ignora i cambiamenti sugli spazi bianchi"
+    diff_terser: "Pulisci il codice prima di confrontarlo"
     diff_refresh: "Aggiorna"
     diff_no_change: "Nessuna differenza trovata."
     good_rating_explanation: "Numero di persone che lo hanno giudicato Buono o che lo hanno aggiunto ai preferiti."
@@ -352,6 +354,7 @@ it:
         bypass: (Ho già un gestore di stile utente, lasciamelo installare!)
       close_dialog: OK
     antifeatures:
+      label: Antifunzionalità
       warning_title: Questo script contiene antifunzionalità
       intro: 'Prima di installare, %{site_name} vuole informarti che questo script contiene antifunzionalità, che sono cose presenti a beneficio dell''autore dello script, anziché tuo. '
       author_explanation_intro: "L'autore di questo script spiega:"
@@ -384,6 +387,9 @@ it:
         short: CSS
         long: Stile utente
     related_scripts: "Puoi provare anche questi scripts collegati:"
+    integrity_hashes:
+      script_notice:
+        detail: "<code>%{url}</code>dovresti usare l'hash <code>%{expected_hash}</code> (l'ultimo controllato %{last_checked_at})"
   script_sets:
     description: "Gli insiemi di script ti permettono di creare una lista personalizzata di script con cui navigare su Greasy Fork. Puoi aggiungere script al tuo insieme includendo script individuali, insiemi di altri utenti, o insiemi generati automaticamente. Puoi inoltre escludere degli script dal tuo insieme con gli stessi metodi."
     favorites_name: "Preferiti"
@@ -470,6 +476,19 @@ it:
         browser utilizzi.</p>
     desktop_browsers:
       title: Desktop
+      browser_list_html: |
+          <p>Per usare gli script utente hai prima bisogno di installare un gestore di
+          script utente. Quale gestore script utente puoi usare dipende da quale
+          browser utilizzi.</p>
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey}</a> o %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, o %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} o %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} o %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>AdGuard: (nessun software aggiuntivo richiesto)</li>
+          </ul>
     android_browsers:
       title: Mobile (Android)
       browser_list_html: |
@@ -702,6 +721,7 @@ it:
       namespace_html: "I gestori script utente utilizzano una combinazione di <code>@namespace</code> e <code>@name</code> per controllare se uno script è già installato. %{site_name} richiede questo campo ed emetterà un avviso se viene modificato durante un aggiornamento."
       version: "Identificatore per una versione specifica di uno script nel %{version_format_link:formato versione Mozilla}. La versione è mostrata nella pagina di informazioni dello script. %{site_name} richiede questo campo e avviserà se è stato decrementato o se non è stato incrementato quando il codice dello script viene cambiato."
       include_html: "Descrivi su quali pagine lo script lavorerà. Questa lista verrà processata, mostrata sulla pagina di informazioni dello script e usata per categorizzare gli scripts. Ogni script deve avere almeno un <code>@match</code> o un <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Leggi qui per quanto riguarda il formato.</a>"
+      require_html: "Include codice JavaScript esterno in uno script. Controlla {external_script_link:rules per codice che include script esterni}. Se tu usi gli hash di integrità delle sottorisorse (controlla info %{tm_subresource_link:here}  e %{mdn_subresource_link:here}), %{site_name} ti notificheremo se il tuo hash non combacia con la risorsa all' URL che stai usando."
       updateURL: "Descrive come i gestori script utente debbano ottenere gli aggiornamenti. %{site_name} rimuoverà queste chiavi, il che farà sì che ogni script installato da %{site_name} riceva gli aggiornamenti solo da %{site_name}."
       supportURL: "URL che punta a una pagina dove gli utenti possano ottenere supporto per uno script (ad es. un bug tracker, un forum, un indirizzo e-mail). L'URL di supporto viene visualizzato nella pagina dei feedback dello script."
       contributionURL_html: "URL che punta a una pagina dove gli utenti possano fare una donazione all'autore dello script. L'URL può avere come protocollo HTTP, HTTPS o Bitcoin. Per inserire un collegamento a una pagina per le donazioni di PayPal, utilizza un URL nel formato <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Donazione+Greasy+Fork\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Donazione+Greasy+Fork</a>, sostituendo l'indirizzo e-mail di esempio con il tuo."
@@ -747,6 +767,24 @@ it:
       reporting: Se noti uno script che ricade al di fuori di questi parametri, per favore segnalalo andando sul collegamento Feedback per quello script e scegliendo l'opzione "Segnala lo script".
     external_scripts:
       title: "Politiche di %{site_name} per gli script esterni"
+      rationale:
+        title: fondamento logico
+      cdns:
+        title: Reti di distribuzione dei contenuti (CDN)
+      sri:
+        title: Script con hash di integrità delle sottorisorse
+      allowed_external_codes:
+        heading: Codici esterni permessi
+      libraries:
+        title: "%{site_name}librerie"
+      origin_host:
+        title: Iniezione degli scripts dal host originale
+    cdns:
+      title: CDN Permessi
+      test_url:
+        label: Prova un URL
+        result_ok: L' URL è permesso
+        result_not_ok: L' URL non è permesso
     script_rewriting:
       title: "Come %{site_name} riscriverà gli script postati"
       content_html: >
@@ -964,17 +1002,20 @@ it:
         </ul>
     reason:
       non_functional: "Lo script non funziona"
+      paid_benefits: "Ha pagato per le funzionalità ma non ha ricevuto ciò che è stato acquistato"
       spam: "Spam"
       abuse: "Contenuto non autorizzato o che incita all'odio"
       illegal: "Contenuto illegale"
       unauthorized_code: "Copia non autorizzata"
       malware: "Malware"
       minified: "Codice minimizzato"
+      obfuscated: "Codice offuscato"
       external_code: "Codice esterno non consentito"
       undisclosed_antifeature: "%{antifeature_link:Antifunzionalità} (es. pubblicità, tracciamento, mining, ecc.) non dichiarata"
       no_description: "Descrizione mancante, non informativa o fuorviante"
       wrong_category: "Categoria errata"
       wrong_category_with_suggestion: "Categoria errata (suggerita: %{suggested_category})"
+      no_code: 'Nessun codice/ciao mondo'
       other: "Altro"
     report_intro: "%{reported_item} è stato segnalato %{report_date} da %{reporter} per %{reason}"
     report_intro_no_reporter: "%{reported_item} è stato segnalato il %{report_date} per %{reason}"
@@ -1008,6 +1049,7 @@ it:
     delete_script: "Elimina lo script"
     view_discussion: "Visualizza discussione"
     load_diff: "Carica diff"
+    load_cleaned_diff: "Carica codice pulito diff"
     loading_diff: "Caricamento..."
     reported_user_activity_html: "%{user} (l'utente segnalato) ha fatto:"
   appeals:
@@ -1231,6 +1273,7 @@ it:
       must_be_greasy_fork_script: "deve essere l'URL dello script su %{site_name}"
       script_update_not_utf8: "il testo caricato deve rispettare lo standard UTF-8 "
       script_disallowed_require: "utilizza uno script esterno non ammesso: %{code}"
+      script_malformed_require: "utilizza un riferimento di script esterno errato:%{code}"
       script_rate_limit: "Hai superato il limite di caricamento. Riprova più tardi."
       missing_include_or_match: "deve includere almeno una chiave @match o @include"
       invalid_meta: "ha una direttiva meta non valida. Il formato giusto è // @foo"
