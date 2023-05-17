@@ -11,7 +11,7 @@ class DiscussionsController < ApplicationController
   before_action :greasy_only, only: :new
   before_action :check_ip, only: :create
 
-  layout 'discussions', only: :index
+  layout 'discussions', only: [:index, :search]
   layout 'application', only: [:new, :create]
 
   def index
@@ -194,6 +194,17 @@ class DiscussionsController < ApplicationController
     end
 
     redirect_back(fallback_location: discussions_path)
+  end
+
+  def search
+    @comments = Comment.search(
+      params[:q],
+      page: page_number, per_page: per_page(default: 25))
+    @comments_to_discussions = @comments.map{|c| [c, c.discussion]}
+    @discussions = @comments_to_discussions.map(&:last)
+    @filter_result = FILTER_RESULT.new
+    @possible_locales = []
+    render 'index'
   end
 
   private

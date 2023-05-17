@@ -151,6 +151,9 @@ Rails.application.routes.draw do
       collection do
         post :mark_all_read
       end
+      collection do
+        get :search
+      end
     end
 
     get 'import', to: 'import#index', as: 'import_start'
