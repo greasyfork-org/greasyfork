@@ -9,7 +9,7 @@ vi:
       advanced_search: "TÌm kiếm nâng cao"
       user_list: "Danh sách người dùng"
       libraries: "Các thư viện"
-      moderator_log: "Nhật ký điều hành"
+      moderator_log: "Nhật ký quản trị"
   scripts:
     created_date: "Đã tạo"
     updated_date: "Đã cập nhật"
@@ -36,13 +36,14 @@ vi:
     reinstall: "Cài đặt lại phiên bản %{version}"
     old_version_warning: "Đây không phải phiên bản mới nhất của script. Nếu bạn cài đặt nó, bạn sẽ không được cập nhật lên phiên bản mới nhất. Bạn chắc chắn muốn cài đặt?"
     promoted: "Script được khuyến cáo"
-    author_promoted: "Script gợi ý của tác giả"
+    author_promoted: "Script được tác giả gợi ý"
     promoted_text_html: "Bạn có thế thích %{script_link}"
     library_instructions_html: "Script này sẽ không được không được cài đặt trực tiếp. Nó là một thư viện cho các script khác để bao gồm các chỉ thị meta\n%{code}"
     deleted_notice: "Script này đã bị xóa."
-    deleted_notice_with_related: "Tập lệnh mà bạn yêu cầu đã bị xoá; và đây là những tập lệnh liên quan."
-    deleted_undelete_notice_html: "Script này đã bị khóa bởi một người điều hành và không thể bị xóa. Lí do được đưa ra là: \"<i>%{delete_reason}</i>\"."
-    deleted_author_notice: "Script này đã bị xóa và không thể bị truy cập bởi những người khác. Bạn có thể bỏ xóa ở phần Xóa."
+    deleted_notice_with_related: "Script mà bạn yêu cầu đã bị xoá; và đây là những script liên quan."
+    deleted_undelete_notice_html: "Script này đã bị khóa bởi một người điều hành và không thể phục hồi. Lí do được đưa ra là: \"<i>%{delete_reason}</i>\"."
+    deleted_locked_author_notice_html: "Script này đã bị xóa bởi người quản trị trong phản hồi %{report_link:this report} và không thể hiển thị với những người khác. Lý do được đưa ra là \"<i>%{delete_reason}</i>\". Hãy xem lại %{code_rules_link:%{site_name}'s rules}. Nếu như bạn tin rằng đây là một sự sai sót, bạn có thể kháng cáo tại %{appeal_link:submit an appeal}. Không đăng lại script này; nếu không bạn sẽ bị ban khỏi %{site_name}."
+    deleted_author_notice: "Script này đã bị xóa và không thể bị truy cập bởi những người khác. Bạn có thể phục hồi ở Delete tab."
     version_notice_html: "Tính đến %{date}. Xem %{latest_version_link}."
     version_notice_latest_version_link: "phiên bản mới nhất"
     reported_notice: "\"%{script_name}\" đã bị tố cáo và đang chờ xem xét bởi một người điều hành."
@@ -119,10 +120,14 @@ vi:
     stats_raw_data_header: "Bản gốc"
     stats_download_raw_data_html: "Tải về tất cả các dữ liệu như: %{links}"
     stats_no_data: "N/A"
+    stats_filters: "Lọc: %{filter_options}"
     stats_filter_options:
+      month: Trong 30 ngày qua
+      year: Trong 365 ngày qua
       all: Toàn thời gian
     derivatives_title: "%{script_name} - Các dẫn xuất"
     derivatives_intro: "Những đoạn script này có nền tảng từ bạn (hoặc do chính bạn tạo nên). Nếu bạn tìm thấy một người nó đó chưa được phép của bạn mà đã sử dụng đoạn mã đó, bạn có thể báo cáo trong phần Phản hồi về scripts"
+    derivatives_script_html: "%{script}bởi %{user}, bản quyền: %{license}%{diff_link:[Diff]}"
     derivatives_exact_copies_heading: "Những phiên bản sao chép hoàn toàn"
     derivatives_exact_copies_list_intro: "Scripts dưới đây có mã lệnh y hệt của bạn:"
     derivatives_exact_copes_none: "Không có script nào ở%{site_name} có mã lệnh y hệt script này."
@@ -130,8 +135,13 @@ vi:
     derivatives_similar_info: "Chúng tôi luôn kiểm tra định kỳ phiên bản mới nhất của tất cả các tập lệnh khác để tìm những tập lệnh tương tự nhất với tập lệnh do bạn tạo nên. Chúng tôi cũng kiểm tra bất cứ khi nào bạn đăng bản cập nhật cho tập lệnh của mình và theo yêu cầu của bạn."
     similarity_score:
       high: Rất giống
+      medium: Tương đối giống nhau
+      low: Tương tự
       none: Không giống
+    derivatives_similar_none: "Không có script nào giống cái bạn cần"
+    derivatives_similar_last_check_html: "Chúng tôi đã tìm kiếm những script tương tự cho bạn %{date}"
     derivatives_similar_check_now: "Kiểm tra lại ngay bây giờ"
+    derivatives_similiar_queued: Tìm kiếm những script tương tự sẽ được hoàn tất trong những phút tới
     listing_title_all_sites: "User scripts cho tất cả các trang"
     listing_description_all_sites: "User scripts giúp thêm các tính năng và loại bỏ lỗi trên các trang web"
     listing_title_for_site: "Scripts sử dụng cho %{site}"
@@ -197,10 +207,13 @@ vi:
     type_3_html: "Thư viện - là script xây dựng cho <code>@require</code>-d từ script khác và không được cài đặt trực tiếp"
     override_warning_checkbox_label: "Mặc kệ, tôi cứ lưu"
     warning_version_not_incremented_html: "Bạn cập nhật code nhưng không tăng số  <code>@version</code>. Do đó những người đã cài đặt script của bạn từ trước có thể không nhận được cập nhật"
+    warning_version_missing_generate_automatically_html: "tạo <code>@version</code>một cách tự động"
+    warning_namespace_missing_generate_automatically_html: "Tạo <code>@namespace</code>một cách tự động"
     warning_namespace_changed_html: "<code>@namespace</code> của bạn đã được thay đổi. Một <code>@namespace</code> trùng khớp cho phép người dùng cài đặt lại script của bạn để cập nhật"
     warning_potentially_minified_html: "Script của bạn có vẻ đã được tối ưu (đã nén) code. Nếu bạn đang sử dụng một thư viện đã tối ưu, Hãy đưa <code>@require</code> nó từ %{allowed_requires_link}. Những script đã tối ưu hóa code sẽ được miễn xóa."
     warning_automatic_sensitive_html: "Script của bản dành cho %{sensitive_domains} và sẽ được dánh dấu có nội dung người lớn"
     warning_potentially_minified_allowed_requires_link: "một trong những chỗ này"
+    warning_license_missing_override_html: "Lưu mà không cần giấy phép"
     additional_info_locale_prompt: "(Chọn một khu vực)"
     additional_info_add_localized: "Thêm một thông tin bổ sung cục bộ"
     additional_info_locale_repeated: "Cung cấp thêm duy nhất một thông tin '%{locale_code}' khu vực"
@@ -208,6 +221,10 @@ vi:
     code_syncing_from_url_html: "Với mã script này được thiết lập để đồng bộ từ: %{field}"
     provide_code_syncing_from_url_html: "%{site_name} có thể lấy những script đã được lưu trữ ở bất kỳ đâu. Ví dụ như một hệ thống quản lý phiên bản (tương tự GitHub), máy chủ của bạn, hoặc dịch vụ lưu trữ script khác. Để bật tính năng đồng bộ script của bạn, Hãy cung cấp liên kết: %{field}"
     sync_type_intro: "Script sẽ được đồng bộ:"
+    sync_type_1:
+      name: Thủ công
+    sync_type_2:
+      name: Tự động
     sync_failed_info_html: "Lần đồng bộ cuối là %{date}, kết quả %{error}"
     sync_success_info_html: "Lần đồng bộ thành công cuối là %{date}."
     sync_never_succeeded: "Đồng bộ chưa bao giờ hoàn thành tốt đẹp."
@@ -217,19 +234,26 @@ vi:
     additional_info_default_sync_html: "Thông tin bổ sung mặc định (ngôn ngữ trùng khớp <code>@name</code>)"
     additional_info_localized_sync_html: "Cho khu vực  (trùng khớp <code>@name:XX</code>)"
     sync_url_placeholder: "(Địa chỉ)"
+    sync_successful: Script được đồng bộ thành công
+    sync_no_changes: Script được đồng bộ thành công, không thấy thay đổi
+    sync_error: Script đồng bộ thất bại -%{error}.
+    sync_turned_off: Đồng bộ script đã tắt
     screenshots_add: "Thêm:"
     screenshots_remove: "Gỡ bỏ"
+    replacement_script_explanation: "(Tùy chọn) Chọn script khác thay thế script này. Nhập địa chỉ của script:"
     diff_title: "%{script} - Lịch sử phiên bản"
     diff_old_version: "Cũ:"
     diff_new_version: "Mới:"
     diff_lines_of_context: "Những dòng của nội dung:"
     diff_ignore_whitespace: "Bỏ qua thay đổi khoảng trắng."
+    diff_terser: "Clean code trước khi so sánh"
     diff_refresh: "Làm mới"
     diff_no_change: "Không tìm thấy khác biệt."
     good_rating_explanation: "Số lượng những người đã đánh giá Tốt hoặc thêm vào yêu thích."
     ok_rating_explanation: "Số lượng những người đã đánh giá OK."
     bad_rating_explanation: "Số lượn những người đã đánh giá Tệ."
     write_your_own_html: "%{post_a_script_link} (hoặc %{learn_to_write_scripts_link})"
+    post_a_script_link_text: "Công khai script bạn đã viết"
     learn_to_write_scripts_link_text: "Học cách để viết một cái"
     adult_content: "Nội dung người lớn"
     adult_content_self_report: "Script này chứa nội dung người lớn hoặc được dành cho trang có nội dung người lớn"
@@ -240,6 +264,7 @@ vi:
     adult_content_on_greasy_logged_in_error: "Script này không còn khả dụng với thiết lập tài khoản của bạn :%{edit_account_link:Greasy Fork account settings}."
     adult_content_on_greasy_not_logged_in_error: "Script này không còn ẩn danh trên trang. %{login_link:Log in} vui lòng kiểm tra thiết lập tài khoản của bạn."
     non_adult_content_on_sleazy: "Script không có sẵn trên trang web này."
+    not_js_convertible_override_header: "Chuyển thành Js"
     adult_marker: "(Dành cho người lớn)"
     deleted_marker: "(Đã xóa)"
     locked_marker: "(Đã khóa)"
@@ -254,6 +279,21 @@ vi:
     updated: "Script đã được cập nhật."
     preview_additional_info: "Xem trước"
     must_confirm_email_button: "Gửi liên kết xác nhận đến %{email}"
+    install_help_dialog:
+      close_dialog: OK
+    antifeatures:
+      author_explanation_intro: "Tác giả script này giải thích:"
+      types:
+        ads:
+          title: Quảng cáo
+        tracking:
+          title: Theo dõi
+        referral-link:
+          title: Link tiếp thị
+        payment:
+          title: Thanh toán
+      install_anyway: Script đã cài đặt
+      cancel_install: Hủy
   script_sets:
     description: "Bộ sưu tập Script giúp bạn tạo và chỉnh sửa danh sách các scripts để tìm kiếm với Greasy Fork. Bạn có thể thêm scripts này vào bộ sưu tập bao gồm cả script cá nhân, hoặc cho người dùng khác, hoặc là tạo một cách tự động một bộ sưa tập. Bạn cũng có thể hủy bỏ script từ bộ sưu tập của bạn bằng cách tương tự."
     favorites_name: "Mục ưa thích"
@@ -331,6 +371,10 @@ vi:
     explain_user_scripts_html: "Script của người dùng giúp bạn có những trải nghiệm mới với trình duyệt.Khi được cài đặt, chúng biến những trang bạn truy cập duyệt vời hơn bằng việc thêm những tính năng mới, dễ sử dụng hơn hay loại bỏ những chi tiết làm bạn khó chịu. Script trên %{site_name} được viết bởi những người dùng khác và được đăng để chia sẻ vpis mọi người. Chúng hoàn toàn miễn phis và dễ sử dụng."
     installing_step1_header: "Bước 1: cài đặt một bộ quản lý script người dùng"
     installing_step1_caption: "Tampermonkey trên Chrome"
+    android_browsers:
+      title: Điện thoại(Android)
+    ios_browsers:
+      title: Điện thoại(IOS)
     installing_step2_header: "Bước 2: cài đặt một script người dùng"
     installing_step2_caption: "Nút cài đặt của một script người dùng"
     installing_step2_description_html: >
@@ -376,6 +420,7 @@ vi:
     edit_sign_in: "Sửa phương pháp đăng nhập"
     edit_sign_in_title: "Sửa phương pháp đăng nhập"
     edit_sign_in_password: "Mật khẩu"
+    edit_notifications: "Tùy chỉnh thông báo"
     no_password_set_info: "Tài khoản của bạn không được cấu hình với một mật khẩu."
     set_password: "Đặt mật khẩu"
     update_password: "Cập nhật mật khẩu"
@@ -411,6 +456,10 @@ vi:
     listing_updated_scripts: "Script được cập nhật"
     listing_registration_date: "Thời gian đăng ký"
     listing_title: "Người dùng"
+    listing_banned_filter:
+      banned: "Đã bị ban"
+      not_banned: "Chưa bị ban"
+      all: "Tất cả"
     search_placeholder: "Tìm người dùng"
     locale_prompt: "(Chọn một khu vực)"
     show_ads_description: "Ủng hộ %{site_name} bằng cách cho phép nó hiển thị quảng cáo"
@@ -465,6 +514,8 @@ vi:
       post_new_script_link_text: 'Đăng script mới'
     code_rules:
       title: "Quy định của %{site_name} cho script đã đăng"
+      code_header: Code
+      copyright_header: Bản quyền
     external_scripts:
       title: "Điều khoản của %{site_name}' về script mở rộng"
     script_rewriting:
@@ -502,6 +553,22 @@ vi:
     item_script_html: "Script: %{script_link}"
     item_deleted_script: "Đã xoá script %{id}"
     item_user_html: "Người dùng: %{user_link}"
+  discussions:
+    mark_all_read: Đánh dấu đã đọc
+  conversations:
+    user_input_note: Nhập tên người dùng hoặc URL dẫn tới profile của họ
+    new_title: Tạo một cuộc trò chuyện mới
+    new_link: ' 
+
+      Tạo một cuộc trò chuyện mới'
+    new_button: ' 
+
+      Tạo một cuộc trò chuyện'
+    title_html:
+      other: Trò chuyện với%{users}
+    send_message: Gửi tin nhắn
+    no_conversations: Bạn chưa trò chuyện với ai
+    update_message_submit: Update thông báo
   common:
     allowed_elements_link: "(Xem mã cho phép.)"
     allowed_elements_and_attributes_title: "Cho phép phần tử mang nội dung HTML"
@@ -514,6 +581,10 @@ vi:
     incomplete_locale: "%{site_name} đã dịch từ ngôn ngữ %{locale_name} đã được %{percent}. Bạn có thể thay đổi nó."
     preview_tab: Xem trước
     write_tab: Viết
+    listing_options_title: "Tùy chọn tìm kiếm"
+    quote:
+      prefix_html: "%{user}nói rằng"
+      anonymous_reporter_html: "Người báo cáo nói:"
   activerecord:
     attributes:
       user:
@@ -524,6 +595,9 @@ vi:
         show_ads: "Hiện quảng cáo"
         show_sensitive: "Nội dung người lớn"
         preferred_markup: "Đánh dấu ưa thích"
+        current_password: "Mật khẩu hiện tại"
+        new_password: "Mật khẩu mới"
+        new_password_confirmation: "Xác nhận mật khẩu mới"
       script:
         name: "Tên"
         description: "Mô tả"
@@ -538,6 +612,16 @@ vi:
         name: "Tên"
         description: "Mô tả"
         default_sort: "Sắp xếp mặc định"
+      report:
+        reason: "Lý do tố cáo"
+      discussion:
+        rating: "đánh giá"
+        category: "Thể loại"
+        title: Tiêu đề
+      conversation:
+        user_input: Người dùng
+      message:
+        content: Nhắn
   errors:
     messages:
       script_missing_name: "là cần thiết - xác định rõ bằng @tên"
@@ -557,3 +641,19 @@ vi:
     description: "Tìm kiếm cho các script người dùng trên %{site_name}."
     long_name: "%{site_name} tìm kiếm script người dùng"
     attribution: "Bản quyền thuộc về tác giả script, xem từng script để biết thông tin giấy phép"
+  importing:
+    submit: Nhập
+    previously_imported:
+      heading: Script đã nhập trước đó
+      unknown_date: "(không biết)"
+    results:
+      title: "Kết quả nhập"
+      success: "Những script đã được nhập thành công:"
+      existing: "Script đã nhập rồi:"
+      failure: "Những script không thể nhập:"
+  mailers:
+    script_report:
+      report_created_offender:
+        subject: "Script %{script_name}trên %{site_name} đã bị tố cáo"
+      report_upheld_offender:
+        subject: "Script %{script_name}của bạn trên %{site_name}đã bị xóa"
