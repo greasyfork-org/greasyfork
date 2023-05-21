@@ -815,6 +815,13 @@ sk:
         title: Skripty s hashmi integrity čiastkových zdrojov
         content_html: |
             <p>Použitie <code>@require</code> a <code>@resource</code> s adresami URL s %{mdn_sri_link:integrita čiastkových zdrojov} vo formáte %{tm_sri_link:Tampermonkey} je povolené.</p>
+            <pre><code lang="js">
+            // @resource SRIsecured1 http://example.com/favicon1.ico#md5=ad34bb...
+            // @resource SRIsecured2 http://example.com/favicon2.ico#md5=ac3434...,sha256=23fd34...
+            // @require              https://code.jquery.com/jquery-2.1.1.min.js#md5=45eef...
+            // @require              https://code.jquery.com/jquery-2.1.2.min.js#md5=ac56d...,sha256=6e789...
+            // @require              https://code.jquery.com/jquery-3.6.0.min.js#sha256=/xUj+3OJU...ogEvDej/m4=
+            </code></pre>
       allowed_external_codes:
         heading: Povolené externé kódy
         content_html: |

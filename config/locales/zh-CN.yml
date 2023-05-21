@@ -751,6 +751,13 @@ zh-CN:
         title: 附有子资源完整性散列的脚本
         content_html: |
             <p>允许使用 %{tm_sri_link:Tampermonkey 格式} 下的有%{mdn_sri_link:子资源完整性}的 <code>@require</code> 和<code>@resource</code> URL。</p>
+            <pre><code lang="js">
+            // @resource SRIsecured1 http://example.com/favicon1.ico#md5=ad34bb...
+            // @resource SRIsecured2 http://example.com/favicon2.ico#md5=ac3434...,sha256=23fd34...
+            // @require              https://code.jquery.com/jquery-2.1.1.min.js#md5=45eef...
+            // @require              https://code.jquery.com/jquery-2.1.2.min.js#md5=ac56d...,sha256=6e789...
+            // @require              https://code.jquery.com/jquery-3.6.0.min.js#sha256=/xUj+3OJU...ogEvDej/m4=
+            </code></pre>
       allowed_external_codes:
         heading: 允许的外部代码
       libraries:

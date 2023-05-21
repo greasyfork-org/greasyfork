@@ -793,6 +793,13 @@ bg:
         title: Скриптове с проверка за целостта на подресурса
         content_html: |
             <p>Използването на <code>@require</code> и <code>@resource</code> с URLи с %{mdn_sri_link:проверка на подресурса} в %{tm_sri_link:Tampermonkey формат} е позволено.</p>
+            <pre><code lang="js">
+            // @resource SRIsecured1 http://example.com/favicon1.ico#md5=ad34bb...
+            // @resource SRIsecured2 http://example.com/favicon2.ico#md5=ac3434...,sha256=23fd34...
+            // @require              https://code.jquery.com/jquery-2.1.1.min.js#md5=45eef...
+            // @require              https://code.jquery.com/jquery-2.1.2.min.js#md5=ac56d...,sha256=6e789...
+            // @require              https://code.jquery.com/jquery-3.6.0.min.js#sha256=/xUj+3OJU...ogEvDej/m4=
+            </code></pre>
       allowed_external_codes:
         heading: Разрешени външни кодове
         content_html: |
