@@ -21,11 +21,11 @@
 <p>To set up the webhook on GitHub, access your GitHub repository and go to Settings, Webhooks, Add webhook, then enter the data below.</p>
 
 <dl>
-  <dt>Payload URL</dt>
+  <dt><h4>Payload URL</h4></dt>
   <dd><%= user_webhook_url(@user) %></dd>
-  <dt>Content type</dt>
+  <dt><h4>Content type</h4></dt>
   <dd>application/json</dd>
-  <dt>Secret</dt>
+  <dt><h4>Secret</h4></dt>
   <dd>
     <%= form_tag do |f| %>
       <% if @user.webhook_secret.nil? %>
@@ -35,14 +35,14 @@
       <% end %>
     <% end %>
   </dd>
-  <dt>Which events would you like to trigger this webhook?</dt>
+  <dt><h4>Which events would you like to trigger this webhook?</h4></dt>
   <dd>
     To update <%= site_name %> on all pushes, choose "Just the push event".<br>
     To update <%= site_name %> only on releases, choose "Let me select individual events", uncheck "Pushes", and check "Releases".<br>
     (In either case, <%= site_name %> will be looking for modified files in these events.)
   </dd>
 
-  <dt>Active</dt>
+  <dt><h4>Active</h4></dt>
   <dd>(Checked)</dd>
 </dl>
 
@@ -51,9 +51,9 @@
 <p>To set up the webhook on Bitbucket, access your Bitbucket repository and go to Repository Settings, Webhooks, Add webhook, then enter the data below.</p>
 
 <dl>
-  <dt>Title</dt>
+  <dt><h4>Title</h4></dt>
   <dd><%= site_name %></dd>
-  <dt>URL</dt>
+  <dt><h4>URL</h4></dt>
   <dd>
     <%= form_tag do |f| %>
       <% if @user.webhook_secret.nil? %>
@@ -63,13 +63,13 @@
       <% end %>
     <% end %>
   </dd>
-  <dt>Active</dt>
+  <dt><h4>Active</h4></dt>
   <dd>(Checked)</dd>
-  <dt>Skip certificate verification</dt>
+  <dt><h4>Skip certificate verification</h4></dt>
   <dd>(Unchecked)</dd>
-  <dt>Enable request history collection</dt>
+  <dt><h4>Enable request history collection</h4></dt>
   <dd>(Unchecked)</dd>
-  <dt>Triggers</dt>
+  <dt><h4>Triggers</h4></dt>
   <dd>Repository push</dd>
 </dl>
 
@@ -78,9 +78,9 @@
 <p>To set up the webhook on GitLab, access your GitLab repository and go to Settings, Integrations, then enter the data below.</p>
 
 <dl>
-  <dt>URL</dt>
+  <dt><h4>URL</h4></dt>
   <dd><%= user_webhook_url(@user) %></dd>
-  <dt>Secret Token</dt>
+  <dt><h4>Secret Token</h4></dt>
   <dd>
     <%= form_tag do |f| %>
       <% if @user.webhook_secret.nil? %>
@@ -90,11 +90,11 @@
       <% end %>
     <% end %>
   </dd>
-  <dt>Trigger</dt>
+  <dt><h4>Trigger</h4></dt>
   <dd>
     To update <%= site_name %> on all pushes, choose "Push events".<br>
     To update <%= site_name %> only on releases, choose "Releases events".</dd>
   </dd>
-  <dt>Enable SSL Verification</dt>
+  <dt><h4>Enable SSL Verification</h4></dt>
   <dd>(Checked)</dd>
 </dl>
