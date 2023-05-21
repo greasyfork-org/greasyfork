@@ -1,6 +1,8 @@
 <%- title t('webhooks.info.title') %>
 <%- description "Setting up a webook to update scripts on #{site_name} automatically." %>
 
+<h2>Setting up a webhook</h2>
+
 <%= it('webhooks.info.intro_html', site_name: site_name, import_link: import_start_path) %>
 
 <% if @webhook_scripts.any? %>
