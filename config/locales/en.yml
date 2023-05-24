@@ -74,7 +74,9 @@ en:
     library_instructions_html: "This script should not be not be installed directly. It is a library for other scripts to include with the meta directive %{code}"
     # text displayed for deleted scripts
     deleted_notice: "This script has been deleted."
+    deleted_notice_with_reason: "This script has been deleted due to %{report_link:this report}."
     deleted_notice_with_related: "The script you requested has been deleted, but here are some related scripts."
+    deleted_notice_with_related_and_reason: "The script you requested has been deleted due to %{report_link:this report}, but here are some related scripts."
     deleted_undelete_notice_html: "This script has been locked by a moderator and cannot be undeleted. Reason provided is: \"<i>%{delete_reason}</i>\"."
     deleted_locked_author_notice_html: "This script has been deleted by a moderator in response to %{report_link:this report} and is not accessible to others. Reason provided is: \"<i>%{delete_reason}</i>\". Please review %{code_rules_link:%{site_name}'s rules}. If you believe the deletion to be in error, you can %{appeal_link:submit an appeal} of this deletion. Do not repost this script; doing so may result in a ban from %{site_name}."
     self_deleted_locked_author_notice_html: "This script was deleted by you in response to %{report_link:this report} and is not accessible to others. If you have updated your script to be in line with  %{code_rules_link:%{site_name}'s rules}, you can %{appeal_link:submit an appeal} of this deletion. Do not repost this script; doing so may result in a ban from %{site_name}."

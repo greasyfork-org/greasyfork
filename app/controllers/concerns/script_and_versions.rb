@@ -88,11 +88,11 @@ module ScriptAndVersions
   def render_deleted(script: nil, http_code: 404)
     respond_to do |format|
       format.html do
+        locale = request_locale
+
         if script && script.site_applications.where(blocked: true).none?
           with = sphinx_options_for_request
           with[:site_application_id] = script.site_applications.pluck(:id)
-
-          locale = request_locale
           with[:locale] = locale.id if locale.scripts?(script_subset)
 
           @scripts = Script.search(
@@ -107,13 +107,22 @@ module ScriptAndVersions
 
         @ad_method = AdMethod.no_ad(:script_deleted)
 
+        report = @script.reports.upheld.last if @script&.locked
         if @scripts&.any?
-          @page_description = t('scripts.deleted_notice_with_related')
+          @page_description = if report
+                                It.it('scripts.deleted_notice_with_related_and_reason', report_link: report_path(report, locale: locale.code))
+                              else
+                                t('scripts.deleted_notice_with_related')
+                              end
           @paginate = false
           @skip_search_options = true
           render 'scripts/index', layout: 'list', status: http_code
         else
-          @text = t('scripts.deleted_notice')
+          @text = if report
+                    It.it('scripts.deleted_notice_with_reason', report_link: report_path(report, locale: locale.code))
+                  else
+                    t('scripts.deleted_notice')
+                  end
           render 'home/error', status: http_code, layout: 'application'
         end
       end
