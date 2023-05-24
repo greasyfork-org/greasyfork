@@ -374,7 +374,7 @@ class Script < ApplicationRecord
       url, integrity_hashes = url.split('#', 2)
       if integrity_hashes
         integrity_hashes = integrity_hashes.split(/[;,]/, 2)
-        integrity_hashes = integrity_hashes.map { |entry| entry.split('=', 2) }
+        integrity_hashes = integrity_hashes.map { |entry| entry.split(/[=-]/, 2) }
         integrity_hashes = integrity_hashes.select { |algorithm, hash| algorithm.present? && hash.present? }
       end
       subresource = Subresource.find_or_initialize_by(url:)
