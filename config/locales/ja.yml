@@ -40,8 +40,12 @@ ja:
     promoted_text_html: "%{script_link}も気に入るかもしれません。"
     library_instructions_html: "このスクリプトは単体で利用できません。右のようなメタデータを含むスクリプトから、ライブラリとして読み込まれます: %{code}"
     deleted_notice: "このスクリプトは削除されました。"
+    deleted_notice_with_reason: "このスクリプトは、%{report_link:こちらの通報}のため削除されました。"
     deleted_notice_with_related: "このスクリプトは削除されています。以下の関連するスクリプトを試すこともできます。"
+    deleted_notice_with_related_and_reason: "スクリプトは%{report_link:こちらの通報}により削除されています。関連するスクリプトはこちらです。"
     deleted_undelete_notice_html: "このスクリプトは管理担当者によりロックされており、削除の取り消しはできません。理由:  \"<i>%{delete_reason}</i>\""
+    deleted_locked_author_notice_html: "このスクリプトは、%{report_link:こちらの通報}のため管理担当者によって削除されており、第三者はアクセスできません。理由: <i>%{delete_reason}</i>。{code_rules_link:%{site_name}の規則}を確認してください。誤って削除された場合、%{appeal_link:抗議}も行えます。スクリプトの再投稿は行わないでください。%{site_name}へのアクセス禁止になる可能性があります。"
+    self_deleted_locked_author_notice_html: "このスクリプトは、%{report_link:こちらの通報}のため、あなたによって削除され、ほかの人はアクセスできなくなっています。If you have updated your script to be in line with  %{code_rules_link:%{site_name} の規則}に従ってスクリプトを更新すれば、削除への%{appeal_link:抗議を提出}できます。スクリプトの再投稿は行わないでください。%{site_name}へのアクセス禁止になる可能性があります。"
     deleted_author_notice: "このスクリプトは削除されており、第三者はアクセスできません。削除タブから削除を取り消しできます。"
     version_notice_html: "%{date}時点のページです。%{latest_version_link}はこちら。"
     version_notice_latest_version_link: "最新版"
@@ -210,8 +214,9 @@ ja:
     warning_namespace_missing_html: " <code>@namespace</code> が指定されていません。<code>@namespace</code> はユーザーが同名の別のスクリプトをインストールする際に干渉を防止します。<code>@namespace</code> は固有の文字列にする必要があります。あなたが管理している URL がよく使われます。"
     warning_namespace_missing_generate_automatically_html: "<code>@namespace</code> を自動で生成"
     warning_namespace_changed_html: "<code>@namespace</code> が変更されています。一貫性のある <code>@namespace</code> を記述することで、再インストールによってスクリプトを更新できるようになります。"
-    warning_potentially_minified_html: "圧縮 (minify) されたコードが含まれている可能性があります。圧縮されたライブラリを使用している場合は、ライブラリのコードを貼り付ける代わりに、%{allowed_requires_link} で許可されたURLから <code>@require</code> メタキーで読み込んでください。圧縮されたスクリプトは削除対象です。"
+    warning_potentially_minified_html: "圧縮 (minify) されたコードが含まれているようです。圧縮されたライブラリを使用する代わりに、許可された%{allowed_requires_link}から <code>@require</code> メタキーで読み込んでください。圧縮されたコードを含むスクリプトは削除対象です。"
     warning_automatic_sensitive_html: "%{sensitive_domains} 向けであるため、アダルトコンテンツに関するスクリプトであると識別されます。"
+    warning_potentially_minified_allowed_requires_link: "これらの場所のどれか"
     warning_code_previously_posted_html: "このコードは以前にも%{script_links}に投稿されました。再投稿すると管理担当者が削除する可能性があります。"
     warning_license_missing_html: "<code>@license</code> を指定していません。%{site_name} に投稿することで、あなたのコードを他者に利用させますが、ライセンスはあなたのコードをどのように修正し再配布できるかを他者に伝えます。例: <code>// @license MIT</code> は、誰でもコードを修正し再配布できることを許します。%{license_chooser_link:利用可能なライセンスの詳細な情報はこちら。} ライセンスを明示しない場合、%{site_name} は他者による修正や再配布を許可していないものだと解釈します。投稿するコードの唯一の作者があなただけではないのなら、他のすべての作者から許可を得ない限り、ほとんどの場合、投稿は許可されません。"
     warning_license_missing_override_html: "ライセンスなしで保存する"
@@ -345,6 +350,7 @@ ja:
         bypass: (ユーザースタイル管理ツールはあるのでインストールする！)
       close_dialog: OK
     antifeatures:
+      label: アンチ機能
       warning_title: このスクリプトはアンチ機能を含みます
       intro: インストールの前に、%{site_name}は、このスクリプトにアンチ機能が含まれることをお知らせします。これはあなたではなく、スクリプトの作者の利益を目的としてます。
       author_explanation_intro: "スクリプト作者による説明:"
@@ -691,6 +697,15 @@ ja:
       require_html: "外部の JavaScript をスクリプトに含めます。%{external_script_link:外部のスクリプトをコードに含める際の規則}を確認してください。サブリソースの整合性ハッシュ（%{tm_subresource_link:ここ}と%{mdn_subresource_link:ここ}の情報を参照）を使っていて、ハッシュが使用するURLのハッシュと一致しない際に、%{site_name}は警告します。"
       resource_html: "スクリプトに外部のリソース（JavaScript、CSS、画像など）を含めます。%{external_script_link:外部のスクリプトをコードに含める際の規則}を確認してください。サブリソースの整合性ハッシュ（%{tm_subresource_link:ここ}と%{mdn_subresource_link:ここ}の情報を参照）を使っていて、ハッシュが使用するURLのハッシュと一致しない際に、%{site_name}は警告します。"
       updateURL: "ユーザースクリプト管理ツールが更新を取得する方法の記述。%{site_name} はこれらのキーを取り除き、%{site_name}　からインストールされたすべてのスクリプトが　%{site_name}　から更新されるようにします。"
+      license_html: |
+          %{site_name} にスクリプトを投稿することで、あなたは他者にそれをインストールし使用することを許可します。付属させるライセンスは、あなたのスクリプトを、修正したり再配布できるかの許可を説明するものです。ライセンスはスクリプトの情報ページに表示されます。<code>@license</code> は以下のように使用:
+          <ul>
+          <li>ライセンスの名称 (例: <code>@licence GPL3</code>)。%{spdx_link:the SPDX にあるライセンス一覧} にある「完全な名称」Full name または「識別子」Identifier の使用を推奨します。</li>
+          <li>使用を許可する条件 (例: <code>@license You can modify as long as you credit me</code> : 私のクレジットを表記すれば修正を許可します)。既存のライセンスの使用を推奨します。</li>
+          <li>著作権の宣言 (例:<code>@license Copyright MyName</code>)。いずれかのライセンスの使用を望まないということです。</li>
+          <li>まったくない場合、著作権の宣言と同じ意味になりますが、ユーザーに対しては不明確です。</li>
+          </ul>
+          もし、あなたのスクリプトが他者の書いたコードを基にしたスクリプトであれば、選択できるライセンスは、元のスクリプトのライセンスの制限内になります。
       supportURL: "ユーザーがスクリプトのサポートを受けることができるページの URL (例: バグトラッカー、フォーラム、電子メールアドレス)。サポート URL はスクリプトのフィードバックページに表示されます。"
       contributionURL_html: "ユーザーがスクリプト作者に寄付することができるページの URL。貢献 URL はスクリプトのフィードバックページに表示されます。http、https、bitcoin スキームの URL が指定可能です。PayPal の寄付ページにリンクするには、 <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=your.email.here@example.com&item_name=Greasy+Fork+donation</a>のような形式の URL を使用し、サンプルのメールアドレスを自分のものに置き換えます。"
       contributionAmount_html: "提示する寄付金額。<code>@contributionURL</code> と共に使用します。"
@@ -702,7 +717,7 @@ ja:
     writing_user_scripts:
       title: "ユーザースクリプトの書き方"
       content_html: "<p>ユーザースクリプトを書くには、JavaScript の知識が必要です。<a href=\"http://wiki.greasespot.net/Tutorials\">GreaseSpot Wiki のチュートリアル</a>は、一般的な JavaScript とユーザースクリプト関連の両方を勉強し始めたいときに便利です。他の人のスクリプトコードを見てみるのも良いでしょう。興味があれば、%{code_rules_link} や %{meta_keys_link} も参考にしてください。スクリプトの開発にあたって助けが必要であれば、お気軽に%{ask_in_forum_link}。</p><p>%{site_name} で投稿するには、アカウントの作成が必要です。自分の%{user_page_link}に%{post_new_script_link}へのリンクがあります。</p>"
-      ask_in_forum_link_text: '掲示板でおたずねください'
+      ask_in_forum_link_text: '掲示板で問いかけてみてください'
       user_page_link_text: 'ユーザーページ'
       post_new_script_link_text: 'スクリプトの投稿'
     code_rules:
@@ -963,6 +978,7 @@ ja:
         </ul>
     reason:
       non_functional: "スクリプトが動かない"
+      paid_benefits: "機能を有料で購入したが購入したものが受け取れなかった"
       spam: "スパム"
       abuse: "罵倒や憎しみがあふれる内容"
       illegal: "違法な内容"
@@ -985,6 +1001,7 @@ ja:
     report_intro_unauthorized_license_no_url: "%{other_script} は %{license_name} ライセンスです。%{tldr_legal_link:tldrlegal.com}  からこのライセンスの意味を確認してください。"
     report_intro_unauthorized_no_license: "%{other_script} にはライセンスの指定がありません。つまり明示的な許可がない限り、複製物の配布は許可されていません。"
     non_functional_feedback: "機能しないスクリプトでは%{feedback_link:そのスクリプトのフィードバック}に報告してください。"
+    paid_benefits_feedback: "%{site_name} は、スクリプト作者とユーザー間の取引を記録していないため、これに関する訴えを検証できません。スクリプトの機能を購入し不満なら、代わりにスクリプトの%{feedback_link:フィードバック}として苦情を残してください。"
     unauthorized_code_original_placeholder: "元のコードのURL"
     explanation_placeholder: "追加の詳細を提供 (任意)"
     create_button: "通報を作成"
@@ -993,6 +1010,7 @@ ja:
     report_message: "メッセージを通報"
     result_dismissed: "この通報は管理担当者に拒否されました。"
     result_upheld: "この通報は管理担当者に承認されました。"
+    result_self_upheld: "この通報のため、作者が自分でスクリプトを削除しました。"
     result_fixed: "この通報は管理担当者により作者が問題を修正したとして解決されました。"
     result_pending: "この通報は管理担当者による審査待ちです。"
     result_pending_author_html: |

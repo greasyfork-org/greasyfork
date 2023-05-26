@@ -1,7 +1,7 @@
 pt-BR:
   layouts:
     application:
-      script_list: "Códigos"
+      script_list: "Scripts"
       forum: "Fórum"
       help: "Ajuda"
       sign_in: "Entrar"
@@ -42,8 +42,12 @@ pt-BR:
     promoted_text_html: "Você também pode gostar de  %{script_link}."
     library_instructions_html: "Este script não deve ser instalado diretamente. Este script é uma biblioteca de outros scripts para incluir com o diretório meta %{code}"
     deleted_notice: "Este script foi deletado."
+    deleted_notice_with_reason: "Esse script foi excluído devido a %{report_link:esse relatório}."
     deleted_notice_with_related: "O script solicitado foi removido, mas aqui estão alguns relacionados a ele."
+    deleted_notice_with_related_and_reason: "O script solicitado foi excluído devido a %{report_link:esse relatório}, mas aqui estão alguns scripts relacionados."
     deleted_undelete_notice_html: "Este script foi travado por um moderador e não pode ser removido. Motivo: \"<i>%{delete_reason}</i>\"."
+    deleted_locked_author_notice_html: "Esse script foi excluído por um moderador em resposta a %{report_link:esse relatório} e não está acessível a outros. O motivo fornecido é: \"<i>%{delete_reason}</i>\". Revise as regras do %{code_rules_link:%{site_name}}. Se você acredita que a exclusão foi um erro, você pode %{appeal_link:enviar um recurso} dessa exclusão. Não reposte esse script; fazer isso pode resultar em uma proibição de %{site_name}."
+    self_deleted_locked_author_notice_html: "Esse script foi excluído por você em resposta a %{report_link:essa denúncia} e não pode ser acessado por outros. Se você atualizou seu script para estar de acordo com as regras de %{code_rules_link: %{site_name}}, você pode %{appeal_link:enviar uma apelação} dessa exclusão. Não reposte esse script, ao fazer isso pode resultar em um banimento do %{site_name}."
     deleted_author_notice: "Este script foi removido e não está acessível a outros. Você pode desfazer a remoção através da aba Remover."
     version_notice_html: "Versão de: %{date}. Veja: %{latest_version_link}."
     version_notice_latest_version_link: "a última versão"
@@ -262,6 +266,7 @@ pt-BR:
     diff_new_version: "Novo:"
     diff_lines_of_context: "Linhas de contexto:"
     diff_ignore_whitespace: "Ignorar mudanças de espaço em branco"
+    diff_terser: "Limpe o código antes de comparar"
     diff_refresh: "Atualizar"
     diff_no_change: "Não foram encontradas diferenças."
     good_rating_explanation: "Número de pessoas que votaram como Bom ou adicionaram aos favoritos."
@@ -351,6 +356,7 @@ pt-BR:
         bypass: (Eu já possuo um gerenciador de estilos de usuário, me deixar fazer a instalação!)
       close_dialog: OK
     antifeatures:
+      label: Antirrecursos
       warning_title: Este script contém antifuncionalidades
       intro: Antes de instalar, o %{site_name} gostaria que você soubesse que este script contém antifeatures, que são coisas que beneficiam o autor e não você.
       author_explanation_intro: "O autor deste script script explica:"
@@ -480,10 +486,35 @@ pt-BR:
         escolher dependem de qual navegador você utiliza.</p>
     desktop_browsers:
       title: PC
+      browser_list_html: |
+          <ul>
+          <li>Chrome: %{chrome_tampermonkey_link:Tampermonkey} ou %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, ou %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} ou %{safari_userscripts_link:Userscripts}</li>
+          <li>Microsoft Edge: %{edge_tampermonkey_link:Tampermonkey} ou %{edge_violentmonkey_link:Violentmonkey}</li>
+          <li>Opera: %{opera_tampermonkey_link:Tampermonkey} ou %{opera_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>AdGuard: (Não é necessário programa adicional)</li>
+          </ul>
     android_browsers:
       title: Móvel (Android)
+      browser_list_html: |
+          <ul>
+          <li>Firefox: %{firefox_greasemonkey_link:Greasemonkey}, %{firefox_tampermonkey_link:Tampermonkey}, ou %{firefox_violentmonkey_link:Violentmonkey}</li>
+          <li>Maxthon: %{maxthon_violentmonkey_link:Violentmonkey}</li>
+          <li>Dolphin: %{dolphin_tampermonkey_link:Tampermonkey}</li>
+          <li>UC: %{uc_tampermonkey_link:Tampermonkey}</li>
+          <li>Kiwi: %{chrome_tampermonkey_link:Tampermonkey} ou %{chrome_violentmonkey_link:Violentmonkey}</li>
+          <li>%{xbrowser_link:XBrowser}</li>
+          %{locale_specific_browsers}
+          </ul>
     ios_browsers:
       title: Móvel (iOS)
+      browser_list_html: |
+          <ul>
+          <li>Safari: %{safari_tampermonkey_link:Tampermonkey} ou %{safari_userscripts_link:Userscripts}</li>
+          <li>%{gear_link:Gear}: (Não é necessário programa adicional)
+          </ul>
     installing_step2_header: "Passo 2: instalar um script de usuário"
     installing_step2_caption: "Um botão de instalação de um script de usuário"
     installing_step2_description_html: >
@@ -697,7 +728,17 @@ pt-BR:
       version: "Identificador de uma versão específica de um script no %{version_format_link:formato de versão Mozilla}. A versão é mostrada na página de informações do script. %{site_name} precisa deste campo e irá alertar caso ele seja decrementado ou se não for incrementado quando o seu código for alterado."
       include_html: "Descreve em quais páginas o script irá rodar. Esta lista será processada, exibida na página de informações do script e utilizada para categorizar os scripts. Todo script deve ter ao menos uma chave <code>@match</code> ou <code>@include</code>. <a href=\"https://wiki.greasespot.net/Include_and_exclude_rules\">Leia sobre o formato aqui.</a>"
       require_html: "Inclui JavaScript externo em um código. Veja %{external_script_link:rules for code including external scripts}. Se você usa chaves de integridade de sub recursos (informações %{tm_subresource_link:here} e %{mdn_subresource_link:here}), %{site_name} irá alerta-lo se suas chaves não corresponderem ao conteúdo da URL."
+      resource_html: "Incluir um recurso externo (JavaScript, CSS, imagens etc.) em um script. Ver %{external_script_link:regras para código incluindo scripts externos}. Se você usar hashes de integridade de sub-recurso (veja as informações %{tm_subresource_link:aqui} e %{mdn_subresource_link:aqui}), %{site_name} irá alertá-lo se seus hashes não corresponderem ao conteúdo da URL que você usa."
       updateURL: "Descreve como os gerenciadores de script de usuário devem ser atualizados. %{site_name} irá retirar essas chaves, o que faz com que qualquer script instalado a partir de %{site_name} seja atualizado somente a partir de %{site_name}."
+      license_html: |
+          Ao postar seu script em %{site_name}, você dá permissão para que outras pessoas instalem e usem. A licença descreve se e como as pessoas podem modificar e distribuir seu script. A licença é exibida na página de informações do script. <code>@license</code> pode ser:
+          <ul>
+          <li>O nome de uma licença (por exemplo, <code>@licence GPL3</code>). É recomendado usar o "Nome completo" ou "Identificador" da %{spdx_link:Lista de Licenças SPDX}.</li>
+          <li>As condições sob as quais você permite o uso (por exemplo <code>@license Você pode modificar desde que me dê crédito</code>, embora seja recomendado usar uma licença pré-existente.</li>
+          <li>Uma declaração de direitos autorais (por exemplo <code>@license Copyright MeuNome</code>) se você não quiser liberar sob uma licença.</li>
+          <li>Omitido completamente, o que é o mesmo que ter uma declaração de direitos autorais, mas menos claro para os usuários.</li>
+          </ul>
+          Observe que se seu script for baseado em código que outra pessoa escreveu, você pode estar restrito na escolha da licença.
       supportURL: "URL para uma página onde os usuários podem obter suporte para o script, como rastreador de bug, um fórum, endereço de email, etc. A URL de suporte será exibida na página de feedback do script."
       contributionURL_html: "URL de uma página onde os usuários podem fazer doações para o autor do script. A URL de contribuição será exibida na página de feedback do script. As URLs podem ser http, https ou protocolos Bitcoin. Para informar uma página de doação pelo PayPal, use uma URL no formato <a href=\"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=seu.email.aqui@example.com&item_name=Greasy+Fork+donation\">https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=seu.email.aqui@example.com&item_name=Greasy+Fork+donation</a>, substituindo o email de exemplo pelo seu email próprio."
       contributionAmount_html: "Doação sugerida, usado em conjunto com <code>@contributionURL</code>."
@@ -745,6 +786,8 @@ pt-BR:
       intro_html: |
           <p>%{site_name} permite o uso de código externo em casos específicos. Qualquer código que estiver incluindo código externo fora do que é permitido está sujeito a ser deletado. Se você encontrar código violando essas regras, por favor denuncie.</p>
           <p>Note que essas regras são aplicadas somente para códigos externos que sejam executáveis. Códigos não-executáveis como JSON ou CSS são permitidos.</p>
+      rationale:
+        title: Justificativa
       cdns:
         title: Redes de distribuição de conteúdo (CDNs)
         content_html: |
@@ -763,6 +806,9 @@ pt-BR:
             <p>Códigos publicados como bibliotecas em %{site_name} são permitidas. Bibliotecas podem ser criadas escolhendo a opção ao criar um novo código. Também podem serem sincronizadas a partir de uma URL externa, como por exemplo um repositório no Github.
       origin_host:
         title: Injeção de códigos a partir do servidor de origem
+        content_html: |
+            <p>A injeção de scripts externos do mesmo domínio é permitida. Se um script é executado em https://exemplo.com, e baixa https://exemplo.com/script.js, modifica e injeta de volta em https://exemplo.com/, isso é permitido.</p>
+            <p>Se https://exemplo.com/script.js é injetado em https://sitediferente.com, isso é proibido.</p>
     cdns:
       title: Redes de distribuição de conteúdo (CDNs) permitidos
       test_url:
@@ -982,6 +1028,7 @@ pt-BR:
         </ul>
     reason:
       non_functional: "O script não funciona"
+      paid_benefits: "Pagou pelos recursos, mas não recebeu o que foi comprado"
       spam: "Spam"
       abuse: "Conteúdo de ódio ou abusivo"
       illegal: "Conteúdo ilegal"
@@ -994,6 +1041,7 @@ pt-BR:
       no_description: "Descrição ausente, não informativa ou enganosa"
       wrong_category: "Categoria errada"
       wrong_category_with_suggestion: "Categoria errada (sugestão: %{suggested_category})"
+      no_code: 'Sem codigo/Olá mundo'
       other: "Outro"
     report_intro: "%{reported_item} foi reportado %{report_date} por %{reporter} por %{reason}"
     report_intro_no_reporter: "%{reported_item} foi reportado %{report_date} por %{reason}"
@@ -1003,6 +1051,7 @@ pt-BR:
     report_intro_unauthorized_license_no_url: "%{other_script} usa a licença %{license_name}. Visite %{tldr_legal_link:tldrlegal.com} para obter ajuda para entender o que esta licença significa."
     report_intro_unauthorized_no_license: "%{other_script}não especifica uma licença, o que significa que a distribuição de cópias não é permitida, a menos que seja dada permissão explícita."
     non_functional_feedback: "Por favor, reporte scripts não funcionais por meio de %{feedback_link:feedback} na página do script em vez disso."
+    paid_benefits_feedback: "%{site_name} não tem registro de nenhuma transação entre autores e usuários de scripts e, portanto, não pode validar nenhuma reivindicação relacionada a eles. Se você pagou por uma funcionalidade em um script e está insatisfeito, por favor, expresse suas reclamações como %{feedback_link:avaliação} no script em vez disso."
     unauthorized_code_original_placeholder: "URL do código original"
     explanation_placeholder: "Forneça detalhes adicionais (opicional)"
     create_button: "Criar denúncia"
@@ -1011,6 +1060,7 @@ pt-BR:
     report_message: "Reportar mensagem"
     result_dismissed: "Essa denúncia foi desconsiderada por um moderador."
     result_upheld: "Essa denúncia foi confirmada por um moderador."
+    result_self_upheld: "O autor excluiu seu próprio script como resultado dessa denúncia."
     result_fixed: "Este relatório foi resolvido por um moderador, pois eles acreditam que o autor corrigiu o problema."
     result_pending: "Essa denúncia está aguardando avaliação de um moderador."
     result_pending_author_html: |
@@ -1027,6 +1077,7 @@ pt-BR:
     delete_script: "Remover script"
     view_discussion: "Ver discussão"
     load_diff: "Carga diferencial"
+    load_cleaned_diff: "Carregar a diferença de código limpo"
     loading_diff: "Carregando..."
     reported_user_activity_html: "%{user}(o usuário denunciado) fez:"
   appeals:
@@ -1251,6 +1302,7 @@ pt-BR:
       must_be_greasy_fork_script: "deve ser uma URL para um script em %{site_name}"
       script_update_not_utf8: "envio deve ser em texto UTF-8"
       script_disallowed_require: "usa um script externo não aprovado: %{code}"
+      script_malformed_require: "usa uma referência de script externo malformada: %{code}"
       script_rate_limit: "Você atingiu o limite de postagens. Tente novamente mais tarde."
       missing_include_or_match: "deve incluir pelo menos uma chave @match ou @include"
       invalid_meta: "tem uma meta-diretiva inválida. O formato adequado é // @foo"
@@ -1295,6 +1347,8 @@ pt-BR:
         subject: "Sua denúncia no %{script_name} no %{site_name} recebeu uma resposta"
       report_upheld_reporter:
         subject: "Sua denúncia no %{script_name} no %{site_name} foi confirmada"
+      report_script_deleted_reporter:
+        subject: "Sua denúncia sobre %{script_name} em %{site_name} foi fechada"
       report_dismissed_reporter:
         subject: "Sua denúncia no %{script_name} no %{site_name} foi indeferida"
       report_fixed_reporter:
