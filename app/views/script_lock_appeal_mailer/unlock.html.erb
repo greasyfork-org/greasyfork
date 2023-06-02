@@ -1,5 +1,5 @@
 <p>
-  <%= t('mailers.script_lock_appeal.unlock.intro_html', script: render_script(@appeal.script, locale: @locale)) %>
+  <%= t('mailers.script_lock_appeal.unlock.intro_html', script: render_script(@appeal.script, locale: @locale, full_url: true)) %>
 </p>
 
 <% if @appeal.moderator_notes.presence %>

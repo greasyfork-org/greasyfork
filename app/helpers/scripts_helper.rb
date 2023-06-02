@@ -59,8 +59,9 @@ module ScriptsHelper
   end
   memoize :promoted_script
 
-  def render_script(script, locale: nil)
-    link_to(script.name(locale || request_locale), script_url(script, locale: locale || request_locale.code), class: 'script-link')
+  def render_script(script, locale: nil, full_url: false)
+    href = full_url ? script_url(script, locale: locale || request_locale.code) : script_path(script, locale: locale || request_locale.code)
+    link_to(script.name(locale || request_locale), href, class: 'script-link')
   end
 
   private
