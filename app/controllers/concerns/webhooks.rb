@@ -127,7 +127,7 @@ module Webhooks
   #   - script_attributes
   #   - commit
   #   - messages
-  def process_webhook_changes(changed_files, repo_url)
+  def process_webhook_changes(changed_files, repo_url, changelog_markup: 'text')
     # Forget about any files that changed but are not related to scripts or attributes.
     changed_files = changed_files.select { |_filename, info| info[:scripts].any? || info[:script_attributes].any? }
 
@@ -151,7 +151,7 @@ module Webhooks
       info[:scripts].each do |script|
         # update sync type to webhook, now that we know this script is affected by it
         script.script_sync_type_id = 3
-        sv = script.script_versions.build(code: contents, changelog: info[:messages].join(', '))
+        sv = script.script_versions.build(code: contents, changelog: info[:messages].join(', '), changelog_markup:)
 
         # Copy previous additional infos and screenshots
         last_saved_sv = script.newest_saved_script_version
