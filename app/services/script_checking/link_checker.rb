@@ -68,7 +68,7 @@ module ScriptChecking
 
         begin
           res = Net::HTTP.get_response(URI(url))
-        rescue Errno::ECONNREFUSED
+        rescue Errno::ECONNREFUSED, URI::InvalidURIError
           return url
         end
 
